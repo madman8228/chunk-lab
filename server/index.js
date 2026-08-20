@@ -63,14 +63,21 @@ app.get('/api/auth/me', auth.authenticate, function (req, res) {
 
 /* ===================== 数据读写 ===================== */
 function buildMem(userId) {
-  const deckRows = db.prepare('SELECT id,name,items_json,builtin FROM user_decks WHERE user_id=?').all(userId);
+  const deckRows = db.prepare('SELECT id,name,items_json,builtin,rev FROM user_decks WHERE user_id=? AND deleted_at IS NULL').all(userId);
   const decks = deckRows.map(function (r) {
     return { id: r.id, name: r.name, items: JSON.parse(r.items_json), builtin: !!r.builtin };
   });
+  // revs 需含软删行：让其他设备能判断本地副本是否已过期（软删也是版本演进）
+  const deckRevs = {};
+  db.prepare('SELECT id,rev FROM user_decks WHERE user_id=?').all(userId)
+    .forEach(function (r) { deckRevs[r.id] = r.rev; });
 
-  const kvRows = db.prepare('SELECT k,v_json FROM user_kv WHERE user_id=?').all(userId);
+  const kvRows = db.prepare('SELECT k,v_json,rev FROM user_kv WHERE user_id=? AND deleted_at IS NULL').all(userId);
   const kv = {};
   kvRows.forEach(function (r) { kv[r.k] = JSON.parse(r.v_json); });
+  const kvRevs = {};
+  db.prepare('SELECT k,rev FROM user_kv WHERE user_id=?').all(userId)
+    .forEach(function (r) { kvRevs[r.k] = r.rev; });
 
   const mem = {
     decks: decks,
@@ -89,30 +96,59 @@ function buildMem(userId) {
   const courseProgress = {};
   progRows.forEach(function (r) { courseProgress[r.course_id] = JSON.parse(r.data_json); });
 
-  return { mem: mem, courses: courses, courseProgress: courseProgress };
+  return { mem: mem, courses: courses, courseProgress: courseProgress, revs: { decks: deckRevs, kv: kvRevs } };
+}
+
+function upsertDeck(userId, d, rev, deleted) {
+  if (deleted) {
+    db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,rev,deleted_at,updated_at) VALUES (?,?,?,?,?,?,datetime('now'),datetime('now')) ON CONFLICT(user_id,id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
+      .run(userId, d.id, '', '[]', 0, rev == null ? null : rev);
+  } else {
+    db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,rev,deleted_at,updated_at) VALUES (?,?,?,?,?,?,?,datetime('now')) ON CONFLICT(user_id,id) DO UPDATE SET name=excluded.name, items_json=excluded.items_json, builtin=excluded.builtin, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
+      .run(userId, d.id, d.name, JSON.stringify(d.items || []), d.builtin ? 1 : 0, rev == null ? null : rev, null);
+  }
+}
+
+function upsertKv(userId, k, v, rev, deleted) {
+  if (deleted) {
+    db.prepare("INSERT INTO user_kv (user_id,k,v_json,rev,deleted_at,updated_at) VALUES (?,?,?,?,datetime('now'),datetime('now')) ON CONFLICT(user_id,k) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_kv.rev, 0)")
+      .run(userId, k, 'null', rev == null ? null : rev);
+  } else {
+    db.prepare("INSERT INTO user_kv (user_id,k,v_json,rev,deleted_at,updated_at) VALUES (?,?,?,?,?,datetime('now')) ON CONFLICT(user_id,k) DO UPDATE SET v_json=excluded.v_json, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_kv.rev, 0)")
+      .run(userId, k, JSON.stringify(v), rev == null ? null : rev, null);
+  }
 }
 
 function saveData(userId, body) {
   const mem = body.mem || {};
   const courses = Array.isArray(body.courses) ? body.courses : [];
   const courseProgress = body.courseProgress || {};
+  const revs = body.revs || {};
+  const deleted = body.deleted || {};
   const tx = db.transaction(function () {
-    db.prepare('DELETE FROM user_decks WHERE user_id=?').run(userId);
-    const insDeck = db.prepare('INSERT OR REPLACE INTO user_decks (user_id,id,name,items_json,builtin,updated_at) VALUES (?,?,?,?,?,datetime(\'now\'))');
+    // decks：实体级 rev upsert（不再整块 DELETE，崩溃可恢复、多设备不互覆盖）
     (mem.decks || []).forEach(function (d) {
-      insDeck.run(userId, d.id, d.name, JSON.stringify(d.items || []), d.builtin ? 1 : 0);
+      upsertDeck(userId, d, (revs.decks && revs.decks[d.id]) == null ? null : revs.decks[d.id], false);
+    });
+    (deleted.decks || []).forEach(function (d) {
+      upsertDeck(userId, { id: d.id }, d.rev, true);
     });
 
-    db.prepare('DELETE FROM user_kv WHERE user_id=?').run(userId);
-    const insKv = db.prepare('INSERT OR REPLACE INTO user_kv (user_id,k,v_json) VALUES (?,?,?)');
-    KV_KEYS.forEach(function (k) { if (k in mem) insKv.run(userId, k, JSON.stringify(mem[k])); });
+    // kv：实体级 rev upsert（per-key：best / mastered / stats / ...）
+    KV_KEYS.forEach(function (k) {
+      if (k in mem) upsertKv(userId, k, mem[k], (revs.kv && revs.kv[k]) == null ? null : revs.kv[k], false);
+    });
+    (deleted.kv || []).forEach(function (d) {
+      upsertKv(userId, d.k, null, d.rev, true);
+    });
 
-    db.prepare('DELETE FROM user_courses WHERE user_id=?').run(userId);
-    const insCourse = db.prepare('INSERT OR REPLACE INTO user_courses (user_id,course_id,data_json,updated_at) VALUES (?,?,?,datetime(\'now\'))');
+    // courses / courseProgress：保持整块语义（ADR-005 step 2 再做 per-entity rev）
+    db.prepare("DELETE FROM user_courses WHERE user_id=?").run(userId);
+    const insCourse = db.prepare("INSERT OR REPLACE INTO user_courses (user_id,course_id,data_json,updated_at) VALUES (?,?,?,datetime('now'))");
     courses.forEach(function (c) { insCourse.run(userId, c.courseId, JSON.stringify(c)); });
 
-    db.prepare('DELETE FROM user_course_progress WHERE user_id=?').run(userId);
-    const insProg = db.prepare('INSERT OR REPLACE INTO user_course_progress (user_id,course_id,data_json,updated_at) VALUES (?,?,?,datetime(\'now\'))');
+    db.prepare("DELETE FROM user_course_progress WHERE user_id=?").run(userId);
+    const insProg = db.prepare("INSERT OR REPLACE INTO user_course_progress (user_id,course_id,data_json,updated_at) VALUES (?,?,?,datetime('now'))");
     Object.keys(courseProgress).forEach(function (cid) { insProg.run(userId, cid, JSON.stringify(courseProgress[cid])); });
   });
   tx();

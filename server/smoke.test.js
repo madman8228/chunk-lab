@@ -54,6 +54,7 @@ function request(method, p, token, body) {
         res.on('end', function () {
           let json = null;
           try { json = raw ? JSON.parse(raw) : null; } catch (e) {}
+          if (res.statusCode >= 400) console.error('[smoke][HTTP]', method, p, res.statusCode, raw);
           resolve({ status: res.statusCode, json: json });
         });
       }
@@ -157,6 +158,112 @@ async function main() {
       typeof r.json.aiCache === 'object',
       'status=' + r.status
     );
+
+    /* ===== ADR-005：实体级 rev upsert + 软删除（后端语义） ===== */
+    // 先清空该用户已有 deck（软删），避免与上方 d1 残留互相干扰
+    r = await request('GET', '/api/data', token);
+    var existing = (r.json && r.json.mem && r.json.mem.decks) || [];
+    if (existing.length) {
+      var delList = existing.map(function (d) {
+        var cur = (r.json.revs && r.json.revs.decks && r.json.revs.decks[d.id] != null) ? r.json.revs.decks[d.id] : 0;
+        return { id: d.id, rev: cur + 1 };
+      });
+      await request('PUT', '/api/data', token, {
+        mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+        courses: [], courseProgress: {},
+        revs: { decks: {}, kv: {} }, deleted: { decks: delList, kv: [] }
+      });
+    }
+
+    // 设备 A：写 deck dA (rev 1)
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [{ id: 'dA', name: 'A-deck', items: [{ sent: 'A' }], builtin: false }], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {},
+      revs: { decks: { dA: 1 }, kv: {} }, deleted: { decks: [], kv: [] }
+    });
+    check('ADR-005 PUT dA ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+
+    // 设备 B：只写 deck dB (rev 1)，不应清掉 dA
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [{ id: 'dB', name: 'B-deck', items: [{ sent: 'B' }], builtin: false }], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {},
+      revs: { decks: { dB: 1 }, kv: {} }, deleted: { decks: [], kv: [] }
+    });
+    check('ADR-005 PUT dB ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+
+    r = await request('GET', '/api/data', token);
+    check('ADR-005 多设备互写不丢 deck（含 dA+dB）',
+      r.status === 200 && r.json && r.json.mem && r.json.mem.decks &&
+      r.json.mem.decks.length === 2 &&
+      r.json.mem.decks.some(function (d) { return d.id === 'dA'; }) &&
+      r.json.mem.decks.some(function (d) { return d.id === 'dB'; }),
+      'decks=' + (r.json && r.json.mem && r.json.mem.decks && r.json.mem.decks.map(function (d) { return d.id; }).join(',')));
+
+    check('ADR-005 GET 返回 revs',
+      r.status === 200 && r.json && r.json.revs && r.json.revs.decks && r.json.revs.decks.dA === 1 && r.json.revs.decks.dB === 1,
+      'revs=' + JSON.stringify(r.json && r.json.revs));
+
+    // 软删除 dA（rev 升到 2）
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [{ id: 'dB', name: 'B-deck', items: [{ sent: 'B' }], builtin: false }], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {},
+      revs: { decks: { dB: 1 }, kv: {} }, deleted: { decks: [{ id: 'dA', rev: 2 }], kv: [] }
+    });
+    check('ADR-005 软删 dA ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+
+    r = await request('GET', '/api/data', token);
+    check('ADR-005 软删后 dA 不再返回，revs.dA=2',
+      r.status === 200 && r.json && r.json.mem && r.json.mem.decks &&
+      r.json.mem.decks.length === 1 && r.json.mem.decks[0].id === 'dB' &&
+      r.json.revs.decks.dA === 2,
+      'decks=' + (r.json && r.json.mem && r.json.mem.decks.map(function (d) { return d.id; }).join(',')));
+
+    // 旧 rev 被拒：dB 当前 rev1，发 rev 0（更旧）→ 不更新
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [{ id: 'dB', name: 'STALE-deck', items: [{ sent: 'stale' }], builtin: false }], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {},
+      revs: { decks: { dB: 0 }, kv: {} }, deleted: { decks: [], kv: [] }
+    });
+    r = await request('GET', '/api/data', token);
+    check('ADR-005 旧 rev 写入被拒（dB 名称仍为 B-deck）',
+      r.status === 200 && r.json && r.json.mem && r.json.mem.decks &&
+      r.json.mem.decks[0].name === 'B-deck',
+      'name=' + (r.json && r.json.mem && r.json.mem.decks[0] && r.json.mem.decks[0].name));
+
+    // 旧客户端兼容：无 revs（rev=null）→ 总是覆盖
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [{ id: 'dB', name: 'LEGACY-deck', items: [{ sent: 'legacy' }], builtin: false }], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {}
+    });
+    r = await request('GET', '/api/data', token);
+    check('ADR-005 旧客户端（无 revs）仍可用且覆盖',
+      r.status === 200 && r.json && r.json.mem && r.json.mem.decks &&
+      r.json.mem.decks[0].name === 'LEGACY-deck',
+      'name=' + (r.json && r.json.mem && r.json.mem.decks[0] && r.json.mem.decks[0].name));
+
+    // kv per-key upsert：best rev1→rev2 覆盖；旧 rev1 被拒
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: { x: 1 }, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {},
+      revs: { decks: {}, kv: { best: 1 } }, deleted: { decks: [], kv: [] }
+    });
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: { x: 2 }, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {},
+      revs: { decks: {}, kv: { best: 2 } }, deleted: { decks: [], kv: [] }
+    });
+    r = await request('GET', '/api/data', token);
+    check('ADR-005 kv.best rev2 覆盖 rev1', r.status === 200 && r.json && r.json.mem && r.json.mem.best && r.json.mem.best.x === 2,
+      'best=' + JSON.stringify(r.json && r.json.mem && r.json.mem.best));
+
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: { x: 1 }, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: {},
+      revs: { decks: {}, kv: { best: 1 } }, deleted: { decks: [], kv: [] }
+    });
+    r = await request('GET', '/api/data', token);
+    check('ADR-005 kv.best 旧 rev1 写入被拒（仍 x=2）', r.status === 200 && r.json && r.json.mem && r.json.mem.best && r.json.mem.best.x === 2,
+      'best=' + JSON.stringify(r.json && r.json.mem && r.json.mem.best));
   } finally {
     if (child) child.kill('SIGKILL');
   }

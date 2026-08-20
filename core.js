@@ -13,7 +13,58 @@
   /* ★ 统一键：与主页面 main.html 一致
      （此前 stats/decks 用 chunklab_mem_v1 → 数据不同步，已修根因） */
   var STORE_KEY = 'chunklab.v1';
+  var REVS_KEY = 'chunklab_revs_v1'; /* ADR-005：per-entity 版本号，独立于 mem 存储 */
   var LISTENERS = {};
+
+  /* ADR-005 rev 基础设施：本地为每个可同步实体维护 rev（版本号），离线改动时升 rev；
+     同步时随 payload 上送，服务端按 rev 冲突检测取新版本。多设备互不覆盖无关改动；
+     删除走软删除标记跨设备传播。调用方（页面/业务模块）零改动。 */
+  var SYNC_KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
+  var _prevSnap = null; /* 上次保存的内存快照，用于 diff 检测变更/删除 */
+  var _lastSyncMeta = { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
+
+  function loadRevs() {
+    try { return JSON.parse(global.localStorage.getItem(REVS_KEY) || '{}') || {}; } catch (e) { return {}; }
+  }
+  function saveRevs(r) {
+    try { global.localStorage.setItem(REVS_KEY, JSON.stringify(r)); } catch (e) {}
+  }
+  function sigDeck(d) { return JSON.stringify([d.name || '', d.items || [], d.builtin ? 1 : 0]); }
+  function sigKv(v) { return JSON.stringify(v); }
+
+  /* 在 saveMem 中调用：与上次快照 diff，自动升 rev 并登记软删除。 */
+  function maintainRevs(m) {
+    var revs = loadRevs();
+    if (!revs.decks) revs.decks = {};
+    if (!revs.kv) revs.kv = {};
+    var deletes = { decks: [], kv: [] };
+    var curDecks = {};
+    (m.decks || []).forEach(function (d) { curDecks[d.id] = true; });
+    if (_prevSnap) {
+      (m.decks || []).forEach(function (d) {
+        var prev = _prevSnap.decks[d.id];
+        if (prev === undefined || sigDeck(d) !== prev) revs.decks[d.id] = (revs.decks[d.id] || 0) + 1;
+      });
+      Object.keys(_prevSnap.decks).forEach(function (id) {
+        if (!curDecks[id]) { revs.decks[id] = (revs.decks[id] || 0) + 1; deletes.decks.push({ id: id, rev: revs.decks[id] }); }
+      });
+      SYNC_KV_KEYS.forEach(function (k) {
+        var cur = (k in m) ? m[k] : undefined;
+        var prev = _prevSnap.kv[k];
+        if (prev === undefined) { if (cur !== undefined) revs.kv[k] = (revs.kv[k] || 0) + 1; }
+        else if (cur === undefined) { /* 字段消失，罕见，忽略 */ }
+        else if (sigKv(cur) !== prev) revs.kv[k] = (revs.kv[k] || 0) + 1;
+      });
+    } else {
+      (m.decks || []).forEach(function (d) { if (!(d.id in revs.decks)) revs.decks[d.id] = 1; });
+      SYNC_KV_KEYS.forEach(function (k) { if ((k in m) && !(k in revs.kv)) revs.kv[k] = 1; });
+    }
+    _prevSnap = { decks: {}, kv: {} };
+    (m.decks || []).forEach(function (d) { _prevSnap.decks[d.id] = sigDeck(d); });
+    SYNC_KV_KEYS.forEach(function (k) { if (k in m) _prevSnap.kv[k] = sigKv(m[k]); });
+    saveRevs(revs);
+    _lastSyncMeta = { revs: revs, deleted: deletes };
+  }
 
   /* ---------- 存储版本化（版本迁移链） ----------
      version 语义：缺省 = 1（legacy）。写入时强制打当前版本。
@@ -76,6 +127,7 @@
       var out = Object.assign({}, m);
       out.version = CURRENT_VERSION; /* 写入时强制版本 */
       global.localStorage.setItem(STORE_KEY, JSON.stringify(out));
+      maintainRevs(m);
       return true;
     }
     catch(e){ console.error('[core.saveMem]', e); return false; }
@@ -113,10 +165,13 @@
   }
   function cloudSyncNow(memObj){
     if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
+    var meta = _lastSyncMeta || { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
     var payload = {
       mem: memObj,
       courses: readCoursesRaw(),
-      courseProgress: readProgressRaw()
+      courseProgress: readProgressRaw(),
+      revs: meta.revs,
+      deleted: meta.deleted
     };
     return global.ChunkAPI.putData(payload).then(function(){ return true; }).catch(function(e){
       console.warn('[cloud sync →] 失败:', e.message);
@@ -126,9 +181,41 @@
   function syncFromCloud(){
     if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
     return global.ChunkAPI.getData().then(function(data){
-      if(data && data.mem) saveMem(data.mem);
-      if(data && Array.isArray(data.courses)) global.localStorage.setItem(COURSES_KEY, JSON.stringify(data.courses));
-      if(data && data.courseProgress && typeof data.courseProgress === 'object') global.localStorage.setItem(PROGRESS_KEY, JSON.stringify(data.courseProgress));
+      if(!data) return false;
+      var remoteMem = data.mem || {};
+      var remoteRevs = data.revs || { decks: {}, kv: {} };
+      var localRevs = loadRevs();
+      if(!localRevs.decks) localRevs.decks = {};
+      if(!localRevs.kv) localRevs.kv = {};
+      var m = loadMem();
+      // decks：per-entity LWW 合并（取 rev 大者）
+      var merged = {};
+      (m.decks || []).forEach(function(d){ merged[d.id] = { data: d, rev: localRevs.decks[d.id] || 0 }; });
+      (remoteMem.decks || []).forEach(function(d){
+        var rr = remoteRevs.decks[d.id] || 0;
+        var cur = merged[d.id];
+        if(!cur || rr > cur.rev) merged[d.id] = { data: d, rev: rr };
+      });
+      // 软删除传播：远程 revs 有但 remoteMem.decks 无 → 已删，本地移除并采纳其 rev
+      Object.keys(remoteRevs.decks || {}).forEach(function(id){
+        if(!(remoteMem.decks || []).some(function(d){ return d.id === id; })){
+          var ri = remoteRevs.decks[id];
+          if(ri > (localRevs.decks[id] || 0)){ delete merged[id]; localRevs.decks[id] = ri; }
+        }
+      });
+      m.decks = Object.keys(merged).map(function(id){ return merged[id].data; });
+      // kv：per-key LWW 合并
+      SYNC_KV_KEYS.forEach(function(k){
+        var rRev = (remoteRevs.kv && remoteRevs.kv[k]) || 0;
+        var lRev = localRevs.kv[k] || 0;
+        if(rRev > lRev && remoteMem[k] !== undefined){ m[k] = remoteMem[k]; localRevs.kv[k] = rRev; }
+        /* rRev <= lRev：本地更新优先，下次 PUT 覆盖 */
+      });
+      saveRevs(localRevs);
+      _prevSnap = null; /* 让 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
+      saveMem(m);
+      if(Array.isArray(data.courses)) global.localStorage.setItem(COURSES_KEY, JSON.stringify(data.courses));
+      if(data.courseProgress && typeof data.courseProgress === 'object') global.localStorage.setItem(PROGRESS_KEY, JSON.stringify(data.courseProgress));
       return true;
     }).catch(function(e){
       console.warn('[cloud sync ←] 失败:', e.message);
