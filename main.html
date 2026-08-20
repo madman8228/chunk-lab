@@ -1211,22 +1211,11 @@ var FX = (function(){
     }
   };
 })();
-function esc(s){
-  return String(s==null?'':s).replace(/[&<>"]/g,function(c){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
-  });
-}
-/* 归一化：忽略大小写、标点、多余空格、撇号差异 */
-function norm(s){
-  return String(s==null?'':s)
-    .replace(/[\u2018\u2019\u02BC\u0060\u00B4]/g,"'")
-    .toLowerCase()
-    .replace(/[^a-z0-9'\s]/g,' ')
-    .replace(/'/g,'')
-    .replace(/\s+/g,' ')
-    .trim();
-}
-function wordCount(s){ return String(s).trim().split(/\s+/).filter(Boolean).length; }
+/* 纯工具函数已抽至 js/format.mjs（ADR-007 Step 2）：包装器调 window.FormatTools，
+   保留函数名与签名，调用点零改动。行为与原内联实现逐字符一致。 */
+function esc(s){ return (window.FormatTools || {}).esc(s); }
+function norm(s){ return (window.FormatTools || {}).norm(s); }
+function wordCount(s){ return (window.FormatTools || {}).wordCount(s); }
 
 /* ============================================================
    1. 存储
@@ -2839,13 +2828,7 @@ function renderWrongBook(body){
   });
 }
 
-function timeAgo(t){
-  var d = Date.now()-t;
-  if(d < 60000) return '刚刚';
-  if(d < 3600000) return Math.floor(d/60000)+' 分钟前';
-  if(d < 86400000) return Math.floor(d/3600000)+' 小时前';
-  return Math.floor(d/86400000)+' 天前';
-}
+function timeAgo(t){ return (window.FormatTools || {}).timeAgo(t); }
 
 /* 练习错题本：把错题句子组装成临时题库 */
 function practiceWrongBook(){
@@ -3610,7 +3593,7 @@ function doAppendValidate(){
 }
 
 /* 句子去重：基于归一化后的整句比对，existing 中已存在的跳过 */
-function normSent(s){ return norm(String(s||'')); }
+function normSent(s){ return (window.FormatTools || {}).normSent(s); }
 function mergeDedup(existing, incoming){
   var seen = {};
   (existing||[]).forEach(function(it){ seen[normSent(it.sentence)] = 1; });

@@ -7,5 +7,7 @@
  * 用户交互 / CL.ensureCloud().then 的异步初始化里，届时 window.ChunkEngine 必已就绪。
  */
 import * as ChunkEngine from './chunk-engine.mjs';
+import * as FormatTools from './format.mjs';
 
 window.ChunkEngine = ChunkEngine;
+window.FormatTools = FormatTools;
