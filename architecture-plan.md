@@ -169,7 +169,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 | **ADR-005** | **Sync 策略：实体级 rev upsert + 软删除** | **Proposed → Accepted（2026-08-20 落地，见 §8）** | 本文新增 |
 | **ADR-006** | **鉴权默认与密钥管理（上云强制 REQUIRE_AUTH + env 密钥）** | Proposed | 本文新增 |
 | **ADR-007** | **前端 ESM 模块化（无打包器）** | **Proposed → Accepted（2026-08-20 Step 1 落地：`js/chunk-engine.mjs`）** | 本文新增 |
-| **ADR-008** | **服务端校验与冒烟测试** | **Proposed → Accepted（2026-08-20 冒烟测试落地）** | 本文新增 |
+| **ADR-008** | **服务端校验与冒烟测试** | **Proposed → Accepted（2026-08-20 校验中间件 + 冒烟测试全部落地）** | 本文新增 |
 
 ### ADR-005: Sync 策略 — 实体级 rev upsert + 软删除
 - **Status**: Accepted（2026-08-20 落地，见 §8）
@@ -192,10 +192,11 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 - **实现要点**: 内联脚本是普通 script（onclick 依赖全局函数，不能直接转 module），用 `js/bridge.mjs` 把 ESM 模块挂 `window` 供包装器调用；module 是 defer 的，但业务调用都在交互/异步初始化（`CL.ensureCloud().then`）之后，无时序风险。`.mjs` 扩展名让 Node 原生 ESM 单测与浏览器双兼容（勿改根 package.json 的 type，会破坏既有 CJS 测试）。
 
 ### ADR-008: 服务端校验与冒烟测试
-- **Status**: Proposed
+- **Status**: Accepted（2026-08-20 校验中间件 + 冒烟测试全部落地）
 - **Context**: `PUT /api/data` 接受任意结构，后端无测试。
 - **Decision**: 加轻量 schema 校验中间件 + 零依赖 Node 冒烟测试脚本。
 - **Consequences**: 坏数据/回归有防护；少量代码成本。
+- **实现要点**: `server/validate.js` 零依赖校验（浅层类型检查防崩溃，不深绑以免误伤旧客户端）；`PUT /api/data` / `POST /api/courses` / `POST /api/import` 坏数据返回 400；`auth.js` 补类型 + 长度上限（用户名 ≤32、密码 ≤128——bcrypt 只取前 72 字节，超长静默截断是隐患）。
 
 ---
 
@@ -217,9 +218,9 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 | 多设备同步丢数据 | 高（已有） | 高 | ADR-005 实体级 rev（**已完整落地**：decks/kv/courses/courseProgress 全部 per-entity） | B |
 | 开放模式数据裸奔 | 中 | 高 | ADR-006 + 网络收口 | A |
 | 前端单体熵增 | 高（已有） | 中 | ADR-007 ESM 拆分 | A/B |
-| 后端坏数据/无回归 | 中 | 中 | ADR-008 校验+测试 | A |
+| 后端坏数据/无回归 | 中 | 中 | ADR-008 校验+测试（**已落地**：validate.js 中间件 + smoke 40/40） | A |
 | AI Key 资损 | 中 | 中 | ADR-004 代理+限流 | C |
-| ai_cache 无限膨胀 | 中 | 低 | 容量上限+LRU | A |
+| ai_cache 无限膨胀 | 中 | 低 | 容量上限+LRU（**已落地**：AI_CACHE_MAX 默认 2000，导入后 LRU 裁剪） | A |
 | localStorage 5MB 撞顶 | 中 | 中 | IndexedDB | C |
 | SQLite 单写者瓶颈 | 低 | 中 | 多实例换 Postgres | D |
 
@@ -242,6 +243,7 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 - ✅ **Next 2 后端冒烟测试**：`server/smoke.test.js`，10/10 通过（多用户模式 + 临时 DB 端到端验证）
 - ✅ **Next 5 README 重写**：已对齐真实架构（去掉"纯前端无后端"过时描述，补后端/双模式/安全部署清单/测试）
 - ✅ 既有前端单测 `srs.test.js` / `store.test.js` 无回归
+- ✅ **Phase A 剩余项（2026-08-20 落地）**：ai_cache 容量上限（`AI_CACHE_MAX`，服务端 import 后 LRU 裁剪；前端 localStorage 缓存本就有 `AI_CACHE_MAX=200` LRU）+ 服务端 schema 校验（`server/validate.js`，坏数据 400）+ `auth.js` 输入类型/长度上限。Phase A 代码面全部完成。
 - ✅ **Next 3 `saveData` 改实体级 rev upsert**（ADR-005，2026-08-20 落地，见下；**step 2 已含 courses/courseProgress**）
 - ✅ **Next 4 `main.html` ESM 拆分 Step 1**（ADR-007，2026-08-20 落地，见 §8.2；剩余模块为后续步骤）
 

@@ -32,9 +32,12 @@ function ensureDefaultUser() {
 }
 
 function register(username, password) {
-  username = (username || '').trim();
+  if (typeof username !== 'string' || typeof password !== 'string') throw new Error('用户名与密码必须是字符串');
+  username = username.trim();
   if (username.length < 2) throw new Error('用户名至少 2 个字符');
-  if ((password || '').length < 6) throw new Error('密码至少 6 位');
+  if (username.length > 32) throw new Error('用户名最长 32 个字符');
+  if (password.length < 6) throw new Error('密码至少 6 位');
+  if (password.length > 128) throw new Error('密码最长 128 位'); /* bcrypt 只取前 72 字节，超长静默截断是隐患 */
   const exists = db.prepare('SELECT id FROM users WHERE username = ?').get(username);
   if (exists) throw new Error('用户名已存在');
   const hash = bcrypt.hashSync(password, 10);
@@ -43,7 +46,8 @@ function register(username, password) {
 }
 
 function login(username, password) {
-  const row = db.prepare('SELECT * FROM users WHERE username = ?').get((username || '').trim());
+  if (typeof username !== 'string' || typeof password !== 'string') throw new Error('用户名与密码必须是字符串');
+  const row = db.prepare('SELECT * FROM users WHERE username = ?').get(username.trim());
   if (!row) throw new Error('用户名或密码错误');
   if (!bcrypt.compareSync(password || '', row.password_hash)) throw new Error('用户名或密码错误');
   return { id: row.id, username: row.username };

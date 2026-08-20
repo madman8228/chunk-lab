@@ -16,6 +16,7 @@ const cors = require('cors');
 const path = require('path');
 const db = require('./db');
 const auth = require('./auth');
+const validate = require('./validate');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
 
@@ -195,13 +196,19 @@ app.get('/api/data', auth.authenticate, function (req, res) {
 });
 
 app.put('/api/data', auth.authenticate, function (req, res) {
-  try { saveData(req.userId, req.body || {}); res.json({ ok: true }); }
+  try {
+    const verr = validate.validatePutPayload(req.body);
+    if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
+    saveData(req.userId, req.body || {});
+    res.json({ ok: true });
+  }
   catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 app.post('/api/courses', auth.authenticate, function (req, res) {
   const course = req.body && req.body.course;
-  if (!course || !course.courseId) return res.status(400).json({ error: 'course 或 courseId 缺失' });
+  const verr = validate.validateCourse(course);
+  if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
   try {
     // 无 rev → 总是覆盖（与旧客户端语义一致，向后兼容）
     upsertCourse(req.userId, course, null, false);
@@ -221,6 +228,15 @@ app.delete('/api/courses/:courseId', auth.authenticate, function (req, res) {
 });
 
 /* ===================== 备份导入导出 ===================== */
+/* ai_cache 容量上限（ADR-008 / Phase A）：备份导入可能一次性写入海量缓存，
+   按 AI_CACHE_MAX（默认 2000）LRU 淘汰最旧条目，防止无限膨胀。 */
+const AI_CACHE_MAX = parseInt(process.env.AI_CACHE_MAX || '2000', 10);
+function trimAiCache(max) {
+  const row = db.prepare('SELECT COUNT(*) AS n FROM ai_cache').get();
+  if (!row || row.n <= max) return;
+  const excess = row.n - max;
+  db.prepare('DELETE FROM ai_cache WHERE key IN (SELECT key FROM ai_cache ORDER BY updated_at ASC, rowid ASC LIMIT ?)').run(excess);
+}
 app.get('/api/export', auth.authenticate, function (req, res) {
   try {
     const data = buildMem(req.userId);
@@ -238,7 +254,8 @@ app.get('/api/export', auth.authenticate, function (req, res) {
 app.post('/api/import', auth.authenticate, function (req, res) {
   try {
     const body = req.body || {};
-    if (!body.mem || typeof body.mem !== 'object') return res.status(400).json({ error: '备份数据格式不正确' });
+    const verr = validate.validatePutPayload(body);
+    if (verr) return res.status(400).json({ error: '备份数据校验失败：' + verr });
     saveData(req.userId, body);
     if (body.aiCache && typeof body.aiCache === 'object') {
       const ins = db.prepare('INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime(\'now\'))');
@@ -246,6 +263,7 @@ app.post('/api/import', auth.authenticate, function (req, res) {
         Object.keys(body.aiCache).forEach(function (k) { ins.run(k, JSON.stringify(body.aiCache[k])); });
       });
       tx();
+      trimAiCache(AI_CACHE_MAX); /* 导入后按 LRU 收敛到容量上限 */
     }
     res.json({ ok: true });
   } catch (e) { res.status(500).json({ error: e.message }); }

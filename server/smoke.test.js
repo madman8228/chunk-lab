@@ -88,7 +88,8 @@ const childEnv = Object.assign({}, process.env, {
   JWT_SECRET: 'smoke-test-secret-not-for-production',
   TOKEN_TTL: '30d',
   PORT: String(PORT),
-  CHUNKLAB_DATA_DIR: TMP_DB
+  CHUNKLAB_DATA_DIR: TMP_DB,
+  AI_CACHE_MAX: '5' /* 便于验证 ai_cache LRU 裁剪 */
 });
 
 let child = null;
@@ -136,6 +137,24 @@ async function main() {
     };
     r = await request('PUT', '/api/data', token, { mem: mem, courses: [], courseProgress: {} });
     check('PUT /api/data ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+
+    /* ===== ADR-008：schema 校验（坏数据 400 而非 500） ===== */
+    r = await request('PUT', '/api/data', token, { mem: { decks: 'not-array' } });
+    check('ADR-008 非法 mem.decks → 400', r.status === 400, 'status=' + r.status);
+    r = await request('PUT', '/api/data', token, { mem: { decks: [{ id: 'x' }] } });
+    check('ADR-008 deck 缺 name → 400', r.status === 400, 'status=' + r.status);
+    r = await request('PUT', '/api/data', token, { mem: { decks: [{ id: 'x', name: 'X', items: [{ noSent: 1 }] }] } });
+    check('ADR-008 item 缺 sent/en → 400', r.status === 400, 'status=' + r.status);
+    r = await request('PUT', '/api/data', token, { mem: { decks: [] }, courses: [{ title: 'NoId' }] });
+    check('ADR-008 course 缺 courseId → 400', r.status === 400, 'status=' + r.status);
+    r = await request('PUT', '/api/data', token, { mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {} }, courses: [], courseProgress: {} });
+    check('ADR-008 合法 payload 仍通过', r.status === 200, 'status=' + r.status);
+    r = await request('POST', '/api/auth/register', null, { username: 'this-name-is-way-too-long-for-registration', password: 'ok123456' });
+    check('ADR-008 超长用户名 → 400', r.status === 400, 'status=' + r.status);
+    r = await request('POST', '/api/auth/register', null, { username: 'okname', password: '123456' + 'x'.repeat(200) });
+    check('ADR-008 超长密码 → 400', r.status === 400, 'status=' + r.status);
+    r = await request('POST', '/api/auth/register', null, { username: 12345, password: 'ok123456' });
+    check('ADR-008 非字符串用户名 → 400', r.status === 400, 'status=' + r.status);
 
     r = await request('GET', '/api/data', token);
     check(
@@ -343,6 +362,15 @@ async function main() {
     check('ADR-005s2 DELETE 后 cB 不再返回且 revs.cB=2',
       r.status === 200 && r.json && r.json.courses && r.json.courses.length === 0 && r.json.revs.courses.cB === 2,
       'courses=' + JSON.stringify(r.json && r.json.courses));
+
+    /* ===== ADR-008 / Phase A：ai_cache 容量上限（AI_CACHE_MAX=5，LRU 裁剪） ===== */
+    const bigCache = {};
+    for (let i2 = 1; i2 <= 8; i2++) bigCache['cache_k' + i2] = { v: i2 };
+    r = await request('POST', '/api/import', token, { mem: { decks: [] }, courses: [], courseProgress: {}, aiCache: bigCache });
+    check('ADR-008 ai_cache 导入 ok', r.status === 200, 'status=' + r.status);
+    r = await request('GET', '/api/export', token);
+    const cacheKeys = Object.keys((r.json && r.json.aiCache) || {});
+    check('ADR-008 ai_cache 超限被 LRU 裁剪（8→5）', cacheKeys.length === 5, 'n=' + cacheKeys.length + ' keys=' + cacheKeys.join(','));
   } finally {
     if (child) child.kill('SIGKILL');
   }
