@@ -8,6 +8,8 @@
  */
 import * as ChunkEngine from './chunk-engine.mjs';
 import * as FormatTools from './format.mjs';
+import * as AIPrompts from './ai-prompts.mjs';
 
 window.ChunkEngine = ChunkEngine;
 window.FormatTools = FormatTools;
+window.AIPrompts = AIPrompts;
