@@ -168,7 +168,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 | ADR-004 | AI 调用走后端代理 | **Proposed → Accepted（Phase C 落地）** | 升级 |
 | **ADR-005** | **Sync 策略：实体级 rev upsert + 软删除** | **Proposed → Accepted（2026-08-20 落地，见 §8）** | 本文新增 |
 | **ADR-006** | **鉴权默认与密钥管理（上云强制 REQUIRE_AUTH + env 密钥）** | Proposed | 本文新增 |
-| **ADR-007** | **前端 ESM 模块化（无打包器）** | Proposed | 本文新增 |
+| **ADR-007** | **前端 ESM 模块化（无打包器）** | **Proposed → Accepted（2026-08-20 Step 1 落地：`js/chunk-engine.mjs`）** | 本文新增 |
 | **ADR-008** | **服务端校验与冒烟测试** | **Proposed → Accepted（2026-08-20 冒烟测试落地）** | 本文新增 |
 
 ### ADR-005: Sync 策略 — 实体级 rev upsert + 软删除
@@ -185,10 +185,11 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 - **Consequences**: 数据安全达标；牺牲少量零摩擦（匿名账号缓解）。
 
 ### ADR-007: 前端 ESM 模块化
-- **Status**: Proposed
+- **Status**: Accepted（2026-08-20 Step 1 落地，见 §8.2）
 - **Context**: `main.html` 4781 行单体，熵增回潮。
 - **Decision**: 用原生 `<script type="module">` 拆分，不引入打包器；保留 iframe 隔离。
 - **Consequences**: 模块清晰、可单测；代价是需 http(s) 服务（file:// 不支持 module import）——后端已托管前端，可接受。
+- **实现要点**: 内联脚本是普通 script（onclick 依赖全局函数，不能直接转 module），用 `js/bridge.mjs` 把 ESM 模块挂 `window` 供包装器调用；module 是 defer 的，但业务调用都在交互/异步初始化（`CL.ensureCloud().then`）之后，无时序风险。`.mjs` 扩展名让 Node 原生 ESM 单测与浏览器双兼容（勿改根 package.json 的 type，会破坏既有 CJS 测试）。
 
 ### ADR-008: 服务端校验与冒烟测试
 - **Status**: Proposed
@@ -242,7 +243,7 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 - ✅ **Next 5 README 重写**：已对齐真实架构（去掉"纯前端无后端"过时描述，补后端/双模式/安全部署清单/测试）
 - ✅ 既有前端单测 `srs.test.js` / `store.test.js` 无回归
 - ✅ **Next 3 `saveData` 改实体级 rev upsert**（ADR-005，2026-08-20 落地，见下；**step 2 已含 courses/courseProgress**）
-- ⬜ **Next 4 `main.html` ESM 拆分 spike**（ADR-007，Phase A/B）
+- ✅ **Next 4 `main.html` ESM 拆分 Step 1**（ADR-007，2026-08-20 落地，见 §8.2；剩余模块为后续步骤）
 
 ### §8.1 Next 3 实现笔记（ADR-005 实体级 rev sync，2026-08-20）
 
@@ -265,5 +266,24 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 - `rev.test.js` 扩展至 **18/18**：courses/progress 惰性 diff 新增/修改/删除/未变不 bump、合并采纳远程 rev 且后续上行不误 bump；
 - 回归：`srs.test.js` / `store.test.js` / `course-resume.test.js` / `validate_oral8000.js` 无回归。
 - 过程中修复真实 bug：① `user_kv` 缺 `updated_at` 列导致 upsertKv 全 500（Schema 与 SQL 不一致）；② revs 排除软删行导致删后版本号丢失；③ 合并未写回本地 revs 导致首拉后本地修改被拒（step 2 顺带修复）。
+
+### §8.2 Next 4 实现笔记（ADR-007 ESM 模块化 Step 1，2026-08-20）
+
+**动机**：`main.html` 4781 行单体（1 个 3675 行内联脚本），核心练习逻辑（chunk 判定/干扰项/词性 pattern）此前零单测。
+
+**Step 1 已落地（纯逻辑抽取，零行为变化）**
+- `js/chunk-engine.mjs`（ESM 纯函数）：`classifyWord` / `patternOf` / `normPattern` / `norm` / `buildChoices` / `buildDistractors` / `judgeChunk`。原 `buildChoices`/`buildDistractors` 依赖全局 `S.items` 与 `allDecks()`，已参数化（`currentItems`/`allItems` 注入），纯函数可单测。
+- `js/bridge.mjs`：`import * as ChunkEngine from './chunk-engine.mjs'; window.ChunkEngine = ChunkEngine;`——内联脚本是普通 script（onclick 依赖全局函数），不能直接转 module，故桥接。
+- `main.html`：内联的 1681-1801 整段（SMALL_WORDS/classifyWord/patternOf/normPattern/buildChoices/buildDistractors）替换为 3 个包装器（`allItems()` + `buildChoices`/`buildDistractors` 调 `window.ChunkEngine`）；`submitChunk` 判定改调 `judgeChunk`。内联脚本 3675 → 3566 行。
+- `js/chunk-engine.test.mjs`：**31/31**（词性分类/pattern/归一化/候选去重与同模式优先/池子不足降级/判定与 alternatives）。
+
+**关键决策与坑**
+- `.mjs` 扩展名：Node 原生 ESM 单测 + 浏览器 `<script type="module">` 双兼容；**不能**加根 `package.json {"type":"module"}`（会把既有 CJS 测试 `srs.test.js` 等当 ESM 破坏）。
+- module 脚本默认 defer（在普通内联脚本后执行），但所有业务调用都在用户交互 / `CL.ensureCloud().then` 异步初始化里，无时序风险；实测启动流程确在 `.then` 内。
+- Express 静态服务对 `.mjs` 返回 `application/javascript` ✓（mime-types 已识别）。
+
+**验证**：单测全绿（chunk-engine 31、rev 18、srs/store/course-resume/validate、server smoke 30）；内联脚本语法检查 OK；起 server 冒烟：`/main.html`、`/js/chunk-engine.mjs`、`/js/bridge.mjs` 均 200，`.mjs` MIME 正确。
+
+**后续 Step（增量，每次单测锁定）**：Step 2 `js/format.mjs`（esc/norm/wordCount/normSent/timeAgo/copyText）→ Step 3 `js/ai-prompts.mjs`（buildExplainPrompt/buildBatchExplainPrompt/buildPrompt/buildSplitPrompt/buildAppendPrompt）→ Step 4 存储/备份纯逻辑（exportReinforce/exportDeck/exportAllData/importAllData 解析部分）→ 最后 DOM/流程层留在 main.html 编排。
 
 _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地（后端存在、SRS 纯函数、存储版本化），但"前端模块化"与"Sync 正确性"仍是缺口，本文即针对此缺口给出设计。_

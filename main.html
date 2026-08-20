@@ -1101,6 +1101,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script src="api.js"></script>
 <script src="auth-ui.js"></script>
 <script src="srs.js"></script>
+<script type="module" src="js/bridge.mjs"></script>
 <script>
 "use strict";
 /* >>>>> v7 2026-08-07 19:16 <<<<< */
@@ -1676,128 +1677,16 @@ function firstEmptyInputAt(i){
 }
 
 /* ---------- 选择模式（点击 chunk 候选） ---------- */
-/* 生成候选：1 个正确答案 + 2 个干扰项（从当前题库其他句子的 chunks 抽取，优先同长度） */
-/* 单词词性粗分类：S=小词（介词/冠词/代词/be 动词/助动词等），C=内容词（名词/动词/形容词/副词等），P=纯标点 */
-var SMALL_WORDS = 'a an the and or but if when where what who how which that is am are was were be been being do does did have has had in on at to for with by of about from into onto off out over under up down through across between among around after before during since until i you he she it we they me him her us them my your his its our their this these those there here so than as too also just very more most much some any no not only even still yet now then once'.split(' ');
-function classifyWord(w){
-  var clean = String(w||'').replace(/[.,!?;:]+$/, '').toLowerCase();
-  if(!clean) return 'P';
-  if(SMALL_WORDS.indexOf(clean) >= 0) return 'S';
-  return 'C';
-}
-function patternOf(chunk){
-  return String(chunk||'').trim().split(/\s+/).map(classifyWord).join('-');
-}
-function normPattern(p){ return p.replace(/-P+/g,'-P').replace(/^-+|-+$/g,''); }
-
+/* 生成候选 / 整池干扰项 / 词性 pattern：纯逻辑已抽至 js/chunk-engine.mjs（ADR-007），
+   此处为包装器（注入候选池来源，行为与原内联实现一致，可单测）。 */
+function allItems(){ var out = []; allDecks().forEach(function(d){ (d.items||[]).forEach(function(o){ out.push(o); }); }); return out; }
 function buildChoices(it, i){
-  var right = it.chunks[i], rn = norm(right);
-  var rightPattern = patternOf(right);
-
-  var pool = [];
-  (S.items || []).forEach(function(o){
-    if(o === it) return;
-    (o.chunks || []).forEach(function(c){ pool.push(c); });
-  });
-  /* 干扰项不足时从其他题库补 */
-  if(pool.length < 6){
-    allDecks().forEach(function(d){
-      (d.items || []).forEach(function(o){
-        if(o === it) return;
-        (o.chunks || []).forEach(function(c){ pool.push(c); });
-      });
-    });
-  }
-
-  /* 第一优先：词性模式完全相同的 chunks（结构对位，仅内容词不同 → 高质量干扰） */
-  var samePattern = [];
-  var seen = {};
-  pool.forEach(function(c){
-    var k = norm(c);
-    if(!k || k === rn || seen[k]) return;
-    if(normPattern(patternOf(c)) === normPattern(rightPattern)){
-      seen[k] = 1;
-      samePattern.push(c);
-    }
-  });
-  /* 第二优先：词数相同（结构兜底） */
-  var rightWords = right.trim().split(/\s+/).length;
-  var sameLen = [];
-  var seen2 = {};
-  pool.forEach(function(c){
-    var k = norm(c);
-    if(!k || k === rn || seen[k] || seen2[k]) return;
-    if(c.trim().split(/\s+/).length === rightWords){
-      seen2[k] = 1;
-      sameLen.push(c);
-    }
-  });
-
-  /* 三级兜底：同模式 → 同长度 → 任意不同；尽量避免 "…" 占位 */
-  var wrongs = [];
-  var seen4 = {};
-  function pick(pool, cap){
-    for(var i=0;i<pool.length && wrongs.length<cap;i++){
-      var c = pool[i];
-      var k = norm(c);
-      if(!k || k === rn || seen4[k]) continue;
-      seen4[k] = 1;
-      wrongs.push(c);
-    }
-  }
-  pick(samePattern, 2);
-  if(wrongs.length < 2) pick(sameLen, 2);
-  if(wrongs.length < 2) pick(pool, 2);
-  /* 仍不足 2 个时（题库太小），只返回正确答案 */
-  if(wrongs.length < 2){ return [right]; }
-  var choices = [right].concat(wrongs);
-  /* 洗牌 */
-  for(var k=choices.length-1;k>0;k--){
-    var j = Math.floor(Math.random()*(k+1));
-    var t = choices[k]; choices[k] = choices[j]; choices[j] = t;
-  }
-  return choices;
+  return (window.ChunkEngine || {}).buildChoices(it, i, S.items || [], allItems());
 }
 
 /* 收集整句的干扰项（一次性大池子，所有 chunks 共享，不逐 chunk 刷新） */
 function buildDistractors(it){
-  var correctCount = it.chunks.length;
-  var distractorCount = Math.max(4, correctCount * 2);
-  var pool = [];
-  (S.items || []).forEach(function(o){
-    if(o === it) return;
-    (o.chunks || []).forEach(function(c){ pool.push(c); });
-  });
-  if(pool.length < distractorCount * 2){
-    allDecks().forEach(function(d){
-      (d.items || []).forEach(function(o){
-        if(o === it) return;
-        (o.chunks || []).forEach(function(c){ pool.push(c); });
-      });
-    });
-  }
-  var correctSet = {};
-  it.chunks.forEach(function(v){ correctSet[norm(v)] = 1; });
-  /* 优先取同模式（高质量干扰），否则退化 */
-  var picks = [];
-  var seen = {};
-  pool.forEach(function(c){
-    if(picks.length >= distractorCount) return;
-    var nk = norm(c);
-    if(!nk || correctSet[nk] || seen[nk]) return;
-    if(normPattern(patternOf(c)) === normPattern(patternOf(it.chunks[0]))){
-      seen[nk] = 1;
-      picks.push(c);
-    }
-  });
-  pool.forEach(function(c){
-    if(picks.length >= distractorCount) return;
-    var nk = norm(c);
-    if(!nk || correctSet[nk] || seen[nk]) return;
-    seen[nk] = 1;
-    picks.push(c);
-  });
-  return picks;
+  return (window.ChunkEngine || {}).buildDistractors(it, S.items || [], allItems());
 }
 
 /* 渲染整池：未填的 correct（高亮当前）+ 所有 distractors；正确填入后该 correct 自动消失 */
@@ -1924,7 +1813,9 @@ function submitChunk(){
   }
   var right = it.chunks[i];
   var alternatives = (it.alts && it.alts[i]) || [];
-  var ok = [right].concat(alternatives).some(function(a){ return norm(val) === norm(a); });
+  var ok = (window.ChunkEngine || {}).judgeChunk
+    ? window.ChunkEngine.judgeChunk(val, right, alternatives)
+    : [right].concat(alternatives).some(function(a){ return norm(val) === norm(a); });
 
   S.chunkTotal++;
   S.answers[i] = val;
