@@ -4022,7 +4022,7 @@ $('btnSettingsTop').onclick = function(){
   /* AI 配置组默认收起；若有 key 则提示已配置 */
   $('aiCfgBody').classList.add('hidden');
   $('aiCfgCaret').style.transform = 'rotate(0deg)';
-  $('aiCfgStatus').textContent = mem.settings.apiKey ? '· 已配置' : '· 未配置';
+  $('aiCfgStatus').textContent = mem.settings.apiKey ? '· 本地 Key（仅服务端未配置时使用）' : '· 服务端代理模式';
   $('settingsMask').hidden = false;
 };
 /* AI 配置组折叠 */
@@ -4166,18 +4166,11 @@ $('fileBackup').onchange = function(){
 function refreshAIBtn(){
   var btn = $('btnAIExplain');
   if(!btn){ return; }
-  var hasKey = !!(mem.settings.apiKey && mem.settings.apiKey.trim());
-  if(hasKey){
-    btn.disabled = false;
-    btn.classList.remove('disabled');
-    btn.innerHTML = 'AI 解读';
-    btn.title = 'AI 智能解读本句';
-  } else {
-    btn.disabled = true;
-    btn.classList.add('disabled');
-    btn.innerHTML = 'AI 解读';
-    btn.title = 'AI 智能解读（点击进入设置配置 API Key）';
-  }
+  /* ADR-004：走后端代理，不再依赖前端 Key；未登录/未配置时自动兜底本地解读 */
+  btn.disabled = false;
+  btn.classList.remove('disabled');
+  btn.innerHTML = 'AI 解读';
+  btn.title = 'AI 智能解读本句（服务端代理）';
 }
 $('btnAIExplain').onclick = function(){ if(this.disabled){ return; } openAIExplain(); };
 $('btnAIRegen').onclick = function(){ openAIExplain(); };
@@ -4190,21 +4183,14 @@ function openAIExplain(){
   /* 显示加载态 */
   $('aiBody').innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--faint)"><div style="font-size:28px;margin-bottom:8px">🤔</div><p style="margin:0;font-size:13px">正在分析句子…</p></div>';
 
-  /* 若配置了 API Key，优先调用大模型；否则使用本地规则引擎 */
-  if(mem.settings.apiKey){
-    callDeepseekAPI(item, function(ok, res){
-      if(ok){
-        $('aiBody').innerHTML = res;
-      }else{
-        /* API 失败则兜底本地 */
-        $('aiBody').innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">⚠ 联网解读失败，已切换为本地解读</div>';
-      }
-    });
-  }else{
-    setTimeout(function(){
-      $('aiBody').innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">💡 未配置大模型 API，当前使用本地解读</div>';
-    }, 320);
-  }
+  /* ADR-004：统一走后端代理（服务端缓存 + 限流；未登录 / 服务端未配置时自动兜底本地解读） */
+  callDeepseekAPI(item, function(ok, res){
+    if(ok){
+      $('aiBody').innerHTML = res;
+    }else{
+      $('aiBody').innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">⚠ 联网解读不可用（未登录或服务端未配置），已切换为本地解读</div>';
+    }
+  });
 }
 
 /* 调用 DeepSeek 大模型生成英文句子解读 */
@@ -4234,34 +4220,31 @@ function aiCachePut(cacheKey, obj){
 }
 
 function callDeepseekAPI(item, cb){
-  var apiKey = mem.settings.apiKey;
   var model = mem.settings.model || 'deepseek-v4-flash';
   /* 缓存命中：同句 + 同模型直接复用，不发请求 */
   var cacheKey = item.sentence ? (model + '::' + norm(item.sentence)) : '';
   var cached = cacheKey ? aiCacheGet(cacheKey) : null;
   if(cached){ cb(true, renderAIJson(cached, item)); return; }
-  var prompt = '请用中文讲解以下英语句子，面向英语学习者。输出纯 JSON，不要代码块标记，字段：orig(原句英文)、zh(中文意思)、chunks(意群数组，每项含 text 和 role 语法角色)、grammar(核心语法要点数组)、collocations(固定搭配/短语数组)、scenario(使用场景说明)。\n句子：' + (item.sentence||'') + '\n中文：' + (item.zh||'');
-  var payload = {
-    model: model,
-    messages: [
-      {role:'system', content:'你是专业的英语老师，只返回 JSON。'},
-      {role:'user', content: prompt}
-    ],
-    temperature: 0.3
-  };
+  /* ADR-004：改走后端代理（Key 不再明文进前端；服务端缓存 + 限流）。
+     apiKey 仅在用户手动填写时随请求传（自托管降级，服务端配置了 DEEPSEEK_API_KEY 时被忽略）。 */
+  var apiKey = (mem.settings.apiKey || '').trim();
+  var payload = { sentence: item.sentence || '', zh: item.zh || '', model: model, apiKey: apiKey };
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://api.deepseek.com/chat/completions', true);
+  var base = (window.ChunkAPI && ChunkAPI.getBase) ? ChunkAPI.getBase() : '';
+  xhr.open('POST', base + '/api/ai/explain', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.setRequestHeader('Authorization', 'Bearer ' + apiKey);
-  xhr.timeout = 20000;
+  var tok = (window.ChunkAPI && ChunkAPI.getToken) ? ChunkAPI.getToken() : null;
+  if(tok) xhr.setRequestHeader('Authorization', 'Bearer ' + tok);
+  xhr.timeout = 30000;
   xhr.onload = function(){
     try{
       var data = JSON.parse(xhr.responseText);
-      var content = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '';
-      content = content.replace(/```json/gi,'').replace(/```/g,'').trim();
-      var obj = JSON.parse(content);
-      aiCachePut(cacheKey, obj);
-      cb(true, renderAIJson(obj, item));
+      if(xhr.status === 200 && data && data.ok && data.data){
+        aiCachePut(cacheKey, data.data);
+        cb(true, renderAIJson(data.data, item));
+        return;
+      }
+      cb(false);
     }catch(e){ cb(false); }
   };
   xhr.onerror = function(){ cb(false); };

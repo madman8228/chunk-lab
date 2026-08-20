@@ -89,7 +89,11 @@ const childEnv = Object.assign({}, process.env, {
   TOKEN_TTL: '30d',
   PORT: String(PORT),
   CHUNKLAB_DATA_DIR: TMP_DB,
-  AI_CACHE_MAX: '5' /* 便于验证 ai_cache LRU 裁剪 */
+  AI_CACHE_MAX: '5' /* 便于验证 ai_cache LRU 裁剪 */,
+  AI_RATE_LIMIT: '3' /* 便于验证限流 */,
+  AI_MOCK_RESPONSE: JSON.stringify({
+    choices: [{ message: { content: '{"orig":"MOCK","zh":"mock-zh","chunks":[],"grammar":[],"collocations":[],"scenario":"mock"}' } }]
+  }) /* 测试钩子：短路真实 DeepSeek 调用 */
 });
 
 let child = null;
@@ -371,6 +375,34 @@ async function main() {
     r = await request('GET', '/api/export', token);
     const cacheKeys = Object.keys((r.json && r.json.aiCache) || {});
     check('ADR-008 ai_cache 超限被 LRU 裁剪（8→5）', cacheKeys.length === 5, 'n=' + cacheKeys.length + ' keys=' + cacheKeys.join(','));
+
+    /* ===== ADR-004：AI 后端代理（Key 不进前端；服务端缓存 + 限流） ===== */
+    r = await request('POST', '/api/ai/explain', token, {});
+    check('ADR-004 缺 sentence → 400', r.status === 400, 'status=' + r.status);
+
+    // 服务端缓存命中（预置 key = model::norm(sentence)，命中不占限流额度、不发模型请求）
+    const cacheSeed = { 'deepseek-v4-flash::i am a student': { orig: 'I am a student.', zh: '我是一个学生', chunks: [], grammar: [], collocations: [], scenario: '自我介绍' } };
+    r = await request('POST', '/api/import', token, { mem: { decks: [] }, courses: [], courseProgress: {}, aiCache: cacheSeed });
+    check('ADR-004 预置缓存 ok', r.status === 200, 'status=' + r.status);
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.' });
+    check('ADR-004 缓存命中 cached:true 且数据正确',
+      r.status === 200 && r.json && r.json.ok && r.json.cached === true && r.json.data && r.json.data.zh === '我是一个学生',
+      'status=' + r.status + ' ' + JSON.stringify(r.json));
+
+    // mock 完整链路：未命中 → 调模型 → 写缓存 → 二次命中（不发模型请求）
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'She is a teacher.', apiKey: 'sk-test' });
+    check('ADR-004 mock 调用成功 cached:false 且数据正确',
+      r.status === 200 && r.json && r.json.ok && r.json.cached === false && r.json.data && r.json.data.orig === 'MOCK',
+      'status=' + r.status + ' ' + JSON.stringify(r.json && r.json.data));
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'She is a teacher.' });
+    check('ADR-004 调用后二次命中 cached:true', r.status === 200 && r.json && r.json.cached === true, 'status=' + r.status);
+
+    // 限流：AI_RATE_LIMIT=3（'She is a teacher.' 已占 1 次），再 2 次后第 4 次 → 429
+    for (let k = 1; k <= 2; k++) {
+      await request('POST', '/api/ai/explain', token, { sentence: 'limit sentence number ' + k, apiKey: 'sk-test' });
+    }
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'fourth sentence triggers limit', apiKey: 'sk-test' });
+    check('ADR-004 超限 → 429', r.status === 429, 'status=' + r.status + ' ' + JSON.stringify(r.json));
   } finally {
     if (child) child.kill('SIGKILL');
   }

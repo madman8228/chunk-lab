@@ -105,9 +105,9 @@
 
 ### 2.5 AI 与缓存（P2，对应 ADR-004）
 
-- **后端代理**：`POST /api/explain` 服务端持 Key + SSE 流式返回（ADR-004 从 Proposed 升级为 Accepted，Phase C 落地）。
-- **限流**：按用户/IP 限流，防 Key 滥用资损。
-- **ai_cache 治理**：当前全局共享、无上限。推荐**保持共享（省成本）+ 加 TTL + 容量上限**（按条目数或总大小 LRU 淘汰），避免无限膨胀。
+- **后端代理（已落地 2026-08-20，见 §8.3）**：`POST /api/ai/explain` 服务端持 Key（env `DEEPSEEK_API_KEY` 优先），非流式返回 JSON；自托管未配置 Key 时保留前端 Key 降级通道。
+- **限流（已落地）**：每用户滑动窗口（`AI_RATE_LIMIT` 默认 10 次/分，内存 Map，多实例需外置）。
+- **ai_cache 治理（已落地）**：全局共享 + 容量上限（`AI_CACHE_MAX` 默认 2000，写入后 LRU 淘汰）；前端 localStorage 缓存本就有 200 条 LRU。剩余可选：TTL 过期。
 
 ### 2.6 客户端存储上限（P2）
 
@@ -165,7 +165,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 | ADR-001 | 页面物理隔离（iframe + postMessage） | Accepted | 保留 |
 | ADR-002 | 全局命名空间收敛为 `CL` 单例 | Accepted | 保留，前端继续收敛 |
 | ADR-003 | SRS 调度纯函数 | Accepted | 保留 ✅ |
-| ADR-004 | AI 调用走后端代理 | **Proposed → Accepted（Phase C 落地）** | 升级 |
+| ADR-004 | AI 调用走后端代理 | **Accepted（2026-08-20 落地：`server/ai.js` + `/api/ai/explain`，见 §8.3）** | 已落地 |
 | **ADR-005** | **Sync 策略：实体级 rev upsert + 软删除** | **Proposed → Accepted（2026-08-20 落地，见 §8）** | 本文新增 |
 | **ADR-006** | **鉴权默认与密钥管理（上云强制 REQUIRE_AUTH + env 密钥）** | Proposed | 本文新增 |
 | **ADR-007** | **前端 ESM 模块化（无打包器）** | **Proposed → Accepted（2026-08-20 Step 1 落地：`js/chunk-engine.mjs`）** | 本文新增 |
@@ -206,7 +206,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 |------|------|----------|----------|
 | **Phase A 加固**（2-3 周） | 止血 | ADR-006 上云检查清单 + env 模板；ADR-008 服务端校验 + 冒烟测试；ai_cache 上限；README 对齐真实架构 | 公网部署不再裸奔；后端有回归测试 |
 | **Phase B 同步正确性**（3-4 周） | 多设备安全 | ADR-005 实体级 rev sync；软删除；离线 change-log 队列；冲突合并 | 双设备互改不丢数据；崩溃可恢复 |
-| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ADR-004 后端 AI 代理 SSE + 限流；IndexedDB 存课程；PWA 离线 | Key 不外泄；大课程可离线 |
+| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ~~ADR-004 后端 AI 代理~~（**已提前落地**）；IndexedDB 存课程；PWA 离线；ai_cache TTL | Key 不外泄（已达成）；大课程可离线 |
 | **Phase D 平台化**（按需） | 规模化 | 多租户加固；Postgres 选项；公共题库市场 `GET /api/deck/public`；学习分析 | 出现真实多用户/多设备需求 |
 
 ---
@@ -219,7 +219,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 | 开放模式数据裸奔 | 中 | 高 | ADR-006 + 网络收口 | A |
 | 前端单体熵增 | 高（已有） | 中 | ADR-007 ESM 拆分 | A/B |
 | 后端坏数据/无回归 | 中 | 中 | ADR-008 校验+测试（**已落地**：validate.js 中间件 + smoke 40/40） | A |
-| AI Key 资损 | 中 | 中 | ADR-004 代理+限流 | C |
+| AI Key 资损 | 中 | 中 | ADR-004 代理+限流（**已落地**：Key 服务端化，前端不再直连） | C |
 | ai_cache 无限膨胀 | 中 | 低 | 容量上限+LRU（**已落地**：AI_CACHE_MAX 默认 2000，导入后 LRU 裁剪） | A |
 | localStorage 5MB 撞顶 | 中 | 中 | IndexedDB | C |
 | SQLite 单写者瓶颈 | 低 | 中 | 多实例换 Postgres | D |
@@ -287,5 +287,21 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 **验证**：单测全绿（chunk-engine 31、rev 18、srs/store/course-resume/validate、server smoke 30）；内联脚本语法检查 OK；起 server 冒烟：`/main.html`、`/js/chunk-engine.mjs`、`/js/bridge.mjs` 均 200，`.mjs` MIME 正确。
 
 **后续 Step（增量，每次单测锁定）**：Step 2 `js/format.mjs`（esc/norm/wordCount/normSent/timeAgo/copyText）→ Step 3 `js/ai-prompts.mjs`（buildExplainPrompt/buildBatchExplainPrompt/buildPrompt/buildSplitPrompt/buildAppendPrompt）→ Step 4 存储/备份纯逻辑（exportReinforce/exportDeck/exportAllData/importAllData 解析部分）→ 最后 DOM/流程层留在 main.html 编排。
+
+### §8.3 ADR-004 实现笔记（AI 后端代理，2026-08-20）
+
+**背景**：API Key 明文存 localStorage、前端 XHR 直连 `api.deepseek.com`——资损风险。前端链路：`openAIExplain` → `callDeepseekAPI`（本地 ai_cache 命中跳过 + XHR 直连 + 失败兜底本地 `buildAIExplain`）。
+
+**后端**
+- `server/ai.js`：DeepSeek 代理（https + 25s 超时；`AI_MOCK_RESPONSE` 测试钩子短路真实调用）、服务端归一化 `norm`（与前端规则一致，用于缓存 key）、每用户滑动窗口限流（`AI_RATE_LIMIT` 默认 10 次/分，内存 Map，多实例需外置）。
+- `POST /api/ai/explain`（authenticate）：校验 sentence（必填、≤2000）→ **服务端 ai_cache 命中直接返回（不占限流、不发模型请求）** → 限流 429 → Key 解析（env `DEEPSEEK_API_KEY` 优先，自托管允许 body.apiKey 降级）→ 调模型 → 解析 JSON → 写缓存 + LRU 收敛 → `{ok, cached, data}`。
+
+**前端（main.html，调用方零改动）**
+- `callDeepseekAPI` 改 POST `/api/ai/explain`（ChunkAPI base + JWT；保留本地缓存双保险）；apiKey 仅用户手动填时随请求传（服务端配置了 Key 时被忽略）。
+- `openAIExplain` 统一走代理，失败/401 自动兜底本地解读；`refreshAIBtn` 不再依赖前端 Key（始终可用）。
+
+**测试**：smoke.test.js **46/46**（+6：缺 sentence 400、预置缓存命中 cached:true、mock 完整链路 cached:false→写缓存→二次命中、超限 429）；前端单测全过。
+
+**遗留**：非流式（SSE 后续可选）；限流为单实例内存态（多实例需 Redis）。
 
 _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地（后端存在、SRS 纯函数、存储版本化），但"前端模块化"与"Sync 正确性"仍是缺口，本文即针对此缺口给出设计。_
