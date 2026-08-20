@@ -1,12 +1,11 @@
 /**
- * rev.test.js · 前端 rev 维护单测（ADR-005 的本地侧）
+ * rev.test.js · 前端 rev 维护单测（ADR-005 本地侧 + step 2 courses/progress）
  *
- * 仅验证 core.js 的 maintainRevs（在 saveMem 内触发）：
- *   - 新增实体 → rev=1
- *   - 修改实体 → rev 递增
- *   - 删除实体 → rev 递增（软删标记），本地不再含该实体
- *   - kv 变更 → rev 递增；kv 未变 → rev 不递增（避免过度 bump）
- * 用最小 localStorage mock 在 Node 直跑，不依赖浏览器。
+ * 验证 core.js：
+ *   - maintainRevs（saveMem 内触发）：新增/修改/删除实体自动升 rev，kv 变更升 rev、未变不 bump
+ *   - maintainCoursesRevs（cloudSyncNow 内触发）：courses / courseProgress 惰性 diff 维护 rev
+ *   - syncFromCloud：per-entity LWW 合并采纳远程 rev（含修复：合并后本地 revs 同步对齐，不误 bump）
+ * 用最小 localStorage mock + mock ChunkAPI 在 Node 直跑，不依赖浏览器。
  *
  * 运行：node rev.test.js
  */
@@ -20,6 +19,15 @@ global.localStorage = {
   removeItem: function (k) { delete store[k]; }
 };
 
+var remoteData = {};
+var lastPayloads = [];
+global.ChunkAPI = {
+  getConfig: function () { return Promise.resolve({ requireAuth: false }); },
+  getData: function () { return Promise.resolve(remoteData); },
+  putData: function (p) { lastPayloads.push(JSON.parse(JSON.stringify(p))); return Promise.resolve({ ok: true }); },
+  isLoggedIn: function () { return false; }
+};
+
 require('./core.js');
 var CL = global.CL;
 
@@ -30,41 +38,115 @@ function check(name, cond, detail) {
 }
 function getRevs() { try { return JSON.parse(store['chunklab_revs_v1'] || '{}'); } catch (e) { return {}; } }
 
-var m = CL.loadMem();
+async function main() {
+  var m = CL.loadMem();
 
-// 1. 新增 deck → rev=1
-m.decks = [{ id: 'd1', name: 'A', items: [{ sent: 'a' }], builtin: false }];
-CL.saveMem(m);
-var revs = getRevs();
-check('rev: 新增 deck d1 → rev=1', revs.decks && revs.decks.d1 === 1, 'revs=' + JSON.stringify(revs));
+  // 1. 新增 deck → rev=1
+  m.decks = [{ id: 'd1', name: 'A', items: [{ sent: 'a' }], builtin: false }];
+  CL.saveMem(m);
+  var revs = getRevs();
+  check('rev: 新增 deck d1 → rev=1', revs.decks && revs.decks.d1 === 1, 'revs=' + JSON.stringify(revs));
 
-// 2. 改 deck → rev 递增到 2
-m.decks[0].name = 'A2';
-CL.saveMem(m);
-revs = getRevs();
-check('rev: 修改 deck d1 → rev=2', revs.decks.d1 === 2, 'rev=' + revs.decks.d1);
+  // 2. 改 deck → rev 递增到 2
+  m.decks[0].name = 'A2';
+  CL.saveMem(m);
+  revs = getRevs();
+  check('rev: 修改 deck d1 → rev=2', revs.decks.d1 === 2, 'rev=' + revs.decks.d1);
 
-// 3. 删除 deck → rev 递增（软删标记），本地不再含 d1
-m.decks = [];
-CL.saveMem(m);
-revs = getRevs();
-check('rev: 删除 deck d1 → rev 递增且本地移除',
-  revs.decks.d1 === 3 && CL.loadMem().decks.length === 0,
-  'rev=' + revs.decks.d1 + ' decks=' + CL.loadMem().decks.length);
+  // 3. 删除 deck → rev 递增（软删标记），本地不再含 d1
+  m.decks = [];
+  CL.saveMem(m);
+  revs = getRevs();
+  check('rev: 删除 deck d1 → rev 递增且本地移除',
+    revs.decks.d1 === 3 && CL.loadMem().decks.length === 0,
+    'rev=' + revs.decks.d1 + ' decks=' + CL.loadMem().decks.length);
 
-// 4. kv 变更 → rev 递增
-var b4 = getRevs().kv.best;
-m.best = { s1: 5 };
-CL.saveMem(m);
-var a4 = getRevs().kv.best;
-check('rev: kv.best 变更 → rev 递增', a4 === b4 + 1, 'before=' + b4 + ' after=' + a4);
+  // 4. kv 变更 → rev 递增
+  var b4 = getRevs().kv.best;
+  m.best = { s1: 5 };
+  CL.saveMem(m);
+  var a4 = getRevs().kv.best;
+  check('rev: kv.best 变更 → rev 递增', a4 === b4 + 1, 'before=' + b4 + ' after=' + a4);
 
-// 5. kv 未变 → rev 不递增（避免误 bump）
-var b5 = getRevs().kv.best;
-m.best = { s1: 5 };
-CL.saveMem(m);
-var a5 = getRevs().kv.best;
-check('rev: kv.best 未变 → rev 不递增', a5 === b5, 'before=' + b5 + ' after=' + a5);
+  // 5. kv 未变 → rev 不递增（避免误 bump）
+  var b5 = getRevs().kv.best;
+  m.best = { s1: 5 };
+  CL.saveMem(m);
+  var a5 = getRevs().kv.best;
+  check('rev: kv.best 未变 → rev 不递增', a5 === b5, 'before=' + b5 + ' after=' + a5);
 
-console.log('\n[rev.test] passed=' + passed + ' failed=' + failed);
-process.exit(failed === 0 ? 0 : 1);
+  /* ===== ADR-005 step 2：courses / courseProgress（cloudSyncNow 惰性 diff） ===== */
+  await CL.ensureCloud();
+
+  // 6. 新增 course → rev=1 且上行 payload 携带
+  store['chunklab.courses.v1'] = JSON.stringify([{ courseId: 'cA', title: 'A' }]);
+  await CL.cloudSyncNow(CL.loadMem());
+  revs = getRevs();
+  check('s2: 新增 course cA → rev=1', revs.courses && revs.courses.cA === 1, 'revs=' + JSON.stringify(revs.courses));
+  var pl = lastPayloads[lastPayloads.length - 1];
+  check('s2: 上行 payload 含 revs.courses.cA=1', pl.revs.courses.cA === 1, 'revs=' + JSON.stringify(pl.revs));
+
+  // 7. 修改 course → rev=2
+  store['chunklab.courses.v1'] = JSON.stringify([{ courseId: 'cA', title: 'A2' }]);
+  await CL.cloudSyncNow(CL.loadMem());
+  revs = getRevs();
+  check('s2: 修改 course cA → rev=2', revs.courses.cA === 2, 'rev=' + revs.courses.cA);
+
+  // 8. 删除 course → rev 递增 + deleted 登记
+  store['chunklab.courses.v1'] = JSON.stringify([]);
+  await CL.cloudSyncNow(CL.loadMem());
+  revs = getRevs();
+  pl = lastPayloads[lastPayloads.length - 1];
+  check('s2: 删除 course cA → rev=3 且 deleted 登记',
+    revs.courses.cA === 3 && pl.deleted.courses.some(function (d) { return d.id === 'cA' && d.rev === 3; }),
+    'rev=' + revs.courses.cA + ' del=' + JSON.stringify(pl.deleted.courses));
+
+  // 9. courseProgress 新增/修改
+  store['chunklab.course-progress.v1'] = JSON.stringify({ pA: { done: 1 } });
+  await CL.cloudSyncNow(CL.loadMem());
+  revs = getRevs();
+  check('s2: 新增 progress pA → rev=1', revs.courseProgress && revs.courseProgress.pA === 1, 'revs=' + JSON.stringify(revs.courseProgress));
+  store['chunklab.course-progress.v1'] = JSON.stringify({ pA: { done: 2 } });
+  await CL.cloudSyncNow(CL.loadMem());
+  revs = getRevs();
+  check('s2: 修改 progress pA → rev=2', revs.courseProgress.pA === 2, 'rev=' + revs.courseProgress.pA);
+
+  // 10. courseProgress 未变 → 不 bump
+  var b10 = getRevs().courseProgress.pA;
+  store['chunklab.course-progress.v1'] = JSON.stringify({ pA: { done: 2 } });
+  await CL.cloudSyncNow(CL.loadMem());
+  check('s2: progress 未变 → rev 不递增', getRevs().courseProgress.pA === b10, 'before=' + b10 + ' after=' + getRevs().courseProgress.pA);
+
+  /* ===== syncFromCloud 合并：采纳远程 rev（含修复：合并后本地 revs 对齐） ===== */
+  // 11. 远程 rev 更高 → 本地采纳，且本地 revs 同步对齐（修 bug：此前不写回 localRevs，首拉后本地修改被服务端拒绝）
+  remoteData = {
+    mem: {
+      decks: [{ id: 'r1', name: 'R', items: [], builtin: false }], best: {}, mastered: {},
+      stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: []
+    },
+    courses: [{ courseId: 'rc', title: 'Remote' }],
+    courseProgress: { rp: { done: 9 } },
+    revs: { decks: { r1: 5 }, kv: {}, courses: { rc: 7 }, courseProgress: { rp: 8 } }
+  };
+  await CL.syncFromCloud();
+  revs = getRevs();
+  check('s2: 合并后本地 revs 采纳远程 decks rev', revs.decks.r1 === 5, 'rev=' + revs.decks.r1);
+  check('s2: 合并后本地 revs 采纳远程 courses rev', revs.courses.rc === 7, 'rev=' + revs.courses.rc);
+  check('s2: 合并后本地 revs 采纳远程 progress rev', revs.courseProgress.rp === 8, 'rev=' + revs.courseProgress.rp);
+  check('s2: 合并后本地 courses 含远程课程',
+    JSON.parse(store['chunklab.courses.v1']).some(function (c) { return c.courseId === 'rc'; }), '');
+
+  // 12. 合并后立即上行 → 不误 bump（已采纳 rev 应保持原值）
+  await CL.cloudSyncNow(CL.loadMem());
+  pl = lastPayloads[lastPayloads.length - 1];
+  check('s2: 合并后上行不误 bump courses rev（仍 7）', pl.revs.courses.rc === 7, 'rev=' + pl.revs.courses.rc);
+  check('s2: 合并后上行不误 bump decks rev（仍 5）', pl.revs.decks.r1 === 5, 'rev=' + pl.revs.decks.r1);
+
+  console.log('\n[rev.test] passed=' + passed + ' failed=' + failed);
+  process.exit(failed === 0 ? 0 : 1);
+}
+
+main().catch(function (err) {
+  console.error('[rev.test] ERROR: ' + (err && err.stack || err));
+  process.exit(1);
+});

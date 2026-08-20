@@ -66,6 +66,56 @@
     _lastSyncMeta = { revs: revs, deleted: deletes };
   }
 
+  /* ADR-005 step 2：courses / courseProgress 的 rev 维护。
+     它们不经 saveMem（由 library.js / course-package.js 直接写 localStorage），
+     故在 cloudSyncNow 上行前做「惰性 diff」：与上次上行快照比较，变更升 rev、消失登记软删。
+     首次上行（无快照）→ 新实体初始化 rev=1。 */
+  var _coursesSnap = null;   /* {courseId: sig} */
+  var _progressSnap = null;  /* {courseId: sig} */
+  function sigCourse(c) { return JSON.stringify(c); }
+
+  function maintainCoursesRevs() {
+    var revs = loadRevs();
+    if (!revs.courses) revs.courses = {};
+    if (!revs.courseProgress) revs.courseProgress = {};
+    var deleted = { courses: [], courseProgress: [] };
+
+    var cur = readCoursesRaw();
+    var curIds = {};
+    cur.forEach(function (c) { curIds[c.courseId] = true; });
+    if (_coursesSnap) {
+      cur.forEach(function (c) {
+        var prev = _coursesSnap[c.courseId];
+        if (prev === undefined || sigCourse(c) !== prev) revs.courses[c.courseId] = (revs.courses[c.courseId] || 0) + 1;
+      });
+      Object.keys(_coursesSnap).forEach(function (cid) {
+        if (!curIds[cid]) { revs.courses[cid] = (revs.courses[cid] || 0) + 1; deleted.courses.push({ id: cid, rev: revs.courses[cid] }); }
+      });
+    } else {
+      cur.forEach(function (c) { if (!(c.courseId in revs.courses)) revs.courses[c.courseId] = 1; });
+    }
+    _coursesSnap = {};
+    cur.forEach(function (c) { _coursesSnap[c.courseId] = sigCourse(c); });
+
+    var pcur = readProgressRaw();
+    if (_progressSnap) {
+      Object.keys(pcur).forEach(function (cid) {
+        var prev = _progressSnap[cid];
+        if (prev === undefined || sigKv(pcur[cid]) !== prev) revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1;
+      });
+      Object.keys(_progressSnap).forEach(function (cid) {
+        if (!(cid in pcur)) { revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1; deleted.courseProgress.push({ id: cid, rev: revs.courseProgress[cid] }); }
+      });
+    } else {
+      Object.keys(pcur).forEach(function (cid) { if (!(cid in revs.courseProgress)) revs.courseProgress[cid] = 1; });
+    }
+    _progressSnap = {};
+    Object.keys(pcur).forEach(function (cid) { _progressSnap[cid] = sigKv(pcur[cid]); });
+
+    saveRevs(revs);
+    return { revs: revs, deleted: deleted };
+  }
+
   /* ---------- 存储版本化（版本迁移链） ----------
      version 语义：缺省 = 1（legacy）。写入时强制打当前版本。
      MIGRATIONS[n] = v(n) → v(n+1) 的迁移函数。 */
@@ -166,12 +216,19 @@
   function cloudSyncNow(memObj){
     if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
     var meta = _lastSyncMeta || { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
+    var cmeta = maintainCoursesRevs();
     var payload = {
       mem: memObj,
       courses: readCoursesRaw(),
       courseProgress: readProgressRaw(),
-      revs: meta.revs,
-      deleted: meta.deleted
+      revs: {
+        decks: meta.revs.decks, kv: meta.revs.kv,
+        courses: cmeta.revs.courses, courseProgress: cmeta.revs.courseProgress
+      },
+      deleted: {
+        decks: meta.deleted.decks, kv: meta.deleted.kv,
+        courses: cmeta.deleted.courses, courseProgress: cmeta.deleted.courseProgress
+      }
     };
     return global.ChunkAPI.putData(payload).then(function(){ return true; }).catch(function(e){
       console.warn('[cloud sync →] 失败:', e.message);
@@ -187,14 +244,17 @@
       var localRevs = loadRevs();
       if(!localRevs.decks) localRevs.decks = {};
       if(!localRevs.kv) localRevs.kv = {};
+      if(!localRevs.courses) localRevs.courses = {};
+      if(!localRevs.courseProgress) localRevs.courseProgress = {};
       var m = loadMem();
-      // decks：per-entity LWW 合并（取 rev 大者）
+      // decks：per-entity LWW 合并（取 rev 大者）；采纳远程时同步写回 localRevs，
+      //   否则新设备首拉后本地 rev=0/1，下一次本地修改会被服务端按旧 rev 拒绝
       var merged = {};
       (m.decks || []).forEach(function(d){ merged[d.id] = { data: d, rev: localRevs.decks[d.id] || 0 }; });
       (remoteMem.decks || []).forEach(function(d){
         var rr = remoteRevs.decks[d.id] || 0;
         var cur = merged[d.id];
-        if(!cur || rr > cur.rev) merged[d.id] = { data: d, rev: rr };
+        if(!cur || rr > cur.rev){ merged[d.id] = { data: d, rev: rr }; if(rr > (localRevs.decks[d.id] || 0)) localRevs.decks[d.id] = rr; }
       });
       // 软删除传播：远程 revs 有但 remoteMem.decks 无 → 已删，本地移除并采纳其 rev
       Object.keys(remoteRevs.decks || {}).forEach(function(id){
@@ -214,8 +274,43 @@
       saveRevs(localRevs);
       _prevSnap = null; /* 让 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
       saveMem(m);
-      if(Array.isArray(data.courses)) global.localStorage.setItem(COURSES_KEY, JSON.stringify(data.courses));
-      if(data.courseProgress && typeof data.courseProgress === 'object') global.localStorage.setItem(PROGRESS_KEY, JSON.stringify(data.courseProgress));
+      // courses：per-entity LWW 合并 + 软删传播（ADR-005 step 2）
+      var mergedCourses = {};
+      readCoursesRaw().forEach(function(c){ mergedCourses[c.courseId] = { data: c, rev: localRevs.courses[c.courseId] || 0 }; });
+      (data.courses || []).forEach(function(c){
+        var rr = (remoteRevs.courses && remoteRevs.courses[c.courseId]) || 0;
+        var cur = mergedCourses[c.courseId];
+        if(!cur || rr > cur.rev){ mergedCourses[c.courseId] = { data: c, rev: rr }; if(rr > (localRevs.courses[c.courseId] || 0)) localRevs.courses[c.courseId] = rr; }
+      });
+      Object.keys(remoteRevs.courses || {}).forEach(function(cid){
+        if(!(data.courses || []).some(function(c){ return c.courseId === cid; })){
+          var ri = remoteRevs.courses[cid];
+          if(ri > (localRevs.courses[cid] || 0)){ delete mergedCourses[cid]; localRevs.courses[cid] = ri; }
+        }
+      });
+      global.localStorage.setItem(COURSES_KEY, JSON.stringify(Object.keys(mergedCourses).map(function(cid){ return mergedCourses[cid].data; })));
+      // courseProgress：per-key LWW 合并 + 软删传播
+      var mergedProg = {};
+      var pcur = readProgressRaw();
+      Object.keys(pcur).forEach(function(cid){ mergedProg[cid] = { data: pcur[cid], rev: localRevs.courseProgress[cid] || 0 }; });
+      Object.keys(data.courseProgress || {}).forEach(function(cid){
+        var rr = (remoteRevs.courseProgress && remoteRevs.courseProgress[cid]) || 0;
+        var cur = mergedProg[cid];
+        if(!cur || rr > cur.rev){ mergedProg[cid] = { data: data.courseProgress[cid], rev: rr }; if(rr > (localRevs.courseProgress[cid] || 0)) localRevs.courseProgress[cid] = rr; }
+      });
+      Object.keys(remoteRevs.courseProgress || {}).forEach(function(cid){
+        if(!data.courseProgress || !(cid in data.courseProgress)){
+          var ri = remoteRevs.courseProgress[cid];
+          if(ri > (localRevs.courseProgress[cid] || 0)){ delete mergedProg[cid]; localRevs.courseProgress[cid] = ri; }
+        }
+      });
+      var newProg = {};
+      Object.keys(mergedProg).forEach(function(cid){ newProg[cid] = mergedProg[cid].data; });
+      global.localStorage.setItem(PROGRESS_KEY, JSON.stringify(newProg));
+      saveRevs(localRevs);
+      /* 重置 courses/progress 快照：合并结果已采纳（localRevs 已对齐），下次上行走初始化分支不误 bump */
+      _coursesSnap = null;
+      _progressSnap = null;
       return true;
     }).catch(function(e){
       console.warn('[cloud sync ←] 失败:', e.message);

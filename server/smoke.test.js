@@ -264,6 +264,85 @@ async function main() {
     r = await request('GET', '/api/data', token);
     check('ADR-005 kv.best 旧 rev1 写入被拒（仍 x=2）', r.status === 200 && r.json && r.json.mem && r.json.mem.best && r.json.mem.best.x === 2,
       'best=' + JSON.stringify(r.json && r.json.mem && r.json.mem.best));
+
+    /* ===== ADR-005 step 2：courses / courseProgress per-entity rev ===== */
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [{ courseId: 'cA', title: 'Course A' }], courseProgress: {},
+      revs: { decks: {}, kv: {}, courses: { cA: 1 }, courseProgress: {} },
+      deleted: { decks: [], kv: [], courses: [], courseProgress: [] }
+    });
+    check('ADR-005s2 PUT course cA ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [{ courseId: 'cB', title: 'Course B' }], courseProgress: {},
+      revs: { decks: {}, kv: {}, courses: { cB: 1 }, courseProgress: {} },
+      deleted: { decks: [], kv: [], courses: [], courseProgress: [] }
+    });
+    check('ADR-005s2 PUT course cB ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+
+    r = await request('GET', '/api/data', token);
+    check('ADR-005s2 多设备互写不丢 course（cA+cB）',
+      r.status === 200 && r.json && Array.isArray(r.json.courses) && r.json.courses.length === 2 &&
+      r.json.courses.some(function (c) { return c.courseId === 'cA'; }) &&
+      r.json.courses.some(function (c) { return c.courseId === 'cB'; }),
+      'courses=' + JSON.stringify(r.json && r.json.courses && r.json.courses.map(function (c) { return c.courseId; })));
+    check('ADR-005s2 GET 返回 courses revs',
+      r.status === 200 && r.json && r.json.revs && r.json.revs.courses && r.json.revs.courses.cA === 1 && r.json.revs.courses.cB === 1,
+      'revs=' + JSON.stringify(r.json && r.json.revs));
+
+    // 软删 course cA（rev 2）
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [{ courseId: 'cB', title: 'Course B' }], courseProgress: {},
+      revs: { decks: {}, kv: {}, courses: { cB: 1 }, courseProgress: {} },
+      deleted: { decks: [], kv: [], courses: [{ id: 'cA', rev: 2 }], courseProgress: [] }
+    });
+    check('ADR-005s2 软删 cA ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+
+    r = await request('GET', '/api/data', token);
+    check('ADR-005s2 软删后 cA 不再返回且 revs.cA=2',
+      r.status === 200 && r.json && r.json.courses && r.json.courses.length === 1 && r.json.courses[0].courseId === 'cB' &&
+      r.json.revs.courses.cA === 2,
+      'courses=' + JSON.stringify(r.json && r.json.courses && r.json.courses.map(function (c) { return c.courseId; })));
+
+    // courseProgress：per-key rev 冲突
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: { pX: { done: 1 } },
+      revs: { decks: {}, kv: {}, courses: {}, courseProgress: { pX: 1 } },
+      deleted: { decks: [], kv: [], courses: [], courseProgress: [] }
+    });
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: { pX: { done: 2 } },
+      revs: { decks: {}, kv: {}, courses: {}, courseProgress: { pX: 2 } },
+      deleted: { decks: [], kv: [], courses: [], courseProgress: [] }
+    });
+    r = await request('GET', '/api/data', token);
+    check('ADR-005s2 progress pX rev2 覆盖 rev1',
+      r.status === 200 && r.json && r.json.courseProgress && r.json.courseProgress.pX && r.json.courseProgress.pX.done === 2,
+      'pX=' + JSON.stringify(r.json && r.json.courseProgress && r.json.courseProgress.pX));
+
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      courses: [], courseProgress: { pX: { done: 99 } },
+      revs: { decks: {}, kv: {}, courses: {}, courseProgress: { pX: 1 } },
+      deleted: { decks: [], kv: [], courses: [], courseProgress: [] }
+    });
+    r = await request('GET', '/api/data', token);
+    check('ADR-005s2 progress 旧 rev1 被拒（仍 done=2）',
+      r.status === 200 && r.json && r.json.courseProgress && r.json.courseProgress.pX && r.json.courseProgress.pX.done === 2,
+      'pX=' + JSON.stringify(r.json && r.json.courseProgress && r.json.courseProgress.pX));
+
+    // DELETE /api/courses/:id 软删语义（cB rev1 → rev2）
+    r = await request('DELETE', '/api/courses/cB', token);
+    check('ADR-005s2 DELETE /api/courses/:id 软删 ok', r.status === 200 && r.json && r.json.ok === true, 'status=' + r.status);
+    r = await request('GET', '/api/data', token);
+    check('ADR-005s2 DELETE 后 cB 不再返回且 revs.cB=2',
+      r.status === 200 && r.json && r.json.courses && r.json.courses.length === 0 && r.json.revs.courses.cB === 2,
+      'courses=' + JSON.stringify(r.json && r.json.courses));
   } finally {
     if (child) child.kill('SIGKILL');
   }

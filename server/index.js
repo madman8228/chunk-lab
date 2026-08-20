@@ -89,14 +89,24 @@ function buildMem(userId) {
     deletedItems: kv.deletedItems || []
   };
 
-  const courseRows = db.prepare('SELECT data_json FROM user_courses WHERE user_id=?').all(userId);
+  const courseRows = db.prepare('SELECT data_json FROM user_courses WHERE user_id=? AND deleted_at IS NULL').all(userId);
   const courses = courseRows.map(function (r) { return JSON.parse(r.data_json); });
+  // revs 需含软删行：让其他设备能判断本地副本是否已过期
+  const courseRevs = {};
+  db.prepare('SELECT course_id,rev FROM user_courses WHERE user_id=?').all(userId)
+    .forEach(function (r) { courseRevs[r.course_id] = r.rev; });
 
-  const progRows = db.prepare('SELECT course_id,data_json FROM user_course_progress WHERE user_id=?').all(userId);
+  const progRows = db.prepare('SELECT course_id,data_json FROM user_course_progress WHERE user_id=? AND deleted_at IS NULL').all(userId);
   const courseProgress = {};
   progRows.forEach(function (r) { courseProgress[r.course_id] = JSON.parse(r.data_json); });
+  const progRevs = {};
+  db.prepare('SELECT course_id,rev FROM user_course_progress WHERE user_id=?').all(userId)
+    .forEach(function (r) { progRevs[r.course_id] = r.rev; });
 
-  return { mem: mem, courses: courses, courseProgress: courseProgress, revs: { decks: deckRevs, kv: kvRevs } };
+  return {
+    mem: mem, courses: courses, courseProgress: courseProgress,
+    revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs }
+  };
 }
 
 function upsertDeck(userId, d, rev, deleted) {
@@ -116,6 +126,26 @@ function upsertKv(userId, k, v, rev, deleted) {
   } else {
     db.prepare("INSERT INTO user_kv (user_id,k,v_json,rev,deleted_at,updated_at) VALUES (?,?,?,?,?,datetime('now')) ON CONFLICT(user_id,k) DO UPDATE SET v_json=excluded.v_json, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_kv.rev, 0)")
       .run(userId, k, JSON.stringify(v), rev == null ? null : rev, null);
+  }
+}
+
+function upsertCourse(userId, c, rev, deleted) {
+  if (deleted) {
+    db.prepare("INSERT INTO user_courses (user_id,course_id,data_json,rev,deleted_at,updated_at) VALUES (?,?,?,?,datetime('now'),datetime('now')) ON CONFLICT(user_id,course_id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_courses.rev, 0)")
+      .run(userId, c.courseId, '{}', rev == null ? null : rev);
+  } else {
+    db.prepare("INSERT INTO user_courses (user_id,course_id,data_json,rev,deleted_at,updated_at) VALUES (?,?,?,?,?,datetime('now')) ON CONFLICT(user_id,course_id) DO UPDATE SET data_json=excluded.data_json, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_courses.rev, 0)")
+      .run(userId, c.courseId, JSON.stringify(c), rev == null ? null : rev, null);
+  }
+}
+
+function upsertCourseProgress(userId, cid, data, rev, deleted) {
+  if (deleted) {
+    db.prepare("INSERT INTO user_course_progress (user_id,course_id,data_json,rev,deleted_at,updated_at) VALUES (?,?,?,?,datetime('now'),datetime('now')) ON CONFLICT(user_id,course_id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_course_progress.rev, 0)")
+      .run(userId, cid, 'null', rev == null ? null : rev);
+  } else {
+    db.prepare("INSERT INTO user_course_progress (user_id,course_id,data_json,rev,deleted_at,updated_at) VALUES (?,?,?,?,?,datetime('now')) ON CONFLICT(user_id,course_id) DO UPDATE SET data_json=excluded.data_json, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now') WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_course_progress.rev, 0)")
+      .run(userId, cid, JSON.stringify(data), rev == null ? null : rev, null);
   }
 }
 
@@ -142,14 +172,19 @@ function saveData(userId, body) {
       upsertKv(userId, d.k, null, d.rev, true);
     });
 
-    // courses / courseProgress：保持整块语义（ADR-005 step 2 再做 per-entity rev）
-    db.prepare("DELETE FROM user_courses WHERE user_id=?").run(userId);
-    const insCourse = db.prepare("INSERT OR REPLACE INTO user_courses (user_id,course_id,data_json,updated_at) VALUES (?,?,?,datetime('now'))");
-    courses.forEach(function (c) { insCourse.run(userId, c.courseId, JSON.stringify(c)); });
-
-    db.prepare("DELETE FROM user_course_progress WHERE user_id=?").run(userId);
-    const insProg = db.prepare("INSERT OR REPLACE INTO user_course_progress (user_id,course_id,data_json,updated_at) VALUES (?,?,?,datetime('now'))");
-    Object.keys(courseProgress).forEach(function (cid) { insProg.run(userId, cid, JSON.stringify(courseProgress[cid])); });
+    // courses / courseProgress：per-entity rev upsert + 软删除（ADR-005 step 2）
+    courses.forEach(function (c) {
+      upsertCourse(userId, c, (revs.courses && revs.courses[c.courseId]) == null ? null : revs.courses[c.courseId], false);
+    });
+    (deleted.courses || []).forEach(function (c) {
+      upsertCourse(userId, { courseId: c.id }, c.rev, true);
+    });
+    Object.keys(courseProgress).forEach(function (cid) {
+      upsertCourseProgress(userId, cid, courseProgress[cid], (revs.courseProgress && revs.courseProgress[cid]) == null ? null : revs.courseProgress[cid], false);
+    });
+    (deleted.courseProgress || []).forEach(function (c) {
+      upsertCourseProgress(userId, c.id, null, c.rev, true);
+    });
   });
   tx();
 }
@@ -168,15 +203,19 @@ app.post('/api/courses', auth.authenticate, function (req, res) {
   const course = req.body && req.body.course;
   if (!course || !course.courseId) return res.status(400).json({ error: 'course 或 courseId 缺失' });
   try {
-    db.prepare('INSERT OR REPLACE INTO user_courses (user_id,course_id,data_json,updated_at) VALUES (?,?,?,datetime(\'now\'))')
-      .run(req.userId, course.courseId, JSON.stringify(course));
+    // 无 rev → 总是覆盖（与旧客户端语义一致，向后兼容）
+    upsertCourse(req.userId, course, null, false);
     res.json({ ok: true });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 app.delete('/api/courses/:courseId', auth.authenticate, function (req, res) {
   try {
-    db.prepare('DELETE FROM user_courses WHERE user_id=? AND course_id=?').run(req.userId, req.params.courseId);
+    const cid = req.params.courseId;
+    // 软删除（ADR-005）：跨设备传播，删除也是版本演进
+    const row = db.prepare('SELECT rev FROM user_courses WHERE user_id=? AND course_id=?').get(req.userId, cid);
+    const rev = ((row && row.rev != null) ? row.rev : 0) + 1;
+    upsertCourse(req.userId, { courseId: cid }, rev, true);
     res.json({ ok: true });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });

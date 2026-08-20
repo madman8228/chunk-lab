@@ -213,7 +213,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 
 | 风险 | 概率 | 影响 | 缓解 | 阶段 |
 |------|------|------|------|------|
-| 多设备同步丢数据 | 高（已有） | 高 | ADR-005 实体级 rev（**已落地**，剩余 courses/progress per-entity 为 step 2） | B |
+| 多设备同步丢数据 | 高（已有） | 高 | ADR-005 实体级 rev（**已完整落地**：decks/kv/courses/courseProgress 全部 per-entity） | B |
 | 开放模式数据裸奔 | 中 | 高 | ADR-006 + 网络收口 | A |
 | 前端单体熵增 | 高（已有） | 中 | ADR-007 ESM 拆分 | A/B |
 | 后端坏数据/无回归 | 中 | 中 | ADR-008 校验+测试 | A |
@@ -241,7 +241,7 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 - ✅ **Next 2 后端冒烟测试**：`server/smoke.test.js`，10/10 通过（多用户模式 + 临时 DB 端到端验证）
 - ✅ **Next 5 README 重写**：已对齐真实架构（去掉"纯前端无后端"过时描述，补后端/双模式/安全部署清单/测试）
 - ✅ 既有前端单测 `srs.test.js` / `store.test.js` 无回归
-- ✅ **Next 3 `saveData` 改实体级 rev upsert**（ADR-005，2026-08-20 落地，见下）
+- ✅ **Next 3 `saveData` 改实体级 rev upsert**（ADR-005，2026-08-20 落地，见下；**step 2 已含 courses/courseProgress**）
 - ⬜ **Next 4 `main.html` ESM 拆分 spike**（ADR-007，Phase A/B）
 
 ### §8.1 Next 3 实现笔记（ADR-005 实体级 rev sync，2026-08-20）
@@ -251,17 +251,19 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 - `server/index.js`：
   - `buildMem` 只返回 `deleted_at IS NULL` 的实体，但 `revs` 单独查全表（**含软删行**，其他设备才能判断本地副本已过期）；
   - `saveData` 改为 per-entity `upsertDeck`/`upsertKv`（`ON CONFLICT ... DO UPDATE ... WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(<table>.rev,0)`）+ `deleted.decks/kv` 软删除；不再整块 DELETE decks/kv，崩溃可恢复、多设备互不覆盖；
-  - courses / courseProgress 仍整块语义（ADR-005 step 2）。
+  - **step 2 已落地**：新增 `upsertCourse`/`upsertCourseProgress` per-entity rev upsert + 软删除（`deleted.courses`/`deleted.courseProgress`）；`POST /api/courses` 走 upsert（无 rev=总是覆盖），`DELETE /api/courses/:id` 改软删（rev+1，跨设备传播）；至此 decks/kv/courses/courseProgress 全部 per-entity，不再有任何整块 DELETE 写入。
 - **兼容性**：旧客户端（无 `revs`/`deleted`）退化为「总是覆盖」；旧数据 rev=NULL 用 COALESCE 兜底。
 
-**前端 `core.js`**（调用方零改动，在 `saveMem` 内自动维护）
+**前端 `core.js`**（调用方零改动）
 - `saveMem` 内做快照 diff（`maintainRevs`）：变更实体 rev+1、删除实体标软删并升 rev、未变实体 rev 不动；
-- `cloudSyncNow` 上行 payload 增加 `revs` + `deleted`；`syncFromCloud` 按 rev 合并（per-entity LWW）+ 软删传播；
-- `rev.test.js` 5/5 覆盖：新增/修改/删除升 rev、kv 变更升 rev、未变不递增。
+- **step 2**：courses/courseProgress 不经 saveMem（由 library.js/course-package.js 直写 localStorage），故在 `cloudSyncNow` 上行前做**惰性 diff**（`maintainCoursesRevs`：与上次上行快照比较，变更升 rev、消失登记软删、首次上行初始化 rev=1）；
+- `cloudSyncNow` 上行 payload 携带 `revs` + `deleted`（decks/kv/courses/courseProgress 四类）；`syncFromCloud` 按 rev per-entity LWW 合并 + 软删传播（四类）；
+- **修复潜在 bug**：合并采纳远程实体时同步写回本地 revs——此前不写回，新设备首拉后本地 rev=0/1，第一次本地修改会被服务端按旧 rev 拒绝（需连改 N 次才追上）。
 
 **测试与验证**
-- `server/smoke.test.js` 扩展至 **20/20 通过**：多设备互写不丢、软删跨设备传播（revs 含软删）、旧 rev 拒绝、旧客户端兼容、kv per-key upsert 新旧版本；
-- 回归：`rev.test.js` 5/5、`srs.test.js` / `store.test.js` / `course-resume.test.js` 无回归。
-- 过程中修复两处真实 bug：① `user_kv` 缺 `updated_at` 列导致 upsertKv 全 500（Schema 与 SQL 不一致）；② revs 排除软删行导致删后版本号丢失。
+- `server/smoke.test.js` 扩展至 **30/30 通过**：多设备互写不丢、软删跨设备传播（revs 含软删）、旧 rev 拒绝、旧客户端兼容、kv/courses/progress per-entity 新旧版本、DELETE /api/courses/:id 软删语义；
+- `rev.test.js` 扩展至 **18/18**：courses/progress 惰性 diff 新增/修改/删除/未变不 bump、合并采纳远程 rev 且后续上行不误 bump；
+- 回归：`srs.test.js` / `store.test.js` / `course-resume.test.js` / `validate_oral8000.js` 无回归。
+- 过程中修复真实 bug：① `user_kv` 缺 `updated_at` 列导致 upsertKv 全 500（Schema 与 SQL 不一致）；② revs 排除软删行导致删后版本号丢失；③ 合并未写回本地 revs 导致首拉后本地修改被拒（step 2 顺带修复）。
 
 _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地（后端存在、SRS 纯函数、存储版本化），但"前端模块化"与"Sync 正确性"仍是缺口，本文即针对此缺口给出设计。_
