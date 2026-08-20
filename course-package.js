@@ -37,30 +37,53 @@
   function courseTitle(course) { return localized(course && course.metadata && course.metadata.title) || '未命名课程'; }
   function courseDescription(course) { return localized(course && course.metadata && course.metadata.description); }
 
-  function readStoredCourses() {
+  /* 大对象已迁 IndexedDB（CL 内存桥）：读写统一走 CL；未加载时回退 localStorage 旧值 */
+  function storedCourses() {
+    var cl = window.CL;
+    if (cl && cl.readCourses) {
+      var c = cl.readCourses();
+      return Array.isArray(c) ? c : [];
+    }
     try {
       var raw = JSON.parse(localStorage.getItem(COURSE_STORE_KEY) || '[]');
-      if (Array.isArray(raw)) state.courses = raw.filter(function (course) { return validateCourse(course).length === 0; });
-    } catch (error) { state.courses = []; }
+      return Array.isArray(raw) ? raw : [];
+    } catch (e) { return []; }
+  }
+  function readStoredCourses() {
+    state.courses = storedCourses().filter(function (course) { return validateCourse(course).length === 0; });
   }
   function persistCourses() {
+    var cl = window.CL;
+    if (cl && cl.writeCourses) { cl.writeCourses(state.courses); return; }
     try { localStorage.setItem(COURSE_STORE_KEY, JSON.stringify(state.courses)); } catch (error) {}
   }
-  function progressFor(courseId) {
+  function storedProgress() {
+    var cl = window.CL;
+    if (cl && cl.readProgress) {
+      var p = cl.readProgress();
+      return (p && typeof p === 'object') ? p : {};
+    }
     try {
       var all = JSON.parse(localStorage.getItem(PROGRESS_STORE_KEY) || '{}');
-      return all[courseId] || { seen: [], completed: false };
-    } catch (error) { return { seen: [], completed: false }; }
+      return (all && typeof all === 'object') ? all : {};
+    } catch (error) { return {}; }
+  }
+  function persistProgress(all) {
+    var cl = window.CL;
+    if (cl && cl.writeProgress) { cl.writeProgress(all); return; }
+    try { localStorage.setItem(PROGRESS_STORE_KEY, JSON.stringify(all)); } catch (error) {}
+  }
+  function progressFor(courseId) {
+    var all = storedProgress();
+    return all[courseId] || { seen: [], completed: false };
   }
   function saveProgress(courseId, nodeId, completed) {
-    try {
-      var all = JSON.parse(localStorage.getItem(PROGRESS_STORE_KEY) || '{}');
-      var progress = all[courseId] || { seen: [], completed: false };
-      if (nodeId && progress.seen.indexOf(nodeId) < 0) progress.seen.push(nodeId);
-      if (completed) progress.completed = true;
-      all[courseId] = progress;
-      localStorage.setItem(PROGRESS_STORE_KEY, JSON.stringify(all));
-    } catch (error) {}
+    var all = storedProgress();
+    var progress = all[courseId] || { seen: [], completed: false };
+    if (nodeId && progress.seen.indexOf(nodeId) < 0) progress.seen.push(nodeId);
+    if (completed) progress.completed = true;
+    all[courseId] = progress;
+    persistProgress(all);
   }
 
   function validateCourse(course) {
@@ -856,5 +879,10 @@
     /** 刷新课程列表（供外部调用） */
     refreshList: function () { readStoredCourses(); renderCourseList(); }
   };
-  document.addEventListener('DOMContentLoaded', boot);
+  /* 启动：先完成 IndexedDB 预载（courses/progress 内存桥），再渲染列表 */
+  document.addEventListener('DOMContentLoaded', function () {
+    var cl = window.CL;
+    var start = function () { boot(); };
+    if (cl && cl.preload) { cl.preload().then(start); } else { start(); }
+  });
 })(window);

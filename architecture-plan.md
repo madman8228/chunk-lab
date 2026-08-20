@@ -109,11 +109,11 @@
 - **限流（已落地）**：每用户滑动窗口（`AI_RATE_LIMIT` 默认 10 次/分，内存 Map，多实例需外置）。
 - **ai_cache 治理（已落地）**：全局共享 + 容量上限（`AI_CACHE_MAX` 默认 2000，写入后 LRU 淘汰）；前端 localStorage 缓存本就有 200 条 LRU。剩余可选：TTL 过期。
 
-### 2.6 客户端存储上限（P2）
+### 2.6 客户端存储上限（P2 · 已落地 2026-08-20，见 §8.4）
 
 - `localStorage` 单键 5MB 天花板；图文课程含 base64 图片会很快撞墙。
-- **推荐**：大对象（courses / 课程图片）迁 **IndexedDB**；设置、统计等小结构留 `localStorage`。
-- **取舍**：IndexedDB 异步 API 更繁琐，但破 5MB 上限、支撑离线课程。
+- **已落地**：courses / courseProgress 迁 **IndexedDB**（内存桥 + 启动迁移，删除 localStorage 大键释放配额）；设置、统计、revs 等小结构留 `localStorage`。
+- **取舍**：IndexedDB 异步 API 通过内存缓存桥保持同步 API 形态，调用方零改动；离线能力不变。
 
 ---
 
@@ -206,7 +206,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 |------|------|----------|----------|
 | **Phase A 加固**（2-3 周） | 止血 | ADR-006 上云检查清单 + env 模板；ADR-008 服务端校验 + 冒烟测试；ai_cache 上限；README 对齐真实架构 | 公网部署不再裸奔；后端有回归测试 |
 | **Phase B 同步正确性**（3-4 周） | 多设备安全 | ADR-005 实体级 rev sync；软删除；离线 change-log 队列；冲突合并 | 双设备互改不丢数据；崩溃可恢复 |
-| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ~~ADR-004 后端 AI 代理~~（**已提前落地**）；IndexedDB 存课程；PWA 离线；ai_cache TTL | Key 不外泄（已达成）；大课程可离线 |
+| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ~~ADR-004 后端 AI 代理~~（**已提前落地**）；~~IndexedDB 存课程~~（**已落地**）；PWA 离线；ai_cache TTL | Key 不外泄（已达成）；大课程可离线 |
 | **Phase D 平台化**（按需） | 规模化 | 多租户加固；Postgres 选项；公共题库市场 `GET /api/deck/public`；学习分析 | 出现真实多用户/多设备需求 |
 
 ---
@@ -221,7 +221,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 | 后端坏数据/无回归 | 中 | 中 | ADR-008 校验+测试（**已落地**：validate.js 中间件 + smoke 40/40） | A |
 | AI Key 资损 | 中 | 中 | ADR-004 代理+限流（**已落地**：Key 服务端化，前端不再直连） | C |
 | ai_cache 无限膨胀 | 中 | 低 | 容量上限+LRU（**已落地**：AI_CACHE_MAX 默认 2000，导入后 LRU 裁剪） | A |
-| localStorage 5MB 撞顶 | 中 | 中 | IndexedDB | C |
+| localStorage 5MB 撞顶 | 中 | 中 | IndexedDB（**已落地**：courses/progress 迁 IDB，见 §8.4） | C |
 | SQLite 单写者瓶颈 | 低 | 中 | 多实例换 Postgres | D |
 
 ---
@@ -303,5 +303,28 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 **测试**：smoke.test.js **46/46**（+6：缺 sentence 400、预置缓存命中 cached:true、mock 完整链路 cached:false→写缓存→二次命中、超限 429）；前端单测全过。
 
 **遗留**：非流式（SSE 后续可选）；限流为单实例内存态（多实例需 Redis）。
+
+### §8.4 IndexedDB 迁移实现笔记（2026-08-20，Phase C 存储项）
+
+**背景**：localStorage 单键 5MB 撞顶；图文课程（含 base64 图片）是最现实的上线阻塞项。云端已是权威存储（ADR-005），localStorage 仅离线缓存，但撞顶仍会导致课程缓存写失败。
+
+**方案：内存桥 + IndexedDB 主存储（调用方零改动）**
+- `js/idb.js`（window.IDBStore）：db `chunklab-idb` v1，stores `courses`(keyPath courseId) / `progress`(keyPath cid)；`loadAll`（全量载入）/ `putCourses` / `putProgress`（clear+批量，单事务）。
+- `core.js`：
+  - `_coursesCache` / `_progressCache` 内存缓存；`readCoursesRaw`/`readProgressRaw` **内存优先**（null = 未预载，兜底读 localStorage 旧值，保持同步 API 形态）。
+  - `CL.preload()`：启动时 IDB → 内存；IDB 空则从 localStorage **迁移**（首次），随后 `removeItem` 删除大键**释放配额**；幂等（main + iframe 子页同源共享 IDB，并发迁移安全）。
+  - `CL.writeCourses`/`writeProgress`（内存 + 异步 IDB + 触发云同步，不再写 localStorage）；`CL.readCourses`/`readProgress`（读内存）。
+  - `ensureCloud` 前置 `preload`；`syncFromCloud` 合并写回改内存 + IDB。
+- 消费方改造（全部走 CL 接口，回退分支仅兼容 CL 不可用）：`library.js` readCourses/writeCourses；`course-package.js` storedCourses/persistCourses/storedProgress/persistProgress/progressFor/saveProgress + **boot 前先 `CL.preload()`**（iframe 子页独立 CL 实例）；`main.html` readAllCourses/writeAllCourses/readAllCourseProgress/writeAllCourseProgress。
+- 4 个页面（main/courses/decks/stats）在 core.js 前引入 `js/idb.js`。
+
+**关键决策与坑**
+- 内存缓存桥把 IndexedDB 的异步 API 转成同步读取形态，避免波及大量同步调用方；写入仍异步（内存即时 + IDB 后台），UI 无感知。
+- 测试环境无 IndexedDB：`preload` 以 `if(!global.IDBStore)` 守卫；rev.test.js 用 mock IDBStore 验证迁移（冷启动重载 core.js 获得干净实例）。
+- 无 IDB 的旧浏览器：preload 失败 → 不删 localStorage 键，回退原路径。
+
+**验证**：rev.test.js 20/20（+2：preload 迁移删键、合并后 progress 采纳）；chunk-engine/srs/store/course-resume/validate 无回归；server smoke 46/46；4 页面 + js/idb.js 静态 200。
+
+**遗留**：aiCache 仍留 localStorage（200 条 LRU 已控容量）；PWA 离线未做。
 
 _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地（后端存在、SRS 纯函数、存储版本化），但"前端模块化"与"Sync 正确性"仍是缺口，本文即针对此缺口给出设计。_

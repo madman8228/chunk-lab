@@ -203,8 +203,60 @@
   var COURSES_KEY = 'chunklab.courses.v1';
   var PROGRESS_KEY = 'chunklab.course-progress.v1';
 
-  function readCoursesRaw(){ try{ return JSON.parse(global.localStorage.getItem(COURSES_KEY) || '[]'); }catch(e){ return []; } }
-  function readProgressRaw(){ try{ return JSON.parse(global.localStorage.getItem(PROGRESS_KEY) || '{}'); }catch(e){ return {}; } }
+  /* 大对象（courses / courseProgress）内存桥 + IndexedDB 主存储（解除 localStorage 5MB 配额）：
+     启动时 CL.preload() 从 IDB 载入内存（首次从 localStorage 迁移后删除大键）；
+     读走内存（同步 API 形态，调用方零改动），写走内存 + 异步 IDB，不再写 localStorage。 */
+  var _coursesCache = null;   /* null = 未预载（兜底读 localStorage 旧值） */
+  var _progressCache = null;
+
+  function readCoursesRaw(){
+    if(_coursesCache !== null) return _coursesCache;
+    try{ return JSON.parse(global.localStorage.getItem(COURSES_KEY) || '[]'); }catch(e){ return []; }
+  }
+  function readProgressRaw(){
+    if(_progressCache !== null) return _progressCache;
+    try{ return JSON.parse(global.localStorage.getItem(PROGRESS_KEY) || '{}'); }catch(e){ return {}; }
+  }
+
+  /* 启动预载：IDB → 内存；IDB 空则从 localStorage 迁移，随后删除大键释放配额。
+     幂等：多个页面（main + iframe 子页）同时调用安全（同源共享 IDB，迁移结果一致）。 */
+  function preload(){
+    if(!global.IDBStore) return Promise.resolve(false);
+    return global.IDBStore.loadAll().then(function(data){
+      if(data.courses && data.courses.length){
+        _coursesCache = data.courses;
+      } else {
+        var local = readCoursesRaw();
+        _coursesCache = local;
+        if(local.length) global.IDBStore.putCourses(local).catch(function(){});
+      }
+      if(data.courseProgress && Object.keys(data.courseProgress).length){
+        _progressCache = data.courseProgress;
+      } else {
+        var pl = readProgressRaw();
+        _progressCache = pl;
+        if(Object.keys(pl).length) global.IDBStore.putProgress(pl).catch(function(){});
+      }
+      /* 迁移完成后删除 localStorage 大键（仅当 IDB 可用且迁移成功） */
+      try{ global.localStorage.removeItem(COURSES_KEY); global.localStorage.removeItem(PROGRESS_KEY); }catch(e){}
+      return true;
+    }).catch(function(e){
+      console.warn('[idb preload] 失败，回退 localStorage：', e && e.message);
+      return false;
+    });
+  }
+
+  /* 写 courses：更新内存 + 异步 IDB + 触发云同步（不再写 localStorage） */
+  function writeCourses(list){
+    _coursesCache = Array.isArray(list) ? list : [];
+    if(global.IDBStore) global.IDBStore.putCourses(_coursesCache).catch(function(){});
+    scheduleCloudSync(loadMem());
+  }
+  function writeProgress(obj){
+    _progressCache = (obj && typeof obj === 'object') ? obj : {};
+    if(global.IDBStore) global.IDBStore.putProgress(_progressCache).catch(function(){});
+    scheduleCloudSync(loadMem());
+  }
 
   var _cloudTimer = null;
   var _cloudOn = false; /* 云端是否启用：服务器可达（开放模式）或已登录（鉴权模式）时为 true */
@@ -288,7 +340,8 @@
           if(ri > (localRevs.courses[cid] || 0)){ delete mergedCourses[cid]; localRevs.courses[cid] = ri; }
         }
       });
-      global.localStorage.setItem(COURSES_KEY, JSON.stringify(Object.keys(mergedCourses).map(function(cid){ return mergedCourses[cid].data; })));
+      _coursesCache = Object.keys(mergedCourses).map(function(cid){ return mergedCourses[cid].data; });
+      if(global.IDBStore) global.IDBStore.putCourses(_coursesCache).catch(function(){});
       // courseProgress：per-key LWW 合并 + 软删传播
       var mergedProg = {};
       var pcur = readProgressRaw();
@@ -306,7 +359,8 @@
       });
       var newProg = {};
       Object.keys(mergedProg).forEach(function(cid){ newProg[cid] = mergedProg[cid].data; });
-      global.localStorage.setItem(PROGRESS_KEY, JSON.stringify(newProg));
+      _progressCache = newProg;
+      if(global.IDBStore) global.IDBStore.putProgress(_progressCache).catch(function(){});
       saveRevs(localRevs);
       /* 重置 courses/progress 快照：合并结果已采纳（localRevs 已对齐），下次上行走初始化分支不误 bump */
       _coursesSnap = null;
@@ -320,20 +374,22 @@
   function ensureCloud(){
     return new Promise(function(resolve){
       if(!global.ChunkAPI){ resolve(); return; }
-      global.ChunkAPI.getConfig().then(function(cfg){
-        var needAuth = cfg && cfg.requireAuth;
-        if(needAuth && !global.ChunkAPI.isLoggedIn()){
-          if(global.ChunkAuthUI && global.ChunkAuthUI.showLogin){
-            global.ChunkAuthUI.showLogin(function(){ _cloudOn = true; syncFromCloud().then(resolve, resolve); });
-          } else { resolve(); }
-        } else {
-          _cloudOn = true;
-          syncFromCloud().then(resolve, resolve);
-        }
-      }).catch(function(){
-        /* 服务器不可达 → 纯本地模式，不阻塞启动 */
-        console.warn('[cloud] 服务器不可达，使用纯本地存储');
-        resolve();
+      preload().then(function(){
+        global.ChunkAPI.getConfig().then(function(cfg){
+          var needAuth = cfg && cfg.requireAuth;
+          if(needAuth && !global.ChunkAPI.isLoggedIn()){
+            if(global.ChunkAuthUI && global.ChunkAuthUI.showLogin){
+              global.ChunkAuthUI.showLogin(function(){ _cloudOn = true; syncFromCloud().then(resolve, resolve); });
+            } else { resolve(); }
+          } else {
+            _cloudOn = true;
+            syncFromCloud().then(resolve, resolve);
+          }
+        }).catch(function(){
+          /* 服务器不可达 → 纯本地模式，不阻塞启动 */
+          console.warn('[cloud] 服务器不可达，使用纯本地存储');
+          resolve();
+        });
       });
     });
   }
@@ -450,6 +506,9 @@
     on: on, emit: emit,
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,
+    preload: preload,
+    readCourses: readCoursesRaw, readProgress: readProgressRaw,
+    writeCourses: writeCourses, writeProgress: writeProgress,
     COURSES_KEY: COURSES_KEY, PROGRESS_KEY: PROGRESS_KEY,
     startReviewDeck: startReviewDeck, goBack: goBack
   };

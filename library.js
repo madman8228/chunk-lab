@@ -46,13 +46,21 @@
       return Array.isArray(mem.decks) ? mem.decks : [];
     } catch (e) { return []; }
   }
+  /* 大对象已迁 IndexedDB（CL 内存桥）：优先走 CL，未加载时回退 localStorage 旧值 */
   function readCourses() {
+    var cl = window.CL;
+    if (cl && cl.readCourses) {
+      var c = cl.readCourses();
+      return Array.isArray(c) ? c : [];
+    }
     try {
       var arr = JSON.parse(localStorage.getItem(COURSE_STORE_KEY) || '[]');
       return Array.isArray(arr) ? arr : [];
     } catch (e) { return []; }
   }
   function writeCourses(courses) {
+    var cl = window.CL;
+    if (cl && cl.writeCourses) { cl.writeCourses(courses); return; }
     localStorage.setItem(COURSE_STORE_KEY, JSON.stringify(courses));
   }
 

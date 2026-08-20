@@ -1097,6 +1097,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 
 <script src="oral8000.js"></script>
 <script src="builtins.js"></script>
+<script src="js/idb.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="auth-ui.js"></script>
@@ -4069,20 +4070,24 @@ $('backupHead').onclick = function(){
   $('backupCaret').style.transform = collapsed ? 'rotate(0deg)' : 'rotate(90deg)';
 };
 
-/* 读取/写入课程系统数据（main.html 未引入 library.js，直接操作本地键） */
+/* 读取/写入课程系统数据（大对象已迁 IndexedDB：统一走 CL 内存桥，兼容未加载时回退本地键） */
 function readAllCourses(){
+  if(window.CL && CL.readCourses){ var c = CL.readCourses(); return Array.isArray(c) ? c : []; }
   try{ var arr = JSON.parse(localStorage.getItem('chunklab.courses.v1') || '[]'); return Array.isArray(arr) ? arr : []; }
   catch(e){ return []; }
 }
 function readAllCourseProgress(){
+  if(window.CL && CL.readProgress){ var p = CL.readProgress(); return (p && typeof p === 'object') ? p : {}; }
   try{ var o = JSON.parse(localStorage.getItem('chunklab.course-progress.v1') || '{}'); return (o && typeof o === 'object') ? o : {}; }
   catch(e){ return {}; }
 }
 function writeAllCourses(courses){
+  if(window.CL && CL.writeCourses){ CL.writeCourses(courses); return true; }
   try{ localStorage.setItem('chunklab.courses.v1', JSON.stringify(courses)); return true; }
   catch(e){ console.error('[backup] 写课程数据失败', e); return false; }
 }
 function writeAllCourseProgress(progress){
+  if(window.CL && CL.writeProgress){ CL.writeProgress(progress); return true; }
   try{ localStorage.setItem('chunklab.course-progress.v1', JSON.stringify(progress)); return true; }
   catch(e){ console.error('[backup] 写课程进度失败', e); return false; }
 }

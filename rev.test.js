@@ -75,11 +75,12 @@ async function main() {
   var a5 = getRevs().kv.best;
   check('rev: kv.best 未变 → rev 不递增', a5 === b5, 'before=' + b5 + ' after=' + a5);
 
-  /* ===== ADR-005 step 2：courses / courseProgress（cloudSyncNow 惰性 diff） ===== */
+  /* ===== ADR-005 step 2：courses / courseProgress（cloudSyncNow 惰性 diff） =====
+     大对象已迁 IndexedDB 内存桥：写入走 CL.writeCourses/writeProgress（真实调用路径）。 */
   await CL.ensureCloud();
 
   // 6. 新增 course → rev=1 且上行 payload 携带
-  store['chunklab.courses.v1'] = JSON.stringify([{ courseId: 'cA', title: 'A' }]);
+  CL.writeCourses([{ courseId: 'cA', title: 'A' }]);
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 新增 course cA → rev=1', revs.courses && revs.courses.cA === 1, 'revs=' + JSON.stringify(revs.courses));
@@ -87,13 +88,13 @@ async function main() {
   check('s2: 上行 payload 含 revs.courses.cA=1', pl.revs.courses.cA === 1, 'revs=' + JSON.stringify(pl.revs));
 
   // 7. 修改 course → rev=2
-  store['chunklab.courses.v1'] = JSON.stringify([{ courseId: 'cA', title: 'A2' }]);
+  CL.writeCourses([{ courseId: 'cA', title: 'A2' }]);
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 修改 course cA → rev=2', revs.courses.cA === 2, 'rev=' + revs.courses.cA);
 
   // 8. 删除 course → rev 递增 + deleted 登记
-  store['chunklab.courses.v1'] = JSON.stringify([]);
+  CL.writeCourses([]);
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   pl = lastPayloads[lastPayloads.length - 1];
@@ -102,20 +103,38 @@ async function main() {
     'rev=' + revs.courses.cA + ' del=' + JSON.stringify(pl.deleted.courses));
 
   // 9. courseProgress 新增/修改
-  store['chunklab.course-progress.v1'] = JSON.stringify({ pA: { done: 1 } });
+  CL.writeProgress({ pA: { done: 1 } });
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 新增 progress pA → rev=1', revs.courseProgress && revs.courseProgress.pA === 1, 'revs=' + JSON.stringify(revs.courseProgress));
-  store['chunklab.course-progress.v1'] = JSON.stringify({ pA: { done: 2 } });
+  CL.writeProgress({ pA: { done: 2 } });
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 修改 progress pA → rev=2', revs.courseProgress.pA === 2, 'rev=' + revs.courseProgress.pA);
 
   // 10. courseProgress 未变 → 不 bump
   var b10 = getRevs().courseProgress.pA;
-  store['chunklab.course-progress.v1'] = JSON.stringify({ pA: { done: 2 } });
+  CL.writeProgress({ pA: { done: 2 } });
   await CL.cloudSyncNow(CL.loadMem());
   check('s2: progress 未变 → rev 不递增', getRevs().courseProgress.pA === b10, 'before=' + b10 + ' after=' + getRevs().courseProgress.pA);
+
+  // 10b. preload 迁移：localStorage 大键 → IDB → 删键（mock IDBStore；重载 core.js 模拟冷启动，内存未预载）
+  var migrated = false;
+  global.IDBStore = {
+    loadAll: function () { return Promise.resolve({ courses: [], courseProgress: {} }); },
+    putCourses: function (l) { migrated = true; return Promise.resolve(); },
+    putProgress: function () { return Promise.resolve(); }
+  };
+  delete require.cache[require.resolve('./core.js')];
+  require('./core.js');
+  CL = global.CL;
+  store['chunklab.courses.v1'] = JSON.stringify([{ courseId: 'legacy', title: 'L' }]);
+  await CL.preload();
+  check('s2: preload 迁移 localStorage → IDB 并删大键',
+    migrated === true && !('chunklab.courses.v1' in store) && !('chunklab.course-progress.v1' in store),
+    'migrated=' + migrated + ' hasKey=' + ('chunklab.courses.v1' in store));
+  delete global.IDBStore;
+  await CL.ensureCloud(); /* 重载后的新实例：重新启用云同步（remoteData 暂为空，无副作用） */
 
   /* ===== syncFromCloud 合并：采纳远程 rev（含修复：合并后本地 revs 对齐） ===== */
   // 11. 远程 rev 更高 → 本地采纳，且本地 revs 同步对齐（修 bug：此前不写回 localRevs，首拉后本地修改被服务端拒绝）
@@ -134,7 +153,9 @@ async function main() {
   check('s2: 合并后本地 revs 采纳远程 courses rev', revs.courses.rc === 7, 'rev=' + revs.courses.rc);
   check('s2: 合并后本地 revs 采纳远程 progress rev', revs.courseProgress.rp === 8, 'rev=' + revs.courseProgress.rp);
   check('s2: 合并后本地 courses 含远程课程',
-    JSON.parse(store['chunklab.courses.v1']).some(function (c) { return c.courseId === 'rc'; }), '');
+    CL.readCourses().some(function (c) { return c.courseId === 'rc'; }), '');
+  check('s2: 合并后本地 progress 含远程进度',
+    CL.readProgress().rp && CL.readProgress().rp.done === 9, '');
 
   // 12. 合并后立即上行 → 不误 bump（已采纳 rev 应保持原值）
   await CL.cloudSyncNow(CL.loadMem());
