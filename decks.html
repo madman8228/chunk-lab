@@ -1,0 +1,1465 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>题库管理 · Chunk Lab</title>
+<style>
+:root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#74716a;--faint:#9a958c;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#23855a;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#a16207;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px}
+.page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.page-head h2{margin:0;font-size:18px;font-weight:700}
+.spacer{flex:1}
+.btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:8px;padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{background:#1e4fa3}
+.btn.sm{padding:3px 10px;font-size:12.5px}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.ghost:hover{background:var(--surface-2)}
+.hidden{display:none !important}
+.pill{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:#eef1f6;color:var(--muted)}
+.pill.mine{background:#e8efff;color:#2c62c9}
+
+.deck-list{display:flex;flex-direction:column;gap:8px}
+.deck-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.deck-item.cur{border-color:var(--accent);background:var(--accent-soft)}
+.deck-item .info{flex:1;min-width:0}
+.deck-item .nm{font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:7px}
+.deck-item .meta{font-size:12px;color:var(--faint);margin-top:2px}
+.deck-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-shrink:0}
+
+/* 编辑页句子行 */
+.edit-row{display:flex;align-items:flex-start;gap:8px;padding:9px 4px;border-bottom:1px solid var(--border)}
+.edit-row .sen{flex:1;min-width:0}
+.edit-row .en{font-weight:600;font-size:14px;line-height:1.35}
+.edit-row .cn{font-size:12.5px;color:var(--faint);margin-top:2px}
+.edit-row .ops{display:flex;gap:2px;flex-shrink:0}
+
+/* chunk 预览（下划线小块） */
+/* 管理页句子预览：chunk 划分直接标在原句上（每个 chunk 带下划线，空格分隔） */
+.sen-chunk{border-bottom:1.5px solid var(--accent);padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.edit-stat{margin-top:12px;padding:10px 14px;border-radius:10px;background:var(--ok-soft);color:#0b6b3a;font-size:13px;font-weight:600}
+
+/* 弹窗 */
+.mask{position:fixed;inset:0;background:rgba(15,20,30,.45);display:flex;align-items:center;justify-content:center;z-index:60;padding:18px}
+.mask[hidden]{display:none}
+.modal{background:var(--surface);border-radius:14px;width:100%;max-width:640px;max-height:88vh;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;contain:paint}
+.modal-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);flex-shrink:0;border-radius:14px 14px 0 0}
+.modal-head h3{margin:0;font-size:15px;font-weight:700}
+.modal-body{padding:16px 18px;overflow-y:auto;flex:1 1 auto;min-height:0;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
+.modal-body::-webkit-scrollbar{width:8px}
+.modal-body::-webkit-scrollbar-track{background:transparent}
+.modal-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:4px}
+.modal-foot{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;border-radius:0 0 14px 14px}
+.set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
+.set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
+.msg{min-height:20px;font-size:12.5px;margin-top:8px}
+.msg.err{color:var(--bad)}
+.msg.ok{color:var(--ok)}
+.msg.show{display:block}
+
+/* 导入 — 分类网格 */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.cat-btn{border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:10px 12px;font-size:13px;cursor:pointer;text-align:center;transition:border-color .15s, background .15s, box-shadow .15s;position:relative}
+.cat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cat-btn.on{border-color:var(--accent);background:linear-gradient(135deg,var(--accent-soft),rgba(26,92,255,.06));color:var(--accent);font-weight:600;box-shadow:0 0 0 3px rgba(26,92,255,.08)}
+.cat-btn .cat-icon{font-size:20px;display:block;margin-bottom:4px;line-height:1}
+.cat-btn .cat-name{font-weight:600;font-size:13px;display:block}
+.cat-btn .cat-desc{font-size:11px;color:var(--faint);margin-top:2px;line-height:1.3;display:block}
+.step-title{font-size:13.5px;font-weight:700;margin:12px 0 6px;display:flex;align-items:center;gap:6px}
+.step-title .step{display:inline-flex;width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center}
+.step-title .note{font-size:12px;color:var(--faint);font-weight:400}
+textarea,input[type=text],select{font:inherit;color:var(--text)}
+textarea{outline:none;resize:vertical}
+.drop{border:1px dashed var(--border-strong);border-radius:10px;padding:8px;cursor:pointer;background:var(--surface-2)}
+.drop textarea{width:100%;min-height:110px;border:0;background:transparent;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px}
+.dropzone-hint{font-size:11.5px;color:var(--faint);margin-top:6px}
+
+/* 课程导入拖拽区 */
+.course-drop-zone{border:2px dashed var(--border-strong);border-radius:14px;padding:36px 20px;text-align:center;cursor:pointer;transition:border-color .2s, background .2s;background:var(--surface-2);position:relative}
+.course-drop-zone:hover,.course-drop-zone.drag-over{border-color:var(--accent);background:rgba(26,92,255,.03)}
+.course-drop-zone.drag-over{box-shadow:0 0 0 3px rgba(26,92,255,.08)}
+.course-drop-hint{pointer-events:none}
+.course-drop-icon{font-size:40px;display:block;margin-bottom:10px;line-height:1}
+.course-drop-hint p{margin:4px 0 2px;font-size:14px;color:var(--text)}
+.course-drop-hint small{color:var(--faint);font-size:12px}
+
+/* 层级选择 */
+.level-section{margin-top:14px;padding:14px;background:var(--surface-2);border-radius:10px;border:1px solid var(--border)}
+.level-row{display:flex;gap:12px;margin-bottom:0}
+.level-row+.level-row{margin-top:10px}
+.level-row.two-col{gap:12px}
+.level-field{flex:1;min-width:0}
+.level-lbl{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;display:block}
+.level-hint{font-size:11px;color:var(--faint);margin-top:3px;display:block}
+
+/* 详解页 */
+.exp-row{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.exp-row .dim{display:flex;gap:6px;padding:3px 0}
+.exp-row .dim-lbl{flex-shrink:0;font-size:11px;font-weight:700;margin-top:2px}
+.empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:12px}
+
+/* 双 Tab */
+.tabs{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:3px}
+.tab{border:0;background:transparent;color:var(--muted);padding:5px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+.tab.on{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(28,32,36,.06)}
+/* 课程树 */
+.series{border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-bottom:10px;overflow:hidden}
+.series-head{display:flex;align-items:center;gap:10px;padding:13px 15px;cursor:pointer}
+.series-head:hover{background:var(--surface-2)}
+.series-name{font-size:15px;font-weight:700}
+.series-count{font-size:12px;color:var(--faint);margin-left:6px;font-weight:400}
+.series-caret{margin-left:auto;color:var(--muted);font-size:20px;line-height:1;transition:transform .2s;font-weight:700}
+.series.open .series-caret{transform:rotate(90deg)}
+.series-body{display:none;padding:0 15px 12px}
+.series.open .series-body{display:block}
+.vol{margin:6px 0 4px;padding-left:8px;border-left:2px solid var(--border)}
+.vol-head{display:flex;align-items:center;gap:8px;padding:7px 10px;cursor:pointer;font-size:14.5px;font-weight:600;color:var(--text);border-radius:8px}
+.vol-head:hover{background:var(--surface-2)}
+.vol-caret{color:var(--muted);font-size:16px;line-height:1;transition:transform .2s}
+.vol.open .vol-caret{transform:rotate(90deg)}
+.vol-body{display:none;padding:2px 0 2px 30px}
+.vol.open .vol-body{display:block}
+.lesson{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer}
+.lesson:hover{background:var(--surface-2)}
+.lesson .nm{font-size:13.5px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lesson .meta{font-size:12px;color:var(--faint);flex-shrink:0}
+.lesson-del{flex-shrink:0;width:22px;height:22px;border:none;border-radius:50%;background:transparent;color:var(--faint);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s}
+.lesson:hover .lesson-del{opacity:1}
+.lesson-del:hover{background:#fee;color:#c33}
+.course-empty{padding:30px;text-align:center;color:var(--faint)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- 题库列表 -->
+  <div id="pageDecks">
+    <div class="page-head">
+      <button class="btn sm" id="decksBack">← 返回练习</button>
+      <h2>题库</h2>
+      <span class="spacer"></span>
+      <div class="tabs">
+        <button class="tab on" id="tabDecks">句子课程</button>
+        <button class="tab" id="tabCourses">图文课程</button>
+      </div>
+      <span class="spacer"></span>
+      <button class="btn sm primary" id="btnImportDecks">＋ 导入课程</button>
+    </div>
+    <div class="deck-list" id="deckList"></div>
+    <div class="course-tree hidden" id="courseTree"></div>
+  </div>
+
+  <!-- 管理页 -->
+  <div class="page hidden" id="pageEdit">
+    <div class="page-head" id="editHead"></div>
+    <div class="deck-list" id="editList"></div>
+    <div class="edit-stat hidden" id="editStat"></div>
+  </div>
+
+  <!-- 详解页 -->
+  <div class="page hidden" id="pageExplain">
+    <div class="page-head">
+      <button class="btn sm" id="explainBack">← 返回</button>
+      <h2>📖 句子详解</h2>
+      <span class="spacer"></span>
+      <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板">📋 复制 Prompt</button>
+    </div>
+    <div style="padding:2px 0 10px">
+      <div id="explainSentence" style="font-size:17px;font-weight:700;line-height:1.45"></div>
+      <div id="explainTrans" style="font-size:13px;color:var(--faint);margin-top:3px"></div>
+    </div>
+    <div id="explainList" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <strong style="font-size:14px">粘贴大模型返回的 JSON 回填</strong>
+        <span style="font-size:12px;color:var(--faint)">（数组，长度须与意群数一致）</span>
+      </div>
+      <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
+      <div id="explainMsg" class="msg"></div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn primary" id="explainApply">✓ 校验并保存</button>
+        <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 导入弹窗 -->
+<div class="mask" id="impMask" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <h3>导入题库</h3>
+      <span style="font-size:12.5px;color:var(--faint)">选分类 → 复制 Prompt → 喂大模型 → 粘回 JSON</span>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="imp-append-banner hidden" id="impAppend"></div>
+      <div class="step-title"><span class="step">1</span>选择练习分类<span class="note">点击卡片生成对应 Prompt</span></div>
+      <div class="cats" id="cats"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:6px 0">
+        <span class="opt">题量 <select id="optCount"><option>10</option><option selected>15</option><option>20</option><option>30</option></select></span>
+        <span class="opt">难度 <select id="optLevel"><option>入门</option><option selected>进阶</option><option>高阶</option></select></span>
+        <span class="opt">意群数 <select id="optChunks"><option value="2-3">2-3 个</option><option value="2-4" selected>2-4 个</option><option value="3-5">3-5 个</option></select></span>
+      </div>
+      <div class="step-title"><span class="step">2</span>Prompt<span class="note">DeepSeek / 元宝 / ChatGPT 均可</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px">📋 复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
+      <textarea id="promptBox" readonly placeholder="先在上方点一个分类卡片…" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;background:var(--surface-2)"></textarea>
+      <div class="step-title" style="margin-top:14px"><span class="step">3</span>粘贴模型返回的 JSON<span class="note">也可拖入 .json 文件</span><button class="btn sm ghost" id="btnClear" style="margin-left:8px">清空</button></div>
+      <div class="drop" id="drop">
+        <textarea id="jsonBox" placeholder='粘贴 JSON… 或拖入 / 点击选择文件'></textarea>
+        <input type="file" id="fileInput" accept=".json,.txt,application/json" class="hidden">
+      </div>
+      <div class="dropzone-hint">支持带 ```json 代码块的原始回复，会自动清洗</div>
+      <div class="msg" id="impMsg"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn primary" id="btnValidate">校验并导入</button>
+      <button class="btn hidden" id="btnPartial">仅导入通过的题</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" data-close>取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 导入图文课程弹窗（文件选择 + 层级归并） -->
+<div class="mask" id="courseImpMask" hidden>
+  <div class="modal" style="max-width:520px">
+    <div class="modal-head">
+      <h3>导入图文课程</h3>
+      <span style="font-size:12.5px;color:var(--faint)">选择 ZIP 课程包，指定所属层级</span>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- 拖拽/点击区域 -->
+      <div class="course-drop-zone" id="courseDropZone">
+        <input type="file" id="courseFileInput" accept=".zip,application/zip" class="hidden">
+        <div class="course-drop-hint">
+          <span class="course-drop-icon">📦</span>
+          <p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p>
+          <small>支持 .zip 格式（English MUD 导出）</small>
+        </div>
+      </div>
+
+      <!-- 层级选择 -->
+      <div class="level-section" id="levelSection">
+        <div class="level-row">
+          <div class="level-field">
+            <label class="level-lbl">系列 / 大类</label>
+            <input type="text" id="ciSeries" class="set-inp" style="width:100%" list="ciSeriesList" placeholder="如：新概念英语 / 绘本 / 美剧">
+            <datalist id="ciSeriesList"></datalist>
+            <small class="level-hint">已有系列自动补全；新名称创建新系列</small>
+          </div>
+        </div>
+        <div class="level-row two-col">
+          <div class="level-field">
+            <label class="level-lbl">1 级</label>
+            <input type="text" id="ciLevel1" class="set-inp" style="width:100%" list="ciLevel1List" placeholder="留空或自定义，如：第1册 / Season 1 / 上册">
+            <datalist id="ciLevel1List"></datalist>
+            <small class="level-hint">已有值自动补全；输入新名称即可创建</small>
+          </div>
+          <div class="level-field">
+            <label class="level-lbl">2 级（可选）</label>
+            <input type="text" id="ciLevel2" class="set-inp" style="width:100%" list="ciLevel2List" placeholder="留空或自定义，如：Unit 1 / Part A">
+            <datalist id="ciLevel2List"></datalist>
+            <small class="level-hint">可选，更细分的层级</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg" id="courseImpMsg"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn primary" id="btnCourseImport">确认导入</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" data-close>关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 追加导入弹窗 -->
+<div class="mask" id="appendMask" hidden>
+  <div class="modal" style="max-width:620px">
+    <div class="modal-head">
+      <h3>追加句子</h3>
+      <span style="font-size:12.5px;color:var(--faint)" id="appendDeckName"></span>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- 模式切换：A 生成新句子 / B 我已有句子（拆分意群） -->
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <button class="btn sm primary" id="appendModeGen">A 生成新句子</button>
+        <button class="btn sm" id="appendModeMine">B 我已有句子（拆分意群）</button>
+      </div>
+
+      <!-- 模式 B：粘贴已有句子 → 生成拆分 Prompt -->
+      <div id="appendMineBox" hidden>
+        <div class="step-title"><span class="step">1</span>粘贴已有句子<span class="note">每行一句，建议 30-60 句/批；批量导入会校验去重</span></div>
+        <div class="drop" id="appendMineDrop">
+          <textarea id="appendMineBoxIn" placeholder='I'm going to meet a friend for lunch.
+Could you tell me how to get to the station?' style="min-height:140px"></textarea>
+          <input type="file" id="appendMineFile" accept=".txt,.json,.csv,text/plain" class="hidden">
+        </div>
+        <div class="dropzone-hint">支持 .txt 文件（每行一句）· 大模型将给每句拆意群 chunks + 中文翻译 + hints</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn" id="btnGenSplitPrompt">⚙ 生成拆分 Prompt</button>
+          <span style="font-size:12px;color:var(--faint);align-self:center" id="appendMineCnt"></span>
+        </div>
+      </div>
+
+      <div style="margin-bottom:10px">
+        <div class="step-title"><span class="step" id="appendStepNum">2</span><span id="appendStepTitle">Prompt</span><span class="note">粘贴给任意大模型</span><button class="btn sm primary" id="btnAppendCopy" style="margin-left:8px">📋 复制</button><span id="appendCopyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
+        <textarea id="appendPromptBox" readonly placeholder="Prompt 已自动生成…" style="width:100%;min-height:60px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12.5px;background:var(--surface-2)"></textarea>
+      </div>
+      <div>
+        <div class="step-title"><span class="step" id="appendStepNum2">3</span>粘贴返回的 JSON<span class="note">自动去重</span><button class="btn sm ghost" id="btnAppendClear" style="margin-left:8px">清空</button></div>
+        <div class="drop" id="appendDrop">
+          <textarea id="appendJsonBox" placeholder='粘贴模型返回的 JSON 数组… 或拖入 / 点击选择文件' style="min-height:120px"></textarea>
+          <input type="file" id="appendFileInput" accept=".json,.txt,application/json" class="hidden">
+        </div>
+        <div class="dropzone-hint">支持 .json / .txt</div>
+      </div>
+      <div class="msg" id="appendMsg"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn primary" id="btnAppendValidate">校验并追加</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" data-close>取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 批量详解弹窗 -->
+<div class="mask" id="batchExplainMask" hidden>
+  <div class="modal" style="max-width:640px">
+    <div class="modal-head">
+      <h3>📖 批量生成详解</h3>
+      <span style="font-size:12.5px;color:var(--faint)" id="batchExplainInfo"></span>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" data-close>✕</button>
+    </div>
+    <div class="modal-body">
+      <label style="display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:12.5px;color:var(--muted);cursor:pointer">
+        <input type="checkbox" id="batchExplainAll" onchange="_batchAll=this.checked; openBatchExplain(_batchDeck);">
+        包含已详解的句子（覆盖升级为结构化讲解）
+      </label>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <button class="btn" id="batchExplainCopy">📋 复制批量 Prompt</button>
+        <span style="font-size:12px;color:var(--faint)">粘贴到外部大模型 → 生成 → 把 JSON 粘贴到下方一次回填</span>
+      </div>
+      <textarea id="batchExplainJson" rows="6" style="width:100%;font-family:monospace;font-size:12px" placeholder='{"items":[{"sentence":"原句...","explanations":[{"grammar":"...","syntax":"...","words":[{"w":"call","p":"v.","m":"打电话"}]}]}]}'></textarea>
+      <div id="batchExplainMsg" class="msg"></div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn primary" id="batchExplainApply">✓ 校验并批量保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 编辑单句弹窗 -->
+<div class="mask" id="editSentenceMask" hidden>
+  <div class="modal" style="max-width:560px">
+    <div class="modal-head">
+      <h3>编辑句子</h3>
+      <span style="font-size:12.5px;color:var(--faint)" id="editSentenceHint"></span>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" data-close>✕</button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:12px">
+      <div><div class="set-lbl" style="margin-bottom:4px">英文句子（必填）</div><textarea id="editSentenceEn" rows="2" style="width:100%"></textarea></div>
+      <div><div class="set-lbl" style="margin-bottom:4px">中文翻译（选填）</div><input type="text" id="editSentenceCn" class="set-inp" style="width:100%"></div>
+      <div><div class="set-lbl" style="margin-bottom:4px">意群 chunks（每行一个，2-5 个，拼接等于原句）</div><textarea id="editSentenceChunks" rows="3" style="width:100%;font-family:monospace;font-size:12.5px"></textarea></div>
+      <div><div class="set-lbl" style="margin-bottom:4px">中文提示 hints（每行一个，与 chunks 同数）</div><textarea id="editSentenceHints" rows="2" style="width:100%"></textarea></div>
+      <div><div class="set-lbl" style="margin-bottom:4px">详解 explanations（每行一条）</div><textarea id="editSentenceExps" rows="3" style="width:100%"></textarea></div>
+      <div id="editSentenceMsg" class="msg"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn primary" id="btnSaveEditSentence">保存</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" data-close>取消</button>
+    </div>
+  </div>
+</div>
+
+<script src="oral8000.js"></script>
+<script src="builtins.js"></script>
+<script src="core.js"></script>
+<script src="api.js"></script>
+<script src="auth-ui.js"></script>
+<script src="library.js"></script>
+<script src="course-package.js"></script>
+<script>
+/* ===== 题库管理 独立页面（decks.html）=====
+   共享 core.js（CL 命名空间）：存储/工具/领域判定/事件总线；
+   postMessage 通知主页：startDeck（启动练习）/ memUpdated（数据变更） */
+
+var mem = { decks:[], best:{}, mastered:{}, stats:{}, settings:{} };
+/* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
+function loadMem(){ mem = CL.loadMem(); }
+function saveStore(){ CL.saveAndNotify(mem); }
+function notifyMain(type, payload){
+  if(type === 'startDeck' && payload && payload.deck){
+    /* 独立页面模式：存 sessionStorage + 导航回主页启动练习 */
+    try{ sessionStorage.setItem('_startDeck', JSON.stringify(payload.deck)); }catch(e){}
+    window.location.href = './main.html';
+  }
+  else if(type === 'goBack'){ window.location.href = './main.html'; }
+}
+function $(id){ return CL.$(id); }
+function esc(s){ return CL.esc(s); }
+function norm(s){ return CL.norm(s); }
+function normSent(s){ return CL.normSent(s); }
+function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
+function allDecks(){
+  return (window.BUILTIN||[]).map(function(bd){
+    /* 内置题库只读，删除走 deletedItems 覆盖，返回过滤后的副本 */
+    var items = (bd.items || []).filter(function(it){ return !CL.isItemDeleted(mem, bd.id, it); });
+    var copy = {}; for(var k in bd){ if(bd.hasOwnProperty(k)) copy[k] = bd[k]; }
+    copy.items = items;
+    return copy;
+  }).concat(CL.allDecks(mem));
+}
+function findDeck(deckId){ return CL.findDeck(mem, deckId); }
+function isMastered(deckId, it){ return CL.isMastered(mem, deckId, it); }
+function isFluencyByDeck(deckId, it){ return CL.isFluencyByDeck(mem, deckId, it); }
+function isMarkedForDeck(deckId, it){ return CL.isMarkedForDeck(mem, deckId, it); }
+function copyText(t, done){ CL.copyText(t, done); }
+
+/* 分类 + Prompt 模板（与主页面一致） */
+var CATS = [
+  { icon:'💬', name:'日常对话', zh:'衣食住行日常场景', en:'daily life conversations (greetings, weather, shopping, transport, ordering food)', count:15 },
+  { icon:'🛒', name:'购物消费', zh:'商场购物与退换货', en:'shopping scenarios (bargaining, returns, sizes, payment methods)', count:15 },
+  { icon:'✈️', name:'旅行出行', zh:'交通酒店出入境', en:'travel scenarios (airport, hotel, directions, customs, boarding)', count:15 },
+  { icon:'💼', name:'职场办公', zh:'会议邮件汇报面试', en:'workplace scenarios (meetings, emails, reports, interviews, business)', count:15 },
+  { icon:'🍽️', name:'餐饮美食', zh:'点餐用餐评价外卖', en:'food & dining (ordering, menus, dietary restrictions, reviews)', count:15 },
+  { icon:'🏥', name:'医疗健康', zh:'就诊用药急救保险', en:'medical scenarios (doctor visits, pharmacy, symptoms, insurance)', count:15 },
+  { icon:'🎓', name:'校园学习', zh:'上课考试图书馆', en:'campus & academic (classes, exams, library, dorm life)', count:15 },
+  { icon:'📱', name:'科技数码', zh:'设备软件网络', en:'tech & digital (devices, apps, troubleshooting, social media)', count:15 },
+  { icon:'🎤', name:'雅思口语', zh:'雅思高频话题 Part 1/2/3', en:'IELTS speaking topics (Part 1/2/3 common questions & answers)', count:15 },
+  { icon:'🎬', name:'影视口语', zh:'美剧电影地道表达', en:'colloquial expressions from TV shows and movies (slang, idioms)', count:15 },
+  { icon:'🤝', name:'社交情感', zh:'交友约会人际关系', en:'social & emotional (dating, friendships, parties, small talk)', count:15 },
+  { icon:'📰', name:'新闻媒体', zh:'时事热点采访报道', en:'news & media (current events, interviews, opinions, debates)', count:15 }
+];
+var _selCat = CATS[0];
+var _appendDeck = null, _batchDeck = null, _batchAll = false;
+var _editDeck = null, _editIdx = -1;
+var _explainDeck = null, _explainIdx = -1;
+var _editStatMsg = '';
+var _editOnlyMastered = false;
+
+/* ===== 题库列表 ===== */
+function openDecks(){
+  var list = $('deckList');
+  list.innerHTML = '';
+  var decks = allDecks().slice().sort(function(a,b){
+    var ta = (mem.best && mem.best[a.id] && mem.best[a.id].lastPlayed) || 0;
+    var tb = (mem.best && mem.best[b.id] && mem.best[b.id].lastPlayed) || 0;
+    return tb - ta;
+  });
+  decks.forEach(function(d){
+    var b = mem.best[d.id];
+    var lastStr = '';
+    if(b && b.lastPlayed){
+      var diff = Date.now() - b.lastPlayed;
+      if(diff < 60000) lastStr = '刚刚';
+      else if(diff < 3600000) lastStr = Math.floor(diff/60000)+' 分钟前';
+      else if(diff < 86400000) lastStr = Math.floor(diff/3600000)+' 小时前';
+      else lastStr = Math.floor(diff/86400000)+' 天前';
+    }
+    var mCnt = 0;
+    for(var mi=0; mi<d.items.length; mi++){ if(isMarkedForDeck(d.id, d.items[mi])) mCnt++; }
+    var row = document.createElement('div');
+    row.className = 'deck-item';
+    row.innerHTML =
+      '<div class="info"><div class="nm">'+esc(d.name)+
+        (d.builtin?'<span class="pill">内置</span>':'<span class="pill mine">导入</span>')+'</div>'+
+      '<div class="meta">'+d.items.length+' 题'+
+        (lastStr ? ' · <span style="color:var(--accent)">'+lastStr+'</span>' : '')+
+        (mCnt ? ' · <span style="color:#12924f;font-weight:600">熟 '+mCnt+'</span>' : '')+
+      '</div></div>';
+    var actions = document.createElement('div');
+    actions.className = 'deck-actions';
+    if(!d.builtin){
+      var ai = document.createElement('button');
+      ai.className = 'btn sm';
+      ai.textContent = '＋ AI 追加';
+      ai.title = '复制 Prompt → 粘贴 AI 返回 → 自动续写并去重';
+      ai.onclick = function(){ openAppend(d); };
+      actions.appendChild(ai);
+      var del = document.createElement('button');
+      del.className = 'btn sm ghost'; del.textContent = '删除';
+      del.style.cssText = 'color:var(--bad)';
+      del.onclick = function(){
+        if(!confirm('删除题库「'+d.name+'」？此操作不可恢复。')) return;
+        mem.decks = mem.decks.filter(function(x){ return x.id!==d.id; });
+        delete mem.best[d.id];
+        saveStore(); notifyMain('memUpdated'); openDecks();
+      };
+      actions.appendChild(del);
+    }
+    var exp = document.createElement('button');
+    exp.className = 'btn sm ghost'; exp.textContent = '导出';
+    exp.onclick = function(){ exportDeck(d); };
+    actions.appendChild(exp);
+    var edit = document.createElement('button');
+    edit.className = 'btn sm ghost'; edit.textContent = '管理';
+    edit.onclick = function(){ editDeck(d); };
+    actions.appendChild(edit);
+    var go = document.createElement('button');
+    go.className = 'btn sm primary'; go.textContent = '开始';
+    go.onclick = function(){ notifyMain('startDeck', { deck:d }); };
+    actions.appendChild(go);
+    row.appendChild(actions);
+    list.appendChild(row);
+  });
+  showPage('pageDecks');
+}
+
+function showPage(id){
+  ['pageDecks','pageEdit','pageExplain'].forEach(function(p){
+    var el = $(p); if(el) el.classList.toggle('hidden', p !== id);
+  });
+}
+
+/* ===== 管理页 ===== */
+function editDeck(d){
+  /* 始终从 allDecks() 重新取（首行即过滤掉已删的内置句），保证删除后刷新正确 */
+  var fresh = allDecks().filter(function(x){ return x.id === d.id; })[0];
+  if(fresh) d = fresh;
+  var head = $('editHead');
+  var masterCount = d.items.filter(function(it){ return isMastered(d.id, it); }).length;
+  head.innerHTML =
+    '<button class="btn sm ghost" id="editBack">← 返回题库</button>'+
+    '<span style="font-weight:600;font-size:15px">'+esc(d.name)+'</span>'+
+    '<span class="pill">'+(d.builtin?'内置':'导入')+'</span>'+
+    '<span style="color:var(--faint)">'+d.items.length+' 句</span>'+
+    (masterCount ? '<span class="pill" style="background:#e6f4ec;color:#12924f;border:1px solid #c3ead4">熟 '+masterCount+'</span>' : '')+
+    '<span class="spacer"></span>'+
+    '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? '↺ 看全部' : '只看已标熟' )+'</button>'+
+    '<button class="btn sm" id="editBatchExplain" title="批量给暂无详解的句子生成讲解">📖 批量详解</button>'+
+    '<button class="btn sm" id="editExportBtn">📤 导出</button>'+
+    (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">📥 导入更多句子</button>');
+  $('editMasterFilter').onclick = function(){ _editOnlyMastered = !_editOnlyMastered; editDeck(d); };
+  $('editBatchExplain').onclick = function(){ openBatchExplain(d); };
+  $('editExportBtn').onclick = function(){ exportDeck(d); };
+  var imp = $('editImportBtn'); if(imp) imp.onclick = function(){ openAppend(d); };
+  $('editBack').onclick = openDecks;
+
+  var list = $('editList');
+  list.innerHTML = '';
+  var shown = 0;
+  d.items.forEach(function(it, i){
+    if(_editOnlyMastered && !isMarkedForDeck(d.id, it)) return;
+    shown++;
+    var row = document.createElement('div');
+    row.className = 'edit-row';
+    /* ★ chunk 划分直接标在英文原句上（每个 chunk 带下划线，空格分隔）——消除单独预览行的冗余 */
+    var sentenceHtml = '';
+    if(it.chunks && it.chunks.length){
+      sentenceHtml = it.chunks.map(function(c){ return '<span class="sen-chunk">'+esc(c)+'</span>'; }).join(' ');
+    } else {
+      sentenceHtml = esc(it.sentence || it.en || '');
+    }
+    var masterBadge = isMastered(d.id, it) ?
+      '<span style="display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:#12924f;border-radius:5px;padding:1px 5px;margin-left:6px;vertical-align:middle">熟</span>' : '';
+    var inner =
+      '<div class="sen">'+
+        '<div class="en"><span style="color:var(--accent);margin-right:5px;font-size:12px;font-weight:700">'+(i+1)+'</span>'+sentenceHtml+masterBadge+'</div>'+
+        '<div class="cn">'+esc(it.translation || it.cn || '')+'</div>'+
+      '</div>';
+    var ops = '<div class="ops">';
+    if(!d.builtin){
+      ops += '<button class="btn sm ghost" data-op="exp" title="查看/生成详解">📖</button>'+
+             '<button class="btn sm ghost" data-op="edit" title="编辑此句">✏</button>';
+    }
+    /* 删除：内置 + 导入均支持；内置题走 deletedItems 覆盖 */
+    ops += '<button class="btn sm ghost" data-op="del" title="删除此句" style="color:#c4362b">✕</button>';
+    ops += '</div>';
+    row.innerHTML = inner + ops;
+    var expb = row.querySelector('[data-op="exp"]'); if(expb) expb.onclick = function(){ openExplain(d, i); };
+    var eb = row.querySelector('[data-op="edit"]'); if(eb) eb.onclick = function(){ openEditSentence(d, i); };
+    var db = row.querySelector('[data-op="del"]'); if(db) db.onclick = function(){
+      if(!confirm('删除第 '+(i+1)+' 句：\n\n'+esc(it.sentence||it.en||'')+'\n\n确定删除？')) return;
+      if(d.builtin){
+        CL.deleteItem(mem, d.id, it);
+        saveStore(); notifyMain('memUpdated');
+        editDeck(d);
+      } else {
+        d.items.splice(i, 1);
+        saveStore(); notifyMain('memUpdated');
+        editDeck(d);
+      }
+    };
+    list.appendChild(row);
+  });
+  if(shown === 0){
+    list.innerHTML = '<div class="empty-tip">该题库还没有标记「熟」的句子</div>';
+  }
+  var stat = $('editStat');
+  if(_editStatMsg){
+    stat.textContent = _editStatMsg;
+    stat.classList.remove('hidden');
+    _editStatMsg = '';
+  } else {
+    stat.classList.add('hidden');
+  }
+  showPage('pageEdit');
+}
+
+/* ===== 编辑单句 ===== */
+function openEditSentence(deck, idx){
+  _editDeck = deck; _editIdx = idx;
+  var it = deck.items[idx];
+  $('editSentenceHint').textContent = '第 '+(idx+1)+' / '+deck.items.length+' 句 · '+deck.name;
+  $('editSentenceEn').value = it.sentence || it.en || '';
+  $('editSentenceCn').value = it.translation || it.cn || '';
+  $('editSentenceChunks').value = (it.chunks || []).join('\n');
+  $('editSentenceHints').value = (it.hints || []).join('\n');
+  $('editSentenceExps').value = (it.explanations || []).map(function(x){ return typeof x==='string'?x:''; }).join('\n');
+  $('editSentenceMsg').className = 'msg';
+  $('editSentenceMsg').textContent = '';
+  $('editSentenceMask').hidden = false;
+}
+function saveEditSentence(){
+  if(!_editDeck || _editIdx < 0) return;
+  var en = $('editSentenceEn').value.trim();
+  var cn = $('editSentenceCn').value.trim();
+  var chunks = $('editSentenceChunks').value.split(/\n/).map(function(s){return s.trim();}).filter(function(s){return s.length>0;});
+  var hints = $('editSentenceHints').value.split(/\n/).map(function(s){return s.trim();});
+  var exps = $('editSentenceExps').value.split(/\n/).map(function(s){return s.trim();});
+  var msg = $('editSentenceMsg');
+  if(!en){ msg.className='msg err show'; msg.textContent='英文句子不能为空'; return; }
+  if(chunks.length < 2 || chunks.length > 5){ msg.className='msg err show'; msg.textContent='chunks 数量需在 2-5 之间（当前 '+chunks.length+'）'; return; }
+  if(norm(chunks.join(' ')) !== norm(en)){ msg.className='msg err show'; msg.textContent='chunks 拼接与原句不一致 → "'+chunks.join(' ')+'" ≠ "'+en+'"'; return; }
+  if(hints.length !== chunks.length){ msg.className='msg err show'; msg.textContent='hints 数量需与 chunks 一致（hints='+hints.length+', chunks='+chunks.length+'）'; return; }
+  if(exps.length > chunks.length){ msg.className='msg err show'; msg.textContent='explanations 数量不能超过 chunks 数'; return; }
+  var it = _editDeck.items[_editIdx];
+  it.sentence = en; it.translation = cn; it.chunks = chunks; it.hints = hints;
+  if(exps.length){ it.explanations = exps; } else { delete it.explanations; }
+  delete it.en; delete it.cn;
+  saveStore(); notifyMain('memUpdated');
+  var d = _editDeck;
+  _editDeck = null; _editIdx = -1;
+  $('editSentenceMask').hidden = true;
+  _editStatMsg = '已保存编辑';
+  editDeck(d);
+}
+
+/* ===== 详解 ===== */
+function openExplain(deck, idxOrItem){
+  var item = (typeof idxOrItem === 'number') ? deck.items[idxOrItem] : idxOrItem;
+  _explainDeck = deck;
+  _explainIdx = deck.items.indexOf(item);
+  renderExplain();
+  showPage('pageExplain');
+}
+function renderExplain(){
+  if(!_explainDeck) return;
+  var it = _explainDeck.items[_explainIdx];
+  $('explainSentence').textContent = it.sentence || it.en || '';
+  $('explainTrans').textContent = it.translation || it.cn || '';
+  var exps = it.explanations || [];
+  var list = $('explainList');
+  list.innerHTML = '';
+  it.chunks.forEach(function(ch, i){
+    var raw = exps[i];
+    var has = !!(raw && (typeof raw === 'object' ? true : String(raw).trim()));
+    var head =
+      '<div style="display:flex;align-items:center;gap:8px">'+
+        '<span style="font-size:11px;font-weight:700;color:#fff;background:'+(has?'#12924f':'#b0b8c8')+';border-radius:5px;padding:1px 6px">'+(i+1)+'</span>'+
+        '<b style="font-size:14.5px">'+esc(ch)+'</b>'+
+        '<span style="margin-left:auto;font-size:11px;color:'+(has?'#12924f':'var(--faint)')+'">'+(has?'已详解':'暂无详解')+'</span>'+
+      '</div>';
+    var body = '';
+    if(raw && typeof raw === 'object'){
+      var dims = [['语法','grammar','#e74c7a'],['句法','syntax','#3358e0'],['固定搭配','collocation','#c87033'],['固定句型','pattern','#7c5cbf'],['口语/俚语','oral','#2d9d78']];
+      var hasDim = dims.some(function(d){ return raw[d[1]] && String(raw[d[1]]).trim(); });
+      if(hasDim){
+        body = dims.map(function(d){
+          var v = raw[d[1]];
+          if(!v || !String(v).trim()) return '';
+          return '<div class="dim"><span class="dim-lbl" style="color:'+d[2]+'">'+d[0]+'</span><div style="font-size:12.5px;line-height:1.6;min-width:0">'+esc(v)+'</div></div>';
+        }).join('');
+        if(Array.isArray(raw.words) && raw.words.length){
+          var wHtml = raw.words.map(function(w){
+            return '<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border:1px solid var(--border-strong);border-radius:5px;font-size:11.5px;color:var(--accent)"><b>'+esc(w.w||w.word||'')+'</b>'+(w.p?' <span style="color:var(--faint)">('+esc(w.p)+')</span>':'')+(w.m?' '+esc(w.m):'')+'</span>';
+          }).join('');
+          body += '<div class="dim"><span class="dim-lbl" style="color:#d4a017">关键词</span><div>'+wHtml+'</div></div>';
+        }
+      } else if(raw.text){ body = '<div style="font-size:12.5px;line-height:1.6">'+esc(raw.text)+'</div>'; }
+    } else if(raw && String(raw).trim()){
+      body = '<div style="font-size:12.5px;color:var(--text);line-height:1.6">'+esc(raw)+'</div>';
+    }
+    if(!body) body = '<div style="font-size:12.5px;color:var(--faint)">暂无详解</div>';
+    var row = document.createElement('div');
+    row.className = 'exp-row';
+    row.innerHTML = head + body;
+    list.appendChild(row);
+  });
+}
+function buildExplainPrompt(){
+  if(!_explainDeck) return '';
+  var it = _explainDeck.items[_explainIdx];
+  var chunksStr = it.chunks.map(function(c,i){
+    var hint = (it.hints && it.hints[i]) ? it.hints[i] : '';
+    return '  '+(i+1)+'. "'+c+'"（中文提示：'+(hint||'—')+'）';
+  }).join('\n');
+  return [
+    '请对以下英语句子做逐意群中文讲解（口语学习用，中文回答）：',
+    '',
+    '句子：'+ (it.sentence || it.en || ''),
+    '中文：'+ (it.translation || it.cn || ''),
+    '意群：',
+    chunksStr,
+    '',
+    '输出 JSON（不要输出任何其他文字）：',
+    '{',
+    '  "chunks": [',
+    '    {"chunk":"意群1原文","explain":"中文讲解，讲清这个意群在句子中的作用和整体含义"}',
+    '  ]',
+    '}'
+  ].join('\n');
+}
+$('explainCopyPrompt').onclick = function(){
+  var t = buildExplainPrompt();
+  if(!t) return;
+  copyText(t);
+  var m = $('explainMsg');
+  m.className = 'msg ok show';
+  m.textContent = 'Prompt 已复制，粘贴给大模型生成 JSON';
+};
+$('explainApply').onclick = function(){
+  var text = $('explainJsonBox').value.trim();
+  var msg = $('explainMsg');
+  if(!_explainDeck) return;
+  var data;
+  try{ data = extractJSON(text); }catch(e){
+    msg.className='msg err show'; msg.innerHTML='<b>JSON 解析失败</b><div style="font-size:12px">'+esc(e.message)+'</div>'; return;
+  }
+  var arr = Array.isArray(data) ? data : (data && data.chunks ? data.chunks : null);
+  if(!arr){
+    msg.className='msg err show'; msg.textContent='需要数组，或含 chunks 数组的对象';
+    return;
+  }
+  var it = _explainDeck.items[_explainIdx];
+  if(arr.length !== it.chunks.length){
+    msg.className='msg err show'; msg.textContent='数量不匹配：意群 '+it.chunks.length+' 个，返回 '+arr.length+' 条';
+    return;
+  }
+  it.explanations = arr.map(function(x){
+    if(typeof x === 'string') return x;
+    if(x && x.chunk && x.explain) return x.explain;
+    return JSON.stringify(x);
+  });
+  saveStore(); notifyMain('memUpdated');
+  msg.className='msg ok show';
+  msg.textContent='已保存 ' + arr.length + ' 条详解';
+  renderExplain();
+};
+$('explainReset').onclick = function(){ $('explainJsonBox').value=''; };
+$('explainBack').onclick = function(){ if(_explainDeck){ editDeck(_explainDeck); } else { openDecks(); } };
+
+/* ===== 批量详解 ===== */
+function pendingExplains(deck){
+  return deck.items.filter(function(it){
+    var exps = it.explanations || [];
+    if(!exps.length) return true;
+    return exps.some(function(x){
+      if(typeof x === 'string') return !String(x).trim();
+      return !x || (!x.grammar && !x.syntax && !x.collocation && !x.pattern && !x.oral);
+    });
+  });
+}
+function openBatchExplain(deck){
+  _batchDeck = deck;
+  var pending = _batchAll ? deck.items : pendingExplains(deck);
+  $('batchExplainInfo').textContent = deck.name+' · 共 '+deck.items.length+' 句，待生成 '+( _batchAll ? deck.items.length : pending.length )+' 句';
+  $('batchExplainJson').value = '';
+  $('batchExplainMsg').className = 'msg';
+  $('batchExplainMsg').textContent = '';
+  $('batchExplainMask').hidden = false;
+}
+function buildBatchExplainPrompt(deck){
+  var pending = _batchAll ? deck.items : pendingExplains(deck);
+  var lines = pending.slice(0, 50).map(function(it, i){
+    var chunksStr = (it.chunks||[]).map(function(c, j){
+      var hint = (it.hints && it.hints[j]) ? it.hints[j] : '';
+      return '    '+(j+1)+'. "'+c+'"（中文提示：'+(hint||'—')+'）';
+    }).join('\n');
+    return '【'+(i+1)+'】\n句子：'+ (it.sentence||it.en||'') +'\n中文：'+ (it.translation||it.cn||'') +'\n意群：\n'+chunksStr;
+  }).join('\n\n');
+  return [
+    '请为以下英语句子逐意群生成结构化中文讲解（英语口语学习用，全部中文回答）。',
+    '',
+    '输出格式（JSON，不要输出任何其他文字）：',
+    '{',
+    '  "items": [',
+    '    {',
+    '      "sentence": "原句",',
+    '      "explanations": [',
+    '        {',
+    '          "grammar": "语法讲解",',
+    '          "syntax": "句法/成分讲解",',
+    '          "collocation": "固定搭配讲解（若无填空字符串）",',
+    '          "pattern": "固定句型讲解（若无填空字符串）",',
+    '          "oral": "口语/地道用法（若无填空字符串）",',
+    '          "words": [{"w":"单词","p":"词性","m":"释义"}]',
+    '        }',
+    '      ]',
+    '    }',
+    '  ]',
+    '}',
+    '',
+    '待生成句子（共 '+pending.length+' 句，仅生成这些）：',
+    '',
+    lines
+  ].join('\n');
+}
+$('batchExplainCopy').onclick = function(){
+  if(!_batchDeck) return;
+  copyText(buildBatchExplainPrompt(_batchDeck));
+  var m = $('batchExplainMsg');
+  m.className = 'msg ok show';
+  m.textContent = '批量 Prompt 已复制（仅含暂无详解的句子）';
+};
+$('batchExplainApply').onclick = function(){
+  var text = $('batchExplainJson').value.trim();
+  var msg = $('batchExplainMsg');
+  if(!_batchDeck) return;
+  if(!text){ msg.className='msg err show'; msg.textContent='请粘贴模型返回的 JSON'; return; }
+  var data;
+  try{ data = extractJSON(text); }catch(e){
+    msg.className='msg err show'; msg.innerHTML='<b>JSON 解析失败</b><div style="font-size:12px">'+esc(e.message)+'</div>'; return;
+  }
+  var items = Array.isArray(data) ? data : (data && data.items ? data.items : null);
+  if(!items){
+    msg.className='msg err show'; msg.textContent='需要数组或含 items 数组的对象';
+    return;
+  }
+  var bySen = {};
+  items.forEach(function(it){
+    if(it && it.sentence) bySen[normSent(it.sentence)] = it;
+  });
+  var saved = 0;
+  _batchDeck.items.forEach(function(it){
+    var hit = bySen[normSent(it.sentence || it.en || '')];
+    if(!hit || !Array.isArray(hit.explanations)) return;
+    it.explanations = hit.explanations;
+    saved++;
+  });
+  saveStore(); notifyMain('memUpdated');
+  msg.className='msg ok show';
+  msg.textContent='已批量保存 ' + saved + ' 句详解';
+  setTimeout(function(){ $('batchExplainMask').hidden = true; editDeck(_batchDeck); }, 900);
+};
+
+/* ===== 导入 ===== */
+var lastValid = null;
+function openImport(deck){
+  _appendDeck = deck || null;
+  $('impAppend').classList.toggle('hidden', !deck);
+  if(deck){
+    $('impAppend').textContent = '追加模式：将导入到「'+deck.name+'」';
+    $('btnValidate').textContent = '校验并导入（追加）';
+  } else {
+    $('btnValidate').textContent = '校验并导入';
+  }
+  $('impMsg').className = 'msg';
+  $('impMsg').textContent = '';
+  $('jsonBox').value = '';
+  renderCats();
+  $('impMask').hidden = false;
+}
+function renderCats(){
+  var box = $('cats');
+  box.innerHTML = '';
+  CATS.forEach(function(c){
+    var b = document.createElement('div');
+    b.className = 'cat-btn' + (c===_selCat ? ' on' : '');
+    b.innerHTML = '<span class="cat-icon">'+esc(c.icon)+'</span>'+
+      '<span class="cat-name">'+esc(c.name)+'</span>'+
+      '<span class="cat-desc">'+esc(c.zh)+'</span>';
+    b.onclick = function(){ _selCat = c; renderCats(); renderPrompt(); };
+    box.appendChild(b);
+  });
+  renderPrompt();
+}
+function renderPrompt(){
+  var c = _selCat || CATS[0];
+  var p = [
+    '生成 '+($('optCount').value || 15)+' 条英语口语练习句子（'+c.en+'），JSON 格式，不要输出其他文字：',
+    '[',
+    '  {',
+    '    "sentence": "完整英文句子",',
+    '    "translation": "中文翻译",',
+    '    "chunks": ["意群1", "意群2", "意群3"],',
+    '    "hints": ["意群1中文提示", "意群2中文提示", "意群3中文提示"]',
+    '  }',
+    ']',
+    '要求：chunks 用单个空格连接后必须与 sentence 完全一致（忽略大小写和标点）；每个句子 2-'+($('optChunks').value || '2-4')+' 个意群；难度：'+($('optLevel').value||'进阶')+'。'
+  ].join('\n');
+  $('promptBox').value = p;
+}
+function showCopyTip(msg){
+  var el = $('copyTip'); if(el){ el.textContent = msg; setTimeout(function(){ el.textContent=''; }, 1500); }
+}
+function extractJSON(text){
+  var s = String(text||'').trim();
+  var m = s.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if(m) s = m[1].trim();
+  var start = s.indexOf('{'), arrStart = s.indexOf('[');
+  var from = -1;
+  if(start >= 0 && (arrStart < 0 || start < arrStart)) from = start;
+  else from = arrStart;
+  if(from < 0) throw new Error('未找到 JSON 内容');
+  var parsed = JSON.parse(s.substring(from));
+  return parsed;
+}
+function validateDeck(data){
+  var errs = [], good = [];
+  var items = Array.isArray(data) ? data : (data && data.items ? data.items : []);
+  var name = (data && data.name) ? data.name : '';
+  items.forEach(function(it, i){
+    if(!it) return;
+    var sentence = it.sentence || it.en || '';
+    /* 错误带句子原文（自助用户可读：哪句错 + 为什么） */
+    var err = [];
+    var _why = [];
+    if(!String(sentence).trim()) _why.push('缺英文句子');
+    if(!Array.isArray(it.chunks) || it.chunks.length < 2 || it.chunks.length > 5) _why.push('意群数需 2-5 个（当前 '+(it.chunks?it.chunks.length:'无')+'）');
+    else if(norm(it.chunks.join(' ')) !== norm(sentence)) _why.push('意群拼接与原句不一致');
+    if(Array.isArray(it.chunks) && Array.isArray(it.hints) && it.hints.length !== it.chunks.length) _why.push('中文提示数与意群数不一致');
+    if(_why.length){
+      errs.push({ idx: i+1, sentence: String(sentence).slice(0,80), why: _why.join('；') });
+    }
+    else { good.push(it); }
+  });
+  return { ok: errs.length===0 && good.length>0, errs:errs, good:good, name:String(name).trim()||'导入题库' };
+}
+function doValidate(autoImport){
+  var msg = $('impMsg');
+  var text = $('jsonBox').value;
+  $('btnPartial').classList.add('hidden');
+  lastValid = null;
+  if(!text.trim()){
+    msg.className='msg err show';
+    msg.innerHTML = '请先粘贴大模型返回的 JSON，或拖入 .json 文件。';
+    return;
+  }
+  var data;
+  try{ data = extractJSON(text); }
+  catch(e){
+    msg.className='msg err show';
+    msg.innerHTML = '<b>JSON 解析失败</b><div style="margin-top:4px;font-size:12px">'+esc(e.message)+'</div>';
+    return;
+  }
+  var r = validateDeck(data);
+  if(r.fatal){
+    msg.className='msg err show';
+    msg.innerHTML = '<b>结构不符合要求</b><div style="margin-top:4px">'+esc(r.fatal)+'</div>';
+    return;
+  }
+  if(r.ok){
+    lastValid = r;
+    msg.className='msg ok show';
+    msg.innerHTML = '<b>校验通过</b>：'+r.good.length+' 题全部合格，正在导入…';
+    if(autoImport!==false) commitImport(r.good, r.name);
+    return;
+  }
+  lastValid = r;
+  /* 错误列表：显示句子原文 + 原因（自助用户可读） */
+  var li = r.errs.slice(0,8).map(function(e){
+    return '<li style="margin-bottom:4px"><b>#'+e.idx+'</b> '+esc(e.sentence)+'<br>'+
+      '<span style="color:var(--bad);font-size:12px">⚠ '+esc(e.why)+'</span></li>';
+  }).join('');
+  msg.className='msg err show';
+  msg.innerHTML = '<b>校验未全部通过</b>：合格 '+r.good.length+' 题，问题 '+r.errs.length+' 处'+
+    '<ul style="margin:8px 0 4px;padding-left:18px;font-size:12.5px">'+li+(r.errs.length>8?'<li>… 还有 '+(r.errs.length-8)+' 处</li>':'')+'</ul>'+
+    '<div style="margin-top:6px;font-size:12px">可点右下「仅导入通过的题」，或把错误反馈给模型修正。</div>';
+  $('btnPartial').textContent = '仅导入通过的 '+r.good.length+' 题';
+  $('btnPartial').classList.toggle('hidden', r.good.length===0);
+}
+function mergeDedup(existing, incoming){
+  var seen = {};
+  existing.forEach(function(it){ seen[normSent(it.sentence||it.en||'')] = 1; });
+  var added = [], dup = 0;
+  incoming.forEach(function(it){
+    var k = normSent(it.sentence||it.en||'');
+    if(seen[k]){ dup++; return; }
+    seen[k] = 1;
+    added.push(it);
+  });
+  return { items: existing.concat(added), added: added.length, dup: dup };
+}
+function commitImport(items, name){
+  if(_appendDeck){
+    var m = mergeDedup(_appendDeck.items, items);
+    _appendDeck.items = m.items;
+    saveStore(); notifyMain('memUpdated');
+    var d = _appendDeck; _appendDeck = null;
+    $('impMask').hidden = true;
+    $('jsonBox').value = '';
+    $('impMsg').className = 'msg';
+    _editStatMsg = '导入 '+items.length+' 句，去重 '+m.dup+' 句，现共 '+m.items.length+' 句';
+    editDeck(d);
+    return;
+  }
+  var deck = {
+    id: 'imp-'+Date.now().toString(36)+'-'+Math.floor(Math.random()*1e4).toString(36),
+    name: name || '导入题库',
+    desc: '导入于 '+new Date().toLocaleDateString('zh-CN'),
+    items: items
+  };
+  mem.decks.push(deck);
+  if(!mem.best) mem.best = {};
+  mem.best[deck.id] = mem.best[deck.id] || {};
+  mem.best[deck.id].lastPlayed = Date.now();
+  saveStore(); notifyMain('memUpdated');
+  $('impMask').hidden = true;
+  $('jsonBox').value = '';
+  $('impMsg').className = 'msg';
+  openDecks();
+}
+function exportDeck(d){
+  var payload = {
+    name: d.name,
+    desc: d.desc || '',
+    items: d.items.map(function(it){
+      var o = { sentence: it.sentence || it.en || '', translation: it.translation || it.cn || '', chunks: it.chunks, hints: it.hints || [] };
+      if(it.explanations) o.explanations = it.explanations;
+      return o;
+    })
+  };
+  var blob = new Blob([JSON.stringify(payload, null, 2)], { type:'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (d.name||'deck').replace(/[/\\:*?"<>|]/g,'_') + '.json';
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+}
+
+/* ===== 追加导入 ===== */
+function doAppendValidate(){
+  var msg = $('appendMsg');
+  var text = $('appendJsonBox').value;
+  if(!_appendDeck){ msg.className='msg err show'; msg.textContent='未指定目标题库'; return; }
+  if(!text.trim()){ msg.className='msg err show'; msg.textContent='请粘贴 JSON 或选择文件'; return; }
+  var data;
+  try{ data = extractJSON(text); }
+  catch(e){ msg.className='msg err show'; msg.innerHTML='<b>JSON 解析失败</b><div style="font-size:12px">'+esc(e.message)+'</div>'; return; }
+  var r = validateDeck(data);
+  if(!r.ok){
+    /* 错误可读：显示句子原文 + 原因 */
+    var li = r.errs.slice(0,6).map(function(e){
+      return '<li style="margin-bottom:4px"><b>#'+e.idx+'</b> '+esc(e.sentence)+'<br>'+
+        '<span style="color:var(--bad);font-size:12px">⚠ '+esc(e.why)+'</span></li>';
+    }).join('');
+    msg.className='msg err show';
+    msg.innerHTML = '<b>校验未全部通过</b>：合格 '+r.good.length+' 题，问题 '+r.errs.length+' 处'+
+      '<ul style="margin:8px 0 4px;padding-left:18px;font-size:12.5px">'+li+(r.errs.length>6?'<li>… 还有 '+(r.errs.length-6)+' 处</li>':'')+'</ul>';
+    return;
+  }
+  var m = mergeDedup(_appendDeck.items, r.good);
+  _appendDeck.items = m.items;
+  saveStore(); notifyMain('memUpdated');
+  var deckRef = _appendDeck;
+  var addedItems = r.good;
+  /* 成功闭环：显示入库结果 + 「去练习这批 / 继续追加」按钮 */
+  msg.className='msg ok show';
+  msg.innerHTML = '<b>✓ 入库成功</b>：追加 '+m.added+' 句（去重 '+m.dup+' 句）<br>'+
+    '<span style="font-size:12.5px">题库「'+esc(deckRef.name)+'」现有 '+m.items.length+' 句</span>'+
+    '<div style="display:flex;gap:8px;margin-top:10px">'+
+      '<button class="btn primary" id="appendGoPractice">▶ 去练习这批</button>'+
+      '<button class="btn" id="appendContinue">继续追加下一批</button>'+
+    '</div>';
+  $('appendGoPractice').onclick = function(){
+    $('appendMask').hidden = true;
+    notifyMain('startDeck', { deck:{ id:'rev-'+deckRef.id+'-'+Date.now().toString(36), name:'新导入 · '+addedItems.length+' 句', items:addedItems } });
+  };
+  $('appendContinue').onclick = function(){
+    $('appendJsonBox').value = '';
+    $('appendPromptBox').value = '';
+    $('appendMineBoxIn').value = '';
+    msg.className = 'msg';
+    msg.innerHTML = '';
+    if(_appendMode === 'B') setAppendMode('B');
+    $('appendMineBoxIn').focus();
+  };
+}
+function buildAppendPrompt(deck){
+  return [
+    '请为「'+deck.name+'」题库追加 10 条新的英语口语练习句子（不要与已有句子重复），JSON 格式：',
+    '[',
+    '  { "sentence":"...", "translation":"...", "chunks":["...","..."], "hints":["...","..."] }',
+    ']',
+    'chunks 拼接必须与原句一致，2-4 个意群。'
+  ].join('\n');
+}
+
+/* ===== 追加弹窗（模式 A 生成新句子 / 模式 B 拆分已有句子） ===== */
+var _appendMode = 'A';
+function openAppend(deck){
+  _appendDeck = deck;
+  $('appendDeckName').textContent = '目标题库：'+deck.name+'（'+deck.items.length+' 句）';
+  $('appendMsg').className = 'msg';
+  $('appendMsg').textContent = '';
+  $('appendJsonBox').value = '';
+  $('appendMineBoxIn').value = '';
+  setAppendMode('A');
+  $('appendMask').hidden = false;
+}
+function setAppendMode(mode){
+  _appendMode = mode;
+  $('appendModeGen').classList.toggle('primary', mode === 'A');
+  $('appendModeMine').classList.toggle('primary', mode === 'B');
+  $('appendMineBox').hidden = (mode !== 'B');
+  if(mode === 'B'){
+    /* 模式 B：步骤 = 粘贴句子(1) → Prompt(2) → JSON(3) */
+    $('appendStepNum').textContent = '2';
+    $('appendStepTitle').textContent = 'Prompt';
+    $('appendStepNum2').textContent = '3';
+    $('appendPromptBox').value = '';
+    $('appendMineCnt').textContent = '';
+  } else {
+    /* 模式 A：步骤 = Prompt(1) → JSON(2) */
+    $('appendStepNum').textContent = '1';
+    $('appendStepTitle').textContent = 'Prompt';
+    $('appendStepNum2').textContent = '2';
+    $('appendPromptBox').value = buildAppendPrompt(_appendDeck);
+  }
+}
+/* 模式 B：从粘贴的句子生成"拆分意群" Prompt */
+function buildSplitPrompt(deck, rawLines){
+  var lines = rawLines.map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; });
+  var body = lines.map(function(s, i){ return '【'+(i+1)+'】 '+s; }).join('\n');
+  return [
+    '请将以下 ' + lines.length + ' 句英语口语句子拆分为意群（用于跟读练习），输出 JSON（不要输出任何其他文字）：',
+    '',
+    '要求：',
+    '1. 每句 chunks 用单个空格连接后与原句完全一致（忽略大小写和标点）',
+    '2. chunks 2-4 个；hints 是每个意群的中文提示',
+    '3. translation 是整句中文翻译',
+    '',
+    '输出格式：',
+    '[',
+    '  { "sentence":"原句", "translation":"中文翻译", "chunks":["意群1","意群2"], "hints":["提示1","提示2"] }',
+    ']',
+    '',
+    '待拆分句子：',
+    body
+  ].join('\n');
+}
+$('appendModeGen').onclick = function(){ setAppendMode('A'); };
+$('appendModeMine').onclick = function(){ setAppendMode('B'); };
+$('btnGenSplitPrompt').onclick = function(){
+  var raw = $('appendMineBoxIn').value.split(/\r?\n/).map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; });
+  if(!raw.length){
+    $('appendMsg').className = 'msg err show';
+    $('appendMsg').textContent = '请先粘贴至少一句英文';
+    return;
+  }
+  if(raw.length > 60){
+    $('appendMsg').className = 'msg err show';
+    $('appendMsg').textContent = '每批建议 ≤60 句（当前 '+raw.length+' 句），请分批粘贴';
+    return;
+  }
+  $('appendPromptBox').value = buildSplitPrompt(_appendDeck, raw);
+  $('appendMineCnt').textContent = '共 '+raw.length+' 句';
+  $('appendMsg').className = 'msg ok show';
+  $('appendMsg').textContent = '拆分 Prompt 已生成，点「📋 复制」粘贴给大模型';
+};
+
+/* ===== 图文课程树（统一题库视图） ===== */
+function renderCourseTree(){
+  var box = $('courseTree');
+  if(!box) return;
+  if(!window.Library){ box.innerHTML = '<div class="course-empty">Library 模块未加载</div>'; return; }
+  var tree = Library.buildTree();
+  if(!tree.series.length){ box.innerHTML = '<div class="course-empty">还没有图文课程。点击右上角「＋ 导入课程」导入并归类 ZIP 课程包，即可在此按层级浏览。</div>'; return; }
+  box.innerHTML = '';
+  tree.series.forEach(function(s){
+    var ser = document.createElement('div');
+    ser.className = 'series';
+    var head = document.createElement('div');
+    head.className = 'series-head';
+    head.innerHTML =
+      '<div class="series-name">'+Library.esc(s.name)+'<span class="series-count">('+s.totalCount+'课)</span></div>'+
+      '<span class="series-caret">▸</span>';
+    ser.appendChild(head);
+    var body = document.createElement('div');
+    body.className = 'series-body';
+
+    // 直接课程（无册）
+    (s.direct||[]).forEach(function(c){
+      body.appendChild(lessonRow(c));
+    });
+    // 按册
+    (s.volumes||[]).forEach(function(vol){
+      var volEl = document.createElement('div');
+      volEl.className = 'vol';
+      var vh = document.createElement('div');
+      vh.className = 'vol-head';
+      vh.innerHTML = '<span class="vol-caret">▸</span><span>'+Library.esc(vol.name)+'<span class="series-count">('+vol.courses.length+'课)</span></span>';
+      volEl.appendChild(vh);
+      var vb = document.createElement('div');
+      vb.className = 'vol-body';
+      vol.courses.forEach(function(c){ vb.appendChild(lessonRow(c)); });
+      volEl.appendChild(vb);
+      vh.onclick = function(){ volEl.classList.toggle('open'); };
+      body.appendChild(volEl);
+    });
+
+    ser.appendChild(body);
+    head.onclick = function(){ ser.classList.toggle('open'); };
+    box.appendChild(ser);
+  });
+}
+function lessonRow(c){
+  var row = document.createElement('div');
+  row.className = 'lesson';
+  row.innerHTML = '<span class="nm">'+Library.esc(c.title)+'</span><span class="meta">'+c.nodeCount+' 节点</span><button class="lesson-del" data-id="'+Library.esc(c.courseId)+'" title="删除此课程">✕</button>';
+  row.onclick = function(e){ if(e.target.closest('.lesson-del')) return; window.location.href = 'courses.html?id='+encodeURIComponent(c.courseId); };
+  var delBtn = row.querySelector('.lesson-del');
+  delBtn.onclick = function(e){ e.stopPropagation(); deleteCourse(c.courseId, c.title); };
+  return row;
+}
+function deleteCourse(courseId, title){
+  if(!confirm('确定要删除课程「'+title+'」吗？\n删除后需重新导入 ZIP 才能恢复。')) return;
+  try {
+    var raw = localStorage.getItem(Library.COURSE_STORE_KEY);
+    var list = raw ? JSON.parse(raw) : [];
+    list = list.filter(function(c){ return c.courseId !== courseId; });
+    localStorage.setItem(Library.COURSE_STORE_KEY, JSON.stringify(list));
+    /* 同步刷新内存中的 state.courses（如果 course-package.js 已加载） */
+    if(window.ChunkCourse) ChunkCourse.refreshList();
+    renderCourseTree();
+  } catch(err){ alert('删除失败：'+err.message); }
+}
+
+/* ===== 图文课程导入弹窗 ===== */
+var _pendingCourseFile = null;
+
+function openCourseImport(){
+  _pendingCourseFile = null;
+  var msg = $('courseImpMsg'); if(msg){ msg.textContent=''; msg.className='msg'; }
+  var zone = $('courseDropZone'); if(zone) zone.classList.remove('drag-over');
+  /* 填充已有系列到 datalist */
+  var dl = $('ciSeriesList'); if(dl && window.Library){ dl.innerHTML=''; Library.knownSeriesOptions().forEach(function(o){ var op=document.createElement('option'); op.value=o.name; dl.appendChild(op); }); }
+  /* 填充已有 1 级 / 2 级到 datalist（纯动态，无预设） */
+  var dl1=$('ciLevel1List'); if(dl1&&window.Library){ dl1.innerHTML=''; Library.knownLevel1Options().forEach(function(n){ var o=document.createElement('option'); o.value=n; dl1.appendChild(o); }); }
+  var dl2=$('ciLevel2List'); if(dl2&&window.Library){ dl2.innerHTML=''; Library.knownLevel2Options().forEach(function(n){ var o=document.createElement('option'); o.value=n; dl2.appendChild(o); }); }
+  /* 重置表单 */
+  var s=$('ciSeries'); if(s) s.value='';
+  var l1=$('ciLevel1'); if(l1) l1.value='';
+  var l2=$('ciLevel2'); if(l2) l2.value='';
+  /* 更新拖拽区提示 */
+  updateDropHint(null);
+  $('courseImpMask').hidden = false;
+}
+function updateDropHint(file){
+  var hint = document.querySelector('#courseDropZone .course-drop-hint');
+  if(!hint) return;
+  if(file){
+    hint.innerHTML = '<span class="course-drop-icon">✅</span><p><strong>'+esc(file.name)+'</strong></p><small>已选择，填写下方层级后点击「确认导入」</small>';
+  } else {
+    hint.innerHTML = '<span class="course-drop-icon">📦</span><p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p><small>支持 .zip 格式（English MUD 导出）</small>';
+  }
+}
+(function initCourseImport(){
+  var zone = $('courseDropZone');
+  var input = $('courseFileInput');
+  if(!zone || !input) return;
+
+  zone.addEventListener('click', function(e){ if(e.target===input) return; input.click(); });
+  input.addEventListener('change', function(){
+    var f = input.files[0]; if(!f) return;
+    input.value = '';
+    if(!/\.zip$/i.test(f.name)){ showCourseMsg('请选择 .zip 格式的课程包','err'); return; }
+    _pendingCourseFile = f;
+    updateDropHint(f);
+  });
+
+  zone.addEventListener('dragover', function(e){ e.preventDefault(); e.stopPropagation(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', function(e){ e.preventDefault(); e.stopPropagation(); if(zone.contains(e.relatedTarget)) return; zone.classList.remove('drag-over'); });
+  zone.addEventListener('drop', function(e){
+    e.preventDefault(); e.stopPropagation(); zone.classList.remove('drag-over');
+    var f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if(!f) return;
+    if(!/\.zip$/i.test(f.name)){ showCourseMsg('请选择 .zip 格式的课程包','err'); return; }
+    _pendingCourseFile = f;
+    updateDropHint(f);
+  });
+
+  /* 确认导入按钮 */
+  var btn = $('btnCourseImport');
+  if(btn) btn.onclick = onCourseImportConfirm;
+})();
+function showCourseMsg(text, kind){
+  var msg = $('courseImpMsg'); if(!msg) return;
+  msg.textContent = text || '';
+  msg.className = 'msg' + (kind ? ' ' + kind : '') + (text ? ' show' : '');
+}
+function onCourseImportConfirm(){
+  if(!_pendingCourseFile){ showCourseMsg('请先选择一个 ZIP 文件','err'); return; }
+
+  var sname = ($('ciSeries')||{}).value.trim();
+  var l1 = (($('ciLevel1')||{}).value || '').trim();
+  var l2 = (($('ciLevel2')||{}).value || '').trim();
+
+  if(!sname){ showCourseMsg('请填写系列/大类名称','err'); return; }
+
+  var sid = window.Library ? Library.seriesIdOf(sname) : ('s-' + sname);
+  var libMeta = {
+    seriesId: sid,
+    seriesName: sname,
+    volumeIndex: l1 ? 1 : null,
+    volumeName: l1 || null,
+    level2Name: l2 || null
+  };
+
+  showCourseMsg('正在导入「'+_pendingCourseFile.name+'」…','ok');
+
+  var file = _pendingCourseFile;
+
+  if(window.ChunkCourse){
+    /* 先设置 pendingLib 元数据，再导入 */
+    window._pendingLibForImport = libMeta;
+    var p = ChunkCourse.importZipDirect(file);
+    if(p && p.then){
+      p.then(function(){
+        renderCourseTree();
+        showCourseMsg('✅ 导入完成！','ok');
+        setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
+      }).catch(function(e){ showCourseMsg('导入失败：'+e.message,'err'); });
+    } else {
+      renderCourseTree();
+      showCourseMsg('✅ 导入完成！','ok');
+      setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
+    }
+  } else {
+    showCourseMsg('课程模块未就绪，请刷新页面重试','err');
+  }
+}
+
+function showTab(which){
+  var decksTab = $('tabDecks'), coursesTab = $('tabCourses');
+  var deckList = $('deckList'), tree = $('courseTree'), importBtn = $('btnImportDecks');
+  if(which === 'courses'){
+    decksTab.classList.remove('on'); coursesTab.classList.add('on');
+    deckList.classList.add('hidden'); tree.classList.remove('hidden');
+    importBtn.textContent = '＋ 导入课程';
+    importBtn.onclick = function(){ openCourseImport(); };
+    renderCourseTree();
+  } else {
+    coursesTab.classList.remove('on'); decksTab.classList.add('on');
+    tree.classList.add('hidden'); deckList.classList.remove('hidden');
+    importBtn.textContent = '＋ 导入课程';
+    importBtn.onclick = function(){ openImport(); };
+  }
+}
+
+/* ===== 事件绑定 ===== */
+function bindCommon(){
+  /* 弹窗关闭 */
+  Array.prototype.forEach.call(document.querySelectorAll('.mask [data-close]'), function(b){
+    b.onclick = function(){ b.closest('.mask').hidden = true; };
+  });
+  /* 导入 */
+  $('btnImportDecks').onclick = function(){ openImport(); };
+  $('btnCopy').onclick = function(){ copyText($('promptBox').value); };
+  $('btnClear').onclick = function(){ $('jsonBox').value=''; };
+  $('btnValidate').onclick = function(){ doValidate(true); };
+  $('btnPartial').onclick = function(){ if(lastValid) commitImport(lastValid.good, lastValid.name); };
+  ['optCount','optLevel','optChunks'].forEach(function(id){
+    $(id).onchange = renderPrompt;
+  });
+  /* 拖拽/文件 */
+  setupDrop('drop', 'fileInput', 'jsonBox');
+  setupDrop('appendDrop', 'appendFileInput', 'appendJsonBox');
+  /* 追加 */
+  $('btnAppendCopy').onclick = function(){
+    if(!_appendDeck) return;
+    copyText(buildAppendPrompt(_appendDeck));
+    var t = $('appendCopyTip'); t.textContent='已复制 ✓';
+    setTimeout(function(){ t.textContent=''; }, 1500);
+  };
+  $('btnAppendClear').onclick = function(){ $('appendJsonBox').value=''; };
+  $('btnAppendValidate').onclick = doAppendValidate;
+  /* 编辑单句 */
+  $('btnSaveEditSentence').onclick = saveEditSentence;
+  /* 返回：同 tab 导航回主页（保持独立 URL 体验） */
+  $('decksBack').onclick = function(){ window.location.href = './main.html'; };
+}
+function setupDrop(dropId, inputId, boxId){
+  var drop = $(dropId), input = $(inputId), box = $(boxId);
+  drop.addEventListener('click', function(){ input.click(); });
+  drop.addEventListener('dragover', function(e){ e.preventDefault(); drop.style.borderColor='var(--accent)'; });
+  drop.addEventListener('dragleave', function(){ drop.style.borderColor=''; });
+  drop.addEventListener('drop', function(e){
+    e.preventDefault();
+    drop.style.borderColor='';
+    var f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if(f){ readFileToBox(f, box); }
+  });
+  input.addEventListener('change', function(){
+    var f = input.files && input.files[0];
+    if(f) readFileToBox(f, box);
+    input.value = '';
+  });
+}
+function readFileToBox(file, box){
+  var reader = new FileReader();
+  reader.onload = function(){ box.value = String(reader.result||''); };
+  reader.readAsText(file);
+}
+
+/* 模式 B：粘贴句子区域支持拖入 .txt（每行一句） */
+(function(){
+  var drop = $('appendMineDrop'), input = $('appendMineFile'), box = $('appendMineBoxIn');
+  drop.addEventListener('click', function(){ input.click(); });
+  drop.addEventListener('dragover', function(e){ e.preventDefault(); drop.style.borderColor='var(--accent)'; });
+  drop.addEventListener('dragleave', function(){ drop.style.borderColor=''; });
+  drop.addEventListener('drop', function(e){
+    e.preventDefault();
+    drop.style.borderColor='';
+    var f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if(f) readFileToBox(f, box);
+  });
+  input.addEventListener('change', function(){
+    var f = input.files && input.files[0];
+    if(f) readFileToBox(f, box);
+    input.value = '';
+  });
+})();
+
+/* 跨页通信：主页面请求启动练习 / 返回 */
+window.addEventListener('message', function(ev){
+  if(!ev.data) return;
+  if(ev.data.type === 'openDeck' && ev.data.deckId){
+    var d = findDeck(ev.data.deckId);
+    if(d) editDeck(d);
+  }
+});
+
+CL.ensureCloud().then(function(){
+loadMem();
+bindCommon();
+openDecks();
+/* 页面初始化即渲染一次图文课程树（即使隐藏），保证切 tab 时数据已就绪 */
+renderCourseTree();
+$('tabDecks').onclick = function(){ showTab('decks'); };
+$('tabCourses').onclick = function(){ showTab('courses'); };
+}); /* CL.ensureCloud().then */
+</script>
+
+</body>
+</html>

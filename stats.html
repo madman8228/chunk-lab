@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>学习档案 · Chunk Lab</title>
+<style>
+:root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#74716a;--faint:#9a958c;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#23855a;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#a16207;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px;min-width:0}
+.page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.page-head h2{margin:0;font-size:18px;font-weight:700}
+.spacer{flex:1}
+.btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:8px;padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{background:#1e4fa3}
+.btn.sm{padding:3px 10px;font-size:12.5px}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.ghost:hover{background:var(--surface-2)}
+.hidden{display:none !important}
+
+/* statsCards 自身是 block，内部 row 自管 grid */
+.stats-cards{display:block;margin-bottom:14px}
+.stats-cards .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+/* ★ 指标对比 + 熟练度分布 并排一行（flexbox 等分） */
+.stats-cards .pair-row{display:flex;flex-direction:row;gap:14px}
+.stats-cards .pair-row > .stat-card{flex:1;min-width:0} /* 等分宽度，不被内容撑开 */
+.stat-card{border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:var(--surface);min-width:0;overflow:hidden}
+.stat-card .k{font-size:11.5px;color:var(--faint);letter-spacing:.03em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stat-card .v{font-size:22px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stat-card .v.mastery-grid{font-size:12px;white-space:normal;letter-spacing:0} /* 子容器重置继承 */
+.stat-card .start-btn{display:block;margin-top:6px;background:transparent;border:none;padding:0;font-size:12px;font-weight:600;color:var(--accent);cursor:pointer;text-align:left;letter-spacing:.01em}
+.stat-card .start-btn:hover{text-decoration:underline}
+.stat-card.hl{border-color:var(--accent);background:var(--accent-soft)}
+.stat-card.hl .v{color:var(--accent)}
+.stat-card.ok .v{color:var(--ok)}
+.stat-card.warn .v{color:var(--warn)}
+/* 指标对比/熟练度分布卡片：在 pair-row 内并排时不再跨列 */
+.stat-card.dist-card{padding:10px 14px}
+.stat-card.dist-card .k{margin-bottom:2px}
+/* 指标对比柱状图（水平柱） */
+.bar-chart{display:flex;flex-direction:column;gap:7px;margin-top:6px;min-width:0}
+.bar-row{display:flex;align-items:center;gap:10px;min-width:0}
+.bar-lbl{flex-shrink:0;width:56px;font-size:12px;color:var(--muted);text-align:right}
+.bar-track{flex:1;height:16px;background:var(--surface-2);border-radius:8px;overflow:hidden;min-width:0}
+.bar-fill{height:100%;border-radius:8px;transition:width .4s ease}
+.bar-cnt{flex-shrink:0;width:34px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+
+/* 熟练度分布：圆环图 + 图例（紧凑：圆环小，图例单列 5 行） */
+.mastery-donut{display:flex;align-items:center;gap:18px;font-size:12px;line-height:1.3;white-space:normal;letter-spacing:0;min-width:0;margin-top:2px}
+.mastery-donut .donut{width:78px;height:78px;flex-shrink:0}
+.mastery-donut .donut-legend{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.mastery-donut .donut-row{display:flex;align-items:center;gap:8px;min-width:0}
+.mastery-donut .donut-row.extra{margin-top:4px;padding-top:5px;border-top:1px dashed var(--border);font-style:italic}
+.mastery-donut .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block}
+.mastery-donut .lbl{color:var(--muted);width:60px;font-size:12px}
+.mastery-donut .cnt{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--text);width:24px;text-align:right;flex-shrink:0;margin-left:auto}
+.mastery-donut .pct{font-size:11px;color:var(--faint);width:32px;text-align:right;font-variant-numeric:tabular-nums;flex-shrink:0}
+.mastery-grid{display:flex;flex-direction:column;gap:4px;margin-top:6px;font-size:12px;font-weight:400;line-height:1.3;letter-spacing:0;min-width:0}
+
+.stats-tabs{display:flex;gap:6px;margin-bottom:10px}
+.stats-tabs .tab{border:1px solid var(--border);background:var(--surface);border-radius:8px;padding:5px 14px;font-size:13px;color:var(--text);cursor:pointer}
+.stats-tabs .tab.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.stats-filter{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.stats-filter .f{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted);cursor:pointer}
+.stats-filter .f.on{border-color:var(--accent);background:var(--accent);color:#fff}
+
+.stats-list{display:flex;flex-direction:column;gap:6px}
+.srow{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.srow .row-num{flex-shrink:0;width:32px;font-size:12px;font-weight:700;color:var(--accent);text-align:right;font-variant-numeric:tabular-nums}
+.srow .sen{flex:1;min-width:0}
+.srow .en{font-size:13.5px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srow .cn{font-size:11.5px;color:var(--faint);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srow .meta{flex-shrink:0;text-align:right;font-size:11.5px;color:var(--muted)}
+.badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0}
+.badge.master{background:var(--ok-soft);color:var(--ok)}
+.badge.weak{background:var(--bad-soft);color:var(--bad)}
+.badge.new{background:#eef1f6;color:var(--muted)}
+.badge.learn{background:var(--accent-soft);color:var(--accent)}
+
+.wrong-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.wrong-row .sen{flex:1;min-width:0}
+.wrong-row .en{font-size:13.5px;font-weight:600;line-height:1.3}
+.wrong-row .cn{font-size:11.5px;color:var(--faint);margin-top:1px}
+.wrong-row .wrong-detail{font-size:11.5px;margin-top:4px;color:var(--bad)}
+.wrong-row .wrong-detail b{color:var(--ok);font-weight:600}
+.wrong-del{flex-shrink:0;border:none;background:transparent;color:var(--faint);font-size:16px;width:24px;height:24px;border-radius:50%;cursor:pointer;line-height:1;padding:0}
+.wrong-del:hover{background:var(--bad-soft);color:var(--bad)}
+
+.empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:12px}
+
+/* 练习临时题库按钮（在 stats 内可触发进入复习队列） */
+.review-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.review-row .nm{flex:1;font-size:13.5px;font-weight:600}
+
+/* 跨页跳转消息 */
+.cross-page-hint{font-size:12px;color:var(--faint);text-align:center;padding:8px 12px;background:var(--surface-2);border-radius:8px;margin-top:14px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="page-head">
+    <button class="btn sm ghost" id="statsBack" title="返回主页">← 返回练习</button>
+    <h2>📊 学习档案</h2>
+    <span class="spacer"></span>
+    <button class="btn sm primary" id="btnPracticeWrong" title="练习错题本中所有句子">🎯 练习错题</button>
+  </div>
+
+  <div class="stats-cards" id="statsCards"></div>
+
+  <div class="stats-tabs" id="statsTabs">
+    <button class="tab on" data-tab="sent">句子记录</button>
+    <button class="tab" data-tab="review">🔁 复习</button>
+    <button class="tab" data-tab="wrong">错题本</button>
+  </div>
+
+  <div class="stats-filter" id="statsFilter" style="display:flex">
+    <button class="f on" data-f="all">全部</button>
+    <button class="f" data-f="mastered">已熟</button>
+    <button class="f" data-f="weak">需巩固</button>
+    <button class="f" data-f="unseen">未练过</button>
+  </div>
+
+  <div class="stats-body" id="statsBody"></div>
+
+  <div class="cross-page-hint">💡 点击「▶ 开始到期复习」或「📚 复习 N 句」会切到练习页（main.html）</div>
+</div>
+
+<script src="builtins.js"></script>
+<script src="core.js"></script>
+<script src="api.js"></script>
+<script src="auth-ui.js"></script>
+<script>
+/* ===== 学习档案 独立页面（stats.html）=====
+   - 共享 core.js（CL 命名空间）：存储/工具/领域判定/事件总线
+   - 数据通过浏览器本地存储与主页共享（同源） */
+
+var mem = { decks:[], best:{}, mastered:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{} }, settings:{} };
+/* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
+function loadMem(){ mem = CL.loadMem(); }
+function saveStore(){ CL.saveAndNotify(mem); }
+function $(id){ return CL.$(id); }
+function esc(s){ return CL.esc(s); }
+function normSent(s){ return CL.normSent(s); }
+function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
+function findDeck(deckId){ return CL.findDeck(mem, deckId); }
+function allDecks(){ return CL.allDecks(mem); }
+function timeAgo(t){ return CL.timeAgo(t); }
+function classifyStat(s){ return CL.classifyStat(s); }
+function isFluencyByDeck(deckId, it){ return CL.isFluencyByDeck(mem, deckId, it); }
+function isMarkedForDeck(deckId, it){ return CL.isMarkedForDeck(mem, deckId, it); }
+
+/* ===== 渲染 ===== */
+var _statsTab = 'sent';
+var _statsFilter = 'all';
+
+function renderStats(){
+  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{} };
+  var by = mem.stats.bySentence || {};
+  var keys = Object.keys(by);
+
+  /* 统计卡（5 KPI · 一行） */
+  var masteredCnt = keys.filter(function(k){ return classifyStat(by[k])==='master'; }).length;
+  var weakCnt = keys.filter(function(k){ return classifyStat(by[k])==='weak'; }).length;
+  var bookCnt = getReinforceBook().length;
+  $('statsCards').innerHTML =
+    '<div class="kpi-row">'+
+    '<div class="stat-card hl"><div class="k">累计练习句次</div><div class="v">'+mem.stats.totalAnswered+'</div></div>'+
+    '<div class="stat-card"><div class="k">完成轮次</div><div class="v">'+mem.stats.totalRounds+'</div></div>'+
+    '<div class="stat-card ok"><div class="k">熟练句子</div><div class="v">'+masteredCnt+'</div></div>'+
+    '<div class="stat-card warn"><div class="k">需巩固</div><div class="v">'+weakCnt+'</div>'+
+      (weakCnt>0 ? '<button class="start-btn" id="startWeak">开始学习 →</button>' : '')+'</div>'+
+    '<div class="stat-card"><div class="k">错题本</div><div class="v">'+bookCnt+'</div>'+
+      (bookCnt>0 ? '<button class="start-btn" id="startBook">开始学习 →</button>' : '')+'</div>'+
+    '</div>';
+
+  /* 指标对比柱状图（累计练习 + 错题本） */
+  var bars = [
+    { label:'累计练习', count:mem.stats.totalAnswered, color:'#2c62c9' },
+    { label:'错题本',    count:bookCnt,                  color:'#9ca3af' }
+  ];
+  var barsMax = Math.max.apply(null, bars.map(function(b){ return b.count; })) || 1;
+  var barHtml = bars.map(function(b){
+    var w = b.count / barsMax * 100;
+    var cntText = String(b.count);
+    var isZero = b.count === 0;
+    return '<div class="bar-row">'+
+      '<span class="bar-lbl">'+b.label+'</span>'+
+      '<div class="bar-track">'+
+        '<div class="bar-fill" style="width:'+w.toFixed(1)+'%;background:'+b.color+(isZero?';opacity:.18':'')+'"></div>'+
+      '</div>'+
+      '<span class="bar-cnt" style="color:'+(isZero?'var(--faint)':b.color)+'">'+cntText+'</span>'+
+    '</div>';
+  }).join('');
+  /* 熟练度分布 */
+  var seg = {master:0, learn:0, weak:0, unseen:0};
+  var allDecksArr = allDecks();
+  var totalInDecks = 0;
+  allDecksArr.forEach(function(d){ totalInDecks += (d.items||[]).length; });
+  keys.forEach(function(k){ seg[classifyStat(by[k])]++; });
+  seg.unseen = Math.max(0, totalInDecks - keys.length);
+  /* SVG 圆环图（自绘 · 零依赖）—— 4 段：熟练/学习中/需巩固/未练过
+     中心显示「已学过」= 总句数 - 未练过（已接触过的句子数）
+     「标熟」作为独立附加行（避免与"已掌握"重叠） */
+  var total = seg.master + seg.learn + seg.weak + seg.unseen;
+  var totalShown = total || 1;
+  var studied = total - seg.unseen;
+  var segs = [
+    {key:'master', count:seg.master, color:'#23855a', label:'熟练'},
+    {key:'learn',  count:seg.learn,  color:'#2c62c9', label:'学习中'},
+    {key:'weak',   count:seg.weak,   color:'#a16207', label:'需巩固'},
+    {key:'unseen', count:seg.unseen, color:'#9a958c', label:'未练过'}
+  ];
+  var C = 2 * Math.PI * 42;
+  var off = 0;
+  var donut = '<svg viewBox="0 0 100 100" class="donut" role="img" aria-label="熟练度分布">'+
+    '<circle r="42" cx="50" cy="50" fill="none" stroke="var(--surface-2)" stroke-width="14"/>';
+  segs.forEach(function(s){
+    var len = s.count / totalShown * C;
+    if(len > 0.5){
+      donut += '<circle r="42" cx="50" cy="50" fill="none" stroke="'+s.color+'" stroke-width="14" '+
+        'stroke-dasharray="'+len.toFixed(2)+' '+(C-len).toFixed(2)+'" stroke-dashoffset="-'+off.toFixed(2)+'" transform="rotate(-90 50 50)"/>';
+    }
+    off += len;
+  });
+  /* 中心：已学过句数 + 总句数 + 累计练习次数（消除"55 vs 16"困惑） */
+  var practiced = mem.stats && mem.stats.totalAnswered ? mem.stats.totalAnswered : 0;
+  donut += '<text x="50" y="42" text-anchor="middle" font-size="18" font-weight="800" fill="var(--text)">'+studied+'</text>'+
+    '<text x="50" y="54" text-anchor="middle" font-size="6.5" fill="var(--faint)">已学句数</text>'+
+    '<text x="50" y="65" text-anchor="middle" font-size="6" fill="var(--faint)">/ '+total+' 句</text>'+
+    '<text x="50" y="76" text-anchor="middle" font-size="6" fill="var(--accent)">练过 '+practiced+' 次</text></svg>';
+  var legend = '<div class="donut-legend">'+
+    segs.map(function(s){
+      var pct = total ? Math.round(s.count / total * 100) : 0;
+      return '<div class="donut-row">'+
+        '<span class="dot" style="background:'+s.color+'"></span>'+
+        '<span class="lbl">'+s.label+'</span>'+
+        '<span class="cnt">'+s.count+'</span>'+
+        '<span class="pct">'+pct+'%</span>'+
+      '</div>';
+    }).join('')+
+    /* 标熟作为独立附加行（⊇ 已掌握，单独显示避免重叠） */
+    '<div class="donut-row extra" title="用户自选/自动标记的标熟（⊇ 已掌握）">'+
+      '<span class="dot" style="background:#12924f"></span>'+
+      '<span class="lbl">标熟</span>'+
+      '<span class="cnt">'+Object.keys(mem.mastered||{}).length+'</span>'+
+      '<span class="pct">—</span>'+
+    '</div>'+
+  '</div>';
+  /* ★ 指标对比 + 熟练度分布 并排一行
+     ★ 根因：insertAdjacentHTML 的 fragment 解析器会自动闭合未关闭标签，
+       若分两次插入（先开 pair-row 再关），第一次插入时 pair-row 已被自动闭合，
+       导致第二张卡变成 pair-row 的兄弟节点（独占整行）→ 一直上下堆叠。
+       → 修复：两张卡在【同一个 insertAdjacentHTML 调用】里一次性插入。 */
+  var pairHtml =
+    '<div class="pair-row" style="display:flex;flex-direction:row;gap:14px">'+
+      '<div class="stat-card dist-card" style="flex:1;min-width:0"><div class="k">指标对比</div>'+
+        '<div class="v bar-chart">'+barHtml+'</div></div>'+
+      '<div class="stat-card dist-card" style="flex:1;min-width:0"><div class="k">熟练度分布</div>'+
+        '<div class="v mastery-donut">'+donut+legend+'</div></div>'+
+    '</div>';
+  $('statsCards').insertAdjacentHTML('beforeend', pairHtml);
+
+  /* Tab 状态 */
+  Array.prototype.forEach.call($('statsTabs').children, function(b){
+    b.classList.toggle('on', b.dataset.tab === _statsTab);
+  });
+  $('statsFilter').style.display = (_statsTab === 'sent') ? 'flex' : 'none';
+  Array.prototype.forEach.call($('statsFilter').children, function(b){
+    b.classList.toggle('on', b.dataset.f === _statsFilter);
+  });
+
+  var body = $('statsBody');
+  if(_statsTab === 'wrong'){
+    renderWrongBook(body);
+  } else if(_statsTab === 'review'){
+    renderReviewList(body);
+  } else {
+    renderSentenceList(body);
+  }
+
+  var sw = $('startWeak'); if(sw) sw.onclick = practiceWeakSentences;
+  var sb = $('startBook'); if(sb) sb.onclick = practiceWrongBook;
+}
+
+function renderSentenceList(body){
+  var by = mem.stats.bySentence || {};
+  var rows = Object.keys(by).map(function(k){ return by[k]; });
+  /* ★ 关键修复：合并 mem.mastered 中"只标熟未练过"的句子。
+     之前只遍历 bySentence，导致直接标熟从未练过的句子不会出现在「已熟」标签里 */
+  if(mem.mastered){
+    Object.keys(mem.mastered).forEach(function(key){
+      if(by[key]) return; /* 已在 bySentence 里（练过又标熟）——用 stats 行 */
+      var m = mem.mastered[key];
+      var sep = key.indexOf('#');
+      var dId = sep > 0 ? key.substring(0, sep) : '';
+      rows.push({ deckId:dId, sentence:m.sentence||'', translation:'', times:0, okTimes:0, wrongTimes:0, streak:0, maxStreak:0, lastAt:m.markedAt||0, interval:1, ease:2.5, dueAt:0, _masteredOnly:true });
+    });
+  }
+  rows.sort(function(a,b){ return (b.lastAt||0)-(a.lastAt||0); });
+
+  var seen = {};
+  var out = rows.filter(function(s){
+    if(_statsFilter !== 'all'){
+      if(_statsFilter === 'mastered'){
+        /* _masteredOnly：来自 mem.mastered 的记录本身即已标熟，直接放行
+           （即使原题库已被删除/句子已不在 items 中，也应显示） */
+        if(s._masteredOnly) return true;
+        var _dk = findDeck(s.deckId);
+        var _it = _dk && (_dk.items || []).find(function(x){ return x.sentence === s.sentence; });
+        var _isMarked = !!(_it && isMarkedForDeck(s.deckId, _it));
+        if(classifyStat(s) !== 'master' && !_isMarked) return false;
+      } else if(classifyStat(s) !== _statsFilter) {
+        return false;
+      }
+    }
+    var k = (s.sentence||'').toLowerCase();
+    if(seen[k]) return false;
+    seen[k] = true;
+    return true;
+  });
+  if(!out.length){
+    body.innerHTML = '<div class="empty-tip">'+
+      (_statsFilter==='all' ? '还没有练习记录，先去练几题吧' : '没有符合条件的句子')+'</div>';
+    return;
+  }
+  var html = '<div class="stats-list">';
+  out.forEach(function(s, idx){
+    var cls = classifyStat(s);
+    var badgeHtml =
+      s._masteredOnly ? '<span class="badge master">已标记</span>' :
+      cls==='master' ? '<span class="badge master">熟练</span>' :
+      cls==='weak'   ? '<span class="badge weak">需巩固</span>' :
+      cls==='learn'  ? '<span class="badge learn">学习中</span>' :
+                       '<span class="badge new">未练过</span>';
+    var acc = s.times ? Math.round(s.okTimes/s.times*100) : 0;
+    var tStr = s.lastAt ? timeAgo(s.lastAt) : '—';
+    html += '<div class="srow"><span class="row-num">#'+(idx+1)+'</span><div class="sen">'+
+      '<div class="en">'+esc(s.sentence)+'</div>'+
+      '<div class="cn">'+esc(s.translation||'')+'</div></div>'+
+      badgeHtml+
+      '<div class="meta">'+s.times+' 次 · 对 '+s.okTimes+'/错 '+s.wrongTimes+' · '+tStr+'</div>'+
+    '</div>';
+  });
+  html += '</div>';
+  body.innerHTML = html;
+}
+
+function renderWrongBook(body){
+  var book = getReinforceBook();
+  if(!book.length){
+    body.innerHTML = '<div class="empty-tip">错题本是空的。练习时答错的句子会自动加入这里，跨会话保留。</div>';
+    return;
+  }
+  var html = '<div style="display:flex;justify-content:flex-end;margin-bottom:8px">'+
+    '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">🗑 清空错题本</button></div>';
+  html += '<div class="stats-list">';
+  book.slice().reverse().forEach(function(b){
+    var mine = '';
+    if(b.mistakes && b.mistakes.length){
+      mine = b.mistakes.map(function(m){
+        return esc(m.userAnswer||'（空）')+' → <b>'+esc(m.chunk)+'</b>';
+      }).join('<br>');
+    }
+    html += '<div class="wrong-row"><div class="sen">'+
+      '<div class="en">'+esc(b.sentence)+'</div>'+
+      '<div class="cn">'+esc(b.translation||'')+'</div>'+
+      '<div class="wrong-detail">错点：'+mine+'</div>'+
+    '</div>'+
+    '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">×</button></div>';
+  });
+  html += '</div>';
+  body.innerHTML = html;
+  var bc = $('btnClearWrongBook'); if(bc) bc.onclick = function(){ if(confirm('清空错题本？')){ mem.reinforceBook = []; saveStore(); renderStats(); } };
+  Array.prototype.forEach.call(body.querySelectorAll('.wrong-del'), function(btn){
+    btn.onclick = function(){
+      var key = btn.getAttribute('data-key');
+      mem.reinforceBook = (mem.reinforceBook || []).filter(function(x){ return x._key !== key; });
+      saveStore(); renderStats();
+    };
+  });
+}
+
+function getReinforceBook(){
+  if(!mem.reinforceBook) mem.reinforceBook = [];
+  return mem.reinforceBook;
+}
+
+/* ===== SRS 复习 ===== */
+function dueSentences(){
+  if(!mem.stats || !mem.stats.bySentence) return [];
+  var out = [];
+  var seen = {};
+  Object.keys(mem.stats.bySentence).forEach(function(k){
+    var st = mem.stats.bySentence[k];
+    if(typeof st.dueAt !== 'number' || !st.dueAt || st.dueAt > Date.now()) return;
+    var deck = findDeck(st.deckId);
+    if(!deck) return;
+    var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
+    if(!it) return;
+    var key = normSent(it.sentence);
+    if(seen[key]) return;
+    seen[key] = true;
+    out.push({ it:it, st:st, deck:deck });
+  });
+  return out;
+}
+function renderReviewList(body){
+  var dues = dueSentences();
+  var html = '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
+    '<b style="font-size:13px;color:var(--warn)">🔁 SRS 到期复习</b> '+
+    '<span style="font-size:12.5px;color:var(--muted)">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'（间隔重复到达复习点）</span>'+
+    '<span class="spacer"></span>'+
+    (dues.length>0 ? '<button class="btn primary" id="startDueReview">▶ 开始到期复习</button>' : '')+
+    '</div>';
+  if(dues.length){
+    html += '<div class="stats-list">';
+    dues.forEach(function(d){
+      html += '<div class="srow"><div class="sen">'+
+        '<div class="en">'+esc(d.it.sentence)+'</div>'+
+        '<div class="cn">'+esc(d.it.translation||'')+'</div></div>'+
+        '<div class="meta" style="color:var(--warn)">🔁 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(d.deck.name)+'</div></div>';
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="empty-tip" style="padding:14px">没有到期复习的句子。新学的句子会按间隔重复（1→3→7→14→30 天）自动排入复习队列。</div>';
+  }
+
+  html += '<div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">'+
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
+    '<b style="font-size:13px;color:var(--muted)">📚 手动复习入口</b> '+
+    '<span style="font-size:12px;color:var(--faint)">（按题库分组，已标熟/已掌握的句子；立即重测一遍）</span>'+
+    '</div>';
+  var decksWithMarked = [];
+  allDecks().forEach(function(d){
+    var items = (d.items||[]).filter(function(it){
+      return isMarkedForDeck(d.id, it) || isFluencyByDeck(d.id, it);
+    });
+    if(items.length) decksWithMarked.push({deck:d, items:items});
+  });
+  if(!decksWithMarked.length){
+    html += '<div class="empty-tip" style="padding:14px">还没有标熟/掌握的句子。当句子被标熟或考试通过后，可在此手动复习。</div>';
+  } else {
+    html += '<div class="stats-list">';
+    decksWithMarked.forEach(function(entry){
+      var d = entry.deck;
+      html += '<div class="review-row">'+
+        '<div class="nm">'+esc(d.name)+' <span style="font-size:12px;color:var(--faint);font-weight:400">'+entry.items.length+' 句</span></div>'+
+        '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">📚 复习 '+entry.items.length+' 句</button>'+
+        '</div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+
+  body.innerHTML = html;
+  var sd = $('startDueReview'); if(sd) sd.onclick = practiceDue;
+  Array.prototype.forEach.call(body.querySelectorAll('[data-rev-deck]'), function(btn){
+    btn.onclick = function(){
+      var deckId = btn.getAttribute('data-rev-deck');
+      var deck = findDeck(deckId);
+      if(deck) practiceReviewDeck(deck);
+    };
+  });
+}
+
+function practiceDue(){
+  var dues = dueSentences();
+  if(!dues.length){ alert('没有到期复习的句子'); return; }
+  var items = dues.map(function(d){ return d.it; });
+  launchReviewDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习 · '+items.length+' 句', items:items });
+}
+function practiceReviewDeck(deck){
+  var items = (deck.items || []).filter(function(it){
+    return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
+  });
+  if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
+  launchReviewDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+deck.name+' · '+items.length+' 句', items:items });
+}
+function practiceWeakSentences(){
+  var by = mem.stats.bySentence || {};
+  var items = [];
+  var seen = {};
+  Object.keys(by).forEach(function(k){
+    if(classifyStat(by[k]) !== 'weak') return;
+    var st = by[k];
+    var deck = findDeck(st.deckId);
+    if(!deck) return;
+    var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
+    if(!it) return;
+    var key = normSent(it.sentence);
+    if(seen[key]) return;
+    seen[key] = true;
+    items.push(it);
+  });
+  if(!items.length){ alert('找不到可练习的句子（可能被删除）'); return; }
+  launchReviewDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固 · '+items.length+' 句', items:items });
+}
+function practiceWrongBook(){
+  var book = getReinforceBook();
+  var seen = {};
+  var items = [];
+  book.forEach(function(b){
+    var key = normSent(b.sentence);
+    if(seen[key]) return;
+    seen[key] = true;
+    var deck = findDeck(b.deckId);
+    if(!deck) return;
+    var it = (deck.items||[]).find(function(x){ return x.sentence === b.sentence; });
+    if(it) items.push(it);
+  });
+  if(!items.length){ alert('错题本中的句子已全部删除或找不到对应题库'); return; }
+  launchReviewDeck({ id:'book-'+Date.now().toString(36), name:'错题 · '+items.length+' 句', items:items });
+}
+
+/* ★ 跨页面通信：通过 postMessage 通知主页启动临时题库（统一走 CL） */
+function launchReviewDeck(deck){
+  try{
+    localStorage.setItem('chunklab_pending_review_deck', JSON.stringify({ deck:deck, ts:Date.now() }));
+  }catch(e){ console.error(e); }
+  /* 同 tab 导航回主页：autostart=1 + pendingReviewDeck 自动启动复习队列 */
+  alert('已加入复习队列：' + deck.name + '\n正在打开练习页…');
+  window.location.href = './main.html?autostart=1';
+}
+
+/* ===== 事件绑定 ===== */
+CL.ensureCloud().then(function(){
+loadMem();
+renderStats();
+
+Array.prototype.forEach.call($('statsTabs').children, function(b){
+  b.onclick = function(){
+    _statsTab = b.dataset.tab;
+    renderStats();
+  };
+});
+Array.prototype.forEach.call($('statsFilter').children, function(b){
+  b.onclick = function(){
+    _statsFilter = b.dataset.f;
+    renderStats();
+  };
+});
+$('btnPracticeWrong').onclick = practiceWrongBook;
+/* ★ 返回主页（独立窗口场景通用） */
+$('statsBack').onclick = function(){ window.location.href = './main.html'; };
+
+/* 接收主页面消息：刷新数据 */
+window.addEventListener('message', function(ev){
+  if(ev.data && ev.data.type === 'memUpdated'){
+    loadMem();
+    renderStats();
+  }
+});
+
+/* 监听 storage 事件（其他标签页修改也刷新） */
+window.addEventListener('storage', function(e){
+  if(e.key === 'chunklab_mem_v1'){
+    loadMem();
+    renderStats();
+  }
+});
+}); /* CL.ensureCloud().then */
+</script>
+
+</body>
+</html>

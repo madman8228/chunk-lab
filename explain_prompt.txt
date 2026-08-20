@@ -1,0 +1,108 @@
+你是一位资深英语教师。请为下面每个句子的每个意群（chunk）撰写多维度中文讲解。
+
+句子列表（共 30 句）：
+[1] How are you doing these days?
+    中文：你最近过得怎么样？
+    意群：1.How are you doing  /  2.these days?
+[2] Nice to meet you.
+    中文：很高兴认识你。
+    意群：1.Nice to  /  2.meet you.
+[3] Could you do me a favor?
+    中文：你能帮我个忙吗？
+    意群：1.Could you  /  2.do me a favor?
+[4] I'm really sorry about that.
+    中文：那件事我真的很抱歉。
+    意群：1.I'm really sorry  /  2.about that.
+[5] Could we get the menu, please?
+    中文：请给我们菜单好吗？
+    意群：1.Could we get  /  2.the menu,  /  3.please?
+[6] Where can I find the checkout?
+    中文：我在哪儿能找到收银台？
+    意群：1.Where can I find  /  2.the checkout?
+[7] Which bus goes to the station?
+    中文：哪路公交车去车站？
+    意群：1.Which bus  /  2.goes to  /  3.the station?
+[8] It's pouring outside right now.
+    中文：外面这会儿正下着倾盆大雨。
+    意群：1.It's pouring  /  2.outside  /  3.right now.
+[9] Can I take a message for you?
+    中文：要我帮你留言吗？
+    意群：1.Can I  /  2.take a message  /  3.for you?
+[10] Are you free this weekend?
+    中文：你这个周末有空吗？
+    意群：1.Are you free  /  2.this weekend?
+[11] I really appreciate your help.
+    中文：我真的很感激你的帮助。
+    意群：1.I really appreciate  /  2.your help.
+[12] See you later, take care.
+    中文：回头见，保重。
+    意群：1.See you later,  /  2.take care.
+[13] That sounds like a great idea.
+    中文：那听起来是个好主意。
+    意群：1.That sounds like  /  2.a great idea.
+[14] I'm afraid I can't make it tonight.
+    中文：恐怕今晚我抽不出时间。
+    意群：1.I'm afraid  /  2.I can't make it  /  3.tonight.
+[15] Why don't we grab a bite to eat?
+    中文：我们随便吃点东西怎么样？
+    意群：1.Why don't we  /  2.grab a bite to eat?
+[16] Is there a pharmacy nearby?
+    中文：这附近有药店吗？
+    意群：1.Is there  /  2.a pharmacy  /  3.nearby?
+[17] I'd like a medium latte, please.
+    中文：我要一杯中杯拿铁，谢谢。
+    意群：1.I'd like  /  2.a medium latte,  /  3.please.
+[18] What time should we meet up?
+    中文：我们几点碰面好？
+    意群：1.What time  /  2.should we meet up?
+[19] How much does this one cost?
+    中文：这个多少钱？
+    意群：1.How much  /  2.does this one cost?
+[20] I'm not feeling myself today.
+    中文：我今天状态不太好（身体不适）。
+    意群：1.I'm not feeling myself  /  2.today.
+[21] I have a meeting at three this afternoon.
+    中文：我今天下午三点有个会。
+    意群：1.I have a meeting  /  2.at three  /  3.this afternoon.
+[22] Do you enjoy watching movies?
+    中文：你喜欢看电影吗？
+    意群：1.Do you enjoy  /  2.watching movies?
+[23] I'm pretty good at cooking.
+    中文：我挺擅长做饭的。
+    意群：1.I'm pretty good  /  2.at cooking.
+[24] This one is way cheaper than that.
+    中文：这个比那个便宜多了。
+    意群：1.This one is  /  2.way cheaper  /  3.than that.
+[25] I usually go for a run in the morning.
+    中文：我通常早上跑步。
+    意群：1.I usually  /  2.go for a run  /  3.in the morning.
+[26] I'm planning to visit Japan next year.
+    中文：我计划明年去日本玩。
+    意群：1.I'm planning to  /  2.visit Japan  /  3.next year.
+[27] We went hiking last Sunday.
+    中文：上周日我们去徒步了。
+    意群：1.We went hiking  /  2.last Sunday.
+[28] If it rains, we'll just stay home.
+    中文：要是下雨，我们就待在家里。
+    意群：1.If it rains,  /  2.we'll just stay home.
+[29] You should definitely try this place.
+    中文：你一定要试试这家店。
+    意群：1.You should definitely  /  2.try this place.
+[30] What a beautiful view from up here!
+    中文：从这上面看风景真美啊！
+    意群：1.What a beautiful view  /  2.from up here!
+
+要求：
+1. 输出一个 JSON 对象：{"items": [...]}，items 数组与句子列表一一对应（30 项）。
+2. 每项为 {"sentence": "原句原文（必须与列表完全一致，复制粘贴）", "explanations": [...]}，explanations 是与该句意群数一致的数组，每项是一个对象，字段如下：
+   - "grammar"：语法讲解（时态/语态/词性/结构），30-60字
+   - "syntax"：句法讲解（该意群在整句中的功能与成分关系），20-50字
+   - "collocation"：固定搭配（有则写搭配与含义，无则省略该字段）
+   - "pattern"：固定句型（有则写句型框架与例句，无则省略）
+   - "oral"：口语/俚语用法（有则写，无则省略）
+   - "words"：关键单词数组，每项 {"w":"单词","p":"词性","m":"中文释义"}（1-3个）
+3. 没有的维度不要编造，省略字段即可。
+4. 直接输出 JSON，不要 Markdown 代码块标记，不要任何多余文字。
+
+输出示例（仅示意结构）：
+{"items":[{"sentence":"原句...","explanations":[{"grammar":"语法讲解...","syntax":"句法讲解...","collocation":"固定搭配...","oral":"口语用法...","words":[{"w":"call","p":"v.","m":"打电话"}]}]}]}

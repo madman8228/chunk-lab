@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chunk Lab 本地存储诊断</title>
+<style>
+:root{--bg:#f4f2ee;--surface:#fffdfa;--border:#dedbd4;--text:#202326;--muted:#74716a;--accent:#2c62c9;--bad:#b6483e;--ok:#23855a}
+*{box-sizing:border-box}
+body{margin:0;padding:18px;background:var(--bg);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:720px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px}
+h1{margin:0 0 6px;font-size:18px;letter-spacing:-.01em}
+p{margin:0 0 16px;color:var(--muted);font-size:13px}
+.key{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;background:#f0ede8;padding:1px 5px;border-radius:4px;font-size:12px}
+.card{margin:14px 0;border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:#fff}
+.card h2{margin:0 0 10px;font-size:15px}
+.status{margin-bottom:10px;padding:8px 10px;border-radius:8px;font-size:13px;background:#f0ede8}
+.status.ok{background:#e8f5ee;color:var(--ok)}
+.status.warn{background:#fff8e1;color:#a16207}
+.status.bad{background:#f7eae8;color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:600;font-size:12px}
+.empty{color:var(--muted);font-size:13px;padding:8px 0}
+pre{white-space:pre-wrap;word-break:break-all;background:#f7f5f0;padding:10px;border-radius:8px;font-size:12px;max-height:260px;overflow:auto}
+button{border:0;background:var(--accent);color:#fff;border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer}
+button:hover{background:#2457b5}
+.actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Chunk Lab 本地存储诊断</h1>
+  <p>自动读取当前浏览器下的 localStorage 课程/题库/进度数据。</p>
+
+  <div class="card">
+    <h2>图文课程 · <span class="key">chunklab.courses.v1</span></h2>
+    <div id="coursesStatus" class="status">读取中…</div>
+    <div id="coursesList"></div>
+    <div class="actions">
+      <button id="dlCourses" style="display:none">下载课程数据 JSON</button>
+      <button id="fixEmptyLib" style="display:none;background:#23855a">自动补全缺失的 lib 分类</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>课程进度 · <span class="key">chunklab.course-progress.v1</span></h2>
+    <div id="progressStatus" class="status">读取中…</div>
+    <pre id="progressPre" style="display:none"></pre>
+  </div>
+
+  <div class="card">
+    <h2>题库 · <span class="key">chunklab.v1</span></h2>
+    <div id="deckStatus" class="status">读取中…</div>
+  </div>
+
+  <div class="card">
+    <h2>全部备份</h2>
+    <p style="margin:0 0 10px" class="empty">点下面按钮可把当前全部 localStorage 数据打包下载，避免继续操作前丢失。</p>
+    <button id="dlAll">下载完整备份 JSON</button>
+  </div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+function fmtSize(s){ if(!s) return '0 B'; var b=new Blob([s]).size; return b<1024?b+' B':(b/1024).toFixed(1)+' KB'; }
+function setStatus(id, cls, text){ var el=document.getElementById(id); el.className='status '+cls; el.textContent=text; }
+
+function read(key){ try{ return localStorage.getItem(key); }catch(e){ return null; } }
+
+(function diagnose(){
+  var raw = read('chunklab.courses.v1');
+  var listEl = document.getElementById('coursesList');
+  var dlBtn = document.getElementById('dlCourses');
+  var fixBtn = document.getElementById('fixEmptyLib');
+
+  if(!raw){
+    setStatus('coursesStatus','bad','没有找到 chunklab.courses.v1，课程数据为空');
+    listEl.innerHTML = '<p class="empty">这通常意味着浏览器清理了站点数据、开了隐私模式、或 localStorage 被手动清空。需要重新导入课程 ZIP。</p>';
+  } else {
+    var arr, err='';
+    try{ arr = JSON.parse(raw); }catch(e){ err = e.message; }
+    if(err){
+      setStatus('coursesStatus','bad','JSON 解析失败：'+err);
+      listEl.innerHTML = '<p class="empty">数据已损坏。建议先点「下载完整备份 JSON」保留现场，再尝试恢复。</p>';
+    } else if(!Array.isArray(arr)){
+      setStatus('coursesStatus','bad','数据格式异常，不是数组：'+typeof arr);
+      listEl.innerHTML = '<pre>'+esc(JSON.stringify(arr,null,2).slice(0,2000))+'</pre>';
+    } else if(arr.length===0){
+      setStatus('coursesStatus','warn','存在该 key，但课程数组为空（0 条）');
+      listEl.innerHTML = '<p class="empty">说明之前写入过数据但已被清空。需要重新导入。</p>';
+    } else {
+      setStatus('coursesStatus','ok','找到 '+arr.length+' 条课程，原始数据 '+fmtSize(raw));
+      var html = '<table><tr><th>#</th><th>courseId</th><th>标题</th><th>节点数</th><th>lib 分类</th></tr>';
+      var missingLib = false;
+      arr.forEach(function(c,i){
+        var titleObj = (c.metadata && c.metadata.title) || {};
+        var title = titleObj['zh-CN'] || titleObj.en || titleObj || '未命名';
+        var lib = c.lib;
+        var libText = lib ? (lib.seriesName || lib.seriesId || '-') + (lib.volumeName ? ' · '+lib.volumeName : '') : '<span style="color:#a16207">无 lib</span>';
+        if(!lib) missingLib = true;
+        var nodeCount = (c.story && Array.isArray(c.story.nodes)) ? c.story.nodes.length : 0;
+        html += '<tr><td>'+(i+1)+'</td><td>'+esc(c.courseId||'-')+'</td><td>'+esc(title)+'</td><td>'+nodeCount+'</td><td>'+libText+'</td></tr>';
+      });
+      html += '</table>';
+      listEl.innerHTML = html;
+      dlBtn.style.display = 'inline-block';
+      dlBtn.onclick = function(){ downloadFile(raw, 'chunklab.courses.v1.json', 'application/json'); };
+      if(missingLib){
+        fixBtn.style.display = 'inline-block';
+        fixBtn.onclick = function(){
+          var fixed = arr.map(function(c){ if(c.lib) return c; c.lib={seriesId:'s-other',seriesName:'其他课程',volumeIndex:null,volumeName:null,sortOrder:0}; return c; });
+          try{
+            localStorage.setItem('chunklab.courses.v1', JSON.stringify(fixed));
+            alert('已补全 '+arr.length+' 条课程的 lib 分类，页面将刷新。');
+            location.reload();
+          }catch(e){ alert('写入失败：'+e.message); }
+        };
+      }
+    }
+  }
+
+  var pRaw = read('chunklab.course-progress.v1');
+  if(!pRaw){
+    setStatus('progressStatus','warn','没有进度数据');
+  } else {
+    try{
+      var p = JSON.parse(pRaw);
+      var keys = Object.keys(p);
+      setStatus('progressStatus','ok','找到 '+keys.length+' 条课程进度记录');
+      document.getElementById('progressPre').style.display='block';
+      document.getElementById('progressPre').textContent = JSON.stringify(p,null,2);
+    }catch(e){
+      setStatus('progressStatus','bad','进度数据损坏：'+e.message);
+    }
+  }
+
+  var dRaw = read('chunklab.v1');
+  if(!dRaw){
+    setStatus('deckStatus','warn','没有题库数据');
+  } else {
+    try{
+      var m = JSON.parse(dRaw);
+      var decks = (m.decks||[]).length;
+      var builtin = (window.BUILTIN||[]).length;
+      setStatus('deckStatus','ok','用户题库 '+decks+' 个，内置题库 '+builtin+' 个');
+    }catch(e){
+      setStatus('deckStatus','bad','题库数据损坏：'+e.message);
+    }
+  }
+})();
+
+function downloadFile(text, name, type){
+  var blob = new Blob([text], {type:type});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.getElementById('dlAll').onclick = function(){
+  var payload = {
+    __app:'chunklab',
+    exportedAt:new Date().toISOString(),
+    'chunklab.v1': read('chunklab.v1'),
+    'chunklab.courses.v1': read('chunklab.courses.v1'),
+    'chunklab.course-progress.v1': read('chunklab.course-progress.v1'),
+    'chunklab_reinforce': read('chunklab_reinforce'),
+    'chunklab_ai_cache_v1': read('chunklab_ai_cache_v1')
+  };
+  downloadFile(JSON.stringify(payload,null,2), 'chunklab_diagnose_backup_'+new Date().toISOString().slice(0,19).replace(/[T:]/g,'-')+'.json', 'application/json');
+};
+</script>
+</body>
+</html>

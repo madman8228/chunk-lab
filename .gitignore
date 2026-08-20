@@ -1,0 +1,18 @@
+# 工具/AI 工作区记忆（含潜在敏感，不入库）
+.workbuddy/
+.playwright-cli/
+
+# 依赖与构建产物
+node_modules/
+
+# 数据库与本地数据（server/data 已由 server/.gitignore 覆盖，这里兜底根级）
+*.db
+*.db-shm
+*.db-wal
+
+# 环境变量（含密钥）
+.env
+.env.local
+
+# 本地生成物
+output/
