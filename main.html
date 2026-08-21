@@ -50,11 +50,10 @@ input,textarea,select{font:inherit;color:inherit}
 /* ---------- shell ---------- */
 .wrap{max-width:1020px;margin:0 auto;padding:16px 18px 48px}
 
+/* 顶栏与内容统一（A 方案）：不延伸宽度、无独立背景、不 sticky（透明背景下 sticky 会滚动叠字）。
+   宽度与卡片一致（wrap padding 对齐），背景透明（透出页面底色/渐变）。 */
 .topbar{
-  position:sticky;top:0;z-index:30;
-  margin:0 -18px 6px;padding:10px 18px;
-  background:rgba(245,246,248,.82);
-  backdrop-filter:saturate(1.4) blur(10px);
+  margin:0 0 6px;padding:10px 0;
 }
 .topbar-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.01em}
