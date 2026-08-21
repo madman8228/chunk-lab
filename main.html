@@ -760,8 +760,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="stage-foot">
       <button class="stage-master" id="btnMaster" title="标记为已掌握（自选，未参与考试）" data-state="manual">标熟</button>
       <span class="spacer"></span>
-      <button class="btn sm hidden" id="btnExplain" title="查看本句详解（逐意群讲解）"><span data-icon="book"></span>详解</button>
-      <button class="btn sm disabled" id="btnAIExplain" disabled title="AI 智能解读（点击进入设置配置 API Key）"><span data-icon="ai"></span>AI 解读</button>
+      <button class="btn sm hidden" id="btnExplain" title="查看本句详解（含 AI 解读）"><span data-icon="book"></span>详解</button>
       <button class="btn sm primary hidden" id="btnNext">下一题 ↵</button>
     </div>
   </div>
@@ -788,7 +787,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="edit-stat hidden" id="editStat"></div>
   </div>
 
-  <!-- 详解页（agent 工作流：复制 Prompt → 大模型生成 → 粘贴 JSON 回填） -->
+  <!-- 详解页（tab1：已保存讲解 + 批量回填；tab2：AI 解读生成） -->
   <div class="page hidden" id="pageExplain">
     <div class="page-head">
       <button class="btn sm" id="explainBack">← 返回</button>
@@ -796,22 +795,43 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <span class="spacer"></span>
       <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板"><span data-icon="copy"></span>复制 Prompt</button>
     </div>
+    <div class="page-tabs" style="display:flex;gap:6px;margin:10px 0 4px">
+      <button class="tab on" id="tabExplainSaved">详解</button>
+      <button class="tab" id="tabExplainAI"><span data-icon="ai"></span>AI 解读</button>
+    </div>
     <div style="padding:2px 0 10px">
       <div id="explainSentence" style="font-size:17px;font-weight:700;color:var(--text);line-height:1.45"></div>
       <div id="explainTrans" style="font-size:13px;color:var(--faint);margin-top:3px"></div>
     </div>
-    <div id="explainList" style="display:flex;flex-direction:column;gap:8px"></div>
+    <!-- tab1：已保存讲解 + 批量回填 -->
+    <div id="explainTabSaved">
+      <div id="explainList" style="display:flex;flex-direction:column;gap:8px"></div>
 
-    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-        <strong style="font-size:14px">粘贴大模型返回的 JSON 回填</strong>
-        <span style="font-size:12px;color:var(--faint)">（字符串数组，长度须与意群数一致）</span>
+      <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <strong style="font-size:14px">粘贴大模型返回的 JSON 回填</strong>
+          <span style="font-size:12px;color:var(--faint)">（字符串数组，长度须与意群数一致）</span>
+        </div>
+        <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
+        <div id="explainMsg" class="msg"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
+          <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+        </div>
       </div>
-      <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
-      <div id="explainMsg" class="msg"></div>
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
-        <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+    </div>
+    <!-- tab2：AI 解读 -->
+    <div id="explainTabAI" class="hidden">
+      <div id="aiBody">
+        <div style="text-align:center;padding:30px 0;color:var(--faint)">
+          <p style="margin:0;font-size:13px">切换到本页后自动生成 AI 解读，或点下方「生成」。</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
+        <button class="btn sm ghost" id="btnAIRegen"><span data-icon="refresh"></span>生成/重新生成</button>
+        <button class="btn sm primary hidden" id="btnAISave"><span data-icon="check"></span>保存为详解</button>
+        <span class="spacer"></span>
+        <span id="aiNote" style="font-size:12px;color:var(--faint)"></span>
       </div>
     </div>
   </div>
@@ -1121,29 +1141,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <button class="btn primary" id="btnSaveSettings">保存设置</button>
       <span class="spacer"></span>
       <button class="btn ghost" data-close>取消</button>
-    </div>
-  </div>
-</div>
-
-<!-- AI 解读弹窗 -->
-<div class="mask" id="aiMask" hidden>
-  <div class="modal" style="max-width:560px">
-    <div class="modal-head">
-      <h3><span data-icon="ai"></span> AI 解读</h3>
-      <span style="font-size:12.5px;color:var(--faint)" id="aiSentenceHint"></span>
-      <span class="spacer"></span>
-      <button class="btn sm ghost" data-close data-icon="close"></button>
-    </div>
-    <div class="modal-body" id="aiBody">
-      <div style="text-align:center;padding:30px 0;color:var(--faint)">
-        <div style="font-size:28px;margin-bottom:8px"><span class="icon-spin" data-icon="refresh"></span></div>
-        <p style="margin:0;font-size:13px">正在分析句子…</p>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn sm ghost" id="btnAIRegen"><span data-icon="refresh"></span>重新生成</button>
-      <span class="spacer"></span>
-      <button class="btn ghost" data-close>关闭</button>
     </div>
   </div>
 </div>
@@ -1655,11 +1652,10 @@ function renderQ(){
   $('topbarReveal').classList.add('hidden');
   $('revealTagWrap').classList.add('hidden');
   $('btnSpeak').classList.add('hidden');
-  /* 详解按钮：仅当前句子有详解内容时显示（无内容点进去是空页） */
+  /* 详解按钮：总是显示（页内 AI 解读 tab 可补全无讲解的句子） */
   var _expB = $('btnExplain');
   if(_expB){
-    var hasExp = hasExplanation(it);
-    _expB.classList.toggle('hidden', !hasExp);
+    _expB.classList.remove('hidden');
   }
   /* 标熟按钮默认就一直显示，状态由 data-state 决定（ring / filling / done） */
   refreshMasterBtn();
@@ -3161,13 +3157,26 @@ var _editStatMsg = '';
    7.5 句子详解（agent 工作流：复制 Prompt → 大模型 → 粘贴 JSON 回填）
 ============================================================ */
 var _explainDeck = null, _explainIdx = -1;
-function openExplain(deck, item){
+function openExplain(deck, item, tab){
   /* 支持传索引或句子对象；传对象更稳（练习队列可能被过滤/排序，索引会错位） */
   if(typeof item === 'number') item = deck.items[item];
   _explainDeck = deck;
   _explainIdx = deck.items.indexOf(item);
   renderExplain();
   showPage('pageExplain');
+  switchExplainTab(tab || 1);
+}
+/* 详解页 tab：1=已保存讲解（含批量回填），2=AI 解读（生成/重新生成/保存） */
+function switchExplainTab(n){
+  var saved = $('explainTabSaved'), ai = $('explainTabAI');
+  if(!saved || !ai) return;
+  saved.classList.toggle('hidden', n !== 1);
+  ai.classList.toggle('hidden', n !== 2);
+  $('tabExplainSaved').classList.toggle('on', n === 1);
+  $('tabExplainAI').classList.toggle('on', n === 2);
+  var cp = $('explainCopyPrompt'); /* 复制 Prompt 属 tab1 批量回填工作流 */
+  if(cp) cp.style.display = (n === 1) ? '' : 'none';
+  if(n === 2) runAIExplain(); /* 首次切到 AI tab 自动生成 */
 }
 function renderExplain(){
   if(!_explainDeck) return;
@@ -3759,7 +3768,6 @@ function closeMasks(){
   $('impMask').hidden = true;
   $('appendMask').hidden = true;
   $('settingsMask').hidden = true;
-  $('aiMask').hidden = true;
   $('batchExplainMask').hidden = true;
   /* 如果在题库/管理页，按 Esc 回到练习页 */
   if(_curPage !== 'pagePractice') goPractice();
@@ -3919,8 +3927,6 @@ $('btnSound').onclick = function(){
   saveStore();
   if(mem.settings.sound) SFX.ok();
 };
-/* 初始化 AI 解读按钮状态 */
-refreshAIBtn();
 
 /* ===== 设置面板 ===== */
 $('btnSettingsTop').onclick = function(){
@@ -3968,8 +3974,6 @@ $('btnSaveSettings').onclick = function(){
   /* 深色模式 */
   if(mem.settings.darkMode){ document.documentElement.classList.add('dark'); }
   else{ document.documentElement.classList.remove('dark'); }
-  /* 同步 AI 解读按钮状态 */
-  refreshAIBtn();
   closeMasks();
 };
 /* API Key 显示/隐藏切换 */
@@ -4057,33 +4061,59 @@ $('fileBackup').onchange = function(){
   fr.readAsText(f, 'utf-8');
 };
 
-/* ===== AI 解读 ===== */
-function refreshAIBtn(){
-  var btn = $('btnAIExplain');
-  if(!btn){ return; }
-  /* ADR-004：走后端代理，不再依赖前端 Key；未登录/未配置时自动兜底本地解读 */
-  btn.disabled = false;
-  btn.classList.remove('disabled');
-  btn.innerHTML = 'AI 解读';
-  btn.title = 'AI 智能解读本句（服务端代理）';
+/* ===== AI 解读（已并入详解页 tab2） ===== */
+$('btnAIRegen').onclick = function(){ runAIExplain(); };
+$('tabExplainSaved').onclick = function(){ switchExplainTab(1); };
+$('tabExplainAI').onclick = function(){ switchExplainTab(2); };
+/* 把当前 AI 解读保存为 item.explanations（结构化讲解），并切回「详解」tab */
+$('btnAISave').onclick = function(){
+  var it = (_explainDeck && _explainIdx >= 0) ? _explainDeck.items[_explainIdx] : null;
+  if(!it || !_aiLastObj){ alert('暂无可保存的 AI 解读'); return; }
+  it.explanations = aiToExplanations(_aiLastObj, it.chunks.length);
+  saveStore();
+  switchExplainTab(1);
+  renderExplain();
+  var m = $('explainMsg');
+  if(m){ m.className = 'msg ok show'; m.textContent = '已保存 ' + it.explanations.length + ' 条 AI 讲解到「详解」'; }
+};
+/* AI 结构化结果 → explanations[i]（语法/句法/搭配/场景维度，兼容 renderExplain 对象渲染） */
+function aiToExplanations(obj, chunkCount){
+  var out = [];
+  var grammarTxt = ((obj && obj.grammar) || []).join('；');
+  var colloTxt = ((obj && obj.collocations) || []).join('；');
+  var scenTxt = (obj && obj.scenario) || '';
+  for(var i = 0; i < chunkCount; i++){
+    var item = {};
+    if(grammarTxt) item.grammar = grammarTxt;
+    if(colloTxt) item.collocation = colloTxt;
+    if(scenTxt) item.oral = scenTxt;
+    var ch = obj && obj.chunks && obj.chunks[i];
+    if(ch && ch.role) item.syntax = ch.role;
+    out.push(item);
+  }
+  return out;
 }
-$('btnAIExplain').onclick = function(){ if(this.disabled){ return; } openAIExplain(); };
-$('btnAIRegen').onclick = function(){ openAIExplain(); };
 
-function openAIExplain(){
-  var item = cur();
+/* 切换到 AI 解读 tab 时生成（若当前句已生成过则保留，点「生成/重新生成」强制刷新） */
+var _aiLastObj = null;
+function runAIExplain(){
+  var item = (_explainDeck && _explainIdx >= 0) ? _explainDeck.items[_explainIdx] : null;
   if(!item){ return; }
-  $('aiSentenceHint').textContent = item.zh || '';
-  $('aiMask').hidden = false;
-  /* 显示加载态 */
-  $('aiBody').innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--faint)"><div style="font-size:28px;margin-bottom:8px"><span class="icon-spin" data-icon="refresh"></span></div><p style="margin:0;font-size:13px">正在分析句子…</p></div>';
+  var body = $('aiBody'); if(!body) return;
+  _aiLastObj = null;
+  $('btnAISave').classList.add('hidden');
+  body.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--faint)"><div style="font-size:28px;margin-bottom:8px"><span class="icon-spin" data-icon="refresh"></span></div><p style="margin:0;font-size:13px">正在分析句子…</p></div>';
 
   /* ADR-004：统一走后端代理（服务端缓存 + 限流；未登录 / 服务端未配置时自动兜底本地解读） */
-  callDeepseekAPI(item, function(ok, res){
+  callDeepseekAPI(item, function(ok, res, obj){
     if(ok){
-      $('aiBody').innerHTML = res;
+      body.innerHTML = res;
+      _aiLastObj = obj || null;
+      $('btnAISave').classList.remove('hidden');
+      $('aiNote').textContent = '由大模型生成，可保存为详解永久使用';
     }else{
-      $('aiBody').innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">'+(window.Icons?Icons.svg('warn'):'')+' 联网解读不可用（未登录或服务端未配置），已切换为本地解读</div>';
+      body.innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">'+(window.Icons?Icons.svg('warn'):'')+' 联网解读不可用（未登录或服务端未配置），已切换为本地解读</div>';
+      $('aiNote').textContent = '本地兜底解读（不可保存）';
     }
   });
 }
@@ -4132,7 +4162,7 @@ function callDeepseekAPI(item, cb){
   /* 缓存命中：同句 + 同模型直接复用，不发请求 */
   var cacheKey = item.sentence ? (model + '::' + norm(item.sentence)) : '';
   var cached = cacheKey ? aiCacheGet(cacheKey) : null;
-  if(cached){ cb(true, renderAIJson(cached, item)); return; }
+  if(cached){ cb(true, renderAIJson(cached, item), cached); return; }
   /* ADR-004：改走后端代理（Key 不再明文进前端；服务端缓存 + 限流）。
      apiKey 仅在用户手动填写时随请求传（自托管降级，服务端配置了 DEEPSEEK_API_KEY 时被忽略）。 */
   var apiKey = (mem.settings.apiKey || '').trim();
@@ -4149,7 +4179,7 @@ function callDeepseekAPI(item, cb){
       var data = JSON.parse(xhr.responseText);
       if(xhr.status === 200 && data && data.ok && data.data){
         aiCachePut(cacheKey, data.data);
-        cb(true, renderAIJson(data.data, item));
+        cb(true, renderAIJson(data.data, item), data.data);
         return;
       }
       cb(false);

@@ -17,7 +17,7 @@
  * serve 旧版本缓存的 JS（cache-first），导致修复不生效。
  */
 /* eslint-disable */
-const CACHE = 'chunklab-v9';
+const CACHE = 'chunklab-v10';
 const PRECACHE = [
   '/main.html',
   '/manifest.json',
