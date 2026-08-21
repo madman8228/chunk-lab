@@ -1263,11 +1263,23 @@ var FX = (function(){
     }
   };
 })();
-/* 纯工具函数已抽至 js/format.mjs（ADR-007 Step 2）：包装器调 window.FormatTools，
-   保留函数名与签名，调用点零改动。行为与原内联实现逐字符一致。 */
-function esc(s){ return (window.FormatTools || {}).esc(s); }
-function norm(s){ return (window.FormatTools || {}).norm(s); }
-function wordCount(s){ return (window.FormatTools || {}).wordCount(s); }
+/* 纯工具函数抽至 js/format.mjs（ADR-007 Step 2）。包装器优先调 window.FormatTools；
+   module 未就绪时（如 bridge.mjs 异步加载晚于内联 .then microtask）走内联 XSS-safe 兜底，
+   保证页面不白屏 + console.warn 提示排查。函数名与签名保留，调用点零改动。 */
+function esc(s){
+  if(window.FormatTools && typeof window.FormatTools.esc === 'function') return window.FormatTools.esc(s);
+  if(typeof console !== 'undefined') console.warn('[esc] FormatTools 未就绪，临时内联兜底');
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
+}
+function norm(s){
+  if(window.FormatTools && typeof window.FormatTools.norm === 'function') return window.FormatTools.norm(s);
+  if(typeof console !== 'undefined') console.warn('[norm] FormatTools 未就绪，临时内联兜底');
+  return String(s == null ? '' : s).replace(/[\u2018\u2019\u02BC\u0060\u00B4]/g, "'").toLowerCase().replace(/[^a-z0-9'\s]/g, ' ').replace(/'/g, '').replace(/\s+/g, ' ').trim();
+}
+function wordCount(s){
+  if(window.FormatTools && typeof window.FormatTools.wordCount === 'function') return window.FormatTools.wordCount(s);
+  return String(s == null ? '' : s).trim().split(/\s+/).filter(Boolean).length;
+}
 
 /* 宪法：UI 禁用字符 icon —— 音效按钮用 SVG（icons.js sound/unsound） */
 function setSoundIcon(){
@@ -2848,7 +2860,15 @@ function renderWrongBook(body){
   });
 }
 
-function timeAgo(t){ return (window.FormatTools || {}).timeAgo(t); }
+function timeAgo(t){
+  if(window.FormatTools && typeof window.FormatTools.timeAgo === 'function') return window.FormatTools.timeAgo(t);
+  if(!t) return '—';
+  var d = Date.now() - t;
+  if(d < 60000) return '刚刚';
+  if(d < 3600000) return Math.floor(d / 60000) + ' 分钟前';
+  if(d < 86400000) return Math.floor(d / 3600000) + ' 小时前';
+  return Math.floor(d / 86400000) + ' 天前';
+}
 
 /* 练习错题本：把错题句子组装成临时题库 */
 function practiceWrongBook(){
@@ -3509,7 +3529,12 @@ function doAppendValidate(){
 }
 
 /* 句子去重：基于归一化后的整句比对，existing 中已存在的跳过 */
-function normSent(s){ return (window.FormatTools || {}).normSent(s); }
+function normSent(s){
+  if(window.FormatTools && typeof window.FormatTools.normSent === 'function') return window.FormatTools.normSent(s);
+  if(window.FormatTools && typeof window.FormatTools.norm === 'function') return window.FormatTools.norm(s);
+  /* 回退到内联 norm 实现（见 esc/norm 包装器注释） */
+  return String(s == null ? '' : s).replace(/[\u2018\u2019\u02BC\u0060\u00B4]/g, "'").toLowerCase().replace(/[^a-z0-9'\s]/g, ' ').replace(/'/g, '').replace(/\s+/g, ' ').trim();
+}
 function mergeDedup(existing, incoming){
   var seen = {};
   (existing||[]).forEach(function(it){ seen[normSent(it.sentence)] = 1; });
