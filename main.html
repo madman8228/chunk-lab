@@ -3782,7 +3782,9 @@ function closeMasks(){
 }
 document.addEventListener('click', function(e){
   var t = e.target;
-  if(t.hasAttribute && t.hasAttribute('data-close')) closeMasks();
+  /* 委托 data-close：t 可能是 button 内的 <svg>（宪法 SVG 化后），用 closest 找回真正带 data-close 的元素 */
+  if(t.closest && t.closest('[data-close]')) closeMasks();
+  /* 点 mask 背景（非 modal 内部）也关闭：仅当点击的是 mask 自身 */
   if(t.classList && t.classList.contains('mask')) closeMasks();
 });
 document.addEventListener('keydown', function(e){
