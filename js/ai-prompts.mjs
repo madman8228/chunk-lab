@@ -140,3 +140,21 @@ export function buildAppendPrompt(deckName) {
     'chunks 拼接必须与原句一致，2-4 个意群。'
   ].join('\n');
 }
+
+/* 从 AI 返回文本中提取 JSON（去 BOM / 代码块围栏 / 截取首尾大括号，修复全角引号与尾逗号） */
+export function extractJSON(text) {
+  var t = String(text == null ? '' : text).trim();
+  t = t.replace(/^\uFEFF/, '');
+  var fence = t.match(/```(?:json|JSON)?\s*([\s\S]*?)```/);
+  if (fence) t = fence[1].trim();
+  var s = t.indexOf('{'), s2 = t.indexOf('[');
+  if (s2 !== -1 && (s === -1 || s2 < s)) s = s2;
+  var e = Math.max(t.lastIndexOf('}'), t.lastIndexOf(']'));
+  if (s !== -1 && e !== -1 && e > s) t = t.slice(s, e + 1);
+  try { return JSON.parse(t); } catch (err) {}
+  var fixed = t
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/,\s*([}\]])/g, '$1');
+  return JSON.parse(fixed);
+}

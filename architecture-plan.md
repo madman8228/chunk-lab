@@ -168,7 +168,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 | ADR-004 | AI 调用走后端代理 | **Accepted（2026-08-20 落地：`server/ai.js` + `/api/ai/explain`，见 §8.3）** | 已落地 |
 | **ADR-005** | **Sync 策略：实体级 rev upsert + 软删除** | **Proposed → Accepted（2026-08-20 落地，见 §8）** | 本文新增 |
 | **ADR-006** | **鉴权默认与密钥管理（上云强制 REQUIRE_AUTH + env 密钥）** | Proposed | 本文新增 |
-| **ADR-007** | **前端 ESM 模块化（无打包器）** | **Proposed → Accepted（2026-08-20 Step 1 落地：`js/chunk-engine.mjs`）** | 本文新增 |
+| **ADR-007** | **前端 ESM 模块化（无打包器）** | **Accepted（2026-08-20 全部落地：chunk-engine / format / ai-prompts / backup 四模块）** | 已落地 |
 | **ADR-008** | **服务端校验与冒烟测试** | **Proposed → Accepted（2026-08-20 校验中间件 + 冒烟测试全部落地）** | 本文新增 |
 
 ### ADR-005: Sync 策略 — 实体级 rev upsert + 软删除
@@ -286,7 +286,7 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 
 **验证**：单测全绿（chunk-engine 31、rev 18、srs/store/course-resume/validate、server smoke 30）；内联脚本语法检查 OK；起 server 冒烟：`/main.html`、`/js/chunk-engine.mjs`、`/js/bridge.mjs` 均 200，`.mjs` MIME 正确。
 
-**后续 Step（增量，每次单测锁定）**：~~Step 2 `js/format.mjs`~~（**已落地**：esc/norm/wordCount/normSent/timeAgo + format.test.mjs 16/16）→ ~~Step 3 `js/ai-prompts.mjs`~~（**已落地 2026-08-20**：5 个 prompt 构建 + `window.AIPrompts` 桥接 + ai-prompts.test.mjs 24/24；buildBatchExplainPrompt 入参改为 pending 列表、buildSplitPrompt/buildAppendPrompt 入参按模块契约精简）→ Step 4 存储/备份纯逻辑（exportReinforce/exportDeck/exportAllData/importAllData 解析部分）→ 最后 DOM/流程层留在 main.html 编排。
+**后续 Step（增量，每次单测锁定）**：~~Step 2 `js/format.mjs`~~（**已落地**）→ ~~Step 3 `js/ai-prompts.mjs`~~（**已落地**：5 个 prompt + extractJSON 并入）→ ~~Step 4 `js/backup.mjs`~~（**已落地 2026-08-20**：buildReinforceJson/Txt、buildExportPayload、parseExport + `window.BackupTools` 桥接 + backup.test.mjs 24/24）。**ADR-007 计划全部完成**：main.html 4781 → 4444 行，核心纯逻辑全部模块化并单测锁定；剩余 DOM/流程层留在 main.html 编排（合理终点）。
 
 ### §8.3 ADR-004 实现笔记（AI 后端代理，2026-08-20）
 
