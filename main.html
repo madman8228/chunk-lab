@@ -665,6 +665,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
 .set-sel{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
 .set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
+/* 统一 SVG 图标（宪法：UI 禁用字符 icon；icons.js data-icon → 内联 SVG） */
+.icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
+.icon-spin{animation:iconSpin 1.2s linear infinite}
+@keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 /* 深色模式 */
 .dark{--bg:#1d1b18;--surface:#272420;--surface-2:#201e1b;--border:#3a362f;--border-strong:#4c473e;--text:#e8e4dd;--muted:#a89f92;--faint:#6f6a61;--accent:#5b8def;--accent-soft:#1c2542;--ok:#34d399;--ok-soft:#0d2c1f;--bad:#f87171;--bad-soft:#2e1515;--warn:#fbbf24;--shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5)}
 .dark .kbd{background:var(--surface);color:var(--muted);border-color:var(--border-strong)}
@@ -698,15 +702,15 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <div class="brand"><span class="logo">C</span>Chunk Lab</div>
       <span class="deck-name" id="deckName">日常对话</span>
       <span class="spacer"></span>
-      <span id="syncBadge" class="sync-badge" style="display:none" title="有未同步到云端的更改，恢复网络后自动补传">⏳ 未同步</span>
+      <span id="syncBadge" class="sync-badge" style="display:none" title="有未同步到云端的更改，恢复网络后自动补传"><span class="icon-spin" data-icon="refresh"></span>未同步</span>
       <div class="metrics">
         <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">1/10</span></div>
         <div class="metric combo" id="mComboBox"><span class="lbl">连击</span><span class="val" id="mCombo">0</span></div>
       </div>
-      <button class="btn sm" id="btnSound" title="音效开关">🔊</button>
-      <button class="btn sm" id="btnStats" title="学习档案（新窗口打开）">📊</button>
+      <button class="btn sm" id="btnSound" title="音效开关" data-icon="sound"></button>
+      <button class="btn sm" id="btnStats" title="学习档案（新窗口打开）" data-icon="stats"></button>
       <button class="btn sm" id="btnDecks" title="题库管理（新窗口打开）">题库</button>
-      <button class="btn sm" id="btnSettingsTop" title="系统设置">⚙️</button>
+      <button class="btn sm" id="btnSettingsTop" title="系统设置" data-icon="settings"></button>
     </div>
     <div class="progress"><i id="progFill"></i></div>
     <div class="topbar-reveal hidden" id="topbarReveal"></div>
@@ -734,7 +738,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <span class="ring-num" id="ringNum">0</span>
       </div>
       <div class="zh-wrap">
-        <div class="zh" id="zh">⏳ 加载中…</div>
+        <div class="zh" id="zh"><span class="icon-spin" data-icon="refresh"></span> 加载中…</div>
         <div class="zh-sub-row">
           <span class="zh-sub" id="zhSub"></span>
           <span class="due-tag hidden" id="dueTagWrap"></span>
@@ -1146,6 +1150,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="auth-ui.js"></script>
+<script src="js/icons.js"></script>
 <script src="srs.js"></script>
 <script type="module" src="js/bridge.mjs"></script>
 <script>
@@ -1153,9 +1158,11 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 /* >>>>> v7 2026-08-07 19:16 <<<<< */
 window.onerror = function(msg, src, line, col, err){
   var zh = document.getElementById('zh');
-  if(zh) zh.textContent = '❌ ' + (msg||'未知错误') + ' (行' + line + ')';
+  if(zh) zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') + ' 启动失败：' + esc(msg || '未知错误') + ' (行' + line + ')';
   console.error('[GLOBAL]', msg, 'line', line, err);
 };
+/* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
+if(window.Icons) Icons.install();
 
 /* ============================================================
    0. 工具
@@ -1262,6 +1269,11 @@ function esc(s){ return (window.FormatTools || {}).esc(s); }
 function norm(s){ return (window.FormatTools || {}).norm(s); }
 function wordCount(s){ return (window.FormatTools || {}).wordCount(s); }
 
+/* 宪法：UI 禁用字符 icon —— 音效按钮用 SVG（icons.js sound/unsound） */
+function setSoundIcon(){
+  var b = $('btnSound'); if(!b) return;
+  if(window.Icons) b.innerHTML = Icons.svg(mem.settings.sound ? 'sound' : 'unsound');
+}
 /* ============================================================
    1. 存储
 ============================================================ */
@@ -2079,11 +2091,11 @@ function finishSentence(){
     /* 已标熟的句子：本次答错不再视为「需巩固」（避免和标熟状态矛盾），只显示绿色「已掌握」tag */
     if(_mastered){
       tagWrap.className = 'reveal-tag good';
-      tagWrap.innerHTML = '<span class="tag-icon">✓</span> 已掌握';
+      tagWrap.innerHTML = '<span class="tag-icon">'+(window.Icons?Icons.svg('check'):'')+'</span> 已掌握';
       updateCombo(0);
     } else if(_needsReview){
       tagWrap.className = 'reveal-tag miss';
-      tagWrap.innerHTML = '<span class="tag-icon">⚠</span> 需巩固';
+      tagWrap.innerHTML = '<span class="tag-icon">'+(window.Icons?Icons.svg('warn'):'')+'</span> 需巩固';
       updateCombo(0);
       var wrongIdx = [];
       S.status.forEach(function(s,i){ if(s==='bad') wrongIdx.push(i); });
@@ -2093,7 +2105,7 @@ function finishSentence(){
     } else {
       /* 错 1 次自己纠正：不标需巩固，不打断连击 */
       tagWrap.className = 'reveal-tag good';
-      tagWrap.innerHTML = '<span class="tag-icon">✓</span> 已答对';
+      tagWrap.innerHTML = '<span class="tag-icon">'+(window.Icons?Icons.svg('check'):'')+'</span> 已答对';
     }
     var nb = $('btnNext');
     nb.classList.remove('hidden');
@@ -3860,7 +3872,7 @@ $('btnExplain').onclick = function(){
 /* 管理页句子行上的「详解」按钮也需要支持：由 editDeck 动态绑定，见 editDeck */
 $('btnSound').onclick = function(){
   mem.settings.sound = !mem.settings.sound;
-  this.textContent = mem.settings.sound ? '🔊' : '🔇';
+  setSoundIcon();
   saveStore();
   if(mem.settings.sound) SFX.ok();
 };
@@ -3909,7 +3921,7 @@ $('btnSaveSettings').onclick = function(){
   mem.settings.apiKey = $('setApiKey').value.trim();
   saveStore();
   /* 同步音效按钮 */
-  $('btnSound').textContent = mem.settings.sound ? '🔊' : '🔇';
+  setSoundIcon();
   /* 深色模式 */
   if(mem.settings.darkMode){ document.documentElement.classList.add('dark'); }
   else{ document.documentElement.classList.remove('dark'); }
@@ -4463,7 +4475,7 @@ if(CL && CL.on && CL.isDirty){
 CL.ensureCloud().then(function(){
 try {
 loadStore();
-$('btnSound').textContent = mem.settings.sound ? '🔊' : '🔇';
+setSoundIcon();
 renderCats();
 $('cats').firstChild && $('cats').firstChild.click();
 
@@ -4516,7 +4528,7 @@ if(!_resumed){
 } catch (e) {
   /* 启动段任何异常都写到 #zh（替代"永远卡在加载中"），并打 console 便于 F12 排查 */
   var zh = document.getElementById('zh');
-  if (zh) zh.textContent = '❌ 启动失败：' + (e && e.message || e);
+  if (zh) zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') + ' 启动失败：' + esc(e && e.message || e);
   console.error('[boot] failed:', e);
 }
 }); /* CL.ensureCloud().then */
