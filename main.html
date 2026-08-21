@@ -1281,6 +1281,19 @@ function wordCount(s){
   return String(s == null ? '' : s).trim().split(/\s+/).filter(Boolean).length;
 }
 
+/* 安全调用模块桥接（兜底所有 module 异步加载时序脆弱）：
+   module 未就绪或抛错时返回 fallback，console.warn 记录。ADR-007 包装器统一走这里。 */
+function safeCall(mod, method, fallback, args){
+  var m = window[mod];
+  if(m && typeof m[method] === 'function'){
+    try { return m[method].apply(null, args || []); }
+    catch(e){ console.warn('[' + mod + '.' + method + ']', e); }
+  } else if(typeof console !== 'undefined'){
+    console.warn('[' + mod + '.' + method + '] 未就绪，使用兜底');
+  }
+  return fallback;
+}
+
 /* 宪法：UI 禁用字符 icon —— 音效按钮用 SVG（icons.js sound/unsound） */
 function setSoundIcon(){
   var b = $('btnSound'); if(!b) return;
@@ -1365,16 +1378,16 @@ function exportReinforce(fmt){
 
   var ts = new Date().toISOString().slice(0,19).replace(/[T:]/g,'-');
   var deckName = S.deck.name.replace(/[/\\:*?"<>|]/g,'_').slice(0,30);
-  /* 内容组装已抽至 js/backup.mjs（ADR-007 Step 4） */
-  var BT = window.BackupTools || {};
+  /* 内容组装已抽至 js/backup.mjs（ADR-007 Step 4）：safeCall 兜底 module 加载时序 */
   var stats = { totalQuestions: S.items.length, perfectCount: S.perfectCount, reinforceCount: wrong.length, accuracy: Math.round(S.chunkRight / Math.max(1,S.chunkTotal) * 100) };
 
   if(fmt === 'json'){
-    var exportData = BT.buildReinforceJson(wrong, deckName, stats);
+    var exportData = safeCall('BackupTools', 'buildReinforceJson', null, [wrong, deckName, stats]);
+    if(!exportData){ alert('导出模块未加载，请刷新重试'); return; }
     downloadFile(JSON.stringify(exportData, null, 2), deckName+'_'+ts+'.reinforce.json', 'application/json');
   }
   else if(fmt === 'txt'){
-    var text = BT.buildReinforceTxt(wrong, deckName, stats);
+    var text = safeCall('BackupTools', 'buildReinforceTxt', '', [wrong, deckName, stats]);
     downloadFile(text, deckName+'_'+ts+'.reinforce.txt', 'text/plain;charset=utf-8');
   }
   else if(fmt === 'book'){
@@ -1703,12 +1716,13 @@ function firstEmptyInputAt(i){
    此处为包装器（注入候选池来源，行为与原内联实现一致，可单测）。 */
 function allItems(){ var out = []; allDecks().forEach(function(d){ (d.items||[]).forEach(function(o){ out.push(o); }); }); return out; }
 function buildChoices(it, i){
-  return (window.ChunkEngine || {}).buildChoices(it, i, S.items || [], allItems());
+  var right = it.chunks[i];
+  return safeCall('ChunkEngine', 'buildChoices', [right], [it, i, S.items || [], allItems()]);
 }
 
 /* 收集整句的干扰项（一次性大池子，所有 chunks 共享，不逐 chunk 刷新） */
 function buildDistractors(it){
-  return (window.ChunkEngine || {}).buildDistractors(it, S.items || [], allItems());
+  return safeCall('ChunkEngine', 'buildDistractors', [], [it, S.items || [], allItems()]);
 }
 
 /* 渲染整池：未填的 correct（高亮当前）+ 所有 distractors；正确填入后该 correct 自动消失 */
@@ -1835,9 +1849,9 @@ function submitChunk(){
   }
   var right = it.chunks[i];
   var alternatives = (it.alts && it.alts[i]) || [];
-  var ok = (window.ChunkEngine || {}).judgeChunk
-    ? window.ChunkEngine.judgeChunk(val, right, alternatives)
-    : [right].concat(alternatives).some(function(a){ return norm(val) === norm(a); });
+  var ok = safeCall('ChunkEngine', 'judgeChunk',
+    [right].concat(alternatives).some(function(a){ return norm(val) === norm(a); }),
+    [val, right, alternatives]);
 
   S.chunkTotal++;
   S.answers[i] = val;
@@ -3223,7 +3237,7 @@ function renderExplain(){
 /* 生成详解 Prompt：多维度结构化输出 */
 /* AI prompt 构建已抽至 js/ai-prompts.mjs（ADR-007 Step 3）：包装器调 window.AIPrompts，
    行为与原内联实现逐字符一致（buildBatchExplainPrompt/buildSplitPrompt/buildAppendPrompt 入参按模块契约调整）。 */
-function buildExplainPrompt(it){ return (window.AIPrompts || {}).buildExplainPrompt(it); }
+function buildExplainPrompt(it){ return safeCall('AIPrompts', 'buildExplainPrompt', '', [it]); }
 function copyText(t){
   try{
     if(navigator.clipboard && navigator.clipboard.writeText){
@@ -3304,7 +3318,7 @@ function openBatchExplain(deck){
   $('batchExplainMsg').textContent = '';
   $('batchExplainMask').hidden = false;
 }
-function buildBatchExplainPrompt(pending){ return (window.AIPrompts || {}).buildBatchExplainPrompt(pending); }
+function buildBatchExplainPrompt(pending){ return safeCall('AIPrompts', 'buildBatchExplainPrompt', '', [pending]); }
 $('batchExplainCopy').onclick = function(){
   if(!_batchDeck) return;
   var t = buildBatchExplainPrompt(pendingExplains(_batchDeck, _batchAll));
@@ -3353,7 +3367,7 @@ $('batchExplainApply').onclick = function(){
 ============================================================ */
 var pickedCat = null;
 
-function buildPrompt(cat, count, level, chunkRange){ return (window.AIPrompts || {}).buildPrompt(cat, count, level, chunkRange); }
+function buildPrompt(cat, count, level, chunkRange){ return safeCall('AIPrompts', 'buildPrompt', '', [cat, count, level, chunkRange]); }
 
 /* AI 生成题库的分类选项（icon / 名称 / 描述 / 生成聚焦点） */
 var CATEGORIES = [
@@ -3389,7 +3403,7 @@ function refreshPrompt(){
 }
 
 /* --- JSON 清洗 --- */
-function extractJSON(text){ return (window.AIPrompts || {}).extractJSON(text); }
+function extractJSON(text){ return safeCall('AIPrompts', 'extractJSON', null, [text]); }
 
 /* --- 结构校验 --- */
 function validateDeck(raw){
@@ -3623,8 +3637,8 @@ function setAppendMode(mode){
     if($('appendPromptBox')) $('appendPromptBox').value = buildAppendPrompt(_appendDeck.name);
   }
 }
-function buildSplitPrompt(rawLines){ return (window.AIPrompts || {}).buildSplitPrompt(rawLines); }
-function buildAppendPrompt(deckName){ return (window.AIPrompts || {}).buildAppendPrompt(deckName); }
+function buildSplitPrompt(rawLines){ return safeCall('AIPrompts', 'buildSplitPrompt', '', [rawLines]); }
+function buildAppendPrompt(deckName){ return safeCall('AIPrompts', 'buildAppendPrompt', '', [deckName]); }
 var _appendMode = 'A';
 /* 旧追加弹窗入口 + 事件（兼容旧 pageDecks 用户） */
 function openAppendFromDecks(){
@@ -3992,14 +4006,15 @@ function writeAllCourseProgress(progress){
 
 /* 导出全部数据（含题库/统计/设置/错题本/图文课程/课程进度）；组装已抽至 js/backup.mjs */
 function exportAllData(){
-  var payload = (window.BackupTools || {}).buildExportPayload(mem, getReinforceBook(), readAllCourses(), readAllCourseProgress());
+  var payload = safeCall('BackupTools', 'buildExportPayload', null, [mem, getReinforceBook(), readAllCourses(), readAllCourseProgress()]);
+  if(!payload){ alert('导出模块未加载，请刷新重试'); return; }
   var ts = new Date().toISOString().slice(0,19).replace(/[T:]/g,'-');
   downloadFile(JSON.stringify(payload, null, 2), 'chunklab_backup_'+ts+'.json', 'application/json');
 }
 
 /* 导入备份：解析（js/backup.mjs）→ 二次确认 → 覆盖 */
 function importAllData(text, cb){
-  var r = (window.BackupTools || {}).parseExport(text);
+  var r = safeCall('BackupTools', 'parseExport', { ok: false, error: '解析模块未加载，请刷新重试' }, [text]);
   if(!r || !r.ok || !r.data){ return cb(false, (r && r.error) || '解析失败'); }
   var d = r.data;
   if(!confirm(d.summary)){ return cb(false, '已取消'); }
