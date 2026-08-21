@@ -3756,6 +3756,11 @@ function showPage(id){
   var target = $(id);
   if(target) target.classList.remove('hidden');
   _curPage = id;
+  /* stageChoices 是 fixed 浮层（不属任何 .page），切到非练习页时清空，
+     避免 chips 残留在屏幕上与新页面冲突 */
+  if(id !== 'pagePractice'){
+    var sc = $('stageChoices'); if(sc) sc.innerHTML = '';
+  }
   /* 页面切换时关闭所有弹窗 */
   $('impMask').hidden = true;
   $('appendMask').hidden = true;
