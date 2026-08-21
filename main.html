@@ -4093,6 +4093,8 @@ function openAIExplain(){
 var AI_CACHE_KEY = 'chunklab_ai_cache_v1';
 var AI_CACHE_MAX = 200;
 var AI_CACHE_TTL = 30 * 24 * 3600 * 1000; /* 30 天：命中时检查 at 过期，过期即弃（对齐服务端 AI_CACHE_TTL） */
+/* 提示词版本：prompt 升级后 AI_PROMPT_VER bump，旧版本缓存视为 miss（js/ai-prompts.mjs PROMPT_VERSION） */
+var AI_PROMPT_VER = (window.AIPrompts && window.AIPrompts.PROMPT_VERSION) || 1;
 function aiCacheLoad(){
   try{ var o = JSON.parse(localStorage.getItem(AI_CACHE_KEY) || '{}'); return (o && typeof o === 'object') ? o : {}; }
   catch(e){ return {}; }
@@ -4104,6 +4106,10 @@ function aiCacheGet(cacheKey){
   var cache = aiCacheLoad();
   var hit = cache[cacheKey];
   if(!hit || !hit.obj || typeof hit.obj !== 'object') return null;
+  if(hit.ver !== AI_PROMPT_VER){
+    delete cache[cacheKey]; aiCacheSave(cache); /* 旧版本缓存（prompt 已升级）：作废并视为 miss */
+    return null;
+  }
   if(AI_CACHE_TTL > 0 && hit.at && (Date.now() - hit.at) > AI_CACHE_TTL){
     delete cache[cacheKey]; aiCacheSave(cache); /* 过期：清除并视为 miss */
     return null;
@@ -4112,7 +4118,7 @@ function aiCacheGet(cacheKey){
 }
 function aiCachePut(cacheKey, obj){
   var cache = aiCacheLoad();
-  cache[cacheKey] = { obj: obj, at: Date.now() };
+  cache[cacheKey] = { obj: obj, at: Date.now(), ver: AI_PROMPT_VER };
   var keys = Object.keys(cache);
   if(keys.length > AI_CACHE_MAX){
     keys.sort(function(a,b){ return (cache[a].at||0) - (cache[b].at||0); });

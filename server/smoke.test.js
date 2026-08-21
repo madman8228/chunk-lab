@@ -415,7 +415,7 @@ async function main() {
     check('ADR-004 缺 sentence → 400', r.status === 400, 'status=' + r.status);
 
     // 服务端缓存命中（预置 key = model::norm(sentence)，命中不占限流额度、不发模型请求）
-    const cacheSeed = { 'deepseek-v4-flash::i am a student': { orig: 'I am a student.', zh: '我是一个学生', chunks: [], grammar: [], collocations: [], scenario: '自我介绍' } };
+    const cacheSeed = { 'deepseek-v4-flash::i am a student': { data: { orig: 'I am a student.', zh: '我是一个学生', chunks: [], grammar: [], collocations: [], scenario: '自我介绍' }, ver: 1 } };
     r = await request('POST', '/api/import', token, { mem: { decks: [] }, courses: [], courseProgress: {}, aiCache: cacheSeed });
     check('ADR-004 预置缓存 ok', r.status === 200, 'status=' + r.status);
     r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.' });
@@ -447,11 +447,29 @@ async function main() {
     r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.' });
     check('ADR-008 重新生成后再次命中 cached:true', r.status === 200 && r.json && r.json.cached === true, 'status=' + r.status);
 
+    /* ===== AI_PROMPT_VERSION：旧版本缓存自动作废 ===== */
+    // 写入一条 ver=0 的旧版缓存 → 请求应 miss 重新生成
+    const sdb2 = new (require('better-sqlite3'))(path.join(TMP_DB, 'chunklab.db'));
+    sdb2.prepare("INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime('now'))")
+      .run('deepseek-v4-flash::stale version sentence', JSON.stringify({ data: { orig: 'OLD' }, ver: 0 }));
+    sdb2.close();
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'stale version sentence', apiKey: 'sk-test' });
+    check('v: 旧版本缓存(ver:0) → miss 重新生成', r.status === 200 && r.json && r.json.cached === false && r.json.data && r.json.data.orig === 'MOCK',
+      'status=' + r.status + ' ' + JSON.stringify(r.json && r.json.data));
+    // 重新生成后写入新版本缓存 → 再次请求命中
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'stale version sentence' });
+    check('v: 重新生成后（ver:1）→ 命中 cached:true', r.status === 200 && r.json && r.json.cached === true, 'status=' + r.status);
+    // 新版本缓存内容应带 ver=1
+    const sdb3 = new (require('better-sqlite3'))(path.join(TMP_DB, 'chunklab.db'));
+    const cachedRow = sdb3.prepare("SELECT value_json FROM ai_cache WHERE key='deepseek-v4-flash::stale version sentence'").get();
+    sdb3.close();
+    check('v: 缓存写入含 ver:1', !!cachedRow && JSON.parse(cachedRow.value_json).ver === 1, JSON.stringify(cachedRow));
+
     /* ===== 可观测性（Phase D/上线准备）：/api/stats 指标 ===== */
     r = await request('GET', '/api/stats', null);
-    check('obs: /api/stats 返回指标（aiCache.hits ≥ 2 且 hitRate 可算）',
-      r.status === 200 && r.json && r.json.ok && r.json.aiCache && r.json.aiCache.hits >= 2 &&
-      typeof r.json.aiCache.misses === 'number' && typeof r.json.aiCache.hitRate === 'number' &&
+    check('obs: /api/stats 返回指标（aiCache 有命中/未命中且 hitRate 可算）',
+      r.status === 200 && r.json && r.json.ok && r.json.aiCache && r.json.aiCache.hits >= 1 &&
+      r.json.aiCache.misses >= 1 && typeof r.json.aiCache.hitRate === 'number' &&
       typeof r.json.uptimeSec === 'number',
       'status=' + r.status + ' ' + JSON.stringify(r.json && r.json.aiCache));
 

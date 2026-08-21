@@ -317,11 +317,21 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
     const model = (typeof body.model === 'string' && body.model.trim()) ? body.model.trim() : 'deepseek-v4-flash';
     const cacheKey = model + '::' + ai.norm(sentence);
 
-    /* 1) 服务端缓存命中（不占限流额度；AI_CACHE_TTL 内有效，过期视为 miss） */
+    /* 1) 服务端缓存命中（不占限流额度；AI_CACHE_TTL 内有效，过期视为 miss）
+       命中判定含 AI_PROMPT_VERSION：ver 不匹配（旧版缓存/提示词升级）→ miss 重新生成 */
     const hit = AI_CACHE_TTL > 0
       ? db.prepare("SELECT value_json FROM ai_cache WHERE key=? AND updated_at >= datetime('now', ?)").get(cacheKey, '-' + AI_CACHE_TTL + ' days')
       : db.prepare('SELECT value_json FROM ai_cache WHERE key=?').get(cacheKey);
-    if (hit) { metrics.aiCacheHits++; res.json({ ok: true, cached: true, data: JSON.parse(hit.value_json) }); return; }
+    if (hit) {
+      let c = null;
+      try { c = JSON.parse(hit.value_json); } catch (e) { /* 损坏视为 miss */ }
+      if (c && c.ver === AI_PROMPT_VERSION) {
+        metrics.aiCacheHits++;
+        res.json({ ok: true, cached: true, data: c.data });
+        return;
+      }
+      /* ver 不匹配：旧缓存作废，落到下方 miss 重新生成（重新生成后覆盖） */
+    }
     metrics.aiCacheMisses++;
 
     /* 2) 每用户滑动窗口限流 */
@@ -331,9 +341,9 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
     const apiKey = ai.DEEPSEEK_API_KEY || (typeof body.apiKey === 'string' ? body.apiKey.trim() : '');
     if (!apiKey) return res.status(400).json({ error: '服务端未配置 DEEPSEEK_API_KEY（且未提供 apiKey）' });
 
-    /* 4) 构建提示词（与前端原版一致）并调用 DeepSeek */
+    /* 4) 构建提示词（与前端原版一致）并调用 DeepSeek（5xx/网络错误自动重试一次） */
     const prompt = '请用中文讲解以下英语句子，面向英语学习者。输出纯 JSON，不要代码块标记，字段：orig(原句英文)、zh(中文意思)、chunks(意群数组，每项含 text 和 role 语法角色)、grammar(核心语法要点数组)、collocations(固定搭配/短语数组)、scenario(使用场景说明)。\n句子：' + sentence + '\n中文：' + (typeof body.zh === 'string' ? body.zh : '');
-    ai.callDeepSeek({
+    ai.callDeepSeekRetry({
       model: model,
       messages: [
         { role: 'system', content: '你是专业的英语老师，只返回 JSON。' },
@@ -346,7 +356,8 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
       const content = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '';
       const clean = String(content).replace(/```json/gi, '').replace(/```/g, '').trim();
       const obj = JSON.parse(clean);
-      db.prepare("INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime('now'))").run(cacheKey, JSON.stringify(obj));
+      db.prepare("INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime('now'))")
+        .run(cacheKey, JSON.stringify({ data: obj, ver: AI_PROMPT_VERSION }));
       trimAiCache(AI_CACHE_MAX);
       res.json({ ok: true, cached: false, data: obj });
     }).catch(function (e) {
@@ -362,6 +373,9 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
    过期条目在 trim 时懒清理（写路径触发，无需定时器）。AI_CACHE_TTL=0 表示永不过期。 */
 const AI_CACHE_MAX = parseInt(process.env.AI_CACHE_MAX || '2000', 10);
 const AI_CACHE_TTL = parseInt(process.env.AI_CACHE_TTL || '30', 10);
+/* 提示词/模型升级时 bump：旧版本缓存（ver 不匹配）一律视为 miss 重新生成，
+   防止"解读质量被旧缓存锁死"。必须与 js/ai-prompts.mjs 的 PROMPT_VERSION 同步修改。 */
+const AI_PROMPT_VERSION = 1;
 function trimAiCache(max) {
   if (AI_CACHE_TTL > 0) {
     db.prepare("DELETE FROM ai_cache WHERE updated_at < datetime('now', ?)").run('-' + AI_CACHE_TTL + ' days');

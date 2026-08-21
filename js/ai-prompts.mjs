@@ -14,6 +14,10 @@
  */
 'use strict';
 
+/* 提示词版本：任何 prompt 结构/模型行为升级后 +1（本地与服务端 ai_cache 的旧版本缓存自动失效）。
+   必须与 server/index.js 的 AI_PROMPT_VERSION 同步修改。 */
+export const PROMPT_VERSION = 1;
+
 export function buildExplainPrompt(it) {
   var L = [];
   L.push('你是一位资深英语教师。请为下面句子的每个意群（chunk）撰写多维度中文讲解。');

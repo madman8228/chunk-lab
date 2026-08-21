@@ -72,4 +72,34 @@ function callDeepSeek(payload, apiKey, timeoutMs) {
   });
 }
 
-module.exports = { norm, rateLimit, callDeepSeek, DEEPSEEK_API_KEY };
+/* 是否值得重试：仅 5xx 上游错误或网络错误（ECONNRESET/超时等）。
+   4xx（含 429 限流）与 3xx 不重试——避免放大雪崩与计费噪音。 */
+function shouldRetry(status, err) {
+  if (err) return true;                       /* 网络层错误（ECONNRESET / 超时 / DNS 等） */
+  return status >= 500 && status <= 599;      /* 上游 5xx */
+}
+
+/* 带一次重试的调用（指数退避 500ms）。AI_MOCK_RESPONSE 模式恒 200 → 不触发重试。
+   重试在调用方看来仍是单次 Promise；结果含 retried 标记便于观测。 */
+function callDeepSeekRetry(payload, apiKey, timeoutMs) {
+  return callDeepSeek(payload, apiKey, timeoutMs).then(function (r) {
+    if (!shouldRetry(r.status, null)) return r;
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        callDeepSeek(payload, apiKey, timeoutMs).then(function (r2) {
+          r2.retried = true;
+          resolve(r2);
+        }, resolve);
+      }, 500);
+    });
+  }, function (err) {
+    if (!shouldRetry(null, err)) throw err;
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        callDeepSeek(payload, apiKey, timeoutMs).then(function (r2) { r2.retried = true; resolve(r2); }, reject);
+      }, 500);
+    });
+  });
+}
+
+module.exports = { norm, rateLimit, callDeepSeek, callDeepSeekRetry, shouldRetry, DEEPSEEK_API_KEY };
