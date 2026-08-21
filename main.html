@@ -798,7 +798,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="modal-head">
       <h3 style="margin:0"><span data-icon="book"></span> 句子详解</h3>
       <span class="spacer"></span>
-      <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板"><span data-icon="copy"></span>复制 Prompt</button>
       <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body" style="padding:2px 22px 18px">
@@ -810,22 +809,26 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <div id="explainSentence" style="font-size:17px;font-weight:700;color:var(--text);line-height:1.45"></div>
         <div id="explainTrans" style="font-size:13px;color:var(--faint);margin-top:3px"></div>
       </div>
-      <!-- tab1：已保存讲解 + 批量回填 -->
+      <!-- tab1：课程自带的结构化讲解（渲染已打包数据）+ 高级手动回填（默认折叠，内容生产者用） -->
       <div id="explainTabSaved">
         <div id="explainList" style="display:flex;flex-direction:column;gap:8px"></div>
 
-        <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-            <strong style="font-size:14px">粘贴大模型返回的 JSON 回填</strong>
-            <span style="font-size:12px;color:var(--faint)">（字符串数组，长度须与意群数一致）</span>
+        <details id="explainManual" style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+          <summary style="cursor:pointer;font-size:12.5px;color:var(--faint);user-select:none;outline:none">高级：手动回填讲解（复制 Prompt 到外部大模型 → 粘贴 JSON）</summary>
+          <div style="margin-top:10px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <strong style="font-size:14px">粘贴大模型返回的 JSON 回填</strong>
+              <span style="font-size:12px;color:var(--faint)">（对象数组，长度须与意群数一致）</span>
+            </div>
+            <button class="btn sm ghost" id="explainCopyPrompt" style="margin-bottom:8px"><span data-icon="copy"></span>复制 Prompt</button>
+            <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ {"grammar":"语法讲解","syntax":"句法讲解"} ]'></textarea>
+            <div id="explainMsg" class="msg"></div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
+              <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+            </div>
           </div>
-          <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
-          <div id="explainMsg" class="msg"></div>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
-            <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
-          </div>
-        </div>
+        </details>
       </div>
       <!-- tab2：AI 解读 -->
       <div id="explainTabAI" class="hidden">
@@ -3195,8 +3198,6 @@ function switchExplainTab(n){
   ai.classList.toggle('hidden', n !== 2);
   $('tabExplainSaved').classList.toggle('on', n === 1);
   $('tabExplainAI').classList.toggle('on', n === 2);
-  var cp = $('explainCopyPrompt'); /* 复制 Prompt 属 tab1 批量回填工作流 */
-  if(cp) cp.style.display = (n === 1) ? '' : 'none';
   if(n === 2) updateAIButtons(); /* 进入 AI tab 时按 apiKey 状态切换按钮 */
   /* 不自动调用 AI：用户主动点「生成/重新生成」才请求（避免无 Key 时被动显示本地兜底造成"已读"误判） */
 }
