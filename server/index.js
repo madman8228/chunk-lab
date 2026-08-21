@@ -35,6 +35,41 @@ app.use(cors({
   credentials: true
 }));
 
+/* ===== 可观测性（上线前）：请求日志 + 全局指标 =====
+   日志：方法 路径 状态码 耗时(ms) 用户id（轻量解析 token，不阻塞鉴权）
+   指标：ai_cache 命中/未命中计数 + /api/stats 查询接口（匿名只读，无用户数据） */
+const metrics = { aiCacheHits: 0, aiCacheMisses: 0, startedAt: new Date().toISOString() };
+function userIdFromReq(req) {
+  try {
+    const h = req.headers.authorization || '';
+    const t = h.startsWith('Bearer ') ? h.slice(7) : null;
+    if (!t) return '-';
+    const a = auth.verifyToken(t);
+    return a ? String(a.userId) : '?';
+  } catch (e) { return '?'; }
+}
+app.use(function (req, res, next) {
+  const t0 = Date.now();
+  res.on('finish', function () {
+    const dur = Date.now() - t0;
+    console.log('[req] ' + new Date().toISOString() + ' ' + req.method + ' ' + req.originalUrl + ' ' +
+      res.statusCode + ' ' + dur + 'ms u:' + userIdFromReq(req));
+  });
+  next();
+});
+app.get('/api/stats', function (req, res) {
+  const total = metrics.aiCacheHits + metrics.aiCacheMisses;
+  res.json({
+    ok: true,
+    uptimeSec: Math.round((Date.now() - new Date(metrics.startedAt).getTime()) / 1000),
+    aiCache: {
+      hits: metrics.aiCacheHits,
+      misses: metrics.aiCacheMisses,
+      hitRate: total > 0 ? Math.round(metrics.aiCacheHits / total * 1000) / 1000 : null
+    }
+  });
+});
+
 app.get('/api/health', function (req, res) { res.json({ ok: true, ts: Date.now() }); });
 
 /* 公开配置：前端据此决定是否弹登录框。无需鉴权。 */
@@ -286,7 +321,8 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
     const hit = AI_CACHE_TTL > 0
       ? db.prepare("SELECT value_json FROM ai_cache WHERE key=? AND updated_at >= datetime('now', ?)").get(cacheKey, '-' + AI_CACHE_TTL + ' days')
       : db.prepare('SELECT value_json FROM ai_cache WHERE key=?').get(cacheKey);
-    if (hit) { res.json({ ok: true, cached: true, data: JSON.parse(hit.value_json) }); return; }
+    if (hit) { metrics.aiCacheHits++; res.json({ ok: true, cached: true, data: JSON.parse(hit.value_json) }); return; }
+    metrics.aiCacheMisses++;
 
     /* 2) 每用户滑动窗口限流 */
     if (!ai.rateLimit(req.userId)) return res.status(429).json({ error: 'AI 请求过于频繁，请稍后再试' });

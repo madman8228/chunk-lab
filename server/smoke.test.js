@@ -447,6 +447,14 @@ async function main() {
     r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.' });
     check('ADR-008 重新生成后再次命中 cached:true', r.status === 200 && r.json && r.json.cached === true, 'status=' + r.status);
 
+    /* ===== 可观测性（Phase D/上线准备）：/api/stats 指标 ===== */
+    r = await request('GET', '/api/stats', null);
+    check('obs: /api/stats 返回指标（aiCache.hits ≥ 2 且 hitRate 可算）',
+      r.status === 200 && r.json && r.json.ok && r.json.aiCache && r.json.aiCache.hits >= 2 &&
+      typeof r.json.aiCache.misses === 'number' && typeof r.json.aiCache.hitRate === 'number' &&
+      typeof r.json.uptimeSec === 'number',
+      'status=' + r.status + ' ' + JSON.stringify(r.json && r.json.aiCache));
+
     // 限流：AI_RATE_LIMIT=3（'She is a teacher.' 1 次 + TTL 过期 miss 1 次，已占 2 次），再 1 次后第 4 次 → 429
     await request('POST', '/api/ai/explain', token, { sentence: 'limit sentence number 1', apiKey: 'sk-test' });
     r = await request('POST', '/api/ai/explain', token, { sentence: 'fourth sentence triggers limit', apiKey: 'sk-test' });
