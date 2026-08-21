@@ -792,57 +792,62 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   </div>
 
   <!-- 详解页（tab1：已保存讲解 + 批量回填；tab2：AI 解读生成） -->
-  <div class="page hidden" id="pageExplain">
-    <div class="page-head">
-      <button class="btn sm" id="explainBack">← 返回</button>
-      <h2><span data-icon="book"></span> 句子详解</h2>
+<!-- 详解弹窗（弹窗模式：练习页保持在底层，不打断状态；tab1：已保存讲解 + 批量回填；tab2：AI 解读） -->
+<div class="mask" id="explainMask" hidden>
+  <div class="modal" style="max-width:640px">
+    <div class="modal-head">
+      <h3 style="margin:0"><span data-icon="book"></span> 句子详解</h3>
       <span class="spacer"></span>
       <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板"><span data-icon="copy"></span>复制 Prompt</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
-    <div class="page-tabs" style="display:flex;gap:6px;margin:10px 0 4px">
-      <button class="tab on" id="tabExplainSaved">详解</button>
-      <button class="tab" id="tabExplainAI"><span data-icon="ai"></span>AI 解读</button>
-    </div>
-    <div style="padding:2px 0 10px">
-      <div id="explainSentence" style="font-size:17px;font-weight:700;color:var(--text);line-height:1.45"></div>
-      <div id="explainTrans" style="font-size:13px;color:var(--faint);margin-top:3px"></div>
-    </div>
-    <!-- tab1：已保存讲解 + 批量回填 -->
-    <div id="explainTabSaved">
-      <div id="explainList" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="modal-body" style="padding:2px 22px 18px">
+      <div class="page-tabs" style="display:flex;gap:6px;margin:10px 0 4px">
+        <button class="tab on" id="tabExplainSaved">详解</button>
+        <button class="tab" id="tabExplainAI"><span data-icon="ai"></span>AI 解读</button>
+      </div>
+      <div style="padding:2px 0 10px">
+        <div id="explainSentence" style="font-size:17px;font-weight:700;color:var(--text);line-height:1.45"></div>
+        <div id="explainTrans" style="font-size:13px;color:var(--faint);margin-top:3px"></div>
+      </div>
+      <!-- tab1：已保存讲解 + 批量回填 -->
+      <div id="explainTabSaved">
+        <div id="explainList" style="display:flex;flex-direction:column;gap:8px"></div>
 
-      <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-          <strong style="font-size:14px">粘贴大模型返回的 JSON 回填</strong>
-          <span style="font-size:12px;color:var(--faint)">（字符串数组，长度须与意群数一致）</span>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <strong style="font-size:14px">粘贴大模型返回的 JSON 回填</strong>
+            <span style="font-size:12px;color:var(--faint)">（字符串数组，长度须与意群数一致）</span>
+          </div>
+          <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
+          <div id="explainMsg" class="msg"></div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
+            <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+          </div>
         </div>
-        <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
-        <div id="explainMsg" class="msg"></div>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
-          <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+      </div>
+      <!-- tab2：AI 解读 -->
+      <div id="explainTabAI" class="hidden">
+        <!-- 空态（放在 aiBody 外，避免被 runAIExplain 的 innerHTML 覆盖） -->
+        <div id="aiEmptyNoKey" class="hidden" style="text-align:center;padding:36px 0">
+          <p style="margin:0 0 14px;font-size:13.5px;color:var(--muted)">需要联网生成 AI 解读</p>
+          <button class="btn primary" id="btnAIConfigInline" style="padding:6px 16px;font-size:13.5px"><span data-icon="settings"></span>配置 API Key</button>
         </div>
-      </div>
-    </div>
-    <!-- tab2：AI 解读 -->
-    <div id="explainTabAI" class="hidden">
-      <!-- 空态（放在 aiBody 外，避免被 runAIExplain 的 innerHTML 覆盖） -->
-      <div id="aiEmptyNoKey" class="hidden" style="text-align:center;padding:36px 0">
-        <p style="margin:0 0 14px;font-size:13.5px;color:var(--muted)">需要联网生成 AI 解读</p>
-        <button class="btn primary" id="btnAIConfigInline" style="padding:6px 16px;font-size:13.5px"><span data-icon="settings"></span>配置 API Key</button>
-      </div>
-      <div id="aiEmptyHasKey" class="hidden" style="text-align:center;padding:36px 0;color:var(--faint)">
-        <p style="margin:0;font-size:13.5px">点击下方「生成」获取本句的大模型解读</p>
-      </div>
-      <div id="aiBody"></div>
-      <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
-        <button class="btn sm ghost hidden" id="btnAIRegen"><span data-icon="refresh"></span>生成/重新生成</button>
-        <button class="btn sm primary hidden" id="btnAISave"><span data-icon="check"></span>保存为详解</button>
-        <span class="spacer"></span>
-        <span id="aiNote" style="font-size:12px;color:var(--faint)"></span>
+        <div id="aiEmptyHasKey" class="hidden" style="text-align:center;padding:36px 0;color:var(--faint)">
+          <p style="margin:0;font-size:13.5px">点击下方「生成」获取本句的大模型解读</p>
+        </div>
+        <div id="aiBody"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
+          <button class="btn sm ghost hidden" id="btnAIRegen"><span data-icon="refresh"></span>生成/重新生成</button>
+          <button class="btn sm primary hidden" id="btnAISave"><span data-icon="check"></span>保存为详解</button>
+          <span class="spacer"></span>
+          <span id="aiNote" style="font-size:12px;color:var(--faint)"></span>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
   <!-- 学习档案页 -->
   <div class="page hidden" id="pageStats">
@@ -3175,8 +3180,12 @@ function openExplain(deck, item, tab){
   _explainDeck = deck;
   _explainIdx = deck.items.indexOf(item);
   renderExplain();
-  showPage('pageExplain');
+  var m = $('explainMask'); if(m) m.hidden = false;   /* 弹窗模式：练习页保持在底层 */
   switchExplainTab(tab || 1);
+}
+/* 关闭详解弹窗：仅隐藏，底层页面（练习/管理）天然保持，零状态恢复成本 */
+function closeExplain(){
+  var m = $('explainMask'); if(m) m.hidden = true;
 }
 /* 详解页 tab：1=已保存讲解（含批量回填），2=AI 解读（生成/重新生成/保存） */
 function switchExplainTab(n){
@@ -3279,11 +3288,6 @@ function copyText(t){
     return Promise.resolve(ok);
   }catch(e){ return Promise.resolve(false); }
 }
-$('explainBack').onclick = function(){
-  /* 返回上一页（管理页/练习页） */
-  var from = _explainFromPage || 'pagePractice';
-  showPage(from);
-};
 $('explainCopyPrompt').onclick = function(){
   if(!_explainDeck) return;
   var t = buildExplainPrompt(_explainDeck.items[_explainIdx]);
@@ -3771,12 +3775,9 @@ function showPage(id){
   if(target) target.classList.remove('hidden');
   _curPage = id;
   /* stageChoices 是 fixed 浮层（不属任何 .page），切到非练习页时清空，
-     避免 chips 残留在屏幕上与新页面冲突 */
+     避免 chips 残留在屏幕上与新页面冲突（详解已改为弹窗模式不走 showPage） */
   if(id !== 'pagePractice'){
     var sc = $('stageChoices'); if(sc) sc.innerHTML = '';
-  }else{
-    /* 回到练习页：重新渲染 chips（进入详解/档案等页面时被清空过） */
-    renderActiveChoices();
   }
   /* 页面切换时关闭所有弹窗 */
   $('impMask').hidden = true;
@@ -3786,19 +3787,29 @@ function showPage(id){
 function goPractice(){ showPage('pagePractice'); }
 
 function closeMasks(){
+  /* 详解弹窗可能从管理页打开：关闭后不强制回练习页（保持来源上下文） */
+  var fromExplain = $('explainMask') && !$('explainMask').hidden;
   $('impMask').hidden = true;
   $('appendMask').hidden = true;
   $('settingsMask').hidden = true;
   $('batchExplainMask').hidden = true;
+  $('explainMask').hidden = true;
   /* 如果在题库/管理页，按 Esc 回到练习页 */
-  if(_curPage !== 'pagePractice') goPractice();
+  if(_curPage !== 'pagePractice' && !fromExplain) goPractice();
 }
 document.addEventListener('click', function(e){
   var t = e.target;
   /* 委托 data-close：t 可能是 button 内的 <svg>（宪法 SVG 化后），用 closest 找回真正带 data-close 的元素 */
-  if(t.closest && t.closest('[data-close]')) closeMasks();
+  if(t.closest && t.closest('[data-close]')){
+    if($('explainMask') && !$('explainMask').hidden){ closeExplain(); return; }
+    closeMasks();
+    return;
+  }
   /* 点 mask 背景（非 modal 内部）也关闭：仅当点击的是 mask 自身 */
-  if(t.classList && t.classList.contains('mask')) closeMasks();
+  if(t.classList && t.classList.contains('mask')){
+    if(t.id === 'explainMask'){ closeExplain(); return; }
+    closeMasks();
+  }
 });
 document.addEventListener('keydown', function(e){
   if(e.key==='Escape'){ closeMasks(); return; }
@@ -3874,7 +3885,7 @@ function hideIframe(){
   $('iframeSlot').src = 'about:blank';
 }
 function hideAllPages(){
-  ['pagePractice','pageDecks','pageStats','pageEdit','pageExplain'].forEach(function(id){
+  ['pagePractice','pageDecks','pageStats','pageEdit'].forEach(function(id){
     var el = $(id); if(el) el.classList.add('hidden');
   });
 }
