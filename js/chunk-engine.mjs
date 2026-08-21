@@ -63,7 +63,10 @@ function overlapScore(a, b) {
 }
 
 /* 生成候选：1 个正确答案 + 2 个干扰项（三档质量：同 pattern → 同长度+语义重叠 → 兜底）。
-   currentItems = 当前题库 items（池子主来源）；allItems = 全部题库 items（池子不足时兜底）。 */
+   currentItems = 当前题库 items（优先同语境）；allItems = 全部题库 items。
+   ★ 候选池 = 当前题库 + 全题库合并：单题库 chunk 池稀疏（如 10 句 ≈ 25 chunks），
+     若只在当前题库找，同 pattern / 同长度+重叠 的高质量干扰常不足 2 个 → 被迫兜底到零相关。
+     跨题库找高质量干扰（同 pattern 或共享内容词）优于"同题库但零相关"。 */
 export function buildChoices(it, i, currentItems, allItems) {
   var right = it.chunks[i], rn = norm(right);
   var rightPattern = patternOf(right);
@@ -73,13 +76,10 @@ export function buildChoices(it, i, currentItems, allItems) {
     if (o === it) return;
     (o.chunks || []).forEach(function (c) { pool.push(c); });
   });
-  /* 干扰项不足时从其他题库补 */
-  if (pool.length < 6) {
-    (allItems || []).forEach(function (o) {
-      if (o === it) return;
-      (o.chunks || []).forEach(function (c) { pool.push(c); });
-    });
-  }
+  (allItems || []).forEach(function (o) {
+    if (o === it) return;
+    (o.chunks || []).forEach(function (c) { pool.push(c); });
+  });
 
   /* 桶 A：词性模式完全相同（结构对位，内容词不同 → 高质量干扰） */
   var samePattern = [];
@@ -145,12 +145,10 @@ export function buildDistractors(it, currentItems, allItems) {
     if (o === it) return;
     (o.chunks || []).forEach(function (c) { pool.push(c); });
   });
-  if (pool.length < distractorCount * 2) {
-    (allItems || []).forEach(function (o) {
-      if (o === it) return;
-      (o.chunks || []).forEach(function (c) { pool.push(c); });
-    });
-  }
+  (allItems || []).forEach(function (o) {
+    if (o === it) return;
+    (o.chunks || []).forEach(function (c) { pool.push(c); });
+  });
   var correctSet = {};
   it.chunks.forEach(function (v) { correctSet[norm(v)] = 1; });
   /* 优先取同模式（高质量干扰），否则退化 */

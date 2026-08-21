@@ -122,6 +122,25 @@ const items = [sentA, sentB, sentC];
     'cs=' + JSON.stringify(cs));
 })();
 
+/* ===== 跨题库高质量候选（修根因：单题库 chunk 池稀疏 → 高质量干扰不足 → 桶 C 零相关兜底） ===== */
+(function () {
+  // 当前题库只有零相关候选；全题库池才有同长度+重叠 / 同 pattern 的候选
+  const target = { sentence: "It looks like it's going to rain.", chunks: ['It looks like'] }; // 3 词 S-C-C
+  const curItems = [
+    { chunks: ['meet a friend'] },         // 同长度 3 词但零相关（当前题库仅此可用）
+    { chunks: ['How was your weekend?'] }  // 零相关
+  ];
+  const allItems = curItems.concat([
+    { chunks: ['I like eating'] },         // 跨题库高质量：共享 "like"
+    { chunks: ['She looks happy'] }        // 跨题库同 pattern S-C-C（looks 重叠）
+  ]);
+  const cs = buildChoices(target, 0, curItems, allItems);
+  check('buildChoices: 跨题库取高质量干扰（共享 like / 同 pattern S-C-C）',
+    cs.some(c => c === 'I like eating' || c === 'She looks happy'),
+    'cs=' + JSON.stringify(cs));
+  check('buildChoices: 跨题库后仍含正确答案', cs.includes('It looks like'));
+})();
+
 /* ===== judgeChunk ===== */
 check('judgeChunk: 精确匹配', judgeChunk('I am', 'I am', []) === true);
 check('judgeChunk: 大小写/标点归一', judgeChunk('i am!', 'I am', []) === true);

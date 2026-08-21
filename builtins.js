@@ -828,8 +828,8 @@ window.BUILTIN = [
   {
     "id": "builtin-oral-8000",
     "builtin": true,
-    "name": "日常口语8000句",
-    "desc": "种子库，数据在 oral8000.js",
+    "name": "日常口语精选",
+    "desc": "高频口语种子库（30 句，来自 oral8000.js）",
     "items": []
   },
   {
@@ -1220,7 +1220,7 @@ window.BUILTIN = [
   }
 ];
 
-/* 加载时自填"日常口语8000句"的种子数据（来自 oral8000.js） */
+/* 加载时自填"日常口语精选"的种子数据（来自 oral8000.js） */
 (function(){
   var seed = window.DATA_ORAL8000;
   if(!seed || !window.BUILTIN) return;
