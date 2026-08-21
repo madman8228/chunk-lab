@@ -206,7 +206,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 |------|------|----------|----------|
 | **Phase A 加固**（2-3 周） | 止血 | ADR-006 上云检查清单 + env 模板；ADR-008 服务端校验 + 冒烟测试；ai_cache 上限；README 对齐真实架构 | 公网部署不再裸奔；后端有回归测试 |
 | **Phase B 同步正确性**（3-4 周） | 多设备安全 | ADR-005 实体级 rev sync；软删除；离线 change-log 队列；冲突合并 | 双设备互改不丢数据；崩溃可恢复 |
-| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ~~ADR-004 后端 AI 代理~~（**已提前落地**）；~~IndexedDB 存课程~~（**已落地**）；PWA 离线；ai_cache TTL | Key 不外泄（已达成）；大课程可离线 |
+| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ~~ADR-004 后端 AI 代理~~（**已提前落地**）；~~IndexedDB 存课程~~（**已落地**）；~~PWA 离线~~（**已落地 2026-08-21**：manifest + sw.js 22 资源预缓存 + 静态 cache-first/API network-only）；ai_cache TTL；~~移动端适配~~（**已落地 2026-08-21**：@media 640/420 补完） | Key 不外泄（已达成）；大课程可离线 |
 | **Phase D 平台化**（按需） | 规模化 | 多租户加固；Postgres 选项；公共题库市场 `GET /api/deck/public`；学习分析 | 出现真实多用户/多设备需求 |
 
 ---
@@ -326,5 +326,20 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 **验证**：rev.test.js 20/20（+2：preload 迁移删键、合并后 progress 采纳）；chunk-engine/srs/store/course-resume/validate 无回归；server smoke 46/46；4 页面 + js/idb.js 静态 200。
 
 **遗留**：aiCache 仍留 localStorage（200 条 LRU 已控容量）；PWA 离线未做。
+
+### §8.5 PWA 离线 + 移动端适配（2026-08-21）
+
+**PWA（与 IndexedDB 形成完整离线闭环）**
+- `manifest.json`：name/short_name/display=standalone/theme_color=#2c62c9/start_url=/main.html（避免改 server 配 / 路由）+ 192/512 icon（purpose any maskable）。
+- `sw.js`：版本化 cache `chunklab-v2`，预缓存 22 个核心资源（main.html + 6 外部 JS + chunk-practice/courses/decks/stats + 5 个 .mjs + manifest + 2 图标）；策略：静态资源 cache-first / `/api/*` network-only（不缓存用户数据）/ 导航 miss 回退 `/main.html`；activate 清理旧版本 + skipWaiting/clients.claim。
+- `main.html`：引 manifest + icon-512（apple-touch-icon）+ theme-color，SW 注册（`navigator.serviceWorker.register` + `reg.update`）；viewport 补 `viewport-fit=cover`（iPhone 安全区）。
+- 图标：PIL 生成 512/192 PNG（品牌蓝 #2c62c9 圆角底 + 白色 CL + 三行意群条，可读性 + 离线启动体验）。
+- **开发注意**：SW 缓存会"冻结"旧文件，改代码后需 DevTools → Application → Service Workers → Update / Unregister；或临时改 CACHE 版本号强制刷新。
+
+**移动端适配（只追加 @media 不修改现有，避免破坏桌面端）**
+- 640px 块扩展：弹窗贴边（`.mask{padding:8px}` + `.modal` 去 max-width/圆角收窄）、chunk-input/choice 字号收缩、顶栏次要元素隐藏（`.topbar-reveal,.topbar-status-text`）、iframe 顶栏说明隐藏、AI body 字号 14.5px。
+- 新增 ≤420px 极窄屏块：弹窗边到边（`.mask{padding:0}` + `.modal` 100vw/100vh + border-radius:0 + 满屏）、按钮加大触区（`.choice` min-height 40px、`.btn` padding 8/12）、chunk-input 16px、zh-wrap 宽度收窄至 calc(100% - 120px)、圆环/标熟按钮略缩（28px）、顶栏 gap 4px。
+
+**验证**：内联语法 OK；全量单测 + server smoke 46/46 无回归；PWA + 子页资源全 200，sw.js/manifest.json MIME 正确（application/javascript / application/json）。
 
 _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地（后端存在、SRS 纯函数、存储版本化），但"前端模块化"与"Sync 正确性"仍是缺口，本文即针对此缺口给出设计。_

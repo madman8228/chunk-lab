@@ -2,7 +2,11 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2c62c9">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-512.png">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -616,6 +620,39 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .zh{font-size:17.5px}
   .metric .lbl{display:none}
   #perfectToast .big{font-size:38px}
+  /* 弹窗：去最大宽度 + 缩内边距，贴边显示 */
+  .mask{padding:8px}
+  .modal{max-width:none;border-radius:14px;max-height:calc(100vh - 16px)}
+  /* 练习区输入/选项紧凑 */
+  .chunk-input{font-size:17px}
+  .choice{padding:9px 12px;font-size:14px}
+  /* 顶栏次要元素：标签+同步状态文字隐藏，仅留按钮 */
+  .topbar-reveal,.topbar-status-text{display:none}
+  /* iframe 容器顶栏隐藏说明文字 */
+  #iframeHost > div > span:last-child{display:none}
+  /* AI 解读弹窗内滚动更顺 */
+  #aiBody{font-size:14.5px}
+}
+/* 极窄屏（手机竖屏 ≤420px）：弹窗边到边、按钮加大触区、输入字号微调 */
+@media (max-width:420px){
+  .wrap{padding:8px 8px 32px}
+  .topbar{margin:0 -8px 12px;padding:8px 10px}
+  .stage{padding:16px 12px;border-radius:14px}
+  .mask{padding:0}
+  .modal{border-radius:0;max-height:100vh;height:100vh;max-width:none;width:100vw}
+  .modal-head{border-radius:0}
+  .chunk-input{font-size:16px;min-width:18px}
+  .choice{padding:10px 11px;font-size:13.5px;min-height:40px}
+  .btn{padding:8px 12px}
+  .btn.sm{padding:5px 9px}
+  /* zh 绝对定位宽度收窄（左右控件占位） */
+  .zh-wrap{max-width:calc(100% - 120px)}
+  /* 顶栏按钮间距收窄 */
+  .topbar-row{gap:4px}
+  /* 进度圆环/标熟按钮在极窄屏略缩 */
+  .ring-wrap{width:28px;height:28px}
+  .stage-master{min-width:46px;font-size:12px;padding:4px 9px}
+  .stage-master.auto{width:28px;height:28px;min-width:28px}
 }
 /* 设置面板紧凑样式 */
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
@@ -4386,6 +4423,14 @@ window.addEventListener('drop', function(e){ e.preventDefault(); });
 /* ============================================================
    10. 启动（先确保云端登录/同步，再初始化界面）
 ============================================================ */
+/* PWA: 注册 service worker（离线缓存静态资源；API/写请求不缓存） */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').then(function(reg){
+      reg.update && reg.update();
+    }).catch(function(e){ console.warn('[sw] 注册失败：', e); });
+  });
+}
 CL.ensureCloud().then(function(){
 loadStore();
 $('btnSound').textContent = mem.settings.sound ? '🔊' : '🔇';

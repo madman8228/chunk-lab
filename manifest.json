@@ -1,0 +1,17 @@
+{
+  "name": "Chunk Lab · 英语句型意群练习",
+  "short_name": "Chunk Lab",
+  "description": "将英语句子按意群拆分练习，跟读巩固、错题巩固与 AI 详解。",
+  "start_url": "/main.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f2ee",
+  "theme_color": "#2c62c9",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["education", "productivity"]
+}
