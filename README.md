@@ -159,6 +159,24 @@ NODE_PATH=<playwright-core 所在 node_modules> node output/e2e/verify.js
 
 > **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first，改业务代码后必须 **bump `CACHE` 版本号**（如 `chunklab-v3` → `v4`），否则浏览器会继续 serve 旧缓存（修复不生效）。刷新页面一次即完成新 SW 激活与旧缓存清理。
 
+## 自动备份（上线准备 · 推荐配置）
+
+零依赖 CLI（`server/backup-cli.js`），备份走应用级 `/api/export`（可移植 JSON，恢复即 `/api/import`，链路对称）：
+
+```bash
+node server/backup-cli.js backup              # 备份 → server/backups/chunklab_backup_*.json
+node server/backup-cli.js restore <file>      # 恢复（覆盖式，恢复语义）
+node server/backup-cli.js list                # 列出备份
+```
+
+环境变量：`BASE_URL`（默认 http://127.0.0.1:8787）/ `TOKEN`（鉴权模式需要）/ `BACKUP_DIR`（默认 server/backups，生产指向持久盘）/ `BACKUP_KEEP`（默认 14 份，超出自动删最旧）。
+
+调度：
+- **Linux**：`0 3 * * *  cd /path/to/chunk-practice && BASE_URL=http://localhost:8787 TOKEN=xxx node server/backup-cli.js backup`
+- **Windows**：任务计划程序 → 每日 03:00 → 程序 `node`，参数 `server/backup-cli.js backup`，起始于项目目录，环境变量 `BASE_URL`/`TOKEN`/`BACKUP_DIR`
+
+> **恢复演练（建议每月一次）**：`node server/backup-cli.js list` → 选一份 → `restore 文件` → 浏览器确认题库/错题本/统计回来。备份没有验证过等于没有备份。
+
 ## 环境变量（server/.env.example）
 
 | 变量 | 默认 | 说明 |
