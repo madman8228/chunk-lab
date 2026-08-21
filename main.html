@@ -829,7 +829,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
-        <button class="btn sm ghost" id="btnAIRegen"><span data-icon="refresh"></span>生成/重新生成</button>
+        <button class="btn sm ghost hidden" id="btnAIRegen"><span data-icon="refresh"></span>生成/重新生成</button>
+        <button class="btn sm ghost hidden" id="btnAIConfig"><span data-icon="settings"></span>配置 API Key</button>
         <button class="btn sm primary hidden" id="btnAISave"><span data-icon="check"></span>保存为详解</button>
         <span class="spacer"></span>
         <span id="aiNote" style="font-size:12px;color:var(--faint)"></span>
@@ -3177,6 +3178,7 @@ function switchExplainTab(n){
   $('tabExplainAI').classList.toggle('on', n === 2);
   var cp = $('explainCopyPrompt'); /* 复制 Prompt 属 tab1 批量回填工作流 */
   if(cp) cp.style.display = (n === 1) ? '' : 'none';
+  if(n === 2) updateAIButtons(); /* 进入 AI tab 时按 apiKey 状态切换按钮 */
   /* 不自动调用 AI：用户主动点「生成/重新生成」才请求（避免无 Key 时被动显示本地兜底造成"已读"误判） */
 }
 function renderExplain(){
@@ -3977,6 +3979,7 @@ $('btnSaveSettings').onclick = function(){
   saveStore();
   /* 同步音效按钮 */
   setSoundIcon();
+  updateAIButtons(); /* 配完 Key 立刻反映到 AI tab 按钮状态 */
   /* 深色模式 */
   if(mem.settings.darkMode){ document.documentElement.classList.add('dark'); }
   else{ document.documentElement.classList.remove('dark'); }
@@ -4066,6 +4069,26 @@ $('fileBackup').onchange = function(){
   };
   fr.readAsText(f, 'utf-8');
 };
+
+/* AI 解读 tab2 按钮状态：根据是否已配前端 API Key 切换「生成/重新生成」与「配置 API Key」
+   默认两个都隐藏；用户主动触发（切 tab2/设置保存/空态点空态等）时按需显示 */
+function updateAIButtons(){
+  var has = !!(mem.settings.apiKey && String(mem.settings.apiKey).trim());
+  var regen = $('btnAIRegen'), conf = $('btnAIConfig');
+  if(regen) regen.classList.toggle('hidden', !has);
+  if(conf) conf.classList.toggle('hidden', has);
+}
+/* 打开设置面板 + 自动展开 AI 配置组 + 聚焦 API Key 输入框（一键到位） */
+function openAISettings(){
+  if($('btnSettingsTop').onclick) $('btnSettingsTop').onclick();
+  var body = $('aiCfgBody');
+  if(body && body.classList.contains('hidden')){
+    body.classList.remove('hidden');
+    var caret = $('aiCfgCaret'); if(caret) caret.style.transform = 'rotate(90deg)';
+  }
+  setTimeout(function(){ var k = $('setApiKey'); if(k) k.focus(); }, 60);
+}
+$('btnAIConfig').onclick = openAISettings;
 
 /* ===== AI 解读（已并入详解页 tab2） ===== */
 $('btnAIRegen').onclick = function(){ runAIExplain(); };
