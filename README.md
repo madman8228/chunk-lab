@@ -38,8 +38,11 @@ UI 层        main.html（入口）· decks.html · stats.html · courses.html�
 - **ADR-001** 页面物理隔离：iframe + postMessage，子页崩溃不影响主页
 - **ADR-002** 全局命名空间收敛为 `CL` 单例，消灭全局函数污染
 - **ADR-003** SRS 调度纯函数化，可单测、可替换算法
-- **ADR-004** AI 调用应走后端代理（Phase C 落地，当前前端直连）
-- **ADR-005/006/007/008** 同步正确性 / 鉴权安全 / 前端模块化 / 后端校验测试（规划中）
+- **ADR-004** AI 调用走后端代理（已落地：Key 服务端化 + 限流 + 缓存 TTL）
+- **ADR-005** 实体级 rev 同步 + 软删除（已落地：四类实体 per-entity，多设备不丢数据）
+- **ADR-006** 鉴权安全（已落地：REQUIRE_AUTH 多用户模式 + env 密钥，上云必开）
+- **ADR-007** 前端 ESM 模块化（已落地：chunk-engine / format / ai-prompts / backup 四模块 + bridge 桥接，main.html 4781→4444 行）
+- **ADR-008** 后端校验测试（已落地：服务端 schema 校验 400 + 冒烟测试 49 用例）
 
 ## 快速开始
 
@@ -134,9 +137,27 @@ node course-resume.test.js # 图文课程进度恢复
 ```bash
 cd server
 node -r ./loadenv.js index.js &   # 或另开终端先起服务
-node smoke.test.js                # 健康检查 / 注册登录 / 数据读写 / 课程增删 / 导出 / 401 拦截
+node smoke.test.js                # 健康检查 / 注册登录 / 数据读写 / 课程增删 / 导出 / 401 拦截 / AI 缓存 TTL
 ```
 > 冒烟测试会自己拉起一个临时 DB 的多用户模式服务，跑完自动清理。
+
+ESM 模块单测（ADR-007 拆分出的纯逻辑模块）：
+```bash
+node js/chunk-engine.test.mjs     # 练习核心：chunk 判定 / 干扰项（语义过滤 + 跨题库）/ 评分
+node js/format.test.mjs           # 工具函数：esc / norm / wordCount / timeAgo
+node js/ai-prompts.test.mjs       # AI prompt 构建 + extractJSON
+node js/backup.test.mjs           # 备份组装 / 导入解析
+node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change-log（dirty/重连补传）
+```
+
+浏览器端到端验收（Playwright 截图：桌面/移动端练习页、AI 弹窗、题库页）：
+```bash
+# 起服务后：
+NODE_PATH=<playwright-core 所在 node_modules> node output/e2e/verify.js
+# 截图输出到 output/e2e/shots/（output/ 已被 gitignore）
+```
+
+> **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first，改业务代码后必须 **bump `CACHE` 版本号**（如 `chunklab-v3` → `v4`），否则浏览器会继续 serve 旧缓存（修复不生效）。刷新页面一次即完成新 SW 激活与旧缓存清理。
 
 ## 环境变量（server/.env.example）
 

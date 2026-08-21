@@ -9,12 +9,15 @@
  *   - 版本更新时 activate 删除旧版本缓存。
  *
  * 注意：开发期 SW 缓存会"冻结"旧文件——改代码后需要：
- *   1) 浏览器 DevTools → Application → Service Workers → Update / Unregister
- *   2) 或等 24h 自动重试（默认 SW 缓存由浏览器 max-age 决定；本实现无显式过期）
- *   3) 或临时改 CACHE 版本号强制刷新
+ *   1) 刷新页面自动触发 SW 更新检查（导航时），新版 install 后 skipWaiting+clients.claim
+ *      立即激活，activate 清理旧版本缓存 → 资源从网络重拉，一次刷新即生效
+ *   2) 或 DevTools → Application → Service Workers → Update / Unregister
+ *   3) 或临时改 CACHE 版本号强制刷新（见下）
+ * 版本号约定：业务代码变更时必须 bump CACHE（如 v2 → v3），否则浏览器可能继续
+ * serve 旧版本缓存的 JS（cache-first），导致修复不生效。
  */
 /* eslint-disable */
-const CACHE = 'chunklab-v2';
+const CACHE = 'chunklab-v3';
 const PRECACHE = [
   '/main.html',
   '/manifest.json',
