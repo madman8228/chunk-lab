@@ -107,16 +107,16 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 <div class="wrap">
   <div class="page-head">
     <button class="btn sm ghost" id="statsBack" title="返回主页">← 返回练习</button>
-    <h2>📊 学习档案</h2>
+    <h2><span data-icon="stats"></span> 学习档案</h2>
     <span class="spacer"></span>
-    <button class="btn sm primary" id="btnPracticeWrong" title="练习错题本中所有句子">🎯 练习错题</button>
+    <button class="btn sm primary" id="btnPracticeWrong" title="练习错题本中所有句子"><span data-icon="target"></span>练习错题</button>
   </div>
 
   <div class="stats-cards" id="statsCards"></div>
 
   <div class="stats-tabs" id="statsTabs">
     <button class="tab on" data-tab="sent">句子记录</button>
-    <button class="tab" data-tab="review">🔁 复习</button>
+    <button class="tab" data-tab="review"><span data-icon="refresh"></span>复习</button>
     <button class="tab" data-tab="wrong">错题本</button>
   </div>
 
@@ -129,7 +129,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
   <div class="stats-body" id="statsBody"></div>
 
-  <div class="cross-page-hint">💡 点击「▶ 开始到期复习」或「📚 复习 N 句」会切到练习页（main.html）</div>
+  <div class="cross-page-hint">点击「开始到期复习」或「复习 N 句」会切到练习页（main.html）</div>
 </div>
 
 <script src="builtins.js"></script>
@@ -137,7 +137,10 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="auth-ui.js"></script>
+<script src="js/icons.js"></script>
 <script>
+/* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
+if(window.Icons) Icons.install();
 /* ===== 学习档案 独立页面（stats.html）=====
    - 共享 core.js（CL 命名空间）：存储/工具/领域判定/事件总线
    - 数据通过浏览器本地存储与主页共享（同源） */
@@ -360,7 +363,7 @@ function renderWrongBook(body){
     return;
   }
   var html = '<div style="display:flex;justify-content:flex-end;margin-bottom:8px">'+
-    '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">🗑 清空错题本</button></div>';
+    '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">'+(window.Icons?Icons.svg('trash'):'')+' 清空错题本</button></div>';
   html += '<div class="stats-list">';
   book.slice().reverse().forEach(function(b){
     var mine = '';
@@ -415,7 +418,7 @@ function dueSentences(){
 function renderReviewList(body){
   var dues = dueSentences();
   var html = '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
-    '<b style="font-size:13px;color:var(--warn)">🔁 SRS 到期复习</b> '+
+    '<b style="font-size:13px;color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' SRS 到期复习</b> '+
     '<span style="font-size:12.5px;color:var(--muted)">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'（间隔重复到达复习点）</span>'+
     '<span class="spacer"></span>'+
     (dues.length>0 ? '<button class="btn primary" id="startDueReview">▶ 开始到期复习</button>' : '')+
@@ -426,7 +429,7 @@ function renderReviewList(body){
       html += '<div class="srow"><div class="sen">'+
         '<div class="en">'+esc(d.it.sentence)+'</div>'+
         '<div class="cn">'+esc(d.it.translation||'')+'</div></div>'+
-        '<div class="meta" style="color:var(--warn)">🔁 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(d.deck.name)+'</div></div>';
+        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(d.deck.name)+'</div></div>';
     });
     html += '</div>';
   } else {
@@ -435,7 +438,7 @@ function renderReviewList(body){
 
   html += '<div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">'+
     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
-    '<b style="font-size:13px;color:var(--muted)">📚 手动复习入口</b> '+
+    '<b style="font-size:13px;color:var(--muted)">'+(window.Icons?Icons.svg('book'):'')+' 手动复习入口</b> '+
     '<span style="font-size:12px;color:var(--faint)">（按题库分组，已标熟/已掌握的句子；立即重测一遍）</span>'+
     '</div>';
   var decksWithMarked = [];
@@ -453,7 +456,7 @@ function renderReviewList(body){
       var d = entry.deck;
       html += '<div class="review-row">'+
         '<div class="nm">'+esc(d.name)+' <span style="font-size:12px;color:var(--faint);font-weight:400">'+entry.items.length+' 句</span></div>'+
-        '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">📚 复习 '+entry.items.length+' 句</button>'+
+        '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">'+(window.Icons?Icons.svg('book'):'')+' 复习 '+entry.items.length+' 句</button>'+
         '</div>';
     });
     html += '</div>';

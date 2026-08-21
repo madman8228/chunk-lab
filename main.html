@@ -714,6 +714,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     </div>
     <div class="progress"><i id="progFill"></i></div>
     <div class="topbar-reveal hidden" id="topbarReveal"></div>
+    <div id="updateToast" style="display:none;position:fixed;top:54px;left:50%;transform:translateX(-50%);z-index:1000;align-items:center;gap:8px;background:#fef3c7;border:1px solid #fcd34d;color:#b45309;font-size:13px;font-weight:600;border-radius:999px;padding:6px 12px;box-shadow:0 2px 8px rgba(0,0,0,.12)" role="status">
+      <span class="icon-spin" data-icon="refresh"></span>发现新版本
+      <button class="btn sm primary" id="btnApplyUpdate" style="padding:2px 10px">刷新</button>
+    </div>
   </div>
 
   <!-- 练习页 -->
@@ -745,7 +749,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </div>
       </div>
       <div class="stage-head-right">
-        <button class="btn sm hidden" id="btnSpeak" title="朗读当前句子">🔈 朗读</button>
+        <button class="btn sm hidden" id="btnSpeak" title="朗读当前句子"><span data-icon="speak"></span>朗读</button>
         <span class="reveal-tag hidden" id="revealTagWrap"></span>
       </div>
     </div>
@@ -756,8 +760,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="stage-foot">
       <button class="stage-master" id="btnMaster" title="标记为已掌握（自选，未参与考试）" data-state="manual">标熟</button>
       <span class="spacer"></span>
-      <button class="btn sm hidden" id="btnExplain" title="查看本句详解（逐意群讲解）">📖 详解</button>
-      <button class="btn sm disabled" id="btnAIExplain" disabled title="AI 智能解读（点击进入设置配置 API Key）">AI 解读</button>
+      <button class="btn sm hidden" id="btnExplain" title="查看本句详解（逐意群讲解）"><span data-icon="book"></span>详解</button>
+      <button class="btn sm disabled" id="btnAIExplain" disabled title="AI 智能解读（点击进入设置配置 API Key）"><span data-icon="ai"></span>AI 解读</button>
       <button class="btn sm primary hidden" id="btnNext">下一题 ↵</button>
     </div>
   </div>
@@ -788,9 +792,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   <div class="page hidden" id="pageExplain">
     <div class="page-head">
       <button class="btn sm" id="explainBack">← 返回</button>
-      <h2>📖 句子详解</h2>
+      <h2><span data-icon="book"></span> 句子详解</h2>
       <span class="spacer"></span>
-      <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板">📋 复制 Prompt</button>
+      <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板"><span data-icon="copy"></span>复制 Prompt</button>
     </div>
     <div style="padding:2px 0 10px">
       <div id="explainSentence" style="font-size:17px;font-weight:700;color:var(--text);line-height:1.45"></div>
@@ -806,7 +810,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
       <div id="explainMsg" class="msg"></div>
       <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn primary" id="explainApply">✓ 校验并保存</button>
+        <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
         <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
       </div>
     </div>
@@ -816,14 +820,14 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   <div class="page hidden" id="pageStats">
     <div class="page-head">
       <button class="btn sm" id="statsBack">← 返回</button>
-      <h2>📊 学习档案</h2>
+      <h2><span data-icon="stats"></span> 学习档案</h2>
       <span class="spacer"></span>
-      <button class="btn sm primary" id="statsPracticeWrong" title="练习错题本中所有句子">🎯 练习错题</button>
+      <button class="btn sm primary" id="statsPracticeWrong" title="练习错题本中所有句子"><span data-icon="target"></span>练习错题</button>
     </div>
     <div class="stats-cards" id="statsCards"></div>
     <div class="stats-tabs" id="statsTabs">
       <button class="tab on" data-tab="sent">句子记录</button>
-      <button class="tab" data-tab="review">🔁 复习</button>
+      <button class="tab" data-tab="review"><span data-icon="refresh"></span>复习</button>
       <button class="tab" data-tab="wrong">错题本</button>
     </div>
     <div class="stats-filter" id="statsFilter">
@@ -844,7 +848,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <h3>导入题库</h3>
       <span style="font-size:12.5px;color:var(--faint)">选分类 → 复制 Prompt → 喂给大模型 → 粘回 JSON</span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <div class="imp-append-banner hidden" id="impAppend"></div>
@@ -872,7 +876,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </span>
       </div>
 
-      <div class="step-title"><span class="step">2</span>Prompt<span class="note">DeepSeek / 元宝 / ChatGPT 均可</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px;vertical-align:middle">📋 复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
+      <div class="step-title"><span class="step">2</span>Prompt<span class="note">DeepSeek / 元宝 / ChatGPT 均可</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px;vertical-align:middle"><span data-icon="copy"></span>复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
       <textarea id="promptBox" readonly placeholder="先在上方点一个分类卡片…"></textarea>
 
       <div class="step-title" style="margin-top:18px"><span class="step">3</span>粘贴模型返回的 JSON<span class="note">也可直接把 .json 文件拖进来</span><button class="btn sm ghost" id="btnClear" style="margin-left:8px;vertical-align:middle">清空</button></div>
@@ -902,12 +906,12 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <h3>追加句子</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="appendDeckName"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <!-- Prompt -->
       <div style="margin-bottom:10px">
-        <div class="step-title"><span class="step">1</span>Prompt<span class="note">粘贴给任意大模型</span><button class="btn sm primary" id="btnAppendCopy" style="margin-left:8px;vertical-align:middle">📋 复制</button><span id="appendCopyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
+        <div class="step-title"><span class="step">1</span>Prompt<span class="note">粘贴给任意大模型</span><button class="btn sm primary" id="btnAppendCopy" style="margin-left:8px;vertical-align:middle"><span data-icon="copy"></span>复制</button><span id="appendCopyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
         <textarea id="appendPromptBox" readonly placeholder="Prompt 已自动生成…" style="width:100%;min-height:60px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12.5px;background:#f8f9fb;resize:vertical;outline:none"></textarea>
       </div>
 
@@ -956,10 +960,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <div class="mask" id="batchExplainMask" hidden>
   <div class="modal" style="max-width:640px">
     <div class="modal-head">
-      <h3>📖 批量生成详解</h3>
+      <h3><span data-icon="book"></span> 批量生成详解</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="batchExplainInfo"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <label style="display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:12.5px;color:var(--muted);cursor:pointer">
@@ -967,14 +971,14 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         包含已详解的句子（覆盖升级为结构化讲解）
       </label>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-        <button class="btn" id="batchExplainCopy">📋 复制批量 Prompt</button>
+        <button class="btn" id="batchExplainCopy"><span data-icon="copy"></span>复制批量 Prompt</button>
         <span style="font-size:12px;color:var(--faint)">粘贴到外部大模型 → 生成 → 把 JSON 粘贴到下方一次回填</span>
       </div>
       <div style="font-size:11.5px;color:var(--faint);margin-bottom:6px">提示：仅对「暂无详解」的句子生成；Prompt 会列出所有待生成句子及其意群。</div>
       <textarea id="batchExplainJson" rows="6" style="width:100%;font-family:monospace;font-size:12px" placeholder='{"items":[{"sentence":"原句...","explanations":[{"grammar":"...","syntax":"...","words":[{"w":"call","p":"v.","m":"打电话"}]}]}]}'></textarea>
       <div id="batchExplainMsg" class="msg"></div>
       <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn primary" id="batchExplainApply">✓ 校验并批量保存</button>
+        <button class="btn primary" id="batchExplainApply"><span data-icon="check"></span>校验并批量保存</button>
       </div>
     </div>
   </div>
@@ -986,7 +990,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <h3>编辑句子</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="editSentenceHint"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body" style="display:flex;flex-direction:column;gap:12px">
       <div>
@@ -1023,9 +1027,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <div class="mask" id="settingsMask" hidden>
   <div class="modal" style="max-width:460px">
     <div class="modal-head">
-      <h3>⚙️ 系统设置</h3>
+      <h3><span data-icon="settings"></span> 系统设置</h3>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <div style="display:flex;flex-direction:column;gap:0">
@@ -1090,7 +1094,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
           <div style="display:flex;align-items:center;gap:8px">
             <span class="set-lbl" style="white-space:nowrap">API Key</span>
             <input type="password" id="setApiKey" placeholder="sk-... · 仅保存在本地浏览器" class="set-inp" style="flex:1">
-            <button class="btn sm ghost" id="btnToggleKey" type="button">👁</button>
+            <button class="btn sm ghost" id="btnToggleKey" type="button" data-icon="eye"></button>
           </div>
         </div>
       </div>
@@ -1106,8 +1110,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
             导出包含：题库、设置、学习档案（统计/标熟/错题本/进度）。导入将<b style="color:var(--bad)">覆盖</b>现有数据，请先备份当前。
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn sm" id="btnExportAll">📤 导出全部</button>
-            <button class="btn sm" id="btnImportAll">📥 导入备份</button>
+            <button class="btn sm" id="btnExportAll"><span data-icon="export"></span>导出全部</button>
+            <button class="btn sm" id="btnImportAll"><span data-icon="import"></span>导入备份</button>
             <input type="file" id="fileBackup" accept=".json" class="hidden">
           </div>
         </div>
@@ -1125,19 +1129,19 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <div class="mask" id="aiMask" hidden>
   <div class="modal" style="max-width:560px">
     <div class="modal-head">
-      <h3>🤖 AI 解读</h3>
+      <h3><span data-icon="ai"></span> AI 解读</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="aiSentenceHint"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body" id="aiBody">
       <div style="text-align:center;padding:30px 0;color:var(--faint)">
-        <div style="font-size:28px;margin-bottom:8px">🤔</div>
+        <div style="font-size:28px;margin-bottom:8px"><span class="icon-spin" data-icon="refresh"></span></div>
         <p style="margin:0;font-size:13px">正在分析句子…</p>
       </div>
     </div>
     <div class="modal-foot">
-      <button class="btn sm ghost" id="btnAIRegen">🔄 重新生成</button>
+      <button class="btn sm ghost" id="btnAIRegen"><span data-icon="refresh"></span>重新生成</button>
       <span class="spacer"></span>
       <button class="btn ghost" data-close>关闭</button>
     </div>
@@ -1476,16 +1480,16 @@ function startDeck(deck, fromIdx){
   S.idx = fromIdx; S.combo = 0; S.maxCombo = 0; S.perfectCount = 0;
   S.chunkTotal = 0; S.chunkRight = 0; S.wrong = []; S.finished = false; S._finishing = false;
   /* ★ 临时题库前缀 */
-  var _prefix = deck.id.indexOf('srs-') === 0 ? '🔁 '
-              : deck.id.indexOf('rev-') === 0 ? '📚 '
-              : (deck.id.indexOf('book-') === 0 || deck.id.indexOf('weak-') === 0) ? '📝 '
+  var _prefix = deck.id.indexOf('srs-') === 0 ? '『复习』 '
+              : deck.id.indexOf('rev-') === 0 ? '『手动』 '
+              : (deck.id.indexOf('book-') === 0 || deck.id.indexOf('weak-') === 0) ? '『错题』 '
               : '';
   $('deckName').textContent = _prefix + deck.name;
   $('result').classList.add('hidden');
   $('stage').classList.remove('hidden');
   updateCombo(0);
   /* v7 diagnostic */
-  $('zh').textContent = '⏳ v7 渲染中…';
+  $('zh').innerHTML = (window.Icons ? '<span class="icon-spin">' + Icons.svg('refresh') + '</span>' : '') + ' 渲染中…';
   try { renderQ(); } catch(err){ console.error('[renderQ]', err); $('zh').textContent = '加载出错：' + (err && err.message || err); }
   goPractice();
   /* 记录 lastPlayed + 活跃题库 */
@@ -1556,7 +1560,7 @@ function renderQ(){
     var _due = isDue(it);
     _dueTag.classList.toggle('hidden', !_due);
     if(_due){
-      _dueTag.textContent = '🔁 复习';
+      _dueTag.innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 复习';
     }
   }
   $('mProgress').textContent = (S.idx+1)+'/'+S.items.length;
@@ -2019,7 +2023,7 @@ function refreshMasterBtn(){
   if(fluent){
     b.dataset.state = 'done';
     b.classList.add('done');
-    b.innerHTML = '✓ 已掌握';
+    b.innerHTML = (window.Icons?Icons.svg('check'):'') + ' 已掌握';
     b.title = '已通过考试验证（点击撤销掌握，重置练习统计）';
     return;
   }
@@ -2027,7 +2031,7 @@ function refreshMasterBtn(){
   if(marked){
     b.dataset.state = 'done';
     b.classList.add('done');
-    b.innerHTML = '✓ 已标熟';
+    b.innerHTML = (window.Icons?Icons.svg('check'):'') + ' 已标熟';
     b.title = '已标熟（点击撤销）';
     return;
   }
@@ -2173,7 +2177,7 @@ function showToast(combo){
   var t = $('perfectToast');
   t.querySelector('.big').textContent = combo>=2 ? ('PERFECT ×'+combo) : 'PERFECT';
   var subs = ['意群拆得漂亮','手感来了','保持这个节奏','连击继续','完全正确'];
-  t.querySelector('.sub').textContent = combo>=4 ? '🔥 '+combo+' 连击！' : subs[Math.floor(Math.random()*subs.length)];
+  t.querySelector('.sub').innerHTML = (combo>=4 ? ((window.Icons?Icons.svg('fire'):'')+' '+combo+' 连击！') : subs[Math.floor(Math.random()*subs.length)]);
   t.classList.remove('show'); void t.offsetWidth; t.classList.add('show');
 }
 
@@ -2210,7 +2214,7 @@ function showExplanationPanel(title, sections, opts){
   if(title){
     html += '<div class="explain-head">'+
       '<span class="explain-title">'+esc(title)+'</span>'+
-      '<button class="explain-close" title="关闭">✕</button>'+
+      '<button class="explain-close" title="关闭">'+(window.Icons?Icons.svg('close'):'')+'</button>'+
     '</div>';
   }
   html += '<div class="explain-sections">';
@@ -2447,10 +2451,10 @@ function finishSession(){
   /* 需巩固/掌握状态 stat HTML（用变量避免模板嵌套解析问题） */
   var _reinforceStatHTML = needReinforce
     ? '<div class="stat" style="border-color:#f6e0bf;background:#fff8ee"><div class="k" style="color:#b45309">需巩固</div><div class="v" style="color:#b45309">'+reinforceCount+'<span style="font-size:13px;color:#d97706"> 句</span></div></div>'
-    : '<div class="stat" style="border-color:#c3ead4;background:#e8f9ed"><div class="k" style="color:#15803d">本轮</div><div class="v" style="color:#15803d">全部通过 ✨</div></div>';
+    : '<div class="stat" style="border-color:#c3ead4;background:#e8f9ed"><div class="k" style="color:#15803d">本轮</div><div class="v" style="color:#15803d">全部通过</div></div>';
 
   var html = ''+
-    `<h2>`+(acc===100?'满分通关 🎉':(acc>=80?'练完啦，稳':'练完啦，回顾一下'))+'</h2>'+
+    `<h2>`+(acc===100?'满分通关':(acc>=80?'练完啦，稳':'练完啦，回顾一下'))+'</h2>'+
     `<div class="lead">`+esc(S.deck.name)+' · 共 '+S.items.length+' 题'+(isBest?' · <b style="color:var(--accent)">新纪录</b>':'')+'</div>'+
     `<div class="stats">`+
       `<div class="stat hl"><div class="k">意群正确率</div><div class="v">`+acc+'%</div></div>'+
@@ -2472,7 +2476,7 @@ function finishSession(){
     });
     html += '</div>';
   }else{
-    html += '<div class="review"><h4>错题回顾</h4><div class="row" style="color:var(--ok);font-weight:600">全部一次答对，无错题 ✨</div></div>';
+    html += '<div class="review"><h4>错题回顾</h4><div class="row" style="color:var(--ok);font-weight:600">全部一次答对，无错题</div></div>';
   }
 
   /* 累积到本地错题本（跨会话持久化）——已在上方调用 saveReinforceList */
@@ -2481,7 +2485,7 @@ function finishSession(){
             `<button class="btn" id="btnWrongOnly"`+(S.wrong.length?'':' disabled')+'>只练错题 ('+S.wrong.length+')</button>'+
             `<button class="btn" id="btnOtherDeck">换个题库</button>`+
             (needReinforce ?
-              `<button class="btn-export" id="btnExportJSON" style="margin-left:8px" title="导出巩固清单">📥 导出巩固清单</button>`
+              `<button class="btn-export" id="btnExportJSON" style="margin-left:8px" title="导出巩固清单">${window.Icons?Icons.svg('import'):''}导出巩固清单</button>`
               : ''
             )+
             `<span class="spacer"></span>`+
@@ -2685,7 +2689,7 @@ function renderReviewList(body){
   var dues = dueSentences();
   /* 区域 1：SRS 到期复习 */
   var html = '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
-    '<b style="font-size:13px;color:var(--warn)">🔁 SRS 到期复习</b> '+
+    '<b style="font-size:13px;color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' SRS 到期复习</b> '+
     '<span style="font-size:12.5px;color:var(--muted)">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'（间隔重复到达复习点）</span>'+
     '<span class="spacer"></span>'+
     (dues.length>0 ? '<button class="btn primary" id="startDueReview">▶ 开始到期复习</button>' : '')+
@@ -2696,7 +2700,7 @@ function renderReviewList(body){
       html += '<div class="srow"><div class="sen">'+
         '<div class="en">'+esc(d.it.sentence)+'</div>'+
         '<div class="cn">'+esc(d.it.translation||'')+'</div></div>'+
-        '<div class="meta" style="color:var(--warn)">🔁 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(d.deck.name)+'</div></div>';
+        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(d.deck.name)+'</div></div>';
     });
     html += '</div>';
   } else {
@@ -2706,7 +2710,7 @@ function renderReviewList(body){
   /* 区域 2：手动复习入口（按题库分组列出已标熟/已掌握） */
   html += '<div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">'+
     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
-    '<b style="font-size:13px;color:var(--muted)">📚 手动复习入口</b> '+
+    '<b style="font-size:13px;color:var(--muted)">'+(window.Icons?Icons.svg('book'):'')+' 手动复习入口</b> '+
     '<span style="font-size:12px;color:var(--faint)">（按题库分组，已标熟/已掌握的句子；立即重测一遍）</span>'+
     '</div>';
   var decksWithMarked = [];
@@ -2727,7 +2731,7 @@ function renderReviewList(body){
           '<div class="en">'+esc(d.name)+'</div>'+
           '<div class="cn" style="font-size:12px;color:var(--faint)">已标熟/已掌握 '+entry.items.length+' 句</div>'+
         '</div>'+
-        '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">📚 复习 '+entry.items.length+' 句</button>'+
+        '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">'+(window.Icons?Icons.svg('book'):'')+' 复习 '+entry.items.length+' 句</button>'+
         '</div>';
     });
     html += '</div>';
@@ -2835,7 +2839,7 @@ function renderWrongBook(body){
     return;
   }
   var html = '<div style="display:flex;justify-content:flex-end;margin-bottom:8px">'+
-    '<button class="btn sm danger" id="btnClearWrongBook">🗑 清空错题本</button></div>';
+    '<button class="btn sm danger" id="btnClearWrongBook">'+(window.Icons?Icons.svg('trash'):'')+' 清空错题本</button></div>';
   html += '<div class="stats-list">';
   /* 最近添加的在前 */
   book.slice().reverse().forEach(function(b){
@@ -2850,7 +2854,7 @@ function renderWrongBook(body){
       '<div class="cn">'+esc(b.translation||'')+' · '+esc(b.deckName||'')+'</div>'+
       (mine ? '<div class="wrong-detail">'+mine+'</div>' : '')+
       '</div>'+
-      '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="删除此条">✕</button>'+
+      '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="删除此条">'+(window.Icons?Icons.svg('close'):'')+'</button>'+
     '</div>';
   });
   html += '</div>';
@@ -2965,7 +2969,7 @@ function openDecks(){
     if(revCnt > 0){
       var rev = document.createElement('button');
       rev.className = 'btn sm ghost';
-      rev.textContent = '📚 复习';
+      rev.innerHTML = (window.Icons?Icons.svg('book'):'') + ' 复习';
       rev.title = '复习已标熟/已掌握句子（共 '+revCnt+' 句）';
       rev.style.cssText = 'color:#b45309;border-color:#fcd34d';
       rev.onclick = function(e){ e.stopPropagation(); practiceReviewDeck(d); };
@@ -3003,9 +3007,9 @@ function editDeck(d){
     (masterCount ? '<span class="pill" style="background:#e6f4ec;color:#12924f;border:1px solid #c3ead4">熟 '+masterCount+'</span>' : '')+
     '<span class="spacer"></span>'+
     '<button class="btn sm '+( _editOnlyMastered ? 'primary' : '' )+'" id="editMasterFilter">'+( _editOnlyMastered ? '↺ 看全部' : '只看已标熟' )+'</button>'+
-    '<button class="btn sm" id="editBatchExplain" title="批量给暂无详解的句子生成讲解">📖 批量详解</button>'+
-    '<button class="btn sm" id="editExportBtn">📤 导出</button>'+
-    '<button class="btn sm primary" id="editImportBtn">📥 导入更多句子</button>';
+    '<button class="btn sm" id="editBatchExplain" title="批量给暂无详解的句子生成讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量详解</button>'+
+    '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>'+
+    '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 导入更多句子</button>';
   $('editMasterFilter').onclick = function(){ _editOnlyMastered = !_editOnlyMastered; editDeck(d); };
   $('editBatchExplain').onclick = function(){ openBatchExplain(d); };
   $('editExportBtn').onclick = function(){ exportDeck(d); };
@@ -3047,7 +3051,7 @@ function editDeck(d){
     if(!d.builtin){
       var expBtn = document.createElement('button');
       expBtn.className = 'btn sm ghost';
-      expBtn.textContent = '📖';
+      expBtn.innerHTML = window.Icons?Icons.svg('book'):'';
       expBtn.title = '查看/生成详解';
       expBtn.style.cssText = 'color:var(--accent);flex-shrink:0;font-size:13px;padding:2px 8px;opacity:.55';
       expBtn.onmouseenter = function(){ this.style.opacity='1'; };
@@ -3057,7 +3061,7 @@ function editDeck(d){
 
       var edit = document.createElement('button');
       edit.className = 'btn sm ghost';
-      edit.textContent = '✏';
+      edit.innerHTML = window.Icons?Icons.svg('edit'):'';
       edit.title = '编辑此句';
       edit.style.cssText = 'color:var(--accent);flex-shrink:0;font-size:14px;padding:2px 8px;opacity:.55';
       edit.onmouseenter = function(){ this.style.opacity='1'; };
@@ -3067,7 +3071,7 @@ function editDeck(d){
     }
     /* 删除：内置 + 导入均支持。内置题走 deletedItems 覆盖（不可改写静态 builtins.js） */
     var del = document.createElement('button');
-    del.className = 'btn sm ghost'; del.textContent = '✕';
+    del.className = 'btn sm ghost'; del.innerHTML = window.Icons?Icons.svg('close'):'';
     del.title = '删除此句';
     del.style.cssText = 'color:#c4362b;flex-shrink:0;font-size:16px;padding:2px 6px;opacity:.5';
     del.onmouseenter = function(){ this.style.opacity='1'; };
@@ -3263,8 +3267,8 @@ $('explainCopyPrompt').onclick = function(){
   var t = buildExplainPrompt(_explainDeck.items[_explainIdx]);
   var btn = this;
   copyText(t).then(function(ok){
-    btn.textContent = ok ? '✓ 已复制' : '复制失败';
-    setTimeout(function(){ btn.textContent = '📋 复制 Prompt'; }, 1600);
+    btn.innerHTML = (ok ? ((window.Icons?Icons.svg('check'):'')+' 已复制') : '复制失败');
+    setTimeout(function(){ btn.innerHTML = (window.Icons?Icons.svg('copy'):'')+' 复制 Prompt'; }, 1600);
   });
 };
 $('explainReset').onclick = function(){ renderExplain(); };
@@ -3293,7 +3297,7 @@ $('explainApply').onclick = function(){
   it.explanations = data;
   saveStore();
   msg.className = 'msg ok show';
-  msg.textContent = '✓ 已保存 ' + data.length + ' 条详解';
+  msg.innerHTML = (window.Icons?Icons.svg('check'):'')+' 已保存 ' + data.length + ' 条详解';
   renderExplain();
 };
 
@@ -3324,8 +3328,8 @@ $('batchExplainCopy').onclick = function(){
   var t = buildBatchExplainPrompt(pendingExplains(_batchDeck, _batchAll));
   var btn = this;
   copyText(t).then(function(ok){
-    btn.textContent = ok ? '✓ 已复制' : '复制失败';
-    setTimeout(function(){ btn.textContent = '📋 复制批量 Prompt'; }, 1600);
+    btn.innerHTML = (ok ? ((window.Icons?Icons.svg('check'):'')+' 已复制') : '复制失败');
+    setTimeout(function(){ btn.innerHTML = (window.Icons?Icons.svg('copy'):'')+' 复制批量 Prompt'; }, 1600);
   });
 };
 $('batchExplainApply').onclick = function(){
@@ -3355,7 +3359,7 @@ $('batchExplainApply').onclick = function(){
   });
   saveStore();
   msg.className = 'msg ok show';
-  msg.textContent = '✓ 回填成功 ' + okCount + ' 句 · 跳过（长度不符/已有）' + skipCount + ' · 未匹配 ' + missCount;
+  msg.innerHTML = (window.Icons?Icons.svg('check'):'')+' 回填成功 ' + okCount + ' 句 · 跳过（长度不符/已有）' + skipCount + ' · 未匹配 ' + missCount;
   if(okCount){
     _batchDeck = null;
     setTimeout(function(){ $('batchExplainMask').hidden = true; if(_curPage === 'pageEdit' && _editingDeck) editDeck(_editingDeck); }, 1200);
@@ -3371,14 +3375,14 @@ function buildPrompt(cat, count, level, chunkRange){ return safeCall('AIPrompts'
 
 /* AI 生成题库的分类选项（icon / 名称 / 描述 / 生成聚焦点） */
 var CATEGORIES = [
-  { ic:'💬', nm:'日常对话',   ds:'衣食住行日常场景',     focus:'日常生活对话' },
-  { ic:'🛒', nm:'购物消费',   ds:'商场购物与退换',       focus:'购物场景表达' },
-  { ic:'✈️', nm:'旅行出行',   ds:'交通酒店出入境',       focus:'旅行场景沟通' },
-  { ic:'💼', nm:'职场办公',   ds:'会议邮件汇报',         focus:'职场英语沟通' },
-  { ic:'🏥', nm:'医疗健康',   ds:'就诊用药急救',         focus:'医疗场景表达' },
-  { ic:'🎓', nm:'校园学习',   ds:'上课考试图书馆',       focus:'校园场景交流' },
-  { ic:'🍽️', nm:'餐饮美食',   ds:'点餐用餐评价',         focus:'餐饮场景对话' },
-  { ic:'📱', nm:'科技数码',   ds:'设备软件网络',         focus:'科技产品相关' }
+  { ic:'chat', nm:'日常对话',   ds:'衣食住行日常场景',     focus:'日常生活对话' },
+  { ic:'cart', nm:'购物消费',   ds:'商场购物与退换',       focus:'购物场景表达' },
+  { ic:'plane', nm:'旅行出行',   ds:'交通酒店出入境',       focus:'旅行场景沟通' },
+  { ic:'briefcase', nm:'职场办公',   ds:'会议邮件汇报',         focus:'职场英语沟通' },
+  { ic:'med', nm:'医疗健康',   ds:'就诊用药急救',         focus:'医疗场景表达' },
+  { ic:'school', nm:'校园学习',   ds:'上课考试图书馆',       focus:'校园场景交流' },
+  { ic:'dining', nm:'餐饮美食',   ds:'点餐用餐评价',         focus:'餐饮场景对话' },
+  { ic:'device', nm:'科技数码',   ds:'设备软件网络',         focus:'科技产品相关' }
 ];
 
 function renderCats(){
@@ -3590,10 +3594,10 @@ function commitImport(items, name){
   /* 入库成功：不立即关弹窗，给"继续追加"入口，保持工作流连续性（凑到 200 句） */
   var okMsg = $('impMsg');
   okMsg.className = 'msg ok show';
-  okMsg.innerHTML = '<b>✓ 入库成功</b>：新建「'+esc(deck.name)+'」· '+items.length+' 句'+
+  okMsg.innerHTML = '<b>'+(window.Icons?Icons.svg('check'):'')+' 入库成功</b>：新建「'+esc(deck.name)+'」· '+items.length+' 句'+
     '<div style="display:flex;gap:8px;margin-top:10px">'+
       '<button class="btn primary" id="impGoPractice">▶ 去练习</button>'+
-      '<button class="btn" id="impContinue">📝 继续追加下一批</button>'+
+      '<button class="btn" id="impContinue">'+(window.Icons?Icons.svg('edit'):'')+' 继续追加下一批</button>'+
     '</div>'+
     '<div style="font-size:12px;color:var(--faint);margin-top:8px">想要更多句子？点「继续追加」可在当前弹窗接力（自动去重）</div>';
   $('impGoPractice').onclick = function(){
@@ -3610,7 +3614,7 @@ function commitImport(items, name){
 
 /* ★ 旧 pageDecks 兼容（绞杀者模式过渡）：openAppend 等函数从 decks.html 同步
    - 用户从旧版页面（chunk-practice.html）直接进入管理页时，旧 pageDecks 仍可见
-   - 编辑页 "📥 导入更多句子" onclick 已指向 openAppend(d)，这里补齐函数定义 */
+   - 编辑页 "导入更多句子" onclick 已指向 openAppend(d)，这里补齐函数定义 */
 function openAppend(deck){
   _appendDeck = deck;
   if($('appendDeckName')) $('appendDeckName').textContent = '目标题库：'+deck.name+'（'+deck.items.length+' 句）';
@@ -3653,7 +3657,7 @@ if($('btnGenSplitPrompt')) $('btnGenSplitPrompt').onclick = function(){
   if(raw.length > 60){ if($('appendMsg')){$('appendMsg').className='msg err show';$('appendMsg').textContent='每批建议 ≤60 句（当前 '+raw.length+' 句），请分批粘贴';} return; }
   if($('appendPromptBox')) $('appendPromptBox').value = buildSplitPrompt(_appendDeck, raw);
   if($('appendMineCnt')) $('appendMineCnt').textContent = '共 '+raw.length+' 句';
-  if($('appendMsg')){$('appendMsg').className='msg ok show';$('appendMsg').textContent='拆分 Prompt 已生成，点「📋 复制」粘贴给大模型';}
+  if($('appendMsg')){$('appendMsg').className='msg ok show';$('appendMsg').innerHTML='<span style="vertical-align:-2px">'+(window.Icons?Icons.svg('copy'):'')+'</span> 拆分 Prompt 已生成，点「复制」粘贴给大模型';}
 };
 
 /* 导出题库为 JSON 文件（格式与导入兼容，可直接分享给同学再导入） */
@@ -3972,7 +3976,7 @@ $('btnSaveSettings').onclick = function(){
 $('btnToggleKey').onclick = function(){
   var inp = $('setApiKey');
   inp.type = (inp.type === 'password') ? 'text' : 'password';
-  this.textContent = (inp.type === 'password') ? '👁' : '🙈';
+  this.innerHTML = (window.Icons?Icons.svg('eye'):'');
 };
 
 /* 数据备份折叠 */
@@ -4072,14 +4076,14 @@ function openAIExplain(){
   $('aiSentenceHint').textContent = item.zh || '';
   $('aiMask').hidden = false;
   /* 显示加载态 */
-  $('aiBody').innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--faint)"><div style="font-size:28px;margin-bottom:8px">🤔</div><p style="margin:0;font-size:13px">正在分析句子…</p></div>';
+  $('aiBody').innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--faint)"><div style="font-size:28px;margin-bottom:8px"><span class="icon-spin" data-icon="refresh"></span></div><p style="margin:0;font-size:13px">正在分析句子…</p></div>';
 
   /* ADR-004：统一走后端代理（服务端缓存 + 限流；未登录 / 服务端未配置时自动兜底本地解读） */
   callDeepseekAPI(item, function(ok, res){
     if(ok){
       $('aiBody').innerHTML = res;
     }else{
-      $('aiBody').innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">⚠ 联网解读不可用（未登录或服务端未配置），已切换为本地解读</div>';
+      $('aiBody').innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">'+(window.Icons?Icons.svg('warn'):'')+' 联网解读不可用（未登录或服务端未配置），已切换为本地解读</div>';
     }
   });
 }
@@ -4157,13 +4161,13 @@ function renderAIJson(obj, item){
   var s = obj.orig || (item.sentence||'');
   var zh = obj.zh || (item.zh||'');
   html += '<div style="margin-bottom:16px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;border-left:3px solid var(--accent)">';
-  html += '<div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:4px">📝 原句</div>';
+  html += '<div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:4px">'+(window.Icons?Icons.svg('list'):'')+' 原句</div>';
   html += '<div style="font-size:15px;color:var(--text);line-height:1.6;word-break:break-word">'+escHtml(s)+'</div>';
   html += '<div style="font-size:13px;color:var(--muted);margin-top:4px">'+escHtml(zh)+'</div>';
   html += '</div>';
 
   if(obj.chunks && obj.chunks.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">🧩 意群拆解（'+obj.chunks.length+' 个）</div>';
+    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('puzzle'):'')+' 意群拆解（'+obj.chunks.length+' 个）</div>';
     html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
     for(var i=0;i<obj.chunks.length;i++){
       var c = obj.chunks[i];
@@ -4174,7 +4178,7 @@ function renderAIJson(obj, item){
   }
 
   if(obj.grammar && obj.grammar.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">📐 核心语法</div>';
+    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chart'):'')+' 核心语法</div>';
     for(var g=0;g<obj.grammar.length;g++){
       html += '<div style="padding:8px 12px;border-radius:8px;background:var(--surface-2);margin-bottom:6px;border-left:3px solid var(--ok)">';
       html += '<div style="font-weight:600;font-size:13px;color:var(--text)">'+escHtml(obj.grammar[g])+'</div>';
@@ -4184,7 +4188,7 @@ function renderAIJson(obj, item){
   }
 
   if(obj.collocations && obj.collocations.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">🔗 固定搭配 & 短语</div>';
+    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('link'):'')+' 固定搭配 & 短语</div>';
     html += '<div style="display:flex;flex-direction:column;gap:6px">';
     for(var c=0;c<obj.collocations.length;c++){
       html += '<div style="padding:7px 12px;border-radius:8px;background:#fff9e6;border:1px solid #f0d860;display:flex;align-items:center;gap:8px">';
@@ -4195,7 +4199,7 @@ function renderAIJson(obj, item){
   }
 
   if(obj.scenario){
-    html += '<div><div style="font-size:14px;font-weight:600;margin-bottom:8px">💬 使用场景</div>';
+    html += '<div><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chat'):'')+' 使用场景</div>';
     html += '<div style="padding:10px 14px;border-radius:10px;background:var(--ok-soft);border:1px solid var(--ok);font-size:13px;line-height:1.65;color:#0b6b3a">'+escHtml(obj.scenario)+'</div></div>';
   }
 
@@ -4212,14 +4216,14 @@ function buildAIExplain(item){
 
   /* 句子原文 */
   html += '<div style="margin-bottom:16px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;border-left:3px solid var(--accent)">';
-  html += '<div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:4px">📝 原句</div>';
+  html += '<div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:4px">'+(window.Icons?Icons.svg('list'):'')+' 原句</div>';
   html += '<div style="font-size:15px;color:var(--text);line-height:1.6;word-break:break-word">'+escHtml(s)+'</div>';
   html += '<div style="font-size:13px;color:var(--muted);margin-top:4px">'+escHtml(zh)+'</div>';
   html += '</div>';
 
   /* 意群拆解 */
   if(chunks.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">🧩 意群拆解（'+chunks.length+' 个）</div>';
+    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('puzzle'):'')+' 意群拆解（'+chunks.length+' 个）</div>';
     html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
     for(var i=0;i<chunks.length;i++){
       var c = chunks[i];
@@ -4233,7 +4237,7 @@ function buildAIExplain(item){
   /* 核心语法点 */
   var grammar = extractGrammar(s, chunks);
   if(grammar.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">📐 核心语法</div>';
+    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chart'):'')+' 核心语法</div>';
     for(var g=0;g<grammar.length;g++){
       html += '<div style="padding:8px 12px;border-radius:8px;background:var(--surface-2);margin-bottom:6px;border-left:3px solid '+((g%2===0)?'var(--ok)':'var(--accent)')+'">';
       html += '<div style="font-weight:600;font-size:13px;color:var(--text)">'+escHtml(grammar[g].title)+'</div>';
@@ -4246,7 +4250,7 @@ function buildAIExplain(item){
   /* 固定搭配 / 短语 */
   var collocs = extractCollocations(s, chunks);
   if(collocs.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">🔗 固定搭配 & 短语</div>';
+    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('link'):'')+' 固定搭配 & 短语</div>';
     html += '<div style="display:flex;flex-direction:column;gap:6px">';
     for(var c=0;c<collocs.length;c++){
       html += '<div style="padding:7px 12px;border-radius:8px;background:#fff9e6;border:1px solid #f0d860;display:flex;align-items:center;gap:8px">';
@@ -4258,7 +4262,7 @@ function buildAIExplain(item){
   }
 
   /* 使用场景 */
-  html += '<div><div style="font-size:14px;font-weight:600;margin-bottom:8px">💬 使用场景</div>';
+  html += '<div><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chat'):'')+' 使用场景</div>';
   html += '<div style="padding:10px 14px;border-radius:10px;background:var(--ok-soft);border:1px solid var(--ok);font-size:13px;line-height:1.65;color:#0b6b3a">';
   html += escHtml(buildScenario(item));
   html += '</div></div>';
@@ -4411,7 +4415,7 @@ $('btnCopy').onclick = function(){
   var ta = $('promptBox');
   if(!ta.value){ $('copyTip').textContent = '请先选择一个分类'; return; }
   var done = function(){
-    $('copyTip').innerHTML = '<span style="color:var(--ok);font-weight:600">已复制 ✓ 粘贴到大模型即可</span>';
+    $('copyTip').innerHTML = '<span style="color:var(--ok);font-weight:600"><span style="vertical-align:-2px">'+(window.Icons?Icons.svg('check'):'')+'</span> 已复制，粘贴到大模型即可</span>';
     setTimeout(function(){ $('copyTip').textContent=''; }, 2600);
   };
   if(navigator.clipboard && navigator.clipboard.writeText){
@@ -4444,7 +4448,7 @@ $('btnAppendCopy').onclick = function(){
   var ta = $('appendPromptBox');
   if(!ta.value){ $('appendCopyTip').textContent = '请先选择一个分类'; return; }
   var done = function(){
-    $('appendCopyTip').innerHTML = '<span style="color:var(--ok);font-weight:600">已复制 ✓ 粘贴到大模型即可</span>';
+    $('appendCopyTip').innerHTML = '<span style="color:var(--ok);font-weight:600"><span style="vertical-align:-2px">'+(window.Icons?Icons.svg('check'):'')+'</span> 已复制，粘贴到大模型即可</span>';
     setTimeout(function(){ $('appendCopyTip').textContent=''; }, 2600);
   };
   if(navigator.clipboard && navigator.clipboard.writeText){
@@ -4495,14 +4499,31 @@ window.addEventListener('drop', function(e){ e.preventDefault(); });
 /* ============================================================
    10. 启动（先确保云端登录/同步，再初始化界面）
 ============================================================ */
-/* PWA: 注册 service worker（离线缓存静态资源；API/写请求不缓存） */
+/* PWA: 注册 service worker（离线缓存静态资源；API/写请求不缓存）
+   新版本检测：SW 更新安装完成后提示用户刷新（不自动 reload，尊重当前练习状态） */
+function showUpdateToast(){
+  var t = $('updateToast'); if(!t) return;
+  t.style.display = 'flex';
+}
+function hideUpdateToast(){ var t = $('updateToast'); if(t) t.style.display = 'none'; }
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
     navigator.serviceWorker.register('sw.js').then(function(reg){
+      reg.addEventListener('updatefound', function(){
+        var newSW = reg.installing;
+        if(!newSW) return;
+        newSW.addEventListener('statechange', function(){
+          if(newSW.state === 'installed' && navigator.serviceWorker.controller){
+            showUpdateToast();
+          }
+        });
+      });
       reg.update && reg.update();
     }).catch(function(e){ console.warn('[sw] 注册失败：', e); });
   });
 }
+/* 新版本 toast 按钮：点击强制刷新（跳过 HTTP 缓存，SW 版本已换） */
+$('btnApplyUpdate').onclick = function(){ window.location.reload(); };
 /* 离线 change-log 可见性：监听同步状态，有未同步变更时显示"未同步"徽标 */
 function refreshSyncBadge(dirty){
   var b = $('syncBadge'); if(!b) return;

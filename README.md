@@ -150,14 +150,15 @@ node js/backup.test.mjs           # 备份组装 / 导入解析
 node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change-log（dirty/重连补传）
 ```
 
-浏览器端到端验收（Playwright 截图：桌面/移动端练习页、AI 弹窗、题库页）：
+浏览器端到端回归（Playwright，一键跑，自动拉起临时 server）：
 ```bash
-# 起服务后：
-NODE_PATH=<playwright-core 所在 node_modules> node output/e2e/verify.js
-# 截图输出到 output/e2e/shots/（output/ 已被 gitignore）
+npm run e2e
+# 覆盖：main 正常路径（顶栏 SVG/真实句子/候选区/零 pageerror）、
+#       全 module 拦截降级（safeCall 兜底不白屏）、decks/stats SVG 渲染
+# 截图输出 output/e2e/shots/；找不到浏览器时设 CHROMIUM_PATH
 ```
 
-> **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first，改业务代码后必须 **bump `CACHE` 版本号**（如 `chunklab-v3` → `v4`），否则浏览器会继续 serve 旧缓存（修复不生效）。刷新页面一次即完成新 SW 激活与旧缓存清理。
+> **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first，改业务代码后必须 **bump `CACHE` 版本号**（如 `chunklab-v3` → `v4`），否则浏览器会继续 serve 旧缓存（修复不生效）。刷新页面一次即完成新 SW 激活与旧缓存清理；**页面顶部会自动出现"发现新版本"toast**，点刷新即可。
 
 ## 自动备份（上线准备 · 推荐配置）
 

@@ -157,7 +157,7 @@ textarea{outline:none;resize:vertical}
     <div class="course-tree hidden" id="courseTree"></div>
     <div class="market-section" id="marketSection" style="margin-top:22px">
       <div class="market-head">
-        <h3 style="margin:0;font-size:15px">📚 公共题库市场</h3>
+        <h3 style="margin:0;font-size:15px"><span data-icon="book"></span> 公共题库市场</h3>
         <span class="spacer"></span>
         <button class="btn sm ghost" id="btnRefreshMarket" title="刷新市场列表">刷新</button>
       </div>
@@ -176,9 +176,9 @@ textarea{outline:none;resize:vertical}
   <div class="page hidden" id="pageExplain">
     <div class="page-head">
       <button class="btn sm" id="explainBack">← 返回</button>
-      <h2>📖 句子详解</h2>
+      <h2><span data-icon="book"></span> 句子详解</h2>
       <span class="spacer"></span>
-      <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板">📋 复制 Prompt</button>
+      <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板"><span data-icon="copy"></span>复制 Prompt</button>
     </div>
     <div style="padding:2px 0 10px">
       <div id="explainSentence" style="font-size:17px;font-weight:700;line-height:1.45"></div>
@@ -193,7 +193,7 @@ textarea{outline:none;resize:vertical}
       <textarea id="explainJsonBox" rows="4" style="width:100%;font-family:monospace;font-size:12.5px" placeholder='[ "讲解1", "讲解2" ]'></textarea>
       <div id="explainMsg" class="msg"></div>
       <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn primary" id="explainApply">✓ 校验并保存</button>
+        <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
         <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
       </div>
     </div>
@@ -207,7 +207,7 @@ textarea{outline:none;resize:vertical}
       <h3>导入题库</h3>
       <span style="font-size:12.5px;color:var(--faint)">选分类 → 复制 Prompt → 喂大模型 → 粘回 JSON</span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <div class="imp-append-banner hidden" id="impAppend"></div>
@@ -218,7 +218,7 @@ textarea{outline:none;resize:vertical}
         <span class="opt">难度 <select id="optLevel"><option>入门</option><option selected>进阶</option><option>高阶</option></select></span>
         <span class="opt">意群数 <select id="optChunks"><option value="2-3">2-3 个</option><option value="2-4" selected>2-4 个</option><option value="3-5">3-5 个</option></select></span>
       </div>
-      <div class="step-title"><span class="step">2</span>Prompt<span class="note">DeepSeek / 元宝 / ChatGPT 均可</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px">📋 复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
+      <div class="step-title"><span class="step">2</span>Prompt<span class="note">DeepSeek / 元宝 / ChatGPT 均可</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px"><span data-icon="copy"></span>复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
       <textarea id="promptBox" readonly placeholder="先在上方点一个分类卡片…" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;background:var(--surface-2)"></textarea>
       <div class="step-title" style="margin-top:14px"><span class="step">3</span>粘贴模型返回的 JSON<span class="note">也可拖入 .json 文件</span><button class="btn sm ghost" id="btnClear" style="margin-left:8px">清空</button></div>
       <div class="drop" id="drop">
@@ -244,14 +244,14 @@ textarea{outline:none;resize:vertical}
       <h3>导入图文课程</h3>
       <span style="font-size:12.5px;color:var(--faint)">选择 ZIP 课程包，指定所属层级</span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <!-- 拖拽/点击区域 -->
       <div class="course-drop-zone" id="courseDropZone">
         <input type="file" id="courseFileInput" accept=".zip,application/zip" class="hidden">
         <div class="course-drop-hint">
-          <span class="course-drop-icon">📦</span>
+          <span class="course-drop-icon" data-icon="box"></span>
           <p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p>
           <small>支持 .zip 格式（English MUD 导出）</small>
         </div>
@@ -300,7 +300,7 @@ textarea{outline:none;resize:vertical}
       <h3>追加句子</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="appendDeckName"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <!-- 模式切换：A 生成新句子 / B 我已有句子（拆分意群） -->
@@ -319,13 +319,13 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
         </div>
         <div class="dropzone-hint">支持 .txt 文件（每行一句）· 大模型将给每句拆意群 chunks + 中文翻译 + hints</div>
         <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="btn" id="btnGenSplitPrompt">⚙ 生成拆分 Prompt</button>
+          <button class="btn" id="btnGenSplitPrompt"><span data-icon="settings"></span>生成拆分 Prompt</button>
           <span style="font-size:12px;color:var(--faint);align-self:center" id="appendMineCnt"></span>
         </div>
       </div>
 
       <div style="margin-bottom:10px">
-        <div class="step-title"><span class="step" id="appendStepNum">2</span><span id="appendStepTitle">Prompt</span><span class="note">粘贴给任意大模型</span><button class="btn sm primary" id="btnAppendCopy" style="margin-left:8px">📋 复制</button><span id="appendCopyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
+        <div class="step-title"><span class="step" id="appendStepNum">2</span><span id="appendStepTitle">Prompt</span><span class="note">粘贴给任意大模型</span><button class="btn sm primary" id="btnAppendCopy" style="margin-left:8px"><span data-icon="copy"></span>复制</button><span id="appendCopyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
         <textarea id="appendPromptBox" readonly placeholder="Prompt 已自动生成…" style="width:100%;min-height:60px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12.5px;background:var(--surface-2)"></textarea>
       </div>
       <div>
@@ -350,10 +350,10 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <div class="mask" id="batchExplainMask" hidden>
   <div class="modal" style="max-width:640px">
     <div class="modal-head">
-      <h3>📖 批量生成详解</h3>
+      <h3><span data-icon="book"></span> 批量生成详解</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="batchExplainInfo"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body">
       <label style="display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:12.5px;color:var(--muted);cursor:pointer">
@@ -361,13 +361,13 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
         包含已详解的句子（覆盖升级为结构化讲解）
       </label>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-        <button class="btn" id="batchExplainCopy">📋 复制批量 Prompt</button>
+        <button class="btn" id="batchExplainCopy"><span data-icon="copy"></span>复制批量 Prompt</button>
         <span style="font-size:12px;color:var(--faint)">粘贴到外部大模型 → 生成 → 把 JSON 粘贴到下方一次回填</span>
       </div>
       <textarea id="batchExplainJson" rows="6" style="width:100%;font-family:monospace;font-size:12px" placeholder='{"items":[{"sentence":"原句...","explanations":[{"grammar":"...","syntax":"...","words":[{"w":"call","p":"v.","m":"打电话"}]}]}]}'></textarea>
       <div id="batchExplainMsg" class="msg"></div>
       <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn primary" id="batchExplainApply">✓ 校验并批量保存</button>
+        <button class="btn primary" id="batchExplainApply"><span data-icon="check"></span>校验并批量保存</button>
       </div>
     </div>
   </div>
@@ -380,7 +380,7 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
       <h3>编辑句子</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="editSentenceHint"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close>✕</button>
+      <button class="btn sm ghost" data-close data-icon="close"></button>
     </div>
     <div class="modal-body" style="display:flex;flex-direction:column;gap:12px">
       <div><div class="set-lbl" style="margin-bottom:4px">英文句子（必填）</div><textarea id="editSentenceEn" rows="2" style="width:100%"></textarea></div>
@@ -404,9 +404,12 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="auth-ui.js"></script>
+<script src="js/icons.js"></script>
 <script src="library.js"></script>
 <script src="course-package.js"></script>
 <script>
+/* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
+if(window.Icons) Icons.install();
 /* ===== 题库管理 独立页面（decks.html）=====
    共享 core.js（CL 命名空间）：存储/工具/领域判定/事件总线；
    postMessage 通知主页：startDeck（启动练习）/ memUpdated（数据变更） */
@@ -445,18 +448,18 @@ function copyText(t, done){ CL.copyText(t, done); }
 
 /* 分类 + Prompt 模板（与主页面一致） */
 var CATS = [
-  { icon:'💬', name:'日常对话', zh:'衣食住行日常场景', en:'daily life conversations (greetings, weather, shopping, transport, ordering food)', count:15 },
-  { icon:'🛒', name:'购物消费', zh:'商场购物与退换货', en:'shopping scenarios (bargaining, returns, sizes, payment methods)', count:15 },
-  { icon:'✈️', name:'旅行出行', zh:'交通酒店出入境', en:'travel scenarios (airport, hotel, directions, customs, boarding)', count:15 },
-  { icon:'💼', name:'职场办公', zh:'会议邮件汇报面试', en:'workplace scenarios (meetings, emails, reports, interviews, business)', count:15 },
-  { icon:'🍽️', name:'餐饮美食', zh:'点餐用餐评价外卖', en:'food & dining (ordering, menus, dietary restrictions, reviews)', count:15 },
-  { icon:'🏥', name:'医疗健康', zh:'就诊用药急救保险', en:'medical scenarios (doctor visits, pharmacy, symptoms, insurance)', count:15 },
-  { icon:'🎓', name:'校园学习', zh:'上课考试图书馆', en:'campus & academic (classes, exams, library, dorm life)', count:15 },
-  { icon:'📱', name:'科技数码', zh:'设备软件网络', en:'tech & digital (devices, apps, troubleshooting, social media)', count:15 },
-  { icon:'🎤', name:'雅思口语', zh:'雅思高频话题 Part 1/2/3', en:'IELTS speaking topics (Part 1/2/3 common questions & answers)', count:15 },
-  { icon:'🎬', name:'影视口语', zh:'美剧电影地道表达', en:'colloquial expressions from TV shows and movies (slang, idioms)', count:15 },
-  { icon:'🤝', name:'社交情感', zh:'交友约会人际关系', en:'social & emotional (dating, friendships, parties, small talk)', count:15 },
-  { icon:'📰', name:'新闻媒体', zh:'时事热点采访报道', en:'news & media (current events, interviews, opinions, debates)', count:15 }
+  { icon:'chat', name:'日常对话', zh:'衣食住行日常场景', en:'daily life conversations (greetings, weather, shopping, transport, ordering food)', count:15 },
+  { icon:'cart', name:'购物消费', zh:'商场购物与退换货', en:'shopping scenarios (bargaining, returns, sizes, payment methods)', count:15 },
+  { icon:'plane', name:'旅行出行', zh:'交通酒店出入境', en:'travel scenarios (airport, hotel, directions, customs, boarding)', count:15 },
+  { icon:'briefcase', name:'职场办公', zh:'会议邮件汇报面试', en:'workplace scenarios (meetings, emails, reports, interviews, business)', count:15 },
+  { icon:'dining', name:'餐饮美食', zh:'点餐用餐评价外卖', en:'food & dining (ordering, menus, dietary restrictions, reviews)', count:15 },
+  { icon:'med', name:'医疗健康', zh:'就诊用药急救保险', en:'medical scenarios (doctor visits, pharmacy, symptoms, insurance)', count:15 },
+  { icon:'school', name:'校园学习', zh:'上课考试图书馆', en:'campus & academic (classes, exams, library, dorm life)', count:15 },
+  { icon:'device', name:'科技数码', zh:'设备软件网络', en:'tech & digital (devices, apps, troubleshooting, social media)', count:15 },
+  { icon:'mic', name:'雅思口语', zh:'雅思高频话题 Part 1/2/3', en:'IELTS speaking topics (Part 1/2/3 common questions & answers)', count:15 },
+  { icon:'film', name:'影视口语', zh:'美剧电影地道表达', en:'colloquial expressions from TV shows and movies (slang, idioms)', count:15 },
+  { icon:'handshake', name:'社交情感', zh:'交友约会人际关系', en:'social & emotional (dating, friendships, parties, small talk)', count:15 },
+  { icon:'newspaper', name:'新闻媒体', zh:'时事热点采访报道', en:'news & media (current events, interviews, opinions, debates)', count:15 }
 ];
 var _selCat = CATS[0];
 var _appendDeck = null, _batchDeck = null, _batchAll = false;
@@ -523,7 +526,7 @@ function openDecks(){
     if(!d.builtin && window.ChunkAPI && ChunkAPI.publishDeck){
       var pub = document.createElement('button');
       pub.className = 'btn sm ghost';
-      pub.textContent = d.isPublic ? '✓ 已发布' : '发布';
+      pub.innerHTML = (d.isPublic ? ((window.Icons?Icons.svg('check'):'')+' 已发布') : '发布');
       pub.title = d.isPublic ? '从公共题库市场下架' : '发布到公共题库市场，其他用户可一键导入';
       if(d.isPublic) pub.style.cssText = 'color:var(--ok)';
       pub.onclick = function(){
@@ -634,9 +637,9 @@ function editDeck(d){
     (masterCount ? '<span class="pill" style="background:#e6f4ec;color:#12924f;border:1px solid #c3ead4">熟 '+masterCount+'</span>' : '')+
     '<span class="spacer"></span>'+
     '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? '↺ 看全部' : '只看已标熟' )+'</button>'+
-    '<button class="btn sm" id="editBatchExplain" title="批量给暂无详解的句子生成讲解">📖 批量详解</button>'+
-    '<button class="btn sm" id="editExportBtn">📤 导出</button>'+
-    (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">📥 导入更多句子</button>');
+    '<button class="btn sm" id="editBatchExplain" title="批量给暂无详解的句子生成讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量详解</button>'+
+    '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>'+
+    (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 导入更多句子</button>');
   $('editMasterFilter').onclick = function(){ _editOnlyMastered = !_editOnlyMastered; editDeck(d); };
   $('editBatchExplain').onclick = function(){ openBatchExplain(d); };
   $('editExportBtn').onclick = function(){ exportDeck(d); };
@@ -667,11 +670,11 @@ function editDeck(d){
       '</div>';
     var ops = '<div class="ops">';
     if(!d.builtin){
-      ops += '<button class="btn sm ghost" data-op="exp" title="查看/生成详解">📖</button>'+
-             '<button class="btn sm ghost" data-op="edit" title="编辑此句">✏</button>';
+      ops += '<button class="btn sm ghost" data-op="exp" title="查看/生成详解">'+(window.Icons?Icons.svg('book'):'')+'</button>'+
+             '<button class="btn sm ghost" data-op="edit" title="编辑此句">'+(window.Icons?Icons.svg('edit'):'')+'</button>';
     }
     /* 删除：内置 + 导入均支持；内置题走 deletedItems 覆盖 */
-    ops += '<button class="btn sm ghost" data-op="del" title="删除此句" style="color:#c4362b">✕</button>';
+    ops += '<button class="btn sm ghost" data-op="del" title="删除此句" style="color:#c4362b">'+(window.Icons?Icons.svg('close'):'')+'</button>';
     ops += '</div>';
     row.innerHTML = inner + ops;
     var expb = row.querySelector('[data-op="exp"]'); if(expb) expb.onclick = function(){ openExplain(d, i); };
@@ -1068,7 +1071,7 @@ function doValidate(autoImport){
   /* 错误列表：显示句子原文 + 原因（自助用户可读） */
   var li = r.errs.slice(0,8).map(function(e){
     return '<li style="margin-bottom:4px"><b>#'+e.idx+'</b> '+esc(e.sentence)+'<br>'+
-      '<span style="color:var(--bad);font-size:12px">⚠ '+esc(e.why)+'</span></li>';
+      '<span style="color:var(--bad);font-size:12px">'+(window.Icons?Icons.svg('warn'):'')+' '+esc(e.why)+'</span></li>';
   }).join('');
   msg.className='msg err show';
   msg.innerHTML = '<b>校验未全部通过</b>：合格 '+r.good.length+' 题，问题 '+r.errs.length+' 处'+
@@ -1150,7 +1153,7 @@ function doAppendValidate(){
     /* 错误可读：显示句子原文 + 原因 */
     var li = r.errs.slice(0,6).map(function(e){
       return '<li style="margin-bottom:4px"><b>#'+e.idx+'</b> '+esc(e.sentence)+'<br>'+
-        '<span style="color:var(--bad);font-size:12px">⚠ '+esc(e.why)+'</span></li>';
+        '<span style="color:var(--bad);font-size:12px">'+(window.Icons?Icons.svg('warn'):'')+' '+esc(e.why)+'</span></li>';
     }).join('');
     msg.className='msg err show';
     msg.innerHTML = '<b>校验未全部通过</b>：合格 '+r.good.length+' 题，问题 '+r.errs.length+' 处'+
@@ -1164,7 +1167,7 @@ function doAppendValidate(){
   var addedItems = r.good;
   /* 成功闭环：显示入库结果 + 「去练习这批 / 继续追加」按钮 */
   msg.className='msg ok show';
-  msg.innerHTML = '<b>✓ 入库成功</b>：追加 '+m.added+' 句（去重 '+m.dup+' 句）<br>'+
+  msg.innerHTML = '<b>'+(window.Icons?Icons.svg('check'):'')+' 入库成功</b>：追加 '+m.added+' 句（去重 '+m.dup+' 句）<br>'+
     '<span style="font-size:12.5px">题库「'+esc(deckRef.name)+'」现有 '+m.items.length+' 句</span>'+
     '<div style="display:flex;gap:8px;margin-top:10px">'+
       '<button class="btn primary" id="appendGoPractice">▶ 去练习这批</button>'+
@@ -1264,7 +1267,7 @@ $('btnGenSplitPrompt').onclick = function(){
   $('appendPromptBox').value = buildSplitPrompt(_appendDeck, raw);
   $('appendMineCnt').textContent = '共 '+raw.length+' 句';
   $('appendMsg').className = 'msg ok show';
-  $('appendMsg').textContent = '拆分 Prompt 已生成，点「📋 复制」粘贴给大模型';
+  $('appendMsg').textContent = '拆分 Prompt 已生成，点「复制」粘贴给大模型';
 };
 
 /* ===== 图文课程树（统一题库视图） ===== */
@@ -1315,7 +1318,7 @@ function renderCourseTree(){
 function lessonRow(c){
   var row = document.createElement('div');
   row.className = 'lesson';
-  row.innerHTML = '<span class="nm">'+Library.esc(c.title)+'</span><span class="meta">'+c.nodeCount+' 节点</span><button class="lesson-del" data-id="'+Library.esc(c.courseId)+'" title="删除此课程">✕</button>';
+  row.innerHTML = '<span class="nm">'+Library.esc(c.title)+'</span><span class="meta">'+c.nodeCount+' 节点</span><button class="lesson-del" data-id="'+Library.esc(c.courseId)+'" title="删除此课程">'+(window.Icons?Icons.svg('close'):'')+'</button>';
   row.onclick = function(e){ if(e.target.closest('.lesson-del')) return; window.location.href = 'courses.html?id='+encodeURIComponent(c.courseId); };
   var delBtn = row.querySelector('.lesson-del');
   delBtn.onclick = function(e){ e.stopPropagation(); deleteCourse(c.courseId, c.title); };
@@ -1358,9 +1361,9 @@ function updateDropHint(file){
   var hint = document.querySelector('#courseDropZone .course-drop-hint');
   if(!hint) return;
   if(file){
-    hint.innerHTML = '<span class="course-drop-icon">✅</span><p><strong>'+esc(file.name)+'</strong></p><small>已选择，填写下方层级后点击「确认导入」</small>';
+    hint.innerHTML = '<span class="course-drop-icon">'+(window.Icons?Icons.svg('check'):'')+'</span><p><strong>'+esc(file.name)+'</strong></p><small>已选择，填写下方层级后点击「确认导入」</small>';
   } else {
-    hint.innerHTML = '<span class="course-drop-icon">📦</span><p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p><small>支持 .zip 格式（English MUD 导出）</small>';
+    hint.innerHTML = '<span class="course-drop-icon" data-icon="box"></span><p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p><small>支持 .zip 格式（English MUD 导出）</small>';
   }
 }
 (function initCourseImport(){
@@ -1426,12 +1429,12 @@ function onCourseImportConfirm(){
     if(p && p.then){
       p.then(function(){
         renderCourseTree();
-        showCourseMsg('✅ 导入完成！','ok');
+        showCourseMsg('导入完成！','ok');
         setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
       }).catch(function(e){ showCourseMsg('导入失败：'+e.message,'err'); });
     } else {
       renderCourseTree();
-      showCourseMsg('✅ 导入完成！','ok');
+      showCourseMsg('导入完成！','ok');
       setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
     }
   } else {
@@ -1478,7 +1481,7 @@ function bindCommon(){
   $('btnAppendCopy').onclick = function(){
     if(!_appendDeck) return;
     copyText(buildAppendPrompt(_appendDeck));
-    var t = $('appendCopyTip'); t.textContent='已复制 ✓';
+    var t = $('appendCopyTip'); t.innerHTML = (window.Icons?Icons.svg('check'):'') + ' 已复制';
     setTimeout(function(){ t.textContent=''; }, 1500);
   };
   $('btnAppendClear').onclick = function(){ $('appendJsonBox').value=''; };

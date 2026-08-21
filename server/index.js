@@ -420,12 +420,12 @@ auth.ensureDefaultUser(); // 开放模式：确保默认用户存在
 /* 启动安全审计（ADR-006）：模式 + 密钥状态一启动就可见，防"以为开了鉴权实际裸奔" */
 const securityWarnings = [];
 if (!auth.REQUIRE_AUTH) {
-  securityWarnings.push('[security] ⚠️ 开放模式：任何人可读写数据（落到默认用户 __default__）。公网部署必须设 REQUIRE_AUTH=true');
+  securityWarnings.push('[security] !! 开放模式：任何人可读写数据（落到默认用户 __default__）。公网部署必须设 REQUIRE_AUTH=true');
 } else if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'chunklab-dev-secret-change-me') {
-  securityWarnings.push('[security] ⚠️ REQUIRE_AUTH=true 但 JWT_SECRET 为默认值/未设置——令牌可被伪造！生产必须设置随机密钥（openssl rand -hex 32）');
+  securityWarnings.push('[security] !! REQUIRE_AUTH=true 但 JWT_SECRET 为默认值/未设置——令牌可被伪造！生产必须设置随机密钥（openssl rand -hex 32）');
 }
 if (!process.env.DEEPSEEK_API_KEY) {
-  securityWarnings.push('[security] ⚠️ 未配置 DEEPSEEK_API_KEY：前端可自托管传入自己的 Key（降级模式，生产建议配置）');
+  securityWarnings.push('[security] !! 未配置 DEEPSEEK_API_KEY：前端可自托管传入自己的 Key（降级模式，生产建议配置）');
 }
 
 app.listen(PORT, function () {

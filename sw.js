@@ -17,7 +17,7 @@
  * serve 旧版本缓存的 JS（cache-first），导致修复不生效。
  */
 /* eslint-disable */
-const CACHE = 'chunklab-v7';
+const CACHE = 'chunklab-v8';
 const PRECACHE = [
   '/main.html',
   '/manifest.json',
@@ -31,7 +31,6 @@ const PRECACHE = [
   '/oral8000.js',
   '/library.js',
   '/course-package.js',
-  '/chunk-practice.html',
   '/courses.html',
   '/decks.html',
   '/stats.html',
