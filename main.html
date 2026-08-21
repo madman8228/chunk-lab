@@ -822,8 +822,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <!-- tab2：AI 解读 -->
     <div id="explainTabAI" class="hidden">
       <div id="aiBody">
-        <div style="text-align:center;padding:30px 0;color:var(--faint)">
-          <p style="margin:0;font-size:13px">切换到本页后自动生成 AI 解读，或点下方「生成」。</p>
+        <div style="text-align:center;padding:36px 0;color:var(--faint)">
+          <div style="font-size:28px;margin-bottom:10px"><span data-icon="ai"></span></div>
+          <p style="margin:0 0 4px;font-size:13.5px">AI 解读需要联网生成</p>
+          <p style="margin:0;font-size:12.5px">点击下方「生成」获取本句的大模型解读</p>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
@@ -3175,7 +3177,7 @@ function switchExplainTab(n){
   $('tabExplainAI').classList.toggle('on', n === 2);
   var cp = $('explainCopyPrompt'); /* 复制 Prompt 属 tab1 批量回填工作流 */
   if(cp) cp.style.display = (n === 1) ? '' : 'none';
-  if(n === 2) runAIExplain(); /* 首次切到 AI tab 自动生成 */
+  /* 不自动调用 AI：用户主动点「生成/重新生成」才请求（避免无 Key 时被动显示本地兜底造成"已读"误判） */
 }
 function renderExplain(){
   if(!_explainDeck) return;
@@ -4200,11 +4202,7 @@ function renderAIJson(obj, item){
   var html = '';
   var s = obj.orig || (item.sentence||'');
   var zh = obj.zh || (item.zh||'');
-  html += '<div style="margin-bottom:16px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;border-left:3px solid var(--accent)">';
-  html += '<div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:4px">'+(window.Icons?Icons.svg('list'):'')+' 原句</div>';
-  html += '<div style="font-size:15px;color:var(--text);line-height:1.6;word-break:break-word">'+escHtml(s)+'</div>';
-  html += '<div style="font-size:13px;color:var(--muted);margin-top:4px">'+escHtml(zh)+'</div>';
-  html += '</div>';
+  /* 原句/中文已在详解页大标题区显示，AI 模板不再重复渲染（防冗余） */
 
   if(obj.chunks && obj.chunks.length){
     html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('puzzle'):'')+' 意群拆解（'+obj.chunks.length+' 个）</div>';
@@ -4254,25 +4252,7 @@ function buildAIExplain(item){
   var chunks = item.chunks || [];
   var html = '';
 
-  /* 句子原文 */
-  html += '<div style="margin-bottom:16px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;border-left:3px solid var(--accent)">';
-  html += '<div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:4px">'+(window.Icons?Icons.svg('list'):'')+' 原句</div>';
-  html += '<div style="font-size:15px;color:var(--text);line-height:1.6;word-break:break-word">'+escHtml(s)+'</div>';
-  html += '<div style="font-size:13px;color:var(--muted);margin-top:4px">'+escHtml(zh)+'</div>';
-  html += '</div>';
-
-  /* 意群拆解 */
-  if(chunks.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('puzzle'):'')+' 意群拆解（'+chunks.length+' 个）</div>';
-    html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
-    for(var i=0;i<chunks.length;i++){
-      var c = chunks[i];
-      var role = (c.role||'').replace(/[〈〉]/g,'');
-      var roleTag = role ? '<span style="font-size:10px;background:var(--border);color:var(--muted);padding:1px 5px;border-radius:4px;margin-left:4px">'+escHtml(role)+'</span>' : '';
-      html += '<span style="display:inline-flex;align-items:center;padding:5px 10px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;font-size:13.5px;color:var(--text)"><strong style="color:var(--accent);margin-right:4px">'+(i+1)+'</strong>'+escHtml(c.right)+roleTag+'</span>';
-    }
-    html += '</div></div>';
-  }
+  /* 本地兜底瘦身：原句已在详解页大标题显示、意群拆解与 tab1 详解卡重复——均不渲染 */
 
   /* 核心语法点 */
   var grammar = extractGrammar(s, chunks);
