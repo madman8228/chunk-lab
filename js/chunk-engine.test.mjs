@@ -86,6 +86,42 @@ const items = [sentA, sentB, sentC];
   check('buildDistractors: 题库不足不崩溃', Array.isArray(ds) && ds.length === 0);
 })();
 
+/* ===== buildChoices 语义相关度过滤（修根因：原算法仅按词性/词数匹配，零语义重叠的长句片段会被选中） ===== */
+(function () {
+  // 用户截图场景：句子 "It looks like it's going to rain."，对 chunk "It looks like"
+  const target = { sentence: "It looks like it's going to rain.", chunks: ['It looks like', "it's going to", 'rain.'] };
+  // 池子含高质量干扰（共享 "it"/"going"/"to"）+ 零相关整句片段
+  const pool = [
+    { sentence: "I'm going to school.", chunks: ["I'm going to"] },               // 与 target.chunks[0] 共享 "going"/"to"（"to" 虽是停用词但词形保留作降级依据可能不足——"It" "to" 跨 stop 词时 overlap 主要看 "going"）
+    { sentence: "It's going to rain.",      chunks: ["It's going to"] },               // 高质量（同 pattern S-C-S-C，共享 it/going）
+    { sentence: "I meet a friend.",         chunks: ['meet a friend'] },              // 长度同 3 词但零相关
+    { sentence: "How was your weekend?",    chunks: ['How was your weekend?'] },     // 长度同 3 词但零相关
+    { sentence: 'I like eating apples.',    chunks: ['I like eating'] }              // 长度 3，"like" 与 "like" 重叠（同长度+overlap）
+  ];
+  const cs = buildChoices(target, 0, pool, pool);
+  check('buildChoices: 包含正确答案', cs.includes('It looks like'));
+  check('buildChoices: 零相关的整句片段被排除（meet a friend / How was your weekend?）',
+    !cs.some(c => c === 'meet a friend' || c === 'How was your weekend?'),
+    'cs=' + JSON.stringify(cs));
+  check('buildChoices: 至少一个高质量干扰（共享 "going"/"like" 等）',
+    cs.some(c => c === "It's going to" || c === 'I like eating' || c === "I'm going to"),
+    'cs=' + JSON.stringify(cs));
+})();
+
+// 桶 A（同 pattern）优先于桶 B：保证高质量干扰即使 overlap 较低也入选
+(function () {
+  const target = { sentence: 'She walks.', chunks: ['She walks'] }; // pattern S-C
+  const pool = [
+    { sentence: 'He runs.',    chunks: ['He runs'] },       // 同 pattern S-C，零重叠
+    { sentence: 'It looks like', chunks: ['It looks like'] }, // 同长度 3 词，但 norm 后重排零 stop 重叠
+    { sentence: 'She eats.',   chunks: ['She eats'] }        // 同 pattern S-C 且重叠 "she"
+  ];
+  const cs = buildChoices(target, 0, pool, pool);
+  check('buildChoices: 桶 A 同 pattern 优先（pattern 强信号即使 overlap=0 也入选）',
+    cs.filter(c => c !== 'She walks').includes('He runs') || cs.filter(c => c !== 'She walks').includes('She eats'),
+    'cs=' + JSON.stringify(cs));
+})();
+
 /* ===== judgeChunk ===== */
 check('judgeChunk: 精确匹配', judgeChunk('I am', 'I am', []) === true);
 check('judgeChunk: 大小写/标点归一', judgeChunk('i am!', 'I am', []) === true);

@@ -44,7 +44,25 @@ export function norm(s) {
     .trim();
 }
 
-/* 生成候选：1 个正确答案 + 2 个干扰项（同模式优先，其次同长度，最后任意不同）。
+/* 候选与正确答案的非停用词重叠数（语义相关性的轻量代理）：
+   排除 SMALL_WORDS + 标点，纯字母数字词干交集；词性对位是更高优先信号（桶 A 单独按 pattern 匹配），
+   桶 B 强制要求此值 ≥ 1 以过滤"词数相同但毫不相干"的整句片段（如 "meet a friend" vs "It looks like"）。 */
+const STOP_WORDS_SET = new Set(SMALL_WORDS);
+function overlapScore(a, b) {
+  function tokens(s) {
+    var set = new Set();
+    String(s == null ? '' : s).toLowerCase().split(/\s+/).forEach(function (w) {
+      var t = w.replace(/[^a-z0-9']/g, '');
+      if (t && !STOP_WORDS_SET.has(t)) set.add(t);
+    });
+    return set;
+  }
+  var sa = tokens(a), sb = tokens(b);
+  var n = 0; sa.forEach(function (t) { if (sb.has(t)) n++; });
+  return n;
+}
+
+/* 生成候选：1 个正确答案 + 2 个干扰项（三档质量：同 pattern → 同长度+语义重叠 → 兜底）。
    currentItems = 当前题库 items（池子主来源）；allItems = 全部题库 items（池子不足时兜底）。 */
 export function buildChoices(it, i, currentItems, allItems) {
   var right = it.chunks[i], rn = norm(right);
@@ -63,7 +81,7 @@ export function buildChoices(it, i, currentItems, allItems) {
     });
   }
 
-  /* 第一优先：词性模式完全相同的 chunks（结构对位，仅内容词不同 → 高质量干扰） */
+  /* 桶 A：词性模式完全相同（结构对位，内容词不同 → 高质量干扰） */
   var samePattern = [];
   var seen = {};
   pool.forEach(function (c) {
@@ -74,25 +92,30 @@ export function buildChoices(it, i, currentItems, allItems) {
       samePattern.push(c);
     }
   });
-  /* 第二优先：词数相同（结构兜底） */
+  /* 桶 B：词数相同 + 与正确答案有非停用词重叠（同长度兜底太宽，加语义约束排除"句式像但不相关"的整句片段） */
   var rightWords = right.trim().split(/\s+/).length;
-  var sameLen = [];
+  var sameLenOverlap = [];
   var seen2 = {};
   pool.forEach(function (c) {
     var k = norm(c);
     if (!k || k === rn || seen[k] || seen2[k]) return;
-    if (c.trim().split(/\s+/).length === rightWords) {
+    if (c.trim().split(/\s+/).length === rightWords && overlapScore(c, right) >= 1) {
       seen2[k] = 1;
-      sameLen.push(c);
+      sameLenOverlap.push(c);
     }
   });
 
-  /* 三级兜底：同模式 → 同长度 → 任意不同；尽量避免 "…" 占位 */
+  /* 桶内按 overlapScore 降序（桶 B / 兜底池）：高质量干扰更优先 */
+  function byScoreDesc(a, b) { return overlapScore(b, right) - overlapScore(a, right); }
+  samePattern.sort(byScoreDesc);
+  sameLenOverlap.sort(byScoreDesc);
+
+  /* 三级选取：同模式 → 同长度+重叠 → 任意不同（兜底，仅题库过小/无相关时启用） */
   var wrongs = [];
   var seen4 = {};
-  function pick(pool, cap) {
-    for (var i = 0; i < pool.length && wrongs.length < cap; i++) {
-      var c = pool[i];
+  function pick(source, cap) {
+    for (var j = 0; j < source.length && wrongs.length < cap; j++) {
+      var c = source[j];
       var k = norm(c);
       if (!k || k === rn || seen4[k]) continue;
       seen4[k] = 1;
@@ -100,7 +123,7 @@ export function buildChoices(it, i, currentItems, allItems) {
     }
   }
   pick(samePattern, 2);
-  if (wrongs.length < 2) pick(sameLen, 2);
+  if (wrongs.length < 2) pick(sameLenOverlap, 2);
   if (wrongs.length < 2) pick(pool, 2);
   /* 仍不足 2 个时（题库太小），只返回正确答案 */
   if (wrongs.length < 2) return [right];
