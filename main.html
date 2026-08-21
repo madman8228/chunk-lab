@@ -3774,6 +3774,9 @@ function showPage(id){
      避免 chips 残留在屏幕上与新页面冲突 */
   if(id !== 'pagePractice'){
     var sc = $('stageChoices'); if(sc) sc.innerHTML = '';
+  }else{
+    /* 回到练习页：重新渲染 chips（进入详解/档案等页面时被清空过） */
+    renderActiveChoices();
   }
   /* 页面切换时关闭所有弹窗 */
   $('impMask').hidden = true;
