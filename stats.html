@@ -100,6 +100,10 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
 /* 跨页跳转消息 */
 .cross-page-hint{font-size:12px;color:var(--faint);text-align:center;padding:8px 12px;background:var(--surface-2);border-radius:8px;margin-top:14px}
+/* 宪法 SVG icon 尺寸（main.html 已定义，stats.html 缺失导致 SVG 占满父容器） */
+.icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
+.icon-spin{animation:iconSpin 1.2s linear infinite}
+@keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
