@@ -734,7 +734,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <span class="ring-num" id="ringNum">0</span>
       </div>
       <div class="zh-wrap">
-        <div class="zh" id="zh">⏳ v7 加载中…</div>
+        <div class="zh" id="zh">⏳ 加载中…</div>
         <div class="zh-sub-row">
           <span class="zh-sub" id="zhSub"></span>
           <span class="due-tag hidden" id="dueTagWrap"></span>
@@ -4461,6 +4461,7 @@ if(CL && CL.on && CL.isDirty){
   refreshSyncBadge(CL.isDirty());
 }
 CL.ensureCloud().then(function(){
+try {
 loadStore();
 $('btnSound').textContent = mem.settings.sound ? '🔊' : '🔇';
 renderCats();
@@ -4511,6 +4512,12 @@ if(!_resumed){
     _resumeDeck = _bestDeck;
   }
   startDeck(_resumeDeck || allDecks()[0] || BUILTIN[0]);
+}
+} catch (e) {
+  /* 启动段任何异常都写到 #zh（替代"永远卡在加载中"），并打 console 便于 F12 排查 */
+  var zh = document.getElementById('zh');
+  if (zh) zh.textContent = '❌ 启动失败：' + (e && e.message || e);
+  console.error('[boot] failed:', e);
 }
 }); /* CL.ensureCloud().then */
 </script>
