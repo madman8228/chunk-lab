@@ -206,7 +206,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 |------|------|----------|----------|
 | **Phase A 加固**（2-3 周） | 止血 | ADR-006 上云检查清单 + env 模板；ADR-008 服务端校验 + 冒烟测试；ai_cache 上限；README 对齐真实架构 | 公网部署不再裸奔；后端有回归测试 |
 | **Phase B 同步正确性**（3-4 周） | 多设备安全 | ADR-005 实体级 rev sync；软删除；离线 change-log 队列；冲突合并 | 双设备互改不丢数据；崩溃可恢复 |
-| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ~~ADR-004 后端 AI 代理~~（**已提前落地**）；~~IndexedDB 存课程~~（**已落地**）；~~PWA 离线~~（**已落地 2026-08-21**：manifest + sw.js 22 资源预缓存 + 静态 cache-first/API network-only）；ai_cache TTL；~~移动端适配~~（**已落地 2026-08-21**：@media 640/420 补完） | Key 不外泄（已达成）；大课程可离线 |
+| **Phase C AI 与离线**（3-4 周） | 能力扩展 | ~~ADR-004 后端 AI 代理~~（**已提前落地**）；~~IndexedDB 存课程~~（**已落地**）；~~PWA 离线~~（**已落地 2026-08-21**）；~~ai_cache TTL~~（**已落地 2026-08-21**：AI_CACHE_TTL 命中过期判定 + 懒清理）；~~离线 change-log~~（**已落地 2026-08-21**：轻量版 = dirty 标志 + 重连补传 + 顶栏徽标）；~~移动端适配~~（**已落地 2026-08-21**） | Key 不外泄（已达成）；大课程可离线 |
 | **Phase D 平台化**（按需） | 规模化 | 多租户加固；Postgres 选项；公共题库市场 `GET /api/deck/public`；学习分析 | 出现真实多用户/多设备需求 |
 
 ---
@@ -341,5 +341,19 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 - 新增 ≤420px 极窄屏块：弹窗边到边（`.mask{padding:0}` + `.modal` 100vw/100vh + border-radius:0 + 满屏）、按钮加大触区（`.choice` min-height 40px、`.btn` padding 8/12）、chunk-input 16px、zh-wrap 宽度收窄至 calc(100% - 120px)、圆环/标熟按钮略缩（28px）、顶栏 gap 4px。
 
 **验证**：内联语法 OK；全量单测 + server smoke 46/46 无回归；PWA + 子页资源全 200，sw.js/manifest.json MIME 正确（application/javascript / application/json）。
+
+### §8.6 ai_cache TTL + 离线 change-log（2026-08-21）
+
+**ai_cache TTL**
+- 服务端 `AI_CACHE_TTL`（env 默认 30 天，0=永不过期）：命中时 `updated_at >= datetime('now','-N days')` 判定过期 → 视为 miss 重新生成；`trimAiCache` 写入路径顺带懒清理全表过期条目（无定时器）。
+- 前端 localStorage ai_cache：`aiCacheGet` 检查 `at` 超过 30 天即清除（对齐服务端）。
+- smoke 49/49（+3：TTL 内命中、直改 DB 造过期 → cached:false、重新生成后再次命中）。
+
+**离线 change-log 队列（轻量版；架构决策：不做重放式）**
+- **论证**：per-entity rev 已保证合并正确性，重放日志无增益；真实缺口是"离线变更后重连不触发新变更就不补传"+"无待同步可见性"。
+- **顺带修复根因级 bug**：`main.html` `saveStore`（25 处调用）此前只裸 `CL.saveMem`——mem 变更（练习/统计/设置）从不上传云端（子页面 decks/stats 用 `CL.saveAndNotify` 正确）。已修：saveStore 补 `CL.scheduleCloudSync(mem)`。
+- core.js：`_dirty`（scheduleCloudSync 置位 / cloudSyncNow 成功清位）；`syncFromCloud` 拉取成功后若 dirty 立即补传 push（重连自动补传）；`CL.isDirty()` + `syncStatus` 事件。
+- main.html：顶栏"⏳ 未同步"徽标（监听 syncStatus + 初始化检查）。
+- rev.test.js 27/27（+2：dirty 生命周期 + syncStatus 事件、重连拉取后自动补传）。
 
 _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地（后端存在、SRS 纯函数、存储版本化），但"前端模块化"与"Sync 正确性"仍是缺口，本文即针对此缺口给出设计。_

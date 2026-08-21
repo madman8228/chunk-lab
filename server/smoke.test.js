@@ -93,7 +93,8 @@ const childEnv = Object.assign({}, process.env, {
   AI_RATE_LIMIT: '3' /* 便于验证限流 */,
   AI_MOCK_RESPONSE: JSON.stringify({
     choices: [{ message: { content: '{"orig":"MOCK","zh":"mock-zh","chunks":[],"grammar":[],"collocations":[],"scenario":"mock"}' } }]
-  }) /* 测试钩子：短路真实 DeepSeek 调用 */
+  }) /* 测试钩子：短路真实 DeepSeek 调用 */,
+  AI_CACHE_TTL: '1' /* 便于验证缓存过期 */
 });
 
 let child = null;
@@ -397,10 +398,24 @@ async function main() {
     r = await request('POST', '/api/ai/explain', token, { sentence: 'She is a teacher.' });
     check('ADR-004 调用后二次命中 cached:true', r.status === 200 && r.json && r.json.cached === true, 'status=' + r.status);
 
-    // 限流：AI_RATE_LIMIT=3（'She is a teacher.' 已占 1 次），再 2 次后第 4 次 → 429
-    for (let k = 1; k <= 2; k++) {
-      await request('POST', '/api/ai/explain', token, { sentence: 'limit sentence number ' + k, apiKey: 'sk-test' });
-    }
+    /* ===== Phase C：ai_cache TTL（AI_CACHE_TTL=1 天） ===== */
+    // 预置缓存（'I am a student.' 上方案例写入，updated_at=now → 未过期命中）
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.' });
+    check('ADR-008 TTL 内缓存命中 cached:true', r.status === 200 && r.json && r.json.cached === true, 'status=' + r.status);
+    // 把该条 updated_at 改为 3 天前 → 过期 → 视为 miss 重新生成（占 1 次限流额度）
+    const sdb = new (require('better-sqlite3'))(path.join(TMP_DB, 'chunklab.db'));
+    sdb.prepare("UPDATE ai_cache SET updated_at = datetime('now','-3 days') WHERE key=?").run('deepseek-v4-flash::i am a student');
+    sdb.close();
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.', apiKey: 'sk-test' });
+    check('ADR-008 TTL 过期后重新生成（cached:false）',
+      r.status === 200 && r.json && r.json.cached === false && r.json.data && r.json.data.orig === 'MOCK',
+      'status=' + r.status + ' ' + JSON.stringify(r.json && r.json.data));
+    // 重新生成后 updated_at=now → 再次命中（不占额度）
+    r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.' });
+    check('ADR-008 重新生成后再次命中 cached:true', r.status === 200 && r.json && r.json.cached === true, 'status=' + r.status);
+
+    // 限流：AI_RATE_LIMIT=3（'She is a teacher.' 1 次 + TTL 过期 miss 1 次，已占 2 次），再 1 次后第 4 次 → 429
+    await request('POST', '/api/ai/explain', token, { sentence: 'limit sentence number 1', apiKey: 'sk-test' });
     r = await request('POST', '/api/ai/explain', token, { sentence: 'fourth sentence triggers limit', apiKey: 'sk-test' });
     check('ADR-004 超限 → 429', r.status === 429, 'status=' + r.status + ' ' + JSON.stringify(r.json));
   } finally {

@@ -307,6 +307,13 @@ input,textarea,select{font:inherit;color:inherit}
 
 /* ---------- 句完成状态 tag（轻量，挂在中文下方） ---------- */
 .topbar-reveal{ display:none } /* 保留 DOM 但不渲染 */
+/* "未同步"徽标（离线 change-log 可见性） */
+.sync-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;font-weight:600;color:#b45309;
+  background:#fef3c7;border:1px solid #fcd34d;border-radius:999px;
+  padding:2px 9px;white-space:nowrap;flex-shrink:0;
+}
 .zh-sub-row{ display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px }
 .zh-sub{ font-size:12.5px;color:var(--faint) }
 /* PERFECT / 需巩固 tag —— 按钮样式（与标熟按钮视觉一致） */
@@ -691,6 +698,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <div class="brand"><span class="logo">C</span>Chunk Lab</div>
       <span class="deck-name" id="deckName">日常对话</span>
       <span class="spacer"></span>
+      <span id="syncBadge" class="sync-badge" style="display:none" title="有未同步到云端的更改，恢复网络后自动补传">⏳ 未同步</span>
       <div class="metrics">
         <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">1/10</span></div>
         <div class="metric combo" id="mComboBox"><span class="lbl">连击</span><span class="val" id="mCombo">0</span></div>
@@ -1275,7 +1283,12 @@ function loadStore(){
   }catch(e){ /* file:// 下可能不可用，降级为内存 */ }
 }
 function saveStore(){
-  try{ CL.saveMem(mem); }catch(e){}
+  try{
+    CL.saveMem(mem);
+    /* ★ 修复根因：此前只本地保存，mem 变更（练习/统计/设置）从不上传云端。
+       补 scheduleCloudSync（debounce 400ms 合并，置 dirty → 成功清位 / 失败保持 + 重连补传）。 */
+    if(CL.scheduleCloudSync) CL.scheduleCloudSync(mem);
+  }catch(e){}
 }
 
 /* ============================================================
@@ -4023,6 +4036,7 @@ function openAIExplain(){
 /* ===== AI 详解缓存（同句 + 同模型命中则不重复请求，避免重复计费） ===== */
 var AI_CACHE_KEY = 'chunklab_ai_cache_v1';
 var AI_CACHE_MAX = 200;
+var AI_CACHE_TTL = 30 * 24 * 3600 * 1000; /* 30 天：命中时检查 at 过期，过期即弃（对齐服务端 AI_CACHE_TTL） */
 function aiCacheLoad(){
   try{ var o = JSON.parse(localStorage.getItem(AI_CACHE_KEY) || '{}'); return (o && typeof o === 'object') ? o : {}; }
   catch(e){ return {}; }
@@ -4031,8 +4045,14 @@ function aiCacheSave(cache){
   try{ localStorage.setItem(AI_CACHE_KEY, JSON.stringify(cache)); }catch(e){}
 }
 function aiCacheGet(cacheKey){
-  var hit = aiCacheLoad()[cacheKey];
-  return (hit && hit.obj && typeof hit.obj === 'object') ? hit.obj : null;
+  var cache = aiCacheLoad();
+  var hit = cache[cacheKey];
+  if(!hit || !hit.obj || typeof hit.obj !== 'object') return null;
+  if(AI_CACHE_TTL > 0 && hit.at && (Date.now() - hit.at) > AI_CACHE_TTL){
+    delete cache[cacheKey]; aiCacheSave(cache); /* 过期：清除并视为 miss */
+    return null;
+  }
+  return hit.obj;
 }
 function aiCachePut(cacheKey, obj){
   var cache = aiCacheLoad();
@@ -4430,6 +4450,15 @@ if('serviceWorker' in navigator){
       reg.update && reg.update();
     }).catch(function(e){ console.warn('[sw] 注册失败：', e); });
   });
+}
+/* 离线 change-log 可见性：监听同步状态，有未同步变更时显示"未同步"徽标 */
+function refreshSyncBadge(dirty){
+  var b = $('syncBadge'); if(!b) return;
+  b.style.display = dirty ? 'inline-flex' : 'none';
+}
+if(CL && CL.on && CL.isDirty){
+  CL.on('syncStatus', function(st){ refreshSyncBadge(st && st.dirty); });
+  refreshSyncBadge(CL.isDirty());
 }
 CL.ensureCloud().then(function(){
 loadStore();

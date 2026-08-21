@@ -260,8 +260,15 @@
 
   var _cloudTimer = null;
   var _cloudOn = false; /* 云端是否启用：服务器可达（开放模式）或已登录（鉴权模式）时为 true */
+  var _dirty = false;   /* 待同步标志（离线 change-log 轻量版）：有本地变更未上云时为 true */
+
+  /* 有变更待同步时通知 UI（main.html 顶栏"未同步"徽标） */
+  function notifySync(){ emit('syncStatus', { dirty: _dirty }); }
+
   function scheduleCloudSync(memObj){
     if(!_cloudOn || !global.ChunkAPI) return;
+    _dirty = true;
+    notifySync();
     if(_cloudTimer) clearTimeout(_cloudTimer);
     _cloudTimer = setTimeout(function(){ cloudSyncNow(memObj); }, 400);
   }
@@ -282,8 +289,13 @@
         courses: cmeta.deleted.courses, courseProgress: cmeta.deleted.courseProgress
       }
     };
-    return global.ChunkAPI.putData(payload).then(function(){ return true; }).catch(function(e){
+    return global.ChunkAPI.putData(payload).then(function(){
+      _dirty = false;
+      notifySync();
+      return true;
+    }).catch(function(e){
       console.warn('[cloud sync →] 失败:', e.message);
+      notifySync();
       return false;
     });
   }
@@ -365,6 +377,12 @@
       /* 重置 courses/progress 快照：合并结果已采纳（localRevs 已对齐），下次上行走初始化分支不误 bump */
       _coursesSnap = null;
       _progressSnap = null;
+      /* 离线 change-log（轻量版）：拉取合并成功后，若本地仍有未同步变更（离线期间产生），立即补传 push */
+      if(_dirty){
+        _dirty = false;
+        notifySync();
+        cloudSyncNow(loadMem());
+      }
       return true;
     }).catch(function(e){
       console.warn('[cloud sync ←] 失败:', e.message);
@@ -506,6 +524,7 @@
     on: on, emit: emit,
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,
+    isDirty: function(){ return _dirty; },
     preload: preload,
     readCourses: readCoursesRaw, readProgress: readProgressRaw,
     writeCourses: writeCourses, writeProgress: writeProgress,

@@ -163,6 +163,37 @@ async function main() {
   check('s2: 合并后上行不误 bump courses rev（仍 7）', pl.revs.courses.rc === 7, 'rev=' + pl.revs.courses.rc);
   check('s2: 合并后上行不误 bump decks rev（仍 5）', pl.revs.decks.r1 === 5, 'rev=' + pl.revs.decks.r1);
 
+  /* ===== 离线 change-log（轻量版）：dirty 标志 + 重连补传 ===== */
+  // 13. scheduleCloudSync 置 dirty；同步成功清位；syncStatus 事件发出
+  var syncEvents = [];
+  var offSync = CL.on('syncStatus', function (st) { syncEvents.push(!!st.dirty); });
+  CL.scheduleCloudSync(CL.loadMem());
+  check('offline: scheduleCloudSync 置 dirty', CL.isDirty() === true, 'dirty=' + CL.isDirty());
+  await CL.cloudSyncNow(CL.loadMem());
+  check('offline: 同步成功清除 dirty', CL.isDirty() === false, 'dirty=' + CL.isDirty());
+  check('offline: syncStatus 事件（置位→清位）', syncEvents.length >= 2 && syncEvents[0] === true && syncEvents[syncEvents.length - 1] === false, JSON.stringify(syncEvents));
+  offSync();
+
+  // 14. 同步失败 → dirty 保持；重连拉取（syncFromCloud）成功后自动补传 push
+  var origPut = global.ChunkAPI.putData;
+  var failOnce = true;
+  global.ChunkAPI.putData = function (p) {
+    lastPayloads.push(JSON.parse(JSON.stringify(p)));
+    if (failOnce) { failOnce = false; return Promise.reject(new Error('offline')); }
+    return Promise.resolve({ ok: true });
+  };
+  CL.scheduleCloudSync(CL.loadMem());
+  check('offline: 离线保存置 dirty', CL.isDirty() === true, 'dirty=' + CL.isDirty());
+  await CL.cloudSyncNow(CL.loadMem());
+  check('offline: 同步失败保持 dirty', CL.isDirty() === true, 'dirty=' + CL.isDirty());
+  var before = lastPayloads.length;
+  remoteData = {};                       /* 模拟重连后拉取（空数据，合并无副作用） */
+  await CL.syncFromCloud();
+  await new Promise(function (r) { setTimeout(r, 60); }); /* 等待补传异步完成 */
+  check('offline: 重连拉取后自动补传 push', lastPayloads.length > before, 'before=' + before + ' after=' + lastPayloads.length);
+  check('offline: 补传后 dirty 清除', CL.isDirty() === false, 'dirty=' + CL.isDirty());
+  global.ChunkAPI.putData = origPut;
+
   console.log('\n[rev.test] passed=' + passed + ' failed=' + failed);
   process.exit(failed === 0 ? 0 : 1);
 }

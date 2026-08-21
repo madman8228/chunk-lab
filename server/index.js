@@ -241,8 +241,10 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
     const model = (typeof body.model === 'string' && body.model.trim()) ? body.model.trim() : 'deepseek-v4-flash';
     const cacheKey = model + '::' + ai.norm(sentence);
 
-    /* 1) 服务端缓存命中（不占限流额度） */
-    const hit = db.prepare('SELECT value_json FROM ai_cache WHERE key=?').get(cacheKey);
+    /* 1) 服务端缓存命中（不占限流额度；AI_CACHE_TTL 内有效，过期视为 miss） */
+    const hit = AI_CACHE_TTL > 0
+      ? db.prepare("SELECT value_json FROM ai_cache WHERE key=? AND updated_at >= datetime('now', ?)").get(cacheKey, '-' + AI_CACHE_TTL + ' days')
+      : db.prepare('SELECT value_json FROM ai_cache WHERE key=?').get(cacheKey);
     if (hit) { res.json({ ok: true, cached: true, data: JSON.parse(hit.value_json) }); return; }
 
     /* 2) 每用户滑动窗口限流 */
@@ -277,10 +279,16 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
 });
 
 /* ===================== 备份导入导出 ===================== */
-/* ai_cache 容量上限（ADR-008 / Phase A）：备份导入可能一次性写入海量缓存，
-   按 AI_CACHE_MAX（默认 2000）LRU 淘汰最旧条目，防止无限膨胀。 */
+/* ai_cache 容量上限 + TTL 过期（ADR-008 / Phase A / C）：
+   容量：备份导入可能一次性写入海量缓存，按 AI_CACHE_MAX（默认 2000）LRU 淘汰最旧；
+   TTL：AI_CACHE_TTL 天（默认 30）内未使用的缓存视为过期，命中时走 miss 重新生成；
+   过期条目在 trim 时懒清理（写路径触发，无需定时器）。AI_CACHE_TTL=0 表示永不过期。 */
 const AI_CACHE_MAX = parseInt(process.env.AI_CACHE_MAX || '2000', 10);
+const AI_CACHE_TTL = parseInt(process.env.AI_CACHE_TTL || '30', 10);
 function trimAiCache(max) {
+  if (AI_CACHE_TTL > 0) {
+    db.prepare("DELETE FROM ai_cache WHERE updated_at < datetime('now', ?)").run('-' + AI_CACHE_TTL + ' days');
+  }
   const row = db.prepare('SELECT COUNT(*) AS n FROM ai_cache').get();
   if (!row || row.n <= max) return;
   const excess = row.n - max;
