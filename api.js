@@ -54,7 +54,11 @@
     exportData: function () { return request('/api/export'); },
     importData: function (payload) { return request('/api/import', { method: 'POST', body: JSON.stringify(payload) }); },
     postCourse: function (course) { return request('/api/courses', { method: 'POST', body: JSON.stringify({ course: course }) }); },
-    deleteCourse: function (id) { return request('/api/courses/' + encodeURIComponent(id), { method: 'DELETE' }); }
+    deleteCourse: function (id) { return request('/api/courses/' + encodeURIComponent(id), { method: 'DELETE' }); },
+    /* 公共题库市场（Phase D） */
+    getPublicDecks: function () { return request('/api/deck/public'); },
+    getPublicDeck: function (id) { return request('/api/deck/public/' + encodeURIComponent(id)); },
+    publishDeck: function (deckId, publish) { return request('/api/deck/publish', { method: 'POST', body: JSON.stringify({ deckId: deckId, publish: !!publish }) }); }
   };
 
   global.ChunkAPI = api;

@@ -155,6 +155,14 @@ textarea{outline:none;resize:vertical}
     </div>
     <div class="deck-list" id="deckList"></div>
     <div class="course-tree hidden" id="courseTree"></div>
+    <div class="market-section" id="marketSection" style="margin-top:22px">
+      <div class="market-head">
+        <h3 style="margin:0;font-size:15px">📚 公共题库市场</h3>
+        <span class="spacer"></span>
+        <button class="btn sm ghost" id="btnRefreshMarket" title="刷新市场列表">刷新</button>
+      </div>
+      <div class="deck-list" id="marketList" style="margin-top:8px"></div>
+    </div>
   </div>
 
   <!-- 管理页 -->
@@ -511,6 +519,22 @@ function openDecks(){
     exp.className = 'btn sm ghost'; exp.textContent = '导出';
     exp.onclick = function(){ exportDeck(d); };
     actions.appendChild(exp);
+    /* 发布/下架：我的题库可发布到公共题库市场（内置题库只读，不发布） */
+    if(!d.builtin && window.ChunkAPI && ChunkAPI.publishDeck){
+      var pub = document.createElement('button');
+      pub.className = 'btn sm ghost';
+      pub.textContent = d.isPublic ? '✓ 已发布' : '发布';
+      pub.title = d.isPublic ? '从公共题库市场下架' : '发布到公共题库市场，其他用户可一键导入';
+      if(d.isPublic) pub.style.cssText = 'color:var(--ok)';
+      pub.onclick = function(){
+        var target = !d.isPublic;
+        ChunkAPI.publishDeck(d.id, target).then(function(){
+          d.isPublic = target;
+          openDecks();
+        }).catch(function(e){ alert('操作失败：' + e.message); });
+      };
+      actions.appendChild(pub);
+    }
     var edit = document.createElement('button');
     edit.className = 'btn sm ghost'; edit.textContent = '管理';
     edit.onclick = function(){ editDeck(d); };
@@ -523,6 +547,70 @@ function openDecks(){
     list.appendChild(row);
   });
   showPage('pageDecks');
+}
+
+/* ===== 公共题库市场（Phase D）：浏览内置 + 用户公开题库，一键导入 ===== */
+function openMarket(){
+  var box = $('marketList'); if(!box) return;
+  box.innerHTML = '<div class="empty-tip">加载中…</div>';
+  var p = Promise.resolve({ decks: [] });
+  if(window.ChunkAPI && ChunkAPI.getPublicDecks){
+    p = ChunkAPI.getPublicDecks().then(function(r){ return (r && r.decks) ? r : { decks: [] }; })
+      .catch(function(){ return { decks: [] }; });
+  }
+  p.then(function(data){
+    var remote = (data && data.decks) || [];
+    var builtins = (window.BUILTIN || []).map(function(d){
+      return { id: d.id, name: d.name, itemCount: (d.items || []).length, author: 'Chunk Lab 内置', builtin: true };
+    });
+    var all = builtins.concat(remote);
+    if(!all.length){ box.innerHTML = '<div class="empty-tip">暂无公开题库</div>'; return; }
+    box.innerHTML = '';
+    all.forEach(function(d){
+      var row = document.createElement('div');
+      row.className = 'deck-item';
+      var info = document.createElement('div');
+      info.className = 'info';
+      info.innerHTML =
+        '<div class="nm">'+esc(d.name)+
+          '<span class="pill">'+(d.builtin ? '内置' : '公开')+'</span></div>'+
+        '<div class="meta">'+d.itemCount+' 题 · '+(d.author || '未知作者')+
+          (d.builtin ? '' : ' · <span style="color:var(--ok);font-weight:600">可导入</span>')+'</div>';
+      row.appendChild(info);
+      var act = document.createElement('div');
+      act.className = 'deck-actions';
+      var btn = document.createElement('button');
+      btn.className = 'btn sm primary';
+      btn.textContent = '导入';
+      btn.title = '复制一份到我的题库（可编辑/可发布）';
+      btn.onclick = function(){ importPublicDeck(d); };
+      act.appendChild(btn);
+      row.appendChild(act);
+      box.appendChild(row);
+    });
+  });
+}
+
+function importPublicDeck(d){
+  var p;
+  if(d.builtin){
+    var src = (window.BUILTIN || []).filter(function(x){ return x.id === d.id; })[0];
+    if(!src){ alert('内置题库不存在'); return; }
+    p = Promise.resolve({ deck: { id: src.id, name: src.name, items: src.items.slice() } });
+  } else {
+    if(!window.ChunkAPI || !ChunkAPI.getPublicDeck){ alert('云端不可用，无法导入'); return; }
+    p = ChunkAPI.getPublicDeck(d.id).catch(function(e){ alert('导入失败：' + e.message); return null; });
+  }
+  p.then(function(r){
+    var srcDeck = r && r.deck;
+    if(!srcDeck || !Array.isArray(srcDeck.items)) return;
+    var exists = allDecks().some(function(x){ return x.name === srcDeck.name && x.items.length === srcDeck.items.length; });
+    if(exists){ alert('已导入过同名题库「' + srcDeck.name + '」'); return; }
+    mem.decks.push({ id: 'imported-' + Date.now(), name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false });
+    saveStore(); notifyMain('memUpdated');
+    openDecks(); openMarket();
+    alert('已导入「' + srcDeck.name + '」(' + srcDeck.items.length + ' 题)');
+  }).catch(function(){});
 }
 
 function showPage(id){
@@ -1399,6 +1487,10 @@ function bindCommon(){
   $('btnSaveEditSentence').onclick = saveEditSentence;
   /* 返回：同 tab 导航回主页（保持独立 URL 体验） */
   $('decksBack').onclick = function(){ window.location.href = './main.html'; };
+  /* 公共题库市场：刷新 + 首次打开加载 */
+  var mktBtn = $('btnRefreshMarket');
+  if(mktBtn) mktBtn.onclick = function(){ openMarket(); };
+  openMarket();
 }
 function setupDrop(dropId, inputId, boxId){
   var drop = $(dropId), input = $(inputId), box = $(boxId);

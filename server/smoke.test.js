@@ -368,6 +368,39 @@ async function main() {
       r.status === 200 && r.json && r.json.courses && r.json.courses.length === 0 && r.json.revs.courses.cB === 2,
       'courses=' + JSON.stringify(r.json && r.json.courses));
 
+    /* ===== Phase D：公共题库市场 ===== */
+    // A 创建自定义题库并发布
+    r = await request('PUT', '/api/data', token, {
+      mem: { decks: [{ id: 'pubdeck1', name: '公开测试题库', items: [{ sent: 'Market deck item.', chunks: ['Market deck', 'item.'], hints: ['市场', '项目'] }] }], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: [] },
+      revs: { decks: { pubdeck1: 1 }, kv: {} }, deleted: {}
+    });
+    check('D: A 创建自定义题库', r.status === 200, 'status=' + r.status);
+    r = await request('POST', '/api/deck/publish', token, { deckId: 'pubdeck1', publish: true });
+    check('D: A 发布题库', r.status === 200 && r.json && r.json.isPublic === true, 'status=' + r.status + ' ' + JSON.stringify(r.json));
+    // 匿名可浏览（公开市场语义）
+    r = await request('GET', '/api/deck/public', null);
+    check('D: 匿名浏览列表含 A 的题库（含作者）',
+      r.status === 200 && r.json && r.json.decks && r.json.decks.some(function (d) { return d.id === 'pubdeck1' && d.author === 'smoke_a' && d.itemCount === 1; }),
+      JSON.stringify(r.json && r.json.decks));
+    // 匿名可拉取完整内容
+    r = await request('GET', '/api/deck/public/pubdeck1', null);
+    check('D: 匿名拉取完整题库（含 items）',
+      r.status === 200 && r.json && r.json.deck && r.json.deck.items.length === 1 && r.json.deck.items[0].sent === 'Market deck item.',
+      JSON.stringify(r.json && r.json.deck));
+    // 他人不能发布我的题库
+    r = await request('POST', '/api/auth/register', null, { username: 'smoke_b', password: 'smoke123' });
+    const tokenB = r.json && r.json.token;
+    r = await request('POST', '/api/deck/publish', tokenB, { deckId: 'pubdeck1', publish: true });
+    check('D: B 不能发布 A 的题库 → 404', r.status === 404, 'status=' + r.status);
+    // 下架后列表消失
+    r = await request('POST', '/api/deck/publish', token, { deckId: 'pubdeck1', publish: false });
+    check('D: A 下架题库', r.status === 200 && r.json && r.json.isPublic === false, 'status=' + r.status);
+    r = await request('GET', '/api/deck/public', null);
+    check('D: 下架后列表不再包含', r.status === 200 && !r.json.decks.some(function (d) { return d.id === 'pubdeck1'; }), JSON.stringify(r.json && r.json.decks));
+    // 下架后详情不可读
+    r = await request('GET', '/api/deck/public/pubdeck1', null);
+    check('D: 下架后详情 404', r.status === 404, 'status=' + r.status);
+
     /* ===== ADR-008 / Phase A：ai_cache 容量上限（AI_CACHE_MAX=5，LRU 裁剪） ===== */
     const bigCache = {};
     for (let i2 = 1; i2 <= 8; i2++) bigCache['cache_k' + i2] = { v: i2 };

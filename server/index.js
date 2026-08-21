@@ -65,9 +65,9 @@ app.get('/api/auth/me', auth.authenticate, function (req, res) {
 
 /* ===================== 数据读写 ===================== */
 function buildMem(userId) {
-  const deckRows = db.prepare('SELECT id,name,items_json,builtin,rev FROM user_decks WHERE user_id=? AND deleted_at IS NULL').all(userId);
+  const deckRows = db.prepare('SELECT id,name,items_json,builtin,is_public,rev FROM user_decks WHERE user_id=? AND deleted_at IS NULL').all(userId);
   const decks = deckRows.map(function (r) {
-    return { id: r.id, name: r.name, items: JSON.parse(r.items_json), builtin: !!r.builtin };
+    return { id: r.id, name: r.name, items: JSON.parse(r.items_json), builtin: !!r.builtin, isPublic: !!r.is_public };
   });
   // revs 需含软删行：让其他设备能判断本地副本是否已过期（软删也是版本演进）
   const deckRevs = {};
@@ -225,6 +225,47 @@ app.delete('/api/courses/:courseId', auth.authenticate, function (req, res) {
     const rev = ((row && row.rev != null) ? row.rev : 0) + 1;
     upsertCourse(req.userId, { courseId: cid }, rev, true);
     res.json({ ok: true });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+/* ===================== 公共题库市场（Phase D） =====================
+   设计：is_public 标记在 user_decks 表；内置题库（builtins.js）由前端 BUILTIN 提供，
+   市场列表 = 前端 BUILTIN 元数据 + 本接口返回的用户公开题库。公开资源无需登录（市场语义）。 */
+app.get('/api/deck/public', function (req, res) {
+  try {
+    const rows = db.prepare(
+      "SELECT d.id,d.name,d.items_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.is_public=1 AND d.deleted_at IS NULL ORDER BY d.updated_at DESC"
+    ).all();
+    const decks = rows.map(function (r) {
+      let items = [];
+      try { items = JSON.parse(r.items_json); } catch (e) { /* items 非法则计数 0 */ }
+      return { id: r.id, name: r.name, itemCount: items.length, author: r.author, publishedAt: r.created_at };
+    });
+    res.json({ ok: true, decks: decks });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+/* 单个公开题库完整内容（仅 is_public=1 可读） */
+app.get('/api/deck/public/:id', function (req, res) {
+  try {
+    const r = db.prepare(
+      "SELECT d.id,d.name,d.items_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.id=? AND d.is_public=1 AND d.deleted_at IS NULL"
+    ).get(req.params.id);
+    if (!r) return res.status(404).json({ error: '公开题库不存在或已下架' });
+    res.json({ ok: true, deck: { id: r.id, name: r.name, author: r.username, publishedAt: r.created_at, items: JSON.parse(r.items_json) } });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+/* 发布 / 下架我的题库（仅本人题库可操作） */
+app.post('/api/deck/publish', auth.authenticate, function (req, res) {
+  try {
+    const deckId = (typeof (req.body && req.body.deckId) === 'string') ? req.body.deckId.trim() : '';
+    const publish = req.body && req.body.publish ? 1 : 0;
+    if (!deckId || deckId.length > 64) return res.status(400).json({ error: 'deckId 非法' });
+    const own = db.prepare('SELECT id FROM user_decks WHERE user_id=? AND id=? AND deleted_at IS NULL').get(req.userId, deckId);
+    if (!own) return res.status(404).json({ error: '题库不存在' });
+    db.prepare("UPDATE user_decks SET is_public=?, updated_at=datetime('now') WHERE user_id=? AND id=?").run(publish, req.userId, deckId);
+    res.json({ ok: true, isPublic: !!publish });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 

@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS user_decks (
   items_json TEXT NOT NULL,
   builtin    INTEGER,
   rev        INTEGER,
+  is_public  INTEGER DEFAULT 0,
   deleted_at TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
@@ -105,5 +106,7 @@ function addColumnIfMissing(table, col, type) {
 });
 // user_kv 升级前无 updated_at（user_decks 有），补列；旧行 NULL，由 upsert 显式赋值
 addColumnIfMissing('user_kv', 'updated_at', 'TEXT');
+// 公共题库市场（Phase D）：user_decks 补 is_public 列（0=私有，1=已发布到市场）
+addColumnIfMissing('user_decks', 'is_public', 'INTEGER DEFAULT 0');
 
 module.exports = db;
