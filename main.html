@@ -4118,8 +4118,13 @@ function runAIExplain(){
       $('btnAISave').classList.remove('hidden');
       $('aiNote').textContent = '由大模型生成，可保存为详解永久使用';
     }else{
-      body.innerHTML = buildAIExplain(item) + '<div style="margin-top:12px;font-size:12px;color:var(--faint);text-align:center">'+(window.Icons?Icons.svg('warn'):'')+' 联网解读不可用（未登录或服务端未配置），已切换为本地解读</div>';
-      $('aiNote').textContent = '本地兜底解读（不可保存）';
+      /* A 方案：网络失败只明确提示不可用，不渲染本地兜底内容（避免"有内容又不可用"的误导） */
+      body.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--bad)">' +
+        '<div style="font-size:26px;margin-bottom:8px">' + (window.Icons ? Icons.svg('warn') : '') + '</div>' +
+        '<p style="margin:0 0 6px;font-size:14px;font-weight:700">联网解读不可用</p>' +
+        '<p style="margin:0;font-size:12.5px;color:var(--muted);line-height:1.7">请在「系统设置」配置 API Key，<br>或由服务端配置 DEEPSEEK_API_KEY 后重试</p>' +
+      '</div>';
+      $('aiNote').textContent = '未生成：无可用 API 配置';
     }
   });
 }
@@ -4246,183 +4251,6 @@ function renderAIJson(obj, item){
   return html;
 }
 
-function buildAIExplain(item){
-  var s = item.sentence || '';
-  var zh = item.zh || '';
-  var chunks = item.chunks || [];
-  var html = '';
-
-  /* 本地兜底瘦身：原句已在详解页大标题显示、意群拆解与 tab1 详解卡重复——均不渲染 */
-
-  /* 核心语法点 */
-  var grammar = extractGrammar(s, chunks);
-  if(grammar.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chart'):'')+' 核心语法</div>';
-    for(var g=0;g<grammar.length;g++){
-      html += '<div style="padding:8px 12px;border-radius:8px;background:var(--surface-2);margin-bottom:6px;border-left:3px solid '+((g%2===0)?'var(--ok)':'var(--accent)')+'">';
-      html += '<div style="font-weight:600;font-size:13px;color:var(--text)">'+escHtml(grammar[g].title)+'</div>';
-      html += '<div style="font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.55">'+escHtml(grammar[g].desc)+'</div>';
-      html += '</div>';
-    }
-    html += '</div>';
-  }
-
-  /* 固定搭配 / 短语 */
-  var collocs = extractCollocations(s, chunks);
-  if(collocs.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('link'):'')+' 固定搭配 & 短语</div>';
-    html += '<div style="display:flex;flex-direction:column;gap:6px">';
-    for(var c=0;c<collocs.length;c++){
-      html += '<div style="padding:7px 12px;border-radius:8px;background:#fff9e6;border:1px solid #f0d860;display:flex;align-items:center;gap:8px">';
-      html += '<span style="font-weight:700;font-size:13px;color:#996500">'+escHtml(collocs[c])+'</span>';
-      html += '<span style="font-size:11.5px;color:var(--faint)">不可拆分 · 整体记忆</span>';
-      html += '</div>';
-    }
-    html += '</div></div>';
-  }
-
-  /* 使用场景 */
-  html += '<div><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chat'):'')+' 使用场景</div>';
-  html += '<div style="padding:10px 14px;border-radius:10px;background:var(--ok-soft);border:1px solid var(--ok);font-size:13px;line-height:1.65;color:#0b6b3a">';
-  html += escHtml(buildScenario(item));
-  html += '</div></div>';
-
-  return html;
-}
-
-/* 轻量语法提取（基于规则的本地分析） */
-function extractGrammar(sentence, chunks){
-  var result = [];
-  var s = sentence;
-
-  /* 时态检测 */
-  if(/\b(was|were)\b/.test(s)) result.push({title:'一般过去时',desc:'使用 was/were 表示过去的状态或情况。'});
-  if(/\b(have|has)\s+\w+ed\b/i.test(s)) result.push({title:'现在完成时',desc:'have/has + 过去分词，表示动作已完成并对现在有影响。'});
-  if(/\b(will|\'ll|going to)\b/i.test(s)) result.push({title:'一般将来时',desc:'will / be going to 表示将要发生的动作或打算。'});
-  if(/\b(is|are|am)\s+\w+ing\b/i.test(s)) result.push({title:'现在进行时',desc:'be + doing 表示正在进行的动作。'});
-
-  /* 语态 */
-  if(/\b(was|were|is|are|am|been|being)\s+\w+ed\b/i.test(s)) result.push({title:'被动语态',desc:'be + 过去分词，强调动作的承受者而非执行者。'});
-
-  /* 从句 */
-  if(/\b(that|which|who|whom|whose|where|when|why|how|if|whether)\b.*\b(is|are|was|were|have|has|do|does|did)\b/i.test(s)){
-    result.push({title:'从句结构',desc:'句子包含名词性/定语/状语从句，注意从句的引导词和语序。'});
-  }
-
-  /* 虚拟语气 */
-  if(/\b(were|had|would|could|should|might)\b.*\b(if|wish|as if)\b/i.test(s) || /\b(if)\b.*\b(would|could|should|might)\b/i.test(s)){
-    result.push({title:'虚拟语气',desc:'表示与事实相反的假设或愿望，注意动词形式变化。'});
-  }
-
-  /* 比较级/最高级 */
-  if(/\b(more|less|better|worse|farther|further)\b/i.test(s)) result.push({title:'比较级',desc:'两者之间的比较，注意 than 的搭配。'});
-  if(/\b(most|least|best|worst)\b/i.test(s)) result.push({title:'最高级',desc:'三者或以上的比较，注意 the 的使用。'});
-
-  /* 祈使句 */
-  if(/^(Please|Let\'s|Don\'t|Do not|Never|Always)/i.test(s.trim())){
-    result.push({title:'祈使句',desc:'以动词原形开头，用于提出请求、建议或命令。'});
-  }
-
-  /* 感叹句 */
-  if(/^(What|How)\b/i.test(s.trim()) || /\!$/.test(s.trim())){
-    result.push({title:'感叹句',desc:'表达强烈情感，What + n. / How + adj./adv.'});
-  }
-
-  return result.slice(0, 5);
-}
-
-/* 提取固定搭配 */
-function extractCollocations(sentence, chunks){
-  var result = [];
-  var patterns = [
-    /take a (message|break|look|walk|seat|note|shower|rest|trip|chance)/i,
-    /grab a bite/i,
-    /not feeling (like|myself|well)/i,
-    /stay (home|up|late|calm|tuned|focused)/i,
-    /look (forward to|after|for|at|into|up|out)/i,
-    /make (sure|up|it|sense|progress|a decision|money|friends)/i,
-    /give (up|in|away|back|a hand|it a try)/i,
-    /keep (in mind|up with|on|going|fit|calm)/i,
-    /get (up|off|over|along|through|used to|rid of|back)/i,
-    /put (up with|off|on|away|forward|into)/i,
-    /turn (on|off|up|down|out|around|into)/i,
-    /come (across|up with|back|out|true|down to)/i,
-    /go (ahead|on|through|over|with|without|wrong)/i,
-    /set (up|off|out|aside|back|forth)/i,
-    /call (off|on|up|for|in)/i,
-    /bring (up|about|back|out|in)/i,
-    /carry (on|out|away|through)/i,
-    /point (out|at|to)/i,
-    /figure (out)/i,
-    /deal with/i,
-    /depend on/i,
-    /worry about/i,
-    /think about|of/i,
-    /believe in/i,
-    /agree with|to/i,
-    /wait for/i,
-    /ask for/i,
-    /pay attention to/i,
-    /take care of/i,
-    /make up one'?s? mind/i,
-    /change one'?s? mind/i,
-    /in (fact|addition|order|general|total|other words|the end|the meantime|my opinion)/i,
-    /on (purpose|time|the way|one'?s? own|average|the phone|fire|sale|board)/i,
-    /at (first|last|least|once|all|times|the moment|the same time)/i,
-    /by (the way|accident|chance|means|no means|all means)/i,
-    /to (be honest|tell the truth|sum up|start with|make matters worse|one'?s? surprise)/i,
-    /as (soon as|long as|well as|a result|usual|possible|far as I know)/i,
-    /so (far|that|much|many|long as)/i,
-    /neither nor|either or|both and|not only but also/i
-  ];
-  for(var i=0;i<patterns.length;i++){
-    var m = sentence.match(patterns[i]);
-    if(m && result.indexOf(m[0])<0) result.push(m[0]);
-  }
-  return result.slice(0, 6);
-}
-
-/* 构建使用场景描述 */
-function buildScenario(item){
-  var s = (item.sentence||'').toLowerCase();
-  var zh = item.zh || '';
-
-  /* 场景关键词匹配 */
-  if(/(sorry|apologize|excuse|forgive|pardon)/i.test(s))
-    return '当你需要为某事道歉、表达遗憾时使用。常见场景：迟到、说错话、打扰他人、造成不便等。';
-  if(/(thank|grateful|appreciate)/i.test(s))
-    return '表达感谢的场景。可用于回应帮助、收到礼物、获得服务等场合。';
-  if(/(help|assist|support|give.?hand)/i.test(s))
-    return '主动提供帮助或请求他人协助时使用。职场、日常、紧急情况均适用。';
-  if(/(can|could|may|i).*(help|do|get|have|tell|know|ask)/i.test(s))
-    return '礼貌地提出请求或询问信息时使用。注意用 could/would 比 can 更委婉。';
-  if(/(want|need|wish|hope|expect|look forward)/i.test(s))
-    return '表达个人需求、期望或意愿时使用。常用于表达计划、目标或情感倾向。';
-  if(/(should|must|have to|ought|better|supposed)/i.test(s))
-    return '提供建议、表达义务或必要性时使用。注意 should（建议）vs must（强制）的语气差异。';
-  if(/(think|believe|feel|guess|suppose|reckon)/i.test(s))
-    return '表达个人观点、看法或推测时使用。I think... 最常用，更正式可用 I believe/reckon。';
-  if(/(agree|disagree|opinion|point of view)/i.test(s))
-    return '讨论话题、表达同意或反对意见时使用。适合会议、讨论、辩论等交流场景。';
-  if(/(suggest|recommend|advise|propose)/i.test(s))
-    return '提出建议或推荐方案时使用。商务邮件、团队讨论、朋友间均可使用。';
-  if(/(problem|issue|trouble|difficult|hard|challenge)/i.test(s))
-    return '描述困难、问题或挑战时使用。可配合 ask for help 或 propose solution。';
-  if(/(plan|schedule|arrange|organize|prepare)/i.test(s))
-    return '安排计划、日程或活动时使用。工作项目、旅行安排、会议组织等场景。';
-  if(/(meet|see|visit|drop by|stop by|come over)/i.test(s))
-    return '约定见面、拜访或社交邀约时使用。正式程度可根据关系调整。';
-  if(/(good|great|nice|wonderful|fantastic|awesome|amazing)/i.test(s))
-    return '表达正面评价或赞美时使用。可形容事物、体验、表现等，非常高频。';
-  if(/(bad|terrible|awful|horrible|disappointing)/i.test(s))
-    return '表达负面评价或不满时使用。注意在正式场合需控制情绪强度。';
-  if(/(love|like|enjoy|prefer|hate|can't stand)/i.test(s))
-    return '表达喜好或厌恶时使用。I like/love 最常用，prefer 用于比较选择。';
-
-  /* 默认：基于中文翻译推断 */
-  if(zh) return '「'+zh+'」—— 这句话在日常对话中非常实用，建议结合具体语境多加练习，达到脱口而出的程度。';
-  return '这是一句实用的英语口语表达，建议反复朗读并尝试在不同场景下运用。';
-}
 
 function escHtml(s){
   var d=document.createElement('div');
