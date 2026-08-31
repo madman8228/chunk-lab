@@ -12,7 +12,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px}
-.page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.page-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .page-head h2{margin:0;font-size:18px;font-weight:700}
 .spacer{flex:1}
 .btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:8px;padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
@@ -26,12 +26,12 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .pill{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:#eef1f6;color:var(--muted)}
 .pill.mine{background:#e8efff;color:#2c62c9}
 
-.deck-list{display:flex;flex-direction:column;gap:8px}
-.deck-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.deck-list{display:flex;flex-direction:column;gap:6px}
+.deck-item{display:flex;align-items:center;gap:12px;padding:8px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
 .deck-item.cur{border-color:var(--accent);background:var(--accent-soft)}
 .deck-item .info{flex:1;min-width:0}
 .deck-item .nm{font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:7px}
-.deck-item .meta{font-size:12px;color:var(--faint);margin-top:2px}
+.deck-item .meta{font-size:12px;color:var(--faint);margin-top:1px}
 .deck-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-shrink:0}
 
 /* 编辑页句子行 */
@@ -134,7 +134,10 @@ textarea{outline:none;resize:vertical}
 .lesson-del{flex-shrink:0;width:22px;height:22px;border:none;border-radius:50%;background:transparent;color:var(--faint);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s}
 .lesson:hover .lesson-del{opacity:1}
 .lesson-del:hover{background:#fee;color:#c33}
-.course-empty{padding:30px;text-align:center;color:var(--faint)}
+.course-empty{padding:12px 16px;text-align:center;color:var(--faint);line-height:1.45}
+.market-head{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+#marketSection{margin-top:14px !important}
+#marketList{margin-top:6px !important}
 .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
 @keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
@@ -146,7 +149,7 @@ textarea{outline:none;resize:vertical}
   <!-- 题库列表 -->
   <div id="pageDecks">
     <div class="page-head">
-      <button class="btn sm" id="decksBack">← 返回练习</button>
+      <button class="btn sm" id="decksBack">返回</button>
       <h2>题库</h2>
       <span class="spacer"></span>
       <div class="tabs">
@@ -154,13 +157,13 @@ textarea{outline:none;resize:vertical}
         <button class="tab" id="tabCourses">图文课程</button>
       </div>
       <span class="spacer"></span>
-      <button class="btn sm primary" id="btnImportDecks">＋ 导入课程</button>
+      <button class="btn sm primary" id="btnImportDecks">＋ 导入题库</button>
     </div>
     <div class="deck-list" id="deckList"></div>
     <div class="course-tree hidden" id="courseTree"></div>
     <div class="market-section" id="marketSection" style="margin-top:22px">
       <div class="market-head">
-        <h3 style="margin:0;font-size:15px"><span data-icon="book"></span> 公共题库市场</h3>
+        <h3 style="margin:0;font-size:15px"><span data-icon="book"></span> 发现更多题库</h3>
         <span class="spacer"></span>
         <button class="btn sm ghost" id="btnRefreshMarket" title="刷新市场列表">刷新</button>
       </div>
@@ -503,6 +506,14 @@ function openDecks(){
       '</div></div>';
     var actions = document.createElement('div');
     actions.className = 'deck-actions';
+    if(d.builtin){
+      var impBuiltin = document.createElement('button');
+      impBuiltin.className = 'btn sm';
+      impBuiltin.textContent = '导入';
+      impBuiltin.title = '复制到我的题库（可编辑/可追加）';
+      impBuiltin.onclick = function(){ importPublicDeck(d); };
+      actions.appendChild(impBuiltin);
+    }
     if(!d.builtin){
       var ai = document.createElement('button');
       ai.className = 'btn sm';
@@ -555,9 +566,9 @@ function openDecks(){
   showPage('pageDecks');
 }
 
-/* ===== 公共题库市场（Phase D）：浏览内置 + 用户公开题库，一键导入 ===== */
+/* ===== 公共题库市场（Phase D）：只展示尚未添加的题库，一键导入 ===== */
 function openMarket(){
-  var box = $('marketList'); if(!box) return;
+  var box = $('marketList'), section = $('marketSection'); if(!box || !section) return;
   box.innerHTML = '<div class="empty-tip">加载中…</div>';
   var p = Promise.resolve({ decks: [] });
   if(window.ChunkAPI && ChunkAPI.getPublicDecks){
@@ -566,11 +577,21 @@ function openMarket(){
   }
   p.then(function(data){
     var remote = (data && data.decks) || [];
-    var builtins = (window.BUILTIN || []).map(function(d){
-      return { id: d.id, name: d.name, itemCount: (d.items || []).length, author: 'Chunk Lab 内置', builtin: true };
+    var local = allDecks();
+    var localIds = {};
+    var localNames = {};
+    local.forEach(function(d){
+      localIds[d.id] = true;
+      localNames[norm(d.name) + '::' + (d.items || []).length] = true;
     });
-    var all = builtins.concat(remote);
-    if(!all.length){ box.innerHTML = '<div class="empty-tip">暂无公开题库</div>'; return; }
+    /* 内置题库本来就出现在“句子课程”主列表；市场只展示真正可导入的公开题库。 */
+    var all = remote.filter(function(d){
+      if(d.builtin) return false;
+      var key = norm(d.name) + '::' + (d.itemCount || 0);
+      return !localIds[d.id] && !localNames[key];
+    });
+    if(!all.length){ box.innerHTML = ''; section.classList.add('hidden'); return; }
+    section.classList.remove('hidden');
     box.innerHTML = '';
     all.forEach(function(d){
       var row = document.createElement('div');
@@ -610,9 +631,12 @@ function importPublicDeck(d){
   p.then(function(r){
     var srcDeck = r && r.deck;
     if(!srcDeck || !Array.isArray(srcDeck.items)) return;
-    var exists = allDecks().some(function(x){ return x.name === srcDeck.name && x.items.length === srcDeck.items.length; });
+    var exists = (mem.decks || []).some(function(x){
+      return (x.sourceDeckId && x.sourceDeckId === srcDeck.id) ||
+        (x.name === srcDeck.name && x.items.length === srcDeck.items.length);
+    });
     if(exists){ alert('已导入过同名题库「' + srcDeck.name + '」'); return; }
-    mem.decks.push({ id: 'imported-' + Date.now(), name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false });
+    mem.decks.push({ id: 'imported-' + Date.now(), sourceDeckId: srcDeck.id, name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false });
     saveStore(); notifyMain('memUpdated');
     openDecks(); openMarket();
     alert('已导入「' + srcDeck.name + '」(' + srcDeck.items.length + ' 题)');
@@ -1330,10 +1354,17 @@ function lessonRow(c){
 function deleteCourse(courseId, title){
   if(!confirm('确定要删除课程「'+title+'」吗？\n删除后需重新导入 ZIP 才能恢复。')) return;
   try {
-    var raw = localStorage.getItem(Library.COURSE_STORE_KEY);
-    var list = raw ? JSON.parse(raw) : [];
+    var list;
+    if(window.CL && CL.readCourses){
+      list = CL.readCourses();
+    } else {
+      var raw = localStorage.getItem(Library.COURSE_STORE_KEY);
+      list = raw ? JSON.parse(raw) : [];
+    }
+    if(!Array.isArray(list)) list = [];
     list = list.filter(function(c){ return c.courseId !== courseId; });
-    localStorage.setItem(Library.COURSE_STORE_KEY, JSON.stringify(list));
+    if(window.CL && CL.writeCourses) CL.writeCourses(list);
+    else localStorage.setItem(Library.COURSE_STORE_KEY, JSON.stringify(list));
     /* 同步刷新内存中的 state.courses（如果 course-package.js 已加载） */
     if(window.ChunkCourse) ChunkCourse.refreshList();
     renderCourseTree();
@@ -1451,14 +1482,17 @@ function showTab(which){
   if(which === 'courses'){
     decksTab.classList.remove('on'); coursesTab.classList.add('on');
     deckList.classList.add('hidden'); tree.classList.remove('hidden');
+    $('marketSection').classList.add('hidden');
     importBtn.textContent = '＋ 导入课程';
     importBtn.onclick = function(){ openCourseImport(); };
     renderCourseTree();
   } else {
     coursesTab.classList.remove('on'); decksTab.classList.add('on');
     tree.classList.add('hidden'); deckList.classList.remove('hidden');
-    importBtn.textContent = '＋ 导入课程';
+    $('marketSection').classList.remove('hidden');
+    importBtn.textContent = '＋ 导入题库';
     importBtn.onclick = function(){ openImport(); };
+    openMarket();
   }
 }
 
