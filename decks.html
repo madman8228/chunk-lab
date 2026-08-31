@@ -65,6 +65,15 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .msg.ok{color:var(--ok)}
 .msg.show{display:block}
 
+/* 导入题库弹窗：压缩分类步骤的垂直占用，让 Prompt 与 JSON 区域更早进入视野 */
+#impMask .modal-body{padding-top:10px;padding-bottom:10px}
+#impMask .modal-foot{padding-top:8px;padding-bottom:8px}
+#impMask .step-title{margin-top:8px;margin-bottom:4px}
+#impMask .cats{gap:6px;margin:5px 0}
+#impMask .cat-btn{padding:7px 8px}
+#impMask .cat-btn .cat-icon{font-size:18px;margin-bottom:2px}
+#impMask .cat-btn .cat-desc{margin-top:1px}
+
 /* 导入 — 分类网格 */
 .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
 .cat-btn{border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:10px 12px;font-size:13px;cursor:pointer;text-align:center;transition:border-color .15s, background .15s, box-shadow .15s;position:relative}
