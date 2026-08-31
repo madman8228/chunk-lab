@@ -70,12 +70,12 @@ input,textarea,select{font:inherit;color:inherit}
 .spacer{flex:1}
 .metrics{display:flex;align-items:center;gap:8px}
 .metric{
-  display:flex;align-items:baseline;gap:6px;background:var(--surface);
-  border:1px solid var(--border);border-radius:10px;padding:5px 10px;
+  display:flex;align-items:baseline;gap:6px;background:transparent;
+  border:0;border-radius:0;padding:5px 2px;
 }
 .metric .lbl{font-size:11px;color:var(--faint);letter-spacing:.04em}
 .metric .val{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
-.metric.combo.hot{border-color:#f5b544;background:linear-gradient(180deg,#fff8e8,#fff)}
+.metric.combo.hot{border-color:transparent;background:transparent}
 .metric.combo.hot .val{color:#b25e09}
 @keyframes pop{0%{transform:scale(1)}35%{transform:scale(1.28)}100%{transform:scale(1)}}
 .pop{animation:pop .38s cubic-bezier(.2,1.4,.4,1)}
@@ -92,11 +92,24 @@ input,textarea,select{font:inherit;color:inherit}
 .btn.ghost{border-color:transparent;background:transparent;color:var(--muted)}
 .btn.ghost:hover{background:#eceff4;color:var(--text)}
 .btn.sm{padding:4px 9px;font-size:12.5px;border-radius:8px}
+.btn.flat-action{border:0;background:transparent;color:var(--muted);padding-left:6px;padding-right:6px}
+.btn.flat-action:hover{border:0;background:transparent;color:var(--accent)}
 .btn.danger{color:var(--bad);border-color:#f0c2bd}
 .btn.danger:hover{background:var(--bad-soft)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .btn.active{background:#12924f;border-color:#12924f;color:#fff}
 .btn.active:hover{background:#0f7d43}
+/* 朗读是轻量的辅助动作：只保留喇叭图标，不制造额外按钮容器 */
+.icon-action{
+  display:inline-grid;place-items:center;width:30px;height:30px;padding:4px;
+  border:0;border-radius:50%;background:transparent;color:var(--muted);
+  transition:color .15s,background .15s,transform .06s;
+}
+.icon-action:hover{background:rgba(51,88,224,.08);color:var(--accent)}
+.topbar .icon-action:hover{background:transparent}
+.icon-action:active{transform:translateY(1px)}
+.icon-action:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.icon-action .icon{width:16px;height:16px}
 
 .progress{height:6px;border-radius:999px;background:#e6e9ef;overflow:hidden;margin-top:10px}
 .progress > i{
@@ -142,6 +155,8 @@ input,textarea,select{font:inherit;color:inherit}
 .stage-head{position:relative;display:flex;align-items:flex-start;gap:10px;margin-bottom:2px;min-height:44px}
 /* ★ 中文翻译绝对定位到卡片正中：左侧圆环 / 右侧 tag 宽度变化都不会把它挤偏 */
 .zh-wrap{position:absolute;left:50%;top:0;transform:translateX(-50%);text-align:center;min-width:0;max-width:calc(100% - 150px);display:flex;flex-direction:column;align-items:center;z-index:1}
+.sentence-speak{width:24px;height:24px;padding:0}
+.stage .icon-action:hover{background:transparent}
 .zh-wrap .zh-sub-row{align-self:stretch}
 .stage-head-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
 .qno{
@@ -159,8 +174,11 @@ input,textarea,select{font:inherit;color:inherit}
 .due-tag{font-size:12px;font-weight:400;color:var(--muted);margin-top:4px}
 .due-tag.hidden{display:none}
 
+.track-line{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;max-width:100%;margin:12px 0 6px}
+.track-line > #track{min-width:0;flex:0 1 auto}
+.track-line > .sentence-speak{flex-shrink:0}
 .track{
-  display:flex;flex-wrap:wrap;gap:12px 16px;margin:12px 0 6px;
+  display:flex;flex-wrap:wrap;gap:12px 16px;margin:0;
   align-items:flex-end;position:relative;justify-content:center;
 }
 .chunk{position:relative;display:flex;flex-direction:column;gap:2px;flex-shrink:0;z-index:1;padding:0 2px;align-items:center}
@@ -187,15 +205,16 @@ input,textarea,select{font:inherit;color:inherit}
 .chunk.ok .word-ul{border-bottom-color:#34c77b}
 .chunk.bad .word-ul{border-bottom-color:#e54d42}
 .chunk.revealed .word-ul{border-bottom-color:#8b95a5}
-.chunk-hint{font-size:14.5px;color:var(--text);font-weight:500;padding-left:2px;height:18px;text-align:center;overflow:hidden}
-.chunk.ok .chunk-hint{color:#3f9a6d}
-.chunk.bad .chunk-hint{color:#c4362b}
+.chunk-hint{font-size:14.5px;color:var(--text);font-weight:500;padding-left:2px;min-height:18px;height:auto;line-height:1.3;text-align:center;overflow:visible}
+/* 选择完成后，中文提示保持原文字色；颜色变化只用于英文答案状态 */
+.chunk.ok .chunk-hint,.chunk.bad .chunk-hint{color:var(--text)}
 /* 选择模式：chunk 内显示答题结果（位于 chunk 最上方）
    所有状态都默认 inline-block + 下划线（始终蓝色 accent 保持视觉一致） */
 .chunk-answer{
   display:inline-block;
-  font-size:16px;font-weight:700;
-  margin:0 0 6px;padding:6px 16px;
+  font-size:18px;font-weight:700;
+  margin:0 0 1px;padding:6px 16px;
+  width:fit-content;max-width:100%;box-sizing:border-box;
   letter-spacing:.005em;line-height:1.2;min-width:48px;
   border-bottom:3px solid var(--accent);
   border-radius:0; /* 默认直线下划线（不受圆角影响） */
@@ -215,23 +234,46 @@ input,textarea,select{font:inherit;color:inherit}
 .chunk-answer .wrong-pick{text-decoration:line-through;opacity:.6;margin-right:6px;font-weight:500}
 /* 选择模式：候选按钮 fixed 浮在屏幕底部中央（脱离 stage 卡片，不被卡片高度影响） */
 #stageChoices{display:none;position:fixed;left:50%;bottom:32px;transform:translateX(-50%);
-  z-index:55;flex-wrap:wrap;justify-content:center;gap:10px;max-width:92vw}
+  z-index:55;width:min(92vw,760px);flex-wrap:wrap;justify-content:center;gap:10px;max-width:92vw}
 #stageChoices:has(.choice){display:flex}
 /* 全部答完：chips 半透明 + 显示"已答完"角标（distractors 仍可见允许自由试错） */
 #stageChoices.done{opacity:.55}
 #stageChoices.done::after{content:"✓ 已答完";position:absolute;top:-22px;left:50%;transform:translateX(-50%);
   font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:999px;
   padding:2px 10px;letter-spacing:.02em}
-.choice{border:1px solid var(--border-strong);border-radius:10px;background:var(--surface);
-  padding:8px 18px;font-size:15px;text-align:left;cursor:pointer;letter-spacing:.005em;
-  box-shadow:0 4px 16px -4px rgba(16,24,40,.18);
-  transition:border-color .12s,background .12s,transform .06s}
-.choice:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px)}
+.choice{
+  position:relative;min-height:42px;border:1px solid rgba(145,135,121,.48);border-radius:999px;
+  padding:9px 19px 10px;font-size:15px;font-weight:600;text-align:left;cursor:pointer;letter-spacing:.005em;
+  color:var(--text);
+  background:linear-gradient(180deg,#fffefa 0%,var(--surface) 58%,#eee9e1 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.96),
+    0 1px 0 rgba(156,145,130,.28),
+    0 5px 10px -4px rgba(46,43,37,.28);
+  transition:border-color .16s,background .16s,transform .16s,box-shadow .16s;
+}
+.choice:hover:not(:disabled){
+  border-color:rgba(44,98,201,.58);background:linear-gradient(180deg,#fff 0%,var(--accent-soft) 68%,#dbe6ff 100%);
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 2px 0 rgba(79,111,177,.24),
+    0 9px 14px -5px rgba(44,98,201,.32);
+}
+.choice:active:not(:disabled){
+  transform:translateY(1px);
+  box-shadow:inset 0 1px 2px rgba(46,43,37,.14),0 1px 0 rgba(156,145,130,.22),0 2px 5px -3px rgba(46,43,37,.28);
+}
 .choice:disabled{cursor:default;opacity:.9}
-.choice.right{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:600}
-.choice.wrong{border-color:var(--bad);background:var(--bad-soft);color:var(--bad);text-decoration:line-through}
-.choice.hint-glow{border-color:#d97706;background:#fff8e6;color:#946c00;box-shadow:0 0 0 3px rgba(217,119,6,.15)}
+.choice.right{border-color:rgba(35,133,90,.55);background:linear-gradient(180deg,#fff 0%,var(--ok-soft) 68%,#d9f0e3 100%);color:var(--ok);font-weight:600}
+.choice.wrong{border-color:rgba(182,72,62,.5);background:linear-gradient(180deg,#fff 0%,var(--bad-soft) 68%,#f2d9d6 100%);color:var(--bad);text-decoration:line-through}
+.choice.hint-glow{border-color:#d97706;background:linear-gradient(180deg,#fffdf5 0%,#fff8e6 68%,#f9e8bd 100%);color:#946c00;box-shadow:0 2px 0 rgba(180,119,22,.2),0 0 0 3px rgba(217,119,6,.15)}
+@media (prefers-reduced-motion: reduce){
+  .choice{transition:none}
+  .choice:hover:not(:disabled),.choice:active:not(:disabled){transform:none}
+}
 .chunk-role{font-size:9.5px;font-weight:600;padding:1px 7px;border-radius:999px;display:inline-block;margin-bottom:2px;letter-spacing:.02em;white-space:nowrap;opacity:.8}
+.chunk-role-wrap{display:flex;justify-content:center;line-height:1}
 .chunk.wait .chunk-role{opacity:.45}
 .chunk.revealed .chunk-role{opacity:.7}
 .chunk-your{
@@ -335,6 +377,15 @@ input,textarea,select{font:inherit;color:inherit}
 .stage-tip-bar .foot-tip{display:inline-flex;align-items:center;gap:4px}
 .stage-foot{display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap;min-height:34px}
 .stage-foot > button{white-space:nowrap}
+/* 底部操作按钮共享同一触控尺寸；自动标熟圆环保留独立的圆形状态样式 */
+  .stage-foot > #btnMaster:not(.auto),
+  .stage-foot > #btnExplain{
+  box-sizing:border-box;height:34px;min-height:34px;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:0 8px;line-height:1;touch-action:manipulation;
+}
+.stage-foot > #btnMaster:not(.auto){width:auto;min-width:0;padding-left:10px;padding-right:10px}
+.stage-foot > #btnExplain{width:60px;min-width:60px}
 .kbd{
   font:11.5px/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);
   border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:5px;padding:3px 5px;background:#fff;
@@ -636,13 +687,22 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .modal{max-width:none;border-radius:14px;max-height:calc(100vh - 16px)}
   /* 练习区输入/选项紧凑 */
   .chunk-input{font-size:17px}
-  .choice{padding:9px 12px;font-size:14px}
+  .choice{padding:9px 12px;font-size:13px}
   /* 顶栏次要元素：标签+同步状态文字隐藏，仅留按钮 */
   .topbar-reveal,.topbar-status-text{display:none}
+  /* 手机没有 Ctrl 键，隐藏整条键盘操作提示，避免占用练习区高度 */
+  .stage-tip-bar{display:none !important}
   /* iframe 容器顶栏隐藏说明文字 */
   #iframeHost > div > span:last-child{display:none}
   /* AI 解读弹窗内滚动更顺 */
   #aiBody{font-size:14.5px}
+}
+/* 窄视口（含平板/应用窄面板）以及触控设备不显示键盘快捷键提示 */
+@media (max-width:840px){
+  .stage-tip-bar{display:none !important}
+}
+@media (hover:none) and (pointer:coarse){
+  .stage-tip-bar{display:none !important}
 }
 /* 极窄屏（手机竖屏 ≤420px）：弹窗边到边、按钮加大触区、输入字号微调 */
 @media (max-width:420px){
@@ -653,7 +713,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .modal{border-radius:0;max-height:100vh;height:100vh;max-width:none;width:100vw}
   .modal-head{border-radius:0}
   .chunk-input{font-size:16px;min-width:18px}
-  .choice{padding:10px 11px;font-size:13.5px;min-height:40px}
+  .choice{padding:10px 11px;font-size:13px;min-height:40px}
+  /* 固定候选区使用明确宽度，允许多个短 chunk 并排，避免一项占满一行 */
+  #stageChoices{width:calc(100vw - 16px);max-width:calc(100vw - 16px);gap:8px}
   .btn{padding:8px 12px}
   .btn.sm{padding:5px 9px}
   /* zh 绝对定位宽度收窄（左右控件占位） */
@@ -662,13 +724,57 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .topbar-row{gap:4px}
   /* 进度圆环/标熟按钮在极窄屏略缩 */
   .ring-wrap{width:28px;height:28px}
-  .stage-master{min-width:46px;font-size:12px;padding:4px 9px}
+  .stage-master{min-width:0;font-size:12px;padding:4px 8px}
   .stage-master.auto{width:28px;height:28px;min-width:28px}
+}
+/* 手机首屏紧凑布局：练习卡与结构分析在同一视口内完成，不产生页面滚动 */
+@media (max-width:840px){
+  html,body{overflow:hidden;overscroll-behavior:none}
+  .wrap{padding:6px 10px 8px}
+  .topbar{margin:0 -10px 8px;padding:6px 10px}
+  .topbar-row{gap:4px}
+  .stage{padding:10px 8px 8px;border-radius:12px;margin-bottom:6px}
+  .stage-head{min-height:28px;margin-bottom:0}
+  .ring-wrap{width:28px;height:28px;margin-top:0}
+  .zh{font-size:16px;line-height:1.25}
+  .zh-sub{font-size:11px;margin-top:2px}
+  .stage-head-right{gap:2px}
+  .track-line{gap:2px;margin:6px 0 3px}
+  .track-line > .sentence-speak{width:22px;height:22px}
+  .track{gap:5px 8px}
+  .chunk{gap:1px;padding:0;max-width:100%}
+  .track.compact-chunks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:5px 8px}
+  .track.compact-chunks .chunk{width:100%;min-width:0}
+  .chunk-answer{display:inline-block;width:fit-content;box-sizing:border-box;text-align:center;font-size:clamp(13px,4vw,14px);line-height:1.1;min-width:0;max-width:100%;margin:0 0 1px;padding:2px 4px;overflow-wrap:anywhere}
+  .chunk.active .chunk-answer,.chunk.wait .chunk-answer{width:clamp(48px,calc(var(--answer-chars,12) * 7px + 16px),100%);min-width:0;height:30px}
+  .chunk.ok .chunk-answer,.chunk.bad .chunk-answer,.chunk.revealed .chunk-answer{width:fit-content;height:auto}
+  .chunk-hint{font-size:12px;line-height:1.35;min-height:16px;height:auto;padding-left:0;max-width:100%;overflow:visible;overflow-wrap:anywhere}
+  .chunk-role{font-size:9px;padding:1px 5px;margin-bottom:0}
+  .stage-foot{gap:6px;margin-top:7px;min-height:34px}
+  .analysis{margin-top:6px;margin-bottom:0;padding:6px 5px 5px;border-radius:10px}
+  .ana-track{gap:3px 6px;margin-bottom:0}
+  .ana-card{flex:1 1 calc(50% - 6px);min-width:0;padding:1px 2px 0;gap:1px}
+  .ana-tag{font-size:9.5px;padding:1px 6px}
+  .ana-phonetic{font-size:9px;margin-top:1px;line-height:1.15}
+  .ana-text{font-size:17px;line-height:1.1;padding:1px;overflow-wrap:anywhere}
+  .ana-line{height:2px;width:60%}
+  .ana-meaning{margin-top:1px}
+  .ana-cn{font-size:11.5px}
+  .ana-pos{font-size:9.5px}
 }
 /* 设置面板紧凑样式 */
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
 .set-sel{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
 .set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
+/* 设置弹窗紧凑化：减少纵向留白，其他弹窗保持原尺寸 */
+#settingsMask .modal-head{padding:10px 16px}
+#settingsMask .modal-head h3{font-size:15.5px}
+#settingsMask .modal-body{padding:8px 16px 10px}
+#settingsMask .modal-body > div:first-child > label{padding:6px 2px !important;line-height:1.2}
+#settingsMask .modal-body > div:first-child > label strong{font-size:13px !important}
+#settingsMask .modal-body > div:first-child > label > span > span{font-size:11.5px !important}
+#settingsMask .modal-body > div[style*="margin-top"]{margin-top:10px !important;padding-top:10px !important}
+#settingsMask .modal-foot{padding:8px 16px}
 /* 统一 SVG 图标（宪法：UI 禁用字符 icon；icons.js data-icon → 内联 SVG） */
 .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
@@ -711,10 +817,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">1/10</span></div>
         <div class="metric combo" id="mComboBox"><span class="lbl">连击</span><span class="val" id="mCombo">0</span></div>
       </div>
-      <button class="btn sm" id="btnSound" title="音效开关" data-icon="sound"></button>
-      <button class="btn sm" id="btnStats" title="学习档案（新窗口打开）" data-icon="stats"></button>
-      <button class="btn sm" id="btnDecks" title="题库管理（新窗口打开）">题库</button>
-      <button class="btn sm" id="btnSettingsTop" title="系统设置" data-icon="settings"></button>
+      <button class="icon-action" id="btnSound" title="音效开关" aria-label="音效开关" data-icon="sound"></button>
+      <button class="icon-action" id="btnStats" title="学习档案（新窗口打开）" aria-label="学习档案" data-icon="stats"></button>
+      <button class="btn sm flat-action" id="btnDecks" title="题库管理（新窗口打开）">题库</button>
+      <button class="icon-action" id="btnSettingsTop" title="系统设置" aria-label="系统设置" data-icon="settings"></button>
     </div>
     <div class="progress"><i id="progFill"></i></div>
     <div class="topbar-reveal hidden" id="topbarReveal"></div>
@@ -753,18 +859,20 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </div>
       </div>
       <div class="stage-head-right">
-        <button class="btn sm hidden" id="btnSpeak" title="朗读当前句子"><span data-icon="speak"></span>朗读</button>
         <span class="reveal-tag hidden" id="revealTagWrap"></span>
       </div>
     </div>
 
     <!-- 标熟：直接是按钮自身的圆环动画徽章（无单独提示条） -->
-    <div class="track" id="track"></div>
+    <div class="track-line">
+      <div class="track" id="track"></div>
+      <button class="icon-action sentence-speak hidden" id="btnSpeak" title="朗读当前句子" aria-label="朗读当前句子"><span data-icon="speak"></span></button>
+    </div>
 
     <div class="stage-foot">
-      <button class="stage-master" id="btnMaster" title="标记为已掌握（自选，未参与考试）" data-state="manual">标熟</button>
       <span class="spacer"></span>
-      <button class="btn sm hidden" id="btnExplain" title="查看本句详解（含 AI 解读）"><span data-icon="book"></span>详解</button>
+      <button class="stage-master" id="btnMaster" title="标记为已掌握（自选，未参与考试）" data-state="manual">熟</button>
+      <button class="btn sm hidden" id="btnExplain" title="查看本句详解（含 AI 解读）">详解</button>
       <button class="btn sm primary hidden" id="btnNext">下一题 ↵</button>
     </div>
   </div>
@@ -1324,7 +1432,7 @@ function setSoundIcon(){
 /* ============================================================
    1. 存储
 ============================================================ */
-var mem = { decks:[], best:{}, mastered:{}, deletedItems:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{} }, settings:{ sound:true, shuffle:false, fxStack:true, celebrate:'confetti', mode:'choose', skipMastered:true, batchSize:10, autoSpeak:false, darkMode:false, provider:'deepseek', model:'deepseek-v4-flash', apiKey:'' } };
+var mem = { decks:[], best:{}, mastered:{}, deletedItems:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{}, events:[] }, settings:{ sound:true, shuffle:false, fxStack:true, celebrate:'confetti', mode:'choose', skipMastered:true, batchSize:10, autoSpeak:false, darkMode:false, provider:'deepseek', model:'deepseek-v4-flash', apiKey:'' } };
 /* ★ 存储统一走 core.js（ADR：版本化 + 统一键 'chunklab.v1'）
    - 此前主页面独立用 KEY='chunklab.v1'，子页面用 chunklab_mem_v1 → 数据不同步（已修根因）
    - loadStore/saveStore 桥接到 CL，保证三页共享同一份数据 */
@@ -1341,13 +1449,28 @@ function loadStore(){
     if(o.progress && Object.keys(o.progress).length && !mem.progress) mem.progress = o.progress;
   }catch(e){ /* file:// 下可能不可用，降级为内存 */ }
 }
-function saveStore(){
+function saveStore(syncMode){
   try{
     CL.saveMem(mem);
     /* ★ 修复根因：此前只本地保存，mem 变更（练习/统计/设置）从不上传云端。
        补 scheduleCloudSync（debounce 400ms 合并，置 dirty → 成功清位 / 失败保持 + 重连补传）。 */
-    if(CL.scheduleCloudSync) CL.scheduleCloudSync(mem);
+    if(syncMode !== 'local' && CL.scheduleCloudSync) CL.scheduleCloudSync(mem);
   }catch(e){}
+}
+
+/* 统计身份：临时复习队列不能改变句子的原题库归属。 */
+function statDeckId(it){
+  return (it && it._statsDeckId) || (S.deck && S.deck.statsDeckId) || (S.deck && S.deck.id) || '?';
+}
+function statKey(it){ return statDeckId(it) + '#' + ((it && (it.sentence || it.en)) || ''); }
+function withStatsSource(it, deckId){
+  var copy = {};
+  Object.keys(it || {}).forEach(function(k){ copy[k] = it[k]; });
+  copy._statsDeckId = deckId || '';
+  return copy;
+}
+function withStatsSources(items, deckId){
+  return (items || []).map(function(it){ return withStatsSource(it, deckId); });
 }
 
 /* ============================================================
@@ -1451,6 +1574,17 @@ function downloadFile(content, filename, mime){
 ============================================================ */
 /* BUILTIN moved to builtins.js (跨页面共享) */
 
+/* 顶栏题库名称只展示中文/状态信息；英文副标题不写入数据，统计与导出仍保留原名称。 */
+function displayDeckName(name){
+  var raw = String(name || '').trim();
+  if(!raw) return '';
+  var parts = raw.split(/\s*[·•｜|]\s*/).filter(Boolean);
+  var kept = parts.filter(function(part){
+    return !/^[A-Za-z][A-Za-z\s&'’\-]*$/.test(part.trim());
+  });
+  return (kept.length ? kept : parts).join(' · ');
+}
+
 /* ★ 启动题库（恢复：之前与 BUILTIN 数组在同一区域被误删，这里补回）
    - fromIdx 可选，断点续练用
    - 长期题库过滤已标熟/已掌握；临时题库（book-/weak-/srs-/rev-）不过滤
@@ -1502,7 +1636,7 @@ function startDeck(deck, fromIdx){
               : deck.id.indexOf('rev-') === 0 ? '『手动』 '
               : (deck.id.indexOf('book-') === 0 || deck.id.indexOf('weak-') === 0) ? '『错题』 '
               : '';
-  $('deckName').textContent = _prefix + deck.name;
+  $('deckName').textContent = _prefix + displayDeckName(deck.name);
   $('result').classList.add('hidden');
   $('stage').classList.remove('hidden');
   updateCombo(0);
@@ -1550,6 +1684,57 @@ function findDeck(deckId){
   return null;
 }
 
+/* 一次性修复历史临时题库统计：旧版本把 srs-/weak-/book-/rev- 时间戳 ID 写进了统计键。
+   能唯一映射到当前题库的记录自动合并；同句存在多个题库且无法判断时保留原记录。 */
+function migrateLegacyStatKeys(){
+  if(!mem.stats || !mem.stats.bySentence) return false;
+  var decks = allDecks();
+  var known = {};
+  decks.forEach(function(d){ known[d.id] = d; });
+  var changed = false;
+  var by = mem.stats.bySentence;
+  function merge(a, b){
+    var latest = (a.lastAt||0) >= (b.lastAt||0) ? a : b;
+    var out = Object.assign({}, latest);
+    out.times = (a.times||0) + (b.times||0);
+    out.okTimes = (a.okTimes||0) + (b.okTimes||0);
+    out.wrongTimes = (a.wrongTimes||0) + (b.wrongTimes||0);
+    out.maxStreak = Math.max(a.maxStreak||0, b.maxStreak||0);
+    return out;
+  }
+  Object.keys(by).forEach(function(oldKey){
+    var st = by[oldKey];
+    if(!st || !st.deckId || known[st.deckId]) return;
+    var sourceId = '';
+    /* rev-<原题库ID>-<时间戳> 可以无歧义恢复原题库。 */
+    if(st.deckId.indexOf('rev-') === 0){
+      decks.forEach(function(d){
+        if(!sourceId && st.deckId.indexOf('rev-'+d.id+'-') === 0) sourceId = d.id;
+      });
+    }
+    /* 其他临时队列没有来源字段，只在句子文本唯一命中时迁移。 */
+    if(!sourceId){
+      var candidates = [];
+      decks.forEach(function(d){
+        if((d.items||[]).some(function(it){ return normSent(it.sentence||it.en||'') === normSent(st.sentence||''); })) candidates.push(d);
+      });
+      if(candidates.length === 1) sourceId = candidates[0].id;
+      if(candidates.length > 1){
+        var named = candidates.filter(function(d){ return d.name === st.deckName; });
+        if(named.length === 1) sourceId = named[0].id;
+      }
+    }
+    if(!sourceId) return;
+    var newKey = sourceId + '#' + (st.sentence || '');
+    if(by[newKey]) by[newKey] = merge(by[newKey], st);
+    else { st.deckId = sourceId; st.deckName = known[sourceId].name; by[newKey] = st; }
+    if(newKey !== oldKey) delete by[oldKey];
+    changed = true;
+  });
+  if(changed) saveStore();
+  return changed;
+}
+
 function renderQ(){
   /* ★ 诊断模式（临时）：把所有早期依赖探一遍，缺哪个标到 zh */
   var _need = ['cur','isDue','esc','isMastered','isFluency','masteredKey','wordCount','sentenceClassify'];
@@ -1587,6 +1772,7 @@ function renderQ(){
   var track = $('track');
   track.innerHTML = '';
   var isChoose = mem.settings.mode === 'choose';
+  track.classList.toggle('compact-chunks', isChoose);
   it.chunks.forEach(function(c, i){
     var words = c.trim().split(/\s+/);
     var hint = (it.hints && it.hints[i]) ? it.hints[i] : (words.length+' 词');
@@ -1598,8 +1784,8 @@ function renderQ(){
     if(isChoose){
       /* 选择模式：chunk 内顺序 = 答案(块) → 角色 → hint */
       box.innerHTML =
-        `<div class="chunk-answer" data-i="`+i+`"></div>`+
-        (roleHtml ? '<div style="text-align:center">'+roleHtml+'</div>' : '')+
+      `<div class="chunk-answer" data-i="`+i+`" style="--answer-chars:`+Math.max(1, c.trim().length)+`"></div>`+
+        (roleHtml ? '<div class="chunk-role-wrap">'+roleHtml+'</div>' : '')+
         (hint ? `<div class="chunk-hint">`+esc(hint)+'</div>' : '');
     } else {
       /* 拼写模式：每个单词独立输入框 + 下划线 */
@@ -1613,7 +1799,7 @@ function renderQ(){
         '</div>';
       }).join('');
       box.innerHTML =
-        (roleHtml ? '<div style="text-align:center">'+roleHtml+'</div>' : '')+
+        (roleHtml ? '<div class="chunk-role-wrap">'+roleHtml+'</div>' : '')+
         `<div class="chunk-words">`+wordBoxes+`</div>`+
         `<div class="chunk-hint">`+esc(hint)+'</div>';
     }
@@ -1702,7 +1888,7 @@ function updateRing(){
   var it = cur();
   var st = null;
   if(S.deck && it){
-    var key = S.deck.id + '#' + (it.sentence || '');
+    var key = statKey(it);
     st = (mem.stats && mem.stats.bySentence) ? mem.stats.bySentence[key] : null;
   }
   var times = (st && st.times) || 0;
@@ -1746,7 +1932,7 @@ function buildDistractors(it){
   return safeCall('ChunkEngine', 'buildDistractors', [], [it, S.items || [], allItems()]);
 }
 
-/* 渲染整池：未填的 correct（高亮当前）+ 所有 distractors；正确填入后该 correct 自动消失 */
+/* 渲染整池：正确项与干扰项初始统一样式，避免提前泄露答案 */
 function renderActiveChoices(){
   var box = $('stageChoices'); if(!box) return;
   if(mem.settings.mode !== 'choose'){ box.innerHTML = ''; return; }
@@ -1756,7 +1942,6 @@ function renderActiveChoices(){
     S.choicesPool = { it: it, corrects: it.chunks.slice(), distractors: buildDistractors(it) };
   }
   var pool = S.choicesPool;
-  var i = S.chunkIdx;
   /* 答完全部 chunks 不再清空 chips：distractors 仍可见，可"自由试错"（重选同一项）
      + 已 ok 的 correct 在渲染循环里跳过（不重复显示）；视觉通过 :has([data-done]) 控制半透明 */
   var html = '';
@@ -1764,12 +1949,11 @@ function renderActiveChoices(){
   pool.distractors.forEach(function(v){
     html += '<button class="choice distractor" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
   });
-  /* 未填的正确答案：按顺序排列，当前 chunkIdx 高亮 */
+  /* 未填的正确答案：按顺序排列，但不预先标色或高亮 */
   for(var k=0; k<pool.corrects.length; k++){
     if(S.status[k] === 'ok') continue;
     var v = pool.corrects[k];
-    var curCls = (k === i) ? ' correct active' : ' correct';
-    html += '<button class="choice'+curCls+'" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
+    html += '<button class="choice" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
   }
   /* 全部答完时给容器加 done 类（CSS 半透明 + 视觉提示） */
   var allOk = S.status && S.status.length === it.chunks.length && S.status.every(function(s){ return s === 'ok'; });
@@ -1983,7 +2167,7 @@ function toggleMastered(){
   var b = $('btnMaster'); if(!b) return;
   var st = b.dataset.state;
   if(st === 'done'){
-    var key = masteredKey(S.deck.id, cur());
+    var key = masteredKey(statDeckId(cur()), cur());
     /* ★ 撤销优先级：先看是否是已掌握（考试通过）→ 重置 stats；
        否则仅删除 mem.mastered */
     if(isFluency(cur())){
@@ -2003,16 +2187,16 @@ function toggleMastered(){
     clearTimeout(_masterFillTimer);
     b.classList.remove('filling','paused','auto');
     b.dataset.state = 'manual';
-    b.textContent = '标熟';
+    b.textContent = '熟';
     b.title = '标记为已掌握（自选，未参与考试）';
     return;
   }
   /* manual → 立即标熟 + 跳到下一题 + 从题库补一个未掌握新句子 */
   var it = cur();
-  var key2 = masteredKey(S.deck.id, it);
+  var key2 = masteredKey(statDeckId(it), it);
   if(!mem.mastered) mem.mastered = {};
   if(!mem.mastered[key2]){
-    mem.mastered[key2] = { deckId: S.deck.id, sentence: it.sentence || it.en || '', markedAt: Date.now() };
+    mem.mastered[key2] = { deckId: statDeckId(it), sentence: it.sentence || it.en || '', markedAt: Date.now() };
     saveStore();
   }
   /* 从 S.items 中移除当前句（S.idx 不变，下一题自动落到原 idx） */
@@ -2048,7 +2232,7 @@ function refreshMasterBtn(){
     b.title = '已通过考试验证（点击撤销掌握，重置练习统计）';
     return;
   }
-  var marked = S.deck && isMastered(S.deck.id, cur());
+  var marked = S.deck && isMastered(statDeckId(cur()), cur());
   if(marked){
     b.dataset.state = 'done';
     b.classList.add('done');
@@ -2058,7 +2242,7 @@ function refreshMasterBtn(){
   }
   /* 自动标熟条件：累计≥3 且正确率≥85% 且连对≥3 → 圆环 3 秒倒计时 */
   if(S.deck && cur()){
-    var key = masteredKey(S.deck.id, cur());
+    var key = masteredKey(statDeckId(cur()), cur());
     var st = (mem.stats && mem.stats.bySentence) ? mem.stats.bySentence[key] : null;
     var acc = st && st.times ? st.okTimes/st.times : 0;
     if(st && st.times >= 3 && acc >= 0.85 && st.streak >= 3){
@@ -2071,11 +2255,11 @@ function refreshMasterBtn(){
       if(fg){ fg.style.animation = 'none'; void fg.offsetWidth; fg.style.animation = ''; }
       b.classList.add('filling');
       _masterFillTimer = setTimeout(function(){
-        var k2 = masteredKey(S.deck.id, cur());
+        var k2 = masteredKey(statDeckId(cur()), cur());
         /* ★ auto 触发条件 = isFluency 条件（times≥3 + acc≥85% + streak≥3），所以此时已掌握。
            写入 mem.mastered 会造成"同时标熟+掌握"冗余状态 → 仅刷新按钮即可。 */
         if(!isFluency(cur()) && mem.mastered){
-          mem.mastered[k2] = { deckId: S.deck.id, sentence: cur().sentence || cur().en || '', markedAt: Date.now(), auto:true };
+          mem.mastered[k2] = { deckId: statDeckId(cur()), sentence: cur().sentence || cur().en || '', markedAt: Date.now(), auto:true };
           saveStore();
         }
         /* 自动标熟只静默标记，不跳题、不移除（避免打断当前答题） */
@@ -2086,7 +2270,7 @@ function refreshMasterBtn(){
     }
   }
   b.dataset.state = 'manual';
-  b.textContent = '标熟';
+  b.textContent = '熟';
   b.title = '标记为已掌握（自选，未参与考试）';
 }
 
@@ -2134,7 +2318,7 @@ function finishSentence(){
     clearTimeout(_anaTimer);
     _anaTimer = setTimeout(function(){ if(!S.finished) renderAnalysis(it); _anaTimer = null; }, 900);
   }else{
-    var _mastered = isMastered(S.deck.id, it);
+    var _mastered = isMastered(statDeckId(it), it);
     /* ★ "需巩固"判定：总错误 ≥2 次，或用过提示/跳过 → 需巩固；
        只错 1 次且自己纠正（无提示）→ 视为正常掌握，不标记（避免过度矫正漏掉真不熟练句） */
     var _totalWrong = S.wrongAttempts.reduce(function(a,b){ return a + (b||0); }, 0);
@@ -2338,11 +2522,13 @@ function renderAnalysis(it){
   var stage = $('stage');
   stage.insertAdjacentHTML('afterend', html);
 
-  /* 滚动到可见 */
-  setTimeout(function(){
-    var ap = document.getElementById('analysisPanel');
-    if(ap){ ap.scrollIntoView({behavior:'smooth',block:'center'}); }
-  }, 200);
+  /* 桌面端滚动到分析区；移动端首屏布局不主动滚动，避免制造滚动条/跳屏 */
+  if(window.innerWidth > 840){
+    setTimeout(function(){
+      var ap = document.getElementById('analysisPanel');
+      if(ap){ ap.scrollIntoView({behavior:'smooth',block:'center'}); }
+    }, 200);
+  }
 
   /* 显示"下一题"按钮（隐藏原来的 btnNext） */
   var nb = $('btnNext');
@@ -2403,12 +2589,14 @@ function hintFirst(){
 
 /* 学习统计：记录一次句子练习结果（防重入已由调用方保证） */
 function recordSentenceResult(it, ok){
-  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{} };
+  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   mem.stats.totalAnswered++;
-  var key = (S.deck ? S.deck.id : '?') + '#' + (it.sentence || '');
+  var sourceDeckId = statDeckId(it);
+  var sourceDeck = findDeck(sourceDeckId);
+  var key = statKey(it);
   var st = mem.stats.bySentence[key];
   if(!st){
-    st = { deckId: S.deck ? S.deck.id : '', deckName: S.deck ? S.deck.name : '', sentence: it.sentence || '', translation: it.translation || '', times:0, okTimes:0, wrongTimes:0, streak:0, maxStreak:0, lastAt:0, interval:1, ease:2.5, dueAt:0 };
+    st = { deckId: sourceDeckId, deckName: sourceDeck ? sourceDeck.name : (S.deck ? S.deck.name : ''), sentence: it.sentence || '', translation: it.translation || '', times:0, okTimes:0, wrongTimes:0, streak:0, maxStreak:0, lastAt:0, interval:1, ease:2.5, dueAt:0 };
     mem.stats.bySentence[key] = st;
   }
   st.times++;
@@ -2424,14 +2612,25 @@ function recordSentenceResult(it, ok){
   st.dueAt = _sched.dueAt;
   st.repetition = _sched.repetition;
   st.lastAt = Date.now();
+  if(!Array.isArray(mem.stats.events)) mem.stats.events = [];
+  mem.stats.events.push({
+    id: Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),
+    kind: 'answer', key: key, deckId: sourceDeckId, sentence: it.sentence || '',
+    ok: !!ok, at: st.lastAt
+  });
   return st;
 }
 
 function finishSession(){
   S.finished = true;
   /* 学习统计：完成一轮练习 */
-  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{} };
+  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   mem.stats.totalRounds++;
+  if(!Array.isArray(mem.stats.events)) mem.stats.events = [];
+  mem.stats.events.push({
+    id: Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),
+    kind: 'round', at: Date.now()
+  });
   saveStore();
   /* 清除断点进度（已练完） */
   if(mem.progress && mem.progress[S.deck.id]){
@@ -2523,7 +2722,7 @@ function finishSession(){
   $('btnImport2').onclick = function(){ openImport(); };
   $('btnWrongOnly').onclick = function(){
     if(!S.wrong.length) return;
-    startDeck({ id:S.deck.id+'#wrong', name:S.deck.name+'（错题）', items:S.wrong.map(function(w){ return w.it; }) });
+    startDeck({ id:S.deck.id+'#wrong', name:S.deck.name+'（错题）', items:S.wrong.map(function(w){ return withStatsSource(w.it, statDeckId(w.it)); }) });
   };
 
   /* 导出巩固清单 */
@@ -2555,7 +2754,7 @@ function classifyStat(s){
 /* 智能推荐排序等级：返回 0/1/2/3，数值小优先出题 */
 function sentenceClassify(it){
   if(!mem.stats || !mem.stats.bySentence) return 1; /* 默认按未练过优先 */
-  var key = (S.deck ? S.deck.id : '') + '#' + (it.sentence || '');
+  var key = statKey(it);
   return rankOfClassify(classifyStat(mem.stats.bySentence[key]));
 }
 function rankOfClassify(c){
@@ -2565,7 +2764,7 @@ function rankOfClassify(c){
 /* 「掌握」= 经过考试验证：累计答对≥3 次 且 当前连对≥3 次（标熟 ≠ 掌握，标熟只是自选标记） */
 function isFluency(it){
   if(!mem.stats || !mem.stats.bySentence || !S.deck) return false;
-  var key = S.deck.id + '#' + (it.sentence || '');
+  var key = statKey(it);
   var st = mem.stats.bySentence[key];
   return !!(st && st.okTimes >= 3 && st.streak >= 3);
 }
@@ -2573,14 +2772,14 @@ function isFluency(it){
 /* 「已标熟」= 用户自选/自动标记（不再参与学习，仅在复习时出现） */
 function isMarked(it){
   if(!mem.mastered || !S.deck) return false;
-  var key = masteredKey(S.deck.id, it);
+  var key = masteredKey(statDeckId(it), it);
   return !!mem.mastered[key];
 }
 
 /* 「到期复习」= SRS 间隔到达（dueAt ≤ now），无论标熟/掌握都要复习 */
 function isDue(it){
   if(!mem.stats || !mem.stats.bySentence || !S.deck) return false;
-  var key = S.deck.id + '#' + (it.sentence || '');
+  var key = statKey(it);
   var st = mem.stats.bySentence[key];
   /* 统一走 CL.srs 判定（ADR-003，单一事实来源） */
   return CL.srs.isDue(st, Date.now());
@@ -2608,7 +2807,7 @@ function openStats(){
 }
 
 function renderStats(){
-  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{} };
+  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   var by = mem.stats.bySentence || {};
   var keys = Object.keys(by);
   /* 统计卡 */
@@ -2678,10 +2877,10 @@ function practiceWeakSentences(){
     if(!deck) return;
     var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
     if(!it) return;
-    var key = normSent(it.sentence);
+    var key = st.deckId + '#' + normSent(it.sentence);
     if(seen[key]) return;
     seen[key] = true;
-    items.push(it);
+    items.push(withStatsSource(it, st.deckId));
   });
   if(!items.length){ alert('找不到可练习的句子（可能被删除）'); return; }
   startDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固 · '+items.length+' 句', items:items });
@@ -2699,10 +2898,10 @@ function dueSentences(){
     if(!deck) return;
     var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
     if(!it) return;
-    var key = normSent(it.sentence);
+    var key = st.deckId + '#' + normSent(it.sentence);
     if(seen[key]) return;
     seen[key] = true;
-    out.push({ it:it, st:st, deck:deck });
+    out.push({ it:withStatsSource(it, st.deckId), st:st, deck:deck });
   });
   return out;
 }
@@ -2789,7 +2988,7 @@ function isFluencyByDeck(deckId, it){
 function practiceReviewDeck(deck){
   var items = (deck.items || []).filter(function(it){
     return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
-  });
+  }).map(function(it){ return withStatsSource(it, deck.id); });
   if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
   startDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+deck.name+' · '+items.length+' 句', items:items });
 }
@@ -2807,7 +3006,7 @@ function renderSentenceList(body){
   /* 按最近练习时间降序 */
   rows.sort(function(a,b){ return (b.lastAt||0)-(a.lastAt||0); });
 
-  var seen = {}; /* 同一句子去重（跨题库） */
+  var seen = {}; /* 同一题库内同一句去重，不隐藏不同题库的独立记录 */
   var out = rows.filter(function(s){
     if(_statsFilter !== 'all'){
       /* ★ 修复：filter 'mastered' 同时匹配「熟练(classifyStat=master)」和「手动标熟(mem_mastered)」
@@ -2821,7 +3020,7 @@ function renderSentenceList(body){
         return false;
       }
     }
-    var k = (s.sentence||'').toLowerCase();
+    var k = (s.deckId||'') + '#' + (s.sentence||'').toLowerCase();
     if(seen[k]) return false;
     seen[k] = true;
     return true;
@@ -2914,13 +3113,14 @@ function practiceWrongBook(){
   var book = getReinforceBook();
   if(!book.length){ alert('错题本是空的'); return; }
   var items = book.map(function(b){
-    return {
+    var item = {
       sentence: b.sentence,
       translation: b.translation || '',
       chunks: b.chunks || [],
       hints: b.hints || [],
       grammar: b.grammar || null
     };
+    return withStatsSource(item, b.deckId);
   });
   if(!items.length){ return; }
   startDeck({ id:'book-'+Date.now().toString(36), name:'错题本 · 练习', items:items });
@@ -3995,7 +4195,8 @@ $('btnExplain').onclick = function(){
 $('btnSound').onclick = function(){
   mem.settings.sound = !mem.settings.sound;
   setSoundIcon();
-  saveStore();
+  /* 音效是当前设备的即时偏好，不应触发学习数据的云同步提示。 */
+  saveStore('local');
   if(mem.settings.sound) SFX.ok();
 };
 
@@ -4099,7 +4300,7 @@ function importAllData(text, cb){
   var d = r.data;
   if(!confirm(d.summary)){ return cb(false, '已取消'); }
   mem.decks = d.mem.decks || [];
-  mem.stats = d.mem.stats || { totalRounds:0, totalAnswered:0, bySentence:{} };
+  mem.stats = d.mem.stats || { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   mem.settings = Object.assign(mem.settings, d.mem.settings || {});
   mem.mastered = d.mem.mastered || {};
   mem.best = d.mem.best || {};
@@ -4479,6 +4680,7 @@ if(CL && CL.on && CL.isDirty){
 CL.ensureCloud().then(function(){
 try {
 loadStore();
+migrateLegacyStatKeys();
 setSoundIcon();
 renderCats();
 $('cats').firstChild && $('cats').firstChild.click();
