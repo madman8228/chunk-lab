@@ -508,7 +508,7 @@ function openDecks(){
     actions.className = 'deck-actions';
     if(d.builtin){
       var impBuiltin = document.createElement('button');
-      impBuiltin.className = 'btn sm';
+      impBuiltin.className = 'btn sm ghost';
       impBuiltin.textContent = '导入';
       impBuiltin.title = '复制到我的题库（可编辑/可追加）';
       impBuiltin.onclick = function(){ importPublicDeck(d); };
