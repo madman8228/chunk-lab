@@ -72,11 +72,14 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
 .stats-list{display:flex;flex-direction:column;gap:6px}
 .srow{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
-.srow .row-num{flex-shrink:0;width:32px;font-size:12px;font-weight:700;color:var(--accent);text-align:right;font-variant-numeric:tabular-nums}
+.srow .row-num{align-self:flex-start;flex-shrink:0;width:32px;margin-top:2px;font-size:12px;font-weight:700;color:var(--accent);text-align:right;font-variant-numeric:tabular-nums}
 .srow .sen{flex:1;min-width:0}
 .srow .en{font-size:13.5px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .srow .cn{font-size:11.5px;color:var(--faint);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .srow .meta{flex-shrink:0;text-align:right;font-size:11.5px;color:var(--muted)}
+.row-detail-toggle{display:none;flex-shrink:0;width:24px;height:24px;border:0;border-radius:50%;background:transparent;position:relative;cursor:pointer}
+.row-detail-toggle::before{content:"";position:absolute;left:8px;top:7px;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .15s ease}
+.stats-detail-row.is-expanded .row-detail-toggle::before{transform:rotate(225deg);top:10px}
 .badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0}
 .badge.master{background:var(--ok-soft);color:var(--ok)}
 .badge.weak{background:var(--bad-soft);color:var(--bad)}
@@ -104,6 +107,56 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
 @keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+/* 移动端：以扫描效率为优先，减少重复卡片留白但保留完整数据 */
+@media (max-width:600px){
+  html,body{font-size:13px}
+  .wrap{padding:10px 8px 20px}
+  .page-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px;margin-bottom:8px}
+  .page-head .spacer{display:none}
+  .page-head h2{font-size:17px;white-space:nowrap}
+  #btnPracticeWrong{white-space:nowrap;padding:4px 8px;font-size:12px}
+  .stats-cards{margin-bottom:8px}
+  .stats-cards .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:6px}
+  .stats-cards .kpi-rounds{display:none}
+  .stat-card{padding:7px 9px;border-radius:10px}
+  .stat-card .k{font-size:10.5px}
+  .stat-card .v{font-size:20px;margin-top:1px}
+  .stat-card .start-btn{margin-top:3px;font-size:11px}
+  .stats-cards .pair-row{gap:6px}
+  .stat-card.dist-card{padding:7px 8px}
+  .bar-chart{gap:4px;margin-top:4px}
+  .bar-row{gap:5px}
+  .bar-lbl{width:42px;font-size:10px}
+  .bar-track{height:12px}
+  .bar-cnt{width:24px;font-size:11px}
+  .mastery-donut{flex-direction:column;gap:4px;margin-top:1px}
+  .mastery-donut .donut{width:62px;height:62px}
+  .mastery-donut .donut-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 4px;width:100%}
+  .mastery-donut .donut-row{gap:3px}
+  .mastery-donut .donut-row.extra{grid-column:1 / -1;margin-top:2px;padding-top:3px}
+  .mastery-donut .dot{width:6px;height:6px}
+  .mastery-donut .lbl{width:auto;font-size:10px;white-space:nowrap}
+  .mastery-donut .cnt{width:18px;font-size:11px}
+  .mastery-donut .pct{width:25px;font-size:9px}
+  .stats-tabs{gap:4px;margin-bottom:6px}
+  .stats-tabs .tab{padding:4px 10px;font-size:12px}
+  .stats-filter{gap:4px;margin-bottom:8px}
+  .stats-filter .f{padding:2px 10px;font-size:11px}
+  .stats-list{gap:4px}
+  .srow{gap:6px;padding:6px;border-radius:9px}
+  .srow .row-num{width:24px;font-size:11px}
+  .srow .en{font-size:12px}
+  .srow .cn{font-size:10.5px}
+  .stats-detail-row{display:grid;grid-template-columns:24px minmax(0,1fr) auto 24px;grid-template-areas:"num sen badge toggle" "detail detail detail detail";column-gap:6px;row-gap:3px;align-items:center;cursor:pointer}
+  .stats-detail-row .row-num{grid-area:num}
+  .stats-detail-row .sen{grid-area:sen}
+  .stats-detail-row .badge{grid-area:badge}
+  .stats-detail-row .row-detail-toggle{grid-area:toggle}
+  .stats-detail-row .meta{display:none;grid-area:detail;font-size:10px;width:auto;margin:0;padding-top:5px;border-top:1px solid var(--border);text-align:left}
+  .stats-detail-row.is-expanded .meta{display:block}
+  .stats-detail-row .row-detail-toggle{display:block}
+  .cross-page-hint{display:none}
+}
 </style>
 </head>
 <body>
@@ -120,7 +173,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
   <div class="stats-tabs" id="statsTabs">
     <button class="tab on" data-tab="sent">句子记录</button>
-    <button class="tab" data-tab="review"><span data-icon="refresh"></span>复习</button>
+    <button class="tab" data-tab="review">复习</button>
     <button class="tab" data-tab="wrong">错题本</button>
   </div>
 
@@ -149,7 +202,7 @@ if(window.Icons) Icons.install();
    - 共享 core.js（CL 命名空间）：存储/工具/领域判定/事件总线
    - 数据通过浏览器本地存储与主页共享（同源） */
 
-var mem = { decks:[], best:{}, mastered:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{} }, settings:{} };
+var mem = { decks:[], best:{}, mastered:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{}, events:[] }, settings:{} };
 /* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
 function loadMem(){ mem = CL.loadMem(); }
 function saveStore(){ CL.saveAndNotify(mem); }
@@ -157,30 +210,78 @@ function $(id){ return CL.$(id); }
 function esc(s){ return CL.esc(s); }
 function normSent(s){ return CL.normSent(s); }
 function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
-function findDeck(deckId){ return CL.findDeck(mem, deckId); }
-function allDecks(){ return CL.allDecks(mem); }
+function findDeck(deckId){
+  var all = allDecks();
+  for(var i=0;i<all.length;i++) if(all[i].id === deckId) return all[i];
+  return null;
+}
+function allDecks(){
+  var builtin = (window.BUILTIN || []).map(function(bd){
+    var copy = Object.assign({}, bd);
+    copy.items = (bd.items || []).filter(function(it){ return !CL.isItemDeleted(mem, bd.id, it); });
+    return copy;
+  });
+  return builtin.concat(CL.allDecks(mem));
+}
 function timeAgo(t){ return CL.timeAgo(t); }
 function classifyStat(s){ return CL.classifyStat(s); }
 function isFluencyByDeck(deckId, it){ return CL.isFluencyByDeck(mem, deckId, it); }
 function isMarkedForDeck(deckId, it){ return CL.isMarkedForDeck(mem, deckId, it); }
+function withStatsSource(it, deckId){
+  var copy = {};
+  Object.keys(it || {}).forEach(function(k){ copy[k] = it[k]; });
+  copy._statsDeckId = deckId || '';
+  return copy;
+}
+
+/* 与主页一致：旧版本临时复习 ID 能唯一对应题库时自动并回稳定统计键。 */
+function migrateLegacyStatKeys(){
+  if(!mem.stats || !mem.stats.bySentence) return false;
+  var decks = allDecks(), known = {};
+  decks.forEach(function(d){ known[d.id] = d; });
+  var changed = false, by = mem.stats.bySentence;
+  function merge(a,b){
+    var latest = (a.lastAt||0) >= (b.lastAt||0) ? a : b;
+    var out = Object.assign({}, latest);
+    out.times=(a.times||0)+(b.times||0); out.okTimes=(a.okTimes||0)+(b.okTimes||0);
+    out.wrongTimes=(a.wrongTimes||0)+(b.wrongTimes||0); out.maxStreak=Math.max(a.maxStreak||0,b.maxStreak||0);
+    return out;
+  }
+  Object.keys(by).forEach(function(oldKey){
+    var st=by[oldKey]; if(!st || !st.deckId || known[st.deckId]) return;
+    var sourceId='';
+    if(st.deckId.indexOf('rev-')===0) decks.forEach(function(d){ if(!sourceId && st.deckId.indexOf('rev-'+d.id+'-')===0) sourceId=d.id; });
+    if(!sourceId){
+      var candidates=decks.filter(function(d){ return (d.items||[]).some(function(it){ return normSent(it.sentence||it.en||'')===normSent(st.sentence||''); }); });
+      if(candidates.length===1) sourceId=candidates[0].id;
+      if(candidates.length>1){ var named=candidates.filter(function(d){ return d.name===st.deckName; }); if(named.length===1) sourceId=named[0].id; }
+    }
+    if(!sourceId) return;
+    var newKey=sourceId+'#'+(st.sentence||'');
+    by[newKey]=by[newKey]?merge(by[newKey],st):Object.assign(st,{deckId:sourceId,deckName:known[sourceId].name});
+    if(newKey!==oldKey) delete by[oldKey]; changed=true;
+  });
+  if(changed) saveStore();
+  return changed;
+}
 
 /* ===== 渲染 ===== */
 var _statsTab = 'sent';
 var _statsFilter = 'all';
 
 function renderStats(){
-  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{} };
+  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   var by = mem.stats.bySentence || {};
   var keys = Object.keys(by);
 
-  /* 统计卡（5 KPI · 一行） */
+  /* 统计卡：桌面保留 5 项，移动端隐藏完成轮次以压缩为 4 项 */
   var masteredCnt = keys.filter(function(k){ return classifyStat(by[k])==='master'; }).length;
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k])==='weak'; }).length;
   var bookCnt = getReinforceBook().length;
   $('statsCards').innerHTML =
     '<div class="kpi-row">'+
     '<div class="stat-card hl"><div class="k">累计练习句次</div><div class="v">'+mem.stats.totalAnswered+'</div></div>'+
-    '<div class="stat-card"><div class="k">完成轮次</div><div class="v">'+mem.stats.totalRounds+'</div></div>'+
+    '<div class="stat-card kpi-rounds"><div class="k">完成轮次</div><div class="v">'+mem.stats.totalRounds+'</div></div>'+
     '<div class="stat-card ok"><div class="k">熟练句子</div><div class="v">'+masteredCnt+'</div></div>'+
     '<div class="stat-card warn"><div class="k">需巩固</div><div class="v">'+weakCnt+'</div>'+
       (weakCnt>0 ? '<button class="start-btn" id="startWeak">开始学习 →</button>' : '')+'</div>'+
@@ -328,7 +429,7 @@ function renderSentenceList(body){
         return false;
       }
     }
-    var k = (s.sentence||'').toLowerCase();
+    var k = (s.deckId||'') + '#' + (s.sentence||'').toLowerCase();
     if(seen[k]) return false;
     seen[k] = true;
     return true;
@@ -349,10 +450,11 @@ function renderSentenceList(body){
                        '<span class="badge new">未练过</span>';
     var acc = s.times ? Math.round(s.okTimes/s.times*100) : 0;
     var tStr = s.lastAt ? timeAgo(s.lastAt) : '—';
-    html += '<div class="srow"><span class="row-num">#'+(idx+1)+'</span><div class="sen">'+
+    html += '<div class="srow stats-detail-row"><span class="row-num">#'+(idx+1)+'</span><div class="sen">'+
       '<div class="en">'+esc(s.sentence)+'</div>'+
       '<div class="cn">'+esc(s.translation||'')+'</div></div>'+
       badgeHtml+
+      '<button class="row-detail-toggle" type="button" aria-expanded="false" aria-label="展开统计详情"></button>'+
       '<div class="meta">'+s.times+' 次 · 对 '+s.okTimes+'/错 '+s.wrongTimes+' · '+tStr+'</div>'+
     '</div>';
   });
@@ -412,10 +514,10 @@ function dueSentences(){
     if(!deck) return;
     var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
     if(!it) return;
-    var key = normSent(it.sentence);
+    var key = st.deckId + '#' + normSent(it.sentence);
     if(seen[key]) return;
     seen[key] = true;
-    out.push({ it:it, st:st, deck:deck });
+    out.push({ it:withStatsSource(it, st.deckId), st:st, deck:deck });
   });
   return out;
 }
@@ -481,13 +583,13 @@ function renderReviewList(body){
 function practiceDue(){
   var dues = dueSentences();
   if(!dues.length){ alert('没有到期复习的句子'); return; }
-  var items = dues.map(function(d){ return d.it; });
+  var items = dues.map(function(d){ return withStatsSource(d.it, d.st.deckId); });
   launchReviewDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习 · '+items.length+' 句', items:items });
 }
 function practiceReviewDeck(deck){
   var items = (deck.items || []).filter(function(it){
     return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
-  });
+  }).map(function(it){ return withStatsSource(it, deck.id); });
   if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
   launchReviewDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+deck.name+' · '+items.length+' 句', items:items });
 }
@@ -502,10 +604,10 @@ function practiceWeakSentences(){
     if(!deck) return;
     var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
     if(!it) return;
-    var key = normSent(it.sentence);
+    var key = st.deckId + '#' + normSent(it.sentence);
     if(seen[key]) return;
     seen[key] = true;
-    items.push(it);
+    items.push(withStatsSource(it, st.deckId));
   });
   if(!items.length){ alert('找不到可练习的句子（可能被删除）'); return; }
   launchReviewDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固 · '+items.length+' 句', items:items });
@@ -515,13 +617,13 @@ function practiceWrongBook(){
   var seen = {};
   var items = [];
   book.forEach(function(b){
-    var key = normSent(b.sentence);
+    var key = b.deckId + '#' + normSent(b.sentence);
     if(seen[key]) return;
     seen[key] = true;
     var deck = findDeck(b.deckId);
     if(!deck) return;
     var it = (deck.items||[]).find(function(x){ return x.sentence === b.sentence; });
-    if(it) items.push(it);
+    if(it) items.push(withStatsSource(it, b.deckId));
   });
   if(!items.length){ alert('错题本中的句子已全部删除或找不到对应题库'); return; }
   launchReviewDeck({ id:'book-'+Date.now().toString(36), name:'错题 · '+items.length+' 句', items:items });
@@ -540,6 +642,7 @@ function launchReviewDeck(deck){
 /* ===== 事件绑定 ===== */
 CL.ensureCloud().then(function(){
 loadMem();
+migrateLegacyStatKeys();
 renderStats();
 
 Array.prototype.forEach.call($('statsTabs').children, function(b){
@@ -555,6 +658,21 @@ Array.prototype.forEach.call($('statsFilter').children, function(b){
   };
 });
 $('btnPracticeWrong').onclick = practiceWrongBook;
+/* 移动端记录采用渐进式展示：点击整行展开/收起次数、对错和最近练习时间。
+   桌面端详情始终可见，因此不改变原有交互。 */
+function toggleSentenceDetail(row){
+  var expanded = row.classList.toggle('is-expanded');
+  var toggle = row.querySelector('.row-detail-toggle');
+  if(toggle){
+    toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    toggle.setAttribute('aria-label', expanded ? '收起统计详情' : '展开统计详情');
+  }
+}
+$('statsBody').addEventListener('click', function(ev){
+  if(!window.matchMedia || !window.matchMedia('(max-width:600px)').matches) return;
+  var row = ev.target.closest && ev.target.closest('.stats-detail-row');
+  if(row) toggleSentenceDetail(row);
+});
 /* ★ 返回主页（独立窗口场景通用） */
 $('statsBack').onclick = function(){ window.location.href = './main.html'; };
 
@@ -568,7 +686,7 @@ window.addEventListener('message', function(ev){
 
 /* 监听 storage 事件（其他标签页修改也刷新） */
 window.addEventListener('storage', function(e){
-  if(e.key === 'chunklab_mem_v1'){
+  if(e.key === 'chunklab.v1'){
     loadMem();
     renderStats();
   }
