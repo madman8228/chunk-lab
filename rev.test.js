@@ -41,6 +41,22 @@ function getRevs() { try { return JSON.parse(store['chunklab_revs_v1'] || '{}');
 async function main() {
   var m = CL.loadMem();
 
+  /* 0. 统计事件合并：两台设备从同一基线各完成一次练习，合并后不能丢一条。 */
+  var mergedStats = CL.mergeStats(
+    { totalRounds: 2, totalAnswered: 6, bySentence: { 'd1#S': { deckId: 'd1', sentence: 'S', times: 6, okTimes: 5, wrongTimes: 1, lastAt: 100 } },
+      events: [{ id: 'a', kind: 'answer', key: 'd1#S', deckId: 'd1', sentence: 'S', ok: true, at: 100 }, { id: 'ra', kind: 'round', at: 110 }] },
+    { totalRounds: 2, totalAnswered: 6, bySentence: { 'd1#S': { deckId: 'd1', sentence: 'S', times: 6, okTimes: 4, wrongTimes: 2, lastAt: 200 } },
+      events: [{ id: 'b', kind: 'answer', key: 'd1#S', deckId: 'd1', sentence: 'S', ok: false, at: 200 }, { id: 'rb', kind: 'round', at: 210 }] }
+  );
+  check('stats: 双设备各练一次后累计次数为 7', mergedStats.totalAnswered === 7, JSON.stringify(mergedStats));
+  check('stats: 双设备合并保留正确/错误次数', mergedStats.bySentence['d1#S'].times === 7 && mergedStats.bySentence['d1#S'].okTimes === 5 && mergedStats.bySentence['d1#S'].wrongTimes === 2, JSON.stringify(mergedStats.bySentence['d1#S']));
+  check('stats: 双设备合并轮次为 3', mergedStats.totalRounds === 3, JSON.stringify(mergedStats));
+  var oldAndNew = CL.mergeStats(
+    { totalRounds: 5, totalAnswered: 20, bySentence: { 'd1#S': { deckId: 'd1', sentence: 'S', times: 20, okTimes: 18, wrongTimes: 2, lastAt: 100 } }, events: [] },
+    { totalRounds: 1, totalAnswered: 1, bySentence: { 'd1#S': { deckId: 'd1', sentence: 'S', times: 1, okTimes: 1, wrongTimes: 0, lastAt: 200 } }, events: [{ id: 'new-device', kind: 'answer', key: 'd1#S', deckId: 'd1', sentence: 'S', ok: true, at: 200 }] }
+  );
+  check('stats: 老设备历史 + 新设备一次练习不丢旧次数', oldAndNew.totalAnswered === 21 && oldAndNew.bySentence['d1#S'].times === 21, JSON.stringify(oldAndNew));
+
   // 1. 新增 deck → rev=1
   m.decks = [{ id: 'd1', name: 'A', items: [{ sent: 'a' }], builtin: false }];
   CL.saveMem(m);
@@ -118,7 +134,39 @@ async function main() {
   await CL.cloudSyncNow(CL.loadMem());
   check('s2: progress 未变 → rev 不递增', getRevs().courseProgress.pA === b10, 'before=' + b10 + ' after=' + getRevs().courseProgress.pA);
 
-  // 10b. preload 迁移：localStorage 大键 → IDB → 删键（mock IDBStore；重载 core.js 模拟冷启动，内存未预载）
+  // 10b. preload 防丢课：IDB 与旧 localStorage 同时有数据时按 courseId 合并
+  var unionCourseWrites = null;
+  global.IDBStore = {
+    loadAll: function () { return Promise.resolve({
+      courses: [{ courseId: 'cSame', title: 'IDB 版本' }],
+      courseProgress: { cSame: { seen: ['n1'] } }
+    }); },
+    putCourses: function (l) { unionCourseWrites = l.slice(); return Promise.resolve(); },
+    putProgress: function () { return Promise.resolve(); }
+  };
+  store['chunklab.courses.v1'] = JSON.stringify([
+    { courseId: 'cSame', title: '旧版本' },
+    { courseId: 'cLocal', title: '迁移前课程' }
+  ]);
+  store['chunklab.course-progress.v1'] = JSON.stringify({ cLocal: { seen: ['n0'] } });
+  delete require.cache[require.resolve('./core.js')];
+  require('./core.js');
+  CL = global.CL;
+  await CL.preload();
+  check('s2: IDB 与旧缓存并存时不丢课程',
+    CL.readCourses().length === 2 && CL.readCourses().some(function (c) { return c.courseId === 'cLocal'; }),
+    'courses=' + JSON.stringify(CL.readCourses()));
+  check('s2: 同 courseId 以 IDB 版本为准',
+    CL.readCourses().some(function (c) { return c.courseId === 'cSame' && c.title === 'IDB 版本'; }),
+    'courses=' + JSON.stringify(CL.readCourses()));
+  check('s2: 课程合并结果回写 IDB',
+    unionCourseWrites && unionCourseWrites.length === 2,
+    'writes=' + JSON.stringify(unionCourseWrites));
+  check('s2: 课程进度并集不丢记录',
+    CL.readProgress().cSame && CL.readProgress().cLocal,
+    'progress=' + JSON.stringify(CL.readProgress()));
+
+  // 10c. preload 迁移：localStorage 大键 → IDB → 删键（mock IDBStore；重载 core.js 模拟冷启动，内存未预载）
   var migrated = false;
   global.IDBStore = {
     loadAll: function () { return Promise.resolve({ courses: [], courseProgress: {} }); },

@@ -140,7 +140,7 @@
   function defaultMem(){
     return {
       decks: [], best: {}, mastered: {}, deletedItems: {},
-      stats: { totalRounds:0, totalAnswered:0, bySentence:{} },
+      stats: { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] },
       settings: {
         sound:true, shuffle:false, fxStack:true, celebrate:'confetti', mode:'choose',
         skipMastered:true, batchSize:10, autoSpeak:false, darkMode:false,
@@ -160,7 +160,7 @@
         mastered: o.mastered || d.mastered,
         deletedItems: o.deletedItems || {},
         stats: (o.stats && typeof o.stats === 'object')
-          ? { totalRounds: o.stats.totalRounds||0, totalAnswered: o.stats.totalAnswered||0, bySentence: o.stats.bySentence||{} }
+          ? { totalRounds: o.stats.totalRounds||0, totalAnswered: o.stats.totalAnswered||0, bySentence: o.stats.bySentence||{}, events: Array.isArray(o.stats.events) ? o.stats.events : [] }
           : d.stats,
         settings: Object.assign({}, d.settings, o.settings||{}),
         reinforceBook: o.reinforceBook || [],
@@ -223,20 +223,30 @@
   function preload(){
     if(!global.IDBStore) return Promise.resolve(false);
     return global.IDBStore.loadAll().then(function(data){
-      if(data.courses && data.courses.length){
-        _coursesCache = data.courses;
-      } else {
-        var local = readCoursesRaw();
-        _coursesCache = local;
-        if(local.length) global.IDBStore.putCourses(local).catch(function(){});
-      }
-      if(data.courseProgress && Object.keys(data.courseProgress).length){
-        _progressCache = data.courseProgress;
-      } else {
-        var pl = readProgressRaw();
-        _progressCache = pl;
-        if(Object.keys(pl).length) global.IDBStore.putProgress(pl).catch(function(){});
-      }
+      /*
+       * 迁移期间可能同时存在两份数据：
+       * - IDB 是之前已经迁移成功的课程子集；
+       * - localStorage 里还保留着迁移前的完整列表，或包含刚导入的一课。
+       *
+       * 旧逻辑只要发现 IDB 有任意课程就直接覆盖 localStorage，
+       * 结果会把另一课从课程树中“吃掉”。启动时按 courseId 做并集，
+       * 同 ID 以 IDB 版本为准，新增课程则完整保留，并回写统一结果。
+       */
+      var localCourses = readCoursesRaw();
+      var idbCourses = Array.isArray(data.courses) ? data.courses : [];
+      var courseMap = {};
+      localCourses.concat(idbCourses).forEach(function(c){
+        if(!c || !c.courseId) return;
+        courseMap[c.courseId] = c;
+      });
+      _coursesCache = Object.keys(courseMap).map(function(id){ return courseMap[id]; });
+      if(_coursesCache.length) global.IDBStore.putCourses(_coursesCache).catch(function(){});
+
+      var localProgress = readProgressRaw();
+      var idbProgress = (data.courseProgress && typeof data.courseProgress === 'object') ? data.courseProgress : {};
+      /* 同一课程以 IDB 版本为准，localStorage 仅补齐尚未迁移的课程进度。 */
+      _progressCache = Object.assign({}, localProgress, idbProgress);
+      if(Object.keys(_progressCache).length) global.IDBStore.putProgress(_progressCache).catch(function(){});
       /* 迁移完成后删除 localStorage 大键（仅当 IDB 可用且迁移成功） */
       try{ global.localStorage.removeItem(COURSES_KEY); global.localStorage.removeItem(PROGRESS_KEY); }catch(e){}
       return true;
@@ -332,7 +342,17 @@
       SYNC_KV_KEYS.forEach(function(k){
         var rRev = (remoteRevs.kv && remoteRevs.kv[k]) || 0;
         var lRev = localRevs.kv[k] || 0;
-        if(rRev > lRev && remoteMem[k] !== undefined){ m[k] = remoteMem[k]; localRevs.kv[k] = rRev; }
+        if(k === 'stats' && remoteMem[k] !== undefined){
+          var beforeStats = JSON.stringify(m.stats || {});
+          var mergedStats = mergeStats(m.stats, remoteMem[k]);
+          if(JSON.stringify(mergedStats) !== beforeStats){
+            m.stats = mergedStats;
+            /* 合并后的新结果需要一个更高 rev，确保能回写云端。 */
+            localRevs.kv[k] = Math.max(lRev, rRev) + 1;
+          } else if(rRev > lRev){
+            localRevs.kv[k] = rRev;
+          }
+        } else if(rRev > lRev && remoteMem[k] !== undefined){ m[k] = remoteMem[k]; localRevs.kv[k] = rRev; }
         /* rRev <= lRev：本地更新优先，下次 PUT 覆盖 */
       });
       saveRevs(localRevs);
@@ -429,6 +449,79 @@
     if(d < 86400000) return Math.floor(d/3600000)+' 小时前';
     return Math.floor(d/86400000)+' 天前';
   }
+
+  /* 统计同步：stats 是一个逻辑对象，但练习记录本身是可合并事件。
+     旧数据没有 events 时仍按旧聚合值兼容；新数据按事件 ID 去重，
+     避免两个设备离线各练一次后，后写入的整块 stats 覆盖先写入的数据。 */
+  function mergeStats(a, b){
+    a = (a && typeof a === 'object') ? a : {};
+    b = (b && typeof b === 'object') ? b : {};
+    var ae = Array.isArray(a.events) ? a.events : [];
+    var be = Array.isArray(b.events) ? b.events : [];
+    var eventMap = {};
+    ae.concat(be).forEach(function(e){
+      if(!e || !e.id) return;
+      eventMap[e.id] = e;
+    });
+    var events = Object.keys(eventMap).map(function(id){ return eventMap[id]; }).sort(function(x,y){ return String(x.id).localeCompare(String(y.id)); });
+    var eventCount = function(list, kind, key){
+      return list.filter(function(e){ return e && e.kind === kind && (!key || e.key === key); }).length;
+    };
+    var answerA = eventCount(ae, 'answer'), answerB = eventCount(be, 'answer');
+    var roundA = eventCount(ae, 'round'), roundB = eventCount(be, 'round');
+    var baseAnswered = events.length
+      ? Math.max(Math.max(0, (Number(a.totalAnswered)||0) - answerA), Math.max(0, (Number(b.totalAnswered)||0) - answerB))
+      : Math.max(Number(a.totalAnswered)||0, Number(b.totalAnswered)||0);
+    var baseRounds = events.length
+      ? Math.max(Math.max(0, (Number(a.totalRounds)||0) - roundA), Math.max(0, (Number(b.totalRounds)||0) - roundB))
+      : Math.max(Number(a.totalRounds)||0, Number(b.totalRounds)||0);
+    var out = { totalRounds: baseRounds + eventCount(events, 'round'), totalAnswered: baseAnswered + eventCount(events, 'answer'), bySentence:{}, events:events };
+    var keys = {};
+    [a.bySentence || {}, b.bySentence || {}].forEach(function(by){ Object.keys(by).forEach(function(k){ keys[k] = true; }); });
+    events.forEach(function(e){ if(e.kind === 'answer' && e.key) keys[e.key] = true; });
+    Object.keys(keys).sort().forEach(function(key){
+      var ra = (a.bySentence || {})[key] || null;
+      var rb = (b.bySentence || {})[key] || null;
+      var ea = eventCount(ae, 'answer', key), eb = eventCount(be, 'answer', key);
+      var eu = eventCount(events, 'answer', key);
+      if(!ra && !rb) return;
+      var seed = ra || rb;
+      if(ra && rb){
+        /* 元数据以事件较少的一侧为种子，计数基线则分别计算后取较大值。 */
+        seed = (Math.max(0, (ra.times||0)-ea) <= Math.max(0, (rb.times||0)-eb)) ? ra : rb;
+      }
+      var baseTimesA = ra ? Math.max(0, (ra.times||0) - ea) : 0;
+      var baseTimesB = rb ? Math.max(0, (rb.times||0) - eb) : 0;
+      var baseTimes = Math.max(baseTimesA, baseTimesB);
+      var baseOkA = ra ? Math.max(0, (ra.okTimes||0) - ea) : 0;
+      var baseOkB = rb ? Math.max(0, (rb.okTimes||0) - eb) : 0;
+      var baseOk = Math.max(baseOkA, baseOkB);
+      /* wrongTimes 的事件增量就是该侧 answer 事件中的错误数。 */
+      var wrongEventsA = ae.filter(function(e){ return e && e.kind === 'answer' && e.key === key && !e.ok; }).length;
+      var wrongEventsB = be.filter(function(e){ return e && e.kind === 'answer' && e.key === key && !e.ok; }).length;
+      var baseWrongA = ra ? Math.max(0, (ra.wrongTimes||0) - wrongEventsA) : 0;
+      var baseWrongB = rb ? Math.max(0, (rb.wrongTimes||0) - wrongEventsB) : 0;
+      var baseWrong = Math.max(baseWrongA, baseWrongB);
+      /* 没有事件的新旧数据：保留较大的旧聚合，兼容升级前客户端。 */
+      if(!events.length){
+        var legacy = (ra && rb) ? ((ra.times||0) >= (rb.times||0) ? ra : rb) : (ra || rb);
+        out.bySentence[key] = Object.assign({}, legacy);
+        return;
+      }
+      var latest = (ra && rb) ? ((ra.lastAt||0) >= (rb.lastAt||0) ? ra : rb) : (ra || rb);
+      var merged = Object.assign({}, latest);
+      merged.times = baseTimes + eu;
+      /* answer 事件带 ok 字段；按事件重新计算正确/错误增量。 */
+      var unionAnswers = events.filter(function(e){ return e && e.kind === 'answer' && e.key === key; });
+      var unionOk = unionAnswers.filter(function(e){ return e.ok; }).length;
+      merged.okTimes = baseOk + unionOk;
+      merged.wrongTimes = baseWrong + (unionAnswers.length - unionOk);
+      merged.lastAt = Math.max((ra&&ra.lastAt)||0, (rb&&rb.lastAt)||0, unionAnswers.reduce(function(m,e){ return Math.max(m, e.at||0); }, 0));
+      merged.maxStreak = Math.max((ra&&ra.maxStreak)||0, (rb&&rb.maxStreak)||0);
+      out.bySentence[key] = merged;
+    });
+    return out;
+  }
   function copyText(t, done){
     var ok = false;
     if(global.navigator.clipboard && global.navigator.clipboard.writeText){
@@ -520,6 +613,7 @@
     masteredKey: masteredKey, allDecks: allDecks, findDeck: findDeck,
     isMastered: isMastered, isFluencyByDeck: isFluencyByDeck, isMarkedForDeck: isMarkedForDeck,
     classifyStat: classifyStat,
+    mergeStats: mergeStats,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
     on: on, emit: emit,
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
