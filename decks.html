@@ -135,6 +135,10 @@ textarea{outline:none;resize:vertical}
 .lesson:hover .lesson-del{opacity:1}
 .lesson-del:hover{background:#fee;color:#c33}
 .course-empty{padding:12px 16px;text-align:center;color:var(--faint);line-height:1.45}
+.deck-notice{position:fixed;top:18px;left:50%;z-index:100;max-width:min(420px,calc(100vw - 28px));padding:9px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:0 8px 24px rgba(20,30,50,.14);color:var(--text);font-size:13px;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,-8px);transition:opacity .18s,transform .18s}
+.deck-notice.show{opacity:1;transform:translate(-50%,0)}
+.deck-notice.ok{border-color:#b9e5cc;color:#0b6b3a}
+.deck-notice.err{border-color:#f0c2bd;color:var(--bad)}
 .market-head{display:flex;align-items:center;gap:8px;margin-bottom:5px}
 #marketSection{margin-top:14px !important}
 #marketList{margin-top:6px !important}
@@ -205,6 +209,8 @@ textarea{outline:none;resize:vertical}
     </div>
   </div>
 </div>
+
+<div class="deck-notice" id="deckNotice" role="status" aria-live="polite"></div>
 
 <!-- 导入弹窗 -->
 <div class="mask" id="impMask" hidden>
@@ -622,11 +628,11 @@ function importPublicDeck(d){
   var p;
   if(d.builtin){
     var src = (window.BUILTIN || []).filter(function(x){ return x.id === d.id; })[0];
-    if(!src){ alert('内置题库不存在'); return; }
+    if(!src){ showDeckNotice('内置题库不存在','err'); return; }
     p = Promise.resolve({ deck: { id: src.id, name: src.name, items: src.items.slice() } });
   } else {
-    if(!window.ChunkAPI || !ChunkAPI.getPublicDeck){ alert('云端不可用，无法导入'); return; }
-    p = ChunkAPI.getPublicDeck(d.id).catch(function(e){ alert('导入失败：' + e.message); return null; });
+    if(!window.ChunkAPI || !ChunkAPI.getPublicDeck){ showDeckNotice('云端不可用，无法导入','err'); return; }
+    p = ChunkAPI.getPublicDeck(d.id).catch(function(e){ showDeckNotice('导入失败：' + e.message,'err'); return null; });
   }
   p.then(function(r){
     var srcDeck = r && r.deck;
@@ -635,12 +641,21 @@ function importPublicDeck(d){
       return (x.sourceDeckId && x.sourceDeckId === srcDeck.id) ||
         (x.name === srcDeck.name && x.items.length === srcDeck.items.length);
     });
-    if(exists){ alert('已导入过同名题库「' + srcDeck.name + '」'); return; }
+    if(exists){ showDeckNotice('已导入过同名题库「' + srcDeck.name + '」','err'); return; }
     mem.decks.push({ id: 'imported-' + Date.now(), sourceDeckId: srcDeck.id, name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false });
     saveStore(); notifyMain('memUpdated');
     openDecks(); openMarket();
-    alert('已导入「' + srcDeck.name + '」(' + srcDeck.items.length + ' 题)');
+    showDeckNotice('已导入「' + srcDeck.name + '」(' + srcDeck.items.length + ' 题)','ok');
   }).catch(function(){});
+}
+
+var _deckNoticeTimer = null;
+function showDeckNotice(text, kind){
+  var el = $('deckNotice'); if(!el) return;
+  if(_deckNoticeTimer) clearTimeout(_deckNoticeTimer);
+  el.textContent = text || '';
+  el.className = 'deck-notice' + (kind ? ' ' + kind : '') + (text ? ' show' : '');
+  if(text) _deckNoticeTimer = setTimeout(function(){ el.classList.remove('show'); }, 2800);
 }
 
 function showPage(id){

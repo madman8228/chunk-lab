@@ -18,7 +18,7 @@
  */
 /* eslint-disable */
 /* 每次前端资源变更都递增版本，避免旧版 HTML/CSS 被长期命中。 */
-const CACHE = 'chunklab-v29';
+const CACHE = 'chunklab-v30';
 const PRECACHE = [
   '/main.html',
   '/manifest.json',
