@@ -17,7 +17,8 @@
  * serve 旧版本缓存的 JS（cache-first），导致修复不生效。
  */
 /* eslint-disable */
-const CACHE = 'chunklab-v25';
+/* 每次前端资源变更都递增版本，避免旧版 HTML/CSS 被长期命中。 */
+const CACHE = 'chunklab-v26';
 const PRECACHE = [
   '/main.html',
   '/manifest.json',
@@ -65,15 +66,17 @@ self.addEventListener('fetch', function (e) {
   if (url.origin !== self.location.origin) return;    /* 跨域（如 DeepSeek）放行 */
   if (url.pathname.indexOf('/api/') === 0) return;   /* API 不缓存 */
 
-  /* 导航请求：cache-first，未命中回退 main.html */
+  /* 导航请求：在线优先，网络不可用时再回退缓存，避免更新后的页面被旧缓存冻结。 */
   if (req.mode === 'navigate') {
     e.respondWith(
-      caches.match(req).then(function (hit) {
-        return hit || fetch(req).then(function (res) {
-          var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
-          return res;
-        }).catch(function () { return caches.match('/main.html'); });
+      fetch(req).then(function (res) {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+        return res;
+      }).catch(function () {
+        return caches.match(req).then(function (hit) {
+          return hit || caches.match('/main.html');
+        });
       })
     );
     return;
