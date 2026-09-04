@@ -103,6 +103,9 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
 /* 跨页跳转消息 */
 .cross-page-hint{font-size:12px;color:var(--faint);text-align:center;padding:8px 12px;background:var(--surface-2);border-radius:8px;margin-top:14px}
+.review-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.review-head .review-count{font-size:12.5px;color:var(--warn)}
+.review-head .spacer{flex:1}
 /* 宪法 SVG icon 尺寸（main.html 已定义，stats.html 缺失导致 SVG 占满父容器） */
 .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
@@ -156,6 +159,8 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
   .stats-detail-row.is-expanded .meta{display:block}
   .stats-detail-row .row-detail-toggle{display:block}
   .cross-page-hint{display:none}
+  .review-head{gap:6px}
+  .review-head button{margin-left:auto}
 }
 /* 超窄屏：图表卡片改为上下排列，保证环形图图例与柱状图标签可读 */
 @media (max-width:380px){
@@ -201,7 +206,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
   <div class="stats-body" id="statsBody"></div>
 
-  <div class="cross-page-hint">点击「开始到期复习」或「复习 N 句」会切到练习页（main.html）</div>
+  <div class="cross-page-hint">点击「复习到期句」或「复习 N 句」会切到练习页（main.html）</div>
 </div>
 
 <script src="builtins.js"></script>
@@ -224,6 +229,11 @@ function saveStore(){ CL.saveAndNotify(mem); }
 function $(id){ return CL.$(id); }
 function esc(s){ return CL.esc(s); }
 function normSent(s){ return CL.normSent(s); }
+function displayDeckName(name){
+  var text = String(name || '').trim();
+  var first = text.split(/\s*[·•]\s*/)[0].trim();
+  return first || text;
+}
 function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
 function findDeck(deckId){
   var all = allDecks();
@@ -538,11 +548,11 @@ function dueSentences(){
 }
 function renderReviewList(body){
   var dues = dueSentences();
-  var html = '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
+  var html = '<div class="review-head">'+
     '<b style="font-size:13px;color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' SRS 到期复习</b> '+
-    '<span style="font-size:12.5px;color:var(--muted)">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'（间隔重复到达复习点）</span>'+
-    '<span class="spacer"></span>'+
-    (dues.length>0 ? '<button class="btn primary" id="startDueReview">▶ 开始到期复习</button>' : '')+
+    '<span class="review-count">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'</span>'+ 
+    '<span class="spacer"></span>'+ 
+    (dues.length>0 ? '<button class="btn primary" id="startDueReview">复习到期句</button>' : '')+
     '</div>';
   if(dues.length){
     html += '<div class="stats-list">';
@@ -550,7 +560,7 @@ function renderReviewList(body){
       html += '<div class="srow"><div class="sen">'+
         '<div class="en">'+esc(d.it.sentence)+'</div>'+
         '<div class="cn">'+esc(d.it.translation||'')+'</div></div>'+
-        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(d.deck.name)+'</div></div>';
+        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(displayDeckName(d.deck.name))+'</div></div>';
     });
     html += '</div>';
   } else {
@@ -576,7 +586,7 @@ function renderReviewList(body){
     decksWithMarked.forEach(function(entry){
       var d = entry.deck;
       html += '<div class="review-row">'+
-        '<div class="nm">'+esc(d.name)+' <span style="font-size:12px;color:var(--faint);font-weight:400">'+entry.items.length+' 句</span></div>'+
+        '<div class="nm">'+esc(displayDeckName(d.name))+' <span style="font-size:12px;color:var(--faint);font-weight:400">'+entry.items.length+' 句</span></div>'+ 
         '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">'+(window.Icons?Icons.svg('book'):'')+' 复习 '+entry.items.length+' 句</button>'+
         '</div>';
     });
@@ -606,7 +616,7 @@ function practiceReviewDeck(deck){
     return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
   }).map(function(it){ return withStatsSource(it, deck.id); });
   if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
-  launchReviewDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+deck.name+' · '+items.length+' 句', items:items });
+  launchReviewDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name)+' · '+items.length+' 句', items:items });
 }
 function practiceWeakSentences(){
   var by = mem.stats.bySentence || {};
@@ -650,7 +660,7 @@ function launchReviewDeck(deck){
     localStorage.setItem('chunklab_pending_review_deck', JSON.stringify({ deck:deck, ts:Date.now() }));
   }catch(e){ console.error(e); }
   /* 同 tab 导航回主页：autostart=1 + pendingReviewDeck 自动启动复习队列 */
-  alert('已加入复习队列：' + deck.name + '\n正在打开练习页…');
+  alert('已加入复习队列：' + displayDeckName(deck.name) + '\n正在打开练习页…');
   window.location.href = './main.html?autostart=1';
 }
 
