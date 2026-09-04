@@ -1634,7 +1634,7 @@ function startDeck(deck, fromIdx){
   S.idx = fromIdx; S.combo = 0; S.maxCombo = 0; S.perfectCount = 0;
   S.chunkTotal = 0; S.chunkRight = 0; S.wrong = []; S.finished = false; S._finishing = false;
   /* ★ 临时题库前缀 */
-  var _prefix = deck.id.indexOf('srs-') === 0 ? '『复习』 '
+  var _prefix = deck.id.indexOf('srs-') === 0 ? ''
               : deck.id.indexOf('rev-') === 0 ? '『手动』 '
               : (deck.id.indexOf('book-') === 0 || deck.id.indexOf('weak-') === 0) ? '『错题』 '
               : '';
@@ -2975,7 +2975,7 @@ function practiceDue(){
   var dues = dueSentences();
   if(!dues.length){ alert('没有到期复习的句子'); return; }
   var items = dues.map(function(d){ return d.it; });
-  startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习 · '+items.length+' 句', items:items });
+  startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
 }
 
 /* 跨 deck 判断"已掌握"（不依赖 S.deck，可在任何地方调用） */

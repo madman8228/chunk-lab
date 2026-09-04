@@ -609,7 +609,7 @@ function practiceDue(){
   var dues = dueSentences();
   if(!dues.length){ alert('没有到期复习的句子'); return; }
   var items = dues.map(function(d){ return withStatsSource(d.it, d.st.deckId); });
-  launchReviewDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习 · '+items.length+' 句', items:items });
+  launchReviewDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
 }
 function practiceReviewDeck(deck){
   var items = (deck.items || []).filter(function(it){
