@@ -157,6 +157,21 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
   .stats-detail-row .row-detail-toggle{display:block}
   .cross-page-hint{display:none}
 }
+/* 超窄屏：图表卡片改为上下排列，保证环形图图例与柱状图标签可读 */
+@media (max-width:380px){
+  .stats-cards .pair-row{flex-direction:column;gap:6px}
+  .stat-card.dist-card{padding:8px 10px}
+  .mastery-donut{flex-direction:row;align-items:center;gap:12px}
+  .mastery-donut .donut{width:72px;height:72px}
+  .mastery-donut .donut-legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 8px}
+  .mastery-donut .donut-row{gap:5px}
+  .mastery-donut .lbl{font-size:11px}
+  .mastery-donut .cnt{font-size:12px}
+  .mastery-donut .pct{font-size:10px}
+  .srow .en,.srow .cn{white-space:normal;overflow:visible;text-overflow:clip;display:-webkit-box;-webkit-box-orient:vertical}
+  .srow .en{-webkit-line-clamp:2}
+  .srow .cn{-webkit-line-clamp:2}
+}
 </style>
 </head>
 <body>
@@ -368,7 +383,7 @@ function renderStats(){
        导致第二张卡变成 pair-row 的兄弟节点（独占整行）→ 一直上下堆叠。
        → 修复：两张卡在【同一个 insertAdjacentHTML 调用】里一次性插入。 */
   var pairHtml =
-    '<div class="pair-row" style="display:flex;flex-direction:row;gap:14px">'+
+     '<div class="pair-row">'+
       '<div class="stat-card dist-card" style="flex:1;min-width:0"><div class="k">指标对比</div>'+
         '<div class="v bar-chart">'+barHtml+'</div></div>'+
       '<div class="stat-card dist-card" style="flex:1;min-width:0"><div class="k">熟练度分布</div>'+
