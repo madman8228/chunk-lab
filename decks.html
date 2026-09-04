@@ -493,6 +493,11 @@ function $(id){ return CL.$(id); }
 function esc(s){ return CL.esc(s); }
 function norm(s){ return CL.norm(s); }
 function normSent(s){ return CL.normSent(s); }
+function displayDeckName(name){
+  var text = String(name || '').trim();
+  var first = text.split(/\s*[·•]\s*/)[0].trim();
+  return first || text;
+}
 function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
 function allDecks(){
   return (window.BUILTIN||[]).map(function(bd){
@@ -741,19 +746,21 @@ function editDeck(d){
   if(fresh) d = fresh;
   var head = $('editHead');
   var masterCount = d.items.filter(function(it){ return isMastered(d.id, it); }).length;
+  var pendingExplainCount = pendingExplains(d).length;
   head.innerHTML =
     '<button class="btn sm ghost" id="editBack">← 返回题库</button>'+
-    '<span style="font-weight:600;font-size:15px">'+esc(d.name)+'</span>'+
+    '<span style="font-weight:600;font-size:15px">'+esc(displayDeckName(d.name))+'</span>'+ 
     '<span class="pill">'+(d.builtin?'内置':'导入')+'</span>'+
     '<span style="color:var(--faint)">'+d.items.length+' 句</span>'+
     (masterCount ? '<span class="pill" style="background:#e6f4ec;color:#12924f;border:1px solid #c3ead4">熟 '+masterCount+'</span>' : '')+
     '<span class="spacer"></span>'+
     '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? '↺ 看全部' : '只看已标熟' )+'</button>'+
-    '<button class="btn sm" id="editBatchExplain" title="批量给暂无详解的句子生成讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量详解</button>'+
+    (!d.builtin && pendingExplainCount ? '<button class="btn sm" id="editBatchExplain" title="为多条暂无讲解的句子生成 AI 讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量生成讲解</button>' : '')+ 
     '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>'+
     (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 导入更多句子</button>');
   $('editMasterFilter').onclick = function(){ _editOnlyMastered = !_editOnlyMastered; editDeck(d); };
-  $('editBatchExplain').onclick = function(){ openBatchExplain(d); };
+  var batchExplainBtn = $('editBatchExplain');
+  if(batchExplainBtn) batchExplainBtn.onclick = function(){ openBatchExplain(d); };
   $('editExportBtn').onclick = function(){ exportDeck(d); };
   var imp = $('editImportBtn'); if(imp) imp.onclick = function(){ openAppend(d); };
   $('editBack').onclick = openDecks;
@@ -986,7 +993,7 @@ function pendingExplains(deck){
 function openBatchExplain(deck){
   _batchDeck = deck;
   var pending = _batchAll ? deck.items : pendingExplains(deck);
-  $('batchExplainInfo').textContent = deck.name+' · 共 '+deck.items.length+' 句，待生成 '+( _batchAll ? deck.items.length : pending.length )+' 句';
+  $('batchExplainInfo').textContent = displayDeckName(deck.name)+' · 共 '+deck.items.length+' 句，待生成 '+( _batchAll ? deck.items.length : pending.length )+' 句';
   $('batchExplainJson').value = '';
   $('batchExplainMsg').className = 'msg';
   $('batchExplainMsg').textContent = '';
