@@ -748,7 +748,7 @@ function editDeck(d){
   var masterCount = d.items.filter(function(it){ return isMastered(d.id, it); }).length;
   var pendingExplainCount = pendingExplains(d).length;
   head.innerHTML =
-    '<button class="btn sm ghost" id="editBack">← 返回题库</button>'+
+    '<button class="btn sm ghost" id="editBack">返回</button>'+
     '<span style="font-weight:600;font-size:15px">'+esc(displayDeckName(d.name))+'</span>'+ 
     '<span class="pill">'+(d.builtin?'内置':'导入')+'</span>'+
     '<span style="color:var(--faint)">'+d.items.length+' 句</span>'+
