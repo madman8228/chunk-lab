@@ -719,7 +719,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .btn{padding:8px 12px}
   .btn.sm{padding:5px 9px}
   /* zh 绝对定位宽度收窄（左右控件占位） */
-  .zh-wrap{max-width:calc(100% - 120px)}
+  .zh-wrap{width:calc(100% - 56px);max-width:none}
   /* 顶栏按钮间距收窄 */
   .topbar-row{gap:4px}
   /* 进度圆环/标熟按钮在极窄屏略缩 */
@@ -734,7 +734,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .topbar{margin:0 -10px 8px;padding:6px 10px}
   .topbar-row{gap:4px}
   .stage{padding:10px 8px 8px;border-radius:12px;margin-bottom:6px}
-  .stage-head{min-height:28px;margin-bottom:0}
+  /* 中文标题与复习标记是绝对定位内容，给它们预留完整高度，避免与分块重叠 */
+  .stage-head{min-height:70px;margin-bottom:0}
   .ring-wrap{width:28px;height:28px;margin-top:0}
   .zh{font-size:16px;line-height:1.25}
   .zh-sub{font-size:11px;margin-top:2px}
@@ -745,6 +746,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .chunk{gap:1px;padding:0;max-width:100%}
   .track.compact-chunks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:5px 8px}
   .track.compact-chunks .chunk{width:100%;min-width:0}
+  .track.compact-chunks .chunk:last-child:nth-child(odd){grid-column:1 / -1;justify-self:center}
   .chunk-answer{display:inline-block;width:fit-content;box-sizing:border-box;text-align:center;font-size:clamp(13px,4vw,14px);line-height:1.1;min-width:0;max-width:100%;margin:0 0 1px;padding:2px 4px;overflow-wrap:anywhere}
   .chunk.active .chunk-answer,.chunk.wait .chunk-answer{width:clamp(48px,calc(var(--answer-chars,12) * 7px + 16px),100%);min-width:0;height:30px}
   .chunk.ok .chunk-answer,.chunk.bad .chunk-answer,.chunk.revealed .chunk-answer{width:fit-content;height:auto}
