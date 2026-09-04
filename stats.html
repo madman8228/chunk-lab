@@ -660,7 +660,6 @@ function launchReviewDeck(deck){
     localStorage.setItem('chunklab_pending_review_deck', JSON.stringify({ deck:deck, ts:Date.now() }));
   }catch(e){ console.error(e); }
   /* 同 tab 导航回主页：autostart=1 + pendingReviewDeck 自动启动复习队列 */
-  alert('已加入复习队列：' + displayDeckName(deck.name) + '\n正在打开练习页…');
   window.location.href = './main.html?autostart=1';
 }
 
