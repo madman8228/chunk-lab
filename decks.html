@@ -577,9 +577,17 @@ function openDecks(){
     if(d.builtin){
       var impBuiltin = document.createElement('button');
       impBuiltin.className = 'btn sm ghost';
-      impBuiltin.textContent = '导入';
-      impBuiltin.title = '复制到我的题库（可编辑/可追加）';
-      impBuiltin.onclick = function(){ importPublicDeck(d); };
+      var alreadyImported = (mem.decks || []).some(function(x){
+        return x.sourceDeckId === d.id || (x.name === d.name + '（副本）' && (x.items || []).length === d.items.length);
+      });
+      impBuiltin.textContent = alreadyImported ? '已添加' : '导入';
+      impBuiltin.title = alreadyImported ? '已添加到“我的题库”，可在上方管理' : '复制到我的题库（可编辑/可追加）';
+      if(alreadyImported){
+        impBuiltin.disabled = true;
+        impBuiltin.setAttribute('aria-label', '已添加到我的题库');
+      } else {
+        impBuiltin.onclick = function(){ importPublicDeck(d); };
+      }
       actions.appendChild(impBuiltin);
     }
     if(!d.builtin){
