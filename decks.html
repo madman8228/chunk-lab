@@ -27,6 +27,9 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .pill.mine{background:#e8efff;color:#2c62c9}
 
 .deck-list{display:flex;flex-direction:column;gap:6px}
+.deck-section-title{display:flex;align-items:center;gap:8px;margin:10px 2px 0;color:var(--muted);font-size:12.5px;font-weight:700}
+.deck-section-title:first-child{margin-top:0}
+.deck-section-title::after{content:"";height:1px;flex:1;background:var(--border)}
 .deck-item{display:flex;align-items:center;gap:12px;padding:8px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
 .deck-item.cur{border-color:var(--accent);background:var(--accent-soft)}
 .deck-item .info{flex:1;min-width:0}
@@ -165,6 +168,7 @@ textarea{outline:none;resize:vertical}
   .page-head .tabs .tab{padding:4px 10px;font-size:12px;white-space:nowrap}
   .page-head #btnImportDecks{white-space:nowrap;padding:5px 8px;font-size:12px}
   .deck-list{gap:6px}
+  .deck-section-title{margin:8px 2px 0;font-size:12px}
   .deck-item{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;padding:10px;border-radius:10px}
   .deck-item .info{grid-column:1;min-width:0}
   .deck-item .nm{font-size:14px;line-height:1.3;flex-wrap:wrap;gap:4px}
@@ -536,7 +540,18 @@ function openDecks(){
     var tb = (mem.best && mem.best[b.id] && mem.best[b.id].lastPlayed) || 0;
     return tb - ta;
   });
-  decks.forEach(function(d){
+  /* 明确区分：导入会创建“我的题库”副本，内置题库仍作为只读来源保留 */
+  var mine = decks.filter(function(d){ return !d.builtin; });
+  var builtin = decks.filter(function(d){ return d.builtin; });
+  function addSectionTitle(text){
+    var title = document.createElement('div');
+    title.className = 'deck-section-title';
+    title.textContent = text;
+    list.appendChild(title);
+  }
+  if(mine.length) addSectionTitle('我的题库');
+  if(builtin.length) addSectionTitle('内置题库（只读，导入后可编辑）');
+  mine.concat(builtin).forEach(function(d){
     var b = mem.best[d.id];
     var lastStr = '';
     if(b && b.lastPlayed){
@@ -688,11 +703,11 @@ function importPublicDeck(d){
       return (x.sourceDeckId && x.sourceDeckId === srcDeck.id) ||
         (x.name === srcDeck.name && x.items.length === srcDeck.items.length);
     });
-    if(exists){ showDeckNotice('已导入过同名题库「' + srcDeck.name + '」','err'); return; }
+    if(exists){ showDeckNotice('“我的题库”中已有「' + srcDeck.name + '」','err'); return; }
     mem.decks.push({ id: 'imported-' + Date.now(), sourceDeckId: srcDeck.id, name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false });
     saveStore(); notifyMain('memUpdated');
     openDecks(); openMarket();
-    showDeckNotice('已导入「' + srcDeck.name + '」(' + srcDeck.items.length + ' 题)','ok');
+    showDeckNotice('已添加到“我的题库”：' + srcDeck.name + '（可编辑）','ok');
   }).catch(function(){});
 }
 
