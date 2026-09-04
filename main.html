@@ -805,7 +805,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <div class="brand"><span class="logo">C</span>Chunk Lab</div>
       <span class="deck-name" id="deckName">日常对话</span>
       <span class="spacer"></span>
-      <span id="syncBadge" class="sync-badge" style="display:none" title="有未同步到云端的更改，恢复网络后自动补传"><span class="icon-spin" data-icon="refresh"></span>未同步</span>
+      <span id="syncBadge" class="sync-badge" style="display:none" title="本地学习记录等待同步，联网后会自动上传" aria-label="学习记录待同步"><span class="icon-spin" data-icon="refresh"></span>待同步</span>
       <div class="metrics">
         <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">1/10</span></div>
         <div class="metric combo" id="mComboBox"><span class="lbl">连击</span><span class="val" id="mCombo">0</span></div>
@@ -4647,7 +4647,7 @@ if('serviceWorker' in navigator){
 }
 /* 新版本 toast 按钮：点击强制刷新（跳过 HTTP 缓存，SW 版本已换） */
 $('btnApplyUpdate').onclick = function(){ window.location.reload(); };
-/* 离线 change-log 可见性：监听同步状态，有未同步变更时显示"未同步"徽标 */
+/* 离线 change-log 可见性：监听同步状态，有本地变更待上传时显示"待同步"徽标 */
 function refreshSyncBadge(dirty){
   var b = $('syncBadge'); if(!b) return;
   b.style.display = dirty ? 'inline-flex' : 'none';
