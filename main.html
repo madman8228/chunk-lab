@@ -126,7 +126,6 @@ input,textarea,select{font:inherit;color:inherit}
 .stage{padding:16px 26px 18px;position:relative;overflow:hidden;margin-bottom:14px}
 /* stage-head：flex 布局 + zh-wrap 绝对定位到卡片正中
    （不再用三栏 grid——左右列宽度不对称时中间列会偏离卡片中心） */
-.stage-head > div[id="zh"]:empty + .zh-sub-row,
 /* 标熟按钮三态：
    manual = 普通文字按钮（点击直接标熟）
    auto   = 圆环动画徽章（自动标熟倒计时中）
@@ -157,7 +156,6 @@ input,textarea,select{font:inherit;color:inherit}
 .zh-wrap{position:absolute;left:50%;top:0;transform:translateX(-50%);text-align:center;min-width:0;max-width:calc(100% - 150px);display:flex;flex-direction:column;align-items:center;z-index:1}
 .sentence-speak{width:24px;height:24px;padding:0}
 .stage .icon-action:hover{background:transparent}
-.zh-wrap .zh-sub-row{align-self:stretch}
 .stage-head-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
 .qno{
   font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);
@@ -169,10 +167,6 @@ input,textarea,select{font:inherit;color:inherit}
 .ring-wrap svg{position:absolute;inset:0;width:100%;height:100%}
 .ring-wrap .ring-num{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
 .zh{font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.45}
-.zh-sub{font-size:12.5px;color:var(--faint);margin-top:5px}
-.zh-sub-row{display:flex;align-items:center;justify-content:center;gap:8px}
-.due-tag{font-size:12px;font-weight:400;color:var(--muted);margin-top:4px}
-.due-tag.hidden{display:none}
 
 .track-line{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;max-width:100%;margin:12px 0 6px}
 .track-line > #track{min-width:0;flex:0 1 auto}
@@ -360,8 +354,6 @@ input,textarea,select{font:inherit;color:inherit}
   background:#fef3c7;border:1px solid #fcd34d;border-radius:999px;
   padding:2px 9px;white-space:nowrap;flex-shrink:0;
 }
-.zh-sub-row{ display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px }
-.zh-sub{ font-size:12.5px;color:var(--faint) }
 /* PERFECT / 需巩固 tag —— 按钮样式（与标熟按钮视觉一致） */
 .reveal-tag{
   display:inline-flex;align-items:center;gap:4px;flex-shrink:0;
@@ -734,11 +726,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .topbar{margin:0 -10px 8px;padding:6px 10px}
   .topbar-row{gap:4px}
   .stage{padding:10px 8px 8px;border-radius:12px;margin-bottom:6px}
-  /* 中文标题与复习标记是绝对定位内容，给它们预留完整高度，避免与分块重叠 */
-  .stage-head{min-height:70px;margin-bottom:0}
+  /* 中文标题采用绝对定位，给它预留高度，避免与分块重叠 */
+  .stage-head{min-height:48px;margin-bottom:0}
   .ring-wrap{width:28px;height:28px;margin-top:0}
   .zh{font-size:16px;line-height:1.25}
-  .zh-sub{font-size:11px;margin-top:2px}
   .stage-head-right{gap:2px}
   .track-line{gap:2px;margin:6px 0 3px}
   .track-line > .sentence-speak{width:22px;height:22px}
@@ -855,10 +846,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       </div>
       <div class="zh-wrap">
         <div class="zh" id="zh"><span class="icon-spin" data-icon="refresh"></span> 加载中…</div>
-        <div class="zh-sub-row">
-          <span class="zh-sub" id="zhSub"></span>
-          <span class="due-tag hidden" id="dueTagWrap"></span>
-        </div>
       </div>
       <div class="stage-head-right">
         <span class="reveal-tag hidden" id="revealTagWrap"></span>
@@ -1758,16 +1745,6 @@ function renderQ(){
   $('qno').textContent = 'Q'+(S.idx+1);
   /* ★ 主卡片顶部显示整句中文翻译，用户组装意群时参考 */
   $('zh').textContent = it.translation || it.sentence.replace(/[a-zA-Z]/g,'•');
-  $('zhSub').textContent = '';
-  /* ★ SRS 到期复习标记：当前句到期时在中文下方显示橙色标签 */
-  var _dueTag = $('dueTagWrap');
-  if(_dueTag){
-    var _due = isDue(it);
-    _dueTag.classList.toggle('hidden', !_due);
-    if(_due){
-      _dueTag.innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 复习';
-    }
-  }
   $('mProgress').textContent = (S.idx+1)+'/'+S.items.length;
   $('progFill').style.width = ((S.idx+1)/S.items.length*100).toFixed(2)+'%';
 
