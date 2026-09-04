@@ -206,7 +206,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
   <div class="stats-body" id="statsBody"></div>
 
-  <div class="cross-page-hint">点击「复习到期句」或「复习 N 句」会切到练习页（main.html）</div>
+  <div class="cross-page-hint">点击「开始复习」或「复习 N 句」会切到练习页（main.html）</div>
 </div>
 
 <script src="builtins.js"></script>
@@ -552,7 +552,7 @@ function renderReviewList(body){
     '<b style="font-size:13px;color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' SRS 到期复习</b> '+
     '<span class="review-count">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'</span>'+ 
     '<span class="spacer"></span>'+ 
-    (dues.length>0 ? '<button class="btn primary" id="startDueReview">复习到期句</button>' : '')+
+    (dues.length>0 ? '<button class="btn primary" id="startDueReview">开始复习</button>' : '')+
     '</div>';
   if(dues.length){
     html += '<div class="stats-list">';
