@@ -40,4 +40,5 @@ def gen(size, path):
 
 gen(512, "icon-512.png")
 gen(192, "icon-192.png")
+gen(180, "icon-180.png")  # iOS apple-touch-icon 规范尺寸
 print("icons generated")

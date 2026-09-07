@@ -9,18 +9,51 @@
  *  6) alts(同义答案) 可选; 如有须是与 chunks 等长的数组, 每项为 null 或字符串数组
  */
 const fs = require('fs');
-global.window = {};
-new Function(fs.readFileSync(__dirname + '/oral8000.js', 'utf8'))();
+/* cid 规则与 core.js fnv8 一致 */
+function fnv8(str) {
+  let h = 0x811c9dc5;
+  str = String(str == null ? '' : str);
+  for (let i = 0; i < str.length; i++) {
+    h = Math.imul(h ^ str.charCodeAt(i), 0x01000193) >>> 0;
+  }
+  let hex = (h >>> 0).toString(16);
+  while (hex.length < 8) hex = '0' + hex;
+  return hex;
+}
+/* 预置 BUILTIN（含 builtin-daily 桩），让 oral8000.js 尾部并入逻辑一并被校验。
+   oral8000.js 自 2026-09-07 起不再注册独立 deck，而是把 50 句 concat 进 builtin-daily。 */
+const dailyStub = { id: 'builtin-daily', items: [] };
+global.window = { BUILTIN: [dailyStub] };
+new Function('window', fs.readFileSync(__dirname + '/oral8000.js', 'utf8'))(global.window);
 const arr = global.window.DATA_ORAL8000 || [];
+
+/* 并入检查：builtin-daily.items 应包含 DATA_ORAL8000 全部 50 句（先 buildins.js 定义 58 静态，再并入本文件 50 = 108） */
+if (dailyStub.items.length < arr.length) {
+  console.error('❌ builtin-daily.items 未并入 DATA_ORAL8000（当前 ' + dailyStub.items.length + ' < ' + arr.length + '，检查 oral8000.js 尾部并入块）');
+  process.exit(1);
+}
+for (let i = 0; i < arr.length; i++) {
+  if (dailyStub.items[i + dailyStub.items.length - arr.length] !== arr[i]) {
+    console.error('❌ builtin-daily.items 尾部与 DATA_ORAL8000 引用不一致');
+    process.exit(1);
+  }
+}
 
 const PURE_PUNCT = /^[\s.?!,;:]+$/;        // 纯标点/空白
 const START_PUNCT = /^[\s.?!,;:]/;          // 以标点/空白开头
 const END_SENT_PUNCT = /[.?!]$/;            // 以句末标点结尾
 
 let issues = 0;
+const cidSeen = {};
 arr.forEach((it, i) => {
   const msgs = [];
   if (!it.sentence) msgs.push('缺少 sentence');
+  if (!it.cid) msgs.push('缺少 cid（跑 node scripts/add-cids.js 补齐）');
+  else if (!/^[0-9a-f]{8}$/.test(it.cid)) msgs.push('cid 格式非法: ' + it.cid);
+  else if (cidSeen[it.cid]) msgs.push('cid 与 #' + cidSeen[it.cid] + ' 重复');
+  else cidSeen[it.cid] = i;
+  if (it.sentence && it.cid && /^[0-9a-f]{8}$/.test(it.cid) && it.cid !== fnv8(it.sentence))
+    msgs.push('cid ≠ fnv8(sentence)（内容修订保留 cid 属预期；若未修订请检查）');
   if (!it.chunks || it.chunks.length < 2 || it.chunks.length > 5)
     msgs.push('chunks 数 ' + (it.chunks ? it.chunks.length : '?') + ' (需 2-5)');
   if (it.chunks) {

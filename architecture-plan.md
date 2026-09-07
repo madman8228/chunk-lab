@@ -357,3 +357,31 @@ Phase A 中的低风险快速止血项已落地（纯新增文件，未改现有
 - rev.test.js 27/27（+2：dirty 生命周期 + syncStatus 事件、重连拉取后自动补传）。
 
 _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地（后端存在、SRS 纯函数、存储版本化），但"前端模块化"与"Sync 正确性"仍是缺口，本文即针对此缺口给出设计。_
+
+### §8.7 句子内容 ID 化（cid）+ 题库数据文件解耦（2026-09-06）
+
+**背景**：句子级学习档案 key 原为 `deckId#原文`——内容修订（typo/标点/大小写）= key 变 = 已掌握/统计/删除标记静默孤儿化；且 oral-8000"空壳+注入"依赖加载顺序，stats.html 漏引导致该 deck 恒空。
+
+**cid（内容 ID）机制**
+- 每句分配稳定 `cid = fnv8(sentence)`（8 位 hex，`Math.imul` 实现，与 python 精确 32 位结果一致——普通 `h*0x01000193` 双精度溢出 2^53 会丢精度，曾致数据文件 cid 与运行时计算不一致）。
+- key 统一 `deckId#cid`（`CL.cidOf/cidKey/itemKey/masteredKey`，core.js）；`loadMem` 自动把旧 `deckId#原文` 档案迁移到 cid key（bySentence/mastered/deletedItems/events）+ 回写 + rev bump。
+- 内置 138 句 cid 已注入（`scripts/add-cids.js` 幂等，`--force` 全量重算）；编辑导入句首改时固化 cid=fnv8(原文本)，此后文本修订不丢进度。
+- 校验：`validate_builtins.js` / `validate_oral8000.js` 增 cid=fnv8(sentence) 规则，纳入 npm test。
+
+**题库数据文件解耦（P0，修 stats 空 deck bug 根因）**
+- builtins.js 删 `builtin-oral-8000` 空壳与注入 IIFE → oral8000.js 文件尾自注册完整 deck（id/name/desc/items）。
+- 加载顺序统一 `builtins.js → oral8000.js`（main/decks/stats），stats.html 补引；加载缺 BUILTIN 显式 console.error（不再静默空 deck）。
+- allDecks 组装（内置 deletedItems 过滤 + concat mem.decks）从 main/stats/decks 三处复制 → `CL.allDecksView/builtinDecks` 单一实现。
+
+**best 纪录残壳 bug（decks 列表显示"最佳 undefined%"）**
+- 根因：startDeck/importDeck 建 `{lastPlayed}` 残壳 → 渲染 `b.acc` undefined；且 finishSession `acc > b.acc` = acc>undefined 恒 false，残壳永久阻塞纪录写入；finish 覆盖写入又丢 lastPlayed。
+- 修复：`touchDeckBest/saveDeckBest` 统一四字段形 `{acc,perfect,combo,lastPlayed}`（读归一、写保留 lastPlayed）；渲染仅 `acc>0`（真实纪录）时显示"最佳 X% / 连击 Y"。
+
+**startDeck 到期复习失效**
+- 根因：isDue/isFluency 单参（依赖隐式 S.deck），startDeck 却传两参 `isDue(deck.id,it)` → it=deck.id 字符串 → key 查空恒 false；missing 回拉段又自相矛盾排除 isMastered → 已掌握且到期的句子被 skipMastered 永久滤除。
+- 修复：过滤改"`isDue(it)` 必回拉，未到期才按 mastered/fluency 跳过"；sort 将 dueRank 提到 sentenceClassify 前（到期句不被 batchSize 截断切掉）；卡片 revCnt 用显式 `isMarkedForDeck(d.id,…)`。
+
+**内容资产（freq-idioms.js 第一批 30 句）**
+- 高频短语 · English Idioms 种子库 v1：30 句，源数据 `D:/tmp/el-build/data/high_freq_600.json`（394 条纯短语待分批扩写），Schema 与 oral8000 一致，自注册 + `validate_freq_idioms.js` 校验。
+
+**验证**：store 31 / rev 27+ / builtins+oral8000 校验通过 / e2e 50/50；npm test 全链路绿。

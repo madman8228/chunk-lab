@@ -183,7 +183,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
 <div class="wrap">
   <div class="page-head">
-    <button class="btn sm ghost" id="statsBack" title="返回主页">← 返回练习</button>
+    <button class="btn sm ghost" id="statsBack" title="返回主页">← 返回</button>
     <h2><span data-icon="stats"></span> 学习档案</h2>
     <span class="spacer"></span>
     <button class="btn sm primary" id="btnPracticeWrong" title="练习错题本中所有句子"><span data-icon="target"></span>练习错题</button>
@@ -210,6 +210,8 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 </div>
 
 <script src="builtins.js"></script>
+<script src="oral8000.js"></script>
+<script src="freq-idioms.js"></script>
 <script src="js/idb.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
@@ -241,12 +243,8 @@ function findDeck(deckId){
   return null;
 }
 function allDecks(){
-  var builtin = (window.BUILTIN || []).map(function(bd){
-    var copy = Object.assign({}, bd);
-    copy.items = (bd.items || []).filter(function(it){ return !CL.isItemDeleted(mem, bd.id, it); });
-    return copy;
-  });
-  return builtin.concat(CL.allDecks(mem));
+  /* 收敛：内置（deletedItems 过滤副本）+ 用户导入，统一走 CL（core.js 单一实现） */
+  return CL.allDecksView(mem);
 }
 function timeAgo(t){ return CL.timeAgo(t); }
 function classifyStat(s){ return CL.classifyStat(s); }
@@ -282,7 +280,7 @@ function migrateLegacyStatKeys(){
       if(candidates.length>1){ var named=candidates.filter(function(d){ return d.name===st.deckName; }); if(named.length===1) sourceId=named[0].id; }
     }
     if(!sourceId) return;
-    var newKey=sourceId+'#'+(st.sentence||'');
+    var newKey=sourceId+'#'+CL.fnv8(st.sentence||'');
     by[newKey]=by[newKey]?merge(by[newKey],st):Object.assign(st,{deckId:sourceId,deckName:known[sourceId].name});
     if(newKey!==oldKey) delete by[oldKey]; changed=true;
   });

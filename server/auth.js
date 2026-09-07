@@ -12,11 +12,24 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('./db');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'chunklab-dev-secret-change-me';
+// v1 默认关闭注册鉴权（REQUIRE_AUTH=true 才启用多用户）
+const REQUIRE_AUTH = process.env.REQUIRE_AUTH === 'true';
+/** 占位密钥：仅开放模式下的兜底值。多用户模式（REQUIRE_AUTH=true）下禁止落到该值——
+ *  任何签发/验签路径都会先过 assertSecure()，配置不安全直接抛错，杜绝用公开占位密钥签 JWT。 */
+const DEV_FALLBACK_SECRET = 'chunklab-dev-secret-change-me';
+const JWT_SECRET = process.env.JWT_SECRET || DEV_FALLBACK_SECRET;
 const TOKEN_TTL = process.env.TOKEN_TTL || '30d';
 
-// v1 默认关闭注册鉴权
-const REQUIRE_AUTH = process.env.REQUIRE_AUTH === 'true';
+/** 安全断言：多用户模式必须有真实随机密钥。任一入口（主服务/工具/脚本）签发或验签
+ *  token 前都必须通过，否则抛错（fail-fast，不静默降级）。生成：openssl rand -hex 32 */
+function assertSecure() {
+  if (REQUIRE_AUTH && (!process.env.JWT_SECRET || process.env.JWT_SECRET === DEV_FALLBACK_SECRET)) {
+    throw new Error('REQUIRE_AUTH=true 但 JWT_SECRET 未设置或仍为占位值，拒绝签发/验签令牌（生成：openssl rand -hex 32）');
+  }
+}
+function isSecure() {
+  try { assertSecure(); return true; } catch (e) { return false; }
+}
 
 let DEFAULT_USER_ID = null;
 
@@ -54,10 +67,12 @@ function login(username, password) {
 }
 
 function signToken(userId, username) {
+  assertSecure(); // 密钥不安全时任何入口都签不出 token
   return jwt.sign({ uid: userId, uname: username }, JWT_SECRET, { expiresIn: TOKEN_TTL });
 }
 
 function verifyToken(token) {
+  if (!isSecure()) return null; // 配置不安全一律视为未登录（401），绝不用占位密钥验签
   try {
     const payload = jwt.verify(token, JWT_SECRET);
     return { userId: payload.uid, username: payload.uname };
@@ -86,4 +101,4 @@ function authenticate(req, res, next) {
   next();
 }
 
-module.exports = { register, login, signToken, verifyToken, authenticate, ensureDefaultUser, REQUIRE_AUTH };
+module.exports = { register, login, signToken, verifyToken, authenticate, ensureDefaultUser, REQUIRE_AUTH, assertSecure };

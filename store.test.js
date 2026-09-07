@@ -54,7 +54,8 @@ assertEq(m.decks.length, 1, 'decks 保留');
 assertEq(m.settings.mode, 'choose', 'settings 保留');
 assertEq(m.settings.sound, true, 'settings 缺省合并（sound 默认 true）');
 assertEq(m.settings.apiKey, '', 'settings 缺省合并（apiKey 默认空）');
-assert(m.stats.bySentence['d1#Hello'], 'stats.bySentence 保留');
+assert(m.stats.bySentence['d1#' + CL.fnv8('Hello')], 'stats.bySentence 保留并迁移为 cid key');
+assert(!m.stats.bySentence['d1#Hello'], '旧原文 key 已移除');
 assertEq(m.stats.totalRounds, 3, 'stats.totalRounds 保留');
 
 console.log('【保存时强制版本】');
@@ -87,6 +88,38 @@ storage['chunklab.v1'] = JSON.stringify({
 var m4 = CL.loadMem();
 assertEq(m4.reinforceBook.length, 1, 'reinforceBook 保留');
 assertEq(m4.progress['d1'].idx, 3, 'progress 保留');
+
+console.log('【句子档案 key：原文 → cid 迁移（mastered / deletedItems / events）】');
+storage['chunklab.v1'] = JSON.stringify({
+  version: 2,
+  decks: [],
+  mastered: { 'd1#How are you?': { deckId:'d1', sentence:'How are you?', markedAt:1 } },
+  deletedItems: { 'builtin-daily#I am fine.': true },
+  stats: {
+    totalRounds:1, totalAnswered:1,
+    bySentence: { 'd1#How are you?': { times:2, sentence:'How are you?' } },
+    events: [ { id:'e1', kind:'answer', key:'d1#How are you?', ok:true, at:1 } ]
+  }
+});
+var m5 = CL.loadMem();
+var newKey = 'd1#' + CL.fnv8('How are you?');
+assert(m5.mastered[newKey], 'mastered 迁移到 cid key');
+assert(!m5.mastered['d1#How are you?'], 'mastered 旧 key 移除');
+assert(m5.deletedItems['builtin-daily#' + CL.fnv8('I am fine.')], 'deletedItems 迁移到 cid key');
+assert(m5.stats.bySentence[newKey], 'bySentence 迁移到 cid key');
+assertEq(m5.stats.events[0].key, newKey, 'events.key 同步迁移（与 bySentence 对齐）');
+assertEq(m5.stats.events[0].id, 'e1', 'events 记录本身保留');
+assertEq(m5.stats.totalAnswered, 1, '聚合计数保留');
+/* 幂等：已迁移数据二次 loadMem 不再变更 */
+var rawAfter = JSON.parse(storage['chunklab.v1']);
+assert(!rawAfter.stats.bySentence['d1#How are you?'], '迁移结果已回写存储');
+assert(rawAfter.stats.bySentence[newKey], '回写后 key 为新格式');
+var m6 = CL.loadMem();
+assertEq(Object.keys(m6.stats.bySentence).length, 1, '二次加载幂等（不重复产生 key）');
+assert(m6.stats.bySentence[newKey], '二次加载数据仍正确');
+/* cid 优先：显式 cid 字段的句子（内容修订保留 cid）key 不与文本 hash 绑定 */
+var kExplicit = CL.cidKey('d1', { cid:'aaaa1111', sentence:'修订后的新文本' });
+assertEq(kExplicit, 'd1#aaaa1111', '显式 cid 优先于文本 hash');
 
 console.log('\n结果：' + pass + ' 通过 / ' + fail + ' 失败');
 process.exit(fail ? 1 : 0);

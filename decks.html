@@ -25,6 +25,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .hidden{display:none !important}
 .pill{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:#eef1f6;color:var(--muted)}
 .pill.mine{background:#e8efff;color:#2c62c9}
+.pill.warn{background:#fff0ea;color:#c4362b;border:1px solid #f3c4ba}
 
 .deck-list{display:flex;flex-direction:column;gap:6px}
 .deck-section-title{display:flex;align-items:center;gap:8px;margin:10px 2px 0;color:var(--muted);font-size:12.5px;font-weight:700}
@@ -461,8 +462,9 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
   </div>
 </div>
 
-<script src="oral8000.js"></script>
 <script src="builtins.js"></script>
+<script src="oral8000.js"></script>
+<script src="freq-idioms.js"></script>
 <script src="js/idb.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
@@ -500,13 +502,8 @@ function displayDeckName(name){
 }
 function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
 function allDecks(){
-  return (window.BUILTIN||[]).map(function(bd){
-    /* 内置题库只读，删除走 deletedItems 覆盖，返回过滤后的副本 */
-    var items = (bd.items || []).filter(function(it){ return !CL.isItemDeleted(mem, bd.id, it); });
-    var copy = {}; for(var k in bd){ if(bd.hasOwnProperty(k)) copy[k] = bd[k]; }
-    copy.items = items;
-    return copy;
-  }).concat(CL.allDecks(mem));
+  /* 收敛：内置（deletedItems 过滤副本）+ 用户导入，统一走 CL（core.js 单一实现） */
+  return CL.allDecksView(mem);
 }
 function findDeck(deckId){ return CL.findDeck(mem, deckId); }
 function isMastered(deckId, it){ return CL.isMastered(mem, deckId, it); }
@@ -568,12 +565,22 @@ function openDecks(){
     }
     var mCnt = 0;
     for(var mi=0; mi<d.items.length; mi++){ if(isMarkedForDeck(d.id, d.items[mi])) mCnt++; }
+    /* ★ 「已隐藏 N 句」= 删除标记数（用户可能误删/暂存，旧版 hidden 在 finish 阶段无症状暴露，2026-09-06 反馈） */
+    var hiddenCnt = CL.hiddenCount(d, mem);
+    var originalTotal = d.builtin ? (CL.builtinDecks(mem).filter(function(bd){return bd.id===d.id;})[0]||{}).items.length : (d._originalTotal || d.items.length);
+    var hiddenBadge = '';
+    if(hiddenCnt > 0){
+      hiddenBadge = '<span class="pill warn" data-hide-tip="已被你标记删除的句子会在这里显示">[隐藏 '+hiddenCnt+' / '+originalTotal+' 句]</span>';
+    }
     var row = document.createElement('div');
     row.className = 'deck-item';
     row.innerHTML =
       '<div class="info"><div class="nm">'+esc(d.name)+
-        (d.builtin?'<span class="pill">内置</span>':'<span class="pill mine">导入</span>')+'</div>'+
+        (d.builtin?'<span class="pill">内置</span>':'<span class="pill mine">导入</span>')+
+        hiddenBadge+
+        '</div>'+
       '<div class="meta">'+d.items.length+' 题'+
+        (originalTotal > d.items.length ? '（原 '+originalTotal+' 题）' : '')+
         (lastStr ? ' · <span style="color:var(--accent)">'+lastStr+'</span>' : '')+
         (mCnt ? ' · <span style="color:#12924f;font-weight:600">熟 '+mCnt+'</span>' : '')+
       '</div></div>';
@@ -637,6 +644,22 @@ function openDecks(){
     edit.className = 'btn sm ghost'; edit.textContent = '管理';
     edit.onclick = function(){ editDeck(d); };
     actions.appendChild(edit);
+    /* ★ 恢复已删除句（仅内置 deck 可一键全量恢复；导入 deck cid 与原 cid 不一定一致，安全 NOOP） */
+    if(d.builtin && hiddenCnt > 0){
+      var restore = document.createElement('button');
+      restore.className = 'btn sm ghost';
+      restore.textContent = '恢复 ' + hiddenCnt;
+      restore.title = '把「'+hiddenCnt+' 句被你标记删除的」内置句一次性全部恢复';
+      restore.style.color = 'var(--ok)';
+      restore.onclick = function(){
+        if(!confirm('把「'+d.name+'」里被你标记删除的 '+hiddenCnt+' 句一次性全部恢复？\n\n仅恢复内置 deck 内被删除的句子，不影响你的「已标熟/已掌握」。')) return;
+        var n = CL.restoreAllDeleted(mem, d);
+        saveStore(); notifyMain('memUpdated');
+        alert('已恢复 ' + n + ' 句。请刷新页面后重新开始该 deck。');
+        openDecks();
+      };
+      actions.appendChild(restore);
+    }
     var go = document.createElement('button');
     go.className = 'btn sm primary'; go.textContent = '开始';
     go.onclick = function(){ notifyMain('startDeck', { deck:d }); };
@@ -682,7 +705,7 @@ function openMarket(){
       info.innerHTML =
         '<div class="nm">'+esc(d.name)+
           '<span class="pill">'+(d.builtin ? '内置' : '公开')+'</span></div>'+
-        '<div class="meta">'+d.itemCount+' 题 · '+(d.author || '未知作者')+
+        '<div class="meta">'+esc(d.itemCount)+' 题 · '+esc(d.author || '未知作者')+
           (d.builtin ? '' : ' · <span style="color:var(--ok);font-weight:600">可导入</span>')+'</div>';
       row.appendChild(info);
       var act = document.createElement('div');
@@ -854,6 +877,9 @@ function saveEditSentence(){
   if(hints.length !== chunks.length){ msg.className='msg err show'; msg.textContent='hints 数量需与 chunks 一致（hints='+hints.length+', chunks='+chunks.length+'）'; return; }
   if(exps.length > chunks.length){ msg.className='msg err show'; msg.textContent='explanations 数量不能超过 chunks 数'; return; }
   var it = _editDeck.items[_editIdx];
+  /* cid 固化：句子首次编辑时锚定原文本（fnv8），此后改文本保留 cid → 学习档案 key 不漂移 */
+  var _prevEn = it.sentence || it.en || '';
+  if(!it.cid && _prevEn) it.cid = CL.fnv8(_prevEn);
   it.sentence = en; it.translation = cn; it.chunks = chunks; it.hints = hints;
   if(exps.length){ it.explanations = exps; } else { delete it.explanations; }
   delete it.en; delete it.cn;
@@ -1231,9 +1257,10 @@ function commitImport(items, name){
     items: items
   };
   mem.decks.push(deck);
+  /* 触碰纪录：完整四字段形初始化（与 main.html touchDeckBest 同构，防 {lastPlayed} 残壳） */
   if(!mem.best) mem.best = {};
-  mem.best[deck.id] = mem.best[deck.id] || {};
-  mem.best[deck.id].lastPlayed = Date.now();
+  var _drec = mem.best[deck.id] = mem.best[deck.id] || {acc:0, perfect:0, combo:0, lastPlayed:0};
+  _drec.lastPlayed = Date.now();
   saveStore(); notifyMain('memUpdated');
   $('impMask').hidden = true;
   $('jsonBox').value = '';

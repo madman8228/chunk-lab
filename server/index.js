@@ -21,6 +21,10 @@ const ai = require('./ai');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
 
+/* AI 联网生成开关（2026-09-06 产品决策：先禁联网 AI 生成，后续再开放）。
+   默认关闭；开启方式：环境变量 AI_EXPLAIN_ENABLED=true（或 .env 中设置）。 */
+const AI_EXPLAIN_ENABLED = String(process.env.AI_EXPLAIN_ENABLED || '').trim().toLowerCase() === 'true';
+
 const app = express();
 app.use(express.json({ limit: '80mb' })); // 图文课程含 base64 图片，可能很大
 
@@ -310,6 +314,9 @@ app.post('/api/deck/publish', auth.authenticate, function (req, res) {
    未命中 → 每用户限流 → 调模型 → 写缓存。 */
 app.post('/api/ai/explain', auth.authenticate, function (req, res) {
   try {
+    /* 2026-09-06：联网 AI 生成已停用（AI_EXPLAIN_ENABLED 默认 false）。
+       关闭 = 一律 503，不产生任何上游调用/缓存写入；开放 = 置 env true 即可。 */
+    if (!AI_EXPLAIN_ENABLED) return res.status(503).json({ ok: false, error: 'AI 解读已停用' });
     const body = req.body || {};
     const sentence = typeof body.sentence === 'string' ? body.sentence.trim() : '';
     if (!sentence) return res.status(400).json({ error: 'sentence 缺失' });
@@ -422,8 +429,9 @@ app.post('/api/import', auth.authenticate, function (req, res) {
    前端与 API 同源，免登录、免 CORS、免配置服务器地址。
    生产部署建议由 Nginx 托管前端 + 反向代理 /api（见部署文档）。 */
 app.use(function (req, res, next) {
-  // 防止误部署时通过静态服务泄露后端源码与依赖
-  if (/^\/(server|node_modules)\b/i.test(req.path)) return res.status(403).end('Forbidden');
+  // 防止误部署时通过静态服务泄露后端源码、依赖、本地开发/截图产物、架构文档与测试脚本
+  if (/^\/(server|node_modules|output|scripts|extra)\b/i.test(req.path)) return res.status(403).end('Forbidden');
+  if (/\.(md|markdown)$/i.test(req.path) || /\.test\.js$/i.test(req.path)) return res.status(403).end('Forbidden');
   next();
 });
 app.use(express.static(path.join(__dirname, '..')));
@@ -435,8 +443,13 @@ auth.ensureDefaultUser(); // 开放模式：确保默认用户存在
 const securityWarnings = [];
 if (!auth.REQUIRE_AUTH) {
   securityWarnings.push('[security] !! 开放模式：任何人可读写数据（落到默认用户 __default__）。公网部署必须设 REQUIRE_AUTH=true');
-} else if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'chunklab-dev-secret-change-me') {
-  securityWarnings.push('[security] !! REQUIRE_AUTH=true 但 JWT_SECRET 为默认值/未设置——令牌可被伪造！生产必须设置随机密钥（openssl rand -hex 32）');
+} else {
+  try {
+    auth.assertSecure(); // fail-fast 在 auth.js（签名/验签前同样会断言），启动时先行提示
+  } catch (e) {
+    console.error('[security] FATAL: ' + e.message);
+    process.exit(1);
+  }
 }
 if (!process.env.DEEPSEEK_API_KEY) {
   securityWarnings.push('[security] !! 未配置 DEEPSEEK_API_KEY：前端可自托管传入自己的 Key（降级模式，生产建议配置）');

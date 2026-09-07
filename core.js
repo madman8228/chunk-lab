@@ -154,6 +154,18 @@
     var d = defaultMem();
     try{
       var o = migrate(JSON.parse(global.localStorage.getItem(STORE_KEY) || '{}'));
+      /* ADR：句子档案 key 原文→cid 迁移（幂等）。变更即回写 + 对应 kv rev+1，确保上云。 */
+      try{
+        if(migrateCidKeys(o)){
+          o.version = CURRENT_VERSION;
+          global.localStorage.setItem(STORE_KEY, JSON.stringify(o));
+          var _r = loadRevs();
+          if(!_r.kv) _r.kv = {};
+          ['stats', 'mastered', 'deletedItems'].forEach(function(k){ if(k in o) _r.kv[k] = (_r.kv[k] || 0) + 1; });
+          saveRevs(_r);
+          _prevSnap = null; /* 让下一次 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
+        }
+      }catch(e){ console.error('[core.migrateCidKeys]', e); }
       return {
         decks: Array.isArray(o.decks) ? o.decks : d.decks,
         best: o.best || d.best,
@@ -538,9 +550,75 @@
     }
   }
 
+  /* ---------- 句子稳定身份（cid） ----------
+     学习档案 key 与原文解耦：key = deckId#cid。
+     - cid 优先取句子数据的显式 cid 字段（内容修订时保留 cid → 用户进度不丢，根因修复）；
+     - 无 cid 字段（老数据/导入句）时退化为原文的稳定 FNV-1a 哈希（幂等，同文本同 cid）。
+     老档案 key（deckId#原文）在 loadMem 时一次性迁移为 deckId#cid（见 migrateCidKeys）。 */
+  function fnv8(str){
+    var h = 0x811c9dc5;
+    str = String(str == null ? '' : str);
+    for(var i = 0; i < str.length; i++){
+      /* 必须用 Math.imul：普通乘法 (h*0x01000193) 是双精度，乘积超 2^53 丢精度，
+         与精确 32 位实现（python/标准 FNV-1a）结果不一致 → 会导致 key/迁移对不上数据 cid */
+      h = Math.imul(h ^ str.charCodeAt(i), 0x01000193) >>> 0;
+    }
+    var hex = (h >>> 0).toString(16);
+    while(hex.length < 8) hex = '0' + hex;
+    return hex;
+  }
+  function cidOf(it){
+    if(!it) return '';
+    if(it.cid) return String(it.cid);
+    return fnv8(it.sentence || it.en || '');
+  }
+  /* 全部句子级档案 key 的统一构造点（mastered / deletedItems / stats.bySentence / events） */
+  function cidKey(deckId, it){ return deckId + '#' + cidOf(it); }
+  /* 旧档案 key（deckId#原文）→ 新 key（deckId#cid(原文)）的单键迁移 */
+  function moveKeyToCid(k){
+    var m = /^([^#]+)#(.+)$/.exec(String(k == null ? '' : k));
+    if(!m || /^[0-9a-f]{8}$/.test(m[2])) return k; /* 无 # 或已是 cid 格式：不动 */
+    return m[1] + '#' + fnv8(m[2]);
+  }
+  /* 全量迁移 bySentence / mastered / deletedItems / events 里的句子 key。
+     幂等：二次执行无变化。返回是否有变更。 */
+  function migrateCidKeys(o){
+    var changed = false;
+    function moveMap(map){
+      if(!map || typeof map !== 'object') return;
+      Object.keys(map).forEach(function(k){
+        var nk = moveKeyToCid(k);
+        if(nk === k) return;
+        if(!(nk in map)) map[nk] = map[k];
+        delete map[k];
+        changed = true;
+      });
+    }
+    moveMap(o.mastered);
+    moveMap(o.deletedItems);
+    if(o.stats && typeof o.stats === 'object'){
+      moveMap(o.stats.bySentence);
+      if(Array.isArray(o.stats.events)){
+        o.stats.events.forEach(function(e){ if(e && e.key){ e.key = moveKeyToCid(e.key); } });
+      }
+    }
+    return changed;
+  }
+
   /* ---------- 领域：题库 ---------- */
-  function masteredKey(deckId, it){ return deckId + '#' + (it.sentence || it.en || ''); }
+  function masteredKey(deckId, it){ return cidKey(deckId, it); }
   function allDecks(m){ return (m.decks || []).slice(); }
+  /* 内置题库只读视图：按 deletedItems 过滤，返回副本（不改写静态 BUILTIN） */
+  function builtinDecks(m){
+    return (global.BUILTIN || []).map(function(bd){
+      var copy = {};
+      for(var k in bd){ if(bd.hasOwnProperty(k)) copy[k] = bd[k]; }
+      copy.items = (bd.items || []).filter(function(it){ return !isItemDeleted(m, bd.id, it); });
+      return copy;
+    });
+  }
+  /* 页面统一取数：内置（过滤后）+ 用户导入。原分散于 main/stats/decks 三处，收敛于此。 */
+  function allDecksView(m){ return builtinDecks(m).concat(allDecks(m)); }
   function findDeck(m, deckId){
     for(var i=0; i<m.decks.length; i++) if(m.decks[i].id === deckId) return m.decks[i];
     return null;
@@ -550,7 +628,7 @@
   }
   function isFluencyByDeck(m, deckId, it){
     if(!m.stats || !m.stats.bySentence) return false;
-    var st = m.stats.bySentence[deckId + '#' + (it.sentence || '')];
+    var st = m.stats.bySentence[cidKey(deckId, it)];
     return !!(st && st.okTimes >= 3 && st.streak >= 3);
   }
   function isMarkedForDeck(m, deckId, it){
@@ -565,10 +643,10 @@
   }
 
   /* ---------- 内置题删除（override 机制） ----------
-     内置题库来自静态 builtins.js（window.BUILTIN），不可被改写。
+     内置题库来自静态 builtins.js + oral8000.js（window.BUILTIN），不可被改写。
      删除内置单句 = 在 deletedItems 里登记 key，列表/练习时过滤掉。
-     key 与 masteredKey 同构：deckId#sentence，确保定位稳定。 */
-  function itemKey(deckId, it){ return deckId + '#' + (it.sentence || it.en || ''); }
+     key 与 masteredKey / stats.bySentence 同构：deckId#cid（与原文解耦）。 */
+  function itemKey(deckId, it){ return cidKey(deckId, it); }
   function isItemDeleted(m, deckId, it){
     return !!(m && m.deletedItems && m.deletedItems[itemKey(deckId, it)]);
   }
@@ -580,6 +658,29 @@
   function deckItems(deck, m){
     if(!deck || !deck.builtin) return (deck && deck.items) || [];
     return (deck.items || []).filter(function(it){ return !isItemDeleted(m, deck.id, it); });
+  }
+  /* ★ 统计某 deck 在 deletedItems 里的隐藏条数（用于 decks.html 给用户可观察性）
+     - 内置 deck：实际从 BUILTIN 取原句集，过滤后对比差值
+     - 导入 deck：deletedItems 现存 key 数（仍以 cid 为键，与原句对照） */
+  function hiddenCount(deck, m){
+    if(!deck || !m || !m.deletedItems) return 0;
+    var deckId = deck.id;
+    var prefix = deckId + '#';
+    var keys = Object.keys(m.deletedItems).filter(function(k){ return k.indexOf(prefix) === 0; });
+    return keys.length;
+  }
+  /* ★ 恢复某 deck 全部已删除内置句（清空 m.deletedItems 里 deckId# 的所有 key）
+     返回实际清除的条数。导入 deck 由于原句变更风险，默认 NOOP 并返回 0。 */
+  function restoreAllDeleted(m, deck){
+    if(!m || !m.deletedItems) return 0;
+    if(!deck || !deck.builtin) return 0; /* 导入 deck 不支持全量恢复（cid 不在静态集中） */
+    var deckId = deck.id;
+    var prefix = deckId + '#';
+    var n = 0;
+    Object.keys(m.deletedItems).forEach(function(k){
+      if(k.indexOf(prefix) === 0){ delete m.deletedItems[k]; n++; }
+    });
+    return n;
   }
 
   /* ---------- 事件总线 + 跨页通信 ---------- */
@@ -610,11 +711,13 @@
     saveMem: saveMem,
     saveAndNotify: saveAndNotify,
     $: $, esc: esc, norm: norm, normSent: normSent, timeAgo: timeAgo, copyText: copyText,
-    masteredKey: masteredKey, allDecks: allDecks, findDeck: findDeck,
+    masteredKey: masteredKey, allDecks: allDecks, allDecksView: allDecksView, builtinDecks: builtinDecks, findDeck: findDeck,
+    deckItems: deckItems, hiddenCount: hiddenCount, restoreAllDeleted: restoreAllDeleted,
     isMastered: isMastered, isFluencyByDeck: isFluencyByDeck, isMarkedForDeck: isMarkedForDeck,
     classifyStat: classifyStat,
     mergeStats: mergeStats,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
+    fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,
     on: on, emit: emit,
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,

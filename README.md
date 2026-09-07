@@ -18,7 +18,7 @@ Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句�
 | 能力 | 说明 |
 |------|------|
 | 🧩 意群练习 | 拼句 / 选词 / 填空 / 打字 4 种作答模式，逐语块即时判定 |
-| 📚 内置题库 | 日常对话、购物英语、高频口语、日常口语 8000 句（种子 30 句）4 个内置课程 |
+| 📚 内置题库 | 日常对话、购物英语、高频口语（Spoken Essentials）、高频口语 8000 句（Oral 8000，共 138 句） |
 | 📖 图文课程 | ZIP 课程包导入 + 图推理对话练习 + 课前预习 / 主课程 / 课后测试三段式 |
 | 🔁 SRS 间隔重复 | 艾宾浩斯节奏 `1→3→7→14→30→60→120→180→365` 天，答错重置（纯函数，可单测） |
 | ✨ AI 详解 | 接入 DeepSeek 生成多维讲解，本地缓存命中免重复计费（⚠️ 当前前端直连，见"已知限制"） |
@@ -99,6 +99,8 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 | `chunklab_reinforce` | 错题本（部分路径） |
 | `chunklab_ai_cache_v1` | AI 详解缓存（按「模型 + 句子」命中，前端 LRU 淘汰） |
 
+> **句子档案 key 与原文解耦（cid）**：`mastered` / `deletedItems` / `stats.bySentence` / 事件记录的键统一为 `deckId#cid`（cid = 句子数据的稳定内容 ID，见 `core.js` 的 `cidOf`）。内容修订时保留原 cid 即可不丢学习进度；旧数据（`deckId#原文`）在 `loadMem` 时自动一次性迁移。内置句子 cid 由 `scripts/add-cids.js` 维护（幂等），`validate_builtins.js` / `validate_oral8000.js` 回归校验。
+
 **云端（SQLite，按 user_id 隔离）**
 
 | 表 | 内容 |
@@ -128,9 +130,12 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 前端单测（Node 直跑，零依赖）：
 ```bash
 node srs.test.js           # SRS 间隔序列 / 答错重置 / 旧数据兼容 / 到期判定
-node store.test.js         # 存储键统一 / 版本迁移 / 默认结构
-node validate_oral8000.js  # 口语种子数据规范（chunk 拼接=原句、标点规则、alts）
+node store.test.js         # 存储键统一 / 版本迁移 / 句子 key cid 迁移 / 默认结构
+node validate_builtins.js  # 内置题库数据规范（cid 唯一、chunk 拼接=原句、句子不重复）
+node validate_oral8000.js  # 口语种子数据规范（chunk 拼接=原句、标点规则、alts、cid）
 node course-resume.test.js # 图文课程进度恢复
+```
+> 内置句子增改后跑 `node scripts/add-cids.js` 补/重算 cid（幂等；`--force` 全量重算）再跑上面两个 validate。
 ```
 
 后端冒烟测试（零依赖，启动服务跑关键接口往返）：
@@ -202,4 +207,4 @@ node server/backup-cli.js list                # 列出备份
 - 🟡 后端校验 / 单测覆盖有限 → ADR-008（本 README 的 `smoke.test.js` 已补端到端冒烟）
 - 🟡 移动端适配弱（少量媒体查询）；无 PWA / manifest / favicon
 - 🟡 核心练习逻辑（chunk 判定、干扰项、评分）尚无单测
-- 🟡 口语 8000 句当前仅 30 句种子数据（`oral8000.js` 追加即可扩展）
+- 🟡 高频口语 8000 句当前仅 50 句种子数据（`oral8000.js` 追加即可扩展）

@@ -1,0 +1,182 @@
+/* scripts/inject-freq-idioms.js
+ * 把 extra/batch*.json 数组中的条目校验后追加到 freq-idioms.js 的 DATA_FREQ_IDIOMS 数组末尾。
+ *
+ * 用法：
+ *   node scripts/inject-freq-idioms.js extra/batch2a.json extra/batch2b.json ...
+ *
+ * 规则（与 validate_freq_idioms.js 一致，注入前在本脚本复刻一遍以早失败）：
+ *  1) chunks 2~5 个
+ *  2) chunks.join('').replace(/\s+/g, '') 必须等于 sentence.replace(/\s+/g, '')
+ *  3) chunk 不以 .?!,;: 开头；非末 chunk 不以句末标点 .?! 结尾
+ *  4) hints/grammar 长度等于 chunks；grammar 每块含 role/color/pos/meaning/phonetic[]
+ *  5) explanations 至少 2 条
+ *  6) 与源库 high_freq_600.json 对照：grammar.pos/role 标为习语/谚语/固定搭配 的 chunk
+ *     必须在源数据中存在（去空格规范化后做子串匹配），提示但非阻断（首条目或轻微变形可放过）
+ *  7) 注入格式保持与 freq-idioms.js 数据区相同的 compact JS 风格
+ *
+ * 注意：脚本不主动写 cid——每条 JSON 必须自带 cid: fnv8(sentence)（fnv8 与 core.js Math.imul 实现一致）。
+ *      若条目缺 cid，会在 fnv8(sentence) 现场计算填入。
+ */
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const tr = require('./translation-rules');
+
+/* fnv8 与 core.js / validate_freq_idioms.js / scripts/add-cids.js 保持一致 */
+function fnv8(str) {
+  let h = 0x811c9dc5 >>> 0;
+  str = String(str == null ? '' : str);
+  for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 0x01000193) >>> 0;
+  let x = (h >>> 0).toString(16);
+  while (x.length < 8) x = '0' + x;
+  return x;
+}
+
+/* 校验规则：返回错误数组（空=通过） */
+function validateItems(items, sourceList) {
+  const issues = [];
+  items.forEach((it, idx) => {
+    const ms = [];
+    if (!it.sentence || !it.translation) ms.push('缺 sentence/translation');
+    if (!Array.isArray(it.chunks) || it.chunks.length < 2 || it.chunks.length > 5) ms.push('chunks 需 2~5 个');
+    else {
+      const join = it.chunks.join('').replace(/\s+/g, '');
+      const sent = String(it.sentence).replace(/\s+/g, '');
+      if (join !== sent) ms.push('拼接≠原句: ' + JSON.stringify(it.chunks.join('')) + ' vs ' + JSON.stringify(it.sentence));
+      it.chunks.forEach((c, j) => {
+        if (!c || !c.trim()) ms.push('chunk 空');
+        if (/^[.?!,;:]/.test(c)) ms.push('前导标点: ' + JSON.stringify(c));
+        if (j < it.chunks.length - 1 && /[.?!]\s*$/.test(c)) ms.push('非末句末标点: ' + JSON.stringify(c));
+      });
+    }
+    if ((it.hints || []).length !== (it.chunks || []).length) ms.push('hints 不等长 chunks');
+    if ((it.grammar || []).length !== (it.chunks || []).length) ms.push('grammar 不等长 chunks');
+    (it.grammar || []).forEach((g, gi) => {
+      if (!g.role || !g.color || !g.pos || !g.meaning) ms.push('grammar[' + gi + '] 缺字段');
+      if (!Array.isArray(g.phonetic) || !g.phonetic.length) ms.push('grammar[' + gi + '] 缺 phonetic');
+    });
+    if (!Array.isArray(it.explanations) || it.explanations.length < 2) ms.push('explanations<2');
+    if (!it.cid) ms.push('缺 cid（应当 fnv8(sentence)）');
+    else if (it.cid !== fnv8(it.sentence)) ms.push('cid ≠ fnv8(sentence) — 自动重算覆盖');
+    /* 翻译机检（2026-09-06 方案 A：直译腔/漏英文/机械病在注入前硬拦） */
+    const trRes = tr.checkTranslation(it);
+    trRes.errors.forEach((e) => ms.push('翻译机检: ' + e));
+    if (trRes.warnings.length) {
+      console.log('  ⚠ 翻译复核提示 (#' + (idx + 1) + ' ' + it.sentence + '): ' + trRes.warnings.join('; '));
+    }
+    if (ms.length) issues.push('#' + (idx + 1) + ' [' + (it._batchFile || '?') + '] ' + it.sentence + ' :: ' + ms.join('; '));
+  });
+
+  /* 源库匹配（提示级别，不退出） */
+  if (sourceList) {
+    const norm = (s) => String(s).toLowerCase().replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim();
+    let miss = 0;
+    items.forEach((it) => {
+      (it.grammar || []).forEach((g, gi) => {
+        if (/(习语|谚语|固定搭配|动词习语|习语·|·习语)/.test(String(g.pos) + String(g.role))) {
+          const ic = norm(it.chunks[gi]);
+          if (ic && !sourceList.some((s) => { const n = norm(s); return n.indexOf(ic) >= 0 || ic.indexOf(n) >= 0; })) {
+            miss++;
+            console.log('  ⚠ 源库未匹配 idiom chunk:', JSON.stringify(it.chunks[gi]), 'in', it.sentence);
+          }
+        }
+      });
+    });
+    console.log('源库未匹配 idiom 块数:', miss, '（提示级，不阻断）');
+  }
+
+  return issues;
+}
+
+/* 一条 item → JS compact 风格文本（与 freq-idioms.js 数据区现有条目同风格） */
+function itemToJs(it) {
+  const j = JSON.stringify;
+  const L = ['  {'];
+  L.push('    sentence: ' + j(it.sentence) + ',');
+  L.push('    cid: fnv8(' + j(it.sentence) + '),');
+  L.push('    translation: ' + j(it.translation) + ',');
+  L.push('    chunks: ' + j(it.chunks) + ',');
+  L.push('    hints: ' + j(it.hints) + ',');
+  L.push('    grammar: [');
+  it.grammar.forEach((g, i) => L.push('      {' + [
+    'role:' + j(g.role),
+    'color:' + j(g.color),
+    'phonetic:' + j(g.phonetic),
+    'pos:' + j(g.pos),
+    'meaning:' + j(g.meaning)
+  ].join(', ') + '}' + (i < it.grammar.length - 1 ? ',' : '')));
+  L.push('    ],');
+  L.push('    explanations: [');
+  it.explanations.forEach((e, i) => L.push('      ' + j(e) + (i < it.explanations.length - 1 ? ',' : '')));
+  L.push('    ]');
+  L.push('  }');
+  return L.join('\n');
+}
+
+function main() {
+  const args = process.argv.slice(2);
+  if (!args.length) { console.error('用法: node scripts/inject-freq-idioms.js extra/batch*.json [...]'); process.exit(2); }
+  /* 载入所有 batch JSON */
+  const items = [];
+  args.forEach((f) => {
+    const arr = JSON.parse(fs.readFileSync(f, 'utf8'));
+    arr.forEach((it) => { it._batchFile = path.basename(f); items.push(it); });
+  });
+  console.log('载入条目:', items.length, '（来自', args.length, '个文件）');
+
+  /* 载入源库（可选，无则跳过匹配提示） */
+  let sourceList = null;
+  const sourcePath = process.env.SOURCE_PATH || path.join(__dirname, '..', 'extra', 'idioms-394.json');
+  if (fs.existsSync(sourcePath)) sourceList = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+
+  /* 校验 */
+  const issues = validateItems(items, sourceList);
+  if (issues.length) {
+    console.error('❌ 校验失败：\n' + issues.join('\n'));
+    process.exit(1);
+  }
+  console.log('✅ 规则校验通过', items.length, '条');
+
+  /* 自动补齐 cid（缺或错的） */
+  items.forEach((it) => { if (!it.cid || it.cid !== fnv8(it.sentence)) it.cid = fnv8(it.sentence); });
+
+  /* 注入 freq-idioms.js */
+  const fpath = path.join(__dirname, '..', 'freq-idioms.js');
+  const file = fs.readFileSync(fpath, 'utf8');
+
+  /* ── 注入前解析守卫（防叠加损坏：2026-09-06 曾因目标文件结构损坏，
+     多次注入把注册块与旧内容拼进数组，导致 3 段声明 + 无闭合 + 整文件不可解析）── */
+  try {
+    new Function('window', file); // 仅编译（parse check），不调用 → 无副作用
+  } catch (e) {
+    console.error('❌ freq-idioms.js 当前不可解析（' + e.message + '）。已中止注入——先修复目标文件（可跑 scripts/_recover 系列重建）。');
+    process.exit(1);
+  }
+  const declCount = (file.match(/DATA_FREQ_IDIOMS\s*=\s*\[/g) || []).length;
+  if (declCount !== 1) {
+    console.error('❌ freq-idioms.js 数据声明数异常（' + declCount + ' 处，应为 1）。已中止注入，避免插入错位。');
+    process.exit(1);
+  }
+
+  /* 定位 DATA_FREQ_IDIOMS 数组结尾 '];'：在文件尾部自注册 IIFE 之前 */
+  const end = file.lastIndexOf('];');
+  if (end < 0) {
+    console.error('❌ freq-idioms.js 未找到数组闭合 ];。已中止注入。');
+    process.exit(1);
+  }
+  const itemsJs = items.map(itemToJs).join(',\n');
+  const out = file.slice(0, end) + ',\n' + itemsJs + '\n' + file.slice(end);
+  fs.writeFileSync(fpath, out, 'utf8');
+  console.log('已注入 freq-idioms.js:', items.length, '条');
+
+  /* 注入后回读确认仍可解析（写坏立即报错，防静默损坏） */
+  const after = fs.readFileSync(fpath, 'utf8');
+  try {
+    new Function('window', after);
+  } catch (e) {
+    console.error('❌ 注入后文件解析失败（' + e.message + '）——立即检查/回滚！');
+    process.exit(1);
+  }
+}
+
+main();

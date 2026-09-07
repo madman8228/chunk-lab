@@ -91,6 +91,7 @@ const childEnv = Object.assign({}, process.env, {
   CHUNKLAB_DATA_DIR: TMP_DB,
   AI_CACHE_MAX: '5' /* 便于验证 ai_cache LRU 裁剪 */,
   AI_RATE_LIMIT: '3' /* 便于验证限流 */,
+  AI_EXPLAIN_ENABLED: 'true' /* ADR-004/008 用例专门测开启后的全链路；默认(未设)为停用 → 503 */,
   AI_MOCK_RESPONSE: JSON.stringify({
     choices: [{ message: { content: '{"orig":"MOCK","zh":"mock-zh","chunks":[],"grammar":[],"collocations":[],"scenario":"mock"}' } }]
   }) /* 测试钩子：短路真实 DeepSeek 调用 */,
@@ -477,6 +478,46 @@ async function main() {
     await request('POST', '/api/ai/explain', token, { sentence: 'limit sentence number 1', apiKey: 'sk-test' });
     r = await request('POST', '/api/ai/explain', token, { sentence: 'fourth sentence triggers limit', apiKey: 'sk-test' });
     check('ADR-004 超限 → 429', r.status === 429, 'status=' + r.status + ' ' + JSON.stringify(r.json));
+
+    // ===== 默认关闭回归（2026-09-06）：未设 AI_EXPLAIN_ENABLED → /api/ai/explain 一律 503 =====
+    // 另起一个开放模式短命实例（不带 AI_EXPLAIN_ENABLED），验证默认行为是「停用」。
+    const offPort = PORT + 1;
+    const offBase = 'http://127.0.0.1:' + offPort;
+    const offEnv = Object.assign({}, process.env, {
+      REQUIRE_AUTH: 'false',
+      PORT: String(offPort),
+      CHUNKLAB_DATA_DIR: TMP_DB + '-off'
+    });
+    const offChild = spawn(process.execPath, ['index.js'], { cwd: SERVER_DIR, env: offEnv, stdio: ['ignore', 'ignore', 'inherit'] });
+    let offHealthy = false;
+    try {
+      const start = Date.now();
+      while (!offHealthy && Date.now() - start < 15000) {
+        const hr = await new Promise(function (resolve) {
+          const u = new URL(offBase + '/api/health');
+          const q = http.request(u, function (res) { let s = ''; res.on('data', function (c) { s += c; }); res.on('end', function () { resolve({ status: res.statusCode }); }); });
+          q.on('error', function () { resolve({ status: 0 }); });
+          q.end();
+        });
+        if (hr.status === 200) offHealthy = true; else await new Promise(function (r2) { setTimeout(r2, 250); });
+      }
+      check('AI 默认关闭实例 health ok', offHealthy);
+      if (offHealthy) {
+        const ar = await new Promise(function (resolve) {
+          const data = JSON.stringify({ sentence: 'default off' });
+          const u = new URL(offBase + '/api/ai/explain');
+          const q = http.request({ hostname: u.hostname, port: u.port, path: u.pathname, method: 'POST', headers: { 'Content-Type': 'application/json' } }, function (res) {
+            let s = ''; res.on('data', function (c) { s += c; }); res.on('end', function () { resolve({ status: res.statusCode, body: s }); });
+          });
+          q.on('error', function () { resolve({ status: 0 }); });
+          q.write(data); q.end();
+        });
+        check('AI 默认关闭 → /api/ai/explain 503', ar.status === 503, 'status=' + ar.status + ' ' + ar.body);
+      }
+    } finally {
+      if (offChild) offChild.kill('SIGKILL');
+      try { fs.rmSync(TMP_DB + '-off', { recursive: true, force: true }); } catch (e) { /* best-effort */ }
+    }
   } finally {
     if (child) child.kill('SIGKILL');
   }
