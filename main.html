@@ -1667,16 +1667,33 @@ function saveDeckBest(deckId, acc, perfect, combo){
   mem.best[deckId] = { acc:acc, perfect:perfect, combo:combo, lastPlayed: cur.lastPlayed || Date.now() };
 }
 
+/* ★ 统一「临时队列」判定（单一事实来源）
+   临时队列 = 错题/#/book-/weak-/srs-/rev- 开头，一次只练 batchSize 一批、不写 best 纪录。
+   曾有两处判定漂移：finishSession 只认 '#'，book-/weak-/srs-/rev- 被误判长期 → best 残壳污染 + 「新纪录」假提示。 */
+function isTempQueueDeck(id){
+  if(!id) return false;
+  return id.indexOf('#') !== -1
+      || id.indexOf('book-') === 0
+      || id.indexOf('weak-') === 0
+      || id.indexOf('srs-') === 0
+      || id.indexOf('rev-') === 0;
+}
+
 /* ★ 启动题库（恢复：之前与 BUILTIN 数组在同一区域被误删，这里补回）
    - fromIdx 可选，断点续练用
+   - tempStart 可选（仅临时队列）：本组在完整队列中的起点（用于「继续下一组」分页）
    - 长期题库过滤已标熟/已掌握；临时题库（book-/weak-/srs-/rev-）不过滤
    - 排序：到期复习最优先 + 熟练度分级
    - 洗牌（设置开启时） + 截断到 batchSize */
-function startDeck(deck, fromIdx){
+function startDeck(deck, fromIdx, tempStart){
   if(typeof fromIdx !== 'number') fromIdx = 0;
   S.deck = deck;
   S.items = deck.items.slice();
-  var isLongTermDeck = deck.id.indexOf('#') === -1 && deck.id.indexOf('book-') !== 0 && deck.id.indexOf('weak-') !== 0 && deck.id.indexOf('srs-') !== 0 && deck.id.indexOf('rev-') !== 0;
+  var isLongTermDeck = !isTempQueueDeck(deck.id);
+  /* 临时队列分页游标：tempStart=本组起点 / tempEnd=本组终点（练完后剩 tempTotal-tempEnd） */
+  S.tempTotal = isLongTermDeck ? 0 : deck.items.length;
+  S.tempStart = (!isLongTermDeck && typeof tempStart === 'number' && tempStart > 0) ? tempStart : 0;
+  S.tempEnd = S.tempStart;
   if(isLongTermDeck && mem.settings.skipMastered !== false){
     /* skipMastered：仅跳过「未到期」的已标熟/已掌握句；
        SRS 到期的句子必须回来复习 —— 到期复习优先，不受 skipMastered 影响。
@@ -1704,10 +1721,18 @@ if(fromIdx === 0 && isLongTermDeck){
     /* batchSize 仅作用于「临时题库」(#/book-/weak-/srs-/rev-) —— 这些是临时聚焦点（错题本/SRS回拉），
        按用户配置的 batchSize 截断即可。
        长期 deck（builtin-* / 用户导入 deck）一律一次练完整 deck：「通关」= 练完所有题，
-       否则 103 题 deck 被截到 10 题就通关，剩下 93 题被永久跳过（2026-09-06 反馈）。 */
+       否则 103 题 deck 被截到 10 题就通关，剩下 93 题被永久跳过（2026-09-06 反馈）。
+       ★ 分页续组：tempStart>0 时从完整队列的 tempStart 处切下一批（finish 页「继续下一组」入口）；
+         tempEnd 记录本组终点，供 finishSession 计算剩余量（tempTotal - tempEnd）。 */
     if(!isLongTermDeck){
       var batchSize3 = Math.max(1, mem.settings.batchSize || 10);
-      if(S.items.length > batchSize3) S.items = S.items.slice(0, batchSize3);
+      /* S.items 此刻 = deck.items 全量副本；从 tempStart 起切一批（tempStart 越界即队列已空，防御性保底） */
+      if(S.tempStart >= S.items.length){
+        S.items = [];
+      } else {
+        S.items = S.items.slice(S.tempStart, S.tempStart + batchSize3);
+      }
+      S.tempEnd = S.tempStart + S.items.length;
     }
   if(mem.settings.shuffle && fromIdx === 0){
     for(var i=S.items.length-1;i>0;i--){
@@ -1729,8 +1754,12 @@ if(fromIdx === 0 && isLongTermDeck){
   $('zh').innerHTML = (window.Icons ? '<span class="icon-spin">' + Icons.svg('refresh') + '</span>' : '') + ' 渲染中…';
   try { renderQ(); } catch(err){ console.error('[renderQ]', err); $('zh').textContent = '加载出错：' + (err && err.message || err); }
   goPractice();
-  /* 记录 lastPlayed + 活跃题库（走统一访问层，防 {lastPlayed} 残壳） */
-  touchDeckBest(deck.id).lastPlayed = Date.now();
+  /* 记录 lastPlayed + 活跃题库（走统一访问层，防 {lastPlayed} 残壳）。
+     长期 deck 才写 best；临时队列（book-/weak-/srs-/rev-/#）不落 best——
+     否则每个临时 id 时间戳不同、每次练习都新增一条垃圾纪录（best 无限膨胀）。 */
+  if(!isTempQueueDeck(deck.id)){
+    touchDeckBest(deck.id).lastPlayed = Date.now();
+  }
   mem.activeDeckId = deck.id;
   saveStore();
 }
@@ -1743,7 +1772,9 @@ var S = {
   combo: 0, maxCombo: 0, perfectCount: 0,
   chunkTotal: 0, chunkRight: 0, wrong: [],
   finished: false, _finishing: false,
-  perfectThis: true, hinted: false, _hintedChunks: []
+  perfectThis: true, hinted: false, _hintedChunks: [],
+  /* 临时队列分页游标（见 startDeck / finishSession「继续下一组」） */
+  tempTotal: 0, tempStart: 0, tempEnd: 0
 };
 
 /* 当前题（cur = S.items[S.idx]）—— 之前与 BUILTIN 同区域被误删，重建 */
@@ -2396,7 +2427,7 @@ function toggleMastered(){
   /* 从 S.items 中移除当前句（S.idx 不变，下一题自动落到原 idx） */
   S.items.splice(S.idx, 1);
   /* 补一个「未了结」的新句子（排除已标熟 + 已掌握；仅长期题库，无候选则跳过） */
-  if(S.deck && S.deck.id.indexOf('#') === -1 && S.deck.id.indexOf('book-') !== 0 && S.deck.id.indexOf('weak-') !== 0 && S.deck.id.indexOf('srs-') !== 0 && S.deck.id.indexOf('rev-') !== 0){
+  if(S.deck && !isTempQueueDeck(S.deck.id)){
     var inQueue = {};
     S.items.forEach(function(x){ inQueue[masteredKey(S.deck.id, x)] = 1; });
     var pool = S.deck.items.filter(function(x){
@@ -2922,11 +2953,13 @@ function finishSession(){
   $('progFill').style.width = '100%';
   $('mProgress').textContent = S.items.length+'/'+S.items.length;
 
-  var temp = S.deck.id.indexOf('#') !== -1;   /* 错题临时题库不记录纪录 */
-  /* 统一访问层归一回读：历史残壳（{lastPlayed} 缺 acc/combo）自动补 0，
-     不会出现 acc > undefined 恒 false 而永久无法破纪录 */
-  var b = touchDeckBest(S.deck.id);
-  var isBest = !temp && (acc > b.acc || (acc===b.acc && S.maxCombo > b.combo));
+  /* ★ 临时队列统一判定（#/book-/weak-/srs-/rev-）—— 与 startDeck 同一事实来源，杜绝漂移。
+     临时队列（错题本/SRS回拉/手动复习）不写 best 纪录。
+     touchDeckBest 本身会落 mem.best[deckId] 残壳 → 临时 id 只在本次会话有效（时间戳），
+     每次练习都建一条垃圾纪录会导致 mem.best 无限膨胀；故 temp 队列完全不触碰 best 层。 */
+  var temp = isTempQueueDeck(S.deck.id);
+  var b = temp ? null : touchDeckBest(S.deck.id);
+  var isBest = !temp && b && (acc > b.acc || (acc===b.acc && S.maxCombo > b.combo));
   if(isBest){
     saveDeckBest(S.deck.id, acc, S.perfectCount, S.maxCombo);
     saveStore();
@@ -2998,8 +3031,17 @@ function finishSession(){
   }
 
   /* 累积到本地错题本（跨会话持久化）——已在上方调用 saveReinforceList */
+  /* ★ 临时队列分页剩余：练完本组后还有多少句未练（错题本/SRS回拉>batchSize 时不再被静默截断丢弃） */
+  var _nextRemain = 0;
+  if(temp){
+    _nextRemain = Math.max(0, (S.tempTotal || 0) - (S.tempEnd || 0));
+  }
   html += '<div class="stage-foot" style="margin-top:20px">'+
-            `<button class="btn primary" id="btnAgain">再练一遍</button>`+
+            (_nextRemain > 0
+              ? `<button class="btn primary" id="btnNextBatch">继续下一组 · 剩 `+_nextRemain+` 句</button>`+
+                `<button class="btn" id="btnAgain">再练一遍</button>`
+              : `<button class="btn primary" id="btnAgain">再练一遍</button>`
+            )+
             `<button class="btn" id="btnWrongOnly"`+(S.wrong.length?'':' disabled')+'>只练错题 ('+S.wrong.length+')</button>'+
             `<button class="btn" id="btnOtherDeck">换个题库</button>`+
             (needReinforce ?
@@ -3015,6 +3057,11 @@ function finishSession(){
   r.classList.remove('hidden');
   $('stage').classList.add('hidden');
 
+  /* ★ 继续下一组：从完整临时队列的 tempEnd 处续练下一批（分页推进，不再剩题无门） */
+  var _bnx = $('btnNextBatch');
+  if(_bnx){
+    _bnx.onclick = function(){ startDeck(S.deck, 0, S.tempEnd); };
+  }
   $('btnAgain').onclick = function(){ startDeck(S.deck, true); };
   $('btnOtherDeck').onclick = function(){ openDecks(); };
   $('btnImport2').onclick = function(){ openImport(); };

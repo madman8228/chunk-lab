@@ -1,0 +1,44 @@
+[
+  {
+    "sentence": "\"We won the lottery!\" — \"You don't say!\"",
+    "translation": "「我们中彩票了！」——「真的假的！",
+    "chunks": [
+      "\"We won the lottery!\"",
+      "— \"You don't say!\""
+    ],
+    "hints": [
+      "我们中了彩票",
+      "你说真的？（表惊讶/反讽）"
+    ],
+    "grammar": [
+      {
+        "role": "直接引语",
+        "color": "#c87033",
+        "phonetic": [
+          "/wiː/",
+          "/wʌn/",
+          "/ðə/",
+          "/ˈlɑːtəri/"
+        ],
+        "pos": "主谓宾·引语",
+        "meaning": "我们中了彩票"
+      },
+      {
+        "role": "回应习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/juː/",
+          "/doʊnt/",
+          "/seɪ/"
+        ],
+        "pos": "习语·感叹",
+        "meaning": "不会吧/真的假的"
+      }
+    ],
+    "explanations": [
+      "**You don't say!** 高语境口语：字面『你不说我也知道』，实际两用——(1) 表惊讶：真的吗！(2) 反讽：谁不知道啊（语气拖长+降调）。",
+      "中性场景表惊讶可用 No kidding! / Really? 例：— She quit her job. — You don't say!（她辞职了。——真的假的！）"
+    ],
+    "cid": "d606278f"
+  }
+]

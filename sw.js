@@ -19,6 +19,11 @@
  */
 /* eslint-disable */
 /* 每次前端资源变更都递增版本，避免旧版 HTML/CSS 被长期命中。
+   v47(2026-09-07)：P1a 资产归位 + P1b 扩容到 200 句。
+     - P1a：394 idiom 源从 D:/tmp 拷到 extra/idioms-394.json；inject-freq-idioms.js / pick-batch2.js / apply-translation-review.js / freq-idioms.js 头部 默认源路径改项目内相对路径；deck desc 去掉内部文件名话术（用户面向文案）。
+     - P1b：freq-idioms 103→200（+97，3 批 extra/batch3-batch5.json 注入；每条带 sentence/translation/chunks/hints/grammar(逐词音标)/explanations 两段 全字段）。
+     - scripts/e2e-freq-idioms.js 修复过时断言（去冗余后 deck 数变，写死 >=5 永远超时；改为查 builtin-freq-idioms 注册 + .deck-item 数量）。
+     - gen-sw 重算 cache hash（v46 hash acd1d0e4 → v47 hash ee67c6d3）。
    v46(2026-09-07)：deck 三去冗余（方案 A 续）—— builtin-freq-spoken(口语·口头禅30句) 并入 builtin-daily。
      - builtins.js：freq-spoken 是文件最后一个 deck，文本级行区间拼接删除整块（比 shopping 简单，无后方偏移），30 句 concat 进 daily items → daily 静态 88 句
      - daily desc 更新为「生活口语综合 138 句：寒暄+购物+口头禅+进阶表达」；头部/尾部注释同步
@@ -48,7 +53,7 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-acd1d0e4'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-101c3089'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 const PRECACHE = [
   '/main.html',
   '/manifest.json',

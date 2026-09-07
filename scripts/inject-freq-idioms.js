@@ -13,6 +13,8 @@
  *  6) 与源库 high_freq_600.json 对照：grammar.pos/role 标为习语/谚语/固定搭配 的 chunk
  *     必须在源数据中存在（去空格规范化后做子串匹配），提示但非阻断（首条目或轻微变形可放过）
  *  7) 注入格式保持与 freq-idioms.js 数据区相同的 compact JS 风格
+ *  8) 去重护栏（2026-09-07）：注入前解析现有库，条目与「库内已入库」或「本批内」句子重复
+ *     （去全部空白后比对，同 cid 但句不同仅为哈希碰撞提示）即中止，杜绝 v42 式重 key 前科复发。
  *
  * 注意：脚本不主动写 cid——每条 JSON 必须自带 cid: fnv8(sentence)（fnv8 与 core.js Math.imul 实现一致）。
  *      若条目缺 cid，会在 fnv8(sentence) 现场计算填入。
@@ -113,6 +115,49 @@ function itemToJs(it) {
   return L.join('\n');
 }
 
+/* 注入前去重护栏：与 freq-idioms.js 现有库 + 本批内部 双向查重。
+ * 返回错误数组（空=通过）。句子比对用「去全部空白」规约；cid 仅作哈希碰撞提示。 */
+function assertNoDup(items) {
+  const fpath = path.join(__dirname, '..', 'freq-idioms.js');
+  const file = fs.readFileSync(fpath, 'utf8');
+  const normKey = (s) => String(s).replace(/\s+/g, '');
+  const dups = [];
+  const cidHitTips = [];
+
+  /* 解析现有库（在临时 window 上执行数据区与注册 IIFE，无真实副作用） */
+  let existing = [];
+  try {
+    const sandbox = { BUILTIN: { push() {} }, console };
+    new Function('window', file)(sandbox);
+    existing = Array.isArray(sandbox.DATA_FREQ_IDIOMS) ? sandbox.DATA_FREQ_IDIOMS : [];
+  } catch (e) {
+    console.error('❌ freq-idioms.js 当前不可解析（' + e.message + '）。已中止注入——先修复目标文件。');
+    process.exit(1);
+  }
+  if (!existing.length) {
+    console.error('❌ freq-idioms.js 解析后未取到 DATA_FREQ_IDIOMS 条目。已中止注入（防误写空库）。');
+    process.exit(1);
+  }
+  const libSent = new Map(existing.map((x) => [normKey(x.sentence), x.sentence]));
+  const libCid = new Set(existing.map((x) => x.cid).filter(Boolean));
+
+  const batchSeen = new Map();
+  for (const it of items) {
+    const nk = normKey(it.sentence);
+    const fc = fnv8(it.sentence);
+    const tag = it._batchFile + ' :: ' + it.sentence;
+    /* 库内重复（主判据：句子规约命中） */
+    if (libSent.has(nk)) dups.push('库内重复: ' + tag + '（库内已有同句）');
+    /* cid 撞库但句不同 → 哈希碰撞提示（不阻断） */
+    else if (libCid.has(fc)) cidHitTips.push('cid 撞库但句不同(可能哈希碰撞): ' + tag);
+    /* 批内重复 */
+    if (batchSeen.has(nk)) dups.push('批内重复: ' + batchSeen.get(nk) + ' ↔ ' + tag);
+    else batchSeen.set(nk, tag);
+  }
+  cidHitTips.forEach((t) => console.log('  ⚠ ' + t));
+  return dups;
+}
+
 function main() {
   const args = process.argv.slice(2);
   if (!args.length) { console.error('用法: node scripts/inject-freq-idioms.js extra/batch*.json [...]'); process.exit(2); }
@@ -123,6 +168,14 @@ function main() {
     arr.forEach((it) => { it._batchFile = path.basename(f); items.push(it); });
   });
   console.log('载入条目:', items.length, '（来自', args.length, '个文件）');
+
+  /* 去重护栏（先于一切校验/写入）：库内 + 批内 双向查重，遇重即中止 */
+  const dupIssues = assertNoDup(items);
+  if (dupIssues.length) {
+    console.error('❌ 去重失败（' + dupIssues.length + ' 处）：\n' + dupIssues.join('\n') + '\n已中止注入——请剔除重复条目后重试。');
+    process.exit(1);
+  }
+  console.log('✅ 去重通过：与现有库及批内均无重复');
 
   /* 载入源库（可选，无则跳过匹配提示） */
   let sourceList = null;

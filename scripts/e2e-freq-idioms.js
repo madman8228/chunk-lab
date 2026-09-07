@@ -40,7 +40,9 @@ const expectedItems = (fs.readFileSync(path.join(__dirname, '..', 'freq-idioms.j
   /* 主动 block sw.js（PWA 离线测试环境外不必要） */
   await ctx.route('**/sw.js', (route) => route.abort());
 
-  await page.goto('http://localhost:19878/main.html', { waitUntil: 'load', timeout: 30000 });
+  /* 端口可配：PORT 环境变量优先（默认 8787 现行服务端口；19878 是历史 e2e 端口，勿再硬编码） */
+  const port = process.env.PORT || '8787';
+  await page.goto('http://localhost:' + port + '/main.html', { waitUntil: 'load', timeout: 30000 });
   /* 去冗余后运行态 2 deck（daily + freq-idioms）。断言 builtin-freq-idioms 注册即可，别写死 deck 总数。 */
   await page.waitForFunction(() => window.BUILTIN && window.BUILTIN.some((d) => d.id === 'builtin-freq-idioms'), null, { timeout: 20000 });
   await page.waitForFunction(() => window.mem && window.mem.decks !== undefined, null, { timeout: 20000 });

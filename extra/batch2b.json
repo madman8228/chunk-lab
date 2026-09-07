@@ -1,0 +1,214 @@
+[
+  {
+    "sentence": "We're in a hurry, so get to the point.",
+    "translation": "我们赶时间，请直接说重点。",
+    "chunks": ["We're in a hurry,", "so get to the point."],
+    "hints": ["我们赶时间", "所以请说重点"],
+    "grammar": [
+      {"role": "主系表", "color": "#c87033", "phonetic": ["/wɪr/", "/ɪn/", "/ə/", "/ˈhɜːri/"], "pos": "主系表结构", "meaning": "我们赶时间"},
+      {"role": "祈使句", "color": "#7c5cbf", "phonetic": ["/soʊ/", "/ɡet/", "/tə/", "/ðə/", "/pɔɪnt/"], "pos": "习语·祈使", "meaning": "说重点、直奔主题"}
+    ],
+    "explanations": [
+      "**get to the point**：说话「直奔要点」，别绕弯子。point = 核心观点。是会议、争论中的高频祈使表达。",
+      "反义：beat around the bush（拐弯抹角）。例：Stop the small talk and get to the point — what's the price?"
+    ]
+  },
+  {
+    "sentence": "The boys wrecked the garden again — boys will be boys.",
+    "translation": "那些男孩又把花园弄乱了——男孩嘛，本性难移。",
+    "chunks": ["The boys wrecked the garden again", "— boys will be boys."],
+    "hints": ["男孩们又弄坏了花园", "男孩就是男孩（天性如此，别太计较）"],
+    "grammar": [
+      {"role": "主谓宾", "color": "#c87033", "phonetic": ["/ðə/", "/bɔɪz/", "/rekt/", "/ðə/", "/ˈɡɑːrdn/", "/əˈɡen/"], "pos": "主谓宾", "meaning": "男孩们又弄乱了花园"},
+      {"role": "谚语", "color": "#7c5cbf", "phonetic": ["/bɔɪz/", "/wɪl/", "/biː/", "/bɔɪz/"], "pos": "谚语", "meaning": "男孩天性如此"}
+    ],
+    "explanations": [
+      "**Boys will be boys.** 西方谚语：男孩淘气是天性，用来为顽皮/幼稚行为开脱。语气通常是宽容的摇头一笑。",
+      "中性批评者会指它是在『为不当行为找借口』。现代口语也出现 girls will be girls 的玩笑用法。"
+    ]
+  },
+  {
+    "sentence": "The broken printer was the last straw — I quit.",
+    "translation": "打印机坏掉成了压垮我的最后一根稻草——我辞职了。",
+    "chunks": ["The broken printer was the last straw", "— I quit."],
+    "hints": ["坏掉的打印机是压垮骆驼的最后一根稻草", "我辞职了"],
+    "grammar": [
+      {"role": "主系表", "color": "#c87033", "phonetic": ["/ðə/", "/ˈbroʊkən/", "/ˈprɪntər/", "/wʌz/", "/ðə/", "/læst/", "/strɔː/"], "pos": "主系表", "meaning": "坏打印机成了最后一根稻草"},
+      {"role": "结果", "color": "#7c5cbf", "phonetic": ["/aɪ/", "/kwɪt/"], "pos": "习语·主谓", "meaning": "我辞职了"}
+    ],
+    "explanations": [
+      "**the last straw**：缩写自 the last straw that breaks the camel's back（压垮骆驼的最后一根稻草）——一系列忍让后最终引爆的那件事。",
+      "例：The rude email was the last straw.（那封无礼的邮件成了压垮我的最后一根稻草。）近义：the final blow / the breaking point."
+    ]
+  },
+  {
+    "sentence": "Enough is enough — stop making excuses.",
+    "translation": "适可而止吧——别再找借口了。",
+    "chunks": ["Enough is enough", "— stop making excuses."],
+    "hints": ["够了就是够了（我已经受够了）", "停止找借口"],
+    "grammar": [
+      {"role": "谚语", "color": "#7c5cbf", "phonetic": ["/ɪˈnʌf/", "/ɪz/", "/ɪˈnʌf/"], "pos": "谚语·主系表", "meaning": "适可而止、忍无可忍"},
+      {"role": "祈使句", "color": "#e74c7a", "phonetic": ["/stɑːp/", "/ˈmeɪkɪŋ/", "/ɪkˈskjuːzɪz/"], "pos": "祈使句", "meaning": "别再造借口了"}
+    ],
+    "explanations": [
+      "**Enough is enough.** 语气强硬：容忍到极限，「适可而止、我受够了」。以同词重复构成强调，常用于吵架/警告的收尾。",
+      "变体：I've had enough.（我受够了。）例：Enough is enough — we're returning this defective product."
+    ]
+  },
+  {
+    "sentence": "You pay for the dinner and I'll cover the movie — call it even.",
+    "translation": "你出晚饭钱，电影票我来付——咱俩算扯平。",
+    "chunks": ["You pay for the dinner", "and I'll cover the movie", "— call it even."],
+    "hints": ["你付晚餐的钱", "电影我来付", "就算两清了"],
+    "grammar": [
+      {"role": "主谓", "color": "#c87033", "phonetic": ["/juː/", "/peɪ/", "/fɔːr/", "/ðə/", "/ˈdɪnər/"], "pos": "主谓", "meaning": "你付晚餐钱"},
+      {"role": "并列主谓", "color": "#c87033", "phonetic": ["/ænd/", "/aɪl/", "/ˈkʌvər/", "/ðə/", "/ˈmuːvi/"], "pos": "并列分句", "meaning": "我来付电影票"},
+      {"role": "习语", "color": "#7c5cbf", "phonetic": ["/kɔːl/", "/ɪt/", "/ˈiːvən/"], "pos": "动词习语", "meaning": "算扯平、两不相欠"}
+    ],
+    "explanations": [
+      "**call it even**：把账算平、「互不相欠」。even = 对等。常出现在轮流请客、分工后：You got the first round, I'll get this one and we call it even.",
+      "近义：be even / we're square / call it quits（就此打住，可指关系或争执）。例：I helped you move; you fixed my bike — let's call it even."
+    ]
+  },
+  {
+    "sentence": "\"Oops, wrong number.\" — \"No worries, my bad.\"",
+    "translation": "「哎呀，打错电话了。」——「没事，是我这边的错。」",
+    "chunks": ["\"Oops, wrong number.\"", "— \"No worries, my bad.\""],
+    "hints": ["哎呀，打错了", "没事，怪我没说清/我的失误"],
+    "grammar": [
+      {"role": "直接引语", "color": "#c87033", "phonetic": ["/uːps/", "/rɔːŋ/", "/ˈnʌmbər/"], "pos": "口语省略句", "meaning": "哎呀，打错了"},
+      {"role": "回应习语", "color": "#7c5cbf", "phonetic": ["/noʊ/", "/ˈwɜːriz/", "/maɪ/", "/bæd/"], "pos": "习语", "meaning": "没事，我的错"}
+    ],
+    "explanations": [
+      "**my bad**：美式青少年口语，轻量级「我的错/是我失误」。比 I'm sorry 随意，适合小失误，不用于重大道歉。",
+      "重大道歉要用 I apologize / I take full responsibility。例：— You sent the file to the wrong client. — My bad, I'll resend it now."
+    ]
+  },
+  {
+    "sentence": "Sorry to bother you, but do you have a minute?",
+    "translation": "抱歉打扰一下，你有空吗？",
+    "chunks": ["Sorry to bother you,", "but do you have a minute?"],
+    "hints": ["抱歉打扰你", "但你有空吗？"],
+    "grammar": [
+      {"role": "道歉句式", "color": "#e74c7a", "phonetic": ["/ˈsɑːri/", "/tə/", "/ˈbɑːðər/", "/juː/"], "pos": "道歉不定式", "meaning": "抱歉打扰你"},
+      {"role": "征询", "color": "#c87033", "phonetic": ["/bət/", "/duː/", "/juː/", "/hæv/", "/ə/", "/ˈmɪnɪt/"], "pos": "一般疑问句", "meaning": "但你有空吗"}
+    ],
+    "explanations": [
+      "**Sorry to bother you** 职场/日常万能开场白：礼貌地打断别人。bother = 打扰、添麻烦。回答：No problem / Not at all.",
+      "变体：Sorry to interrupt（打断别人说话时）/ Sorry for the trouble（事后致歉）。同义礼貌开场：Excuse me, do you have a second?"
+    ]
+  },
+  {
+    "sentence": "\"I got the scholarship!\" — \"Good for you!\"",
+    "translation": "「我拿到奖学金了！」——「真为你高兴！」",
+    "chunks": ["\"I got the scholarship!\"", "— \"Good for you!\""],
+    "hints": ["我拿到奖学金了", "真为你高兴（你真棒）"],
+    "grammar": [
+      {"role": "直接引语", "color": "#c87033", "phonetic": ["/aɪ/", "/ɡɑːt/", "/ðə/", "/ˈskɑːlərʃɪp/"], "pos": "主谓宾·引语", "meaning": "我拿到奖学金了"},
+      {"role": "回应习语", "color": "#7c5cbf", "phonetic": ["/ɡʊd/", "/fɔːr/", "/juː/"], "pos": "习语·祝贺", "meaning": "真为你高兴"}
+    ],
+    "explanations": [
+      "**Good for you!** 祝贺对方：真棒、为你高兴。注意重音在 you——若重音放 good 且拖长，可带酸味讽刺（『哦，了不起哦』），语气定褒贬。",
+      "真心祝贺更正式版：Congratulations! / I'm so happy for you! 例：— I finally finished the marathon. — Good for you!"
+    ]
+  },
+  {
+    "sentence": "If you love the job, just go for it.",
+    "translation": "你要是喜欢这份工作，就大胆去争取吧。",
+    "chunks": ["If you love the job,", "just go for it."],
+    "hints": ["如果你喜欢这份工作", "就大胆去争取吧"],
+    "grammar": [
+      {"role": "条件从句", "color": "#c87033", "phonetic": ["/ɪf/", "/juː/", "/lʌv/", "/ðə/", "/dʒɑːb/"], "pos": "if 条件句", "meaning": "如果你喜欢这工作"},
+      {"role": "祈使句", "color": "#7c5cbf", "phonetic": ["/dʒʌst/", "/ɡoʊ/", "/fɔːr/", "/ɪt/"], "pos": "动词习语·祈使", "meaning": "大胆去争取、勇敢尝试"}
+    ],
+    "explanations": [
+      "**go for it** 万能鼓励语：放手去做、勇敢争取、别犹豫。it 指代目标/机会。比 try it 更带冲劲。",
+      "例：— Should I apply for the manager position? — Of course, go for it! 近义：give it a shot / just do it."
+    ]
+  },
+  {
+    "sentence": "There are only five seats — it's first come, first served.",
+    "translation": "只有五个座位——先到先得。",
+    "chunks": ["There are only five seats", "— it's first come,", "first served."],
+    "hints": ["只有五个座位", "这是先到", "先得（先来先服务）"],
+    "grammar": [
+      {"role": "存在句", "color": "#c87033", "phonetic": ["/ðer/", "/ɑːr/", "/ˈoʊnli/", "/faɪv/", "/siːts/"], "pos": "there be 句型", "meaning": "只有五个座位"},
+      {"role": "谚语", "color": "#7c5cbf", "phonetic": ["/ɪts/", "/fɜːrst/", "/kʌm/"], "pos": "谚语·前半", "meaning": "先来的"},
+      {"role": "谚语", "color": "#7c5cbf", "phonetic": ["/fɜːrst/", "/sɜːrvd/"], "pos": "谚语·后半", "meaning": "先被服务（先到先得）"}
+    ],
+    "explanations": [
+      "**First come, first served.** 通用规则语：按到达顺序先到先得。served 严格语法应为被动 served，口语常说 serve。常见于售票、入场、抢座。",
+      "例：The free samples are first come, first served.（免费试吃先到先得。）祈使变体：First come, first serve!（招牌常用，语法略省。）"
+    ]
+  },
+  {
+    "sentence": "It's only a matter of time before the truth comes out.",
+    "translation": "真相大白只是时间问题。",
+    "chunks": ["It's only a matter of time", "before the truth comes out."],
+    "hints": ["这只是时间问题", "在真相大白之前"],
+    "grammar": [
+      {"role": "主系表", "color": "#7c5cbf", "phonetic": ["/ɪts/", "/ˈoʊnli/", "/ə/", "/ˈmætər/", "/əv/", "/taɪm/"], "pos": "习语·主系表", "meaning": "只是时间问题"},
+      {"role": "时间状语从句", "color": "#c87033", "phonetic": ["/bɪˈfɔːr/", "/ðə/", "/truːθ/", "/kʌmz/", "/aʊt/"], "pos": "before 从句", "meaning": "真相暴露之前"}
+    ],
+    "explanations": [
+      "**a matter of time**：某事必然发生，「只是早晚问题」。固定句式 It's only/just a matter of time before + 从句。",
+      "例：It's only a matter of time before they find out.（他们发现只是时间问题。）近义：it's inevitable / it's bound to happen."
+    ]
+  },
+  {
+    "sentence": "Where we eat tonight is up to you.",
+    "translation": "今晚去哪吃，由你决定。",
+    "chunks": ["Where we eat tonight", "is up to you."],
+    "hints": ["今晚我们吃什么", "由你决定"],
+    "grammar": [
+      {"role": "主语从句", "color": "#c87033", "phonetic": ["/wer/", "/wiː/", "/iːt/", "/təˈnaɪt/"], "pos": "where 主语从句", "meaning": "今晚我们去哪吃"},
+      {"role": "主系表", "color": "#7c5cbf", "phonetic": ["/ɪz/", "/ʌp/", "/tə/", "/juː/"], "pos": "习语·主系表", "meaning": "取决于你、由你定"}
+    ],
+    "explanations": [
+      "**up to you**：决定权交给你——「由你决定/看你」。固定搭配 it's up to you / it's up to sb。口语常单独成句：Up to you!",
+      "变体：It's your call.（你来拍板。）例：— Movie or dinner? — Up to you, I'm easy.（你定吧，我都行。）"
+    ]
+  },
+  {
+    "sentence": "\"Can you help me move this weekend?\" — \"You bet!\"",
+    "translation": "「这周末能帮我搬家吗？」——「当然可以！」",
+    "chunks": ["\"Can you help me move this weekend?\"", "— \"You bet!\""],
+    "hints": ["这周末你能帮我搬家吗", "当然！没问题！"],
+    "grammar": [
+      {"role": "直接引语", "color": "#c87033", "phonetic": ["/kæn/", "/juː/", "/help/", "/miː/", "/muːv/", "/ðɪs/", "/ˌwiːkˈend/"], "pos": "一般疑问句·引语", "meaning": "这周末能帮我搬家吗"},
+      {"role": "回应习语", "color": "#7c5cbf", "phonetic": ["/juː/", "/bet/"], "pos": "习语·肯定回答", "meaning": "当然、包在我身上"}
+    ],
+    "explanations": [
+      "**You bet!** 热情肯定：当然！没问题！字面『你可以打赌』。比 yes 更有劲儿，常见于答应帮忙或回应 thank you（不客气）。",
+      "近义：Absolutely! / Sure thing! 例：— Thanks for the ride. — You bet!（顺风车道谢后的自然回应。）"
+    ]
+  },
+  {
+    "sentence": "The car almost hit me — that was close!",
+    "translation": "那辆车差点撞上我——好险！",
+    "chunks": ["The car almost hit me", "— that was close!"],
+    "hints": ["车差点撞到我", "刚才好险！"],
+    "grammar": [
+      {"role": "主谓宾", "color": "#c87033", "phonetic": ["/ðə/", "/kɑːr/", "/ˈɔːlmoʊst/", "/hɪt/", "/miː/"], "pos": "主谓宾", "meaning": "车差点撞到我"},
+      {"role": "感叹习语", "color": "#7c5cbf", "phonetic": ["/ðæt/", "/wʌz/", "/kloʊs/"], "pos": "习语·感叹", "meaning": "好险、差一点就出事"}
+    ],
+    "explanations": [
+      "**That was close!** 劫后余生的感叹：差一点就出事/成功，「好险！/就差一点！」。close = 接近（危险或成败边缘）。",
+      "也用于体育、比赛险胜：That was close — we won by one point! 近义：That was a narrow escape."
+    ]
+  },
+  {
+    "sentence": "Keep your chin up — better days are coming.",
+    "translation": "抬起头来别气馁——好日子会来的。",
+    "chunks": ["Keep your chin up", "— better days are coming."],
+    "hints": ["别垂头丧气（抬起下巴）", "更好的日子就要来了"],
+    "grammar": [
+      {"role": "祈使句", "color": "#7c5cbf", "phonetic": ["/kiːp/", "/jɔːr/", "/tʃɪn/", "/ʌp/"], "pos": "习语·祈使", "meaning": "别气馁、振作点"},
+      {"role": "主谓", "color": "#c87033", "phonetic": ["/ˈbetər/", "/deɪz/", "/ɑːr/", "/ˈkʌmɪŋ/"], "pos": "现在进行表将来", "meaning": "好日子将至"}
+    ],
+    "explanations": [
+      "**keep your chin up** 安慰语：别垂头丧气、保持乐观。意象：下巴抬起来=不低头认输。常在朋友失意时说。",
+      "例：I know the interview went badly, but keep your chin up — there will be other chances. 近义：cheer up / stay positive."
+    ]
+  }
+]

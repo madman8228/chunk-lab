@@ -1,5 +1,9 @@
-/* 高频短语 · English Idioms（种子库 v1，103 句）
+/* 高频短语 · English Idioms（运行态 201 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
+ * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
+ *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
+ *   my bad / good for you / you bet，例句变体）；仅 you don't say 为库内缺词条，已单抽 batch6 注入（201）。
+ *   文件保留在 extra/ 供溯源，勿再整批注入（会撞 cid 校验）。
  * 形态：每个 idiom 嵌入一个完整例句（idiom 作为可填入的 chunk）—— 用户练习时实际填的是 idiom 短语本身。
  * Schema 与 oral8000.js 完全一致：
  *   { sentence, cid, translation, chunks[2-5], hints[], grammar[{role,color,phonetic,pos,meaning}], explanations[] }
@@ -2485,6 +2489,615 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have nothing to lose** 表示「豁出去了/没什么可失去的」，常给犹豫的人壮胆，也形容已经跌到谷底无后顾之忧。",
       "例句：Ask her out — you have nothing to lose."
+    ]
+  }
+,
+  {
+    sentence: "You've been working all day — take it easy tonight.",
+    cid: fnv8("You've been working all day — take it easy tonight."),
+    translation: "你今天忙了一整天，今晚好好歇歇。",
+    chunks: ["You've been working all day —","take it easy","tonight."],
+    hints: ["你今天一直忙","放轻松","今晚"],
+    grammar: [
+      {role:"现在完成进行时", color:"#c87033", phonetic:["/juːv/","/bɪn/","/ˈwɜːrkɪŋ/","/ɔːl/","/deɪ/"], pos:"现在完成进行时", meaning:"你已经忙了一整天"},
+      {role:"习语·劝告", color:"#7c5cbf", phonetic:["/teɪk/","/ɪt/","/ˈiːzi/"], pos:"习语·放轻松", meaning:"放松点、悠着点"},
+      {role:"时间状语", color:"#3358e0", phonetic:["/təˈnaɪt/"], pos:"时间状语", meaning:"今晚"}
+    ],
+    explanations: [
+      "**take it easy** 意为「放轻松/悠着点」，既是日常安慰也是建议。比 relax 更主动。",
+      "近义：chill out / don't push yourself。例句：Take it easy — there's no rush."
+    ]
+  },
+  {
+    sentence: "\"Work fewer hours?\" — \"Easy for you to say!\"",
+    cid: fnv8("\"Work fewer hours?\" — \"Easy for you to say!\""),
+    translation: "「少加点班？」「你说得倒轻巧！",
+    chunks: ["\"Work fewer hours?\" —","\"Easy for you to say!\""],
+    hints: ["少加点班","你说得倒轻巧（讽刺）"],
+    grammar: [
+      {role:"问句引用", color:"#c87033", phonetic:["/wɜːrk/","/ˈfiːjər/","/ˈaʊərz/"], pos:"祈使句引述", meaning:"少加一点班？"},
+      {role:"口语习语", color:"#7c5cbf", phonetic:["/ˈiːzi/","/fər/","/juː/","/tə/","/seɪ/"], pos:"习语·反讽", meaning:"你说得倒轻巧"}
+    ],
+    explanations: [
+      "**easy for you to say** 对方站着说话不腰疼时的常用回应：「你倒说得轻松」，含反讽/抱怨。",
+      "例句：— Just save more money! — Easy for you to say, with your fancy job."
+    ]
+  },
+  {
+    sentence: "You can argue, but at the end of the day it's my call.",
+    cid: fnv8("You can argue, but at the end of the day it's my call."),
+    translation: "你可以争，但说到底还是我说了算。",
+    chunks: ["You can argue, but","at the end of the day","it's my call."],
+    hints: ["你可以争辩但","说到底","还是我说了算"],
+    grammar: [
+      {role:"让步状语", color:"#c87033", phonetic:["/juː/","/kæn/","/ˈɑːrɡjuː/","/bʌt/"], pos:"让步转折", meaning:"你可以争辩，但"},
+      {role:"习语·状语", color:"#7c5cbf", phonetic:["/æt/","/ðiː/","/end/","/əv/","/ðə/","/deɪ/"], pos:"习语·归根到底", meaning:"说到底、归根结底"},
+      {role:"主系表", color:"#3358e0", phonetic:["/ɪts/","/maɪ/","/kɔːl/"], pos:"主系表", meaning:"还是由我决定"}
+    ],
+    explanations: [
+      "**at the end of the day** 总结用语「说到底、归根结底」，把争论拉回本质。",
+      "近义：when all is said and done / ultimately。例句：At the end of the day, the customer is always right."
+    ]
+  },
+  {
+    sentence: "Have it your way — I'm done arguing with you.",
+    cid: fnv8("Have it your way — I'm done arguing with you."),
+    translation: "随你吧，我懒得跟你吵了。",
+    chunks: ["Have it your way —","I'm done arguing with you."],
+    hints: ["随你便/依你","我不想再跟你争了"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/hæv/","/ɪt/","/jʊr/","/weɪ/"], pos:"习语·随你", meaning:"按你的方式/随你便"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪm/","/dʌn/","/ˈɑːrɡjuːɪŋ/","/wɪð/","/juː/"], pos:"现在时·表完成", meaning:"我不想再和你争了"}
+    ],
+    explanations: [
+      "**have it your way** = suit yourself 升级版「随你吧/随你的便」，常带无奈放弃争论的语气。",
+      "例句：— Let's order pizza. — Fine, have it your way."
+    ]
+  },
+  {
+    sentence: "What's the matter — you look upset?",
+    cid: fnv8("What's the matter — you look upset?"),
+    translation: "怎么了，你看起来不开心？",
+    chunks: ["What's the matter —","you look upset?"],
+    hints: ["怎么了","你看起来心情不好"],
+    grammar: [
+      {role:"习语·问句", color:"#7c5cbf", phonetic:["/wʌts/","/ðə/","/ˈmætər/"], pos:"习语·询问状况", meaning:"怎么了"},
+      {role:"主系表", color:"#c87033", phonetic:["/juː/","/lʊk/","/ʌpˈset/"], pos:"主系表", meaning:"你看起来不开心"}
+    ],
+    explanations: [
+      "**what's the matter** 表关心：「出什么事了/怎么了」，朋友发现你情绪不对时的开场。",
+      "近义：what's wrong / what's up。例句：— What's the matter, honey? — Nothing, just tired."
+    ]
+  },
+  {
+    sentence: "He's good for nothing — never finishes a single task.",
+    cid: fnv8("He's good for nothing — never finishes a single task."),
+    translation: "他一点用没有，从来没完成过一件事。",
+    chunks: ["He's good for nothing —","never finishes a single task."],
+    hints: ["他一点用都没有","从来没完成过一件事"],
+    grammar: [
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/hiːz/","/ɡʊd/","/fər/","/ˈnʌθɪŋ/"], pos:"习语·无用", meaning:"他毫无用处"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/ˈnevər/","/ˈfɪnɪʃɪz/","/ə/","/ˈsɪŋɡl/","/tæsk/"], pos:"一般现在时", meaning:"他从未完成过任何一件任务"}
+    ],
+    explanations: [
+      "**good for nothing** 形容人「一无是处/没用的」，语气较重，慎用避免伤人。",
+      "近义：useless / worthless。例句：This old phone is good for nothing — time to recycle it."
+    ]
+  },
+  {
+    sentence: "Show some respect — that's your father you're talking to.",
+    cid: fnv8("Show some respect — that's your father you're talking to."),
+    translation: "放尊重点，你在跟你爸说话呢。",
+    chunks: ["Show some respect —","that's your father you're talking to."],
+    hints: ["有点尊重（命令）","那是你爸在跟你说话"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ʃoʊ/","/sʌm/","/rɪˈspekt/"], pos:"习语·命令尊重", meaning:"放尊重点"},
+      {role:"主系表+定语", color:"#c87033", phonetic:["/ðæts/","/jʊr/","/ˈfɑːðər/","/jʊr/","/ˈtɔːkɪŋ/","/tə/"], pos:"定语从句", meaning:"那是你的父亲在跟你说话"}
+    ],
+    explanations: [
+      "**show some respect** 是长辈/上级对不敬者的警告：「放尊重点」，语气直接。",
+      "例句：Show some respect when the flag is passing by."
+    ]
+  },
+  {
+    sentence: "Don't get involved — it's not your business.",
+    cid: fnv8("Don't get involved — it's not your business."),
+    translation: "别掺和了，这不关你的事。",
+    chunks: ["Don't get involved —","it's not your business."],
+    hints: ["别掺和进来","这不关你的事"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/ɡet/","/ɪnˈvɑːlvd/"], pos:"习语·阻止参与", meaning:"别掺和进来"},
+      {role:"主系表", color:"#c87033", phonetic:["/ɪts/","/nɑːt/","/jʊr/","/ˈbɪznəs/"], pos:"否定主系表", meaning:"这不关你的事"}
+    ],
+    explanations: [
+      "**get involved** 指「参与、卷进」。don't get involved 是劝人别趟浑水的常用建议。",
+      "近义：stay out of it / mind your own business。例句：Don't get involved in office gossip — it never ends well."
+    ]
+  },
+  {
+    sentence: "\"Thanks for helping!\" — \"Don't mention it.\"",
+    cid: fnv8("\"Thanks for helping!\" — \"Don't mention it.\""),
+    translation: "「谢谢你帮忙！」「别提了（不客气）。",
+    chunks: ["\"Thanks for helping!\" —","\"Don't mention it.\""],
+    hints: ["谢谢你的帮助","别客气（不客气）"],
+    grammar: [
+      {role:"致谢", color:"#c87033", phonetic:["/θæŋks/","/fər/","/ˈhelpɪŋ/"], pos:"致谢", meaning:"谢谢你帮忙"},
+      {role:"口语习语", color:"#7c5cbf", phonetic:["/doʊnt/","/ˈmenʃən/","/ɪt/"], pos:"习语·客套回应", meaning:"不客气、别放在心上"}
+    ],
+    explanations: [
+      "**don't mention it** 是回应致谢的客套话，等于 You're welcome，比 no problem 更正式。",
+      "近义：not at all / my pleasure。例句：— I appreciate the help. — Don't mention it, that's what friends are for."
+    ]
+  },
+  {
+    sentence: "How have you been since you moved to Berlin?",
+    cid: fnv8("How have you been since you moved to Berlin?"),
+    translation: "搬到柏林以来你过得怎么样？",
+    chunks: ["How have you been","since you moved to Berlin?"],
+    hints: ["你过得怎么样","自从你搬到柏林以来"],
+    grammar: [
+      {role:"特殊疑问句", color:"#7c5cbf", phonetic:["/haʊ/","/hæv/","/juː/","/bɪn/"], pos:"现在完成时提问", meaning:"你过得如何"},
+      {role:"时间状语从句", color:"#c87033", phonetic:["/sɪns/","/juː/","/muːvd/","/tə/","/bɜːrˈlɪn/"], pos:"时间状语从句", meaning:"自从你搬到柏林以来"}
+    ],
+    explanations: [
+      "**How have you been** 是久未见面时的寒暄开场，比 how are you 更关切对方近期情况。",
+      "回答：Pretty good / Same as usual / Been better. 例句：— How have you been? — Same old, same old."
+    ]
+  },
+  {
+    sentence: "Keep in touch — I want to know how you're doing.",
+    cid: fnv8("Keep in touch — I want to know how you're doing."),
+    translation: "保持联系，我想知道你的近况。",
+    chunks: ["Keep in touch —","I want to know how you're doing."],
+    hints: ["保持联系","我想了解你过得怎样"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/kiːp/","/ɪn/","/tʌtʃ/"], pos:"习语·保持联系", meaning:"保持联系"},
+      {role:"宾语从句", color:"#c87033", phonetic:["/aɪ/","/wɑːnt/","/tə/","/noʊ/","/haʊ/","/jʊr/","/ˈduːɪŋ/"], pos:"宾语从句", meaning:"我想知道你过得怎么样"}
+    ],
+    explanations: [
+      "**keep in touch** 告别或社交媒体互动时的标准客套：「保持联系」，结束对话或更新动态时高频。",
+      "近义：stay in touch / keep me posted（保持更新）。例句：Keep in touch — and send me photos from the trip!"
+    ]
+  },
+  {
+    sentence: "You're ready — go for it!",
+    cid: fnv8("You're ready — go for it!"),
+    translation: "你准备好了，去争取吧！",
+    chunks: ["You're ready —","go for it!"],
+    hints: ["你准备好了","去争取吧/全力以赴"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/ˈredi/"], pos:"主系表", meaning:"你准备好了"},
+      {role:"口语习语", color:"#7c5cbf", phonetic:["/ɡoʊ/","/fər/","/ɪt/"], pos:"习语·鼓励争取", meaning:"放手去做、争取吧"}
+    ],
+    explanations: [
+      "**go for it** 是「放手一搏/去争取」的口语鼓励，常见于比赛/面试/追求等场景。",
+      "近义：go ahead / give it a shot。例句：Apply for the scholarship — just go for it."
+    ]
+  },
+  {
+    sentence: "Can you give me a ride to the airport tomorrow?",
+    cid: fnv8("Can you give me a ride to the airport tomorrow?"),
+    translation: "明天能顺路载我去机场吗？",
+    chunks: ["Can you","give me a ride","to the airport tomorrow?"],
+    hints: ["能","载我一程","明天去机场"],
+    grammar: [
+      {role:"助动词", color:"#3358e0", phonetic:["/kæn/","/juː/"], pos:"情态动词", meaning:"你能"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/ɡɪv/","/miː/","/ə/","/raɪd/"], pos:"习语·搭车", meaning:"载我一程"},
+      {role:"介词短语", color:"#c87033", phonetic:["/tə/","/ðiː/","/ˈerpɔːrt/","/təˈmɑːroʊ/"], pos:"介词短语", meaning:"明天去机场"}
+    ],
+    explanations: [
+      "**give me a ride** 是请求搭车的标准说法，比 drive me 更礼貌、更口语。",
+      "近义：give me a lift / take me to…。例句：If you're heading downtown, can you give me a lift?"
+    ]
+  },
+  {
+    sentence: "Give me a minute — I'll be right back.",
+    cid: fnv8("Give me a minute — I'll be right back."),
+    translation: "给我一分钟，我马上回来。",
+    chunks: ["Give me a minute —","I'll be right back."],
+    hints: ["给我一分钟","我马上回来"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡɪv/","/miː/","/ə/","/ˈmɪnɪt/"], pos:"习语·稍候", meaning:"给我一分钟"},
+      {role:"主系表", color:"#c87033", phonetic:["/aɪl/","/biː/","/raɪt/","/bæk/"], pos:"将来时·短语", meaning:"我马上回来"}
+    ],
+    explanations: [
+      "**give me a minute** 是请求别人「等一会儿」，立刻回来时用。比 just a minute 多了「我保证只等一分钟」的意味。",
+      "近义：hold on / hang on。例句：Give me a minute, the file is downloading."
+    ]
+  },
+  {
+    sentence: "I'm looking forward to seeing you this weekend.",
+    cid: fnv8("I'm looking forward to seeing you this weekend."),
+    translation: "我盼着这个周末见到你。",
+    chunks: ["I'm looking forward to","seeing you this weekend."],
+    hints: ["我期盼着","这个周末见到你"],
+    grammar: [
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪm/","/ˈlʊkɪŋ/","/ˈfɔːrwərd/","/tə/"], pos:"习语·期待", meaning:"我期盼"},
+      {role:"动名词宾语", color:"#c87033", phonetic:["/ˈsiːɪŋ/","/juː/","/ðɪs/","/ˈwiːkˌend/"], pos:"动名词短语", meaning:"这个周末见到你"}
+    ],
+    explanations: [
+      "**look forward to** 是「期待/盼着」，to 是介词（不是不定式），后接名词或动名词。最常用于信末/邮件结尾。",
+      "例句：I look forward to hearing from you soon.（盼望尽快回复）"
+    ]
+  },
+  {
+    sentence: "Have a good time at the concert — say hi to the band!",
+    cid: fnv8("Have a good time at the concert — say hi to the band!"),
+    translation: "演唱会玩得开心，替我跟乐队问好！",
+    chunks: ["Have a good time","at the concert —","say hi to the band!"],
+    hints: ["祝你玩得开心","演唱会","替我跟乐队问好"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/hæv/","/ə/","/ɡʊd/","/taɪm/"], pos:"习语·告别祝福", meaning:"玩得开心"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/æt/","/ðə/","/ˈkɑːnsərt/"], pos:"介词短语", meaning:"演唱会上"},
+      {role:"习语·祈使", color:"#c87033", phonetic:["/seɪ/","/haɪ/","/tə/","/ðə/","/bænd/"], pos:"习语·问好", meaning:"替我跟乐队问好"}
+    ],
+    explanations: [
+      "**have a good time** 是告别时的标准祝福「玩得开心」。**say hi to sb** 是「替我向某人问好」。",
+      "例句：Have a good time at the party! Say hi to everyone for me."
+    ]
+  },
+  {
+    sentence: "Get well soon — the whole team misses you.",
+    cid: fnv8("Get well soon — the whole team misses you."),
+    translation: "快点好起来，整个团队都惦记你。",
+    chunks: ["Get well soon —","the whole team misses you."],
+    hints: ["快点好起来","整个团队都惦记你"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡet/","/wel/","/suːn/"], pos:"习语·康复祝福", meaning:"愿你早日康复"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/ðə/","/hoʊl/","/tiːm/","/ˈmɪsɪz/","/juː/"], pos:"一般现在时", meaning:"整个团队都惦记着你"}
+    ],
+    explanations: [
+      "**get well soon** 是同事/朋友生病时的标准祝福，可送花/卡片/邮件都用。",
+      "例句：Get well soon — let me know if you need anything."
+    ]
+  },
+  {
+    sentence: "Don't take it for granted — not everyone gets a second chance.",
+    cid: fnv8("Don't take it for granted — not everyone gets a second chance."),
+    translation: "别把这当成理所当然，不是谁都再有第二次机会的。",
+    chunks: ["Don't take it for granted —","not everyone gets a second chance."],
+    hints: ["别想当然","不是谁都再有第二次机会"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/teɪk/","/ɪt/","/fər/","/ˈɡræntɪd/"], pos:"习语·视作理所当然", meaning:"别想当然地认为"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/nɑːt/","/ˈevriwʌn/","/ɡets/","/ə/","/ˈsekənd/","/tʃæns/"], pos:"一般现在时", meaning:"不是每个人都能获得第二次机会"}
+    ],
+    explanations: [
+      "**take ... for granted** 是「把…当成理所当然/不珍惜」，父母对孩子、伴侣对关心时常用。",
+      "例句：She took her assistant's hard work for granted — until she quit."
+    ]
+  },
+  {
+    sentence: "Could I have a word with you in private?",
+    cid: fnv8("Could I have a word with you in private?"),
+    translation: "能跟你单独说两句吗？",
+    chunks: ["Could I","have a word with you","in private?"],
+    hints: ["我能","跟你单独说几句","私下里"],
+    grammar: [
+      {role:"情态动词", color:"#3358e0", phonetic:["/kʊd/","/aɪ/"], pos:"情态动词", meaning:"我能"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/hæv/","/ə/","/wɜːrd/","/wɪð/","/juː/"], pos:"习语·私下谈", meaning:"私下跟你谈几句"},
+      {role:"状语", color:"#c87033", phonetic:["/ɪn/","/ˈpraɪvət/"], pos:"介词短语", meaning:"私下地"}
+    ],
+    explanations: [
+      "**have a word with** 是「私下谈几句」，比 talk to 更含蓄有礼，常用于请人离开公众场合。",
+      "近义：speak privately / have a quick chat。例句：Do you have a minute? I'd like to have a word with you."
+    ]
+  },
+  {
+    sentence: "I'll cover the tip — it's a deal!",
+    cid: fnv8("I'll cover the tip — it's a deal!"),
+    translation: "小费我出，就这么定了！",
+    chunks: ["I'll cover the tip —","it's a deal!"],
+    hints: ["小费我出","就这么定了"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪl/","/ˈkʌvər/","/ðə/","/tɪp/"], pos:"将来时", meaning:"小费我来付"},
+      {role:"口语习语", color:"#7c5cbf", phonetic:["/ɪts/","/ə/","/diːl/"], pos:"习语·达成协议", meaning:"就这么定了"}
+    ],
+    explanations: [
+      "**it's a deal** 是「成交/就这么定了」的口语承诺，商务/朋友间握手成交都可用。",
+      "近义：deal! / done! / you got it!。例句：— I'll do the dishes tonight. — It's a deal."
+    ]
+  },
+  {
+    sentence: "You ate the last slice, and now you owe me.",
+    cid: fnv8("You ate the last slice, and now you owe me."),
+    translation: "你吃掉了最后一片，你欠我一份。",
+    chunks: ["You ate the last slice,","and now you owe me."],
+    hints: ["你吃掉了最后一片","现在你欠我一份"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/eɪt/","/ðə/","/læst/","/slaɪs/"], pos:"过去时", meaning:"你吃掉了最后一片"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/ænd/","/naʊ/","/juː/","/oʊ/","/miː/"], pos:"习语·欠债", meaning:"现在你欠我"}
+    ],
+    explanations: [
+      "**you owe me** 字面「你欠我」，引申「你欠我一个交代/一个回应」，可用于朋友间要说法、调侃。",
+      "例句：You ruined my favorite mug — you owe me!"
+    ]
+  },
+  {
+    sentence: "We have pasta, salad, soup — you name it, we've got it.",
+    cid: fnv8("We have pasta, salad, soup — you name it, we've got it."),
+    translation: "我们有意大利面、沙拉、汤——你要什么有什么。",
+    chunks: ["We have pasta, salad, soup —","you name it,","we've got it."],
+    hints: ["我们有面、沙拉、汤","随你点名","我们都有"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/wiː/","/hæv/","/ˈpæstə/","/ˈsæləd/","/suːp/"], pos:"一般现在时", meaning:"我们有面、沙拉、汤"},
+      {role:"习语·从句", color:"#7c5cbf", phonetic:["/juː/","/neɪm/","/ɪt/"], pos:"习语·列举", meaning:"随便你点（能想到的都有）"},
+      {role:"主谓宾", color:"#3358e0", phonetic:["/wiːv/","/ɡɑːt/","/ɪt/"], pos:"完成时·短语", meaning:"我们都有"}
+    ],
+    explanations: [
+      "**you name it** 是「随便你说/你能想到的都有」，表货源丰富、应有尽有。",
+      "近义：and then some / you name it, we have it。例句：We sell anything — you name it."
+    ]
+  },
+  {
+    sentence: "Don't bother — I'll do it myself.",
+    cid: fnv8("Don't bother — I'll do it myself."),
+    translation: "别操心了，我自己来。",
+    chunks: ["Don't bother —","I'll do it myself."],
+    hints: ["别费心/别麻烦","我自己做就行"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/ˈbɑːðər/"], pos:"习语·阻止对方", meaning:"别费心了（不用你）"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪl/","/duː/","/ɪt/","/maɪˈself/"], pos:"将来时·反身代词", meaning:"我自己来"}
+    ],
+    explanations: [
+      "**don't bother** 拒绝别人帮忙：「不用麻烦你了」，礼貌地接手或拒绝。",
+      "近义：no worries / don't trouble yourself。例句：— Can I help with the dishes? — Don't bother, I've got it."
+    ]
+  },
+  {
+    sentence: "Look out — there's a car coming!",
+    cid: fnv8("Look out — there's a car coming!"),
+    translation: "当心，有车来了！",
+    chunks: ["Look out —","there's a car coming!"],
+    hints: ["当心/小心","有车开过来了"],
+    grammar: [
+      {role:"习语·警告", color:"#7c5cbf", phonetic:["/lʊk/","/aʊt/"], pos:"习语·危险警告", meaning:"当心！注意！"},
+      {role:"存在句+现在分词", color:"#c87033", phonetic:["/ðerz/","/ə/","/kɑːr/","/ˈkʌmɪŋ/"], pos:"存在句+现在分词", meaning:"有辆车开过来了"}
+    ],
+    explanations: [
+      "**look out!** 是危险预警「当心」，紧急程度高于 watch out，比 be careful 紧迫。",
+      "近义：watch out / heads up。例句：Look out! The stove is hot!"
+    ]
+  },
+  {
+    sentence: "Watch out — the floor is slippery.",
+    cid: fnv8("Watch out — the floor is slippery."),
+    translation: "小心，地滑。",
+    chunks: ["Watch out —","the floor is slippery."],
+    hints: ["当心","地面滑"],
+    grammar: [
+      {role:"习语·警告", color:"#7c5cbf", phonetic:["/wɑːtʃ/","/aʊt/"], pos:"习语·提醒", meaning:"小心、当心"},
+      {role:"主系表", color:"#c87033", phonetic:["/ðə/","/flɔːr/","/ɪz/","/ˈslɪpəri/"], pos:"主系表", meaning:"地面湿滑"}
+    ],
+    explanations: [
+      "**watch out** 是日常提醒「小心」，比 look out 语气弱，更接近注意/留神。",
+      "近义：be careful / mind your step。例句：Watch out for the step down — it's hard to see."
+    ]
+  },
+  {
+    sentence: "I need to know your decision — just say the word.",
+    cid: fnv8("I need to know your decision — just say the word."),
+    translation: "我需要知道你的决定，你开口就行。",
+    chunks: ["I need to know your decision —","just say the word."],
+    hints: ["我需要知道你的决定","你一句话的事（随时告诉我）"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/niːd/","/tə/","/noʊ/","/jʊr/","/dɪˈsɪʒən/"], pos:"need to+动词", meaning:"我需要知道你的决定"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/dʒʌst/","/seɪ/","/ðə/","/wɜːrd/"], pos:"习语·随时开口", meaning:"一句话就行，随时开口"}
+    ],
+    explanations: [
+      "**say the word** = just let me know「随时说一声就行」，表示只要你开口我就行动。",
+      "例句：If you need help moving, just say the word."
+    ]
+  },
+  {
+    sentence: "Don't worry about the kids — leave it to me.",
+    cid: fnv8("Don't worry about the kids — leave it to me."),
+    translation: "孩子们交给我来照顾，你不用操心。",
+    chunks: ["Don't worry about the kids —","leave it to me."],
+    hints: ["别担心孩子","交给我就行"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/doʊnt/","/ˈwɜːri/","/əˈbaʊt/","/ðə/","/kɪdz/"], pos:"祈使句", meaning:"别担心孩子们"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/liːv/","/ɪt/","/tə/","/miː/"], pos:"习语·交给我办", meaning:"交给我就行"}
+    ],
+    explanations: [
+      "**leave it to me** 是承接任务的承诺：「交给我/包在我身上」，比 I'll do it 更有担当。",
+      "近义：consider it done / I'll handle it。例句：— Who will close the deal? — Leave it to me."
+    ]
+  },
+  {
+    sentence: "Mind your own business — I'm fine on my own.",
+    cid: fnv8("Mind your own business — I'm fine on my own."),
+    translation: "管好你自己的事，我自己一个人能行。",
+    chunks: ["Mind your own business —","I'm fine on my own."],
+    hints: ["管好你自己的事","我一个人挺好"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/maɪnd/","/jʊr/","/oʊn/","/ˈbɪznəs/"], pos:"习语·别管闲事", meaning:"管好你自己的事"},
+      {role:"主系表", color:"#c87033", phonetic:["/aɪm/","/faɪn/","/ɑːn/","/maɪ/","/oʊn/"], pos:"主系表", meaning:"我一个人能行"}
+    ],
+    explanations: [
+      "**mind your own business** 是被多管闲事时的标准回击：「管好你自己」，态度明确。",
+      "近义：stay out of it / it's none of your business。例句：Mind your own business, or I'll mind it for you."
+    ]
+  },
+  {
+    sentence: "Come on, we're going to be late for the movie.",
+    cid: fnv8("Come on, we're going to be late for the movie."),
+    translation: "快点儿，电影要迟到了。",
+    chunks: ["Come on,","we're going to be late for the movie."],
+    hints: ["快点/拜托","我们看电影要迟到了"],
+    grammar: [
+      {role:"口语习语", color:"#7c5cbf", phonetic:["/kʌm/","/ɑːn/"], pos:"习语·催促鼓励", meaning:"快点/来吧/得了吧"},
+      {role:"主系表", color:"#c87033", phonetic:["/wɪr/","/ˈɡoʊɪŋ/","/tə/","/biː/","/leɪt/","/fər/","/ðə/","/ˈmuːvi/"], pos:"将来时·短语", meaning:"看电影要迟到了"}
+    ],
+    explanations: [
+      "**come on** 多功能：催促「快点/得啦」+ 鼓励「加油」+ 不信「得了吧」。",
+      "例句：Come on, you can do it! I believe in you."
+    ]
+  },
+  {
+    sentence: "Let me see — I think we have the file on the server.",
+    cid: fnv8("Let me see — I think we have the file on the server."),
+    translation: "我看看，我想我们服务器上应该有那个文件。",
+    chunks: ["Let me see —","I think we have the file on the server."],
+    hints: ["让我看看","我想服务器上应该有那文件"],
+    grammar: [
+      {role:"习语·插入", color:"#7c5cbf", phonetic:["/let/","/miː/","/siː/"], pos:"习语·稍作思考", meaning:"让我想想/看看"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/θɪŋk/","/wiː/","/hæv/","/ðə/","/faɪl/","/ɑːn/","/ðə/","/ˈsɜːrvər/"], pos:"主谓宾·状语", meaning:"我想服务器上应该有这个文件"}
+    ],
+    explanations: [
+      "**let me see** = let me check「让我看看/让我查查」，回应对方需求前先确认的过渡语。",
+      "近义：let me think / let me check。例句：— What's the WiFi password? — Let me see... it's on the fridge."
+    ]
+  },
+  {
+    sentence: "I see — you're telling me you want to quit your job.",
+    cid: fnv8("I see — you're telling me you want to quit your job."),
+    translation: "我明白了，你是告诉我你想辞职。",
+    chunks: ["I see —","you're telling me you want to quit your job."],
+    hints: ["我明白了","你跟我说你想辞职"],
+    grammar: [
+      {role:"习语·表态", color:"#7c5cbf", phonetic:["/aɪ/","/siː/"], pos:"习语·理解", meaning:"我明白"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/jʊr/","/ˈtelɪŋ/","/miː/","/juː/","/wɑːnt/","/tə/","/kwɪt/","/jʊr/","/dʒɑːb/"], pos:"现在进行时", meaning:"你在跟我说你想辞职"}
+    ],
+    explanations: [
+      "**I see** 是「我明白了/我懂了」，比 I understand 更口语。对方解释事情时的回应高频。",
+      "近义：got it / understood。例句：— It's a rental car, not ours. — I see, makes sense."
+    ]
+  },
+  {
+    sentence: "I get it — you don't want to talk about it right now.",
+    cid: fnv8("I get it — you don't want to talk about it right now."),
+    translation: "我懂了，你现在不想聊这个。",
+    chunks: ["I get it —","you don't want to talk about it right now."],
+    hints: ["我懂了","你现在不想谈这个"],
+    grammar: [
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/ɡet/","/ɪt/"], pos:"习语·理解", meaning:"我懂了/我明白"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/doʊnt/","/wɑːnt/","/tə/","/tɔːk/","/əˈbaʊt/","/ɪt/","/raɪt/","/naʊ/"], pos:"否定陈述", meaning:"你现在不想谈这件事"}
+    ],
+    explanations: [
+      "**I get it** 跟 I see 同意，但 get it 更有「完全理解/同感」意味，朋友间宽慰对方常用。",
+      "例句：— I'm so tired I could sleep for a week. — I get it. Take a break."
+    ]
+  },
+  {
+    sentence: "Not really — I just ate before I came over.",
+    cid: fnv8("Not really — I just ate before I came over."),
+    translation: "不客气了，我出门前刚吃过。",
+    chunks: ["Not really —","I just ate before I came over."],
+    hints: ["不用了/真的不用","我过来之前刚吃过"],
+    grammar: [
+      {role:"习语·婉拒", color:"#7c5cbf", phonetic:["/nɑːt/","/ˈriːəli/"], pos:"习语·婉转拒绝", meaning:"真不用/没有（礼貌推辞）"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/dʒʌst/","/eɪt/","/bɪˈfɔːr/","/aɪ/","/keɪm/","/ˈoʊvər/"], pos:"过去时", meaning:"我过来之前刚吃过"}
+    ],
+    explanations: [
+      "**not really** 礼貌婉拒：「不必了/没有吧」，比 no 更温和，不会让对方下不来台。",
+      "近义：I'm good / no thanks。例句：— Want more coffee? — Not really, but thanks."
+    ]
+  },
+  {
+    sentence: "We're leaving tomorrow — not yet tonight.",
+    cid: fnv8("We're leaving tomorrow — not yet tonight."),
+    translation: "我们明天走，今晚还没走。",
+    chunks: ["We're leaving tomorrow —","not yet tonight."],
+    hints: ["我们明天出发","今晚还没呢"],
+    grammar: [
+      {role:"主谓+时间", color:"#c87033", phonetic:["/wɪr/","/ˈliːvɪŋ/","/təˈmɑːroʊ/"], pos:"现在进行时表将来", meaning:"我们明天走"},
+      {role:"习语·状语", color:"#7c5cbf", phonetic:["/nɑːt/","/jet/","/təˈnaɪt/"], pos:"习语·否定现在", meaning:"现在还没呢"}
+    ],
+    explanations: [
+      "**not yet** 表示「还没」，对 now? / ready? 这类当下问题的回答。",
+      "例句：— Are you packed for the trip? — Not yet, I'll do it in the morning."
+    ]
+  },
+  {
+    sentence: "Not much, just catching up on some emails.",
+    cid: fnv8("Not much, just catching up on some emails."),
+    translation: "没什么，就是赶赶邮件。",
+    chunks: ["Not much,","just catching up on some emails."],
+    hints: ["没什么","就是赶赶邮件"],
+    grammar: [
+      {role:"习语·回应", color:"#7c5cbf", phonetic:["/nɑːt/","/mʌtʃ/"], pos:"习语·寒暄回应", meaning:"没什么特别的"},
+      {role:"动名词短语", color:"#c87033", phonetic:["/dʒʌst/","/ˈkætʃɪŋ/","/ʌp/","/ɑːn/","/sʌm/","/ˈiːmeɪlz/"], pos:"现在分词短语", meaning:"只是补补邮件"}
+    ],
+    explanations: [
+      "**not much** 是 What's up / What's new 的标准回应：「没啥特别的」。**catch up on** = 补上落下的工作。",
+      "例句：— What are you up to? — Not much, just catching up on some paperwork."
+    ]
+  },
+  {
+    sentence: "It's now or never — grab the chance!",
+    cid: fnv8("It's now or never — grab the chance!"),
+    translation: "机不可失时不再来，抓住机会！",
+    chunks: ["It's now or never —","grab the chance!"],
+    hints: ["要么现在要么永远没了","抓住机会"],
+    grammar: [
+      {role:"习语·主系表", color:"#7c5cbf", phonetic:["/ɪts/","/naʊ/","/ɔːr/","/ˈnevər/"], pos:"习语·关键时机", meaning:"这是要么现在要么永远没有"},
+      {role:"祈使句", color:"#c87033", phonetic:["/ɡræb/","/ðə/","/tʃæns/"], pos:"祈使句·短语动词", meaning:"抓住机会"}
+    ],
+    explanations: [
+      "**now or never** 是「机不可失/要就要现在」，怂恿对方做决定的强力口号。",
+      "近义：seize the day。例句：Apply now — it's now or never!"
+    ]
+  },
+  {
+    sentence: "I have no idea where he went after the party.",
+    cid: fnv8("I have no idea where he went after the party."),
+    translation: "我完全不知道派对后他去了哪。",
+    chunks: ["I have no idea","where he went after the party."],
+    hints: ["我完全不知道","他派对后去了哪"],
+    grammar: [
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/hæv/","/noʊ/","/aɪˈdɪə/"], pos:"习语·不知道", meaning:"我完全不知道"},
+      {role:"宾语从句", color:"#c87033", phonetic:["/wer/","/hiː/","/went/","/ˈæftər/","/ðə/","/ˈpɑːrti/"], pos:"过去时", meaning:"他派对后去了哪里"}
+    ],
+    explanations: [
+      "**have no idea** 是「完全不知道」，比 don't know 语气更强（确实不知道而非不想说）。",
+      "近义：have no clue / haven't got a clue。例句：— Where's my passport? — No idea, have you checked your bag?"
+    ]
+  },
+  {
+    sentence: "I'm just kidding — don't take it seriously.",
+    cid: fnv8("I'm just kidding — don't take it seriously."),
+    translation: "我开玩笑呢，别当真。",
+    chunks: ["I'm just kidding —","don't take it seriously."],
+    hints: ["我开玩笑呢","别当真"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪm/","/dʒʌst/","/ˈkɪdɪŋ/"], pos:"现在进行时", meaning:"我只是开玩笑"},
+      {role:"祈使句", color:"#7c5cbf", phonetic:["/doʊnt/","/teɪk/","/ɪt/","/ˈsɪriəsli/"], pos:"习语·别当真", meaning:"别把这话当真"}
+    ],
+    explanations: [
+      "**just kidding** 是「开玩笑/逗你玩」，玩笑过头或朋友误会时立刻补充救场。",
+      "近义：just joking / I'm messing with you。例句：— You got fired? — Just kidding, I got a raise!"
+    ]
+  },
+  {
+    sentence: "Take your time — the deadline is next Friday, not today.",
+    cid: fnv8("Take your time — the deadline is next Friday, not today."),
+    translation: "慢慢来，截止日期是下周五，不是今天。",
+    chunks: ["Take your time —","the deadline is next Friday,","not today."],
+    hints: ["慢慢来不急","截止是下周五","不是今天"],
+    grammar: [
+      {role:"习语·劝告", color:"#7c5cbf", phonetic:["/teɪk/","/jʊr/","/taɪm/"], pos:"习语·不急", meaning:"慢慢来、不用赶"},
+      {role:"主系表", color:"#c87033", phonetic:["/ðə/","/ˈdedlaɪn/","/ɪz/","/nekst/","/ˈfraɪdeɪ/"], pos:"主系表", meaning:"截止日期是下周五"},
+      {role:"否定状语", color:"#3358e0", phonetic:["/nɑːt/","/təˈdeɪ/"], pos:"否定状语", meaning:"不是今天"}
+    ],
+    explanations: [
+      "**take your time** 是「慢慢来/不急」，给对方减压的友好表达，可用于工作/学习/约会/购物。",
+      "近义：no rush / there's no hurry。例句：Take your time choosing — these shoes are a big investment."
+    ]
+  }
+,
+  {
+    sentence: "\"We won the lottery!\" — \"You don't say!\"",
+    cid: fnv8("\"We won the lottery!\" — \"You don't say!\""),
+    translation: "「我们中彩票了！」——「真的假的！",
+    chunks: ["\"We won the lottery!\"","— \"You don't say!\""],
+    hints: ["我们中了彩票","你说真的？（表惊讶/反讽）"],
+    grammar: [
+      {role:"直接引语", color:"#c87033", phonetic:["/wiː/","/wʌn/","/ðə/","/ˈlɑːtəri/"], pos:"主谓宾·引语", meaning:"我们中了彩票"},
+      {role:"回应习语", color:"#7c5cbf", phonetic:["/juː/","/doʊnt/","/seɪ/"], pos:"习语·感叹", meaning:"不会吧/真的假的"}
+    ],
+    explanations: [
+      "**You don't say!** 高语境口语：字面『你不说我也知道』，实际两用——(1) 表惊讶：真的吗！(2) 反讽：谁不知道啊（语气拖长+降调）。",
+      "中性场景表惊讶可用 No kidding! / Really? 例：— She quit her job. — You don't say!（她辞职了。——真的假的！）"
     ]
   }
 ];

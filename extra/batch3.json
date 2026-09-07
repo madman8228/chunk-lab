@@ -1,0 +1,1224 @@
+[
+  {
+    "sentence": "I broke your cup by accident — my bad.",
+    "translation": "我不小心打碎你的杯子，是我的错。",
+    "chunks": [
+      "I broke your cup by accident —",
+      "my bad."
+    ],
+    "hints": [
+      "我不小心打碎你的杯子",
+      "我错了（口语认错）"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/broʊk/",
+          "/jʊr/",
+          "/kʌp/",
+          "/baɪ/",
+          "/ˈæksɪdənt/"
+        ],
+        "pos": "过去时陈述",
+        "meaning": "我不小心打碎了你的杯子"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/maɪ/",
+          "/bæd/"
+        ],
+        "pos": "习语·道歉",
+        "meaning": "是我的错（口语，比 I'm sorry 更随意）"
+      }
+    ],
+    "explanations": [
+      "**my bad** 是非常口语的认错方式，等于 It's my fault，但更轻快。同龄人/熟人间用，正式场合别用。",
+      "近义：my fault / I'm sorry / that's on me（责任在我）。例句：Sorry, my bad — I sent it to the wrong person."
+    ],
+    "cid": "47f5cf23"
+  },
+  {
+    "sentence": "Stop picking on him — he's half your size.",
+    "translation": "别欺负他了，他个头才你一半。",
+    "chunks": [
+      "Stop picking on him —",
+      "he's half your size."
+    ],
+    "hints": [
+      "别再欺负他了",
+      "他个头只有你一半"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句+短语动词",
+        "color": "#c87033",
+        "phonetic": [
+          "/stɑːp/",
+          "/ˈpɪkɪŋ/",
+          "/ɑːn/",
+          "/hɪm/"
+        ],
+        "pos": "祈使句·短语动词",
+        "meaning": "别再欺负他"
+      },
+      {
+        "role": "主系表",
+        "color": "#e74c7a",
+        "phonetic": [
+          "/hiːz/",
+          "/hæf/",
+          "/jʊr/",
+          "/saɪz/"
+        ],
+        "pos": "比较表达",
+        "meaning": "他只有你一半个头"
+      }
+    ],
+    "explanations": [
+      "**pick on** 指「专挑某个人欺负/找茬」，有针对性，比 bully 轻但仍是负向。反义：stand up for（护着某人）。",
+      "辨析：pick at 是「挑剔/小口吃」，pick on 是「欺负」。例句：The boss always picks on the new guy."
+    ],
+    "cid": "2388a2cf"
+  },
+  {
+    "sentence": "We sat by the lake and soaked up the sunshine.",
+    "translation": "我们坐在湖边尽情享受阳光。",
+    "chunks": [
+      "We sat by the lake and",
+      "soaked up",
+      "the sunshine."
+    ],
+    "hints": [
+      "我们坐在湖边",
+      "尽情享受",
+      "阳光"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/wiː/",
+          "/sæt/",
+          "/baɪ/",
+          "/ðə/",
+          "/leɪk/",
+          "/ænd/"
+        ],
+        "pos": "过去时陈述",
+        "meaning": "我们坐在湖边"
+      },
+      {
+        "role": "短语动词",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/soʊkt/",
+          "/ʌp/"
+        ],
+        "pos": "短语动词·吸收",
+        "meaning": "尽情享受（阳光）"
+      },
+      {
+        "role": "宾语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ðə/",
+          "/ˈsʌnʃaɪn/"
+        ],
+        "pos": "名词短语",
+        "meaning": "阳光"
+      }
+    ],
+    "explanations": [
+      "**soak up** 本义「吸收（液体）」，引申为尽情享受（阳光/氛围/知识）：soak up the atmosphere / soak up knowledge。",
+      "近义：take in / bask in。例句：I love soaking up the café vibe on weekend mornings."
+    ],
+    "cid": "dee95f8b"
+  },
+  {
+    "sentence": "Don't pass up this chance to study abroad.",
+    "translation": "别错过这个出国留学的机会。",
+    "chunks": [
+      "Don't pass up",
+      "this chance to study abroad."
+    ],
+    "hints": [
+      "不要错过",
+      "这个出国留学的机会"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句+短语动词",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/doʊnt/",
+          "/pæs/",
+          "/ʌp/"
+        ],
+        "pos": "祈使句·短语动词",
+        "meaning": "别放过/别错过"
+      },
+      {
+        "role": "宾语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ðɪs/",
+          "/tʃæns/",
+          "/tə/",
+          "/ˈstʌdi/",
+          "/əˈbrɔːd/"
+        ],
+        "pos": "名词短语+不定式",
+        "meaning": "出国留学的机会"
+      }
+    ],
+    "explanations": [
+      "**pass up** 是「放弃（难得的机会/好事）」，通常带惋惜感。常用于劝人：Don't pass up…/ You'd be crazy to pass that up。",
+      "近义：turn down（拒绝）/ miss out on（错过）。反义：seize the opportunity。例句：She passed up a great job offer to stay with her family."
+    ],
+    "cid": "030603e4"
+  },
+  {
+    "sentence": "\"Can you help me move this box?\" — \"You bet!\"",
+    "translation": "能帮我搬这个箱子吗？当然可以！",
+    "chunks": [
+      "\"Can you help me move this box?\" —",
+      "\"You bet!\""
+    ],
+    "hints": [
+      "能帮我搬这个箱子吗",
+      "当然可以（爽快答应）"
+    ],
+    "grammar": [
+      {
+        "role": "问句引用",
+        "color": "#c87033",
+        "phonetic": [
+          "/kæn/",
+          "/juː/",
+          "/help/",
+          "/miː/",
+          "/muːv/",
+          "/ðɪs/",
+          "/bɑːks/"
+        ],
+        "pos": "一般疑问句",
+        "meaning": "你能帮我搬这个箱子吗"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/juː/",
+          "/bet/"
+        ],
+        "pos": "习语·爽快答应",
+        "meaning": "当然啦！没问题"
+      }
+    ],
+    "explanations": [
+      "**You bet!** 表示「当然！没问题！」，比 sure 更有热情。来自打赌引申的「你尽管放心」，熟人客套都合适。",
+      "近义：Absolutely! / Of course! / You betcha（更随意的变体）。例句：— Thanks for the ride! — You bet!"
+    ],
+    "cid": "d8bfdc9f"
+  },
+  {
+    "sentence": "It's been a year — time to move on.",
+    "translation": "都一年了，该往前看了。",
+    "chunks": [
+      "It's been a year —",
+      "time to move on."
+    ],
+    "hints": [
+      "已经一年了",
+      "是时候向前看了"
+    ],
+    "grammar": [
+      {
+        "role": "现在完成时",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪts/",
+          "/bɪn/",
+          "/ə/",
+          "/jɪr/"
+        ],
+        "pos": "现在完成时",
+        "meaning": "已经过了一年了"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/taɪm/",
+          "/tə/",
+          "/muːv/",
+          "/ɑːn/"
+        ],
+        "pos": "习语·走出过去",
+        "meaning": "该翻篇、向前看了"
+      }
+    ],
+    "explanations": [
+      "**move on** 指「放下过去、继续前行」，用于分手/离职/失败后的劝慰。也可字面义「继续走/继续做下一件事」。",
+      "常见搭配：move on to something（接着做某事）。例句：Stop dwelling on the past and move on with your life."
+    ],
+    "cid": "4658133a"
+  },
+  {
+    "sentence": "Before you quit, step back and think it over.",
+    "translation": "辞职之前退一步，好好想想。",
+    "chunks": [
+      "Before you quit,",
+      "step back and think it over."
+    ],
+    "hints": [
+      "在你辞职之前",
+      "退一步、再想想"
+    ],
+    "grammar": [
+      {
+        "role": "时间状语从句",
+        "color": "#c87033",
+        "phonetic": [
+          "/bɪˈfɔːr/",
+          "/juː/",
+          "/kwɪt/"
+        ],
+        "pos": "时间状语从句",
+        "meaning": "在你辞职之前"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/step/",
+          "/bæk/",
+          "/ænd/",
+          "/θɪŋk/",
+          "/ɪt/",
+          "/ˈoʊvər/"
+        ],
+        "pos": "习语·冷静思考",
+        "meaning": "退一步冷静、好好考虑"
+      }
+    ],
+    "explanations": [
+      "**step back** 从字面「往后退一步」引申为「抽离当下、换个视角冷静看」，常用于情绪上头时的建议。",
+      "近义：take a step back / look at the big picture。例句：Sometimes you need to step back to see the whole problem."
+    ],
+    "cid": "b8e045a5"
+  },
+  {
+    "sentence": "You fixed it in five minutes — nice going!",
+    "translation": "你五分钟就修好了，干得漂亮！",
+    "chunks": [
+      "You fixed it in five minutes —",
+      "nice going!"
+    ],
+    "hints": [
+      "你五分钟就修好了",
+      "干得漂亮（称赞）"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/fɪkst/",
+          "/ɪt/",
+          "/ɪn/",
+          "/faɪv/",
+          "/ˈmɪnɪts/"
+        ],
+        "pos": "过去时陈述",
+        "meaning": "你五分钟就修好了它"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/naɪs/",
+          "/ˈɡoʊɪŋ/"
+        ],
+        "pos": "习语·称赞",
+        "meaning": "干得漂亮"
+      }
+    ],
+    "explanations": [
+      "**nice going** 是口语称赞「干得好/漂亮」，口语感强。也可反讽（对方搞砸时阴阳怪气地说 nice going）。",
+      "近义：well done / good job / way to go。例句：Nice going! You solved the puzzle in no time."
+    ],
+    "cid": "f54a9dfd"
+  },
+  {
+    "sentence": "Patience isn't my strong suit, I admit.",
+    "translation": "我承认耐心不是我的强项。",
+    "chunks": [
+      "Patience isn't",
+      "my strong suit,",
+      "I admit."
+    ],
+    "hints": [
+      "耐心不是",
+      "我的强项",
+      "我承认"
+    ],
+    "grammar": [
+      {
+        "role": "主语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ˈpeɪʃəns/",
+          "/ˈɪznt/"
+        ],
+        "pos": "否定主系表",
+        "meaning": "耐心不是"
+      },
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/maɪ/",
+          "/strɔːŋ/",
+          "/suːt/"
+        ],
+        "pos": "习语·擅长领域",
+        "meaning": "我的强项/擅长的事"
+      },
+      {
+        "role": "插入句",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/ədˈmɪt/"
+        ],
+        "pos": "插入语",
+        "meaning": "我承认"
+      }
+    ],
+    "explanations": [
+      "**strong suit** 源自牌戏「一手强牌」，引申为「某人最擅长的领域/技能」。句型：…isn't my strong suit = 我不擅长…。",
+      "反义：weak point / Achilles' heel（致命弱点）。例句：Small talk is not my strong suit, but I try."
+    ],
+    "cid": "a79a448b"
+  },
+  {
+    "sentence": "Don't worry — these things happen, it happens to everyone.",
+    "translation": "别担心，这种事难免，谁都会碰上。",
+    "chunks": [
+      "Don't worry — these things happen,",
+      "it happens",
+      "to everyone."
+    ],
+    "hints": [
+      "别担心，这种事难免",
+      "常有的事",
+      "对每个人"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句+陈述",
+        "color": "#c87033",
+        "phonetic": [
+          "/doʊnt/",
+          "/ˈwɜːri/",
+          "/ðiːz/",
+          "/θɪŋz/",
+          "/ˈhæpən/"
+        ],
+        "pos": "祈使句",
+        "meaning": "别担心，这种事难免"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɪt/",
+          "/ˈhæpənz/"
+        ],
+        "pos": "习语·宽慰",
+        "meaning": "常有的事，难免"
+      },
+      {
+        "role": "状语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/tə/",
+          "/ˈevriwʌn/"
+        ],
+        "pos": "介词短语",
+        "meaning": "发生在每个人身上"
+      }
+    ],
+    "explanations": [
+      "**it happens** 是宽慰他人的万能句，意思是「这种事难免/正常」，劝人别自责别尴尬。",
+      "用法场景：对方迟到/犯错/出糗时说一句 It happens，气氛立刻松下来。例句：I spilled coffee on my shirt again — it happens."
+    ],
+    "cid": "8b6c71a8"
+  },
+  {
+    "sentence": "I've been feeling down since I lost my job.",
+    "translation": "丢了工作以后我一直情绪低落。",
+    "chunks": [
+      "I've been feeling down",
+      "since I lost my job."
+    ],
+    "hints": [
+      "我一直情绪低落",
+      "自从我丢了工作"
+    ],
+    "grammar": [
+      {
+        "role": "现在完成进行时",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪv/",
+          "/bɪn/",
+          "/ˈfiːlɪŋ/",
+          "/daʊn/"
+        ],
+        "pos": "现在完成进行时",
+        "meaning": "我一直情绪低落"
+      },
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/sɪns/",
+          "/aɪ/",
+          "/lɔːst/",
+          "/maɪ/",
+          "/dʒɑːb/"
+        ],
+        "pos": "时间状语从句",
+        "meaning": "自从我丢了工作以来"
+      }
+    ],
+    "explanations": [
+      "**feel down** 表示情绪低落、提不起劲，比 sad 更日常口语。程度深可说 feel really down / down in the dumps。",
+      "近义：feel blue / be in low spirits。例句：She's been down all week — let's cheer her up."
+    ],
+    "cid": "915c4862"
+  },
+  {
+    "sentence": "I'd rather go alone, but suit yourself.",
+    "translation": "我宁可自己去，不过你随意。",
+    "chunks": [
+      "I'd rather go alone,",
+      "but suit yourself."
+    ],
+    "hints": [
+      "我宁可自己去",
+      "不过随你便"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪd/",
+          "/ˈræðər/",
+          "/ɡoʊ/",
+          "/əˈloʊn/"
+        ],
+        "pos": "would rather 句型",
+        "meaning": "我宁可独自去"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/bʌt/",
+          "/suːt/",
+          "/jɔːrˈself/"
+        ],
+        "pos": "习语·不强求",
+        "meaning": "随你便，你看着办"
+      }
+    ],
+    "explanations": [
+      "**suit yourself** 有两面语气：中性「随你意，我不勉强」，也常带轻微不满（对方不听劝时的「随你吧」）。",
+      "例句：— I'll wear this shirt even if it's ugly. — Fine, suit yourself."
+    ],
+    "cid": "0a3ee855"
+  },
+  {
+    "sentence": "That's enough TV for tonight — go to bed.",
+    "translation": "今晚电视看到这就够了，去睡觉。",
+    "chunks": [
+      "That's enough",
+      "TV for tonight —",
+      "go to bed."
+    ],
+    "hints": [
+      "这就够了",
+      "今晚的电视",
+      "去睡觉"
+    ],
+    "grammar": [
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ðæts/",
+          "/ɪˈnʌf/"
+        ],
+        "pos": "习语·制止",
+        "meaning": "够了，到此为止"
+      },
+      {
+        "role": "名词短语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ˌtiːˈviː/",
+          "/fər/",
+          "/təˈnaɪt/"
+        ],
+        "pos": "名词短语",
+        "meaning": "今晚的电视"
+      },
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɡoʊ/",
+          "/tə/",
+          "/bed/"
+        ],
+        "pos": "祈使句",
+        "meaning": "去睡觉"
+      }
+    ],
+    "explanations": [
+      "**that's enough** 是制止语「够了/到此为止」，父母制止孩子、或人忍无可忍时都用，语气随重音可柔可硬。",
+      "近义：enough is enough（受够了）/ cut it out（别闹了）。例句：That's enough complaining for one day!"
+    ],
+    "cid": "28f4dcec"
+  },
+  {
+    "sentence": "I almost agreed, but on second thought I declined.",
+    "translation": "我差点就答应了，但转念一想又回绝了。",
+    "chunks": [
+      "I almost agreed,",
+      "but on second thought",
+      "I declined."
+    ],
+    "hints": [
+      "我差点就答应了",
+      "但转念一想",
+      "我回绝了"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/ˈɔːlmoʊst/",
+          "/əˈɡriːd/"
+        ],
+        "pos": "过去时陈述",
+        "meaning": "我几乎同意了"
+      },
+      {
+        "role": "习语·状语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/bʌt/",
+          "/ɑːn/",
+          "/ˈsekənd/",
+          "/θɔːt/"
+        ],
+        "pos": "习语·改变主意",
+        "meaning": "但转念一想"
+      },
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/dɪˈklaɪnd/"
+        ],
+        "pos": "过去时陈述",
+        "meaning": "我拒绝了"
+      }
+    ],
+    "explanations": [
+      "**on second thought** 表示「再一想、改变主意」，常单独成句或放句首，口语标志性表达。美式拼作 on second thought，英式 second thoughts。",
+      "例句：I'll have coffee — actually, on second thought, make it tea."
+    ],
+    "cid": "f13234bc"
+  },
+  {
+    "sentence": "She's been seeing someone from work for months.",
+    "translation": "她跟一个同事交往好几个月了。",
+    "chunks": [
+      "She's been",
+      "seeing someone",
+      "from work for months."
+    ],
+    "hints": [
+      "她一直",
+      "在和某人交往",
+      "来自同事、好几个月了"
+    ],
+    "grammar": [
+      {
+        "role": "现在完成进行时",
+        "color": "#c87033",
+        "phonetic": [
+          "/ʃiːz/",
+          "/bɪn/"
+        ],
+        "pos": "现在完成进行时助动",
+        "meaning": "她一直在"
+      },
+      {
+        "role": "习语·动词短语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ˈsiːɪŋ/",
+          "/ˈsʌmwʌn/"
+        ],
+        "pos": "习语·约会交往",
+        "meaning": "和某人约会/交往"
+      },
+      {
+        "role": "状语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/frəm/",
+          "/wɜːrk/",
+          "/fər/",
+          "/mʌnθs/"
+        ],
+        "pos": "介词短语",
+        "meaning": "与同事、持续数月"
+      }
+    ],
+    "explanations": [
+      "**seeing someone** 是「与某人交往中」的委婉说法，比 dating 更口语低调。问别人感情状态常说：Are you seeing anyone?",
+      "近义：dating / going out with。例句：I heard she's seeing a guy from the marketing team."
+    ],
+    "cid": "9309fee1"
+  },
+  {
+    "sentence": "Stop fooling around and finish your homework.",
+    "translation": "别瞎闹了，把作业写完。",
+    "chunks": [
+      "Stop fooling around",
+      "and finish your homework."
+    ],
+    "hints": [
+      "别再瞎胡闹",
+      "把作业写完"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句+习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/stɑːp/",
+          "/ˈfuːlɪŋ/",
+          "/əˈraʊnd/"
+        ],
+        "pos": "习语·浪费时间",
+        "meaning": "别瞎胡闹/别浪费时间"
+      },
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ænd/",
+          "/ˈfɪnɪʃ/",
+          "/jʊr/",
+          "/ˈhoʊmwɜːrk/"
+        ],
+        "pos": "祈使句",
+        "meaning": "把作业做完"
+      }
+    ],
+    "explanations": [
+      "**fool around** 指「瞎闹、不干正事」，家长老师高频用。也委婉指「（背地里）乱搞男女关系」，后者看语境。",
+      "近义：mess around / goof off。例句：We fooled around all afternoon instead of studying."
+    ],
+    "cid": "b2581ff5"
+  },
+  {
+    "sentence": "That magic trick was really something — how did you do it?",
+    "translation": "这个魔术真有两下子，你是怎么做到的？",
+    "chunks": [
+      "That magic trick was really something —",
+      "how did you do it?"
+    ],
+    "hints": [
+      "这个魔术真了不起",
+      "你是怎么做到的"
+    ],
+    "grammar": [
+      {
+        "role": "主系表+习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ðæt/",
+          "/ˈmædʒɪk/",
+          "/trɪk/",
+          "/wʌz/",
+          "/ˈriːəli/",
+          "/ˈsʌmθɪŋ/"
+        ],
+        "pos": "习语·赞叹",
+        "meaning": "那个魔术真了不起"
+      },
+      {
+        "role": "特殊疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/haʊ/",
+          "/dɪd/",
+          "/juː/",
+          "/duː/",
+          "/ɪt/"
+        ],
+        "pos": "过去时疑问",
+        "meaning": "你是怎么做到的"
+      }
+    ],
+    "explanations": [
+      "**really something** 表示「真了不起、有两下子」，口语赞叹。反义结构：not much of a…（算不上…）。",
+      "例句：That new restaurant is really something — the dessert alone is worth it."
+    ],
+    "cid": "44722cef"
+  },
+  {
+    "sentence": "At forty she's no spring chicken, but she runs every day.",
+    "translation": "她四十了不算年轻，但每天都跑步。",
+    "chunks": [
+      "At forty she's no spring chicken,",
+      "but she runs every day."
+    ],
+    "hints": [
+      "她四十岁不算年轻了",
+      "但她每天都跑步"
+    ],
+    "grammar": [
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/æt/",
+          "/ˈfɔːrti/",
+          "/ʃiːz/",
+          "/noʊ/",
+          "/sprɪŋ/",
+          "/ˈtʃɪkɪn/"
+        ],
+        "pos": "习语·否定年轻",
+        "meaning": "四十岁已不年轻"
+      },
+      {
+        "role": "转折并列",
+        "color": "#c87033",
+        "phonetic": [
+          "/bʌt/",
+          "/ʃiː/",
+          "/rʌnz/",
+          "/ˈevri/",
+          "/deɪ/"
+        ],
+        "pos": "转折并列句",
+        "meaning": "但她每天跑步"
+      }
+    ],
+    "explanations": [
+      "**no spring chicken** 幽默地说「不年轻了」，多用于自嘲或善意调侃，注意别对长辈冒犯使用。",
+      "例句：He may be no spring chicken, but he can still hike ten miles."
+    ],
+    "cid": "2a9d6cf7"
+  },
+  {
+    "sentence": "Sleep on it and tell me your decision tomorrow.",
+    "translation": "你先考虑一晚上，明天告诉我决定。",
+    "chunks": [
+      "Sleep on it",
+      "and tell me your decision tomorrow."
+    ],
+    "hints": [
+      "考虑一晚上再定",
+      "明天告诉我你的决定"
+    ],
+    "grammar": [
+      {
+        "role": "习语·动词短语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/sliːp/",
+          "/ɑːn/",
+          "/ɪt/"
+        ],
+        "pos": "习语·慎重考虑",
+        "meaning": "睡一觉再决定（缓一缓）"
+      },
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ænd/",
+          "/tel/",
+          "/miː/",
+          "/jʊr/",
+          "/dɪˈsɪʒən/",
+          "/təˈmɑːroʊ/"
+        ],
+        "pos": "祈使句",
+        "meaning": "明天告诉我你的决定"
+      }
+    ],
+    "explanations": [
+      "**sleep on it** 劝人别急着拍板，先过一夜冷静想。销售/谈判/大额消费场景高频。",
+      "例句：It's a big loan — why don't you sleep on it and call me tomorrow?"
+    ],
+    "cid": "cb704750"
+  },
+  {
+    "sentence": "The surprise party you threw really made my day.",
+    "translation": "你给我办的惊喜派对让我开心了一整天。",
+    "chunks": [
+      "The surprise party you threw",
+      "really made my day."
+    ],
+    "hints": [
+      "你办的惊喜派对",
+      "真让我开心一整天"
+    ],
+    "grammar": [
+      {
+        "role": "定语从句主语",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/sərˈpraɪz/",
+          "/ˈpɑːrti/",
+          "/juː/",
+          "/θruː/"
+        ],
+        "pos": "省略关系词定语从句",
+        "meaning": "你举办的惊喜派对"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ˈriːəli/",
+          "/meɪd/",
+          "/maɪ/",
+          "/deɪ/"
+        ],
+        "pos": "习语·让人开心",
+        "meaning": "让我一整天都开心"
+      }
+    ],
+    "explanations": [
+      "**make my day** 直译「成就了我的一天」，即「让我特别开心/值了」。对方做了暖心小事后的最佳回应。",
+      "经典梗：克林特·伊斯特伍德电影台词 Go ahead, make my day。例句：A coffee from you always makes my day."
+    ],
+    "cid": "1b62e134"
+  },
+  {
+    "sentence": "His joke about her weight was way out of line.",
+    "translation": "他拿她体重开玩笑，太过分了。",
+    "chunks": [
+      "His joke about her weight",
+      "was way out of line."
+    ],
+    "hints": [
+      "他关于她体重的玩笑",
+      "实在太出格了"
+    ],
+    "grammar": [
+      {
+        "role": "主语",
+        "color": "#c87033",
+        "phonetic": [
+          "/hɪz/",
+          "/dʒoʊk/",
+          "/əˈbaʊt/",
+          "/hɜːr/",
+          "/weɪt/"
+        ],
+        "pos": "名词短语",
+        "meaning": "他拿她体重开的玩笑"
+      },
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wʌz/",
+          "/weɪ/",
+          "/aʊt/",
+          "/əv/",
+          "/laɪn/"
+        ],
+        "pos": "习语·越界出格",
+        "meaning": "太过分、越界了"
+      }
+    ],
+    "explanations": [
+      "**out of line** 指言行「越界、出格、不合规矩」，批评别人的冒犯言行时用。way 是强调词，意为「太出格了」。",
+      "近义：cross the line / out of order。例句：That comment was out of line — you owe her an apology."
+    ],
+    "cid": "4a0bb64b"
+  },
+  {
+    "sentence": "We'd better hit the road before the traffic gets bad.",
+    "translation": "趁还没堵车，我们最好出发了。",
+    "chunks": [
+      "We'd better hit the road",
+      "before the traffic gets bad."
+    ],
+    "hints": [
+      "我们最好出发上路",
+      "趁交通还没变糟"
+    ],
+    "grammar": [
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wiːd/",
+          "/ˈbetər/",
+          "/hɪt/",
+          "/ðə/",
+          "/roʊd/"
+        ],
+        "pos": "习语·出发上路",
+        "meaning": "我们最好出发了"
+      },
+      {
+        "role": "时间状语从句",
+        "color": "#c87033",
+        "phonetic": [
+          "/bɪˈfɔːr/",
+          "/ðə/",
+          "/ˈtræfɪk/",
+          "/ɡets/",
+          "/bæd/"
+        ],
+        "pos": "时间状语从句",
+        "meaning": "趁交通还没变差"
+      }
+    ],
+    "explanations": [
+      "**hit the road** 口语「出发、上路」，road trip 出发前必说。近义 hit the sack 则是「上床睡觉」。",
+      "例句：Let's hit the road at six to beat the morning rush."
+    ],
+    "cid": "259fe0e9"
+  },
+  {
+    "sentence": "Knock it off, you two — I'm trying to study.",
+    "translation": "你俩别闹了，我要学习。",
+    "chunks": [
+      "Knock it off, you two —",
+      "I'm trying to study."
+    ],
+    "hints": [
+      "你们俩别闹了",
+      "我要学习"
+    ],
+    "grammar": [
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/nɑːk/",
+          "/ɪt/",
+          "/ɔːf/",
+          "/juː/",
+          "/tuː/"
+        ],
+        "pos": "习语·让人停止",
+        "meaning": "你俩别闹了"
+      },
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪm/",
+          "/ˈtraɪɪŋ/",
+          "/tə/",
+          "/ˈstʌdi/"
+        ],
+        "pos": "现在进行时",
+        "meaning": "我正在学习"
+      }
+    ],
+    "explanations": [
+      "**knock it off** 是呵斥「别闹了/停下来」，比 stop it 更强硬直接，老师制止打闹的孩子常用。",
+      "近义：cut it out / quit it。例句：Knock it off with the drumming — it's midnight!"
+    ],
+    "cid": "0700649e"
+  },
+  {
+    "sentence": "You passed the interview — good for you!",
+    "translation": "你通过面试了，真为你高兴！",
+    "chunks": [
+      "You passed the interview —",
+      "good for you!"
+    ],
+    "hints": [
+      "你通过了面试",
+      "真为你高兴（祝贺）"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/pæst/",
+          "/ðiː/",
+          "/ˈɪntərˈvjuː/"
+        ],
+        "pos": "过去时陈述",
+        "meaning": "你通过了面试"
+      },
+      {
+        "role": "口语习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɡʊd/",
+          "/fər/",
+          "/juː/"
+        ],
+        "pos": "习语·祝贺",
+        "meaning": "真为你高兴"
+      }
+    ],
+    "explanations": [
+      "**good for you** 祝贺对方的好消息：「真棒/为你高兴」。注意语气真诚时说祝贺，阴阳怪气时是讽刺，全靠语调。",
+      "例句：— I finally quit smoking. — Good for you, that's not easy!"
+    ],
+    "cid": "2424cbe0"
+  },
+  {
+    "sentence": "Feel free to ask questions — by all means interrupt me.",
+    "translation": "有问题尽管问，随时打断我都可以。",
+    "chunks": [
+      "Feel free to ask questions —",
+      "by all means",
+      "interrupt me."
+    ],
+    "hints": [
+      "有问题尽管问",
+      "当然可以/尽管",
+      "打断我"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/fiːl/",
+          "/friː/",
+          "/tə/",
+          "/æsk/",
+          "/ˈkwestʃənz/"
+        ],
+        "pos": "祈使句·别拘束",
+        "meaning": "有问题尽管问"
+      },
+      {
+        "role": "习语·状语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/baɪ/",
+          "/ɔːl/",
+          "/miːnz/"
+        ],
+        "pos": "习语·务必尽管",
+        "meaning": "完全可以，尽管"
+      },
+      {
+        "role": "谓语+宾语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ˌɪntəˈrʌpt/",
+          "/miː/"
+        ],
+        "pos": "祈使句谓语",
+        "meaning": "打断我"
+      }
+    ],
+    "explanations": [
+      "**by all means** 强化允许：「当然可以、尽管来」，比 sure 更恳切正式，也可回答请求：— May I sit here? — By all means!",
+      "反义：by no means（绝不）。例句：By all means, take your time reading the contract."
+    ],
+    "cid": "4c3c23b9"
+  },
+  {
+    "sentence": "The concert was sold out — we got in by the skin of our teeth.",
+    "translation": "演唱会票卖光了，我们险险挤了进去。",
+    "chunks": [
+      "The concert was sold out —",
+      "we got in",
+      "by the skin of our teeth."
+    ],
+    "hints": [
+      "演唱会已售罄",
+      "我们进去了",
+      "侥幸万分/千钧一发"
+    ],
+    "grammar": [
+      {
+        "role": "被动语态",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/ˈkɑːnsərt/",
+          "/wʌz/",
+          "/soʊld/",
+          "/aʊt/"
+        ],
+        "pos": "过去时被动",
+        "meaning": "演唱会票卖光了"
+      },
+      {
+        "role": "主谓",
+        "color": "#3358e0",
+        "phonetic": [
+          "/wiː/",
+          "/ɡɑːt/",
+          "/ɪn/"
+        ],
+        "pos": "过去时短语动词",
+        "meaning": "我们进去了"
+      },
+      {
+        "role": "习语·状语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/baɪ/",
+          "/ðə/",
+          "/skɪn/",
+          "/əv/",
+          "/aʊər/",
+          "/tiːθ/"
+        ],
+        "pos": "习语·侥幸万分",
+        "meaning": "千钧一发、差一点就错过"
+      }
+    ],
+    "explanations": [
+      "**by the skin of one's teeth** 形象表达「侥幸脱险/勉强赶上」，像只剩牙皮那点距离。考试低空飞过、赶车最后一秒都适用。",
+      "例句：I caught my flight by the skin of my teeth — the gate was already closing."
+    ],
+    "cid": "1ff7e350"
+  }
+]

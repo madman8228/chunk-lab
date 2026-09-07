@@ -1,0 +1,224 @@
+[
+  {
+    "sentence": "They keep up with the Joneses by buying a new car every year.",
+    "translation": "他们年年换新车，就为跟邻居攀比。",
+    "chunks": ["They", "keep up with the Joneses", "by buying a new car every year."],
+    "hints": ["他们", "跟邻居攀比、不甘落后", "每年买一辆新车来……"],
+    "grammar": [
+      {"role": "主语", "color": "#c87033", "phonetic": ["/ðeɪ/"], "pos": "人称代词", "meaning": "他们"},
+      {"role": "谓语", "color": "#7c5cbf", "phonetic": ["/kiːp/", "/ʌp/", "/wɪð/", "/ðə/", "/ˈdʒoʊnzɪz/"], "pos": "动词习语", "meaning": "与邻居攀比、不甘人后"},
+      {"role": "方式状语", "color": "#3358e0", "phonetic": ["/baɪ/", "/ˈbaɪɪŋ/", "/ə/", "/nuː/", "/kɑːr/", "/ˈevri/", "/jɪr/"], "pos": "介词短语", "meaning": "通过每年买辆新车"}
+    ],
+    "explanations": [
+      "**keep up with the Joneses** 指在物质消费上「攀比邻居、不甘落后」。源自 1913 年美国连环画《Keeping Up with the Joneses》，Joneses 泛指虚构的富裕邻居。",
+      "近义：keep pace with（跟上节奏）；反义：do your own thing（走自己的路）。口语里常带贬义：Buying a bigger TV is just keeping up with the Joneses."
+    ]
+  },
+  {
+    "sentence": "We're young, so let's live it up this summer.",
+    "translation": "我们还年轻，今年夏天就尽情狂欢吧。",
+    "chunks": ["We're young,", "so let's", "live it up", "this summer."],
+    "hints": ["我们还年轻", "所以让我们", "尽情享乐", "这个夏天"],
+    "grammar": [
+      {"role": "主系表", "color": "#c87033", "phonetic": ["/wɪr/", "/jʌŋ/"], "pos": "主系表结构", "meaning": "我们还年轻"},
+      {"role": "连词+祈使", "color": "#e74c7a", "phonetic": ["/soʊ/", "/lets/"], "pos": "so + 祈使句", "meaning": "所以让我们"},
+      {"role": "谓语", "color": "#7c5cbf", "phonetic": ["/lɪv/", "/ɪt/", "/ʌp/"], "pos": "动词习语", "meaning": "尽情享乐、痛快生活"},
+      {"role": "时间状语", "color": "#3358e0", "phonetic": ["/ðɪs/", "/ˈsʌmər/"], "pos": "名词短语", "meaning": "这个夏天"}
+    ],
+    "explanations": [
+      "**live it up** 非正式口语，指「纵情享受、过奢华痛快的日子」，常见于假期、派对、发工资等语境。it 指代『生活本身』，无实指。",
+      "近义：have a blast（玩得尽兴）/ let loose（放松）。例：You just got promoted — go live it up tonight!"
+    ]
+  },
+  {
+    "sentence": "She works two jobs to make ends meet.",
+    "translation": "她打两份工才能勉强维持生计。",
+    "chunks": ["She works two jobs", "to make ends meet."],
+    "hints": ["她打两份工", "为了勉强收支相抵"],
+    "grammar": [
+      {"role": "主谓宾", "color": "#c87033", "phonetic": ["/ʃiː/", "/wɜːrks/", "/tuː/", "/dʒɑːbz/"], "pos": "主谓宾", "meaning": "她打两份工"},
+      {"role": "目的状语", "color": "#7c5cbf", "phonetic": ["/tə/", "/meɪk/", "/endz/", "/miːt/"], "pos": "动词习语", "meaning": "勉强度日、收支相抵"}
+    ],
+    "explanations": [
+      "**make ends meet** 常用习语：收入仅够开销、「勉强糊口」。ends 指账本的两端（收入/支出），把两端接上=收支平衡。",
+      "例：With rent so high, many young people can barely make ends meet.（房租这么高，很多年轻人入不敷出。）近义：get by（勉强过活）。"
+    ]
+  },
+  {
+    "sentence": "Money talks — he got the contract overnight.",
+    "translation": "有钱能使鬼推磨——他隔夜就拿下了合同。",
+    "chunks": ["Money talks", "— he got the contract", "overnight."],
+    "hints": ["金钱说了算（有钱能使鬼推磨）", "他拿到了合同", "一夜之间"],
+    "grammar": [
+      {"role": "主谓", "color": "#7c5cbf", "phonetic": ["/ˈmʌni/", "/tɔːks/"], "pos": "习语谚语", "meaning": "有钱能使鬼推磨"},
+      {"role": "补充说明", "color": "#c87033", "phonetic": ["/hiː/", "/ɡɑːt/", "/ðə/", "/ˈkɑːntrækt/"], "pos": "主谓宾", "meaning": "他拿到了合同"},
+      {"role": "时间状语", "color": "#3358e0", "phonetic": ["/ˌoʊvərˈnaɪt/"], "pos": "副词", "meaning": "一夜之间"}
+    ],
+    "explanations": [
+      "**Money talks** 谚语：金钱有话语权，「有钱能使鬼推磨」。talk 拟人化——钱会替你『说话』、开路。",
+      "变体：Money talks, bullshit walks.（真金白银说话，空话走人——较粗，慎用正式场合。）近义：Money makes the world go round."
+    ]
+  },
+  {
+    "sentence": "The coach gave the team a pep talk before the final.",
+    "translation": "决赛前教练给全队做了一番鼓舞士气的动员。",
+    "chunks": ["The coach gave the team", "a pep talk", "before the final."],
+    "hints": ["教练给球队", "一番加油鼓劲的话", "在决赛前"],
+    "grammar": [
+      {"role": "主谓双宾", "color": "#c87033", "phonetic": ["/ðə/", "/koʊtʃ/", "/ɡeɪv/", "/ðə/", "/tiːm/"], "pos": "主谓 + 间接宾语", "meaning": "教练给球队"},
+      {"role": "宾语", "color": "#7c5cbf", "phonetic": ["/ə/", "/pep/", "/tɔːk/"], "pos": "固定搭配", "meaning": "一番打气的话"},
+      {"role": "时间状语", "color": "#3358e0", "phonetic": ["/bɪˈfɔːr/", "/ðə/", "/ˈfaɪnl/"], "pos": "介词短语", "meaning": "决赛之前"}
+    ],
+    "explanations": [
+      "**pep talk**：赛前/任务前的简短「动员讲话」，目的是提气。pep 意为精力、活力（pep up 使振作）。常见于体育、销售、考前场景。",
+      "动词搭配：give sb a pep talk / need a pep talk。例：My manager gave me a pep talk before the presentation.（演讲前经理给我打气。）"
+    ]
+  },
+  {
+    "sentence": "Don't worry, you'll be right as rain after a good sleep.",
+    "translation": "别担心，好好睡一觉你就会完全恢复的。",
+    "chunks": ["Don't worry,", "you'll be", "right as rain", "after a good sleep."],
+    "hints": ["别担心", "你会", "安然无恙、状态大好", "好好睡一觉之后"],
+    "grammar": [
+      {"role": "祈使句", "color": "#e74c7a", "phonetic": ["/doʊnt/", "/ˈwɜːri/"], "pos": "否定祈使", "meaning": "别担心"},
+      {"role": "主系", "color": "#c87033", "phonetic": ["/juːl/", "/biː/"], "pos": "主系结构", "meaning": "你将会"},
+      {"role": "表语", "color": "#7c5cbf", "phonetic": ["/raɪt/", "/æz/", "/reɪn/"], "pos": "习语·表语", "meaning": "恢复如初、状态很好"},
+      {"role": "时间状语", "color": "#3358e0", "phonetic": ["/ˈæftər/", "/ə/", "/ɡʊd/", "/sliːp/"], "pos": "介词短语", "meaning": "在好好睡一觉后"}
+    ],
+    "explanations": [
+      "**right as rain** 英式色彩浓的习语，表示「完全正常、状态极佳、恢复如初」。rain 押韵且表清爽/滋养，故用 rain 而非其他词。",
+      "常接在 be/feel 后：I'll be right as rain tomorrow.（我明天就活蹦乱跳了。）近义：as good as new / fit as a fiddle。"
+    ]
+  },
+  {
+    "sentence": "His loud voice rubbed me the wrong way.",
+    "translation": "他大嗓门让我心里很不舒服。",
+    "chunks": ["His loud voice", "rubbed me", "the wrong way."],
+    "hints": ["他的大嗓门", "惹得我", "很反感、不舒服"],
+    "grammar": [
+      {"role": "主语", "color": "#c87033", "phonetic": ["/hɪz/", "/laʊd/", "/vɔɪs/"], "pos": "名词短语", "meaning": "他的大嗓门"},
+      {"role": "谓语+宾语", "color": "#7c5cbf", "phonetic": ["/rʌbd/", "/miː/"], "pos": "动词习语", "meaning": "惹恼我（rub…the wrong way）"},
+      {"role": "补足成分", "color": "#3358e0", "phonetic": ["/ðə/", "/rɔːŋ/", "/weɪ/"], "pos": "习语尾部", "meaning": "以错误的方式（令人不快）"}
+    ],
+    "explanations": [
+      "**rub sb the wrong way**：无意间「惹恼、使不快」。意象：顺着毛摸（rub the right way）让人舒服，逆着毛（the wrong way）就难受。",
+      "第三人称注意人称：His attitude rubs ME the wrong way / rubs HER the wrong way。近义：get on sb's nerves（让人烦躁）。"
+    ]
+  },
+  {
+    "sentence": "Sorry I'm late — that's on me.",
+    "translation": "抱歉我来晚了——是我的错。",
+    "chunks": ["Sorry I'm late", "— that's on me."],
+    "hints": ["抱歉我迟到了", "这怪我"],
+    "grammar": [
+      {"role": "主系表", "color": "#c87033", "phonetic": ["/ˈsɑːri/", "/aɪm/", "/leɪt/"], "pos": "道歉句式", "meaning": "抱歉我迟到"},
+      {"role": "主系表", "color": "#7c5cbf", "phonetic": ["/ðæts/", "/ɑːn/", "/miː/"], "pos": "习语", "meaning": "责任在我、怪我"}
+    ],
+    "explanations": [
+      "**That's on me.** 美式口语：主动揽责——「这是我的错/责任」。on sb = 责任落在某人身上。同级还有 The fault is on me. 语义更强。",
+      "用法区分：That's on me.（揽责）/ It's on me.（这顿我请客——同形不同义，靠语境）。近义：my bad / I take the blame."
+    ]
+  },
+  {
+    "sentence": "Think it over before you quit your job.",
+    "translation": "辞职之前，好好考虑一下。",
+    "chunks": ["Think it over", "before you quit", "your job."],
+    "hints": ["仔细考虑一下", "在你辞掉之前", "你的工作"],
+    "grammar": [
+      {"role": "谓语", "color": "#7c5cbf", "phonetic": ["/θɪŋk/", "/ɪt/", "/ˈoʊvər/"], "pos": "动词习语", "meaning": "好好考虑（think over）"},
+      {"role": "时间状语从句", "color": "#c87033", "phonetic": ["/bɪˈfɔːr/", "/juː/", "/kwɪt/"], "pos": "before 从句", "meaning": "在你放弃之前"},
+      {"role": "宾语", "color": "#3358e0", "phonetic": ["/jɔːr/", "/dʒɑːb/"], "pos": "名词短语", "meaning": "你的工作"}
+    ],
+    "explanations": [
+      "**think it over**：花时间「仔细考虑、权衡」后再决定。代词 it 必须放中间：think it over / think things over，不能说 think over it。",
+      "近义：sleep on it（睡一觉再决定，缓一夜）。例：Don't rush — think it over and call me tomorrow."
+    ]
+  },
+  {
+    "sentence": "\"We won the lottery!\" — \"You don't say!\"",
+    "translation": "「我们中彩票了！」——「真的假的！」",
+    "chunks": ["\"We won the lottery!\"", "— \"You don't say!\""],
+    "hints": ["我们中了彩票", "你说真的？（表惊讶/反讽）"],
+    "grammar": [
+      {"role": "直接引语", "color": "#c87033", "phonetic": ["/wiː/", "/wʌn/", "/ðə/", "/ˈlɑːtəri/"], "pos": "主谓宾·引语", "meaning": "我们中了彩票"},
+      {"role": "回应习语", "color": "#7c5cbf", "phonetic": ["/juː/", "/doʊnt/", "/seɪ/"], "pos": "习语·感叹", "meaning": "不会吧/真的假的"}
+    ],
+    "explanations": [
+      "**You don't say!** 高语境口语：字面『你不说我也知道』，实际两用——(1) 表惊讶：真的吗！(2) 反讽：谁不知道啊（语气拖长+降调）。",
+      "中性场景表惊讶可用 No kidding! / Really? 例：— She quit her job. — You don't say!（她辞职了。——真的假的！）"
+    ]
+  },
+  {
+    "sentence": "Ask Tom for advice — he really knows his stuff.",
+    "translation": "去请教汤姆吧——他对这行是真懂。",
+    "chunks": ["Ask Tom for advice", "— he really knows", "his stuff."],
+    "hints": ["去问汤姆要建议", "他真的很懂", "他那一行（专业）"],
+    "grammar": [
+      {"role": "祈使句", "color": "#e74c7a", "phonetic": ["/æsk/", "/tɑːm/", "/fɔːr/", "/ədˈvaɪs/"], "pos": "祈使句", "meaning": "去问汤姆要建议"},
+      {"role": "主谓", "color": "#c87033", "phonetic": ["/hiː/", "/ˈriːəli/", "/noʊz/"], "pos": "主谓", "meaning": "他真的了解"},
+      {"role": "宾语", "color": "#7c5cbf", "phonetic": ["/hɪz/", "/stʌf/"], "pos": "习语·宾语", "meaning": "他的专业/本领"}
+    ],
+    "explanations": [
+      "**know one's stuff**：对自己的领域「非常在行、门儿清」。stuff 泛指业务内容。搭配 one's 随主语变化：know your stuff / know my stuff。",
+      "近义：know one's onions（英式）/ be an expert。例：She's young but she knows her stuff when it comes to coding."
+    ]
+  },
+  {
+    "sentence": "\"This plan will fail.\" — \"You said it.\"",
+    "translation": "「这方案会失败的。」——「说得没错。」",
+    "chunks": ["\"This plan will fail.\"", "— \"You said it.\""],
+    "hints": ["这方案会失败", "你说到点子上了（完全同意）"],
+    "grammar": [
+      {"role": "直接引语", "color": "#c87033", "phonetic": ["/ðɪs/", "/plæn/", "/wɪl/", "/feɪl/"], "pos": "主谓·引语", "meaning": "这方案会失败"},
+      {"role": "回应习语", "color": "#7c5cbf", "phonetic": ["/juː/", "/sed/", "/ɪt/"], "pos": "习语·赞同", "meaning": "你说对了"}
+    ],
+    "explanations": [
+      "**You said it.** 口语赞同：你说得完全对、正中要害，带『我本想这么说』之意。用于关系熟的人之间。",
+      "近义：You can say that again.（太对了——再度强调）。例：— This traffic is terrible. — You said it!"
+    ]
+  },
+  {
+    "sentence": "He ignored the warning and got burned — he asked for it.",
+    "translation": "他不听警告栽了跟头——这是他自找的。",
+    "chunks": ["He ignored the warning", "and got burned", "— he asked for it."],
+    "hints": ["他无视警告", "然后吃了亏", "他自找的"],
+    "grammar": [
+      {"role": "主谓宾", "color": "#c87033", "phonetic": ["/hiː/", "/ɪɡˈnɔːrd/", "/ðə/", "/ˈwɔːrnɪŋ/"], "pos": "主谓宾", "meaning": "他无视了警告"},
+      {"role": "并列谓语", "color": "#e74c7a", "phonetic": ["/ænd/", "/ɡɑːt/", "/bɜːrnd/"], "pos": "并列谓语·被动", "meaning": "结果吃了亏"},
+      {"role": "评注习语", "color": "#7c5cbf", "phonetic": ["/hiː/", "/æskt/", "/fɔːr/", "/ɪt/"], "pos": "习语", "meaning": "他自找的"}
+    ],
+    "explanations": [
+      "**ask for it**：字面『讨要』，实际指『自找麻烦、咎由自取』，常因不听劝告而吃亏。过去式 asked for it。",
+      "较直白版：You asked for trouble. 例：He drove drunk and crashed — he really asked for it.（酒驾出车祸，纯属自找。）"
+    ]
+  },
+  {
+    "sentence": "Don't get me wrong — I like the city, I just miss the quiet.",
+    "translation": "别误会——我喜欢这座城市，只是想念那份清静。",
+    "chunks": ["Don't get me wrong", "— I like the city,", "I just miss the quiet."],
+    "hints": ["别误解我", "我喜欢这座城市", "我只是想念那份安静"],
+    "grammar": [
+      {"role": "祈使句", "color": "#7c5cbf", "phonetic": ["/doʊnt/", "/ɡet/", "/miː/", "/rɔːŋ/"], "pos": "习语·祈使", "meaning": "别误会我的意思"},
+      {"role": "主谓宾", "color": "#c87033", "phonetic": ["/aɪ/", "/laɪk/", "/ðə/", "/ˈsɪti/"], "pos": "主谓宾", "meaning": "我喜欢这座城市"},
+      {"role": "并列转折", "color": "#3358e0", "phonetic": ["/aɪ/", "/dʒʌst/", "/mɪs/", "/ðə/", "/ˈkwaɪət/"], "pos": "并列分句", "meaning": "我只是想念那份安静"}
+    ],
+    "explanations": [
+      "**Don't get me wrong**：说容易引起误解的话之前的「预防针」——别把我的意思理解偏了。get = 理解，wrong = 错误地。",
+      "固定句式：Don't get me wrong, + 想说的内容。例：Don't get me wrong, he's nice — he's just not very reliable."
+    ]
+  },
+  {
+    "sentence": "\"I can't afford this.\" — \"Easy for you to say.\"",
+    "translation": "「我买不起这个。」——「你说得倒轻巧。」",
+    "chunks": ["\"I can't afford this.\"", "— \"Easy for you to say.\""],
+    "hints": ["我买不起这个", "你当然说得轻巧（你又不缺钱）"],
+    "grammar": [
+      {"role": "直接引语", "color": "#c87033", "phonetic": ["/aɪ/", "/kænt/", "/əˈfɔːrd/", "/ðɪs/"], "pos": "主谓宾·引语", "meaning": "我买不起这个"},
+      {"role": "回应习语", "color": "#7c5cbf", "phonetic": ["/ˈiːzi/", "/fɔːr/", "/juː/", "/tə/", "/seɪ/"], "pos": "习语·反驳", "meaning": "你说得轻巧（站着说话不腰疼）"}
+    ],
+    "explanations": [
+      "**Easy for you to say.** 反驳对方站着说话不腰疼：你处在有利位置，当然说得轻松。常见于对方给出站着说话的建议时。",
+      "变体：That's easy for you to say! 例：— Just quit and travel the world. — Easy for you to say, you have savings!"
+    ]
+  }
+]
