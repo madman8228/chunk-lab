@@ -35,7 +35,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`How are you doing?` 比 `How are you?` 更口语、更关心近况。常见错误：\n• \"How **is** you doing\" → you 是第二人称，要用 are\n• \"How are you **do**\" → 助动词重复，doing 已含进行含义",
       "`these days` 表「最近、这些天」，常与现在时连用。常见错误：\n• \"this **day**\" → 单数不对，days 用复数表一段时期\n• \"in these days\" → 通常不加 in"
-    ]
+    ],
+    distractors: [["How do you doing","How are you feel","How are you does"],["this days?","these day?","those days?"]]
   },
   {
     sentence: "Nice to meet you.",
@@ -50,7 +51,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Nice to meet you` 是初次见面的固定客套。常见错误：\n• \"Nice **meeting** you\" → 见面当时用 meet（进行时结构）；分手时可以说 Nice meeting you\n• \"**Glad** to meet you\" → 也可以，但 Nice 最常用",
       "这是省略了 `It is` 的结构（It is nice to meet you）。口语中 it is 省略很自然。"
-    ]
+    ],
+    distractors: [["Nice too","Nice","Nice to to"],["meeting you.","met you.","meet yours."]]
   },
   {
     sentence: "Could you do me a favor?",
@@ -65,7 +67,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Could you...` 比 `Can you...` 更礼貌委婉。常见错误：\n• \"Can you **to** do me a favor\" → 情态动词后接动词原形，不要 to\n• \"Could you **doing**\" → 同样要用原形",
       "`do someone a favor` 是固定搭配，中间用 a，不是 the。常见错误：\n• \"do me **the** favor\" → 泛指帮忙用 a\n• \"give me a favor\" → 搭配是 do，不是 give"
-    ]
+    ],
+    distractors: [["Could your","Could you to","Do you could"],["do me the favor?","does me a favor?","doing me a favor?"]]
   },
   {
     sentence: "I'm really sorry about that.",
@@ -80,7 +83,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`be sorry about + 事` 为某事道歉。常见错误：\n• \"I'm sorry **for** that\" → for 也可以，但 about 更强调针对具体事件\n• \"I'm sorry **to** that\" → 错，about/for 才接名词",
       "`really` 加强语气。注意位置在 be 动词后、形容词前：`I'm really sorry`，不是 `I really am sorry`（后者语法对但语气不同）。"
-    ]
+    ],
+    distractors: [["I'm really angry","I'm really sad","I'm really sorries"],["at that.","of that.","about those."]]
   },
   {
     sentence: "Could we get the menu, please?",
@@ -96,7 +100,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Could we get...` 在餐厅向服务员要东西的委婉说法。常见错误：\n• \"Can we **to** get\" → 情态动词后不加 to\n• \"Give us the menu\" → 太直接，缺少 please 和委婉语气",
       "`the menu` 特指这家餐厅的菜单，用 the。餐厅场景是特指，不要 a menu。"
-    ]
+    ],
+    distractors: [["Could us get","Could we to get","Could we getting"],["the bill,","the table,","the food,"],["pleased?","pleases?"]]
   },
   {
     sentence: "Where can I find the checkout?",
@@ -112,7 +117,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Where can I find...` 问某物位置。常见错误：\n• \"Where **I can** find\" → 疑问句情态动词要提前到主语前\n• \"Where can I **to** find\" → 不要 to",
       "`checkout` 在英美超市/商场指「收银台/结账处」。同义表达均可：`the cashier`（收银员）、`the counter`（柜台）。"
-    ]
+    ],
+    distractors: [["Where can me find","Where can I to find","Where can I found"],["the check-in?","the checkouts?","the checking?"]]
   },
   {
     sentence: "Which bus goes to the station?",
@@ -128,7 +134,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Which bus` 当主语时，谓语动词用单数 `goes`。常见错误：\n• \"Which bus **go** to\" → 主语是单数 bus，要用 goes\n• \"Which **buses** goes\" → buses 是复数，应用 go",
       "`goes to the station` 中 the 特指对话双方都知道的那个车站。"
-    ]
+    ],
+    distractors: [["Whose bus","Which buses","Which a bus"],["go to","going to","goes for"],["the stop?","the stations?","a station?"]]
   },
   {
     sentence: "It's pouring outside right now.",
@@ -144,7 +151,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`It's pouring` 是口语化「下倾盆大雨」。常见错误：\n• \"It **pours** outside\" → 也可，但 pouring 强调此刻正在下\n• \"It is **pour**\" → 进行时要用 pouring",
       "`right now` = 此刻、马上。区别于 `now`（较泛）。口语常缩写 it's = it is。"
-    ]
+    ],
+    distractors: [["It's snowing","It's blowing","It's showing"],["outdoor","in outside"],["right away.","just now.","right soon."]]
   },
   {
     sentence: "Can I take a message for you?",
@@ -160,7 +168,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`take a message` 是「记下留言」固定搭配。常见错误：\n• \"take **the** message\" → 泛指一条留言用 a\n• \"write a message **to** you\" → 也可以，但 take a message for you 更地道",
       "电话场景中，对方要找的人不在时，常用这句主动提议帮忙留言。"
-    ]
+    ],
+    distractors: [["Can me","Can I to","Am I"],["leave a message","write a message","send a message"],["to you?","from you?","with you?"]]
   },
   {
     sentence: "Are you free this weekend?",
@@ -175,7 +184,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Are you free...` 询问是否有空。常见错误：\n• \"Do you **have** free\" → 不自然，have free time 才搭配 have\n• \"Are you **freed**\" → free 是形容词，不是动词过去式",
       "`this weekend` 前不加介词（不说 on this weekend，尽管美语偶尔加 on，但 this weekend 最简洁常用）。"
-    ]
+    ],
+    distractors: [["Do you free","Are you freely","Are you freedom"],["this week?","that weekend?","this weekends?"]]
   },
   {
     sentence: "I really appreciate your help.",
@@ -190,7 +200,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`appreciate` 是及物动词，直接接名词/动名词。常见错误：\n• \"I appreciate **you**\" → 语法可，但 appreciate your help 更自然；appreciate 后不接人作宾语时易歧义\n• \"I appreciate **that you help**\" → 改用动名词：appreciate your helping",
       "`appreciate` 比 `thank` 更正式、更强调内心的感激，谢谢用 thank，感激用 appreciate。"
-    ]
+    ],
+    distractors: [["I really thank","I really need","I really expect"],["you help.","your helps.","a help."]]
   },
   {
     sentence: "See you later, take care.",
@@ -205,7 +216,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`See you later` 是口语道别，等于 See you soon / Catch you later。常见错误：\n• \"See **your** later\" → 用 you 不是 your\n• \"See you **latter**\" → latter（后者）拼写错误，应为 later（稍后）",
       "`take care` = 保重、注意身体。分开说时可加逗号：See you later, take care."
-    ]
+    ],
+    distractors: [["See you late,","See you letter,","Seeing you later,"],["take cares.","took care.","care take."]]
   },
   {
     sentence: "That sounds like a great idea.",
@@ -220,7 +232,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`sound like + 名词` 表示「听起来像…」。常见错误：\n• \"That sounds **good idea**\" → 缺冠词，应为 a good idea\n• \"That **is** sound like\" → sound 已含 be 含义，不要再加 is",
       "第三人称单数 `sounds`，that 是单数。口语中 like 后可接名词或句子。"
-    ]
+    ],
+    distractors: [["That sound like","That sounds as","That sounding like"],["a great ideal.","great idea.","a great ideas."]]
   },
   {
     sentence: "I'm afraid I can't make it tonight.",
@@ -236,7 +249,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`I'm afraid...` 是委婉拒绝/告知坏消息的开场，不是真的害怕。常见错误：\n• \"I'm **afraid of** I can't\" → afraid of 后接名词，接句子用 afraid (that)\n• 直译成「我害怕」→ 语境是礼貌，不是恐惧",
       "`make it` = 能到场/能成行。常见错误：\n• \"I can't **come** it\" → 搭配是 make it，不是 come it\n• \"I can't **do** it\" → do it 指做某事，make it 指能出席"
-    ]
+    ],
+    distractors: [["I afraid","I'm feared"],["I can't take it","I don't make it","I can't makes it"],["today.","this night."]]
   },
   {
     sentence: "Why don't we grab a bite to eat?",
@@ -251,7 +265,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Why don't we...` 是提建议的委婉句式，等于 Let's...。常见错误：\n• \"Why **we don't** grab\" → 疑问句 don't 要提前\n• \"Why don't we **to** grab\" → 后接动词原形",
       "`grab a bite (to eat)` 是口语「随便吃点、填饱肚子」，非正式。bite 本义「一口」，这里指小吃。"
-    ]
+    ],
+    distractors: [["Why don't us","Why not we","Why aren't we"],["grab a bite to drink?","grab a bit to eat?","grab a bite eat?"]]
   },
   {
     sentence: "Is there a pharmacy nearby?",
@@ -267,7 +282,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Is there a...` 问某处是否有某物（单数）。常见错误：\n• \"**Are** there a pharmacy\" → 主语 pharmacy 单数，用 is\n• \"There **have** a pharmacy\" → 存在用 there be，不用 have",
       "`nearby` 既是形容词也是副词，这里作副词「在附近」。也可说 `near here`。"
-    ]
+    ],
+    distractors: [["Are there","Is their","Does there"],["the pharmacy","some pharmacy","pharmacy"],["near by?","near?","next door?"]]
   },
   {
     sentence: "I'd like a medium latte, please.",
@@ -283,7 +299,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`I'd like = I would like`，点单比 I want 更礼貌。常见错误：\n• \"I **like** a latte\" → like 表喜好，点单要用 would like\n• \"I'd like **to** a latte\" → 接名词不要 to",
       "咖啡杯型：small / medium / large（或 tall / grande / venti 星巴克体系）。`a medium latte` 中 a 不能省。"
-    ]
+    ],
+    distractors: [["I like","I'd liked","I'd wants"],["a middle latte,","a medium late,","a medium lattes,"],["pleased.","please me."]]
   },
   {
     sentence: "What time should we meet up?",
@@ -298,7 +315,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`What time` 问具体时刻（对比 When 问大概时间）。常见错误：\n• \"**Which** time should we\" → 用 what 不是 which\n• \"What time **we should**\" → 疑问句 should 提前",
       "`meet up` 强调「见面、碰头」（尤指约定会面）。也可只用 meet，meet up 更口语化。"
-    ]
+    ],
+    distractors: [["What times","When time","How time"],["should us meet up?","should we to meet up?","should we meets up?"]]
   },
   {
     sentence: "How much does this one cost?",
@@ -313,7 +331,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`How much does ... cost?` 问价格。常见错误：\n• \"How much **is cost** this\" → cost 是动词，不用 is\n• \"How many **money**\" → money 不可数，用 much 不是 many",
       "`this one` 指代眼前这个商品（one 替代前面提到的名词，避免重复）。"
-    ]
+    ],
+    distractors: [["How many","How money","How prices"],["do this one cost?","does this ones cost?","costs this one?"]]
   },
   {
     sentence: "I'm not feeling myself today.",
@@ -328,7 +347,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`not feeling myself` 是地道说法，指「不在状态/身体或精神不佳」，并非字面「感觉不到自己」。常见错误：\n• \"I'm not feeling **me**\" → 要用反身代词 myself\n• \"I don't **feel** myself\" → 也可用一般现在时",
       "比直接说 `I'm sick` 更委婉，常用于日常寒暄中解释为何没精神。"
-    ]
+    ],
+    distractors: [["I'm not feeling me","I'm not feel myself","I don't feeling myself"],["this day.","todays.","the today."]]
   },
   {
     sentence: "I have a meeting at three this afternoon.",
@@ -344,7 +364,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`have a meeting` 表示「开会」，have 表「有」。常见错误：\n• \"I **do** a meeting\" → 错，开会用 have，不是 do\n• \"I **am** a meeting\" → 错，meeting 不是状态",
       "具体时刻前用 `at`（at three）；泛指下午用 `this afternoon`，前不加 in/on（口语习惯）。"
-    ]
+    ],
+    distractors: [["I have meeting","I has a meeting","I having a meeting"],["on three","at threes","at the three"],["today afternoon.","that afternoon.","in the afternoon."]]
   },
   {
     sentence: "Do you enjoy watching movies?",
@@ -359,7 +380,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`enjoy + 动名词` 是固定用法（enjoy doing）。常见错误：\n• \"Do you enjoy **to watch**\" → enjoy 后必须接 doing，不接 to do\n• \"I **am enjoying** watch\" → 进行时虽可，但宾语仍用 watching",
       "`movies` 美语常用复数指代「电影」这种娱乐形式；单数 a movie 指具体一部影片。"
-    ]
+    ],
+    distractors: [["Are you enjoy","Do you enjoying","Does you enjoy"],["watch movies?","to watch movies?","watched movies?"]]
   },
   {
     sentence: "I'm pretty good at cooking.",
@@ -374,7 +396,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`be good at + 名词/动名词` 表示擅长。常见错误：\n• \"I'm good **in** cooking\" → 搭配是 at，不是 in\n• \"I'm good **to** cook\" → 错，用 at + doing",
       "`pretty` 在这里是副词「挺、相当」（= quite），不是形容词「漂亮」。口语中 pretty good = 还不错。"
-    ]
+    ],
+    distractors: [["I pretty good","I'm pretty well","I'm pretty better"],["in cooking.","for cooking.","to cooking."]]
   },
   {
     sentence: "This one is way cheaper than that.",
@@ -390,7 +413,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`cheaper` 是 cheap 的比较级。常见错误：\n• \"more cheap\" → cheap 是单音节，加 -er，不用 more\n• \"cheap**er than** that\" ✓ 正确结构",
       "`way` 作副词加强比较级，表「…得多」（= much）。口语常用：`way better` `way bigger`。"
-    ]
+    ],
+    distractors: [["This one are","This is one","This one"],["ways cheaper","very cheaper","cheaper way"],["then that.","as that.","than this."]]
   },
   {
     sentence: "I usually go for a run in the morning.",
@@ -406,7 +430,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`go for a run` = 去跑步（固定搭配）。常见错误：\n• \"go **to** a run\" → 不接 to\n• \"go **running** a run\" → 重复，go running 或 go for a run 二选一",
       "`usually` 频度副词放实义动词前、be 动词后。这里在主语 I 和谓语 go 之间，正确。"
-    ]
+    ],
+    distractors: [["I usual","I'm usually","Usual I"],["go to a run","go for run","going for a run"],["on the morning.","at the morning.","in morning."]]
   },
   {
     sentence: "I'm planning to visit Japan next year.",
@@ -422,7 +447,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`plan to do` 表示计划做某事。常见错误：\n• \"I'm planning **visit**\" → 后接 to do\n• \"I plan **on** visit\" → plan on 后接 doing（plan on visiting）",
       "用现在进行时 `am planning` 表达已确定的近期计划，比一般现在时 `I plan` 更显计划在推进中。"
-    ]
+    ],
+    distractors: [["I planing to","I'm planned to","I planning to"],["visiting Japan","visit to Japan","visits Japan"],["next years.","the next year.","in next year."]]
   },
   {
     sentence: "We went hiking last Sunday.",
@@ -437,7 +463,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`go hiking` = 去徒步（go + 动名词表户外活动）。常见错误：\n• \"We **go** hiking last Sunday\" → 过去时间要用 went\n• \"We went **to hike**\" → 也可，但 went hiking 更自然",
       "`last Sunday` 前不加介词（不说 on last Sunday）。对比 `next Sunday` 同样不加 on。"
-    ]
+    ],
+    distractors: [["We go hiking","We went hike","We gone hiking"],["the last Sunday.","on last Sunday.","last Saturdays."]]
   },
   {
     sentence: "If it rains, we'll just stay home.",
@@ -452,7 +479,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "主将从现：if 从句用一般现在时（rains）表将来，主句用 will。常见错误：\n• \"If it **will** rain\" → if 从句不用 will\n• \"we **stay** home\" → 主句表将来要用 will stay",
       "`stay home` 中 home 是副词，前面不加 at（区别于 stay at home 也可，但 stay home 更口语）。"
-    ]
+    ],
+    distractors: [["If it rain,","If it will rain,","If it rainy,"],["we just stay home.","we'll just staying home.","we'll just stays home."]]
   },
   {
     sentence: "You should definitely try this place.",
@@ -467,7 +495,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`should + 动词原形` 表建议。常见错误：\n• \"You should **to** try\" → 情态动词后不接 to\n• \"You **shoulded** try\" → should 无过去式变化",
       "`definitely` 加强语气「一定、绝对」。位置在情态动词后、实义动词前：`should definitely try`。"
-    ]
+    ],
+    distractors: [["You definite should","You should definately","You definitely should"],["to try this place.","trying this place.","try this places."]]
   },
   {
     sentence: "What a beautiful view from up here!",
@@ -482,7 +511,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`What a + 形容词 + 名词` 是感叹句结构。常见错误：\n• \"**How** a beautiful view\" → How 后接形容词/副词，不接 a+名词；应为 How beautiful the view is\n• \"What beautiful **a** view\" → a 必须在形容词前",
       "`from up here` = 从这边上面（up 强调高度）。here 是地点副词，前不加介词（from 已充当介词）。"
-    ]
+    ],
+    distractors: [["What beautiful view","How a beautiful view","What a beautifully view"],["up from here!","from up there!","from down here!"]]
   },
   {
     sentence: "Could you speak a bit more slowly, please?",
@@ -498,7 +528,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Could you speak more slowly` 请求放慢语速。常见错误：\n• \"speak more **slow**\" → slow 是形容词，修饰动词要用副词 slowly\n• \"speak **slower**\" → 口语偶见，但 more slowly 更规范",
       "`a bit` = 稍微，用来缓和请求语气，也可换 a little。please 放句末更礼貌。"
-    ]
+    ],
+    distractors: [["Could you spoke","Could your speak","Could you to speak"],["a bit more slower,","a bit of more slowly,","a more bit slowly,"],["pleased?","pleases?"]]
   },
   {
     sentence: "I'm sorry to keep you waiting.",
@@ -513,7 +544,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`sorry to do` 为做了某事道歉；`sorry for doing` 侧重为已发生的事道歉。常见错误：\n• \"sorry **for keep** you waiting\" → for 后接动名词 keeping，不是原形 keep\n• \"sorry **about** waiting\" → 语义含糊，keep you waiting 更清楚",
       "`keep sb doing` = 让某人一直处于某种状态。原形结构：keep + 宾语 + 现在分词（waiting）。"
-    ]
+    ],
+    distractors: [["I sorry","I'm sorries","I'm sorrys"],["to kept you waiting.","to keep you wait.","for keep you waiting."]]
   },
   {
     sentence: "Can you give me a discount?",
@@ -528,7 +560,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`give sb sth` = give sth to sb，双宾语结构。常见错误：\n• \"give **to me** a discount\" → 双宾时 give me a discount 更自然\n• \"a **discounting**\" → discount 作名词直接说 a discount",
       "砍价场景常用语。同义：\"Any discount?\" \"Can you do it for less?\" 注意 discount 前用 a（可数）。"
-    ]
+    ],
+    distractors: [["Can you gives me","Can you to give me","Can you give I"],["discount?","a discounts?","the discount?"]]
   },
   {
     sentence: "I'd like the steak, medium rare, please.",
@@ -544,7 +577,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`medium rare` 是牛排熟度：rare 三分熟 / medium rare 五分熟 / medium 七分熟 / well done 全熟。常见错误：\n• \"**medium-rarely**\" → 熟度用形容词，不加 -ly\n• 把 medium rare 误当副词放句首",
       "点单结构：I'd like + 菜品 + 特殊要求 + please。the steak 用 the 因为菜单上已看到特指这道。"
-    ]
+    ],
+    distractors: [["I'd like steak,","I'd likes the steak,","I like the steak,"],["well done,","rare,","medium well,"],["pleased.","pleases."]]
   },
   {
     sentence: "Is the meeting still on for tomorrow?",
@@ -560,7 +594,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`be on` = 按计划进行/上演中。常见错误：\n• \"Is the meeting still **open**\" → open 表开始报名，不表照常举行\n• \"Will the meeting **is** on\" → will 后接动词原形 be",
       "确认会议是否照常的办公口语。也可说：\"Is the meeting still happening tomorrow?\""
-    ]
+    ],
+    distractors: [["Are the meeting","Is a meeting","The meeting is"],["still in","still be on","on still"],["on tomorrow?","to tomorrow?","in tomorrow?"]]
   },
   {
     sentence: "I think we're lost, can you help us?",
@@ -575,7 +610,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`be lost` = 迷路，lost 是 lose 的过去分词作形容词。常见错误：\n• \"we **are lose**\" → 要用过去分词 lost\n• \"we **lost**\" → 缺 be 动词；若说 we lost our way 才不加 be",
       "问路求助开场白。help sb 直接接宾语：help us，不加 to 也正确（help (to) do）。"
-    ]
+    ],
+    distractors: [["I think we lost,","I think we're lose,","I thinks we're lost,"],["can you helps us?","can you help we?","can your help us?"]]
   },
   {
     sentence: "How long does it take to get there?",
@@ -591,7 +627,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "句型 `It takes + 时间 + to do`。常见错误：\n• \"How long **does it cost**\" → cost 表花费金钱，花费时间用 take\n• \"How long **it takes**\" → 疑问句助动词要提前",
       "`get there` 中 there 是副词，前不加 to。比较：get to the station（到车站）要加 to，there/here/home 不加。"
-    ]
+    ],
+    distractors: [["How far","How often","How time"],["do it take","does it takes","it takes"],["to get to there?","to getting there?","to get here?"]]
   },
   {
     sentence: "I'm into cooking these days.",
@@ -606,7 +643,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`be into + 名词/动名词` = 对…着迷（口语）。常见错误：\n• \"I'm **interesting in** cooking\" → 用 interested in 或 be into，别混搭\n• \"I into cooking\" → 漏掉 be 动词",
       "表达兴趣爱好三件套：be into / be interested in / enjoy，后接动名词。`these days` = 近来，常与现在时/进行时连用。"
-    ]
+    ],
+    distractors: [["I'm in cooking","I into cooking","I'm into cook"],["this days.","those days.","theses days."]]
   },
   {
     sentence: "Let's stay in touch, okay?",
@@ -621,7 +659,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`stay/keep in touch` = 保持联系，固定搭配。常见错误：\n• \"keep **the** touch\" → 不加 the\n• \"keep touch **with** each other\" → 可以说 keep in touch with sb，但单独用不加 with",
       "道别收尾金句。答应别人可说 Sure / Definitely / I will! 更口语说法：Let's keep in touch!"
-    ]
+    ],
+    distractors: [["Let's staying in touch,","Let's stay in the touch,","Let we stay in touch,"],["okays?","okey?"]]
   },
   {
     sentence: "It's boiling hot outside today.",
@@ -637,7 +676,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`boiling hot` = 滚烫/热得要命（boiling 原义沸腾，口语表夸张）。常见错误：\n• \"boiling **hotly**\" → hot 是形容词，不加 -ly\n• 说 It's boiling 即可表很热，别再叠 very",
       "对比说法：It's freezing (cold) 冷死了 / It's scorching 酷热。天气句用 it 作主语。"
-    ]
+    ],
+    distractors: [["It's boiled hot","It's boiling hotter","It's boiling hots"],["outdoor","in outside"],["to day.","the today."]]
   },
   {
     sentence: "I can't remember where I put my keys.",
@@ -653,7 +693,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`remember + where 从句` 用陈述语序。常见错误：\n• \"where **did I** put\" → 从句内不倒装，用 I put\n• \"remember **to find**\" → remember where 是宾语从句，不是 remember to do",
       "put 的过去式仍是 put（不规则动词不变形）。近义句：I can't find my keys anywhere."
-    ]
+    ],
+    distractors: [["I can't remembered","I cann't remember","I can't to remember"],["where I putted","where did I put","where I puts"],["my key.","mine keys.","keys."]]
   },
   {
     sentence: "You should take a break now.",
@@ -668,7 +709,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`should + 动词原形` 表建议。常见错误：\n• \"You should **to take**\" → 情态动词后不接 to\n• \"You **shoulds** take\" → should 无第三人称变化",
       "`take a break` = 休息一下，固定搭配。同义：have a rest / take a breather（口语稍作喘息）。"
-    ]
+    ],
+    distractors: [["You should take break","You should takes a break","You should to take a break"],["just now.","for now.","nows."]]
   },
   {
     sentence: "Do you have any tables available for two?",
@@ -684,7 +726,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`available` 作后置定语放在名词后：tables available = 空着的桌位。常见错误：\n• \"available **tables**\" → 也正确但 available 作前置定语语气不同，此处后置更常用\n• \"table **is** available for us\" → 用 there be 或 have 开头更像在询问",
       "餐厅等位专用句。答语：\"Yes, right this way.\" 或 \"Sorry, we're fully booked.\""
-    ]
+    ],
+    distractors: [["Are you have","Do you has","Do you having"],["any tables availables","any tables is available"],["to two?","for second?","for two person?"]]
   },
   {
     sentence: "Could I get this to go, please?",
@@ -700,7 +743,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`to go` = 外带（美式）。常见错误：\n• \"for **takeaway**\" → takeaway 是英式名词，美式点餐说 to go\n• \"to **going**\" → to 后接原形 go",
       "相对的说法是 dine in / for here（堂食）。点餐收尾常用：\"Is that for here or to go?\""
-    ]
+    ],
+    distractors: [["Could me get this","Could I to get this","Could I gets this"],["to going,","go,","for go,"],["pleased.","pleases."]]
   },
   {
     sentence: "We're just looking, but thanks anyway.",
@@ -715,7 +759,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`just looking` 是婉拒店员推销的标准话术（= 我自己看，不需要帮忙）。常见错误：\n• \"just **look**\" → 进行时强调当下状态更自然\n• \"we look **only**\" → only 位置不对，要用 just",
       "`thanks anyway` = 无论如何谢谢你（即使没接受帮助）。anyway 放句尾表「反正、无论如何」。"
-    ]
+    ],
+    distractors: [["We just looking,","We're just look,","We're just looks,"],["but thank anyway.","but thanks any way.","but thanks anyways."]]
   },
   {
     sentence: "What size do you take in shoes?",
@@ -731,7 +776,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "问尺码：`What size do you take?`。常见错误：\n• \"How big **are** your shoes\" → 问鞋子大小不问人\n• \"What size **are** you take\" → 实义动词 take 要借助助动词 do",
       "`in shoes` = 在鞋子的品类里。类似：What size are you in?（你穿什么码？）。答：I take a size 8."
-    ]
+    ],
+    distractors: [["What sizes","How size","What a size"],["are you take","do you takes","you take"],["of shoes?","on shoes?","for shoes?"]]
   },
   {
     sentence: "I should have called you earlier.",
@@ -747,7 +793,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`should have done` = 本应该做而没做（表后悔/责备）。常见错误：\n• \"I should **called**\" → 情态动词后接 have + 过去分词\n• \"I should have **call**\" → 需用过去分词 called",
       "表达后悔三兄弟：should have（本应该）/ could have（本可以）/ would have（本会）。earlier 是 early 的比较级。"
-    ]
+    ],
+    distractors: [["I should has","I should of","I should to have"],["call you","calling you","called your"],["early.","more earlier.","earliest."]]
   },
   {
     sentence: "Mind if I join you for lunch?",
@@ -763,7 +810,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "`Mind if I...` = Do you mind if I... 的口语省略版。常见错误：\n• 回答 \"Yes\" → 指「介意」，别让人家一起坐；不介意要说 No/Not at all\n• \"Mind **that** I join\" → if 从句表条件，不用 that",
       "`join sb` = 加入某人（一起做某事）。加入某活动可说 join sb for lunch / join the game。"
-    ]
+    ],
+    distractors: [["Mind that I","Minds if I","Mind do I"],["join with you","joins you","joining you"],["to lunch?","for the lunch?","at lunch?"]]
   },
   {
     sentence: "The subway is faster than driving downtown.",
@@ -779,7 +827,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "比较结构 `A is + 比较级 + than + B`。常见错误：\n• \"more faster\" → fast 是单音节，比较级直接 faster，不加 more\n• \"than **drive**\" → 比较对象要对称，用动名词 driving",
       "`downtown` = 市中心/去市中心，副词用法前不加 to（比较 go downtown / go to the city center）。"
-    ]
+    ],
+    distractors: [["The subway are faster","Subway is faster","The subway is more faster"],["than drive","then driving","to driving"],["down town.","to downtown.","in downtown."]]
   },
   {
     sentence: "Could we get the check, please?",
@@ -795,7 +844,8 @@ window.DATA_ORAL8000 = [
     explanations: [
       "结账用语分英美：美式 `the check`，英式 `the bill`。常见错误：\n• 混说 \"get the bill\" 英式场景也通，但美式餐厅多用 check\n• \"pay the check\" → 可以，但 get the check 是「请拿来账单」",
       "同义表达：\"Check, please!\"（最简洁）/ \"Can we have the bill, please?\""
-    ]
+    ],
+    distractors: [["Could us get","Could we to get","Could we gets"],["the checks,","check,","the checkout,"],["pleased.","pleases."]]
   }
 ];
 
