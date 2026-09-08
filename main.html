@@ -1966,8 +1966,13 @@ function showProgressPop(){
   var r = wrap.getBoundingClientRect();
   var isMobile = window.innerWidth <= 640;
   if(isMobile){
-    /* 圆环正下方居中（避免右侧空间不够时溢出） */
-    pop.style.left = (r.left + r.width / 2) + 'px';
+    /* 圆环正下方居中（避免右侧空间不够时溢出）。
+       clamp 锚点 x：popover 半宽超出屏幕边缘时向内收，保证 8px 内边距不溢出 */
+    var centerX = r.left + r.width / 2;
+    var half = pop.offsetWidth / 2;
+    var minX = half + 8;
+    var maxX = window.innerWidth - half - 8;
+    pop.style.left = Math.max(minX, Math.min(centerX, maxX)) + 'px';
     pop.style.top = (r.bottom + 8) + 'px';
     pop.style.transform = 'translateX(-50%)';
   } else {
@@ -1996,7 +2001,7 @@ function toggleProgressPop(){
   else showProgressPop();
 }
 
-/* 绑定圆环 popover：桌面 hover/focus 即得（无延迟）+ 移动 tap 切换 */
+/* 绑定圆环 popover：hover（桌面）即得 + tap/click（移动/通用）切换 */
 function bindRingPop(){
   var wrap = $('ringWrap');
   var pop = $('ringPop');
@@ -2009,17 +2014,24 @@ function bindRingPop(){
   if(pop && pop.parentNode !== document.body){
     document.body.appendChild(pop);
   }
-  // 桌面：mouseenter 即显示（无延迟，体验优于原生 title 0.5-1.5s）
-  wrap.addEventListener('mouseenter', showProgressPop);
-  wrap.addEventListener('mouseleave', hideProgressPop);
-  // 键盘可达性：focus 即显示，blur 延迟关闭（让点击内部仍生效）
-  wrap.addEventListener('focus', showProgressPop);
-  wrap.addEventListener('blur', function(){
-    setTimeout(function(){
-      if(document.activeElement !== wrap) hideProgressPop();
-    }, 150);
-  });
-  // 移动端/触屏：click 切换显示
+  /* hover 系列只在支持 hover 的设备上绑：
+     移动 tap 会合成 mouseenter + click 事件链，若两者都绑，
+     一次 tap = mouseenter(open) + click(toggle→close) → popover 开了立刻关（用户看不到）。
+     判断 hover 能力而非设备类型（触摸笔记本两用正常） */
+  var canHover = !window.matchMedia || window.matchMedia('(hover: hover)').matches;
+  if(canHover){
+    // 桌面：mouseenter 即显示（无延迟，体验优于原生 title 0.5-1.5s）
+    wrap.addEventListener('mouseenter', showProgressPop);
+    wrap.addEventListener('mouseleave', hideProgressPop);
+    // 键盘可达性：focus 即显示，blur 延迟关闭（让点击内部仍生效）
+    wrap.addEventListener('focus', showProgressPop);
+    wrap.addEventListener('blur', function(){
+      setTimeout(function(){
+        if(document.activeElement !== wrap) hideProgressPop();
+      }, 150);
+    });
+  }
+  // 通用：click 切换显示（桌面点击 / 移动 tap 都走这里）
   wrap.addEventListener('click', function(e){
     e.stopPropagation();
     toggleProgressPop();
