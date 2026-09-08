@@ -306,15 +306,6 @@ input,textarea,select{font:inherit;color:inherit}
 #stageChoices{display:none;position:fixed;left:50%;bottom:32px;transform:translateX(-50%);
   z-index:55;width:min(92vw,760px);flex-wrap:wrap;justify-content:center;gap:10px;max-width:92vw}
 #stageChoices:has(.choice){display:flex}
-/* 全部答完：chips 半透明 + 显示"已答完"角标（distractors 仍可见允许自由试错）。
-   角标由 JS 注入 span.done-badge（内含 SVG check icon，宪法：UI 禁用字符 icon），
-   不用 CSS content 字符 ✓ */
-#stageChoices.done{opacity:.55}
-#stageChoices.done .done-badge{display:flex}
-.done-badge{display:none;position:absolute;top:-22px;left:50%;transform:translateX(-50%);
-  align-items:center;gap:3px;font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:999px;
-  padding:2px 10px;letter-spacing:.02em;white-space:nowrap}
-.done-badge .icon{width:11px;height:11px}
 .choice{
   position:relative;min-height:42px;border:1px solid rgba(145,135,121,.48);border-radius:999px;
   padding:9px 19px 10px;font-size:15px;font-weight:600;text-align:left;cursor:pointer;letter-spacing:.005em;
@@ -2112,23 +2103,10 @@ function renderActiveChoices(){
     var v = pool.corrects[k];
     html += '<button class="choice" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
   }
-  /* 全部答完时给容器加 done 类（CSS 半透明）+ 注入 SVG 角标（宪法：UI 禁用字符 icon）。
-     顺序：先 box.innerHTML = html 再注入 badge（否则被 html 覆盖清掉） */
-  var allOk = S.status && S.status.length === it.chunks.length && S.status.every(function(s){ return s === 'ok'; });
-  box.classList.toggle('done', !!allOk);
   box.innerHTML = html;
-  if(allOk){
-    var badge = box.querySelector('.done-badge');
-    if(!badge){
-      badge = document.createElement('span');
-      badge.className = 'done-badge';
-      box.appendChild(badge);
-    }
-    badge.innerHTML = (window.Icons ? Icons.svg('check') : '') + '已答完';
-  } else {
-    var oldBadge = box.querySelector('.done-badge');
-    if(oldBadge) oldBadge.remove();
-  }
+  /* "已答完"角标由 finishSentence 在非 perfect 错 1 次自纠分支里挂到 revealTagWrap（与
+     "已掌握/需巩固" 同一槽位同色系，分层：已答完=本次完成；已掌握/需巩固=复习建议）。
+     完美路径已有 toast/彩带/圆环 pulse/auto-next 倒计时 5 重信号，不再叠 tag */
 }
 
 /* 在 chunk 内显示答题结果（ok/bad/revealed）。bad 且 picked 不是正确答案时同时显示错选 + 正确 */
@@ -2505,9 +2483,11 @@ function finishSentence(){
       var already = S.wrong.some(function(w){ return w.it === it; });
       if(!already) S.wrong.push({ it:it, idx:wrongIdx, answers:S.answers.slice() });
     } else {
-      /* 错 1 次自己纠正：不给标签——答完整句即自明（chunk 全绿），无需确认；
-         且绿色"已答对"易与"已掌握"混淆、与"错过1次"的事实矛盾（2026-09-04 老板确认删除） */
-      tagWrap.classList.add('hidden');
+      /* 错 1 次自己纠正：补一个"已答完"绿 tag（错 1 自纠态原本无声反馈）。
+         与"已掌握/需巩固"同一槽位同色系（reveal-tag good），但语义不同：已答完=本次完成；
+         已掌握/需巩固=复习建议。下句 renderQ 会清。 */
+      tagWrap.className = 'reveal-tag good';
+      tagWrap.innerHTML = '<span class="tag-icon">'+(window.Icons?Icons.svg('check'):'')+'</span> 已答完';
     }
     var nb = $('btnNext');
     nb.classList.remove('hidden');
