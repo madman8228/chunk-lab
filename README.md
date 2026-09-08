@@ -131,6 +131,7 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 
 前端单测（Node 直跑，零依赖）：
 ```bash
+node scripts/check-sw.js     # SW 护栏：CACHE 与 PRECACHE 内容哈希一致（防忘跑 gen-sw）
 node srs.test.js            # SRS 间隔序列 / 答错重置 / 旧数据兼容 / 到期判定
 node store.test.js          # 存储键统一 / 版本迁移 / 句子 key cid 迁移 / 默认结构
 node rev.test.js            # ADR-005 实体级 rev 同步 + 离线 change-log（dirty/重连补传）
@@ -162,11 +163,13 @@ node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change
 ```bash
 npm run e2e
 # 覆盖：main 正常路径（顶栏 SVG/真实句子/候选区/零 pageerror）、
-#       全 module 拦截降级（safeCall 兜底不白屏）、decks/stats SVG 渲染
-# 截图输出 output/e2e/shots/；找不到浏览器时设 CHROMIUM_PATH
+#       全 module 拦截降级（safeCall 兜底不白屏）、decks/stats SVG 渲染、
+#       错题本收敛闭环（写入→mem.reinforceBook 落盘/旧键迁移/stats 可见）、
+#       结算卡「换个题库」跳 decks.html（死代码清理回归）
+# 截图输出 e2e/shots/（不入库）；找不到浏览器时设 CHROMIUM_PATH
 ```
 
-> **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first。CACHE 版本 = `chunklab-<sha1前8位>`，由 `node scripts/gen-sw.js` 依 PRECACHE 清单文件内容自动生成 —— **改业务代码后重跑 `node scripts/gen-sw.js`**（或手动 bump），否则浏览器继续 serve 旧缓存（修复不生效）。刷新一次即完成新 SW 激活与旧缓存清理；页面顶部会自动出现"发现新版本"toast，点刷新即可。
+> **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first。CACHE 版本 = `chunklab-<sha1前8位>`，由 `node scripts/gen-sw.js` 依 PRECACHE 清单文件内容自动生成 —— **改业务代码后重跑 `node scripts/gen-sw.js`**（或手动 bump），否则浏览器继续 serve 旧缓存（修复不生效）。已加护栏 `node scripts/check-sw.js`（挂在 `npm test` 首位）：CACHE 与资源内容哈希不一致且工作区干净时直接报红拦截。刷新一次即完成新 SW 激活与旧缓存清理；页面顶部会自动出现"发现新版本"toast，点刷新即可。
 
 ## 自动备份（上线准备 · 推荐配置）
 
@@ -212,6 +215,6 @@ node server/backup-cli.js list                # 列出备份
 - 🟡 `main.html` 仍是 ~4.3k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
 - 🟡 `oral8000.js` 现为 50 句种子数据（并入 builtin-daily），分批扩展直接在文件内追加
-- 🟡 `output/e2e/e2e.js` 部分断言与最新 UI（AI 停用、独立页导航）存在漂移，改动主流程前先核对
+- 🟡 主流程改动后记得跑 `npm run e2e`（61 项，自动拉起临时 server）确认无回归；`e2e/e2e.js` 已随版本入库
 
 > 早期迭代中的问题（同步整块覆盖、AI Key 前端直连、后端零校验、移动端适配弱、核心逻辑无单测等）均已按 architecture-plan 的 Phase A→C 闭环，ADR 清单见上。
