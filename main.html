@@ -1233,6 +1233,18 @@ var SFX = (function(){
     perfect: function(){ if(!mem.settings.sound) return; beep(660, 0.08, 'sine', 0.07); setTimeout(function(){ beep(880, 0.08, 'sine', 0.07); }, 80); setTimeout(function(){ beep(1320, 0.15, 'sine', 0.06); }, 160); }
   };
 })();
+/* ★ 整句朗读（SpeechSynthesis）—— btnSpeak 手动点击 + finishSentence 自动朗读共用
+   ★ 根因修复（2026-09-08）：设置面板里的「自动朗读」开关存在但功能没接通（只有 setter 没有 trigger），
+     现统一用此函数触发。browser autoplay policy：答完一题时用户已与页面交互，可正常播放。 */
+function speakSentence(){
+  try{
+    var it = cur();
+    if(!it || !it.sentence) return;
+    var u = new SpeechSynthesisUtterance(it.sentence);
+    u.lang='en-US'; u.rate=0.92;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
 /* ===== 视觉特效（彩纸/烟花）===== */
 var FX = (function(){
   var cv, cx;
@@ -1732,6 +1744,8 @@ function migrateLegacyStatKeys(){
 
 function renderQ(){
   stopAutoNext();  /* 渲染新题时清理上一句的自动倒计时 */
+  /* ★ 自动朗读衔接：切新题时停掉上一句还在播的 TTS（避免和新题 chunk 语音重叠） */
+  try{ speechSynthesis.cancel(); }catch(e){}
   /* ★ 诊断模式（临时）：把所有早期依赖探一遍，缺哪个标到 zh */
   var _need = ['cur','isDue','esc','isMastered','isFluency','masteredKey','wordCount','sentenceClassify'];
   var _miss = _need.filter(function(n){ return typeof window[n] !== 'function'; });
@@ -2499,6 +2513,9 @@ function finishSentence(){
   }
   /* 不再自动弹标熟建议——由用户主动点圆环按钮完成标熟 */
   updateRing(); /* 练习次数已累计，刷新圆环 */
+  /* ★ 根因修复（2026-09-08）：接通「自动朗读」设置（设置面板里 #setAutoSpeak，文案"完成后自动朗读"）——
+     此前只有 setter 没有 trigger，用户开了开关也没反应。浏览器 autoplay policy：用户已与页面交互（刚答完题），可直接播放。 */
+  if(mem.settings.autoSpeak){ speakSentence(); }
   /* ★ 关键：必须在 finishSentence 末尾立刻 saveStore()，否则用户答完没点"下一题"就关页面 → 本次练习丢失 */
   saveStore();
 }
@@ -3726,13 +3743,7 @@ $('stageTipBar').addEventListener('click', function(e){
   else if(act==='reveal') revealCurrentChunk();
   else if(act==='full') showFullSentence();
 });
-$('btnSpeak').onclick = function(){
-  try{
-    var u = new SpeechSynthesisUtterance(cur().sentence);
-    u.lang='en-US'; u.rate=0.92;
-    speechSynthesis.cancel(); speechSynthesis.speak(u);
-  }catch(e){}
-};
+$('btnSpeak').onclick = function(){ speakSentence(); };
 /* 详解入口：答完当前句后打开详解页 */
 var _explainFromPage = 'pagePractice';
 $('btnExplain').onclick = function(){
