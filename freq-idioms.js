@@ -3072,7 +3072,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**say the word** = just let me know「随时说一声就行」，表示只要你开口我就行动。",
       "例句：If you need help moving, just say the word."
-    ]
+    ],
+    distractors: [["I need to know your name —","I need to know your address —"],["just take my word.","just say the truth."]]
   },
   {
     sentence: "Don't worry about the kids — leave it to me.",
@@ -3087,7 +3088,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**leave it to me** 是承接任务的承诺：「交给我/包在我身上」，比 I'll do it 更有担当。",
       "近义：consider it done / I'll handle it。例句：— Who will close the deal? — Leave it to me."
-    ]
+    ],
+    distractors: [["Don't worry about the dinner —","Don't worry about the bills —"],["leave it to you.","leave it alone."]]
   },
   {
     sentence: "Mind your own business — I'm fine on my own.",
@@ -3102,7 +3104,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**mind your own business** 是被多管闲事时的标准回击：「管好你自己」，态度明确。",
       "近义：stay out of it / it's none of your business。例句：Mind your own business, or I'll mind it for you."
-    ]
+    ],
+    distractors: [["Make your own decision —","Take your own advice —"],["I'm bored on my own.","I'm not fine on my own."]]
   },
   {
     sentence: "Come on, we're going to be late for the movie.",
@@ -3117,7 +3120,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**come on** 多功能：催促「快点/得啦」+ 鼓励「加油」+ 不信「得了吧」。",
       "例句：Come on, you can do it! I believe in you."
-    ]
+    ],
+    distractors: [["Come here,","Calm down,"],["we're going to be late for school.","we're going to be early for the movie."]]
   },
   {
     sentence: "Let me see — I think we have the file on the server.",
@@ -3132,7 +3136,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**let me see** = let me check「让我看看/让我查查」，回应对方需求前先确认的过渡语。",
       "近义：let me think / let me check。例句：— What's the WiFi password? — Let me see... it's on the fridge."
-    ]
+    ],
+    distractors: [["Let me try —","Let me guess —"],["I think we have the file on my desk.","I'm sure we have the file on the server."]]
   },
   {
     sentence: "I see — you're telling me you want to quit your job.",
@@ -3147,7 +3152,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**I see** 是「我明白了/我懂了」，比 I understand 更口语。对方解释事情时的回应高频。",
       "近义：got it / understood。例句：— It's a rental car, not ours. — I see, makes sense."
-    ]
+    ],
+    distractors: [["Really —","I bet —"],["you're telling me you want to quit school.","you're telling me you want to keep your job."]]
   },
   {
     sentence: "I get it — you don't want to talk about it right now.",
@@ -3162,7 +3168,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**I get it** 跟 I see 同意，但 get it 更有「完全理解/同感」意味，朋友间宽慰对方常用。",
       "例句：— I'm so tired I could sleep for a week. — I get it. Take a break."
-    ]
+    ],
+    distractors: [["I doubt it —","I forget it —"],["you don't want to talk about it tomorrow.","you want to talk about it right now."]]
   },
   {
     sentence: "Not really — I just ate before I came over.",
@@ -3177,7 +3184,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**not really** 礼貌婉拒：「不必了/没有吧」，比 no 更温和，不会让对方下不来台。",
       "近义：I'm good / no thanks。例句：— Want more coffee? — Not really, but thanks."
-    ]
+    ],
+    distractors: [["Not at all —","No problem —"],["I just ate before I came in.","I just ate before I went out."]]
   },
   {
     sentence: "We're leaving tomorrow — not yet tonight.",
@@ -3192,7 +3200,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**not yet** 表示「还没」，对 now? / ready? 这类当下问题的回答。",
       "例句：— Are you packed for the trip? — Not yet, I'll do it in the morning."
-    ]
+    ],
+    distractors: [["We're arriving tomorrow —","We're flying tomorrow —"],["not yet paid for.","not yet settled."]]
   },
   {
     sentence: "Not much, just catching up on some emails.",
@@ -3207,7 +3216,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**not much** 是 What's up / What's new 的标准回应：「没啥特别的」。**catch up on** = 补上落下的工作。",
       "例句：— What are you up to? — Not much, just catching up on some paperwork."
-    ]
+    ],
+    distractors: [["Not bad,","Not yet,"],["just catching up on some sleep.","just catching up on some news."]]
   },
   {
     sentence: "It's now or never — grab the chance!",
@@ -3222,7 +3232,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**now or never** 是「机不可失/要就要现在」，怂恿对方做决定的强力口号。",
       "近义：seize the day。例句：Apply now — it's now or never!"
-    ]
+    ],
+    distractors: [["It's now or later —","It's tonight or never —"],["miss the chance!"]]
   },
   {
     sentence: "I have no idea where he went after the party.",
@@ -3237,7 +3248,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have no idea** 是「完全不知道」，比 don't know 语气更强（确实不知道而非不想说）。",
       "近义：have no clue / haven't got a clue。例句：— Where's my passport? — No idea, have you checked your bag?"
-    ]
+    ],
+    distractors: [["I don't care","I have no doubt"],["where he went before the party.","where she went after the party."]]
   },
   {
     sentence: "I'm just kidding — don't take it seriously.",
@@ -3252,7 +3264,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**just kidding** 是「开玩笑/逗你玩」，玩笑过头或朋友误会时立刻补充救场。",
       "近义：just joking / I'm messing with you。例句：— You got fired? — Just kidding, I got a raise!"
-    ]
+    ],
+    distractors: [["I'm just asking —","I'm just curious —"],["don't take it lightly.","don't bring it up."]]
   },
   {
     sentence: "Take your time — the deadline is next Friday, not today.",
@@ -3268,7 +3281,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**take your time** 是「慢慢来/不急」，给对方减压的友好表达，可用于工作/学习/约会/购物。",
       "近义：no rush / there's no hurry。例句：Take your time choosing — these shoes are a big investment."
-    ]
+    ],
+    distractors: [["Hurry up —","Spend your time —"],["the deadline is next Monday,","the meeting is next Friday,"],["not tomorrow.","not this week."]]
   }
 ,
   {
@@ -3284,7 +3298,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**You don't say!** 高语境口语：字面『你不说我也知道』，实际两用——(1) 表惊讶：真的吗！(2) 反讽：谁不知道啊（语气拖长+降调）。",
       "中性场景表惊讶可用 No kidding! / Really? 例：— She quit her job. — You don't say!（她辞职了。——真的假的！）"
-    ]
+    ],
+    distractors: [["\"We won the game!\"","\"I won the lottery!\""],["— \"You said it!\"","— \"Don't say that!\""]]
   }
 ];
 
