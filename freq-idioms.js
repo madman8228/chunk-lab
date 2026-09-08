@@ -211,7 +211,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**come off it** 短语动词祈使句，意为「别装了/收起你的鬼话/别闹了」。朋友间常用，对夸张说法表达不信。",
       "近义：come on / give me a break / you've got to be kidding。例句：— I never lost a game. — Come off it!"
-    ]
+    ],
+    distractors: [["You're lying —","You're serious —","Are you joking —"],["get over it!","come on now!","drop it!"]]
   },
   {
     sentence: "I think he's coming on to you.",
@@ -227,7 +228,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**come on to (someone)** 短语动词，意为（对某人）调情、示好、暧昧。多指单方面主动接近，常带暗示意味。",
       "注意与 come on（加油/快点/得了吧）区分。例句：He kept coming on to me at the party, so I left."
-    ]
+    ],
+    distractors: [["I bet","I guess","I doubt"],["she's","he was","he's not"],["coming up to you.","checking you out.","coming after you."]]
   },
   {
     sentence: "I've been a couch potato all weekend.",
@@ -243,7 +245,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**couch potato** 俚语，形容整天窝在沙发上看电视/刷手机、几乎不下床的人。贬义，带轻微自嘲意味。",
       "近义：homebody（宅家者，偏中性）/ shut-in（闭门不出，偏严重）。变体 veggie（蔬菜=沙发土豆的简短称呼）。例句：Stop being a couch potato — let's go for a walk."
-    ]
+    ],
+    distractors: [["I've become","I was","I'm"],["a night owl","a weekend warrior","a sports fan"],["all week.","every weekend.","last weekend."]]
   },
   {
     sentence: "Don't give yourself airs.",
@@ -258,7 +261,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**give oneself airs** 固定短语，意为摆架子、装腔作势、装了不起。多用于批评。airs 是复数名词，不能写成 air。",
       "近义：put on airs（更常用）/ act high and mighty / get a big head（自大）。例句：He really gives himself airs since he got promoted."
-    ]
+    ],
+    distractors: [["You don't"],["give yourself credit.","sell yourself short.","give yourself away."]]
   },
   {
     sentence: "Fake it until you make it.",
@@ -273,7 +277,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Fake it until you make it.** 励志谚语，强调先假装自信/熟练，直到真正掌握。美国心理学 Amy Cuddy 的 power posing 理论也基于此。",
       "口语常用，注意语气：可激励人也可能暗示冒牌货。注意 make it 意为「做成」；it 重复指上文整件事。变体：Fake it till you make it（till 比 until 更口语）。"
-    ]
+    ],
+    distractors: [["Practice it","Push it"],["when you make it","before you make it","until you feel it"]]
   },
   {
     sentence: "That's a fresh take.",
@@ -288,7 +293,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**fresh take** 名词短语，指对事情的新颖视角、独特观点。常用于评价观点/表演/方案与之前不同。",
       "口语常用：That's a fresh take on the problem. 注意与 fresh（清新/新鲜）单独使用区分。变体：a new spin on / a different angle on。"
-    ]
+    ],
+    distractors: [["This is","That was","That's not"],["a hot take.","a fresh look.","a fresh start."]]
   },
   {
     sentence: "Try not to overthink; go with the flow.",
@@ -303,7 +309,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**go with the flow** 短语动词，意为随大流、随遇而安、不强行控制局面。褒贬随语境——可指适应性强，也可指没主见。",
       "近义：roll with the punches（拳击习语，更口语）/ take things as they come。注意与 go with the times（与时俱进）区分。例句：Just relax and go with the flow."
-    ]
+    ],
+    distractors: [["Learn not to overthink;","Try not to think;","Try not to panic;"],["go against the flow.","go with your gut.","go with the times."]]
   },
   {
     sentence: "She's going it alone this time.",
@@ -319,7 +326,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**go it alone** 短语动词，意为独自行动、单干。常用来评价独立创业者/决策者。it 是形式宾语，指代正在做的事。",
       "近义：go solo / strike out on one's own。注意语境：从「独立勇敢」到「孤立无援」都适用，看动词时态和上下文。"
-    ]
+    ],
+    distractors: [["He's","She was","She's been"],["facing it alone","fighting it alone"],["that time.","at last.","for good."]]
   },
   {
     sentence: "Hang in there — it'll get better.",
@@ -334,7 +342,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**hang in there** 短语动词，意为坚持下去、不放弃。常用于安慰处于困境/低谷的人。比 stick with it 更口语、更有共情。",
       "近义：keep at it / stay strong / don't give up。例句：I know the job is tough, but hang in there. 注意：hang in 不带 there 时意为「凑合着用」。"
-    ]
+    ],
+    distractors: [["Give it time —","Bear with me —","Keep it up —"],["it'll get worse.","it's getting better.","you'll get better."]]
   },
   {
     sentence: "He holds a grudge like nobody's business.",
@@ -350,7 +359,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**like nobody's business** 程度状语，意为「不得了」「不一般地」，形容程度夸张。比 very 更有戏谑色彩。",
       "近义：like crazy / like mad / like it's going out of style（也过时）。例句：She can cook like nobody's business. 注意 nobody's 永远带撇号。"
-    ]
+    ],
+    distractors: [["She holds","He held","He still holds"],["his breath","a record"],["for all he's worth.","out of spite."]]
   },
   {
     sentence: "Let it be; don't force it.",
@@ -365,7 +375,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**let it be** 短语动词，意为听其自然、不强行干预。也是披头士名曲《Let It Be》歌名。隐含一种禅意/接受情绪。",
       "与 let it go（放下，源自《冰雪奇缘》Frozen）近义但侧重不同：let it be 是接受现状，let it go 是释怀过去。例句：Things will work themselves out — just let it be."
-    ]
+    ],
+    distractors: [["Let it out;","Set it free;","Stop it;"],["don't rush it.","don't fight it.","don't overdo it."]]
   },
   {
     sentence: "Make yourself at home.",
@@ -380,7 +391,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**make yourself at home** 标准客人招待用语，让对方自在不拘束。多用于请客人坐下/喝茶前。",
       "近义：feel free / make yourself comfortable。注意 yourself 不能换成其他代词（you 含反身意义）。例句：Welcome! Please come in and make yourself at home."
-    ]
+    ],
+    distractors: [[],["yourself useful.","yourself a drink.","yourself heard."]]
   },
   {
     sentence: "No need to make a fuss.",
@@ -395,7 +407,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**make a fuss** 短语动词，意为小题大做、大惊小怪、过分激动。可加 over 某人/某事：make a fuss over nothing。",
       "近义：make a big deal / kick up a fuss（更强烈）/ hit the ceiling/freak out（情绪化）。例句：Don't make a fuss — it's just a scratch."
-    ]
+    ],
+    distractors: [[],["to make a scene.","to get angry.","to cause trouble."]]
   },
   {
     sentence: "Once in a blue moon, I eat fast food.",
@@ -410,7 +423,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**once in a blue moon** 频率状语，意为「难得一次」「极为罕见」（蓝色月亮 ≈ 每 2-3 年才出现一次的天文现象）。",
       "近义：every once in a while（更频繁）/ hardly ever / not often。反义：every now and then / frequently。注意 blue moon 是固定搭配，不能换成别的颜色。"
-    ]
+    ],
+    distractors: [["Once in a while,","Now and then,","Every so often,"],["I order fast food.","I ate fast food.","I love fast food."]]
   },
   {
     sentence: "Pull yourself together.",
@@ -425,7 +439,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**pull yourself together** 短语动词，意为控制情绪、振作、冷静下来。常对崩溃/慌乱/情绪失控的人说。",
       "近义：get a grip（自己）/ compose yourself / settle down。更柔和的版本：take a deep breath。注意是对受话人说，you 永远是 yourself。"
-    ]
+    ],
+    distractors: [[],["your act together.","your socks up."]]
   },
   {
     sentence: "She has a sweet tooth.",
@@ -440,7 +455,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**sweet tooth** 名词短语，字面「甜牙」，指爱吃甜食/糖果的喜好。口语且带亲昵感，形容自己时多带自嘲。",
       "近义：sugar addict / chocoholic（巧克力成瘾者）。复数：sweet teeth。常说：I have a sweet tooth — pass the cake."
-    ]
+    ],
+    distractors: [["He has","She had","She doesn't have"],["a green thumb.","a sweet voice.","a sweet spot."]]
   },
   {
     sentence: "Take it with a grain of salt.",
@@ -455,7 +471,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**with a grain of salt** 来源古罗马毒物解药配方（一粒盐），意为不全信、保留怀疑。听八卦/广告/单一来源消息时常用。",
       "近义：with a pinch of salt（更轻微）/ take it with a dose of skepticism。变体：take everything with a grain of salt。注意：别写成 \"a grain of sugar\"。"
-    ]
+    ],
+    distractors: [["Read it","Take everything"],["with a grain of truth.","seriously.","to heart."]]
   },
   {
     sentence: "We're on the same page.",
@@ -470,7 +487,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**on the same page** 固定短语，意为理解一致、意见统一，源自工作汇报/会议场景。也可指「在同一进度上」。",
       "近义：in agreement / on the same wavelength。 反义：on different pages（沟通错位）。常用回应：Let's make sure we're on the same page before we move on."
-    ]
+    ],
+    distractors: [["They're","We were","We've been"],["on the same team.","on the same side.","in the same boat."]]
   },
   {
     sentence: "You are what you eat.",
@@ -485,7 +503,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**You are what you eat.** 谚语，强调饮食对健康/状态/性格的影响。常用于健康饮食倡导场合。",
       "也可比喻思想/习惯塑造人：You are what you read. 你读什么就是什么人。字面对比：You are what you drink（Drake 歌曲名）。"
-    ]
+    ],
+    distractors: [["We are","You become","You're not"],["what you drink.","what you ate.","where you eat."]]
   },
   {
     sentence: "They keep up with the Joneses by buying a new car every year.",
@@ -501,7 +520,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**keep up with the Joneses** 指在物质消费上「攀比邻居、不甘落后」。源自 1913 年美国连环画《Keeping Up with the Joneses》，Joneses 泛指虚构的富裕邻居。",
       "近义：keep pace with（跟上节奏）；反义：do your own thing（走自己的路）。口语里常带贬义：Buying a bigger TV is just keeping up with the Joneses."
-    ]
+    ],
+    distractors: [["We","People","She"],["put up with the Joneses.","keep up with the times.","keep up appearances."],["by buying a bigger house.","to buy a new car every year."]]
   },
   {
     sentence: "We're young, so let's live it up this summer.",
@@ -518,7 +538,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**live it up** 非正式口语，指「纵情享受、过奢华痛快的日子」，常见于假期、派对、发工资等语境。it 指代『生活本身』，无实指。",
       "近义：have a blast（玩得尽兴）/ let loose（放松）。例：You just got promoted — go live it up tonight!"
-    ]
+    ],
+    distractors: [["We were young,","We're getting old,","We're hardly young,"],["so we'll","so don't","so why not"],["play it safe","take it slow","live it down"],["this winter.","all summer.","last summer."]]
   },
   {
     sentence: "She works two jobs to make ends meet.",
@@ -533,7 +554,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**make ends meet** 常用习语：收入仅够开销、「勉强糊口」。ends 指账本的两端（收入/支出），把两端接上=收支平衡。",
       "例：With rent so high, many young people can barely make ends meet.（房租这么高，很多年轻人入不敷出。）近义：get by（勉强过活）。"
-    ]
+    ],
+    distractors: [["She needs two jobs","She had two jobs","She has two jobs"],["to buy a new house.","to support her family.","to save for retirement."]]
   },
   {
     sentence: "Money talks — he got the contract overnight.",
@@ -549,7 +571,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Money talks** 谚语：金钱有话语权，「有钱能使鬼推磨」。talk 拟人化——钱会替你『说话』、开路。",
       "变体：Money talks, bullshit walks.（真金白银说话，空话走人——较粗，慎用正式场合。）近义：Money makes the world go round."
-    ]
+    ],
+    distractors: [["Money matters.","Money counts."],["— he lost the contract","— he got the job"],["over time.","last night.","suddenly."]]
   },
   {
     sentence: "The coach gave the team a pep talk before the final.",
@@ -565,7 +588,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**pep talk**：赛前/任务前的简短「动员讲话」，目的是提气。pep 意为精力、活力（pep up 使振作）。常见于体育、销售、考前场景。",
       "动词搭配：give sb a pep talk / need a pep talk。例：My manager gave me a pep talk before the presentation.（演讲前经理给我打气。）"
-    ]
+    ],
+    distractors: [["The captain gave the team","The coach had given the team"],["a pep rally","a good talking-to","a heart-to-heart"],["after the final.","before the game.","during the final."]]
   },
   {
     sentence: "Don't worry, you'll be right as rain after a good sleep.",
@@ -582,7 +606,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**right as rain** 英式色彩浓的习语，表示「完全正常、状态极佳、恢复如初」。rain 押韵且表清爽/滋养，故用 rain 而非其他词。",
       "常接在 be/feel 后：I'll be right as rain tomorrow.（我明天就活蹦乱跳了。）近义：as good as new / fit as a fiddle。"
-    ]
+    ],
+    distractors: [["Don't hurry,","Don't panic,","Don't cry,"],["you won't be","you should be"],["sick as a dog.","busy as a bee.","clear as day."],["after a long nap.","after a good meal.","before a good sleep."]]
   },
   {
     sentence: "His loud voice rubbed me the wrong way.",
@@ -598,7 +623,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**rub sb the wrong way**：无意间「惹恼、使不快」。意象：顺着毛摸（rub the right way）让人舒服，逆着毛（the wrong way）就难受。",
       "第三人称注意人称：His attitude rubs ME the wrong way / rubs HER the wrong way。近义：get on sb's nerves（让人烦躁）。"
-    ]
+    ],
+    distractors: [["His soft voice","His deep voice","Her loud voice"],["treated me"],["the right way."]]
   },
   {
     sentence: "Sorry I'm late — that's on me.",
@@ -613,7 +639,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**That's on me.** 美式口语：主动揽责——「这是我的错/责任」。on sb = 责任落在某人身上。同级还有 The fault is on me. 语义更强。",
       "用法区分：That's on me.（揽责）/ It's on me.（这顿我请客——同形不同义，靠语境）。近义：my bad / I take the blame."
-    ]
+    ],
+    distractors: [["Sorry I was late","Sorry I'll be late","Sorry I'm early"],["— that's on you.","— it's on me.","— that's up to me."]]
   },
   {
     sentence: "Think it over before you quit your job.",
@@ -629,7 +656,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**think it over**：花时间「仔细考虑、权衡」后再决定。代词 it 必须放中间：think it over / think things over，不能说 think over it。",
       "近义：sleep on it（睡一觉再决定，缓一夜）。例：Don't rush — think it over and call me tomorrow."
-    ]
+    ],
+    distractors: [["Talk it over","Work it out","Figure it out"],["before you decide","after you quit","before you start"],["your boss.","your career.","your company."]]
   },
   {
     sentence: "Ask Tom for advice — he really knows his stuff.",
@@ -645,7 +673,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**know one's stuff**：对自己的领域「非常在行、门儿清」。stuff 泛指业务内容。搭配 one's 随主语变化：know your stuff / know my stuff。",
       "近义：know one's onions（英式）/ be an expert。例：She's young but she knows her stuff when it comes to coding."
-    ]
+    ],
+    distractors: [["Ask Tom for help","Follow Tom's advice","Ask Tom for a favor"],["— he doesn't know","— he thinks he knows"],["his way around.","his limits.","his things."]]
   },
   {
     sentence: "He ignored the warning and got burned — he asked for it.",
@@ -661,7 +690,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**ask for it**：字面『讨要』，实际指『自找麻烦、咎由自取』，常因不听劝告而吃亏。过去式 asked for it。",
       "较直白版：You asked for trouble. 例：He drove drunk and crashed — he really asked for it.（酒驾出车祸，纯属自找。）"
-    ]
+    ],
+    distractors: [["He ignored the advice","He missed the warning","He heeded the warning"],["and got caught","and got fired","and got scolded"],[]]
   },
   {
     sentence: "Don't get me wrong — I like the city, I just miss the quiet.",
@@ -677,7 +707,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Don't get me wrong**：说容易引起误解的话之前的「预防针」——别把我的意思理解偏了。get = 理解，wrong = 错误地。",
       "固定句式：Don't get me wrong, + 想说的内容。例：Don't get me wrong, he's nice — he's just not very reliable."
-    ]
+    ],
+    distractors: [["Don't get me started","Don't get me down","Don't get it wrong"],["— I left the city,","— I like the country,"],["I just miss the noise.","I just love the quiet.","I just want the quiet."]]
   },
   {
     sentence: "We're in a hurry, so get to the point.",
@@ -692,7 +723,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**get to the point**：说话「直奔要点」，别绕弯子。point = 核心观点。是会议、争论中的高频祈使表达。",
       "反义：beat around the bush（拐弯抹角）。例：Stop the small talk and get to the point — what's the price?"
-    ]
+    ],
+    distractors: [["We're in a meeting,","We're in no hurry,","We're short on time,"],["so get to work.","so make it quick.","so get on with it."]]
   },
   {
     sentence: "The boys wrecked the garden again — boys will be boys.",
@@ -707,7 +739,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Boys will be boys.** 西方谚语：男孩淘气是天性，用来为顽皮/幼稚行为开脱。语气通常是宽容的摇头一笑。",
       "中性批评者会指它是在『为不当行为找借口』。现代口语也出现 girls will be girls 的玩笑用法。"
-    ]
+    ],
+    distractors: [["The boys cleaned the garden again","The kids wrecked the garden again","The boy wrecked the garden again"],["— accidents will happen.","— kids will be kids."]]
   },
   {
     sentence: "The broken printer was the last straw — I quit.",
@@ -722,7 +755,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**the last straw**：缩写自 the last straw that breaks the camel's back（压垮骆驼的最后一根稻草）——一系列忍让后最终引爆的那件事。",
       "例：The rude email was the last straw.（那封无礼的邮件成了压垮我的最后一根稻草。）近义：the final blow / the breaking point."
-    ]
+    ],
+    distractors: [["The missing file was the last straw","The slow computer was the last straw","The broken printer was the tip of the iceberg"],["— I snapped.","— I complained.","— I cried."]]
   },
   {
     sentence: "Enough is enough — stop making excuses.",
@@ -737,7 +771,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Enough is enough.** 语气强硬：容忍到极限，「适可而止、我受够了」。以同词重复构成强调，常用于吵架/警告的收尾。",
       "变体：I've had enough.（我受够了。）例：Enough is enough — we're returning this defective product."
-    ]
+    ],
+    distractors: [["Enough said","Enough is never enough","That's enough"],["— stop blaming others.","— stop making promises.","— stop whining."]]
   },
   {
     sentence: "You pay for the dinner and I'll cover the movie — call it even.",
@@ -753,7 +788,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**call it even**：把账算平、「互不相欠」。even = 对等。常出现在轮流请客、分工后：You got the first round, I'll get this one and we call it even.",
       "近义：be even / we're square / call it quits（就此打住，可指关系或争执）。例：I helped you move; you fixed my bike — let's call it even."
-    ]
+    ],
+    distractors: [["You paid for the dinner","I pay for the dinner","You pay for the meal"],["and I'll book the movie","and you'll cover the movie"],["— call it quits.","— call it off.","— call it a day."]]
   },
   {
     sentence: "Sorry to bother you, but do you have a minute?",
@@ -768,7 +804,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Sorry to bother you** 职场/日常万能开场白：礼貌地打断别人。bother = 打扰、添麻烦。回答：No problem / Not at all.",
       "变体：Sorry to interrupt（打断别人说话时）/ Sorry for the trouble（事后致歉）。同义礼貌开场：Excuse me, do you have a second?"
-    ]
+    ],
+    distractors: [["Sorry to interrupt you,","Sorry to keep you,","Sorry to ask you,"],["but do you have the time?","but do you have a pen?","but are you in a hurry?"]]
   },
   {
     sentence: "If you love the job, just go for it.",
@@ -783,7 +820,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**go for it** 万能鼓励语：放手去做、勇敢争取、别犹豫。it 指代目标/机会。比 try it 更带冲劲。",
       "例：— Should I apply for the manager position? — Of course, go for it! 近义：give it a shot / just do it."
-    ]
+    ],
+    distractors: [["If you hate the job,","If you want the job,","If you get the job,"],["just give it up.","just think about it.","just take it."]]
   },
   {
     sentence: "There are only five seats — it's first come, first served.",
@@ -799,7 +837,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**First come, first served.** 通用规则语：按到达顺序先到先得。served 严格语法应为被动 served，口语常说 serve。常见于售票、入场、抢座。",
       "例：The free samples are first come, first served.（免费试吃先到先得。）祈使变体：First come, first serve!（招牌常用，语法略省。）"
-    ]
+    ],
+    distractors: [["There are only four seats","There aren't enough seats","There are over five seats"],["— it's last come,","— it's first served,"],["first come.","last served."]]
   },
   {
     sentence: "It's only a matter of time before the truth comes out.",
@@ -814,7 +853,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**a matter of time**：某事必然发生，「只是早晚问题」。固定句式 It's only/just a matter of time before + 从句。",
       "例：It's only a matter of time before they find out.（他们发现只是时间问题。）近义：it's inevitable / it's bound to happen."
-    ]
+    ],
+    distractors: [["It's not a matter of time","It's only a matter of days","It's only a matter of money"],["before the truth comes up."]]
   },
   {
     sentence: "Where we eat tonight is up to you.",
@@ -829,7 +869,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**up to you**：决定权交给你——「由你决定/看你」。固定搭配 it's up to you / it's up to sb。口语常单独成句：Up to you!",
       "变体：It's your call.（你来拍板。）例：— Movie or dinner? — Up to you, I'm easy.（你定吧，我都行。）"
-    ]
+    ],
+    distractors: [["What we eat tonight","Where we go tonight","When we eat tonight"],["is up to me.","is out of your hands.","is open to debate."]]
   },
   {
     sentence: "The car almost hit me — that was close!",
@@ -844,7 +885,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**That was close!** 劫后余生的感叹：差一点就出事/成功，「好险！/就差一点！」。close = 接近（危险或成败边缘）。",
       "也用于体育、比赛险胜：That was close — we won by one point! 近义：That was a narrow escape."
-    ]
+    ],
+    distractors: [["The car hit me","The car almost missed me","The truck almost hit me"],["— that was scary!","— that was dangerous!","— that was lucky!"]]
   },
   {
     sentence: "Keep your chin up — better days are coming.",
@@ -859,7 +901,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**keep your chin up** 安慰语：别垂头丧气、保持乐观。意象：下巴抬起来=不低头认输。常在朋友失意时说。",
       "例：I know the interview went badly, but keep your chin up — there will be other chances. 近义：cheer up / stay positive."
-    ]
+    ],
+    distractors: [["Keep your cool","Keep your fingers crossed","Keep it up"],["— worse days are coming.","— better days are gone.","— a new day is coming."]]
   },
   {
     sentence: "I won't sign that contract — no way!",
@@ -874,7 +917,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**No way!** 强烈拒绝/惊讶：不可能！没门！比 No 更口语、带情绪。",
       "近义：No! / Absolutely not! / Forget it! 例：— Want to skydive? — No way!"
-    ]
+    ],
+    distractors: [["I'll sign that contract —","I can't sign that contract —"],["no problem!","no doubt!"]]
   },
   {
     sentence: "Come on, the bus is almost here!",
@@ -889,7 +933,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Come on** 催促/不耐烦/鼓励：快点！加把劲！语境：催人出门、加好友游戏、鼓励沮丧的人。",
       "注意连读：come on = /kʌm ɑːn/。也用在句末：Oh, come on!（哎，别这样！）"
-    ]
+    ],
+    distractors: [["Look out,","Let's go,","Calm down,"],["the bus is already here!","the bus has just left!","the bus is almost full!"]]
   },
   {
     sentence: "Hold on a second — I'll get the door.",
@@ -905,7 +950,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**hold on** 等一下；Hold on a second 句式：稍等一会儿。比 wait 口语、电话常用。",
       "近义：wait a moment / hang on（同义）/ just a sec. 例：— Is this the right bus? — Hold on, let me check."
-    ]
+    ],
+    distractors: [[],["a while —","two seconds —"],["I'll close the door.","I'll get the phone.","I'll lock the door."]]
   },
   {
     sentence: "Hold it — I need to check this first.",
@@ -920,7 +966,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Hold it** 比 hold on 更强烈：暂停！停一下！多在对方行动过快、过急时叫停。",
       "近义：Hold on / Wait a minute / Easy now. 例：— I'll spend $5000. — Hold it — we can't afford that."
-    ]
+    ],
+    distractors: [["Hold on —","Just a moment —"],["I need to fix this first.","I need to check that first.","I want to check this first."]]
   },
   {
     sentence: "You're in my personal space — back off!",
@@ -935,7 +982,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Back off** 命令对方后撤/退让：退后！别再逼近。多用于争吵、肢体冲突升级时。",
       "近义：Step back / Move away. 名词形式：give someone some space."
-    ]
+    ],
+    distractors: [["You're in my way —","You're in my face —"],["move it!","stay away!","get back!"]]
   },
   {
     sentence: "Cheer up — things will get better.",
@@ -950,7 +998,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Cheer up** 鼓励沮丧的人：振作起来。up = 向上=情绪好转。",
       "近义：keep your chin up / hang in there / stay positive. 例：I failed the exam. — Don't worry, cheer up, you can try again."
-    ]
+    ],
+    distractors: [["Lighten up —","Cheer on —","Perk up —"],["things will get worse.","things are getting better."]]
   },
   {
     sentence: "I don't want to see you — get lost!",
@@ -965,7 +1014,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Get lost** 粗鲁命令走开：滚开、消失。lost = 迷路=请消失在我视野里。",
       "注意语气强烈，比 go away 更狠。例：— Can I borrow $100? — Get lost! Get a job!"
-    ]
+    ],
+    distractors: [["I don't want to talk to you —","I don't want to hear you —","I want to see you —"],["get out!","drop dead!"]]
   },
   {
     sentence: "Go ahead and start without me.",
