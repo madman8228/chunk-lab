@@ -1386,6 +1386,27 @@ function saveStore(syncMode){
   }catch(e){}
 }
 
+/* ★ AI 数据面收敛（2026-09-08 C 方向）
+   背景：联网 AI 生成已停用（2026-09-06 产品决策）。UI 层收敛早已完成（详解页
+   tab bar / 设置面板「大模型 API 配置」整块 display:none，注释标明恢复方式），
+   但数据面仍有残留：历史填过的 settings.apiKey 会随 mem 整包云同步上云（明文
+   Key 冗余 —— ADR-004 后 Key 走服务端 env，前端无任何消费入口），本地
+   chunklab_ai_cache_v1 键残留。
+   规则：服务端 /api/config 明确 aiEnabled === true（= AI_EXPLAIN_ENABLED，联网
+   AI 已开放）→ 保留 Key 与前端缓存（自托管降级通道可用）；否则（默认停用 /
+   服务器不可达 / 旧版后端无该字段）→ 幂等清空 apiKey + 删 ai_cache，并借
+   saveStore() 把「云端明文 Key」一并清掉。bootMain 在 loadStore() 后立即执行。 */
+function applyCloudConfig(){
+  var cfg = (window.CL && CL.getCloudConfig) ? CL.getCloudConfig() : null;
+  if(cfg && cfg.aiEnabled === true) return;
+  var k = (mem.settings && mem.settings.apiKey) ? String(mem.settings.apiKey).trim() : '';
+  if(k){
+    mem.settings.apiKey = '';
+    saveStore(); /* 本地落盘 + scheduleCloudSync 上云（清云端存量） */
+  }
+  try{ localStorage.removeItem('chunklab_ai_cache_v1'); }catch(e){}
+}
+
 /* 统计身份：临时复习队列不能改变句子的原题库归属。 */
 function statDeckId(it){
   return (it && it._statsDeckId) || (S.deck && S.deck.statsDeckId) || (S.deck && S.deck.id) || '?';
@@ -4048,6 +4069,7 @@ function bootApp(){
 function bootMain(){
 try {
 loadStore();
+applyCloudConfig(); /* AI 数据面收敛：Key 未启用即清存量（须在 loadStore 后） */
 migrateLegacyStatKeys();
 setSoundIcon();
 renderCats();

@@ -97,6 +97,8 @@
 
 **取舍**：ESM 在 `file://` 下无法 import（需 http(s)）。但后端已托管前端（`server/index.js` 静态托管），本地起服务即可，可接受；若必须 `file://` 直开，则退回"构建期内联"或要求用户起服务。**这比引入 Vite/Webpack 更贴合项目"轻量零依赖"的 DNA。**
 
+**状态更新（2026-09-08，见 §8.8）**：ADR-007 四模块抽净后，剩余编排层经域聚类量化勘探，**决策维持单体**（40% 状态编排 + 60% DOM/流程胶水，拆分 ROI 为负）；本 P1 从「待办债」降为「已评审决策」。残余熵在事件绑定区与全局 var，属重构对象而非拆分对象。
+
 ### 2.4 后端健壮性（P1）
 
 - **服务端校验**：`PUT /api/data` 当前接受任意 `mem` 结构，应做轻量 schema 校验（防止坏数据入库/前端崩溃）。
@@ -217,7 +219,7 @@ UI 层        ESM 模块化的页面（practice / decks / stats / courses）+ if
 |------|------|------|------|------|
 | 多设备同步丢数据 | 高（已有） | 高 | ADR-005 实体级 rev（**已完整落地**：decks/kv/courses/courseProgress 全部 per-entity） | B |
 | 开放模式数据裸奔 | 中 | 高 | ADR-006 + 网络收口 | A |
-| 前端单体熵增 | 高（已有） | 中 | ADR-007 ESM 拆分 | A/B |
+| 前端单体熵增 | 高（已有） | 中 | ADR-007 已抽净纯逻辑（全可单测）；剩余编排层 2026-09-08 勘探决策维持单体（§8.8），降 P3 监测 | A/B |
 | 后端坏数据/无回归 | 中 | 中 | ADR-008 校验+测试（**已落地**：validate.js 中间件 + smoke 40/40） | A |
 | AI Key 资损 | 中 | 中 | ADR-004 代理+限流（**已落地**：Key 服务端化，前端不再直连） | C |
 | ai_cache 无限膨胀 | 中 | 低 | 容量上限+LRU（**已落地**：AI_CACHE_MAX 默认 2000，导入后 LRU 裁剪） | A |
@@ -385,3 +387,37 @@ _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地
 - 高频短语 · English Idioms 种子库 v1：30 句，源数据 `D:/tmp/el-build/data/high_freq_600.json`（394 条纯短语待分批扩写），Schema 与 oral8000 一致，自注册 + `validate_freq_idioms.js` 校验。
 
 **验证**：store 31 / rev 27+ / builtins+oral8000 校验通过 / e2e 50/50；npm test 全链路绿。
+
+### §8.8 main.html 拆分勘探 —— 决策：剩余编排层刻意维持单体（2026-09-08）
+
+**触发**：ADR-007 把四个纯逻辑模块抽净后（chunk-engine/format/ai-prompts/backup，全可单测），风险登记表唯一未划掉的 P1「前端单体」悬置。本次做域聚类 + 耦合量化，产出「拆 or 不拆」决策，替代盲目续拆。
+
+**现状核实（C1 删除 AI 死链后实测）**：main.html 4111 行 = CSS ~812 + HTML ~370 + 内联 JS ~2900（**123 顶层函数 + 37 全局 var + 41 处 onclick 绑定** + ~700 行绑定/init 区）。
+
+**域聚类量化**（按函数体内 DOM/状态引用密度标注归属）：
+
+| 域 | 函数 | 行数 | 占比 | 耦合特征 |
+|---|---|---|---|---|
+| 练习主流程 | 29 | 885 | 40% | S 单例 37+ / DOM id 密集 / 与全局 var 交织 |
+| 讲解面板/反馈 | 15 | 308 | 14% | 弹窗 DOM + prompt/校验纯函数混合 |
+| 导入/校验/追加 | 15 | 278 | 13% | validateDeck 等纯校验可抽，openImport 等 DOM 深 |
+| 数据/状态层 | 24 | 273 | 12% | 已薄（CL 单例已吸收 core），多为 mem 读写 |
+| 页面/设置/boot | 14 | 185 | 8% | closeMasks 180 行 dom 62 最重 |
+| 圆环/popover | 7 | 174 | 8% | 自洽域（记忆统一模式），API 面 = updateRing |
+| 分类/SRS/判定 | 9 | 39 | 2% | 近纯逻辑（mem/S/CL 读），最易抽 |
+| 工具/桥/audio | 8 | 51 | 2% | esc/norm/wordCount 双实现兜底（见下） |
+| 遗留包装器 | 2 | ~11 | — | buildChoices/buildDistractors 仅剩就绪探测用途 |
+
+**可抽性三档评估**：
+- **A 档（纯逻辑 ~150 行，可安全抽）**：validateDeck 43 + 分类/SRS 判定 39 + buildGrammar/miniMd（HTML 字符串构造）+ prompt 家族。无 DOM 副作用、纯输入输出，符合 ADR-007 可单测标准。
+- **B 档（DOM 域，抽装 ROI 低）**：圆环 popover 174 行自洽，但抽成模块需 init(dom,ctx) 注入接口 + 无 E2E 之外回归手段，174 行收益 < 抽装与回归成本。
+- **C 档（深耦合编排 885 行 = 40%，维持）**：renderQ/startDeck/submitChunk/finishSession 与 S 单例 + 37 全局 var + DOM id + 事件绑定区（41 onclick + ~700 行 init）深度交织。
+
+**决策**：**main.html 剩余编排层刻意维持单体**（从 P1 待办降为已评审决策）。理由：
+1. ADR-007 已抽净全部「纯逻辑高价值」部分——剩 2193 行函数体中 40% 是不可切分的状态编排、60% 是 DOM/流程胶水，两者都不是模块化的受益对象（不能单测、无独立复用面）。
+2. 拆 B/C 档需引入「模块 init 注入 DOM+ctx」模式，而项目回归手段仅 e2e（65 用例），抽装任一分片都承担无差别回归风险。
+3. 真正的残余熵在**事件绑定区与全局 var**（重构对象），不在函数本身——继续拆函数是打错靶。
+
+**伴随发现（违宪兜底，拆分前置项）**：esc/norm/wordCount 是「模块版优先 + 内联双实现兜底」（FormatTools 未就绪时 console.warn + 本地实现）。属禁兜底宪法反例——若按 a677228 模式把 FormatTools 就绪纳入 bootApp 引擎守卫，兜底即死代码可删，norm 单源化后域拆分才无重复实现漂移。
+
+**可选低优先动作**：A 档 ~150 行纯函数抽入既有模块（如 distractor-validate 旁的 data-judge.mjs）；buildChoices/buildDistractors 遗留包装器标注待删。均非必须。
