@@ -161,7 +161,8 @@ node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change
 
 浏览器端到端回归（Playwright，一键跑，自动拉起临时 server）：
 ```bash
-npm run e2e
+npm run e2e        # UI 回归 61 项
+npm run e2e-sync   # 双设备同步对抗 7 项（ADR-005 端到端：per-entity 隔离 / LWW / 软删传播 / 删除重建 / stale 拒写）
 # 覆盖：main 正常路径（顶栏 SVG/真实句子/候选区/零 pageerror）、
 #       全 module 拦截降级（safeCall 兜底不白屏）、decks/stats SVG 渲染、
 #       错题本收敛闭环（写入→mem.reinforceBook 落盘/旧键迁移/stats 可见）、
