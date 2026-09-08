@@ -43,12 +43,14 @@ files.forEach(function (f) {
 });
 const calc = h.digest('hex').slice(0, 8);
 const cur = cacheMatch[1];
+/* gen-sw 写入带 'chunklab-' 前缀（PWA 缓存名语义）→ 比对须拼前缀，否则纯 hash8 永远 != 带前缀 cur */
+const expect = 'chunklab-' + calc;
 
 if (missing.length) {
   console.error('[check-sw] 预缓存清单含缺失文件: ' + missing.join(', '));
   process.exit(1);
 }
-if (cur === calc) {
+if (cur === expect) {
   console.log('[check-sw] ✓ CACHE=' + cur + ' 与 ' + files.length + ' 个预缓存文件一致');
   process.exit(0);
 }
