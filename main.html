@@ -193,14 +193,15 @@ input,textarea,select{font:inherit;color:inherit}
 .ring-wrap.perfect .ring-num{color:var(--ok);font-weight:800}
 .ring-wrap.perfect svg > circle:last-of-type{filter:drop-shadow(0 0 4px rgba(35,133,90,.4))}
 
-/* ===== 圆环自定义 popover（替换 HTML title，桌面 hover/focus / 移动 click） ===== */
+/* ===== 圆环自定义 popover（替换 HTML title，桌面 hover/focus / 移动 click） =====
+   popover 运行时已移到 body 末尾（bindRingPop 内），
+   用 position:fixed + JS 算 viewport 坐标，脱离任何 ancestor overflow 约束。 */
 .pop-info{
-  position:absolute;left:calc(100% + 10px);top:calc(100% + 8px);
-  transform:translateX(-6px);
+  position:fixed;left:0;top:0;transform:none;
   min-width:184px;max-width:240px;
   background:var(--surface, #fff);
   border:1px solid var(--border);border-radius:10px;
-  padding:10px 12px;
+  padding:8px 10px;
   box-shadow:0 6px 20px -6px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.06);
   z-index:60;
   opacity:0;pointer-events:none;
@@ -212,11 +213,11 @@ input,textarea,select{font:inherit;color:inherit}
 .pop-info-title{
   font-size:10.5px;font-weight:700;color:var(--accent);
   letter-spacing:.06em;text-transform:uppercase;
-  margin:0 0 6px;padding-bottom:5px;
+  margin:0 0 4px;padding-bottom:3px;
   border-bottom:1px solid var(--border);
   display:flex;justify-content:space-between;align-items:center;
   width:100%;box-sizing:border-box;
-  min-height:18px;flex-shrink:0;
+  min-height:16px;flex-shrink:0;
   background:transparent;
 }
 .pop-info-title .title-text{font-size:10.5px;line-height:1.2;display:inline-block}
@@ -226,44 +227,27 @@ input,textarea,select{font:inherit;color:inherit}
 }
 .pop-info-row{
   display:flex;justify-content:space-between;align-items:baseline;
-  gap:12px;padding:3px 0;
+  gap:8px;padding:1px 0;
 }
-.pop-info-row .lbl{color:var(--muted);font-size:11.5px;flex-shrink:0}
-.pop-info-row .val{font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;text-align:right}
+.pop-info-row .lbl{color:var(--muted);font-size:11px;flex-shrink:0;line-height:1.25}
+.pop-info-row .val{font-weight:700;font-size:11.5px;line-height:1.25;font-variant-numeric:tabular-nums;text-align:right}
 .pop-info-row .val.warn{color:#d97706}
 .pop-info-row .val.good{color:var(--ok)}
 .pop-info-empty{
-  color:var(--muted);font-size:12px;text-align:center;
-  padding:6px 0 2px;line-height:1.4;
+  color:var(--muted);font-size:11.5px;text-align:center;
+  padding:4px 0 2px;line-height:1.35;
 }
 .pop-info-hint{
-  margin-top:6px;padding-top:5px;border-top:1px dashed var(--border);
-  font-size:10.5px;color:var(--faint);text-align:center;line-height:1.3;
-}
-/* 箭头指向圆环（上方）：菱形指上 */
-.pop-info::before{
-  content:'';position:absolute;left:-5px;top:-5px;width:10px;height:10px;
-  background:var(--surface, #fff);
-  border-top:1px solid var(--border);border-left:1px solid var(--border);
-  transform:rotate(45deg);
+  margin-top:4px;padding-top:3px;border-top:1px dashed var(--border);
+  font-size:10.5px;color:var(--faint);text-align:center;line-height:1.25;
 }
 
 /* 移动端：popover 改在圆环正下方居中（用 left:50% + transform），
-   避免右侧导致屏幕左溢出；同时让箭头居中指向圆环 */
+   避免右侧导致屏幕左溢出；位置由 JS 算 viewport 坐标，CSS 只约束 max-width */
 @media (max-width:640px){
   .pop-info{
-    left:50%;top:calc(100% + 8px);
-    right:auto;
-    transform:translateX(-50%);
-    min-width:200px;max-width:240px;width:max-content;
+    min-width:200px;width:max-content;
     max-width:min(240px, calc(100vw - 32px));
-  }
-  .pop-info.open{transform:translateX(-50%)}
-  .pop-info::before{
-    left:50%;top:-5px;
-    border-top:1px solid var(--border);border-left:1px solid var(--border);
-    border-right:none;
-    transform:translateX(-50%) rotate(45deg);
   }
 }
 .zh{font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.45}
@@ -1917,10 +1901,10 @@ function updateRing(){
   $('ringNum').textContent = times;
   /* 一开始写死了 .hidden；times>0 时解除，否则用户永远看不到圆环 */
   wrap.classList.toggle('hidden', times === 0);
-  /* HTML 原生 title 兜底保留：移动端无 mouseenter 时仍可读 */
-  wrap.title = times === 0
-    ? '未练习过 — 第一次答完后开始累计（点击查看详情）'
-    : '已练习 ' + times + ' 次 · 正确率 ' + acc + '% · 当前连对 ' + (st.streak || 0) + ' 次（点击或悬停查看详情）';
+  /* 不设 title：原生 tooltip 会和自定义 popover 同时弹出造成双阴影。
+     无障碍由已有的 aria-label="本句练习进度详情" + popover 结构化详情承担。
+     removeAttribute 是清老版本残留（曾经设过 title），不是兜底 */
+  wrap.removeAttribute('title');
 
   /* 完美态视觉标记 */
   wrap.classList.toggle('perfect', times > 0 && acc === 100);
@@ -1938,14 +1922,13 @@ function updateRing(){
 }
 
 /* ===== 圆环 popover 系统 ===== */
-/* 构建结构化进度行：练习次数 / 正确率 / 答错 / 当前连对 / 最佳连对 / 最近练习 */
+/* 构建结构化进度行：练习次数 / 正确率 / 答错 / 最佳连对 */
 function buildProgressRows(st, times, acc){
   if(times === 0){
     return '<div class="pop-info-empty">还没练过此句</div>' +
            '<div class="pop-info-hint">点圆环关闭 · 答完一句开始累计</div>';
   }
   var wrongTimes = (st && st.wrongTimes) || 0;
-  var streak = (st && st.streak) || 0;
   var maxStreak = (st && st.maxStreak) || 0;
   var rows = '';
   rows += '<div class="pop-info-row"><span class="lbl">已练习</span><span class="val">' + times + ' 次</span></div>';
@@ -1954,15 +1937,7 @@ function buildProgressRows(st, times, acc){
   if(wrongTimes > 0){
     rows += '<div class="pop-info-row"><span class="lbl">答错</span><span class="val warn">' + wrongTimes + ' 次</span></div>';
   }
-  rows += '<div class="pop-info-row"><span class="lbl">当前连对</span><span class="val' + (streak >= 3 ? ' good' : '') + '">' + streak + '</span></div>';
   rows += '<div class="pop-info-row"><span class="lbl">最佳连对</span><span class="val">' + maxStreak + '</span></div>';
-  if(st && st.lastAt){
-    var dt = new Date(st.lastAt);
-    var pad = function(n){return n < 10 ? '0' + n : '' + n;};
-    rows += '<div class="pop-info-row"><span class="lbl">最近练习</span><span class="val">' +
-      (dt.getMonth()+1) + '-' + pad(dt.getDate()) + ' ' + pad(dt.getHours()) + ':' + pad(dt.getMinutes()) + '</span></div>';
-  }
-  rows += '<div class="pop-info-hint">点别处关闭</div>';
   return rows;
 }
 
@@ -1984,12 +1959,26 @@ function updateProgressPop(){
 function showProgressPop(){
   updateProgressPop();
   var pop = $('ringPop');
-  if(pop){
-    pop.classList.add('open');
-    pop.setAttribute('aria-hidden', 'false');
-  }
   var wrap = $('ringWrap');
-  if(wrap) wrap.classList.add('pop-open');
+  if(!pop || !wrap) return;
+  /* popover 已移到 body 末尾（bindRingPop 内一次性完成），
+     position:fixed 相对 viewport。直接用 wrap 视口坐标算位置。 */
+  var r = wrap.getBoundingClientRect();
+  var isMobile = window.innerWidth <= 640;
+  if(isMobile){
+    /* 圆环正下方居中（避免右侧空间不够时溢出） */
+    pop.style.left = (r.left + r.width / 2) + 'px';
+    pop.style.top = (r.bottom + 8) + 'px';
+    pop.style.transform = 'translateX(-50%)';
+  } else {
+    /* 圆环右下方（保留原 desktop 视觉；圆环在最左时右空间充足） */
+    pop.style.left = (r.right + 10) + 'px';
+    pop.style.top = (r.bottom + 8) + 'px';
+    pop.style.transform = 'none';
+  }
+  pop.classList.add('open');
+  pop.setAttribute('aria-hidden', 'false');
+  wrap.classList.add('pop-open');
 }
 function hideProgressPop(){
   var pop = $('ringPop');
@@ -2010,8 +1999,16 @@ function toggleProgressPop(){
 /* 绑定圆环 popover：桌面 hover/focus 即得（无延迟）+ 移动 tap 切换 */
 function bindRingPop(){
   var wrap = $('ringWrap');
+  var pop = $('ringPop');
   if(!wrap || wrap._popBound) return;
   wrap._popBound = true;
+  /* 一次性把 popover 移到 body 末尾：
+     popover 是 .stage 后代会受 .stage{overflow:hidden} 裁切（修复下半被切 bug）。
+     移出后用 position:fixed + viewport 坐标，不再被任何 ancestor overflow 约束。
+     关闭时 popover 仍挂 body 下，仅 add/remove .open 切换可见性，无需还原 DOM。 */
+  if(pop && pop.parentNode !== document.body){
+    document.body.appendChild(pop);
+  }
   // 桌面：mouseenter 即显示（无延迟，体验优于原生 title 0.5-1.5s）
   wrap.addEventListener('mouseenter', showProgressPop);
   wrap.addEventListener('mouseleave', hideProgressPop);
@@ -2038,10 +2035,17 @@ function bindRingPop(){
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape') hideProgressPop();
   });
-  // 点圆环外的任何地方关闭
+  // 点圆环/popover 外的任何地方关闭（popover 已移至 body，需 pop.contains 判断）
   document.addEventListener('click', function(e){
-    if(!wrap.contains(e.target)) hideProgressPop();
+    if(!wrap.contains(e.target) && !(pop && pop.contains(e.target))) hideProgressPop();
   }, true);
+  // 滚动/resize 时关闭 popover：
+  // position:fixed 钉在原 viewport 坐标，wrap 移走后 popover 会漂在错位 → 立即关闭更安全
+  if(!wrap._popScrollBound){
+    wrap._popScrollBound = true;
+    window.addEventListener('scroll', hideProgressPop, true);
+    window.addEventListener('resize', hideProgressPop);
+  }
 }
 $('ringWrap') && bindRingPop();
 function inputsAt(i){ var b = boxAt(i); return b ? b.querySelectorAll('input.word-input') : []; }
