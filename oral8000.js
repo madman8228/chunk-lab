@@ -1,6 +1,6 @@
-/* 日常口语8000句 · 完整教学版（种子库 v2，100 句）
- * 本文件 = 纯数据资产：window.DATA_ORAL8000（100 句，2026-09-07 起并入 builtin-daily，不再独立成 deck）。
- * 第一批 50 句（2026-09-07）+ 第二批 50 句（2026-09-08，电话/就医/酒店/出行/工作/学习/地道句型）。
+/* 日常口语8000句 · 完整教学版（种子库 v2，150 句）
+ * 本文件 = 纯数据资产：window.DATA_ORAL8000（150 句，2026-09-07 起并入 builtin-daily，不再独立成 deck）。
+ * 第一批 50 句（2026-09-07）+ 第二批 50 句（2026-09-08，电话/就医/酒店/出行/工作/学习/地道句型）+ 第三批 50 句（2026-09-08，租房/银行邮局/理发健身/车辆/数码/电影/家务/情绪/邀约/地道句型）。
  * 数据由 AI 生成，格式与内置题库一致：
  *   { sentence, translation, chunks[2-5], hints[], alts?[null|string[]], grammar[{role,color,phonetic,pos,meaning}], explanations[] }
  * 后续分批扩展时，只需往 window.DATA_ORAL8000 数组里继续追加对象即可。
@@ -1691,6 +1691,864 @@ window.DATA_ORAL8000 = [
       "`a great time` = 美好时光。固定搭配 have a great time。常见错误：\n• \"have great time\" → 缺 a"
     ],
     distractors: [["Thanks for have me,","Thank for having me,","Thanks to having me,"],["I have","I've had","I was had"],["great time.","a great times.","a good time."]]
+  },
+  {
+    sentence: "I'm looking for an apartment near the university.",
+    cid: "7f041d4e",
+    translation: "我在找大学附近的公寓。",
+    chunks: ["I'm looking for", "an apartment", "near the university."],
+    hints: ["我在寻找", "一间公寓", "大学附近"],
+    grammar: [
+      {role:'主谓宾(进行时)',color:'#e74c7a',phonetic:['/aɪm/','/ˈlʊkɪŋ/','/fɔːr/'],pos:'look for 进行时',meaning:'正在寻找'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ən/','/əˈpɑːrtmənt/'],pos:'名词短语',meaning:'一间公寓'},
+      {role:'地点状语',color:'#7c5cbf',phonetic:['/nɪr/','/ðə/','/ˌjuːnɪˈvɜːrsəti/'],pos:'介词短语',meaning:'大学附近'}
+    ],
+    explanations: [
+      "找房用语。`look for` = 寻找（过程），`find` = 找到（结果）。常见错误：\n• \"I **looking for**\" → 进行时缺 be 动词\n• \"I look for\" → 一般现在时表习惯，当下找房用进行时",
+      "`an apartment` — apartment 以元音音素开头用 an。常见错误：\n• \"a apartment\" → 元音前必须 an",
+      "`near the university` = 大学附近。常见错误：\n• \"near to the university\" → near 直接接地点不加 to\n• \"nearby the university\" → nearby 多作形容词/副词"
+    ],
+    distractors: [["I looking for","I'm looking at","I look for"],["a apartment","apartments","an apartments"],["near to the university.","nearby the university.","near the universities."]]
+  },
+  {
+    sentence: "How much is the rent for this apartment?",
+    cid: "26516f50",
+    translation: "这套公寓的租金是多少？",
+    chunks: ["How much is", "the rent for", "this apartment?"],
+    hints: ["多少钱是", "……的租金", "这套公寓"],
+    grammar: [
+      {role:'疑问句',color:'#e74c7a',phonetic:['/haʊ/','/mʌtʃ/','/ɪz/'],pos:'how much 句型',meaning:'多少钱是'},
+      {role:'主语',color:'#3358e0',phonetic:['/ðə/','/rent/','/fɔːr/'],pos:'名词短语',meaning:'……的租金'},
+      {role:'介词宾语',color:'#7c5cbf',phonetic:['/ðɪs/','/əˈpɑːrtmənt/'],pos:'指示代词+名词',meaning:'这套公寓'}
+    ],
+    explanations: [
+      "问租金。`how much` 问不可数/价格，`how many` 问可数数量。常见错误：\n• \"How much **are** the rent\" → rent 不可数用 is\n• \"How many is the rent\" → 问钱用 how much",
+      "`the rent for` = 为……付的租金。常见错误：\n• \"the rent of\" → of/for 混用，此处 for 表用途\n• 漏 the → 特指这套房要加 the",
+      "`this apartment` — this 接单数。常见错误：\n• \"this apartments\" → this 后不加 s"
+    ],
+    distractors: [["How much are","How many is","What much is"],["rent for","the rents for","a rent for"],["this apartments?","that apartment?","an apartment?"]]
+  },
+  {
+    sentence: "Does the rent include the utilities?",
+    cid: "d89f94fa",
+    translation: "房租包含水电燃气这些费用吗？",
+    chunks: ["Does the rent", "include", "the utilities?"],
+    hints: ["房租是否", "包含", "各项杂费"],
+    grammar: [
+      {role:'一般疑问句',color:'#e74c7a',phonetic:['/dʌz/','/ðə/','/rent/'],pos:'does 助动词',meaning:'房租是否……'},
+      {role:'谓语动词',color:'#3358e0',phonetic:['/ɪnˈkluːd/'],pos:'及物动词',meaning:'包含'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/ðə/','/juːˈtɪlətiz/'],pos:'名词(恒复数)',meaning:'杂费(水电燃气)'}
+    ],
+    explanations: [
+      "看房必问。`utilities` 指水电燃气网费等，通常用复数。常见错误：\n• \"Does the rent **includes**\" → does 后动词用原形\n• \"Do the rent\" → rent 第三人称单数，助动词用 does",
+      "`include` = 包含。",
+      "`the utilities` — 各项杂费合称。常见错误：\n• \"the utility\" → 泛指全部杂费用复数"
+    ],
+    distractors: [["Do the rent","Does rents","Is the rent"],["includes","included","to include"],["the utility?","a utilities?","these utilities?"]]
+  },
+  {
+    sentence: "I need to sign a one-year lease.",
+    cid: "42feb2af",
+    translation: "我需要签一份一年期的租约。",
+    chunks: ["I need to sign", "a one-year", "lease."],
+    hints: ["我需要签", "一份一年的", "租约"],
+    grammar: [
+      {role:'主谓宾',color:'#e74c7a',phonetic:['/aɪ/','/niːd/','/tə/','/saɪn/'],pos:'need to do',meaning:'我需要签'},
+      {role:'定语',color:'#3358e0',phonetic:['/ə/','/wʌn/','/jɪr/'],pos:'复合形容词',meaning:'一年期的'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/liːs/'],pos:'名词',meaning:'租约'}
+    ],
+    explanations: [
+      "签约用语。`sign a lease` = 签租约。常见错误：\n• \"I need **signing**\" → need 后接 to do\n• \"I need to signed\" → to 后动词原形",
+      "`a one-year lease` — 复合形容词 one-year 用单数加连字符，作定语。常见错误：\n• \"one-year **lease**\" 丢了 a\n• \"a one-year **leases**\" → 单数租约不加 s",
+      "`lease` = 租约（美式常用 lease/rental agreement）。"
+    ],
+    distractors: [["I need signing","I need to signed","I'm need to sign"],["a one-years","one-year","a one-years lease"],["leases.","the lease.","a lease now?"]]
+  },
+  {
+    sentence: "I can't wait to move into my new place.",
+    cid: "1319af65",
+    translation: "我迫不及待要搬进新家了。",
+    chunks: ["I can't wait to", "move into", "my new place."],
+    hints: ["我迫不及待要", "搬进", "我的新住处"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪ/','/kænt/','/weɪt/','/tə/'],pos:"can't wait to do",meaning:'迫不及待要'},
+      {role:'谓语',color:'#3358e0',phonetic:['/muːv/','/ˈɪntuː/'],pos:'短语动词',meaning:'搬进'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/maɪ/','/nuː/','/pleɪs/'],pos:'名词短语',meaning:'我的新住处'}
+    ],
+    explanations: [
+      "`can't wait to do sth` = 迫不及待做某事。常见错误：\n• \"I can't **waiting** to\" → 固定 can't wait to + 原形\n• \"I don't wait to\" → 没有这个说法",
+      "`move into` = 搬进（新居）。常见错误：\n• \"move in **to** my place\" → move in 后直接接地点也可，move into 是完整短语\n• \"move to\" → 表搬到某城市/国家，搬进具体房子用 into",
+      "`place` 口语中指「住处」。"
+    ],
+    distractors: [["I don't wait to","I can't waiting to","I can't wait for"],["moving into","to move in","move on"],["my new places.","mine new place.","my news place."]]
+  },
+  {
+    sentence: "Do you still have the apartment for rent?",
+    cid: "65a045ff",
+    translation: "这套公寓还在出租吗？",
+    chunks: ["Do you still have", "the apartment", "for rent?"],
+    hints: ["你是否还有", "这套公寓", "在出租"],
+    grammar: [
+      {role:'一般疑问句',color:'#e74c7a',phonetic:['/duː/','/juː/','/stɪl/','/hæv/'],pos:'do 助动词+still',meaning:'是否还有'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/əˈpɑːrtmənt/'],pos:'名词短语',meaning:'这套公寓'},
+      {role:'补语',color:'#7c5cbf',phonetic:['/fɔːr/','/rent/'],pos:'介词短语',meaning:'待出租'}
+    ],
+    explanations: [
+      "租房电话常用语。`still` 表「仍然」，放助动词后。常见错误：\n• \"Are you still **have**\" → have 是实义动词，疑问用 Do you have\n• \"Do you still **has**\" → do 后原形",
+      "`the apartment` 特指那套。",
+      "`for rent` = 出租中（美式；英式 to let）。常见错误：\n• \"for renting\" → 固定搭配 for rent\n• \"for a rent\" → 多冠词"
+    ],
+    distractors: [["Are you still have","Do you still has","Do you still got"],["an apartment","the apartments","apartment"],["for renting?","to rent?","for a rent?"]]
+  },
+  {
+    sentence: "I'd like to open a savings account.",
+    cid: "9e0805f0",
+    translation: "我想开一个储蓄账户。",
+    chunks: ["I'd like to open", "a savings", "account."],
+    hints: ["我想开", "一个储蓄", "账户"],
+    grammar: [
+      {role:'主谓宾',color:'#e74c7a',phonetic:['/aɪd/','/laɪk/','/tə/','/ˈoʊpən/'],pos:'would like to',meaning:'我想开'},
+      {role:'定语',color:'#3358e0',phonetic:['/ə/','/ˈseɪvɪŋz/'],pos:'名词作定语',meaning:'储蓄的'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/əˈkaʊnt/'],pos:'名词',meaning:'账户'}
+    ],
+    explanations: [
+      "银行业务。`open an account` = 开户。常见错误：\n• \"I like to open\" → 表喜好，开卡要用 would like to\n• \"I'd like opening\" → would like 后接 to do",
+      "`a savings account` — savings 用复数形式作定语（checking account 同理）。常见错误：\n• \"a saving account\" → 固定 savings account\n• \"an savings\" → savings 虽以 s 开头但音素 /s/ 前用 a",
+      "`account` 账户。"
+    ],
+    distractors: [["I like to open","I'd like opening","I'd like to opening"],["a saving","an savings","the savings"],["accounts.","a account.","to account."]]
+  },
+  {
+    sentence: "Could you tell me today's exchange rate?",
+    cid: "82e48821",
+    translation: "你能告诉我今天的汇率吗？",
+    chunks: ["Could you tell me", "today's", "exchange rate?"],
+    hints: ["你能告诉我", "今天的", "汇率"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/tel/','/miː/'],pos:'could 请求句',meaning:'你能告诉我'},
+      {role:'定语(所有格)',color:'#3358e0',phonetic:['/təˈdeɪz/'],pos:"名词所有格",meaning:'今天的'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/ɪksˈtʃeɪndʒ/','/reɪt/'],pos:'名词短语',meaning:'汇率'}
+    ],
+    explanations: [
+      "银行换汇用语。`Could you tell me...` = 比 Can you 更礼貌。常见错误：\n• \"Could you **told** me\" → could 后原形\n• \"Could you to tell me\" → 情态动词后直接原形",
+      "`today's` = 今天的，名词所有格表时间。常见错误：\n• \"today exchange rate\" → 缺 's\n• \"todays\" → 所有格要加撇号",
+      "`exchange rate` = 汇率。"
+    ],
+    distractors: [["Can you tell me","Could you told me","Could you to tell me"],["today","today date","the today's"],["exchange rates?","the exchange rate?","exchange rate now?"]]
+  },
+  {
+    sentence: "How much would it cost to send this to China?",
+    cid: "66658ed3",
+    translation: "把这个寄到中国要多少钱？",
+    chunks: ["How much would", "it cost", "to send this to China?"],
+    hints: ["多少钱会", "它花费", "寄这个到中国"],
+    grammar: [
+      {role:'疑问句',color:'#e74c7a',phonetic:['/haʊ/','/mʌtʃ/','/wʊd/'],pos:'how much would',meaning:'多少钱会'},
+      {role:'主谓',color:'#3358e0',phonetic:['/ɪt/','/kɔːst/'],pos:'情态动词+原形',meaning:'它花费'},
+      {role:'目的状语',color:'#7c5cbf',phonetic:['/tə/','/send/','/ðɪs/','/tə/','/ˈtʃaɪnə/'],pos:'to do 不定式',meaning:'寄这个到中国'}
+    ],
+    explanations: [
+      "邮局寄件问价。`How much would it cost to...` = ……要花多少钱。常见错误：\n• \"How many would\" → 钱用 how much\n• \"What would it cost\" → 也可以，但 how much 最常用",
+      "`it cost` — would 后用动词原形 cost（过去式也是 cost）。",
+      "`to send this to China` — send sth to + 地点。常见错误：\n• \"send this **for** China\" → 搭配 send to\n• \"to sent\" → to 后原形"
+    ],
+    distractors: [["How much will","How many would","What would"],["it costs","it to cost","it costing"],["for sending this to China?","to send these to China?","to sent this to China?"]]
+  },
+  {
+    sentence: "I'd like to get a haircut, please.",
+    cid: "8094f354",
+    translation: "我想理发。",
+    chunks: ["I'd like to get", "a haircut,", "please."],
+    hints: ["我想", "理个发", "谢谢"],
+    grammar: [
+      {role:'主谓宾',color:'#e74c7a',phonetic:['/aɪd/','/laɪk/','/tə/','/ɡet/'],pos:'would like to',meaning:'我想做'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ə/','/ˈherkʌt/'],pos:'名词',meaning:'理发'},
+      {role:'礼貌词',color:'#7c5cbf',phonetic:['/pliːz/'],pos:'语气词',meaning:'谢谢'}
+    ],
+    explanations: [
+      "理发店进门第一句。`get a haircut` = 理发。常见错误：\n• \"get **haircut**\" → 漏 a\n• \"I'd like **cutting**\" → would like to + 原形\n• \"cut my hair\" → 也可以，但 get a haircut 是地道说法",
+      "美发店常见对话：How would you like it?（想怎么剪？）/ Just a trim, please.（稍微修一下）"
+    ],
+    distractors: [["I like to get","I'd like get","I'd like to getting"],["a hair cut,","haircuts,","the haircut,"],["pleased.","please now."]]
+  },
+  {
+    sentence: "Could you trim my beard a little?",
+    cid: "4eb6f313",
+    translation: "你能帮我把胡子修短一点吗？",
+    chunks: ["Could you trim", "my beard", "a little?"],
+    hints: ["你能修剪", "我的胡子", "一点点"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/trɪm/'],pos:'could 请求句',meaning:'你能修剪'},
+      {role:'宾语',color:'#3358e0',phonetic:['/maɪ/','/bɪrd/'],pos:'名词',meaning:'我的胡子'},
+      {role:'程度状语',color:'#7c5cbf',phonetic:['/ə/','/ˈlɪtl/'],pos:'短语',meaning:'一点点'}
+    ],
+    explanations: [
+      "`trim` = 修剪（不是全剃）。常见错误：\n• \"Could you **trimmed**\" → could 后原形\n• \"cut off my beard\" → 那是全剃掉，修短用 trim",
+      "`a little` = 一点点。常见错误：\n• \"a little **bit**\" → 也可说 a little bit，但 a little 已够\n• 注意 a little 修饰不可数"
+    ],
+    distractors: [["Can you trim","Could you trimmed","Could you to trim"],["my beards","mine beard","the beard"],["little?","a bit little?","a little now?"]]
+  },
+  {
+    sentence: "Could you take a little off the top?",
+    cid: "0c594885",
+    translation: "能把头顶稍微剪短点吗？",
+    chunks: ["Could you take", "a little off", "the top?"],
+    hints: ["你能去掉", "一点点", "头顶的头发"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/teɪk/'],pos:'could 请求句',meaning:'你能去掉'},
+      {role:'数量短语',color:'#3358e0',phonetic:['/ə/','/ˈlɪtl/','/ɔːf/'],pos:'短语',meaning:'一点点'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/ðə/','/tɑːp/'],pos:'名词',meaning:'头顶'}
+    ],
+    explanations: [
+      "理发店高频句。`take a little off the top` = 头顶剪短一点。常见错误：\n• \"take a little **of** the top\" → 固定 off the top\n• \"take off the top\" → 少了 a little 程度",
+      "理发店其他说法：Make it shorter on the sides.（两侧短一点）"
+    ],
+    distractors: [["Can you take","Could you takes","Could you to take"],["a little of","a lot off","little off"],["top?","the tops?","a top?"]]
+  },
+  {
+    sentence: "I go to the gym twice a week.",
+    cid: "6ea7ddb2",
+    translation: "我每周去两次健身房。",
+    chunks: ["I go to", "the gym", "twice a week."],
+    hints: ["我去", "健身房", "每周两次"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪ/','/ɡoʊ/','/tə/'],pos:'一般现在时',meaning:'我去'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/dʒɪm/'],pos:'名词',meaning:'健身房'},
+      {role:'频度状语',color:'#7c5cbf',phonetic:['/twaɪs/','/ə/','/wiːk/'],pos:'频度短语',meaning:'每周两次'}
+    ],
+    explanations: [
+      "表达频率。`twice a week` = 每周两次（once 一次 / twice 两次 / three times 三次）。常见错误：\n• \"two times a week\" → 也可以但 twice 更地道\n• \"twice every week\" → a week 更常用",
+      "`go to the gym` — 固定搭配，gym 前要 the。常见错误：\n• \"go to gym\" → 漏 the"
+    ],
+    distractors: [["I going to","I goes to","I go at"],["gym","a gym","the gyms"],["twice every week.","two times a week.","twice in a week."]]
+  },
+  {
+    sentence: "I'm really out of shape these days.",
+    cid: "b9a6bed9",
+    translation: "我最近身体状况真的很差。",
+    chunks: ["I'm really", "out of shape", "these days."],
+    hints: ["我真的很", "身体走样/状态差", "最近"],
+    grammar: [
+      {role:'主系表',color:'#e74c7a',phonetic:['/aɪm/','/ˈriːəli/'],pos:'be + 表语',meaning:'我真的很'},
+      {role:'表语',color:'#3358e0',phonetic:['/aʊt/','/əv/','/ʃeɪp/'],pos:'固定短语',meaning:'身材走样/状态差'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/ðiːz/','/deɪz/'],pos:'短语',meaning:'最近'}
+    ],
+    explanations: [
+      "`out of shape` = 身材走样/体能差，反义 in shape。常见错误：\n• \"out of **the** shape\" → 固定短语不加 the\n• \"my shape is bad\" → 中式，直接用 out of shape",
+      "`these days` = 最近/这些天，常配现在时或现在完成。"
+    ],
+    distractors: [["I really","I'm real","I'm very much"],["out of the shape","out of shapes","out in shape"],["this days.","those day.","these day."]]
+  },
+  {
+    sentence: "I'd like to send this package by air mail.",
+    cid: "3270501d",
+    translation: "我想用航空邮件寄这个包裹。",
+    chunks: ["I'd like to send", "this package", "by air mail."],
+    hints: ["我想寄", "这个包裹", "用航空邮件"],
+    grammar: [
+      {role:'主谓宾',color:'#e74c7a',phonetic:['/aɪd/','/laɪk/','/tə/','/send/'],pos:'would like to',meaning:'我想寄'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðɪs/','/ˈpækɪdʒ/'],pos:'名词',meaning:'这个包裹'},
+      {role:'方式状语',color:'#7c5cbf',phonetic:['/baɪ/','/er/','/meɪl/'],pos:'介词短语',meaning:'用航空邮件'}
+    ],
+    explanations: [
+      "邮局寄件。`by air mail` = 航空邮件（相对 surface mail 平邮/海运）。常见错误：\n• \"send **to** air mail\" → 方式状语用 by\n• \"by the air mail\" → by + 方式名词不加 the",
+      "寄件常用：How long will it take?（要多久？）"
+    ],
+    distractors: [["I like to send","I'd like sending","I'd like to sending"],["this packages","these package","a package"],["by the air mail.","on air mail.","for air mail."]]
+  },
+  {
+    sentence: "What's the postage for a letter to Japan?",
+    cid: "742e248f",
+    translation: "寄一封信到日本的邮费是多少？",
+    chunks: ["What's", "the postage for", "a letter to Japan?"],
+    hints: ["什么是", "……的邮费", "一封寄到日本的信"],
+    grammar: [
+      {role:'疑问词',color:'#e74c7a',phonetic:['/wʌts/'],pos:'what is 缩写',meaning:'是多少'},
+      {role:'主语',color:'#3358e0',phonetic:['/ðə/','/ˈpoʊstɪdʒ/','/fɔːr/'],pos:'名词短语',meaning:'……的邮费'},
+      {role:'介词宾语',color:'#7c5cbf',phonetic:['/ə/','/ˈletər/','/tə/','/dʒəˈpæn/'],pos:'名词短语',meaning:'寄到日本的信'}
+    ],
+    explanations: [
+      "`postage` = 邮费/邮资。常见错误：\n• \"How much is postage\" → 口语可说，What's the postage for... 更完整\n• \"postage of a letter\" → 表「寄给谁/到哪」用 for + to",
+      "`a letter to Japan` = 寄到日本的信，介词 to 表方向。"
+    ],
+    distractors: [["How's","What are","What is it"],["the postages for","postage to","a postage for"],["a letters to Japan?","letter to Japan?","a letter for Japan?"]]
+  },
+  {
+    sentence: "My car broke down on the highway.",
+    cid: "0bdabc0d",
+    translation: "我的车在高速公路上抛锚了。",
+    chunks: ["My car", "broke down", "on the highway."],
+    hints: ["我的车", "抛锚了", "在高速公路上"],
+    grammar: [
+      {role:'主语',color:'#e74c7a',phonetic:['/maɪ/','/kɑːr/'],pos:'名词',meaning:'我的车'},
+      {role:'谓语(短语动词)',color:'#3358e0',phonetic:['/broʊk/','/daʊn/'],pos:'break down 过去式',meaning:'抛锚'},
+      {role:'地点状语',color:'#7c5cbf',phonetic:['/ɑːn/','/ðə/','/ˈhaɪweɪ/'],pos:'介词短语',meaning:'在高速公路上'}
+    ],
+    explanations: [
+      "车辆故障。`break down` = 抛锚（机器/车），过去式 broke down。常见错误：\n• \"break **off**\" → 断开，抛锚用 break down\n• \"my car is break down\" → be 动词后要 broken down",
+      "`on the highway` = 在高速上（美式 highway，英式 motorway）。"
+    ],
+    distractors: [["Mine car","My cars","The my car"],["breaks down","broke off","was broken"],["in the highway.","on highway.","at the highway."]]
+  },
+  {
+    sentence: "Could you check the tire pressure for me?",
+    cid: "69d57e53",
+    translation: "你能帮我检查一下轮胎气压吗？",
+    chunks: ["Could you check", "the tire pressure", "for me?"],
+    hints: ["你能检查", "轮胎气压", "为我"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/tʃek/'],pos:'could 请求句',meaning:'你能检查'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/ˈtaɪər/','/ˈpreʃər/'],pos:'名词短语',meaning:'轮胎气压'},
+      {role:'目的状语',color:'#7c5cbf',phonetic:['/fɔːr/','/miː/'],pos:'介词短语',meaning:'为我'}
+    ],
+    explanations: [
+      "加油站/修车店用语。`tire pressure` = 胎压（英式 tyre）。常见错误：\n• \"check the tire **press**\" → 气压是 pressure\n• \"check tire pressure\" → 特指时加 the",
+      "`Could you... for me?` = 能帮我……吗？很礼貌。"
+    ],
+    distractors: [["Can you check","Could you checked","Could you to check"],["the tires pressure","a tire pressure","tire pressures"],["to me?","with me?","for I?"]]
+  },
+  {
+    sentence: "The Wi-Fi keeps dropping in my room.",
+    cid: "19c737bd",
+    translation: "我房间的无线网络老是断。",
+    chunks: ["The Wi-Fi", "keeps dropping", "in my room."],
+    hints: ["无线网络", "老是断", "在我房间"],
+    grammar: [
+      {role:'主语',color:'#e74c7a',phonetic:['/ðə/','/ˈwaɪfaɪ/'],pos:'名词',meaning:'无线网络'},
+      {role:'谓语',color:'#3358e0',phonetic:['/kiːps/','/ˈdrɑːpɪŋ/'],pos:'keep doing',meaning:'老是掉线'},
+      {role:'地点状语',color:'#7c5cbf',phonetic:['/ɪn/','/maɪ/','/ruːm/'],pos:'介词短语',meaning:'在我房间'}
+    ],
+    explanations: [
+      "酒店/租房网络抱怨。`keep doing` = 一直/老是做。常见错误：\n• \"keeps **to drop**\" → keep 接 doing\n• \"the Wi-Fi is drop\" → 现在进行时是 is dropping",
+      "`drop` = 掉线（信号中断）。同义：cut out。"
+    ],
+    distractors: [["Wi-Fi","The Wi-Fis","A Wi-Fi"],["keep dropping","keeps to drop","keeps dropped"],["in my rooms.","at my room.","in mine room."]]
+  },
+  {
+    sentence: "Could I borrow your charger for a sec?",
+    cid: "b4dc4363",
+    translation: "我能借用一下你的充电器吗？",
+    chunks: ["Could I borrow", "your charger", "for a sec?"],
+    hints: ["我能借用", "你的充电器", "一下下"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/aɪ/','/ˈbɑːroʊ/'],pos:'could 请求句',meaning:'我能借用'},
+      {role:'宾语',color:'#3358e0',phonetic:['/jʊr/','/ˈtʃɑːrdʒər/'],pos:'名词',meaning:'你的充电器'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/fɔːr/','/ə/','/sek/'],pos:'短语',meaning:'一小会儿'}
+    ],
+    explanations: [
+      "`borrow` = 借入（别人给你），`lend` = 借出（你给别人）。常见错误：\n• \"Could I **lend** your charger\" → 借入用 borrow\n• \"borrow your charger **to** me\" → 语序错",
+      "`for a sec` = for a second 口语缩略，表短暂借用。"
+    ],
+    distractors: [["Can I borrow","Could I borrowed","Could me borrow"],["your charges","you charger","the chargers"],["for a seconds?","in a sec?","for sec?"]]
+  },
+  {
+    sentence: "My phone is running out of battery.",
+    cid: "5ae33cc0",
+    translation: "我的手机快没电了。",
+    chunks: ["My phone", "is running out of", "battery."],
+    hints: ["我的手机", "快用完", "电量"],
+    grammar: [
+      {role:'主语',color:'#e74c7a',phonetic:['/maɪ/','/foʊn/'],pos:'名词',meaning:'我的手机'},
+      {role:'谓语',color:'#3358e0',phonetic:['/ɪz/','/ˈrʌnɪŋ/','/aʊt/','/əv/'],pos:'run out of 进行时',meaning:'快耗尽'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/ˈbætəri/'],pos:'名词',meaning:'电量'}
+    ],
+    explanations: [
+      "`run out of` = 用完/耗尽。常见错误：\n• \"is running out **off**\" → 是 out of\n• \"my phone is out of battery\" → 也可，running out of 表「正在耗尽」",
+      "口语同义：My phone is dying. / It's almost dead."
+    ],
+    distractors: [["Mine phone","My phones","The phone my"],["is running out","are running out of","is run out of"],["the battery.","batteries.","a battery."]]
+  },
+  {
+    sentence: "Have you seen the latest movie yet?",
+    cid: "48a08dbe",
+    translation: "你看过那部最新的电影了吗？",
+    chunks: ["Have you seen", "the latest movie", "yet?"],
+    hints: ["你看过", "最新的那部电影", "了吗"],
+    grammar: [
+      {role:'现在完成疑问',color:'#e74c7a',phonetic:['/hæv/','/juː/','/siːn/'],pos:'have done 疑问',meaning:'你看过……吗'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/ˈleɪtɪst/','/ˈmuːvi/'],pos:'名词短语',meaning:'最新电影'},
+      {role:'时间副词',color:'#7c5cbf',phonetic:['/jet/'],pos:'副词',meaning:'已经(疑问句)'}
+    ],
+    explanations: [
+      "`Have you seen...?` 现在完成表「到现在为止看过吗」。常见错误：\n• \"Did you seen\" → did 后原形 see\n• \"Have you saw\" → 完成时用过去分词 seen",
+      "`yet` 用于疑问/否定句尾。`latest` = 最新的（late 的最高级），勿混 lasted（持续）。"
+    ],
+    distractors: [["Did you seen","Have you saw","Do you seen"],["the latest movies","a latest movie","latest movie"],["already?","now?","yet now?"]]
+  },
+  {
+    sentence: "The book is way better than the movie.",
+    cid: "f265bd24",
+    translation: "这本书比电影好看多了。",
+    chunks: ["The book is", "way better than", "the movie."],
+    hints: ["这本书是", "远远好于", "那部电影"],
+    grammar: [
+      {role:'主系表',color:'#e74c7a',phonetic:['/ðə/','/bʊk/','/ɪz/'],pos:'主系表',meaning:'这本书是'},
+      {role:'比较级',color:'#3358e0',phonetic:['/weɪ/','/ˈbetər/','/ðæn/'],pos:'比较级+than',meaning:'远好于'},
+      {role:'比较对象',color:'#7c5cbf',phonetic:['/ðə/','/ˈmuːvi/'],pos:'名词',meaning:'那部电影'}
+    ],
+    explanations: [
+      "`way better` = 好得多（way 口语作程度副词 = much/far）。常见错误：\n• \"more better\" → better 已是比较级不加 more\n• \"way more better\" → 双重比较",
+      "`than` 引出比较对象。常见错误：\n• \"better **then**\" → 比较用 than（then 是然后）"
+    ],
+    distractors: [["A book is","The book are","Books is"],["much more better than","way better as","more better than"],["a movie.","movies.","the movies."]]
+  },
+  {
+    sentence: "I can't put this novel down.",
+    cid: "574f6eb0",
+    translation: "这本小说让我爱不释手。",
+    chunks: ["I can't put", "this novel", "down."],
+    hints: ["我无法放下", "这本小说", "下来"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪ/','/kænt/','/pʊt/'],pos:"can't + 动词",meaning:'我不能放下'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðɪs/','/ˈnɑːvl/'],pos:'名词',meaning:'这本小说'},
+      {role:'副词',color:'#7c5cbf',phonetic:['/daʊn/'],pos:'小品词',meaning:'下(来)'}
+    ],
+    explanations: [
+      "`can't put sth down` = 放不下手/爱不释手（书太好看了）。常见错误：\n• \"can't put down this novel\" → 也可以，但 put + 宾语 + down 是常见语序\n• \"can't put it down\" 更口语",
+      "`novel` = 长篇小说；`story` = 故事。"
+    ],
+    distractors: [["I can't putting","I don't put","I can't to put"],["this novels","these novel","a novel"],["up.","down now.","to down."]]
+  },
+  {
+    sentence: "Could you keep the noise down?",
+    cid: "0ab455be",
+    translation: "你能小声一点吗？",
+    chunks: ["Could you keep", "the noise", "down?"],
+    hints: ["你能保持", "噪音", "低一些"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/kiːp/'],pos:'could 请求句',meaning:'你能让……保持'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/nɔɪz/'],pos:'名词',meaning:'噪音'},
+      {role:'补语',color:'#7c5cbf',phonetic:['/daʊn/'],pos:'副词',meaning:'低下来'}
+    ],
+    explanations: [
+      "邻里/室友提醒。`keep it down` = 小声点。常见错误：\n• \"keep **down** the noise\" → 也可，但 keep the noise down 常见\n• \"turn the noise down\" → 噪音不是音量旋钮，keep down 更贴切",
+      "更直接的祈使：Keep it down, please!"
+    ],
+    distractors: [["Can you keep","Could you keeps","Could you to keep"],["a noise","noises","the noisy"],["down? ok","to down?","downed?"]]
+  },
+  {
+    sentence: "I'll take out the trash after dinner.",
+    cid: "3d052989",
+    translation: "晚饭后我会把垃圾拿出去。",
+    chunks: ["I'll take out", "the trash", "after dinner."],
+    hints: ["我会拿出", "垃圾", "晚饭后"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪl/','/teɪk/','/aʊt/'],pos:'一般将来时',meaning:'我会拿出去'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/træʃ/'],pos:'名词(不可数)',meaning:'垃圾'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/ˈæftər/','/ˈdɪnər/'],pos:'介词短语',meaning:'晚饭后'}
+    ],
+    explanations: [
+      "家务用语。`take out the trash` = 倒垃圾（英式 take out the rubbish）。常见错误：\n• \"take the trash **off**\" → 搭配 take out\n• \"throw the trash\" → 扔进垃圾桶是 throw away；拿到屋外是 take out",
+      "`trash` 不可数，不加 s。"
+    ],
+    distractors: [["I take out","I'll take off","I'll taking out"],["the trashes","a trash","trash"],["after the dinner.","before dinner.","after dinner now."]]
+  },
+  {
+    sentence: "I'm really stressed out about the exam.",
+    cid: "0c31e53d",
+    translation: "我对考试真的压力很大。",
+    chunks: ["I'm really", "stressed out", "about the exam."],
+    hints: ["我真的很", "压力山大", "关于考试"],
+    grammar: [
+      {role:'主系表',color:'#e74c7a',phonetic:['/aɪm/','/ˈriːəli/'],pos:'be + 表语',meaning:'我真的很'},
+      {role:'表语',color:'#3358e0',phonetic:['/strest/','/aʊt/'],pos:'固定短语',meaning:'压力很大'},
+      {role:'对象状语',color:'#7c5cbf',phonetic:['/əˈbaʊt/','/ðə/','/ɪɡˈzæm/'],pos:'介词短语',meaning:'关于考试'}
+    ],
+    explanations: [
+      "`stressed out` = 压力极大的。常见错误：\n• \"stress out\" → 作表语要 be stressed out\n• \"I'm stress\" → stress 是名词/动词，形容词是 stressed",
+      "`about + 事由`。同义：I'm under a lot of pressure."
+    ],
+    distractors: [["I really","I'm real","I very am"],["stress out","stressed of","stressing out"],["about exam.","to the exam.","about the exams."]]
+  },
+  {
+    sentence: "Cheer up, it's not the end of the world.",
+    cid: "c66af01f",
+    translation: "打起精神来，又不是世界末日。",
+    chunks: ["Cheer up,", "it's not", "the end of the world."],
+    hints: ["振作起来", "这不是", "世界末日"],
+    grammar: [
+      {role:'祈使句',color:'#e74c7a',phonetic:['/tʃɪr/','/ʌp/'],pos:'祈使句',meaning:'打起精神'},
+      {role:'主系表(否定)',color:'#3358e0',phonetic:['/ɪts/','/nɑːt/'],pos:"it's not",meaning:'这不是'},
+      {role:'表语',color:'#7c5cbf',phonetic:['/ðə/','/end/','/əv/','/ðə/','/wɜːrld/'],pos:'名词短语',meaning:'世界末日'}
+    ],
+    explanations: [
+      "安慰朋友。`Cheer up!` = 振作点！常见错误：\n• \"Cheer up you\" → 祈使不加宾语\n• \"Cheer!\" → 加油欢呼，安慰用 cheer up",
+      "`It's not the end of the world.` 固定表达 = 没那么糟。"
+    ],
+    distractors: [["Cheering up,","Cheer up yourself,","Keep cheer up,"],["It isn't","It not is","It's no"],["an end of the world.","the end of world.","end of the world."]]
+  },
+  {
+    sentence: "I'm worried about the job interview tomorrow.",
+    cid: "edc8aa29",
+    translation: "我很担心明天的求职面试。",
+    chunks: ["I'm worried about", "the job interview", "tomorrow."],
+    hints: ["我担心", "求职面试", "明天"],
+    grammar: [
+      {role:'主系表',color:'#e74c7a',phonetic:['/aɪm/','/ˈwɜːrid/','/əˈbaʊt/'],pos:'be worried about',meaning:'我担心'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/dʒɑːb/','/ˈɪntərvjuː/'],pos:'名词短语',meaning:'求职面试'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/təˈmɑːroʊ/'],pos:'副词',meaning:'明天'}
+    ],
+    explanations: [
+      "`be worried about` = 担心……。常见错误：\n• \"I worried about\" → 缺 be 动词（worried 是形容词/过去分词）\n• \"worry about\" 动词短语：I worry about... 也可",
+      "`job interview` = 求职面试。"
+    ],
+    distractors: [["I worry about","I'm worrying of","I'm worried to"],["a job interview","the job interviews","job's interview"],["in tomorrow.","tomorrow now.","the tomorrow."]]
+  },
+  {
+    sentence: "Don't worry, everything will work out fine.",
+    cid: "b6a7287e",
+    translation: "别担心，一切都会好起来的。",
+    chunks: ["Don't worry,", "everything will", "work out fine."],
+    hints: ["别担心", "一切都会", "顺利解决"],
+    grammar: [
+      {role:'祈使句(否定)',color:'#e74c7a',phonetic:['/doʊnt/','/ˈwɜːri/'],pos:"don't + 动词",meaning:'别担心'},
+      {role:'主谓',color:'#3358e0',phonetic:['/ˈevriθɪŋ/','/wɪl/'],pos:'不定代词+will',meaning:'一切都会'},
+      {role:'谓语',color:'#7c5cbf',phonetic:['/wɜːrk/','/aʊt/','/faɪn/'],pos:'短语动词',meaning:'顺利解决'}
+    ],
+    explanations: [
+      "安慰他人。`Don't worry` = 别担心。常见错误：\n• \"Not worry\" → 祈使否定用 Don't\n• \"Don't worrying\" → 祈使后原形",
+      "`work out` = 解决/进展顺利。常见错误：\n• \"work out **well**\" → 也可，fine/well 皆可\n• \"work it out\" 带宾语时放中间"
+    ],
+    distractors: [["Not worry,","Don't worrying,","Doesn't worry,"],["everything is","anything will","all will"],["works out fine.","working out fine.","work fine out."]]
+  },
+  {
+    sentence: "I'm looking forward to seeing you again.",
+    cid: "6159c055",
+    translation: "我期待再次见到你。",
+    chunks: ["I'm looking forward to", "seeing you", "again."],
+    hints: ["我期待着", "见到你", "再次"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪm/','/ˈlʊkɪŋ/','/ˈfɔːrwərd/','/tə/'],pos:'look forward to',meaning:'我期待着'},
+      {role:'动名词宾语',color:'#3358e0',phonetic:['/ˈsiːɪŋ/','/juː/'],pos:'动名词短语',meaning:'见到你'},
+      {role:'频度副词',color:'#7c5cbf',phonetic:['/əˈɡen/'],pos:'副词',meaning:'再次'}
+    ],
+    explanations: [
+      "`look forward to` = 期待，**to 是介词**后接动名词。常见错误：\n• \"look forward to **see** you\" → to 后要 doing\n• \"looking forward to see\" → 同一错误\n• 漏 be：I look forward to 也可（正式）",
+      "`again` = 再一次。"
+    ],
+    distractors: [["I look forward to","I'm looking forward","I'm looking forward for"],["to see you","seeing yours","seen you"],["again now.","one again.","again soon."]]
+  },
+  {
+    sentence: "I'm supposed to meet him at six.",
+    cid: "141237b8",
+    translation: "我六点应该和他见面。",
+    chunks: ["I'm supposed to", "meet him", "at six."],
+    hints: ["我按约定要", "见他", "在六点"],
+    grammar: [
+      {role:'主系表',color:'#e74c7a',phonetic:['/aɪm/','/səˈpoʊzd/','/tə/'],pos:'be supposed to',meaning:'按约定应该'},
+      {role:'谓语',color:'#3358e0',phonetic:['/miːt/','/hɪm/'],pos:'动词+宾语',meaning:'见他'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/æt/','/sɪks/'],pos:'介词短语',meaning:'在六点'}
+    ],
+    explanations: [
+      "`be supposed to` = 按计划/规定应该。常见错误：\n• \"suppose to\" → 缺 be 且 supposed 不能省 d\n• \"I'm suppose to\" → 漏 d",
+      "`at six` — 钟点前用 at。常见错误：\n• \"in six\" → 钟点用 at（in 表在一段时间之后）"
+    ],
+    distractors: [["I suppose to","I'm suppose to","I'm supposed"],["meets him","meet he","to meeting him"],["in six.","at six o'clock now.","on six."]]
+  },
+  {
+    sentence: "What if it rains on the wedding day?",
+    cid: "96308679",
+    translation: "万一下雨那天结婚怎么办？",
+    chunks: ["What if", "it rains", "on the wedding day?"],
+    hints: ["万一", "天下雨", "在婚礼那天"],
+    grammar: [
+      {role:'疑问短语',color:'#e74c7a',phonetic:['/wʌt/','/ɪf/'],pos:'what if',meaning:'万一……怎么办'},
+      {role:'从句主谓',color:'#3358e0',phonetic:['/ɪt/','/reɪnz/'],pos:'一般现在时(表将来)',meaning:'天下雨'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/ɑːn/','/ðə/','/ˈwedɪŋ/','/deɪ/'],pos:'介词短语',meaning:'在婚礼那天'}
+    ],
+    explanations: [
+      "`What if...?` = 万一……怎么办？假设建议。常见错误：\n• \"What about if\" → 直接用 what if\n• \"If what\" → 语序错",
+      "条件句用一般现在时表将来：What if it **rains**（不是 will rain）。"
+    ],
+    distractors: [["How if","What about if","Whatever if"],["it will rain","it rain","it rained now"],["on wedding day?","in the wedding day?","at the wedding day?"]]
+  },
+  {
+    sentence: "I bet he's already left for work.",
+    cid: "03cbee2b",
+    translation: "我打赌他已经去上班了。",
+    chunks: ["I bet", "he's already left", "for work."],
+    hints: ["我敢打赌", "他已经离开了", "去上班"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪ/','/bet/'],pos:'I bet',meaning:'我敢打赌'},
+      {role:'现在完成',color:'#3358e0',phonetic:['/hiːz/','/ɔːlˈredi/','/left/'],pos:'have done',meaning:'他已经离开'},
+      {role:'目的状语',color:'#7c5cbf',phonetic:['/fɔːr/','/wɜːrk/'],pos:'介词短语',meaning:'去上班'}
+    ],
+    explanations: [
+      "`I bet` = 我敢打赌/我肯定（口语）。常见错误：\n• \"I bet **on**\" → 表断言不加 on\n• \"I'm bet\" → bet 是动词不加 be",
+      "`leave for + 目的地` = 动身去……。常见错误：\n• \"leave to work\" → 搭配 leave for\n• \"left to work\" → 离开去某地用 for"
+    ],
+    distractors: [["I'm bet","I bet on","I better"],["he has already leave","he already left","he's left already for"],["to work.","work.","for the work."]]
+  },
+  {
+    sentence: "No matter what happens, I'll be here for you.",
+    cid: "79d9ff2f",
+    translation: "无论发生什么，我都会在你身边。",
+    chunks: ["No matter what happens,", "I'll be here", "for you."],
+    hints: ["无论发生什么", "我都会在这里", "为你"],
+    grammar: [
+      {role:'让步状语从句',color:'#e74c7a',phonetic:['/noʊ/','/ˈmætər/','/wʌt/','/ˈhæpənz/'],pos:'no matter + 疑问词',meaning:'无论发生什么'},
+      {role:'主谓',color:'#3358e0',phonetic:['/aɪl/','/biː/','/hɪr/'],pos:'将来时',meaning:'我会在这里'},
+      {role:'目的状语',color:'#7c5cbf',phonetic:['/fɔːr/','/juː/'],pos:'介词短语',meaning:'为你'}
+    ],
+    explanations: [
+      "`No matter what...` = 无论什么……（让步从句）。常见错误：\n• \"No matter **whatever**\" → no matter what 或 whatever 二选一\n• \"No matter what will happen\" → 从句用一般现在时 happens",
+      "`be here for you` = 陪着你/支持你。"
+    ],
+    distractors: [["No matter whatever happens,","Whatever no matter happens,","No matter what happen,"],["I be here","I'll be there","I'll am here"],["with you.","for yours.","to you."]]
+  },
+  {
+    sentence: "There's no point in waiting any longer.",
+    cid: "725fe013",
+    translation: "再等下去没有意义了。",
+    chunks: ["There's no point in", "waiting", "any longer."],
+    hints: ["没有意义", "等待", "再继续"],
+    grammar: [
+      {role:'存在句',color:'#e74c7a',phonetic:['/ðerz/','/noʊ/','/pɔɪnt/','/ɪn/'],pos:"there's no point in",meaning:'……没有意义'},
+      {role:'动名词',color:'#3358e0',phonetic:['/ˈweɪtɪŋ/'],pos:'动名词',meaning:'等待'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/ˈeni/','/ˈlɔːŋɡər/'],pos:'短语',meaning:'再继续下去'}
+    ],
+    explanations: [
+      "`There's no point in doing` = 做……没意义。常见错误：\n• \"no point to wait\" → in 后接动名词\n• \"It's no point\" → 固定 There's no point",
+      "`any longer` = 再（用于否定）。同义 no more。"
+    ],
+    distractors: [["It's no point in","There's no point to","There're no point in"],["to wait","waited","wait"],["any more longer.","no longer.","any long."]]
+  },
+  {
+    sentence: "It's worth trying one more time.",
+    cid: "59f78fc3",
+    translation: "值得再试一次。",
+    chunks: ["It's worth", "trying", "one more time."],
+    hints: ["这是值得的", "尝试", "再一次"],
+    grammar: [
+      {role:'主系表',color:'#e74c7a',phonetic:['/ɪts/','/wɜːrθ/'],pos:'be worth doing',meaning:'值得'},
+      {role:'动名词',color:'#3358e0',phonetic:['/ˈtraɪɪŋ/'],pos:'动名词(主语为it)',meaning:'尝试'},
+      {role:'状语',color:'#7c5cbf',phonetic:['/wʌn/','/mɔːr/','/taɪm/'],pos:'短语',meaning:'再一次'}
+    ],
+    explanations: [
+      "`be worth doing` = 值得做，主动形式表被动。常见错误：\n• \"worth to try\" → worth 后接动名词\n• \"worth **of** trying\" → 多 of\n• \"It's worthy trying\" → worth/worthy 不同搭配",
+      "`one more time` = 再一次。"
+    ],
+    distractors: [["It's worth to","It's worthy","It worth"],["to try","tried","try"],["one time more.","one more times.","more one time."]]
+  },
+  {
+    sentence: "Sorry I'm late, the traffic was terrible.",
+    cid: "f22bd74d",
+    translation: "抱歉我迟到了，路上堵得厉害。",
+    chunks: ["Sorry I'm late,", "the traffic", "was terrible."],
+    hints: ["抱歉我迟到了", "交通", "非常糟糕"],
+    grammar: [
+      {role:'道歉',color:'#e74c7a',phonetic:['/ˈsɑːri/','/aɪm/','/leɪt/'],pos:'be late',meaning:'抱歉我迟到'},
+      {role:'主语',color:'#3358e0',phonetic:['/ðə/','/ˈtræfɪk/'],pos:'名词(不可数)',meaning:'交通'},
+      {role:'系表',color:'#7c5cbf',phonetic:['/wʌz/','/ˈterəbl/'],pos:'过去时',meaning:'非常糟糕'}
+    ],
+    explanations: [
+      "迟到解释。`traffic` 不可数。常见错误：\n• \"the traffics\" → traffic 不可数\n• \"I late\" → 缺 be 动词，要说 I'm late",
+      "`was terrible` = 糟透了。同义：awful / a nightmare。"
+    ],
+    distractors: [["Sorry I late,","Sorry for I'm late,","Sorry I'm lately,"],["traffics","a traffic","the traffics"],["is terrible.","was terribly.","was a terrible."]]
+  },
+  {
+    sentence: "I'll be there in about ten minutes.",
+    cid: "8eea26b2",
+    translation: "我大约十分钟后到。",
+    chunks: ["I'll be there", "in about", "ten minutes."],
+    hints: ["我会到那里", "在大约", "十分钟后"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪl/','/biː/','/ðer/'],pos:'将来时',meaning:'我会到那儿'},
+      {role:'介词',color:'#3358e0',phonetic:['/ɪn/','/əˈbaʊt/'],pos:'in + 时段',meaning:'在大约(之后)'},
+      {role:'时间名词',color:'#7c5cbf',phonetic:['/ten/','/ˈmɪnɪts/'],pos:'名词短语',meaning:'十分钟'}
+    ],
+    explanations: [
+      "`in + 一段时间` = 多久之后（将来时）。常见错误：\n• \"after ten minutes\" → 将来时用 in，after 多接时间点/过去\n• \"in ten minute\" → 复数 minutes",
+      "`about` = 大约。同义 around / roughly。"
+    ],
+    distractors: [["I'll there be","I be there","I'm going there"],["after about","in around of","about in"],["ten minute.","a ten minutes.","the ten minutes."]]
+  },
+  {
+    sentence: "Would you like to grab dinner sometime?",
+    cid: "9352bdcd",
+    translation: "改天一起吃个晚饭怎么样？",
+    chunks: ["Would you like to", "grab dinner", "sometime?"],
+    hints: ["你愿意", "随便吃点晚饭", "改天"],
+    grammar: [
+      {role:'委婉邀约',color:'#e74c7a',phonetic:['/wʊd/','/juː/','/laɪk/','/tə/'],pos:'would you like to',meaning:'你愿意……吗'},
+      {role:'谓语',color:'#3358e0',phonetic:['/ɡræb/','/ˈdɪnər/'],pos:'grab + 餐',meaning:'随便吃晚饭'},
+      {role:'时间副词',color:'#7c5cbf',phonetic:['/ˈsʌmtaɪm/'],pos:'副词',meaning:'改天/某个时候'}
+    ],
+    explanations: [
+      "`Would you like to...?` 比 Do you want to 更礼貌的邀约。常见错误：\n• \"Would you like dinner?\" → 也可以但少了动作\n• \"Do you like to grab dinner\" → like 表喜好不是邀约",
+      "`grab` = 匆匆吃点/随便吃。`sometime` = 某时（一个词），`some time` = 一些时间。"
+    ],
+    distractors: [["Do you like to","Would you to","Could you like to"],["grabbing dinner","grab a dinner","get dinner over"],["sometimes?","some time?","anytime soon?"]]
+  },
+  {
+    sentence: "Let's catch up over coffee this weekend.",
+    cid: "e4eb1b2b",
+    translation: "这周末我们喝咖啡聊聊近况吧。",
+    chunks: ["Let's catch up", "over coffee", "this weekend."],
+    hints: ["我们聊聊近况吧", "边喝咖啡", "这周末"],
+    grammar: [
+      {role:'祈使提议',color:'#e74c7a',phonetic:['/lets/','/kætʃ/','/ʌp/'],pos:'let\'s + 动词',meaning:'我们……吧'},
+      {role:'方式状语',color:'#3358e0',phonetic:['/ˈoʊvər/','/ˈkɔːfi/'],pos:'介词短语',meaning:'边喝咖啡'},
+      {role:'时间状语',color:'#7c5cbf',phonetic:['/ðɪs/','/ˌwiːkˈend/'],pos:'名词短语',meaning:'这周末'}
+    ],
+    explanations: [
+      "`catch up` = 叙旧/聊近况。常见错误：\n• \"catch up **with each other**\" → 也可，简说 catch up\n• \"catch **on**\" → 那是赶上潮流",
+      "`over coffee` = 喝着咖啡（时）。`this weekend` 前不加介词。"
+    ],
+    distractors: [["Let us catch up","Let's catching up","Let we catch up"],["on coffee","with coffee","for a coffee over"],["in this weekend.","at weekend.","this weekends."]]
+  },
+  {
+    sentence: "Could you turn the music down a bit?",
+    cid: "5b616a39",
+    translation: "你能把音乐声调小一点吗？",
+    chunks: ["Could you turn", "the music", "down a bit?"],
+    hints: ["你能调", "音乐", "小一点"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/tɜːrn/'],pos:'could 请求句',meaning:'你能调'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/ˈmjuːzɪk/'],pos:'名词(不可数)',meaning:'音乐'},
+      {role:'补语',color:'#7c5cbf',phonetic:['/daʊn/','/ə/','/bɪt/'],pos:'短语',meaning:'调低一点'}
+    ],
+    explanations: [
+      "`turn down` = 调小（音量），`turn up` = 调大。常见错误：\n• \"turn **off**\" → 那是关掉\n• \"turn down the music\" 或 turn the music down 都行",
+      "`a bit` = 一点。"
+    ],
+    distractors: [["Can you turn","Could you turns","Could you to turn"],["a music","musics","the musics"],["down a bits?","up a bit?","a bit down?"]]
+  },
+  {
+    sentence: "The laundry is almost dry now.",
+    cid: "1ea989e8",
+    translation: "洗的衣服现在差不多干了。",
+    chunks: ["The laundry", "is almost dry", "now."],
+    hints: ["洗好的衣物", "差不多干了", "现在"],
+    grammar: [
+      {role:'主语',color:'#e74c7a',phonetic:['/ðə/','/ˈlɔːndri/'],pos:'名词(不可数)',meaning:'洗好的衣物'},
+      {role:'系表',color:'#3358e0',phonetic:['/ɪz/','/ˈɔːlmoʊst/','/draɪ/'],pos:'be + 形容词',meaning:'差不多干'},
+      {role:'时间副词',color:'#7c5cbf',phonetic:['/naʊ/'],pos:'副词',meaning:'现在'}
+    ],
+    explanations: [
+      "家务用语。`laundry` = 待洗/洗好的衣物，不可数。常见错误：\n• \"the laundries\" → 不可数\n• \"wash laundry\" → 常说 do the laundry",
+      "`almost` = 差不多/几乎。"
+    ],
+    distractors: [["Laundry","A laundry","The laundries"],["is dry almost","almost is dry","is almost dried"],["yet.","right now.","now already."]]
+  },
+  {
+    sentence: "Could you give me a hand with this box?",
+    cid: "10dca05a",
+    translation: "你能帮我搬一下这个箱子吗？",
+    chunks: ["Could you give me", "a hand", "with this box?"],
+    hints: ["你能给我", "帮个忙", "搬这个箱子"],
+    grammar: [
+      {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/ɡɪv/','/miː/'],pos:'give sb a hand',meaning:'你能帮我'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ə/','/hænd/'],pos:'固定搭配',meaning:'一个忙'},
+      {role:'对象状语',color:'#7c5cbf',phonetic:['/wɪð/','/ðɪs/','/bɑːks/'],pos:'介词短语',meaning:'搬这个箱子'}
+    ],
+    explanations: [
+      "`give sb a hand with sth` = 帮某人做某事。常见错误：\n• \"give me hand\" → 缺 a\n• \"give a hand to me with\" → 搭配混乱，give me a hand 已含宾语",
+      "同义：help me with...（更直接）。"
+    ],
+    distractors: [["Can you give me","Could you give","Could you to give me"],["hands","a hands","the hand"],["to this box?","for this box?","with these box?"]]
+  },
+  {
+    sentence: "Is there a bank around here?",
+    cid: "551d0bc0",
+    translation: "这附近有银行吗？",
+    chunks: ["Is there", "a bank", "around here?"],
+    hints: ["是否有", "一家银行", "在这附近"],
+    grammar: [
+      {role:'存在句疑问',color:'#e74c7a',phonetic:['/ɪz/','/ðer/'],pos:'is there',meaning:'有……吗'},
+      {role:'主语',color:'#3358e0',phonetic:['/ə/','/bæŋk/'],pos:'名词短语',meaning:'一家银行'},
+      {role:'地点状语',color:'#7c5cbf',phonetic:['/əˈraʊnd/','/hɪr/'],pos:'短语',meaning:'这附近'}
+    ],
+    explanations: [
+      "问路找店。`Is there...?` = 有……吗？常见错误：\n• \"There is a bank?\" → 疑问句要倒装 Is there\n• \"Is there bank\" → 可数名词要 a",
+      "`around here` = 这附近。同义：nearby / in this area。"
+    ],
+    distractors: [["Are there","There is","Does there"],["banks","the bank","one banks"],["near here?","around there?","in here?"]]
+  },
+  {
+    sentence: "How do I get to the train station?",
+    cid: "d7f8b9c8",
+    translation: "去火车站怎么走？",
+    chunks: ["How do I get to", "the train station?"],
+    hints: ["我该怎么去", "火车站"],
+    grammar: [
+      {role:'疑问句',color:'#e74c7a',phonetic:['/haʊ/','/duː/','/aɪ/','/ɡet/','/tə/'],pos:'how do I get to',meaning:'我怎么去'},
+      {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/treɪn/','/ˈsteɪʃn/'],pos:'名词短语',meaning:'火车站'}
+    ],
+    explanations: [
+      "问路万能句。`How do I get to...?` = 去……怎么走？常见错误：\n• \"How can I get to\" → 也可，do 更口语\n• \"How to get to\" → 从句可用，独立问句不完整",
+      "同义：Could you tell me the way to...?"
+    ],
+    distractors: [["How I get to","How do I go","What do I get to"],["the train stations?","a train station?","to the station train?"]]
+  },
+  {
+    sentence: "I completely forgot about our appointment.",
+    cid: "777f5c9d",
+    translation: "我完全忘了我们的约会。",
+    chunks: ["I completely forgot", "about our", "appointment."],
+    hints: ["我完全忘了", "关于我们的", "约定"],
+    grammar: [
+      {role:'主谓',color:'#e74c7a',phonetic:['/aɪ/','/kəmˈpliːtli/','/fərˈɡɑːt/'],pos:'一般过去时',meaning:'我完全忘了'},
+      {role:'介词',color:'#3358e0',phonetic:['/əˈbaʊt/','/aʊər/'],pos:'介词+限定词',meaning:'关于我们的'},
+      {role:'宾语',color:'#7c5cbf',phonetic:['/əˈpɔɪntmənt/'],pos:'名词',meaning:'约定/约会'}
+    ],
+    explanations: [
+      "`forget about` = 忘掉某事。常见错误：\n• \"forgot to about\" → 搭配混乱\n• \"I forget\" → 讲过去发生的忘记用 forgot",
+      "`appointment` = 预约（看病/商务）；`date` = 约会（浪漫）。"
+    ],
+    distractors: [["I complete forgot","I completely forgetted","I'm completely forgot"],["to our","about hour","for our"],["appointments.","a appointment.","the appointment now."]]
+  },
+  {
+    sentence: "Why don't you come over for dinner tonight?",
+    cid: "ea7d8a4b",
+    translation: "今晚你过来一起吃晚饭吧？",
+    chunks: ["Why don't you", "come over", "for dinner tonight?"],
+    hints: ["你何不", "过来", "今晚吃晚饭"],
+    grammar: [
+      {role:'建议句型',color:'#e74c7a',phonetic:['/waɪ/','/doʊnt/','/juː/'],pos:"why don't you",meaning:'你何不'},
+      {role:'谓语',color:'#3358e0',phonetic:['/kʌm/','/ˈoʊvər/'],pos:'短语动词',meaning:'过来'},
+      {role:'目的状语',color:'#7c5cbf',phonetic:['/fɔːr/','/ˈdɪnər/','/təˈnaɪt/'],pos:'介词短语',meaning:'今晚吃晚饭'}
+    ],
+    explanations: [
+      "`Why don't you...?` = 建议/邀约。常见错误：\n• \"Why you don't\" → 疑问句助动词提前\n• \"Why not come over\" → 也可，省主语",
+      "`come over` = 到（某人）家来。"
+    ],
+    distractors: [["Why you don't","Why don't to you","Why not you"],["come up","coming over","come on"],["for the dinner tonight?","tonight for dinner?","at tonight for dinner?"]]
+  },
+  {
+    sentence: "Take your time, there's no rush.",
+    cid: "1417566d",
+    translation: "慢慢来，不用急。",
+    chunks: ["Take your time,", "there's no", "rush."],
+    hints: ["慢慢来", "没有", "急的必要"],
+    grammar: [
+      {role:'祈使句',color:'#e74c7a',phonetic:['/teɪk/','/jʊr/','/taɪm/'],pos:'祈使句',meaning:'慢慢来'},
+      {role:'存在句',color:'#3358e0',phonetic:['/ðerz/','/noʊ/'],pos:"there's no",meaning:'没有'},
+      {role:'名词',color:'#7c5cbf',phonetic:['/rʌʃ/'],pos:'名词',meaning:'匆忙的必要'}
+    ],
+    explanations: [
+      "`Take your time` = 慢慢来/别着急。常见错误：\n• \"Take time\" → 少了 your，语义变「花时间」\n• \"Take your times\" → time 此处不可数",
+      "`there's no rush` = 不赶时间。同义：No hurry."
+    ],
+    distractors: [["Take time,","Takes your time,","Take you time,"],["there's not","there're no","there no"],["rushing.","a rush.","hurry up."]]
+  },
+  {
+    sentence: "My computer just froze again.",
+    cid: "304eb970",
+    translation: "我的电脑刚刚又死机了。",
+    chunks: ["My computer", "just froze", "again."],
+    hints: ["我的电脑", "刚刚死机", "又"],
+    grammar: [
+      {role:'主语',color:'#e74c7a',phonetic:['/maɪ/','/kəmˈpjuːtər/'],pos:'名词',meaning:'我的电脑'},
+      {role:'谓语',color:'#3358e0',phonetic:['/dʒʌst/','/froʊz/'],pos:'freeze 过去式',meaning:'死机'},
+      {role:'频度副词',color:'#7c5cbf',phonetic:['/əˈɡen/'],pos:'副词',meaning:'又'}
+    ],
+    explanations: [
+      "电脑故障。`freeze` = 死机/卡住（画面不动），过去式 froze。常见错误：\n• \"freezed\" → freeze 不规则变化 froze\n• \"my computer is froze\" → 被动是 frozen",
+      "`just` = 刚刚（与过去时连用）。口语同义：It crashed.（崩了）"
+    ],
+    distractors: [["Mine computer","My computers","Computer"],["just freezes","just frozen","just freeze now"],["again now.","one more.","again later."]]
   }
 ];
 

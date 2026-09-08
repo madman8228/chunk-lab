@@ -21,7 +21,7 @@ function fnv8(str) {
   return hex;
 }
 /* 预置 BUILTIN（含 builtin-daily 桩），让 oral8000.js 尾部并入逻辑一并被校验。
-   oral8000.js 自 2026-09-07 起不再注册独立 deck，而是把 50 句 concat 进 builtin-daily。 */
+   oral8000.js 自 2026-09-07 起不再注册独立 deck，而是把种子句 concat 进 builtin-daily。 */
 const dailyStub = { id: 'builtin-daily', items: [] };
 global.window = { BUILTIN: [dailyStub] };
 new Function('window', fs.readFileSync(__dirname + '/oral8000.js', 'utf8'))(global.window);
