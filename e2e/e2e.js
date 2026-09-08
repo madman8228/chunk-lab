@@ -675,6 +675,61 @@ function check(name, cond, detail) {
     await p5.close(); await c5.close();
   }
 
+  /* ===== 6. D-pipeline 预置干扰上屏（防 a677228 boot 竞态回潮） =====
+   * 迷你 deck 带预置 distractors（真实 freq #197 的干扰项，含运行时题库池
+   * 生成不出的形近改造项 "grab the change!"）。abort /api → ensureCloud 快
+   * 返回 → 复现 a677228 竞态窗口：若引擎就绪守卫缺失，startDeck 后懒建池时
+   * safeCall 兜底 [] → 空干扰池永不重建 → 预置项不上屏；守卫在 → ChunkEngine
+   * 就绪后 buildDistractors pass0 展平预置 → 按钮含改造项。
+   * 断言「按钮文本 ⊇ 预置改造项」= 预置上屏铁证（运行时生成不出，非兜底假阳）。 */
+  {
+    const c6 = await localCtx(function () {
+      localStorage.clear();
+      localStorage.setItem('chunklab.v1', JSON.stringify({
+        version: 2, reinforceBook: [],
+        decks: [], /* 走 _startDeck 注入，无需预置 decks */
+        best: {}, mastered: {}, deletedItems: {},
+        stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} },
+        settings: { mode: 'choose', shuffle: false, skipMastered: false, batchSize: 10 }
+      }));
+      sessionStorage.setItem('_startDeck', JSON.stringify({
+        id: 'preset-probe', name: '预置探测',
+        items: [{
+          sentence: "It's now or never — grab the chance!", translation: '机不可失时不再来，抓住机会！',
+          chunks: ["It's now or never —", 'grab the chance!'], hints: ['', ''],
+          cid: 'preset-probe-a',
+          distractors: [["It's now or later —", "It's tonight or never —"], ['miss the chance!', 'grab the change!']]
+        }]
+      }));
+    });
+    const p6 = await c6.newPage();
+    const errs6 = [];
+    p6.on('pageerror', function (e) { errs6.push(e.message); });
+    await p6.goto(BASE + '/main.html?preview=preset-on-screen', { waitUntil: 'domcontentloaded' });
+    /* 等候选区出现（引擎守卫等 ChunkEngine 就绪后才会建池渲染） */
+    await p6.waitForSelector('#stageChoices .choice, #stageChoices .chunk-chip', { timeout: 12000 }).catch(function () {});
+    await p6.waitForTimeout(1200);
+    const presetShown = await p6.evaluate(function () {
+      var btns = Array.from(document.querySelectorAll('#stageChoices .choice, #stageChoices .chunk-chip'));
+      var texts = btns.map(function (b) { return (b.dataset.v || b.textContent).trim(); });
+      var preset = ["It's now or later —", "It's tonight or never —", 'miss the chance!', 'grab the change!'];
+      var found = preset.filter(function (v) { return texts.indexOf(v) >= 0; });
+      return {
+        n: btns.length,
+        found: found,
+        allPreset: found.length === preset.length,
+        hasIronclad: texts.indexOf('grab the change!') >= 0,
+        texts: texts.slice(0, 10)
+      };
+    });
+    check('preset 6: 候选区已渲染（含干扰按钮）', presetShown.n >= 3, JSON.stringify(presetShown));
+    check('preset 6: 预置干扰项真实上屏（含全部 4 条）', presetShown.allPreset, JSON.stringify(presetShown));
+    check('preset 6: 形近改造项 grab the change! 上屏（铁证，非运行时兜底假阳）', presetShown.hasIronclad, JSON.stringify(presetShown));
+    check('preset 6: 零 pageerror', errs6.length === 0, errs6.join('|'));
+    await p6.screenshot({ path: path.join(SHOTS, 'e2e-preset-on-screen.png') });
+    await p6.close(); await c6.close();
+  }
+
   /* ===== 截图 ===== */
   await p.screenshot({ path: path.join(SHOTS, 'e2e-main.png') });
   await pd.screenshot({ path: path.join(SHOTS, 'e2e-decks.png') });
