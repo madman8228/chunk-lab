@@ -11,8 +11,15 @@
  *            （god→fate, joke→story, She's→He's, here→there, stop to do→stop doing…）
  *
  * 判定原理：干扰项 d 与所在槽正确 chunk c 的文本差异即错因。按
- * 「指代/指向替换 → 词位屈折 → 虚词 → 词干屈折 → 形近 → 语义」优先级裁定。
+ * 「代词/指示 → 词干屈折 → 指向替换 → 虚词 → 形近 → 语义」优先级裁定。
  * 纯函数、零 DOM/全局状态，可单测。
+ *
+ * C2-III（2026-09-08）semantic 盲区治理（全库 2353 条复核后确定性修复）：
+ *   ① 指示代词数错（this↔these, that↔those 等跨单复数）不再归 semantic → function；
+ *      this↔that 等「同数远近指」保持 semantic（句意确实变化）。
+ *   ② 词干屈折判定前移至指向词短路之前：today→todays / now→nows / yesterday→yesterdays
+ *      这类可屈折时间名词的复数误加此前被 POINTERS 截胡成 semantic → 现归 form；
+ *      now→later / here→there 等词干不同的纯指向替换保持 semantic。
  */
 'use strict';
 
@@ -48,6 +55,9 @@ const PRONOUN_GROUP_OF = {};
 PRONOUN_GROUPS.forEach(function (g, gi) { g.forEach(function (w) { PRONOUN_GROUP_OF[w] = gi; }); });
 /* 指示代词：远近指/对象变化 → semantic */
 const DEMO_PRONOUNS = new Set(['this', 'that', 'these', 'those', 'someone', 'somebody', 'everyone', 'nobody', 'anyone', 'who', 'what']);
+/* 指示代词「数」：this/that=单(1)，these/those=复(2)。
+   数不一致（this↔these 等限定词数错，名词常未同步复数）→ function；同数（this↔that 远近指）→ semantic */
+const DEMO_NUM = { this: 1, that: 1, these: 2, those: 2 };
 
 /* be/do/have 三系词位变化（is/was→be, did→do, has→have）→ verb */
 const IRREG = {
@@ -226,28 +236,37 @@ function classifyOne(c, d) {
   for (let i = 0; i < ct.length; i++) {
     const a0 = canon(ct[i]), b0 = canon(dt[i]);
     if (a0 === b0) continue;
-    /* 代词：同「人」不同格 → function；跨人/指示词 → semantic */
-    if (PRONOUNS.has(a0) || PRONOUNS.has(b0) || DEMO_PRONOUNS.has(a0) || DEMO_PRONOUNS.has(b0)) {
-      const ga = PRONOUN_GROUP_OF[a0], gb = PRONOUN_GROUP_OF[b0];
-      if (ga !== undefined && ga === gb) { funcHits++; }
-      else { semHits++; }
+    /* ① 人称代词：同「人」不同格 → function（you↔your 所有格）；跨人 → semantic */
+    const ga = PRONOUN_GROUP_OF[a0], gb = PRONOUN_GROUP_OF[b0];
+    if (ga !== undefined || gb !== undefined) {
+      if (ga !== undefined && ga === gb) funcHits++;
+      else semHits++;
       continue;
     }
-    /* 指向词替换 → semantic */
-    if (POINTERS.has(a0) || POINTERS.has(b0)) { semHits++; continue; }
-    /* be/do/have 系内混淆（was vs has）→ verb；同词位屈折 → verb */
-    if (BE_DO_HAVE.has(lemmatize(a0)) && BE_DO_HAVE.has(lemmatize(b0))) { verbHits++; continue; }
-    if (lemmatize(a0) === lemmatize(b0)) { verbHits++; continue; }
-    /* 虚词替换 → function */
-    if (FUNC_WORDS.has(a0) || FUNC_WORDS.has(b0)) { funcHits++; continue; }
-    /* 词干屈折：ed/ing → verb；s/es 复数/三单 → form */
+    /* ② 指示代词 this/that/these/those：数不一致 → function（限定词数错，
+       种子生成器常「this 复数化但名词未同步」）；同数远近指（this↔that）→ semantic */
+    if (DEMO_PRONOUNS.has(a0) || DEMO_PRONOUNS.has(b0)) {
+      const na = DEMO_NUM[a0], nb = DEMO_NUM[b0];
+      if (na && nb) { if (na === nb) semHits++; else funcHits++; }
+      else semHits++;
+      continue;
+    }
+    /* ③ 词位/词干屈折（先于指向词与虚词短路：was↔has、meet↔meets、run↔runs、
+       today↔todays 等在此落定，不被下方 POINTERS 截胡成 semantic） */
+    const la = lemmatize(a0), lb = lemmatize(b0);
+    if (BE_DO_HAVE.has(la) && BE_DO_HAVE.has(lb)) { verbHits++; continue; }
+    if (la === lb) { verbHits++; continue; }
     const sa = stem(a0), sb = stem(b0);
     if (sa === sb && sa.length >= 3) {
       if (/(ed|ing)$/.test(a0) || /(ed|ing)$/.test(b0)) verbHits++;
       else formHits++;
       continue;
     }
-    /* 纯形近：编辑距离 ≤2 且共享 bigram（排除 be/get、make/have 等
+    /* ④ 指向词替换（到此处词干必不等：here↔there、now↔later 语境指向）→ semantic */
+    if (POINTERS.has(a0) || POINTERS.has(b0)) { semHits++; continue; }
+    /* ⑤ 虚词替换 → function */
+    if (FUNC_WORDS.has(a0) || FUNC_WORDS.has(b0)) { funcHits++; continue; }
+    /* ⑥ 纯形近：编辑距离 ≤2 且共享 bigram（排除 be/get、make/have 等
        不同词碰巧距离近；chance/change、worry/hurry、pull/put 保留） */
     if (editDist(a0, b0) <= 2 && Math.abs(a0.length - b0.length) <= 1 && sharesBigram(a0, b0)) { formHits++; continue; }
     semHits++;

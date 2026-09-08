@@ -40,7 +40,18 @@ const CASES = [
   ['you two', 'you three', 'semantic'], ['Be there at three', 'Get there at three', 'semantic'],
   ['He runs the office', 'He owns the office', 'semantic'], ['Have fun', 'Make fun', 'semantic'],
   ['He holds', 'She holds', 'semantic'], ['He holds a grudge', 'She holds a grudge', 'semantic'],
-  ['how to get', 'what to get', 'semantic'], ['the joke', 'the story', 'semantic']
+  ['how to get', 'what to get', 'semantic'], ['the joke', 'the story', 'semantic'],
+  /* C2-III semantic 盲区治理：指示代词数错 → function */
+  ['these days', 'this days', 'function'], ['this box', 'these box', 'function'],
+  ['about that.', 'about those.', 'function'], ['this part.', 'these parts.', 'function'],
+  ['this package', 'these package', 'function'], ['Is this', 'Is these', 'function'],
+  /* C2-III：同数远近指保持 semantic（句意变化） */
+  ['this time.', 'that time.', 'semantic'], ['this weekend?', 'that weekend?', 'semantic'],
+  ['Is that', 'Is this', 'semantic'],
+  /* C2-III：可屈折时间名词复数误加 → form（原被 POINTERS 短路成 semantic） */
+  ['today.', 'todays.', 'form'], ['now.', 'nows.', 'form'], ['yesterday.', 'yesterdays.', 'form'],
+  /* C2-III：纯指向替换（词干不同）保持 semantic */
+  ['now.', 'later.', 'semantic'], ['here', 'there', 'semantic'], ['today.', 'tomorrow.', 'semantic']
 ];
 console.log('classifyOne 分类正确性（' + CASES.length + ' 用例）');
 CASES.forEach(function (t) {
