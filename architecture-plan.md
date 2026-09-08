@@ -367,7 +367,7 @@ _附：v1（2026-08-07）规划中的 P1 模块化、P2 后端化已部分落地
 **cid（内容 ID）机制**
 - 每句分配稳定 `cid = fnv8(sentence)`（8 位 hex，`Math.imul` 实现，与 python 精确 32 位结果一致——普通 `h*0x01000193` 双精度溢出 2^53 会丢精度，曾致数据文件 cid 与运行时计算不一致）。
 - key 统一 `deckId#cid`（`CL.cidOf/cidKey/itemKey/masteredKey`，core.js）；`loadMem` 自动把旧 `deckId#原文` 档案迁移到 cid key（bySentence/mastered/deletedItems/events）+ 回写 + rev bump。
-- 内置 138 句 cid 已注入（`scripts/add-cids.js` 幂等，`--force` 全量重算）；编辑导入句首改时固化 cid=fnv8(原文本)，此后文本修订不丢进度。
+- 内置 389 句 cid 已注入（`scripts/add-cids.js` 幂等，`--force` 全量重算）；编辑导入句首改时固化 cid=fnv8(原文本)，此后文本修订不丢进度。
 - 校验：`validate_builtins.js` / `validate_oral8000.js` 增 cid=fnv8(sentence) 规则，纳入 npm test。
 
 **题库数据文件解耦（P0，修 stats 空 deck bug 根因）**

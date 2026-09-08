@@ -18,7 +18,7 @@ Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句�
 | 能力 | 说明 |
 |------|------|
 | 🧩 意群练习 | 拼句 / 选词 / 填空 / 打字 4 种作答模式，逐语块即时判定 |
-| 📚 内置题库 | 2 套：日常对话 · Daily Talk（138 句）+ 高频短语 · English Idioms（201 句） |
+| 📚 内置题库 | 2 套：日常对话 · Daily Talk（188 句，含口语种子 100 句）+ 高频短语 · English Idioms（201 句） |
 | 📖 图文课程 | ZIP 课程包导入 + 图推理对话练习 + 课前预习 / 主课程 / 课后测试三段式 |
 | 🔁 SRS 间隔重复 | 艾宾浩斯节奏 `1→3→7→14→30→60→120→180→365` 天，答错重置（纯函数，可单测） |
 | 📝 句子详解 | 课程自带结构化讲解（语法 / 搭配 / 句型，随句渲染）；AI 联网生成为**可选后端能力**（服务端代理 + 限流 + 缓存，`AI_EXPLAIN_ENABLED=true` 开启，默认停用） |
@@ -161,7 +161,7 @@ node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change
 
 浏览器端到端回归（Playwright，一键跑，自动拉起临时 server）：
 ```bash
-npm run e2e        # UI 回归 61 项
+npm run e2e        # UI 回归 69 项
 npm run e2e-sync   # 双设备同步对抗 7 项（ADR-005 端到端：per-entity 隔离 / LWW / 软删传播 / 删除重建 / stale 拒写）
 # 覆盖：main 正常路径（顶栏 SVG/真实句子/候选区/零 pageerror）、
 #       全 module 拦截降级（safeCall 兜底不白屏）、decks/stats SVG 渲染、
@@ -215,7 +215,7 @@ node server/backup-cli.js list                # 列出备份
 - 🔴 **开放模式公网 = 数据裸奔**：默认共享单用户 + 默认 JWT 密钥。任何公网 / 可访问网络部署必须先 `REQUIRE_AUTH=true` + 强随机 `JWT_SECRET`（详见上「安全部署清单 · ADR-006」）
 - 🟡 `main.html` 仍是 ~4.3k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
-- 🟡 `oral8000.js` 现为 50 句种子数据（并入 builtin-daily），分批扩展直接在文件内追加
-- 🟡 主流程改动后记得跑 `npm run e2e`（61 项，自动拉起临时 server）确认无回归；`e2e/e2e.js` 已随版本入库
+- 🟡 `oral8000.js` 现为 100 句口语种子（并入 builtin-daily，共 188 句），分批扩展直接在文件内追加
+- 🟡 主流程改动后记得跑 `npm run e2e`（69 项，自动拉起临时 server）确认无回归；`e2e/e2e.js` 已随版本入库
 
 > 早期迭代中的问题（同步整块覆盖、AI Key 前端直连、后端零校验、移动端适配弱、核心逻辑无单测等）均已按 architecture-plan 的 Phase A→C 闭环，ADR 清单见上。
