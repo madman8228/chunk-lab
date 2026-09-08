@@ -8,6 +8,7 @@
  *   - buildPrompt：AI 生成题库
  *   - buildSplitPrompt：口语句子拆分（去掉未使用的 deck 参数）
  *   - buildAppendPrompt：题库追加（改为接收 deckName 字符串）
+ *   - buildDistractorPrompt：为句子逐 chunk 生成干扰项（D-pipeline，2026-09-08）
  *
  * 浏览器：<script type="module" src="js/bridge.mjs">（内部挂 window.AIPrompts）
  * 单测：  node js/ai-prompts.test.mjs
@@ -17,6 +18,10 @@
 /* 提示词版本：任何 prompt 结构/模型行为升级后 +1（本地与服务端 ai_cache 的旧版本缓存自动失效）。
    必须与 server/index.js 的 AI_PROMPT_VERSION 同步修改。 */
 export const PROMPT_VERSION = 1;
+
+/* D-pipeline 干扰项 prompt 独立版本（与讲解 prompt 无关，不进服务端 ai_cache；
+   供 scripts/gen-distractors.mjs 做结果缓存 key / 未来批处理复用）。 */
+export const DISTRACTOR_PROMPT_VERSION = 1;
 
 export function buildExplainPrompt(it) {
   var L = [];
@@ -143,6 +148,35 @@ export function buildAppendPrompt(deckName) {
     ']',
     'chunks 拼接必须与原句一致，2-4 个意群。'
   ].join('\n');
+}
+
+/* 逐句生成干扰项（D-pipeline，2026-09-08）：
+   为句子每个 chunk 产 3 个「语法近失 + 句内语境相关」的干扰项，供打包期预写
+   it.distractors[i]（运行时 buildChoices/buildDistractors 优先消费，见 chunk-engine）。
+   质量基线继承 085a72a 修根因结论：干扰项必须与【整句语境】相关（学习者需真正判断
+   语义/搭配才能排除），且与正确答案同义改写（judge 歧义）与句内重复均属废项。 */
+export function buildDistractorPrompt(it) {
+  var chunks = it.chunks || [];
+  var L = [];
+  L.push('你是一位资深英语测试命题专家。请为下面句子的每个意群（chunk）设计高质量的干扰项，用于「按中文提示还原意群」的填空选择题。');
+  L.push('');
+  L.push('句子：' + (it.sentence || ''));
+  L.push('中文：' + (it.translation || it.cn || ''));
+  L.push('意群（须逐个覆盖，共 ' + chunks.length + ' 个）：');
+  chunks.forEach(function (c, i) {
+    L.push((i + 1) + '. ' + c + ((it.hints && it.hints[i]) ? '（提示：' + it.hints[i] + '）' : ''));
+  });
+  L.push('');
+  L.push('要求：');
+  L.push('1. 针对每个意群产出 3 个干扰项，输出 JSON：{"distractors":[["干扰1","干扰2","干扰3"],["...","...","..."],...]}，外层数组与意群一一对应。');
+  L.push('2. 干扰项质量（最重要，逐条自检）：');
+  L.push('   - 与目标意群「语法近失」：结构/词性/长度相近（例：意群 the bus is almost here → 干扰 the bus is already here / the buses are almost here），学习者必须判断语义与搭配才能排除；');
+  L.push('   - 替换后整句读起来「似乎成立」——与该句整体语境相关，严禁与整句内容零关联的凑数项；');
+  L.push('   - 语义必须偏离原意（不得是同义改写，否则判对歧义），也不得与句子其他意群相同或同义；');
+  L.push('   - 用常见词，避免生僻词；长度不超过目标意群词数 + 2 词。');
+  L.push('3. 个别意群（如语气词、固定习语）确实难凑 3 个合理干扰时，允许 2 个甚至 1 个，宁缺毋滥；但该位置数组不得为空或 null。');
+  L.push('4. 只输出 JSON 本体，不要 markdown 代码块标记，不要任何多余文字。');
+  return L.join('\n');
 }
 
 /* 从 AI 返回文本中提取 JSON（去 BOM / 代码块围栏 / 截取首尾大括号，修复全角引号与尾逗号） */
