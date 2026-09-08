@@ -10,8 +10,10 @@ import * as ChunkEngine from './chunk-engine.mjs';
 import * as FormatTools from './format.mjs';
 import * as AIPrompts from './ai-prompts.mjs';
 import * as BackupTools from './backup.mjs';
+import * as CauseTools from './distractor-cause.mjs';
 
 window.ChunkEngine = ChunkEngine;
 window.FormatTools = FormatTools;
 window.AIPrompts = AIPrompts;
 window.BackupTools = BackupTools;
+window.CauseTools = CauseTools;

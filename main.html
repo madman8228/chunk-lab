@@ -348,6 +348,21 @@ input,textarea,select{font:inherit;color:inherit}
 }
 
 /* ---------- 系统级 Toast 提示（屏幕中央） ---------- */
+/* 答错错因轻提示（C2-II 2026-09-08）：fixed 在候选按钮上方，不遮挡内容 */
+#causeTip{
+  position:fixed;left:50%;bottom:150px;transform:translateX(-50%) translateY(6px);
+  z-index:56;pointer-events:none;opacity:0;text-align:center;max-width:min(86vw,640px);
+  display:flex;align-items:center;gap:8px;justify-content:center;
+  transition:opacity .22s ease, transform .24s cubic-bezier(.2,.8,.3,1);
+  background:rgba(38,32,26,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  color:#f7efe3;border-radius:999px;padding:8px 16px 9px;font-size:13.5px;font-weight:500;
+  box-shadow:0 6px 22px rgba(20,14,8,.28);letter-spacing:.005em;line-height:1.4;
+}
+#causeTip .ct-ic{flex:0 0 auto;display:flex;color:#ffd9a0}
+#causeTip .ct-name{color:#ffd9a0;font-weight:700;margin-right:2px}
+#causeTip .ct-tip{color:rgba(247,239,227,.86)}
+#causeTip.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:640px){ #causeTip{bottom:132px;font-size:12.5px;padding:7px 13px 8px} }
 #sysToast{
   position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
   z-index:70;pointer-events:none;opacity:0;text-align:center;
@@ -818,6 +833,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <div id="sysToast"></div>
 
 
+<div id="causeTip" class="hidden"></div>
 <!-- 选择模式：候选按钮 fixed 浮在屏幕底部中央（不在 stage 卡片内） -->
 <div id="stageChoices"></div>
 
@@ -2199,11 +2215,19 @@ function chooseSubmit(choice){
   } else {
     S.wrongAttempts[i]++;
     /* ★ 不再禁用选项、不再强制揭示/跳题——允许用户自由试错（包括重选同一项）。
-       视觉反馈仅保留抖动；“需巩固”判定在 finishSentence 统一按错误次数/提示计算 */
+       视觉反馈仅保留抖动；“需巩固”判定在 finishSentence 统一按错误次数/提示计算。
+       C2-II 2026-09-08：答错干扰项时实时算错因（CauseTools.classifyOne）并浮层提示，
+       不揭示答案、不打断试错——只点明「错因方向」，答案仍由用户自己试出。 */
     S.perfectThis = false; /* 错过一次即非完美（庆祝层面），需巩固判定另行计算 */
     b.classList.add('shake');
     SFX.bad();
     setTimeout(function(){ b.classList.remove('shake'); }, 440);
+    if(window.CauseTools && typeof window.CauseTools.classifyOne === 'function'){
+      try {
+        var _cause = window.CauseTools.classifyOne(right, choice);
+        showCauseTip(_cause);
+      }catch(e){ /* 错因提示为增强层，失败不影响作答主流程 */ }
+    }
   }
 }
 
@@ -2269,6 +2293,13 @@ function submitChunk(){
     if(fe) fe.focus();
     setTimeout(function(){ bb.classList.remove('shake'); }, 440);
     SFX.bad();
+    /* C2-II：填空答错同样给错因方向（拿已输入文本 vs 正确 chunk） */
+    if(window.CauseTools && typeof window.CauseTools.classifyOne === 'function'){
+      try {
+        var _c2 = window.CauseTools.classifyOne(right, val);
+        showCauseTip(_c2);
+      }catch(e){ /* 增强层，不影响主流程 */ }
+    }
   }
 }
 
@@ -2586,6 +2617,30 @@ function showSysToast(text, ms){
     t.classList.add('leave');
     setTimeout(function(){ t.classList.remove('show','leave'); }, 300);
   }, ms || 2200);
+}
+
+/* 答错错因轻提示（C2-II 2026-09-08）：调用 CauseTools.classifyOne 实时判定
+   答错项 vs 正确 chunk 的错因类，浮层显示在候选按钮上方（不揭示答案，
+   保留「自由试错」交互——只点明错因方向，不给答案）。 */
+var _causeTipTimer = null;
+function showCauseTip(cause){
+  var t = $('causeTip');
+  if(!t) return;
+  var info = window.CauseTools ? window.CauseTools.causeInfo(cause) : null;
+  if(!info) return;
+  /* 定位：候选按钮区上方（有 choices 时贴其上沿，填空模式贴 stage 下方） */
+  var ch = $('stageChoices');
+  var chH = (ch && ch.offsetHeight) ? ch.offsetHeight : 0;
+  var bottom = chH ? (32 + chH + 12) : 96;
+  t.style.bottom = bottom + 'px';
+  t.innerHTML = '<span class="ct-ic">' + (window.Icons ? Icons.svg('warn') : '') + '</span>'
+    + '<span><span class="ct-name">' + esc(info.name) + '近失</span>'
+    + '<span class="ct-tip">' + esc(info.tip) + '</span></span>';
+  t.classList.remove('hidden'); t.classList.remove('show'); void t.offsetWidth; t.classList.add('show');
+  clearTimeout(_causeTipTimer);
+  _causeTipTimer = setTimeout(function(){
+    t.classList.remove('show');
+  }, 2600);
 }
 
 /* ---------- 扩展知识卡片（通用：单词 / 例句 / 词组 / 错误讲解 等可复用） ----------
