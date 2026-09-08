@@ -101,10 +101,18 @@ function loadJsonData(filePath) {
 }
 
 /* ---------------- 幂等判定 ---------------- */
-/* 已有 distractors 且至少一个 chunk 位非空 → 已生成，跳过 */
+/* 需生成 = 无 distractors，或存在空位槽（某 chunk 位 0 条）。
+   ★ 完整判定（2026-09-08）：早期批允许「宁缺毋滥」空位落库；但运行时规则桶对
+   空位槽的补给是零语义关联垃圾（实证：Make → ["Sorry,","yesterday."]）——
+   空位即该填空位质量塌方。故有空位槽的句子视为未完成，允许重跑补生成。
+   （写回为 replace 整行覆盖，已满槽由 LLM 重产 + cleanDistractors 重清洗） */
 function needGen(it) {
-  return !Array.isArray(it.distractors) ||
-    !it.distractors.some(function (slot) { return Array.isArray(slot) && slot.length > 0; });
+  if (!Array.isArray(it.distractors)) return true;
+  for (let i = 0; i < it.distractors.length; i++) {
+    const s = it.distractors[i];
+    if (!Array.isArray(s) || s.length === 0) return true;
+  }
+  return false;
 }
 
 /* ---------------- .js 精确插行写回 ---------------- */

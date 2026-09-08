@@ -1,0 +1,60 @@
+[
+  {
+    "sentence": "Make yourself at home.",
+    "distractors": [
+      ["Feel", "Help", "Take"],
+      ["yourself useful.", "yourself a drink.", "yourself heard."]
+    ]
+  },
+  {
+    "sentence": "No need to make a fuss.",
+    "distractors": [
+      ["No point", "Not worth", "No chance"],
+      ["to make a scene.", "to get angry.", "to cause trouble."]
+    ]
+  },
+  {
+    "sentence": "Pull yourself together.",
+    "distractors": [
+      ["Calm", "Put", "Gather"],
+      ["your act together.", "your socks up."]
+    ]
+  },
+  {
+    "sentence": "He ignored the warning and got burned — he asked for it.",
+    "distractors": [
+      ["He ignored the advice", "He missed the warning", "He heeded the warning"],
+      ["and got caught", "and got fired", "and got scolded"],
+      ["— he asked for help.", "— he asks for it.", "— he asked for more."]
+    ]
+  },
+  {
+    "sentence": "Hold on a second — I'll get the door.",
+    "distractors": [
+      ["Hang up", "Carry on", "Wait on"],
+      ["a while —", "two seconds —"],
+      ["I'll close the door.", "I'll get the phone.", "I'll lock the door."]
+    ]
+  },
+  {
+    "sentence": "Have fun at the party tonight!",
+    "distractors": [
+      ["Enjoy", "Get fun", "Make fun"],
+      ["at the concert tonight!", "at the game tonight!", "at the party last night!"]
+    ]
+  },
+  {
+    "sentence": "I didn't catch that — come again?",
+    "distractors": [
+      ["I didn't hear that —", "I didn't get that —"],
+      ["come in?", "come over?", "go again?"]
+    ]
+  },
+  {
+    "sentence": "Be there at three on the dot.",
+    "distractors": [
+      ["Be there by three", "Be there at four", "Get there at three"],
+      ["on the spot.", "on the clock.", "at the dot."]
+    ]
+  }
+]

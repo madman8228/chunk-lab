@@ -392,7 +392,7 @@ window.DATA_FREQ_IDIOMS = [
       "**make yourself at home** 标准客人招待用语，让对方自在不拘束。多用于请客人坐下/喝茶前。",
       "近义：feel free / make yourself comfortable。注意 yourself 不能换成其他代词（you 含反身意义）。例句：Welcome! Please come in and make yourself at home."
     ],
-    distractors: [[],["yourself useful.","yourself a drink.","yourself heard."]]
+    distractors: [["Feel","Help","Take"],["yourself useful.","yourself a drink.","yourself heard."]]
   },
   {
     sentence: "No need to make a fuss.",
@@ -408,7 +408,7 @@ window.DATA_FREQ_IDIOMS = [
       "**make a fuss** 短语动词，意为小题大做、大惊小怪、过分激动。可加 over 某人/某事：make a fuss over nothing。",
       "近义：make a big deal / kick up a fuss（更强烈）/ hit the ceiling/freak out（情绪化）。例句：Don't make a fuss — it's just a scratch."
     ],
-    distractors: [[],["to make a scene.","to get angry.","to cause trouble."]]
+    distractors: [["No point","Not worth","No chance"],["to make a scene.","to get angry.","to cause trouble."]]
   },
   {
     sentence: "Once in a blue moon, I eat fast food.",
@@ -440,7 +440,7 @@ window.DATA_FREQ_IDIOMS = [
       "**pull yourself together** 短语动词，意为控制情绪、振作、冷静下来。常对崩溃/慌乱/情绪失控的人说。",
       "近义：get a grip（自己）/ compose yourself / settle down。更柔和的版本：take a deep breath。注意是对受话人说，you 永远是 yourself。"
     ],
-    distractors: [[],["your act together.","your socks up."]]
+    distractors: [["Calm","Put","Gather"],["your act together.","your socks up."]]
   },
   {
     sentence: "She has a sweet tooth.",
@@ -691,7 +691,7 @@ window.DATA_FREQ_IDIOMS = [
       "**ask for it**：字面『讨要』，实际指『自找麻烦、咎由自取』，常因不听劝告而吃亏。过去式 asked for it。",
       "较直白版：You asked for trouble. 例：He drove drunk and crashed — he really asked for it.（酒驾出车祸，纯属自找。）"
     ],
-    distractors: [["He ignored the advice","He missed the warning","He heeded the warning"],["and got caught","and got fired","and got scolded"],[]]
+    distractors: [["He ignored the advice","He missed the warning","He heeded the warning"],["and got caught","and got fired","and got scolded"],["— he asked for help.","— he asks for it.","— he asked for more."]]
   },
   {
     sentence: "Don't get me wrong — I like the city, I just miss the quiet.",
@@ -951,7 +951,7 @@ window.DATA_FREQ_IDIOMS = [
       "**hold on** 等一下；Hold on a second 句式：稍等一会儿。比 wait 口语、电话常用。",
       "近义：wait a moment / hang on（同义）/ just a sec. 例：— Is this the right bus? — Hold on, let me check."
     ],
-    distractors: [[],["a while —","two seconds —"],["I'll close the door.","I'll get the phone.","I'll lock the door."]]
+    distractors: [["Hang up","Carry on","Wait on"],["a while —","two seconds —"],["I'll close the door.","I'll get the phone.","I'll lock the door."]]
   },
   {
     sentence: "Hold it — I need to check this first.",
@@ -1047,7 +1047,7 @@ window.DATA_FREQ_IDIOMS = [
       "**Have fun** 告别祝福：玩得开心！最常用告别语之一，朋友出门/度假都说。",
       "近义：Enjoy yourself / Have a good time. 例：Have fun on your trip!"
     ],
-    distractors: [[],["at the concert tonight!","at the game tonight!","at the party last night!"]]
+    distractors: [["Enjoy","Get fun","Make fun"],["at the concert tonight!","at the game tonight!","at the party last night!"]]
   },
   {
     sentence: "Heads up — the meeting moved to 3.",
@@ -1255,7 +1255,7 @@ window.DATA_FREQ_IDIOMS = [
       "**Come again?** 礼貌求复：请再说一遍？比 What? 更柔和，店员/电话常用。",
       "正式版：Could you repeat that, please? 例：— Room 305. — Come again? — Room 305."
     ],
-    distractors: [["I didn't hear that —","I didn't get that —"],[]]
+    distractors: [["I didn't hear that —","I didn't get that —"],["come in?","come over?","go again?"]]
   },
   {
     sentence: "I'm trying to study — cut it out!",
@@ -1399,7 +1399,7 @@ window.DATA_FREQ_IDIOMS = [
       "**on the dot** 准时：正点。dot = 时钟的整点标志。",
       "近义：sharp / on time / precisely. 反义：fashionably late. 例：The train left at 9:00 on the dot."
     ],
-    distractors: [["Be there by three","Be there at four","Get there at three"],[]]
+    distractors: [["Be there by three","Be there at four","Get there at three"],["on the spot.","on the clock.","at the dot."]]
   },
   {
     sentence: "Can I take a rain check on dinner?",
