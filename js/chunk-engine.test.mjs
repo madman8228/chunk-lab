@@ -169,6 +169,28 @@ const items = [sentA, sentB, sentC];
     'cs=' + JSON.stringify(cs));
 })();
 
+/* ===== 预置干扰项（D-schema：it.distractors[i]，2026-09-08） ===== */
+(function () {
+  const presets = { sentence: 'He left the party early.', chunks: ['He left the party early.'], distractors: [['She left the meeting late.', 'They stayed till midnight.']] };
+  const sparse = [{ chunks: ['totally unrelated'] }, { chunks: ['something else entirely'] }];
+  const cs = buildChoices(presets, 0, sparse, sparse);
+  check('D: 预置干扰项入选（chunk 级，优先于运行时生成）', cs.includes('She left the meeting late.'), JSON.stringify(cs));
+  check('D: 预置干扰不足 2 时全收', cs.includes('They stayed till midnight.'), JSON.stringify(cs));
+
+  const it2 = { sentence: 'He left the party early.', chunks: ['He', 'left the party', 'early.'], distractors: [['She'], ['stayed all night'], ['late.']] };
+  const sparse2 = [{ chunks: ['x y z'] }, { chunks: ['a b c'] }];
+  const ds = buildDistractors(it2, sparse2, sparse2);
+  check('D: buildDistractors 预置干扰全在前', ds.slice(0, 3).join('|') === 'She|stayed all night|late.', JSON.stringify(ds));
+  check('D: buildDistractors 池内不含正确答案 chunk', !ds.some(function (d) { return ['He', 'left the party', 'early.'].indexOf(d) >= 0; }), JSON.stringify(ds));
+
+  const it3 = { sentence: 'Go home.', chunks: ['Go home.'], distractors: [['Go home.', 'Come here.']] };
+  const cs3 = buildChoices(it3, 0, sparse, sparse);
+  check('D: 预置含正确答案本身 → 去重', cs3.filter(function (c) { return c === 'Go home.'; }).length === 1 && cs3.includes('Come here.'), JSON.stringify(cs3));
+
+  const cs4 = buildChoices({ sentence: 'Go home.', chunks: ['Go home.'] }, 0, sparse, sparse);
+  check('D: 无 distractors 字段 → 行为不变', Array.isArray(cs4) && cs4.length >= 1, JSON.stringify(cs4));
+})();
+
 /* ===== judgeChunk ===== */
 check('judgeChunk: 精确匹配', judgeChunk('I am', 'I am', []) === true);
 check('judgeChunk: 大小写/标点归一', judgeChunk('i am!', 'I am', []) === true);

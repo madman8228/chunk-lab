@@ -135,9 +135,23 @@ export function buildChoices(it, i, currentItems, allItems) {
   });
   ctxRelated.sort(byCtxDesc);
 
-  /* 四级选取：同模式 → 同长度+重叠 → 句内关联 → 任意不同（兜底，仅题库过小/无相关时启用） */
+  /* 五级选取：预置 → 同模式 → 同长度+重叠 → 句内关联 → 任意不同（兜底） */
   var wrongs = [];
   var seen4 = {};
+
+  /* 桶 0：预置干扰项（D-schema，2026-09-08）：it.distractors[i] = 第 i 个 chunk 的可选干扰列表，
+     与 it.alts[i]（判对同义替换）同构。课程打包时由作者/LLM 预生成 → 最高质量（可含
+     运行时生成不出的语法近失项）；运行时生成只是兜底。 */
+  var preset = [];
+  var seenP = {};
+  if (it.distractors && Array.isArray(it.distractors[i])) {
+    it.distractors[i].forEach(function (d) {
+      var k = norm(d);
+      if (!k || k === rn || seenP[k] || seen4[k]) return;
+      seenP[k] = 1;
+      preset.push(d);
+    });
+  }
   function pick(source, cap) {
     for (var j = 0; j < source.length && wrongs.length < cap; j++) {
       var c = source[j];
@@ -147,6 +161,7 @@ export function buildChoices(it, i, currentItems, allItems) {
       wrongs.push(c);
     }
   }
+  pick(preset, 2);
   pick(samePattern, 2);
   if (wrongs.length < 2) pick(sameLenOverlap, 2);
   if (wrongs.length < 2) pick(ctxRelated, 2);
@@ -182,6 +197,18 @@ export function buildDistractors(it, currentItems, allItems) {
   it.chunks.forEach(function (v) { correctSet[norm(v)] = 1; });
   var picks = [];
   var seen = {};
+  /* pass 0：预置干扰项（D-schema）：当前句各 chunk 的 it.distractors[j] 展平先收
+     （作者/LLM 预审过的高质量干扰，含运行时生成不出的语法近失项） */
+  (it.distractors || []).forEach(function (list) {
+    if (picks.length >= distractorCount) return;
+    (list || []).forEach(function (d) {
+      if (picks.length >= distractorCount) return;
+      var nk = norm(d);
+      if (!nk || correctSet[nk] || seen[nk]) return;
+      seen[nk] = 1;
+      picks.push(d);
+    });
+  });
   /* pass 1：同模式（chunk[0]）+ 句内关联 ≥1（高质量：结构对位且语境相关） */
   pool.forEach(function (c) {
     if (picks.length >= distractorCount) return;
