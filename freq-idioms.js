@@ -2260,7 +2260,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**What's new?** 是比 How are you 更亲密的寒暄，问对方近况和新鲜事。熟人间高频开场白。",
       "回答套路：Not much（没啥特别的）/ Same as usual。例句：— What's new? — Just started a new job!"
-    ]
+    ],
+    distractors: [["So,","Oh,"],["what's wrong","what's changed"],["with you today?","with your family these days?"]]
   },
   {
     sentence: "Fill me in — I need to get up to speed on this project.",
@@ -2276,7 +2277,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**up to speed** 指「跟上最新进度、掌握全部信息」，职场高频。get/be/bring sb up to speed 三种搭配都要会用。",
       "例句：Can you bring me up to speed on what happened at the meeting?"
-    ]
+    ],
+    distractors: [["Count me in —","Sign me up —"],["I don't need to get up to speed","I need to get ahead"],["for this project.","with this project."]]
   },
   {
     sentence: "You can't copy my homework — do it on your own.",
@@ -2291,7 +2293,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**on one's own** = alone / independently，「靠自己、独立地」。表「独自一人」或「独立完成」都行。",
       "近义：by yourself / single-handedly。例句：She built the whole website on her own."
-    ]
+    ],
+    distractors: [["You shouldn't copy my homework —","You can't steal my homework —"],["do it at your own pace.","write it on your own."]]
   },
   {
     sentence: "He didn't respect me, so I told him to take a hike.",
@@ -2306,7 +2309,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**take a hike** 是不客气的「走开/一边去」，比 go away 更强硬粗鲁，生气或赶人时用，正式场合禁用。",
       "近义：get lost / buzz off。例句：If you're just here to complain, take a hike."
-    ]
+    ],
+    distractors: [["He didn't like me,","He didn't trust me,"],["so I told him to take a seat.","so I told him to take a break."]]
   },
   {
     sentence: "You broke my laptop, so don't ask for a favor — you asked for it.",
@@ -2322,7 +2326,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**ask for it** 表示「自找麻烦/咎由自取」，常用于对方不听劝告后出了状况时的责难：You asked for it!",
       "例句：I warned him not to drive drunk — when he got caught, he asked for it."
-    ]
+    ],
+    distractors: [["You dropped my laptop,","You borrowed my laptop,"],["so don't ask for advice —","so don't beg for a favor —"],["don't even try.","that's final."]]
   },
   {
     sentence: "\"This plan won't work.\" — \"You said it!\"",
@@ -2337,7 +2342,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**You said it!** 强烈附和对方：「说得太对/可不是嘛」，比 I agree 更口语带劲，像中文「说到点上了」。",
       "例句：— The traffic here is awful. — You said it!"
-    ]
+    ],
+    distractors: [["\"This plan won't help.\" —","\"This plan won't fail.\" —"],["\"You don't say!\"","\"You made it!\""]]
   },
   {
     sentence: "The team dropped the ball and lost the biggest client.",
@@ -2352,7 +2358,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**drop the ball** 源自球类「接球失误」，引申「搞砸、失职、关键时刻掉链子」，职场批评常用。",
       "近义：mess up / blow it。例句：HR dropped the ball on the offer letter — the candidate took another job."
-    ]
+    ],
+    distractors: [["The team missed the deadline","The team raised the price"],["and lost the biggest game.","and kept the biggest client."]]
   },
   {
     sentence: "Hold your horses — we haven't even checked the price yet.",
@@ -2367,7 +2374,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**hold your horses** 字面「勒住你的马」，口语「别急/慢着」，拦着冲动的人先等等，带点调侃。",
       "例句：Hold your horses! Let me finish explaining before you judge."
-    ]
+    ],
+    distractors: [["Hold your tongue —","Watch your step —"],["we haven't even paid the price yet.","we haven't even asked the price yet."]]
   },
   {
     sentence: "Watch your mouth — that's not how you talk to your mother.",
@@ -2382,7 +2390,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**watch your mouth** 警告对方「说话注意点」，对方爆粗口或无礼时用，语气较硬。",
       "近义：mind your language。例句：Watch your mouth in front of the kids."
-    ]
+    ],
+    distractors: [["Watch your back —","Watch your step —"],["that's not how you talk to your boss.","that's not how you talk to your friends."]]
   },
   {
     sentence: "\"Can you fix the printer by noon?\" — \"Consider it done.\"",
@@ -2397,7 +2406,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Consider it done** 是干脆利落的承诺：「包在我身上/当它已经办好了」，比 I'll do it 更有把握感，商务场合也合适。",
       "例句：— Could you book a table for two? — Consider it done."
-    ]
+    ],
+    distractors: [["\"Can you fix the printer by Friday?\" —","\"Can you fix the computer by noon?\" —"],["\"I'll try my best.\"","\"I've already done it.\""]]
   },
   {
     sentence: "Don't you dare touch my phone again!",
@@ -2412,7 +2422,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Don't you dare!** 是严厉警告「你敢！/ 你敢试试！」，比 don't 强硬得多，带威胁语气，通常最后通牒式使用。",
       "例句：Don't you dare tell anyone about this!"
-    ]
+    ],
+    distractors: [["Don't you ever","Don't you even"],["touch my laptop again!","borrow my phone again!"]]
   },
   {
     sentence: "For the record, I never agreed to that price.",
@@ -2428,7 +2439,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**for the record** 源自会议记录用语，现常表示「先声明清楚/把话说在前面」，避免日后被误解。",
       "例句：For the record, I was against this idea from day one."
-    ]
+    ],
+    distractors: [["Off the record,","By the way,"],["I almost agreed","I never would agree"],["to that deal.","to that plan."]]
   },
   {
     sentence: "Apply anyway — you never know what might happen.",
@@ -2444,7 +2456,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**you never know** 表示「世事难料/说不定呢」，鼓励对方尝试时常用，也可表达不把话说死。",
       "例句：Give it a shot — you never know unless you try."
-    ]
+    ],
+    distractors: [["Try anyway —","Apply now —"],["you never guess","you never tell"],["what has happened.","when it might happen."]]
   },
   {
     sentence: "Strike a pose — this photo will be on the cover.",
@@ -2459,7 +2472,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**strike a pose** 是摄影/时尚圈的「摆姿势」固定说法，strike 这里不是「打」而是「摆出」。",
       "例句：The photographer asked her to strike a pose by the window."
-    ]
+    ],
+    distractors: [["Hold a pose —","Say cheese —"],["this photo will be on the wall.","this photo will be in the album."]]
   },
   {
     sentence: "The boss wants the report — on the double!",
@@ -2474,7 +2488,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**on the double** 源自军队口令「跑步走」，口语表「立即、赶快」，比 right now 更有催促感。",
       "近义：right away / ASAP。例句：Get the ambulance here on the double!"
-    ]
+    ],
+    distractors: [["The boss wants you —","The boss wants the coffee —"],["on the hour!","on time!"]]
   },
   {
     sentence: "Make it quick — I have a meeting in ten minutes.",
@@ -2489,7 +2504,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**make it quick** 催促对方「快点/长话短说」，常用于没时间的场景，语气直接但不失礼。",
       "近义：keep it short / cut to the chase。例句：Make it quick — the store closes in five minutes."
-    ]
+    ],
+    distractors: [["Write it down —","Make it clear —"],["I have a meeting in ten days.","I have an appointment in ten minutes."]]
   },
   {
     sentence: "Don't push it — I already said no twice.",
@@ -2504,7 +2520,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**don't push it** 警告对方适可而止：「别得寸进尺/别蹬鼻子上脸」，对方已越界或贪心时的最后提醒。",
       "例句：You got a raise last month — don't push it by asking for more."
-    ]
+    ],
+    distractors: [["Don't push me —","Don't test me —"],["I already said yes twice.","I already said no once."]]
   },
   {
     sentence: "Come in and make yourself at home.",
@@ -2519,7 +2536,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**make yourself at home** 是主人招呼客人的标准客套话：「随意点、别拘束、当自己家」。",
       "例句：The host said, \"Make yourself at home — grab a drink from the fridge.\""
-    ]
+    ],
+    distractors: [["Sit down","Get in"],["and make yourself a drink.","and make yourself useful."]]
   },
   {
     sentence: "Easy does it — that box has glass inside.",
@@ -2534,7 +2552,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**easy does it** 提醒对方「悠着点、慢来轻来」，搬运重物、做精细操作时常用，语气温和。",
       "近义：take it slow / gently。例句：Easy does it with the paint — don't rush the strokes."
-    ]
+    ],
+    distractors: [["Leave it alone —","Put it down —"],["that box has clothes inside.","that box has no glass inside."]]
   },
   {
     sentence: "Get off my back — I'll clean my room when I want to.",
@@ -2549,7 +2568,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**get off my back** 对被唠叨/施压的人说：「别烦我了/别老盯着我」，孩子对父母、下属对上司都常见。",
       "近义：stop nagging me / leave me alone。例句：Get off my back — I'll submit the report tonight!"
-    ]
+    ],
+    distractors: [["Get off my phone —","Get out of my way —"],["I'll clean my room when I have to.","I'll clean my room when I can."]]
   },
   {
     sentence: "She's had a crush on her classmate since middle school.",
@@ -2565,7 +2585,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have a crush on someone** 指「暗恋某人」，是青涩单向的喜欢，区别于认真的恋爱关系。",
       "例句：I had a huge crush on my English teacher in high school."
-    ]
+    ],
+    distractors: [["She's kept an eye on","She's taken care of"],["her teacher.","her neighbor."],["since high school.","during middle school."]]
   },
   {
     sentence: "Give me a break — I've been working nonstop for eight hours.",
@@ -2580,7 +2601,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**give me a break** 两种语气：①求饶「饶了我吧/让我歇歇」；②不信「别逗了/少来这套」（对方说离谱话时）。",
       "例句：— I ran a marathon last week. — Give me a break, you hate running!"
-    ]
+    ],
+    distractors: [["Give me a hand —","Give me a chance —"],["I've been working nonstop for eight days.","I've been working here for eight hours."]]
   },
   {
     sentence: "It's my treat tonight — the dinner is on me.",
@@ -2595,7 +2617,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**it's on me** 表示「费用我来付」，结账场景万能句。同义 It's my treat / I'll pick up the tab。",
       "例句：You paid last time — this round is on me."
-    ]
+    ],
+    distractors: [["It's my turn tonight —","It's my treat tomorrow —"],["the dinner is at my place.","the dinner is at eight."]]
   },
   {
     sentence: "Just a minute — I need to grab my keys.",
@@ -2610,7 +2633,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**just a minute** 让对方稍候，比 wait 更礼貌自然。同义：just a second / hold on。",
       "例句：Just a minute, let me check my schedule first."
-    ]
+    ],
+    distractors: [["One more thing —","By the way —"],["I need to grab my coat.","I need to find my keys."]]
   },
   {
     sentence: "I have nothing to lose by telling you the truth.",
@@ -2625,7 +2649,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have nothing to lose** 表示「豁出去了/没什么可失去的」，常给犹豫的人壮胆，也形容已经跌到谷底无后顾之忧。",
       "例句：Ask her out — you have nothing to lose."
-    ]
+    ],
+    distractors: [["I have nothing to gain","I have nothing to hide"],["by telling you a lie.","by telling you the secret."]]
   }
 ,
   {
