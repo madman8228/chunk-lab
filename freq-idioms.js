@@ -1446,7 +1446,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**It's on me** 我请客、我来付（吃喝）。同义：My treat / I'm buying / This round is mine.",
       "近义派生：It's on the house（店家请客）。例：Drinks are on me tonight, guys!"
-    ]
+    ],
+    distractors: [["Dinner's on you tonight —","Dinner's for me tonight —"],["don't hurry.","don't be late."]]
   },
   {
     sentence: "I was torn between the two offers.",
@@ -1461,7 +1462,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**torn** (被动形容) 撕裂、纠结：纠结于多个选择。torn = 撕碎=难以两全。",
       "近义：torn between A and B / can't decide / on the fence. 例：I was torn between staying home and traveling."
-    ]
+    ],
+    distractors: [["I was stuck","I was trapped"],["among the two offers.","between the three offers."]]
   },
   {
     sentence: "I'm low key worried about the exam.",
@@ -1476,7 +1478,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**low key** 俚语副词（来自密码 low-key = 隐藏级别），意「稍微、暗暗地」。",
       "例：I'm low key mad about it.（我有点生气）。作形容词：a low-key party（低调派对）。"
-    ]
+    ],
+    distractors: [["I'm not at all worried","I'm low key excited","I'm extremely worried"],["for the exam.","during the exam."]]
   },
   {
     sentence: "I sort of forgot what you said.",
@@ -1491,7 +1494,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**sort of** 模糊程度副词：有点、算是。弱化语调：I sort of like it.（我勉强喜欢）。",
       "近义：kind of / somewhat. 例：I sort of agree. 口语常省 /k/: I sorta forgot."
-    ]
+    ],
+    distractors: [["I totally forgot","I sort of remember","I sort of missed"],["what I said.","what you did.","when you said it."]]
   },
   {
     sentence: "Too bad you couldn't make it.",
@@ -1506,7 +1510,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Too bad** 遗憾/同情：真可惜。比 pity / lament 轻；比 What a pity 短。",
       "近义：What a pity / That's a shame. 例：— I missed the show. — Too bad, it was great."
-    ]
+    ],
+    distractors: [["No wonder","Good thing"],["you couldn't take it.","you couldn't help it."]]
   },
   {
     sentence: "I said no, so there!",
@@ -1521,7 +1526,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**So there** 强调坚持已说：就这么定了！多用于儿童/撒娇式坚持，成人可用作轻度挑衅/防御。",
       "例：I'm not going, so there. 近义：That's that / And that's final."
-    ]
+    ],
+    distractors: [["I said yes,","I said nothing,","I shouted no,"],["so what!","deal with it!"]]
   },
   {
     sentence: "She thinks she's hot stuff.",
@@ -1536,7 +1542,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**hot stuff** 俚语名词：了不起的人物/热门货。原指炙手可热的事物，转喻自大的人。",
       "例：Look at him acting like hot stuff. 近义：big shot / hot shot. 通常带点不屑/讽刺。"
-    ]
+    ],
+    distractors: [["He thinks","She hopes","She knows"],["she's hot.","she's no big deal."]]
   },
   {
     sentence: "I'm good — I don't need help.",
@@ -1551,7 +1558,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**I'm good** 多义：①我很好②不需要（拒人邀请/服务）。在餐厅、酒吧回应「再来一杯？」:",
       "用 I'm good 替代 No thanks，避免尴尬。例：— Want another beer? — I'm good, thanks."
-    ]
+    ],
+    distractors: [["I'm sure —","I'm busy —","I'm ready —"],["I don't want help.","I don't need anyone."]]
   },
   {
     sentence: "Let it go — it's not worth fighting.",
@@ -1566,7 +1574,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Let it go** ①放手、放掉执着 ②不注意（没看到/没听到）。let it go 也是 Frozen 主题曲名。",
       "近义：forget it / move on / get over it. 例：Let it go — we can't change the past."
-    ]
+    ],
+    distractors: [["Let it out —","Let him go —"],["it's worth fighting.","it's not worth worrying about."]]
   },
   {
     sentence: "Own up — you broke the vase.",
@@ -1581,7 +1590,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**own up** 坦白承认错误：认账。常接 to：own up to it. 强调责任归属。",
       "近义：confess / admit / come clean. 例：Own up to your mistake. 反义：deny / lie."
-    ]
+    ],
+    distractors: [["Speak up —","Give up —"],["you broke the glass.","you dropped the vase."]]
   },
   {
     sentence: "My dad is an easy-going man.",
@@ -1596,7 +1606,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**easy-going** 形容人随和、好相处。注意连字符：复合形容词。",
       "近义：laid-back / relaxed / mellow. 反义：uptight / high-strung. 例：Her boss is really easy-going."
-    ]
+    ],
+    distractors: [["His dad is an","My dad was an","My dad is quite an"],["outgoing man.","open-minded man.","honest man."]]
   },
   {
     sentence: "Forgive me — I didn't mean to interrupt.",
@@ -1611,7 +1622,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Forgive me** 比 I'm sorry 更正式：恕我无礼/请宽恕。常用于道歉、插话、问古怪问题前。",
       "注意时态：forgive 现在形表客气，一般过去 forgave 表真实原谅。例：Forgive my ignorance, but ..."
-    ]
+    ],
+    distractors: [["Trust me —","Hear me out —"],["I didn't mean to be rude.","I didn't mean to be late."]]
   },
   {
     sentence: "As I say, please pay attention.",
@@ -1626,7 +1638,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**As I say** 援引自己先前的话：照我说。引介方式状语。",
       "对比：As I said = 过去（已说过）。例：As I say, focus on the basics. 也用于复议：As I say before, ..."
-    ]
+    ],
+    distractors: [["I repeat,","As you say,"],["please pay the bill.","please pay no attention."]]
   },
   {
     sentence: "No comment on the lawsuit.",
@@ -1641,7 +1654,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**No comment** 媒体/官方常用答：无可奉告。拒绝表态时的礼貌挡箭牌。",
       "例：— Are you planning to resign? — No comment. 近义：I'll say no more / That's all I'll say."
-    ]
+    ],
+    distractors: [["No news","No report"],["during the lawsuit.","on the meeting."]]
   },
   {
     sentence: "Please see to it that the door is locked.",
@@ -1656,7 +1670,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**see to it that** 确保、留意办理。书面语；see to = 处理、照料。",
       "近义：make sure / ensure. 例：See to it that the patient gets his pills. 反义：neglect."
-    ]
+    ],
+    distractors: [["Please check","Please remember"],["that the door is closed.","that the window is locked.","that the door is open."]]
   },
   {
     sentence: "That's well put — I agree.",
@@ -1671,7 +1686,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**well put** 称赞表达：说得好、措辞精准。put = 表达、措辞。",
       "例：— He's not honest, just opportunistic. — Well put. 近义：well said / well put indeed."
-    ]
+    ],
+    distractors: [["That's well done —","That's well known —","That's well made —"],["I disagree.","I admit."]]
   },
   {
     sentence: "I never want to see you again — drop dead!",
@@ -1686,7 +1702,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Drop dead** 极端咒骂：去死吧！极端不满/厌恶。注意：儿童/陌生人禁用，太粗鲁。",
       "近义（较轻）：Get lost. 例：— Can you lend me $1000? — Drop dead!"
-    ]
+    ],
+    distractors: [["I always want to see you again —","I never expect to see you again —"],["drop it!","drop by!"]]
   }
 ,
   {
@@ -1702,7 +1719,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**my bad** 是非常口语的认错方式，等于 It's my fault，但更轻快。同龄人/熟人间用，正式场合别用。",
       "近义：my fault / I'm sorry / that's on me（责任在我）。例句：Sorry, my bad — I sent it to the wrong person."
-    ]
+    ],
+    distractors: [["I dropped your cup by accident —","I broke your phone by accident —","I broke your cup on purpose —"],["your fault.","no big deal."]]
   },
   {
     sentence: "Stop picking on him — he's half your size.",
@@ -1717,7 +1735,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**pick on** 指「专挑某个人欺负/找茬」，有针对性，比 bully 轻但仍是负向。反义：stand up for（护着某人）。",
       "辨析：pick at 是「挑剔/小口吃」，pick on 是「欺负」。例句：The boss always picks on the new guy."
-    ]
+    ],
+    distractors: [["Stop shouting at him —","Stop pushing him —","Stop relying on him —"],["he's twice your size.","he's half your age."]]
   },
   {
     sentence: "We sat by the lake and soaked up the sunshine.",
@@ -1733,7 +1752,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**soak up** 本义「吸收（液体）」，引申为尽情享受（阳光/氛围/知识）：soak up the atmosphere / soak up knowledge。",
       "近义：take in / bask in。例句：I love soaking up the café vibe on weekend mornings."
-    ]
+    ],
+    distractors: [["We stood by the lake and","We sat by the sea and","We walked by the lake and"],["avoided","faced"],["the moonlight.","the fresh air.","the view."]]
   },
   {
     sentence: "Don't pass up this chance to study abroad.",
@@ -1748,7 +1768,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**pass up** 是「放弃（难得的机会/好事）」，通常带惋惜感。常用于劝人：Don't pass up…/ You'd be crazy to pass that up。",
       "近义：turn down（拒绝）/ miss out on（错过）。反义：seize the opportunity。例句：She passed up a great job offer to stay with her family."
-    ]
+    ],
+    distractors: [["Don't forget","Don't wait for"],["this chance to work abroad.","this chance to travel abroad.","this chance to study hard."]]
   },
   {
     sentence: "\"Can you help me move this box?\" — \"You bet!\"",
@@ -1763,7 +1784,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**You bet!** 表示「当然！没问题！」，比 sure 更有热情。来自打赌引申的「你尽管放心」，熟人客套都合适。",
       "近义：Absolutely! / Of course! / You betcha（更随意的变体）。例句：— Thanks for the ride! — You bet!"
-    ]
+    ],
+    distractors: [["\"Can you help me move this car?\" —","\"Can you watch me move this box?\" —","\"Can you help me open this box?\" —"],["\"You wish!\"","\"No way!\""]]
   },
   {
     sentence: "It's been a year — time to move on.",
@@ -1778,7 +1800,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**move on** 指「放下过去、继续前行」，用于分手/离职/失败后的劝慰。也可字面义「继续走/继续做下一件事」。",
       "常见搭配：move on to something（接着做某事）。例句：Stop dwelling on the past and move on with your life."
-    ]
+    ],
+    distractors: [["It's been a while —","It's been years —","It took a year —"],["time to move out.","time to cheer up.","time to grow up."]]
   },
   {
     sentence: "Before you quit, step back and think it over.",
@@ -1793,7 +1816,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**step back** 从字面「往后退一步」引申为「抽离当下、换个视角冷静看」，常用于情绪上头时的建议。",
       "近义：take a step back / look at the big picture。例句：Sometimes you need to step back to see the whole problem."
-    ]
+    ],
+    distractors: [["After you quit,","Before you start,"],["step forward and think it over.","sit back and think it over."]]
   },
   {
     sentence: "You fixed it in five minutes — nice going!",
@@ -1808,7 +1832,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**nice going** 是口语称赞「干得好/漂亮」，口语感强。也可反讽（对方搞砸时阴阳怪气地说 nice going）。",
       "近义：well done / good job / way to go。例句：Nice going! You solved the puzzle in no time."
-    ]
+    ],
+    distractors: [["You fixed it in five hours —","You found it in five minutes —"],["nice try!","no way!"]]
   },
   {
     sentence: "Patience isn't my strong suit, I admit.",
