@@ -20,9 +20,13 @@
          用户看到"两个都对" / judgeChunk 判对歧义）
      E6  槽内 norm 不得重复（norm 去重）
      W1  条目首尾带空白（入库未走 cleanDistractors trim 的证据）
-     W2  槽位 0 条（空位）→ 该 chunk 运行时无预置质量，掉规则生成
-     W3  槽位 1..2 条（生产目标 3 条）→ 干扰项覆盖不足的质量信号
-     W4  句级槽位覆盖 < chunks 数（部分 chunk 空位）
+     W2  槽位 0 条（空位）→ 该 chunk 逐槽填空时无预置质量，掉运行时生成
+     W3  句级消费仿真缺口（2026-09-08 升级）：直接调 chunk-engine 的
+         buildDistractors(it, [], [])（空池 = 仅预置可用量，pass0 不依赖池），
+         若可用量 < max(4, 2×chunks)（整句模式 distractorCount）→ 该句必混入
+         运行时生成干扰（兜底）。取代旧的「每槽目标 3 条」静态阈值——引擎
+         逐槽只吃 2 条（buildChoices pick(preset,2)），整句才展平 max(4,2n)，
+         旧 W3 的 311 处告警绝大多数永不触发兜底 = 假警报。
    另：无 distractors 字段的句子计入「未入库」统计（builtin-daily 静态 88 句
        属预期未覆盖，输出供 D-pipeline 下一批排期参考），不算违规。
 
@@ -45,6 +49,7 @@ function loadLibs() {
 
 (async function main() {
   const { norm } = await import('./js/chunk-engine.mjs');
+  const { presetSentenceCoverage } = await import('./js/distractor-validate.mjs');
   const decks = loadLibs();
 
   const stats = {
@@ -87,7 +92,6 @@ function loadLibs() {
       chunks.forEach(function (c) { correctSet[norm(c)] = 1; });
 
       let slotEmpty = 0;   /* W2 计数 */
-      let slotShort = 0;   /* W3 计数 */
 
       it.distractors.forEach(function (slot, i) {
         /* ---- E3：每槽是数组 ---- */
@@ -99,10 +103,6 @@ function loadLibs() {
           slotEmpty++;
           stats.warns.push({ where: where, msg: 'W2 槽[' + i + ']（chunk「' + chunks[i] + '」）空位：0 条预置干扰' });
           return;
-        }
-        if (slot.length < 3) {
-          slotShort++;
-          stats.warns.push({ where: where, msg: 'W3 槽[' + i + ']（chunk「' + chunks[i] + '」）仅 ' + slot.length + ' 条（目标 3）' });
         }
 
         const seenInSlot = {};
@@ -139,6 +139,17 @@ function loadLibs() {
           seenInSlot[nk] = 1;
         });
       });
+
+      /* ---- W3：句级消费仿真缺口 ----
+         presetSentenceCoverage 直接调引擎 buildDistractors(it, [], [])：
+         空池 → pass1..4 无候选可取，返回量 = 预置展平后（norm 去重 + 排除句内
+         chunk）的真实可用数。整句模式 distractorCount = max(4, 2×chunks)；
+         可用 < 该值 → 该句运行时必混入生成干扰（质量降级信号）。
+         0 缺口 = 该句纯预置即可出满整句池。 */
+      const cov = presetSentenceCoverage(it);
+      if (cov.shortfall > 0) {
+        stats.warns.push({ where: where, msg: 'W3 句级可用 ' + cov.available + ' < 整句需求 ' + cov.need + '（max(4,2×' + n + ')）→ 运行时必混入生成干扰' });
+      }
 
       /* ---- W4：句级槽位覆盖不足 ---- */
       if (slotEmpty > 0 && n > 1) {

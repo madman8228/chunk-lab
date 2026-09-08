@@ -12,7 +12,7 @@
 'use strict';
 
 import { buildDistractorPrompt, DISTRACTOR_PROMPT_VERSION } from './ai-prompts.mjs';
-import { parseDistractorText, cleanDistractors } from './distractor-validate.mjs';
+import { parseDistractorText, cleanDistractors, presetSentenceCoverage } from './distractor-validate.mjs';
 
 let passed = 0;
 let failed = 0;
@@ -95,6 +95,24 @@ check('超长(>120) → 丢', c.distractors[0].length === 1, c);
 const it3 = { sentence: 'He left the party early.', chunks: ['He', 'left the party', 'early.'] };
 c = cleanDistractors(it3, [['She', 'It', 'We'], ['stayed all night', 'missed the party', 'joined the game'], ['late.', 'tonight.', 'again.']]);
 check('3-chunk 句全收', c.distractors[0].length === 3 && c.distractors[1].length === 3 && c.distractors[2].length === 3, c);
+
+/* ========== presetSentenceCoverage（句级消费仿真） ========== */
+console.log('== presetSentenceCoverage ==');
+/* 2-chunk 句：need = max(4, 2×2) = 4。给满 2×2=4 条 → 零缺口 */
+let cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'], distractors: [['Come', 'Stay'], ['away now.', 'back now.']] });
+check('2×2 满额 → available=4 零缺口', cv.need === 4 && cv.available === 4 && cv.shortfall === 0, cv);
+/* 每槽只给 1 条 → 总 2 < 4 → 缺口 2 */
+cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'], distractors: [['Come'], ['away now.']] });
+check('2×1 不足 → shortfall=2', cv.need === 4 && cv.available === 2 && cv.shortfall === 2, cv);
+/* 空位槽（宁缺毋滥）→ 缺口照报（运行时会兜底） */
+cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'], distractors: [[], ['away now.', 'back now.']] });
+check('含空位槽 → 缺口=2', cv.shortfall === 2, cv);
+/* 3-chunk 句：need = max(4, 2×3) = 6；norm 撞句内 chunk 的被引擎排除 → 缺口 */
+cv = presetSentenceCoverage({ sentence: 'He left the party early.', chunks: ['He', 'left the party', 'early.'], distractors: [['She', 'It', 'We'], ['stayed all night'], ['late.']] });
+check('3-chunk 不足 → shortfall>0', cv.need === 6 && cv.shortfall > 0, cv);
+/* 无 distractors 字段 → 0 可用、全缺口（引擎兜底路径） */
+cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'] });
+check('无预置 → 全缺口', cv.need === 4 && cv.available === 0 && cv.shortfall === 4, cv);
 
 console.log('\n结果: ' + passed + ' 通过, ' + failed + ' 失败');
 process.exit(failed ? 1 : 0);

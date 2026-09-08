@@ -3414,7 +3414,8 @@ window.BUILTIN = [
             "What are"
           ],
           [
-            "on?"
+            "on?",
+            "wrong?"
           ]
         ]
       },

@@ -624,7 +624,7 @@ window.DATA_FREQ_IDIOMS = [
       "**rub sb the wrong way**：无意间「惹恼、使不快」。意象：顺着毛摸（rub the right way）让人舒服，逆着毛（the wrong way）就难受。",
       "第三人称注意人称：His attitude rubs ME the wrong way / rubs HER the wrong way。近义：get on sb's nerves（让人烦躁）。"
     ],
-    distractors: [["His soft voice","His deep voice","Her loud voice"],["treated me"],["the right way."]]
+    distractors: [["His soft voice","His deep voice","Her loud voice"],["treated me","rub me"],["the right way.","a wrong way."]]
   },
   {
     sentence: "Sorry I'm late — that's on me.",
@@ -2078,7 +2078,7 @@ window.DATA_FREQ_IDIOMS = [
       "**knock it off** 是呵斥「别闹了/停下来」，比 stop it 更强硬直接，老师制止打闹的孩子常用。",
       "近义：cut it out / quit it。例句：Knock it off with the drumming — it's midnight!"
     ],
-    distractors: [["Turn it off, you two —"],["I'm trying to sleep.","I'm trying to rest."]]
+    distractors: [["Turn it off, you two —","Put it off, you two —"],["I'm trying to sleep.","I'm trying to rest."]]
   },
   {
     sentence: "You passed the interview — good for you!",
@@ -2179,7 +2179,7 @@ window.DATA_FREQ_IDIOMS = [
       "**something is killing me** 夸张表达「某事让我受不了/笑死我了」，口语高频。也可表疼痛：My back is killing me（腰快疼死了）。",
       "例句：This show is killing me — every episode is hilarious."
     ],
-    distractors: [["That movie is killing me —","That joke is driving me crazy —"],["I can't stop smiling."]]
+    distractors: [["That movie is killing me —","That joke is driving me crazy —"],["I can't stop smiling.","I can't stop to laugh."]]
   },
   {
     sentence: "Cut the jokes — let's get serious for a minute.",
@@ -3009,7 +3009,7 @@ window.DATA_FREQ_IDIOMS = [
       "**you name it** 是「随便你说/你能想到的都有」，表货源丰富、应有尽有。",
       "近义：and then some / you name it, we have it。例句：We sell anything — you name it."
     ],
-    distractors: [["We need pasta, salad, soup —"],["you order it,","you say it,"],["we've seen it.","we've lost it."]]
+    distractors: [["We need pasta, salad, soup —","We had pasta, salad, soup —"],["you order it,","you say it,"],["we've seen it.","we've lost it."]]
   },
   {
     sentence: "Don't bother — I'll do it myself.",
@@ -3233,7 +3233,7 @@ window.DATA_FREQ_IDIOMS = [
       "**now or never** 是「机不可失/要就要现在」，怂恿对方做决定的强力口号。",
       "近义：seize the day。例句：Apply now — it's now or never!"
     ],
-    distractors: [["It's now or later —","It's tonight or never —"],["miss the chance!"]]
+    distractors: [["It's now or later —","It's tonight or never —"],["miss the chance!","grab the change!"]]
   },
   {
     sentence: "I have no idea where he went after the party.",

@@ -14,7 +14,7 @@
  */
 'use strict';
 
-import { norm } from './chunk-engine.mjs';
+import { norm, buildDistractors } from './chunk-engine.mjs';
 import { extractJSON } from './ai-prompts.mjs';
 
 /* 单条干扰项护栏：类型/长度。返回清洗后的字符串，非法返回 null */
@@ -84,4 +84,17 @@ export function cleanDistractors(it, raw) {
     perChunk.push(slot.length);
   }
   return { ok: true, distractors: out, stats: { received: received, dropped: dropped, perChunk: perChunk } };
+}
+
+/* 句级消费仿真：该句预置能否喂饱整句模式（buildDistractors distractorCount）。
+   直接调引擎 buildDistractors(it, [], [])：传空池 → pass1..4（同模式/句内关联/兜底）
+   均无可取，返回量 = 预置展平后（norm 去重 + 排除句内 chunk）的真实可用数。
+   整句模式每句需求 need = max(4, 2×chunks)；available < need → 运行时必混入生成干扰。
+   ★ 零规约漂移：判据直接用引擎函数，不复制其去重/过滤逻辑。
+   返回 { need, available, shortfall }。 */
+export function presetSentenceCoverage(it) {
+  const n = (it.chunks || []).length;
+  const need = Math.max(4, n * 2);
+  const available = buildDistractors(it, [], []).length;
+  return { need: need, available: available, shortfall: Math.max(0, need - available) };
 }
