@@ -902,7 +902,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="modal-head">
       <h3 style="margin:0"><span data-icon="book"></span> 句子详解</h3>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close data-icon="close"></button>
+      <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
     <div class="modal-body" style="padding:2px 22px 18px">
       <!-- AI 解读 tab 已停用（2026-09-06 产品决策：先禁联网 AI 生成）。
@@ -973,7 +973,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <h3>导入题库</h3>
       <span style="font-size:12.5px;color:var(--faint)">选分类 → 复制 Prompt → 喂给大模型 → 粘回 JSON</span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close data-icon="close"></button>
+      <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
     <div class="modal-body">
       <div class="imp-append-banner hidden" id="impAppend"></div>
@@ -1031,7 +1031,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <h3>追加句子</h3>
       <span style="font-size:12.5px;color:var(--faint)" id="appendDeckName"></span>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close data-icon="close"></button>
+      <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
     <div class="modal-body">
       <!-- Prompt -->
@@ -1089,7 +1089,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="modal-head">
       <h3><span data-icon="settings"></span> 系统设置</h3>
       <span class="spacer"></span>
-      <button class="btn sm ghost" data-close data-icon="close"></button>
+      <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
     <div class="modal-body">
       <div style="display:flex;flex-direction:column;gap:0">
@@ -1155,7 +1155,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
           <div style="display:flex;align-items:center;gap:8px">
             <span class="set-lbl" style="white-space:nowrap">API Key</span>
             <input type="password" id="setApiKey" placeholder="sk-... · 仅保存在本地浏览器" class="set-inp" style="flex:1">
-            <button class="btn sm ghost" id="btnToggleKey" type="button" data-icon="eye"></button>
+            <button class="btn sm ghost" id="btnToggleKey" type="button" data-icon="eye" aria-label="切换密钥明文显示" title="显示/隐藏 API Key"></button>
           </div>
         </div>
       </div>
@@ -1201,7 +1201,13 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 /* >>>>> v7 2026-08-07 19:16 <<<<< */
 window.onerror = function(msg, src, line, col, err){
   var zh = document.getElementById('zh');
-  if(zh) zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') + ' 启动失败：' + esc(msg || '未知错误') + ' (行' + line + ')';
+  if(zh){
+    /* 错误处理器必须自包含：职责是抓 module（bridge.mjs→FormatTools）加载前的
+       早期错误，故不依赖 esc() 转发（此时 FormatTools 必未就绪）。极简转义与
+       format.mjs esc 同字符表，属结构性前置依赖，非双实现兜底。 */
+    var _t = String(msg == null ? '未知错误' : msg).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
+    zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') + ' 启动失败：' + _t + ' (行' + line + ')';
+  }
   console.error('[GLOBAL]', msg, 'line', line, err);
 };
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
@@ -1318,23 +1324,13 @@ var FX = (function(){
     }
   };
 })();
-/* 纯工具函数抽至 js/format.mjs（ADR-007 Step 2）。包装器优先调 window.FormatTools；
-   module 未就绪时（如 bridge.mjs 异步加载晚于内联 .then microtask）走内联 XSS-safe 兜底，
-   保证页面不白屏 + console.warn 提示排查。函数名与签名保留，调用点零改动。 */
-function esc(s){
-  if(window.FormatTools && typeof window.FormatTools.esc === 'function') return window.FormatTools.esc(s);
-  if(typeof console !== 'undefined') console.warn('[esc] FormatTools 未就绪，临时内联兜底');
-  return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
-}
-function norm(s){
-  if(window.FormatTools && typeof window.FormatTools.norm === 'function') return window.FormatTools.norm(s);
-  if(typeof console !== 'undefined') console.warn('[norm] FormatTools 未就绪，临时内联兜底');
-  return String(s == null ? '' : s).replace(/[\u2018\u2019\u02BC\u0060\u00B4]/g, "'").toLowerCase().replace(/[^a-z0-9'\s]/g, ' ').replace(/'/g, '').replace(/\s+/g, ' ').trim();
-}
-function wordCount(s){
-  if(window.FormatTools && typeof window.FormatTools.wordCount === 'function') return window.FormatTools.wordCount(s);
-  return String(s == null ? '' : s).trim().split(/\s+/).filter(Boolean).length;
-}
+/* 纯工具函数单源化：实现只在 js/format.mjs（ADR-007 Step 2），此处仅转发。
+   2026-09-08：bootApp 守卫已纳入 FormatTools 就绪检查（与 ChunkEngine 同出于
+   bridge.mjs 单次 module 加载），内联双实现兜底分支为死代码 → 已删，不再有
+   「模块未就绪走本地实现」的违宪兜底。函数名与签名保留，调用点零改动。 */
+function esc(s){ return window.FormatTools.esc(s); }
+function norm(s){ return window.FormatTools.norm(s); }
+function wordCount(s){ return window.FormatTools.wordCount(s); }
 
 /* 安全调用模块桥接（兜底所有 module 异步加载时序脆弱）：
    module 未就绪或抛错时返回 fallback，console.warn 记录。ADR-007 包装器统一走这里。 */
@@ -1375,7 +1371,9 @@ function loadStore(){
     /* ★ 修复根因（2026-09-08 review P1）：错题曾写入独立键 chunklab_reinforce（永不上云），
        与 stats.html 读的 mem.reinforceBook（云同步键）双轨分裂。加载后执行一次性迁移合并 + 删旧键。 */
     migrateLegacyReinforce();
-  }catch(e){ /* file:// 下可能不可用，降级为内存 */ }
+  }catch(e){ /* ★ P3 收口（2026-09-08）：持久化读取失败是真实异常信号，不应静默吞——显式 warn 便于排查（file:///存储损坏/迁移异常） */
+    console.warn('[store] loadMem/迁移失败，降级为内存空态，本次改动不会落盘', e);
+  }
 }
 function saveStore(syncMode){
   try{
@@ -1383,7 +1381,9 @@ function saveStore(syncMode){
     /* ★ 修复根因：此前只本地保存，mem 变更（练习/统计/设置）从不上传云端。
        补 scheduleCloudSync（debounce 400ms 合并，置 dirty → 成功清位 / 失败保持 + 重连补传）。 */
     if(syncMode !== 'local' && CL.scheduleCloudSync) CL.scheduleCloudSync(mem);
-  }catch(e){}
+  }catch(e){ /* ★ P3 收口（2026-09-08）：保存失败即本地改动未落盘/未上云，静默吞会让用户以为已保存——显式 warn */
+    console.warn('[store] saveMem/云同步调度失败，本次改动可能未落盘', e);
+  }
 }
 
 /* ★ AI 数据面收敛（2026-09-08 C 方向）
@@ -3481,13 +3481,9 @@ function doAppendValidate(){
   setTimeout(function(){ location.href = 'decks.html'; }, 120);
 }
 
-/* 句子去重：基于归一化后的整句比对，existing 中已存在的跳过 */
-function normSent(s){
-  if(window.FormatTools && typeof window.FormatTools.normSent === 'function') return window.FormatTools.normSent(s);
-  if(window.FormatTools && typeof window.FormatTools.norm === 'function') return window.FormatTools.norm(s);
-  /* 回退到内联 norm 实现（见 esc/norm 包装器注释） */
-  return String(s == null ? '' : s).replace(/[\u2018\u2019\u02BC\u0060\u00B4]/g, "'").toLowerCase().replace(/[^a-z0-9'\s]/g, ' ').replace(/'/g, '').replace(/\s+/g, ' ').trim();
-}
+/* 句子去重：基于归一化后的整句比对，existing 中已存在的跳过。
+   单源化：实现只在 format.mjs，转发（boot 守卫保证 FormatTools 已就绪）。 */
+function normSent(s){ return window.FormatTools.normSent(s); }
 function mergeDedup(existing, incoming){
   var seen = {};
   (existing||[]).forEach(function(it){ seen[normSent(it.sentence)] = 1; });
@@ -4050,18 +4046,23 @@ if(CL && CL.on && CL.isDirty){
 }
 CL.ensureCloud().then(bootApp);
 
-/* ★ 引擎就绪守卫（boot 竞态根治，2026-09-08）
+/* ★ 引擎+FormatTools 就绪守卫（boot 竞态根治，2026-09-08）
    根因：bridge.mjs 是 <script type="module">（defer 语义，文档 parse 完成后才执行），
    晚于内联脚本的同步段。CL.ensureCloud() 在真实网络下通常比 module 慢 → 无竞态；
    但在缓存/PWA/离线（abort）快路径下 ensureCloud 先返回 → 启动段在 window.ChunkEngine
    就绪前就 startDeck → renderActiveChoices 懒建池时 safeCall 兜底返回 [] → 空干扰池
    落定且永不重建 → 该句永久无干扰（静默劣化，宪法禁止的兜底当默认路径）。
-   守卫：引擎就绪（或 3s 超时兜底，防引擎真挂卡死页面）才启动。 */
+   守卫扩展（2026-09-08 晚）：FormatTools 与 ChunkEngine 同出于 bridge.mjs 单次
+   module 加载 → 引擎就绪即 FormatTools 必已就绪 → esc/norm/wordCount/normSent
+   内联双实现兜底成死代码已删（单源化，见函数定义处注释）。
+   守卫：双模块就绪（或 3s 超时，防模块真挂卡死页面）才启动。 */
 function bootApp(){
-  if(window.ChunkEngine && window.ChunkEngine.buildChoices){ bootMain(); return; }
+  if(window.ChunkEngine && window.ChunkEngine.buildChoices
+     && window.FormatTools && typeof window.FormatTools.norm === 'function'){ bootMain(); return; }
   var _bt = 0;
   var _biv = setInterval(function(){
-    if(window.ChunkEngine && window.ChunkEngine.buildChoices){ clearInterval(_biv); bootMain(); }
+    if(window.ChunkEngine && window.ChunkEngine.buildChoices
+       && window.FormatTools && typeof window.FormatTools.norm === 'function'){ clearInterval(_biv); bootMain(); }
     else if(++_bt > 180){ clearInterval(_biv); bootMain(); } /* ~2.9s 超时 */
   }, 16);
 }
