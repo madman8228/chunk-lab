@@ -749,7 +749,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   /* 手机没有 Ctrl 键，隐藏整条键盘操作提示，避免占用练习区高度 */
   .stage-tip-bar{display:none !important}
   /* iframe 容器顶栏隐藏说明文字 */
-  #iframeHost > div > span:last-child{display:none}
   /* AI 解读弹窗内滚动更顺 */
   #aiBody{font-size:14.5px}
   /* ★ 移动端：把"下一题"按钮从卡片内抽到屏幕底部中央（FAB 风），符合拇指操作区；「熟/详解」留在卡片内 */
@@ -847,15 +846,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <div id="perfectToast"><div class="big">PERFECT</div><div class="sub"></div></div>
 <div id="sysToast"></div>
 
-<!-- iframe 容器：嵌入独立页面（stats.html / decks.html），与主页物理隔离 -->
-<div id="iframeHost" style="display:none;position:fixed;inset:64px 0 0 0;background:var(--bg);z-index:40">
-  <div style="display:flex;align-items:center;gap:8px;padding:10px 18px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0">
-    <button class="btn sm" id="iframeBack">← 返回</button>
-    <span class="spacer"></span>
-    <span style="font-size:12px;color:var(--faint)">iframe 沙箱隔离 · 数据通过 localStorage 共享</span>
-  </div>
-  <iframe id="iframeSlot" src="about:blank" style="width:100%;height:calc(100% - 50px);border:0;display:block;overflow:auto"></iframe>
-</div>
 
 <!-- 选择模式：候选按钮 fixed 浮在屏幕底部中央（不在 stage 卡片内） -->
 <div id="stageChoices"></div>
@@ -935,25 +925,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   <div class="card result hidden" id="result"></div>
   </div><!-- /pagePractice -->
 
-  <!-- 题库页 -->
-  <div class="page hidden" id="pageDecks">
-    <div class="page-head">
-      <button class="btn sm" id="decksBack">← 返回</button>
-      <h2>题库</h2>
-      <span class="spacer"></span>
-      <button class="btn sm primary" id="btnImportDecks" onclick="openImport()">＋ 导入课程</button>
-    </div>
-    <div class="deck-list" id="deckList"></div>
-  </div>
-
-  <!-- 管理页（句子列表） -->
-  <div class="page hidden" id="pageEdit">
-    <div class="page-head" id="editHead"></div>
-    <div class="deck-list" id="editList"></div>
-    <div class="edit-stat hidden" id="editStat"></div>
-  </div>
-
-  <!-- 详解页（tab1：已保存讲解 + 批量回填；tab2：AI 解读生成） -->
 <!-- 详解弹窗（弹窗模式：练习页保持在底层，不打断状态；tab1：已保存讲解 + 批量回填；tab2：AI 解读） -->
 <div class="mask" id="explainMask" hidden>
   <div class="modal" style="max-width:640px">
@@ -1021,28 +992,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   </div>
 </div>
 
-  <!-- 学习档案页 -->
-  <div class="page hidden" id="pageStats">
-    <div class="page-head">
-      <button class="btn sm" id="statsBack">← 返回</button>
-      <h2><span data-icon="stats"></span> 学习档案</h2>
-      <span class="spacer"></span>
-      <button class="btn sm primary" id="statsPracticeWrong" title="练习错题本中所有句子"><span data-icon="target"></span>练习错题</button>
-    </div>
-    <div class="stats-cards" id="statsCards"></div>
-    <div class="stats-tabs" id="statsTabs">
-      <button class="tab on" data-tab="sent">句子记录</button>
-      <button class="tab" data-tab="review"><span data-icon="refresh"></span>复习</button>
-      <button class="tab" data-tab="wrong">错题本</button>
-    </div>
-    <div class="stats-filter" id="statsFilter">
-      <button class="f on" data-f="all">全部</button>
-      <button class="f" data-f="mastered">已熟</button>
-      <button class="f" data-f="weak">需巩固</button>
-      <button class="f" data-f="unseen">未练过</button>
-    </div>
-    <div id="statsBody"></div>
-  </div>
 
 </div><!-- /wrap -->
 
@@ -1161,72 +1110,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   </div>
 </div>
 
-<!-- 批量生成详解弹窗（整个题库：复制 Prompt → 大模型 → 粘贴 JSON 一次回填） -->
-<div class="mask" id="batchExplainMask" hidden>
-  <div class="modal" style="max-width:640px">
-    <div class="modal-head">
-      <h3><span data-icon="book"></span> 批量生成详解</h3>
-      <span style="font-size:12.5px;color:var(--faint)" id="batchExplainInfo"></span>
-      <span class="spacer"></span>
-      <button class="btn sm ghost" data-close data-icon="close"></button>
-    </div>
-    <div class="modal-body">
-      <label style="display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:12.5px;color:var(--muted);cursor:pointer">
-        <input type="checkbox" id="batchExplainAll" onchange="_batchAll=this.checked; openBatchExplain(_batchDeck);">
-        包含已详解的句子（覆盖升级为结构化讲解）
-      </label>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-        <button class="btn" id="batchExplainCopy"><span data-icon="copy"></span>复制批量 Prompt</button>
-        <span style="font-size:12px;color:var(--faint)">粘贴到外部大模型 → 生成 → 把 JSON 粘贴到下方一次回填</span>
-      </div>
-      <div style="font-size:11.5px;color:var(--faint);margin-bottom:6px">提示：仅对「暂无详解」的句子生成；Prompt 会列出所有待生成句子及其意群。</div>
-      <textarea id="batchExplainJson" rows="6" style="width:100%;font-family:monospace;font-size:12px" placeholder='{"items":[{"sentence":"原句...","explanations":[{"grammar":"...","syntax":"...","words":[{"w":"call","p":"v.","m":"打电话"}]}]}]}'></textarea>
-      <div id="batchExplainMsg" class="msg"></div>
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn primary" id="batchExplainApply"><span data-icon="check"></span>校验并批量保存</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- 编辑单句弹窗 --><div class="mask" id="editSentenceMask" hidden>
-  <div class="modal" style="max-width:560px">
-    <div class="modal-head">
-      <h3>编辑句子</h3>
-      <span style="font-size:12.5px;color:var(--faint)" id="editSentenceHint"></span>
-      <span class="spacer"></span>
-      <button class="btn sm ghost" data-close data-icon="close"></button>
-    </div>
-    <div class="modal-body" style="display:flex;flex-direction:column;gap:12px">
-      <div>
-        <div class="set-lbl" style="margin-bottom:4px">英文句子 <span style="color:var(--faint);font-weight:400">（必填）</span></div>
-        <textarea id="editSentenceEn" rows="2" style="width:100%;font-family:inherit"></textarea>
-      </div>
-      <div>
-        <div class="set-lbl" style="margin-bottom:4px">中文翻译 <span style="color:var(--faint);font-weight:400">（选填）</span></div>
-        <input type="text" id="editSentenceCn" class="set-inp" style="width:100%">
-      </div>
-      <div>
-        <div class="set-lbl" style="margin-bottom:4px">意群 chunks <span style="color:var(--faint);font-weight:400">（每行一个，2-5 个，与 sentence 拼接相等）</span></div>
-        <textarea id="editSentenceChunks" rows="3" style="width:100%;font-family:monospace;font-size:12.5px"></textarea>
-      </div>
-      <div>
-        <div class="set-lbl" style="margin-bottom:4px">中文提示 hints <span style="color:var(--faint);font-weight:400">（每行一个，与 chunks 同数）</span></div>
-        <textarea id="editSentenceHints" rows="2" style="width:100%;font-family:inherit"></textarea>
-      </div>
-      <div>
-        <div class="set-lbl" style="margin-bottom:4px">详解 explanations <span style="color:var(--faint);font-weight:400">（每行一条文本；结构化多维度讲解请在详解页用 JSON 导入）</span></div>
-        <textarea id="editSentenceExps" rows="3" style="width:100%;font-family:inherit"></textarea>
-      </div>
-      <div id="editSentenceMsg" class="msg"></div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn primary" id="btnSaveEditSentence">保存</button>
-      <span class="spacer"></span>
-      <button class="btn ghost" data-close>取消</button>
-    </div>
-  </div>
-</div>
 
 <!-- 系统设置弹窗 -->
 <div class="mask" id="settingsMask" hidden>
@@ -2435,7 +2319,6 @@ function toggleMastered(){
       if(mem.mastered && mem.mastered[key]){ delete mem.mastered[key]; saveStore(); }
     }
     refreshMasterBtn();
-    if($('pageEdit') && !$('pageEdit').classList.contains('hidden')){ var _d=_editingDeck; if(_d) editDeck(_d); }
     return;
   }
   if(st === 'auto'){
@@ -2471,7 +2354,6 @@ function toggleMastered(){
   /* 跳到下一题（队列空了则结束本轮） */
   if(S.idx >= S.items.length){ finishSession(); }
   else { S.chunkIdx = 0; renderQ(); }
-  if($('pageEdit') && !$('pageEdit').classList.contains('hidden')){ var _d=_editingDeck; if(_d) editDeck(_d); }
 }
 function refreshMasterBtn(){
   var b = $('btnMaster'); if(!b) return;
@@ -2520,7 +2402,6 @@ function refreshMasterBtn(){
         }
         /* 自动标熟只静默标记，不跳题、不移除（避免打断当前答题） */
         refreshMasterBtn();
-        if($('pageEdit') && !$('pageEdit').classList.contains('hidden')){ var _d=_editingDeck; if(_d) editDeck(_d); }
       }, 3000);
       return;
     }
@@ -3094,7 +2975,7 @@ function finishSession(){
     _bnx.onclick = function(){ startDeck(S.deck, 0, S.tempEnd); };
   }
   $('btnAgain').onclick = function(){ startDeck(S.deck, true); };
-  $('btnOtherDeck').onclick = function(){ openDecks(); };
+  $('btnOtherDeck').onclick = function(){ location.href = 'decks.html'; };
   $('btnImport2').onclick = function(){ openImport(); };
   /* ★ 一键恢复内置 deck 内被隐藏的句子（finish 页直接暴露根因） */
   var _bri = $('btnRestoreInline');
@@ -3125,9 +3006,6 @@ function finishSession(){
 /* ============================================================
    7. 题库面板
 ============================================================ */
-/* ---------- 学习档案页 ---------- */
-var _statsTab = 'sent';   /* sent / wrong */
-var _statsFilter = 'all'; /* all / mastered / weak / unseen */
 
 /* 熟练度分档：熟练（≥3次且正确率≥80%）；需巩固（有错且正确率<60%，或仅练过但全错）；学习中（其他已练）；未练过 */
 function classifyStat(s){
@@ -3188,581 +3066,6 @@ function hasExplanation(it){
   return false;
 }
 
-function openStats(){
-  renderStats();
-  showPage('pageStats');
-}
-
-function renderStats(){
-  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
-  var by = mem.stats.bySentence || {};
-  var keys = Object.keys(by);
-  /* 统计卡 */
-  var masteredCnt = keys.filter(function(k){ return classifyStat(by[k])==='master'; }).length;
-  var weakCnt = keys.filter(function(k){ return classifyStat(by[k])==='weak'; }).length;
-  var bookCnt = getReinforceBook().length;
-  $('statsCards').innerHTML =
-    '<div class="stat-card hl"><div class="k">累计练习句次</div><div class="v">'+mem.stats.totalAnswered+'</div></div>'+
-    '<div class="stat-card"><div class="k">完成轮次</div><div class="v">'+mem.stats.totalRounds+'</div></div>'+
-    '<div class="stat-card ok"><div class="k">熟练句子</div><div class="v">'+masteredCnt+'</div></div>'+
-    '<div class="stat-card warn"><div class="k">需巩固</div><div class="v">'+weakCnt+'</div>'+
-      (weakCnt>0 ? '<button class="start-btn" id="startWeak">开始学习 →</button>' : '')+'</div>'+
-    '<div class="stat-card"><div class="k">错题本</div><div class="v">'+bookCnt+'</div>'+
-      (bookCnt>0 ? '<button class="start-btn" id="startBook">开始学习 →</button>' : '')+'</div>';
-
-  /* 熟练度分布（2×2 grid 整齐布局，避免文本被截断/拆行） */
-  var seg = {master:0, learn:0, weak:0, unseen:0};
-  var allDecksArr = allDecks();
-  var totalInDecks = 0;
-  allDecksArr.forEach(function(d){ totalInDecks += (d.items||[]).length; });
-  /* 未练过 = 所有题库总句数 - 有记录的句子数（近似） */
-  keys.forEach(function(k){ seg[classifyStat(by[k])]++; });
-  seg.unseen = Math.max(0, totalInDecks - keys.length);
-  var distHtml =
-    '<div class="stat-card"><div class="k">熟练度分布</div>'+
-    '<div class="v mastery-grid">'+
-      '<div><span class="dot ok"></span><span class="lbl">熟练</span><span class="cnt">'+seg.master+'</span></div>'+
-      '<div><span class="dot accent"></span><span class="lbl">学习中</span><span class="cnt">'+seg.learn+'</span></div>'+
-      '<div><span class="dot warn"></span><span class="lbl">需巩固</span><span class="cnt">'+seg.weak+'</span></div>'+
-      '<div><span class="dot faint"></span><span class="lbl">未练过</span><span class="cnt">'+seg.unseen+'</span></div>'+
-    '</div></div>';
-  $('statsCards').insertAdjacentHTML('beforeend', distHtml);
-
-  /* Tab 状态 */
-  Array.prototype.forEach.call($('statsTabs').children, function(b){
-    b.classList.toggle('on', b.dataset.tab === _statsTab);
-  });
-  /* 筛选按钮可见性：仅句子记录 tab 显示 */
-  $('statsFilter').style.display = (_statsTab === 'sent') ? 'flex' : 'none';
-  Array.prototype.forEach.call($('statsFilter').children, function(b){
-    b.classList.toggle('on', b.dataset.f === _statsFilter);
-  });
-
-  var body = $('statsBody');
-  if(_statsTab === 'wrong'){
-    renderWrongBook(body);
-  } else if(_statsTab === 'review'){
-    renderReviewList(body);
-  } else {
-    renderSentenceList(body);
-  }
-
-  /* 绑定统计卡上的「开始学习」按钮 */
-  var sw = $('startWeak'); if(sw) sw.onclick = practiceWeakSentences;
-  var sb = $('startBook'); if(sb) sb.onclick = practiceWrongBook;
-}
-
-/* 启动需巩固句子的临时题库 */
-function practiceWeakSentences(){
-  var by = mem.stats.bySentence || {};
-  var items = [];
-  var seen = {};
-  Object.keys(by).forEach(function(k){
-    if(classifyStat(by[k]) !== 'weak') return;
-    var st = by[k];
-    var deck = findDeck(st.deckId);
-    if(!deck) return;
-    var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
-    if(!it) return;
-    var key = st.deckId + '#' + normSent(it.sentence);
-    if(seen[key]) return;
-    seen[key] = true;
-    items.push(withStatsSource(it, st.deckId));
-  });
-  if(!items.length){ alert('找不到可练习的句子（可能被删除）'); return; }
-  startDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固 · '+items.length+' 句', items:items });
-}
-
-/* ★ SRS 复习列表：列出所有到期句子（跨题库），一键进入复习队列 */
-function dueSentences(){
-  if(!mem.stats || !mem.stats.bySentence) return [];
-  var out = [];
-  var seen = {};
-  Object.keys(mem.stats.bySentence).forEach(function(k){
-    var st = mem.stats.bySentence[k];
-    if(typeof st.dueAt !== 'number' || !st.dueAt || st.dueAt > Date.now()) return;
-    var deck = findDeck(st.deckId);
-    if(!deck) return;
-    var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
-    if(!it) return;
-    var key = st.deckId + '#' + normSent(it.sentence);
-    if(seen[key]) return;
-    seen[key] = true;
-    out.push({ it:withStatsSource(it, st.deckId), st:st, deck:deck });
-  });
-  return out;
-}
-function renderReviewList(body){
-  var dues = dueSentences();
-  /* 区域 1：SRS 到期复习 */
-  var html = '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
-    '<b style="font-size:13px;color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' SRS 到期复习</b> '+
-    '<span style="font-size:12.5px;color:var(--muted)">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'（间隔重复到达复习点）</span>'+
-    '<span class="spacer"></span>'+
-    (dues.length>0 ? '<button class="btn primary" id="startDueReview">▶ 开始到期复习</button>' : '')+
-    '</div>';
-  if(dues.length){
-    html += '<div class="stats-list">';
-    dues.forEach(function(d){
-      html += '<div class="srow"><div class="sen">'+
-        '<div class="en">'+esc(d.it.sentence)+'</div>'+
-        '<div class="cn">'+esc(d.it.translation||'')+'</div></div>'+
-        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(d.deck.name)+'</div></div>';
-    });
-    html += '</div>';
-  } else {
-    html += '<div class="empty-tip" style="padding:14px">没有到期复习的句子。新学的句子会按间隔重复（1→3→7→14→30 天）自动排入复习队列。</div>';
-  }
-
-  /* 区域 2：手动复习入口（按题库分组列出已标熟/已掌握） */
-  html += '<div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">'+
-    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
-    '<b style="font-size:13px;color:var(--muted)">'+(window.Icons?Icons.svg('book'):'')+' 手动复习入口</b> '+
-    '<span style="font-size:12px;color:var(--faint)">（按题库分组，已标熟/已掌握的句子；立即重测一遍）</span>'+
-    '</div>';
-  var decksWithMarked = [];
-  allDecks().forEach(function(d){
-    var items = (d.items||[]).filter(function(it){
-      return isMarkedForDeck(d.id, it) || isFluencyByDeck(d.id, it);
-    });
-    if(items.length) decksWithMarked.push({deck:d, items:items});
-  });
-  if(!decksWithMarked.length){
-    html += '<div class="empty-tip" style="padding:14px">还没有标熟/掌握的句子。当句子被标熟或考试通过后，可在此手动复习。</div>';
-  } else {
-    html += '<div class="stats-list">';
-    decksWithMarked.forEach(function(entry){
-      var d = entry.deck;
-      html += '<div class="srow" style="cursor:default">'+
-        '<div class="sen">'+
-          '<div class="en">'+esc(d.name)+'</div>'+
-          '<div class="cn" style="font-size:12px;color:var(--faint)">已标熟/已掌握 '+entry.items.length+' 句</div>'+
-        '</div>'+
-        '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">'+(window.Icons?Icons.svg('book'):'')+' 复习 '+entry.items.length+' 句</button>'+
-        '</div>';
-    });
-    html += '</div>';
-  }
-  html += '</div>';
-
-  body.innerHTML = html;
-  var sd = $('startDueReview'); if(sd) sd.onclick = practiceDue;
-  Array.prototype.forEach.call(body.querySelectorAll('[data-rev-deck]'), function(btn){
-    btn.onclick = function(){
-      var deckId = btn.getAttribute('data-rev-deck');
-      var deck = findDeck(deckId);
-      if(deck) practiceReviewDeck(deck);
-    };
-  });
-}
-/* 启动到期复习临时题库（id 用 srs- 前缀，startDeckAt 不过滤） */
-function practiceDue(){
-  var dues = dueSentences();
-  if(!dues.length){ alert('没有到期复习的句子'); return; }
-  var items = dues.map(function(d){ return d.it; });
-  startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
-}
-
-/* 跨 deck 判断"已掌握"（不依赖 S.deck，可在任何地方调用） */
-function isFluencyByDeck(deckId, it){ return CL.isFluencyByDeck(mem, deckId, it); }
-
-/* 启动"手动复习题库"临时题库：列出该题库所有已标熟/已掌握句子 */
-function practiceReviewDeck(deck){
-  var items = (deck.items || []).filter(function(it){
-    return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
-  }).map(function(it){ return withStatsSource(it, deck.id); });
-  if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
-  startDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+deck.name+' · '+items.length+' 句', items:items });
-}
-
-/* 跨 deck 判断"已标熟"（不依赖 S.deck） */
-function isMarkedForDeck(deckId, it){ return CL.isMarkedForDeck(mem, deckId, it); }
-
-function renderSentenceList(body){
-  var by = mem.stats.bySentence || {};
-  var rows = Object.keys(by).map(function(k){ return by[k]; });
-  /* 按最近练习时间降序 */
-  rows.sort(function(a,b){ return (b.lastAt||0)-(a.lastAt||0); });
-
-  var seen = {}; /* 同一题库内同一句去重，不隐藏不同题库的独立记录 */
-  var out = rows.filter(function(s){
-    if(_statsFilter !== 'all'){
-      /* ★ 修复：filter 'mastered' 同时匹配「熟练(classifyStat=master)」和「手动标熟(mem_mastered)」
-         之前只有 classifyStat('master') 匹配，但 UI filter 字符串是 'mastered'，永远显示空。 */
-      if(_statsFilter === 'mastered'){
-        var _dk = findDeck(s.deckId);
-        var _it = _dk && (_dk.items || []).find(function(x){ return x.sentence === s.sentence; });
-        var _isMarked = !!(_it && isMarkedForDeck(s.deckId, _it));
-        if(classifyStat(s) !== 'master' && !_isMarked) return false;
-      } else if(classifyStat(s) !== _statsFilter) {
-        return false;
-      }
-    }
-    var k = (s.deckId||'') + '#' + (s.sentence||'').toLowerCase();
-    if(seen[k]) return false;
-    seen[k] = true;
-    return true;
-  });
-  if(!out.length){
-    body.innerHTML = '<div class="empty-tip">'+
-      (_statsFilter==='all' ? '还没有练习记录，先去练几题吧' : '没有符合条件的句子')+'</div>';
-    return;
-  }
-  var html = '<div class="stats-list">';
-  out.forEach(function(s){
-    var cls = classifyStat(s);
-    var badgeHtml =
-      cls==='master' ? '<span class="badge master">熟练</span>' :
-      cls==='weak'   ? '<span class="badge weak">需巩固</span>' :
-      cls==='learn'  ? '<span class="badge learn">学习中</span>' :
-                       '<span class="badge new">未练过</span>';
-    var acc = s.times ? Math.round(s.okTimes/s.times*100) : 0;
-    var tStr = s.lastAt ? timeAgo(s.lastAt) : '—';
-    html += '<div class="srow"><div class="sen">'+
-      '<div class="en">'+esc(s.sentence)+'</div>'+
-      '<div class="cn">'+esc(s.translation||'')+'</div></div>'+
-      badgeHtml+
-      '<div class="bar"><i style="width:'+acc+'%"></i></div>'+
-      '<div class="meta">'+s.times+' 次 · 对 '+s.okTimes+'/错 '+s.wrongTimes+' · '+tStr+'</div>'+
-    '</div>';
-  });
-  html += '</div>';
-  body.innerHTML = html;
-}
-
-function renderWrongBook(body){
-  var book = getReinforceBook();
-  if(!book.length){
-    body.innerHTML = '<div class="empty-tip">错题本是空的。练习时答错的句子会自动加入这里，跨会话保留。</div>';
-    return;
-  }
-  var html = '<div style="display:flex;justify-content:flex-end;margin-bottom:8px">'+
-    '<button class="btn sm danger" id="btnClearWrongBook">'+(window.Icons?Icons.svg('trash'):'')+' 清空错题本</button></div>';
-  html += '<div class="stats-list">';
-  /* 最近添加的在前 */
-  book.slice().reverse().forEach(function(b){
-    var mine = '';
-    if(b.mistakes && b.mistakes.length){
-      mine = b.mistakes.map(function(m){
-        return esc(m.userAnswer||'（空）')+' → <b>'+esc(m.chunk)+'</b>';
-      }).join('<br>');
-    }
-    html += '<div class="wrong-row"><div class="sen">'+
-      '<div class="en">'+esc(b.sentence)+'</div>'+
-      '<div class="cn">'+esc(b.translation||'')+' · '+esc(b.deckName||'')+'</div>'+
-      (mine ? '<div class="wrong-detail">'+mine+'</div>' : '')+
-      '</div>'+
-      '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="删除此条">'+(window.Icons?Icons.svg('close'):'')+'</button>'+
-    '</div>';
-  });
-  html += '</div>';
-  body.innerHTML = html;
-
-  /* 绑定删除/清空 */
-  var clr = $('btnClearWrongBook');
-  if(clr) clr.onclick = function(){
-    if(confirm('确定清空整个错题本？此操作不可恢复。')){
-      saveReinforceBook([]);
-      renderStats();
-    }
-  };
-  Array.prototype.forEach.call(body.querySelectorAll('.wrong-del'), function(btn){
-    btn.onclick = function(){
-      var key = btn.dataset.key;
-      var bk = getReinforceBook().filter(function(x){ return x._key !== key; });
-      saveReinforceBook(bk);
-      renderStats();
-    };
-  });
-}
-
-function timeAgo(t){
-  if(window.FormatTools && typeof window.FormatTools.timeAgo === 'function') return window.FormatTools.timeAgo(t);
-  if(!t) return '—';
-  var d = Date.now() - t;
-  if(d < 60000) return '刚刚';
-  if(d < 3600000) return Math.floor(d / 60000) + ' 分钟前';
-  if(d < 86400000) return Math.floor(d / 3600000) + ' 小时前';
-  return Math.floor(d / 86400000) + ' 天前';
-}
-
-/* 练习错题本：把错题句子组装成临时题库 */
-function practiceWrongBook(){
-  var book = getReinforceBook();
-  if(!book.length){ alert('错题本是空的'); return; }
-  var items = book.map(function(b){
-    var item = {
-      sentence: b.sentence,
-      translation: b.translation || '',
-      chunks: b.chunks || [],
-      hints: b.hints || [],
-      grammar: b.grammar || null
-    };
-    return withStatsSource(item, b.deckId);
-  });
-  if(!items.length){ return; }
-  startDeck({ id:'book-'+Date.now().toString(36), name:'错题本 · 练习', items:items });
-}
-
-function openDecks(){
-  var list = $('deckList');
-  list.innerHTML = '';
-  /* 按最近练习时间排序（最近的上面） */
-  var decks = allDecks().slice().sort(function(a, b){
-    var ta = (mem.best && mem.best[a.id] && mem.best[a.id].lastPlayed) || 0;
-    var tb = (mem.best && mem.best[b.id] && mem.best[b.id].lastPlayed) || 0;
-    return tb - ta; /* 降序：大的排前面 */
-  });
-  decks.forEach(function(d){
-    var b = mem.best[d.id];
-    var lastStr = '';
-    if(b && b.lastPlayed){
-      var diff = Date.now() - b.lastPlayed;
-      if(diff < 60000) lastStr = '刚刚';
-      else if(diff < 3600000) lastStr = Math.floor(diff/60000)+' 分钟前';
-      else if(diff < 86400000) lastStr = Math.floor(diff/3600000)+' 小时前';
-      else lastStr = Math.floor(diff/86400000)+' 天前';
-    }
-    /* 断点进度 */
-    var prog = (mem.progress && mem.progress[d.id]) || null;
-    var progStr = prog && prog.idx > 0 ? '<span style="color:var(--ok);font-weight:600"> · 练到第 '+prog.idx+' 题</span>' : '';
-    /* 已标熟统计 */
-    var mCnt = 0;
-    for(var mi=0; mi<d.items.length; mi++){ if(isMastered(d.id, d.items[mi])) mCnt++; }
-    var mStr = mCnt ? ' · <span style="color:#12924f;font-weight:600">熟 '+mCnt+'</span>' : '';
-    var row = document.createElement('div');
-    row.className = 'deck-item' + (mem.activeDeckId === d.id ? ' cur' : '');
-    row.innerHTML =
-      `<div class="info"><div class="nm">`+esc(d.name)+
-        (d.builtin?'<span class="pill">内置</span>':'<span class="pill mine">导入</span>')+'</div>'+
-      `<div class="meta">`+d.items.length+' 题'+
-        /* 最佳纪录只在「有实际纪录」(acc>0，finishSession 破纪录才写) 时显示；
-           仅被 startDeck/导入触碰（acc=0）不显示，杜绝 "最佳 0%/undefined%" */
-        (b && b.acc > 0 ? ' · 最佳 '+b.acc+'% / 连击 '+b.combo : '')+
-        (lastStr ? ' · <span style="color:var(--accent)">'+lastStr+'</span>' : '')+
-        mStr + progStr+'</div></div>';
-    /* 右侧操作按钮组：删除 / 导出 / 管理 / 开始（开始最右） */
-    var actions = document.createElement('div');
-    actions.className = 'deck-actions';
-    if(!d.builtin){
-      var del = document.createElement('button');
-      del.className = 'btn sm ghost'; del.textContent = '删除';
-      del.style.cssText = 'color:var(--bad)';
-      del.onclick = function(){
-        if(!confirm('删除题库「'+d.name+'」？此操作不可恢复。')) return;
-        mem.decks = mem.decks.filter(function(x){ return x.id!==d.id; });
-        delete mem.best[d.id];
-        saveStore(); openDecks();
-      };
-      actions.appendChild(del);
-    }
-    var exp = document.createElement('button');
-    exp.className = 'btn sm ghost'; exp.textContent = '导出';
-    exp.onclick = function(e){ e.stopPropagation(); exportDeck(d); };
-    actions.appendChild(exp);
-    var edit = document.createElement('button');
-    edit.className = 'btn sm ghost'; edit.textContent = '管理';
-    edit.onclick = function(e){ e.stopPropagation(); editDeck(d); };
-    actions.appendChild(edit);
-    /* 复习按钮：标熟/掌握 ≥ 1 时才显示；点击启动该题库的复习临时题库。
-       注意：这里遍历的 d 是任意题库，S.deck 未必等于 d —— 必须用显式两参版
-       isMarkedForDeck(d.id, it)，不能调单参 isMarked(it)（它按 S.deck 算 deckId，
-       会查错题库导致 revCnt 误计）。 */
-    var revCnt = 0;
-    for(var ri=0; ri<d.items.length; ri++){ if(isMarkedForDeck(d.id, d.items[ri]) || isFluencyByDeck(d.id, d.items[ri])) revCnt++; }
-    if(revCnt > 0){
-      var rev = document.createElement('button');
-      rev.className = 'btn sm ghost';
-      rev.innerHTML = (window.Icons?Icons.svg('book'):'') + ' 复习';
-      rev.title = '复习已标熟/已掌握句子（共 '+revCnt+' 句）';
-      rev.style.cssText = 'color:#b45309;border-color:#fcd34d';
-      rev.onclick = function(e){ e.stopPropagation(); practiceReviewDeck(d); };
-      actions.appendChild(rev);
-    }
-    var go = document.createElement('button');
-    go.className = 'btn sm primary'; go.textContent = '开始';
-    go.onclick = function(){ startDeck(d); };
-    actions.appendChild(go);
-    row.appendChild(actions);
-    list.appendChild(row);
-  });
-  if(!$('decksBack')._bound){
-    $('decksBack').onclick = function(){ goPractice(); };
-    $('decksBack')._bound = true;
-  }
-  showPage('pageDecks');
-}
-
-/* 编辑题库：查看句子列表 / 删除单句 */
-var _editingDeck = null;
-var _editOnlyMastered = false; /* 编辑页：是否只看已标熟 */
-function editDeck(d){
-  /* 始终从 allDecks() 重新取（首行即过滤掉已删的内置句），保证删除后刷新正确 */
-  var fresh = allDecks().filter(function(x){ return x.id === d.id; })[0];
-  if(fresh) d = fresh;
-  _editingDeck = d;
-  var head = $('editHead');
-  var masterCount = d.items.filter(function(it){ return isMastered(d.id, it); }).length;
-  head.innerHTML =
-    '<button class="btn sm ghost" id="editBack">← 返回题库</button>'+
-    '<span style="font-weight:600;font-size:15px">'+esc(d.name)+
-    '</span><span class="pill">'+(d.builtin?'内置':'导入')+'</span>'+
-    '<span style="color:var(--faint)">'+d.items.length+' 句</span>'+
-    (masterCount ? '<span class="pill" style="background:#e6f4ec;color:#12924f;border:1px solid #c3ead4">熟 '+masterCount+'</span>' : '')+
-    '<span class="spacer"></span>'+
-    '<button class="btn sm '+( _editOnlyMastered ? 'primary' : '' )+'" id="editMasterFilter">'+( _editOnlyMastered ? '↺ 看全部' : '只看已标熟' )+'</button>'+
-    '<button class="btn sm" id="editBatchExplain" title="批量给暂无详解的句子生成讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量详解</button>'+
-    '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>'+
-    '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 导入更多句子</button>';
-  $('editMasterFilter').onclick = function(){ _editOnlyMastered = !_editOnlyMastered; editDeck(d); };
-  $('editBatchExplain').onclick = function(){ openBatchExplain(d); };
-  $('editExportBtn').onclick = function(){ exportDeck(d); };
-  if(!d.builtin){
-    $('editImportBtn').onclick = function(){ openAppend(d); };
-  }
-  $('editBack').onclick = function(){ openDecks(); };
-
-  var list = $('editList');
-  list.innerHTML = '';
-  /* 句子列表 — 轻量行样式 */
-  var shown = 0;
-  d.items.forEach(function(it, i){
-    if(_editOnlyMastered && !isMastered(d.id, it)) return; /* 仅看已标熟 */
-    shown++;
-    var row = document.createElement('div');
-    row.style.cssText = 'display:flex;align-items:flex-start;gap:8px;padding:9px 4px;border-bottom:1px solid #f0f2f5';
-    /* ★ chunk 划分直接标在英文原句上（每个 chunk 带下划线，空格分隔组成原句）
-       ——不再单独渲染一行 chunk 预览，消除视觉冗余 */
-    var sentenceHtml = '';
-    if(it.chunks && it.chunks.length){
-      sentenceHtml = it.chunks.map(function(c){
-        return '<span class="sen-chunk">'+esc(c)+'</span>';
-      }).join(' ');
-    } else {
-      sentenceHtml = esc(it.sentence || it.en || '');
-    }
-    var masterBadge = isMastered(d.id, it) ?
-      '<span style="display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:#12924f;border-radius:5px;padding:1px 5px;margin-left:6px;vertical-align:middle" title="你标记为已掌握（自选，未参与考试）">熟</span>'
-      : '';
-    row.innerHTML =
-      '<div style="flex:1;min-width:0">'+
-        '<div style="font-weight:600;font-size:14px;color:var(--text);line-height:1.35">'+
-          '<span style="color:var(--accent);margin-right:5px;font-size:12px;font-weight:700">' + (i+1) + '</span>'+
-          sentenceHtml+masterBadge+'</div>'+
-        '<div style="font-size:12.5px;color:var(--faint);margin-top:2px;line-height:1.3">'+esc(it.translation || it.cn || '')+'</div>'+
-      '</div>';
-    /* 详解 + 编辑：仅导入题库（内置题只读，不能改内容/生成） */
-    if(!d.builtin){
-      var expBtn = document.createElement('button');
-      expBtn.className = 'btn sm ghost';
-      expBtn.innerHTML = window.Icons?Icons.svg('book'):'';
-      expBtn.title = '查看/生成详解';
-      expBtn.style.cssText = 'color:var(--accent);flex-shrink:0;font-size:13px;padding:2px 8px;opacity:.55';
-      expBtn.onmouseenter = function(){ this.style.opacity='1'; };
-      expBtn.onmouseleave = function(){ this.style.opacity='.55'; };
-      expBtn.onclick = function(){ _explainFromPage = 'pageEdit'; openExplain(d, it); };
-      row.appendChild(expBtn);
-
-      var edit = document.createElement('button');
-      edit.className = 'btn sm ghost';
-      edit.innerHTML = window.Icons?Icons.svg('edit'):'';
-      edit.title = '编辑此句';
-      edit.style.cssText = 'color:var(--accent);flex-shrink:0;font-size:14px;padding:2px 8px;opacity:.55';
-      edit.onmouseenter = function(){ this.style.opacity='1'; };
-      edit.onmouseleave = function(){ this.style.opacity='.55'; };
-      edit.onclick = function(){ openEditSentence(d, i); };
-      row.appendChild(edit);
-    }
-    /* 删除：内置 + 导入均支持。内置题走 deletedItems 覆盖（不可改写静态 builtins.js） */
-    var del = document.createElement('button');
-    del.className = 'btn sm ghost'; del.innerHTML = window.Icons?Icons.svg('close'):'';
-    del.title = '删除此句';
-    del.style.cssText = 'color:#c4362b;flex-shrink:0;font-size:16px;padding:2px 6px;opacity:.5';
-    del.onmouseenter = function(){ this.style.opacity='1'; };
-    del.onmouseleave = function(){ this.style.opacity='.5'; };
-    del.onclick = function(){
-      if(!confirm('删除第 '+(i+1)+' 句：\n\n'+esc(it.sentence||it.en||'')+'\n\n确定删除？')) return;
-      if(d.builtin){
-        CL.deleteItem(mem, d.id, it);
-        saveStore();
-        editDeck(d); /* 重新从 allDecks() 取过滤后的列表 */
-      } else {
-        d.items.splice(i, 1);
-        saveStore();
-        editDeck(d); /* 刷新列表 */
-      }
-    };
-    row.appendChild(del);
-    list.appendChild(row);
-  });
-  if(shown === 0){
-    list.innerHTML = '<div style="padding:24px;text-align:center;color:var(--faint);font-size:13px">该题库还没有标记「熟」的句子</div>';
-  } else {
-    /* 去掉最后一行的底部分割线 */
-    var last = list.lastElementChild;
-    if(last && last.previousSibling) last.style.borderBottom = 'none';
-  }
-
-  /* 状态提示 */
-  var stat = $('editStat');
-  if(_editStatMsg){
-    stat.textContent = _editStatMsg;
-    stat.classList.remove('hidden');
-    _editStatMsg = '';
-  } else {
-    stat.classList.add('hidden');
-  }
-  showPage('pageEdit');
-}
-
-/* ---------- 编辑单句弹窗 ---------- */
-var _editDeck = null, _editIdx = -1;
-function openEditSentence(deck, idx){
-  _editDeck = deck; _editIdx = idx;
-  var it = deck.items[idx];
-  $('editSentenceHint').textContent = '第 '+(idx+1)+' / '+deck.items.length+' 句 · '+deck.name;
-  $('editSentenceEn').value = it.sentence || it.en || '';
-  $('editSentenceCn').value = it.translation || it.cn || '';
-  $('editSentenceChunks').value = (it.chunks || []).join('\n');
-  $('editSentenceHints').value = (it.hints || []).join('\n');
-  $('editSentenceExps').value = (it.explanations || []).join('\n');
-  $('editSentenceMsg').className = 'msg';
-  $('editSentenceMsg').textContent = '';
-  $('editSentenceMask').hidden = false;
-}
-function saveEditSentence(){
-  if(!_editDeck || _editIdx < 0) return;
-  var en = $('editSentenceEn').value.trim();
-  var cn = $('editSentenceCn').value.trim();
-  var chunks = $('editSentenceChunks').value.split(/\n/).map(function(s){return s.trim();}).filter(function(s){return s.length>0;});
-  var hints = $('editSentenceHints').value.split(/\n/).map(function(s){return s.trim();});
-  var exps = $('editSentenceExps').value.split(/\n/).map(function(s){return s.trim();});
-  var msg = $('editSentenceMsg');
-  if(!en){ msg.className='msg err show'; msg.textContent='英文句子不能为空'; return; }
-  if(chunks.length < 2 || chunks.length > 5){ msg.className='msg err show'; msg.textContent='chunks 数量需在 2-5 之间（当前 '+chunks.length+'）'; return; }
-  if(norm(chunks.join(' ')) !== norm(en)){ msg.className='msg err show'; msg.textContent='chunks 拼接与原句不一致 → "'+chunks.join(' ')+'" ≠ "'+en+'"'; return; }
-  if(hints.length !== chunks.length){ msg.className='msg err show'; msg.textContent='hints 数量需与 chunks 一致（hints='+hints.length+', chunks='+chunks.length+'）'; return; }
-  if(exps.length > chunks.length){ msg.className='msg err show'; msg.textContent='explanations 数量不能超过 chunks 数'; return; }
-  /* 写回 */
-  var it = _editDeck.items[_editIdx];
-  /* cid 固化：句子首次编辑时锚定原文本（fnv8），此后改文本保留 cid → 学习档案 key 不漂移 */
-  var _prevEn = it.sentence || it.en || '';
-  if(!it.cid && _prevEn) it.cid = CL.fnv8(_prevEn);
-  it.sentence = en;
-  it.translation = cn;
-  it.chunks = chunks;
-  it.hints = hints;
-  if(exps.length){ it.explanations = exps; } else { delete it.explanations; }
-  delete it.en; delete it.cn;
-  saveStore();
-  var d = _editDeck;
-  _editDeck = null; _editIdx = -1;
-  $('editSentenceMask').hidden = true;
-  _editStatMsg = '已保存编辑';
-  editDeck(d);
-}
-$('btnSaveEditSentence').onclick = saveEditSentence;
-var _editStatMsg = '';
 
 /* ============================================================
    7.5 句子详解（agent 工作流：复制 Prompt → 大模型 → 粘贴 JSON 回填）
@@ -3953,70 +3256,6 @@ $('explainApply').onclick = function(){
   renderExplain();
 };
 
-/* ============================================================
-   7.6 批量生成详解（整个题库：复制 Prompt → 大模型 → 粘贴 JSON 一次回填）
-============================================================ */
-var _batchDeck = null;
-var _batchAll = false; /* true=包含已详解的句子（覆盖升级） */
-function pendingExplains(deck, includeAll){
-  return deck.items.filter(function(it){
-    if(includeAll) return true;
-    return !(it.explanations && it.explanations.length);
-  });
-}
-function openBatchExplain(deck){
-  _batchDeck = deck;
-  var pending = pendingExplains(deck, _batchAll);
-  $('batchExplainInfo').textContent = deck.name+' · 共 '+deck.items.length+' 句，待生成 '+pending.length+' 句'+
-    (_batchAll ? '（含已详解，覆盖升级）' : '（仅暂无详解）');
-  $('batchExplainJson').value = '';
-  $('batchExplainMsg').className = 'msg';
-  $('batchExplainMsg').textContent = '';
-  $('batchExplainMask').hidden = false;
-}
-function buildBatchExplainPrompt(pending){ return safeCall('AIPrompts', 'buildBatchExplainPrompt', '', [pending]); }
-$('batchExplainCopy').onclick = function(){
-  if(!_batchDeck) return;
-  var t = buildBatchExplainPrompt(pendingExplains(_batchDeck, _batchAll));
-  var btn = this;
-  copyText(t).then(function(ok){
-    btn.innerHTML = (ok ? ((window.Icons?Icons.svg('check'):'')+' 已复制') : '复制失败');
-    setTimeout(function(){ btn.innerHTML = (window.Icons?Icons.svg('copy'):'')+' 复制批量 Prompt'; }, 1600);
-  });
-};
-$('batchExplainApply').onclick = function(){
-  var deck = _batchDeck; if(!deck) return;
-  var text = $('batchExplainJson').value.trim();
-  var msg = $('batchExplainMsg');
-  var data;
-  try{ data = JSON.parse(text); }
-  catch(e){ msg.className='msg err show'; msg.textContent='JSON 解析失败：'+e.message; return; }
-  var items = data && data.items;
-  if(!Array.isArray(items)){ msg.className='msg err show'; msg.textContent='必须是 {"items":[...]} 结构'; return; }
-  var okCount = 0, missCount = 0, skipCount = 0;
-  var pendingKeys = {};
-  pendingExplains(deck, _batchAll).forEach(function(it){ pendingKeys[normSent(it.sentence)] = 1; });
-  items.forEach(function(entry, idx){
-    var sentence = entry && (entry.sentence || '');
-    var exps = entry && entry.explanations;
-    if(!Array.isArray(exps)){ skipCount++; return; }
-    var tgt = null;
-    for(var k=0;k<deck.items.length;k++){
-      if(normSent(deck.items[k].sentence) === normSent(sentence)){ tgt = deck.items[k]; break; }
-    }
-    if(!tgt){ missCount++; return; }
-    if(exps.length !== (tgt.chunks || []).length){ skipCount++; return; }
-    tgt.explanations = exps;
-    okCount++;
-  });
-  saveStore();
-  msg.className = 'msg ok show';
-  msg.innerHTML = (window.Icons?Icons.svg('check'):'')+' 回填成功 ' + okCount + ' 句 · 跳过（长度不符/已有）' + skipCount + ' · 未匹配 ' + missCount;
-  if(okCount){
-    _batchDeck = null;
-    setTimeout(function(){ $('batchExplainMask').hidden = true; if(_curPage === 'pageEdit' && _editingDeck) editDeck(_editingDeck); }, 1200);
-  }
-};
 
 /* ============================================================
    8. 导入：Prompt 生成 + JSON 校验
@@ -4189,13 +3428,10 @@ function doAppendValidate(){
   var m = mergeDedup(_appendDeck.items, good);
   _appendDeck.items = m.items;
   saveStore();
-  var d = _appendDeck; _appendDeck = null;
+  _appendDeck = null;
   closeMasks();
-  _editStatMsg = '导入 '+good.length+' 句，去重 '+m.dup+' 句，现共 '+m.items.length+' 句';
-  if(errs.length){
-    _editStatMsg += '（'+errs.length+' 题不合格已跳过）';
-  }
-  setTimeout(function(){ editDeck(d); }, 120);
+  /* ★ 2026-09-08：pageEdit 死代码已清理，追加成功直接跳独立题库页查看最新列表 */
+  setTimeout(function(){ location.href = 'decks.html'; }, 120);
 }
 
 /* 句子去重：基于归一化后的整句比对，existing 中已存在的跳过 */
@@ -4224,10 +3460,9 @@ function commitImport(items, name){
     var m = mergeDedup(_appendDeck.items, items);
     _appendDeck.items = m.items;
     saveStore();
-    var d = _appendDeck; _appendDeck = null;
+    _appendDeck = null;
     closeMasks();
-    _editStatMsg = '导入 '+items.length+' 句，去重 '+m.dup+' 句，现共 '+m.items.length+' 句';
-    setTimeout(function(){ editDeck(d); }, 120);
+    setTimeout(function(){ location.href = 'decks.html'; }, 120);
     return;
   }
   var deck = {
@@ -4254,7 +3489,8 @@ function commitImport(items, name){
   $('impGoPractice').onclick = function(){
     closeMasks();
     okMsg.className = 'msg';
-    openDecks();
+    /* ★ 2026-09-08：内嵌 pageDecks 死代码已清理，跳独立题库页 */
+    location.href = 'decks.html';
   };
   $('impContinue').onclick = function(){
     closeMasks();
@@ -4263,9 +3499,7 @@ function commitImport(items, name){
   };
 }
 
-/* ★ 旧 pageDecks 兼容（绞杀者模式过渡）：openAppend 等函数从 decks.html 同步
-   - 用户从旧版页面（chunk-practice.html）直接进入管理页时，旧 pageDecks 仍可见
-   - 编辑页 "导入更多句子" onclick 已指向 openAppend(d)，这里补齐函数定义 */
+/* 追加弹窗（openAppend）：由「继续追加下一批」入口复用 —— 设目标 deck + 去重合并 */
 function openAppend(deck){
   _appendDeck = deck;
   if($('appendDeckName')) $('appendDeckName').textContent = '目标题库：'+deck.name+'（'+deck.items.length+' 句）';
@@ -4295,11 +3529,6 @@ function setAppendMode(mode){
 function buildSplitPrompt(rawLines){ return safeCall('AIPrompts', 'buildSplitPrompt', '', [rawLines]); }
 function buildAppendPrompt(deckName){ return safeCall('AIPrompts', 'buildAppendPrompt', '', [deckName]); }
 var _appendMode = 'A';
-/* 旧追加弹窗入口 + 事件（兼容旧 pageDecks 用户） */
-function openAppendFromDecks(){
-  var d = S.deck; if(!d) return;
-  openAppend(d);
-}
 if($('appendModeGen')) $('appendModeGen').onclick = function(){ setAppendMode('A'); };
 if($('appendModeMine')) $('appendModeMine').onclick = function(){ setAppendMode('B'); };
 if($('btnGenSplitPrompt')) $('btnGenSplitPrompt').onclick = function(){
@@ -4311,30 +3540,6 @@ if($('btnGenSplitPrompt')) $('btnGenSplitPrompt').onclick = function(){
   if($('appendMsg')){$('appendMsg').className='msg ok show';$('appendMsg').innerHTML='<span style="vertical-align:-2px">'+(window.Icons?Icons.svg('copy'):'')+'</span> 拆分 Prompt 已生成，点「复制」粘贴给大模型';}
 };
 
-/* 导出题库为 JSON 文件（格式与导入兼容，可直接分享给同学再导入） */
-function exportDeck(d){
-  if(!d) return;
-  var payload = {
-    name: d.name,
-    desc: d.desc || '',
-    items: (d.items||[]).map(function(it){
-      return {
-        sentence: it.sentence || it.en || '',
-        translation: it.translation || it.cn || '',
-        chunks: it.chunks || it.parts || [],
-        hints: it.hints || []
-      };
-    })
-  };
-  var json = JSON.stringify(payload, null, 2);
-  var blob = new Blob([json], {type:'application/json'});
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  var fname = (d.name||'deck').replace(/[\\/:*?"<>|]/g,'_') + '.json';
-  a.href = url; a.download = fname;
-  document.body.appendChild(a); a.click();
-  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
-}
 
 var _appendDeck = null;
 var _appendPickedCat = null;
@@ -4412,12 +3617,11 @@ function showPage(id){
 function goPractice(){ showPage('pagePractice'); }
 
 function closeMasks(){
-  /* 详解弹窗可能从管理页打开：关闭后不强制回练习页（保持来源上下文） */
+  /* 关闭弹窗后保留当前练习上下文（详解/设置/导入均从练习页打开） */
   var fromExplain = $('explainMask') && !$('explainMask').hidden;
   $('impMask').hidden = true;
   $('appendMask').hidden = true;
   $('settingsMask').hidden = true;
-  $('batchExplainMask').hidden = true;
   $('explainMask').hidden = true;
   /* 如果在题库/管理页，按 Esc 回到练习页 */
   if(_curPage !== 'pagePractice' && !fromExplain) goPractice();
@@ -4484,53 +3688,10 @@ var _skipBtn = $('btnSkip'); if(_skipBtn) _skipBtn.onclick = skipQuestion;
 var _hintBtn = $('btnHint'); if(_hintBtn) _hintBtn.onclick = hintFirst; /* 已删除按钮，保留兼容 */
 var _revealBtn = $('btnReveal'); if(_revealBtn) _revealBtn.onclick = revealCurrentChunk;
 var _masterBtn = $('btnMaster'); if(_masterBtn) _masterBtn.onclick = toggleMastered;
-/* ★ 顶层入口改用新窗口打开（真正的独立页面 · 可收藏 · 独立 history）
-   - iframe 嵌入保留为备用（showIframe）
-   - 同 tab 导航：地址栏变为独立 URL（可收藏/后退），不弹新 tab */
+/* ★ 顶层入口跳独立页（真正的独立页面 · 可收藏 · 独立 history；已不再 iframe 内嵌） */
 $('btnDecks').onclick = function(){ window.location.href = 'decks.html'; };
 $('btnStats').onclick = function(){ window.location.href = 'stats.html'; };
 
-/* iframe 容器控制 */
-var _lastShownPage = 'pagePractice';
-function showIframe(src){
-  _lastShownPage = (document.querySelector('.page:not(.hidden)') || {}).id || 'pagePractice';
-  hideAllPages();
-  var host = $('iframeHost');
-  /* iframe 加版本戳，防止 decks.html/stats.html 被浏览器缓存后看不到最新 CSS */
-  var busted = src;
-  if(src && src.indexOf('about:blank') !== 0){
-    busted += (src.indexOf('?') > -1 ? '&' : '?') + 'v=2';
-  }
-  $('iframeSlot').src = busted;
-  host.style.display = 'block';
-  window.scrollTo(0, 0);
-}
-function hideIframe(){
-  $('iframeHost').style.display = 'none';
-  $('iframeSlot').src = 'about:blank';
-}
-function hideAllPages(){
-  ['pagePractice','pageDecks','pageStats','pageEdit'].forEach(function(id){
-    var el = $(id); if(el) el.classList.add('hidden');
-  });
-}
-$('iframeBack').onclick = hideIframe;
-
-/* ★ 接收 stats.html / decks.html 跨页消息：启动复习题库 */
-window.addEventListener('message', function(ev){
-  if(!ev.data) return;
-  if((ev.data.type === 'startReviewDeck' || ev.data.type === 'startDeck') && ev.data.deck){
-    hideIframe();
-    showPage('pagePractice');
-    try{ startDeck(ev.data.deck); }catch(e){ console.error(e); }
-    return;
-  } else if(ev.data.type === 'goBack'){
-    hideIframe();
-    showPage(_lastShownPage || 'pagePractice');
-  } else if(ev.data.type === 'memUpdated'){
-    try{ loadStore(); }catch(e){}
-  }
-});
 
 /* 启动时检查 pendingReviewDeck（stats.html 通过 location.href 跳回主页时读取） */
 (function checkPending(){
@@ -4555,16 +3716,6 @@ $('stageTipBar').addEventListener('click', function(e){
   else if(act==='reveal') revealCurrentChunk();
   else if(act==='full') showFullSentence();
 });
-/* 学习档案页事件 */
-$('statsBack').onclick = goPractice;
-$('statsPracticeWrong').onclick = practiceWrongBook;
-Array.prototype.forEach.call($('statsTabs').children, function(b){
-  b.onclick = function(){ _statsTab = b.dataset.tab; renderStats(); };
-});
-Array.prototype.forEach.call($('statsFilter').children, function(b){
-  b.onclick = function(){ _statsFilter = b.dataset.f; renderStats(); };
-});
-var _btnImpD = $('btnImportDecks'); if(_btnImpD) _btnImpD.onclick = function(){ openImport(); };
 $('btnSpeak').onclick = function(){
   try{
     var u = new SpeechSynthesisUtterance(cur().sentence);
@@ -4579,7 +3730,7 @@ $('btnExplain').onclick = function(){
   _explainFromPage = _curPage || 'pagePractice';
   openExplain(S.deck, cur()); /* 传当前练习的句子对象，避免索引错位 */
 };
-/* 管理页句子行上的「详解」按钮也需要支持：由 editDeck 动态绑定，见 editDeck */
+/* 管理页已迁独立 decks.html（句子行上的「详解/编辑」由该页自行绑定） */
 $('btnSound').onclick = function(){
   mem.settings.sound = !mem.settings.sound;
   setSoundIcon();
