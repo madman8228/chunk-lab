@@ -730,6 +730,61 @@ function check(name, cond, detail) {
     await p6.close(); await c6.close();
   }
 
+  /* ===== 7. AI 数据面收敛（防 settings.apiKey 上云 / ai_cache 残留回潮） =====
+   * 背景：联网 AI 停用后 UI 已收敛（tab bar / 设置 AI 组 display:none），但历史
+   * settings.apiKey 仍会随 mem 整包云同步上云（明文 Key 冗余，无任何消费端）。
+   * 规则：开放模式 server 未设 AI_EXPLAIN_ENABLED → config.aiEnabled=false →
+   * bootMain 的 applyCloudConfig() 应清空 apiKey（saveStore 上云）+ 删 ai_cache 键。
+   * 断言：本地清零 / ai_cache 删除 / 云端 GET /api/data 无明文 Key / 零 pageerror。
+   * 注意：本段用真实 server（不 abort /api），故不走 localCtx。 */
+  {
+    const c7 = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    await c7.addInitScript(function () {
+      localStorage.clear();
+      localStorage.setItem('chunklab_ai_cache_v1', JSON.stringify({ 'm::legacy': { obj: { orig: 'x' }, at: Date.now(), ver: 1 } }));
+      localStorage.setItem('chunklab.v1', JSON.stringify({
+        version: 2, reinforceBook: [],
+        decks: [], best: {}, mastered: {}, deletedItems: {},
+        stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} },
+        settings: { mode: 'choose', shuffle: false, skipMastered: false, batchSize: 10, provider: 'deepseek', model: 'deepseek-v4-flash', apiKey: 'sk-old-secret-xyz' }
+      }));
+    });
+    const p7 = await c7.newPage();
+    const errs7 = [];
+    p7.on('pageerror', function (e) { errs7.push(e.message); });
+    await p7.goto(BASE + '/main.html?preview=ai-scrub', { waitUntil: 'domcontentloaded' });
+    /* 等 applyCloudConfig 生效（boot 链 loadStore 后同步执行；真实 server 需等 ensureCloud 拉完 config） */
+    let scrubbed = null;
+    for (let i = 0; i < 40; i++) {
+      scrubbed = await p7.evaluate(function () {
+        try {
+          var o = JSON.parse(localStorage.getItem('chunklab.v1') || '{}');
+          return {
+            apiKeyCleared: !(o.settings && o.settings.apiKey),
+            cacheGone: localStorage.getItem('chunklab_ai_cache_v1') === null
+          };
+        } catch (e) { return { apiKeyCleared: false, cacheGone: false }; }
+      });
+      if (scrubbed.apiKeyCleared && scrubbed.cacheGone) break;
+      await p7.waitForTimeout(250);
+    }
+    check('ai-scrub 7: 本地 settings.apiKey 已清空', !!(scrubbed && scrubbed.apiKeyCleared), JSON.stringify(scrubbed));
+    check('ai-scrub 7: chunklab_ai_cache_v1 已删除', !!(scrubbed && scrubbed.cacheGone), JSON.stringify(scrubbed));
+    /* 云端：等 scheduleCloudSync debounce(400ms) PUT 上云后 GET /api/data 复核 */
+    await p7.waitForTimeout(900);
+    const cloud7 = await p7.evaluate(async function () {
+      try {
+        var r = await fetch('/api/data');
+        var d = await r.json();
+        return { ok: !!(d && d.mem), key: (d && d.mem && d.mem.settings && d.mem.settings.apiKey) || '' };
+      } catch (e) { return { ok: false, key: 'ERR:' + e.message }; }
+    });
+    check('ai-scrub 7: 云端 mem.settings.apiKey 已清（Key 不再上云）', cloud7.ok && !cloud7.key, JSON.stringify(cloud7));
+    check('ai-scrub 7: 零 pageerror', errs7.length === 0, errs7.join('|'));
+    await p7.screenshot({ path: path.join(SHOTS, 'e2e-ai-scrub.png') });
+    await p7.close(); await c7.close();
+  }
+
   /* ===== 截图 ===== */
   await p.screenshot({ path: path.join(SHOTS, 'e2e-main.png') });
   await pd.screenshot({ path: path.join(SHOTS, 'e2e-decks.png') });

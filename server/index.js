@@ -76,9 +76,12 @@ app.get('/api/stats', function (req, res) {
 
 app.get('/api/health', function (req, res) { res.json({ ok: true, ts: Date.now() }); });
 
-/* 公开配置：前端据此决定是否弹登录框。无需鉴权。 */
+/* 公开配置：前端据此决定是否弹登录框 / 是否启用联网 AI。无需鉴权。
+   aiEnabled = AI_EXPLAIN_ENABLED：前端拿到 false（或拿不到 config）时收敛 AI 数据面
+   （清存量 settings.apiKey，防明文 Key 随 mem 上云；删本地 ai_cache 残留），
+   拿到 true 时保留 Key（自托管降级通道，仅服务端未配置 DEEPSEEK_API_KEY 时被接受）。 */
 app.get('/api/config', function (req, res) {
-  res.json({ requireAuth: auth.REQUIRE_AUTH, serverVersion: 1, authAvailable: true });
+  res.json({ requireAuth: auth.REQUIRE_AUTH, serverVersion: 1, authAvailable: true, aiEnabled: AI_EXPLAIN_ENABLED });
 });
 
 /* ===================== 鉴权 ===================== */

@@ -120,6 +120,7 @@ async function main() {
 
     r = await request('GET', '/api/config');
     check('GET /api/config requireAuth=true', r.status === 200 && r.json && r.json.requireAuth === true, 'status=' + r.status);
+    check('GET /api/config aiEnabled=true（本实例 AI_EXPLAIN_ENABLED=true）', r.status === 200 && r.json && r.json.aiEnabled === true, 'status=' + r.status + ' aiEnabled=' + (r.json && r.json.aiEnabled));
 
     r = await request('POST', '/api/auth/register', null, { username: 'smoke_a', password: 'smoke123' });
     check('register returns token', r.status === 200 && r.json && typeof r.json.token === 'string', 'status=' + r.status);
@@ -514,6 +515,14 @@ async function main() {
           q.write(data); q.end();
         });
         check('AI 默认关闭 → /api/ai/explain 503', ar.status === 503, 'status=' + ar.status + ' ' + ar.body);
+        /* config.aiEnabled 与停用态一致（前端据此收敛 AI 数据面） */
+        const cr = await new Promise(function (resolve) {
+          const u = new URL(offBase + '/api/config');
+          const q = http.request(u, function (res) { let s = ''; res.on('data', function (c) { s += c; }); res.on('end', function () { try { resolve({ status: res.statusCode, json: JSON.parse(s) }); } catch (e) { resolve({ status: res.statusCode, json: null }); } }); });
+          q.on('error', function () { resolve({ status: 0, json: null }); });
+          q.end();
+        });
+        check('AI 默认关闭实例 config.aiEnabled=false', cr.status === 200 && cr.json && cr.json.aiEnabled === false, 'status=' + cr.status);
       }
     } finally {
       if (offChild) offChild.kill('SIGKILL');

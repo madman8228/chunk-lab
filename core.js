@@ -282,6 +282,7 @@
 
   var _cloudTimer = null;
   var _cloudOn = false; /* 云端是否启用：服务器可达（开放模式）或已登录（鉴权模式）时为 true */
+  var _cloudConfig = null; /* 最近一次 /api/config 结果（含 aiEnabled），供页面做 AI 数据面收敛 */
   var _dirty = false;   /* 待同步标志（离线 change-log 轻量版）：有本地变更未上云时为 true */
 
   /* 有变更待同步时通知 UI（main.html 顶栏"未同步"徽标） */
@@ -426,6 +427,7 @@
       if(!global.ChunkAPI){ resolve(); return; }
       preload().then(function(){
         global.ChunkAPI.getConfig().then(function(cfg){
+          _cloudConfig = cfg || null;
           var needAuth = cfg && cfg.requireAuth;
           if(needAuth && !global.ChunkAPI.isLoggedIn()){
             if(global.ChunkAuthUI && global.ChunkAuthUI.showLogin){
@@ -437,6 +439,7 @@
           }
         }).catch(function(){
           /* 服务器不可达 → 纯本地模式，不阻塞启动 */
+          _cloudConfig = null;
           console.warn('[cloud] 服务器不可达，使用纯本地存储');
           resolve();
         });
@@ -722,6 +725,7 @@
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,
     isDirty: function(){ return _dirty; },
+    getCloudConfig: function(){ return _cloudConfig; },
     preload: preload,
     readCourses: readCoursesRaw, readProgress: readProgressRaw,
     writeCourses: writeCourses, writeProgress: writeProgress,
