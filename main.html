@@ -1503,8 +1503,11 @@ function loadStore(){
     mem.stats = o.stats;
     mem.settings = o.settings;
     mem.deletedItems = o.deletedItems || {};
-    if(o.reinforceBook && o.reinforceBook.length && !mem.reinforceBook) mem.reinforceBook = o.reinforceBook;
+    mem.reinforceBook = o.reinforceBook; /* CL.loadMem 恒返回数组 */
     if(o.progress && Object.keys(o.progress).length && !mem.progress) mem.progress = o.progress;
+    /* ★ 修复根因（2026-09-08 review P1）：错题曾写入独立键 chunklab_reinforce（永不上云），
+       与 stats.html 读的 mem.reinforceBook（云同步键）双轨分裂。加载后执行一次性迁移合并 + 删旧键。 */
+    migrateLegacyReinforce();
   }catch(e){ /* file:// 下可能不可用，降级为内存 */ }
 }
 function saveStore(syncMode){
@@ -1532,16 +1535,44 @@ function withStatsSources(items, deckId){
 }
 
 /* ============================================================
-   巩固清单（错题本）—— 跨会话累积 + 本地文件导出
+   巩固清单（错题本）—— 唯一数据源 = mem.reinforceBook（云同步键）
+   ★ 修复根因（2026-09-08 review P1）：此前读写独立 localStorage 键 'chunklab_reinforce'（永不上云），
+     而 stats.html 展示/清空/删除读 mem.reinforceBook（随 chunklab.v1 上云）→ 双轨分裂：
+     练习产生的错题在统计页不可见、也不跨设备同步。现全部收敛到 mem + saveStore()。
+   REINFORCE_KEY 仅保留给一次性迁移源（migrateLegacyReinforce）。
 ============================================================ */
 var REINFORCE_KEY = 'chunklab_reinforce';
 
 function getReinforceBook(){
-  try{ var d = localStorage.getItem(REINFORCE_KEY); return d ? JSON.parse(d) : []; }
-  catch(e){ return []; }
+  if(!Array.isArray(mem.reinforceBook)) mem.reinforceBook = [];
+  return mem.reinforceBook;
 }
 function saveReinforceBook(book){
-  try{ localStorage.setItem(REINFORCE_KEY, JSON.stringify(book)); }catch(e){}
+  mem.reinforceBook = Array.isArray(book) ? book : [];
+  saveStore(); /* 落 chunklab.v1 + scheduleCloudSync 上云 */
+}
+
+/* 一次性迁移：把旧独立键 chunklab_reinforce 存量错题并入 mem.reinforceBook（按 _key 去重），
+   完成即删旧键。幂等：旧键不存在则直接返回；loadStore 每次重入（含 memUpdated）都可安全调用。 */
+function migrateLegacyReinforce(){
+  try{
+    var raw = localStorage.getItem(REINFORCE_KEY);
+    if(raw === null) return;
+    var legacy = JSON.parse(raw);
+    localStorage.removeItem(REINFORCE_KEY); /* 先删键：即使下方合并失败也不重复合并 */
+    if(!Array.isArray(legacy) || !legacy.length) return;
+    var book = getReinforceBook();
+    var seen = {};
+    book.forEach(function(x){ seen[x._key] = 1; });
+    var added = 0;
+    legacy.forEach(function(x){
+      if(x && x._key && !seen[x._key]){ seen[x._key] = 1; book.push(x); added++; }
+    });
+    if(added){
+      if(book.length > 200) book = book.slice(-200);
+      saveReinforceBook(book);
+    }
+  }catch(e){ console.warn('[migrateLegacyReinforce]', e); }
 }
 
 /* 将本次错题追加到错题本（去重：同一 sentence + deck 不重复添加） */
