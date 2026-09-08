@@ -3122,7 +3122,6 @@ function switchExplainTab(n){
   ai.classList.toggle('hidden', n !== 2);
   $('tabExplainSaved').classList.toggle('on', n === 1);
   $('tabExplainAI').classList.toggle('on', n === 2);
-  if(n === 2) updateAIButtons(); /* 进入 AI tab 时按 apiKey 状态切换按钮 */
   /* 不自动调用 AI：用户主动点「生成/重新生成」才请求（避免无 Key 时被动显示本地兜底造成"已读"误判） */
 }
 function renderExplain(){
@@ -3803,7 +3802,6 @@ $('btnSaveSettings').onclick = function(){
   saveStore();
   /* 同步音效按钮 */
   setSoundIcon();
-  updateAIButtons(); /* 配完 Key 立刻反映到 AI tab 按钮状态 */
   /* 深色模式 */
   if(mem.settings.darkMode){ document.documentElement.classList.add('dark'); }
   else{ document.documentElement.classList.remove('dark'); }
@@ -3894,218 +3892,10 @@ $('fileBackup').onchange = function(){
   fr.readAsText(f, 'utf-8');
 };
 
-/* AI 解读 tab2 按钮状态：根据是否已配前端 API Key 切换「生成/重新生成」与「配置 API Key」
-   默认两个都隐藏；用户主动触发（切 tab2/设置保存/空态点空态等）时按需显示 */
-function updateAIButtons(){
-  var has = !!(mem.settings.apiKey && String(mem.settings.apiKey).trim());
-  var regen = $('btnAIRegen');
-  var emptyNoKey = $('aiEmptyNoKey'), emptyHasKey = $('aiEmptyHasKey');
-  var body = $('aiBody');
-  var hasBody = body && body.innerHTML.trim() !== '';
-  if(regen) regen.classList.toggle('hidden', !has);
-  /* 空态：仅在 aiBody 空时显示（避免与已有内容叠显示） */
-  if(emptyNoKey) emptyNoKey.classList.toggle('hidden', has || hasBody);
-  if(emptyHasKey) emptyHasKey.classList.toggle('hidden', !has || hasBody);
-}
-/* 打开设置面板 + 自动展开 AI 配置组 + 聚焦 API Key 输入框（一键到位） */
-function openAISettings(){
-  if($('btnSettingsTop').onclick) $('btnSettingsTop').onclick();
-  var body = $('aiCfgBody');
-  if(body && body.classList.contains('hidden')){
-    body.classList.remove('hidden');
-    var caret = $('aiCfgCaret'); if(caret) caret.style.transform = 'rotate(90deg)';
-  }
-  setTimeout(function(){ var k = $('setApiKey'); if(k) k.focus(); }, 60);
-}
-$('btnAIConfigInline').onclick = openAISettings;
-
-/* ===== AI 解读（已并入详解页 tab2） ===== */
-$('btnAIRegen').onclick = function(){ runAIExplain(); };
-$('tabExplainSaved').onclick = function(){ switchExplainTab(1); };
-$('tabExplainAI').onclick = function(){ switchExplainTab(2); };
-/* 把当前 AI 解读保存为 item.explanations（结构化讲解），并切回「详解」tab */
-$('btnAISave').onclick = function(){
-  var it = (_explainDeck && _explainIdx >= 0) ? _explainDeck.items[_explainIdx] : null;
-  if(!it || !_aiLastObj){ alert('暂无可保存的 AI 解读'); return; }
-  it.explanations = aiToExplanations(_aiLastObj, it.chunks.length);
-  saveStore();
-  switchExplainTab(1);
-  renderExplain();
-  var m = $('explainMsg');
-  if(m){ m.className = 'msg ok show'; m.textContent = '已保存 ' + it.explanations.length + ' 条 AI 讲解到「详解」'; }
-};
-/* AI 结构化结果 → explanations[i]（语法/句法/搭配/场景维度，兼容 renderExplain 对象渲染） */
-function aiToExplanations(obj, chunkCount){
-  var out = [];
-  var grammarTxt = ((obj && obj.grammar) || []).join('；');
-  var colloTxt = ((obj && obj.collocations) || []).join('；');
-  var scenTxt = (obj && obj.scenario) || '';
-  for(var i = 0; i < chunkCount; i++){
-    var item = {};
-    if(grammarTxt) item.grammar = grammarTxt;
-    if(colloTxt) item.collocation = colloTxt;
-    if(scenTxt) item.oral = scenTxt;
-    var ch = obj && obj.chunks && obj.chunks[i];
-    if(ch && ch.role) item.syntax = ch.role;
-    out.push(item);
-  }
-  return out;
-}
-
-/* 切换到 AI 解读 tab 时生成（若当前句已生成过则保留，点「生成/重新生成」强制刷新） */
-var _aiLastObj = null;
-function runAIExplain(){
-  var item = (_explainDeck && _explainIdx >= 0) ? _explainDeck.items[_explainIdx] : null;
-  if(!item){ return; }
-  var body = $('aiBody'); if(!body) return;
-  _aiLastObj = null;
-  $('btnAISave').classList.add('hidden');
-  /* 隐藏两个空态（生成时不应与 aiBody 内容叠显示） */
-  var noKey = $('aiEmptyNoKey'), hasKey = $('aiEmptyHasKey');
-  if(noKey) noKey.classList.add('hidden');
-  if(hasKey) hasKey.classList.add('hidden');
-  body.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--faint)"><div style="font-size:28px;margin-bottom:8px"><span class="icon-spin" data-icon="refresh"></span></div><p style="margin:0;font-size:13px">正在分析句子…</p></div>';
-
-  /* ADR-004：统一走后端代理（服务端缓存 + 限流；未登录 / 服务端未配置时自动兜底本地解读） */
-  callDeepseekAPI(item, function(ok, res, obj){
-    if(ok){
-      body.innerHTML = res;
-      _aiLastObj = obj || null;
-      $('btnAISave').classList.remove('hidden');
-      $('aiNote').textContent = '由大模型生成，可保存为详解永久使用';
-    }else{
-      /* A 方案：网络失败只明确提示不可用，不渲染本地兜底内容（避免"有内容又不可用"的误导） */
-      body.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--bad)">' +
-        '<div style="font-size:26px;margin-bottom:8px">' + (window.Icons ? Icons.svg('warn') : '') + '</div>' +
-        '<p style="margin:0 0 6px;font-size:14px;font-weight:700">联网解读不可用</p>' +
-        '<p style="margin:0;font-size:12.5px;color:var(--muted);line-height:1.7">请在「系统设置」配置 API Key，<br>或由服务端配置 DEEPSEEK_API_KEY 后重试</p>' +
-      '</div>';
-      $('aiNote').textContent = '未生成：无可用 API 配置';
-    }
-  });
-}
-
-/* 调用 DeepSeek 大模型生成英文句子解读 */
-/* ===== AI 详解缓存（同句 + 同模型命中则不重复请求，避免重复计费） ===== */
-var AI_CACHE_KEY = 'chunklab_ai_cache_v1';
-var AI_CACHE_MAX = 200;
-var AI_CACHE_TTL = 30 * 24 * 3600 * 1000; /* 30 天：命中时检查 at 过期，过期即弃（对齐服务端 AI_CACHE_TTL） */
-/* 提示词版本：prompt 升级后 AI_PROMPT_VER bump，旧版本缓存视为 miss（js/ai-prompts.mjs PROMPT_VERSION） */
-var AI_PROMPT_VER = (window.AIPrompts && window.AIPrompts.PROMPT_VERSION) || 1;
-function aiCacheLoad(){
-  try{ var o = JSON.parse(localStorage.getItem(AI_CACHE_KEY) || '{}'); return (o && typeof o === 'object') ? o : {}; }
-  catch(e){ return {}; }
-}
-function aiCacheSave(cache){
-  try{ localStorage.setItem(AI_CACHE_KEY, JSON.stringify(cache)); }catch(e){}
-}
-function aiCacheGet(cacheKey){
-  var cache = aiCacheLoad();
-  var hit = cache[cacheKey];
-  if(!hit || !hit.obj || typeof hit.obj !== 'object') return null;
-  if(hit.ver !== AI_PROMPT_VER){
-    delete cache[cacheKey]; aiCacheSave(cache); /* 旧版本缓存（prompt 已升级）：作废并视为 miss */
-    return null;
-  }
-  if(AI_CACHE_TTL > 0 && hit.at && (Date.now() - hit.at) > AI_CACHE_TTL){
-    delete cache[cacheKey]; aiCacheSave(cache); /* 过期：清除并视为 miss */
-    return null;
-  }
-  return hit.obj;
-}
-function aiCachePut(cacheKey, obj){
-  var cache = aiCacheLoad();
-  cache[cacheKey] = { obj: obj, at: Date.now(), ver: AI_PROMPT_VER };
-  var keys = Object.keys(cache);
-  if(keys.length > AI_CACHE_MAX){
-    keys.sort(function(a,b){ return (cache[a].at||0) - (cache[b].at||0); });
-    keys.slice(0, keys.length - AI_CACHE_MAX).forEach(function(k){ delete cache[k]; });
-  }
-  aiCacheSave(cache);
-}
-
-function callDeepseekAPI(item, cb){
-  var model = mem.settings.model || 'deepseek-v4-flash';
-  /* 缓存命中：同句 + 同模型直接复用，不发请求 */
-  var cacheKey = item.sentence ? (model + '::' + norm(item.sentence)) : '';
-  var cached = cacheKey ? aiCacheGet(cacheKey) : null;
-  if(cached){ cb(true, renderAIJson(cached, item), cached); return; }
-  /* ADR-004：改走后端代理（Key 不再明文进前端；服务端缓存 + 限流）。
-     apiKey 仅在用户手动填写时随请求传（自托管降级，服务端配置了 DEEPSEEK_API_KEY 时被忽略）。 */
-  var apiKey = (mem.settings.apiKey || '').trim();
-  var payload = { sentence: item.sentence || '', zh: item.zh || '', model: model, apiKey: apiKey };
-  var xhr = new XMLHttpRequest();
-  var base = (window.ChunkAPI && ChunkAPI.getBase) ? ChunkAPI.getBase() : '';
-  xhr.open('POST', base + '/api/ai/explain', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  var tok = (window.ChunkAPI && ChunkAPI.getToken) ? ChunkAPI.getToken() : null;
-  if(tok) xhr.setRequestHeader('Authorization', 'Bearer ' + tok);
-  xhr.timeout = 30000;
-  xhr.onload = function(){
-    try{
-      var data = JSON.parse(xhr.responseText);
-      if(xhr.status === 200 && data && data.ok && data.data){
-        aiCachePut(cacheKey, data.data);
-        cb(true, renderAIJson(data.data, item), data.data);
-        return;
-      }
-      cb(false);
-    }catch(e){ cb(false); }
-  };
-  xhr.onerror = function(){ cb(false); };
-  xhr.ontimeout = function(){ cb(false); };
-  xhr.send(JSON.stringify(payload));
-}
-
-/* 将 API 返回的 JSON 渲染成解读 HTML */
-function renderAIJson(obj, item){
-  obj = obj || {};
-  var html = '';
-  var s = obj.orig || (item.sentence||'');
-  var zh = obj.zh || (item.zh||'');
-  /* 原句/中文已在详解页大标题区显示，AI 模板不再重复渲染（防冗余） */
-
-  if(obj.chunks && obj.chunks.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('puzzle'):'')+' 意群拆解（'+obj.chunks.length+' 个）</div>';
-    html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
-    for(var i=0;i<obj.chunks.length;i++){
-      var c = obj.chunks[i];
-      var roleTag = (c.role||c[1]||'') ? '<span style="font-size:10px;background:var(--border);color:var(--muted);padding:1px 5px;border-radius:4px;margin-left:4px">'+escHtml(c.role||c[1]||'')+'</span>' : '';
-      html += '<span style="display:inline-flex;align-items:center;padding:5px 10px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;font-size:13.5px;color:var(--text)"><strong style="color:var(--accent);margin-right:4px">'+(i+1)+'</strong>'+escHtml(c.text||c[0]||'')+roleTag+'</span>';
-    }
-    html += '</div></div>';
-  }
-
-  if(obj.grammar && obj.grammar.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chart'):'')+' 核心语法</div>';
-    for(var g=0;g<obj.grammar.length;g++){
-      html += '<div style="padding:8px 12px;border-radius:8px;background:var(--surface-2);margin-bottom:6px;border-left:3px solid var(--ok)">';
-      html += '<div style="font-weight:600;font-size:13px;color:var(--text)">'+escHtml(obj.grammar[g])+'</div>';
-      html += '</div>';
-    }
-    html += '</div>';
-  }
-
-  if(obj.collocations && obj.collocations.length){
-    html += '<div style="margin-bottom:16px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('link'):'')+' 固定搭配 & 短语</div>';
-    html += '<div style="display:flex;flex-direction:column;gap:6px">';
-    for(var c=0;c<obj.collocations.length;c++){
-      html += '<div style="padding:7px 12px;border-radius:8px;background:#fff9e6;border:1px solid #f0d860;display:flex;align-items:center;gap:8px">';
-      html += '<span style="font-weight:700;font-size:13px;color:#996500">'+escHtml(obj.collocations[c])+'</span>';
-      html += '<span style="font-size:11.5px;color:var(--faint)">不可拆分 · 整体记忆</span></div>';
-    }
-    html += '</div></div>';
-  }
-
-  if(obj.scenario){
-    html += '<div><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+(window.Icons?Icons.svg('chat'):'')+' 使用场景</div>';
-    html += '<div style="padding:10px 14px;border-radius:10px;background:var(--ok-soft);border:1px solid var(--ok);font-size:13px;line-height:1.65;color:#0b6b3a">'+escHtml(obj.scenario)+'</div></div>';
-  }
-
-  /* 标注来源 */
-  html += '<div style="margin-top:14px;font-size:11px;color:var(--faint);text-align:right">由 '+(mem.settings.provider||'deepseek')+' / '+escHtml(mem.settings.model||'')+' 生成</div>';
-  return html;
-}
+/* AI 联网解读已停用（2026-09-06 产品决策）：tab bar / 设置区 / explainTabAI DOM 保留为恢复骨架。
+   死执行链（updateAIButtons/openAISettings/btnAISave.onclick/aiToExplanations/_aiLastObj/
+   runAIExplain/aiCache×5/callDeepseekAPI/renderAIJson）已整块删除，git 历史可回溯。
+   恢复 = 后端 AI_EXPLAIN_ENABLED=true + 依据 git 还原本块。 */
 
 
 function escHtml(s){
