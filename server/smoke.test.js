@@ -135,7 +135,8 @@ async function main() {
     const mem = {
       decks: [{
         id: 'd1', name: 'smoke deck', builtin: false,
-        items: [{ sent: 'I am a student.', chunks: [{ t: 'I am', role: 'subj' }, { t: ' a student', role: 'pred' }] }]
+        /* sentence = decks.html 真实前端字段（2026-09-08 起 validate 已兼容；此前只认 sent/en 是 P1：用户 deck 上云全 400） */
+        items: [{ sentence: 'I am a student.', chunks: ['I am', 'a student'] }]
       }],
       best: {}, mastered: {},
       stats: { totalRounds: 1, totalAnswered: 1, bySentence: {} },
@@ -150,7 +151,7 @@ async function main() {
     r = await request('PUT', '/api/data', token, { mem: { decks: [{ id: 'x' }] } });
     check('ADR-008 deck 缺 name → 400', r.status === 400, 'status=' + r.status);
     r = await request('PUT', '/api/data', token, { mem: { decks: [{ id: 'x', name: 'X', items: [{ noSent: 1 }] }] } });
-    check('ADR-008 item 缺 sent/en → 400', r.status === 400, 'status=' + r.status);
+    check('ADR-008 item 缺 sent/en/sentence → 400', r.status === 400, 'status=' + r.status);
     r = await request('PUT', '/api/data', token, { mem: { decks: [] }, courses: [{ title: 'NoId' }] });
     check('ADR-008 course 缺 courseId → 400', r.status === 400, 'status=' + r.status);
     r = await request('PUT', '/api/data', token, { mem: { decks: [], best: {}, mastered: {}, stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {} }, courses: [], courseProgress: {} });

@@ -12,10 +12,13 @@
 function isStr(v) { return typeof v === 'string'; }
 function isObj(v) { return v !== null && typeof v === 'object' && !Array.isArray(v); }
 
-/* 校验一个句子 item（浅层：sent/en 至少一个字符串；chunks 若存在必须是数组） */
+/* 校验一个句子 item（浅层：sent/en/sentence 至少一个字符串——真实前端 decks.html 用 sentence 字段，
+   旧数据用 sent/en；chunks 若存在必须是数组）
+   ★ 2026-09-08 sync 对抗测试抓到 P1：validateItem 原只认 sent/en，而 decks.html 全部用 sentence
+     → 用户 deck 上云全被 400 静默拒绝（cloudSyncNow catch 吞错，UI 只显"未同步"） */
 function validateItem(it, deckIdx, itemIdx) {
   if (!isObj(it)) return 'decks[' + deckIdx + '].items[' + itemIdx + '] 不是对象';
-  if (!isStr(it.sent) && !isStr(it.en)) return 'decks[' + deckIdx + '].items[' + itemIdx + '] 缺少 sent/en 文本';
+  if (!isStr(it.sent) && !isStr(it.en) && !isStr(it.sentence)) return 'decks[' + deckIdx + '].items[' + itemIdx + '] 缺少 sent/en/sentence 文本';
   if (it.chunks !== undefined && !Array.isArray(it.chunks)) return 'decks[' + deckIdx + '].items[' + itemIdx + '].chunks 必须是数组';
   return null;
 }
