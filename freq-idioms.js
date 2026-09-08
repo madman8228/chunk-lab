@@ -1849,7 +1849,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**strong suit** 源自牌戏「一手强牌」，引申为「某人最擅长的领域/技能」。句型：…isn't my strong suit = 我不擅长…。",
       "反义：weak point / Achilles' heel（致命弱点）。例句：Small talk is not my strong suit, but I try."
-    ]
+    ],
+    distractors: [["Cooking isn't","Patience was"],["my problem,","my concern,"],["I agree.","I guess."]]
   },
   {
     sentence: "Don't worry — these things happen, it happens to everyone.",
@@ -1865,7 +1866,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**it happens** 是宽慰他人的万能句，意思是「这种事难免/正常」，劝人别自责别尴尬。",
       "用法场景：对方迟到/犯错/出糗时说一句 It happens，气氛立刻松下来。例句：I spilled coffee on my shirt again — it happens."
-    ]
+    ],
+    distractors: [["Don't worry — these things pass,","Don't cry — these things happen,"],["it matters","it comes"],["for everyone.","all the time."]]
   },
   {
     sentence: "I've been feeling down since I lost my job.",
@@ -1880,7 +1882,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**feel down** 表示情绪低落、提不起劲，比 sad 更日常口语。程度深可说 feel really down / down in the dumps。",
       "近义：feel blue / be in low spirits。例句：She's been down all week — let's cheer her up."
-    ]
+    ],
+    distractors: [["I've been feeling sick","I've been feeling tired"],["since I quit my job.","since I lost my dog.","since I failed the exam."]]
   },
   {
     sentence: "I'd rather go alone, but suit yourself.",
@@ -1895,7 +1898,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**suit yourself** 有两面语气：中性「随你意，我不勉强」，也常带轻微不满（对方不听劝时的「随你吧」）。",
       "例句：— I'll wear this shirt even if it's ugly. — Fine, suit yourself."
-    ]
+    ],
+    distractors: [["I'd rather go together,","I'd rather not go alone,"],["but help yourself.","but be yourself."]]
   },
   {
     sentence: "That's enough TV for tonight — go to bed.",
@@ -1911,7 +1915,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**that's enough** 是制止语「够了/到此为止」，父母制止孩子、或人忍无可忍时都用，语气随重音可柔可硬。",
       "近义：enough is enough（受够了）/ cut it out（别闹了）。例句：That's enough complaining for one day!"
-    ]
+    ],
+    distractors: [["That's too much","That's so much"],["homework for tonight —","TV for today —"],["go home.","go to your room."]]
   },
   {
     sentence: "I almost agreed, but on second thought I declined.",
@@ -1927,7 +1932,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**on second thought** 表示「再一想、改变主意」，常单独成句或放句首，口语标志性表达。美式拼作 on second thought，英式 second thoughts。",
       "例句：I'll have coffee — actually, on second thought, make it tea."
-    ]
+    ],
+    distractors: [["I just agreed,","I almost refused,"],["but on the other hand","but after a while"],["I changed my mind.","I gave up."]]
   },
   {
     sentence: "She's been seeing someone from work for months.",
@@ -1943,7 +1949,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**seeing someone** 是「与某人交往中」的委婉说法，比 dating 更口语低调。问别人感情状态常说：Are you seeing anyone?",
       "近义：dating / going out with。例句：I heard she's seeing a guy from the marketing team."
-    ]
+    ],
+    distractors: [["She was","She kept"],["watching someone","meeting someone"],["from school for months.","from work for weeks."]]
   },
   {
     sentence: "Stop fooling around and finish your homework.",
@@ -1958,7 +1965,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**fool around** 指「瞎闹、不干正事」，家长老师高频用。也委婉指「（背地里）乱搞男女关系」，后者看语境。",
       "近义：mess around / goof off。例句：We fooled around all afternoon instead of studying."
-    ]
+    ],
+    distractors: [["Stop running around","Stop sitting around","Stop looking around"],["and finish your dinner.","and finish your chores."]]
   },
   {
     sentence: "That magic trick was really something — how did you do it?",
@@ -1973,7 +1981,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**really something** 表示「真了不起、有两下子」，口语赞叹。反义结构：not much of a…（算不上…）。",
       "例句：That new restaurant is really something — the dessert alone is worth it."
-    ]
+    ],
+    distractors: [["That magic show was really something —","That card trick was really something —"],["why did you do it?","when did you do it?"]]
   },
   {
     sentence: "At forty she's no spring chicken, but she runs every day.",
@@ -1988,7 +1997,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**no spring chicken** 幽默地说「不年轻了」，多用于自嘲或善意调侃，注意别对长辈冒犯使用。",
       "例句：He may be no spring chicken, but he can still hike ten miles."
-    ]
+    ],
+    distractors: [["At fifty she's no spring chicken,","At forty she's a spring chicken,"],["but she walks every day.","but she looks young."]]
   },
   {
     sentence: "Sleep on it and tell me your decision tomorrow.",
@@ -2003,7 +2013,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**sleep on it** 劝人别急着拍板，先过一夜冷静想。销售/谈判/大额消费场景高频。",
       "例句：It's a big loan — why don't you sleep on it and call me tomorrow?"
-    ]
+    ],
+    distractors: [["Sleep it off","Put it off"],["and tell me your plans tomorrow.","and text me your decision tomorrow."]]
   },
   {
     sentence: "The surprise party you threw really made my day.",
@@ -2018,7 +2029,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**make my day** 直译「成就了我的一天」，即「让我特别开心/值了」。对方做了暖心小事后的最佳回应。",
       "经典梗：克林特·伊斯特伍德电影台词 Go ahead, make my day。例句：A coffee from you always makes my day."
-    ]
+    ],
+    distractors: [["The surprise party you planned","The birthday party you threw","The welcome party you threw"],["really made my week.","really ruined my day."]]
   },
   {
     sentence: "His joke about her weight was way out of line.",
@@ -2033,7 +2045,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**out of line** 指言行「越界、出格、不合规矩」，批评别人的冒犯言行时用。way 是强调词，意为「太出格了」。",
       "近义：cross the line / out of order。例句：That comment was out of line — you owe her an apology."
-    ]
+    ],
+    distractors: [["His joke about her age","His comment about her weight"],["was way out of date.","was way too funny."]]
   },
   {
     sentence: "We'd better hit the road before the traffic gets bad.",
@@ -2048,7 +2061,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**hit the road** 口语「出发、上路」，road trip 出发前必说。近义 hit the sack 则是「上床睡觉」。",
       "例句：Let's hit the road at six to beat the morning rush."
-    ]
+    ],
+    distractors: [["We'd rather hit the road","We'd better take the road"],["before the weather gets bad.","before the road gets bad."]]
   },
   {
     sentence: "Knock it off, you two — I'm trying to study.",
@@ -2063,7 +2077,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**knock it off** 是呵斥「别闹了/停下来」，比 stop it 更强硬直接，老师制止打闹的孩子常用。",
       "近义：cut it out / quit it。例句：Knock it off with the drumming — it's midnight!"
-    ]
+    ],
+    distractors: [["Turn it off, you two —"],["I'm trying to sleep.","I'm trying to rest."]]
   },
   {
     sentence: "You passed the interview — good for you!",
@@ -2078,7 +2093,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**good for you** 祝贺对方的好消息：「真棒/为你高兴」。注意语气真诚时说祝贺，阴阳怪气时是讽刺，全靠语调。",
       "例句：— I finally quit smoking. — Good for you, that's not easy!"
-    ]
+    ],
+    distractors: [["You passed the exam —","You survived the interview —"],["good luck!","so what!"]]
   },
   {
     sentence: "Feel free to ask questions — by all means interrupt me.",
@@ -2094,7 +2110,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**by all means** 强化允许：「当然可以、尽管来」，比 sure 更恳切正式，也可回答请求：— May I sit here? — By all means!",
       "反义：by no means（绝不）。例句：By all means, take your time reading the contract."
-    ]
+    ],
+    distractors: [["Feel free to answer questions —","Feel free to ask for help —"],["by no means","by any means"],["stop me.","ignore me."]]
   },
   {
     sentence: "The concert was sold out — we got in by the skin of our teeth.",
@@ -2110,7 +2127,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**by the skin of one's teeth** 形象表达「侥幸脱险/勉强赶上」，像只剩牙皮那点距离。考试低空飞过、赶车最后一秒都适用。",
       "例句：I caught my flight by the skin of my teeth — the gate was already closing."
-    ]
+    ],
+    distractors: [["The concert was starting —","The concert was almost sold out —"],["we showed up","we got tickets"],["without any trouble.","after a long wait."]]
   }
 ,
   {
@@ -2127,7 +2145,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have got someone's back** 形象表达「我罩着你/挺你」，出事时站在你这边。朋友间的定心丸。",
       "近义：stand by someone / back someone up。例句：Whatever happens in the meeting, I've got your back."
-    ]
+    ],
+    distractors: [["Don't hurry —","Don't cry —"],["I've got your number","You've got my back"],["no matter why.","no matter where."]]
   },
   {
     sentence: "Whenever I'm in trouble, I turn to my best friend.",
@@ -2143,7 +2162,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**turn to** 字面「转向某人」，引申「求助、依靠」。turn to sb for help / advice 是固定搭配。",
       "近义：rely on / count on。例句：When the project failed, he turned to his mentor for guidance."
-    ]
+    ],
+    distractors: [["Whenever I'm in danger,","Whenever I'm in a hurry,"],["I listen to","I write to"],["my old friend.","my parents."]]
   },
   {
     sentence: "That joke is killing me — I can't stop laughing.",
@@ -2158,7 +2178,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**something is killing me** 夸张表达「某事让我受不了/笑死我了」，口语高频。也可表疼痛：My back is killing me（腰快疼死了）。",
       "例句：This show is killing me — every episode is hilarious."
-    ]
+    ],
+    distractors: [["That movie is killing me —","That joke is driving me crazy —"],["I can't stop smiling."]]
   },
   {
     sentence: "Cut the jokes — let's get serious for a minute.",
@@ -2174,7 +2195,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**get serious** 是「说正经的/认真起来」，通常标志话题从玩笑转向严肃。cut the jokes 是其铺垫。",
       "例句：Okay, enough fun — let's get serious about the deadline."
-    ]
+    ],
+    distractors: [["Save the jokes —","Cut the noise —"],["let's get started","let's get moving"],["for an hour.","for once."]]
   },
   {
     sentence: "The builder cut corners and now the wall is cracking.",
@@ -2189,7 +2211,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**cut corners** 指「为省时省钱而偷工减料、走捷径」，通常带贬义，工程质量/产品质量场景常用。",
       "近义：take shortcuts。例句：Never cut corners on safety equipment — it saves lives."
-    ]
+    ],
+    distractors: [["The builder worked carelessly","The builder made a mistake"],["and now the wall is falling.","and now the wall is shaking."]]
   },
   {
     sentence: "She paid good money for that designer handbag.",
@@ -2204,7 +2227,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**pay good money for** 意为「花大价钱/真金白银买」，强调东西不便宜、理应质量好。抱怨质量时常用：I paid good money for this!",
       "例句：We paid good money for those tickets — the seats better be great."
-    ]
+    ],
+    distractors: [["She made good money","She saved good money"],["for that designer dress.","for that designer watch."]]
   },
   {
     sentence: "Stop second-guessing yourself and just send the email.",
@@ -2219,7 +2243,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**second-guess** 指「事后反复怀疑自己当初的决定」，动词可直接加宾语。比 hesitate 多了「回头看」的意味。",
       "例句：Stop second-guessing the interview answers — what's done is done."
-    ]
+    ],
+    distractors: [["Stop blaming yourself","Stop second-guessing me"],["and just write the email.","and just send the letter."]]
   },
   {
     sentence: "Hey, what's new with you these days?",
