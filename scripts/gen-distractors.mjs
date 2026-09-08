@@ -108,37 +108,55 @@ function needGen(it) {
 }
 
 /* ---------------- .js 精确插行写回 ---------------- */
-/* 每条目 compact 布局（itemToJs 同构，explanations 恒为末字段）：
+/* 每条目 compact 布局（itemToJs 同构，explanations 恒为末字段；distractors 恒在其后）：
  *     explanations: [
  *       "..."
  *     ]
+ *     distractors: [...],     ← 已存在时（覆盖场景）需替换此行
  *   },
- * 插点：explanations 闭合行（^    ]$）→ 加逗号 + 新 distractors 行。
- * 多条目从后往前应用，避免行号偏移。 */
+ * 插入：explanations 闭合行（^    ]$）→ 加逗号 + 新 distractors 行。
+ * 覆盖：条目内已存在 ^    distractors: 行 → 整行替换。
+ * ★ 边界护栏（2026-09-08 修 bug）：锚点搜索只在【本条目内】进行 —— 从 sentence 行到
+ *   条目结束行（^  }, / ^  }）之间。此前用「500 行」当护栏：条目一旦已有 distractors，
+ *   explanations 闭合带逗号不再命中 ^    ]$，搜索会滑过本条目继续向下扫数百行，
+ *   把数据插进后面的无辜条目（d-fix 曾把 #56 内容插进 #61）。边界内找不到 → 报错，
+ *   绝不越界。 */
 function enrichJsText(fileText, generated /* [{sentence, distractors}] */) {
   const lines = fileText.split('\n');
-  const edits = [];
+  const edits = []; /* {at, mode:'insert'|'replace', json} */
   generated.forEach(function (g) {
     const needle = '    sentence: ' + JSON.stringify(g.sentence) + ',';
-    let idx = lines.findIndex(function (l) { return l === needle; });
+    /* ★ 行尾兼容 LF/CRLF（git autocrlf 会切换行尾，\r 不能参与等值比较） */
+    let idx = lines.findIndex(function (l) {
+      return l === needle || l === needle + '\r';
+    });
     if (idx === -1) { console.error('❌ 找不到句子行（跳过写回）: ' + g.sentence); return; }
-    /* explanations 闭合锚点：条内首个 ^    ]$（4 空格 + ]；grammar 闭合带逗号不命中） */
+    let distLine = -1;
+    let closeLine = -1;
     for (let i = idx + 1; i < lines.length; i++) {
-      if (/^    \]$/.test(lines[i])) {
-        const json = JSON.stringify(g.distractors);
-        edits.push({ at: i, text: lines[i] + ',\n    distractors: ' + json });
-        return;
-      }
-      /* 越界护栏：500 行内找不到 = 条目结构异常，中止该条 */
-      if (i - idx > 500) { console.error('❌ 句子条目结构异常（无 explanations 闭合）: ' + g.sentence); return; }
+      const l = lines[i].endsWith('\r') ? lines[i].slice(0, -1) : lines[i];
+      if (/^    distractors: /.test(l)) { distLine = i; break; }
+      if (/^    ]$/.test(l)) { closeLine = i; break; }
+      /* 条目结束仍未找到锚点 → 结构异常，停（绝不越界到下一句） */
+      if (/^  \},?$/.test(l) || /^  \}$/.test(l)) break;
     }
+    if (distLine === -1 && closeLine === -1) {
+      console.error('❌ 句子条目内未找到插入点（explanations/distractors 结构异常）: ' + g.sentence);
+      return;
+    }
+    edits.push({ at: distLine !== -1 ? distLine : closeLine, mode: distLine !== -1 ? 'replace' : 'insert', json: JSON.stringify(g.distractors) });
   });
-  /* 后往前应用 */
+  /* 后往前应用（desc），行号不因前置编辑偏移 */
   edits.sort(function (a, b) { return b.at - a.at; });
   let out = fileText;
   edits.forEach(function (e) {
     const ls = out.split('\n');
-    ls[e.at] = e.text;
+    const cr = ls[e.at].endsWith('\r') ? '\r' : '';
+    if (e.mode === 'replace') {
+      ls[e.at] = '    distractors: ' + e.json + cr;
+    } else {
+      ls[e.at] = ls[e.at] + ',\n    distractors: ' + e.json + cr;
+    }
     out = ls.join('\n');
   });
   return out;
@@ -262,6 +280,7 @@ async function main() {
       const parsed = parseDistractorText(text);
       if (!parsed.ok) throw new Error(parsed.error);
       const clean = cleanDistractors(it, parsed.data.distractors);
+      if (!clean.ok) throw new Error(clean.error);
       const got = clean.stats.perChunk.reduce(function (a, b) { return a + b; }, 0);
       if (got === 0) throw new Error('清洗后 0 条（received ' + clean.stats.received + '，dropped ' + clean.stats.dropped + '）');
       it.distractors = clean.distractors;
@@ -296,7 +315,10 @@ async function main() {
 
 /* ---------------- 种子直供（--seed，离线命题/人工精修） ---------------- */
 /* seed JSON: [{ sentence, distractors:[[...],[...],...] }] —— 不调 LLM，
-   逐条 cleanDistractors 清洗后与 LLM 路径共用写回。 */
+   逐条 cleanDistractors 清洗后与 LLM 路径共用写回。
+   ★ seed = 作者直供 = 权威：命中句子一律覆盖（不论是否已具备 distractors），
+     供「修正已入库内容 / 离线命题 / 人工精修」场景；外层数组长度 ≠ chunks 由
+     cleanDistractors 硬校验拦截（防止少位静默错位）。 */
 async function runSeed(args, loaded) {
   const seedPath = path.resolve(ROOT, args.seed);
   let seed;
@@ -311,8 +333,8 @@ async function runSeed(args, loaded) {
     const it = bySentence.get(s.sentence);
     const tag = '[' + (i + 1) + '/' + seed.length + '] ' + s.sentence;
     if (!it) { errors.push({ sentence: s.sentence, error: '目标文件无此句' }); console.log('  ✗ ' + tag + ' → 目标文件无此句'); return; }
-    if (!needGen(it)) { console.log('  - ' + tag + ' → 已具备 distractors，跳过'); return; }
     const clean = cleanDistractors(it, s.distractors);
+    if (!clean.ok) { errors.push({ sentence: s.sentence, error: clean.error }); console.log('  ✗ ' + tag + ' → ' + clean.error); return; }
     const got = clean.stats.perChunk.reduce(function (a, b) { return a + b; }, 0);
     if (got === 0) { errors.push({ sentence: s.sentence, error: '清洗后 0 条（received ' + clean.stats.received + '，dropped ' + clean.stats.dropped + '）' }); console.log('  ✗ ' + tag + ' → 清洗后 0 条（dropped ' + clean.stats.dropped + '）'); return; }
     it.distractors = clean.distractors;

@@ -79,11 +79,13 @@ check('位内 norm 去重', c.distractors[0].length === 1, c);
 c = cleanDistractors(it, [['1', '2', '3', '4', '5'], ['a']]);
 check('每位置至多 3 条', c.distractors[0].length === 3, c);
 
-/* 缺位合法空 */
-c = cleanDistractors(it, [['only one']]);
-check('LLM 少给一位 → 该位空数组（合法，运行时回退）', c.distractors.length === 2 && c.distractors[1].length === 0, c);
-c = cleanDistractors(it, null);
-check('raw 非数组 → 全空', c.distractors.length === 2 && c.distractors[0].length === 0, c);
+/* 长度契约：外层数组数 ≠ chunks 数 → 拒绝（防后续数组前移错位） */
+let cMis = cleanDistractors(it, [['only one']]);
+check('LLM 少给一位 → ok:false（防错位，杜绝灌错填空位）', !cMis.ok && /长度/.test(cMis.error), cMis);
+cMis = cleanDistractors(it, null);
+check('raw 非数组 → ok:false', !cMis.ok, cMis);
+cMis = cleanDistractors(it, [['a'], ['b'], ['c']]);
+check('多给一位 → ok:false', !cMis.ok, cMis);
 
 /* 长度护栏 */
 c = cleanDistractors(it, [['x'.repeat(200), 'ok'], []]);

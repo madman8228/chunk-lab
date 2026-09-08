@@ -41,27 +41,33 @@ export function parseDistractorText(text) {
 }
 
 /* 清洗 + 校验：
-   - raw = LLM 返回的 distractors（外层数组，期望与 it.chunks 等长）
-   - 规则：每条必须是字符串；长度护栏 1..120；norm 不得等于该句任何 chunk 的 norm
+   - raw = LLM/作者提供的 distractors 外层数组
+   - ★ 长度契约：raw.length 必须 === it.chunks.length。逐位对齐消费 —— 若少位，
+     后续数组会「前移错位」（chunk[i] 位吃到 chunk[i+1] 的干扰），比空位危害更大
+     （空位运行时规则兜底；错位=把干扰灌进错误的填空位，静默劣质）。
+     违反 → 返回 {ok:false}，由调用方决定整句重试/人工修正（杜绝错位入库）。
+   - 逐条规则：必须是字符串；长度护栏 1..120；norm 不得等于该句任何 chunk 的 norm
      （含目标位自身 —— 撞车 = 该答案与正确答案归一化相同 → judgeChunk 判对歧义/白送）；
      同 chunk 位内 norm 去重；每 chunk 位至多收 3 条。
-   - 返回 { ok, distractors, stats:{received, dropped, perChunk:number[]} }
-     distractors = 与 it.chunks 等长的数组，某位生成失败/全被丢 → 空数组（合法空位，
-     运行时自动回退规则生成）。 */
+   - 返回 { ok, distractors, stats:{received, dropped, perChunk:number[]} }。
+     合法空位（该 chunk 实在无合格项，宁缺毋滥）以空数组保留。 */
 export function cleanDistractors(it, raw) {
   const chunks = it.chunks || [];
   const n = chunks.length;
+  const dists = Array.isArray(raw) ? raw : [];
+  if (dists.length !== n) {
+    return { ok: false, error: 'distractors 外层长度 ' + dists.length + ' ≠ chunks ' + n + '（会错位，拒绝）' };
+  }
   const correctSet = {};
   chunks.forEach(function (c) { correctSet[norm(c)] = 1; });
 
-  const dists = Array.isArray(raw) ? raw : [];
   const perChunk = [];
   let received = 0;
   let dropped = 0;
 
   const out = [];
   for (let i = 0; i < n; i++) {
-    const slotRaw = (i < dists.length && Array.isArray(dists[i])) ? dists[i] : [];
+    const slotRaw = Array.isArray(dists[i]) ? dists[i] : [];
     const slot = [];
     const seen = {};
     slotRaw.forEach(function (d) {
