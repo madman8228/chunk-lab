@@ -19,6 +19,9 @@
  *   --model M    LLM 模型名（默认 deepseek-chat）
  *   --key K      DeepSeek API Key（优先级：--key > env DEEPSEEK_API_KEY > server/.env）
  *   --mock JSON  短路返回该完整上游响应（测试用，等价 env AI_MOCK_RESPONSE）
+ *   --seed FILE  作者直供模式：JSON 数组 [{sentence, distractors:[[...],...]}]，不调 LLM，
+ *                逐句过 cleanDistractors 校验后走同一写回链路（离线命题/人工精修用；
+ *                与 --go 互斥，给 seed 即生效）
  *
  * 幂等：句子级跳过 —— 已有 distractors 且至少一个非空 chunk 位即视为已生成。
  * 写回安全：.js 用「文本精确插行」（explanations 闭合 ] 后补字段），不改动其余字节；
@@ -37,7 +40,7 @@ const ROOT = path.join(import.meta.dirname, '..');
 
 /* ---------------- 参数与环境 ---------------- */
 function parseArgs(argv) {
-  const a = { file: null, limit: null, go: false, out: null, model: 'deepseek-chat', key: null, mock: null };
+  const a = { file: null, limit: null, go: false, out: null, model: 'deepseek-chat', key: null, mock: null, seed: null };
   for (let i = 0; i < argv.length; i++) {
     const v = argv[i];
     if (v === '--go') a.go = true;
@@ -46,6 +49,7 @@ function parseArgs(argv) {
     else if (v === '--model') a.model = argv[++i];
     else if (v === '--key') a.key = argv[++i];
     else if (v === '--mock') a.mock = argv[++i];
+    else if (v === '--seed') a.seed = argv[++i];
     else if (v.startsWith('-')) { console.error('❌ 未知参数: ' + v); process.exit(2); }
     else a.file = v;
   }
@@ -200,7 +204,7 @@ async function callLlm(args, key, prompt) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.file) {
-    console.error('用法: node scripts/gen-distractors.mjs <file.js|file.json> [--limit N] [--go] [--out FILE] [--model M] [--key K]');
+    console.error('用法: node scripts/gen-distractors.mjs <file.js|file.json> [--limit N] [--go] [--out FILE] [--model M] [--key K] [--seed seed.json]');
     process.exit(2);
   }
   const filePath = path.resolve(ROOT, args.file);
@@ -209,6 +213,9 @@ async function main() {
   const isJs = /\.js$/.test(filePath);
   const loaded = isJs ? loadJsData(filePath) : loadJsonData(filePath);
   const items = loaded.items;
+
+  /* 种子直供模式：不走 LLM/key/dry-run，直接清洗 + 写回 */
+  if (args.seed) { await runSeed(args, loaded); return; }
 
   /* 计划：缺 distractors 的句子（按文件顺序，可 --limit 截取） */
   const todo = [];
@@ -285,6 +292,52 @@ async function main() {
     text = JSON.stringify(arr, null, 2) + '\n';
   }
   writeBack(dest, text, items, generated);
+}
+
+/* ---------------- 种子直供（--seed，离线命题/人工精修） ---------------- */
+/* seed JSON: [{ sentence, distractors:[[...],[...],...] }] —— 不调 LLM，
+   逐条 cleanDistractors 清洗后与 LLM 路径共用写回。 */
+async function runSeed(args, loaded) {
+  const seedPath = path.resolve(ROOT, args.seed);
+  let seed;
+  try { seed = JSON.parse(fs.readFileSync(seedPath, 'utf8')); }
+  catch (e) { console.error('❌ seed JSON 解析失败：' + e.message); process.exit(1); }
+  if (!Array.isArray(seed)) { console.error('❌ seed 根必须是数组'); process.exit(1); }
+
+  const bySentence = new Map(loaded.items.map(function (it) { return [it.sentence, it]; }));
+  const generated = [];
+  const errors = [];
+  seed.forEach(function (s, i) {
+    const it = bySentence.get(s.sentence);
+    const tag = '[' + (i + 1) + '/' + seed.length + '] ' + s.sentence;
+    if (!it) { errors.push({ sentence: s.sentence, error: '目标文件无此句' }); console.log('  ✗ ' + tag + ' → 目标文件无此句'); return; }
+    if (!needGen(it)) { console.log('  - ' + tag + ' → 已具备 distractors，跳过'); return; }
+    const clean = cleanDistractors(it, s.distractors);
+    const got = clean.stats.perChunk.reduce(function (a, b) { return a + b; }, 0);
+    if (got === 0) { errors.push({ sentence: s.sentence, error: '清洗后 0 条（received ' + clean.stats.received + '，dropped ' + clean.stats.dropped + '）' }); console.log('  ✗ ' + tag + ' → 清洗后 0 条（dropped ' + clean.stats.dropped + '）'); return; }
+    it.distractors = clean.distractors;
+    generated.push({ sentence: it.sentence, distractors: clean.distractors });
+    console.log('  ✓ ' + tag + ' → ' + clean.stats.perChunk.join('/') + ' 条/位（丢 ' + clean.stats.dropped + '）');
+  });
+
+  console.log('\nseed 处理完成：成功 ' + generated.length + ' / ' + seed.length + (errors.length ? '，失败/跳过 ' + errors.length + '（见上）' : ''));
+  if (!generated.length) { console.log('无成功条目，未写回。'); process.exit(1); }
+
+  /* 与 LLM 路径共用写回 */
+  const filePath = path.resolve(ROOT, args.file);
+  const isJs = /\.js$/.test(filePath);
+  const dest = args.out ? path.resolve(ROOT, args.out) : filePath;
+  let text;
+  if (isJs) text = enrichJsText(loaded.file, generated);
+  else {
+    const arr = JSON.parse(loaded.file);
+    generated.forEach(function (g) {
+      const hit = arr.find(function (it) { return it.sentence === g.sentence; });
+      if (hit) hit.distractors = g.distractors;
+    });
+    text = JSON.stringify(arr, null, 2) + '\n';
+  }
+  writeBack(dest, text, loaded.items, generated);
 }
 
 main().catch(function (e) { console.error('❌ 未捕获异常: ' + (e && e.stack || e)); process.exit(1); });

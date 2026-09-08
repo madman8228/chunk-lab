@@ -46,7 +46,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**act of god** 法律/保险术语，指超出人类控制的自然灾害（地震、洪水、台风等）。常见于合同免责条款。",
       "近义表达：force majeure（法律法语词）/ natural disaster（自然灾害）。例句：The damage was caused by an act of god, not by our negligence."
-    ]
+    ],
+    distractors: [["The floods were","The storm was","A flood was"],["an act of fate.","the work of god.","an act of faith."]]
   },
   {
     sentence: "He repeated the joke ad nauseam.",
@@ -62,7 +63,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**ad nauseam** 拉丁语（= to nausea「到令人作呕」），表示重复到让人厌烦。常用来吐槽某人反复说同一件事。",
       "口语近义：over and over / a million times。变体：ad infinitum（无穷无尽地）。例句：She explained the rules ad nauseam until everyone zoned out."
-    ]
+    ],
+    distractors: [["He repeats","He had repeated","He started to repeat"],["his joke","the story","the punchline"],["again and again.","endlessly.","until it was stale."]]
   },
   {
     sentence: "My boss is all bark no bite.",
@@ -77,7 +79,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**all bark no bite** 形容人/动物只是嘴硬、威胁多但不会真正行动。对应中文「光打雷不下雨」「嘴硬心软」。",
       "常用来评价严厉但从不动手的上司/老师。近义：all hat, no cattle（牛仔版）/ a paper tiger（纸老虎，毛泽东用法）。"
-    ]
+    ],
+    distractors: [["My boss was","My boss can be","The boss is"],["all bark and bite.","barking up the wrong tree.","a wolf in sheep's clothing."]]
   },
   {
     sentence: "Something seems amiss here.",
@@ -92,7 +95,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**amiss** 形容词，意思是不对劲、出故障。常用于 something is/seems amiss 句型，\"What's amiss?\"（出了啥事？）。",
       "源自古英语，常见搭配：nothing amiss（一切正常）/ there's something amiss（哪里不对劲）。英式口语常用。"
-    ]
+    ],
+    distractors: [["Someone seems","Nothing seems","Everything seems"],["missing here.","awkward here.","amiss there."]]
   },
   {
     sentence: "I want peace and all that.",
@@ -108,7 +112,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**and all that** 口语中的含糊补语，表示「以及类似的事情/和那些」，用来轻描淡写、不想细说。常配合耸肩。",
       "近义：and stuff (like that) / or something。例句：I'm just tired and all that — I need to crash. 注意：偏随意，邮件中慎用。"
-    ]
+    ],
+    distractors: [["I need","I wanted","I really want"],["freedom.","a break.","quiet."],["or something.","for once.","after all."]]
   },
   {
     sentence: "She's a teacher at heart.",
@@ -124,7 +129,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**at heart** 强调人的真实本性或核心身份，不管外在表现如何。常用来评价人或自我评价。",
       "近义：at the core / deep down / essentially。例句：He's a banker at heart, even now that he's retired."
-    ]
+    ],
+    distractors: [["He's","She was","She'll be"],["a mother","a student","a born teacher"],["by heart.","from the heart.","after all."]]
   },
   {
     sentence: "Sorry I'm late — better late than never!",
@@ -139,7 +145,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Better late than never.** 谚语「迟到总比不到好」，用来安慰晚到的成果/回应。中国谚语「亡羊补牢」也是类似安慰但侧重补救。",
       "口语中常用 self-deprecating 方式自嘲迟到的回复。结构：better + 比较级 + than + 反义基准。变体：better safe than sorry（谨慎总比后悔好）。"
-    ]
+    ],
+    distractors: [["Sorry I'm running late —","Sorry we're late —","Sorry I'm early —"],["better safe than sorry!","never too late to learn!","the sooner the better!"]]
   },
   {
     sentence: "Birds of a feather flock together.",
@@ -154,7 +161,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Birds of a feather (flock together)** 谚语「物以类聚，人以群分」。常用来评价一群朋友/同事/伴侣的相似性，可褒可贬。",
       "口语中常省略后半，说 \"Birds of a feather...\" 对方就能接上。变体：like attracts like（同类相吸）。注意：语气带 judgment，用时看清场合。"
-    ]
+    ],
+    distractors: [["Birds of different feathers","Crows of a feather","Birds with feathers"],["fly together.","sing together.","migrate together."]]
   },
   {
     sentence: "Bring your A game tomorrow.",
@@ -170,7 +178,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**A game** 源自美国体育（A 级表现即最佳水平），现泛指任何领域的最佳状态。常用 bring/show A game。",
       "近义：bring your best / step up your game / be on your A game（处于 A 状态）。例句：You've got to bring your A game to this interview."
-    ]
+    ],
+    distractors: [["Save","Pack","Play"],["your B game","your game","your A-list"],["tonight.","this morning.","next week."]]
   },
   {
     sentence: "I passed by the skin of my teeth.",
@@ -185,7 +194,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**by the skin of one's teeth** 源自《圣经·约伯记》19:20，字面「只剩牙齿的皮」，意为险些失败、堪堪躲过。",
       "近义：narrowly / barely / by a hair's breadth（差一根头发）。注意 teeth 是复数，\"skin of my teeth\" 不能换成 tooth。例句：We caught the flight by the skin of our teeth."
-    ]
+    ],
+    distractors: [["I failed","I almost passed"],["by the seat of my pants.","against all odds.","in the nick of time."]]
   },
   {
     sentence: "You're joking — come off it!",
