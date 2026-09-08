@@ -1030,7 +1030,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Go ahead** 请便、动手吧：允许他人开始做某事。也用于：— May I open it? — Go ahead.",
       "近义：Please do / Be my guest. 反义：Hold on（等一下）。"
-    ]
+    ],
+    distractors: [["Go first","Hurry up"],["and leave without me.","and eat without me.","and go without me."]]
   },
   {
     sentence: "Have fun at the party tonight!",
@@ -1045,7 +1046,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Have fun** 告别祝福：玩得开心！最常用告别语之一，朋友出门/度假都说。",
       "近义：Enjoy yourself / Have a good time. 例：Have fun on your trip!"
-    ]
+    ],
+    distractors: [[],["at the concert tonight!","at the game tonight!","at the party last night!"]]
   },
   {
     sentence: "Heads up — the meeting moved to 3.",
@@ -1060,7 +1062,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Heads up** 简短提醒：注意！告诉你/有情况。heads up = 抬头关注=用注意力提醒。",
       "近义：FYI / Just so you know. 例：Heads up — road is closed ahead."
-    ]
+    ],
+    distractors: [["Watch out —","Listen up —"],["the meeting is at 3.","the meeting moved to 4.","the party moved to 3."]]
   },
   {
     sentence: "So be it — I won't argue anymore.",
@@ -1075,7 +1078,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**So be it** 无奈/正式接受：那就那样吧、随它去。比 OK 更沉重，常用于失败、降级、让步场景。",
       "近义：Let it be / That's that. 例：If you want to quit school, so be it."
-    ]
+    ],
+    distractors: [["So it goes"],["— I won't care anymore.","— I can't argue anymore.","— I won't talk anymore."]]
   },
   {
     sentence: "I'll stand by you no matter what.",
@@ -1090,7 +1094,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**stand by (sb)** 支持某人、站在某人一边；stand by (sth) 坚守承诺。",
       "例：Whatever you decide, I'll stand by you. 名词形式：stand-by 候补/待命。"
-    ]
+    ],
+    distractors: [["I'll look after","I'll stay with","I'll fight for"],["you when you need me.","you through the hard times."]]
   },
   {
     sentence: "That was an amazing save — you rock!",
@@ -1105,7 +1110,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**You rock** 俚语赞誉：你很棒、你太厉害了！rock = 像摇滚明星一样牛。",
       "近义：You're awesome / You rule. 例：Thanks for the help! — You rock!"
-    ]
+    ],
+    distractors: [["That was a terrible save —","That was an amazing goal —","That was an amazing catch —"],["you win!","you made it!"]]
   },
   {
     sentence: "After you — please, go in first.",
@@ -1120,7 +1126,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**After you** 礼貌让先：您先请。进门、上车、点餐都常用。",
       "回礼：After you / No, after you. 这是基本礼仪训练场景。反义：age before beauty（幽默版）。"
-    ]
+    ],
+    distractors: [["Ladies first —","Be my guest —"],["please, go ahead.","please, wait outside."]]
   },
   {
     sentence: "The taxi is leaving — chop chop!",
@@ -1135,7 +1142,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Chop chop** 拟声催促：快点快点（厨师切菜声）。中英混用范畴：儿童/老人/口音友好。",
       "近义：Hurry up / Quickly now. 例：— Dad, we're late! — Chop chop, get in the car!"
-    ]
+    ],
+    distractors: [["The taxi is waiting —","The taxi has left —","The bus is leaving —"],["hurry up!","move it!","step on it!"]]
   },
   {
     sentence: "Fire away — I'm listening carefully.",
@@ -1150,7 +1158,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Fire away** 邀请对方开口说/问：尽管问、尽管说。原为火炮用语（开炮），引申为「开始发问」。",
       "例：— Can I ask you something? — Sure, fire away. 答复疑问很常用的套话。"
-    ]
+    ],
+    distractors: [["Go ahead —","Speak up —","Keep going —"],["I'm taking notes.","I'm waiting patiently.","I'm watching closely."]]
   },
   {
     sentence: "Forget it — I don't care anymore.",
@@ -1165,7 +1174,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Forget it** 多义：①算了别提了 ②不客气（回应 thank you 时）③不可能（强烈否认）。",
       "语境区分：Forget it, I'll do it myself.（算了）vs. — Thanks! — Forget it.（不客气）。"
-    ]
+    ],
+    distractors: [["Drop it —","Never mind —"],["I don't want it anymore.","I won't care anymore."]]
   },
   {
     sentence: "Don't talk back to your elders.",
@@ -1180,7 +1190,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**talk back** 回嘴、顶嘴（对长辈/上级）。back = 顶回去。",
       "例：Don't talk back to me! 近义：talk cheekily / mouth off. 注意 talk to the hand 系厌女俚语，不推荐。"
-    ]
+    ],
+    distractors: [["Don't talk down","Don't shout back"],["to your parents.","to your teachers.","to your boss."]]
   },
   {
     sentence: "That's it — I'm done with this job.",
@@ -1195,7 +1206,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**That's it** 终结/接受语：就这样、够了。两种语气：①够了②那就是关键/原因。",
       "近义：I'm done / I quit / Enough. 例：That's it — I'm moving out.（就这样，我要搬走。）"
-    ]
+    ],
+    distractors: [["That's enough —","That's that —","That's all —"],["I'm tired of this job.","I'm done with this place.","I'm done with these people."]]
   },
   {
     sentence: "I haven't seen you for ages — what's up?",
@@ -1210,7 +1222,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**What's up** 招呼/问候：怎么了？最近怎么样？非正式问候，回答常 Not much / Hey。",
       "也可表达「出了什么事」：What's up with him? He looks angry."
-    ]
+    ],
+    distractors: [["I haven't talked to you for ages —","I haven't seen you for a while —","I won't see you for ages —"],["what happened?","what's going on?","what's the matter?"]]
   },
   {
     sentence: "Ask around — somebody must know.",
@@ -1225,7 +1238,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**ask around** 四处打听：问一圈不同的人。比 ask 更主动、覆盖更广。",
       "例：I don't know, but I'll ask around. 反义：keep it to yourself."
-    ]
+    ],
+    distractors: [["Look around —","Ask everyone —","Ask again —"],["somebody might know.","somebody will know."]]
   },
   {
     sentence: "I didn't catch that — come again?",
@@ -1240,7 +1254,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Come again?** 礼貌求复：请再说一遍？比 What? 更柔和，店员/电话常用。",
       "正式版：Could you repeat that, please? 例：— Room 305. — Come again? — Room 305."
-    ]
+    ],
+    distractors: [["I didn't hear that —","I didn't get that —"],[]]
   },
   {
     sentence: "I'm trying to study — cut it out!",
@@ -1255,7 +1270,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Cut it out** 命令对方停止：住手、别闹。原意「切掉它」（从中间剪开）。",
       "近义：Knock it off / Stop it. 例：— Leave me alone! — Cut it out!"
-    ]
+    ],
+    distractors: [["I'm trying to sleep —","I'm trying to work —","I'm trying to read —"],["pipe down!","drop it!","settle down!"]]
   },
   {
     sentence: "Be my guest — help yourself to coffee.",
@@ -1270,7 +1286,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Be my guest** 客气允许：请便、随意。回应— May I sit here? — Be my guest.",
       "与 help yourself 搭配 = 完全自便；help yourself to X 自由取用（食物/饮料）。"
-    ]
+    ],
+    distractors: [["Make yourself at home —","Suit yourself —","After you —"],["pour yourself some coffee.","help yourself to tea.","serve yourself some coffee."]]
   },
   {
     sentence: "By no means should you open that door.",
@@ -1285,7 +1302,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**by no means** 绝不（加强否定）。句中位=部分倒装：By no means should you ... = You should never ...",
       "近义：Not at all / Never / Absolutely not. 例：By no means am I going to apologize."
-    ]
+    ],
+    distractors: [["By all means","In no circumstances"],["should you touch that door.","should you open that window.","should you knock on that door."]]
   },
   {
     sentence: "He runs the office by the book.",
@@ -1300,7 +1318,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**by the book** 按规矩办事：照章办事。book = 法规手册/工作手册。",
       "近义：by the rules / strictly. 反义：off the cuff（即兴）。例：The auditor runs everything by the book."
-    ]
+    ],
+    distractors: [["He runs the company","She runs the office","He owns the office"],["by the seat of his pants.","on the fly.","by the hour."]]
   },
   {
     sentence: "Go easy on the salt — I'm on a diet.",
@@ -1315,7 +1334,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Go easy on** 对...温和/手下留情/少放。可接人：Go easy on him (he's new). 也可接物：Go easy on the criticism.",
       "近义：take it easy on / be gentle with. 例：Go easy on the spicy sauce — I can't handle heat."
-    ]
+    ],
+    distractors: [["Go hard on","Don't go easy on"],["the sugar — I'm on a diet.","the salt — I have high blood pressure.","the salt — I'm trying to stay healthy."]]
   },
   {
     sentence: "I can't get used to waking up early.",
@@ -1330,7 +1350,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**get used to** 习惯于（过程：从不习惯 → 习惯）。完成式可用：I'm getting used to it.",
       "对比：be used to = 已习惯。例：I'm used to eating spicy food now. 反义：can't stand."
-    ]
+    ],
+    distractors: [["I'm not used to","I can't stand","I won't get used to"],["getting up early.","staying up late.","going to bed early."]]
   },
   {
     sentence: "Keep it up — you're doing great.",
@@ -1345,7 +1366,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Keep it up** 鼓励坚持：保持下去。it = 当前表现/进度。",
       "用于学习、锻炼、减肥，鼓励场景。也用于讽刺：Keep it up and you'll fail.（讽刺用法）"
-    ]
+    ],
+    distractors: [["Keep it down —","Keep it quiet —","Keep going —"],["you're doing badly.","you're getting better.","you're almost there."]]
   },
   {
     sentence: "No big deal — I'll fix it later.",
@@ -1360,7 +1382,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**No big deal** 轻描淡写：没什么大不了、别在意。回应道歉或感谢时常用：— Sorry for the mess. — No big deal.",
       "近义：No worries / It's nothing / Don't mention it. 例：It's no big deal — I can do it tomorrow."
-    ]
+    ],
+    distractors: [["Big deal —","No problem —","No worries —"],["I'll fix it now.","I'll check it later.","I'll handle it later."]]
   },
   {
     sentence: "Be there at three on the dot.",
@@ -1375,7 +1398,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**on the dot** 准时：正点。dot = 时钟的整点标志。",
       "近义：sharp / on time / precisely. 反义：fashionably late. 例：The train left at 9:00 on the dot."
-    ]
+    ],
+    distractors: [["Be there by three","Be there at four","Get there at three"],[]]
   },
   {
     sentence: "Can I take a rain check on dinner?",
@@ -1390,7 +1414,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**rain check** 字面「雨票」（棒球术语：雨天延赛换票），引申为「改天再约」。",
       "常在婉拒时：Can I take a rain check on that? Yes, of course, no problem. 也用于购物：May I get a rain check on the sale?"
-    ]
+    ],
+    distractors: [["Can I take a pass"],["on lunch?","on the meeting?","on dinner tonight?"]]
   },
   {
     sentence: "Settle down, kids — it's bedtime.",
@@ -1405,7 +1430,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Settle down** ①平静下来 ②安顿下来（搬新家：settle down in a new city）。",
       "近义：calm down / cool down. 例：Settle down and focus! 反义：get excited."
-    ]
+    ],
+    distractors: [["Wake up, kids —","Calm down, kids —","Keep quiet, kids —"],["it's dinnertime.","it's time to get up.","it's late."]]
   },
   {
     sentence: "Dinner's on me tonight — don't worry.",
