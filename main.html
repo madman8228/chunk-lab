@@ -4237,7 +4237,25 @@ if(CL && CL.on && CL.isDirty){
   CL.on('syncStatus', function(st){ refreshSyncBadge(st && st.dirty); });
   refreshSyncBadge(CL.isDirty());
 }
-CL.ensureCloud().then(function(){
+CL.ensureCloud().then(bootApp);
+
+/* ★ 引擎就绪守卫（boot 竞态根治，2026-09-08）
+   根因：bridge.mjs 是 <script type="module">（defer 语义，文档 parse 完成后才执行），
+   晚于内联脚本的同步段。CL.ensureCloud() 在真实网络下通常比 module 慢 → 无竞态；
+   但在缓存/PWA/离线（abort）快路径下 ensureCloud 先返回 → 启动段在 window.ChunkEngine
+   就绪前就 startDeck → renderActiveChoices 懒建池时 safeCall 兜底返回 [] → 空干扰池
+   落定且永不重建 → 该句永久无干扰（静默劣化，宪法禁止的兜底当默认路径）。
+   守卫：引擎就绪（或 3s 超时兜底，防引擎真挂卡死页面）才启动。 */
+function bootApp(){
+  if(window.ChunkEngine && window.ChunkEngine.buildChoices){ bootMain(); return; }
+  var _bt = 0;
+  var _biv = setInterval(function(){
+    if(window.ChunkEngine && window.ChunkEngine.buildChoices){ clearInterval(_biv); bootMain(); }
+    else if(++_bt > 180){ clearInterval(_biv); bootMain(); } /* ~2.9s 超时 */
+  }, 16);
+}
+
+function bootMain(){
 try {
 loadStore();
 migrateLegacyStatKeys();
@@ -4297,7 +4315,7 @@ if(!_resumed){
   if (zh) zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') + ' 启动失败：' + esc(e && e.message || e);
   console.error('[boot] failed:', e);
 }
-}); /* CL.ensureCloud().then */
+} /* bootMain 结束 */
 </script>
 </body>
 </html>
