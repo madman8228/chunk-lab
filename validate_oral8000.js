@@ -27,7 +27,7 @@ global.window = { BUILTIN: [dailyStub] };
 new Function('window', fs.readFileSync(__dirname + '/oral8000.js', 'utf8'))(global.window);
 const arr = global.window.DATA_ORAL8000 || [];
 
-/* 并入检查：builtin-daily.items 应包含 DATA_ORAL8000 全部 50 句（先 buildins.js 定义 58 静态，再并入本文件 50 = 108） */
+/* 并入检查：builtin-daily.items 应包含 DATA_ORAL8000 全部句（先 builtins.js 定义静态句，再并入本文件 100 = 188） */
 if (dailyStub.items.length < arr.length) {
   console.error('❌ builtin-daily.items 未并入 DATA_ORAL8000（当前 ' + dailyStub.items.length + ' < ' + arr.length + '，检查 oral8000.js 尾部并入块）');
   process.exit(1);
