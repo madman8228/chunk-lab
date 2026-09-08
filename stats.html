@@ -54,7 +54,53 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
 /* 熟练度分布：圆环图 + 图例（紧凑：圆环小，图例单列 5 行） */
 .mastery-donut{display:flex;align-items:center;gap:18px;font-size:12px;line-height:1.3;white-space:normal;letter-spacing:0;min-width:0;margin-top:2px}
-.mastery-donut .donut{width:78px;height:78px;flex-shrink:0}
+.mastery-donut .donut-wrap{position:relative;flex-shrink:0;width:78px;height:78px;cursor:pointer;border-radius:50%}
+.mastery-donut .donut-wrap:focus{outline:none;box-shadow:0 0 0 2px var(--accent-soft)}
+.mastery-donut .donut-wrap.pop-open{box-shadow:0 0 0 2px var(--accent)}
+.mastery-donut .donut{width:78px;height:78px;display:block}
+
+/* 熟练度圆环 hover popover（2026-09-08 老板反馈：圆环内小字看不清 → 加 hover 完整数据）
+   沿用 main.html .pop-info 设计语言（portal + fixed + JS viewport 坐标） */
+.donut-pop{
+  position:fixed;left:0;top:0;
+  min-width:184px;max-width:240px;
+  background:var(--surface);
+  border:1px solid var(--border);border-radius:10px;
+  padding:8px 10px;
+  box-shadow:0 6px 20px -6px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.06);
+  z-index:60;
+  opacity:0;pointer-events:none;
+  transition:opacity .18s,transform .18s cubic-bezier(.2,.8,.3,1);
+  font-size:12px;color:var(--text);
+  -webkit-user-select:none;user-select:none;
+}
+.donut-pop.open{opacity:1;pointer-events:auto}
+.donut-pop-title{
+  font-size:10.5px;font-weight:700;color:var(--accent);
+  letter-spacing:.06em;text-transform:uppercase;
+  margin:0 0 4px;padding-bottom:3px;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  min-height:16px;flex-shrink:0;
+}
+.donut-pop-title .badge{
+  font-size:9px;padding:1px 6px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);letter-spacing:.02em;
+}
+.donut-pop-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:1px 0}
+.donut-pop-row .lbl{color:var(--muted);font-size:11px;flex-shrink:0;line-height:1.25;display:inline-flex;align-items:center;gap:5px}
+.donut-pop-row .lbl .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+.donut-pop-row .val{font-weight:700;font-size:11.5px;line-height:1.25;font-variant-numeric:tabular-nums;text-align:right}
+.donut-pop-row .val .pct{font-size:10px;color:var(--faint);font-weight:400;margin-left:4px}
+.donut-pop-row .val.muted{color:var(--faint);font-weight:400}
+.donut-pop-row .val.good{color:var(--ok)}
+
+@media (max-width:640px){
+  .donut-pop{
+    min-width:200px;width:max-content;
+    max-width:min(240px, calc(100vw - 32px));
+  }
+}
 .mastery-donut .donut-legend{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
 .mastery-donut .donut-row{display:flex;align-items:center;gap:8px;min-width:0}
 .mastery-donut .donut-row.extra{margin-top:4px;padding-top:5px;border-top:1px dashed var(--border);font-style:italic}
@@ -365,10 +411,13 @@ function renderStats(){
   });
   /* 中心：已学过句数 + 总句数 + 累计练习次数（消除"55 vs 16"困惑） */
   var practiced = mem.stats && mem.stats.totalAnswered ? mem.stats.totalAnswered : 0;
-  donut += '<text x="50" y="42" text-anchor="middle" font-size="18" font-weight="800" fill="var(--text)">'+studied+'</text>'+
-    '<text x="50" y="54" text-anchor="middle" font-size="6.5" fill="var(--faint)">已学句数</text>'+
-    '<text x="50" y="65" text-anchor="middle" font-size="6" fill="var(--faint)">/ '+total+' 句</text>'+
-    '<text x="50" y="76" text-anchor="middle" font-size="6" fill="var(--accent)">练过 '+practiced+' 次</text></svg>';
+  /* ★ 根因（2026-09-08 老板反馈）：原 4 行小字（"已学句数"/"/ 279 句"/"练过 X 次"）字号 6-6.5px，
+     圆环内根本看不清。删小字冗余行 + 弹 hover popover 显示完整数据：
+     - 圆环内只留核心大字"60" + 总句数"/ 279"两行（已学 + 总）
+     - 详细分布 / 练习次数 / 标熟数全部 hover 出来 */
+  donut += '<text x="50" y="44" text-anchor="middle" font-size="18" font-weight="800" fill="var(--text)">'+studied+'</text>'+
+    '<text x="50" y="58" text-anchor="middle" font-size="6" fill="var(--faint)">已学句数</text>'+
+    '<text x="50" y="68" text-anchor="middle" font-size="7" fill="var(--faint)">/ '+total+' 句</text></svg>';
   var legend = '<div class="donut-legend">'+
     segs.map(function(s){
       var pct = total ? Math.round(s.count / total * 100) : 0;
@@ -397,9 +446,25 @@ function renderStats(){
       '<div class="stat-card dist-card" style="flex:1;min-width:0"><div class="k">指标对比</div>'+
         '<div class="v bar-chart">'+barHtml+'</div></div>'+
       '<div class="stat-card dist-card" style="flex:1;min-width:0"><div class="k">熟练度分布</div>'+
-        '<div class="v mastery-donut">'+donut+legend+'</div></div>'+
+        '<div class="v mastery-donut">'+
+          '<div class="donut-wrap" id="donutWrap" role="button" tabindex="0" aria-label="熟练度分布详情" aria-describedby="donutPop">'+
+            donut+
+          '</div>'+
+          legend+
+        '</div></div>'+
     '</div>';
   $('statsCards').insertAdjacentHTML('beforeend', pairHtml);
+
+  /* 熟练度圆环 popover 数据快照（每次 renderStats 重渲染时刷新）
+     用 module 级变量而非 dataset：popover portal 化后跨 DOM 引用，dataset 会随 DOM 重建丢失 */
+  window._masteryPopData = {
+    studied: studied,
+    total: total,
+    practiced: practiced,
+    masteredCount: Object.keys(mem.mastered||{}).length,
+    segs: segs.map(function(s){ return { key:s.key, color:s.color, label:s.label, count:s.count }; })
+  };
+  bindMasteryPop();
 
   /* Tab 状态 */
   Array.prototype.forEach.call($('statsTabs').children, function(b){
@@ -421,6 +486,149 @@ function renderStats(){
 
   var sw = $('startWeak'); if(sw) sw.onclick = practiceWeakSentences;
   var sb = $('startBook'); if(sb) sb.onclick = practiceWrongBook;
+}
+
+/* ===== 熟练度圆环 popover（2026-09-08）=====
+   沿用 main.html 圆环 popover 设计：portal + position:fixed + viewport 坐标 + hover(桌面)/click(移动)。
+   数据快照：每次 renderStats 重渲染时刷新到 window._masteryPopData。
+   popover DOM 复用：第一次绑定时创建并 portal 到 body，后续只更新内容（避免每次重渲染重建）。 */
+function buildMasteryPopRows(){
+  var d = window._masteryPopData || {};
+  var total = d.total || 0;
+  var segs = d.segs || [];
+  var rows = '';
+  rows += '<div class="donut-pop-row"><span class="lbl">已学句数</span><span class="val">'+ (d.studied||0) +' / '+ total +'</span></div>';
+  rows += '<div class="donut-pop-row"><span class="lbl">练过次数</span><span class="val">'+ (d.practiced||0) +' 次</span></div>';
+  /* 4 档分布（带色点 + 数量 + 百分比）*/
+  segs.forEach(function(s){
+    var pct = total ? Math.round(s.count / total * 100) : 0;
+    rows += '<div class="donut-pop-row">'+
+      '<span class="lbl"><span class="dot" style="background:'+s.color+'"></span>'+s.label+'</span>'+
+      '<span class="val">'+ s.count +'<span class="pct">'+ pct +'%</span></span>'+
+    '</div>';
+  });
+  /* 标熟数（独立附加，dot 用深绿） */
+  rows += '<div class="donut-pop-row">'+
+    '<span class="lbl"><span class="dot" style="background:#12924f"></span>标熟</span>'+
+    '<span class="val muted">'+ (d.masteredCount||0) +' 句（含已掌握）</span>'+
+  '</div>';
+  return rows;
+}
+
+function updateMasteryPop(){
+  var pop = $('donutPop');
+  if(!pop) return;
+  var d = window._masteryPopData || {};
+  pop.innerHTML = '<div class="donut-pop-title">熟练度分布'+
+    (d.studied === d.total && d.total > 0 ? '<span class="badge">已全部学完</span>' : '')+
+    '</div>' + buildMasteryPopRows();
+}
+
+function showMasteryPop(){
+  var pop = $('donutPop');
+  var wrap = $('donutWrap');
+  if(!pop || !wrap) return;
+  updateMasteryPop();
+  var r = wrap.getBoundingClientRect();
+  var isMobile = window.innerWidth <= 640;
+  if(isMobile){
+    /* 圆环下方居中，clamp 防溢出 */
+    var centerX = r.left + r.width / 2;
+    var half = pop.offsetWidth / 2;
+    var minX = half + 8;
+    var maxX = window.innerWidth - half - 8;
+    pop.style.left = Math.max(minX, Math.min(centerX, maxX)) + 'px';
+    pop.style.top = (r.bottom + 8) + 'px';
+    pop.style.transform = 'translateX(-50%)';
+  } else {
+    /* 桌面：圆环右下方（右侧空间足够） */
+    pop.style.left = (r.right + 10) + 'px';
+    pop.style.top = (r.bottom + 8) + 'px';
+    pop.style.transform = 'none';
+  }
+  pop.classList.add('open');
+  pop.setAttribute('aria-hidden', 'false');
+  wrap.classList.add('pop-open');
+}
+
+function hideMasteryPop(){
+  var pop = $('donutPop');
+  if(pop){
+    pop.classList.remove('open');
+    pop.setAttribute('aria-hidden', 'true');
+  }
+  var wrap = $('donutWrap');
+  if(wrap) wrap.classList.remove('pop-open');
+}
+
+function toggleMasteryPop(){
+  var pop = $('donutPop');
+  if(!pop) return;
+  if(pop.classList.contains('open')) hideMasteryPop();
+  else showMasteryPop();
+}
+
+/* 绑一次：每次 renderStats 重建卡片时，donutWrap 是新的 DOM 节点，
+   popover 是 body 末端常驻 → 只重绑事件不重建 popover */
+function bindMasteryPop(){
+  var wrap = $('donutWrap');
+  if(!wrap) return;
+  var pop = $('donutPop');
+  /* 第一次：创建 popover DOM 并 portal 到 body */
+  if(!pop){
+    pop = document.createElement('div');
+    pop.id = 'donutPop';
+    pop.className = 'donut-pop';
+    pop.setAttribute('role', 'tooltip');
+    pop.setAttribute('aria-hidden', 'true');
+    pop.innerHTML = '';
+    document.body.appendChild(pop);
+  }
+  if(wrap._popBound) return;
+  wrap._popBound = true;
+  /* hover 系列只在支持 hover 的设备上绑（移动 tap 会合成 hover+click 双事件链） */
+  var canHover = !window.matchMedia || window.matchMedia('(hover: hover)').matches;
+  if(canHover){
+    wrap.addEventListener('mouseenter', showMasteryPop);
+    wrap.addEventListener('mouseleave', hideMasteryPop);
+    wrap.addEventListener('focus', showMasteryPop);
+    wrap.addEventListener('blur', function(){
+      setTimeout(function(){
+        if(document.activeElement !== wrap) hideMasteryPop();
+      }, 150);
+    });
+  }
+  /* 通用：click/tap 切换 */
+  wrap.addEventListener('click', function(e){
+    e.stopPropagation();
+    toggleMasteryPop();
+  });
+  wrap.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      toggleMasteryPop();
+    }
+  });
+  /* Esc 全局关闭 */
+  if(!wrap._escBound){
+    wrap._escBound = true;
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') hideMasteryPop();
+    });
+  }
+  /* 点圆环/popover 外任何地方关闭 */
+  if(!wrap._docBound){
+    wrap._docBound = true;
+    document.addEventListener('click', function(e){
+      if(!wrap.contains(e.target) && !(pop && pop.contains(e.target))) hideMasteryPop();
+    }, true);
+  }
+  /* 滚动/resize 关闭（fixed 钉 viewport，wrap 移走会漂错位） */
+  if(!wrap._scrollBound){
+    wrap._scrollBound = true;
+    window.addEventListener('scroll', hideMasteryPop, true);
+    window.addEventListener('resize', hideMasteryPop);
+  }
 }
 
 function renderSentenceList(body){
