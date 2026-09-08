@@ -34,7 +34,8 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .stat-card .k{font-size:11.5px;color:var(--faint);letter-spacing:.03em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stat-card .v{font-size:22px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stat-card .v.mastery-grid{font-size:12px;white-space:normal;letter-spacing:0} /* 子容器重置继承 */
-.stat-card .start-btn{display:block;margin-top:6px;background:transparent;border:none;padding:0;font-size:12px;font-weight:600;color:var(--accent);cursor:pointer;text-align:left;letter-spacing:.01em}
+.stat-card .start-btn{display:flex;align-items:center;gap:3px;margin-top:6px;background:transparent;border:none;padding:0;font-size:12px;font-weight:600;color:var(--accent);cursor:pointer;text-align:left;letter-spacing:.01em}
+.start-btn .icon{width:13px;height:13px}
 .stat-card .start-btn:hover{text-decoration:underline}
 .stat-card.hl{border-color:var(--accent);background:var(--accent-soft)}
 .stat-card.hl .v{color:var(--accent)}
@@ -92,7 +93,8 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .wrong-row .cn{font-size:11.5px;color:var(--faint);margin-top:1px}
 .wrong-row .wrong-detail{font-size:11.5px;margin-top:4px;color:var(--bad)}
 .wrong-row .wrong-detail b{color:var(--ok);font-weight:600}
-.wrong-del{flex-shrink:0;border:none;background:transparent;color:var(--faint);font-size:16px;width:24px;height:24px;border-radius:50%;cursor:pointer;line-height:1;padding:0}
+.wrong-del{flex-shrink:0;border:none;background:transparent;color:var(--faint);width:24px;height:24px;border-radius:50%;cursor:pointer;line-height:1;padding:0;display:grid;place-items:center}
+.wrong-del .icon{width:14px;height:14px}
 .wrong-del:hover{background:var(--bad-soft);color:var(--bad)}
 
 .empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:12px}
@@ -183,7 +185,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
 <div class="wrap">
   <div class="page-head">
-    <button class="btn sm ghost" id="statsBack" title="返回主页">← 返回</button>
+    <button class="btn sm ghost" id="statsBack" title="返回主页"><span data-icon="arrowL"></span>返回</button>
     <h2><span data-icon="stats"></span> 学习档案</h2>
     <span class="spacer"></span>
     <button class="btn sm primary" id="btnPracticeWrong" title="练习错题本中所有句子"><span data-icon="target"></span>练习错题</button>
@@ -307,9 +309,9 @@ function renderStats(){
     '<div class="stat-card kpi-rounds"><div class="k">完成轮次</div><div class="v">'+mem.stats.totalRounds+'</div></div>'+
     '<div class="stat-card ok"><div class="k">熟练句子</div><div class="v">'+masteredCnt+'</div></div>'+
     '<div class="stat-card warn"><div class="k">需巩固</div><div class="v">'+weakCnt+'</div>'+
-      (weakCnt>0 ? '<button class="start-btn" id="startWeak">开始学习 →</button>' : '')+'</div>'+
+      (weakCnt>0 ? '<button class="start-btn" id="startWeak">开始学习 '+(window.Icons?Icons.svg('arrowR'):'')+'</button>' : '')+'</div>'+
     '<div class="stat-card"><div class="k">错题本</div><div class="v">'+bookCnt+'</div>'+
-      (bookCnt>0 ? '<button class="start-btn" id="startBook">开始学习 →</button>' : '')+'</div>'+
+      (bookCnt>0 ? '<button class="start-btn" id="startBook">开始学习 '+(window.Icons?Icons.svg('arrowR'):'')+'</button>' : '')+'</div>'+
     '</div>';
 
   /* 指标对比柱状图（累计练习 + 错题本） */
@@ -378,7 +380,7 @@ function renderStats(){
       '</div>';
     }).join('')+
     /* 标熟作为独立附加行（⊇ 已掌握，单独显示避免重叠） */
-    '<div class="donut-row extra" title="用户自选/自动标记的标熟（⊇ 已掌握）">'+
+    '<div class="donut-row extra" title="用户自选/自动标记的标熟（含已掌握）">'+
       '<span class="dot" style="background:#12924f"></span>'+
       '<span class="lbl">标熟</span>'+
       '<span class="cnt">'+Object.keys(mem.mastered||{}).length+'</span>'+
@@ -506,7 +508,7 @@ function renderWrongBook(body){
       '<div class="cn">'+esc(b.translation||'')+'</div>'+
       '<div class="wrong-detail">错点：'+mine+'</div>'+
     '</div>'+
-    '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">×</button></div>';
+    '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">'+(window.Icons?Icons.svg('close'):'')+'</button></div>';
   });
   html += '</div>';
   body.innerHTML = html;

@@ -130,6 +130,7 @@ textarea{outline:none;resize:vertical}
 .series-name{font-size:15px;font-weight:700}
 .series-count{font-size:12px;color:var(--faint);margin-left:6px;font-weight:400}
 .series-caret{margin-left:auto;color:var(--muted);font-size:20px;line-height:1;transition:transform .2s;font-weight:700}
+.series-caret .icon,.vol-caret .icon{display:block}
 .series.open .series-caret{transform:rotate(90deg)}
 .series-body{display:none;padding:0 15px 12px}
 .series.open .series-body{display:block}
@@ -237,7 +238,7 @@ textarea{outline:none;resize:vertical}
   <!-- 详解页 -->
   <div class="page hidden" id="pageExplain">
     <div class="page-head">
-      <button class="btn sm" id="explainBack">← 返回</button>
+      <button class="btn sm" id="explainBack"><span data-icon="arrowL"></span>返回</button>
       <h2><span data-icon="book"></span> 句子详解</h2>
       <span class="spacer"></span>
       <button class="btn sm" id="explainCopyPrompt" title="复制生成详解的 Prompt 到剪贴板"><span data-icon="copy"></span>复制 Prompt</button>
@@ -256,7 +257,7 @@ textarea{outline:none;resize:vertical}
       <div id="explainMsg" class="msg"></div>
       <div style="display:flex;gap:8px;margin-top:8px">
         <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
-        <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+        <button class="btn ghost" id="explainReset"><span data-icon="rotateCcw"></span>恢复页面值</button>
       </div>
     </div>
   </div>
@@ -777,7 +778,7 @@ function editDeck(d){
     '<span style="color:var(--faint)">'+d.items.length+' 句</span>'+
     (masterCount ? '<span class="pill" style="background:#e6f4ec;color:#12924f;border:1px solid #c3ead4">熟 '+masterCount+'</span>' : '')+
     '<span class="spacer"></span>'+
-    '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? '↺ 看全部' : '只看已标熟' )+'</button>'+
+    '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? (window.Icons?Icons.svg('rotateCcw'):'')+' 看全部' : '只看已标熟' )+'</button>'+
     (!d.builtin && pendingExplainCount ? '<button class="btn sm" id="editBatchExplain" title="为多条暂无讲解的句子生成 AI 讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量生成讲解</button>' : '')+ 
     '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>'+
     (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 导入更多句子</button>');
@@ -1316,7 +1317,7 @@ function doAppendValidate(){
   msg.innerHTML = '<b>'+(window.Icons?Icons.svg('check'):'')+' 入库成功</b>：追加 '+m.added+' 句（去重 '+m.dup+' 句）<br>'+
     '<span style="font-size:12.5px">题库「'+esc(deckRef.name)+'」现有 '+m.items.length+' 句</span>'+
     '<div style="display:flex;gap:8px;margin-top:10px">'+
-      '<button class="btn primary" id="appendGoPractice">▶ 去练习这批</button>'+
+      '<button class="btn primary" id="appendGoPractice">'+(window.Icons?Icons.svg('play'):'')+' 去练习这批</button>'+
       '<button class="btn" id="appendContinue">继续追加下一批</button>'+
     '</div>';
   $('appendGoPractice').onclick = function(){
@@ -1431,7 +1432,7 @@ function renderCourseTree(){
     head.className = 'series-head';
     head.innerHTML =
       '<div class="series-name">'+Library.esc(s.name)+'<span class="series-count">('+s.totalCount+'课)</span></div>'+
-      '<span class="series-caret">▸</span>';
+      '<span class="series-caret">'+(window.Icons?Icons.svg('chevR'):'')+'</span>';
     ser.appendChild(head);
     var body = document.createElement('div');
     body.className = 'series-body';
@@ -1446,7 +1447,7 @@ function renderCourseTree(){
       volEl.className = 'vol';
       var vh = document.createElement('div');
       vh.className = 'vol-head';
-      vh.innerHTML = '<span class="vol-caret">▸</span><span>'+Library.esc(vol.name)+'<span class="series-count">('+vol.courses.length+'课)</span></span>';
+      vh.innerHTML = '<span class="vol-caret">'+(window.Icons?Icons.svg('chevR'):'')+'</span><span>'+Library.esc(vol.name)+'<span class="series-count">('+vol.courses.length+'课)</span></span>';
       volEl.appendChild(vh);
       var vb = document.createElement('div');
       vb.className = 'vol-body';

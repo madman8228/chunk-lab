@@ -232,7 +232,7 @@
   function renderCourseList() {
     if (!dom.courseList) return;
     if (!state.courses.length) {
-      dom.courseList.innerHTML = '<div class="empty-course"><div class="empty-mark">✦</div><strong>还没有本地图文课程</strong><span>导入完整的课程 ZIP，开始建立你的课程库。</span></div>';
+      dom.courseList.innerHTML = '<div class="empty-course"><div class="empty-mark">' + (global.Icons ? global.Icons.svg('sparkle') : '') + '</div><strong>还没有本地图文课程</strong><span>导入完整的课程 ZIP，开始建立你的课程库。</span></div>';
       return;
     }
     dom.courseList.innerHTML = state.courses.map(function (course, index) {
@@ -240,7 +240,9 @@
       var nodeCount = course.story && course.story.nodes ? course.story.nodes.length : 0;
       var modules = courseModuleLabels(course).join(' · ');
       return '<button class="course-row" data-course-index="' + index + '">' +
-        '<span class="course-row-mark">' + (progress.completed ? '✓' : '✦') + '</span>' +
+        '<span class="course-row-mark">' + (progress.completed
+          ? (global.Icons ? global.Icons.svg('check') : '')
+          : (global.Icons ? global.Icons.svg('sparkle') : '')) + '</span>' +
         '<span class="course-row-main"><strong>' + esc(courseTitle(course)) + '</strong><small>' + esc(courseDescription(course)) + '</small></span>' +
         '<span class="course-row-meta"><b>' + esc(course.metadata.targetCefr || '—') + '</b><small>' + nodeCount + ' 个节点</small><small>' + esc(modules) + '</small></span>' +
         '</button>';
@@ -303,7 +305,7 @@
     var url = assetUrl(record, assetId);
     if (url) return { html: '<img src="' + esc(url) + '" alt="' + esc(localized(asset && asset.alt)) + '">', hasImage: true, assetMissing: false };
     return {
-      html: '<div class="image-placeholder"><span>🖼</span><small>课程包缺少图片：' + esc(asset ? (asset.fileName || asset.id) : assetId) + '<br>图片不影响学习，可继续练习</small></div>',
+      html: '<div class="image-placeholder"><span class="ph-ico">' + (global.Icons ? global.Icons.svg('image') : '') + '</span><small>课程包缺少图片：' + esc(asset ? (asset.fileName || asset.id) : assetId) + '<br>图片不影响学习，可继续练习</small></div>',
       hasImage: false,
       assetMissing: true
     };
@@ -361,14 +363,14 @@
     if (state.moduleStage === 'postAssessment' && modules.postAssessment) {
       var post = modules.postAssessment;
       var item = post.items.slice().sort(function (a, b) { return a.order - b.order; })[state.assessmentIndex];
-      if (!item) return '<div class="module-screen"><div class="end-mark">✓</div><div class="node-label">课后测试</div><h2>测试完成</h2><p class="node-copy">' + esc(localized(post.description)) + '</p><div class="node-actions"><button class="action-button primary" data-action="finish-course">完成课程</button></div></div>';
+      if (!item) return '<div class="module-screen"><div class="end-mark">' + (global.Icons ? global.Icons.svg('check') : '') + '</div><div class="node-label">课后测试</div><h2>测试完成</h2><p class="node-copy">' + esc(localized(post.description)) + '</p><div class="node-actions"><button class="action-button primary" data-action="finish-course">完成课程</button></div></div>';
       var html = '<div class="module-screen"><div class="node-label">课后测试 · ' + (state.assessmentIndex + 1) + '/' + post.items.length + '</div><h2>' + esc(localized(post.title)) + '</h2><p class="node-copy">' + esc(localized(item.prompt)) + '</p>';
       if (item.type === 'choice') html += '<div class="choice-list">' + item.choices.map(function (choice) { return '<button class="choice-option ' + (state.moduleAnswer === choice.id ? 'selected' : '') + '" data-assess-choice="' + esc(choice.id) + '"><span>' + esc(english(choice.text) || localized(choice.text)) + '</span><small>' + esc(localized(choice.text)) + '</small></button>'; }).join('') + '</div>';
       else html += '<div class="typing-box"><input id="moduleTyping" type="text" autocomplete="off" placeholder="输入你的英语答案…" value="' + esc(state.moduleAnswer) + '"></div>';
       if (state.moduleFeedback) html += '<div class="node-feedback ' + (state.moduleFeedback.kind || '') + '">' + esc(state.moduleFeedback.text) + '</div>';
       return html + '<div class="node-actions"><button class="action-button primary" data-action="submit-assessment">检查答案</button></div></div>';
     }
-    return '<div class="module-screen"><div class="end-mark">✓</div><div class="node-label">课程完成</div><h2>学习完成</h2><p class="node-copy">你已完成主课程和课后测试。</p><div class="node-actions"><button class="action-button primary" data-action="back-library">返回课程库</button><button class="action-button" data-action="restart">再学一次</button></div></div>';
+    return '<div class="module-screen"><div class="end-mark">' + (global.Icons ? global.Icons.svg('check') : '') + '</div><div class="node-label">课程完成</div><h2>学习完成</h2><p class="node-copy">你已完成主课程和课后测试。</p><div class="node-actions"><button class="action-button primary" data-action="back-library">返回课程库</button><button class="action-button" data-action="restart">再学一次</button></div></div>';
   }
 
   function bindModuleActions(course) {
@@ -395,7 +397,7 @@
     var nextAction = course.learningModules && course.learningModules.postAssessment
       ? '<button class="action-button primary" data-action="start-post-assessment">开始课后测试</button>'
       : '<button class="action-button primary" data-action="back-library">返回课程库</button>';
-    return '<div class="end-mark">✓</div><div class="node-label">课程节点完成</div><h2>' + esc(localized(ending && ending.label) || '完成') + '</h2>' +
+    return '<div class="end-mark">' + (global.Icons ? global.Icons.svg('check') : '') + '</div><div class="node-label">课程节点完成</div><h2>' + esc(localized(ending && ending.label) || '完成') + '</h2>' +
       '<p class="node-copy">' + esc(localized(ending && ending.description) || localized(endMessage)) + '</p>' +
       '<div class="node-actions">' + nextAction + '<button class="action-button" data-action="restart">再学一次</button></div>';
   }
@@ -494,8 +496,10 @@
   }
 
   function getAvatar(label) {
-    if (!label) return '👤';
-    if (label === '你') return '🎓';
+    /* 角色头像：无 label 的 NPC → user 图标；「你」（学习者）→ grad 图标（宪法：UI 禁用字符 icon）。
+       有名字的角色仍用首字/首字母（那是文本缩写，不是字符 icon） */
+    if (!label) return global.Icons ? global.Icons.svg('user') : '';
+    if (label === '你') return global.Icons ? global.Icons.svg('grad') : '';
     var first = label.charAt(0);
     return /[\u4e00-\u9fa5]/.test(first) ? first : first.toUpperCase();
   }
@@ -879,10 +883,15 @@
     /** 刷新课程列表（供外部调用） */
     refreshList: function () { readStoredCourses(); renderCourseList(); }
   };
-  /* 启动：先完成 IndexedDB 预载（courses/progress 内存桥），再渲染列表 */
+  /* 启动：先完成 IndexedDB 预载（courses/progress 内存桥），再渲染列表。
+     Icons.install()：把静态 data-icon 元素替换为内联 SVG（宪法：UI 禁用字符 icon）。
+     courses.html 已引 js/icons.js；decks.html 复用本文件时也已引，重复 install 无害 */
   document.addEventListener('DOMContentLoaded', function () {
     var cl = window.CL;
-    var start = function () { boot(); };
+    var start = function () {
+      if (global.Icons && global.Icons.install) global.Icons.install();
+      boot();
+    };
     if (cl && cl.preload) { cl.preload().then(start); } else { start(); }
   });
 })(window);

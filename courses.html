@@ -140,13 +140,22 @@ button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.
   .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
   .icon-spin{animation:iconSpin 1.2s linear infinite}
   @keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  /* SVG 图标尺寸适配（宪法：UI 禁用字符 icon，容器原是字符字号，需给 svg 显式尺寸居中） */
+  .course-row-mark .icon{width:15px;height:15px}
+  .empty-mark .icon{width:32px;height:32px;display:block;margin:0 auto}
+  .end-mark .icon{width:24px;height:24px}
+  .bubble-avatar .icon{width:15px;height:15px}
+  .image-placeholder .ph-ico{display:block;margin:0 auto 10px}
+  .image-placeholder .ph-ico .icon{width:46px;height:46px;color:#a8c0f5}
+  .back .icon{width:20px;height:20px;display:block}
+  .btn-restart .icon{width:14px;height:14px;vertical-align:-2px;margin-right:3px}
 </style>
 </head>
 <body>
 <main class="shell">
   <section id="coursePlayer" class="hidden">
     <header class="player-head">
-      <button class="back" id="playerBack" title="返回课程库">←</button>
+      <button class="back" id="playerBack" title="返回课程库"><span data-icon="arrowL"></span></button>
       <div class="player-head-main">
         <div class="player-head-title">
           <h1 id="playerTitle"></h1>
@@ -158,7 +167,7 @@ button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.
       <div class="player-head-progress">
         <span class="progress-label">完成 <span id="playerCount">0</span> / <span id="playerTotal">0</span></span>
         <div class="progress-track"><i id="playerProgress"></i></div>
-        <button class="btn-restart" id="btnRestart">↻ 重新开始</button>
+        <button class="btn-restart" id="btnRestart"><span data-icon="rotateCw"></span>重新开始</button>
       </div>
     </header>
     <div class="course-stage">
@@ -174,6 +183,7 @@ button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.
 <script src="api.js"></script>
 <script src="auth-ui.js"></script>
 <script src="library.js"></script>
+<script src="js/icons.js"></script>
 <script src="course-package.js"></script>
 </body>
 </html>

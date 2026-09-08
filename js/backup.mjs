@@ -98,7 +98,7 @@ export function parseExport(text) {
     '· 统计 ' + Object.keys((dMem.stats || {}).bySentence || {}).length + ' 句\n' +
     '· 错题本 ' + dBook.length + ' 条\n' +
     (dCourses.length ? '· 图文课程 ' + dCourses.length + ' 个\n' : '') +
-    '· 设置 ✓\n\n此操作将<b style="color:var(--bad)">覆盖</b>现有所有本地数据，确定继续吗？';
+    '· 设置 已含\n\n此操作将<b style="color:var(--bad)">覆盖</b>现有所有本地数据，确定继续吗？';
   return {
     ok: true,
     data: { mem: dMem, book: dBook, courses: dCourses, courseProgress: dCourseProgress, summary: summary }

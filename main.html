@@ -306,11 +306,15 @@ input,textarea,select{font:inherit;color:inherit}
 #stageChoices{display:none;position:fixed;left:50%;bottom:32px;transform:translateX(-50%);
   z-index:55;width:min(92vw,760px);flex-wrap:wrap;justify-content:center;gap:10px;max-width:92vw}
 #stageChoices:has(.choice){display:flex}
-/* 全部答完：chips 半透明 + 显示"已答完"角标（distractors 仍可见允许自由试错） */
+/* 全部答完：chips 半透明 + 显示"已答完"角标（distractors 仍可见允许自由试错）。
+   角标由 JS 注入 span.done-badge（内含 SVG check icon，宪法：UI 禁用字符 icon），
+   不用 CSS content 字符 ✓ */
 #stageChoices.done{opacity:.55}
-#stageChoices.done::after{content:"✓ 已答完";position:absolute;top:-22px;left:50%;transform:translateX(-50%);
-  font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:999px;
-  padding:2px 10px;letter-spacing:.02em}
+#stageChoices.done .done-badge{display:flex}
+.done-badge{display:none;position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+  align-items:center;gap:3px;font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:999px;
+  padding:2px 10px;letter-spacing:.02em;white-space:nowrap}
+.done-badge .icon{width:11px;height:11px}
 .choice{
   position:relative;min-height:42px;border:1px solid rgba(145,135,121,.48);border-radius:999px;
   padding:9px 19px 10px;font-size:15px;font-weight:600;text-align:left;cursor:pointer;letter-spacing:.005em;
@@ -893,7 +897,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <span class="spacer"></span>
       <button class="stage-master" id="btnMaster" title="标记为已掌握（自选，未参与考试）" data-state="manual">熟</button>
       <button class="btn sm hidden" id="btnExplain">详解</button>
-      <button class="btn sm primary hidden" id="btnNext">下一题 ↵</button>
+      <button class="btn sm primary hidden" id="btnNext">下一题</button>
     </div>
   </div>
 
@@ -941,7 +945,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
             <div id="explainMsg" class="msg"></div>
             <div style="display:flex;gap:8px;margin-top:8px">
               <button class="btn primary" id="explainApply"><span data-icon="check"></span>校验并保存</button>
-              <button class="btn ghost" id="explainReset">↺ 恢复页面值</button>
+              <button class="btn ghost" id="explainReset"><span data-icon="rotateCcw"></span>恢复页面值</button>
             </div>
           </div>
         </details>
@@ -1079,8 +1083,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <span id="resumeInfo"></span>
       </p>
       <div style="display:flex;gap:10px">
-        <button class="btn primary" id="btnResume" style="flex:1">▶ 继续上次</button>
-        <button class="btn" id="btnRestart" style="flex:1">↺ 重新开始</button>
+        <button class="btn primary" id="btnResume" style="flex:1"><span data-icon="play"></span>继续上次</button>
+        <button class="btn" id="btnRestart" style="flex:1"><span data-icon="rotateCcw"></span>重新开始</button>
       </div>
     </div>
   </div>
@@ -1146,7 +1150,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <!-- 大模型 API 配置已停用（2026-09-06：先禁联网 AI 生成）。后续开放 = 移除本行 display:none。 -->
       <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:none">
         <div id="aiCfgHead" style="display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none">
-          <span id="aiCfgCaret" style="font-size:11px;color:var(--faint);transition:transform .2s">▶</span>
+          <span id="aiCfgCaret" style="font-size:11px;color:var(--faint);transition:transform .2s;display:inline-block"><span data-icon="chevR"></span></span>
           <div style="font-size:13px;font-weight:700">大模型 API 配置</div>
           <span style="font-size:11.5px;color:var(--faint);font-weight:400" id="aiCfgStatus"></span>
         </div>
@@ -1167,7 +1171,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 
       <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
         <div id="backupHead" style="display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none">
-          <span id="backupCaret" style="font-size:11px;color:var(--faint);transition:transform .2s">▶</span>
+          <span id="backupCaret" style="font-size:11px;color:var(--faint);transition:transform .2s;display:inline-block"><span data-icon="chevR"></span></span>
           <div style="font-size:13px;font-weight:700">数据备份</div>
           <span style="font-size:11.5px;color:var(--faint);font-weight:400">导出/恢复全部本地数据</span>
         </div>
@@ -2108,10 +2112,23 @@ function renderActiveChoices(){
     var v = pool.corrects[k];
     html += '<button class="choice" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
   }
-  /* 全部答完时给容器加 done 类（CSS 半透明 + 视觉提示） */
+  /* 全部答完时给容器加 done 类（CSS 半透明）+ 注入 SVG 角标（宪法：UI 禁用字符 icon）。
+     顺序：先 box.innerHTML = html 再注入 badge（否则被 html 覆盖清掉） */
   var allOk = S.status && S.status.length === it.chunks.length && S.status.every(function(s){ return s === 'ok'; });
   box.classList.toggle('done', !!allOk);
   box.innerHTML = html;
+  if(allOk){
+    var badge = box.querySelector('.done-badge');
+    if(!badge){
+      badge = document.createElement('span');
+      badge.className = 'done-badge';
+      box.appendChild(badge);
+    }
+    badge.innerHTML = (window.Icons ? Icons.svg('check') : '') + '已答完';
+  } else {
+    var oldBadge = box.querySelector('.done-badge');
+    if(oldBadge) oldBadge.remove();
+  }
 }
 
 /* 在 chunk 内显示答题结果（ok/bad/revealed）。bad 且 picked 不是正确答案时同时显示错选 + 正确 */
@@ -2494,7 +2511,7 @@ function finishSentence(){
     }
     var nb = $('btnNext');
     nb.classList.remove('hidden');
-    nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果 ↵' : '下一题 ↵';
+    nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果' : '下一题';
     nb.focus();
     /* 即使有错误，句子已完成，仍展示结构分析面板 */
     clearTimeout(_anaTimer);
@@ -2671,10 +2688,10 @@ function stopAutoNext(){
     document.removeEventListener('pointerdown', onAutoNextUserCancel, true);
     _autoNextBound = false;
   }
-  /* 恢复按钮静态文案（含 ↵ 提示） */
+  /* 恢复按钮静态文案（回车快捷仍全局生效，无需 ↵ 装饰） */
   var nb = $('btnNext');
   if(nb && !nb.classList.contains('hidden')){
-    nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果 ↵' : '下一题 ↵';
+    nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果' : '下一题';
   }
 }
 function onAutoNextUserCancel(ev){
@@ -2768,7 +2785,7 @@ function renderAnalysis(it){
   /* 显示"下一题"按钮 + 启动自动倒计时 */
   var nb = $('btnNext');
   nb.classList.remove('hidden');
-  nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果 ↵' : '下一题 ↵';
+  nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果' : '下一题';
   nb.focus();
   startAutoNext();
 }
@@ -2927,7 +2944,7 @@ function finishSession(){
         : S.deck.items.length;
       if(!S.deck.builtin || hidden <= 0) return '';
       return '<div class="review" style="margin-top:12px;padding:12px 14px;border-radius:10px;background:#fff8ee;border:1px solid #f6e0bf">'+
-               '<div style="color:#b45309;font-weight:700">⚠ 还有 '+hidden+' 句被你标记隐藏（原 '+origTotal+' 题）</div>'+
+               '<div style="color:#b45309;font-weight:700;display:flex;align-items:center;gap:5px">'+ (window.Icons?Icons.svg('warn'):'') +'还有 '+hidden+' 句被你标记隐藏（原 '+origTotal+' 题）</div>'+
                '<div style="color:#92400e;font-size:12.5px;margin-top:4px">这些句子在题库管理页被你删除过；现在 deck 只剩 '+S.items.length+' 题，练完就「通关」——实际还有 '+hidden+' 句还没碰过。</div>'+
                '<div style="margin-top:8px"><button class="btn sm" id="btnRestoreInline" style="background:var(--ok);color:#fff;border-color:var(--ok)">一键恢复全部 '+hidden+' 句</button></div>'+
              '</div>';
@@ -3495,7 +3512,7 @@ function commitImport(items, name){
   okMsg.className = 'msg ok show';
   okMsg.innerHTML = '<b>'+(window.Icons?Icons.svg('check'):'')+' 入库成功</b>：新建「'+esc(deck.name)+'」· '+items.length+' 句'+
     '<div style="display:flex;gap:8px;margin-top:10px">'+
-      '<button class="btn primary" id="impGoPractice">▶ 去练习</button>'+
+      '<button class="btn primary" id="impGoPractice">'+(window.Icons?Icons.svg('play'):'')+' 去练习</button>'+
       '<button class="btn" id="impContinue">'+(window.Icons?Icons.svg('edit'):'')+' 继续追加下一批</button>'+
     '</div>'+
     '<div style="font-size:12px;color:var(--faint);margin-top:8px">想要更多句子？点「继续追加」可在当前弹窗接力（自动去重）</div>';
@@ -3560,7 +3577,7 @@ function openImport(deck){
   _appendDeck = deck || null;
   /* 追加模式：使用带分类+Prompt的弹窗 */
   if(deck){
-    $('appendDeckName').textContent = '→ '+deck.name+'（'+deck.items.length+' 句）';
+    $('appendDeckName').innerHTML = (window.Icons ? Icons.svg('arrowR')+' '+esc(deck.name)+'（'+deck.items.length+' 句）' : esc(deck.name)+'（'+deck.items.length+' 句）');
     $('appendJsonBox').value = '';
     $('appendMsg').className = 'msg'; $('appendMsg').textContent = '';
     /* 渲染分类卡片到追加弹窗 */
