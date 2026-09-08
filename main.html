@@ -233,14 +233,6 @@ input,textarea,select{font:inherit;color:inherit}
 .pop-info-row .val{font-weight:700;font-size:11.5px;line-height:1.25;font-variant-numeric:tabular-nums;text-align:right}
 .pop-info-row .val.warn{color:#d97706}
 .pop-info-row .val.good{color:var(--ok)}
-.pop-info-empty{
-  color:var(--muted);font-size:11.5px;text-align:center;
-  padding:4px 0 2px;line-height:1.35;
-}
-.pop-info-hint{
-  margin-top:4px;padding-top:3px;border-top:1px dashed var(--border);
-  font-size:10.5px;color:var(--faint);text-align:center;line-height:1.25;
-}
 
 /* 移动端：popover 改在圆环正下方居中（用 left:50% + transform），
    避免右侧导致屏幕左溢出；位置由 JS 算 viewport 坐标，CSS 只约束 max-width */
@@ -900,7 +892,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="stage-foot">
       <span class="spacer"></span>
       <button class="stage-master" id="btnMaster" title="标记为已掌握（自选，未参与考试）" data-state="manual">熟</button>
-      <button class="btn sm hidden" id="btnExplain" title="查看本句详解">详解</button>
+      <button class="btn sm hidden" id="btnExplain">详解</button>
       <button class="btn sm primary hidden" id="btnNext">下一题 ↵</button>
     </div>
   </div>
@@ -1922,12 +1914,10 @@ function updateRing(){
 }
 
 /* ===== 圆环 popover 系统 ===== */
-/* 构建结构化进度行：练习次数 / 正确率 / 答错 / 最佳连对 */
+/* 构建结构化进度行：练习次数 / 正确率 / 答错 / 最佳连对。
+   注：times===0 时 ringWrap 必为 hidden（updateRing 是唯一 toggle 点），
+   popover 无法被打开 → 原"还没练过/点圆环关闭"空态分支是死代码，已删 */
 function buildProgressRows(st, times, acc){
-  if(times === 0){
-    return '<div class="pop-info-empty">还没练过此句</div>' +
-           '<div class="pop-info-hint">点圆环关闭 · 答完一句开始累计</div>';
-  }
   var wrongTimes = (st && st.wrongTimes) || 0;
   var maxStreak = (st && st.maxStreak) || 0;
   var rows = '';
@@ -1951,8 +1941,15 @@ function updateProgressPop(){
     st = (mem.stats && mem.stats.bySentence) ? mem.stats.bySentence[key] : null;
   }
   var times = (st && st.times) || 0;
-  var acc = times ? Math.round(st.okTimes / times * 100) : 0;
-  var perfect = times > 0 && acc === 100;
+  /* times===0 → ringWrap 处于 hidden（updateRing 唯一 toggle 点），
+     用户看不到也点不到圆环，popover 无从打开 → 无需渲染任何内容。
+     空态提示文案（含 onboarding hint）随死代码分支一并删除 */
+  if(times === 0){
+    pop.innerHTML = '';
+    return;
+  }
+  var acc = Math.round(st.okTimes / times * 100);
+  var perfect = acc === 100;
   var badge = perfect ? '<span class="badge">已掌握</span>' : '';
   pop.innerHTML = '<div class="pop-info-title">本句进度' + badge + '</div>' + buildProgressRows(st, times, acc);
 }
@@ -2973,7 +2970,7 @@ function finishSession(){
             `<button class="btn" id="btnWrongOnly"`+(S.wrong.length?'':' disabled')+'>只练错题 ('+S.wrong.length+')</button>'+
             `<button class="btn" id="btnOtherDeck">换个题库</button>`+
             (needReinforce ?
-              `<button class="btn-export" id="btnExportJSON" style="margin-left:8px" title="导出巩固清单">${window.Icons?Icons.svg('import'):''}导出巩固清单</button>`
+              `<button class="btn-export" id="btnExportJSON" style="margin-left:8px">${window.Icons?Icons.svg('import'):''}导出巩固清单</button>`
               : ''
             )+
             `<span class="spacer"></span>`+

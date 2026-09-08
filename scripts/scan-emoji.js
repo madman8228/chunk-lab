@@ -10,8 +10,16 @@ const ROOT = path.resolve(__dirname, '..');
 const EXCLUDE = new Set(['node_modules', 'output', '.git', '.workbuddy']);
 const TARGETS = ['.html', '.js', '.mjs'];
 
-/* 匹配 emoji 与常见装饰符号（ZWJ / variation selector 自动聚合） */
-const EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2700}-\u{27BF}\u{2300}-\u{23FF}\u{1F100}-\u{1F1FF}\u{1F200}-\u{1F2FF}](\u{FE0F}|\u{200D}[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]|\u{1F3FB}-\u{1F3FF})?/gu;
+/* 匹配 emoji 与常见装饰符号（ZWJ / variation selector 自动聚合）。
+   覆盖区段说明：
+   - 1F300-1FAFF / 1F100-1F2FF：emoji 主区 + 扩展
+   - 2600-27BF：杂项符号 + 装饰符（含 ★ ✓ ✗ ⚠ ✦ 等）
+   - 2300-23FF：Misc Technical（⏱ ⏎ 等）
+   - 2190-21FF：箭头（← → ↻ ↺ 等，曾被用作按钮字符 icon）
+   - 2200-22FF：数学运算符（⊇ ∈ 等，曾被用作文字说明里的符号）
+   - 00D7 / 00F7：× ÷（曾被用作删除按钮字符 icon）
+   不含 · — 等纯文本标点分隔符（非 icon 用法，避免误报） */
+const EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2300}-\u{23FF}\u{2190}-\u{21FF}\u{2200}-\u{22FF}\u{1F100}-\u{1F1FF}\u{1F200}-\u{1F2FF}\u{00D7}\u{00F7}](\u{FE0F}|\u{200D}[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]|\u{1F3FB}-\u{1F3FF})?/gu;
 
 function walk(dir, out) {
   fs.readdirSync(dir).forEach(function (name) {
