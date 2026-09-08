@@ -343,7 +343,14 @@ var _statsFilter = 'all';
 function renderStats(){
   if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   var by = mem.stats.bySentence || {};
-  var keys = Object.keys(by);
+  /* ★ 关键：keys 也要按 deletedItems 过滤，否则 deleted 句的 stats 仍计入 KPI/圆环 4 档，
+     跟 sentence list（已过滤）数据源不同，造成 KPI 说 8 master / 圆环多 1 段 / list 只 7 master */
+  var keys = Object.keys(by).filter(function(k){
+    var sep = k.indexOf('#');
+    var dId = sep > 0 ? k.substring(0, sep) : '';
+    var cid = sep > 0 ? k.substring(sep + 1) : '';
+    return !CL.isItemDeleted(mem, dId, { cid: cid });
+  });
 
   /* 统计卡：桌面保留 5 项，移动端隐藏完成轮次以压缩为 4 项 */
   var masteredCnt = keys.filter(function(k){ return classifyStat(by[k])==='master'; }).length;
@@ -633,55 +640,100 @@ function bindMasteryPop(){
 
 function renderSentenceList(body){
   var by = mem.stats.bySentence || {};
-  var rows = Object.keys(by).map(function(k){ return by[k]; });
-  /* ★ 关键修复：合并 mem.mastered 中"只标熟未练过"的句子。
-     之前只遍历 bySentence，导致直接标熟从未练过的句子不会出现在「已熟」标签里 */
+  var rows = [];
+
+  /* ★ 关键修复（v2）：rows 从「bySentence + mastered」改为「allDecks() 全集」（已过滤 deletedItems）。
+     旧版只有"已练过 + 标熟"两类，导致：
+       1. 「未练过」tab 永远为空——classifyStat 返回 'unseen' 的条件是 times===0，但 rows 压根没装这些条目
+       2. 「全部」tab 也只显示已练过的，不符合字面意思
+     圆环大字"60 / 339 句" 用的是 seg.unseen = totalInDecks - keys.length（基于 allDecks() 全集），
+     跟 sentence list 不同源 → 用户看到圆环说"未练过 279"但 tab 空白，体感像 bug。 */
+  var decks = allDecks();
+  var seen = {};
+  decks.forEach(function(d){
+    var dId = d.id;
+    (d.items || []).forEach(function(it){
+      if(CL.isItemDeleted(mem, dId, it)) return;
+      var cid = it.cid || CL.fnv8(it.sentence || '');
+      var key = dId + '#' + cid;
+      if(seen[key]) return;          /* deck 内同 cid 重复句去重 */
+      seen[key] = true;
+      var st = by[key];
+      if(st && st.times){
+        /* 已练过：用 stats 数据（spread 防 mutate）+ 叠加 item 的 translation */
+        rows.push(Object.assign({}, st, { translation: it.translation || '' }));
+      } else {
+        /* 未练过：构造伪 stat，classifyStat 会返回 'unseen' */
+        rows.push({
+          deckId: dId,
+          sentence: it.sentence || '',
+          translation: it.translation || '',
+          times: 0, okTimes: 0, wrongTimes: 0, streak: 0, maxStreak: 0,
+          lastAt: 0, interval: 1, ease: 2.5, dueAt: 0,
+          _masteredOnly: !!(mem.mastered && mem.mastered[key])
+        });
+      }
+    });
+  });
+
+  /* mem.mastered 中"只标熟未练过"的句子（item 已不在 decks）：仍要显示在「已熟」tab
+     ★ 但 deletedItems 标删的 item 不能从 mastered 复活（用户已经删除） */
   if(mem.mastered){
     Object.keys(mem.mastered).forEach(function(key){
-      if(by[key]) return; /* 已在 bySentence 里（练过又标熟）——用 stats 行 */
+      if(seen[key]) return;
       var m = mem.mastered[key];
       var sep = key.indexOf('#');
       var dId = sep > 0 ? key.substring(0, sep) : '';
-      rows.push({ deckId:dId, sentence:m.sentence||'', translation:'', times:0, okTimes:0, wrongTimes:0, streak:0, maxStreak:0, lastAt:m.markedAt||0, interval:1, ease:2.5, dueAt:0, _masteredOnly:true });
+      var cid = sep > 0 ? key.substring(sep + 1) : '';
+      if(CL.isItemDeleted(mem, dId, { cid: cid })) return;  /* 已被删 → 跳过 */
+      seen[key] = true;
+      rows.push({
+        deckId: dId, sentence: m.sentence || '', translation: '',
+        times: 0, okTimes: 0, wrongTimes: 0, streak: 0, maxStreak: 0,
+        lastAt: m.markedAt || 0, interval: 1, ease: 2.5, dueAt: 0,
+        _masteredOnly: true
+      });
     });
   }
-  rows.sort(function(a,b){ return (b.lastAt||0)-(a.lastAt||0); });
 
-  var seen = {};
+  /* 给每个 row 算 _practiceState（master/learn/weak/unseen），filter 统一判断 */
+  rows.forEach(function(r){ r._practiceState = classifyStat(r); });
+
+  /* 排序：先按状态优先级（master > learn > weak > unseen），再按 lastAt desc；
+     unseen 桶内按 deckId + sentence 字典序（首次接触顺序无意义，给个稳定排序即可） */
+  var stateOrder = { master: 0, learn: 1, weak: 2, unseen: 3 };
+  rows.sort(function(a, b){
+    var sa = stateOrder[a._practiceState]; if(sa === undefined) sa = 99;
+    var sb = stateOrder[b._practiceState]; if(sb === undefined) sb = 99;
+    if(sa !== sb) return sa - sb;
+    if(a._practiceState === 'unseen') return (a.deckId + '\u0001' + a.sentence).localeCompare(b.deckId + '\u0001' + b.sentence);
+    return (b.lastAt || 0) - (a.lastAt || 0);
+  });
+
   var out = rows.filter(function(s){
-    if(_statsFilter !== 'all'){
-      if(_statsFilter === 'mastered'){
-        /* _masteredOnly：来自 mem.mastered 的记录本身即已标熟，直接放行
-           （即使原题库已被删除/句子已不在 items 中，也应显示） */
-        if(s._masteredOnly) return true;
-        var _dk = findDeck(s.deckId);
-        var _it = _dk && (_dk.items || []).find(function(x){ return x.sentence === s.sentence; });
-        var _isMarked = !!(_it && isMarkedForDeck(s.deckId, _it));
-        if(classifyStat(s) !== 'master' && !_isMarked) return false;
-      } else if(classifyStat(s) !== _statsFilter) {
-        return false;
-      }
+    /* 只标熟未练过的句子（_masteredOnly=true）只出现在「已熟」tab，不出现在其它 tab */
+    if(_statsFilter === 'all') return true;
+    if(_statsFilter === 'mastered'){
+      return s._masteredOnly || s._practiceState === 'master';
     }
-    var k = (s.deckId||'') + '#' + (s.sentence||'').toLowerCase();
-    if(seen[k]) return false;
-    seen[k] = true;
-    return true;
+    if(s._masteredOnly) return false;
+    return s._practiceState === _statsFilter;
   });
   if(!out.length){
     body.innerHTML = '<div class="empty-tip">'+
-      (_statsFilter==='all' ? '还没有练习记录，先去练几题吧' : '没有符合条件的句子')+'</div>';
+      (rows.length === 0 ? '题库里还没有任何句子，去练习页导入或启用内置题库吧' :
+       _statsFilter==='all' ? '还没有练习记录，先去练几题吧' :
+       '没有符合条件的句子')+'</div>';
     return;
   }
   var html = '<div class="stats-list">';
   out.forEach(function(s, idx){
-    var cls = classifyStat(s);
     var badgeHtml =
       s._masteredOnly ? '<span class="badge master">已标记</span>' :
-      cls==='master' ? '<span class="badge master">熟练</span>' :
-      cls==='weak'   ? '<span class="badge weak">需巩固</span>' :
-      cls==='learn'  ? '<span class="badge learn">学习中</span>' :
-                       '<span class="badge new">未练过</span>';
-    var acc = s.times ? Math.round(s.okTimes/s.times*100) : 0;
+      s._practiceState==='master' ? '<span class="badge master">熟练</span>' :
+      s._practiceState==='weak'   ? '<span class="badge weak">需巩固</span>' :
+      s._practiceState==='learn'  ? '<span class="badge learn">学习中</span>' :
+                                    '<span class="badge new">未练过</span>';
     var tStr = s.lastAt ? timeAgo(s.lastAt) : '—';
     html += '<div class="srow stats-detail-row"><span class="row-num">#'+(idx+1)+'</span><div class="sen">'+
       '<div class="en">'+esc(s.sentence)+'</div>'+
