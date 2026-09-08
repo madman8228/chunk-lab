@@ -47,6 +47,18 @@ window.BUILTIN = [
         "explanations": [
           "\"How is your weekend?\" 问的是\"现在怎么样\"，但周末已经过去了，要用过去式 **was**。",
           "这里特指\"你刚过去的那个周末\"，所以用 **your**。如果说\"周末通常怎么样？\"才用 \"the weekend\" 或 \"weekends\"。"
+        ],
+        "distractors": [
+          [
+            "How is",
+            "How were",
+            "How has"
+          ],
+          [
+            "you weekend?",
+            "your weekends?",
+            "the weekend?"
+          ]
         ]
       },
       {
@@ -101,6 +113,23 @@ window.BUILTIN = [
           "**be going to** 表示\"计划、打算做某事\"。常见错误：\n• \"I will going\" → will 后面不能加 ing\n• \"I go to meet\" → 缺少 be going to 结构，语气也不够自然",
           "**meet** 是原形动词，因为前面有 \"going to\" 搭配。不要写成 \"meeting\"（那需要 am going to meeting，重复了）。",
           "**for + 名词** 表示目的。这里 for lunch = 为了吃午餐。不要用 \"to lunch\"（to 后面要接动词原形）。"
+        ],
+        "distractors": [
+          [
+            "I going to",
+            "I'm go to",
+            "I'm going for"
+          ],
+          [
+            "meet the friend",
+            "meet friend",
+            "meets a friend"
+          ],
+          [
+            "for the lunch.",
+            "to lunch.",
+            "at lunch."
+          ]
         ]
       },
       {
@@ -157,6 +186,23 @@ window.BUILTIN = [
           "**Could you tell me...** 是委婉的请求句型。常见错误：\n• \"Could you **say** me\" → say 后面不直接接人，要用 tell\n• \"Can you tell me\" → 也可以，但 Could 更礼貌",
           "**how to get** 是\"疑问词 + 不定式\"结构，作 tell 的宾语。不要写成 \"how can I get\"（那是宾语从句，语法上也可以但不定式更简洁）。",
           "**to the station** 中 **the** 不能省略——说话双方都知道指的是哪个车站（特指）。"
+        ],
+        "distractors": [
+          [
+            "Could you told me",
+            "Could your tell me",
+            "Could you to tell me"
+          ],
+          [
+            "how getting",
+            "how get",
+            "what to get"
+          ],
+          [
+            "at the station?",
+            "to station?",
+            "to the stations?"
+          ]
         ]
       },
       {
@@ -198,6 +244,18 @@ window.BUILTIN = [
         "explanations": [
           "**现在完成时**（have/has + 过去分词）表示\"从过去持续到现在的状态\"。常见错误：\n• \"I **didn't** see you\" → 一般过去时只强调过去，不含\"到现在\"的意思\n• \"I **don't** see you\" → 一般现在时表示习惯，不符合\"好久不见\"",
           "**for + 时间段** 表示持续了多久。常见错误：\n• \"**since** ages\" → since 后接时间点（如 since 2020），不是时间段\n• \"for **age**\" → ages 用复数，表示\"许多年、很久\""
+        ],
+        "distractors": [
+          [
+            "I haven't saw you",
+            "I haven't see you",
+            "I hasn't seen you"
+          ],
+          [
+            "for age.",
+            "since ages.",
+            "for the ages."
+          ]
         ]
       },
       {
@@ -251,6 +309,23 @@ window.BUILTIN = [
           "这里 **Sorry** 是独立的礼貌用语，后面用逗号隔开。也可以说 \"Excuse me\" 或 \"Pardon\"。",
           "**一般过去时的否定**：didn't + 动词原形。常见错误：\n• \"I **don't** catch\" → 时态错了，事情已经发生\n• \"I didn't **caught**\" → caught 是过去分词，didn't 后面要用原形 catch",
           "**catch 后面的宾语从句用陈述语序**（主语 + 谓语），不是疑问语序。常见错误：\n• \"what **did you** say\" → 这是直接疑问句的语序，从句里要还原成 \"you said\""
+        ],
+        "distractors": [
+          [
+            "Sory,",
+            "Sorrys,",
+            "Sorry for,"
+          ],
+          [
+            "I don't catch",
+            "I didn't caught",
+            "I didn't catches"
+          ],
+          [
+            "what did you say.",
+            "that you said.",
+            "what you say."
+          ]
         ]
       },
       {
@@ -292,6 +367,17 @@ window.BUILTIN = [
         "explanations": [
           "**Let's = Let us**，表示建议或邀请。常见错误：\n• 写成 **Let us** → 太正式，口语用 Let's\n• **grab** 在这里不是'抓'，是口语化的'去吃/去喝'",
           "**work** 作'上班'讲时是不可数名词，不加 the。常见错误：\n• after **the** work → 错误\n• after **working** → 语法正确但 after work 更简洁常用"
+        ],
+        "distractors": [
+          [
+            "Let's grab coffee",
+            "Let's grab the coffee"
+          ],
+          [
+            "after the work.",
+            "before work.",
+            "after works."
+          ]
         ]
       },
       {
@@ -334,6 +420,17 @@ window.BUILTIN = [
         "explanations": [
           "**It looks like...** 表示「看起来好像……」。常见错误：\n• \"It **look** like\" → 第三人称单数要加 s\n• \"It **seems** like\" → 也可以，但 seems 更正式",
           "**be going to** 表示基于现有迹象的预测（看到乌云→要下雨）。与 **will** 的区别：will 是主观判断，be going to 是有客观依据的预测。"
+        ],
+        "distractors": [
+          [
+            "It look like",
+            "It looked like",
+            "It looks as"
+          ],
+          [
+            "it going to rain.",
+            "it's going to raining."
+          ]
         ]
       },
       {
@@ -388,6 +485,23 @@ window.BUILTIN = [
           "**Do you mind...?** 是礼貌地询问对方是否介意。注意：回答时 **No** 表示「不介意（可以开）」，**Yes** 表示「介意（别开）」，和中文直觉相反！",
           "**if 从句用一般现在时表将来**。常见错误：\n• \"if I **opened**\" → if 从句不用过去时\n• \"if I **opening**\" → 缺少主语和谓语结构",
           "**the window** 特指当前这扇窗。如果泛指任何窗户可以说 \"a window\" 或 \"windows\"。"
+        ],
+        "distractors": [
+          [
+            "Do you minds",
+            "Are you mind",
+            "Do you minding"
+          ],
+          [
+            "if I will open",
+            "if I opening",
+            "if I opens"
+          ],
+          [
+            "window?",
+            "the windows?",
+            "the door?"
+          ]
         ]
       },
       {
@@ -432,6 +546,18 @@ window.BUILTIN = [
         "explanations": [
           "**'ll = will**，表示将来。常见错误：\n• \"I **give** you a call\" → 缺少将来时态标记\n• \"I **would** give\" → would 是虚拟语气，这里不需要",
           "**时间状语从句用一般现在时表将来**（主将从现原则）。常见错误：\n• \"when I **will** get\" → when/if 引导的从句不用 will\n• \"when I **got** home\" → 过去时与主句将来时矛盾\n• **home** 在这里是副词，前面不加 to（get home = 到家）"
+        ],
+        "distractors": [
+          [
+            "I'll give you the call",
+            "I give you a call",
+            "I'll gives you a call"
+          ],
+          [
+            "when I will get home.",
+            "when I got home.",
+            "when I get to home."
+          ]
         ]
       },
       {
@@ -484,6 +610,23 @@ window.BUILTIN = [
           "**Thank / Thanks + for + doing** 是固定搭配。常见错误：\n• \"Thank you **to** help\" → to 不对，要用 for\n• \"Thanks **you**\" → Thanks 已经包含「你」的意思，不需要再加 you",
           "**help sb out** = 帮某人摆脱困境/解围。out 在这里表示「从困境中出来」。如果只说 \"helping me\" 也可以，但少了「解围」这层含义。",
           "**yesterday** 是过去时间副词，放在句末或句首都可以。注意：yesterday 不能和现在完成时连用（不能说 \"I have seen him yesterday\"）。"
+        ],
+        "distractors": [
+          [
+            "Thanks to",
+            "Thank for",
+            "Thanks about"
+          ],
+          [
+            "help me out",
+            "helped me out",
+            "helping I out"
+          ],
+          [
+            "tomorrow.",
+            "the yesterday.",
+            "yesterdays."
+          ]
         ]
       },
       {
@@ -525,6 +668,18 @@ window.BUILTIN = [
         "explanations": [
           "**Are you doing anything...?** 是问对方近期安排的标准开头。用现在进行时表将来计划。常见错误：\n• \"Do you doing anything\" → 疑问句 be 要提前\n• \"Are you **do** anything\" → 进行时需要 doing",
           "**this evening** 前不加介词（on this evening ❌）。想约人时可接：Are you doing anything this evening? — 我想约你看电影。"
+        ],
+        "distractors": [
+          [
+            "Do you doing anything",
+            "Are you do anything",
+            "Are you doing anythings"
+          ],
+          [
+            "this morning?",
+            "the evening?",
+            "this evenings?"
+          ]
         ]
       },
       {
@@ -578,6 +733,23 @@ window.BUILTIN = [
         "explanations": [
           "**I'd love to, but...** 是拒绝邀请的礼貌句式（先肯定再转折）。常见错误：\n• \"I'd love **it**, but\" → 这里 to 代替整句（I'd love to go），不用 it\n• 直接说 No → 太生硬，不礼貌",
           "**I'm afraid** 在这里不是「害怕」，而是「恐怕/遗憾」，用来软化拒绝。口语高频：I'm afraid I can't make it."
+        ],
+        "distractors": [
+          [
+            "I love to,",
+            "I'd love,",
+            "I'd loved to,"
+          ],
+          [
+            "but I afraid",
+            "but I'm feared",
+            "but I'm afraid of"
+          ],
+          [
+            "I busy.",
+            "I'm busied.",
+            "I'm busying."
+          ]
         ]
       },
       {
@@ -621,6 +793,18 @@ window.BUILTIN = [
         "explanations": [
           "**Why don't we...?** = 我们……怎么样？是提建议的常用句式。常见错误：\n• \"Why we don't meet\" → 疑问句 don't 提前\n• \"Why don't we **to** meet\" → 后接动词原形",
           "**the usual place** = 老地方（双方都熟悉的地方）。usual 是形容词「惯常的」。"
+        ],
+        "distractors": [
+          [
+            "Why don't us meet",
+            "Why not we meet",
+            "Why aren't we meet"
+          ],
+          [
+            "in the usual place?",
+            "at usual place?",
+            "at the usually place?"
+          ]
         ]
       },
       {
@@ -663,6 +847,18 @@ window.BUILTIN = [
         "explanations": [
           "**pick sb up** = 开车接某人。代词放中间：pick **you** up / pick **me** up。常见错误：\n• \"pick up **you**\" → 代词必须放中间\n• \"pick you **upstairs**\" → upstairs 是楼上，不是接你",
           "**your place** = 你家（口语）。比较：at my place / at home。正式说法 your house / your apartment。"
+        ],
+        "distractors": [
+          [
+            "I'll pick up you",
+            "I'll picks you up",
+            "I pick you up"
+          ],
+          [
+            "at yours place.",
+            "in your place.",
+            "at you place."
+          ]
         ]
       },
       {
@@ -704,6 +900,18 @@ window.BUILTIN = [
         "explanations": [
           "**reschedule** = 重新安排时间（re + schedule）。常见错误：\n• \"change the schedule\" → 也可以，但 reschedule 更地道\n• \"reschedule **to** tomorrow\" → 固定搭配是 for tomorrow",
           "**instead** = 作为替代，放句末。完整意思：不是原定时间，而是改为明天。"
+        ],
+        "distractors": [
+          [
+            "Could us reschedule",
+            "Could we reschedules",
+            "Could we to reschedule"
+          ],
+          [
+            "on tomorrow instead?",
+            "for the tomorrow instead?",
+            "for tomorrow instead of?"
+          ]
         ]
       },
       {
@@ -755,6 +963,22 @@ window.BUILTIN = [
         "explanations": [
           "**run late** = 迟到/时间赶不上（run 表「变得」，口语固定搭配）。常见错误：\n• \"I'm **arriving** late\" → 可以但 run late 更口语\n• \"I'm late **running**\" → 语序反了",
           "迟到通知要主动：I'm running a bit late. / I'll be there in ten minutes.（十分钟到）"
+        ],
+        "distractors": [
+          [
+            "I running",
+            "I'm run",
+            "I'm runing"
+          ],
+          [
+            "a bit of late,",
+            "a bit later,",
+            "a bit lately,"
+          ],
+          [
+            "sory.",
+            "sorrys."
+          ]
         ]
       },
       {
@@ -797,6 +1021,18 @@ window.BUILTIN = [
         "explanations": [
           "**get to work** = 到达工作地点。常见错误：\n• \"go to work\" → 也可以（go 侧重去的过程），get 侧重到达\n• \"get **in** work\" → in 用于 get in the car，地点用 get to",
           "回答交通方式：by bus / by subway / on foot / take the subway。通常用于了解对方的通勤习惯。"
+        ],
+        "distractors": [
+          [
+            "How are you usually",
+            "How do you usual",
+            "What do you usually"
+          ],
+          [
+            "get work?",
+            "get to the work?",
+            "gets to work?"
+          ]
         ]
       },
       {
@@ -838,6 +1074,18 @@ window.BUILTIN = [
         "explanations": [
           "**prefer A or B?** 是选择题问法。常见错误：\n• \"Do you **more** like coffee\" → 比较要用 prefer，不是 more like\n• \"Do you prefer **to** coffee\" → prefer 直接接名词，不加 to",
           "**prefer** 常见搭配：prefer A to B（比起 B 更喜欢 A）、prefer doing。注意这里 A or B 问句结构。"
+        ],
+        "distractors": [
+          [
+            "Are you prefer",
+            "Do you prefers",
+            "Do you prefer to"
+          ],
+          [
+            "coffee and tea?",
+            "a coffee or tea?",
+            "coffee or the tea?"
+          ]
         ]
       },
       {
@@ -879,6 +1127,18 @@ window.BUILTIN = [
         "explanations": [
           "**What's your favorite way to...?** = 你最喜欢用什么方式做……？常见错误：\n• \"What **is your favorite way for** relax\" → 固定搭配 way to do\n• \"How's your favorite way\" → how 问方式，这里问的是「什么」",
           "回答：I like to watch movies / go for a walk / listen to music. 类似问法：What do you do to relax?"
+        ],
+        "distractors": [
+          [
+            "What your favorite way",
+            "What's you favorite way",
+            "What's your favorite ways"
+          ],
+          [
+            "to relaxing?",
+            "for relax?",
+            "relaxing?"
+          ]
         ]
       },
       {
@@ -931,6 +1191,23 @@ window.BUILTIN = [
         "explanations": [
           "**have been doing** = 现在完成进行时，强调动作从过去一直持续到现在。常见错误：\n• \"I **work** on it all day\" → 缺少进行/完成含义\n• \"I've been working **in** it\" → 搭配是 work on sth",
           "**all day** = 整天（all + 时间名词）。类似：all night / all week / all morning。"
+        ],
+        "distractors": [
+          [
+            "I've been work",
+            "I been working",
+            "I've being working"
+          ],
+          [
+            "on them",
+            "in it",
+            "at it"
+          ],
+          [
+            "all the day.",
+            "whole day.",
+            "all days."
+          ]
         ]
       },
       {
@@ -973,6 +1250,18 @@ window.BUILTIN = [
         "explanations": [
           "**It was nice talking to you.** 是道别时的客气话。句型：It is/was + adj + doing（真正主语后置）。常见错误：\n• \"It was nice **to talking**\" → 只能二选一：to talk 或 talking\n• \"Nice talking **with** you\" → 可以，但 to 更常见",
           "见面时说 Nice to meet you；分别时说 It was nice talking to you. 更合适。"
+        ],
+        "distractors": [
+          [
+            "It is really nice",
+            "It was real nice",
+            "It was really nicer"
+          ],
+          [
+            "talk to you.",
+            "talking to your.",
+            "talking you."
+          ]
         ]
       },
       {
@@ -1024,6 +1313,22 @@ window.BUILTIN = [
         "explanations": [
           "**have to** = 不得不（客观原因）。与 **must** 区别：must 侧重主观义务，have to 侧重客观需要。常见错误：\n• \"I have **go**\" → have to 后接动词原形\n• \"I must to go\" → must 后直接接原形，不加 to",
           "道别常用三步：Sorry, I have to go now. → It was nice talking to you. → See you later!"
+        ],
+        "distractors": [
+          [
+            "Sory,",
+            "Sorrys,"
+          ],
+          [
+            "I has to go",
+            "I have go",
+            "I had to go"
+          ],
+          [
+            "just now.",
+            "nows.",
+            "at now."
+          ]
         ]
       },
       {
@@ -1066,6 +1371,18 @@ window.BUILTIN = [
         "explanations": [
           "**What do you think of...?** = 你对……怎么看？常见错误：\n• \"How do you think **about** it\" → 也有人说，但标准句式是 What ... think of\n• \"What are you think\" → 疑问句用助动词 do，不是 be",
           "征求意见的两大句式：What do you think of...? / How do you like...? 回答：I think it's great / I'm not sure about it."
+        ],
+        "distractors": [
+          [
+            "What do you thinks",
+            "What are you think",
+            "What do you thinking"
+          ],
+          [
+            "in this idea?",
+            "of that idea?",
+            "of this ideal?"
+          ]
         ]
       },
       {
@@ -1118,6 +1435,22 @@ window.BUILTIN = [
         "explanations": [
           "**give sb a moment** = 给某人一点时间。常见错误：\n• \"give a moment **to me**\" → 双宾 give me a moment 更自然\n• \"wait me a moment\" → wait 是不及物动词，不能直接接宾语",
           "同义表达：Just a moment, please. / One second, please. / Hang on a second.（更口语）"
+        ],
+        "distractors": [
+          [
+            "Could your give me",
+            "Could you gives me",
+            "Could you to give me"
+          ],
+          [
+            "a minutes,",
+            "the moment,",
+            "moment,"
+          ],
+          [
+            "pleased?",
+            "pleases?"
+          ]
         ]
       },
       {
@@ -1170,6 +1503,23 @@ window.BUILTIN = [
         "explanations": [
           "**get sleep** = 睡（觉），get 后接不可数名词 sleep。常见错误：\n• \"didn't **slept**\" → did 后接原形 sleep/slept 是过去式\n• \"much **sleeps**\" → sleep 不可数，不加 s",
           "**last night** = 昨晚。不能说 yesterday night（错误），要说 last night 或 yesterday evening。"
+        ],
+        "distractors": [
+          [
+            "I don't get",
+            "I didn't got",
+            "I didn't gets"
+          ],
+          [
+            "many sleep",
+            "much sleeps",
+            "a lot sleep"
+          ],
+          [
+            "yesterday night.",
+            "the last night.",
+            "last nights."
+          ]
         ]
       },
       {
@@ -1212,6 +1562,18 @@ window.BUILTIN = [
         "explanations": [
           "**Let me know if...** = 如果……就告诉我。let 后接动词原形（let sb do）。常见错误：\n• \"Let me **to** know\" → let 后不加 to\n• \"Let me **knowing**\" → 用原形 know",
           "主动提供帮助的客套话，主人对客人、同事间都很常用。同义：If you need anything, just ask."
+        ],
+        "distractors": [
+          [
+            "Let I know",
+            "Lets me know",
+            "Let me to know"
+          ],
+          [
+            "if you needs anything.",
+            "when you need anything.",
+            "if you need something."
+          ]
         ]
       },
       {
@@ -1252,6 +1614,18 @@ window.BUILTIN = [
         "explanations": [
           "**remind sb of sth** = 让某人想起某事。常见错误：\n• \"remind me **about** something\" → about 是「提醒」，of 是「使想起」，语境不同\n• \"That **remember** me\" → 人作主语才用 remember，事物用 remind",
           "口语中常用来引出话题：That reminds me of a funny story...（那让我想起一个有趣的故事）。"
+        ],
+        "distractors": [
+          [
+            "That remind me",
+            "That reminded me",
+            "That reminds I"
+          ],
+          [
+            "of anything.",
+            "about something.",
+            "of somethings."
+          ]
         ]
       },
       {
@@ -1304,6 +1678,23 @@ window.BUILTIN = [
         "explanations": [
           "**Shall we...?** = 我们……好吗？（英式常用，表提议）。常见错误：\n• \"Will we take a walk\" → Shall we 才是标准提议句式\n• \"Shall we **to** take\" → shall 后接动词原形",
           "**take a walk** = 散步，固定搭配。同义：go for a walk / go for a stroll。美式更多说 Let's go for a walk."
+        ],
+        "distractors": [
+          [
+            "Will we",
+            "Shall us",
+            "Do we shall"
+          ],
+          [
+            "take walk",
+            "takes a walk",
+            "take the walk"
+          ],
+          [
+            "after the dinner?",
+            "before dinner?",
+            "after dinners?"
+          ]
         ]
       },
       {
@@ -1346,6 +1737,18 @@ window.BUILTIN = [
         "explanations": [
           "**get off work** = 下班（get off 表示「结束工作」）。常见错误：\n• \"get out of work\" → 不是下班，是「逃避工作/被解雇（口）」\n• \"leave the work\" → leave work 可以，但 get off work 更口语",
           "相关表达：go to work 上班 / knock off (work) 收工（口语）/ be off duty 下班（值班人员）。"
+        ],
+        "distractors": [
+          [
+            "When time",
+            "How time",
+            "What times"
+          ],
+          [
+            "are you get off work?",
+            "do you gets off work?",
+            "do you get off the work?"
+          ]
         ]
       },
       {
@@ -1399,6 +1802,23 @@ window.BUILTIN = [
         "explanations": [
           "**see you at + 地点 + at + 时间**：地点用 at，时刻用 at。常见错误：\n• \"see you **on** the entrance\" → 地点在门口用 at 不用 on\n• \"at seven o'clock **pm**\" → 口语说 at seven 即可",
           "约定见面：地点 + 时间两个要素都要交代清楚。I'll see you there!（到那儿见！）"
+        ],
+        "distractors": [
+          [
+            "I see you",
+            "I'll sees you",
+            "I'll see your"
+          ],
+          [
+            "in the entrance",
+            "at entrance",
+            "at an entrance"
+          ],
+          [
+            "on seven.",
+            "in seven.",
+            "at the seven."
+          ]
         ]
       },
       {
@@ -1439,6 +1859,17 @@ window.BUILTIN = [
         "explanations": [
           "**Can I...?** 请求许可。Could/May 更礼貌，Can 最常用。注意：回答 \"You can\" 或 \"Sure\" 表示允许。",
           "**try sth on** 是固定短语（= 试穿）。关键规则：**代词必须放在中间**！\n• \"try **on** this\" → ❌ 代词不能放后面\n• \"try **it/them** on\" → ✅ 正确（it=单件，them=多件）"
+        ],
+        "distractors": [
+          [
+            "Do I can",
+            "Can me",
+            "Can I to"
+          ],
+          [
+            "try this in?",
+            "tries this on?"
+          ]
         ]
       },
       {
@@ -1482,6 +1913,18 @@ window.BUILTIN = [
         "explanations": [
           "**have** 是实义动词，疑问句需要助动词 **Do**。常见错误：\n• \"**Have** you this...\" → ❌ have 作实义动词不能直接提问\n• \"Do you **got** this...\" → ❌ got 是过去分词，不能用在这里",
           "**in + size/color** 是询问款式规格的固定搭配。常见错误：\n• \"**with** a smaller size\" → with 不对\n• \"**of** a smaller size\" → of 也可以但 in 更常用"
+        ],
+        "distractors": [
+          [
+            "Are you have this",
+            "Do you has this",
+            "Do you have these"
+          ],
+          [
+            "in smaller size?",
+            "in a small size?",
+            "at a smaller size?"
+          ]
         ]
       },
       {
@@ -1522,6 +1965,18 @@ window.BUILTIN = [
         "explanations": [
           "**How much** 问价格（不可数）。问可数数量用 **How many**。cost 是抽象概念，所以用 much。",
           "**does + 主语 + 动词原形**。常见错误：\n• \"How much **is** this cost?\" → ❌ cost 是动词，不能和 be 动词连用\n• \"How much **this** costs?\" → 这是陈述语序，不是疑问句\n• 注意：**cost** 的过去式还是 cost（不规则变化）"
+        ],
+        "distractors": [
+          [
+            "How many",
+            "How money",
+            "How prices"
+          ],
+          [
+            "do this cost?",
+            "does these cost?",
+            "costs this?"
+          ]
         ]
       },
       {
@@ -1573,6 +2028,21 @@ window.BUILTIN = [
           "**just** 在这里表示「只是、仅仅」，语气委婉（= 我不买，就是看看）。常见错误：\n• \"I **only** looking\" → only 是形容词/副词，不能代替 just 的语法功能\n• \"I **am** just **look**\" → 缺少 ing（表示正在进行的动作）",
           "**look around** = 四处看看。around 表示方向上的「到处」。常见错误：\n• 只说 \"**looking**\" → 也可以，但少了「四处」这层随意感\n• \"look **round**\" → 英式英语也可以，美式用 around",
           "**thanks** 比 thank you 更口语化，在购物场景中非常自然，表示委婉拒绝店员的推销。"
+        ],
+        "distractors": [
+          [
+            "I just",
+            "I'm justly"
+          ],
+          [
+            "look around,",
+            "looks around,",
+            "looking around the store,"
+          ],
+          [
+            "thank.",
+            "thankss."
+          ]
         ]
       },
       {
@@ -1613,6 +2083,18 @@ window.BUILTIN = [
         "explanations": [
           "**this item** 中 item = 商品、单品。也可以省略直接说 \"Is **this** on sale?\"",
           "**on sale** = 打折中 / 特价。注意和 **for sale** 的区别：\n• **on sale** = 降价出售（原价 100 → 现价 70）\n• **for sale** = 待售（不管打没打折，就是「在卖」）\n常见错误：用 \"**in** sale\" → ❌ 不对"
+        ],
+        "distractors": [
+          [
+            "Are this item",
+            "Is this items",
+            "This item is"
+          ],
+          [
+            "in sale?",
+            "on the sale?",
+            "for sale?"
+          ]
         ]
       },
       {
@@ -1654,6 +2136,18 @@ window.BUILTIN = [
         "explanations": [
           "**Could I...?** 比 Can I 更礼貌委婉。在购物、服务场景中很常用。",
           "**by + 支付方式** 是固定搭配。常见错误：\n• \"**with** credit card\" → with 不对，要用 **by**\n• \"**use** credit card\" → 语法没错但不够地道\n• **credit card** 前面通常不加 a/the（作为固定说法）"
+        ],
+        "distractors": [
+          [
+            "Could me pay",
+            "Could I pays",
+            "Could I to pay"
+          ],
+          [
+            "with credit card?",
+            "by a credit card?",
+            "by credit cards?"
+          ]
         ]
       },
       {
@@ -1707,6 +2201,22 @@ window.BUILTIN = [
           "**'d like = would like**，比 want 更委婉客气。常见错误：\n• \"I **want** to return\" → 语法正确但不够礼貌\n• \"I **would like** return\" → ❌ like 后面要加 to",
           "**return** = 退货。常见错误：\n• \"**give back** this item\" → 口语也可以，但 return 更正式\n• \"**exchange**\" = 换货（不是退货），不要混淆",
           "**please** 放在句末表示礼貌请求，用逗号隔开。"
+        ],
+        "distractors": [
+          [
+            "I like to",
+            "I'd like",
+            "I'd liked to"
+          ],
+          [
+            "returning this item,",
+            "return this items,",
+            "return item,"
+          ],
+          [
+            "pleased.",
+            "pleases."
+          ]
         ]
       },
       {
@@ -1750,6 +2260,18 @@ window.BUILTIN = [
         "explanations": [
           "**offer** = 提供（服务）。常见错误：\n• \"Do you **refund**...\" → refund 是动词「退款」，但这里强调的是「是否提供这项服务」\n• \"Can I **get** a refund\" → 也可以，但 offer 更侧重商家的服务政策",
           "**without a receipt** 中 **a 不能省略**。receipt 是可数名词。常见错误：\n• \"without **receipt**\" → ❌ 可数名词单数不能裸用\n• \"**no** receipt\" → 语法上也可以（no + 名词），但 without a 更常用"
+        ],
+        "distractors": [
+          [
+            "Do you offer refund",
+            "Do you offers a refund",
+            "Are you offer a refund"
+          ],
+          [
+            "with a receipt?",
+            "without receipt?",
+            "without a receive?"
+          ]
         ]
       },
       {
@@ -1792,6 +2314,18 @@ window.BUILTIN = [
         "explanations": [
           "**Where can I find...?** 问某物/某地在哪，比 Where is... 更礼貌自然。常见错误：\n• \"Where I can find\" → 情态动词 can 提前\n• \"Where is the **fit** room\" → 固定说法 fitting room",
           "英式也说 the changing room。试衣间门上常见标识：Fitting Room / Dressing Room。"
+        ],
+        "distractors": [
+          [
+            "Where can me find",
+            "Where I can find",
+            "Where can I found"
+          ],
+          [
+            "the fit room?",
+            "the fitting rooms?",
+            "the fittings room?"
+          ]
         ]
       },
       {
@@ -1846,6 +2380,23 @@ window.BUILTIN = [
         "explanations": [
           "**too + 形容词 + for sb** = 对某人来说太……。常见错误：\n• \"too much big\" → big 是形容词，用 too（too much 修饰不可数名词/动词）\n• \"very too big\" → very 不能修饰 too",
           "**a bit too** = 稍微太……，比 too 语气缓和。试衣反馈常用：a bit too big / a little tight / just right（刚好）。"
+        ],
+        "distractors": [
+          [
+            "This shirt are",
+            "These shirt is",
+            "This shirt"
+          ],
+          [
+            "a bit of too big",
+            "a bit too bigger",
+            "too big a bit"
+          ],
+          [
+            "to me.",
+            "for I.",
+            "for my."
+          ]
         ]
       },
       {
@@ -1888,6 +2439,18 @@ window.BUILTIN = [
         "explanations": [
           "**in other colors** = 以其他颜色（出售），in + 颜色/款式表示规格。常见错误：\n• \"with other colors\" → 用 in 不用 with\n• \"other **color**\" → 多种可选色用复数 colors",
           "换规格三连问：in other colors / in a smaller size / in a larger size。同类：in stock（有货）。"
+        ],
+        "distractors": [
+          [
+            "Are you have this",
+            "Do you has this",
+            "Do you have these"
+          ],
+          [
+            "in other color?",
+            "in the other colors?",
+            "with other colors?"
+          ]
         ]
       },
       {
@@ -1928,6 +2491,18 @@ window.BUILTIN = [
         "explanations": [
           "**something cheaper**：形容词修饰复合不定代词要**后置**。常见错误：\n• \"cheaper **something**\" → 形容词放 something/anything/nothing 后面\n• \"some **things** cheaper\" → 口语指某件东西用 something",
           "**recommend** = 推荐。同义：suggest。表达预算可说 I'm on a budget / I don't want to spend too much."
+        ],
+        "distractors": [
+          [
+            "Can your recommend",
+            "Can you recommends",
+            "Do you recommend"
+          ],
+          [
+            "something cheap?",
+            "some cheaper?",
+            "something more cheaper?"
+          ]
         ]
       },
       {
@@ -1969,6 +2544,18 @@ window.BUILTIN = [
         "explanations": [
           "**out of stock** = 缺货/售罄。常见错误：\n• \"out of **the** stock\" → 固定搭配不加 the\n• \"**no** stock\" → 口语可以说，但 out of stock 是标准说法",
           "反义：**in stock**（有货）。店员可说：We're out of stock right now. / Would you like me to check another store?（要不要我查下别的店？）"
+        ],
+        "distractors": [
+          [
+            "I afraid",
+            "I'm feared",
+            "I'm afraid of"
+          ],
+          [
+            "it out of stock.",
+            "it's out of the stock.",
+            "it's out of stocks."
+          ]
         ]
       },
       {
@@ -2011,6 +2598,18 @@ window.BUILTIN = [
         "explanations": [
           "**wrap sth up** = 把……包起来（wrap up 可分离，代词放中间）。常见错误：\n• \"wrap up **it**\" → 代词 it/them 放中间：wrap it up\n• \"wrap it **in**\" → 需要 in + 包装材料，但这里表完成用 up",
           "送礼语境常用。店员的确认：Would you like me to wrap it? / 加 gift wrapping（礼品包装）"
+        ],
+        "distractors": [
+          [
+            "Could you wrap up it",
+            "Could your wrap it up",
+            "Could you wraps it up"
+          ],
+          [
+            "to me?",
+            "for I?",
+            "for my?"
+          ]
         ]
       },
       {
@@ -2052,6 +2651,18 @@ window.BUILTIN = [
         "explanations": [
           "支付方式介词辨析：**by** credit card / **with** my phone（用具体工具）→ 两者界限模糊时 with 更保险。常见错误：\n• \"pay **by** my phone\" → 手机上支付叫 pay by phone，拿手机刷叫 pay with my phone\n• \"pay **use** my phone\" → 动词并列需 pay using",
           "移动支付常见词：mobile payment / scan the QR code（扫码）/ Alipay / WeChat Pay。"
+        ],
+        "distractors": [
+          [
+            "Can me pay",
+            "Can I to pay",
+            "Do I can pay"
+          ],
+          [
+            "by my phone?",
+            "with me phone?",
+            "with my phones?"
+          ]
         ]
       },
       {
@@ -2093,6 +2704,18 @@ window.BUILTIN = [
         "explanations": [
           "**membership card** = 会员卡。常见错误：\n• \"member **'s** card\" → 名词定语直接用 membership\n• \"member **ship**\" → 一词：membership 会员资格",
           "积分/折扣语境：Do you have a loyalty card? / Earn points（积分）/ 若没卡：Can I sign up for one?（能办一张吗？）"
+        ],
+        "distractors": [
+          [
+            "Are you have",
+            "Do you has",
+            "Do you having"
+          ],
+          [
+            "a member card?",
+            "a membership cards?",
+            "membership card?"
+          ]
         ]
       },
       {
@@ -2133,6 +2756,18 @@ window.BUILTIN = [
         "explanations": [
           "**fit** = 合身（尺寸），主语是衣服。常见错误：\n• \"It isn't fit me\" → fit 是动词，否定用 doesn't\n• \"It doesn't fit **to** me\" → fit 直接接人，不加 to",
           "辨析三个词：**fit**（合身尺寸）/ **suit**（适合气质风格）/ **match**（颜色搭配）。This color suits you. 颜色衬你。"
+        ],
+        "distractors": [
+          [
+            "It don't fit",
+            "It doesn't fits",
+            "It not fit"
+          ],
+          [
+            "me good.",
+            "myself well.",
+            "to me well."
+          ]
         ]
       },
       {
@@ -2175,6 +2810,18 @@ window.BUILTIN = [
         "explanations": [
           "**show sb sth** = show sth to sb，双宾结构。常见错误：\n• \"show **to me** the latest\" → 也正确但 show me 更口语\n• \"show me **lastest**\" → 拼写是 latest（无 lastest 一词）",
           "**the latest one** = 最新款，one 代替前面提到的商品避免重复。latest 也可接型号：the latest model。"
+        ],
+        "distractors": [
+          [
+            "Could your show me",
+            "Could you shows me",
+            "Could you to show me"
+          ],
+          [
+            "the last one?",
+            "the lately one?",
+            "the latest?"
+          ]
         ]
       },
       {
@@ -2217,6 +2864,18 @@ window.BUILTIN = [
         "explanations": [
           "**warranty** = 保修（期）/质保，比 guarantee 更常用于电子产品。常见错误：\n• \"warrant\" → warrant 是动词/名词「授权」，保修是 warranty\n• \"How long is the warranty?\" → 问保修期多长",
           "相关：under warranty（在保修期内）/ It comes with a one-year warranty.（一年保修。）"
+        ],
+        "distractors": [
+          [
+            "Are there a warranty",
+            "There is a warranty",
+            "Is there warranty"
+          ],
+          [
+            "on the watch?",
+            "for this watch?",
+            "on this watches?"
+          ]
         ]
       },
       {
@@ -2259,6 +2918,18 @@ window.BUILTIN = [
         "explanations": [
           "**look for** = 寻找（强调过程）；**find** = 找到（强调结果）。常见错误：\n• \"I'm looking **at** something for\" → look at 是看，找东西用 look for\n• \"looking for something **to** my mom\" → 给谁买用 for",
           "店员会问：What kind of thing are you looking for? 回答给谁买+预算+用途即可。"
+        ],
+        "distractors": [
+          [
+            "I looking for something",
+            "I'm look for something",
+            "I'm looking something"
+          ],
+          [
+            "to my mom.",
+            "for me mom.",
+            "for my moms."
+          ]
         ]
       },
       {
@@ -2299,6 +2970,18 @@ window.BUILTIN = [
         "explanations": [
           "**delivery** = 配送/快递（动词 deliver）。常见错误：\n• \"deliver **ing** free\" → 作名词用 delivery\n• \"free **deliver**\" → deliver 是动词，需要名词 delivery",
           "网购高频：free delivery / shipping cost（运费）/ delivery time（配送时间）/ Do you ship internationally?（国际配送吗？）"
+        ],
+        "distractors": [
+          [
+            "Are you offer",
+            "Do you offers",
+            "Do you offering"
+          ],
+          [
+            "free deliver?",
+            "free deliveries?",
+            "the free delivery?"
+          ]
         ]
       },
       {
@@ -2350,6 +3033,22 @@ window.BUILTIN = [
         "explanations": [
           "**Can I have...?** = 能给我……吗？比 Can I get 更礼貌正式。常见错误：\n• \"Can I have **a receipt please**\" → please 前应有逗号（口语无妨，书面规范）\n• \"Can I **get to** have\" → get/have 二选一",
           "**receipt** 发音 /rɪˈsiːt/，p 不发音！这是最常读错的词之一。可数名词前要加 a。"
+        ],
+        "distractors": [
+          [
+            "Can me have",
+            "Can I has",
+            "Can I to have"
+          ],
+          [
+            "the receipt,",
+            "receipt,",
+            "a receive,"
+          ],
+          [
+            "pleased?",
+            "pleases?"
+          ]
         ]
       },
       {
@@ -2391,6 +3090,18 @@ window.BUILTIN = [
         "explanations": [
           "**in total** = 总共（合计）。常见错误：\n• \"How much **are** it\" → it 是单数，用 is\n• \"in **the** total\" → 固定搭配不加 the",
           "结账相关：That comes to twenty dollars. / altogether（一起）。收银员会确认：Your total is...（您的总计是……）"
+        ],
+        "distractors": [
+          [
+            "How much it is",
+            "How many is it",
+            "How much are it"
+          ],
+          [
+            "in the total?",
+            "at total?",
+            "in totals?"
+          ]
         ]
       },
       {
@@ -2434,6 +3145,18 @@ window.BUILTIN = [
         "explanations": [
           "**exchange A for B** = 把 A 换成 B（固定搭配 for）。常见错误：\n• \"exchange it **to** a bigger\" → 换「成」用 for，不用 to\n• \"exchange it **with**\" → with 是「和某人换」，不是换货",
           "退换区分：**return**（退货退款）/ **exchange**（换货）。店家常问换什么尺码：What size would you like to exchange it for?"
+        ],
+        "distractors": [
+          [
+            "Could me exchange it",
+            "Could I exchange",
+            "Could I to exchange it"
+          ],
+          [
+            "to a bigger one?",
+            "for a big one?",
+            "for a bigger?"
+          ]
         ]
       },
       {
@@ -2474,6 +3197,18 @@ window.BUILTIN = [
         "explanations": [
           "**final price** = 最终价/一口价。砍价场景常见：\n• \"the **finally** price\" → 用形容词 final\n• \"last price\" → 也有此意（最后价），但 final price 更标准",
           "砍价常用句式：Can you do better than that? / What's your best price? / Is that the best you can do?"
+        ],
+        "distractors": [
+          [
+            "Are this",
+            "This is",
+            "Is these"
+          ],
+          [
+            "a final price?",
+            "the finally price?",
+            "the final prices?"
+          ]
         ]
       },
       {
@@ -2516,6 +3251,18 @@ window.BUILTIN = [
         "explanations": [
           "**would rather do** = 宁愿做……，后接动词原形。常见错误：\n• \"I'd rather **to** go\" → rather 后接原形不加 to\n• \"I'd rather **going**\" → 用原形 go",
           "**go for** = 选择（口语）。同义：I'll take this one. / I'd like to go with the cheaper one."
+        ],
+        "distractors": [
+          [
+            "I rather go for",
+            "I'd rather to go for",
+            "I'd rather going for"
+          ],
+          [
+            "a cheaper one.",
+            "the cheap one.",
+            "the cheaper."
+          ]
         ]
       },
       {
@@ -2557,6 +3304,18 @@ window.BUILTIN = [
         "explanations": [
           "**seem + 形容词** = 看起来/似乎……。常见错误：\n• \"seems **is** high\" → seem 已是系动词，不叠加 is\n• \"price is seem high\" → 语序反了",
           "**a little** 修饰形容词表「有点」。砍价前先抱怨价格：That's more than I expected.（超出我的预期。）"
+        ],
+        "distractors": [
+          [
+            "The price seem",
+            "Price seems",
+            "The prices seems"
+          ],
+          [
+            "a little highly.",
+            "a little of high.",
+            "a little higher."
+          ]
         ]
       },
       {
@@ -2599,6 +3358,18 @@ window.BUILTIN = [
         "explanations": [
           "**the only + 名词 + (that) 从句**：关系代词 that 作宾语可省略。常见错误：\n• \"the only size **what** you have\" → 定语从句用 that/which，不用 what\n• \"the **only** size\" → only 强调「唯一」，别漏",
           "当尺码/颜色不全时问：Do you have this in any other sizes? / When will you get more in stock?（什么时候补货？）"
+        ],
+        "distractors": [
+          [
+            "Are this",
+            "This is",
+            "Is these"
+          ],
+          [
+            "the only sizes you have?",
+            "only size you have?",
+            "the only size you has?"
+          ]
         ]
       },
       {
@@ -2636,6 +3407,15 @@ window.BUILTIN = [
         "explanations": [
           "**What's up?** 是\"怎么了？\"或\"最近怎么样？\"的万能问候。比 \"How are you?\" 更随意、更口语化。",
           "回答可以说 \"Not much.\"（没什么）、\"Just hanging out.\"（随便逛逛）或者反问 \"Not much, what's up with you?\""
+        ],
+        "distractors": [
+          [
+            "What",
+            "What are"
+          ],
+          [
+            "on?"
+          ]
         ]
       },
       {
@@ -2673,6 +3453,17 @@ window.BUILTIN = [
         "explanations": [
           "**No problem.** 可以回应感谢（= You're welcome）也可以答应请求（= Sure / Of course）。",
           "比 \"You're welcome\" 更轻松随意，朋友之间最常用。"
+        ],
+        "distractors": [
+          [
+            "Not",
+            "None",
+            "Any"
+          ],
+          [
+            "a problem.",
+            "the problem."
+          ]
         ]
       },
       {
@@ -2711,6 +3502,17 @@ window.BUILTIN = [
         "explanations": [
           "**I'll take it.** 购物时决定购买某物的标准表达。",
           "也可以说 **I'll get this one.** 或 **I'd like to buy this.** 但 \"I'll take it.\" 最地道、最常用。"
+        ],
+        "distractors": [
+          [
+            "I",
+            "I'd"
+          ],
+          [
+            "take them.",
+            "takes it.",
+            "to take it."
+          ]
         ]
       },
       {
@@ -2751,6 +3553,18 @@ window.BUILTIN = [
         "explanations": [
           "**Let me think about it.** 委婉地表示需要时间考虑，不直接拒绝。",
           "在谈价格、做决定时非常常用。比直接说 \"No\" 礼貌得多。"
+        ],
+        "distractors": [
+          [
+            "Lets me",
+            "Let I",
+            "Let me to"
+          ],
+          [
+            "think it.",
+            "thinking about it.",
+            "think about them."
+          ]
         ]
       },
       {
@@ -2789,6 +3603,18 @@ window.BUILTIN = [
         "explanations": [
           "**It doesn't matter.** 安慰别人或表示自己不在意时的常用语。",
           "类似表达：**No worries.**（更随意）/**That's OK.**（更温和）/**Forget it.**（算了，别提了）"
+        ],
+        "distractors": [
+          [
+            "It don't",
+            "It isn't",
+            "It is doesn't"
+          ],
+          [
+            "matters.",
+            "the matter.",
+            "no matter."
+          ]
         ]
       },
       {
@@ -2827,6 +3653,18 @@ window.BUILTIN = [
         "explanations": [
           "**Are you kidding?** 表示惊讶、难以置信。语气取决于上下文——可以是好玩也可以是震惊。",
           "类似表达：**You're joking!** /**Seriously?** /**For real?**（更年轻化）"
+        ],
+        "distractors": [
+          [
+            "Do you",
+            "You are",
+            "Are your"
+          ],
+          [
+            "kid?",
+            "kiding?",
+            "kidded?"
+          ]
         ]
       },
       {
@@ -2866,6 +3704,18 @@ window.BUILTIN = [
         "explanations": [
           "**Sounds good to me.** 同意提议时最自然的表达之一。",
           "简短版：**Sounds good.** / **Works for me.** / **I'm down with that.**（更年轻）"
+        ],
+        "distractors": [
+          [
+            "Sound good",
+            "Sounds well",
+            "Sounds goods"
+          ],
+          [
+            "for me.",
+            "with me.",
+            "me."
+          ]
         ]
       },
       {
@@ -2906,6 +3756,18 @@ window.BUILTIN = [
         "explanations": [
           "**I'm not sure about that.** 委婉地表达不确定或保留意见。",
           "比直接说 \"I don't know.\" 或 \"No.\" 更礼貌、更有回旋余地。"
+        ],
+        "distractors": [
+          [
+            "I not sure",
+            "I'm no sure",
+            "I'm not surely"
+          ],
+          [
+            "at that.",
+            "about those.",
+            "about the."
+          ]
         ]
       },
       {
@@ -2947,6 +3809,18 @@ window.BUILTIN = [
         "explanations": [
           "**give someone a hand** = 帮某人忙，是固定搭配（习语），不是真的要一只手。",
           "其他求助说法：**Could you help me out?**（更正式）/ **Do me a favor?**（更亲密）"
+        ],
+        "distractors": [
+          [
+            "Can you give I",
+            "Can you gives me",
+            "Can you to give me"
+          ],
+          [
+            "the hand?",
+            "a hands?",
+            "hand?"
+          ]
         ]
       },
       {
@@ -2987,6 +3861,18 @@ window.BUILTIN = [
         "explanations": [
           "**look forward to** 中 **to** 是介词，后面要接名词或动名词（-ing）。常见错误：look forward to *see* → 应为 *seeing*。",
           "用于回复邀请、约定等场景：See you tomorrow! — **I'm looking forward to it!**"
+        ],
+        "distractors": [
+          [
+            "I looking",
+            "I'm look",
+            "I'm looks"
+          ],
+          [
+            "forward it.",
+            "forward to them.",
+            "forward to do it."
+          ]
         ]
       },
       {
@@ -3025,6 +3911,18 @@ window.BUILTIN = [
         "explanations": [
           "**I don't care.** 表示「我不在乎」，语气偏直接，朋友间随便用，正式场合慎用。",
           "易混三句：**I don't mind.** = 我不介意（答应请求）；**It doesn't matter.** = 没关系（回应道歉）；**I don't care.** = 我不在乎。care 后可接 about：I don't care about it."
+        ],
+        "distractors": [
+          [
+            "I doesn't",
+            "I am not",
+            "Doesn't I"
+          ],
+          [
+            "cares.",
+            "to care.",
+            "care about."
+          ]
         ]
       },
       {
@@ -3063,6 +3961,17 @@ window.BUILTIN = [
         "explanations": [
           "**You're welcome.** 回应 Thank you 的标准说法：比 No problem 正式一点，比 My pleasure 更日常。",
           "常见错误：写成 **You're welcomed**（被动语态，此义不成立）→ 正确是形容词 welcome。单独说 Welcome! 则是「欢迎（到来）」。"
+        ],
+        "distractors": [
+          [
+            "Your",
+            "You"
+          ],
+          [
+            "welcomes.",
+            "welcome to.",
+            "welcome here."
+          ]
         ]
       },
       {
@@ -3101,6 +4010,18 @@ window.BUILTIN = [
         "explanations": [
           "**make sense** = 说得通、有道理，固定搭配。**That makes sense.** 是回应他人解释时最自然的认可句。",
           "否定：**That doesn't make sense.**（说不通）。同义替换：That's reasonable / I see what you mean."
+        ],
+        "distractors": [
+          [
+            "That make",
+            "That made",
+            "That making"
+          ],
+          [
+            "senses.",
+            "a sense.",
+            "the sense."
+          ]
         ]
       },
       {
@@ -3140,6 +4061,18 @@ window.BUILTIN = [
         "explanations": [
           "**I can't agree more.** 字面「不能再更同意」= 完全同意，是加强同意的惯用表达。",
           "同义：**I couldn't agree more.** 常见错误：\"I can't agree **no** more\" → 双重否定错误；应为 can't ... more。"
+        ],
+        "distractors": [
+          [
+            "I don't",
+            "I won't",
+            "I'm not"
+          ],
+          [
+            "agree.",
+            "agrees more.",
+            "to agree more."
+          ]
         ]
       },
       {
@@ -3179,6 +4112,17 @@ window.BUILTIN = [
         "explanations": [
           "**It's up to you.** = 由你决定/你说了算，把选择权交给对方。点餐、约时间的高频句。",
           "扩展：**It's up to sb to do sth** = 由某人负责做某事。问句 **What's up?**（怎么了）与本句无关，注意区分。"
+        ],
+        "distractors": [
+          [
+            "It up",
+            "It's upon"
+          ],
+          [
+            "for you.",
+            "to your.",
+            "on you."
+          ]
         ]
       },
       {
@@ -3218,6 +4162,17 @@ window.BUILTIN = [
         "explanations": [
           "**on my way** = 在（赶往）途中，回复「你到哪了？」时最常用。",
           "扩展：**on the way to + 地点** 强调途中顺路：On the way to work, I grab a coffee. **on the way** 则强调「在途中」。"
+        ],
+        "distractors": [
+          [
+            "I'm in",
+            "I'm at",
+            "I on my way"
+          ],
+          [
+            "my ways.",
+            "the road."
+          ]
         ]
       },
       {
@@ -3257,6 +4212,18 @@ window.BUILTIN = [
         "explanations": [
           "**Don't worry about it.** = 别担心/没事，宽慰对方的标准说法，也可用来回应道歉（= 没关系）。",
           "口语更短版：**No worries.**（澳洲口语最爱）/ **It's fine.** 别写成 Don't worries（worry 动词不加 s）。"
+        ],
+        "distractors": [
+          [
+            "Not worry",
+            "Don't worries",
+            "Don't worrying"
+          ],
+          [
+            "about.",
+            "about them.",
+            "of it."
+          ]
         ]
       },
       {
@@ -3296,6 +4263,18 @@ window.BUILTIN = [
         "explanations": [
           "**Long time no see.** = 好久不见。虽有中文来源，但已被英语完全接纳，是地道寒暄。",
           "更正式的说法：**It's been a long time / It's been ages.** 回应：Yeah, how have you been?（你最近怎么样？）"
+        ],
+        "distractors": [
+          [
+            "A long time",
+            "Long times",
+            "So long time"
+          ],
+          [
+            "no saw.",
+            "not see.",
+            "no seen."
+          ]
         ]
       },
       {
@@ -3334,6 +4313,17 @@ window.BUILTIN = [
         "explanations": [
           "**Take your time.** = 慢慢来、不用急，对方需要时间思考或忙时安慰用。",
           "结构 take one's time：take my time / take his time。反义：**Hurry up!** 别与 **It takes time**（需要时间）混淆。"
+        ],
+        "distractors": [
+          [
+            "Take you",
+            "Takes your",
+            "To take your"
+          ],
+          [
+            "times.",
+            "your times."
+          ]
         ]
       },
       {
@@ -3372,6 +4362,17 @@ window.BUILTIN = [
         "explanations": [
           "**It's a deal.** = 一言为定/成交，用来敲定双方约定。",
           "场景：— Let's meet at three. — **It's a deal!** 更口语的单字版：**Deal!** 双方都同意也可回 **Done.**"
+        ],
+        "distractors": [
+          [
+            "It",
+            "It are"
+          ],
+          [
+            "deal.",
+            "the deal.",
+            "a deals."
+          ]
         ]
       },
       {
@@ -3411,6 +4412,18 @@ window.BUILTIN = [
         "explanations": [
           "**It's been a while.** = 已经有一段时间了，常接 since：It's been a while since we met.（我们好久没见了）。",
           "寒暄常用：It's been a while, how have you been? 也可用于提醒：It's been a while since you visited."
+        ],
+        "distractors": [
+          [
+            "It been",
+            "It's being",
+            "It was"
+          ],
+          [
+            "while.",
+            "a white.",
+            "the while."
+          ]
         ]
       },
       {
@@ -3452,6 +4465,18 @@ window.BUILTIN = [
         "explanations": [
           "**I'll see what I can do.** = 我尽量想办法，是不打包票的承诺，比 Yes 留有余地。",
           "宾语从句用陈述语序 what I can do，不倒装。对方语境常是请求帮助时表示愿意尽力。"
+        ],
+        "distractors": [
+          [
+            "I see",
+            "I'll to see",
+            "I'll saw"
+          ],
+          [
+            "what can I do.",
+            "that I can do.",
+            "what I can does."
+          ]
         ]
       },
       {
@@ -3491,6 +4516,18 @@ window.BUILTIN = [
         "explanations": [
           "**slip one's mind** = 被遗忘（事情溜出脑海），是忘记的惯用表达。",
           "常见错误：\"It slipped **in** my mind\" → 不需要 in。忘记做某事也可说 **It completely slipped my mind**（我完全忘了）。"
+        ],
+        "distractors": [
+          [
+            "It slip",
+            "It slips",
+            "It was slipped"
+          ],
+          [
+            "me mind.",
+            "my minds.",
+            "my memory."
+          ]
         ]
       },
       {
@@ -3530,6 +4567,18 @@ window.BUILTIN = [
         "explanations": [
           "**give it a shot** = 尝试一下（shot 本义射击，此处引申为尝试）。",
           "同义：give it a try / have a go。鼓励别人尝试新事物很常用：Come on, just give it a shot!"
+        ],
+        "distractors": [
+          [
+            "Gives it",
+            "To give it",
+            "Gave it"
+          ],
+          [
+            "shot.",
+            "the shot.",
+            "a shoots."
+          ]
         ]
       },
       {
@@ -3570,6 +4619,18 @@ window.BUILTIN = [
         "explanations": [
           "**take care of** = 处理/照看，短语动词不可拆分。常见错误：\"take care **about** it\" → 固定用 of。",
           "含义随语境变化：处理（事务）/ 照顾（人或宠物）。It's handled. 也是「已搞定」的近义说法。"
+        ],
+        "distractors": [
+          [
+            "I take care",
+            "I'll takes care",
+            "I'll take cares"
+          ],
+          [
+            "of them.",
+            "about it.",
+            "to it."
+          ]
         ]
       },
       {
@@ -3608,6 +4669,16 @@ window.BUILTIN = [
         "explanations": [
           "**You said it.** = 你说得对/深表赞同，强调对方说出了你的心声。",
           "注意别直译为「你说了它」。语境：— This place is overpriced. — **You said it!**（可不是嘛！）"
+        ],
+        "distractors": [
+          [
+            "You say",
+            "You says",
+            "You sayed"
+          ],
+          [
+            "them."
+          ]
         ]
       },
       {
@@ -3647,6 +4718,18 @@ window.BUILTIN = [
         "explanations": [
           "**So far so good.** = 到目前为止一切顺利，常回答别人对进度的询问。",
           "口语省略句，语法上省去了 it's been。书面完整版：So far, everything is going well."
+        ],
+        "distractors": [
+          [
+            "So for",
+            "So long",
+            "Far so"
+          ],
+          [
+            "so well.",
+            "so goods.",
+            "very good."
+          ]
         ]
       },
       {
@@ -3686,6 +4769,18 @@ window.BUILTIN = [
         "explanations": [
           "**Better late than never.** 谚语「迟做总比不做好」，用于安慰迟到/晚到的成果。",
           "结构上是 It's better to be late than never (to do it) 的省略。对比另一谚语：**Never too late to learn**（活到老学到老）。"
+        ],
+        "distractors": [
+          [
+            "More late",
+            "Best late",
+            "Better lates"
+          ],
+          [
+            "then never.",
+            "as never.",
+            "than ever."
+          ]
         ]
       },
       {
@@ -3726,6 +4821,18 @@ window.BUILTIN = [
         "explanations": [
           "**keep up the good work** = 继续加油/保持好表现，上司表扬下属的高频句。",
           "keep up 后接抽象名词：keep up the pace（保持节奏）。若指「赶上进度」是 catch up，注意区分。"
+        ],
+        "distractors": [
+          [
+            "Keeps up",
+            "Keeping up",
+            "To keep up"
+          ],
+          [
+            "good work.",
+            "a good work.",
+            "the good works."
+          ]
         ]
       },
       {
@@ -3764,6 +4871,17 @@ window.BUILTIN = [
         "explanations": [
           "**I mean it.** = 我说的是真的/不是在开玩笑，用来强调上一句话的严肃性。",
           "语境：— I'll quit if this continues! — Are you serious? — **I mean it!** 近义：**I'm serious.**"
+        ],
+        "distractors": [
+          [
+            "I means",
+            "I'm mean",
+            "I mean to"
+          ],
+          [
+            "them.",
+            "its."
+          ]
         ]
       }
     ]
