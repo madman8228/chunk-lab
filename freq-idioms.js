@@ -2667,7 +2667,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**take it easy** 意为「放轻松/悠着点」，既是日常安慰也是建议。比 relax 更主动。",
       "近义：chill out / don't push yourself。例句：Take it easy — there's no rush."
-    ]
+    ],
+    distractors: [["You've been resting all day —","You've been working all night —"],["take it slow","take it back"],["this evening.","tomorrow."]]
   },
   {
     sentence: "\"Work fewer hours?\" — \"Easy for you to say!\"",
@@ -2682,7 +2683,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**easy for you to say** 对方站着说话不腰疼时的常用回应：「你倒说得轻松」，含反讽/抱怨。",
       "例句：— Just save more money! — Easy for you to say, with your fancy job."
-    ]
+    ],
+    distractors: [["\"Work more hours?\" —","\"Work fewer days?\" —"],["\"Easy for me to say!\"","\"Hard for you to say!\""]]
   },
   {
     sentence: "You can argue, but at the end of the day it's my call.",
@@ -2698,7 +2700,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**at the end of the day** 总结用语「说到底、归根结底」，把争论拉回本质。",
       "近义：when all is said and done / ultimately。例句：At the end of the day, the customer is always right."
-    ]
+    ],
+    distractors: [["You can argue, yet","You can argue, though"],["in the middle of the day","at the end of the week"],["it's my fault.","it's my turn."]]
   },
   {
     sentence: "Have it your way — I'm done arguing with you.",
@@ -2713,7 +2716,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have it your way** = suit yourself 升级版「随你吧/随你的便」，常带无奈放弃争论的语气。",
       "例句：— Let's order pizza. — Fine, have it your way."
-    ]
+    ],
+    distractors: [["Make it your way —","See it your way —"],["I'm done talking to you.","I'm done working with you."]]
   },
   {
     sentence: "What's the matter — you look upset?",
@@ -2728,7 +2732,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**what's the matter** 表关心：「出什么事了/怎么了」，朋友发现你情绪不对时的开场。",
       "近义：what's wrong / what's up。例句：— What's the matter, honey? — Nothing, just tired."
-    ]
+    ],
+    distractors: [["What's the point —","What's the problem —"],["you look excited?","you look tired?"]]
   },
   {
     sentence: "He's good for nothing — never finishes a single task.",
@@ -2743,7 +2748,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**good for nothing** 形容人「一无是处/没用的」，语气较重，慎用避免伤人。",
       "近义：useless / worthless。例句：This old phone is good for nothing — time to recycle it."
-    ]
+    ],
+    distractors: [["He's good for anything —","He's known for nothing —"],["never starts a single task.","never finishes a single meal."]]
   },
   {
     sentence: "Show some respect — that's your father you're talking to.",
@@ -2758,7 +2764,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**show some respect** 是长辈/上级对不敬者的警告：「放尊重点」，语气直接。",
       "例句：Show some respect when the flag is passing by."
-    ]
+    ],
+    distractors: [["Show some mercy —","Show some emotion —"],["that's your father you're yelling at.","that's your boss you're talking to."]]
   },
   {
     sentence: "Don't get involved — it's not your business.",
@@ -2773,7 +2780,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**get involved** 指「参与、卷进」。don't get involved 是劝人别趟浑水的常用建议。",
       "近义：stay out of it / mind your own business。例句：Don't get involved in office gossip — it never ends well."
-    ]
+    ],
+    distractors: [["Don't get excited —","Don't get upset —"],["it's not your fault.","it's not your turn."]]
   },
   {
     sentence: "\"Thanks for helping!\" — \"Don't mention it.\"",
@@ -2788,7 +2796,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**don't mention it** 是回应致谢的客套话，等于 You're welcome，比 no problem 更正式。",
       "近义：not at all / my pleasure。例句：— I appreciate the help. — Don't mention it, that's what friends are for."
-    ]
+    ],
+    distractors: [["\"Thanks for waiting!\" —","\"Thanks for coming!\" —"],["\"Don't forget it.\"","\"Don't repeat it.\""]]
   },
   {
     sentence: "How have you been since you moved to Berlin?",
@@ -2803,7 +2812,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**How have you been** 是久未见面时的寒暄开场，比 how are you 更关切对方近期情况。",
       "回答：Pretty good / Same as usual / Been better. 例句：— How have you been? — Same old, same old."
-    ]
+    ],
+    distractors: [["How long have you been","How old have you been"],["since you moved to Paris?","since you visited Berlin?"]]
   },
   {
     sentence: "Keep in touch — I want to know how you're doing.",
@@ -2818,7 +2828,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**keep in touch** 告别或社交媒体互动时的标准客套：「保持联系」，结束对话或更新动态时高频。",
       "近义：stay in touch / keep me posted（保持更新）。例句：Keep in touch — and send me photos from the trip!"
-    ]
+    ],
+    distractors: [["Get in touch —","Keep in mind —"],["I want to know where you're going.","I want to see how you're doing."]]
   },
   {
     sentence: "You're ready — go for it!",
@@ -2833,7 +2844,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**go for it** 是「放手一搏/去争取」的口语鼓励，常见于比赛/面试/追求等场景。",
       "近义：go ahead / give it a shot。例句：Apply for the scholarship — just go for it."
-    ]
+    ],
+    distractors: [["You're tired —","You're wrong —"],["go for a walk!","go for broke!"]]
   },
   {
     sentence: "Can you give me a ride to the airport tomorrow?",
@@ -2849,7 +2861,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**give me a ride** 是请求搭车的标准说法，比 drive me 更礼貌、更口语。",
       "近义：give me a lift / take me to…。例句：If you're heading downtown, can you give me a lift?"
-    ]
+    ],
+    distractors: [["Would you","Can I"],["give me a hand","give me a call"],["to the station tomorrow?","to the airport tonight?"]]
   },
   {
     sentence: "Give me a minute — I'll be right back.",
@@ -2864,7 +2877,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**give me a minute** 是请求别人「等一会儿」，立刻回来时用。比 just a minute 多了「我保证只等一分钟」的意味。",
       "近义：hold on / hang on。例句：Give me a minute, the file is downloading."
-    ]
+    ],
+    distractors: [["Give me a hand —","Give me a break —"],["I'll be right here.","I'll be back soon."]]
   },
   {
     sentence: "I'm looking forward to seeing you this weekend.",
@@ -2879,7 +2893,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**look forward to** 是「期待/盼着」，to 是介词（不是不定式），后接名词或动名词。最常用于信末/邮件结尾。",
       "例句：I look forward to hearing from you soon.（盼望尽快回复）"
-    ]
+    ],
+    distractors: [["I'm looking forward for","I'm not looking forward to"],["meeting you this weekend.","seeing you next weekend."]]
   },
   {
     sentence: "Have a good time at the concert — say hi to the band!",
@@ -2895,7 +2910,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have a good time** 是告别时的标准祝福「玩得开心」。**say hi to sb** 是「替我向某人问好」。",
       "例句：Have a good time at the party! Say hi to everyone for me."
-    ]
+    ],
+    distractors: [["Have a good day","Make a good time"],["at the party —","at the meeting —"],["say hi to the crowd!","say goodbye to the band!"]]
   },
   {
     sentence: "Get well soon — the whole team misses you.",
@@ -2910,7 +2926,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**get well soon** 是同事/朋友生病时的标准祝福，可送花/卡片/邮件都用。",
       "例句：Get well soon — let me know if you need anything."
-    ]
+    ],
+    distractors: [["Get home soon —","Get there soon —"],["the whole team hates you.","the whole school misses you."]]
   },
   {
     sentence: "Don't take it for granted — not everyone gets a second chance.",
@@ -2925,7 +2942,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**take ... for granted** 是「把…当成理所当然/不珍惜」，父母对孩子、伴侣对关心时常用。",
       "例句：She took her assistant's hard work for granted — until she quit."
-    ]
+    ],
+    distractors: [["Don't take it for real —","Don't take it seriously —"],["not everyone gets a second job.","not everyone gets a first chance."]]
   },
   {
     sentence: "Could I have a word with you in private?",
@@ -2941,7 +2959,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have a word with** 是「私下谈几句」，比 talk to 更含蓄有礼，常用于请人离开公众场合。",
       "近义：speak privately / have a quick chat。例句：Do you have a minute? I'd like to have a word with you."
-    ]
+    ],
+    distractors: [["May I","Could you"],["have a talk with you","have a word with me"],["in public?","in a minute?"]]
   },
   {
     sentence: "I'll cover the tip — it's a deal!",
@@ -2956,7 +2975,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**it's a deal** 是「成交/就这么定了」的口语承诺，商务/朋友间握手成交都可用。",
       "近义：deal! / done! / you got it!。例句：— I'll do the dishes tonight. — It's a deal."
-    ]
+    ],
+    distractors: [["I'll cover the cost —","I'll hide the tip —"],["it's a steal!","it's a joke!"]]
   },
   {
     sentence: "You ate the last slice, and now you owe me.",
@@ -2971,7 +2991,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**you owe me** 字面「你欠我」，引申「你欠我一个交代/一个回应」，可用于朋友间要说法、调侃。",
       "例句：You ruined my favorite mug — you owe me!"
-    ]
+    ],
+    distractors: [["You made the last slice,","You bought the last slice,"],["and now you owe her.","and now you hate me."]]
   },
   {
     sentence: "We have pasta, salad, soup — you name it, we've got it.",
@@ -2987,7 +3008,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**you name it** 是「随便你说/你能想到的都有」，表货源丰富、应有尽有。",
       "近义：and then some / you name it, we have it。例句：We sell anything — you name it."
-    ]
+    ],
+    distractors: [["We need pasta, salad, soup —"],["you order it,","you say it,"],["we've seen it.","we've lost it."]]
   },
   {
     sentence: "Don't bother — I'll do it myself.",
@@ -3002,7 +3024,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**don't bother** 拒绝别人帮忙：「不用麻烦你了」，礼貌地接手或拒绝。",
       "近义：no worries / don't trouble yourself。例句：— Can I help with the dishes? — Don't bother, I've got it."
-    ]
+    ],
+    distractors: [["Don't worry —","Don't hurry —"],["I'll do it later.","I'll do it with you."]]
   },
   {
     sentence: "Look out — there's a car coming!",
@@ -3017,7 +3040,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**look out!** 是危险预警「当心」，紧急程度高于 watch out，比 be careful 紧迫。",
       "近义：watch out / heads up。例句：Look out! The stove is hot!"
-    ]
+    ],
+    distractors: [["Look up —","Look down —"],["there's a car leaving!","there's a bus coming!"]]
   },
   {
     sentence: "Watch out — the floor is slippery.",
@@ -3032,7 +3056,8 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**watch out** 是日常提醒「小心」，比 look out 语气弱，更接近注意/留神。",
       "近义：be careful / mind your step。例句：Watch out for the step down — it's hard to see."
-    ]
+    ],
+    distractors: [["Watch me —","Watch on —"],["the floor is wet.","the wall is slippery."]]
   },
   {
     sentence: "I need to know your decision — just say the word.",
