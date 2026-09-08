@@ -5,7 +5,7 @@
 
 ## 项目简介
 
-Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句子被拆成 2~5 个语义完整、带语法角色标注的意群，学习者通过选词、填空、打字的方式把整句还原。相比背单词，这种练习直接作用于"句子结构"和"语块记忆"，配合 SRS 间隔重复与 AI 详解，是面向口语和阅读的轻量训练方案。
+Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句子被拆成 2~5 个语义完整、带语法角色标注的意群，学习者通过选词、填空、打字的方式把整句还原。相比背单词，这种练习直接作用于"句子结构"和"语块记忆"，配合 SRS 间隔重复与逐句讲解（课程打包的结构化数据），是面向口语和阅读的轻量训练方案。
 
 **技术特征**
 - 前端：零构建、零运行时依赖的静态页（`main.html` 等），双击或起服务即可运行
@@ -18,31 +18,32 @@ Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句�
 | 能力 | 说明 |
 |------|------|
 | 🧩 意群练习 | 拼句 / 选词 / 填空 / 打字 4 种作答模式，逐语块即时判定 |
-| 📚 内置题库 | 日常对话、购物英语、高频口语（Spoken Essentials）、高频口语 8000 句（Oral 8000，共 138 句） |
+| 📚 内置题库 | 2 套：日常对话 · Daily Talk（138 句）+ 高频短语 · English Idioms（201 句） |
 | 📖 图文课程 | ZIP 课程包导入 + 图推理对话练习 + 课前预习 / 主课程 / 课后测试三段式 |
 | 🔁 SRS 间隔重复 | 艾宾浩斯节奏 `1→3→7→14→30→60→120→180→365` 天，答错重置（纯函数，可单测） |
-| ✨ AI 详解 | 接入 DeepSeek 生成多维讲解，本地缓存命中免重复计费（⚠️ 当前前端直连，见"已知限制"） |
+| 📝 句子详解 | 课程自带结构化讲解（语法 / 搭配 / 句型，随句渲染）；AI 联网生成为**可选后端能力**（服务端代理 + 限流 + 缓存，`AI_EXPLAIN_ENABLED=true` 开启，默认停用） |
 | 📊 学习档案 | 熟练度分布、需巩固句子、错题本、到期复习队列 |
-| 💾 整库备份 | 一键导出/导入 JSON（含题库、统计、设置、错题本、图文课程、课程进度、AI 缓存） |
+| 💾 整库备份 | 一键导出/导入 JSON（含题库、统计、设置、错题本、图文课程、课程进度） |
 
 ## 架构概览
 
 ```
-UI 层        main.html（入口）· decks.html · stats.html · courses.html（iframe + postMessage 隔离）
+UI 层        main.html（练习入口）· decks.html（题库管理）· stats.html（学习档案）· courses.html（图文课程）
+             页面间为整页跳转（location.href），数据经 localStorage / 云端共享；无 iframe 依赖
 共享核心层   core.js（CL 单例）· srs.js（纯函数）· library.js · course-package.js · api.js · auth-ui.js
-云端后端     server/（Express + SQLite + JWT）：鉴权 / 数据 / 单条课程 / 备份 / 健康
-数据层       浏览器 localStorage（离线优先·版本化）+ 云端 SQLite（权威数据，按 user_id 隔离）
+云端后端     server/（Express + SQLite + JWT）：鉴权 / 数据 / 单条课程 / 备份 / 健康 / AI 代理
+数据层       浏览器 localStorage / IndexedDB（离线优先·版本化）+ 云端 SQLite（权威数据，按 user_id 隔离）
 ```
 
 关键决策（ADR，详见 [`architecture-plan.md`](./architecture-plan.md)）：
-- **ADR-001** 页面物理隔离：iframe + postMessage，子页崩溃不影响主页
 - **ADR-002** 全局命名空间收敛为 `CL` 单例，消灭全局函数污染
 - **ADR-003** SRS 调度纯函数化，可单测、可替换算法
-- **ADR-004** AI 调用走后端代理（已落地：Key 服务端化 + 限流 + 缓存 TTL）
+- **ADR-004** AI 调用走后端代理（已落地：Key 服务端化 + 限流 + 缓存 TTL；联网生成当前默认停用，env 开启）
 - **ADR-005** 实体级 rev 同步 + 软删除（已落地：四类实体 per-entity，多设备不丢数据）
 - **ADR-006** 鉴权安全（已落地：REQUIRE_AUTH 多用户模式 + env 密钥，上云必开）
-- **ADR-007** 前端 ESM 模块化（已落地：chunk-engine / format / ai-prompts / backup 四模块 + bridge 桥接，main.html 4781→4444 行）
-- **ADR-008** 后端校验测试（已落地：服务端 schema 校验 400 + 冒烟测试 49 用例）
+- **ADR-007** 前端 ESM 模块化（已落地：chunk-engine / format / ai-prompts / backup 四模块 + bridge 桥接；main.html 5.1k→4.3k 行，剩余 DOM/流程层仍为单体）
+- **ADR-008** 后端校验测试（已落地：服务端 schema 校验 400 + 冒烟测试 63 用例）
+- **ADR-001（已作废）** 早期 iframe + postMessage 页面隔离方案已随独立页面迁移移除（见 2026-09-08 死代码清理），保留编号仅为追溯
 
 ## 快速开始
 
@@ -89,15 +90,15 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 
 ## 数据存储
 
-**浏览器（离线优先，版本化 v2）**
+**浏览器（离线优先，版本化；云端开启后仅作即时缓存）**
 
-| 键 | 内容 |
+| 键 / 位置 | 内容 |
 |----|------|
-| `chunklab.v1` | 主数据：题库、纪录、掌握标记、统计、设置、断点进度、错题本 |
-| `chunklab.courses.v1` | 图文课程包（含 base64 图片，可能较大） |
-| `chunklab.course-progress.v1` | 各课程的已学节点 / 完成状态 |
-| `chunklab_reinforce` | 错题本（部分路径） |
-| `chunklab_ai_cache_v1` | AI 详解缓存（按「模型 + 句子」命中，前端 LRU 淘汰） |
+| `chunklab.v1` | 主数据：题库、纪录（best）、掌握标记、统计、设置、断点进度、**错题本（reinforceBook）** |
+| IndexedDB · store `courses` | 图文课程包（原 `chunklab.courses.v1` 键已迁移，`CL.preload` 启动迁移） |
+| IndexedDB · store `progress` | 课程已学节点 / 完成状态（原 `chunklab.course-progress.v1` 同上） |
+| `chunklab_revs_v1` | 实体级 rev 版本号（ADR-005，core.js 维护） |
+| `chunklab_reinforce` | **已废弃**：错题本曾用的独立键（从不云同步，2026-09-08 起收敛到 `chunklab.v1.reinforceBook`，旧存量加载时一次性迁移后删除） |
 
 > **句子档案 key 与原文解耦（cid）**：`mastered` / `deletedItems` / `stats.bySentence` / 事件记录的键统一为 `deckId#cid`（cid = 句子数据的稳定内容 ID，见 `core.js` 的 `cidOf`）。内容修订时保留原 cid 即可不丢学习进度；旧数据（`deckId#原文`）在 `loadMem` 时自动一次性迁移。内置句子 cid 由 `scripts/add-cids.js` 维护（幂等），`validate_builtins.js` / `validate_oral8000.js` 回归校验。
 
@@ -118,25 +119,27 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 
 | 文件 | 入口 | 职责 |
 |------|------|------|
-| `main.html` | 项目入口 | 练习主页 + 题库管理 + 系统设置 + AI 解读 |
-| `decks.html` | 主页「题库」 | 句子课程 / 图文课程双 tab：导入、导出、AI 批量生成、分类 |
-| `stats.html` | 主页「📊」 | 学习档案：KPI 卡片、熟练度圆环、错题本、到期复习 |
-| `courses.html` | 题库页·图文课程 | 图文课程播放器（支持 `?id=<courseId>` 深链直达） |
+| `main.html` | 项目入口 | 练习主页 + 逐句详解弹窗 + 系统设置 + 导入 |
+| `decks.html` | 主页右上「题库」 | 题库管理：句子课程 / 图文课程双 tab（导入、导出、批量生成、分类） |
+| `stats.html` | 主页右上「档案」 | 学习档案：KPI 卡片、熟练度分布、句子记录、错题本、到期复习 |
+| `courses.html` | 题库页·图文课程 | 图文课程播放器（支持 `?id=<courseId>` 深链直达；无 id 时跳回 decks.html） |
 
-> 旧版 `chunk-practice.html` 为重构前的单体遗留，已被 `main.html` 取代，不再维护。
+> 页面间为**整页跳转**（`location.href`），非 iframe 嵌入；错题/复习等跨页操作通过 `localStorage`（`chunklab_pending_review_deck`）+ 主页启动时读取完成接力。
+> 重构前的单体遗留 `chunk-practice.html` 已被 `main.html` 取代并从仓库移除。
 
 ## 开发与测试
 
 前端单测（Node 直跑，零依赖）：
 ```bash
-node srs.test.js           # SRS 间隔序列 / 答错重置 / 旧数据兼容 / 到期判定
-node store.test.js         # 存储键统一 / 版本迁移 / 句子 key cid 迁移 / 默认结构
-node validate_builtins.js  # 内置题库数据规范（cid 唯一、chunk 拼接=原句、句子不重复）
-node validate_oral8000.js  # 口语种子数据规范（chunk 拼接=原句、标点规则、alts、cid）
-node course-resume.test.js # 图文课程进度恢复
+node srs.test.js            # SRS 间隔序列 / 答错重置 / 旧数据兼容 / 到期判定
+node store.test.js          # 存储键统一 / 版本迁移 / 句子 key cid 迁移 / 默认结构
+node rev.test.js            # ADR-005 实体级 rev 同步 + 离线 change-log（dirty/重连补传）
+node validate_builtins.js   # 内置题库数据规范（cid 唯一、chunk 拼接=原句、句子不重复）
+node validate_oral8000.js   # 口语种子数据规范（chunk 拼接=原句、标点规则、alts、cid）
+node validate_freq_idioms.js# 高频短语数据规范（同上，另有 idiom 不可拆分校验）
+node course-resume.test.js  # 图文课程进度恢复
 ```
-> 内置句子增改后跑 `node scripts/add-cids.js` 补/重算 cid（幂等；`--force` 全量重算）再跑上面两个 validate。
-```
+> 内置句子增改后跑 `node scripts/add-cids.js` 补/重算 cid（幂等；`--force` 全量重算）再跑对应的 validate_*.js。
 
 后端冒烟测试（零依赖，启动服务跑关键接口往返）：
 ```bash
@@ -163,7 +166,7 @@ npm run e2e
 # 截图输出 output/e2e/shots/；找不到浏览器时设 CHROMIUM_PATH
 ```
 
-> **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first，改业务代码后必须 **bump `CACHE` 版本号**（如 `chunklab-v3` → `v4`），否则浏览器会继续 serve 旧缓存（修复不生效）。刷新页面一次即完成新 SW 激活与旧缓存清理；**页面顶部会自动出现"发现新版本"toast**，点刷新即可。
+> **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first。CACHE 版本 = `chunklab-<sha1前8位>`，由 `node scripts/gen-sw.js` 依 PRECACHE 清单文件内容自动生成 —— **改业务代码后重跑 `node scripts/gen-sw.js`**（或手动 bump），否则浏览器继续 serve 旧缓存（修复不生效）。刷新一次即完成新 SW 激活与旧缓存清理；页面顶部会自动出现"发现新版本"toast，点刷新即可。
 
 ## 自动备份（上线准备 · 推荐配置）
 
@@ -193,18 +196,22 @@ node server/backup-cli.js list                # 列出备份
 | `CORS_ORIGINS` | 空（开发期全允许） | 允许的前端来源（逗号分隔） |
 | `PORT` | `8787` | 服务端口 |
 | `CHUNKLAB_DATA_DIR` | `server/data` | 数据库目录 |
+| `AI_EXPLAIN_ENABLED` | `false` | 联网 AI 详解开关（2026-09-06 起默认停用 → `/api/ai/explain` 503） |
+| `DEEPSEEK_API_KEY` | 空 | DeepSeek Key（ADR-004：仅存服务端，前端不再直连） |
+| `AI_RATE_LIMIT` | `10` | AI 代理每用户每分钟限流次数 |
+| `AI_CACHE_MAX` | `2000` | 服务端 ai_cache 容量（LRU 淘汰） |
+| `AI_CACHE_TTL` | `30` | AI 缓存有效期（天；0=永不过期） |
 
 ## 架构与长期规划
 
 整体架构设计、目标模型（含 SyncService 实体级 rev upsert）、ADR 全文、分阶段路线图（Phase A 加固 → B 同步正确 → C AI/离线 → D 平台化）与风险登记，见 **[`architecture-plan.md`](./architecture-plan.md)**。
 
-## 已知限制与上线待办
+## 当前已知限制
 
-- 🔴 **同步整块覆盖**：当前 `PUT /api/data` 是全量 DELETE+INSERT，多设备/并发会相互覆盖、写入中途崩溃可丢数据 → ADR-005 实体级 rev upsert（Phase B）
-- 🔴 **开放模式安全**：默认共享单用户 + 默认 JWT 密钥，公网裸奔 → ADR-006 + 上云安全清单
-- 🟡 **AI Key 前端直连** DeepSeek，明文存浏览器 → ADR-004 后端代理 + 限流（Phase C）
-- 🟡 `main.html` 4781 行单体，前端模块化未落地 → ADR-007 原生 ESM 拆分（Phase A/B）
-- 🟡 后端校验 / 单测覆盖有限 → ADR-008（本 README 的 `smoke.test.js` 已补端到端冒烟）
-- 🟡 移动端适配弱（少量媒体查询）；无 PWA / manifest / favicon
-- 🟡 核心练习逻辑（chunk 判定、干扰项、评分）尚无单测
-- 🟡 高频口语 8000 句当前仅 50 句种子数据（`oral8000.js` 追加即可扩展）
+- 🔴 **开放模式公网 = 数据裸奔**：默认共享单用户 + 默认 JWT 密钥。任何公网 / 可访问网络部署必须先 `REQUIRE_AUTH=true` + 强随机 `JWT_SECRET`（详见上「安全部署清单 · ADR-006」）
+- 🟡 `main.html` 仍是 ~4.3k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
+- 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
+- 🟡 `oral8000.js` 现为 50 句种子数据（并入 builtin-daily），分批扩展直接在文件内追加
+- 🟡 `output/e2e/e2e.js` 部分断言与最新 UI（AI 停用、独立页导航）存在漂移，改动主流程前先核对
+
+> 早期迭代中的问题（同步整块覆盖、AI Key 前端直连、后端零校验、移动端适配弱、核心逻辑无单测等）均已按 architecture-plan 的 Phase A→C 闭环，ADR 清单见上。
