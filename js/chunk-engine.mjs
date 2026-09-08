@@ -62,14 +62,24 @@ function overlapScore(a, b) {
   return n;
 }
 
+/* ★ 句内关联度（2026-09-08 修根因）：干扰项与整句语境的非停用词共享数。
+   原算法只度量"干扰项 ↔ 正确答案"（pattern/词数/重叠），跨题库干扰与整句零语义关联
+   → 学习者一眼排除，起不到干扰作用。干扰项是否有效取决于它与**整句**的语境关联。 */
+function sentenceContextOf(it) {
+  return (it && it.sentence) || (it && it.chunks || []).join(' ');
+}
+
 /* 生成候选：1 个正确答案 + 2 个干扰项（三档质量：同 pattern → 同长度+语义重叠 → 兜底）。
    currentItems = 当前题库 items（优先同语境）；allItems = 全部题库 items。
    ★ 候选池 = 当前题库 + 全题库合并：单题库 chunk 池稀疏（如 10 句 ≈ 25 chunks），
      若只在当前题库找，同 pattern / 同长度+重叠 的高质量干扰常不足 2 个 → 被迫兜底到零相关。
-     跨题库找高质量干扰（同 pattern 或共享内容词）优于"同题库但零相关"。 */
+     跨题库找高质量干扰（同 pattern 或共享内容词）优于"同题库但零相关"。
+   ★ 桶内排序（降级）：句内关联 → 正确答案关联。零句内关联的同 pattern 干扰排在后面，
+     仅供题库过小时兜底。 */
 export function buildChoices(it, i, currentItems, allItems) {
   var right = it.chunks[i], rn = norm(right);
   var rightPattern = patternOf(right);
+  var sentCtx = sentenceContextOf(it);
 
   var pool = [];
   (currentItems || []).forEach(function (o) {
@@ -105,12 +115,27 @@ export function buildChoices(it, i, currentItems, allItems) {
     }
   });
 
-  /* 桶内按 overlapScore 降序（桶 B / 兜底池）：高质量干扰更优先 */
-  function byScoreDesc(a, b) { return overlapScore(b, right) - overlapScore(a, right); }
-  samePattern.sort(byScoreDesc);
-  sameLenOverlap.sort(byScoreDesc);
+  /* 桶内排序：句内关联降序（主）→ 正确答案关联降序（次）。
+     主排序修复根因：零句内关联的干扰项排最后，仅题库过小时兜底入选。 */
+  function byCtxDesc(a, b) {
+    return (overlapScore(b, sentCtx) - overlapScore(a, sentCtx)) || (overlapScore(b, right) - overlapScore(a, right));
+  }
+  samePattern.sort(byCtxDesc);
+  sameLenOverlap.sort(byCtxDesc);
+  /* 桶 C：句内关联 ≥1（任意 pattern/长度，主题相关的兜底前先吃掉） */
+  var ctxRelated = [];
+  var seen3 = {};
+  pool.forEach(function (c) {
+    var k = norm(c);
+    if (!k || k === rn || seen[k] || seen2[k] || seen3[k]) return;
+    if (overlapScore(c, sentCtx) >= 1) {
+      seen3[k] = 1;
+      ctxRelated.push(c);
+    }
+  });
+  ctxRelated.sort(byCtxDesc);
 
-  /* 三级选取：同模式 → 同长度+重叠 → 任意不同（兜底，仅题库过小/无相关时启用） */
+  /* 四级选取：同模式 → 同长度+重叠 → 句内关联 → 任意不同（兜底，仅题库过小/无相关时启用） */
   var wrongs = [];
   var seen4 = {};
   function pick(source, cap) {
@@ -124,6 +149,7 @@ export function buildChoices(it, i, currentItems, allItems) {
   }
   pick(samePattern, 2);
   if (wrongs.length < 2) pick(sameLenOverlap, 2);
+  if (wrongs.length < 2) pick(ctxRelated, 2);
   if (wrongs.length < 2) pick(pool, 2);
   /* 仍不足 2 个时（题库太小），只返回正确答案 */
   if (wrongs.length < 2) return [right];
@@ -136,10 +162,13 @@ export function buildChoices(it, i, currentItems, allItems) {
   return choices;
 }
 
-/* 收集整句的干扰项（一次性大池子，所有 chunks 共享，不逐 chunk 刷新） */
+/* 收集整句的干扰项（一次性大池子，所有 chunks 共享，不逐 chunk 刷新）
+   ★ 2026-09-08 修根因：原 pass-2 零过滤任意捞取 → 跨题库干扰与整句零语义关联（截图实证）。
+     现三段式：同 pattern+句内关联 → 句内关联 → 兜底（题库过小时）。 */
 export function buildDistractors(it, currentItems, allItems) {
   var correctCount = it.chunks.length;
   var distractorCount = Math.max(4, correctCount * 2);
+  var sentCtx = sentenceContextOf(it);
   var pool = [];
   (currentItems || []).forEach(function (o) {
     if (o === it) return;
@@ -151,9 +180,29 @@ export function buildDistractors(it, currentItems, allItems) {
   });
   var correctSet = {};
   it.chunks.forEach(function (v) { correctSet[norm(v)] = 1; });
-  /* 优先取同模式（高质量干扰），否则退化 */
   var picks = [];
   var seen = {};
+  /* pass 1：同模式（chunk[0]）+ 句内关联 ≥1（高质量：结构对位且语境相关） */
+  pool.forEach(function (c) {
+    if (picks.length >= distractorCount) return;
+    var nk = norm(c);
+    if (!nk || correctSet[nk] || seen[nk]) return;
+    if (normPattern(patternOf(c)) === normPattern(patternOf(it.chunks[0])) && overlapScore(c, sentCtx) >= 1) {
+      seen[nk] = 1;
+      picks.push(c);
+    }
+  });
+  /* pass 2：句内关联 ≥1（任意 pattern，主题相关） */
+  pool.forEach(function (c) {
+    if (picks.length >= distractorCount) return;
+    var nk = norm(c);
+    if (!nk || correctSet[nk] || seen[nk]) return;
+    if (overlapScore(c, sentCtx) >= 1) {
+      seen[nk] = 1;
+      picks.push(c);
+    }
+  });
+  /* pass 3：同模式（保老算法语义：结构对位优先于任意兜底，零句内关联时仍排前） */
   pool.forEach(function (c) {
     if (picks.length >= distractorCount) return;
     var nk = norm(c);
@@ -163,6 +212,7 @@ export function buildDistractors(it, currentItems, allItems) {
       picks.push(c);
     }
   });
+  /* pass 4：兜底（题库过小时） */
   pool.forEach(function (c) {
     if (picks.length >= distractorCount) return;
     var nk = norm(c);

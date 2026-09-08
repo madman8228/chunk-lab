@@ -141,6 +141,34 @@ const items = [sentA, sentB, sentC];
   check('buildChoices: 跨题库后仍含正确答案', cs.includes('It looks like'));
 })();
 
+/* ===== 句内关联度（2026-09-08 修根因：干扰项与整句零语义关联 → 一眼排除，起不到干扰作用） ===== */
+(function () {
+  // 复现截图场景：句子谈 warning/burned/asked，跨题库干扰谈 ages/truth → 零句内关联必须排在有句内关联的之后
+  const target = { sentence: "He ignored the warning and got burned — he asked for it.", chunks: ['He ignored the warning', 'and got burned', '— he asked for it.'] };
+  const curItems = [
+    { sentence: "I haven't seen you for ages.", chunks: ["I haven't seen you for ages —"] }, // 零句内关联（截图干扰）
+    { sentence: "The truth comes out before dawn.", chunks: ['before the truth comes out.'] } // 零句内关联（截图干扰）
+  ];
+  const allItems = curItems.concat([
+    { sentence: "She ignored the advice.", chunks: ['She ignored the advice'] }, // 句内关联：ignored
+    { sentence: "He asked her for directions.", chunks: ['asked her for it'] }    // 句内关联：asked/for→停用词外 asked
+  ]);
+  const ds = buildDistractors(target, curItems, allItems);
+  // 有句内关联的干扰（She ignored the advice / asked her for it）应全排在零关联（ages/truth）之前
+  const relIdx = ds.map((d, idx) => ({ d, idx })).filter(x => x.d === 'She ignored the advice' || x.d === 'asked her for it').map(x => x.idx);
+  const zeroIdx = ds.map((d, idx) => ({ d, idx })).filter(x => x.d === "I haven't seen you for ages —" || x.d === 'before the truth comes out.').map(x => x.idx);
+  check('buildDistractors: 句内关联干扰排在零关联之前（截图场景防回潮）',
+    relIdx.length === 2 && zeroIdx.length === 2 && Math.max(...relIdx) < Math.min(...zeroIdx),
+    'ds=' + JSON.stringify(ds));
+
+  // buildChoices 同理：句内关联排序后，正确答案 + 高质量干扰优先
+  const cs = buildChoices(target, 2, curItems, allItems); // 正确 '— he asked for it.'
+  const wrongs = cs.filter(c => c !== '— he asked for it.');
+  check('buildChoices: 桶排序句内关联优先（wrongs 含 ignored/advice 类干扰优先于 ages/truth）',
+    wrongs.length === 2 && (wrongs.includes('She ignored the advice') || wrongs.includes('asked her for it')),
+    'cs=' + JSON.stringify(cs));
+})();
+
 /* ===== judgeChunk ===== */
 check('judgeChunk: 精确匹配', judgeChunk('I am', 'I am', []) === true);
 check('judgeChunk: 大小写/标点归一', judgeChunk('i am!', 'I am', []) === true);
