@@ -53,6 +53,8 @@
     apiInput.placeholder = '服务器地址（如 https://lab.example.com）';
     apiInput.value = (global.ChunkAPI && global.ChunkAPI.getBase()) || '';
     apiInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:12px;border:1px solid #dedbd4;border-radius:9px;font-size:14px;box-sizing:border-box';
+    /* 同源部署（前后端同一域名，base 为空）时前端与 API 天然同源，此字段无用且困惑 —— 仅分离部署（存了自定义 base）才显示 */
+    if (!apiInput.value) apiInput.style.display = 'none';
 
     var userInput = el('input');
     userInput.type = 'text'; userInput.placeholder = '用户名';
