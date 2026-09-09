@@ -19,6 +19,10 @@ Group=chunklab
 WorkingDirectory=/opt/chunklab
 EnvironmentFile=/etc/chunklab/env
 ExecStart=/usr/bin/node server/index.js
+# 根治：ReadWritePaths 目录不存在时挂载命名空间失败（status=226/NAMESPACE）。
+# "+" 前缀 = 以 root 在宿主命名空间执行（ExecStartPre 默认落在 User/沙箱内，mkdir 会被 ProtectSystem 拦）
+ExecStartPre=+/usr/bin/mkdir -p /opt/chunklab/server/data /opt/chunklab/server/backups
+ExecStartPre=+/usr/bin/chown chunklab:chunklab /opt/chunklab/server/data /opt/chunklab/server/backups
 Restart=on-failure
 RestartSec=3
 # 安全加固
