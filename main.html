@@ -1193,6 +1193,17 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
           </div>
         </div>
       </div>
+
+      <!-- 账号区块：仅多用户模式（REQUIRE_AUTH=true）显示；开放模式隐藏 -->
+      <div id="accountSection" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)" hidden>
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px">账号</div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-size:12.5px;color:var(--muted)" id="acctState"></span>
+          <button class="btn sm" id="btnAccountLogin" hidden>登录</button>
+          <button class="btn sm ghost" id="btnAccountLogout" hidden>退出登录</button>
+        </div>
+        <div style="font-size:11.5px;color:var(--faint);margin-top:8px;line-height:1.55">退出后可切换账号。学习数据在云服务器上，退出前请确认已同步（顶栏无「待同步」徽标）。</div>
+      </div>
     </div>
     <div class="modal-foot">
       <button class="btn primary" id="btnSaveSettings">保存设置</button>
@@ -3849,7 +3860,35 @@ $('btnSettingsTop').onclick = function(){
   $('aiCfgBody').classList.add('hidden');
   $('aiCfgCaret').style.transform = 'rotate(0deg)';
   $('aiCfgStatus').textContent = mem.settings.apiKey ? '· 本地 Key（仅服务端未配置时使用）' : '· 服务端代理模式';
+  refreshAccountUi();
   $('settingsMask').hidden = false;
+};
+/* 账号区块：仅多用户模式显示；登录/退出按钮与状态同步 */
+function refreshAccountUi(){
+  var sec = $('accountSection');
+  if(!sec || !window.ChunkAPI){ if(sec) sec.hidden = true; return; }
+  window.ChunkAPI.getConfig().then(function(cfg){
+    if(!cfg || !cfg.requireAuth){ sec.hidden = true; return; } /* 开放模式无需账号概念 */
+    sec.hidden = false;
+    var st = $('acctState'), btnLogin = $('btnAccountLogin'), btnLogout = $('btnAccountLogout');
+    if(window.ChunkAPI.isLoggedIn()){
+      btnLogin.hidden = true; btnLogout.hidden = false;
+      st.textContent = '当前账号：…';
+      window.ChunkAPI.me().then(function(u){
+        st.textContent = '当前账号：' + ((u && u.user && u.user.username) ? u.user.username : '已登录');
+      }).catch(function(){ st.textContent = '当前账号：已登录'; });
+    } else {
+      btnLogin.hidden = false; btnLogout.hidden = true;
+      st.textContent = '未登录 — 数据仅存本地，登录后可跨设备同步';
+    }
+  }).catch(function(){ sec.hidden = true; });
+}
+$('btnAccountLogin').onclick = function(){
+  window.ChunkAuthUI.showLogin(function(){ location.reload(); });
+};
+$('btnAccountLogout').onclick = function(){
+  if(window.ChunkAuthUI) window.ChunkAuthUI.logout(); /* 清 token；重载后进入未登录态 */
+  location.reload();
 };
 /* AI 配置组折叠 */
 $('aiCfgHead').onclick = function(){

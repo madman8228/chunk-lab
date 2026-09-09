@@ -22,6 +22,10 @@
   var _loginShown = false;
   function finishLogin(r) {
     _loginShown = false;
+    /* 根因修复（2026-09-09，A2 浏览器实测发现）：此前只通知 waiters 不移除遮罩，
+       登录/注册成功后页面被 #chunkauth-mask 永久挡住，多用户模式无法使用。 */
+    var mask = global.document.getElementById('chunkauth-mask');
+    if (mask && mask.parentNode) mask.parentNode.removeChild(mask);
     var ws = _loginWaiters;
     _loginWaiters = [];
     ws.forEach(function (cb) { try { cb(r); } catch (e) {} });
