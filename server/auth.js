@@ -21,10 +21,11 @@ const JWT_SECRET = process.env.JWT_SECRET || DEV_FALLBACK_SECRET;
 const TOKEN_TTL = process.env.TOKEN_TTL || '30d';
 
 /** 安全断言：多用户模式必须有真实随机密钥。任一入口（主服务/工具/脚本）签发或验签
- *  token 前都必须通过，否则抛错（fail-fast，不静默降级）。生成：openssl rand -hex 32 */
+ *  token 前都必须通过，否则抛错（fail-fast，不静默降级）。生成：openssl rand -hex 32
+ *  P0（2026-09-09）：强度下限 32 字符，杜绝弱密钥上线（smoke 用的 36 字符测试密钥可过）。 */
 function assertSecure() {
-  if (REQUIRE_AUTH && (!process.env.JWT_SECRET || process.env.JWT_SECRET === DEV_FALLBACK_SECRET)) {
-    throw new Error('REQUIRE_AUTH=true 但 JWT_SECRET 未设置或仍为占位值，拒绝签发/验签令牌（生成：openssl rand -hex 32）');
+  if (REQUIRE_AUTH && (!process.env.JWT_SECRET || process.env.JWT_SECRET === DEV_FALLBACK_SECRET || process.env.JWT_SECRET.length < 32)) {
+    throw new Error('REQUIRE_AUTH=true 但 JWT_SECRET 缺失/占位/短于 32 字符，拒绝签发/验签令牌（生成：openssl rand -hex 32）');
   }
 }
 function isSecure() {

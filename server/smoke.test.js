@@ -65,6 +65,33 @@ function request(method, p, token, body) {
   });
 }
 
+/** 原始 HTTP 请求（可带自定义 headers / body / 读响应头），供限速与 CORS 等回归用 */
+function rawRequest(base, p, options) {
+  return new Promise(function (resolve, reject) {
+    const data = options && options.body ? JSON.stringify(options.body) : null;
+    const u = new URL(base + p);
+    const headers = Object.assign({}, (options && options.headers) || {});
+    if (data) headers['Content-Type'] = 'application/json';
+    const req = http.request(
+      {
+        hostname: u.hostname,
+        port: u.port,
+        path: u.pathname,
+        method: (options && options.method) || 'GET',
+        headers: headers
+      },
+      function (res) {
+        let raw = '';
+        res.on('data', function (c) { raw += c; });
+        res.on('end', function () { resolve({ status: res.statusCode, body: raw, headers: res.headers }); });
+      }
+    );
+    req.on('error', reject);
+    if (data) req.write(data);
+    req.end();
+  });
+}
+
 function waitHealth(timeoutMs) {
   const start = Date.now();
   return new Promise(function (resolve, reject) {
@@ -481,6 +508,26 @@ async function main() {
     r = await request('POST', '/api/ai/explain', token, { sentence: 'fourth sentence triggers limit', apiKey: 'sk-test' });
     check('ADR-004 超限 → 429', r.status === 429, 'status=' + r.status + ' ' + JSON.stringify(r.json));
 
+    // ===== P1 回归（2026-09-09）：认证限速 —— 登录失败 10 次后锁定 429，注册超限 429 =====
+    // 说明：本实例此前已成功注册 smoke_a/smoke_b（register 桶 2 次 + 3 次非法注册试探），故循环上限放宽到 15 保证必现 429
+    let loginLocked = false;
+    for (let li = 0; li < 15 && !loginLocked; li++) {
+      const lr = await request('POST', '/api/auth/login', null, { username: 'brute-user-' + li, password: 'wrong-pass' });
+      if (lr.status === 429) loginLocked = true;
+    }
+    check('P1 登录失败超限 → 429 锁定', loginLocked);
+    // 锁定后即使密码正确也 429（窗口期内不放开，防重放撞库）
+    const lockedCorrect = await request('POST', '/api/auth/login', null, { username: 'smoke_a', password: 'smoke123' });
+    check('P1 锁定后正确密码仍 429', lockedCorrect.status === 429, 'status=' + lockedCorrect.status);
+    let regLimited = false;
+    for (let ri = 0; ri < 15 && !regLimited; ri++) {
+      const rr = await request('POST', '/api/auth/register', null, { username: 'spam-user-' + Date.now() + '-' + ri, password: 'abcdef123' });
+      if (rr.status === 429) regLimited = true;
+    }
+    check('P1 注册超限 → 429', regLimited);
+    const openAuth = await rawRequest(BASE, '/api/auth/me'); // 此实例 REQUIRE_AUTH=true，登出态访问 /me 应 401（顺带验证没被 429 误伤）
+    check('P1 限速不误伤已签发 token（/me 401 为未带 token 正常行为）', openAuth.status === 401, 'status=' + openAuth.status);
+
     // ===== 默认关闭回归（2026-09-06）：未设 AI_EXPLAIN_ENABLED → /api/ai/explain 一律 503 =====
     // 另起一个开放模式短命实例（不带 AI_EXPLAIN_ENABLED），验证默认行为是「停用」。
     const offPort = PORT + 1;
@@ -523,11 +570,66 @@ async function main() {
           q.end();
         });
         check('AI 默认关闭实例 config.aiEnabled=false', cr.status === 200 && cr.json && cr.json.aiEnabled === false, 'status=' + cr.status);
+
+        // ===== P0 回归（2026-09-09）：静态黑名单（.git/dotfiles/e2e）+ CORS fail-closed =====
+        // 静态敏感路径必须 403（曾实测 /.git/config 200 可重建源码与提交历史）
+        const staticPaths = ['/.git/config', '/.git/HEAD', '/.gitignore', '/.env', '/e2e/e2e.js'];
+        for (const sp of staticPaths) {
+          const sr = await new Promise(function (resolve) {
+            const u = new URL(offBase + sp);
+            const q = http.request(u, function (res) { res.resume(); res.on('end', function () { resolve({ status: res.statusCode }); }); });
+            q.on('error', function () { resolve({ status: 0 }); });
+            q.end();
+          });
+          check('P0 静态黑名单 ' + sp + ' → 403', sr.status === 403, 'status=' + sr.status);
+        }
+        // 正常前端资源不受影响
+        const okStatic = await new Promise(function (resolve) {
+          const u = new URL(offBase + '/main.html');
+          const q = http.request(u, function (res) { res.resume(); res.on('end', function () { resolve({ status: res.statusCode }); }); });
+          q.on('error', function () { resolve({ status: 0 }); });
+          q.end();
+        });
+        check('P0 静态白名单 main.html → 200', okStatic.status === 200, 'status=' + okStatic.status);
+        // CORS 未配白名单 → 不回显 Access-Control-Allow-Origin（浏览器读到即拦截跨域）
+        const corsR = await new Promise(function (resolve) {
+          const u = new URL(offBase + '/api/config');
+          const q = http.request({ hostname: u.hostname, port: u.port, path: u.pathname, method: 'GET', headers: { Origin: 'http://evil.example' } }, function (res) {
+            let s = ''; res.on('data', function (c) { s += c; }); res.on('end', function () { resolve({ status: res.statusCode, acao: res.headers['access-control-allow-origin'] }); });
+          });
+          q.on('error', function () { resolve({ status: 0, acao: 'req-error' }); });
+          q.end();
+        });
+        check('P0 CORS 未配白名单 → 不回显 ACAO', corsR.status === 200 && corsR.acao === undefined, 'status=' + corsR.status + ' acao=' + corsR.acao);
+
+        // P1（2026-09-09）：开放模式（REQUIRE_AUTH=false）下 register/login 一律 403 —— 无意义且有滥用面
+        const regOpen = await rawRequest(offBase, '/api/auth/register', { method: 'POST', body: { username: 'x', password: '123456' } });
+        check('P1 开放模式注册 → 403', regOpen.status === 403, 'status=' + regOpen.status + ' ' + regOpen.body);
+        const loginOpen = await rawRequest(offBase, '/api/auth/login', { method: 'POST', body: { username: 'x', password: '123456' } });
+        check('P1 开放模式登录 → 403', loginOpen.status === 403, 'status=' + loginOpen.status + ' ' + loginOpen.body);
       }
     } finally {
       if (offChild) offChild.kill('SIGKILL');
       try { fs.rmSync(TMP_DB + '-off', { recursive: true, force: true }); } catch (e) { /* best-effort */ }
     }
+
+    // ===== P0 回归（2026-09-09）：NODE_ENV=production 且非 REQUIRE_AUTH=true → 拒绝启动 =====
+    const prodEnv = Object.assign({}, process.env, {
+      NODE_ENV: 'production',
+      PORT: String(PORT + 2),
+      CHUNKLAB_DATA_DIR: TMP_DB + '-prod'
+    });
+    delete prodEnv.REQUIRE_AUTH;
+    delete prodEnv.JWT_SECRET;
+    delete prodEnv.AI_EXPLAIN_ENABLED;
+    const prodExit = await new Promise(function (resolve) {
+      const p = spawn(process.execPath, ['index.js'], { cwd: SERVER_DIR, env: prodEnv, stdio: 'ignore' });
+      const timer = setTimeout(function () { p.kill('SIGKILL'); resolve('TIMEOUT'); }, 10000);
+      p.on('close', function (code) { clearTimeout(timer); resolve(code); });
+      p.on('error', function () { clearTimeout(timer); resolve('SPAWN_ERR'); });
+    });
+    check('P0 NODE_ENV=production 禁开放模式 → exit 1', prodExit === 1, 'exit=' + prodExit);
+    try { fs.rmSync(TMP_DB + '-prod', { recursive: true, force: true }); } catch (e) { /* best-effort */ }
   } finally {
     if (child) child.kill('SIGKILL');
   }

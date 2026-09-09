@@ -9,7 +9,7 @@
  *   健康：GET  /health
  *
  * 所有数据接口需 Authorization: Bearer <token>（JWT）。
- * 前后端分离：CORS 默认宽松（开发期），生产用 CORS_ORIGINS 收紧或交给 Nginx。
+ * 前后端分离：前端与 API 同源部署无需 CORS；跨域须显式配 CORS_ORIGINS（留空 = 拒绝跨域，fail-closed）。
  */
 const express = require('express');
 const cors = require('cors');
@@ -31,8 +31,11 @@ app.use(express.json({ limit: '80mb' })); // 图文课程含 base64 图片，可
 const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
 app.use(cors({
   origin: function (origin, cb) {
-    if (!origin) return cb(null, true);          // 允许 file:// 或无 Origin 的请求
-    if (allowedOrigins.length === 0) return cb(null, true); // 未配置则全允许（开发期）
+    if (!origin) return cb(null, true); // 同源/无 Origin 的请求（curl、同页 fetch、file://）不受 CORS 约束
+    /* P0 fail-closed（2026-09-09）：未显式配置 CORS_ORIGINS 白名单 → 一律不授予跨域。
+       浏览器读不到 Access-Control-Allow-Origin 即拦截，杜绝"回显任意 Origin + credentials"被恶意网页驱动。
+       前端与 API 同源部署（本服务静态托管或 Nginx 反代 /api）无需 CORS，配置了白名单才放行对应域名。 */
+    if (allowedOrigins.length === 0) return cb(null, false);
     if (allowedOrigins.indexOf(origin) >= 0) return cb(null, true);
     cb(new Error('CORS 不允许的来源: ' + origin));
   },
@@ -85,7 +88,63 @@ app.get('/api/config', function (req, res) {
 });
 
 /* ===================== 鉴权 ===================== */
+/* P1 认证限速（2026-09-09）：防暴力破解/撞库/批量注册。
+   纯内存固定窗口（15 分钟），单实例自托管够用；多实例负载均衡需换共享存储（Redis）。
+   默认读 req.ip（直连可靠）；经 Nginx 等反代时设 TRUST_PROXY=true（只信任第一跳 X-Forwarded-For）。 */
+const TRUST_PROXY = String(process.env.TRUST_PROXY || '').trim().toLowerCase() === 'true';
+if (TRUST_PROXY) app.set('trust proxy', 1);
+
+const RATE_WINDOW_MS = 15 * 60 * 1000;
+const AUTH_RATE = {
+  register: 10,  // 每 IP 每窗口最多 10 次注册请求（成功/失败都计，防枚举与批量建号）
+  loginFail: 10  // 每 IP 每窗口最多 10 次登录失败 → 锁定 429（成功登录清零）
+};
+const rateBuckets = new Map(); // ip -> { register:number[], loginFail:number[] } 时间戳数组
+
+function rateBlocked(ip, kind, max) {
+  const now = Date.now();
+  const b = rateBuckets.get(ip);
+  const arr = b && b[kind];
+  if (!arr) return false;
+  while (arr.length && arr[0] <= now - RATE_WINDOW_MS) arr.shift();
+  return arr.length >= max;
+}
+function rateHit(ip, kind, max) { // 记一次；已达上限返回 false（调用方回 429）
+  const now = Date.now();
+  let b = rateBuckets.get(ip);
+  if (!b) { b = {}; rateBuckets.set(ip, b); }
+  let arr = b[kind];
+  if (!arr) { arr = []; b[kind] = arr; }
+  while (arr.length && arr[0] <= now - RATE_WINDOW_MS) arr.shift();
+  if (arr.length >= max) return false;
+  arr.push(now);
+  return true;
+}
+function rateClear(ip, kind) {
+  const b = rateBuckets.get(ip);
+  if (b) delete b[kind];
+}
+/* 定时清空过期桶，防 Map 无限膨胀（unref：不阻塞进程退出） */
+setInterval(function () {
+  const now = Date.now();
+  for (const [ip, b] of rateBuckets) {
+    for (const k of Object.keys(b)) {
+      const arr = b[k];
+      while (arr.length && arr[0] <= now - RATE_WINDOW_MS) arr.shift();
+      if (!arr.length) delete b[k];
+    }
+    if (!Object.keys(b).length) rateBuckets.delete(ip);
+  }
+}, RATE_WINDOW_MS).unref();
+
+function send429(res) {
+  res.set('Retry-After', String(Math.ceil(RATE_WINDOW_MS / 1000)));
+  res.status(429).json({ error: '操作过于频繁，请 15 分钟后再试' });
+}
+
 app.post('/api/auth/register', function (req, res) {
+  if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无需注册' }); // P1：开放模式注册无意义且有滥用面
+  if (!rateHit(req.ip, 'register', AUTH_RATE.register)) return send429(res); // 成功/失败都计数
   try {
     const u = auth.register(req.body.username, req.body.password);
     const token = auth.signToken(u.id, u.username);
@@ -94,11 +153,18 @@ app.post('/api/auth/register', function (req, res) {
 });
 
 app.post('/api/auth/login', function (req, res) {
+  if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无需登录' }); // P1：开放模式登录取缔
+  const ip = req.ip;
+  if (rateBlocked(ip, 'loginFail', AUTH_RATE.loginFail)) return send429(res);
   try {
     const u = auth.login(req.body.username, req.body.password);
+    rateClear(ip, 'loginFail'); // 成功登录清零失败计数（防误锁）
     const token = auth.signToken(u.id, u.username);
     res.json({ token: token, user: { id: u.id, username: u.username } });
-  } catch (e) { res.status(401).json({ error: e.message }); }
+  } catch (e) {
+    rateHit(ip, 'loginFail', AUTH_RATE.loginFail); // 仅失败计数
+    res.status(401).json({ error: e.message });
+  }
 });
 
 app.get('/api/auth/me', auth.authenticate, function (req, res) {
@@ -433,14 +499,25 @@ app.post('/api/import', auth.authenticate, function (req, res) {
    生产部署建议由 Nginx 托管前端 + 反向代理 /api（见部署文档）。 */
 app.use(function (req, res, next) {
   // 防止误部署时通过静态服务泄露后端源码、依赖、本地开发/截图产物、架构文档与测试脚本
-  if (/^\/(server|node_modules|output|scripts|extra)\b/i.test(req.path)) return res.status(403).end('Forbidden');
-  if (/\.(md|markdown)$/i.test(req.path) || /\.test\.js$/i.test(req.path)) return res.status(403).end('Forbidden');
+  // P0（2026-09-09）：补 .git（实测 /\.git/config 等 200，可重建全部源码与提交历史）、e2e、deliverables、dotfiles(.env*/.workbuddy)
+  if (/^\/(server|node_modules|output|scripts|extra|e2e|deliverables)\b/i.test(req.path)) return res.status(403).end('Forbidden');
+  if (/\/\./.test(req.path)) return res.status(403).end('Forbidden'); // 任意层级 dotfile/dotdir：/.git、/.env、/.workbuddy、/server/.env…
+  if (/\.(md|markdown|bak|tmp|log|db|sqlite|sqlite3)$/i.test(req.path) || /\.test\.js$/i.test(req.path)) return res.status(403).end('Forbidden');
   next();
 });
 app.use(express.static(path.join(__dirname, '..')));
 
 const PORT = process.env.PORT || 8787;
 auth.ensureDefaultUser(); // 开放模式：确保默认用户存在
+
+/* P0 上线断言（2026-09-09）：生产环境禁止开放模式裸奔。
+   开放模式 = 所有人共享 __default__ 单用户、免 token 可读写/导入导出，公网多人使用绝不允许。
+   NODE_ENV=production 时必须 REQUIRE_AUTH=true，否则拒绝启动（fail-fast，不静默降级）。
+   本地开发（未设 NODE_ENV）不受影响，仍默认开放模式免登录。 */
+if (process.env.NODE_ENV === 'production' && !auth.REQUIRE_AUTH) {
+  console.error('[security] FATAL: NODE_ENV=production 禁止开放模式 —— 多人使用必须 REQUIRE_AUTH=true（并配强 JWT_SECRET），已拒绝启动');
+  process.exit(1);
+}
 
 /* 启动安全审计（ADR-006）：模式 + 密钥状态一启动就可见，防"以为开了鉴权实际裸奔" */
 const securityWarnings = [];
