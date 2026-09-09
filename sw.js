@@ -53,7 +53,7 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-cf3642af'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-de34bc86'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 const PRECACHE = [
   '/main.html',
   '/manifest.json',
@@ -119,9 +119,12 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  /* 静态资源：cache-first */
+  /* 静态资源：cache-first —— **只搜当前 CACHE**。
+     根因（2026-09-09 生产事故）：caches.match(req) 跨所有 cache name 搜索，老 chunklab 缓存（activate
+     清理前仍在）里的旧 core.js 会被命中，导致已升级版本被旧版覆盖。新版必须限定到当前 CACHE，
+     由 activate 负责清理老 cache（不可把"老 cache 清理"当兜底）。 */
   e.respondWith(
-    caches.match(req).then(function (hit) {
+    caches.open(CACHE).then(function (c) { return c.match(req); }).then(function (hit) {
       if (hit) return hit;
       return fetch(req).then(function (res) {
         if (!res || res.status !== 200 || res.type === 'opaque') return res;

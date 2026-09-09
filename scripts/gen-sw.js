@@ -65,9 +65,13 @@ if (missing.length) console.warn('[gen-sw] 基准文件缺失（已从清单剔�
 
 const files = base.filter(function (u) { return !missing.includes(u); }).concat(added);
 
-/* ---------- 内容 hash → CACHE 版本 ---------- */
+/* ---------- 内容 hash → CACHE 版本 ----------
+   根因（2026-09-09）：原版只对 PRECACHE 清单文件算 hash，sw.js 自身修改（fetch handler、install/activate
+   逻辑）不算入 → cache name 不变 → 浏览器继续用老 CACHE → 修了的 SW 不生效。修正：把 sw.js
+   自身也加进 hash 源（但写回前算，避免覆盖中的 hash 漂移）。 */
 const h = crypto.createHash('sha1');
 for (const u of files) h.update(fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))));
+h.update(fs.readFileSync(SW, 'utf8'));           /* sw.js 自身也算入 */
 const version = 'chunklab-' + h.digest('hex').slice(0, 8);
 
 /* ---------- 重写 sw.js ---------- */
