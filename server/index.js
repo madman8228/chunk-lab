@@ -505,6 +505,8 @@ app.use(function (req, res, next) {
   if (/\.(md|markdown|bak|tmp|log|db|sqlite|sqlite3)$/i.test(req.path) || /\.test\.js$/i.test(req.path)) return res.status(403).end('Forbidden');
   next();
 });
+/* 根路径 → 入口页。仓库无 index.html（入口是 main.html），express.static 对 / 会 404 "Cannot GET /" */
+app.get('/', function (req, res) { res.redirect('/main.html'); });
 app.use(express.static(path.join(__dirname, '..')));
 
 const PORT = process.env.PORT || 8787;
