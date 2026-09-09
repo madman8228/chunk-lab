@@ -633,23 +633,41 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .msg ul{margin:7px 0 0;padding-left:18px}
 .msg li{margin:2px 0;font-family:ui-monospace,Consolas,monospace;font-size:11.5px}
 
-/* ===== 今日待办条（轻量首页中枢） ===== */
-.today-bar{
-  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-  padding:5px 12px 5px 14px;margin-bottom:12px;
-  border:1px solid var(--border);border-radius:10px;background:var(--surface);
-  font-size:12.5px;color:var(--muted);
-}
-.today-bar .tb-label{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--text);white-space:nowrap}
-.today-bar .tb-label svg{width:14px;height:14px;stroke-width:1.8}
-.today-bar .grow{flex:1}
-.today-bar .tb-chip{font-weight:600;white-space:nowrap}
-.today-bar .tb-chip b{font-variant-numeric:tabular-nums;font-weight:800}
-.today-bar .tb-chip.due{color:var(--accent)}
-.today-bar .tb-chip.weak{color:var(--warn)}
-.today-bar .tb-chip.book{color:var(--bad)}
-.today-bar .tb-x{width:26px;height:26px;margin-left:auto}
-.today-bar .btn.sm{min-height:26px;padding:2px 12px}
+/* ===== 今日首页 ===== */
+.home-page{max-width:760px;margin:0 auto}
+.home-body{display:flex;flex-direction:column;gap:14px}
+.home-card{border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:16px 18px}
+.home-card .hc-title{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em;margin-bottom:12px}
+.home-card .hc-title svg{width:15px;height:15px;stroke-width:1.8}
+.home-card .hc-title .grow{flex:1}
+/* 今日聚合主卡 */
+.home-today-t{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--text)}
+.home-today-d{font-size:12.5px;color:var(--faint);margin:3px 0 0}
+.home-today-counts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:110px;background:var(--surface-2)}
+.htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.htc .l{font-size:11.5px;color:var(--faint);margin-top:2px}
+.htc.due .n{color:var(--accent)} .htc.due{border-color:#cfd9f5;background:var(--accent-soft)}
+.htc.weak .n{color:var(--warn)} .htc.weak{border-color:#f3e2bd;background:#fbf5e8}
+.htc.book .n{color:var(--bad)} .htc.book{border-color:#f3d4d0;background:var(--bad-soft)}
+.htc .n.ok{color:var(--ok)}
+.home-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.home-actions .btn{min-height:30px}
+.home-hint{font-size:12px;color:var(--faint);margin-left:2px}
+/* 最近牌组行 */
+.home-decks{display:flex;flex-direction:column;gap:8px}
+.hd-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.hd-row:hover{border-color:var(--border-strong)}
+.hd-row .nm{font-weight:700;font-size:14px}
+.hd-row .sub{font-size:12px;color:var(--faint);margin-top:1px}
+.hd-row .grow{flex:1}
+.hd-row .btn{min-height:28px}
+/* 空档案引导 */
+.home-empty{border:1px dashed var(--border);border-radius:14px;background:var(--surface);padding:22px 20px;text-align:center}
+.home-empty .t{font-size:15px;font-weight:700}
+.home-empty .d{font-size:12.5px;color:var(--muted);margin:6px 0 14px;line-height:1.6}
+/* 入口链接行 */
+.home-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:2px 0 6px}
 
 /* ===== 页面系统 ===== */
 .page{display:none}
@@ -882,17 +900,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     </div>
   </div>
 
-  <!-- 今日待办条（轻量首页中枢 · 吸收 ref「今日行动收口」思想）：
-       boot/结算时刷新；三项计数=到期复习/需巩固/错题；X 收起至本次 tab -->
-  <div class="today-bar hidden" id="todayBar">
-    <span class="tb-label"><span data-icon="calendar"></span>今日</span>
-    <span class="tb-chip due hidden" id="tbDue">到期复习 <b>0</b></span>
-    <span class="tb-chip weak hidden" id="tbWeak">需巩固 <b>0</b></span>
-    <span class="tb-chip book hidden" id="tbBook">错题 <b>0</b></span>
-    <span class="grow"></span>
-    <button class="btn sm primary hidden" id="btnTodayDue">开始到期复习</button>
-    <button class="btn sm ghost hidden" id="btnTodayArchive">去档案</button>
-    <button class="icon-action tb-x" id="btnTodayClose" title="本次收起" aria-label="收起今日待办"><span data-icon="close"></span></button>
+  <!-- 今日首页（打开应用默认落点：今日到期/继续上次/最近牌组/入口；外部跳转与 direct=1 直达练习） -->
+  <div class="page home-page hidden" id="pageHome">
+    <div class="home-body" id="homeBody"></div>
   </div>
 
   <!-- 练习页 -->
@@ -2990,7 +3000,6 @@ function recordSentenceResult(it, ok){
 }
 
 function finishSession(){
-  renderTodayBar(); /* 结算页可见的今日待办数字随本轮刷新 */
   S.finished = true;
   stopAutoNext();  /* 会话结束，清理倒计时 */
   /* 学习统计：完成一轮练习 */
@@ -3102,6 +3111,7 @@ function finishSession(){
             )+
             `<button class="btn" id="btnWrongOnly"`+(S.wrong.length?'':' disabled')+'>只练错题 ('+S.wrong.length+')</button>'+
             `<button class="btn" id="btnOtherDeck">换个题库</button>`+
+            `<button class="btn" id="btnHome">回今日</button>`+
             (needReinforce ?
               `<button class="btn-export" id="btnExportJSON" style="margin-left:8px">${window.Icons?Icons.svg('import'):''}导出巩固清单</button>`
               : ''
@@ -3122,6 +3132,7 @@ function finishSession(){
   }
   $('btnAgain').onclick = function(){ startDeck(S.deck, true); };
   $('btnOtherDeck').onclick = function(){ location.href = 'decks.html'; };
+  $('btnHome').onclick = function(){ renderHome(); };
   $('btnImport2').onclick = function(){ openImport(); };
   /* ★ 一键恢复内置 deck 内被隐藏的句子（finish 页直接暴露根因） */
   var _bri = $('btnRestoreInline');
@@ -3199,7 +3210,19 @@ function isDue(it){
 /* 到期句子排序权重：0 优先（当天到期的最先练） */
 function dueRank(it){ return isDue(it) ? 0 : 1; }
 
-/* ===== 今日待办条（吸收 ref 首页「今日行动收口」：SRS 到期队列让用户看得见） ===== */
+/* ===== 页面切换：今日首页 ↔ 练习页 ===== */
+function showHomePage(){
+  var p = $('pagePractice'); if(p) p.classList.add('hidden');
+  var h = $('pageHome'); if(h) h.classList.remove('hidden');
+  var r = $('result'); if(r) r.classList.add('hidden');
+  window.scrollTo(0, 0);
+}
+function showPracticePage(){
+  var h = $('pageHome'); if(h) h.classList.add('hidden');
+  var p = $('pagePractice'); if(p) p.classList.remove('hidden');
+}
+
+/* ===== 今日首页（吸收 ref「今日行动中枢」：到期收口 + 上次进度 + 最近牌组 + 入口） ===== */
 function computeToday(){
   var by = (mem.stats && mem.stats.bySentence) || {};
   var now = Date.now(), due = 0, weak = 0;
@@ -3214,25 +3237,7 @@ function computeToday(){
   });
   return { due: due, weak: weak, book: Array.isArray(mem.reinforceBook) ? mem.reinforceBook.length : 0 };
 }
-function setChip(id, n){
-  var el = $(id); if(!el) return;
-  el.classList.toggle('hidden', n === 0);
-  var b = el.querySelector('b'); if(b) b.textContent = n;
-}
-function renderTodayBar(){
-  var bar = $('todayBar'); if(!bar) return;
-  try{
-    var off = false; try{ off = !!sessionStorage.getItem('chunklab_tb_off'); }catch(e){}
-    var t = computeToday();
-    var total = t.due + t.weak + t.book;
-    bar.classList.toggle('hidden', total === 0 || off);
-    if(total === 0 || off) return;
-    setChip('tbDue', t.due); setChip('tbWeak', t.weak); setChip('tbBook', t.book);
-    var bd = $('btnTodayDue'), ba = $('btnTodayArchive');
-    if(bd) bd.classList.toggle('hidden', t.due === 0);
-    if(ba) ba.classList.toggle('hidden', t.due > 0);
-  }catch(err){ /* 计数异常不阻断练习 */ }
-}
+/* 到期复习队列（全库 srs- 临时队列：batchSize 分批、不写 best，与 stats.practiceDue 同构） */
 function startTodayDue(){
   var by = (mem.stats && mem.stats.bySentence) || {};
   var now = Date.now(), items = [];
@@ -3243,9 +3248,147 @@ function startTodayDue(){
       if(st && CL.srs.isDue(st, now)) items.push(withStatsSource(arr[i], d.id));
     }
   });
-  if(!items.length){ renderTodayBar(); return; }
-  /* 与 stats.practiceDue 同构：srs- 临时队列（按 batchSize 分批、不写 best） */
+  if(!items.length) return;
+  showPracticePage();
   startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
+}
+/* 需巩固队列（weak-，同 stats.practiceWeakSentences） */
+function startWeakNow(){
+  var by = (mem.stats && mem.stats.bySentence) || {};
+  var items = [];
+  Object.keys(by).forEach(function(k){
+    if(classifyStat(by[k]) !== 'weak') return;
+    var st = by[k], d = findDeck(st.deckId);
+    if(!d) return;
+    var it = (d.items || []).find(function(x){ return x.sentence === st.sentence; });
+    if(!it) return;
+    items.push(withStatsSource(it, st.deckId));
+  });
+  if(!items.length) return;
+  showPracticePage();
+  startDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固 · '+items.length+' 句', items:items });
+}
+/* 错题队列（book-，同 stats.practiceWrongBook） */
+function startBookNow(){
+  var items = [];
+  getReinforceBook().forEach(function(b){
+    var d = findDeck(b.deckId); if(!d) return;
+    var it = (d.items || []).find(function(x){ return x.sentence === b.sentence; });
+    if(it) items.push(withStatsSource(it, b.deckId));
+  });
+  if(!items.length) return;
+  showPracticePage();
+  startDeck({ id:'book-'+Date.now().toString(36), name:'错题 · '+items.length+' 句', items:items });
+}
+
+/* 今日首页渲染（数据依赖 mem，boot 后调用；页面内事件全部就地绑定） */
+function renderHome(){
+  var t = computeToday();
+  var ic = function(n){ return window.Icons ? Icons.svg(n) : ''; };
+  var escX = esc;
+  /* 是否曾有练习痕迹（决定空档案引导 vs 今日聚合） */
+  var byKeys = (mem.stats && mem.stats.bySentence) ? Object.keys(mem.stats.bySentence).length : 0;
+  var hasEver = !!((mem.stats && mem.stats.totalAnswered) || byKeys);
+  if(!hasEver && mem.best){
+    hasEver = Object.keys(mem.best).some(function(k){ return !!(mem.best[k] && mem.best[k].lastPlayed); });
+  }
+  var decks = allDecks();
+  /* 继续上次：activeDeckId 有效 → 首卡；否则最近 lastPlayed 的 deck */
+  var resume = null;
+  var act = mem.activeDeckId ? findDeck(mem.activeDeckId) : null;
+  if(act){
+    var rp = mem.progress && mem.progress[act.id];
+    var idx = (rp && rp.idx > 0 && rp.idx < act.items.length) ? rp.idx : 0;
+    resume = { deck: act, idx: idx };
+  } else {
+    var bd = null, bt = 0;
+    decks.forEach(function(d){
+      var l = (mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed) || 0;
+      if(l > bt){ bt = l; bd = d; }
+    });
+    if(bd) resume = { deck: bd, idx: 0 };
+  }
+  var recent = decks.filter(function(d){
+    if(resume && d.id === resume.deck.id) return false;
+    return !!(mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed);
+  }).sort(function(a, b){
+    return (mem.best[b.id].lastPlayed) - (mem.best[a.id].lastPlayed);
+  }).slice(0, resume ? 2 : 3);
+
+  var h = [];
+  /* —— 今日卡 —— */
+  h.push('<div class="home-card"><div class="hc-title">' + ic('calendar') + '今日<span class="grow"></span><span class="home-hint">' + (new Date().getMonth()+1) + ' 月 ' + new Date().getDate() + ' 日</span></div>');
+  if(!hasEver){
+    h.push('<div class="home-empty">'
+      + '<div class="t">档案还空着，从这里开始</div>'
+      + '<div class="d">去题库挑一套开始练习。练过的句子会按间隔重复（1→3→7→14→30 天）自动排入到期复习，先练先得。</div>'
+      + '<div class="home-actions" style="justify-content:center"><button class="btn primary" id="homeGoDecks">' + ic('book') + ' 去题库挑一套</button></div>'
+      + '</div>');
+  } else {
+    h.push(t.due > 0
+      ? '<div class="home-today-t">今天有 <span style="color:var(--accent)">' + t.due + '</span> 句到期复习</div>'
+      : '<div class="home-today-t" style="color:var(--ok)">今日无到期，练点新的或休息</div>');
+    h.push('<div class="home-today-counts">'
+      + '<div class="htc due"><div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">到期复习</div></div>'
+      + '<div class="htc weak"><div class="n' + (t.weak ? '' : ' ok') + '">' + t.weak + '</div><div class="l">需巩固</div></div>'
+      + '<div class="htc book"><div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div></div>'
+      + '</div>');
+    h.push('<div class="home-actions">');
+    if(t.due > 0){
+      h.push('<button class="btn primary" id="homeBtnDue">' + ic('refresh') + ' 开始到期复习</button>');
+    } else {
+      if(t.weak > 0) h.push('<button class="btn" id="homeBtnWeak">' + ic('warn') + ' 复习需巩固 ' + t.weak + '</button>');
+      if(t.book > 0) h.push('<button class="btn" id="homeBtnBook">' + ic('book') + ' 复习错题 ' + t.book + '</button>');
+      h.push('<button class="btn ghost" id="homeGoDecks">' + ic('book') + ' 去题库学新句</button>');
+    }
+    h.push('</div>');
+  }
+  h.push('</div>');
+
+  /* —— 继续练习 / 最近牌组 —— */
+  var rows = [];
+  if(resume){
+    var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
+    var sub = resume.idx > 0
+      ? '上次练到第 ' + resume.idx + ' / ' + d1.items.length + ' 句'
+      : (b1 && b1.acc != null ? '上次正确率 ' + b1.acc + '%' : (d1.items ? d1.items.length + ' 句' : ''));
+    rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div><div class="sub">' + sub + '</div></div>'
+      + '<button class="btn primary" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + (resume.idx > 0 ? '继续练习' : '开始') + '</button></div>');
+  }
+  recent.forEach(function(d){
+    var b = mem.best && mem.best[d.id];
+    var sub2 = (b && b.acc != null) ? '上次正确率 ' + b.acc + '%' : (d.items ? d.items.length + ' 句' : '');
+    rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div><div class="sub">' + sub2 + '</div></div>'
+      + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('arrowR') + ' 开始</button></div>');
+  });
+  if(rows.length){
+    h.push('<div class="home-card"><div class="hc-title">' + ic('target') + (resume && resume.idx > 0 ? '继续上次练习' : '最近练习') + '<span class="grow"></span></div>'
+      + '<div class="home-decks">' + rows.join('') + '</div></div>');
+  }
+
+  h.push('<div class="home-links">'
+    + '<button class="btn sm ghost" id="homeLinkDecks">' + ic('list') + ' 题库管理</button>'
+    + '<button class="btn sm ghost" id="homeLinkStats">' + ic('stats') + ' 学习档案</button>'
+    + '</div>');
+
+  var body = $('homeBody');
+  body.innerHTML = h.join('');
+  var goDecks = body.querySelector('#homeGoDecks'); if(goDecks) goDecks.onclick = function(){ location.href = 'decks.html'; };
+  var bDue = body.querySelector('#homeBtnDue'); if(bDue) bDue.onclick = startTodayDue;
+  var bWeak = body.querySelector('#homeBtnWeak'); if(bWeak) bWeak.onclick = startWeakNow;
+  var bBook = body.querySelector('#homeBtnBook'); if(bBook) bBook.onclick = startBookNow;
+  var lDecks = body.querySelector('#homeLinkDecks'); if(lDecks) lDecks.onclick = function(){ location.href = 'decks.html'; };
+  var lStats = body.querySelector('#homeLinkStats'); if(lStats) lStats.onclick = function(){ location.href = 'stats.html'; };
+  Array.prototype.forEach.call(body.querySelectorAll('[data-start]'), function(btn){
+    btn.onclick = function(){
+      var dk = findDeck(btn.getAttribute('data-start'));
+      if(!dk) return;
+      var idx = parseInt(btn.getAttribute('data-idx') || '0', 10);
+      showPracticePage();
+      startDeck(dk, idx > 0 ? idx : 0);
+    };
+  });
+  showHomePage();
 }
 
 /* 句子是否有任意可用详解（对象有维度/或字符串非空） */
@@ -3883,20 +4026,6 @@ $('btnDecks').onclick = function(){ window.location.href = 'decks.html'; };
 $('btnStats').onclick = function(){ window.location.href = 'stats.html'; };
 
 
-/* 启动时检查 pendingReviewDeck（stats.html 通过 location.href 跳回主页时读取） */
-(function checkPending(){
-  try{
-    var s = localStorage.getItem('chunklab_pending_review_deck');
-    if(!s) return;
-    var o = JSON.parse(s);
-    if(Date.now() - (o.ts||0) < 30000 && o.deck){
-      localStorage.removeItem('chunklab_pending_review_deck');
-      setTimeout(function(){ try{ startDeck(o.deck); }catch(e){} }, 100);
-    } else {
-      localStorage.removeItem('chunklab_pending_review_deck');
-    }
-  }catch(e){}
-})();
 /* 快捷键标签可点击：委托 stage-tip-bar 上的 [data-action] */
 $('stageTipBar').addEventListener('click', function(e){
   var btn = e.target.closest && e.target.closest('[data-action]');
@@ -3915,13 +4044,6 @@ $('btnExplain').onclick = function(){
   openExplain(S.deck, cur()); /* 传当前练习的句子对象，避免索引错位 */
 };
 /* 管理页已迁独立 decks.html（句子行上的「详解/编辑」由该页自行绑定） */
-/* 今日待办条按钮 */
-var _tbDue = $('btnTodayDue'); if(_tbDue) _tbDue.onclick = startTodayDue;
-var _tbArc = $('btnTodayArchive'); if(_tbArc) _tbArc.onclick = function(){ window.location.href = 'stats.html'; };
-var _tbX = $('btnTodayClose'); if(_tbX) _tbX.onclick = function(){
-  try{ sessionStorage.setItem('chunklab_tb_off', '1'); }catch(e){}
-  var _bar = $('todayBar'); if(_bar) _bar.classList.add('hidden');
-};
 /* 音效开关：练习反馈的即时偏好，不触发学习数据的云同步提示 */
 $('btnSound').onclick = function(){
   mem.settings.sound = !mem.settings.sound;
@@ -4250,6 +4372,62 @@ function bootApp(){
   }, 16);
 }
 
+/* ★ 入口决策：打开 main.html 落在哪
+   优先级：
+   1. sessionStorage._startDeck（decks.html 点「开始」跳转）
+   2. localStorage pendingReviewDeck（stats 复习/弱项/错题跳回，30s 保鲜；原 checkPending IIFE 收口于此）
+   3. ?direct=1（e2e / 收藏夹深度链接）：旧「智能恢复」逻辑直接开练
+   4. 默认 renderHome() —— 今日首页（先决策再练习，不再无脑续练） */
+function resumeOrStart(){
+  var _resumeDeck = null;
+  if(mem.activeDeckId){
+    var _rd = findDeck(mem.activeDeckId);
+    if(_rd){
+      var _rp = mem.progress && mem.progress[mem.activeDeckId];
+      if(_rp && _rp.idx > 0 && _rp.idx < _rd.items.length){
+        showPracticePage();
+        startDeck(_rd, _rp.idx); /* 断点续练 */
+        return;
+      }
+      _resumeDeck = _rd;
+    }
+  }
+  if(!_resumeDeck){
+    var _bestDeck = null, _bestTime = 0;
+    allDecks().forEach(function(d){
+      var t = (mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed) || 0;
+      if(t > _bestTime){ _bestTime = t; _bestDeck = d; }
+    });
+    _resumeDeck = _bestDeck;
+  }
+  showPracticePage();
+  startDeck(_resumeDeck || allDecks()[0] || BUILTIN[0]);
+}
+function decideEntry(){
+  try{
+    var _sd = sessionStorage.getItem('_startDeck');
+    if(_sd){
+      var _pd = JSON.parse(_sd);
+      sessionStorage.removeItem('_startDeck');
+      if(_pd){ showPracticePage(); startDeck(_pd, 0); return; }
+    }
+  }catch(e){}
+  try{
+    var _s = localStorage.getItem('chunklab_pending_review_deck');
+    if(_s){
+      var _o = JSON.parse(_s);
+      localStorage.removeItem('chunklab_pending_review_deck');
+      if(Date.now() - (_o.ts || 0) < 30000 && _o.deck){
+        showPracticePage();
+        startDeck(_o.deck);
+        return;
+      }
+    }
+  }catch(e){}
+  if((location.search || '').indexOf('direct=1') !== -1){ resumeOrStart(); return; }
+  renderHome(); /* 默认：今日首页 */
+}
+
 function bootMain(){
 try {
 loadStore();
@@ -4259,53 +4437,9 @@ setSoundIcon();
 renderCats();
 $('cats').firstChild && $('cats').firstChild.click();
 
-/* ★ 从题库页「开始」按钮跳转来的：sessionStorage 优先级最高 */
-var _pendingDeck = null;
-try{
-  var _sd = sessionStorage.getItem('_startDeck');
-  if(_sd){ _pendingDeck = JSON.parse(_sd); sessionStorage.removeItem('_startDeck'); }
-}catch(e){}
-
-/* 刷新页面：智能恢复上次练习的题库
-   优先级：
-   0. sessionStorage._startDeck（题库页点「开始」跳转）
-   1. activeDeckId 有效 + 有断点进度 → 从断点继续
-   2. activeDeckId 有效 + 没断点 → 从该题库首句继续
-   3. activeDeckId 无效（被删除或临时 id）→ 按 best.lastPlayed 倒序找最近练习的题库
-   4. 都没有 → 回退 BUILTIN[0] */
-var _resumed = false;
-var _resumeDeck = null;
-
-/* 优先级 0：题库页「开始」跳转来的 deck */
-if(_pendingDeck){
-  startDeck(_pendingDeck, 0);
-  _resumed = true;
-}
-else if(mem.activeDeckId){
-  var _rd = findDeck(mem.activeDeckId);
-  if(_rd){
-    var _rp = mem.progress && mem.progress[mem.activeDeckId];
-    if(_rp && _rp.idx > 0 && _rp.idx < _rd.items.length){
-      startDeck(_rd, _rp.idx); /* fromIdx 断点续练 */
-      _resumed = true;
-    } else {
-      _resumeDeck = _rd;
-    }
-  }
-}
-if(!_resumed){
-  if(!_resumeDeck){
-    /* 兜底：找 lastPlayed 最大的题库（最近实际练习过） */
-    var _bestDeck = null, _bestTime = 0;
-    allDecks().forEach(function(d){
-      var t = (mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed) || 0;
-      if(t > _bestTime){ _bestTime = t; _bestDeck = d; }
-    });
-    _resumeDeck = _bestDeck;
-  }
-  startDeck(_resumeDeck || allDecks()[0] || BUILTIN[0]);
-}
-renderTodayBar(); /* 今日待办条：练前可见（startDeck 已切到练习视图，bar 在 topbar 下独立成行） */
+/* 入口决策：decks/stats 外部跳转协议 > ?direct=1 直练 > 默认今日首页
+   见 decideEntry()/resumeOrStart()（bootMain 上方定义） */
+  decideEntry();
 } catch (e) {
   /* 启动段任何异常都写到 #zh（替代"永远卡在加载中"），并打 console 便于 F12 排查 */
   var zh = document.getElementById('zh');

@@ -82,7 +82,7 @@ function check(name, cond, detail) {
   const p = await ctx.newPage();
   const errs = [];
   p.on('pageerror', function (e) { errs.push(e.message); });
-  await p.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
+  await p.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
   await p.waitForSelector('#stageChoices, #track', { timeout: 12000 }).catch(function () {});
   await p.waitForTimeout(1000);
   const ok = await p.evaluate(function () {
@@ -182,7 +182,7 @@ function check(name, cond, detail) {
       settings: { mode: 'choose', skipMastered: false, batchSize: 10 }
     }));
   });
-  await pStatsRoot.goto(BASE + '/main.html?preview=stats-root-cause', { waitUntil: 'domcontentloaded' });
+  await pStatsRoot.goto(BASE + '/main.html?direct=1&preview=stats-root-cause', { waitUntil: 'domcontentloaded' });
   await pStatsRoot.waitForTimeout(1200);
   const statIdentity = await pStatsRoot.evaluate(function () {
     var item = { sentence: 'I would like to check in, please.', chunks: ['I would like to', 'check in,', 'please.'], hints: ['', '', ''] };
@@ -216,7 +216,7 @@ function check(name, cond, detail) {
       settings: { mode: 'choose', skipMastered: false, batchSize: 10 }
     }));
   });
-  await pStatsMigration.goto(BASE + '/main.html?preview=stats-migration', { waitUntil: 'domcontentloaded' });
+  await pStatsMigration.goto(BASE + '/main.html?direct=1&preview=stats-migration', { waitUntil: 'domcontentloaded' });
   await pStatsMigration.waitForTimeout(1200);
   const migrated = await pStatsMigration.evaluate(function () {
     var saved = JSON.parse(localStorage.getItem('chunklab.v1'));
@@ -232,7 +232,7 @@ function check(name, cond, detail) {
   const mobileCtx = await browser.newContext({ viewport: { width: 296, height: 674 }, isMobile: true, hasTouch: true });
   const pm = await mobileCtx.newPage();
   await pm.route('**/api/**', function (r) { r.abort('failed'); });
-  await pm.goto(BASE + '/main.html?preview=mobile-responsive', { waitUntil: 'domcontentloaded' });
+  await pm.goto(BASE + '/main.html?direct=1&preview=mobile-responsive', { waitUntil: 'domcontentloaded' });
   await pm.waitForTimeout(1200);
   const mobileLayout = await pm.evaluate(function () {
     /* 让分析区进入真实 DOM，覆盖用户完成句子后的首屏状态。 */
@@ -305,7 +305,7 @@ function check(name, cond, detail) {
   const narrowCtx = await browser.newContext({ viewport: { width: 831, height: 960 } });
   const pn = await narrowCtx.newPage();
   await pn.route('**/api/**', function (r) { r.abort('failed'); });
-  await pn.goto(BASE + '/main.html?preview=narrow-touch-panel', { waitUntil: 'domcontentloaded' });
+  await pn.goto(BASE + '/main.html?direct=1&preview=narrow-touch-panel', { waitUntil: 'domcontentloaded' });
   await pn.waitForTimeout(1200);
   const narrowLayout = await pn.evaluate(function () {
     var master = document.getElementById('btnMaster');
@@ -334,7 +334,7 @@ function check(name, cond, detail) {
   ['bridge.mjs', 'chunk-engine.mjs', 'format.mjs', 'ai-prompts.mjs', 'backup.mjs'].forEach(function (m) {
     p2.route('**/js/' + m, function (r) { r.abort('failed'); });
   });
-  await p2.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
+  await p2.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
   await p2.waitForTimeout(1500);
   const fb = await p2.evaluate(function () {
     var zh = document.getElementById('zh');
@@ -499,7 +499,7 @@ function check(name, cond, detail) {
     const p4 = await c4.newPage();
     const errs4 = [];
     p4.on('pageerror', function (e) { errs4.push(e.message); });
-    await p4.goto(BASE + '/main.html?preview=reinforce-write', { waitUntil: 'domcontentloaded' });
+    await p4.goto(BASE + '/main.html?direct=1&preview=reinforce-write', { waitUntil: 'domcontentloaded' });
     await p4.waitForFunction(function () { return window.CL && window.mem && Array.isArray(window.mem.reinforceBook); }, null, { timeout: 15000 }).catch(function () {});
     await p4.waitForTimeout(600);
     const w4 = await p4.evaluate(function () {
@@ -539,7 +539,7 @@ function check(name, cond, detail) {
       }]));
     });
     const p4b = await c4b.newPage();
-    await p4b.goto(BASE + '/main.html?preview=reinforce-migrate', { waitUntil: 'domcontentloaded' });
+    await p4b.goto(BASE + '/main.html?direct=1&preview=reinforce-migrate', { waitUntil: 'domcontentloaded' });
     await p4b.waitForFunction(function () { return window.CL && window.mem && Array.isArray(window.mem.reinforceBook); }, null, { timeout: 15000 }).catch(function () {});
     await p4b.waitForTimeout(800);
     const w4b = await p4b.evaluate(function () {
@@ -619,7 +619,7 @@ function check(name, cond, detail) {
     const p5 = await c5.newPage();
     const errs5 = [];
     p5.on('pageerror', function (e) { errs5.push(e.message); });
-    await p5.goto(BASE + '/main.html?preview=settle-nav', { waitUntil: 'domcontentloaded' });
+    await p5.goto(BASE + '/main.html?direct=1&preview=settle-nav', { waitUntil: 'domcontentloaded' });
     await p5.waitForSelector('#stageChoices .choice, #result', { timeout: 12000 });
     /* 真实作答驱动：读当前目标 chunk 文本 → 点候选按钮。答对自动推进；整句完成出现「下一题」再点。 */
     let settled = false;
@@ -705,7 +705,7 @@ function check(name, cond, detail) {
     const p6 = await c6.newPage();
     const errs6 = [];
     p6.on('pageerror', function (e) { errs6.push(e.message); });
-    await p6.goto(BASE + '/main.html?preview=preset-on-screen', { waitUntil: 'domcontentloaded' });
+    await p6.goto(BASE + '/main.html?direct=1&preview=preset-on-screen', { waitUntil: 'domcontentloaded' });
     /* 等候选区出现（引擎守卫等 ChunkEngine 就绪后才会建池渲染） */
     await p6.waitForSelector('#stageChoices .choice, #stageChoices .chunk-chip', { timeout: 12000 }).catch(function () {});
     await p6.waitForTimeout(1200);
@@ -752,7 +752,7 @@ function check(name, cond, detail) {
     const p7 = await c7.newPage();
     const errs7 = [];
     p7.on('pageerror', function (e) { errs7.push(e.message); });
-    await p7.goto(BASE + '/main.html?preview=ai-scrub', { waitUntil: 'domcontentloaded' });
+    await p7.goto(BASE + '/main.html?direct=1&preview=ai-scrub', { waitUntil: 'domcontentloaded' });
     /* 等 applyCloudConfig 生效（boot 链 loadStore 后同步执行；真实 server 需等 ensureCloud 拉完 config） */
     let scrubbed = null;
     for (let i = 0; i < 40; i++) {
