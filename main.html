@@ -3378,7 +3378,7 @@ function renderHome(){
     var b = mem.best && mem.best[d.id];
     var sub2 = (b && b.acc != null) ? '上次正确率 ' + b.acc + '%' : (d.items ? d.items.length + ' 句' : '');
     rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div><div class="sub">' + sub2 + '</div></div>'
-      + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('arrowR') + ' 开始</button></div>');
+      + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
   });
   if(rows.length){
     h.push('<div class="home-card"><div class="hc-title">' + ic('target') + (resume && resume.idx > 0 ? '继续上次练习' : '最近练习') + '<span class="grow"></span></div>'
