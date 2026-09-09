@@ -648,6 +648,22 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .streak-chip svg{width:14px;height:14px;stroke-width:1.8;flex-shrink:0}
 .streak-chip .s-num{font-variant-numeric:tabular-nums;font-weight:800;font-size:13.5px;color:#b04a18}
 .streak-chip .s-dot{margin:0 2px;color:#d99a7a;font-weight:400}
+/* 本月打卡月历（2026-09-09，数据源 mem.daysLog，纯展示） */
+.cal-streak{display:inline-flex;align-items:center;gap:4px;color:#b04a18;font-weight:700;font-size:12.5px}
+.cal-streak svg{width:13px;height:13px;stroke-width:2}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:378px}
+.cal-hd{text-align:center;font-size:10.5px;color:var(--faint);padding:2px 0}
+.cal-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:7px;font-size:11px;font-variant-numeric:tabular-nums;color:var(--text)}
+.cal-cell.pad{visibility:hidden}
+.cal-cell.l0{background:var(--surface-2);color:var(--faint)}
+.cal-cell.l1{background:rgba(200,90,30,.22)}
+.cal-cell.l2{background:rgba(200,90,30,.42)}
+.cal-cell.l3{background:rgba(200,90,30,.68);color:#fff}
+.cal-cell.l4{background:#c05a1d;color:#fff}
+.cal-cell.lx{background:transparent;color:var(--faint);opacity:.5}
+.cal-cell.today{box-shadow:0 0 0 2px #b04a18}
+.cal-foot{margin-top:10px;font-size:12px;color:var(--muted)}
+.cal-foot b{color:var(--text);font-variant-numeric:tabular-nums}
 .home-today-counts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
 .htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:110px;background:var(--surface-2)}
 .htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
@@ -3363,6 +3379,32 @@ function renderHome(){
     h.push('</div>');
   }
   h.push('</div>');
+
+  /* —— 本月打卡月历（2026-09-09）：数据源 mem.daysLog，纯展示不新增状态 —— */
+  if(hasEver){
+    var _now = new Date(), _y = _now.getFullYear(), _m = _now.getMonth();
+    var _lead = (new Date(_y, _m, 1).getDay() + 6) % 7;   /* 周一=0 对齐首行 */
+    var _dim = new Date(_y, _m + 1, 0).getDate();          /* 当月天数 */
+    var _todayD = _now.getDate();
+    var _cells = '';
+    ['一','二','三','四','五','六','日'].forEach(function(w){ _cells += '<div class="cal-hd">' + w + '</div>'; });
+    var _i, _mDays = 0, _mRounds = 0;
+    for(_i = 0; _i < _lead; _i++) _cells += '<div class="cal-cell pad"></div>';
+    for(_i = 1; _i <= _dim; _i++){
+      var _key = CL.ymd(new Date(_y, _m, _i));
+      var _r = (mem.stats && mem.stats.daysLog && mem.stats.daysLog[_key] && mem.stats.daysLog[_key].rounds) || 0;
+      if(_r > 0){ _mDays++; _mRounds += _r; }
+      var _lv = _r >= 7 ? 4 : _r >= 4 ? 3 : _r >= 2 ? 2 : _r >= 1 ? 1 : 0;
+      var _fut = _i > _todayD;
+      _cells += '<div class="cal-cell ' + (_fut ? 'lx' : 'l' + _lv) + (_i === _todayD ? ' today' : '') + '">' + _i + '</div>';
+    }
+    h.push('<div class="home-card"><div class="hc-title">' + ic('calendar') + '本月打卡<span class="grow"></span>'
+      + (_streakN > 0 ? '<span class="cal-streak">' + ic('fire') + '连续 ' + _streakN + ' 天</span>' : '')
+      + '</div>'
+      + '<div class="cal-grid">' + _cells + '</div>'
+      + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>共练习 <b>' + _mRounds + '</b> 次<span class="s-dot">·</span>今日 <b>' + _todayN + '</b> 次</div>'
+      + '</div>');
+  }
 
   /* —— 继续练习 / 最近牌组 —— */
   var rows = [];

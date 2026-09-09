@@ -491,6 +491,18 @@
       ? Math.max(Math.max(0, (Number(a.totalRounds)||0) - roundA), Math.max(0, (Number(b.totalRounds)||0) - roundB))
       : Math.max(Number(a.totalRounds)||0, Number(b.totalRounds)||0);
     var out = { totalRounds: baseRounds + eventCount(events, 'round'), totalAnswered: baseAnswered + eventCount(events, 'answer'), bySentence:{}, events:events };
+    /* ★ 修复（2026-09-09）：mergeStats 此前重建 out 时丢掉 daysLog —— 每次启动云同步合并
+       后 saveMem 回写，连续打卡数据被清零。补：按天合并，rounds 取两侧较大值（daysLog 是
+       events 的按日汇总，取 max 对齐 bySentence 的基线取大策略，单调不回退）。 */
+    out.daysLog = {};
+    [a.daysLog || {}, b.daysLog || {}].forEach(function(dl){
+      Object.keys(dl).forEach(function(k){
+        var r = (dl[k] && dl[k].rounds) || 0;
+        if(r <= 0) return; /* 0 次的日期等价于不存在，不入表 */
+        if(!out.daysLog[k]) out.daysLog[k] = { rounds: 0 };
+        out.daysLog[k].rounds = Math.max(out.daysLog[k].rounds, r);
+      });
+    });
     var keys = {};
     [a.bySentence || {}, b.bySentence || {}].forEach(function(by){ Object.keys(by).forEach(function(k){ keys[k] = true; }); });
     events.forEach(function(e){ if(e.kind === 'answer' && e.key) keys[e.key] = true; });

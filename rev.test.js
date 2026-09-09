@@ -57,6 +57,18 @@ async function main() {
   );
   check('stats: 老设备历史 + 新设备一次练习不丢旧次数', oldAndNew.totalAnswered === 21 && oldAndNew.bySentence['d1#S'].times === 21, JSON.stringify(oldAndNew));
 
+  /* ★ 回归（2026-09-09）：mergeStats 曾丢 daysLog —— 云同步合并回写后连续打卡清零。
+     修复后：按天合并，rounds 取两侧较大值。 */
+  var daysMerged = CL.mergeStats(
+    { totalRounds: 1, totalAnswered: 3, bySentence: {}, events: [], daysLog: { '2026-09-08': { rounds: 2 }, '2026-09-09': { rounds: 5 } } },
+    { totalRounds: 1, totalAnswered: 2, bySentence: {}, events: [], daysLog: { '2026-09-09': { rounds: 3 }, '2026-09-07': { rounds: 1 } } }
+  );
+  check('stats: daysLog 合并不丢任一天', daysMerged.daysLog && daysMerged.daysLog['2026-09-08'] && daysMerged.daysLog['2026-09-07'], JSON.stringify(daysMerged.daysLog));
+  check('stats: daysLog 同日取较大 rounds（9-09 = 5）', daysMerged.daysLog['2026-09-09'].rounds === 5, JSON.stringify(daysMerged.daysLog));
+  check('stats: daysLog 单侧保留（9-08 = 2 / 9-07 = 1）', daysMerged.daysLog['2026-09-08'].rounds === 2 && daysMerged.daysLog['2026-09-07'].rounds === 1, JSON.stringify(daysMerged.daysLog));
+  var noDays = CL.mergeStats({ totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] }, { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] });
+  check('stats: 双侧无 daysLog → 合并结果 daysLog 为空对象', noDays.daysLog && Object.keys(noDays.daysLog).length === 0, JSON.stringify(noDays.daysLog));
+
   // 1. 新增 deck → rev=1
   m.decks = [{ id: 'd1', name: 'A', items: [{ sent: 'a' }], builtin: false }];
   CL.saveMem(m);
