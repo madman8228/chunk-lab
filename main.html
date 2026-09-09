@@ -4453,6 +4453,11 @@ try {
 loadStore();
 applyCloudConfig(); /* AI 数据面收敛：Key 未启用即清存量（须在 loadStore 后） */
 migrateLegacyStatKeys();
+/* streak chip 历史回填（2026-09-09）：用户 12:20 练题时 streak 功能还没上线，
+   finishSession 没经过 bumpDaysLog；events 数组却忠实记录了所有 round。一次性收敛：
+   daysLog 空 + events 非空 → 按 events.at 分组回填；幂等（daysLog 有任意 key 即跳过） */
+var _bfN = CL.backfillDaysLog(mem);
+if(_bfN > 0){ saveStore(); console.info('[chunklab] daysLog 历史回填', _bfN, '天'); }
 setSoundIcon();
 renderCats();
 $('cats').firstChild && $('cats').firstChild.click();

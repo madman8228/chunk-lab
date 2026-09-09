@@ -237,5 +237,51 @@ storage['chunklab.v1'] = JSON.stringify({
 var rt = CL.loadMem();
 assertEq(rt.stats.daysLog['2026-09-08'].rounds, 3, 'loadMem 白名单保留 daysLog 数据');
 
+/* ============ backfillDaysLog（2026-09-09 用户练题时 streak 功能未上线，回填收敛） ============ */
+/* 真实生产场景：daysLog 空 + events 末尾有今天 round → 回填出今天 */
+storage['chunklab.v1'] = JSON.stringify({
+  decks: [{ id:'d1', name:'test', items:[{ sentence:'hi', chunks:['hi'], hints:['嗨'] }] }],
+  stats: { totalRounds:1, totalAnswered:128, bySentence:{}, events:[
+    { kind:'round', at: streakNow.getTime() - 86400000 },
+    { kind:'round', at: streakNow.getTime() - 3600000 },
+    { kind:'round', at: streakNow.getTime() - 1800000 }
+  ], daysLog:{} }
+});
+var bfMem = CL.loadMem();
+assertEq(Object.keys(bfMem.stats.daysLog).length, 0, '起始 daysLog 空');
+assertEq(CL.backfillDaysLog(bfMem), 2, '回填 2 天（昨天 + 今天）');
+assertEq(bfMem.stats.daysLog['2026-09-08'].rounds, 1, '昨天 rounds=1');
+assertEq(bfMem.stats.daysLog['2026-09-09'].rounds, 2, '今天 rounds=2（两条 events）');
+assertEq(CL.streakDays(bfMem, streakNow), 2, '回填后 streak=2');
+assertEq(CL.todayRounds(bfMem, streakNow), 2, '回填后 today=2');
+
+/* 幂等：daysLog 已有 → 不回填 */
+storage['chunklab.v1'] = JSON.stringify({
+  stats: { totalRounds:1, totalAnswered:1, bySentence:{}, events:[
+    { kind:'round', at: streakNow.getTime() }
+  ], daysLog:{ '2026-09-08': { rounds: 5 } } }
+});
+var noBfMem = CL.loadMem();
+assertEq(CL.backfillDaysLog(noBfMem), 0, 'daysLog 非空 → 不回填（幂等）');
+assertEq(noBfMem.stats.daysLog['2026-09-08'].rounds, 5, '原 daysLog 保持不变');
+
+/* 防御：events 非 round 类型忽略 */
+storage['chunklab.v1'] = JSON.stringify({
+  stats: { totalRounds:0, totalAnswered:0, bySentence:{}, events:[
+    { kind:'wrongNote', at: streakNow.getTime() },
+    { kind:'round', at: streakNow.getTime() },
+    { kind: undefined, at: streakNow.getTime() - 86400000 }
+  ], daysLog:{} }
+});
+var filtMem = CL.loadMem();
+assertEq(CL.backfillDaysLog(filtMem), 1, '仅 round 计入：今天 1 条 → 回填 1 天');
+assertEq(filtMem.stats.daysLog['2026-09-09'].rounds, 1, '今天 rounds=1');
+
+/* 防御：events 全空 → 不回填 */
+storage['chunklab.v1'] = JSON.stringify({
+  stats: { totalRounds:0, totalAnswered:0, bySentence:{}, events:[], daysLog:{} }
+});
+assertEq(CL.backfillDaysLog(CL.loadMem()), 0, 'events 空 → 不回填');
+
 console.log('\n结果：' + pass + ' 通过 / ' + fail + ' 失败');
 process.exit(fail ? 1 : 0);

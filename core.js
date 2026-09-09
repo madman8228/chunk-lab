@@ -694,6 +694,32 @@
     mem.stats.daysLog[key] = slot;
     return slot.rounds;
   }
+  /* 一次性历史回填：daysLog 为空 + events 非空 → 按 events.at 分组回填 daysLog
+     根因（2026-09-09）：用户 12:20 已练题但 daysLog 还是空 —— 那时 streak 功能还没上线，
+     finishSession 没经过 bumpDaysLog；events 数组却忠实地记录了所有 round 时刻。回填是
+     一次性数据收敛，不重复（daysLog 已有任何 key 即跳过）。 */
+  function backfillDaysLog(mem){
+    if(!mem || !mem.stats) return 0;
+    var evs = Array.isArray(mem.stats.events) ? mem.stats.events : [];
+    if(!evs.length) return 0;
+    if(!mem.stats.daysLog || typeof mem.stats.daysLog !== 'object') mem.stats.daysLog = {};
+    if(Object.keys(mem.stats.daysLog).length > 0) return 0;
+    var counts = {};
+    for(var i=0;i<evs.length;i++){
+      var ev = evs[i];
+      if(!ev || ev.kind !== 'round' || !ev.at) continue;
+      var d = new Date(ev.at);
+      if(isNaN(d.getTime())) continue;
+      var key = ymd(d);
+      counts[key] = (counts[key] || 0) + 1;
+    }
+    var n = 0;
+    Object.keys(counts).forEach(function(k){
+      mem.stats.daysLog[k] = { rounds: counts[k] };
+      n++;
+    });
+    return n;
+  }
 
   /* ---------- 示例统计（demo stats，2026-09-09 老板批准：stats 空态主动装入） ----------
      只生成 stats 纯计数（bySentence / totalAnswered / totalRounds），
@@ -831,6 +857,7 @@
     demoStatsSample: demoStatsSample,
     mergeStats: mergeStats,
     ymd: ymd, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
+    backfillDaysLog: backfillDaysLog,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
     fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,
     on: on, emit: emit,
