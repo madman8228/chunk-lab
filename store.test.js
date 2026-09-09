@@ -121,5 +121,58 @@ assert(m6.stats.bySentence[newKey], '二次加载数据仍正确');
 var kExplicit = CL.cidKey('d1', { cid:'aaaa1111', sentence:'修订后的新文本' });
 assertEq(kExplicit, 'd1#aaaa1111', '显式 cid 优先于文本 hash');
 
+console.log('\n【示例统计 demoStatsSample（2026-09-09 主动装入方案）】');
+var demoDecks = [
+  { id:'builtin-daily', name:'日常对话', builtin:true, items:[
+    { sentence:'How are you?', translation:'你好吗？' },
+    { sentence:'I am fine, thank you.', translation:'我很好，谢谢。' },
+    { sentence:'Nice to meet you.', translation:'很高兴认识你。' },
+    { sentence:'Where are you from?', translation:'你来自哪里？' },
+    { sentence:'What do you do?', translation:'你是做什么的？' }
+  ]},
+  { id:'builtin-shopping', name:'购物英语', builtin:true, items:[
+    { sentence:'How much is it?', translation:'多少钱？' },
+    { sentence:'Can I try it on?', translation:'我可以试穿吗？' },
+    { sentence:'I will take it.', translation:'我买了。' },
+    { sentence:'Do you have a bigger size?', translation:'有大一号的吗？' },
+    { sentence:'Is there a discount?', translation:'有折扣吗？' }
+  ]},
+  { id:'custom-deck', name:'我的导入', builtin:false, items:[
+    { sentence:'Let us go home.', translation:'我们回家吧。' },
+    { sentence:'Call me later.', translation:'晚点打给我。' },
+    { sentence:'See you tomorrow.', translation:'明天见。' }
+  ]}
+];
+var demo1 = CL.demoStatsSample(demoDecks);
+assert(demo1 !== null, '正常题库 → 返回示例（非 null）');
+assertEq(Object.keys(demo1.bySentence).length, 12, '12 个模板全部落地');
+assertEq(demo1.rounds, 3, '示例完成轮次 = 3');
+var dSum = 0, cls = { master:0, learn:0, weak:0 };
+Object.keys(demo1.bySentence).forEach(function(k){
+  var st = demo1.bySentence[k];
+  assert(/^[^#]+#[0-9a-f]{8}$/.test(k), 'key 为 deckId#cid 格式 → ' + k);
+  assertEq(typeof st.sentence, 'string', '条目含真实 sentence');
+  assert(st.times === st.okTimes + st.wrongTimes, 'times=ok+wrong');
+  assert(st.times >= 1 && st.okTimes >= 0, '计数合法');
+  assert(typeof st.lastAt === 'number' && st.lastAt > 0, '含 lastAt 时间戳');
+  dSum += st.times;
+  cls[CL.classifyStat(st)]++;
+});
+assertEq(dSum, demo1.answered, 'totalAnswered 增量 = Σtimes');
+assert(cls.master >= 3, '含 master 形态（≥3）');
+assert(cls.learn >= 5, '含 learn 形态');
+assert(cls.weak >= 1, '含 weak 形态');
+assertEq(Object.keys(demo1.bySentence).filter(function(k){ return /^custom-deck#/.test(k); }).length >= 2, true, '线性插值覆盖导入 deck 尾部（≥2 句）');
+assert(CL.demoStatsSample([]) === null, '空题库 → null');
+assert(CL.demoStatsSample(null) === null, 'null 入参 → null');
+assert(CL.demoStatsSample([{ id:'x', items:[{ sentence:'Only one sentence here.' }] }]) === null, '可练句 <3 → null');
+var demo2 = CL.demoStatsSample(demoDecks);
+var dKeys1 = Object.keys(demo1.bySentence).sort().join(',');
+var dKeys2 = Object.keys(demo2.bySentence).sort().join(',');
+assertEq(dKeys2, dKeys1, '同题库两次采样的句子集合一致（确定性采样）');
+var stable = true;
+Object.keys(demo1.bySentence).forEach(function(k){ if(demo1.bySentence[k].times !== demo2.bySentence[k].times) stable = false; });
+assert(stable, '各句演示计数两次一致（仅 lastAt 时间戳随运行时刻变化）');
+
 console.log('\n结果：' + pass + ' 通过 / ' + fail + ' 失败');
 process.exit(fail ? 1 : 0);

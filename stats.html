@@ -41,6 +41,15 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .stat-card.hl .v{color:var(--accent)}
 .stat-card.ok .v{color:var(--ok)}
 .stat-card.warn .v{color:var(--warn)}
+/* ★ 空态引导卡（2026-09-09：新档案先看到"能长成什么样"，主动装入示例统计，不造假掌握/错题） */
+.stat-hero{border:1px dashed var(--border);border-radius:14px;background:var(--surface);padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.stat-hero-txt{flex:1;min-width:220px}
+.stat-hero-t{font-size:14px;font-weight:700;color:var(--text)}
+.stat-hero-d{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+.stat-hero-actions{display:flex;gap:8px;align-items:center}
+/* 示例统计撤销条：装入后常驻本页（刷新前可撤，刷新后并入总览） */
+.undo-bar{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:8px 12px;margin-bottom:10px;font-size:12.5px;color:var(--muted)}
+.undo-bar .grow{flex:1}
 /* 指标对比/熟练度分布卡片：在 pair-row 内并排时不再跨列 */
 .stat-card.dist-card{padding:10px 14px}
 .stat-card.dist-card .k{margin-bottom:2px}
@@ -340,6 +349,46 @@ function migrateLegacyStatKeys(){
 var _statsTab = 'sent';
 var _statsFilter = 'all';
 
+/* ===== 示例统计：主动装入 / 本页撤销（2026-09-09）=====
+   数据源 CL.demoStatsSample：只造 bySentence/totalAnswered 计数，
+   不写 mastered/reinforceBook（练习队列与错题复习流零影响）。
+   撤销快照仅存内存（本页刷新前可撤）；demo 句被真实练习触碰后不再撤销（已归真）。 */
+var _demo = null; /* { keys:{k:{times,okTimes,wrongTimes}}, answered } */
+
+function installDemoStats(){
+  var d = CL.demoStatsSample(allDecks());
+  if(!d){ alert('题库可练句太少，直接去练几题就能看到统计'); return; }
+  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
+  var by = mem.stats.bySentence || (mem.stats.bySentence = {});
+  var keys = {}, added = 0;
+  Object.keys(d.bySentence).forEach(function(k){
+    if(by[k]) return; /* 防御：真实已练过的句子不覆盖 */
+    by[k] = d.bySentence[k];
+    keys[k] = { times: by[k].times, okTimes: by[k].okTimes, wrongTimes: by[k].wrongTimes };
+    added += by[k].times;
+  });
+  if(!added){ alert('示例句都已练过，直接开始你的真实记录吧'); return; }
+  mem.stats.totalAnswered = (mem.stats.totalAnswered || 0) + added;
+  _demo = { keys: keys, answered: added };
+  saveStore(); /* 知情并入：示例统计随本机档案上云（含撤销后回推覆盖） */
+  renderStats();
+}
+function undoDemoStats(){
+  if(!_demo) return;
+  var by = mem.stats.bySentence || {}, removed = 0, alive = 0;
+  Object.keys(_demo.keys).forEach(function(k){
+    var cur = by[k], snap = _demo.keys[k];
+    if(cur && cur.times === snap.times && cur.okTimes === snap.okTimes && cur.wrongTimes === snap.wrongTimes){
+      delete by[k]; removed += snap.times;   /* 未被真实练习触碰 → 撤掉 */
+    } else { alive++; }                       /* 已被真实练习 → 归真，保留 */
+  });
+  mem.stats.totalAnswered = Math.max(0, (mem.stats.totalAnswered || 0) - removed);
+  _demo = null;
+  saveStore();
+  renderStats();
+  if(alive) alert(alive + ' 个示例句已有真实练习记录，已保留（其余示例已撤销）');
+}
+
 function renderStats(){
   if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   var by = mem.stats.bySentence || {};
@@ -356,16 +405,44 @@ function renderStats(){
   var masteredCnt = keys.filter(function(k){ return classifyStat(by[k])==='master'; }).length;
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k])==='weak'; }).length;
   var bookCnt = getReinforceBook().length;
-  $('statsCards').innerHTML =
+  var isEmpty = keys.length === 0 && !(mem.stats.totalAnswered);
+  /* 0 态正向表达（2026-09-09）：需巩固/错题本为 0 是「状态良好」不是缺口；
+     完成轮次口径用 title 说明（练完一轮计 1 次）。 */
+  var cardsHtml =
     '<div class="kpi-row">'+
     '<div class="stat-card hl"><div class="k">累计练习句次</div><div class="v">'+mem.stats.totalAnswered+'</div></div>'+
-    '<div class="stat-card kpi-rounds"><div class="k">完成轮次</div><div class="v">'+mem.stats.totalRounds+'</div></div>'+
+    '<div class="stat-card kpi-rounds" title="每连续练完一轮（一批句）计 1 次"><div class="k">完成轮次</div><div class="v">'+mem.stats.totalRounds+'</div></div>'+
     '<div class="stat-card ok"><div class="k">熟练句子</div><div class="v">'+masteredCnt+'</div></div>'+
-    '<div class="stat-card warn"><div class="k">需巩固</div><div class="v">'+weakCnt+'</div>'+
+    '<div class="stat-card '+(weakCnt>0?'warn':'ok')+'" title="'+(weakCnt>0?'需要复习巩固的句子':'没有待巩固句子，状态良好')+'"><div class="k">需巩固</div><div class="v">'+weakCnt+'</div>'+
       (weakCnt>0 ? '<button class="start-btn" id="startWeak">开始学习 '+(window.Icons?Icons.svg('arrowR'):'')+'</button>' : '')+'</div>'+
-    '<div class="stat-card"><div class="k">错题本</div><div class="v">'+bookCnt+'</div>'+
+    '<div class="stat-card '+(bookCnt>0?'':'ok')+'" title="'+(bookCnt>0?'练习中答错的句子':'错题本是空的，状态良好')+'"><div class="k">错题本</div><div class="v">'+bookCnt+'</div>'+
       (bookCnt>0 ? '<button class="start-btn" id="startBook">开始学习 '+(window.Icons?Icons.svg('arrowR'):'')+'</button>' : '')+'</div>'+
     '</div>';
+  /* 空态引导：新档案先展示「可长成的形态」，示例只造计数、主动装入、本页可撤销 */
+  var heroHtml = '';
+  if(isEmpty){
+    heroHtml =
+    '<div class="stat-hero" id="statHero">'+
+      '<div class="stat-hero-txt">'+
+        '<div class="stat-hero-t">档案还空着——练几题，这里会长出你的掌握分布</div>'+
+        '<div class="stat-hero-d">想先看看完整档案长什么样？可以装入一份示例统计（只生成练习次数，不会伪造已掌握/错题，练习队列不受影响；装入后本页可撤销）。</div>'+
+      '</div>'+
+      '<div class="stat-hero-actions">'+
+        '<button class="btn sm primary" id="btnDemoStats">'+(window.Icons?Icons.svg('sparkle'):'')+' 装入示例统计</button>'+
+        '<button class="btn sm ghost" onclick="window.location.href=\'./main.html\'">去练几题</button>'+
+      '</div>'+
+    '</div>';
+  }
+  var undoHtml = '';
+  if(_demo){
+    undoHtml =
+    '<div class="undo-bar">'+
+      '<span>当前档案含示例统计（'+_demo.answered+' 次演示练习）</span>'+
+      '<span class="grow"></span>'+
+      '<button class="btn sm ghost" id="btnUndoDemo">撤销示例</button>'+
+    '</div>';
+  }
+  $('statsCards').innerHTML = undoHtml + heroHtml + cardsHtml;
 
   /* 指标对比柱状图（累计练习 + 错题本） */
   var bars = [
@@ -493,6 +570,8 @@ function renderStats(){
 
   var sw = $('startWeak'); if(sw) sw.onclick = practiceWeakSentences;
   var sb = $('startBook'); if(sb) sb.onclick = practiceWrongBook;
+  var db = $('btnDemoStats'); if(db) db.onclick = installDemoStats;
+  var ud = $('btnUndoDemo'); if(ud) ud.onclick = undoDemoStats;
 }
 
 /* ===== 熟练度圆环 popover（2026-09-08）=====

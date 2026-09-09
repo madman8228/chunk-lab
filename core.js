@@ -645,6 +645,66 @@
     return 'learn';
   }
 
+  /* ---------- 示例统计（demo stats，2026-09-09 老板批准：stats 空态主动装入） ----------
+     只生成 stats 纯计数（bySentence / totalAnswered / totalRounds），
+     绝不写 mastered / reinforceBook —— 练习队列与错题复习流零影响。
+     示例句全部取自真实题库（cid 对齐：句子恒为真，仅计数为演示值），
+     删除/清空句子后对应统计自动随 deletedItems 过滤消失。
+     本函数是纯函数（不读写存储），由调用方在「全空态」才暴露入口。 */
+  var DEMO_STAT_TEMPLATES = [
+    /* master 形态 ×3（times>=3 且 acc>=0.8） */
+    { times:6, ok:5, w:1, streak:4, ms:6, day:0 },
+    { times:5, ok:5, w:0, streak:5, ms:5, day:1 },
+    { times:8, ok:7, w:1, streak:6, ms:8, day:2 },
+    /* learn 形态 ×7 */
+    { times:3, ok:2, w:1, streak:2, ms:3, day:0 },
+    { times:4, ok:3, w:1, streak:2, ms:3, day:1 },
+    { times:2, ok:2, w:0, streak:2, ms:2, day:1 },
+    { times:5, ok:3, w:2, streak:2, ms:4, day:2 },
+    { times:7, ok:5, w:2, streak:3, ms:5, day:3 },
+    { times:2, ok:2, w:0, streak:1, ms:2, day:4 },
+    { times:4, ok:3, w:1, streak:3, ms:4, day:5 },
+    /* weak 形态 ×2（acc<0.6） */
+    { times:6, ok:2, w:4, streak:1, ms:2, day:2 },
+    { times:4, ok:1, w:3, streak:1, ms:1, day:6 }
+  ];
+  function demoStatsSample(decksList){
+    var decks = Array.isArray(decksList) ? decksList : [];
+    var flat = [];
+    decks.forEach(function(d){
+      if(!d || !d.id || !Array.isArray(d.items) || !d.items.length) return;
+      var name = d.name || '';
+      d.items.forEach(function(it){
+        if(!it || !it.sentence) return;
+        flat.push({ dId: d.id, name: name, it: it });
+      });
+    });
+    var total = DEMO_STAT_TEMPLATES.length;
+    var n = Math.min(flat.length, total);
+    if(n < 3) return null; /* 题库可练句太少：示例意义不大，直接练真句 */
+    var by = {}, answered = 0;
+    /* 线性插值采样：从题库首尾均匀取 n 句（覆盖更广，演示形态更真实） */
+    var span = Math.max(1, flat.length - 1);
+    for(var i = 0; i < n; i++){
+      var tpl = DEMO_STAT_TEMPLATES[i];
+      var src = flat[Math.round(i * span / (n - 1))];
+      var key = cidKey(src.dId, src.it);
+      if(by[key]) continue; /* 防御：采样撞同一句时跳过 */
+      var lastAt = Date.now() - tpl.day * 86400000 - (2 + ((i * 37) % 540)) * 60000;
+      by[key] = {
+        deckId: src.dId, deckName: src.name,
+        sentence: src.it.sentence || '', translation: src.it.translation || '',
+        times: tpl.times, okTimes: tpl.ok, wrongTimes: tpl.w,
+        streak: tpl.streak, maxStreak: tpl.ms,
+        lastAt: lastAt, interval: Math.max(1, tpl.day + 1), ease: 2.5,
+        dueAt: lastAt + (tpl.day + 1) * 86400000
+      };
+      answered += tpl.times;
+    }
+    if(!Object.keys(by).length) return null;
+    return { rounds: 3, answered: answered, bySentence: by };
+  }
+
   /* ---------- 内置题删除（override 机制） ----------
      内置题库来自静态 builtins.js + oral8000.js（window.BUILTIN），不可被改写。
      删除内置单句 = 在 deletedItems 里登记 key，列表/练习时过滤掉。
@@ -718,6 +778,7 @@
     deckItems: deckItems, hiddenCount: hiddenCount, restoreAllDeleted: restoreAllDeleted,
     isMastered: isMastered, isFluencyByDeck: isFluencyByDeck, isMarkedForDeck: isMarkedForDeck,
     classifyStat: classifyStat,
+    demoStatsSample: demoStatsSample,
     mergeStats: mergeStats,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
     fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,
