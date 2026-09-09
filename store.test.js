@@ -174,5 +174,68 @@ var stable = true;
 Object.keys(demo1.bySentence).forEach(function(k){ if(demo1.bySentence[k].times !== demo2.bySentence[k].times) stable = false; });
 assert(stable, '各句演示计数两次一致（仅 lastAt 时间戳随运行时刻变化）');
 
+console.log('\n【streak chip 数据层 · CL.streakDays / CL.todayRounds / CL.bumpDaysLog / CL.ymd】');
+/* 用 (mem, now) 双参形态可任意冻结时间，不依赖 node 系统时间 */
+var streakNow = new Date(2026, 8, 9, 10, 0, 0); /* 2026-09-09 本地时间 */
+/* ymd 格式 */
+assertEq(CL.ymd(new Date(2026, 0, 1)), '2026-01-01', 'ymd 1月补零');
+assertEq(CL.ymd(new Date(2026, 8, 9)), '2026-09-09', 'ymd 9月补零');
+assertEq(CL.ymd(new Date(2026, 11, 31)), '2026-12-31', 'ymd 12月底');
+/* 全空 mem */
+var emptyMem = CL.loadMem();
+assertEq(CL.streakDays(emptyMem, streakNow), 0, '全空 daysLog → streak=0');
+assertEq(CL.todayRounds(emptyMem, streakNow), 0, '全空 daysLog → today=0');
+/* 今天练了 3 次：streak=1 today=3 */
+CL.bumpDaysLog(emptyMem, streakNow);
+CL.bumpDaysLog(emptyMem, streakNow);
+CL.bumpDaysLog(emptyMem, streakNow);
+assertEq(CL.todayRounds(emptyMem, streakNow), 3, 'bumpDaysLog 三次 → today=3');
+assertEq(CL.streakDays(emptyMem, streakNow), 1, '今天练了 → streak=1（仅今天）');
+/* 构造"昨天也练了"的 daysLog */
+var yMem = CL.loadMem();
+yMem.stats.daysLog['2026-09-08'] = { rounds: 2 };
+yMem.stats.daysLog['2026-09-07'] = { rounds: 1 };
+CL.bumpDaysLog(yMem, streakNow);
+assertEq(CL.todayRounds(yMem, streakNow), 1, '今天追加 1 → today=1');
+assertEq(CL.streakDays(yMem, streakNow), 3, '今天+昨天+前天都练 → streak=3（含今天）');
+/* 今天没练，昨天练了 → streak 看昨天开始 */
+var yOnlyMem = CL.loadMem();
+yOnlyMem.stats.daysLog['2026-09-08'] = { rounds: 4 };
+yOnlyMem.stats.daysLog['2026-09-07'] = { rounds: 1 };
+assertEq(CL.streakDays(yOnlyMem, streakNow), 2, '今天没练 + 昨天+前天练 → streak=2');
+assertEq(CL.todayRounds(yOnlyMem, streakNow), 0, '今天没练 → today=0');
+/* 今天练了 + 昨天断了 → streak=1（只看今天） */
+var todayOnlyMem = CL.loadMem();
+todayOnlyMem.stats.daysLog['2026-09-07'] = { rounds: 5 };
+CL.bumpDaysLog(todayOnlyMem, streakNow);
+assertEq(CL.streakDays(todayOnlyMem, streakNow), 1, '昨天有但前天才有 → streak=1（仅算今天）');
+/* 跨月边界：8/30, 8/31, 9/1, 9/2 都练, 今天 9/3 也练 → 跨月连续 5 天（无间断） */
+var crossMonthMem = CL.loadMem();
+crossMonthMem.stats.daysLog['2026-08-30'] = { rounds: 1 };
+crossMonthMem.stats.daysLog['2026-08-31'] = { rounds: 2 };
+crossMonthMem.stats.daysLog['2026-09-01'] = { rounds: 1 };
+crossMonthMem.stats.daysLog['2026-09-02'] = { rounds: 1 };
+var streakSep3 = new Date(2026, 8, 3, 10, 0, 0); /* 2026-09-03 */
+CL.bumpDaysLog(crossMonthMem, streakSep3);
+assertEq(CL.streakDays(crossMonthMem, streakSep3), 5, '跨月连续 5 天（8/30-9/3）');
+/* 跨月 + 今天没练：8/30-9/2 都练，今天 9/3 没练 → streak=4（不含今） */
+var crossMonthNoToday = CL.loadMem();
+crossMonthNoToday.stats.daysLog['2026-08-30'] = { rounds: 1 };
+crossMonthNoToday.stats.daysLog['2026-08-31'] = { rounds: 2 };
+crossMonthNoToday.stats.daysLog['2026-09-01'] = { rounds: 1 };
+crossMonthNoToday.stats.daysLog['2026-09-02'] = { rounds: 1 };
+assertEq(CL.streakDays(crossMonthNoToday, streakSep3), 4, '跨月连续 + 今天没练 → 4 天（不含今）');
+/* 极端：存了 4000 天前的旧 log → streak 只算最近连续（防御回看上限） */
+var wayOldMem = CL.loadMem();
+wayOldMem.stats.daysLog['1985-01-01'] = { rounds: 100 }; /* 远古假数据 */
+assertEq(CL.streakDays(wayOldMem, streakNow), 0, '今天没练 + 全远古假数据 → streak=0（防御回看断链）');
+/* loadMem 白名单放行 daysLog（round-trip） */
+storage['chunklab.v1'] = JSON.stringify({
+  decks: [{ id:'d1', name:'test', items:[{ sentence:'hi', chunks:['hi'], hints:['嗨'] }] }],
+  stats: { totalRounds:1, totalAnswered:1, bySentence:{}, events:[], daysLog: { '2026-09-08': { rounds: 3 } } }
+});
+var rt = CL.loadMem();
+assertEq(rt.stats.daysLog['2026-09-08'].rounds, 3, 'loadMem 白名单保留 daysLog 数据');
+
 console.log('\n结果：' + pass + ' 通过 / ' + fail + ' 失败');
 process.exit(fail ? 1 : 0);

@@ -172,7 +172,7 @@
         mastered: o.mastered || d.mastered,
         deletedItems: o.deletedItems || {},
         stats: (o.stats && typeof o.stats === 'object')
-          ? { totalRounds: o.stats.totalRounds||0, totalAnswered: o.stats.totalAnswered||0, bySentence: o.stats.bySentence||{}, events: Array.isArray(o.stats.events) ? o.stats.events : [] }
+          ? { totalRounds: o.stats.totalRounds||0, totalAnswered: o.stats.totalAnswered||0, bySentence: o.stats.bySentence||{}, events: Array.isArray(o.stats.events) ? o.stats.events : [], daysLog: (o.stats.daysLog && typeof o.stats.daysLog === 'object') ? o.stats.daysLog : {} }
           : d.stats,
         settings: Object.assign({}, d.settings, o.settings||{}),
         reinforceBook: o.reinforceBook || [],
@@ -645,6 +645,56 @@
     return 'learn';
   }
 
+  /* ---------- 打卡 streak（首页今日卡上方紧凑 chip 的数据源） ----------
+     daysLog 格式：{ 'YYYY-MM-DD': { rounds: <Number> } }
+     数据来源：finishSession 时维护，每完成一整轮练习 +1（用户感知粒度，
+     不按提交答案算，避免自纠让"今日次数"看起来虚高）。
+     云同步走 stats 整体 LWW（ADR-005），不需要额外 kv。
+     demoStatsSample 不写 daysLog（走 stats 内存直接覆盖路径，不经 finishSession），
+     故 demo 装入不会污染 streak chip。
+     老用户上线首日：daysLog 为空，streak=0 / today=0 → chip 不渲染（不打击）。 */
+  function ymd(d){
+    var _d = (d instanceof Date) ? d : new Date();
+    var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+    return _d.getFullYear() + '-' + pad(_d.getMonth()+1) + '-' + pad(_d.getDate());
+  }
+  function streakDays(mem, now){
+    /* 连续天数：今日 rounds>0 才算今天一天；否则从昨天往回数连续天数（不强制 streak 需含今天）。 */
+    var log = (mem && mem.stats && mem.stats.daysLog) || {};
+    var d = (now instanceof Date) ? new Date(now.getTime()) : new Date();
+    var n = 0;
+    var todayKey = ymd(d);
+    var todayR = (log[todayKey] && log[todayKey].rounds) || 0;
+    if(todayR > 0) n++;
+    d.setDate(d.getDate() - 1);
+    /* 防御：最多回看 3650 天（≈10 年），超出认作断 */
+    for(var i = 0; i < 3650; i++){
+      var key = ymd(d);
+      var r = (log[key] && log[key].rounds) || 0;
+      if(r > 0) n++;
+      else break;
+      d.setDate(d.getDate() - 1);
+    }
+    return n;
+  }
+  function todayRounds(mem, now){
+    var log = (mem && mem.stats && mem.stats.daysLog) || {};
+    var d = (now instanceof Date) ? now : new Date();
+    return (log[ymd(d)] && log[ymd(d)].rounds) || 0;
+  }
+  /* 写入帮手（main.html 的 finishSession 调一次；不放在 core.js 内部是因为 scheduleCloudSync
+     触发需与现有主流程一致——放 main 里能直接复用 saveStore）。 */
+  function bumpDaysLog(mem, now){
+    if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[], daysLog:{} };
+    if(!mem.stats.daysLog) mem.stats.daysLog = {};
+    var d = (now instanceof Date) ? now : new Date();
+    var key = ymd(d);
+    var slot = mem.stats.daysLog[key] || { rounds: 0 };
+    slot.rounds = (Number(slot.rounds) || 0) + 1;
+    mem.stats.daysLog[key] = slot;
+    return slot.rounds;
+  }
+
   /* ---------- 示例统计（demo stats，2026-09-09 老板批准：stats 空态主动装入） ----------
      只生成 stats 纯计数（bySentence / totalAnswered / totalRounds），
      绝不写 mastered / reinforceBook —— 练习队列与错题复习流零影响。
@@ -780,6 +830,7 @@
     classifyStat: classifyStat,
     demoStatsSample: demoStatsSample,
     mergeStats: mergeStats,
+    ymd: ymd, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
     fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,
     on: on, emit: emit,

@@ -643,6 +643,11 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 /* 今日聚合主卡 */
 .home-today-t{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--text)}
 .home-today-d{font-size:12.5px;color:var(--faint);margin:3px 0 0}
+/* streak chip：连续天数 + 今日次数，紧凑一行插入 hc-title 下方 */
+.streak-chip{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 12px;padding:5px 12px;border:1px solid #f3d4c4;border-radius:8px;background:var(--bad-soft);color:#b04a18;font-size:12.5px;font-weight:600;line-height:1.3}
+.streak-chip svg{width:14px;height:14px;stroke-width:1.8;flex-shrink:0}
+.streak-chip .s-num{font-variant-numeric:tabular-nums;font-weight:800;font-size:13.5px;color:#b04a18}
+.streak-chip .s-dot{margin:0 2px;color:#d99a7a;font-weight:400}
 .home-today-counts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
 .htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:110px;background:var(--surface-2)}
 .htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
@@ -3003,8 +3008,12 @@ function finishSession(){
   S.finished = true;
   stopAutoNext();  /* 会话结束，清理倒计时 */
   /* 学习统计：完成一轮练习 */
-  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
+  if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[], daysLog:{} };
   mem.stats.totalRounds++;
+  /* 维护 daysLog（streak chip 数据源）：每完成一整轮练习 +1
+     —— 用 finishSession 入口而不是 recordSentenceResult，是为了让"今日 X 次"
+     对齐用户感知的"今天完整答了几题"（自纠不会让数字看起来虚高） */
+  CL.bumpDaysLog(mem);
   if(!Array.isArray(mem.stats.events)) mem.stats.events = [];
   mem.stats.events.push({
     id: Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),
@@ -3318,6 +3327,17 @@ function renderHome(){
   var h = [];
   /* —— 今日卡 —— */
   h.push('<div class="home-card"><div class="hc-title">' + ic('calendar') + '今日<span class="grow"></span><span class="home-hint">' + (new Date().getMonth()+1) + ' 月 ' + new Date().getDate() + ' 日</span></div>');
+  /* streak chip（连续天数 + 今日次数；老用户首日全空 → 不渲染，与现有空档案引导互斥） */
+  var _streakN = CL.streakDays(mem);
+  var _todayN = CL.todayRounds(mem);
+  if(_streakN > 0 || _todayN > 0){
+    h.push('<div class="streak-chip" id="streakChip">'
+      + ic('fire')
+      + '<span class="s-num">' + _streakN + '</span> 天连续'
+      + '<span class="s-dot">·</span>'
+      + '今日 <span class="s-num">' + _todayN + '</span> 次'
+      + '</div>');
+  }
   if(!hasEver){
     h.push('<div class="home-empty">'
       + '<div class="t">档案还空着，从这里开始</div>'
@@ -4180,7 +4200,7 @@ function importAllData(text, cb){
   var d = r.data;
   if(!confirm(d.summary)){ return cb(false, '已取消'); }
   mem.decks = d.mem.decks || [];
-  mem.stats = d.mem.stats || { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
+  mem.stats = d.mem.stats || { totalRounds:0, totalAnswered:0, bySentence:{}, events:[], daysLog:{} };
   mem.settings = Object.assign(mem.settings, d.mem.settings || {});
   mem.mastered = d.mem.mastered || {};
   mem.best = d.mem.best || {};
