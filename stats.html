@@ -580,34 +580,17 @@ function renderStats(){
    popover DOM 复用：第一次绑定时创建并 portal 到 body，后续只更新内容（避免每次重渲染重建）。 */
 function buildMasteryPopRows(){
   var d = window._masteryPopData || {};
-  var total = d.total || 0;
-  var segs = d.segs || [];
-  var rows = '';
-  rows += '<div class="donut-pop-row"><span class="lbl">已学句数</span><span class="val">'+ (d.studied||0) +' / '+ total +'</span></div>';
-  rows += '<div class="donut-pop-row"><span class="lbl">练过次数</span><span class="val">'+ (d.practiced||0) +' 次</span></div>';
-  /* 4 档分布（带色点 + 数量 + 百分比）*/
-  segs.forEach(function(s){
-    var pct = total ? Math.round(s.count / total * 100) : 0;
-    rows += '<div class="donut-pop-row">'+
-      '<span class="lbl"><span class="dot" style="background:'+s.color+'"></span>'+s.label+'</span>'+
-      '<span class="val">'+ s.count +'<span class="pct">'+ pct +'%</span></span>'+
-    '</div>';
-  });
-  /* 标熟数（独立附加，dot 用深绿） */
-  rows += '<div class="donut-pop-row">'+
-    '<span class="lbl"><span class="dot" style="background:#12924f"></span>标熟</span>'+
-    '<span class="val muted">'+ (d.masteredCount||0) +' 句（含已掌握）</span>'+
-  '</div>';
-  return rows;
+  /* ★ 2026-09-09 老板反馈：静态区（圆环中心 + 图例）已展示已学句数/4 档分布/标熟，
+     hover 不再复述，只补静态区没有的「练过次数」 */
+  return '<div class="donut-pop-row"><span class="lbl">练过次数</span><span class="val">'+ (d.practiced||0) +' 次</span></div>';
 }
 
 function updateMasteryPop(){
   var pop = $('donutPop');
   if(!pop) return;
   var d = window._masteryPopData || {};
-  pop.innerHTML = '<div class="donut-pop-title">熟练度分布'+
-    (d.studied === d.total && d.total > 0 ? '<span class="badge">已全部学完</span>' : '')+
-    '</div>' + buildMasteryPopRows();
+  var head = (d.studied === d.total && d.total > 0) ? '<div class="donut-pop-title"><span class="badge">已全部学完</span></div>' : '';
+  pop.innerHTML = head + buildMasteryPopRows();
 }
 
 function showMasteryPop(){
