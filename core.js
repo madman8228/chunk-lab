@@ -422,6 +422,53 @@
       return false;
     });
   }
+  /* ---------- 静默游客账号 ----------
+     鉴权模式下让用户免登录直接用：首次访问自动注册 guest_xxx（凭据存本地供静默续期），
+     token 过期后凭据可透明重登。手动登录的账号不存此凭据 → 到期仍走登录框，防止自动换成新游客导致数据错挂。 */
+  var GUEST_KEY = 'chunklab_guest';
+  function _randId(n){
+    var chars = 'abcdefghjkmnpqrstuvwxyz23456789', s = '';
+    for (var i = 0; i < n; i++) s += chars[Math.floor(Math.random() * chars.length)];
+    return s;
+  }
+  function _loadGuest(){
+    try { return JSON.parse(localStorage.getItem(GUEST_KEY) || 'null'); } catch (e) { return null; }
+  }
+  function _createGuest(tries){
+    var api = global.ChunkAPI;
+    tries = tries || 0;
+    var u = 'guest_' + _randId(10), p = _randId(24);
+    return api.register(u, p).then(function(r){
+      if (r && r.token) {
+        api.setToken(r.token);
+        try { localStorage.setItem(GUEST_KEY, JSON.stringify({ u: u, p: p })); } catch (e) {}
+        return true;
+      }
+      return false;
+    }).catch(function(){
+      /* 用户名撞车（极小概率）→ 重试；网络/服务异常 → 放弃静默，走登录框 */
+      if (tries < 2) return _createGuest(tries + 1);
+      return false;
+    });
+  }
+  function guestBootstrap(){
+    var api = global.ChunkAPI;
+    var saved = _loadGuest();
+    if (saved && saved.u && saved.p) {
+      /* 有游客凭据：静默重登（顺带解决 JWT 过期），账号被删则重建游客 */
+      return api.login(saved.u, saved.p).then(function(r){
+        if (r && r.token) { api.setToken(r.token); return true; }
+        return _createGuest();
+      }).catch(function(){ return _createGuest(); });
+    }
+    if (api.isLoggedIn()) return Promise.resolve(true); /* 手动登录会话：不自动换账号 */
+    /* 无凭据无 token：真新访客 → 建游客；但带手动会话标记（登录过自己账号、token 已过期）→ 弹登录框，
+       绝不静默换成新游客（用户会以为数据丢了） */
+    try {
+      if (localStorage.getItem('chunklab_manual')) return Promise.resolve(false);
+    } catch (e) {}
+    return _createGuest();
+  }
   function ensureCloud(){
     return new Promise(function(resolve){
       if(!global.ChunkAPI){ resolve(); return; }
@@ -429,11 +476,16 @@
         global.ChunkAPI.getConfig().then(function(cfg){
           _cloudConfig = cfg || null;
           var needAuth = cfg && cfg.requireAuth;
-          if(needAuth && !global.ChunkAPI.isLoggedIn()){
-            if(global.ChunkAuthUI && global.ChunkAuthUI.showLogin){
-              global.ChunkAuthUI.showLogin(function(){ _cloudOn = true; syncFromCloud().then(resolve, resolve); });
-            } else { resolve(); }
+          if(needAuth && (!global.ChunkAPI.isLoggedIn() || _loadGuest())){
+            /* 鉴权模式：无 token 或有游客凭据（过期续期）→ 先试静默游客引导，失败再弹登录框 */
+            guestBootstrap().then(function(ok){
+              if(ok){ _cloudOn = true; syncFromCloud().then(resolve, resolve); }
+              else if(global.ChunkAuthUI && global.ChunkAuthUI.showLogin){
+                global.ChunkAuthUI.showLogin(function(){ _cloudOn = true; syncFromCloud().then(resolve, resolve); });
+              } else { resolve(); }
+            });
           } else {
+            /* 开放模式，或鉴权模式下的手动登录会话：直接同步 */
             _cloudOn = true;
             syncFromCloud().then(resolve, resolve);
           }

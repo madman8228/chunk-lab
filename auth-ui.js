@@ -104,6 +104,8 @@
       var call = (mode === 'login') ? global.ChunkAPI.login(u, p) : global.ChunkAPI.register(u, p);
       call.then(function (r) {
         global.ChunkAPI.setToken(r.token);
+        /* 标记手动会话：token 过期后 ensureCloud 弹登录框而不是静默建新游客（防用户以为数据丢了） */
+        try { localStorage.setItem('chunklab_manual', '1'); } catch (e) {}
         finishLogin(r);
       }).catch(function (e) {
         err.textContent = (e && e.message) || '请求失败，请检查服务器地址';
@@ -130,6 +132,8 @@
 
   function logout() {
     if (global.ChunkAPI) global.ChunkAPI.clearToken();
+    /* 同步清掉游客凭据与手动会话标记，否则下次启动 ensureCloud 又会自动登回游客，"退出"形同虚设 */
+    try { localStorage.removeItem('chunklab_guest'); localStorage.removeItem('chunklab_manual'); } catch (e) {}
   }
 
   global.ChunkAuthUI = { showLogin: showLogin, logout: logout };
