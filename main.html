@@ -633,6 +633,24 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .msg ul{margin:7px 0 0;padding-left:18px}
 .msg li{margin:2px 0;font-family:ui-monospace,Consolas,monospace;font-size:11.5px}
 
+/* ===== 今日待办条（轻量首页中枢） ===== */
+.today-bar{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:5px 12px 5px 14px;margin-bottom:12px;
+  border:1px solid var(--border);border-radius:10px;background:var(--surface);
+  font-size:12.5px;color:var(--muted);
+}
+.today-bar .tb-label{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--text);white-space:nowrap}
+.today-bar .tb-label svg{width:14px;height:14px;stroke-width:1.8}
+.today-bar .grow{flex:1}
+.today-bar .tb-chip{font-weight:600;white-space:nowrap}
+.today-bar .tb-chip b{font-variant-numeric:tabular-nums;font-weight:800}
+.today-bar .tb-chip.due{color:var(--accent)}
+.today-bar .tb-chip.weak{color:var(--warn)}
+.today-bar .tb-chip.book{color:var(--bad)}
+.today-bar .tb-x{width:26px;height:26px;margin-left:auto}
+.today-bar .btn.sm{min-height:26px;padding:2px 12px}
+
 /* ===== 页面系统 ===== */
 .page{display:none}
 .page:not(.hidden){display:block}
@@ -862,6 +880,19 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <span class="icon-spin" data-icon="refresh"></span>发现新版本
       <button id="btnApplyUpdate" class="update-refresh">刷新</button>
     </div>
+  </div>
+
+  <!-- 今日待办条（轻量首页中枢 · 吸收 ref「今日行动收口」思想）：
+       boot/结算时刷新；三项计数=到期复习/需巩固/错题；X 收起至本次 tab -->
+  <div class="today-bar hidden" id="todayBar">
+    <span class="tb-label"><span data-icon="calendar"></span>今日</span>
+    <span class="tb-chip due hidden" id="tbDue">到期复习 <b>0</b></span>
+    <span class="tb-chip weak hidden" id="tbWeak">需巩固 <b>0</b></span>
+    <span class="tb-chip book hidden" id="tbBook">错题 <b>0</b></span>
+    <span class="grow"></span>
+    <button class="btn sm primary hidden" id="btnTodayDue">开始到期复习</button>
+    <button class="btn sm ghost hidden" id="btnTodayArchive">去档案</button>
+    <button class="icon-action tb-x" id="btnTodayClose" title="本次收起" aria-label="收起今日待办"><span data-icon="close"></span></button>
   </div>
 
   <!-- 练习页 -->
@@ -2959,6 +2990,7 @@ function recordSentenceResult(it, ok){
 }
 
 function finishSession(){
+  renderTodayBar(); /* 结算页可见的今日待办数字随本轮刷新 */
   S.finished = true;
   stopAutoNext();  /* 会话结束，清理倒计时 */
   /* 学习统计：完成一轮练习 */
@@ -3166,6 +3198,55 @@ function isDue(it){
 
 /* 到期句子排序权重：0 优先（当天到期的最先练） */
 function dueRank(it){ return isDue(it) ? 0 : 1; }
+
+/* ===== 今日待办条（吸收 ref 首页「今日行动收口」：SRS 到期队列让用户看得见） ===== */
+function computeToday(){
+  var by = (mem.stats && mem.stats.bySentence) || {};
+  var now = Date.now(), due = 0, weak = 0;
+  allDecks().forEach(function(d){
+    var arr = d.items || [];
+    for(var i=0;i<arr.length;i++){
+      var st = by[CL.cidKey(d.id, arr[i])];
+      if(!st || !st.times) continue;
+      if(CL.srs.isDue(st, now)) due++;
+      if(classifyStat(st) === 'weak') weak++;
+    }
+  });
+  return { due: due, weak: weak, book: Array.isArray(mem.reinforceBook) ? mem.reinforceBook.length : 0 };
+}
+function setChip(id, n){
+  var el = $(id); if(!el) return;
+  el.classList.toggle('hidden', n === 0);
+  var b = el.querySelector('b'); if(b) b.textContent = n;
+}
+function renderTodayBar(){
+  var bar = $('todayBar'); if(!bar) return;
+  try{
+    var off = false; try{ off = !!sessionStorage.getItem('chunklab_tb_off'); }catch(e){}
+    var t = computeToday();
+    var total = t.due + t.weak + t.book;
+    bar.classList.toggle('hidden', total === 0 || off);
+    if(total === 0 || off) return;
+    setChip('tbDue', t.due); setChip('tbWeak', t.weak); setChip('tbBook', t.book);
+    var bd = $('btnTodayDue'), ba = $('btnTodayArchive');
+    if(bd) bd.classList.toggle('hidden', t.due === 0);
+    if(ba) ba.classList.toggle('hidden', t.due > 0);
+  }catch(err){ /* 计数异常不阻断练习 */ }
+}
+function startTodayDue(){
+  var by = (mem.stats && mem.stats.bySentence) || {};
+  var now = Date.now(), items = [];
+  allDecks().forEach(function(d){
+    var arr = d.items || [];
+    for(var i=0;i<arr.length;i++){
+      var st = by[CL.cidKey(d.id, arr[i])];
+      if(st && CL.srs.isDue(st, now)) items.push(withStatsSource(arr[i], d.id));
+    }
+  });
+  if(!items.length){ renderTodayBar(); return; }
+  /* 与 stats.practiceDue 同构：srs- 临时队列（按 batchSize 分批、不写 best） */
+  startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
+}
 
 /* 句子是否有任意可用详解（对象有维度/或字符串非空） */
 function hasExplanation(it){
@@ -3834,6 +3915,14 @@ $('btnExplain').onclick = function(){
   openExplain(S.deck, cur()); /* 传当前练习的句子对象，避免索引错位 */
 };
 /* 管理页已迁独立 decks.html（句子行上的「详解/编辑」由该页自行绑定） */
+/* 今日待办条按钮 */
+var _tbDue = $('btnTodayDue'); if(_tbDue) _tbDue.onclick = startTodayDue;
+var _tbArc = $('btnTodayArchive'); if(_tbArc) _tbArc.onclick = function(){ window.location.href = 'stats.html'; };
+var _tbX = $('btnTodayClose'); if(_tbX) _tbX.onclick = function(){
+  try{ sessionStorage.setItem('chunklab_tb_off', '1'); }catch(e){}
+  var _bar = $('todayBar'); if(_bar) _bar.classList.add('hidden');
+};
+/* 音效开关：练习反馈的即时偏好，不触发学习数据的云同步提示 */
 $('btnSound').onclick = function(){
   mem.settings.sound = !mem.settings.sound;
   setSoundIcon();
@@ -4216,6 +4305,7 @@ if(!_resumed){
   }
   startDeck(_resumeDeck || allDecks()[0] || BUILTIN[0]);
 }
+renderTodayBar(); /* 今日待办条：练前可见（startDeck 已切到练习视图，bar 在 topbar 下独立成行） */
 } catch (e) {
   /* 启动段任何异常都写到 #zh（替代"永远卡在加载中"），并打 console 便于 F12 排查 */
   var zh = document.getElementById('zh');
