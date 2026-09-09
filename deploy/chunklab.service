@@ -1,0 +1,33 @@
+# Chunk Lab systemd 服务单元（腾讯云轻量 · Ubuntu/Debian）
+# 安装：
+#   sudo cp deploy/chunklab.service /etc/systemd/system/chunklab.service
+#   sudo systemctl daemon-reload && sudo systemctl enable --now chunklab
+#
+# 环境文件 /etc/chunklab/env 由 deploy/setup-env.sh 生成（含强随机密钥），勿提交仓库。
+
+[Unit]
+Description=Chunk Lab (Express + SQLite 云端后端 + 前端静态)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# 运行用户：专用低权限账号（安装时创建，见 runbook）
+User=chunklab
+Group=chunklab
+# 代码根目录（前端静态由 index.js 从 server/ 上一级托管，WorkingDirectory 必须指到代码根）
+WorkingDirectory=/opt/chunklab
+EnvironmentFile=/etc/chunklab/env
+ExecStart=/usr/bin/node server/index.js
+Restart=on-failure
+RestartSec=3
+# 安全加固
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+# 数据库目录落在 /opt/chunklab/server/data（持久卷/云盘），备份在 /opt/chunklab/server/backups
+ReadWritePaths=/opt/chunklab/server/data /opt/chunklab/server/backups
+
+[Install]
+WantedBy=multi-user.target

@@ -68,6 +68,7 @@ npm install --production
 REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 # 前面用 Nginx 反代 /api 并终结 TLS，前端静态也由 Nginx 托管
 ```
+> 📦 **完整腾讯云落地手册**（systemd + Nginx TLS + 每日全库快照 + 上线复核清单）：见 [`deploy/deploy-tencent.md`](./deploy/deploy-tencent.md)。配套 systemd 单元 / Nginx 站点模板 / env 生成器 / 全库备份脚本 `server/backup-db.js` 均在 `deploy/` 与 `server/` 下。
 
 ## 运行模式
 
