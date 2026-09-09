@@ -667,6 +667,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .hd-row .sub{font-size:12px;color:var(--faint);margin-top:1px}
 .hd-row .grow{flex:1}
 .hd-row .btn{min-height:28px}
+.hd-row .btn.ghost{color:var(--accent);font-weight:600}
 /* 空档案引导 */
 .home-empty{border:1px dashed var(--border);border-radius:14px;background:var(--surface);padding:22px 20px;text-align:center}
 .home-empty .t{font-size:15px;font-weight:700}
@@ -3368,10 +3369,10 @@ function renderHome(){
   if(resume){
     var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
     var sub = resume.idx > 0
-      ? '上次练到第 ' + resume.idx + ' / ' + d1.items.length + ' 句'
-      : (b1 && b1.acc != null ? '上次正确率 ' + b1.acc + '%' : (d1.items ? d1.items.length + ' 句' : ''));
+      ? '续练 · 上次练到第 ' + resume.idx + ' / ' + d1.items.length + ' 句'
+      : (b1 && b1.acc != null ? '续练这张 · 上次正确率 ' + b1.acc + '%' : (d1.items ? d1.items.length + ' 句' : ''));
     rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div><div class="sub">' + sub + '</div></div>'
-      + '<button class="btn primary" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + (resume.idx > 0 ? '继续练习' : '开始') + '</button></div>');
+      + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
   }
   recent.forEach(function(d){
     var b = mem.best && mem.best[d.id];
