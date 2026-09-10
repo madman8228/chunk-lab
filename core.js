@@ -1492,9 +1492,10 @@
       var key = cidKey(src.dId, src.it);
       if(by[key]) continue; /* 防御：采样撞同一句时跳过 */
       var lastAt = Date.now() - tpl.day * 86400000 - (2 + ((i * 37) % 540)) * 60000;
+      /* 去冗余（2026-09-10）：不写 deckName/translation（展示冗余，可重建）。 */
       by[key] = {
-        deckId: src.dId, deckName: src.name,
-        sentence: src.it.sentence || '', translation: src.it.translation || '',
+        deckId: src.dId,
+        sentence: src.it.sentence || '',
         times: tpl.times, okTimes: tpl.ok, wrongTimes: tpl.w,
         streak: tpl.streak, maxStreak: tpl.ms,
         lastAt: lastAt, interval: Math.max(1, tpl.day + 1), ease: 2.5,

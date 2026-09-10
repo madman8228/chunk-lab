@@ -3202,7 +3202,10 @@ function recordSentenceResult(it, ok){
   var key = statKey(it);
   var st = mem.stats.bySentence[key];
   if(!st){
-    st = { deckId: sourceDeckId, deckName: sourceDeck ? sourceDeck.name : (S.deck ? S.deck.name : ''), sentence: it.sentence || '', translation: it.translation || '', times:0, okTimes:0, wrongTimes:0, streak:0, maxStreak:0, lastAt:0, interval:1, ease:2.5, dueAt:0 };
+    /* 去冗余（2026-09-10）：不写 deckName/translation —— 前者只在旧 key 迁移读、
+       后者展示时恒由题库 item 重算，都是可重建的展示字段。保留 deckId（findDeck 锚）
+       与 sentence（cid 碰撞时的反查锚点）。 */
+    st = { deckId: sourceDeckId, sentence: it.sentence || '', times:0, okTimes:0, wrongTimes:0, streak:0, maxStreak:0, lastAt:0, interval:1, ease:2.5, dueAt:0 };
     mem.stats.bySentence[key] = st;
   }
   st.times++;
@@ -3219,10 +3222,11 @@ function recordSentenceResult(it, ok){
   st.repetition = _sched.repetition;
   st.lastAt = Date.now();
   if(!Array.isArray(mem.stats.events)) mem.stats.events = [];
+  /* 去冗余（2026-09-10）：不写 deckId/sentence —— 二者与 key(=deckId#cid) 重复，
+     且全链路从未被读取（mergeStats 只用 id/kind/ok/key，backfillDaysLog 只用 kind/at）。 */
   mem.stats.events.push({
     id: Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),
-    kind: 'answer', key: key, deckId: sourceDeckId, sentence: it.sentence || '',
-    ok: !!ok, at: st.lastAt
+    kind: 'answer', key: key, ok: !!ok, at: st.lastAt
   });
   return st;
 }

@@ -162,6 +162,27 @@ function getData(token, since) {
     !!r.json.mem.stats.bySentence['d1#aaaaaaaa'] &&
     !!r.json.mem.mastered['d1#aaaaaaaa']);
 
+  /* B3~B5：去冗余（2026-09-10）—— buildMem 组装时剥离 deckName/translation，
+     但保留 sentence/deckId（反查锚点）与 SRS 计数。 */
+  const _sbs = r.json.mem.stats.bySentence['d1#aaaaaaaa'];
+  check('B3 bySentence 已剥离 deckName/translation',
+    _sbs && !('deckName' in _sbs) && !('translation' in _sbs),
+    JSON.stringify(_sbs));
+  check('B4 bySentence 保留 sentence/deckId 反查锚点',
+    _sbs && _sbs.sentence === 'I have a dream.' && _sbs.deckId === 'd1',
+    JSON.stringify(_sbs));
+  check('B5 bySentence 保留 SRS 计数', _sbs && _sbs.times === 1 && _sbs.okTimes === 1 && typeof _sbs.dueAt === 'number');
+
+  /* B6~B7：events 去冗余 —— answer 事件的 deckId/sentence 与 key 重复、全链路从未被读，
+     组装时同样剥离；id/kind/ok/key/at 必须保留。 */
+  const _ev1 = r.json.mem.stats.events[0];
+  check('B6 events 已剥离 deckId/sentence',
+    _ev1 && !('deckId' in _ev1) && !('sentence' in _ev1),
+    JSON.stringify(_ev1));
+  check('B7 events 保留 id/kind/ok/key/at',
+    _ev1 && _ev1.id === 'ev-1' && _ev1.kind === 'answer' && _ev1.ok === true && _ev1.key === 'd1#aaaaaaaa' && typeof _ev1.at === 'number',
+    JSON.stringify(_ev1));
+
   /* ---------- C. since=当前水位 → 空增量 ---------- */
   r = await getData(token, seqBase);
   check('C1 since=当前 → delta=true', r.json.delta === true);

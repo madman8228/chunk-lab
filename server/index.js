@@ -227,9 +227,26 @@ function buildMem(userId, since) {
      变的只是服务端存储方式与上行增量。blob 里残留的旧值由启动迁移清掉（migrateStatsToRows）。 */
   const sbsRows = rows('SELECT sentence_key,data_json FROM user_sentence_stats WHERE {W}', true);
   const bySentence = {};
-  sbsRows.forEach(function (r) { bySentence[r.sentence_key] = JSON.parse(r.data_json); });
+  sbsRows.forEach(function (r) {
+    var st = JSON.parse(r.data_json);
+    /* 去冗余（2026-09-10）：deckName / translation 是「展示冗余」——
+       客户端对 translation 从不读原始值（统计页恒用题库 item 重算，见 stats.html
+       renderSentenceList 的 Object.assign({}, st, {translation: it.translation})）；
+       deckName 只在旧 key 迁移时读（新条目 deckId 命中 known 直接跳过）。
+       两者都能从 deckId + 题库 item 重建，组装时剥离让下行 GET 立省 ~25%，
+       且不改任何客户端行为（statSig 只 hash SRS 计数，不含这俩字段，剥离不触发误重传）。 */
+    if (st && typeof st === 'object') { delete st.deckName; delete st.translation; }
+    bySentence[r.sentence_key] = st;
+  });
   const evRows = rows('SELECT data_json FROM user_events WHERE {W} ORDER BY at,id', false);
-  const events = evRows.map(function (r) { return JSON.parse(r.data_json); });
+  const events = evRows.map(function (r) {
+    var ev = JSON.parse(r.data_json);
+    /* 去冗余（2026-09-10）：answer 事件的 deckId / sentence 与 key（=deckId#cid）重复，
+       且全链路从未被读取 —— mergeStats 只用 id/kind/ok/key，backfillDaysLog 只用 kind/at。
+       round 事件本就只有 id/kind/at。剥掉让下行 events 立省 ~18.7%（占总量）。 */
+    if (ev && typeof ev === 'object') { delete ev.deckId; delete ev.sentence; }
+    return ev;
+  });
 
   /* ★ 增量模式下 stats 基座（totalRounds / totalAnswered / daysLog…）**一律完整下发**。
      它体积很小，但「基座缺失或用 0 兜底」会让客户端的重建式合并（mergeStats 按

@@ -70,16 +70,15 @@ new Function('window', fs.readFileSync(path.join(ROOT, 'core.js'), 'utf8'))(win)
 new Function('window', fs.readFileSync(path.join(ROOT, 'srs.js'), 'utf8'))(win);
 const CL = win.CL;
 
-/* ---------- 造数据：贴近真实口径 ----------
-   bySentence[key] = { deckId, deckName, sentence, translation, times, okTimes, wrongTimes,
+/* ---------- 造数据：贴近真实口径（2026-09-10 去冗余后） ----------
+   bySentence[key] = { deckId, sentence, times, okTimes, wrongTimes,
                       streak, maxStreak, lastAt, interval, ease, dueAt, repetition }
+   （deckName/translation 已去冗余：前者只在旧 key 迁移读、后者展示时由题库 item 重算）
    events[] = { id, kind:'answer', key, deckId, sentence, ok, at } */
 function makeSentenceStat(deckId, i) {
   return {
     deckId: deckId,
-    deckName: '日常口语 · Daily Talk',
     sentence: 'Could you do me a favor and pass me the salt please ' + i + '?',
-    translation: '能不能帮个忙，把盐递给我好吗？',
     times: 3, okTimes: 2, wrongTimes: 1, streak: 1, maxStreak: 2,
     lastAt: 1757000000000 + i, interval: 3, ease: 2.35,
     dueAt: 1757000000000 + i + 259200000, repetition: 2
