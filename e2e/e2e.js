@@ -193,7 +193,10 @@ function check(name, cond, detail) {
     var reviewItem = Object.assign({}, item, { _statsDeckId: 'daily-talk' });
     recordSentenceResult(reviewItem, true);
     saveStore();
-    var saved = JSON.parse(localStorage.getItem('chunklab.v1'));
+    /* ★ 2026-09-10：stats 大对象已迁 IndexedDB（localStorage 只留小字段），
+       故断言必须走应用自己的读入口 CL.loadMem()，而不是直接解析 localStorage ——
+       后者把测试绑死在存储实现上，改一次存储层就误报。 */
+    var saved = window.CL.loadMem();
     var keys = Object.keys(saved.stats.bySentence);
     return { keys: keys, total: saved.stats.totalAnswered, times: keys.map(function (k) { return saved.stats.bySentence[k].times; }) };
   });
@@ -201,8 +204,11 @@ function check(name, cond, detail) {
     statIdentity.keys.length === 1 && statIdentity.total === 2 && statIdentity.times[0] === 2,
     JSON.stringify(statIdentity));
 
-  /* ===== 1c. 历史迁移：旧临时 ID 能唯一匹配时并回原题库 ===== */
-  const pStatsMigration = await ctx.newPage();
+  /* ===== 1c. 历史迁移：旧临时 ID 能唯一匹配时并回原题库 =====
+     ★ 必须用独立 context：stats 大对象已迁 IndexedDB（2026-09-10），而 IndexedDB 按源共享、
+     不随 localStorage.clear() 重置 —— 复用 ctx 会把 1b 写入的档案带进来，让本用例误判为「多出一条」。 */
+  const ctxStatsMig = await browser.newContext();
+  const pStatsMigration = await ctxStatsMig.newPage();
   await pStatsMigration.route('**/api/**', function (r) { r.abort('failed'); });
   await pStatsMigration.addInitScript(function () {
     localStorage.clear();
@@ -219,7 +225,8 @@ function check(name, cond, detail) {
   await pStatsMigration.goto(BASE + '/main.html?direct=1&preview=stats-migration', { waitUntil: 'domcontentloaded' });
   await pStatsMigration.waitForTimeout(1200);
   const migrated = await pStatsMigration.evaluate(function () {
-    var saved = JSON.parse(localStorage.getItem('chunklab.v1'));
+    /* 同 1b：走 CL.loadMem() 读取（大对象可能托管在 IndexedDB） */
+    var saved = window.CL.loadMem();
     /* 句子档案 key 已与原文解耦为 deckId#cid（cid 由 core.js fnv8 派生） */
     var newKey = 'user-deck#' + window.CL.fnv8('Legacy sentence.');
     return { keys: Object.keys(saved.stats.bySentence), rec: saved.stats.bySentence[newKey] || null, newKey: newKey };

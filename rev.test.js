@@ -69,6 +69,45 @@ async function main() {
   var noDays = CL.mergeStats({ totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] }, { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] });
   check('stats: 双侧无 daysLog → 合并结果 daysLog 为空对象', noDays.daysLog && Object.keys(noDays.daysLog).length === 0, JSON.stringify(noDays.daysLog));
 
+  /* ★ 回归（2026-09-10）：mergeStats 重写为 O(n+m) 单遍索引，以下四条锁住原实现的边界语义。
+     重写动机：原实现每个 bySentence key 都 filter 一遍全量 events，8000 句实测 12.2s。 */
+  /* 1) 幂等：合并结果再与自己合并必须逐字节稳定 —— 否则每次启动同步都会造出新 rev / 反复上行。 */
+  var idem = CL.mergeStats(mergedStats, mergedStats);
+  check('stats: mergeStats 幂等（m,m 结果不变）',
+    JSON.stringify(idem) === JSON.stringify(mergedStats),
+    'totals=' + idem.totalAnswered + '/' + mergedStats.totalAnswered);
+  /* 2) 无 id 的事件无法去重 → 并集为空 → 走「旧聚合取较大值」分支。
+     这里锁的是「宁可少算也不重复计数」的保守口径（应用自身始终写 id，此分支只服务老数据）。 */
+  var noId = CL.mergeStats(
+    { totalRounds: 0, totalAnswered: 5, bySentence: {}, events: [{ kind: 'answer', key: 'd#1', ok: true }, { kind: 'answer', key: 'd#1', ok: true }] },
+    { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] }
+  );
+  check('stats: 无 id 事件 → 并集为空走旧聚合分支（max(5,0)=5）', noId.totalAnswered === 5, 'got=' + noId.totalAnswered);
+  /* 2b) ★ 回归（2026-09-10）：okTimes 合并必须只减「本侧 ok 事件数」。
+     本用例两侧各有 1 ok + 1 wrong 事件，旧实现会每次合并多减 1 → okTimes 从 5 掉到 4。 */
+  var okDrift = CL.mergeStats(
+    { totalRounds: 1, totalAnswered: 5, bySentence: { 'd#k': { times: 5, okTimes: 3, wrongTimes: 2, lastAt: 100 } },
+      events: [{ id: 'o1', kind: 'answer', key: 'd#k', ok: true, at: 90 }, { id: 'w1', kind: 'answer', key: 'd#k', ok: false, at: 100 }] },
+    { totalRounds: 1, totalAnswered: 5, bySentence: {}, events: [] }
+  );
+  check('stats: okTimes 不因合并被多减（3 保持 3，times/wrong 同步守恒）',
+    okDrift.bySentence['d#k'].okTimes === 3 && okDrift.bySentence['d#k'].wrongTimes === 2 && okDrift.bySentence['d#k'].times === 5,
+    JSON.stringify(okDrift.bySentence['d#k']));
+  /* 3) 只出现在 events、不在任何一侧 bySentence 里的 key → 不凭空造出 bySentence 记录。 */
+  var ghost = CL.mergeStats(
+    { totalRounds: 0, totalAnswered: 1, bySentence: {}, events: [{ id: 'g1', kind: 'answer', key: 'd#ghost', ok: true, at: 1 }] },
+    { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] }
+  );
+  check('stats: events-only key 不进入 bySentence', Object.keys(ghost.bySentence).length === 0, JSON.stringify(ghost.bySentence));
+  /* 4) 并集事件按 id 全序去重排序（乱序输入 → 稳定输出），同 id 出现两次只留一条。 */
+  var sorted = CL.mergeStats(
+    { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [{ id: 'zz', kind: 'round', at: 3 }, { id: 'aa', kind: 'round', at: 1 }] },
+    { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [{ id: 'mm', kind: 'round', at: 2 }, { id: 'aa', kind: 'round', at: 1 }] }
+  );
+  check('stats: 并集事件去重后按 id 升序',
+    sorted.events.map(function (e) { return e.id; }).join(',') === 'aa,mm,zz' && sorted.totalRounds === 3,
+    'ids=' + sorted.events.map(function (e) { return e.id; }).join(',') + ' rounds=' + sorted.totalRounds);
+
   // 1. 新增 deck → rev=1
   m.decks = [{ id: 'd1', name: 'A', items: [{ sent: 'a' }], builtin: false }];
   CL.saveMem(m);

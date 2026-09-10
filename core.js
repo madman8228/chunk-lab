@@ -31,6 +31,27 @@
   }
   function sigDeck(d) { return JSON.stringify([d.name || '', d.items || [], d.builtin ? 1 : 0]); }
   function sigKv(v) { return JSON.stringify(v); }
+  /* kv 变更签名的分发点：只有 stats 需要走廉价路径（见 sigStats），其余照旧 JSON.stringify。 */
+  function kvSig(k, v) { return k === 'stats' ? sigStats(v) : sigKv(v); }
+  /* ★ stats 的变更签名必须廉价（2026-09-10 扩容 8000 句）。
+     maintainRevs 在每次 saveMem 里都要比对 kv 签名，原先直接用 JSON.stringify(stats) ——
+     8000 句时那是 7.5MB 的序列化，每次答题多花 ~130ms（实测：改造后答题写入 123ms 里几乎全是它）。
+     这里换成「条数 + 各条数字签名的异或累积 + 事件尾 id」：
+       - 任一句的任何计数字段变化 → statSig 变 → 异或结果变；
+       - 档案增删 → n 变；
+       - 每次答题都会 push 事件 → 事件尾 id 变；
+       - 键名改写（cid 迁移）不依赖本签名：migrateCidKeys 分支显式 bump rev。
+     成本 O(条数) 纯算术，8000 条约 0.5ms。 */
+  function sigStats(st){
+    if(!st || typeof st !== 'object') return '';
+    var by = st.bySentence || {};
+    var n = 0, x = 0;
+    for(var k in by){ if(by.hasOwnProperty(k)){ n++; x = (x ^ statSig(by[k])) >>> 0; } }
+    var ev = Array.isArray(st.events) ? st.events : [];
+    var last = ev.length ? (ev[ev.length-1] && ev[ev.length-1].id) : '';
+    return (st.totalRounds||0) + ':' + (st.totalAnswered||0) + ':' + n + ':' + x + ':' + ev.length + ':' + last +
+      ':' + (st.daysLog ? Object.keys(st.daysLog).length : 0);
+  }
 
   /* 在 saveMem 中调用：与上次快照 diff，自动升 rev 并登记软删除。 */
   function maintainRevs(m) {
@@ -53,7 +74,7 @@
         var prev = _prevSnap.kv[k];
         if (prev === undefined) { if (cur !== undefined) revs.kv[k] = (revs.kv[k] || 0) + 1; }
         else if (cur === undefined) { /* 字段消失，罕见，忽略 */ }
-        else if (sigKv(cur) !== prev) revs.kv[k] = (revs.kv[k] || 0) + 1;
+        else if (kvSig(k, cur) !== prev) revs.kv[k] = (revs.kv[k] || 0) + 1;
       });
     } else {
       (m.decks || []).forEach(function (d) { if (!(d.id in revs.decks)) revs.decks[d.id] = 1; });
@@ -61,7 +82,7 @@
     }
     _prevSnap = { decks: {}, kv: {} };
     (m.decks || []).forEach(function (d) { _prevSnap.decks[d.id] = sigDeck(d); });
-    SYNC_KV_KEYS.forEach(function (k) { if (k in m) _prevSnap.kv[k] = sigKv(m[k]); });
+    SYNC_KV_KEYS.forEach(function (k) { if (k in m) _prevSnap.kv[k] = kvSig(k, m[k]); });
     saveRevs(revs);
     _lastSyncMeta = { revs: revs, deleted: deletes };
   }
@@ -154,31 +175,45 @@
     var d = defaultMem();
     try{
       var o = migrate(JSON.parse(global.localStorage.getItem(STORE_KEY) || '{}'));
-      /* ADR：句子档案 key 原文→cid 迁移（幂等）。变更即回写 + 对应 kv rev+1，确保上云。 */
-      try{
-        if(migrateCidKeys(o)){
-          o.version = CURRENT_VERSION;
-          global.localStorage.setItem(STORE_KEY, JSON.stringify(o));
-          var _r = loadRevs();
-          if(!_r.kv) _r.kv = {};
-          ['stats', 'mastered', 'deletedItems'].forEach(function(k){ if(k in o) _r.kv[k] = (_r.kv[k] || 0) + 1; });
-          saveRevs(_r);
-          _prevSnap = null; /* 让下一次 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
-        }
-      }catch(e){ console.error('[core.migrateCidKeys]', e); }
-      return {
+      var os = (o.stats && typeof o.stats === 'object') ? o.stats : {};
+      var out = {
         decks: Array.isArray(o.decks) ? o.decks : d.decks,
         best: o.best || d.best,
         mastered: o.mastered || d.mastered,
         deletedItems: o.deletedItems || {},
-        stats: (o.stats && typeof o.stats === 'object')
-          ? { totalRounds: o.stats.totalRounds||0, totalAnswered: o.stats.totalAnswered||0, bySentence: o.stats.bySentence||{}, events: Array.isArray(o.stats.events) ? o.stats.events : [], daysLog: (o.stats.daysLog && typeof o.stats.daysLog === 'object') ? o.stats.daysLog : {} }
-          : d.stats,
-        settings: Object.assign({}, d.settings, o.settings||{}),
+        stats: {
+          totalRounds: os.totalRounds || 0,
+          totalAnswered: os.totalAnswered || 0,
+          /* 大对象优先取内存桥（preload 从 IDB 载入）；未预载时读 localStorage 旧值 */
+          bySentence: _bySentenceCache || ((os.bySentence && typeof os.bySentence === 'object') ? os.bySentence : {}),
+          events: _eventsCache || (Array.isArray(os.events) ? os.events : []),
+          daysLog: (os.daysLog && typeof os.daysLog === 'object') ? os.daysLog : {}
+        },
+        settings: Object.assign({}, d.settings, o.settings || {}),
         reinforceBook: o.reinforceBook || [],
         progress: o.progress || {},
         version: CURRENT_VERSION
       };
+      /* ADR：句子档案 key 原文→cid 迁移（幂等）。变更即回写 + 对应 kv rev+1，确保上云。
+         对「组装后的完整 stats」执行，同时覆盖 IDB 内存桥与 localStorage 旧值两条来源。 */
+      try{
+        if(migrateCidKeys(out)){
+          /* 仅当大对象已托管给 IDB 时才回填内存桥；否则保持 null，让后续 loadMem 始终
+             读 localStorage 真值（IDB 不可用时缓存会变「粘住」的陈旧副本 → 数据看起来丢失） */
+          if(_statsStore === 'idb'){
+            _bySentenceCache = out.stats.bySentence;
+            _eventsCache = out.stats.events;
+            _statsFullRewrite = true; /* 键被改写 → IDB 必须整块覆盖，不能按签名增量 */
+          }
+          saveMem(out);
+          var _r = loadRevs();
+          if(!_r.kv) _r.kv = {};
+          ['stats', 'mastered', 'deletedItems'].forEach(function(k){ if(k in out) _r.kv[k] = (_r.kv[k] || 0) + 1; });
+          saveRevs(_r);
+          _prevSnap = null; /* 让下一次 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
+        }
+      }catch(e){ console.error('[core.migrateCidKeys]', e); }
+      return out;
     }catch(e){
       console.error('[core.loadMem]', e);
       return d;
@@ -186,13 +221,41 @@
   }
   function saveMem(m){
     try{
-      var out = Object.assign({}, m);
-      out.version = CURRENT_VERSION; /* 写入时强制版本 */
-      global.localStorage.setItem(STORE_KEY, JSON.stringify(out));
+      writeLocalMem(m);
       maintainRevs(m);
+      /* 大对象增量落盘（异步，不阻塞答题）。
+         若落盘失败，persistStats 会把托管模式降级为 'local' ——
+         此时必须立刻用「未剥离」的完整 stats 重写 localStorage，否则本次 save 已经写下的
+         是剥离版副本，大对象就真的没有落点了（实测过的丢数据路径）。 */
+      if(_statsStore === 'idb' && m.stats){
+        persistStats(m.stats).then(function(ok){
+          if(ok === false && _statsStore === 'local'){
+            try{ writeLocalMem(m); }
+            catch(e2){ console.error('[core.saveMem] 降级回写 localStorage 也失败（配额不足）', e2); emit('persistError', { error: e2 }); }
+          }
+        });
+      }
       return true;
     }
-    catch(e){ console.error('[core.saveMem]', e); return false; }
+    catch(e){
+      /* ★ 不再静默：配额/序列化失败必须让调用方与用户可感知（此前只 console.error + return false，
+         8000 句超配额时表现为「练习记录凭空消失」）。 */
+      console.error('[core.saveMem] 落盘失败（可能超出 localStorage 配额）', e);
+      emit('persistError', { error: e });
+      return false;
+    }
+  }
+  /* 单一落点：把 mem 写进 localStorage。大对象已托管给 IDB 时只写小字段
+     （这是解除 5MB 配额与 188ms/次写入延迟的关键，见 _statsStore 注释）。 */
+  function writeLocalMem(m){
+    var out = Object.assign({}, m);
+    out.version = CURRENT_VERSION; /* 写入时强制版本 */
+    if(_statsStore === 'idb' && m.stats && typeof m.stats === 'object'){
+      var light = {}, s = m.stats;
+      for(var k in s){ if(s.hasOwnProperty(k) && k !== 'bySentence' && k !== 'events') light[k] = s[k]; }
+      out.stats = light;
+    }
+    global.localStorage.setItem(STORE_KEY, JSON.stringify(out));
   }
   /* 数据变更统一入口：保存 + 本地事件 + 通知父窗口 + 后台同步云端 */
   function saveAndNotify(memObj){
@@ -220,6 +283,13 @@
      读走内存（同步 API 形态，调用方零改动），写走内存 + 异步 IDB，不再写 localStorage。 */
   var _coursesCache = null;   /* null = 未预载（兜底读 localStorage 旧值） */
   var _progressCache = null;
+  /* stats 大对象（bySentence / events）的内存桥与增量落盘状态 —— 详见「持久化分层」注释块 */
+  var _statsStore = 'local';     /* 'idb' = 大对象已托管给 IDB；'local' = 保留旧行为（全部进 localStorage） */
+  var _bySentenceCache = null;   /* null = 未预载 → 兜底读 localStorage 旧值 */
+  var _eventsCache = null;
+  var _bsSig = {};               /* key → 上次落盘时的数字签名（判定该行是否需要重写） */
+  var _evSnap = null;            /* { count, lastId }：上次落盘后事件数组的尾部标记（判定能增量追加还是需整体替换） */
+  var _statsFullRewrite = false; /* 置位后下次落盘强制全量覆盖 IDB（cid 迁移 / 云合并后） */
 
   function readCoursesRaw(){
     if(_coursesCache !== null) return _coursesCache;
@@ -261,11 +331,70 @@
       if(Object.keys(_progressCache).length) global.IDBStore.putProgress(_progressCache).catch(function(){});
       /* 迁移完成后删除 localStorage 大键（仅当 IDB 可用且迁移成功） */
       try{ global.localStorage.removeItem(COURSES_KEY); global.localStorage.removeItem(PROGRESS_KEY); }catch(e){}
+
+      /* --- ★ stats 大对象：IDB 与 localStorage 旧值按 key 并集（同 IDB 优先），
+             整体写回 IDB 成功后才剥离 localStorage 副本（避免「先删后写失败」造成丢数据）。 --- */
+      var legacy = readLegacyStatsRaw();
+      var idbBS = (data.sentenceStats && typeof data.sentenceStats === 'object') ? data.sentenceStats : {};
+      var bsMap = {};
+      Object.keys(legacy.bySentence).forEach(function(k){ bsMap[k] = legacy.bySentence[k]; });
+      Object.keys(idbBS).forEach(function(k){ bsMap[k] = idbBS[k]; });   /* IDB 优先 */
+      _bySentenceCache = bsMap;
+      var evMap = {};
+      (Array.isArray(data.events) ? data.events : []).forEach(function(e){ if(e && e.id) evMap[e.id] = e; });
+      legacy.events.forEach(function(e){ if(e && e.id && !evMap[e.id]) evMap[e.id] = e; });
+      _eventsCache = Object.keys(evMap).map(function(id){ return evMap[id]; });
+
+      var hasBig = Object.keys(_bySentenceCache).length || _eventsCache.length;
+      var needPersist = hasBig && (_statsStore !== 'idb' ||
+        Object.keys(_bySentenceCache).length !== Object.keys(idbBS).length ||
+        _eventsCache.length !== (Array.isArray(data.events) ? data.events.length : 0));
+      if(!hasBig){
+        /* 无任何存量（全新用户）：直接托管，后续走增量写 */
+        _statsStore = 'idb';
+        return { migrated: false };
+      }
+      if(!needPersist){
+        _statsStore = 'idb';
+        return { migrated: true };
+      }
+      return global.IDBStore.replaceSentenceStats(_bySentenceCache).then(function(){
+        return global.IDBStore.replaceEvents(_eventsCache);
+      }).then(function(){
+        _statsStore = 'idb';
+        _statsFullRewrite = false;
+        /* 建立签名基线，避免下一次 saveMem 把全部行判为「脏」再白写一遍 */
+        _bsSig = {};
+        Object.keys(_bySentenceCache).forEach(function(k){ _bsSig[k] = statSig(_bySentenceCache[k]); });
+        _evSnap = evSnapOf(_eventsCache);
+        return { migrated: true };
+      });
+    }).then(function(res){
+      /* 落盘确认后，才把大对象从 localStorage 副本里剥离（解除 5MB 配额） */
+      if(res && res.migrated && _statsStore === 'idb') stripBigStatsFromLocal();
       return true;
     }).catch(function(e){
-      console.warn('[idb preload] 失败，回退 localStorage：', e && e.message);
+      console.warn('[idb preload] 失败，大对象继续由 localStorage 托管：', e && e.message);
+      _statsStore = 'local';
+      /* 失败前若已污染内存桥，清空以便 loadMem 回退读 localStorage 真值 */
+      if(_bySentenceCache && !Object.keys(_bySentenceCache).length) _bySentenceCache = null;
       return false;
     });
+  }
+
+  /* 把 bySentence / events 从 localStorage 的 mem 副本里删掉（IDB 已是权威副本）。
+     只改这两个字段，其余原样保留；同时归档旧值为迁移保险（键名带 _migrated 后缀）。 */
+  function stripBigStatsFromLocal(){
+    try{
+      var raw = global.localStorage.getItem(STORE_KEY);
+      if(!raw) return;
+      var o = JSON.parse(raw);
+      if(!o || !o.stats || typeof o.stats !== 'object') return;
+      if(!('bySentence' in o.stats) && !('events' in o.stats)) return;
+      delete o.stats.bySentence;
+      delete o.stats.events;
+      global.localStorage.setItem(STORE_KEY, JSON.stringify(o));
+    }catch(e){ console.warn('[idb] 剥离 localStorage 大对象失败：', e && e.message); }
   }
 
   /* 写 courses：更新内存 + 异步 IDB + 触发云同步（不再写 localStorage） */
@@ -278,6 +407,124 @@
     _progressCache = (obj && typeof obj === 'object') ? obj : {};
     if(global.IDBStore) global.IDBStore.putProgress(_progressCache).catch(function(){});
     scheduleCloudSync(loadMem());
+  }
+
+  /* ---------- 句子档案 / 事件日志的持久化分层（2026-09-10 扩容 8000 句） ----------
+     根因：stats.bySentence 与 stats.events 是「随练习量无限增长」的数据，而 localStorage
+     没有增量写语义 —— 每答一题都要把整份 mem 重新 JSON.stringify 并整键覆写。
+     8000 句实测：saveMem 188ms/次（每题肉眼可感卡顿），落盘 7.39MB 已超常见 5MB 配额
+     → setItem 抛 QuotaExceeded，而旧 saveMem 只 console.error 后 return false，用户数据静默丢失。
+
+     方案：沿用 courses 已验证的「内存桥 + IndexedDB 主存储」模式。
+       - 内存里 mem 结构完全不变（所有调用方零改动，mergeStats 语义不变）；
+       - 持久化分层：小字段（decks/best/mastered/settings/daysLog/totalRounded…）进 localStorage，
+         bySentence / events 按「变更行」增量写 IDB。
+       - 变更检测用廉价数字签名（statSig）：8000 条 ~2ms，远低于全量 stringify 的 ~180ms。
+         之所以不靠调用方「手动标脏」，是因为 bySentence 在多处被直接改写，漏一处就是静默丢数据；
+         签名比对是自愈的，没有「忘记标记」这个失败模式。
+     _statsStore 语义：'idb' = 大对象已托管（localStorage 不再留副本）；'local' = 保留旧行为。 */
+  /* 句子档案的廉价签名：建档后只有计数字段会变（sentence/translation/deckName 是常量），
+     故只需混算数字字段即可判定「这一行是否需要重写」。
+     浮点（ease）放大 1000 倍后取整；时间戳（lastAt/dueAt）经 int32 回绕 ——
+     需恰好相差 2^32 才碰撞，实用上不可能。 */
+  function _mix(h, n){ return Math.imul(h ^ (n | 0), 0x01000193) >>> 0; }
+  function statSig(v){
+    if(!v) return 0;
+    var h = 0x811c9dc5;
+    h = _mix(h, v.times || 0);
+    h = _mix(h, v.okTimes || 0);
+    h = _mix(h, v.wrongTimes || 0);
+    h = _mix(h, v.streak || 0);
+    h = _mix(h, v.maxStreak || 0);
+    h = _mix(h, v.interval || 0);
+    h = _mix(h, v.repetition || 0);
+    h = _mix(h, (v.ease || 0) * 1000);
+    h = _mix(h, v.dueAt || 0);
+    h = _mix(h, v.lastAt || 0);
+    return h >>> 0;
+  }
+
+  /* 事件数组的落盘标记：首/尾 id + 长度三锚点。
+     之所以要三个锚点：只比长度和尾 id 时，「整体替换成另一个首尾恰好相同的数组」会误判为
+     可增量追加 → IDB 内容静默错位。三锚点让纯追加（首不变、尾=上一个尾、长度增长）
+     与任何替换都能区分开；而唯一会整体替换 events 的地方（syncFromCloud 的合并）已显式
+     置 _evSnap = null 强制全量覆盖，不依赖锚点猜测。 */
+  function evSnapOf(ev){
+    ev = Array.isArray(ev) ? ev : [];
+    return {
+      count: ev.length,
+      firstId: ev.length ? (ev[0] && ev[0].id) : null,
+      lastId: ev.length ? (ev[ev.length-1] && ev[ev.length-1].id) : null
+    };
+  }
+
+  /* 把 stats 大对象异步落到 IDB：只写变更行。返回 Promise（无 IDB 时 resolve(false)） */
+  function persistStats(stats){
+    if(_statsStore !== 'idb' || !global.IDBStore) return Promise.resolve(false);
+    stats = stats || {};
+    var by = stats.bySentence || {};
+    var ev = Array.isArray(stats.events) ? stats.events : [];
+    var dirty = [], gone = [], k;
+    if(_statsFullRewrite){
+      for(k in by) _bsSig[k] = statSig(by[k]);
+      return global.IDBStore.replaceSentenceStats(by).then(function(){
+        return global.IDBStore.replaceEvents(ev);
+      }).then(function(){
+        _statsFullRewrite = false;
+        _evSnap = evSnapOf(ev);
+        return true;
+      }).catch(function(e){
+        console.warn('[stats→idb] 全量落盘失败，退回 localStorage 托管：', e && e.message);
+        _statsStore = 'local'; _statsFullRewrite = false;
+        return false;
+      });
+    }
+    for(k in by){
+      var s = statSig(by[k]);
+      if(_bsSig[k] !== s){ _bsSig[k] = s; dirty.push(k); }
+    }
+    for(k in _bsSig){ if(!(k in by)) gone.push(k); }
+    gone.forEach(function(g){ delete _bsSig[g]; });
+    /* 事件：三锚点全对得上 → 只追加新增的；否则（被合并/重排/截断）整体替换 */
+    var canAppend = false, evRows = [];
+    if(_evSnap && ev.length >= _evSnap.count){
+      if(_evSnap.count === 0) canAppend = true;
+      else canAppend = (ev[0] && ev[0].id) === _evSnap.firstId &&
+                       (ev[_evSnap.count-1] && ev[_evSnap.count-1].id) === _evSnap.lastId;
+    }
+    if(canAppend) evRows = ev.slice(_evSnap.count);
+    var evFull = !canAppend;
+    var tasks = [];
+    if(dirty.length){
+      var patch = {};
+      dirty.forEach(function(d){ patch[d] = by[d]; });
+      tasks.push(global.IDBStore.putSentenceStats(patch));
+    }
+    if(gone.length) tasks.push(global.IDBStore.deleteSentenceStats(gone));
+    if(evFull) tasks.push(global.IDBStore.replaceEvents(ev));
+    else if(evRows.length) tasks.push(global.IDBStore.appendEvents(evRows));
+    return Promise.all(tasks).then(function(){
+      _evSnap = evSnapOf(ev);
+      return true;
+    }).catch(function(e){
+      /* 落盘失败 → 降级回 localStorage 托管（宁可占配额也不静默丢数据），并显式告警 */
+      console.warn('[stats→idb] 增量落盘失败，退回 localStorage 托管：', e && e.message);
+      _statsStore = 'local';
+      _bsSig = {};
+      return false;
+    });
+  }
+
+  /* 从 localStorage 的 mem 里读出大对象（迁移用；_statsStore='idb' 后这里恒为空） */
+  function readLegacyStatsRaw(){
+    try{
+      var o = JSON.parse(global.localStorage.getItem(STORE_KEY) || '{}');
+      var s = (o && o.stats && typeof o.stats === 'object') ? o.stats : {};
+      return {
+        bySentence: (s.bySentence && typeof s.bySentence === 'object') ? s.bySentence : {},
+        events: Array.isArray(s.events) ? s.events : []
+      };
+    }catch(e){ return { bySentence: {}, events: [] }; }
   }
 
   var _cloudTimer = null;
@@ -370,6 +617,15 @@
       });
       saveRevs(localRevs);
       _prevSnap = null; /* 让 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
+      /* ★ 合并结果必须同步回内存桥：否则下一次 loadMem() 仍会取到合并前的旧 bySentence/events，
+         合并成果在内存里被丢弃（大对象已迁 IDB 后才有这个陷阱）。
+         _evSnap 置 null：并集事件是整体替换（顺序/内容都变了），强制事件全量覆盖，
+         不依赖三锚点去猜「能否增量追加」——只有本轮练习真正 append 时才走增量路径。 */
+      if(_statsStore === 'idb'){
+        _bySentenceCache = m.stats.bySentence;
+        _eventsCache = m.stats.events;
+        _evSnap = null;
+      }
       saveMem(m);
       // courses：per-entity LWW 合并 + 软删传播（ADR-005 step 2）
       var mergedCourses = {};
@@ -519,30 +775,81 @@
 
   /* 统计同步：stats 是一个逻辑对象，但练习记录本身是可合并事件。
      旧数据没有 events 时仍按旧聚合值兼容；新数据按事件 ID 去重，
-     避免两个设备离线各练一次后，后写入的整块 stats 覆盖先写入的数据。 */
+     避免两个设备离线各练一次后，后写入的整块 stats 覆盖先写入的数据。
+
+     ★ 性能（2026-09-10 扩容 8000 句）：原实现用 eventCount(list,...) 在每个
+     bySentence key 上反复 filter 全量 events，复杂度 O(keys × events)；8000 句实测
+     12.2s（每句答 3 次），足以卡死启动同步。现改为「单遍建索引 + 主循环查表」：
+       pass1  遍历 a.events / b.events，同时累计计数并建 byKeyA / byKeyB
+       pass2  遍历去重并集，建 byKeyU + union 计数
+       主循环 每个 key 只做 O(1) 查表
+     总复杂度 O(events + keys)。语义与原实现逐条对齐（见下方注释中的兼容点）。 */
   function mergeStats(a, b){
     a = (a && typeof a === 'object') ? a : {};
     b = (b && typeof b === 'object') ? b : {};
     var ae = Array.isArray(a.events) ? a.events : [];
     var be = Array.isArray(b.events) ? b.events : [];
+
+    /* pass 1：并集去重表（只收带 id 的事件，与原实现一致）+ a/b 两侧计数索引。
+       兼容点：answerA/roundA 等「侧计数」统计的是 list 中所有同类事件（含无 id 的），
+       与并集 events 数组的「只收带 id」口径不同，这里必须分开累计。 */
     var eventMap = {};
-    ae.concat(be).forEach(function(e){
-      if(!e || !e.id) return;
-      eventMap[e.id] = e;
-    });
-    var events = Object.keys(eventMap).map(function(id){ return eventMap[id]; }).sort(function(x,y){ return String(x.id).localeCompare(String(y.id)); });
-    var eventCount = function(list, kind, key){
-      return list.filter(function(e){ return e && e.kind === kind && (!key || e.key === key); }).length;
-    };
-    var answerA = eventCount(ae, 'answer'), answerB = eventCount(be, 'answer');
-    var roundA = eventCount(ae, 'round'), roundB = eventCount(be, 'round');
+    var answerA = 0, roundA = 0, answerB = 0, roundB = 0;
+    var byKeyA = {}, byKeyB = {};
+    var i, e;
+    for(i = 0; i < ae.length; i++){
+      e = ae[i];
+      if(!e) continue;
+      if(e.id) eventMap[e.id] = e;
+      if(e.kind === 'answer'){ answerA++; if(e.key){ var ta = byKeyA[e.key]; if(!ta) ta = byKeyA[e.key] = { ok:0, wrong:0 }; if(e.ok) ta.ok++; else ta.wrong++; } }
+      else if(e.kind === 'round'){ roundA++; }
+    }
+    for(i = 0; i < be.length; i++){
+      e = be[i];
+      if(!e) continue;
+      if(e.id) eventMap[e.id] = e;
+      if(e.kind === 'answer'){ answerB++; if(e.key){ var tb = byKeyB[e.key]; if(!tb) tb = byKeyB[e.key] = { ok:0, wrong:0 }; if(e.ok) tb.ok++; else tb.wrong++; } }
+      else if(e.kind === 'round'){ roundB++; }
+    }
+
+    /* 并集事件：按 id 全序排序（用 < 比较而非 localeCompare —— 后者在数万条时开销显著，
+       且 UTF-16 码元序同样是稳定全序，保证 mergeStats 幂等）。 */
+    var ids = Object.keys(eventMap);
+    var events = new Array(ids.length);
+    for(i = 0; i < ids.length; i++) events[i] = eventMap[ids[i]];
+    var keyOf = new Array(events.length);
+    for(i = 0; i < events.length; i++) keyOf[i] = String(events[i].id);
+    var order = new Array(events.length);
+    for(i = 0; i < events.length; i++) order[i] = i;
+    order.sort(function(x, y){ var p = keyOf[x], q = keyOf[y]; return p < q ? -1 : (p > q ? 1 : 0); });
+    var sorted = new Array(events.length);
+    for(i = 0; i < events.length; i++) sorted[i] = events[order[i]];
+    events = sorted;
+
+    /* pass 2：并集侧计数索引（setOnlyKeys 供 bySentence key 全集用） */
+    var answerU = 0, roundU = 0;
+    var byKeyU = {};
+    var setOnlyKeys = {};
+    for(i = 0; i < events.length; i++){
+      e = events[i];
+      if(e.kind === 'answer'){
+        answerU++;
+        if(e.key){
+          var tu = byKeyU[e.key]; if(!tu) tu = byKeyU[e.key] = { ok:0, wrong:0, lastAt:0 };
+          if(e.ok) tu.ok++; else tu.wrong++;
+          if((e.at||0) > tu.lastAt) tu.lastAt = e.at || 0;
+          setOnlyKeys[e.key] = true;
+        }
+      } else if(e.kind === 'round'){ roundU++; }
+    }
+
     var baseAnswered = events.length
       ? Math.max(Math.max(0, (Number(a.totalAnswered)||0) - answerA), Math.max(0, (Number(b.totalAnswered)||0) - answerB))
       : Math.max(Number(a.totalAnswered)||0, Number(b.totalAnswered)||0);
     var baseRounds = events.length
       ? Math.max(Math.max(0, (Number(a.totalRounds)||0) - roundA), Math.max(0, (Number(b.totalRounds)||0) - roundB))
       : Math.max(Number(a.totalRounds)||0, Number(b.totalRounds)||0);
-    var out = { totalRounds: baseRounds + eventCount(events, 'round'), totalAnswered: baseAnswered + eventCount(events, 'answer'), bySentence:{}, events:events };
+    var out = { totalRounds: baseRounds + roundU, totalAnswered: baseAnswered + answerU, bySentence:{}, events:events };
     /* ★ 修复（2026-09-09）：mergeStats 此前重建 out 时丢掉 daysLog —— 每次启动云同步合并
        后 saveMem 回写，连续打卡数据被清零。补：按天合并，rounds 取两侧较大值（daysLog 是
        events 的按日汇总，取 max 对齐 bySentence 的基线取大策略，单调不回退）。 */
@@ -555,33 +862,27 @@
         out.daysLog[k].rounds = Math.max(out.daysLog[k].rounds, r);
       });
     });
+    var aBy = a.bySentence || {}, bBy = b.bySentence || {};
     var keys = {};
-    [a.bySentence || {}, b.bySentence || {}].forEach(function(by){ Object.keys(by).forEach(function(k){ keys[k] = true; }); });
-    events.forEach(function(e){ if(e.kind === 'answer' && e.key) keys[e.key] = true; });
+    Object.keys(aBy).forEach(function(k){ keys[k] = true; });
+    Object.keys(bBy).forEach(function(k){ keys[k] = true; });
+    Object.keys(setOnlyKeys).forEach(function(k){ keys[k] = true; });
+    var EMPTY_C = { ok:0, wrong:0, lastAt:0 };
     Object.keys(keys).sort().forEach(function(key){
-      var ra = (a.bySentence || {})[key] || null;
-      var rb = (b.bySentence || {})[key] || null;
-      var ea = eventCount(ae, 'answer', key), eb = eventCount(be, 'answer', key);
-      var eu = eventCount(events, 'answer', key);
+      var ra = aBy[key] || null;
+      var rb = bBy[key] || null;
       if(!ra && !rb) return;
-      var seed = ra || rb;
-      if(ra && rb){
-        /* 元数据以事件较少的一侧为种子，计数基线则分别计算后取较大值。 */
-        seed = (Math.max(0, (ra.times||0)-ea) <= Math.max(0, (rb.times||0)-eb)) ? ra : rb;
-      }
-      var baseTimesA = ra ? Math.max(0, (ra.times||0) - ea) : 0;
-      var baseTimesB = rb ? Math.max(0, (rb.times||0) - eb) : 0;
-      var baseTimes = Math.max(baseTimesA, baseTimesB);
-      var baseOkA = ra ? Math.max(0, (ra.okTimes||0) - ea) : 0;
-      var baseOkB = rb ? Math.max(0, (rb.okTimes||0) - eb) : 0;
-      var baseOk = Math.max(baseOkA, baseOkB);
-      /* wrongTimes 的事件增量就是该侧 answer 事件中的错误数。 */
-      var wrongEventsA = ae.filter(function(e){ return e && e.kind === 'answer' && e.key === key && !e.ok; }).length;
-      var wrongEventsB = be.filter(function(e){ return e && e.kind === 'answer' && e.key === key && !e.ok; }).length;
-      var baseWrongA = ra ? Math.max(0, (ra.wrongTimes||0) - wrongEventsA) : 0;
-      var baseWrongB = rb ? Math.max(0, (rb.wrongTimes||0) - wrongEventsB) : 0;
-      var baseWrong = Math.max(baseWrongA, baseWrongB);
-      /* 没有事件的新旧数据：保留较大的旧聚合，兼容升级前客户端。 */
+      var ca = byKeyA[key] || EMPTY_C, cb = byKeyB[key] || EMPTY_C, cu = byKeyU[key] || EMPTY_C;
+      var ea = ca.ok + ca.wrong, eb = cb.ok + cb.wrong, eu = cu.ok + cu.wrong;
+      var baseTimes = Math.max(ra ? Math.max(0, (ra.times||0) - ea) : 0, rb ? Math.max(0, (rb.times||0) - eb) : 0);
+      /* ★ 修复（2026-09-10）：baseOk 必须减去「本侧 ok 事件数」而非「本侧全部 answer 事件数」。
+         原实现用 ea（含 wrong 事件），导致每次合并 okTimes 都被多减 ca.wrong：
+           merged.okTimes = okTimes - ea + ok_union = okTimes - ca.wrong
+         而 syncFromCloud 每次启动都跑 mergeStats(x, x)，于是 okTimes 逐次下沉，
+         直到塌回事件里 ok 事件的条数 —— 准确率虚低、isFluencyByDeck 的 okTimes>=3 判定失真。
+         旧测试每侧只放 1 条事件（ca.wrong 恒为 0）恰好掩盖了它。修正后 mergeStats 幂等。 */
+      var baseOk = Math.max(ra ? Math.max(0, (ra.okTimes||0) - ca.ok) : 0, rb ? Math.max(0, (rb.okTimes||0) - cb.ok) : 0);
+      var baseWrong = Math.max(ra ? Math.max(0, (ra.wrongTimes||0) - ca.wrong) : 0, rb ? Math.max(0, (rb.wrongTimes||0) - cb.wrong) : 0);
       if(!events.length){
         var legacy = (ra && rb) ? ((ra.times||0) >= (rb.times||0) ? ra : rb) : (ra || rb);
         out.bySentence[key] = Object.assign({}, legacy);
@@ -590,12 +891,10 @@
       var latest = (ra && rb) ? ((ra.lastAt||0) >= (rb.lastAt||0) ? ra : rb) : (ra || rb);
       var merged = Object.assign({}, latest);
       merged.times = baseTimes + eu;
-      /* answer 事件带 ok 字段；按事件重新计算正确/错误增量。 */
-      var unionAnswers = events.filter(function(e){ return e && e.kind === 'answer' && e.key === key; });
-      var unionOk = unionAnswers.filter(function(e){ return e.ok; }).length;
-      merged.okTimes = baseOk + unionOk;
-      merged.wrongTimes = baseWrong + (unionAnswers.length - unionOk);
-      merged.lastAt = Math.max((ra&&ra.lastAt)||0, (rb&&rb.lastAt)||0, unionAnswers.reduce(function(m,e){ return Math.max(m, e.at||0); }, 0));
+      /* answer 事件带 ok 字段；正确/错误增量直接取并集索引计数。 */
+      merged.okTimes = baseOk + cu.ok;
+      merged.wrongTimes = baseWrong + cu.wrong;
+      merged.lastAt = Math.max((ra&&ra.lastAt)||0, (rb&&rb.lastAt)||0, cu.lastAt);
       merged.maxStreak = Math.max((ra&&ra.maxStreak)||0, (rb&&rb.maxStreak)||0);
       out.bySentence[key] = merged;
     });
@@ -928,6 +1227,8 @@
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,
     isDirty: function(){ return _dirty; },
+    /* stats 大对象的持久化托管模式：'idb' = 已分层（localStorage 只留小字段）；'local' = 旧行为 */
+    statsStoreMode: function(){ return _statsStore; },
     getCloudConfig: function(){ return _cloudConfig; },
     preload: preload,
     readCourses: readCoursesRaw, readProgress: readProgressRaw,
