@@ -1,4 +1,4 @@
-/* 高频短语 · English Idioms（运行态 349 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24）
+/* 高频短语 · English Idioms（运行态 375 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24 + batch13 26）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
  * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
  *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
@@ -15,10 +15,19 @@
  *   going too far / good mood / cranky / long face / ridiculous / put up with / stay out of it /
  *   have the heart / can't bear to 等）；撞车预检剔除 8 条库内已有同义条目（killing me / out of line /
  *   good for nothing / know your stuff / bombshell / rubbed me the wrong way / my apologies / of one's own accord）。
+ * batch13（2026-09-10）= 观点/建议/让步 + 日常交际类 26 条（a word of advice / take it from me /
+ *   be that as it may / play it by ear / anything you say / suppose so / have a problem with /
+ *   we are even / have your way / do I have to / by the way / what's happening / feel at home /
+ *   take the lead / drop the ball / go big or go home / one at a time / try my best / speed up 等）；
+ *   预检升级为「词序列 + 内容词子集」双层判定，抓出 9 条时态/人称变体假阳性
+ *   （have a crush on ← She has a crush on...；soak up ← soaked up；pick on ← picking on）。
+ *   另核出 6 条被既有同义句覆盖（ask for it ← you asked for it / it's up to you ← up to you /
+ *   make an excuse ← stop making excuses / think about it ← think it over / see you out / be mad at me→已收）。
  * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json 与 output/idioms-classified.md）：
- *   累计收录 148 条（batch7~12）→ 实测差集余 102 条待扩写（差集降幅小于收录条数，
- *   因一句常覆盖多个同义词条、且部分源条目不在 394 清单内）；
- *   其中粗俗/攻击性（piss off / fuck up / up yours 等）与低质量条目（use to / since apoloytes 等错拼）建议过滤，等老板定。
+ *   累计收录 174 条（batch7~13）→ 实测差集余 79 条（子串匹配口径；其中相当部分是
+ *   时态/人称变体假阳性与 A 类已覆盖条目，真实可扩写量已不多）；
+ *   剩余主体为粗俗/攻击性（piss off / fuck up / up yours / bite me 等）与低质量错拼条目
+ *   （use to / since apoloytes / work you home 等）——建议过滤，等老板定。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
  *   my bad / good for you / you bet，例句变体）；仅 you don't say 为库内缺词条，已单抽 batch6 注入（201）。
@@ -5545,6 +5554,397 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**can't bear to do sth** = 不忍心做某事、受不了做某事。bear 在这里是「忍受」。",
       "近义：I can't stand to watch。例句：I can't bear to watch — tell me how it ends."
+    ]
+  }
+,
+  {
+    sentence: "A word of advice — book your tickets early.",
+    cid: fnv8("A word of advice — book your tickets early."),
+    translation: "给你个忠告，早点订票。",
+    chunks: ["A word of advice —","book your tickets early."],
+    hints: ["给你个忠告","早点订票"],
+    grammar: [
+      {role:"独立成分", color:"#7c5cbf", phonetic:["/ə/","/wɜːrd/","/əv/","/ədˈvaɪs/"], pos:"名词短语", meaning:"给你个忠告"},
+      {role:"祈使句", color:"#c87033", phonetic:["/bʊk/","/jʊr/","/ˈtɪkɪts/","/ˈɜːrli/"], pos:"祈使句", meaning:"早点订票"}
+    ],
+    explanations: [
+      "**A word of advice** = 给你个忠告。在给出建议前先提个醒，比直接说 Listen to me 柔和，常用于朋友之间。",
+      "近义：Here's a tip / A piece of advice. 例句：A word of advice — never sign anything without reading it twice."
+    ]
+  },
+  {
+    sentence: "Take it from me — the exam is easier than you think.",
+    cid: fnv8("Take it from me — the exam is easier than you think."),
+    translation: "听我的没错，考试比你想的简单。",
+    chunks: ["Take it from me —","the exam is easier than you think."],
+    hints: ["听我的没错","考试比你想的简单"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/teɪk/","/ɪt/","/frəm/","/miː/"], pos:"习语", meaning:"听我的没错"},
+      {role:"主系表", color:"#c87033", phonetic:["/ðə/","/ɪɡˈzæm/","/ɪz/","/ˈiːziər/"], pos:"主系表", meaning:"考试比你想的简单"}
+    ],
+    explanations: [
+      "**Take it from me** = 听我的没错。用自己的亲身经历给对方打保票，语气亲近且有分量。",
+      "近义：Trust me on this. 例句：Take it from me — you'll regret quitting without a plan."
+    ]
+  },
+  {
+    sentence: "Be that as it may, we still need to finish today.",
+    cid: fnv8("Be that as it may, we still need to finish today."),
+    translation: "即便如此，今天还是得完成。",
+    chunks: ["Be that as it may,","we still need to finish today."],
+    hints: ["即便如此","今天还是得完成"],
+    grammar: [
+      {role:"让步状语", color:"#7c5cbf", phonetic:["/biː/","/ðæt/","/æz/","/ɪt/","/meɪ/"], pos:"让步状语从句", meaning:"即便如此"},
+      {role:"主句", color:"#c87033", phonetic:["/wiː/","/stɪl/","/niːd/","/tə/","/ˈfɪnɪʃ/"], pos:"主谓", meaning:"我们今天还得完成"}
+    ],
+    explanations: [
+      "**Be that as it may** = 即便如此。先承认对方说得有道理，再转折说出自己的重点，是正式场合好用的让步句。",
+      "近义：Even so / That said. 例句：Be that as it may, the deadline hasn't changed."
+    ]
+  },
+  {
+    sentence: "Let's play it by ear and see how the weather is.",
+    cid: fnv8("Let's play it by ear and see how the weather is."),
+    translation: "随机应变吧，看天气再定。",
+    chunks: ["Let's play it by ear","and see how the weather is."],
+    hints: ["随机应变吧","看天气再定"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/pleɪ/","/ɪt/","/baɪ/","/ɪr/"], pos:"习语", meaning:"随机应变"},
+      {role:"并列谓语", color:"#c87033", phonetic:["/siː/","/haʊ/","/ðə/","/ˈweðər/"], pos:"并列句", meaning:"再看看天气"}
+    ],
+    explanations: [
+      "**Play it by ear** = 随机应变、走一步看一步。原指不看谱凭耳朵演奏，引申为不提前定死计划。",
+      "近义：See how it goes. 例句：Let's not book anything — we'll play it by ear."
+    ]
+  },
+  {
+    sentence: "Anything you say — you're the boss here.",
+    cid: fnv8("Anything you say — you're the boss here."),
+    translation: "听你的，这儿你说了算。",
+    chunks: ["Anything you say —","you're the boss here."],
+    hints: ["听你的","这儿你说了算"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/ˈeniθɪŋ/","/juː/","/seɪ/"], pos:"习语", meaning:"听你的"},
+      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/ðə/","/bɔːs/","/hɪr/"], pos:"主系表", meaning:"这儿你说了算"}
+    ],
+    explanations: [
+      "**Anything you say** = 听你的、照你说的办。表示完全服从对方，语气可诚恳也可带点无奈。",
+      "近义：Whatever you say / Your call. 例句：Anything you say — I'll follow your lead."
+    ]
+  },
+  {
+    sentence: "I suppose so, though I'm not really sure.",
+    cid: fnv8("I suppose so, though I'm not really sure."),
+    translation: "我想是吧，虽然不太确定。",
+    chunks: ["I suppose so,","though I'm not really sure."],
+    hints: ["我想是吧","虽然不太确定"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/səˈpoʊz/","/soʊ/"], pos:"主谓宾", meaning:"我想是吧"},
+      {role:"让步状语", color:"#3358e0", phonetic:["/ðoʊ/","/aɪm/","/nɑːt/","/ˈrɪəli/","/ʃʊr/"], pos:"让步状语从句", meaning:"虽然我不太确定"}
+    ],
+    explanations: [
+      "**I suppose so** = 我想是吧。勉强的同意，暗示自己并不十分认同，只是不想争。",
+      "对比：I think so 更有把握；I suppose so 把握不足。例句：I suppose so, but don't quote me on it."
+    ]
+  },
+  {
+    sentence: "I'm not sure — let me check and get back to you.",
+    cid: fnv8("I'm not sure — let me check and get back to you."),
+    translation: "我不确定，我查一下再回复你。",
+    chunks: ["I'm not sure —","let me check and get back to you."],
+    hints: ["我不确定","我查一下再回复你"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/aɪm/","/nɑːt/","/ʃʊr/"], pos:"主系表", meaning:"我不确定"},
+      {role:"祈使句", color:"#e74c7a", phonetic:["/let/","/miː/","/tʃek/","/ɡet/","/bæk/"], pos:"祈使句", meaning:"让我查一下再答复"}
+    ],
+    explanations: [
+      "**I'm not sure** = 我不确定。职场里最安全的缓冲句，比直接说 No 或 I don't know 更专业。",
+      "搭配：get back to you 稍后答复你。例句：I'm not sure — let me check with the team and get back to you."
+    ]
+  },
+  {
+    sentence: "Do you have a problem with the new plan?",
+    cid: fnv8("Do you have a problem with the new plan?"),
+    translation: "你对新方案有意见吗？",
+    chunks: ["Do you have a problem","with the new plan?"],
+    hints: ["你有意见吗","对新方案"],
+    grammar: [
+      {role:"疑问句", color:"#c87033", phonetic:["/duː/","/juː/","/hæv/","/ə/","/ˈprɑːbləm/"], pos:"疑问句", meaning:"你有意见吗"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/wɪð/","/ðə/","/nuː/","/plæn/"], pos:"介宾短语", meaning:"对这个新方案"}
+    ],
+    explanations: [
+      "**Have a problem with sth** = 对某事有意见、有不满。可直接询问，也可反击别人。",
+      "注意语气：问句是询问；陈述句 I have a problem with that. 就是明确反对了。例句：Do you have a problem with the way I did it?"
+    ]
+  },
+  {
+    sentence: "You helped me last week, so now we are even.",
+    cid: fnv8("You helped me last week, so now we are even."),
+    translation: "你上周帮过我，现在咱俩扯平了。",
+    chunks: ["You helped me last week,","so now we are even."],
+    hints: ["你上周帮过我","所以现在扯平了"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/helpt/","/miː/","/læst/","/wiːk/"], pos:"主谓宾", meaning:"你上周帮了我"},
+      {role:"主系表", color:"#3358e0", phonetic:["/soʊ/","/naʊ/","/wiː/","/ɑːr/","/ˈiːvn/"], pos:"主系表", meaning:"现在咱俩扯平了"}
+    ],
+    explanations: [
+      "**We are even** = 咱俩扯平了。指人情、账目两清，谁也不欠谁，常带轻松口吻。",
+      "近义：We're square / Call it even. 例句：Thanks for the ride — now we're even."
+    ]
+  },
+  {
+    sentence: "Fine, have your way — but don't blame me later.",
+    cid: fnv8("Fine, have your way — but don't blame me later."),
+    translation: "行，随你，但回头别怪我。",
+    chunks: ["Fine, have your way —","but don't blame me later."],
+    hints: ["行，随你","但回头别怪我"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/hæv/","/jʊr/","/weɪ/"], pos:"习语", meaning:"随你、由着你"},
+      {role:"祈使句", color:"#e74c7a", phonetic:["/bʌt/","/doʊnt/","/bleɪm/","/miː/","/ˈleɪtər/"], pos:"祈使句", meaning:"回头别怪我"}
+    ],
+    explanations: [
+      "**Have your way** = 随你、由着你的意思来。多带无奈或不满，暗示后果自负。",
+      "近义：Have it your way. 例句：Fine, have your way — just don't come crying to me."
+    ]
+  },
+  {
+    sentence: "Don't be mad at me — it was an honest mistake.",
+    cid: fnv8("Don't be mad at me — it was an honest mistake."),
+    translation: "别生我气，这是个无心的错。",
+    chunks: ["Don't be mad at me —","it was an honest mistake."],
+    hints: ["别生我气","这是个无心的错"],
+    grammar: [
+      {role:"祈使句", color:"#e74c7a", phonetic:["/doʊnt/","/biː/","/mæd/","/æt/","/miː/"], pos:"祈使句", meaning:"别生我的气"},
+      {role:"主系表", color:"#c87033", phonetic:["/ɪt/","/wəz/","/ən/","/ˈɑːnɪst/","/mɪˈsteɪk/"], pos:"主系表", meaning:"这是个无心的错误"}
+    ],
+    explanations: [
+      "**Be mad at sb** = 生某人的气。加上 an honest mistake（无心的过失）就是在请求原谅。",
+      "近义：Don't be angry with me. 例句：Don't be mad at me — the file got deleted by accident."
+    ]
+  },
+  {
+    sentence: "Do I have to go to the meeting — I'm exhausted.",
+    cid: fnv8("Do I have to go to the meeting — I'm exhausted."),
+    translation: "我一定得去开会吗，我累坏了。",
+    chunks: ["Do I have to go to the meeting —","I'm exhausted."],
+    hints: ["我一定得去开会吗","我累坏了"],
+    grammar: [
+      {role:"疑问句", color:"#c87033", phonetic:["/duː/","/aɪ/","/hæv/","/tə/","/ɡoʊ/"], pos:"疑问句", meaning:"我非得去吗"},
+      {role:"主系表", color:"#3358e0", phonetic:["/aɪm/","/ɪɡˈzɔːstɪd/"], pos:"主系表", meaning:"我累坏了"}
+    ],
+    explanations: [
+      "**Do I have to...?** = 我非得……吗？带委屈或不情愿的抱怨口气，比 Must I 更口语。",
+      "近义：Is it really necessary? 例句：Do I have to stay late again — I've got plans."
+    ]
+  },
+  {
+    sentence: "You go girl — show them what you can do!",
+    cid: fnv8("You go girl — show them what you can do!"),
+    translation: "加油姑娘，让他们看看你的本事。",
+    chunks: ["You go girl —","show them what you can do!"],
+    hints: ["加油姑娘","让他们看看你的本事"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/juː/","/ɡoʊ/","/ɡɜːrl/"], pos:"口头语", meaning:"加油，姑娘"},
+      {role:"祈使句", color:"#c87033", phonetic:["/ʃoʊ/","/ðem/","/wʌt/","/juː/","/kən/"], pos:"祈使句", meaning:"让他们看看你的本事"}
+    ],
+    explanations: [
+      "**You go girl!** = 加油姑娘！专门给女性打气的口头语，热情、带姐妹感，多用于朋友之间。",
+      "近义：Go for it / You got this. 例句：You go girl — that presentation was amazing!"
+    ]
+  },
+  {
+    sentence: "By the way, did you get my message?",
+    cid: fnv8("By the way, did you get my message?"),
+    translation: "顺便问一下，你收到我的消息了吗？",
+    chunks: ["By the way,","did you get my message?"],
+    hints: ["顺便问一下","你收到我的消息了吗"],
+    grammar: [
+      {role:"连接性状语", color:"#7c5cbf", phonetic:["/baɪ/","/ðə/","/weɪ/"], pos:"状语", meaning:"顺便说一下"},
+      {role:"疑问句", color:"#c87033", phonetic:["/dɪd/","/juː/","/ɡet/","/maɪ/","/ˈmesɪdʒ/"], pos:"疑问句", meaning:"你收到我的消息了吗"}
+    ],
+    explanations: [
+      "**By the way**（缩写 BTW）= 顺便说一下。用来插入一个跟当前话题无关的新话题。",
+      "近义：Incidentally / Speaking of which. 例句：By the way, the meeting moved to three."
+    ]
+  },
+  {
+    sentence: "Hey, what's happening — long time no see!",
+    cid: fnv8("Hey, what's happening — long time no see!"),
+    translation: "嘿，最近怎么样，好久不见。",
+    chunks: ["Hey, what's happening —","long time no see!"],
+    hints: ["嘿，最近怎么样","好久不见"],
+    grammar: [
+      {role:"问候语", color:"#7c5cbf", phonetic:["/wʌts/","/ˈhæpənɪŋ/"], pos:"口头语", meaning:"最近怎么样"},
+      {role:"习语", color:"#3358e0", phonetic:["/lɔːŋ/","/taɪm/","/noʊ/","/siː/"], pos:"习语", meaning:"好久不见"}
+    ],
+    explanations: [
+      "**What's happening?** = 最近怎么样、有什么新鲜事？轻松的朋友式问候，比 How are you 更随意。",
+      "近义：What's up / How's it going. 例句：Hey man, what's happening — you look great!"
+    ]
+  },
+  {
+    sentence: "How's everything at your new job?",
+    cid: fnv8("How's everything at your new job?"),
+    translation: "你的新工作一切都好吗？",
+    chunks: ["How's everything","at your new job?"],
+    hints: ["一切都好吗","在你的新工作"],
+    grammar: [
+      {role:"疑问句", color:"#c87033", phonetic:["/haʊz/","/ˈevriθɪŋ/"], pos:"疑问句", meaning:"一切都好吗"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/æt/","/jʊr/","/nuː/","/dʒɑːb/"], pos:"介宾短语", meaning:"在你的新工作"}
+    ],
+    explanations: [
+      "**How's everything?** = 一切都好吗？泛问近况的问候，比 How are you 更关心具体生活状态。",
+      "近义：How are things? 例句：How's everything at home — is your mother better?"
+    ]
+  },
+  {
+    sentence: "Make yourself comfortable and feel at home.",
+    cid: fnv8("Make yourself comfortable and feel at home."),
+    translation: "别拘束，就当在自己家一样。",
+    chunks: ["Make yourself comfortable","and feel at home."],
+    hints: ["别拘束","就当在自己家"],
+    grammar: [
+      {role:"祈使句", color:"#e74c7a", phonetic:["/meɪk/","/jʊrˈself/","/ˈkʌmftəbl/"], pos:"祈使句", meaning:"别拘束"},
+      {role:"习语", color:"#7c5cbf", phonetic:["/fil/","/æt/","/hoʊm/"], pos:"习语", meaning:"像在自己家一样"}
+    ],
+    explanations: [
+      "**Feel at home** = 像在自己家一样自在。招待客人时的标准客套话，等于「别客气」。",
+      "近义：Make yourself at home. 例句：Come in, feel at home — I'll get you a drink."
+    ]
+  },
+  {
+    sentence: "Could I get a little help with these boxes?",
+    cid: fnv8("Could I get a little help with these boxes?"),
+    translation: "能帮我搬一下这些箱子吗？",
+    chunks: ["Could I get a little help","with these boxes?"],
+    hints: ["能帮我一把吗","搬这些箱子"],
+    grammar: [
+      {role:"疑问句", color:"#c87033", phonetic:["/kʊd/","/aɪ/","/ɡet/","/ə/","/ˈlɪtl/"], pos:"疑问句", meaning:"我能得到一点帮助吗"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/wɪð/","/ðiːz/","/ˈbɑːksɪz/"], pos:"介宾短语", meaning:"搬这些箱子"}
+    ],
+    explanations: [
+      "**A little help** = 帮个小忙。用 little 把请求说小，显得不麻烦别人，比 Can you help me 更客气。",
+      "近义：Could you give me a hand? 例句：A little help here — this thing weighs a ton."
+    ]
+  },
+  {
+    sentence: "No matter what happens, my heart belongs to you.",
+    cid: fnv8("No matter what happens, my heart belongs to you."),
+    translation: "不管发生什么，我的心都属于你。",
+    chunks: ["No matter what happens,","my heart belongs to you."],
+    hints: ["不管发生什么","我的心都属于你"],
+    grammar: [
+      {role:"让步状语", color:"#3358e0", phonetic:["/noʊ/","/ˈmætər/","/wʌt/","/ˈhæpənz/"], pos:"让步状语从句", meaning:"不管发生什么"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/maɪ/","/hɑːrt/","/bɪˈlɔːŋz/","/tə/","/juː/"], pos:"主谓宾", meaning:"我的心属于你"}
+    ],
+    explanations: [
+      "**My heart belongs to you** = 我的心属于你。很重的一句表白，belong to 是「归属于」，比 I love you 更庄重。",
+      "近义：I'm yours. 例句：No matter how far apart we are, my heart belongs to you."
+    ]
+  },
+  {
+    sentence: "Why don't you take the lead on this one?",
+    cid: fnv8("Why don't you take the lead on this one?"),
+    translation: "这件事你来牵头吧。",
+    chunks: ["Why don't you take the lead","on this one?"],
+    hints: ["你来牵头吧","就这件事"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/teɪk/","/ðə/","/liːd/"], pos:"习语", meaning:"牵头、带头"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/ɑːn/","/ðɪs/","/wʌn/"], pos:"介宾短语", meaning:"就这一件"}
+    ],
+    explanations: [
+      "**Take the lead** = 牵头、带头、挑大梁。用 Why don't you... 提建议，语气委婉不生硬。",
+      "近义：Lead the way / Head it up. 例句：You know the client best, so take the lead on this one."
+    ]
+  },
+  {
+    sentence: "I dropped the ball on the last order — sorry.",
+    cid: fnv8("I dropped the ball on the last order — sorry."),
+    translation: "上一单我搞砸了，抱歉。",
+    chunks: ["I dropped the ball","on the last order — sorry."],
+    hints: ["我把事情搞砸了","上一单，抱歉"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/drɑːpt/","/ðə/","/bɔːl/"], pos:"习语", meaning:"搞砸了、掉链子"},
+      {role:"状语", color:"#3358e0", phonetic:["/ɑːn/","/ðə/","/læst/","/ˈɔːrdər/"], pos:"介宾短语", meaning:"在上一单上"}
+    ],
+    explanations: [
+      "**Drop the ball** = 掉链子、把事情办砸了。源自运动里没接住球，职场里用来认错最常用。",
+      "近义：Screw up / Mess up. 例句：Sorry, I dropped the ball on the invoice — I'll fix it today."
+    ]
+  },
+  {
+    sentence: "Go big or go home — this is your only chance.",
+    cid: fnv8("Go big or go home — this is your only chance."),
+    translation: "要么全力以赴，要么别干。",
+    chunks: ["Go big or go home —","this is your only chance."],
+    hints: ["要么全力以赴","要么干脆别做"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/ɡoʊ/","/bɪɡ/","/ɔːr/","/ɡoʊ/","/hoʊm/"], pos:"习语", meaning:"要么全力以赴，要么别做"},
+      {role:"主系表", color:"#c87033", phonetic:["/ðɪs/","/ɪz/","/jʊr/","/ˈoʊnli/","/tʃæns/"], pos:"主系表", meaning:"这是你唯一的机会"}
+    ],
+    explanations: [
+      "**Go big or go home** = 要么干票大的，要么干脆别干。强调不留后路、全力投入的拼劲。",
+      "近义：All in. 例句：We're pitching to the biggest client — go big or go home."
+    ]
+  },
+  {
+    sentence: "Please come in one at a time, not all together.",
+    cid: fnv8("Please come in one at a time, not all together."),
+    translation: "请一个一个进来，别一起挤。",
+    chunks: ["Please come in one at a time,","not all together."],
+    hints: ["请一个一个进来","不要一起"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/kʌm/","/ɪn/","/wʌn/","/æt/","/ə/","/taɪm/"], pos:"祈使句", meaning:"请一个一个来"},
+      {role:"补充否定", color:"#3358e0", phonetic:["/nɑːt/","/ɔːl/","/təˈɡeðər/"], pos:"否定短语", meaning:"不是一起"}
+    ],
+    explanations: [
+      "**One at a time** = 一次一个、一个一个来。维持秩序时的标准说法，常搭配 please 使用。",
+      "近义：One by one. 例句：One at a time, please — the elevator is small."
+    ]
+  },
+  {
+    sentence: "I'll try my best, but I can't promise anything.",
+    cid: fnv8("I'll try my best, but I can't promise anything."),
+    translation: "我会尽力，但不能保证什么。",
+    chunks: ["I'll try my best,","but I can't promise anything."],
+    hints: ["我会尽力","但不能保证什么"],
+    grammar: [
+      {role:"主谓宾", color:"#7c5cbf", phonetic:["/traɪ/","/maɪ/","/best/"], pos:"习语", meaning:"我会尽力"},
+      {role:"并列句", color:"#c87033", phonetic:["/bʌt/","/aɪ/","/kænt/","/ˈprɑːmɪs/"], pos:"主谓宾", meaning:"但我不能保证"}
+    ],
+    explanations: [
+      "**Try my best** = 尽我所能。比 I'll try 更认真；后面加 but I can't promise 就是先把预期压住。",
+      "对比：do my best 更侧重「尽力做」；try my best 侧重「尝试」。例句：I'll try my best — no promises though."
+    ]
+  },
+  {
+    sentence: "Be ready for anything — the plan may change.",
+    cid: fnv8("Be ready for anything — the plan may change."),
+    translation: "做好万全准备，计划可能变。",
+    chunks: ["Be ready for anything —","the plan may change."],
+    hints: ["做好万全准备","计划可能变"],
+    grammar: [
+      {role:"祈使句", color:"#e74c7a", phonetic:["/biː/","/ˈredi/","/fər/","/ˈeniθɪŋ/"], pos:"祈使句", meaning:"对任何情况都做好准备"},
+      {role:"主谓", color:"#c87033", phonetic:["/ðə/","/plæn/","/meɪ/","/tʃeɪndʒ/"], pos:"主谓", meaning:"计划可能会变"}
+    ],
+    explanations: [
+      "**Be ready for sth** = 为某事做好准备。加 anything 就是「什么情况都可能，都得有准备」。",
+      "近义：Expect the unexpected. 例句：Be ready for anything — the client loves changing specs."
+    ]
+  },
+  {
+    sentence: "Could you speed up a little — we're running late.",
+    cid: fnv8("Could you speed up a little — we're running late."),
+    translation: "你能快点吗，我们要迟到了。",
+    chunks: ["Could you speed up a little —","we're running late."],
+    hints: ["你能快一点吗","我们要迟到了"],
+    grammar: [
+      {role:"短语动词", color:"#7c5cbf", phonetic:["/spiːd/","/ʌp/"], pos:"短语动词", meaning:"加快速度"},
+      {role:"主谓", color:"#c87033", phonetic:["/wɪr/","/ˈrʌnɪŋ/","/leɪt/"], pos:"主谓", meaning:"我们要迟到了"}
+    ],
+    explanations: [
+      "**Speed up** = 加快速度。反义是 slow down；加 a little 让催促听起来不那么冲。",
+      "近义：Hurry up / Step on it. 例句：Could you speed up a bit — the train leaves at six."
     ]
   }
 ];
