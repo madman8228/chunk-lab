@@ -162,14 +162,21 @@ node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change
 
 浏览器端到端回归（Playwright，一键跑，自动拉起临时 server）：
 ```bash
-npm run e2e        # UI 回归 69 项
+npm run e2e:all    # 一键跑全部 21 个套件（e2e/ + output/e2e/），按需拉起临时 server，汇总通过率
+npm run e2e        # 主 UI 回归 69 项
 npm run e2e-sync   # 双设备同步对抗 7 项（ADR-005 端到端：per-entity 隔离 / LWW / 软删传播 / 删除重建 / stale 拒写）
 # 覆盖：main 正常路径（顶栏 SVG/真实句子/候选区/零 pageerror）、
 #       全 module 拦截降级（safeCall 兜底不白屏）、decks/stats SVG 渲染、
 #       错题本收敛闭环（写入→mem.reinforceBook 落盘/旧键迁移/stats 可见）、
 #       结算卡「换个题库」跳 decks.html（死代码清理回归）
-# 截图输出 e2e/shots/（不入库）；找不到浏览器时设 CHROMIUM_PATH
+# 套件位置：e2e/（主套件）+ output/e2e/（各专项验证，如月历 popover / topbar 拆分 / 图标审计，
+#           均已随版本入库）；一次性脚本 debug-*.js / shot-*.js 不纳入自动跑
+# 截图输出 e2e/shots/ 与 output/e2e/shots/（均不入库）；找不到浏览器时设 CHROMIUM_PATH
 ```
+
+> **e2e 入口约定**：`main.html` 裸链默认落**今日首页**（`decideEntry()` → `showHomePage()`，会隐藏练习区）。
+> 任何需要练习区的脚本 / 书签 / 深链必须带 **`?direct=1`**，否则拿到的是首页（表现为 `#track` / `#ringWrap` / `#zh` 取不到）。
+> `e2e-all.js` 按脚本内端口字面量自动分流三种模式：自带服务器 / 硬编码外部端口 / `E2E_BASE`，无需手工起服务。
 
 > **PWA 缓存约定（开发必读）**：`sw.js` 对静态资源 cache-first。CACHE 版本 = `chunklab-<sha1前8位>`，由 `node scripts/gen-sw.js` 依 PRECACHE 清单文件内容自动生成 —— **改业务代码后重跑 `node scripts/gen-sw.js`**（或手动 bump），否则浏览器继续 serve 旧缓存（修复不生效）。已加护栏 `node scripts/check-sw.js`（挂在 `npm test` 首位）：CACHE 与资源内容哈希不一致且工作区干净时直接报红拦截。刷新一次即完成新 SW 激活与旧缓存清理；页面顶部会自动出现"发现新版本"toast，点刷新即可。
 
@@ -217,6 +224,6 @@ node server/backup-cli.js list                # 列出备份
 - 🟡 `main.html` 仍是 ~4.3k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
 - 🟡 `oral8000.js` 现为 150 句口语种子（并入 builtin-daily，共 238 句），分批扩展直接在文件内追加
-- 🟡 主流程改动后记得跑 `npm run e2e`（69 项，自动拉起临时 server）确认无回归；`e2e/e2e.js` 已随版本入库
+- 🟡 主流程改动后记得跑 `npm run e2e:all`（21 套件 / 含主 UI 回归 69 项，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
 
 > 早期迭代中的问题（同步整块覆盖、AI Key 前端直连、后端零校验、移动端适配弱、核心逻辑无单测等）均已按 architecture-plan 的 Phase A→C 闭环，ADR 清单见上。

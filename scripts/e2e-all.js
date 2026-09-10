@@ -151,10 +151,23 @@ function runSuite(suite) {
       results.push(r);
       console.log((r.code === 0 ? 'PASS' : 'FAIL(exit ' + r.code + ')') + '  ' + (r.ms / 1000).toFixed(1) + 's');
       if (r.code !== 0) {
-        /* 失败时打印尾部输出，便于当场定位 */
-        const tail = r.out.split('\n').filter(function (l) { return l.trim(); }).slice(-12).join('\n');
-        console.log('    ┌─ 尾部输出 ────────────────');
-        tail.split('\n').forEach(function (l) { console.log('    │ ' + l); });
+        /* 失败时先打印全部「失败行」，再补尾部输出。
+           根因（2026-09-10）：原版只打尾部 12 行 —— 套件断言 60+ 项时，
+           失败项往往在中间，尾部全是 ✓，等于看不见哪项挂的（排查绕远路）。
+           失败行识别：✗ / FAIL / failed=<非0> / Error 前缀。 */
+        const lines = r.out.split('\n').filter(function (l) { return l.trim(); });
+        const bad = lines.filter(function (l) {
+          return /✗|FAIL|failed=[1-9]|Error:|SyntaxError|Timeout/i.test(l);
+        });
+        if (bad.length) {
+          console.log('    ┌─ 失败行 (' + bad.length + ') ──────────────');
+          bad.slice(0, 30).forEach(function (l) { console.log('    │ ' + l); });
+          if (bad.length > 30) console.log('    │ …（还有 ' + (bad.length - 30) + ' 行）');
+          console.log('    ├─ 尾部输出 ────────────────');
+        } else {
+          console.log('    ┌─ 尾部输出（未匹配到失败行）──');
+        }
+        lines.slice(-12).forEach(function (l) { console.log('    │ ' + l); });
         console.log('    └───────────────────────────');
       }
     }
