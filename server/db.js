@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS user_decks (
   deleted_at TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  seq        INTEGER,
   PRIMARY KEY (user_id, id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -61,6 +62,7 @@ CREATE TABLE IF NOT EXISTS user_kv (
   deleted_at TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  seq        INTEGER,
   PRIMARY KEY (user_id, k),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -70,6 +72,7 @@ CREATE TABLE IF NOT EXISTS user_courses (
   course_id  TEXT NOT NULL,
   data_json  TEXT NOT NULL,
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  seq        INTEGER,
   PRIMARY KEY (user_id, course_id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -79,6 +82,7 @@ CREATE TABLE IF NOT EXISTS user_course_progress (
   course_id  TEXT NOT NULL,
   data_json  TEXT NOT NULL,
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  seq        INTEGER,
   PRIMARY KEY (user_id, course_id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -115,6 +119,7 @@ CREATE TABLE IF NOT EXISTS user_events (
   at         INTEGER,
   data_json  TEXT NOT NULL,
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  seq        INTEGER,
   PRIMARY KEY (user_id, id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -144,7 +149,31 @@ CREATE TABLE IF NOT EXISTS user_entity_rows (
   data_json  TEXT NOT NULL,
   deleted_at TEXT,
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  seq        INTEGER,
   PRIMARY KEY (user_id, kind, item_key),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+/* ----- 行级增量下行（2026-09-10 第三轮）：每张用户数据表带单调变更序号 seq -----
+   目标：让客户端能 GET /api/data?since=N 只取「自己还没见过的变更」，
+   而不是每次开页都把 8007KB 全量拉一遍（8000 句实测 7191KB → 648KB brotli，
+   且服务端 buildMem 要 206ms 同步阻塞组装）。
+
+   为什么是「行表加 seq 列」而不是「独立变更日志表」：
+     日志表要额外解决去重、压实、以及「水位低于压实线就得全量重来」的判定；
+     把 seq 直接打在行上则没有增长问题，且「某用户 seq>N 的行」天然就是变更集。
+     代价是每条 upsert 要多写一个字段，用「一次写入请求共用一个 seq」抵消（见 index.js allocSeq）。
+
+   ★ 为什么不能拿 updated_at 当水位：它是 TEXT 秒精度，同一秒内的多次写入会撞在一起 ——
+     客户端把水位推到该秒之后，那一秒里的其他变更就永远拉不到了。
+
+   ★ 计数器与回填必须配套：回填把存量行盖成 seq=1，则计数器也必须 ≥1（见 initChangeSeq），
+     否则下一次分配又发出 1，与回填行撞号 → 拿着水位 1 的客户端再也收不到那次变更（静默丢数据）。
+
+   ⚠️ 本注释在 db.exec 模板字符串内部，不能出现反引号。 */
+CREATE TABLE IF NOT EXISTS user_change_seq (
+  user_id INTEGER PRIMARY KEY,
+  seq     INTEGER NOT NULL DEFAULT 0,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
@@ -174,5 +203,37 @@ function addColumnIfMissing(table, col, type) {
 addColumnIfMissing('user_kv', 'updated_at', 'TEXT');
 // 公共题库市场（Phase D）：user_decks 补 is_public 列（0=私有，1=已发布到市场）
 addColumnIfMissing('user_decks', 'is_public', 'INTEGER DEFAULT 0');
+/* 行级增量下行：所有用户数据表补 seq 列。
+   必须**先**补列再建索引 —— CREATE TABLE IF NOT EXISTS 对升级前的旧库是空操作，
+   旧库此刻还没有 seq 列，在第一个 db.exec 里建索引会直接报 "no such column"。 */
+const SEQ_TABLES = [
+  'user_decks', 'user_kv', 'user_courses', 'user_course_progress',
+  'user_sentence_stats', 'user_events', 'user_entity_rows',
+];
+SEQ_TABLES.forEach(function (t) { addColumnIfMissing(t, 'seq', 'INTEGER'); });
+
+db.exec(SEQ_TABLES.map(function (t) {
+  return 'CREATE INDEX IF NOT EXISTS idx_' + t.replace(/^user_/, '') + '_user_seq ON ' + t + '(user_id, seq)';
+}).join(';\n'));
+
+/* 存量行回填 + 计数器初始化（幂等）。
+   ★ 两者必须一起做：回填把存量行盖成 seq=1，计数器也必须抬到 ≥1，
+     否则下一次 allocSeq 又发出 1，与回填行同号 → 水位已达 1 的客户端收不到那次变更。 */
+function initChangeSeq() {
+  let backfilled = 0;
+  const tx = db.transaction(function () {
+    SEQ_TABLES.forEach(function (t) {
+      backfilled += db.prepare('UPDATE ' + t + ' SET seq=1 WHERE seq IS NULL').run().changes;
+    });
+    /* 每个用户都铺一条计数器（含暂无数据的用户）：新用户首次分配即 1，
+       与「无存量行」不冲突；已有存量行的用户从此从 2 开始，避开回填值。 */
+    db.prepare('INSERT INTO user_change_seq (user_id, seq) ' +
+      'SELECT id, 1 FROM users WHERE id NOT IN (SELECT user_id FROM user_change_seq)').run();
+  });
+  tx();
+  return backfilled;
+}
 
 module.exports = db;
+/* 附在 db 上导出（本模块的默认导出是连接对象）——由 index.js 在 listen 之前调用。 */
+module.exports.initChangeSeq = initChangeSeq;
