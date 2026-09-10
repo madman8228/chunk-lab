@@ -13,7 +13,7 @@
 <title>学习档案 · Chunk Lab</title>
 <style>
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#74716a;--faint:#9a958c;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#23855a;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#a16207;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px;min-width:0}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
@@ -155,6 +155,10 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .wrong-del{flex-shrink:0;border:none;background:transparent;color:var(--faint);width:24px;height:24px;border-radius:50%;cursor:pointer;line-height:1;padding:0;display:grid;place-items:center}
 .wrong-del .icon{width:14px;height:14px}
 .wrong-del:hover{background:var(--bad-soft);color:var(--bad)}
+/* 触摸按压反馈（2026-09-10）：tap-highlight 已全局关闭，按压态由 :active 提供 */
+.btn:active{transform:translateY(1px)}
+.wrong-del:active{background:var(--bad-soft);color:var(--bad)}
+.stat-card .start-btn:active{opacity:.6}
 
 .empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:12px}
 

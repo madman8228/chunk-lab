@@ -13,7 +13,7 @@
 <title>题库管理 · Chunk Lab</title>
 <style>
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#74716a;--faint:#9a958c;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#23855a;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#a16207;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -152,6 +152,10 @@ textarea{outline:none;resize:vertical}
 .lesson-del{flex-shrink:0;width:22px;height:22px;border:none;border-radius:50%;background:transparent;color:var(--faint);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s}
 .lesson:hover .lesson-del{opacity:1}
 .lesson-del:hover{background:#fee;color:#c33}
+/* 触摸按压反馈（2026-09-10）：tap-highlight 已全局关闭，按压态由 :active 提供 */
+.btn:active{transform:translateY(1px)}
+.cat-btn:active,.series-head:active,.vol-head:active,.lesson:active{background:var(--surface-2)}
+.lesson-del:active{background:#fee;color:#c33}
 .course-empty{padding:12px 16px;text-align:center;color:var(--faint);line-height:1.45}
 .deck-notice{position:fixed;top:18px;left:50%;z-index:100;max-width:min(420px,calc(100vw - 28px));padding:9px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:0 8px 24px rgba(20,30,50,.14);color:var(--text);font-size:13px;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,-8px);transition:opacity .18s,transform .18s}
 .deck-notice.show{opacity:1;transform:translate(-50%,0)}
