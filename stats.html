@@ -497,12 +497,12 @@ function renderStats(){
     }
     off += len;
   });
-  /* 中心：已学过句数 + 总句数 + 累计练习次数（消除"55 vs 16"困惑） */
+  /* 中心：已学过句数 + 总句数（消除"55 vs 16"困惑） */
   var practiced = mem.stats && mem.stats.totalAnswered ? mem.stats.totalAnswered : 0;
   /* ★ 根因（2026-09-08 老板反馈）：原 4 行小字（"已学句数"/"/ 279 句"/"练过 X 次"）字号 6-6.5px，
-     圆环内根本看不清。删小字冗余行 + 弹 hover popover 显示完整数据：
-     - 圆环内只留核心大字"60" + 总句数"/ 279"两行（已学 + 总）
-     - 详细分布 / 练习次数 / 标熟数全部 hover 出来 */
+     圆环内根本看不清 → 删小字冗余行 + hover popover 补数据。
+     ★ 2026-09-09 二次收敛（老板反馈去重）：4 档分布 / 标熟数已由同名 legend 静态展示，
+     popover 不再复述，唯一内容 = 「练过次数 N 次」（静态区没有的）；全部学完时补「已全部学完」徽标。 */
   donut += '<text x="50" y="44" text-anchor="middle" font-size="18" font-weight="800" fill="var(--text)">'+studied+'</text>'+
     '<text x="50" y="58" text-anchor="middle" font-size="6" fill="var(--faint)">已学句数</text>'+
     '<text x="50" y="68" text-anchor="middle" font-size="7" fill="var(--faint)">/ '+total+' 句</text></svg>';
