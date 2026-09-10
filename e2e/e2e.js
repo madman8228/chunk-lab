@@ -271,6 +271,53 @@ function check(name, cond, detail) {
     'w=' + (modeState ? modeState.w : 'null'));
   await pMode.close();
 
+  /* ===== 1h. 首页"今日无到期，练点新的或休息"已删（2026-09-10：废话，下面按钮已隐含语境）
+   * 双层断言：源码层防回潮（必须）+ 渲染层（due=0 真实场景下不出现）
+   * ⚠ 必须独立 context：注入 stats 会写 IDB，共享主 context 会污染后续 1b（"localStorage.clear() 不再能重置统计"） */
+  const mainHtmlSrc = fs.readFileSync(path.join(__dirname, '..', 'main.html'), 'utf8');
+  check('home: 源码已删"今日无到期"（防回潮）', mainHtmlSrc.indexOf('今日无到期') < 0, 'still in main.html');
+  check('home: 源码已删"练点新的或休息"（防回潮）', mainHtmlSrc.indexOf('练点新的或休息') < 0, 'still in main.html');
+
+  const ctxNoDue = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const pNoDue = await ctxNoDue.newPage();
+  await pNoDue.route('**/api/**', function (r) { r.abort('failed'); });
+  await pNoDue.addInitScript(function () {
+    localStorage.clear();
+    /* 构造：1 deck + 1 stats（dueAt=明天，未到期）→ totalRounds=1 走 else 分支，t.due=0 不渲染提示 */
+    var tomorrow = Date.now() + 86400000;
+    localStorage.setItem('chunklab.v1', JSON.stringify({
+      version: 2,
+      decks: [{ id: 'd1', name: '测试题库', items: [{ sentence: 'hi', en: 'hi', chunks: ['hi'], hints: [''] }] }],
+      best: { d1: { lastPlayed: Date.now() } },
+      mastered: {}, deletedItems: {},
+      stats: {
+        totalRounds: 1, totalAnswered: 1,
+        bySentence: { 'd1#hi': { deckId: 'd1', sentence: 'hi', times: 1, okTimes: 1, wrongTimes: 0, streak: 0, maxStreak: 0, lastAt: Date.now(), interval: 1, ease: 2.5, dueAt: tomorrow } }
+      },
+      settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: true, celebrate: 'confetti', autoSpeak: false, darkMode: false }
+    }));
+  });
+  await pNoDue.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
+  await pNoDue.waitForSelector('#homeBody', { timeout: 10000 });
+  await pNoDue.waitForTimeout(1000);
+  const noDueState = await pNoDue.evaluate(function () {
+    var body = document.getElementById('homeBody');
+    return {
+      hasEmpty: !!(body && body.querySelector('.home-empty')),
+      hasNoDueText: body && (body.innerText || '').indexOf('今日无到期') >= 0,
+      hasRestText: body && (body.innerText || '').indexOf('练点新的或休息') >= 0,
+      hasNewDeckBtn: !!(body && body.querySelector('#homeGoDecks'))
+    };
+  });
+  check('home: due=0 真实场景不渲染"今日无到期"',
+    !noDueState.hasNoDueText, JSON.stringify(noDueState));
+  check('home: due=0 真实场景不渲染"练点新的或休息"',
+    !noDueState.hasRestText, JSON.stringify(noDueState));
+  check('home: due=0 时仍渲染"去题库学新句"按钮（替代废话的语境承载）',
+    noDueState.hasNewDeckBtn, JSON.stringify(noDueState));
+  await pNoDue.close();
+  await ctxNoDue.close();
+
   /* ===== 1b. 统计身份回归：临时复习队列不能拆分原句历史 =====
    * 最小场景：同一句先从稳定题库练习，再从带时间戳的复习题库练习。
    * 现状会按两个 deck id 写成两条 bySentence 记录，导致累计次数看起来丢失。 */

@@ -3578,9 +3578,10 @@ function renderHome(){
       + '<div class="home-actions" style="justify-content:center"><button class="btn primary" id="homeGoDecks">' + ic('book') + ' 去题库挑一套</button></div>'
       + '</div>');
   } else {
-    h.push(t.due > 0
-      ? '<div class="home-today-t">今天有 <span style="color:var(--accent)">' + t.due + '</span> 句到期复习</div>'
-      : '<div class="home-today-t" style="color:var(--ok)">今日无到期，练点新的或休息</div>');
+    /* t.due == 0 时不显示该提示（废话）——下面三个按钮（复习需巩固/错题/去题库学新句）已隐含语境 */
+    if (t.due > 0) {
+      h.push('<div class="home-today-t">今天有 <span style="color:var(--accent)">' + t.due + '</span> 句到期复习</div>');
+    }
     h.push('<div class="home-today-counts">'
       + '<div class="htc due"><div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">到期复习</div></div>'
       + '<div class="htc weak"><div class="n' + (t.weak ? '' : ' ok') + '">' + t.weak + '</div><div class="l">需巩固</div></div>'
