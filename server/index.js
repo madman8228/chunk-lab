@@ -18,6 +18,7 @@ const db = require('./db');
 const auth = require('./auth');
 const validate = require('./validate');
 const ai = require('./ai');
+const compress = require('./compress');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
 
@@ -516,6 +517,12 @@ app.use(function (req, res, next) {
 });
 /* 根路径 → 入口页。仓库无 index.html（入口是 main.html），express.static 对 / 会 404 "Cannot GET /" */
 app.get('/', function (req, res) { res.redirect('/main.html'); });
+/* 静态资源压缩（2026-09-10）：见 server/compress.js 头部「为什么需要」。
+   8000 句题库 7.80MB → brotli ~1.8MB，是扩容后唯一真正卡前端的瓶颈。
+   必须放在 express.static 之前：命中则直接返回压缩体，未命中（客户端不要压缩 / 含 Range / 非文本）
+   自行 next() 放行，不改变原有行为。 */
+const staticCompress = compress(path.join(__dirname, '..'));
+app.use(staticCompress);
 app.use(express.static(path.join(__dirname, '..')));
 
 const PORT = process.env.PORT || 8787;
@@ -550,4 +557,6 @@ app.listen(PORT, function () {
   console.log('[chunklab-server] listening on http://0.0.0.0:' + PORT +
     (auth.REQUIRE_AUTH ? ' (多用户模式)' : ' (开放模式·免登录)'));
   securityWarnings.forEach(function (w) { console.warn(w); });
+  /* 后台预热大文件压缩体：让第一个访客不必等现场压缩（见 server/compress.js warm） */
+  staticCompress.warm();
 });

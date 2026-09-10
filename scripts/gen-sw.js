@@ -29,12 +29,22 @@ const SW = path.join(ROOT, 'sw.js');
 let sw = fs.readFileSync(SW, 'utf8');
 const cacheMatch = sw.match(/^const CACHE = '[^']*';\s*(\/\/.*)?$/m);
 const listMatch = sw.match(/const PRECACHE = \[[\s\S]*?\n\];/);
+const softMatch = sw.match(/const PRECACHE_SOFT = \[[\s\S]*?\n\];/);
 if (!cacheMatch || !listMatch) {
   console.error('[gen-sw] 未能在 sw.js 找到 CACHE 常量或 PRECACHE 数组，中止（文件结构变了？）');
   process.exit(1);
 }
 
 const base = (listMatch[0].match(/'([^']+)'/g) || []).map(function (s) { return s.slice(1, -1); });
+
+/* PRECACHE_SOFT（2026-09-10）：体积随内容增长的数据资产 —— 参与版本哈希，但不进原子 addAll。
+   见 sw.js 该常量上方的根因说明。这里是「不再自动补回 PRECACHE」的关键：
+   否则依赖闭包（HTML 的 <script src="oral8000.js">）会把它当必需项、每次都塞回原子清单，
+   而原子清单一旦装不上，SW 整体作废、离线能力全丢。 */
+const softList = softMatch
+  ? (softMatch[0].match(/'([^']+)'/g) || []).map(function (s) { return s.slice(1, -1); })
+  : [];
+const softSet = new Set(softList);
 
 /* ---------- 由依赖闭包自动补全 ----------
    runtimeAssets = HTML 的 src/href + 每个 JS 文件的 ESM import / CJS require 递归闭包
@@ -47,6 +57,7 @@ const skip = new Set(res.missingRefs);
 res.files.forEach(function (rel) {
   const u = '/' + rel.split(path.sep).join('/');
   if (seen.has(u)) return;
+  if (softSet.has(u)) return;   /* 已在 PRECACHE_SOFT：参与哈希但绝不进原子清单 */
   seen.add(u);
   added.push(u);
 });
@@ -72,8 +83,29 @@ function normalizeCache(src){
 }
 const h = crypto.createHash('sha1');
 for (const u of files) h.update(fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))));
+/* PRECACHE_SOFT 也必须计入哈希：它们不进原子清单，但内容变更仍须让 CACHE 版本翻新，
+   否则客户端 cache-first 会永远命中旧题库（"改了像没改"，本护栏存在的根本原因）。 */
+const missingSoft = softList.filter(function (u) { return !fs.existsSync(path.join(ROOT, u.replace(/^\//, ''))); });
+if (missingSoft.length) console.warn('[gen-sw] PRECACHE_SOFT 文件缺失: ' + missingSoft.join(', '));
+for (const u of softList) {
+  if (missingSoft.includes(u)) continue;
+  h.update(fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))));
+}
 h.update(normalizeCache(fs.readFileSync(SW, 'utf8')));   /* sw.js 自身也算入（CACHE 行归一化后） */
 const version = 'chunklab-' + h.digest('hex').slice(0, 8);
+
+/* ---------- 体积护栏 ----------
+   大文件进原子 PRECACHE 会让 SW 安装变脆（见 sw.js PRECACHE_SOFT 说明）。
+   自动补全按「HTML 引用」判定，无法知道文件会长到多大 —— 内容扩容时由这里提醒维持者改归属。 */
+const FAT = 512 * 1024;
+const fat = files
+  .map(function (u) { return { u: u, size: (function () { try { return fs.statSync(path.join(ROOT, u.replace(/^\//, ''))).size; } catch (e) { return 0; } })() }; })
+  .filter(function (x) { return x.size > FAT; });
+if (fat.length) {
+  console.warn('[gen-sw] ⚠ 以下文件将进入原子预缓存（超 ' + Math.round(FAT / 1024) + 'KB，安装失败风险上升）：');
+  fat.forEach(function (x) { console.warn('    ' + x.u + '  ' + Math.round(x.size / 1024) + 'KB'); });
+  console.warn('    体积还会随内容增长的文件应移入 sw.js 的 PRECACHE_SOFT（改为尽心而为地缓存，失败不拖垮安装）。');
+}
 
 /* ---------- 重写 sw.js ---------- */
 const newList = 'const PRECACHE = [\n' + files.map(function (u) { return "  '" + u + "',"; }).join('\n') + '\n];';
@@ -81,7 +113,8 @@ sw = sw.replace(listMatch[0], newList);
 sw = sw.replace(cacheMatch[0], "const CACHE = '" + version + "'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改");
 fs.writeFileSync(SW, sw);
 
-console.log('[gen-sw] CACHE = ' + version + '  (' + files.length + ' 个预缓存文件)');
+console.log('[gen-sw] CACHE = ' + version + '  (' + files.length + ' 个原子预缓存 + ' +
+  softList.filter(function (u) { return !missingSoft.includes(u); }).length + ' 个软预缓存，均计入哈希)');
 if (added.length) console.log('[gen-sw] 自动补全: ' + added.join(', '));
 if (missing.length) console.log('[gen-sw] 剔除缺失基准: ' + missing.join(', '));
 if (skip.size) console.warn('[gen-sw] HTML 引用但文件缺失: ' + Array.from(skip).join(', '));

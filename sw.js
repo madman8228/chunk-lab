@@ -53,7 +53,9 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-653b7cf4'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-35e79074'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+/* 硬预缓存清单：小体积、离线必需。install 用 addAll 一次性装好，任一失败即安装失败
+   （老 SW 继续服务 —— 这是正确的失败语义，不做"部分成功"的兜底）。 */
 const PRECACHE = [
   '/main.html',
   '/manifest.json',
@@ -63,9 +65,6 @@ const PRECACHE = [
   '/api.js',
   '/auth-ui.js',
   '/srs.js',
-  '/builtins.js',
-  '/oral8000.js',
-  '/freq-idioms.js',
   '/library.js',
   '/course-package.js',
   '/courses.html',
@@ -84,9 +83,69 @@ const PRECACHE = [
   '/js/distractor-cause.mjs',
 ];
 
+/* 软预缓存清单（2026-09-10）：体积随内容增长的数据资产（题库）。
+   根因：install 的 addAll 是「全有全无」。扩容到 8000 句后 oral8000.js 达 8.25MB，
+   在移动网络下极易整体失败 → SW 一个都装不上、离线能力全丢（PWA 的核心卖点）。
+   而这些文件并不需要「全有」才能用：缺了下次访问按需取即可。
+   所以它们改为「尽力而为」——逐个缓存、单个失败只告警、绝不拖垮 install。
+   与 PRECACHE 一样计入 CACHE 版本哈希（见 gen-sw.js）：否则题库更新后客户端会
+   cache-first 永远命中旧内容 —— 正是本护栏要根治的「改了像没改」。
+   升级瞬间如何不掉离线：install 先结转旧缓存（carryOver，全程不触网），再补缺失（fillSoft）。 */
+const PRECACHE_SOFT = [
+  '/builtins.js',
+  '/oral8000.js',
+  '/freq-idioms.js',
+];
+
+/* 把 PRECACHE_SOFT 资产从既有 chunklab-* 缓存搬进新 CACHE。
+   只读旧缓存、不发起网络请求 —— 因此即使升级时处于离线，已有资产也不会丢。
+   只在 chunklab-* 之间搬（跨版本遗留缓存不管，避免重蹈 2026-09-09「跨 cache 命中旧 core.js」事故）。 */
+function carryOver(target) {
+  if (!PRECACHE_SOFT.length) return Promise.resolve();
+  return caches.keys().then(function (names) {
+    var olds = names.filter(function (n) { return n.indexOf('chunklab-') === 0 && n !== CACHE; });
+    if (!olds.length) return;
+    return Promise.all(olds.map(function (n) {
+      return caches.open(n).then(function (oc) {
+        return Promise.all(PRECACHE_SOFT.map(function (u) {
+          return oc.match(u).then(function (hit) {
+            if (!hit) return;
+            return target.match(u).then(function (already) {
+              if (!already) return target.put(u, hit);
+            });
+          });
+        }));
+      });
+    }));
+  });
+}
+
+/* 补全仍缺失的软预缓存资产（首次安装 / 结转没拿到时）。
+   逐条 add + 容错：单条失败只告警。**这不是掩盖问题**——软清单的语义就是「有更好，没有也能用」
+   （fetch handler 是 cache-first + cache.put，缺的下次访问自动补上）；
+   而安装不能因为一个数据资产失败而整体作废，那是把可选资源当必需资源。 */
+function fillSoft(target) {
+  if (!PRECACHE_SOFT.length) return Promise.resolve();
+  return PRECACHE_SOFT.reduce(function (chain, u) {
+    return chain.then(function () {
+      return target.match(u).then(function (hit) {
+        if (hit) return;
+        return target.add(u).catch(function () {
+          console.warn('[sw] 软预缓存未取到（不影响安装，下次访问按需补）: ' + u);
+        });
+      });
+    });
+  }, Promise.resolve());
+}
+
 self.addEventListener('install', function (e) {
   e.waitUntil(
-    caches.open(CACHE).then(function (c) { return c.addAll(PRECACHE); })
+    caches.open(CACHE).then(function (c) {
+      /* 硬清单原子装（失败即整体失败）→ 软清单结转 → 软清单补齐 */
+      return c.addAll(PRECACHE)
+        .then(function () { return carryOver(c); })
+        .then(function () { return fillSoft(c); });
+    })
       .then(function () { return self.skipWaiting(); })
   );
 });
@@ -127,14 +186,38 @@ self.addEventListener('fetch', function (e) {
      清理前仍在）里的旧 core.js 会被命中，导致已升级版本被旧版覆盖。新版必须限定到当前 CACHE，
      由 activate 负责清理老 cache（不可把"老 cache 清理"当兜底）。 */
   e.respondWith(
-    caches.open(CACHE).then(function (c) { return c.match(req); }).then(function (hit) {
-      if (hit) return hit;
-      return fetch(req).then(function (res) {
-        if (!res || res.status !== 200 || res.type === 'opaque') return res;
-        var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put(req, copy); });
-        return res;
-      }).catch(function () { return caches.match('/main.html'); });
+    caches.open(CACHE).then(function (c) {
+      return c.match(req).then(function (hit) {
+        if (hit) return hit;
+        /* ★ 同 URL 严格匹配未命中时，再按 URL 宽松查一次（仍限定同一 CACHE）。
+           根因（2026-09-10 真浏览器实测）：Cache API 的匹配对「请求形状」敏感 ——
+           install 用 addAll() 存储条目时请求**不带 Origin**，而 <script type="module">
+           是 CORS 请求、**带 Origin**（实测：同一 URL，c.match(req) 全 miss、
+           c.match(req.url) 全 hit；ignoreVary 也救不回来）。后果是 .mjs 永远取不到预缓存：
+           离线时落到 HTML 兜底 → 浏览器把它当脚本解析 → 报 *误导性的 MIME 错误* →
+           FormatTools/ChunkEngine 缺失 → 启动段整片 TypeError。
+           实测「受控访问过一次之后再离线」就好了 —— 因为那时条目是按模块请求的形状
+           （带 Origin）存的。本行把「必须先在线访问一次」这个隐含前提去掉，
+           让首次安装后立即离线也能用。
+           安全说明：只查同一 CACHE、同一 URL（不跨 cache，不跨版本），
+           且本服务对同一 URL 不按请求头返回不同内容 —— 不存在取到"另一种变体"的风险。 */
+        return c.match(url.href).then(function (loose) {
+          if (loose) return loose;
+          return fetch(req).then(function (res) {
+            if (!res || res.status !== 200 || res.type === 'opaque') return res;
+            var copy = res.clone();
+            caches.open(CACHE).then(function (cc) { cc.put(req, copy); });
+            return res;
+          }).catch(function () {
+            /* 非导航请求网络失败时**绝不回退 HTML**。
+               根因（2026-09-10）：旧实现在这里 `caches.match('/main.html')`，于是离线缺一个 .mjs 时，
+               浏览器拿到的是 text/html，报「Failed to load module script: ... MIME type "text/html"」，
+               把「离线资源缺失」伪装成 MIME 配置问题，排查方向被带偏。
+               返回真正的网络错误，让失败如实呈现（导航请求的 HTML 兜底在上一分支，语义正确、保留）。 */
+            return Response.error();
+          });
+        });
+      });
     })
   );
 });

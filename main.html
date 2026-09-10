@@ -4691,14 +4691,30 @@ CL.ensureCloud().then(bootApp);
    module 加载 → 引擎就绪即 FormatTools 必已就绪 → esc/norm/wordCount/normSent
    内联双实现兜底成死代码已删（单源化，见函数定义处注释）。
    守卫：双模块就绪（或 3s 超时，防模块真挂卡死页面）才启动。 */
+function _bootDepsReady(){
+  return !!(window.ChunkEngine && window.ChunkEngine.buildChoices
+    && window.FormatTools && typeof window.FormatTools.norm === 'function');
+}
 function bootApp(){
-  if(window.ChunkEngine && window.ChunkEngine.buildChoices
-     && window.FormatTools && typeof window.FormatTools.norm === 'function'){ bootMain(); return; }
+  if(_bootDepsReady()){ bootMain(); return; }
   var _bt = 0;
   var _biv = setInterval(function(){
-    if(window.ChunkEngine && window.ChunkEngine.buildChoices
-       && window.FormatTools && typeof window.FormatTools.norm === 'function'){ clearInterval(_biv); bootMain(); }
-    else if(++_bt > 180){ clearInterval(_biv); bootMain(); } /* ~2.9s 超时 */
+    if(_bootDepsReady()){ clearInterval(_biv); bootMain(); return; }
+    if(++_bt <= 180) return;   /* ~2.9s 内继续等 */
+    /* ★ 超时后**不再"照样启动"**（2026-09-10 修）。
+       原实现 `else if(++_bt > 180){ bootMain(); }` 是把失败当默认路径：esc/norm/wordCount/normSent
+       全部转发到 FormatTools，依赖缺失时启动段必然抛 TypeError，把「模块没加载」
+       掩盖成一串看起来毫不相关的报错（实测就是报 esc 未定义，排查方向被带偏）。
+       改为如实呈现失败并说明最可能的原因，不再往下走。 */
+    clearInterval(_biv);
+    var zh = $('zh');
+    if(zh){
+      zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') +
+        ' 启动失败：练习引擎未加载（js/bridge.mjs）。<br>若是首次离线打开，请先联网访问一次让资源入缓存。';
+    }
+    console.error('[boot] js/bridge.mjs 未就绪（ChunkEngine=' + typeof window.ChunkEngine +
+      ', FormatTools=' + typeof window.FormatTools + '）；已中止启动，避免级联报错。' +
+      '常见原因：离线且该模块未入 SW 缓存 / MIME 类型不正确 / 模块语法错误。');
   }, 16);
 }
 

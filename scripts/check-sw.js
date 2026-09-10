@@ -29,12 +29,19 @@ catch (e) { console.error('[check-sw] 找不到 sw.js，跳过'); process.exit(0
 
 const cacheMatch = sw.match(/^const CACHE = '([^']*)';/m);
 const listMatch = sw.match(/const PRECACHE = \[([\s\S]*?)\n\];/);
+const softMatch = sw.match(/const PRECACHE_SOFT = \[([\s\S]*?)\n\];/);
 if (!cacheMatch || !listMatch) {
   console.error('[check-sw] 未能在 sw.js 找到 CACHE 常量或 PRECACHE 数组，跳过（文件结构变了？）');
   process.exit(0);
 }
 
-const files = listMatch[1].split(',').map(s => s.trim().replace(/['"]/g, '')).filter(Boolean);
+const precache = listMatch[1].split(',').map(s => s.trim().replace(/['"]/g, '')).filter(Boolean);
+/* PRECACHE_SOFT 同样计入版本哈希（见 gen-sw.js）：它们不进原子预缓存，但内容变更必须让 CACHE 翻新，
+   否则客户端 cache-first 命中旧题库 → 正是本护栏要根治的「改了像没改」。 */
+const softList = softMatch
+  ? softMatch[1].split(',').map(s => s.trim().replace(/['"]/g, '')).filter(Boolean)
+  : [];
+const files = precache.concat(softList);
 /* 归一化：把 CACHE 行的值抹成固定占位符再算 hash，与 gen-sw.js 保持同一套基准。
    否则「CACHE 行自身参与 hash + 写回新值」形成自指漂移，这里永远对不上（2026-09-10 修）。 */
 function normalizeCache(src){
@@ -42,6 +49,7 @@ function normalizeCache(src){
 }
 const h = crypto.createHash('sha1');
 const missing = [];
+/* 必须与 gen-sw.js 的 hash 源顺序完全一致：先 PRECACHE 再 PRECACHE_SOFT */
 files.forEach(function (f) {
   try { h.update(fs.readFileSync(path.join(ROOT, f))); }
   catch (e) { missing.push(f); }
@@ -57,7 +65,8 @@ if (missing.length) {
   process.exit(1);
 }
 if (cur === expect) {
-  console.log('[check-sw] ✓ CACHE=' + cur + ' 与 ' + files.length + ' 个预缓存文件一致');
+  console.log('[check-sw] ✓ CACHE=' + cur + ' 与 ' + precache.length + ' 个原子预缓存 + ' +
+    softList.length + ' 个软预缓存文件一致');
   process.exit(0);
 }
 
