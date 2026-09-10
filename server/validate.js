@@ -78,6 +78,21 @@ function validatePutPayload(body) {
     if (sd.sbsGone !== undefined && !Array.isArray(sd.sbsGone)) return 'statsDelta.sbsGone 必须是数组';
     if (sd.evs !== undefined && !Array.isArray(sd.evs)) return 'statsDelta.evs 必须是数组';
   }
+  /* entityDelta（2026-09-10 第二轮）：mastered / reinforceBook / deletedItems 的变更行上行走这里。
+     同样只做浅层检查。键名必须是 ROW_KV_KINDS 覆盖的三个之一 —— 未知键会被服务端忽略，
+     但提前拒掉能让客户端的协议误用立刻可见（而不是静默无效）。 */
+  if (body.entityDelta !== undefined) {
+    const ed = body.entityDelta;
+    if (!isObj(ed)) return 'entityDelta 必须是对象';
+    const allowed = ['mastered', 'reinforceBook', 'deletedItems'];
+    for (const k of Object.keys(ed)) {
+      if (allowed.indexOf(k) < 0) return 'entityDelta 含未知键：' + k;
+      const part = ed[k];
+      if (!isObj(part)) return 'entityDelta.' + k + ' 必须是对象';
+      if (part.up !== undefined && !isObj(part.up)) return 'entityDelta.' + k + '.up 必须是对象';
+      if (part.gone !== undefined && !Array.isArray(part.gone)) return 'entityDelta.' + k + '.gone 必须是数组';
+    }
+  }
   return null;
 }
 

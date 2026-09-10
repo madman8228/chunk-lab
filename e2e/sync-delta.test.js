@@ -95,17 +95,21 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
   }, { timeout: 15000 });
   await p.waitForTimeout(1800); /* 等 ensureCloud 首轮握手完成（_cloudOn 置位） */
 
-  /* ---------- 1. 造「练过 800 句」的规模并首轮同步（水位未知 → 全量） ---------- */
+  /* ---------- 1. 造「练过 800 句」的规模并首轮同步（水位未知 → 全量） ----------
+     ★ 必须把 mastered / 错题本 / 用户导入题库一起造出来：
+       第一轮只拆了 stats，这三个仍留在 kv blob 里，每答一题全量重传
+       （mastered 8000 条约 227KB、错题本上限 200 条约 176KB、导入题库可达数百 KB）。
+       只造 stats 的 fixture 会让「增量很小」这个结论变成假象。 */
   const first = await p.evaluate(async function () {
     var m = window.CL.loadMem();
     if (!m.stats) m.stats = { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] };
     if (!m.stats.bySentence) m.stats.bySentence = {};
     if (!Array.isArray(m.stats.events)) m.stats.events = [];
+    var SENT = function (i) { return 'This is a longer sample sentence used to measure sync payload number ' + i + '.'; };
     for (var i = 0; i < 800; i++) {
       m.stats.bySentence['freq-idioms#' + ('0000000' + i).slice(-8)] = {
         deckId: 'freq-idioms', deckName: '高频短语 · English Idioms',
-        sentence: 'This is a longer sample sentence used to measure sync payload number ' + i + '.',
-        translation: '这是一个用来测量同步体积的较长示例句子。',
+        sentence: SENT(i), translation: '这是一个用来测量同步体积的较长示例句子。',
         times: 3, okTimes: 2, wrongTimes: 1, streak: 1, maxStreak: 2,
         lastAt: 1700000000000, interval: 4, ease: 2.5, dueAt: 1700003600000, repetition: 2
       };
@@ -113,21 +117,52 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
     for (var j = 0; j < 2000; j++) {
       m.stats.events.push({
         id: 'ev' + j, kind: 'answer', key: 'freq-idioms#00000000', deckId: 'freq-idioms',
-        sentence: 'This is a longer sample sentence used to measure sync payload number ' + (j % 800) + '.',
-        ok: true, at: 1700000000000 + j
+        sentence: SENT(j % 800), ok: true, at: 1700000000000 + j
       });
     }
+    /* 已标熟 800 条（shape 与 main.html 的 mastered 写入一致） */
+    m.mastered = {};
+    for (var k = 0; k < 800; k++) {
+      m.mastered['freq-idioms#' + ('0000000' + k).slice(-8)] = {
+        deckId: 'freq-idioms', sentence: SENT(k), markedAt: 1700000000000 + k
+      };
+    }
+    /* 内置句删除登记 50 条 */
+    m.deletedItems = {};
+    for (var d = 0; d < 50; d++) m.deletedItems['freq-idioms#dead' + ('0000' + d).slice(-4)] = true;
+    /* 错题本 200 条整题快照（客户端上限就是 200） */
+    m.reinforceBook = [];
+    for (var b = 0; b < 200; b++) {
+      m.reinforceBook.push({
+        _key: 'user-big::' + SENT(b), deckId: 'user-big', deckName: '导入的大题库',
+        addedAt: '2026-09-10 12:00:00', sentence: SENT(b), translation: '错题快照',
+        chunks: ['This', 'is', 'a', 'longer', 'sample', 'sentence', 'used', 'to', 'measure'],
+        hints: ['这', '是', '一个', '较长', '示例'],
+        grammar: { rule: 'sample', note: '为了测量体积' },
+        mistakes: [{ chunkIdx: 0, chunk: 'This', userAnswer: 'that', hint: '这' }]
+      });
+    }
+    /* 用户导入的大题库 300 条 */
+    var items = [];
+    for (var t = 0; t < 300; t++) {
+      items.push({ sentence: SENT(t), translation: '导入题库第 ' + t + ' 句',
+        chunks: ['This', 'is', 'a', 'longer', 'sample'], hints: ['这', '是', '一个', '较长', '示例'] });
+    }
+    m.decks = [{ id: 'user-big', name: '导入的大题库', builtin: false, items: items }];
     window.CL.saveMem(m);
     var ok = await window.CL.cloudSyncNow(m);
-    return { ok: ok, sbs: Object.keys(m.stats.bySentence).length, events: m.stats.events.length };
+    return { ok: ok, sbs: Object.keys(m.stats.bySentence).length, events: m.stats.events.length,
+      mastered: Object.keys(m.mastered).length, book: m.reinforceBook.length, decks: m.decks.length };
   });
 
   check('1.1 首轮同步成功', first.ok === true, JSON.stringify(first));
   check('1.2 本地已构造 800 条档案 / 2000 条事件', first.sbs === 800 && first.events === 2000, JSON.stringify(first));
+  check('1.2b 本地已构造 800 标熟 / 200 错题 / 1 个导入题库',
+    first.mastered === 800 && first.book === 200 && first.decks === 1, JSON.stringify(first));
 
   await p.waitForTimeout(500);
   const firstSize = puts.length ? puts[puts.length - 1] : 0;
-  check('1.3 首轮为全量上行（>100KB）', firstSize > 100 * 1024, 'size=' + kb(firstSize));
+  check('1.3 首轮为全量上行（>300KB）', firstSize > 300 * 1024, 'size=' + kb(firstSize));
   console.log('      · 首轮全量上行：' + kb(firstSize));
 
   /* ---------- 2. 之后每次只改 1 条 + 追加 1 条事件 ---------- */
@@ -173,6 +208,58 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
      这条同时证明「小字段随每次增量一起上行」没被拆表逻辑漏掉。 */
   check('3.4 stats 小字段随增量更新（5 次 +1 = 5）', !!(st && st.totalAnswered === 5), 'totalAnswered=' + (st && st.totalAnswered));
 
+  /* ---------- 5. 行级实体增量：取消标熟只发 1 行 + 墓碑下发 ----------
+     这三个对象（mastered / 错题本 / deletedItems）先前也塞在 kv blob 里，
+     本段是「每答一题不再全量重传」的核心回归。 */
+  const beforeUnmark = puts.length;
+  const unmark = await p.evaluate(async function () {
+    var m = window.CL.loadMem();
+    delete m.mastered['freq-idioms#00000042'];
+    window.CL.saveMem(m);
+    return await window.CL.cloudSyncNow(m);
+  });
+  await p.waitForTimeout(400);
+  const unmarkSize = puts.length > beforeUnmark ? puts[puts.length - 1] : -1;
+  check('5.1 取消标熟上行成功', unmark === true, 'ok=' + unmark);
+  check('5.2 取消标熟只上行 1 行（<4KB）', unmarkSize > 0 && unmarkSize < 4096, 'size=' + kb(unmarkSize));
+  console.log('      · 取消标熟上行：' + kb(unmarkSize));
+
+  const data3 = await getData();
+  check('5.3 服务端该 key 已消失', !data3.mem.mastered['freq-idioms#00000042'],
+    'mastered n=' + Object.keys(data3.mem.mastered).length);
+  check('5.4 其余 799 条标熟未受影响（不是整块替换）', Object.keys(data3.mem.mastered).length === 799,
+    'n=' + Object.keys(data3.mem.mastered).length);
+  check('5.5 删除墓碑随响应下发（他机才不会再把它写活）',
+    !!(data3.entityGone && (data3.entityGone.mastered || []).indexOf('freq-idioms#00000042') >= 0),
+    JSON.stringify(data3.entityGone && data3.entityGone.mastered));
+  check('5.6 错题本 200 条完整落库', (data3.mem.reinforceBook || []).length === 200,
+    'n=' + (data3.mem.reinforceBook || []).length);
+  check('5.7 deletedItems 50 条完整落库（映射形态）',
+    data3.mem.deletedItems && Object.keys(data3.mem.deletedItems).length === 50,
+    'n=' + Object.keys(data3.mem.deletedItems || {}).length);
+
+  /* ---------- 6. 删除 deck：必须真传到服务端（否则刷新会复活） ----------
+     既有 bug：删除登记取自「上一次 saveMem 的 diff」，若 400ms 防抖窗口内又保存一次，
+     登记被新的空 diff 覆盖 → 服务端永远收不到删除，而本机已无该 deck
+     → 下次 syncFromCloud 把它从云端拉回来（复活）。 */
+  const beforeDel = puts.length;
+  const del = await p.evaluate(async function () {
+    var m = window.CL.loadMem();
+    m.decks = m.decks.filter(function (d) { return d.id !== 'user-big'; });
+    window.CL.saveMem(m);
+    return await window.CL.cloudSyncNow(m);
+  });
+  await p.waitForTimeout(400);
+  const delSize = puts.length > beforeDel ? puts[puts.length - 1] : -1;
+  check('6.1 删除 deck 上行成功', del === true, 'ok=' + del);
+  check('6.2 删除 deck 的上行体积很小（<8KB）', delSize > 0 && delSize < 8192, 'size=' + kb(delSize));
+  const data4 = await getData();
+  check('6.3 服务端该 deck 已软删',
+    !(data4.mem.decks || []).some(function (d) { return d.id === 'user-big'; }),
+    'decks=' + JSON.stringify((data4.mem.decks || []).map(function (d) { return d.id; })));
+  check('6.4 删除 deck 不影响标熟行', Object.keys(data4.mem.mastered).length === 799,
+    'n=' + Object.keys(data4.mem.mastered).length);
+
   /* ---------- 4. 刷新页面后不得回退为全量 ----------
      这是拆表最容易失效的地方：水位是**内存变量**，刷新即丢（重置为 null）。
      若不在 syncFromCloud 时把水位对齐到「云端实际内容」，刷新后的第一次上行
@@ -210,6 +297,14 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
     'n=' + (st2 ? st2.events.length : 'n/a'));
   check('4.5 刷新后的修改已落库', !!(st2 && st2.bySentence['freq-idioms#00000005'].times === 4),
     'times=' + (st2 && st2.bySentence['freq-idioms#00000005'].times));
+  /* 刷新后「服务端实况」没有被本机旧副本覆盖回来（复活） */
+  check('4.6 已软删的 deck 未复活',
+    !(data2.mem.decks || []).some(function (d) { return d.id === 'user-big'; }),
+    'decks=' + JSON.stringify((data2.mem.decks || []).map(function (d) { return d.id; })));
+  check('4.7 已取消标熟的 key 未复活', !data2.mem.mastered['freq-idioms#00000042'],
+    'n=' + Object.keys(data2.mem.mastered).length);
+  check('4.8 错题本仍为 200 条（未被清空）', (data2.mem.reinforceBook || []).length === 200,
+    'n=' + (data2.mem.reinforceBook || []).length);
 
   await browser.close();
   stopServer();

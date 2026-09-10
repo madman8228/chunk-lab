@@ -9,6 +9,7 @@
  *   user_course_progress  — 课程进度（chunklab.course-progress.v1 的逐条拆分）
  *   user_sentence_stats   — 句子级学习档案（stats.bySentence 的逐行拆分，8000 句扩容）
  *   user_events           — 答题/轮次事件日志（stats.events 的逐行拆分，append-only）
+ *   user_entity_rows      — 通用行级实体（mastered / reinforce / deletedItem 的逐行拆分）
  *   ai_cache              — AI 详解缓存（全局共享，key = 模型+归一化句子）
  *
  * ADR-005（实体级 rev upsert + 软删除）：
@@ -118,7 +119,37 @@ CREATE TABLE IF NOT EXISTS user_events (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+/* ----- 热路径补齐（2026-09-10 第二轮）：mastered / reinforceBook / deletedItems 也是
+   「随练习量无限增长」的对象，却仍塞在 user_kv 的单行 blob 里。它们在**每答一题**的路径上
+   被搬运四次（本地 JSON.stringify 落盘 + maintainRevs 签名 + 上行 payload + 服务端整块回写），
+   mastered 8000 条约 227KB、错题本上限 200 条约 176KB → 单次答题约 400KB 的无谓搬运，
+   与「stats 拆表」前是同一类根因。
+
+   用**一张通用行表**承载三者，而不是三张专用表：
+     - 三者形态完全一致（键 → 值 + 软删），读写/迁移/协议派生逻辑可只写一份；
+     - 以后再出现同类「随练习量增长」的对象，只加一个 kind 白名单值，不动 schema。
+
+   kind 取值（写入口做白名单校验，防止非法 kind 无界增长）：
+     mastered     → item_key = deckId#cid，data_json = { deckId, sentence, markedAt }
+     reinforce    → item_key = 错题本 _key（deckId + '::' + sentence），data_json = 整题快照
+     deletedItem  → item_key = deckId#cid（内置句删除登记），data_json 恒为 '1'（它本质是集合）
+
+   ⚠️ 错题本要按「插入序」还原成数组（客户端用 slice(-200) 保留最新 200 条），
+      故读取一律 ORDER BY rowid —— 隐式 rowid 在 UPDATE 时不变，天然是稳定的插入序。
+   ⚠️ 本注释在 db.exec 的模板字符串内部，绝不能出现反引号。 */
+CREATE TABLE IF NOT EXISTS user_entity_rows (
+  user_id    INTEGER NOT NULL,
+  kind       TEXT NOT NULL,
+  item_key   TEXT NOT NULL,
+  data_json  TEXT NOT NULL,
+  deleted_at TEXT,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, kind, item_key),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE INDEX IF NOT EXISTS idx_decks_user ON user_decks(user_id);
+CREATE INDEX IF NOT EXISTS idx_entity_rows_user ON user_entity_rows(user_id, kind);
 CREATE INDEX IF NOT EXISTS idx_kv_user ON user_kv(user_id);
 CREATE INDEX IF NOT EXISTS idx_courses_user ON user_courses(user_id);
 CREATE INDEX IF NOT EXISTS idx_progress_user ON user_course_progress(user_id);

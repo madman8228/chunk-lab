@@ -19,7 +19,17 @@
   /* ADR-005 rev 基础设施：本地为每个可同步实体维护 rev（版本号），离线改动时升 rev；
      同步时随 payload 上送，服务端按 rev 冲突检测取新版本。多设备互不覆盖无关改动；
      删除走软删除标记跨设备传播。调用方（页面/业务模块）零改动。 */
-  var SYNC_KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
+  /* 仍以「整块 kv blob」形态同步的键（LWW 整块替换语义）。
+     ★ mastered / reinforceBook / deletedItems 已从这里移出（2026-09-10 第二轮）：
+       它们是「随练习量无限增长」的对象，塞在单个 blob 里会让**每答一题**全量搬运
+       （mastered 8000 条约 227KB、错题本上限 200 条约 176KB；再加上 maintainRevs 的
+       JSON.stringify 与本地整块落盘，单次答题约 400KB 的无谓开销）。
+       现在改走服务端 user_entity_rows 行表 + entityDelta 增量，合并语义与 stats 一致
+       （并集 + 墓碑，幂等）——留在 SYNC_KV_KEYS 里会退回 LWW 整块替换，
+       那正是「本机未上行的改动被他机覆盖」的根因。 */
+  var SYNC_KV_KEYS = ['best', 'stats', 'settings'];
+  /* 已行级化的 kv 键 → 客户端键名（与 server/index.js 的 ROW_KV_KINDS 对应） */
+  var ROW_ENTITY_KEYS = ['mastered', 'reinforceBook', 'deletedItems'];
   var _prevSnap = null; /* 上次保存的内存快照，用于 diff 检测变更/删除 */
   var _lastSyncMeta = { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
 
@@ -64,10 +74,17 @@
     if (_prevSnap) {
       (m.decks || []).forEach(function (d) {
         var prev = _prevSnap.decks[d.id];
-        if (prev === undefined || sigDeck(d) !== prev) revs.decks[d.id] = (revs.decks[d.id] || 0) + 1;
+        if (prev === undefined || sigDeck(d) !== prev) {
+          revs.decks[d.id] = (revs.decks[d.id] || 0) + 1;
+          markPending(_pendingDecks, d.id); /* 只上行变更过的 deck（不再整份 mem.decks 重传） */
+        }
       });
       Object.keys(_prevSnap.decks).forEach(function (id) {
-        if (!curDecks[id]) { revs.decks[id] = (revs.decks[id] || 0) + 1; deletes.decks.push({ id: id, rev: revs.decks[id] }); }
+        if (!curDecks[id]) {
+          revs.decks[id] = (revs.decks[id] || 0) + 1;
+          deletes.decks.push({ id: id, rev: revs.decks[id] });
+          markGone(_pendingDecks, id, revs.decks[id]); /* 累积到待发集合，PUT 成功才摘除 */
+        }
       });
       SYNC_KV_KEYS.forEach(function (k) {
         var cur = (k in m) ? m[k] : undefined;
@@ -77,7 +94,12 @@
         else if (kvSig(k, cur) !== prev) revs.kv[k] = (revs.kv[k] || 0) + 1;
       });
     } else {
-      (m.decks || []).forEach(function (d) { if (!(d.id in revs.decks)) revs.decks[d.id] = 1; });
+      /* 首次 saveMem（无上一帧快照）→ 只做 rev 初始化。
+         ★ 无 rev 的实体必须同时标为待发：「服务端还没确认过它」。
+           否则 syncFromCloud 之后（会把快照置回 null 走本分支）新建的 deck 永远不上行。 */
+      (m.decks || []).forEach(function (d) {
+        if (!(d.id in revs.decks)) { revs.decks[d.id] = 1; markPending(_pendingDecks, d.id); }
+      });
       SYNC_KV_KEYS.forEach(function (k) { if ((k in m) && !(k in revs.kv)) revs.kv[k] = 1; });
     }
     _prevSnap = { decks: {}, kv: {} };
@@ -93,6 +115,63 @@
      首次上行（无快照）→ 新实体初始化 rev=1。 */
   var _coursesSnap = null;   /* {courseId: sig} */
   var _progressSnap = null;  /* {courseId: sig} */
+
+  /* ---------- 上行待发集合（2026-09-10 第二轮） ----------
+     只发送「自上次成功上行以来有变更的实体」，确认送达后才摘除。
+     ★ 必须累积，不能沿用「上一次 saveMem 的 diff」（_lastSyncMeta.deleted）：
+       删除实体后若在 400ms 防抖窗口内又发生一次 saveMem，那个 diff 会被新的空 diff
+       覆盖 → 服务端永远收不到删除，而本机已无该实体 → 下次 syncFromCloud 又把它
+       从云端拉回来（**实体复活**）。这是本次一并修掉的既有 bug。
+     ★ 确认送达时只摘掉「本次真正发出去的」id：在途期间新增/变更的实体必须留在待发集合里，
+       否则它们永远不会被上行（例如首次上行还在传输时新建的 deck）。
+     all = true 表示「尚无确认基准」→ 首次上行全量发送。 */
+  function makePending() { return { all: true, dirty: {}, gone: {} }; }
+  function markPending(p, id) { p.dirty[id] = 1; }
+  function markGone(p, id, rev) { p.gone[id] = rev; }
+  function pendingList(p, list, keyOf) {
+    if (p.all) return list;
+    return list.filter(function (x) { return !!p.dirty[keyOf(x)]; });
+  }
+  function pendingMap(p, map) {
+    if (p.all) return map;
+    var out = {};
+    Object.keys(map).forEach(function (k) { if (p.dirty[k]) out[k] = map[k]; });
+    return out;
+  }
+  /* 待发删除 = 累积集合 ∪ 本次 diff（两者都不完整：累积集合覆盖跨多次 saveMem 的删除，
+     diff 覆盖首次上行那一次 —— 此时累积集合还是空的）。返回下发列表 + 本次发出的 id 集合。 */
+  function pendingGone(p, diffList) {
+    var sent = {}, res = [];
+    Object.keys(p.gone).forEach(function (id) { sent[id] = 1; res.push({ id: id, rev: p.gone[id] }); });
+    (diffList || []).forEach(function (d) { if (!sent[d.id]) { sent[d.id] = 1; res.push(d); } });
+    return { list: res, sent: sent };
+  }
+  function ackPending(p, sentUp, sentGone) {
+    Object.keys(sentUp || {}).forEach(function (id) { delete p.dirty[id]; });
+    Object.keys(sentGone || {}).forEach(function (id) { delete p.gone[id]; });
+    p.all = false;
+  }
+  function idsOf(list, keyOf) {
+    var out = {};
+    (list || []).forEach(function (x) { out[keyOf(x)] = 1; });
+    return out;
+  }
+  /* 算出「服务端还不知道 / 版本更旧」的实体 id 集合 —— 合并前的本地 rev 与远端 rev 比较。
+     ★ 必须用**合并前**的本地 rev：合并会把 localRevs 抬到 max(本地, 远端)，
+       之后就分辨不出「本地更新」，刷新页面后会把全部 deck / 课程重传一遍。 */
+  function entitiesNeedingPush(list, keyOf, localMap, remoteMap) {
+    var out = {};
+    (list || []).forEach(function (x) {
+      var id = keyOf(x);
+      if (!(id in (remoteMap || {}))) { out[id] = 1; return; } /* 服务端没有 → 必须上行 */
+      if ((localMap[id] || 0) > (remoteMap[id] || 0)) out[id] = 1; /* 本地更新 → 必须上行 */
+    });
+    return out;
+  }
+
+  var _pendingDecks = makePending();     /* 用户 deck（导入题库可达数百 KB，不该每答一题重传） */
+  var _pendingCourses = makePending();   /* 课程（含 base64 图片，最大） */
+  var _pendingProgress = makePending();  /* 课程进度 */
   function sigCourse(c) { return JSON.stringify(c); }
 
   function maintainCoursesRevs() {
@@ -107,13 +186,25 @@
     if (_coursesSnap) {
       cur.forEach(function (c) {
         var prev = _coursesSnap[c.courseId];
-        if (prev === undefined || sigCourse(c) !== prev) revs.courses[c.courseId] = (revs.courses[c.courseId] || 0) + 1;
+        if (prev === undefined || sigCourse(c) !== prev) {
+          revs.courses[c.courseId] = (revs.courses[c.courseId] || 0) + 1;
+          markPending(_pendingCourses, c.courseId); /* 只上行变更课程（课程可含 base64 图片） */
+        }
       });
       Object.keys(_coursesSnap).forEach(function (cid) {
-        if (!curIds[cid]) { revs.courses[cid] = (revs.courses[cid] || 0) + 1; deleted.courses.push({ id: cid, rev: revs.courses[cid] }); }
+        if (!curIds[cid]) {
+          revs.courses[cid] = (revs.courses[cid] || 0) + 1;
+          deleted.courses.push({ id: cid, rev: revs.courses[cid] });
+          markGone(_pendingCourses, cid, revs.courses[cid]);
+        }
       });
     } else {
-      cur.forEach(function (c) { if (!(c.courseId in revs.courses)) revs.courses[c.courseId] = 1; });
+      /* 同理：快照被 syncFromCloud 置回 null 时，无 rev 的课程就是「服务端还不知道」的。
+         不标记的话，syncFromCloud 之后新建的课程（`_pendingCourses.all` 已为 false）
+         会被 pendingList 过滤掉，永远不上行。 */
+      cur.forEach(function (c) {
+        if (!(c.courseId in revs.courses)) { revs.courses[c.courseId] = 1; markPending(_pendingCourses, c.courseId); }
+      });
     }
     _coursesSnap = {};
     cur.forEach(function (c) { _coursesSnap[c.courseId] = sigCourse(c); });
@@ -122,13 +213,22 @@
     if (_progressSnap) {
       Object.keys(pcur).forEach(function (cid) {
         var prev = _progressSnap[cid];
-        if (prev === undefined || sigKv(pcur[cid]) !== prev) revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1;
+        if (prev === undefined || sigKv(pcur[cid]) !== prev) {
+          revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1;
+          markPending(_pendingProgress, cid);
+        }
       });
       Object.keys(_progressSnap).forEach(function (cid) {
-        if (!(cid in pcur)) { revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1; deleted.courseProgress.push({ id: cid, rev: revs.courseProgress[cid] }); }
+        if (!(cid in pcur)) {
+          revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1;
+          deleted.courseProgress.push({ id: cid, rev: revs.courseProgress[cid] });
+          markGone(_pendingProgress, cid, revs.courseProgress[cid]);
+        }
       });
     } else {
-      Object.keys(pcur).forEach(function (cid) { if (!(cid in revs.courseProgress)) revs.courseProgress[cid] = 1; });
+      Object.keys(pcur).forEach(function (cid) {
+        if (!(cid in revs.courseProgress)) { revs.courseProgress[cid] = 1; markPending(_pendingProgress, cid); }
+      });
     }
     _progressSnap = {};
     Object.keys(pcur).forEach(function (cid) { _progressSnap[cid] = sigKv(pcur[cid]); });
@@ -208,8 +308,14 @@
           saveMem(out);
           var _r = loadRevs();
           if(!_r.kv) _r.kv = {};
-          ['stats', 'mastered', 'deletedItems'].forEach(function(k){ if(k in out) _r.kv[k] = (_r.kv[k] || 0) + 1; });
+          ['stats'].forEach(function(k){ if(k in out) _r.kv[k] = (_r.kv[k] || 0) + 1; });
           saveRevs(_r);
+          /* 句子 key 被改写 → mastered / deletedItems / 错题本的行主键也变了。
+             旧水位里的 key 已不复存在，必须整批重推（置 null = 水位未知 → 下次全量上行）。
+             这与 stats 走 rev+1 是同一个目的，只是这三个走水位机制而非 rev。 */
+          _cloudMasteredSig = null;
+          _cloudReinforceSig = null;
+          _cloudDeletedSig = null;
           _prevSnap = null; /* 让下一次 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
         }
       }catch(e){ console.error('[core.migrateCidKeys]', e); }
@@ -543,18 +649,100 @@
      null 语义 = 水位未知 → 下一次全量上行（安全兜底方向）。 */
   var _cloudBsSig = null;   /* {key: statSig}，已确认被云端接收的句子档案 */
   var _cloudEvIds = null;   /* {eventId: 1}，已确认被云端接收的事件 id */
+  /* 行级实体（mastered / reinforceBook / deletedItems）的云端水位，语义与上面两个完全一致：
+     {key: 行签名}，null = 水位未知 → 下次全量上行。 */
+  var _cloudMasteredSig = null;
+  var _cloudReinforceSig = null;
+  var _cloudDeletedSig = null;
 
-  /* 把 stats 的两个大对象从上行 payload 里剥离（改走 statsDelta / 服务端行表）。
-     必须浅拷贝：memObj 是与调用方共享的活对象，直接 delete 会破坏内存里的 mem。 */
+  /* 32 位 FNV-1a；行级实体用它做「键 + 值」的廉价指纹。
+     ★ 绝不能退回 JSON.stringify：maintainRevs/buildEntityDelta 在每次 saveMem 都要比对，
+       mastered 8000 条时那是 227KB 的序列化（与 sigStats 修掉的是同一个坑）。 */
+  function strHash(s){
+    var h = 0x811c9dc5;
+    s = String(s == null ? '' : s);
+    for(var i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 0x01000193) >>> 0;
+    return h;
+  }
+  /* 行签名：只要「可能变的那部分」变了，签名就变。
+     mastered 的值只在（重新）标熟时写入 → markedAt 是唯一变量，配上 deckId 足够；
+     错题本条目一经加入就不再改写（saveReinforceList 只在 !exists 时 push）→ addedAt + 原文指纹。 */
+  function sigMasteredRow(v){
+    return (v && v.markedAt ? v.markedAt : 0) + ':' + strHash(v && v.deckId || '');
+  }
+  function sigReinforceRow(it){
+    return (it && it.addedAt || '') + ':' + strHash(it && it.sentence || '');
+  }
+  /* deletedItems 是集合（值恒为 true）→ 签名与值无关，水位实际退化为「云端已有的键集合」 */
+  function sigDeletedRow(){ return '1'; }
+
+  /* 通用行级增量：与 buildStatsDelta 同构（签名水位 + gone 集合）。
+     返回 { up, gone, next }；next = 本次**成功后**应推进到的水位。
+     ★ 失败时绝不推进水位，否则这批变更永远不会重发。 */
+  function rowDelta(map, mark, rowSig){
+    var up = {}, gone = [], k;
+    if(mark === null){
+      for(k in map){ if(map.hasOwnProperty(k)) up[k] = map[k]; }
+    } else {
+      for(k in map){ if(map.hasOwnProperty(k) && mark[k] !== rowSig(map[k])) up[k] = map[k]; }
+      for(k in mark){ if(mark.hasOwnProperty(k) && !(k in map)) gone.push(k); }
+    }
+    var next = {};
+    if(mark){ for(k in mark){ if(mark.hasOwnProperty(k)) next[k] = mark[k]; } }
+    for(k in up){ if(up.hasOwnProperty(k)) next[k] = rowSig(map[k]); }
+    gone.forEach(function(g){ delete next[g]; });
+    return { up: up, gone: gone, next: next };
+  }
+  function deltaHasRows(d){ return Object.keys(d.up).length > 0 || d.gone.length > 0; }
+
+  /* 上行增量：mastered / reinforceBook / deletedItems。错题本是数组，先按 _key 归一成映射，
+     与服务端的行主键（user_entity_rows.item_key）对齐。 */
+  function buildEntityDelta(memObj){
+    var mastered = (memObj && memObj.mastered && typeof memObj.mastered === 'object') ? memObj.mastered : {};
+    var deleted = (memObj && memObj.deletedItems && typeof memObj.deletedItems === 'object') ? memObj.deletedItems : {};
+    var book = Array.isArray(memObj && memObj.reinforceBook) ? memObj.reinforceBook : [];
+    var rMap = {};
+    for(var i = 0; i < book.length; i++){ if(book[i] && book[i]._key) rMap[book[i]._key] = book[i]; }
+    return {
+      mastered: rowDelta(mastered, _cloudMasteredSig, sigMasteredRow),
+      reinforceBook: rowDelta(rMap, _cloudReinforceSig, sigReinforceRow),
+      deletedItems: rowDelta(deleted, _cloudDeletedSig, sigDeletedRow)
+    };
+  }
+  /* 把水位对齐到「云端实际内容」（远端已有的不再回传，本地独有的下次上行）。
+     syncFromCloud 用：不回传 ≠ 不需要，若不用远端实况对齐，每次启动都会全量重推这三块。 */
+  function alignEntityMarks(remoteMem){
+    var rMastered = (remoteMem && remoteMem.mastered && typeof remoteMem.mastered === 'object') ? remoteMem.mastered : {};
+    var rDeleted = (remoteMem && remoteMem.deletedItems && typeof remoteMem.deletedItems === 'object') ? remoteMem.deletedItems : {};
+    var rBook = (remoteMem && Array.isArray(remoteMem.reinforceBook)) ? remoteMem.reinforceBook : [];
+    var wM = {}, wD = {}, wR = {};
+    Object.keys(rMastered).forEach(function(k){ wM[k] = sigMasteredRow(rMastered[k]); });
+    Object.keys(rDeleted).forEach(function(k){ wD[k] = sigDeletedRow(rDeleted[k]); });
+    rBook.forEach(function(it){ if(it && it._key) wR[it._key] = sigReinforceRow(it); });
+    /* 墓碑不进水位：它们只用于「把本机残留的条目删掉」，服务端已经记着了，
+       再当成待推变更会让每次上行都白跑一批已删除的键。 */
+    _cloudMasteredSig = wM;
+    _cloudReinforceSig = wR;
+    _cloudDeletedSig = wD;
+  }
+
+  /* 把「走增量通道」的大对象从上行 payload 里剥离：
+       stats.bySentence / stats.events            → statsDelta
+       mastered / reinforceBook / deletedItems    → entityDelta
+     必须浅拷贝：memObj 是与调用方共享的活对象，直接 delete 会破坏内存里的 mem。
+     ⚠️ 不能因为「某个字段不存在」就提前 return 原对象 —— 那样其余大对象会被原样带上去
+        （原实现只判 stats，正是 mastered / 错题本每答一题全量重传的原因）。 */
   function memForCloud(memObj){
-    if(!memObj || !memObj.stats) return memObj;
-    var st = memObj.stats;
-    if(!st.bySentence && !st.events) return memObj;
-    var light = {}, k;
-    for(k in st){ if(st.hasOwnProperty(k) && k !== 'bySentence' && k !== 'events') light[k] = st[k]; }
-    var out = {};
+    if(!memObj) return memObj;
+    var out = {}, k;
     for(k in memObj){ if(memObj.hasOwnProperty(k)) out[k] = memObj[k]; }
-    out.stats = light;
+    var st = memObj.stats;
+    if(st && typeof st === 'object' && (st.bySentence || st.events)){
+      var light = {};
+      for(k in st){ if(st.hasOwnProperty(k) && k !== 'bySentence' && k !== 'events') light[k] = st[k]; }
+      out.stats = light;
+    }
+    ROW_ENTITY_KEYS.forEach(function(rk){ delete out[rk]; });
     return out;
   }
 
@@ -605,28 +793,60 @@
     var meta = _lastSyncMeta || { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
     var cmeta = maintainCoursesRevs();
     var delta = buildStatsDelta(memObj);
+    var ent = buildEntityDelta(memObj);
+
+    /* 只上行「自上次成功上行以来变更过的实体」。
+       decks 走得最明显：用户导入的大题库每答一题都要重传整份（可达数百 KB），
+       courses 更甚（含 base64 图片）。未变更的实体不进 payload，也就不会触发服务端 upsert。 */
+    var deckPayload = pendingList(_pendingDecks, memObj.decks || [], function (d) { return d.id; });
+    var coursePayload = pendingList(_pendingCourses, readCoursesRaw(), function (c) { return c.courseId; });
+    var progPayload = pendingMap(_pendingProgress, readProgressRaw());
+    var sentDecks = idsOf(deckPayload, function (d) { return d.id; });
+    var sentCourses = idsOf(coursePayload, function (c) { return c.courseId; });
+    var sentProgress = {};
+    Object.keys(progPayload).forEach(function (cid) { sentProgress[cid] = 1; });
+    var deckGone = pendingGone(_pendingDecks, meta.deleted.decks);
+    var courseGone = pendingGone(_pendingCourses, cmeta.deleted.courses);
+    var progGone = pendingGone(_pendingProgress, cmeta.deleted.courseProgress);
+
+    /* mem 里只带小字段 + 变更过的 deck（bySentence/events/mastered/错题本 都走各自 delta） */
+    var memToSend = memForCloud(memObj) || {};
+    memToSend.decks = deckPayload;
+
     var payload = {
-      /* mem.stats 只带小字段：bySentence / events 走 statsDelta（否则体积又回到 7MB） */
-      mem: memForCloud(memObj),
-      courses: readCoursesRaw(),
-      courseProgress: readProgressRaw(),
+      mem: memToSend,
+      courses: coursePayload,
+      courseProgress: progPayload,
       revs: {
         decks: meta.revs.decks, kv: meta.revs.kv,
         courses: cmeta.revs.courses, courseProgress: cmeta.revs.courseProgress
       },
       deleted: {
-        decks: meta.deleted.decks, kv: meta.deleted.kv,
-        courses: cmeta.deleted.courses, courseProgress: cmeta.deleted.courseProgress
+        decks: deckGone.list, kv: meta.deleted.kv,
+        courses: courseGone.list, courseProgress: progGone.list
       }
     };
     /* 无变更时不带 statsDelta —— 省掉服务端一轮空 UPSERT */
     if(Object.keys(delta.sbs).length || delta.sbsGone.length || delta.evs.length){
       payload.statsDelta = { sbs: delta.sbs, sbsGone: delta.sbsGone, evs: delta.evs };
     }
+    if(deltaHasRows(ent.mastered) || deltaHasRows(ent.reinforceBook) || deltaHasRows(ent.deletedItems)){
+      payload.entityDelta = {};
+      if(deltaHasRows(ent.mastered)) payload.entityDelta.mastered = { up: ent.mastered.up, gone: ent.mastered.gone };
+      if(deltaHasRows(ent.reinforceBook)) payload.entityDelta.reinforceBook = { up: ent.reinforceBook.up, gone: ent.reinforceBook.gone };
+      if(deltaHasRows(ent.deletedItems)) payload.entityDelta.deletedItems = { up: ent.deletedItems.up, gone: ent.deletedItems.gone };
+    }
     return global.ChunkAPI.putData(payload).then(function(){
       /* ★ 只有确认送达才推进水位（失败保持 → 下次自动重发这批变更） */
       _cloudBsSig = delta.mark.bsSig;
       _cloudEvIds = delta.mark.evIds;
+      _cloudMasteredSig = ent.mastered.next;
+      _cloudReinforceSig = ent.reinforceBook.next;
+      _cloudDeletedSig = ent.deletedItems.next;
+      /* 待发集合只摘掉「本次真正发出去的」id（在途新增/变更的留待下次），见 makePending 注释 */
+      ackPending(_pendingDecks, sentDecks, deckGone.sent);
+      ackPending(_pendingCourses, sentCourses, courseGone.sent);
+      ackPending(_pendingProgress, sentProgress, progGone.sent);
       _dirty = false;
       notifySync();
       return true;
@@ -647,6 +867,12 @@
       if(!localRevs.kv) localRevs.kv = {};
       if(!localRevs.courses) localRevs.courses = {};
       if(!localRevs.courseProgress) localRevs.courseProgress = {};
+      /* 合并前快照本地 rev（合并会把 localRevs 抬到 max(本地,远端)），供待发集合对齐使用 */
+      var preLocalRevs = {
+        decks: Object.assign({}, localRevs.decks),
+        courses: Object.assign({}, localRevs.courses),
+        courseProgress: Object.assign({}, localRevs.courseProgress)
+      };
       var m = loadMem();
       /* 记录「云端当前已有什么」，作为增量上行的水位基准。
          合并后本地会包含远端全部内容，但那**不等于**「云端需要再收一次」——
@@ -692,6 +918,43 @@
         } else if(rRev > lRev && remoteMem[k] !== undefined){ m[k] = remoteMem[k]; localRevs.kv[k] = rRev; }
         /* rRev <= lRev：本地更新优先，下次 PUT 覆盖 */
       });
+
+      /* mastered / reinforceBook / deletedItems：**并集 + 墓碑**合并。
+         服务端持有的是「全设备并集」，而本地可能还有尚未上行的自有条目 → 不能整块替换
+         （整块替换 = LWW，正是「本机未上行的标熟被他机覆盖」的根因）。
+         ⚠️ 墓碑（entityGone）不能省：设备 A 取消标熟某句后若 B 拿不到墓碑，
+            B 的本地副本会把它重新写活 —— 取消标熟就永远不会生效。
+         老客户端不认 entityGone（服务端只会对它下发块状形态），这里做存在性判断即兼容。 */
+      var goneM = (data.entityGone && data.entityGone.mastered) || [];
+      var goneR = (data.entityGone && data.entityGone.reinforce) || [];
+      var goneD = (data.entityGone && data.entityGone.deletedItem) || [];
+      var rMastered = (remoteMem.mastered && typeof remoteMem.mastered === 'object') ? remoteMem.mastered : {};
+      var rDeleted = (remoteMem.deletedItems && typeof remoteMem.deletedItems === 'object') ? remoteMem.deletedItems : {};
+      var rBook = Array.isArray(remoteMem.reinforceBook) ? remoteMem.reinforceBook : [];
+
+      var mergedMastered = {};
+      Object.keys(m.mastered || {}).forEach(function(k){ mergedMastered[k] = m.mastered[k]; });
+      Object.keys(rMastered).forEach(function(k){ mergedMastered[k] = rMastered[k]; }); /* 远端为准（同 key 值等价） */
+      goneM.forEach(function(k){ delete mergedMastered[k]; });
+      m.mastered = mergedMastered;
+
+      var mergedDeleted = {};
+      Object.keys(m.deletedItems || {}).forEach(function(k){ if(m.deletedItems[k]) mergedDeleted[k] = true; });
+      Object.keys(rDeleted).forEach(function(k){ mergedDeleted[k] = true; });
+      goneD.forEach(function(k){ delete mergedDeleted[k]; });
+      m.deletedItems = mergedDeleted;
+
+      /* 错题本按 _key 去重；**先远端后本地** —— 服务端行表按 order by rowid 返回，
+         保留服务端插入序才能让各设备的 slice(-200) 裁掉同一批最旧条目。 */
+      var goneRSet = {};
+      goneR.forEach(function(k){ goneRSet[k] = 1; });
+      var mergedBook = [], seenBook = {};
+      rBook.concat(Array.isArray(m.reinforceBook) ? m.reinforceBook : []).forEach(function(it){
+        if(!it || !it._key || seenBook[it._key] || goneRSet[it._key]) return;
+        seenBook[it._key] = 1; mergedBook.push(it);
+      });
+      m.reinforceBook = mergedBook;
+
       saveRevs(localRevs);
       _prevSnap = null; /* 让 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
       /* ★ 合并结果必须同步回内存桥：否则下一次 loadMem() 仍会取到合并前的旧 bySentence/events，
@@ -708,6 +971,9 @@
          必须在合并结果写盘后立即就位 —— 之后任何一次 scheduleCloudSync 都要基于它。 */
       _cloudBsSig = remoteBsSig;
       _cloudEvIds = remoteEvIds;
+      /* 行级实体同样要把水位对齐到云端实况 —— 否则每次启动都会把 mastered / 错题本
+         / deletedItems 全量重推一遍，拆表省下的流量被这一步整个吃掉。 */
+      alignEntityMarks(remoteMem);
       // courses：per-entity LWW 合并 + 软删传播（ADR-005 step 2）
       var mergedCourses = {};
       readCoursesRaw().forEach(function(c){ mergedCourses[c.courseId] = { data: c, rev: localRevs.courses[c.courseId] || 0 }; });
@@ -747,6 +1013,21 @@
       /* 重置 courses/progress 快照：合并结果已采纳（localRevs 已对齐），下次上行走初始化分支不误 bump */
       _coursesSnap = null;
       _progressSnap = null;
+      /* ---------- 待发集合对齐到「服务端实况」 ----------
+         合并后本地包含云端全部内容，但那**不等于**服务端需要再收一次。
+         不对齐的话，刷新页面后第一次上行会把全部 deck / 课程 / 进度重传一遍
+         （含 base64 图片的课程可达数 MB）—— 只上行变更实体省下的流量会被这一个场景吃掉。
+         判定用**合并前**的本地 rev（见 preLocalRevs 注释）。
+         gone 集合不动：那是「本机删了但还没上行的」实体，清掉就真的丢了。 */
+      _pendingDecks.all = false;
+      _pendingCourses.all = false;
+      _pendingProgress.all = false;
+      var pushDecks = entitiesNeedingPush(m.decks || [], function(d){ return d.id; }, preLocalRevs.decks, remoteRevs.decks);
+      Object.keys(pushDecks).forEach(function(id){ _pendingDecks.dirty[id] = 1; });
+      var pushCourses = entitiesNeedingPush(_coursesCache || [], function(c){ return c.courseId; }, preLocalRevs.courses, remoteRevs.courses);
+      Object.keys(pushCourses).forEach(function(id){ _pendingCourses.dirty[id] = 1; });
+      var pushProg = entitiesNeedingPush(Object.keys(_progressCache || {}), function(cid){ return cid; }, preLocalRevs.courseProgress, remoteRevs.courseProgress);
+      Object.keys(pushProg).forEach(function(id){ _pendingProgress.dirty[id] = 1; });
       /* 离线 change-log（轻量版）：拉取合并成功后，若本地仍有未同步变更（离线期间产生），立即补传 push */
       if(_dirty){
         _dirty = false;

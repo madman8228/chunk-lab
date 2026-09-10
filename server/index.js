@@ -22,6 +22,9 @@ const compress = require('./compress');
 const apiCompress = require('./api-compress');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
+/* 已迁到行表 user_entity_rows 的 kv 键 → kind 映射（客户端键名 → 服务端 kind）。
+   放在这里是为了让「上行入口」一眼看出哪些键不再走 user_kv。 */
+const ROW_KV_KINDS = { mastered: 'mastered', reinforceBook: 'reinforce', deletedItems: 'deletedItem' };
 
 /* AI 联网生成开关（2026-09-06 产品决策：先禁联网 AI 生成，后续再开放）。
    默认关闭；开启方式：环境变量 AI_EXPLAIN_ENABLED=true（或 .env 中设置）。 */
@@ -207,14 +210,33 @@ function buildMem(userId) {
   const events = evRows.map(function (r) { return JSON.parse(r.data_json); });
 
   const statsBase = kv.stats || { totalRounds: 0, totalAnswered: 0 };
+
+  /* mastered / reinforceBook / deletedItems 从行表组装（2026-09-10 第二轮，见 db.js 表注释）。
+     对外形状与拆表前完全一致，变的是存储与上行增量方式。
+
+     ★ 为什么要额外下发 entityGone（删除墓碑）：
+       客户端对这三者的合并语义是「并集 + 墓碑」（与 stats 一致，靠并集重建/求并，幂等）。
+       只给存活行是不够的 —— 设备 A 取消标熟某句后，若 B 拿不到墓碑，
+       B 的本地副本仍持有该 key，下次上行会把它重新写活（复活）。
+       重新标熟/恢复删除都是低频操作，墓碑总量很小（每条约 25 字节），随全量响应下发即可。 */
+  const entityMastered = readEntityMap(userId, 'mastered');
+  const entityReinforce = readEntityRows(userId, 'reinforce').map(function (r) { return JSON.parse(r.data_json); });
+  const entityDeletedItems = {};
+  readEntityRows(userId, 'deletedItem').forEach(function (r) { entityDeletedItems[r.item_key] = true; });
+  const entityGone = {};
+  ['mastered', 'reinforce', 'deletedItem'].forEach(function (kind) {
+    entityGone[kind] = db.prepare('SELECT item_key FROM user_entity_rows WHERE user_id=? AND kind=? AND deleted_at IS NOT NULL ORDER BY item_key')
+      .all(userId, kind).map(function (r) { return r.item_key; });
+  });
+
   const mem = {
     decks: decks,
     best: kv.best || {},
-    mastered: kv.mastered || {},
+    mastered: entityMastered,
     stats: Object.assign({}, statsBase, { bySentence: bySentence, events: events }),
     settings: kv.settings || {},
-    reinforceBook: kv.reinforceBook || [],
-    deletedItems: kv.deletedItems || []
+    reinforceBook: entityReinforce,
+    deletedItems: entityDeletedItems
   };
 
   const courseRows = db.prepare('SELECT data_json FROM user_courses WHERE user_id=? AND deleted_at IS NULL').all(userId);
@@ -233,7 +255,8 @@ function buildMem(userId) {
 
   return {
     mem: mem, courses: courses, courseProgress: courseProgress,
-    revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs }
+    revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs },
+    entityGone: entityGone
   };
 }
 
@@ -312,6 +335,55 @@ function upsertEvent(userId, ev) {
   stmt(EV_UPSERT_SQL).run(userId, String(ev.id), typeof ev.at === 'number' ? ev.at : null, JSON.stringify(ev));
 }
 
+/* ----- 通用行级实体（mastered / reinforce / deletedItem，2026-09-10 第二轮） -----
+   与 user_sentence_stats 同理（见 db.js 表注释）：这三个对象也是「随练习量增长」的，
+   塞在单个 kv blob 里时每答一题要搬运四次（本地落盘序列化 / maintainRevs 签名 /
+   上行 payload / 服务端整块回写）。mastered 8000 条约 227KB、错题本上限 200 条约 176KB。
+
+   kind 白名单：写入口拒绝未知 kind，否则脏 kind 会让这张通用表无界增长。 */
+const ENTITY_KINDS = { mastered: 1, reinforce: 1, deletedItem: 1 };
+
+const ENTITY_UPSERT_SQL = "INSERT INTO user_entity_rows (user_id,kind,item_key,data_json,deleted_at,updated_at) VALUES (?,?,?,?,NULL,datetime('now')) ON CONFLICT(user_id,kind,item_key) DO UPDATE SET data_json=excluded.data_json, deleted_at=NULL, updated_at=datetime('now')";
+const ENTITY_DELETE_SQL = "UPDATE user_entity_rows SET deleted_at=datetime('now'), updated_at=datetime('now') WHERE user_id=? AND kind=? AND item_key=?";
+
+function upsertEntityRow(userId, kind, key, data) {
+  if (!ENTITY_KINDS[kind] || !key) return;
+  stmt(ENTITY_UPSERT_SQL).run(userId, kind, String(key), JSON.stringify(data === undefined ? 1 : data));
+}
+function deleteEntityRow(userId, kind, key) {
+  if (!ENTITY_KINDS[kind] || !key) return;
+  stmt(ENTITY_DELETE_SQL).run(userId, kind, String(key));
+}
+/* 读一个 kind 的全部存活行。ORDER BY rowid = 插入序（UPDATE 不改 rowid）——
+   错题本要靠它还原成数组，客户端再用 slice(-200) 保留最新 200 条。 */
+function readEntityRows(userId, kind) {
+  return db.prepare('SELECT item_key,data_json FROM user_entity_rows WHERE user_id=? AND kind=? AND deleted_at IS NULL ORDER BY rowid')
+    .all(userId, kind);
+}
+function readEntityMap(userId, kind) {
+  const out = {};
+  readEntityRows(userId, kind).forEach(function (r) { out[r.item_key] = JSON.parse(r.data_json); });
+  return out;
+}
+/* 旧客户端（及迁移前的库）把三者放在 kv blob 里；这里负责把它们按行落库。
+   ⚠️ 只做逐行 UPSERT、绝不做整表替换 —— 旧客户端发的是「本地合并后的副本」，
+      不含「其他设备有而本地没有」的条目，整替会静默删掉那些数据（与 stats 同一个坑）。 */
+function putEntityBlob(userId, kind, blob) {
+  if (!blob) return;
+  if (kind === 'reinforce') {
+    if (!Array.isArray(blob)) return;
+    blob.forEach(function (it) { if (it && it._key) upsertEntityRow(userId, 'reinforce', it._key, it); });
+    return;
+  }
+  // mastered / deletedItem：{key: value} 映射（deletedItems 历史上有数组形态，一并兼容）
+  if (Array.isArray(blob)) {
+    blob.forEach(function (k) { if (k) upsertEntityRow(userId, kind, k, 1); });
+    return;
+  }
+  if (typeof blob !== 'object') return;
+  Object.keys(blob).forEach(function (k) { upsertEntityRow(userId, kind, k, blob[k]); });
+}
+
 /* 把 stats blob 里的两个大对象搬到行表，并从 blob 删掉它们（否则体积永远降不下来）。
    幂等：blob 里已无 bySentence/events 时直接跳过 —— 可在每次启动安全重复执行。
 
@@ -350,6 +422,45 @@ function migrateStatsToRows() {
   return { migrated: migrated, sentences: sentenceCount, events: eventCount };
 }
 
+/* 把 mastered / reinforceBook / deletedItems 从 kv blob 搬进行表，并从 blob 删掉
+   （不删的话 blob 体积永远降不下来，拆表等于白做）。
+   幂等：blob 里已无这三个键时直接跳过 —— 可在每次启动安全重复执行。
+   与 stats 迁移一样先做廉价字符串预筛，避免用户量上来后每次启动 parse 全库。 */
+function migrateEntityRows() {
+  const rows = db.prepare('SELECT user_id,k,v_json FROM user_kv WHERE k IN (?,?,?)')
+    .all('mastered', 'reinforceBook', 'deletedItems');
+  if (!rows.length) return { migrated: 0, mastered: 0, reinforce: 0, deletedItems: 0 };
+
+  let migrated = 0, nMastered = 0, nReinforce = 0, nDeleted = 0;
+  const tx = db.transaction(function () {
+    rows.forEach(function (r) {
+      const kind = r.k === 'reinforceBook' ? 'reinforce' : (r.k === 'mastered' ? 'mastered' : 'deletedItem');
+      /* 空值没有可搬的内容，不必 parse —— 但 kv 行**仍然要删**，
+         否则这对空 blob 会永远留在库里（拆表不彻底）。 */
+      const empty = !r.v_json || r.v_json === 'null' || r.v_json === '{}' || r.v_json === '[]';
+      if (!empty) {
+        let blob;
+        try { blob = JSON.parse(r.v_json); } catch (e) { return; } /* parse 失败就不动它，绝不"删了但没搬" */
+        const before = countEntityRows(r.user_id, kind);
+        putEntityBlob(r.user_id, kind, blob);
+        const after = countEntityRows(r.user_id, kind);
+        if (kind === 'mastered') nMastered += after - before;
+        else if (kind === 'reinforce') nReinforce += after - before;
+        else nDeleted += after - before;
+      }
+      db.prepare('DELETE FROM user_kv WHERE user_id=? AND k=?').run(r.user_id, r.k);
+      migrated++;
+    });
+  });
+  tx();
+  return { migrated: migrated, mastered: nMastered, reinforce: nReinforce, deletedItems: nDeleted };
+}
+
+function countEntityRows(userId, kind) {
+  const r = db.prepare('SELECT COUNT(*) AS n FROM user_entity_rows WHERE user_id=? AND kind=? AND deleted_at IS NULL').get(userId, kind);
+  return r ? r.n : 0;
+}
+
 function saveData(userId, body) {
   const mem = body.mem || {};
   const courses = Array.isArray(body.courses) ? body.courses : [];
@@ -357,6 +468,7 @@ function saveData(userId, body) {
   const revs = body.revs || {};
   const deleted = body.deleted || {};
   const delta = (body.statsDelta && typeof body.statsDelta === 'object') ? body.statsDelta : null;
+  const entDelta = (body.entityDelta && typeof body.entityDelta === 'object') ? body.entityDelta : null;
 
   /* stats 大对象走行表：先把 bySentence / events 从「待写 kv 的 stats」里剥出来，
      否则它们会被原样塞回 blob，体积又回到 7MB（拆表等于白做）。
@@ -387,8 +499,12 @@ function saveData(userId, body) {
       upsertDeck(userId, { id: d.id }, d.rev, true);
     });
 
-    // kv：实体级 rev upsert（per-key：best / mastered / stats / ...）
+    // kv：实体级 rev upsert（per-key：best / stats / settings）
     KV_KEYS.forEach(function (k) {
+      /* mastered / reinforceBook / deletedItems 已迁到 user_entity_rows（见 db.js 表注释）。
+         ⚠️ 必须在这里挡掉：否则旧客户端发整份 blob 时又会被写回 user_kv，
+            blob 体积回到拆表前，拆表等于白做。 */
+      if (ROW_KV_KINDS[k]) return;
       if (k === 'stats') {
         if (statsKv !== null) {
           upsertKv(userId, 'stats', statsKv, (revs.kv && revs.kv.stats) == null ? null : revs.kv.stats, false);
@@ -423,6 +539,26 @@ function saveData(userId, body) {
       Object.keys(sbs).forEach(function (k) { upsertSentenceStat(userId, k, sbs[k]); });
       (delta.sbsGone || []).forEach(function (k) { deleteSentenceStat(userId, k); });
       (delta.evs || []).forEach(function (ev) { upsertEvent(userId, ev); });
+    }
+
+    /* mastered / reinforceBook / deletedItems：旧客户端的整份 blob（兼容路径）+ 新协议的 entityDelta。
+       两者都只做逐行 UPSERT / 软删，绝不做整表替换（理由同 stats：整替会静默删掉他机数据）。 */
+    Object.keys(ROW_KV_KINDS).forEach(function (k) {
+      if (k in mem) putEntityBlob(userId, ROW_KV_KINDS[k], mem[k]);
+    });
+    if (entDelta) {
+      Object.keys(ROW_KV_KINDS).forEach(function (k) {
+        const part = entDelta[k];
+        if (!part || typeof part !== 'object') return;
+        const kind = ROW_KV_KINDS[k];
+        const up = part.up || {};
+        if (kind === 'reinforce') {
+          Object.keys(up).forEach(function (key) { upsertEntityRow(userId, kind, key, up[key]); });
+        } else {
+          Object.keys(up).forEach(function (key) { upsertEntityRow(userId, kind, key, up[key] === undefined ? 1 : up[key]); });
+        }
+        (part.gone || []).forEach(function (key) { deleteEntityRow(userId, kind, key); });
+      });
     }
   });
   tx();
@@ -684,6 +820,14 @@ const _migration = migrateStatsToRows();
 if (_migration.migrated) {
   console.log('[chunklab-server] stats 大对象迁移完成：' + _migration.migrated + ' 个用户 / ' +
     _migration.sentences + ' 条句子档案 / ' + _migration.events + ' 条事件');
+}
+
+/* 启动迁移：把 mastered / reinforceBook / deletedItems 从 kv blob 搬进行表（幂等）。
+   同样必须在接受请求之前完成，否则会出现「blob 已被清空、行表还没数据」的窗口。 */
+const _entMigration = migrateEntityRows();
+if (_entMigration.migrated) {
+  console.log('[chunklab-server] 行级实体迁移完成：' + _entMigration.migrated + ' 条 kv → ' +
+    _entMigration.mastered + ' 条标熟 / ' + _entMigration.reinforce + ' 条错题 / ' + _entMigration.deletedItems + ' 条删除登记');
 }
 
 app.listen(PORT, function () {
