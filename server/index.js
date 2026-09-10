@@ -19,6 +19,7 @@ const auth = require('./auth');
 const validate = require('./validate');
 const ai = require('./ai');
 const compress = require('./compress');
+const apiCompress = require('./api-compress');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
 
@@ -68,6 +69,9 @@ app.use(function (req, res, next) {
   });
   next();
 });
+/* API 响应压缩（异步 brotli，冷路径）：GET /api/data 8000 句时 7191KB → 648KB。
+   必须挂在所有 /api 路由之前；只接管 res.json，静态资源走下面的 staticCompress。 */
+app.use('/api', apiCompress());
 app.get('/api/stats', function (req, res) {
   const total = metrics.aiCacheHits + metrics.aiCacheMisses;
   res.json({
