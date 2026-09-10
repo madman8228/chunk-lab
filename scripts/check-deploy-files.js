@@ -21,6 +21,12 @@
  *     ✗ FILES 里有不存在的文件    → exit 1（tar 阶段直接失败）
  *     ⚠ FILES 里有非必需项        → 仅提示（可能是有意为之，如根 package.json）
  *
+ * 附带第二段护栏：deploy-prod.sh 的**部署安全顺序**（2026-09-10 加）
+ *   服务端启动迁移是「有损」的——把 mastered/reinforceBook/deletedItems 从 user_kv 的
+ *   blob 搬进 user_entity_rows 并删掉原 blob 行。于是回滚不再能只回代码，必须先有全库快照。
+ *   这类安全约束和 FILES 清单一样会腐烂（有人重排步骤、或把快照失败改成 warn 放行），
+ *   所以同样改成可计算的校验，而不是靠脚本里的注释提醒。
+ *
  * 用法：node scripts/check-deploy-files.js   （npm test 串联自动跑；
  *        deploy-prod.sh 在打包前也会先跑一次，缺文件即中止，不带着缺口上线）
  */
@@ -29,12 +35,16 @@ const path = require('path');
 const deps = require('./lib-deps.js');
 
 const ROOT = deps.ROOT;
-const DEPLOY = path.join(ROOT, 'scripts', 'deploy-prod.sh');
+/* 允许指向别的脚本副本，供 scripts/deploy-safety.test.js 用篡改副本做负向验证，
+   避免测试过程中写真实仓库文件。 */
+const DEPLOY = process.env.CHUNKLAB_DEPLOY_SCRIPT
+  ? path.resolve(process.env.CHUNKLAB_DEPLOY_SCRIPT)
+  : path.join(ROOT, 'scripts', 'deploy-prod.sh');
+const SH = fs.readFileSync(DEPLOY, 'utf8');
 
 /* ---------- 解析 deploy-prod.sh 的 FILES 数组 ---------- */
 function parseFiles() {
-  const sh = fs.readFileSync(DEPLOY, 'utf8');
-  const m = sh.match(/^FILES=\(([\s\S]*?)^\)/m);
+  const m = SH.match(/^FILES=\(([\s\S]*?)^\)/m);
   if (!m) {
     console.error('[check-deploy] ✗ 未能从 deploy-prod.sh 解析 FILES 数组（结构变了？）');
     process.exit(1);
@@ -42,6 +52,54 @@ function parseFiles() {
   return m[1].split(/\s+/).map(function (s) { return s.trim(); })
     .filter(function (s) { return s && s.charAt(0) !== '#'; });
 }
+
+/* ---------- 部署安全顺序校验 ---------- */
+/* 四条不变量，都必须是「结构上可判定」的，不能靠读注释：
+     ① 存在迁移前快照（调 server/backup-db.js backup）
+     ② 快照在重启服务之前（顺序反了等于没备份）
+     ③ 快照失败要中止（拿不到成功标记 → exit 1），不能 warn 放行
+     ④ 进度判定不能取原始输出的最后一行（backup-db.js 超出保留份数会打印
+        「清理旧备份」，那是最后一行 —— tail -1 会在备份满 14 份后稳定误判） */
+function checkDeploySafety() {
+  const problems = [];
+  const snapIdx = SH.indexOf('backup-db.js backup');
+  const restartIdx = SH.indexOf('systemctl restart chunklab');
+
+  if (snapIdx < 0) {
+    problems.push('deploy-prod.sh 里找不到迁移前快照（server/backup-db.js backup）。' +
+      '行级实体迁移会删掉 user_kv 的 blob 行，没有快照就无法回滚。');
+  }
+  if (restartIdx < 0) {
+    problems.push('deploy-prod.sh 里找不到 `systemctl restart chunklab`（脚本结构变了，请同步本护栏）');
+  }
+  if (snapIdx >= 0 && restartIdx >= 0 && snapIdx > restartIdx) {
+    problems.push('快照步骤排在重启之后（等于没备份）：快照必须在 systemctl restart 之前');
+  }
+  if (snapIdx >= 0) {
+    const zone = restartIdx > snapIdx ? SH.slice(snapIdx, restartIdx) : SH.slice(snapIdx);
+    /* 兼容两种写法：日志原样 '[backup-db] OK:' 与被 grep 转义过的 'backup-db\] OK:' */
+    if (!/backup-db\\?\] OK:/.test(zone)) {
+      problems.push('快照步骤没有校验 backup-db.js 的成功标记（backup-db] OK:），' +
+        '无法判断快照是否真打成');
+    }
+    /* 逐行判定：凡是用到 `| tail -1` 的行，同一行必须先有 grep 收窄——
+       否则就是"直接取原始输出最后一行"。 */
+    const badTail = zone.split('\n').filter(function (l) {
+      return l.indexOf('| tail -1') >= 0 && l.indexOf('grep') < 0;
+    });
+    if (badTail.length) {
+      problems.push('快照结果疑似直接取原始输出最后一行：backup-db.js 超出保留份数会打印' +
+        '「清理旧备份」，那是最后一行，备份满 14 份后会把成功误判为失败。请先 grep 成功标记。' +
+        '（问题行：' + badTail[0].trim().slice(0, 60) + '）');
+    }
+    if (!/\bexit 1\b/.test(zone)) {
+      problems.push('快照失败分支缺少 exit 1（快照拿不到却继续部署 = fail-open）');
+    }
+  }
+  return problems;
+}
+
+const safetyProblems = checkDeploySafety();
 
 const deployed = parseFiles();
 const deployedSet = new Set(deployed);
@@ -93,7 +151,14 @@ if (fail) {
   process.exit(1);
 }
 
+if (safetyProblems.length) {
+  console.error('[check-deploy] ✗ 部署安全顺序不满足（迁移有损，必须能回滚）:');
+  safetyProblems.forEach(function (p) { console.error('    · ' + p); });
+  console.error('[check-deploy] 中止：deploy-prod.sh 不得在无快照的前提下执行有损迁移');
+  process.exit(1);
+}
+
 if (extra.length) {
   console.log('[check-deploy] ⚠ FILES 中的非运行时依赖项（确认是有意保留）: ' + extra.join(', '));
 }
-console.log('[check-deploy] ✓ 部署清单已覆盖全部运行时依赖');
+console.log('[check-deploy] ✓ 部署清单已覆盖全部运行时依赖；快照 → 重启 顺序正确且失败即中止');
