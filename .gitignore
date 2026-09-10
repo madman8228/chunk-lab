@@ -14,8 +14,13 @@ node_modules/
 .env
 .env.local
 
-# 本地生成物
-output/
+# 本地生成物（output/ 下除 e2e/ 回归套件外全部忽略）
+# 根因：原先整目录忽略 output/，把 21 个 e2e 回归套件一起吞了 —— 清一次 output/ 就全丢。
+# 现改为白名单：output/* 忽略，显式放行 output/e2e/（回归套件 + 运行脚本，属源码）；
+# shots/ 是运行产物（截图，脚本自建 mkdirSync），继续忽略。
+output/*
+!output/e2e/
+output/e2e/shots/
 
 # 本地参考素材（外部导入，不入版本库）
 ref/
