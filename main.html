@@ -3363,7 +3363,7 @@ function finishSession(){
   }
   $('btnAgain').onclick = function(){ startDeck(S.deck, true); };
   $('btnOtherDeck').onclick = function(){ location.href = 'decks.html'; };
-  $('btnHome').onclick = function(){ renderHome(); };
+  $('btnHome').onclick = function(){ showHomePage(); };
   $('btnImport2').onclick = function(){ openImport(); };
   /* ★ 一键恢复内置 deck 内被隐藏的句子（finish 页直接暴露根因） */
   var _bri = $('btnRestoreInline');
@@ -3442,10 +3442,15 @@ function isDue(it){
 function dueRank(it){ return isDue(it) ? 0 : 1; }
 
 /* ===== 页面切换：今日首页 ↔ 练习页 ===== */
+/* 首页唯一入口：切页面 + 渲染内容（Bug A 修复，2026-09-10）。
+   此前只切 hidden 不渲染 —— 从 decks / ?direct=1 直达练习后点「返回」，
+   pageHome 从未渲染过 → 空白页（nav-exit-verify 实证 homeBody.htmlLen=0）。
+   现渲染职责收归此处；renderHome 末尾不再反向调本函数（否则两者互相调用无限递归）。 */
 function showHomePage(){
   var p = $('pagePractice'); if(p) p.classList.add('hidden');
   var h = $('pageHome'); if(h) h.classList.remove('hidden');
   var r = $('result'); if(r) r.classList.add('hidden');
+  renderHome();
   window.scrollTo(0, 0);
 }
 function showPracticePage(){
@@ -3666,10 +3671,10 @@ function renderHome(){
       startDeck(dk, idx > 0 ? idx : 0);
     };
   });
-  showHomePage();
   /* 日历 popover：grid 事件代理到 document（bindCalPop 内 _calPopBound 守卫一次性），
      renderHome 重渲染 grid 也无需重绑 */
   bindCalPop();
+  /* 注意：此处不再调 showHomePage()——切页职责归 showHomePage，二者互相调用会无限递归 */
 }
 
 /* 句子是否有任意可用详解（对象有维度/或字符串非空） */
@@ -4303,7 +4308,8 @@ var _hintBtn = $('btnHint'); if(_hintBtn) _hintBtn.onclick = hintFirst; /* 已�
 var _revealBtn = $('btnReveal'); if(_revealBtn) _revealBtn.onclick = revealCurrentChunk;
 var _masterBtn = $('btnMaster'); if(_masterBtn) _masterBtn.onclick = toggleMastered;
 /* ★ 顶层入口跳独立页（真正的独立页面 · 可收藏 · 独立 history；已不再 iframe 内嵌） */
-$('btnDecks').onclick = function(){ window.location.href = 'decks.html'; };
+/* 注：原 #btnDecks（book 图标）与左上 brand 功能完全重复（都去 decks.html），
+   2026-09-10 删除；练习中回题库列表统一走左上 brand（title「返回题库首页」）。 */
 $('btnStats').onclick = function(){ window.location.href = 'stats.html'; };
 
 
@@ -4317,12 +4323,20 @@ $('stageTipBar').addEventListener('click', function(e){
   else if(act==='full') showFullSentence();
 });
 $('btnSpeak').onclick = function(){ speakSentence(); };
-/* 返回主页：sentence-level 练习，finishSentence 末尾已 saveStore（main.html:2794 附近），
-   中途退出不会丢失任何句子进度。直接 cancel TTS + showHomePage，零确认。 */
+/* 返回：sentence-level 练习，finishSentence 末尾已 saveStore（main.html:2794 附近），
+   中途退出不会丢失任何句子进度。直接 cancel TTS 后按来源分流，零确认。
+   来源判定：decks.html 点牌组「开始」跳转带 ?from=decks（见 decks.html notifyMain）
+   → 回题库列表；其余（首页点开始 / 到期复习 / ?direct=1）→ 回今日首页。 */
+var _fromDecks = (location.search || '').indexOf('from=decks') !== -1;
 $('btnBack').onclick = function(){
   try{ speechSynthesis && speechSynthesis.cancel(); }catch(e){}
+  if(_fromDecks){ window.location.href = 'decks.html'; return; }
   showHomePage();
 };
+if(_fromDecks){
+  var _bb = $('btnBack');
+  if(_bb){ _bb.title = '返回题库'; _bb.setAttribute('aria-label', '返回题库'); }
+}
 /* 详解入口：答完当前句后打开详解页 */
 var _explainFromPage = 'pagePractice';
 $('btnExplain').onclick = function(){
@@ -4740,7 +4754,7 @@ function decideEntry(){
     }
   }catch(e){}
   if((location.search || '').indexOf('direct=1') !== -1){ resumeOrStart(); return; }
-  renderHome(); /* 默认：今日首页 */
+  showHomePage(); /* 默认：今日首页（切页 + 渲染） */
 }
 
 function bootMain(){

@@ -492,7 +492,8 @@ function notifyMain(type, payload){
   if(type === 'startDeck' && payload && payload.deck){
     /* 独立页面模式：存 sessionStorage + 导航回主页启动练习 */
     try{ sessionStorage.setItem('_startDeck', JSON.stringify(payload.deck)); }catch(e){}
-    window.location.href = './main.html';
+    /* 带 from=decks：main.html 的「返回」按钮据此回题库列表，而非今日首页 */
+    window.location.href = './main.html?from=decks';
   }
   else if(type === 'goBack'){ window.location.href = './main.html'; }
 }
