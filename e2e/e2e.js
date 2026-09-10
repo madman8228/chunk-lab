@@ -206,6 +206,24 @@ function check(name, cond, detail) {
   check('home: 已删底部 .home-links 容器', !homeLinksState.hasHomeLinks, JSON.stringify(homeLinksState));
   await pHomeLinks.close();
 
+  /* ===== 1e. 设置面板 #setBatchSize 宽度（2026-09-10 回归根因：flex min-width:auto 保留 min-content ~200px，把 width:64px 撑没了） ===== */
+  const pBatchSize = await ctx.newPage();
+  await pBatchSize.route('**/api/**', function (r) { r.abort('failed'); });
+  await pBatchSize.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
+  await pBatchSize.waitForSelector('#btnSettingsTop', { timeout: 10000 });
+  await pBatchSize.locator('#btnSettingsTop').click();
+  await pBatchSize.waitForSelector('#setBatchSize', { state: 'visible', timeout: 5000 });
+  const batchSizeBox = await pBatchSize.evaluate(function () {
+    var el = document.getElementById('setBatchSize');
+    if (!el) return null;
+    var r = el.getBoundingClientRect();
+    return { w: Math.round(r.width), h: Math.round(r.height), visible: r.width > 0 && r.height > 0 };
+  });
+  check('settings: #setBatchSize 可见', batchSizeBox && batchSizeBox.visible, JSON.stringify(batchSizeBox));
+  check('settings: #setBatchSize 宽度 ≤ 80px（防 flex min-content 拉伸回潮）', batchSizeBox && batchSizeBox.w <= 80, 'w=' + (batchSizeBox ? batchSizeBox.w : 'null'));
+  check('settings: #setBatchSize 宽度 ≥ 40px（仍可输入两位数）', batchSizeBox && batchSizeBox.w >= 40, 'w=' + (batchSizeBox ? batchSizeBox.w : 'null'));
+  await pBatchSize.close();
+
   /* ===== 1b. 统计身份回归：临时复习队列不能拆分原句历史 =====
    * 最小场景：同一句先从稳定题库练习，再从带时间戳的复习题库练习。
    * 现状会按两个 deck id 写成两条 bySentence 记录，导致累计次数看起来丢失。 */
