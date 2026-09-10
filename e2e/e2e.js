@@ -283,7 +283,10 @@ function check(name, cond, detail) {
   await pNoDue.route('**/api/**', function (r) { r.abort('failed'); });
   await pNoDue.addInitScript(function () {
     localStorage.clear();
-    /* 构造：1 deck + 1 stats（dueAt=明天，未到期）→ totalRounds=1 走 else 分支，t.due=0 不渲染提示 */
+    /* 构造：1 deck + 1 stats（dueAt=明天，未到期）→ totalRounds=1 走 else 分支，t.due=0 不渲染提示。
+       同时注入今天 daysLog.rounds=5，让 today cell 走 l3 深橙背景 + today 加粗，便于测视觉。 */
+    var today = new Date();
+    var ymd = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
     var tomorrow = Date.now() + 86400000;
     localStorage.setItem('chunklab.v1', JSON.stringify({
       version: 2,
@@ -292,7 +295,8 @@ function check(name, cond, detail) {
       mastered: {}, deletedItems: {},
       stats: {
         totalRounds: 1, totalAnswered: 1,
-        bySentence: { 'd1#hi': { deckId: 'd1', sentence: 'hi', times: 1, okTimes: 1, wrongTimes: 0, streak: 0, maxStreak: 0, lastAt: Date.now(), interval: 1, ease: 2.5, dueAt: tomorrow } }
+        bySentence: { 'd1#hi': { deckId: 'd1', sentence: 'hi', times: 1, okTimes: 1, wrongTimes: 0, streak: 0, maxStreak: 0, lastAt: Date.now(), interval: 1, ease: 2.5, dueAt: tomorrow } },
+        daysLog: (function(){ var o = {}; o[ymd] = { rounds: 5 }; return o; })()
       },
       settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: true, celebrate: 'confetti', autoSpeak: false, darkMode: false }
     }));
@@ -302,11 +306,16 @@ function check(name, cond, detail) {
   await pNoDue.waitForTimeout(1000);
   const noDueState = await pNoDue.evaluate(function () {
     var body = document.getElementById('homeBody');
+    var todayCell = document.querySelector('.cal-cell.today');
+    var todayCs = todayCell ? getComputedStyle(todayCell) : null;
     return {
       hasEmpty: !!(body && body.querySelector('.home-empty')),
       hasNoDueText: body && (body.innerText || '').indexOf('今日无到期') >= 0,
       hasRestText: body && (body.innerText || '').indexOf('练点新的或休息') >= 0,
-      hasNewDeckBtn: !!(body && body.querySelector('#homeGoDecks'))
+      hasNewDeckBtn: !!(body && body.querySelector('#homeGoDecks')),
+      todayExists: !!todayCell,
+      todayBoxShadow: todayCs ? todayCs.boxShadow : 'missing',
+      todayFontWeight: todayCs ? todayCs.fontWeight : 'missing'
     };
   });
   check('home: due=0 真实场景不渲染"今日无到期"',
@@ -315,6 +324,12 @@ function check(name, cond, detail) {
     !noDueState.hasRestText, JSON.stringify(noDueState));
   check('home: due=0 时仍渲染"去题库学新句"按钮（替代废话的语境承载）',
     noDueState.hasNewDeckBtn, JSON.stringify(noDueState));
+  check('cal: today cell 不再有 box-shadow 外框（防"hover 残留"视觉混淆，2026-09-10）',
+    noDueState.todayBoxShadow === 'none' || noDueState.todayBoxShadow === '',
+    JSON.stringify(noDueState));
+  check('cal: today cell 改用加粗字体标识（font-weight ≥ 700）',
+    noDueState.todayFontWeight === '800' || noDueState.todayFontWeight === 'bold' || parseInt(noDueState.todayFontWeight) >= 700,
+    JSON.stringify(noDueState));
   await pNoDue.close();
   await ctxNoDue.close();
 
