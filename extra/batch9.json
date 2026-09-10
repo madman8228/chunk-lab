@@ -1,0 +1,948 @@
+[
+  {
+    "sentence": "If I sound rude, I don't mean it.",
+    "cid": "27c32d37",
+    "translation": "如果我听起来很粗鲁，我不是故意的。",
+    "chunks": [
+      "If I sound rude,",
+      "I don't mean it."
+    ],
+    "hints": [
+      "如果我听起来粗鲁",
+      "我不是故意的"
+    ],
+    "grammar": [
+      {
+        "role": "条件状语从句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪf/",
+          "/aɪ/",
+          "/saʊnd/",
+          "/ruːd/"
+        ],
+        "pos": "if 引导条件句",
+        "meaning": "如果我听起来粗鲁"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/aɪ/",
+          "/doʊnt/",
+          "/miːn/",
+          "/ɪt/"
+        ],
+        "pos": "习语句型",
+        "meaning": "我不是故意的"
+      }
+    ],
+    "explanations": [
+      "**mean it** = 当真的、故意的。否定式 I don't mean it 是道歉高频句，表示「话出口但不是那个意思」。",
+      "近义：I didn't mean that. / No offense intended. 例句：Sorry if I hurt your feelings — I don't mean it."
+    ]
+  },
+  {
+    "sentence": "I forgot our anniversary — I feel really bad.",
+    "cid": "68946d36",
+    "translation": "我忘了我们的纪念日，感觉糟透了。",
+    "chunks": [
+      "I forgot our anniversary —",
+      "I feel really bad."
+    ],
+    "hints": [
+      "我忘了我们的纪念日",
+      "我难受极了"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/fərˈɡɑːt/",
+          "/aʊər/",
+          "/ˌænɪˈvɜːrsəri/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "我忘了我们的纪念日"
+      },
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/fiːl/",
+          "/ˈriːəli/",
+          "/bæd/"
+        ],
+        "pos": "系动词+表语",
+        "meaning": "我感觉很糟糕"
+      }
+    ],
+    "explanations": [
+      "**feel really bad** = 感到非常过意不去。bad 在这里指「内疚」，不是身体难受；比 sorry 更强调自责的情绪。",
+      "近义：I feel terrible about it. / I feel so guilty. 例句：I snapped at you earlier — I feel really bad."
+    ]
+  },
+  {
+    "sentence": "The files got deleted — it's all my fault.",
+    "cid": "18312f58",
+    "translation": "文件被删掉了，全怪我。",
+    "chunks": [
+      "The files got deleted —",
+      "it's all my fault."
+    ],
+    "hints": [
+      "文件被删了",
+      "全是我的错"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/faɪlz/",
+          "/ɡɑːt/",
+          "/dɪˈliːtɪd/"
+        ],
+        "pos": "get 被动语态",
+        "meaning": "文件被删掉了"
+      },
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɪts/",
+          "/ɔːl/",
+          "/maɪ/",
+          "/fɔːlt/"
+        ],
+        "pos": "习语表语",
+        "meaning": "全是我的错"
+      }
+    ],
+    "explanations": [
+      "**it's all my fault** = 全是我的错。主动揽责的标准句，all 加强「一个都赖不掉」的语气。",
+      "近义：I'm entirely to blame. / My bad.（更随意）。反问版：How is it my fault? 例句：Don't blame the intern — it's all my fault."
+    ]
+  },
+  {
+    "sentence": "It's Thursday, not Wednesday — my mistake.",
+    "cid": "e7f5bcd5",
+    "translation": "是周四不是周三，我搞错了。",
+    "chunks": [
+      "It's Thursday, not Wednesday —",
+      "my mistake."
+    ],
+    "hints": [
+      "是周四不是周三",
+      "我弄错了"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪts/",
+          "/ˈθɜːrzdeɪ/",
+          "/nɑːt/",
+          "/ˈwenzdeɪ/"
+        ],
+        "pos": "主系表+否定纠正",
+        "meaning": "今天是周四不是周三"
+      },
+      {
+        "role": "习语·口语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/maɪ/",
+          "/mɪˈsteɪk/"
+        ],
+        "pos": "习语口语",
+        "meaning": "我的错"
+      }
+    ],
+    "explanations": [
+      "**my mistake** = 我的错、我搞错了。认错的最短版本，多用于纠正事实性错误（记错时间、看错名单），语气轻。",
+      "近义：My bad.（更口语）/ Sorry, I got it wrong. 例句：The meeting is at three? My mistake — it's at four."
+    ]
+  },
+  {
+    "sentence": "I lost the tickets — this is my fault.",
+    "cid": "eb5716c0",
+    "translation": "我把票弄丢了，这是我的错。",
+    "chunks": [
+      "I lost the tickets —",
+      "this is my fault."
+    ],
+    "hints": [
+      "我把票弄丢了",
+      "这是我的错"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/lɔːst/",
+          "/ðə/",
+          "/ˈtɪkɪts/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "我把票弄丢了"
+      },
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðɪs/",
+          "/ɪz/",
+          "/maɪ/",
+          "/fɔːlt/"
+        ],
+        "pos": "主系表",
+        "meaning": "这是我的错"
+      }
+    ],
+    "explanations": [
+      "**this is my fault** = 这是我的错。比 it's my fault 更具体指向「眼前这件事」，认错时指明责任归属。",
+      "区别：it's all my fault（全是我的错，揽全部）/ it's partly my fault（部分是我的错）。例句：We missed the exit because I was talking — this is my fault."
+    ]
+  },
+  {
+    "sentence": "The launch failed, and I take full responsibility.",
+    "cid": "183f5fea",
+    "translation": "发布失败了，我承担全部责任。",
+    "chunks": [
+      "The launch failed,",
+      "and I take full responsibility."
+    ],
+    "hints": [
+      "发布失败了",
+      "我承担全部责任"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/lɔːntʃ/",
+          "/feɪld/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "发布失败了"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ənd/",
+          "/aɪ/",
+          "/teɪk/",
+          "/fʊl/",
+          "/rɪˌspɑːnsəˈbɪləti/"
+        ],
+        "pos": "动词习语",
+        "meaning": "我承担全部责任"
+      }
+    ],
+    "explanations": [
+      "**take full responsibility** = 承担全部责任。正式度最高的揽责句，职场、公开声明通用，比 sorry 更有担当感。",
+      "近义：I'm accountable for this. / The buck stops with me. 例句：The shipment was late, and I take full responsibility."
+    ]
+  },
+  {
+    "sentence": "I'm awful sorry about the noise last night.",
+    "cid": "8b23ece2",
+    "translation": "昨晚吵到你了，实在抱歉。",
+    "chunks": [
+      "I'm awful sorry",
+      "about the noise last night."
+    ],
+    "hints": [
+      "实在非常抱歉",
+      "昨晚的噪音"
+    ],
+    "grammar": [
+      {
+        "role": "习语·道歉",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/aɪm/",
+          "/ˈɔːfl/",
+          "/ˈsɑːri/"
+        ],
+        "pos": "习语强调结构",
+        "meaning": "实在非常抱歉"
+      },
+      {
+        "role": "介宾短语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/əˈbaʊt/",
+          "/ðə/",
+          "/nɔɪz/",
+          "/læst/",
+          "/naɪt/"
+        ],
+        "pos": "介词短语",
+        "meaning": "关于昨晚的噪音"
+      }
+    ],
+    "explanations": [
+      "**awful sorry** = 非常抱歉。awful 在这里是「非常」的口语强化词（不是「糟糕」），美国南方口语尤其常见，相当于 terribly sorry。",
+      "近义：terribly sorry / awfully sorry。例句：I'm awful sorry to trouble you again."
+    ]
+  },
+  {
+    "sentence": "I'm sorry about this mess in the kitchen.",
+    "cid": "516ed5fe",
+    "translation": "厨房乱成这样，很抱歉。",
+    "chunks": [
+      "I'm sorry",
+      "about this mess in the kitchen."
+    ],
+    "hints": [
+      "很抱歉",
+      "厨房的混乱"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪm/",
+          "/ˈsɑːri/"
+        ],
+        "pos": "主系表",
+        "meaning": "我很抱歉"
+      },
+      {
+        "role": "介宾短语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/əˈbaʊt/",
+          "/ðɪs/",
+          "/mes/",
+          "/ɪn/",
+          "/ðə/",
+          "/ˈkɪtʃɪn/"
+        ],
+        "pos": "介词短语",
+        "meaning": "为厨房的混乱"
+      }
+    ],
+    "explanations": [
+      "**sorry about...** = 为……抱歉。about 后接具体事物，比 sorry for 更口语；mess 指乱七八糟的状态。",
+      "近义：Sorry for the mess. / Excuse the mess. 例句：Come on in — sorry about the mess."
+    ]
+  },
+  {
+    "sentence": "Sorry to keep you waiting — the traffic was terrible.",
+    "cid": "799623e8",
+    "translation": "让你久等了，路上太堵了。",
+    "chunks": [
+      "Sorry to keep you waiting —",
+      "the traffic was terrible."
+    ],
+    "hints": [
+      "让你久等了",
+      "路上太堵"
+    ],
+    "grammar": [
+      {
+        "role": "习语·致歉",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ˈsɑːri/",
+          "/tuː/",
+          "/kiːp/",
+          "/juː/",
+          "/ˈweɪtɪŋ/"
+        ],
+        "pos": "习语致歉句",
+        "meaning": "让你久等了"
+      },
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/ˈtræfɪk/",
+          "/wəz/",
+          "/ˈterəbl/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "交通太糟糕"
+      }
+    ],
+    "explanations": [
+      "**keep you waiting** = 让你一直等。Sorry to keep you waiting 是迟到标准开场，比 Sorry I'm late 多一层「我知道你在等」的体谅。",
+      "近义：Sorry for the delay. / Sorry I'm late. 例句：Sorry to keep you waiting — the meeting ran over."
+    ]
+  },
+  {
+    "sentence": "Sorry to barge in — is this seat taken?",
+    "cid": "6487ee0e",
+    "translation": "冒昧打扰了，这个座位有人吗？",
+    "chunks": [
+      "Sorry to barge in —",
+      "is this seat taken?"
+    ],
+    "hints": [
+      "冒昧闯入",
+      "这个座位有人吗"
+    ],
+    "grammar": [
+      {
+        "role": "习语·致歉",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ˈsɑːri/",
+          "/tuː/",
+          "/bɑːrdʒ/",
+          "/ɪn/"
+        ],
+        "pos": "短语动词致歉句",
+        "meaning": "冒昧打扰"
+      },
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪz/",
+          "/ðɪs/",
+          "/siːt/",
+          "/ˈteɪkən/"
+        ],
+        "pos": "被动语态疑问句",
+        "meaning": "这个座位被占了吗"
+      }
+    ],
+    "explanations": [
+      "**barge in** = 闯入、贸然打断。barge 本义是「横冲直撞」，barge in 带自知理亏的劲儿，道歉时用很自然。",
+      "近义：Sorry to interrupt. / Sorry to crash in on you. 例句：Sorry to barge in while you're eating."
+    ]
+  },
+  {
+    "sentence": "My apologies for the late reply.",
+    "cid": "4eff5b6a",
+    "translation": "回复晚了，非常抱歉。",
+    "chunks": [
+      "My apologies",
+      "for the late reply."
+    ],
+    "hints": [
+      "我深表歉意",
+      "回复晚了"
+    ],
+    "grammar": [
+      {
+        "role": "习语·致歉",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/maɪ/",
+          "/əˈpɑːlədʒiz/"
+        ],
+        "pos": "名词习语",
+        "meaning": "我深表歉意"
+      },
+      {
+        "role": "介宾短语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/fɔːr/",
+          "/ðə/",
+          "/leɪt/",
+          "/rɪˈplaɪ/"
+        ],
+        "pos": "介词短语",
+        "meaning": "为迟来的回复"
+      }
+    ],
+    "explanations": [
+      "**my apologies** = 我深表歉意。名词化的道歉，比 I'm sorry 正式，邮件、职场高频；apology 用复数表示诚意。",
+      "近义：Please accept my apologies. / My sincere apologies. 例句：My apologies for missing the call — I was in a tunnel."
+    ]
+  },
+  {
+    "sentence": "I sincerely apologize for what I said yesterday.",
+    "cid": "e4244de7",
+    "translation": "我为我昨天说的话诚恳道歉。",
+    "chunks": [
+      "I sincerely apologize",
+      "for what I said yesterday."
+    ],
+    "hints": [
+      "我诚恳道歉",
+      "为昨天说的话"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/sɪnˈsɪrli/",
+          "/əˈpɑːlədʒaɪz/"
+        ],
+        "pos": "一般现在时+状语",
+        "meaning": "我诚恳地道歉"
+      },
+      {
+        "role": "介宾短语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/fɔːr/",
+          "/wʌt/",
+          "/aɪ/",
+          "/sed/",
+          "/ˈjestərdeɪ/"
+        ],
+        "pos": "介词+宾语从句",
+        "meaning": "为我昨天所说的话"
+      }
+    ],
+    "explanations": [
+      "**sincerely apologize** = 诚恳道歉。sincerely（真诚地）是道歉的强度词，正式场合或真心伤到人时用。",
+      "近义：I owe you an apology. / I sincerely regret it. 例句：I sincerely apologize for the confusion my email caused."
+    ]
+  },
+  {
+    "sentence": "I shouldn't have shouted at you — do you forgive me?",
+    "cid": "eeaa3603",
+    "translation": "我不该冲你吼，你能原谅我吗？",
+    "chunks": [
+      "I shouldn't have shouted at you —",
+      "do you forgive me?"
+    ],
+    "hints": [
+      "我本不该冲你吼",
+      "你能原谅我吗"
+    ],
+    "grammar": [
+      {
+        "role": "情态完成时",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/ˈʃʊdnt/",
+          "/həv/",
+          "/ˈʃaʊtɪd/",
+          "/æt/",
+          "/juː/"
+        ],
+        "pos": "shouldn't have done",
+        "meaning": "我本不该冲你吼"
+      },
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/duː/",
+          "/juː/",
+          "/fərˈɡɪv/",
+          "/miː/"
+        ],
+        "pos": "一般疑问句",
+        "meaning": "你能原谅我吗"
+      }
+    ],
+    "explanations": [
+      "**shouldn't have done** = 本不该做（却做了）。表对过去的自责，道歉时先认错再求原谅，是很诚恳的句式。",
+      "近义：I was out of line. / Can you ever forgive me?（更重）。例句：I shouldn't have said that — please forgive me."
+    ]
+  },
+  {
+    "sentence": "You stepped on his foot — say you're sorry.",
+    "cid": "09a138bd",
+    "translation": "你踩到他的脚了，快说对不起。",
+    "chunks": [
+      "You stepped on his foot —",
+      "say you're sorry."
+    ],
+    "hints": [
+      "你踩到他的脚了",
+      "快说对不起"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/stept/",
+          "/ɒn/",
+          "/hɪz/",
+          "/fʊt/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "你踩到了他的脚"
+      },
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/seɪ/",
+          "/jʊr/",
+          "/ˈsɑːri/"
+        ],
+        "pos": "习语祈使句",
+        "meaning": "说声对不起"
+      }
+    ],
+    "explanations": [
+      "**say you're sorry** = 说声对不起。大人催小孩道歉的经典句，对成年人用会带命令甚至讽刺味，注意场景。",
+      "近义：Apologize to him. / Say sorry right now. 例句：You took her toy — say you're sorry."
+    ]
+  },
+  {
+    "sentence": "Don't pout — I'll buy you an ice cream.",
+    "cid": "33f12212",
+    "translation": "别撅嘴了，我给你买冰淇淋。",
+    "chunks": [
+      "Don't pout —",
+      "I'll buy you an ice cream."
+    ],
+    "hints": [
+      "别撅嘴了",
+      "我给你买冰淇淋"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/doʊnt/",
+          "/paʊt/"
+        ],
+        "pos": "否定祈使句",
+        "meaning": "别撅嘴生气"
+      },
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪl/",
+          "/baɪ/",
+          "/juː/",
+          "/ən/",
+          "/aɪs/",
+          "/kriːm/"
+        ],
+        "pos": "将来时+双宾语",
+        "meaning": "我给你买个冰淇淋"
+      }
+    ],
+    "explanations": [
+      "**pout** = 撅嘴、闹别扭。指不满时嘟起嘴的样子，孩子和撒娇的恋人都常用，Don't pout 带哄人的语气。",
+      "近义：Don't sulk.（闷闷不乐）/ Don't give me that look. 例句：Don't pout — we'll go to the park tomorrow."
+    ]
+  },
+  {
+    "sentence": "Don't mention it — it's my pleasure.",
+    "cid": "bd9acf6c",
+    "translation": "别客气，帮你是我的荣幸。",
+    "chunks": [
+      "Don't mention it —",
+      "it's my pleasure."
+    ],
+    "hints": [
+      "别提了不用谢",
+      "这是我的荣幸"
+    ],
+    "grammar": [
+      {
+        "role": "习语·回应",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/doʊnt/",
+          "/ˈmenʃn/",
+          "/ɪt/"
+        ],
+        "pos": "习语回应句",
+        "meaning": "不用客气"
+      },
+      {
+        "role": "习语·回应",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɪts/",
+          "/maɪ/",
+          "/ˈpleʒər/"
+        ],
+        "pos": "习语回应句",
+        "meaning": "这是我的荣幸"
+      }
+    ],
+    "explanations": [
+      "**don't mention it** = 别客气、不值一提。回应感谢的经典句，意思是「这点小事别放嘴上」。",
+      "**it's my pleasure** = 我的荣幸。比 don't mention it 更热情，服务行业、朋友间通用，也可单说 My pleasure."
+    ]
+  },
+  {
+    "sentence": "Your help is greatly appreciated.",
+    "cid": "3e744b77",
+    "translation": "十分感谢你的帮助。",
+    "chunks": [
+      "Your help is",
+      "greatly appreciated."
+    ],
+    "hints": [
+      "你的帮助",
+      "被非常感激"
+    ],
+    "grammar": [
+      {
+        "role": "主系",
+        "color": "#c87033",
+        "phonetic": [
+          "/jʊr/",
+          "/help/",
+          "/ɪz/"
+        ],
+        "pos": "主语+系动词",
+        "meaning": "你的帮助"
+      },
+      {
+        "role": "被动表语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ˈɡreɪtli/",
+          "/əˈpriːʃieɪtɪd/"
+        ],
+        "pos": "被动语态表语",
+        "meaning": "被深深地感激"
+      }
+    ],
+    "explanations": [
+      "**(much/greatly) appreciated** = 不胜感激。被动式致谢，邮件、正式场合高频；口语缩略成 Much appreciated.",
+      "近义：Thank you so much. / I'm very grateful. 例句：Your prompt reply is much appreciated."
+    ]
+  },
+  {
+    "sentence": "I'm truly grateful for your help with the report.",
+    "cid": "0f48f0d8",
+    "translation": "你帮我做报告，我真心感激。",
+    "chunks": [
+      "I'm truly grateful",
+      "for your help with the report."
+    ],
+    "hints": [
+      "我真心感激",
+      "你帮我做报告"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪm/",
+          "/ˈtruːli/",
+          "/ˈɡreɪtfl/"
+        ],
+        "pos": "系动词+形容词表语",
+        "meaning": "我真心感激"
+      },
+      {
+        "role": "介宾短语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/fɔːr/",
+          "/jʊr/",
+          "/help/",
+          "/wɪð/",
+          "/ðə/",
+          "/rɪˈpɔːrt/"
+        ],
+        "pos": "介词短语",
+        "meaning": "对你帮忙做报告这件事"
+      }
+    ],
+    "explanations": [
+      "**be grateful for sth** = 为某事感激。grateful 比 thank you 更走心，强调「记在心里」的感激。",
+      "近义：I can't thank you enough. / I owe you one. 例句：I'm truly grateful for your support this year."
+    ]
+  },
+  {
+    "sentence": "You fixed my bike so fast — I really appreciate it.",
+    "cid": "b46d20b4",
+    "translation": "你这么快修好我的车，太感谢了。",
+    "chunks": [
+      "You fixed my bike so fast —",
+      "I really appreciate it."
+    ],
+    "hints": [
+      "你很快就修好了车",
+      "我真的很感激"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/fɪkst/",
+          "/maɪ/",
+          "/baɪk/",
+          "/soʊ/",
+          "/fæst/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "你很快修好了我的车"
+      },
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/ˈriːəli/",
+          "/əˈpriːʃieɪt/",
+          "/ɪt/"
+        ],
+        "pos": "一般现在时",
+        "meaning": "我真的很感激"
+      }
+    ],
+    "explanations": [
+      "**I really appreciate it** = 我真的很感激。最通用的口头致谢升级版，比 thank you 更有分量，it 指对方做的整件事。",
+      "近义：Thanks a million. / I can't thank you enough. 例句：You watered my plants all week? I really appreciate it."
+    ]
+  },
+  {
+    "sentence": "You covered my shift yesterday — I owe you bigtime!",
+    "cid": "8f8928a5",
+    "translation": "你昨天替我值班，我欠你个大人情！",
+    "chunks": [
+      "You covered my shift yesterday —",
+      "I owe you bigtime!"
+    ],
+    "hints": [
+      "你替我值班了",
+      "我大大欠你人情"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/ˈkʌvərd/",
+          "/maɪ/",
+          "/ʃɪft/",
+          "/ˈjestərdeɪ/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "你替我值班了"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/aɪ/",
+          "/oʊ/",
+          "/juː/",
+          "/ˈbɪɡtaɪm/"
+        ],
+        "pos": "习语+口语副词",
+        "meaning": "我大大欠你一份情"
+      }
+    ],
+    "explanations": [
+      "**owe you bigtime** = 大大欠你个人情。bigtime 是口语副词「大大地、非常」，比 I owe you one 的分量重得多。",
+      "近义：I owe you one. / I'm in your debt. 例句：You talked to the landlord for me? I owe you bigtime!"
+    ]
+  },
+  {
+    "sentence": "The manager praised our report — keep up the good work.",
+    "cid": "dd40e810",
+    "translation": "经理表扬了我们的报告，再接再厉啊。",
+    "chunks": [
+      "The manager praised our report —",
+      "keep up the good work."
+    ],
+    "hints": [
+      "经理表扬了报告",
+      "保持好表现"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/ˈmænɪdʒər/",
+          "/preɪzd/",
+          "/aʊər/",
+          "/rɪˈpɔːrt/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "经理表扬了我们的报告"
+      },
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/kiːp/",
+          "/ʌp/",
+          "/ðə/",
+          "/ɡʊd/",
+          "/wɜːrk/"
+        ],
+        "pos": "短语动词祈使句",
+        "meaning": "继续保持好表现"
+      }
+    ],
+    "explanations": [
+      "**keep up the good work** = 再接再厉、保持佳绩。夸人+鼓励的标准收尾句，邮件评价、老师批语通用。",
+      "近义：Keep it up! / Way to go! 例句：Sales are up this quarter — keep up the good work."
+    ]
+  },
+  {
+    "sentence": "I'm counting on you — don't let me down.",
+    "cid": "e0759242",
+    "translation": "我就指望你了，别让我失望。",
+    "chunks": [
+      "I'm counting on you —",
+      "don't let me down."
+    ],
+    "hints": [
+      "我指望你呢",
+      "别让我失望"
+    ],
+    "grammar": [
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/aɪm/",
+          "/ˈkaʊntɪŋ/",
+          "/ɒn/",
+          "/juː/"
+        ],
+        "pos": "短语动词进行时",
+        "meaning": "我指望你"
+      },
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/doʊnt/",
+          "/let/",
+          "/miː/",
+          "/daʊn/"
+        ],
+        "pos": "短语动词祈使句",
+        "meaning": "别让我失望"
+      }
+    ],
+    "explanations": [
+      "**count on** = 指望、依靠。I'm counting on you 是把事交出去前的信任宣言，常接 don't let me down 加压。",
+      "**let sb down** = 让某人失望。let down 是「放鸽子/掉链子」的通感表达，否定的 don't let me down 是托付标配。例句：This presentation matters — I'm counting on you, don't let me down."
+    ]
+  }
+]
