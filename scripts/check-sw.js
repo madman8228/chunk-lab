@@ -35,12 +35,18 @@ if (!cacheMatch || !listMatch) {
 }
 
 const files = listMatch[1].split(',').map(s => s.trim().replace(/['"]/g, '')).filter(Boolean);
+/* 归一化：把 CACHE 行的值抹成固定占位符再算 hash，与 gen-sw.js 保持同一套基准。
+   否则「CACHE 行自身参与 hash + 写回新值」形成自指漂移，这里永远对不上（2026-09-10 修）。 */
+function normalizeCache(src){
+  return src.replace(/^const CACHE = '[^']*';.*$/m, "const CACHE = '<AUTO>';");
+}
 const h = crypto.createHash('sha1');
 const missing = [];
 files.forEach(function (f) {
   try { h.update(fs.readFileSync(path.join(ROOT, f))); }
   catch (e) { missing.push(f); }
 });
+h.update(normalizeCache(sw));   /* sw.js 自身也计入（与 gen-sw 对齐，CACHE 行已归一化） */
 const calc = h.digest('hex').slice(0, 8);
 const cur = cacheMatch[1];
 /* gen-sw 写入带 'chunklab-' 前缀（PWA 缓存名语义）→ 比对须拼前缀，否则纯 hash8 永远 != 带前缀 cur */

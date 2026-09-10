@@ -68,10 +68,19 @@ const files = base.filter(function (u) { return !missing.includes(u); }).concat(
 /* ---------- 内容 hash → CACHE 版本 ----------
    根因（2026-09-09）：原版只对 PRECACHE 清单文件算 hash，sw.js 自身修改（fetch handler、install/activate
    逻辑）不算入 → cache name 不变 → 浏览器继续用老 CACHE → 修了的 SW 不生效。修正：把 sw.js
-   自身也加进 hash 源（但写回前算，避免覆盖中的 hash 漂移）。 */
+   自身也加进 hash 源。
+
+   根因（2026-09-10）· 自指漂移：CACHE 行本身参与 hash，而算完又把新版本号写回同一行 →
+   文件内容变 → 下次 hash 变 → 版本号无限漂移（连跑 3 次得 3 个不同值），用户缓存被反复全量作废，
+   且 check-sw 永远对不上（只能靠"有未提交改动"的 WIP 豁免蒙混过关）。
+   修正：算 hash 前把 CACHE 行的值归一化成固定占位符 —— SW 逻辑变更仍能触发新版本（保留初衷），
+   版本号自身不再自指，gen-sw 恢复幂等。check-sw.js 用同一套归一化逻辑对齐。 */
+function normalizeCache(src){
+  return src.replace(/^const CACHE = '[^']*';.*$/m, "const CACHE = '<AUTO>';");
+}
 const h = crypto.createHash('sha1');
 for (const u of files) h.update(fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))));
-h.update(fs.readFileSync(SW, 'utf8'));           /* sw.js 自身也算入 */
+h.update(normalizeCache(fs.readFileSync(SW, 'utf8')));   /* sw.js 自身也算入（CACHE 行归一化后） */
 const version = 'chunklab-' + h.digest('hex').slice(0, 8);
 
 /* ---------- 重写 sw.js ---------- */
