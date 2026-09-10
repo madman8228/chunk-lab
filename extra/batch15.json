@@ -1,0 +1,127 @@
+[
+  {
+    "sentence": "I'm working — get out of my face!",
+    "cid": "bc89334e",
+    "translation": "我在工作——别来烦我！",
+    "chunks": [
+      "I'm working —",
+      "get out of my face!"
+    ],
+    "hints": [
+      "我在工作",
+      "别来烦我"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪm/",
+          "/ˈwɜːrkɪŋ/"
+        ],
+        "pos": "主谓",
+        "meaning": "我在忙"
+      },
+      {
+        "role": "习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɡet/",
+          "/aʊt/",
+          "/əv/",
+          "/maɪ/",
+          "/feɪs/"
+        ],
+        "pos": "习语",
+        "meaning": "别在我眼前晃；滚开"
+      }
+    ],
+    "explanations": [
+      "**Get out of my face** = 别在我眼前晃、滚远点。字面是「从我脸前消失」，比 Get lost 更冲，多用于被反复打扰时。",
+      "近义：Get out of my sight / Back off. 例句：I'm on a deadline — get out of my face!"
+    ]
+  },
+  {
+    "sentence": "Don't suck up to the boss — just do your job.",
+    "cid": "9234d8ec",
+    "translation": "别拍老板马屁——把自己的活干好就行。",
+    "chunks": [
+      "Don't suck up to the boss —",
+      "just do your job."
+    ],
+    "hints": [
+      "别拍老板马屁",
+      "把自己的活干好就行"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#e74c7a",
+        "phonetic": [
+          "/doʊnt/",
+          "/sʌk/",
+          "/ʌp/"
+        ],
+        "pos": "祈使句",
+        "meaning": "别拍马屁"
+      },
+      {
+        "role": "祈使句",
+        "color": "#e74c7a",
+        "phonetic": [
+          "/dʒʌst/",
+          "/duː/",
+          "/jʊr/",
+          "/dʒɑːb/"
+        ],
+        "pos": "祈使句",
+        "meaning": "把活干好"
+      }
+    ],
+    "explanations": [
+      "**Suck up to sb** = 拍某人马屁、谄媚讨好。名词形式 **suck-up** 就是「马屁精」。",
+      "近义：Butter sb up / Kiss up to sb. 例句：He's always sucking up to the manager."
+    ]
+  },
+  {
+    "sentence": "He got loaded at the party and couldn't drive home.",
+    "cid": "e75cfe85",
+    "translation": "他在聚会上喝大了，没法开车回家。",
+    "chunks": [
+      "He got loaded at the party",
+      "and couldn't drive home."
+    ],
+    "hints": [
+      "他在聚会上喝大了",
+      "没法开车回家"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/hi/",
+          "/ɡɑːt/",
+          "/ˈloʊdɪd/"
+        ],
+        "pos": "主谓",
+        "meaning": "他喝醉了"
+      },
+      {
+        "role": "谓语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/kʊdnt/",
+          "/draɪv/",
+          "/hoʊm/"
+        ],
+        "pos": "谓语",
+        "meaning": "开不了车回家"
+      }
+    ],
+    "explanations": [
+      "**Get loaded** = 喝醉（美式俚语）。load 本义「装载」，引申成把人「灌满酒」，比 get drunk 更随意。",
+      "近义：Get wasted / Tie one on. 例句：They got loaded and sang all night."
+    ]
+  }
+]

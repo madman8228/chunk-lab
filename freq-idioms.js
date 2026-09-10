@@ -1,4 +1,4 @@
-/* 高频短语 · English Idioms（运行态 386 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24 + batch13 26 + batch14 11）
+/* 高频短语 · English Idioms（运行态 389 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24 + batch13 26 + batch14 11 + batch15 3）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
  * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
  *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
@@ -28,11 +28,19 @@
  *   walk you out 等），含 B 类修正 2 条：how you gona get home→how are you gonna get home、
  *   work you home→work one's way through college（按正确习语形式收录）。
  *   —— 至此源清单中的 A 类干净条目已全部收完。
- * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json 与 output/idioms-classified.md）：
- *   累计收录 185 条（batch7~14）→ 剩余差集全部为 C 类粗俗/攻击性（piss off / fuck up / up yours /
- *   bite me / cut the crap / get out of my face / don't suck up / get loaded / encore 等）
- *   与 D 类低质量错拼（use to / since apoloytes / every body says / i see & i know 等），
- *   均不建议直接入库——收录与否等老板拍板（若收录需设计「口语强度标签」）。
+ * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json）：
+ *   累计收录 188 条（batch7~15）→ **源清单 A 类已彻底清零**。
+ * batch15（2026-09-10）= 补漏 3 条（get out of my face / don't suck up to sb / get loaded）。
+ *   注意：差集复算 v1 脚本词干化不一致（dropped→dropp ≠ drop、making→mak ≠ make）产生假阳性，
+ *   把「drop the ball / it's up to you / make an excuse / is something on your mind」误报为未收录，
+ *   实际库内早有同义句（dropped the ball / is up to you / stop making excuses / what's on your mind）。
+ *   **机械预检结论必须 grep 复核**，否则会造重复题。
+ * 剩余差集（32 条中已收 3）全部不建议入库：
+ *   ① C 类粗俗/攻击性：piss off / fuck up / up yours / bite me / cut the crap / I don't give a shit 等；
+ *   ② D 类脏数据（错拼/乱码）：my appologies / what out / i see & i know / keep you chain up 等
+ *      —— 其中 nerve、barge in、dribs and drabs、pulling my leg 等**正确形式库内早已收录**，无需再收；
+ *   ③ 碎片不成句：encore / who wants / do something / give me your attitude 等。
+ *   若将来要收 C 类，须先设计「口语强度/粗俗度标签」，否则不进学习流。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
  *   my bad / good for you / you bet，例句变体）；仅 you don't say 为库内缺词条，已单抽 batch6 注入（201）。
@@ -6116,6 +6124,52 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Work one's way (through)** = 靠打工、一步一步奋斗着完成。强调过程辛苦但没有外援。",
       "近义：Put oneself through school. 例句：She worked her way up from intern to manager."
+    ]
+  }
+,
+  {
+    sentence: "I'm working — get out of my face!",
+    cid: fnv8("I'm working — get out of my face!"),
+    translation: "我在工作——别来烦我！",
+    chunks: ["I'm working —","get out of my face!"],
+    hints: ["我在工作","别来烦我"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/aɪm/","/ˈwɜːrkɪŋ/"], pos:"主谓", meaning:"我在忙"},
+      {role:"习语", color:"#7c5cbf", phonetic:["/ɡet/","/aʊt/","/əv/","/maɪ/","/feɪs/"], pos:"习语", meaning:"别在我眼前晃；滚开"}
+    ],
+    explanations: [
+      "**Get out of my face** = 别在我眼前晃、滚远点。字面是「从我脸前消失」，比 Get lost 更冲，多用于被反复打扰时。",
+      "近义：Get out of my sight / Back off. 例句：I'm on a deadline — get out of my face!"
+    ]
+  },
+  {
+    sentence: "Don't suck up to the boss — just do your job.",
+    cid: fnv8("Don't suck up to the boss — just do your job."),
+    translation: "别拍老板马屁——把自己的活干好就行。",
+    chunks: ["Don't suck up to the boss —","just do your job."],
+    hints: ["别拍老板马屁","把自己的活干好就行"],
+    grammar: [
+      {role:"祈使句", color:"#e74c7a", phonetic:["/doʊnt/","/sʌk/","/ʌp/"], pos:"祈使句", meaning:"别拍马屁"},
+      {role:"祈使句", color:"#e74c7a", phonetic:["/dʒʌst/","/duː/","/jʊr/","/dʒɑːb/"], pos:"祈使句", meaning:"把活干好"}
+    ],
+    explanations: [
+      "**Suck up to sb** = 拍某人马屁、谄媚讨好。名词形式 **suck-up** 就是「马屁精」。",
+      "近义：Butter sb up / Kiss up to sb. 例句：He's always sucking up to the manager."
+    ]
+  },
+  {
+    sentence: "He got loaded at the party and couldn't drive home.",
+    cid: fnv8("He got loaded at the party and couldn't drive home."),
+    translation: "他在聚会上喝大了，没法开车回家。",
+    chunks: ["He got loaded at the party","and couldn't drive home."],
+    hints: ["他在聚会上喝大了","没法开车回家"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/hi/","/ɡɑːt/","/ˈloʊdɪd/"], pos:"主谓", meaning:"他喝醉了"},
+      {role:"谓语", color:"#3358e0", phonetic:["/kʊdnt/","/draɪv/","/hoʊm/"], pos:"谓语", meaning:"开不了车回家"}
+    ],
+    explanations: [
+      "**Get loaded** = 喝醉（美式俚语）。load 本义「装载」，引申成把人「灌满酒」，比 get drunk 更随意。",
+      "近义：Get wasted / Tie one on. 例句：They got loaded and sang all night."
     ]
   }
 ];
