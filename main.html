@@ -8,7 +8,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Chunk Lab">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<!-- favicon（2026-09-10）：修「浏览器 tab 退化成显示完整 URL」——此前只声明 512×512，
+     tab 默认请求 /favicon.ico 与 32×32 均 404，浏览器回退成 URL 字符串当 tab 标识 -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>Chunk Lab · 英语句型意群练习</title>
 <style>
@@ -62,6 +66,18 @@ input,textarea,select{font:inherit;color:inherit}
   background:linear-gradient(140deg,#3358e0,#6b7cff);color:#fff;font-size:13px;font-weight:800;
   box-shadow:0 3px 8px -2px rgba(51,88,224,.5);
 }
+/* ★ 面包屑 home button：logo 区可点回题库首页（肌肉记忆：logo = home）
+   负 margin 抵消 padding，保持原视觉占位不变 */
+a.brand{
+  color:inherit;text-decoration:none;cursor:pointer;
+  padding:4px 8px;margin:-4px -8px;border-radius:9px;
+  transition:background .16s ease;
+}
+a.brand:hover{background:var(--surface-2)}
+a.brand:active{background:#efebe4}
+a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+/* 面包屑分隔符：Chunk Lab › 日常对话 */
+.crumb-sep{color:var(--faint);font-size:13px;line-height:1;user-select:none;margin:0 -3px;flex:0 0 auto}
 .deck-name{
   font-size:12.5px;color:var(--muted);padding:3px 9px;border:1px solid var(--border);
   border-radius:999px;background:var(--surface);max-width:230px;overflow:hidden;
@@ -662,6 +678,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .cal-cell.l4{background:#c05a1d;color:#fff}
 .cal-cell.lx{background:transparent;color:var(--faint);opacity:.5}
 .cal-cell.today{box-shadow:0 0 0 2px #b04a18}
+/* 非 pad/lx 日期可交互：hover/tap 弹 popover 查看复习次数 */
+.cal-cell:not(.pad):not(.lx){cursor:pointer;transition:transform .12s,box-shadow .12s}
+.cal-cell:not(.pad):not(.lx):hover{transform:translateY(-1px);box-shadow:0 2px 6px -2px rgba(0,0,0,.18)}
+.cal-cell:not(.pad):not(.lx):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .cal-foot{margin-top:10px;font-size:12px;color:var(--muted)}
 .cal-foot b{color:var(--text);font-variant-numeric:tabular-nums}
 .home-today-counts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
@@ -684,6 +704,25 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .hd-row .grow{flex:1}
 .hd-row .btn{min-height:28px}
 .hd-row .btn.ghost{color:var(--accent);font-weight:600}
+/* 本月打卡 + 最近练习 合并左右布局：节省首页纵向空间 */
+.home-card.merge-row{
+  display:grid;
+  grid-template-columns:minmax(240px, 290px) 1fr;
+  gap:20px;
+  align-items:start;
+}
+.home-card.merge-row .merge-side{min-width:0}
+.home-card.merge-row .cal-side{padding-right:16px;border-right:1px solid var(--border)}
+.home-card.merge-row .recent-side{padding-left:2px}
+.home-card.merge-row .cal-grid{max-width:none;width:100%}
+.home-card.merge-row .hc-title{grid-column:1/-1;margin-bottom:10px}
+.home-card.merge-row .hc-title .merge-sep{opacity:.4;margin:0 2px;font-weight:400}
+.home-card.merge-row .hc-title .cal-streak{margin-left:auto}
+@media (max-width:640px){
+  .home-card.merge-row{grid-template-columns:1fr;gap:14px}
+  .home-card.merge-row .cal-side{padding-right:0;border-right:0;padding-bottom:10px;border-bottom:1px solid var(--border)}
+  .home-card.merge-row .recent-side{padding-left:0;padding-top:2px}
+}
 /* 空档案引导 */
 .home-empty{border:1px dashed var(--border);border-radius:14px;background:var(--surface);padding:22px 20px;text-align:center}
 .home-empty .t{font-size:15px;font-weight:700}
@@ -899,7 +938,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 
   <div class="topbar">
     <div class="topbar-row">
-      <div class="brand"><span class="logo">C</span>Chunk Lab</div>
+      <a class="brand" href="decks.html" title="返回题库首页" aria-label="返回题库首页"><span class="logo">C</span>Chunk Lab</a>
+      <span class="crumb-sep" aria-hidden="true">›</span>
       <span class="deck-name" id="deckName">日常对话</span>
       <span class="spacer"></span>
       <span id="syncBadge" class="sync-badge" style="display:none" title="本地学习记录等待同步，联网后会自动上传" aria-label="学习记录待同步"><span class="icon-spin" data-icon="refresh"></span>待同步</span>
@@ -909,7 +949,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       </div>
       <button class="icon-action" id="btnSound" title="音效开关" aria-label="音效开关" data-icon="sound"></button>
       <button class="icon-action" id="btnStats" title="学习档案" aria-label="学习档案" data-icon="stats"></button>
-      <button class="btn sm icon-action flat-action" id="btnDecks" title="题库" aria-label="题库" data-icon="book"></button>
+      <button class="btn sm icon-action flat-action" id="btnDecks" title="退出本题库，回到题库列表" aria-label="退出本题库，回到题库列表" data-icon="book"></button>
       <button class="icon-action" id="btnSettingsTop" title="系统设置" aria-label="系统设置" data-icon="settings"></button>
     </div>
     <div class="progress"><i id="progFill"></i></div>
@@ -951,6 +991,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <div class="zh" id="zh"><span class="icon-spin" data-icon="refresh"></span> 加载中…</div>
       </div>
       <div class="stage-head-right">
+        <button class="icon-action" id="btnBack" title="返回主页" aria-label="返回主页"><span data-icon="arrowL"></span></button>
         <span class="reveal-tag hidden" id="revealTagWrap"></span>
       </div>
     </div>
@@ -1753,7 +1794,9 @@ if(fromIdx === 0 && isLongTermDeck){
               : deck.id.indexOf('rev-') === 0 ? '『手动』 '
               : (deck.id.indexOf('book-') === 0 || deck.id.indexOf('weak-') === 0) ? '『错题』 '
               : '';
-  $('deckName').textContent = _prefix + displayDeckName(deck.name);
+  var _deckLabel = _prefix + displayDeckName(deck.name);
+  $('deckName').textContent = _deckLabel;
+  $('deckName').title = _deckLabel; /* 超长省略时 hover 看全名 */
   $('result').classList.add('hidden');
   $('stage').classList.remove('hidden');
   updateCombo(0);
@@ -2175,6 +2218,134 @@ function bindRingPop(){
   }
 }
 $('ringWrap') && bindRingPop();
+
+/* ===== 日历 popover 系统（桌面 hover / 移动 tap，共用一个 popover 容器） =====
+   与圆环 popover 同款思路：document 级事件代理 + portal 化 .pop-info。
+   区别：日历 30+ cell，事件代理到 document，grid 重渲染不影响绑定。
+   mouseleave 延迟 120ms 关闭，hover 邻 cell 时立即取消（避免闪烁）。 */
+function bindCalPop(){
+  if(document._calPopBound) return;
+  document._calPopBound = true;
+
+  var pop = document.querySelector('.cal-pop');
+  if(!pop){
+    pop = document.createElement('div');
+    pop.className = 'pop-info cal-pop';
+    pop.setAttribute('role', 'tooltip');
+    pop.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(pop);
+  }
+
+  var hideTimer = null;
+  var currentCell = null;
+
+  function clearHideTimer(){
+    if(hideTimer){ clearTimeout(hideTimer); hideTimer = null; }
+  }
+  function showCell(cell){
+    clearHideTimer();
+    var day = cell.getAttribute('data-day') || '';
+    var rounds = parseInt(cell.getAttribute('data-rounds') || '0', 10);
+    var lvClass = rounds >= 7 ? 'good' : '';   /* ≥7 强学习，加 good 色 */
+    pop.innerHTML =
+      '<div class="pop-info-title"><span class="title-text">' + day + '</span></div>' +
+      '<div class="pop-info-row"><span class="lbl">练习</span><span class="val ' + lvClass + '">' + rounds + ' 次</span></div>' +
+      (rounds === 0 ? '<div class="pop-info-row" style="color:var(--faint);font-size:10.5px;padding-top:2px">当日未练习</div>' : '');
+    var r = cell.getBoundingClientRect();
+    var centerX = r.left + r.width / 2;
+    var half = pop.offsetWidth / 2;
+    var minX = half + 8;
+    var maxX = window.innerWidth - half - 8;
+    pop.style.left = Math.max(minX, Math.min(centerX, maxX)) + 'px';
+    pop.style.top = (r.bottom + 6) + 'px';
+    pop.style.transform = 'translateX(-50%)';
+    pop.classList.add('open');
+    pop.setAttribute('aria-hidden', 'false');
+    currentCell = cell;
+  }
+  function hideCell(){
+    clearHideTimer();
+    pop.classList.remove('open');
+    pop.setAttribute('aria-hidden', 'true');
+    currentCell = null;
+  }
+  function scheduleHide(){
+    clearHideTimer();
+    hideTimer = setTimeout(hideCell, 120);
+  }
+
+  /* 桌面：hover 切换。canHover 设备才绑 mouse 事件；
+     触摸 tap 会合成 mouseenter+mouseleave+click，混绑会让 popover 闪一下 */
+  var canHover = !window.matchMedia || window.matchMedia('(hover: hover)').matches;
+  if(canHover){
+    document.addEventListener('mouseover', function(e){
+      var cell = e.target && e.target.closest && e.target.closest('.cal-cell[data-day]');
+      if(!cell) return;
+      /* 同 cell 不重复触发（mouseover 在 cell 内小范围移动不冒泡，但相邻 cell 会重触发） */
+      if(cell === currentCell) return;
+      showCell(cell);
+    });
+    document.addEventListener('mouseout', function(e){
+      var cell = e.target && e.target.closest && e.target.closest('.cal-cell[data-day]');
+      if(!cell) return;
+      var related = e.relatedTarget;
+      if(related && cell.contains(related)) return;  /* 仍在 cell 内 */
+      var intoCell = related && related.closest && related.closest('.cal-cell[data-day]');
+      if(intoCell) return;  /* 移到邻 cell → mouseover 立即接管，无需关闭 */
+      scheduleHide();
+    });
+  }
+
+  /* 通用：click 切换（桌面点击 / 移动 tap）。
+     移动端没有 hover，必须靠 click；桌面 hover 后再点同一 cell = 关闭。 */
+  document.addEventListener('click', function(e){
+    var cell = e.target && e.target.closest && e.target.closest('.cal-cell[data-day]');
+    if(!cell){
+      /* 点 popover 内（未来可能要加的链接/按钮）不关 */
+      if(!pop.contains(e.target)) hideCell();
+      return;
+    }
+    if(currentCell === cell && pop.classList.contains('open')) hideCell();
+    else showCell(cell);
+  }, true);
+
+  /* 键盘可达：canHover 设备用 focus/blur；无 hover 设备不加 focusin（避免 tap 时
+     focus→focusin(show)→click(toggle→hide) 把 popover 闪关，圆环注释里同坑）。
+     键盘用户 Tab 到 cell 后按 Enter/Space 触发 keydown handler 切换。 */
+  if(canHover){
+    document.addEventListener('focus', function(e){
+      var cell = e.target && e.target.closest && e.target.closest('.cal-cell[data-day]');
+      if(cell) showCell(cell);
+    });
+    document.addEventListener('blur', function(e){
+      var cell = e.target && e.target.closest && e.target.closest('.cal-cell[data-day]');
+      if(!cell) return;
+      setTimeout(function(){
+        var active = document.activeElement;
+        if(!active || !active.closest || !active.closest('.cal-cell[data-day]')) hideCell();
+      }, 150);
+    });
+  }
+  /* 键盘：Enter/Space 在 cell 上切换（cell 有 tabindex，可获焦） */
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Enter' && e.key !== ' ') return;
+    var cell = e.target && e.target.closest && e.target.closest('.cal-cell[data-day]');
+    if(!cell) return;
+    e.preventDefault();
+    if(currentCell === cell && pop.classList.contains('open')) hideCell();
+    else showCell(cell);
+  });
+
+  /* Esc 全局关闭 */
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') hideCell();
+  });
+
+  /* 滚动/resize 时关闭：position:fixed 钉原坐标，cell 移走后 popover 会漂错位 */
+  window.addEventListener('scroll', hideCell, true);
+  window.addEventListener('resize', hideCell);
+}
+bindCalPop();
 function inputsAt(i){ var b = boxAt(i); return b ? b.querySelectorAll('input.word-input') : []; }
 function inputAt(i){ var arr = inputsAt(i); return arr.length ? arr[0] : null; }
 function chunkValueAt(i){ return Array.from(inputsAt(i)).map(function(x){return x.value;}).join(' ').trim(); }
@@ -2227,9 +2398,10 @@ function renderActiveChoices(){
     html += '<button class="choice" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
   }
   box.innerHTML = html;
-  /* "已答完"角标由 finishSentence 在非 perfect 错 1 次自纠分支里挂到 revealTagWrap（与
-     "已掌握/需巩固" 同一槽位同色系，分层：已答完=本次完成；已掌握/需巩固=复习建议）。
-     完美路径已有 toast/彩带/圆环 pulse/auto-next 倒计时 5 重信号，不再叠 tag */
+  /* revealTagWrap 只在"已掌握/需巩固"两条 actionable 复习建议分支里显示（见 finishSentence）。
+     「已答完」outcome tag 已于 2026-09-10 移除——错 1 自纠态的"沉默"本来就是正确反馈
+     （错处红字 + track 补全 + 下一题按钮 3 重信号已足够），补绿 tag 属兜底式过度反馈，
+     且与「已掌握」绿 tag 撞色撞语义。 */
 }
 
 /* 在 chunk 内显示答题结果（ok/bad/revealed）。bad 且 picked 不是正确答案时同时显示错选 + 正确 */
@@ -2621,11 +2793,10 @@ function finishSentence(){
       var already = S.wrong.some(function(w){ return w.it === it; });
       if(!already) S.wrong.push({ it:it, idx:wrongIdx, answers:S.answers.slice() });
     } else {
-      /* 错 1 次自己纠正：补一个"已答完"绿 tag（错 1 自纠态原本无声反馈）。
-         与"已掌握/需巩固"同一槽位同色系（reveal-tag good），但语义不同：已答完=本次完成；
-         已掌握/需巩固=复习建议。下句 renderQ 会清。 */
-      tagWrap.className = 'reveal-tag good';
-      tagWrap.innerHTML = '<span class="tag-icon">'+(window.Icons?Icons.svg('check'):'')+'</span> 已答完';
+      /* 错 1 次自己纠正：沉默即反馈（2026-09-10 移除「已答完」绿 tag）。
+         错处红字 + track 补全 + 下一题按钮已足够；且与「已掌握」绿 tag 撞色撞语义。
+         与 perfect 路径一致，不叠 outcome tag。 */
+      tagWrap.classList.add('hidden');
     }
     var nb = $('btnNext');
     nb.classList.remove('hidden');
@@ -3370,7 +3541,14 @@ function renderHome(){
       + '</div>');
     h.push('<div class="home-actions">');
     if(t.due > 0){
-      h.push('<button class="btn primary" id="homeBtnDue">' + ic('refresh') + ' 开始到期复习</button>');
+      /* 临时队列（srs-）按 batchSize 分批（startDeck 1757）—— 入口文案必须把分批明说，
+         否则用户看 t.due=23 却只练 5 句会困惑。完整体验靠 finishSession「继续下一组」接续 */
+      var _dueBS = Math.max(1, mem.settings.batchSize || 10);
+      var _dueFirst = Math.min(t.due, _dueBS);
+      var _dueLbl = t.due > _dueFirst
+        ? ' 开始到期复习（先练 ' + _dueFirst + ' / 共 ' + t.due + ' 句）'
+        : ' 开始到期复习（' + t.due + ' 句）';
+      h.push('<button class="btn primary" id="homeBtnDue">' + ic('refresh') + _dueLbl + '</button>');
     } else {
       if(t.weak > 0) h.push('<button class="btn" id="homeBtnWeak">' + ic('warn') + ' 复习需巩固 ' + t.weak + '</button>');
       if(t.book > 0) h.push('<button class="btn" id="homeBtnBook">' + ic('book') + ' 复习错题 ' + t.book + '</button>');
@@ -3380,11 +3558,12 @@ function renderHome(){
   }
   h.push('</div>');
 
-  /* —— 本月打卡月历（2026-09-09）：数据源 mem.daysLog，纯展示不新增状态 —— */
+  /* —— 本月打卡 + 最近练习 合并卡（左右布局，省 纵向空间） —— */
   if(hasEver){
+    /* 日历数据：先算 _cells/_todayD/_mDays/_mRounds 给左栏用 */
     var _now = new Date(), _y = _now.getFullYear(), _m = _now.getMonth();
-    var _lead = (new Date(_y, _m, 1).getDay() + 6) % 7;   /* 周一=0 对齐首行 */
-    var _dim = new Date(_y, _m + 1, 0).getDate();          /* 当月天数 */
+    var _lead = (new Date(_y, _m, 1).getDay() + 6) % 7;
+    var _dim = new Date(_y, _m + 1, 0).getDate();
     var _todayD = _now.getDate();
     var _cells = '';
     ['一','二','三','四','五','六','日'].forEach(function(w){ _cells += '<div class="cal-hd">' + w + '</div>'; });
@@ -3396,35 +3575,37 @@ function renderHome(){
       if(_r > 0){ _mDays++; _mRounds += _r; }
       var _lv = _r >= 7 ? 4 : _r >= 4 ? 3 : _r >= 2 ? 2 : _r >= 1 ? 1 : 0;
       var _fut = _i > _todayD;
-      _cells += '<div class="cal-cell ' + (_fut ? 'lx' : 'l' + _lv) + (_i === _todayD ? ' today' : '') + '">' + _i + '</div>';
+      /* 非未来日期挂 data 属性，供 cal-pop 事件代理识别 */
+      var _attrs = _fut ? '' : ' tabindex="0" role="button" aria-label="' + _key + ' 复习 ' + _r + ' 次" data-day="' + _key + '" data-rounds="' + _r + '"';
+      _cells += '<div class="cal-cell ' + (_fut ? 'lx' : 'l' + _lv) + (_i === _todayD ? ' today' : '') + '"' + _attrs + '>' + _i + '</div>';
     }
-    h.push('<div class="home-card"><div class="hc-title">' + ic('calendar') + '本月打卡<span class="grow"></span>'
+    /* 左栏：日历 grid + footer */
+    var _cellsHtml = '<div class="cal-grid">' + _cells + '</div>'
+      + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>共练习 <b>' + _mRounds + '</b> 次<span class="s-dot">·</span>今日 <b>' + _todayN + '</b> 次</div>';
+    /* 右栏：继续/最近 deck rows */
+    var _rows = [];
+    if(resume){
+      var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
+        var sub = resume.idx > 0
+          ? '续练 · 上次练到第 ' + resume.idx + ' / ' + d1.items.length + ' 句'
+          : (b1 && b1.acc != null ? '续练这张 · 上次正确率 ' + b1.acc + '%' : (d1.items ? d1.items.length + ' 句' : ''));
+        _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div><div class="sub">' + sub + '</div></div>'
+          + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
+    }
+    recent.forEach(function(d){
+      var b = mem.best && mem.best[d.id];
+      var sub2 = (b && b.acc != null) ? '上次正确率 ' + b.acc + '%' : (d.items ? d.items.length + ' 句' : '');
+      _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div><div class="sub">' + sub2 + '</div></div>'
+        + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
+    });
+
+    h.push('<div class="home-card merge-row">'
+      + '<div class="hc-title">' + ic('calendar') + '本月打卡<span class="merge-sep">·</span>' + ic('target') + '最近练习<span class="grow"></span>'
       + (_streakN > 0 ? '<span class="cal-streak">' + ic('fire') + '连续 ' + _streakN + ' 天</span>' : '')
       + '</div>'
-      + '<div class="cal-grid">' + _cells + '</div>'
-      + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>共练习 <b>' + _mRounds + '</b> 次<span class="s-dot">·</span>今日 <b>' + _todayN + '</b> 次</div>'
+      + '<div class="merge-side cal-side">' + _cellsHtml + '</div>'
+      + (_rows.length ? '<div class="merge-side recent-side"><div class="home-decks">' + _rows.join('') + '</div></div>' : '')
       + '</div>');
-  }
-
-  /* —— 继续练习 / 最近牌组 —— */
-  var rows = [];
-  if(resume){
-    var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
-    var sub = resume.idx > 0
-      ? '续练 · 上次练到第 ' + resume.idx + ' / ' + d1.items.length + ' 句'
-      : (b1 && b1.acc != null ? '续练这张 · 上次正确率 ' + b1.acc + '%' : (d1.items ? d1.items.length + ' 句' : ''));
-    rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div><div class="sub">' + sub + '</div></div>'
-      + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
-  }
-  recent.forEach(function(d){
-    var b = mem.best && mem.best[d.id];
-    var sub2 = (b && b.acc != null) ? '上次正确率 ' + b.acc + '%' : (d.items ? d.items.length + ' 句' : '');
-    rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div><div class="sub">' + sub2 + '</div></div>'
-      + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
-  });
-  if(rows.length){
-    h.push('<div class="home-card"><div class="hc-title">' + ic('target') + (resume && resume.idx > 0 ? '继续上次练习' : '最近练习') + '<span class="grow"></span></div>'
-      + '<div class="home-decks">' + rows.join('') + '</div></div>');
   }
 
   h.push('<div class="home-links">'
@@ -3450,6 +3631,9 @@ function renderHome(){
     };
   });
   showHomePage();
+  /* 日历 popover：grid 事件代理到 document（bindCalPop 内 _calPopBound 守卫一次性），
+     renderHome 重渲染 grid 也无需重绑 */
+  bindCalPop();
 }
 
 /* 句子是否有任意可用详解（对象有维度/或字符串非空） */
@@ -4097,6 +4281,12 @@ $('stageTipBar').addEventListener('click', function(e){
   else if(act==='full') showFullSentence();
 });
 $('btnSpeak').onclick = function(){ speakSentence(); };
+/* 返回主页：sentence-level 练习，finishSentence 末尾已 saveStore（main.html:2794 附近），
+   中途退出不会丢失任何句子进度。直接 cancel TTS + showHomePage，零确认。 */
+$('btnBack').onclick = function(){
+  try{ speechSynthesis && speechSynthesis.cancel(); }catch(e){}
+  showHomePage();
+};
 /* 详解入口：答完当前句后打开详解页 */
 var _explainFromPage = 'pagePractice';
 $('btnExplain').onclick = function(){

@@ -26,6 +26,9 @@ const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'dele
 const AI_EXPLAIN_ENABLED = String(process.env.AI_EXPLAIN_ENABLED || '').trim().toLowerCase() === 'true';
 
 const app = express();
+/* 安全加固（2026-09-10）：移除 Express 默认的 `X-Powered-By: Express` 响应头。
+   暴露后端技术栈会帮攻击者直接定位已知漏洞版本，属零成本减少攻击面。 */
+app.disable('x-powered-by');
 app.use(express.json({ limit: '80mb' })); // 图文课程含 base64 图片，可能很大
 
 const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
@@ -500,9 +503,15 @@ app.post('/api/import', auth.authenticate, function (req, res) {
 app.use(function (req, res, next) {
   // 防止误部署时通过静态服务泄露后端源码、依赖、本地开发/截图产物、架构文档与测试脚本
   // P0（2026-09-09）：补 .git（实测 /\.git/config 等 200，可重建全部源码与提交历史）、e2e、deliverables、dotfiles(.env*/.workbuddy)
-  if (/^\/(server|node_modules|output|scripts|extra|e2e|deliverables)\b/i.test(req.path)) return res.status(403).end('Forbidden');
+  // P1（2026-09-10，自检脚本 scripts/deploy-security-smoke.sh 实测抓出）：
+  //   /deploy/nginx-chunklab.conf 曾 200 可公开下载（泄露内网端口/域名/反代拓扑）、/ref 未拦、
+  //   /package.json 暴露依赖版本与 scripts、*.py/*.conf/*.sh/*.service/*.yml 等运维脚本未拦、/diagnose.html 调试页未拦。
+  if (/^\/(server|node_modules|output|scripts|extra|e2e|deliverables|deploy|ref)\b/i.test(req.path)) return res.status(403).end('Forbidden');
   if (/\/\./.test(req.path)) return res.status(403).end('Forbidden'); // 任意层级 dotfile/dotdir：/.git、/.env、/.workbuddy、/server/.env…
-  if (/\.(md|markdown|bak|tmp|log|db|sqlite|sqlite3)$/i.test(req.path) || /\.test\.js$/i.test(req.path)) return res.status(403).end('Forbidden');
+  if (/\.(md|markdown|bak|tmp|log|db|sqlite|sqlite3|py|conf|ini|yml|yaml|sh|service)$/i.test(req.path) || /\.test\.js$/i.test(req.path)) return res.status(403).end('Forbidden');
+  if (/^\/(package|package-lock)\.json$/i.test(req.path)) return res.status(403).end('Forbidden'); // 依赖清单：泄露版本→可直接查已知 CVE
+  if (/^\/validate_[a-z0-9_]+\.js$/i.test(req.path)) return res.status(403).end('Forbidden'); // 根目录数据校验脚本（构建期工具，非前端运行时依赖）
+  if (/^\/diagnose\.html$/i.test(req.path)) return res.status(403).end('Forbidden'); // 调试页，不对公网开放
   next();
 });
 /* 根路径 → 入口页。仓库无 index.html（入口是 main.html），express.static 对 / 会 404 "Cannot GET /" */

@@ -41,4 +41,14 @@ def gen(size, path):
 gen(512, "icon-512.png")
 gen(192, "icon-192.png")
 gen(180, "icon-180.png")  # iOS apple-touch-icon 规范尺寸
-print("icons generated")
+
+# ---- favicon（2026-09-10）：修「浏览器 tab 退化成显示完整 URL」 ----
+# 根因：此前只声明 512×512 PNG，浏览器 tab 默认请求 /favicon.ico 与 32×32 均 404，
+#      部分浏览器（Chrome/Edge/Firefox）在 favicon 加载失败时用 URL 字符串当 tab 标识。
+# 做法：从 512 主图 LANCZOS 缩放（避免小尺寸重绘导致 "CL" 字形糊掉），
+#      并打包多尺寸 .ico 供浏览器/书签/爬虫直接请求 /favicon.ico。
+_master = Image.open("icon-512.png")
+_master.resize((32, 32), Image.LANCZOS).save("icon-32.png", "PNG")
+_master.resize((16, 16), Image.LANCZOS).save("icon-16.png", "PNG")
+_master.save("favicon.ico", format="ICO", sizes=[(16, 16), (32, 32), (48, 48)])
+print("icons + favicon generated")

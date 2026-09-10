@@ -572,8 +572,20 @@ async function main() {
         check('AI 默认关闭实例 config.aiEnabled=false', cr.status === 200 && cr.json && cr.json.aiEnabled === false, 'status=' + cr.status);
 
         // ===== P0 回归（2026-09-09）：静态黑名单（.git/dotfiles/e2e）+ CORS fail-closed =====
+        // P1 补充（2026-09-10，由 scripts/deploy-security-smoke.sh 实测抓出）：
+        //   /deploy/nginx-chunklab.conf 曾 200 可公开下载（泄露内网端口/域名/反代拓扑）、
+        //   /package.json 暴露依赖版本与 scripts、/validate_*.js 构建脚本、/ref/ 参考素材、/diagnose.html 调试页。
         // 静态敏感路径必须 403（曾实测 /.git/config 200 可重建源码与提交历史）
-        const staticPaths = ['/.git/config', '/.git/HEAD', '/.gitignore', '/.env', '/e2e/e2e.js'];
+        const staticPaths = [
+          '/.git/config', '/.git/HEAD', '/.gitignore', '/.env', '/e2e/e2e.js',
+          '/deploy/nginx-chunklab.conf', '/deploy/chunklab.service',
+          '/package.json', '/package-lock.json',
+          '/validate_builtins.js', '/validate_oral8000.js',
+          '/ref/anything.html', '/diagnose.html',
+          '/server/index.js', '/server/data/chunklab.db',
+          '/output/e2e/e2e.js', '/scripts/deploy-security-smoke.sh',
+          '/make-icons.py', '/README.md', '/architecture-plan.md'
+        ];
         for (const sp of staticPaths) {
           const sr = await new Promise(function (resolve) {
             const u = new URL(offBase + sp);
@@ -591,6 +603,25 @@ async function main() {
           q.end();
         });
         check('P0 静态白名单 main.html → 200', okStatic.status === 200, 'status=' + okStatic.status);
+        // P1（2026-09-10）：favicon 资产必须可达 —— 曾因只声明 512×512、/favicon.ico 与 32×32 均 404，
+        // 导致浏览器 tab 退化成显示完整 URL（用户反馈）。
+        for (const ap of ['/favicon.ico', '/icon-32.png', '/icon-192.png', '/manifest.json']) {
+          const ar = await new Promise(function (resolve) {
+            const u = new URL(offBase + ap);
+            const q = http.request(u, function (res) { res.resume(); res.on('end', function () { resolve({ status: res.statusCode }); }); });
+            q.on('error', function () { resolve({ status: 0 }); });
+            q.end();
+          });
+          check('P1 静态白名单 ' + ap + ' → 200', ar.status === 200, 'status=' + ar.status);
+        }
+        // P1（2026-09-10）：Express 默认 X-Powered-By 头必须已移除（不暴露后端技术栈）
+        const hdrR = await new Promise(function (resolve) {
+          const u = new URL(offBase + '/api/health');
+          const q = http.request(u, function (res) { res.resume(); res.on('end', function () { resolve({ poweredBy: res.headers['x-powered-by'] }); }); });
+          q.on('error', function () { resolve({ poweredBy: 'ERR' }); });
+          q.end();
+        });
+        check('P1 无 X-Powered-By 头', !hdrR.poweredBy, 'x-powered-by=' + hdrR.poweredBy);
         // CORS 未配白名单 → 不回显 Access-Control-Allow-Origin（浏览器读到即拦截跨域）
         const corsR = await new Promise(function (resolve) {
           const u = new URL(offBase + '/api/config');
