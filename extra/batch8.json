@@ -1,0 +1,1144 @@
+[
+  {
+    "sentence": "Are you all right — you look a little pale.",
+    "cid": "93fb4e96",
+    "translation": "你还好吗？你脸色有点发白。",
+    "chunks": [
+      "Are you all right —",
+      "you look a little pale."
+    ],
+    "hints": [
+      "你还好吗",
+      "你脸色有点发白"
+    ],
+    "grammar": [
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɑːr/",
+          "/juː/",
+          "/ɔːl/",
+          "/raɪt/"
+        ],
+        "pos": "主系表疑问句",
+        "meaning": "你还好吗"
+      },
+      {
+        "role": "主系表",
+        "color": "#3358e0",
+        "phonetic": [
+          "/juː/",
+          "/lʊk/",
+          "/ə/",
+          "/ˈlɪtl/",
+          "/peɪl/"
+        ],
+        "pos": "系动词+表语",
+        "meaning": "你看起来有点苍白"
+      }
+    ],
+    "explanations": [
+      "**all right** = 没事、还好。关心他人状态的高频开场，比 Are you okay? 稍正式一点，也常写作 alright。",
+      "近义：Are you OK? / Is everything all right? 例句：You fell off your bike — are you all right?"
+    ]
+  },
+  {
+    "sentence": "Are you okay — you seem a bit off today.",
+    "cid": "39a91cfd",
+    "translation": "你还好吧？你今天有点不对劲。",
+    "chunks": [
+      "Are you okay —",
+      "you seem a bit off today."
+    ],
+    "hints": [
+      "你还好吧",
+      "你今天状态不太对"
+    ],
+    "grammar": [
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɑːr/",
+          "/juː/",
+          "/oʊˈkeɪ/"
+        ],
+        "pos": "主系表疑问句",
+        "meaning": "你还好吧"
+      },
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/juː/",
+          "/siːm/",
+          "/ə/",
+          "/bɪt/",
+          "/ɒf/",
+          "/təˈdeɪ/"
+        ],
+        "pos": "系动词+习语表语",
+        "meaning": "你今天有点不对劲"
+      }
+    ],
+    "explanations": [
+      "**a bit off** = 有点不对劲、状态不好。off 在这里表示「不寻常、不舒服」，比 sick 委婉，可指身体也可指情绪。",
+      "近义：not yourself / a little down。例句：He seems a bit off since he got back from the trip."
+    ]
+  },
+  {
+    "sentence": "Don't take it to heart — he was just joking.",
+    "cid": "0f388d70",
+    "translation": "别往心里去。他只是开个玩笑。",
+    "chunks": [
+      "Don't take it to heart —",
+      "he was just joking."
+    ],
+    "hints": [
+      "别往心里去",
+      "他只是开玩笑"
+    ],
+    "grammar": [
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/doʊnt/",
+          "/teɪk/",
+          "/ɪt/",
+          "/tuː/",
+          "/hɑːrt/"
+        ],
+        "pos": "祈使句+动词习语",
+        "meaning": "别往心里去"
+      },
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/hiː/",
+          "/wəz/",
+          "/dʒʌst/",
+          "/ˈdʒoʊkɪŋ/"
+        ],
+        "pos": "过去进行时",
+        "meaning": "他只是在开玩笑"
+      }
+    ],
+    "explanations": [
+      "**take it to heart** = 把话往心里去、太当真。多用于安慰被批评或被开玩笑的人，否定式 Don't take it to heart 是高频安慰语。",
+      "近义：Don't let it get to you. / Don't dwell on it. 例句：His comments were unfair, but don't take them to heart."
+    ]
+  },
+  {
+    "sentence": "Whatever happens, I'm here for you.",
+    "cid": "c8667fe9",
+    "translation": "无论发生什么，我都在你身边。",
+    "chunks": [
+      "Whatever happens,",
+      "I'm here for you."
+    ],
+    "hints": [
+      "无论发生什么",
+      "我都在你身边"
+    ],
+    "grammar": [
+      {
+        "role": "状语从句",
+        "color": "#c87033",
+        "phonetic": [
+          "/wətˈevər/",
+          "/ˈhæpənz/"
+        ],
+        "pos": "让步状语从句",
+        "meaning": "无论发生什么"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/aɪm/",
+          "/hɪr/",
+          "/fɔːr/",
+          "/juː/"
+        ],
+        "pos": "习语句型",
+        "meaning": "我支持你、陪着你"
+      }
+    ],
+    "explanations": [
+      "**be here for you** = 我在你身边、随时支持你。安慰场景的高频承诺句，强调「不是空话，我人就在」。",
+      "近义：I've got your back. / You can count on me. 例句：Losing a job is hard, but remember I'm here for you."
+    ]
+  },
+  {
+    "sentence": "Is something bothering you — you can tell me.",
+    "cid": "51e516d2",
+    "translation": "有什么心事吗？你可以跟我说。",
+    "chunks": [
+      "Is something bothering you —",
+      "you can tell me."
+    ],
+    "hints": [
+      "有什么事困扰你吗",
+      "你可以告诉我"
+    ],
+    "grammar": [
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪz/",
+          "/ˈsʌmθɪŋ/",
+          "/ˈbɑːðərɪŋ/",
+          "/juː/"
+        ],
+        "pos": "现在进行时疑问句",
+        "meaning": "有什么事在困扰你吗"
+      },
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/kæn/",
+          "/tel/",
+          "/miː/"
+        ],
+        "pos": "情态动词句",
+        "meaning": "你可以告诉我"
+      }
+    ],
+    "explanations": [
+      "**bother** = 打扰、使烦恼。Is something bothering you? 比 What's wrong? 更委婉，暗示「我注意到你状态不对」。",
+      "近义：Is something on your mind? / Did something happen? 例句：You've been quiet all night — is something bothering you?"
+    ]
+  },
+  {
+    "sentence": "You've been quiet all day — what's on your mind?",
+    "cid": "688627bc",
+    "translation": "你一整天都没说话。你在想什么呢？",
+    "chunks": [
+      "You've been quiet all day —",
+      "what's on your mind?"
+    ],
+    "hints": [
+      "你一整天都很安静",
+      "你在想什么"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/juːv/",
+          "/biːn/",
+          "/ˈkwaɪət/",
+          "/ɔːl/",
+          "/deɪ/"
+        ],
+        "pos": "现在完成时",
+        "meaning": "你一整天都很安静"
+      },
+      {
+        "role": "习语·疑问",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wʌts/",
+          "/ɒn/",
+          "/jɔːr/",
+          "/maɪnd/"
+        ],
+        "pos": "名词习语",
+        "meaning": "你在想什么"
+      }
+    ],
+    "explanations": [
+      "**on one's mind** = 挂在心上、有心事。What's on your mind? 关心的是「在想什么烦心事」，比 What do you think? 更体贴。",
+      "区别：take one's mind off（转移注意力）/ keep in mind（记住）。例句：You look worried — what's on your mind?"
+    ]
+  },
+  {
+    "sentence": "Look on the bright side — nobody got hurt.",
+    "cid": "b8e382f5",
+    "translation": "往好处想嘛。没有人受伤。",
+    "chunks": [
+      "Look on the bright side —",
+      "nobody got hurt."
+    ],
+    "hints": [
+      "往好处想",
+      "没人受伤"
+    ],
+    "grammar": [
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/lʊk/",
+          "/ɒn/",
+          "/ðə/",
+          "/braɪt/",
+          "/saɪd/"
+        ],
+        "pos": "祈使句+名词习语",
+        "meaning": "往好处想"
+      },
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/ˈnoʊbədi/",
+          "/ɡɑːt/",
+          "/hɜːrt/"
+        ],
+        "pos": "一般过去时被动",
+        "meaning": "没有人受伤"
+      }
+    ],
+    "explanations": [
+      "**look on the bright side** = 往好处想、看到积极一面。安慰翻车现场的标准句，常接 but/nobody 引出「万幸」。",
+      "近义：Every cloud has a silver lining. 例句：We lost the game, but look on the bright side — we played as a team."
+    ]
+  },
+  {
+    "sentence": "You remembered my birthday — that's so sweet!",
+    "cid": "1ba75575",
+    "translation": "你记得我的生日。太贴心了！",
+    "chunks": [
+      "You remembered my birthday —",
+      "that's so sweet!"
+    ],
+    "hints": [
+      "你记得我的生日",
+      "太贴心了"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/rɪˈmembərd/",
+          "/maɪ/",
+          "/ˈbɜːrθdeɪ/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "你记得我的生日"
+      },
+      {
+        "role": "习语·感叹",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ðæts/",
+          "/soʊ/",
+          "/swiːt/"
+        ],
+        "pos": "习语感叹句",
+        "meaning": "太贴心了"
+      }
+    ],
+    "explanations": [
+      "**That's so sweet!** = 太贴心了、好暖心。回应别人的细心举动，sweet 在口语里指「体贴暖心」，不是「甜」。",
+      "近义：That's so thoughtful of you. / You're so kind. 例句：He brought me soup when I was sick. That's so sweet!"
+    ]
+  },
+  {
+    "sentence": "Don't worry — we'll get through this together.",
+    "cid": "0590edc8",
+    "translation": "别担心。我们会一起挺过去的。",
+    "chunks": [
+      "Don't worry —",
+      "we'll get through this together."
+    ],
+    "hints": [
+      "别担心",
+      "我们会一起渡过难关"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/doʊnt/",
+          "/ˈwʌri/"
+        ],
+        "pos": "否定祈使句",
+        "meaning": "别担心"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wil/",
+          "/ɡet/",
+          "/θruː/",
+          "/ðɪs/",
+          "/təˈɡeðər/"
+        ],
+        "pos": "短语动词+将来时",
+        "meaning": "我们会一起渡过难关"
+      }
+    ],
+    "explanations": [
+      "**get through** = 挺过、熬过（难关）。get through this 强调「这段困难会过去」，加 together 是给对方打气的力量感。",
+      "近义：pull through（挺过来，多指病痛）/ ride it out。例句：Money is tight this month, but we'll get through this together."
+    ]
+  },
+  {
+    "sentence": "Everyone ran out of the building — what's going on?",
+    "cid": "2e515325",
+    "translation": "大家都跑出了大楼。发生什么事了？",
+    "chunks": [
+      "Everyone ran out of the building —",
+      "what's going on?"
+    ],
+    "hints": [
+      "大家都跑出大楼",
+      "发生什么了"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/ˈevriwʌn/",
+          "/ræn/",
+          "/aʊt/",
+          "/əv/",
+          "/ðə/",
+          "/ˈbɪldɪŋ/"
+        ],
+        "pos": "一般过去时+短语动词",
+        "meaning": "大家都跑出了大楼"
+      },
+      {
+        "role": "习语·疑问",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wʌts/",
+          "/ˈɡoʊɪŋ/",
+          "/ɒn/"
+        ],
+        "pos": "进行时习语",
+        "meaning": "发生什么事了"
+      }
+    ],
+    "explanations": [
+      "**go on** = 发生。What's going on? 是询问现场情况的万能句，比 What happened? 更强调「此刻正在进行」。",
+      "近义：What's happening? / What's the matter? 例句：Why is everyone gathered here? What's going on?"
+    ]
+  },
+  {
+    "sentence": "You've been sighing all morning — what's wrong?",
+    "cid": "9a92cfc2",
+    "translation": "你一早上都在叹气。怎么了？",
+    "chunks": [
+      "You've been sighing all morning —",
+      "what's wrong?"
+    ],
+    "hints": [
+      "你一早上都在叹气",
+      "怎么了"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/juːv/",
+          "/biːn/",
+          "/ˈsaɪɪŋ/",
+          "/ɔːl/",
+          "/ˈmɔːrnɪŋ/"
+        ],
+        "pos": "现在完成进行时",
+        "meaning": "你一早上都在叹气"
+      },
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/wʌts/",
+          "/rɔːŋ/"
+        ],
+        "pos": "主系表疑问句",
+        "meaning": "怎么了"
+      }
+    ],
+    "explanations": [
+      "**What's wrong?** = 怎么了、出什么事了。最直接的关心句，wrong 指「有问题、不对劲」，语气比 What's going on? 更私人。",
+      "近义：What's the matter? / Is something wrong? 例句：You look upset. What's wrong?"
+    ]
+  },
+  {
+    "sentence": "You're not yourself today — is everything fine at home?",
+    "cid": "65dd132b",
+    "translation": "你今天不太对劲。家里一切都好吗？",
+    "chunks": [
+      "You're not yourself today —",
+      "is everything fine at home?"
+    ],
+    "hints": [
+      "你今天状态不对",
+      "家里还好吗"
+    ],
+    "grammar": [
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/jʊr/",
+          "/nɑːt/",
+          "/jɔːrˈself/",
+          "/təˈdeɪ/"
+        ],
+        "pos": "习语表语",
+        "meaning": "你今天不像平时的你"
+      },
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪz/",
+          "/ˈevriθɪŋ/",
+          "/faɪn/",
+          "/æt/",
+          "/hoʊm/"
+        ],
+        "pos": "主系表疑问句",
+        "meaning": "家里一切都好吗"
+      }
+    ],
+    "explanations": [
+      "**not oneself** = 不对劲、不像平时的自己。指情绪或状态明显反常，是委婉关心的经典句式。",
+      "近义：You seem a bit off. / You're acting strange today. 例句：You've hardly eaten anything — you're not yourself today."
+    ]
+  },
+  {
+    "sentence": "Just to be clear, the deadline is Friday, not Monday.",
+    "cid": "9464b0ad",
+    "translation": "先说清楚，截止日期是周五，不是周一。",
+    "chunks": [
+      "Just to be clear,",
+      "the deadline is Friday, not Monday."
+    ],
+    "hints": [
+      "先说清楚",
+      "截止日期是周五不是周一"
+    ],
+    "grammar": [
+      {
+        "role": "习语·开场",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/dʒʌst/",
+          "/tuː/",
+          "/biː/",
+          "/klɪr/"
+        ],
+        "pos": "习语插入语",
+        "meaning": "先说清楚"
+      },
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/ˈdedlaɪn/",
+          "/ɪz/",
+          "/fraɪdeɪ/",
+          "/nɑːt/",
+          "/ˈmʌndeɪ/"
+        ],
+        "pos": "一般现在时",
+        "meaning": "截止日期是周五不是周一"
+      }
+    ],
+    "explanations": [
+      "**just to be clear** = 先说清楚、确认一下。职场高频开场，用于消除歧义，比 to be honest 语气更中性。",
+      "近义：To be clear / Just so we're on the same page. 例句：Just to be clear, this discount applies today only."
+    ]
+  },
+  {
+    "sentence": "He always promises a lot, if you know what I mean.",
+    "cid": "e81644f2",
+    "translation": "他总是许下很多承诺，你懂我意思吧。",
+    "chunks": [
+      "He always promises a lot,",
+      "if you know what I mean."
+    ],
+    "hints": [
+      "他总是许很多诺",
+      "你懂我意思吧"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/hiː/",
+          "/ˈɔːlweɪz/",
+          "/ˈprɑːmɪsɪz/",
+          "/ə/",
+          "/lɑːt/"
+        ],
+        "pos": "一般现在时",
+        "meaning": "他总是许下很多承诺"
+      },
+      {
+        "role": "习语·插入语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɪf/",
+          "/juː/",
+          "/noʊ/",
+          "/wʌt/",
+          "/aɪ/",
+          "/miːn/"
+        ],
+        "pos": "习语插入语",
+        "meaning": "你懂我意思吧"
+      }
+    ],
+    "explanations": [
+      "**you know what I mean** = 你懂我意思吧。暗示「话里有话，不便挑明」，口语里常缩略成 you know what I'm saying / know what I mean?",
+      "近义：if you catch my drift. / you get me? 例句：He's generous with words, if you know what I mean."
+    ]
+  },
+  {
+    "sentence": "You really got me the tickets — do you mean it?",
+    "cid": "a1fc377e",
+    "translation": "你真的给我搞到票了？你是认真的吗？",
+    "chunks": [
+      "You really got me the tickets —",
+      "do you mean it?"
+    ],
+    "hints": [
+      "你真的弄到票了",
+      "你是认真的吗"
+    ],
+    "grammar": [
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/juː/",
+          "/ˈriːəli/",
+          "/ɡɑːt/",
+          "/miː/",
+          "/ðə/",
+          "/ˈtɪkɪts/"
+        ],
+        "pos": "一般过去时疑问",
+        "meaning": "你真的给我弄到票了"
+      },
+      {
+        "role": "习语·疑问",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/duː/",
+          "/juː/",
+          "/miːn/",
+          "/ɪt/"
+        ],
+        "pos": "习语疑问句",
+        "meaning": "你是认真的吗"
+      }
+    ],
+    "explanations": [
+      "**mean it** = 说真的、不是开玩笑。Do you mean it? 用于确认对方的话是真心还是随口一说，惊喜或怀疑时都用。",
+      "近义：Are you serious? / Really? 例句：You're giving me your old laptop? Do you mean it?"
+    ]
+  },
+  {
+    "sentence": "The bill looks wrong — it doesn't make sense.",
+    "cid": "8f7af965",
+    "translation": "这账单看着不对。完全说不通。",
+    "chunks": [
+      "The bill looks wrong —",
+      "it doesn't make sense."
+    ],
+    "hints": [
+      "账单看着不对",
+      "说不通"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðə/",
+          "/bɪl/",
+          "/lʊks/",
+          "/rɔːŋ/"
+        ],
+        "pos": "系动词+表语",
+        "meaning": "账单看起来不对"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɪt/",
+          "/ˈdʌznt/",
+          "/meɪk/",
+          "/sens/"
+        ],
+        "pos": "名词习语",
+        "meaning": "说不通、不合理"
+      }
+    ],
+    "explanations": [
+      "**make sense** = 说得通、有道理。否定式 doesn't make sense 表示「逻辑上讲不通」，质疑账单、规则、解释时都用它。",
+      "近义：That doesn't add up. 例句：The math is right, but the answer still doesn't make sense."
+    ]
+  },
+  {
+    "sentence": "Thanks for the warning — i'll take a raincoat with me.",
+    "cid": "babd2113",
+    "translation": "谢谢提醒。我会带件雨衣。",
+    "chunks": [
+      "Thanks for the warning —",
+      "i'll take a raincoat with me."
+    ],
+    "hints": [
+      "谢谢提醒",
+      "我会带上雨衣"
+    ],
+    "grammar": [
+      {
+        "role": "习语·致谢",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/θæŋks/",
+          "/fɔːr/",
+          "/ðə/",
+          "/ˈwɔːrnɪŋ/"
+        ],
+        "pos": "习语致谢句",
+        "meaning": "谢谢提醒"
+      },
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪl/",
+          "/teɪk/",
+          "/ə/",
+          "/ˈreɪnkoʊt/",
+          "/wɪð/",
+          "/miː/"
+        ],
+        "pos": "将来时",
+        "meaning": "我会带上雨衣"
+      }
+    ],
+    "explanations": [
+      "**thanks for the warning** = 谢谢提醒。回应别人好意告知风险，比 thanks for telling me 更明确指向「预警」。",
+      "近义：Good to know. / I appreciate the heads-up. 例句：Thanks for the warning — I'll avoid that road at night."
+    ]
+  },
+  {
+    "sentence": "Watch out — there's a step behind you.",
+    "cid": "843cd5dc",
+    "translation": "小心！你身后有一级台阶。",
+    "chunks": [
+      "Watch out —",
+      "there's a step behind you."
+    ],
+    "hints": [
+      "小心",
+      "你身后有台阶"
+    ],
+    "grammar": [
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wɑːtʃ/",
+          "/aʊt/"
+        ],
+        "pos": "短语动词祈使句",
+        "meaning": "小心、注意"
+      },
+      {
+        "role": "there be 句型",
+        "color": "#c87033",
+        "phonetic": [
+          "/ðerz/",
+          "/ə/",
+          "/step/",
+          "/bɪˈhaɪnd/",
+          "/juː/"
+        ],
+        "pos": "存在句",
+        "meaning": "你身后有一级台阶"
+      }
+    ],
+    "explanations": [
+      "**watch out** = 小心、当心。紧急提醒的高频短语动词，比 be careful 更急迫，常单独喊出来。",
+      "近义：Look out! / Mind the step. 例句：Watch out! The floor is wet."
+    ]
+  },
+  {
+    "sentence": "To make a long story short, we missed the last train.",
+    "cid": "d3483d8c",
+    "translation": "长话短说，我们错过了末班车。",
+    "chunks": [
+      "To make a long story short,",
+      "we missed the last train."
+    ],
+    "hints": [
+      "长话短说",
+      "我们错过末班车"
+    ],
+    "grammar": [
+      {
+        "role": "习语·开场",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/tuː/",
+          "/meɪk/",
+          "/ə/",
+          "/lɔːŋ/",
+          "/ˈstɔːri/",
+          "/ʃɔːrt/"
+        ],
+        "pos": "习语插入语",
+        "meaning": "长话短说"
+      },
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/wiː/",
+          "/mɪst/",
+          "/ðə/",
+          "/læst/",
+          "/treɪn/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "我们错过了末班车"
+      }
+    ],
+    "explanations": [
+      "**make a long story short** = 长话短说。讲述冗长经历前先给结论，口语也常用短版 long story short。",
+      "近义：To cut a long story short（英式）/ bottom line。例句：To make a long story short, we got lost and arrived an hour late."
+    ]
+  },
+  {
+    "sentence": "I only have five minutes, so please make it brief.",
+    "cid": "6464f15a",
+    "translation": "我只有五分钟，请说得简短些。",
+    "chunks": [
+      "I only have five minutes,",
+      "so please make it brief."
+    ],
+    "hints": [
+      "我只有五分钟",
+      "请简短些"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/ˈoʊnli/",
+          "/hæv/",
+          "/faɪv/",
+          "/ˈmɪnɪts/"
+        ],
+        "pos": "一般现在时",
+        "meaning": "我只有五分钟"
+      },
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/soʊ/",
+          "/pliːz/",
+          "/meɪk/",
+          "/ɪt/",
+          "/briːf/"
+        ],
+        "pos": "祈使句+习语",
+        "meaning": "请说得简短些"
+      }
+    ],
+    "explanations": [
+      "**make it brief** = 说得简短些。职场会议高频，brief 作形容词指「简明扼要」，it 指你要说的内容。",
+      "近义：Keep it short. / Get to the point. 例句：The boss is busy — make it brief."
+    ]
+  },
+  {
+    "sentence": "Stop beating around the bush and come to the point.",
+    "cid": "27a9e216",
+    "translation": "别绕弯子了，直说重点吧。",
+    "chunks": [
+      "Stop beating around the bush",
+      "and come to the point."
+    ],
+    "hints": [
+      "别绕弯子",
+      "直说重点"
+    ],
+    "grammar": [
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/stɑːp/",
+          "/ˈbiːtɪŋ/",
+          "/əˈraʊnd/",
+          "/ðə/",
+          "/bʊʃ/"
+        ],
+        "pos": "动名词+习语祈使句",
+        "meaning": "别拐弯抹角"
+      },
+      {
+        "role": "习语·祈使",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ənd/",
+          "/kʌm/",
+          "/tuː/",
+          "/ðə/",
+          "/pɔɪnt/"
+        ],
+        "pos": "习语祈使句",
+        "meaning": "直奔主题"
+      }
+    ],
+    "explanations": [
+      "**beat around the bush** = 拐弯抹角、绕弯子。源自狩猎时用棍子打灌木赶猎物，引申为「不直入正题」。",
+      "**come to the point** = 直说重点。与前者是一对反义搭配，常连用催对方进入正题。例句：Stop beating around the bush and come to the point."
+    ]
+  },
+  {
+    "sentence": "Open the door, please — it's urgent!",
+    "cid": "ab300613",
+    "translation": "请开门！事情很紧急！",
+    "chunks": [
+      "Open the door, please —",
+      "it's urgent!"
+    ],
+    "hints": [
+      "请开门",
+      "很紧急"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ˈoʊpən/",
+          "/ðə/",
+          "/dɔːr/",
+          "/pliːz/"
+        ],
+        "pos": "祈使句",
+        "meaning": "请开门"
+      },
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪts/",
+          "/ˈɜːrdʒənt/"
+        ],
+        "pos": "主系表",
+        "meaning": "情况紧急"
+      }
+    ],
+    "explanations": [
+      "**urgent** = 紧急的、十万火急。指需要立刻处理，医疗、工作、快递场景通用，语气比 important 强得多。",
+      "近义：It can't wait. / It's an emergency. 例句：Sorry to call so late, but it's urgent."
+    ]
+  },
+  {
+    "sentence": "I'm still learning English, so could you speak slower?",
+    "cid": "29e72a51",
+    "translation": "你能说慢一点吗？我还在学英语。",
+    "chunks": [
+      "I'm still learning English,",
+      "so could you speak slower?"
+    ],
+    "hints": [
+      "我还在学英语",
+      "所以能说慢点吗"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪm/",
+          "/stɪl/",
+          "/ˈlɜːrnɪŋ/",
+          "/ˈɪŋɡlɪʃ/"
+        ],
+        "pos": "现在进行时",
+        "meaning": "我还在学英语"
+      },
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/kʊd/",
+          "/juː/",
+          "/spiːk/",
+          "/ˈsloʊər/"
+        ],
+        "pos": "情态动词疑问句",
+        "meaning": "你能说慢一点吗"
+      }
+    ],
+    "explanations": [
+      "**Could you speak slower?** = 能说慢一点吗？Could 比 Can 更客气；更礼貌的版本是 Could you speak more slowly, please?",
+      "近义：Could you slow down a little? 例句：Could you speak slower? English isn't my first language."
+    ]
+  },
+  {
+    "sentence": "I need your advice, so do you have a second?",
+    "cid": "9b9216ad",
+    "translation": "你有空吗？我需要你的建议。",
+    "chunks": [
+      "I need your advice,",
+      "so do you have a second?"
+    ],
+    "hints": [
+      "我需要你的建议",
+      "所以你有一分钟吗"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/niːd/",
+          "/jɔːr/",
+          "/ədˈvaɪs/"
+        ],
+        "pos": "一般现在时",
+        "meaning": "我需要你的建议"
+      },
+      {
+        "role": "习语·疑问",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/duː/",
+          "/juː/",
+          "/hæv/",
+          "/ə/",
+          "/ˈsekənd/"
+        ],
+        "pos": "习语疑问句",
+        "meaning": "你有一小会儿时间吗"
+      }
+    ],
+    "explanations": [
+      "**have a second** = 有一小会儿空。second 这里指「片刻」，比 have time 更轻量，暗示「很快就好」。",
+      "近义：Do you have a minute? / Got a sec? 例句：Do you have a second? I want to run something by you."
+    ]
+  },
+  {
+    "sentence": "I set the table, so it's your turn to do the dishes.",
+    "cid": "22f907e9",
+    "translation": "我摆好了餐具，所以轮到你洗碗了。",
+    "chunks": [
+      "I set the table,",
+      "so it's your turn to do the dishes."
+    ],
+    "hints": [
+      "我摆好了餐具",
+      "轮到你洗碗"
+    ],
+    "grammar": [
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪ/",
+          "/set/",
+          "/ðə/",
+          "/ˈteɪbl/"
+        ],
+        "pos": "一般过去时",
+        "meaning": "我摆好了餐具"
+      },
+      {
+        "role": "习语·谓语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/soʊ/",
+          "/ɪts/",
+          "/jɔːr/",
+          "/tɜːrn/",
+          "/tuː/",
+          "/duː/",
+          "/ðə/",
+          "/ˈdɪʃɪz/"
+        ],
+        "pos": "习语句型",
+        "meaning": "轮到你洗碗了"
+      }
+    ],
+    "explanations": [
+      "**it's your turn to do sth** = 轮到你做某事了。turn 表示「轮流的机会」，家庭分工、游戏排队都靠它。",
+      "近义：You're up. / Over to you. 例句：I cooked dinner, so it's your turn to wash up."
+    ]
+  },
+  {
+    "sentence": "Please keep an eye on it — I'll be back in ten minutes.",
+    "cid": "b0110801",
+    "translation": "你能帮我看着点吗？我十分钟后回来。",
+    "chunks": [
+      "Please keep an eye on it —",
+      "I'll be back in ten minutes."
+    ],
+    "hints": [
+      "请你帮忙照看",
+      "我十分钟后回来"
+    ],
+    "grammar": [
+      {
+        "role": "习语·疑问",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/kæn/",
+          "/juː/",
+          "/kiːp/",
+          "/ən/",
+          "/aɪ/",
+          "/ɒn/",
+          "/ɪt/"
+        ],
+        "pos": "习语疑问句",
+        "meaning": "你能帮忙照看吗"
+      },
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/aɪl/",
+          "/biː/",
+          "/bæk/",
+          "/ɪn/",
+          "/ten/",
+          "/ˈmɪnɪts/"
+        ],
+        "pos": "将来时",
+        "meaning": "我十分钟后回来"
+      }
+    ],
+    "explanations": [
+      "**keep an eye on** = 照看、留意。eye 用单数是习惯用法，指「持续盯着」，托人看包、看孩子、看锅都用它。",
+      "区别：keep an eye out for（留意寻找某物）。例句：Keep an eye on my bag while I buy tickets."
+    ]
+  }
+]
