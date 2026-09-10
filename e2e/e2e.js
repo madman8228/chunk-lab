@@ -246,6 +246,31 @@ function check(name, cond, detail) {
     'w=' + (celebrateState ? celebrateState.w : 'null') + ' opts=' + JSON.stringify(celebrateState && celebrateState.opts));
   await pCelebrate.close();
 
+  /* ===== 1g. 答题模式 select 文字（2026-09-10：选择 chunk → 选择、手动拼写 → 手拼） ===== */
+  const pMode = await ctx.newPage();
+  await pMode.route('**/api/**', function (r) { r.abort('failed'); });
+  await pMode.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
+  await pMode.waitForSelector('#btnSettingsTop', { timeout: 10000 });
+  await pMode.locator('#btnSettingsTop').click();
+  await pMode.waitForSelector('#setMode', { state: 'visible', timeout: 5000 });
+  const modeState = await pMode.evaluate(function () {
+    var sel = document.getElementById('setMode');
+    if (!sel) return null;
+    var r = sel.getBoundingClientRect();
+    var opts = Array.from(sel.options).map(function (o) { return o.textContent.trim(); });
+    return { w: Math.round(r.width), opts: opts };
+  });
+  check('settings: #setMode choose 选项文案为「选择」（非「选择 chunk」）',
+    modeState && modeState.opts[0] === '选择',
+    JSON.stringify(modeState));
+  check('settings: #setMode type 选项文案为「手拼」（非「手动拼写」）',
+    modeState && modeState.opts[1] === '手拼',
+    JSON.stringify(modeState));
+  check('settings: #setMode 宽度 ≤ 100px（防回潮到 4 字时代 ~110px+）',
+    modeState && modeState.w <= 100,
+    'w=' + (modeState ? modeState.w : 'null'));
+  await pMode.close();
+
   /* ===== 1b. 统计身份回归：临时复习队列不能拆分原句历史 =====
    * 最小场景：同一句先从稳定题库练习，再从带时间戳的复习题库练习。
    * 现状会按两个 deck id 写成两条 bySentence 记录，导致累计次数看起来丢失。 */
