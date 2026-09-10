@@ -224,6 +224,28 @@ function check(name, cond, detail) {
   check('settings: #setBatchSize 宽度 ≥ 40px（仍可输入两位数）', batchSizeBox && batchSizeBox.w >= 40, 'w=' + (batchSizeBox ? batchSizeBox.w : 'null'));
   await pBatchSize.close();
 
+  /* ===== 1f. 庆祝效果 select 文字 + 宽度（2026-09-10：彩带喷射 → 彩带，宽度缩 30%） ===== */
+  const pCelebrate = await ctx.newPage();
+  await pCelebrate.route('**/api/**', function (r) { r.abort('failed'); });
+  await pCelebrate.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
+  await pCelebrate.waitForSelector('#btnSettingsTop', { timeout: 10000 });
+  await pCelebrate.locator('#btnSettingsTop').click();
+  await pCelebrate.waitForSelector('#setCelebrate', { state: 'visible', timeout: 5000 });
+  const celebrateState = await pCelebrate.evaluate(function () {
+    var sel = document.getElementById('setCelebrate');
+    if (!sel) return null;
+    var r = sel.getBoundingClientRect();
+    var opts = Array.from(sel.options).map(function (o) { return o.textContent.trim(); });
+    return { w: Math.round(r.width), h: Math.round(r.height), opts: opts };
+  });
+  check('settings: #setCelebrate confetti 选项文案为「彩带」（非「彩带喷射」）',
+    celebrateState && celebrateState.opts[0] === '彩带',
+    JSON.stringify(celebrateState));
+  check('settings: #setCelebrate 宽度 ≤ 90px（原 110px 缩 30% → 78px，防回潮）',
+    celebrateState && celebrateState.opts[0] === '彩带' && celebrateState.w <= 90,
+    'w=' + (celebrateState ? celebrateState.w : 'null') + ' opts=' + JSON.stringify(celebrateState && celebrateState.opts));
+  await pCelebrate.close();
+
   /* ===== 1b. 统计身份回归：临时复习队列不能拆分原句历史 =====
    * 最小场景：同一句先从稳定题库练习，再从带时间戳的复习题库练习。
    * 现状会按两个 deck id 写成两条 bySentence 记录，导致累计次数看起来丢失。 */
