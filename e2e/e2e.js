@@ -956,6 +956,71 @@ function check(name, cond, detail) {
     await p7.close(); await c7.close();
   }
 
+  /* ===== 8. 反馈问题（游客可提交，无需登录） =====
+   * 走真实 server（不 abort /api）：入口可见 → 弹窗打开 → 提交 → 成功提示「已收到反馈」，
+   * 并复核服务端 SQLite 里确实多了一条匹配文本的 feedback（端到端贯通，非仅前端假成功）。 */
+  {
+    const cFb = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    const pFb = await cFb.newPage();
+    const errsFb = [];
+    pFb.on('pageerror', function (e) { errsFb.push(e.message); });
+    await pFb.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
+    await pFb.waitForSelector('#btnSettingsTop', { timeout: 10000 });
+    /* 入口：设置面板里可见「反馈问题」按钮 */
+    const entryVisible = await pFb.evaluate(function () {
+      var b = document.getElementById('btnFeedback');
+      return !!b && getComputedStyle(b).display !== 'none';
+    });
+    check('feedback: 设置面板内「反馈问题」入口存在', entryVisible, 'entryVisible=' + entryVisible);
+    /* 打开设置 → 点「反馈问题」→ 弹窗出现 */
+    await pFb.locator('#btnSettingsTop').click();
+    await pFb.waitForSelector('#btnFeedback', { timeout: 5000 });
+    await pFb.locator('#btnFeedback').click();
+    await pFb.waitForFunction(function () {
+      var m = document.getElementById('feedbackMask');
+      return m && !m.hidden;
+    }, { timeout: 5000 });
+    const maskState = await pFb.evaluate(function () {
+      return {
+        open: !document.getElementById('feedbackMask').hidden,
+        settingsClosed: document.getElementById('settingsMask').hidden,
+        hasTextarea: !!document.getElementById('feedbackText'),
+        hasFile: !!document.getElementById('feedbackFile')
+      };
+    });
+    check('feedback: 点击入口后弹窗打开', maskState.open, JSON.stringify(maskState));
+    check('feedback: 打开弹窗时设置面板已收起', maskState.settingsClosed, JSON.stringify(maskState));
+    check('feedback: 弹窗含文字框 + 截图 input', maskState.hasTextarea && maskState.hasFile, JSON.stringify(maskState));
+    /* 提交：填文字 → 点提交 → 成功提示「已收到反馈」 */
+    await pFb.locator('#feedbackText').fill('e2e 反馈：练习页按钮点不动');
+    await pFb.locator('#btnFeedbackSubmit').click();
+    let toastText = '';
+    try {
+      await pFb.waitForFunction(function () {
+        var t = document.getElementById('sysToast');
+        return t && t.textContent && t.textContent.indexOf('已收到反馈') >= 0;
+      }, { timeout: 8000 });
+      toastText = await pFb.evaluate(function () { return document.getElementById('sysToast').textContent; });
+    } catch (e) { toastText = 'TIMEOUT'; }
+    check('feedback: 提交后出现「已收到反馈」提示', toastText.indexOf('已收到反馈') >= 0, 'toast=' + toastText);
+    const maskClosed = await pFb.evaluate(function () { return document.getElementById('feedbackMask').hidden; });
+    check('feedback: 提交成功后弹窗关闭', maskClosed, 'hidden=' + maskClosed);
+    check('feedback: 零 pageerror', errsFb.length === 0, errsFb.join('|'));
+    await pFb.screenshot({ path: path.join(SHOTS, 'e2e-feedback.png') });
+    /* 服务端复核：SQLite 多了一条文本匹配的 feedback 记录 */
+    try {
+      const BetterSqlite3 = require(path.join(ROOT, 'server', 'node_modules', 'better-sqlite3'));
+      const fdb = new BetterSqlite3(path.join(TMP_DB, 'chunklab.db'));
+      const fbRow = fdb.prepare('SELECT text FROM feedback ORDER BY id DESC LIMIT 1').get();
+      fdb.close();
+      check('feedback: 服务端 SQLite 已落一条匹配记录',
+        !!fbRow && fbRow.text === 'e2e 反馈：练习页按钮点不动', JSON.stringify(fbRow));
+    } catch (e) {
+      check('feedback: 服务端 SQLite 复核', false, 'ERR:' + e.message);
+    }
+    await pFb.close(); await cFb.close();
+  }
+
   /* ===== 截图 ===== */
   await p.screenshot({ path: path.join(SHOTS, 'e2e-main.png') });
   await pd.screenshot({ path: path.join(SHOTS, 'e2e-decks.png') });
