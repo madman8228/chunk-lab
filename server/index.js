@@ -20,6 +20,7 @@ const validate = require('./validate');
 const ai = require('./ai');
 const compress = require('./compress');
 const apiCompress = require('./api-compress');
+const feedback = require('./feedback');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
 /* 已迁到行表 user_entity_rows 的 kv 键 → kind 映射（客户端键名 → 服务端 kind）。
@@ -736,6 +737,11 @@ app.get('/api/deck/public/:id', function (req, res) {
     res.json({ ok: true, deck: { id: r.id, name: r.name, author: r.username, publishedAt: r.created_at, items: JSON.parse(r.items_json) } });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
+
+/* ===================== 用户反馈（游客可访问，无需登录） =====================
+   手机端截图上报问题：text 必填 + 可选 base64 截图 + 自动附带诊断 meta。
+   只存服务器（磁盘图片 + SQLite 元数据），不做任何推送。见 server/feedback.js。 */
+app.post('/api/feedback', feedback.submit);
 
 /* 发布 / 下架我的题库（仅本人题库可操作） */
 app.post('/api/deck/publish', auth.authenticate, function (req, res) {

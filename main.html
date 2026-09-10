@@ -1289,6 +1289,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </label>
       </div>
 
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+        <button class="btn sm ghost" id="btnFeedback" type="button" style="width:100%"><span data-icon="chat"></span>反馈问题</button>
+      </div>
+
       <!-- 大模型 API 配置已停用（2026-09-06：先禁联网 AI 生成）。后续开放 = 移除本行 display:none。 -->
       <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:none">
         <div id="aiCfgHead" style="display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none">
@@ -1353,6 +1357,32 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   </div>
 </div>
 
+<!-- 反馈问题弹窗（游客可提交，无需登录） -->
+<div class="mask" id="feedbackMask" hidden>
+  <div class="modal" style="max-width:460px">
+    <div class="modal-head">
+      <h3><span data-icon="chat"></span> 反馈问题</h3>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:10px">请描述你遇到的问题（可选附截图）。提交会自动带上设备与运行诊断信息，仅用于排查问题。</div>
+      <textarea id="feedbackText" maxlength="2000" placeholder="必填：描述问题…" style="width:100%;min-height:96px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:13px;resize:vertical;outline:none;background:var(--bg)"></textarea>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn sm ghost" id="btnFeedbackPick" type="button"><span data-icon="image"></span>上传截图（可选）</button>
+        <span id="feedbackFileName" style="font-size:12px;color:var(--muted);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+        <input type="file" id="feedbackFile" accept="image/*" class="hidden">
+      </div>
+      <div class="msg" id="feedbackMsg"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn primary" id="btnFeedbackSubmit">提交</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" data-close>取消</button>
+    </div>
+  </div>
+</div>
+
 <script src="builtins.js"></script>
 <script src="oral8000.js"></script>
 <script src="freq-idioms.js"></script>
@@ -1366,6 +1396,12 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script>
 "use strict";
 /* >>>>> v7 2026-08-07 19:16 <<<<< */
+/* 最近 console 错误环形缓冲（「反馈问题」自动附带诊断用；最多保留 5 条，仅内存） */
+var _clErrors = [];
+function _clRecordError(msg, src, line){
+  _clErrors.push({ m: String(msg == null ? '' : msg).slice(0, 200), s: String(src == null ? '' : src).slice(0, 120), l: line, at: Date.now() });
+  if(_clErrors.length > 5) _clErrors.shift();
+}
 window.onerror = function(msg, src, line, col, err){
   var zh = document.getElementById('zh');
   if(zh){
@@ -1376,7 +1412,14 @@ window.onerror = function(msg, src, line, col, err){
     zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') + ' 启动失败：' + _t + ' (行' + line + ')';
   }
   console.error('[GLOBAL]', msg, 'line', line, err);
+  _clRecordError(msg, src, line);
 };
+/* 未处理的 Promise 拒绝同样进反馈诊断（不打断页面，仅记录） */
+window.addEventListener('unhandledrejection', function(e){
+  var r = e && e.reason;
+  var m = (r && r.message) ? r.message : String(r);
+  _clRecordError(m, 'unhandledrejection', 0);
+});
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
 if(window.Icons) Icons.install();
 
@@ -4242,6 +4285,7 @@ function closeMasks(){
   $('appendMask').hidden = true;
   $('settingsMask').hidden = true;
   $('explainMask').hidden = true;
+  $('feedbackMask').hidden = true;
   /* 如果在题库/管理页，按 Esc 回到练习页 */
   if(_curPage !== 'pagePractice' && !fromExplain) goPractice();
 }
@@ -4467,6 +4511,110 @@ $('btnToggleKey').onclick = function(){
   var inp = $('setApiKey');
   inp.type = (inp.type === 'password') ? 'text' : 'password';
   this.innerHTML = (window.Icons?Icons.svg('eye'):'');
+};
+
+/* ===== 反馈问题（游客可提交，无需登录） ===== */
+var _feedbackImage = null;      /* 已选截图的 data URL（含 base64 前缀，后端统一剥离） */
+var _feedbackImageType = null;  /* 已选截图的 MIME 类型 */
+
+/* 版本号：优先取 SW cache 名（chunklab-<hash>）中的 hash；取不到用占位 unknown */
+function getFeedbackVersion(){
+  if(!('caches' in window)) return Promise.resolve('unknown');
+  return caches.keys().then(function(keys){
+    for(var i=0;i<keys.length;i++){
+      var k = keys[i] || '';
+      if(k.indexOf('chunklab-') === 0) return k.slice('chunklab-'.length);
+    }
+    return 'unknown';
+  }).catch(function(){ return 'unknown'; });
+}
+function getFeedbackMeta(){
+  var sw = 'unsupported';
+  if('serviceWorker' in navigator){
+    sw = navigator.serviceWorker.controller ? 'active' : 'no-controller';
+  }
+  return getFeedbackVersion().then(function(ver){
+    return {
+      ua: navigator.userAgent,
+      screen: (window.screen ? screen.width + 'x' + screen.height : ''),
+      page: _curPage || '',
+      version: ver,
+      sw: sw,
+      errors: _clErrors.slice(),
+      at: Date.now()
+    };
+  });
+}
+function openFeedback(){
+  $('feedbackText').value = '';
+  $('feedbackFileName').textContent = '';
+  $('feedbackMsg').className = 'msg';
+  $('feedbackMsg').textContent = '';
+  _feedbackImage = null;
+  _feedbackImageType = null;
+  $('settingsMask').hidden = true;
+  $('feedbackMask').hidden = false;
+  $('feedbackText').focus();
+}
+$('btnFeedback').onclick = openFeedback;
+$('btnFeedbackPick').onclick = function(){ $('feedbackFile').click(); };
+$('feedbackFile').onchange = function(){
+  var f = this.files && this.files[0]; if(!f) return;
+  /* 前端只做轻量护栏（>8MB 直接拒绝，避免超长 base64 拖垮浏览器）；后端仍按 5MB 硬校验 */
+  if(f.size > 8 * 1024 * 1024){
+    $('feedbackMsg').className = 'msg show err';
+    $('feedbackMsg').textContent = '截图不能超过 8MB';
+    this.value = '';
+    return;
+  }
+  var fr = new FileReader();
+  fr.onload = function(){
+    var dataUrl = String(fr.result || '');
+    _feedbackImageType = f.type || 'image/png';
+    _feedbackImage = dataUrl;
+    $('feedbackFileName').textContent = f.name;
+  };
+  fr.onerror = function(){
+    $('feedbackMsg').className = 'msg show err';
+    $('feedbackMsg').textContent = '截图读取失败，请重试';
+  };
+  fr.readAsDataURL(f);
+  this.value = '';
+};
+$('btnFeedbackSubmit').onclick = function(){
+  var text = ($('feedbackText').value || '').trim();
+  if(!text){
+    $('feedbackMsg').className = 'msg show err';
+    $('feedbackMsg').textContent = '请填写问题描述';
+    $('feedbackText').focus();
+    return;
+  }
+  var btn = this;
+  btn.disabled = true;
+  var payload = { text: text };
+  if(_feedbackImage){ payload.image = _feedbackImage; payload.imageType = _feedbackImageType; }
+  getFeedbackMeta().then(function(meta){
+    payload.meta = meta;
+    return fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      return res.text().then(function(txt){
+        var data = null;
+        try{ data = txt ? JSON.parse(txt) : null; }catch(e){ data = null; }
+        if(!res.ok) throw new Error((data && data.error) || ('HTTP ' + res.status));
+        return data;
+      });
+    });
+  }).then(function(){
+    $('feedbackMask').hidden = true;
+    showSysToast('已收到反馈，感谢！');
+  }).catch(function(){
+    $('feedbackMsg').className = 'msg show err';
+    $('feedbackMsg').textContent = '提交失败，请稍后再试';
+    showSysToast('提交失败，请稍后再试');
+  }).then(function(){ btn.disabled = false; });
 };
 
 /* 数据备份折叠 */

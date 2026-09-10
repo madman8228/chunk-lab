@@ -177,6 +177,15 @@ CREATE TABLE IF NOT EXISTS user_change_seq (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+/* 用户反馈（游客可提交，无需登录）。meta 为诊断信息 JSON 字符串；image_path 只存相对文件名。 */
+CREATE TABLE IF NOT EXISTS feedback (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  text       TEXT NOT NULL,
+  image_path TEXT,
+  meta       TEXT,
+  created_at INTEGER NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_decks_user ON user_decks(user_id);
 CREATE INDEX IF NOT EXISTS idx_entity_rows_user ON user_entity_rows(user_id, kind);
 CREATE INDEX IF NOT EXISTS idx_kv_user ON user_kv(user_id);
@@ -185,6 +194,7 @@ CREATE INDEX IF NOT EXISTS idx_progress_user ON user_course_progress(user_id);
 CREATE INDEX IF NOT EXISTS idx_sbs_user ON user_sentence_stats(user_id);
 CREATE INDEX IF NOT EXISTS idx_events_user ON user_events(user_id);
 CREATE INDEX IF NOT EXISTS idx_events_user_at ON user_events(user_id, at);
+CREATE INDEX IF NOT EXISTS idx_feedback_created ON feedback(created_at);
 `);
 
 /* ----- ADR-005 迁移：给已存在的表补 rev / deleted_at 列 -----

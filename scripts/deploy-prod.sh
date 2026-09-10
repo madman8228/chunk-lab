@@ -24,7 +24,7 @@ FILES=(
   favicon.ico icon-16.png icon-32.png icon-180.png icon-192.png icon-512.png
   builtins.js oral8000.js freq-idioms.js library.js srs.js course-package.js
   js/idb.js js/icons.js js/bridge.mjs js/chunk-engine.mjs js/format.mjs js/ai-prompts.mjs js/backup.mjs js/distractor-cause.mjs
-  server/index.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js
+  server/index.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js
   package.json
 )
 
