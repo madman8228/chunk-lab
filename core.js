@@ -535,6 +535,64 @@
   /* 有变更待同步时通知 UI（main.html 顶栏"未同步"徽标） */
   function notifySync(){ emit('syncStatus', { dirty: _dirty }); }
 
+  /* ---------- 云端增量水位（2026-09-10，8000 句扩容） ----------
+     bySentence / events 已从「stats 整块」拆到服务端行表，客户端改为只上行变更行。
+     为什么要独立一套水位、不复用 _bsSig / _evSnap：那是 **IndexedDB 已落盘**的水位。
+     IDB 写成功 ≠ 云端收到了（可能未登录、离线、PUT 失败）—— 把两者混用，
+     会出现「IDB 已推进、云端没收到」→ 该批变更永不再发（静默丢数据）。
+     null 语义 = 水位未知 → 下一次全量上行（安全兜底方向）。 */
+  var _cloudBsSig = null;   /* {key: statSig}，已确认被云端接收的句子档案 */
+  var _cloudEvIds = null;   /* {eventId: 1}，已确认被云端接收的事件 id */
+
+  /* 把 stats 的两个大对象从上行 payload 里剥离（改走 statsDelta / 服务端行表）。
+     必须浅拷贝：memObj 是与调用方共享的活对象，直接 delete 会破坏内存里的 mem。 */
+  function memForCloud(memObj){
+    if(!memObj || !memObj.stats) return memObj;
+    var st = memObj.stats;
+    if(!st.bySentence && !st.events) return memObj;
+    var light = {}, k;
+    for(k in st){ if(st.hasOwnProperty(k) && k !== 'bySentence' && k !== 'events') light[k] = st[k]; }
+    var out = {};
+    for(k in memObj){ if(memObj.hasOwnProperty(k)) out[k] = memObj[k]; }
+    out.stats = light;
+    return out;
+  }
+
+  /* 生成上行增量：只带「云端还没确认收到的部分」。
+     返回 { sbs, sbsGone, evs, mark }；mark = 本次**成功后**应推进到的水位。
+     ★ 失败时绝不推进水位，否则这批变更永远不会重发。 */
+  function buildStatsDelta(memObj){
+    var stats = (memObj && memObj.stats) || {};
+    var by = (stats.bySentence && typeof stats.bySentence === 'object') ? stats.bySentence : {};
+    var ev = Array.isArray(stats.events) ? stats.events : [];
+    var sbs = {}, sbsGone = [], k, i;
+
+    if(_cloudBsSig === null){
+      for(k in by){ if(by.hasOwnProperty(k)) sbs[k] = by[k]; }
+    } else {
+      for(k in by){ if(by.hasOwnProperty(k) && _cloudBsSig[k] !== statSig(by[k])) sbs[k] = by[k]; }
+      for(k in _cloudBsSig){ if(_cloudBsSig.hasOwnProperty(k) && !(k in by)) sbsGone.push(k); }
+    }
+
+    var evs = [];
+    if(_cloudEvIds === null){
+      evs = ev;
+    } else {
+      for(i = 0; i < ev.length; i++){ if(ev[i] && ev[i].id && !_cloudEvIds[ev[i].id]) evs.push(ev[i]); }
+    }
+
+    /* 新水位 = 云端的「已有 ∪ 本次发送」；本地删除的 key 要去掉（sbsGone 已通知服务端）。 */
+    var nextBs = {};
+    if(_cloudBsSig){ for(k in _cloudBsSig){ if(_cloudBsSig.hasOwnProperty(k)) nextBs[k] = _cloudBsSig[k]; } }
+    for(k in by){ if(by.hasOwnProperty(k)) nextBs[k] = statSig(by[k]); }
+    sbsGone.forEach(function(g){ delete nextBs[g]; });
+    var nextEvIds = {};
+    if(_cloudEvIds){ for(k in _cloudEvIds){ if(_cloudEvIds.hasOwnProperty(k)) nextEvIds[k] = 1; } }
+    for(i = 0; i < ev.length; i++){ if(ev[i] && ev[i].id) nextEvIds[ev[i].id] = 1; }
+
+    return { sbs: sbs, sbsGone: sbsGone, evs: evs, mark: { bsSig: nextBs, evIds: nextEvIds } };
+  }
+
   function scheduleCloudSync(memObj){
     if(!_cloudOn || !global.ChunkAPI) return;
     _dirty = true;
@@ -546,8 +604,10 @@
     if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
     var meta = _lastSyncMeta || { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
     var cmeta = maintainCoursesRevs();
+    var delta = buildStatsDelta(memObj);
     var payload = {
-      mem: memObj,
+      /* mem.stats 只带小字段：bySentence / events 走 statsDelta（否则体积又回到 7MB） */
+      mem: memForCloud(memObj),
       courses: readCoursesRaw(),
       courseProgress: readProgressRaw(),
       revs: {
@@ -559,7 +619,14 @@
         courses: cmeta.deleted.courses, courseProgress: cmeta.deleted.courseProgress
       }
     };
+    /* 无变更时不带 statsDelta —— 省掉服务端一轮空 UPSERT */
+    if(Object.keys(delta.sbs).length || delta.sbsGone.length || delta.evs.length){
+      payload.statsDelta = { sbs: delta.sbs, sbsGone: delta.sbsGone, evs: delta.evs };
+    }
     return global.ChunkAPI.putData(payload).then(function(){
+      /* ★ 只有确认送达才推进水位（失败保持 → 下次自动重发这批变更） */
+      _cloudBsSig = delta.mark.bsSig;
+      _cloudEvIds = delta.mark.evIds;
       _dirty = false;
       notifySync();
       return true;
@@ -581,6 +648,16 @@
       if(!localRevs.courses) localRevs.courses = {};
       if(!localRevs.courseProgress) localRevs.courseProgress = {};
       var m = loadMem();
+      /* 记录「云端当前已有什么」，作为增量上行的水位基准。
+         合并后本地会包含远端全部内容，但那**不等于**「云端需要再收一次」——
+         若不用远端实际内容对齐水位，每次启动都会把 8000 条档案全量回传（2674KB），
+         拆表省下的流量会被这一步整个吃掉。 */
+      var remoteBsSig = {}, remoteEvIds = {};
+      var rstats = (remoteMem.stats && typeof remoteMem.stats === 'object') ? remoteMem.stats : {};
+      var rby = (rstats.bySentence && typeof rstats.bySentence === 'object') ? rstats.bySentence : {};
+      for(var rk in rby){ if(rby.hasOwnProperty(rk)) remoteBsSig[rk] = statSig(rby[rk]); }
+      var revList = Array.isArray(rstats.events) ? rstats.events : [];
+      for(var ri = 0; ri < revList.length; ri++){ if(revList[ri] && revList[ri].id) remoteEvIds[revList[ri].id] = 1; }
       // decks：per-entity LWW 合并（取 rev 大者）；采纳远程时同步写回 localRevs，
       //   否则新设备首拉后本地 rev=0/1，下一次本地修改会被服务端按旧 rev 拒绝
       var merged = {};
@@ -627,6 +704,10 @@
         _evSnap = null;
       }
       saveMem(m);
+      /* 增量水位对齐到云端实际内容：远端已有的不再回传，本地独有的下次上行。
+         必须在合并结果写盘后立即就位 —— 之后任何一次 scheduleCloudSync 都要基于它。 */
+      _cloudBsSig = remoteBsSig;
+      _cloudEvIds = remoteEvIds;
       // courses：per-entity LWW 合并 + 软删传播（ADR-005 step 2）
       var mergedCourses = {};
       readCoursesRaw().forEach(function(c){ mergedCourses[c.courseId] = { data: c, rev: localRevs.courses[c.courseId] || 0 }; });

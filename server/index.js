@@ -193,11 +193,21 @@ function buildMem(userId) {
   db.prepare('SELECT k,rev FROM user_kv WHERE user_id=?').all(userId)
     .forEach(function (r) { kvRevs[r.k] = r.rev; });
 
+  /* stats 的两个大对象从行表组装（2026-09-10 拆表，见 db.js 表注释）。
+     对外协议形状**完全不变** —— 客户端仍旧拿到 stats.bySentence / stats.events，
+     变的只是服务端存储方式与上行增量。blob 里残留的旧值由启动迁移清掉（migrateStatsToRows）。 */
+  const sbsRows = db.prepare('SELECT sentence_key,data_json FROM user_sentence_stats WHERE user_id=? AND deleted_at IS NULL').all(userId);
+  const bySentence = {};
+  sbsRows.forEach(function (r) { bySentence[r.sentence_key] = JSON.parse(r.data_json); });
+  const evRows = db.prepare('SELECT data_json FROM user_events WHERE user_id=? ORDER BY at,id').all(userId);
+  const events = evRows.map(function (r) { return JSON.parse(r.data_json); });
+
+  const statsBase = kv.stats || { totalRounds: 0, totalAnswered: 0 };
   const mem = {
     decks: decks,
     best: kv.best || {},
     mastered: kv.mastered || {},
-    stats: kv.stats || { totalRounds: 0, totalAnswered: 0, bySentence: {} },
+    stats: Object.assign({}, statsBase, { bySentence: bySentence, events: events }),
     settings: kv.settings || {},
     reinforceBook: kv.reinforceBook || [],
     deletedItems: kv.deletedItems || []
@@ -263,12 +273,107 @@ function upsertCourseProgress(userId, cid, data, rev, deleted) {
   }
 }
 
+/* ----- 句子级档案 / 事件日志（8000 句扩容，2026-09-10） -----
+   这两个大对象原先塞在 `user_kv` 的 k='stats' 里，使单个 kv 实体占到同步体积的 86.8%
+   （8000 句实测 7191KB/次），而 PUT /api/data 是热路径 → 每答一题重传整份档案。
+   拆成行表后客户端只上行变更行。表设计理由见 db.js 注释（关键：**不带 rev**，
+   跨设备合并由客户端 mergeStats 按事件 id 并集重建，属重建式语义，rev 会误拒合并结果）。
+
+   ⚠️ 全量写入一律用 UPSERT 而非 DELETE+INSERT：
+   旧客户端（当前线上版本）每次发的是「本地合并后的完整 bySentence」，并不包含
+   「其他设备上存在而本地没有」的条目；整表替换会静默删掉那些条目。 */
+const _stmtCache = {};
+function stmt(sql) {
+  if (!_stmtCache[sql]) _stmtCache[sql] = db.prepare(sql);
+  return _stmtCache[sql];
+}
+
+const SBS_UPSERT_SQL = "INSERT INTO user_sentence_stats (user_id,sentence_key,deck_id,data_json,deleted_at,updated_at) VALUES (?,?,?,?,NULL,datetime('now')) ON CONFLICT(user_id,sentence_key) DO UPDATE SET data_json=excluded.data_json, deck_id=excluded.deck_id, deleted_at=NULL, updated_at=datetime('now')";
+const SBS_DELETE_SQL = "UPDATE user_sentence_stats SET deleted_at=datetime('now'), updated_at=datetime('now') WHERE user_id=? AND sentence_key=?";
+const EV_UPSERT_SQL = "INSERT INTO user_events (user_id,id,at,data_json,updated_at) VALUES (?,?,?,?,datetime('now')) ON CONFLICT(user_id,id) DO UPDATE SET data_json=excluded.data_json, at=excluded.at, updated_at=datetime('now')";
+
+function upsertSentenceStat(userId, key, data) {
+  if (!key || !data || typeof data !== 'object') return;
+  const deckId = typeof data.deckId === 'string' ? data.deckId : null;
+  stmt(SBS_UPSERT_SQL).run(userId, String(key), deckId, JSON.stringify(data));
+}
+
+function deleteSentenceStat(userId, key) {
+  if (!key) return;
+  stmt(SBS_DELETE_SQL).run(userId, String(key));
+}
+
+function upsertEvent(userId, ev) {
+  if (!ev || !ev.id) return;
+  stmt(EV_UPSERT_SQL).run(userId, String(ev.id), typeof ev.at === 'number' ? ev.at : null, JSON.stringify(ev));
+}
+
+/* 把 stats blob 里的两个大对象搬到行表，并从 blob 删掉它们（否则体积永远降不下来）。
+   幂等：blob 里已无 bySentence/events 时直接跳过 —— 可在每次启动安全重复执行。
+
+   ★ 先用廉价字符串探测筛出「真的待迁移」的行：正常库里 blob 早已不含大对象，
+     若为每个用户都 JSON.parse 一次，用户量上来后这会变成启动时的隐性成本。 */
+function migrateStatsToRows() {
+  const rows = db.prepare("SELECT user_id,v_json FROM user_kv WHERE k='stats'").all();
+  const pending = rows.filter(function (r) {
+    return r.v_json.indexOf('"bySentence"') >= 0 || r.v_json.indexOf('"events"') >= 0;
+  });
+  if (!pending.length) return { migrated: 0, sentences: 0, events: 0 };
+
+  let migrated = 0, sentenceCount = 0, eventCount = 0;
+  const tx = db.transaction(function () {
+    pending.forEach(function (r) {
+      let st;
+      try { st = JSON.parse(r.v_json); } catch (e) { return; }
+      if (!st || typeof st !== 'object') return;
+      const hasBS = st.bySentence && typeof st.bySentence === 'object';
+      const hasEv = Array.isArray(st.events);
+      if (!hasBS && !hasEv) return;
+      if (hasBS) {
+        Object.keys(st.bySentence).forEach(function (k) { upsertSentenceStat(r.user_id, k, st.bySentence[k]); sentenceCount++; });
+      }
+      if (hasEv) {
+        st.events.forEach(function (ev) { upsertEvent(r.user_id, ev); eventCount++; });
+      }
+      delete st.bySentence;
+      delete st.events;
+      db.prepare("UPDATE user_kv SET v_json=?, updated_at=datetime('now') WHERE user_id=? AND k='stats'")
+        .run(JSON.stringify(st), r.user_id);
+      migrated++;
+    });
+  });
+  tx();
+  return { migrated: migrated, sentences: sentenceCount, events: eventCount };
+}
+
 function saveData(userId, body) {
   const mem = body.mem || {};
   const courses = Array.isArray(body.courses) ? body.courses : [];
   const courseProgress = body.courseProgress || {};
   const revs = body.revs || {};
   const deleted = body.deleted || {};
+  const delta = (body.statsDelta && typeof body.statsDelta === 'object') ? body.statsDelta : null;
+
+  /* stats 大对象走行表：先把 bySentence / events 从「待写 kv 的 stats」里剥出来，
+     否则它们会被原样塞回 blob，体积又回到 7MB（拆表等于白做）。
+     旧客户端仍会发这两个字段 → 按「全量 UPSERT」处理，向后兼容且不丢数据
+     （不能用整表 DELETE+INSERT：旧客户端发的是本地合并后的副本，
+       不含「其他设备有而本地没有」的条目，整替会静默删掉）。 */
+  let statsKv = null;
+  let sbsFull = null, evFull = null;
+  if (mem.stats && typeof mem.stats === 'object') {
+    if (mem.stats.bySentence && typeof mem.stats.bySentence === 'object') sbsFull = mem.stats.bySentence;
+    if (Array.isArray(mem.stats.events)) evFull = mem.stats.events;
+    if (sbsFull || evFull) {
+      statsKv = {};
+      Object.keys(mem.stats).forEach(function (k) {
+        if (k !== 'bySentence' && k !== 'events') statsKv[k] = mem.stats[k];
+      });
+    } else {
+      statsKv = mem.stats;
+    }
+  }
+
   const tx = db.transaction(function () {
     // decks：实体级 rev upsert（不再整块 DELETE，崩溃可恢复、多设备不互覆盖）
     (mem.decks || []).forEach(function (d) {
@@ -280,6 +385,12 @@ function saveData(userId, body) {
 
     // kv：实体级 rev upsert（per-key：best / mastered / stats / ...）
     KV_KEYS.forEach(function (k) {
+      if (k === 'stats') {
+        if (statsKv !== null) {
+          upsertKv(userId, 'stats', statsKv, (revs.kv && revs.kv.stats) == null ? null : revs.kv.stats, false);
+        }
+        return;
+      }
       if (k in mem) upsertKv(userId, k, mem[k], (revs.kv && revs.kv[k]) == null ? null : revs.kv[k], false);
     });
     (deleted.kv || []).forEach(function (d) {
@@ -299,6 +410,16 @@ function saveData(userId, body) {
     (deleted.courseProgress || []).forEach(function (c) {
       upsertCourseProgress(userId, c.id, null, c.rev, true);
     });
+
+    // 句子档案 / 事件日志：行级写入（新协议的增量路径 + 旧客户端的全量兼容路径）
+    if (sbsFull) Object.keys(sbsFull).forEach(function (k) { upsertSentenceStat(userId, k, sbsFull[k]); });
+    if (evFull) evFull.forEach(function (ev) { upsertEvent(userId, ev); });
+    if (delta) {
+      const sbs = delta.sbs || {};
+      Object.keys(sbs).forEach(function (k) { upsertSentenceStat(userId, k, sbs[k]); });
+      (delta.sbsGone || []).forEach(function (k) { deleteSentenceStat(userId, k); });
+      (delta.evs || []).forEach(function (ev) { upsertEvent(userId, ev); });
+    }
   });
   tx();
 }
@@ -551,6 +672,14 @@ if (!auth.REQUIRE_AUTH) {
 }
 if (!process.env.DEEPSEEK_API_KEY) {
   securityWarnings.push('[security] !! 未配置 DEEPSEEK_API_KEY：前端可自托管传入自己的 Key（降级模式，生产建议配置）');
+}
+
+/* 启动迁移：把 stats blob 里的 bySentence / events 搬进行表（幂等，可重复执行）。
+   必须**在开始接受请求之前**完成 —— 否则新客户端会把「blob 里有、行表里没有」当成已删除。 */
+const _migration = migrateStatsToRows();
+if (_migration.migrated) {
+  console.log('[chunklab-server] stats 大对象迁移完成：' + _migration.migrated + ' 个用户 / ' +
+    _migration.sentences + ' 条句子档案 / ' + _migration.events + ' 条事件');
 }
 
 app.listen(PORT, function () {

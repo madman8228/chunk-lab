@@ -69,6 +69,15 @@ function validatePutPayload(body) {
   if (body.courseProgress !== undefined && !isObj(body.courseProgress)) return 'courseProgress 必须是对象';
   if (body.revs !== undefined && !isObj(body.revs)) return 'revs 必须是对象';
   if (body.deleted !== undefined && !isObj(body.deleted)) return 'deleted 必须是对象';
+  /* statsDelta（2026-09-10 增量同步）：bySentence / events 的变更行上行走这里。
+     浅层类型检查即可 —— 深校验会误伤不同客户端的字段演进。 */
+  if (body.statsDelta !== undefined) {
+    const sd = body.statsDelta;
+    if (!isObj(sd)) return 'statsDelta 必须是对象';
+    if (sd.sbs !== undefined && !isObj(sd.sbs)) return 'statsDelta.sbs 必须是对象';
+    if (sd.sbsGone !== undefined && !Array.isArray(sd.sbsGone)) return 'statsDelta.sbsGone 必须是数组';
+    if (sd.evs !== undefined && !Array.isArray(sd.evs)) return 'statsDelta.evs 必须是数组';
+  }
   return null;
 }
 

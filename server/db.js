@@ -7,6 +7,8 @@
  *   user_kv               — 键值型用户数据（best / mastered / stats / settings / reinforceBook / deletedItems）
  *   user_courses          — 用户图文课程（chunklab.courses.v1 的逐条拆分，便于增量）
  *   user_course_progress  — 课程进度（chunklab.course-progress.v1 的逐条拆分）
+ *   user_sentence_stats   — 句子级学习档案（stats.bySentence 的逐行拆分，8000 句扩容）
+ *   user_events           — 答题/轮次事件日志（stats.events 的逐行拆分，append-only）
  *   ai_cache              — AI 详解缓存（全局共享，key = 模型+归一化句子）
  *
  * ADR-005（实体级 rev upsert + 软删除）：
@@ -86,10 +88,43 @@ CREATE TABLE IF NOT EXISTS ai_cache (
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+/* ----- 8000 句扩容（2026-09-10）：把 stats 的两个「随练习量无限增长」的大对象从 kv blob 拆成行表。
+   根因：「stats」作为**单个** kv 实体承载了 86.8% 的同步体积（8000 句实测 7191KB/次），
+   而 PUT /api/data 是热路径（每答一题，400ms debounce）→ 每答一题都重传整份学习档案。
+   拆表后客户端只上行变更行（实测 ~0.5KB，15121×）。
+
+   ⚠️ 这两张表**故意不带 rev** —— bySentence / events 的跨设备合并不走 last-write-wins，
+   而是靠 core.js 的 mergeStats 按「事件 id 并集」重建计数（O(events+keys) 幂等），
+   冲突由重建语义解决，rev 反而会误拒合并结果。软删除仍然保留（sbsGone → deleted_at）。
+   ⚠️ 本注释在 db.exec 的模板字符串**内部**，绝不能出现反引号 —— 会提前闭合模板。 */
+CREATE TABLE IF NOT EXISTS user_sentence_stats (
+  user_id      INTEGER NOT NULL,
+  sentence_key TEXT NOT NULL,
+  deck_id      TEXT,
+  data_json    TEXT NOT NULL,
+  deleted_at   TEXT,
+  updated_at   TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, sentence_key),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS user_events (
+  user_id    INTEGER NOT NULL,
+  id         TEXT NOT NULL,
+  at         INTEGER,
+  data_json  TEXT NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE INDEX IF NOT EXISTS idx_decks_user ON user_decks(user_id);
 CREATE INDEX IF NOT EXISTS idx_kv_user ON user_kv(user_id);
 CREATE INDEX IF NOT EXISTS idx_courses_user ON user_courses(user_id);
 CREATE INDEX IF NOT EXISTS idx_progress_user ON user_course_progress(user_id);
+CREATE INDEX IF NOT EXISTS idx_sbs_user ON user_sentence_stats(user_id);
+CREATE INDEX IF NOT EXISTS idx_events_user ON user_events(user_id);
+CREATE INDEX IF NOT EXISTS idx_events_user_at ON user_events(user_id, at);
 `);
 
 /* ----- ADR-005 迁移：给已存在的表补 rev / deleted_at 列 -----

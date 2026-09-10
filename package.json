@@ -4,7 +4,7 @@
   "private": true,
   "description": "Chunk Lab · 英语句型意群练习（无构建、原生 ESM 前端 + Express/SQLite 后端）",
   "scripts": {
-    "test": "node scripts/check-sw.js && node sw-policy.test.js && node scripts/check-deploy-files.js && node srs.test.js && node store.test.js && node stats-idb.test.js && node validate_builtins.js && node validate_oral8000.js && node validate_distractors.js && node course-resume.test.js && node js/chunk-engine.test.mjs && node js/distractor-validate.test.mjs && node js/distractor-cause.test.mjs && node js/format.test.mjs && node js/ai-prompts.test.mjs && node js/backup.test.mjs && node rev.test.js && cd server && node smoke.test.js && node backup-cli.test.js && node compress.test.js",
+    "test": "node scripts/check-sw.js && node sw-policy.test.js && node scripts/check-deploy-files.js && node srs.test.js && node store.test.js && node stats-idb.test.js && node validate_builtins.js && node validate_oral8000.js && node validate_distractors.js && node course-resume.test.js && node js/chunk-engine.test.mjs && node js/distractor-validate.test.mjs && node js/distractor-cause.test.mjs && node js/format.test.mjs && node js/ai-prompts.test.mjs && node js/backup.test.mjs && node rev.test.js && cd server && node smoke.test.js && node sync-delta.test.js && node backup-cli.test.js && node compress.test.js",
     "e2e": "node e2e/e2e.js",
     "e2e:all": "node scripts/e2e-all.js",
     "e2e-sync": "node e2e/sync.test.js"
