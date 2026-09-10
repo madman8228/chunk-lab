@@ -1,4 +1,4 @@
-/* 高频短语 · English Idioms（运行态 301 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27）
+/* 高频短语 · English Idioms（运行态 325 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
  * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
  *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
@@ -8,8 +8,12 @@
  * batch9（2026-09-10）= 道歉/感谢类 22 条（认错、致歉、致谢、托付），句式按破折号规则一次过。
  * batch10（2026-09-10）= 情感/邀约 + 鼓励赞美 + B 类修正 27 条（crush / only have eyes for you /
  *   drop you off / it's on me / one in a million / pull someone's leg / ease into it 等）。
+ * batch11（2026-09-10）= 公共指令/秩序类 24 条（制止/驱赶 stop it·stop him·go away·get out of here、
+ *   排队秩序 line up·form a line·cut in line·get in line、疏散安全 stand back·stay down·stay away、
+ *   规矩警告 no tricks·don't blab·take it or leave it），含错拼修正 stay away form me→from me。
  * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json 与 output/idioms-classified.md）：
- *   分析时未收录 233 条 → batch7~10 共 100 条 → 余 133 条待扩写；
+ *   累计收录 124 条（batch7~11）→ 实测差集余 122 条待扩写（差集降幅小于收录条数，
+ *   因一句常覆盖多个同义词条、且部分源条目不在 394 清单内）；
  *   其中粗俗/攻击性（piss off / fuck up / up yours 等）与低质量条目（use to / since apoloytes 等错拼）建议过滤，等老板定。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
@@ -4815,6 +4819,367 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**have a lot of nerve** = 脸皮真厚、胆子真大。指责对方「居然敢这么做」，语气强烈；也说 have some nerve。",
       "近义：How dare you! / You've got some guts. 例句：You asked me for a raise after that mess — you have a lot of nerve."
+    ]
+  }
+,
+  {
+    sentence: "Stop it — that's not funny.",
+    cid: fnv8("Stop it — that's not funny."),
+    translation: "住手，这一点都不好笑。",
+    chunks: ["Stop it —","that's not funny."],
+    hints: ["住手","这一点都不好笑"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/stɒp/","/ɪt/"], pos:"祈使句", meaning:"住手"},
+      {role:"主系表·否定", color:"#c87033", phonetic:["/ðæts/","/nɒt/","/ˈfʌni/"], pos:"一般现在时否定", meaning:"这不好笑"}
+    ],
+    explanations: [
+      "**stop it** = 住手、别闹了。制止正在发生的动作，语气直接；比单说 Stop 更聚焦「这件事」。",
+      "近义：Cut it out（更口语、带不耐烦）/ Knock it off。例句：Stop it — you're going to break something."
+    ]
+  },
+  {
+    sentence: "Stop that right now!",
+    cid: fnv8("Stop that right now!"),
+    translation: "马上给我停下！",
+    chunks: ["Stop that","right now!"],
+    hints: ["停下那个","马上"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/stɒp/","/ðæt/"], pos:"祈使句", meaning:"停下那个"},
+      {role:"时间状语", color:"#3358e0", phonetic:["/raɪt/","/naʊ/"], pos:"时间状语", meaning:"立刻、马上"}
+    ],
+    explanations: [
+      "**stop that** = 停下那个（动作）。that 指对方手上的动作，比 it 更强调「就是你正在干的那事」。",
+      "**right now** 放句末是加重语气的催促。近义：Stop that this instant!（更严厉）例句：Stop that right now — I won't say it again."
+    ]
+  },
+  {
+    sentence: "Stop him — he's getting away!",
+    cid: fnv8("Stop him — he's getting away!"),
+    translation: "拦住他，他要跑了！",
+    chunks: ["Stop him —","he's getting away!"],
+    hints: ["拦住他","他要逃走了"],
+    grammar: [
+      {role:"祈使句·宾格", color:"#c87033", phonetic:["/stɒp/","/hɪm/"], pos:"祈使句", meaning:"拦住他"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/hiːz/","/ˈɡetɪŋ/","/əˈweɪ/"], pos:"现在进行时", meaning:"get away 逃走"}
+    ],
+    explanations: [
+      "**stop sb** = 拦住某人、让某人停下。stop 接人表示阻止某人，接事（stop it）表示让某事停止。",
+      "**get away** = 逃脱、溜走。例句：Stop him — he's getting away with my bag!"
+    ]
+  },
+  {
+    sentence: "Don't touch me — I mean it!",
+    cid: fnv8("Don't touch me — I mean it!"),
+    translation: "别碰我，我说真的！",
+    chunks: ["Don't touch me —","I mean it!"],
+    hints: ["别碰我","我是认真的"],
+    grammar: [
+      {role:"祈使句·否定", color:"#c87033", phonetic:["/doʊnt/","/tʌtʃ/","/miː/"], pos:"祈使句", meaning:"别碰我"},
+      {role:"习语·强调", color:"#7c5cbf", phonetic:["/aɪ/","/miːn/","/ɪt/"], pos:"一般现在时习语", meaning:"我是认真的"}
+    ],
+    explanations: [
+      "**Don't touch me** 是最直接的肢体边界表达，语气强硬，不留余地。",
+      "**I mean it** = 我不是开玩笑，用来给前面的话加重。近义：Keep your hands off me。例句：Don't touch me — I mean it, back off."
+    ]
+  },
+  {
+    sentence: "Get your hands off me!",
+    cid: fnv8("Get your hands off me!"),
+    translation: "把你的手拿开！",
+    chunks: ["Get your hands","off me!"],
+    hints: ["把你的手","从我身上拿开"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/ɡet/","/jɔːr/","/hændz/"], pos:"祈使句", meaning:"把手拿开"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/ɒf/","/miː/"], pos:"介词短语", meaning:"离开我"}
+    ],
+    explanations: [
+      "**get one's hands off sb** = 把手从某人身上拿开。被拉扯、被冒犯时的强硬抗议。",
+      "近义：Take your hands off me! / Hands off!（更短更冲）例句：Get your hands off me — who do you think you are?"
+    ]
+  },
+  {
+    sentence: "Please line up, everyone.",
+    cid: fnv8("Please line up, everyone."),
+    translation: "请大家排好队。",
+    chunks: ["Please line up,","everyone."],
+    hints: ["请排队","各位"],
+    grammar: [
+      {role:"祈使句·礼貌", color:"#c87033", phonetic:["/pliːz/","/laɪn/","/ʌp/"], pos:"祈使句", meaning:"请排队"},
+      {role:"呼语", color:"#3358e0", phonetic:["/ˈevriwʌn/"], pos:"呼语", meaning:"各位"}
+    ],
+    explanations: [
+      "**line up** = 排队。英式美式通用，最常用的排队说法。",
+      "近义：queue up（英式）/ get in line（美式）。例句：Please line up, everyone — the doors are about to open."
+    ]
+  },
+  {
+    sentence: "Please form a line at the door.",
+    cid: fnv8("Please form a line at the door."),
+    translation: "请在门口排成一列。",
+    chunks: ["Please form a line","at the door."],
+    hints: ["请排成一列","在门口"],
+    grammar: [
+      {role:"祈使句·礼貌", color:"#c87033", phonetic:["/pliːz/","/fɔːrm/","/ə/","/laɪn/"], pos:"祈使句", meaning:"请排成一列"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/æt/","/ðə/","/dɔːr/"], pos:"介词短语", meaning:"在门口"}
+    ],
+    explanations: [
+      "**form a line** = 排成一列。比 line up 更正式，多用于广播、场馆、机场的指令。",
+      "近义：form a queue（英式正式）。例句：Please form a line at the door and have your tickets ready."
+    ]
+  },
+  {
+    sentence: "Don't cut in line — go to the back.",
+    cid: fnv8("Don't cut in line — go to the back."),
+    translation: "别插队，到后面去。",
+    chunks: ["Don't cut in line —","go to the back."],
+    hints: ["别插队","到后面去"],
+    grammar: [
+      {role:"习语·祈使否定", color:"#7c5cbf", phonetic:["/doʊnt/","/kʌt/","/ɪn/","/laɪn/"], pos:"祈使句否定", meaning:"cut in line 插队"},
+      {role:"祈使句", color:"#c87033", phonetic:["/ɡoʊ/","/tuː/","/ðə/","/bæk/"], pos:"祈使句", meaning:"到后面去"}
+    ],
+    explanations: [
+      "**cut in line** = 插队（美式）。英式说 jump the queue；cut in 本身有「插进来」的意思。",
+      "近义：jump the queue（英式）/ butt in line。例句：Excuse me, you can't cut in line — go to the back."
+    ]
+  },
+  {
+    sentence: "Get in line and wait your turn.",
+    cid: fnv8("Get in line and wait your turn."),
+    translation: "排队去，按顺序等着。",
+    chunks: ["Get in line","and wait your turn."],
+    hints: ["排好队","按顺序等"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡet/","/ɪn/","/laɪn/"], pos:"祈使句", meaning:"get in line 排队"},
+      {role:"祈使句·并列", color:"#c87033", phonetic:["/ænd/","/weɪt/","/jɔːr/","/tɜːrn/"], pos:"祈使句并列", meaning:"等着轮到你"}
+    ],
+    explanations: [
+      "**get in line** = 排队（美式口语），比 line up 更随意。",
+      "**wait your turn** = 等着轮到你。强调按顺序来、别抢。例句：Get in line and wait your turn like everyone else."
+    ]
+  },
+  {
+    sentence: "Don't shove — there's room for everyone.",
+    cid: fnv8("Don't shove — there's room for everyone."),
+    translation: "别推挤，位置够所有人站。",
+    chunks: ["Don't shove —","there's room for everyone."],
+    hints: ["别推挤","每个人都有位置"],
+    grammar: [
+      {role:"祈使句·否定", color:"#c87033", phonetic:["/doʊnt/","/ʃʌv/"], pos:"祈使句", meaning:"别推挤"},
+      {role:"存在句", color:"#3358e0", phonetic:["/ðerz/","/ruːm/","/fɔːr/","/ˈevriwʌn/"], pos:"there be 句型", meaning:"每个人都有空间"}
+    ],
+    explanations: [
+      "**shove** = 用手肘或身体硬推。比 push 更粗鲁，专指人群里乱挤。",
+      "近义：Don't push（一般推挤）/ Stop shoving。例句：Don't shove — there's room for everyone on the bus."
+    ]
+  },
+  {
+    sentence: "Stand back — the train is coming.",
+    cid: fnv8("Stand back — the train is coming."),
+    translation: "退后，列车要来了。",
+    chunks: ["Stand back —","the train is coming."],
+    hints: ["退后","列车要来了"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/stænd/","/bæk/"], pos:"祈使句", meaning:"stand back 退后"},
+      {role:"主谓·进行", color:"#c87033", phonetic:["/ðə/","/treɪn/","/ɪz/","/ˈkʌmɪŋ/"], pos:"现在进行时", meaning:"列车正驶来"}
+    ],
+    explanations: [
+      "**stand back** = 退后、站远一点。安全提示高频，比 move back 更强调保持距离。",
+      "近义：Keep back / Stay clear。例句：Stand back — the train is coming and the platform is slippery."
+    ]
+  },
+  {
+    sentence: "Stay down and don't move!",
+    cid: fnv8("Stay down and don't move!"),
+    translation: "趴下别动！",
+    chunks: ["Stay down","and don't move!"],
+    hints: ["保持趴下","别动"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/steɪ/","/daʊn/"], pos:"祈使句", meaning:"stay down 保持低姿"},
+      {role:"祈使句·否定", color:"#c87033", phonetic:["/ænd/","/doʊnt/","/muːv/"], pos:"祈使句否定", meaning:"别动"}
+    ],
+    explanations: [
+      "**stay down** = 保持低位、别起身。多用于危险或紧急场景里的指令。",
+      "近义：Get down and stay down。例句：Stay down and don't move until I say it's clear."
+    ]
+  },
+  {
+    sentence: "Stay away from me.",
+    cid: fnv8("Stay away from me."),
+    translation: "离我远点。",
+    chunks: ["Stay away","from me."],
+    hints: ["保持距离","离我远点"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/steɪ/","/əˈweɪ/"], pos:"祈使句", meaning:"stay away 保持距离"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/frɒm/","/miː/"], pos:"介词短语", meaning:"离开我"}
+    ],
+    explanations: [
+      "**stay away from sb** = 跟某人保持距离。划清界限的警告，语气冷静但强硬。",
+      "近义：Keep away from me / Keep your distance。例句：Stay away from me — I don't want to talk to you."
+    ]
+  },
+  {
+    sentence: "Get away from me!",
+    cid: fnv8("Get away from me!"),
+    translation: "滚开，别靠近我！",
+    chunks: ["Get away","from me!"],
+    hints: ["走开","离我远点"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡet/","/əˈweɪ/"], pos:"祈使句", meaning:"get away 走开"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/frɒm/","/miː/"], pos:"介词短语", meaning:"从我身边"}
+    ],
+    explanations: [
+      "**get away from sb** = 从某人身边走开。比 stay away 更冲，带即时驱赶的怒气。",
+      "近义：Back off! / Get lost!（更粗鲁）例句：Get away from me — don't you dare touch my phone!"
+    ]
+  },
+  {
+    sentence: "Go away — I need to be alone.",
+    cid: fnv8("Go away — I need to be alone."),
+    translation: "走开，我想一个人待着。",
+    chunks: ["Go away —","I need to be alone."],
+    hints: ["走开","我需要独处"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡoʊ/","/əˈweɪ/"], pos:"祈使句", meaning:"go away 走开"},
+      {role:"主谓宾", color:"#3358e0", phonetic:["/aɪ/","/niːd/","/tuː/","/biː/","/əˈloʊn/"], pos:"一般现在时", meaning:"我需要独处"}
+    ],
+    explanations: [
+      "**go away** = 走开、离开。最常见的驱赶表达，轻重完全看语调。",
+      "近义：Leave me alone（别烦我）/ Get out。例句：Go away — I need to be alone for a while."
+    ]
+  },
+  {
+    sentence: "Get out of here!",
+    cid: fnv8("Get out of here!"),
+    translation: "滚出去！",
+    chunks: ["Get out","of here!"],
+    hints: ["出去","从这儿"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡet/","/aʊt/"], pos:"祈使句", meaning:"get out 出去"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/əv/","/hɪr/"], pos:"介词短语", meaning:"从这里"}
+    ],
+    explanations: [
+      "**get out of here** = 出去、滚出去。字面是「离开这里」；口语里也能表惊讶，相当于「别逗了」。",
+      "近义：Get lost! / Out! 例句：Get out of here — you're not welcome anymore."
+    ]
+  },
+  {
+    sentence: "Keep it out of sight.",
+    cid: fnv8("Keep it out of sight."),
+    translation: "把它藏好别让人看见。",
+    chunks: ["Keep it","out of sight."],
+    hints: ["让它保持","不被看见"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/kiːp/","/ɪt/"], pos:"祈使句", meaning:"让它保持"},
+      {role:"习语·补语", color:"#7c5cbf", phonetic:["/aʊt/","/əv/","/saɪt/"], pos:"介词短语习语", meaning:"out of sight 在视线之外"}
+    ],
+    explanations: [
+      "**out of sight** = 在视线之外、看不见。keep sth out of sight 就是把某物收好、别露出来。",
+      "反义：in sight（在看得见的地方）。例句：Keep it out of sight — the guards are checking bags."
+    ]
+  },
+  {
+    sentence: "Don't blab this to anyone.",
+    cid: fnv8("Don't blab this to anyone."),
+    translation: "这事别跟任何人乱说。",
+    chunks: ["Don't blab this","to anyone."],
+    hints: ["别乱说这事","对任何人"],
+    grammar: [
+      {role:"祈使句·否定", color:"#c87033", phonetic:["/doʊnt/","/blæb/","/ðɪs/"], pos:"祈使句否定", meaning:"别乱说这事"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/tuː/","/ˈeniwʌn/"], pos:"介词短语", meaning:"对任何人"}
+    ],
+    explanations: [
+      "**blab** = 嘴不牢、到处乱说。含贬义，专指把该保密的事说漏出去。",
+      "近义：Don't spill the beans / Keep it to yourself。例句：Don't blab this to anyone — it's not official yet."
+    ]
+  },
+  {
+    sentence: "No tricks — just tell me the truth.",
+    cid: fnv8("No tricks — just tell me the truth."),
+    translation: "别耍花样，说实话。",
+    chunks: ["No tricks —","just tell me the truth."],
+    hints: ["别耍花招","直接说真话"],
+    grammar: [
+      {role:"习语·禁止", color:"#7c5cbf", phonetic:["/noʊ/","/trɪks/"], pos:"名词短语禁令", meaning:"no tricks 不许耍花样"},
+      {role:"祈使句", color:"#c87033", phonetic:["/dʒʌst/","/tel/","/miː/","/ðə/","/truːθ/"], pos:"祈使句", meaning:"告诉我真相"}
+    ],
+    explanations: [
+      "**no tricks** = 不许耍花样、别玩手段。No + 名词构成简短禁令，语气干脆。",
+      "近义：No games / No funny business。例句：No tricks — just tell me the truth and we'll be fine."
+    ]
+  },
+  {
+    sentence: "Don't call me names!",
+    cid: fnv8("Don't call me names!"),
+    translation: "别骂我！",
+    chunks: ["Don't call me","names!"],
+    hints: ["别这么叫我","侮辱性称呼"],
+    grammar: [
+      {role:"祈使句·否定", color:"#c87033", phonetic:["/doʊnt/","/kɔːl/","/miː/"], pos:"祈使句否定", meaning:"别这么叫我"},
+      {role:"宾语", color:"#3358e0", phonetic:["/neɪmz/"], pos:"名词复数", meaning:"侮辱性称呼"}
+    ],
+    explanations: [
+      "**call sb names** = 骂人、给人起侮辱性绰号。注意必须用复数 names，单数没有这个意思。",
+      "近义：Don't insult me / Stop name-calling。例句：Don't call me names — argue with facts, not insults."
+    ]
+  },
+  {
+    sentence: "Take it or leave it.",
+    cid: fnv8("Take it or leave it."),
+    translation: "要就要，不要拉倒。",
+    chunks: ["Take it","or leave it."],
+    hints: ["接受它","否则放弃"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/teɪk/","/ɪt/"], pos:"祈使句", meaning:"take it 接受"},
+      {role:"习语·并列", color:"#7c5cbf", phonetic:["/ɔːr/","/liːv/","/ɪt/"], pos:"并列选择", meaning:"leave it 放弃"}
+    ],
+    explanations: [
+      "**take it or leave it** = 要就要、不要拉倒。谈判里下最后通牒，表示没有商量余地。",
+      "近义：It's my final offer。例句：That's the price — take it or leave it."
+    ]
+  },
+  {
+    sentence: "Just do as I say.",
+    cid: fnv8("Just do as I say."),
+    translation: "照我说的做就行。",
+    chunks: ["Just do","as I say."],
+    hints: ["照做","按我说的"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/dʒʌst/","/duː/"], pos:"祈使句", meaning:"照做"},
+      {role:"方式状语从句", color:"#3358e0", phonetic:["/æz/","/aɪ/","/seɪ/"], pos:"方式状语从句", meaning:"按我说的"}
+    ],
+    explanations: [
+      "**do as I say** = 照我说的做。比 do what I say 略书面，语气偏权威。",
+      "近义：Do what I tell you / Follow my instructions。例句：Just do as I say and you'll be fine."
+    ]
+  },
+  {
+    sentence: "No more excuses.",
+    cid: fnv8("No more excuses."),
+    translation: "别再找借口了。",
+    chunks: ["No more","excuses."],
+    hints: ["不再有","借口"],
+    grammar: [
+      {role:"习语·禁止", color:"#7c5cbf", phonetic:["/noʊ/","/mɔːr/"], pos:"限定词短语", meaning:"no more 不再"},
+      {role:"名词", color:"#3358e0", phonetic:["/ɪkˈskjuːzɪz/"], pos:"名词复数", meaning:"借口"}
+    ],
+    explanations: [
+      "**no more excuses** = 别再找借口。简短、终结性的表态，常出现在被反复爽约之后。",
+      "近义：Enough excuses / Stop making excuses。例句：No more excuses — I want the report by Friday."
+    ]
+  },
+  {
+    sentence: "Do me a favor.",
+    cid: fnv8("Do me a favor."),
+    translation: "帮我个忙。",
+    chunks: ["Do me","a favor."],
+    hints: ["帮我","一个忙"],
+    grammar: [
+      {role:"祈使句·双宾", color:"#c87033", phonetic:["/duː/","/miː/"], pos:"祈使句", meaning:"帮我"},
+      {role:"宾语", color:"#3358e0", phonetic:["/ə/","/ˈfeɪvər/"], pos:"名词短语", meaning:"一个忙"}
+    ],
+    explanations: [
+      "**do sb a favor** = 帮某人一个忙。请求帮助的万用句式，后面能直接接 to do 说明具体事。",
+      "近义：Give me a hand / Could you do me a favor? 例句：Do me a favor and keep an eye on my bag."
     ]
   }
 ];
