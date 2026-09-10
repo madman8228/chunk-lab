@@ -1,4 +1,4 @@
-/* 高频短语 · English Idioms（运行态 274 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22）
+/* 高频短语 · English Idioms（运行态 301 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
  * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
  *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
@@ -6,8 +6,10 @@
  * batch8（2026-09-10）= 关心/安抚/澄清类 26 条，含拼写修正（what out→Watch out / it your turn→it's your turn）；
  *   句式规则：非末 chunk 禁止独立句末标点（.?!），两句合一用破折号/so 连接。
  * batch9（2026-09-10）= 道歉/感谢类 22 条（认错、致歉、致谢、托付），句式按破折号规则一次过。
+ * batch10（2026-09-10）= 情感/邀约 + 鼓励赞美 + B 类修正 27 条（crush / only have eyes for you /
+ *   drop you off / it's on me / one in a million / pull someone's leg / ease into it 等）。
  * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json 与 output/idioms-classified.md）：
- *   分析时未收录 233 条 → batch7 25 + batch8 26 + batch9 22 → 余 160 条待扩写；
+ *   分析时未收录 233 条 → batch7~10 共 100 条 → 余 133 条待扩写；
  *   其中粗俗/攻击性（piss off / fuck up / up yours 等）与低质量条目（use to / since apoloytes 等错拼）建议过滤，等老板定。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
@@ -4407,6 +4409,412 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**count on** = 指望、依靠。I'm counting on you 是把事交出去前的信任宣言，常接 don't let me down 加压。",
       "**let sb down** = 让某人失望。let down 是「放鸽子/掉链子」的通感表达，否定的 don't let me down 是托付标配。例句：This presentation matters — I'm counting on you, don't let me down."
+    ]
+  }
+,
+  {
+    sentence: "Are you free this Saturday for a movie?",
+    cid: fnv8("Are you free this Saturday for a movie?"),
+    translation: "这周六你有空看电影吗？",
+    chunks: ["Are you free","this Saturday for a movie?"],
+    hints: ["你有空吗","这周六看电影"],
+    grammar: [
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/ɑːr/","/juː/","/friː/"], pos:"习语疑问句", meaning:"你有空吗"},
+      {role:"时间状语", color:"#3358e0", phonetic:["/ðɪs/","/ˈsætərdeɪ/","/fɔːr/","/ə/","/ˈmuːvi/"], pos:"时间状语+目的", meaning:"这周六去看电影"}
+    ],
+    explanations: [
+      "**be free** = 有空。约人最常用的问法，比 Do you have time 更轻松；free 后直接接时间即可。",
+      "近义：Are you available?（更正式）/ Got any plans Saturday? 例句：Are you free tonight? I'd love to grab dinner."
+    ]
+  },
+  {
+    sentence: "She has a crush on her coworker.",
+    cid: fnv8("She has a crush on her coworker."),
+    translation: "她对一位同事有意思。",
+    chunks: ["She has a crush on","her coworker."],
+    hints: ["她喜欢上了","她的同事"],
+    grammar: [
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/ʃiː/","/hæz/","/ə/","/krʌʃ/","/ɒn/"], pos:"名词习语", meaning:"她暗暗喜欢上"},
+      {role:"宾语", color:"#3358e0", phonetic:["/hɜːr/","/ˈkoʊwɜːrkər/"], pos:"名词短语", meaning:"她的同事"}
+    ],
+    explanations: [
+      "**have a crush on sb** = 暗恋、对某人有好感。crush 本义「压碎」，转指「心动得心跳加速」，多指还没表白的那种喜欢。",
+      "近义：be into sb（更口语）/ have feelings for sb。例句：He's had a crush on her since high school."
+    ]
+  },
+  {
+    sentence: "I can't live without you.",
+    cid: fnv8("I can't live without you."),
+    translation: "我不能没有你。",
+    chunks: ["I can't live","without you."],
+    hints: ["我没法活下去","没有你"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/kænt/","/lɪv/"], pos:"情态动词句", meaning:"我活不下去"},
+      {role:"习语·补语", color:"#7c5cbf", phonetic:["/wɪˈðaʊt/","/juː/"], pos:"介词短语", meaning:"如果没有你"}
+    ],
+    explanations: [
+      "**can't live without you** = 不能没有你。最直白的深情表达，恋人常用；也可戏谑用于咖啡、手机等离不开的东西。",
+      "近义：You mean the world to me. 例句：You're my whole world — I can't live without you."
+    ]
+  },
+  {
+    sentence: "Don't be jealous — I only have eyes for you.",
+    cid: fnv8("Don't be jealous — I only have eyes for you."),
+    translation: "别吃醋，我眼里只有你。",
+    chunks: ["Don't be jealous —","I only have eyes for you."],
+    hints: ["别吃醋","我眼里只有你"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/doʊnt/","/biː/","/ˈdʒeləs/"], pos:"否定祈使句", meaning:"别吃醋"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/ˈoʊnli/","/hæv/","/aɪz/","/fɔːr/","/juː/"], pos:"名词习语", meaning:"我只钟情于你"}
+    ],
+    explanations: [
+      "**only have eyes for sb** = 眼里只有某人。用「眼睛」表达专一，比 I love only you 更含蓄浪漫。",
+      "近义：You're the only one for me. / I'm all yours. 例句：She's beautiful, but I only have eyes for you."
+    ]
+  },
+  {
+    sentence: "It's getting late — I'll take you home.",
+    cid: fnv8("It's getting late — I'll take you home."),
+    translation: "天不早了，我送你回家。",
+    chunks: ["It's getting late —","I'll take you home."],
+    hints: ["天越来越晚了","我送你回家"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ɪts/","/ˈɡetɪŋ/","/leɪt/"], pos:"现在进行时", meaning:"天越来越晚了"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪl/","/teɪk/","/juː/","/hoʊm/"], pos:"将来时+双宾", meaning:"我送你回家"}
+    ],
+    explanations: [
+      "**take sb home** = 送某人回家（自己开车/陪同）。对比 walk sb home（走回去）、drive sb home（开车送），take 最通用。",
+      "近义：Let me see you home. / I'll give you a ride home. 例句：It's raining — I'll take you home."
+    ]
+  },
+  {
+    sentence: "Honestly, I'm quite fond of you.",
+    cid: fnv8("Honestly, I'm quite fond of you."),
+    translation: "老实说，我挺喜欢你的。",
+    chunks: ["Honestly,","I'm quite fond of you."],
+    hints: ["说实话","我挺喜欢你"],
+    grammar: [
+      {role:"副词插入语", color:"#c87033", phonetic:["/ˈɑːnɪstli/"], pos:"句子副词", meaning:"说实话"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/aɪm/","/kwaɪt/","/fɑːnd/","/əv/","/juː/"], pos:"系动词+习语表语", meaning:"我挺喜欢你"}
+    ],
+    explanations: [
+      "**be fond of sb** = 喜欢某人。比 like 更含蓄稳重，多用于「日久生情」的温和好感，语气不冲。",
+      "近义：I have a soft spot for you. / I've grown to like you。例句：I'm very fond of my old professor."
+    ]
+  },
+  {
+    sentence: "I'm driving past your place — I'll drop you off.",
+    cid: fnv8("I'm driving past your place — I'll drop you off."),
+    translation: "我正好路过你那儿，顺路送你。",
+    chunks: ["I'm driving past your place —","I'll drop you off."],
+    hints: ["我正开车路过你那儿","我送你一程"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/aɪm/","/ˈdraɪvɪŋ/","/pæst/","/jʊr/","/pleɪs/"], pos:"现在进行时", meaning:"我正开车路过你住的地方"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪl/","/drɑːp/","/juː/","/ɒf/"], pos:"短语动词", meaning:"我顺路送你到门口"}
+    ],
+    explanations: [
+      "**drop sb off** = 顺路把某人送到（某地）。开车场景高频，指「到了就放下人」，宾语放中间 drop me off。",
+      "区别：pick sb up（去接人）/ see sb off（送别）。例句：I'll drop you off at the station on my way."
+    ]
+  },
+  {
+    sentence: "Put your wallet away — it's on me.",
+    cid: fnv8("Put your wallet away — it's on me."),
+    translation: "把钱包收起来，这顿我请。",
+    chunks: ["Put your wallet away —","it's on me."],
+    hints: ["把钱包收起来","我来买单"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/pʊt/","/jʊr/","/ˈwɑːlɪt/","/əˈweɪ/"], pos:"祈使句+短语动词", meaning:"把钱包收起来"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ɪts/","/ɒn/","/miː/"], pos:"习语表语", meaning:"由我付钱"}
+    ],
+    explanations: [
+      "**it's on me** = 我请客、算我的。on 表示「由谁承担费用」，也可换人称 it's on the house（店里免费）。",
+      "近义：This one's on me. / I've got this. / It's my treat. 例句：You paid last time — dinner is on me tonight."
+    ]
+  },
+  {
+    sentence: "You are adorable when you laugh.",
+    cid: fnv8("You are adorable when you laugh."),
+    translation: "你笑起来真可爱。",
+    chunks: ["You are adorable","when you laugh."],
+    hints: ["你真可爱","当你笑的时候"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/juː/","/ɑːr/","/əˈdɔːrəbl/"], pos:"系动词+形容词表语", meaning:"你非常可爱"},
+      {role:"时间状语从句", color:"#3358e0", phonetic:["/wen/","/juː/","/læf/"], pos:"when 引导状语从句", meaning:"当你笑的时候"}
+    ],
+    explanations: [
+      "**adorable** = 可爱得让人心动。比 cute 更强烈、更带宠溺感，夸人时常指「让人忍不住喜欢」。",
+      "近义：You're so cute. / You're charming. 例句：Look at that baby — she's adorable."
+    ]
+  },
+  {
+    sentence: "You take my breath away every time you smile.",
+    cid: fnv8("You take my breath away every time you smile."),
+    translation: "你每次微笑都让我屏住呼吸。",
+    chunks: ["You take my breath away","every time you smile."],
+    hints: ["你让我屏住呼吸","每次你微笑"],
+    grammar: [
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/juː/","/teɪk/","/maɪ/","/breθ/","/əˈweɪ/"], pos:"动词习语", meaning:"你美得让我屏息"},
+      {role:"时间状语从句", color:"#3358e0", phonetic:["/ˈevri/","/taɪm/","/juː/","/smaɪl/"], pos:"every time 引导从句", meaning:"每次你笑的时候"}
+    ],
+    explanations: [
+      "**take sb's breath away** = 让某人惊艳到失语。意象：美得让人忘了呼吸，是最高级的赞美之一。",
+      "近义：You leave me speechless. / You're stunning. 例句：The view from the top took my breath away."
+    ]
+  },
+  {
+    sentence: "Your timing is just right — I just finished cooking.",
+    cid: fnv8("Your timing is just right — I just finished cooking."),
+    translation: "你来得正好，我刚做好饭。",
+    chunks: ["Your timing is just right —","I just finished cooking."],
+    hints: ["你时机正好","我刚做完饭"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/ˈtaɪmɪŋ/","/ɪz/","/dʒʌst/","/raɪt/"], pos:"主系表", meaning:"你来得正是时候"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/dʒʌst/","/ˈfɪnɪʃt/","/ˈkʊkɪŋ/"], pos:"现在完成时", meaning:"我刚做完饭"}
+    ],
+    explanations: [
+      "**timing is just right** = 时机正好、来得巧。timing 指「时间上的把握」，just right 强调分毫不差。",
+      "反义：bad timing（来得不是时候）。例句：Perfect timing — dinner is ready."
+    ]
+  },
+  {
+    sentence: "You look tired — I'll leave you be.",
+    cid: fnv8("You look tired — I'll leave you be."),
+    translation: "你看起来很累，我就不打扰了。",
+    chunks: ["You look tired —","I'll leave you be."],
+    hints: ["你看上去很累","我就不打扰了"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/juː/","/lʊk/","/ˈtaɪərd/"], pos:"系动词+形容词表语", meaning:"你看上去累了"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪl/","/liːv/","/juː/","/biː/"], pos:"习语动词短语", meaning:"我不打扰你"}
+    ],
+    explanations: [
+      "**leave sb be** = 不去打扰某人、让某人清静。比 leave sb alone 更温和，含「体谅对方需要空间」的意味。",
+      "近义：I'll let you rest. / I'll get out of your hair. 例句：You've had a long day — I'll leave you be."
+    ]
+  },
+  {
+    sentence: "One more try — you can do it!",
+    cid: fnv8("One more try — you can do it!"),
+    translation: "再试一次，你能行的！",
+    chunks: ["One more try —","you can do it!"],
+    hints: ["再试一次","你能做到"],
+    grammar: [
+      {role:"名词短语", color:"#3358e0", phonetic:["/wʌn/","/mɔːr/","/traɪ/"], pos:"名词短语", meaning:"再试一次"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/juː/","/kæn/","/duː/","/ɪt/"], pos:"情态习语句", meaning:"你能做到"}
+    ],
+    explanations: [
+      "**you can do it** = 你能做到。最普及的打气句，简短的三个词自带力量，比赛、考试、健身都用。",
+      "近义：You've got this. / Hang in there. 例句：Only one lap left — you can do it!"
+    ]
+  },
+  {
+    sentence: "I'm flattered, but I can't accept.",
+    cid: fnv8("I'm flattered, but I can't accept."),
+    translation: "我受宠若惊，但我不能接受。",
+    chunks: ["I'm flattered,","but I can't accept."],
+    hints: ["我很受宠若惊","但我不能接受"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/aɪm/","/ˈflætərd/"], pos:"被动语态表语", meaning:"我受宠若惊"},
+      {role:"主谓", color:"#c87033", phonetic:["/bʌt/","/aɪ/","/kænt/","/əkˈsept/"], pos:"情态动词句", meaning:"但我无法接受"}
+    ],
+    explanations: [
+      "**I'm flattered** = 我受宠若惊、过奖了。被夸奖或被邀请时的礼貌回应，为之后的婉拒做铺垫，非常得体。",
+      "用法：可单用回谢夸奖（= 太抬举我了），也可像本句接 but 引出拒绝。例句：That's a generous offer, and I'm flattered."
+    ]
+  },
+  {
+    sentence: "I admire you for speaking up at the meeting.",
+    cid: fnv8("I admire you for speaking up at the meeting."),
+    translation: "我佩服你敢在会上开口。",
+    chunks: ["I admire you","for speaking up at the meeting."],
+    hints: ["我佩服你","因为你在会上发声"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/ədˈmaɪər/","/juː/"], pos:"一般现在时", meaning:"我佩服你"},
+      {role:"介宾短语", color:"#3358e0", phonetic:["/fɔːr/","/ˈspiːkɪŋ/","/ʌp/","/æt/","/ðə/","/ˈmiːtɪŋ/"], pos:"介词+动名词", meaning:"因为你在会上发声"}
+    ],
+    explanations: [
+      "**admire sb for sth** = 因某事佩服某人。admire 是「由衷敬佩」，比 respect 更带感情，for 后接令人佩服的原因。",
+      "近义：I look up to you. / I really respect you for that. 例句：I admire her for standing by her decision."
+    ]
+  },
+  {
+    sentence: "You aced the exam — you are awesome!",
+    cid: fnv8("You aced the exam — you are awesome!"),
+    translation: "你考试拿了高分，你太棒了！",
+    chunks: ["You aced the exam —","you are awesome!"],
+    hints: ["你考试考得超好","你太棒了"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/eɪst/","/ðə/","/ɪɡˈzæm/"], pos:"一般过去时", meaning:"你考试考得极好"},
+      {role:"习语·赞美", color:"#7c5cbf", phonetic:["/juː/","/ɑːr/","/ˈɔːsəm/"], pos:"习语赞美句", meaning:"你太厉害了"}
+    ],
+    explanations: [
+      "**ace sth** = 在某事上拿满分、做得极漂亮。源自扑克牌 A（ace 最高牌），可接 exam / interview / test。",
+      "**You are awesome** = 你太棒了。awesome 在口语里是「超厉害」，比 great 情绪更强。例句：She aced the presentation — everyone clapped."
+    ]
+  },
+  {
+    sentence: "You are one in a million — never change.",
+    cid: fnv8("You are one in a million — never change."),
+    translation: "你是万里挑一的人，别变。",
+    chunks: ["You are one in a million —","never change."],
+    hints: ["你是万里挑一","永远别改变"],
+    grammar: [
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/juː/","/ɑːr/","/wʌn/","/ɪn/","/ə/","/ˈmɪljən/"], pos:"习语表语", meaning:"你是万里挑一的"},
+      {role:"祈使句", color:"#c87033", phonetic:["/ˈnevər/","/tʃeɪndʒ/"], pos:"否定祈使句", meaning:"永远别改变"}
+    ],
+    explanations: [
+      "**one in a million** = 万里挑一、独一无二。用概率表达稀有，是赞美别人特别之处的常用句。",
+      "近义：You're one of a kind. / There's no one like you. 例句：Thanks for always helping me — you're one in a million."
+    ]
+  },
+  {
+    sentence: "You passed the driving test — you did it!",
+    cid: fnv8("You passed the driving test — you did it!"),
+    translation: "你驾照考过了，你做到了！",
+    chunks: ["You passed the driving test —","you did it!"],
+    hints: ["你通过了驾照考试","你做到了"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/pæst/","/ðə/","/ˈdraɪvɪŋ/","/test/"], pos:"一般过去时", meaning:"你通过了驾照考试"},
+      {role:"习语·感叹", color:"#7c5cbf", phonetic:["/juː/","/dɪd/","/ɪt/"], pos:"习语感叹句", meaning:"你成功做到了"}
+    ],
+    explanations: [
+      "**you did it** = 你做到了。见证对方努力后成功的欢呼句，比 congratulations 更直接带情绪。",
+      "近义：You made it! / Well done! 例句：After three attempts, you did it!"
+    ]
+  },
+  {
+    sentence: "You got us front-row seats — you are the man!",
+    cid: fnv8("You got us front-row seats — you are the man!"),
+    translation: "你给我们弄到了前排座位，你太厉害了！",
+    chunks: ["You got us front-row seats —","you are the man!"],
+    hints: ["你搞到了前排座位","你真是太牛了"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/ɡɑːt/","/ʌs/","/ˈfrʌntroʊ/","/siːts/"], pos:"一般过去时+双宾", meaning:"你给我们弄到了前排座位"},
+      {role:"习语·赞美", color:"#7c5cbf", phonetic:["/juː/","/ɑːr/","/ðə/","/mæn/"], pos:"习语赞美句", meaning:"你太厉害了"}
+    ],
+    explanations: [
+      "**you are the man** = 你太厉害了、你是大哥。男性间的高强度赞美（对女性可说 you're the best），感谢对方帮了大忙。",
+      "近义：You're the best. / You rock. 例句：You fixed my laptop in ten minutes — you are the man!"
+    ]
+  },
+  {
+    sentence: "You made me breakfast in bed — you are so sweet.",
+    cid: fnv8("You made me breakfast in bed — you are so sweet."),
+    translation: "你把早餐端到床边，你太贴心了。",
+    chunks: ["You made me breakfast in bed —","you are so sweet."],
+    hints: ["你做了床边早餐","你太贴心了"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/meɪd/","/miː/","/ˈbrekfəst/","/ɪn/","/bed/"], pos:"一般过去时+双宾", meaning:"你把早餐送到我床边"},
+      {role:"主系表", color:"#c87033", phonetic:["/juː/","/ɑːr/","/soʊ/","/swiːt/"], pos:"系动词+表语", meaning:"你太贴心了"}
+    ],
+    explanations: [
+      "**breakfast in bed** = 送到床边的早餐。情侣、家人之间的甜蜜仪式感表达，固定搭配不加冠词。",
+      "**you are so sweet** = 你太贴心了。sweet 形容人「温柔体贴」，注意不是「甜」。例句：Thanks for the surprise — you are so sweet."
+    ]
+  },
+  {
+    sentence: "Take it easy at the gym — don't overdo it.",
+    cid: fnv8("Take it easy at the gym — don't overdo it."),
+    translation: "在健身房悠着点，别练过头。",
+    chunks: ["Take it easy at the gym —","don't overdo it."],
+    hints: ["在健身房别太拼","别做过头"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/teɪk/","/ɪt/","/ˈiːzi/","/æt/","/ðə/","/dʒɪm/"], pos:"习语祈使句+短语动词", meaning:"在健身房别太拼"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/ˌoʊvərˈduː/","/ɪt/"], pos:"习语否定祈使句", meaning:"别用力过猛"}
+    ],
+    explanations: [
+      "**overdo it** = 做得过头、用力过猛。适用于运动、喝酒、加班——凡事超出身体能承受的度。",
+      "近义：Don't push yourself too hard. / Take it slow. 例句：You just recovered — don't overdo it."
+    ]
+  },
+  {
+    sentence: "Information came in by dribs and drabs.",
+    cid: fnv8("Information came in by dribs and drabs."),
+    translation: "消息零零散散地传了过来。",
+    chunks: ["Information came in","by dribs and drabs."],
+    hints: ["消息陆续传来","零零散散地"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/ˌɪnfərˈmeɪʃn/","/keɪm/","/ɪn/"], pos:"一般过去时+短语动词", meaning:"消息陆续到来"},
+      {role:"习语·状语", color:"#7c5cbf", phonetic:["/baɪ/","/drɪbz/","/ənd/","/dræbz/"], pos:"习语状语", meaning:"零零星星地"}
+    ],
+    explanations: [
+      "**by dribs and drabs** = 零零星星、一点一点地。强调「不成批、不连续」，常形容消息、捐款、人流慢慢来。",
+      "近义：in bits and pieces / little by little。例句：The donations came in by dribs and drabs."
+    ]
+  },
+  {
+    sentence: "Free concert tickets — you're pulling my leg!",
+    cid: fnv8("Free concert tickets — you're pulling my leg!"),
+    translation: "免费演唱会门票，你在逗我吧！",
+    chunks: ["Free concert tickets —","you're pulling my leg!"],
+    hints: ["免费的演唱会票","你在开我玩笑吧"],
+    grammar: [
+      {role:"名词短语", color:"#3358e0", phonetic:["/friː/","/ˈkɑːnsərt/","/ˈtɪkɪts/"], pos:"名词短语", meaning:"免费演唱会门票"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/jʊr/","/ˈpʊlɪŋ/","/maɪ/","/leɡ/"], pos:"动词习语进行时", meaning:"你在跟我开玩笑"}
+    ],
+    explanations: [
+      "**pull sb's leg** = 逗某人、拿某人开玩笑。不是「拉腿」！指善意地哄骗逗趣，常用来表示「我不信，你在骗我」。",
+      "近义：You're kidding me. / You're teasing me. 例句：Seriously, I'm not pulling your leg — the tickets are real."
+    ]
+  },
+  {
+    sentence: "It's your first week, so ease into it.",
+    cid: fnv8("It's your first week, so ease into it."),
+    translation: "这是你的第一周，慢慢上手吧。",
+    chunks: ["It's your first week,","so ease into it."],
+    hints: ["这是你的第一周","所以慢慢适应"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ɪts/","/jʊr/","/fɜːrst/","/wiːk/"], pos:"主系表", meaning:"这是你的第一周"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/soʊ/","/iːz/","/ˈɪntuː/","/ɪt/"], pos:"短语动词祈使句", meaning:"慢慢适应"}
+    ],
+    explanations: [
+      "**ease into sth** = 慢慢进入状态、渐进适应。ease 是「缓和」，比 start 多一层「别急、慢来」的劝告语气。",
+      "近义：take it slow / get into the swing of it。例句：New job? Give yourself a month to ease into it."
+    ]
+  },
+  {
+    sentence: "It's just a small injection — don't be a baby.",
+    cid: fnv8("It's just a small injection — don't be a baby."),
+    translation: "只是打个小针，别像个小孩一样。",
+    chunks: ["It's just a small injection —","don't be a baby."],
+    hints: ["只是打个小针","别跟小娃娃似的"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ɪts/","/dʒʌst/","/ə/","/smɔːl/","/ɪnˈdʒekʃn/"], pos:"主系表", meaning:"只是一个小针剂"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/biː/","/ə/","/ˈbeɪbi/"], pos:"习语否定祈使句", meaning:"别小孩子气"}
+    ],
+    explanations: [
+      "**don't be a baby** = 别像个小孩似的、别娇气。哄小孩或略带嫌弃地劝人别闹，对成年人说会显得不太客气。",
+      "近义：Don't be such a wimp. / Be a big boy. 例句：It's only a splinter — don't be a baby."
+    ]
+  },
+  {
+    sentence: "You can't fool me — I have your number.",
+    cid: fnv8("You can't fool me — I have your number."),
+    translation: "你骗不了我，我早就看透你了。",
+    chunks: ["You can't fool me —","I have your number."],
+    hints: ["你骗不了我","我清楚你的底细"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/kænt/","/fuːl/","/miː/"], pos:"情态动词句", meaning:"你骗不了我"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/hæv/","/jʊr/","/ˈnʌmbər/"], pos:"名词习语", meaning:"我了解你的底细"}
+    ],
+    explanations: [
+      "**have sb's number** = 摸清某人的底、看透某人。不是「有电话号码」！指知道对方真实动机，不被花招骗到。",
+      "近义：I've got you figured out. / I know your game. 例句：Nice try, but I have your number."
+    ]
+  },
+  {
+    sentence: "You lied to my face — you have a lot of nerve!",
+    cid: fnv8("You lied to my face — you have a lot of nerve!"),
+    translation: "你当面骗我，胆子真大！",
+    chunks: ["You lied to my face —","you have a lot of nerve!"],
+    hints: ["你当面撒谎","你胆子真大"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/juː/","/laɪd/","/tuː/","/maɪ/","/feɪs/"], pos:"一般过去时", meaning:"你当面对我撒谎"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/juː/","/hæv/","/ə/","/lɑːt/","/əv/","/nɜːrv/"], pos:"名词习语", meaning:"你居然有这种脸皮"}
+    ],
+    explanations: [
+      "**have a lot of nerve** = 脸皮真厚、胆子真大。指责对方「居然敢这么做」，语气强烈；也说 have some nerve。",
+      "近义：How dare you! / You've got some guts. 例句：You asked me for a raise after that mess — you have a lot of nerve."
     ]
   }
 ];
