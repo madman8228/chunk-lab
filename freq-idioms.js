@@ -6,7 +6,7 @@
  * batch8（2026-09-10）= 关心/安抚/澄清类 26 条，含拼写修正（what out→Watch out / it your turn→it's your turn）；
  *   句式规则：非末 chunk 禁止独立句末标点（.?!），两句合一用破折号/so 连接。
  * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json）：
- *   分析时未收录 233 条 → batch7 收 25 条 → batch8 收 26 条 → 余 207 条待扩写；
+ *   分析时未收录 233 条 → batch7 收 25 条 → batch8 收 26 条 → 余 182 条待扩写；
  *   其中粗俗/攻击性（piss off / fuck up / up yours 等）与低质量条目（use to / since apoloytes 等错拼）建议过滤，等老板定。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
