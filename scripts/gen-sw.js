@@ -7,8 +7,10 @@
  *
  * 做法：
  *   1. 以 sw.js 内现有 PRECACHE 为权威基准（保留维护者人工确认过的离线必需清单）；
- *   2. 自动补全：扫描 main/courses/decks/stats 四个 HTML 的 <script src> 与 <link href>
- *      同源静态引用（js/css/png/json/html），缺啥补啥，消灭"新增模块忘加预缓存"；
+ *   2. 自动补全：由 scripts/lib-deps.js 算出前端运行时资源全集
+ *      （HTML 的 src/href + **ES module import 递归闭包** + manifest 图标），缺啥补啥。
+ *      根因（2026-09-10）：旧版只扫 HTML 的 src/href、不跟 import，导致 bridge.mjs 的
+ *      传递依赖 js/distractor-cause.mjs 漏出 PRECACHE（冷启动即离线时该模块拿不到）。
  *   3. CACHE 版本 = 全部清单文件内容 sha1 前 8 位 → 资源一变版本自动变，
  *      activate 清理旧缓存，无需任何手改。
  *
@@ -18,10 +20,10 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const deps = require('./lib-deps.js');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = deps.ROOT;
 const SW = path.join(ROOT, 'sw.js');
-const HTML_FILES = ['main.html', 'courses.html', 'decks.html', 'stats.html'];
 
 /* ---------- 解析 sw.js 现有基准 ---------- */
 let sw = fs.readFileSync(SW, 'utf8');
@@ -34,30 +36,20 @@ if (!cacheMatch || !listMatch) {
 
 const base = (listMatch[0].match(/'([^']+)'/g) || []).map(function (s) { return s.slice(1, -1); });
 
-/* ---------- 扫描 HTML 引用，自动补全 ---------- */
-const SRC_RE = /(?:src|href)="([^"]+)"/g;
+/* ---------- 由依赖闭包自动补全 ----------
+   runtimeAssets = HTML 的 src/href + 每个 JS 文件的 ESM import / CJS require 递归闭包
+   + manifest.json 的 icons。比"只扫 HTML 属性"多覆盖了传递依赖（如 bridge.mjs →
+   distractor-cause.mjs），这类文件以前会静默漏出预缓存。 */
+const res = deps.runtimeAssets(deps.HTML_ENTRIES);
 const seen = new Set(base);
 const added = [];
-const skip = new Set();
-for (const f of HTML_FILES) {
-  const p = path.join(ROOT, f);
-  if (!fs.existsSync(p)) { console.warn('[gen-sw] 跳过不存在的 HTML: ' + f); continue; }
-  const html = fs.readFileSync(p, 'utf8');
-  let m;
-  SRC_RE.lastIndex = 0;
-  while ((m = SRC_RE.exec(html)) !== null) {
-    let u = m[1];
-    if (/^(https?:|data:|blob:|about:|#|\/\/)/i.test(u)) continue;   // 外链 / 内联 / iframe 占位跳过
-    if (/^\/api\//.test(u)) continue;                          // API 不预缓存
-    if (u.includes('..')) continue;                            // 越界引用跳过
-    u = '/' + u.replace(/^\.?\//, '').split('?')[0];
-    if (seen.has(u)) continue;
-    seen.add(u);
-    const fp = path.join(ROOT, u.replace(/^\//, ''));
-    if (!fs.existsSync(fp)) { skip.add(u); continue; }
-    added.push(u);
-  }
-}
+const skip = new Set(res.missingRefs);
+res.files.forEach(function (rel) {
+  const u = '/' + rel.split(path.sep).join('/');
+  if (seen.has(u)) return;
+  seen.add(u);
+  added.push(u);
+});
 
 /* ---------- 校验基准文件存在 ---------- */
 const missing = base.filter(function (u) { return !fs.existsSync(path.join(ROOT, u.replace(/^\//, ''))); });
