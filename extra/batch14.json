@@ -1,0 +1,466 @@
+[
+  {
+    "sentence": "Could you back up a little — you're blocking the door.",
+    "cid": "80b3d7c3",
+    "translation": "你能退后一点吗，你挡住门了。",
+    "chunks": [
+      "Could you back up a little —",
+      "you're blocking the door."
+    ],
+    "hints": [
+      "你能退后一点吗",
+      "你挡住门了"
+    ],
+    "grammar": [
+      {
+        "role": "短语动词",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/bæk/",
+          "/ʌp/"
+        ],
+        "pos": "短语动词",
+        "meaning": "后退"
+      },
+      {
+        "role": "主谓宾",
+        "color": "#c87033",
+        "phonetic": [
+          "/jʊr/",
+          "/ˈblɑːkɪŋ/",
+          "/ðə/",
+          "/dɔːr/"
+        ],
+        "pos": "主谓宾",
+        "meaning": "你挡着门"
+      }
+    ],
+    "explanations": [
+      "**Back up** = 后退（空间）；同一短语另有「支持」和「备份」两义，靠语境区分。",
+      "近义：Step back / Move back. 例句：Back up — you're standing too close to the edge."
+    ]
+  },
+  {
+    "sentence": "Drink some water and sober up before you leave.",
+    "cid": "83d9bd3c",
+    "translation": "喝点水，醒醒酒再走。",
+    "chunks": [
+      "Drink some water",
+      "and sober up before you leave."
+    ],
+    "hints": [
+      "喝点水",
+      "醒醒酒再走"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#e74c7a",
+        "phonetic": [
+          "/drɪŋk/",
+          "/sʌm/",
+          "/ˈwɔːtər/"
+        ],
+        "pos": "祈使句",
+        "meaning": "喝点水"
+      },
+      {
+        "role": "短语动词",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ˈsoʊbər/",
+          "/ʌp/"
+        ],
+        "pos": "短语动词",
+        "meaning": "醒酒"
+      }
+    ],
+    "explanations": [
+      "**Sober up** = 醒酒、清醒过来。sober 本身是形容词「清醒的」，加 up 变成「从醉态里出来」。",
+      "近义：Sleep it off. 例句：He needs an hour to sober up before he can drive."
+    ]
+  },
+  {
+    "sentence": "We strive to make every customer feel welcome.",
+    "cid": "ab86ddf0",
+    "translation": "我们努力让每位顾客感到宾至如归。",
+    "chunks": [
+      "We strive to",
+      "make every customer feel welcome."
+    ],
+    "hints": [
+      "我们努力做到",
+      "让每位顾客感到宾至如归"
+    ],
+    "grammar": [
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/wiː/",
+          "/straɪv/",
+          "/tə/"
+        ],
+        "pos": "主谓",
+        "meaning": "我们努力"
+      },
+      {
+        "role": "宾语补足语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/meɪk/",
+          "/ˈkʌstəmər/",
+          "/fel/",
+          "/ˈwelkəm/"
+        ],
+        "pos": "宾补结构",
+        "meaning": "让顾客感到受欢迎"
+      }
+    ],
+    "explanations": [
+      "**Strive to do sth** = 力求、努力做某事。比 try hard 更书面、更有使命感，企业文案和演讲高频。",
+      "近义：Endeavor to. 例句：We strive to improve our service every single day."
+    ]
+  },
+  {
+    "sentence": "The moment the alarm rang, the crew sprang into action.",
+    "cid": "c695c3f1",
+    "translation": "警报一响，全组人立刻行动起来。",
+    "chunks": [
+      "The moment the alarm rang,",
+      "the crew sprang into action."
+    ],
+    "hints": [
+      "警报一响",
+      "全组人立刻行动"
+    ],
+    "grammar": [
+      {
+        "role": "时间状语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ðə/",
+          "/moʊmənt/",
+          "/ðə/",
+          "/əˈlɑːrm/",
+          "/ræŋ/"
+        ],
+        "pos": "时间状语从句",
+        "meaning": "警报一响"
+      },
+      {
+        "role": "习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/spræŋ/",
+          "/ˈɪntə/",
+          "/ˈækʃn/"
+        ],
+        "pos": "习语",
+        "meaning": "迅速投入行动"
+      }
+    ],
+    "explanations": [
+      "**Spring into action** = 立刻行动起来。spring 是「像弹簧一样弹起」，过去式 sprang，画面感强。",
+      "近义：Jump into action. 例句：Emergency teams sprang into action right after the quake."
+    ]
+  },
+  {
+    "sentence": "Don't be too hard on yourself — tomorrow is another day.",
+    "cid": "eff747d7",
+    "translation": "别太苛责自己，明天又是新的一天。",
+    "chunks": [
+      "Don't be too hard on yourself —",
+      "tomorrow is another day."
+    ],
+    "hints": [
+      "别太苛责自己",
+      "明天又是新的一天"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#e74c7a",
+        "phonetic": [
+          "/doʊnt/",
+          "/biː/",
+          "/hɑːrd/",
+          "/ɔn/",
+          "/jʊrˈself/"
+        ],
+        "pos": "祈使句",
+        "meaning": "别对自己太苛刻"
+      },
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/təˈmɑːroʊ/",
+          "/ɪz/",
+          "/əˈnʌðər/",
+          "/deɪ/"
+        ],
+        "pos": "主系表",
+        "meaning": "明天是崭新的一天"
+      }
+    ],
+    "explanations": [
+      "**Tomorrow is another day** = 明天又是新的一天。《乱世佳人》结尾名句，用来安慰人翻篇、别纠结当下。",
+      "近义：There's always tomorrow. 例句：We lost this one, but tomorrow is another day."
+    ]
+  },
+  {
+    "sentence": "Don't let the grass grow under your feet — apply now.",
+    "cid": "2583c5ff",
+    "translation": "别让机会从脚下溜走，现在就申请。",
+    "chunks": [
+      "Don't let the grass grow under your feet —",
+      "apply now."
+    ],
+    "hints": [
+      "别磨蹭",
+      "现在就申请"
+    ],
+    "grammar": [
+      {
+        "role": "习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/ɡræs/",
+          "/ɡroʊ/",
+          "/ʌndər/",
+          "/jʊr/",
+          "/fiːt/"
+        ],
+        "pos": "习语",
+        "meaning": "别让时光虚度"
+      },
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/əˈplaɪ/",
+          "/naʊ/"
+        ],
+        "pos": "祈使句",
+        "meaning": "现在就申请"
+      }
+    ],
+    "explanations": [
+      "**Don't let the grass grow under your feet** = 别磨蹭、趁热打铁。画面是人在原地站太久，脚下都长草了。",
+      "近义：Strike while the iron is hot. 例句：Don't let the grass grow under your feet — the offer expires Friday."
+    ]
+  },
+  {
+    "sentence": "He was on his knees, begging for a second chance.",
+    "cid": "a7634c5d",
+    "translation": "他跪了下来，乞求第二次机会。",
+    "chunks": [
+      "He was on his knees,",
+      "begging for a second chance."
+    ],
+    "hints": [
+      "他跪了下来",
+      "乞求第二次机会"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɑn/",
+          "/hɪz/",
+          "/niːz/"
+        ],
+        "pos": "介宾短语",
+        "meaning": "跪着"
+      },
+      {
+        "role": "伴随状语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/ˈbeɡɪŋ/",
+          "/fər/",
+          "/ə/",
+          "/ˈsekənd/",
+          "/tʃæns/"
+        ],
+        "pos": "现在分词短语",
+        "meaning": "乞求第二次机会"
+      }
+    ],
+    "explanations": [
+      "**On one's knees** = 跪下、跪着。字面跪地乞求；引申义是「濒临崩溃」（The company was on its knees.）。",
+      "近义：Beg and plead. 例句：She was on her knees scrubbing the floor all morning."
+    ]
+  },
+  {
+    "sentence": "Get down from there — you'll hurt yourself.",
+    "cid": "889e201d",
+    "translation": "快下来，你会伤到自己的。",
+    "chunks": [
+      "Get down from there —",
+      "you'll hurt yourself."
+    ],
+    "hints": [
+      "快下来",
+      "你会伤到自己"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#e74c7a",
+        "phonetic": [
+          "/ɡet/",
+          "/daʊn/",
+          "/frəm/",
+          "/ðer/"
+        ],
+        "pos": "祈使句",
+        "meaning": "从那上面下来"
+      },
+      {
+        "role": "主谓",
+        "color": "#c87033",
+        "phonetic": [
+          "/jʊl/",
+          "/hɜːrt/",
+          "/jʊrˈself/"
+        ],
+        "pos": "主谓宾",
+        "meaning": "你会伤到自己"
+      }
+    ],
+    "explanations": [
+      "**Get down** = 下来（从高处）。注意别和「趴下」的 Get down!（危险时喊的）搞混——那个靠语气和场景区分。",
+      "近义：Come down. 例句：Get down from the ladder — I'll hold it steady."
+    ]
+  },
+  {
+    "sentence": "It's getting late — let me walk you out.",
+    "cid": "7391caa7",
+    "translation": "天色晚了，我送你出去。",
+    "chunks": [
+      "It's getting late —",
+      "let me walk you out."
+    ],
+    "hints": [
+      "天色晚了",
+      "我送你出去"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪts/",
+          "/ˈɡetɪŋ/",
+          "/leɪt/"
+        ],
+        "pos": "主系表",
+        "meaning": "天色晚了"
+      },
+      {
+        "role": "习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wɔːk/",
+          "/juː/",
+          "/aʊt/"
+        ],
+        "pos": "习语",
+        "meaning": "送你出去"
+      }
+    ],
+    "explanations": [
+      "**Walk you out** = 送你出去（陪走到门口或车边）。待客、约会结束时都常用，比 goodbye 多一分周到。",
+      "近义：See you to the door. 例句：Stay a while — I'll walk you out whenever you're ready."
+    ]
+  },
+  {
+    "sentence": "It's midnight — how are you gonna get home?",
+    "cid": "02aec480",
+    "translation": "都半夜了，你打算怎么回家？",
+    "chunks": [
+      "It's midnight —",
+      "how are you gonna get home?"
+    ],
+    "hints": [
+      "都半夜了",
+      "你打算怎么回家"
+    ],
+    "grammar": [
+      {
+        "role": "主系表",
+        "color": "#c87033",
+        "phonetic": [
+          "/ɪts/",
+          "/ˈmɪdnaɪt/"
+        ],
+        "pos": "主系表",
+        "meaning": "已经是半夜"
+      },
+      {
+        "role": "疑问句",
+        "color": "#3358e0",
+        "phonetic": [
+          "/haʊ/",
+          "/ɑːr/",
+          "/juː/",
+          "/ˈɡənə/",
+          "/ɡet/",
+          "/hoʊm/"
+        ],
+        "pos": "疑问句",
+        "meaning": "你打算怎么回家"
+      }
+    ],
+    "explanations": [
+      "**How are you gonna...?** = 你打算怎么……？gonna 是 going to 的口语缩写，这句话是关心对方的安排。",
+      "近义：How will you get back? 例句：The buses stopped running — how are you gonna get home?"
+    ]
+  },
+  {
+    "sentence": "He worked his way through college by washing dishes.",
+    "cid": "1334f021",
+    "translation": "他靠洗碗打工读完了大学。",
+    "chunks": [
+      "He worked his way through college",
+      "by washing dishes."
+    ],
+    "hints": [
+      "他一路打工读完了大学",
+      "靠洗碗挣钱"
+    ],
+    "grammar": [
+      {
+        "role": "习语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wɜːrkt/",
+          "/hɪz/",
+          "/weɪ/",
+          "/θruː/",
+          "/ˈkɑːlɪdʒ/"
+        ],
+        "pos": "习语",
+        "meaning": "靠打工完成学业"
+      },
+      {
+        "role": "方式状语",
+        "color": "#3358e0",
+        "phonetic": [
+          "/baɪ/",
+          "/ˈwɑːʃɪŋ/",
+          "/ˈdɪʃɪz/"
+        ],
+        "pos": "介宾短语",
+        "meaning": "靠洗碗"
+      }
+    ],
+    "explanations": [
+      "**Work one's way (through)** = 靠打工、一步一步奋斗着完成。强调过程辛苦但没有外援。",
+      "近义：Put oneself through school. 例句：She worked her way up from intern to manager."
+    ]
+  }
+]

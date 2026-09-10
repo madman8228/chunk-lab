@@ -1,4 +1,4 @@
-/* 高频短语 · English Idioms（运行态 375 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24 + batch13 26）
+/* 高频短语 · English Idioms（运行态 386 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24 + batch13 26 + batch14 11）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
  * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
  *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
@@ -23,11 +23,16 @@
  *   （have a crush on ← She has a crush on...；soak up ← soaked up；pick on ← picking on）。
  *   另核出 6 条被既有同义句覆盖（ask for it ← you asked for it / it's up to you ← up to you /
  *   make an excuse ← stop making excuses / think about it ← think it over / see you out / be mad at me→已收）。
+ * batch14（2026-09-10）= A 类收尾 11 条（back up / sober up / strive to / spring into action /
+ *   tomorrow is another day / don't let the grass grow under your feet / on his knees / get down /
+ *   walk you out 等），含 B 类修正 2 条：how you gona get home→how are you gonna get home、
+ *   work you home→work one's way through college（按正确习语形式收录）。
+ *   —— 至此源清单中的 A 类干净条目已全部收完。
  * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json 与 output/idioms-classified.md）：
- *   累计收录 174 条（batch7~13）→ 实测差集余 79 条（子串匹配口径；其中相当部分是
- *   时态/人称变体假阳性与 A 类已覆盖条目，真实可扩写量已不多）；
- *   剩余主体为粗俗/攻击性（piss off / fuck up / up yours / bite me 等）与低质量错拼条目
- *   （use to / since apoloytes / work you home 等）——建议过滤，等老板定。
+ *   累计收录 185 条（batch7~14）→ 剩余差集全部为 C 类粗俗/攻击性（piss off / fuck up / up yours /
+ *   bite me / cut the crap / get out of my face / don't suck up / get loaded / encore 等）
+ *   与 D 类低质量错拼（use to / since apoloytes / every body says / i see & i know 等），
+ *   均不建议直接入库——收录与否等老板拍板（若收录需设计「口语强度标签」）。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
  *   my bad / good for you / you bet，例句变体）；仅 you don't say 为库内缺词条，已单抽 batch6 注入（201）。
@@ -5945,6 +5950,172 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**Speed up** = 加快速度。反义是 slow down；加 a little 让催促听起来不那么冲。",
       "近义：Hurry up / Step on it. 例句：Could you speed up a bit — the train leaves at six."
+    ]
+  }
+,
+  {
+    sentence: "Could you back up a little — you're blocking the door.",
+    cid: fnv8("Could you back up a little — you're blocking the door."),
+    translation: "你能退后一点吗，你挡住门了。",
+    chunks: ["Could you back up a little —","you're blocking the door."],
+    hints: ["你能退后一点吗","你挡住门了"],
+    grammar: [
+      {role:"短语动词", color:"#7c5cbf", phonetic:["/bæk/","/ʌp/"], pos:"短语动词", meaning:"后退"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/jʊr/","/ˈblɑːkɪŋ/","/ðə/","/dɔːr/"], pos:"主谓宾", meaning:"你挡着门"}
+    ],
+    explanations: [
+      "**Back up** = 后退（空间）；同一短语另有「支持」和「备份」两义，靠语境区分。",
+      "近义：Step back / Move back. 例句：Back up — you're standing too close to the edge."
+    ]
+  },
+  {
+    sentence: "Drink some water and sober up before you leave.",
+    cid: fnv8("Drink some water and sober up before you leave."),
+    translation: "喝点水，醒醒酒再走。",
+    chunks: ["Drink some water","and sober up before you leave."],
+    hints: ["喝点水","醒醒酒再走"],
+    grammar: [
+      {role:"祈使句", color:"#e74c7a", phonetic:["/drɪŋk/","/sʌm/","/ˈwɔːtər/"], pos:"祈使句", meaning:"喝点水"},
+      {role:"短语动词", color:"#7c5cbf", phonetic:["/ˈsoʊbər/","/ʌp/"], pos:"短语动词", meaning:"醒酒"}
+    ],
+    explanations: [
+      "**Sober up** = 醒酒、清醒过来。sober 本身是形容词「清醒的」，加 up 变成「从醉态里出来」。",
+      "近义：Sleep it off. 例句：He needs an hour to sober up before he can drive."
+    ]
+  },
+  {
+    sentence: "We strive to make every customer feel welcome.",
+    cid: fnv8("We strive to make every customer feel welcome."),
+    translation: "我们努力让每位顾客感到宾至如归。",
+    chunks: ["We strive to","make every customer feel welcome."],
+    hints: ["我们努力做到","让每位顾客感到宾至如归"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/wiː/","/straɪv/","/tə/"], pos:"主谓", meaning:"我们努力"},
+      {role:"宾语补足语", color:"#3358e0", phonetic:["/meɪk/","/ˈkʌstəmər/","/fel/","/ˈwelkəm/"], pos:"宾补结构", meaning:"让顾客感到受欢迎"}
+    ],
+    explanations: [
+      "**Strive to do sth** = 力求、努力做某事。比 try hard 更书面、更有使命感，企业文案和演讲高频。",
+      "近义：Endeavor to. 例句：We strive to improve our service every single day."
+    ]
+  },
+  {
+    sentence: "The moment the alarm rang, the crew sprang into action.",
+    cid: fnv8("The moment the alarm rang, the crew sprang into action."),
+    translation: "警报一响，全组人立刻行动起来。",
+    chunks: ["The moment the alarm rang,","the crew sprang into action."],
+    hints: ["警报一响","全组人立刻行动"],
+    grammar: [
+      {role:"时间状语", color:"#3358e0", phonetic:["/ðə/","/moʊmənt/","/ðə/","/əˈlɑːrm/","/ræŋ/"], pos:"时间状语从句", meaning:"警报一响"},
+      {role:"习语", color:"#7c5cbf", phonetic:["/spræŋ/","/ˈɪntə/","/ˈækʃn/"], pos:"习语", meaning:"迅速投入行动"}
+    ],
+    explanations: [
+      "**Spring into action** = 立刻行动起来。spring 是「像弹簧一样弹起」，过去式 sprang，画面感强。",
+      "近义：Jump into action. 例句：Emergency teams sprang into action right after the quake."
+    ]
+  },
+  {
+    sentence: "Don't be too hard on yourself — tomorrow is another day.",
+    cid: fnv8("Don't be too hard on yourself — tomorrow is another day."),
+    translation: "别太苛责自己，明天又是新的一天。",
+    chunks: ["Don't be too hard on yourself —","tomorrow is another day."],
+    hints: ["别太苛责自己","明天又是新的一天"],
+    grammar: [
+      {role:"祈使句", color:"#e74c7a", phonetic:["/doʊnt/","/biː/","/hɑːrd/","/ɔn/","/jʊrˈself/"], pos:"祈使句", meaning:"别对自己太苛刻"},
+      {role:"主系表", color:"#c87033", phonetic:["/təˈmɑːroʊ/","/ɪz/","/əˈnʌðər/","/deɪ/"], pos:"主系表", meaning:"明天是崭新的一天"}
+    ],
+    explanations: [
+      "**Tomorrow is another day** = 明天又是新的一天。《乱世佳人》结尾名句，用来安慰人翻篇、别纠结当下。",
+      "近义：There's always tomorrow. 例句：We lost this one, but tomorrow is another day."
+    ]
+  },
+  {
+    sentence: "Don't let the grass grow under your feet — apply now.",
+    cid: fnv8("Don't let the grass grow under your feet — apply now."),
+    translation: "别让机会从脚下溜走，现在就申请。",
+    chunks: ["Don't let the grass grow under your feet —","apply now."],
+    hints: ["别磨蹭","现在就申请"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/ɡræs/","/ɡroʊ/","/ʌndər/","/jʊr/","/fiːt/"], pos:"习语", meaning:"别让时光虚度"},
+      {role:"祈使句", color:"#c87033", phonetic:["/əˈplaɪ/","/naʊ/"], pos:"祈使句", meaning:"现在就申请"}
+    ],
+    explanations: [
+      "**Don't let the grass grow under your feet** = 别磨蹭、趁热打铁。画面是人在原地站太久，脚下都长草了。",
+      "近义：Strike while the iron is hot. 例句：Don't let the grass grow under your feet — the offer expires Friday."
+    ]
+  },
+  {
+    sentence: "He was on his knees, begging for a second chance.",
+    cid: fnv8("He was on his knees, begging for a second chance."),
+    translation: "他跪了下来，乞求第二次机会。",
+    chunks: ["He was on his knees,","begging for a second chance."],
+    hints: ["他跪了下来","乞求第二次机会"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ɑn/","/hɪz/","/niːz/"], pos:"介宾短语", meaning:"跪着"},
+      {role:"伴随状语", color:"#3358e0", phonetic:["/ˈbeɡɪŋ/","/fər/","/ə/","/ˈsekənd/","/tʃæns/"], pos:"现在分词短语", meaning:"乞求第二次机会"}
+    ],
+    explanations: [
+      "**On one's knees** = 跪下、跪着。字面跪地乞求；引申义是「濒临崩溃」（The company was on its knees.）。",
+      "近义：Beg and plead. 例句：She was on her knees scrubbing the floor all morning."
+    ]
+  },
+  {
+    sentence: "Get down from there — you'll hurt yourself.",
+    cid: fnv8("Get down from there — you'll hurt yourself."),
+    translation: "快下来，你会伤到自己的。",
+    chunks: ["Get down from there —","you'll hurt yourself."],
+    hints: ["快下来","你会伤到自己"],
+    grammar: [
+      {role:"祈使句", color:"#e74c7a", phonetic:["/ɡet/","/daʊn/","/frəm/","/ðer/"], pos:"祈使句", meaning:"从那上面下来"},
+      {role:"主谓", color:"#c87033", phonetic:["/jʊl/","/hɜːrt/","/jʊrˈself/"], pos:"主谓宾", meaning:"你会伤到自己"}
+    ],
+    explanations: [
+      "**Get down** = 下来（从高处）。注意别和「趴下」的 Get down!（危险时喊的）搞混——那个靠语气和场景区分。",
+      "近义：Come down. 例句：Get down from the ladder — I'll hold it steady."
+    ]
+  },
+  {
+    sentence: "It's getting late — let me walk you out.",
+    cid: fnv8("It's getting late — let me walk you out."),
+    translation: "天色晚了，我送你出去。",
+    chunks: ["It's getting late —","let me walk you out."],
+    hints: ["天色晚了","我送你出去"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ɪts/","/ˈɡetɪŋ/","/leɪt/"], pos:"主系表", meaning:"天色晚了"},
+      {role:"习语", color:"#7c5cbf", phonetic:["/wɔːk/","/juː/","/aʊt/"], pos:"习语", meaning:"送你出去"}
+    ],
+    explanations: [
+      "**Walk you out** = 送你出去（陪走到门口或车边）。待客、约会结束时都常用，比 goodbye 多一分周到。",
+      "近义：See you to the door. 例句：Stay a while — I'll walk you out whenever you're ready."
+    ]
+  },
+  {
+    sentence: "It's midnight — how are you gonna get home?",
+    cid: fnv8("It's midnight — how are you gonna get home?"),
+    translation: "都半夜了，你打算怎么回家？",
+    chunks: ["It's midnight —","how are you gonna get home?"],
+    hints: ["都半夜了","你打算怎么回家"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ɪts/","/ˈmɪdnaɪt/"], pos:"主系表", meaning:"已经是半夜"},
+      {role:"疑问句", color:"#3358e0", phonetic:["/haʊ/","/ɑːr/","/juː/","/ˈɡənə/","/ɡet/","/hoʊm/"], pos:"疑问句", meaning:"你打算怎么回家"}
+    ],
+    explanations: [
+      "**How are you gonna...?** = 你打算怎么……？gonna 是 going to 的口语缩写，这句话是关心对方的安排。",
+      "近义：How will you get back? 例句：The buses stopped running — how are you gonna get home?"
+    ]
+  },
+  {
+    sentence: "He worked his way through college by washing dishes.",
+    cid: fnv8("He worked his way through college by washing dishes."),
+    translation: "他靠洗碗打工读完了大学。",
+    chunks: ["He worked his way through college","by washing dishes."],
+    hints: ["他一路打工读完了大学","靠洗碗挣钱"],
+    grammar: [
+      {role:"习语", color:"#7c5cbf", phonetic:["/wɜːrkt/","/hɪz/","/weɪ/","/θruː/","/ˈkɑːlɪdʒ/"], pos:"习语", meaning:"靠打工完成学业"},
+      {role:"方式状语", color:"#3358e0", phonetic:["/baɪ/","/ˈwɑːʃɪŋ/","/ˈdɪʃɪz/"], pos:"介宾短语", meaning:"靠洗碗"}
+    ],
+    explanations: [
+      "**Work one's way (through)** = 靠打工、一步一步奋斗着完成。强调过程辛苦但没有外援。",
+      "近义：Put oneself through school. 例句：She worked her way up from intern to manager."
     ]
   }
 ];
