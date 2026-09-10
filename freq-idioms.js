@@ -1,4 +1,4 @@
-/* 高频短语 · English Idioms（运行态 325 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24）
+/* 高频短语 · English Idioms（运行态 349 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
  * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
  *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
@@ -11,8 +11,12 @@
  * batch11（2026-09-10）= 公共指令/秩序类 24 条（制止/驱赶 stop it·stop him·go away·get out of here、
  *   排队秩序 line up·form a line·cut in line·get in line、疏散安全 stand back·stay down·stay away、
  *   规矩警告 no tricks·don't blab·take it or leave it），含错拼修正 stay away form me→from me。
+ * batch12（2026-09-10）= 冲突指责 + 情绪状态类 24 条（who do you think you are / drop the act /
+ *   going too far / good mood / cranky / long face / ridiculous / put up with / stay out of it /
+ *   have the heart / can't bear to 等）；撞车预检剔除 8 条库内已有同义条目（killing me / out of line /
+ *   good for nothing / know your stuff / bombshell / rubbed me the wrong way / my apologies / of one's own accord）。
  * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json 与 output/idioms-classified.md）：
- *   累计收录 124 条（batch7~11）→ 实测差集余 122 条待扩写（差集降幅小于收录条数，
+ *   累计收录 148 条（batch7~12）→ 实测差集余 102 条待扩写（差集降幅小于收录条数，
  *   因一句常覆盖多个同义词条、且部分源条目不在 394 清单内）；
  *   其中粗俗/攻击性（piss off / fuck up / up yours 等）与低质量条目（use to / since apoloytes 等错拼）建议过滤，等老板定。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
@@ -5180,6 +5184,367 @@ window.DATA_FREQ_IDIOMS = [
     explanations: [
       "**do sb a favor** = 帮某人一个忙。请求帮助的万用句式，后面能直接接 to do 说明具体事。",
       "近义：Give me a hand / Could you do me a favor? 例句：Do me a favor and keep an eye on my bag."
+    ]
+  }
+,
+  {
+    sentence: "Who do you think you are?",
+    cid: fnv8("Who do you think you are?"),
+    translation: "你以为你是谁？",
+    chunks: ["Who do you think","you are?"],
+    hints: ["你以为","你是谁"],
+    grammar: [
+      {role:"疑问·主句", color:"#c87033", phonetic:["/huː/","/duː/","/juː/","/θɪŋk/"], pos:"疑问句", meaning:"你以为"},
+      {role:"宾语从句", color:"#3358e0", phonetic:["/juː/","/ɑːr/"], pos:"宾语从句", meaning:"你是谁"}
+    ],
+    explanations: [
+      "**Who do you think you are?** = 你以为你是谁？质问对方凭什么这么说话做事，是最常见的反击句。",
+      "近义：What gives you the right? 例句：Who do you think you are — talking to me like that?"
+    ]
+  },
+  {
+    sentence: "You'll be sorry if you do that.",
+    cid: fnv8("You'll be sorry if you do that."),
+    translation: "你要是那么做会后悔的。",
+    chunks: ["You'll be sorry","if you do that."],
+    hints: ["你会后悔","如果你那么做"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/juːl/","/biː/","/ˈsɒri/"], pos:"一般将来时", meaning:"你会后悔"},
+      {role:"条件状语从句", color:"#3358e0", phonetic:["/ɪf/","/juː/","/duː/","/ðæt/"], pos:"条件状语从句", meaning:"如果你那么做"}
+    ],
+    explanations: [
+      "**You'll be sorry** = 你会后悔的。警告或威胁，语气轻重看场合；后接 if 从句说明后悔的缘由。",
+      "近义：You'll regret it。例句：You'll be sorry if you do that — I'm not joking."
+    ]
+  },
+  {
+    sentence: "Drop the act — I know what you did.",
+    cid: fnv8("Drop the act — I know what you did."),
+    translation: "别装了，我知道你干了什么。",
+    chunks: ["Drop the act —","I know what you did."],
+    hints: ["别装了","我知道你干了什么"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/drɒp/","/ði/","/ækt/"], pos:"祈使句", meaning:"drop the act 别再装"},
+      {role:"主谓宾从句", color:"#3358e0", phonetic:["/aɪ/","/noʊ/","/wɒt/","/juː/","/dɪd/"], pos:"宾语从句", meaning:"我知道你做了什么"}
+    ],
+    explanations: [
+      "**drop the act** = 别装了、收起那套。act 指装出来的样子，drop 有「撂下」的劲。",
+      "近义：Cut the act / Stop pretending。例句：Drop the act — I know what you did."
+    ]
+  },
+  {
+    sentence: "What were you thinking?",
+    cid: fnv8("What were you thinking?"),
+    translation: "你当时在想什么？",
+    chunks: ["What were","you thinking?"],
+    hints: ["当时是什么","你在想什么"],
+    grammar: [
+      {role:"疑问·过去进行", color:"#c87033", phonetic:["/wɒt/","/wɜːr/"], pos:"过去进行时疑问", meaning:"当时是什么"},
+      {role:"主语·谓语", color:"#3358e0", phonetic:["/juː/","/ˈθɪŋkɪŋ/"], pos:"现在分词", meaning:"你在想什么"}
+    ],
+    explanations: [
+      "**What were you thinking?** = 你当时到底在想什么？事后追责的固定问法，暗示对方做了蠢事。",
+      "近义：What came over you? 例句：What were you thinking — driving after all that wine?"
+    ]
+  },
+  {
+    sentence: "That's going too far.",
+    cid: fnv8("That's going too far."),
+    translation: "这太过分了。",
+    chunks: ["That's going","too far."],
+    hints: ["这正在","走得太远"],
+    grammar: [
+      {role:"主谓·进行", color:"#c87033", phonetic:["/ðæts/","/ˈɡoʊɪŋ/"], pos:"现在进行时", meaning:"这走过头了"},
+      {role:"程度状语", color:"#3358e0", phonetic:["/tuː/","/fɑːr/"], pos:"程度状语", meaning:"太远、过分"}
+    ],
+    explanations: [
+      "**go too far** = 做得过分、越界。too far 在这里指程度，不是距离。",
+      "近义：That crosses the line。例句：That's going too far — apologize right now."
+    ]
+  },
+  {
+    sentence: "You've gone too far this time.",
+    cid: fnv8("You've gone too far this time."),
+    translation: "这次你太过分了。",
+    chunks: ["You've gone too far","this time."],
+    hints: ["你已经越界了","这一次"],
+    grammar: [
+      {role:"习语·完成时", color:"#7c5cbf", phonetic:["/juːv/","/ɡɒn/","/tuː/","/fɑːr/"], pos:"现在完成时", meaning:"go too far 越界"},
+      {role:"时间状语", color:"#3358e0", phonetic:["/ðɪs/","/taɪm/"], pos:"时间状语", meaning:"这一次"}
+    ],
+    explanations: [
+      "**go too far** 用完成时 = 已经越界了，强调事情已经发生、收不回来。",
+      "区别：That's going too far 是就当下的事评价；You've gone too far 是直接给对方定性。例句：You've gone too far this time — don't call me again."
+    ]
+  },
+  {
+    sentence: "You're nothing to me.",
+    cid: fnv8("You're nothing to me."),
+    translation: "你对我来说什么都不是。",
+    chunks: ["You're nothing","to me."],
+    hints: ["你什么都不是","对我来说"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/ˈnʌθɪŋ/"], pos:"主系表结构", meaning:"你什么都不是"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/tuː/","/miː/"], pos:"介词短语", meaning:"对我来说"}
+    ],
+    explanations: [
+      "**be nothing to sb** = 对某人来说无足轻重。关系彻底了断时的狠话。",
+      "近义：You mean nothing to me。例句：You're nothing to me now — don't ever call again."
+    ]
+  },
+  {
+    sentence: "You set me up — it was a trap!",
+    cid: fnv8("You set me up — it was a trap!"),
+    translation: "你陷害我，那是个圈套！",
+    chunks: ["You set me up —","it was a trap!"],
+    hints: ["你设计我","那是个圈套"],
+    grammar: [
+      {role:"习语·主谓宾", color:"#7c5cbf", phonetic:["/juː/","/set/","/miː/","/ʌp/"], pos:"一般过去时习语", meaning:"set sb up 陷害某人"},
+      {role:"主系表", color:"#3358e0", phonetic:["/ɪt/","/wɒz/","/ə/","/træp/"], pos:"主系表结构", meaning:"那是个陷阱"}
+    ],
+    explanations: [
+      "**set sb up** = 陷害某人、给某人下套；也能表示「撮合两人交往」（set sb up with sb），看宾语判断。",
+      "近义：frame sb（伪造证据陷害）。例句：You set me up — it was a trap!"
+    ]
+  },
+  {
+    sentence: "You're so careless — you left the door open.",
+    cid: fnv8("You're so careless — you left the door open."),
+    translation: "你太粗心了，门都没关。",
+    chunks: ["You're so careless —","you left the door open."],
+    hints: ["你太粗心","你没关门"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/soʊ/","/ˈkerləs/"], pos:"主系表结构", meaning:"你太粗心"},
+      {role:"主谓宾补", color:"#3358e0", phonetic:["/juː/","/left/","/ðə/","/dɔːr/","/ˈoʊpən/"], pos:"一般过去时", meaning:"你没关门"}
+    ],
+    explanations: [
+      "**careless** = 粗心的、不上心的。指责别人疏漏时的直接说法，语气比「笨」轻。",
+      "近义：You're so sloppy（更口语）。例句：You're so careless — you left the door wide open."
+    ]
+  },
+  {
+    sentence: "Stop giving me a hard time.",
+    cid: fnv8("Stop giving me a hard time."),
+    translation: "别再为难我了。",
+    chunks: ["Stop giving me","a hard time."],
+    hints: ["别再给我","难处"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/stɒp/","/ˈɡɪvɪŋ/","/miː/"], pos:"祈使句", meaning:"give sb a hard time 为难某人"},
+      {role:"宾语", color:"#3358e0", phonetic:["/ə/","/hɑːrd/","/taɪm/"], pos:"名词短语", meaning:"难熬的处境"}
+    ],
+    explanations: [
+      "**give sb a hard time** = 为难某人、找某人麻烦；也可指「让某人日子不好过」。",
+      "近义：Stop hassling me / Get off my back。例句：Stop giving me a hard time — I'm doing my best."
+    ]
+  },
+  {
+    sentence: "Stay out of it — this is between us.",
+    cid: fnv8("Stay out of it — this is between us."),
+    translation: "别插手，这是我们之间的事。",
+    chunks: ["Stay out of it —","this is between us."],
+    hints: ["别插手","这是我们之间的事"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/steɪ/","/aʊt/","/əv/","/ɪt/"], pos:"祈使句", meaning:"stay out of it 别插手"},
+      {role:"主系表", color:"#3358e0", phonetic:["/ðɪs/","/ɪz/","/bɪˈtwiːn/","/ʌs/"], pos:"主系表结构", meaning:"这是我们俩之间的事"}
+    ],
+    explanations: [
+      "**stay out of it** = 别插手、别搅进来。it 指正在发生的那件事，常配 between us 划清范围。",
+      "近义：Mind your own business / Don't get involved。例句：Stay out of it — this is between us."
+    ]
+  },
+  {
+    sentence: "I won't put up with this anymore.",
+    cid: fnv8("I won't put up with this anymore."),
+    translation: "我不会再忍这件事了。",
+    chunks: ["I won't","put up with this anymore."],
+    hints: ["我不会","再忍受这件事了"],
+    grammar: [
+      {role:"主谓·否定", color:"#c87033", phonetic:["/aɪ/","/woʊnt/"], pos:"一般将来时否定", meaning:"我不会"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/pʊt/","/ʌp/","/wɪð/","/ðɪs/","/ˌeniˈmɔːr/"], pos:"短语动词", meaning:"put up with 忍受"}
+    ],
+    explanations: [
+      "**put up with sth** = 忍受某事。put 与 up 中间不能插别的词，with 后接忍受的对象。",
+      "近义：tolerate / stand。例句：I won't put up with this anymore — one more word and I'm leaving."
+    ]
+  },
+  {
+    sentence: "What's the fuss about?",
+    cid: fnv8("What's the fuss about?"),
+    translation: "闹什么呢？",
+    chunks: ["What's the fuss","about?"],
+    hints: ["吵什么呢","为了什么"],
+    grammar: [
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/wʌts/","/ðə/","/fʌs/"], pos:"名词习语", meaning:"the fuss 大惊小怪"},
+      {role:"疑问·介词", color:"#3358e0", phonetic:["/əˈbaʊt/"], pos:"介词", meaning:"关于"}
+    ],
+    explanations: [
+      "**fuss** = 大惊小怪、无谓的吵闹。What's the fuss about? 就是「至于这么大动静吗」。",
+      "近义：What's all the commotion? 例句：What's the fuss about — it's only a little rain."
+    ]
+  },
+  {
+    sentence: "I'm not in a good mood.",
+    cid: fnv8("I'm not in a good mood."),
+    translation: "我心情不太好。",
+    chunks: ["I'm not","in a good mood."],
+    hints: ["我并不","心情好"],
+    grammar: [
+      {role:"主系·否定", color:"#c87033", phonetic:["/aɪm/","/nɒt/"], pos:"主系表否定", meaning:"我并不"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/ɪn/","/ə/","/ɡʊd/","/muːd/"], pos:"介词短语", meaning:"心情好"}
+    ],
+    explanations: [
+      "**in a good mood** = 心情好。加 not 就是「心情不好」，是英语里最常用的状态自述。",
+      "近义：I'm in a bad mood / I'm feeling down。例句：I'm not in a good mood — let's talk tomorrow."
+    ]
+  },
+  {
+    sentence: "I'm cranky today.",
+    cid: fnv8("I'm cranky today."),
+    translation: "我今天脾气不好。",
+    chunks: ["I'm cranky","today."],
+    hints: ["我脾气不好","今天"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/aɪm/","/ˈkræŋki/"], pos:"主系表结构", meaning:"我烦躁"},
+      {role:"时间状语", color:"#3358e0", phonetic:["/təˈdeɪ/"], pos:"时间状语", meaning:"今天"}
+    ],
+    explanations: [
+      "**cranky** = 烦躁、爱发脾气的，多因没睡好或饿了。比 angry 轻，是美式口语常用词。",
+      "近义：I'm grumpy / I'm in a bad mood。例句：I'm cranky today — I didn't sleep well."
+    ]
+  },
+  {
+    sentence: "Leave me alone.",
+    cid: fnv8("Leave me alone."),
+    translation: "让我一个人待着。",
+    chunks: ["Leave me","alone."],
+    hints: ["让我","独自待着"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/liːv/","/miː/"], pos:"祈使句", meaning:"leave sb alone 别烦某人"},
+      {role:"宾语补足语", color:"#3358e0", phonetic:["/əˈloʊn/"], pos:"形容词补语", meaning:"独自"}
+    ],
+    explanations: [
+      "**leave sb alone** = 别打扰某人、让某人静静。比 go away 温和，重点在「别烦我」。",
+      "近义：Give me some space / Back off。例句：Leave me alone — I need to think."
+    ]
+  },
+  {
+    sentence: "Why the long face?",
+    cid: fnv8("Why the long face?"),
+    translation: "怎么拉着脸？",
+    chunks: ["Why","the long face?"],
+    hints: ["为什么","板着脸"],
+    grammar: [
+      {role:"疑问·省略", color:"#c87033", phonetic:["/waɪ/"], pos:"省略疑问句", meaning:"怎么啦"},
+      {role:"习语·宾语", color:"#7c5cbf", phonetic:["/ðə/","/lɒŋ/","/feɪs/"], pos:"名词习语", meaning:"long face 拉长的脸、不高兴"}
+    ],
+    explanations: [
+      "**long face** = 拉长的脸，指不高兴的表情。Why the long face? 是省略句，等于 Why do you have a long face?。",
+      "近义：What's got you down? 例句：Why the long face — did your team lose again?"
+    ]
+  },
+  {
+    sentence: "That's ridiculous.",
+    cid: fnv8("That's ridiculous."),
+    translation: "这太荒唐了。",
+    chunks: ["That's","ridiculous."],
+    hints: ["这真是","荒唐"],
+    grammar: [
+      {role:"主系", color:"#c87033", phonetic:["/ðæts/"], pos:"主系结构", meaning:"这真是"},
+      {role:"表语", color:"#3358e0", phonetic:["/rɪˈdɪkjələs/"], pos:"形容词", meaning:"荒唐的"}
+    ],
+    explanations: [
+      "**ridiculous** = 荒唐的、离谱的。表达强烈不认同，比 silly 重、比 absurd 日常。",
+      "近义：That's absurd / That's insane（更口语）。例句：That's ridiculous — nobody would believe it."
+    ]
+  },
+  {
+    sentence: "That's more like it.",
+    cid: fnv8("That's more like it."),
+    translation: "这才像话。",
+    chunks: ["That's","more like it."],
+    hints: ["这才","像样"],
+    grammar: [
+      {role:"主系", color:"#c87033", phonetic:["/ðæts/"], pos:"主系结构", meaning:"这才"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/mɔːr/","/laɪk/","/ɪt/"], pos:"形容词习语", meaning:"more like it 像样"}
+    ],
+    explanations: [
+      "**more like it** = 这才像话、这才对嘛。对刚出现的好转表示认可。",
+      "近义：Now you're talking / That's better。例句：That's more like it — now we're getting somewhere."
+    ]
+  },
+  {
+    sentence: "I hope your idea takes wings.",
+    cid: fnv8("I hope your idea takes wings."),
+    translation: "希望你的想法能起飞。",
+    chunks: ["I hope your idea","takes wings."],
+    hints: ["我希望你的想法","能展翅高飞"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/hoʊp/","/jʊr/","/aɪˈdɪə/"], pos:"一般现在时", meaning:"我希望你的想法"},
+      {role:"习语·宾语从句", color:"#7c5cbf", phonetic:["/teɪks/","/wɪŋz/"], pos:"动词习语", meaning:"take wings 腾飞"}
+    ],
+    explanations: [
+      "**take wings** = 展翅高飞，比喻想法、计划腾飞起来。祝福或期待时用。",
+      "近义：I hope it takes off。例句：I hope your idea takes wings — it deserves a chance."
+    ]
+  },
+  {
+    sentence: "Don't rob Peter to pay Paul.",
+    cid: fnv8("Don't rob Peter to pay Paul."),
+    translation: "别拆东墙补西墙。",
+    chunks: ["Don't rob Peter","to pay Paul."],
+    hints: ["别抢彼得的","去还给保罗"],
+    grammar: [
+      {role:"习语·祈使否定", color:"#7c5cbf", phonetic:["/doʊnt/","/rɒb/","/ˈpiːtər/"], pos:"祈使句否定", meaning:"rob Peter to pay Paul 拆东墙补西墙"},
+      {role:"目的状语", color:"#3358e0", phonetic:["/tuː/","/peɪ/","/pɔːl/"], pos:"不定式作目的状语", meaning:"为了还给保罗"}
+    ],
+    explanations: [
+      "**rob Peter to pay Paul** = 拆东墙补西墙，借新债还旧债。Peter 和 Paul 在英语里泛指「张三李四」。",
+      "近义：take from one to give to another。例句：Don't rob Peter to pay Paul — fix the real problem."
+    ]
+  },
+  {
+    sentence: "I almost made it.",
+    cid: fnv8("I almost made it."),
+    translation: "我差一点就成了。",
+    chunks: ["I almost","made it."],
+    hints: ["我差点","成功了"],
+    grammar: [
+      {role:"主谓·程度", color:"#c87033", phonetic:["/aɪ/","/ˈɔːlmoʊst/"], pos:"副词修饰", meaning:"我差点"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/meɪd/","/ɪt/"], pos:"一般过去时习语", meaning:"make it 成功、赶到"}
+    ],
+    explanations: [
+      "**make it** = 成功、赶上、撑过来（看语境）。almost made it 就是「差一点点就做到了」。",
+      "近义：I was so close。例句：I almost made it — the train doors shut right in front of me."
+    ]
+  },
+  {
+    sentence: "I don't have the heart to tell her.",
+    cid: fnv8("I don't have the heart to tell her."),
+    translation: "我不忍心告诉她。",
+    chunks: ["I don't have the heart","to tell her."],
+    hints: ["我不忍心","去告诉她"],
+    grammar: [
+      {role:"习语·否定", color:"#7c5cbf", phonetic:["/aɪ/","/doʊnt/","/hæv/","/ðə/","/hɑːrt/"], pos:"动词习语", meaning:"have the heart 忍心"},
+      {role:"不定式", color:"#3358e0", phonetic:["/tuː/","/tel/","/hɜːr/"], pos:"不定式", meaning:"去告诉她"}
+    ],
+    explanations: [
+      "**have the heart to do sth** = 忍心做某事。多用于否定，表示「狠不下心」。",
+      "近义：I can't bring myself to tell her。例句：I don't have the heart to tell her the cat is gone."
+    ]
+  },
+  {
+    sentence: "I can't bear to watch.",
+    cid: fnv8("I can't bear to watch."),
+    translation: "我不忍心看下去。",
+    chunks: ["I can't bear","to watch."],
+    hints: ["我受不了","去看"],
+    grammar: [
+      {role:"主谓·否定", color:"#c87033", phonetic:["/aɪ/","/kænt/","/ber/"], pos:"情态动词否定", meaning:"我无法忍受"},
+      {role:"不定式", color:"#3358e0", phonetic:["/tuː/","/wɒtʃ/"], pos:"不定式作宾语", meaning:"去看"}
+    ],
+    explanations: [
+      "**can't bear to do sth** = 不忍心做某事、受不了做某事。bear 在这里是「忍受」。",
+      "近义：I can't stand to watch。例句：I can't bear to watch — tell me how it ends."
     ]
   }
 ];
