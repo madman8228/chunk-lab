@@ -1,5 +1,10 @@
-/* 高频短语 · English Idioms（运行态 201 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1）
+/* 高频短语 · English Idioms（运行态 226 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
+ * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
+ *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
+ *   pull somes leg 一类）—— 扩写时以正确拼写为准，源清单仅作词条索引。
+ * 覆盖进度（对照 extra/idioms-394.json 差集，详见 output/idioms-todo.json）：
+ *   分析时未收录 233 条 → batch7 收 25 条 → 余 208 条待扩写（可继续 batch8/9...）。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
  *   my bad / good for you / you bet，例句变体）；仅 you don't say 为库内缺词条，已单抽 batch6 注入（201）。
@@ -3300,6 +3305,383 @@ window.DATA_FREQ_IDIOMS = [
       "中性场景表惊讶可用 No kidding! / Really? 例：— She quit her job. — You don't say!（她辞职了。——真的假的！）"
     ],
     distractors: [["\"We won the game!\"","\"I won the lottery!\""],["— \"You said it!\"","— \"Don't say that!\""]]
+  }
+,
+  {
+    sentence: "The doctor wants to have a second look.",
+    cid: fnv8("The doctor wants to have a second look."),
+    translation: "医生想再看一遍（复核一下）。",
+    chunks: ["The doctor wants to","have a second look."],
+    hints: ["医生想","再看一遍"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/ðə/","/ˈdɒktə/","/wɒnts/","/tuː/"], pos:"一般现在时", meaning:"医生想"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/hæv/","/ə/","/ˈsekənd/","/lʊk/"], pos:"动词习语", meaning:"再看一遍、复核"}
+    ],
+    explanations: [
+      "**have a second look** = 再看一遍、复核。比 look again 更强调「带着怀疑或求准确的态度再看」，常见于医疗、审稿、验货场景。",
+      "近义：take another look / double-check。例句：The editor asked me to have a second look at the opening paragraph."
+    ]
+  },
+  {
+    sentence: "I have to hit the books tonight.",
+    cid: fnv8("I have to hit the books tonight."),
+    translation: "我今晚得啃书本了。",
+    chunks: ["I have to","hit the books tonight."],
+    hints: ["我得","今晚用功读书"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/hæv/","/tuː/"], pos:"情态动词", meaning:"我得"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/hɪt/","/ðə/","/bʊks/","/təˈnaɪt/"], pos:"动词习语", meaning:"今晚用功读书"}
+    ],
+    explanations: [
+      "**hit the books** = 用功读书、啃书本。学生俚语，比 study 更口语，含「下苦功」的劲头。",
+      "近义：buckle down（沉下心来）/ cram（考前突击）。例句：Finals are next week, so I'd better hit the books."
+    ]
+  },
+  {
+    sentence: "Don't worry, I'm working on it.",
+    cid: fnv8("Don't worry, I'm working on it."),
+    translation: "别担心，我正在处理。",
+    chunks: ["Don't worry,","I'm working on it."],
+    hints: ["别担心","我正在着手处理"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/doʊnt/","/ˈwʌri/"], pos:"祈使句", meaning:"别担心"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪm/","/ˈwɜːkɪŋ/","/ɒn/","/ɪt/"], pos:"现在进行时习语", meaning:"我正在处理"}
+    ],
+    explanations: [
+      "**work on it** = 着手处理某事，强调「还在进行中」。常用来回应催促，暗示有进展、别急。",
+      "近义：get on it（马上办）/ handle it（搞定它）。区别：work on 强调过程，handle 强调结果。例句：Give me an hour — I'm working on it."
+    ]
+  },
+  {
+    sentence: "On this team, I have the final say.",
+    cid: fnv8("On this team, I have the final say."),
+    translation: "在这个团队里，我说了算。",
+    chunks: ["On this team,","I have the final say."],
+    hints: ["在这个团队里","我说了算"],
+    grammar: [
+      {role:"介宾短语", color:"#3358e0", phonetic:["/ɒn/","/ðɪs/","/tiːm/"], pos:"介词短语", meaning:"在这个团队里"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/hæv/","/ðə/","/ˈfaɪnl/","/seɪ/"], pos:"名词习语", meaning:"我有最终决定权"}
+    ],
+    explanations: [
+      "**have the final say** = 有最终决定权、拍板权。职场高频，强调「最后那一下由谁定」。",
+      "近义：have the last word / call the shots。例句：The client has the final say on the design."
+    ]
+  },
+  {
+    sentence: "I'll keep my eye out for a cheaper flight.",
+    cid: fnv8("I'll keep my eye out for a cheaper flight."),
+    translation: "我会留意有没有更便宜的航班。",
+    chunks: ["I'll keep my eye out","for a cheaper flight."],
+    hints: ["我会留心盯着","更便宜的航班"],
+    grammar: [
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪl/","/kiːp/","/maɪ/","/aɪ/","/aʊt/"], pos:"动词习语", meaning:"我会留意着"},
+      {role:"介宾短语", color:"#3358e0", phonetic:["/fɔː/","/ə/","/ˈtʃiːpə/","/flaɪt/"], pos:"介词短语", meaning:"更便宜的航班"}
+    ],
+    explanations: [
+      "**keep an eye out (for)** = 留意、留心看着。语气比 watch 轻，常指顺便帮忙盯着。eye 用单数。",
+      "辨析：keep an eye out for 是「找还没出现的」，keep an eye on 是「看着已有的」。例句：Keep an eye out for my package."
+    ]
+  },
+  {
+    sentence: "It was touch and go for a while, but she pulled through.",
+    cid: fnv8("It was touch and go for a while, but she pulled through."),
+    translation: "有一阵子情况危急，但她挺过来了。",
+    chunks: ["It was touch and go for a while,","but she pulled through."],
+    hints: ["一度吉凶难料","但她挺了过来"],
+    grammar: [
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ɪt/","/wɒz/","/tʌtʃ/","/ænd/","/ɡoʊ/","/fɔːr/","/ə/","/waɪl/"], pos:"形容词习语", meaning:"一度吉凶难料"},
+      {role:"主谓", color:"#c87033", phonetic:["/bʌt/","/ʃiː/","/pʊld/","/θruː/"], pos:"一般过去时", meaning:"但她挺了过来"}
+    ],
+    explanations: [
+      "**touch and go** = 情况危急、吉凶未卜，差一点就出事。原指船擦着礁石走，后泛指险情。",
+      "**pull through** = 渡过难关、康复过来。例句：The surgery was touch and go, but he pulled through."
+    ]
+  },
+  {
+    sentence: "The news was a bombshell.",
+    cid: fnv8("The news was a bombshell."),
+    translation: "这个消息如同重磅炸弹。",
+    chunks: ["The news was","a bombshell."],
+    hints: ["这个消息是","爆炸性消息"],
+    grammar: [
+      {role:"主系", color:"#c87033", phonetic:["/ðə/","/njuːz/","/wɒz/"], pos:"主系表", meaning:"这个消息是"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ə/","/ˈbɒmʃel/"], pos:"名词习语", meaning:"爆炸性消息"}
+    ],
+    explanations: [
+      "**a bombshell** = 爆炸性消息、惊天内幕。多指让人震惊的负面消息（丑闻、突然辞职等）。",
+      "搭配：drop a bombshell（抛出重磅消息）。例句：She dropped a bombshell when she announced she was leaving."
+    ]
+  },
+  {
+    sentence: "My boss's attitude is my way or the highway.",
+    cid: fnv8("My boss's attitude is my way or the highway."),
+    translation: "我老板的态度是：不听我的就走人。",
+    chunks: ["My boss's attitude is","my way or the highway."],
+    hints: ["我老板的态度是","不听我的就滚蛋"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/maɪ/","/ˈbɒsɪz/","/ˈætɪtjuːd/","/ɪz/"], pos:"主系表", meaning:"我老板的态度是"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/maɪ/","/weɪ/","/ɔːr/","/ðə/","/ˈhaɪweɪ/"], pos:"固定习语", meaning:"不听我的就滚蛋"}
+    ],
+    explanations: [
+      "**my way or the highway** 字面「走我的路，不然上高速（走人）」，形容独断专行、不容异议。",
+      "近义：take it or leave it（爱要不要）。例句：He's a my-way-or-the-highway kind of manager."
+    ]
+  },
+  {
+    sentence: "Don't count your chickens before they hatch.",
+    cid: fnv8("Don't count your chickens before they hatch."),
+    translation: "别高兴太早，蛋还没孵出来呢。",
+    chunks: ["Don't count your chickens","before they hatch."],
+    hints: ["别急着数小鸡","在它们孵出来之前"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/kaʊnt/","/jɔːr/","/ˈtʃɪkɪnz/"], pos:"谚语（前半）", meaning:"别急着数小鸡"},
+      {role:"时间状语从句", color:"#c87033", phonetic:["/bɪˈfɔː/","/ðeɪ/","/hætʃ/"], pos:"时间状语从句", meaning:"在它们孵出来之前"}
+    ],
+    explanations: [
+      "**Don't count your chickens before they hatch** 谚语：别高兴太早，别指望还没到手的东西。",
+      "中文对应「别打如意算盘」「八字还没一撇」。省略版：Don't count your chickens. 例句：The contract isn't signed yet — don't count your chickens."
+    ]
+  },
+  {
+    sentence: "She left the party of her own accord.",
+    cid: fnv8("She left the party of her own accord."),
+    translation: "她主动离开了聚会。",
+    chunks: ["She left the party","of her own accord."],
+    hints: ["她离开了聚会","出于自愿"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/ʃiː/","/left/","/ðə/","/ˈpɑːti/"], pos:"一般过去时", meaning:"她离开了聚会"},
+      {role:"习语·状语", color:"#7c5cbf", phonetic:["/əv/","/hɜːr/","/oʊn/","/əˈkɔːd/"], pos:"介词习语", meaning:"出于自愿"}
+    ],
+    explanations: [
+      "**of one's own accord** = 自愿地、主动地，没人逼。偏正式书面语，比 by oneself 更强调「出于本人意愿」。",
+      "近义：on one's own initiative / voluntarily。例句：He resigned of his own accord."
+    ]
+  },
+  {
+    sentence: "He's been playing fast and loose with the rules.",
+    cid: fnv8("He's been playing fast and loose with the rules."),
+    translation: "他一直在钻规则的空子。",
+    chunks: ["He's been","playing fast and loose","with the rules."],
+    hints: ["他一直","行事轻率、不守规矩","对待这些规则"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/hiːz/","/biːn/"], pos:"现在完成进行时", meaning:"他一直"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/ˈpleɪɪŋ/","/fɑːst/","/ænd/","/luːs/"], pos:"动词习语", meaning:"行事轻率不负责"},
+      {role:"介宾短语", color:"#3358e0", phonetic:["/wɪð/","/ðə/","/ruːlz/"], pos:"介词短语", meaning:"对待这些规则"}
+    ],
+    explanations: [
+      "**play fast and loose (with)** = 玩弄、反复无常、不守规矩。原指街头骗术（飞快挪动赌注），现多指对规则或承诺不认真。",
+      "常见搭配对象：the rules / the facts / people's feelings。例句：He played fast and loose with the facts."
+    ]
+  },
+  {
+    sentence: "That deal is robbing Peter to pay Paul.",
+    cid: fnv8("That deal is robbing Peter to pay Paul."),
+    translation: "那笔交易就是拆东墙补西墙。",
+    chunks: ["That deal is","robbing Peter to pay Paul."],
+    hints: ["那笔交易是","拆东墙补西墙"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ðæt/","/diːl/","/ɪz/"], pos:"主系表", meaning:"那笔交易是"},
+      {role:"谚语·表语", color:"#7c5cbf", phonetic:["/ˈrɒbɪŋ/","/ˈpiːtə/","/tuː/","/peɪ/","/pɔːl/"], pos:"固定谚语", meaning:"拆东墙补西墙"}
+    ],
+    explanations: [
+      "**rob Peter to pay Paul** = 拆东墙补西墙，借新债还旧债。字面「抢彼得的钱还给保罗」，源自中世纪教会税制之争。",
+      "例句：Taking a new loan to cover the old one is just robbing Peter to pay Paul."
+    ]
+  },
+  {
+    sentence: "His remarks rubbed me the wrong way.",
+    cid: fnv8("His remarks rubbed me the wrong way."),
+    translation: "他那些话让我听着很不舒服。",
+    chunks: ["His remarks","rubbed me the wrong way."],
+    hints: ["他的那些话","让我很不舒服"],
+    grammar: [
+      {role:"主语", color:"#c87033", phonetic:["/hɪz/","/rɪˈmɑːrks/"], pos:"名词短语", meaning:"他的那些话"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/rʌbd/","/miː/","/ðə/","/rɒŋ/","/weɪ/"], pos:"动词习语", meaning:"让我很不舒服"}
+    ],
+    explanations: [
+      "**rub someone the wrong way** = 惹人不快、让人听着别扭。字面「逆着毛摸」，强调说不清缘由的别扭感。",
+      "反义：rub someone the right way（讨人喜欢）。例句：His tone rubbed me the wrong way from the start."
+    ]
+  },
+  {
+    sentence: "She is as mild as a dove.",
+    cid: fnv8("She is as mild as a dove."),
+    translation: "她性情温和得像只鸽子。",
+    chunks: ["She is","as mild as a dove."],
+    hints: ["她是","温顺得像鸽子"],
+    grammar: [
+      {role:"主系", color:"#c87033", phonetic:["/ʃiː/","/ɪz/"], pos:"主系表", meaning:"她是"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/æz/","/maɪld/","/æz/","/ə/","/dʌv/"], pos:"明喻习语", meaning:"性情极其温和"}
+    ],
+    explanations: [
+      "**as mild as a dove** = 像鸽子一样温顺，形容人性格极其柔和、不争不闹。",
+      "同结构明喻：as busy as a bee（忙得像蜜蜂）/ as cool as a cucumber（镇定自若）。例句：She's as mild as a dove, but she never backs down on principles."
+    ]
+  },
+  {
+    sentence: "Thanks for being my rock through all this.",
+    cid: fnv8("Thanks for being my rock through all this."),
+    translation: "谢谢你在这段艰难里做我的依靠。",
+    chunks: ["Thanks for being my rock","through all this."],
+    hints: ["谢谢你当我的靠山","经历这一切"],
+    grammar: [
+      {role:"习语·致谢", color:"#7c5cbf", phonetic:["/θæŋks/","/fɔːr/","/ˈbiːɪŋ/","/maɪ/","/rɒk/"], pos:"名词习语", meaning:"谢谢你做我的依靠"},
+      {role:"介宾短语", color:"#3358e0", phonetic:["/θruː/","/ɔːl/","/ðɪs/"], pos:"介词短语", meaning:"经历这一切"}
+    ],
+    explanations: [
+      "**be someone's rock** = 做某人的靠山、定海神针。指在困难时给人稳定支持的那个人。",
+      "可加冠词说 a rock。例句：After the accident, my sister was my rock."
+    ]
+  },
+  {
+    sentence: "A good seaman is known in bad weather.",
+    cid: fnv8("A good seaman is known in bad weather."),
+    translation: "好水手要在坏天气里见真章。",
+    chunks: ["A good seaman","is known in bad weather."],
+    hints: ["优秀的水手","要在恶劣天气里才看得出"],
+    grammar: [
+      {role:"谚语主语", color:"#c87033", phonetic:["/ə/","/ɡʊd/","/ˈsiːmən/"], pos:"名词短语", meaning:"优秀的水手"},
+      {role:"谚语·表语", color:"#7c5cbf", phonetic:["/ɪz/","/noʊn/","/ɪn/","/bæd/","/ˈweðə/"], pos:"谚语（被动式）", meaning:"在恶劣天气里才看得出来"}
+    ],
+    explanations: [
+      "**A good seaman is known in bad weather** 谚语：真本事要在困境中见分晓。中文对应「疾风知劲草」。",
+      "变体：A good sailor is known in a storm. 例句：He stayed calm when the project crashed — a good seaman is known in bad weather."
+    ]
+  },
+  {
+    sentence: "You really know your stuff.",
+    cid: fnv8("You really know your stuff."),
+    translation: "你确实很懂行。",
+    chunks: ["You really","know your stuff."],
+    hints: ["你确实","很懂行、有本事"],
+    grammar: [
+      {role:"状语", color:"#3358e0", phonetic:["/juː/","/ˈrɪəli/"], pos:"副词状语", meaning:"你确实"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/noʊ/","/jɔːr/","/stʌf/"], pos:"动词习语", meaning:"很懂行、有本事"}
+    ],
+    explanations: [
+      "**know one's stuff** = 懂行、业务过硬。称赞别人专业能力时的常见口语表达，stuff 不可数。",
+      "近义：know the ropes（懂门道）/ know one's onions（英式俚语）。例句：She's only 25, but she really knows her stuff."
+    ]
+  },
+  {
+    sentence: "Don't push me, I'm already at my limit.",
+    cid: fnv8("Don't push me, I'm already at my limit."),
+    translation: "别逼我，我已经到极限了。",
+    chunks: ["Don't push me,","I'm already at my limit."],
+    hints: ["别逼我","我已到极限了"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/pʊʃ/","/miː/"], pos:"祈使句", meaning:"别逼我"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/aɪm/","/ɔːlˈredi/","/æt/","/maɪ/","/ˈlɪmɪt/"], pos:"习语", meaning:"我已经到极限了"}
+    ],
+    explanations: [
+      "**push someone** 在这里不是「推」而是「逼、催到极限」。Don't push me 是划边界的高频口语。",
+      "近义：Don't test my patience（别考验我的耐心）。例句：Don't push me — I've had a terrible day."
+    ]
+  },
+  {
+    sentence: "You're impossible, you never listen.",
+    cid: fnv8("You're impossible, you never listen."),
+    translation: "你真不可理喻，从来不听人说话。",
+    chunks: ["You're impossible,","you never listen."],
+    hints: ["你真不可理喻","你从不听人说话"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/ɪmˈpɒsəbl/"], pos:"主系表", meaning:"你真是不可理喻"},
+      {role:"主谓", color:"#c87033", phonetic:["/juː/","/ˈnevə/","/ˈlɪsn/"], pos:"一般现在时", meaning:"你从不听人说话"}
+    ],
+    explanations: [
+      "**You're impossible** 口语里不是「你不可能」，而是埋怨人「你真是没治了、没法讲道理」。",
+      "语气偏亲昵的抱怨（情侣、家人之间常用），比 you're unreasonable 轻。例句：You're impossible! I give up."
+    ]
+  },
+  {
+    sentence: "It's none of your business who I date.",
+    cid: fnv8("It's none of your business who I date."),
+    translation: "我跟谁约会不关你的事。",
+    chunks: ["It's none of your business","who I date."],
+    hints: ["这不关你的事","我跟谁约会"],
+    grammar: [
+      {role:"习语·主句", color:"#7c5cbf", phonetic:["/ɪts/","/nʌn/","/əv/","/jɔːr/","/ˈbɪznəs/"], pos:"固定习语", meaning:"这不关你的事"},
+      {role:"宾语从句", color:"#c87033", phonetic:["/huː/","/aɪ/","/deɪt/"], pos:"宾语从句", meaning:"我跟谁约会"}
+    ],
+    explanations: [
+      "**none of your business** = 不关你的事、少管闲事。语气直接，对陌生人说属冒犯；熟人之间可带玩笑。",
+      "委婉版：I'd rather not say. 例句：Who I date is none of your business."
+    ]
+  },
+  {
+    sentence: "Stop joking, you're killing me!",
+    cid: fnv8("Stop joking, you're killing me!"),
+    translation: "别逗了，你笑死我了。",
+    chunks: ["Stop joking,","you're killing me!"],
+    hints: ["别开玩笑了","你笑死我了"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/stɒp/","/ˈdʒoʊkɪŋ/"], pos:"祈使句", meaning:"别开玩笑了"},
+      {role:"习语·感叹", color:"#7c5cbf", phonetic:["/jʊr/","/ˈkɪlɪŋ/","/miː/"], pos:"习语", meaning:"你笑死我了"}
+    ],
+    explanations: [
+      "**you're killing me** 不是「你要杀我」，而是夸张口语：笑死我了 / 你太逗了（也可表示被折磨得受不了）。",
+      "语境定意：讲笑话时 = 笑死人；被反复催命时 = 你饶了我吧。例句：Stop it, you're killing me!"
+    ]
+  },
+  {
+    sentence: "Get over yourself and apologize.",
+    cid: fnv8("Get over yourself and apologize."),
+    translation: "别自我感觉良好了，道个歉吧。",
+    chunks: ["Get over yourself","and apologize."],
+    hints: ["别自以为了不起","然后去道歉"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡet/","/ˈoʊvə/","/jɔːrˈself/"], pos:"动词习语", meaning:"别自以为是"},
+      {role:"祈使句", color:"#c87033", phonetic:["/ænd/","/əˈpɒlədʒaɪz/"], pos:"祈使句并列", meaning:"然后去道歉"}
+    ],
+    explanations: [
+      "**get over yourself** = 别自我感觉良好、别太把自己当回事。带责备意味，要对方面对现实。",
+      "近义：Get off your high horse（别摆架子）。例句：Get over yourself — not everyone is watching you."
+    ]
+  },
+  {
+    sentence: "Don't nag me about the dishes.",
+    cid: fnv8("Don't nag me about the dishes."),
+    translation: "别为洗碗的事唠叨我。",
+    chunks: ["Don't nag me","about the dishes."],
+    hints: ["别没完没了地催我","为了洗碗那点事"],
+    grammar: [
+      {role:"祈使动词", color:"#e74c7a", phonetic:["/doʊnt/","/næɡ/","/miː/"], pos:"祈使句", meaning:"别唠叨我"},
+      {role:"介宾短语", color:"#3358e0", phonetic:["/əˈbaʊt/","/ðə/","/ˈdɪʃɪz/"], pos:"介词短语", meaning:"为了洗碗这件事"}
+    ],
+    explanations: [
+      "**nag** = 喋喋不休地唠叨、反复挑剔。比 remind（提醒）负面，含「烦人」意味。",
+      "近义：nag at / keep on at（英式）。例句：He nags me about the dishes every single night."
+    ]
+  },
+  {
+    sentence: "You're out of line with that comment.",
+    cid: fnv8("You're out of line with that comment."),
+    translation: "你那句话说得越界了。",
+    chunks: ["You're out of line","with that comment."],
+    hints: ["你越界了","就那句评论来说"],
+    grammar: [
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/jʊr/","/aʊt/","/əv/","/laɪn/"], pos:"形容词习语", meaning:"你越界了"},
+      {role:"介宾短语", color:"#3358e0", phonetic:["/wɪð/","/ðæt/","/ˈkɒment/"], pos:"介词短语", meaning:"就那句评论而言"}
+    ],
+    explanations: [
+      "**out of line** = 越界、出格、不合规矩，指言行越过了应有的界限。带批评意味。",
+      "反义：in line（守规矩）。例句：His remarks were completely out of line."
+    ]
+  },
+  {
+    sentence: "I'm sick of it, I quit.",
+    cid: fnv8("I'm sick of it, I quit."),
+    translation: "我受够了，不干了。",
+    chunks: ["I'm sick of it,","I quit."],
+    hints: ["我受够了","我不干了"],
+    grammar: [
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/aɪm/","/sɪk/","/əv/","/ɪt/"], pos:"形容词习语", meaning:"我受够了"},
+      {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/kwɪt/"], pos:"一般现在时", meaning:"我不干了"}
+    ],
+    explanations: [
+      "**be sick of** = 对某事厌烦透了。语气比 be tired of 更强，接近「忍无可忍」。",
+      "近义：be fed up with / be done with。例句：I'm sick of his excuses."
+    ]
   }
 ];
 

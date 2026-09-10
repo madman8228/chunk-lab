@@ -40,14 +40,16 @@ const expectedItems = (fs.readFileSync(path.join(__dirname, '..', 'freq-idioms.j
   /* 主动 block sw.js（PWA 离线测试环境外不必要） */
   await ctx.route('**/sw.js', (route) => route.abort());
 
-  /* 端口可配：PORT 环境变量优先（默认 8787 现行服务端口；19878 是历史 e2e 端口，勿再硬编码） */
+  /* 端口可配：PORT 环境变量优先（默认 8787 现行服务端口；19878 是历史 e2e 端口，勿再硬编码）
+   * 2026-09-10 修：题库管理已从 main.html 迁到 decks.html（main.html 只留练习区），
+   *   原脚本打开 main.html 再调 openDecks() 会超时（main 已无该函数、无 #deckList）→ 改开门户页。 */
   const port = process.env.PORT || '8787';
-  await page.goto('http://localhost:' + port + '/main.html', { waitUntil: 'load', timeout: 30000 });
+  await page.goto('http://localhost:' + port + '/decks.html', { waitUntil: 'load', timeout: 30000 });
   /* 去冗余后运行态 2 deck（daily + freq-idioms）。断言 builtin-freq-idioms 注册即可，别写死 deck 总数。 */
   await page.waitForFunction(() => window.BUILTIN && window.BUILTIN.some((d) => d.id === 'builtin-freq-idioms'), null, { timeout: 20000 });
   await page.waitForFunction(() => window.mem && window.mem.decks !== undefined, null, { timeout: 20000 });
 
-  /* 渲染 deckList */
+  /* 渲染 deckList（decks.html 自带 openDecks；boot 可能已渲染，重复调用幂等） */
   await page.evaluate(() => { try { openDecks(); } catch (e) { /* ignore */ } });
   await page.waitForFunction(() => document.querySelectorAll('#deckList .deck-item').length >= 1, null, { timeout: 15000 });
 
@@ -72,10 +74,14 @@ const expectedItems = (fs.readFileSync(path.join(__dirname, '..', 'freq-idioms.j
   console.log('--- sample[0..2] ---');
   sample3.forEach((s, i) => console.log('  [' + i + ']', s.sentence, '|', s.translation, '| cid=' + s.cid, '| chunks=' + JSON.stringify(s.chunks)));
 
-  const outDir = 'D:/06-project/chunk-practice/output';
+  const outDir = path.join(__dirname, '..', 'output');
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
   await page.screenshot({ path: path.join(outDir, 'freq-idioms-decklist.png'), fullPage: true });
 
+  /* 练习页截图：换到 main.html 深链（decks.html 无 startDeck / #stage）。
+     ?direct=1 必需——main.html 裸链默认落今日首页，练习区不渲染（2026-09-10 入口约定）。 */
+  await page.goto('http://localhost:' + port + '/main.html?direct=1', { waitUntil: 'load', timeout: 30000 });
+  await page.waitForFunction(() => window.CL && window.mem && window.mem.decks !== undefined, null, { timeout: 20000 });
   await page.evaluate(() => {
     const a = (window.CL && window.CL.allDecksView(window.mem || {})) || [];
     const d = a.find((x) => x.id === 'builtin-freq-idioms');

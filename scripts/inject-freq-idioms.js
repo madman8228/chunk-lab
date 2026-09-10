@@ -218,9 +218,17 @@ function main() {
     process.exit(1);
   }
   const itemsJs = items.map(itemToJs).join(',\n');
-  const out = file.slice(0, end) + ',\n' + itemsJs + '\n' + file.slice(end);
+  /* 换行风格归一（2026-09-10）：readFileSync 保留原文件的 CRLF，但拼接的 itemsJs 用 '\n'，
+     直接写回会让文件变成混合换行 —— 下次 git diff 会冒出上百行「仅换行符不同」的噪音
+     （实测 freq-idioms.js 一次注入产生 191 行假变更，git blame 全失效）。
+     这里按原文件的主导风格统一整个输出。 */
+  const crlfCount = (file.match(/\r\n/g) || []).length;
+  const lfOnly = (file.match(/\n/g) || []).length - crlfCount;
+  const eol = crlfCount >= lfOnly ? '\r\n' : '\n';
+  const out = (file.slice(0, end) + ',\n' + itemsJs + '\n' + file.slice(end))
+    .replace(/\r\n/g, '\n').replace(/\n/g, eol);
   fs.writeFileSync(fpath, out, 'utf8');
-  console.log('已注入 freq-idioms.js:', items.length, '条');
+  console.log('已注入 freq-idioms.js:', items.length, '条（换行风格 ' + JSON.stringify(eol) + '）');
 
   /* 注入后回读确认仍可解析（写坏立即报错，防静默损坏） */
   const after = fs.readFileSync(fpath, 'utf8');
