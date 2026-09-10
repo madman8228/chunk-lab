@@ -169,6 +169,43 @@ function check(name, cond, detail) {
   check('main: 朗读使用无容器喇叭图标', ok.speakText.trim() === '' && ok.speakClass && ok.speakBorder === 'none', JSON.stringify(ok));
   check('main: 零 pageerror', errs.length === 0, errs.join('|'));
 
+  /* ===== 1c. #btnDecks 工具栏题库入口：点击必须跳 decks.html（2026-09-10 回归根因：删了 onclick 但忘了删 HTML，按钮"点不动"） ===== */
+  const pBtnDecks = await ctx.newPage();
+  const errsBtnDecks = [];
+  pBtnDecks.on('pageerror', function (e) { errsBtnDecks.push(e.message); });
+  await pBtnDecks.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
+  await pBtnDecks.waitForSelector('#btnDecks', { timeout: 10000 });
+  let btnDecksNav = false;
+  try {
+    await Promise.all([
+      pBtnDecks.waitForURL('**/decks.html', { timeout: 6000 }),
+      pBtnDecks.locator('#btnDecks').click()
+    ]);
+    btnDecksNav = true;
+  } catch (e) { btnDecksNav = false; }
+  check('main: #btnDecks 工具栏题库入口跳 decks.html', btnDecksNav, 'url=' + pBtnDecks.url());
+  check('main: #btnDecks 跳转零 pageerror', errsBtnDecks.length === 0, errsBtnDecks.join('|'));
+
+  /* ===== 1d. 首页底部入口清理（2026-09-10 回归根因：与工具栏 #btnDecks/#btnStats 重复，已删）
+   * 防回潮：直接断言页面里没有这两个 ID。 */
+  const pHomeLinks = await ctx.newPage();
+  await pHomeLinks.route('**/api/**', function (r) { r.abort('failed'); });
+  await pHomeLinks.addInitScript(function () { localStorage.clear(); });
+  await pHomeLinks.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
+  await pHomeLinks.waitForSelector('#homeBody', { timeout: 10000 });
+  await pHomeLinks.waitForTimeout(800);
+  const homeLinksState = await pHomeLinks.evaluate(function () {
+    return {
+      hasDecks: !!document.getElementById('homeLinkDecks'),
+      hasStats: !!document.getElementById('homeLinkStats'),
+      hasHomeLinks: !!document.querySelector('.home-links')
+    };
+  });
+  check('home: 已删底部 #homeLinkDecks（与工具栏 #btnDecks 重复）', !homeLinksState.hasDecks, JSON.stringify(homeLinksState));
+  check('home: 已删底部 #homeLinkStats（与工具栏 #btnStats 重复）', !homeLinksState.hasStats, JSON.stringify(homeLinksState));
+  check('home: 已删底部 .home-links 容器', !homeLinksState.hasHomeLinks, JSON.stringify(homeLinksState));
+  await pHomeLinks.close();
+
   /* ===== 1b. 统计身份回归：临时复习队列不能拆分原句历史 =====
    * 最小场景：同一句先从稳定题库练习，再从带时间戳的复习题库练习。
    * 现状会按两个 deck id 写成两条 bySentence 记录，导致累计次数看起来丢失。 */

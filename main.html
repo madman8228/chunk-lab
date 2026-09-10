@@ -753,7 +753,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .home-empty .t{font-size:15px;font-weight:700}
 .home-empty .d{font-size:12.5px;color:var(--muted);margin:6px 0 14px;line-height:1.6}
 /* 入口链接行 */
-.home-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:2px 0 6px}
+/* ★ 2026-09-10：首页底部的"题库管理 / 学习档案"链接已删（.home-links CSS 同步移除）。
+   这两个入口与工具栏 #btnDecks / #btnStats 重复，工具栏在任何页面都可达。 */
 
 /* ===== 页面系统 ===== */
 .page{display:none}
@@ -3654,19 +3655,12 @@ function renderHome(){
       + '</div>');
   }
 
-  h.push('<div class="home-links">'
-    + '<button class="btn sm ghost" id="homeLinkDecks">' + ic('list') + ' 题库管理</button>'
-    + '<button class="btn sm ghost" id="homeLinkStats">' + ic('stats') + ' 学习档案</button>'
-    + '</div>');
-
   var body = $('homeBody');
   body.innerHTML = h.join('');
   var goDecks = body.querySelector('#homeGoDecks'); if(goDecks) goDecks.onclick = function(){ location.href = 'decks.html'; };
   var bDue = body.querySelector('#homeBtnDue'); if(bDue) bDue.onclick = startTodayDue;
   var bWeak = body.querySelector('#homeBtnWeak'); if(bWeak) bWeak.onclick = startWeakNow;
   var bBook = body.querySelector('#homeBtnBook'); if(bBook) bBook.onclick = startBookNow;
-  var lDecks = body.querySelector('#homeLinkDecks'); if(lDecks) lDecks.onclick = function(){ location.href = 'decks.html'; };
-  var lStats = body.querySelector('#homeLinkStats'); if(lStats) lStats.onclick = function(){ location.href = 'stats.html'; };
   Array.prototype.forEach.call(body.querySelectorAll('[data-start]'), function(btn){
     btn.onclick = function(){
       var dk = findDeck(btn.getAttribute('data-start'));
@@ -4313,9 +4307,13 @@ var _hintBtn = $('btnHint'); if(_hintBtn) _hintBtn.onclick = hintFirst; /* 已�
 var _revealBtn = $('btnReveal'); if(_revealBtn) _revealBtn.onclick = revealCurrentChunk;
 var _masterBtn = $('btnMaster'); if(_masterBtn) _masterBtn.onclick = toggleMastered;
 /* ★ 顶层入口跳独立页（真正的独立页面 · 可收藏 · 独立 history；已不再 iframe 内嵌） */
-/* 注：原 #btnDecks（book 图标）与左上 brand 功能完全重复（都去 decks.html），
-   2026-09-10 删除；练习中回题库列表统一走左上 brand（title「返回题库首页」）。 */
+/* #btnDecks：工具栏「题库」按钮（book 图标）。
+   与左上 brand 行为完全一致（都去 decks.html），但用户视角是两个独立入口：
+   - 品牌区（logo）= home 肌肉记忆
+   - 工具栏 book 图标 = 题库工具栏入口
+   2026-09-10 误以为重复删了 onclick → 按钮"点不动"，已恢复 */
 $('btnStats').onclick = function(){ window.location.href = 'stats.html'; };
+$('btnDecks').onclick = function(){ window.location.href = 'decks.html'; };
 
 
 /* 快捷键标签可点击：委托 stage-tip-bar 上的 [data-action] */
