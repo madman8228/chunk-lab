@@ -12,6 +12,7 @@
  *   8. IP 限流：每 IP 60 秒最多 5 次，第 6 次 429 + Retry-After
  *   9. meta JSON 字符串 >4KB → 400
  *  10. INSERT 失败 → 删除孤儿图（磁盘文件数不增加）
+ *  11. 图片 magic number 校验：非图片字节 → 400；内容为 JPG 但 imageType 误报 → sniff 纠正为 .jpg
  *
  * 隔离：通过 CHUNKLAB_DATA_DIR 指向临时目录，在 require 之前注入，避免污染真实 server/data。
  * 运行：node feedback.test.js
@@ -63,7 +64,11 @@ function latestRow() {
 }
 
 /* ===== 1. 正常提交（含 image base64） ===== */
-const imgBuf = Buffer.from('fake-png-bytes-for-feedback-test', 'utf8');
+/* 带真实 PNG magic 头（8 字节），否则 magic 校验会 400 */
+const imgBuf = Buffer.concat([
+  Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]),
+  Buffer.from('fake-png-bytes-for-feedback-test', 'utf8')
+]);
 const imgB64 = imgBuf.toString('base64');
 let r = submit({ text: '  手机端练习页白屏  ', image: 'data:image/png;base64,' + imgB64, imageType: 'image/png', meta: { ua: 'test' } });
 check('1 含图提交返回 ok:true 且 id 为数字',
@@ -161,6 +166,20 @@ check('10 INSERT 失败 → 500', r.statusCode === 500, 'status=' + r.statusCode
 check('10 孤儿图已删除（文件数与提交前一致）',
   fs.readdirSync(FEEDBACK_DIR).length === filesBefore,
   'before=' + filesBefore + ' after=' + fs.readdirSync(FEEDBACK_DIR).length);
+
+/* ===== 11. 图片 magic number 校验（2026-09-11 P1） ===== */
+/* 可执行文件 MZ 头（0x4D 0x5A）伪装成图片 → 必须 400 */
+r = submit({ text: '伪图片', image: Buffer.from([0x4D, 0x5A, 0x90, 0x00, 0x03, 0x00, 0x00, 0x00]).toString('base64'), imageType: 'image/png' });
+check('11 非图片字节（EXE MZ 头）→ 400', r.statusCode === 400, 'status=' + r.statusCode);
+/* 内容是 JPG、但 imageType 误报 png → 用 magic 嗅探纠正扩展名为 .jpg，仍 200 */
+const jpgBuf = Buffer.from([0xFF, 0xD8, 0xFF, 0xE0, 0x00, 0x10, 0x4A, 0x46, 0x49, 0x46, 0x00, 0x01]);
+r = submit({ text: 'JPG 但 imageType 误报 png', image: jpgBuf.toString('base64'), imageType: 'image/png' });
+check('11 内容为 JPG、imageType 误报 → sniff 纠正为 .jpg 且 200',
+  r.statusCode === 200 && (function () { const x = latestRow(); return !!x && !!x.image_path && /\.jpg$/.test(x.image_path); })(),
+  'status=' + r.statusCode + ' path=' + (function () { const x = latestRow(); return x && x.image_path; })());
+check('11 纠正后的 .jpg 文件已落盘且内容一致',
+  (function () { const x = latestRow(); return !!x && !!x.image_path && fs.existsSync(path.join(FEEDBACK_DIR, x.image_path)) && fs.readFileSync(path.join(FEEDBACK_DIR, x.image_path)).equals(jpgBuf); })(),
+  '内容不一致');
 
 /* ===== 收尾 ===== */
 try { fs.rmSync(TMP_DATA_DIR, { recursive: true, force: true }); } catch (e) { /* best-effort */ }

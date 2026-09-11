@@ -27,19 +27,18 @@ const MAX_META_BYTES = 4 * 1024; // 4KB
 const FEEDBACK_RATE_MAX = 5; // 每 IP 每 60 秒最多 5 次（游客匿名提交，仅能按 IP 限流防刷爆磁盘/SQLite）
 const FEEDBACK_RATE_WINDOW = 60 * 1000;
 
-const EXT_BY_TYPE = {
-  'image/png': 'png',
-  'image/jpg': 'jpg',
-  'image/jpeg': 'jpg',
-  'image/webp': 'webp'
-};
-
-function extForImageType(imageType) {
-  if (typeof imageType === 'string') {
-    const t = imageType.trim().toLowerCase();
-    if (EXT_BY_TYPE[t]) return EXT_BY_TYPE[t];
-  }
-  return 'png';
+/* 图片 magic number 嗅探（2026-09-11 安全审查 P1）：**不信任客户端 imageType**，
+   按文件头字节识别真实格式，防「任意字节（如可执行文件 MZ 头）伪装成 .png 落地磁盘」。
+   返回 'png' | 'jpg' | 'webp' | null（非图片）。ext 用嗅探结果，保证后缀与内容永远一致。 */
+function sniffImageExt(buf) {
+  if (buf.length >= 8 &&
+      buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4E && buf[3] === 0x47 &&
+      buf[4] === 0x0D && buf[5] === 0x0A && buf[6] === 0x1A && buf[7] === 0x0A) return 'png';
+  if (buf.length >= 3 && buf[0] === 0xFF && buf[1] === 0xD8 && buf[2] === 0xFF) return 'jpg';
+  if (buf.length >= 12 &&
+      buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46 && /* "RIFF" */
+      buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50) return 'webp'; /* "WEBP" */
+  return null;
 }
 
 /* 剥离可能存在的 data:image/...;base64, 前缀，只留纯 base64 内容 */
@@ -111,7 +110,11 @@ function submit(req, res) {
       if (buf.length === 0) return res.status(400).json({ error: 'image 解码后为空' });
       if (buf.length > MAX_IMAGE_BYTES) return res.status(400).json({ error: '截图超过 5MB 上限' });
 
-      const ext = extForImageType(body.imageType);
+      /* P1 图片格式校验（2026-09-11）：按 magic number 识别真实格式（不信任 imageType），
+         非 PNG/JPG/WebP 一律 400，防任意字节伪装成图片落地磁盘。 */
+      const ext = sniffImageExt(buf);
+      if (!ext) return res.status(400).json({ error: '截图格式非法（仅支持 PNG/JPG/WebP）' });
+
       if (!fs.existsSync(FEEDBACK_DIR)) fs.mkdirSync(FEEDBACK_DIR, { recursive: true });
       const name = Date.now() + '-' + crypto.randomBytes(4).toString('hex') + '.' + ext;
       /* 先登记 imagePath 再写盘：即便 writeFileSync 半途抛错，catch 里的清理也能删掉残留。 */
