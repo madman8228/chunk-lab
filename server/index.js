@@ -778,6 +778,11 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
     if (!sentence) return res.status(400).json({ error: 'sentence 缺失' });
     if (sentence.length > 2000) return res.status(400).json({ error: 'sentence 过长' });
     const model = (typeof body.model === 'string' && body.model.trim()) ? body.model.trim() : 'deepseek-v4-flash';
+    /* P2（2026-09-11 安全审查）：限制可选字段长度，防超长串膨胀缓存键/提示词/上游请求体。
+       model 进缓存键与 DeepSeek 请求体；zh 进缓存键与提示词；apiKey 进上游 Authorization。 */
+    if (model.length > 64) return res.status(400).json({ error: 'model 过长' });
+    if (typeof body.zh === 'string' && body.zh.length > 2000) return res.status(400).json({ error: '中文释义过长' });
+    if (typeof body.apiKey === 'string' && body.apiKey.trim().length > 256) return res.status(400).json({ error: 'apiKey 过长' });
     /* P2-4（2026-09-11）：缓存键纳入 zh 语境。英语多义句（如 bank）配不同中文释义，
        解读结果完全不同，仅按 norm(sentence) 会串味。zh 为空时保持旧 key 格式（向后兼容）。 */
     const cacheKey = model + '::' + ai.norm(sentence)
@@ -837,8 +842,17 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
    容量：AI 写缓存后按 AI_CACHE_MAX（默认 2000）LRU 淘汰最旧；
    TTL：AI_CACHE_TTL 天（默认 30）内未使用的缓存视为过期，命中时走 miss 重新生成；
    过期条目在 trim 时懒清理（写路径触发，无需定时器）。AI_CACHE_TTL=0 表示永不过期。 */
-const AI_CACHE_MAX = parseInt(process.env.AI_CACHE_MAX || '2000', 10);
-const AI_CACHE_TTL = parseInt(process.env.AI_CACHE_TTL || '30', 10);
+const AI_CACHE_MAX = (function () {
+  /* P3（2026-09-11 安全审查）：env 配非法值（NaN/非正数）→ fail-closed 回退默认。
+     AI_CACHE_MAX=0/负会让 trimAiCache 一次清空全部缓存（自 DoS）；NaN 会让比较恒 false（静默失效）。 */
+  const raw = parseInt(process.env.AI_CACHE_MAX || '2000', 10);
+  return (Number.isFinite(raw) && raw > 0) ? raw : 2000;
+})();
+const AI_CACHE_TTL = (function () {
+  /* TTL=0 是合法值（永不过期，见上方注释）；只挡 NaN/负值（负 TTL 会变成 datetime('now','+n days') 乱删）。 */
+  const raw = parseInt(process.env.AI_CACHE_TTL || '30', 10);
+  return (Number.isFinite(raw) && raw >= 0) ? raw : 30;
+})();
 /* 提示词/模型升级时 bump：旧版本缓存（ver 不匹配）一律视为 miss 重新生成，
    防止"解读质量被旧缓存锁死"。必须与 js/ai-prompts.mjs 的 PROMPT_VERSION 同步修改。 */
 const AI_PROMPT_VERSION = 1;

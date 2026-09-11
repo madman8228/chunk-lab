@@ -9,6 +9,9 @@
  *   5. image 解码后 >5MB → 400
  *   6. 游客可提交：index.js 里该路由未挂 auth.authenticate（静态校验）
  *   7. meta 非对象（字符串/数组）→ 400；meta 为对象 → 正确落库
+ *   8. IP 限流：每 IP 60 秒最多 5 次，第 6 次 429 + Retry-After
+ *   9. meta JSON 字符串 >4KB → 400
+ *  10. INSERT 失败 → 删除孤儿图（磁盘文件数不增加）
  *
  * 隔离：通过 CHUNKLAB_DATA_DIR 指向临时目录，在 require 之前注入，避免污染真实 server/data。
  * 运行：node feedback.test.js
@@ -36,17 +39,21 @@ function check(name, cond, detail) {
   else { failed++; console.log('  \u2717 ' + name + (detail ? '  \u2192 ' + detail : '')); }
 }
 
-/* mock res：记录 status + body，供 submit 直接调用 */
+/* mock res：记录 status + headers + body，供 submit 直接调用 */
 function makeRes() {
-  const res = { statusCode: 200, _body: null };
+  const res = { statusCode: 200, _body: null, _headers: {} };
   res.status = function (c) { this.statusCode = c; return this; };
+  res.set = function (k, v) { this._headers[k] = v; return this; };
   res.json = function (b) { this._body = b; return this; };
   return res;
 }
 
-function submit(body) {
+/* 每次普通 submit 用独立 IP（模块级限流 Map 会跨用例持久，若都走同一 IP 会误触限流）。
+   限流用例单独传固定 IP 复用。 */
+let _ipSeq = 0;
+function submit(body, ip) {
   const res = makeRes();
-  feedback.submit({ body: body }, res);
+  feedback.submit({ body: body, ip: ip || ('10.0.0.' + (++_ipSeq)) }, res);
   return res;
 }
 
@@ -121,6 +128,39 @@ r = submit({ text: 'meta 为 null 正常', meta: null });
 check('7 meta 为 null → 200 且落库 null',
   r.statusCode === 200 && (function () { const x = latestRow(); return x && x.meta === null; })(),
   'status=' + r.statusCode);
+
+/* ===== 8. IP 限流：每 IP 60 秒最多 5 次 ===== */
+const RATE_IP = '10.9.9.9';
+let allOk = true;
+for (let i = 0; i < 5; i++) {
+  if (submit({ text: '限流测试 ' + i }, RATE_IP).statusCode !== 200) allOk = false;
+}
+check('8 前 5 次同 IP 提交均 200', allOk);
+r = submit({ text: '第 6 次应被限流' }, RATE_IP);
+check('8 第 6 次同 IP → 429', r.statusCode === 429, 'status=' + r.statusCode);
+check('8 429 带 Retry-After=60 头', r._headers && r._headers['Retry-After'] === '60', JSON.stringify(r._headers));
+
+/* ===== 9. meta JSON 字符串 >4KB → 400 ===== */
+r = submit({ text: 'meta 过大', meta: { ua: 'x'.repeat(5000) } });
+check('9 meta JSON >4KB → 400', r.statusCode === 400, 'status=' + r.statusCode);
+r = submit({ text: 'meta 边界内', meta: { ua: 'x'.repeat(4000) } });
+check('9 meta JSON ≤4KB → 200', r.statusCode === 200, 'status=' + r.statusCode);
+
+/* ===== 10. INSERT 失败 → 删除孤儿图 ===== */
+const filesBefore = fs.readdirSync(FEEDBACK_DIR).length;
+const origPrepare = db.prepare;
+db.prepare = function (sql) {
+  if (typeof sql === 'string' && sql.indexOf('INSERT INTO feedback') === 0) {
+    throw new Error('模拟 INSERT 失败');
+  }
+  return origPrepare.call(db, sql);
+};
+r = submit({ text: 'INSERT 失败应清理图片', image: 'data:image/png;base64,' + imgB64, imageType: 'image/png' });
+db.prepare = origPrepare;
+check('10 INSERT 失败 → 500', r.statusCode === 500, 'status=' + r.statusCode);
+check('10 孤儿图已删除（文件数与提交前一致）',
+  fs.readdirSync(FEEDBACK_DIR).length === filesBefore,
+  'before=' + filesBefore + ' after=' + fs.readdirSync(FEEDBACK_DIR).length);
 
 /* ===== 收尾 ===== */
 try { fs.rmSync(TMP_DATA_DIR, { recursive: true, force: true }); } catch (e) { /* best-effort */ }

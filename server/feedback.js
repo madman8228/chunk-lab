@@ -23,6 +23,9 @@ const FEEDBACK_DIR = path.join(DATA_DIR, 'feedback');
 
 const MAX_TEXT = 2000;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5MB
+const MAX_META_BYTES = 4 * 1024; // 4KB
+const FEEDBACK_RATE_MAX = 5; // 每 IP 每 60 秒最多 5 次（游客匿名提交，仅能按 IP 限流防刷爆磁盘/SQLite）
+const FEEDBACK_RATE_WINDOW = 60 * 1000;
 
 const EXT_BY_TYPE = {
   'image/png': 'png',
@@ -46,8 +49,41 @@ function stripBase64Prefix(image) {
   return i >= 0 ? s.slice(i + 'base64,'.length) : s;
 }
 
+/* IP 滑动窗口限流（2026-09-11 安全审查 P1）：游客可匿名提交、无鉴权可识别，
+   只能按 IP 限流。纯内存、单实例自托管够用；反代部署需 TRUST_PROXY=true（index.js 已设 trust proxy）。
+   请求到达即计数（含非法请求），防攻击者用垃圾 payload 刷爆磁盘与 SQLite。 */
+const _feedbackRateMap = new Map(); // ip -> number[] 时间戳
+function feedbackRateBlocked(ip) {
+  const arr = _feedbackRateMap.get(ip);
+  if (!arr) return false;
+  const now = Date.now();
+  while (arr.length && arr[0] <= now - FEEDBACK_RATE_WINDOW) arr.shift();
+  return arr.length >= FEEDBACK_RATE_MAX;
+}
+function feedbackRateHit(ip) {
+  let arr = _feedbackRateMap.get(ip);
+  if (!arr) { arr = []; _feedbackRateMap.set(ip, arr); }
+  const now = Date.now();
+  while (arr.length && arr[0] <= now - FEEDBACK_RATE_WINDOW) arr.shift();
+  arr.push(now);
+}
+/* 定时清理过期桶，防 Map 无限膨胀（unref：不阻塞进程退出） */
+setInterval(function () {
+  const now = Date.now();
+  for (const [ip, arr] of _feedbackRateMap) {
+    while (arr.length && arr[0] <= now - FEEDBACK_RATE_WINDOW) arr.shift();
+    if (!arr.length) _feedbackRateMap.delete(ip);
+  }
+}, FEEDBACK_RATE_WINDOW).unref();
+
 function submit(req, res) {
   let imagePath = null;
+  const ip = (req && req.ip) || 'unknown';
+  if (feedbackRateBlocked(ip)) {
+    res.set('Retry-After', String(Math.ceil(FEEDBACK_RATE_WINDOW / 1000)));
+    return res.status(429).json({ error: '反馈过于频繁，请稍后再试' });
+  }
+  feedbackRateHit(ip);
   try {
     const body = (req && req.body) || {};
 
@@ -59,6 +95,10 @@ function submit(req, res) {
     if (body.meta !== undefined && body.meta !== null) {
       if (typeof body.meta !== 'object' || Array.isArray(body.meta)) {
         return res.status(400).json({ error: 'meta 必须是对象' });
+      }
+      /* P1（2026-09-11 安全审查）：meta 以 JSON 字符串落 SQLite，超大对象会膨胀存储；限 4KB。 */
+      if (Buffer.byteLength(JSON.stringify(body.meta), 'utf8') > MAX_META_BYTES) {
+        return res.status(400).json({ error: '诊断信息过大（最多 4KB）' });
       }
       meta = body.meta;
     }
@@ -74,8 +114,9 @@ function submit(req, res) {
       const ext = extForImageType(body.imageType);
       if (!fs.existsSync(FEEDBACK_DIR)) fs.mkdirSync(FEEDBACK_DIR, { recursive: true });
       const name = Date.now() + '-' + crypto.randomBytes(4).toString('hex') + '.' + ext;
-      fs.writeFileSync(path.join(FEEDBACK_DIR, name), buf);
+      /* 先登记 imagePath 再写盘：即便 writeFileSync 半途抛错，catch 里的清理也能删掉残留。 */
       imagePath = name;
+      fs.writeFileSync(path.join(FEEDBACK_DIR, name), buf);
     }
 
     const info = db.prepare(
@@ -84,6 +125,11 @@ function submit(req, res) {
 
     res.json({ ok: true, id: Number(info.lastInsertRowid) });
   } catch (e) {
+    /* P1（2026-09-11 安全审查）：图片已落盘但后续（如 INSERT）失败 → 删除孤儿图，
+       避免半截反馈占满磁盘。删除失败也不影响主错误返回（best-effort）。 */
+    if (imagePath) {
+      try { fs.unlinkSync(path.join(FEEDBACK_DIR, imagePath)); } catch (e2) { /* best-effort */ }
+    }
     /* fail-closed：不泄露堆栈，仅记录摘要并返回通用 500 */
     console.error('[feedback] 提交失败：', e && e.message);
     res.status(500).json({ error: '反馈提交失败，请稍后再试' });
