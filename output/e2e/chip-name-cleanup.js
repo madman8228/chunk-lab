@@ -27,18 +27,9 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const SHOTS = path.join(__dirname, 'shots');
 fs.mkdirSync(SHOTS, { recursive: true });
 
-/* 端口：向 OS 要空闲端口，避免与宿主机常驻服务撞端口造成假失败（同 ring-popover-verify） */
-let PORT = 9060 + Math.floor(Math.random() * 60);
-function pickFreePort() {
-  return new Promise(function (resolve) {
-    const srv = require('net').createServer();
-    srv.on('error', function () { resolve(0); });
-    srv.listen(0, '127.0.0.1', function () {
-      const p = srv.address().port;
-      srv.close(function () { resolve(p); });
-    });
-  });
-}
+/* 端口：避开宿主机已占端口（共享工具，根因见 e2e/lib/free-port.js 头部注释） */
+const PORT = require('../../e2e/lib/free-port').freePort(9060, 60);
+const BASE = 'http://127.0.0.1:' + PORT;
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-chip-'));
 let server = null;
 
@@ -74,8 +65,6 @@ function check(name, cond, detail) {
 }
 
 (async function main() {
-  PORT = (await pickFreePort()) || PORT;
-  const BASE = 'http://127.0.0.1:' + PORT;
   await startServer();
   const browser = await chromium.launch({ headless: true });
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 820 } });

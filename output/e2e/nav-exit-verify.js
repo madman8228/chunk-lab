@@ -21,7 +21,7 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const SHOTS = path.join(ROOT, 'output', 'e2e', 'shots');
 fs.mkdirSync(SHOTS, { recursive: true });
 
-const PORT = 8960 + Math.floor(Math.random() * 30);
+const PORT = require('../../e2e/lib/free-port').freePort(8960, 30);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-nav-'));
 const CHROMIUM = process.env.CHROMIUM_PATH ||
   'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe';

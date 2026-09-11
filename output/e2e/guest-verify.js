@@ -13,7 +13,7 @@ const fs = require('fs'); const path = require('path'); const os = require('os')
 const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
 const ROOT = 'D:/06-project/chunk-practice';
-const PORT = 9460 + Math.floor(Math.random() * 30);
+const PORT = require('../../e2e/lib/free-port').freePort(9460, 30);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-guest-'));
 let server, failed = 0;
 function check(name, cond, extra) {

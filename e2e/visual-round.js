@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 const OUT = path.join(__dirname, 'shots', 'visual-round');
 fs.mkdirSync(OUT, { recursive: true });
 
-const PORT = 8950 + Math.floor(Math.random() * 30);
+const PORT = require('./lib/free-port').freePort(8950, 30);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-visual-'));
 let server = null;
 

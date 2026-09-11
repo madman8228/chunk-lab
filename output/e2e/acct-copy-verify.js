@@ -32,7 +32,7 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const SHOTS = path.join(__dirname, 'shots');
 if (!fs.existsSync(SHOTS)) fs.mkdirSync(SHOTS, { recursive: true });
 
-const PORT = 9420 + Math.floor(Math.random() * 40);
+const PORT = require('../../e2e/lib/free-port').freePort(9420, 40);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-acct-'));
 let server = null;
 

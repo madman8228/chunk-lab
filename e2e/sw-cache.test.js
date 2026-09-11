@@ -29,7 +29,7 @@ const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
 
 const ROOT = path.resolve(__dirname, '..');
-const PORT = 9500 + Math.floor(Math.random() * 100);
+const PORT = require('./lib/free-port').freePort(9500, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-swcache-'));
 const BASE = 'http://127.0.0.1:' + PORT;
 let server = null;

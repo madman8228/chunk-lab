@@ -24,20 +24,8 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const SHOTS = path.join(__dirname, 'shots');
 fs.mkdirSync(SHOTS, { recursive: true });
 
-/* 端口：不再盲选固定区间 —— 曾与宿主机上常驻服务撞端口（对方 health 返回 401、永远 != 200），
-   40 次重试全部 miss → 报 "server start timeout" 的**假失败**。
-   改为先向 OS 要一个空闲端口，天然避开所有已占用端口。 */
-let PORT = 8902 + Math.floor(Math.random() * 100);
-function pickFreePort() {
-  return new Promise(function (resolve) {
-    const srv = require('net').createServer();
-    srv.on('error', function () { resolve(0); });
-    srv.listen(0, '127.0.0.1', function () {
-      const p = srv.address().port;
-      srv.close(function () { resolve(p); });
-    });
-  });
-}
+/* 端口：避开宿主机已占端口（共享工具，根因见 e2e/lib/free-port.js 头部注释） */
+const PORT = require('../../e2e/lib/free-port').freePort(8902, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-ring-'));
 let server = null;
 
@@ -74,7 +62,6 @@ function check(name, cond, detail) {
 }
 
 (async function () {
-  PORT = (await pickFreePort()) || PORT; /* 0 = 探测失败 → 回落到随机区间（保底） */
   const BASE = 'http://127.0.0.1:' + PORT;
   const browser = await chromium.launch({
     headless: true,

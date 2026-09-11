@@ -24,7 +24,7 @@ const { spawn } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const compress = require('./compress');
-const PORT = 9600 + Math.floor(Math.random() * 200);
+const PORT = require('../e2e/lib/free-port').freePort(9600, 200);
 
 let passed = 0, failed = 0;
 function check(name, cond, detail) {

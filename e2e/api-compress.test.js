@@ -24,7 +24,7 @@ const { chromium } = require('playwright-core');
 const ROOT = path.resolve(__dirname, '..');
 /* 直接读中间件的阈值，避免测试里写死一个会和实现漂移的常量 */
 const apiCompressMinBytes = require(path.join(ROOT, 'server', 'api-compress'))._internal.MIN_BYTES;
-const PORT = 8942 + Math.floor(Math.random() * 60);
+const PORT = require('./lib/free-port').freePort(8942, 60);
 const BASE = 'http://127.0.0.1:' + PORT;
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-apicompress-'));
 let server = null;

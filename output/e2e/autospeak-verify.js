@@ -26,7 +26,7 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const SHOTS = path.join(__dirname, 'shots');
 fs.mkdirSync(SHOTS, { recursive: true });
 
-const PORT = 9100 + Math.floor(Math.random() * 80);
+const PORT = require('../../e2e/lib/free-port').freePort(9100, 80);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-autospeak-'));
 let server = null;
 

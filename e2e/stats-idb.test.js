@@ -24,7 +24,7 @@ const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
 
 const ROOT = path.resolve(__dirname, '..');
-const PORT = 9400 + Math.floor(Math.random() * 100);
+const PORT = require('./lib/free-port').freePort(9400, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-statsidb-'));
 let server = null;
 
