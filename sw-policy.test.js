@@ -5,11 +5,12 @@
  *   2026-09-10 扩容到 8000 句暴露出一个真 P0 —— sw.js install 用 caches.addAll(PRECACHE)，
  *   而 PRECACHE 里含三个题库文件（8000 句时 oral8000.js 8.25MB）。addAll 是「全有全无」的：
  *   移动网络下极易整体失败 → SW 一个都装不上、离线能力全丢（PWA 的核心卖点）。
- *   修法 = 拆成硬清单（小、原子）+ 软清单（随内容增长、尽力而为、失败不拖垮安装）。
+ *   修法 = 拆成硬清单（小、原子）+ 软清单（兼容资源、尽力而为、失败不拖垮安装），
+ *   扩展题库改由 manifest + hash 分片按需加载。
  *
  * 本测试锁的就是这套划分不被后续改动悄悄破坏，尤其是两类高发回归：
- *   A. gen-sw.js 的依赖闭包把题库文件又「自动补全」回原子清单（HTML 里有 <script src>）
- *   B. 有人把软清单从版本哈希里摘掉 → 题库更新后客户端 cache-first 永远命中旧内容
+ *   A. gen-sw.js 的依赖闭包把扩展题库源文件又「自动补全」回原子清单
+ *   B. 有人把内容 manifest / 兼容软清单从版本哈希里摘掉 → 更新后客户端 cache-first 永远命中旧内容
  *      （「改了像没改」，正是 sw.js 版本号机制存在的根本原因）
  *
  * 用法：node sw-policy.test.js    （npm test 串联自动跑）
@@ -55,13 +56,18 @@ const hard = listOf('PRECACHE');
 const soft = listOf('PRECACHE_SOFT');
 check('sw.js 同时定义 PRECACHE 与 PRECACHE_SOFT', Array.isArray(hard) && Array.isArray(soft),
   'hard=' + (hard && hard.length) + ' soft=' + (soft && soft.length));
-check('软清单非空（题库属随内容增长的资产）', soft && soft.length > 0);
+check('软清单非空（保留兼容资源的尽力缓存）', soft && soft.length > 0);
 check('两清单无交集（同一文件不能既原子又尽力）',
   hard && soft && hard.filter(function (u) { return soft.indexOf(u) >= 0; }).length === 0,
   hard && soft ? hard.filter(function (u) { return soft.indexOf(u) >= 0; }).join(',') : '');
-check('软清单含全部题库数据文件',
-  soft && ['/builtins.js', '/oral8000.js', '/freq-idioms.js'].every(function (u) { return soft.indexOf(u) >= 0; }),
+check('软清单保留基础兼容题库',
+  soft && soft.indexOf('/builtins.js') >= 0,
   soft ? soft.join(',') : '');
+check('扩展题库源文件不进入任何预缓存清单',
+  hard && soft && ['/oral8000.js', '/freq-idioms.js'].every(function (u) {
+    return hard.indexOf(u) < 0 && soft.indexOf(u) < 0;
+  }),
+  hard && soft ? hard.concat(soft).filter(function (u) { return /oral8000|freq-idioms/.test(u); }).join(',') : '');
 
 console.log('');
 console.log('【2. 硬清单必须保持"小"——原子安装不允许有脆弱项】');

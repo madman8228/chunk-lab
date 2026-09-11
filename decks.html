@@ -472,8 +472,7 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 </div>
 
 <script src="builtins.js"></script>
-<script src="oral8000.js"></script>
-<script src="freq-idioms.js"></script>
+<script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
@@ -516,6 +515,26 @@ function allDecks(){
   return CL.allDecksView(mem);
 }
 function findDeck(deckId){ return CL.findDeck(mem, deckId); }
+function deckItemCount(deck){
+  return deck && typeof deck.itemCount === 'number' ? deck.itemCount : ((deck && deck.items) || []).length;
+}
+function deckMarkedCount(deck){
+  if(!deck) return 0;
+  if(!deck.builtin){
+    return (deck.items || []).filter(function(it){ return isMarkedForDeck(deck.id, it); }).length;
+  }
+  /* 内置扩展题库尚未加载时，不能只遍历基础 88 句；cid key 本身已足够统计已标熟句。 */
+  var prefix = deck.id + '#', seen = {};
+  Object.keys(mem.mastered || {}).forEach(function(k){
+    if(k.indexOf(prefix) === 0 && mem.mastered[k] && !(mem.deletedItems || {})[k]) seen[k] = true;
+  });
+  Object.keys((mem.stats && mem.stats.bySentence) || {}).forEach(function(k){
+    if(k.indexOf(prefix) !== 0 || (mem.deletedItems || {})[k] || seen[k]) return;
+    var cid = k.substring(prefix.length);
+    if(CL.isFluencyByDeck(mem, deck.id, {cid: cid})) seen[k] = true;
+  });
+  return Object.keys(seen).length;
+}
 function isMastered(deckId, it){ return CL.isMastered(mem, deckId, it); }
 function isFluencyByDeck(deckId, it){ return CL.isFluencyByDeck(mem, deckId, it); }
 function isMarkedForDeck(deckId, it){ return CL.isMarkedForDeck(mem, deckId, it); }
@@ -573,11 +592,10 @@ function openDecks(){
       else if(diff < 86400000) lastStr = Math.floor(diff/3600000)+' 小时前';
       else lastStr = Math.floor(diff/86400000)+' 天前';
     }
-    var mCnt = 0;
-    for(var mi=0; mi<d.items.length; mi++){ if(isMarkedForDeck(d.id, d.items[mi])) mCnt++; }
+    var mCnt = deckMarkedCount(d);
     /* ★ 「已隐藏 N 句」= 删除标记数（用户可能误删/暂存，旧版 hidden 在 finish 阶段无症状暴露，2026-09-06 反馈） */
     var hiddenCnt = CL.hiddenCount(d, mem);
-    var originalTotal = d.builtin ? (CL.builtinDecks(mem).filter(function(bd){return bd.id===d.id;})[0]||{}).items.length : (d._originalTotal || d.items.length);
+    var originalTotal = d.builtin ? deckItemCount(d) : (d._originalTotal || deckItemCount(d));
     var hiddenBadge = '';
     if(hiddenCnt > 0){
       hiddenBadge = '<span class="pill warn" data-hide-tip="已被你标记删除的句子会在这里显示">[隐藏 '+hiddenCnt+' / '+originalTotal+' 句]</span>';
@@ -589,8 +607,8 @@ function openDecks(){
         (d.builtin?'<span class="pill">内置</span>':'<span class="pill mine">导入</span>')+
         hiddenBadge+
         '</div>'+
-      '<div class="meta">'+d.items.length+' 题'+
-        (originalTotal > d.items.length ? '（原 '+originalTotal+' 题）' : '')+
+      '<div class="meta">'+deckItemCount(d)+' 题'+
+        (originalTotal > deckItemCount(d) ? '（原 '+originalTotal+' 题）' : '')+
         (lastStr ? ' · <span style="color:var(--accent)">'+lastStr+'</span>' : '')+
         (mCnt ? ' · <span style="color:#12924f;font-weight:600">熟 '+mCnt+'</span>' : '')+
       '</div></div>';
@@ -600,7 +618,7 @@ function openDecks(){
       var impBuiltin = document.createElement('button');
       impBuiltin.className = 'btn sm ghost';
       var alreadyImported = (mem.decks || []).some(function(x){
-        return x.sourceDeckId === d.id || (x.name === d.name + '（副本）' && (x.items || []).length === d.items.length);
+        return x.sourceDeckId === d.id || (x.name === d.name + '（副本）' && (x.items || []).length === deckItemCount(d));
       });
       impBuiltin.textContent = alreadyImported ? '已添加' : '导入';
       impBuiltin.title = alreadyImported ? '已添加到“我的题库”，可在上方管理' : '复制到我的题库（可编辑/可追加）';
@@ -733,6 +751,12 @@ function openMarket(){
 }
 
 function importPublicDeck(d){
+  if(d && d.builtin && window.ContentRepo && d._content && !d._contentReady){
+    showDeckNotice('正在加载题库…', 'ok');
+    ContentRepo.ensureDeck(d, mem).then(function(full){ importPublicDeck(full); })
+      .catch(function(){ showDeckNotice('题库加载失败，请联网后重试', 'err'); });
+    return;
+  }
   var p;
   if(d.builtin){
     var src = (window.BUILTIN || []).filter(function(x){ return x.id === d.id; })[0];
@@ -777,6 +801,12 @@ function editDeck(d){
   /* 始终从 allDecks() 重新取（首行即过滤掉已删的内置句），保证删除后刷新正确 */
   var fresh = allDecks().filter(function(x){ return x.id === d.id; })[0];
   if(fresh) d = fresh;
+  if(d && d.builtin && window.ContentRepo && d._content && !d._contentReady){
+    $('editList').innerHTML = '<div class="empty-tip">正在加载题库…</div>';
+    ContentRepo.ensureDeck(d, mem).then(function(full){ editDeck(full); })
+      .catch(function(){ $('editList').innerHTML = '<div class="empty-tip">题库加载失败，请联网后重试</div>'; });
+    return;
+  }
   var head = $('editHead');
   var masterCount = d.items.filter(function(it){ return isMastered(d.id, it); }).length;
   var pendingExplainCount = pendingExplains(d).length;
@@ -784,7 +814,7 @@ function editDeck(d){
     '<button class="btn sm ghost" id="editBack">返回</button>'+
     '<span style="font-weight:600;font-size:15px">'+esc(displayDeckName(d.name))+'</span>'+ 
     '<span class="pill">'+(d.builtin?'内置':'导入')+'</span>'+
-    '<span style="color:var(--faint)">'+d.items.length+' 句</span>'+
+    '<span style="color:var(--faint)">'+deckItemCount(d)+' 句</span>'+
     (masterCount ? '<span class="pill" style="background:#e6f4ec;color:#12924f;border:1px solid #c3ead4">熟 '+masterCount+'</span>' : '')+
     '<span class="spacer"></span>'+
     '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? (window.Icons?Icons.svg('rotateCcw'):'')+' 看全部' : '只看已标熟' )+'</button>'+
@@ -1278,6 +1308,12 @@ function commitImport(items, name){
   openDecks();
 }
 function exportDeck(d){
+  if(d && d.builtin && window.ContentRepo && d._content && !d._contentReady){
+    showDeckNotice('正在加载题库…', 'ok');
+    ContentRepo.ensureDeck(d, mem).then(function(full){ exportDeck(full); })
+      .catch(function(){ showDeckNotice('题库加载失败，请联网后重试', 'err'); });
+    return;
+  }
   var payload = {
     name: d.name,
     desc: d.desc || '',
@@ -1712,7 +1748,7 @@ window.addEventListener('message', function(ev){
   }
 });
 
-CL.ensureCloud().then(function(){
+Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
 loadMem();
 bindCommon();
 openDecks();

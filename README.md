@@ -18,7 +18,7 @@ Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句�
 | 能力 | 说明 |
 |------|------|
 | 🧩 意群练习 | 拼句 / 选词 / 填空 / 打字 4 种作答模式，逐语块即时判定 |
-| 📚 内置题库 | 2 套：日常对话 · Daily Talk（238 句，含口语种子 150 句）+ 高频短语 · English Idioms（201 句） |
+| 📚 内置题库 | 2 套：日常对话 · Daily Talk（238 句，含口语种子 150 句）+ 高频短语 · English Idioms（389 句）；扩展内容由 manifest + hash 分片按需加载 |
 | 📖 图文课程 | ZIP 课程包导入 + 图推理对话练习 + 课前预习 / 主课程 / 课后测试三段式 |
 | 🔁 SRS 间隔重复 | 艾宾浩斯节奏 `1→3→7→14→30→60→120→180→365` 天，答错重置（纯函数，可单测） |
 | 📝 句子详解 | 课程自带结构化讲解（语法 / 搭配 / 句型，随句渲染）；AI 联网生成为**可选后端能力**（服务端代理 + 限流 + 缓存，`AI_EXPLAIN_ENABLED=true` 开启，默认停用） |
@@ -33,6 +33,7 @@ UI 层        main.html（练习入口）· decks.html（题库管理）· stats
 共享核心层   core.js（CL 单例）· srs.js（纯函数）· library.js · course-package.js · api.js · auth-ui.js
 云端后端     server/（Express + SQLite + JWT）：鉴权 / 数据 / 单条课程 / 备份 / 健康 / AI 代理
 数据层       浏览器 localStorage / IndexedDB（离线优先·版本化）+ 云端 SQLite（权威数据，按 user_id 隔离）
+内容层       content/manifest.json + hash 分片（内置扩展题库按需加载）；builtins.js 保留基础题库与兼容兜底
 ```
 
 关键决策（ADR，详见 [`architecture-plan.md`](./architecture-plan.md)）：
@@ -139,9 +140,12 @@ node rev.test.js            # ADR-005 实体级 rev 同步 + 离线 change-log�
 node validate_builtins.js   # 内置题库数据规范（cid 唯一、chunk 拼接=原句、句子不重复）
 node validate_oral8000.js   # 口语种子数据规范（chunk 拼接=原句、标点规则、alts、cid）
 node validate_freq_idioms.js# 高频短语数据规范（同上，另有 idiom 不可拆分校验）
+node scripts/validate-content.mjs # manifest / 分片 hash / 源数据总数一致性
 node course-resume.test.js  # 图文课程进度恢复
 ```
 > 内置句子增改后跑 `node scripts/add-cids.js` 补/重算 cid（幂等；`--force` 全量重算）再跑对应的 validate_*.js。
+>
+> 扩展内置题库后运行 `npm run content:build`：它会生成 `content/manifest.json` 和带 hash 的内容分片（每片最多 200 句）。页面启动只读取 manifest，进入具体题库时才加载分片；部署时将整个 `content/` 目录一并发布。
 
 后端冒烟测试（零依赖，启动服务跑关键接口往返）：
 ```bash
@@ -223,7 +227,7 @@ node server/backup-cli.js list                # 列出备份
 - 🔴 **开放模式公网 = 数据裸奔**：默认共享单用户 + 默认 JWT 密钥。任何公网 / 可访问网络部署必须先 `REQUIRE_AUTH=true` + 强随机 `JWT_SECRET`（详见上「安全部署清单 · ADR-006」）
 - 🟡 `main.html` 仍是 ~5.0k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
-- 🟡 `oral8000.js` 现为 150 句口语种子（并入 builtin-daily，共 238 句），分批扩展直接在文件内追加
+- 🟡 `oral8000.js` 现为 150 句口语种子（并入 builtin-daily，共 238 句）；扩展内容应运行 `npm run content:build` 生成可按需加载的分片，源文件仍作为兼容回退
 - 🟡 主流程改动后记得跑 `npm run e2e:all`（26 套件 / 含主 UI 回归 97 项，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
 
 > 早期迭代中的问题（同步整块覆盖、AI Key 前端直连、后端零校验、移动端适配弱、核心逻辑无单测等）均已按 architecture-plan 的 Phase A→C 闭环，ADR 清单见上。

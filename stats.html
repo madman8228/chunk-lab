@@ -275,8 +275,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 </div>
 
 <script src="builtins.js"></script>
-<script src="oral8000.js"></script>
-<script src="freq-idioms.js"></script>
+<script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
@@ -994,8 +993,10 @@ function launchReviewDeck(deck){
 }
 
 /* ===== 事件绑定 ===== */
-CL.ensureCloud().then(function(){
+Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
 loadMem();
+return window.ContentRepo ? ContentRepo.ensureAll(mem) : Promise.resolve();
+}).then(function(){
 migrateLegacyStatKeys();
 renderStats();
 

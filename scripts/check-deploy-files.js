@@ -115,12 +115,39 @@ const beFiles = Array.from(beClosure.files).sort();
      - sw.js                ：由 navigator.serviceWorker.register('sw.js') 引入，不被 HTML 引用
      - server/loadenv.js    ：`node -r ./loadenv.js index.js` 手动预加载，不在 require 图里
      - server/backup-db.js  ：cron 直接 `node server/backup-db.js backup` 调用，不被 require */
-const OUT_OF_GRAPH_REQUIRED = ['sw.js', 'server/loadenv.js', 'server/backup-db.js'];
+const OUT_OF_GRAPH_REQUIRED = ['sw.js', 'server/loadenv.js', 'server/backup-db.js', 'content/manifest.json'];
 
-const required = Array.from(new Set(feFiles.concat(beFiles).concat(OUT_OF_GRAPH_REQUIRED))).sort();
+/* 内容分片由 manifest 在运行时按需请求，HTML/require 依赖图无法看见它们。
+   把 manifest 中声明的每个分片也纳入部署闭包，避免部署了 manifest 却漏传新题库。 */
+function manifestContentFiles() {
+  const file = path.join(ROOT, 'content', 'manifest.json');
+  try {
+    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    return (data.decks || []).reduce(function (all, deck) {
+      return all.concat((deck.shards || []).map(function (shard) {
+        return String(shard.url || '').replace(/^\//, '');
+      }));
+    }, []).filter(Boolean);
+  } catch (e) {
+    return [];
+  }
+}
+
+const required = Array.from(new Set(feFiles.concat(beFiles).concat(OUT_OF_GRAPH_REQUIRED).concat(manifestContentFiles()))).sort();
 
 /* ---------- 比对 ---------- */
-const missing = required.filter(function (r) { return !deployedSet.has(r); });
+/* FILES 允许用目录（当前 content/ 分片会随扩容持续增加），目录覆盖其下所有运行时文件。 */
+const deployedDirs = deployed.filter(function (d) {
+  try { return fs.statSync(path.join(ROOT, d)).isDirectory(); } catch (e) { return false; }
+});
+function isCovered(requiredPath) {
+  if (deployedSet.has(requiredPath)) return true;
+  return deployedDirs.some(function (dir) {
+    const prefix = dir.replace(/[\\/]$/, '').replace(/\\/g, '/') + '/';
+    return requiredPath.replace(/\\/g, '/').indexOf(prefix) === 0;
+  });
+}
+const missing = required.filter(function (r) { return !isCovered(r); });
 const absent = deployed.filter(function (d) { return !existsAny(d); });
 const extra = deployed.filter(function (d) { return required.indexOf(d) < 0; });
 

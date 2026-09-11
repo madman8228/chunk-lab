@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-09-11",
+  "decks": [
+    {
+      "id": "builtin-daily",
+      "name": "日常对话 · Daily Talk",
+      "desc": "生活口语综合题库",
+      "baseCount": 88,
+      "totalCount": 238,
+      "shards": [
+        {
+          "id": "oral-001-b2c543ca928b",
+          "url": "content/builtin-daily/oral-001-b2c543ca928b.json",
+          "count": 150,
+          "bytes": 254532,
+          "sha256": "b2c543ca928bdb0b0af93f4ede9878c6e1abfbbba0a3080373fa5657e9b6a7b3",
+          "mode": "append"
+        }
+      ],
+      "legacyFallback": "oral8000.js"
+    },
+    {
+      "id": "builtin-freq-idioms",
+      "name": "高频短语 · English Idioms",
+      "desc": "高频英语 idiom 短语：每个 idiom 嵌入完整例句，练习时填 idiom 短语本身",
+      "baseCount": 0,
+      "totalCount": 389,
+      "shards": [
+        {
+          "id": "idioms-001-a9587ee0d88e",
+          "url": "content/builtin-freq-idioms/idioms-001-a9587ee0d88e.json",
+          "count": 200,
+          "bytes": 308156,
+          "sha256": "a9587ee0d88e66a3e62f986b81186b4fa5982d9039141bc75e2453a6f774fd25",
+          "mode": "replace"
+        },
+        {
+          "id": "idioms-002-0b19f2e048b2",
+          "url": "content/builtin-freq-idioms/idioms-002-0b19f2e048b2.json",
+          "count": 189,
+          "bytes": 227215,
+          "sha256": "0b19f2e048b202bd752ea2e0de2203bac1eb30756e1827df5901bf723b6ca5f1",
+          "mode": "replace"
+        }
+      ],
+      "legacyFallback": "freq-idioms.js"
+    }
+  ]
+}

@@ -72,14 +72,7 @@ localStorage.clear();
   });
   console.log('按钮文案:', JSON.stringify(btnText));
 
-  /* 校验标题 */
-  const titleText = await page.evaluate(function () {
-    var t = document.querySelector('.home-today-t');
-    return t ? t.textContent.trim() : null;
-  });
-  console.log('标题文案:', JSON.stringify(titleText));
-
-  /* 校验到期计数 */
+  /* 校验到期计数（卡片，原 .home-today-t headline 已删 —— 老板反馈"今天有 N 句到期复习"与下方 .htc.due 重复属废话） */
   const dueCount = await page.evaluate(function () {
     var e = document.querySelector('.htc.due .n');
     return e ? e.textContent.trim() : null;
@@ -90,7 +83,6 @@ localStorage.clear();
 
   if (btnText && /先练\s*5\s*\/\s*共\s*23/.test(btnText)) console.log('✓ 按钮文案含「先练 5 / 共 23」');
   else console.log('✗ 按钮文案异常', btnText);
-  if (titleText && /23/.test(titleText)) console.log('✓ 标题含 23 句');
   if (dueCount === '23') console.log('✓ 到期计数 23');
   if (errs.length === 0) console.log('✓ 零 pageerror/console.error');
   else console.log('✗ 错误:', errs);

@@ -678,7 +678,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .home-card .hc-title svg{width:15px;height:15px;stroke-width:1.8}
 .home-card .hc-title .grow{flex:1}
 /* 今日聚合主卡 */
-.home-today-t{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--text)}
 .home-today-d{font-size:12.5px;color:var(--faint);margin:3px 0 0}
 /* streak chip：连续天数 + 今日次数，紧凑一行插入 hc-title 下方 */
 .streak-chip{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 12px;padding:5px 12px;border:1px solid #f3d4c4;border-radius:8px;background:var(--bad-soft);color:#b04a18;font-size:12.5px;font-weight:600;line-height:1.3}
@@ -707,7 +706,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .cal-foot{margin-top:10px;font-size:12px;color:var(--muted)}
 .cal-foot b{color:var(--text);font-variant-numeric:tabular-nums}
 .home-today-counts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:110px;background:var(--surface-2)}
+/* 2026-09-11 老板要求「数字横向居中」：.n / .l 都是块级 div，默认贴左。
+   卡片有 min-width:110px，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
+   用 text-align:center 一次管住数字与标签（只居中数字、标签仍贴左会立刻显歪）。 */
+.htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:110px;background:var(--surface-2);text-align:center}
 .htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
 .htc .l{font-size:11.5px;color:var(--faint);margin-top:2px}
 .htc.due .n{color:var(--accent)} .htc.due{border-color:#cfd9f5;background:var(--accent-soft)}
@@ -917,7 +919,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .track.compact-chunks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:5px 8px}
   .track.compact-chunks .chunk{width:100%;min-width:0}
   .track.compact-chunks .chunk:last-child:nth-child(odd){grid-column:1 / -1;justify-self:center}
-  .chunk-answer{display:inline-block;width:fit-content;box-sizing:border-box;text-align:center;font-size:clamp(13px,4vw,14px);line-height:1.1;min-width:0;max-width:100%;margin:0 0 1px;padding:2px 4px;overflow-wrap:anywhere}
+  /* 空答案块也保留最小列宽，避免待作答/已完成状态切换时列位跳动；长文本仍受 max-width 约束。 */
+  .chunk-answer{display:inline-block;width:fit-content;box-sizing:border-box;text-align:center;font-size:clamp(13px,4vw,14px);line-height:1.1;min-width:40px;max-width:100%;margin:0 0 1px;padding:2px 4px;overflow-wrap:anywhere}
   .chunk.active .chunk-answer,.chunk.wait .chunk-answer{width:clamp(48px,calc(var(--answer-chars,12) * 7px + 16px),100%);min-width:0;height:30px}
   .chunk.ok .chunk-answer,.chunk.bad .chunk-answer,.chunk.revealed .chunk-answer{width:fit-content;height:auto}
   .chunk-hint{font-size:12px;line-height:1.35;min-height:16px;height:auto;padding-left:0;max-width:100%;overflow:visible;overflow-wrap:anywhere}
@@ -1440,8 +1443,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 </div>
 
 <script src="builtins.js"></script>
-<script src="oral8000.js"></script>
-<script src="freq-idioms.js"></script>
+<script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
@@ -1864,6 +1866,33 @@ function isTempQueueDeck(id){
       || id.indexOf('rev-') === 0;
 }
 
+/* 超大内置题库按练习批次加载：每次只把当前一批放进 S.items，
+   练完后由 finish 页继续取下一批；题库管理/统计仍使用 ensureDeck 的完整视图。 */
+function beginContentBatch(deck, fromIdx, cursor){
+  if(!window.ContentRepo || !ContentRepo.ensureDeckBatch) return;
+  $('zh').innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 正在加载题库…';
+  ContentRepo.ensureDeckBatch(deck, mem, {
+    limit: Math.max(1, mem.settings.batchSize || 10),
+    cursor: cursor
+  }).then(function(batch){
+    if(!batch || !batch.deck || !batch.deck.items || !batch.deck.items.length){
+      if(batch && !batch.done){
+        /* 当前分片全是已掌握/已删除句子时，自动继续扫描，避免用户看到空批次。 */
+        beginContentBatch(deck, fromIdx, batch.nextCursor);
+        return;
+      }
+      $('zh').textContent = '没有可练习的句子';
+      return;
+    }
+    batch.deck._contentBatch = batch;
+    batch.deck._contentBatchReady = true;
+    startDeck(batch.deck, typeof fromIdx === 'number' ? fromIdx : 0);
+  }).catch(function(err){
+    console.error('[content] 题库批次加载失败', err);
+    $('zh').textContent = '题库加载失败，请联网后重试';
+  });
+}
+
 /* ★ 启动题库（恢复：之前与 BUILTIN 数组在同一区域被误删，这里补回）
    - fromIdx 可选，断点续练用
    - tempStart 可选（仅临时队列）：本组在完整队列中的起点（用于「继续下一组」分页）
@@ -1871,8 +1900,33 @@ function isTempQueueDeck(id){
    - 排序：到期复习最优先 + 熟练度分级
    - 洗牌（设置开启时） + 截断到 batchSize */
 function startDeck(deck, fromIdx, tempStart){
+  if(deck && deck.builtin && deck._content && !deck._contentReady && !deck._contentBatchReady
+      && window.ContentRepo && ContentRepo.shouldBatch && ContentRepo.shouldBatch(deck)){
+    var _savedProgress = mem.progress && mem.progress[deck.id];
+    var _savedCursor = _savedProgress && _savedProgress.contentCursor;
+    beginContentBatch(deck, fromIdx, _savedCursor);
+    return;
+  }
+  /* 内置扩展题库按需加载：页面启动只保留基础题与 manifest，真正进入题库时才取分片。
+     ContentRepo 返回经过 deletedItems 过滤的副本，再回到这里走原有练习流程，
+     因此旧版 sessionStorage / 用户导入题库 / 断点续练协议都不需要迁移。 */
+  if(deck && deck.builtin && deck._content && !deck._contentReady && window.ContentRepo){
+    $('zh').innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 正在加载题库…';
+    ContentRepo.ensureDeck(deck, mem).then(function(full){
+      if(!full || !full.items || !full.items.length){
+        $('zh').textContent = '题库内容为空，无法开始练习';
+        return;
+      }
+      startDeck(full, fromIdx, tempStart);
+    }).catch(function(err){
+      console.error('[content] 题库加载失败', err);
+      $('zh').textContent = '题库加载失败，请联网后重试';
+    });
+    return;
+  }
   if(typeof fromIdx !== 'number') fromIdx = 0;
   S.deck = deck;
+  S.contentBatch = deck._contentBatch || null;
   S.items = deck.items.slice();
   var isLongTermDeck = !isTempQueueDeck(deck.id);
   /* 临时队列分页游标：tempStart=本组起点 / tempEnd=本组终点（练完后剩 tempTotal-tempEnd） */
@@ -1945,6 +1999,15 @@ if(fromIdx === 0 && isLongTermDeck){
   if(!isTempQueueDeck(deck.id)){
     touchDeckBest(deck.id).lastPlayed = Date.now();
   }
+  if(S.contentBatch){
+    if(!mem.progress) mem.progress = {};
+    /* 从批次首题开始记录游标；中途关闭页面时仍回到当前批次，而不是跳到下一批。 */
+    mem.progress[deck.id] = {
+      idx: typeof fromIdx === 'number' ? fromIdx : 0,
+      time: Date.now(),
+      contentCursor: S.contentBatch.startCursor
+    };
+  }
   mem.activeDeckId = deck.id;
   saveStore();
 }
@@ -1958,6 +2021,8 @@ var S = {
   chunkTotal: 0, chunkRight: 0, wrong: [],
   finished: false, _finishing: false,
   perfectThis: true, hinted: false, _hintedChunks: [],
+  /* 超大内置题库当前练习批次与内容游标（非临时队列分页） */
+  contentBatch: null,
   /* 临时队列分页游标（见 startDeck / finishSession「继续下一组」） */
   tempTotal: 0, tempStart: 0, tempEnd: 0
 };
@@ -1970,6 +2035,9 @@ function cur(){
 function allDecks(){
   /* 收敛：内置（deletedItems 过滤副本）+ 用户导入，统一走 CL（core.js 单一实现） */
   return CL.allDecksView(mem);
+}
+function deckItemCount(deck){
+  return deck && typeof deck.itemCount === 'number' ? deck.itemCount : ((deck && deck.items) || []).length;
 }
 /* 按 id 找题库（内置 + 用户导入）—— 之前被误删，重建 */
 function findDeck(deckId){
@@ -2959,6 +3027,7 @@ function nextQuestion(){
     /* 保存断点进度 */
     if(!mem.progress) mem.progress = {};
     mem.progress[S.deck.id] = { idx: S.idx, time: Date.now() };
+    if(S.contentBatch) mem.progress[S.deck.id].contentCursor = S.contentBatch.startCursor;
     saveStore();
     renderQ();
   }
@@ -3564,60 +3633,86 @@ function showPracticePage(){
 /* ===== 今日首页（吸收 ref「今日行动中枢」：到期收口 + 上次进度 + 最近牌组 + 入口） ===== */
 function computeToday(){
   var by = (mem.stats && mem.stats.bySentence) || {};
-  var now = Date.now(), due = 0, weak = 0;
-  allDecks().forEach(function(d){
-    var arr = d.items || [];
-    for(var i=0;i<arr.length;i++){
-      var st = by[CL.cidKey(d.id, arr[i])];
-      if(!st || !st.times) continue;
-      if(CL.srs.isDue(st, now)) due++;
-      if(classifyStat(st) === 'weak') weak++;
-    }
+  var now = Date.now(), due = 0, weak = 0, known = {};
+  /* 统计档案本身已经带 deckId/cid；首页只需计算数字，不应为了显示到期数加载全部题库内容。 */
+  allDecks().forEach(function(d){ known[d.id] = true; });
+  Object.keys(by).forEach(function(key){
+    var st = by[key];
+    if(!st || !st.times || !st.deckId || !known[st.deckId]) return;
+    var sep = key.indexOf('#'), cid = sep >= 0 ? key.substring(sep + 1) : '';
+    if(CL.isItemDeleted(mem, st.deckId, { cid: cid })) return;
+    if(CL.srs.isDue(st, now)) due++;
+    if(classifyStat(st) === 'weak') weak++;
   });
   return { due: due, weak: weak, book: Array.isArray(mem.reinforceBook) ? mem.reinforceBook.length : 0 };
 }
+/* 复习入口只加载档案实际涉及的题库，不因点击“开始复习”把所有未来扩展题库都拉下来。 */
+function ensureStatDecks(deckIds){
+  if(!window.ContentRepo) return Promise.resolve();
+  var ids = {}, list = [];
+  (deckIds || []).forEach(function(id){
+    if(!id || ids[id]) return;
+    ids[id] = true;
+    list.push(id);
+  });
+  return Promise.all(list.map(function(id){ return ContentRepo.ensureDeck(id, mem); }));
+}
 /* 到期复习队列（全库 srs- 临时队列：batchSize 分批、不写 best，与 stats.practiceDue 同构） */
 function startTodayDue(){
+  function run(){
+    var by = (mem.stats && mem.stats.bySentence) || {};
+    var now = Date.now(), items = [];
+    allDecks().forEach(function(d){
+      var arr = d.items || [];
+      for(var i=0;i<arr.length;i++){
+        var st = by[CL.cidKey(d.id, arr[i])];
+        if(st && CL.srs.isDue(st, now)) items.push(withStatsSource(arr[i], d.id));
+      }
+    });
+    if(!items.length) return;
+    showPracticePage();
+    startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
+  }
   var by = (mem.stats && mem.stats.bySentence) || {};
-  var now = Date.now(), items = [];
-  allDecks().forEach(function(d){
-    var arr = d.items || [];
-    for(var i=0;i<arr.length;i++){
-      var st = by[CL.cidKey(d.id, arr[i])];
-      if(st && CL.srs.isDue(st, now)) items.push(withStatsSource(arr[i], d.id));
-    }
-  });
-  if(!items.length) return;
-  showPracticePage();
-  startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
+  ensureStatDecks(Object.keys(by).map(function(k){ return by[k] && by[k].deckId; }))
+    .then(run).catch(function(){ $('zh').textContent = '题库加载失败，请联网后重试'; });
 }
 /* 需巩固队列（weak-，同 stats.practiceWeakSentences） */
 function startWeakNow(){
+  function run(){
+    var by = (mem.stats && mem.stats.bySentence) || {};
+    var items = [];
+    Object.keys(by).forEach(function(k){
+      if(classifyStat(by[k]) !== 'weak') return;
+      var st = by[k], d = findDeck(st.deckId);
+      if(!d) return;
+      var it = (d.items || []).find(function(x){ return x.sentence === st.sentence; });
+      if(!it) return;
+      items.push(withStatsSource(it, st.deckId));
+    });
+    if(!items.length) return;
+    showPracticePage();
+    startDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固', items:items });
+  }
   var by = (mem.stats && mem.stats.bySentence) || {};
-  var items = [];
-  Object.keys(by).forEach(function(k){
-    if(classifyStat(by[k]) !== 'weak') return;
-    var st = by[k], d = findDeck(st.deckId);
-    if(!d) return;
-    var it = (d.items || []).find(function(x){ return x.sentence === st.sentence; });
-    if(!it) return;
-    items.push(withStatsSource(it, st.deckId));
-  });
-  if(!items.length) return;
-  showPracticePage();
-  startDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固', items:items });
+  ensureStatDecks(Object.keys(by).map(function(k){ return by[k] && by[k].deckId; }))
+    .then(run).catch(function(){ $('zh').textContent = '题库加载失败，请联网后重试'; });
 }
 /* 错题队列（book-，同 stats.practiceWrongBook） */
 function startBookNow(){
-  var items = [];
-  getReinforceBook().forEach(function(b){
-    var d = findDeck(b.deckId); if(!d) return;
-    var it = (d.items || []).find(function(x){ return x.sentence === b.sentence; });
-    if(it) items.push(withStatsSource(it, b.deckId));
-  });
-  if(!items.length) return;
-  showPracticePage();
-  startDeck({ id:'book-'+Date.now().toString(36), name:'错题', items:items });
+  function run(){
+    var items = [];
+    getReinforceBook().forEach(function(b){
+      var d = findDeck(b.deckId); if(!d) return;
+      var it = (d.items || []).find(function(x){ return x.sentence === b.sentence; });
+      if(it) items.push(withStatsSource(it, b.deckId));
+    });
+    if(!items.length) return;
+    showPracticePage();
+    startDeck({ id:'book-'+Date.now().toString(36), name:'错题', items:items });
+  }
+  ensureStatDecks(getReinforceBook().map(function(item){ return item && item.deckId; }))
+    .then(run).catch(function(){ $('zh').textContent = '题库加载失败，请联网后重试'; });
 }
 
 /* 今日首页渲染（数据依赖 mem，boot 后调用；页面内事件全部就地绑定） */
@@ -3637,7 +3732,7 @@ function renderHome(){
   var act = mem.activeDeckId ? findDeck(mem.activeDeckId) : null;
   if(act){
     var rp = mem.progress && mem.progress[act.id];
-    var idx = (rp && rp.idx > 0 && rp.idx < act.items.length) ? rp.idx : 0;
+    var idx = (rp && rp.idx > 0 && rp.idx < deckItemCount(act)) ? rp.idx : 0;
     resume = { deck: act, idx: idx };
   } else {
     var bd = null, bt = 0;
@@ -3675,10 +3770,7 @@ function renderHome(){
       + '<div class="home-actions" style="justify-content:center"><button class="btn primary" id="homeGoDecks">' + ic('book') + ' 去题库挑一套</button></div>'
       + '</div>');
   } else {
-    /* t.due == 0 时不显示该提示（废话）——下面三个按钮（复习需巩固/错题/去题库学新句）已隐含语境 */
-    if (t.due > 0) {
-      h.push('<div class="home-today-t">今天有 <span style="color:var(--accent)">' + t.due + '</span> 句到期复习</div>');
-    }
+    /* 原本的「今天有 N 句到期复习」headline 已删：与下方 .htc.due 卡片数字重复，纯属废话 */
     h.push('<div class="home-today-counts">'
       + '<div class="htc due"><div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">到期复习</div></div>'
       + '<div class="htc weak"><div class="n' + (t.weak ? '' : ' ok') + '">' + t.weak + '</div><div class="l">需巩固</div></div>'
@@ -3732,14 +3824,14 @@ function renderHome(){
     if(resume){
       var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
         var sub = resume.idx > 0
-          ? '续练 · 上次练到第 ' + resume.idx + ' / ' + d1.items.length + ' 句'
-          : (b1 && b1.acc != null ? '续练这张 · 上次正确率 ' + b1.acc + '%' : (d1.items ? d1.items.length + ' 句' : ''));
+          ? '续练 · 上次练到第 ' + resume.idx + ' / ' + deckItemCount(d1) + ' 句'
+          : (b1 && b1.acc != null ? '续练这张 · 上次正确率 ' + b1.acc + '%' : (deckItemCount(d1) ? deckItemCount(d1) + ' 句' : ''));
         _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div><div class="sub">' + sub + '</div></div>'
           + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
     }
     recent.forEach(function(d){
       var b = mem.best && mem.best[d.id];
-      var sub2 = (b && b.acc != null) ? '上次正确率 ' + b.acc + '%' : (d.items ? d.items.length + ' 句' : '');
+      var sub2 = (b && b.acc != null) ? '上次正确率 ' + b.acc + '%' : (deckItemCount(d) ? deckItemCount(d) + ' 句' : '');
       _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div><div class="sub">' + sub2 + '</div></div>'
         + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
     });
@@ -5038,7 +5130,7 @@ if(CL && CL.on && CL.isDirty){
   CL.on('syncStatus', function(st){ refreshSyncBadge(st && st.dirty); });
   refreshSyncBadge(CL.isDirty());
 }
-CL.ensureCloud().then(bootApp);
+Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(bootApp);
 
 /* ★ 引擎+FormatTools 就绪守卫（boot 竞态根治，2026-09-08）
    根因：bridge.mjs 是 <script type="module">（defer 语义，文档 parse 完成后才执行），

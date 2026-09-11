@@ -53,11 +53,12 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-6b68e474'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-fa1c9380'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 /* 硬预缓存清单：小体积、离线必需。install 用 addAll 一次性装好，任一失败即安装失败
    （老 SW 继续服务 —— 这是正确的失败语义，不做"部分成功"的兜底）。 */
 const PRECACHE = [
   '/main.html',
+  '/content/manifest.json',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
@@ -81,20 +82,15 @@ const PRECACHE = [
   '/favicon.ico',
   '/icon-32.png',
   '/js/distractor-cause.mjs',
+  '/js/content-repository.js',
 ];
 
-/* 软预缓存清单（2026-09-10）：体积随内容增长的数据资产（题库）。
-   根因：install 的 addAll 是「全有全无」。扩容到 8000 句后 oral8000.js 达 8.25MB，
-   在移动网络下极易整体失败 → SW 一个都装不上、离线能力全丢（PWA 的核心卖点）。
-   而这些文件并不需要「全有」才能用：缺了下次访问按需取即可。
-   所以它们改为「尽力而为」——逐个缓存、单个失败只告警、绝不拖垮 install。
-   与 PRECACHE 一样计入 CACHE 版本哈希（见 gen-sw.js）：否则题库更新后客户端会
-   cache-first 永远命中旧内容 —— 正是本护栏要根治的「改了像没改」。
-   升级瞬间如何不掉离线：install 先结转旧缓存（carryOver，全程不触网），再补缺失（fillSoft）。 */
+/* 软预缓存清单：仅保留旧版源文件作为兼容回退。
+   新题库内容改由 content/manifest.json + 带 hash 的 JSON 分片按需加载，
+   不再把会增长到 8000 句的整库作为页面 script 或安装资产。
+   与 PRECACHE 一样计入 CACHE 版本哈希；内容分片由首次访问后的 fetch 分支缓存。 */
 const PRECACHE_SOFT = [
   '/builtins.js',
-  '/oral8000.js',
-  '/freq-idioms.js',
 ];
 
 /* 把 PRECACHE_SOFT 资产从既有 chunklab-* 缓存搬进新 CACHE。
@@ -128,10 +124,13 @@ function fillSoft(target) {
   if (!PRECACHE_SOFT.length) return Promise.resolve();
   return PRECACHE_SOFT.reduce(function (chain, u) {
     return chain.then(function () {
-      return target.match(u).then(function (hit) {
-        if (hit) return;
-        return target.add(u).catch(function () {
-          console.warn('[sw] 软预缓存未取到（不影响安装，下次访问按需补）: ' + u);
+      /* 先尝试网络刷新，避免 carryOver 把旧版本当成新版本；网络失败时才保留旧副本。 */
+      return fetch(u, { cache: 'reload' }).then(function (res) {
+        if (!res || !res.ok) throw new Error('HTTP ' + (res && res.status));
+        return target.put(u, res.clone());
+      }).catch(function () {
+        return target.match(u).then(function (hit) {
+          if (!hit) console.warn('[sw] 软预缓存未取到（不影响安装，下次访问按需补）: ' + u);
         });
       });
     });
