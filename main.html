@@ -705,11 +705,16 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .cal-cell:not(.pad):not(.lx):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .cal-foot{margin-top:10px;font-size:12px;color:var(--muted)}
 .cal-foot b{color:var(--text);font-variant-numeric:tabular-nums}
-.home-today-counts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+/* 2026-09-11 老板要求「1 行显示」：原来 flex + .htc{min-width:110px} 固定宽，
+   3 张卡 + 2 个 gap = 350px；手机视口下容器只有 332px（390 屏）/302px（360 屏）
+   → 第三张必折到第二行。改成 3 列等分网格：minmax(0,1fr) 让卡片随容器压缩，
+   任何视口都不再折行；max-width:350px 把宽屏列宽钉回 110px
+   —— 即桌面观感与改动前逐像素一致，窄屏才让出宽度。 */
+.home-today-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0;max-width:350px}
 /* 2026-09-11 老板要求「数字横向居中」：.n / .l 都是块级 div，默认贴左。
-   卡片有 min-width:110px，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
+   卡片有固定宽度，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
    用 text-align:center 一次管住数字与标签（只居中数字、标签仍贴左会立刻显歪）。 */
-.htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:110px;background:var(--surface-2);text-align:center}
+.htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:0;background:var(--surface-2);text-align:center}
 .htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
 .htc .l{font-size:11.5px;color:var(--faint);margin-top:2px}
 .htc.due .n{color:var(--accent)} .htc.due{border-color:#cfd9f5;background:var(--accent-soft)}
@@ -3771,7 +3776,7 @@ function renderHome(){
   } else {
     /* 原本的「今天有 N 句到期复习」headline 已删：与下方 .htc.due 卡片数字重复，纯属废话 */
     h.push('<div class="home-today-counts">'
-      + '<div class="htc due"><div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">到期复习</div></div>'
+      + '<div class="htc due"><div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">待复习</div></div>'
       + '<div class="htc weak"><div class="n' + (t.weak ? '' : ' ok') + '">' + t.weak + '</div><div class="l">需巩固</div></div>'
       + '<div class="htc book"><div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div></div>'
       + '</div>');

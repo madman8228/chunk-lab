@@ -171,9 +171,13 @@ async function cardMetrics(pg) {
     console.log('[1] 源码守卫：居中规则在位 + 不给 .n/.l 单独写（防规则走散）');
     const src = fs.readFileSync(path.join(ROOT, 'main.html'), 'utf8');
     const htcLine = (src.match(/^\.htc\{[^}]*\}/m) || [''])[0];
+    const wrapLine = (src.match(/^\.home-today-counts\{[^}]*\}/m) || [''])[0];
     check('.htc 基础规则含 text-align:center', /text-align:center/.test(htcLine), htcLine.slice(0, 120));
-    check('防回流：基础规则仍保留 min-width:110px（居中不得靠改宽度实现）',
-      /min-width:110px/.test(htcLine), htcLine.slice(0, 120));
+    check('防回流：宽度约束在容器上（grid 3 等分 + max-width:350px ⇒ 宽屏列宽仍 110px）',
+      /grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/.test(wrapLine) && /max-width:350px/.test(wrapLine),
+      wrapLine.slice(0, 160));
+    check('防回流：.htc 不写死固定宽（固定 min-width 正是手机折行根因；grid 项必须可压缩）',
+      /min-width:0/.test(htcLine) && !/min-width:1[0-9][0-9]px/.test(htcLine), htcLine.slice(0, 160));
     check('.htc .n 未单独覆盖 text-align（居中靠继承，避免两处规则走散）',
       !/^\.htc \.n\{[^}]*text-align/m.test(src));
     check('.htc .l 未单独覆盖 text-align', !/^\.htc \.l\{[^}]*text-align/m.test(src));
@@ -200,10 +204,10 @@ async function cardMetrics(pg) {
 
     const byCls = {};
     m.items.forEach(function (it) { byCls[it.cls] = it; });
-    const names = { due: '到期复习', weak: '需巩固', book: '错题本' };
+    const names = { due: '待复习', weak: '需巩固', book: '错题本' };
 
     /* 场景对齐老板截图，顺带确认种子真的生效（否则下面全是空卡片空断言） */
-    check('种子生效：到期复习 = 7', byCls.due && byCls.due.num === '7', byCls.due && byCls.due.num);
+    check('种子生效：待复习 = 7', byCls.due && byCls.due.num === '7', byCls.due && byCls.due.num);
     check('种子生效：需巩固 = 3', byCls.weak && byCls.weak.num === '3', byCls.weak && byCls.weak.num);
     check('种子生效：错题本 = 0', byCls.book && byCls.book.num === '0', byCls.book && byCls.book.num);
 
@@ -232,8 +236,8 @@ async function cardMetrics(pg) {
     check('三张卡片高度一致（居中只影响水平，不该改纵向）',
       heights.length === 3 && Math.max.apply(null, heights) - Math.min.apply(null, heights) <= 2,
       JSON.stringify(heights));
-    check('卡片宽度仍受 min-width:110px 约束（≥110）',
-      m.items.every(function (i) { return i.cardW >= 110; }),
+    check('宽屏（1280）下列宽仍为 110px —— 1 行网格改造后桌面观感逐像素不变',
+      m.items.every(function (i) { return i.cardW >= 108 && i.cardW <= 112; }),
       JSON.stringify(m.items.map(function (i) { return i.cardW; })));
 
     /* ---------- [3] 截图（老板验收要看的就是这块） ---------- */
