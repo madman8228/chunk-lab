@@ -455,6 +455,48 @@ function check(name, cond, detail) {
     var answerWidths = Array.from(document.querySelectorAll('#track > .chunk .chunk-answer')).map(function (el) {
       return Math.round(el.getBoundingClientRect().width);
     });
+    /* ★ 布局能力探针（2026-09-11 根因修复）
+       原断言用「当前句子的真实候选」量行数，而 startDeck 对未练过的句子按
+       `Math.random() - 0.5` 排序（main.html startDeck 的 sort 兜底分支）→ 每次跑到的句子不同。
+       窄屏 280px 下若碰到一句全是长 chunk（实测 "Could we reschedule for tomorrow instead?"
+       候选 144~163px，两个并排要 >280px）→ 行数自然为 1，但**布局没坏**。
+       实测 40 次里 1 次（~2.5%）假红，与任何代码改动无关。
+
+       本条断言要守的是「候选/答案块没有被 CSS 压成一列」（历史上 flex 子项 width 被
+       min-content 顶掉那类回归）→ 改用**布局契约**判定，与随机内容彻底解耦：
+         ① 容器必须允许并排：flex 且 flex-wrap:wrap（或 wrap-reverse）；
+            窄屏 .track 还有 grid 两列模式（compact-chunks），列数 ≥2 同样算允许
+         ② 子项不得被强制占满整行：子项用宽 ≥ 容器用宽 - 2px 即说明被压成一列
+            （min-width 过大 / width:100% / flex-basis:100% 三种回归形态都会命中①或②）
+       ⚠️ 不用「往容器里追加探针节点」的做法：窄屏 .track 是 grid 2 列 + :nth-child(odd)
+          规则，追加节点会改变容器自身的布局语义（真实踩过，探针自己把结果带偏）。 */
+    function layoutCapability(containerSel, itemSelector) {
+      var container = document.querySelector(containerSel);
+      if (!container) return { ok: false, why: 'container missing' };
+      var sample = container.querySelector(itemSelector);
+      if (!sample) return { ok: false, why: 'no ' + itemSelector + ' rendered' };
+      var cs = getComputedStyle(container);
+      var display = cs.display;
+      var out = { display: display, flexWrap: cs.flexWrap };
+      if (display === 'flex') {
+        out.allowsWrap = (cs.flexWrap === 'wrap' || cs.flexWrap === 'wrap-reverse');
+      } else if (display === 'grid') {
+        out.cols = (cs.gridTemplateColumns || '').split(' ').filter(Boolean).length;
+        out.allowsWrap = out.cols >= 2; /* grid 按列并排，"允许并排"= 列数 ≥2 */
+      } else {
+        out.allowsWrap = false;
+      }
+      var srect = sample.getBoundingClientRect(), crect = container.getBoundingClientRect();
+      out.itemWidth = Math.round(srect.width);
+      out.containerWidth = Math.round(crect.width);
+      /* 子项被压成一列：子项宽已经顶到容器宽（真并排时子项必然明显窄于容器） */
+      out.itemForcedFullWidth = srect.width >= crect.width - 2;
+      /* grid 模式下子项宽 = 单列宽，属正常（.track.compact-chunks .chunk{width:100%}） */
+      out.ok = !!out.allowsWrap && (display === 'grid' || !out.itemForcedFullWidth);
+      return out;
+    }
+    var choicesProbe = layoutCapability('#stageChoices', '.choice');
+    var trackProbe = layoutCapability('#track', '.chunk');
     return {
       shortcutDisplay: shortcut ? getComputedStyle(shortcut).display : 'missing',
       masterHeight: mr ? Math.round(mr.height) : 0,
@@ -474,7 +516,9 @@ function check(name, cond, detail) {
       scrollHeight: document.documentElement.scrollHeight,
       viewportHeight: document.documentElement.clientHeight,
       stageBottom: sr ? Math.round(sr.bottom) : 0,
-      analysisBottom: ar ? Math.round(ar.bottom) : 0
+      analysisBottom: ar ? Math.round(ar.bottom) : 0,
+      choicesProbe: choicesProbe,
+      trackProbe: trackProbe
     };
   });
   check('mobile: 隐藏键盘快捷键提示', mobileLayout.shortcutDisplay === 'none', JSON.stringify(mobileLayout));
@@ -483,12 +527,14 @@ function check(name, cond, detail) {
     JSON.stringify(mobileLayout));
   check('mobile: 标熟按钮显示为“熟”', mobileLayout.masterText === '熟', JSON.stringify(mobileLayout));
   check('mobile: 详解按钮不显示 Icon', mobileLayout.explainText === '详解' && mobileLayout.explainIconCount === 0, JSON.stringify(mobileLayout));
-  check('mobile: 候选 chunk 至少可并排两个',
-    mobileLayout.choiceCount < 2 || mobileLayout.maxChoicesPerRow >= 2,
-    JSON.stringify(mobileLayout));
-  check('mobile: 主卡片 chunk 至少可并排两个',
-    mobileLayout.trackCount < 2 || mobileLayout.maxChunksPerRow >= 2,
-    JSON.stringify(mobileLayout));
+  /* 用受控内容探针判「布局允不允许并排两个」——不受随机句子影响（根因见 evaluate 内注释）。
+     真实行数仍在 detail 里带着，便于诊断时区分「内容本来放不下」与「布局被压成一列」。 */
+  check('mobile: 候选 chunk 布局允许并排两个',
+    !!mobileLayout.choicesProbe && mobileLayout.choicesProbe.ok,
+    JSON.stringify({ probe: mobileLayout.choicesProbe, 真实行数: mobileLayout.maxChoicesPerRow, 真实候选数: mobileLayout.choiceCount }));
+  check('mobile: 主卡片 chunk 布局允许并排两个',
+    !!mobileLayout.trackProbe && mobileLayout.trackProbe.ok,
+    JSON.stringify({ probe: mobileLayout.trackProbe, 真实行数: mobileLayout.maxChunksPerRow, 真实块数: mobileLayout.trackCount }));
   check('mobile: 空答案块保持列宽',
     mobileLayout.trackCount < 2 || mobileLayout.minAnswerWidth >= 40,
     JSON.stringify(mobileLayout));
