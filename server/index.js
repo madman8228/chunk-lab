@@ -35,6 +35,10 @@ const app = express();
 /* 安全加固（2026-09-10）：移除 Express 默认的 `X-Powered-By: Express` 响应头。
    暴露后端技术栈会帮攻击者直接定位已知漏洞版本，属零成本减少攻击面。 */
 app.disable('x-powered-by');
+/* 分层 body 上限（2026-09-11 安全审查 P0-2）：鉴权接口 payload 极小（用户名/密码），
+   先于全局大限注册，用 64kb 兜住；后续全局 80mb 只服务于图文课程/反馈截图等真正的大 payload。
+   body-parser 会在首个解析后置 req._body，后续 parser 自动跳过，故按路径前置是安全的最小改法。 */
+app.use('/api/auth', express.json({ limit: '64kb' }));
 app.use(express.json({ limit: '80mb' })); // 图文课程含 base64 图片，可能很大
 
 const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
@@ -774,7 +778,10 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
     if (!sentence) return res.status(400).json({ error: 'sentence 缺失' });
     if (sentence.length > 2000) return res.status(400).json({ error: 'sentence 过长' });
     const model = (typeof body.model === 'string' && body.model.trim()) ? body.model.trim() : 'deepseek-v4-flash';
-    const cacheKey = model + '::' + ai.norm(sentence);
+    /* P2-4（2026-09-11）：缓存键纳入 zh 语境。英语多义句（如 bank）配不同中文释义，
+       解读结果完全不同，仅按 norm(sentence) 会串味。zh 为空时保持旧 key 格式（向后兼容）。 */
+    const cacheKey = model + '::' + ai.norm(sentence)
+      + (typeof body.zh === 'string' && body.zh.trim() ? '::' + ai.norm(body.zh) : '');
 
     /* 1) 服务端缓存命中（不占限流额度；AI_CACHE_TTL 内有效，过期视为 miss）
        命中判定含 AI_PROMPT_VERSION：ver 不匹配（旧版缓存/提示词升级）→ miss 重新生成 */
@@ -817,7 +824,7 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
       const obj = JSON.parse(clean);
       db.prepare("INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime('now'))")
         .run(cacheKey, JSON.stringify({ data: obj, ver: AI_PROMPT_VERSION }));
-      trimAiCache(AI_CACHE_MAX);
+      ai.trimAiCache(db, AI_CACHE_MAX, AI_CACHE_TTL);
       res.json({ ok: true, cached: false, data: obj });
     }).catch(function (e) {
       res.status(502).json({ error: 'AI 调用失败：' + (e && e.message) });
@@ -827,7 +834,7 @@ app.post('/api/ai/explain', auth.authenticate, function (req, res) {
 
 /* ===================== 备份导入导出 ===================== */
 /* ai_cache 容量上限 + TTL 过期（ADR-008 / Phase A / C）：
-   容量：备份导入可能一次性写入海量缓存，按 AI_CACHE_MAX（默认 2000）LRU 淘汰最旧；
+   容量：AI 写缓存后按 AI_CACHE_MAX（默认 2000）LRU 淘汰最旧；
    TTL：AI_CACHE_TTL 天（默认 30）内未使用的缓存视为过期，命中时走 miss 重新生成；
    过期条目在 trim 时懒清理（写路径触发，无需定时器）。AI_CACHE_TTL=0 表示永不过期。 */
 const AI_CACHE_MAX = parseInt(process.env.AI_CACHE_MAX || '2000', 10);
@@ -835,25 +842,15 @@ const AI_CACHE_TTL = parseInt(process.env.AI_CACHE_TTL || '30', 10);
 /* 提示词/模型升级时 bump：旧版本缓存（ver 不匹配）一律视为 miss 重新生成，
    防止"解读质量被旧缓存锁死"。必须与 js/ai-prompts.mjs 的 PROMPT_VERSION 同步修改。 */
 const AI_PROMPT_VERSION = 1;
-function trimAiCache(max) {
-  if (AI_CACHE_TTL > 0) {
-    db.prepare("DELETE FROM ai_cache WHERE updated_at < datetime('now', ?)").run('-' + AI_CACHE_TTL + ' days');
-  }
-  const row = db.prepare('SELECT COUNT(*) AS n FROM ai_cache').get();
-  if (!row || row.n <= max) return;
-  const excess = row.n - max;
-  db.prepare('DELETE FROM ai_cache WHERE key IN (SELECT key FROM ai_cache ORDER BY updated_at ASC, rowid ASC LIMIT ?)').run(excess);
-}
 app.get('/api/export', auth.authenticate, function (req, res) {
   try {
     const data = buildMem(req.userId);
-    const aiRows = db.prepare('SELECT key,value_json FROM ai_cache').all();
-    const aiCache = {};
-    aiRows.forEach(function (r) { aiCache[r.key] = JSON.parse(r.value_json); });
+    /* P0-1（2026-09-11 安全审查）：ai_cache 是服务端全局公共缓存（按句子内容共享），
+       不是用户私产。dump 进备份 = 无意义膨胀 + 泄露/污染全局缓存 → 不再导出。 */
     res.json({
       __app: 'chunklab', __version: 2, exportedAt: new Date().toISOString(),
       mem: data.mem, courses: data.courses, courseProgress: data.courseProgress,
-      reinforceBook: data.mem.reinforceBook, aiCache: aiCache
+      reinforceBook: data.mem.reinforceBook
     });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
@@ -864,14 +861,8 @@ app.post('/api/import', auth.authenticate, function (req, res) {
     const verr = validate.validatePutPayload(body);
     if (verr) return res.status(400).json({ error: '备份数据校验失败：' + verr });
     saveData(req.userId, body);
-    if (body.aiCache && typeof body.aiCache === 'object') {
-      const ins = db.prepare('INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime(\'now\'))');
-      const tx = db.transaction(function () {
-        Object.keys(body.aiCache).forEach(function (k) { ins.run(k, JSON.stringify(body.aiCache[k])); });
-      });
-      tx();
-      trimAiCache(AI_CACHE_MAX); /* 导入后按 LRU 收敛到容量上限 */
-    }
+    /* P0-1（2026-09-11）：忽略旧备份文件里的 body.aiCache（向后兼容）。
+       公共缓存不接受用户注入，防止跨用户污染全局表。 */
     res.json({ ok: true });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });

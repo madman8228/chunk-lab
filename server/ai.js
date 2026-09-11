@@ -12,7 +12,10 @@
 const https = require('https');
 
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || '';
-const AI_RATE_LIMIT = parseInt(process.env.AI_RATE_LIMIT || '10', 10);
+const _rateLimitRaw = parseInt(process.env.AI_RATE_LIMIT || '10', 10);
+/* fail-closed（2026-09-11 安全审查 P2-5）：env 配了非法值（NaN）或非正数（0/负）
+   → 回退默认 10。否则「NaN 参与比较恒 false → 限流永远放行」或「0 → 永远拒绝」两种静默失效。 */
+const AI_RATE_LIMIT = (Number.isFinite(_rateLimitRaw) && _rateLimitRaw > 0) ? _rateLimitRaw : 10;
 const AI_RATE_WINDOW = 60 * 1000;
 const AI_TIMEOUT = 25000;
 const _rateMap = new Map(); /* userId -> { count, windowStart } */
@@ -39,6 +42,19 @@ function rateLimit(userId) {
   if (entry.count >= AI_RATE_LIMIT) return false;
   entry.count++;
   return true;
+}
+
+/* ai_cache LRU 裁剪 + TTL 过期清理（原在 index.js，2026-09-11 移入以便单元测试覆盖）。
+   db = better-sqlite3 实例；max = 容量上限；ttl = 过期天数（0 表示永不过期）。
+   按 updated_at ASC（最旧优先）淘汰超出 max 的部分；ttl>0 时先清理过期条目。 */
+function trimAiCache(db, max, ttl) {
+  if (ttl > 0) {
+    db.prepare("DELETE FROM ai_cache WHERE updated_at < datetime('now', ?)").run('-' + ttl + ' days');
+  }
+  const row = db.prepare('SELECT COUNT(*) AS n FROM ai_cache').get();
+  if (!row || row.n <= max) return;
+  const excess = row.n - max;
+  db.prepare('DELETE FROM ai_cache WHERE key IN (SELECT key FROM ai_cache ORDER BY updated_at ASC, rowid ASC LIMIT ?)').run(excess);
 }
 
 /* 调用 DeepSeek Chat Completions。apiKey 由调用方解析后传入（服务端 env 优先）。
@@ -102,4 +118,4 @@ function callDeepSeekRetry(payload, apiKey, timeoutMs) {
   });
 }
 
-module.exports = { norm, rateLimit, callDeepSeek, callDeepSeekRetry, shouldRetry, DEEPSEEK_API_KEY };
+module.exports = { norm, rateLimit, trimAiCache, callDeepSeek, callDeepSeekRetry, shouldRetry, DEEPSEEK_API_KEY };

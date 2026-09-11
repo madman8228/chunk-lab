@@ -51,7 +51,9 @@ function register(username, password) {
   if (username.length < 2) throw new Error('用户名至少 2 个字符');
   if (username.length > 32) throw new Error('用户名最长 32 个字符');
   if (password.length < 6) throw new Error('密码至少 6 位');
-  if (password.length > 128) throw new Error('密码最长 128 位'); /* bcrypt 只取前 72 字节，超长静默截断是隐患 */
+  /* P0-3（2026-09-11 安全审查）：bcrypt 只取前 72 字节，超出部分静默截断。
+     故按「字节数」（非字符数）限制到 72，超长明确拒绝而非让用户误以为整串密码都生效。 */
+  if (Buffer.byteLength(password, 'utf8') > 72) throw new Error('密码最长 72 字节');
   const exists = db.prepare('SELECT id FROM users WHERE username = ?').get(username);
   if (exists) throw new Error('用户名已存在');
   const hash = bcrypt.hashSync(password, 10);
