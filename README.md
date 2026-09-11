@@ -41,7 +41,7 @@ UI 层        main.html（练习入口）· decks.html（题库管理）· stats
 - **ADR-004** AI 调用走后端代理（已落地：Key 服务端化 + 限流 + 缓存 TTL；联网生成当前默认停用，env 开启）
 - **ADR-005** 实体级 rev 同步 + 软删除（已落地：四类实体 per-entity，多设备不丢数据）
 - **ADR-006** 鉴权安全（已落地：REQUIRE_AUTH 多用户模式 + env 密钥，上云必开）
-- **ADR-007** 前端 ESM 模块化（已落地：chunk-engine / format / ai-prompts / backup 四模块 + bridge 桥接；main.html 5.1k→4.3k 行，剩余 DOM/流程层仍为单体）
+- **ADR-007** 前端 ESM 模块化（已落地：chunk-engine / format / ai-prompts / backup 四模块 + bridge 桥接；main.html 当时 5.1k→4.3k 行，后续增补至 ~5.0k，剩余 DOM/流程层仍为单体）
 - **ADR-008** 后端校验测试（已落地：服务端 schema 校验 400 + 冒烟测试 63 用例）
 - **ADR-001（已作废）** 早期 iframe + postMessage 页面隔离方案已随独立页面迁移移除（见 2026-09-08 死代码清理），保留编号仅为追溯
 
@@ -162,8 +162,8 @@ node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change
 
 浏览器端到端回归（Playwright，一键跑，自动拉起临时 server）：
 ```bash
-npm run e2e:all    # 一键跑全部 21 个套件（e2e/ + output/e2e/），按需拉起临时 server，汇总通过率
-npm run e2e        # 主 UI 回归 69 项
+npm run e2e:all    # 一键跑全部 26 个套件（e2e/ 6 + output/e2e/ 20），按需拉起临时 server，汇总通过率
+npm run e2e        # 主 UI 回归 97 项
 npm run e2e-sync   # 双设备同步对抗 7 项（ADR-005 端到端：per-entity 隔离 / LWW / 软删传播 / 删除重建 / stale 拒写）
 # 覆盖：main 正常路径（顶栏 SVG/真实句子/候选区/零 pageerror）、
 #       全 module 拦截降级（safeCall 兜底不白屏）、decks/stats SVG 渲染、
@@ -221,9 +221,9 @@ node server/backup-cli.js list                # 列出备份
 ## 当前已知限制
 
 - 🔴 **开放模式公网 = 数据裸奔**：默认共享单用户 + 默认 JWT 密钥。任何公网 / 可访问网络部署必须先 `REQUIRE_AUTH=true` + 强随机 `JWT_SECRET`（详见上「安全部署清单 · ADR-006」）
-- 🟡 `main.html` 仍是 ~4.3k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
+- 🟡 `main.html` 仍是 ~5.0k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
 - 🟡 `oral8000.js` 现为 150 句口语种子（并入 builtin-daily，共 238 句），分批扩展直接在文件内追加
-- 🟡 主流程改动后记得跑 `npm run e2e:all`（21 套件 / 含主 UI 回归 69 项，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
+- 🟡 主流程改动后记得跑 `npm run e2e:all`（26 套件 / 含主 UI 回归 97 项，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
 
 > 早期迭代中的问题（同步整块覆盖、AI Key 前端直连、后端零校验、移动端适配弱、核心逻辑无单测等）均已按 architecture-plan 的 Phase A→C 闭环，ADR 清单见上。

@@ -30,7 +30,7 @@ const os = require('os');
 const { spawn } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
-/* 两个目录都扫：e2e/ 是主套件（e2e.js 69 项基线、sync.test.js），
+/* 两个目录都扫：e2e/ 是主套件（e2e.js 97 项基线、sync.test.js 等），
    output/e2e/ 是各专项验证脚本 */
 const E2E_DIRS = [path.join(ROOT, 'e2e'), path.join(ROOT, 'output', 'e2e')];
 const SERVER_DIR = path.join(ROOT, 'server');
