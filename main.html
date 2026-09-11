@@ -111,21 +111,20 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .btn.danger{color:var(--bad);border-color:#f0c2bd}
 .btn.danger:hover{background:var(--bad-soft)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-/* 账号名 chip：可点击复制（设置弹窗·账号区块） */
+/* 账号名：与「账号」标题同行，纯文本（无胶囊边框），点击复制 */
 .acct-name{
   display:inline-flex;align-items:center;gap:5px;
-  padding:4px 9px 4px 10px;font-size:12.5px;
-  border:1px solid var(--border);border-radius:999px;
-  background:var(--surface);color:var(--text);
+  padding:0;font-size:12.5px;
+  border:0;border-radius:0;background:transparent;color:var(--text);
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  cursor:pointer;max-width:200px;transition:border-color .15s,background .15s;
+  cursor:pointer;max-width:260px;transition:color .15s;
 }
-.acct-name:hover{border-color:var(--accent);background:var(--surface-2)}
-.acct-name:active{transform:translateY(1px)}
-.acct-name-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px}
-.acct-name-icon{display:inline-flex;color:var(--muted);flex:0 0 auto}
+.acct-name:hover{color:var(--accent)}
+.acct-name-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:230px}
+.acct-name-icon{display:inline-flex;color:var(--faint);flex:0 0 auto;transition:color .15s}
 .acct-name:hover .acct-name-icon{color:var(--accent)}
-.acct-name.copied{border-color:var(--ok);background:var(--ok-soft, #e7f3eb)}
+.acct-name.copied{color:var(--ok)}
+.acct-name.copied .acct-name-icon{color:var(--ok)}
 .acct-tip{font-size:12px;color:var(--ok);opacity:0;transition:opacity .2s}
 .acct-tip.show{opacity:1}
 .btn.active{background:#12924f;border-color:#12924f;color:#fff}
@@ -1347,8 +1346,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 
       <!-- 账号区块：仅多用户模式（REQUIRE_AUTH=true）显示；开放模式隐藏 -->
       <div id="accountSection" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)" hidden>
-        <div style="font-size:13px;font-weight:700;margin-bottom:8px">账号</div>
+        <!-- 「账号」标题与账号名同行：值直接跟在标题后（账号名本身无边框，点击即复制） -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span id="acctLabel" style="font-size:13px;font-weight:700;flex:0 0 auto">账号</span>
           <button type="button" class="acct-name" id="acctNameBtn" hidden aria-label="点击复制账号名">
             <span class="acct-name-text" id="acctNameText">…</span>
             <span class="acct-name-icon" data-icon="copy" aria-hidden="true"></span>

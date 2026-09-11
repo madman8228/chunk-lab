@@ -10,13 +10,15 @@
  *   在真实登录态下验证账号区块（chip 复制 / 同行 / 退出分支 / 窄屏）。
  *
  * 验证点：
- *   1. 账号区块可见 + 账号 chip 显示真实 guest_ 用户名（chip 含 SVG copy 图标 / aria-label）
- *   2. chip 与「退出登录」按钮同行（中线 y 差 < 8px）
- *   3. 点击 chip → tip「已复制 xxx」+ .copied 绿框 + 剪贴板真实写入
+ *   1. 账号区块可见 + 账号名显示真实 guest_ 用户名（含 SVG copy 图标 / aria-label）
+ *   1b. 账号名「与『账号』标题同行、紧跟标题右侧、无胶囊边框」（2026-09-11 老板要求：
+ *       去掉 capsule 边框，值直接跟在标题后，整块一行显示）
+ *   2. 账号名与「退出登录」按钮同行（中线 y 差 < 8px）
+ *   3. 点击账号名 → tip「已复制 xxx」+ .copied 绿字 + 剪贴板真实写入
  *   4. 1.6s 后 tip/.copied 自动消失
- *   5. 未登录分支（clearToken 后 refreshAccountUi）：chip 隐藏、登录按钮显示
+ *   5. 未登录分支（clearToken 后 refreshAccountUi）：账号名隐藏、登录按钮显示
  *   6. 凭据（chunklab_guest）保留 → 重载后仍为同一账号
- *   7. 360px 窄屏：chip / 退出按钮 / 账号文本仍在
+ *   7. 360px 窄屏：账号名 / 退出按钮 / 账号文本仍在
  *   8. 零 pageerror
  *
  * 运行：node output/e2e/acct-copy-verify.js
@@ -116,15 +118,20 @@ async function openSettings(page) {
       return b && !b.hidden && b.dataset.username;
     }, { timeout: 8000 });
 
-    /* ===== 断言 1：账号区块 + chip 布局 ===== */
+    /* ===== 断言 1：账号区块 + 账号名布局（与标题同行 / 无胶囊边框） ===== */
     const layout = await page.evaluate(function () {
       var sec = document.getElementById('accountSection');
       var chip = document.getElementById('acctNameBtn');
       var txt = document.getElementById('acctNameText');
+      var label = document.getElementById('acctLabel');
       var logout = document.getElementById('btnAccountLogout');
-      if (!sec || !chip || !txt || !logout) return { missing: { sec: !sec, chip: !chip, txt: !txt, logout: !logout } };
+      if (!sec || !chip || !txt || !label || !logout) {
+        return { missing: { sec: !sec, chip: !chip, txt: !txt, label: !label, logout: !logout } };
+      }
       var r1 = chip.getBoundingClientRect();
       var r2 = logout.getBoundingClientRect();
+      var rl = label.getBoundingClientRect();
+      var cs = getComputedStyle(chip);
       return {
         secVisible: !sec.hidden,
         chipVisible: !chip.hidden,
@@ -134,19 +141,38 @@ async function openSettings(page) {
         hasIcon: !!chip.querySelector('svg.icon'),
         ariaLabel: chip.getAttribute('aria-label'),
         logoutVisible: !logout.hidden,
+        sameRowAsLabel: Math.abs((r1.top + r1.height / 2) - (rl.top + rl.height / 2)) < 8,
+        afterLabel: r1.left >= rl.right - 1,
+        borderWidth: cs.borderTopWidth,
+        radius: cs.borderTopLeftRadius,
+        bg: cs.backgroundColor,
         sameRow: Math.abs((r1.top + r1.height / 2) - (r2.top + r2.height / 2)) < 8,
         chipRect: { y: Math.round(r1.top), h: Math.round(r1.height), x: Math.round(r1.left), w: Math.round(r1.width) },
+        labelRect: { y: Math.round(rl.top), h: Math.round(rl.height), x: Math.round(rl.left), w: Math.round(rl.width) },
         logoutRect: { y: Math.round(r2.top), h: Math.round(r2.height), x: Math.round(r2.left), w: Math.round(r2.width) }
       };
     });
     check('账号区块可见', layout.secVisible, layout);
-    check('账号名 chip 可见', layout.chipVisible, layout);
-    check('chip 显示账号文本 = 当前账号', layout.chipText === USER, { chipText: layout.chipText, USER: USER });
-    check('chip 含 SVG copy 图标', layout.hasIcon, layout);
-    check('chip 有 aria-label 标识可点击', /复制|点击/.test(layout.ariaLabel || ''), layout.ariaLabel);
-    check('chip 与退出按钮同行（y 中线差 < 8px）', layout.sameRow, { chip: layout.chipRect, logout: layout.logoutRect });
+    check('账号名可见', layout.chipVisible, layout);
+    check('账号名文本 = 当前账号', layout.chipText === USER, { chipText: layout.chipText, USER: USER });
+    check('账号名含 SVG copy 图标', layout.hasIcon, layout);
+    check('账号名有 aria-label 标识可点击', /复制|点击/.test(layout.ariaLabel || ''), layout.ariaLabel);
+    check('账号名与「账号」标题同行（y 中线差 < 8px）', layout.sameRowAsLabel, { chip: layout.chipRect, label: layout.labelRect });
+    check('账号名紧跟标题右侧（在标题之后，同一行）', layout.afterLabel, { chip: layout.chipRect, label: layout.labelRect });
+    check('账号名无边框（border-width 0）', /^0(px)?$/.test(layout.borderWidth), layout.borderWidth);
+    check('账号名无圆角、透明底（胶囊已移除）', layout.radius === '0px' && /rgba\(0, 0, 0, 0\)|transparent/.test(layout.bg), { radius: layout.radius, bg: layout.bg });
+    check('账号名与退出按钮同行（y 中线差 < 8px）', layout.sameRow, { chip: layout.chipRect, logout: layout.logoutRect });
     check('退出登录按钮可见（已登录态）', layout.logoutVisible, layout);
 
+    /* ===== 源码守卫：防「胶囊边框」回流（.acct-name 规则块内不得出现边框/大圆角） ===== */
+    const acctCss = (fs.readFileSync(path.join(ROOT, 'main.html'), 'utf8').match(/\.acct-name\{[\s\S]*?\n\}/) || [''])[0];
+    check('源码守卫：.acct-name 无 border / border-radius:999px 声明',
+      !!acctCss && acctCss.indexOf('border:1px solid') === -1 && acctCss.indexOf('border-radius:999px') === -1,
+      acctCss.replace(/\s+/g, ' ').slice(0, 140));
+
+    /* 区块特写：账号区块在设置弹窗底部，必须滚动到可视区才能拍到 */
+    await page.locator('#accountSection').scrollIntoViewIfNeeded();
+    await page.locator('#accountSection').screenshot({ path: path.join(SHOTS, 'acct-copy-block.png') });
     await page.screenshot({ path: path.join(SHOTS, 'acct-copy-idle.png') });
 
     /* ===== 断言 2：点击 chip → 复制反馈 ===== */
@@ -163,7 +189,8 @@ async function openSettings(page) {
     });
     check('点击后出现「已复制 xxx」提示', feedback.tipText === '已复制 ' + USER, feedback);
     check('tip 加了 .show class（视觉可见）', feedback.tipShown, feedback);
-    check('chip 加了 .copied class（绿框反馈）', feedback.btnCopied, feedback);
+    check('账号名加了 .copied class（绿字反馈）', feedback.btnCopied, feedback);
+    await page.locator('#accountSection').screenshot({ path: path.join(SHOTS, 'acct-copy-clicked-block.png') });
     await page.screenshot({ path: path.join(SHOTS, 'acct-copy-clicked.png') });
 
     /* ===== 断言 3：剪贴板真实写入 ===== */
@@ -209,7 +236,7 @@ async function openSettings(page) {
       var logout = document.getElementById('btnAccountLogout');
       return { chipHidden: chip.hidden, loginHidden: login.hidden, logoutHidden: logout.hidden };
     });
-    check('未登录分支：账号 chip 隐藏', loggedOut.chipHidden, loggedOut);
+    check('未登录分支：账号名隐藏', loggedOut.chipHidden, loggedOut);
     check('未登录分支：登录按钮显示', !loggedOut.loginHidden, loggedOut);
     check('未登录分支：退出按钮隐藏', loggedOut.logoutHidden, loggedOut);
     await page.screenshot({ path: path.join(SHOTS, 'acct-copy-loggedout.png') });
@@ -248,10 +275,10 @@ async function openSettings(page) {
         inViewport: r.left >= 0 && r.right <= window.innerWidth + 1
       };
     });
-    check('360px viewport：账号 chip 仍可见', mob.chipVisible, mob);
+    check('360px viewport：账号名仍可见', mob.chipVisible, mob);
     check('360px viewport：退出登录按钮仍可见', mob.logoutVisible, mob);
     check('360px viewport：账号文本仍存在', mob.chipTitle === USER, mob);
-    check('360px viewport：chip 未溢出 viewport', mob.inViewport, mob);
+    check('360px viewport：账号名未溢出 viewport', mob.inViewport, mob);
     await page.screenshot({ path: path.join(SHOTS, 'acct-copy-mobile.png') });
 
     check('零 pageerror', errs.length === 0, errs.join(' | '));
