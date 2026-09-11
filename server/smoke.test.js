@@ -207,9 +207,9 @@ async function main() {
 
     r = await request('GET', '/api/export', token);
     check(
-      'GET /api/export has structure',
+      'GET /api/export has structure（且不再导出全局 aiCache）',
       r.status === 200 && r.json && r.json.__app === 'chunklab' && r.json.mem &&
-      typeof r.json.aiCache === 'object',
+      !r.json.aiCache,
       'status=' + r.status
     );
 
@@ -431,23 +431,19 @@ async function main() {
     r = await request('GET', '/api/deck/public/pubdeck1', null);
     check('D: 下架后详情 404', r.status === 404, 'status=' + r.status);
 
-    /* ===== ADR-008 / Phase A：ai_cache 容量上限（AI_CACHE_MAX=5，LRU 裁剪） ===== */
-    const bigCache = {};
-    for (let i2 = 1; i2 <= 8; i2++) bigCache['cache_k' + i2] = { v: i2 };
-    r = await request('POST', '/api/import', token, { mem: { decks: [] }, courses: [], courseProgress: {}, aiCache: bigCache });
-    check('ADR-008 ai_cache 导入 ok', r.status === 200, 'status=' + r.status);
-    r = await request('GET', '/api/export', token);
-    const cacheKeys = Object.keys((r.json && r.json.aiCache) || {});
-    check('ADR-008 ai_cache 超限被 LRU 裁剪（8→5）', cacheKeys.length === 5, 'n=' + cacheKeys.length + ' keys=' + cacheKeys.join(','));
+    /* ===== ADR-008 / Phase A：ai_cache 容量上限（AI_CACHE_MAX=5，LRU 裁剪） =====
+       已迁移到 server/ai.test.js（trimAiCache 单元测试直接建临时 db 验证 8→5），
+       不再走「import 注入公共缓存」这条 P0-1 已封禁的路径。 */
 
     /* ===== ADR-004：AI 后端代理（Key 不进前端；服务端缓存 + 限流） ===== */
     r = await request('POST', '/api/ai/explain', token, {});
     check('ADR-004 缺 sentence → 400', r.status === 400, 'status=' + r.status);
 
-    // 服务端缓存命中（预置 key = model::norm(sentence)，命中不占限流额度、不发模型请求）
-    const cacheSeed = { 'deepseek-v4-flash::i am a student': { data: { orig: 'I am a student.', zh: '我是一个学生', chunks: [], grammar: [], collocations: [], scenario: '自我介绍' }, ver: 1 } };
-    r = await request('POST', '/api/import', token, { mem: { decks: [] }, courses: [], courseProgress: {}, aiCache: cacheSeed });
-    check('ADR-004 预置缓存 ok', r.status === 200, 'status=' + r.status);
+    // 服务端缓存命中（直接用 SQL 预置，不再经 import 注入公共缓存；命中不占限流额度）
+    const sdbSeed = new (require('better-sqlite3'))(path.join(TMP_DB, 'chunklab.db'));
+    sdbSeed.prepare("INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime('now'))")
+      .run('deepseek-v4-flash::i am a student', JSON.stringify({ data: { orig: 'I am a student.', zh: '我是一个学生', chunks: [], grammar: [], collocations: [], scenario: '自我介绍' }, ver: 1 }));
+    sdbSeed.close();
     r = await request('POST', '/api/ai/explain', token, { sentence: 'I am a student.' });
     check('ADR-004 缓存命中 cached:true 且数据正确',
       r.status === 200 && r.json && r.json.ok && r.json.cached === true && r.json.data && r.json.data.zh === '我是一个学生',

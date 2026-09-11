@@ -25,7 +25,7 @@ function check(name, cond, detail) {
 const EXPORT_PAYLOAD = {
   __app: 'chunklab', __version: 2, exportedAt: new Date().toISOString(),
   mem: { decks: [{ id: 'd1', name: 'Deck', items: [{ sent: 'A' }] }], best: {}, mastered: {}, stats: {}, settings: {}, reinforceBook: [] },
-  courses: [], courseProgress: {}, aiCache: { 'm::s': { v: 1 } }
+  courses: [], courseProgress: {}
 };
 
 const state = { importBodies: [] };
@@ -90,8 +90,8 @@ server.listen(0, '127.0.0.1', async function () {
   const latest = backups()[backups().length - 1];
   r = await run(['restore', path.join(BACKUP_DIR, latest)]);
   check('restore: 退出码 0', r.status === 0, 'status=' + r.status + ' ' + r.stderr);
-  check('restore: /api/import 收到 payload（含 mem 与 aiCache）',
-    state.importBodies.length === 1 && state.importBodies[0].mem.decks.length === 1 && state.importBodies[0].aiCache['m::s'].v === 1,
+  check('restore: /api/import 收到 payload（含 mem，且不再含 aiCache）',
+    state.importBodies.length === 1 && state.importBodies[0].mem.decks.length === 1 && !state.importBodies[0].aiCache,
     JSON.stringify(state.importBodies));
 
   /* ===== 4. 错误处理：restore 不存在的文件 ===== */
