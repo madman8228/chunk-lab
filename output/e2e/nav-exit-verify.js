@@ -115,7 +115,9 @@ function startServer() {
 
   check('brand 是 <a> 且 href=decks.html', probe.brand && probe.brand.tag === 'A' && probe.brand.href === 'decks.html', probe.brand);
   check('brand 可见且有尺寸', !!(probe.brand && probe.brand.visible), probe.brand);
-  check('面包屑分隔符 › 存在且可见', !!(probe.crumbSep && probe.crumbSep.visible && probe.crumbSep.text === '›'), probe.crumbSep);
+  /* 2026-09-11 变更：practice-context 拆出后 › 成了孤儿（左边没有 brand 了），
+     已连同 .crumb-sep CSS 一并删除 → 本条改成「不存在」断言（防回流） */
+  check('面包屑分隔符 › 已移除（.crumb-sep 不存在）', probe.crumbSep === null, probe.crumbSep);
   check('btnBack 存在', !!probe.btnBack, probe.btnBack);
   check('btnBack 可见（w>0 && h>0）', !!(probe.btnBack && probe.btnBack.visible), probe.btnBack);
   check('btnBack 内 SVG 已渲染', !!(probe.btnBack && probe.btnBack.svgInside), probe.btnBack);

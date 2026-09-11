@@ -946,7 +946,7 @@ function practiceReviewDeck(deck){
     return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
   }).map(function(it){ return withStatsSource(it, deck.id); });
   if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
-  launchReviewDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name)+' · '+items.length+' 句', items:items });
+  launchReviewDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name), items:items });
 }
 function practiceWeakSentences(){
   var by = mem.stats.bySentence || {};
@@ -965,7 +965,7 @@ function practiceWeakSentences(){
     items.push(withStatsSource(it, st.deckId));
   });
   if(!items.length){ alert('找不到可练习的句子（可能被删除）'); return; }
-  launchReviewDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固 · '+items.length+' 句', items:items });
+  launchReviewDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固', items:items });
 }
 function practiceWrongBook(){
   var book = getReinforceBook();
@@ -981,7 +981,7 @@ function practiceWrongBook(){
     if(it) items.push(withStatsSource(it, b.deckId));
   });
   if(!items.length){ alert('错题本中的句子已全部删除或找不到对应题库'); return; }
-  launchReviewDeck({ id:'book-'+Date.now().toString(36), name:'错题 · '+items.length+' 句', items:items });
+  launchReviewDeck({ id:'book-'+Date.now().toString(36), name:'错题', items:items });
 }
 
 /* ★ 跨页面通信：通过 postMessage 通知主页启动临时题库（统一走 CL） */
