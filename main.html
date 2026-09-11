@@ -953,13 +953,25 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 }
 .set-hint-pop.open{opacity:1;transform:translateY(0)}
 /* 设置弹窗紧凑化：减少纵向留白，其他弹窗保持原尺寸 */
-#settingsMask .modal-head{padding:10px 16px}
-#settingsMask .modal-head h3{font-size:15.5px}
+/* 2026-09-11：标题栏再压缩（老板反馈「这个边太高，移动设备本来就不高」）。
+   高度公式 = max(h3 行高, 关闭按钮高) + padding×2 + 1px 分隔线。
+   原 padding 10px + 按钮 28px → 49px。**只削 padding 收益有限**：按钮 28px 才是
+   实际高度决定者 → 必须同时把关闭按钮收成紧凑方形（原本靠 padding 撑宽度，改宽高更稳）。 */
+#settingsMask .modal-head{padding:7px 16px;gap:8px}
+#settingsMask .modal-head h3{font-size:15px;line-height:1.25}
+#settingsMask .modal-head .btn.sm{padding:0;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center}
+#settingsMask .modal-head .btn.sm .icon{width:15px;height:15px}
 #settingsMask .modal-body{padding:8px 16px 10px}
 #settingsMask .modal-body > div:first-child > label{padding:6px 2px !important;line-height:1.2}
 #settingsMask .modal-body > div:first-child > label strong{font-size:13px !important}
 #settingsMask .modal-body > div[style*="margin-top"]{margin-top:10px !important;padding-top:10px !important}
 #settingsMask .modal-foot{padding:8px 16px}
+/* 移动端（≤840px）标题栏再收一档：视口本就不高，纵向每像素都要省。
+   ⚠️ 必须写在这批 #settingsMask 规则**之后**：媒体查询不加特异性，
+   同特异性的后写者胜 → 写在前面的 @media 块里会被上面的基础规则反压。 */
+@media (max-width:840px){
+  #settingsMask .modal-head{padding:4px 14px}
+}
 /* 反馈弹窗移动端 80vh 居中（避免手机浏览器底部地址栏/工具栏遮提交按钮）。
    桌面端保留默认 flex-start + padding:38px（用户习惯顶部弹入），不动。 */
 /* 反馈截图列表：每项 = 缩略图 + 文件名 + 右侧 SVG 删除按钮。
