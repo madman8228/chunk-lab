@@ -30,7 +30,19 @@ const ROOT = path.resolve(__dirname, '..');
 const SHOTS = path.join(__dirname, 'shots');
 fs.mkdirSync(SHOTS, { recursive: true });
 
-const PORT = 8902 + Math.floor(Math.random() * 100);
+/* 端口：向 OS 要一个空闲端口。原「8902 + random(100)」会与宿主机常驻服务撞端口
+   （127.0.0.1:8933 那类，health 返 401、永远 != 200）→ 40 次重试全 miss → 假报 server start timeout。 */
+let PORT = 8902 + Math.floor(Math.random() * 100);
+function pickFreePort() {
+  return new Promise(function (resolve) {
+    const srv = require('net').createServer();
+    srv.on('error', function () { resolve(0); });
+    srv.listen(0, '127.0.0.1', function () {
+      const p = srv.address().port;
+      srv.close(function () { resolve(p); });
+    });
+  });
+}
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-e2e-'));
 let server = null;
 
@@ -68,6 +80,7 @@ function check(name, cond, detail) {
 }
 
 (async function () {
+  PORT = (await pickFreePort()) || PORT; /* 0 = 探测失败 → 回落到随机区间（保底） */
   const BASE = 'http://127.0.0.1:' + PORT;
   const browser = await chromium.launch({
     headless: true,
@@ -206,22 +219,44 @@ function check(name, cond, detail) {
   check('home: 已删底部 .home-links 容器', !homeLinksState.hasHomeLinks, JSON.stringify(homeLinksState));
   await pHomeLinks.close();
 
-  /* ===== 1e. 设置面板 #setBatchSize 宽度（2026-09-10 回归根因：flex min-width:auto 保留 min-content ~200px，把 width:64px 撑没了） ===== */
+  /* ===== 1e. 设置面板「行尾控件」：三个值同宽 + 每批数量改选档
+   *   2026-09-10 回归根因：flex min-width:auto 保留 min-content ~200px，把 width:64px 撑没了
+   *   2026-09-11 老板要求：答题模式 / 每批数量 / 庆祝效果 三个控件宽度必须一致；
+   *                     每批数量不再手填数字，只给 10 / 15 / 20 / 30 四档 */
   const pBatchSize = await ctx.newPage();
   await pBatchSize.route('**/api/**', function (r) { r.abort('failed'); });
   await pBatchSize.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
   await pBatchSize.waitForSelector('#btnSettingsTop', { timeout: 10000 });
   await pBatchSize.locator('#btnSettingsTop').click();
   await pBatchSize.waitForSelector('#setBatchSize', { state: 'visible', timeout: 5000 });
-  const batchSizeBox = await pBatchSize.evaluate(function () {
-    var el = document.getElementById('setBatchSize');
-    if (!el) return null;
-    var r = el.getBoundingClientRect();
-    return { w: Math.round(r.width), h: Math.round(r.height), visible: r.width > 0 && r.height > 0 };
+  const ctlBox = await pBatchSize.evaluate(function () {
+    var out = {};
+    ['setMode', 'setBatchSize', 'setCelebrate'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) { out[id] = null; return; }
+      var r = el.getBoundingClientRect();
+      out[id] = {
+        tag: el.tagName,
+        w: Math.round(r.width),
+        h: Math.round(r.height),
+        visible: r.width > 0 && r.height > 0,
+        value: el.value,
+        values: el.tagName === 'SELECT' ? Array.from(el.options).map(function (o) { return o.value; }) : null
+      };
+    });
+    return out;
   });
-  check('settings: #setBatchSize 可见', batchSizeBox && batchSizeBox.visible, JSON.stringify(batchSizeBox));
-  check('settings: #setBatchSize 宽度 ≤ 80px（防 flex min-content 拉伸回潮）', batchSizeBox && batchSizeBox.w <= 80, 'w=' + (batchSizeBox ? batchSizeBox.w : 'null'));
-  check('settings: #setBatchSize 宽度 ≥ 40px（仍可输入两位数）', batchSizeBox && batchSizeBox.w >= 40, 'w=' + (batchSizeBox ? batchSizeBox.w : 'null'));
+  const bsBox = ctlBox.setBatchSize, modeBox = ctlBox.setMode, celebBox = ctlBox.setCelebrate;
+  check('settings: #setBatchSize 可见', !!(bsBox && bsBox.visible), JSON.stringify(ctlBox));
+  check('settings: #setBatchSize 是下拉框（不再让用户手填数字）', !!(bsBox && bsBox.tag === 'SELECT'), bsBox && bsBox.tag);
+  check('settings: #setBatchSize 候选档恰为 10/15/20/30',
+    !!(bsBox && bsBox.values && bsBox.values.join(',') === '10,15,20,30'), bsBox && JSON.stringify(bsBox.values));
+  check('settings: #setBatchSize 默认选中 10', !!(bsBox && bsBox.value === '10'), bsBox && bsBox.value);
+  check('settings: #setBatchSize 宽度 ≤ 80px（防 flex min-content 拉伸回潮）', !!(bsBox && bsBox.w <= 80), 'w=' + (bsBox ? bsBox.w : 'null'));
+  check('settings: #setBatchSize 宽度 ≥ 40px（两位数完整可见）', !!(bsBox && bsBox.w >= 40), 'w=' + (bsBox ? bsBox.w : 'null'));
+  check('settings: 三个行尾控件同宽（答题模式 / 每批数量 / 庆祝效果）',
+    !!(modeBox && bsBox && celebBox && modeBox.w === bsBox.w && bsBox.w === celebBox.w),
+    JSON.stringify({ mode: modeBox && modeBox.w, batch: bsBox && bsBox.w, celebrate: celebBox && celebBox.w }));
   await pBatchSize.close();
 
   /* ===== 1f. 庆祝效果 select 文字 + 宽度（2026-09-10：彩带喷射 → 彩带，宽度缩 30%） ===== */
@@ -1019,6 +1054,48 @@ function check(name, cond, detail) {
       check('feedback: 服务端 SQLite 复核', false, 'ERR:' + e.message);
     }
     await pFb.close(); await cFb.close();
+  }
+
+  /* ===== 8b. feedback 移动端：80vh 居中防底栏遮提交按钮（2026-09-11 UI 修复） ===== */
+  {
+    const cFbM = await browser.newContext({ viewport: { width: 360, height: 640 }, isMobile: true, hasTouch: true });
+    const pFbM = await cFbM.newPage();
+    await pFbM.route('**/api/**', function (r) { if (r.request().url().indexOf('/api/feedback') >= 0) r.continue(); else r.fulfill({ status: 503, body: '{}' }); });
+    await pFbM.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
+    await pFbM.waitForSelector('#btnSettingsTop', { timeout: 10000 });
+    await pFbM.locator('#btnSettingsTop').click();
+    await pFbM.waitForSelector('#btnFeedback', { timeout: 5000 });
+    await pFbM.locator('#btnFeedback').click();
+    await pFbM.waitForFunction(function () { var m = document.getElementById('feedbackMask'); return m && !m.hidden; }, { timeout: 5000 });
+    const fbMState = await pFbM.evaluate(function () {
+      var m = document.getElementById('feedbackMask');
+      var modal = m && m.querySelector('.modal');
+      var submitBtn = document.getElementById('btnFeedbackSubmit');
+      var subRect = submitBtn ? submitBtn.getBoundingClientRect() : null;
+      var modRect = modal ? modal.getBoundingClientRect() : null;
+      var mm = getComputedStyle(modal || {});
+      var heightVh = modRect ? modRect.height / window.innerHeight : 999;
+      return {
+        vh: window.innerHeight,
+        modalH: modRect && Math.round(modRect.height),
+        modalHvh: Math.round(heightVh * 100) / 100,
+        modalAlignCenter: m ? getComputedStyle(m).alignItems === 'center' : false,
+        submitBottom: subRect && Math.round(subRect.bottom),
+        submitInViewport: !!(subRect && subRect.bottom <= window.innerHeight + 1 && subRect.top >= 0),
+        submitHit: !!(subRect && subRect.width > 0 && subRect.height > 0),
+        maxH: mm.maxHeight
+      };
+    });
+    check('feedback-mobile: ≤840px viewport 模拟生效',
+      fbMState.vh > 0 && fbMState.vh <= 700, 'vh=' + fbMState.vh);
+    check('feedback-mobile: mask align-items: center（80% 高度居中）', fbMState.modalAlignCenter, JSON.stringify(fbMState));
+    check('feedback-mobile: modal 高度 ≤ 80vh（不撑满屏幕）',
+      fbMState.modalHvh > 0 && fbMState.modalHvh <= 0.81, JSON.stringify(fbMState));
+    check('feedback-mobile: 提交按钮几何上在视口内（不被底栏遮）',
+      fbMState.submitInViewport, JSON.stringify(fbMState));
+    check('feedback-mobile: 提交按钮可点击（非 0 尺寸）', fbMState.submitHit, JSON.stringify(fbMState));
+    await pFbM.screenshot({ path: path.join(SHOTS, 'e2e-feedback-mobile.png') });
+    await pFbM.close(); await cFbM.close();
   }
 
   /* ===== 截图 ===== */

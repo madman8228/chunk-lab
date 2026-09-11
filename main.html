@@ -929,6 +929,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
 .set-sel{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
 .set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
+/* 设置面板「行尾控件」统一宽度（2026-09-11 老板要求：答题模式 / 每批数量 / 庆祝效果 三个值右边缘必须对齐）。
+   ⚠️ flex 子项的 width 会被 min-width:auto(min-content) 顶掉 → 必须同时 min-width:0 + flex-shrink:0 才生效。
+   78px 同时是 e2e 的 ≤80px 回归红线（防 flex 拉伸回潮）。 */
+.set-ctl{width:78px;min-width:0;flex-shrink:0}
 /* 设置弹窗紧凑化：减少纵向留白，其他弹窗保持原尺寸 */
 #settingsMask .modal-head{padding:10px 16px}
 #settingsMask .modal-head h3{font-size:15.5px}
@@ -938,6 +942,12 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 #settingsMask .modal-body > div:first-child > label > span > span{font-size:11.5px !important}
 #settingsMask .modal-body > div[style*="margin-top"]{margin-top:10px !important;padding-top:10px !important}
 #settingsMask .modal-foot{padding:8px 16px}
+/* 反馈弹窗移动端 80vh 居中（避免手机浏览器底部地址栏/工具栏遮提交按钮）。
+   桌面端保留默认 flex-start + padding:38px（用户习惯顶部弹入），不动。 */
+@media (max-width:840px){
+  #feedbackMask{align-items:center}
+  #feedbackMask .modal{height:auto;max-height:80vh}
+}
 /* 统一 SVG 图标（宪法：UI 禁用字符 icon；icons.js data-icon → 内联 SVG） */
 .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
@@ -1251,7 +1261,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </label>
         <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
           <span><strong style="font-size:14px">答题模式</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">选择 chunk 或手动拼写</span></span>
-          <select id="setMode" class="set-sel" style="font-size:12.5px;padding:4px 8px">
+          <select id="setMode" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
             <option value="choose">选择</option>
             <option value="type">手拼</option>
           </select>
@@ -1262,7 +1272,12 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </label>
         <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px">
           <span><strong style="font-size:14px">每批数量</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">一轮练习句子数（不足时从已掌握补齐）</span></span>
-          <input type="number" id="setBatchSize" min="1" max="100" value="10" style="width:56px;min-width:0;flex-shrink:0;font-size:13px;padding:3px 6px;border:1px solid var(--border);border-radius:6px">
+          <select id="setBatchSize" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
         </label>
         <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
           <span><strong style="font-size:14px">烟花叠加</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">连对多题时烟花慢速累积绽放</span></span>
@@ -1270,7 +1285,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </label>
         <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
           <span><strong style="font-size:14px">庆祝效果</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">答对时的屏幕特效</span></span>
-          <select id="setCelebrate" class="set-sel" style="font-size:12.5px;padding:4px 8px;width:78px;min-width:0;flex-shrink:0">
+          <select id="setCelebrate" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
             <option value="confetti">彩带</option>
             <option value="fireworks">烟花</option>
             <option value="none">关闭</option>
@@ -4397,13 +4412,32 @@ $('btnSound').onclick = function(){
   if(mem.settings.sound) SFX.ok();
 };
 
+/* 每批数量固定候选档（老板 2026-09-11：不让用户手填数字，只给 10 / 15 / 20 / 30） */
+var BATCH_OPTIONS = [10, 15, 20, 30];
+/* 归一化到候选档：历史数据 / 外部注入的 batchSize 可能是任意整数（旧 input 允许 1..100），
+   下拉框无法表达这些值（值不在 option 里 → select.value 变空字符串 → 显示空白）。
+   处理：取最接近的一档（平局取小）。
+   ⚠️ 故意**不在 loadStore 里**归一化：① e2e 会注入 batchSize=5/3 构造分批场景，落地即改写会
+   破坏这些用例；② 用户只是打开一次设置就被改数据（还触发云同步）不该发生。
+   归一化只发生在「渲染设置面板」与「保存设置」两处，是唯一能把旧值带进新 UI 的两个入口。 */
+function normBatchSize(v){
+  var n = parseInt(v, 10);
+  if(isNaN(n)) return 10;
+  if(BATCH_OPTIONS.indexOf(n) >= 0) return n;
+  var best = BATCH_OPTIONS[0];
+  for(var i=1;i<BATCH_OPTIONS.length;i++){
+    if(Math.abs(BATCH_OPTIONS[i]-n) < Math.abs(best-n)) best = BATCH_OPTIONS[i];
+  }
+  return best;
+}
+
 /* ===== 设置面板 ===== */
 $('btnSettingsTop').onclick = function(){
   $('setSound').checked = !!mem.settings.sound;
   $('setShuffle').checked = !!mem.settings.shuffle;
   $('setMode').value = mem.settings.mode || 'choose';
   $('setSkipMastered').checked = mem.settings.skipMastered !== false;
-  $('setBatchSize').value = mem.settings.batchSize || 10;
+  $('setBatchSize').value = String(normBatchSize(mem.settings.batchSize));
   $('setFxStack').checked = mem.settings.fxStack !== false;
   $('setCelebrate').value = mem.settings.celebrate || 'confetti';
   $('setAutoSpeak').checked = !!mem.settings.autoSpeak;
@@ -4484,8 +4518,7 @@ $('btnSaveSettings').onclick = function(){
   mem.settings.shuffle = $('setShuffle').checked;
   mem.settings.mode = $('setMode').value;
   mem.settings.skipMastered = $('setSkipMastered').checked;
-  var _bs = parseInt($('setBatchSize').value, 10);
-  mem.settings.batchSize = Math.min(100, Math.max(1, isNaN(_bs) ? 10 : _bs));
+  mem.settings.batchSize = normBatchSize($('setBatchSize').value);
   mem.settings.fxStack = $('setFxStack').checked;
   mem.settings.celebrate = $('setCelebrate').value;
   mem.settings.autoSpeak = $('setAutoSpeak').checked;
