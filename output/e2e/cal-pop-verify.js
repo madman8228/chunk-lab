@@ -177,6 +177,7 @@ function check(label, cond, info) {
         check('显示"0 次"', popInfo2 && popInfo2.hasZero);
         /* 老板 2026-09-11：已显示「0 次」→「当日未练习」重复，删除（防回流） */
         check('不再显示"当日未练习"（与 0 次重复）', popInfo2 && !popInfo2.hasHint, popInfo2 && popInfo2.text);
+        await page.screenshot({ path: path.join(SHOTS, 'calpop-2-zero-cell.png'), fullPage: false });
       }
 
       /* ========== Case 3: hover .lx（未来日期）→ popover 不弹出 ========== */
