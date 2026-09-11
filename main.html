@@ -932,13 +932,32 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
    ⚠️ flex 子项的 width 会被 min-width:auto(min-content) 顶掉 → 必须同时 min-width:0 + flex-shrink:0 才生效。
    78px 同时是 e2e 的 ≤80px 回归红线（防 flex 拉伸回潮）。 */
 .set-ctl{width:78px;min-width:0;flex-shrink:0}
+/* ===== 设置项说明浮层（2026-09-11 老板要求：灰色说明小字不再常显） =====
+   原来每行右侧常挂一句灰色说明，窄屏下把行撑成两行。
+   现改：说明文本存到行级 data-hint，唯一出口是本浮层 ——
+     · 指针设备（matchMedia hover:hover）：hover 标题即显示（PC）
+     · 触屏设备（无 hover 能力）：点击标题显示，再点标题/点别处隐藏
+   不用原生 title 的原因：样式不可控、触屏需长按且不可测。
+   pointer-events:none 是刻意的——浮层纯文字不需交互，鼠标也就不会"进入"
+   浮层而触发 mouseleave 造成闪烁。 */
+.set-hint-pop{
+  position:fixed;left:0;top:0;
+  max-width:min(280px,calc(100vw - 32px));
+  background:var(--surface,#fff);border:1px solid var(--border);border-radius:10px;
+  padding:7px 10px;
+  box-shadow:0 6px 20px -6px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.06);
+  font-size:12px;line-height:1.5;color:var(--text);
+  z-index:80;pointer-events:none;opacity:0;
+  transition:opacity .16s,transform .16s cubic-bezier(.2,.8,.3,1);
+  transform:translateY(-3px);
+}
+.set-hint-pop.open{opacity:1;transform:translateY(0)}
 /* 设置弹窗紧凑化：减少纵向留白，其他弹窗保持原尺寸 */
 #settingsMask .modal-head{padding:10px 16px}
 #settingsMask .modal-head h3{font-size:15.5px}
 #settingsMask .modal-body{padding:8px 16px 10px}
 #settingsMask .modal-body > div:first-child > label{padding:6px 2px !important;line-height:1.2}
 #settingsMask .modal-body > div:first-child > label strong{font-size:13px !important}
-#settingsMask .modal-body > div:first-child > label > span > span{font-size:11.5px !important}
 #settingsMask .modal-body > div[style*="margin-top"]{margin-top:10px !important;padding-top:10px !important}
 #settingsMask .modal-foot{padding:8px 16px}
 /* 反馈弹窗移动端 80vh 居中（避免手机浏览器底部地址栏/工具栏遮提交按钮）。
@@ -1250,27 +1269,29 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     </div>
     <div class="modal-body">
       <div style="display:flex;flex-direction:column;gap:2px">
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">音效</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">答题反馈</span></span>
+        <!-- 每行 = 标题（.set-hit，说明触发器）+ 行尾控件。说明文本存行级 data-hint，
+             PC hover / 触屏点击标题时由 #setHintPop 浮层显示，不再行内常显。 -->
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="答题反馈">
+          <span class="set-hit"><strong style="font-size:14px">音效</strong></span>
           <input type="checkbox" id="setSound" checked>
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">乱序出题</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">随机打乱顺序</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="随机打乱顺序">
+          <span class="set-hit"><strong style="font-size:14px">乱序出题</strong></span>
           <input type="checkbox" id="setShuffle">
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">答题模式</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">选择 chunk 或手动拼写</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="选择 chunk 或手动拼写">
+          <span class="set-hit"><strong style="font-size:14px">答题模式</strong></span>
           <select id="setMode" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
             <option value="choose">选择</option>
             <option value="type">手拼</option>
           </select>
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">跳过已掌握</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">连对≥3次的句子不再重复出题</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="连对≥3次的句子不再重复出题">
+          <span class="set-hit"><strong style="font-size:14px">跳过已掌握</strong></span>
           <input type="checkbox" id="setSkipMastered" checked>
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px">
-          <span><strong style="font-size:14px">每批数量</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">一轮练习句子数（不足时从已掌握补齐）</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px" data-hint="一轮练习句子数（不足时从已掌握补齐）">
+          <span class="set-hit"><strong style="font-size:14px">每批数量</strong></span>
           <select id="setBatchSize" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
             <option value="10">10</option>
             <option value="15">15</option>
@@ -1278,24 +1299,24 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
             <option value="30">30</option>
           </select>
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">烟花叠加</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">连对多题时烟花慢速累积绽放</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="连对多题时烟花慢速累积绽放">
+          <span class="set-hit"><strong style="font-size:14px">烟花叠加</strong></span>
           <input type="checkbox" id="setFxStack">
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">庆祝效果</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">答对时的屏幕特效</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="答对时的屏幕特效">
+          <span class="set-hit"><strong style="font-size:14px">庆祝效果</strong></span>
           <select id="setCelebrate" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
             <option value="confetti">彩带</option>
             <option value="fireworks">烟花</option>
             <option value="none">关闭</option>
           </select>
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">自动朗读</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">完成后自动朗读</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="完成后自动朗读">
+          <span class="set-hit"><strong style="font-size:14px">自动朗读</strong></span>
           <input type="checkbox" id="setAutoSpeak">
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer">
-          <span><strong style="font-size:14px">深色模式</strong> <span style="font-size:12px;color:var(--faint);margin-left:6px">切换界面主题</span></span>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="切换界面主题">
+          <span class="set-hit"><strong style="font-size:14px">深色模式</strong></span>
           <input type="checkbox" id="setDarkMode">
         </label>
       </div>
@@ -4294,6 +4315,7 @@ function closeMasks(){
   $('impMask').hidden = true;
   $('appendMask').hidden = true;
   $('settingsMask').hidden = true;
+  if(window.hideSetHint) window.hideSetHint(); /* 说明浮层挂在 body 上，不随弹窗一起隐藏，需显式收起 */
   $('explainMask').hidden = true;
   $('feedbackMask').hidden = true;
   /* 如果在题库/管理页，按 Esc 回到练习页 */
@@ -4430,6 +4452,77 @@ function normBatchSize(v){
   }
   return best;
 }
+
+/* ===== 设置项说明浮层（2026-09-11 老板要求：说明小字不再常显） =====
+   说明文本挂在行级 data-hint 上，本浮层是唯一展示出口。
+   触发方式按「输入能力」分流，不按屏幕宽度 —— 触屏笔记本外接鼠标时 hover 仍可用：
+     · 指针设备：mouseenter 标题显示 / mouseleave 隐藏。点击语义不变（仍是切换开关），
+       不夺走「点整行即切换」的肌肉记忆。
+     · 触屏设备（无 hover）：点标题显示，再点标题或点别处隐藏。
+       ⚠️ 必须 preventDefault：标题在 <label> 内，不拦就会「一按既弹说明又切开关」。
+   浮层是 position:fixed 的 portal（挂 body），不受弹窗 overflow 裁剪。 */
+(function(){
+  var mask = $('settingsMask');
+  if(!mask) return;
+  var pop = document.createElement('div');
+  pop.className = 'set-hint-pop';
+  pop.id = 'setHintPop';
+  pop.setAttribute('role', 'tooltip');
+  document.body.appendChild(pop);
+  var owner = null;
+  /* pointer:fine 一起判，避免「触屏+鼠标」二合一设备被误判成纯触屏 */
+  var hasHover = !!(window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches);
+  window.__setHintHover = hasHover; /* 供 e2e 判定走哪条分支（只读标记，不改行为） */
+  function show(row, hit){
+    var text = row.getAttribute('data-hint');
+    if(!text) return;
+    pop.textContent = text;
+    pop.classList.add('open');
+    /* .open 只改 opacity/transform，不参与布局 → 可直接量尺寸定位 */
+    var r = hit.getBoundingClientRect();
+    var pw = pop.offsetWidth, ph = pop.offsetHeight;
+    var top = r.bottom + 6;
+    if(top + ph > window.innerHeight - 8) top = Math.max(8, r.top - ph - 6); /* 下方放不下 → 翻上方 */
+    pop.style.top = Math.round(top) + 'px';
+    pop.style.left = Math.round(Math.min(Math.max(8, r.left), Math.max(8, window.innerWidth - pw - 8))) + 'px';
+    owner = row;
+  }
+  function hide(){ pop.classList.remove('open'); owner = null; }
+  /* 事件目标是否落在某行的标题触发器上（返回该行 + 触发器） */
+  function hitIn(target){
+    var row = (target && target.closest) ? target.closest('label[data-hint]') : null;
+    if(!row || !mask.contains(row)) return null;
+    var hit = row.querySelector('.set-hit');
+    return (hit && hit.contains(target)) ? { row: row, hit: hit } : null;
+  }
+  Array.prototype.forEach.call(mask.querySelectorAll('label[data-hint]'), function(row){
+    var hit = row.querySelector('.set-hit');
+    if(!hit) return;
+    if(hasHover){
+      hit.addEventListener('mouseenter', function(){ show(row, hit); });
+      hit.addEventListener('mouseleave', hide);
+    } else {
+      hit.addEventListener('click', function(e){
+        e.preventDefault();   /* 拦掉 label 激活内部控件的默认行为 */
+        e.stopPropagation();
+        if(owner === row) hide(); else show(row, hit);
+      });
+    }
+  });
+  if(!hasHover){
+    /* 点别处收起；点在任意标题上交给上面的 toggle 逻辑 */
+    document.addEventListener('pointerdown', function(e){
+      if(!owner) return;
+      if(hitIn(e.target)) return;
+      hide();
+    }, true);
+  }
+  /* 浮层是 fixed，弹窗内滚动 / 视口变化会让它错位 —— 直接收起，不做跟随（说明文字不值得那套复杂度） */
+  var body = mask.querySelector('.modal-body');
+  if(body) body.addEventListener('scroll', hide, { passive: true });
+  window.addEventListener('resize', hide);
+  window.hideSetHint = hide; /* 设置弹窗关闭时由外部收起 */
+})();
 
 /* ===== 设置面板 ===== */
 $('btnSettingsTop').onclick = function(){
@@ -4581,6 +4674,7 @@ function openFeedback(){
   _feedbackImage = null;
   _feedbackImageType = null;
   $('settingsMask').hidden = true;
+  if(window.hideSetHint) window.hideSetHint(); /* 说明浮层需显式收起（见 closeMasks） */
   $('feedbackMask').hidden = false;
   $('feedbackText').focus();
 }
