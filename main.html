@@ -1314,7 +1314,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
           <span class="set-hit"><strong style="font-size:14px">跳过已掌握</strong></span>
           <input type="checkbox" id="setSkipMastered" checked>
         </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px" data-hint="一轮练习句子数（不足时从已掌握补齐）">
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px" data-hint="每批练习句子数；大题库完成后可继续下一批">
           <span class="set-hit"><strong style="font-size:14px">每批数量</strong></span>
           <select id="setBatchSize" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
             <option value="10">10</option>
@@ -1873,6 +1873,7 @@ function beginContentBatch(deck, fromIdx, cursor){
   $('zh').innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 正在加载题库…';
   ContentRepo.ensureDeckBatch(deck, mem, {
     limit: Math.max(1, mem.settings.batchSize || 10),
+    skipMastered: mem.settings.skipMastered !== false,
     cursor: cursor
   }).then(function(batch){
     if(!batch || !batch.deck || !batch.deck.items || !batch.deck.items.length){
@@ -1957,9 +1958,8 @@ if(fromIdx === 0 && isLongTermDeck){
         return Math.random() - 0.5;
       });
     }
-    /* batchSize 仅作用于「临时题库」(#/book-/weak-/srs-/rev-) —— 这些是临时聚焦点（错题本/SRS回拉），
-       按用户配置的 batchSize 截断即可。
-       长期 deck（builtin-* / 用户导入 deck）一律一次练完整 deck：「通关」= 练完所有题，
+    /* batchSize 作用于临时题库与超大内置题库；普通长期 deck（builtin-* / 用户导入 deck）
+       仍一次练完整 deck：「通关」= 练完所有题，
        否则 103 题 deck 被截到 10 题就通关，剩下 93 题被永久跳过（2026-09-06 反馈）。
        ★ 分页续组：tempStart>0 时从完整队列的 tempStart 处切下一批（finish 页「继续下一组」入口）；
          tempEnd 记录本组终点，供 finishSession 计算剩余量（tempTotal - tempEnd）。 */
@@ -2452,8 +2452,7 @@ function bindCalPop(){
     var lvClass = rounds >= 7 ? 'good' : '';   /* ≥7 强学习，加 good 色 */
     pop.innerHTML =
       '<div class="pop-info-title"><span class="title-text">' + day + '</span></div>' +
-      '<div class="pop-info-row"><span class="lbl">练习</span><span class="val ' + lvClass + '">' + rounds + ' 次</span></div>' +
-      (rounds === 0 ? '<div class="pop-info-row" style="color:var(--faint);font-size:10.5px;padding-top:2px">当日未练习</div>' : '');
+      '<div class="pop-info-row"><span class="lbl">练习</span><span class="val ' + lvClass + '">' + rounds + ' 次</span></div>';
     var r = cell.getBoundingClientRect();
     var centerX = r.left + r.width / 2;
     var half = pop.offsetWidth / 2;

@@ -8,7 +8,7 @@
  *
  * 验证点：
  *  1. 桌面 hover 有数据 cell → popover 显示「日期 + 练习 N 次」+ good 色（≥7）
- *  2. 桌面 hover 0 次 cell → popover 显示「当日未练习」
+ *  2. 桌面 hover 0 次 cell → popover 只显示「练习 0 次」，不重复「当日未练习」（老板 2026-09-11 删）
  *  3. 桌面 hover .lx（未来）cell → popover 不弹出
  *  4. 桌面 hover 移到邻 cell → 内容无缝切换不闪
  *  5. 桌面 click 同一 cell 二次 → 关闭
@@ -155,8 +155,8 @@ function check(label, cond, info) {
 
       await page.screenshot({ path: path.join(SHOTS, 'calpop-1-hover-today.png'), fullPage: false });
 
-      /* ========== Case 2: hover 0 次 cell → "当日未练习" ========== */
-      console.log('== Case 2: hover 0 次 cell → 显示"当日未练习" ==');
+      /* ========== Case 2: hover 0 次 cell → 只显示「练习 0 次」，不再重复「当日未练习」 ========== */
+      console.log('== Case 2: hover 0 次 cell → 只显示"0 次"、无"当日未练习" ==');
       const zeroCell = await page.$('.cal-cell[data-rounds="0"]:not(.lx)');
       check('0 次 cell 存在', !!zeroCell);
       if (zeroCell) {
@@ -174,8 +174,9 @@ function check(label, cond, info) {
             hasHint: p.textContent.indexOf('当日未练习') >= 0
           };
         });
-        check('显示"当日未练习"', popInfo2 && popInfo2.hasHint, popInfo2 && popInfo2.text);
         check('显示"0 次"', popInfo2 && popInfo2.hasZero);
+        /* 老板 2026-09-11：已显示「0 次」→「当日未练习」重复，删除（防回流） */
+        check('不再显示"当日未练习"（与 0 次重复）', popInfo2 && !popInfo2.hasHint, popInfo2 && popInfo2.text);
       }
 
       /* ========== Case 3: hover .lx（未来日期）→ popover 不弹出 ========== */

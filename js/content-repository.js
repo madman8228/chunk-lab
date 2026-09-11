@@ -315,7 +315,10 @@
   function batchEligible(id, item, mem, options) {
     if (!item) return false;
     if (mem && global.CL && global.CL.isItemDeleted && global.CL.isItemDeleted(mem, id, item)) return false;
-    if (options.skipMastered === false || !mem || !global.CL) return true;
+    var skipMastered = options.skipMastered !== undefined
+      ? options.skipMastered !== false
+      : !(mem && mem.settings && mem.settings.skipMastered === false);
+    if (!skipMastered || !mem || !global.CL) return true;
     var mastered = global.CL.isMastered && global.CL.isMastered(mem, id, item);
     var fluent = global.CL.isFluencyByDeck && global.CL.isFluencyByDeck(mem, id, item);
     var st = mem.stats && mem.stats.bySentence && global.CL.cidKey

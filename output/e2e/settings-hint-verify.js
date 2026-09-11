@@ -81,7 +81,7 @@ const HINTS = {
   setShuffle: '随机打乱顺序',
   setMode: '选择 chunk 或手动拼写',
   setSkipMastered: '连对≥3次的句子不再重复出题',
-  setBatchSize: '一轮练习句子数（不足时从已掌握补齐）',
+  setBatchSize: '每批练习句子数；大题库完成后可继续下一批',
   setFxStack: '连对多题时烟花慢速累积绽放',
   setCelebrate: '答对时的屏幕特效',
   setAutoSpeak: '完成后自动朗读',
