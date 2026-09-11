@@ -48,6 +48,28 @@ function stripBase64Prefix(image) {
   return i >= 0 ? s.slice(i + 'base64,'.length) : s;
 }
 
+/* ===== 多图（2026-09-11 老板要求：最多 3 张、可逐张删除） ===== */
+const MAX_IMAGES = 3;
+const MAX_IMAGES_TOTAL_BYTES = 12 * 1024 * 1024; /* 3 张累计上限；每张仍单独受 5MB 限制 */
+
+/* 新前端发 images:[{data,type}]；旧客户端（PWA 缓存里的老页面）仍发 image/imageType 单图字段
+   → 归一成数组统一处理。旧字段不删，未升级的客户端还要能用。 */
+function collectImages(body) {
+  if (Array.isArray(body.images)) return body.images;
+  if (body.image !== undefined && body.image !== null && body.image !== '') {
+    return [{ data: body.image, type: body.imageType }];
+  }
+  return [];
+}
+
+/* 清理本次已落盘的**全部**图片（best-effort）：
+   多图下任一张失败（超限 / 格式非法 / 写盘异常）都要把前面已写的删掉，否则留一堆孤儿图。 */
+function cleanupFiles(names) {
+  (names || []).forEach(function (n) {
+    try { fs.unlinkSync(path.join(FEEDBACK_DIR, n)); } catch (e) { /* best-effort */ }
+  });
+}
+
 /* IP 滑动窗口限流（2026-09-11 安全审查 P1）：游客可匿名提交、无鉴权可识别，
    只能按 IP 限流。纯内存、单实例自托管够用；反代部署需 TRUST_PROXY=true（index.js 已设 trust proxy）。
    请求到达即计数（含非法请求），防攻击者用垃圾 payload 刷爆磁盘与 SQLite。 */
@@ -76,7 +98,7 @@ setInterval(function () {
 }, FEEDBACK_RATE_WINDOW).unref();
 
 function submit(req, res) {
-  let imagePath = null;
+  let imagePaths = [];       /* 本次已落盘的相对文件名；任一环节失败 → 整体清理 */
   const ip = (req && req.ip) || 'unknown';
   if (feedbackRateBlocked(ip)) {
     res.set('Retry-After', String(Math.ceil(FEEDBACK_RATE_WINDOW / 1000)));
@@ -102,37 +124,66 @@ function submit(req, res) {
       meta = body.meta;
     }
 
-    if (body.image !== undefined && body.image !== null && body.image !== '') {
-      if (typeof body.image !== 'string') {
-        return res.status(400).json({ error: 'image 必须是 base64 字符串' });
+    /* 传了 images 但不是数组 → 显式 400。不能静默当"没图"处理（会把客户端 bug 吞成脏数据） */
+    if (body.images !== undefined && body.images !== null && !Array.isArray(body.images)) {
+      return res.status(400).json({ error: 'images 必须是数组' });
+    }
+    const rawImages = collectImages(body);
+    if (rawImages.length > MAX_IMAGES) {
+      return res.status(400).json({ error: '截图最多 ' + MAX_IMAGES + ' 张' });
+    }
+    let totalBytes = 0;
+    for (let i = 0; i < rawImages.length; i++) {
+      const it = rawImages[i] || {};
+      if (typeof it.data !== 'string' || !it.data) {
+        cleanupFiles(imagePaths);
+        return res.status(400).json({ error: 'images[' + i + '].data 必须是非空 base64 字符串' });
       }
-      const buf = Buffer.from(stripBase64Prefix(body.image), 'base64');
-      if (buf.length === 0) return res.status(400).json({ error: 'image 解码后为空' });
-      if (buf.length > MAX_IMAGE_BYTES) return res.status(400).json({ error: '截图超过 5MB 上限' });
+      const buf = Buffer.from(stripBase64Prefix(it.data), 'base64');
+      if (buf.length === 0) {
+        cleanupFiles(imagePaths);
+        return res.status(400).json({ error: '第 ' + (i + 1) + ' 张截图解码后为空' });
+      }
+      if (buf.length > MAX_IMAGE_BYTES) {
+        cleanupFiles(imagePaths);
+        return res.status(400).json({ error: '第 ' + (i + 1) + ' 张截图超过 5MB 上限' });
+      }
+      totalBytes += buf.length;
+      if (totalBytes > MAX_IMAGES_TOTAL_BYTES) {
+        cleanupFiles(imagePaths);
+        return res.status(400).json({ error: '截图总计超过 12MB' });
+      }
 
-      /* P1 图片格式校验（2026-09-11）：按 magic number 识别真实格式（不信任 imageType），
+      /* P1 图片格式校验（2026-09-11）：按 magic number 识别真实格式（不信任 type），
          非 PNG/JPG/WebP 一律 400，防任意字节伪装成图片落地磁盘。 */
       const ext = sniffImageExt(buf);
-      if (!ext) return res.status(400).json({ error: '截图格式非法（仅支持 PNG/JPG/WebP）' });
+      if (!ext) {
+        cleanupFiles(imagePaths);
+        return res.status(400).json({ error: '第 ' + (i + 1) + ' 张截图格式非法（仅支持 PNG/JPG/WebP）' });
+      }
 
       if (!fs.existsSync(FEEDBACK_DIR)) fs.mkdirSync(FEEDBACK_DIR, { recursive: true });
       const name = Date.now() + '-' + crypto.randomBytes(4).toString('hex') + '.' + ext;
-      /* 先登记 imagePath 再写盘：即便 writeFileSync 半途抛错，catch 里的清理也能删掉残留。 */
-      imagePath = name;
+      /* 先登记再写盘：即便 writeFileSync 半途抛错，catch 里的清理也能删掉残留。 */
+      imagePaths.push(name);
       fs.writeFileSync(path.join(FEEDBACK_DIR, name), buf);
     }
 
     const info = db.prepare(
-      'INSERT INTO feedback (text, image_path, meta, created_at) VALUES (?, ?, ?, ?)'
-    ).run(text, imagePath, meta ? JSON.stringify(meta) : null, Date.now());
+      'INSERT INTO feedback (text, image_path, image_paths, meta, created_at) VALUES (?, ?, ?, ?, ?)'
+    ).run(
+      text,
+      imagePaths.length ? imagePaths[0] : null,          /* 向下兼容：旧读法拿到第一张 */
+      imagePaths.length ? JSON.stringify(imagePaths) : null,
+      meta ? JSON.stringify(meta) : null,
+      Date.now()
+    );
 
     res.json({ ok: true, id: Number(info.lastInsertRowid) });
   } catch (e) {
     /* P1（2026-09-11 安全审查）：图片已落盘但后续（如 INSERT）失败 → 删除孤儿图，
-       避免半截反馈占满磁盘。删除失败也不影响主错误返回（best-effort）。 */
-    if (imagePath) {
-      try { fs.unlinkSync(path.join(FEEDBACK_DIR, imagePath)); } catch (e2) { /* best-effort */ }
-    }
+       避免半截反馈占满磁盘。多图下清理**全部**已写文件，不只是第一张。 */
+    cleanupFiles(imagePaths);
     /* fail-closed：不泄露堆栈，仅记录摘要并返回通用 500 */
     console.error('[feedback] 提交失败：', e && e.message);
     res.status(500).json({ error: '反馈提交失败，请稍后再试' });

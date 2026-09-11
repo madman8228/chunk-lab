@@ -181,6 +181,100 @@ check('11 纠正后的 .jpg 文件已落盘且内容一致',
   (function () { const x = latestRow(); return !!x && !!x.image_path && fs.existsSync(path.join(FEEDBACK_DIR, x.image_path)) && fs.readFileSync(path.join(FEEDBACK_DIR, x.image_path)).equals(jpgBuf); })(),
   '内容不一致');
 
+/* ===== 12. 多图（2026-09-11 老板要求：最多 3 张、可逐张删除） ===== */
+const webpBuf = Buffer.concat([
+  Buffer.from([0x52, 0x49, 0x46, 0x46, 0x1A, 0x00, 0x00, 0x00, 0x57, 0x45, 0x42, 0x50]),
+  Buffer.from('fake-webp-bytes', 'utf8')
+]);
+const filesBeforeMulti = fs.readdirSync(FEEDBACK_DIR).length;
+r = submit({
+  text: '三张截图',
+  images: [
+    { data: 'data:image/png;base64,' + imgB64, type: 'image/png' },
+    { data: jpgBuf.toString('base64'), type: 'image/jpeg' },
+    { data: webpBuf.toString('base64'), type: 'image/webp' }
+  ]
+});
+const rowM = latestRow();
+let pathsM = [];
+try { pathsM = JSON.parse(rowM.image_paths); } catch (e) { pathsM = null; }
+check('12 三张图提交 → 200', r.statusCode === 200 && r._body && r._body.ok === true, 'status=' + r.statusCode + ' ' + JSON.stringify(r._body));
+check('12 image_paths 是长度 3 的数组', Array.isArray(pathsM) && pathsM.length === 3, 'image_paths=' + (rowM && rowM.image_paths));
+check('12 三张图全部落盘且各自格式后缀正确（png/jpg/webp）',
+  !!pathsM && pathsM.length === 3 &&
+  /\.png$/.test(pathsM[0]) && /\.jpg$/.test(pathsM[1]) && /\.webp$/.test(pathsM[2]) &&
+  pathsM.every(function (p) { return fs.existsSync(path.join(FEEDBACK_DIR, p)); }),
+  JSON.stringify(pathsM));
+check('12 落盘内容与上传逐张一致',
+  !!pathsM && pathsM.length === 3 &&
+  fs.readFileSync(path.join(FEEDBACK_DIR, pathsM[0])).equals(imgBuf) &&
+  fs.readFileSync(path.join(FEEDBACK_DIR, pathsM[1])).equals(jpgBuf) &&
+  fs.readFileSync(path.join(FEEDBACK_DIR, pathsM[2])).equals(webpBuf),
+  '内容不一致');
+check('12 image_path 仍存第一张（向下兼容旧读法）',
+  !!rowM && rowM.image_path === pathsM[0], 'image_path=' + (rowM && rowM.image_path) + ' first=' + (pathsM && pathsM[0]));
+check('12 磁盘恰好新增 3 个文件',
+  fs.readdirSync(FEEDBACK_DIR).length === filesBeforeMulti + 3,
+  'before=' + filesBeforeMulti + ' after=' + fs.readdirSync(FEEDBACK_DIR).length);
+
+/* ===== 13. 超过 3 张 → 400 且一张都不落盘 ===== */
+const filesBefore4 = fs.readdirSync(FEEDBACK_DIR).length;
+r = submit({
+  text: '四张截图',
+  images: [1, 2, 3, 4].map(function () { return { data: 'data:image/png;base64,' + imgB64, type: 'image/png' }; })
+});
+check('13 images 4 张 → 400', r.statusCode === 400, 'status=' + r.statusCode);
+check('13 超限未写任何磁盘文件',
+  fs.readdirSync(FEEDBACK_DIR).length === filesBefore4,
+  'before=' + filesBefore4 + ' after=' + fs.readdirSync(FEEDBACK_DIR).length);
+
+/* ===== 14. 第 2 张超 5MB → 400，且第 1 张不留孤儿（多图整体回滚） ===== */
+const filesBeforeBig = fs.readdirSync(FEEDBACK_DIR).length;
+r = submit({
+  text: '第二张超大',
+  images: [
+    { data: 'data:image/png;base64,' + imgB64, type: 'image/png' },
+    { data: bigB64, type: 'image/png' }
+  ]
+});
+check('14 第 2 张 >5MB → 400', r.statusCode === 400, 'status=' + r.statusCode);
+check('14 第 1 张已回滚删除（不留孤儿图）',
+  fs.readdirSync(FEEDBACK_DIR).length === filesBeforeBig,
+  'before=' + filesBeforeBig + ' after=' + fs.readdirSync(FEEDBACK_DIR).length);
+
+/* ===== 15. 第 2 张格式非法 → 400，第 1 张同样回滚 ===== */
+const filesBeforeBad = fs.readdirSync(FEEDBACK_DIR).length;
+const mzB64 = Buffer.from([0x4D, 0x5A, 0x90, 0x00, 0x03, 0x00, 0x00, 0x00]).toString('base64');
+r = submit({
+  text: '第二张是 EXE',
+  images: [
+    { data: 'data:image/png;base64,' + imgB64, type: 'image/png' },
+    { data: mzB64, type: 'image/png' }
+  ]
+});
+check('15 第 2 张非图片（MZ 头）→ 400', r.statusCode === 400, 'status=' + r.statusCode);
+check('15 第 1 张已回滚删除',
+  fs.readdirSync(FEEDBACK_DIR).length === filesBeforeBad,
+  'before=' + filesBeforeBad + ' after=' + fs.readdirSync(FEEDBACK_DIR).length);
+
+/* ===== 16. images 字段本身的校验（不能静默吞掉非法输入） ===== */
+r = submit({ text: 'images 是字符串', images: 'not-an-array' });
+check('16 images 非数组 → 400（不静默当无图处理）', r.statusCode === 400, 'status=' + r.statusCode);
+r = submit({ text: 'images[0].data 缺失', images: [{ type: 'image/png' }] });
+check('16 images[i].data 缺失 → 400', r.statusCode === 400, 'status=' + r.statusCode);
+r = submit({ text: 'images 空数组', images: [] });
+check('16 images 空数组 → 200 且 image_paths 为 null',
+  r.statusCode === 200 && (function () { const x = latestRow(); return x && x.image_paths === null; })(),
+  'status=' + r.statusCode);
+
+/* ===== 17. 旧单图字段（image/imageType）在多图改造后仍可用 ===== */
+r = submit({ text: '旧客户端单图', image: 'data:image/png;base64,' + imgB64, imageType: 'image/png' });
+const rowOld = latestRow();
+check('17 旧 image/imageType 单图字段 → 200', r.statusCode === 200, 'status=' + r.statusCode);
+check('17 旧字段也写入 image_paths（长度 1）',
+  !!rowOld && (function () { try { return JSON.parse(rowOld.image_paths).length === 1; } catch (e) { return false; } })(),
+  'image_paths=' + (rowOld && rowOld.image_paths));
+
 /* ===== 收尾 ===== */
 try { fs.rmSync(TMP_DATA_DIR, { recursive: true, force: true }); } catch (e) { /* best-effort */ }
 console.log('\n[feedback.test] passed=' + passed + ' failed=' + failed);

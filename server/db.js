@@ -177,7 +177,9 @@ CREATE TABLE IF NOT EXISTS user_change_seq (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-/* 用户反馈（游客可提交，无需登录）。meta 为诊断信息 JSON 字符串；image_path 只存相对文件名。 */
+/* 用户反馈（游客可提交，无需登录）。meta 为诊断信息 JSON 字符串；
+   image_path 只存相对文件名（2026-09-11 多图后：存第一张，向下兼容）；
+   image_paths 为 JSON 数组字符串（最多 3 张），由迁移 addColumnIfMissing('feedback','image_paths') 补齐。 */
 CREATE TABLE IF NOT EXISTS feedback (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
   text       TEXT NOT NULL,
@@ -225,6 +227,10 @@ SEQ_TABLES.forEach(function (t) { addColumnIfMissing(t, 'seq', 'INTEGER'); });
 db.exec(SEQ_TABLES.map(function (t) {
   return 'CREATE INDEX IF NOT EXISTS idx_' + t.replace(/^user_/, '') + '_user_seq ON ' + t + '(user_id, seq)';
 }).join(';\n'));
+
+/* 反馈多图（2026-09-11）：feedback 加 image_paths（JSON 数组字符串）。
+   保留 image_path 不动 —— 它继续存第一张图，旧读法（含既有查询与测试）不受影响。 */
+addColumnIfMissing('feedback', 'image_paths', 'TEXT');
 
 /* 存量行回填 + 计数器初始化（幂等）。
    ★ 两者必须一起做：回填把存量行盖成 seq=1，计数器也必须抬到 ≥1，
