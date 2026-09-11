@@ -18,6 +18,16 @@
           "mode": "append"
         }
       ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-eb7f36d1834c",
+          "url": "content/builtin-daily/oral-index-001-eb7f36d1834c.json",
+          "count": 150,
+          "bytes": 37343,
+          "sha256": "eb7f36d1834cf5d772417b6afd570e20240c359e69c037f29eac0e479680ac59",
+          "mode": "index"
+        }
+      ],
       "legacyFallback": "oral8000.js"
     },
     {
@@ -42,6 +52,24 @@
           "bytes": 227215,
           "sha256": "0b19f2e048b202bd752ea2e0de2203bac1eb30756e1827df5901bf723b6ca5f1",
           "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "idioms-index-001-d24a8d5e249b",
+          "url": "content/builtin-freq-idioms/idioms-index-001-d24a8d5e249b.json",
+          "count": 200,
+          "bytes": 54317,
+          "sha256": "d24a8d5e249b77cf67207fb3916e0c03022b69582ef2a98a737e1664929c6b10",
+          "mode": "index"
+        },
+        {
+          "id": "idioms-index-002-1ab98dd1aeee",
+          "url": "content/builtin-freq-idioms/idioms-index-002-1ab98dd1aeee.json",
+          "count": 189,
+          "bytes": 49941,
+          "sha256": "1ab98dd1aeee089c08c75554967bac5fd3061c4210f98932dfa1c2119254324d",
+          "mode": "index"
         }
       ],
       "legacyFallback": "freq-idioms.js"

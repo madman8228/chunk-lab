@@ -289,8 +289,9 @@ if(window.Icons) Icons.install();
    - 数据通过浏览器本地存储与主页共享（同源） */
 
 var mem = { decks:[], best:{}, mastered:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{}, events:[] }, settings:{} };
+var _statsDecks = null; /* 内置题库使用轻量 index；完整详情只在开始练习时取 */
 /* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
-function loadMem(){ mem = CL.loadMem(); }
+function loadMem(){ mem = CL.loadMem(); _statsDecks = null; }
 function saveStore(){ CL.saveAndNotify(mem); }
 function $(id){ return CL.$(id); }
 function esc(s){ return CL.esc(s); }
@@ -307,8 +308,8 @@ function findDeck(deckId){
   return null;
 }
 function allDecks(){
-  /* 收敛：内置（deletedItems 过滤副本）+ 用户导入，统一走 CL（core.js 单一实现） */
-  return CL.allDecksView(mem);
+  /* 内置扩展题库优先使用 index；用户导入题库仍走 CL 的只读视图。 */
+  return _statsDecks || CL.allDecksView(mem);
 }
 function timeAgo(t){ return CL.timeAgo(t); }
 function classifyStat(s){ return CL.classifyStat(s); }
@@ -866,7 +867,12 @@ function dueSentences(){
     if(typeof st.dueAt !== 'number' || !st.dueAt || st.dueAt > Date.now()) return;
     var deck = findDeck(st.deckId);
     if(!deck) return;
-    var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
+    var sep = k.indexOf('#');
+    var cid = sep > 0 ? k.substring(sep + 1) : '';
+    var it = (deck.items || []).find(function(x){
+      return (x.cid || CL.fnv8(x.sentence || '')) === cid;
+    });
+    if(!it) it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
     if(!it) return;
     var key = st.deckId + '#' + normSent(it.sentence);
     if(seen[key]) return;
@@ -938,14 +944,14 @@ function practiceDue(){
   var dues = dueSentences();
   if(!dues.length){ alert('没有到期复习的句子'); return; }
   var items = dues.map(function(d){ return withStatsSource(d.it, d.st.deckId); });
-  launchReviewDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
+  launchReviewItems({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
 }
 function practiceReviewDeck(deck){
   var items = (deck.items || []).filter(function(it){
     return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
   }).map(function(it){ return withStatsSource(it, deck.id); });
   if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
-  launchReviewDeck({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name), items:items });
+  launchReviewItems({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name), items:items });
 }
 function practiceWeakSentences(){
   var by = mem.stats.bySentence || {};
@@ -964,7 +970,7 @@ function practiceWeakSentences(){
     items.push(withStatsSource(it, st.deckId));
   });
   if(!items.length){ alert('找不到可练习的句子（可能被删除）'); return; }
-  launchReviewDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固', items:items });
+  launchReviewItems({ id:'weak-'+Date.now().toString(36), name:'需巩固', items:items });
 }
 function practiceWrongBook(){
   var book = getReinforceBook();
@@ -980,7 +986,19 @@ function practiceWrongBook(){
     if(it) items.push(withStatsSource(it, b.deckId));
   });
   if(!items.length){ alert('错题本中的句子已全部删除或找不到对应题库'); return; }
-  launchReviewDeck({ id:'book-'+Date.now().toString(36), name:'错题', items:items });
+  launchReviewItems({ id:'book-'+Date.now().toString(36), name:'错题', items:items });
+}
+
+function launchReviewItems(deck){
+  var hydrate = window.ContentRepo && ContentRepo.hydrateItems
+    ? ContentRepo.hydrateItems(deck.items || [])
+    : Promise.resolve(deck.items || []);
+  hydrate.then(function(items){
+    launchReviewDeck(Object.assign({}, deck, { items:items }));
+  }).catch(function(err){
+    console.error('[stats] 复习内容加载失败', err);
+    alert('复习内容加载失败，请联网后重试');
+  });
 }
 
 /* ★ 跨页面通信：通过 postMessage 通知主页启动临时题库（统一走 CL） */
@@ -995,7 +1013,10 @@ function launchReviewDeck(deck){
 /* ===== 事件绑定 ===== */
 Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
 loadMem();
-return window.ContentRepo ? ContentRepo.ensureAll(mem) : Promise.resolve();
+  if(window.ContentRepo && ContentRepo.ensureIndexAll){
+    return ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; });
+  }
+  return window.ContentRepo ? ContentRepo.ensureAll(mem).then(function(){ _statsDecks = CL.allDecksView(mem); }) : Promise.resolve();
 }).then(function(){
 migrateLegacyStatKeys();
 renderStats();
@@ -1035,7 +1056,8 @@ $('statsBack').onclick = function(){ window.location.href = './main.html'; };
 window.addEventListener('message', function(ev){
   if(ev.data && ev.data.type === 'memUpdated'){
     loadMem();
-    renderStats();
+    var p = window.ContentRepo && ContentRepo.ensureIndexAll ? ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; }) : Promise.resolve();
+    p.then(renderStats);
   }
 });
 
@@ -1043,7 +1065,8 @@ window.addEventListener('message', function(ev){
 window.addEventListener('storage', function(e){
   if(e.key === 'chunklab.v1'){
     loadMem();
-    renderStats();
+    var p = window.ContentRepo && ContentRepo.ensureIndexAll ? ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; }) : Promise.resolve();
+    p.then(renderStats);
   }
 });
 }); /* CL.ensureCloud().then */

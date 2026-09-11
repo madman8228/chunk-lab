@@ -124,7 +124,7 @@ function manifestContentFiles() {
   try {
     const data = JSON.parse(fs.readFileSync(file, 'utf8'));
     return (data.decks || []).reduce(function (all, deck) {
-      return all.concat((deck.shards || []).map(function (shard) {
+      return all.concat((deck.shards || []).concat(deck.indexShards || []).map(function (shard) {
         return String(shard.url || '').replace(/^\//, '');
       }));
     }, []).filter(Boolean);

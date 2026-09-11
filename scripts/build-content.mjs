@@ -1,11 +1,12 @@
-/* build-content.mjs · 将内置扩展题库生成可懒加载的内容分片
+/* build-content.mjs · 将内置扩展题库生成可懒加载的内容分片与轻量索引
  *
  * 运行：node scripts/build-content.mjs
  *
  * 设计约束：
  * - builtins.js 保留 88 条基础日常题，作为旧页面/离线兜底；
  * - oral8000.js 与 freq-idioms.js 只作为源数据，不再由页面直接 script 加载；
- * - 输出文件名带内容 hash，配合 manifest 形成不可变 URL，避免 SW 复用旧内容。
+ * - 输出文件名带内容 hash，配合 manifest 形成不可变 URL，避免 SW 复用旧内容；
+ * - index 分片只保存 cid/中英文和详情分片位置，统计页不必解析完整题目。
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -62,6 +63,28 @@ function writeShards(relativeDir, prefix, items, mode) {
   return shards;
 }
 
+function buildIndexItems(items, detailShards) {
+  const result = [];
+  let shardIndex = 0;
+  let shardStart = 0;
+  items.forEach((item, offset) => {
+    while (shardIndex < detailShards.length && offset >= shardStart + detailShards[shardIndex].count) {
+      shardStart += detailShards[shardIndex].count;
+      shardIndex += 1;
+    }
+    const detail = detailShards[shardIndex];
+    if (!detail) throw new Error(`无法为第 ${offset} 条内容找到详情分片`);
+    result.push({
+      cid: item.cid,
+      sentence: item.sentence || item.en || item.sent || '',
+      translation: item.translation || item.zh || '',
+      sourceUrl: detail.url,
+      sourceOffset: offset - shardStart,
+    });
+  });
+  return result;
+}
+
 const baseWindow = runScript('builtins.js');
 const baseDaily = (baseWindow.BUILTIN || []).find((deck) => deck.id === 'builtin-daily');
 if (!baseDaily) throw new Error('builtins.js 中缺少 builtin-daily');
@@ -78,6 +101,18 @@ if (!freqDeck || !Array.isArray(freqDeck.items) || !freqDeck.items.length) {
 
 const dailyShards = writeShards('content/builtin-daily', 'oral', oralItems, 'append');
 const freqShards = writeShards('content/builtin-freq-idioms', 'idioms', freqDeck.items, 'replace');
+const dailyIndexShards = writeShards(
+  'content/builtin-daily',
+  'oral-index',
+  buildIndexItems(oralItems, dailyShards),
+  'index',
+);
+const freqIndexShards = writeShards(
+  'content/builtin-freq-idioms',
+  'idioms-index',
+  buildIndexItems(freqDeck.items, freqShards),
+  'index',
+);
 
 const manifest = {
   schemaVersion: 1,
@@ -90,6 +125,7 @@ const manifest = {
       baseCount: baseDaily.items.length,
       totalCount: baseDaily.items.length + oralItems.length,
       shards: dailyShards,
+      indexShards: dailyIndexShards,
       legacyFallback: 'oral8000.js',
     },
     {
@@ -99,6 +135,7 @@ const manifest = {
       baseCount: 0,
       totalCount: freqDeck.items.length,
       shards: freqShards,
+      indexShards: freqIndexShards,
       legacyFallback: 'freq-idioms.js',
     },
   ],
@@ -109,3 +146,4 @@ fs.writeFileSync(path.join(ROOT, 'content/manifest.json'), JSON.stringify(manife
 console.log(`[content] generated ${oralItems.length} oral + ${freqDeck.items.length} idiom items`);
 console.log(`[content] daily shards: ${dailyShards.map((shard) => shard.url).join(', ')}`);
 console.log(`[content] idiom shards: ${freqShards.map((shard) => shard.url).join(', ')}`);
+console.log(`[content] index shards: ${dailyIndexShards.length + freqIndexShards.length}`);

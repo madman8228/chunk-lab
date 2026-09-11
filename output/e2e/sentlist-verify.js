@@ -60,18 +60,20 @@ setTimeout(async () => {
   await page.route('**/api/data', route => route.abort());
   await page.route('**/api/ai/**', route => route.abort());
 
-  /* Phase 1: navigate 到 stats.html，让 builtins/oral8000/freq-idioms 加载完 */
+  /* Phase 1: navigate 到 stats.html，让 builtins 与轻量 index 加载完 */
   await page.goto('http://127.0.0.1:' + PORT + '/stats.html', { waitUntil: 'networkidle' });
   await page.waitForTimeout(500);
   await page.evaluate(() => localStorage.clear());
 
   /* Phase 2: page.evaluate 注入种子到 localStorage */
-  await page.evaluate(() => {
-    var decks = (window.BUILTIN || []);
+  await page.evaluate(async () => {
+    var decks = window.ContentRepo && window.ContentRepo.ensureIndexAll
+      ? await window.ContentRepo.ensureIndexAll(window.CL.loadMem())
+      : (window.BUILTIN || []);
     var allItems = [];
     decks.forEach(function(d){
       (d.items || []).forEach(function(it){
-        if(it && it.sentence && it.chunks) allItems.push({deckId: d.id, sentence: it.sentence, translation: it.translation || '', cid: it.cid || ''});
+        if(it && it.sentence) allItems.push({deckId: d.id, sentence: it.sentence, translation: it.translation || '', cid: it.cid || ''});
       });
     });
     var by = {}, mastered = {}, deletedItems = {};
@@ -114,12 +116,12 @@ setTimeout(async () => {
   await page.waitForSelector('#statsBody .stats-list', { timeout: 10000 });
   await page.waitForTimeout(400);
 
-  /* 取实际 BUILTIN 总句数（reload 后 window 状态已重置，从 BUILTIN 重算） */
+  /* 取实际 index 总句数（reload 后 window 状态已重置，从 index 重算） */
   const totalInBuiltin = await page.evaluate(function(){
-    var decks = window.BUILTIN || [];
-    var n = 0;
-    decks.forEach(function(d){ (d.items || []).forEach(function(it){ if(it && it.sentence && it.chunks) n++; }); });
-    return n;
+    if(window.ContentRepo && window.ContentRepo.getManifest){
+      return (window.ContentRepo.getManifest().decks || []).reduce(function(n, d){ return n + (Number(d.totalCount) || 0); }, 0);
+    }
+    return (window.BUILTIN || []).reduce(function(n, d){ return n + (d.items || []).filter(function(it){ return it && it.sentence; }).length; }, 0);
   });
 
   /* deleted 命中 idx=5（master），它从练过 60 句里掉 1（剩 59），从 master 8 掉 1（剩 7） */
@@ -241,7 +243,7 @@ setTimeout(async () => {
   await page2.evaluate(() => localStorage.clear());
   await page2.waitForTimeout(500);
   await page2.waitForTimeout(500);
-  await page2.evaluate(() => {
+  await page2.evaluate(async () => {
     /* fnv8 哈希（与 core.js fnv8 完全一致），用于兜底无 cid 的 item */
     function fnv8(str){
       var h = 0x811c9dc5;
@@ -253,11 +255,13 @@ setTimeout(async () => {
       while(hex.length < 8) hex = '0' + hex;
       return hex;
     }
-    var decks = (window.BUILTIN || []);
+    var decks = window.ContentRepo && window.ContentRepo.ensureIndexAll
+      ? await window.ContentRepo.ensureIndexAll(window.CL.loadMem())
+      : (window.BUILTIN || []);
     var deletedItems = {};
     decks.forEach(function(d){
       (d.items || []).forEach(function(it){
-        if(it && it.sentence && it.chunks){
+        if(it && it.sentence){
           var cid = it.cid || fnv8(it.sentence);
           deletedItems[d.id + '#' + cid] = true;
         }

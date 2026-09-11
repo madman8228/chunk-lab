@@ -2,6 +2,7 @@
  *
  * 这是旧版 window.BUILTIN 的兼容适配层：
  * - 页面启动只读取小型 manifest，并保留 builtins.js 的基础 88 句；
+ * - 统计页只请求轻量 index 分片，真正练习时再按引用取完整详情；
  * - 真正开始某个内置题库时才请求对应分片；
  * - 题库分片加载失败时回退到旧版 oral8000.js / freq-idioms.js；
  * - 用户学习档案仍由 core.js/IndexedDB 管理，不把题库内容放进 /api/data。
@@ -19,8 +20,8 @@
     schemaVersion: 1,
     contentVersion: 'legacy-fallback',
     decks: [
-      { id: 'builtin-daily', name: '日常对话 · Daily Talk', baseCount: 88, totalCount: 238, shards: [], legacyFallback: 'oral8000.js' },
-      { id: 'builtin-freq-idioms', name: '高频短语 · English Idioms', baseCount: 0, totalCount: 389, shards: [], legacyFallback: 'freq-idioms.js' }
+      { id: 'builtin-daily', name: '日常对话 · Daily Talk', baseCount: 88, totalCount: 238, shards: [], indexShards: [], legacyFallback: 'oral8000.js' },
+      { id: 'builtin-freq-idioms', name: '高频短语 · English Idioms', baseCount: 0, totalCount: 389, shards: [], indexShards: [], legacyFallback: 'freq-idioms.js' }
     ]
   };
   var manifest = null;
@@ -28,6 +29,7 @@
   var loading = {};
   var loaded = {};
   var memoryShards = {};
+  var memoryIndexShards = {};
   var contentDb = null;
   var contentDbOpening = null;
 
@@ -129,7 +131,7 @@
   function pruneCache(currentManifest) {
     var allowed = {};
     (currentManifest.decks || []).forEach(function (entry) {
-      (entry.shards || []).forEach(function (shard) { allowed[shard.url] = true; });
+      (entry.shards || []).concat(entry.indexShards || []).forEach(function (shard) { allowed[shard.url] = true; });
     });
     return openContentDb().then(function (db) {
       return new Promise(function (resolve, reject) {
@@ -156,6 +158,16 @@
     if (data.mode && shard.mode && data.mode !== shard.mode) return false;
     if (record && record.sha256 && shard.sha256 && record.sha256 !== shard.sha256) return false;
     return true;
+  }
+
+  function validIndexData(data, shard, record) {
+    if (!validShardData(data, shard, record) || data.mode !== 'index') return false;
+    return data.items.every(function (item) {
+      return item && typeof item.cid === 'string' && item.cid &&
+        typeof item.sentence === 'string' && typeof item.translation === 'string' &&
+        typeof item.sourceUrl === 'string' && item.sourceUrl &&
+        Number.isInteger(item.sourceOffset) && item.sourceOffset >= 0;
+    });
   }
 
   function getManifest() { return manifest; }
@@ -217,6 +229,35 @@
             sha256: shard.sha256 || '',
             count: data.items.length,
             mode: data.mode || shard.mode || '',
+            data: data
+          });
+          return data;
+        });
+    });
+  }
+
+  function loadIndexShard(shard) {
+    if (memoryIndexShards[shard.url]) return Promise.resolve(memoryIndexShards[shard.url]);
+    return cacheGet(shard.url).then(function (record) {
+      if (record && validIndexData(record.data, shard, record)) {
+        memoryIndexShards[shard.url] = record.data;
+        return record.data;
+      }
+      return fetch(shard.url, { cache: 'force-cache' })
+        .then(function (res) {
+          if (!res.ok) throw new Error(shard.url + ' HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          if (!validIndexData(data, shard)) throw new Error('index 格式/数量不匹配：' + shard.url);
+          memoryIndexShards[shard.url] = data;
+          cachePut({
+            url: shard.url,
+            contentVersion: manifest && manifest.contentVersion,
+            sha256: shard.sha256 || '',
+            count: data.items.length,
+            mode: data.mode || 'index',
+            kind: 'index',
             data: data
           });
           return data;
@@ -286,6 +327,91 @@
     var id = typeof deckOrId === 'string' ? deckOrId : (deckOrId && deckOrId.id);
     var entry = entryById(id);
     return !!(entry && (Number(entry.totalCount) || 0) > PRACTICE_BATCH_THRESHOLD && (entry.shards || []).length);
+  }
+
+  function findDetailShard(url) {
+    var decks = (manifest && manifest.decks) || [];
+    for (var i = 0; i < decks.length; i++) {
+      var shards = decks[i].shards || [];
+      for (var j = 0; j < shards.length; j++) if (shards[j].url === url) return shards[j];
+    }
+    return null;
+  }
+
+  function ensureDeckIndex(deckOrId, mem) {
+    return loadManifest().then(function () {
+      var id = typeof deckOrId === 'string' ? deckOrId : (deckOrId && deckOrId.id);
+      var entry = entryById(id);
+      var current = byId(id);
+      if (!entry || !current) return copyDeck(deckOrId, mem);
+      if (current._contentReady) return copyDeck(current, mem);
+      var indexShards = entry.indexShards || [];
+      if (!indexShards.length) return ensureDeck(id, mem);
+      var append = entry.shards.length && entry.shards[0].mode === 'append';
+      var baseItems = append ? (current.items || []).slice() : [];
+      return Promise.all(indexShards.map(loadIndexShard)).then(function (parts) {
+        var items = baseItems;
+        parts.forEach(function (part) {
+          (part.items || []).forEach(function (item) {
+            var summary = {
+              cid: item.cid,
+              sentence: item.sentence,
+              translation: item.translation,
+              _contentRef: { url: item.sourceUrl, offset: item.sourceOffset }
+            };
+            items.push(summary);
+          });
+        });
+        var out = {};
+        Object.keys(current).forEach(function (k) { out[k] = current[k]; });
+        out.items = items;
+        out.itemCount = Number(entry.totalCount) || items.length;
+        out._contentIndexReady = true;
+        out._contentReady = false;
+        return copyDeck(out, mem);
+      }).catch(function (err) {
+        /* 旧 manifest 或 index 发布不完整时保持旧版可用。 */
+        if (!entry.legacyFallback) throw err;
+        return ensureDeck(id, mem);
+      });
+    });
+  }
+
+  function hydrateItems(items) {
+    items = Array.isArray(items) ? items : [];
+    return loadManifest().then(function () {
+      var groups = {};
+      items.forEach(function (item) {
+        var ref = item && item._contentRef;
+        if (ref && ref.url) {
+          if (!groups[ref.url]) groups[ref.url] = [];
+          groups[ref.url].push(ref);
+        }
+      });
+      var urls = Object.keys(groups);
+      if (!urls.length) return items.slice();
+      var loadedByUrl = {};
+      return Promise.all(urls.map(function (url) {
+        var shard = findDetailShard(url);
+        if (!shard) throw new Error('找不到 index 指向的详情分片：' + url);
+        return loadShard(shard).then(function (data) { loadedByUrl[url] = data; });
+      })).then(function () {
+        return items.map(function (item) {
+          var ref = item && item._contentRef;
+          if (!ref || !ref.url) return item;
+          var data = loadedByUrl[ref.url];
+          var actual = data && data.items && data.items[ref.offset];
+          if (!actual || actual.cid !== item.cid) {
+            actual = data && data.items && data.items.find(function (candidate) { return candidate.cid === item.cid; });
+          }
+          if (!actual) throw new Error('详情分片中找不到句子：' + item.cid);
+          var out = {};
+          Object.keys(actual).forEach(function (k) { out[k] = actual[k]; });
+          Object.keys(item).forEach(function (k) { if (k.indexOf('_') === 0) out[k] = item[k]; });
+          return out;
+        });
+      });
+    });
   }
 
   function cloneCursor(c) {
@@ -430,6 +556,17 @@
     });
   }
 
+  function ensureIndexAll(mem) {
+    return loadManifest().then(function () {
+      return Promise.all((manifest.decks || []).map(function (entry) { return ensureDeckIndex(entry.id, mem); })).then(function (builtins) {
+        var builtinIds = {};
+        builtins.forEach(function (deck) { if (deck) builtinIds[deck.id] = true; });
+        var users = global.CL && global.CL.allDecks ? global.CL.allDecks(mem) : ((mem && mem.decks) || []);
+        return builtins.concat(users.filter(function (deck) { return deck && !builtinIds[deck.id]; }).map(function (deck) { return copyDeck(deck, mem); }));
+      });
+    });
+  }
+
   global.ContentRepo = {
     MANIFEST_URL: MANIFEST_URL,
     PRACTICE_BATCH_THRESHOLD: PRACTICE_BATCH_THRESHOLD,
@@ -437,6 +574,9 @@
     getManifest: getManifest,
     ensureDeck: ensureDeck,
     ensureDeckBatch: ensureDeckBatch,
+    ensureDeckIndex: ensureDeckIndex,
+    ensureIndexAll: ensureIndexAll,
+    hydrateItems: hydrateItems,
     shouldBatch: shouldBatch,
     ensureAll: ensureAll
   };

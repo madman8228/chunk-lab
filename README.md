@@ -33,7 +33,7 @@ UI 层        main.html（练习入口）· decks.html（题库管理）· stats
 共享核心层   core.js（CL 单例）· srs.js（纯函数）· library.js · course-package.js · api.js · auth-ui.js
 云端后端     server/（Express + SQLite + JWT）：鉴权 / 数据 / 单条课程 / 备份 / 健康 / AI 代理
 数据层       浏览器 localStorage / IndexedDB（离线优先·版本化）+ 云端 SQLite（权威数据，按 user_id 隔离）
-内容层       content/manifest.json + hash 分片（内置扩展题库按需加载）；builtins.js 保留基础题库与兼容兜底
+内容层       content/manifest.json + hash 详情/索引分片（内置扩展题库按需加载）；builtins.js 保留基础题库与兼容兜底
 ```
 
 关键决策（ADR，详见 [`architecture-plan.md`](./architecture-plan.md)）：
@@ -166,7 +166,7 @@ node rev.test.js                  # ADR-005 实体级 rev 同步 + 离线 change
 
 浏览器端到端回归（Playwright，一键跑，自动拉起临时 server）：
 ```bash
-npm run e2e:all    # 一键跑全部浏览器套件（当前 33 个，含分批/IDB 验证），按需拉起临时 server，汇总通过率
+npm run e2e:all    # 一键跑全部浏览器套件（当前 35 个，含分批/索引/IDB 验证），按需拉起临时 server，汇总通过率
 npm run e2e        # 主 UI 回归 97 项
 npm run e2e-sync   # 双设备同步对抗 7 项（ADR-005 端到端：per-entity 隔离 / LWW / 软删传播 / 删除重建 / stale 拒写）
 # 覆盖：main 正常路径（顶栏 SVG/真实句子/候选区/零 pageerror）、
@@ -228,7 +228,7 @@ node server/backup-cli.js list                # 列出备份
 - 🟡 `main.html` 仍是 ~5.0k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
 - 🟡 `oral8000.js` 现为 150 句口语种子（并入 builtin-daily，共 238 句）；扩展内容运行 `npm run content:build` 生成可按需加载的分片，超过 1000 句的内置题库练习会按“每批数量”读取并写入独立内容缓存，源文件仍作为兼容回退
-- 🟡 8000 句上线前仍需为统计与到期复习补轻量内容索引；普通练习路径已具备分批读取，不会在入口一次解析整库
-- 🟡 主流程改动后记得跑 `npm run e2e:all`（当前 33 套件 / 含主 UI 回归，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
+- 🟡 统计与到期复习已使用轻量内容索引；8000 句上线前仍需完成内容质量门禁和真实移动端压力验收
+- 🟡 主流程改动后记得跑 `npm run e2e:all`（当前 35 套件 / 含主 UI 回归，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
 
 > 早期迭代中的问题（同步整块覆盖、AI Key 前端直连、后端零校验、移动端适配弱、核心逻辑无单测等）均已按 architecture-plan 的 Phase A→C 闭环，ADR 清单见上。
