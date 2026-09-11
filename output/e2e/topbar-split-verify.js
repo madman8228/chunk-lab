@@ -6,7 +6,50 @@
  */
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
+const http = require('http');
+const { spawn } = require('child_process');
+
+/* 端口：自带服务器 + 向 OS 要空闲端口（2026-09-11，同 e2e/lib/free-port.js 的根因修复）。
+   原写法依赖外部在 localhost:8896 起服务 → 该端口被别的进程（并发会话 / 上次崩掉留下的
+   孤儿 server）占着时，我们 spawn 的 server 绑不上端口直接退出，而健康检查却从「占着端口的
+   那个人」拿到 200 → 误报「✓ 就绪」，随后对方退出 → page.goto 报 ERR_CONNECTION_REFUSED。
+   实测本轮 e2e:all 就这么假失败了一次（同 8933 / 9128 撞端口家族）。 */
+const PORT = require('../../e2e/lib/free-port').freePort(8896, 60);
+const BASE = 'http://127.0.0.1:' + PORT;   /* 不用 localhost：避免 ::1/IPv4 解析歧义 */
+const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-topbarsplit-'));
+let server = null;
+
+function startServer() {
+  return new Promise(function (resolve, reject) {
+    server = spawn(process.execPath, ['index.js'], {
+      cwd: path.join(__dirname, '..', '..', 'server'),
+      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT) }),
+      stdio: 'ignore'
+    });
+    let tries = 0;
+    const iv = setInterval(function () {
+      tries++;
+      if (server.exitCode !== null) { clearInterval(iv); reject(new Error('server exit ' + server.exitCode)); return; }
+      const req = http.get({ host: '127.0.0.1', port: PORT, path: '/api/health' }, function (r) {
+        if (r.statusCode === 200) { clearInterval(iv); resolve(); }
+      });
+      req.on('error', function () { /* retry */ });
+      req.setTimeout(600, function () { req.destroy(); });
+      if (tries > 40) { clearInterval(iv); reject(new Error('server start timeout')); }
+    }, 400);
+  });
+}
+/* 必须兜住脚本异常退出：否则 spawn 出来的 server 会变成孤儿进程长期占住该端口
+   （宿主机上 8933/9042/9128 那批僵尸监听就是这么攒出来的）。 */
+function stopServer() {
+  if (server) { try { server.kill('SIGKILL'); } catch (e) { /* noop */ } server = null; }
+  try { fs.rmSync(TMP_DB, { recursive: true, force: true }); } catch (e) { /* best-effort */ }
+}
+
 (async () => {
+  await startServer();
+  try {
   const CHROMIUM = process.env.CHROMIUM_PATH || 'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe';
   const { chromium } = require('playwright-core');
   const SHOTS = path.join(__dirname, 'shots');
@@ -82,7 +125,7 @@ const fs = require('fs');
   /* ========== 1. 首页 ========== */
   const ctxA = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const pa = await ctxA.newPage();
-  await pa.goto('http://localhost:8896/main.html', { waitUntil: 'networkidle' });
+  await pa.goto(BASE + '/main.html', { waitUntil: 'networkidle' });
   await pa.waitForSelector('#pageHome', { timeout: 10000 });
   await pa.waitForTimeout(400);
 
@@ -156,7 +199,7 @@ const fs = require('fs');
   await ctxA.close();
   const ctxM = await browser.newContext({ viewport: { width: 375, height: 700 }, isMobile: true, hasTouch: true });
   const mp = await ctxM.newPage();
-  await mp.goto('http://localhost:8896/main.html', { waitUntil: 'networkidle' });
+  await mp.goto(BASE + '/main.html', { waitUntil: 'networkidle' });
   await mp.waitForSelector('#pageHome', { timeout: 10000 });
   await mp.waitForTimeout(400);
   const m = await snap(mp);
@@ -166,4 +209,11 @@ const fs = require('fs');
 
   await browser.close();
   console.log('\n  Result:', process.exitCode ? 'FAIL' : 'ALL PASS');
-})();
+  } finally {
+    stopServer();
+  }
+})().catch(function (e) {
+  console.error(e);
+  stopServer();
+  process.exit(1);
+});
