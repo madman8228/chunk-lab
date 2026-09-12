@@ -110,6 +110,7 @@ function check(name, cond, detail) {
       shortcutDisplay: getComputedStyle(document.getElementById('stageTipBar')).display,
       preselectedCorrectChoices: document.querySelectorAll('#stageChoices .choice.correct').length,
       deckName: (document.getElementById('deckName') || {}).textContent || '',
+      practiceBack: !!document.getElementById('btnBack'),
       speakText: (document.getElementById('btnSpeak') || {}).textContent || '',
       speakClass: (document.getElementById('btnSpeak') || {}).classList && document.getElementById('btnSpeak').classList.contains('icon-action'),
       speakBorder: getComputedStyle(document.getElementById('btnSpeak')).borderTopStyle,
@@ -164,6 +165,7 @@ function check(name, cond, detail) {
   check('main: 切换音效不显示未同步提示', soundSyncBadge === 'none', 'display=' + soundSyncBadge);
   check('main: #zh 渲染真实句子（非占位）', ok.zh.length > 0 && ok.zh.indexOf('加载中') < 0, JSON.stringify(ok.zh));
   check('main: 顶栏题库名仅显示中文', ok.deckName.indexOf('日常对话') >= 0 && ok.deckName.indexOf('Daily Talk') < 0, JSON.stringify(ok.deckName));
+  check('main: 练习卡片不显示重复返回箭头', !ok.practiceBack, JSON.stringify(ok));
   check('main: 候选区渲染', ok.distractors > 0, 'n=' + ok.distractors);
   check('main: 候选项不预先泄露答案', ok.preselectedCorrectChoices === 0, 'correct=' + ok.preselectedCorrectChoices);
   check('main: 桌面保留键盘快捷键提示', ok.shortcutDisplay !== 'none', 'display=' + ok.shortcutDisplay);
@@ -303,6 +305,7 @@ function check(name, cond, detail) {
   const mainHtmlSrc = fs.readFileSync(path.join(__dirname, '..', 'main.html'), 'utf8');
   check('home: 源码已删"今日无到期"（防回潮）', mainHtmlSrc.indexOf('今日无到期') < 0, 'still in main.html');
   check('home: 源码已删"练点新的或休息"（防回潮）', mainHtmlSrc.indexOf('练点新的或休息') < 0, 'still in main.html');
+  check('main: 源码已删练习卡返回分流（防回潮）', mainHtmlSrc.indexOf('id="btnBack"') < 0 && mainHtmlSrc.indexOf('_fromDecks') < 0, 'still in main.html');
 
   const ctxNoDue = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const pNoDue = await ctxNoDue.newPage();

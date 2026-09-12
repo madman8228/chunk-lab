@@ -1080,7 +1080,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <div class="zh" id="zh"><span class="icon-spin" data-icon="refresh"></span> 加载中…</div>
       </div>
       <div class="stage-head-right">
-        <button class="icon-action" id="btnBack" title="返回主页" aria-label="返回主页"><span data-icon="arrowL"></span></button>
         <span class="reveal-tag hidden" id="revealTagWrap"></span>
       </div>
     </div>
@@ -4590,20 +4589,7 @@ $('stageTipBar').addEventListener('click', function(e){
   else if(act==='full') showFullSentence();
 });
 $('btnSpeak').onclick = function(){ speakSentence(); };
-/* 返回：sentence-level 练习，finishSentence 末尾已 saveStore（main.html:2794 附近），
-   中途退出不会丢失任何句子进度。直接 cancel TTS 后按来源分流，零确认。
-   来源判定：decks.html 点牌组「开始」跳转带 ?from=decks（见 decks.html notifyMain）
-   → 回题库列表；其余（首页点开始 / 到期复习 / ?direct=1）→ 回今日首页。 */
-var _fromDecks = (location.search || '').indexOf('from=decks') !== -1;
-$('btnBack').onclick = function(){
-  try{ speechSynthesis && speechSynthesis.cancel(); }catch(e){}
-  if(_fromDecks){ window.location.href = 'decks.html'; return; }
-  showHomePage();
-};
-if(_fromDecks){
-  var _bb = $('btnBack');
-  if(_bb){ _bb.title = '返回题库'; _bb.setAttribute('aria-label', '返回题库'); }
-}
+/* 练习卡片不再放置重复的返回箭头；退出练习统一使用顶部题库入口。 */
 /* 详解入口：答完当前句后打开详解页 */
 var _explainFromPage = 'pagePractice';
 $('btnExplain').onclick = function(){
