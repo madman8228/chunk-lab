@@ -165,7 +165,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
   background:var(--surface);border:1px solid var(--border);
   border-radius:16px;box-shadow:var(--shadow);
 }
-.stage{padding:16px 26px 18px;position:relative;overflow:hidden;margin-bottom:14px}
+.stage{padding:10px 26px 12px;position:relative;overflow:hidden;margin-bottom:14px}
 /* stage-head：flex 布局 + zh-wrap 绝对定位到卡片正中
    （不再用三栏 grid——左右列宽度不对称时中间列会偏离卡片中心） */
 /* 标熟按钮三态：
@@ -193,7 +193,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .stage-master.auto.paused #masterRingFg{animation-play-state:paused}
 /* 已标熟：绿色实心徽章 */
 .stage-master.done{background:var(--ok);color:#fff;border-color:var(--ok)}
-.stage-head{position:relative;display:flex;align-items:flex-start;gap:10px;margin-bottom:2px;min-height:44px}
+.stage-head{position:relative;display:flex;align-items:flex-start;gap:10px;margin-bottom:2px;min-height:36px}
 /* ★ 中文翻译绝对定位到卡片正中：左侧圆环 / 右侧 tag 宽度变化都不会把它挤偏 */
 .zh-wrap{position:absolute;left:50%;top:0;transform:translateX(-50%);text-align:center;min-width:0;max-width:calc(100% - 150px);display:flex;flex-direction:column;align-items:center;z-index:1}
 .sentence-speak{width:24px;height:24px;padding:0}
@@ -274,7 +274,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 }
 .zh{font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.45}
 
-.track-line{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;max-width:100%;margin:12px 0 6px}
+.track-line{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;max-width:100%;margin:8px 0 4px}
 .track-line > #track{min-width:0;flex:0 1 auto}
 .track-line > .sentence-speak{flex-shrink:0}
 .track{
@@ -490,7 +490,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 
 .stage-tip-bar{display:flex;align-items:center;justify-content:center;padding:2px 0 3px;margin-bottom:2px}
 .stage-tip-bar .foot-tip{display:inline-flex;align-items:center;gap:4px}
-.stage-foot{display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap;min-height:34px}
+.stage-foot{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;min-height:32px}
 .stage-foot > button{white-space:nowrap}
 /* 底部操作按钮共享同一触控尺寸；自动标熟圆环保留独立的圆形状态样式 */
   .stage-foot > #btnMaster:not(.auto),
