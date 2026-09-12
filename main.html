@@ -1093,7 +1093,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 
     <div class="stage-foot">
       <span class="spacer"></span>
-      <button class="stage-master" id="btnMaster" title="标记为已掌握（自选，未参与考试）" data-state="manual">熟</button>
+      <button class="stage-master" id="btnMaster" title="标记为已掌握" data-state="manual">熟</button>
       <button class="btn sm hidden" id="btnExplain">详解</button>
       <button class="btn sm primary hidden" id="btnNext">下一题</button>
     </div>
@@ -2900,7 +2900,7 @@ function toggleMastered(){
     b.classList.remove('filling','paused','auto');
     b.dataset.state = 'manual';
     b.textContent = '熟';
-    b.title = '标记为已掌握（自选，未参与考试）';
+    b.title = '标记为已掌握';
     return;
   }
   /* manual → 立即标熟 + 跳到下一题 + 从题库补一个未掌握新句子 */
@@ -2981,7 +2981,7 @@ function refreshMasterBtn(){
   }
   b.dataset.state = 'manual';
   b.textContent = '熟';
-  b.title = '标记为已掌握（自选，未参与考试）';
+  b.title = '标记为已掌握';
 }
 
 function next(){
