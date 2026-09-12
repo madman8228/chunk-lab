@@ -18,8 +18,8 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const { execSync } = require('child_process');
+const { hashFiles } = require('./scripts/sw-hash.js');
 
 const ROOT = path.resolve(__dirname);
 const SW = path.join(ROOT, 'sw.js');
@@ -41,14 +41,6 @@ function listOf(name) {
   const m = sw.match(new RegExp('const ' + name + ' = \\[([\\s\\S]*?)\\n\\];'));
   if (!m) return null;
   return (m[1].match(/'([^']+)'/g) || []).map(function (s) { return s.slice(1, -1); });
-}
-function normalizeCache(src) {
-  return src.replace(/^const CACHE = '[^']*';.*$/m, "const CACHE = '<AUTO>';");
-}
-function sha8(parts) {
-  const h = crypto.createHash('sha1');
-  parts.forEach(function (p) { h.update(p); });
-  return h.digest('hex').slice(0, 8);
 }
 
 console.log('【1. 清单存在性与划分】');
@@ -119,11 +111,12 @@ console.log('');
 console.log('【4. 软清单必须计入版本哈希（回归 B 的直接检测）】');
 const cacheMatch = sw.match(/^const CACHE = '([^']*)';/m);
 const cur = cacheMatch ? cacheMatch[1] : '';
-const swNorm = normalizeCache(sw);
 function hashFor(urls) {
-  const parts = urls.map(function (u) { return fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))); });
-  parts.push(swNorm);
-  return sha8(parts);
+  return hashFiles({
+    root: ROOT,
+    files: urls,
+    swSource: sw
+  }).slice(0, 8);
 }
 const withSoft = 'chunklab-' + hashFor(hard.concat(soft));
 const withoutSoft = 'chunklab-' + hashFor(hard);

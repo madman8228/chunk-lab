@@ -91,7 +91,7 @@ function PAGE_ADD_DECK_B() {
 /* 读磁盘观测值（不经过任何内存态） */
 function PAGE_READ_STATE() {
   var o = {};
-  try { o = JSON.parse(localStorage.getItem('chunklab.v1') || '{}'); } catch (e) { o = {}; }
+  try { o = JSON.parse(window.AccountStorage.storage.getItem('chunklab.v1') || '{}'); } catch (e) { o = {}; }
   return {
     deckIds: (o.decks || []).map(function (d) { return d.id; }).sort(),
     hasBMarked: !!(o.mastered && o.mastered['deckB#bbbbbbbb']),
@@ -141,7 +141,7 @@ function PAGE_READ_STATE() {
   await settle(nB);
   /* A 记下自己此刻的「旧快照」原始串（这是 P0 里那个会覆盖别人的旧快照） */
   await nA.evaluate(function () {
-    window.__staleRaw = localStorage.getItem('chunklab.v1');
+    window.__staleRaw = window.AccountStorage.storage.getItem('chunklab.v1');
     window.__stale = window.CL.loadMem();
   });
   check('前置：A 的旧快照里没有 deckB',
@@ -152,7 +152,7 @@ function PAGE_READ_STATE() {
   check('前置：B 的 deckB 已落盘（B 的写入正常生效）',
     negBefore.deckIds.indexOf('deckB') >= 0, JSON.stringify(negBefore.deckIds));
   /* A 按改造前的方式整份覆盖（等价旧 writeLocalMem：写前不做任何版本检查） */
-  await nA.evaluate(function () { localStorage.setItem('chunklab.v1', window.__staleRaw); });
+  await nA.evaluate(function () { window.AccountStorage.storage.setItem('chunklab.v1', window.__staleRaw); });
   const negAfter = await nA.evaluate(PAGE_READ_STATE);
   check('★ 负向验证：无保护的整份覆盖 → B 的 deckB 静默消失（漏洞真实存在，护栏有的放矢）',
     negAfter.deckIds.indexOf('deckB') < 0, JSON.stringify(negAfter.deckIds));

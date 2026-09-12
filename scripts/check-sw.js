@@ -17,8 +17,8 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const { execSync } = require('child_process');
+const { hashFiles } = require('./sw-hash.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const SW = path.join(ROOT, 'sw.js');
@@ -42,28 +42,21 @@ const softList = softMatch
   ? softMatch[1].split(',').map(s => s.trim().replace(/['"]/g, '')).filter(Boolean)
   : [];
 const files = precache.concat(softList);
-/* 归一化：把 CACHE 行的值抹成固定占位符再算 hash，与 gen-sw.js 保持同一套基准。
-   否则「CACHE 行自身参与 hash + 写回新值」形成自指漂移，这里永远对不上（2026-09-10 修）。 */
-function normalizeCache(src){
-  return src.replace(/^const CACHE = '[^']*';.*$/m, "const CACHE = '<AUTO>';");
-}
-const h = crypto.createHash('sha1');
 const missing = [];
 /* 必须与 gen-sw.js 的 hash 源顺序完全一致：先 PRECACHE 再 PRECACHE_SOFT */
 files.forEach(function (f) {
-  try { h.update(fs.readFileSync(path.join(ROOT, f))); }
+  try { fs.accessSync(path.join(ROOT, f)); }
   catch (e) { missing.push(f); }
 });
-h.update(normalizeCache(sw));   /* sw.js 自身也计入（与 gen-sw 对齐，CACHE 行已归一化） */
-const calc = h.digest('hex').slice(0, 8);
 const cur = cacheMatch[1];
 /* gen-sw 写入带 'chunklab-' 前缀（PWA 缓存名语义）→ 比对须拼前缀，否则纯 hash8 永远 != 带前缀 cur */
-const expect = 'chunklab-' + calc;
 
 if (missing.length) {
   console.error('[check-sw] 预缓存清单含缺失文件: ' + missing.join(', '));
   process.exit(1);
 }
+const calc = hashFiles({ root: ROOT, files, swSource: sw }).slice(0, 8);
+const expect = 'chunklab-' + calc;
 if (cur === expect) {
   console.log('[check-sw] ✓ CACHE=' + cur + ' 与 ' + precache.length + ' 个原子预缓存 + ' +
     softList.length + ' 个软预缓存文件一致');

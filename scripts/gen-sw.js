@@ -19,8 +19,8 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const deps = require('./lib-deps.js');
+const { hashFiles } = require('./sw-hash.js');
 
 const ROOT = deps.ROOT;
 const SW = path.join(ROOT, 'sw.js');
@@ -82,21 +82,13 @@ sw = sw.replace(listMatch[0], newList);
    且 check-sw 永远对不上（只能靠"有未提交改动"的 WIP 豁免蒙混过关）。
    修正：算 hash 前把 CACHE 行的值归一化成固定占位符 —— SW 逻辑变更仍能触发新版本（保留初衷），
    版本号自身不再自指，gen-sw 恢复幂等。check-sw.js 用同一套归一化逻辑对齐。 */
-function normalizeCache(src){
-  return src.replace(/^const CACHE = '[^']*';.*$/m, "const CACHE = '<AUTO>';");
-}
-const h = crypto.createHash('sha1');
-for (const u of files) h.update(fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))));
 /* PRECACHE_SOFT 也必须计入哈希：它们不进原子清单，但内容变更仍须让 CACHE 版本翻新，
    否则客户端 cache-first 会永远命中旧题库（"改了像没改"，本护栏存在的根本原因）。 */
 const missingSoft = softList.filter(function (u) { return !fs.existsSync(path.join(ROOT, u.replace(/^\//, ''))); });
 if (missingSoft.length) console.warn('[gen-sw] PRECACHE_SOFT 文件缺失: ' + missingSoft.join(', '));
-for (const u of softList) {
-  if (missingSoft.includes(u)) continue;
-  h.update(fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))));
-}
-h.update(normalizeCache(sw));   /* sw.js 最终清单也算入（CACHE 行归一化后） */
-const version = 'chunklab-' + h.digest('hex').slice(0, 8);
+/* The shared hash below covers the final PRECACHE and soft lists. */
+const hashFilesList = files.concat(softList.filter(function (u) { return !missingSoft.includes(u); }));
+const version = 'chunklab-' + hashFiles({ root: ROOT, files: hashFilesList, swSource: sw }).slice(0, 8);
 
 /* ---------- 体积护栏 ----------
    大文件进原子 PRECACHE 会让 SW 安装变脆（见 sw.js PRECACHE_SOFT 说明）。
