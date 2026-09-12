@@ -3,7 +3,7 @@
 - Status: code-side-complete; external-release-gates-pending
 - Updated: 2026-09-12
 - Branch/worktree: codex/pre-release-thematic-commits / D:\06-project\chunk-practice
-- Current code baseline: `a1ebc09`；71 个文件已按主题拆分提交，快照分支/tag 为 `snapshot/pre-commit-20260912`。当前工作区干净；不得把旧的未提交状态描述当作当前状态。
+- Current code baseline: `040e67e`；71 个文件已按主题拆分提交，快照分支/tag 为 `snapshot/pre-commit-20260912`。当前工作区干净；不得把旧的未提交状态描述当作当前状态。跨平台 Service Worker 哈希和多标签页回归已补齐。
 - Planner: GPT-6 Astra
 - Executor: GPT-5.6 Luna
 
