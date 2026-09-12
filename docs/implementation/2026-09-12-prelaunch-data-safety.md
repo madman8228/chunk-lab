@@ -1,9 +1,9 @@
 # 首版上线数据安全收口：Astra → Luna 实施交接
 
-- Status: in-progress
+- Status: code-side-complete; external-release-gates-pending
 - Updated: 2026-09-12
-- Branch/worktree: master / D:\06-project\chunk-practice
-- Base commit and relevant uncommitted changes: 4208ebd947b41dba9c2a18ea8d9b58ef09395ad8；账户隔离、恢复、条件批量同步及其测试均有未提交改动，必须基于当前工作区续作，不能退回 HEAD 重做。
+- Branch/worktree: codex/pre-release-thematic-commits / D:\06-project\chunk-practice
+- Current code baseline: `a1ebc09`；71 个文件已按主题拆分提交，快照分支/tag 为 `snapshot/pre-commit-20260912`。当前工作区干净；不得把旧的未提交状态描述当作当前状态。
 - Planner: GPT-6 Astra
 - Executor: GPT-5.6 Luna
 
@@ -17,9 +17,9 @@
 
 ## Current state and evidence
 
-2026-09-12续规划：下表为首轮规划时的基线。当前四页已加载 BatchSync，普通发送已部分接通，备份导入已换入口；但安全合同尚未实现完整。**下一次执行必须先完成文末“剩余工作执行顺序（修订版）”，其具体决策优先于历史执行记录。** 本轮仅更新交接文件，没有改产品代码或重跑测试。
+2026-09-12续规划：下表是首轮规划时的历史基线，不代表当前代码状态。当前四页已加载 BatchSync，普通发送、备份导入、冲突恢复、发布重试和移动端 8000 句模拟均已接通；最新状态以本文末尾的收口记录和 `RELEASE_CHECKLIST.md` 为准。旧 R1—R5、D1—D4 勾选项保留作决策轨迹，不得据此重复创建已完成工作包。
 
-已核对工作区、发布清单、项目记忆、核心发送路径、服务端写接口、BatchSync 实现和测试入口。本轮是规划，未重跑测试；下列通过记录来自现有项目记录。
+下方 D1—D4 表格、合同和实施步骤保留为历史规划轨迹，不代表当前未完成状态。当前代码侧回归已执行：`npm test`、`npm run test:accounts`、`npm run test:batch-sync`、同步/恢复专项及 8000 句移动专项均通过；发布前仍只剩真实生产配置、独立恢复演练、真机验收和发布授权。
 
 | 工作包 | 已有基础 | 上线阻断缺口 |
 | --- | --- | --- |
