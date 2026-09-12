@@ -529,7 +529,9 @@ button.kbd-action:active{transform:translateY(1px)}
   -webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 4px 16px rgba(0,0,0,.35));
 }
-#perfectToast .sub{margin-top:2px;font-size:15px;font-weight:700;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+/* 副标题：原先 #fff + 重阴影在浅色卡片上几乎不可读（老板 2026-09-12 截图反馈）。
+   改暖灰；比 var(--muted)#74716a 略深一档，使页面底色 #f4f2ee 上也满足 AA 4.5（实测 4.7 / 卡片面 5.2）。 */
+#perfectToast .sub{margin-top:2px;font-size:15px;font-weight:700;color:#6f6c65;text-shadow:0 1px 3px rgba(46,43,37,.16)}
 
 #fx{position:fixed;inset:0;z-index:55;pointer-events:none}
 
@@ -2496,7 +2498,7 @@ function bindCalPop(){
     var lvClass = rounds >= 7 ? 'good' : '';   /* ≥7 强学习，加 good 色 */
     pop.innerHTML =
       '<div class="pop-info-title"><span class="title-text">' + day + '</span></div>' +
-      '<div class="pop-info-row"><span class="lbl">练习</span><span class="val ' + lvClass + '">' + rounds + ' 次</span></div>';
+      '<div class="pop-info-row"><span class="lbl">完成练习</span><span class="val ' + lvClass + '">' + rounds + ' 轮</span></div>';
     var r = cell.getBoundingClientRect();
     var centerX = r.left + r.width / 2;
     var half = pop.offsetWidth / 2;
@@ -2625,24 +2627,31 @@ function renderActiveChoices(){
   var box = $('stageChoices'); if(!box) return;
   if(mem.settings.mode !== 'choose'){ box.innerHTML = ''; return; }
   var it = cur(); if(!it){ box.innerHTML = ''; return; }
-  /* 懒建池：进入新句子时一次性建立 corrects + distractors */
+  /* 懒建池：进入新句子时一次性建立**固定展示顺序**（干扰项 + 正确项 合并混洗一次）
+     ★ 修根因（2026-09-12，老板截图实证「答案一直在最后几个」）：原实现先排全部干扰项、
+       再按 chunks 原文顺序追加正确项，整池从未洗过 → 正确答案恒占尾部 C 个且顺序 = 句子顺序，
+       照抄位置就能全对，干扰项完全失效。此处两者合并后混洗成固定顺序：
+       order 元素 { v: 候选文本, ci: -1 表示干扰项 / ≥0 表示第 ci 个正确 chunk }。
+       只洗一次（不是每次渲染都洗）：否则每答完一个 chunk 按钮整体重排，点击目标会跳动。 */
   if(!S.choicesPool || S.choicesPool.it !== it){
-    S.choicesPool = { it: it, corrects: it.chunks.slice(), distractors: buildDistractors(it) };
+    var corrects = it.chunks.slice(), distractors = buildDistractors(it);
+    var order = [];
+    distractors.forEach(function(v){ order.push({ v:v, ci:-1 }); });
+    corrects.forEach(function(v, k){ order.push({ v:v, ci:k }); });
+    for(var i=order.length-1; i>0; i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t = order[i]; order[i] = order[j]; order[j] = t;
+    }
+    S.choicesPool = { it: it, corrects: corrects, distractors: distractors, order: order };
   }
   var pool = S.choicesPool;
   /* 答完全部 chunks 不再清空 chips：distractors 仍可见，可"自由试错"（重选同一项）
      + 已 ok 的 correct 在渲染循环里跳过（不重复显示）；视觉通过 :has([data-done]) 控制半透明 */
   var html = '';
-  /* 干扰项：始终可选 */
-  pool.distractors.forEach(function(v){
-    html += '<button class="choice distractor" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
+  pool.order.forEach(function(e){
+    if(e.ci >= 0 && S.status[e.ci] === 'ok') return;
+    html += '<button class="choice'+(e.ci<0?' distractor':'')+'" type="button" data-v="'+esc(e.v)+'">'+esc(e.v)+'</button>';
   });
-  /* 未填的正确答案：按顺序排列，但不预先标色或高亮 */
-  for(var k=0; k<pool.corrects.length; k++){
-    if(S.status[k] === 'ok') continue;
-    var v = pool.corrects[k];
-    html += '<button class="choice" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>';
-  }
   box.innerHTML = html;
   /* revealTagWrap 只在"已掌握/需巩固"两条 actionable 复习建议分支里显示（见 finishSentence）。
      「已答完」outcome tag 已于 2026-09-10 移除——错 1 自纠态的"沉默"本来就是正确反馈
@@ -3767,12 +3776,12 @@ function renderHome(){
   var t = computeToday();
   var ic = function(n){ return window.Icons ? Icons.svg(n) : ''; };
   var escX = esc;
-  /* 是否曾有练习痕迹（决定空档案引导 vs 今日聚合） */
+  /* 是否曾有真实练习痕迹（决定空档案引导 vs 今日聚合）。
+     best.lastPlayed 只代表“打开过题库”，startDeck 会在开始时更新它，
+     不能拿来证明用户完成过答题；否则刚打开练习又返回首页就会看到一张
+     全是 0 的打卡日历，正是“练习一直是 0 次”的误导来源。 */
   var byKeys = (mem.stats && mem.stats.bySentence) ? Object.keys(mem.stats.bySentence).length : 0;
   var hasEver = !!((mem.stats && mem.stats.totalAnswered) || byKeys);
-  if(!hasEver && mem.best){
-    hasEver = Object.keys(mem.best).some(function(k){ return !!(mem.best[k] && mem.best[k].lastPlayed); });
-  }
   var decks = allDecks();
   /* 继续上次：activeDeckId 有效 → 首卡；否则最近 lastPlayed 的 deck */
   var resume = null;
@@ -3860,12 +3869,12 @@ function renderHome(){
       var _lv = _r >= 7 ? 4 : _r >= 4 ? 3 : _r >= 2 ? 2 : _r >= 1 ? 1 : 0;
       var _fut = _i > _todayD;
       /* 非未来日期挂 data 属性，供 cal-pop 事件代理识别 */
-      var _attrs = _fut ? '' : ' tabindex="0" role="button" aria-label="' + _key + ' 复习 ' + _r + ' 次" data-day="' + _key + '" data-rounds="' + _r + '"';
+      var _attrs = _fut ? '' : ' tabindex="0" role="button" aria-label="' + _key + ' 完成练习 ' + _r + ' 轮" data-day="' + _key + '" data-rounds="' + _r + '"';
       _cells += '<div class="cal-cell ' + (_fut ? 'lx' : 'l' + _lv) + (_i === _todayD ? ' today' : '') + '"' + _attrs + '>' + _i + '</div>';
     }
     /* 左栏：日历 grid + footer */
     var _cellsHtml = '<div class="cal-grid">' + _cells + '</div>'
-      + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>共练习 <b>' + _mRounds + '</b> 次<span class="s-dot">·</span>今日 <b>' + _todayN + '</b> 次</div>';
+      + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>完成练习 <b>' + _mRounds + '</b> 轮<span class="s-dot">·</span>累计答题 <b>' + ((mem.stats && mem.stats.totalAnswered) || 0) + '</b> 句</div>';
     /* 右栏：继续/最近 deck rows */
     var _rows = [];
     if(resume){

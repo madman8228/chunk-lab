@@ -191,7 +191,10 @@ function check(name, cond, detail) {
    * 防回潮：直接断言页面里没有这两个 ID。 */
   const pHomeLinks = await ctx.newPage();
   await pHomeLinks.route('**/api/**', function (r) { r.abort('failed'); });
-  await pHomeLinks.addInitScript(function () { localStorage.clear(); });
+  await pHomeLinks.addInitScript(function () {
+    localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+  });
   await pHomeLinks.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
   await pHomeLinks.waitForSelector('#homeBody', { timeout: 10000 });
   await pHomeLinks.waitForTimeout(800);
@@ -306,6 +309,7 @@ function check(name, cond, detail) {
   await pNoDue.route('**/api/**', function (r) { r.abort('failed'); });
   await pNoDue.addInitScript(function () {
     localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
     /* 构造：1 deck + 1 stats（dueAt=明天，未到期）→ totalRounds=1 走 else 分支，t.due=0 不渲染提示。
        同时注入今天 daysLog.rounds=5，让 today cell 走 l3 深橙背景 + today 加粗，便于测视觉。 */
     var today = new Date();
@@ -356,6 +360,36 @@ function check(name, cond, detail) {
   await pNoDue.close();
   await ctxNoDue.close();
 
+  /* ===== 1a. 首页空态边界：只打开题库不能伪造“练习过” =====
+   * startDeck 为了支持“最近练习”会写 best.lastPlayed，但此时还没有完成句子。
+   * 这类数据不应显示一张全是 0 的打卡日历，否则用户会误以为练习统计失效。 */
+  const ctxStartedOnly = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const pStartedOnly = await ctxStartedOnly.newPage();
+  await pStartedOnly.route('**/api/**', function (r) { r.abort('failed'); });
+  await pStartedOnly.addInitScript(function () {
+    localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+    localStorage.setItem('chunklab.v1', JSON.stringify({
+      version: 2, decks: [], best: { 'builtin-daily': { lastPlayed: Date.now() } },
+      mastered: {}, deletedItems: {}, reinforceBook: [],
+      stats: { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [], daysLog: {} },
+      settings: { mode: 'choose', skipMastered: false, batchSize: 10 }
+    }));
+  });
+  await pStartedOnly.goto(BASE + '/main.html?preview=started-only', { waitUntil: 'domcontentloaded' });
+  await pStartedOnly.waitForSelector('#homeBody', { timeout: 10000 });
+  await pStartedOnly.waitForTimeout(700);
+  const startedOnly = await pStartedOnly.evaluate(function () {
+    return {
+      empty: !!document.querySelector('#homeBody .home-empty'),
+      calendar: !!document.querySelector('#homeBody .cal-grid'),
+      footer: (document.querySelector('#homeBody .cal-foot') || {}).textContent || ''
+    };
+  });
+  check('home: 仅打开题库不显示全 0 打卡日历', startedOnly.empty && !startedOnly.calendar, JSON.stringify(startedOnly));
+  await pStartedOnly.close();
+  await ctxStartedOnly.close();
+
   /* ===== 1b. 统计身份回归：临时复习队列不能拆分原句历史 =====
    * 最小场景：同一句先从稳定题库练习，再从带时间戳的复习题库练习。
    * 现状会按两个 deck id 写成两条 bySentence 记录，导致累计次数看起来丢失。 */
@@ -363,6 +397,7 @@ function check(name, cond, detail) {
   await pStatsRoot.route('**/api/**', function (r) { r.abort('failed'); });
   await pStatsRoot.addInitScript(function () {
     localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
     localStorage.setItem('chunklab.v1', JSON.stringify({
       version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
       stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} },
@@ -399,6 +434,7 @@ function check(name, cond, detail) {
   await pStatsMigration.route('**/api/**', function (r) { r.abort('failed'); });
   await pStatsMigration.addInitScript(function () {
     localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
     localStorage.setItem('chunklab.v1', JSON.stringify({
       version: 2,
       decks: [{ id: 'user-deck', name: '我的题库', items: [{ sentence: 'Legacy sentence.', chunks: ['Legacy sentence.'] }] }],
@@ -630,6 +666,7 @@ function check(name, cond, detail) {
   await psm.route('**/api/**', function (r) { r.abort('failed'); });
   await psm.addInitScript(function () {
     localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
     localStorage.setItem('chunklab.v1', JSON.stringify({
       version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
       stats: { totalRounds: 1, totalAnswered: 4, bySentence: {
@@ -730,6 +767,7 @@ function check(name, cond, detail) {
   {
     const c4 = await localCtx(function () {
       localStorage.clear();
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2, decks: [], best: {}, mastered: {}, deletedItems: {}, reinforceBook: [],
         stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} },
@@ -767,6 +805,7 @@ function check(name, cond, detail) {
   {
     const c4b = await localCtx(function () {
       localStorage.clear();
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
         stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} },
@@ -800,6 +839,7 @@ function check(name, cond, detail) {
   {
     const c4c = await localCtx(function () {
       localStorage.clear();
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
         reinforceBook: [{ _key: 'daily-talk::Visible wrong sentence.', deckId: 'daily-talk', deckName: '日常对话',
@@ -837,6 +877,7 @@ function check(name, cond, detail) {
   {
     const c5 = await localCtx(function () {
       localStorage.clear();
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2, reinforceBook: [],
         decks: [{ id: 'e2e-mini', name: 'E2E 迷你题库', items: [
@@ -899,6 +940,33 @@ function check(name, cond, detail) {
       };
     });
     check('settle 5: 结算卡出现（最小 deck 真实答完）', settled && settleState.resultShown && settleState.btnOtherDeck, JSON.stringify({ settled: settled, st: settleState }));
+    const persistedPractice = await p5.evaluate(function () {
+      var m = CL.loadMem();
+      var today = CL.ymd(new Date());
+      return {
+        totalRounds: m.stats && m.stats.totalRounds,
+        totalAnswered: m.stats && m.stats.totalAnswered,
+        todayRounds: m.stats && m.stats.daysLog && m.stats.daysLog[today] && m.stats.daysLog[today].rounds
+      };
+    });
+    check('stats: 真实答完一轮后保存练习轮次与答题次数',
+      persistedPractice.totalRounds === 1 && persistedPractice.totalAnswered === 2 && persistedPractice.todayRounds === 1,
+      JSON.stringify(persistedPractice));
+    /* 用真实的“回今日”切页入口，避免重新加载时把启动链等待误当成统计失败。 */
+    await p5.evaluate(function () { showHomePage(); });
+    await p5.waitForSelector('#homeBody', { timeout: 10000 });
+    await p5.waitForTimeout(700);
+    const afterPracticeHome = await p5.evaluate(function () {
+      var today = document.querySelector('.cal-cell.today');
+      return {
+        todayRounds: today ? today.getAttribute('data-rounds') : null,
+        footer: (document.querySelector('.cal-foot') || {}).textContent || '',
+        hasZeroOnlyCalendar: !!(document.querySelector('.cal-grid') && /完成练习\s*0\s*轮/.test(document.querySelector('.cal-foot').textContent))
+      };
+    });
+    check('home: 返回首页后日历显示真实完成轮次', afterPracticeHome.todayRounds === '1' &&
+      afterPracticeHome.footer.indexOf('完成练习 1 轮') >= 0 && afterPracticeHome.footer.indexOf('累计答题 2 句') >= 0 &&
+      !afterPracticeHome.hasZeroOnlyCalendar, JSON.stringify(afterPracticeHome));
     /* 点「换个题库」应整页跳 decks.html（原 openDecks 内嵌列表已删）。
        ⚠ 竞速陷阱：不能先注册 waitForURL 再 click —— click 默认 30s actionability，
        结算后庆祝层短暂遮挡按钮会拖过 waitForURL 的 8s 超时。先点击（短超时，失败降级 DOM click），再等导航。 */
@@ -925,6 +993,7 @@ function check(name, cond, detail) {
   {
     const c6 = await localCtx(function () {
       localStorage.clear();
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2, reinforceBook: [],
         decks: [], /* 走 _startDeck 注入，无需预置 decks */
@@ -981,6 +1050,7 @@ function check(name, cond, detail) {
     const c7 = await browser.newContext({ viewport: { width: 1280, height: 800 } });
     await c7.addInitScript(function () {
       localStorage.clear();
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab_ai_cache_v1', JSON.stringify({ 'm::legacy': { obj: { orig: 'x' }, at: Date.now(), ver: 1 } }));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2, reinforceBook: [],
