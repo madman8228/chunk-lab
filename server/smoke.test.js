@@ -44,7 +44,7 @@ function request(method, p, token, body) {
       {
         hostname: u.hostname,
         port: u.port,
-        path: u.pathname,
+        path: u.pathname + u.search,
         method: method,
         headers: headers
       },
@@ -111,6 +111,7 @@ function waitHealth(timeoutMs) {
 }
 
 const childEnv = Object.assign({}, process.env, {
+  NODE_ENV: 'test',
   REQUIRE_AUTH: 'true',
   JWT_SECRET: 'smoke-test-secret-not-for-production',
   TOKEN_TTL: '30d',
@@ -639,6 +640,145 @@ async function main() {
       if (offChild) offChild.kill('SIGKILL');
       try { fs.rmSync(TMP_DB + '-off', { recursive: true, force: true }); } catch (e) { /* best-effort */ }
     }
+
+    // 冲突回执：同 rev 不同内容不能被当作成功；整批及下行水位一起回滚。
+    const seedConflict = {
+      mem: { decks: [{ id: 'ack-deck', name: 'A', items: [] }], settings: { sound: false } },
+      courses: [{ courseId: 'ack-course', title: 'A' }], courseProgress: { 'ack-course': { seen: ['n1'] } },
+      revs: { decks: { 'ack-deck': 50 }, kv: { settings: 50 }, courses: { 'ack-course': 50 }, courseProgress: { 'ack-course': 50 } }
+    };
+    r = await request('PUT', '/api/data', token, seedConflict);
+    check('conflict: seed accepted', r.status === 200);
+    const prior = (await request('GET', '/api/data', token)).json;
+    for (const entity of ['decks', 'kv', 'courses', 'courseProgress']) {
+      const payload = JSON.parse(JSON.stringify(seedConflict));
+      payload.mem.decks.push({ id: 'must-rollback', name: 'never committed', items: [] });
+      payload.revs.decks['must-rollback'] = 1;
+      payload.statsDelta = { evs: [{ id: 'must-rollback', at: 1, kind: 'round' }] };
+      if (entity === 'decks') payload.mem.decks[0].name = 'B';
+      if (entity === 'kv') payload.mem.settings.sound = true;
+      if (entity === 'courses') payload.courses[0].title = 'B';
+      if (entity === 'courseProgress') payload.courseProgress['ack-course'].seen = ['n2'];
+      r = await request('PUT', '/api/data', token, payload);
+      check('conflict: ' + entity + ' 409 with entity receipt', r.status === 409 && r.json.code === 'SYNC_CONFLICT' && r.json.conflicts[0].entity === entity);
+      const after = (await request('GET', '/api/data', token)).json;
+      check('conflict: ' + entity + ' transaction and cursor rolled back', after.seq === prior.seq && !after.mem.decks.some(d => d.id === 'must-rollback') && !after.mem.stats.events.some(ev => ev.id === 'must-rollback'));
+    }
+    seedConflict.courses = [{ title: 'A', courseId: 'ack-course' }];
+    r = await request('PUT', '/api/data', token, seedConflict);
+    check('conflict: identical retry accepted despite object key order', r.status === 200 && r.json.ok);
+    r = await request('PUT', '/api/data', token, { mem: {}, deleted: { courses: [{ id: 'ack-course', rev: 50 }] } });
+    check('conflict: same revision deletion rejected', r.status === 409);
+    r = await request('PUT', '/api/data', token, { mem: {}, deleted: { courses: [{ id: 'ack-course', rev: 51 }] } });
+    check('conflict: higher revision deletion accepted', r.status === 200);
+    r = await request('PUT', '/api/data', token, { mem: {}, deleted: { courses: [{ id: 'ack-course', rev: 51 }] } });
+    check('conflict: repeated tombstone accepted', r.status === 200);
+    r = await request('PUT', '/api/data', token, { mem: {}, courses: [{ courseId: 'ack-course', title: 'stale' }], revs: { courses: { 'ack-course': 50 } } });
+    check('conflict: stale resurrection explicitly rejected', r.status === 409);
+
+    // Explicit resolution: conditional write + both-version archive + idempotent receipt.
+    const readState = async (entity,id,t=token) => (await request('GET','/api/sync/entity?entity='+entity+'&id='+encodeURIComponent(id),t)).json;
+    r = await request('GET','/api/sync/entity?entity=decks&id=ack-deck',null);
+    check('resolution: authentication required', r.status === 401);
+    const cases = [
+      ['decks','ack-deck',{id:'ack-deck',name:'Chosen local',items:[]},'local'],
+      ['courses','ack-course',{courseId:'ack-course',title:'Restored course'},'local'],
+      ['courseProgress','ack-course',{seen:['chosen']},'local'],
+      ['kv','settings',{sound:true},'remote']
+    ];
+    let deckResolution;
+    for (const [entity,id,value,choice] of cases) {
+      const remote = await readState(entity,id);
+      const body = {entity,id,choice,requestId:'smoke-resolution-'+entity,expectedToken:remote.token,local:{rev:remote.rev,deleted:false,value}};
+      const resolved = await request('POST','/api/sync/resolve',token,body);
+      check('resolution: '+entity+' chosen value and monotonic revision', resolved.status===200 && resolved.json.state.rev===remote.rev+1 && JSON.stringify(resolved.json.state.value)===(choice==='local' && entity!=='decks' ? JSON.stringify(value) : JSON.stringify(choice==='remote'?remote.value:{...value,builtin:false,isPublic:false})));
+      const saved = (await request('GET','/api/sync/resolutions/'+body.requestId,token)).json;
+      check('resolution: '+entity+' both versions archived', saved.backup.local.value && JSON.stringify(saved.backup.remote)===JSON.stringify(remote));
+      const beforeRetry = (await request('GET','/api/data',token)).json.seq;
+      const retry = await request('POST','/api/sync/resolve',token,body);
+      check('resolution: '+entity+' retry does not reapply or advance cursor', JSON.stringify(retry.json)===JSON.stringify(resolved.json) && (await request('GET','/api/data',token)).json.seq===beforeRetry);
+      if(entity==='decks') deckResolution = body;
+    }
+    r = await request('GET','/api/sync/resolutions/'+deckResolution.requestId,tokenB);
+    check('resolution: another account cannot read backup', r.status===404);
+    check('resolution: entity reads are account scoped', (await readState('decks','ack-deck',tokenB)).deleted);
+    r = await request('POST','/api/sync/resolve',token,{...deckResolution,choice:'remote'});
+    check('resolution: request ID cannot be reused with another choice', r.status===409 && r.json.code==='RESOLUTION_REQUEST_CHANGED');
+    r = await request('POST','/api/sync/resolve',token,{...deckResolution,requestId:'smoke-stale-preview'});
+    check('resolution: outdated preview rejected', r.status===409 && r.json.code==='RESOLUTION_STALE');
+    r = await request('GET','/api/sync/entity?entity=__proto__&id=x',token);
+    check('resolution: unknown entity rejected', r.status===400);
+    r = await request('POST','/api/sync/resolve',token,{...deckResolution,entity:'kv',id:'stats',requestId:'smoke-invalid-stats',local:{rev:1,deleted:false,value:{bySentence:{}}}});
+    check('resolution: summary cannot overwrite sentence rows', r.status===400);
+
+    const txnDb = new (require('better-sqlite3'))(path.join(TMP_DB,'chunklab.db'));
+    try {
+      const remote = await readState('decks','ack-deck');
+      const beforeSeq = (await request('GET','/api/data',token)).json.seq;
+      const body = {...deckResolution,requestId:'smoke-atomic-backup',expectedToken:remote.token};
+      txnDb.exec("CREATE TRIGGER fail_resolution_backup BEFORE INSERT ON user_sync_resolutions BEGIN SELECT RAISE(ABORT,'backup unavailable'); END");
+      r = await request('POST','/api/sync/resolve',token,body);
+      check('resolution: archive failure rolls back entity and cursor', r.status===500 && (await readState('decks','ack-deck')).token===remote.token && (await request('GET','/api/data',token)).json.seq===beforeSeq);
+      txnDb.exec('DROP TRIGGER fail_resolution_backup');
+      // Even legacy writes which omit rev must invalidate the preview token.
+      await request('PUT','/api/data',token,{mem:{decks:[{id:'ack-deck',name:'Legacy changed',items:[]}]}});
+      r = await request('POST','/api/sync/resolve',token,body);
+      check('resolution: legacy update invalidates preview', r.status===409 && r.json.code==='RESOLUTION_STALE');
+      const latest = await readState('decks','ack-deck');
+      r = await request('POST','/api/sync/resolve',token,{...body,requestId:'smoke-delete-choice',expectedToken:latest.token,local:{rev:latest.rev,deleted:true,value:null}});
+      check('resolution: explicit deletion is versioned', r.status===200 && r.json.state.deleted && r.json.state.rev>latest.rev);
+    } finally { txnDb.close(); }
+
+    // Conditional writes: stale bases cannot win by proposing a larger revision.
+    for (const entity of ['decks','courses','courseProgress','kv']) {
+      const id = entity==='kv' ? 'best' : 'base-'+entity;
+      const current = await readState(entity,id);
+      const startBase = current.deleted && current.rev===0 ? null : current.rev;
+      const firstRev = current.rev+1, secondRev = firstRev+1;
+      function update(value,rev,baseRev) {
+        const body={mem:{},revs:{[entity]:{[id]:rev}},baseRevs:{[entity]:{[id]:baseRev}}};
+        if(entity==='decks') body.mem.decks=[{id,name:value,items:[]}];
+        else if(entity==='courses') body.courses=[{courseId:id,title:value}];
+        else if(entity==='courseProgress') body.courseProgress={[id]:{seen:[value]}};
+        else body.mem.best={testVersion:value};
+        return body;
+      }
+      r=await request('PUT','/api/data',token,update('base',firstRev,startBase));
+      check('baseRev: '+entity+' initial conditional write',r.status===200);
+      r=await request('PUT','/api/data',token,update('remote',secondRev,firstRev));
+      check('baseRev: '+entity+' known base advances',r.status===200);
+      const before=(await request('GET','/api/data',token)).json;
+      const stale=update('offline-many-edits',secondRev+100,firstRev);
+      const rollbackId='base-unrelated-'+entity;
+      stale.mem.decks=[{id:rollbackId,name:'must roll back',items:[]},...(stale.mem.decks||[])];
+      stale.revs.decks={...(stale.revs.decks||{}),[rollbackId]:1};
+      stale.baseRevs.decks={...(stale.baseRevs.decks||{}),[rollbackId]:null};
+      stale.statsDelta={evs:[{id:'base-rollback-'+entity,kind:'round',at:1}]};
+      r=await request('PUT','/api/data',token,stale);
+      check('baseRev: '+entity+' high revision stale base rejected',r.status===409 && r.json.conflicts[0].reason==='BASE_REV_MISMATCH' && r.json.conflicts[0].baseRev===firstRev);
+      const after=(await request('GET','/api/data',token)).json;
+      check('baseRev: '+entity+' conflict leaves data and cursor unchanged',JSON.stringify(before)===JSON.stringify(after));
+      r=await request('POST','/api/import',token,stale);
+      check('baseRev: '+entity+' import cannot bypass condition',r.status===409);
+      r=await request('PUT','/api/data',token,update('remote',secondRev,firstRev));
+      check('baseRev: '+entity+' lost response retry accepted',r.status===200);
+      const gone={mem:{},deleted:{[entity]:[entity==='kv'?{k:id,rev:secondRev+1}:{id,rev:secondRev+1}]},baseRevs:{[entity]:{[id]:firstRev}}};
+      r=await request('PUT','/api/data',token,gone);
+      check('baseRev: '+entity+' stale deletion rejected',r.status===409);
+      gone.baseRevs[entity][id]=secondRev;
+      r=await request('PUT','/api/data',token,gone);
+      check('baseRev: '+entity+' confirmed deletion accepted',r.status===200 && (await readState(entity,id)).deleted);
+      r=await request('PUT','/api/data',token,gone);
+      check('baseRev: '+entity+' deletion retry accepted',r.status===200);
+      r=await request('PUT','/api/data',token,update('stale resurrect',secondRev+500,secondRev));
+      check('baseRev: '+entity+' stale resurrection rejected',r.status===409);
+      r=await request('PUT','/api/data',token,update('new intent',secondRev+2,secondRev+1));
+      check('baseRev: '+entity+' known tombstone can be explicitly restored',r.status===200);
+    }
+    r=await request('PUT','/api/data',token,{mem:{decks:[{id:'base-decks',name:'missing condition',items:[]}]},revs:{decks:{'base-decks':1000}},baseRevs:{}});
+    check('baseRev: incomplete conditions cannot silently downgrade',r.status===400);
+    r=await request('PUT','/api/data',token,{mem:{decks:[{id:'base-decks',name:'create collision',items:[]}]},revs:{decks:{'base-decks':1000}},baseRevs:{decks:{'base-decks':null}}});
+    check('baseRev: creation condition cannot replace existing content',r.status===409);
 
     // ===== P0 回归（2026-09-09）：NODE_ENV=production 且非 REQUIRE_AUTH=true → 拒绝启动 =====
     const prodEnv = Object.assign({}, process.env, {

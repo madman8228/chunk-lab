@@ -54,14 +54,39 @@ function parseFiles() {
 }
 
 /* ---------- 部署安全顺序校验 ---------- */
-/* 四条不变量，都必须是「结构上可判定」的，不能靠读注释：
+/* 部署不变量都必须是「结构上可判定」的，不能靠读注释：
      ① 存在迁移前快照（调 server/backup-db.js backup）
      ② 快照在重启服务之前（顺序反了等于没备份）
      ③ 快照失败要中止（拿不到成功标记 → exit 1），不能 warn 放行
      ④ 进度判定不能取原始输出的最后一行（backup-db.js 超出保留份数会打印
-        「清理旧备份」，那是最后一行 —— tail -1 会在备份满 14 份后稳定误判） */
+        「清理旧备份」，那是最后一行 —— tail -1 会在备份满 14 份后稳定误判）
+     ⑤ 上传前必须跑本地完整回归（主套件、账号、批次、8000句移动专项）
+     ⑥ 远端必须显式启用生产模式、鉴权和强 JWT 密钥
+     ⑦ 部署目标必须由操作者显式传入，不能有危险默认主机 */
 function checkDeploySafety() {
   const problems = [];
+  if (SH.indexOf('if [ "$#" -ne 1 ]') < 0 || SH.indexOf('HOST="$1"') < 0) {
+    problems.push('部署脚本必须显式传入唯一目标主机，禁止使用默认公网主机');
+  }
+  const requiredPreflight = [
+    ['npm test', '主测试套件'],
+    ['npm run test:accounts', '账号隔离专项'],
+    ['npm run test:batch-sync', '批次同步专项'],
+    ['node e2e/mobile-8000.test.js', '8000句移动专项'],
+  ];
+  requiredPreflight.forEach(function (entry) {
+    if (SH.indexOf(entry[0]) < 0) {
+      problems.push('部署脚本缺少上传前的本地 ' + entry[1] + '（' + entry[0] + '）');
+    }
+  });
+  if (requiredPreflight.some(function (entry) { return SH.indexOf(entry[0]) < 0; })) {
+    problems.push('候选版本未经过完整发布回归，禁止上传');
+  }
+  if (SH.indexOf("grep -Eq '^NODE_ENV=production") < 0 ||
+      SH.indexOf("grep -Eq '^REQUIRE_AUTH=true") < 0 ||
+      !/JWT_SECRET[\s\S]*length\(\\?\$2\)>=32/.test(SH)) {
+    problems.push('部署脚本缺少远端生产配置预检（NODE_ENV=production、REQUIRE_AUTH=true、JWT_SECRET≥32）');
+  }
   const snapIdx = SH.indexOf('backup-db.js backup');
   const restartIdx = SH.indexOf('systemctl restart chunklab');
 
