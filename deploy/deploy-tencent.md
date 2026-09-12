@@ -127,8 +127,9 @@ sudo crontab -e    # 追加：
 全新部署**跳过本节**。若 v1 开放模式在别处积累过数据（落在默认用户 `__default__`），
 切多用户后无法登录 `__default__`，需迁移到真实账号：
 ```bash
-# 在还跑着开放模式的旧实例上：node server/migrate-open-to-user.js <旧实例Base> <新实例Base> boss '密码'
-# 详细语义见 server/migrate-open-to-user.js 头注释（幂等保护 + 落盘回滚 + 抽样校验）
+# 在还跑着开放模式的旧实例上：node server/migrate-open-to-user.js <旧实例Base> <新实例Base> boss '密码' --confirm
+# 该命令会先保存源快照，再使用目标账号级固定预览执行；没有 --confirm 会直接拒绝写入。
+# 详细语义见 server/migrate-open-to-user.js 头注释（目标快照 token + 备份 + 抽样校验）
 ```
 
 ---

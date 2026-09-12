@@ -283,5 +283,16 @@ storage['chunklab.v1'] = JSON.stringify({
 });
 assertEq(CL.backfillDaysLog(CL.loadMem()), 0, 'events 空 → 不回填');
 
+console.log('【保存失败不广播成功】');
+var updatedCount = 0, parentCount = 0;
+CL.on('memUpdated', function(){ updatedCount++; });
+window.parent = { postMessage: function(){ parentCount++; } };
+var originalSetItem = window.localStorage.setItem;
+window.localStorage.setItem = function(){ throw new Error('quota exceeded'); };
+assertEq(CL.saveAndNotify(CL.loadMem()), false, '保存失败返回 false');
+assertEq(updatedCount, 0, '不发送 memUpdated');
+assertEq(parentCount, 0, '不通知父窗口保存成功');
+window.localStorage.setItem = originalSetItem;
+
 console.log('\n结果：' + pass + ' 通过 / ' + fail + ' 失败');
 process.exit(fail ? 1 : 0);

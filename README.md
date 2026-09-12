@@ -186,11 +186,12 @@ npm run e2e-sync   # 双设备同步对抗 7 项（ADR-005 端到端：per-entit
 
 ## 自动备份（上线准备 · 推荐配置）
 
-零依赖 CLI（`server/backup-cli.js`），备份走应用级 `/api/export`（可移植 JSON，恢复即 `/api/import`，链路对称）：
+零依赖 CLI（`server/backup-cli.js`），备份走应用级 `/api/export`；恢复必须先固定账号级预览，再明确确认，不再使用覆盖式导入：
 
 ```bash
 node server/backup-cli.js backup              # 备份 → server/backups/chunklab_backup_*.json
-node server/backup-cli.js restore <file>      # 恢复（覆盖式，恢复语义）
+node server/backup-cli.js preview <file>      # 生成固定预览（只读）
+node server/backup-cli.js apply <preview> --confirm  # 按预览执行恢复
 node server/backup-cli.js list                # 列出备份
 ```
 
@@ -200,7 +201,7 @@ node server/backup-cli.js list                # 列出备份
 - **Linux**：`0 3 * * *  cd /path/to/chunk-practice && BASE_URL=http://localhost:8787 TOKEN=xxx node server/backup-cli.js backup`
 - **Windows**：任务计划程序 → 每日 03:00 → 程序 `node`，参数 `server/backup-cli.js backup`，起始于项目目录，环境变量 `BASE_URL`/`TOKEN`/`BACKUP_DIR`
 
-> **恢复演练（建议每月一次）**：`node server/backup-cli.js list` → 选一份 → `restore 文件` → 浏览器确认题库/错题本/统计回来。备份没有验证过等于没有备份。
+> **恢复演练（建议每月一次）**：`list` → 选一份 → `preview 文件` → 人工核对预览 → `apply 预览 --confirm` → 浏览器确认题库/错题本/统计回来。预览或执行过期会拒绝，原备份保持只读。
 
 ## 环境变量（server/.env.example）
 

@@ -7,15 +7,15 @@
  *       是随机值无法登录，存量数据会被锁死。本脚本把存量迁移到目标账号。
  *
  * 用法：
- *   node server/migrate-open-to-user.js <srcBase> <dstBase> <username> [password]
- *   例：node server/migrate-open-to-user.js http://localhost:8787 http://localhost:8787 boss '你的密码'
+ *   node server/migrate-open-to-user.js <srcBase> <dstBase> <username> [password] --confirm
+ *   例：node server/migrate-open-to-user.js http://localhost:8787 http://localhost:8787 boss '你的密码' --confirm
  *
  * 流程：
  *   1) GET  <srcBase>/api/export          —— 导出 __default__ 全量（开放模式免鉴权）
  *   2) 备份 JSON 落盘 server/data/migrate-<ts>.json（可回滚）
  *   3) POST <dstBase>/api/auth/register   —— 建目标账号；已存在则改 login（认领）
  *   4) 迁移前先快照目标账号现有数据（幂等保护，意外覆盖可恢复）
- *   5) POST <dstBase>/api/import (Bearer) —— 存量导入目标账号
+ *   5) GET /api/sync/batch + POST /api/sync/batch/resolve —— 固定预览后确认恢复
  *   6) GET  <dstBase>/api/data (Bearer)   —— 抽样对比关键计数，确认迁移成功
  *
  * 注意：
@@ -28,11 +28,16 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const [srcBase, dstBase, username, password] = process.argv.slice(2);
+const [srcBase, dstBase, username, password] = process.argv.slice(2).filter((arg) => arg !== '--confirm');
+const confirmed = process.argv.slice(2).includes('--confirm');
 if (!srcBase || !dstBase || !username) {
-  console.error('用法: node server/migrate-open-to-user.js <srcBase> <dstBase> <username> [password]\n' +
-    '  例 : node server/migrate-open-to-user.js http://localhost:8787 http://localhost:8787 boss "密码"\n' +
+  console.error('用法: node server/migrate-open-to-user.js <srcBase> <dstBase> <username> [password] --confirm\n' +
+    '  例 : node server/migrate-open-to-user.js http://localhost:8787 http://localhost:8787 boss "密码" --confirm\n' +
     '       （dstBase 若在 REQUIRE_AUTH=true 下运行，register/login 拿 token；password 缺省则交互不可用，脚本要求显式传入）');
+  process.exit(1);
+}
+if (!confirmed) {
+  console.error('[abort] 存量迁移会把源数据写入目标账号；请先核对源快照，再显式追加 --confirm。');
   process.exit(1);
 }
 if (!password) {
@@ -70,7 +75,7 @@ function req(base, method, p, { token, json } = {}) {
 
 function summary(mem) {
   const st = (mem && mem.stats) || {};
-  const by = (mem && mem.bySentence) || {};
+  const by = (mem && mem.stats && mem.stats.bySentence) || {};
   const nMastered = (mem && mem.mastered ? Object.keys(mem.mastered).length : 0);
   return {
     totalAnswered: st.totalAnswered || 0,
@@ -103,7 +108,8 @@ function summary(mem) {
 
     /* 2) 备份落盘 */
     const ts = new Date().toISOString().replace(/[:.]/g, '-');
-    const dataDir = path.join(__dirname, 'data');
+    /* 发布/演练时可指定独立目录，避免把迁移备份写进当前实例的真实 data。 */
+    const dataDir = path.resolve(process.env.MIGRATION_BACKUP_DIR || path.join(__dirname, 'data'));
     if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
     const bakPath = path.join(dataDir, 'migrate-' + ts + '.json');
     fs.writeFileSync(bakPath, JSON.stringify(data, null, 2));
@@ -130,11 +136,20 @@ function summary(mem) {
     const curAfter = cur.status === 200 ? summary(cur.json && cur.json.mem) : { error: cur.text };
     console.log('[4/6] 目标账号当前数据:', JSON.stringify(curAfter), cur.status === 200 ? '' : '(GET 失败仅告警，继续导入)');
 
-    /* 5) 导入 */
-    console.log('[5/6] 导入存量到目标账号…');
-    const imp = await req(dstBase, 'POST', '/api/import', { token, json: data });
-    if (imp.status !== 200) throw new Error('import 失败 (' + imp.status + '): ' + JSON.stringify(imp.json || imp.text));
-    console.log('      import 完成', imp.json);
+    /* 5) 固定目标快照后恢复：绝不临时 GET seq 再走覆盖式 import。 */
+    console.log('[5/6] 固定目标快照并等待明确恢复确认…');
+    const preview = await req(dstBase, 'GET', '/api/sync/batch', { token });
+    if (preview.status !== 200 || !preview.json || preview.json.kind !== 'batch' ||
+        typeof preview.json.token !== 'string' || !preview.json.snapshot) {
+      throw new Error('无法取得目标账号固定恢复预览，未执行迁移: ' + preview.text);
+    }
+    const local = { mem: data.mem, courses: Array.isArray(data.courses) ? data.courses : [],
+      courseProgress: data.courseProgress && typeof data.courseProgress === 'object' ? data.courseProgress : {} };
+    const resolved = await req(dstBase, 'POST', '/api/sync/batch/resolve', { token, json: {
+      choice: 'local', requestId: require('crypto').randomUUID(), expectedToken: preview.json.token, local
+    } });
+    if (resolved.status !== 200) throw new Error('账号级恢复失败 (' + resolved.status + '): ' + JSON.stringify(resolved.json || resolved.text));
+    console.log('      账号级恢复完成', resolved.json);
 
     /* 6) 校验 */
     const ver = await req(dstBase, 'GET', '/api/data', { token });
@@ -148,7 +163,7 @@ function summary(mem) {
     } else {
       console.log('[OK] 关键计数全部一致，迁移完成 ✓');
     }
-    console.log('\n回滚方式：目标账号数据已由步骤4快照可查；全量备份在 ' + bakPath + '，可随时 POST /api/import 恢复。');
+    console.log('\n回滚方式：目标账号数据已由步骤4快照可查；全量备份在 ' + bakPath + '，回滚须重新 preview/apply，不得使用旧覆盖式 import。');
   } catch (e) {
     console.error('[失败]', e.message);
     exitCode = 1;

@@ -28,7 +28,7 @@ const EXPORT_PAYLOAD = {
   courses: [], courseProgress: {}
 };
 
-const state = { importBodies: [] };
+const state = { importBodies: [], resolveBodies: [] };
 const server = http.createServer(function (req, res) {
   let text = '';
   req.on('data', function (c) { text += c; });
@@ -36,6 +36,19 @@ const server = http.createServer(function (req, res) {
     if (req.url === '/api/export' && req.method === 'GET') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(EXPORT_PAYLOAD));
+    } else if (req.url === '/api/auth/me' && req.method === 'GET') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ user: { id: 1, username: 'backup-test' } }));
+    } else if (req.url === '/api/sync/batch' && req.method === 'GET') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ kind: 'batch', seq: 7, token: 'a'.repeat(64), snapshot: { mem: {}, courses: [], courseProgress: {} } }));
+    } else if (req.url === '/api/sync/batch/resolve' && req.method === 'POST') {
+      state.resolveBodies.push(JSON.parse(text || '{}'));
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true, kind: 'batch', seq: 8 }));
+    } else if (req.url === '/api/data' && req.method === 'GET') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ seq: 0, mem: {}, courses: [], courseProgress: {} }));
     } else if (req.url === '/api/import' && req.method === 'POST') {
       state.importBodies.push(JSON.parse(text || '{}'));
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -86,22 +99,32 @@ server.listen(0, '127.0.0.1', async function () {
   check('backup: KEEP=2 连续 3 次后只保留 2 份', backups().length === 2, JSON.stringify(backups()));
   check('backup: 清理提示输出', r.stdout.indexOf('清理旧备份') >= 0, r.stdout);
 
-  /* ===== 3. restore 往返：import 收到完整 payload ===== */
+  /* ===== 3. 固定预览 → 明确确认 → 账号级恢复 ===== */
   const latest = backups()[backups().length - 1];
-  r = await run(['restore', path.join(BACKUP_DIR, latest)]);
-  check('restore: 退出码 0', r.status === 0, 'status=' + r.status + ' ' + r.stderr);
-  check('restore: /api/import 收到 payload（含 mem，且不再含 aiCache）',
-    state.importBodies.length === 1 && state.importBodies[0].mem.decks.length === 1 && !state.importBodies[0].aiCache,
-    JSON.stringify(state.importBodies));
+  const backupPath = path.join(BACKUP_DIR, latest);
+  r = await run(['preview', backupPath]);
+  const previewPath = backupPath + '.preview.json';
+  check('preview: 退出码 0 且生成固定预览', r.status === 0 && fs.existsSync(previewPath), 'status=' + r.status + ' ' + r.stderr);
+  const fixed = JSON.parse(fs.readFileSync(previewPath, 'utf8'));
+  check('preview: 只读且绑定账号/令牌/原文件摘要', state.resolveBodies.length === 0 && fixed.kind === 'chunklab-restore-preview-v1' && fixed.userId === '1' && fixed.expectedToken.length === 64 && fixed.source.sha256,
+    JSON.stringify(fixed));
+  r = await run(['apply', previewPath]);
+  check('apply: 缺少 --confirm 时拒绝写入', r.status !== 0 && state.resolveBodies.length === 0, 'status=' + r.status + ' ' + r.stderr);
+  r = await run(['apply', previewPath, '--confirm']);
+  check('apply: 按固定预览调用账号级 resolve', r.status === 0 && state.resolveBodies.length === 1 && state.resolveBodies[0].choice === 'local' && state.resolveBodies[0].local.mem.decks.length === 1,
+    JSON.stringify(state.resolveBodies));
+  r = await run(['restore', backupPath]);
+  check('restore: 旧覆盖式命令拒绝执行', r.status !== 0 && r.stderr.indexOf('旧 restore FILE 已关闭') >= 0, 'status=' + r.status + ' stderr=' + r.stderr);
 
-  /* ===== 4. 错误处理：restore 不存在的文件 ===== */
-  r = await run(['restore', path.join(TMP, 'nope.json')]);
-  check('restore: 文件不存在 → 非零退出 + 错误信息', r.status !== 0 && r.stderr.indexOf('备份文件不存在') >= 0, 'status=' + r.status + ' stderr=' + r.stderr);
+  /* ===== 4. 错误处理：preview 不存在的文件 ===== */
+  r = await run(['preview', path.join(TMP, 'nope.json')]);
+  check('preview: 文件不存在 → 非零退出 + 错误信息', r.status !== 0 && r.stderr.indexOf('备份文件不存在') >= 0, 'status=' + r.status + ' stderr=' + r.stderr);
 
   /* ===== 5. list ===== */
   r = await run(['list']);
   check('list: 列出备份文件', r.status === 0 && r.stdout.indexOf('chunklab_backup_') >= 0, r.stdout);
 
+  try { fs.unlinkSync(previewPath); } catch (e) { /* best-effort */ }
   server.close();
   try { fs.rmSync(TMP, { recursive: true, force: true }); } catch (e) { /* best-effort */ }
   console.log('\n[backup-cli.test] passed=' + passed + ' failed=' + failed);

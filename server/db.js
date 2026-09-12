@@ -38,6 +38,14 @@ CREATE TABLE IF NOT EXISTS users (
   created_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+CREATE TABLE IF NOT EXISTS user_batch_receipts (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  request_id TEXT NOT NULL,
+  payload_hash TEXT NOT NULL,
+  seq INTEGER NOT NULL,
+  PRIMARY KEY (user_id, request_id)
+);
+
 CREATE TABLE IF NOT EXISTS user_decks (
   id         TEXT NOT NULL,
   user_id    INTEGER NOT NULL,
@@ -93,6 +101,18 @@ CREATE TABLE IF NOT EXISTS ai_cache (
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+/* User-confirmed conflict resolutions: both versions and the receipt commit together. */
+CREATE TABLE IF NOT EXISTS user_sync_resolutions (
+  user_id INTEGER NOT NULL,
+  request_id TEXT NOT NULL,
+  request_hash TEXT NOT NULL,
+  backup_json TEXT NOT NULL,
+  result_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, request_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 /* ----- 8000 句扩容（2026-09-10）：把 stats 的两个「随练习量无限增长」的大对象从 kv blob 拆成行表。
    根因：「stats」作为**单个** kv 实体承载了 86.8% 的同步体积（8000 句实测 7191KB/次），
    而 PUT /api/data 是热路径（每答一题，400ms debounce）→ 每答一题都重传整份学习档案。
@@ -118,6 +138,7 @@ CREATE TABLE IF NOT EXISTS user_events (
   id         TEXT NOT NULL,
   at         INTEGER,
   data_json  TEXT NOT NULL,
+  deleted_at TEXT,
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
   seq        INTEGER,
   PRIMARY KEY (user_id, id),
@@ -211,6 +232,9 @@ function addColumnIfMissing(table, col, type) {
   addColumnIfMissing(t, 'rev', 'INTEGER');
   addColumnIfMissing(t, 'deleted_at', 'TEXT');
 });
+/* 事件以前是 append-only；整账号显式解决需要可传播的事件墓碑，
+   因此旧库升级只补列，不删除既有事件。 */
+addColumnIfMissing('user_events', 'deleted_at', 'TEXT');
 // user_kv 升级前无 updated_at（user_decks 有），补列；旧行 NULL，由 upsert 显式赋值
 addColumnIfMissing('user_kv', 'updated_at', 'TEXT');
 // 公共题库市场（Phase D）：user_decks 补 is_public 列（0=私有，1=已发布到市场）

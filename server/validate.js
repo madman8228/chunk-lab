@@ -56,6 +56,8 @@ function validateMem(mem) {
 
 /* 校验 PUT /api/data 整体载荷 */
 function validatePutPayload(body) {
+  if (isObj(body) && body.baseSeq !== undefined && (!Number.isSafeInteger(body.baseSeq) || body.baseSeq < 0)) return 'baseSeq 必须是非负安全整数';
+  if (isObj(body) && body.requestId !== undefined && (body.baseSeq === undefined || typeof body.requestId !== 'string' || !/^[a-zA-Z0-9_-]{8,80}$/.test(body.requestId))) return 'requestId 必须搭配baseSeq并为8至80位字母、数字、下划线或连字符';
   if (!isObj(body)) return 'body 必须是对象';
   const e = validateMem(body.mem);
   if (e) return e;
@@ -77,6 +79,7 @@ function validatePutPayload(body) {
     if (sd.sbs !== undefined && !isObj(sd.sbs)) return 'statsDelta.sbs 必须是对象';
     if (sd.sbsGone !== undefined && !Array.isArray(sd.sbsGone)) return 'statsDelta.sbsGone 必须是数组';
     if (sd.evs !== undefined && !Array.isArray(sd.evs)) return 'statsDelta.evs 必须是数组';
+    if (sd.evsGone !== undefined && !Array.isArray(sd.evsGone)) return 'statsDelta.evsGone 必须是数组';
   }
   /* entityDelta（2026-09-10 第二轮）：mastered / reinforceBook / deletedItems 的变更行上行走这里。
      同样只做浅层检查。键名必须是 ROW_KV_KINDS 覆盖的三个之一 —— 未知键会被服务端忽略，
@@ -92,6 +95,63 @@ function validatePutPayload(body) {
       if (part.up !== undefined && !isObj(part.up)) return 'entityDelta.' + k + '.up 必须是对象';
       if (part.gone !== undefined && !Array.isArray(part.gone)) return 'entityDelta.' + k + '.gone 必须是数组';
     }
+  }
+  if (body.publications !== undefined) {
+    if (!Array.isArray(body.publications)) return 'publications 必须是数组';
+    for (const publication of body.publications) {
+      if (!isObj(publication) || !isStr(publication.deckId) || !publication.deckId || typeof publication.publish !== 'boolean') {
+        return 'publications 项目必须包含 deckId 和布尔 publish';
+      }
+    }
+  }
+  if (body.baseRevs !== undefined) return validateBaseRevs(body);
+  return null;
+}
+
+/* Optional conditional-write protocol. Once supplied, every versioned mutation
+   must carry a base and a valid next revision; omissions cannot downgrade it. */
+function validateBaseRevs(body) {
+  const bases = body.baseRevs;
+  if (!isObj(bases)) return 'baseRevs 必须是对象';
+  const groups = ['decks', 'kv', 'courses', 'courseProgress'];
+  for (const group of Object.keys(bases)) {
+    if (!groups.includes(group) || !isObj(bases[group])) return 'baseRevs 分类无效';
+    for (const value of Object.values(bases[group])) {
+      if (value !== null && (!Number.isSafeInteger(value) || value < 0)) return '基础版本必须是非负安全整数或 null';
+    }
+  }
+  const seen = new Set();
+  function item(group, id, revision) {
+    if (typeof id !== 'string' || !id) return '同步项目 ID 无效';
+    const key = JSON.stringify([group, id]);
+    if (seen.has(key)) return '同一项目不能在一批中重复写入或同时删除';
+    seen.add(key);
+    if (!Object.hasOwn(bases, group) || !Object.hasOwn(bases[group], id)) return '缺少基础版本：' + group + '/' + id;
+    if (!Number.isSafeInteger(revision) || revision < 1) return '提交版本必须是正安全整数';
+    return null;
+  }
+  const revs = body.revs || {};
+  const revision = (group,id) => isObj(revs[group]) && Object.hasOwn(revs[group],id) ? revs[group][id] : undefined;
+  const edits = [];
+  (body.mem.decks || []).forEach(d => edits.push(['decks', d.id, revision('decks',d.id)]));
+  ['best','stats','settings'].forEach(k => {
+    if (Object.hasOwn(body.mem,k)) edits.push(['kv', k, revision('kv',k)]);
+  });
+  (body.courses || []).forEach(c => edits.push(['courses', c.courseId, revision('courses',c.courseId)]));
+  Object.keys(body.courseProgress || {}).forEach(id => edits.push(['courseProgress', id, revision('courseProgress',id)]));
+  const deleted = body.deleted || {};
+  for (const group of Object.keys(deleted)) {
+    if (!groups.includes(group) || !Array.isArray(deleted[group])) return '删除清单分类或格式无效';
+    for (const d of deleted[group]) {
+      if (!isObj(d)) return '删除清单项目必须是对象';
+      const id = group === 'kv' ? d.k : d.id;
+      if (group === 'kv' && !['best','stats','settings'].includes(id)) return '此小字段不支持版本删除';
+      edits.push([group,id,d.rev]);
+    }
+  }
+  for (const edit of edits) {
+    const error = item(...edit);
+    if (error) return error;
   }
   return null;
 }

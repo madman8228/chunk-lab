@@ -100,6 +100,9 @@ async function main() {
   /* 用 addInitScript 在页面任何脚本执行前注入 legacy localStorage ——
      模拟「升级前的老用户」。若改用 evaluate 事后写入，会与首屏 ensureCloud 的写盘竞态。 */
   await ctx.addInitScript(function () {
+    // This suite tests an already-owned legacy database. Unknown ownership is
+    // deliberately quarantined and tested separately in account-isolation.test.js.
+    localStorage.setItem('chunklab.storage-owner.v1',JSON.stringify([location.origin,'local']));
     if (localStorage.getItem('chunklab.v1')) return;
     localStorage.setItem('chunklab.v1', JSON.stringify({
       version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
@@ -124,7 +127,8 @@ async function main() {
   check('IDB 已建 sentenceStats / events store',
     idb1.stores && idb1.stores.indexOf('sentenceStats') >= 0 && idb1.stores.indexOf('events') >= 0,
     JSON.stringify(idb1.stores));
-  check('DB 版本为 2', idb1.version === 2, 'version=' + idb1.version);
+  check('DB 版本为 4', idb1.version === 4, 'version=' + idb1.version);
+  check('同步元数据 store 已建立', idb1.stores.indexOf('syncMeta') >= 0, JSON.stringify(idb1.stores));
   check('迁移后 sentenceStats 行数 = 2', idb1.sentenceStats === 2, 'got=' + idb1.sentenceStats);
   check('迁移后 events 行数 = 1', idb1.events === 1, 'got=' + idb1.events);
 
@@ -172,6 +176,18 @@ async function main() {
   check('答题已增量落盘（sentenceStats 仍 2 行）', idb2.sentenceStats === 2, 'got=' + idb2.sentenceStats);
   check('答题已增量落盘（events 增至 2 条）', idb2.events === 2, 'got=' + idb2.events);
 
+  /* 小字段 localStorage 投影损坏时，只从同 owner 的已提交 IDB 投影重建，
+     不覆盖有效投影，也不伪造未进入投影的题库内容。 */
+  await page.evaluate(function () { localStorage.removeItem('chunklab.v1'); });
+  await page.reload({ waitUntil: 'load' });
+  await page.waitForFunction(function () { return window.CL && window.CL.statsStoreMode() === 'idb'; }, null, { timeout: 15000 });
+  const projectionRecovery = await page.evaluate(function () {
+    var m=window.CL.loadMem(), raw=JSON.parse(localStorage.getItem('chunklab.v1')||'{}');
+    return { rounds:m.stats.totalRounds, events:m.stats.events.length, hasStorage:!!raw.stats };
+  });
+  check('小字段投影损坏后可从同账号 IDB 重建', projectionRecovery.hasStorage && projectionRecovery.events === 2,
+    JSON.stringify(projectionRecovery));
+
   /* 刷新后新写入的答题记录仍在 */
   await page.reload({ waitUntil: 'load' });
   await page.waitForFunction(function () { return window.CL && window.CL.statsStoreMode() === 'idb'; }, null, { timeout: 15000 });
@@ -191,6 +207,7 @@ async function main() {
      浏览器以 VersionError 拒绝，事后没法再造出 v1 老库这个前置条件。 */
   await ctx2.addInitScript(function () {
     if (localStorage.getItem('__seeded_v1')) return;
+    localStorage.setItem('chunklab.storage-owner.v1',JSON.stringify([location.origin,'local']));
     localStorage.setItem('__seeded_v1', '1');
     localStorage.setItem('chunklab.v1', JSON.stringify({
       version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
@@ -227,9 +244,9 @@ async function main() {
   await page2.reload({ waitUntil: 'load' });
   await page2.waitForFunction(function () { return window.CL && window.CL.statsStoreMode() === 'idb'; }, null, { timeout: 15000 });
   const up = await page2.evaluate(READ_IDB);
-  check('升级后版本为 2', up.version === 2, 'version=' + up.version);
+  check('升级后版本为 4', up.version === 4, 'version=' + up.version);
   check('升级后补齐 sentenceStats / events store',
-    up.stores.indexOf('sentenceStats') >= 0 && up.stores.indexOf('events') >= 0, JSON.stringify(up.stores));
+    up.stores.indexOf('sentenceStats') >= 0 && up.stores.indexOf('events') >= 0 && up.stores.indexOf('syncMeta') >= 0, JSON.stringify(up.stores));
   const courseKept = await page2.evaluate(function () {
     var m = window.CL.readCourses();
     return m.length;

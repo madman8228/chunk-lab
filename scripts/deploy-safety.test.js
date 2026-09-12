@@ -46,8 +46,8 @@ const CASES = [
   {
     name: 'B 快照被排到重启之后',
     mutate: function (s) {
-      return s.replace('echo "[1/6] 迁移前全库快照"',
-        'systemctl restart chunklab\necho "[1/6] 迁移前全库快照"');
+      return s.replace('echo "[3/9] 迁移前全库快照"',
+        'systemctl restart chunklab\necho "[3/9] 迁移前全库快照"');
     },
     expect: '排在重启之后',
   },
@@ -76,6 +76,21 @@ const CASES = [
       return lines.join('\n');
     },
     expect: '直接取原始输出最后一行',
+  },
+  {
+    name: 'F 删除本地完整回归',
+    mutate: function (s) { return s.replace(/npm test|npm run test:accounts|npm run test:batch-sync|node e2e\/mobile-8000\.test\.js/g, ''); },
+    expect: '缺少上传前的本地 主测试套件',
+  },
+  {
+    name: 'G 删除远端生产配置预检',
+    mutate: function (s) { return s.replace("grep -Eq '^REQUIRE_AUTH=true", "grep -Eq '^REQUIRE_AUTH=missing"); },
+    expect: '缺少远端生产配置预检',
+  },
+  {
+    name: 'H 恢复危险默认部署目标',
+    mutate: function (s) { return s.replace('if [ "$#" -ne 1 ] || [ -z "$1" ]; then', 'if [ "$#" -ne 0 ] || [ -z "$1" ]; then'); },
+    expect: '必须显式传入唯一目标主机',
   },
 ];
 

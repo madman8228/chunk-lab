@@ -67,6 +67,10 @@ const missing = base.filter(function (u) { return !fs.existsSync(path.join(ROOT,
 if (missing.length) console.warn('[gen-sw] 基准文件缺失（已从清单剔除）: ' + missing.join(', '));
 
 const files = base.filter(function (u) { return !missing.includes(u); }).concat(added);
+/* Hash the final list, not the old file: newly discovered dependencies must not
+   require a second generator run to settle the cache version. */
+const newList = 'const PRECACHE = [\n' + files.map(function (u) { return "  '" + u + "',"; }).join('\n') + '\n];';
+sw = sw.replace(listMatch[0], newList);
 
 /* ---------- 内容 hash → CACHE 版本 ----------
    根因（2026-09-09）：原版只对 PRECACHE 清单文件算 hash，sw.js 自身修改（fetch handler、install/activate
@@ -91,7 +95,7 @@ for (const u of softList) {
   if (missingSoft.includes(u)) continue;
   h.update(fs.readFileSync(path.join(ROOT, u.replace(/^\//, ''))));
 }
-h.update(normalizeCache(fs.readFileSync(SW, 'utf8')));   /* sw.js 自身也算入（CACHE 行归一化后） */
+h.update(normalizeCache(sw));   /* sw.js 最终清单也算入（CACHE 行归一化后） */
 const version = 'chunklab-' + h.digest('hex').slice(0, 8);
 
 /* ---------- 体积护栏 ----------
@@ -108,8 +112,6 @@ if (fat.length) {
 }
 
 /* ---------- 重写 sw.js ---------- */
-const newList = 'const PRECACHE = [\n' + files.map(function (u) { return "  '" + u + "',"; }).join('\n') + '\n];';
-sw = sw.replace(listMatch[0], newList);
 sw = sw.replace(cacheMatch[0], "const CACHE = '" + version + "'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改");
 fs.writeFileSync(SW, sw);
 

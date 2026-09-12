@@ -97,9 +97,33 @@ for p in /main.html /decks.html /stats.html /courses.html /manifest.json /sw.js 
   fi
 done
 
+# ---------- 3. 未认证 API 必须拒绝 ----------
+echo ""
+echo "[3/5] 未认证 API 必须拒绝"
+c=$(code_of "$BASE/api/data")
+case "$c" in
+  401|403) c_ok "$(printf '%-48s %s' '/api/data（无 Authorization）' "$c")" ;;
+  000)     c_warn "$(printf '%-48s 连接失败' '/api/data（无 Authorization）')" ;;
+  *)       c_bad "$(printf '%-48s %s  ← 未登录仍可读取数据！' '/api/data（无 Authorization）' "$c")" ;;
+esac
+
+CONFIG_CODE=$(code_of "$BASE/api/config")
+if [ "$CONFIG_CODE" = "200" ]; then
+  CONFIG_BODY=$(curl -s --max-time 12 "$BASE/api/config" 2>/dev/null || true)
+  if printf '%s' "$CONFIG_BODY" | grep -Eq '"requireAuth"[[:space:]]*:[[:space:]]*true'; then
+    c_ok '/api/config 明确报告 requireAuth=true'
+  else
+    c_bad '/api/config 未报告 requireAuth=true  ← 可能仍是开放模式！'
+  fi
+elif [ "$CONFIG_CODE" = "000" ]; then
+  c_warn '/api/config 连接失败'
+else
+  c_bad "/api/config 返回 $CONFIG_CODE  ← 无法确认生产鉴权配置"
+fi
+
 # ---------- 4. 响应头指纹 ----------
 echo ""
-echo "[3/4] 响应头指纹"
+echo "[4/5] 响应头指纹"
 HDR=$(curl -sI --max-time 12 "$BASE/api/health" 2>/dev/null || true)
 if [ -z "$HDR" ]; then
   c_warn "拿不到响应头（连接失败）"
@@ -124,7 +148,7 @@ fi
 
 # ---------- 5. TLS ----------
 echo ""
-echo "[4/4] TLS 证书"
+echo "[5/5] TLS 证书"
 case "$BASE" in
   https://*)
     HOST=$(printf '%s' "$BASE" | sed -E 's#^https://##; s#/.*$##')

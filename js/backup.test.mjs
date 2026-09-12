@@ -71,7 +71,7 @@ function check(name, cond, detail) {
   r = parseExport(JSON.stringify(good));
   check('parseExport: 正常解析', r.ok === true && r.data.mem.decks.length === 2 && r.data.book.length === 2 && r.data.courses.length === 1);
   check('parseExport: 摘要统计', r.data.summary.indexOf('· 题库 2 个') >= 0 && r.data.summary.indexOf('· 标熟 1 句') >= 0 && r.data.summary.indexOf('· 统计 2 句') >= 0 && r.data.summary.indexOf('· 错题本 2 条') >= 0 && r.data.summary.indexOf('· 图文课程 1 个') >= 0);
-  check('parseExport: 摘要含覆盖警示', r.data.summary.indexOf('覆盖') >= 0);
+  check('parseExport: 摘要说明预览冲突与安全恢复', r.data.summary.indexOf('预览') >= 0 && r.data.summary.indexOf('冲突') >= 0);
 })();
 
 /* ===== extractJSON ===== */

@@ -74,6 +74,7 @@ function waitHealth(timeoutMs) {
 }
 
 const childEnv = Object.assign({}, process.env, {
+  NODE_ENV: 'test',
   REQUIRE_AUTH: 'true',
   JWT_SECRET: 'sync-delta-test-secret-not-for-production',
   TOKEN_TTL: '30d',
@@ -177,6 +178,19 @@ function openDb() {
   st = r.json.mem.stats;
   check('C2 该 key 已消失', !st.bySentence['d1#bbbbbbbb'], JSON.stringify(Object.keys(st.bySentence)));
   check('C3 其他 key 不受影响', !!st.bySentence['d1#aaaaaaaa']);
+
+  /* 事件普通路径只追加；显式整账号选择通过 evsGone 传播墓碑，
+     否则被选中的本机事件集无法删除云端/其他设备的旧事件。 */
+  const eventDeltaBase = r.json.seq;
+  r = await request('PUT', '/api/data', token, { mem: {}, statsDelta: { evsGone: ['ev-2'], evs: [] } });
+  check('C4 PUT evsGone -> 200', r.status === 200, 'status=' + r.status + ' ' + r.raw);
+  r = await request('GET', '/api/data', token);
+  check('C5 事件墓碑后全量不再返回该事件', !r.json.mem.stats.events.some(function (ev) { return ev.id === 'ev-2'; }));
+  r = await request('GET', '/api/data?since=' + eventDeltaBase, token);
+  check('C6 增量响应显式返回事件删除清单', !!(r.json.deleted && r.json.deleted.events && r.json.deleted.events.indexOf('ev-2') >= 0), JSON.stringify(r.json.deleted));
+  r = await request('PUT', '/api/data', token, { mem: {}, statsDelta: { evs: [evSample('ev-2')] } });
+  r = await request('GET', '/api/data', token);
+  check('C7 事件重新上行可清除墓碑并复活', r.json.mem.stats.events.some(function (ev) { return ev.id === 'ev-2'; }));
 
   /* ---------- D. 旧客户端兼容：整份 mem 带大对象 ---------- */
   r = await request('PUT', '/api/data', token, {

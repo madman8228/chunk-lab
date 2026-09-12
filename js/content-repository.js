@@ -377,7 +377,7 @@
     });
   }
 
-  function hydrateItems(items) {
+  function hydrateItems(items, options) {
     items = Array.isArray(items) ? items : [];
     return loadManifest().then(function () {
       var groups = {};
@@ -394,7 +394,7 @@
       return Promise.all(urls.map(function (url) {
         var shard = findDetailShard(url);
         if (!shard) throw new Error('找不到 index 指向的详情分片：' + url);
-        return loadShard(shard).then(function (data) { loadedByUrl[url] = data; });
+        return loadShard(shard, options).then(function (data) { loadedByUrl[url] = data; });
       })).then(function () {
         return items.map(function (item) {
           var ref = item && item._contentRef;
@@ -414,12 +414,19 @@
     });
   }
 
+  function hydrateItemBatch(items, start, limit) {
+    start = Math.max(0, Math.floor(Number(start) || 0));
+    limit = Math.max(1, Math.min(200, Math.floor(Number(limit) || 10)));
+    return hydrateItems((items || []).slice(start, start + limit), { memory: false });
+  }
+
   function cloneCursor(c) {
     c = c || {};
     return {
       baseOffset: Math.max(0, Number(c.baseOffset) || 0),
       shardIndex: Math.max(0, Number(c.shardIndex) || 0),
-      shardOffset: Math.max(0, Number(c.shardOffset) || 0)
+      shardOffset: Math.max(0, Number(c.shardOffset) || 0),
+      contentVersion: c.contentVersion || null
     };
   }
 
@@ -491,7 +498,10 @@
       var baseItems = append ? (current.items || []).slice() : [];
       var progress = mem && mem.progress && mem.progress[id];
       var suppliedCursor = options.cursor || (progress && progress.contentCursor);
+      // Offsets belong to a content release. Never carry them across reordered shards.
+      if(suppliedCursor && suppliedCursor.contentVersion && suppliedCursor.contentVersion !== manifest.contentVersion) suppliedCursor = null;
       var startCursor = cloneCursor(suppliedCursor);
+      startCursor.contentVersion = manifest.contentVersion;
       var cursor = cloneCursor(startCursor);
       var selected = [];
 
@@ -508,7 +518,7 @@
         return {
           deck: out,
           startCursor: cloneCursor(startCursor),
-          nextCursor: cloneCursor(cursor),
+          nextCursor: Object.assign(cloneCursor(cursor), { contentVersion: manifest.contentVersion }),
           loadedCount: selected.length,
           totalCount: total,
           remainingCount: Math.max(0, total - position),
@@ -577,6 +587,7 @@
     ensureDeckIndex: ensureDeckIndex,
     ensureIndexAll: ensureIndexAll,
     hydrateItems: hydrateItems,
+    hydrateItemBatch: hydrateItemBatch,
     shouldBatch: shouldBatch,
     ensureAll: ensureAll
   };

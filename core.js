@@ -9,11 +9,13 @@
    ============================================================ */
 (function(global){
   'use strict';
+  var businessStorage=global.AccountStorage ? global.AccountStorage.storage : global.localStorage;
 
   /* ★ 统一键：与主页面 main.html 一致
      （此前 stats/decks 用 chunklab_mem_v1 → 数据不同步，已修根因） */
   var STORE_KEY = 'chunklab.v1';
   var REVS_KEY = 'chunklab_revs_v1'; /* ADR-005：per-entity 版本号，独立于 mem 存储 */
+  var CONFLICT_KEY = 'chunklab.sync-conflict.v1';
   var LISTENERS = {};
 
   /* ADR-005 rev 基础设施：本地为每个可同步实体维护 rev（版本号），离线改动时升 rev；
@@ -34,10 +36,38 @@
   var _lastSyncMeta = { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
 
   function loadRevs() {
-    try { return JSON.parse(global.localStorage.getItem(REVS_KEY) || '{}') || {}; } catch (e) { return {}; }
+    try { return JSON.parse(businessStorage.getItem(REVS_KEY) || '{}') || {}; } catch (e) { return {}; }
   }
   function saveRevs(r) {
-    try { global.localStorage.setItem(REVS_KEY, JSON.stringify(r)); } catch (e) {}
+    try {
+      /* ★ 多标签页防护：rev 是单调版本号（越大越新）。
+         其他标签页刚升过某实体的 rev 时，本页若用自身旧计算值整份覆盖 → rev 回退 →
+         本机改动在云端被判为「旧版本」而被丢弃（静默丢数据）。
+         这里逐键取 max：rev 永不回退；单标签页下 r 恒 ⊇ 磁盘（maintainRevs 从磁盘读后再升），
+         故本合并对既有行为是恒等变换（不改变任何单页语义）。 */
+      var disk = null;
+      try{ disk = JSON.parse(businessStorage.getItem(REVS_KEY) || 'null'); }catch(e2){ disk = null; }
+      if(disk && typeof disk === 'object' && r && typeof r === 'object'){
+        var out = {};
+        Object.keys(disk).forEach(function(k){ out[k] = disk[k]; });
+        Object.keys(r).forEach(function(k){
+          var a = out[k], b = r[k];
+          if(a && typeof a === 'object' && b && typeof b === 'object' && !Array.isArray(a) && !Array.isArray(b)){
+            var sub = {};
+            Object.keys(a).forEach(function(kk){ sub[kk] = a[kk]; });
+            Object.keys(b).forEach(function(kk){
+              if((Number(b[kk]) || 0) > (Number(sub[kk]) || 0)) sub[kk] = b[kk];
+            });
+            out[k] = sub;
+          }else{
+            out[k] = b;
+          }
+        });
+        r = out;
+      }
+      businessStorage.setItem(REVS_KEY, JSON.stringify(r));
+      notifyTabs('revs');
+    } catch (e) {}
   }
   function sigDeck(d) { return JSON.stringify([d.name || '', d.items || [], d.builtin ? 1 : 0]); }
   function sigKv(v) { return JSON.stringify(v); }
@@ -150,6 +180,15 @@
     Object.keys(sentUp || {}).forEach(function (id) { delete p.dirty[id]; });
     Object.keys(sentGone || {}).forEach(function (id) { delete p.gone[id]; });
     p.all = false;
+  }
+  function discardSupersededDeletes(p, batch, sentUp, revs){
+    batch.list = batch.list.filter(function(d){
+      if(sentUp[d.id] && (revs[d.id] || 0) > d.rev){
+        delete p.gone[d.id]; delete batch.sent[d.id];
+        return false; // 删除尚未确认时又重建：只发送较新的重建意图。
+      }
+      return true;
+    });
   }
   function idsOf(list, keyOf) {
     var out = {};
@@ -270,11 +309,284 @@
     };
   }
 
+  /* ---------- 多标签页旧快照覆盖防护（P0 数据可靠性加固，2026-09-11） ----------
+     根因：mem 在页面加载时 loadMem() 读入内存后本进程内不再自动刷新；
+     写路径 saveAndNotify → saveMem → writeLocalMem 把**整份** mem 直接写回 localStorage，
+     写前没有任何版本检查。两个标签页同时打开时：
+       标签页 A 持旧 mem ─ 标签页 B 答题写回 ─ 标签页 A 再答题 saveMem
+     → A 用旧整份快照覆盖掉 B 的全部改动（**单机双标签页即触发**，用户无感 = 静默丢数据）。
+
+     方案（保守优先，绝不静默覆盖）：
+       1. 每个标签页分配唯一 tabId；
+       2. 写 localStorage 前比对「本页基线 base」与磁盘原文 —— 被其他标签页改过则做
+          **三路合并**（base = 本页上次同步的磁盘态、ours = 本页内存、theirs = 当前磁盘），
+          把本页改动 + 对方改动都保留（并集语义），绝不整份覆盖；
+       3. 写后经 BroadcastChannel('chunklab-sync') 广播写事件（含 tabId），其他标签页据此
+          刷新展示；BroadcastChannel 不可用 → 退回 storage 事件（写一个 beacon 键，
+          其他标签页的 storage 事件即触发同一逻辑）。
+
+     为什么是「三路合并」而不是「重新加载」：重新加载会丢掉本页刚刚答题产生的改动
+     （那部分只在内存里，尚未落盘）。合并是唯一同时保住「本页新改动」与「对方新改动」的做法。
+
+     不变式：任何写路径都不得让磁盘上「别的标签页刚写的」数据凭空消失；
+     无法判定的冲突以「不丢用户数据」为先（同 key 双方都改 → 后写者胜，与云端 LWW 一致）。
+
+     ★ 不改动既有机制语义：chunklab_revs_v1（单调 rev）/ 云端水位 _cloudBsSig·_cloudEvIds /
+       IDB 内存桥 _coursesCache·_statsStore / _prevSnap 全部保持原语义，只是在其外面加一层
+       「写前检查 + 合并」。 */
+  var TAB_SYNC_KEY = 'chunklab_tabsync_v1';   /* 降级通道：写此键触发其他标签页的 storage 事件 */
+  var TAB_CHANNEL = 'chunklab-sync' + (global.AccountStorage ? ':' + global.AccountStorage.owner : '');
+  var TAB_ID = (function(){
+    try{ if(global.crypto && typeof global.crypto.randomUUID === 'function') return global.crypto.randomUUID(); }
+    catch(e){}
+    return 'tab-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  })();
+  var _tabChannel = null;
+  var _tabSeq = 0;          /* 本页广播序号 */
+  var _externalSeq = 0;     /* 收到的跨标签页写入次数（供页面/测试观察） */
+  var _crossTabMerges = 0;  /* 触发的三路合并次数（供页面/测试观察） */
+  /* 本页基线：磁盘上「与本页内存相对应」的那份 chunklab.v1 原文 + 其可见字段视图。
+     base 是三路合并的共同祖先：本页改动 = 内存 vs base；磁盘改动 = 当前磁盘 vs base。
+     只在「本页提交」与「主动采纳磁盘 / 迁移回写」时推进 —— 绝不在任意 loadMem 里推进，
+     否则会把页面上仍持有的旧内存态误判为「最新磁盘态」→ 漏判真实的外部改动。 */
+  var _memBaseRaw = null;
+  var _memBaseMem = null;
+  var _memBaseReady = false;
+  /* courses / progress 的跨标签页信号与基线（大对象在 IDB，不能靠 chunklab.v1 原文判变） */
+  var _coursesDiskBase = null;
+  var _progressDiskBase = null;
+  var _coursesExternal = false;
+  var _progressExternal = false;
+
+  function _readRaw(key){
+    try{ return businessStorage.getItem(key); }catch(e){ return null; }
+  }
+  /* localStorage 里「可见」的 mem 视图（IDB 托管时 bySentence/events 不在其中）。
+     只用于三路合并的 base / theirs 两侧；缺省字段补空，避免 undefined 参与比较。 */
+  function parseLocalMem(raw){
+    var o = {};
+    try{ o = raw ? (JSON.parse(raw) || {}) : {}; }catch(e){ o = {}; }
+    if(!o || typeof o !== 'object') o = {};
+    var os = (o.stats && typeof o.stats === 'object') ? o.stats : {};
+    return {
+      decks: Array.isArray(o.decks) ? o.decks : [],
+      best: (o.best && typeof o.best === 'object') ? o.best : {},
+      mastered: (o.mastered && typeof o.mastered === 'object') ? o.mastered : {},
+      deletedItems: (o.deletedItems && typeof o.deletedItems === 'object') ? o.deletedItems : {},
+      reinforceBook: Array.isArray(o.reinforceBook) ? o.reinforceBook : [],
+      progress: (o.progress && typeof o.progress === 'object') ? o.progress : {},
+      settings: (o.settings && typeof o.settings === 'object') ? o.settings : {},
+      stats: {
+        totalRounds: Number(os.totalRounds) || 0,
+        totalAnswered: Number(os.totalAnswered) || 0,
+        bySentence: (os.bySentence && typeof os.bySentence === 'object') ? os.bySentence : {},
+        events: Array.isArray(os.events) ? os.events : [],
+        daysLog: (os.daysLog && typeof os.daysLog === 'object') ? os.daysLog : {}
+      }
+    };
+  }
+  function _has(o, k){ return !!o && Object.prototype.hasOwnProperty.call(o, k); }
+  function _eqJson(a, b){
+    if(a === b) return true;
+    try{ return JSON.stringify(a === undefined ? null : a) === JSON.stringify(b === undefined ? null : b); }
+    catch(e){ return false; }
+  }
+  function _toMap(list, keyOf){
+    var m = {};
+    (Array.isArray(list) ? list : []).forEach(function(x){
+      var k = keyOf(x);
+      if(k != null && k !== '') m[k] = x;
+    });
+    return m;
+  }
+  function _listFromKeyed(primaryList, res, keyOf){
+    var out = [], seen = {};
+    (Array.isArray(primaryList) ? primaryList : []).forEach(function(x){
+      var k = keyOf(x);
+      if(k != null && k !== '' && _has(res, k) && !seen[k]){ seen[k] = 1; out.push(res[k]); }
+    });
+    Object.keys(res).forEach(function(k){ if(!seen[k]){ seen[k] = 1; out.push(res[k]); } });
+    return out;
+  }
+  /* 以 key 对齐的集合三路合并（maps 与 arrays 归一后共用）。
+     规则（并集语义，绝不丢任一侧的改动）：
+       - 起点 = ours（本页内存）：本页正在提交的改动必须落盘，否则本页丢数据；
+       - theirs 相对 base 的「新增/修改」→ 本页未动则采纳；双方都改 → 保留本页（后写者胜）；
+       - theirs 相对 base 的「删除」→ 本页未动则采纳删除；本页改过则保留本页改动。 */
+  function mergeKeyedMap(base, ours, theirs){
+    base = base || {}; ours = ours || {}; theirs = theirs || {};
+    var res = {}, k;
+    for(k in ours){ if(_has(ours, k)) res[k] = ours[k]; }
+    for(k in theirs){
+      if(!_has(theirs, k)) continue;
+      var baseHas = _has(base, k);
+      if(baseHas && _eqJson(theirs[k], base[k])) continue;   /* 对方没动 → 忽略 */
+      var oursHas = _has(ours, k);
+      var oursChanged = baseHas ? (!oursHas || !_eqJson(ours[k], base[k])) : oursHas;
+      if(!oursChanged) res[k] = theirs[k];                   /* 对方新增/改动且本页未动 → 采纳 */
+      else if(!oursHas) res[k] = theirs[k];                  /* 本页删了、对方改了 → 保留对方（不丢对方改动） */
+      /* 双方都改 → 保留本页 */
+    }
+    for(k in base){
+      if(!_has(base, k)) continue;
+      if(_has(theirs, k)) continue;                          /* 对方仍保留该实体 */
+      if(!_has(ours, k)){ delete res[k]; continue; }         /* 双方都删 */
+      if(_eqJson(ours[k], base[k])) delete res[k];           /* 本页没动 → 采纳对方删除 */
+      /* 本页改过 → 保留本页（不因对方删除而丢本页新改动） */
+    }
+    return res;
+  }
+  /* daysLog 是「按天的打卡汇总」（单调），取逐天 max，绝不回退。 */
+  function mergeDaysLogTabs(base, ours, theirs){
+    var res = {}, k;
+    [theirs, ours].forEach(function(o){
+      if(!o) return;
+      for(k in o){
+        if(!_has(o, k)) continue;
+        var r = (o[k] && Number(o[k].rounds)) || 0;
+        if(r <= 0) continue;
+        res[k] = { rounds: Math.max((res[k] && res[k].rounds) || 0, r) };
+      }
+    });
+    return res;
+  }
+  /* bySentence：句子级档案。磁盘侧在 IDB 模式下不含大对象（theirs 为空）→ 直接保持本页引用
+     （IDB 内存桥身份不能断），否则按 key 并集。 */
+  function mergeBySentenceTabs(base, ours, theirs){
+    if(!theirs || !Object.keys(theirs).length) return ours || {};
+    return mergeKeyedMap(base, ours, theirs);
+  }
+  /* events：按 id 并集（本页在前，补对方独有），绝不因合并丢事件。 */
+  function mergeEventsTabs(base, ours, theirs){
+    var oa = Array.isArray(ours) ? ours : [];
+    var ta = Array.isArray(theirs) ? theirs : [];
+    var ba = Array.isArray(base) ? base : [];
+    if(!ta.length && !ba.length) return oa;
+    var seen = {}, out = [];
+    function push(list){
+      (list || []).forEach(function(e){
+        if(!e) return;
+        if(e.id){ if(!seen[e.id]){ seen[e.id] = 1; out.push(e); } }
+        else out.push(e);
+      });
+    }
+    push(oa); push(ta);
+    return out;
+  }
+  /* stats 小字段三路合并：计数器取 max（单调，绝不回退）；daysLog 逐天 max；
+     其余标量「本页改过则本页，否则磁盘」；大对象走上面的并集。 */
+  function mergeStatsForTabs(base, ours, theirs){
+    base = base || {}; ours = ours || {}; theirs = theirs || {};
+    var res = {}, k, keys = {};
+    [ours, theirs, base].forEach(function(o){ for(var kk in o){ if(_has(o, kk)) keys[kk] = 1; } });
+    for(k in keys){
+      if(k === 'bySentence' || k === 'events') continue;
+      if(k === 'totalRounds' || k === 'totalAnswered'){
+        res[k] = Math.max(Number(ours[k]) || 0, Number(theirs[k]) || 0, Number(base[k]) || 0);
+        continue;
+      }
+      if(k === 'daysLog'){ res[k] = mergeDaysLogTabs(base[k], ours[k], theirs[k]); continue; }
+      if(_has(ours, k) && !_eqJson(ours[k], base[k])) res[k] = ours[k];
+      else if(_has(theirs, k)) res[k] = theirs[k];
+      else if(_has(ours, k)) res[k] = ours[k];
+    }
+    res.bySentence = mergeBySentenceTabs(base.bySentence, ours.bySentence, theirs.bySentence);
+    res.events = mergeEventsTabs(base.events, ours.events, theirs.events);
+    return res;
+  }
+  /* mem 的三路合并：把「本页改动」与「对方改动」都保留下来（就地改写 target）。 */
+  function mergeMemInto(target, disk, base){
+    if(!target || typeof target !== 'object') return target;
+    disk = disk || {}; base = base || {};
+    var deckKey = function(d){ return d && d.id; };
+    var bookKey = function(it){ return it && (it._key || it.id || it.sentence); };
+    target.decks = _listFromKeyed(target.decks,
+      mergeKeyedMap(_toMap(base.decks, deckKey), _toMap(target.decks, deckKey), _toMap(disk.decks, deckKey)), deckKey);
+    target.reinforceBook = _listFromKeyed(target.reinforceBook,
+      mergeKeyedMap(_toMap(base.reinforceBook, bookKey), _toMap(target.reinforceBook, bookKey), _toMap(disk.reinforceBook, bookKey)), bookKey);
+    target.mastered = mergeKeyedMap(base.mastered, target.mastered, disk.mastered);
+    target.deletedItems = mergeKeyedMap(base.deletedItems, target.deletedItems, disk.deletedItems);
+    target.best = mergeKeyedMap(base.best, target.best, disk.best);
+    target.progress = mergeKeyedMap(base.progress, target.progress, disk.progress);
+    target.settings = mergeKeyedMap(base.settings, target.settings, disk.settings);
+    target.stats = mergeStatsForTabs(base.stats, target.stats, disk.stats);
+    return target;
+  }
+  /* 提交后推进基线：此后「本页内存」与磁盘即视为一致。 */
+  function adoptMemBase(raw){
+    _memBaseRaw = raw;
+    _memBaseMem = parseLocalMem(raw);
+    _memBaseReady = true;
+  }
+  /* 广播一次写事件（含 tabId）；BroadcastChannel 主通道 + beacon 键降级通道并用。 */
+  function notifyTabs(area){
+    _tabSeq++;
+    var msg = { v: 1, type: 'chunklab-write', tabId: TAB_ID, area: area || 'mem', seq: _tabSeq, at: Date.now() };
+    if(_tabChannel){ try{ _tabChannel.postMessage(msg); }catch(e){} }
+    try{ businessStorage.setItem(TAB_SYNC_KEY, JSON.stringify(msg)); }catch(e){}
+  }
+  function onTabMessage(msg){
+    if(!msg || msg.type !== 'chunklab-write' || msg.tabId === TAB_ID) return;
+    _externalSeq++;
+    if(msg.area === 'courses') _coursesExternal = true;
+    else if(msg.area === 'progress') _progressExternal = true;
+    emit('memExternal', { seq: _externalSeq, area: msg.area || 'mem', fromTab: msg.tabId });
+  }
+  function onCrossTabStorage(e){
+    if(!e || !e.key) return;
+    if(global.AccountStorage) e = { key: global.AccountStorage.decodeKey(e.key), newValue: e.newValue };
+    if(e.key === TAB_SYNC_KEY){
+      if(!e.newValue) return;
+      var msg = null;
+      try{ msg = JSON.parse(e.newValue); }catch(err){ msg = null; }
+      if(msg) onTabMessage(msg);
+      return;
+    }
+    /* 兼容：别的标签页（或外部代码 / 旧版本）直接改了 chunklab.v1 */
+    if(e.key === STORE_KEY){
+      _externalSeq++;
+      emit('memExternal', { seq: _externalSeq, area: 'mem', fromTab: '' });
+    }
+  }
+  /* 主动采纳磁盘最新态（页面在「安全时机」调用，如收到 memExternal 且不在答题中）：
+     重新从 IDB 载入大对象内存桥 + 重读磁盘小字段，并把基线推进到磁盘态。 */
+  function refreshExternal(){
+    _bySentenceCache = null; _eventsCache = null;
+    _coursesCache = null; _progressCache = null;
+    _preloadTask = null;
+    if(_statsStore === 'idb'){ _statsFullRewrite = true; _evSnap = null; }
+    return preload().then(function(){
+      var m = loadMem();
+      _coursesSnap = null; _progressSnap = null;   /* 让 maintainCoursesRevs 重新对齐，避免误 bump */
+      adoptMemBase(_readRaw(STORE_KEY));
+      _coursesExternal = false; _progressExternal = false;
+      emit('memRefreshed', m);
+      return m;
+    }).catch(function(e){
+      console.warn('[core.refreshExternal] 采纳磁盘态失败，退回内存现值：', e && e.message);
+      return loadMem();
+    });
+  }
+  (function initCrossTab(){
+    if(global.__CL_DISABLE_CROSSTAB__ === true) return; /* 仅供对照实验/排障使用，正常为 false */
+    try{
+      if(typeof global.BroadcastChannel === 'function'){
+        _tabChannel = new global.BroadcastChannel(TAB_CHANNEL);
+        _tabChannel.onmessage = function(ev){ onTabMessage(ev && ev.data); };
+        /* Node 环境（单测）里 BroadcastChannel 会挂住事件循环 → 显式 unref（浏览器无此方法，跳过） */
+        if(typeof _tabChannel.unref === 'function'){ try{ _tabChannel.unref(); }catch(e){} }
+      }
+    }catch(e){ _tabChannel = null; }
+    try{ if(typeof global.addEventListener === 'function') global.addEventListener('storage', onCrossTabStorage); }catch(e){}
+    adoptMemBase(_readRaw(STORE_KEY));
+  })();
+
   /* ---------- 存储 ---------- */
   function loadMem(){
     var d = defaultMem();
     try{
-      var o = migrate(JSON.parse(global.localStorage.getItem(STORE_KEY) || '{}'));
+      var _diskRaw = businessStorage.getItem(STORE_KEY);
+      var o = migrate(JSON.parse(_diskRaw || '{}'));
       var os = (o.stats && typeof o.stats === 'object') ? o.stats : {};
       var out = {
         decks: Array.isArray(o.decks) ? o.decks : d.decks,
@@ -305,6 +617,9 @@
             _eventsCache = out.stats.events;
             _statsFullRewrite = true; /* 键被改写 → IDB 必须整块覆盖，不能按签名增量 */
           }
+          /* ★ 迁移是「读磁盘 → 原地改写 → 回写」的同一事务：写前把基线推进到刚读到的磁盘态。
+             否则三路合并会把迁移前的旧键（如 d1#原文）当成「对方新增」复活，把幂等迁移做坏。 */
+          adoptMemBase(_diskRaw);
           saveMem(out);
           var _r = loadRevs();
           if(!_r.kv) _r.kv = {};
@@ -325,22 +640,35 @@
       return d;
     }
   }
-  function saveMem(m){
+  function saveMem(m, recordLearning, commitGeneration){
     try{
-      writeLocalMem(m);
+      /* ★ 三路合并失败时 writeLocalMem 返回 false → 本次不落盘（宁可本次丢失、也绝不覆盖
+         其他标签页的新数据）。调用方（saveStore / saveAndNotify）会拿到 false 并可提示用户。 */
+      if(writeLocalMem(m) === false) return false;
       maintainRevs(m);
       /* 大对象增量落盘（异步，不阻塞答题）。
          若落盘失败，persistStats 会把托管模式降级为 'local' ——
          此时必须立刻用「未剥离」的完整 stats 重写 localStorage，否则本次 save 已经写下的
          是剥离版副本，大对象就真的没有落点了（实测过的丢数据路径）。 */
+      var commit = Promise.resolve(true);
       if(_statsStore === 'idb' && m.stats){
-        persistStats(m.stats).then(function(ok){
+        commit = persistStats(m.stats,recordLearning,commitGeneration,m).then(function(ok){
           if(ok === false && _statsStore === 'local'){
-            try{ writeLocalMem(m); }
-            catch(e2){ console.error('[core.saveMem] 降级回写 localStorage 也失败（配额不足）', e2); emit('persistError', { error: e2 }); }
+            /* 保留完整 localStorage 兜底，但本次提交仍报告失败：不能在
+               IDB 事务失败后把未确认的状态继续上传云端。下次保存再重试。 */
+            try{ writeLocalMem(m); return false; }
+            catch(e2){ console.error('[core.saveMem] 降级回写 localStorage 也失败（配额不足）', e2); emit('persistError', { error: e2 }); return false; }
           }
+          return ok !== false;
+        }).catch(function(error){
+          console.error('[core.saveMem] 异步统计落盘失败', error);
+          emit('persistError', { area: 'stats', error: error });
+          return false;
         });
       }
+      /* saveMem 保持历史同步返回值；统一入口通过这个 Promise 等待真正的
+         IndexedDB/降级落盘结果，避免在事务尚未完成时广播“已保存”或发起同步。 */
+      _lastSavePromise = commit;
       return true;
     }
     catch(e){
@@ -351,9 +679,34 @@
       return false;
     }
   }
+  var _lastSavePromise = Promise.resolve(true);
   /* 单一落点：把 mem 写进 localStorage。大对象已托管给 IDB 时只写小字段
-     （这是解除 5MB 配额与 188ms/次写入延迟的关键，见 _statsStore 注释）。 */
+     （这是解除 5MB 配额与 188ms/次写入延迟的关键，见 _statsStore 注释）。
+
+     ★ 多标签页旧快照防护（P0）：写前比对磁盘基线与当前磁盘原文。
+       被其他标签页改过（diskRaw !== base）→ 先做三路合并，把本页改动与对方改动都保留，
+       再整份落盘；绝不拿旧内存态覆盖别人刚写的。返回 false 表示「为避免覆盖而放弃本次落盘」。 */
   function writeLocalMem(m){
+    var diskRaw = _readRaw(STORE_KEY);
+    if(_memBaseReady && diskRaw !== null && diskRaw !== _memBaseRaw){
+      var okMerge = true;
+      try{
+        mergeMemInto(m, parseLocalMem(diskRaw), _memBaseMem || parseLocalMem(null));
+        /* 合并后 stats 可能是新对象：重挂大对象内存桥，避免后续 loadMem 又取回合并前的旧 bySentence/events。
+           'local' 模式且内存桥为 null 时保持 null（让 loadMem 始终读 localStorage 真值，不制造「粘住」的副本）。 */
+        if(m.stats){
+          if(_statsStore === 'idb' || _bySentenceCache !== null) _bySentenceCache = m.stats.bySentence || {};
+          if(_statsStore === 'idb' || _eventsCache !== null) _eventsCache = m.stats.events || [];
+        }
+        _crossTabMerges++;
+        emit('memMerged', { count: _crossTabMerges, tabId: TAB_ID });
+      }catch(e){
+        okMerge = false;
+        console.error('[core.writeLocalMem] 跨标签页三路合并失败 —— 为避免覆盖其他标签页的新数据，已跳过本次落盘', e);
+        emit('persistError', { area: 'crossTabMerge', error: e });
+      }
+      if(!okMerge) return false;
+    }
     var out = Object.assign({}, m);
     out.version = CURRENT_VERSION; /* 写入时强制版本 */
     if(_statsStore === 'idb' && m.stats && typeof m.stats === 'object'){
@@ -361,17 +714,36 @@
       for(var k in s){ if(s.hasOwnProperty(k) && k !== 'bySentence' && k !== 'events') light[k] = s[k]; }
       out.stats = light;
     }
-    global.localStorage.setItem(STORE_KEY, JSON.stringify(out));
+    var str = JSON.stringify(out);
+    businessStorage.setItem(STORE_KEY, str);
+    adoptMemBase(str);   /* 提交成功：本页内存与磁盘就此一致 */
+    notifyTabs('mem');
+    return true;
   }
   /* 数据变更统一入口：保存 + 本地事件 + 通知父窗口 + 后台同步云端 */
-  function saveAndNotify(memObj){
-    var ok = saveMem(memObj);
-    emit('memUpdated', memObj);
-    if(global.parent && global.parent !== global){
-      try{ global.parent.postMessage({ type:'memUpdated' }, '*'); }catch(e){}
-    }
-    scheduleCloudSync(memObj);
-    return ok;
+  function saveAndNotify(memObj, syncMode){
+    /* 代次候选值随本地提交一起进入 IDB；只有提交成功后才正式调度云同步。 */
+    var shouldSync = syncMode !== 'local' && _cloudOn && global.ChunkAPI;
+    /* Reserve the generation before the asynchronous persistence lane.  Two
+       saves can be queued before either IDB transaction completes; deriving
+       both from the old value would give them the same generation and could
+       leave the second save without a successor sync attempt. */
+    var commitGeneration = shouldSync ? ++_syncGeneration : null;
+    var ok = saveMem(memObj, undefined, commitGeneration);
+    if(ok === false) return false;
+    return _lastSavePromise.then(function(committed){
+      if(!committed) return false;
+      /* IDB 托管路径已把代次写进同一事务；localStorage 兜底或测试降级
+         路径没有这个能力，必须让 scheduleCloudSync 走独立的安全补写。 */
+      var generationAtomic = shouldSync && _statsStore === 'idb' && global.IDBStore &&
+        typeof global.IDBStore.writeStatsBatch === 'function';
+      if(shouldSync) scheduleCloudSync(memObj, generationAtomic ? commitGeneration : null);
+      emit('memUpdated', memObj);
+      if(global.parent && global.parent !== global){
+        try{ global.parent.postMessage({ type:'memUpdated' }, '*'); }catch(e){}
+      }
+      return true;
+    });
   }
 
   /* ---------- 云端同步层（前后端分离） ----------
@@ -399,18 +771,62 @@
 
   function readCoursesRaw(){
     if(_coursesCache !== null) return _coursesCache;
-    try{ return JSON.parse(global.localStorage.getItem(COURSES_KEY) || '[]'); }catch(e){ return []; }
+    try{ return JSON.parse(businessStorage.getItem(COURSES_KEY) || '[]'); }catch(e){ return []; }
   }
   function readProgressRaw(){
     if(_progressCache !== null) return _progressCache;
-    try{ return JSON.parse(global.localStorage.getItem(PROGRESS_KEY) || '{}'); }catch(e){ return {}; }
+    try{ return JSON.parse(businessStorage.getItem(PROGRESS_KEY) || '{}'); }catch(e){ return {}; }
   }
 
   /* 启动预载：IDB → 内存；IDB 空则从 localStorage 迁移，随后删除大键释放配额。
      幂等：多个页面（main + iframe 子页）同时调用安全（同源共享 IDB，迁移结果一致）。 */
+  var _preloadTask = null;
   function preload(){
+    if(_preloadTask) return _preloadTask;
+    _preloadTask = preloadStores().then(function(ok){ _preloadTask = null; return ok; });
+    return _preloadTask;
+  }
+  async function preloadStores(){
     if(!global.IDBStore) return Promise.resolve(false);
-    return global.IDBStore.loadAll().then(function(data){
+    return Promise.resolve().then(function(){
+      return Promise.all([
+        global.IDBStore.loadAll(),
+        global.IDBStore.readBusinessMem ? global.IDBStore.readBusinessMem().catch(function(){return null;}) : Promise.resolve(null),
+        /* The durable batch generation must be restored before the first
+         * post-refresh save reserves a successor generation.  Otherwise a
+         * page that previously committed generation N starts at zero and
+         * stages its next payload with an older generation than syncMeta. */
+        global.IDBStore.readSyncMeta ? global.IDBStore.readSyncMeta('conditional-batch-v1').catch(function(){return null;}) : Promise.resolve(null)
+      ]);
+    }).then(async function(parts){
+      var data=parts[0], businessMeta=parts[1], syncMeta=parts[2];
+      if(syncMeta && global.AccountStorage && syncMeta.owner===global.AccountStorage.owner &&
+         Number.isSafeInteger(syncMeta.localGeneration) && syncMeta.localGeneration>=0){
+        _syncGeneration=Math.max(_syncGeneration || 0,syncMeta.localGeneration);
+      }
+      /* localStorage 只是小字段投影：仅在缺失/损坏且投影明确属于当前 owner 时
+         用已提交 IDB 数据重建，绝不覆盖仍可解析的本地版本。题库等未进入投影的
+         内容保持默认空值，避免猜测归属或把半份数据当完整恢复。 */
+      if(businessMeta && businessMeta.owner && global.AccountStorage &&
+         businessMeta.owner===global.AccountStorage.owner && businessMeta.data){
+        var rawSmall=null, validSmall=false;
+        try{
+          rawSmall=businessStorage.getItem(STORE_KEY);
+          var parsedSmall=rawSmall ? JSON.parse(rawSmall) : null;
+          validSmall=!!(parsedSmall && typeof parsedSmall==='object' && Array.isArray(parsedSmall.decks) &&
+            parsedSmall.stats && typeof parsedSmall.stats==='object');
+        }catch(error){ validSmall=false; }
+        if(!validSmall){
+          try{
+            var recovered=defaultMem(), projected=businessMeta.data;
+            Object.keys(projected).forEach(function(key){ if(key!=='stats') recovered[key]=projected[key]; });
+            recovered.stats=Object.assign({},recovered.stats,projected.stats||{},
+              {bySentence:data.sentenceStats||{},events:data.events||{}});
+            businessStorage.setItem(STORE_KEY,JSON.stringify(recovered));
+            adoptMemBase(businessStorage.getItem(STORE_KEY));
+          }catch(error2){ emit('persistError',{area:'businessProjectionRecovery',error:error2}); }
+        }
+      }
       /*
        * 迁移期间可能同时存在两份数据：
        * - IDB 是之前已经迁移成功的课程子集；
@@ -428,15 +844,30 @@
         courseMap[c.courseId] = c;
       });
       _coursesCache = Object.keys(courseMap).map(function(id){ return courseMap[id]; });
-      if(_coursesCache.length) global.IDBStore.putCourses(_coursesCache).catch(function(){});
 
       var localProgress = readProgressRaw();
       var idbProgress = (data.courseProgress && typeof data.courseProgress === 'object') ? data.courseProgress : {};
       /* 同一课程以 IDB 版本为准，localStorage 仅补齐尚未迁移的课程进度。 */
       _progressCache = Object.assign({}, localProgress, idbProgress);
-      if(Object.keys(_progressCache).length) global.IDBStore.putProgress(_progressCache).catch(function(){});
+      // 事务完成之前保留旧键；任一写入失败，冷启动仍可重新迁移。
+      if(global.IDBStore.updateCourses && global.IDBStore.updateProgress){
+        _coursesCache = await global.IDBStore.updateCourses(function(current){
+          var merged = {};
+          localCourses.concat(current).forEach(function(c){ if(c && c.courseId) merged[c.courseId]=c; });
+          return Object.keys(merged).map(function(id){return merged[id];});
+        });
+        _progressCache = await global.IDBStore.updateProgress(function(current){
+          return Object.assign({}, localProgress, current);
+        });
+      }else{
+        await global.IDBStore.putCourses(_coursesCache);
+        await global.IDBStore.putProgress(_progressCache);
+      }
       /* 迁移完成后删除 localStorage 大键（仅当 IDB 可用且迁移成功） */
-      try{ global.localStorage.removeItem(COURSES_KEY); global.localStorage.removeItem(PROGRESS_KEY); }catch(e){}
+      try{ businessStorage.removeItem(COURSES_KEY); businessStorage.removeItem(PROGRESS_KEY); }catch(e){}
+      /* 三路合并基线：此刻内存桥内容 == IDB 内容，即本页课程/进度视图的起点 */
+      _coursesDiskBase = _coursesCache;
+      _progressDiskBase = _progressCache;
 
       /* --- ★ stats 大对象：IDB 与 localStorage 旧值按 key 并集（同 IDB 优先），
              整体写回 IDB 成功后才剥离 localStorage 副本（避免「先删后写失败」造成丢数据）。 --- */
@@ -481,6 +912,7 @@
       return true;
     }).catch(function(e){
       console.warn('[idb preload] 失败，大对象继续由 localStorage 托管：', e && e.message);
+      emit('persistError', { area: 'migration', error: e });
       _statsStore = 'local';
       /* 失败前若已污染内存桥，清空以便 loadMem 回退读 localStorage 真值 */
       if(_bySentenceCache && !Object.keys(_bySentenceCache).length) _bySentenceCache = null;
@@ -492,28 +924,123 @@
      只改这两个字段，其余原样保留；同时归档旧值为迁移保险（键名带 _migrated 后缀）。 */
   function stripBigStatsFromLocal(){
     try{
-      var raw = global.localStorage.getItem(STORE_KEY);
+      var raw = businessStorage.getItem(STORE_KEY);
       if(!raw) return;
       var o = JSON.parse(raw);
       if(!o || !o.stats || typeof o.stats !== 'object') return;
       if(!('bySentence' in o.stats) && !('events' in o.stats)) return;
       delete o.stats.bySentence;
       delete o.stats.events;
-      global.localStorage.setItem(STORE_KEY, JSON.stringify(o));
+      var str = JSON.stringify(o);
+      businessStorage.setItem(STORE_KEY, str);
+      adoptMemBase(str);   /* 直接改写 chunklab.v1：同步推进基线，避免下次写入误判为外部改动 */
+      notifyTabs('mem');
     }catch(e){ console.warn('[idb] 剥离 localStorage 大对象失败：', e && e.message); }
   }
 
-  /* 写 courses：更新内存 + 异步 IDB + 触发云同步（不再写 localStorage） */
-  function writeCourses(list){
-    _coursesCache = Array.isArray(list) ? list : [];
-    if(global.IDBStore) global.IDBStore.putCourses(_coursesCache).catch(function(){});
-    scheduleCloudSync(loadMem());
+  /* 按存储串行提交，Promise resolve 才代表落盘成功。
+     失败不发布新内存值、不触发上行；旧值仍可读取，调用者负责呈现错误。
+
+     ★ 多标签页旧快照防护（P0）：courses / progress 的大对象在 IDB，不能靠 chunklab.v1 原文
+       判变，故用「跨标签页写信号 _coursesExternal/_progressExternal + 读当前 IDB 实况比对基线」
+       来触发三路合并。只有确实收到过其他标签页的课程写入时才多读一次 IDB（快路径零额外开销）。
+       写前合并、写后推进基线；对方课程 / 进度条目一律不被本页整份覆盖丢掉。 */
+  var _courseWriteTail = Promise.resolve(), _progressWriteTail = Promise.resolve();
+  function cloneJSON(value){ return JSON.parse(JSON.stringify(value)); }
+  function _keyedCourses(list){ return _toMap(list, function(c){ return c && c.courseId; }); }
+  function _mergeCoursesList(baseList, oursList, theirsList){
+    return _listFromKeyed(oursList, mergeKeyedMap(_keyedCourses(baseList), _keyedCourses(oursList), _keyedCourses(theirsList)),
+      function(c){ return c && c.courseId; });
   }
-  function writeProgress(obj){
-    _progressCache = (obj && typeof obj === 'object') ? obj : {};
-    if(global.IDBStore) global.IDBStore.putProgress(_progressCache).catch(function(){});
-    scheduleCloudSync(loadMem());
+  function courseIntentScope(){
+    /* AccountStorage 已经完成服务地址规范化和 uid 解析；复用它可避免
+       旧页面只写兼容 token 镜像时出现“origin”和空 base 两个作用域。 */
+    if(global.AccountStorage && global.AccountStorage.owner) return global.AccountStorage.owner;
+    var api=global.ChunkAPI, account='local';
+    var base=api && api.getBase ? api.getBase() : '';
+    var token=api && api.getToken ? api.getToken() : null;
+    if(token){
+      var claims=JSON.parse(global.atob(token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+      if(claims.uid == null) throw new Error('登录状态无法识别，请重新登录后保存');
+      account=String(claims.uid);
+    }
+    return JSON.stringify([base.replace(/\/+$/,''),account]);
   }
+  function persistCourseValue(kind, value, sync, allowOperations){
+    var snapshot = cloneJSON(value);
+    var intentScope = sync ? courseIntentScope() : null;
+    /* Reserve a monotonic local generation before entering the per-entity
+       write tail. The IDB transaction stores the maximum, so concurrent
+       courses/progress writes cannot move the durable generation backwards. */
+    var commitGeneration = sync && _cloudOn && global.ChunkAPI ? ++_syncGeneration : null;
+    var syncState = Number.isSafeInteger(commitGeneration) ? {
+      key:'conditional-batch-v1', owner:intentScope, schemaVersion:1,
+      localGeneration:commitGeneration
+    } : null;
+    var tail = kind === 'courses' ? _courseWriteTail : _progressWriteTail;
+    var task = tail.then(async function(){
+      if(_preloadTask) await _preloadTask;
+      if(sync && courseIntentScope() !== intentScope) throw new Error('账号已切换，本次课程改动未保存，请在原账号下重试');
+      var isCourses = kind === 'courses';
+      if(global.IDBStore){
+        if(_coursesCache === null || _progressCache === null) throw new Error('无法读取已有课程，已停止保存以防覆盖，请刷新后重试');
+        var update = global.IDBStore[isCourses ? 'updateCourses' : 'updateProgress'];
+        var merged = false;
+        if(update){
+          var diskBase = isCourses ? _coursesDiskBase : _progressDiskBase;
+          snapshot = await update(function(current){
+            if(diskBase !== null && !_eqJson(current, diskBase)){
+              merged = true;
+              return isCourses ? _mergeCoursesList(diskBase, snapshot, current)
+                : mergeKeyedMap(diskBase || {}, snapshot || {}, current || {});
+            }
+            return snapshot;
+          }, intentScope, sync ? null : {scope:courseIntentScope(),allowOperations:allowOperations || []}, syncState);
+          if(merged) emit('courseMerged', { kind: kind });
+        }else{
+        var needMerge = isCourses ? _coursesExternal : _progressExternal;
+        if(needMerge){
+          var base = isCourses ? _coursesDiskBase : _progressDiskBase;
+          var cur = isCourses ? await global.IDBStore.getCourses() : await global.IDBStore.getProgress();
+          if(base !== null && !_eqJson(cur, base)){
+            snapshot = isCourses
+              ? _mergeCoursesList(base, snapshot, cur)
+              : mergeKeyedMap(base || {}, (snapshot && typeof snapshot === 'object') ? snapshot : {}, cur || {});
+            emit('courseMerged', { kind: kind });
+          }
+        }
+        await global.IDBStore[isCourses ? 'putCourses' : 'putProgress'](snapshot);
+        }
+        businessStorage.removeItem(isCourses ? COURSES_KEY : PROGRESS_KEY);
+        /* ★ P0：IDB 分支同样要广播写入信号，否则其他标签页永不置 _coursesExternal/_progressExternal
+           → needMerge 恒为 false → 三路合并成死代码，后写者整份覆盖前者丢数据。与 local 分支保持一致。 */
+        notifyTabs(kind);
+      }else{
+        var key = isCourses ? COURSES_KEY : PROGRESS_KEY;
+        var baseLs = isCourses ? _coursesDiskBase : _progressDiskBase;
+        var curLs = null;
+        try{ curLs = JSON.parse(businessStorage.getItem(key) || (isCourses ? '[]' : '{}')); }
+        catch(e2){ curLs = isCourses ? [] : {}; }
+        if(baseLs !== null && !_eqJson(curLs, baseLs)){
+          snapshot = isCourses
+            ? _mergeCoursesList(baseLs, snapshot, curLs)
+            : mergeKeyedMap(baseLs || {}, (snapshot && typeof snapshot === 'object') ? snapshot : {}, curLs || {});
+          emit('courseMerged', { kind: kind });
+        }
+        businessStorage.setItem(key, JSON.stringify(snapshot));
+        notifyTabs(kind);
+      }
+      if(isCourses){ _coursesCache = snapshot; _coursesDiskBase = snapshot; _coursesExternal = false; }
+      else { _progressCache = snapshot; _progressDiskBase = snapshot; _progressExternal = false; }
+      if(sync) scheduleCloudSync(loadMem(),commitGeneration);
+      return true;
+    });
+    var settled = task.catch(function(e){ emit('persistError', { area: kind, error: e }); });
+    if(kind === 'courses') _courseWriteTail = settled; else _progressWriteTail = settled;
+    return task;
+  }
+  function writeCourses(list){ return persistCourseValue('courses', Array.isArray(list) ? list : [], true); }
+  function writeProgress(obj){ return persistCourseValue('progress', (obj && typeof obj === 'object') ? obj : {}, true); }
 
   /* ---------- 句子档案 / 事件日志的持久化分层（2026-09-10 扩容 8000 句） ----------
      根因：stats.bySentence 与 stats.events 是「随练习量无限增长」的数据，而 localStorage
@@ -564,18 +1091,90 @@
     };
   }
 
-  /* 把 stats 大对象异步落到 IDB：只写变更行。返回 Promise（无 IDB 时 resolve(false)） */
-  function persistStats(stats){
+  /* 把 stats 大对象异步落到 IDB：只写变更行。返回 Promise（无 IDB 时 resolve(false)）。
+     这里故意不在排队入口 clone 整份 stats：8000 句时 bySentence/events 可能已经是
+     数 MB，而 persistStatsSnapshot 本身只会把真正变更的行交给 IDB。IDB 的 put()
+     会在事务建立时完成结构化克隆；全量 clone 既没有增加提交安全性，反而让每次答题
+     都承担 O(全部句子 + 全部事件) 的内存和 CPU 成本。全量替换仅在迁移/云合并时由
+     _statsFullRewrite 明确触发，属于低频安全路径。 */
+  var _statsWriteTail=Promise.resolve();
+  var _statsActive=null, _statsPending=null;
+  function trackStatsWrite(promise){
+    /* waitForSync 只需要一个不拒绝的“所有当前写入都结束”尾标记；
+       单次保存的成功/失败仍由调用方拿到的原始 Promise 决定。 */
+    _statsWriteTail=Promise.all([_statsWriteTail,promise]).then(function(){return true;},function(){return false;});
+  }
+  function sameStatsLane(a,b){
+    return a.scope===b.scope && a.recordLearning===b.recordLearning;
+  }
+  function finishStatsEntry(entry,ok,error){
+    if(error) entry.reject(error); else entry.resolve(ok);
+    if(_statsActive===entry) _statsActive=null;
+    if(!_statsActive && _statsPending){
+      var next=_statsPending; _statsPending=null; startStatsEntry(next);
+    }
+  }
+  function startStatsEntry(entry){
+    _statsActive=entry;
+    Promise.resolve().then(function(){
+      if(courseIntentScope()!==entry.scope){
+        emit('persistError',{area:'stats',error:new Error('账号已切换，学习记录未写入新账号')});
+        return false;
+      }
+      return persistStatsSnapshot(entry.stats,entry.recordLearning ? entry.scope : null,
+        entry.commitGeneration,entry.businessMem);
+    }).then(function(ok){finishStatsEntry(entry,ok);},function(error){finishStatsEntry(entry,null,error);});
+  }
+  function persistStats(stats,recordLearning,commitGeneration,businessMem){
+    /* 慢 IDB 下只保留一个正在提交的快照和一个最新尾快照。
+       练习热路径通常复用同一个 mem.stats 引用，后续答题会合并进尾提交；
+       若调用方传入不同对象且已有尾提交，则拒绝本次排队，保留 localStorage
+       中的安全副本，避免用无限 Promise 链换取“看似成功”。 */
+    var entry={stats:stats || {},scope:courseIntentScope(),recordLearning:recordLearning!==false,
+      commitGeneration:commitGeneration,businessMem:businessMem,resolve:null,reject:null};
+    entry.promise=new Promise(function(resolve,reject){entry.resolve=resolve;entry.reject=reject;});
+    trackStatsWrite(entry.promise);
+    if(!_statsActive){ startStatsEntry(entry); return entry.promise; }
+    if(_statsPending && sameStatsLane(_statsPending,entry) && _statsPending.stats===entry.stats){
+      _statsPending.commitGeneration = Number.isSafeInteger(entry.commitGeneration)
+        ? Math.max(Number.isSafeInteger(_statsPending.commitGeneration) ? _statsPending.commitGeneration : 0,entry.commitGeneration)
+        : _statsPending.commitGeneration;
+      _statsPending.businessMem=entry.businessMem || _statsPending.businessMem;
+      return _statsPending.promise;
+    }
+    if(!_statsPending){ _statsPending=entry; return entry.promise; }
+    var error=new Error('统计写入队列已满，请稍后重试'); error.code='STATS_QUEUE_FULL';
+    entry.reject(error);
+    emit('persistError',{area:'stats',error:error});
+    return entry.promise;
+  }
+  function persistStatsSnapshot(stats,scope,commitGeneration,businessMem){
     if(_statsStore !== 'idb' || !global.IDBStore) return Promise.resolve(false);
     stats = stats || {};
     var by = stats.bySentence || {};
     var ev = Array.isArray(stats.events) ? stats.events : [];
     var dirty = [], gone = [], k;
+    var businessMeta = businessMem ? (function(){
+      var light = {}, source = businessMem.stats || {};
+      Object.keys(source).forEach(function(key){ if(key !== 'bySentence' && key !== 'events') light[key] = source[key]; });
+      return {
+        owner: global.AccountStorage ? global.AccountStorage.owner : null,
+        localGeneration: Number.isSafeInteger(commitGeneration) && commitGeneration >= 0 ? commitGeneration : 0,
+        data: { best: businessMem.best || {}, settings: businessMem.settings || {}, stats: light }
+      };
+    })() : null;
     if(_statsFullRewrite){
       for(k in by) _bsSig[k] = statSig(by[k]);
-      return global.IDBStore.replaceSentenceStats(by).then(function(){
+      var syncState=commitGeneration===null || commitGeneration===undefined ? null : {
+        key:'conditional-batch-v1', owner:courseIntentScope(), schemaVersion:1,
+        localGeneration:commitGeneration
+      };
+      var fullWrite=global.IDBStore.writeStatsBatch
+        ? global.IDBStore.writeStatsBatch({stats:by,events:ev,replaceStats:true,replaceEvents:true,businessMem:businessMeta},scope,syncState)
+        : global.IDBStore.replaceSentenceStats(by).then(function(){
         return global.IDBStore.replaceEvents(ev);
-      }).then(function(){
+      });
+      return fullWrite.then(function(){
         _statsFullRewrite = false;
         _evSnap = evSnapOf(ev);
         return true;
@@ -600,6 +1199,19 @@
     }
     if(canAppend) evRows = ev.slice(_evSnap.count);
     var evFull = !canAppend;
+    if(global.IDBStore.writeStatsBatch){
+      var changed={}; dirty.forEach(function(id){changed[id]=by[id];});
+      var syncState=commitGeneration===null || commitGeneration===undefined ? null : {
+        key:'conditional-batch-v1', owner:courseIntentScope(), schemaVersion:1,
+        localGeneration:commitGeneration
+      };
+      return global.IDBStore.writeStatsBatch({stats:changed,gone:gone,events:evFull ? ev : evRows,replaceEvents:evFull,businessMem:businessMeta},scope,syncState).then(function(){
+        _evSnap=evSnapOf(ev); return true;
+      }).catch(function(error){
+        console.warn('[stats→idb] 事务保存失败:',error.message);
+        _statsStore='local'; _bsSig={}; return false;
+      });
+    }
     var tasks = [];
     if(dirty.length){
       var patch = {};
@@ -624,7 +1236,7 @@
   /* 从 localStorage 的 mem 里读出大对象（迁移用；_statsStore='idb' 后这里恒为空） */
   function readLegacyStatsRaw(){
     try{
-      var o = JSON.parse(global.localStorage.getItem(STORE_KEY) || '{}');
+      var o = JSON.parse(businessStorage.getItem(STORE_KEY) || '{}');
       var s = (o && o.stats && typeof o.stats === 'object') ? o.stats : {};
       return {
         bySentence: (s.bySentence && typeof s.bySentence === 'object') ? s.bySentence : {},
@@ -637,9 +1249,30 @@
   var _cloudOn = false; /* 云端是否启用：服务器可达（开放模式）或已登录（鉴权模式）时为 true */
   var _cloudConfig = null; /* 最近一次 /api/config 结果（含 aiEnabled），供页面做 AI 数据面收敛 */
   var _dirty = false;   /* 待同步标志（离线 change-log 轻量版）：有本地变更未上云时为 true */
+  var _syncGeneration = 0;
+  var _syncConflict = null;
+  var _rejectedDeletes = {};
+  try{
+    var storedConflict = JSON.parse(businessStorage.getItem(CONFLICT_KEY) || 'null');
+    if(storedConflict && Array.isArray(storedConflict.conflicts)){
+      _syncConflict = storedConflict.conflicts; _dirty = true;
+      _rejectedDeletes = storedConflict.deleted || {};
+      (_rejectedDeletes.decks || []).forEach(function(d){ markGone(_pendingDecks, d.id, d.rev); });
+      (_rejectedDeletes.courses || []).forEach(function(d){ markGone(_pendingCourses, d.id, d.rev); });
+      (_rejectedDeletes.courseProgress || []).forEach(function(d){ markGone(_pendingProgress, d.id, d.rev); });
+    }
+  }catch(e){}
+  function rememberSyncConflict(conflicts, deleted){
+    _syncConflict = conflicts;
+    _rejectedDeletes = deleted || {};
+    try{
+      if(conflicts) businessStorage.setItem(CONFLICT_KEY, JSON.stringify({ conflicts: conflicts, deleted: _rejectedDeletes }));
+      else businessStorage.removeItem(CONFLICT_KEY);
+    }catch(e){ emit('persistError', { area: 'syncConflict', error: e }); }
+  }
 
   /* 有变更待同步时通知 UI（main.html 顶栏"未同步"徽标） */
-  function notifySync(){ emit('syncStatus', { dirty: _dirty }); }
+  function notifySync(){ emit('syncStatus', { dirty: _dirty, conflict: _syncConflict }); }
 
   /* ---------- 云端增量水位（2026-09-10，8000 句扩容） ----------
      bySentence / events 已从「stats 整块」拆到服务端行表，客户端改为只上行变更行。
@@ -781,18 +1414,195 @@
     return { sbs: sbs, sbsGone: sbsGone, evs: evs, mark: { bsSig: nextBs, evIds: nextEvIds } };
   }
 
-  function scheduleCloudSync(memObj){
+  function scheduleCloudSync(memObj,committedGeneration){
     if(!_cloudOn || !global.ChunkAPI) return;
+    var generationWasCommitted=Number.isSafeInteger(committedGeneration) && committedGeneration>=0;
+    if(generationWasCommitted) _syncGeneration=Math.max(_syncGeneration,committedGeneration);
+    else _syncGeneration++;
+    if(!generationWasCommitted && global.BatchSync && global.BatchSync.noteLocalGeneration){
+      global.BatchSync.noteLocalGeneration(_syncGeneration).catch(function(error){
+        _dirty=true; notifySync(); console.warn('[cloud sync] 保存本地同步代次失败:',error.message);
+      });
+    }
     _dirty = true;
     notifySync();
     if(_cloudTimer) clearTimeout(_cloudTimer);
     _cloudTimer = setTimeout(function(){ cloudSyncNow(memObj); }, 400);
   }
+  var _cloudInFlight = null;
+  var _courseDrain = null;
+  var _protectedCourses = Object.create(null), _protectedProgress = Object.create(null);
+  function canReplayCourses(){
+    /* The account-wide conditional writer owns the request/receipt boundary.
+       Keeping the older per-course HTTP drain active would create a second
+       sender that can advance revisions outside that boundary. Its durable
+       intents remain in the normal batch until the batch is acknowledged. */
+    if(global.BatchSync) return false;
+    return global.IDBStore && global.IDBStore.freezeSyncIntent && global.ChunkAPI && global.ChunkAPI.getSyncEntity;
+  }
+  function sameSyncValue(a,b){
+    function stable(value){
+      if(Array.isArray(value)) return value.map(stable);
+      if(value && typeof value==='object'){
+        var obj=Object.create(null); Object.keys(value).sort().forEach(function(k){obj[k]=stable(value[k]);}); return obj;
+      }
+      return value;
+    }
+    return JSON.stringify(stable(a))===JSON.stringify(stable(b));
+  }
+  function replayCourseIntents(){
+    if(!canReplayCourses()) return Promise.resolve(true);
+    if(_courseDrain) return _courseDrain;
+    _courseDrain=drainCourseIntents().finally(function(){_courseDrain=null;});
+    return _courseDrain;
+  }
+  async function drainCourseIntents(){
+    var scope=courseIntentScope(), store=global.IDBStore, api=global.ChunkAPI;
+    function checkScope(){if(courseIntentScope()!==scope) throw new Error('账号已切换，停止恢复同步');}
+    try{
+      await Promise.all([_courseWriteTail,_progressWriteTail]);
+      for(var round=0;round<64;round++){
+        checkScope();
+        if(_resolutionPaused) return false;
+        var records=await store.readSyncIntents(scope);
+        checkScope();
+        if(!records.length) return true;
+        var record=records[0], group=record.entity;
+        (group==='courses' ? _protectedCourses : _protectedProgress)[record.id]=true;
+        var frozen=record.frozen;
+        if(!frozen){
+          var remote=await api.getSyncEntity(group,record.id);
+          checkScope();
+          if(!remote || typeof remote.exists!=='boolean' || !Number.isSafeInteger(remote.rev) || remote.rev<0 || typeof remote.deleted!=='boolean') throw new Error('服务端需升级后才能安全恢复课程同步');
+          var remoteValue=remote.deleted ? null : remote.value;
+          if(record.deleted===remote.deleted && sameSyncValue(record.value,remoteValue)){
+            // Already delivered (including a previously lost response): no write needed.
+            await store.acknowledgeSyncIntents(scope,[{key:record.key,operationId:record.operationId}]);
+            rememberCourseRevision(group,record.id,remote.rev);
+            continue;
+          }
+          if(!sameSyncValue(record.original,remoteValue)){
+            var conflict=new Error('云端课程已有修改，请先比较双方版本');
+            conflict.code='SYNC_CONFLICT';
+            conflict.conflicts=[{entity:group,id:record.id,currentRev:remote.rev,reason:'BASE_CONTENT_CHANGED'}];
+            throw conflict;
+          }
+          var rev=Math.max(remote.rev,(loadRevs()[group] || {})[record.id] || 0)+1;
+          if(!Number.isSafeInteger(rev)) throw new Error('课程版本号超出范围');
+          var payload={mem:{},revs:{},baseRevs:{},deleted:{}};
+          payload.revs[group]={[record.id]:rev};
+          payload.baseRevs[group]={[record.id]:remote.exists ? remote.rev : null};
+          if(record.deleted) payload.deleted[group]=[{id:record.id,rev:rev}];
+          else if(group==='courses') payload.courses=[record.value];
+          else payload.courseProgress={[record.id]:record.value};
+          frozen=await store.freezeSyncIntent(scope,record.key,record.operationId,payload);
+          checkScope();
+          if(!frozen) continue; // Another tab changed the draft before it was frozen.
+        }
+        checkScope();
+        var receipt=await api.putData(frozen.payload);
+        checkScope();
+        if(!receipt || receipt.ok!==true) throw new Error('服务器未确认课程保存成功');
+        await store.confirmSyncIntent(scope,record.key,frozen.operationId);
+        rememberCourseRevision(group,record.id,frozen.payload.revs[group][record.id]);
+      }
+      // Bound a run when another tab is continuously editing; leave the rest durable.
+      _dirty=true; notifySync();
+      if(_cloudTimer) clearTimeout(_cloudTimer);
+      _cloudTimer=setTimeout(function(){
+        if(courseIntentScope()===scope && !_resolutionPaused) syncFromCloud();
+      },400);
+      return false;
+    }catch(error){
+      _dirty=true;
+      if(error.code==='SYNC_CONFLICT') rememberSyncConflict(error.conflicts || []);
+      notifySync(); console.warn('[course replay] 恢复暂停:',error.message); return false;
+    }
+  }
+  function rememberCourseRevision(group,id,rev){
+    var revs=loadRevs(); if(!revs[group]) revs[group]={};
+    revs[group][id]=Math.max(revs[group][id] || 0,rev); saveRevs(revs);
+  }
+  var _resolutionPaused = false;
+  function setResolutionPaused(paused){
+    _resolutionPaused = !!paused;
+    if(paused){ _dirty = true; if(_cloudTimer) clearTimeout(_cloudTimer); }
+    notifySync();
+  }
   function cloudSyncNow(memObj){
+    if(_resolutionPaused) return Promise.resolve(false);
+    /* 保存后的显式同步可能撞上上一批请求：直接返回旧 promise 会让调用方
+       误以为本次改动已经确认，而新改动则留在 BatchSync.pending 里，下一次拉取
+       还会被旧基线挡住。等待在途批次结束后，若本地代次已变化，立即用最新快照
+       发送后继批次；这样 saveAndNotify + cloudSyncNow 的调用也有确定语义。 */
+    if(_cloudInFlight){
+      var requestedGeneration = _syncGeneration;
+      var active = _cloudInFlight;
+      return active.then(function(ok){
+        if(!_resolutionPaused && _syncGeneration > requestedGeneration) return cloudSyncNow(loadMem());
+        return ok;
+      });
+    }
+    var sentGeneration = _syncGeneration;
+    _cloudInFlight = sendCloudData(memObj).then(function(ok){
+      _cloudInFlight = null;
+      if(ok && _syncGeneration !== sentGeneration) scheduleCloudSync(loadMem());
+      return ok;
+    }).catch(function(error){
+      _cloudInFlight=null; _dirty=true; notifySync();
+      console.warn('[cloud sync] 准备同步失败:', error.message);
+      /* A local edit may land while the payload is waiting for IDB writes.
+         Do not send that stale payload; schedule a successor built from the
+         current local view instead. */
+      if(_syncGeneration !== sentGeneration && !_resolutionPaused){
+        setTimeout(function(){ scheduleCloudSync(loadMem()); },0);
+      }
+      return false;
+    });
+    return _cloudInFlight;
+  }
+  async function putConditionalCloud(payload,expectedGeneration,operationReceipts){
+    if(!global.BatchSync) return global.ChunkAPI.putData(payload);
+    var state=await global.BatchSync.state();
+    if(!Number.isSafeInteger(state.baseline) || state.baseline<0){
+      var baseError=new Error('尚未确认云端基线，暂不上传本地数据');
+      baseError.code='SYNC_BASELINE_REQUIRED';
+      throw baseError;
+    }
+    await global.BatchSync.stage(payload,state.baseline,expectedGeneration,operationReceipts);
+    var outcome=await global.BatchSync.retry();
+    if(!outcome || !outcome.receipt) throw new Error('服务器未确认条件同步');
+    return outcome.receipt;
+  }
+  async function sendCloudData(memObj){
     if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
+    if(global.IDBStore) await Promise.all([_courseWriteTail,_progressWriteTail,_statsWriteTail]);
+    /* A lost response leaves the exact request durable. Confirm it before
+       constructing a successor payload, otherwise a stale in-memory payload
+       could be staged after the old request has already committed. */
+    if(global.BatchSync){
+      var queued=await global.BatchSync.state();
+      if(queued.pending){ await global.BatchSync.retry(); memObj=loadMem(); }
+    }
+    if(canReplayCourses() && !await replayCourseIntents()) return false;
+    var intentScope=courseIntentScope();
+    var intents=global.IDBStore && global.IDBStore.readSyncIntents
+      ? await global.IDBStore.readSyncIntents(intentScope) : [];
+    var learningIntents=global.IDBStore && global.IDBStore.readLearningIntents
+      ? await global.IDBStore.readLearningIntents(intentScope) : [];
+    if(courseIntentScope()!==intentScope) throw new Error('账号已切换，停止同步');
+    var sentGeneration = _syncGeneration;
     var meta = _lastSyncMeta || { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
     var cmeta = maintainCoursesRevs();
     var delta = buildStatsDelta(memObj);
+    // Persistent tombstones survive loss of the in-memory cloud signature map.
+    learningIntents.forEach(function(record){
+      if(record.entity==='sentenceStats' && record.deleted &&
+         !Object.prototype.hasOwnProperty.call((memObj.stats || {}).bySentence || {},record.id)){
+        if(delta.sbsGone.indexOf(record.id)<0) delta.sbsGone.push(record.id);
+        delete delta.sbs[record.id]; delete delta.mark.bsSig[record.id];
+      }
+    });
     var ent = buildEntityDelta(memObj);
 
     /* 只上行「自上次成功上行以来变更过的实体」。
@@ -801,6 +1611,11 @@
     var deckPayload = pendingList(_pendingDecks, memObj.decks || [], function (d) { return d.id; });
     var coursePayload = pendingList(_pendingCourses, readCoursesRaw(), function (c) { return c.courseId; });
     var progPayload = pendingMap(_pendingProgress, readProgressRaw());
+    if(canReplayCourses()){
+      intents.forEach(function(record){(record.entity==='courses' ? _protectedCourses : _protectedProgress)[record.id]=true;});
+      coursePayload=coursePayload.filter(function(c){return !_protectedCourses[c.courseId];});
+      Object.keys(progPayload).forEach(function(id){if(_protectedProgress[id]) delete progPayload[id];});
+    }
     var sentDecks = idsOf(deckPayload, function (d) { return d.id; });
     var sentCourses = idsOf(coursePayload, function (c) { return c.courseId; });
     var sentProgress = {};
@@ -808,6 +1623,13 @@
     var deckGone = pendingGone(_pendingDecks, meta.deleted.decks);
     var courseGone = pendingGone(_pendingCourses, cmeta.deleted.courses);
     var progGone = pendingGone(_pendingProgress, cmeta.deleted.courseProgress);
+    if(canReplayCourses()){
+      courseGone.list=courseGone.list.filter(function(d){return !_protectedCourses[d.id];});
+      progGone.list=progGone.list.filter(function(d){return !_protectedProgress[d.id];});
+    }
+    discardSupersededDeletes(_pendingDecks, deckGone, sentDecks, meta.revs.decks || {});
+    discardSupersededDeletes(_pendingCourses, courseGone, sentCourses, cmeta.revs.courses || {});
+    discardSupersededDeletes(_pendingProgress, progGone, sentProgress, cmeta.revs.courseProgress || {});
 
     /* mem 里只带小字段 + 变更过的 deck（bySentence/events/mastered/错题本 都走各自 delta） */
     var memToSend = memForCloud(memObj) || {};
@@ -822,7 +1644,9 @@
         courses: cmeta.revs.courses, courseProgress: cmeta.revs.courseProgress
       },
       deleted: {
-        decks: deckGone.list, kv: meta.deleted.kv,
+        decks: deckGone.list, kv: (meta.deleted.kv || []).concat((_rejectedDeletes.kv || []).filter(function(d){
+          return !(meta.deleted.kv || []).some(function(current){ return current.k === d.k; });
+        })),
         courses: courseGone.list, courseProgress: progGone.list
       }
     };
@@ -836,7 +1660,34 @@
       if(deltaHasRows(ent.reinforceBook)) payload.entityDelta.reinforceBook = { up: ent.reinforceBook.up, gone: ent.reinforceBook.gone };
       if(deltaHasRows(ent.deletedItems)) payload.entityDelta.deletedItems = { up: ent.deletedItems.up, gone: ent.deletedItems.gone };
     }
-    return global.ChunkAPI.putData(payload).then(function(){
+    var intentReceipts=intents.filter(function(record){
+      if(record.deleted) return (payload.deleted[record.entity] || []).some(function(d){return d.id===record.id;});
+      var value=record.entity==='courses' ? coursePayload.find(function(c){return c.courseId===record.id;}) : progPayload[record.id];
+      return value!==undefined && _eqJson(value,record.value);
+    }).map(function(record){return {key:record.key,operationId:record.operationId};});
+    var sentEvents=Object.create(null);
+    (delta.evs || []).forEach(function(event){sentEvents[event.id]=event;});
+    var sentGone=new Set(delta.sbsGone || []);
+    learningIntents.forEach(function(record){
+      var matches=record.entity==='events'
+        /* id is the event's immutable identity. Its key may be normalized by
+           the cid migration between IDB intent creation and cloud assembly;
+           comparing the whole object would strand the intent forever. */
+        ? !record.deleted && !!sentEvents[record.id]
+        : record.deleted ? sentGone.has(record.id) : sameSyncValue(delta.sbs[record.id],record.value);
+      if(matches) intentReceipts.push({key:record.key,operationId:record.operationId});
+    });
+    return putConditionalCloud(payload,sentGeneration,intentReceipts).then(async function(result){
+      if(!result || result.ok !== true){
+        var error = new Error('服务器未确认保存成功');
+        error.code = result && result.code;
+        error.conflicts = result && result.conflicts;
+        throw error;
+      }
+      if(courseIntentScope()!==intentScope) throw new Error('账号已切换，原账号的待同步记录已保留');
+      if(!global.BatchSync && intentReceipts.length && global.IDBStore.acknowledgeSyncIntents){
+        await global.IDBStore.acknowledgeSyncIntents(intentScope,intentReceipts);
+      }
       /* ★ 只有确认送达才推进水位（失败保持 → 下次自动重发这批变更） */
       _cloudBsSig = delta.mark.bsSig;
       _cloudEvIds = delta.mark.evIds;
@@ -844,22 +1695,47 @@
       _cloudReinforceSig = ent.reinforceBook.next;
       _cloudDeletedSig = ent.deletedItems.next;
       /* 待发集合只摘掉「本次真正发出去的」id（在途新增/变更的留待下次），见 makePending 注释 */
-      ackPending(_pendingDecks, sentDecks, deckGone.sent);
-      ackPending(_pendingCourses, sentCourses, courseGone.sent);
-      ackPending(_pendingProgress, sentProgress, progGone.sent);
-      _dirty = false;
+      if(_syncGeneration === sentGeneration){
+        ackPending(_pendingDecks, sentDecks, deckGone.sent);
+        ackPending(_pendingCourses, sentCourses, courseGone.sent);
+        ackPending(_pendingProgress, sentProgress, progGone.sent);
+      }
+      _dirty = _syncGeneration !== sentGeneration;
+      rememberSyncConflict(null);
       notifySync();
       return true;
     }).catch(function(e){
       console.warn('[cloud sync →] 失败:', e.message);
+      _dirty = true;
+      if(e.code === 'SYNC_CONFLICT') rememberSyncConflict(e.conflicts || [], payload.deleted);
       notifySync();
       return false;
     });
   }
-  function syncFromCloud(){
+  function syncFromCloud(pendingChecked, coursesChecked){
     if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
-    return global.ChunkAPI.getData().then(function(data){
+    if(!pendingChecked && global.SyncResolution) return global.SyncResolution.restorePause().then(function(){ return syncFromCloud(true); });
+    if(_resolutionPaused) return Promise.resolve(false);
+    if(!coursesChecked && canReplayCourses()) return replayCourseIntents().then(function(ok){return ok ? syncFromCloud(true,true) : false;});
+    if(_syncConflict){
+      // 未解决的本地版本不能被启动时的 LWW 拉取覆盖。先重试原版本，
+      // 若云端仍不同则继续明确报冲突；不擅自抬高 rev 强制覆盖。
+      var pending = loadMem();
+      maintainRevs(pending);
+      return cloudSyncNow(pending);
+    }
+    var pullScope=courseIntentScope(), pullGeneration=_syncGeneration;
+    /* Retry the durable request before reading a new snapshot. A GET first
+       could make the following write use a newer baseline than the request
+       that was already committed but whose response was lost. */
+    var retryBeforePull=global.BatchSync ? global.BatchSync.retry() : Promise.resolve();
+    return retryBeforePull.then(function(){ return global.ChunkAPI.getData(); }).then(async function(data){
       if(!data) return false;
+      // Pull must merge committed imports, not a snapshot taken before their writes finish.
+      await Promise.all([_courseWriteTail, _progressWriteTail, _statsWriteTail]);
+      var pendingLearning=global.IDBStore && global.IDBStore.readLearningIntents
+        ? await global.IDBStore.readLearningIntents(pullScope) : [];
+      if(courseIntentScope()!==pullScope) throw new Error('账号已切换，停止拉取合并');
       var remoteMem = data.mem || {};
       var remoteRevs = data.revs || { decks: {}, kv: {} };
       var localRevs = loadRevs();
@@ -955,6 +1831,34 @@
       });
       m.reinforceBook = mergedBook;
 
+      pendingLearning.forEach(function(record){
+        if(record.entity==='sentenceStats' && record.deleted) delete m.stats.bySentence[record.id];
+      });
+      /* 事件在普通答题路径只追加；整账号显式选择可产生事件墓碑。
+         先合并远端新增，再应用墓碑，避免已删除事件被本地旧副本复活。 */
+      var goneEvents = data.deleted && Array.isArray(data.deleted.events) ? data.deleted.events : [];
+      if(goneEvents.length){
+        var goneEventSet = {};
+        goneEvents.forEach(function(id){ goneEventSet[id]=1; });
+        /* 事件 id 是不可变主键；若本机曾在旧 key 迁移前写入过 intent，
+           仅靠整对象比较会让这条已经被云端明确删除的 intent 永久待发，
+           下一次拉取又会把“空 payload”卡在旧基线。整账号选择的删除是
+           明确的权威结果，因此同步摘除对应本机 intent。 */
+        if(global.IDBStore && global.IDBStore.acknowledgeSyncIntents){
+          var goneReceipts = pendingLearning.filter(function(record){
+            return record.entity==='events' && !record.deleted && goneEventSet[record.id];
+          }).map(function(record){ return {key:record.key,operationId:record.operationId}; });
+          if(goneReceipts.length) await global.IDBStore.acknowledgeSyncIntents(pullScope,goneReceipts);
+          pendingLearning = pendingLearning.filter(function(record){
+            return !(record.entity==='events' && !record.deleted && goneEventSet[record.id]);
+          });
+        }
+        m.stats.events = (Array.isArray(m.stats.events) ? m.stats.events : []).filter(function(ev){
+          return !ev || !goneEventSet[ev.id];
+        });
+      }
+      if(pendingLearning.length) _dirty=true;
+
       saveRevs(localRevs);
       _prevSnap = null; /* 让 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
       /* ★ 合并结果必须同步回内存桥：否则下一次 loadMem() 仍会取到合并前的旧 bySentence/events，
@@ -966,7 +1870,7 @@
         _eventsCache = m.stats.events;
         _evSnap = null;
       }
-      saveMem(m);
+      saveMem(m,false);
       /* 增量水位对齐到云端实际内容：远端已有的不再回传，本地独有的下次上行。
          必须在合并结果写盘后立即就位 —— 之后任何一次 scheduleCloudSync 都要基于它。 */
       _cloudBsSig = remoteBsSig;
@@ -988,8 +1892,7 @@
           if(ri > (localRevs.courses[cid] || 0)){ delete mergedCourses[cid]; localRevs.courses[cid] = ri; }
         }
       });
-      _coursesCache = Object.keys(mergedCourses).map(function(cid){ return mergedCourses[cid].data; });
-      if(global.IDBStore) global.IDBStore.putCourses(_coursesCache).catch(function(){});
+      await persistCourseValue('courses', Object.keys(mergedCourses).map(function(cid){ return mergedCourses[cid].data; }), false);
       // courseProgress：per-key LWW 合并 + 软删传播
       var mergedProg = {};
       var pcur = readProgressRaw();
@@ -1007,9 +1910,18 @@
       });
       var newProg = {};
       Object.keys(mergedProg).forEach(function(cid){ newProg[cid] = mergedProg[cid].data; });
-      _progressCache = newProg;
-      if(global.IDBStore) global.IDBStore.putProgress(_progressCache).catch(function(){});
+      await persistCourseValue('progress', newProg, false);
       saveRevs(localRevs);
+      /* The read is now accepted and all merged local values are persisted.
+         Only this point may advance the baseline; a concurrent local edit
+         keeps the old relation so its next PUT can surface a real conflict. */
+      if(global.BatchSync && Number.isSafeInteger(data.seq) && data.seq>=0 &&
+         _syncGeneration===pullGeneration && !_dirty){
+        var accepted=await global.BatchSync.state();
+        if(accepted.baseline===null || accepted.baseline!==data.seq){
+          await global.BatchSync.observe(data.seq,accepted.baseline);
+        }
+      }
       /* 重置 courses/progress 快照：合并结果已采纳（localRevs 已对齐），下次上行走初始化分支不误 bump */
       _coursesSnap = null;
       _progressSnap = null;
@@ -1030,7 +1942,6 @@
       Object.keys(pushProg).forEach(function(id){ _pendingProgress.dirty[id] = 1; });
       /* 离线 change-log（轻量版）：拉取合并成功后，若本地仍有未同步变更（离线期间产生），立即补传 push */
       if(_dirty){
-        _dirty = false;
         notifySync();
         cloudSyncNow(loadMem());
       }
@@ -1040,6 +1951,144 @@
       return false;
     });
   }
+  function readSyncLocal(entity, id){
+    var value, m = loadMem();
+    if(entity === 'courses' || entity === 'courseProgress') maintainCoursesRevs(); else maintainRevs(m);
+    if(entity === 'decks') value = (m.decks || []).find(function(d){ return d.id === id; });
+    else if(entity === 'courses') value = readCoursesRaw().find(function(c){ return c.courseId === id; });
+    else if(entity === 'courseProgress') value = readProgressRaw()[id];
+    else if(entity === 'kv' && SYNC_KV_KEYS.indexOf(id) >= 0) value = memForCloud(m)[id];
+    else throw new Error('不支持的冲突项目');
+    var revs = loadRevs();
+    return cloneJSON({ rev: (revs[entity] && revs[entity][id]) || 0, deleted: value == null, value: value == null ? null : value });
+  }
+  /* Full local learning snapshot used only after an account-level conflict.
+     It is intentionally on-demand: normal answering and sync continue to use
+     row-level deltas, so an 8000-sentence account is not cloned per answer. */
+  function readSyncSnapshot(){
+    return cloneJSON({
+      mem: loadMem(),
+      courses: readCoursesRaw(),
+      courseProgress: readProgressRaw(),
+      revs: loadRevs(),
+      generation: _syncGeneration
+    });
+  }
+  /* 整账号冲突处理成功后，选中的快照就是新的已确认基线。
+     不能把 _prevSnap / 云端增量水位留空：否则紧接着删除或修改一个题库时，
+     maintainRevs 只能走“首次保存”分支，既检测不到删除，也可能用旧 rev 上行。
+     这里一次性重建所有轻量水位；8000 句只在低频的冲突处理路径执行。 */
+  function adoptConfirmedBatchSnapshot(snapshot){
+    snapshot = snapshot || {};
+    var cm = snapshot.mem || loadMem();
+    var cs = cm.stats || {};
+    _prevSnap = { decks: {}, kv: {} };
+    (cm.decks || []).forEach(function(d){ _prevSnap.decks[d.id] = sigDeck(d); });
+    SYNC_KV_KEYS.forEach(function(k){ if(k in cm) _prevSnap.kv[k] = kvSig(k, cm[k]); });
+    _coursesSnap = {};
+    (snapshot.courses || readCoursesRaw()).forEach(function(c){ _coursesSnap[c.courseId] = sigCourse(c); });
+    _progressSnap = {};
+    var cp = snapshot.courseProgress || readProgressRaw();
+    Object.keys(cp).forEach(function(id){ _progressSnap[id] = sigKv(cp[id]); });
+    var by = cs.bySentence && typeof cs.bySentence === 'object' ? cs.bySentence : {};
+    _cloudBsSig = {};
+    Object.keys(by).forEach(function(k){ _cloudBsSig[k] = statSig(by[k]); });
+    _cloudEvIds = {};
+    (Array.isArray(cs.events) ? cs.events : []).forEach(function(ev){ if(ev && ev.id) _cloudEvIds[ev.id] = 1; });
+    alignEntityMarks(cm);
+    if(snapshot.revs) saveRevs(snapshot.revs);
+    [_pendingDecks, _pendingCourses, _pendingProgress].forEach(function(p){
+      p.all = false; p.dirty = {}; p.gone = {};
+    });
+  }
+  async function applySyncBatchResolution(receipt, original){
+    if(!receipt || receipt.kind!=='batch' || !receipt.snapshot || !global.BatchSync || !global.BatchSync.finishResolution){
+      throw new Error('整账号处理回执无效');
+    }
+    var current=readSyncSnapshot();
+    if(!sameSyncValue(current, original)){
+      var changed=new Error('处理期间本机已有新修改，请重新比较双方版本');
+      changed.code='LOCAL_CHANGED'; throw changed;
+    }
+    if(receipt.choice==='remote'){
+      var remote=receipt.snapshot;
+      if(saveMem(remote.mem,false)===false) throw new Error('云端版本写入本机失败，原数据未切换');
+      await persistCourseValue('courses', remote.courses || [], false);
+      await persistCourseValue('progress', remote.courseProgress || {}, false);
+    }
+    adoptConfirmedBatchSnapshot(receipt.snapshot);
+    await global.BatchSync.finishResolution(receipt.seq,receipt.requestId);
+    /* A recovered namespace remains local-only until this exact comparison
+       and resolution succeeds.  Remove the hold only after both local
+       activation and the durable sync baseline have completed. */
+    if(global.AccountStorage && global.AccountStorage.storage.getItem('chunklab.restore-cloud-hold')){
+      global.AccountStorage.storage.removeItem('chunklab.restore-cloud-hold');
+    }
+    _lastSyncMeta=null; _dirty=false; rememberSyncConflict(null); notifySync();
+    emit('syncResolved',{entity:'batch',id:receipt.requestId,choice:receipt.choice});
+  }
+  async function applySyncResolution(receipt, original){
+    await Promise.all([_courseWriteTail, _progressWriteTail]);
+    var entity = receipt.entity, id = receipt.id, state = receipt.state;
+    var current = readSyncLocal(entity, id);
+    var intentScope=courseIntentScope();
+    var resolutionIntents=global.IDBStore && global.IDBStore.readSyncIntents
+      ? (await global.IDBStore.readSyncIntents(intentScope)).filter(function(record){
+        return record.entity===entity && record.id===id && record.deleted===original.deleted && sameSyncValue(record.value,original.value);
+      }) : [];
+    var sameData = function(a,b){ return a.deleted === b.deleted && JSON.stringify(a.value) === JSON.stringify(b.value); };
+    if(!sameData(current, original) && !sameData(current, state)){
+      var changed = new Error('本机在处理期间有新修改，已保留。请重新比较双方版本。');
+      changed.code = 'LOCAL_CHANGED'; throw changed;
+    }
+    var m = loadMem();
+    if(entity === 'courses'){
+      var courses = readCoursesRaw().filter(function(c){ return c.courseId !== id; });
+      if(!state.deleted) courses.push(state.value);
+      await persistCourseValue('courses', courses, false,resolutionIntents.map(function(r){return r.operationId;}));
+      if(_coursesSnap){ if(state.deleted) delete _coursesSnap[id]; else _coursesSnap[id] = sigCourse(state.value); }
+    }else if(entity === 'courseProgress'){
+      var progress = cloneJSON(readProgressRaw());
+      if(state.deleted) delete progress[id]; else progress[id] = state.value;
+      await persistCourseValue('progress', progress, false,resolutionIntents.map(function(r){return r.operationId;}));
+      if(_progressSnap){ if(state.deleted) delete _progressSnap[id]; else _progressSnap[id] = sigKv(state.value); }
+    }else{
+      if(entity === 'decks'){
+        m.decks = m.decks.filter(function(d){ return d.id !== id; });
+        if(!state.deleted) m.decks.push(state.value);
+      }else if(id === 'stats'){
+        // Only the conflicting summary changes; sentence cards and events stay intact.
+        m.stats = Object.assign({}, state.deleted ? {} : state.value, { bySentence: m.stats.bySentence, events: m.stats.events });
+      }else m[id] = state.deleted ? {} : state.value;
+      writeLocalMem(m);
+      if(_prevSnap){
+        if(entity === 'decks'){ if(state.deleted) delete _prevSnap.decks[id]; else _prevSnap.decks[id] = sigDeck(state.value); }
+        else _prevSnap.kv[id] = kvSig(id, m[id]);
+      }
+    }
+    if((entity==='courses' || entity==='courseProgress') && !sameData(readSyncLocal(entity,id),state)){
+      var raced=new Error('处理期间出现新修改，已保留，请重新比较'); raced.code='LOCAL_CHANGED'; throw raced;
+    }
+    var revs = loadRevs();
+    if(!revs[entity]) revs[entity] = {};
+    revs[entity][id] = state.rev;
+    /* 走 saveRevs（逐键 max 合并）而非直接 setItem：避免把其他标签页刚升的 rev 覆盖回退 */
+    saveRevs(revs);
+    if(resolutionIntents.length){
+      if(courseIntentScope()!==intentScope) throw new Error('账号已切换，处理记录已保留');
+      await global.IDBStore.acknowledgeSyncIntents(intentScope,resolutionIntents);
+    }
+    _lastSyncMeta.revs = revs;
+    var pending = entity === 'decks' ? _pendingDecks : entity === 'courses' ? _pendingCourses : entity === 'courseProgress' ? _pendingProgress : null;
+    if(pending){ delete pending.dirty[id]; delete pending.gone[id]; }
+    _rejectedDeletes[entity] = (_rejectedDeletes[entity] || []).filter(function(d){ return (d.id || d.k) !== id; });
+    if(_lastSyncMeta.deleted[entity]) _lastSyncMeta.deleted[entity] = _lastSyncMeta.deleted[entity].filter(function(d){ return (d.id || d.k) !== id; });
+    var remaining = (_syncConflict || []).filter(function(c){ return c.entity !== entity || c.id !== id; });
+    var hasDeletes = Object.keys(_rejectedDeletes).some(function(k){ return _rejectedDeletes[k].length; });
+    rememberSyncConflict(remaining.length || hasDeletes ? remaining : null, _rejectedDeletes);
+    emit('memUpdated', loadMem()); emit('syncResolved', { entity: entity, id: id }); notifySync();
+  }
+
   /* ---------- 静默游客账号 ----------
      鉴权模式下让用户免登录直接用：首次访问自动注册 guest_xxx（凭据存本地供静默续期），
      token 过期后凭据可透明重登。手动登录的账号不存此凭据 → 到期仍走登录框，防止自动换成新游客导致数据错挂。 */
@@ -1050,7 +2099,10 @@
     return s;
   }
   function _loadGuest(){
-    try { return JSON.parse(localStorage.getItem(GUEST_KEY) || 'null'); } catch (e) { return null; }
+    try {
+      var saved = JSON.parse(localStorage.getItem(GUEST_KEY) || 'null');
+      return saved && (saved.base || '') === global.ChunkAPI.getBase() ? saved : null;
+    } catch (e) { return null; }
   }
   function _createGuest(tries){
     var api = global.ChunkAPI;
@@ -1059,7 +2111,7 @@
     return api.register(u, p).then(function(r){
       if (r && r.token) {
         api.setToken(r.token);
-        try { localStorage.setItem(GUEST_KEY, JSON.stringify({ u: u, p: p })); } catch (e) {}
+        try { localStorage.setItem(GUEST_KEY, JSON.stringify({ u: u, p: p, base: api.getBase() })); } catch (e) {}
         return true;
       }
       return false;
@@ -1575,6 +2627,7 @@
     loadMem: loadMem,
     saveMem: saveMem,
     saveAndNotify: saveAndNotify,
+    lastSave: function(){ return _lastSavePromise; },
     $: $, esc: esc, norm: norm, normSent: normSent, timeAgo: timeAgo, copyText: copyText,
     masteredKey: masteredKey, allDecks: allDecks, allDecksView: allDecksView, builtinDecks: builtinDecks, findDeck: findDeck,
     deckItems: deckItems, hiddenCount: hiddenCount, restoreAllDeleted: restoreAllDeleted,
@@ -1590,13 +2643,36 @@
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,
     isDirty: function(){ return _dirty; },
+    getSyncConflict: function(){ return _syncConflict; },
+    readSyncLocal: readSyncLocal, readSyncSnapshot: readSyncSnapshot, applySyncResolution: applySyncResolution,
+    applySyncBatchResolution: applySyncBatchResolution,
+    setResolutionPaused: setResolutionPaused,
+    waitForSync: function(){ return Promise.all([_cloudInFlight, _courseDrain, _courseWriteTail, _progressWriteTail, _statsWriteTail]); },
     /* stats 大对象的持久化托管模式：'idb' = 已分层（localStorage 只留小字段）；'local' = 旧行为 */
     statsStoreMode: function(){ return _statsStore; },
     getCloudConfig: function(){ return _cloudConfig; },
     preload: preload,
-    readCourses: readCoursesRaw, readProgress: readProgressRaw,
+    readCourses: function(){ return cloneJSON(readCoursesRaw()); },
+    readProgress: function(){ return cloneJSON(readProgressRaw()); },
     writeCourses: writeCourses, writeProgress: writeProgress,
     COURSES_KEY: COURSES_KEY, PROGRESS_KEY: PROGRESS_KEY,
-    startReviewDeck: startReviewDeck, goBack: goBack
+    startReviewDeck: startReviewDeck, goBack: goBack,
+    /* 多标签页旧快照防护（P0）：tabId / 采纳磁盘最新态 / 诊断计数。
+       页面用 CL.on('memExternal') 感知「其他标签页有新写入」，
+       用 CL.on('memMerged') 感知「本次写入触发了三路合并」。 */
+    tabId: TAB_ID,
+    TAB_SYNC_KEY: TAB_SYNC_KEY,
+    refreshExternal: refreshExternal,
+    crossTabState: function(){
+      return { tabId: TAB_ID, merges: _crossTabMerges, external: _externalSeq };
+    }
+  };
+  /* 内部实现暴露给单测（不作为稳定 API）：三路合并语义的纯函数部分 */
+  global.CL.__crossTab = {
+    mergeKeyedMap: mergeKeyedMap,
+    mergeMemInto: mergeMemInto,
+    mergeStatsForTabs: mergeStatsForTabs,
+    mergeDaysLogTabs: mergeDaysLogTabs,
+    parseLocalMem: parseLocalMem
   };
 })(window);

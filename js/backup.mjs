@@ -80,7 +80,7 @@ export function buildExportPayload(mem, book, courses, courseProgress) {
 }
 
 /* 备份文本解析 + 字段提取 + 导入摘要。
-   返回 { ok:true, data:{ mem, book, courses, courseProgress, summary } } 或 { ok:false, error }。
+   返回 { ok:true, data:{ mem, book, courses, courseProgress, legacyArchive, summary } } 或 { ok:false, error }。
    不含 confirm 与写回（由调用方执行）。 */
 export function parseExport(text) {
   var data;
@@ -98,9 +98,10 @@ export function parseExport(text) {
     '· 统计 ' + Object.keys((dMem.stats || {}).bySentence || {}).length + ' 句\n' +
     '· 错题本 ' + dBook.length + ' 条\n' +
     (dCourses.length ? '· 图文课程 ' + dCourses.length + ' 个\n' : '') +
-    '· 设置 已含\n\n此操作将<b style="color:var(--bad)">覆盖</b>现有所有本地数据，确定继续吗？';
+    '· 设置 已含\n\n系统会先预览并检查冲突；发现冲突时不会执行，确认后以新本地版本恢复。';
   return {
     ok: true,
-    data: { mem: dMem, book: dBook, courses: dCourses, courseProgress: dCourseProgress, summary: summary }
+    data: { mem: dMem, book: dBook, courses: dCourses, courseProgress: dCourseProgress,
+      legacyArchive: data.legacyArchive && typeof data.legacyArchive === 'object' ? data.legacyArchive : {}, summary: summary }
   };
 }

@@ -33,7 +33,7 @@ function startServer() {
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(ROOT, 'server'),
-      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT) }),
+      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test' }),
       stdio: 'ignore'
     });
     let tries = 0;

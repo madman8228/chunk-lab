@@ -471,12 +471,17 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
   </div>
 </div>
 
+<script src="js/account-storage.js"></script>
+<script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
+<script src="js/batch-sync.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
+<script src="js/sync-resolution.js"></script>
 <script src="auth-ui.js"></script>
+<script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
 <script src="library.js"></script>
 <script src="course-package.js"></script>
@@ -490,7 +495,18 @@ if(window.Icons) Icons.install();
 var mem = { decks:[], best:{}, mastered:{}, stats:{}, settings:{} };
 /* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
 function loadMem(){ mem = CL.loadMem(); }
-function saveStore(){ CL.saveAndNotify(mem); }
+function saveStore(){ return CL.saveAndNotify(mem); }
+/* ★ 多标签页旧快照防护（P0）：其他标签页有新写入 → 采纳磁盘最新态并刷新题库树，
+   避免本页一直显示旧列表、或以旧 mem 覆盖对方改动（写入侧由 core 三路合并兜底）。 */
+if(window.CL && CL.on){
+  CL.on('memExternal', function(){
+    var p = (CL.refreshExternal ? CL.refreshExternal() : Promise.resolve(CL.loadMem()));
+    p.catch(function(){}).then(function(m){
+      if(m) mem = m; else loadMem();
+      try{ renderCourseTree(); }catch(e){}
+    });
+  });
+}
 function notifyMain(type, payload){
   if(type === 'startDeck' && payload && payload.deck){
     /* 独立页面模式：存 sessionStorage + 导航回主页启动练习 */
@@ -766,7 +782,7 @@ function importPublicDeck(d){
     if(!window.ChunkAPI || !ChunkAPI.getPublicDeck){ showDeckNotice('云端不可用，无法导入','err'); return; }
     p = ChunkAPI.getPublicDeck(d.id).catch(function(e){ showDeckNotice('导入失败：' + e.message,'err'); return null; });
   }
-  p.then(function(r){
+  p.then(async function(r){
     var srcDeck = r && r.deck;
     if(!srcDeck || !Array.isArray(srcDeck.items)) return;
     var exists = (mem.decks || []).some(function(x){
@@ -775,7 +791,15 @@ function importPublicDeck(d){
     });
     if(exists){ showDeckNotice('“我的题库”中已有「' + srcDeck.name + '」','err'); return; }
     mem.decks.push({ id: 'imported-' + Date.now(), sourceDeckId: srcDeck.id, name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false });
-    saveStore(); notifyMain('memUpdated');
+    try{
+      var saved = saveStore();
+      saved = await Promise.resolve(saved);
+      if(saved === false) throw new Error('本地提交未完成');
+    }catch(error){
+      showDeckNotice('保存失败：'+error.message+'。导入未确认，请重试','err');
+      return;
+    }
+    notifyMain('memUpdated');
     openDecks(); openMarket();
     showDeckNotice('已添加到“我的题库”：' + srcDeck.name + '（可编辑）','ok');
   }).catch(function(){});
@@ -1523,13 +1547,13 @@ function deleteCourse(courseId, title){
     if(window.CL && CL.readCourses){
       list = CL.readCourses();
     } else {
-      var raw = localStorage.getItem(Library.COURSE_STORE_KEY);
+      var raw = businessStorage.getItem(Library.COURSE_STORE_KEY);
       list = raw ? JSON.parse(raw) : [];
     }
     if(!Array.isArray(list)) list = [];
     list = list.filter(function(c){ return c.courseId !== courseId; });
     if(window.CL && CL.writeCourses) CL.writeCourses(list);
-    else localStorage.setItem(Library.COURSE_STORE_KEY, JSON.stringify(list));
+    else businessStorage.setItem(Library.COURSE_STORE_KEY, JSON.stringify(list));
     /* 同步刷新内存中的 state.courses（如果 course-package.js 已加载） */
     if(window.ChunkCourse) ChunkCourse.refreshList();
     renderCourseTree();

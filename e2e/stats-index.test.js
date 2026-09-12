@@ -18,7 +18,7 @@ function startServer() {
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(ROOT, 'server'),
-      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT) }),
+      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test' }),
       stdio: 'ignore'
     });
     var tries = 0;
@@ -60,19 +60,20 @@ function check(name, ok, detail) {
     page.on('pageerror', function (e) { errors.push(e.message); });
     await page.goto(BASE + '/stats.html', { waitUntil: 'load' });
     await page.waitForFunction(function () {
-      return document.querySelectorAll('.stats-detail-row').length >= 600;
+      return document.querySelectorAll('.stats-detail-row').length === 50;
     });
 
     var first = await page.evaluate(function () {
       var d = window.ContentRepo.getManifest().decks;
       return {
         rows: document.querySelectorAll('.stats-detail-row').length,
+        total: allDecks().reduce(function(n,deck){return n+deck.items.length;},0),
         indexShards: d.reduce(function (n, entry) { return n + (entry.indexShards || []).length; }, 0)
       };
     });
     var indexRequests = contentRequests.filter(function (name) { return name.indexOf('index-') >= 0; });
     var detailRequests = contentRequests.filter(function (name) { return name.indexOf('index-') < 0; });
-    check('统计页使用轻量 index 展示完整句子列表', first.rows >= 600 && first.indexShards >= 3, JSON.stringify(first));
+    check('统计页使用轻量 index 保留完整列表并分页显示', first.rows === 50 && first.total >= 600 && first.indexShards >= 3, JSON.stringify(first));
     check('统计页未请求完整详情分片', detailRequests.length === 0, JSON.stringify(contentRequests));
     check('统计页已请求 index 分片', indexRequests.length >= 3, JSON.stringify(contentRequests));
 
