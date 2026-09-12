@@ -1021,7 +1021,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="topbar-row">
       <a class="brand" href="decks.html" title="返回题库首页" aria-label="返回题库首页"><span class="logo">C</span>Chunk Lab</a>
       <span class="spacer"></span>
-      <span id="syncBadge" class="sync-badge" style="display:none" title="本地学习记录等待同步，联网后会自动上传" aria-label="学习记录待同步"><span class="icon-spin" data-icon="refresh"></span>待同步</span>
+      <button type="button" id="syncBadge" class="sync-badge" style="display:none" title="查看同步状态" aria-label="查看同步状态">待同步</button>
       <button class="icon-action" id="btnSound" title="音效开关" aria-label="音效开关" data-icon="sound"></button>
       <button class="icon-action" id="btnStats" title="学习档案" aria-label="学习档案" data-icon="stats"></button>
       <button class="btn sm icon-action flat-action" id="btnDecks" title="退出本题库，回到题库列表" aria-label="退出本题库，回到题库列表" data-icon="book"></button>
@@ -1029,7 +1029,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     </div>
     <div class="topbar-reveal hidden" id="topbarReveal"></div>
     <div id="updateToast" style="display:none;position:fixed;top:52px;left:50%;transform:translateX(-50%);z-index:1000;align-items:center;gap:6px;background:#fef3c7;border:1px solid #fcd34d;color:#b45309;font-size:12.5px;font-weight:600;border-radius:10px;padding:4px 4px 4px 12px;box-shadow:0 1px 4px rgba(0,0,0,.08);white-space:nowrap" role="status">
-      <span class="icon-spin" data-icon="refresh"></span>发现新版本
+      <span class="icon-spin" data-icon="refresh"></span><span id="updateToastText">发现新版本</span>
       <button id="btnApplyUpdate" class="update-refresh">刷新</button>
     </div>
   </div>
@@ -1384,12 +1384,21 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </div>
         <div id="backupBody" class="hidden" style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
           <div style="font-size:12px;color:var(--muted);line-height:1.55">
-            导出包含：题库、设置、学习档案（统计/标熟/错题本/进度）。导入将<b style="color:var(--bad)">覆盖</b>现有数据，请先备份当前。
+            导出包含：题库、设置、学习档案（统计/标熟/错题本/进度）。导入会先预览并合并无冲突内容；发现冲突时不会覆盖当前数据。
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="btn sm" id="btnExportAll"><span data-icon="export"></span>导出全部</button>
             <button class="btn sm" id="btnImportAll"><span data-icon="import"></span>导入备份</button>
+            <button class="btn sm" id="btnRecoverLegacy">取回旧版数据</button>
             <input type="file" id="fileBackup" accept=".json" class="hidden">
+          </div>
+          <div id="legacyRecovery" hidden style="font-size:12px;line-height:1.6">
+            <p>旧版数据没有账号归属记录。确认属于你后可下载备份，不会覆盖当前数据或自动上传。请先关闭其他旧页面。</p>
+            <label><input id="legacyMine" type="checkbox">我确认这台设备上的旧数据属于我</label>
+            <button class="btn sm" id="legacyDownload">下载旧数据备份</button>
+            <button class="btn sm" id="legacyPreview">预览恢复</button>
+            <button class="btn sm" id="legacyApply" disabled>确认恢复到本机</button>
+            <p id="legacyRecoveryStatus" role="status"></p>
           </div>
         </div>
       </div>
@@ -1447,12 +1456,19 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   </div>
 </div>
 
+<script src="js/account-storage.js"></script>
+<script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
+<script src="js/batch-sync.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
+<script src="js/sync-resolution.js"></script>
+<script src="js/sync-resolution-ui.js"></script>
 <script src="auth-ui.js"></script>
+<script src="js/legacy-backup.js"></script>
+<script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
 <script src="srs.js"></script>
 <script type="module" src="js/bridge.mjs"></script>
@@ -1650,12 +1666,12 @@ function loadStore(){
 }
 function saveStore(syncMode){
   try{
-    CL.saveMem(mem);
-    /* ★ 修复根因：此前只本地保存，mem 变更（练习/统计/设置）从不上传云端。
-       补 scheduleCloudSync（debounce 400ms 合并，置 dirty → 成功清位 / 失败保持 + 重连补传）。 */
-    if(syncMode !== 'local' && CL.scheduleCloudSync) CL.scheduleCloudSync(mem);
+    /* 统一等待统计/事件等 IndexedDB 提交完成，再广播更新并调度云同步。
+       返回 Promise 兼容原先“不等待”的调用方；需要确认提交的调用方可 await。 */
+    return CL.saveAndNotify(mem, syncMode);
   }catch(e){ /* ★ P3 收口（2026-09-08）：保存失败即本地改动未落盘/未上云，静默吞会让用户以为已保存——显式 warn */
     console.warn('[store] saveMem/云同步调度失败，本次改动可能未落盘', e);
+    return false;
   }
 }
 
@@ -1677,7 +1693,7 @@ function applyCloudConfig(){
     mem.settings.apiKey = '';
     saveStore(); /* 本地落盘 + scheduleCloudSync 上云（清云端存量） */
   }
-  try{ localStorage.removeItem('chunklab_ai_cache_v1'); }catch(e){}
+  try{ businessStorage.removeItem('chunklab_ai_cache_v1'); }catch(e){}
 }
 
 /* 统计身份：临时复习队列不能改变句子的原题库归属。 */
@@ -1717,10 +1733,10 @@ function saveReinforceBook(book){
    完成即删旧键。幂等：旧键不存在则直接返回；loadStore 每次重入（含 memUpdated）都可安全调用。 */
 function migrateLegacyReinforce(){
   try{
-    var raw = localStorage.getItem(REINFORCE_KEY);
+    var raw = businessStorage.getItem(REINFORCE_KEY);
     if(raw === null) return;
     var legacy = JSON.parse(raw);
-    localStorage.removeItem(REINFORCE_KEY); /* 先删键：即使下方合并失败也不重复合并 */
+    businessStorage.removeItem(REINFORCE_KEY); /* 先删键：即使下方合并失败也不重复合并 */
     if(!Array.isArray(legacy) || !legacy.length) return;
     var book = getReinforceBook();
     var seen = {};
@@ -1905,7 +1921,30 @@ function beginContentBatch(deck, fromIdx, cursor){
    - 长期题库过滤已标熟/已掌握；临时题库（book-/weak-/srs-/rev-）不过滤
    - 排序：到期复习最优先 + 熟练度分级
    - 洗牌（设置开启时） + 截断到 batchSize */
+var _deckLoadGeneration = 0;
 function startDeck(deck, fromIdx, tempStart){
+  var loadGeneration = ++_deckLoadGeneration;
+  if(deck && isTempQueueDeck(deck.id) && window.ContentRepo && ContentRepo.hydrateItemBatch){
+    var reviewIndex = deck._reviewIndexItems || deck.items || [];
+    var reviewStart = Math.max(0, Math.floor(Number(tempStart) || 0));
+    var reviewLimit = Math.max(1, Math.min(200, Math.floor(Number(mem.settings.batchSize) || 10)));
+    var reviewSlice = reviewIndex.slice(reviewStart, reviewStart + reviewLimit);
+    if(reviewSlice.some(function(it){ return !!it._contentRef; }) &&
+        (deck._reviewBatchStart !== reviewStart || deck._reviewBatchLimit !== reviewLimit)){
+      $('zh').textContent = '正在加载本组复习内容…';
+      ContentRepo.hydrateItemBatch(reviewIndex, reviewStart, reviewLimit).then(function(items){
+        if(loadGeneration !== _deckLoadGeneration) return;
+        var batchDeck = Object.assign({},deck,{items:reviewIndex.slice(),_reviewIndexItems:reviewIndex,_reviewBatchStart:reviewStart,_reviewBatchLimit:reviewLimit});
+        items.forEach(function(it,i){ batchDeck.items[reviewStart+i] = it; });
+        startDeck(batchDeck,fromIdx,reviewStart);
+      }).catch(function(err){
+        if(loadGeneration !== _deckLoadGeneration) return;
+        console.error('[review] 批次加载失败',err);
+        $('zh').textContent = '本组内容加载失败，请联网后从学习档案重新开始复习';
+      });
+      return;
+    }
+  }
   if(deck && deck.builtin && deck._content && !deck._contentReady && !deck._contentBatchReady
       && window.ContentRepo && ContentRepo.shouldBatch && ContentRepo.shouldBatch(deck)){
     var _savedProgress = mem.progress && mem.progress[deck.id];
@@ -1916,7 +1955,7 @@ function startDeck(deck, fromIdx, tempStart){
   /* 内置扩展题库按需加载：页面启动只保留基础题与 manifest，真正进入题库时才取分片。
      ContentRepo 返回经过 deletedItems 过滤的副本，再回到这里走原有练习流程，
      因此旧版 sessionStorage / 用户导入题库 / 断点续练协议都不需要迁移。 */
-  if(deck && deck.builtin && deck._content && !deck._contentReady && window.ContentRepo){
+  if(deck && deck.builtin && deck._content && !deck._contentReady && !deck._contentBatchReady && window.ContentRepo){
     $('zh').innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 正在加载题库…';
     ContentRepo.ensureDeck(deck, mem).then(function(full){
       if(!full || !full.items || !full.items.length){
@@ -1969,7 +2008,7 @@ if(fromIdx === 0 && isLongTermDeck){
        ★ 分页续组：tempStart>0 时从完整队列的 tempStart 处切下一批（finish 页「继续下一组」入口）；
          tempEnd 记录本组终点，供 finishSession 计算剩余量（tempTotal - tempEnd）。 */
     if(!isLongTermDeck){
-      var batchSize3 = Math.max(1, mem.settings.batchSize || 10);
+      var batchSize3 = Math.max(1, Math.min(200, Math.floor(Number(mem.settings.batchSize) || 10)));
       /* S.items 此刻 = deck.items 全量副本；从 tempStart 起切一批（tempStart 越界即队列已空，防御性保底） */
       if(S.tempStart >= S.items.length){
         S.items = [];
@@ -3626,6 +3665,10 @@ function showHomePage(){
   var p = $('pagePractice'); if(p) p.classList.add('hidden');
   var h = $('pageHome'); if(h) h.classList.remove('hidden');
   var r = $('result'); if(r) r.classList.add('hidden');
+  /* 其他标签页写入期间本页正在练习 → 回到首页时先采纳最新磁盘态（P0 多标签页防护）。
+     走 CL.refreshExternal 一并重载 IDB 大对象内存桥（bySentence/courses），再渲染首页，
+     避免只读小字段却沿用旧内存桥导致的过期显示。 */
+  if(window.__chunklabExternalPending){ window.__chunklabExternalPending = false; try{ loadStore(); }catch(e){} }
   renderHome();
   window.scrollTo(0, 0);
 }
@@ -4189,7 +4232,10 @@ function doValidate(autoImport){
     lastValid = r;
     msg.className='msg ok show';
     msg.innerHTML = '<b>校验通过</b>：'+r.good.length+' 题全部合格，正在开始练习…';
-    if(autoImport!==false) commitImport(r.good, r.name);
+    if(autoImport!==false) commitImport(r.good, r.name).catch(function(e){
+      msg.className='msg err show';
+      msg.textContent='保存失败：'+e.message+'。数据未确认落盘，请重试。';
+    });
     return;
   }
   lastValid = r;
@@ -4203,7 +4249,7 @@ function doValidate(autoImport){
 }
 
 /* 追加导入校验（精简弹窗专用） */
-function doAppendValidate(){
+async function doAppendValidate(){
   var msg = $('appendMsg');
   var text = $('appendJsonBox').value;
   if(!_appendDeck){ msg.className='msg err show'; msg.textContent='未指定目标题库'; return; }
@@ -4243,7 +4289,13 @@ function doAppendValidate(){
   /* 去重 + 追加 */
   var m = mergeDedup(_appendDeck.items, good);
   _appendDeck.items = m.items;
-  saveStore();
+  try{
+    await requireSaveCommit();
+  }catch(e){
+    msg.className='msg err show';
+    msg.textContent='保存失败：'+e.message+'。追加内容未确认落盘，请重试。';
+    return;
+  }
   _appendDeck = null;
   closeMasks();
   /* ★ 2026-09-08：pageEdit 死代码已清理，追加成功直接跳独立题库页查看最新列表 */
@@ -4266,12 +4318,20 @@ function mergeDedup(existing, incoming){
   return { items: kept, dup: dup };
 }
 
-function commitImport(items, name){
+function requireSaveCommit(){
+  var result = saveStore();
+  return Promise.resolve(result).then(function(ok){
+    if(ok === false) throw new Error('本地提交未完成');
+    return true;
+  });
+}
+
+async function commitImport(items, name){
   /* 追加模式：合并到已有题库并去重 */
   if(_appendDeck){
     var m = mergeDedup(_appendDeck.items, items);
     _appendDeck.items = m.items;
-    saveStore();
+    await requireSaveCommit();
     _appendDeck = null;
     closeMasks();
     setTimeout(function(){ location.href = 'decks.html'; }, 120);
@@ -4284,11 +4344,10 @@ function commitImport(items, name){
     items: items
   };
   mem.decks.push(deck);
-  saveStore();
   $('jsonBox').value='';
   /* 触碰纪录（导入即置 lastPlayed 供排序，统一访问层防残壳） */
   touchDeckBest(deck.id).lastPlayed = Date.now();
-  saveStore();
+  await requireSaveCommit();
   /* 入库成功：不立即关弹窗，给"继续追加"入口，保持工作流连续性（凑到 200 句） */
   var okMsg = $('impMsg');
   okMsg.className = 'msg ok show';
@@ -4931,22 +4990,22 @@ $('backupHead').onclick = function(){
 /* 读取/写入课程系统数据（大对象已迁 IndexedDB：统一走 CL 内存桥，兼容未加载时回退本地键） */
 function readAllCourses(){
   if(window.CL && CL.readCourses){ var c = CL.readCourses(); return Array.isArray(c) ? c : []; }
-  try{ var arr = JSON.parse(localStorage.getItem('chunklab.courses.v1') || '[]'); return Array.isArray(arr) ? arr : []; }
+  try{ var arr = JSON.parse(businessStorage.getItem('chunklab.courses.v1') || '[]'); return Array.isArray(arr) ? arr : []; }
   catch(e){ return []; }
 }
 function readAllCourseProgress(){
   if(window.CL && CL.readProgress){ var p = CL.readProgress(); return (p && typeof p === 'object') ? p : {}; }
-  try{ var o = JSON.parse(localStorage.getItem('chunklab.course-progress.v1') || '{}'); return (o && typeof o === 'object') ? o : {}; }
+  try{ var o = JSON.parse(businessStorage.getItem('chunklab.course-progress.v1') || '{}'); return (o && typeof o === 'object') ? o : {}; }
   catch(e){ return {}; }
 }
-function writeAllCourses(courses){
-  if(window.CL && CL.writeCourses){ CL.writeCourses(courses); return true; }
-  try{ localStorage.setItem('chunklab.courses.v1', JSON.stringify(courses)); return true; }
+async function writeAllCourses(courses){
+  if(window.CL && CL.writeCourses){ return CL.writeCourses(courses); }
+  try{ businessStorage.setItem('chunklab.courses.v1', JSON.stringify(courses)); return true; }
   catch(e){ console.error('[backup] 写课程数据失败', e); return false; }
 }
-function writeAllCourseProgress(progress){
-  if(window.CL && CL.writeProgress){ CL.writeProgress(progress); return true; }
-  try{ localStorage.setItem('chunklab.course-progress.v1', JSON.stringify(progress)); return true; }
+async function writeAllCourseProgress(progress){
+  if(window.CL && CL.writeProgress){ return CL.writeProgress(progress); }
+  try{ businessStorage.setItem('chunklab.course-progress.v1', JSON.stringify(progress)); return true; }
   catch(e){ console.error('[backup] 写课程进度失败', e); return false; }
 }
 
@@ -4958,24 +5017,21 @@ function exportAllData(){
   downloadFile(JSON.stringify(payload, null, 2), 'chunklab_backup_'+ts+'.json', 'application/json');
 }
 
-/* 导入备份：解析（js/backup.mjs）→ 二次确认 → 覆盖 */
-function importAllData(text, cb){
+/* 导入备份：解析（js/backup.mjs）→ 安全预览 → 新命名空间恢复。
+   禁止旧的逐项覆盖写入；恢复模块负责冲突检查、归档和活动指针提交。 */
+async function importAllData(text, cb){
   var r = safeCall('BackupTools', 'parseExport', { ok: false, error: '解析模块未加载，请刷新重试' }, [text]);
   if(!r || !r.ok || !r.data){ return cb(false, (r && r.error) || '解析失败'); }
-  var d = r.data;
-  if(!confirm(d.summary)){ return cb(false, '已取消'); }
-  mem.decks = d.mem.decks || [];
-  mem.stats = d.mem.stats || { totalRounds:0, totalAnswered:0, bySentence:{}, events:[], daysLog:{} };
-  mem.settings = Object.assign(mem.settings, d.mem.settings || {});
-  mem.mastered = d.mem.mastered || {};
-  mem.best = d.mem.best || {};
-  mem.progress = d.mem.progress || {};
-  mem.activeDeckId = d.mem.activeDeckId || null;
-  saveStore();
-  saveReinforceBook(d.book);
-  if(d.courses.length) writeAllCourses(d.courses);
-  if(Object.keys(d.courseProgress).length) writeAllCourseProgress(d.courseProgress);
-  cb(true, '导入成功！页面将刷新以应用数据。');
+  if(!window.LegacyRestore || !LegacyRestore.previewImported){ return cb(false, '安全恢复模块未加载，请刷新重试'); }
+  try{
+    var view=await LegacyRestore.previewImported(r.data);
+    if(view.conflicts.length) return cb(false, '导入未执行，发现冲突：' + view.conflicts.join('；') + '。当前数据未改变。');
+    var d=view.result && view.result.small && JSON.parse(view.result.small['chunklab.v1'] || '{}');
+    var summary='将安全恢复：题库 '+((d.decks||[]).length)+' 个、统计 '+((view.result.rows.sentenceStats||[]).length)+' 句、图文课程 '+((view.result.rows.courses||[]).length)+' 个。原数据会保留，恢复后先暂停云同步。确定继续吗？';
+    if(!confirm(summary)) return cb(false, '已取消');
+    await LegacyRestore.apply(view);
+    cb(true, '恢复已提交，页面将刷新以应用数据。');
+  }catch(e){ cb(false, '安全恢复失败：'+e.message+'。当前活动数据未覆盖，请保留备份文件后重试。'); }
 }
 
 $('btnExportAll').onclick = exportAllData;
@@ -5031,7 +5087,10 @@ function legacyCopy(ta){
 }
 $('btnValidate').onclick = function(){ doValidate(true); };
 $('btnPartial').onclick = function(){
-  if(lastValid && lastValid.good.length) commitImport(lastValid.good, lastValid.name);
+  if(lastValid && lastValid.good.length) commitImport(lastValid.good, lastValid.name).catch(function(e){
+    $('impMsg').className='msg err show';
+    $('impMsg').textContent='保存失败：'+e.message+'。数据未确认落盘，请重试。';
+  });
 };
 /* 主导入弹窗：点击 drop 区域打开文件选择器 */
 $('drop').onclick = function(e){ if(e.target.tagName !== 'TEXTAREA') $('fileInput').click(); };
@@ -5102,11 +5161,14 @@ window.addEventListener('drop', function(e){ e.preventDefault(); });
 ============================================================ */
 /* PWA: 注册 service worker（离线缓存静态资源；API/写请求不缓存）
    新版本检测：SW 更新安装完成后提示用户刷新（不自动 reload，尊重当前练习状态） */
-function showUpdateToast(){
+function showUpdateToast(required){
   var t = $('updateToast'); if(!t) return;
+  var label = $('updateToastText');
+  if(label) label.textContent = required ? '页面版本已过期，请刷新后继续' : '发现新版本';
   t.style.display = 'flex';
 }
 function hideUpdateToast(){ var t = $('updateToast'); if(t) t.style.display = 'none'; }
+window.addEventListener('chunklab-upgrade-required', function(){ showUpdateToast(true); });
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
     navigator.serviceWorker.register('sw.js').then(function(reg){
@@ -5125,14 +5187,38 @@ if('serviceWorker' in navigator){
 }
 /* 新版本 toast 按钮：点击强制刷新（跳过 HTTP 缓存，SW 版本已换） */
 $('btnApplyUpdate').onclick = function(){ window.location.reload(); };
+if(window.__chunklabUpgradeRequired) showUpdateToast(true);
 /* 离线 change-log 可见性：监听同步状态，有本地变更待上传时显示"待同步"徽标 */
-function refreshSyncBadge(dirty){
+function refreshSyncBadge(dirty, conflict){
   var b = $('syncBadge'); if(!b) return;
   b.style.display = dirty ? 'inline-flex' : 'none';
+  b.textContent = conflict ? '同步冲突' : '待同步';
+  b.title = conflict ? '点击比较本机与云端版本，选择如何处理' : '点击查看同步状态';
 }
 if(CL && CL.on && CL.isDirty){
-  CL.on('syncStatus', function(st){ refreshSyncBadge(st && st.dirty); });
-  refreshSyncBadge(CL.isDirty());
+  CL.on('syncResolved', function(target){
+    // Do not let the practice page's old snapshot write the discarded version back.
+    loadStore();
+    setSoundIcon();
+    document.documentElement.classList.toggle('dark', !!mem.settings.darkMode);
+    if(target.entity === 'decks' && S.deck && S.deck.id === target.id){
+      stopAutoNext(); S.deck = null; S.items = []; showHomePage();
+    }
+  });
+  CL.on('syncStatus', function(st){ refreshSyncBadge(st && st.dirty, st && st.conflict); });
+  /* ★ 多标签页旧快照防护（P0）：其他标签页有新写入。
+     练习中（pagePractice 可见）→ 只挂起，返回首页时再采纳（showHomePage 消费该标志），避免中途替换内存态。
+     非练习中 → 从磁盘重读小字段刷新内存态并重渲染首页。
+     注意：这里只「刷显示」、**不推进写入基线**（不调用 refreshExternal/adoptMemBase）—— 基线保持保守，
+     这样万一本页随后仍提交一份较旧的快照，core 的写前三路合并依旧生效，绝不静默覆盖对方数据
+     （e2e multitab-stale 2b 正是据此验证：A 收广播后写旧快照仍必须走合并）。 */
+  CL.on('memExternal', function(){
+    var pp = $('pagePractice');
+    if(pp && !pp.classList.contains('hidden')){ window.__chunklabExternalPending = true; return; }
+    try{ loadStore(); }catch(e){}
+    try{ renderHome(); }catch(e){}
+  });
+  refreshSyncBadge(CL.isDirty(), CL.getSyncConflict());
 }
 Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(bootApp);
 
@@ -5214,10 +5300,10 @@ function decideEntry(){
     }
   }catch(e){}
   try{
-    var _s = localStorage.getItem('chunklab_pending_review_deck');
+    var _s = businessStorage.getItem('chunklab_pending_review_deck');
     if(_s){
       var _o = JSON.parse(_s);
-      localStorage.removeItem('chunklab_pending_review_deck');
+      businessStorage.removeItem('chunklab_pending_review_deck');
       if(Date.now() - (_o.ts || 0) < 30000 && _o.deck){
         showPracticePage();
         startDeck(_o.deck);

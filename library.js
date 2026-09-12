@@ -16,6 +16,7 @@
  */
 (function (global) {
   'use strict';
+  var businessStorage=global.AccountStorage ? global.AccountStorage.storage : global.localStorage;
 
   var DECK_STORE_KEY = 'chunklab.v1';
   var COURSE_STORE_KEY = 'chunklab.courses.v1';
@@ -42,7 +43,7 @@
   /* ===== 读取存储 ===== */
   function readDecks() {
     try {
-      var mem = JSON.parse(localStorage.getItem(DECK_STORE_KEY) || '{}');
+      var mem = JSON.parse(businessStorage.getItem(DECK_STORE_KEY) || '{}');
       return Array.isArray(mem.decks) ? mem.decks : [];
     } catch (e) { return []; }
   }
@@ -54,14 +55,14 @@
       return Array.isArray(c) ? c : [];
     }
     try {
-      var arr = JSON.parse(localStorage.getItem(COURSE_STORE_KEY) || '[]');
+      var arr = JSON.parse(businessStorage.getItem(COURSE_STORE_KEY) || '[]');
       return Array.isArray(arr) ? arr : [];
     } catch (e) { return []; }
   }
-  function writeCourses(courses) {
+  async function writeCourses(courses) {
     var cl = window.CL;
-    if (cl && cl.writeCourses) { cl.writeCourses(courses); return; }
-    localStorage.setItem(COURSE_STORE_KEY, JSON.stringify(courses));
+    if (cl && cl.writeCourses) return cl.writeCourses(courses);
+    businessStorage.setItem(COURSE_STORE_KEY, JSON.stringify(courses));
   }
 
   /* ===== 课程标题/信息 ===== */
@@ -79,7 +80,7 @@
   }
 
   /* ===== 写入层级元数据 ===== */
-  function setLibMeta(courseId, meta) {
+  async function setLibMeta(courseId, meta) {
     var courses = readCourses();
     for (var i = 0; i < courses.length; i++) {
       if (courses[i].courseId === courseId) {
@@ -90,7 +91,7 @@
           volumeName: meta.volumeName || null,
           sortOrder: meta.sortOrder || 0
         };
-        writeCourses(courses);
+        await writeCourses(courses);
         return courses[i];
       }
     }

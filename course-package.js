@@ -1,6 +1,7 @@
 /* Chunk Lab · CoursePackage V1.0 local reader and linear runtime. */
 (function (global) {
   'use strict';
+  var businessStorage=global.AccountStorage ? global.AccountStorage.storage : global.localStorage;
 
   var COURSE_STORE_KEY = 'chunklab.courses.v1';
   var PROGRESS_STORE_KEY = 'chunklab.course-progress.v1';
@@ -45,17 +46,17 @@
       return Array.isArray(c) ? c : [];
     }
     try {
-      var raw = JSON.parse(localStorage.getItem(COURSE_STORE_KEY) || '[]');
+      var raw = JSON.parse(businessStorage.getItem(COURSE_STORE_KEY) || '[]');
       return Array.isArray(raw) ? raw : [];
     } catch (e) { return []; }
   }
   function readStoredCourses() {
     state.courses = storedCourses().filter(function (course) { return validateCourse(course).length === 0; });
   }
-  function persistCourses() {
+  async function persistCourses(courses) {
     var cl = window.CL;
-    if (cl && cl.writeCourses) { cl.writeCourses(state.courses); return; }
-    try { localStorage.setItem(COURSE_STORE_KEY, JSON.stringify(state.courses)); } catch (error) {}
+    if (cl && cl.writeCourses) return cl.writeCourses(courses);
+    businessStorage.setItem(COURSE_STORE_KEY, JSON.stringify(courses));
   }
   function storedProgress() {
     var cl = window.CL;
@@ -64,26 +65,33 @@
       return (p && typeof p === 'object') ? p : {};
     }
     try {
-      var all = JSON.parse(localStorage.getItem(PROGRESS_STORE_KEY) || '{}');
+      var all = JSON.parse(businessStorage.getItem(PROGRESS_STORE_KEY) || '{}');
       return (all && typeof all === 'object') ? all : {};
     } catch (error) { return {}; }
   }
-  function persistProgress(all) {
+  async function persistProgress(all) {
     var cl = window.CL;
-    if (cl && cl.writeProgress) { cl.writeProgress(all); return; }
-    try { localStorage.setItem(PROGRESS_STORE_KEY, JSON.stringify(all)); } catch (error) {}
+    if (cl && cl.writeProgress) return cl.writeProgress(all);
+    businessStorage.setItem(PROGRESS_STORE_KEY, JSON.stringify(all));
   }
   function progressFor(courseId) {
     var all = storedProgress();
     return all[courseId] || { seen: [], completed: false };
   }
+  var progressSaveTail = Promise.resolve();
   function saveProgress(courseId, nodeId, completed) {
-    var all = storedProgress();
-    var progress = all[courseId] || { seen: [], completed: false };
-    if (nodeId && progress.seen.indexOf(nodeId) < 0) progress.seen.push(nodeId);
-    if (completed) progress.completed = true;
-    all[courseId] = progress;
-    persistProgress(all);
+    // 每次从已提交进度继续合并，快速翻页也不会用旧快照覆盖前一页。
+    progressSaveTail = progressSaveTail.then(async function(){
+      var all = storedProgress();
+      var progress = all[courseId] || { seen: [], completed: false };
+      if (nodeId && progress.seen.indexOf(nodeId) < 0) progress.seen.push(nodeId);
+      if (completed) progress.completed = true;
+      all[courseId] = progress;
+      await persistProgress(all);
+    }).catch(function(){
+      showMessage('学习进度保存失败，请检查浏览器存储空间后重试。', 'error');
+    });
+    return progressSaveTail;
   }
 
   function validateCourse(course) {
@@ -686,7 +694,14 @@
     renderNode();
   }
 
+  var courseImportTail = Promise.resolve();
   function importCourse(course, assets, autoOpen) {
+    var lib = _pendingLib;
+    var task = courseImportTail.then(function(){ return commitCourseImport(course, assets, autoOpen, lib); });
+    courseImportTail = task.catch(function(){}); // 后一次导入仍可重试；本次错误由返回的 task 传回界面。
+    return task;
+  }
+  async function commitCourseImport(course, assets, autoOpen, lib) {
     var errors = validateCourse(course);
     if (errors.length) {
       /* ★ 根因修复：验证失败必须抛错（而不是静默 return）。
@@ -694,20 +709,22 @@
          但课程从未持久化 → 树/分级都不显示 */
       throw new Error(errors.slice(0, 4).join('；'));
     }
-    if (_pendingLib) {
+    if (lib) {
       course.lib = {
-        seriesId: _pendingLib.seriesId,
-        seriesName: _pendingLib.seriesName,
-        volumeIndex: _pendingLib.volumeIndex,
-        volumeName: _pendingLib.volumeName,
-        level2Name: _pendingLib.level2Name || null,
+        seriesId: lib.seriesId,
+        seriesName: lib.seriesName,
+        volumeIndex: lib.volumeIndex,
+        volumeName: lib.volumeName,
+        level2Name: lib.level2Name || null,
         sortOrder: 0
       };
     }
     var record = { course: course, assets: assets || {} };
-    var existingIndex = state.courses.findIndex(function (item) { return item.courseId === course.courseId; });
-    if (existingIndex >= 0) state.courses[existingIndex] = course; else state.courses.push(course);
-    persistCourses();
+    var nextCourses = storedCourses().slice();
+    var existingIndex = nextCourses.findIndex(function (item) { return item.courseId === course.courseId; });
+    if (existingIndex >= 0) nextCourses[existingIndex] = course; else nextCourses.push(course);
+    await persistCourses(nextCourses);
+    state.courses = nextCourses;
     state.active = record;
     if (autoOpen === false) return record;  // 仅持久化，不打开播放器（decks.html 场景）
     renderCourseList();
@@ -761,7 +778,7 @@
       /* 回写 dataUri 到 course.assets 以便 localStorage 持久化 */
       asset._dataUri = dataUri;
     });
-    importCourse(course, assets, autoOpen);
+    return importCourse(course, assets, autoOpen);
   }
   function mimeFor(name) {
     var ext = String(name || '').split('.').pop().toLowerCase();

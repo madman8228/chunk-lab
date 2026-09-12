@@ -95,17 +95,15 @@
 
     function doSubmit() {
       var apiBase = apiInput.value.trim().replace(/\/+$/, '');
-      if (apiBase) global.ChunkAPI.setBase(apiBase);
-      else global.ChunkAPI.setBase('');
       var u = userInput.value.trim(), p = passInput.value;
       if (u.length < 2) { err.textContent = '用户名至少 2 个字符'; return; }
       if (p.length < 6) { err.textContent = '密码至少 6 位'; return; }
       submitBtn.disabled = true; submitBtn.textContent = '处理中…';
-      var call = (mode === 'login') ? global.ChunkAPI.login(u, p) : global.ChunkAPI.register(u, p);
+      var call = (mode === 'login') ? global.ChunkAPI.login(u, p, apiBase) : global.ChunkAPI.register(u, p, apiBase);
       call.then(function (r) {
-        global.ChunkAPI.setToken(r.token);
+        global.ChunkAPI.setSession(apiBase, r.token);
         /* 标记手动会话：token 过期后 ensureCloud 弹登录框而不是静默建新游客（防用户以为数据丢了） */
-        try { localStorage.setItem('chunklab_manual', '1'); } catch (e) {}
+        try { localStorage.setItem('chunklab_manual', '1'); localStorage.removeItem('chunklab_guest'); } catch (e) {}
         finishLogin(r);
       }).catch(function (e) {
         err.textContent = (e && e.message) || '请求失败，请检查服务器地址';
@@ -133,7 +131,8 @@
   function logout() {
     if (global.ChunkAPI) global.ChunkAPI.clearToken();
     /* 同步清掉游客凭据与手动会话标记，否则下次启动 ensureCloud 又会自动登回游客，"退出"形同虚设 */
-    try { localStorage.removeItem('chunklab_guest'); localStorage.removeItem('chunklab_manual'); } catch (e) {}
+    // An explicit logout must show login, not silently create another guest.
+    try { localStorage.removeItem('chunklab_guest'); localStorage.setItem('chunklab_manual', '1'); } catch (e) {}
   }
 
   global.ChunkAuthUI = { showLogin: showLogin, logout: logout };
