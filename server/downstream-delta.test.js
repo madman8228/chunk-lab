@@ -77,6 +77,7 @@ function waitHealth(timeoutMs) {
 }
 
 const childEnv = Object.assign({}, process.env, {
+  NODE_ENV: 'test',
   REQUIRE_AUTH: 'true',
   JWT_SECRET: 'downstream-delta-test-secret-not-for-production',
   TOKEN_TTL: '30d',

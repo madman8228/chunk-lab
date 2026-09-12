@@ -147,7 +147,7 @@ async function main() {
   await CL.ensureCloud();
 
   // 6. 新增 course → rev=1 且上行 payload 携带
-  CL.writeCourses([{ courseId: 'cA', title: 'A' }]);
+  await CL.writeCourses([{ courseId: 'cA', title: 'A' }]);
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 新增 course cA → rev=1', revs.courses && revs.courses.cA === 1, 'revs=' + JSON.stringify(revs.courses));
@@ -155,13 +155,13 @@ async function main() {
   check('s2: 上行 payload 含 revs.courses.cA=1', pl.revs.courses.cA === 1, 'revs=' + JSON.stringify(pl.revs));
 
   // 7. 修改 course → rev=2
-  CL.writeCourses([{ courseId: 'cA', title: 'A2' }]);
+  await CL.writeCourses([{ courseId: 'cA', title: 'A2' }]);
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 修改 course cA → rev=2', revs.courses.cA === 2, 'rev=' + revs.courses.cA);
 
   // 8. 删除 course → rev 递增 + deleted 登记
-  CL.writeCourses([]);
+  await CL.writeCourses([]);
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   pl = lastPayloads[lastPayloads.length - 1];
@@ -170,18 +170,18 @@ async function main() {
     'rev=' + revs.courses.cA + ' del=' + JSON.stringify(pl.deleted.courses));
 
   // 9. courseProgress 新增/修改
-  CL.writeProgress({ pA: { done: 1 } });
+  await CL.writeProgress({ pA: { done: 1 } });
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 新增 progress pA → rev=1', revs.courseProgress && revs.courseProgress.pA === 1, 'revs=' + JSON.stringify(revs.courseProgress));
-  CL.writeProgress({ pA: { done: 2 } });
+  await CL.writeProgress({ pA: { done: 2 } });
   await CL.cloudSyncNow(CL.loadMem());
   revs = getRevs();
   check('s2: 修改 progress pA → rev=2', revs.courseProgress.pA === 2, 'rev=' + revs.courseProgress.pA);
 
   // 10. courseProgress 未变 → 不 bump
   var b10 = getRevs().courseProgress.pA;
-  CL.writeProgress({ pA: { done: 2 } });
+  await CL.writeProgress({ pA: { done: 2 } });
   await CL.cloudSyncNow(CL.loadMem());
   check('s2: progress 未变 → rev 不递增', getRevs().courseProgress.pA === b10, 'before=' + b10 + ' after=' + getRevs().courseProgress.pA);
 
@@ -292,6 +292,61 @@ async function main() {
   check('offline: 重连拉取后自动补传 push', lastPayloads.length > before, 'before=' + before + ' after=' + lastPayloads.length);
   check('offline: 补传后 dirty 清除', CL.isDirty() === false, 'dirty=' + CL.isDirty());
   global.ChunkAPI.putData = origPut;
+
+  // 15. HTTP 409 不得推进增量水位或清除待发数据。
+  m = CL.loadMem();
+  m.decks.push({ id: 'ack-local', name: 'local', items: [] });
+  m.stats.events = (m.stats.events || []).concat([{ id: 'ack-event', kind: 'round', at: 2 }]);
+  CL.saveMem(m);
+  CL.scheduleCloudSync(m);
+  var rejectedPayload;
+  global.ChunkAPI.putData = function(p){
+    rejectedPayload = JSON.parse(JSON.stringify(p));
+    var e = new Error('conflict'); e.code = 'SYNC_CONFLICT';
+    e.conflicts = [{ entity: 'decks', id: 'ack-local' }];
+    return Promise.reject(e);
+  };
+  check('ack: conflict returns false', await CL.cloudSyncNow(m) === false);
+  check('ack: conflict remains visible and dirty', CL.isDirty() && CL.getSyncConflict()[0].id === 'ack-local');
+  global.ChunkAPI.putData = origPut;
+  await CL.cloudSyncNow(m);
+  pl = lastPayloads[lastPayloads.length - 1];
+  check('ack: retry retains rejected deck and event', pl.mem.decks.some(function(d){ return d.id === 'ack-local'; }) && JSON.stringify(pl.statsDelta) === JSON.stringify(rejectedPayload.statsDelta));
+  check('ack: confirmed success clears conflict', !CL.isDirty() && !CL.getSyncConflict());
+  global.ChunkAPI.putData = function(){ return Promise.resolve({}); };
+  check('ack: missing ok is not success', await CL.cloudSyncNow(m) === false && CL.isDirty());
+
+  // 16. 在途修改同一实体：旧回执不能清除新变更，且只能有一个 PUT 在途。
+  var release;
+  var concurrentPuts = 0;
+  global.ChunkAPI.putData = function(p){
+    concurrentPuts++;
+    lastPayloads.push(JSON.parse(JSON.stringify(p)));
+    if(concurrentPuts === 1) return new Promise(function(resolve){ release = resolve; });
+    return Promise.resolve({ ok: true });
+  };
+  CL.scheduleCloudSync(m);
+  var inFlight = CL.cloudSyncNow(m);
+  m.decks.find(function(d){ return d.id === 'ack-local'; }).name = 'changed-during-request';
+  CL.saveMem(m); CL.scheduleCloudSync(m);
+  var successor = CL.cloudSyncNow(m);
+  check('ack: 在途请求等待后继同步而不重复并发发送', successor !== inFlight && concurrentPuts === 1);
+  release({ ok: true });
+  await Promise.all([inFlight, successor]);
+  check('ack: 后继请求发送最新修改并收敛', concurrentPuts === 2 && !CL.isDirty());
+  var successorPayload = lastPayloads[lastPayloads.length - 1];
+  global.ChunkAPI.putData = origPut;
+  check('ack: 后继固定请求含最新 same-id 值', successorPayload.mem.decks.some(function(d){ return d.id === 'ack-local' && d.name === 'changed-during-request'; }));
+  m.decks = m.decks.filter(function(d){ return d.id !== 'ack-local'; });
+  CL.saveMem(m); CL.scheduleCloudSync(m);
+  global.ChunkAPI.putData = function(){ return Promise.reject(new Error('offline')); };
+  await CL.cloudSyncNow(m);
+  m.decks.push({ id: 'ack-local', name: 'recreated-before-ack', items: [] });
+  CL.saveMem(m); CL.scheduleCloudSync(m);
+  global.ChunkAPI.putData = origPut;
+  await CL.cloudSyncNow(m);
+  pl = lastPayloads[lastPayloads.length - 1];
+  check('ack: recreation supersedes unacknowledged tombstone', pl.mem.decks.some(function(d){ return d.id === 'ack-local'; }) && !pl.deleted.decks.some(function(d){ return d.id === 'ack-local'; }));
 
   console.log('\n[rev.test] passed=' + passed + ' failed=' + failed);
   process.exit(failed === 0 ? 0 : 1);

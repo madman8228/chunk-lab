@@ -26,6 +26,18 @@ const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'dele
 /* 已迁到行表 user_entity_rows 的 kv 键 → kind 映射（客户端键名 → 服务端 kind）。
    放在这里是为了让「上行入口」一眼看出哪些键不再走 user_kv。 */
 const ROW_KV_KINDS = { mastered: 'mastered', reinforceBook: 'reinforce', deletedItems: 'deletedItem' };
+/* Production never accepts the historical unconditional mutation protocol.
+   Tests run in an isolated compatibility mode so old migration fixtures can
+   still exercise their pre-upgrade behavior; no deploy-time switch reopens it. */
+const STRICT_CONDITIONAL_WRITES = process.env.NODE_ENV !== 'test';
+function rejectUnconditional(body, res, label) {
+  if (!STRICT_CONDITIONAL_WRITES) return false;
+  if (!body || body.baseSeq === undefined || body.requestId === undefined) {
+    res.status(428).json({ error: label + '需要baseSeq和requestId，请升级客户端', code: 'CLIENT_UPGRADE_REQUIRED' });
+    return true;
+  }
+  return false;
+}
 
 /* AI 联网生成开关（2026-09-06 产品决策：先禁联网 AI 生成，后续再开放）。
    默认关闭；开启方式：环境变量 AI_EXPLAIN_ENABLED=true（或 .env 中设置）。 */
@@ -195,7 +207,7 @@ app.get('/api/auth/me', auth.authenticate, function (req, res) {
    ★ 增量模式必须显式给出删除清单（deleted.* / entityGone），见下方注释。
    ★ 增量返回的 `mem` 是**局部**对象（只含变更项），老客户端拿到会当成全量 → 丢数据。
      所以增量纯 opt-in：只有显式传 since 才会走到，默认路径逐字节不变。 */
-function buildMem(userId, since) {
+function buildMemSnapshot(userId, since) {
   const seqNow = currentSeq(userId);
   /* 水位超前于服务端（库被回滚/重置/换过库）→ 本地水位与这份数据不同源，增量无从算起，
      退回全量。这是协议规则而非兜底：不退的话客户端会永远只拉增量、静默少数据。 */
@@ -243,7 +255,7 @@ function buildMem(userId, since) {
     if (st && typeof st === 'object') { delete st.deckName; delete st.translation; }
     bySentence[r.sentence_key] = st;
   });
-  const evRows = rows('SELECT data_json FROM user_events WHERE {W} ORDER BY at,id', false);
+  const evRows = rows('SELECT data_json FROM user_events WHERE {W} ORDER BY at,id', true);
   const events = evRows.map(function (r) {
     var ev = JSON.parse(r.data_json);
     /* 去冗余（2026-09-10）：answer 事件的 deckId / sentence 与 key（=deckId#cid）重复，
@@ -313,6 +325,11 @@ function buildMem(userId, since) {
      若客户端沿用存在性推断，会把「没变更」误判成「已删除」，整批删掉用户数据。
      所以增量下删除一律落成显式列表，客户端不做任何存在性推断。 */
   const deleted = { decks: [], kv: [], courses: [], courseProgress: [] };
+  /* 事件是追加日志，客户端不能仅凭全量响应里“没有某事件”推断删除：
+     旧设备可能仍保留被整账号选择清掉的事件。全量也返回墓碑，体积很小，
+     让设备首次/重新拉取时能够摘掉本地旧事件；增量路径仍按 seq 限定范围。 */
+  deleted.events = rows('SELECT id FROM user_events WHERE {W} AND deleted_at IS NOT NULL', false)
+    .map(function (r) { return r.id; });
   if (isDelta) {
     rows('SELECT id FROM user_decks WHERE {W} AND deleted_at IS NOT NULL', false)
       .forEach(function (r) { deleted.decks.push(r.id); });
@@ -339,12 +356,34 @@ function buildMem(userId, since) {
   };
 }
 
+/*
+ * Read the complete server-side view from one SQLite transaction snapshot.
+ *
+ * currentSeq() intentionally runs before the row queries, but that ordering
+ * alone is not enough: without a transaction, a concurrent writer can commit
+ * between the sequence read and one of the later table reads.  The response
+ * could then contain rows from two different eras while advertising only one
+ * seq watermark.  Keep the assembler pure so callers already inside a write
+ * transaction (for example conflict resolution) do not attempt a nested
+ * transaction; HTTP/export reads use this wrapper.
+ */
+function readMemSnapshot(userId, since) {
+  return db.transaction(function () { return buildMemSnapshot(userId, since); })();
+}
+
 /* seq 一律写在 DO UPDATE 的 SET 里（而不是外层 INSERT 的 values）——
    若 rev 守卫不成立、这次写入被拒，seq 也不会推进；
    否则客户端会「收到了一个其实没落库的变更」水位，真变更永远拉不到。 */
-function upsertDeck(userId, d, rev, deleted, seq) {
+const { assertRevisionAccepted, assertBatchVersion, batchHash } = require('./sync-conflict');
+function upsertDeck(userId, d, rev, deleted, seq, baseRev) {
+  const row = db.prepare('SELECT name, items_json, builtin, rev, deleted_at FROM user_decks WHERE user_id=? AND id=?').get(userId, d.id);
+  assertRevisionAccepted('decks', d.id, rev, deleted,
+    { name: d.name, items: d.items || [], builtin: !!d.builtin }, row && {
+      rev: row.rev, deleted: !!row.deleted_at,
+      value: { name: row.name, items: JSON.parse(row.items_json), builtin: !!row.builtin }
+    }, baseRev);
   if (deleted) {
-    db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
+    db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,is_public,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,0,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET deleted_at=datetime('now'), is_public=0, rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
       .run(userId, d.id, '', '[]', 0, rev == null ? null : rev, seq);
   } else {
     db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,?,?,datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET name=excluded.name, items_json=excluded.items_json, builtin=excluded.builtin, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
@@ -352,7 +391,20 @@ function upsertDeck(userId, d, rev, deleted, seq) {
   }
 }
 
-function upsertKv(userId, k, v, rev, deleted, seq) {
+function updateDeckPublication(userId, deckId, publish, seq) {
+  const row = db.prepare('SELECT rev FROM user_decks WHERE user_id=? AND id=? AND deleted_at IS NULL').get(userId, deckId);
+  if (!row) { const error = new Error('题库不存在'); error.status = 404; throw error; }
+  const rev = (row.rev == null ? 0 : row.rev) + 1;
+  db.prepare("UPDATE user_decks SET is_public=?, rev=?, updated_at=datetime('now'), seq=? WHERE user_id=? AND id=? AND deleted_at IS NULL")
+    .run(publish ? 1 : 0, rev, seq, userId, deckId);
+  return !!publish;
+}
+
+function upsertKv(userId, k, v, rev, deleted, seq, baseRev) {
+  const row = db.prepare('SELECT v_json, rev, deleted_at FROM user_kv WHERE user_id=? AND k=?').get(userId, k);
+  assertRevisionAccepted('kv', k, rev, deleted, v, row && {
+    rev: row.rev, deleted: !!row.deleted_at, value: JSON.parse(row.v_json)
+  }, baseRev);
   if (deleted) {
     db.prepare("INSERT INTO user_kv (user_id,k,v_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,k) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_kv.rev, 0)")
       .run(userId, k, 'null', rev == null ? null : rev, seq);
@@ -362,7 +414,11 @@ function upsertKv(userId, k, v, rev, deleted, seq) {
   }
 }
 
-function upsertCourse(userId, c, rev, deleted, seq) {
+function upsertCourse(userId, c, rev, deleted, seq, baseRev) {
+  const row = db.prepare('SELECT data_json, rev, deleted_at FROM user_courses WHERE user_id=? AND course_id=?').get(userId, c.courseId);
+  assertRevisionAccepted('courses', c.courseId, rev, deleted, c, row && {
+    rev: row.rev, deleted: !!row.deleted_at, value: JSON.parse(row.data_json)
+  }, baseRev);
   if (deleted) {
     db.prepare("INSERT INTO user_courses (user_id,course_id,data_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,course_id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_courses.rev, 0)")
       .run(userId, c.courseId, '{}', rev == null ? null : rev, seq);
@@ -372,7 +428,11 @@ function upsertCourse(userId, c, rev, deleted, seq) {
   }
 }
 
-function upsertCourseProgress(userId, cid, data, rev, deleted, seq) {
+function upsertCourseProgress(userId, cid, data, rev, deleted, seq, baseRev) {
+  const row = db.prepare('SELECT data_json, rev, deleted_at FROM user_course_progress WHERE user_id=? AND course_id=?').get(userId, cid);
+  assertRevisionAccepted('courseProgress', cid, rev, deleted, data, row && {
+    rev: row.rev, deleted: !!row.deleted_at, value: JSON.parse(row.data_json)
+  }, baseRev);
   if (deleted) {
     db.prepare("INSERT INTO user_course_progress (user_id,course_id,data_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,course_id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_course_progress.rev, 0)")
       .run(userId, cid, 'null', rev == null ? null : rev, seq);
@@ -416,7 +476,8 @@ function allocSeq(userId) {
 
 const SBS_UPSERT_SQL = "INSERT INTO user_sentence_stats (user_id,sentence_key,deck_id,data_json,deleted_at,updated_at,seq) VALUES (?,?,?,?,NULL,datetime('now'),?) ON CONFLICT(user_id,sentence_key) DO UPDATE SET data_json=excluded.data_json, deck_id=excluded.deck_id, deleted_at=NULL, updated_at=datetime('now'), seq=excluded.seq";
 const SBS_DELETE_SQL = "UPDATE user_sentence_stats SET deleted_at=datetime('now'), updated_at=datetime('now'), seq=? WHERE user_id=? AND sentence_key=?";
-const EV_UPSERT_SQL = "INSERT INTO user_events (user_id,id,at,data_json,updated_at,seq) VALUES (?,?,?,?,datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET data_json=excluded.data_json, at=excluded.at, updated_at=datetime('now'), seq=excluded.seq";
+const EV_UPSERT_SQL = "INSERT INTO user_events (user_id,id,at,data_json,deleted_at,updated_at,seq) VALUES (?,?,?,?,NULL,datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET data_json=excluded.data_json, at=excluded.at, deleted_at=NULL, updated_at=datetime('now'), seq=excluded.seq";
+const EV_DELETE_SQL = "UPDATE user_events SET deleted_at=datetime('now'), updated_at=datetime('now'), seq=? WHERE user_id=? AND id=?";
 
 function upsertSentenceStat(userId, key, data, seq) {
   if (!key || !data || typeof data !== 'object') return;
@@ -432,6 +493,11 @@ function deleteSentenceStat(userId, key, seq) {
 function upsertEvent(userId, ev, seq) {
   if (!ev || !ev.id) return;
   stmt(EV_UPSERT_SQL).run(userId, String(ev.id), typeof ev.at === 'number' ? ev.at : null, JSON.stringify(ev), seq);
+}
+
+function deleteEvent(userId, id, seq) {
+  if (!id) return;
+  stmt(EV_DELETE_SQL).run(seq, userId, String(id));
 }
 
 /* ----- 通用行级实体（mastered / reinforce / deletedItem，2026-09-10 第二轮） -----
@@ -556,14 +622,17 @@ function countEntityRows(userId, kind) {
   return r ? r.n : 0;
 }
 
-function saveData(userId, body) {
+function saveData(userId, body, withinTransaction) {
+  const payloadHash=body.requestId === undefined ? null : batchHash(body);
   const mem = body.mem || {};
   const courses = Array.isArray(body.courses) ? body.courses : [];
   const courseProgress = body.courseProgress || {};
   const revs = body.revs || {};
   const deleted = body.deleted || {};
+  const base = (entity, id) => body.baseRevs === undefined ? undefined : body.baseRevs[entity][id];
   const delta = (body.statsDelta && typeof body.statsDelta === 'object') ? body.statsDelta : null;
   const entDelta = (body.entityDelta && typeof body.entityDelta === 'object') ? body.entityDelta : null;
+  const publications = Array.isArray(body.publications) ? body.publications : [];
 
   /* stats 大对象走行表：先把 bySentence / events 从「待写 kv 的 stats」里剥出来，
      否则它们会被原样塞回 blob，体积又回到 7MB（拆表等于白做）。
@@ -585,19 +654,28 @@ function saveData(userId, body) {
     }
   }
 
-  const tx = db.transaction(function () {
+  const apply = function () {
     /* 本次写入共用一个变更序号（行级增量下行的水位单位）。
        放在事务内：事务回滚时序号一起回滚，不会留下「凭空推进的水位」。
        若本次请求什么都没写，序号也确实被推进了 —— 无害：
        客户端的语义是「≤N 的都收到了」，多一次空推进只是让它多问一次。 */
+    if(payloadHash){
+      const receipt=db.prepare('SELECT payload_hash,seq FROM user_batch_receipts WHERE user_id=? AND request_id=?').get(userId,body.requestId);
+      if(receipt){
+        if(receipt.payload_hash===payloadHash)return receipt.seq;
+        const error=new Error('同一请求编号不能用于不同内容，本次数据未写入');
+        error.code='SYNC_CONFLICT';error.conflicts=[{entity:'batch',id:body.requestId,reason:'REQUEST_ID_REUSED'}];throw error;
+      }
+    }
+    assertBatchVersion(body.baseSeq, currentSeq(userId));
     const seq = allocSeq(userId);
 
     // decks：实体级 rev upsert（不再整块 DELETE，崩溃可恢复、多设备不互覆盖）
     (mem.decks || []).forEach(function (d) {
-      upsertDeck(userId, d, (revs.decks && revs.decks[d.id]) == null ? null : revs.decks[d.id], false, seq);
+      upsertDeck(userId, d, (revs.decks && revs.decks[d.id]) == null ? null : revs.decks[d.id], false, seq, base('decks', d.id));
     });
     (deleted.decks || []).forEach(function (d) {
-      upsertDeck(userId, { id: d.id }, d.rev, true, seq);
+      upsertDeck(userId, { id: d.id }, d.rev, true, seq, base('decks', d.id));
     });
 
     // kv：实体级 rev upsert（per-key：best / stats / settings）
@@ -608,28 +686,31 @@ function saveData(userId, body) {
       if (ROW_KV_KINDS[k]) return;
       if (k === 'stats') {
         if (statsKv !== null) {
-          upsertKv(userId, 'stats', statsKv, (revs.kv && revs.kv.stats) == null ? null : revs.kv.stats, false, seq);
+          upsertKv(userId, 'stats', statsKv, (revs.kv && revs.kv.stats) == null ? null : revs.kv.stats, false, seq, base('kv', 'stats'));
         }
         return;
       }
-      if (k in mem) upsertKv(userId, k, mem[k], (revs.kv && revs.kv[k]) == null ? null : revs.kv[k], false, seq);
+      if (k in mem) upsertKv(userId, k, mem[k], (revs.kv && revs.kv[k]) == null ? null : revs.kv[k], false, seq, base('kv', k));
     });
     (deleted.kv || []).forEach(function (d) {
-      upsertKv(userId, d.k, null, d.rev, true, seq);
+      upsertKv(userId, d.k, null, d.rev, true, seq, base('kv', d.k));
     });
 
     // courses / courseProgress：per-entity rev upsert + 软删除（ADR-005 step 2）
     courses.forEach(function (c) {
-      upsertCourse(userId, c, (revs.courses && revs.courses[c.courseId]) == null ? null : revs.courses[c.courseId], false, seq);
+      upsertCourse(userId, c, (revs.courses && revs.courses[c.courseId]) == null ? null : revs.courses[c.courseId], false, seq, base('courses', c.courseId));
     });
     (deleted.courses || []).forEach(function (c) {
-      upsertCourse(userId, { courseId: c.id }, c.rev, true, seq);
+      upsertCourse(userId, { courseId: c.id }, c.rev, true, seq, base('courses', c.id));
     });
     Object.keys(courseProgress).forEach(function (cid) {
-      upsertCourseProgress(userId, cid, courseProgress[cid], (revs.courseProgress && revs.courseProgress[cid]) == null ? null : revs.courseProgress[cid], false, seq);
+      upsertCourseProgress(userId, cid, courseProgress[cid], (revs.courseProgress && revs.courseProgress[cid]) == null ? null : revs.courseProgress[cid], false, seq, base('courseProgress', cid));
     });
     (deleted.courseProgress || []).forEach(function (c) {
-      upsertCourseProgress(userId, c.id, null, c.rev, true, seq);
+      upsertCourseProgress(userId, c.id, null, c.rev, true, seq, base('courseProgress', c.id));
+    });
+    publications.forEach(function (publication) {
+      updateDeckPublication(userId, publication.deckId, publication.publish, seq);
     });
 
     // 句子档案 / 事件日志：行级写入（新协议的增量路径 + 旧客户端的全量兼容路径）
@@ -640,6 +721,7 @@ function saveData(userId, body) {
       Object.keys(sbs).forEach(function (k) { upsertSentenceStat(userId, k, sbs[k], seq); });
       (delta.sbsGone || []).forEach(function (k) { deleteSentenceStat(userId, k, seq); });
       (delta.evs || []).forEach(function (ev) { upsertEvent(userId, ev, seq); });
+      (delta.evsGone || []).forEach(function (id) { deleteEvent(userId, id, seq); });
     }
 
     /* mastered / reinforceBook / deletedItems：旧客户端的整份 blob（兼容路径）+ 新协议的 entityDelta。
@@ -661,8 +743,15 @@ function saveData(userId, body) {
         (part.gone || []).forEach(function (key) { deleteEntityRow(userId, kind, key, seq); });
       });
     }
-  });
-  tx();
+    if(payloadHash){
+      db.prepare('INSERT INTO user_batch_receipts (user_id,request_id,payload_hash,seq) VALUES (?,?,?,?)').run(userId,body.requestId,payloadHash,seq);
+      // Bounded receipt history. Older retries still fail their stale baseSeq;
+      // eviction never makes an old snapshot eligible to overwrite new data.
+      db.prepare('DELETE FROM user_batch_receipts WHERE user_id=? AND request_id NOT IN (SELECT request_id FROM user_batch_receipts WHERE user_id=? ORDER BY seq DESC LIMIT 256)').run(userId,userId);
+    }
+    return seq;
+  };
+  return (withinTransaction ? apply : db.transaction(apply))();
 }
 
 app.get('/api/data', auth.authenticate, function (req, res) {
@@ -677,22 +766,125 @@ app.get('/api/data', auth.authenticate, function (req, res) {
       if (!Number.isFinite(n) || n < 0) return res.status(400).json({ error: 'since 必须是 >=0 的数字' });
       since = Math.floor(n);
     }
-    res.json(buildMem(req.userId, since));
+    res.json(readMemSnapshot(req.userId, since));
   }
   catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 app.put('/api/data', auth.authenticate, function (req, res) {
   try {
+    if (rejectUnconditional(req.body, res, '数据写入')) return;
     const verr = validate.validatePutPayload(req.body);
     if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
-    saveData(req.userId, req.body || {});
-    res.json({ ok: true });
+    const seq=saveData(req.userId, req.body || {});
+    res.json(req.body.baseSeq === undefined ? { ok: true } : { ok: true, seq });
   }
-  catch (e) { res.status(500).json({ error: e.message }); }
+  catch (e) {
+    if (e.code === 'SYNC_CONFLICT') return res.status(409).json({ error: e.message, code: e.code, conflicts: e.conflicts });
+    res.status(500).json({ error: e.message });
+  }
+});
+
+const resolutions = require('./sync-resolution').createResolutionService(db, function(userId, entity, id, value, rev, deleted, seq){
+  if (entity === 'decks') upsertDeck(userId, value || { id }, rev, deleted, seq);
+  else if (entity === 'courses') upsertCourse(userId, value || { courseId: id }, rev, deleted, seq);
+  else if (entity === 'courseProgress') upsertCourseProgress(userId, id, value, rev, deleted, seq);
+  else upsertKv(userId, id, value, rev, deleted, seq);
+}, allocSeq);
+const resolutionModule = require('./sync-resolution');
+const batchToken = resolutionModule.batchToken;
+
+function makeBatchReplacement(userId, local, remote, requestId) {
+  const current = remote || buildMemSnapshot(userId);
+  const mem = local.mem;
+  const currentRevs = current.revs || {};
+  const revs = { decks: {}, kv: {}, courses: {}, courseProgress: {} };
+  const baseRevs = { decks: {}, kv: {}, courses: {}, courseProgress: {} };
+  const deleted = { decks: [], kv: [], courses: [], courseProgress: [] };
+  const next = (group, id) => {
+    const previous = currentRevs[group] && currentRevs[group][id];
+    baseRevs[group][id] = Number.isSafeInteger(previous) ? previous : null;
+    revs[group][id] = (Number.isSafeInteger(previous) ? previous : 0) + 1;
+  };
+  (mem.decks || []).forEach(d => next('decks', d.id));
+  (current.mem.decks || []).forEach(d => {
+    if (!(mem.decks || []).some(localDeck => localDeck.id === d.id)) {
+      next('decks', d.id); deleted.decks.push({ id: d.id, rev: revs.decks[d.id] });
+    }
+  });
+  ['best', 'stats', 'settings'].forEach(k => next('kv', k));
+  (local.courses || []).forEach(c => next('courses', c.courseId));
+  (current.courses || []).forEach(c => {
+    if (!(local.courses || []).some(localCourse => localCourse.courseId === c.courseId)) {
+      next('courses', c.courseId); deleted.courses.push({ id: c.courseId, rev: revs.courses[c.courseId] });
+    }
+  });
+  Object.keys(local.courseProgress || {}).forEach(cid => next('courseProgress', cid));
+  Object.keys(current.courseProgress || {}).forEach(cid => {
+    if (!Object.prototype.hasOwnProperty.call(local.courseProgress || {}, cid)) {
+      next('courseProgress', cid); deleted.courseProgress.push({ id: cid, rev: revs.courseProgress[cid] });
+    }
+  });
+  const localBy = (mem.stats && mem.stats.bySentence) || {};
+  const remoteBy = (current.mem.stats && current.mem.stats.bySentence) || {};
+  const sbsGone = Object.keys(remoteBy).filter(k => !Object.prototype.hasOwnProperty.call(localBy, k));
+  const localEventIds = new Set(((mem.stats && mem.stats.events) || []).map(ev => ev && ev.id).filter(Boolean));
+  const evsGone = ((current.mem.stats && current.mem.stats.events) || [])
+    .map(ev => ev && ev.id).filter(id => id && !localEventIds.has(id));
+  const localMastered = mem.mastered || {}, remoteMastered = current.mem.mastered || {};
+  const localDeleted = mem.deletedItems || {}, remoteDeleted = current.mem.deletedItems || {};
+  const localBook = {}, remoteBook = {};
+  (mem.reinforceBook || []).forEach(item => { if (item && item._key) localBook[item._key] = item; });
+  (current.mem.reinforceBook || []).forEach(item => { if (item && item._key) remoteBook[item._key] = item; });
+  return {
+    mem,
+    courses: local.courses,
+    courseProgress: local.courseProgress,
+    revs,
+    baseRevs,
+    deleted,
+    baseSeq: current.seq,
+    requestId,
+    statsDelta: { sbs: localBy, sbsGone, evs: (mem.stats && mem.stats.events) || [], evsGone },
+    entityDelta: {
+      mastered: { up: localMastered, gone: Object.keys(remoteMastered).filter(k => !Object.prototype.hasOwnProperty.call(localMastered, k)) },
+      reinforceBook: { up: localBook, gone: Object.keys(remoteBook).filter(k => !Object.prototype.hasOwnProperty.call(localBook, k)) },
+      deletedItems: { up: localDeleted, gone: Object.keys(remoteDeleted).filter(k => !Object.prototype.hasOwnProperty.call(localDeleted, k)) }
+    }
+  };
+}
+
+const batchResolutions = resolutionModule.createBatchResolutionService(db,
+  userId => buildMemSnapshot(userId),
+  (userId, local, remote, requestId) => saveData(userId, makeBatchReplacement(userId, local, remote, requestId), true));
+function resolutionResponse(res, action){
+  try { res.json(action()); }
+  catch(e){ res.status(e.status || 500).json({ error: e.message, code: e.code }); }
+}
+/* Account-level conflict comparison. A batch conflict cannot be opened through
+   the entity endpoint: the client needs one server snapshot and one token for
+   the whole learning namespace, otherwise a mixed-era comparison is possible. */
+app.get('/api/sync/batch', auth.authenticate, function(req, res){
+  resolutionResponse(res, function(){ return batchResolutions.compare(req.userId); });
+});
+app.post('/api/sync/batch/resolve', auth.authenticate, function(req, res){
+  resolutionResponse(res, function(){ return batchResolutions.resolve(req.userId, req.body); });
+});
+app.get('/api/sync/batch/resolutions/:id', auth.authenticate, function(req, res){
+  resolutionResponse(res, function(){ return batchResolutions.backup(req.userId, req.params.id); });
+});
+app.get('/api/sync/entity', auth.authenticate, function(req, res){
+  resolutionResponse(res, function(){ return resolutions.read(req.userId, req.query.entity, req.query.id); });
+});
+app.post('/api/sync/resolve', auth.authenticate, function(req, res){
+  resolutionResponse(res, function(){ return resolutions.resolve(req.userId, req.body); });
+});
+app.get('/api/sync/resolutions/:id', auth.authenticate, function(req, res){
+  resolutionResponse(res, function(){ return resolutions.backup(req.userId, req.params.id); });
 });
 
 app.post('/api/courses', auth.authenticate, function (req, res) {
+  if (STRICT_CONDITIONAL_WRITES) return res.status(428).json({ error: '课程写入已迁移到条件同步批次，请升级客户端', code: 'CLIENT_UPGRADE_REQUIRED' });
   const course = req.body && req.body.course;
   const verr = validate.validateCourse(course);
   if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
@@ -704,6 +896,7 @@ app.post('/api/courses', auth.authenticate, function (req, res) {
 });
 
 app.delete('/api/courses/:courseId', auth.authenticate, function (req, res) {
+  if (STRICT_CONDITIONAL_WRITES) return res.status(428).json({ error: '课程删除已迁移到条件同步批次，请升级客户端', code: 'CLIENT_UPGRADE_REQUIRED' });
   try {
     const cid = req.params.courseId;
     // 软删除（ADR-005）：跨设备传播，删除也是版本演进
@@ -753,6 +946,15 @@ app.post('/api/deck/publish', auth.authenticate, function (req, res) {
     const deckId = (typeof (req.body && req.body.deckId) === 'string') ? req.body.deckId.trim() : '';
     const publish = req.body && req.body.publish ? 1 : 0;
     if (!deckId || deckId.length > 64) return res.status(400).json({ error: 'deckId 非法' });
+    if (STRICT_CONDITIONAL_WRITES) {
+      if (rejectUnconditional(req.body, res, '题库发布')) return;
+      const verr = validate.validatePutPayload({ mem: {}, baseSeq: req.body.baseSeq, requestId: req.body.requestId,
+        publications: [{ deckId: deckId, publish: !!publish }] });
+      if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
+      const seq = saveData(req.userId, { mem: {}, baseSeq: req.body.baseSeq, requestId: req.body.requestId,
+        publications: [{ deckId: deckId, publish: !!publish }] });
+      return res.json({ ok: true, isPublic: !!publish, seq: seq });
+    }
     const own = db.prepare('SELECT id FROM user_decks WHERE user_id=? AND id=? AND deleted_at IS NULL').get(req.userId, deckId);
     if (!own) return res.status(404).json({ error: '题库不存在' });
     /* is_public 也是 deck 的属性变更 → 必须**同时** bump rev 与 seq。
@@ -858,7 +1060,7 @@ const AI_CACHE_TTL = (function () {
 const AI_PROMPT_VERSION = 1;
 app.get('/api/export', auth.authenticate, function (req, res) {
   try {
-    const data = buildMem(req.userId);
+    const data = readMemSnapshot(req.userId);
     /* P0-1（2026-09-11 安全审查）：ai_cache 是服务端全局公共缓存（按句子内容共享），
        不是用户私产。dump 进备份 = 无意义膨胀 + 泄露/污染全局缓存 → 不再导出。 */
     res.json({
@@ -872,13 +1074,17 @@ app.get('/api/export', auth.authenticate, function (req, res) {
 app.post('/api/import', auth.authenticate, function (req, res) {
   try {
     const body = req.body || {};
+    if (rejectUnconditional(body, res, '备份导入')) return;
     const verr = validate.validatePutPayload(body);
     if (verr) return res.status(400).json({ error: '备份数据校验失败：' + verr });
     saveData(req.userId, body);
     /* P0-1（2026-09-11）：忽略旧备份文件里的 body.aiCache（向后兼容）。
        公共缓存不接受用户注入，防止跨用户污染全局表。 */
     res.json({ ok: true });
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    if (e.code === 'SYNC_CONFLICT') return res.status(409).json({ error: e.message, code: e.code, conflicts: e.conflicts });
+    res.status(500).json({ error: e.message });
+  }
 });
 
 /* ===================== 静态托管前端（本地调试零配置） =====================
