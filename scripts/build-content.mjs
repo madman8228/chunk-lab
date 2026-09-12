@@ -116,7 +116,7 @@ const freqIndexShards = writeShards(
 
 const manifest = {
   schemaVersion: 1,
-  contentVersion: '2026-09-11',
+  contentVersion: '',
   decks: [
     {
       id: 'builtin-daily',
@@ -141,6 +141,10 @@ const manifest = {
   ],
 };
 
+// Deterministic release identity: includes shard order/content and embedded base
+// items, so even a same-day edit or base-item reorder invalidates saved offsets.
+manifest.contentVersion = 'v1-' + crypto.createHash('sha256')
+  .update(JSON.stringify({ decks: manifest.decks, baseItems: baseDaily.items })).digest('hex');
 fs.mkdirSync(path.join(ROOT, 'content'), { recursive: true });
 fs.writeFileSync(path.join(ROOT, 'content/manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
 console.log(`[content] generated ${oralItems.length} oral + ${freqDeck.items.length} idiom items`);
