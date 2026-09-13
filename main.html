@@ -3397,6 +3397,19 @@ function renderAnalysis(it){
   startAutoNext();
 }
 
+/* 练习页详解入口只复用「本句讲解」卡片，不再打开第二套弹窗容器。
+   自动讲解已存在时只把它带入视野；用户手动关闭后，再按当前句恢复同一张卡片。 */
+function showCurrentExplanation(){
+  if(!S.deck) return;
+  var existing = document.querySelector('.explain-panel.current');
+  if(existing){
+    existing.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  var it = cur();
+  if(it) showExplanationPanel('本句讲解', buildAnalysisSections(it));
+}
+
 function skipQuestion(){
   var it = cur();
   for(var i=S.chunkIdx;i<it.chunks.length;i++){
@@ -4537,12 +4550,10 @@ $('stageTipBar').addEventListener('click', function(e){
 });
 $('btnSpeak').onclick = function(){ speakSentence(); };
 /* 练习卡片不再放置重复的返回箭头；退出练习统一使用顶部题库入口。 */
-/* 详解入口：答完当前句后打开详解页 */
-var _explainFromPage = 'pagePractice';
+/* 详解入口：复用练习页中的「本句讲解」卡片 */
 $('btnExplain').onclick = function(){
   if(!S.deck) return;
-  _explainFromPage = _curPage || 'pagePractice';
-  openExplain(S.deck, cur()); /* 传当前练习的句子对象，避免索引错位 */
+  showCurrentExplanation();
 };
 /* 管理页已迁独立 decks.html（句子行上的「详解/编辑」由该页自行绑定） */
 /* 音效开关：练习反馈的即时偏好，不触发学习数据的云同步提示 */

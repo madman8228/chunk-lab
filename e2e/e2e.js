@@ -317,6 +317,28 @@ function check(name, cond, detail) {
     mainHtmlSrc.indexOf('list.innerHTML = explanationSectionsHtml(buildAnalysisSections(it))') >= 0,
     '讲解入口未复用 buildAnalysisSections');
 
+  /* ===== 1h. 查看讲解直接复用练习页卡片（2026-09-13：去掉重复弹窗） ===== */
+  await p.locator('#btnExplain').click();
+  await p.waitForTimeout(100);
+  const explainInline = await p.evaluate(function () {
+    return {
+      panels: document.querySelectorAll('#pagePractice .explain-panel.current').length,
+      maskHidden: !!document.getElementById('explainMask').hidden,
+      title: (document.querySelector('#pagePractice .explain-panel.current .explain-title') || {}).textContent || ''
+    };
+  });
+  check('main: 查看讲解只渲染练习页本句讲解卡片', explainInline.panels === 1 && explainInline.maskHidden && explainInline.title === '本句讲解', JSON.stringify(explainInline));
+  await p.locator('#pagePractice .explain-panel.current .explain-close').click();
+  await p.locator('#btnExplain').click();
+  await p.waitForTimeout(100);
+  const explainReopen = await p.evaluate(function () {
+    return {
+      panels: document.querySelectorAll('#pagePractice .explain-panel.current').length,
+      maskHidden: !!document.getElementById('explainMask').hidden
+    };
+  });
+  check('main: 关闭后再次点击查看讲解可在原位置恢复', explainReopen.panels === 1 && explainReopen.maskHidden, JSON.stringify(explainReopen));
+
   const ctxNoDue = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const pNoDue = await ctxNoDue.newPage();
   await pNoDue.route('**/api/**', function (r) { r.abort('failed'); });
