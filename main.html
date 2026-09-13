@@ -1040,7 +1040,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <a class="brand" href="decks.html" title="返回题库首页" aria-label="返回题库首页"><span class="logo">C</span>Chunk Lab</a>
       <span class="spacer"></span>
       <button type="button" id="syncBadge" class="sync-badge" style="display:none" title="查看同步状态" aria-label="查看同步状态">待同步</button>
-      <button class="icon-action" id="btnSound" title="音效开关" aria-label="音效开关" data-icon="sound"></button>
+      <button class="icon-action practice-only hidden" id="btnSound" title="音效开关" aria-label="音效开关" data-icon="sound"></button>
       <button class="icon-action" id="btnStats" title="学习档案" aria-label="学习档案" data-icon="stats"></button>
       <button class="btn sm icon-action flat-action" id="btnDecks" title="退出本题库，回到题库列表" aria-label="退出本题库，回到题库列表" data-icon="book"></button>
       <button class="icon-action" id="btnSettingsTop" title="系统设置" aria-label="系统设置" data-icon="settings"></button>
@@ -3689,11 +3689,16 @@ function isDue(it){
 function dueRank(it){ return isDue(it) ? 0 : 1; }
 
 /* ===== 页面切换：今日首页 ↔ 练习页 ===== */
+function setPracticeOnlyUi(isPractice){
+  var sound = $('btnSound');
+  if(sound) sound.classList.toggle('hidden', !isPractice);
+}
 /* 首页唯一入口：切页面 + 渲染内容（Bug A 修复，2026-09-10）。
    此前只切 hidden 不渲染 —— 从 decks / ?direct=1 直达练习后点「返回」，
    pageHome 从未渲染过 → 空白页（nav-exit-verify 实证 homeBody.htmlLen=0）。
    现渲染职责收归此处；renderHome 末尾不再反向调本函数（否则两者互相调用无限递归）。 */
 function showHomePage(){
+  setPracticeOnlyUi(false);
   var p = $('pagePractice'); if(p) p.classList.add('hidden');
   var h = $('pageHome'); if(h) h.classList.remove('hidden');
   var r = $('result'); if(r) r.classList.add('hidden');
@@ -3705,6 +3710,7 @@ function showHomePage(){
   window.scrollTo(0, 0);
 }
 function showPracticePage(){
+  setPracticeOnlyUi(true);
   var h = $('pageHome'); if(h) h.classList.add('hidden');
   var p = $('pagePractice'); if(p) p.classList.remove('hidden');
 }
@@ -4439,6 +4445,7 @@ function showPage(id){
   var target = $(id);
   if(target) target.classList.remove('hidden');
   _curPage = id;
+  setPracticeOnlyUi(id === 'pagePractice');
   /* stageChoices 是 fixed 浮层（不属任何 .page），切到非练习页时清空，
      避免 chips 残留在屏幕上与新页面冲突（详解已改为弹窗模式不走 showPage） */
   if(id !== 'pagePractice'){

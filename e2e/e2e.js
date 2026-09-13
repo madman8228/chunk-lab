@@ -97,6 +97,7 @@ function check(name, cond, detail) {
         var el = document.getElementById(id);
         return el && el.classList.contains('icon-action') && getComputedStyle(el).borderTopStyle === 'none';
       }).filter(Boolean).length,
+      soundDisplay: getComputedStyle(document.getElementById('btnSound')).display,
       metricFlat: Array.from(document.querySelectorAll('.metrics .metric')).filter(function (el) {
         var cs = getComputedStyle(el);
         return cs.borderTopStyle === 'none' && cs.backgroundColor === 'rgba(0, 0, 0, 0)';
@@ -152,6 +153,7 @@ function check(name, cond, detail) {
   check('main: 进度与连击改为扁平显示', ok.metricFlat === 2, JSON.stringify(ok));
   check('main: 题库入口改为扁平显示', ok.decksFlat, JSON.stringify(ok));
   check('main: 顶栏工具按钮 Hover 无圆形背景', topbarHover.every(function (bg) { return bg === 'rgba(0, 0, 0, 0)'; }), JSON.stringify(topbarHover));
+  check('main: 练习页显示音效按钮', ok.soundDisplay !== 'none', JSON.stringify(ok));
   check('main: 朗读按钮放在英文句子末尾', ok.speakAfterEnglish, JSON.stringify(ok));
   check('main: 朗读按钮与英文句子垂直居中', speakCentering, 'button/track 未居中');
   check('main: 朗读按钮 Hover 无容器背景', speakHover === 'rgba(0, 0, 0, 0)', 'background=' + speakHover);
@@ -204,12 +206,14 @@ function check(name, cond, detail) {
     return {
       hasDecks: !!document.getElementById('homeLinkDecks'),
       hasStats: !!document.getElementById('homeLinkStats'),
-      hasHomeLinks: !!document.querySelector('.home-links')
+      hasHomeLinks: !!document.querySelector('.home-links'),
+      soundDisplay: getComputedStyle(document.getElementById('btnSound')).display
     };
   });
   check('home: 已删底部 #homeLinkDecks（与工具栏 #btnDecks 重复）', !homeLinksState.hasDecks, JSON.stringify(homeLinksState));
   check('home: 已删底部 #homeLinkStats（与工具栏 #btnStats 重复）', !homeLinksState.hasStats, JSON.stringify(homeLinksState));
   check('home: 已删底部 .home-links 容器', !homeLinksState.hasHomeLinks, JSON.stringify(homeLinksState));
+  check('home: 非练习页隐藏音效按钮', homeLinksState.soundDisplay === 'none', JSON.stringify(homeLinksState));
   await pHomeLinks.close();
 
   /* ===== 1e. 设置面板「行尾控件」：三个值同宽 + 每批数量改选档
