@@ -470,6 +470,15 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .practice-context{margin:2px 0 12px}
 .practice-context .pc-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .practice-context .progress{margin-top:6px}
+/* 退出当前课程：放在课程名旁，作为低强调的页面级动作，不与答题按钮抢层级 */
+.practice-exit{
+  flex:0 0 auto;min-height:30px;padding:4px 6px;border:0;border-radius:6px;
+  background:transparent;color:var(--muted);font-size:12px;line-height:1;
+  cursor:pointer;touch-action:manipulation;
+}
+.practice-exit:active{transform:translateY(1px)}
+.practice-exit:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.practice-exit:disabled{color:var(--faint);cursor:wait}
 /* "未同步"徽标（离线 change-log 可见性） */
 .sync-badge{
   display:inline-flex;align-items:center;gap:4px;
@@ -1059,6 +1068,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   <div class="practice-context">
     <div class="pc-row">
       <span class="deck-name" id="deckName"></span>
+      <button type="button" class="practice-exit" id="btnExitPractice" title="退出当前学习课程" aria-label="退出当前学习课程">退出</button>
       <span class="spacer"></span>
       <div class="metrics">
         <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">--/--</span></div>
@@ -3740,6 +3750,37 @@ function showPracticePage(){
   var h = $('pageHome'); if(h) h.classList.add('hidden');
   var p = $('pagePractice'); if(p) p.classList.remove('hidden');
 }
+/* 退出当前课程：保留已完成的练习记录和当前进度，只离开练习页回到首页。
+   先做一次 local-only 保存，避免退出动作重新发起云同步；再等待当前已排队的
+   课程/进度/统计写入结束。云端请求失败不阻塞离开，未同步状态仍由同步徽标提示。 */
+function exitPractice(){
+  var btn = $('btnExitPractice');
+  if(btn && btn.disabled) return;
+  stopAutoNext();
+  if(btn){ btn.disabled = true; btn.textContent = '保存中…'; }
+  var localSave;
+  try{ localSave = saveStore('local'); }
+  catch(e){ localSave = Promise.reject(e); }
+  Promise.resolve(localSave).then(function(ok){
+    if(ok === false) throw new Error('退出前本地保存失败');
+    if(window.CL && CL.waitForSync){
+      return CL.waitForSync().catch(function(error){
+        console.warn('[practice] 退出前等待同步失败，已保留本地记录', error);
+      });
+    }
+    return true;
+  }).then(function(){
+    if(btn){ btn.disabled = false; btn.textContent = '退出'; }
+    showHomePage();
+  }).catch(function(error){
+    console.warn('[practice] 退出前保存失败，暂不离开练习页', error);
+    if(btn){
+      btn.disabled = false;
+      btn.textContent = '保存失败';
+      setTimeout(function(){ if(btn && !btn.disabled) btn.textContent = '退出'; }, 1800);
+    }
+  });
+}
 
 /* ===== 今日首页（吸收 ref「今日行动中枢」：到期收口 + 上次进度 + 最近牌组 + 入口） ===== */
 function computeToday(){
@@ -4525,6 +4566,7 @@ document.addEventListener('keydown', function(e){
 });
 
 $('btnNext').onclick = nextQuestion;
+$('btnExitPractice').onclick = exitPractice;
 var _skipBtn = $('btnSkip'); if(_skipBtn) _skipBtn.onclick = skipQuestion;
 var _hintBtn = $('btnHint'); if(_hintBtn) _hintBtn.onclick = hintFirst; /* 已删除按钮，保留兼容 */
 var _revealBtn = $('btnReveal'); if(_revealBtn) _revealBtn.onclick = revealCurrentChunk;
@@ -4549,7 +4591,7 @@ $('stageTipBar').addEventListener('click', function(e){
   else if(act==='full') showFullSentence();
 });
 $('btnSpeak').onclick = function(){ speakSentence(); };
-/* 练习卡片不再放置重复的返回箭头；退出练习统一使用顶部题库入口。 */
+/* 练习卡片不放重复返回箭头；退出当前课程统一使用练习上下文左侧的轻量入口。 */
 /* 详解入口：复用练习页中的「本句讲解」卡片 */
 $('btnExplain').onclick = function(){
   if(!S.deck) return;

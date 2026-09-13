@@ -176,6 +176,45 @@ function check(name, cond, detail) {
   check('main: 朗读使用无容器喇叭图标', ok.speakText.trim() === '' && ok.speakClass && ok.speakBorder === 'none', JSON.stringify(ok));
   check('main: 零 pageerror', errs.length === 0, errs.join('|'));
 
+  /* ===== 1b. 练习页退出当前课程：只离开当前练习，不清除学习记录 ===== */
+  const exitCtx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const pExit = await exitCtx.newPage();
+  const exitErrs = [];
+  pExit.on('pageerror', function (e) { exitErrs.push(e.message); });
+  await pExit.route('**/api/**', function (r) { r.abort('failed'); });
+  await pExit.addInitScript(function () {
+    localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+  });
+  await pExit.goto(BASE + '/main.html?direct=1&preview=exit-course', { waitUntil: 'domcontentloaded' });
+  await pExit.waitForSelector('#deckName', { timeout: 12000 });
+  const exitBefore = await pExit.evaluate(function () {
+    var b = document.getElementById('btnExitPractice');
+    return {
+      exists: !!b,
+      visible: !!(b && getComputedStyle(b).display !== 'none'),
+      label: b ? b.textContent.trim() : ''
+    };
+  });
+  check('main: 练习页提供退出课程按钮', exitBefore.exists && exitBefore.visible && exitBefore.label === '退出', JSON.stringify(exitBefore));
+  await pExit.locator('#btnExitPractice').click();
+  await pExit.waitForFunction(function () {
+    var h = document.getElementById('pageHome');
+    var p = document.getElementById('pagePractice');
+    return h && !h.classList.contains('hidden') && p && p.classList.contains('hidden');
+  }, null, { timeout: 8000 });
+  const exitAfter = await pExit.evaluate(function () {
+    return {
+      homeVisible: !document.getElementById('pageHome').classList.contains('hidden'),
+      practiceHidden: document.getElementById('pagePractice').classList.contains('hidden'),
+      soundHidden: document.getElementById('btnSound').classList.contains('hidden')
+    };
+  });
+  check('main: 退出课程回到首页且不残留练习态', exitAfter.homeVisible && exitAfter.practiceHidden && exitAfter.soundHidden, JSON.stringify(exitAfter));
+  check('main: 退出课程零 pageerror', exitErrs.length === 0, exitErrs.join('|'));
+  await pExit.close();
+  await exitCtx.close();
+
   /* ===== 1c. #btnDecks 工具栏题库入口：点击必须跳 decks.html（2026-09-10 回归根因：删了 onclick 但忘了删 HTML，按钮"点不动"） ===== */
   const pBtnDecks = await ctx.newPage();
   const errsBtnDecks = [];
