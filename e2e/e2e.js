@@ -350,6 +350,7 @@ function check(name, cond, detail) {
   const mainHtmlSrc = fs.readFileSync(path.join(__dirname, '..', 'main.html'), 'utf8');
   check('home: 源码已删"今日无到期"（防回潮）', mainHtmlSrc.indexOf('今日无到期') < 0, 'still in main.html');
   check('home: 源码已删"练点新的或休息"（防回潮）', mainHtmlSrc.indexOf('练点新的或休息') < 0, 'still in main.html');
+  check('home: 源码已删重复的"去题库学新句"入口（防回潮）', mainHtmlSrc.indexOf('去题库学新句</button>') < 0, 'still in main.html');
   check('main: 源码已删练习卡返回分流（防回潮）', mainHtmlSrc.indexOf('id="btnBack"') < 0 && mainHtmlSrc.indexOf('_fromDecks') < 0, 'still in main.html');
   check('main: 查看讲解与答后讲解复用同一内容源',
     mainHtmlSrc.indexOf("showExplanationPanel('本句讲解', buildAnalysisSections(it))") >= 0 &&
@@ -423,8 +424,8 @@ function check(name, cond, detail) {
     !noDueState.hasNoDueText, JSON.stringify(noDueState));
   check('home: due=0 真实场景不渲染"练点新的或休息"',
     !noDueState.hasRestText, JSON.stringify(noDueState));
-  check('home: due=0 时仍渲染"去题库学新句"按钮（替代废话的语境承载）',
-    noDueState.hasNewDeckBtn, JSON.stringify(noDueState));
+  check('home: 已有学习记录时不渲染重复的"去题库学新句"按钮',
+    !noDueState.hasNewDeckBtn, JSON.stringify(noDueState));
   check('cal: today cell 不再有 box-shadow 外框（防"hover 残留"视觉混淆，2026-09-10）',
     noDueState.todayBoxShadow === 'none' || noDueState.todayBoxShadow === '',
     JSON.stringify(noDueState));

@@ -3899,16 +3899,14 @@ function renderHome(){
   } else {
     /* 原本的「今天有 N 句到期复习」headline 已删：与下方 .htc.due 卡片数字重复，纯属废话 */
      /* 今日只保留两个高频入口：待复习与错题本。
-        “需巩固”是错题本中的优先筛选，不再作为第三条并列队列，避免重复统计和入口分裂。 */
+        “需巩固”是错题本中的优先筛选，不再作为第三条并列队列，避免重复统计和入口分裂。
+        题库入口统一收敛到顶栏 #btnDecks；这里不再重复放“去题库学新句”。 */
      var _chev = function(cnt){ return cnt ? '<span class="chev">' + ic('chevR') + '</span>' : ''; };
      h.push('<div class="home-today-counts">'
        + '<button class="htc due" type="button" id="homeBtnDue"' + (t.due ? '' : ' disabled') + ' aria-label="开始到期复习，' + t.due + ' 句">'
        +   '<div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">待复习</div>' + _chev(t.due) + '</button>'
        + '<button class="htc book" type="button" id="homeBtnBook"' + (t.book ? '' : ' disabled') + ' aria-label="复习错题本，' + t.book + ' 句">'
        +   '<div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div>' + _chev(t.book) + '</button>'
-      + '</div>');
-    h.push('<div class="home-actions">'
-      + '<button class="btn ghost" id="homeGoDecks">' + ic('book') + ' 去题库学新句</button>'
       + '</div>');
   }
   h.push('</div>');
