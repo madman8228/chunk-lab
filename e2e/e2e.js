@@ -107,6 +107,7 @@ function check(name, cond, detail) {
         var cs = el && getComputedStyle(el);
         return !!(el && el.classList.contains('flat-action') && cs.borderTopStyle === 'none' && cs.backgroundColor === 'rgba(0, 0, 0, 0)');
       }()),
+      decksTitle: (document.getElementById('btnDecks') || {}).title || '',
       distractors: Array.from(document.querySelectorAll('#stageChoices .chunk-chip, #stageChoices button')).length,
       shortcutDisplay: getComputedStyle(document.getElementById('stageTipBar')).display,
       preselectedCorrectChoices: document.querySelectorAll('#stageChoices .choice.correct').length,
@@ -152,6 +153,7 @@ function check(name, cond, detail) {
   check('main: 顶栏工具按钮去除方形容器', ok.topbarToolButtons === 3, JSON.stringify(ok));
   check('main: 进度与连击改为扁平显示', ok.metricFlat === 2, JSON.stringify(ok));
   check('main: 题库入口改为扁平显示', ok.decksFlat, JSON.stringify(ok));
+  check('main: 题库按钮提示准确', ok.decksTitle === '题库', JSON.stringify(ok));
   check('main: 顶栏工具按钮 Hover 无圆形背景', topbarHover.every(function (bg) { return bg === 'rgba(0, 0, 0, 0)'; }), JSON.stringify(topbarHover));
   check('main: 练习页显示音效按钮', ok.soundDisplay !== 'none', JSON.stringify(ok));
   check('main: 朗读按钮放在英文句子末尾', ok.speakAfterEnglish, JSON.stringify(ok));
