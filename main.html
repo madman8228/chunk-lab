@@ -500,7 +500,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
   padding:0 8px;line-height:1;touch-action:manipulation;
 }
 .stage-foot > #btnMaster:not(.auto){width:auto;min-width:0;padding-left:10px;padding-right:10px}
-.stage-foot > #btnExplain{width:60px;min-width:60px}
+.stage-foot > #btnExplain{width:72px;min-width:72px}
 .kbd{
   font:11.5px/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);
   border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:5px;padding:3px 5px;background:#fff;
@@ -1093,7 +1093,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="stage-foot">
       <span class="spacer"></span>
       <button class="stage-master" id="btnMaster" title="标记为已掌握" data-state="manual">熟</button>
-      <button class="btn sm hidden" id="btnExplain">详解</button>
+      <button class="btn sm hidden" id="btnExplain">查看讲解</button>
       <button class="btn sm primary hidden" id="btnNext">下一题</button>
     </div>
   </div>
@@ -1106,7 +1106,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <div class="mask" id="explainMask" hidden>
   <div class="modal" style="max-width:640px">
     <div class="modal-head">
-      <h3 style="margin:0"><span data-icon="book"></span> 句子详解</h3>
+      <h3 style="margin:0"><span data-icon="book"></span> 本句讲解</h3>
       <span class="spacer"></span>
       <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
@@ -3146,6 +3146,17 @@ function showCauseTip(cause){
    sections: [{ tag, html, variant: 'ok'|'bad'|'warn'|'info' }]
    opts.replace: 是否替换当前展示中的卡片（默认 true 替换） */
 var _explainSeq = 0;
+function explanationSectionsHtml(sections){
+  var html = '';
+  (sections || []).forEach(function(s){
+    var v = s.variant || 'info';
+    html += '<div class="exp-section exp-'+v+'">'+
+      (s.tag ? '<div class="exp-tag">'+esc(s.tag)+'</div>' : '')+
+      '<div class="exp-body">'+ (s.html || '') +'</div>'+
+    '</div>';
+  });
+  return html;
+}
 function showExplanationPanel(title, sections, opts){
   opts = opts || {};
   if(opts.replace !== false){
@@ -3161,15 +3172,7 @@ function showExplanationPanel(title, sections, opts){
       '<button class="explain-close" title="关闭">'+(window.Icons?Icons.svg('close'):'')+'</button>'+
     '</div>';
   }
-  html += '<div class="explain-sections">';
-  (sections || []).forEach(function(s){
-    var v = s.variant || 'info';
-    html += '<div class="exp-section exp-'+v+'">'+
-      (s.tag ? '<div class="exp-tag">'+esc(s.tag)+'</div>' : '')+
-      '<div class="exp-body">'+ (s.html || '') +'</div>'+
-    '</div>';
-  });
-  html += '</div></div>';
+  html += '<div class="explain-sections">'+explanationSectionsHtml(sections)+'</div></div>';
   /* 插入到 stage 后面（与 renderAnalysis 同位置） */
   var stage = $('stage');
   stage.insertAdjacentHTML('afterend', html);
@@ -3293,11 +3296,10 @@ function startAutoNext(){
   _autoNextTimer = setTimeout(tick, 1000);
 }
 
-/* ---------- 本句讲解面板（2026-09-04 P1 改造） ----------
-   原「核心语法」网格与练习卡片 chunk 展示重复（role+中文），增量只有音标——
-   改造为：语法速览（一行式，保留音标）+ 讲解要点（explanations，真正的增量价值）。
-   复用 showExplanationPanel 通用卡片（exp-section 色块体系），不自建样式。 */
-function renderAnalysis(it){
+/* ---------- 本句讲解（2026-09-04 P1 改造） ----------
+   语法速览 + 讲解要点是唯一的讲解内容源；练习后的卡片和「查看讲解」弹窗共用。
+   这样两个入口不会因为各自拼装 UI 而出现内容缩水或口径不一致。 */
+function buildAnalysisSections(it){
   var gram = buildGrammar(it);
 
   /* 语法速览：每 chunk 一行（role 徽章 + chunk + 音标 + 中文·pos），紧凑行式 */
@@ -3348,10 +3350,14 @@ function renderAnalysis(it){
     }
   });
   if(!hasAny){
-    sections.push({ tag: '讲解', html: '本句暂无讲解要点 — 点底部「详解」查看完整卡片', variant: 'warn' });
+    sections.push({ tag: '讲解', html: '本句暂无讲解要点', variant: 'warn' });
   }
 
-  showExplanationPanel('本句讲解', sections);
+  return sections;
+}
+
+function renderAnalysis(it){
+  showExplanationPanel('本句讲解', buildAnalysisSections(it));
 
   /* 显示"下一题"按钮 + 启动自动倒计时 */
   var nb = $('btnNext');
@@ -3970,66 +3976,8 @@ function renderExplain(){
   var it = _explainDeck.items[_explainIdx];
   $('explainSentence').textContent = it.sentence || it.en || '';
   $('explainTrans').textContent = it.translation || it.cn || '';
-  var exps = it.explanations || [];
   var list = $('explainList');
-  list.innerHTML = '';
-  it.chunks.forEach(function(ch, i){
-    var raw = exps[i];
-    var has = !!(raw && (typeof raw === 'object' ? true : String(raw).trim()));
-    var row = document.createElement('div');
-    row.style.cssText = 'display:flex;flex-direction:column;gap:4px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)';
-    var head =
-      '<div style="display:flex;align-items:center;gap:8px">'+
-        '<span style="font-size:11px;font-weight:700;color:#fff;background:'+(has?'#12924f':'#b0b8c8')+';border-radius:5px;padding:1px 6px">'+(i+1)+'</span>'+
-        '<b style="font-size:14.5px;color:var(--text)">'+esc(ch)+'</b>'+
-        (has ? '' : '<span style="margin-left:auto;font-size:11px;color:var(--faint)">暂无讲解</span>')+
-      '</div>';
-    /* 多维度结构化讲解（对象）或旧版单文本（字符串）兼容渲染 */
-    var body = '';
-    if(raw && typeof raw === 'object'){
-      var dims = [
-        ['语法', 'grammar', '#e74c7a'],
-        ['句法', 'syntax', '#3358e0'],
-        ['固定搭配', 'collocation', '#c87033'],
-        ['固定句型', 'pattern', '#7c5cbf'],
-        ['口语/俚语', 'oral', '#2d9d78']
-      ];
-      var hasDim = dims.some(function(d){ return raw[d[1]] && String(raw[d[1]]).trim(); });
-      if(hasDim){
-        var dimHtml = '';
-        dims.forEach(function(d){
-          var v = raw[d[1]];
-          if(v && String(v).trim()){
-            dimHtml += '<div style="display:flex;gap:6px;padding:3px 0">'+
-              '<span style="flex-shrink:0;font-size:11px;font-weight:700;color:'+d[2]+';margin-top:2px">'+d[0]+'</span>'+
-              '<div style="font-size:12.5px;color:var(--text);line-height:1.6;min-width:0">'+esc(v)+'</div></div>';
-          }
-        });
-        /* 关键词 */
-        if(Array.isArray(raw.words) && raw.words.length){
-          var wHtml = raw.words.map(function(w){
-            return '<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border:1px solid var(--border-strong);border-radius:5px;font-size:11.5px;color:var(--accent)">'+
-              '<b>'+esc(w.w||w.word||'')+'</b>'+
-              (w.p ? ' <span style="color:var(--faint)">('+esc(w.p)+')</span>' : '')+
-              (w.m ? ' '+esc(w.m) : '')+'</span>';
-          }).join('');
-          dimHtml += '<div style="display:flex;gap:6px;padding:3px 0">'+
-            '<span style="flex-shrink:0;font-size:11px;font-weight:700;color:#d4a017;margin-top:2px">关键词</span>'+
-            '<div style="font-size:12.5px;line-height:1.7;min-width:0">'+wHtml+'</div></div>';
-        }
-        body = '<div style="padding:6px 2px 2px">'+dimHtml+'</div>';
-      }
-    }
-    if(!body && raw){
-      /* 旧版字符串讲解：整段展示 */
-      body = '<div style="padding:6px 2px 2px;font-size:12.5px;color:var(--text);line-height:1.6">'+esc(String(raw))+'</div>';
-    }
-    if(!body){
-      body = '<div style="padding:6px 2px 2px;font-size:12px;color:var(--faint)">暂无详解 — 点击「复制 Prompt」交给大模型生成</div>';
-    }
-    row.innerHTML = head + body;
-    list.appendChild(row);
-  });
+  list.innerHTML = explanationSectionsHtml(buildAnalysisSections(it));
   $('explainJsonBox').value = '';
   $('explainMsg').className = 'msg';
   $('explainMsg').textContent = '';

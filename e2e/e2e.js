@@ -306,6 +306,10 @@ function check(name, cond, detail) {
   check('home: 源码已删"今日无到期"（防回潮）', mainHtmlSrc.indexOf('今日无到期') < 0, 'still in main.html');
   check('home: 源码已删"练点新的或休息"（防回潮）', mainHtmlSrc.indexOf('练点新的或休息') < 0, 'still in main.html');
   check('main: 源码已删练习卡返回分流（防回潮）', mainHtmlSrc.indexOf('id="btnBack"') < 0 && mainHtmlSrc.indexOf('_fromDecks') < 0, 'still in main.html');
+  check('main: 查看讲解与答后讲解复用同一内容源',
+    mainHtmlSrc.indexOf("showExplanationPanel('本句讲解', buildAnalysisSections(it))") >= 0 &&
+    mainHtmlSrc.indexOf('list.innerHTML = explanationSectionsHtml(buildAnalysisSections(it))') >= 0,
+    '讲解入口未复用 buildAnalysisSections');
 
   const ctxNoDue = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const pNoDue = await ctxNoDue.newPage();
@@ -565,7 +569,7 @@ function check(name, cond, detail) {
     mobileLayout.masterHeight === mobileLayout.explainHeight && mobileLayout.masterHeight >= 32,
     JSON.stringify(mobileLayout));
   check('mobile: 标熟按钮显示为“熟”', mobileLayout.masterText === '熟', JSON.stringify(mobileLayout));
-  check('mobile: 详解按钮不显示 Icon', mobileLayout.explainText === '详解' && mobileLayout.explainIconCount === 0, JSON.stringify(mobileLayout));
+  check('mobile: 查看讲解按钮不显示 Icon', mobileLayout.explainText === '查看讲解' && mobileLayout.explainIconCount === 0, JSON.stringify(mobileLayout));
   /* 用受控内容探针判「布局允不允许并排两个」——不受随机句子影响（根因见 evaluate 内注释）。
      真实行数仍在 detail 里带着，便于诊断时区分「内容本来放不下」与「布局被压成一列」。 */
   check('mobile: 候选 chunk 布局允许并排两个',
