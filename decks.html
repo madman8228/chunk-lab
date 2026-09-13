@@ -597,7 +597,7 @@ function openDecks(){
     list.appendChild(title);
   }
   if(mine.length) addSectionTitle('我的题库');
-  if(builtin.length) addSectionTitle('内置题库（只读，导入后可编辑）');
+  if(builtin.length) addSectionTitle('内置题库（只读）');
   mine.concat(builtin).forEach(function(d){
     var b = mem.best[d.id];
     var lastStr = '';
