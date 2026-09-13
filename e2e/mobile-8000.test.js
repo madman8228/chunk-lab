@@ -61,7 +61,7 @@ async function ready(){
       return route.fulfill({contentType:'application/json',body});
     });
     const page = await context.newPage(), errors=[];
-    page.setDefaultTimeout(20000);
+    page.setDefaultTimeout(30000);
     page.on('pageerror',e=>errors.push(e.message));
     const cdp = await context.newCDPSession(page);
     await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
