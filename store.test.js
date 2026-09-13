@@ -283,6 +283,23 @@ storage['chunklab.v1'] = JSON.stringify({
 });
 assertEq(CL.backfillDaysLog(CL.loadMem()), 0, 'events 空 → 不回填');
 
+console.log('【按事件统计每日答题】');
+var dayNow = new Date(2026,8,13,0,5);
+var yesterday = new Date(2026,8,12,23,55);
+var activityMem = {stats:{totalAnswered:140,daysLog:{'2026-09-06':{rounds:1}},events:[
+  {id:'a',kind:'answer',at:dayNow.getTime()},
+  {id:'a',kind:'answer',at:dayNow.getTime()},
+  {id:'b',kind:'answer',at:yesterday.getTime()},
+  {id:'invalid',kind:'answer',at:'bad'}
+]}};
+var activity = CL.dailyActivity(activityMem);
+assertEq(activity['2026-09-13'].answered,1,'重复事件按 ID 去重');
+assertEq(activity['2026-09-13'].rounds,0,'部分答题不伪造完成轮数');
+assertEq(activity['2026-09-12'].answered,1,'本地日期跨午夜正确分组');
+assertEq(activity['2026-09-06'].rounds,1,'旧版完成轮次保留');
+assertEq(CL.streakDays(activityMem,dayNow),2,'答过句子即计入连续学习日');
+assertEq(Object.keys(CL.dailyActivity({stats:{totalAnswered:140}})).length,0,'累计次数不能伪造日期');
+
 console.log('【保存失败不广播成功】');
 var updatedCount = 0, parentCount = 0;
 CL.on('memUpdated', function(){ updatedCount++; });

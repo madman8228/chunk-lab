@@ -59,6 +59,9 @@ function check(name, ok, detail) {
     });
     page.on('pageerror', function (e) { errors.push(e.message); });
     await page.goto(BASE + '/stats.html', { waitUntil: 'load' });
+    await page.waitForSelector('#todayAnswered');
+    check('默认打开概览', await page.locator('[data-tab="overview"]').getAttribute('aria-pressed') === 'true');
+    await page.click('[data-tab="sent"]');
     await page.waitForFunction(function () {
       return document.querySelectorAll('.stats-detail-row').length === 50;
     });
@@ -92,6 +95,28 @@ function check(name, ok, detail) {
     check('开始复习时按索引引用精确加载详情', hydrated.cid === hydrated.fullCid && hydrated.chunks > 0, JSON.stringify(hydrated));
     check('详情按需加载且包含完整练习字段', hydrated.hasExplanation === true, JSON.stringify(hydrated));
     check('索引流程无页面错误', errors.length === 0, errors.slice(0, 3).join(' | '));
+
+    // Real answer -> save -> reload -> overview and calendar agree without a round.
+    const ctx = await browser.newContext({timezoneId:'Asia/Shanghai'});
+    const p = await ctx.newPage();
+    await p.route('**/api/**', r => r.abort());
+    await p.goto(BASE+'/main.html?direct=1');
+    await p.waitForFunction(() => window.S && S.items && S.items.length > 1 && typeof showFullSentence === 'function');
+    await p.evaluate(async () => { showFullSentence(); await saveStore(); });
+    await p.goto(BASE+'/stats.html');
+    await p.waitForSelector('#todayAnswered');
+    check('答完一句未结算也计入今日', await p.locator('#todayAnswered').innerText() === '1');
+    check('未结算不会虚增轮次', await p.evaluate(() => mem.stats.totalRounds) === 0);
+    for(const width of [360,390,1171]){
+      await p.setViewportSize({width,height:960});
+      check('概览无横向溢出 '+width,await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      await p.screenshot({path:path.join(ROOT,'output','stats-overview-'+width+'.png')});
+    }
+    await p.goto(BASE+'/main.html');
+    await p.waitForSelector('.cal-cell.today');
+    check('首页日历显示同一次答题',await p.locator('.cal-cell.today').getAttribute('data-answered') === '1');
+    check('未完成整轮也点亮学习日', !(await p.locator('.cal-cell.today').getAttribute('class')).split(' ').includes('l0'));
+    await ctx.close();
 
     await browser.close();
     browser = null;

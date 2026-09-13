@@ -711,7 +711,9 @@ function check(name, cond, detail) {
         return el.getBoundingClientRect().height > 0;
       }).map(function (el) { return Math.round(el.getBoundingClientRect().top); });
     }
-    var head = tops('.page-head > *');
+    var head = Array.from(document.querySelectorAll('.page-head > *')).map(function(el){
+      var r=el.getBoundingClientRect(); return Math.round(r.top+r.height/2);
+    });
     var kpi = tops('.overview-primary > .overview-metric');
     var pair = tops('.activity-day');
     var rounds = document.querySelector('.overview-note');

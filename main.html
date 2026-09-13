@@ -2515,9 +2515,11 @@ function bindCalPop(){
     clearHideTimer();
     var day = cell.getAttribute('data-day') || '';
     var rounds = parseInt(cell.getAttribute('data-rounds') || '0', 10);
+    var answered = parseInt(cell.getAttribute('data-answered') || '0', 10);
     var lvClass = rounds >= 7 ? 'good' : '';   /* ≥7 强学习，加 good 色 */
     pop.innerHTML =
       '<div class="pop-info-title"><span class="title-text">' + day + '</span></div>' +
+      '<div class="pop-info-row"><span class="lbl">答题</span><span class="val">' + answered + ' 句</span></div>' +
       '<div class="pop-info-row"><span class="lbl">完成练习</span><span class="val ' + lvClass + '">' + rounds + ' 轮</span></div>';
     var r = cell.getBoundingClientRect();
     var centerX = r.left + r.width / 2;
@@ -3836,13 +3838,14 @@ function renderHome(){
   h.push('<div class="home-card"><div class="hc-title">' + ic('calendar') + '今日<span class="grow"></span><span class="home-hint">' + (new Date().getMonth()+1) + ' 月 ' + new Date().getDate() + ' 日</span></div>');
   /* streak chip（连续天数 + 今日次数；老用户首日全空 → 不渲染，与现有空档案引导互斥） */
   var _streakN = CL.streakDays(mem);
-  var _todayN = CL.todayRounds(mem);
+  var _activity = CL.dailyActivity(mem);
+  var _todayN = (_activity[CL.ymd(new Date())] || {}).answered || 0;
   if(_streakN > 0 || _todayN > 0){
     h.push('<div class="streak-chip" id="streakChip">'
       + ic('fire')
       + '<span class="s-num">' + _streakN + '</span> 天连续'
       + '<span class="s-dot">·</span>'
-      + '今日 <span class="s-num">' + _todayN + '</span> 次'
+      + '今日答题 <span class="s-num">' + _todayN + '</span> 句'
       + '</div>');
   }
   if(!hasEver){
@@ -3887,12 +3890,13 @@ function renderHome(){
     for(_i = 0; _i < _lead; _i++) _cells += '<div class="cal-cell pad"></div>';
     for(_i = 1; _i <= _dim; _i++){
       var _key = CL.ymd(new Date(_y, _m, _i));
-      var _r = (mem.stats && mem.stats.daysLog && mem.stats.daysLog[_key] && mem.stats.daysLog[_key].rounds) || 0;
-      if(_r > 0){ _mDays++; _mRounds += _r; }
-      var _lv = _r >= 7 ? 4 : _r >= 4 ? 3 : _r >= 2 ? 2 : _r >= 1 ? 1 : 0;
+      var _day = _activity[_key] || {answered:0,rounds:0};
+      var _r = _day.rounds, _answered = _day.answered;
+      if(_r > 0 || _answered > 0){ _mDays++; _mRounds += _r; }
+      var _lv = _answered >= 40 ? 4 : _answered >= 20 ? 3 : _answered >= 10 ? 2 : (_answered > 0 || _r > 0) ? 1 : 0;
       var _fut = _i > _todayD;
       /* 非未来日期挂 data 属性，供 cal-pop 事件代理识别 */
-      var _attrs = _fut ? '' : ' tabindex="0" role="button" aria-label="' + _key + ' 完成练习 ' + _r + ' 轮" data-day="' + _key + '" data-rounds="' + _r + '"';
+      var _attrs = _fut ? '' : ' tabindex="0" role="button" aria-label="' + _key + ' 答题 ' + _answered + ' 句，完成练习 ' + _r + ' 轮" data-day="' + _key + '" data-rounds="' + _r + '" data-answered="' + _answered + '"';
       _cells += '<div class="cal-cell ' + (_fut ? 'lx' : 'l' + _lv) + (_i === _todayD ? ' today' : '') + '"' + _attrs + '>' + _i + '</div>';
     }
     /* 左栏：日历 grid + footer */

@@ -82,6 +82,8 @@ async function ready(){
     await heap();
     const statsStart=Date.now();
     await page.goto(BASE+'/stats.html');
+    await page.waitForSelector('#todayAnswered');
+    await page.click('[data-tab="sent"]');
     await page.waitForFunction(()=>document.querySelectorAll('.stats-detail-row').length>0);
     const statsMs=Date.now()-statsStart;
     check('统计只加载索引，不额外请求详情',details===1 && indexes===40);

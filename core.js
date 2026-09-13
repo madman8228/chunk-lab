@@ -2435,19 +2435,39 @@
     var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
     return _d.getFullYear() + '-' + pad(_d.getMonth()+1) + '-' + pad(_d.getDate());
   }
+  /* Daily activity derives from durable events; legacy rounds remain a fallback.
+     Never infer dates from aggregate totals or a sentence's latest timestamp. */
+  function dailyActivity(mem){
+    var stats = (mem && mem.stats) || {}, days = {}, seen = new Set();
+    Object.keys(stats.daysLog || {}).forEach(function(k){
+      days[k] = { answered:0, rounds:Math.max(0, Number((stats.daysLog[k] || {}).rounds) || 0) };
+    });
+    var rounds = {};
+    (Array.isArray(stats.events) ? stats.events : []).forEach(function(ev){
+      if(!ev || !ev.at || (ev.kind !== 'answer' && ev.kind !== 'round')) return;
+      if(ev.id && seen.has(ev.id)) return;
+      var d = new Date(ev.at); if(isNaN(d.getTime())) return;
+      if(ev.id) seen.add(ev.id);
+      var key = ymd(d), day = days[key] || (days[key] = {answered:0, rounds:0});
+      if(ev.kind === 'answer') day.answered++;
+      else rounds[key] = (rounds[key] || 0) + 1;
+    });
+    Object.keys(rounds).forEach(function(k){ days[k].rounds = Math.max(days[k].rounds, rounds[k]); });
+    return days;
+  }
   function streakDays(mem, now){
-    /* 连续天数：今日 rounds>0 才算今天一天；否则从昨天往回数连续天数（不强制 streak 需含今天）。 */
-    var log = (mem && mem.stats && mem.stats.daysLog) || {};
+    /* 答题事件或历史完成轮次均计为学习日；今天未学则从昨天开始。 */
+    var log = dailyActivity(mem);
     var d = (now instanceof Date) ? new Date(now.getTime()) : new Date();
     var n = 0;
     var todayKey = ymd(d);
-    var todayR = (log[todayKey] && log[todayKey].rounds) || 0;
+    var todayR = log[todayKey] && (log[todayKey].answered || log[todayKey].rounds) || 0;
     if(todayR > 0) n++;
     d.setDate(d.getDate() - 1);
     /* 防御：最多回看 3650 天（≈10 年），超出认作断 */
     for(var i = 0; i < 3650; i++){
       var key = ymd(d);
-      var r = (log[key] && log[key].rounds) || 0;
+      var r = log[key] && (log[key].answered || log[key].rounds) || 0;
       if(r > 0) n++;
       else break;
       d.setDate(d.getDate() - 1);
@@ -2635,7 +2655,7 @@
     classifyStat: classifyStat,
     demoStatsSample: demoStatsSample,
     mergeStats: mergeStats,
-    ymd: ymd, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
+    ymd: ymd, dailyActivity: dailyActivity, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
     backfillDaysLog: backfillDaysLog,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
     fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,
