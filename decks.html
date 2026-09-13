@@ -1325,9 +1325,9 @@ function commitImport(items, name){
     items: items
   };
   mem.decks.push(deck);
-  /* 触碰纪录：完整四字段形初始化（与 main.html touchDeckBest 同构，防 {lastPlayed} 残壳） */
+  /* 触碰纪录：完整五字段形初始化（与 main.html touchDeckBest 同构，防残壳） */
   if(!mem.best) mem.best = {};
-  var _drec = mem.best[deck.id] = mem.best[deck.id] || {acc:0, perfect:0, combo:0, lastPlayed:0};
+  var _drec = mem.best[deck.id] = mem.best[deck.id] || {acc:0, perfect:0, combo:0, lastPlayed:0, lastAcc:null};
   _drec.lastPlayed = Date.now();
   saveStore(); notifyMain('memUpdated');
   $('impMask').hidden = true;

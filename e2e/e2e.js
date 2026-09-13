@@ -434,6 +434,61 @@ function check(name, cond, detail) {
   await pNoDue.close();
   await ctxNoDue.close();
 
+  /* ===== 1aa. 最近练习摘要：不能把最佳成绩冒充上次成绩 =====
+   * 最小场景：同一题库有历史最佳 100%，最近一次完成正确率 40%。
+   * 旧实现读 b.acc（最佳成绩）并拼接「续练这张」，会显示错误的 100%。 */
+  const ctxRecentAccuracy = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const pRecentAccuracy = await ctxRecentAccuracy.newPage();
+  const recentNow = Date.now();
+  await pRecentAccuracy.route('**/api/**', function (r) { r.abort('failed'); });
+  await pRecentAccuracy.addInitScript(function (fixture) {
+    localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+    localStorage.setItem('chunklab.v1', JSON.stringify(fixture));
+  }, {
+    version: 2,
+    decks: [{ id: 'recent-d1', name: '最近练习测试', items: [{ sentence: 'Recent sentence.', chunks: ['Recent', 'sentence.'], hints: ['', ''] }] }],
+    best: { 'recent-d1': { acc: 100, perfect: 5, combo: 5, lastPlayed: recentNow, lastAcc: 40 } },
+    activeDeckId: 'recent-d1', progress: {}, mastered: {}, deletedItems: {}, reinforceBook: [],
+    stats: { totalRounds: 2, totalAnswered: 5, bySentence: { 'recent-d1#Recent sentence.': {
+      deckId: 'recent-d1', sentence: 'Recent sentence.', times: 5, okTimes: 2, wrongTimes: 3,
+      streak: 0, maxStreak: 5, lastAt: recentNow
+    } }, events: [], daysLog: {} },
+    settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: true, celebrate: 'confetti', autoSpeak: false, darkMode: false }
+  });
+  await pRecentAccuracy.goto(BASE + '/main.html?preview=recent-accuracy', { waitUntil: 'domcontentloaded' });
+  await pRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
+  const recentAccuracySummary = await pRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
+  check('home: 最近练习不显示「续练这张」废话', recentAccuracySummary.indexOf('续练这张') < 0, recentAccuracySummary);
+  check('home: 最近练习显示最近一次正确率而非最佳正确率', recentAccuracySummary.trim() === '上次正确率 40%', recentAccuracySummary);
+  await pRecentAccuracy.close();
+  await ctxRecentAccuracy.close();
+
+  /* 只打开过题库、没有完成过一轮时，历史 acc 也不能被当成最近成绩。 */
+  const ctxNoRecentAccuracy = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const pNoRecentAccuracy = await ctxNoRecentAccuracy.newPage();
+  await pNoRecentAccuracy.route('**/api/**', function (r) { r.abort('failed'); });
+  await pNoRecentAccuracy.addInitScript(function (fixture) {
+    localStorage.clear();
+    localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+    localStorage.setItem('chunklab.v1', JSON.stringify(fixture));
+  }, {
+    version: 2,
+    decks: [{ id: 'started-d1', name: '未完成测试', items: [{ sentence: 'Started sentence.', chunks: ['Started', 'sentence.'], hints: ['', ''] }] }],
+    best: { 'started-d1': { acc: 100, perfect: 3, combo: 3, lastPlayed: recentNow } },
+    activeDeckId: 'started-d1', progress: {}, mastered: {}, deletedItems: {}, reinforceBook: [],
+    stats: { totalRounds: 1, totalAnswered: 1, bySentence: { 'started-d1#Started sentence.': {
+      deckId: 'started-d1', sentence: 'Started sentence.', times: 1, okTimes: 1, wrongTimes: 0, lastAt: recentNow
+    } }, events: [], daysLog: {} },
+    settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: true, celebrate: 'confetti', autoSpeak: false, darkMode: false }
+  });
+  await pNoRecentAccuracy.goto(BASE + '/main.html?preview=no-recent-accuracy', { waitUntil: 'domcontentloaded' });
+  await pNoRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
+  const noCompletedSummary = await pNoRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
+  check('home: 未完成过练习不显示伪造的 0% 成绩', noCompletedSummary.indexOf('正确率') < 0 && noCompletedSummary.trim() === '1 句', noCompletedSummary);
+  await pNoRecentAccuracy.close();
+  await ctxNoRecentAccuracy.close();
+
   /* ===== 1a. 首页空态边界：只打开题库不能伪造“练习过” =====
    * startDeck 为了支持“最近练习”会写 best.lastPlayed，但此时还没有完成句子。
    * 这类数据不应显示一张全是 0 的打卡日历，否则用户会误以为练习统计失效。 */
@@ -1105,12 +1160,14 @@ function check(name, cond, detail) {
       return {
         totalRounds: m.stats && m.stats.totalRounds,
         totalAnswered: m.stats && m.stats.totalAnswered,
-        todayRounds: m.stats && m.stats.daysLog && m.stats.daysLog[today] && m.stats.daysLog[today].rounds
+        todayRounds: m.stats && m.stats.daysLog && m.stats.daysLog[today] && m.stats.daysLog[today].rounds,
+        lastAcc: m.best && m.best['e2e-mini'] && m.best['e2e-mini'].lastAcc
       };
     });
     check('stats: 真实答完一轮后保存练习轮次与答题次数',
       persistedPractice.totalRounds === 1 && persistedPractice.totalAnswered === 2 && persistedPractice.todayRounds === 1,
       JSON.stringify(persistedPractice));
+    check('stats: 完成练习后保存最近一次正确率', persistedPractice.lastAcc === 100, JSON.stringify(persistedPractice));
     /* 用真实的“回今日”切页入口，避免重新加载时把启动链等待误当成统计失败。 */
     await p5.evaluate(function () { showHomePage(); });
     await p5.waitForSelector('#homeBody', { timeout: 10000 });

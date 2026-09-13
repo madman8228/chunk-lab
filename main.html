@@ -1877,11 +1877,12 @@ function displayDeckName(name){
 }
 
 /* ★ 题库最佳纪录 mem.best[deckId] 统一访问层
-   结构固定为四字段完整形：{ acc, perfect, combo, lastPlayed }
+   结构固定为五字段完整形：{ acc, perfect, combo, lastPlayed, lastAcc }
+   acc 是历史最佳正确率；lastAcc 只记录最近一次已完成练习的正确率，不能混用。
    根因（历史 bug）：startDeck/importDeck 曾只建 {lastPlayed} 残壳 → decks 列表渲染
    b.acc 为 undefined（"最佳 undefined%"）；且 finishSession 判 `acc > b.acc` = acc > undefined
    恒 false，残壳永久阻塞纪录写入；finishSession 覆盖写入又丢 lastPlayed。
-   统一后：读自动归一回填、写保留 lastPlayed，任何入口都不再产生残缺形状。 */
+   统一后：读自动归一回填、写保留 lastPlayed/lastAcc，任何入口都不再产生残缺形状。 */
 function touchDeckBest(deckId){
   if(!mem.best) mem.best = {};
   var raw = mem.best[deckId];
@@ -1889,15 +1890,17 @@ function touchDeckBest(deckId){
     acc:      raw && typeof raw.acc === 'number'      ? raw.acc      : 0,
     perfect:  raw && typeof raw.perfect === 'number'  ? raw.perfect  : 0,
     combo:    raw && typeof raw.combo === 'number'    ? raw.combo    : 0,
-    lastPlayed: raw && raw.lastPlayed ? raw.lastPlayed : 0
+    lastPlayed: raw && raw.lastPlayed ? raw.lastPlayed : 0,
+    lastAcc:   raw && typeof raw.lastAcc === 'number'  ? raw.lastAcc   : null
   };
   mem.best[deckId] = rec;
   return rec;
 }
-/* 纪录覆盖（finishSession 破纪录时用）：保留既有 lastPlayed */
+/* 纪录覆盖（finishSession 破纪录时用）：保留既有 lastPlayed，并写入本次完成成绩 */
 function saveDeckBest(deckId, acc, perfect, combo){
   var cur = touchDeckBest(deckId);
-  mem.best[deckId] = { acc:acc, perfect:perfect, combo:combo, lastPlayed: cur.lastPlayed || Date.now() };
+  mem.best[deckId] = { acc:acc, perfect:perfect, combo:combo,
+    lastPlayed: cur.lastPlayed || Date.now(), lastAcc: acc };
 }
 
 /* ★ 统一「临时队列」判定（单一事实来源）
@@ -3540,8 +3543,10 @@ function finishSession(){
   var temp = isTempQueueDeck(S.deck.id);
   var b = temp ? null : touchDeckBest(S.deck.id);
   var isBest = !temp && b && (acc > b.acc || (acc===b.acc && S.maxCombo > b.combo));
-  if(isBest){
-    saveDeckBest(S.deck.id, acc, S.perfectCount, S.maxCombo);
+  if(!temp && b){
+    /* 最近一次成绩与历史最佳分开保存；即使没有破纪录，也必须更新 lastAcc。 */
+    b.lastAcc = acc;
+    if(isBest) saveDeckBest(S.deck.id, acc, S.perfectCount, S.maxCombo);
     saveStore();
   }
 
@@ -3935,17 +3940,21 @@ function renderHome(){
       + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>完成练习 <b>' + _mRounds + '</b> 轮<span class="s-dot">·</span>累计答题 <b>' + ((mem.stats && mem.stats.totalAnswered) || 0) + '</b> 句</div>';
     /* 右栏：继续/最近 deck rows */
     var _rows = [];
+    var recentAccuracy = function(best){
+      return best && typeof best.lastAcc === 'number' && isFinite(best.lastAcc)
+        ? '上次正确率 ' + best.lastAcc + '%' : '';
+    };
     if(resume){
       var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
         var sub = resume.idx > 0
-          ? '续练 · 上次练到第 ' + resume.idx + ' / ' + deckItemCount(d1) + ' 句'
-          : (b1 && b1.acc != null ? '续练这张 · 上次正确率 ' + b1.acc + '%' : (deckItemCount(d1) ? deckItemCount(d1) + ' 句' : ''));
+          ? '进度 ' + resume.idx + ' / ' + deckItemCount(d1) + ' 句'
+          : (recentAccuracy(b1) || (deckItemCount(d1) ? deckItemCount(d1) + ' 句' : ''));
         _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div><div class="sub">' + sub + '</div></div>'
           + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
     }
     recent.forEach(function(d){
       var b = mem.best && mem.best[d.id];
-      var sub2 = (b && b.acc != null) ? '上次正确率 ' + b.acc + '%' : (deckItemCount(d) ? deckItemCount(d) + ' 句' : '');
+      var sub2 = recentAccuracy(b) || (deckItemCount(d) ? deckItemCount(d) + ' 句' : '');
       _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div><div class="sub">' + sub2 + '</div></div>'
         + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
     });
