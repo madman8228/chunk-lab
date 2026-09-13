@@ -95,7 +95,8 @@ async function ready(){
       deck.items.forEach(it=>{mem.stats.bySentence[id+'#'+it.cid]={deckId:id,sentence:it.sentence,dueAt:Date.now()-1000,times:1,okTimes:1};});
       _statsTab='review';const t=performance.now();renderStats();return performance.now()-t;
     },deckId);
-    check('8000条到期记录完整计数、只渲染50条',await page.locator('#statsBody .srow').count()===50 && (await page.locator('.review-count').textContent()).includes('8000'));
+    check('8000条到期记录完整计数、只渲染50条',await page.locator('#statsBody .srow').count()===50 && (await page.locator('#reviewTabCount').textContent())==='(8000)');
+    check('待复习页不再显示重复的开始复习按钮',await page.locator('#startDueReview').count()===0);
     check('四倍CPU减速下到期筛选及渲染低于3秒',renderMs<3000);
     await heap();
     const hotSave = await page.evaluate(async function(){
@@ -154,8 +155,17 @@ async function ready(){
     check('慢IDB下统计写入最多保留当前提交和一个尾提交',slowQueue.calls<=2 && slowQueue.eventRows===200 && slowQueue.times===201,
       JSON.stringify(slowQueue));
     const reviewStart=Date.now();
-    await page.locator('#startDueReview').click();
-    await page.waitForFunction(()=>window.S && S.items.length===10 && S.deck.id.startsWith('srs-'));
+    await page.evaluate(()=>{
+      const b=document.createElement('button');
+      b.id='testStartDue';
+      b.onclick=practiceDue;
+      document.body.appendChild(b);
+    });
+    await Promise.all([
+      page.waitForURL('**/main.html?autostart=1', {waitUntil:'domcontentloaded'}),
+      page.locator('#testStartDue').click()
+    ]);
+    await page.waitForFunction(()=>window.S && S.items.length===10 && S.deck.id.startsWith('srs-'), {timeout:60000});
     const reviewMs=Date.now()-reviewStart;
     check('开始复习不补齐整个队列详情',details===1 && await page.evaluate(()=>S.tempTotal===8000 && S.items.every(it=>Array.isArray(it.chunks))));
     check('复习来源ID保留',await page.evaluate(id=>S.items.every(it=>it._statsDeckId===id),deckId));

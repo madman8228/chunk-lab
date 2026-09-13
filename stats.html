@@ -54,7 +54,6 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .badge.learn{background:var(--accent-soft);color:var(--accent)}
 
 .wrong-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.wrong-head .count{font-size:12.5px;color:var(--bad)}
 .wrong-head .spacer{flex:1}
 .wrong-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--border);background:transparent}
 .wrong-row .sen{flex:1;min-width:0}
@@ -202,7 +201,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
     <button class="tab on" data-tab="overview">概览</button>
     <button class="tab" data-tab="sent">句子记录</button>
     <button class="tab" data-tab="review">待复习<span class="tab-count" id="reviewTabCount"></span></button>
-    <button class="tab" data-tab="wrong">错题本</button>
+    <button class="tab" data-tab="wrong">错题本<span class="tab-count" id="wrongTabCount"></span></button>
   </div>
 
   <div class="stats-cards" id="statsCards"></div>
@@ -330,6 +329,7 @@ function renderStats(){
   });
   var masteredCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'master'; }).length;
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'weak'; }).length;
+  var wrongCnt = getReinforceBook().length;
   var days = CL.dailyActivity(mem), now = new Date(), today = days[CL.ymd(now)] || {answered:0};
   var dueCnt = dueSentences().length;
   var metric = function(label,value,id){
@@ -338,7 +338,7 @@ function renderStats(){
   var html = '<div class="overview-primary">'+metric('今日答题',today.answered,'todayAnswered')+
     metric('待复习',dueCnt)+metric('需巩固',weakCnt)+'</div>';
   html += '<div class="overview-secondary">'+metric('已熟练',masteredCnt)+
-    metric('累计答题',Number(mem.stats.totalAnswered)||0)+metric('错题本',getReinforceBook().length)+'</div>';
+    metric('累计答题',Number(mem.stats.totalAnswered)||0)+metric('错题本',wrongCnt)+'</div>';
   html += '<section class="activity-section"><h3>近 7 天答题</h3><div class="activity-week">';
   var week = [];
   for(var i=6;i>=0;i--){
@@ -364,6 +364,8 @@ function renderStats(){
   });
   var reviewTabCount = $('reviewTabCount');
   if(reviewTabCount) reviewTabCount.textContent = '('+dueCnt+')';
+  var wrongTabCount = $('wrongTabCount');
+  if(wrongTabCount) wrongTabCount.textContent = '('+wrongCnt+')';
   $('statsFilter').style.display=_statsTab==='sent'?'flex':'none';
   Array.prototype.forEach.call($('statsFilter').children,function(b){b.classList.toggle('on',b.dataset.f===_statsFilter);});
   var body=$('statsBody');
@@ -493,7 +495,7 @@ function renderWrongBook(body){
   var focusBook = book.filter(function(b){ return reinforceNeedsReview(b); });
   var shownBook = _wrongBookFilter === 'focus' ? focusBook : book;
   var html = '<div class="wrong-head">'+
-    '<b>错题本</b><span class="count">'+book.length+' 句</span><span class="spacer"></span>'+
+    '<b>错题本</b><span class="spacer"></span>'+
     '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
   html += '<div class="stats-filter wrong-filter">'+
     '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+book.length+'</button>'+

@@ -1071,13 +1071,15 @@ function check(name, cond, detail) {
         text: (document.getElementById('statsBody') || {}).textContent || '',
         topPracticeButton: !!document.getElementById('btnPracticeWrong'),
         tabPracticeButton: !!document.getElementById('btnPracticeWrongTab'),
+        clearButton: !!document.getElementById('btnClearWrongBook'),
+        wrongTabCount: document.getElementById('wrongTabCount') && document.getElementById('wrongTabCount').textContent,
         allFilter: document.querySelector('[data-wrong-filter="all"]') && document.querySelector('[data-wrong-filter="all"]').textContent,
         focusFilter: document.querySelector('[data-wrong-filter="focus"]') && document.querySelector('[data-wrong-filter="focus"]').textContent,
         weakPracticeRow: !!document.getElementById('startWeak')
       };
     });
-    check('reinforce 4c: stats 错题本 tab 渲染错题', w4c.rows === 1 && w4c.text.indexOf('Visible wrong sentence.') >= 0, JSON.stringify(w4c));
-    check('reinforce 4c: 练习入口收拢到错题本 tab', !w4c.topPracticeButton && w4c.tabPracticeButton, JSON.stringify(w4c));
+    check('reinforce 4c: stats 错题本 tab 渲染错题', w4c.rows === 1 && w4c.text.indexOf('Visible wrong sentence.') >= 0 && w4c.wrongTabCount === '(1)', JSON.stringify(w4c));
+    check('reinforce 4c: 错题本不显示重复练习入口且保留清空操作', !w4c.topPracticeButton && !w4c.tabPracticeButton && w4c.clearButton, JSON.stringify(w4c));
     check('reinforce 4c: 需巩固作为错题本筛选而非独立入口', /需巩固\s+1/.test(w4c.focusFilter || '') && !w4c.weakPracticeRow, JSON.stringify(w4c));
     await p4c.locator('[data-wrong-filter="focus"]').click();
     await p4c.waitForTimeout(120);
