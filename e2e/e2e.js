@@ -648,7 +648,7 @@ function check(name, cond, detail) {
   const dsvg = decksLayout.svg;
   check('decks: SVG 图标渲染', dsvg >= 10, 'svg=' + dsvg);
   check('decks: 返回按钮文案简洁', decksLayout.back.trim() === '返回', JSON.stringify(decksLayout));
-  check('decks: 导入题库入口保留', decksLayout.importText.indexOf('导入题库') >= 0 && decksLayout.builtinImportCount >= 1, JSON.stringify(decksLayout));
+  check('decks: 添加题库入口保留且内置题库不复制副本', decksLayout.importText.indexOf('添加题库') >= 0 && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
   check('decks: 题库卡片高度紧凑', decksLayout.maxRowHeight <= 60, JSON.stringify(decksLayout));
   check('decks: 零 pageerror', errsd.length === 0, errsd.join('|'));
 

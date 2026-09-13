@@ -222,7 +222,7 @@ textarea{outline:none;resize:vertical}
         <button class="tab" id="tabCourses">图文课程</button>
       </div>
       <span class="spacer"></span>
-      <button class="btn sm primary" id="btnImportDecks">＋ 导入题库</button>
+      <button class="btn sm primary" id="btnImportDecks">＋ 添加题库</button>
     </div>
     <div class="deck-list" id="deckList"></div>
     <div class="course-tree hidden" id="courseTree"></div>
@@ -273,11 +273,11 @@ textarea{outline:none;resize:vertical}
 
 <div class="deck-notice" id="deckNotice" role="status" aria-live="polite"></div>
 
-<!-- 导入弹窗 -->
+  <!-- 添加题库弹窗 -->
 <div class="mask" id="impMask" hidden>
   <div class="modal">
     <div class="modal-head">
-      <h3>导入题库</h3>
+      <h3>添加题库</h3>
       <span style="font-size:12.5px;color:var(--faint)">选分类 → 复制 Prompt → 喂大模型 → 粘回 JSON</span>
       <span class="spacer"></span>
       <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
@@ -587,7 +587,7 @@ function openDecks(){
     var tb = (mem.best && mem.best[b.id] && mem.best[b.id].lastPlayed) || 0;
     return tb - ta;
   });
-  /* 明确区分：导入会创建“我的题库”副本，内置题库仍作为只读来源保留 */
+  /* 内置题库只作为练习来源；用户内容通过顶部「添加题库」进入“我的题库” */
   var mine = decks.filter(function(d){ return !d.builtin; });
   var builtin = decks.filter(function(d){ return d.builtin; });
   function addSectionTitle(text){
@@ -630,22 +630,6 @@ function openDecks(){
       '</div></div>';
     var actions = document.createElement('div');
     actions.className = 'deck-actions';
-    if(d.builtin){
-      var impBuiltin = document.createElement('button');
-      impBuiltin.className = 'btn sm ghost';
-      var alreadyImported = (mem.decks || []).some(function(x){
-        return x.sourceDeckId === d.id || (x.name === d.name + '（副本）' && (x.items || []).length === deckItemCount(d));
-      });
-      impBuiltin.textContent = alreadyImported ? '已添加' : '导入';
-      impBuiltin.title = alreadyImported ? '已添加到“我的题库”，可在上方管理' : '复制到我的题库（可编辑/可追加）';
-      if(alreadyImported){
-        impBuiltin.disabled = true;
-        impBuiltin.setAttribute('aria-label', '已添加到我的题库');
-      } else {
-        impBuiltin.onclick = function(){ importPublicDeck(d); };
-      }
-      actions.appendChild(impBuiltin);
-    }
     if(!d.builtin){
       var ai = document.createElement('button');
       ai.className = 'btn sm';
@@ -1679,7 +1663,7 @@ function showTab(which){
     coursesTab.classList.remove('on'); decksTab.classList.add('on');
     tree.classList.add('hidden'); deckList.classList.remove('hidden');
     $('marketSection').classList.remove('hidden');
-    importBtn.textContent = '＋ 导入题库';
+    importBtn.textContent = '＋ 添加题库';
     importBtn.onclick = function(){ openImport(); };
     openMarket();
   }
