@@ -74,9 +74,13 @@ function startServer(port, dataDir, requireAuth) {
 }
 
 async function waitHealthy(base) {
-  for (let i = 0; i < 80; i++) {
+  /* 2026-09-13 根因修复：原预算 80×50ms=4s。Windows 冷启动（杀软扫描 node_modules、
+     磁盘冷缓存）实测可超 4s → 探活超时假红，且它是 test 链里第一个 server 级测试，
+     一红整条 && 链全断。手动同参启动 server 实测 health 可 200，证明是预算问题非服务问题。
+     放宽到 200×100ms=20s：就绪仍秒级返回（首次 200 即 return），只是给慢启动留余量。 */
+  for (let i = 0; i < 200; i++) {
     try { if ((await request(base, 'GET', '/api/health')).status === 200) return; } catch (_) {}
-    await new Promise(resolve => setTimeout(resolve, 50));
+    await new Promise(resolve => setTimeout(resolve, 100));
   }
   throw new Error('服务未就绪: ' + base);
 }
