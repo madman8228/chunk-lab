@@ -877,7 +877,7 @@ function check(name, cond, detail) {
         version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
         reinforceBook: [{ _key: 'daily-talk::Visible wrong sentence.', deckId: 'daily-talk', deckName: '日常对话',
           addedAt: '2026-09-08 10:00:00', sentence: 'Visible wrong sentence.', translation: '可见错句。',
-          chunks: ['Visible', 'wrong', 'sentence.'], hints: [], mistakes: [] }],
+          chunks: ['Visible', 'wrong', 'sentence.'], hints: [], needsReview: true, mistakes: [] }],
         stats: { totalRounds: 1, totalAnswered: 1, bySentence: {} },
         settings: { mode: 'choose', skipMastered: false, batchSize: 10 }
       }));
@@ -898,13 +898,75 @@ function check(name, cond, detail) {
         rows: document.querySelectorAll('#statsBody .wrong-row').length,
         text: (document.getElementById('statsBody') || {}).textContent || '',
         topPracticeButton: !!document.getElementById('btnPracticeWrong'),
-        tabPracticeButton: !!document.getElementById('btnPracticeWrongTab')
+        tabPracticeButton: !!document.getElementById('btnPracticeWrongTab'),
+        allFilter: document.querySelector('[data-wrong-filter="all"]') && document.querySelector('[data-wrong-filter="all"]').textContent,
+        focusFilter: document.querySelector('[data-wrong-filter="focus"]') && document.querySelector('[data-wrong-filter="focus"]').textContent,
+        weakPracticeRow: !!document.getElementById('startWeak')
       };
     });
     check('reinforce 4c: stats 错题本 tab 渲染错题', w4c.rows === 1 && w4c.text.indexOf('Visible wrong sentence.') >= 0, JSON.stringify(w4c));
     check('reinforce 4c: 练习入口收拢到错题本 tab', !w4c.topPracticeButton && w4c.tabPracticeButton, JSON.stringify(w4c));
+    check('reinforce 4c: 需巩固作为错题本筛选而非独立入口', /需巩固\s+1/.test(w4c.focusFilter || '') && !w4c.weakPracticeRow, JSON.stringify(w4c));
+    await p4c.locator('[data-wrong-filter="focus"]').click();
+    await p4c.waitForTimeout(120);
+    const w4cFocusRows = await p4c.locator('#statsBody .wrong-row').count();
+    check('reinforce 4c: 需巩固筛选可直接收敛到重点错题', w4cFocusRows === 1, 'rows=' + w4cFocusRows);
     check('reinforce 4c: 零 pageerror', errs4c.length === 0, errs4c.join('|'));
     await p4c.close(); await c4c.close();
+  }
+
+  /* 4d. 真实答题回归：只答错一次后纠正，仍应进入错题本并保留错点 */
+  {
+    const c4d = await localCtx(function () {
+      localStorage.clear();
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+      const item = { sentence: 'Could you help me today?', translation: '今天能帮我吗？',
+        chunks: ['Could you', 'help me today?'], hints: ['', ''], cid: 'wrong-once' };
+      localStorage.setItem('chunklab.v1', JSON.stringify({
+        version: 2, reinforceBook: [], decks: [{ id: 'wrong-once-deck', name: '答错一次测试', items: [item] }],
+        best: {}, mastered: {}, deletedItems: {},
+        stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} },
+        settings: { mode: 'choose', sound: false, skipMastered: false, batchSize: 10, fxStack: false, celebrate: 'off', autoSpeak: false }
+      }));
+      sessionStorage.setItem('_startDeck', JSON.stringify({ id: 'wrong-once-deck', name: '答错一次测试', items: [item] }));
+    });
+    const p4d = await c4d.newPage();
+    const errs4d = [];
+    p4d.on('pageerror', function (e) { errs4d.push(e.message); });
+    await p4d.goto(BASE + '/main.html?direct=1&preview=reinforce-wrong-once', { waitUntil: 'domcontentloaded' });
+    await p4d.waitForSelector('#stageChoices .choice', { timeout: 12000 });
+    for (let guard = 0; guard < 30; guard++) {
+      const state = await p4d.evaluate(function () {
+        var it = cur();
+        var nb = document.getElementById('btnNext');
+        return { finished: S.finished, target: it && S.chunkIdx < it.chunks.length ? it.chunks[S.chunkIdx] : null,
+          nextVisible: !!(nb && !nb.classList.contains('hidden')) };
+      });
+      if (state.finished) break;
+      if (state.nextVisible) { await p4d.locator('#btnNext').click(); await p4d.waitForTimeout(120); continue; }
+      if (!state.target) { await p4d.waitForTimeout(100); continue; }
+      if (guard === 0) {
+        const wrong = await p4d.evaluate(function (target) {
+          var b = Array.from(document.querySelectorAll('#stageChoices .choice')).find(function (x) { return !x.disabled && x.dataset.v !== target; });
+          if (!b) return false; b.click(); return true;
+        }, state.target);
+        check('reinforce 4d: 真实点击一次错误选项', wrong, JSON.stringify(state));
+        await p4d.waitForTimeout(120);
+      }
+      const right = await p4d.evaluate(function (target) {
+        var b = Array.from(document.querySelectorAll('#stageChoices .choice')).find(function (x) { return !x.disabled && x.dataset.v === target; });
+        if (!b) return false; b.click(); return true;
+      }, state.target);
+      if (!right) await p4d.waitForTimeout(100); else await p4d.waitForTimeout(160);
+    }
+    const w4d = await p4d.evaluate(function () {
+      var b = (mem.reinforceBook || [])[0];
+      return { bookLen: (mem.reinforceBook || []).length, mistakes: b && b.mistakes || [] };
+    });
+    check('reinforce 4d: 答错一次后错题本保留句子', w4d.bookLen === 1, JSON.stringify(w4d));
+    check('reinforce 4d: 答错一次后保留错点详情', w4d.mistakes.length === 1 && w4d.mistakes[0].chunkIdx === 0 && !!w4d.mistakes[0].userAnswer && w4d.mistakes[0].userAnswer !== 'Could you', JSON.stringify(w4d));
+    check('reinforce 4d: 零 pageerror', errs4d.length === 0, errs4d.join('|'));
+    await p4d.close(); await c4d.close();
   }
 
   /* ===== 5. 死代码清理回归（2026-09-08 refactor 0418b06 防回潮） =====

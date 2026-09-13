@@ -1,14 +1,14 @@
-/* home-today-entries.test.js · 首页「今日」三张计数卡即入口（2026-09-13 老板确认）
+/* home-today-entries.test.js · 首页「今日」两张计数卡即入口
  *
  * 背景：原实现 if(due>0){只渲染一个「开始到期复习」主按钮} else {weak/book 按钮} ——
  *   入口与数据不同构，永远有一张卡没入口，且哪张会死随天数漂移。
- *   现三张计数卡本身就是 <button>，各自进对应队列；计数 0 的卡 disabled（点不动，纯装饰数字消失）。
+ *   现两张计数卡本身就是 <button>，各自进对应队列；计数 0 的卡 disabled（点不动，纯装饰数字）。
  *
  * 覆盖（真实浏览器 + 自带 server，端口走 free-port 避开宿主机常驻占用）：
- *   1. 注入 1 到期 + 1 需巩固 + 0 错题本：三张卡都在，due/weak 启用、book 禁用；
+ *   1. 注入 1 到期 + 1 需巩固 + 0 错题本：只显示待复习/错题本两张卡，due 启用、book 禁用；
  *      enabled 卡有 .chev（<svg>，非文本字符），disabled 卡 .chev 不可见；
  *      disabled book 背景 == var(--surface)（去底色生效），enabled due 背景 != --surface。
- *   2. 点 #homeBtnDue → #deckName 含「到期复习」；点 #homeBtnWeak → 含「需巩固」。
+ *   2. 点 #homeBtnDue → #deckName 含「到期复习」；需巩固不再作为独立入口。
  *   3. 负向自证（必需）：注入到期计数=0 → #homeBtnDue 必须 disabled；
  *      在旧 main.html（git worktree HEAD）上跑本文件必须变红（旧代码 due=0 时
  *      #homeBtnDue 根本不渲染 → 本断言抓不到它，证明测试真的在测东西）。
@@ -195,7 +195,6 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       page.on('pageerror', function (e) { errs.push(e.message); });
       const st = await page.evaluate(function () {
         var due = document.getElementById('homeBtnDue');
-        var weak = document.getElementById('homeBtnWeak');
         var book = document.getElementById('homeBtnBook');
         /* 用探针把 CSS 变量解析成 rgb，避免硬编码颜色（--surface 实为 #fffdfa，非纯白） */
         var probe = document.createElement('div');
@@ -219,25 +218,21 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
           };
         }
         return {
-          dueExists: !!due, weakExists: !!weak, bookExists: !!book,
+          dueExists: !!due, weakExists: !!document.getElementById('homeBtnWeak'), bookExists: !!book,
           dueDisabled: due ? due.disabled : null,
-          weakDisabled: weak ? weak.disabled : null,
           bookDisabled: book ? book.disabled : null,
           dueChev: chevInfo(due),
-          weakChev: chevInfo(weak),
           bookChev: chevInfo(book),
           dueBg: due ? getComputedStyle(due).backgroundColor : '',
           bookBg: book ? getComputedStyle(book).backgroundColor : '',
           surfaceBg: surfaceBg, accentBg: accentBg
         };
       });
-      check('A: 三张计数卡都存在', st.dueExists && st.weakExists && st.bookExists, JSON.stringify({ d: st.dueExists, w: st.weakExists, b: st.bookExists }));
+      check('A: 只显示待复习和错题本两张卡', st.dueExists && !st.weakExists && st.bookExists, JSON.stringify({ d: st.dueExists, w: st.weakExists, b: st.bookExists }));
       check('A: #homeBtnDue 不是 disabled（due>0 可点）', st.dueExists && st.dueDisabled === false, 'disabled=' + st.dueDisabled);
-      check('A: #homeBtnWeak 不是 disabled（weak>0 可点）', st.weakExists && st.weakDisabled === false, 'disabled=' + st.weakDisabled);
       check('A: #homeBtnBook 是 disabled（book=0 不可点）', st.bookExists && st.bookDisabled === true, 'disabled=' + st.bookDisabled);
       check('A: #homeBtnDue 有 .chev 且内含 <svg>', st.dueChev.exists && st.dueChev.isSvg, JSON.stringify(st.dueChev));
       check('A: #homeBtnDue 的 .chev 不是文本字符', st.dueChev.exists && st.dueChev.text === '' && st.dueChev.isSvg, 'text=' + JSON.stringify(st.dueChev.text));
-      check('A: #homeBtnWeak 有 .chev 且内含 <svg>', st.weakChev.exists && st.weakChev.isSvg, JSON.stringify(st.weakChev));
       check('A: #homeBtnBook 无可见 .chev（0 值去箭头）', st.bookChev.exists === false || st.bookChev.visible === false, JSON.stringify(st.bookChev));
       check('A: disabled #homeBtnBook 背景 == var(--surface)（去底色生效）',
         st.bookBg && st.surfaceBg && st.bookBg === st.surfaceBg,
@@ -268,19 +263,7 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       });
       check('A: 点 #homeBtnDue → #deckName 含「到期复习」', dueOk, JSON.stringify(dueDbg));
 
-      /* 回首页再点 weak → 进入需巩固队列（#deckName 含「需巩固」） */
-      let weakOk = false;
-      try {
-        await page.evaluate(function () { if (typeof showHomePage === 'function') showHomePage(); });
-        await page.waitForSelector('#homeBtnWeak', { timeout: 6000 });
-        await page.click('#homeBtnWeak', { timeout: 5000 });
-        await page.waitForFunction(function () {
-          var d = document.getElementById('deckName');
-          return d && /需巩固/.test(d.textContent.replace(/<!--[\s\S]*?-->/g, ''));
-        }, { timeout: 8000 });
-        weakOk = true;
-      } catch (e) { weakOk = false; }
-      check('A: 点 #homeBtnWeak → #deckName 含「需巩固」', weakOk, 'deckName=' + (await page.evaluate(function () { var d = document.getElementById('deckName'); return d ? d.textContent.replace(/<!--[\s\S]*?-->/g, '') : 'missing'; })));
+      check('A: 需巩固不再生成独立首页入口', await page.evaluate(function () { return !document.getElementById('homeBtnWeak'); }), 'homeBtnWeak=' + !!(await page.$('#homeBtnWeak')));
       check('A: 零 pageerror', errs.length === 0, errs.join(' | '));
       await sp.ctx.close();
     }
@@ -315,7 +298,7 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       });
       const mobile = await page.evaluate(function () {
         var root = document.documentElement;
-        var ids = ['homeBtnDue', 'homeBtnWeak', 'homeBtnBook'];
+        var ids = ['homeBtnDue', 'homeBtnBook'];
         var cards = {};
         ids.forEach(function (id) {
           var el = document.getElementById(id);
@@ -340,7 +323,7 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       var label = viewport.width + 'px';
       check('C ' + label + ': 页面无横向溢出', mobile.scrollWidth <= mobile.clientWidth, JSON.stringify({ scrollWidth: mobile.scrollWidth, clientWidth: mobile.clientWidth }));
       check('C ' + label + ': 错题本计数卡存在且可点', !!book && book.disabled === false && /错题本/.test(mobile.bookText), JSON.stringify(book));
-      check('C ' + label + ': 三张卡保持原生按钮语义', ['homeBtnDue', 'homeBtnWeak', 'homeBtnBook'].every(function (id) { var c = mobile.cards[id]; return c && c.type === 'button' && c.tabIndex >= 0; }), JSON.stringify(mobile.cards));
+      check('C ' + label + ': 两张卡保持原生按钮语义', ['homeBtnDue', 'homeBtnBook'].every(function (id) { var c = mobile.cards[id]; return c && c.type === 'button' && c.tabIndex >= 0; }), JSON.stringify(mobile.cards));
       check('C ' + label + ': 可用卡点击区域至少 44×44', !!book && book.width >= 44 && book.height >= 44, JSON.stringify({ width: book && book.width, height: book && book.height }));
 
       var keyboardOk = false;

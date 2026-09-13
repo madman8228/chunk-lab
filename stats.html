@@ -304,6 +304,7 @@ function migrateLegacyStatKeys(){
 /* ===== 渲染 ===== */
 var _statsTab = 'overview';
 var _statsFilter = 'all';
+var _wrongBookFilter = 'all';
 var _listPages = {}, LIST_PAGE_SIZE = 50;
 function listPage(rows, key){
   var page = Math.min(_listPages[key] || 0, Math.max(0, Math.ceil(rows.length / LIST_PAGE_SIZE)-1));
@@ -487,12 +488,20 @@ function renderWrongBook(body){
     body.innerHTML = '<div class="empty-tip">错题本是空的。练习时答错的句子会自动加入这里，跨会话保留。</div>';
     return;
   }
+  var focusBook = book.filter(function(b){ return reinforceNeedsReview(b); });
+  var shownBook = _wrongBookFilter === 'focus' ? focusBook : book;
   var html = '<div class="wrong-head">'+
     '<b>错题本</b><span class="count">'+book.length+' 句</span><span class="spacer"></span>'+
     '<button class="btn sm primary" id="btnPracticeWrongTab">开始复习</button>'+
     '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
-  html += '<div class="stats-list">';
-  listPage(book.slice().reverse(), 'wrong').forEach(function(b){
+  html += '<div class="stats-filter wrong-filter">'+
+    '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+book.length+'</button>'+
+    '<button class="f '+(_wrongBookFilter==='focus'?'on':'')+'" data-wrong-filter="focus">需巩固 '+focusBook.length+'</button></div>';
+  if(!shownBook.length){
+    html += '<div class="empty-tip" style="padding:18px">当前没有需巩固的错题。切换到“全部”可查看所有记录。</div>';
+  } else {
+    html += '<div class="stats-list">';
+  listPage(shownBook.slice().reverse(), 'wrong').forEach(function(b){
     var mine = '';
     if(b.mistakes && b.mistakes.length){
       mine = b.mistakes.map(function(m){
@@ -506,11 +515,19 @@ function renderWrongBook(body){
     '</div>'+
     '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">'+(window.Icons?Icons.svg('close'):'')+'</button></div>';
   });
-  html += '</div>';
+    html += '</div>';
+  }
   body.innerHTML = html;
-  body.insertAdjacentHTML('beforeend', listPager(book.length,'wrong'));
+  body.insertAdjacentHTML('beforeend', listPager(shownBook.length,'wrong'));
   var bp = $('btnPracticeWrongTab'); if(bp) bp.onclick = practiceWrongBook;
   var bc = $('btnClearWrongBook'); if(bc) bc.onclick = function(){ if(confirm('清空错题本？')){ mem.reinforceBook = []; saveStore(); renderStats(); } };
+  Array.prototype.forEach.call(body.querySelectorAll('[data-wrong-filter]'), function(btn){
+    btn.onclick = function(){
+      _wrongBookFilter = btn.getAttribute('data-wrong-filter') || 'all';
+      _listPages.wrong = 0;
+      renderStats();
+    };
+  });
   Array.prototype.forEach.call(body.querySelectorAll('.wrong-del'), function(btn){
     btn.onclick = function(){
       var key = btn.getAttribute('data-key');
@@ -523,6 +540,18 @@ function renderWrongBook(body){
 function getReinforceBook(){
   if(!mem.reinforceBook) mem.reinforceBook = [];
   return mem.reinforceBook;
+}
+
+/* 错题本是事实记录；“需巩固”只做派生筛选，不再另存一份句子清单。 */
+function reinforceNeedsReview(b){
+  if(b && b.needsReview) return true;
+  var by = (mem.stats && mem.stats.bySentence) || {};
+  return Object.keys(by).some(function(k){
+    var st = by[k];
+    return st && st.deckId === (b && b.deckId) &&
+      normSent(st.sentence) === normSent(b && b.sentence) &&
+      classifyStat(st) === 'weak';
+  });
 }
 
 /* ===== SRS 复习 ===== */
@@ -565,11 +594,6 @@ function renderReviewList(body){
     '<span class="spacer"></span>'+ 
     (dues.length>0 ? '<button class="btn primary" id="startDueReview">开始复习</button>' : '')+
     '</div>';
-  var weakCount = Object.keys(mem.stats.bySentence || {}).filter(function(k){
-    var sep=k.indexOf('#');
-    return classifyStat(mem.stats.bySentence[k])==='weak' && !CL.isItemDeleted(mem,k.slice(0,sep),{cid:k.slice(sep+1)});
-  }).length;
-  if(weakCount) html += '<div class="review-row"><div class="nm">需巩固 · '+weakCount+' 句</div><button class="btn sm" id="startWeak">开始复习</button></div>';
   if(dues.length){
     html += '<div class="stats-list">';
     listPage(dues,'due').forEach(function(d){
@@ -612,7 +636,6 @@ function renderReviewList(body){
 
   body.innerHTML = html;
   var sd = $('startDueReview'); if(sd) sd.onclick = practiceDue;
-  var sw = $('startWeak'); if(sw) sw.onclick = practiceWeakSentences;
   Array.prototype.forEach.call(body.querySelectorAll('[data-rev-deck]'), function(btn){
     btn.onclick = function(){
       var deckId = btn.getAttribute('data-rev-deck');
@@ -635,27 +658,8 @@ function practiceReviewDeck(deck){
   if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
   launchReviewItems({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name), items:items });
 }
-function practiceWeakSentences(){
-  var by = mem.stats.bySentence || {};
-  var items = [];
-  var seen = {};
-  Object.keys(by).forEach(function(k){
-    if(classifyStat(by[k]) !== 'weak') return;
-    var st = by[k];
-    var deck = findDeck(st.deckId);
-    if(!deck) return;
-    var it = (deck.items || []).find(function(x){ return x.sentence === st.sentence; });
-    if(!it) return;
-    var key = st.deckId + '#' + normSent(it.sentence);
-    if(seen[key]) return;
-    seen[key] = true;
-    items.push(withStatsSource(it, st.deckId));
-  });
-  if(!items.length){ alert('找不到可练习的句子（可能被删除）'); return; }
-  launchReviewItems({ id:'weak-'+Date.now().toString(36), name:'需巩固', items:items });
-}
 function practiceWrongBook(){
-  var book = getReinforceBook();
+  var book = getReinforceBook().filter(function(b){ return _wrongBookFilter === 'focus' ? reinforceNeedsReview(b) : true; });
   var seen = {};
   var items = [];
   book.forEach(function(b){

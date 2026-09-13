@@ -702,12 +702,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .cal-cell:not(.pad):not(.lx):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .cal-foot{margin-top:10px;font-size:12px;color:var(--muted)}
 .cal-foot b{color:var(--text);font-variant-numeric:tabular-nums}
-/* 2026-09-11 老板要求「1 行显示」：原来 flex + .htc{min-width:110px} 固定宽，
-   3 张卡 + 2 个 gap = 350px；手机视口下容器只有 332px（390 屏）/302px（360 屏）
-   → 第三张必折到第二行。改成 3 列等分网格：minmax(0,1fr) 让卡片随容器压缩，
-   任何视口都不再折行；max-width:350px 把宽屏列宽钉回 110px
-   —— 即桌面观感与改动前逐像素一致，窄屏才让出宽度。 */
-.home-today-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0;max-width:350px}
+/* 今日入口只保留“待复习”和“错题本”两张卡；需巩固在错题本内筛选。 */
+.home-today-counts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0;max-width:240px}
 /* 2026-09-11 老板要求「数字横向居中」：.n / .l 都是块级 div，默认贴左。
    卡片有固定宽度，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
    用 text-align:center 一次管住数字与标签（只居中数字、标签仍贴左会立刻显歪）。 */
@@ -726,10 +722,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
 .htc .l{font-size:11.5px;color:var(--faint);margin-top:2px}
 .htc.due .n{color:var(--accent)} .htc.due{border-color:#cfd9f5;background:var(--accent-soft)}
-.htc.weak .n{color:var(--warn)} .htc.weak{border-color:#f3e2bd;background:#fbf5e8}
 .htc.book .n{color:var(--bad)} .htc.book{border-color:#f3d4d0;background:var(--bad-soft)}
 .htc .n.ok{color:var(--ok)}
-/* disabled 规则必须排在 .due/.weak/.book 之后：三者特异性同为 (0,2,0)，只能靠源码顺序取胜。
+/* disabled 规则必须排在 .due/.book 之后：两者特异性同为 (0,2,0)，只能靠源码顺序取胜。
    计数 0 → 去底色 + 去箭头 + 默认光标；数字保持 --ok 绿（沿用「0 = 无事可做」的正向语义）。
    ★ 故意不用 opacity 衰减：20px 绿字衰减到 0.55 后对比度会掉到约 2:1，低于 AA。 */
 .htc:disabled{cursor:default;background:var(--surface);border-color:var(--border)}
@@ -1788,8 +1783,11 @@ function saveReinforceList(deck, wrongItems){
         chunks: w.it.chunks,
         hints: w.it.hints || [],
         grammar: w.it.grammar || null,
+        needsReview: !!w.needsReview,
         mistakes: (w.idx||[]).map(function(i){
-          return { chunkIdx:i, chunk:w.it.chunks[i], userAnswer:(w.answers&&w.answers[i])?w.answers[i]:'', hint:(w.it.hints&&w.it.hints[i])?w.it.hints[i]:'' };
+          var wrong = w.wrongAnswers && w.wrongAnswers[i];
+          var userAnswer = Array.isArray(wrong) && wrong.length ? wrong.join(' / ') : ((w.answers&&w.answers[i])?w.answers[i]:'');
+          return { chunkIdx:i, chunk:w.it.chunks[i], userAnswer:userAnswer, hint:(w.it.hints&&w.it.hints[i])?w.it.hints[i]:'' };
         })
       });
     }
@@ -2040,7 +2038,7 @@ if(fromIdx === 0 && isLongTermDeck){
     }
   }
   S.idx = fromIdx; S.combo = 0; S.maxCombo = 0; S.perfectCount = 0;
-  S.chunkTotal = 0; S.chunkRight = 0; S.wrong = []; S.finished = false; S._finishing = false;
+  S.chunkTotal = 0; S.chunkRight = 0; S.wrong = []; S.wrongAnswers = []; S.finished = false; S._finishing = false;
   /* ★ 临时题库前缀：仅 rev- 需要「手动」标识（与 SRS 到期复习区分）。
      错题/需巩固队列不再加『错题』前缀——队列名本身已自解释，前缀纯冗余。 */
   var _prefix = deck.id.indexOf('rev-') === 0 ? '『手动』 ' : '';
@@ -2077,7 +2075,7 @@ if(fromIdx === 0 && isLongTermDeck){
    所有 S.* 字段必须先初始化，否则 startDeck / renderQ 抛 undefined 错误 */
 var S = {
   deck: null, items: [], idx: 0,
-  chunkIdx: 0, status: [], answers: [], wrongAttempts: [],
+  chunkIdx: 0, status: [], answers: [], wrongAttempts: [], wrongAnswers: [],
   combo: 0, maxCombo: 0, perfectCount: 0,
   chunkTotal: 0, chunkRight: 0, wrong: [],
   finished: false, _finishing: false,
@@ -2176,6 +2174,7 @@ function renderQ(){
   S.status = it.chunks.map(function(){ return 'pending'; });
   S.answers = it.chunks.map(function(){ return ''; });
   S.wrongAttempts = it.chunks.map(function(){ return 0; }); /* 每个chunk的错误次数 */
+  S.wrongAnswers = it.chunks.map(function(){ return []; }); /* 每个chunk实际输过/选过的错误答案 */
   S.perfectThis = true;
   S.hinted = false;
 
@@ -2730,6 +2729,8 @@ function chooseSubmit(choice){
     next();
   } else {
     S.wrongAttempts[i]++;
+    if(!Array.isArray(S.wrongAnswers[i])) S.wrongAnswers[i] = [];
+    S.wrongAnswers[i].push(choice);
     /* ★ 不再禁用选项、不再强制揭示/跳题——允许用户自由试错（包括重选同一项）。
        视觉反馈仅保留抖动；“需巩固”判定在 finishSentence 统一按错误次数/提示计算。
        C2-II 2026-09-08：答错干扰项时实时算错因（CauseTools.classifyOne）并浮层提示，
@@ -2774,6 +2775,8 @@ function submitChunk(){
   var val = chunkValueAt(i);
   if(!val){
     S.wrongAttempts[i] = (S.wrongAttempts[i]||0) + 1;
+    if(!Array.isArray(S.wrongAnswers[i])) S.wrongAnswers[i] = [];
+    S.wrongAnswers[i].push('');
     S.perfectThis = false; /* 空提交也算一次不完美 */
     boxAt(i).classList.add('shake');
     setTimeout(function(){ boxAt(i).classList.remove('shake'); }, 430);
@@ -2801,6 +2804,8 @@ function submitChunk(){
     next();
   }else{
     S.wrongAttempts[i]++;
+    if(!Array.isArray(S.wrongAnswers[i])) S.wrongAnswers[i] = [];
+    S.wrongAnswers[i].push(val);
     S.perfectThis = false; /* 错过一次即非完美 */
     var bb = boxAt(i);
     bb.classList.add('shake');
@@ -3046,10 +3051,22 @@ function finishSentence(){
     _anaTimer = setTimeout(function(){ if(!S.finished) renderAnalysis(it); _anaTimer = null; }, 900);
   }else{
     var _mastered = isMastered(statDeckId(it), it);
-    /* ★ "需巩固"判定：总错误 ≥2 次，或用过提示/跳过 → 需巩固；
-       只错 1 次且自己纠正（无提示）→ 视为正常掌握，不标记（避免过度矫正漏掉真不熟练句） */
+    /* ★ “需巩固”是优先级标签：总错误 ≥2 次，或用过提示/跳过 → 需巩固；
+       只错 1 次且自己纠正（无提示）不显示该标签，但仍要进入错题本。 */
     var _totalWrong = S.wrongAttempts.reduce(function(a,b){ return a + (b||0); }, 0);
     var _needsReview = (_totalWrong >= 2) || !!S.hinted;
+    var _hadIssue = (_totalWrong > 0) || !!S.hinted || S.status.some(function(st){ return st==='bad' || st==='revealed'; });
+    var wrongIdx = [];
+    S.wrongAttempts.forEach(function(n,i){
+      if((n||0) > 0 || S.status[i]==='bad' || S.status[i]==='revealed') wrongIdx.push(i);
+    });
+    /* 错题本记录“发生过错误”的事实；需巩固只是其中更需要优先复习的子集。 */
+    if(_hadIssue && !S.wrong.some(function(w){ return w.it === it; })){
+      var _wrongEntry = { it:it, idx:wrongIdx, answers:S.answers.slice(), wrongAnswers:S.wrongAnswers.map(function(a){ return Array.isArray(a) ? a.slice() : []; }), needsReview:_needsReview };
+      S.wrong.push(_wrongEntry);
+      /* 句子完成即落错题本，用户中途关闭页面也不会丢掉刚刚发生的错误。 */
+      saveReinforceList(S.deck, [_wrongEntry]);
+    }
     /* 已标熟的句子：本次答错不再视为「需巩固」（避免和标熟状态矛盾），只显示绿色「已掌握」tag */
     if(_mastered){
       tagWrap.className = 'reveal-tag good';
@@ -3059,11 +3076,6 @@ function finishSentence(){
       tagWrap.className = 'reveal-tag miss';
       tagWrap.innerHTML = '<span class="tag-icon">'+(window.Icons?Icons.svg('warn'):'')+'</span> 需巩固';
       updateCombo(0);
-      var wrongIdx = [];
-      S.status.forEach(function(s,i){ if(s==='bad') wrongIdx.push(i); });
-      /* 去重安全网：同一句只记录一次 */
-      var already = S.wrong.some(function(w){ return w.it === it; });
-      if(!already) S.wrong.push({ it:it, idx:wrongIdx, answers:S.answers.slice() });
     } else {
       /* 错 1 次自己纠正：沉默即反馈（2026-09-10 移除「已答完」绿 tag）。
          错处红字 + track 补全 + 下一题按钮已足够；且与「已掌握」绿 tag 撞色撞语义。
@@ -3519,8 +3531,8 @@ function finishSession(){
     _seen[k] = true;
     return true;
   });
-  /* 用本轮实际 chunk 正确率判定是否有错（不再用 S.wrong.length，因为已标熟句子的错不计入 S.wrong） */
-  var needReinforce = S.chunkTotal > 0 && S.chunkRight < S.chunkTotal;
+   /* 错题本与“需巩固”分层：只要本轮出现过错就保存；需巩固由句子统计另行派生。 */
+   var needReinforce = S.wrong.length > 0;
   var reinforceCount = S.wrong.length;
   var totalMistakes = S.wrong.reduce(function(s, w){ return s + (w.idx ? w.idx.length : 0); }, 0);
 
@@ -3531,7 +3543,7 @@ function finishSession(){
 
   /* 需巩固/掌握状态 stat HTML（用变量避免模板嵌套解析问题） */
   var _reinforceStatHTML = needReinforce
-    ? '<div class="stat" style="border-color:#f6e0bf;background:#fff8ee"><div class="k" style="color:#b45309">需巩固</div><div class="v" style="color:#b45309">'+reinforceCount+'<span style="font-size:13px;color:#d97706"> 句</span></div></div>'
+     ? '<div class="stat" style="border-color:#f6e0bf;background:#fff8ee"><div class="k" style="color:#b45309">错题</div><div class="v" style="color:#b45309">'+reinforceCount+'<span style="font-size:13px;color:#d97706"> 句</span></div></div>'
     : '<div class="stat" style="border-color:#c3ead4;background:#e8f9ed"><div class="k" style="color:#15803d">本轮</div><div class="v" style="color:#15803d">全部通过</div></div>';
 
   var html = ''+
@@ -3565,7 +3577,8 @@ function finishSession(){
       html += '<div class="row"><span class="r-idx">'+(wi+1)+'</span><div class="r-body"><div class="en">'+esc(w.it.sentence)+'</div>'+
               `<div class="cn">`+esc(w.it.translation||'')+'</div></div><div class="diff">';
       w.idx.forEach(function(i){
-        var mine = w.answers[i] ? esc(w.answers[i]) : '（未作答）';
+        var wrong = w.wrongAnswers && w.wrongAnswers[i];
+        var mine = Array.isArray(wrong) && wrong.length ? esc(wrong.join(' / ')) : (w.answers[i] ? esc(w.answers[i]) : '（未作答）');
         html += '<div>'+mine+' → <b>'+esc(w.it.chunks[i])+'</b></div>';
       });
       html += '</div></div>';
@@ -3718,7 +3731,7 @@ function showPracticePage(){
 /* ===== 今日首页（吸收 ref「今日行动中枢」：到期收口 + 上次进度 + 最近牌组 + 入口） ===== */
 function computeToday(){
   var by = (mem.stats && mem.stats.bySentence) || {};
-  var now = Date.now(), due = 0, weak = 0, known = {};
+  var now = Date.now(), due = 0, known = {};
   /* 统计档案本身已经带 deckId/cid；首页只需计算数字，不应为了显示到期数加载全部题库内容。 */
   allDecks().forEach(function(d){ known[d.id] = true; });
   Object.keys(by).forEach(function(key){
@@ -3727,9 +3740,8 @@ function computeToday(){
     var sep = key.indexOf('#'), cid = sep >= 0 ? key.substring(sep + 1) : '';
     if(CL.isItemDeleted(mem, st.deckId, { cid: cid })) return;
     if(CL.srs.isDue(st, now)) due++;
-    if(classifyStat(st) === 'weak') weak++;
   });
-  return { due: due, weak: weak, book: Array.isArray(mem.reinforceBook) ? mem.reinforceBook.length : 0 };
+  return { due: due, book: Array.isArray(mem.reinforceBook) ? mem.reinforceBook.length : 0 };
 }
 /* 复习入口只加载档案实际涉及的题库，不因点击“开始复习”把所有未来扩展题库都拉下来。 */
 function ensureStatDecks(deckIds){
@@ -3757,27 +3769,6 @@ function startTodayDue(){
     if(!items.length) return;
     showPracticePage();
     startDeck({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
-  }
-  var by = (mem.stats && mem.stats.bySentence) || {};
-  ensureStatDecks(Object.keys(by).map(function(k){ return by[k] && by[k].deckId; }))
-    .then(run).catch(function(){ $('zh').textContent = '题库加载失败，请联网后重试'; });
-}
-/* 需巩固队列（weak-，同 stats.practiceWeakSentences） */
-function startWeakNow(){
-  function run(){
-    var by = (mem.stats && mem.stats.bySentence) || {};
-    var items = [];
-    Object.keys(by).forEach(function(k){
-      if(classifyStat(by[k]) !== 'weak') return;
-      var st = by[k], d = findDeck(st.deckId);
-      if(!d) return;
-      var it = (d.items || []).find(function(x){ return x.sentence === st.sentence; });
-      if(!it) return;
-      items.push(withStatsSource(it, st.deckId));
-    });
-    if(!items.length) return;
-    showPracticePage();
-    startDeck({ id:'weak-'+Date.now().toString(36), name:'需巩固', items:items });
   }
   var by = (mem.stats && mem.stats.bySentence) || {};
   ensureStatDecks(Object.keys(by).map(function(k){ return by[k] && by[k].deckId; }))
@@ -3848,20 +3839,14 @@ function renderHome(){
       + '</div>');
   } else {
     /* 原本的「今天有 N 句到期复习」headline 已删：与下方 .htc.due 卡片数字重复，纯属废话 */
-    /* 2026-09-13 老板确认改为「卡片即入口」：三张计数卡本身就是按钮，各自进对应队列。
-       原实现是 if(due>0){只渲染一个「开始到期复习」主按钮} else {weak/book 两个按钮} ——
-       根因问题：入口与数据不同构，永远有一张卡没有入口，且哪一张会死随天数漂移
-       （due>0 时「需巩固/错题本」点不动；due=0 时「待复习」成死数字）。
-       入口文案里原有的「先练 N / 共 M 句」一并删除：batchSize 是系统参数，
-       分批体验由练习页 finishSession 的「继续下一组 · 剩 K 句」承接（见本文件 3568 行）。 */
-    var _chev = function(cnt){ return cnt ? '<span class="chev">' + ic('chevR') + '</span>' : ''; };
-    h.push('<div class="home-today-counts">'
-      + '<button class="htc due" type="button" id="homeBtnDue"' + (t.due ? '' : ' disabled') + ' aria-label="开始到期复习，' + t.due + ' 句">'
-      +   '<div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">待复习</div>' + _chev(t.due) + '</button>'
-      + '<button class="htc weak" type="button" id="homeBtnWeak"' + (t.weak ? '' : ' disabled') + ' aria-label="复习需巩固，' + t.weak + ' 句">'
-      +   '<div class="n' + (t.weak ? '' : ' ok') + '">' + t.weak + '</div><div class="l">需巩固</div>' + _chev(t.weak) + '</button>'
-      + '<button class="htc book" type="button" id="homeBtnBook"' + (t.book ? '' : ' disabled') + ' aria-label="复习错题本，' + t.book + ' 句">'
-      +   '<div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div>' + _chev(t.book) + '</button>'
+     /* 今日只保留两个高频入口：待复习与错题本。
+        “需巩固”是错题本中的优先筛选，不再作为第三条并列队列，避免重复统计和入口分裂。 */
+     var _chev = function(cnt){ return cnt ? '<span class="chev">' + ic('chevR') + '</span>' : ''; };
+     h.push('<div class="home-today-counts">'
+       + '<button class="htc due" type="button" id="homeBtnDue"' + (t.due ? '' : ' disabled') + ' aria-label="开始到期复习，' + t.due + ' 句">'
+       +   '<div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">待复习</div>' + _chev(t.due) + '</button>'
+       + '<button class="htc book" type="button" id="homeBtnBook"' + (t.book ? '' : ' disabled') + ' aria-label="复习错题本，' + t.book + ' 句">'
+       +   '<div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div>' + _chev(t.book) + '</button>'
       + '</div>');
     h.push('<div class="home-actions">'
       + '<button class="btn ghost" id="homeGoDecks">' + ic('book') + ' 去题库学新句</button>'
@@ -3924,7 +3909,6 @@ function renderHome(){
   body.innerHTML = h.join('');
   var goDecks = body.querySelector('#homeGoDecks'); if(goDecks) goDecks.onclick = function(){ location.href = 'decks.html'; };
   var bDue = body.querySelector('#homeBtnDue'); if(bDue) bDue.onclick = startTodayDue;
-  var bWeak = body.querySelector('#homeBtnWeak'); if(bWeak) bWeak.onclick = startWeakNow;
   var bBook = body.querySelector('#homeBtnBook'); if(bBook) bBook.onclick = startBookNow;
   Array.prototype.forEach.call(body.querySelectorAll('[data-start]'), function(btn){
     btn.onclick = function(){
