@@ -713,6 +713,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
    任何视口都不再折行；max-width:350px 把宽屏列宽钉回 110px
    —— 即桌面观感与改动前逐像素一致，窄屏才让出宽度。 */
 .home-today-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0;max-width:350px}
+/* 2026-09-13 问题5（老板拍板）：删掉入口按钮的「先练 N / 共 M 句」后，分批口径由这行副文案承接。
+   margin-top:-6px 是为了贴住上面 counts 的 14px 下边距（8px 实际间距），视觉上属于卡片组的注脚。 */
+.home-today-hint{font-size:11px;color:var(--faint);margin:-6px 0 12px}
 /* 2026-09-11 老板要求「数字横向居中」：.n / .l 都是块级 div，默认贴左。
    卡片有固定宽度，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
    用 text-align:center 一次管住数字与标签（只居中数字、标签仍贴左会立刻显歪）。 */
@@ -3863,6 +3866,12 @@ function renderHome(){
       + '<button class="htc book" type="button" id="homeBtnBook"' + (t.book ? '' : ' disabled') + ' aria-label="复习错题本，' + t.book + ' 句">'
       +   '<div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div>' + _chev(t.book) + '</button>'
       + '</div>');
+    /* 问题5 副文案：所有临时队列（srs-/weak-/book-/rev-，见 startDeck 1896）都按 batchSize 分批，
+       故提示不区分队列；三张卡全 0 时不渲染——没有可练内容，提分批是噪音。 */
+    if(t.due + t.weak + t.book > 0){
+      var _bs = Math.max(1, Math.min(200, Math.floor(Number(mem.settings.batchSize) || 10)));
+      h.push('<div class="home-today-hint">分批练 · 每批 ' + _bs + ' 句，练完一组可继续下一组</div>');
+    }
     h.push('<div class="home-actions">'
       + '<button class="btn ghost" id="homeGoDecks">' + ic('book') + ' 去题库学新句</button>'
       + '</div>');
