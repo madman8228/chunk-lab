@@ -716,13 +716,29 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 /* 2026-09-11 老板要求「数字横向居中」：.n / .l 都是块级 div，默认贴左。
    卡片有固定宽度，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
    用 text-align:center 一次管住数字与标签（只居中数字、标签仍贴左会立刻显歪）。 */
-.htc{border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:0;background:var(--surface-2);text-align:center}
+/* 2026-09-13 老板确认：三张计数卡本身即入口，故由 <div> 变 <button>。
+   作为 button 必须重置 UA 样式（appearance / 字族 / 字号 / 字重 / 颜色 / 行高），否则会串到子元素；
+   并补 hover / active / focus-visible / disabled 四态。
+   button 在 grid 里默认 stretch，宽度行为与原 div 一致，无需额外设置。 */
+.htc{appearance:none;-webkit-appearance:none;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;line-height:inherit;
+  position:relative;border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:0;background:var(--surface-2);
+  text-align:center;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .08s ease}
+.htc:hover:not(:disabled){border-color:var(--border-strong)}
+.htc:active:not(:disabled){transform:scale(.97)}
+.htc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.htc .chev{position:absolute;top:7px;right:7px;line-height:0}
+.htc .chev .icon{width:12px;height:12px;color:var(--faint)}
 .htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
 .htc .l{font-size:11.5px;color:var(--faint);margin-top:2px}
 .htc.due .n{color:var(--accent)} .htc.due{border-color:#cfd9f5;background:var(--accent-soft)}
 .htc.weak .n{color:var(--warn)} .htc.weak{border-color:#f3e2bd;background:#fbf5e8}
 .htc.book .n{color:var(--bad)} .htc.book{border-color:#f3d4d0;background:var(--bad-soft)}
 .htc .n.ok{color:var(--ok)}
+/* disabled 规则必须排在 .due/.weak/.book 之后：三者特异性同为 (0,2,0)，只能靠源码顺序取胜。
+   计数 0 → 去底色 + 去箭头 + 默认光标；数字保持 --ok 绿（沿用「0 = 无事可做」的正向语义）。
+   ★ 故意不用 opacity 衰减：20px 绿字衰减到 0.55 后对比度会掉到约 2:1，低于 AA。 */
+.htc:disabled{cursor:default;background:var(--surface);border-color:var(--border)}
+.htc:disabled .chev{display:none}
 .home-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .home-actions .btn{min-height:30px}
 .home-hint{font-size:12px;color:var(--faint);margin-left:2px}
@@ -3832,27 +3848,24 @@ function renderHome(){
       + '</div>');
   } else {
     /* 原本的「今天有 N 句到期复习」headline 已删：与下方 .htc.due 卡片数字重复，纯属废话 */
+    /* 2026-09-13 老板确认改为「卡片即入口」：三张计数卡本身就是按钮，各自进对应队列。
+       原实现是 if(due>0){只渲染一个「开始到期复习」主按钮} else {weak/book 两个按钮} ——
+       根因问题：入口与数据不同构，永远有一张卡没有入口，且哪一张会死随天数漂移
+       （due>0 时「需巩固/错题本」点不动；due=0 时「待复习」成死数字）。
+       入口文案里原有的「先练 N / 共 M 句」一并删除：batchSize 是系统参数，
+       分批体验由练习页 finishSession 的「继续下一组 · 剩 K 句」承接（见本文件 3568 行）。 */
+    var _chev = function(cnt){ return cnt ? '<span class="chev">' + ic('chevR') + '</span>' : ''; };
     h.push('<div class="home-today-counts">'
-      + '<div class="htc due"><div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">待复习</div></div>'
-      + '<div class="htc weak"><div class="n' + (t.weak ? '' : ' ok') + '">' + t.weak + '</div><div class="l">需巩固</div></div>'
-      + '<div class="htc book"><div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div></div>'
+      + '<button class="htc due" type="button" id="homeBtnDue"' + (t.due ? '' : ' disabled') + ' aria-label="开始到期复习，' + t.due + ' 句">'
+      +   '<div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">待复习</div>' + _chev(t.due) + '</button>'
+      + '<button class="htc weak" type="button" id="homeBtnWeak"' + (t.weak ? '' : ' disabled') + ' aria-label="复习需巩固，' + t.weak + ' 句">'
+      +   '<div class="n' + (t.weak ? '' : ' ok') + '">' + t.weak + '</div><div class="l">需巩固</div>' + _chev(t.weak) + '</button>'
+      + '<button class="htc book" type="button" id="homeBtnBook"' + (t.book ? '' : ' disabled') + ' aria-label="复习错题本，' + t.book + ' 句">'
+      +   '<div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div>' + _chev(t.book) + '</button>'
       + '</div>');
-    h.push('<div class="home-actions">');
-    if(t.due > 0){
-      /* 临时队列（srs-）按 batchSize 分批（startDeck 1757）—— 入口文案必须把分批明说，
-         否则用户看 t.due=23 却只练 5 句会困惑。完整体验靠 finishSession「继续下一组」接续 */
-      var _dueBS = Math.max(1, mem.settings.batchSize || 10);
-      var _dueFirst = Math.min(t.due, _dueBS);
-      var _dueLbl = t.due > _dueFirst
-        ? ' 开始到期复习（先练 ' + _dueFirst + ' / 共 ' + t.due + ' 句）'
-        : ' 开始到期复习（' + t.due + ' 句）';
-      h.push('<button class="btn primary" id="homeBtnDue">' + ic('refresh') + _dueLbl + '</button>');
-    } else {
-      if(t.weak > 0) h.push('<button class="btn" id="homeBtnWeak">' + ic('warn') + ' 复习需巩固 ' + t.weak + '</button>');
-      if(t.book > 0) h.push('<button class="btn" id="homeBtnBook">' + ic('book') + ' 复习错题 ' + t.book + '</button>');
-      h.push('<button class="btn ghost" id="homeGoDecks">' + ic('book') + ' 去题库学新句</button>');
-    }
-    h.push('</div>');
+    h.push('<div class="home-actions">'
+      + '<button class="btn ghost" id="homeGoDecks">' + ic('book') + ' 去题库学新句</button>'
+      + '</div>');
   }
   h.push('</div>');
 
