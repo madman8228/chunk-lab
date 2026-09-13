@@ -870,10 +870,13 @@ function check(name, cond, detail) {
     const w4c = await p4c.evaluate(function () {
       return {
         rows: document.querySelectorAll('#statsBody .wrong-row').length,
-        text: (document.getElementById('statsBody') || {}).textContent || ''
+        text: (document.getElementById('statsBody') || {}).textContent || '',
+        topPracticeButton: !!document.getElementById('btnPracticeWrong'),
+        tabPracticeButton: !!document.getElementById('btnPracticeWrongTab')
       };
     });
     check('reinforce 4c: stats 错题本 tab 渲染错题', w4c.rows === 1 && w4c.text.indexOf('Visible wrong sentence.') >= 0, JSON.stringify(w4c));
+    check('reinforce 4c: 练习入口收拢到错题本 tab', !w4c.topPracticeButton && w4c.tabPracticeButton, JSON.stringify(w4c));
     check('reinforce 4c: 零 pageerror', errs4c.length === 0, errs4c.join('|'));
     await p4c.close(); await c4c.close();
   }

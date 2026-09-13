@@ -146,7 +146,10 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .badge.new{background:#eef1f6;color:var(--muted)}
 .badge.learn{background:var(--accent-soft);color:var(--accent)}
 
-.wrong-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.wrong-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.wrong-head .count{font-size:12.5px;color:var(--bad)}
+.wrong-head .spacer{flex:1}
+.wrong-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--border);background:transparent}
 .wrong-row .sen{flex:1;min-width:0}
 .wrong-row .en{font-size:13.5px;font-weight:600;line-height:1.3}
 .wrong-row .cn{font-size:11.5px;color:var(--faint);margin-top:1px}
@@ -182,7 +185,6 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
   .page-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px;margin-bottom:8px}
   .page-head .spacer{display:none}
   .page-head h2{font-size:17px;white-space:nowrap}
-  #btnPracticeWrong{white-space:nowrap;padding:4px 8px;font-size:12px}
   .stats-cards{margin-bottom:8px}
   .stats-cards .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:6px}
   .stats-cards .kpi-rounds{display:none}
@@ -250,8 +252,6 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
   <div class="page-head">
     <button class="btn sm ghost" id="statsBack" title="返回主页"><span data-icon="arrowL"></span>返回</button>
     <h2><span data-icon="stats"></span> 学习档案</h2>
-    <span class="spacer"></span>
-    <button class="btn sm primary" id="btnPracticeWrong" title="练习错题本中所有句子"><span data-icon="target"></span>练习错题</button>
   </div>
 
   <div class="stats-cards" id="statsCards"></div>
@@ -442,8 +442,7 @@ function renderStats(){
     '<div class="stat-card ok"><div class="k">熟练句子</div><div class="v">'+masteredCnt+'</div></div>'+
     '<div class="stat-card '+(weakCnt>0?'warn':'ok')+'" title="'+(weakCnt>0?'需要复习巩固的句子':'没有待巩固句子，状态良好')+'"><div class="k">需巩固</div><div class="v">'+weakCnt+'</div>'+
       (weakCnt>0 ? '<button class="start-btn" id="startWeak">开始学习 '+(window.Icons?Icons.svg('arrowR'):'')+'</button>' : '')+'</div>'+
-    '<div class="stat-card '+(bookCnt>0?'':'ok')+'" title="'+(bookCnt>0?'练习中答错的句子':'错题本是空的，状态良好')+'"><div class="k">错题本</div><div class="v">'+bookCnt+'</div>'+
-      (bookCnt>0 ? '<button class="start-btn" id="startBook">开始学习 '+(window.Icons?Icons.svg('arrowR'):'')+'</button>' : '')+'</div>'+
+    '<div class="stat-card '+(bookCnt>0?'':'ok')+'" title="'+(bookCnt>0?'练习中答错的句子':'错题本是空的，状态良好')+'"><div class="k">错题本</div><div class="v">'+bookCnt+'</div></div>'+
     '</div>';
   /* 空态引导：新档案先展示「可长成的形态」，示例只造计数、主动装入、本页可撤销 */
   var heroHtml = '';
@@ -596,7 +595,6 @@ function renderStats(){
   }
 
   var sw = $('startWeak'); if(sw) sw.onclick = practiceWeakSentences;
-  var sb = $('startBook'); if(sb) sb.onclick = practiceWrongBook;
   var db = $('btnDemoStats'); if(db) db.onclick = installDemoStats;
   var ud = $('btnUndoDemo'); if(ud) ud.onclick = undoDemoStats;
 }
@@ -843,8 +841,10 @@ function renderWrongBook(body){
     body.innerHTML = '<div class="empty-tip">错题本是空的。练习时答错的句子会自动加入这里，跨会话保留。</div>';
     return;
   }
-  var html = '<div style="display:flex;justify-content:flex-end;margin-bottom:8px">'+
-    '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">'+(window.Icons?Icons.svg('trash'):'')+' 清空错题本</button></div>';
+  var html = '<div class="wrong-head">'+
+    '<b>错题本</b><span class="count">'+book.length+' 句</span><span class="spacer"></span>'+
+    '<button class="btn sm primary" id="btnPracticeWrongTab">开始复习</button>'+
+    '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
   html += '<div class="stats-list">';
   listPage(book.slice().reverse(), 'wrong').forEach(function(b){
     var mine = '';
@@ -863,6 +863,7 @@ function renderWrongBook(body){
   html += '</div>';
   body.innerHTML = html;
   body.insertAdjacentHTML('beforeend', listPager(book.length,'wrong'));
+  var bp = $('btnPracticeWrongTab'); if(bp) bp.onclick = practiceWrongBook;
   var bc = $('btnClearWrongBook'); if(bc) bc.onclick = function(){ if(confirm('清空错题本？')){ mem.reinforceBook = []; saveStore(); renderStats(); } };
   Array.prototype.forEach.call(body.querySelectorAll('.wrong-del'), function(btn){
     btn.onclick = function(){
@@ -1056,7 +1057,6 @@ Array.prototype.forEach.call($('statsFilter').children, function(b){
     renderStats();
   };
 });
-$('btnPracticeWrong').onclick = practiceWrongBook;
 /* 移动端记录采用渐进式展示：点击整行展开/收起次数、对错和最近练习时间。
    桌面端详情始终可见，因此不改变原有交互。 */
 function toggleSentenceDetail(row){
