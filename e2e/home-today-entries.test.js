@@ -69,8 +69,8 @@ function check(name, ok, detail) {
 /* 逐场景独立 context 注入 stats（本地模式：abort /api，不拉云不覆盖注入数据）。
    /content 不 abort：ContentRepo 加载 manifest 后 ensureDeck('d1') 对「非内置 id」直接回退注入牌组，
    不会 404；且内置牌组无 bySentence，不会污染 due/weak 计数。 */
-async function scenarioPage(browser, initFn) {
-  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+async function scenarioPage(browser, initFn, viewport) {
+  const ctx = await browser.newContext({ viewport: viewport || { width: 1280, height: 800 } });
   const page = await ctx.newPage();
   await page.route('**/api/**', function (r) { r.abort('failed'); });
   await page.route('**/content/**', function (r) { r.abort('failed'); });
@@ -128,6 +128,29 @@ function initZeroDue() {
     best: {}, mastered: {}, deletedItems: {}, reinforceBook: [],
     stats: { totalRounds: 1, totalAnswered: 1, bySentence: by },
     settings: { mode: 'choose', skipMastered: false, batchSize: 10 }
+  }));
+}
+
+function initBookOnly() {
+  function fnv8(str) { var h = 0x811c9dc5; str = String(str == null ? '' : str); for (var i = 0; i < str.length; i++) { h = Math.imul(h ^ str.charCodeAt(i), 0x01000193) >>> 0; } var hex = (h >>> 0).toString(16); while (hex.length < 8) hex = '0' + hex; return hex; }
+  localStorage.clear();
+  localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+  var now = Date.now();
+  var sentence = 'Book sentence one.';
+  var cid = fnv8(sentence);
+  var by = {};
+  by['d1#' + cid] = { deckId: 'd1', deckName: '测试题库', sentence: sentence, translation: '错题句子一。', chunks: ['Book', 'sentence one.'], hints: ['', ''], times: 1, okTimes: 0, wrongTimes: 1, streak: 0, maxStreak: 0, lastAt: now, interval: 1, ease: 2.5, dueAt: now + 86400000 };
+  localStorage.setItem('chunklab.v1', JSON.stringify({
+    version: 2,
+    decks: [{ id: 'd1', name: '测试题库', items: [
+      { sentence: sentence, translation: '错题句子一。', chunks: ['Book', 'sentence one.'], hints: ['', ''], cid: cid }
+    ] }],
+    best: {}, mastered: {}, deletedItems: {}, reinforceBook: [{
+      _key: 'd1::' + sentence, deckId: 'd1', deckName: '测试题库', sentence: sentence,
+      translation: '错题句子一。', chunks: ['Book', 'sentence one.'], hints: ['', ''], mistakes: [{ chunkIdx: 0, chunk: 'Book', userAnswer: '', hint: '' }]
+    }],
+    stats: { totalRounds: 1, totalAnswered: 1, bySentence: by },
+    settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: true, celebrate: 'confetti', autoSpeak: false, darkMode: false }
   }));
 }
 
@@ -277,7 +300,72 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       await sp.ctx.close();
     }
 
-    /* ===== 场景 C：截图（38 到期 / 3 需巩固 / 0 错题本） ===== */
+    /* ===== 场景 C：移动端入口/可访问性（360 + 390，book>0） ===== */
+    for (const viewport of [{ width: 360, height: 740 }, { width: 390, height: 844 }]) {
+      const sp = await scenarioPage(browser, initBookOnly, viewport);
+      const page = sp.page;
+      const errors = [];
+      const rangeErrors = [];
+      page.on('pageerror', function (e) {
+        errors.push(e.message);
+        if (/Range|selectNodeContents/i.test(e.message)) rangeErrors.push(e.message);
+      });
+      page.on('console', function (msg) {
+        if (/Range|selectNodeContents/i.test(msg.text())) rangeErrors.push(msg.text());
+      });
+      const mobile = await page.evaluate(function () {
+        var root = document.documentElement;
+        var ids = ['homeBtnDue', 'homeBtnWeak', 'homeBtnBook'];
+        var cards = {};
+        ids.forEach(function (id) {
+          var el = document.getElementById(id);
+          var r = el && el.getBoundingClientRect();
+          cards[id] = el ? {
+            disabled: el.disabled,
+            type: el.getAttribute('type'),
+            tabIndex: el.tabIndex,
+            width: r ? r.width : 0,
+            height: r ? r.height : 0,
+            text: (el.textContent || '').trim()
+          } : null;
+        });
+        return {
+          scrollWidth: root.scrollWidth,
+          clientWidth: root.clientWidth,
+          cards: cards,
+          bookText: (document.getElementById('homeBtnBook') || {}).textContent || ''
+        };
+      });
+      var book = mobile.cards.homeBtnBook;
+      var label = viewport.width + 'px';
+      check('C ' + label + ': 页面无横向溢出', mobile.scrollWidth <= mobile.clientWidth, JSON.stringify({ scrollWidth: mobile.scrollWidth, clientWidth: mobile.clientWidth }));
+      check('C ' + label + ': 错题本计数卡存在且可点', !!book && book.disabled === false && /错题本/.test(mobile.bookText), JSON.stringify(book));
+      check('C ' + label + ': 三张卡保持原生按钮语义', ['homeBtnDue', 'homeBtnWeak', 'homeBtnBook'].every(function (id) { var c = mobile.cards[id]; return c && c.type === 'button' && c.tabIndex >= 0; }), JSON.stringify(mobile.cards));
+      check('C ' + label + ': 可用卡点击区域至少 44×44', !!book && book.width >= 44 && book.height >= 44, JSON.stringify({ width: book && book.width, height: book && book.height }));
+
+      var keyboardOk = false;
+      var keyboardDbg = {};
+      try {
+        await page.locator('#homeBtnBook').focus();
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(function () {
+          var d = document.getElementById('deckName');
+          return d && /错题/.test(d.textContent.replace(/<!--[\s\S]*?-->/g, ''));
+        }, { timeout: 8000 });
+        keyboardOk = true;
+      } catch (e) {}
+      keyboardDbg = await page.evaluate(function () {
+        var d = document.getElementById('deckName');
+        var p = document.getElementById('pagePractice');
+        return { deckName: d ? d.textContent.replace(/<!--[\s\S]*?-->/g, '') : 'missing', practiceHidden: p ? p.classList.contains('hidden') : 'missing' };
+      });
+      check('C ' + label + ': 错题本卡支持键盘 Enter 进入练习', keyboardOk, JSON.stringify(keyboardDbg));
+      check('C ' + label + ': 无 Range/selectNodeContents 错误', rangeErrors.length === 0, rangeErrors.join(' | '));
+      check('C ' + label + ': 无页面脚本异常', errors.length === 0, errors.join(' | '));
+      await sp.ctx.close();
+    }
+
+    /* ===== 场景 D：截图（38 到期 / 3 需巩固 / 0 错题本） ===== */
     {
       const sp = await scenarioPage(browser, initBig);
       const page = sp.page;
