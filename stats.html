@@ -228,6 +228,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <script src="auth-ui.js"></script>
 <script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
+<script src="srs.js"></script>
 <script>
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
 if(window.Icons) Icons.install();
@@ -597,7 +598,7 @@ function renderReviewList(body){
       html += '<div class="srow"><div class="sen">'+
         '<div class="en">'+esc(d.it.sentence)+'</div>'+
         '<div class="cn">'+esc(d.it.translation||'')+'</div></div>'+
-        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' 已逾期 '+(d.st.dueAt ? Math.max(0, Math.round((Date.now()-d.st.dueAt)/86400000)) : 0)+' 天 · '+esc(displayDeckName(d.deck.name))+'</div></div>';
+        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' '+CL.srs.dueLabel(d.st)+' · '+esc(displayDeckName(d.deck.name))+'</div></div>';
     });
     html += '</div>';
   } else {
