@@ -176,6 +176,61 @@ function check(name, cond, detail) {
   check('main: 朗读使用无容器喇叭图标', ok.speakText.trim() === '' && ok.speakClass && ok.speakBorder === 'none', JSON.stringify(ok));
   check('main: 零 pageerror', errs.length === 0, errs.join('|'));
 
+  /* ===== 1a. SW 自动激活后不应残留“发现新版本”提示 =====
+   * 最小复现：updatefound → installed → activated，且 registration.waiting=null。
+   * 旧实现只看 installed + controller，在 worker 已激活后仍显示刷新提示。 */
+  const swUpdateCtx = await browser.newContext({ viewport: { width: 1280, height: 800 }, serviceWorkers: 'block' });
+  const swUpdatePage = await swUpdateCtx.newPage();
+  const swUpdateErrors = [];
+  swUpdatePage.on('pageerror', function (e) { swUpdateErrors.push(e.message); });
+  await swUpdatePage.route('**/api/**', function (r) { r.abort('failed'); });
+  await swUpdatePage.addInitScript(function () {
+    var fake = {
+      controller: {},
+      _registration: null,
+      getRegistration: function () { return Promise.resolve(this._registration); },
+      register: function () {
+        var reg = {
+          active: { state: 'activated' }, waiting: null, installing: null,
+          _listeners: {},
+          addEventListener: function (name, fn) { (this._listeners[name] || (this._listeners[name] = [])).push(fn); },
+          update: function () { return Promise.resolve(); }
+        };
+        this._registration = reg;
+        window.__fakeSWRegistration = reg;
+        return Promise.resolve(reg);
+      }
+    };
+    fake.simulateAutoActivatedUpdate = function () {
+      var reg = this._registration;
+      var worker = { state: 'installing', _listeners: {}, addEventListener: function (name, fn) { (this._listeners[name] || (this._listeners[name] = [])).push(fn); } };
+      reg.installing = worker;
+      (reg._listeners.updatefound || []).forEach(function (fn) { fn(); });
+      worker.state = 'installed';
+      (worker._listeners.statechange || []).forEach(function (fn) { fn(); });
+      reg.installing = null;
+      reg.waiting = null;
+      reg.active = worker;
+      worker.state = 'activated';
+      (worker._listeners.statechange || []).forEach(function (fn) { fn(); });
+    };
+    Object.defineProperty(navigator, 'serviceWorker', { configurable: true, value: fake });
+  });
+  await swUpdatePage.goto(BASE + '/main.html?sw-update-test=1', { waitUntil: 'domcontentloaded' });
+  await swUpdatePage.waitForSelector('#homeBody', { timeout: 10000 });
+  await swUpdatePage.waitForTimeout(300);
+  await swUpdatePage.evaluate(function () { navigator.serviceWorker.simulateAutoActivatedUpdate(); });
+  await swUpdatePage.waitForTimeout(100);
+  const swUpdateState = await swUpdatePage.evaluate(function () {
+    var t = document.getElementById('updateToast');
+    var reg = navigator.serviceWorker.getRegistration ? navigator.serviceWorker.getRegistration() : null;
+    return { display: t ? getComputedStyle(t).display : 'missing', reg: !!reg };
+  });
+  check('main: SW 自动激活后不显示多余刷新提示', swUpdateState.display === 'none', JSON.stringify(swUpdateState));
+  check('main: SW 更新生命周期测试零 pageerror', swUpdateErrors.length === 0, swUpdateErrors.join('|'));
+  await swUpdatePage.close();
+  await swUpdateCtx.close();
+
   /* ===== 1b. 练习页退出当前课程：只离开当前练习，不清除学习记录 ===== */
   const exitCtx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const pExit = await exitCtx.newPage();

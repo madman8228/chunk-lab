@@ -5179,7 +5179,12 @@ if('serviceWorker' in navigator){
         if(!newSW) return;
         newSW.addEventListener('statechange', function(){
           if(newSW.state === 'installed' && navigator.serviceWorker.controller){
-            showUpdateToast();
+            /* 本项目的 SW 会 skipWaiting 自动激活；installed 事件先于 activated 到达。
+               只有仍停在 registration.waiting 的 worker 才需要用户刷新，避免自动激活后
+               每次更新都残留“发现新版本 / 刷新”提示。 */
+            setTimeout(function(){
+              if(reg.waiting === newSW) showUpdateToast();
+            }, 0);
           }
         });
       });
