@@ -61,5 +61,21 @@ console.log('【dueLabel 展示】');
 assertEq(srs.dueLabel({ dueAt: NOW + 3*86400000 }, NOW), '还有 3 天', '3 天后');
 assertEq(srs.dueLabel({ dueAt: NOW - 2*86400000 }, NOW), '已逾期 2 天', '逾期 2 天');
 
+console.log('【阶段 / 排期文案（SRS 白盒化）】');
+assertEq(srs.STAGES, 9, 'STAGES = 序列长度 9');
+assertEq(srs.stageOf({ repetition: 0 }), 1, '未练过 / 答错重置 → 第 1 阶段');
+assertEq(srs.stageOf({ repetition: 1 }), 1, '连对 1 次 → 第 1 阶段');
+assertEq(srs.stageOf({ repetition: 3 }), 3, '连对 3 次 → 第 3 阶段');
+assertEq(srs.stageOf({ repetition: 99 }), 9, '超出序列 → 封顶第 9 阶段');
+assertEq(srs.stageOf({}), 1, '缺字段 → 第 1 阶段（不抛错）');
+assertEq(srs.scheduleLabel({ dueAt: 0, repetition: 2 }, NOW), '', '未排期（dueAt=0）→ 空串，UI 据此不显示');
+assertEq(srs.scheduleLabel({ dueAt: NOW + 3*86400000, repetition: 2 }, NOW), '第 2 阶段 · 还有 3 天', '排期文案');
+assertEq(srs.scheduleLabel({ dueAt: NOW - 2*86400000, repetition: 1 }, NOW), '第 1 阶段 · 已逾期 2 天', '逾期文案');
+/* 端到端：文案必须由 recordResult 的结果推导，不能各写一套 */
+var _st = srs.normalize({});
+_st = srs.recordResult(_st, true, NOW);
+_st = srs.recordResult(_st, true, NOW);
+assertEq(srs.scheduleLabel(_st, NOW), '第 2 阶段 · 还有 3 天', 'recordResult 连对 2 次后的文案一致');
+
 console.log('\n结果：' + pass + ' 通过 / ' + fail + ' 失败');
 process.exit(fail ? 1 : 0);

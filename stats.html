@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>学习档案 · Chunk Lab</title>
 <style>
-:root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#74716a;--faint:#9a958c;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#23855a;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#a16207;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
+:root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px;min-width:0}
@@ -78,9 +78,6 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 
 /* 跨页跳转消息 */
 .cross-page-hint{font-size:12px;color:var(--faint);text-align:center;padding:8px 12px;background:var(--surface-2);border-radius:8px;margin-top:14px}
-.review-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.review-head .review-count{font-size:12.5px;color:var(--warn)}
-.review-head .spacer{flex:1}
 /* 宪法 SVG icon 尺寸（main.html 已定义，stats.html 缺失导致 SVG 占满父容器） */
 .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
@@ -133,8 +130,6 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
   .stats-detail-row.is-expanded .meta{display:block}
   .stats-detail-row .row-detail-toggle{display:block}
   .cross-page-hint{display:none}
-  .review-head{gap:6px}
-  .review-head button{margin-left:auto}
 }
 /* 超窄屏：图表卡片改为上下排列，保证环形图图例与柱状图标签可读 */
 @media (max-width:380px){
@@ -170,12 +165,17 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .stats-tabs{border-bottom:1px solid var(--border);gap:6px;margin:0 0 12px}
 .stats-tabs .tab{border:0;border-radius:0;background:transparent;min-height:44px;padding:8px 12px}
 .stats-tabs .tab.on{background:transparent;border-bottom:2px solid var(--accent)}
+.stats-tabs .tab-count{margin-left:3px;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.stats-tabs .tab.on .tab-count{color:var(--accent)}
 .stats-list{gap:0}
 .srow,.review-row{border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent;padding:8px 0}
 /* 桌面端以信息密度优先；移动端在下方媒体查询中恢复触控尺寸。 */
 .btn,.stats-filter .f,.wrong-del,.row-detail-toggle{min-height:0}
 .wrong-del,.row-detail-toggle{min-width:0}
 button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(min-width:601px){
+  .stats-body .srow{padding:6px 0}
+}
 @media(max-width:600px){
   .wrap{padding:12px 14px 24px}
   .overview-primary,.overview-secondary{gap:10px}
@@ -201,7 +201,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
   <div class="stats-tabs" id="statsTabs">
     <button class="tab on" data-tab="overview">概览</button>
     <button class="tab" data-tab="sent">句子记录</button>
-    <button class="tab" data-tab="review">复习</button>
+    <button class="tab" data-tab="review">待复习<span class="tab-count" id="reviewTabCount"></span></button>
     <button class="tab" data-tab="wrong">错题本</button>
   </div>
 
@@ -362,6 +362,8 @@ function renderStats(){
     b.classList.toggle('on',b.dataset.tab===_statsTab);
     b.setAttribute('aria-pressed',String(b.dataset.tab===_statsTab));
   });
+  var reviewTabCount = $('reviewTabCount');
+  if(reviewTabCount) reviewTabCount.textContent = '('+dueCnt+')';
   $('statsFilter').style.display=_statsTab==='sent'?'flex':'none';
   Array.prototype.forEach.call($('statsFilter').children,function(b){b.classList.toggle('on',b.dataset.f===_statsFilter);});
   var body=$('statsBody');
@@ -492,7 +494,6 @@ function renderWrongBook(body){
   var shownBook = _wrongBookFilter === 'focus' ? focusBook : book;
   var html = '<div class="wrong-head">'+
     '<b>错题本</b><span class="count">'+book.length+' 句</span><span class="spacer"></span>'+
-    '<button class="btn sm primary" id="btnPracticeWrongTab">开始复习</button>'+
     '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
   html += '<div class="stats-filter wrong-filter">'+
     '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+book.length+'</button>'+
@@ -519,7 +520,6 @@ function renderWrongBook(body){
   }
   body.innerHTML = html;
   body.insertAdjacentHTML('beforeend', listPager(shownBook.length,'wrong'));
-  var bp = $('btnPracticeWrongTab'); if(bp) bp.onclick = practiceWrongBook;
   var bc = $('btnClearWrongBook'); if(bc) bc.onclick = function(){ if(confirm('清空错题本？')){ mem.reinforceBook = []; saveStore(); renderStats(); } };
   Array.prototype.forEach.call(body.querySelectorAll('[data-wrong-filter]'), function(btn){
     btn.onclick = function(){
@@ -588,12 +588,7 @@ function dueSentences(){
 }
 function renderReviewList(body){
   var dues = dueSentences();
-  var html = '<div class="review-head">'+
-    '<b style="font-size:13px;color:var(--warn)">待复习</b> '+
-    '<span class="review-count">'+(dues.length>0?'<b style="color:var(--warn)">'+dues.length+' 句</b>':'0 句')+'</span>'+ 
-    '<span class="spacer"></span>'+ 
-    (dues.length>0 ? '<button class="btn primary" id="startDueReview">开始复习</button>' : '')+
-    '</div>';
+  var html = '';
   if(dues.length){
     html += '<div class="stats-list">';
     listPage(dues,'due').forEach(function(d){
@@ -635,7 +630,6 @@ function renderReviewList(body){
   html += '</div>';
 
   body.innerHTML = html;
-  var sd = $('startDueReview'); if(sd) sd.onclick = practiceDue;
   Array.prototype.forEach.call(body.querySelectorAll('[data-rev-deck]'), function(btn){
     btn.onclick = function(){
       var deckId = btn.getAttribute('data-rev-deck');

@@ -66,13 +66,30 @@
     return '已逾期 ' + (-diffDays) + ' 天';
   }
 
+  /* 阶段序号（1-based，上限=序列长度）：repetition=0（新句 / 答错重置）视为第 1 阶段。
+     UI 用它回答「这句现在在记忆曲线的哪一格」，而不是只给一个孤立的天数。 */
+  function stageOf(st){
+    var c = normalize(st);
+    return Math.min(Math.max(c.repetition, 1), SEQ.length);
+  }
+
+  /* 一次性文案：'第 N 阶段 · 还有 X 天'。未排过期（dueAt=0）返回 ''，与 dueLabel 同口径，
+     调用方据此决定「是否显示」——不要在 UI 里重写判断。 */
+  function scheduleLabel(st, now){
+    if(!st || typeof st.dueAt !== 'number' || !st.dueAt) return '';
+    return '第 ' + stageOf(st) + ' 阶段 · ' + dueLabel(st, now);
+  }
+
   global.CL = global.CL || {};
   global.CL.srs = {
     SEQ: SEQ.slice(),
+    STAGES: SEQ.length,
     normalize: normalize,
     recordResult: recordResult,
     isDue: isDue,
     dueRank: dueRank,
-    dueLabel: dueLabel
+    dueLabel: dueLabel,
+    stageOf: stageOf,
+    scheduleLabel: scheduleLabel
   };
 })(window);

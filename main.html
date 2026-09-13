@@ -23,15 +23,15 @@
   --border:#dedbd4;
   --border-strong:#c8c2b8;
   --text:#202326;
-  --muted:#74716a;
-  --faint:#9a958c;
+  --muted:#5f5c55;
+  --faint:#6b6861;
   --accent:#2c62c9;
   --accent-soft:#e8efff;
-  --ok:#23855a;
+  --ok:#1c7050;
   --ok-soft:#e8f5ee;
   --bad:#b6483e;
   --bad-soft:#f7eae8;
-  --warn:#a16207;
+  --warn:#965a06;
   --shadow:0 1px 2px rgba(46,43,37,.06), 0 8px 24px -12px rgba(46,43,37,.18);
   --radius:12px;
 }
@@ -497,6 +497,16 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .reveal-tag.miss{ background:#fff8e6;color:#946c00;border-color:#fbbf24 }
 .reveal-tag .tag-icon{ font-size:11px }
 
+/* SRS 白盒化（2026-09-13）：答完一句后显式给出「下次复习：第 N 阶段 · 还有 X 天」，
+   消除「系统为什么现在考这句」的黑盒感。文案统一由 CL.srs.scheduleLabel 产出，
+   UI 不重写间隔算法，未排期时该行整块隐藏。 */
+.sched-line{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:8px;font-size:12px;color:var(--muted);
+}
+.sched-line.hidden{display:none}
+.sched-line .sched-ic{display:inline-flex;align-items:center;font-size:13px;color:var(--accent)}
+
 .stage-tip-bar{display:flex;align-items:center;justify-content:center;padding:2px 0 3px;margin-bottom:2px}
 .stage-tip-bar .foot-tip{display:inline-flex;align-items:center;gap:4px}
 .stage-foot{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;min-height:32px}
@@ -713,6 +723,16 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .cal-foot b{color:var(--text);font-variant-numeric:tabular-nums}
 /* 今日入口只保留“待复习”和“错题本”两张卡；需巩固在错题本内筛选。 */
 .home-today-counts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0;max-width:240px}
+/* 每日目标进度（2026-09-13）：只在用户设过目标（dailyGoal>0）时被渲染出来。
+   未设目标 → 整个 .home-goal 节点不存在（不是 display:none），
+   所以「到底设没设目标」可以直接用 DOM 是否存在来断言，不需要读存储。 */
+.home-goal{margin:12px 0 0;max-width:240px}
+.home-goal .hg-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted)}
+.home-goal .hg-row b{color:var(--text);font-size:14px;font-variant-numeric:tabular-nums}
+.home-goal .hg-bar{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border);margin-top:6px;overflow:hidden}
+.home-goal .hg-bar i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .25s ease}
+.home-goal.done .hg-row,.home-goal.done .hg-row b{color:var(--ok)}
+.home-goal.done .hg-bar i{background:var(--ok)}
 /* 2026-09-11 老板要求「数字横向居中」：.n / .l 都是块级 div，默认贴左。
    卡片有固定宽度，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
    用 text-align:center 一次管住数字与标签（只居中数字、标签仍贴左会立刻显歪）。 */
@@ -1022,7 +1042,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .icon-spin{animation:iconSpin 1.2s linear infinite}
 @keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 /* 深色模式 */
-.dark{--bg:#1d1b18;--surface:#272420;--surface-2:#201e1b;--border:#3a362f;--border-strong:#4c473e;--text:#e8e4dd;--muted:#a89f92;--faint:#6f6a61;--accent:#5b8def;--accent-soft:#1c2542;--ok:#34d399;--ok-soft:#0d2c1f;--bad:#f87171;--bad-soft:#2e1515;--warn:#fbbf24;--shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5)}
+.dark{--bg:#1d1b18;--surface:#272420;--surface-2:#201e1b;--border:#3a362f;--border-strong:#4c473e;--text:#e8e4dd;--muted:#a89f92;--faint:#918c82;--accent:#5b8def;--accent-soft:#1c2542;--ok:#34d399;--ok-soft:#0d2c1f;--bad:#f87171;--bad-soft:#2e1515;--warn:#fbbf24;--shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5)}
 .dark .kbd{background:var(--surface);color:var(--muted);border-color:var(--border-strong)}
 </style>
 </head>
@@ -1104,6 +1124,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         <span class="reveal-tag hidden" id="revealTagWrap"></span>
       </div>
     </div>
+    <!-- SRS 白盒化：答完一句后显示「下次复习：第 N 阶段 · 还有 X 天」（未排期时整行隐藏） -->
+    <div class="sched-line hidden" id="schedLine"></div>
 
     <!-- 标熟：直接是按钮自身的圆环动画徽章（无单独提示条） -->
     <div class="track-line">
@@ -1348,6 +1370,16 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
             <option value="15">15</option>
             <option value="20">20</option>
             <option value="30">30</option>
+          </select>
+        </label>
+        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px" data-hint="每天想练几句；设好后首页「今日」显示进度，选「关闭」则完全不显示">
+          <span class="set-hit"><strong style="font-size:14px">每日目标</strong></span>
+          <select id="setDailyGoal" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
+            <option value="0">关闭</option>
+            <option value="10">10 句</option>
+            <option value="20">20 句</option>
+            <option value="30">30 句</option>
+            <option value="50">50 句</option>
           </select>
         </label>
         <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="连对多题时烟花慢速累积绽放">
@@ -2286,6 +2318,8 @@ function renderQ(){
 
   $('topbarReveal').classList.add('hidden');
   $('revealTagWrap').classList.add('hidden');
+  /* SRS 排期行：新一句开始时先隐藏，答完由 renderSchedLine 决定是否显示 */
+  var _sl = $('schedLine'); if(_sl){ _sl.classList.add('hidden'); _sl.innerHTML = ''; }
   $('btnSpeak').classList.add('hidden');
   /* 详解按钮：总是显示（查看已打包的静态讲解；AI 解读已停用，见 switchExplainTab） */
   var _expB = $('btnExplain');
@@ -3036,7 +3070,9 @@ function finishSentence(){
   /* 清空 stage 底部候选按钮（不进入下一 chunk 答题） */
   $('stageChoices').innerHTML = '';
   /* 学习统计：按句累计练习次数 / 答对答错 / 最近时间 */
-  recordSentenceResult(it, S.perfectThis);
+  var _st = recordSentenceResult(it, S.perfectThis);
+  /* SRS 白盒化：把本次排期结果立刻回给用户（纯展示，调度仍走 CL.srs） */
+  renderSchedLine(_st);
 
   /* 轻量状态 tag：挂在中文下方 */
   var tagWrap = $('revealTagWrap');
@@ -3511,6 +3547,19 @@ function recordSentenceResult(it, ok){
   return st;
 }
 
+/* SRS 白盒化的展示层（2026-09-13）：一句练完就把「下次什么时候考、现在在记忆曲线第几格」告诉用户。
+   纯展示，不做调度决策——调度唯一事实来源是 CL.srs.recordResult（ADR-003），
+   UI 绝不自己重算间隔，否则两处口径迟早漂移。 */
+function renderSchedLine(st){
+  var el = $('schedLine');
+  if(!el) return;
+  var txt = (window.CL && CL.srs && CL.srs.scheduleLabel) ? CL.srs.scheduleLabel(st, Date.now()) : '';
+  if(!txt){ el.classList.add('hidden'); el.innerHTML = ''; return; }
+  el.innerHTML = '<span class="sched-ic">'+(window.Icons?Icons.svg('calendar'):'')+'</span>'
+    + '<span>下次复习：'+esc(txt)+'</span>';
+  el.classList.remove('hidden');
+}
+
 function finishSession(){
   S.finished = true;
   stopAutoNext();  /* 会话结束，清理倒计时 */
@@ -3907,6 +3956,22 @@ function renderHome(){
        +   '<div class="n' + (t.due ? '' : ' ok') + '">' + t.due + '</div><div class="l">待复习</div>' + _chev(t.due) + '</button>'
        + '<button class="htc book" type="button" id="homeBtnBook"' + (t.book ? '' : ' disabled') + ' aria-label="复习错题本，' + t.book + ' 句">'
        +   '<div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div>' + _chev(t.book) + '</button>'
+      + '</div>');
+  }
+  /* —— 每日目标进度（仅当用户设过目标时才存在这个节点） ——
+     口径 = 今日「答完的句子数」= CL.dailyActivity 的 answered（由持久事件派生），
+     不新增 stats 字段 → 不需要动 mergeStats（我们曾在 daysLog 上踩过漏合并的坑）。
+     未设目标 → 节点完全不渲染，对老用户零打扰。 */
+  var _goal = normDailyGoal(mem.settings && mem.settings.dailyGoal);
+  if(_goal > 0){
+    var _tk = CL.ymd(new Date());
+    var _todayAnswered = (_activity[_tk] && _activity[_tk].answered) || 0;
+    var _done = _todayAnswered >= _goal;
+    var _pct = Math.min(100, Math.round(_todayAnswered / _goal * 100));
+    h.push('<div class="home-goal' + (_done ? ' done' : '') + '">'
+      + '<div class="hg-row"><span>今日 <b>' + _todayAnswered + '</b> / ' + _goal + ' 句</span>'
+      + '<span>' + (_done ? (ic('check') + ' 目标完成') : (_pct + '%')) + '</span></div>'
+      + '<div class="hg-bar"><i style="width:' + _pct + '%"></i></div>'
       + '</div>');
   }
   h.push('</div>');
@@ -4632,6 +4697,14 @@ function normBatchSize(v){
   }
   return best;
 }
+/* 每日目标（产品层设置，2026-09-13）：0 = 关闭 → 首页今日卡完全不显示进度。
+   与 batchSize 不同，这里**不做就近吸附**：非法值一律回落 0（关闭），
+   避免用户手改存储后凭空多出一个自己没设过的目标。 */
+function normDailyGoal(v){
+  var n = parseInt(v, 10);
+  if(isNaN(n) || n <= 0) return 0;
+  return [10, 20, 30, 50].indexOf(n) >= 0 ? n : 0;
+}
 
 /* ===== 设置项说明浮层（2026-09-11 老板要求：说明小字不再常显） =====
    说明文本挂在行级 data-hint 上，本浮层是唯一展示出口。
@@ -4711,6 +4784,7 @@ $('btnSettingsTop').onclick = function(){
   $('setMode').value = mem.settings.mode || 'choose';
   $('setSkipMastered').checked = mem.settings.skipMastered !== false;
   $('setBatchSize').value = String(normBatchSize(mem.settings.batchSize));
+  $('setDailyGoal').value = String(normDailyGoal(mem.settings.dailyGoal));
   $('setFxStack').checked = mem.settings.fxStack !== false;
   $('setCelebrate').value = mem.settings.celebrate || 'confetti';
   $('setAutoSpeak').checked = !!mem.settings.autoSpeak;
@@ -4792,6 +4866,7 @@ $('btnSaveSettings').onclick = function(){
   mem.settings.mode = $('setMode').value;
   mem.settings.skipMastered = $('setSkipMastered').checked;
   mem.settings.batchSize = normBatchSize($('setBatchSize').value);
+  mem.settings.dailyGoal = normDailyGoal($('setDailyGoal').value);
   mem.settings.fxStack = $('setFxStack').checked;
   mem.settings.celebrate = $('setCelebrate').value;
   mem.settings.autoSpeak = $('setAutoSpeak').checked;
@@ -4805,6 +4880,8 @@ $('btnSaveSettings').onclick = function(){
   /* 深色模式 */
   if(mem.settings.darkMode){ document.documentElement.classList.add('dark'); }
   else{ document.documentElement.classList.remove('dark'); }
+  /* 每日目标是首页可见设置：保存后立刻重渲染今日卡，不必等刷新 */
+  try{ renderHome(); }catch(e){}
   closeMasks();
 };
 /* API Key 显示/隐藏切换 */
