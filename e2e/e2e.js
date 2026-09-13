@@ -651,6 +651,23 @@ function check(name, cond, detail) {
   check('decks: 添加题库入口保留且内置题库不复制副本', decksLayout.importText.indexOf('添加题库') >= 0 && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
   check('decks: 题库卡片高度紧凑', decksLayout.maxRowHeight <= 60, JSON.stringify(decksLayout));
   check('decks: 零 pageerror', errsd.length === 0, errsd.join('|'));
+  await pd.click('#btnImportDecks');
+  await pd.waitForSelector('#impMask:not([hidden])', { timeout: 5000 });
+  await pd.fill('#deckName', '我的通勤句子');
+  await pd.selectOption('#optCat', '2');
+  await pd.fill('#customSentences', 'Could you tell me where the station is?\nI need to get there before noon.');
+  const addPrompt = await pd.locator('#promptBox').evaluate(function (el) { return el.value; });
+  const addForm = await pd.evaluate(function () {
+    return {
+      categorySelect: document.getElementById('optCat') && document.getElementById('optCat').tagName === 'SELECT',
+      categoryCount: document.querySelectorAll('#optCat option').length,
+      hasOldCategoryGrid: !!document.querySelector('#cats, #impMask .cat-btn'),
+      hasCustomInput: !!document.getElementById('customSentences')
+    };
+  });
+  check('decks: 添加题库改为紧凑参数选择', addForm.categorySelect && addForm.categoryCount === 12 && !addForm.hasOldCategoryGrid && addForm.hasCustomInput, JSON.stringify(addForm));
+  check('decks: 指定句子会进入自动更新的 Prompt', addPrompt.indexOf('只整理下面指定的 2 句') >= 0 && addPrompt.indexOf('Could you tell me where the station is?') >= 0 && addPrompt.indexOf('I need to get there before noon.') >= 0, addPrompt);
+  await pd.click('#impMask [data-close]');
 
   const ps = await ctx.newPage();
   const errss = [];
@@ -695,9 +712,9 @@ function check(name, cond, detail) {
       }).map(function (el) { return Math.round(el.getBoundingClientRect().top); });
     }
     var head = tops('.page-head > *');
-    var kpi = tops('.kpi-row > .stat-card');
-    var pair = tops('.pair-row > .stat-card');
-    var rounds = document.querySelector('.kpi-rounds');
+    var kpi = tops('.overview-primary > .overview-metric');
+    var pair = tops('.activity-day');
+    var rounds = document.querySelector('.overview-note');
     var firstRow = document.querySelector('.stats-detail-row');
     var firstNum = firstRow && firstRow.querySelector('.row-num');
     var firstEn = firstRow && firstRow.querySelector('.en');
@@ -714,11 +731,12 @@ function check(name, cond, detail) {
     };
   });
   check('stats mobile: 顶部操作保持一行', statsMobileLayout.headRows === 1, JSON.stringify(statsMobileLayout));
-  check('stats mobile: KPI 两列排列', statsMobileLayout.kpiFirstTwoSameRow, JSON.stringify(statsMobileLayout));
-  check('stats mobile: KPI 压缩为 4 项', statsMobileLayout.visibleKpiCount === 4 && statsMobileLayout.roundsDisplay === 'none', JSON.stringify(statsMobileLayout));
-  check('stats mobile: 超窄屏图表卡片上下排列', !statsMobileLayout.pairSameRow, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 核心指标保持一行', statsMobileLayout.kpiFirstTwoSameRow, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 3 项核心指标且轮次口径可见', statsMobileLayout.visibleKpiCount === 3 && statsMobileLayout.roundsDisplay !== 'none', JSON.stringify(statsMobileLayout));
+  check('stats mobile: 近7天日期保持一行', statsMobileLayout.pairSameRow, JSON.stringify(statsMobileLayout));
   check('stats mobile: 记录序号与首行内容对齐', statsMobileLayout.rowNumberAligned, JSON.stringify(statsMobileLayout));
   check('stats mobile: 无横向溢出', !statsMobileLayout.overflowX, JSON.stringify(statsMobileLayout));
+  await psm.click('[data-tab="sent"]');
   const statsDetail = await psm.evaluate(function () {
     var row = document.querySelector('.stats-detail-row');
     if(!row) return { exists: false };

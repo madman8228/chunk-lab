@@ -73,23 +73,18 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .msg.ok{color:var(--ok)}
 .msg.show{display:block}
 
-/* 导入题库弹窗：压缩分类步骤的垂直占用，让 Prompt 与 JSON 区域更早进入视野 */
+/* 添加题库弹窗：参数集中一行，指定句子可选，Prompt 与 JSON 紧邻 */
 #impMask .modal-body{padding-top:10px;padding-bottom:10px}
 #impMask .modal-foot{padding-top:8px;padding-bottom:8px}
 #impMask .step-title{margin-top:8px;margin-bottom:4px}
-#impMask .cats{gap:6px;margin:5px 0}
-#impMask .cat-btn{padding:7px 8px}
-#impMask .cat-btn .cat-icon{font-size:18px;margin-bottom:2px}
-#impMask .cat-btn .cat-desc{margin-top:1px}
-
-/* 导入 — 分类网格 */
-.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
-.cat-btn{border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:10px 12px;font-size:13px;cursor:pointer;text-align:center;transition:border-color .15s, background .15s, box-shadow .15s;position:relative}
-.cat-btn:hover{border-color:var(--accent);color:var(--accent)}
-.cat-btn.on{border-color:var(--accent);background:linear-gradient(135deg,var(--accent-soft),rgba(26,92,255,.06));color:var(--accent);font-weight:600;box-shadow:0 0 0 3px rgba(26,92,255,.08)}
-.cat-btn .cat-icon{font-size:20px;display:block;margin-bottom:4px;line-height:1}
-.cat-btn .cat-name{font-weight:600;font-size:13px;display:block}
-.cat-btn .cat-desc{font-size:11px;color:var(--faint);margin-top:2px;line-height:1.3;display:block}
+.add-options{display:grid;grid-template-columns:1.35fr .7fr .75fr .85fr;gap:8px;margin:2px 0 10px}
+.add-field{display:flex;flex-direction:column;gap:3px;min-width:0}
+.add-field label{font-size:12px;color:var(--muted);font-weight:600}
+.add-field select,.add-field input{width:100%;min-width:0;padding:5px 7px;border:1px solid var(--border);border-radius:7px;background:var(--surface);font-size:12.5px}
+.add-custom{display:block;margin:4px 0 10px}
+.add-custom .lbl{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
+.add-custom textarea{width:100%;min-height:60px;border:1px solid var(--border);border-radius:8px;padding:7px 9px;background:var(--surface);font-size:12.5px;line-height:1.45;resize:vertical}
+.add-custom .hint{display:block;margin-top:3px;color:var(--faint);font-size:11.5px}
 .step-title{font-size:13.5px;font-weight:700;margin:12px 0 6px;display:flex;align-items:center;gap:6px}
 .step-title .step{display:inline-flex;width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center}
 .step-title .note{font-size:12px;color:var(--faint);font-weight:400}
@@ -200,11 +195,7 @@ textarea{outline:none;resize:vertical}
   .modal-head > span:not(.spacer){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .modal-body{padding:12px 14px}
   .modal-foot{padding:9px 14px;border-radius:0}
-  #impMask .cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
-  #impMask .cat-btn{padding:6px 4px;border-radius:8px}
-  #impMask .cat-btn .cat-icon{font-size:17px}
-  #impMask .cat-btn .cat-name{font-size:12px}
-  #impMask .cat-btn .cat-desc{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #impMask .add-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
 }
 </style>
 </head>
@@ -278,22 +269,27 @@ textarea{outline:none;resize:vertical}
   <div class="modal">
     <div class="modal-head">
       <h3>添加题库</h3>
-      <span style="font-size:12.5px;color:var(--faint)">选分类 → 复制 Prompt → 喂大模型 → 粘回 JSON</span>
+      <span style="font-size:12.5px;color:var(--faint)">选参数或指定句子 → 复制提示词 → 粘回 JSON</span>
       <span class="spacer"></span>
       <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
     <div class="modal-body">
       <div class="imp-append-banner hidden" id="impAppend"></div>
-      <div class="step-title"><span class="step">1</span>选择练习分类<span class="note">点击卡片生成对应 Prompt</span></div>
-      <div class="cats" id="cats"></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:6px 0">
-        <span class="opt">题量 <select id="optCount"><option>10</option><option selected>15</option><option>20</option><option>30</option></select></span>
-        <span class="opt">难度 <select id="optLevel"><option>入门</option><option selected>进阶</option><option>高阶</option></select></span>
-        <span class="opt">意群数 <select id="optChunks"><option value="2-3">2-3 个</option><option value="2-4" selected>2-4 个</option><option value="3-5">3-5 个</option></select></span>
+      <div class="add-options">
+        <div class="add-field"><label for="deckName">题库名称</label><input id="deckName" type="text" placeholder="如：我的口语句子"></div>
+        <div class="add-field"><label for="optCat">主题</label><select id="optCat"></select></div>
+        <div class="add-field"><label for="optCount">题量</label><select id="optCount"><option>10</option><option selected>15</option><option>20</option><option>30</option></select></div>
+        <div class="add-field"><label for="optLevel">难度</label><select id="optLevel"><option>入门</option><option selected>进阶</option><option>高阶</option></select></div>
+        <div class="add-field"><label for="optChunks">意群</label><select id="optChunks"><option value="2-3">2-3 个</option><option value="2-4" selected>2-4 个</option><option value="3-5">3-5 个</option></select></div>
       </div>
-      <div class="step-title"><span class="step">2</span>Prompt<span class="note">DeepSeek / 元宝 / ChatGPT 均可</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px"><span data-icon="copy"></span>复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
-      <textarea id="promptBox" readonly placeholder="先在上方点一个分类卡片…" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;background:var(--surface-2)"></textarea>
-      <div class="step-title" style="margin-top:14px"><span class="step">3</span>粘贴模型返回的 JSON<span class="note">也可拖入 .json 文件</span><button class="btn sm ghost" id="btnClear" style="margin-left:8px">清空</button></div>
+      <label class="add-custom" for="customSentences">
+        <span class="lbl">指定句子（可选，每行一句）</span>
+        <textarea id="customSentences" rows="3" placeholder="留空：按主题生成新句子\n填写：只整理你指定的句子，不新增、不改写"></textarea>
+        <span class="hint">适合只添加 1-2 句；大模型会补齐翻译、意群和中文提示。</span>
+      </label>
+      <div class="step-title"><span class="step">1</span>提示词<span class="note">复制给任意外部大模型</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px"><span data-icon="copy"></span>复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
+      <textarea id="promptBox" readonly placeholder="提示词会根据上方参数自动更新…" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;background:var(--surface-2)"></textarea>
+      <div class="step-title" style="margin-top:14px"><span class="step">2</span>粘贴模型返回的 JSON<span class="note">也可拖入 .json 文件</span><button class="btn sm ghost" id="btnClear" style="margin-left:8px">清空</button></div>
       <div class="drop" id="drop">
         <textarea id="jsonBox" placeholder='粘贴 JSON… 或拖入 / 点击选择文件'></textarea>
         <input type="file" id="fileInput" accept=".json,.txt,application/json" class="hidden">
@@ -302,7 +298,7 @@ textarea{outline:none;resize:vertical}
       <div class="msg" id="impMsg"></div>
     </div>
     <div class="modal-foot">
-      <button class="btn primary" id="btnValidate">校验并导入</button>
+      <button class="btn primary" id="btnValidate">校验并添加</button>
       <button class="btn hidden" id="btnPartial">仅导入通过的题</button>
       <span class="spacer"></span>
       <button class="btn ghost" data-close>取消</button>
@@ -1151,12 +1147,14 @@ $('batchExplainApply').onclick = function(){
 var lastValid = null;
 function openImport(deck){
   _appendDeck = deck || null;
+  var name = $('deckName'); if(name) name.value = '';
+  var custom = $('customSentences'); if(custom) custom.value = '';
   $('impAppend').classList.toggle('hidden', !deck);
   if(deck){
     $('impAppend').textContent = '追加模式：将导入到「'+deck.name+'」';
     $('btnValidate').textContent = '校验并导入（追加）';
   } else {
-    $('btnValidate').textContent = '校验并导入';
+    $('btnValidate').textContent = '校验并添加';
   }
   $('impMsg').className = 'msg';
   $('impMsg').textContent = '';
@@ -1165,34 +1163,54 @@ function openImport(deck){
   $('impMask').hidden = false;
 }
 function renderCats(){
-  var box = $('cats');
-  box.innerHTML = '';
-  CATS.forEach(function(c){
-    var b = document.createElement('div');
-    b.className = 'cat-btn' + (c===_selCat ? ' on' : '');
-    b.innerHTML = '<span class="cat-icon">'+esc(c.icon)+'</span>'+
-      '<span class="cat-name">'+esc(c.name)+'</span>'+
-      '<span class="cat-desc">'+esc(c.zh)+'</span>';
-    b.onclick = function(){ _selCat = c; renderCats(); renderPrompt(); };
-    box.appendChild(b);
+  var select = $('optCat');
+  if(!select) return renderPrompt();
+  select.innerHTML = '';
+  CATS.forEach(function(c, i){
+    var opt = document.createElement('option');
+    opt.value = String(i);
+    opt.textContent = c.name;
+    select.appendChild(opt);
   });
+  var selected = CATS.indexOf(_selCat);
+  select.value = String(selected >= 0 ? selected : 0);
   renderPrompt();
 }
+function selectedCategory(){
+  var select = $('optCat');
+  var idx = select ? parseInt(select.value, 10) : -1;
+  return CATS[idx] || CATS[0];
+}
+function requestedSentences(){
+  var field = $('customSentences');
+  if(!field) return [];
+  return field.value.split(/\r?\n/).map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; });
+}
 function renderPrompt(){
-  var c = _selCat || CATS[0];
-  var p = [
-    '生成 '+($('optCount').value || 15)+' 条英语口语练习句子（'+c.en+'），JSON 格式，不要输出其他文字：',
+  var c = selectedCategory();
+  _selCat = c;
+  var raw = requestedSentences();
+  var format = [
+    '输出 JSON 数组，不要输出其他文字：',
     '[',
-    '  {',
-    '    "sentence": "完整英文句子",',
-    '    "translation": "中文翻译",',
-    '    "chunks": ["意群1", "意群2", "意群3"],',
-    '    "hints": ["意群1中文提示", "意群2中文提示", "意群3中文提示"]',
-    '  }',
+    '  { "sentence": "完整英文句子", "translation": "中文翻译", "chunks": ["意群1", "意群2"], "hints": ["提示1", "提示2"] }',
     ']',
-    '要求：chunks 用单个空格连接后必须与 sentence 完全一致（忽略大小写和标点）；每个句子 2-'+($('optChunks').value || '2-4')+' 个意群；难度：'+($('optLevel').value||'进阶')+'。'
-  ].join('\n');
-  $('promptBox').value = p;
+    '要求：chunks 用单个空格连接后必须与 sentence 完全一致（忽略大小写和标点）；每个句子 '+($('optChunks').value || '2-4')+' 个意群；难度：'+($('optLevel').value||'进阶')+'。'
+  ];
+  var p;
+  if(raw.length){
+    p = [
+      '请只整理下面指定的 '+raw.length+' 句英语口语句子，生成练习数据。',
+      '不要新增句子，不要改写 sentence 原文；主题语境参考「'+c.name+'」，目标难度为「'+($('optLevel').value||'进阶')+'」。',
+      ''
+    ].concat(format, ['', '待处理句子：', raw.slice(0, 60).map(function(s, i){ return (i+1)+'. '+s; }).join('\n')]);
+  } else {
+    p = [
+      '请生成 '+($('optCount').value || 15)+' 条英语口语练习句子，主题为「'+c.name+'」（'+c.en+'）。',
+      ''
+    ].concat(format);
+  }
+  $('promptBox').value = p.join('\n');
 }
 function showCopyTip(msg){
   var el = $('copyTip'); if(el){ el.textContent = msg; setTimeout(function(){ el.textContent=''; }, 1500); }
@@ -1228,7 +1246,7 @@ function validateDeck(data){
     }
     else { good.push(it); }
   });
-  return { ok: errs.length===0 && good.length>0, errs:errs, good:good, name:String(name).trim()||'导入题库' };
+  return { ok: errs.length===0 && good.length>0, errs:errs, good:good, name:String(name).trim()||'我的句子' };
 }
 function doValidate(autoImport){
   var msg = $('impMsg');
@@ -1254,9 +1272,11 @@ function doValidate(autoImport){
     return;
   }
   if(r.ok){
+    var customName = ($('deckName') || {}).value;
+    if(customName && customName.trim()) r.name = customName.trim();
     lastValid = r;
     msg.className='msg ok show';
-    msg.innerHTML = '<b>校验通过</b>：'+r.good.length+' 题全部合格，正在导入…';
+    msg.innerHTML = '<b>校验通过</b>：'+r.good.length+' 题全部合格，正在添加…';
     if(autoImport!==false) commitImport(r.good, r.name);
     return;
   }
@@ -1269,8 +1289,8 @@ function doValidate(autoImport){
   msg.className='msg err show';
   msg.innerHTML = '<b>校验未全部通过</b>：合格 '+r.good.length+' 题，问题 '+r.errs.length+' 处'+
     '<ul style="margin:8px 0 4px;padding-left:18px;font-size:12.5px">'+li+(r.errs.length>8?'<li>… 还有 '+(r.errs.length-8)+' 处</li>':'')+'</ul>'+
-    '<div style="margin-top:6px;font-size:12px">可点右下「仅导入通过的题」，或把错误反馈给模型修正。</div>';
-  $('btnPartial').textContent = '仅导入通过的 '+r.good.length+' 题';
+    '<div style="margin-top:6px;font-size:12px">可点右下「仅添加通过的题」，或把错误反馈给模型修正。</div>';
+  $('btnPartial').textContent = '仅添加通过的 '+r.good.length+' 题';
   $('btnPartial').classList.toggle('hidden', r.good.length===0);
 }
 function mergeDedup(existing, incoming){
@@ -1681,9 +1701,10 @@ function bindCommon(){
   $('btnClear').onclick = function(){ $('jsonBox').value=''; };
   $('btnValidate').onclick = function(){ doValidate(true); };
   $('btnPartial').onclick = function(){ if(lastValid) commitImport(lastValid.good, lastValid.name); };
-  ['optCount','optLevel','optChunks'].forEach(function(id){
+  ['optCat','optCount','optLevel','optChunks'].forEach(function(id){
     $(id).onchange = renderPrompt;
   });
+  $('customSentences').oninput = renderPrompt;
   /* 拖拽/文件 */
   setupDrop('drop', 'fileInput', 'jsonBox');
   setupDrop('appendDrop', 'appendFileInput', 'appendJsonBox');
