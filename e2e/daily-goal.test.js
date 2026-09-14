@@ -96,6 +96,38 @@ function readGoal(page) {
   });
 }
 
+/* 结算屏的今日目标节点（与首页 .home-goal 同结构，但挂在 #result 里、用 .finish-goal 类）。 */
+function readFinishGoal(page) {
+  return page.evaluate(function () {
+    var el = document.querySelector('#result .finish-goal');
+    if (!el) return { exists: false, text: '', done: false, barWidth: '' };
+    var bar = el.querySelector('.hg-bar i');
+    return {
+      exists: true,
+      text: (el.textContent || '').replace(/\s+/g, ' ').trim(),
+      done: el.classList.contains('done'),
+      barWidth: bar ? (bar.style.width || '') : ''
+    };
+  });
+}
+
+/* 走一遍真实练习直到结算屏：注入的 d1 只有 1 句 2 个 chunk（choose 模式点对两次），
+   再触发 nextQuestion() → 队列已空 → finishSession() 渲染结算屏。
+   不点 #btnNext 而直接调入口函数，是因为该按钮带自动倒计时，直接调用更确定。 */
+async function playToResult(page) {
+  await page.evaluate(function () { startDeck(findDeck('d1'), 0); });
+  await page.waitForSelector('#stageChoices .choice', { timeout: 12000 });
+  var answers = ['Goal probe', 'sentence.'];
+  for (var i = 0; i < answers.length; i++) {
+    await page.locator('#stageChoices .choice[data-v="' + answers[i] + '"]').click();
+    await page.waitForTimeout(250);
+  }
+  await page.waitForTimeout(400);
+  await page.evaluate(function () { nextQuestion(); });
+  await page.waitForSelector('#result:not(.hidden)', { timeout: 12000 });
+  await page.waitForTimeout(250);
+}
+
 async function openHome(seed) {
   const ctx = await browser.newContext({ viewport: { width: 1200, height: 900 } });
   const page = await ctx.newPage();
@@ -160,6 +192,65 @@ async function openHome(seed) {
       const fake = await readGoal(s.page);
       check('C3 负向自证：塞入同结构节点后 C1 的断言会变红', fake.exists === true && fake.text.indexOf('今日 0 / 20 句') >= 0,
         JSON.stringify(fake));
+      await s.ctx.close();
+    }
+
+    /* ===== D：结算屏「今日目标」信号（产品评审缺口④「分批折损完成感」） ===== */
+    console.log('【场景 D：目标 20，练完一组 → 结算屏显示今日进度】');
+    {
+      const s = await openHome({ goal: 20, answered: 12 });
+      await playToResult(s.page);
+      const g = await readFinishGoal(s.page);
+      const exp = await s.page.evaluate(function () {
+        var a = CL.dailyActivity(mem)[CL.ymd(new Date())] || {};
+        return { answered: a.answered || 0, goal: normDailyGoal(mem.settings.dailyGoal) };
+      });
+      check('D1 结算屏出现今日目标节点', g.exists === true, JSON.stringify(g));
+      /* 断言「与 CL.dailyActivity 同口径」而不是写死数字：答题本身也会追加 answer 事件，
+         写死数字会假红；同口径断言才真正证明这里没有第二套按日统计。 */
+      check('D2 文案与 CL.dailyActivity 同口径',
+        g.text.indexOf('今日已练 ' + exp.answered + ' / ' + exp.goal + ' 句') >= 0,
+        '实际 "' + g.text + '" / answered=' + exp.answered);
+      check('D3 未达标 → 显示「还差 N 句」且非 done',
+        g.done === false && g.text.indexOf('还差 ' + Math.max(0, exp.goal - exp.answered) + ' 句') >= 0,
+        JSON.stringify(g));
+      check('D4 无 JS 运行时错误', s.errs.length === 0, s.errs.join(' | '));
+      await s.ctx.close();
+    }
+
+    /* ===== E：达标后结算屏必须给出完成信号 ===== */
+    console.log('【场景 E：目标 20，今日已练满 → 结算屏完成态】');
+    {
+      const s = await openHome({ goal: 20, answered: 20 });
+      await playToResult(s.page);
+      const g = await readFinishGoal(s.page);
+      check('E1 达标 → done 态', g.done === true, JSON.stringify(g));
+      check('E2 文案含「目标完成」', g.text.indexOf('目标完成') >= 0, '实际 "' + g.text + '"');
+      check('E3 进度条铺满 100%', g.barWidth === '100%', '实际 "' + g.barWidth + '"');
+      await s.ctx.close();
+    }
+
+    /* ===== F：未设目标 → 结算屏不渲染该节点（老用户零打扰）+ 负向自证 ===== */
+    console.log('【场景 F：未设目标 → 结算屏不渲染该节点】');
+    {
+      const s = await openHome({ answered: 12 });
+      await playToResult(s.page);
+      const g = await readFinishGoal(s.page);
+      check('F1 未设目标 → 结算屏无今日目标节点', g.exists === false, JSON.stringify(g));
+      check('F2 结算屏其他内容仍正常渲染（不是整屏被砍）', await s.page.evaluate(function () {
+        return !!document.querySelector('#result h2');
+      }) === true);
+      /* 负向自证：塞一个同结构节点进去，F1 的断言必须能识别出来 ——
+         否则 F1 只是「选择器永远匹配不到」的恒真断言。 */
+      await s.page.evaluate(function () {
+        var d = document.createElement('div');
+        d.className = 'finish-goal';
+        d.innerHTML = '<div class="hg-row"><span>今日已练 <b>0</b> / 20 句</span><span>还差 20 句</span></div><div class="hg-bar"><i style="width:0%"></i></div>';
+        document.getElementById('result').appendChild(d);
+      });
+      const fake = await readFinishGoal(s.page);
+      check('F3 负向自证：塞入同结构节点后 F1 会变红',
+        fake.exists === true && fake.text.indexOf('今日已练 0 / 20 句') >= 0, JSON.stringify(fake));
       await s.ctx.close();
     }
 

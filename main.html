@@ -734,13 +734,16 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 /* 每日目标进度（2026-09-13）：只在用户设过目标（dailyGoal>0）时被渲染出来。
    未设目标 → 整个 .home-goal 节点不存在（不是 display:none），
    所以「到底设没设目标」可以直接用 DOM 是否存在来断言，不需要读存储。 */
-.home-goal{margin:12px 0 0;max-width:240px}
-.home-goal .hg-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted)}
-.home-goal .hg-row b{color:var(--text);font-size:14px;font-variant-numeric:tabular-nums}
-.home-goal .hg-bar{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border);margin-top:6px;overflow:hidden}
-.home-goal .hg-bar i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .25s ease}
-.home-goal.done .hg-row,.home-goal.done .hg-row b{color:var(--ok)}
-.home-goal.done .hg-bar i{background:var(--ok)}
+.home-goal,.finish-goal{margin:12px 0 0;max-width:240px}
+.home-goal .hg-row,.finish-goal .hg-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted)}
+.home-goal .hg-row b,.finish-goal .hg-row b{color:var(--text);font-size:14px;font-variant-numeric:tabular-nums}
+.home-goal .hg-bar,.finish-goal .hg-bar{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border);margin-top:6px;overflow:hidden}
+.home-goal .hg-bar i,.finish-goal .hg-bar i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .25s ease}
+.home-goal.done .hg-row,.home-goal.done .hg-row b,.finish-goal.done .hg-row,.finish-goal.done .hg-row b{color:var(--ok)}
+.home-goal.done .hg-bar i,.finish-goal.done .hg-bar i{background:var(--ok)}
+/* 结算屏是宽内容区，不套首页 240px 窄栏宽（源码顺序在后 → 覆盖上面的 max-width）。
+   结算屏的今日目标（2026-09-14，产品评审缺口④「分批折损完成感」）。 */
+.finish-goal{max-width:360px;margin:16px 0 0}
 /* 2026-09-11 老板要求「数字横向居中」：.n / .l 都是块级 div，默认贴左。
    卡片有固定宽度，内容宽度只有 ~46px → 数字看着偏在左上角很别扭。
    用 text-align:center 一次管住数字与标签（只居中数字、标签仍贴左会立刻显歪）。 */
@@ -3666,6 +3669,23 @@ function finishSession(){
       `<div class="stat"><div class="k">最高连击</div><div class="v">`+S.maxCombo+'</div></div>'+
       _reinforceStatHTML+
     `</div>`;
+
+  /* ★ 今日目标进度（2026-09-14，产品评审缺口④「分批折损完成感」）：
+     分批练习时用户最想知道的是「今天到底做完没有」，结算屏必须回答这个问题。
+     口径与首页 .home-goal 完全一致 —— CL.dailyActivity(mem) 的 answered（当日 answer 事件数），
+     不新增 stats 字段；未设目标（dailyGoal=0）时整个节点不渲染，对老用户零打扰。 */
+  var _fGoal = normDailyGoal(mem.settings && mem.settings.dailyGoal);
+  if(_fGoal > 0){
+    var _fToday = ((CL.dailyActivity(mem) || {})[CL.ymd(new Date())] || {}).answered || 0;
+    var _fDone = _fToday >= _fGoal;
+    var _fPct = Math.min(100, Math.round(_fToday / _fGoal * 100));
+    var _fRemain = Math.max(0, _fGoal - _fToday);
+    html += '<div class="finish-goal' + (_fDone ? ' done' : '') + '">'
+      + '<div class="hg-row"><span>今日已练 <b>' + _fToday + '</b> / ' + _fGoal + ' 句</span>'
+      + '<span>' + (_fDone ? ((window.Icons ? Icons.svg('check') : '') + ' 目标完成') : ('还差 ' + _fRemain + ' 句')) + '</span></div>'
+      + '<div class="hg-bar"><i style="width:' + _fPct + '%"></i></div>'
+      + '</div>';
+  }
 
   if(S.wrong.length){
     html += '<div class="review"><h4>错题回顾 · '+S.wrong.length+' 句</h4>';
