@@ -467,6 +467,11 @@ function check(name, cond, detail) {
     var todayCs = todayCell ? getComputedStyle(todayCell) : null;
     return {
       hasEmpty: !!(body && body.querySelector('.home-empty')),
+      todayCard: (function(){
+        var card = body && body.querySelector('.home-today-card');
+        var cs = card ? getComputedStyle(card) : null;
+        return { exists: !!card, compact: !!(card && card.classList.contains('has-activity')), display: cs ? cs.display : 'missing' };
+      })(),
       hasNoDueText: body && (body.innerText || '').indexOf('今日无到期') >= 0,
       hasRestText: body && (body.innerText || '').indexOf('练点新的或休息') >= 0,
       hasNewDeckBtn: !!(body && body.querySelector('#homeGoDecks')),
@@ -481,6 +486,8 @@ function check(name, cond, detail) {
     !noDueState.hasRestText, JSON.stringify(noDueState));
   check('home: 已有学习记录时不渲染重复的"去题库学新句"按钮',
     !noDueState.hasNewDeckBtn, JSON.stringify(noDueState));
+  check('home: 今日卡压缩为横向行动栏',
+    noDueState.todayCard.exists && noDueState.todayCard.compact && noDueState.todayCard.display === 'flex', JSON.stringify(noDueState.todayCard));
   check('cal: today cell 不再有 box-shadow 外框（防"hover 残留"视觉混淆，2026-09-10）',
     noDueState.todayBoxShadow === 'none' || noDueState.todayBoxShadow === '',
     JSON.stringify(noDueState));
@@ -516,7 +523,8 @@ function check(name, cond, detail) {
   await pRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
   const recentAccuracySummary = await pRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
   check('home: 最近练习不显示「续练这张」废话', recentAccuracySummary.indexOf('续练这张') < 0, recentAccuracySummary);
-  check('home: 最近练习显示最近一次正确率而非最佳正确率', recentAccuracySummary.trim() === '上次正确率 40%', recentAccuracySummary);
+  check('home: 最近练习显示课程覆盖进度', recentAccuracySummary.indexOf('已练 1 / 1 句') >= 0 && recentAccuracySummary.indexOf('100%') >= 0, recentAccuracySummary);
+  check('home: 最近练习显示最近一次正确率而非最佳正确率', recentAccuracySummary.indexOf('上次 40%') >= 0 && recentAccuracySummary.indexOf('100%') >= 0, recentAccuracySummary);
   await pRecentAccuracy.close();
   await ctxRecentAccuracy.close();
 
@@ -541,7 +549,8 @@ function check(name, cond, detail) {
   await pNoRecentAccuracy.goto(BASE + '/main.html?preview=no-recent-accuracy', { waitUntil: 'domcontentloaded' });
   await pNoRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
   const noCompletedSummary = await pNoRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
-  check('home: 未完成过练习不显示伪造的 0% 成绩', noCompletedSummary.indexOf('正确率') < 0 && noCompletedSummary.trim() === '1 句', noCompletedSummary);
+  check('home: 未完成过练习不显示伪造的正确率', noCompletedSummary.indexOf('上次') < 0 && noCompletedSummary.indexOf('正确率') < 0, noCompletedSummary);
+  check('home: 未完成过练习仍显示覆盖进度', noCompletedSummary.indexOf('已练 1 / 1 句') >= 0 && noCompletedSummary.indexOf('100%') >= 0, noCompletedSummary);
   await pNoRecentAccuracy.close();
   await ctxNoRecentAccuracy.close();
 

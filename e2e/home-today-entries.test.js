@@ -209,12 +209,14 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
           var c = btn.querySelector('.chev');
           if (!c) return { exists: false, svg: false, isSvg: false, text: '', visible: false };
           var svg = c.querySelector('svg');
+          var br = btn.getBoundingClientRect(), cr = c.getBoundingClientRect();
           return {
             exists: true,
             svg: !!svg,
             isSvg: !!svg && svg.tagName.toLowerCase() === 'svg',
             text: (c.textContent || '').trim(),
-            visible: getComputedStyle(c).display !== 'none'
+            visible: getComputedStyle(c).display !== 'none',
+            centered: Math.abs((cr.top + cr.height / 2) - (br.top + br.height / 2)) < 1
           };
         }
         return {
@@ -233,6 +235,7 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       check('A: #homeBtnBook 是 disabled（book=0 不可点）', st.bookExists && st.bookDisabled === true, 'disabled=' + st.bookDisabled);
       check('A: #homeBtnDue 有 .chev 且内含 <svg>', st.dueChev.exists && st.dueChev.isSvg, JSON.stringify(st.dueChev));
       check('A: #homeBtnDue 的 .chev 不是文本字符', st.dueChev.exists && st.dueChev.text === '' && st.dueChev.isSvg, 'text=' + JSON.stringify(st.dueChev.text));
+      check('A: #homeBtnDue 的箭头垂直居中', st.dueChev.centered, JSON.stringify(st.dueChev));
       check('A: #homeBtnBook 无可见 .chev（0 值去箭头）', st.bookChev.exists === false || st.bookChev.visible === false, JSON.stringify(st.bookChev));
       check('A: disabled #homeBtnBook 背景 == var(--surface)（去底色生效）',
         st.bookBg && st.surfaceBg && st.bookBg === st.surfaceBg,

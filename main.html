@@ -700,6 +700,14 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .home-card .hc-title .grow{flex:1}
 /* 今日聚合主卡 */
 .home-today-d{font-size:12.5px;color:var(--faint);margin:3px 0 0}
+/* 今日卡是行动入口，不是信息面板：有学习记录时压成一条横向行动栏，
+   让标题/日期与两个入口共享一行；没有设置每日目标时不制造空占位。 */
+.home-today-card.has-activity{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 16px}
+.home-today-card.has-activity>.hc-title{flex:0 0 auto;margin-bottom:0}
+.home-today-card.has-activity .home-today-counts{display:flex;gap:8px;margin:0;max-width:none}
+.home-today-card.has-activity .htc{display:flex;align-items:baseline;justify-content:center;gap:6px;padding:7px 12px;min-width:112px;min-height:44px}
+.home-today-card.has-activity .htc .l{margin-top:0}
+.home-today-card.has-activity .home-goal{margin:0}
 /* 本月打卡月历（2026-09-09，数据源 mem.daysLog，纯展示） */
 .cal-streak{display:inline-flex;align-items:center;gap:4px;color:#b04a18;font-weight:700;font-size:12.5px}
 .cal-streak svg{width:13px;height:13px;stroke-width:2}
@@ -746,7 +754,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .htc:hover:not(:disabled){border-color:var(--border-strong)}
 .htc:active:not(:disabled){transform:scale(.97)}
 .htc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.htc .chev{position:absolute;top:7px;right:7px;line-height:0}
+.htc .chev{position:absolute;top:50%;right:7px;line-height:0;transform:translateY(-50%)}
 .htc .chev .icon{width:12px;height:12px;color:var(--faint)}
 .htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
 .htc .l{font-size:11.5px;color:var(--faint);margin-top:2px}
@@ -767,7 +775,13 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .hd-row{display:flex;align-items:center;gap:12px;padding:10px 0;border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent}
 .hd-row .nm{font-weight:700;font-size:14px}
 .hd-row .sub{font-size:12px;color:var(--faint);margin-top:1px}
-.hd-row .grow{flex:1}
+.hd-row .grow{flex:1;min-width:0}
+.home-deck-progress{display:flex;align-items:center;gap:8px;line-height:1.3;white-space:nowrap}
+.home-deck-progress .pct{font-variant-numeric:tabular-nums;color:var(--muted)}
+.home-deck-progress .last-acc{margin-left:2px}
+.home-deck-progress-track{height:4px;margin-top:5px;border-radius:2px;background:var(--surface-2);overflow:hidden}
+.home-deck-progress-track i{display:block;height:100%;border-radius:2px;background:var(--accent);transition:width .25s ease}
+.home-deck-progress-track.done i{background:var(--ok)}
 .hd-row .btn{min-height:28px}
 .hd-row .btn.ghost{color:var(--accent);font-weight:600}
 /* 本月打卡 + 最近练习 合并左右布局：节省首页纵向空间 */
@@ -790,6 +804,11 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .home-card.merge-row .hc-title .merge-sep{opacity:.4;margin:0 2px;font-weight:400}
 .home-card.merge-row .hc-title .cal-streak{margin-left:auto}
 @media (max-width:640px){
+  .home-today-card.has-activity{display:block;padding:12px 14px}
+  .home-today-card.has-activity>.hc-title{margin-bottom:8px}
+  .home-today-card.has-activity .home-today-counts{gap:8px}
+  .home-today-card.has-activity .htc{flex:1;min-width:0}
+  .home-today-card.has-activity .home-goal{margin-top:10px}
   .home-card.merge-row{grid-template-columns:1fr;gap:14px}
   .home-card.merge-row .cal-side{padding-right:0;border-right:0;padding-bottom:10px;border-bottom:1px solid var(--border)}
   .home-card.merge-row .recent-side{padding-left:0;padding-top:2px}
@@ -3862,6 +3881,35 @@ function ensureStatDecks(deckIds){
   });
   return Promise.all(list.map(function(id){ return ContentRepo.ensureDeck(id, mem); }));
 }
+
+/* 首页课程进度：进度表示“已经接触过多少句”，不是把某次练习的得分冒充课程完成度。
+   统计按稳定的 deckId#cid 去重，因此重复练习不会把覆盖率算高；已删除句子也不计入。 */
+function deckLearningProgress(deck){
+  var total = Math.max(0, deckItemCount(deck));
+  var by = (mem.stats && mem.stats.bySentence) || {}, seen = {};
+  var prefix = String(deck && deck.id || '') + '#';
+  Object.keys(by).forEach(function(key){
+    if(key.indexOf(prefix) !== 0) return;
+    var st = by[key];
+    if(!st || !st.times) return;
+    var cid = key.slice(prefix.length);
+    if(CL.isItemDeleted(mem, deck.id, {cid:cid})) return;
+    seen[cid] = true;
+  });
+  var done = Math.min(total, Object.keys(seen).length);
+  return {done:done, total:total, pct:total ? Math.round(done / total * 100) : 0};
+}
+function deckProgressMarkup(deck, resumeIdx, best){
+  var p = deckLearningProgress(deck);
+  var current = resumeIdx > 0 ? '<span class="current">当前第 ' + Math.min(resumeIdx + 1, p.total || resumeIdx + 1) + ' 句</span>' : '';
+  var last = best && typeof best.lastAcc === 'number' && isFinite(best.lastAcc)
+    ? '<span class="last-acc">上次 ' + best.lastAcc + '%</span>' : '';
+  var aria = '已练 ' + p.done + ' / ' + p.total + ' 句，完成 ' + p.pct + '%';
+  return '<div class="sub home-deck-progress" role="progressbar" aria-label="' + aria + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + p.pct + '">' +
+    '<span>已练 ' + p.done + ' / ' + p.total + ' 句</span><span class="pct">' + p.pct + '%</span>' + current + last + '</div>' +
+    '<div class="home-deck-progress-track' + (p.pct >= 100 ? ' done' : '') + '" aria-hidden="true"><i style="width:' + p.pct + '%"></i></div>';
+}
+
 /* 到期复习队列（全库 srs- 临时队列：batchSize 分批、不写 best，与 stats.practiceDue 同构） */
 function startTodayDue(){
   function run(){
@@ -3935,7 +3983,7 @@ function renderHome(){
 
   var h = [];
   /* —— 今日卡 —— */
-  h.push('<div class="home-card"><div class="hc-title">' + ic('calendar') + '今日<span class="grow"></span><span class="home-hint">' + (new Date().getMonth()+1) + ' 月 ' + new Date().getDate() + ' 日</span></div>');
+   h.push('<div class="home-card home-today-card' + (hasEver ? ' has-activity' : '') + '"><div class="hc-title">' + ic('calendar') + '今日<span class="grow"></span><span class="home-hint">' + (new Date().getMonth()+1) + ' 月 ' + new Date().getDate() + ' 日</span></div>');
   /* 连续天数仍用于月历右侧摘要，不在今日卡片重复展示 */
   var _streakN = CL.streakDays(mem);
   var _activity = CL.dailyActivity(mem);
@@ -4003,22 +4051,14 @@ function renderHome(){
       + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>完成练习 <b>' + _mRounds + '</b> 轮<span class="s-dot">·</span>累计答题 <b>' + ((mem.stats && mem.stats.totalAnswered) || 0) + '</b> 句</div>';
     /* 右栏：继续/最近 deck rows */
     var _rows = [];
-    var recentAccuracy = function(best){
-      return best && typeof best.lastAcc === 'number' && isFinite(best.lastAcc)
-        ? '上次正确率 ' + best.lastAcc + '%' : '';
-    };
     if(resume){
       var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
-        var sub = resume.idx > 0
-          ? '进度 ' + resume.idx + ' / ' + deckItemCount(d1) + ' 句'
-          : (recentAccuracy(b1) || (deckItemCount(d1) ? deckItemCount(d1) + ' 句' : ''));
-        _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div><div class="sub">' + sub + '</div></div>'
+        _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div>' + deckProgressMarkup(d1, resume.idx, b1) + '</div>'
           + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
     }
     recent.forEach(function(d){
       var b = mem.best && mem.best[d.id];
-      var sub2 = recentAccuracy(b) || (deckItemCount(d) ? deckItemCount(d) + ' 句' : '');
-      _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div><div class="sub">' + sub2 + '</div></div>'
+      _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div>' + deckProgressMarkup(d, 0, b) + '</div>'
         + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
     });
 
