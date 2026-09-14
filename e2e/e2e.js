@@ -125,6 +125,48 @@ function check(name, cond, detail) {
           return Math.round(role.getBoundingClientRect().top - answer.getBoundingClientRect().bottom);
         }).filter(function(g){ return g !== null; });
         return gaps.length ? Math.max.apply(Math, gaps) : 0;
+      }()),
+      /* 角色标签文字对比度（2026-09-14）：.chunk-role 的底色来自题库 grammar[i].color，
+         曾被写成内联 color 直接当文字色 → 4 个数据色相实测 4.7/4.2/3.1/3.1 全部跌破 AA。
+         契约：色相只做底色，文字色由 CSS 统一（深色 / 弱化换色），任何题库配色都该达标。
+         这里同时算「负向自证」：把最差的数据色相压回内联 color，比值必须跌破 4.5，否则说明
+         这道闸量错了对象（量不到就没意义）。 */
+      roleBadge: (function () {
+        function lin(c) { c = c / 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+        function lum(r, g, b) { return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b); }
+        function parse(s) {
+          var m = /rgba?\(([^)]+)\)/.exec(s || '');
+          if (!m) return null;
+          var q = m[1].split(',').map(function (x) { return parseFloat(x); });
+          return { r: q[0], g: q[1], b: q[2], a: q.length > 3 ? q[3] : 1 };
+        }
+        var surface = parse(getComputedStyle(document.body).backgroundColor) || { r: 255, g: 253, b: 250, a: 1 };
+        function overSurface(c, k) { /* c 先按自身 alpha 叠到 surface，再按元素 opacity k 整体叠一次 */
+          var r = c.a * c.r + (1 - c.a) * surface.r, g = c.a * c.g + (1 - c.a) * surface.g, b = c.a * c.b + (1 - c.a) * surface.b;
+          return { r: k * r + (1 - k) * surface.r, g: k * g + (1 - k) * surface.g, b: k * b + (1 - k) * surface.b };
+        }
+        function ratioOf(el) {
+          var cs = getComputedStyle(el);
+          var fg = parse(cs.color), bg = parse(cs.backgroundColor);
+          if (!fg || !bg) return null;
+          var k = parseFloat(cs.opacity); if (isNaN(k)) k = 1;
+          var B = overSurface(bg, k), F = overSurface(fg, k);
+          var L1 = lum(F.r, F.g, F.b), L2 = lum(B.r, B.g, B.b);
+          return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+        }
+        var badges = Array.from(document.querySelectorAll('#track .chunk-role'));
+        if (!badges.length) return { count: 0, min: 0, opacityOk: true, negMin: 99 };
+        var min = Infinity, opacityOk = true;
+        badges.forEach(function (el) {
+          var r = ratioOf(el); if (r != null && r < min) min = r;
+          if (parseFloat(getComputedStyle(el).opacity) !== 1) opacityOk = false;
+        });
+        var saved = badges.map(function (el) { return el.style.color; });
+        badges.forEach(function (el) { el.style.color = '#c87033'; }); /* 最差数据色相 */
+        var negMin = Infinity;
+        badges.forEach(function (el) { var r = ratioOf(el); if (r != null && r < negMin) negMin = r; });
+        badges.forEach(function (el, i) { el.style.color = saved[i]; });
+        return { count: badges.length, min: Math.round(min * 100) / 100, opacityOk: opacityOk, negMin: Math.round(negMin * 100) / 100 };
       }())
     };
   });
@@ -160,6 +202,10 @@ function check(name, cond, detail) {
   check('main: 朗读按钮与英文句子垂直居中', speakCentering, 'button/track 未居中');
   check('main: 朗读按钮 Hover 无容器背景', speakHover === 'rgba(0, 0, 0, 0)', 'background=' + speakHover);
   check('main: chunk 标签靠近下划线', ok.answerRoleGap <= 3, 'gap=' + ok.answerRoleGap);
+  check('main: 角色标签文字对比度 >= AA 4.5（色相只做底色，不退化成文字色）',
+    ok.roleBadge.count > 0 && ok.roleBadge.min >= 4.5, JSON.stringify(ok.roleBadge));
+  check('main: 角色标签弱化不靠压 opacity（opacity 会把对比度拉低）', ok.roleBadge.opacityOk, JSON.stringify(ok.roleBadge));
+  check('main: 角色标签对比度护栏负向自证（压回数据色相必变红）', ok.roleBadge.negMin < 4.5, JSON.stringify(ok.roleBadge));
   await p.locator('#btnSound').click();
   await p.waitForTimeout(80);
   const soundSyncBadge = await p.evaluate(function () {
