@@ -2435,6 +2435,40 @@
     var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
     return _d.getFullYear() + '-' + pad(_d.getMonth()+1) + '-' + pad(_d.getDate());
   }
+  /* 统计审计：统一回答“累计答题”和“按日期活动”为什么可能不同。
+     totalAnswered / bySentence.times 是历史累计口径；events 是逐次活动口径。
+     events 上线以前的旧答题没有 at，不能安全地分配到某一天，所以这里只报告
+     未归档日期的数量，不把它们伪造进日历。事件按 id 去重，与 dailyActivity 保持一致。 */
+  function answerStatsAudit(mem){
+    var stats = (mem && mem.stats) || {}, by = stats.bySentence || {},
+      evs = Array.isArray(stats.events) ? stats.events : [], seen = new Set(),
+      sentenceAnswered = 0, eventAnswered = 0, datedAnswered = 0;
+    Object.keys(by).forEach(function(key){
+      var n = Number(by[key] && by[key].times);
+      if(isFinite(n) && n > 0) sentenceAnswered += n;
+    });
+    evs.forEach(function(ev){
+      if(!ev || ev.kind !== 'answer') return;
+      if(ev.id && seen.has(ev.id)) return;
+      if(ev.id) seen.add(ev.id);
+      eventAnswered++;
+      if(ev.at && !isNaN(new Date(ev.at).getTime())) datedAnswered++;
+    });
+    var storedAnswered = Math.max(0, Number(stats.totalAnswered) || 0);
+    /* 正常数据三者相等；若某个旧字段缺失，使用仍能证明答题发生过的较大值，
+       同时把差异暴露给界面，而不是继续显示一个偏小的累计数。 */
+    var totalAnswered = Math.max(storedAnswered, sentenceAnswered, eventAnswered);
+    return {
+      totalAnswered: totalAnswered,
+      storedAnswered: storedAnswered,
+      sentenceAnswered: sentenceAnswered,
+      eventAnswered: eventAnswered,
+      datedAnswered: datedAnswered,
+      undatedAnswered: Math.max(0, totalAnswered - datedAnswered),
+      legacyAnswered: Math.max(0, totalAnswered - eventAnswered),
+      hasMismatch: storedAnswered !== sentenceAnswered || datedAnswered !== totalAnswered
+    };
+  }
   /* Daily activity derives from durable events; legacy rounds remain a fallback.
      Never infer dates from aggregate totals or a sentence's latest timestamp. */
   function dailyActivity(mem){
@@ -2655,7 +2689,7 @@
     classifyStat: classifyStat,
     demoStatsSample: demoStatsSample,
     mergeStats: mergeStats,
-    ymd: ymd, dailyActivity: dailyActivity, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
+    ymd: ymd, answerStatsAudit: answerStatsAudit, dailyActivity: dailyActivity, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
     backfillDaysLog: backfillDaysLog,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
     fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,

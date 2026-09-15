@@ -14,7 +14,14 @@
 <style>
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html,body{margin:0;padding:0;color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{background:var(--bg)}
+body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,255,0) 62%),radial-gradient(760px 380px at 92% 0%,#e8f5ee 0%,rgba(232,245,238,0) 58%),var(--bg)}
+/* 页面底色与主页同源（main.html body）：顶部两团淡色光晕 + 底色。
+   ⚠️ 这段注释必须留在 body 规则【之后】：scripts/check-contrast.js 用 /([^{}]+)\{/ 抓选择器名，
+      注释若插在 html 与 body 中间，body 会被判成「注释+body」而整条跳过 → 渐变背景漏检，
+      护栏会退回更亮的 --bg 当背景、算出偏乐观的比值（等于这道闸对本站失效）。
+   ⚠️ 渐变也不得改深：护栏把 #e8efff 当最暗背景候选。 */
 .wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px;min-width:0}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
 .page-head h2{margin:0;font-size:18px;font-weight:700}
@@ -145,27 +152,75 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
   .srow .en{-webkit-line-clamp:2}
   .srow .cn{-webkit-line-clamp:2}
 }
-/* Flat overview: numbers first, dated activity second, details in tabs. */
+/* 概览分三层：行动（能点）→ 状态（只能看）→ 时间（本月 + 近 7 天）。
+   行动层复用主页 .htc 计数卡的视觉语言（软色底 + 彩色边 + chevron），
+   卡片本身即入口 —— 与首页「计数卡本身即入口」同一套心智。
+   计数 0 → disabled + 去底色 + 无箭头（数字 0 仍显 --ok 绿）。 */
 [hidden]{display:none!important}
-.overview-primary,.overview-secondary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
-.overview-metric{display:flex;flex-direction:column;min-width:0}
-.overview-metric span{color:var(--muted);font-size:12px}
-.overview-metric strong{font-size:28px;font-variant-numeric:tabular-nums}
-.overview-secondary{padding:14px 0}
-.overview-secondary strong{font-size:19px}
-.activity-section{padding:22px 0 12px}
-.activity-section h3{font-size:14px;margin:0 0 16px}
-.activity-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
-.activity-day{text-align:center;font-size:12px;color:var(--muted)}
-.activity-day b{color:var(--text);font-variant-numeric:tabular-nums}
-.activity-track{height:76px;display:flex;align-items:flex-end;max-width:32px;margin:6px auto;border-bottom:1px solid var(--border)}
-.activity-track>div{width:100%;background:var(--accent);border-radius:3px 3px 0 0}
-.overview-note{font-size:12px;color:var(--muted);margin:16px 0}
+.overview-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.ov-act{position:relative;display:flex;align-items:baseline;gap:10px;min-width:0;padding:11px 34px 11px 15px;border:1px solid var(--border);border-radius:12px;background:var(--surface);text-align:left;transition:border-color .15s}
+.ov-act:hover:not(:disabled){border-color:var(--border-strong)}
+.ov-act:active:not(:disabled){transform:scale(.98)}
+.ov-act:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ov-act .n{font-size:33px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15}
+.ov-act .l{font-size:12.5px;color:var(--faint);min-width:0}
+.ov-act .chev{position:absolute;top:50%;right:10px;line-height:0;transform:translateY(-50%)}
+.ov-act .chev .icon{width:13px;height:13px;color:var(--faint)}
+.ov-act.due{border-color:#cfd9f5;background:var(--accent-soft)}
+.ov-act.due .n{color:var(--accent)}
+.ov-act.book{border-color:#f3d4d0;background:var(--bad-soft)}
+.ov-act.book .n{color:var(--bad)}
+.ov-act .n.ok{color:var(--ok)}
+.ov-act:disabled{cursor:default;background:var(--surface);border-color:var(--border)}
+.ov-act:disabled .chev{display:none}
+.overview-status{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.ov-stat{min-width:0;padding:10px 12px;border-radius:10px;background:var(--surface-2)}
+.ov-stat .l{display:block;font-size:11.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ov-stat .n{display:block;margin-top:2px;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.ov-stat.is-warn .n{color:var(--warn)}
+.overview-time{padding:14px 16px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.activity-section{padding:14px 0 2px}
+.activity-section h3{display:flex;align-items:baseline;gap:8px;font-size:13px;margin:0 0 12px}
+.activity-section h3 .avg-note{font-size:11.5px;font-weight:400;color:var(--faint)}
+.activity-week{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.activity-day{min-width:0;text-align:center;font-size:12px;color:var(--muted)}
+.activity-day b{display:block;height:18px;font-size:12px;color:var(--text);font-variant-numeric:tabular-nums}
+/* 柱宽：移动端（≤600px）列宽 < 40px 时柱子自然填满列宽，这个值不起作用；
+   桌面端列宽约 110px，靠 @media(min-width:601px) 放宽到 40px，否则柱子只占三分之一显得瘦。 */
+.activity-track{height:56px;display:flex;align-items:flex-end;max-width:32px;margin:0 auto;border-bottom:1px solid var(--border)}
+/* 柱高由渲染层算成 px：非零值最少 3px，0 值不画柱、只留基线。
+   旧版按百分比算 + 76px 容器 → 1 句只剩 1.5px、0 句整列空白，会被读成「图表坏了」。 */
+.activity-track>div{width:100%;background:rgba(44,98,201,.34);border-radius:3px 3px 0 0}
+.activity-day.is-today b{color:var(--accent);font-weight:700}
+.activity-day.is-today .activity-track>div{background:var(--accent)}
+.activity-avg{position:absolute;left:0;right:0;border-top:1px dashed var(--border-strong);pointer-events:none}
+.activity-week-labels{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;margin-top:6px;font-size:11px;text-align:center;color:var(--muted)}
+.activity-week-labels .is-today{color:var(--text);font-weight:600}
+.overview-note{font-size:12px;color:var(--muted);margin:10px 0 0}
+.stats-loading{min-height:72px;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:13px}
+.stats-sync-status{margin:0 0 10px;padding:5px 9px;border-radius:7px;background:var(--warn-soft);color:var(--warn);font-size:12px;text-align:center}
+.overview-month-summary{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:0 0 12px;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted)}
+.overview-month-summary .period-label{font-weight:700;color:var(--text)}
+.overview-month-summary b{color:var(--text);font-variant-numeric:tabular-nums}
+/* 异常项（没带日期的答题）从句子流里独立出来：只靠文字变色区分度太弱。 */
+.overview-month-summary .undated{padding:1px 9px;border-radius:999px;background:var(--warn-soft);color:var(--warn)}
+.overview-month-summary .undated b{color:var(--warn)}
 .stats-tabs{border-bottom:1px solid var(--border);gap:6px;margin:0 0 12px}
 .stats-tabs .tab{border:0;border-radius:0;background:transparent;min-height:44px;padding:8px 12px}
 .stats-tabs .tab.on{background:transparent;border-bottom:2px solid var(--accent)}
 .stats-tabs .tab-count{margin-left:3px;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
 .stats-tabs .tab.on .tab-count{color:var(--accent)}
+.stats-record-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 8px}
+.stats-search{display:flex;align-items:center;gap:8px;flex:1 1 240px;min-width:220px}
+.stats-search label{font-size:12px;color:var(--muted);white-space:nowrap}
+.stats-search input{width:100%;max-width:280px;height:32px;border:1px solid var(--border-strong);border-radius:7px;background:var(--surface);color:var(--text);padding:5px 9px;font:inherit;outline:none}
+.stats-search input::placeholder{color:var(--faint)}
+.stats-search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.stats-search-clear{padding-left:7px;padding-right:7px;color:var(--muted)}
+.stats-record-toolbar .stats-filter{flex:0 0 auto;margin:0}
+.records-summary{display:flex;align-items:center;gap:8px;min-height:24px;margin:0 0 2px;color:var(--muted);font-size:12px}
+.records-summary strong{color:var(--text);font-variant-numeric:tabular-nums}
+.records-summary .query{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stats-list{gap:0}
 .srow,.review-row{border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent;padding:8px 0}
 /* 桌面端以信息密度优先；移动端在下方媒体查询中恢复触控尺寸。 */
@@ -174,14 +229,28 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media(min-width:601px){
   .stats-body .srow{padding:6px 0}
+  .activity-track{max-width:40px}
 }
 @media(max-width:600px){
   .wrap{padding:12px 14px 24px}
-  .overview-primary,.overview-secondary{gap:10px}
-  .overview-metric strong{font-size:24px}
-  .overview-secondary strong{font-size:18px}
+  .overview-actions{gap:8px;margin-bottom:10px}
+  .ov-act{padding:9px 30px 9px 12px;gap:8px}
+  .ov-act .n{font-size:24px}
+  .ov-act .l{font-size:11.5px}
+  .overview-status{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+  .ov-stat{padding:8px 10px}
+  .ov-stat .n{font-size:18px}
+  .overview-time{padding:12px 12px 10px}
+  .overview-month-summary{gap:8px;font-size:11.5px}
   .stats-tabs .tab{padding:8px;font-size:12px}
+  .stats-record-toolbar{display:block;margin-bottom:6px}
+  .stats-search{width:100%;min-width:0;margin-bottom:4px}
+  .stats-search input{max-width:none}
+  .stats-record-toolbar .stats-filter{width:100%}
+  .records-summary{min-height:22px}
   .activity-week{gap:5px}
+  .activity-week-labels{gap:5px}
+  .activity-day b{height:16px;font-size:11px}
   .btn,.stats-filter .f,.wrong-del,.row-detail-toggle{min-height:44px}
   .wrong-del,.row-detail-toggle{min-width:44px}
   .srow,.review-row{padding:8px 0}
@@ -199,17 +268,26 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 
   <div class="stats-tabs" id="statsTabs">
     <button class="tab on" data-tab="overview">概览</button>
-    <button class="tab" data-tab="sent">句子记录</button>
     <button class="tab" data-tab="review">待复习<span class="tab-count" id="reviewTabCount"></span></button>
     <button class="tab" data-tab="wrong">错题本<span class="tab-count" id="wrongTabCount"></span></button>
+    <button class="tab" data-tab="sent">学习记录</button>
   </div>
 
+  <div class="stats-sync-status" id="statsSyncStatus" role="status" aria-live="polite" hidden></div>
+
   <div class="stats-cards" id="statsCards"></div>
-  <div class="stats-filter" id="statsFilter" style="display:flex">
-    <button class="f on" data-f="all">全部</button>
-    <button class="f" data-f="mastered">已熟</button>
-    <button class="f" data-f="weak">需巩固</button>
-    <button class="f" data-f="unseen">未练过</button>
+  <div class="stats-record-toolbar" id="statsRecordToolbar" aria-label="学习记录筛选" hidden>
+    <div class="stats-search">
+      <label for="statsSentenceSearch">查找</label>
+      <input id="statsSentenceSearch" type="search" autocomplete="off" placeholder="搜索句子或翻译" aria-label="搜索句子或翻译">
+      <button class="btn sm ghost stats-search-clear" id="statsSearchClear" type="button" hidden>清除</button>
+    </div>
+    <div class="stats-filter" id="statsFilter">
+      <button class="f on" data-f="all">全部</button>
+      <button class="f" data-f="mastered">已熟</button>
+      <button class="f" data-f="weak">需巩固</button>
+      <button class="f" data-f="unseen">未练过</button>
+    </div>
   </div>
 
   <div class="stats-body" id="statsBody"></div>
@@ -304,6 +382,7 @@ function migrateLegacyStatKeys(){
 /* ===== 渲染 ===== */
 var _statsTab = 'overview';
 var _statsFilter = 'all';
+var _statsSearch = '';
 var _wrongBookFilter = 'all';
 var _listPages = {}, LIST_PAGE_SIZE = 50;
 function listPage(rows, key){
@@ -319,9 +398,59 @@ function listPager(total, key){
     '<span>'+(page+1)+' / '+count+' 页 · '+total+' 条</span>'+
     '<button class="btn sm" data-list-key="'+key+'" data-list-page="'+(page+1)+'"'+(page+1>=count?' disabled':'')+'>下一页</button></div>';
 }
+function recordSearchText(value){
+  return String(value || '').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function monthActivitySummary(mem){
+  var activity = CL.dailyActivity(mem), now = new Date();
+  var prefix = CL.ymd(new Date(now.getFullYear(), now.getMonth(), 1)).slice(0,7) + '-';
+  var days = 0, rounds = 0, monthAnswered = 0;
+  Object.keys(activity).forEach(function(key){
+    if(key.indexOf(prefix) !== 0) return;
+    var item = activity[key] || {}, dayAnswered = Number(item.answered) || 0, done = Number(item.rounds) || 0;
+    if(dayAnswered > 0 || done > 0) days++;
+    rounds += done;
+    monthAnswered += dayAnswered;
+  });
+  var audit = CL.answerStatsAudit(mem);
+  return { days: days, rounds: rounds, answered: monthAnswered, totalAnswered: audit.totalAnswered };
+}
 
 /* Overview uses the same dated activity as the home calendar. */
+var _statsInitialSync = true;
+var _statsSyncState = 'waiting';
+var _statsSyncTimer = null;
+var STATS_SYNC_TIMEOUT = 3000;
+function setStatsSyncState(state){
+  _statsSyncState = state;
+  var status = $('statsSyncStatus');
+  if(!status) return;
+  status.hidden = state !== 'local';
+  status.textContent = state === 'local' ? '本地记录 · 正在同步，完成后自动更新' : '';
+}
+function showLocalStatsFallback(){
+  if(_statsSyncState !== 'waiting') return;
+  _statsInitialSync = false;
+  setStatsSyncState('local');
+  loadMem();
+  renderStats();
+}
 function renderStats(){
+  var cards = $('statsCards'), body = $('statsBody');
+  if(_statsInitialSync){
+    cards.innerHTML = _statsTab === 'overview' ? '<div class="stats-loading" role="status" aria-live="polite">正在同步学习档案…</div>' : '';
+    cards.hidden = _statsTab !== 'overview';
+    body.innerHTML = _statsTab === 'overview' ? '' : '<div class="stats-loading" role="status" aria-live="polite">正在同步学习档案…</div>';
+    Array.prototype.forEach.call($('statsTabs').children,function(b){
+      b.classList.toggle('on',b.dataset.tab===_statsTab);
+      b.setAttribute('aria-pressed',String(b.dataset.tab===_statsTab));
+    });
+    $('reviewTabCount').textContent = '';
+    $('wrongTabCount').textContent = '';
+    $('statsRecordToolbar').hidden = true;
+    return;
+  }
   if(!mem.stats) mem.stats = {totalRounds:0,totalAnswered:0,bySentence:{},events:[]};
   var by = mem.stats.bySentence || {};
   var keys = Object.keys(by).filter(function(k){
@@ -332,33 +461,74 @@ function renderStats(){
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'weak'; }).length;
   var wrongCnt = getReinforceBook().length;
   var days = CL.dailyActivity(mem), now = new Date(), today = days[CL.ymd(now)] || {answered:0};
+  var audit = CL.answerStatsAudit(mem);
+  var month = monthActivitySummary(mem);
   var dueCnt = dueSentences().length;
-  var metric = function(label,value,id){
-    return '<div class="overview-metric"><span>'+label+'</span><strong'+(id?' id="'+id+'"':'')+'>'+value+'</strong></div>';
+  /* 三层结构：行动（能点）→ 状态（只能看）→ 时间（本月 + 近 7 天）。
+     行动层卡片本身即入口，与首页 .htc 计数卡同一套心智；
+     计数为 0 → disabled + 去底色 + 无箭头，数字 0 仍显 --ok 绿（「没有待办」是好消息）。 */
+  var iconOf = function(name){ return window.Icons ? Icons.svg(name) : ''; };
+  var actCard = function(kind,label,count,id){
+    var can = count > 0;
+    return '<button class="ov-act '+kind+'" type="button" id="'+id+'"'+(can?'':' disabled')+
+      ' aria-label="'+label+'，'+count+' 句">'+
+      '<span class="n'+(can?'':' ok')+'">'+count+'</span><span class="l">'+label+'</span>'+
+      '<span class="chev">'+(can?iconOf('chevR'):'')+'</span></button>';
   };
-  var html = '<div class="overview-primary">'+metric('今日答题',today.answered,'todayAnswered')+
-    metric('待复习',dueCnt)+metric('需巩固',weakCnt)+'</div>';
-  html += '<div class="overview-secondary">'+metric('已熟练',masteredCnt)+
-    metric('累计答题',Number(mem.stats.totalAnswered)||0)+metric('错题本',wrongCnt)+'</div>';
-  html += '<section class="activity-section"><h3>近 7 天答题</h3><div class="activity-week">';
+  var statCell = function(label,value,opt){
+    opt = opt || {};
+    return '<div class="ov-stat'+(opt.warn?' is-warn':'')+'">'+
+      '<span class="l">'+label+'</span>'+
+      '<strong class="n"'+(opt.id?' id="'+opt.id+'"':'')+'>'+value+'</strong></div>';
+  };
+  var html = '<div class="overview-actions">'+
+    actCard('due','待复习',dueCnt,'ovActDue')+
+    actCard('book','错题本',wrongCnt,'ovActBook')+'</div>';
+  html += '<div class="overview-status">'+
+    statCell('今日答题',today.answered,{id:'todayAnswered'})+
+    statCell('已熟练',masteredCnt)+
+    statCell('需巩固',weakCnt,{warn:true})+
+    statCell('累计答题',audit.totalAnswered)+'</div>';
+  html += '<div class="overview-time">';
+  html += '<div class="overview-month-summary"><span class="period-label">本月</span>'+
+    '<span>学习 <b>'+month.days+'</b> 天</span><span>完成 <b>'+month.rounds+'</b> 轮</span><span>答题 <b id="monthAnswered">'+month.answered+'</b> 句</span></div>';
   var week = [];
   for(var i=6;i>=0;i--){
     var date = new Date(now); date.setDate(date.getDate()-i);
     var key=CL.ymd(date);
-    week.push({key:key,label:i===0?'今天':(date.getMonth()+1)+'/'+date.getDate(),count:(days[key]||{}).answered||0});
+    week.push({key:key,label:i===0?'今天':(date.getMonth()+1)+'/'+date.getDate(),count:(days[key]||{}).answered||0,today:i===0});
   }
   var max=Math.max.apply(null,week.map(function(d){return d.count;}))||1;
+  var avg=week.reduce(function(a,d){return a+d.count;},0)/week.length;
+  var TRACK_H=52; /* 最大柱高；CSS .activity-track 为 56px，留 4px 顶部呼吸位 */
+  html += '<section class="activity-section"><h3>近 7 天答题'+
+    '<span class="avg-note">日均 '+Math.round(avg)+' 句</span></h3><div class="activity-week">';
   week.forEach(function(d){
-    html += '<div class="activity-day" aria-label="'+d.key+' 答题 '+d.count+' 句">'+
-      '<b>'+d.count+'</b><div class="activity-track"><div style="height:'+(d.count/max*100)+'%"></div></div><span>'+d.label+'</span></div>';
+    /* 非零值最少 3px：38 与 1 同轴时，1 会被画成 1.5px 等于消失；0 值不画柱、只留基线。 */
+    var h = d.count ? Math.max(3, Math.round(d.count / max * TRACK_H)) : 0;
+    html += '<div class="activity-day'+(d.today?' is-today':'')+'" aria-label="'+d.key+' 答题 '+d.count+' 句">'+
+      '<b>'+d.count+'</b>'+
+      '<div class="activity-track"><div style="height:'+h+'px"></div></div></div>';
   });
+  /* 均值虚线：absolute 不参与 grid 布局；日均 0 时不画（否则与基线重叠成脏线）。 */
+  if(avg > 0){
+    html += '<div class="activity-avg" style="bottom:'+(avg/max*TRACK_H).toFixed(1)+'px" aria-hidden="true"></div>';
+  }
+  html += '</div>';
+  html += '<div class="activity-week-labels">';
+  week.forEach(function(d){ html += '<span'+(d.today?' class="is-today"':'')+'>'+d.label+'</span>'; });
   html += '</div></section>';
   html += '<p class="overview-note">累计完成 '+(Number(mem.stats.totalRounds)||0)+' 轮 · 每完整练完一批计 1 轮</p>';
+  html += '</div>'; /* /overview-time */
   if(!keys.length && !mem.stats.totalAnswered){
     html += '<div class="empty-tip">还没有学习记录。<a href="./main.html">开始练习</a></div>';
   }
   $('statsCards').innerHTML=html;
   $('statsCards').hidden=_statsTab!=='overview';
+  /* 行动层入口：卡片本身即「开始做」，与首页计数卡同一套心智；
+     要查看清单仍走下方 tab —— 卡＝动手，tab＝查看。 */
+  var actDue = $('ovActDue'); if(actDue) actDue.onclick = practiceDue;
+  var actBook = $('ovActBook'); if(actBook) actBook.onclick = practiceWrongBook;
   Array.prototype.forEach.call($('statsTabs').children,function(b){
     b.classList.toggle('on',b.dataset.tab===_statsTab);
     b.setAttribute('aria-pressed',String(b.dataset.tab===_statsTab));
@@ -367,7 +537,12 @@ function renderStats(){
   if(reviewTabCount) reviewTabCount.textContent = '('+dueCnt+')';
   var wrongTabCount = $('wrongTabCount');
   if(wrongTabCount) wrongTabCount.textContent = '('+wrongCnt+')';
-  $('statsFilter').style.display=_statsTab==='sent'?'flex':'none';
+  var recordToolbar = $('statsRecordToolbar');
+  if(recordToolbar) recordToolbar.hidden = _statsTab !== 'sent';
+  var searchInput = $('statsSentenceSearch');
+  if(searchInput && searchInput.value !== _statsSearch) searchInput.value = _statsSearch;
+  var searchClear = $('statsSearchClear');
+  if(searchClear) searchClear.hidden = !recordSearchText(_statsSearch);
   Array.prototype.forEach.call($('statsFilter').children,function(b){b.classList.toggle('on',b.dataset.f===_statsFilter);});
   var body=$('statsBody');
   if(_statsTab==='wrong') renderWrongBook(body);
@@ -449,25 +624,34 @@ function renderSentenceList(body){
     return (b.lastAt || 0) - (a.lastAt || 0);
   });
 
+  var query = recordSearchText(_statsSearch);
   var out = rows.filter(function(s){
     /* 只标熟未练过的句子（_masteredOnly=true）只出现在「已熟」tab，不出现在其它 tab */
-    if(_statsFilter === 'all') return true;
-    if(_statsFilter === 'mastered'){
-      return s._masteredOnly || s._practiceState === 'master';
-    }
-    if(s._masteredOnly) return false;
-    return s._practiceState === _statsFilter;
+    var matchesFilter;
+    if(_statsFilter === 'all') matchesFilter = true;
+    else if(_statsFilter === 'mastered') matchesFilter = s._masteredOnly || s._practiceState === 'master';
+    else if(s._masteredOnly) matchesFilter = false;
+    else matchesFilter = s._practiceState === _statsFilter;
+    if(!matchesFilter) return false;
+    if(!query) return true;
+    return recordSearchText(s.sentence).indexOf(query) >= 0 || recordSearchText(s.translation).indexOf(query) >= 0;
   });
   if(!out.length){
     body.innerHTML = '<div class="empty-tip">'+
       (rows.length === 0 ? '题库里还没有任何句子，去练习页导入或启用内置题库吧' :
        _statsFilter==='all' ? '还没有练习记录，先去练几题吧' :
-       '没有符合条件的句子')+'</div>';
+       query ? '没有找到与“'+esc(_statsSearch.trim())+'”相关的句子' : '没有符合条件的句子')+'</div>';
     return;
   }
-  var html = '<div class="stats-list">';
   var pageKey = 'sent-' + _statsFilter;
-  listPage(out, pageKey).forEach(function(s, idx){
+  var pageRows = listPage(out, pageKey);
+  var pageStart = _listPages[pageKey] * LIST_PAGE_SIZE + 1;
+  var pageEnd = pageStart + pageRows.length - 1;
+  var summary = '<div class="records-summary"><span>'+(query ? '匹配' : '共')+' <strong>'+out.length+'</strong> 句</span>'+
+    (query ? '<span class="query">“'+esc(_statsSearch.trim())+'”</span>' : '')+
+    (out.length > LIST_PAGE_SIZE ? '<span>· 显示 '+pageStart+'–'+pageEnd+'</span>' : '')+'</div>';
+  var html = summary + '<div class="stats-list">';
+  pageRows.forEach(function(s, idx){
     var badgeHtml =
       s._masteredOnly ? '<span class="badge master">已标记</span>' :
       s._practiceState==='master' ? '<span class="badge master">熟练</span>' :
@@ -686,29 +870,6 @@ function launchReviewDeck(deck){
   window.location.href = './main.html?autostart=1';
 }
 
-/* ===== 事件绑定 ===== */
-Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
-loadMem();
-  if(window.ContentRepo && ContentRepo.ensureIndexAll){
-    return ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; });
-  }
-  return window.ContentRepo ? ContentRepo.ensureAll(mem).then(function(){ _statsDecks = CL.allDecksView(mem); }) : Promise.resolve();
-}).then(function(){
-migrateLegacyStatKeys();
-renderStats();
-
-Array.prototype.forEach.call($('statsTabs').children, function(b){
-  b.onclick = function(){
-    _statsTab = b.dataset.tab;
-    renderStats();
-  };
-});
-Array.prototype.forEach.call($('statsFilter').children, function(b){
-  b.onclick = function(){
-    _statsFilter = b.dataset.f;
-    renderStats();
-  };
-});
 /* 移动端记录采用渐进式展示：点击整行展开/收起次数、对错和最近练习时间。
    桌面端详情始终可见，因此不改变原有交互。 */
 function toggleSentenceDetail(row){
@@ -719,6 +880,35 @@ function toggleSentenceDetail(row){
     toggle.setAttribute('aria-label', expanded ? '收起统计详情' : '展开统计详情');
   }
 }
+/* ===== 事件绑定 =====
+   页面首屏不能依赖云端/题库初始化：网络卡顿时也必须能返回主页，
+   并先用本地已有数据渲染概览。异步数据到达后再刷新内容。 */
+Array.prototype.forEach.call($('statsTabs').children, function(b){
+  b.onclick = function(){
+    _statsTab = b.dataset.tab;
+    renderStats();
+  };
+});
+Array.prototype.forEach.call($('statsFilter').children, function(b){
+  b.onclick = function(){
+    _statsFilter = b.dataset.f;
+    _listPages['sent-' + _statsFilter] = 0;
+    renderStats();
+  };
+});
+var sentenceSearch = $('statsSentenceSearch');
+if(sentenceSearch) sentenceSearch.oninput = function(){
+  _statsSearch = sentenceSearch.value;
+  _listPages['sent-' + _statsFilter] = 0;
+  renderStats();
+};
+var searchClear = $('statsSearchClear');
+if(searchClear) searchClear.onclick = function(){
+  _statsSearch = '';
+  _listPages['sent-' + _statsFilter] = 0;
+  renderStats();
+  if(sentenceSearch) sentenceSearch.focus();
+};
 $('statsBody').addEventListener('click', function(ev){
   var pager = ev.target.closest('[data-list-page]');
   if(pager && !pager.disabled){
@@ -768,7 +958,48 @@ if(CL && CL.on){
     }
   });
 }
-}); /* CL.ensureCloud().then */
+
+/* 首屏先走本地快路径。云端请求或题库资源即使迟到，也不会把页面锁成只有 Tab 的空壳。
+   若统计已迁到 IndexedDB，先等本地预载完成，避免把 localStorage 的旧投影短暂显示成最新值；
+   IDB 异常时最多等 180ms，仍以可用的本地投影开屏。 */
+var _localPainted = false;
+function paintLocalStats(){
+  if(_localPainted) return;
+  _localPainted = true;
+  loadMem();
+  renderStats();
+}
+var _localPaintTimer = setTimeout(paintLocalStats, 180);
+_statsSyncTimer = setTimeout(showLocalStatsFallback, STATS_SYNC_TIMEOUT);
+Promise.resolve(CL.preload ? CL.preload() : true).catch(function(error){
+  console.warn('[stats] 本地统计预载失败，使用同步副本：', error && error.message || error);
+}).then(function(){
+  clearTimeout(_localPaintTimer);
+  paintLocalStats();
+});
+Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
+  loadMem();
+  if(window.ContentRepo && ContentRepo.ensureIndexAll){
+    return ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; });
+  }
+  return window.ContentRepo ? ContentRepo.ensureAll(mem).then(function(){ _statsDecks = CL.allDecksView(mem); }) : Promise.resolve();
+}).then(function(){
+  clearTimeout(_statsSyncTimer);
+  _statsSyncTimer = null;
+  _statsInitialSync = false;
+  setStatsSyncState('ready');
+  migrateLegacyStatKeys();
+  renderStats();
+}).catch(function(error){
+  /* 云端/题库失败不应抹掉本地概览；保留可用的首屏并记录原因供排查。 */
+  clearTimeout(_statsSyncTimer);
+  _statsSyncTimer = null;
+  _statsInitialSync = false;
+  setStatsSyncState('local');
+  console.warn('[stats] 异步初始化失败，继续使用本地统计：', error && error.message || error);
+  loadMem();
+  renderStats();
+});
 </script>
 
 </body>

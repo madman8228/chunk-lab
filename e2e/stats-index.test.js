@@ -65,6 +65,25 @@ function check(name, ok, detail) {
     await page.waitForFunction(function () {
       return document.querySelectorAll('.stats-detail-row').length === 50;
     });
+    var tabLayout = await page.evaluate(function () {
+      return Array.prototype.map.call(document.querySelectorAll('#statsTabs .tab'), function (tab) {
+        return { key: tab.dataset.tab, text: tab.textContent.trim() };
+      });
+    });
+    check('学习档案按行动顺序排列并明确命名学习记录',
+      tabLayout.map(function (tab) { return tab.key; }).join('|') === 'overview|review|wrong|sent' &&
+      tabLayout[3].text === '学习记录', JSON.stringify(tabLayout));
+    await page.fill('#statsSentenceSearch', 'looks like');
+    await page.waitForFunction(function () {
+      return document.querySelectorAll('.stats-detail-row').length === 1;
+    });
+    check('学习记录支持按句子即时搜索',
+      await page.locator('.stats-detail-row .en').first().innerText() === "It looks like it's going to rain.",
+      await page.locator('.stats-detail-row .en').first().innerText());
+    await page.fill('#statsSentenceSearch', '');
+    await page.waitForFunction(function () {
+      return document.querySelectorAll('.stats-detail-row').length === 50;
+    });
 
     var first = await page.evaluate(function () {
       var d = window.ContentRepo.getManifest().decks;
@@ -79,6 +98,20 @@ function check(name, ok, detail) {
     check('统计页使用轻量 index 保留完整列表并分页显示', first.rows === 50 && first.total >= 600 && first.indexShards >= 3, JSON.stringify(first));
     check('统计页未请求完整详情分片', detailRequests.length === 0, JSON.stringify(contentRequests));
     check('统计页已请求 index 分片', indexRequests.length >= 3, JSON.stringify(contentRequests));
+
+    var monthSummary = await page.evaluate(function () {
+      var now = new Date(), current = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0).getTime();
+      var prior = new Date(now.getFullYear(), now.getMonth() - 1, 15, 12, 0, 0).getTime();
+      var by = {}, events = [], i;
+      for (i = 0; i < 102; i++) {
+        by['month-fixture#' + i] = { times: 1, okTimes: 1, wrongTimes: 0 };
+        events.push({ id: 'month-fixture-' + i, kind: 'answer', key: 'month-fixture#' + i, ok: true, at: i < 100 ? prior + i : current + i });
+      }
+      return monthActivitySummary({ stats: { totalAnswered: 102, bySentence: by, events: events } });
+    });
+    check('本月答题只统计本月日期，累计答题保持全历史',
+      monthSummary.answered === 2 && monthSummary.totalAnswered === 102 && monthSummary.days === 1,
+      JSON.stringify(monthSummary));
 
     var hydrated = await page.evaluate(async function () {
       var mem = window.CL.loadMem();

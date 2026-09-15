@@ -707,14 +707,18 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .home-card .hc-title .grow{flex:1}
 /* 今日聚合主卡 */
 .home-today-d{font-size:12.5px;color:var(--faint);margin:3px 0 0}
-/* 今日卡是行动入口，不是信息面板：有学习记录时压成一条横向行动栏，
-   让标题/日期与两个入口共享一行；没有设置每日目标时不制造空占位。 */
-.home-today-card.has-activity{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 16px}
-.home-today-card.has-activity>.hc-title{flex:0 0 auto;margin-bottom:0}
-.home-today-card.has-activity .home-today-counts{display:flex;gap:8px;margin:0;max-width:none}
-.home-today-card.has-activity .htc{display:flex;align-items:baseline;justify-content:center;gap:6px;padding:7px 12px;min-width:112px;min-height:44px}
-.home-today-card.has-activity .htc .l{margin-top:0}
-.home-today-card.has-activity .home-goal{margin:0}
+/* 顶部拆三层（2026-09-14）：标题行 / 均分行动卡 / 进度行。
+   上一版是「一条横向行动栏」：把日期标签 + 两张卡 + 进度条压进同一个白底容器。
+   实测（视口 1200px）今日卡 984px、可用 952px，内容只占 551px → 右侧 401px 空着（42%），
+   而唯一可点的两张卡合计仅 232px = 可用宽的 24%；且 align-items:baseline 让数字与标签
+   并排读成「38 待复习」一个词，与档案页行动卡（上下堆叠、数字 29px）不再是同一种卡。
+   现在：日期搬出卡外做标题行；两张卡均分整行并恢复上下堆叠；进度条独占一行。 */
+.home-hero{display:flex;align-items:center;gap:10px;padding:0 2px 2px}
+.home-hero .hh-date{font-size:15px;font-weight:700}
+.home-hero .cal-streak{margin-left:auto}
+/* 今日卡退化成纯容器：卡样式归零，视觉主体交给里面两张行动卡
+   （与 .home-card.merge-row 同一做法 —— 那里也是 border:0;background:transparent）。 */
+.home-today-card{padding:0;border:0;background:transparent;border-radius:0}
 /* 本月打卡月历（2026-09-09，数据源 mem.daysLog，纯展示） */
 .cal-streak{display:inline-flex;align-items:center;gap:4px;color:#b04a18;font-weight:700;font-size:12.5px}
 .cal-streak svg{width:13px;height:13px;stroke-width:2}
@@ -734,14 +738,24 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .cal-cell:not(.pad):not(.lx):hover{transform:translateY(-1px);box-shadow:0 2px 6px -2px rgba(0,0,0,.18)}
 .cal-cell:not(.pad):not(.lx):active{transform:scale(.93)}
 .cal-cell:not(.pad):not(.lx):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.cal-foot{margin-top:10px;font-size:12px;color:var(--muted)}
-.cal-foot b{color:var(--text);font-variant-numeric:tabular-nums}
-/* 今日入口只保留“待复习”和“错题本”两张卡；需巩固在错题本内筛选。 */
-.home-today-counts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0;max-width:240px}
+/* 今日入口只保留“待复习”和“错题本”两张卡；需巩固在错题本内筛选。
+   去掉 max-width:240px —— 那是「横向行动栏」时代的遗留值，它会把两张卡
+   挤在 240px 内（桌面端尤其明显：952px 可用宽里只用 240px）。现在两张卡
+   均分整行，各约 470px。间距由 .home-body 的 gap 统一管，这里 margin 归零。 */
+.home-today-counts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0}
 /* 每日目标进度（2026-09-13）：只在用户设过目标（dailyGoal>0）时被渲染出来。
    未设目标 → 整个 .home-goal 节点不存在（不是 display:none），
    所以「到底设没设目标」可以直接用 DOM 是否存在来断言，不需要读存储。 */
-.home-goal,.finish-goal{margin:12px 0 0;max-width:240px}
+/* 首页的进度行独占一行、拉满卡片宽（因为它是 .home-body 的直接子项，与行动卡同宽）；
+   结算屏是宽内容区，仍走下面 .finish-goal 的 360px 窄栏宽。 */
+.home-goal{margin:0;max-width:none}
+.finish-goal{margin:12px 0 0;max-width:240px}
+/* 未设每日目标时的今日进度：只报数、不给进度条（没有目标就没有分母）。
+   用独立节点而不是复用 .home-goal —— 「未设目标 → .home-goal 不存在」是
+   e2e/daily-goal.test.js 场景 B 的契约（用 DOM 存在性判断用户设没设目标），不能改。
+   补它的原因：在此之前未设目标的用户完全看不到「今天练了多少」。 */
+.home-today-done{display:flex;align-items:baseline;gap:5px;font-size:12.5px;color:var(--muted)}
+.home-today-done b{color:var(--text);font-size:14px;font-weight:800;font-variant-numeric:tabular-nums}
 .home-goal .hg-row,.finish-goal .hg-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted)}
 .home-goal .hg-row b,.finish-goal .hg-row b{color:var(--text);font-size:14px;font-variant-numeric:tabular-nums}
 .home-goal .hg-bar,.finish-goal .hg-bar{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border);margin-top:6px;overflow:hidden}
@@ -759,15 +773,16 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
    并补 hover / active / focus-visible / disabled 四态。
    button 在 grid 里默认 stretch，宽度行为与原 div 一致，无需额外设置。 */
 .htc{appearance:none;-webkit-appearance:none;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;line-height:inherit;
-  position:relative;border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:0;background:var(--surface-2);
+  position:relative;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--border);border-radius:12px;
+  padding:12px 16px;min-width:0;min-height:88px;background:var(--surface-2);
   text-align:center;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .08s ease}
 .htc:hover:not(:disabled){border-color:var(--border-strong)}
 .htc:active:not(:disabled){transform:scale(.97)}
 .htc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.htc .chev{position:absolute;top:50%;right:7px;line-height:0;transform:translateY(-50%)}
-.htc .chev .icon{width:12px;height:12px;color:var(--faint)}
-.htc .n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
-.htc .l{font-size:11.5px;color:var(--faint);margin-top:2px}
+.htc .chev{position:absolute;top:50%;right:14px;line-height:0;transform:translateY(-50%)}
+.htc .chev .icon{width:13px;height:13px;color:var(--faint)}
+.htc .n{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.htc .l{font-size:12.5px;color:var(--faint);margin-top:5px}
 .htc.due .n{color:var(--accent)} .htc.due{border-color:#cfd9f5;background:var(--accent-soft)}
 .htc.book .n{color:var(--bad)} .htc.book{border-color:#f3d4d0;background:var(--bad-soft)}
 .htc .n.ok{color:var(--ok)}
@@ -780,15 +795,16 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .home-actions .btn{min-height:30px}
 .home-hint{font-size:12px;color:var(--faint);margin-left:2px}
 /* 最近牌组行 */
-.home-decks{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border)}
-/* 最近练习是信息列表，不再给每一行套独立盒子；用分隔线表达层级，减轻首页重量。 */
-.hd-row{display:flex;align-items:center;gap:12px;padding:10px 0;border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent}
+.home-decks{display:flex;flex-direction:column;gap:10px}
+/* 最近练习是信息列表：标题、留白和进度条已经足够表达层级，不再叠加横向分隔线。 */
+.hd-row{display:flex;align-items:center;gap:12px;padding:5px 0;border:0;border-radius:0;background:transparent}
 .hd-row .nm{font-weight:700;font-size:14px}
 .hd-row .sub{font-size:12px;color:var(--faint);margin-top:1px}
 .hd-row .grow{flex:1;min-width:0}
 .home-deck-progress{display:flex;align-items:center;gap:8px;line-height:1.3;white-space:nowrap}
 .home-deck-progress .pct{font-variant-numeric:tabular-nums;color:var(--muted)}
 .home-deck-progress .last-acc{margin-left:2px}
+.home-deck-progress .session-answered{color:var(--accent);font-variant-numeric:tabular-nums}
 .home-deck-progress-track{height:4px;margin-top:5px;border-radius:2px;background:var(--surface-2);overflow:hidden}
 .home-deck-progress-track i{display:block;height:100%;border-radius:2px;background:var(--accent);transition:width .25s ease}
 .home-deck-progress-track.done i{background:var(--ok)}
@@ -801,7 +817,6 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   gap:20px;
   align-items:start;
   border:0;
-  border-top:1px solid var(--border);
   border-radius:0;
   background:transparent;
   padding:14px 0 0;
@@ -812,15 +827,12 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .home-card.merge-row .cal-grid{max-width:none;width:100%}
 .home-card.merge-row .hc-title{grid-column:1/-1;margin-bottom:10px}
 .home-card.merge-row .hc-title .merge-sep{opacity:.4;margin:0 2px;font-weight:400}
-.home-card.merge-row .hc-title .cal-streak{margin-left:auto}
 @media (max-width:640px){
-  .home-today-card.has-activity{display:block;padding:12px 14px}
-  .home-today-card.has-activity>.hc-title{margin-bottom:8px}
-  .home-today-card.has-activity .home-today-counts{gap:8px}
-  .home-today-card.has-activity .htc{flex:1;min-width:0}
-  .home-today-card.has-activity .home-goal{margin-top:10px}
+  .home-today-counts{gap:8px}
+  .home-today-counts .htc{padding:10px 14px;min-height:78px}
+  .home-today-counts .htc .n{font-size:30px}
   .home-card.merge-row{grid-template-columns:1fr;gap:14px}
-  .home-card.merge-row .cal-side{padding-right:0;border-right:0;padding-bottom:10px;border-bottom:1px solid var(--border)}
+  .home-card.merge-row .cal-side{padding-right:0;border-right:0;padding-bottom:0}
   .home-card.merge-row .recent-side{padding-left:0;padding-top:2px}
 }
 /* 空档案引导 */
@@ -1027,10 +1039,22 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
 .set-sel{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
 .set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
-/* 设置面板「行尾控件」统一宽度（2026-09-11 老板要求：答题模式 / 每批数量 / 庆祝效果 三个值右边缘必须对齐）。
+/* 设置面板「行尾控件」统一宽度（2026-09-11 老板要求：答题模式 / 每批数量 / 庆祝效果 三个值右边缘必须对齐；2026-09-15 再缩窄 20%）。
    ⚠️ flex 子项的 width 会被 min-width:auto(min-content) 顶掉 → 必须同时 min-width:0 + flex-shrink:0 才生效。
-   78px 同时是 e2e 的 ≤80px 回归红线（防 flex 拉伸回潮）。 */
-.set-ctl{width:78px;min-width:0;flex-shrink:0}
+   62px = 原 78px 的约 80%，同时保留足够空间显示两位数和下拉箭头。 */
+.set-ctl{width:62px;min-width:0;flex-shrink:0}
+/* 设置面板「动作行」（意群是什么 / 反馈问题）：与上方设置项同构 —— 左标签、右 chevron。
+   2026-09-15 老板要求：原先用居中的整行 .btn.ghost，与面板其他行的「左标签右控件」风格割裂。
+   hover 色沿用面板既有的 .btn.ghost:hover 值，静止态与下方 label 行完全一致。 */
+/* 行距/字号与上方设置项同源：label 行被 #settingsMask 规则压成 6px 2px / 13px / 1.2，
+   这里直接写同一套值（不另起一套 override）。
+   min-height 对齐设置项行的实测高度 31px（padding 12 + 右侧 checkbox 默认 13+margin 6）：
+   动作行只有文字与 chevron，自然高度 28，会比设置项矮 3px 导致行距不齐。
+   用 min-height 而非 height —— 内容变高时不被裁。 */
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:31px;padding:6px 2px;background:transparent;border:0;border-radius:8px;font-family:inherit;font-size:13px;line-height:1.2;color:var(--text);text-align:left;cursor:pointer;transition:background .15s ease}
+.set-row:hover{background:#eceff4}
+.set-row .chev{line-height:0;color:var(--faint)}
+.set-row .chev .icon{width:13px;height:13px}
 /* ===== 设置项说明浮层（2026-09-11 老板要求：灰色说明小字不再常显） =====
    原来每行右侧常挂一句灰色说明，窄屏下把行撑成两行。
    现改：说明文本存到行级 data-hint，唯一出口是本浮层 ——
@@ -1488,9 +1512,11 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </label>
       </div>
 
-      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px">
-        <button class="btn sm ghost" id="btnChunkIntro" type="button" style="width:100%"><span data-icon="help"></span>意群是什么</button>
-        <button class="btn sm ghost" id="btnFeedback" type="button" style="width:100%"><span data-icon="chat"></span>反馈问题</button>
+      <!-- 动作行：与上方设置项同构（左标签 + 右 chevron）。保留 button 语义与 id —— 二者都被
+           e2e/chunk-intro.test.js 与 e2e/e2e.js 直接 click。 -->
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+        <button class="set-row" id="btnChunkIntro" type="button"><span class="set-hit"><strong style="font-size:13px"><span data-icon="help"></span>意群是什么</strong></span><span class="chev" data-icon="chevR"></span></button>
+        <button class="set-row" id="btnFeedback" type="button"><span class="set-hit"><strong style="font-size:13px"><span data-icon="chat"></span>反馈问题</strong></span><span class="chev" data-icon="chevR"></span></button>
       </div>
 
       <!-- 大模型 API 配置已停用（2026-09-06：先禁联网 AI 生成）。后续开放 = 移除本行 display:none。 -->
@@ -2168,7 +2194,7 @@ if(fromIdx === 0 && isLongTermDeck){
     }
   }
   S.idx = fromIdx; S.combo = 0; S.maxCombo = 0; S.perfectCount = 0;
-  S.chunkTotal = 0; S.chunkRight = 0; S.wrong = []; S.wrongAnswers = []; S.finished = false; S._finishing = false;
+  S.chunkTotal = 0; S.chunkRight = 0; S.wrong = []; S.wrongAnswers = []; S.finished = false; S._finishing = false; S.sessionByDeck = {};
   /* ★ 临时题库前缀：仅 rev- 需要「手动」标识（与 SRS 到期复习区分）。
      错题/需巩固队列不再加『错题』前缀——队列名本身已自解释，前缀纯冗余。 */
   var _prefix = deck.id.indexOf('rev-') === 0 ? '『手动』 ' : '';
@@ -2207,7 +2233,7 @@ var S = {
   deck: null, items: [], idx: 0,
   chunkIdx: 0, status: [], answers: [], wrongAttempts: [], wrongAnswers: [],
   combo: 0, maxCombo: 0, perfectCount: 0,
-  chunkTotal: 0, chunkRight: 0, wrong: [],
+  chunkTotal: 0, chunkRight: 0, wrong: [], sessionByDeck: {},
   finished: false, _finishing: false,
   perfectThis: true, hinted: false, _hintedChunks: [],
   /* 超大内置题库当前练习批次与内容游标（非临时队列分页） */
@@ -3603,6 +3629,8 @@ function recordSentenceResult(it, ok){
   if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   mem.stats.totalAnswered++;
   var sourceDeckId = statDeckId(it);
+  if(!S.sessionByDeck) S.sessionByDeck = {};
+  S.sessionByDeck[sourceDeckId] = (S.sessionByDeck[sourceDeckId] || 0) + 1;
   var sourceDeck = findDeck(sourceDeckId);
   var key = statKey(it);
   var st = mem.stats.bySentence[key];
@@ -3889,12 +3917,19 @@ function setPracticeOnlyUi(isPractice){
   var sound = $('btnSound');
   if(sound) sound.classList.toggle('hidden', !isPractice);
 }
+/* 候选 chunks 是脱离 .page 的 fixed 浮层，离开练习页时必须显式清空。
+   不能只依赖 showPage：退出课程走 showHomePage 的专用异步保存路径。 */
+function clearStageChoices(){
+  var sc = $('stageChoices');
+  if(sc) sc.innerHTML = '';
+}
 /* 首页唯一入口：切页面 + 渲染内容（Bug A 修复，2026-09-10）。
    此前只切 hidden 不渲染 —— 从 decks / ?direct=1 直达练习后点「返回」，
    pageHome 从未渲染过 → 空白页（nav-exit-verify 实证 homeBody.htmlLen=0）。
    现渲染职责收归此处；renderHome 末尾不再反向调本函数（否则两者互相调用无限递归）。 */
 function showHomePage(){
   setPracticeOnlyUi(false);
+  clearStageChoices();
   var p = $('pagePractice'); if(p) p.classList.add('hidden');
   var h = $('pageHome'); if(h) h.classList.remove('hidden');
   var r = $('result'); if(r) r.classList.add('hidden');
@@ -3906,6 +3941,8 @@ function showHomePage(){
   window.scrollTo(0, 0);
 }
 function showPracticePage(){
+  /* 用户已经明确进入练习：后续 bootMain 只能补充初始化，不能再次执行默认入口决策。 */
+  _mainEntryClaimed = true;
   setPracticeOnlyUi(true);
   var h = $('pageHome'); if(h) h.classList.add('hidden');
   var p = $('pagePractice'); if(p) p.classList.remove('hidden');
@@ -3969,8 +4006,9 @@ function ensureStatDecks(deckIds){
   return Promise.all(list.map(function(id){ return ContentRepo.ensureDeck(id, mem); }));
 }
 
-/* 首页课程进度：进度表示“已经接触过多少句”，不是把某次练习的得分冒充课程完成度。
-   统计按稳定的 deckId#cid 去重，因此重复练习不会把覆盖率算高；已删除句子也不计入。 */
+/* 首页课程进度：进度表示“已经覆盖过多少个不同句子”，不是累计答题次数。
+   统计按稳定的 deckId#cid 去重，因此重复练习不会把覆盖率算高；已删除句子也不计入。
+   练习中途退出时，尚未完成的句子不会提前算入覆盖。 */
 function deckLearningProgress(deck){
   var total = Math.max(0, deckItemCount(deck));
   var by = (mem.stats && mem.stats.bySentence) || {}, seen = {};
@@ -3991,9 +4029,11 @@ function deckProgressMarkup(deck, resumeIdx, best){
   var current = resumeIdx > 0 ? '<span class="current">当前第 ' + Math.min(resumeIdx + 1, p.total || resumeIdx + 1) + ' 句</span>' : '';
   var last = best && typeof best.lastAcc === 'number' && isFinite(best.lastAcc)
     ? '<span class="last-acc">上次 ' + best.lastAcc + '%</span>' : '';
-  var aria = '已练 ' + p.done + ' / ' + p.total + ' 句，完成 ' + p.pct + '%';
+  var sessionCount = S.sessionByDeck && S.sessionByDeck[deck.id] || 0;
+  var session = sessionCount > 0 ? '<span class="session-answered">本次完成 ' + sessionCount + ' 句</span>' : '';
+  var aria = '已覆盖 ' + p.done + ' / ' + p.total + ' 句，按句子去重，覆盖 ' + p.pct + '%' + (sessionCount > 0 ? '，本次完成 ' + sessionCount + ' 句' : '');
   return '<div class="sub home-deck-progress" role="progressbar" aria-label="' + aria + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + p.pct + '">' +
-    '<span>已练 ' + p.done + ' / ' + p.total + ' 句</span><span class="pct">' + p.pct + '%</span>' + current + last + '</div>' +
+    '<span title="按不同句子去重，重复练习不会增加">已覆盖 ' + p.done + ' / ' + p.total + ' 句</span><span class="pct">覆盖 ' + p.pct + '%</span>' + current + last + session + '</div>' +
     '<div class="home-deck-progress-track' + (p.pct >= 100 ? ' done' : '') + '" aria-hidden="true"><i style="width:' + p.pct + '%"></i></div>';
 }
 
@@ -4066,14 +4106,25 @@ function renderHome(){
     return !!(mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed);
   }).sort(function(a, b){
     return (mem.best[b.id].lastPlayed) - (mem.best[a.id].lastPlayed);
-  }).slice(0, resume ? 2 : 3);
+  }).slice(0, resume ? 4 : 5);
+  /* 行数从 2/3 放宽到 4/5（2026-09-14）：右列「最近练习」原本只有 2-3 行约 110px，
+     而左列日历 283px → 合并卡右下永远空着约 170px。放宽后右列填满，
+     且**不增加页面高度** —— 合并卡高度由更高的左列决定。 */
 
   var h = [];
-  /* —— 今日卡 —— */
-   h.push('<div class="home-card home-today-card' + (hasEver ? ' has-activity' : '') + '"><div class="hc-title">' + ic('calendar') + '今日<span class="grow"></span><span class="home-hint">' + (new Date().getMonth()+1) + ' 月 ' + new Date().getDate() + ' 日</span></div>');
-  /* 连续天数仍用于月历右侧摘要，不在今日卡片重复展示 */
+  /* —— 顶部标题行：日期 + 连续天数（2026-09-14 顶部拆三层）——
+     日期原本是今日卡里一个不可点的标签，与两张可点卡共用一个白底容器
+     （实测桌面端可用 952px 里内容只占 551px，右侧 401px 空着）；
+     连续天数原本挂在合并卡标题右上，离它描述的日历最远。现在两者合成标题行，
+     行动卡那一层就只剩「可点的东西」。 */
   var _streakN = CL.streakDays(mem);
   var _activity = CL.dailyActivity(mem);
+  var _nowD = new Date();
+  h.push('<div class="home-hero"><div class="hh-date">' + (_nowD.getMonth() + 1) + ' 月 ' + _nowD.getDate() + ' 日</div>'
+    + (_streakN > 0 ? '<div class="cal-streak">' + ic('fire') + '连续 ' + _streakN + ' 天</div>' : '')
+    + '</div>');
+  /* —— 今日行动卡：两张卡均分整行，卡片本身就是入口 —— */
+  h.push('<div class="home-card home-today-card' + (hasEver ? ' has-activity' : '') + '">');
   if(!hasEver){
     h.push('<div class="home-empty">'
       + '<div class="t">档案还空着，从这里开始</div>'
@@ -4094,14 +4145,17 @@ function renderHome(){
        +   '<div class="n' + (t.book ? '' : ' ok') + '">' + t.book + '</div><div class="l">错题本</div>' + _chev(t.book) + '</button>'
       + '</div>');
   }
+  h.push('</div>');
   /* —— 每日目标进度（仅当用户设过目标时才存在这个节点） ——
      口径 = 今日「答完的句子数」= CL.dailyActivity 的 answered（由持久事件派生），
      不新增 stats 字段 → 不需要动 mergeStats（我们曾在 daysLog 上踩过漏合并的坑）。
-     未设目标 → 节点完全不渲染，对老用户零打扰。 */
+     未设目标 → .home-goal 完全不渲染，对老用户零打扰，
+     但那样用户就看不到「今天练了多少」→ 下面补一个只报数的 .home-today-done。
+     进度条放在行动卡之外，是为了让卡里只剩「可点的东西」。 */
   var _goal = normDailyGoal(mem.settings && mem.settings.dailyGoal);
+  var _tk = CL.ymd(new Date());
+  var _todayAnswered = (_activity[_tk] && _activity[_tk].answered) || 0;
   if(_goal > 0){
-    var _tk = CL.ymd(new Date());
-    var _todayAnswered = (_activity[_tk] && _activity[_tk].answered) || 0;
     var _done = _todayAnswered >= _goal;
     var _pct = Math.min(100, Math.round(_todayAnswered / _goal * 100));
     h.push('<div class="home-goal' + (_done ? ' done' : '') + '">'
@@ -4109,34 +4163,35 @@ function renderHome(){
       + '<span>' + (_done ? (ic('check') + ' 目标完成') : (_pct + '%')) + '</span></div>'
       + '<div class="hg-bar"><i style="width:' + _pct + '%"></i></div>'
       + '</div>');
+  } else if(hasEver && _todayAnswered > 0){
+    /* 未设目标：没有分母就没有进度条，只报数。
+       0 句时不渲染，避免出现「今日已练 0 句」这种丧气话。 */
+    h.push('<div class="home-today-done">今日已练 <b>' + _todayAnswered + '</b> 句</div>');
   }
-  h.push('</div>');
 
   /* —— 本月打卡 + 最近练习 合并卡（左右布局，省 纵向空间） —— */
   if(hasEver){
-    /* 日历数据：先算 _cells/_todayD/_mDays/_mRounds 给左栏用 */
+    /* 日历数据：只负责呈现本月答题热度；累计统计集中在学习档案。 */
     var _now = new Date(), _y = _now.getFullYear(), _m = _now.getMonth();
     var _lead = (new Date(_y, _m, 1).getDay() + 6) % 7;
     var _dim = new Date(_y, _m + 1, 0).getDate();
     var _todayD = _now.getDate();
     var _cells = '';
     ['一','二','三','四','五','六','日'].forEach(function(w){ _cells += '<div class="cal-hd">' + w + '</div>'; });
-    var _i, _mDays = 0, _mRounds = 0;
+    var _i;
     for(_i = 0; _i < _lead; _i++) _cells += '<div class="cal-cell pad"></div>';
     for(_i = 1; _i <= _dim; _i++){
       var _key = CL.ymd(new Date(_y, _m, _i));
       var _day = _activity[_key] || {answered:0,rounds:0};
       var _r = _day.rounds, _answered = _day.answered;
-      if(_r > 0 || _answered > 0){ _mDays++; _mRounds += _r; }
       var _lv = _answered >= 40 ? 4 : _answered >= 20 ? 3 : _answered >= 10 ? 2 : (_answered > 0 || _r > 0) ? 1 : 0;
       var _fut = _i > _todayD;
       /* 非未来日期挂 data 属性，供 cal-pop 事件代理识别 */
       var _attrs = _fut ? '' : ' tabindex="0" role="button" aria-label="' + _key + ' 答题 ' + _answered + ' 句，完成练习 ' + _r + ' 轮" data-day="' + _key + '" data-rounds="' + _r + '" data-answered="' + _answered + '"';
       _cells += '<div class="cal-cell ' + (_fut ? 'lx' : 'l' + _lv) + (_i === _todayD ? ' today' : '') + '"' + _attrs + '>' + _i + '</div>';
     }
-    /* 左栏：日历 grid + footer */
-    var _cellsHtml = '<div class="cal-grid">' + _cells + '</div>'
-      + '<div class="cal-foot">本月学习 <b>' + _mDays + '</b> 天<span class="s-dot">·</span>完成练习 <b>' + _mRounds + '</b> 轮<span class="s-dot">·</span>累计答题 <b>' + ((mem.stats && mem.stats.totalAnswered) || 0) + '</b> 句</div>';
+    /* 左栏：只保留日历，统计详情统一放在学习档案概览。 */
+    var _cellsHtml = '<div class="cal-grid">' + _cells + '</div>';
     /* 右栏：继续/最近 deck rows */
     var _rows = [];
     if(resume){
@@ -4152,7 +4207,6 @@ function renderHome(){
 
     h.push('<div class="home-card merge-row">'
       + '<div class="hc-title">' + ic('calendar') + '本月打卡<span class="merge-sep">·</span>' + ic('target') + '最近练习<span class="grow"></span>'
-      + (_streakN > 0 ? '<span class="cal-streak">' + ic('fire') + '连续 ' + _streakN + ' 天</span>' : '')
       + '</div>'
       + '<div class="merge-side cal-side">' + _cellsHtml + '</div>'
       + (_rows.length ? '<div class="merge-side recent-side"><div class="home-decks">' + _rows.join('') + '</div></div>' : '')
@@ -4163,14 +4217,14 @@ function renderHome(){
   body.innerHTML = h.join('');
   var goDecks = body.querySelector('#homeGoDecks'); if(goDecks) goDecks.onclick = function(){ location.href = 'decks.html'; };
   var ciBtn = body.querySelector('#homeChunkIntro'); if(ciBtn) ciBtn.onclick = openChunkIntro;
-  var bDue = body.querySelector('#homeBtnDue'); if(bDue) bDue.onclick = startTodayDue;
-  var bBook = body.querySelector('#homeBtnBook'); if(bBook) bBook.onclick = startBookNow;
+  var bDue = body.querySelector('#homeBtnDue'); if(bDue) bDue.onclick = function(){ showPracticePage(); startTodayDue(); };
+  var bBook = body.querySelector('#homeBtnBook'); if(bBook) bBook.onclick = function(){ showPracticePage(); startBookNow(); };
   Array.prototype.forEach.call(body.querySelectorAll('[data-start]'), function(btn){
     btn.onclick = function(){
       var dk = findDeck(btn.getAttribute('data-start'));
       if(!dk) return;
-      var idx = parseInt(btn.getAttribute('data-idx') || '0', 10);
       showPracticePage();
+      var idx = parseInt(btn.getAttribute('data-idx') || '0', 10);
       startDeck(dk, idx > 0 ? idx : 0);
     };
   });
@@ -4688,7 +4742,7 @@ function showPage(id){
   /* stageChoices 是 fixed 浮层（不属任何 .page），切到非练习页时清空，
      避免 chips 残留在屏幕上与新页面冲突（详解已改为弹窗模式不走 showPage） */
   if(id !== 'pagePractice'){
-    var sc = $('stageChoices'); if(sc) sc.innerHTML = '';
+    clearStageChoices();
   }
   /* 页面切换时关闭所有弹窗 */
   $('impMask').hidden = true;
@@ -5375,7 +5429,7 @@ window.addEventListener('dragover', function(e){ e.preventDefault(); });
 window.addEventListener('drop', function(e){ e.preventDefault(); });
 
 /* ============================================================
-   10. 启动（先确保云端登录/同步，再初始化界面）
+   10. 启动（先绘制本地首屏，云端登录/同步后台进行）
 ============================================================ */
 /* PWA: 注册 service worker（离线缓存静态资源；API/写请求不缓存）
    新版本检测：SW 更新安装完成后提示用户刷新（不自动 reload，尊重当前练习状态） */
@@ -5443,7 +5497,41 @@ if(CL && CL.on && CL.isDirty){
   });
   refreshSyncBadge(CL.isDirty(), CL.getSyncConflict());
 }
-Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(bootApp);
+/* 首页不能依赖云端配置或 IDB 迁移完成才第一次绘制：网络请求卡住时，
+   原实现会永远停在空的 pagePractice，用户看到只有顶栏。
+   先从本地投影绘制首页，云端/内容初始化仍按原流程继续；bootMain 一旦真正启动，
+   兜底计时器自动失效，避免 direct=1 或外部跳转被错误带回首页。 */
+var _mainBooted = false;
+var _mainEntryClaimed = false;
+var _mainLocalPainted = false;
+function paintLocalHome(){
+  if(_mainBooted || _mainLocalPainted) return;
+  try{
+    loadStore();
+    showHomePage();
+    _mainLocalPainted = true;
+  }catch(e){
+    console.warn('[boot] 本地首页首屏绘制失败，等待完整启动：', e);
+  }
+}
+var _mainLocalTimer = setTimeout(paintLocalHome, 180);
+if(CL && typeof CL.preload === 'function'){
+  Promise.resolve(CL.preload()).then(function(){
+    clearTimeout(_mainLocalTimer);
+    paintLocalHome();
+  }, function(){
+    clearTimeout(_mainLocalTimer);
+    paintLocalHome();
+  });
+}
+Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()])
+  .then(function(){ clearTimeout(_mainLocalTimer); bootApp(); })
+  .catch(function(e){
+    /* ContentRepo 失败不应让首页空白；练习入口仍会在后续重新加载时重试。 */
+    console.warn('[boot] 云端/内容初始化失败，使用本地首页：', e);
+    clearTimeout(_mainLocalTimer);
+    paintLocalHome();
+  });
 
 /* ★ 引擎+FormatTools 就绪守卫（boot 竞态根治，2026-09-08）
    根因：bridge.mjs 是 <script type="module">（defer 语义，文档 parse 完成后才执行），
@@ -5539,22 +5627,29 @@ function decideEntry(){
 }
 
 function bootMain(){
+_mainBooted = true;
 try {
-loadStore();
-applyCloudConfig(); /* AI 数据面收敛：Key 未启用即清存量（须在 loadStore 后） */
-migrateLegacyStatKeys();
-/* streak chip 历史回填（2026-09-09）：用户 12:20 练题时 streak 功能还没上线，
-   finishSession 没经过 bumpDaysLog；events 数组却忠实记录了所有 round。一次性收敛：
-   daysLog 空 + events 非空 → 按 events.at 分组回填；幂等（daysLog 有任意 key 即跳过） */
-var _bfN = CL.backfillDaysLog(mem);
-if(_bfN > 0){ saveStore(); console.info('[chunklab] daysLog 历史回填', _bfN, '天'); }
-setSoundIcon();
-renderCats();
-$('cats').firstChild && $('cats').firstChild.click();
+if(_mainEntryClaimed){
+  /* 提前首屏后用户可能已经开始练习；此时保留当前 mem、S 和页面，不重跑入口。
+     云端同步完成后的最新态由既有 memExternal/安全退出路径采纳。 */
+  setSoundIcon();
+} else {
+  loadStore();
+  applyCloudConfig(); /* AI 数据面收敛：Key 未启用即清存量（须在 loadStore 后） */
+  migrateLegacyStatKeys();
+  /* streak chip 历史回填（2026-09-09）：用户 12:20 练题时 streak 功能还没上线，
+     finishSession 没经过 bumpDaysLog；events 数组却忠实记录了所有 round。一次性收敛：
+     daysLog 空 + events 非空 → 按 events.at 分组回填；幂等（daysLog 有任意 key 即跳过） */
+  var _bfN = CL.backfillDaysLog(mem);
+  if(_bfN > 0){ saveStore(); console.info('[chunklab] daysLog 历史回填', _bfN, '天'); }
+  setSoundIcon();
+  renderCats();
+  $('cats').firstChild && $('cats').firstChild.click();
 
-/* 入口决策：decks/stats 外部跳转协议 > ?direct=1 直练 > 默认今日首页
-   见 decideEntry()/resumeOrStart()（bootMain 上方定义） */
-  decideEntry();
+  /* 入口决策：decks/stats 外部跳转协议 > ?direct=1 直练 > 默认今日首页
+     见 decideEntry()/resumeOrStart()（bootMain 上方定义） */
+    decideEntry();
+}
 } catch (e) {
   /* 启动段任何异常都写到 #zh（替代"永远卡在加载中"），并打 console 便于 F12 排查 */
   var zh = document.getElementById('zh');

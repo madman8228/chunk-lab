@@ -305,13 +305,15 @@ function check(name, cond, detail) {
     return h && !h.classList.contains('hidden') && p && p.classList.contains('hidden');
   }, null, { timeout: 8000 });
   const exitAfter = await pExit.evaluate(function () {
+    const choices = document.querySelectorAll('#stageChoices .choice');
     return {
       homeVisible: !document.getElementById('pageHome').classList.contains('hidden'),
       practiceHidden: document.getElementById('pagePractice').classList.contains('hidden'),
-      soundHidden: document.getElementById('btnSound').classList.contains('hidden')
+      soundHidden: document.getElementById('btnSound').classList.contains('hidden'),
+      choiceCount: choices.length
     };
   });
-  check('main: 退出课程回到首页且不残留练习态', exitAfter.homeVisible && exitAfter.practiceHidden && exitAfter.soundHidden, JSON.stringify(exitAfter));
+  check('main: 退出课程回到首页且不残留练习态', exitAfter.homeVisible && exitAfter.practiceHidden && exitAfter.soundHidden && exitAfter.choiceCount === 0, JSON.stringify(exitAfter));
   check('main: 退出课程零 pageerror', exitErrs.length === 0, exitErrs.join('|'));
   await pExit.close();
   await exitCtx.close();
@@ -358,9 +360,10 @@ function check(name, cond, detail) {
   check('home: 非练习页隐藏音效按钮', homeLinksState.soundDisplay === 'none', JSON.stringify(homeLinksState));
   await pHomeLinks.close();
 
-  /* ===== 1e. 设置面板「行尾控件」：三个值同宽 + 每批数量改选档
+  /* ===== 1e. 设置面板「行尾控件」：三个值同宽 + 每批数量改选档 + 宽度紧凑
    *   2026-09-10 回归根因：flex min-width:auto 保留 min-content ~200px，把 width:64px 撑没了
    *   2026-09-11 老板要求：答题模式 / 每批数量 / 庆祝效果 三个控件宽度必须一致；
+   *   2026-09-15：在 78px 基础上再缩窄 20%，目标约 62px；
    *                     每批数量不再手填数字，只给 10 / 15 / 20 / 30 四档 */
   const pBatchSize = await ctx.newPage();
   await pBatchSize.route('**/api/**', function (r) { r.abort('failed'); });
@@ -393,12 +396,13 @@ function check(name, cond, detail) {
   check('settings: #setBatchSize 默认选中 10', !!(bsBox && bsBox.value === '10'), bsBox && bsBox.value);
   check('settings: #setBatchSize 宽度 ≤ 80px（防 flex min-content 拉伸回潮）', !!(bsBox && bsBox.w <= 80), 'w=' + (bsBox ? bsBox.w : 'null'));
   check('settings: #setBatchSize 宽度 ≥ 40px（两位数完整可见）', !!(bsBox && bsBox.w >= 40), 'w=' + (bsBox ? bsBox.w : 'null'));
+  check('settings: 三个下拉框宽度约为原 78px 的 80%（约 62px）', !!(bsBox && bsBox.w >= 60 && bsBox.w <= 64), 'w=' + (bsBox ? bsBox.w : 'null'));
   check('settings: 三个行尾控件同宽（答题模式 / 每批数量 / 庆祝效果）',
     !!(modeBox && bsBox && celebBox && modeBox.w === bsBox.w && bsBox.w === celebBox.w),
     JSON.stringify({ mode: modeBox && modeBox.w, batch: bsBox && bsBox.w, celebrate: celebBox && celebBox.w }));
   await pBatchSize.close();
 
-  /* ===== 1f. 庆祝效果 select 文字 + 宽度（2026-09-10：彩带喷射 → 彩带，宽度缩 30%） ===== */
+  /* ===== 1f. 庆祝效果 select 文字 + 宽度（2026-09-10：彩带喷射 → 彩带；2026-09-15：再缩窄 20%） ===== */
   const pCelebrate = await ctx.newPage();
   await pCelebrate.route('**/api/**', function (r) { r.abort('failed'); });
   await pCelebrate.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
@@ -415,8 +419,8 @@ function check(name, cond, detail) {
   check('settings: #setCelebrate confetti 选项文案为「彩带」（非「彩带喷射」）',
     celebrateState && celebrateState.opts[0] === '彩带',
     JSON.stringify(celebrateState));
-  check('settings: #setCelebrate 宽度 ≤ 90px（原 110px 缩 30% → 78px，防回潮）',
-    celebrateState && celebrateState.opts[0] === '彩带' && celebrateState.w <= 90,
+  check('settings: #setCelebrate 宽度约 62px（原 78px 缩窄 20%，防回潮）',
+    celebrateState && celebrateState.opts[0] === '彩带' && celebrateState.w >= 60 && celebrateState.w <= 64,
     'w=' + (celebrateState ? celebrateState.w : 'null') + ' opts=' + JSON.stringify(celebrateState && celebrateState.opts));
   await pCelebrate.close();
 
@@ -440,8 +444,8 @@ function check(name, cond, detail) {
   check('settings: #setMode type 选项文案为「手拼」（非「手动拼写」）',
     modeState && modeState.opts[1] === '手拼',
     JSON.stringify(modeState));
-  check('settings: #setMode 宽度 ≤ 100px（防回潮到 4 字时代 ~110px+）',
-    modeState && modeState.w <= 100,
+  check('settings: #setMode 宽度约 62px（原 78px 缩窄 20%，防回潮）',
+    modeState && modeState.w >= 60 && modeState.w <= 64,
     'w=' + (modeState ? modeState.w : 'null'));
   await pMode.close();
 
@@ -452,6 +456,7 @@ function check(name, cond, detail) {
   check('home: 源码已删"今日无到期"（防回潮）', mainHtmlSrc.indexOf('今日无到期') < 0, 'still in main.html');
   check('home: 源码已删"练点新的或休息"（防回潮）', mainHtmlSrc.indexOf('练点新的或休息') < 0, 'still in main.html');
   check('home: 源码已删重复的"去题库学新句"入口（防回潮）', mainHtmlSrc.indexOf('去题库学新句</button>') < 0, 'still in main.html');
+  check('home: 月度统计已从首页移入学习档案（防回潮）', mainHtmlSrc.indexOf('cal-foot') < 0 && mainHtmlSrc.indexOf('CL.answerStatsAudit(mem)') < 0, 'home still owns archive summary');
   check('main: 源码已删练习卡返回分流（防回潮）', mainHtmlSrc.indexOf('id="btnBack"') < 0 && mainHtmlSrc.indexOf('_fromDecks') < 0, 'still in main.html');
   check('main: 查看讲解与答后讲解复用同一内容源',
     mainHtmlSrc.indexOf("showExplanationPanel('本句讲解', buildAnalysisSections(it))") >= 0 &&
@@ -515,8 +520,27 @@ function check(name, cond, detail) {
       hasEmpty: !!(body && body.querySelector('.home-empty')),
       todayCard: (function(){
         var card = body && body.querySelector('.home-today-card');
-        var cs = card ? getComputedStyle(card) : null;
-        return { exists: !!card, compact: !!(card && card.classList.contains('has-activity')), display: cs ? cs.display : 'missing' };
+        var counts = body && body.querySelector('.home-today-counts');
+        var hero = body && body.querySelector('.home-hero');
+        var htcs = counts ? counts.querySelectorAll('.htc') : [];
+        var cr = card ? card.getBoundingClientRect() : null;
+        var nr = counts ? counts.getBoundingClientRect() : null;
+        var ws = Array.prototype.map.call(htcs, function(el){ return Math.round(el.getBoundingClientRect().width); });
+        return {
+          exists: !!card,
+          hasHero: !!hero,
+          /* 2026-09-14 顶部改版：旧版是 display:flex 的「横向行动栏」，
+             实测可用 952px 里内容只占 551px、右侧 401px 空着（占 42%）。
+             新契约 = 计数区必须占满今日卡宽 + 两张卡等宽 + 数字与标签上下堆叠。 */
+          fillPct: (cr && nr && cr.width > 0) ? Math.round(nr.width / cr.width * 100) : 0,
+          equalWidth: ws.length === 2 && Math.abs(ws[0] - ws[1]) <= 2,
+          stacked: (function(){
+            if (!htcs[0]) return false;
+            var n = htcs[0].querySelector('.n'), l = htcs[0].querySelector('.l');
+            if (!n || !l) return false;
+            return l.getBoundingClientRect().top >= n.getBoundingClientRect().bottom - 1;
+          })()
+        };
       })(),
       hasNoDueText: body && (body.innerText || '').indexOf('今日无到期') >= 0,
       hasRestText: body && (body.innerText || '').indexOf('练点新的或休息') >= 0,
@@ -532,8 +556,10 @@ function check(name, cond, detail) {
     !noDueState.hasRestText, JSON.stringify(noDueState));
   check('home: 已有学习记录时不渲染重复的"去题库学新句"按钮',
     !noDueState.hasNewDeckBtn, JSON.stringify(noDueState));
-  check('home: 今日卡压缩为横向行动栏',
-    noDueState.todayCard.exists && noDueState.todayCard.compact && noDueState.todayCard.display === 'flex', JSON.stringify(noDueState.todayCard));
+  check('home: 顶部三层 · 标题行独立 + 行动卡均分占满整行且数字在上标签在下（2026-09-14 改版）',
+    noDueState.todayCard.exists && noDueState.todayCard.hasHero && noDueState.todayCard.fillPct >= 95
+      && noDueState.todayCard.equalWidth && noDueState.todayCard.stacked,
+    JSON.stringify(noDueState.todayCard));
   check('cal: today cell 不再有 box-shadow 外框（防"hover 残留"视觉混淆，2026-09-10）',
     noDueState.todayBoxShadow === 'none' || noDueState.todayBoxShadow === '',
     JSON.stringify(noDueState));
@@ -569,7 +595,7 @@ function check(name, cond, detail) {
   await pRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
   const recentAccuracySummary = await pRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
   check('home: 最近练习不显示「续练这张」废话', recentAccuracySummary.indexOf('续练这张') < 0, recentAccuracySummary);
-  check('home: 最近练习显示课程覆盖进度', recentAccuracySummary.indexOf('已练 1 / 1 句') >= 0 && recentAccuracySummary.indexOf('100%') >= 0, recentAccuracySummary);
+  check('home: 最近练习显示课程覆盖进度', recentAccuracySummary.indexOf('已覆盖 1 / 1 句') >= 0 && recentAccuracySummary.indexOf('覆盖 100%') >= 0, recentAccuracySummary);
   check('home: 最近练习显示最近一次正确率而非最佳正确率', recentAccuracySummary.indexOf('上次 40%') >= 0 && recentAccuracySummary.indexOf('100%') >= 0, recentAccuracySummary);
   await pRecentAccuracy.close();
   await ctxRecentAccuracy.close();
@@ -596,7 +622,7 @@ function check(name, cond, detail) {
   await pNoRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
   const noCompletedSummary = await pNoRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
   check('home: 未完成过练习不显示伪造的正确率', noCompletedSummary.indexOf('上次') < 0 && noCompletedSummary.indexOf('正确率') < 0, noCompletedSummary);
-  check('home: 未完成过练习仍显示覆盖进度', noCompletedSummary.indexOf('已练 1 / 1 句') >= 0 && noCompletedSummary.indexOf('100%') >= 0, noCompletedSummary);
+  check('home: 未完成过练习仍显示覆盖进度', noCompletedSummary.indexOf('已覆盖 1 / 1 句') >= 0 && noCompletedSummary.indexOf('覆盖 100%') >= 0, noCompletedSummary);
   await pNoRecentAccuracy.close();
   await ctxNoRecentAccuracy.close();
 
@@ -910,11 +936,13 @@ function check(name, cond, detail) {
   const ssvg = await ps.evaluate(function () {
     return {
       count: document.querySelectorAll('svg.icon').length,
-      tabIcons: document.querySelectorAll('#statsTabs .tab svg').length
+      tabIcons: document.querySelectorAll('#statsTabs .tab svg').length,
+      monthSummary: !!document.querySelector('.overview-month-summary')
     };
   });
   check('stats: SVG 图标渲染', ssvg.count >= 2, 'svg=' + ssvg.count);
-  check('stats: 三个页签统一纯文字', ssvg.tabIcons === 0, 'tabIcons=' + ssvg.tabIcons);
+  check('stats: 页签统一纯文字', ssvg.tabIcons === 0, 'tabIcons=' + ssvg.tabIcons);
+  check('stats: 概览显示紧凑的本月统计摘要', ssvg.monthSummary === true, JSON.stringify(ssvg));
   check('stats: 零 pageerror', errss.length === 0, errss.join('|'));
 
   /* ===== 3b. stats.html 移动端信息密度 ===== */
@@ -947,9 +975,21 @@ function check(name, cond, detail) {
     var head = Array.from(document.querySelectorAll('.page-head > *')).map(function(el){
       var r=el.getBoundingClientRect(); return Math.round(r.top+r.height/2);
     });
-    var kpi = tops('.overview-primary > .overview-metric');
+    var acts = tops('.overview-actions > .ov-act');
+    var stats = tops('.overview-status > .ov-stat');
     var pair = tops('.activity-day');
+    var labels = tops('.activity-week-labels > span');
     var rounds = document.querySelector('.overview-note');
+    var reconcileNote = document.querySelector('.stats-reconcile-note');
+    /* 行动卡契约：计数 0 → disabled + 无箭头 + 数字显 --ok；非 0 → 可点 + 必须有箭头。
+       仅断言「同行」会漏掉「卡看起来不能点/能点但没箭头」的回归。 */
+    var actCards = Array.from(document.querySelectorAll('.overview-actions > .ov-act'));
+    var actContract = actCards.length === 2 && actCards.every(function (el) {
+      var n = el.querySelector('.n');
+      var zero = !!n && n.textContent.trim() === '0';
+      if (zero) return el.disabled && !el.querySelector('.chev svg') && n.classList.contains('ok');
+      return !el.disabled && !!el.querySelector('.chev svg');
+    });
     var firstRow = document.querySelector('.stats-detail-row');
     var firstNum = firstRow && firstRow.querySelector('.row-num');
     var firstEn = firstRow && firstRow.querySelector('.en');
@@ -957,18 +997,27 @@ function check(name, cond, detail) {
     var enTop = firstEn ? Math.round(firstEn.getBoundingClientRect().top) : 0;
     return {
       headRows: head.length ? (Math.max.apply(Math, head) - Math.min.apply(Math, head) <= 2 ? 1 : new Set(head).size) : 0,
-      kpiFirstTwoSameRow: kpi.length < 2 || kpi[0] === kpi[1],
-      visibleKpiCount: kpi.length,
+      actsSameRow: acts.length === 2 && acts[0] === acts[1],
+      actsCount: acts.length,
+      actContract: actContract,
+      statsTwoPerRow: stats.length === 4 && stats[0] === stats[1] && stats[2] === stats[3] && stats[0] !== stats[2],
+      statsCount: stats.length,
       roundsDisplay: rounds ? getComputedStyle(rounds).display : '',
+      reconcileNotePresent: !!reconcileNote,
       pairSameRow: pair.length < 2 || pair[0] === pair[1],
+      labelsSameRow: labels.length === 7 && labels[0] === labels[6],
       rowNumberAligned: !firstRow || Math.abs(numTop - enTop) <= 3,
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth
     };
   });
   check('stats mobile: 顶部操作保持一行', statsMobileLayout.headRows === 1, JSON.stringify(statsMobileLayout));
-  check('stats mobile: 核心指标保持一行', statsMobileLayout.kpiFirstTwoSameRow, JSON.stringify(statsMobileLayout));
-  check('stats mobile: 3 项核心指标且轮次口径可见', statsMobileLayout.visibleKpiCount === 3 && statsMobileLayout.roundsDisplay !== 'none', JSON.stringify(statsMobileLayout));
-  check('stats mobile: 近7天日期保持一行', statsMobileLayout.pairSameRow, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 两张行动卡保持一行', statsMobileLayout.actsSameRow && statsMobileLayout.actsCount === 2, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 行动卡 0 值禁用且无箭头、非 0 有箭头', statsMobileLayout.actContract, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 4 项状态指标两两成行', statsMobileLayout.statsTwoPerRow && statsMobileLayout.statsCount === 4, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 轮次口径可见', statsMobileLayout.roundsDisplay !== 'none', JSON.stringify(statsMobileLayout));
+  check('stats mobile: 近7天柱形保持一行', statsMobileLayout.pairSameRow, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 近7天日期标签保持一行', statsMobileLayout.labelsSameRow, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 概览不显示技术性日期对账提示', !statsMobileLayout.reconcileNotePresent, JSON.stringify(statsMobileLayout));
   check('stats mobile: 记录序号与首行内容对齐', statsMobileLayout.rowNumberAligned, JSON.stringify(statsMobileLayout));
   check('stats mobile: 无横向溢出', !statsMobileLayout.overflowX, JSON.stringify(statsMobileLayout));
   await psm.click('[data-tab="sent"]');
@@ -1287,14 +1336,15 @@ function check(name, cond, detail) {
     await p5.waitForTimeout(700);
     const afterPracticeHome = await p5.evaluate(function () {
       var today = document.querySelector('.cal-cell.today');
+      var footer = document.querySelector('.cal-foot');
       return {
         todayRounds: today ? today.getAttribute('data-rounds') : null,
-        footer: (document.querySelector('.cal-foot') || {}).textContent || '',
-        hasZeroOnlyCalendar: !!(document.querySelector('.cal-grid') && /完成练习\s*0\s*轮/.test(document.querySelector('.cal-foot').textContent))
+        hasArchiveFooter: !!footer,
+        hasZeroOnlyCalendar: !!(document.querySelector('.cal-grid') && footer && /完成练习\s*0\s*轮/.test(footer.textContent))
       };
     });
     check('home: 返回首页后日历显示真实完成轮次', afterPracticeHome.todayRounds === '1' &&
-      afterPracticeHome.footer.indexOf('完成练习 1 轮') >= 0 && afterPracticeHome.footer.indexOf('累计答题 2 句') >= 0 &&
+      !afterPracticeHome.hasArchiveFooter &&
       !afterPracticeHome.hasZeroOnlyCalendar, JSON.stringify(afterPracticeHome));
     /* 点「换个题库」应整页跳 decks.html（原 openDecks 内嵌列表已删）。
        ⚠ 竞速陷阱：不能先注册 waitForURL 再 click —— click 默认 30s actionability，

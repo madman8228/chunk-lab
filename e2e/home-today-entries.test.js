@@ -351,6 +351,106 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       await sp.ctx.close();
     }
 
+    /* ===== 场景 E：顶部三层布局契约（2026-09-14 顶部改版） =====
+       改版前是「一条横向行动栏」：不可点的日期标签 + 两张卡 + 进度条共用一个白底容器。
+       实测（视口 1200px）可用 952px 里内容只占 551px、右侧 401px 空着，是可用宽的 42%；
+       且 .htc 被 align-items:baseline 压成「38 待复习」并排，与档案页行动卡（上下堆叠）不同规格。
+       改版后：标题行（日期 + 连续天数）/ 均分行动卡 / 进度行 三层。 */
+    {
+      const sp = await scenarioPage(browser, initBookOnly, { width: 1280, height: 800 });
+      const page = sp.page;
+      const top = await page.evaluate(function () {
+        function box(el) {
+          if (!el) return null;
+          var r = el.getBoundingClientRect();
+          return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height) };
+        }
+        /* 文字盒必须用 Range：.n/.l 在 flex 列容器里会被 stretch 到全宽，
+           直接量元素盒子得到的是盒子而不是文字，会误判居中。 */
+        function textBox(el) {
+          if (!el) return null;
+          var rg = document.createRange();
+          rg.selectNodeContents(el);
+          var r = rg.getBoundingClientRect();
+          return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height), cx: Math.round(r.left + r.width / 2) };
+        }
+        var body = document.getElementById('homeBody');
+        var hero = document.querySelector('#homeBody .home-hero');
+        var counts = document.querySelector('.home-today-counts');
+        var card = document.querySelector('.home-today-card');
+        var htcs = Array.prototype.slice.call(document.querySelectorAll('.home-today-counts .htc'));
+        var cw = counts ? counts.getBoundingClientRect().width : 0;
+        var dw = card ? card.getBoundingClientRect().width : 0;
+        var w = htcs.map(function (el) { return Math.round(el.getBoundingClientRect().width); });
+        var n0 = htcs[0] ? textBox(htcs[0].querySelector('.n')) : null;
+        var l0 = htcs[0] ? textBox(htcs[0].querySelector('.l')) : null;
+        var c0 = htcs[0] ? box(htcs[0]) : null;
+        var res = {
+          heroExists: !!hero,
+          heroFirst: !!(body && hero && body.firstElementChild === hero),
+          heroHasDate: !!document.querySelector('#homeBody .home-hero .hh-date'),
+          heroHasStreak: !!document.querySelector('#homeBody .home-hero .cal-streak'),
+          /* 真契约不是「streak 一定存在」（连续天数为 0 时本来就不渲染），
+             而是「它只能出现在标题行里，不能再挂回合并卡标题」。 */
+          streakOutsideHero: (function () {
+            var all = document.querySelectorAll('#homeBody .cal-streak');
+            for (var i = 0; i < all.length; i++) { if (!hero || !hero.contains(all[i])) return true; }
+            return false;
+          })(),
+          hasTitleInCard: !!(card && card.querySelector('.hc-title')),
+          cardCount: htcs.length,
+          equalWidth: w.length === 2 && Math.abs(w[0] - w[1]) <= 2,
+          countsFillPct: (dw > 0) ? Math.round(cw / dw * 100) : 0,
+          stacked: !!(n0 && l0 && l0.y >= n0.y + n0.h - 1),
+          centerDelta: (n0 && c0) ? Math.round(n0.cx - (c0.x + c0.w / 2)) : null,
+          cardH: c0 ? c0.h : 0,
+          overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth
+        };
+        /* 负向自证 1：把计数区钉回上一版的 max-width:240px → 占满率必须跌破 50%。
+           否则这条断言只是「选择器恰好命中」，抓不住「又变窄了」这种回归。 */
+        if (counts && dw > 0) {
+          counts.style.maxWidth = '240px';
+          res.negFillPct = Math.round(counts.getBoundingClientRect().width / dw * 100);
+          counts.style.maxWidth = '';
+        }
+        /* 负向自证 2：往今日卡里塞一个 .hc-title → 「卡内无标题」必须变红。 */
+        if (card && !card.querySelector('.hc-title')) {
+          var d = document.createElement('div');
+          d.className = 'hc-title';
+          d.textContent = '今日';
+          card.insertBefore(d, card.firstChild);
+          res.negHasTitle = !!card.querySelector('.hc-title');
+          card.removeChild(d);
+        }
+        /* 负向自证 3：把 .cal-streak 塞回合并卡标题 → streakOutsideHero 必须变 true。 */
+        var mTitle = document.querySelector('#homeBody .home-card.merge-row .hc-title') || document.querySelector('#homeBody .hc-title');
+        if (mTitle) {
+          var sc = document.createElement('span');
+          sc.className = 'cal-streak';
+          sc.textContent = '连续 3 天';
+          mTitle.appendChild(sc);
+          var all2 = document.querySelectorAll('#homeBody .cal-streak');
+          res.negStreakOutside = false;
+          for (var j = 0; j < all2.length; j++) { if (!hero || !hero.contains(all2[j])) { res.negStreakOutside = true; break; } }
+          mTitle.removeChild(sc);
+        }
+        return res;
+      });
+      check('E1 顶部标题行存在且是首页第一个元素', top.heroExists && top.heroFirst, JSON.stringify(top));
+      check('E2 日期在标题行内，且连续天数不再挂在合并卡（若渲染必在标题行内）', top.heroHasDate && top.streakOutsideHero === false, JSON.stringify({ d: top.heroHasDate, inHero: top.heroHasStreak, outside: top.streakOutsideHero }));
+      check('E2- 负向自证 · 把连续天数塞回合并卡后必须能识别', top.negStreakOutside === true, 'negStreakOutside=' + top.negStreakOutside);
+      check('E3 今日卡内不再有 .hc-title（不可点标签已搬出卡外）', top.hasTitleInCard === false, 'hasTitleInCard=' + top.hasTitleInCard);
+      check('E3- 负向自证 · 塞回 .hc-title 后必须能识别', top.negHasTitle === true, 'negHasTitle=' + top.negHasTitle);
+      check('E4 两张行动卡等宽（均分，差 <= 2px）', top.equalWidth && top.cardCount === 2, JSON.stringify(top.w));
+      check('E5 计数区占满今日卡宽 >= 95%', top.countsFillPct >= 95, 'fill=' + top.countsFillPct + '%');
+      check('E5- 负向自证 · 钉回 max-width:240px 后占满率必须跌破 50%', top.negFillPct < 50, 'negFill=' + top.negFillPct + '%');
+      check('E6 数字与标签上下堆叠（不是 baseline 并排）', top.stacked === true, 'stacked=' + top.stacked);
+      check('E7 数字横向居中（偏差 <= 2px）', top.centerDelta !== null && Math.abs(top.centerDelta) <= 2, 'delta=' + top.centerDelta);
+      check('E8 卡高 >= 44（触控目标）', top.cardH >= 44, 'h=' + top.cardH);
+      check('E9 顶部无横向溢出', top.overflowX === false, 'overflowX=' + top.overflowX);
+      await sp.ctx.close();
+    }
+
     /* ===== 场景 D：截图（38 到期 / 3 需巩固 / 0 错题本） ===== */
     {
       const sp = await scenarioPage(browser, initBig);
