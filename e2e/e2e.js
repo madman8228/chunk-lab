@@ -86,6 +86,29 @@ function check(name, cond, detail) {
   await p.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
   await p.waitForSelector('#stageChoices, #track', { timeout: 12000 }).catch(function () {});
   await p.waitForTimeout(1000);
+  /* 定性（2026-09-16）：「角色标签对比度」两条断言曾随机变红，detail 恒为 count:0。
+     根因 = 根因②（断言依赖随机数据）：?direct=1 进入 oral-1-1-1 时**每次随机抽一句**，
+     该 deck 约 6 成句子没有 grammar 数据 → 不渲染 .chunk-role → 探针量不到对象（8 轮实测 5 次计数为 0）。
+     这里把输入**确定化**：切到「带 grammar 的句子」再探。只选输入、不碰样式，
+     与根因④（探针改 DOM 导致量错对象）是两回事。切不到时换一个带 grammar 的 deck。 */
+  const roleSetup = await p.evaluate(function () {
+    function firstGrammarIdx(items) {
+      if (!items) return -1;
+      for (var i = 0; i < items.length; i++) { var g = items[i] && items[i].grammar; if (g && g.length) return i; }
+      return -1;
+    }
+    var it = (typeof cur === 'function') ? cur() : null;
+    if (it && it.grammar && it.grammar.length) return { ok: true, how: 'already', sentence: it.sentence };
+    var k = firstGrammarIdx(window.S && S.items);
+    if (k >= 0) { S.idx = k; renderQ(); return { ok: true, how: 'idx', idx: k, sentence: cur().sentence }; }
+    var decks = (typeof allDecks === 'function') ? allDecks() : [];
+    for (var d = 0; d < decks.length; d++) {
+      var dk = decks[d];
+      if (dk && dk.id && firstGrammarIdx(dk.items) >= 0) { startDeck(dk); return { ok: true, how: 'deck', deck: dk.id }; }
+    }
+    return { ok: false, how: 'none' };
+  });
+  if (roleSetup && roleSetup.how === 'deck') { await p.waitForTimeout(600); }
   const ok = await p.evaluate(function () {
     return {
       zh: (document.getElementById('zh') || {}).textContent || '',
@@ -203,7 +226,7 @@ function check(name, cond, detail) {
   check('main: 朗读按钮 Hover 无容器背景', speakHover === 'rgba(0, 0, 0, 0)', 'background=' + speakHover);
   check('main: chunk 标签靠近下划线', ok.answerRoleGap <= 3, 'gap=' + ok.answerRoleGap);
   check('main: 角色标签文字对比度 >= AA 4.5（色相只做底色，不退化成文字色）',
-    ok.roleBadge.count > 0 && ok.roleBadge.min >= 4.5, JSON.stringify(ok.roleBadge));
+    ok.roleBadge.count > 0 && ok.roleBadge.min >= 4.5, JSON.stringify({ roleBadge: ok.roleBadge, roleSetup: roleSetup }));
   check('main: 角色标签弱化不靠压 opacity（opacity 会把对比度拉低）', ok.roleBadge.opacityOk, JSON.stringify(ok.roleBadge));
   check('main: 角色标签对比度护栏负向自证（压回数据色相必变红）', ok.roleBadge.negMin < 4.5, JSON.stringify(ok.roleBadge));
   await p.locator('#btnSound').click();
@@ -762,6 +785,22 @@ function check(name, cond, detail) {
     var answerWidths = Array.from(document.querySelectorAll('#track > .chunk .chunk-answer')).map(function (el) {
       return Math.round(el.getBoundingClientRect().width);
     });
+    /* ★ 空答案块的下限探针（2026-09-16 根因修复）
+       原断言写 `minAnswerWidth >= 40`，但被测元素**全是 .chunk.active / .chunk.wait**，
+       而这两态在移动端 CSS 里明确覆盖为 `min-width:0` + `width:clamp(48px, chars*7+16, 100%)`
+       + `max-width:100%` —— 也就是说 `min-width:40px` 那一档对它们**根本不生效**；
+       容器可用宽窄于 48px 时，宽度本来就会 <40，属正常。
+       实测采样 18 次：minAnswerWidth 随随机句子在 36~72 间跳
+       （{36:3,43:1,47:1,48:9,51:1,58:1,60:1,72:1}）→ 原断言失败 3/18 ≈ 17%（假红，根因②）。
+       改成判「是否兑现自己的 clamp 下限」：宽度应达到 min(48px, 容器可用宽)。
+       塌陷（width:0 / 去掉 clamp）仍会变红，与这一次抽到多长的句子无关。 */
+    var answerProbe = Array.from(document.querySelectorAll('#track > .chunk .chunk-answer')).map(function (el) {
+      var chunk = el.parentElement;
+      var avail = chunk ? Math.round(chunk.getBoundingClientRect().width) : 0;
+      var w = Math.round(el.getBoundingClientRect().width);
+      var floor = Math.min(48, avail);
+      return { w: w, avail: avail, floor: floor, ok: w >= floor - 2 };
+    });
     /* ★ 布局能力探针（2026-09-11 根因修复）
        原断言用「当前句子的真实候选」量行数，而 startDeck 对未练过的句子按
        `Math.random() - 0.5` 排序（main.html startDeck 的 sort 兜底分支）→ 每次跑到的句子不同。
@@ -825,7 +864,8 @@ function check(name, cond, detail) {
       stageBottom: sr ? Math.round(sr.bottom) : 0,
       analysisBottom: ar ? Math.round(ar.bottom) : 0,
       choicesProbe: choicesProbe,
-      trackProbe: trackProbe
+      trackProbe: trackProbe,
+      answerProbe: answerProbe
     };
   });
   check('mobile: 隐藏键盘快捷键提示', mobileLayout.shortcutDisplay === 'none', JSON.stringify(mobileLayout));
@@ -842,9 +882,12 @@ function check(name, cond, detail) {
   check('mobile: 主卡片 chunk 布局允许并排两个',
     !!mobileLayout.trackProbe && mobileLayout.trackProbe.ok,
     JSON.stringify({ probe: mobileLayout.trackProbe, 真实行数: mobileLayout.maxChunksPerRow, 真实块数: mobileLayout.trackCount }));
-  check('mobile: 空答案块保持列宽',
-    mobileLayout.trackCount < 2 || mobileLayout.minAnswerWidth >= 40,
-    JSON.stringify(mobileLayout));
+  /* 「空答案块保持列宽」= 兑现自己的 clamp 下限（min(48px, 容器可用宽)），
+     而不是「这一次抽到的句子让宽度 ≥40」。见上文 answerProbe 注释。 */
+  check('mobile: 空答案块兑现宽度下限（未被压塌）',
+    !!mobileLayout.answerProbe && mobileLayout.answerProbe.length > 0
+      && mobileLayout.answerProbe.every(function (a) { return a.ok; }),
+    JSON.stringify({ probe: mobileLayout.answerProbe, 真实最小宽: mobileLayout.minAnswerWidth }));
   check('mobile: 练习与分析首屏无纵向溢出', !mobileLayout.overflowY, JSON.stringify(mobileLayout));
   check('mobile: 页面无横向溢出', !mobileLayout.overflowX, JSON.stringify(mobileLayout));
   await mobileCtx.close();

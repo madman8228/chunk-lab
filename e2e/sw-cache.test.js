@@ -127,12 +127,21 @@ function cacheUrls(page) {
     urls.filter(function (u) { return /oral-book|freq-idioms/.test(u); }).join(','));
   check('页面无 JS 错误', errs.length === 0, errs.slice(0, 3).join(' | '));
 
-  /* 首次真正使用日常题库时，才会拉取并缓存对应内容分片。主页本身不应隐式加载整库。 */
-  await page.evaluate(function () {
-    return window.ContentRepo.ensureDeck('oral-6-31').then(function (deck) {
-      return deck && deck.items ? deck.items.length : 0;
+  /* 首次真正使用日常题库时，才会拉取并缓存对应内容分片。主页本身不应隐式加载整库。
+     ★ 必须走「真实入口」startDeck：它既拉分片，又登记 mem.activeDeckId / lastPlayed。
+     只调 ContentRepo.ensureDeck 会漏掉后者 —— 之前正是漏了，导致离线页在
+     resumeOrStart() 里回落到 allDecks()[0]（一个从没访问过、分片也没缓存的 deck），
+     于是「离线出不了首卡」被误报成离线缺陷（2026-09-16 判明：是测试没铺垫，不是离线坏）。 */
+  const ONLINE_DECK = 'oral-6-31';
+  const online = await page.evaluate(function (deckId) {
+    return window.ContentRepo.ensureDeck(deckId).then(function (deck) {
+      window.startDeck(deck, 0);
+      return {
+        deckId: window.S && S.deck ? S.deck.id : null,
+        items: window.S && S.items ? S.items.length : 0
+      };
     });
-  });
+  }, ONLINE_DECK);
   let contentUrls = [];
   for (let i = 0; i < 30; i++) {
     contentUrls = (await cacheUrls(page)).urls;
@@ -142,6 +151,8 @@ function cacheUrls(page) {
   check('进入练习后才缓存日常题库分片',
     contentUrls.some(function (u) { return u.indexOf('/content/oral-6-31/') === 0; }),
     contentUrls.filter(function (u) { return u.indexOf('/content/') === 0; }).join(','));
+  check('在线进入练习：已登记活跃题库（离线恢复的依据）',
+    online.deckId === ONLINE_DECK && online.items > 0, JSON.stringify(online));
 
   /* ---------- 2. 首次访问后立即离线（只访问过一次） ---------- */
   console.log('');
@@ -163,7 +174,11 @@ function cacheUrls(page) {
             ok: !!ok,
             engine: typeof window.ChunkEngine,
             format: typeof window.FormatTools,
-            items: (window.BUILTIN || []).reduce(function (s, d) { return s + (d.items || []).length; }, 0),
+            /* 旧指标读 window.BUILTIN，而 builtins.js 自 2026-09-15 起是空壳
+               （window.BUILTIN = []，句子全走 content/ 分片）→ 该指标恒为 0、断言必红。
+               改为量「离线真正加载到的题目」，再与在线数对比（在线 == 离线才叫完整）。 */
+            deckId: window.S && S.deck ? S.deck.id : null,
+            items: window.S && S.items ? S.items.length : 0,
             session: window.S ? S.items.length : -1,
             qno: (document.getElementById('qno') || {}).textContent || ''
           });
@@ -175,7 +190,11 @@ function cacheUrls(page) {
     off.engine === 'object' && off.format === 'object',
     'ChunkEngine=' + off.engine + ' FormatTools=' + off.format);
   check('离线也能启动并出练习首卡', off.ok && !!off.qno, JSON.stringify(off));
-  check('离线题库完整（BUILTIN 句数 > 0）', off.items > 0, String(off.items));
+  check('离线恢复到「已缓存的活跃题库」，而非回落到没收过的 deck',
+    off.deckId === ONLINE_DECK, '实际 ' + off.deckId);
+  check('离线题目数与在线一致（分片确实从 SW/IDB 缓存取回）',
+    off.items === online.items && off.items > 0,
+    '在线 ' + online.items + ' / 离线 ' + off.items);
   check('离线无 JS 错误（尤其不得出现 MIME/esc 类级联报错）', errs2.length === 0, errs2.slice(0, 3).join(' | '));
   await ctx.close();
 

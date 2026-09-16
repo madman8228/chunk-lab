@@ -21,7 +21,9 @@ const { chromium } = require('playwright-core');
 const ROOT = path.resolve(__dirname, '..', '..');
 const OUT = path.join(ROOT, 'output', 'ux-audit');
 fs.mkdirSync(OUT, { recursive: true });
-const PORT = require('./lib/free-port').freePort(9500, 100);
+/* 从 output/e2e/ 回仓库根要两级，再进 e2e/lib/ —— 原先写的 './lib/free-port'
+   是 e2e/ 搬到 e2e/ 之前的位置，搬家后没跟着改（2026-09-16 修）。 */
+const PORT = require('../../e2e/lib/free-port').freePort(9500, 100);
 const BASE = 'http://127.0.0.1:' + PORT;
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-uxaudit-'));
 const LOG = fs.createWriteStream(path.join(OUT, 'run.log'), { flags: 'w' });
