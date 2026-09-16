@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "0ca82ddb",
+      "sentence": "I'll take care of it.",
+      "translation": "我来处理。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-ef83e71b78c5.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "529f6b92",
+      "sentence": "I'm willing to help.",
+      "translation": "我愿意帮忙。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-ef83e71b78c5.json",
+      "sourceOffset": 1
+    }
+  ]
+}

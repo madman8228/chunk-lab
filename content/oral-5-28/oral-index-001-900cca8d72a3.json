@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "a16719cf",
+      "sentence": "Here's to the New Year!",
+      "translation": "祝贺新年!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "9d131e2b",
+      "sentence": "Happy New Year!",
+      "translation": "新年快乐!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "1d754876",
+      "sentence": "Happy Valentine's Day!",
+      "translation": "情人节快乐。",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "9cd0ccba",
+      "sentence": "Be my Valentine.",
+      "translation": "做我的情人吧。",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "6a0821e8",
+      "sentence": "Happy Easter!",
+      "translation": "复活节快乐!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "5da16967",
+      "sentence": "Happy Mother's Day!",
+      "translation": "母亲节快乐!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "a1ba7010",
+      "sentence": "Thanks for being such a good mom.",
+      "translation": "你真是我的好妈妈。",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "b1bed8ec",
+      "sentence": "Trick or treat!",
+      "translation": "不请吃就捣蛋!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "f0aa611f",
+      "sentence": "Happy Thanksgiving!",
+      "translation": "感恩节快乐!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "ddbd53a6",
+      "sentence": "Let's have pumpkin pie.",
+      "translation": "我们吃南瓜派吧。",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "c977344d",
+      "sentence": "Merry Christmas!",
+      "translation": "圣诞快乐!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "031bd919",
+      "sentence": "Have a Merry Christmas.",
+      "translation": "祝您圣诞愉快!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "59372d5d",
+      "sentence": "Here's your birthday gift.",
+      "translation": "这是送给你的生日礼物。",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "6cd6afb5",
+      "sentence": "It's my birthday.",
+      "translation": "生日快乐!",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "f832cb36",
+      "sentence": "Happy anniversary!",
+      "translation": "结婚纪念日快乐。",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "0c663f17",
+      "sentence": "Thanks for being in my life.",
+      "translation": "谢谢你陪我共度人生。",
+      "sourceUrl": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+      "sourceOffset": 15
+    }
+  ]
+}

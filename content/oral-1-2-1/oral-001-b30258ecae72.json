@@ -1,0 +1,1346 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm going to meet a friend for lunch.",
+      "cid": "cff80fb6",
+      "translation": "我打算和朋友一起吃午饭。",
+      "chunks": [
+        "I'm going to",
+        "meet a friend",
+        "for lunch."
+      ],
+      "hints": [
+        "我打算",
+        "见一个朋友",
+        "一起吃午饭"
+      ],
+      "grammar": [
+        {
+          "role": "主语+谓语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈɡəʊɪŋ/",
+            "/tuː/"
+          ],
+          "pos": "主谓结构",
+          "meaning": "我打算"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/miːt/",
+            "/ə/",
+            "/frend/"
+          ],
+          "pos": "动词短语",
+          "meaning": "见一个朋友"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/lʌntʃ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "为了午餐"
+        }
+      ],
+      "explanations": [
+        "**be going to** 表示\"计划、打算做某事\"。常见错误：\n• \"I will going\" → will 后面不能加 ing\n• \"I go to meet\" → 缺少 be going to 结构，语气也不够自然",
+        "**meet** 是原形动词，因为前面有 \"going to\" 搭配。不要写成 \"meeting\"（那需要 am going to meeting，重复了）。",
+        "**for + 名词** 表示目的。这里 for lunch = 为了吃午餐。不要用 \"to lunch\"（to 后面要接动词原形）。"
+      ],
+      "distractors": [
+        [
+          "I going to",
+          "I'm go to",
+          "I'm going for"
+        ],
+        [
+          "meet the friend",
+          "meet friend",
+          "meets a friend"
+        ],
+        [
+          "for the lunch.",
+          "to lunch.",
+          "at lunch."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's grab a coffee after work.",
+      "cid": "f03e78e8",
+      "translation": "下班后一起去喝杯咖啡吧。",
+      "chunks": [
+        "Let's grab a coffee",
+        "after work."
+      ],
+      "hints": [
+        "我们去喝杯咖啡",
+        "下班之后"
+      ],
+      "grammar": [
+        {
+          "role": "祈使主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/ɡræb/",
+            "/ə/",
+            "/ˈkɒfi/"
+          ],
+          "pos": "let's + 动词",
+          "meaning": "我们去喝咖啡"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈɑːftər/",
+            "/wɜːrk/"
+          ],
+          "pos": "介词短语",
+          "meaning": "下班后"
+        }
+      ],
+      "explanations": [
+        "**Let's = Let us**，表示建议或邀请。常见错误：\n• 写成 **Let us** → 太正式，口语用 Let's\n• **grab** 在这里不是'抓'，是口语化的'去吃/去喝'",
+        "**work** 作'上班'讲时是不可数名词，不加 the。常见错误：\n• after **the** work → 错误\n• after **working** → 语法正确但 after work 更简洁常用"
+      ],
+      "distractors": [
+        [
+          "Let's grab coffee",
+          "Let's grab the coffee"
+        ],
+        [
+          "after the work.",
+          "before work.",
+          "after works."
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you doing anything this evening?",
+      "cid": "b3b8b56c",
+      "translation": "你今晚有什么安排吗？",
+      "chunks": [
+        "Are you doing anything",
+        "this evening?"
+      ],
+      "hints": [
+        "你在做什么事情吗",
+        "今晚"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/",
+            "/ˈduːɪŋ/",
+            "/ˈeniθɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "你在做什么事吗"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðɪs/",
+            "/ˈiːvnɪŋ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "今晚"
+        }
+      ],
+      "explanations": [
+        "**Are you doing anything...?** 是问对方近期安排的标准开头。用现在进行时表将来计划。常见错误：\n• \"Do you doing anything\" → 疑问句 be 要提前\n• \"Are you **do** anything\" → 进行时需要 doing",
+        "**this evening** 前不加介词（on this evening ❌）。想约人时可接：Are you doing anything this evening? — 我想约你看电影。"
+      ],
+      "distractors": [
+        [
+          "Do you doing anything",
+          "Are you do anything",
+          "Are you doing anythings"
+        ],
+        [
+          "this morning?",
+          "the evening?",
+          "this evenings?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'd love to, but I'm afraid I'm busy.",
+      "cid": "c5333fc3",
+      "translation": "我很想去，但恐怕我没空。",
+      "chunks": [
+        "I'd love to,",
+        "but I'm afraid",
+        "I'm busy."
+      ],
+      "hints": [
+        "我很乐意",
+        "但恐怕",
+        "我很忙"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/lʌv/",
+            "/tuː/"
+          ],
+          "pos": "would love to",
+          "meaning": "我很乐意"
+        },
+        {
+          "role": "转折从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/bʌt/",
+            "/aɪm/",
+            "/əˈfreɪd/"
+          ],
+          "pos": "委婉表达",
+          "meaning": "但恐怕"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈbɪzi/"
+          ],
+          "pos": "主系表",
+          "meaning": "我很忙"
+        }
+      ],
+      "explanations": [
+        "**I'd love to, but...** 是拒绝邀请的礼貌句式（先肯定再转折）。常见错误：\n• \"I'd love **it**, but\" → 这里 to 代替整句（I'd love to go），不用 it\n• 直接说 No → 太生硬，不礼貌",
+        "**I'm afraid** 在这里不是「害怕」，而是「恐怕/遗憾」，用来软化拒绝。口语高频：I'm afraid I can't make it."
+      ],
+      "distractors": [
+        [
+          "I love to,",
+          "I'd love,",
+          "I'd loved to,"
+        ],
+        [
+          "but I afraid",
+          "but I'm feared",
+          "but I'm afraid of"
+        ],
+        [
+          "I busy.",
+          "I'm busied.",
+          "I'm busying."
+        ]
+      ]
+    },
+    {
+      "sentence": "Why don't we meet at the usual place?",
+      "cid": "e5c1bf50",
+      "translation": "我们在老地方见怎么样？",
+      "chunks": [
+        "Why don't we meet",
+        "at the usual place?"
+      ],
+      "hints": [
+        "我们何不见面",
+        "在老地方"
+      ],
+      "grammar": [
+        {
+          "role": "建议主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/waɪ/",
+            "/doʊnt/",
+            "/wiː/",
+            "/miːt/"
+          ],
+          "pos": "建议疑问句",
+          "meaning": "我们何不见面"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/ðə/",
+            "/ˈjuːʒuəl/",
+            "/pleɪs/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在老地方"
+        }
+      ],
+      "explanations": [
+        "**Why don't we...?** = 我们……怎么样？是提建议的常用句式。常见错误：\n• \"Why we don't meet\" → 疑问句 don't 提前\n• \"Why don't we **to** meet\" → 后接动词原形",
+        "**the usual place** = 老地方（双方都熟悉的地方）。usual 是形容词「惯常的」。"
+      ],
+      "distractors": [
+        [
+          "Why don't us meet",
+          "Why not we meet",
+          "Why aren't we meet"
+        ],
+        [
+          "in the usual place?",
+          "at usual place?",
+          "at the usually place?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll pick you up at your place.",
+      "cid": "9ae0b549",
+      "translation": "我去你那儿接你。",
+      "chunks": [
+        "I'll pick you up",
+        "at your place."
+      ],
+      "hints": [
+        "我会接你",
+        "在你家"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/pɪk/",
+            "/juː/",
+            "/ʌp/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我会接你"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/jɔːr/",
+            "/pleɪs/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在你家"
+        }
+      ],
+      "explanations": [
+        "**pick sb up** = 开车接某人。代词放中间：pick **you** up / pick **me** up。常见错误：\n• \"pick up **you**\" → 代词必须放中间\n• \"pick you **upstairs**\" → upstairs 是楼上，不是接你",
+        "**your place** = 你家（口语）。比较：at my place / at home。正式说法 your house / your apartment。"
+      ],
+      "distractors": [
+        [
+          "I'll pick up you",
+          "I'll picks you up",
+          "I pick you up"
+        ],
+        [
+          "at yours place.",
+          "in your place.",
+          "at you place."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could we reschedule for tomorrow instead?",
+      "cid": "249e8feb",
+      "translation": "我们能改到明天吗？",
+      "chunks": [
+        "Could we reschedule",
+        "for tomorrow instead?"
+      ],
+      "hints": [
+        "我们能改期吗",
+        "改到明天"
+      ],
+      "grammar": [
+        {
+          "role": "情态主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/wiː/",
+            "/riːˈʃedjuːl/"
+          ],
+          "pos": "情态动词+动词",
+          "meaning": "我们能改期吗"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/təˈmɒroʊ/",
+            "/ɪnˈsted/"
+          ],
+          "pos": "介词短语",
+          "meaning": "改到明天"
+        }
+      ],
+      "explanations": [
+        "**reschedule** = 重新安排时间（re + schedule）。常见错误：\n• \"change the schedule\" → 也可以，但 reschedule 更地道\n• \"reschedule **to** tomorrow\" → 固定搭配是 for tomorrow",
+        "**instead** = 作为替代，放句末。完整意思：不是原定时间，而是改为明天。"
+      ],
+      "distractors": [
+        [
+          "Could us reschedule",
+          "Could we reschedules",
+          "Could we to reschedule"
+        ],
+        [
+          "on tomorrow instead?",
+          "for the tomorrow instead?",
+          "for tomorrow instead of?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm running a bit late, sorry.",
+      "cid": "684f3d80",
+      "translation": "我可能要晚点到，抱歉。",
+      "chunks": [
+        "I'm running",
+        "a bit late,",
+        "sorry."
+      ],
+      "hints": [
+        "我（变得）",
+        "稍微晚了",
+        "抱歉"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈrʌnɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "我在（变）"
+        },
+        {
+          "role": "程度+表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/bɪt/",
+            "/leɪt/"
+          ],
+          "pos": "副词短语",
+          "meaning": "稍微晚"
+        },
+        {
+          "role": "致歉插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsɒri/"
+          ],
+          "pos": "感叹词",
+          "meaning": "抱歉"
+        }
+      ],
+      "explanations": [
+        "**run late** = 迟到/时间赶不上（run 表「变得」，口语固定搭配）。常见错误：\n• \"I'm **arriving** late\" → 可以但 run late 更口语\n• \"I'm late **running**\" → 语序反了",
+        "迟到通知要主动：I'm running a bit late. / I'll be there in ten minutes.（十分钟到）"
+      ],
+      "distractors": [
+        [
+          "I running",
+          "I'm run",
+          "I'm runing"
+        ],
+        [
+          "a bit of late,",
+          "a bit later,",
+          "a bit lately,"
+        ],
+        [
+          "sory.",
+          "sorrys."
+        ]
+      ]
+    },
+    {
+      "sentence": "Shall we take a walk after dinner?",
+      "cid": "5f612d59",
+      "translation": "晚饭后我们去散散步好吗？",
+      "chunks": [
+        "Shall we",
+        "take a walk",
+        "after dinner?"
+      ],
+      "hints": [
+        "我们要不要",
+        "散散步",
+        "晚饭后"
+      ],
+      "grammar": [
+        {
+          "role": "建议句式",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ʃæl/",
+            "/wiː/"
+          ],
+          "pos": "Shall we 建议",
+          "meaning": "我们要不要"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/teɪk/",
+            "/ə/",
+            "/wɔːk/"
+          ],
+          "pos": "动词短语",
+          "meaning": "散散步"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈɑːftər/",
+            "/ˈdɪnər/"
+          ],
+          "pos": "介词短语",
+          "meaning": "晚饭后"
+        }
+      ],
+      "explanations": [
+        "**Shall we...?** = 我们……好吗？（英式常用，表提议）。常见错误：\n• \"Will we take a walk\" → Shall we 才是标准提议句式\n• \"Shall we **to** take\" → shall 后接动词原形",
+        "**take a walk** = 散步，固定搭配。同义：go for a walk / go for a stroll。美式更多说 Let's go for a walk."
+      ],
+      "distractors": [
+        [
+          "Will we",
+          "Shall us",
+          "Do we shall"
+        ],
+        [
+          "take walk",
+          "takes a walk",
+          "take the walk"
+        ],
+        [
+          "after the dinner?",
+          "before dinner?",
+          "after dinners?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll see you at the entrance at seven.",
+      "cid": "f900c537",
+      "translation": "我们七点在入口见。",
+      "chunks": [
+        "I'll see you",
+        "at the entrance",
+        "at seven."
+      ],
+      "hints": [
+        "我会见到你",
+        "在入口",
+        "七点"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/siː/",
+            "/juː/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我会见到你"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/ði/",
+            "/ˈentrəns/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在入口"
+        },
+        {
+          "role": "时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/æt/",
+            "/ˈsevn/"
+          ],
+          "pos": "at+时刻",
+          "meaning": "七点"
+        }
+      ],
+      "explanations": [
+        "**see you at + 地点 + at + 时间**：地点用 at，时刻用 at。常见错误：\n• \"see you **on** the entrance\" → 地点在门口用 at 不用 on\n• \"at seven o'clock **pm**\" → 口语说 at seven 即可",
+        "约定见面：地点 + 时间两个要素都要交代清楚。I'll see you there!（到那儿见！）"
+      ],
+      "distractors": [
+        [
+          "I see you",
+          "I'll sees you",
+          "I'll see your"
+        ],
+        [
+          "in the entrance",
+          "at entrance",
+          "at an entrance"
+        ],
+        [
+          "on seven.",
+          "in seven.",
+          "at the seven."
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you free this weekend?",
+      "cid": "15accdce",
+      "translation": "你这个周末有空吗？",
+      "chunks": [
+        "Are you free",
+        "this weekend?"
+      ],
+      "hints": [
+        "你有空吗",
+        "这个周末"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/",
+            "/friː/"
+          ],
+          "pos": "主系表",
+          "meaning": "你有空吗"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðɪs/",
+            "/ˈwiːkend/"
+          ],
+          "pos": "名词短语",
+          "meaning": "这个周末"
+        }
+      ],
+      "explanations": [
+        "`Are you free...` 询问是否有空。常见错误：\n• \"Do you **have** free\" → 不自然，have free time 才搭配 have\n• \"Are you **freed**\" → free 是形容词，不是动词过去式",
+        "`this weekend` 前不加介词（不说 on this weekend，尽管美语偶尔加 on，但 this weekend 最简洁常用）。"
+      ],
+      "distractors": [
+        [
+          "Do you free",
+          "Are you freely",
+          "Are you freedom"
+        ],
+        [
+          "this week?",
+          "that weekend?",
+          "this weekends?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm afraid I can't make it tonight.",
+      "cid": "ef7de65b",
+      "translation": "恐怕今晚我抽不出时间。",
+      "chunks": [
+        "I'm afraid",
+        "I can't make it",
+        "tonight."
+      ],
+      "hints": [
+        "恐怕",
+        "我没法去/参加",
+        "今晚"
+      ],
+      "grammar": [
+        {
+          "role": "引子",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪm/",
+            "/əˈfreɪd/"
+          ],
+          "pos": "委婉开场",
+          "meaning": "恐怕"
+        },
+        {
+          "role": "主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/kænt/",
+            "/meɪk/",
+            "ɪt/"
+          ],
+          "pos": "否定句",
+          "meaning": "我没法去"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈnaɪt/"
+          ],
+          "pos": "副词",
+          "meaning": "今晚"
+        }
+      ],
+      "explanations": [
+        "`I'm afraid...` 是委婉拒绝/告知坏消息的开场，不是真的害怕。常见错误：\n• \"I'm **afraid of** I can't\" → afraid of 后接名词，接句子用 afraid (that)\n• 直译成「我害怕」→ 语境是礼貌，不是恐惧",
+        "`make it` = 能到场/能成行。常见错误：\n• \"I can't **come** it\" → 搭配是 make it，不是 come it\n• \"I can't **do** it\" → do it 指做某事，make it 指能出席"
+      ],
+      "distractors": [
+        [
+          "I afraid",
+          "I'm feared"
+        ],
+        [
+          "I can't take it",
+          "I don't make it",
+          "I can't makes it"
+        ],
+        [
+          "today.",
+          "this night."
+        ]
+      ]
+    },
+    {
+      "sentence": "Why don't we grab a bite to eat?",
+      "cid": "966b3754",
+      "translation": "我们随便吃点东西怎么样？",
+      "chunks": [
+        "Why don't we",
+        "grab a bite to eat?"
+      ],
+      "hints": [
+        "我们为什么不",
+        "随便吃点东西"
+      ],
+      "grammar": [
+        {
+          "role": "建议句型",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/waɪ/",
+            "/doʊnt/",
+            "/wiː/"
+          ],
+          "pos": "建议疑问句",
+          "meaning": "我们为什么不"
+        },
+        {
+          "role": "谓语（固定习语）",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡræb/",
+            "/ə/",
+            "/baɪt/",
+            "/tuː/",
+            "/iːt/"
+          ],
+          "pos": "动词短语",
+          "meaning": "随便吃点东西"
+        }
+      ],
+      "explanations": [
+        "`Why don't we...` 是提建议的委婉句式，等于 Let's...。常见错误：\n• \"Why **we don't** grab\" → 疑问句 don't 要提前\n• \"Why don't we **to** grab\" → 后接动词原形",
+        "`grab a bite (to eat)` 是口语「随便吃点、填饱肚子」，非正式。bite 本义「一口」，这里指小吃。"
+      ],
+      "distractors": [
+        [
+          "Why don't us",
+          "Why not we",
+          "Why aren't we"
+        ],
+        [
+          "grab a bite to drink?",
+          "grab a bit to eat?",
+          "grab a bite eat?"
+        ]
+      ]
+    },
+    {
+      "sentence": "What time should we meet up?",
+      "cid": "09096d4a",
+      "translation": "我们几点碰面好？",
+      "chunks": [
+        "What time",
+        "should we meet up?"
+      ],
+      "hints": [
+        "几点",
+        "我们该碰面"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɒt/",
+            "/taɪm/"
+          ],
+          "pos": "特殊疑问词",
+          "meaning": "几点"
+        },
+        {
+          "role": "情态+主语+谓语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ʃʊd/",
+            "/wiː/",
+            "/miːt/",
+            "ʌp/"
+          ],
+          "pos": "建议疑问句",
+          "meaning": "我们该碰面"
+        }
+      ],
+      "explanations": [
+        "`What time` 问具体时刻（对比 When 问大概时间）。常见错误：\n• \"**Which** time should we\" → 用 what 不是 which\n• \"What time **we should**\" → 疑问句 should 提前",
+        "`meet up` 强调「见面、碰头」（尤指约定会面）。也可只用 meet，meet up 更口语化。"
+      ],
+      "distractors": [
+        [
+          "What times",
+          "When time",
+          "How time"
+        ],
+        [
+          "should us meet up?",
+          "should we to meet up?",
+          "should we meets up?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Mind if I join you for lunch?",
+      "cid": "5dea8d2a",
+      "translation": "介意我跟你们一起吃午饭吗？",
+      "chunks": [
+        "Mind if I",
+        "join you",
+        "for lunch?"
+      ],
+      "hints": [
+        "介意如果我",
+        "加入你们",
+        "吃午饭"
+      ],
+      "grammar": [
+        {
+          "role": "省略问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/maɪnd/",
+            "/ɪf/",
+            "/aɪ/"
+          ],
+          "pos": "口语省略 Do you",
+          "meaning": "介意如果我"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/dʒɔɪn/",
+            "/juː/"
+          ],
+          "pos": "动词短语",
+          "meaning": "加入你们"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/lʌntʃ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "吃午饭"
+        }
+      ],
+      "explanations": [
+        "`Mind if I...` = Do you mind if I... 的口语省略版。常见错误：\n• 回答 \"Yes\" → 指「介意」，别让人家一起坐；不介意要说 No/Not at all\n• \"Mind **that** I join\" → if 从句表条件，不用 that",
+        "`join sb` = 加入某人（一起做某事）。加入某活动可说 join sb for lunch / join the game。"
+      ],
+      "distractors": [
+        [
+          "Mind that I",
+          "Minds if I",
+          "Mind do I"
+        ],
+        [
+          "join with you",
+          "joins you",
+          "joining you"
+        ],
+        [
+          "to lunch?",
+          "for the lunch?",
+          "at lunch?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm supposed to meet him at six.",
+      "cid": "141237b8",
+      "translation": "我六点应该和他见面。",
+      "chunks": [
+        "I'm supposed to",
+        "meet him",
+        "at six."
+      ],
+      "hints": [
+        "我按约定要",
+        "见他",
+        "在六点"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/səˈpoʊzd/",
+            "/tə/"
+          ],
+          "pos": "be supposed to",
+          "meaning": "按约定应该"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/miːt/",
+            "/hɪm/"
+          ],
+          "pos": "动词+宾语",
+          "meaning": "见他"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/sɪks/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在六点"
+        }
+      ],
+      "explanations": [
+        "`be supposed to` = 按计划/规定应该。常见错误：\n• \"suppose to\" → 缺 be 且 supposed 不能省 d\n• \"I'm suppose to\" → 漏 d",
+        "`at six` — 钟点前用 at。常见错误：\n• \"in six\" → 钟点用 at（in 表在一段时间之后）"
+      ],
+      "distractors": [
+        [
+          "I suppose to",
+          "I'm suppose to",
+          "I'm supposed"
+        ],
+        [
+          "meets him",
+          "meet he",
+          "to meeting him"
+        ],
+        [
+          "in six.",
+          "at six o'clock now.",
+          "on six."
+        ]
+      ]
+    },
+    {
+      "sentence": "Would you like to grab dinner sometime?",
+      "cid": "9352bdcd",
+      "translation": "改天一起吃个晚饭怎么样？",
+      "chunks": [
+        "Would you like to",
+        "grab dinner",
+        "sometime?"
+      ],
+      "hints": [
+        "你愿意",
+        "随便吃点晚饭",
+        "改天"
+      ],
+      "grammar": [
+        {
+          "role": "委婉邀约",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wʊd/",
+            "/juː/",
+            "/laɪk/",
+            "/tə/"
+          ],
+          "pos": "would you like to",
+          "meaning": "你愿意……吗"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɡræb/",
+            "/ˈdɪnər/"
+          ],
+          "pos": "grab + 餐",
+          "meaning": "随便吃晚饭"
+        },
+        {
+          "role": "时间副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsʌmtaɪm/"
+          ],
+          "pos": "副词",
+          "meaning": "改天/某个时候"
+        }
+      ],
+      "explanations": [
+        "`Would you like to...?` 比 Do you want to 更礼貌的邀约。常见错误：\n• \"Would you like dinner?\" → 也可以但少了动作\n• \"Do you like to grab dinner\" → like 表喜好不是邀约",
+        "`grab` = 匆匆吃点/随便吃。`sometime` = 某时（一个词），`some time` = 一些时间。"
+      ],
+      "distractors": [
+        [
+          "Do you like to",
+          "Would you to",
+          "Could you like to"
+        ],
+        [
+          "grabbing dinner",
+          "grab a dinner",
+          "get dinner over"
+        ],
+        [
+          "sometimes?",
+          "some time?",
+          "anytime soon?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's catch up over coffee this weekend.",
+      "cid": "e4eb1b2b",
+      "translation": "这周末我们喝咖啡聊聊近况吧。",
+      "chunks": [
+        "Let's catch up",
+        "over coffee",
+        "this weekend."
+      ],
+      "hints": [
+        "我们聊聊近况吧",
+        "边喝咖啡",
+        "这周末"
+      ],
+      "grammar": [
+        {
+          "role": "祈使提议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/kætʃ/",
+            "/ʌp/"
+          ],
+          "pos": "let's + 动词",
+          "meaning": "我们……吧"
+        },
+        {
+          "role": "方式状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈoʊvər/",
+            "/ˈkɔːfi/"
+          ],
+          "pos": "介词短语",
+          "meaning": "边喝咖啡"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðɪs/",
+            "/ˌwiːkˈend/"
+          ],
+          "pos": "名词短语",
+          "meaning": "这周末"
+        }
+      ],
+      "explanations": [
+        "`catch up` = 叙旧/聊近况。常见错误：\n• \"catch up **with each other**\" → 也可，简说 catch up\n• \"catch **on**\" → 那是赶上潮流",
+        "`over coffee` = 喝着咖啡（时）。`this weekend` 前不加介词。"
+      ],
+      "distractors": [
+        [
+          "Let us catch up",
+          "Let's catching up",
+          "Let we catch up"
+        ],
+        [
+          "on coffee",
+          "with coffee",
+          "for a coffee over"
+        ],
+        [
+          "in this weekend.",
+          "at weekend.",
+          "this weekends."
+        ]
+      ]
+    },
+    {
+      "sentence": "Why don't you come over for dinner tonight?",
+      "cid": "ea7d8a4b",
+      "translation": "今晚你过来一起吃晚饭吧？",
+      "chunks": [
+        "Why don't you",
+        "come over",
+        "for dinner tonight?"
+      ],
+      "hints": [
+        "你何不",
+        "过来",
+        "今晚吃晚饭"
+      ],
+      "grammar": [
+        {
+          "role": "建议句型",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/waɪ/",
+            "/doʊnt/",
+            "/juː/"
+          ],
+          "pos": "why don't you",
+          "meaning": "你何不"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/kʌm/",
+            "/ˈoʊvər/"
+          ],
+          "pos": "短语动词",
+          "meaning": "过来"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/ˈdɪnər/",
+            "/təˈnaɪt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "今晚吃晚饭"
+        }
+      ],
+      "explanations": [
+        "`Why don't you...?` = 建议/邀约。常见错误：\n• \"Why you don't\" → 疑问句助动词提前\n• \"Why not come over\" → 也可，省主语",
+        "`come over` = 到（某人）家来。"
+      ],
+      "distractors": [
+        [
+          "Why you don't",
+          "Why don't to you",
+          "Why not you"
+        ],
+        [
+          "come up",
+          "coming over",
+          "come on"
+        ],
+        [
+          "for the dinner tonight?",
+          "tonight for dinner?",
+          "at tonight for dinner?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Wanna go for a run?",
+      "cid": "6c4276f8",
+      "translation": "想去跑步吗？",
+      "chunks": [
+        "Wanna",
+        "go for a run?"
+      ],
+      "hints": [
+        "想要",
+        "去跑步"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈwɑːnə/"
+          ],
+          "pos": "want to 的口语缩写",
+          "meaning": "想要"
+        },
+        {
+          "role": "固定表达",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɡoʊ/",
+            "/fɔːr/",
+            "/ə/",
+            "/rʌn/"
+          ],
+          "pos": "go for a run 惯用短语",
+          "meaning": "去跑步"
+        }
+      ],
+      "explanations": [
+        "`wanna` = want to 的连读写法，只用于非正式场合。常见错误：\n• \"Wanna to go\" → wanna 已含 to，不能再加\n• 书面写作要用 want to",
+        "`go for a run` 是固定搭配「去跑步」，整体是一个 chunk 不可拆。常见错误：\n• \"go for run\" → 漏掉冠词 a\n• \"go to a run\" → 介词是 for 不是 to\n同义：Want to go running? / Feel like a run?"
+      ],
+      "distractors": [
+        [
+          "Want",
+          "Wanna to",
+          "Wanted to"
+        ],
+        [
+          "go for run?",
+          "go to a run?",
+          "go for a running?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm down for it.",
+      "cid": "d6700842",
+      "translation": "我没问题。",
+      "chunks": [
+        "I'm down",
+        "for it."
+      ],
+      "hints": [
+        "我愿意",
+        "做这件事"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/daʊn/"
+          ],
+          "pos": "be down 口语习语",
+          "meaning": "我愿意"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/fɔːr/",
+            "/ɪt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "做这件事"
+        }
+      ],
+      "explanations": [
+        "`be down for sth` 是口语习语，表「乐意、算我一个」，跟「在下面」无关。常见错误：\n• \"I'm down to it\" → 固定搭配用 for\n• 按字面理解成「我在下面」→ 会完全跑偏",
+        "`for it` 指代前面提到的那件事。同义：I'm in. / Count me in. / I'm up for it."
+      ],
+      "distractors": [
+        [
+          "I'm up",
+          "I'm down on",
+          "I down"
+        ],
+        [
+          "to it.",
+          "on it.",
+          "at it."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's hang out.",
+      "cid": "01b8d6e2",
+      "translation": "出去玩吧。",
+      "chunks": [
+        "Let's",
+        "hang out."
+      ],
+      "hints": [
+        "我们",
+        "一起玩、闲逛"
+      ],
+      "grammar": [
+        {
+          "role": "主谓（祈使）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/"
+          ],
+          "pos": "let us 缩写",
+          "meaning": "我们"
+        },
+        {
+          "role": "谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/hæŋ/",
+            "/aʊt/"
+          ],
+          "pos": "短语动词 hang out",
+          "meaning": "一起玩、闲逛"
+        }
+      ],
+      "explanations": [
+        "`hang out` = 一起消磨时间、闲逛，超常用。常见错误：\n• 别写成 \"hang on\"，那是「等一下」\n• \"Let's hanging out\" → Let's 后接动词原形",
+        "更随意：Wanna hang out? / Hang out sometime?"
+      ],
+      "distractors": [
+        [
+          "Let is",
+          "Let us to",
+          "Let's to"
+        ],
+        [
+          "hangs out.",
+          "hanging out.",
+          "hang on."
+        ]
+      ]
+    }
+  ]
+}

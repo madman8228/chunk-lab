@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Can you give me a hand?",
+      "cid": "a71c1752",
+      "translation": "能帮我一下吗？",
+      "chunks": [
+        "Can you give me",
+        "a hand?"
+      ],
+      "hints": [
+        "你能给我",
+        "一个手吗"
+      ],
+      "grammar": [
+        {
+          "role": "情态+宾语",
+          "color": "#c87033",
+          "phonetic": [
+            "/kæn/",
+            "/juː/",
+            "/ɡɪv/",
+            "/miː/"
+          ],
+          "pos": "情态动词+双宾语",
+          "meaning": "你能给我"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/hænd/"
+          ],
+          "pos": "习语",
+          "meaning": "帮忙（习语）"
+        }
+      ],
+      "explanations": [
+        "**give someone a hand** = 帮某人忙，是固定搭配（习语），不是真的要一只手。",
+        "其他求助说法：**Could you help me out?**（更正式）/ **Do me a favor?**（更亲密）"
+      ],
+      "distractors": [
+        [
+          "Can you give I",
+          "Can you gives me",
+          "Can you to give me"
+        ],
+        [
+          "the hand?",
+          "a hands?",
+          "hand?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you do me a favor?",
+      "cid": "534483e8",
+      "translation": "你能帮我个忙吗？",
+      "chunks": [
+        "Could you",
+        "do me a favor?"
+      ],
+      "hints": [
+        "你能",
+        "帮我个忙"
+      ],
+      "grammar": [
+        {
+          "role": "情态动词+主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能"
+        },
+        {
+          "role": "宾语+宾语补",
+          "color": "#3358e0",
+          "phonetic": [
+            "/duː/",
+            "/miː/",
+            "/ə/",
+            "/ˈfeɪvər/"
+          ],
+          "pos": "动词短语",
+          "meaning": "帮我个忙"
+        }
+      ],
+      "explanations": [
+        "`Could you...` 比 `Can you...` 更礼貌委婉。常见错误：\n• \"Can you **to** do me a favor\" → 情态动词后接动词原形，不要 to\n• \"Could you **doing**\" → 同样要用原形",
+        "`do someone a favor` 是固定搭配，中间用 a，不是 the。常见错误：\n• \"do me **the** favor\" → 泛指帮忙用 a\n• \"give me a favor\" → 搭配是 do，不是 give"
+      ],
+      "distractors": [
+        [
+          "Could your",
+          "Could you to",
+          "Do you could"
+        ],
+        [
+          "do me the favor?",
+          "does me a favor?",
+          "doing me a favor?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you give me a hand with this box?",
+      "cid": "10dca05a",
+      "translation": "你能帮我搬一下这个箱子吗？",
+      "chunks": [
+        "Could you give me",
+        "a hand",
+        "with this box?"
+      ],
+      "hints": [
+        "你能给我",
+        "帮个忙",
+        "搬这个箱子"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/ɡɪv/",
+            "/miː/"
+          ],
+          "pos": "give sb a hand",
+          "meaning": "你能帮我"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/hænd/"
+          ],
+          "pos": "固定搭配",
+          "meaning": "一个忙"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɪð/",
+            "/ðɪs/",
+            "/bɑːks/"
+          ],
+          "pos": "介词短语",
+          "meaning": "搬这个箱子"
+        }
+      ],
+      "explanations": [
+        "`give sb a hand with sth` = 帮某人做某事。常见错误：\n• \"give me hand\" → 缺 a\n• \"give a hand to me with\" → 搭配混乱，give me a hand 已含宾语",
+        "同义：help me with...（更直接）。"
+      ],
+      "distractors": [
+        [
+          "Can you give me",
+          "Could you give",
+          "Could you to give me"
+        ],
+        [
+          "hands",
+          "a hands",
+          "the hand"
+        ],
+        [
+          "to this box?",
+          "for this box?",
+          "with these box?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I need help.",
+      "cid": "1792dc97",
+      "translation": "我需要帮助。",
+      "chunks": [
+        "I need",
+        "help."
+      ],
+      "hints": [
+        "我需要",
+        "帮助"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/niːd/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我需要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/help/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "帮助"
+        }
+      ],
+      "explanations": [
+        "求助最直接的表达，`help` 不可数。常见错误：\n• \"I need a help\" → help 不可数，不加 a\n• \"I need helps\" → 也不加 s",
+        "更礼貌：Could you help me? / I need some assistance."
+      ],
+      "distractors": [
+        [
+          "I wants",
+          "I am need",
+          "I needs"
+        ],
+        [
+          "helps.",
+          "a help.",
+          "helper."
+        ]
+      ]
+    },
+    {
+      "sentence": "Lend me 10 bucks.",
+      "cid": "9187c8c7",
+      "translation": "借我10块钱。",
+      "chunks": [
+        "Lend me",
+        "10 bucks."
+      ],
+      "hints": [
+        "借给我",
+        "十块钱"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lend/",
+            "/miː/"
+          ],
+          "pos": "动词 + 间接宾语",
+          "meaning": "借给我"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ten/",
+            "/bʌks/"
+          ],
+          "pos": "数量 + 名词",
+          "meaning": "十块钱"
+        }
+      ],
+      "explanations": [
+        "`lend` 是「借出」（我借给你），`borrow` 是「借入」（我向你借）。常见错误：\n• \"Borrow me 10 bucks\" → 想说「借我钱」要用 lend me\n• bucks 是口语的「美元」，正式说法 10 dollars",
+        "还钱时说：I'll pay you back."
+      ],
+      "distractors": [
+        [
+          "Borrow me",
+          "Lends me",
+          "Lend to me"
+        ],
+        [
+          "10 buck.",
+          "ten bucks of.",
+          "10 bucks to."
+        ]
+      ]
+    },
+    {
+      "sentence": "I want my money.",
+      "cid": "fc023e5e",
+      "translation": "还我钱。",
+      "chunks": [
+        "I want",
+        "my money."
+      ],
+      "hints": [
+        "我要",
+        "我的钱"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/wɑːnt/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/ˈmʌni/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的钱"
+        }
+      ],
+      "explanations": [
+        "催人还钱最直接的表达；`money` 不可数。常见错误：\n• \"I want my moneys\" → money 没有复数\n• 想客气一点：Could you pay me back?",
+        "相关：I need it back.（我得把钱要回来）"
+      ],
+      "distractors": [
+        [
+          "I wants",
+          "I wanting",
+          "Me want"
+        ],
+        [
+          "my moneys.",
+          "mine money.",
+          "my monies."
+        ]
+      ]
+    }
+  ]
+}

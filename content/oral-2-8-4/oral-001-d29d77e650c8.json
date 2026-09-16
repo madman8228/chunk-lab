@@ -1,0 +1,861 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Do you enjoy watching movies?",
+      "cid": "d338b9bb",
+      "translation": "你喜欢看电影吗？",
+      "chunks": [
+        "Do you enjoy",
+        "watching movies?"
+      ],
+      "hints": [
+        "你喜欢",
+        "看电影"
+      ],
+      "grammar": [
+        {
+          "role": "助动词+主语+谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/ɪnˈdʒɔɪ/"
+          ],
+          "pos": "一般现在疑问",
+          "meaning": "你喜欢"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈwɒtʃɪŋ/",
+            "/ˈmuːviz/"
+          ],
+          "pos": "动名词短语",
+          "meaning": "看电影"
+        }
+      ],
+      "explanations": [
+        "`enjoy + 动名词` 是固定用法（enjoy doing）。常见错误：\n• \"Do you enjoy **to watch**\" → enjoy 后必须接 doing，不接 to do\n• \"I **am enjoying** watch\" → 进行时虽可，但宾语仍用 watching",
+        "`movies` 美语常用复数指代「电影」这种娱乐形式；单数 a movie 指具体一部影片。"
+      ],
+      "distractors": [
+        [
+          "Are you enjoy",
+          "Do you enjoying",
+          "Does you enjoy"
+        ],
+        [
+          "watch movies?",
+          "to watch movies?",
+          "watched movies?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm pretty good at cooking.",
+      "cid": "d10b5dec",
+      "translation": "我挺擅长做饭的。",
+      "chunks": [
+        "I'm pretty good",
+        "at cooking."
+      ],
+      "hints": [
+        "我挺擅长",
+        "做饭"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈprɪti/",
+            "/ɡʊd/"
+          ],
+          "pos": "主系表",
+          "meaning": "我挺擅长"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/æt/",
+            "/ˈkʊkɪŋ/"
+          ],
+          "pos": "动名词",
+          "meaning": "做饭"
+        }
+      ],
+      "explanations": [
+        "`be good at + 名词/动名词` 表示擅长。常见错误：\n• \"I'm good **in** cooking\" → 搭配是 at，不是 in\n• \"I'm good **to** cook\" → 错，用 at + doing",
+        "`pretty` 在这里是副词「挺、相当」（= quite），不是形容词「漂亮」。口语中 pretty good = 还不错。"
+      ],
+      "distractors": [
+        [
+          "I pretty good",
+          "I'm pretty well",
+          "I'm pretty better"
+        ],
+        [
+          "in cooking.",
+          "for cooking.",
+          "to cooking."
+        ]
+      ]
+    },
+    {
+      "sentence": "I usually go for a run in the morning.",
+      "cid": "334cfe4a",
+      "translation": "我通常早上跑步。",
+      "chunks": [
+        "I usually",
+        "go for a run",
+        "in the morning."
+      ],
+      "hints": [
+        "我通常",
+        "去跑步",
+        "在早上"
+      ],
+      "grammar": [
+        {
+          "role": "主语+频度",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈjuːʒuəli/"
+          ],
+          "pos": "主+频度副词",
+          "meaning": "我通常"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡoʊ/",
+            "/fɔːr/",
+            "/ə/",
+            "/rʌn/"
+          ],
+          "pos": "动词短语",
+          "meaning": "去跑步"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/ðə/",
+            "/ˈmɔːrnɪŋ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在早上"
+        }
+      ],
+      "explanations": [
+        "`go for a run` = 去跑步（固定搭配）。常见错误：\n• \"go **to** a run\" → 不接 to\n• \"go **running** a run\" → 重复，go running 或 go for a run 二选一",
+        "`usually` 频度副词放实义动词前、be 动词后。这里在主语 I 和谓语 go 之间，正确。"
+      ],
+      "distractors": [
+        [
+          "I usual",
+          "I'm usually",
+          "Usual I"
+        ],
+        [
+          "go to a run",
+          "go for run",
+          "going for a run"
+        ],
+        [
+          "on the morning.",
+          "at the morning.",
+          "in morning."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm into cooking these days.",
+      "cid": "6de73a4a",
+      "translation": "我最近迷上做饭了。",
+      "chunks": [
+        "I'm into cooking",
+        "these days."
+      ],
+      "hints": [
+        "我迷上做饭",
+        "最近"
+      ],
+      "grammar": [
+        {
+          "role": "主系+介词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈɪntuː/",
+            "/ˈkʊkɪŋ/"
+          ],
+          "pos": "be into 爱好",
+          "meaning": "我迷上做饭"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðiːz/",
+            "/deɪz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "最近"
+        }
+      ],
+      "explanations": [
+        "`be into + 名词/动名词` = 对…着迷（口语）。常见错误：\n• \"I'm **interesting in** cooking\" → 用 interested in 或 be into，别混搭\n• \"I into cooking\" → 漏掉 be 动词",
+        "表达兴趣爱好三件套：be into / be interested in / enjoy，后接动名词。`these days` = 近来，常与现在时/进行时连用。"
+      ],
+      "distractors": [
+        [
+          "I'm in cooking",
+          "I into cooking",
+          "I'm into cook"
+        ],
+        [
+          "this days.",
+          "those days.",
+          "theses days."
+        ]
+      ]
+    },
+    {
+      "sentence": "May I hand in my homework tomorrow?",
+      "cid": "9850dabd",
+      "translation": "我明天交作业可以吗？",
+      "chunks": [
+        "May I hand in",
+        "my homework",
+        "tomorrow?"
+      ],
+      "hints": [
+        "我可以上交",
+        "我的作业",
+        "明天"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/meɪ/",
+            "/aɪ/",
+            "/hænd/",
+            "/ɪn/"
+          ],
+          "pos": "正式请求",
+          "meaning": "我可以上交"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/ˈhəʊmwɜːk/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的作业"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈmɒrəʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "明天"
+        }
+      ],
+      "explanations": [
+        "学生向老师请求用语。`May I` 比 Can I 更正式礼貌。常见错误：\n• \"May I to hand in\" → 情态动词后接原形\n• \"Can I hand in\" → 口语可以，对老师用 May 更得体",
+        "`hand in` = 上交（作业）。同义：turn in / submit。",
+        "`tomorrow` 作时间副词，不加介词（不说 on tomorrow）。"
+      ],
+      "distractors": [
+        [
+          "Can I handing in",
+          "May me hand in",
+          "Might I hand in"
+        ],
+        [
+          "my homeworks",
+          "the homework",
+          "mine homework"
+        ],
+        [
+          "on tomorrow?",
+          "in tomorrow?",
+          "next morning?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm having trouble understanding this part.",
+      "cid": "2c67da0d",
+      "translation": "我理解这部分有困难。",
+      "chunks": [
+        "I'm having trouble",
+        "understanding this part."
+      ],
+      "hints": [
+        "我有困难",
+        "理解这部分"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈhævɪŋ/",
+            "/ˈtrʌbl/"
+          ],
+          "pos": "现在进行",
+          "meaning": "我有困难"
+        },
+        {
+          "role": "动名词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˌʌndəˈstændɪŋ/",
+            "/ðɪs/",
+            "/pɑːt/"
+          ],
+          "pos": "动名词宾语",
+          "meaning": "理解这部分"
+        }
+      ],
+      "explanations": [
+        "`have trouble doing` = 做…有困难（固定搭配 trouble 后接动名词）。常见错误：\n• \"have trouble **to** understand\" → trouble 后接 doing 不接 to do\n• \"have troubles\" → trouble 此处不可数",
+        "`understanding this part` = 理解这部分。part 指课程/材料的某部分。"
+      ],
+      "distractors": [
+        [
+          "I'm having troubles",
+          "I have trouble to understand",
+          "I'm having a trouble"
+        ],
+        [
+          "understand this part.",
+          "understanding these parts.",
+          "understood this part."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you explain it in a simpler way?",
+      "cid": "adb3d11f",
+      "translation": "你能用更简单的方式解释吗？",
+      "chunks": [
+        "Could you explain it",
+        "in a simpler way?"
+      ],
+      "hints": [
+        "你能解释它",
+        "用更简单的方式"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/ɪkˈspleɪn/",
+            "/ɪt/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能解释它"
+        },
+        {
+          "role": "方式状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/ə/",
+            "/ˈsɪmplər/",
+            "/weɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "用更简单的方式"
+        }
+      ],
+      "explanations": [
+        "请老师换种方式讲解。`explain it` = 解释它（explain 是及物动词，直接接宾语）。常见错误：\n• \"explain **me** it\" → explain 接 explain sth to sb，不接双宾\n• \"explain it **me**\" → 漏了 to：explain it to me",
+        "`in a simpler way` = 用更简单的方式。simpler 是 simple 的比较级。"
+      ],
+      "distractors": [
+        [
+          "Could you explaining it",
+          "Can you to explain it",
+          "Could your explain it"
+        ],
+        [
+          "with a simpler way?",
+          "in a more simple way?",
+          "in a simplest way?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll try my best to catch up with the class.",
+      "cid": "b0d272f4",
+      "translation": "我会尽最大努力赶上班级进度。",
+      "chunks": [
+        "I'll try my best",
+        "to catch up with",
+        "the class."
+      ],
+      "hints": [
+        "我会尽我最大努力",
+        "去赶上",
+        "全班"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/traɪ/",
+            "/maɪ/",
+            "/best/"
+          ],
+          "pos": "将来时",
+          "meaning": "我会尽力"
+        },
+        {
+          "role": "不定式",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/kætʃ/",
+            "/ʌp/",
+            "/wɪð/"
+          ],
+          "pos": "短语动词",
+          "meaning": "去赶上"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/klɑːs/"
+          ],
+          "pos": "名词短语",
+          "meaning": "全班"
+        }
+      ],
+      "explanations": [
+        "`try my best` = 尽最大努力。常见错误：\n• \"try **me** best\" → 物主代词 my 对应主语 I\n• \"do my best\" → 同义，try my best 也可",
+        "`catch up with` = 赶上（进度/某人）。catch up 后可跟 with + 对象。常见错误：\n• \"catch up the class\" → 需 with：catch up with the class",
+        "`the class` 此处指「全班同学/课程进度」。"
+      ],
+      "distractors": [
+        [
+          "I try my best",
+          "I'll try mines best",
+          "I'll trying my best"
+        ],
+        [
+          "to catch the class up with",
+          "catch up with",
+          "to catch up"
+        ],
+        [
+          "class.",
+          "a class.",
+          "the classes."
+        ]
+      ]
+    },
+    {
+      "sentence": "I used to play the piano when I was little.",
+      "cid": "2458e206",
+      "translation": "我小时候常常弹钢琴。",
+      "chunks": [
+        "I used to play",
+        "the piano",
+        "when I was little."
+      ],
+      "hints": [
+        "我过去常常弹",
+        "钢琴",
+        "当我小的时候"
+      ],
+      "grammar": [
+        {
+          "role": "过去习惯",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/juːst/",
+            "/tuː/",
+            "/pleɪ/"
+          ],
+          "pos": "used to 结构",
+          "meaning": "我过去常常弹"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/piˈænəʊ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "钢琴"
+        },
+        {
+          "role": "时间状语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wen/",
+            "/aɪ/",
+            "/wɒz/",
+            "/ˈlɪtl/"
+          ],
+          "pos": "when 从句",
+          "meaning": "当我小的时候"
+        }
+      ],
+      "explanations": [
+        "`used to do` = 过去常常做（现在不再）。常见错误：\n• \"I **use** to play\" → 表过去习惯用 used to\n• \"I was used to play\" → be used to 后接 doing（习惯做），与 used to do 不同义",
+        "`the piano` 弹乐器前要加 the：play the piano / the guitar。常见错误：\n• \"play piano\" → 漏了 the",
+        "`when I was little` = 我小时候。little 修饰小时候，也可用 young。"
+      ],
+      "distractors": [
+        [
+          "I use to play",
+          "I used to playing",
+          "I was used to play"
+        ],
+        [
+          "piano",
+          "a piano",
+          "the pianos"
+        ],
+        [
+          "when I was small boy.",
+          "when I am little.",
+          "while I was little."
+        ]
+      ]
+    },
+    {
+      "sentence": "Did you get taller?",
+      "cid": "d7c85ebc",
+      "translation": "你长高了吗？",
+      "chunks": [
+        "Did you get",
+        "taller?"
+      ],
+      "hints": [
+        "你变得",
+        "更高"
+      ],
+      "grammar": [
+        {
+          "role": "助动词+主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/dɪd/",
+            "/juː/",
+            "/ɡet/"
+          ],
+          "pos": "一般过去时疑问",
+          "meaning": "你变（高）了"
+        },
+        {
+          "role": "补语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈtɔːlər/"
+          ],
+          "pos": "形容词比较级",
+          "meaning": "更高"
+        }
+      ],
+      "explanations": [
+        "`get + 形容词` 表「变得」，这里 get 是系动词。常见错误：\n• \"Did you got taller?\" → did 之后用原形 get\n• \"Did you get tall?\" → 跟过去比要用比较级 taller",
+        "`taller` 是比较级，隐含「比你以前高」。常见错误：\n• \"more tall\" → 单音节词加 -er\n• \"tallest\" → 最高级用于三者以上"
+      ],
+      "distractors": [
+        [
+          "Do you get",
+          "Did you got",
+          "Did you getting"
+        ],
+        [
+          "tall?",
+          "more tall?",
+          "tallest?"
+        ]
+      ]
+    },
+    {
+      "sentence": "You are growing fast.",
+      "cid": "c59cc387",
+      "translation": "你长得真快。",
+      "chunks": [
+        "You are",
+        "growing fast."
+      ],
+      "hints": [
+        "你正在",
+        "长得快"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/ɑːr/"
+          ],
+          "pos": "you + are",
+          "meaning": "你正在"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈɡroʊɪŋ/",
+            "/fæst/"
+          ],
+          "pos": "现在进行时+副词",
+          "meaning": "长得快"
+        }
+      ],
+      "explanations": [
+        "`grow` 表「长身体」时是不及物动词，用进行时表持续变化。常见错误：\n• \"You growing fast\" → 缺 are\n• \"You are grow fast\" → 进行时要用 growing",
+        "`fast` 既是形容词也是副词，作副词时不加 -ly。常见错误：\n• \"growing fastly\" → fastly 不存在"
+      ],
+      "distractors": [
+        [
+          "You is",
+          "You're",
+          "You am"
+        ],
+        [
+          "grow fast.",
+          "growing fastly.",
+          "grown fast."
+        ]
+      ]
+    },
+    {
+      "sentence": "How old are you?",
+      "cid": "4d62bdfa",
+      "translation": "你多大了？",
+      "chunks": [
+        "How old",
+        "are you?"
+      ],
+      "hints": [
+        "多大",
+        "你呢"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+形容词",
+          "color": "#c87033",
+          "phonetic": [
+            "/haʊ/",
+            "/oʊld/"
+          ],
+          "pos": "询问年龄",
+          "meaning": "多大"
+        },
+        {
+          "role": "系动词+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "倒装问句",
+          "meaning": "你呢"
+        }
+      ],
+      "explanations": [
+        "问年龄固定用 `How old`。常见错误：\n• \"How age are you?\" → 错，age 是名词不能这样问\n• \"What old are you?\" → 疑问词用 How",
+        "`are you` 是主谓倒装。常见错误：\n• \"How old you are?\" → 语序没倒装，这种语序只用在宾语从句里（I know how old you are.）"
+      ],
+      "distractors": [
+        [
+          "How age",
+          "What old",
+          "How older"
+        ],
+        [
+          "you are?",
+          "are your?",
+          "do you?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Twenty something.",
+      "cid": "7fde70a6",
+      "translation": "二十多岁吧。",
+      "chunks": [
+        "Twenty",
+        "something."
+      ],
+      "hints": [
+        "二十",
+        "多（岁左右）"
+      ],
+      "grammar": [
+        {
+          "role": "数词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈtwenti/"
+          ],
+          "pos": "基数词",
+          "meaning": "二十"
+        },
+        {
+          "role": "后缀",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "口语后缀",
+          "meaning": "多、左右"
+        }
+      ],
+      "explanations": [
+        "`-something` 接在整十数后面，表示「……多岁」，用于说得不精确。常见错误：\n• \"twenty some\" → 要连写成一个词\n• \"twenty more\" → 意思变成「再多二十」",
+        "标准书写带连字符：Twenty-something。同义：in my twenties（二十几岁）"
+      ],
+      "distractors": [
+        [
+          "Twenty's",
+          "The twenty",
+          "Twenties"
+        ],
+        [
+          "some thing.",
+          "sometime.",
+          "somethings."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm trying to study.",
+      "cid": "744c4681",
+      "translation": "我在学习。",
+      "chunks": [
+        "I'm trying",
+        "to study."
+      ],
+      "hints": [
+        "我在努力",
+        "学习"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈtraɪɪŋ/"
+          ],
+          "pos": "try 的进行时",
+          "meaning": "我在努力"
+        },
+        {
+          "role": "不定式",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/ˈstʌdi/"
+          ],
+          "pos": "try to do",
+          "meaning": "学习"
+        }
+      ],
+      "explanations": [
+        "`try to do sth` 表「努力做某事」。常见错误：\n• \"I trying\" → 缺 am\n• \"try studying\" → try doing 表「试试看（方法）」，语义不同",
+        "进行时表「此刻正在」。同义：I'm studying. / I'm hitting the books."
+      ],
+      "distractors": [
+        [
+          "I trying",
+          "I'm try",
+          "I tries"
+        ],
+        [
+          "to studying.",
+          "to studied.",
+          "to studies."
+        ]
+      ]
+    },
+    {
+      "sentence": "My test is tomorrow.",
+      "cid": "f8afdcf8",
+      "translation": "我明天有考试。",
+      "chunks": [
+        "My test",
+        "is tomorrow."
+      ],
+      "hints": [
+        "我的考试",
+        "在明天"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/maɪ/",
+            "/test/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的考试"
+        },
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪz/",
+            "/təˈmɑːroʊ/"
+          ],
+          "pos": "is + 副词",
+          "meaning": "是在明天"
+        }
+      ],
+      "explanations": [
+        "英语用 be + 时间词表达「某事在某时」。常见错误：\n• \"My test is in tomorrow\" → tomorrow 前不加介词\n• \"My test are tomorrow\" → test 单数用 is",
+        "`test` 指考试、测验。同义：I have a test tomorrow."
+      ],
+      "distractors": [
+        [
+          "My tests",
+          "Mine test",
+          "My test are"
+        ],
+        [
+          "are tomorrow.",
+          "in tomorrow.",
+          "on tomorrow."
+        ]
+      ]
+    }
+  ]
+}

@@ -21,6 +21,13 @@ node_modules/
 output/*
 !output/e2e/
 output/e2e/shots/
+# 同上：e2e 脚本（.js）入库，截图 / 日志是运行产物，忽略
+output/e2e/**/*.png
+output/e2e/**/*.log
+
+# 口语题库装配产物（唯一内容源，页面不加载）：由 `npm run content:assemble` /
+# 测试前置 `pretest` 从 extra/oral-book/ 生成 —— 入库位是输入，不是这个产物
+/oral-book.js
 
 # 本地参考素材（外部导入，不入版本库）
 ref/

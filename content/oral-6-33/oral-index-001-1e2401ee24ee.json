@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "712785eb",
+      "sentence": "Where's the tourist information center?",
+      "translation": "旅游信息问讯处在哪儿?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "715a64b6",
+      "sentence": "May I have a free city map?",
+      "translation": "能给我一张免费城市地图吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "53df36a4",
+      "sentence": "When does the museum close?",
+      "translation": "博物馆几点闭馆?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "6fd207e4",
+      "sentence": "Please tell me about some interesting places in this town.",
+      "translation": "能告诉我这座城市有哪些好玩的地方吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "68ebe011",
+      "sentence": "I'm interested in architecture.",
+      "translation": "我对建筑感兴趣。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "d2152c7c",
+      "sentence": "What kind of tours do you have?",
+      "translation": "都有哪些路线的旅行呢?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "61dc790c",
+      "sentence": "Please show me the way.",
+      "translation": "请告诉我去的路线。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "f44377e9",
+      "sentence": "Are they open on Saturdays?",
+      "translation": "他们星期六开门吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "e1f7461c",
+      "sentence": "Are there any sightseeing buses?",
+      "translation": "有旅游车吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "429229d8",
+      "sentence": "I'd like a tour by taxi.",
+      "translation": "我想坐出租车旅游。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "5c8e21dd",
+      "sentence": "I'd like a guide.",
+      "translation": "我想要一个导游。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "3a545acd",
+      "sentence": "I want a Japanese-speaking guide.",
+      "translation": "我想要一位会日语的导游。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "f5f9aec4",
+      "sentence": "How much is admission?",
+      "translation": "入场券多少钱?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "23667a44",
+      "sentence": "Two tickets, please.",
+      "translation": "买两张票。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "38f124c7",
+      "sentence": "What's that building?",
+      "translation": "那个建筑物是什么?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "fbb27256",
+      "sentence": "How old is it?",
+      "translation": "它的历史有多久?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "1406d737",
+      "sentence": "Can we go in?",
+      "translation": "我们能进到里面吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "71ac053d",
+      "sentence": "Let's go to see the castle.",
+      "translation": "我们去看看那座城堡吧。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "9c841d53",
+      "sentence": "What a beautiful view!",
+      "translation": "多美的景色呀!",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "d38ef011",
+      "sentence": "I want to stay longer.",
+      "translation": "我想多呆一会儿。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "ac0bc2e7",
+      "sentence": "Let's leave now.",
+      "translation": "我们走吧!",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "f3fcaaa1",
+      "sentence": "I want to rest a while.",
+      "translation": "我想休息一会儿。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "97205d4a",
+      "sentence": "May I take a picture here?",
+      "translation": "这儿可以照相吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "138bd36b",
+      "sentence": "Would you take a picture for us?",
+      "translation": "您能给我们照张相吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "41cb0fa2",
+      "sentence": "Would you mind posing with me?",
+      "translation": "能和我一起照张相吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "4dfc1439",
+      "sentence": "I'll send the pictures.",
+      "translation": "我会把照片寄给你的。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "a026516e",
+      "sentence": "Where is the gift shop?",
+      "translation": "哪儿有礼品店?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "72db668a",
+      "sentence": "It's outside, to the left.",
+      "translation": "出去然后往左拐。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "bde2f71e",
+      "sentence": "Can I walk there?",
+      "translation": "我能走得到吗?",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "3a9969d7",
+      "sentence": "You should take a bus.",
+      "translation": "你最好坐公共汽车。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "79068a2f",
+      "sentence": "I'm planning to visit Japan next year.",
+      "translation": "我计划明年去日本玩。",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "c44e93b0",
+      "sentence": "What a beautiful view from up here!",
+      "translation": "从这上面看风景真美啊！",
+      "sourceUrl": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+      "sourceOffset": 31
+    }
+  ]
+}

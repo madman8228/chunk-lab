@@ -1,0 +1,82 @@
+[
+ {
+  "sentence": "I'm shocked!",
+  "chunks": ["I'm", "shocked!"],
+  "hints": ["我", "很震惊"]
+ },
+ {
+  "sentence": "That's amazing!",
+  "chunks": ["That's", "amazing!"],
+  "hints": ["太", "让人吃惊了"]
+ },
+ {
+  "sentence": "You're kidding!",
+  "chunks": ["You're", "kidding!"],
+  "hints": ["你在", "开玩笑吧"]
+ },
+ {
+  "sentence": "It can't be!",
+  "chunks": ["It", "can't be!"],
+  "hints": ["这", "不可能吧"]
+ },
+ {
+  "sentence": "That's really something!",
+  "chunks": ["That's really", "something!"],
+  "hints": ["真是", "了不起"]
+ },
+ {
+  "sentence": "Oh, my!",
+  "chunks": ["Oh,", "my!"],
+  "hints": ["哎呀", "天哪"]
+ },
+ {
+  "sentence": "Well, well.",
+  "chunks": ["Well,", "well."],
+  "hints": ["哎呀", "哎呀呀"]
+ },
+ {
+  "sentence": "You surprised me!",
+  "chunks": ["You", "surprised me!"],
+  "hints": ["你", "吓我一跳"]
+ },
+ {
+  "sentence": "You don't say!",
+  "chunks": ["You don't", "say!"],
+  "hints": ["这", "怎么可能呢"]
+ },
+ {
+  "sentence": "That'll be the day!",
+  "chunks": ["That'll be", "the day!"],
+  "hints": ["哪有", "那种好事"]
+ },
+ {
+  "sentence": "A great shock.",
+  "chunks": ["A great", "shock."],
+  "hints": ["巨大的", "震惊"]
+ },
+ {
+  "sentence": "That's news to me.",
+  "chunks": ["That's news", "to me."],
+  "hints": ["我还是", "头一回听说"]
+ },
+ {
+  "sentence": "It's mind-boggling!",
+  "chunks": ["It's", "mind-boggling!"],
+  "hints": ["令人", "难以想象"]
+ },
+ {
+  "sentence": "Gosh!",
+  "chunks": ["Gosh!"],
+  "hints": ["糟了"]
+ },
+ {
+  "sentence": "We were surprised by the news.",
+  "chunks": ["We were surprised", "by the news."],
+  "hints": ["我们听到这消息", "都很吃惊"]
+ },
+ {
+  "sentence": "Boo!",
+  "chunks": ["Boo!"],
+  "hints": ["哇"]
+ }
+]

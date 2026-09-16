@@ -1,0 +1,407 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'd like to have a Japanese interpreter.",
+      "translation": "我想请一位日本人翻译。",
+      "chunks": [
+        "I'd like to have",
+        "a Japanese interpreter."
+      ],
+      "hints": [
+        "我想请",
+        "一位日语翻译"
+      ],
+      "cid": "ae9f1ed1"
+    },
+    {
+      "sentence": "I can't speak English.",
+      "translation": "我不会说英语。",
+      "chunks": [
+        "I can't speak",
+        "English."
+      ],
+      "hints": [
+        "我不会说",
+        "英语"
+      ],
+      "cid": "3c9d363f"
+    },
+    {
+      "sentence": "My English isn't good enough.",
+      "translation": "我的英语不太好。",
+      "chunks": [
+        "My English",
+        "isn't good enough."
+      ],
+      "hints": [
+        "我的英语",
+        "不够好"
+      ],
+      "cid": "95707c7d"
+    },
+    {
+      "sentence": "A Japanese-speaking person, please.",
+      "translation": "请安排一位会说日语的人。",
+      "chunks": [
+        "A Japanese-speaking person,",
+        "please."
+      ],
+      "hints": [
+        "会说日语的人",
+        "请安排一位"
+      ],
+      "cid": "30e62517"
+    },
+    {
+      "sentence": "What did you say?",
+      "translation": "您说什么?",
+      "chunks": [
+        "What did you",
+        "say?"
+      ],
+      "hints": [
+        "你刚才",
+        "说什么"
+      ],
+      "cid": "92b96d8f"
+    },
+    {
+      "sentence": "Would you slow down, please?",
+      "translation": "您能慢一点儿说吗?",
+      "chunks": [
+        "Would you slow down,",
+        "please?"
+      ],
+      "hints": [
+        "您能说慢一点",
+        "好吗"
+      ],
+      "cid": "a5099bb9"
+    },
+    {
+      "sentence": "I'd like a Japanese-speaking guide, please.",
+      "translation": "我们想请一位会说日语的导游。",
+      "chunks": [
+        "I'd like",
+        "a Japanese-speaking guide,",
+        "please."
+      ],
+      "hints": [
+        "我想请",
+        "一位会说日语的导游",
+        "麻烦您"
+      ],
+      "cid": "44cad86b"
+    },
+    {
+      "sentence": "I can't make myself understood.",
+      "translation": "我们语言不通。",
+      "chunks": [
+        "I can't make myself",
+        "understood."
+      ],
+      "hints": [
+        "我没法让",
+        "别人听懂我"
+      ],
+      "cid": "72dba1ee"
+    },
+    {
+      "sentence": "I don't know how to say it in English.",
+      "translation": "我不知道这用英文怎么说。",
+      "chunks": [
+        "I don't know how to say it",
+        "in English."
+      ],
+      "hints": [
+        "我不知道这该怎么说",
+        "用英语"
+      ],
+      "cid": "3df2e057"
+    },
+    {
+      "sentence": "How do you say “giri” in English?",
+      "translation": "日语中的“义理”用英文怎么说?",
+      "chunks": [
+        "How do you say “giri”",
+        "in English?"
+      ],
+      "hints": [
+        "“义理”怎么说",
+        "用英语"
+      ],
+      "cid": "8e14eeea"
+    },
+    {
+      "sentence": "What do you call this in English?",
+      "translation": "英文管这叫什么?",
+      "chunks": [
+        "What do you call this",
+        "in English?"
+      ],
+      "hints": [
+        "这个叫什么",
+        "用英语"
+      ],
+      "cid": "32e7e92b"
+    },
+    {
+      "sentence": "Call the police!",
+      "translation": "叫警察。",
+      "chunks": [
+        "Call",
+        "the police!"
+      ],
+      "hints": [
+        "叫",
+        "警察"
+      ],
+      "cid": "70064dcb"
+    },
+    {
+      "sentence": "I had my bag stolen.",
+      "translation": "我的包被偷了。",
+      "chunks": [
+        "I had my bag",
+        "stolen."
+      ],
+      "hints": [
+        "我的包被",
+        "偷了"
+      ],
+      "cid": "90fbf294"
+    },
+    {
+      "sentence": "Who should I report it to?",
+      "translation": "我该告诉谁?",
+      "chunks": [
+        "Who should I",
+        "report it to?"
+      ],
+      "hints": [
+        "我该",
+        "向谁报告"
+      ],
+      "cid": "17209658"
+    },
+    {
+      "sentence": "Where is the Lost and Found?",
+      "translation": "失物招领处在哪儿?",
+      "chunks": [
+        "Where is the",
+        "Lost and Found?"
+      ],
+      "hints": [
+        "在哪里",
+        "失物招领处"
+      ],
+      "cid": "1c6b358b"
+    },
+    {
+      "sentence": "What kind of bag?",
+      "translation": "什么样的包?",
+      "chunks": [
+        "What kind of",
+        "bag?"
+      ],
+      "hints": [
+        "什么样的",
+        "包"
+      ],
+      "cid": "090b9e57"
+    },
+    {
+      "sentence": "What was in it?",
+      "translation": "里面都有什么?",
+      "chunks": [
+        "What was",
+        "in it?"
+      ],
+      "hints": [
+        "里面",
+        "有什么"
+      ],
+      "cid": "480e93d3"
+    },
+    {
+      "sentence": "How much was in it?",
+      "translation": "里面有多少钱?",
+      "chunks": [
+        "How much",
+        "was in it?"
+      ],
+      "hints": [
+        "多少钱",
+        "在里面"
+      ],
+      "cid": "d5e02498"
+    },
+    {
+      "sentence": "We'll call you if we find it.",
+      "translation": "我们找到后会跟你联系的。",
+      "chunks": [
+        "We'll call you",
+        "if we find it."
+      ],
+      "hints": [
+        "我们会联系你",
+        "如果找到了"
+      ],
+      "cid": "53d742fe"
+    },
+    {
+      "sentence": "Could you fill out this form?",
+      "translation": "您能填一下儿这张表吗?",
+      "chunks": [
+        "Could you fill out",
+        "this form?"
+      ],
+      "hints": [
+        "你能填一下",
+        "这张表吗"
+      ],
+      "cid": "9d449f4d"
+    },
+    {
+      "sentence": "Please give me a report on the theft.",
+      "translation": "请您写一下被盗经过。",
+      "chunks": [
+        "Please give me a report",
+        "on the theft."
+      ],
+      "hints": [
+        "请给我一份报告",
+        "关于这起盗窃"
+      ],
+      "cid": "c840efe2"
+    },
+    {
+      "sentence": "Where is the Japanese Embassy?",
+      "translation": "日本大使馆在哪儿?",
+      "chunks": [
+        "Where is the",
+        "Japanese Embassy?"
+      ],
+      "hints": [
+        "在哪里",
+        "日本大使馆"
+      ],
+      "cid": "8c632bc3"
+    },
+    {
+      "sentence": "I lost my passport.",
+      "translation": "我的护照丢了。",
+      "chunks": [
+        "I lost",
+        "my passport."
+      ],
+      "hints": [
+        "我丢了",
+        "我的护照"
+      ],
+      "cid": "b5bdf9ec"
+    },
+    {
+      "sentence": "Does anyone here speak Japanese?",
+      "translation": "这儿有会说日语的人吗?",
+      "chunks": [
+        "Does anyone here",
+        "speak Japanese?"
+      ],
+      "hints": [
+        "这里有谁",
+        "会说日语吗"
+      ],
+      "cid": "6db0d726"
+    },
+    {
+      "sentence": "Can I get it reissued?",
+      "translation": "能补发一本吗?",
+      "chunks": [
+        "Can I get it",
+        "reissued?"
+      ],
+      "hints": [
+        "我能让它",
+        "重新补发吗"
+      ],
+      "cid": "bce08e92"
+    },
+    {
+      "sentence": "Please cancel my card number.",
+      "translation": "请取消我的卡号。",
+      "chunks": [
+        "Please cancel",
+        "my card number."
+      ],
+      "hints": [
+        "请注销",
+        "我的卡号"
+      ],
+      "cid": "a110a766"
+    },
+    {
+      "sentence": "What should I do?",
+      "translation": "我该怎么办?",
+      "chunks": [
+        "What should I",
+        "do?"
+      ],
+      "hints": [
+        "我该",
+        "怎么办"
+      ],
+      "cid": "0df3ccb7"
+    },
+    {
+      "sentence": "It's an emergency!",
+      "translation": "十万火急!",
+      "chunks": [
+        "It's an",
+        "emergency!"
+      ],
+      "hints": [
+        "这是",
+        "十万火急的情况"
+      ],
+      "cid": "1d62e3d7"
+    },
+    {
+      "sentence": "Please call a doctor.",
+      "translation": "快叫大夫!",
+      "chunks": [
+        "Please call",
+        "a doctor."
+      ],
+      "hints": [
+        "请叫",
+        "一位医生"
+      ],
+      "cid": "8bfaf285"
+    },
+    {
+      "sentence": "Help!",
+      "translation": "救命啊!",
+      "chunks": [
+        "Help!"
+      ],
+      "hints": [
+        "救命"
+      ],
+      "cid": "dba12ce1"
+    },
+    {
+      "sentence": "Thief!",
+      "translation": "小偷!",
+      "chunks": [
+        "Thief!"
+      ],
+      "hints": [
+        "抓小偷"
+      ],
+      "cid": "e1f39be6"
+    }
+  ]
+}

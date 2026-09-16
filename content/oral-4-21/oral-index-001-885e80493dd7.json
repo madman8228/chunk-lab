@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "43f2a563",
+      "sentence": "Really?",
+      "translation": "真的?",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "436bcd4d",
+      "sentence": "Are you serious?",
+      "translation": "你是认真的吗?",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "03c9f1e3",
+      "sentence": "Are you joking?",
+      "translation": "开玩笑呢吧?",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "2fd5117e",
+      "sentence": "It sounds fishy to me.",
+      "translation": "听起来可疑。",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "732f07d1",
+      "sentence": "I won't buy that story.",
+      "translation": "我不信他的话。",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "305108de",
+      "sentence": "Do you think she's serious?",
+      "translation": "你认为她是当真的吗?",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "07f6df36",
+      "sentence": "I don't take him too seriously.",
+      "translation": "我不把他的话太当真。",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "98dce5aa",
+      "sentence": "I don't believe him.",
+      "translation": "我不相信他。",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "e227e3a9",
+      "sentence": "It's too good to be true.",
+      "translation": "有这么好的事!",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "0f9400f7",
+      "sentence": "Are you kidding?",
+      "translation": "你在开玩笑吧？/真的假的？",
+      "sourceUrl": "content/oral-4-21/oral-001-e53799160516.json",
+      "sourceOffset": 9
+    }
+  ]
+}

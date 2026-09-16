@@ -1,0 +1,152 @@
+[
+ {
+  "sentence": "Where's the tourist information center?",
+  "chunks": ["Where's the", "tourist information center?"],
+  "hints": ["哪儿有", "旅游信息问讯处"]
+ },
+ {
+  "sentence": "May I have a free city map?",
+  "chunks": ["May I have", "a free city map?"],
+  "hints": ["能给我", "一张免费城市地图吗"]
+ },
+ {
+  "sentence": "When does the museum close?",
+  "chunks": ["When does", "the museum close?"],
+  "hints": ["博物馆", "几点闭馆"]
+ },
+ {
+  "sentence": "Please tell me about some interesting places in this town.",
+  "chunks": ["Please tell me about", "some interesting places", "in this town."],
+  "hints": ["请跟我讲讲", "一些好玩的地方", "就在这座城市"]
+ },
+ {
+  "sentence": "I'm interested in architecture.",
+  "chunks": ["I'm interested in", "architecture."],
+  "hints": ["我对", "建筑感兴趣"]
+ },
+ {
+  "sentence": "What kind of tours do you have?",
+  "chunks": ["What kind of tours", "do you have?"],
+  "hints": ["都有哪些路线", "的旅行呢"]
+ },
+ {
+  "sentence": "Please show me the way.",
+  "chunks": ["Please show me", "the way."],
+  "hints": ["请告诉我", "去的路线"]
+ },
+ {
+  "sentence": "Are they open on Saturdays?",
+  "chunks": ["Are they open", "on Saturdays?"],
+  "hints": ["他们", "星期六开门吗"]
+ },
+ {
+  "sentence": "Are there any sightseeing buses?",
+  "chunks": ["Are there any", "sightseeing buses?"],
+  "hints": ["有没有", "观光车"]
+ },
+ {
+  "sentence": "I'd like a tour by taxi.",
+  "chunks": ["I'd like", "a tour by taxi."],
+  "hints": ["我想", "坐出租车旅游"]
+ },
+ {
+  "sentence": "I'd like a guide.",
+  "chunks": ["I'd like", "a guide."],
+  "hints": ["我想要", "一位导游"]
+ },
+ {
+  "sentence": "I want a Japanese-speaking guide.",
+  "chunks": ["I want", "a Japanese-speaking guide."],
+  "hints": ["我想要", "一位会日语的导游"]
+ },
+ {
+  "sentence": "How much is admission?",
+  "chunks": ["How much", "is admission?"],
+  "hints": ["入场券", "多少钱"]
+ },
+ {
+  "sentence": "Two tickets, please.",
+  "chunks": ["Two tickets,", "please."],
+  "hints": ["买两张票", "麻烦你"]
+ },
+ {
+  "sentence": "What's that building?",
+  "chunks": ["What's", "that building?"],
+  "hints": ["那栋", "是什么建筑"]
+ },
+ {
+  "sentence": "How old is it?",
+  "chunks": ["How old", "is it?"],
+  "hints": ["它有多", "久的历史"]
+ },
+ {
+  "sentence": "Can we go in?",
+  "chunks": ["Can we", "go in?"],
+  "hints": ["我们能", "进到里面吗"]
+ },
+ {
+  "sentence": "Let's go to see the castle.",
+  "chunks": ["Let's go", "to see the castle."],
+  "hints": ["我们去", "看看那座城堡"]
+ },
+ {
+  "sentence": "What a beautiful view!",
+  "chunks": ["What a", "beautiful view!"],
+  "hints": ["多美的", "景色呀"]
+ },
+ {
+  "sentence": "I want to stay longer.",
+  "chunks": ["I want to", "stay longer."],
+  "hints": ["我想", "多呆一会儿"]
+ },
+ {
+  "sentence": "Let's leave now.",
+  "chunks": ["Let's", "leave now."],
+  "hints": ["我们", "走吧"]
+ },
+ {
+  "sentence": "I want to rest a while.",
+  "chunks": ["I want to", "rest a while."],
+  "hints": ["我想", "休息一会儿"]
+ },
+ {
+  "sentence": "May I take a picture here?",
+  "chunks": ["May I take", "a picture here?"],
+  "hints": ["这儿", "可以照相吗"]
+ },
+ {
+  "sentence": "Would you take a picture for us?",
+  "chunks": ["Would you take", "a picture for us?"],
+  "hints": ["您能", "给我们照张相吗"]
+ },
+ {
+  "sentence": "Would you mind posing with me?",
+  "chunks": ["Would you mind", "posing with me?"],
+  "hints": ["能和我", "一起照张相吗"]
+ },
+ {
+  "sentence": "I'll send the pictures.",
+  "chunks": ["I'll send", "the pictures."],
+  "hints": ["我会把照片", "寄给你"]
+ },
+ {
+  "sentence": "Where is the gift shop?",
+  "chunks": ["Where is", "the gift shop?"],
+  "hints": ["哪里有", "礼品店"]
+ },
+ {
+  "sentence": "It's outside, to the left.",
+  "chunks": ["It's outside,", "to the left."],
+  "hints": ["出去以后", "往左拐"]
+ },
+ {
+  "sentence": "Can I walk there?",
+  "chunks": ["Can I", "walk there?"],
+  "hints": ["我能", "走得到吗"]
+ },
+ {
+  "sentence": "You should take a bus.",
+  "chunks": ["You should", "take a bus."],
+  "hints": ["你最好", "坐公共汽车"]
+ }
+]

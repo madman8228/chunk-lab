@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Congratulations on your engagement.",
+      "translation": "恭喜你的订婚。",
+      "chunks": [
+        "Congratulations on",
+        "your engagement."
+      ],
+      "hints": [
+        "恭喜你",
+        "订婚"
+      ],
+      "cid": "43217f23"
+    },
+    {
+      "sentence": "Congratulations on your marriage.",
+      "translation": "恭喜你们喜结良缘。",
+      "chunks": [
+        "Congratulations on",
+        "your marriage."
+      ],
+      "hints": [
+        "恭喜你们",
+        "喜结良缘"
+      ],
+      "cid": "08a05cda"
+    },
+    {
+      "sentence": "Congratulations on the birth of your child.",
+      "translation": "恭喜生子。",
+      "chunks": [
+        "Congratulations on",
+        "the birth of your child."
+      ],
+      "hints": [
+        "恭喜",
+        "生了小宝宝"
+      ],
+      "cid": "0d6bb2e9"
+    },
+    {
+      "sentence": "Congratulations on entering...",
+      "translation": "恭喜你考上...大学!",
+      "chunks": [
+        "Congratulations on",
+        "entering..."
+      ],
+      "hints": [
+        "恭喜你考上",
+        "……（某所学校）"
+      ],
+      "cid": "586d0781"
+    },
+    {
+      "sentence": "Congratulations on your promotion!",
+      "translation": "恭喜高升!",
+      "chunks": [
+        "Congratulations on",
+        "your promotion!"
+      ],
+      "hints": [
+        "恭喜",
+        "高升"
+      ],
+      "cid": "31d5538c"
+    },
+    {
+      "sentence": "Congratulations on your complete recovery.",
+      "translation": "祝贺你康复!",
+      "chunks": [
+        "Congratulations on",
+        "your complete recovery."
+      ],
+      "hints": [
+        "祝贺你",
+        "完全康复"
+      ],
+      "cid": "83c55db4"
+    },
+    {
+      "sentence": "I'm really happy for you!",
+      "translation": "我为你而高兴。",
+      "chunks": [
+        "I'm really happy",
+        "for you!"
+      ],
+      "hints": [
+        "我真为你",
+        "感到高兴"
+      ],
+      "cid": "54572924"
+    },
+    {
+      "sentence": "Let's make a toast!",
+      "translation": "让我们干杯!",
+      "chunks": [
+        "Let's make",
+        "a toast!"
+      ],
+      "hints": [
+        "让我们",
+        "干杯"
+      ],
+      "cid": "d3adf221"
+    },
+    {
+      "sentence": "Here's to your health!",
+      "translation": "为了您的健康(干杯)!",
+      "chunks": [
+        "Here's to",
+        "your health!"
+      ],
+      "hints": [
+        "为",
+        "你的健康干杯"
+      ],
+      "cid": "198b0854"
+    },
+    {
+      "sentence": "Let me propose a toast to Mr. Smith.",
+      "translation": "我提议让我们为史密斯先生干杯!",
+      "chunks": [
+        "Let me propose",
+        "a toast",
+        "to Mr. Smith."
+      ],
+      "hints": [
+        "我提议",
+        "敬一杯",
+        "给史密斯先生"
+      ],
+      "cid": "d4341ef3"
+    },
+    {
+      "sentence": "Break a leg!",
+      "translation": "祝您成功!",
+      "chunks": [
+        "Break",
+        "a leg!"
+      ],
+      "hints": [
+        "祝你",
+        "好运（演出成功）"
+      ],
+      "cid": "5a663556"
+    }
+  ]
+}

@@ -2,11 +2,12 @@
    validate_distractors.js · 三库 D-schema 预置干扰项全量质检
    ------------------------------------------------------------
    运行：node validate_distractors.js
-   范围：builtin-daily（builtins.js 88 + oral8000.js concat 50）+
-        builtin-freq-idioms（freq-idioms.js 自注册 201）
+   范围：内置全部 deck —— 45 个「日常口语 8000」deck（oral-book.js 唯一内容源）+
+        builtin-freq-idioms（freq-idioms.js 自注册）
+   注：2026-09-15 起 builtins.js 只留迁移表、oral8000.js 为空壳，均不再持有句子。
    背景：D-pipeline（e7a3085 消费侧 / e0fa6f9 写侧 / 2026-09-08 全量入库
-         oral8000 50/50 + freq-idioms 201/201）。validate_builtins.js 只校验
-         builtin-daily 静态 88 句且不认识 distractor 字段 —— 本脚本补齐
+         oral8000 + freq-idioms 全量）。validate_builtins.js 只校验
+         builtins.js 静态句且不认识 distractor 字段 —— 本脚本补齐
          「入库数据质量闸」：与 distractor-validate.mjs cleanDistractors 同规约
          （norm 复用于 chunk-engine.mjs，防规约漂移）。
 
@@ -27,7 +28,7 @@
          运行时生成干扰（兜底）。取代旧的「每槽目标 3 条」静态阈值——引擎
          逐槽只吃 2 条（buildChoices pick(preset,2)），整句才展平 max(4,2n)，
          旧 W3 的 311 处告警绝大多数永不触发兜底 = 假警报。
-   另：无 distractors 字段的句子计入「未入库」统计（builtin-daily 静态 88 句
+   另：无 distractors 字段的句子计入「未入库」统计（builtins.js 静态句
        属预期未覆盖，输出供 D-pipeline 下一批排期参考），不算违规。
 
    退出码：有 E 违规 → 1；仅 W / 全合规 → 0。
@@ -36,15 +37,17 @@
 const fs = require('fs');
 
 function loadLibs() {
-  global.window = {};
-  /* 与 main.html / stats.html / decks.html 完全一致的加载顺序：
-     builtins.js 建 window.BUILTIN → oral8000.js concat 进 builtin-daily
-     → freq-idioms.js 自注册 builtin-freq-idioms */
-  const libs = ['builtins.js', 'oral8000.js', 'freq-idioms.js'];
+  /* 2026-09-15：口语 8000 合并为 oral-book.js 唯一内容源（导出 ORAL_BOOK.decks）；
+     freq-idioms.js 仍自注册 builtin-freq-idioms（push 进 window.BUILTIN）。 */
+  global.window = { BUILTIN: [] };
+  const libs = ['oral-book.js', 'freq-idioms.js'];
   libs.forEach(function (f) {
     new Function('window', fs.readFileSync(__dirname + '/' + f, 'utf8'))(global.window);
   });
-  return global.window.BUILTIN || [];
+  const w = global.window;
+  const decks = (w.ORAL_BOOK && Array.isArray(w.ORAL_BOOK.decks)) ? w.ORAL_BOOK.decks.slice() : [];
+  (w.BUILTIN || []).forEach(function (d) { if (d && decks.every(function (x) { return x.id !== d.id; })) decks.push(d); });
+  return decks;
 }
 
 (async function main() {

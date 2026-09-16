@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "ae9f1ed1",
+      "sentence": "I'd like to have a Japanese interpreter.",
+      "translation": "我想请一位日本人翻译。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "3c9d363f",
+      "sentence": "I can't speak English.",
+      "translation": "我不会说英语。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "95707c7d",
+      "sentence": "My English isn't good enough.",
+      "translation": "我的英语不太好。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "30e62517",
+      "sentence": "A Japanese-speaking person, please.",
+      "translation": "请安排一位会说日语的人。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "92b96d8f",
+      "sentence": "What did you say?",
+      "translation": "您说什么?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "a5099bb9",
+      "sentence": "Would you slow down, please?",
+      "translation": "您能慢一点儿说吗?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "44cad86b",
+      "sentence": "I'd like a Japanese-speaking guide, please.",
+      "translation": "我们想请一位会说日语的导游。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "72dba1ee",
+      "sentence": "I can't make myself understood.",
+      "translation": "我们语言不通。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "3df2e057",
+      "sentence": "I don't know how to say it in English.",
+      "translation": "我不知道这用英文怎么说。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "8e14eeea",
+      "sentence": "How do you say “giri” in English?",
+      "translation": "日语中的“义理”用英文怎么说?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "32e7e92b",
+      "sentence": "What do you call this in English?",
+      "translation": "英文管这叫什么?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "70064dcb",
+      "sentence": "Call the police!",
+      "translation": "叫警察。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "90fbf294",
+      "sentence": "I had my bag stolen.",
+      "translation": "我的包被偷了。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "17209658",
+      "sentence": "Who should I report it to?",
+      "translation": "我该告诉谁?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "1c6b358b",
+      "sentence": "Where is the Lost and Found?",
+      "translation": "失物招领处在哪儿?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "090b9e57",
+      "sentence": "What kind of bag?",
+      "translation": "什么样的包?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "480e93d3",
+      "sentence": "What was in it?",
+      "translation": "里面都有什么?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "d5e02498",
+      "sentence": "How much was in it?",
+      "translation": "里面有多少钱?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "53d742fe",
+      "sentence": "We'll call you if we find it.",
+      "translation": "我们找到后会跟你联系的。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "9d449f4d",
+      "sentence": "Could you fill out this form?",
+      "translation": "您能填一下儿这张表吗?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "c840efe2",
+      "sentence": "Please give me a report on the theft.",
+      "translation": "请您写一下被盗经过。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "8c632bc3",
+      "sentence": "Where is the Japanese Embassy?",
+      "translation": "日本大使馆在哪儿?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "b5bdf9ec",
+      "sentence": "I lost my passport.",
+      "translation": "我的护照丢了。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "6db0d726",
+      "sentence": "Does anyone here speak Japanese?",
+      "translation": "这儿有会说日语的人吗?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "bce08e92",
+      "sentence": "Can I get it reissued?",
+      "translation": "能补发一本吗?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "a110a766",
+      "sentence": "Please cancel my card number.",
+      "translation": "请取消我的卡号。",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "0df3ccb7",
+      "sentence": "What should I do?",
+      "translation": "我该怎么办?",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "1d62e3d7",
+      "sentence": "It's an emergency!",
+      "translation": "十万火急!",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "8bfaf285",
+      "sentence": "Please call a doctor.",
+      "translation": "快叫大夫!",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "dba12ce1",
+      "sentence": "Help!",
+      "translation": "救命啊!",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "e1f39be6",
+      "sentence": "Thief!",
+      "translation": "小偷!",
+      "sourceUrl": "content/oral-6-34/oral-001-c71667d31517.json",
+      "sourceOffset": 30
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+[
+ {
+  "sentence": "I sympathize with you.",
+  "translation": "我对您深表同情!",
+  "chunks": [
+   "I sympathize",
+   "with you."
+  ],
+  "hints": [
+   "我",
+   "对你深表同情"
+  ]
+ },
+ {
+  "sentence": "What a pity we've lost such a great man!",
+  "translation": "我们为失去一个这么好的人而感到遗憾!",
+  "chunks": [
+   "What a pity",
+   "we've lost",
+   "such a great man!"
+  ],
+  "hints": [
+   "真遗憾",
+   "我们失去了",
+   "这么好的人"
+  ]
+ },
+ {
+  "sentence": "I'm going to miss my grandpa.",
+  "translation": "我很怀念我的爷爷。",
+  "chunks": [
+   "I'm going to miss",
+   "my grandpa."
+  ],
+  "hints": [
+   "我会怀念",
+   "我的爷爷"
+  ]
+ },
+ {
+  "sentence": "Try not to get depressed.",
+  "translation": "别太消沉了。",
+  "chunks": [
+   "Try not to",
+   "get depressed."
+  ],
+  "hints": [
+   "尽量别",
+   "消沉"
+  ]
+ },
+ {
+  "sentence": "It was terrible this time, wasn't it?",
+  "translation": "这次很麻烦，对吧?",
+  "chunks": [
+   "It was terrible",
+   "this time,",
+   "wasn't it?"
+  ],
+  "hints": [
+   "太糟糕了",
+   "这一次",
+   "是不是"
+  ]
+ },
+ {
+  "sentence": "I'm so sorry.",
+  "translation": "我太难过了!",
+  "chunks": [
+   "I'm so",
+   "sorry."
+  ],
+  "hints": [
+   "我",
+   "太难过了"
+  ]
+ }
+]

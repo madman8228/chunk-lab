@@ -606,10 +606,13 @@
         progress: o.progress || {},
         version: CURRENT_VERSION
       };
-      /* ADR：句子档案 key 原文→cid 迁移（幂等）。变更即回写 + 对应 kv rev+1，确保上云。
+      /* ADR：句子档案 key 迁移（幂等），两步顺序不可颠倒：
+         ① 原文 → cid（migrateCidKeys）；② 老口语 deck → 新 oral-* deck（migrateToBookDecks）。
          对「组装后的完整 stats」执行，同时覆盖 IDB 内存桥与 localStorage 旧值两条来源。 */
       try{
-        if(migrateCidKeys(out)){
+        var _cidMoved = migrateCidKeys(out);
+        var _sceneMoved = migrateToBookDecks(out);
+        if(_cidMoved || _sceneMoved){
           /* 仅当大对象已托管给 IDB 时才回填内存桥；否则保持 null，让后续 loadMem 始终
              读 localStorage 真值（IDB 不可用时缓存会变「粘住」的陈旧副本 → 数据看起来丢失） */
           if(_statsStore === 'idb'){
@@ -633,7 +636,7 @@
           _cloudDeletedSig = null;
           _prevSnap = null; /* 让下一次 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
         }
-      }catch(e){ console.error('[core.migrateCidKeys]', e); }
+      }catch(e){ console.error('[core.migrateKeys]', e); }
       return out;
     }catch(e){
       console.error('[core.loadMem]', e);
@@ -2385,6 +2388,77 @@
     return changed;
   }
 
+  /* ★ 口语 8000 合并为 oral-book.js 后的档案 key 迁移（2026-09-15，幂等）。
+     映射表 window.BUILTIN_MIGRATION（随 builtins.js 加载）= { 新deckId: [cid, ...] }。
+     必须同时兼容三代老 key：
+       - `builtin-daily#cid` —— 初版单 deck；
+       - `daily-home|social|chat|basic|emotion|work#cid` —— 上一版按 6 场景拆分的 deck。
+     覆盖与 migrateCidKeys 相同的四处（mastered / deletedItems / bySentence / events）；
+     另加错题本 —— 它的 key 是 `deckId::sentence`，历史 cid 迁移不覆盖，换 deck 后会指向不存在的库。 */
+  function migrateToBookDecks(o){
+    var map = global.BUILTIN_MIGRATION;
+    if(!map) return false;                       /* 迁移表未加载（如旧页面）→ 不动任何数据 */
+    var OLD_DECKS = {
+      'builtin-daily': 1, 'daily-home': 1, 'daily-social': 1, 'daily-chat': 1,
+      'daily-basic': 1, 'daily-emotion': 1, 'daily-work': 1
+    };
+    /* 惰性反向索引：cid → 新 deckId（只在首次命中时构建一次） */
+    var cidToDeck = null;
+    function deckOfCid(cid){
+      if(!cidToDeck){
+        cidToDeck = {};
+        for(var id in map){
+          if(!map.hasOwnProperty(id)) continue;
+          var list = map[id] || [];
+          for(var i = 0; i < list.length; i++) cidToDeck[list[i]] = id;
+        }
+      }
+      return cidToDeck[cid] || null;
+    }
+    /* 只改写「已 cid 化」的老 key（<老deck>#8位hex）；找不到归属就原样保留（不删数据）。
+       新 deck id（oral-*）不在 OLD_DECKS 里 → 二次执行无变化，天然幂等。 */
+    function remapKey(k){
+      if(typeof k !== 'string') return k;
+      var sep = k.indexOf('#');
+      if(sep <= 0) return k;
+      var oldDeck = k.slice(0, sep), cid = k.slice(sep + 1);
+      if(!OLD_DECKS[oldDeck]) return k;
+      if(!/^[0-9a-f]{8}$/.test(cid)) return k;
+      var deck = deckOfCid(cid);
+      return deck ? deck + '#' + cid : k;
+    }
+    var changed = false;
+    function moveMap(mapObj){
+      if(!mapObj || typeof mapObj !== 'object') return;
+      Object.keys(mapObj).forEach(function(k){
+        var nk = remapKey(k);
+        if(nk === k) return;
+        if(!(nk in mapObj)) mapObj[nk] = mapObj[k];
+        delete mapObj[k];
+        changed = true;
+      });
+    }
+    moveMap(o.mastered);
+    moveMap(o.deletedItems);
+    if(o.stats && typeof o.stats === 'object'){
+      moveMap(o.stats.bySentence);
+      if(Array.isArray(o.stats.events)){
+        o.stats.events.forEach(function(e){ if(e && e.key){ e.key = remapKey(e.key); } });
+      }
+    }
+    if(Array.isArray(o.reinforceBook)){
+      o.reinforceBook.forEach(function(it){
+        if(!it || !OLD_DECKS[it.deckId]) return;
+        var deck = deckOfCid(fnv8(it.sentence || ''));
+        if(!deck) return;
+        it.deckId = deck;
+        it._key = deck + '::' + (it.sentence || '');
+        changed = true;
+      });
+    }
+    return changed;
+  }
+
   /* ---------- 领域：题库 ---------- */
   function masteredKey(deckId, it){ return cidKey(deckId, it); }
   function allDecks(m){ return (m.decks || []).slice(); }
@@ -2614,7 +2688,8 @@
   }
 
   /* ---------- 内置题删除（override 机制） ----------
-     内置题库来自静态 builtins.js + oral8000.js（window.BUILTIN），不可被改写。
+     内置题库来自静态 oral-book.js（构建期唯一内容源）与 freq-idioms.js；运行时经
+     content/manifest.json + 分片读取，页面不直接加载这两个大文件。不可被改写。
      删除内置单句 = 在 deletedItems 里登记 key，列表/练习时过滤掉。
      key 与 masteredKey / stats.bySentence 同构：deckId#cid（与原文解耦）。 */
   function itemKey(deckId, it){ return cidKey(deckId, it); }

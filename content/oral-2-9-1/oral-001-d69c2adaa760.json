@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Do you prefer coffee or tea?",
+      "cid": "5b28a18d",
+      "translation": "你更喜欢咖啡还是茶？",
+      "chunks": [
+        "Do you prefer",
+        "coffee or tea?"
+      ],
+      "hints": [
+        "你更喜欢",
+        "咖啡还是茶"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/prɪˈfɜːr/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你更喜欢"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈkɒfi/",
+            "/ɔːr/",
+            "/tiː/"
+          ],
+          "pos": "选择疑问句",
+          "meaning": "咖啡还是茶"
+        }
+      ],
+      "explanations": [
+        "**prefer A or B?** 是选择题问法。常见错误：\n• \"Do you **more** like coffee\" → 比较要用 prefer，不是 more like\n• \"Do you prefer **to** coffee\" → prefer 直接接名词，不加 to",
+        "**prefer** 常见搭配：prefer A to B（比起 B 更喜欢 A）、prefer doing。注意这里 A or B 问句结构。"
+      ],
+      "distractors": [
+        [
+          "Are you prefer",
+          "Do you prefers",
+          "Do you prefer to"
+        ],
+        [
+          "coffee and tea?",
+          "a coffee or tea?",
+          "coffee or the tea?"
+        ]
+      ]
+    },
+    {
+      "sentence": "What's your favorite way to relax?",
+      "cid": "300d8e13",
+      "translation": "你最喜欢的放松方式是什么？",
+      "chunks": [
+        "What's your favorite way",
+        "to relax?"
+      ],
+      "hints": [
+        "你最喜欢的方式",
+        "去放松"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#c87033",
+          "phonetic": [
+            "/wɒts/",
+            "/jɔːr/",
+            "/ˈfeɪvərɪt/",
+            "/weɪ/"
+          ],
+          "pos": "主系表",
+          "meaning": "你最喜欢的方式"
+        },
+        {
+          "role": "后置定语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/tuː/",
+            "/rɪˈlæks/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "用来放松"
+        }
+      ],
+      "explanations": [
+        "**What's your favorite way to...?** = 你最喜欢用什么方式做……？常见错误：\n• \"What **is your favorite way for** relax\" → 固定搭配 way to do\n• \"How's your favorite way\" → how 问方式，这里问的是「什么」",
+        "回答：I like to watch movies / go for a walk / listen to music. 类似问法：What do you do to relax?"
+      ],
+      "distractors": [
+        [
+          "What your favorite way",
+          "What's you favorite way",
+          "What's your favorite ways"
+        ],
+        [
+          "to relaxing?",
+          "for relax?",
+          "relaxing?"
+        ]
+      ]
+    },
+    {
+      "sentence": "What do you think of this idea?",
+      "cid": "a5117784",
+      "translation": "你觉得这个主意怎么样？",
+      "chunks": [
+        "What do you think",
+        "of this idea?"
+      ],
+      "hints": [
+        "你怎么看",
+        "这个主意"
+      ],
+      "grammar": [
+        {
+          "role": "疑问主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɒt/",
+            "/duː/",
+            "/juː/",
+            "/θɪŋk/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "你怎么看"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əv/",
+            "/ðɪs/",
+            "/aɪˈdɪə/"
+          ],
+          "pos": "介词短语",
+          "meaning": "这个主意"
+        }
+      ],
+      "explanations": [
+        "**What do you think of...?** = 你对……怎么看？常见错误：\n• \"How do you think **about** it\" → 也有人说，但标准句式是 What ... think of\n• \"What are you think\" → 疑问句用助动词 do，不是 be",
+        "征求意见的两大句式：What do you think of...? / How do you like...? 回答：I think it's great / I'm not sure about it."
+      ],
+      "distractors": [
+        [
+          "What do you thinks",
+          "What are you think",
+          "What do you thinking"
+        ],
+        [
+          "in this idea?",
+          "of that idea?",
+          "of this ideal?"
+        ]
+      ]
+    },
+    {
+      "sentence": "That reminds me of something.",
+      "cid": "5e6bba59",
+      "translation": "那让我想起了一件事。",
+      "chunks": [
+        "That reminds me",
+        "of something."
+      ],
+      "hints": [
+        "那提醒我",
+        "关于某事"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðæt/",
+            "/rɪˈmaɪndz/",
+            "/miː/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "那提醒我"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əv/",
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "remind of 搭配",
+          "meaning": "关于某事"
+        }
+      ],
+      "explanations": [
+        "**remind sb of sth** = 让某人想起某事。常见错误：\n• \"remind me **about** something\" → about 是「提醒」，of 是「使想起」，语境不同\n• \"That **remember** me\" → 人作主语才用 remember，事物用 remind",
+        "口语中常用来引出话题：That reminds me of a funny story...（那让我想起一个有趣的故事）。"
+      ],
+      "distractors": [
+        [
+          "That remind me",
+          "That reminded me",
+          "That reminds I"
+        ],
+        [
+          "of anything.",
+          "about something.",
+          "of somethings."
+        ]
+      ]
+    }
+  ]
+}

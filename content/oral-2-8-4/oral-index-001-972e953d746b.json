@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "d338b9bb",
+      "sentence": "Do you enjoy watching movies?",
+      "translation": "你喜欢看电影吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "d10b5dec",
+      "sentence": "I'm pretty good at cooking.",
+      "translation": "我挺擅长做饭的。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "334cfe4a",
+      "sentence": "I usually go for a run in the morning.",
+      "translation": "我通常早上跑步。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "6de73a4a",
+      "sentence": "I'm into cooking these days.",
+      "translation": "我最近迷上做饭了。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "9850dabd",
+      "sentence": "May I hand in my homework tomorrow?",
+      "translation": "我明天交作业可以吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "2c67da0d",
+      "sentence": "I'm having trouble understanding this part.",
+      "translation": "我理解这部分有困难。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "adb3d11f",
+      "sentence": "Could you explain it in a simpler way?",
+      "translation": "你能用更简单的方式解释吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "b0d272f4",
+      "sentence": "I'll try my best to catch up with the class.",
+      "translation": "我会尽最大努力赶上班级进度。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "2458e206",
+      "sentence": "I used to play the piano when I was little.",
+      "translation": "我小时候常常弹钢琴。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "d7c85ebc",
+      "sentence": "Did you get taller?",
+      "translation": "你长高了吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "c59cc387",
+      "sentence": "You are growing fast.",
+      "translation": "你长得真快。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "4d62bdfa",
+      "sentence": "How old are you?",
+      "translation": "你多大了？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "7fde70a6",
+      "sentence": "Twenty something.",
+      "translation": "二十多岁吧。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "744c4681",
+      "sentence": "I'm trying to study.",
+      "translation": "我在学习。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "f8afdcf8",
+      "sentence": "My test is tomorrow.",
+      "translation": "我明天有考试。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+      "sourceOffset": 14
+    }
+  ]
+}

@@ -1,0 +1,678 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "325f5349",
+      "sentence": "Let's go window-shopping.",
+      "translation": "我们去(商店)逛逛吧!",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "ca57ac2c",
+      "sentence": "What a crowd!",
+      "translation": "人多得要命!",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "fb1eb279",
+      "sentence": "When does the store open?",
+      "translation": "商店几点开门?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "a3fa3dcd",
+      "sentence": "When does the store close?",
+      "translation": "商店几点关门?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "e1353c2b",
+      "sentence": "We won't open until eleven.",
+      "translation": "我们11点才开门呢。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "0f81cf67",
+      "sentence": "Where's the shoe department?",
+      "translation": "卖鞋的专柜在哪儿呀?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "46fdcbef",
+      "sentence": "It's on the third floor.",
+      "translation": "在3楼。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "39354314",
+      "sentence": "Going down?",
+      "translation": "是往下?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "70a48e15",
+      "sentence": "What are you looking for?",
+      "translation": "你找什么呢?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "3327ee3c",
+      "sentence": "Eighth, please.",
+      "translation": "请按8楼。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "8cfda84c",
+      "sentence": "May I help you?",
+      "translation": "欢迎光临。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "8a510c6c",
+      "sentence": "I'd like a suit.",
+      "translation": "我想买件套装。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "3275a6d5",
+      "sentence": "I'm looking for a ... bag.",
+      "translation": "我在找一种……包。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "216638cf",
+      "sentence": "I'm just looking.",
+      "translation": "我只看看。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "85255c6e",
+      "sentence": "If you need any help, let me know.",
+      "translation": "您有什么需要帮助的尽管说。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "d6ab9d0a",
+      "sentence": "These shoes are great!",
+      "translation": "这双鞋真漂亮!",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "396942b1",
+      "sentence": "Buy this.",
+      "translation": "买这个吧。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "6dde8d93",
+      "sentence": "How much is this?",
+      "translation": "这个多少钱?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "de79bb5a",
+      "sentence": "That's expensive!",
+      "translation": "太贵了!",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "3e8aeb7c",
+      "sentence": "That's cheap!",
+      "translation": "真便宜!",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "9e5b0b35",
+      "sentence": "Do you have this shirt in a small?",
+      "translation": "这种衬衫有小号的吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "1431901f",
+      "sentence": "Do you have this sweater in red?",
+      "translation": "这种毛衣有红色的吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "a2eaa2d3",
+      "sentence": "May I try it on?",
+      "translation": "我可以试试吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "f07c84e0",
+      "sentence": "Where is the fitting room?",
+      "translation": "试衣间在哪儿?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "61d843b4",
+      "sentence": "It's too small for me.",
+      "translation": "我穿着太小。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "49dcc18e",
+      "sentence": "This suit fits perfectly.",
+      "translation": "这套衣服正合适。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "1006fcf6",
+      "sentence": "This is nice.",
+      "translation": "这个真不错。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "9614b253",
+      "sentence": "This is better.",
+      "translation": "这个比较好。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "da1e8b77",
+      "sentence": "This skirt matches this blouse, doesn't it?",
+      "translation": "这条裙子和这件上衣挺配的，是吧?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "35ae059d",
+      "sentence": "Which is better?",
+      "translation": "你觉得哪个好?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "4bc249da",
+      "sentence": "I want both of them.",
+      "translation": "两个我都想要。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "fe5f2649",
+      "sentence": "It's too flashy.",
+      "translation": "太艳了!",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "7f61a89a",
+      "sentence": "It's too plain.",
+      "translation": "老气。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "8d32b9c1",
+      "sentence": "Would you hem it?",
+      "translation": "您能给锁边吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "3d06cfac",
+      "sentence": "How much is it?",
+      "translation": "多少钱?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "eeb35712",
+      "sentence": "I'll take this one.",
+      "translation": "我要这个。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "9d91645e",
+      "sentence": "Will that be cash or charge?",
+      "translation": "您用现金还是卡?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "9e1acd57",
+      "sentence": "Charge, please.",
+      "translation": "卡。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "7c61c5eb",
+      "sentence": "Can I use VISA?",
+      "translation": "我可以用VISA卡吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "372408bd",
+      "sentence": "Can I pay by installment payment?",
+      "translation": "我可以分期付款吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "bfd8ac97",
+      "sentence": "Can I pay in Japanese yen?",
+      "translation": "我可以付日元吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "039d2fa0",
+      "sentence": "Please wrap it.",
+      "translation": "请给包一下。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "cbfc5d95",
+      "sentence": "I'd like to return this.",
+      "translation": "我想退货。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "09188855",
+      "sentence": "Could you exchange this, please?",
+      "translation": "您能给我换一下这个吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "95ed45b8",
+      "sentence": "It's got a stain.",
+      "translation": "这儿有点儿脏。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "2b84cb5c",
+      "sentence": "Can I have a refund?",
+      "translation": "可以退款吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "e54ca6fb",
+      "sentence": "Would you give me a discount?",
+      "translation": "能再便宜一些吗?",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "9661347e",
+      "sentence": "Take it or leave it.",
+      "translation": "不满意就算了。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "8e88da8b",
+      "sentence": "Can I try this on?",
+      "translation": "我可以试穿这件吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "11eab175",
+      "sentence": "Do you have this in a smaller size?",
+      "translation": "这个有小一号的吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "a502b123",
+      "sentence": "How much does this cost?",
+      "translation": "这个多少钱？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "ea8bea79",
+      "sentence": "I'm just looking around, thanks.",
+      "translation": "我只是随便看看，谢谢。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "4a8ecc17",
+      "sentence": "Is this item on sale?",
+      "translation": "这件商品在打折吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "5bd1ca12",
+      "sentence": "Could I pay by credit card?",
+      "translation": "我可以用信用卡付款吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "49fecae0",
+      "sentence": "I'd like to return this item, please.",
+      "translation": "我想退掉这件商品。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "27e9bd68",
+      "sentence": "Do you offer a refund without a receipt?",
+      "translation": "没有小票可以退款吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "09ee0d9c",
+      "sentence": "Where can I find the fitting room?",
+      "translation": "请问试衣间在哪里？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "8437bd38",
+      "sentence": "This shirt is a bit too big for me.",
+      "translation": "这件衬衫对我来说有点太大了。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "b6b38927",
+      "sentence": "Do you have this in other colors?",
+      "translation": "这个有其他颜色吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "52e57cb1",
+      "sentence": "Can you recommend something cheaper?",
+      "translation": "能推荐便宜点的吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "b4d9f9ed",
+      "sentence": "I'm afraid it's out of stock.",
+      "translation": "恐怕这款缺货了。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "317bf159",
+      "sentence": "Could you wrap it up for me?",
+      "translation": "能帮我把它包起来吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "d6d76e5b",
+      "sentence": "Can I pay with my phone?",
+      "translation": "我可以手机支付吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "44614ab3",
+      "sentence": "Do you have a membership card?",
+      "translation": "请问需要会员卡吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "2bccbf9f",
+      "sentence": "It doesn't fit me well.",
+      "translation": "这件我穿着不合身。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "0ba46f6f",
+      "sentence": "Could you show me the latest one?",
+      "translation": "能给我看看最新款吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "fa0974dd",
+      "sentence": "Is there a warranty on this watch?",
+      "translation": "这款手表有保修吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "a5220aa4",
+      "sentence": "I'm looking for something for my mom.",
+      "translation": "我想给我妈妈买个东西。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "4993d618",
+      "sentence": "Do you offer free delivery?",
+      "translation": "你们免费配送吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "cd506d36",
+      "sentence": "Can I have a receipt, please?",
+      "translation": "请给我开张小票。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "79421135",
+      "sentence": "How much is it in total?",
+      "translation": "一共多少钱？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "1a0d45be",
+      "sentence": "Could I exchange it for a bigger one?",
+      "translation": "我能换个大一号的吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "31c49222",
+      "sentence": "Is this the final price?",
+      "translation": "这是最终价了吗？（还能便宜吗？）",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "72a8211b",
+      "sentence": "I'd rather go for the cheaper one.",
+      "translation": "我宁愿要那个便宜点的。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 73
+    },
+    {
+      "cid": "7c63ccd9",
+      "sentence": "The price seems a little high.",
+      "translation": "价格似乎有点高。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 74
+    },
+    {
+      "cid": "286efe6b",
+      "sentence": "Is this the only size you have?",
+      "translation": "你们只有这一个尺码吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 75
+    },
+    {
+      "cid": "72aa19b1",
+      "sentence": "I'll take it.",
+      "translation": "我就要这个了/我买了。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 76
+    },
+    {
+      "cid": "8d72c5ea",
+      "sentence": "Where can I find the checkout?",
+      "translation": "我在哪儿能找到收银台？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 77
+    },
+    {
+      "cid": "f09dfd8b",
+      "sentence": "How much does this one cost?",
+      "translation": "这个多少钱？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 78
+    },
+    {
+      "cid": "137ff5fe",
+      "sentence": "This one is way cheaper than that.",
+      "translation": "这个比那个便宜多了。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 79
+    },
+    {
+      "cid": "c5710a04",
+      "sentence": "Can you give me a discount?",
+      "translation": "能给我打个折吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 80
+    },
+    {
+      "cid": "8e299f97",
+      "sentence": "We're just looking, but thanks anyway.",
+      "translation": "我们只是看看，不过还是谢谢。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 81
+    },
+    {
+      "cid": "28fc81b5",
+      "sentence": "What size do you take in shoes?",
+      "translation": "你穿多大码的鞋？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 82
+    },
+    {
+      "cid": "6fc23ceb",
+      "sentence": "Do you have this in a bigger size?",
+      "translation": "这个有大一号的吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 83
+    },
+    {
+      "cid": "350e2601",
+      "sentence": "I'd like to return this, it doesn't fit.",
+      "translation": "我想退掉这个，它不合身。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 84
+    },
+    {
+      "cid": "62ff1252",
+      "sentence": "Could I try this on?",
+      "translation": "我能试穿一下这个吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 85
+    },
+    {
+      "cid": "17294bac",
+      "sentence": "It's a used one.",
+      "translation": "这是二手的。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 86
+    },
+    {
+      "cid": "880a8346",
+      "sentence": "But the price is right.",
+      "translation": "但价格合适。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 87
+    },
+    {
+      "cid": "bd951c11",
+      "sentence": "That comes to 30.",
+      "translation": "一共三十。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 88
+    },
+    {
+      "cid": "3ec98065",
+      "sentence": "Cash or credit?",
+      "translation": "现金还是刷卡？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 89
+    },
+    {
+      "cid": "0d6e7a1e",
+      "sentence": "What size are you?",
+      "translation": "你穿多大码？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 90
+    },
+    {
+      "cid": "ce389d98",
+      "sentence": "Just pick out anything.",
+      "translation": "随便挑。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 91
+    },
+    {
+      "cid": "6a78132a",
+      "sentence": "Put it on.",
+      "translation": "穿上。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 92
+    },
+    {
+      "cid": "2b8d1614",
+      "sentence": "Take it off.",
+      "translation": "脱下来。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 93
+    },
+    {
+      "cid": "2bfa5969",
+      "sentence": "It doesn't fit.",
+      "translation": "它不合身。",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 94
+    },
+    {
+      "cid": "433047e6",
+      "sentence": "Can I return it?",
+      "translation": "可以退吗？",
+      "sourceUrl": "content/oral-6-31/oral-001-28340c1881fa.json",
+      "sourceOffset": 95
+    }
+  ]
+}

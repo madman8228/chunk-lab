@@ -1,0 +1,72 @@
+[
+ {
+  "sentence": "I don't care.",
+  "chunks": ["I don't", "care."],
+  "hints": ["我", "无所谓"]
+ },
+ {
+  "sentence": "Who cares?",
+  "chunks": ["Who", "cares?"],
+  "hints": ["谁", "管它呢"]
+ },
+ {
+  "sentence": "Whatever you want.",
+  "chunks": ["Whatever", "you want."],
+  "hints": ["随你", "想怎样"]
+ },
+ {
+  "sentence": "Nobody knows.",
+  "chunks": ["Nobody", "knows."],
+  "hints": ["谁也不", "知道"]
+ },
+ {
+  "sentence": "It has nothing to do with me.",
+  "chunks": ["It has nothing", "to do with me."],
+  "hints": ["这跟", "我没关系"]
+ },
+ {
+  "sentence": "I couldn't care less.",
+  "chunks": ["I couldn't", "care less."],
+  "hints": ["我", "一点都不在乎"]
+ },
+ {
+  "sentence": "Nobody cares.",
+  "chunks": ["Nobody", "cares."],
+  "hints": ["没人", "会在乎"]
+ },
+ {
+  "sentence": "Let it be.",
+  "chunks": ["Let", "it be."],
+  "hints": ["随", "它去吧"]
+ },
+ {
+  "sentence": "I don't care what they say.",
+  "chunks": ["I don't care", "what they say."],
+  "hints": ["我才不管", "他们说什么"]
+ },
+ {
+  "sentence": "Anyone will do.",
+  "chunks": ["Anyone", "will do."],
+  "hints": ["哪个", "都行"]
+ },
+ {
+  "sentence": "We can do without him.",
+  "chunks": ["We can do", "without him."],
+  "hints": ["没他", "我们也行"]
+ },
+ {
+  "sentence": "I've got nothing special to talk about.",
+  "chunks": ["I've got nothing special", "to talk about."],
+  "hints": ["我没什么", "特别要说的"]
+ },
+ {
+  "sentence": "It doesn't matter.",
+  "chunks": ["It doesn't", "matter."],
+  "hints": ["那", "没关系"]
+ },
+ {
+  "sentence": "It's the same old story.",
+  "chunks": ["It's the same", "old story."],
+  "hints": ["又是", "老一套"]
+ }
+]

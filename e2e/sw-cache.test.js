@@ -123,24 +123,24 @@ function cacheUrls(page) {
     urls.indexOf('/main.html') >= 0 && urls.indexOf('/core.js') >= 0 && urls.indexOf('/content/manifest.json') >= 0,
     urls.join(','));
   check('整包题库未进入安装预缓存',
-    urls.indexOf('/oral8000.js') < 0 && urls.indexOf('/freq-idioms.js') < 0,
-    urls.filter(function (u) { return /oral8000|freq-idioms/.test(u); }).join(','));
+    urls.indexOf('/oral-book.js') < 0 && urls.indexOf('/freq-idioms.js') < 0,
+    urls.filter(function (u) { return /oral-book|freq-idioms/.test(u); }).join(','));
   check('页面无 JS 错误', errs.length === 0, errs.slice(0, 3).join(' | '));
 
   /* 首次真正使用日常题库时，才会拉取并缓存对应内容分片。主页本身不应隐式加载整库。 */
   await page.evaluate(function () {
-    return window.ContentRepo.ensureDeck('builtin-daily').then(function (deck) {
+    return window.ContentRepo.ensureDeck('oral-6-31').then(function (deck) {
       return deck && deck.items ? deck.items.length : 0;
     });
   });
   let contentUrls = [];
   for (let i = 0; i < 30; i++) {
     contentUrls = (await cacheUrls(page)).urls;
-    if (contentUrls.some(function (u) { return u.indexOf('/content/builtin-daily/') === 0; })) break;
+    if (contentUrls.some(function (u) { return u.indexOf('/content/oral-6-31/') === 0; })) break;
     await page.waitForTimeout(400);
   }
   check('进入练习后才缓存日常题库分片',
-    contentUrls.some(function (u) { return u.indexOf('/content/builtin-daily/') === 0; }),
+    contentUrls.some(function (u) { return u.indexOf('/content/oral-6-31/') === 0; }),
     contentUrls.filter(function (u) { return u.indexOf('/content/') === 0; }).join(','));
 
   /* ---------- 2. 首次访问后立即离线（只访问过一次） ---------- */

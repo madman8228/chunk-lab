@@ -1,5 +1,5 @@
 /**
- * scripts/enrich-builtins-seed.mjs · builtin-daily 干扰项种子写回工具（2026-09-08）
+ * scripts/enrich-builtins-seed.mjs · 内置题库干扰项种子写回工具（2026-09-08 建；2026-09-15 适配 6 场景 deck）
  *
  * 为什么独立于 gen-distractors.mjs：
  *   gen-distractors.mjs 的 enrichJsText 针对「window.DATA_* 顶层数组 + 单引号 key + 4 空格」布局
@@ -13,7 +13,7 @@
  *   node scripts/enrich-builtins-seed.mjs --seed output/d-c1.json
  *
  * seed JSON: [{ sentence, distractors:[[...],[...],...] }]（与 gen-distractors --seed 同构）
- *   - sentence 必须在 builtin-daily items 中（否则报错跳过）
+ *   - sentence 必须在内置题库 items 中（6 个场景 deck 任一，否则报错跳过）
  *   - 每句过 cleanDistractors 硬校验（外层长度=chunks、norm 撞车丢弃、位内去重、≤3/位）
  *   - 命中即覆盖（作者直供 = 权威）
  * 安全：写前 .bak 备份到 output/backups（gitignored）；写后回读沙箱复解析 + 条数核对。
@@ -52,23 +52,33 @@ function main() {
 
   const fileText = fs.readFileSync(FILE, 'utf8');
 
-  /* 数组区间定位：window.BUILTIN = 之后的第一个 [ 到与之配对的最后一个 ]; */
-  const arrStart = fileText.indexOf('[');
-  if (arrStart === -1) { console.error('❌ 找不到数组起点'); process.exit(1); }
-  /* 数组结束 = 与起点配对的 ]；用最后出现的 ]; 前的 ]（BUILTIN 数组在文件尾部闭合） */
-  const semiIdx = fileText.lastIndexOf('];');
-  if (semiIdx === -1) { console.error('❌ 找不到数组结束 ];'); process.exit(1); }
-  let arrEnd = semiIdx; /* ] 的位置（排除 ;） */
+  /* 数组区间定位（2026-09-15 起用括号配平）：尾部新增 window.BUILTIN_MIGRATION 后，
+     原先的 lastIndexOf('];') 不再可靠；配平扫描带字符串/转义状态，注释或代码里的 ]; 也不会误判。 */
+  const assignMatch = /window\.BUILTIN\s*=\s*\[/.exec(fileText);
+  if (!assignMatch) { console.error('❌ 找不到 window.BUILTIN = ['); process.exit(1); }
+  const arrStart = fileText.indexOf('[', assignMatch.index);
+  let arrEnd = -1;
+  {
+    let depth = 0, inStr = false, quote = '';
+    for (let i = arrStart; i < fileText.length; i++) {
+      const c = fileText[i];
+      if (inStr) { if (c === '\\') { i++; continue; } if (c === quote) inStr = false; continue; }
+      if (c === '"' || c === "'" || c === '`') { inStr = true; quote = c; continue; }
+      if (c === '[') depth++;
+      else if (c === ']') { depth--; if (depth === 0) { arrEnd = i; break; } }
+    }
+  }
+  if (arrEnd < 0) { console.error('❌ BUILTIN 数组未闭合'); process.exit(1); }
 
   let arr;
   try { arr = JSON.parse(fileText.slice(arrStart, arrEnd + 1)); }
   catch (e) { console.error('❌ BUILTIN 数组区间 JSON 解析失败：' + e.message); process.exit(1); }
-  const targetDeck = arr.find(function (d) { return d && d.id === 'builtin-daily'; });
-  if (!targetDeck) { console.error('❌ 数组区间内未找到 builtin-daily'); process.exit(1); }
 
-  /* ★ 单一数据源：直接以 arr 内 targetDeck.items 为写回对象（JSON 手术 stringify 的就是 arr，
-     若另用沙箱解析出 itemsBySentence 会得到不同对象引用 → 写进沙箱对象、序列化 arr 时丢改动） */
-  const itemsBySentence = new Map(targetDeck.items.map(function (it) { return [it.sentence, it]; }));
+  /* ★ 单一数据源：直接以 arr 内 items 为写回对象（JSON 手术 stringify 的就是 arr，
+     若另用沙箱解析出 itemsBySentence 会得到不同对象引用 → 写进沙箱对象、序列化 arr 时丢改动）。
+     2026-09-15：句子已按场景分布在 6 个 deck → 建「sentence → item」跨 deck 索引。 */
+  const itemsBySentence = new Map();
+  arr.forEach(function (d) { (d.items || []).forEach(function (it) { if (!itemsBySentence.has(it.sentence)) itemsBySentence.set(it.sentence, it); }); });
 
   /* 逐句清洗 + 写内存 */
   const applied = []; /* {sentence, distractors:清洗后实际写入值} */
@@ -76,7 +86,7 @@ function main() {
   seed.forEach(function (s, i) {
     const it = itemsBySentence.get(s.sentence);
     const tag = '[' + (i + 1) + '/' + seed.length + '] ' + s.sentence;
-    if (!it) { console.log('  ✗ ' + tag + ' → builtin-daily 无此句'); return; }
+    if (!it) { console.log('  ✗ ' + tag + ' → 内置题库（6 个场景 deck）中无此句'); return; }
     const clean = cleanDistractors(it, s.distractors);
     if (!clean.ok) { console.log('  ✗ ' + tag + ' → ' + clean.error); return; }
     const got = clean.stats.perChunk.reduce(function (a, b) { return a + b; }, 0);
@@ -106,8 +116,8 @@ function main() {
     const after = fs.readFileSync(FILE, 'utf8');
     const ctx = vm.createContext({ window: {} });
     new vm.Script(after).runInContext(ctx);
-    const afterDeck = (ctx.window.BUILTIN || []).find(function (d) { return d.id === 'builtin-daily'; });
-    const afterMap = new Map((afterDeck ? afterDeck.items : []).map(function (it) { return [it.sentence, it]; }));
+    const afterMap = new Map();
+    (ctx.window.BUILTIN || []).forEach(function (d) { (d.items || []).forEach(function (it) { if (!afterMap.has(it.sentence)) afterMap.set(it.sentence, it); }); });
     const ok = applied.filter(function (g) {
       const hit = afterMap.get(g.sentence);
       return hit && JSON.stringify(hit.distractors) === JSON.stringify(g.distractors);

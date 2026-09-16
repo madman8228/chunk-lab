@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Could you keep the noise down?",
+      "cid": "0ab455be",
+      "translation": "你能小声一点吗？",
+      "chunks": [
+        "Could you keep",
+        "the noise",
+        "down?"
+      ],
+      "hints": [
+        "你能保持",
+        "噪音",
+        "低一些"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/kiːp/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "你能让……保持"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/nɔɪz/"
+          ],
+          "pos": "名词",
+          "meaning": "噪音"
+        },
+        {
+          "role": "补语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/"
+          ],
+          "pos": "副词",
+          "meaning": "低下来"
+        }
+      ],
+      "explanations": [
+        "邻里/室友提醒。`keep it down` = 小声点。常见错误：\n• \"keep **down** the noise\" → 也可，但 keep the noise down 常见\n• \"turn the noise down\" → 噪音不是音量旋钮，keep down 更贴切",
+        "更直接的祈使：Keep it down, please!"
+      ],
+      "distractors": [
+        [
+          "Can you keep",
+          "Could you keeps",
+          "Could you to keep"
+        ],
+        [
+          "a noise",
+          "noises",
+          "the noisy"
+        ],
+        [
+          "down? ok",
+          "to down?",
+          "downed?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you turn the music down a bit?",
+      "cid": "5b616a39",
+      "translation": "你能把音乐声调小一点吗？",
+      "chunks": [
+        "Could you turn",
+        "the music",
+        "down a bit?"
+      ],
+      "hints": [
+        "你能调",
+        "音乐",
+        "小一点"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/tɜːrn/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "你能调"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmjuːzɪk/"
+          ],
+          "pos": "名词(不可数)",
+          "meaning": "音乐"
+        },
+        {
+          "role": "补语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/",
+            "/ə/",
+            "/bɪt/"
+          ],
+          "pos": "短语",
+          "meaning": "调低一点"
+        }
+      ],
+      "explanations": [
+        "`turn down` = 调小（音量），`turn up` = 调大。常见错误：\n• \"turn **off**\" → 那是关掉\n• \"turn down the music\" 或 turn the music down 都行",
+        "`a bit` = 一点。"
+      ],
+      "distractors": [
+        [
+          "Can you turn",
+          "Could you turns",
+          "Could you to turn"
+        ],
+        [
+          "a music",
+          "musics",
+          "the musics"
+        ],
+        [
+          "down a bits?",
+          "up a bit?",
+          "a bit down?"
+        ]
+      ]
+    },
+    {
+      "sentence": "We're in a library.",
+      "cid": "d99feea8",
+      "translation": "我们在图书馆。",
+      "chunks": [
+        "We're in",
+        "a library."
+      ],
+      "hints": [
+        "我们在",
+        "一个图书馆"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wɪr/",
+            "/ɪn/"
+          ],
+          "pos": "we are 缩写 + 介词",
+          "meaning": "我们在"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈlaɪbreri/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个图书馆"
+        }
+      ],
+      "explanations": [
+        "`We're` = we are，注意与 Were（are 的过去式）区分。常见错误：\n• \"Were in a library\" → 少了撇号就成过去时陈述\n• \"We in a library\" → 缺 be 动词",
+        "`library` 注意拼写，中间是 -brar-。常见错误：\n• \"librery\" / \"libary\" → 常见拼错\n• \"a libraries\" → 前有 a 用单数"
+      ],
+      "distractors": [
+        [
+          "We in",
+          "We was in",
+          "We're at"
+        ],
+        [
+          "a libraries.",
+          "the library.",
+          "an library."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're talking too loudly.",
+      "cid": "05cc4c9b",
+      "translation": "你说话太大声了。",
+      "chunks": [
+        "You're talking",
+        "too loudly."
+      ],
+      "hints": [
+        "你说话",
+        "太大声"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈtɔːkɪŋ/"
+          ],
+          "pos": "you are + 现在分词",
+          "meaning": "你正在说"
+        },
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ˈlaʊdli/"
+          ],
+          "pos": "副词",
+          "meaning": "太大声"
+        }
+      ],
+      "explanations": [
+        "`You're` = you are，注意区分 your（你的）。常见错误：\n• \"Your talking too loudly\" → Your 是形容词，不能构成进行时\n• \"You talking\" → 口语可省略，但书面要写 You are",
+        "`too` 表「过于」，修饰副词再 -ly。常见错误：\n• \"to loudly\" → 是 too 不是 to\n• \"too loud\" → 也可，但修饰 talking 用副词 loudly"
+      ],
+      "distractors": [
+        [
+          "You talking",
+          "Your talking",
+          "You're talk"
+        ],
+        [
+          "to loudly.",
+          "too loudness.",
+          "too louder."
+        ]
+      ]
+    },
+    {
+      "sentence": "Keep it down.",
+      "cid": "c3dee22f",
+      "translation": "小声点。",
+      "chunks": [
+        "Keep",
+        "it down."
+      ],
+      "hints": [
+        "保持",
+        "声音低"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "保持"
+        },
+        {
+          "role": "宾语+补语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/",
+            "/daʊn/"
+          ],
+          "pos": "keep + 宾语 + 副词",
+          "meaning": "把声音压低"
+        }
+      ],
+      "explanations": [
+        "`keep sth down` 表「把（音量）压低」。常见错误：\n• \"Keep down it\" → 代词要放 keep 和 down 中间\n• \"Keep it up\" → up 意思是「继续保持」，正好相反",
+        "祈使句用动词原形。同义：Lower your voice. / Quiet down."
+      ],
+      "distractors": [
+        [
+          "Keeping",
+          "Keeps",
+          "Keep to"
+        ],
+        [
+          "it up.",
+          "it low.",
+          "it downs."
+        ]
+      ]
+    },
+    {
+      "sentence": "Back away.",
+      "cid": "dfc5d91e",
+      "translation": "后退。",
+      "chunks": [
+        "Back",
+        "away."
+      ],
+      "hints": [
+        "向后退",
+        "离开"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/bæk/"
+          ],
+          "pos": "动词（后退）",
+          "meaning": "后退"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈweɪ/"
+          ],
+          "pos": "副词",
+          "meaning": "离开"
+        }
+      ],
+      "explanations": [
+        "`back away` 指「慢慢往后退」，常用来让人让出空间。常见错误：\n• back away **from** + 宾语 表「从……退开」（back away from the dog）\n• 与 `go back`（回去）不同，别混用",
+        "更急的说法：Get back!（退后！）"
+      ],
+      "distractors": [
+        [
+          "Backs",
+          "Backing",
+          "Back of"
+        ],
+        [
+          "away from.",
+          "out.",
+          "off."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't stare.",
+      "cid": "0718c5bc",
+      "translation": "别盯着看。",
+      "chunks": [
+        "Don't",
+        "stare."
+      ],
+      "hints": [
+        "别",
+        "盯着看"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "别"
+        },
+        {
+          "role": "谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ster/"
+          ],
+          "pos": "动词原形",
+          "meaning": "盯着看"
+        }
+      ],
+      "explanations": [
+        "`stare` 指长时间盯着看，带不礼貌的意味。常见错误：\n• \"Don't staring\" → 否定祈使后接动词原形\n• \"Don't stare me\" → 盯住某人要说 stare at me",
+        "提醒别人时可以说：Don't stare, it's rude."
+      ],
+      "distractors": [
+        [
+          "Doesn't",
+          "Not",
+          "No"
+        ],
+        [
+          "stares.",
+          "staring.",
+          "stare at."
+        ]
+      ]
+    }
+  ]
+}

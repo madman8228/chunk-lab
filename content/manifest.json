@@ -1,39 +1,1655 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-cd92f4f7d42fe6101c352edb0aa33dc48b0afb75a5c3f304cb3051ac755c8fd4",
+  "contentVersion": "v1-14fa4a5dcefcca86f5e121c8044b4e7b001761c094f61554f793e23fc2f4a16c",
+  "series": "日常口语 8000",
+  "chapters": [
+    {
+      "no": 0,
+      "title": "万能表达（无固定场景）"
+    },
+    {
+      "no": 1,
+      "title": "日常生活中使用的短句"
+    },
+    {
+      "no": 2,
+      "title": "使您交谈轻松愉快的短句"
+    },
+    {
+      "no": 3,
+      "title": "促进相互理解的短句"
+    },
+    {
+      "no": 4,
+      "title": "表现感情的短句"
+    },
+    {
+      "no": 5,
+      "title": "喜庆、悼念中使用的短句"
+    },
+    {
+      "no": 6,
+      "title": "国外旅游时使用的短句"
+    },
+    {
+      "no": 7,
+      "title": "商业信函用语"
+    },
+    {
+      "no": 8,
+      "title": "会话中常出现的谚语、惯用语"
+    }
+  ],
   "decks": [
     {
-      "id": "builtin-daily",
-      "name": "日常对话 · Daily Talk",
-      "desc": "生活口语综合题库",
-      "baseCount": 88,
-      "totalCount": 238,
+      "id": "oral-1-1-1",
+      "name": "日常口语 8000 · 在家中 · 从起床到出门",
+      "short": "从起床到出门",
+      "desc": "从起床到出门",
+      "chapter": 1,
+      "section": "1.1",
+      "sectionTitle": "在家中",
+      "topic": "从起床到出门",
+      "baseCount": 0,
+      "totalCount": 53,
       "shards": [
         {
-          "id": "oral-001-b2c543ca928b",
-          "url": "content/builtin-daily/oral-001-b2c543ca928b.json",
-          "count": 150,
-          "bytes": 254532,
-          "sha256": "b2c543ca928bdb0b0af93f4ede9878c6e1abfbbba0a3080373fa5657e9b6a7b3",
-          "mode": "append"
+          "id": "oral-001-b24c7bee0192",
+          "url": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+          "count": 53,
+          "bytes": 71943,
+          "sha256": "b24c7bee01929affcb45bbcf29848aee9e3858350022babc23b9ac2833c5dfc4",
+          "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-eb7f36d1834c",
-          "url": "content/builtin-daily/oral-index-001-eb7f36d1834c.json",
-          "count": 150,
-          "bytes": 37343,
-          "sha256": "eb7f36d1834cf5d772417b6afd570e20240c359e69c037f29eac0e479680ac59",
+          "id": "oral-index-001-42915c0d56dc",
+          "url": "content/oral-1-1-1/oral-index-001-42915c0d56dc.json",
+          "count": 53,
+          "bytes": 11496,
+          "sha256": "42915c0d56dc8998ced3901e3e6403cdb18059d68be0723b22958c5ced0ed607",
           "mode": "index"
         }
+      ]
+    },
+    {
+      "id": "oral-1-1-2",
+      "name": "日常口语 8000 · 在家中 · 从回家到就寝",
+      "short": "从回家到就寝",
+      "desc": "从回家到就寝",
+      "chapter": 1,
+      "section": "1.1",
+      "sectionTitle": "在家中",
+      "topic": "从回家到就寝",
+      "baseCount": 0,
+      "totalCount": 68,
+      "shards": [
+        {
+          "id": "oral-001-38cd51c51fda",
+          "url": "content/oral-1-1-2/oral-001-38cd51c51fda.json",
+          "count": 68,
+          "bytes": 87628,
+          "sha256": "38cd51c51fda56fd58c99836f89480118541993ec458c711c8264b63f8832d9f",
+          "mode": "replace"
+        }
       ],
-      "legacyFallback": "oral8000.js"
+      "indexShards": [
+        {
+          "id": "oral-index-001-41f2912140e4",
+          "url": "content/oral-1-1-2/oral-index-001-41f2912140e4.json",
+          "count": 68,
+          "bytes": 14451,
+          "sha256": "41f2912140e4a14add59d932e68da78fb0df2b9d5ac4c08ade9af03769678737",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-1-3",
+      "name": "日常口语 8000 · 在家中 · 休息日～理财",
+      "short": "休息日～理财",
+      "desc": "休息日～理财",
+      "chapter": 1,
+      "section": "1.1",
+      "sectionTitle": "在家中",
+      "topic": "休息日～理财",
+      "baseCount": 0,
+      "totalCount": 31,
+      "shards": [
+        {
+          "id": "oral-001-f5e313827949",
+          "url": "content/oral-1-1-3/oral-001-f5e313827949.json",
+          "count": 31,
+          "bytes": 49828,
+          "sha256": "f5e3138279490dbc754926559ab3f9dda215f2343fe9882b699bb789ce4b0c6f",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-02b58e478ce1",
+          "url": "content/oral-1-1-3/oral-index-001-02b58e478ce1.json",
+          "count": 31,
+          "bytes": 7278,
+          "sha256": "02b58e478ce157fa2c1ef7da761537ca7cbf6a5fb89dd603b1dcd3fc3b66b2b6",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-2-1",
+      "name": "日常口语 8000 · 享受余暇时间 · 邀请友人～去听音乐会",
+      "short": "邀请友人～去听音乐会",
+      "desc": "邀请友人～去听音乐会",
+      "chapter": 1,
+      "section": "1.2",
+      "sectionTitle": "享受余暇时间",
+      "topic": "邀请友人～去听音乐会",
+      "baseCount": 0,
+      "totalCount": 22,
+      "shards": [
+        {
+          "id": "oral-001-b30258ecae72",
+          "url": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+          "count": 22,
+          "bytes": 35999,
+          "sha256": "b30258ecae724b802ed542cc4fc2849b23397a8c18f680e6a67ae060364ed54b",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-73d479bd29ab",
+          "url": "content/oral-1-2-1/oral-index-001-73d479bd29ab.json",
+          "count": 22,
+          "bytes": 5342,
+          "sha256": "73d479bd29ab5ce287b3bcf5a9a6de691ddfa8d3b1ee099c7735902bbe255127",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-2-2",
+      "name": "日常口语 8000 · 享受余暇时间 · 打高尔夫球～唱卡拉OK",
+      "short": "打高尔夫球～唱卡拉OK",
+      "desc": "打高尔夫球～唱卡拉OK",
+      "chapter": 1,
+      "section": "1.2",
+      "sectionTitle": "享受余暇时间",
+      "topic": "打高尔夫球～唱卡拉OK",
+      "baseCount": 0,
+      "totalCount": 5,
+      "shards": [
+        {
+          "id": "oral-001-ec1c6d5764b5",
+          "url": "content/oral-1-2-2/oral-001-ec1c6d5764b5.json",
+          "count": 5,
+          "bytes": 8233,
+          "sha256": "ec1c6d5764b521de7032c1e447dc13e53f3a85eaa7494d1aff879d6b8d374031",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-08bf3e298d3d",
+          "url": "content/oral-1-2-2/oral-index-001-08bf3e298d3d.json",
+          "count": 5,
+          "bytes": 1251,
+          "sha256": "08bf3e298d3d4baf3cce54c5e60530449485ce01896391c4e2b9039020889cf6",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-3-1",
+      "name": "日常口语 8000 · 生病、受伤时 · 请医生看病",
+      "short": "请医生看病",
+      "desc": "请医生看病",
+      "chapter": 1,
+      "section": "1.3",
+      "sectionTitle": "生病、受伤时",
+      "topic": "请医生看病",
+      "baseCount": 0,
+      "totalCount": 13,
+      "shards": [
+        {
+          "id": "oral-001-0168c0355d91",
+          "url": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+          "count": 13,
+          "bytes": 18870,
+          "sha256": "0168c0355d91f3eaf6d1b4f96ed9bf4447f2533607625ad88055fe2abc7fc900",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-97a8e80696dc",
+          "url": "content/oral-1-3-1/oral-index-001-97a8e80696dc.json",
+          "count": 13,
+          "bytes": 2946,
+          "sha256": "97a8e80696dc002446cd53e1d95548f92789254c9d1d789ce775cd69009e8afd",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-3-2",
+      "name": "日常口语 8000 · 生病、受伤时 · 陈述症状",
+      "short": "陈述症状",
+      "desc": "陈述症状",
+      "chapter": 1,
+      "section": "1.3",
+      "sectionTitle": "生病、受伤时",
+      "topic": "陈述症状",
+      "baseCount": 0,
+      "totalCount": 11,
+      "shards": [
+        {
+          "id": "oral-001-ad1fed106d99",
+          "url": "content/oral-1-3-2/oral-001-ad1fed106d99.json",
+          "count": 11,
+          "bytes": 15724,
+          "sha256": "ad1fed106d9996572c7eb0f397366d3b3e8701f203a1986b35bdc14f6b110a79",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-75e2fb154d63",
+          "url": "content/oral-1-3-2/oral-index-001-75e2fb154d63.json",
+          "count": 11,
+          "bytes": 2540,
+          "sha256": "75e2fb154d63ff763ab322c3a8c8627ef10729e930b03a39354a043120665409",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-5-1",
+      "name": "日常口语 8000 · 在工作单位 · 在办公室",
+      "short": "在办公室",
+      "desc": "在办公室",
+      "chapter": 1,
+      "section": "1.5",
+      "sectionTitle": "在工作单位",
+      "topic": "在办公室",
+      "baseCount": 0,
+      "totalCount": 20,
+      "shards": [
+        {
+          "id": "oral-001-ac5bc2b57509",
+          "url": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+          "count": 20,
+          "bytes": 29489,
+          "sha256": "ac5bc2b57509ad6d914e1f560536658d75fc075c7ab231bd79d7710656b77a0f",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-83edd6497555",
+          "url": "content/oral-1-5-1/oral-index-001-83edd6497555.json",
+          "count": 20,
+          "bytes": 4551,
+          "sha256": "83edd6497555df8c6f1fe3597cf4d139e470df9dab2c0b20bb05c55fd793fba2",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-6-1",
+      "name": "日常口语 8000 · 电话 · 打电话～留言、接受留言",
+      "short": "打电话～留言、接受留言",
+      "desc": "打电话～留言、接受留言",
+      "chapter": 1,
+      "section": "1.6",
+      "sectionTitle": "电话",
+      "topic": "打电话～留言、接受留言",
+      "baseCount": 0,
+      "totalCount": 6,
+      "shards": [
+        {
+          "id": "oral-001-eca8d9f2873b",
+          "url": "content/oral-1-6-1/oral-001-eca8d9f2873b.json",
+          "count": 6,
+          "bytes": 9176,
+          "sha256": "eca8d9f2873ba25b8bd3fee78ab04375f2a125da3edd8bf9529af125d2d8c151",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-1c0160941103",
+          "url": "content/oral-1-6-1/oral-index-001-1c0160941103.json",
+          "count": 6,
+          "bytes": 1430,
+          "sha256": "1c0160941103dcbb7fd13ebccb7b6344d4f888a3064a4d599e1a557f437851e5",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-6-2",
+      "name": "日常口语 8000 · 电话 · 挂断电话～打电话遇到困难时",
+      "short": "挂断电话～打电话遇到困难时",
+      "desc": "挂断电话～打电话遇到困难时",
+      "chapter": 1,
+      "section": "1.6",
+      "sectionTitle": "电话",
+      "topic": "挂断电话～打电话遇到困难时",
+      "baseCount": 0,
+      "totalCount": 3,
+      "shards": [
+        {
+          "id": "oral-001-0e301fa21a65",
+          "url": "content/oral-1-6-2/oral-001-0e301fa21a65.json",
+          "count": 3,
+          "bytes": 4564,
+          "sha256": "0e301fa21a65b91419cc12b79707535086dbc5a8e8cf0c2eea5d269c6ef74a9b",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-debcbed950d5",
+          "url": "content/oral-1-6-2/oral-index-001-debcbed950d5.json",
+          "count": 3,
+          "bytes": 763,
+          "sha256": "debcbed950d595922751cac4258625ea87f292e7bf5587d70748df9f62d8f326",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-1-7",
+      "name": "日常口语 8000 · 日期和时间",
+      "short": "日期和时间",
+      "desc": "日期和时间",
+      "chapter": 1,
+      "section": "1.7",
+      "sectionTitle": "日期和时间",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 28,
+      "shards": [
+        {
+          "id": "oral-001-45e81b0cf97b",
+          "url": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+          "count": 28,
+          "bytes": 35025,
+          "sha256": "45e81b0cf97b9d5739f89f54f23c525337b3bc85fd049c0bc7b1b73adbbe0a44",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-faad9ece7793",
+          "url": "content/oral-1-7/oral-index-001-faad9ece7793.json",
+          "count": 28,
+          "bytes": 6076,
+          "sha256": "faad9ece77934fc9044d8603fe12dc130b534b89f7152f4f947c562543c44152",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-8-1",
+      "name": "日常口语 8000 · 见面、分手时 · 碰到友人～好久不见",
+      "short": "碰到友人～好久不见",
+      "desc": "碰到友人～好久不见",
+      "chapter": 2,
+      "section": "2.8",
+      "sectionTitle": "见面、分手时",
+      "topic": "碰到友人～好久不见",
+      "baseCount": 0,
+      "totalCount": 13,
+      "shards": [
+        {
+          "id": "oral-001-833da00354ab",
+          "url": "content/oral-2-8-1/oral-001-833da00354ab.json",
+          "count": 13,
+          "bytes": 16895,
+          "sha256": "833da00354abbcdae4c21a0003bda344050053548a7e97fa0babde8c4f3ebcb0",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-b8b200a132fc",
+          "url": "content/oral-2-8-1/oral-index-001-b8b200a132fc.json",
+          "count": 13,
+          "bytes": 2853,
+          "sha256": "b8b200a132fc141ae327045d14973c1158725165c9eedfd2b02d483d021bfc7b",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-8-2",
+      "name": "日常口语 8000 · 见面、分手时 · 分手时～拜访",
+      "short": "分手时～拜访",
+      "desc": "分手时～拜访",
+      "chapter": 2,
+      "section": "2.8",
+      "sectionTitle": "见面、分手时",
+      "topic": "分手时～拜访",
+      "baseCount": 0,
+      "totalCount": 13,
+      "shards": [
+        {
+          "id": "oral-001-d1d5e61e1ef9",
+          "url": "content/oral-2-8-2/oral-001-d1d5e61e1ef9.json",
+          "count": 13,
+          "bytes": 19170,
+          "sha256": "d1d5e61e1ef92f74446ccae7abf935d78d45a79b076beed8866bcb8560fce16c",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-36caea39a0b0",
+          "url": "content/oral-2-8-2/oral-index-001-36caea39a0b0.json",
+          "count": 13,
+          "bytes": 3019,
+          "sha256": "36caea39a0b0b5cdff8455c37d90aa24b5ae368c10bc32eba117b54ae86840b2",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-8-3",
+      "name": "日常口语 8000 · 见面、分手时 · 介绍某人～有关工作",
+      "short": "介绍某人～有关工作",
+      "desc": "介绍某人～有关工作",
+      "chapter": 2,
+      "section": "2.8",
+      "sectionTitle": "见面、分手时",
+      "topic": "介绍某人～有关工作",
+      "baseCount": 0,
+      "totalCount": 3,
+      "shards": [
+        {
+          "id": "oral-001-4f92e9d0e3be",
+          "url": "content/oral-2-8-3/oral-001-4f92e9d0e3be.json",
+          "count": 3,
+          "bytes": 4710,
+          "sha256": "4f92e9d0e3be2900f13490a81a92f44a44d308c151ec8f660a6999cfd7e20988",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-2c93a54683e6",
+          "url": "content/oral-2-8-3/oral-index-001-2c93a54683e6.json",
+          "count": 3,
+          "bytes": 753,
+          "sha256": "2c93a54683e60667b5413795316721d30a45f55d1c764f6a7b6f7d9162fb1476",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-8-4",
+      "name": "日常口语 8000 · 见面、分手时 · 有关学校～有关年龄、身高和体重",
+      "short": "有关学校～有关年龄、身高和体重",
+      "desc": "有关学校～有关年龄、身高和体重",
+      "chapter": 2,
+      "section": "2.8",
+      "sectionTitle": "见面、分手时",
+      "topic": "有关学校～有关年龄、身高和体重",
+      "baseCount": 0,
+      "totalCount": 15,
+      "shards": [
+        {
+          "id": "oral-001-d29d77e650c8",
+          "url": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
+          "count": 15,
+          "bytes": 22986,
+          "sha256": "d29d77e650c812d4c271163f39ff7c0b5186ffad4071bf5161e95e84e40eae7e",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-972e953d746b",
+          "url": "content/oral-2-8-4/oral-index-001-972e953d746b.json",
+          "count": 15,
+          "bytes": 3534,
+          "sha256": "972e953d746bb29d7cf320c947b3a1b85c366a5ffc30c445099b3243e376bf8b",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-8-5",
+      "name": "日常口语 8000 · 见面、分手时 · 有关天气",
+      "short": "有关天气",
+      "desc": "有关天气",
+      "chapter": 2,
+      "section": "2.8",
+      "sectionTitle": "见面、分手时",
+      "topic": "有关天气",
+      "baseCount": 0,
+      "totalCount": 8,
+      "shards": [
+        {
+          "id": "oral-001-49c5b030233d",
+          "url": "content/oral-2-8-5/oral-001-49c5b030233d.json",
+          "count": 8,
+          "bytes": 11858,
+          "sha256": "49c5b030233d79ee4188c8ae099ca1febc6cbec4b3795f8fc0ee2d8249a5f4a2",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-1ba42d0ed834",
+          "url": "content/oral-2-8-5/oral-index-001-1ba42d0ed834.json",
+          "count": 8,
+          "bytes": 1888,
+          "sha256": "1ba42d0ed834412cc175ebea2c7add13a8141bce5897dff218b2e18d0b40dd3c",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-9-1",
+      "name": "日常口语 8000 · 随意的谈话 · 征求意见～不明白、不知道",
+      "short": "征求意见～不明白、不知道",
+      "desc": "征求意见～不明白、不知道",
+      "chapter": 2,
+      "section": "2.9",
+      "sectionTitle": "随意的谈话",
+      "topic": "征求意见～不明白、不知道",
+      "baseCount": 0,
+      "totalCount": 4,
+      "shards": [
+        {
+          "id": "oral-001-d69c2adaa760",
+          "url": "content/oral-2-9-1/oral-001-d69c2adaa760.json",
+          "count": 4,
+          "bytes": 6126,
+          "sha256": "d69c2adaa760220392bf12eca630315d008c966ff15fab6879cde96c5af5aa5e",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-63359497f0ff",
+          "url": "content/oral-2-9-1/oral-index-001-63359497f0ff.json",
+          "count": 4,
+          "bytes": 1023,
+          "sha256": "63359497f0ff6b2dca159feef40e26a727b424bbf74dc853731947df7fa7b63d",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-9-2",
+      "name": "日常口语 8000 · 随意的谈话 · 反问～随声附和",
+      "short": "反问～随声附和",
+      "desc": "反问～随声附和",
+      "chapter": 2,
+      "section": "2.9",
+      "sectionTitle": "随意的谈话",
+      "topic": "反问～随声附和",
+      "baseCount": 0,
+      "totalCount": 4,
+      "shards": [
+        {
+          "id": "oral-001-370263e6ca03",
+          "url": "content/oral-2-9-2/oral-001-370263e6ca03.json",
+          "count": 4,
+          "bytes": 7047,
+          "sha256": "370263e6ca03dd37c38820d833ba88106848781366509776fd965e196b783e01",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-6c01371911c7",
+          "url": "content/oral-2-9-2/oral-index-001-6c01371911c7.json",
+          "count": 4,
+          "bytes": 1041,
+          "sha256": "6c01371911c7d84b926e54a8dd808418caf0f59a4396ad51f24e8e8175cb779e",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-9-3",
+      "name": "日常口语 8000 · 随意的谈话 · 一时语塞～下决心",
+      "short": "一时语塞～下决心",
+      "desc": "一时语塞～下决心",
+      "chapter": 2,
+      "section": "2.9",
+      "sectionTitle": "随意的谈话",
+      "topic": "一时语塞～下决心",
+      "baseCount": 0,
+      "totalCount": 11,
+      "shards": [
+        {
+          "id": "oral-001-3e5dd044154c",
+          "url": "content/oral-2-9-3/oral-001-3e5dd044154c.json",
+          "count": 11,
+          "bytes": 17308,
+          "sha256": "3e5dd044154c214af5243632c4ed2bd89004615cc4b98148c773e81e01d6ed03",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-f75b857e2025",
+          "url": "content/oral-2-9-3/oral-index-001-f75b857e2025.json",
+          "count": 11,
+          "bytes": 2716,
+          "sha256": "f75b857e20251178b3442dde7398248ddb1feb7811b8bb85e3729fdeb2aac25d",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-10-1",
+      "name": "日常口语 8000 · 提醒、忠告 · 教诲、告诫",
+      "short": "教诲、告诫",
+      "desc": "教诲、告诫",
+      "chapter": 2,
+      "section": "2.10",
+      "sectionTitle": "提醒、忠告",
+      "topic": "教诲、告诫",
+      "baseCount": 0,
+      "totalCount": 5,
+      "shards": [
+        {
+          "id": "oral-001-30c2ec1c6f30",
+          "url": "content/oral-2-10-1/oral-001-30c2ec1c6f30.json",
+          "count": 5,
+          "bytes": 7374,
+          "sha256": "30c2ec1c6f30a81a58827de6ad287b580512ccfddc30e8a86645e1096639b596",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-c8971d24c460",
+          "url": "content/oral-2-10-1/oral-index-001-c8971d24c460.json",
+          "count": 5,
+          "bytes": 1192,
+          "sha256": "c8971d24c460ebe420a21a617582e7d1bd78415f77318fcafe445723f70de1b0",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-10-2",
+      "name": "日常口语 8000 · 提醒、忠告 · 提醒～责备",
+      "short": "提醒～责备",
+      "desc": "提醒～责备",
+      "chapter": 2,
+      "section": "2.10",
+      "sectionTitle": "提醒、忠告",
+      "topic": "提醒～责备",
+      "baseCount": 0,
+      "totalCount": 3,
+      "shards": [
+        {
+          "id": "oral-001-69da720e9817",
+          "url": "content/oral-2-10-2/oral-001-69da720e9817.json",
+          "count": 3,
+          "bytes": 4464,
+          "sha256": "69da720e9817184810df101ff33bd786d97bd15103c4df67ff07b3c418639161",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-daca999849a0",
+          "url": "content/oral-2-10-2/oral-index-001-daca999849a0.json",
+          "count": 3,
+          "bytes": 716,
+          "sha256": "daca999849a06b3205df644f51d68a500a9f4ea211b40d98766091d7a70ac438",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-10-3",
+      "name": "日常口语 8000 · 提醒、忠告 · 制止～警告",
+      "short": "制止～警告",
+      "desc": "制止～警告",
+      "chapter": 2,
+      "section": "2.10",
+      "sectionTitle": "提醒、忠告",
+      "topic": "制止～警告",
+      "baseCount": 0,
+      "totalCount": 7,
+      "shards": [
+        {
+          "id": "oral-001-5db367c75189",
+          "url": "content/oral-2-10-3/oral-001-5db367c75189.json",
+          "count": 7,
+          "bytes": 9752,
+          "sha256": "5db367c75189862bde5fb31015850458982f09772fef859f455a399ca0798459",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-60a492fbdb9a",
+          "url": "content/oral-2-10-3/oral-index-001-60a492fbdb9a.json",
+          "count": 7,
+          "bytes": 1594,
+          "sha256": "60a492fbdb9a208470fa36f906bcb4acd01ffeb0b04d346eabe8497488e00727",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-11-1",
+      "name": "日常口语 8000 · 内心表白 · 道谢～关心对方",
+      "short": "道谢～关心对方",
+      "desc": "道谢～关心对方",
+      "chapter": 2,
+      "section": "2.11",
+      "sectionTitle": "内心表白",
+      "topic": "道谢～关心对方",
+      "baseCount": 0,
+      "totalCount": 18,
+      "shards": [
+        {
+          "id": "oral-001-3f87ed7fca75",
+          "url": "content/oral-2-11-1/oral-001-3f87ed7fca75.json",
+          "count": 18,
+          "bytes": 28268,
+          "sha256": "3f87ed7fca757be0359da4004a998d48cc02c9a95ca00427c287cba12cf41dc5",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-dba3b3ad8c52",
+          "url": "content/oral-2-11-1/oral-index-001-dba3b3ad8c52.json",
+          "count": 18,
+          "bytes": 4287,
+          "sha256": "dba3b3ad8c528829798e03f3c086d856568cb19a50ec10e7840e81293acabe4c",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-2-11-2",
+      "name": "日常口语 8000 · 内心表白 · 表扬",
+      "short": "表扬",
+      "desc": "表扬",
+      "chapter": 2,
+      "section": "2.11",
+      "sectionTitle": "内心表白",
+      "topic": "表扬",
+      "baseCount": 0,
+      "totalCount": 6,
+      "shards": [
+        {
+          "id": "oral-001-299ce5935370",
+          "url": "content/oral-2-11-2/oral-001-299ce5935370.json",
+          "count": 6,
+          "bytes": 7794,
+          "sha256": "299ce5935370917a8730727e24aeb628c0b97c549a9a236c55c9268b1f7311c8",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-c1cbd546f7b2",
+          "url": "content/oral-2-11-2/oral-index-001-c1cbd546f7b2.json",
+          "count": 6,
+          "bytes": 1364,
+          "sha256": "c1cbd546f7b2934837cdb690a7de50a29416e26ceb23b163fe44860640bb835c",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-3-12-1",
+      "name": "日常口语 8000 · 商谈 · 赞成～否定",
+      "short": "赞成～否定",
+      "desc": "赞成～否定",
+      "chapter": 3,
+      "section": "3.12",
+      "sectionTitle": "商谈",
+      "topic": "赞成～否定",
+      "baseCount": 0,
+      "totalCount": 8,
+      "shards": [
+        {
+          "id": "oral-001-d3dba729eadb",
+          "url": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+          "count": 8,
+          "bytes": 10119,
+          "sha256": "d3dba729eadb555ed062343e23f1dd0b86b3fa3520b1c7da326872240e76b8e1",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-65bd8f7699ba",
+          "url": "content/oral-3-12-1/oral-index-001-65bd8f7699ba.json",
+          "count": 8,
+          "bytes": 1846,
+          "sha256": "65bd8f7699bad0826f64b7339cd0f75f9c2a3c894c3a9441ccecd5afbe23220e",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-3-12-2",
+      "name": "日常口语 8000 · 商谈 · 含糊其辞的回答～提出、询问意见",
+      "short": "含糊其辞的回答～提出、询问意见",
+      "desc": "含糊其辞的回答～提出、询问意见",
+      "chapter": 3,
+      "section": "3.12",
+      "sectionTitle": "商谈",
+      "topic": "含糊其辞的回答～提出、询问意见",
+      "baseCount": 0,
+      "totalCount": 6,
+      "shards": [
+        {
+          "id": "oral-001-a6113538939a",
+          "url": "content/oral-3-12-2/oral-001-a6113538939a.json",
+          "count": 6,
+          "bytes": 8129,
+          "sha256": "a6113538939acc2ed4a94ca36573dfcacfd9dfb21d573641cfc4f76358d2af06",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-ab2125b438cc",
+          "url": "content/oral-3-12-2/oral-index-001-ab2125b438cc.json",
+          "count": 6,
+          "bytes": 1407,
+          "sha256": "ab2125b438cca00c1c891e10435fb4ae85053c452e84dc1b08c0d74af48968fc",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-3-13-1",
+      "name": "日常口语 8000 · 提出要求 · 请求帮助～提议",
+      "short": "请求帮助～提议",
+      "desc": "请求帮助～提议",
+      "chapter": 3,
+      "section": "3.13",
+      "sectionTitle": "提出要求",
+      "topic": "请求帮助～提议",
+      "baseCount": 0,
+      "totalCount": 6,
+      "shards": [
+        {
+          "id": "oral-001-54d5ae02f6b0",
+          "url": "content/oral-3-13-1/oral-001-54d5ae02f6b0.json",
+          "count": 6,
+          "bytes": 8266,
+          "sha256": "54d5ae02f6b074d86e88b65885c4002b5fc22f436ca386e2b9cdb23257d4918b",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-d8d1dc8dc18e",
+          "url": "content/oral-3-13-1/oral-index-001-d8d1dc8dc18e.json",
+          "count": 6,
+          "bytes": 1391,
+          "sha256": "d8d1dc8dc18e8730f90905fabca57df2c36a262d56da78e68d7114e5712e1eea",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-3-13-2",
+      "name": "日常口语 8000 · 提出要求 · 接受请求和建议～拒绝请求和建议",
+      "short": "接受请求和建议～拒绝请求和建议",
+      "desc": "接受请求和建议～拒绝请求和建议",
+      "chapter": 3,
+      "section": "3.13",
+      "sectionTitle": "提出要求",
+      "topic": "接受请求和建议～拒绝请求和建议",
+      "baseCount": 0,
+      "totalCount": 2,
+      "shards": [
+        {
+          "id": "oral-001-ef83e71b78c5",
+          "url": "content/oral-3-13-2/oral-001-ef83e71b78c5.json",
+          "count": 2,
+          "bytes": 2624,
+          "sha256": "ef83e71b78c559dff2ea6193a5f05cd82e2c111bbaedbafce778bd4252203470",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-54c6bc303d88",
+          "url": "content/oral-3-13-2/oral-index-001-54c6bc303d88.json",
+          "count": 2,
+          "bytes": 491,
+          "sha256": "54c6bc303d88dd60eef2a52ea3be57fa22ef58a154902495cb98682118e67eb0",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-17-1",
+      "name": "日常口语 8000 · 生气时 · 不满和牢骚时～发怒",
+      "short": "不满和牢骚时～发怒",
+      "desc": "不满和牢骚时～发怒",
+      "chapter": 4,
+      "section": "4.17",
+      "sectionTitle": "生气时",
+      "topic": "不满和牢骚时～发怒",
+      "baseCount": 0,
+      "totalCount": 7,
+      "shards": [
+        {
+          "id": "oral-001-6dab0d8ea52c",
+          "url": "content/oral-4-17-1/oral-001-6dab0d8ea52c.json",
+          "count": 7,
+          "bytes": 9941,
+          "sha256": "6dab0d8ea52c5aa4b958eb3bc4ebe357694c1d839620a6c62c1ec13d1c4e75fb",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-4f8b4f10b23f",
+          "url": "content/oral-4-17-1/oral-index-001-4f8b4f10b23f.json",
+          "count": 7,
+          "bytes": 1613,
+          "sha256": "4f8b4f10b23f3cafba618fcd5f83c666ea5ef13aa87c8a3b72227dc6a91e992c",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-18",
+      "name": "日常口语 8000 · 悲伤时",
+      "short": "悲伤时",
+      "desc": "悲伤时",
+      "chapter": 4,
+      "section": "4.18",
+      "sectionTitle": "悲伤时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 3,
+      "shards": [
+        {
+          "id": "oral-001-9cf854dd01aa",
+          "url": "content/oral-4-18/oral-001-9cf854dd01aa.json",
+          "count": 3,
+          "bytes": 5286,
+          "sha256": "9cf854dd01aa76ec1cd61aef838bfb7262df666d6011e9350fc0019be4ed3f8d",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-55b3afbce0b6",
+          "url": "content/oral-4-18/oral-index-001-55b3afbce0b6.json",
+          "count": 3,
+          "bytes": 814,
+          "sha256": "55b3afbce0b667bdf9f542593e89bfcfe2762798db290ef8d9d4f5d8ff758bfb",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-19",
+      "name": "日常口语 8000 · 喜欢、讨厌时",
+      "short": "喜欢、讨厌时",
+      "desc": "喜欢、讨厌时",
+      "chapter": 4,
+      "section": "4.19",
+      "sectionTitle": "喜欢、讨厌时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 29,
+      "shards": [
+        {
+          "id": "oral-001-9395026345a5",
+          "url": "content/oral-4-19/oral-001-9395026345a5.json",
+          "count": 29,
+          "bytes": 8975,
+          "sha256": "9395026345a5215d22dd0e77f91ef63a1a53e935c16424b797829b1c48c54d44",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-a3d713781da3",
+          "url": "content/oral-4-19/oral-index-001-a3d713781da3.json",
+          "count": 29,
+          "bytes": 6405,
+          "sha256": "a3d713781da364e609aac82cd4d6ab95681962cdc7e564294564ba3dbc087ccd",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-20",
+      "name": "日常口语 8000 · 安慰时",
+      "short": "安慰时",
+      "desc": "安慰时",
+      "chapter": 4,
+      "section": "4.20",
+      "sectionTitle": "安慰时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 17,
+      "shards": [
+        {
+          "id": "oral-001-b9b3ddca2467",
+          "url": "content/oral-4-20/oral-001-b9b3ddca2467.json",
+          "count": 17,
+          "bytes": 24663,
+          "sha256": "b9b3ddca24676e2e586941c5a4c184edc222e21739be471689bdd51d17d74edd",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-4993991d7b2b",
+          "url": "content/oral-4-20/oral-index-001-4993991d7b2b.json",
+          "count": 17,
+          "bytes": 3889,
+          "sha256": "4993991d7b2b825cb4b56ee098319f170489c45d95345ea3faeb71150d2eb2c1",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-21",
+      "name": "日常口语 8000 · 怀疑时",
+      "short": "怀疑时",
+      "desc": "怀疑时",
+      "chapter": 4,
+      "section": "4.21",
+      "sectionTitle": "怀疑时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 10,
+      "shards": [
+        {
+          "id": "oral-001-e53799160516",
+          "url": "content/oral-4-21/oral-001-e53799160516.json",
+          "count": 10,
+          "bytes": 3596,
+          "sha256": "e53799160516c989e680b57c338ffefde08f62edbbfdc5ac0509b1951ed5424c",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-885e80493dd7",
+          "url": "content/oral-4-21/oral-index-001-885e80493dd7.json",
+          "count": 10,
+          "bytes": 2236,
+          "sha256": "885e80493dd75fe0d93d43fd166ec0c28da2814405c093d180e7e49241096c6f",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-22",
+      "name": "日常口语 8000 · 为难时",
+      "short": "为难时",
+      "desc": "为难时",
+      "chapter": 4,
+      "section": "4.22",
+      "sectionTitle": "为难时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 16,
+      "shards": [
+        {
+          "id": "oral-001-507352a7a28b",
+          "url": "content/oral-4-22/oral-001-507352a7a28b.json",
+          "count": 16,
+          "bytes": 6706,
+          "sha256": "507352a7a28bc27f653eaf41c7bc4b60082bdee2320e20573bff472faa6b2913",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-39a4f3e5185e",
+          "url": "content/oral-4-22/oral-index-001-39a4f3e5185e.json",
+          "count": 16,
+          "bytes": 3507,
+          "sha256": "39a4f3e5185e2abb999366b78f481732d8aee18b74a3c47f4ddfcc86bf942f41",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-23",
+      "name": "日常口语 8000 · 不感兴趣时",
+      "short": "不感兴趣时",
+      "desc": "不感兴趣时",
+      "chapter": 4,
+      "section": "4.23",
+      "sectionTitle": "不感兴趣时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 15,
+      "shards": [
+        {
+          "id": "oral-001-95435e534632",
+          "url": "content/oral-4-23/oral-001-95435e534632.json",
+          "count": 15,
+          "bytes": 7066,
+          "sha256": "95435e53463251d6fc28c9e67ef2244f433cfeb0539bb3f99915e662db1a3000",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-1f98ba98cbbc",
+          "url": "content/oral-4-23/oral-index-001-1f98ba98cbbc.json",
+          "count": 15,
+          "bytes": 3355,
+          "sha256": "1f98ba98cbbcfbd6372b2fc8151c2f64a636fa739ddf62ccfedb1f76e969c908",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-24",
+      "name": "日常口语 8000 · 害羞时",
+      "short": "害羞时",
+      "desc": "害羞时",
+      "chapter": 4,
+      "section": "4.24",
+      "sectionTitle": "害羞时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 4,
+      "shards": [
+        {
+          "id": "oral-001-4b20aafb5bed",
+          "url": "content/oral-4-24/oral-001-4b20aafb5bed.json",
+          "count": 4,
+          "bytes": 1043,
+          "sha256": "4b20aafb5bedd4184e67884218ffd0f066f607930c930a9d7cf5bd2fdd8fd675",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-429cc0518103",
+          "url": "content/oral-4-24/oral-index-001-429cc0518103.json",
+          "count": 4,
+          "bytes": 895,
+          "sha256": "429cc05181032af01bca5d7e793ba6e5315d1655c8a0f5a801826849d5f95f40",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-4-25",
+      "name": "日常口语 8000 · 吃惊时",
+      "short": "吃惊时",
+      "desc": "吃惊时",
+      "chapter": 4,
+      "section": "4.25",
+      "sectionTitle": "吃惊时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 16,
+      "shards": [
+        {
+          "id": "oral-001-9896df333d99",
+          "url": "content/oral-4-25/oral-001-9896df333d99.json",
+          "count": 16,
+          "bytes": 4876,
+          "sha256": "9896df333d99db56588c81824a16596f32d87f38846f2cbe94d1c19fefe26098",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-147151e072d4",
+          "url": "content/oral-4-25/oral-index-001-147151e072d4.json",
+          "count": 16,
+          "bytes": 3392,
+          "sha256": "147151e072d4702289e7440644393c66beb43d87fd837124c11d273f008c7b3a",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-5-26",
+      "name": "日常口语 8000 · 祝福",
+      "short": "祝福",
+      "desc": "祝福",
+      "chapter": 5,
+      "section": "5.26",
+      "sectionTitle": "祝福",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 11,
+      "shards": [
+        {
+          "id": "oral-001-42b03fe94836",
+          "url": "content/oral-5-26/oral-001-42b03fe94836.json",
+          "count": 11,
+          "bytes": 3245,
+          "sha256": "42b03fe948364d7bd12212c0b35ed63e39bcaf900a83c26f19ed1fc250cf5ba0",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-f9f9fdd2640b",
+          "url": "content/oral-5-26/oral-index-001-f9f9fdd2640b.json",
+          "count": 11,
+          "bytes": 2566,
+          "sha256": "f9f9fdd2640b03ba3155bc022d4d4cc303fcc318accea96c43dbb74ba8e901eb",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-5-27",
+      "name": "日常口语 8000 · 吊唁",
+      "short": "吊唁",
+      "desc": "吊唁",
+      "chapter": 5,
+      "section": "5.27",
+      "sectionTitle": "吊唁",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 6,
+      "shards": [
+        {
+          "id": "oral-001-23e2727aa8de",
+          "url": "content/oral-5-27/oral-001-23e2727aa8de.json",
+          "count": 6,
+          "bytes": 1837,
+          "sha256": "23e2727aa8ded720f8c0047bd9011c6288b3a93e4e1b1d6c426b77a7ad9cd499",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-759affe74d90",
+          "url": "content/oral-5-27/oral-index-001-759affe74d90.json",
+          "count": 6,
+          "bytes": 1443,
+          "sha256": "759affe74d90e1527e958a11b3a7a8b5add119880a3abfe5404fc7b201d97afe",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-5-28",
+      "name": "日常口语 8000 · 节日、纪念日",
+      "short": "节日、纪念日",
+      "desc": "节日、纪念日",
+      "chapter": 5,
+      "section": "5.28",
+      "sectionTitle": "节日、纪念日",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 16,
+      "shards": [
+        {
+          "id": "oral-001-fb0e81696bd2",
+          "url": "content/oral-5-28/oral-001-fb0e81696bd2.json",
+          "count": 16,
+          "bytes": 4251,
+          "sha256": "fb0e81696bd227e47b818971aa9df25674bc7267e2f79bb81dea078b293bb776",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-900cca8d72a3",
+          "url": "content/oral-5-28/oral-index-001-900cca8d72a3.json",
+          "count": 16,
+          "bytes": 3524,
+          "sha256": "900cca8d72a33212769de352f70b5105c0a67f4dadc5acb9b52028dc1e1ec892",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-29-1",
+      "name": "日常口语 8000 · 在飞机上、饭店里 · 在飞机上～在饭店遇到困难时",
+      "short": "在飞机上～在饭店遇到困难时",
+      "desc": "在飞机上～在饭店遇到困难时",
+      "chapter": 6,
+      "section": "6.29",
+      "sectionTitle": "在飞机上、饭店里",
+      "topic": "在飞机上～在饭店遇到困难时",
+      "baseCount": 0,
+      "totalCount": 8,
+      "shards": [
+        {
+          "id": "oral-001-307fc7ed253a",
+          "url": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+          "count": 8,
+          "bytes": 12578,
+          "sha256": "307fc7ed253a3aa3410316d77a9100f2dcdf6394c53296ae29e5fa91be86110f",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-bca65e6ad8e0",
+          "url": "content/oral-6-29-1/oral-index-001-bca65e6ad8e0.json",
+          "count": 8,
+          "bytes": 1999,
+          "sha256": "bca65e6ad8e0f0fb1edc0ebf61caa4119182bd7858ab8e42414a3a4c92cc68da",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-30-1",
+      "name": "日常口语 8000 · 走在街上的时候 · 问路",
+      "short": "问路",
+      "desc": "问路",
+      "chapter": 6,
+      "section": "6.30",
+      "sectionTitle": "走在街上的时候",
+      "topic": "问路",
+      "baseCount": 0,
+      "totalCount": 7,
+      "shards": [
+        {
+          "id": "oral-001-d640065a17d7",
+          "url": "content/oral-6-30-1/oral-001-d640065a17d7.json",
+          "count": 7,
+          "bytes": 12162,
+          "sha256": "d640065a17d7bbfe37ffdbb8b4d8d41c474cfa68f436bf4fd4daea5b3472920a",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-0b8b5d563d85",
+          "url": "content/oral-6-30-1/oral-index-001-0b8b5d563d85.json",
+          "count": 7,
+          "bytes": 1772,
+          "sha256": "0b8b5d563d8599e074a7fd7bd9b252d95ecada7f1378f11bc769109f5267109e",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-30-2",
+      "name": "日常口语 8000 · 走在街上的时候 · 乘坐交通工具～交通标志",
+      "short": "乘坐交通工具～交通标志",
+      "desc": "乘坐交通工具～交通标志",
+      "chapter": 6,
+      "section": "6.30",
+      "sectionTitle": "走在街上的时候",
+      "topic": "乘坐交通工具～交通标志",
+      "baseCount": 0,
+      "totalCount": 10,
+      "shards": [
+        {
+          "id": "oral-001-9cfd0d03d58a",
+          "url": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+          "count": 10,
+          "bytes": 16367,
+          "sha256": "9cfd0d03d58af834d8972ace61b491db4de811b0c86d065896779a274fdf7a71",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-14bd694f32d7",
+          "url": "content/oral-6-30-2/oral-index-001-14bd694f32d7.json",
+          "count": 10,
+          "bytes": 2503,
+          "sha256": "14bd694f32d713101ce0b5ad13a1950abcbd00ad77e17c473b5b40d2febe80b9",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-31",
+      "name": "日常口语 8000 · 购物时",
+      "short": "购物时",
+      "desc": "购物时",
+      "chapter": 6,
+      "section": "6.31",
+      "sectionTitle": "购物时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 96,
+      "shards": [
+        {
+          "id": "oral-001-28340c1881fa",
+          "url": "content/oral-6-31/oral-001-28340c1881fa.json",
+          "count": 96,
+          "bytes": 83998,
+          "sha256": "28340c1881fadfff4abbde4a8a9b06874ed5c161751a17f4233990dd09fcd5eb",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-7739f6026ceb",
+          "url": "content/oral-6-31/oral-index-001-7739f6026ceb.json",
+          "count": 96,
+          "bytes": 21558,
+          "sha256": "7739f6026cebcc31976220c4408dfc2b20c4e2378732b1b669d5c78c0d41ceab",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-32-1",
+      "name": "日常口语 8000 · 在外用餐时 · 在快餐厅里～点菜",
+      "short": "在快餐厅里～点菜",
+      "desc": "在快餐厅里～点菜",
+      "chapter": 6,
+      "section": "6.32",
+      "sectionTitle": "在外用餐时",
+      "topic": "在快餐厅里～点菜",
+      "baseCount": 0,
+      "totalCount": 7,
+      "shards": [
+        {
+          "id": "oral-001-128793874d0d",
+          "url": "content/oral-6-32-1/oral-001-128793874d0d.json",
+          "count": 7,
+          "bytes": 11150,
+          "sha256": "128793874d0d6f825f6e665c374550daa182a370a54b8ad096c05674a8ce9b75",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-60d5e5a49290",
+          "url": "content/oral-6-32-1/oral-index-001-60d5e5a49290.json",
+          "count": 7,
+          "bytes": 1710,
+          "sha256": "60d5e5a49290b2d895adf93e9d6630c1fff4dacade12b3e980f2db1d08cf7f4b",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-32-2",
+      "name": "日常口语 8000 · 在外用餐时 · 饭桌上～付款",
+      "short": "饭桌上～付款",
+      "desc": "饭桌上～付款",
+      "chapter": 6,
+      "section": "6.32",
+      "sectionTitle": "在外用餐时",
+      "topic": "饭桌上～付款",
+      "baseCount": 0,
+      "totalCount": 3,
+      "shards": [
+        {
+          "id": "oral-001-b8bc8cf1a1db",
+          "url": "content/oral-6-32-2/oral-001-b8bc8cf1a1db.json",
+          "count": 3,
+          "bytes": 4982,
+          "sha256": "b8bc8cf1a1db5f293845c730f026cffb06625074f849683c232de699800c3b0a",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-b41623f4d135",
+          "url": "content/oral-6-32-2/oral-index-001-b41623f4d135.json",
+          "count": 3,
+          "bytes": 769,
+          "sha256": "b41623f4d13516304698a341085312fc409c0bc45890ca961a57ba593b65ee91",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-33",
+      "name": "日常口语 8000 · 外出旅行时",
+      "short": "外出旅行时",
+      "desc": "外出旅行时",
+      "chapter": 6,
+      "section": "6.33",
+      "sectionTitle": "外出旅行时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 32,
+      "shards": [
+        {
+          "id": "oral-001-b1ee1cc0f4b8",
+          "url": "content/oral-6-33/oral-001-b1ee1cc0f4b8.json",
+          "count": 32,
+          "bytes": 11932,
+          "sha256": "b1ee1cc0f4b82ff8350487b1289ee5543d352755ea4bdb73cb798f80b82d8c90",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-1e2401ee24ee",
+          "url": "content/oral-6-33/oral-index-001-1e2401ee24ee.json",
+          "count": 32,
+          "bytes": 7387,
+          "sha256": "1e2401ee24ee9477f0efbbb28100e27fa0c66235b1e79c0fc99eda69d3b4437a",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-6-34",
+      "name": "日常口语 8000 · 遇到麻烦时",
+      "short": "遇到麻烦时",
+      "desc": "遇到麻烦时",
+      "chapter": 6,
+      "section": "6.34",
+      "sectionTitle": "遇到麻烦时",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 31,
+      "shards": [
+        {
+          "id": "oral-001-c71667d31517",
+          "url": "content/oral-6-34/oral-001-c71667d31517.json",
+          "count": 31,
+          "bytes": 8692,
+          "sha256": "c71667d31517275b741314a8b86f2e6b511fca78a29968fd762ec8ce52fdb485",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-bd387fd926b8",
+          "url": "content/oral-6-34/oral-index-001-bd387fd926b8.json",
+          "count": 31,
+          "bytes": 7046,
+          "sha256": "bd387fd926b888a1700a48bf571960712fab401d8ce3b13b06350fcb1c0c82e4",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-8-39",
+      "name": "日常口语 8000 · 谚语、惯用语",
+      "short": "谚语、惯用语",
+      "desc": "谚语、惯用语",
+      "chapter": 8,
+      "section": "8.39",
+      "sectionTitle": "谚语、惯用语",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 2,
+      "shards": [
+        {
+          "id": "oral-001-61bd3918b441",
+          "url": "content/oral-8-39/oral-001-61bd3918b441.json",
+          "count": 2,
+          "bytes": 2749,
+          "sha256": "61bd3918b44156e0619e4e9efca73f3627ad3acfefa58b38baac768f111a467e",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-cbd66b982222",
+          "url": "content/oral-8-39/oral-index-001-cbd66b982222.json",
+          "count": 2,
+          "bytes": 498,
+          "sha256": "cbd66b98222247058102ba18d657db13637bc96f92661ad29d79222493fa8d30",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-basic",
+      "name": "日常口语 8000 · 万能表达",
+      "short": "万能表达",
+      "desc": "没有固定场景、随时能用的万能句",
+      "chapter": 0,
+      "section": "0",
+      "sectionTitle": "万能表达",
+      "topic": "",
+      "baseCount": 0,
+      "totalCount": 10,
+      "shards": [
+        {
+          "id": "oral-001-49c6058d236f",
+          "url": "content/oral-basic/oral-001-49c6058d236f.json",
+          "count": 10,
+          "bytes": 12807,
+          "sha256": "49c6058d236f5f089f811a7c7a7d8047e85d795ccf5c6550c0607012039d1221",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-15790ba002ab",
+          "url": "content/oral-basic/oral-index-001-15790ba002ab.json",
+          "count": 10,
+          "bytes": 2236,
+          "sha256": "15790ba002ab50c8fb8a998ef00e79186624bf0c6bf4b318efecc8d9ff156b5e",
+          "mode": "index"
+        }
+      ]
     },
     {
       "id": "builtin-freq-idioms",
       "name": "高频短语 · English Idioms",
+      "short": "高频短语",
       "desc": "高频英语 idiom 短语：每个 idiom 嵌入完整例句，练习时填 idiom 短语本身",
+      "chapter": null,
+      "section": "",
+      "sectionTitle": "",
+      "topic": "",
       "baseCount": 0,
       "totalCount": 418,
       "shards": [
@@ -87,8 +1703,7 @@
           "sha256": "a6c21c4fa35dc956d2f70c3fdd8f510986a233d5815d79d82566bf1f1c68a909",
           "mode": "index"
         }
-      ],
-      "legacyFallback": "freq-idioms.js"
+      ]
     }
   ]
 }

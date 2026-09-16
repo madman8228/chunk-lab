@@ -1,0 +1,3465 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'll take out the trash after dinner.",
+      "cid": "3d052989",
+      "translation": "晚饭后我会把垃圾拿出去。",
+      "chunks": [
+        "I'll take out",
+        "the trash",
+        "after dinner."
+      ],
+      "hints": [
+        "我会拿出",
+        "垃圾",
+        "晚饭后"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/teɪk/",
+            "/aʊt/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我会拿出去"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/træʃ/"
+          ],
+          "pos": "名词(不可数)",
+          "meaning": "垃圾"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈæftər/",
+            "/ˈdɪnər/"
+          ],
+          "pos": "介词短语",
+          "meaning": "晚饭后"
+        }
+      ],
+      "explanations": [
+        "家务用语。`take out the trash` = 倒垃圾（英式 take out the rubbish）。常见错误：\n• \"take the trash **off**\" → 搭配 take out\n• \"throw the trash\" → 扔进垃圾桶是 throw away；拿到屋外是 take out",
+        "`trash` 不可数，不加 s。"
+      ],
+      "distractors": [
+        [
+          "I take out",
+          "I'll take off",
+          "I'll taking out"
+        ],
+        [
+          "the trashes",
+          "a trash",
+          "trash"
+        ],
+        [
+          "after the dinner.",
+          "before dinner.",
+          "after dinner now."
+        ]
+      ]
+    },
+    {
+      "sentence": "The laundry is almost dry now.",
+      "cid": "1ea989e8",
+      "translation": "洗的衣服现在差不多干了。",
+      "chunks": [
+        "The laundry",
+        "is almost dry",
+        "now."
+      ],
+      "hints": [
+        "洗好的衣物",
+        "差不多干了",
+        "现在"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðə/",
+            "/ˈlɔːndri/"
+          ],
+          "pos": "名词(不可数)",
+          "meaning": "洗好的衣物"
+        },
+        {
+          "role": "系表",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪz/",
+            "/ˈɔːlmoʊst/",
+            "/draɪ/"
+          ],
+          "pos": "be + 形容词",
+          "meaning": "差不多干"
+        },
+        {
+          "role": "时间副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/naʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "现在"
+        }
+      ],
+      "explanations": [
+        "家务用语。`laundry` = 待洗/洗好的衣物，不可数。常见错误：\n• \"the laundries\" → 不可数\n• \"wash laundry\" → 常说 do the laundry",
+        "`almost` = 差不多/几乎。"
+      ],
+      "distractors": [
+        [
+          "Laundry",
+          "A laundry",
+          "The laundries"
+        ],
+        [
+          "is dry almost",
+          "almost is dry",
+          "is almost dried"
+        ],
+        [
+          "yet.",
+          "right now.",
+          "now already."
+        ]
+      ]
+    },
+    {
+      "sentence": "You want some?",
+      "cid": "e520881b",
+      "translation": "你要来点吗？",
+      "chunks": [
+        "You want",
+        "some?"
+      ],
+      "hints": [
+        "你想要",
+        "一些"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/wɑːnt/"
+          ],
+          "pos": "省略 Do 的口语问句",
+          "meaning": "你想要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/sʌm/"
+          ],
+          "pos": "不定代词",
+          "meaning": "一些"
+        }
+      ],
+      "explanations": [
+        "口语里 `Do you want some?` 常省略句首的 Do，只靠语气表疑问。常见错误：\n• 用降调读成 \"You want some.\" → 变成陈述句（你要一些），问答语气完全变了\n• \"You want any?\" → 期待对方接受时用 some，any 多用于不确定的场合",
+        "`some` 在提议/邀请里带「来一点吧」的期待。同义：Want some? / Would you like some?"
+      ],
+      "distractors": [
+        [
+          "You wants",
+          "You wanting",
+          "You want to"
+        ],
+        [
+          "any?",
+          "anything?",
+          "some of?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I got it here.",
+      "cid": "61133093",
+      "translation": "我这儿有。",
+      "chunks": [
+        "I got it",
+        "here."
+      ],
+      "hints": [
+        "我拿到了",
+        "在这儿"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ɡɑːt/",
+            "/ɪt/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我拿到了"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/hɪr/"
+          ],
+          "pos": "副词",
+          "meaning": "在这儿"
+        }
+      ],
+      "explanations": [
+        "`got` 是 get 的过去式，口语里常表「已经拿到/有了」。常见错误：\n• \"I get it here.\" → 一般现在时表习惯，说这一次要用 got\n• 升调读 \"I got it here?\" → 才成疑问句",
+        "`here` 放句末表地点。同义：I have some here. / I already got one."
+      ],
+      "distractors": [
+        [
+          "I get it",
+          "I got them",
+          "I am got it"
+        ],
+        [
+          "there.",
+          "in here.",
+          "here are."
+        ]
+      ]
+    },
+    {
+      "sentence": "Veggies are good.",
+      "cid": "7036eef2",
+      "translation": "蔬菜挺好的。",
+      "chunks": [
+        "Veggies",
+        "are good."
+      ],
+      "hints": [
+        "蔬菜",
+        "挺好的"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈvedʒiz/"
+          ],
+          "pos": "名词（veggie 复数）",
+          "meaning": "蔬菜"
+        },
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/ɡʊd/"
+          ],
+          "pos": "系动词+形容词",
+          "meaning": "很好"
+        }
+      ],
+      "explanations": [
+        "`veggies` 是 vegetables 的口语简称，日常对话更常用。常见错误：\n• \"Veggies is good\" → 复数主语要用 are\n• \"Veggie are good\" → 复数别忘加 s",
+        "`be good` 表「有好处/不错」。常见错误：\n• \"are well\" → well 指身体好，说食物好要用 good"
+      ],
+      "distractors": [
+        [
+          "Veggie",
+          "Veggies's",
+          "The veggies"
+        ],
+        [
+          "is good.",
+          "are well.",
+          "are good at."
+        ]
+      ]
+    },
+    {
+      "sentence": "They have nutrients.",
+      "cid": "2836375b",
+      "translation": "它们有营养。",
+      "chunks": [
+        "They have",
+        "nutrients."
+      ],
+      "hints": [
+        "它们含有",
+        "营养"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðeɪ/",
+            "/hæv/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "它们含有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈnuːtriənts/"
+          ],
+          "pos": "名词复数",
+          "meaning": "营养"
+        }
+      ],
+      "explanations": [
+        "`have` 在这里表「含有」。常见错误：\n• \"They has\" → 第三人称复数用 have\n• \"They are have\" → be 和 have 不能叠用",
+        "`nutrient` 是可数名词，泛指营养时用复数。常见错误：\n• \"They have nutrient\" → 泛指要复数才自然"
+      ],
+      "distractors": [
+        [
+          "They has",
+          "They having",
+          "Them have"
+        ],
+        [
+          "nutrient.",
+          "nutritions.",
+          "a nutrients."
+        ]
+      ]
+    },
+    {
+      "sentence": "What did you eat?",
+      "cid": "3fcc4d24",
+      "translation": "你吃了什么？",
+      "chunks": [
+        "What did",
+        "you eat?"
+      ],
+      "hints": [
+        "什么（过去）",
+        "你吃了"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wʌt/",
+            "/dɪd/"
+          ],
+          "pos": "疑问词+did",
+          "meaning": "什么"
+        },
+        {
+          "role": "主语+谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/iːt/"
+          ],
+          "pos": "you + 动词原形",
+          "meaning": "你吃"
+        }
+      ],
+      "explanations": [
+        "疑问句里 did 之后动词必须用原形，时态已经由 did 承担。常见错误：\n• \"What did you ate?\" → did 后不能用过去式\n• \"What you ate?\" → 缺助动词 did",
+        "`eat` 用原形与 did 搭配；对应的陈述句是 You ate ..."
+      ],
+      "distractors": [
+        [
+          "What do",
+          "What does",
+          "What were"
+        ],
+        [
+          "you ate?",
+          "you eats?",
+          "you eating?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Leftover pizza.",
+      "cid": "1dcd6542",
+      "translation": "吃剩的披萨。",
+      "chunks": [
+        "Leftover",
+        "pizza."
+      ],
+      "hints": [
+        "剩下的",
+        "披萨"
+      ],
+      "grammar": [
+        {
+          "role": "定语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈleftoʊvər/"
+          ],
+          "pos": "形容词",
+          "meaning": "剩下的"
+        },
+        {
+          "role": "主语/表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈpiːtsə/"
+          ],
+          "pos": "名词",
+          "meaning": "披萨"
+        }
+      ],
+      "explanations": [
+        "`leftover` 写成一个词，作形容词表「吃剩的」。常见错误：\n• \"left over pizza\" → 写成两个词会被读成「留在……上面」\n• \"leftovers pizza\" → leftovers 是名词（剩菜），修饰名词要用单数形式 leftover",
+        "这是省略主语的答句（It's leftover pizza.）。同义：Pizza from last night."
+      ],
+      "distractors": [
+        [
+          "Left over",
+          "Leftovers",
+          "Left"
+        ],
+        [
+          "pizzas.",
+          "the pizza.",
+          "pizza pie."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's homemade.",
+      "cid": "7849de8e",
+      "translation": "自己做的。",
+      "chunks": [
+        "It's",
+        "homemade."
+      ],
+      "hints": [
+        "它是",
+        "自家做的"
+      ],
+      "alts": [
+        [
+          "It is"
+        ],
+        null
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/"
+          ],
+          "pos": "it + is 缩写",
+          "meaning": "它是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˌhoʊmˈmeɪd/"
+          ],
+          "pos": "形容词",
+          "meaning": "自家做的"
+        }
+      ],
+      "explanations": [
+        "`It's` = It is，缩写必须带撇号。常见错误：\n• \"Its homemade.\" → Its 是「它的」，句首位置放不下\n• \"It homemade.\" → 缺 be 动词",
+        "`homemade` 写成一个词，表「家里做的」。常见错误：\n• \"home made\" → 作形容词时连写"
+      ],
+      "distractors": [
+        [
+          "It has",
+          "It was",
+          "It were"
+        ],
+        [
+          "home made.",
+          "made home.",
+          "homemade it."
+        ]
+      ]
+    },
+    {
+      "sentence": "Pretty good.",
+      "cid": "382f5358",
+      "translation": "挺好吃的。",
+      "chunks": [
+        "Pretty",
+        "good."
+      ],
+      "hints": [
+        "挺、相当",
+        "好"
+      ],
+      "grammar": [
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈprɪti/"
+          ],
+          "pos": "副词（口语）",
+          "meaning": "挺、相当"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɡʊd/"
+          ],
+          "pos": "形容词",
+          "meaning": "好"
+        }
+      ],
+      "explanations": [
+        "口语里 `pretty` 作副词 = 挺、相当，比 very 轻。常见错误：\n• \"pretty well\" → well 形容状态，说东西好要用 good\n• \"prettily\" → 那是「漂亮地」，日常几乎不用",
+        "省略了主语（It's pretty good.）。同义：Not bad. / Pretty decent."
+      ],
+      "distractors": [
+        [
+          "Pretty much",
+          "Prettier",
+          "Pretty well"
+        ],
+        [
+          "better.",
+          "good at.",
+          "goodly."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's go eat.",
+      "cid": "17386a3e",
+      "translation": "我们去吃吧。",
+      "chunks": [
+        "Let's",
+        "go eat."
+      ],
+      "hints": [
+        "我们（一起）",
+        "去吃"
+      ],
+      "grammar": [
+        {
+          "role": "祈使提议",
+          "color": "#c87033",
+          "phonetic": [
+            "/lets/"
+          ],
+          "pos": "Let us 的缩写",
+          "meaning": "我们（一起）"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡoʊ/",
+            "/iːt/"
+          ],
+          "pos": "go + 动词原形",
+          "meaning": "去吃"
+        }
+      ],
+      "explanations": [
+        "`Let's` = Let us，表提议，后接动词原形。常见错误：\n• \"Let's to go\" → 不能加 to\n• \"Lets go\" → 少了撇号就变成「让（某人）」的第三人称单数",
+        "口语里 `go + 动词原形` 表示「去做某事」，中间省略 and。常见错误：\n• \"go to eat\" → 也可以，但 go eat 更口语\n• \"go eating\" → 错了，-ing 不用于这个结构"
+      ],
+      "distractors": [
+        [
+          "Let us",
+          "Let",
+          "Let's to"
+        ],
+        [
+          "go to eat.",
+          "going eat.",
+          "go eating."
+        ]
+      ]
+    },
+    {
+      "sentence": "Kay, burgers?",
+      "cid": "d917bc1b",
+      "translation": "好，汉堡吗？",
+      "chunks": [
+        "Kay,",
+        "burgers?"
+      ],
+      "hints": [
+        "好（口语）",
+        "汉堡"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/keɪ/"
+          ],
+          "pos": "OK 的口语变体",
+          "meaning": "好、行"
+        },
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈbɜːrɡərz/"
+          ],
+          "pos": "名词复数",
+          "meaning": "汉堡"
+        }
+      ],
+      "explanations": [
+        "`Kay` 是 OK 的口语简读，常出现在轻松的对话里。常见错误：\n• 正式场合要用 OK / All right\n• 升调读 Kay? 是「行吗？」",
+        "`burgers?` 是省略句（Do you want burgers? / How about burgers?）。常见错误：\n• 泛指一类食物要用复数 burgers"
+      ],
+      "distractors": [
+        [
+          "OK,",
+          "Hey,",
+          "K,"
+        ],
+        [
+          "burger?",
+          "a burgers?",
+          "a burger."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's okay with Mom.",
+      "cid": "db783c1d",
+      "translation": "妈妈同意了。",
+      "chunks": [
+        "It's okay",
+        "with Mom."
+      ],
+      "hints": [
+        "（这件事）可以",
+        "对妈妈来说"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ˌoʊˈkeɪ/"
+          ],
+          "pos": "it + is + 形容词",
+          "meaning": "可以"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɪð/",
+            "/mɑːm/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对妈妈而言"
+        }
+      ],
+      "explanations": [
+        "`It's okay with sb` 表「某人没意见、某人同意」。常见错误：\n• \"It's okay for Mom\" → for 表「对……有好处」，表「同意」要用 with\n• 家庭称呼 Mom 首字母大写，作专有名词",
+        "同义：Mom's fine with it. / Mom said it's fine."
+      ],
+      "distractors": [
+        [
+          "It's ok to",
+          "It's okay for",
+          "It's okay to"
+        ],
+        [
+          "for Mom.",
+          "with my Mom.",
+          "with mom's."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's dark in here.",
+      "cid": "b9aa8c19",
+      "translation": "这里很黑。",
+      "chunks": [
+        "It's dark",
+        "in here."
+      ],
+      "hints": [
+        "很黑",
+        "在这里面"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/dɑːrk/"
+          ],
+          "pos": "it + is + 形容词",
+          "meaning": "很黑"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/hɪr/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在这里面"
+        }
+      ],
+      "explanations": [
+        "`It's dark` 用 it 指环境（天气/光线/时间）。常见错误：\n• \"Here is dark\" → 英语习惯用 it 作形式主语\n• \"It's darkness\" → 形容词 dark 才对，darkness 是名词",
+        "`in here` 强调「在里面」，与泛指的 here 有区别。常见错误：\n• \"in there\" → 那是「在那里面」，空间不同"
+      ],
+      "distractors": [
+        [
+          "It's darker",
+          "It's darkly",
+          "It's dark in"
+        ],
+        [
+          "in there.",
+          "here.",
+          "in the here."
+        ]
+      ]
+    },
+    {
+      "sentence": "Watch your step.",
+      "cid": "89843067",
+      "translation": "小心脚下。",
+      "chunks": [
+        "Watch",
+        "your step."
+      ],
+      "hints": [
+        "注意",
+        "你的脚下"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɑːtʃ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "注意、当心"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/step/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的脚下"
+        }
+      ],
+      "explanations": [
+        "`watch` 在此表「留意、当心」，比 look 更有警觉意味。常见错误：\n• \"Look your step\" → 固定说法是 watch your step\n• \"Watching your step\" → 祈使句用原形",
+        "`Watch your step` 既是「当心脚下」，也可引申为「小心行事」。同义：Mind the step."
+      ],
+      "distractors": [
+        [
+          "Watch out",
+          "Watching",
+          "Watches"
+        ],
+        [
+          "you step.",
+          "your steps.",
+          "your stepping."
+        ]
+      ]
+    },
+    {
+      "sentence": "Your room's a mess.",
+      "cid": "7bf57efa",
+      "translation": "你房间很乱。",
+      "chunks": [
+        "Your room's",
+        "a mess."
+      ],
+      "hints": [
+        "你的房间是",
+        "一团乱"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ruːmz/"
+          ],
+          "pos": "your room + is 缩写",
+          "meaning": "你的房间是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/mes/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一团乱"
+        }
+      ],
+      "explanations": [
+        "`Your room's` = Your room is，缩写带撇号。常见错误：\n• \"Your rooms\" → 少了撇号就成复数「你的房间们」\n• \"You room's\" → 所有格要用 your",
+        "`a mess` 是固定说法，表「一团糟」。常见错误：\n• \"a mess room\" → 语序错了，要说 This room is a mess."
+      ],
+      "distractors": [
+        [
+          "Your room is",
+          "You room's",
+          "Your rooms are"
+        ],
+        [
+          "mess.",
+          "in a mess.",
+          "a messes."
+        ]
+      ]
+    },
+    {
+      "sentence": "Mom, it's already clean.",
+      "cid": "e8165154",
+      "translation": "妈，已经很干净了。",
+      "chunks": [
+        "Mom,",
+        "it's already clean."
+      ],
+      "hints": [
+        "妈",
+        "已经很干净了"
+      ],
+      "grammar": [
+        {
+          "role": "称呼",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/mɑːm/"
+          ],
+          "pos": "呼语",
+          "meaning": "妈"
+        },
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ɔːlˈredi/",
+            "/kliːn/"
+          ],
+          "pos": "it + is + 副词 + 形容词",
+          "meaning": "已经很干净"
+        }
+      ],
+      "explanations": [
+        "呼语放句首，后面用逗号隔开。常见错误：\n• \"Mom it's already clean\" → 少逗号，读起来像从句\n• 呼语后不要再加 you，英语不像中文说「妈你」",
+        "`already` 放 be 动词之后、实义动词之前。常见错误：\n• \"It's clean already\" → 口语可以，但书面更常放中间\n• \"already it's clean\" → 语序错"
+      ],
+      "distractors": [
+        [
+          "Mommy,",
+          "Ma,",
+          "Mama,"
+        ],
+        [
+          "it's ready clean.",
+          "it's already cleaned.",
+          "it's already clear."
+        ]
+      ]
+    },
+    {
+      "sentence": "Stop nagging me.",
+      "cid": "3243ebfc",
+      "translation": "别唠叨我了。",
+      "chunks": [
+        "Stop",
+        "nagging me."
+      ],
+      "hints": [
+        "停止",
+        "唠叨我"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/stɑːp/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "停止"
+        },
+        {
+          "role": "动名词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈnæɡɪŋ/",
+            "/miː/"
+          ],
+          "pos": "stop + doing",
+          "meaning": "唠叨我"
+        }
+      ],
+      "explanations": [
+        "`stop doing sth` 表「停止做某事」，固定接动名词。常见错误：\n• \"Stop to nag me\" → stop to do 是「停下来去做另一件事」，意思完全变了\n• \"Stop nag me\" → 少了 -ing",
+        "`nag` 指不停唠叨、抱怨。同义：Quit bugging me. / Cut it out."
+      ],
+      "distractors": [
+        [
+          "Stopping",
+          "Stops",
+          "Stopped"
+        ],
+        [
+          "nag me.",
+          "to nag me.",
+          "nagging at me."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll do it soon.",
+      "cid": "54010f3c",
+      "translation": "我很快做。",
+      "chunks": [
+        "I'll do",
+        "it soon."
+      ],
+      "hints": [
+        "我会做",
+        "很快"
+      ],
+      "grammar": [
+        {
+          "role": "主语+助动词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/duː/"
+          ],
+          "pos": "I will 缩写 + 动词",
+          "meaning": "我会做"
+        },
+        {
+          "role": "宾语+时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪt/",
+            "/suːn/"
+          ],
+          "pos": "代词 + 副词",
+          "meaning": "很快（做）它"
+        }
+      ],
+      "explanations": [
+        "`I'll` = I will，表将来的承诺，后接动词原形。常见错误：\n• \"I'll doing\" → will 后接原形\n• \"I'll did\" → 不能接过去式",
+        "`soon` 表「不久之后」，多与将来时连用。常见错误：\n• \"soonly\" → 不存在这个副词\n• \"quick\" → 那是形容词，时间上要用 soon"
+      ],
+      "distractors": [
+        [
+          "I'll doing",
+          "I do",
+          "I'll did"
+        ],
+        [
+          "it soonly.",
+          "it quick.",
+          "its soon."
+        ]
+      ]
+    },
+    {
+      "sentence": "I like those pants.",
+      "cid": "3a4b732a",
+      "translation": "我喜欢那条裤子。",
+      "chunks": [
+        "I like",
+        "those pants."
+      ],
+      "hints": [
+        "我喜欢",
+        "那条裤子"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/laɪk/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我喜欢"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðoʊz/",
+            "/pænts/"
+          ],
+          "pos": "指示代词+名词",
+          "meaning": "那条裤子"
+        }
+      ],
+      "explanations": [
+        "`like` 表喜好时是静态动词，一般不用进行时。常见错误：\n• \"I'm liking those pants\" → 一般现在时就好\n• \"I likes\" → I 后面不加 s",
+        "`pants` 在英语里固定用复数，一条裤子也是 pants。常见错误：\n• \"this pants\" → 要用 these / those\n• \"a pant\" → 单数形式基本不用"
+      ],
+      "distractors": [
+        [
+          "I likes",
+          "I like to",
+          "I'm like"
+        ],
+        [
+          "those pant.",
+          "that pants.",
+          "those pans."
+        ]
+      ]
+    },
+    {
+      "sentence": "Try them on.",
+      "cid": "84f32999",
+      "translation": "穿上试试。",
+      "chunks": [
+        "Try",
+        "them on."
+      ],
+      "hints": [
+        "试",
+        "把它们（穿上）"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/traɪ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "试"
+        },
+        {
+          "role": "宾语+副词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðem/",
+            "/ɑːn/"
+          ],
+          "pos": "代词 + 副词小品词",
+          "meaning": "把它们穿上"
+        }
+      ],
+      "explanations": [
+        "`try sth on` = 试穿。代词作宾语时必须放中间。常见错误：\n• \"Try on them\" → 代词只能用 try them on\n• \"Try them\" → 少了 on，意思变「试一下」不一定是试穿",
+        "名词可以放两边：try on the shoes / try the shoes on；代词只能放中间。"
+      ],
+      "distractors": [
+        [
+          "Trying",
+          "Tries",
+          "Try to"
+        ],
+        [
+          "on them.",
+          "them in.",
+          "they on."
+        ]
+      ]
+    },
+    {
+      "sentence": "Do I look fat?",
+      "cid": "b6567a0a",
+      "translation": "我看起来胖吗？",
+      "chunks": [
+        "Do I",
+        "look fat?"
+      ],
+      "hints": [
+        "我（是不是）",
+        "看着胖"
+      ],
+      "grammar": [
+        {
+          "role": "助动词+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/duː/",
+            "/aɪ/"
+          ],
+          "pos": "一般现在时疑问",
+          "meaning": "我（是不是）"
+        },
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lʊk/",
+            "/fæt/"
+          ],
+          "pos": "系动词 look + 形容词",
+          "meaning": "看着胖"
+        }
+      ],
+      "explanations": [
+        "一般现在时疑问句用 do/does + 主语。常见错误：\n• \"Am I look fat?\" → look 是实义动词，不用 am\n• \"Do me look fat?\" → 主语用主格 I",
+        "`look + 形容词` 表「看起来……」。常见错误：\n• \"look fatly\" → 表语用形容词\n• \"look like fat\" → look like 后面要接名词"
+      ],
+      "distractors": [
+        [
+          "Am I",
+          "Does I",
+          "Do me"
+        ],
+        [
+          "looks fat?",
+          "look fatter?",
+          "looking fat?"
+        ]
+      ]
+    },
+    {
+      "sentence": "You look perfect.",
+      "cid": "13020328",
+      "translation": "你看起来很完美。",
+      "chunks": [
+        "You look",
+        "perfect."
+      ],
+      "hints": [
+        "你看起来",
+        "完美"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/lʊk/"
+          ],
+          "pos": "系动词 look",
+          "meaning": "你看起来"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈpɜːrfɪkt/"
+          ],
+          "pos": "形容词",
+          "meaning": "完美"
+        }
+      ],
+      "explanations": [
+        "`perfect` 本身已含「最」的意思，不再用 more/most 修饰。常见错误：\n• \"more perfect\" → 语义重复\n• \"perfectly\" → 那是副词，表「完美地」",
+        "`look` 作系动词后接形容词，同义结构：You look great. / You look amazing."
+      ],
+      "distractors": [
+        [
+          "You looks",
+          "You looking",
+          "Your look"
+        ],
+        [
+          "perfectly.",
+          "perfection.",
+          "more perfect."
+        ]
+      ]
+    },
+    {
+      "sentence": "I couldn't sleep.",
+      "cid": "81537529",
+      "translation": "我没睡着。",
+      "chunks": [
+        "I couldn't",
+        "sleep."
+      ],
+      "hints": [
+        "我没能",
+        "睡着"
+      ],
+      "grammar": [
+        {
+          "role": "主语+情态",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈkʊdnt/"
+          ],
+          "pos": "could not 缩写",
+          "meaning": "我没能"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/sliːp/"
+          ],
+          "pos": "动词原形",
+          "meaning": "睡着"
+        }
+      ],
+      "explanations": [
+        "`couldn't` = could not，注意拼写是 couldn't，不是 could'nt。常见错误：\n• \"I could't sleep\" → 漏了 n\n• \"I couldn't to sleep\" → 情态动词后不加 to",
+        "`sleep` 在此表「入睡」。常见错误：\n• \"I couldn't sleeping\" → 情态动词后接原形\n同义：I couldn't fall asleep."
+      ],
+      "distractors": [
+        [
+          "I couldn't to",
+          "I can't",
+          "I didn't could"
+        ],
+        [
+          "sleeping.",
+          "slept.",
+          "sleepy."
+        ]
+      ]
+    },
+    {
+      "sentence": "I was up till one.",
+      "cid": "e72891e5",
+      "translation": "我熬到一点。",
+      "chunks": [
+        "I was up",
+        "till one."
+      ],
+      "hints": [
+        "我还没睡",
+        "一直到一点"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/wʌz/",
+            "/ʌp/"
+          ],
+          "pos": "be up 表醒着",
+          "meaning": "我还没睡"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tɪl/",
+            "/wʌn/"
+          ],
+          "pos": "介词短语",
+          "meaning": "一直到一点"
+        }
+      ],
+      "explanations": [
+        "`be up` 表「还没睡、醒着」。常见错误：\n• \"I was up to one\" → 加 to 后意思变「我能做……」，这里 till 表一直到\n• \"I up till one\" → 缺 was",
+        "`till` = until 的口语形式，接时间点。常见错误：\n• \"till to one\" → till 后面不加 to\n• one 表示「一点钟」，读 /wʌn/"
+      ],
+      "distractors": [
+        [
+          "I up",
+          "I was up to",
+          "I were up"
+        ],
+        [
+          "till on.",
+          "till ones.",
+          "till once."
+        ]
+      ]
+    },
+    {
+      "sentence": "I went to bed early.",
+      "cid": "4231de9f",
+      "translation": "我睡得早。",
+      "chunks": [
+        "I went",
+        "to bed early."
+      ],
+      "hints": [
+        "我去了",
+        "早睡"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/went/"
+          ],
+          "pos": "go 的过去式",
+          "meaning": "我去了"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/bed/",
+            "/ˈɜːrli/"
+          ],
+          "pos": "go to bed + 副词",
+          "meaning": "上床睡觉（早）"
+        }
+      ],
+      "explanations": [
+        "`go` 的过去式是 went。常见错误：\n• \"I gone to bed\" → gone 要配 have\n• \"I was went\" → 两个过去形式不能叠用",
+        "`go to bed` 是固定搭配，指「上床睡觉」，不加冠词。常见错误：\n• \"go to the bed\" → 那是「走到那张床旁边」\n• \"early\" 是副词，修饰整个动作"
+      ],
+      "distractors": [
+        [
+          "I go",
+          "I gone",
+          "I was went"
+        ],
+        [
+          "to the bed early.",
+          "to bed earlily.",
+          "to bed late."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get some more rest.",
+      "cid": "c093035a",
+      "translation": "多休息一下。",
+      "chunks": [
+        "Get some",
+        "more rest."
+      ],
+      "hints": [
+        "获得一些",
+        "更多的休息"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/sʌm/"
+          ],
+          "pos": "祈使句 + 限定词",
+          "meaning": "获得一些"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/mɔːr/",
+            "/rest/"
+          ],
+          "pos": "比较级 + 不可数名词",
+          "meaning": "更多的休息"
+        }
+      ],
+      "explanations": [
+        "`get some rest` 是固定说法，表「休息一下」。常见错误：\n• \"Get any rest\" → 劝人时用 some，any 多用于疑问/否定\n• \"Take some rest\" → 也可以，但 get some rest 更口语",
+        "`rest` 在此不可数，用 more 修饰。常见错误：\n• \"more rests\" → 不可数不加 s\n• \"much rest\" → 这是「很多休息」，而这里要「再多一点」"
+      ],
+      "distractors": [
+        [
+          "Get any",
+          "Got some",
+          "Get some more"
+        ],
+        [
+          "more rests.",
+          "much rest.",
+          "more resting."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sleep is important.",
+      "cid": "b134e4b0",
+      "translation": "睡眠很重要。",
+      "chunks": [
+        "Sleep",
+        "is important."
+      ],
+      "hints": [
+        "睡眠",
+        "是重要的"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/sliːp/"
+          ],
+          "pos": "不可数名词作主语",
+          "meaning": "睡眠"
+        },
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪz/",
+            "/ɪmˈpɔːrtnt/"
+          ],
+          "pos": "is + 形容词",
+          "meaning": "是重要的"
+        }
+      ],
+      "explanations": [
+        "`sleep` 作名词时不可数，单独作主语用单数谓语。常见错误：\n• \"The sleep\" → 泛指睡眠不加冠词\n• \"Sleeping is important\" → 动名词也可以，但名词 sleep 更简洁",
+        "表语用形容词 important。常见错误：\n• \"is importance\" → importance 是名词\n• \"is importantly\" → 那是副词，表语位置用形容词"
+      ],
+      "distractors": [
+        [
+          "Sleeping",
+          "Sleeps",
+          "The sleep"
+        ],
+        [
+          "is importance.",
+          "are important.",
+          "is importantly."
+        ]
+      ]
+    },
+    {
+      "sentence": "Have some tea.",
+      "cid": "edb7eb4b",
+      "translation": "喝点茶。",
+      "chunks": [
+        "Have some",
+        "tea."
+      ],
+      "hints": [
+        "喝点",
+        "茶"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "喝点"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/tiː/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "茶"
+        }
+      ],
+      "explanations": [
+        "招待、建议喝什么时用 `have` 比 `drink` 更自然。常见错误：\n• \"Eat some tea\" → 喝用 have / drink，不跟 eat\n• \"Have some teas\" → tea 指饮料时不可数，不加 s",
+        "同类：have some coffee / have some juice；「来杯茶」也可说 have a cup of tea。"
+      ],
+      "distractors": [
+        [
+          "Have any",
+          "Eat some",
+          "Having some"
+        ],
+        [
+          "teas.",
+          "tea is.",
+          "the tea of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Come to dinner.",
+      "cid": "8c2306cc",
+      "translation": "来吃晚饭。",
+      "chunks": [
+        "Come to",
+        "dinner."
+      ],
+      "hints": [
+        "来参加",
+        "晚饭"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʌm/",
+            "/tuː/"
+          ],
+          "pos": "动词短语",
+          "meaning": "来（参加）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈdɪnər/"
+          ],
+          "pos": "名词（三餐不加冠词）",
+          "meaning": "晚饭"
+        }
+      ],
+      "explanations": [
+        "三餐名词前一般不加冠词：come to dinner / have dinner。常见错误：\n• \"Come to a dinner\" → 三餐前通常不加 a\n• \"Come at dinner\" → 表「来吃饭」用 to，at 表时间点",
+        "同类：come to lunch / come to breakfast；请客说 come for dinner 也常见。"
+      ],
+      "distractors": [
+        [
+          "Come in",
+          "Come at",
+          "Come for to"
+        ],
+        [
+          "the dinner.",
+          "a dinner.",
+          "dinners."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get off your phone.",
+      "cid": "0f6c6eb5",
+      "translation": "别看手机了。",
+      "chunks": [
+        "Get off",
+        "your phone."
+      ],
+      "hints": [
+        "离开、放下",
+        "你的手机"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/ɔːf/"
+          ],
+          "pos": "短语动词 get off",
+          "meaning": "离开、放下"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/foʊn/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的手机"
+        }
+      ],
+      "explanations": [
+        "`get off your phone` 字面是「从手机上离开」，口语里就是「别老盯着手机」。常见错误：\n• \"Get off from your phone\" → get off 后面直接接宾语\n• \"Get out your phone\" → 那是「把手机拿出来」，意思正好相反",
+        "同类说法：Put your phone down. / Get off the screen."
+      ],
+      "distractors": [
+        [
+          "Get out",
+          "Get on",
+          "Get from"
+        ],
+        [
+          "you phone.",
+          "your phones.",
+          "your phone of."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's getting cold.",
+      "cid": "9425b8e6",
+      "translation": "（饭）要凉了。",
+      "chunks": [
+        "It's getting",
+        "cold."
+      ],
+      "hints": [
+        "它正在变得",
+        "冷"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ˈɡetɪŋ/"
+          ],
+          "pos": "get + 形容词（进行时）",
+          "meaning": "它正在变得"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/koʊld/"
+          ],
+          "pos": "形容词",
+          "meaning": "凉的、冷的"
+        }
+      ],
+      "explanations": [
+        "`get + 形容词` 表「逐渐变得」，比 be 更有变化感。常见错误：\n• \"It's get cold\" → 进行时要用 getting\n• \"It gets cold\" → 一般现在时表习惯，指眼下要变了用进行时",
+        "指饭菜或天气都用 it：It's getting cold. Let's eat.（要凉了，吃吧）"
+      ],
+      "distractors": [
+        [
+          "It's get",
+          "It getting",
+          "It's got"
+        ],
+        [
+          "colder of.",
+          "coldly.",
+          "the cold."
+        ]
+      ]
+    },
+    {
+      "sentence": "Warm it up first.",
+      "cid": "39241d16",
+      "translation": "先热一下。",
+      "chunks": [
+        "Warm it up",
+        "first."
+      ],
+      "hints": [
+        "把它热一下",
+        "先"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɔːrm/",
+            "/ɪt/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词 warm up（代词夹中）",
+          "meaning": "把它加热"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɜːrst/"
+          ],
+          "pos": "副词",
+          "meaning": "先"
+        }
+      ],
+      "explanations": [
+        "`warm up` 加热；宾语是代词时必须夹在中间：warm **it** up。常见错误：\n• \"Warm up it first\" → 代词不能放后面\n• \"Warm it up first\" 与 \"Warm it first\" 都对，加 up 更强调热透",
+        "同类：heat it up / pop it in the microwave。"
+      ],
+      "distractors": [
+        [
+          "Warm up it",
+          "Warmer it up",
+          "Warm it from"
+        ],
+        [
+          "the first.",
+          "firstly.",
+          "at first."
+        ]
+      ]
+    },
+    {
+      "sentence": "Order some food.",
+      "cid": "f82f8fcf",
+      "translation": "点东西吃。",
+      "chunks": [
+        "Order some",
+        "food."
+      ],
+      "hints": [
+        "点一些",
+        "食物"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈɔːrdər/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "点一些"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/fuːd/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "食物"
+        }
+      ],
+      "explanations": [
+        "`order` 指在餐厅点餐或叫外卖。常见错误：\n• \"Order some foods\" → 泛指食物时 food 不可数\n• \"Order for some food\" → order 是及物动词，直接接宾语",
+        "外卖：order in / order takeout；堂食点餐：order from the menu。"
+      ],
+      "distractors": [
+        [
+          "Order a",
+          "Order any",
+          "Buy for some"
+        ],
+        [
+          "foods.",
+          "the food of.",
+          "feed."
+        ]
+      ]
+    },
+    {
+      "sentence": "Set the table.",
+      "cid": "14713e06",
+      "translation": "布置桌子（摆餐具）。",
+      "chunks": [
+        "Set",
+        "the table."
+      ],
+      "hints": [
+        "摆放",
+        "桌子"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/set/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "摆放"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈteɪbl/"
+          ],
+          "pos": "名词短语",
+          "meaning": "餐桌"
+        }
+      ],
+      "explanations": [
+        "`set the table` 专指「摆好餐具、布置餐桌」。常见错误：\n• \"Put the table\" → put 不能表布置桌面\n• \"Set up the table\" → set up 是「组装」，摆餐具只用 set",
+        "相关：clear the table（收拾桌子）/ do the dishes（洗碗）。"
+      ],
+      "distractors": [
+        [
+          "Sets",
+          "Sit",
+          "Setting"
+        ],
+        [
+          "the tables.",
+          "a table.",
+          "the table up."
+        ]
+      ]
+    },
+    {
+      "sentence": "Stand up.",
+      "cid": "de31c7f6",
+      "translation": "起来（站起来）。",
+      "chunks": [
+        "Stand",
+        "up."
+      ],
+      "hints": [
+        "站",
+        "起来"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/stænd/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "站立"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʌp/"
+          ],
+          "pos": "副词（表方向）",
+          "meaning": "起来"
+        }
+      ],
+      "explanations": [
+        "`stand up` 指从坐、躺到站起来。常见错误：\n• \"Stand up you\" → 祈使句不重复主语\n• \"Stand on\" → 意思变成「站在……上面」，需接宾语",
+        "对比 `get up`：get up 还能表起床，stand up 只指站起来。"
+      ],
+      "distractors": [
+        [
+          "Stands",
+          "Sit",
+          "Standing"
+        ],
+        [
+          "upstairs.",
+          "down.",
+          "over."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sit down.",
+      "cid": "25f410a9",
+      "translation": "坐下。",
+      "chunks": [
+        "Sit",
+        "down."
+      ],
+      "hints": [
+        "坐",
+        "下"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/sɪt/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "坐"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/"
+          ],
+          "pos": "副词（表方向）",
+          "meaning": "下"
+        }
+      ],
+      "explanations": [
+        "`sit down` 是「坐下」的固定表达，与 stand up 相对。常见错误：\n• \"Sit down you\" → 祈使句不加主语\n• \"Sit on\" → 必须接宾语（sit on the chair）",
+        "更客气：Have a seat. / Please, take a seat."
+      ],
+      "distractors": [
+        [
+          "Sits",
+          "Stand",
+          "Sitting"
+        ],
+        [
+          "upstairs.",
+          "up.",
+          "over."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let go.",
+      "cid": "2d1e7fe6",
+      "translation": "松手。",
+      "chunks": [
+        "Let",
+        "go."
+      ],
+      "hints": [
+        "让",
+        "走"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/let/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "让"
+        },
+        {
+          "role": "宾语补足语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɡoʊ/"
+          ],
+          "pos": "动词原形（固定搭配）",
+          "meaning": "松开"
+        }
+      ],
+      "explanations": [
+        "`let go` = 松手、放手，是固定搭配，中间不加 to。常见错误：\n• \"Let to go\" → let 后接动词原形\n• \"Let go it\" → 要说 let it go，代词夹在中间",
+        "引申义：Let it go.（放下吧、别纠结了）"
+      ],
+      "distractors": [
+        [
+          "Lets",
+          "Letting",
+          "Let to"
+        ],
+        [
+          "goes.",
+          "going.",
+          "gone."
+        ]
+      ]
+    },
+    {
+      "sentence": "Turn around.",
+      "cid": "f090a897",
+      "translation": "转过来、转过去。",
+      "chunks": [
+        "Turn",
+        "around."
+      ],
+      "hints": [
+        "转",
+        "过来（转身）"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/tɜːrn/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "转"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈraʊnd/"
+          ],
+          "pos": "副词",
+          "meaning": "转身、转一圈"
+        }
+      ],
+      "explanations": [
+        "`turn around` 既表「转过来」也表「转过去」，靠语境。常见错误：\n• \"Turn around of\" → around 后面不加介词\n• 英式常说 turn round，美式说 around",
+        "相关：turn left / turn right（转弯）；turn back（往回走）。"
+      ],
+      "distractors": [
+        [
+          "Turns",
+          "Turning",
+          "Turn to"
+        ],
+        [
+          "around of.",
+          "round of.",
+          "arounds."
+        ]
+      ]
+    },
+    {
+      "sentence": "Close your eyes.",
+      "cid": "a11e56c2",
+      "translation": "闭上眼睛。",
+      "chunks": [
+        "Close",
+        "your eyes."
+      ],
+      "hints": [
+        "闭上",
+        "你的眼睛"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kloʊz/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "闭上"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/aɪz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的眼睛"
+        }
+      ],
+      "explanations": [
+        "作动词的 `close` 读 /kloʊz/，不读 /kloʊs/。常见错误：\n• \"Close your eye\" → 两只眼睛用复数 eyes\n• \"Shut your eyes\" 也对，但 close 更通用",
+        "相关：open your eyes（睁开眼）/ cover your eyes（捂住眼睛）"
+      ],
+      "distractors": [
+        [
+          "Closes",
+          "Closing",
+          "Open"
+        ],
+        [
+          "your eye.",
+          "you eyes.",
+          "your eyes of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Your room's messy.",
+      "cid": "0e10399e",
+      "translation": "你的房间很乱。",
+      "chunks": [
+        "Your room's",
+        "messy."
+      ],
+      "hints": [
+        "你的房间",
+        "很乱"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ruːmz/"
+          ],
+          "pos": "名词 + is 缩写",
+          "meaning": "你的房间（是）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈmesi/"
+          ],
+          "pos": "形容词",
+          "meaning": "乱的"
+        }
+      ],
+      "explanations": [
+        "`messy` = 乱七八糟的，很口语。常见错误：\n• \"Your room's mess\" → mess 是名词，这里要形容词 messy\n• \"Your room is a mess\" 也常用，两种说法都对",
+        "相关：tidy up your room（把房间收拾整齐）/ a mess（一团乱）"
+      ],
+      "distractors": [
+        [
+          "Your rooming",
+          "You room's",
+          "Your room is of"
+        ],
+        [
+          "mess.",
+          "messily.",
+          "messes."
+        ]
+      ]
+    },
+    {
+      "sentence": "Clean your room.",
+      "cid": "e808c2e2",
+      "translation": "打扫你的房间。",
+      "chunks": [
+        "Clean",
+        "your room."
+      ],
+      "hints": [
+        "打扫",
+        "你的房间"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kliːn/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "打扫"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/ruːm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的房间"
+        }
+      ],
+      "explanations": [
+        "`clean` 可作动词，指打扫干净。常见错误：\n• \"Clean up your room\" 也行，但 clean your room 就够\n• 宾语是代词时必须夹中间：clean it up",
+        "相关：tidy up（收拾整齐）/ do the cleaning（打扫卫生）"
+      ],
+      "distractors": [
+        [
+          "Cleans",
+          "Cleaning",
+          "Cleaner"
+        ],
+        [
+          "your rooms.",
+          "you room.",
+          "your room is."
+        ]
+      ]
+    },
+    {
+      "sentence": "Come in.",
+      "cid": "6de68bea",
+      "translation": "进来。",
+      "chunks": [
+        "Come",
+        "in."
+      ],
+      "hints": [
+        "来",
+        "进来"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʌm/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "来"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/"
+          ],
+          "pos": "副词（表方向）",
+          "meaning": "进来"
+        }
+      ],
+      "explanations": [
+        "`Come in.` 是让人进屋最常用的说法，也用来回应敲门。常见错误：\n• \"Come into\" → into 后面必须接宾语（come into the room）\n• \"Enter in\" → enter 本身不接 in",
+        "相关：Come on in.（快进来，更热情）/ After you.（您先请）"
+      ],
+      "distractors": [
+        [
+          "Comes",
+          "Coming",
+          "Come to"
+        ],
+        [
+          "into.",
+          "on.",
+          "out."
+        ]
+      ]
+    },
+    {
+      "sentence": "Lock the door.",
+      "cid": "d403abf3",
+      "translation": "把门锁上。",
+      "chunks": [
+        "Lock",
+        "the door."
+      ],
+      "hints": [
+        "锁上",
+        "门"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lɑːk/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "锁"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/dɔːr/"
+          ],
+          "pos": "名词短语",
+          "meaning": "门"
+        }
+      ],
+      "explanations": [
+        "`lock` 既是名词（锁）也是动词（锁上）。常见错误：\n• door 前要加 the\n• \"Close the door\" 只是关门，lock 才是上锁",
+        "相关：lock up（把门窗锁好再走）/ unlock the door（开锁）"
+      ],
+      "distractors": [
+        [
+          "Locks",
+          "Locking",
+          "Locker"
+        ],
+        [
+          "the doors.",
+          "a door.",
+          "the door of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't mix them up.",
+      "cid": "34b89c56",
+      "translation": "别把它们搞混了。",
+      "chunks": [
+        "Don't mix",
+        "them up."
+      ],
+      "hints": [
+        "别弄混",
+        "它们"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/",
+            "/mɪks/"
+          ],
+          "pos": "don't + 动词原形",
+          "meaning": "别弄混"
+        },
+        {
+          "role": "宾语 + 副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðem/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词 mix up（代词夹中）",
+          "meaning": "把它们搞混"
+        }
+      ],
+      "explanations": [
+        "`mix up` = 弄混，代词宾语夹中间：mix **them** up。常见错误：\n• \"Don't mix up them\" → 代词要放中间\n• \"Don't mix them\" → 不加 up 会变成「别把它们搅在一起」",
+        "相关：I always mix them up.（我总分不清）/ tell them apart（把它们区分开）"
+      ],
+      "distractors": [
+        [
+          "Doesn't mix",
+          "Don't mix up",
+          "No mix"
+        ],
+        [
+          "they up.",
+          "them on.",
+          "ups them."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sort them out.",
+      "cid": "f15b18c1",
+      "translation": "把它们分清楚。",
+      "chunks": [
+        "Sort",
+        "them out."
+      ],
+      "hints": [
+        "分类、理清",
+        "它们"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/sɔːrt/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "分类、理清"
+        },
+        {
+          "role": "宾语 + 副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðem/",
+            "/aʊt/"
+          ],
+          "pos": "短语动词 sort out（代词夹中）",
+          "meaning": "把它们理清楚"
+        }
+      ],
+      "explanations": [
+        "`sort out` = 整理、理清、分清，代词夹中间：sort **them** out。常见错误：\n• \"Sort out them\" → 代词要放中间\n• \"Sort them\" 单说意思不完整",
+        "相关：figure it out（弄明白）/ work it out（解决）"
+      ],
+      "distractors": [
+        [
+          "Sorts",
+          "Sorting",
+          "Sorted"
+        ],
+        [
+          "they out.",
+          "them off.",
+          "out them."
+        ]
+      ]
+    },
+    {
+      "sentence": "Keep it.",
+      "cid": "bbb7bec1",
+      "translation": "你留着吧。",
+      "chunks": [
+        "Keep",
+        "it."
+      ],
+      "hints": [
+        "留着、收下",
+        "它"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "留着、收下"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/"
+          ],
+          "pos": "人称代词宾格",
+          "meaning": "它"
+        }
+      ],
+      "explanations": [
+        "`Keep it.` = 收下吧、你留着，送东西时最常说。常见错误：\n• \"Take it\" 语气更硬，像命令，不是送礼口吻\n• \"Keep it for you\" → 应为 keep it for yourself",
+        "相关：It's yours.（给你了）/ Keep the change.（零钱不用找了）"
+      ],
+      "distractors": [
+        [
+          "Keeps",
+          "Keeping",
+          "Keep of"
+        ],
+        [
+          "them.",
+          "its.",
+          "it is."
+        ]
+      ]
+    },
+    {
+      "sentence": "Throw it out.",
+      "cid": "b2294826",
+      "translation": "把它扔了。",
+      "chunks": [
+        "Throw it",
+        "out."
+      ],
+      "hints": [
+        "把它扔",
+        "出去"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/θroʊ/",
+            "/ɪt/"
+          ],
+          "pos": "短语动词 throw out（代词夹中）",
+          "meaning": "把它扔掉"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aʊt/"
+          ],
+          "pos": "副词",
+          "meaning": "出去"
+        }
+      ],
+      "explanations": [
+        "`throw out` = 扔掉，代词宾语夹中间：throw **it** out。常见错误：\n• \"Throw out it\" → 代词要放中间\n• \"Throw it away\" 也常用，意思相同",
+        "相关：take out the trash（倒垃圾）/ get rid of it（处理掉它）"
+      ],
+      "distractors": [
+        [
+          "Throw out it",
+          "Throwing it out",
+          "Throw it of"
+        ],
+        [
+          "of.",
+          "out to.",
+          "out off."
+        ]
+      ]
+    },
+    {
+      "sentence": "Turn on the lights.",
+      "cid": "c7ea95cd",
+      "translation": "打开灯。",
+      "chunks": [
+        "Turn on",
+        "the lights."
+      ],
+      "hints": [
+        "打开",
+        "灯"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/tɜːrn/",
+            "/ɑːn/"
+          ],
+          "pos": "短语动词 turn on",
+          "meaning": "打开"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/laɪts/"
+          ],
+          "pos": "名词短语",
+          "meaning": "灯"
+        }
+      ],
+      "explanations": [
+        "电器、水龙头、灯的「开」都用 `turn on`。常见错误：\n• \"Open the lights\" → 中文说开灯，英文用 turn on\n• 宾语是代词时要夹中间：turn them on",
+        "相关：turn off the lights（关灯）/ switch on（偏英式）"
+      ],
+      "distractors": [
+        [
+          "Turn in",
+          "Turning on",
+          "Turn of"
+        ],
+        [
+          "the lights of.",
+          "a lights.",
+          "the lights on."
+        ]
+      ]
+    },
+    {
+      "sentence": "The power's out.",
+      "cid": "78e4af03",
+      "translation": "停电了。",
+      "chunks": [
+        "The power's",
+        "out."
+      ],
+      "hints": [
+        "电力",
+        "断了、没了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðə/",
+            "/ˈpaʊərz/"
+          ],
+          "pos": "名词 + is 缩写",
+          "meaning": "电（是）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/aʊt/"
+          ],
+          "pos": "副词作表语",
+          "meaning": "断了、没了"
+        }
+      ],
+      "explanations": [
+        "`The power's out.` = 停电了，out 表「断了」。常见错误：\n• \"The power is off\" 指「关着的」，停电用 out 更地道\n• \"The electricity's out\" 也行，但 power 更口语",
+        "相关：a power outage（停电）/ The lights went out.（灯灭了）"
+      ],
+      "distractors": [
+        [
+          "The power",
+          "The powers is",
+          "The power is of"
+        ],
+        [
+          "off.",
+          "down.",
+          "over."
+        ]
+      ]
+    },
+    {
+      "sentence": "Mop the floor.",
+      "cid": "fb98228c",
+      "translation": "拖地（擦地板）。",
+      "chunks": [
+        "Mop",
+        "the floor."
+      ],
+      "hints": [
+        "用拖把擦",
+        "地板"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/mɑːp/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "拖（地）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/flɔːr/"
+          ],
+          "pos": "名词短语",
+          "meaning": "地板"
+        }
+      ],
+      "explanations": [
+        "`mop` 专指用拖把擦地。常见错误：\n• \"Wipe the floor\" 是用抹布擦，工具不同\n• mop 也可作名词：a mop（拖把）",
+        "相关：sweep the floor（扫地）/ vacuum the carpet（吸地毯）"
+      ],
+      "distractors": [
+        [
+          "Mops",
+          "Mopping",
+          "Map"
+        ],
+        [
+          "the floors.",
+          "a floor.",
+          "the floor of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Do the dishes.",
+      "cid": "70c23bb5",
+      "translation": "洗碗。",
+      "chunks": [
+        "Do",
+        "the dishes."
+      ],
+      "hints": [
+        "做（这件事）",
+        "碗碟"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "做（某事）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈdɪʃɪz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "碗碟"
+        }
+      ],
+      "explanations": [
+        "`do the dishes` = 洗碗，是固定搭配。常见错误：\n• \"Do the dish\" → 用复数 dishes\n• 英式也常说 wash up，意思一样",
+        "相关：do the laundry（洗衣服）/ do the cooking（做饭）"
+      ],
+      "distractors": [
+        [
+          "Does",
+          "Doing",
+          "Done"
+        ],
+        [
+          "the dish.",
+          "a dishes.",
+          "the dishes of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Put it up.",
+      "cid": "fab59b9a",
+      "translation": "挂上去。",
+      "chunks": [
+        "Put it",
+        "up."
+      ],
+      "hints": [
+        "把它",
+        "挂上"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/pʊt/",
+            "/ɪt/"
+          ],
+          "pos": "短语动词 put up（代词夹中）",
+          "meaning": "把它挂起"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʌp/"
+          ],
+          "pos": "副词",
+          "meaning": "上（挂）"
+        }
+      ],
+      "explanations": [
+        "`put up` = 挂上去、张贴，代词夹中间：put **it** up。常见错误：\n• \"Put up it\" → 代词要放中间\n• put up 还能表「提高」（put up the price），靠语境区分",
+        "反义：take it down（拿下来）。"
+      ],
+      "distractors": [
+        [
+          "Put up it",
+          "Putting it up",
+          "Put it of"
+        ],
+        [
+          "in.",
+          "on.",
+          "over."
+        ]
+      ]
+    },
+    {
+      "sentence": "Take it down.",
+      "cid": "7389fce9",
+      "translation": "拿下来。",
+      "chunks": [
+        "Take it",
+        "down."
+      ],
+      "hints": [
+        "把它",
+        "取下"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/ɪt/"
+          ],
+          "pos": "短语动词 take down（代词夹中）",
+          "meaning": "把它取下"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/"
+          ],
+          "pos": "副词",
+          "meaning": "下（取下）"
+        }
+      ],
+      "explanations": [
+        "`take down` = 拿下来、取下，代词夹中间：take **it** down。常见错误：\n• \"Take down it\" → 代词要放中间\n• take down 还能表「记下」（take down notes）",
+        "反义：put it up（挂上去）。"
+      ],
+      "distractors": [
+        [
+          "Take down it",
+          "Taking it down",
+          "Take it of"
+        ],
+        [
+          "up.",
+          "over.",
+          "aside."
+        ]
+      ]
+    },
+    {
+      "sentence": "Climb up.",
+      "cid": "b070daa7",
+      "translation": "爬上去。",
+      "chunks": [
+        "Climb",
+        "up."
+      ],
+      "hints": [
+        "爬",
+        "上去"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/klaɪm/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "爬"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʌp/"
+          ],
+          "pos": "副词（表方向）",
+          "meaning": "上去"
+        }
+      ],
+      "explanations": [
+        "`climb up` 强调往上爬，反义 climb down。常见错误：\n• b 不发音，读 /klaɪm/\n• 后面接宾语时是「爬到……上」：climb up the tree",
+        "相关：climb over（爬过去）/ climb in（爬进来）"
+      ],
+      "distractors": [
+        [
+          "Climbs",
+          "Climbing",
+          "Climbed"
+        ],
+        [
+          "upstairs.",
+          "over.",
+          "down the."
+        ]
+      ]
+    },
+    {
+      "sentence": "Climb down.",
+      "cid": "b0bc4558",
+      "translation": "爬下来。",
+      "chunks": [
+        "Climb",
+        "down."
+      ],
+      "hints": [
+        "爬",
+        "下来"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/klaɪm/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "爬"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/"
+          ],
+          "pos": "副词（表方向）",
+          "meaning": "下来"
+        }
+      ],
+      "explanations": [
+        "`climb down` = 爬下来，也引申为「让步、认错」。常见错误：\n• b 不发音，读 /klaɪm/\n• 接宾语时是「从……下来」：climb down the ladder",
+        "相关：get down（下来）/ come down（下来）"
+      ],
+      "distractors": [
+        [
+          "Climbs",
+          "Climbing",
+          "Climbed"
+        ],
+        [
+          "upstairs.",
+          "over.",
+          "up the."
+        ]
+      ]
+    },
+    {
+      "sentence": "Do the laundry.",
+      "cid": "83eb9b90",
+      "translation": "洗衣服。",
+      "chunks": [
+        "Do",
+        "the laundry."
+      ],
+      "hints": [
+        "做（这件事）",
+        "要洗的衣物"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "做（某事）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈlɔːndri/"
+          ],
+          "pos": "名词短语",
+          "meaning": "要洗的衣物"
+        }
+      ],
+      "explanations": [
+        "`do the laundry` = 洗衣服，固定搭配。常见错误：\n• 拼写：lau**n**dry，容易错写成 launday\n• \"Wash the laundry\" 不地道，动词用 do",
+        "相关：do the dishes（洗碗）/ hang the laundry（晾衣服）"
+      ],
+      "distractors": [
+        [
+          "Does",
+          "Doing",
+          "Done"
+        ],
+        [
+          "the laundrys.",
+          "a laundry.",
+          "the laundry of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Water the plants.",
+      "cid": "f1c0fcfb",
+      "translation": "给花浇水。",
+      "chunks": [
+        "Water",
+        "the plants."
+      ],
+      "hints": [
+        "浇水",
+        "植物"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈwɔːtər/"
+          ],
+          "pos": "动词（浇水）",
+          "meaning": "浇"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/plænts/"
+          ],
+          "pos": "名词短语",
+          "meaning": "植物"
+        }
+      ],
+      "explanations": [
+        "`water` 作动词就是「浇水」。常见错误：\n• \"Give water the plants\" → 直接 water the plants 就行\n• plant 与 plan 容易听混，注意词尾 /t/",
+        "相关：feed the dog（喂狗）/ walk the dog（遛狗）"
+      ],
+      "distractors": [
+        [
+          "Waters",
+          "Watering",
+          "Watered"
+        ],
+        [
+          "the plants of.",
+          "a plants.",
+          "plans."
+        ]
+      ]
+    },
+    {
+      "sentence": "Take it out.",
+      "cid": "a36e08cb",
+      "translation": "拿出来。",
+      "chunks": [
+        "Take it",
+        "out."
+      ],
+      "hints": [
+        "把它",
+        "取出"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/ɪt/"
+          ],
+          "pos": "短语动词 take out（代词夹中）",
+          "meaning": "把它取出"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aʊt/"
+          ],
+          "pos": "副词",
+          "meaning": "出来"
+        }
+      ],
+      "explanations": [
+        "`take out` = 拿出来、取出来，代词夹中间：take **it** out。常见错误：\n• \"Take out it\" → 代词要放中间\n• takeout（一个词）作名词时指「外卖」",
+        "反义：put it back（放回去）。"
+      ],
+      "distractors": [
+        [
+          "Take out it",
+          "Taking it out",
+          "Take it of"
+        ],
+        [
+          "in.",
+          "up.",
+          "off."
+        ]
+      ]
+    },
+    {
+      "sentence": "Put it back.",
+      "cid": "a73bf6b4",
+      "translation": "放回去。",
+      "chunks": [
+        "Put it",
+        "back."
+      ],
+      "hints": [
+        "把它",
+        "放回"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/pʊt/",
+            "/ɪt/"
+          ],
+          "pos": "短语动词 put back（代词夹中）",
+          "meaning": "把它放回"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/bæk/"
+          ],
+          "pos": "副词",
+          "meaning": "回去"
+        }
+      ],
+      "explanations": [
+        "`put it back` = 放回原处，代词夹中间。常见错误：\n• \"Put back it\" → 代词要放中间\n• \"Put it back to\" → back 后面一般不加 to",
+        "相关：put it away（收起来）/ return it（归还）"
+      ],
+      "distractors": [
+        [
+          "Put back it",
+          "Putting it back",
+          "Put it of"
+        ],
+        [
+          "front.",
+          "down.",
+          "of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't fall asleep.",
+      "cid": "97500516",
+      "translation": "别睡着了。",
+      "chunks": [
+        "Don't fall",
+        "asleep."
+      ],
+      "hints": [
+        "别",
+        "睡着的"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/",
+            "/fɔːl/"
+          ],
+          "pos": "don't + 动词原形",
+          "meaning": "别"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/əˈsliːp/"
+          ],
+          "pos": "形容词（表状态）",
+          "meaning": "睡着的"
+        }
+      ],
+      "explanations": [
+        "`fall asleep` = 睡着，指进入睡眠状态。常见错误：\n• \"Don't fall sleep\" → 形容词是 asleep，不是 sleep\n• \"Don't sleep\" 只是「别睡」，fall asleep 更强调整个人睡过去",
+        "相关：stay awake（保持清醒）/ I nodded off.（我打瞌睡了）"
+      ],
+      "distractors": [
+        [
+          "Doesn't fall",
+          "Don't fall to",
+          "No fall"
+        ],
+        [
+          "sleep.",
+          "sleeping.",
+          "sleepy."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't stay up.",
+      "cid": "0da18463",
+      "translation": "别熬夜。",
+      "chunks": [
+        "Don't stay",
+        "up."
+      ],
+      "hints": [
+        "别",
+        "熬夜、不睡"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/",
+            "/steɪ/"
+          ],
+          "pos": "don't + 动词原形",
+          "meaning": "别"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʌp/"
+          ],
+          "pos": "副词（固定搭配 stay up）",
+          "meaning": "熬夜、不睡"
+        }
+      ],
+      "explanations": [
+        "`stay up` = 熬夜不睡，up 是固定成分。常见错误：\n• \"Don't stay wake\" → 想说不睡应该用 stay up / stay awake\n• 常说 \"Don't stay up late\"，指别熬到很晚",
+        "相关：pull an all-nighter（通宵）/ get an early night（早点睡）"
+      ],
+      "distractors": [
+        [
+          "Doesn't stay",
+          "Don't stay to",
+          "No stay"
+        ],
+        [
+          "out.",
+          "in.",
+          "down."
+        ]
+      ]
+    },
+    {
+      "sentence": "I had a nightmare.",
+      "cid": "bb4458df",
+      "translation": "我做了个噩梦。",
+      "chunks": [
+        "I had",
+        "a nightmare."
+      ],
+      "hints": [
+        "我做了",
+        "一个噩梦"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/hæd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我做了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈnaɪtmer/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个噩梦"
+        }
+      ],
+      "explanations": [
+        "「做噩梦」用 `have a nightmare`，过去式 had。常见错误：\n• \"I have a nightmare\" → 说昨晚的事要用过去式\n• \"I made a nightmare\" → 噩梦不是「制作」的，用 have",
+        "相关：a bad dream（也行）/ a sweet dream（好梦）"
+      ],
+      "distractors": [
+        [
+          "I have",
+          "I'm had",
+          "I had got"
+        ],
+        [
+          "a nightmares.",
+          "nightmare.",
+          "a night mare."
+        ]
+      ]
+    },
+    {
+      "sentence": "Go to bed early.",
+      "cid": "95169b06",
+      "translation": "早点睡。",
+      "chunks": [
+        "Go to bed",
+        "early."
+      ],
+      "hints": [
+        "上床睡觉",
+        "早"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡoʊ/",
+            "/tuː/",
+            "/bed/"
+          ],
+          "pos": "动词短语 go to bed",
+          "meaning": "上床睡觉"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈɜːrli/"
+          ],
+          "pos": "副词",
+          "meaning": "早"
+        }
+      ],
+      "explanations": [
+        "`go to bed` 指「去睡觉」，bed 前不加冠词。常见错误：\n• \"Go to the bed\" → 那是「走到那张床边去」\n• \"Go to sleep early\" 也可，但 go to bed 更强调上床这个动作",
+        "相关：get an early night（早点睡）/ stay up late（熬夜）"
+      ],
+      "distractors": [
+        [
+          "Go to the bed",
+          "Go to bed to",
+          "Going to bed"
+        ],
+        [
+          "late.",
+          "earlier.",
+          "earliest."
+        ]
+      ]
+    },
+    {
+      "sentence": "I've been dreaming all night.",
+      "cid": "7d234a10",
+      "translation": "我一直在做梦。",
+      "chunks": [
+        "I've been dreaming",
+        "all night."
+      ],
+      "hints": [
+        "我一直在做梦",
+        "一整晚"
+      ],
+      "grammar": [
+        {
+          "role": "现在完成进行",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/bɪn/",
+            "/ˈdriːmɪŋ/"
+          ],
+          "pos": "现在完成进行时",
+          "meaning": "我一直在做梦"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɔːl/",
+            "/naɪt/"
+          ],
+          "pos": "名词短语作状语",
+          "meaning": "整晚"
+        }
+      ],
+      "explanations": [
+        "`have been doing` 表示从过去持续到现在的动作。常见错误：\n• \"I've been **dreamed**\" → 进行时用 dreaming\n• \"all **the** night\" → 地道说法是 all night（不加 the）",
+        "`all night` 指整晚；想说「熬夜」是 stay up all night。"
+      ],
+      "distractors": [
+        [
+          "I've been dreamed",
+          "I've dreaming",
+          "I was been dreaming"
+        ],
+        [
+          "all the night.",
+          "all nights.",
+          "whole night."
+        ]
+      ]
+    },
+    {
+      "sentence": "When did you go to bed last night?",
+      "cid": "2bb9dcf0",
+      "translation": "你昨晚几点睡的？",
+      "chunks": [
+        "When did you go to bed",
+        "last night?"
+      ],
+      "hints": [
+        "你几点上床睡觉",
+        "昨晚"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wen/",
+            "/dɪd/",
+            "/juː/",
+            "/ɡoʊ/"
+          ],
+          "pos": "过去时疑问",
+          "meaning": "你什么时候上床"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/læst/",
+            "/naɪt/"
+          ],
+          "pos": "名词短语作状语",
+          "meaning": "昨晚"
+        }
+      ],
+      "explanations": [
+        "`go to bed` 是「上床睡觉」，强调去睡这个动作。常见错误：\n• \"When **you did** go to bed\" → 疑问句助动词提前\n• \"go to bed **last night**\" 位置没问题，但注意 last night 前面不加介词",
+        "对比 `go to sleep`（入睡）：go to bed 是上床，go to sleep 是睡着。"
+      ],
+      "distractors": [
+        [
+          "When you did go to bed",
+          "When did you went to bed",
+          "When did you go to the bed"
+        ],
+        [
+          "in last night?",
+          "on last night?",
+          "at last night?"
+        ]
+      ]
+    },
+    {
+      "sentence": "When did you fall asleep?",
+      "cid": "5c36ca37",
+      "translation": "你几点睡着的？",
+      "chunks": [
+        "When did you",
+        "fall asleep?"
+      ],
+      "hints": [
+        "你什么时候",
+        "睡着"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wen/",
+            "/dɪd/",
+            "/juː/"
+          ],
+          "pos": "过去时疑问",
+          "meaning": "你什么时候"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːl/",
+            "/əˈsliːp/"
+          ],
+          "pos": "短语动词",
+          "meaning": "睡着"
+        }
+      ],
+      "explanations": [
+        "`fall asleep` 是「入睡」的固定搭配，fall 的过去式是 fell。常见错误：\n• \"**fell** asleep\" → 助动词 did 后面用原形 fall\n• \"fall **sleep**\" → sleep 是名词/动词，入睡是 fall asleep",
+        "对比 `fall asleep`（睡着）/ `be asleep`（处于睡眠状态）。"
+      ],
+      "distractors": [
+        [
+          "When you did",
+          "When does you",
+          "When did your"
+        ],
+        [
+          "fell asleep?",
+          "fall sleep?",
+          "fall a sleep?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Fold up your bedding.",
+      "cid": "4af03e2d",
+      "translation": "把被子叠好。",
+      "chunks": [
+        "Fold up",
+        "your bedding."
+      ],
+      "hints": [
+        "叠好",
+        "你的被褥"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/foʊld/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词祈使",
+          "meaning": "叠起来"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈbedɪŋ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的被褥"
+        }
+      ],
+      "explanations": [
+        "`fold up` 意为「折叠起来、叠好」。常见错误：\n• \"Fold **on**\" → 折叠用 up\n• \"Folding up your bedding\" → 祈使句用动词原形",
+        "`bedding` 是不可数名词，指「被褥床品」，不加 -s。"
+      ],
+      "distractors": [
+        [
+          "Fold on",
+          "Folding up",
+          "Folded up"
+        ],
+        [
+          "you bedding.",
+          "your beddings.",
+          "your beding."
+        ]
+      ]
+    }
+  ]
+}

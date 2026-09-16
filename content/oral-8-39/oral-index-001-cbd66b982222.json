@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "c556a208",
+      "sentence": "Better late than never.",
+      "translation": "迟做总比不做好。",
+      "sourceUrl": "content/oral-8-39/oral-001-61bd3918b441.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "f7458ab4",
+      "sentence": "Practice makes perfect.",
+      "translation": "熟能生巧。",
+      "sourceUrl": "content/oral-8-39/oral-001-61bd3918b441.json",
+      "sourceOffset": 1
+    }
+  ]
+}

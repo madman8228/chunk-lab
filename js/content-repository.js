@@ -1,10 +1,10 @@
 /* content-repository.js · 内置题库内容仓库（manifest + 分片）
  *
- * 这是旧版 window.BUILTIN 的兼容适配层：
- * - 页面启动只读取小型 manifest，并保留 builtins.js 的基础 88 句；
+ * 页面不直接持有句子：deck 清单来自 manifest，内容按需取分片。
+ * - 页面启动只读取小型 manifest（SW 已预缓存），builtins.js 只提供迁移表；
  * - 统计页只请求轻量 index 分片，真正练习时再按引用取完整详情；
  * - 真正开始某个内置题库时才请求对应分片；
- * - 题库分片加载失败时回退到旧版 oral8000.js / freq-idioms.js；
+ * - 内容源见 oral-book.js（构建期）与 scripts/build-content.mjs；
  * - 用户学习档案仍由 core.js/IndexedDB 管理，不把题库内容放进 /api/data。
  */
 (function (global) {
@@ -19,9 +19,56 @@
   var FALLBACK_MANIFEST = {
     schemaVersion: 1,
     contentVersion: 'legacy-fallback',
+    /* ⚠️ manifest 拉取失败时的兜底 deck 清单，必须与构建产物一致（scripts/build-content.mjs 输出）。
+       兜底只提供「课程清单 + 题数」，不含分片 → 点进练习会明确报错，不会静默给出空题库。
+       2026-09-15：口语 8000 合并为 oral-book.js 唯一源，deck = 原书节（大节按 ● 子场景拆分）。 */
     decks: [
-      { id: 'builtin-daily', name: '日常对话 · Daily Talk', baseCount: 88, totalCount: 238, shards: [], indexShards: [], legacyFallback: 'oral8000.js' },
-      { id: 'builtin-freq-idioms', name: '高频短语 · English Idioms', baseCount: 0, totalCount: 389, shards: [], indexShards: [], legacyFallback: 'freq-idioms.js' }
+      { id: "oral-1-1-1", name: "日常口语 8000 · 在家中 · 从起床到出门", short: "从起床到出门", chapter: 1, section: "1.1", sectionTitle: "在家中", topic: "从起床到出门", baseCount: 0, totalCount: 53, shards: [], indexShards: [] },
+      { id: "oral-1-1-2", name: "日常口语 8000 · 在家中 · 从回家到就寝", short: "从回家到就寝", chapter: 1, section: "1.1", sectionTitle: "在家中", topic: "从回家到就寝", baseCount: 0, totalCount: 68, shards: [], indexShards: [] },
+      { id: "oral-1-1-3", name: "日常口语 8000 · 在家中 · 休息日～理财", short: "休息日～理财", chapter: 1, section: "1.1", sectionTitle: "在家中", topic: "休息日～理财", baseCount: 0, totalCount: 31, shards: [], indexShards: [] },
+      { id: "oral-1-2-1", name: "日常口语 8000 · 享受余暇时间 · 邀请友人～去听音乐会", short: "邀请友人～去听音乐会", chapter: 1, section: "1.2", sectionTitle: "享受余暇时间", topic: "邀请友人～去听音乐会", baseCount: 0, totalCount: 22, shards: [], indexShards: [] },
+      { id: "oral-1-2-2", name: "日常口语 8000 · 享受余暇时间 · 打高尔夫球～唱卡拉OK", short: "打高尔夫球～唱卡拉OK", chapter: 1, section: "1.2", sectionTitle: "享受余暇时间", topic: "打高尔夫球～唱卡拉OK", baseCount: 0, totalCount: 5, shards: [], indexShards: [] },
+      { id: "oral-1-3-1", name: "日常口语 8000 · 生病、受伤时 · 请医生看病", short: "请医生看病", chapter: 1, section: "1.3", sectionTitle: "生病、受伤时", topic: "请医生看病", baseCount: 0, totalCount: 13, shards: [], indexShards: [] },
+      { id: "oral-1-3-2", name: "日常口语 8000 · 生病、受伤时 · 陈述症状", short: "陈述症状", chapter: 1, section: "1.3", sectionTitle: "生病、受伤时", topic: "陈述症状", baseCount: 0, totalCount: 11, shards: [], indexShards: [] },
+      { id: "oral-1-5-1", name: "日常口语 8000 · 在工作单位 · 在办公室", short: "在办公室", chapter: 1, section: "1.5", sectionTitle: "在工作单位", topic: "在办公室", baseCount: 0, totalCount: 20, shards: [], indexShards: [] },
+      { id: "oral-1-6-1", name: "日常口语 8000 · 电话 · 打电话～留言、接受留言", short: "打电话～留言、接受留言", chapter: 1, section: "1.6", sectionTitle: "电话", topic: "打电话～留言、接受留言", baseCount: 0, totalCount: 6, shards: [], indexShards: [] },
+      { id: "oral-1-6-2", name: "日常口语 8000 · 电话 · 挂断电话～打电话遇到困难时", short: "挂断电话～打电话遇到困难时", chapter: 1, section: "1.6", sectionTitle: "电话", topic: "挂断电话～打电话遇到困难时", baseCount: 0, totalCount: 3, shards: [], indexShards: [] },
+      { id: "oral-1-7", name: "日常口语 8000 · 日期和时间", short: "日期和时间", chapter: 1, section: "1.7", sectionTitle: "日期和时间", topic: "", baseCount: 0, totalCount: 28, shards: [], indexShards: [] },
+      { id: "oral-2-8-1", name: "日常口语 8000 · 见面、分手时 · 碰到友人～好久不见", short: "碰到友人～好久不见", chapter: 2, section: "2.8", sectionTitle: "见面、分手时", topic: "碰到友人～好久不见", baseCount: 0, totalCount: 13, shards: [], indexShards: [] },
+      { id: "oral-2-8-2", name: "日常口语 8000 · 见面、分手时 · 分手时～拜访", short: "分手时～拜访", chapter: 2, section: "2.8", sectionTitle: "见面、分手时", topic: "分手时～拜访", baseCount: 0, totalCount: 13, shards: [], indexShards: [] },
+      { id: "oral-2-8-3", name: "日常口语 8000 · 见面、分手时 · 介绍某人～有关工作", short: "介绍某人～有关工作", chapter: 2, section: "2.8", sectionTitle: "见面、分手时", topic: "介绍某人～有关工作", baseCount: 0, totalCount: 3, shards: [], indexShards: [] },
+      { id: "oral-2-8-4", name: "日常口语 8000 · 见面、分手时 · 有关学校～有关年龄、身高和体重", short: "有关学校～有关年龄、身高和体重", chapter: 2, section: "2.8", sectionTitle: "见面、分手时", topic: "有关学校～有关年龄、身高和体重", baseCount: 0, totalCount: 15, shards: [], indexShards: [] },
+      { id: "oral-2-8-5", name: "日常口语 8000 · 见面、分手时 · 有关天气", short: "有关天气", chapter: 2, section: "2.8", sectionTitle: "见面、分手时", topic: "有关天气", baseCount: 0, totalCount: 8, shards: [], indexShards: [] },
+      { id: "oral-2-9-1", name: "日常口语 8000 · 随意的谈话 · 征求意见～不明白、不知道", short: "征求意见～不明白、不知道", chapter: 2, section: "2.9", sectionTitle: "随意的谈话", topic: "征求意见～不明白、不知道", baseCount: 0, totalCount: 4, shards: [], indexShards: [] },
+      { id: "oral-2-9-2", name: "日常口语 8000 · 随意的谈话 · 反问～随声附和", short: "反问～随声附和", chapter: 2, section: "2.9", sectionTitle: "随意的谈话", topic: "反问～随声附和", baseCount: 0, totalCount: 4, shards: [], indexShards: [] },
+      { id: "oral-2-9-3", name: "日常口语 8000 · 随意的谈话 · 一时语塞～下决心", short: "一时语塞～下决心", chapter: 2, section: "2.9", sectionTitle: "随意的谈话", topic: "一时语塞～下决心", baseCount: 0, totalCount: 11, shards: [], indexShards: [] },
+      { id: "oral-2-10-1", name: "日常口语 8000 · 提醒、忠告 · 教诲、告诫", short: "教诲、告诫", chapter: 2, section: "2.10", sectionTitle: "提醒、忠告", topic: "教诲、告诫", baseCount: 0, totalCount: 5, shards: [], indexShards: [] },
+      { id: "oral-2-10-2", name: "日常口语 8000 · 提醒、忠告 · 提醒～责备", short: "提醒～责备", chapter: 2, section: "2.10", sectionTitle: "提醒、忠告", topic: "提醒～责备", baseCount: 0, totalCount: 3, shards: [], indexShards: [] },
+      { id: "oral-2-10-3", name: "日常口语 8000 · 提醒、忠告 · 制止～警告", short: "制止～警告", chapter: 2, section: "2.10", sectionTitle: "提醒、忠告", topic: "制止～警告", baseCount: 0, totalCount: 7, shards: [], indexShards: [] },
+      { id: "oral-2-11-1", name: "日常口语 8000 · 内心表白 · 道谢～关心对方", short: "道谢～关心对方", chapter: 2, section: "2.11", sectionTitle: "内心表白", topic: "道谢～关心对方", baseCount: 0, totalCount: 18, shards: [], indexShards: [] },
+      { id: "oral-2-11-2", name: "日常口语 8000 · 内心表白 · 表扬", short: "表扬", chapter: 2, section: "2.11", sectionTitle: "内心表白", topic: "表扬", baseCount: 0, totalCount: 6, shards: [], indexShards: [] },
+      { id: "oral-3-12-1", name: "日常口语 8000 · 商谈 · 赞成～否定", short: "赞成～否定", chapter: 3, section: "3.12", sectionTitle: "商谈", topic: "赞成～否定", baseCount: 0, totalCount: 8, shards: [], indexShards: [] },
+      { id: "oral-3-12-2", name: "日常口语 8000 · 商谈 · 含糊其辞的回答～提出、询问意见", short: "含糊其辞的回答～提出、询问意见", chapter: 3, section: "3.12", sectionTitle: "商谈", topic: "含糊其辞的回答～提出、询问意见", baseCount: 0, totalCount: 6, shards: [], indexShards: [] },
+      { id: "oral-3-13-1", name: "日常口语 8000 · 提出要求 · 请求帮助～提议", short: "请求帮助～提议", chapter: 3, section: "3.13", sectionTitle: "提出要求", topic: "请求帮助～提议", baseCount: 0, totalCount: 6, shards: [], indexShards: [] },
+      { id: "oral-3-13-2", name: "日常口语 8000 · 提出要求 · 接受请求和建议～拒绝请求和建议", short: "接受请求和建议～拒绝请求和建议", chapter: 3, section: "3.13", sectionTitle: "提出要求", topic: "接受请求和建议～拒绝请求和建议", baseCount: 0, totalCount: 2, shards: [], indexShards: [] },
+      { id: "oral-4-17-1", name: "日常口语 8000 · 生气时 · 不满和牢骚时～发怒", short: "不满和牢骚时～发怒", chapter: 4, section: "4.17", sectionTitle: "生气时", topic: "不满和牢骚时～发怒", baseCount: 0, totalCount: 7, shards: [], indexShards: [] },
+      { id: "oral-4-18", name: "日常口语 8000 · 悲伤时", short: "悲伤时", chapter: 4, section: "4.18", sectionTitle: "悲伤时", topic: "", baseCount: 0, totalCount: 3, shards: [], indexShards: [] },
+      { id: "oral-4-19", name: "日常口语 8000 · 喜欢、讨厌时", short: "喜欢、讨厌时", chapter: 4, section: "4.19", sectionTitle: "喜欢、讨厌时", topic: "", baseCount: 0, totalCount: 1, shards: [], indexShards: [] },
+      { id: "oral-4-20", name: "日常口语 8000 · 安慰时", short: "安慰时", chapter: 4, section: "4.20", sectionTitle: "安慰时", topic: "", baseCount: 0, totalCount: 18, shards: [], indexShards: [] },
+      { id: "oral-4-21", name: "日常口语 8000 · 怀疑时", short: "怀疑时", chapter: 4, section: "4.21", sectionTitle: "怀疑时", topic: "", baseCount: 0, totalCount: 1, shards: [], indexShards: [] },
+      { id: "oral-4-22", name: "日常口语 8000 · 为难时", short: "为难时", chapter: 4, section: "4.22", sectionTitle: "为难时", topic: "", baseCount: 0, totalCount: 2, shards: [], indexShards: [] },
+      { id: "oral-4-23", name: "日常口语 8000 · 不感兴趣时", short: "不感兴趣时", chapter: 4, section: "4.23", sectionTitle: "不感兴趣时", topic: "", baseCount: 0, totalCount: 2, shards: [], indexShards: [] },
+      { id: "oral-4-25", name: "日常口语 8000 · 吃惊时", short: "吃惊时", chapter: 4, section: "4.25", sectionTitle: "吃惊时", topic: "", baseCount: 0, totalCount: 1, shards: [], indexShards: [] },
+      { id: "oral-6-29-1", name: "日常口语 8000 · 在飞机上、饭店里 · 在飞机上～在饭店遇到困难时", short: "在飞机上～在饭店遇到困难时", chapter: 6, section: "6.29", sectionTitle: "在飞机上、饭店里", topic: "在飞机上～在饭店遇到困难时", baseCount: 0, totalCount: 8, shards: [], indexShards: [] },
+      { id: "oral-6-30-1", name: "日常口语 8000 · 走在街上的时候 · 问路", short: "问路", chapter: 6, section: "6.30", sectionTitle: "走在街上的时候", topic: "问路", baseCount: 0, totalCount: 7, shards: [], indexShards: [] },
+      { id: "oral-6-30-2", name: "日常口语 8000 · 走在街上的时候 · 乘坐交通工具～交通标志", short: "乘坐交通工具～交通标志", chapter: 6, section: "6.30", sectionTitle: "走在街上的时候", topic: "乘坐交通工具～交通标志", baseCount: 0, totalCount: 10, shards: [], indexShards: [] },
+      { id: "oral-6-31", name: "日常口语 8000 · 购物时", short: "购物时", chapter: 6, section: "6.31", sectionTitle: "购物时", topic: "", baseCount: 0, totalCount: 96, shards: [], indexShards: [] },
+      { id: "oral-6-32-1", name: "日常口语 8000 · 在外用餐时 · 在快餐厅里～点菜", short: "在快餐厅里～点菜", chapter: 6, section: "6.32", sectionTitle: "在外用餐时", topic: "在快餐厅里～点菜", baseCount: 0, totalCount: 7, shards: [], indexShards: [] },
+      { id: "oral-6-32-2", name: "日常口语 8000 · 在外用餐时 · 饭桌上～付款", short: "饭桌上～付款", chapter: 6, section: "6.32", sectionTitle: "在外用餐时", topic: "饭桌上～付款", baseCount: 0, totalCount: 3, shards: [], indexShards: [] },
+      { id: "oral-6-33", name: "日常口语 8000 · 外出旅行时", short: "外出旅行时", chapter: 6, section: "6.33", sectionTitle: "外出旅行时", topic: "", baseCount: 0, totalCount: 2, shards: [], indexShards: [] },
+      { id: "oral-8-39", name: "日常口语 8000 · 谚语、惯用语", short: "谚语、惯用语", chapter: 8, section: "8.39", sectionTitle: "谚语、惯用语", topic: "", baseCount: 0, totalCount: 2, shards: [], indexShards: [] },
+      { id: "oral-basic", name: "日常口语 8000 · 万能表达", short: "万能表达", chapter: 0, section: "0", sectionTitle: "万能表达", topic: "", baseCount: 0, totalCount: 10, shards: [], indexShards: [] },
+      { id: "builtin-freq-idioms", name: "高频短语 · English Idioms", short: "高频短语", chapter: null, section: "", sectionTitle: "", topic: "", baseCount: 0, totalCount: 418, shards: [], indexShards: [] }
     ]
   };
   var manifest = null;
@@ -269,7 +316,7 @@
     return loadScript(entry.legacyFallback).then(function () {
       var deck = byId(entry.id);
       if (!deck) throw new Error('找不到题库：' + entry.id);
-      /* oral8000.js 自己负责把 DATA_ORAL8000 并入 builtin-daily，不能在这里再 concat 一次。 */
+      /* 内容现在全部来自分片；没有 shards 说明构建产物与代码不匹配 → 明确失败，不静默给空库。 */
       deck.itemCount = deck.items.length;
       deck._contentReady = true;
       deck._legacyLoaded = true;

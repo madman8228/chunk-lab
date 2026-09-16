@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Here's to the New Year!",
+      "translation": "祝贺新年!",
+      "chunks": [
+        "Here's to",
+        "the New Year!"
+      ],
+      "hints": [
+        "为",
+        "新年干杯"
+      ],
+      "cid": "a16719cf"
+    },
+    {
+      "sentence": "Happy New Year!",
+      "translation": "新年快乐!",
+      "chunks": [
+        "Happy",
+        "New Year!"
+      ],
+      "hints": [
+        "新年",
+        "快乐"
+      ],
+      "cid": "9d131e2b"
+    },
+    {
+      "sentence": "Happy Valentine's Day!",
+      "translation": "情人节快乐。",
+      "chunks": [
+        "Happy",
+        "Valentine's Day!"
+      ],
+      "hints": [
+        "情人节",
+        "快乐"
+      ],
+      "cid": "1d754876"
+    },
+    {
+      "sentence": "Be my Valentine.",
+      "translation": "做我的情人吧。",
+      "chunks": [
+        "Be my",
+        "Valentine."
+      ],
+      "hints": [
+        "做我的",
+        "情人吧"
+      ],
+      "cid": "9cd0ccba"
+    },
+    {
+      "sentence": "Happy Easter!",
+      "translation": "复活节快乐!",
+      "chunks": [
+        "Happy",
+        "Easter!"
+      ],
+      "hints": [
+        "复活节",
+        "快乐"
+      ],
+      "cid": "6a0821e8"
+    },
+    {
+      "sentence": "Happy Mother's Day!",
+      "translation": "母亲节快乐!",
+      "chunks": [
+        "Happy",
+        "Mother's Day!"
+      ],
+      "hints": [
+        "母亲节",
+        "快乐"
+      ],
+      "cid": "5da16967"
+    },
+    {
+      "sentence": "Thanks for being such a good mom.",
+      "translation": "你真是我的好妈妈。",
+      "chunks": [
+        "Thanks for being",
+        "such a good mom."
+      ],
+      "hints": [
+        "谢谢你",
+        "做这么好的妈妈"
+      ],
+      "cid": "a1ba7010"
+    },
+    {
+      "sentence": "Trick or treat!",
+      "translation": "不请吃就捣蛋!",
+      "chunks": [
+        "Trick or",
+        "treat!"
+      ],
+      "hints": [
+        "不给糖",
+        "就捣蛋"
+      ],
+      "cid": "b1bed8ec"
+    },
+    {
+      "sentence": "Happy Thanksgiving!",
+      "translation": "感恩节快乐!",
+      "chunks": [
+        "Happy",
+        "Thanksgiving!"
+      ],
+      "hints": [
+        "感恩节",
+        "快乐"
+      ],
+      "cid": "f0aa611f"
+    },
+    {
+      "sentence": "Let's have pumpkin pie.",
+      "translation": "我们吃南瓜派吧。",
+      "chunks": [
+        "Let's have",
+        "pumpkin pie."
+      ],
+      "hints": [
+        "我们来吃",
+        "南瓜派"
+      ],
+      "cid": "ddbd53a6"
+    },
+    {
+      "sentence": "Merry Christmas!",
+      "translation": "圣诞快乐!",
+      "chunks": [
+        "Merry",
+        "Christmas!"
+      ],
+      "hints": [
+        "圣诞",
+        "快乐"
+      ],
+      "cid": "c977344d"
+    },
+    {
+      "sentence": "Have a Merry Christmas.",
+      "translation": "祝您圣诞愉快!",
+      "chunks": [
+        "Have a",
+        "Merry Christmas."
+      ],
+      "hints": [
+        "祝你过个",
+        "快乐的圣诞"
+      ],
+      "cid": "031bd919"
+    },
+    {
+      "sentence": "Here's your birthday gift.",
+      "translation": "这是送给你的生日礼物。",
+      "chunks": [
+        "Here's your",
+        "birthday gift."
+      ],
+      "hints": [
+        "这是给你的",
+        "生日礼物"
+      ],
+      "cid": "59372d5d"
+    },
+    {
+      "sentence": "It's my birthday.",
+      "translation": "生日快乐!",
+      "chunks": [
+        "It's my",
+        "birthday."
+      ],
+      "hints": [
+        "今天是我的",
+        "生日"
+      ],
+      "cid": "6cd6afb5"
+    },
+    {
+      "sentence": "Happy anniversary!",
+      "translation": "结婚纪念日快乐。",
+      "chunks": [
+        "Happy",
+        "anniversary!"
+      ],
+      "hints": [
+        "结婚纪念日",
+        "快乐"
+      ],
+      "cid": "f832cb36"
+    },
+    {
+      "sentence": "Thanks for being in my life.",
+      "translation": "谢谢你陪我共度人生。",
+      "chunks": [
+        "Thanks for being",
+        "in my life."
+      ],
+      "hints": [
+        "谢谢你",
+        "陪我共度人生"
+      ],
+      "cid": "0c663f17"
+    }
+  ]
+}

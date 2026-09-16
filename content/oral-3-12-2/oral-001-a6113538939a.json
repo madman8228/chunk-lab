@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Let me think about it.",
+      "cid": "f50d7898",
+      "translation": "让我考虑一下。",
+      "chunks": [
+        "Let me",
+        "think about it."
+      ],
+      "hints": [
+        "让我",
+        "想想这件事"
+      ],
+      "grammar": [
+        {
+          "role": "祈使结构",
+          "color": "#c87033",
+          "phonetic": [
+            "/let/",
+            "/miː/"
+          ],
+          "pos": "使役动词",
+          "meaning": "让我"
+        },
+        {
+          "role": "谓语短语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/θɪŋk/",
+            "/əˈbaʊt/",
+            "/ɪt/"
+          ],
+          "pos": "动词短语",
+          "meaning": "考虑一下"
+        }
+      ],
+      "explanations": [
+        "**Let me think about it.** 委婉地表示需要时间考虑，不直接拒绝。",
+        "在谈价格、做决定时非常常用。比直接说 \"No\" 礼貌得多。"
+      ],
+      "distractors": [
+        [
+          "Lets me",
+          "Let I",
+          "Let me to"
+        ],
+        [
+          "think it.",
+          "thinking about it.",
+          "think about them."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm not sure about that.",
+      "cid": "806439ee",
+      "translation": "我不太确定那件事。",
+      "chunks": [
+        "I'm not sure",
+        "about that."
+      ],
+      "hints": [
+        "我不确定",
+        "关于那个"
+      ],
+      "grammar": [
+        {
+          "role": "主语+否定",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/nɒt/",
+            "/ʃʊər/"
+          ],
+          "pos": "主语+be+形容词",
+          "meaning": "我不确定"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/ðæt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于那件事"
+        }
+      ],
+      "explanations": [
+        "**I'm not sure about that.** 委婉地表达不确定或保留意见。",
+        "比直接说 \"I don't know.\" 或 \"No.\" 更礼貌、更有回旋余地。"
+      ],
+      "distractors": [
+        [
+          "I not sure",
+          "I'm no sure",
+          "I'm not surely"
+        ],
+        [
+          "at that.",
+          "about those.",
+          "about the."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's up to you.",
+      "cid": "fb54ce6f",
+      "translation": "由你决定。",
+      "chunks": [
+        "It's up",
+        "to you."
+      ],
+      "hints": [
+        "取决于",
+        "由你"
+      ],
+      "grammar": [
+        {
+          "role": "主系结构",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ʌp/"
+          ],
+          "pos": "主系+副词",
+          "meaning": "取决于"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "由你"
+        }
+      ],
+      "explanations": [
+        "**It's up to you.** = 由你决定/你说了算，把选择权交给对方。点餐、约时间的高频句。",
+        "扩展：**It's up to sb to do sth** = 由某人负责做某事。问句 **What's up?**（怎么了）与本句无关，注意区分。"
+      ],
+      "distractors": [
+        [
+          "It up",
+          "It's upon"
+        ],
+        [
+          "for you.",
+          "to your.",
+          "on you."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll see what I can do.",
+      "cid": "abc317f8",
+      "translation": "我看看能做点什么。",
+      "chunks": [
+        "I'll see",
+        "what I can do."
+      ],
+      "hints": [
+        "我会看看",
+        "我能做什么"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/siː/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我会看看"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wɒt/",
+            "/aɪ/",
+            "/kæn/",
+            "/duː/"
+          ],
+          "pos": "名词性从句",
+          "meaning": "我能做什么"
+        }
+      ],
+      "explanations": [
+        "**I'll see what I can do.** = 我尽量想办法，是不打包票的承诺，比 Yes 留有余地。",
+        "宾语从句用陈述语序 what I can do，不倒装。对方语境常是请求帮助时表示愿意尽力。"
+      ],
+      "distractors": [
+        [
+          "I see",
+          "I'll to see",
+          "I'll saw"
+        ],
+        [
+          "what can I do.",
+          "that I can do.",
+          "what I can does."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's up to you, I'm fine either way.",
+      "cid": "0951976a",
+      "translation": "你决定吧，我怎么样都行。",
+      "chunks": [
+        "It's up to you,",
+        "I'm fine",
+        "either way."
+      ],
+      "hints": [
+        "由你决定",
+        "我没问题",
+        "任何一种方式"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ʌp/",
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "惯用表达",
+          "meaning": "由你决定"
+        },
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/faɪn/"
+          ],
+          "pos": "陈述",
+          "meaning": "我没问题"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈaɪðər/",
+            "/weɪ/"
+          ],
+          "pos": "短语",
+          "meaning": "任何一种方式"
+        }
+      ],
+      "explanations": [
+        "`It's up to you` = 由你决定（把选择权交给对方）。常见错误：\n• \"It's **up to your**\" → your 是物主代词，要用宾格 you\n• \"up to you\" → 缺 it's：It's up to you",
+        "`I'm fine either way` = 我哪种都行。either way = 无论哪种方式。"
+      ],
+      "distractors": [
+        [
+          "It's up for you,",
+          "It's up to yours,",
+          "It's depends on you,"
+        ],
+        [
+          "I fine",
+          "I'm very fine,",
+          "I'm well and"
+        ],
+        [
+          "either ways.",
+          "neither way.",
+          "any way."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're in charge.",
+      "cid": "5a4799a1",
+      "translation": "你说了算。",
+      "chunks": [
+        "You're",
+        "in charge."
+      ],
+      "hints": [
+        "你是",
+        "负责的"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/"
+          ],
+          "pos": "you are 缩写",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪn/",
+            "/tʃɑːrdʒ/"
+          ],
+          "pos": "介词短语（固定）",
+          "meaning": "负责的"
+        }
+      ],
+      "explanations": [
+        "`be in charge` 是固定短语，表「负责、主管」。常见错误：\n• \"in charged\" → charge 在此不加 ed\n• \"in the charge\" → 加 the 后意思变成「在……看管下」，正好相反",
+        "`You're in charge` 口语里也可表「你说了算」。同义：It's up to you. / You're the boss."
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You",
+          "You've"
+        ],
+        [
+          "in charged.",
+          "in charge of.",
+          "in the charge."
+        ]
+      ]
+    }
+  ]
+}

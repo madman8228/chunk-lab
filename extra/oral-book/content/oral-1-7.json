@@ -1,0 +1,438 @@
+[
+ {
+  "sentence": "What's today's date?",
+  "translation": "今天几号？",
+  "chunks": ["What's", "today's date?"],
+  "hints": ["是什么", "今天的日期"],
+  "grammar": [
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/wʌts/"], "pos": "What is 缩写", "meaning": "是什么" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/təˈdeɪz/", "/deɪt/"], "pos": "名词短语", "meaning": "今天的日期" }
+  ],
+  "explanations": [
+   "`What's today's date?` 问「今天几号」，回答用序数词：It's August thirteenth.",
+   "注意区分三兄弟：问**日期**用 `What's today's date?`，问**星期**用 `What day is it?`，问**几点**用 `Do you have the time?`"
+  ],
+  "distractors": [["What are", "What does", "What do"], ["today date?", "today's day?", "the today's date?"]]
+ },
+ {
+  "sentence": "It's August thirteenth.",
+  "translation": "8月13日。",
+  "chunks": ["It's", "August thirteenth."],
+  "hints": ["是", "8月13日"],
+  "grammar": [
+   { "role": "主系表", "color": "#e74c7a", "phonetic": ["/ɪts/"], "pos": "It is 缩写", "meaning": "是" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/ˈɔːɡəst/", "/ˌθɜːrˈtiːnθ/"], "pos": "名词短语", "meaning": "8月13日" }
+  ],
+  "explanations": [
+   "英文日期是「月 + 序数词」：August thirteenth = 8月13日，写成 August 13(th)。",
+   "13 的序数词是 thirteenth，不是 thirteen。同类易错：fifth（5th）、twelfth（12th）、twentieth（20th）、thirtieth（30th）。"
+  ],
+  "distractors": [["Its", "It", "It was"], ["August thirteen.", "August the thirteenth's.", "August thirtieth."]]
+ },
+ {
+  "sentence": "What day is it?",
+  "translation": "今天星期几？",
+  "chunks": ["What day", "is it?"],
+  "hints": ["哪一天", "是今天"],
+  "grammar": [
+   { "role": "主语", "color": "#c87033", "phonetic": ["/wʌt/", "/deɪ/"], "pos": "名词短语", "meaning": "哪一天" },
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/ɪz/", "/ɪt/"], "pos": "主谓倒装", "meaning": "是" }
+  ],
+  "explanations": [
+   "`What day is it?` 问星期几，回答 It's Thursday. it 在这里指「今天」，不是「它」。",
+   "同结构的还有 `What time is it?`（几点）。两者句式一样，只是把 day 换成 time。"
+  ],
+  "distractors": [["What day is", "What's day", "Which day are"], ["are it?", "it is?", "was it?"]]
+ },
+ {
+  "sentence": "It's Thursday.",
+  "translation": "星期四。",
+  "chunks": ["It's", "Thursday."],
+  "hints": ["是", "星期四"],
+  "grammar": [
+   { "role": "主系表", "color": "#e74c7a", "phonetic": ["/ɪts/"], "pos": "It is 缩写", "meaning": "是" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/ˈθɜːrzdeɪ/"], "pos": "专有名词", "meaning": "星期四" }
+  ],
+  "explanations": [
+   "星期名首字母**必须大写**：Thursday（缩写 Thu. / Thur.）。周一到周日：Monday、Tuesday、Wednesday、Thursday、Friday、Saturday、Sunday。",
+   "单独回答星期几不加介词；要表达「在周四做某事」才用 on：I'll see you on Thursday."
+  ],
+  "distractors": [["Its", "It was", "It is being"], ["thursday.", "Tuesday.", "Thursday's."]]
+ },
+ {
+  "sentence": "Do you have the time?",
+  "translation": "现在几点？",
+  "chunks": ["Do you have", "the time?"],
+  "hints": ["你有没有", "时间"],
+  "grammar": [
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/duː/", "/juː/", "/hæv/"], "pos": "一般疑问句", "meaning": "你有…吗" },
+   { "role": "宾语", "color": "#3358e0", "phonetic": ["/ðə/", "/taɪm/"], "pos": "名词短语", "meaning": "时间；钟点" }
+  ],
+  "explanations": [
+   "`Do you have the time?` 是问**现在几点**——这里的 the time 特指「当前的钟点」。",
+   "经典陷阱：**去掉 the** 就变成另一个意思了。`Do you have time?` = 你有空吗。问时间还要 the，问空闲不要 the。"
+  ],
+  "distractors": [["Do you has", "Are you have", "Do you having"], ["times?", "the times?", "a the time?"]]
+ },
+ {
+  "sentence": "It's almost noon.",
+  "translation": "快到中午了。",
+  "chunks": ["It's almost", "noon."],
+  "hints": ["快到", "中午"],
+  "grammar": [
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/ɪts/", "/ˈɔːlmoʊst/"], "pos": "系动词 + 副词", "meaning": "快到" },
+   { "role": "主语", "color": "#c87033", "phonetic": ["/nuːn/"], "pos": "名词", "meaning": "中午" }
+  ],
+  "explanations": [
+   "「几乎、快到了」用 almost 或 nearly，放在被修饰词前面：almost noon / almost ready / almost done.",
+   "noon = 正午 12 点。时间家族：dawn 黎明、morning 早晨、noon 正午、afternoon 下午、dusk 黄昏、midnight 午夜。"
+  ],
+  "distractors": [["It's most", "It almost", "It's mostly"], ["the noon.", "noon time.", "noons."]]
+ },
+ {
+  "sentence": "It's one o'clock.",
+  "translation": "现在1点钟了。",
+  "chunks": ["It's", "one o'clock."],
+  "hints": ["是", "1点钟"],
+  "grammar": [
+   { "role": "主系表", "color": "#e74c7a", "phonetic": ["/ɪts/"], "pos": "It is 缩写", "meaning": "是" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/wʌn/", "/əˈklɑːk/"], "pos": "名词短语", "meaning": "1点钟" }
+  ],
+  "explanations": [
+   "整点用「数字 + o'clock」：one o'clock、five o'clock。o'clock 只能接 1–12 的整点。",
+   "有分钟数时**不能**用 o'clock：~~one o'clock fifteen~~ 是错的，要说 one fifteen 或 a quarter past one。"
+  ],
+  "distractors": [["Its", "It was", "It"], ["one clock.", "one o'clock time.", "the one o'clock."]]
+ },
+ {
+  "sentence": "It's a quarter to two.",
+  "translation": "1点45分。",
+  "chunks": ["It's a quarter", "to two."],
+  "hints": ["差一刻", "到两点"],
+  "grammar": [
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/ə/", "/ˈkwɔːrtər/"], "pos": "名词短语", "meaning": "一刻钟" },
+   { "role": "状语", "color": "#7c5cbf", "phonetic": ["/tə/", "/tuː/"], "pos": "介词短语", "meaning": "到…（差）" }
+  ],
+  "explanations": [
+   "`a quarter to two` = 差一刻到两点 = 1:45。规律：to 数到下一个整点（差），past 从整点数过来（过）。",
+   "中文习惯说「1 点 45 分」，英文口语更习惯说「差一刻两点」。同理 ten to two = 1:50。"
+  ],
+  "distractors": [["It's quarter", "It's a quarters", "It's the quarter"], ["for two.", "at two.", "to two's."]]
+ },
+ {
+  "sentence": "It's five after one.",
+  "translation": "1点5分。",
+  "chunks": ["It's five", "after one."],
+  "hints": ["5分", "过一点"],
+  "grammar": [
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/faɪv/"], "pos": "数词", "meaning": "5（分钟）" },
+   { "role": "状语", "color": "#7c5cbf", "phonetic": ["/ˈæftər/", "/wʌn/"], "pos": "介词短语", "meaning": "过1点" }
+  ],
+  "explanations": [
+   "after = past = 「过」：five after one = five past one = 1:05。美式更常用 after，英式更常用 past。",
+   "与第 8 句对照记：**to 是差、after/past 是过**。five to one = 12:55，方向正好相反。"
+  ],
+  "distractors": [["It's fives", "It's a five", "It's five's"], ["to one.", "before one.", "after ones."]]
+ },
+ {
+  "sentence": "The clock says 3:15.",
+  "translation": "指针正指到3点15分。",
+  "chunks": ["The clock says", "3:15."],
+  "hints": ["钟表显示", "3点15分"],
+  "grammar": [
+   { "role": "主谓", "color": "#c87033", "phonetic": ["/ðə/", "/klɑːk/", "/sez/"], "pos": "一般现在时", "meaning": "钟显示" },
+   { "role": "宾语", "color": "#3358e0", "phonetic": ["/ˌθriː/", "/ˌfɪfˈtiːn/"], "pos": "数词", "meaning": "3点15分" }
+  ],
+  "explanations": [
+   "时钟「显示几点」用 say：The clock says 3:15. 也可以说 It says 3:15. 或 The time is 3:15.",
+   "3:15 读作 three fifteen（直接念数字，最常用），也可以读 a quarter past three。"
+  ],
+  "distractors": [["The clock say", "The clock is say", "The clock saying"], ["3:15 o'clock.", "three fifteen clock.", "3:50."]]
+ },
+ {
+  "sentence": "It's a quarter after three.",
+  "translation": "3点15分。",
+  "chunks": ["It's a quarter", "after three."],
+  "hints": ["过一刻", "3点之后"],
+  "grammar": [
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/ə/", "/ˈkwɔːrtər/"], "pos": "名词短语", "meaning": "一刻钟" },
+   { "role": "状语", "color": "#7c5cbf", "phonetic": ["/ˈæftər/", "/θriː/"], "pos": "介词短语", "meaning": "3点过" }
+  ],
+  "explanations": [
+   "与第 8 句正面对照：`a quarter after three` = 3:15（过了三点一刻），`a quarter to three` = 2:45（差一刻三点）。",
+   "after 与 past 意思完全相同，只是地区习惯不同：美式 after、英式 past。"
+  ],
+  "distractors": [["It's quarter", "It's a quarters", "It's quarter a"], ["to three.", "before three.", "after threes."]]
+ },
+ {
+  "sentence": "It's ten to two.",
+  "translation": "差10分2点。",
+  "chunks": ["It's ten", "to two."],
+  "hints": ["差10分", "到两点"],
+  "grammar": [
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/ten/"], "pos": "数词", "meaning": "10（分钟）" },
+   { "role": "状语", "color": "#7c5cbf", "phonetic": ["/tə/", "/tuː/"], "pos": "介词短语", "meaning": "差…到两点" }
+  ],
+  "explanations": [
+   "`ten to two` = 1:50。结构就是「分钟 + to + 下一个整点」。",
+   "口语里 1:50 通常说 ten to two；直接念 one fifty 也可以，但英式语境中 to/past 说法更常见。"
+  ],
+  "distractors": [["It's tens", "It's a ten", "It's ten's"], ["past two.", "for two.", "to twos."]]
+ },
+ {
+  "sentence": "It's nine thirty.",
+  "translation": "9点半。",
+  "chunks": ["It's", "nine thirty."],
+  "hints": ["是", "9点半"],
+  "grammar": [
+   { "role": "主系表", "color": "#e74c7a", "phonetic": ["/ɪts/"], "pos": "It is 缩写", "meaning": "是" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/naɪn/", "/ˈθɜːrti/"], "pos": "数词", "meaning": "9点30分" }
+  ],
+  "explanations": [
+   "最不容易出错的读法就是「小时 + 分钟」直接念：nine thirty = 9:30。",
+   "同义表达：half past nine。时间三件套：a quarter past nine = 9:15、half past nine = 9:30、a quarter to ten = 9:45。"
+  ],
+  "distractors": [["Its", "It was", "It"], ["nine thirteen.", "nine third.", "nine thirty's."]]
+ },
+ {
+  "sentence": "The clock is five minutes slow.",
+  "translation": "那只表慢5分钟。",
+  "chunks": ["The clock is", "five minutes", "slow."],
+  "hints": ["表是", "5分钟", "慢"],
+  "grammar": [
+   { "role": "主系表", "color": "#c87033", "phonetic": ["/ðə/", "/klɑːk/", "/ɪz/"], "pos": "主系结构", "meaning": "表是" },
+   { "role": "状语", "color": "#7c5cbf", "phonetic": ["/faɪv/", "/ˈmɪnɪts/"], "pos": "名词短语", "meaning": "5分钟" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/sloʊ/"], "pos": "形容词", "meaning": "慢的" }
+  ],
+  "explanations": [
+   "「表快/慢多少」用 `数字 + minutes + fast/slow`：five minutes slow = 慢 5 分钟，five minutes fast = 快 5 分钟。",
+   "两个易错点：分钟数大于 1 要加 s（five minute → **five minutes**）；slow 是形容词作表语，不能写成 slowly。"
+  ],
+  "distractors": [["The clock are", "The clock is being", "The clock has"], ["five minute", "fives minutes", "five minutes'"], ["slowly.", "a slow.", "slowness."]]
+ },
+ {
+  "sentence": "Well, time to go.",
+  "translation": "该走了。",
+  "chunks": ["Well,", "time to go."],
+  "hints": ["嗯", "该走了"],
+  "grammar": [
+   { "role": "语气词", "color": "#c87033", "phonetic": ["/wel/"], "pos": "感叹词", "meaning": "嗯；那么" },
+   { "role": "省略句", "color": "#e74c7a", "phonetic": ["/taɪm/", "/tə/", "/ɡoʊ/"], "pos": "名词 + 不定式", "meaning": "该走了" }
+  ],
+  "explanations": [
+   "`time to go` 是 `It's time to go.` 的省略——口语里句首的 It's 经常省掉，意思不变。",
+   "句首的 Well 不表示「好」，而是「那么、嗯」，用来开启话题或做转折。"
+  ],
+  "distractors": [["Will,", "Well's,", "Wall,"], ["time go.", "time going.", "time to going."]]
+ },
+ {
+  "sentence": "About when?",
+  "translation": "大约什么时候？",
+  "chunks": ["About", "when?"],
+  "hints": ["大约", "什么时候"],
+  "grammar": [
+   { "role": "副词", "color": "#7c5cbf", "phonetic": ["/əˈbaʊt/"], "pos": "副词", "meaning": "大约" },
+   { "role": "疑问副词", "color": "#e74c7a", "phonetic": ["/wen/"], "pos": "疑问词", "meaning": "什么时候" }
+  ],
+  "explanations": [
+   "疑问句可以省略主谓直接追问：About when? = 大约什么时候？完整句是 About when will it be?",
+   "about 表「大约」时既可用于时间也可用于数量：about ten（大约十点）、about five dollars（大约五美元）。"
+  ],
+  "distractors": [["About of", "About the", "Around of"], ["what?", "time?", "where?"]]
+ },
+ {
+  "sentence": "About what time?",
+  "translation": "大约几点？",
+  "chunks": ["About", "what time?"],
+  "hints": ["大约", "几点"],
+  "grammar": [
+   { "role": "副词", "color": "#7c5cbf", "phonetic": ["/əˈbaʊt/"], "pos": "副词", "meaning": "大约" },
+   { "role": "疑问词", "color": "#e74c7a", "phonetic": ["/wʌt/", "/taɪm/"], "pos": "疑问短语", "meaning": "什么时间" }
+  ],
+  "explanations": [
+   "`About what time?` 是 `About what time will you come?` 的省略，用来确认具体钟点。",
+   "与 About when? 的区别：when 更模糊（哪一天、哪一阵儿都行），what time 问的是具体几点钟。"
+  ],
+  "distractors": [["About of", "About the", "About to"], ["what's time?", "which time?", "what times?"]]
+ },
+ {
+  "sentence": "How's the time?",
+  "translation": "还来得及吗？",
+  "chunks": ["How's", "the time?"],
+  "hints": ["怎么样", "时间"],
+  "grammar": [
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/haʊz/"], "pos": "How is 缩写", "meaning": "…怎么样" },
+   { "role": "主语", "color": "#c87033", "phonetic": ["/ðə/", "/taɪm/"], "pos": "名词短语", "meaning": "时间" }
+  ],
+  "explanations": [
+   "`How's the time?` 是问「时间还够吗、来不及了吗」，赶时间时的常用追问。",
+   "更常见的同义说法：Are we OK for time? / Do we have enough time? / Are we running late?"
+  ],
+  "distractors": [["How are", "How does", "How do"], ["the times?", "a time?", "time it?"]]
+ },
+ {
+  "sentence": "I have no time.",
+  "translation": "我没有时间。",
+  "chunks": ["I have", "no time."],
+  "hints": ["我有", "没有时间"],
+  "grammar": [
+   { "role": "主谓", "color": "#c87033", "phonetic": ["/aɪ/", "/hæv/"], "pos": "一般现在时", "meaning": "我有" },
+   { "role": "宾语", "color": "#3358e0", "phonetic": ["/noʊ/", "/taɪm/"], "pos": "名词短语", "meaning": "没有时间" }
+  ],
+  "explanations": [
+   "`no time` 等于 not any time，比 I don't have time 更短、语气更硬。",
+   "no 直接修饰名词，后面**不能**再加 a / any：~~no a time~~、~~no any time~~ 都是错的。"
+  ],
+  "distractors": [["I has", "I am have", "I having"], ["no times.", "not time.", "no a time."]]
+ },
+ {
+  "sentence": "You must wait for five more days.",
+  "translation": "你得再等5天。",
+  "chunks": ["You must wait", "for five more days."],
+  "hints": ["你必须等", "再五天"],
+  "grammar": [
+   { "role": "主谓", "color": "#c87033", "phonetic": ["/juː/", "/mʌst/", "/weɪt/"], "pos": "情态动词", "meaning": "你必须等" },
+   { "role": "时间状语", "color": "#7c5cbf", "phonetic": ["/fər/", "/faɪv/", "/mɔːr/", "/deɪz/"], "pos": "介词短语", "meaning": "再多五天" }
+  ],
+  "explanations": [
+   "`five more days` = 再五天、还有五天，固定结构是「数词 + more + 复数名词」。",
+   "must 后接**动词原形**：wait，不能是 waits / waiting / to wait。表客观要求也可用 have to：You have to wait…"
+  ],
+  "distractors": [["You must waits", "You must waiting", "You must to wait"], ["for more five days.", "for five many days.", "for five more day."]]
+ },
+ {
+  "sentence": "What is taking so long?",
+  "translation": "怎么花那么长时间？",
+  "chunks": ["What is taking", "so long?"],
+  "hints": ["什么在花", "这么长时间"],
+  "grammar": [
+   { "role": "主谓", "color": "#c87033", "phonetic": ["/wʌt/", "/ɪz/", "/ˈteɪkɪŋ/"], "pos": "现在进行时", "meaning": "什么在占用" },
+   { "role": "状语", "color": "#7c5cbf", "phonetic": ["/soʊ/", "/lɔːŋ/"], "pos": "副词短语", "meaning": "这么久" }
+  ],
+  "explanations": [
+   "`take long` = 花很长时间，多用于疑问或否定：What's taking so long? / It won't take long.",
+   "这里的 so long 是「这么久」；作告别语时 So long! 才是「再见」，两者不要混。"
+  ],
+  "distractors": [["What is take", "What are taking", "What taking"], ["so long time?", "such long?", "so longer?"]]
+ },
+ {
+  "sentence": "I wasted a whole day.",
+  "translation": "白白浪费了一整天。",
+  "chunks": ["I wasted", "a whole day."],
+  "hints": ["我浪费了", "一整天"],
+  "grammar": [
+   { "role": "主谓", "color": "#c87033", "phonetic": ["/aɪ/", "/ˈweɪstɪd/"], "pos": "一般过去时", "meaning": "我浪费了" },
+   { "role": "宾语", "color": "#3358e0", "phonetic": ["/ə/", "/hoʊl/", "/deɪ/"], "pos": "名词短语", "meaning": "一整天" }
+  ],
+  "explanations": [
+   "waste 是规则动词，过去式和过去分词都是 wasted；别写成 waste（现在时）或 wasting。",
+   "`a whole day` = 一整天，whole 强调「完完整整的」。同类：a whole week、the whole night。"
+  ],
+  "distractors": [["I waste", "I was wasted", "I wasting"], ["a all day.", "whole a day.", "a whole days."]]
+ },
+ {
+  "sentence": "Time has come.",
+  "translation": "到时间了。",
+  "chunks": ["Time", "has come."],
+  "hints": ["时间", "已经到了"],
+  "grammar": [
+   { "role": "主语", "color": "#c87033", "phonetic": ["/taɪm/"], "pos": "不可数名词", "meaning": "时间" },
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/hæz/", "/kʌm/"], "pos": "现在完成时", "meaning": "已经到来" }
+  ],
+  "explanations": [
+   "`Time has come.` 用现在完成时强调「已经到点了」，是宣告式的说法。主语 Time 是单数第三人称，所以用 has 不是 have。",
+   "更日常的说法：It's time. / It's time to go. / Time's up.（时间到，该结束了）"
+  ],
+  "distractors": [["Times", "The time's", "A time"], ["has came.", "have come.", "has coming."]]
+ },
+ {
+  "sentence": "Time is money.",
+  "translation": "时间就是金钱。",
+  "chunks": ["Time", "is money."],
+  "hints": ["时间", "就是金钱"],
+  "grammar": [
+   { "role": "主语", "color": "#c87033", "phonetic": ["/taɪm/"], "pos": "不可数名词", "meaning": "时间" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/ɪz/", "/ˈmʌni/"], "pos": "主系表结构", "meaning": "是金钱" }
+  ],
+  "explanations": [
+   "英语最常见的谚语之一，用来劝人别浪费时间。定语从句/谚语中名词常用「零冠词」形式。",
+   "同类零冠词谚语：Practice makes perfect.（熟能生巧）Knowledge is power.（知识就是力量）Actions speak louder than words."
+  ],
+  "distractors": [["Times", "The time", "A time"], ["is moneys.", "are money.", "is a money."]]
+ },
+ {
+  "sentence": "I killed two hours watching TV.",
+  "translation": "我看了两个小时的电视以打发时间。",
+  "chunks": ["I killed two hours", "watching TV."],
+  "hints": ["我打发了两个小时", "看电视"],
+  "grammar": [
+   { "role": "主谓宾", "color": "#c87033", "phonetic": ["/aɪ/", "/kɪld/", "/tuː/", "/ˈaʊərz/"], "pos": "一般过去时", "meaning": "我消磨了两小时" },
+   { "role": "状语", "color": "#7c5cbf", "phonetic": ["/ˈwɑːtʃɪŋ/", "/ˌtiːˈviː/"], "pos": "现在分词短语", "meaning": "通过看电视" }
+  ],
+  "explanations": [
+   "`kill time` = 消磨时间，不是「杀死时间」。同类还有 pass the time（打发时间）。",
+   "`watching TV` 是现在分词短语表方式，口语直接接在后面；也可以加 by（by watching TV），意思一样。"
+  ],
+  "distractors": [["I kill two hours", "I killed two hour", "I was killed two hours"], ["watch TV.", "to watching TV.", "watched TV."]]
+ },
+ {
+  "sentence": "Time is up.",
+  "translation": "没有时间了。",
+  "chunks": ["Time", "is up."],
+  "hints": ["时间", "到了；用完了"],
+  "grammar": [
+   { "role": "主语", "color": "#c87033", "phonetic": ["/taɪm/"], "pos": "不可数名词", "meaning": "时间" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/ɪz/", "/ʌp/"], "pos": "be + 副词", "meaning": "结束了" }
+  ],
+  "explanations": [
+   "`be up` 表示「时间到了、用完了」：Time is up. / Your time is up. 这里的 up 不表示「在上面」。",
+   "与第 23 句方向相反：`Time has come.`（时间到了，该开始了）vs `Time is up.`（时间到，该结束了）。"
+  ],
+  "distractors": [["Times", "The time", "A time"], ["is down.", "are up.", "up is."]]
+ },
+ {
+  "sentence": "Do you have some free time?",
+  "translation": "你有空闲的时间吗？",
+  "chunks": ["Do you have", "some free time?"],
+  "hints": ["你有没有", "一些空闲时间"],
+  "grammar": [
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/duː/", "/juː/", "/hæv/"], "pos": "一般疑问句", "meaning": "你有…吗" },
+   { "role": "宾语", "color": "#3358e0", "phonetic": ["/səm/", "/friː/", "/taɪm/"], "pos": "名词短语", "meaning": "一些空闲时间" }
+  ],
+  "explanations": [
+   "`free time` 指空闲时间，是不可数名词，所以用 some 而不是 a few：~~a few free time~~ 是错的。",
+   "疑问句里更「标准」的是 any（Do you have any free time?）；用 some 时暗示期待肯定回答，语气更亲近。"
+  ],
+  "distractors": [["Do you has", "Are you have", "Do you having"], ["some free times?", "a free time?", "some frees time?"]]
+ },
+ {
+  "sentence": "It's about time.",
+  "translation": "我看时间差不多了。",
+  "chunks": ["It's", "about time."],
+  "hints": ["是", "差不多该…了"],
+  "grammar": [
+   { "role": "主系表", "color": "#e74c7a", "phonetic": ["/ɪts/"], "pos": "It is 缩写", "meaning": "是" },
+   { "role": "表语", "color": "#3358e0", "phonetic": ["/əˈbaʊt/", "/taɪm/"], "pos": "固定表达", "meaning": "该…了" }
+  ],
+  "explanations": [
+   "`It's about time.` 单独用时意思是「总算、早该如此了」，常带一点埋怨或期待的口气。",
+   "后面接动作时变成 `It's about time to go.`（该走了），或 `It's about time you went.`（你早该去了，从句用过去时表虚拟）。"
+  ],
+  "distractors": [["Its", "It was about", "It"], ["about a time.", "about the time's.", "about times."]]
+ },
+ {
+  "sentence": "Computers save us time.",
+  "translation": "电脑能帮我们省时间。",
+  "chunks": ["Computers", "save us time."],
+  "hints": ["电脑", "帮我们省时间"],
+  "grammar": [
+   { "role": "主语", "color": "#c87033", "phonetic": ["/kəmˈpjuːtərz/"], "pos": "名词复数", "meaning": "电脑" },
+   { "role": "谓语", "color": "#e74c7a", "phonetic": ["/seɪv/", "/əs/", "/taɪm/"], "pos": "双宾结构", "meaning": "给我们省时间" }
+  ],
+  "explanations": [
+   "`save sb sth` = 给某人省下某物，是双宾语结构：save us time = 给我们省时间，也可以说 save time for us。",
+   "主语 Computers 是复数，所以谓语用原形 save；若主语单数则要加 s：A computer saves us time."
+  ],
+  "distractors": [["Computer", "Computers'", "The computers is"], ["save our time's.", "saves us time.", "save us times."]]
+ }
+]

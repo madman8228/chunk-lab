@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Keep up the good work.",
+      "cid": "10e9ea4a",
+      "translation": "继续保持/干得漂亮。",
+      "chunks": [
+        "Keep up",
+        "the good work."
+      ],
+      "hints": [
+        "保持住",
+        "这份好工作"
+      ],
+      "grammar": [
+        {
+          "role": "祈使+副词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词",
+          "meaning": "保持住"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ɡʊd/",
+            "/wɜːrk/"
+          ],
+          "pos": "名词短语",
+          "meaning": "好表现"
+        }
+      ],
+      "explanations": [
+        "**keep up the good work** = 继续加油/保持好表现，上司表扬下属的高频句。",
+        "keep up 后接抽象名词：keep up the pace（保持节奏）。若指「赶上进度」是 catch up，注意区分。"
+      ],
+      "distractors": [
+        [
+          "Keeps up",
+          "Keeping up",
+          "To keep up"
+        ],
+        [
+          "good work.",
+          "a good work.",
+          "the good works."
+        ]
+      ]
+    },
+    {
+      "sentence": "Good for you.",
+      "cid": "d43245c6",
+      "translation": "真不错（为你高兴）。",
+      "chunks": [
+        "Good",
+        "for you."
+      ],
+      "hints": [
+        "好",
+        "对你来说"
+      ],
+      "grammar": [
+        {
+          "role": "表语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡʊd/"
+          ],
+          "pos": "形容词（省略主语）",
+          "meaning": "好"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对你来说"
+        }
+      ],
+      "explanations": [
+        "`Good for you` 是回应别人好消息的固定说法，表「为你高兴」。常见错误：\n• 理解成「对你有好处」→ 那是 Good for your health 之类的含义，语境不同\n• \"Good to you\" → 固定搭配用 for",
+        "同义：Nice! / That's great! / I'm happy for you."
+      ],
+      "distractors": [
+        [
+          "Good at",
+          "Good to",
+          "Better"
+        ],
+        [
+          "for your.",
+          "to you.",
+          "for yours."
+        ]
+      ]
+    },
+    {
+      "sentence": "You really changed.",
+      "cid": "b8116edf",
+      "translation": "你真的变了。",
+      "chunks": [
+        "You really",
+        "changed."
+      ],
+      "hints": [
+        "你真的",
+        "变了"
+      ],
+      "grammar": [
+        {
+          "role": "主语+状语",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/ˈriːəli/"
+          ],
+          "pos": "副词修饰谓语",
+          "meaning": "你真的"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/tʃeɪndʒd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "变了"
+        }
+      ],
+      "explanations": [
+        "`really` 修饰谓语时放在实义动词之前。常见错误：\n• \"You changed really\" → 语序错，副词不能放句末表程度\n• \"You real changed\" → 要用 really，real 是形容词",
+        "`changed` 用过去式表「已经发生了变化」。常见错误：\n• \"You are changed\" → 也可表被动，但口语直接说 changed 更自然"
+      ],
+      "distractors": [
+        [
+          "You real",
+          "You really's",
+          "You really are"
+        ],
+        [
+          "change.",
+          "changing.",
+          "changeed."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm so proud of you.",
+      "cid": "9e2532fc",
+      "translation": "我为你骄傲。",
+      "chunks": [
+        "I'm so",
+        "proud of you."
+      ],
+      "hints": [
+        "我非常",
+        "为你骄傲"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/soʊ/"
+          ],
+          "pos": "be + so",
+          "meaning": "我非常"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/praʊd/",
+            "/əv/",
+            "/juː/"
+          ],
+          "pos": "be proud of 固定搭配",
+          "meaning": "为你骄傲"
+        }
+      ],
+      "explanations": [
+        "`so` 修饰形容词，表程度。常见错误：\n• \"I so proud\" → 缺 be 动词\n• \"I'm such proud\" → such 后接名词短语",
+        "`be proud of sb` 是固定搭配，介词用 of。常见错误：\n• \"proud for you\" → 不用 for\n• \"proud at you\" → 不用 at"
+      ],
+      "distractors": [
+        [
+          "I so",
+          "I'm very",
+          "I'm such"
+        ],
+        [
+          "proud for you.",
+          "proud at you.",
+          "proud of your."
+        ]
+      ]
+    },
+    {
+      "sentence": "Great job.",
+      "cid": "8ec45499",
+      "translation": "做得好。",
+      "chunks": [
+        "Great",
+        "job."
+      ],
+      "hints": [
+        "很棒的",
+        "活儿、表现"
+      ],
+      "grammar": [
+        {
+          "role": "形容词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡreɪt/"
+          ],
+          "pos": "形容词",
+          "meaning": "很棒的"
+        },
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/dʒɑːb/"
+          ],
+          "pos": "名词",
+          "meaning": "活儿、表现"
+        }
+      ],
+      "explanations": [
+        "`Great job.` 是表扬别人的固定说法，前面常省略 What a。常见错误：\n• 说成 \"Great work\" 也对，但 job 更口语\n• 想完整表达：You did a great job.",
+        "同类：Nice work. / Well done. / Good for you."
+      ],
+      "distractors": [
+        [
+          "Greatly",
+          "Greater",
+          "Greeting"
+        ],
+        [
+          "jop.",
+          "job's.",
+          "jobb."
+        ]
+      ]
+    },
+    {
+      "sentence": "You look great today.",
+      "cid": "734357e7",
+      "translation": "你今天精神很好。",
+      "chunks": [
+        "You look",
+        "great today."
+      ],
+      "hints": [
+        "你看起来",
+        "今天很棒"
+      ],
+      "grammar": [
+        {
+          "role": "主系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/lʊk/"
+          ],
+          "pos": "look + 形容词",
+          "meaning": "你看起来"
+        },
+        {
+          "role": "表语 + 时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɡreɪt/",
+            "/təˈdeɪ/"
+          ],
+          "pos": "形容词 + 副词",
+          "meaning": "今天很棒"
+        }
+      ],
+      "explanations": [
+        "`look` 作系动词后接形容词，不接副词。常见错误：\n• \"You look greatly\" → 要用形容词 great\n• \"You look like great\" → like 后面必须接名词",
+        "相关：You look tired.（你看起来很累）/ You look nice today."
+      ],
+      "distractors": [
+        [
+          "You looks",
+          "You looking",
+          "You are look"
+        ],
+        [
+          "greatly today.",
+          "great to day.",
+          "great todays."
+        ]
+      ]
+    }
+  ]
+}

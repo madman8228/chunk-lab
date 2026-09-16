@@ -102,7 +102,7 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 | `chunklab_revs_v1` | 实体级 rev 版本号（ADR-005，core.js 维护） |
 | `chunklab_reinforce` | **已废弃**：错题本曾用的独立键（从不云同步，2026-09-08 起收敛到 `chunklab.v1.reinforceBook`，旧存量加载时一次性迁移后删除） |
 
-> **句子档案 key 与原文解耦（cid）**：`mastered` / `deletedItems` / `stats.bySentence` / 事件记录的键统一为 `deckId#cid`（cid = 句子数据的稳定内容 ID，见 `core.js` 的 `cidOf`）。内容修订时保留原 cid 即可不丢学习进度；旧数据（`deckId#原文`）在 `loadMem` 时自动一次性迁移。内置句子 cid 由 `scripts/add-cids.js` 维护（幂等），`validate_builtins.js` / `validate_oral8000.js` 回归校验。
+> **句子档案 key 与原文解耦（cid）**：`mastered` / `deletedItems` / `stats.bySentence` / 事件记录的键统一为 `deckId#cid`（cid = 句子数据的稳定内容 ID，见 `core.js` 的 `cidOf`）。内容修订时保留原 cid 即可不丢学习进度；旧数据（`deckId#原文`）在 `loadMem` 时自动一次性迁移。内置句子 cid 由 `scripts/add-cids.js` 维护（幂等），`validate_builtins.js` / `validate_oral_book.js` 回归校验。
 
 **云端（SQLite，按 user_id 隔离）**
 
@@ -138,7 +138,7 @@ node srs.test.js            # SRS 间隔序列 / 答错重置 / 旧数据兼容 
 node store.test.js          # 存储键统一 / 版本迁移 / 句子 key cid 迁移 / 默认结构
 node rev.test.js            # ADR-005 实体级 rev 同步 + 离线 change-log（dirty/重连补传）
 node validate_builtins.js   # 内置题库数据规范（cid 唯一、chunk 拼接=原句、句子不重复）
-node validate_oral8000.js   # 口语种子数据规范（chunk 拼接=原句、标点规则、alts、cid）
+node validate_oral_book.js  # 口语内容源规范（deck id/cid 全库唯一、拼接=原句、chunk 形态、alts、manifest 一致）
 node validate_freq_idioms.js# 高频短语数据规范（同上，另有 idiom 不可拆分校验）
 node scripts/validate-content.mjs # manifest / 分片 hash / 源数据总数一致性
 node course-resume.test.js  # 图文课程进度恢复
@@ -146,6 +146,25 @@ node course-resume.test.js  # 图文课程进度恢复
 > 内置句子增改后跑 `node scripts/add-cids.js` 补/重算 cid（幂等；`--force` 全量重算）再跑对应的 validate_*.js。
 >
 > 扩展内置题库后运行 `npm run content:build`：它会生成 `content/manifest.json` 和带 hash 的内容分片（每片最多 200 句）。页面启动只读取 manifest，进入具体题库时才加载分片；部署时将整个 `content/` 目录一并发布。
+
+**内容管线（口语 8000 / 高频短语）—— 新 clone 也能重建**
+
+| 角色 | 位置 | 说明 |
+|------|------|------|
+| 输入（**入库**） | `extra/oral-book/` | `book.json`（原书逐句解析结果）· `decks.json`（64 个 deck 结构）· `content/oral-<章>-<节>.json`（已铺节的内容，**改内容改这里**）· `assign.mjs`（旧 496 句归入表）· `base/`（迁移前的 builtins.js / oral8000.js 基线） |
+| 产物（**不入库**） | `oral-book.js` | 唯一内容源（装配产物，页面不加载）；新 clone 由 `pretest` 自动生成 |
+| 产物（**入库**） | `content/` | 页面实际读的分片，由 `content:build` 从 `oral-book.js` 生成 |
+
+```bash
+npm run content:assemble   # 一键重建：gen-oral-book → gen-builtins-stub → build-content → gen-sw
+#                           ⚠️ gen-builtins-stub 必须在 gen-oral-book 之后（它反查产物定归属）
+node scripts/gen-fast-content.mjs 6.34 extra/fast-spec-6-34.json   # 铺一节（中文自动取自 book.json）
+node scripts/book-content-check.mjs                                 # 书内容规范自检
+node scripts/book-dedup.mjs                                         # 规模/重叠统计（只读）
+```
+> `npm test` 挂了 `pretest`（只跑 `gen-oral-book.mjs`）→ 新 clone 开箱即可跑测试；`builtins.js` 是入库文件、**故意不自动重建**，这样「改了内容忘了重出迁移表」会被 `validate_builtins.js` 抓到。
+> 原书 `ref/*.txt` **不入库**（外部素材）；换书源时才需要 `node scripts/book-parse.mjs` → `node scripts/book-decks.mjs` 重出 `book.json` / `decks.json`。
+> 高频短语：`extra/idioms-394.json` + `extra/batch*.json` → `scripts/inject-freq-idioms.js` → `content:build`。
 
 后端冒烟测试（零依赖，启动服务跑关键接口往返）：
 ```bash
@@ -228,7 +247,7 @@ node server/backup-cli.js list                # 列出备份
 - 🔴 **开放模式公网 = 数据裸奔**：默认共享单用户 + 默认 JWT 密钥。任何公网 / 可访问网络部署必须先 `REQUIRE_AUTH=true` + 强随机 `JWT_SECRET`（详见上「安全部署清单 · ADR-006」）
 - 🟡 `main.html` 仍是 ~5.0k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
-- 🟡 `oral8000.js` 现为 150 句口语种子（并入 builtin-daily，共 238 句）；扩展内容运行 `npm run content:build` 生成可按需加载的分片，超过 1000 句的内置题库练习会按“每批数量”读取并写入独立内容缓存，源文件仍作为兼容回退
+- 🟡 口语题库现为 **`oral-book.js` 唯一内容源**（「日常口语 8000」，2026-09-16 起 50 个 `oral-*` deck / 690 句，仅构建期使用）；`builtins.js` 只保留旧 key 迁移表、`oral8000.js` 为空壳。输入的**入库位**在 `extra/oral-book/`（见上「内容管线」），`oral-book.js` 本身是产物、**不入库**。分片运行 `npm run content:build` 生成，页面经 `content/manifest.json` + 分片按需加载并写入独立内容缓存（`oral-book.js` 绝不进 SW 预缓存）
 - 🟡 统计与到期复习已使用轻量内容索引；8000 句上线前仍需完成内容质量门禁和真实移动端压力验收
 - 🟡 主流程改动后记得跑 `npm run e2e:all`（当前 35 套件 / 含主 UI 回归，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
 

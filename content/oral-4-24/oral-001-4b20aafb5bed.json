@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm shy.",
+      "translation": "我不好意思。",
+      "chunks": [
+        "I'm",
+        "shy."
+      ],
+      "hints": [
+        "我",
+        "不好意思"
+      ],
+      "cid": "7b45b52c"
+    },
+    {
+      "sentence": "I'm ashamed of myself.",
+      "translation": "我为自己感到惭愧。",
+      "chunks": [
+        "I'm ashamed",
+        "of myself."
+      ],
+      "hints": [
+        "我为自己",
+        "感到惭愧"
+      ],
+      "cid": "7284f7ce"
+    },
+    {
+      "sentence": "How shameful!",
+      "translation": "真恬不知耻!",
+      "chunks": [
+        "How",
+        "shameful!"
+      ],
+      "hints": [
+        "真",
+        "恬不知耻"
+      ],
+      "cid": "281c321f"
+    },
+    {
+      "sentence": "Shame on you!",
+      "translation": "你真丢脸!",
+      "chunks": [
+        "Shame on",
+        "you!"
+      ],
+      "hints": [
+        "你真",
+        "丢脸"
+      ],
+      "cid": "16b468a6"
+    }
+  ]
+}

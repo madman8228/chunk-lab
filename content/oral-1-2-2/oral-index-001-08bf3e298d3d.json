@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "7e998d83",
+      "sentence": "We went hiking last Sunday.",
+      "translation": "上周日我们去徒步了。",
+      "sourceUrl": "content/oral-1-2-2/oral-001-ec1c6d5764b5.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "48a08dbe",
+      "sentence": "Have you seen the latest movie yet?",
+      "translation": "你看过那部最新的电影了吗？",
+      "sourceUrl": "content/oral-1-2-2/oral-001-ec1c6d5764b5.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "f265bd24",
+      "sentence": "The book is way better than the movie.",
+      "translation": "这本书比电影好看多了。",
+      "sourceUrl": "content/oral-1-2-2/oral-001-ec1c6d5764b5.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "574f6eb0",
+      "sentence": "I can't put this novel down.",
+      "translation": "这本小说让我爱不释手。",
+      "sourceUrl": "content/oral-1-2-2/oral-001-ec1c6d5764b5.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "56db8fc9",
+      "sentence": "How about the movies?",
+      "translation": "看电影怎么样？",
+      "sourceUrl": "content/oral-1-2-2/oral-001-ec1c6d5764b5.json",
+      "sourceOffset": 4
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+ {
+  "sentence": "I sympathize with you.",
+  "chunks": ["I sympathize", "with you."],
+  "hints": ["我", "对你深表同情"]
+ },
+ {
+  "sentence": "What a pity we've lost such a great man!",
+  "chunks": ["What a pity", "we've lost", "such a great man!"],
+  "hints": ["真遗憾", "我们失去了", "这么好的人"]
+ },
+ {
+  "sentence": "I'm going to miss my grandpa.",
+  "chunks": ["I'm going to miss", "my grandpa."],
+  "hints": ["我会怀念", "我的爷爷"]
+ },
+ {
+  "sentence": "Try not to get depressed.",
+  "chunks": ["Try not to", "get depressed."],
+  "hints": ["尽量别", "消沉"]
+ },
+ {
+  "sentence": "It was terrible this time, wasn't it?",
+  "chunks": ["It was terrible", "this time,", "wasn't it?"],
+  "hints": ["太糟糕了", "这一次", "是不是"]
+ },
+ {
+  "sentence": "I'm so sorry.",
+  "chunks": ["I'm so", "sorry."],
+  "hints": ["我", "太难过了"]
+ }
+]

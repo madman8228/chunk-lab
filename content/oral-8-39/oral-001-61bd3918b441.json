@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Better late than never.",
+      "cid": "c556a208",
+      "translation": "迟做总比不做好。",
+      "chunks": [
+        "Better late",
+        "than never."
+      ],
+      "hints": [
+        "宁愿晚",
+        "也比没有强"
+      ],
+      "grammar": [
+        {
+          "role": "谚语前半",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈbetər/",
+            "/leɪt/"
+          ],
+          "pos": "省略比较句",
+          "meaning": "迟做"
+        },
+        {
+          "role": "谚语后半",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðæn/",
+            "/ˈnevər/"
+          ],
+          "pos": "than+省略",
+          "meaning": "比不做好"
+        }
+      ],
+      "explanations": [
+        "**Better late than never.** 谚语「迟做总比不做好」，用于安慰迟到/晚到的成果。",
+        "结构上是 It's better to be late than never (to do it) 的省略。对比另一谚语：**Never too late to learn**（活到老学到老）。"
+      ],
+      "distractors": [
+        [
+          "More late",
+          "Best late",
+          "Better lates"
+        ],
+        [
+          "then never.",
+          "as never.",
+          "than ever."
+        ]
+      ]
+    },
+    {
+      "sentence": "Practice makes perfect.",
+      "cid": "f7458ab4",
+      "translation": "熟能生巧。",
+      "chunks": [
+        "Practice",
+        "makes perfect."
+      ],
+      "hints": [
+        "练习",
+        "造就完美"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈpræktɪs/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "练习"
+        },
+        {
+          "role": "谓语+表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/meɪks/",
+            "/ˈpɜːfɪkt/"
+          ],
+          "pos": "主谓宾谚语",
+          "meaning": "造就完美"
+        }
+      ],
+      "explanations": [
+        "经典谚语，意为「熟能生巧」。practice 是不可数名词。常见错误：\n• \"**Practices** makes perfect\" → practice 此处不可数，不加 s\n• \"Practice **make** perfect\" → 主语第三人称单数，谓语要 makes",
+        "`makes perfect` 中 perfect 是名词性用法（表完美状态）。此谚语结构简洁，不可逐字改动。"
+      ],
+      "distractors": [
+        [
+          "Practices",
+          "The practice",
+          "To practice"
+        ],
+        [
+          "make perfect.",
+          "makes perfectly.",
+          "made perfect."
+        ]
+      ]
+    }
+  ]
+}

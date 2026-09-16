@@ -1,0 +1,72 @@
+[
+ {
+  "sentence": "I don't know what to do.",
+  "chunks": ["I don't know", "what to do."],
+  "hints": ["我不知道", "该怎么办"]
+ },
+ {
+  "sentence": "What am I supposed to do?",
+  "chunks": ["What am I", "supposed to do?"],
+  "hints": ["我该", "怎么办才好"]
+ },
+ {
+  "sentence": "We are in trouble.",
+  "chunks": ["We are", "in trouble."],
+  "hints": ["我们", "有麻烦了"]
+ },
+ {
+  "sentence": "It's a hassle.",
+  "chunks": ["It's", "a hassle."],
+  "hints": ["真是", "件麻烦事"]
+ },
+ {
+  "sentence": "It's really a difficult problem.",
+  "chunks": ["It's really", "a difficult problem."],
+  "hints": ["这真是", "个难题"]
+ },
+ {
+  "sentence": "I don't know what to say.",
+  "chunks": ["I don't know", "what to say."],
+  "hints": ["我不知道", "说什么才好"]
+ },
+ {
+  "sentence": "You got me.",
+  "chunks": ["You", "got me."],
+  "hints": ["你", "可难住我了"]
+ },
+ {
+  "sentence": "He's a nuisance.",
+  "chunks": ["He's", "a nuisance."],
+  "hints": ["他", "真招人烦"]
+ },
+ {
+  "sentence": "Oops!",
+  "chunks": ["Oops!"],
+  "hints": ["哎哟"]
+ },
+ {
+  "sentence": "Oh, no!",
+  "chunks": ["Oh,", "no!"],
+  "hints": ["噢", "不"]
+ },
+ {
+  "sentence": "That's the hard part.",
+  "chunks": ["That's", "the hard part."],
+  "hints": ["难就难在", "这一点"]
+ },
+ {
+  "sentence": "I feel guilty.",
+  "chunks": ["I feel", "guilty."],
+  "hints": ["我感到", "内疚"]
+ },
+ {
+  "sentence": "You look puzzled.",
+  "chunks": ["You look", "puzzled."],
+  "hints": ["你看起来", "很困惑"]
+ },
+ {
+  "sentence": "The idea haunts me.",
+  "chunks": ["The idea", "haunts me."],
+  "hints": ["那个念头", "总缠着我"]
+ }
+]

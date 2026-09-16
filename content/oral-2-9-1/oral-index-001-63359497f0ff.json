@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "5b28a18d",
+      "sentence": "Do you prefer coffee or tea?",
+      "translation": "你更喜欢咖啡还是茶？",
+      "sourceUrl": "content/oral-2-9-1/oral-001-d69c2adaa760.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "300d8e13",
+      "sentence": "What's your favorite way to relax?",
+      "translation": "你最喜欢的放松方式是什么？",
+      "sourceUrl": "content/oral-2-9-1/oral-001-d69c2adaa760.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "a5117784",
+      "sentence": "What do you think of this idea?",
+      "translation": "你觉得这个主意怎么样？",
+      "sourceUrl": "content/oral-2-9-1/oral-001-d69c2adaa760.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "5e6bba59",
+      "sentence": "That reminds me of something.",
+      "translation": "那让我想起了一件事。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-d69c2adaa760.json",
+      "sourceOffset": 3
+    }
+  ]
+}

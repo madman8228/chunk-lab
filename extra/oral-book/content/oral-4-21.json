@@ -1,0 +1,108 @@
+[
+ {
+  "sentence": "Really?",
+  "translation": "真的?",
+  "chunks": [
+   "Really?"
+  ],
+  "hints": [
+   "真的吗"
+  ]
+ },
+ {
+  "sentence": "Are you serious?",
+  "translation": "你是认真的吗?",
+  "chunks": [
+   "Are you",
+   "serious?"
+  ],
+  "hints": [
+   "你是",
+   "认真的吗"
+  ]
+ },
+ {
+  "sentence": "Are you joking?",
+  "translation": "开玩笑呢吧?",
+  "chunks": [
+   "Are you",
+   "joking?"
+  ],
+  "hints": [
+   "你在",
+   "开玩笑吗"
+  ]
+ },
+ {
+  "sentence": "It sounds fishy to me.",
+  "translation": "听起来可疑。",
+  "chunks": [
+   "It sounds",
+   "fishy to me."
+  ],
+  "hints": [
+   "听起来",
+   "有点可疑"
+  ]
+ },
+ {
+  "sentence": "I won't buy that story.",
+  "translation": "我不信他的话。",
+  "chunks": [
+   "I won't buy",
+   "that story."
+  ],
+  "hints": [
+   "我才不信",
+   "那套说法"
+  ]
+ },
+ {
+  "sentence": "Do you think she's serious?",
+  "translation": "你认为她是当真的吗?",
+  "chunks": [
+   "Do you think",
+   "she's serious?"
+  ],
+  "hints": [
+   "你觉得",
+   "她是当真的吗"
+  ]
+ },
+ {
+  "sentence": "I don't take him too seriously.",
+  "translation": "我不把他的话太当真。",
+  "chunks": [
+   "I don't take him",
+   "too seriously."
+  ],
+  "hints": [
+   "我没把他的话",
+   "太当真"
+  ]
+ },
+ {
+  "sentence": "I don't believe him.",
+  "translation": "我不相信他。",
+  "chunks": [
+   "I don't",
+   "believe him."
+  ],
+  "hints": [
+   "我不",
+   "相信他"
+  ]
+ },
+ {
+  "sentence": "It's too good to be true.",
+  "translation": "有这么好的事!",
+  "chunks": [
+   "It's too good",
+   "to be true."
+  ],
+  "hints": [
+   "好得",
+   "不像是真的"
+  ]
+ }
+]

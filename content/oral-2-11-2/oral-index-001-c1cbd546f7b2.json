@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "10e9ea4a",
+      "sentence": "Keep up the good work.",
+      "translation": "继续保持/干得漂亮。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-299ce5935370.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "d43245c6",
+      "sentence": "Good for you.",
+      "translation": "真不错（为你高兴）。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-299ce5935370.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "b8116edf",
+      "sentence": "You really changed.",
+      "translation": "你真的变了。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-299ce5935370.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "9e2532fc",
+      "sentence": "I'm so proud of you.",
+      "translation": "我为你骄傲。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-299ce5935370.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "8ec45499",
+      "sentence": "Great job.",
+      "translation": "做得好。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-299ce5935370.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "734357e7",
+      "sentence": "You look great today.",
+      "translation": "你今天精神很好。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-299ce5935370.json",
+      "sourceOffset": 5
+    }
+  ]
+}

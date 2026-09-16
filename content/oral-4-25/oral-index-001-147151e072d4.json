@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "8a621293",
+      "sentence": "I'm shocked.",
+      "translation": "我很震惊。",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "c25a6b00",
+      "sentence": "That's amazing!",
+      "translation": "太让人吃惊了!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "eb1cbd37",
+      "sentence": "You're kidding!",
+      "translation": "你在开玩笑吧!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "f4385699",
+      "sentence": "It can't be!",
+      "translation": "怎么可能!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "a1d75fec",
+      "sentence": "That's really something!",
+      "translation": "那真的很重要!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "3905b6a3",
+      "sentence": "Oh, my!",
+      "translation": "哎呀!/吓死人了。",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "53fbe90d",
+      "sentence": "Well, well.",
+      "translation": "哎呀呀!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "88bde0cc",
+      "sentence": "You surprised me!",
+      "translation": "你吓死我了。",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "6a0ddec0",
+      "sentence": "You don't say!",
+      "translation": "这怎么可能呢?",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "486779b6",
+      "sentence": "That'll be the day!",
+      "translation": "永远不可能有那样的事!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "d7266af7",
+      "sentence": "A great shock.",
+      "translation": "震惊。",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "a24f89a6",
+      "sentence": "That's news to me.",
+      "translation": "第一次听说。",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "767f534b",
+      "sentence": "It's mind-boggling!",
+      "translation": "令人难以想像!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "162634d3",
+      "sentence": "Gosh!",
+      "translation": "糟了!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "a7d62da8",
+      "sentence": "We were surprised by the news.",
+      "translation": "那条消息真让人吃惊。",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "e273b326",
+      "sentence": "Boo!",
+      "translation": "哇!",
+      "sourceUrl": "content/oral-4-25/oral-001-9896df333d99.json",
+      "sourceOffset": 15
+    }
+  ]
+}

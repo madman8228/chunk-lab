@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I don't know what to do.",
+      "translation": "该怎么办呢?",
+      "chunks": [
+        "I don't know",
+        "what to do."
+      ],
+      "hints": [
+        "我不知道",
+        "该怎么办"
+      ],
+      "cid": "581a9eab"
+    },
+    {
+      "sentence": "What am I supposed to do?",
+      "translation": "我该怎么办?",
+      "chunks": [
+        "What am I",
+        "supposed to do?"
+      ],
+      "hints": [
+        "我该",
+        "怎么办才好"
+      ],
+      "cid": "09f4b186"
+    },
+    {
+      "sentence": "We are in trouble.",
+      "translation": "这下可麻烦了。",
+      "chunks": [
+        "We are",
+        "in trouble."
+      ],
+      "hints": [
+        "我们",
+        "有麻烦了"
+      ],
+      "cid": "d9a69161"
+    },
+    {
+      "sentence": "It's a hassle.",
+      "translation": "那很麻烦。",
+      "chunks": [
+        "It's",
+        "a hassle."
+      ],
+      "hints": [
+        "真是",
+        "件麻烦事"
+      ],
+      "cid": "1a295d11"
+    },
+    {
+      "sentence": "It's really a difficult problem.",
+      "translation": "这真是个难题。",
+      "chunks": [
+        "It's really",
+        "a difficult problem."
+      ],
+      "hints": [
+        "这真是",
+        "个难题"
+      ],
+      "cid": "a582b643"
+    },
+    {
+      "sentence": "I don't know what to say.",
+      "translation": "我不知道说什么才好。",
+      "chunks": [
+        "I don't know",
+        "what to say."
+      ],
+      "hints": [
+        "我不知道",
+        "说什么才好"
+      ],
+      "cid": "d720d9f9"
+    },
+    {
+      "sentence": "You got me.",
+      "translation": "这下可难住我了。",
+      "chunks": [
+        "You",
+        "got me."
+      ],
+      "hints": [
+        "你",
+        "可难住我了"
+      ],
+      "cid": "30112726"
+    },
+    {
+      "sentence": "He's a nuisance.",
+      "translation": "他特招人讨厌。",
+      "chunks": [
+        "He's",
+        "a nuisance."
+      ],
+      "hints": [
+        "他",
+        "真招人烦"
+      ],
+      "cid": "ca5fc7f7"
+    },
+    {
+      "sentence": "Oops!",
+      "translation": "哎哟!",
+      "chunks": [
+        "Oops!"
+      ],
+      "hints": [
+        "哎哟"
+      ],
+      "cid": "29d2a17d"
+    },
+    {
+      "sentence": "Oh, no!",
+      "translation": "噢!不!",
+      "chunks": [
+        "Oh,",
+        "no!"
+      ],
+      "hints": [
+        "噢",
+        "不"
+      ],
+      "cid": "6ba23ca4"
+    },
+    {
+      "sentence": "That's the hard part.",
+      "translation": "这正是难点。",
+      "chunks": [
+        "That's",
+        "the hard part."
+      ],
+      "hints": [
+        "难就难在",
+        "这一点"
+      ],
+      "cid": "ddfe1007"
+    },
+    {
+      "sentence": "I feel guilty.",
+      "translation": "我感到内疚。",
+      "chunks": [
+        "I feel",
+        "guilty."
+      ],
+      "hints": [
+        "我感到",
+        "内疚"
+      ],
+      "cid": "6646ddb0"
+    },
+    {
+      "sentence": "You look puzzled.",
+      "translation": "你看来很困惑。",
+      "chunks": [
+        "You look",
+        "puzzled."
+      ],
+      "hints": [
+        "你看起来",
+        "很困惑"
+      ],
+      "cid": "d9bbdd37"
+    },
+    {
+      "sentence": "The idea haunts me.",
+      "translation": "那个念头总是萦绕着我。",
+      "chunks": [
+        "The idea",
+        "haunts me."
+      ],
+      "hints": [
+        "那个念头",
+        "总缠着我"
+      ],
+      "cid": "e76c552c"
+    },
+    {
+      "sentence": "It slipped my mind.",
+      "cid": "d2d4552d",
+      "translation": "我一时忘了。",
+      "chunks": [
+        "It slipped",
+        "my mind."
+      ],
+      "hints": [
+        "它溜出了",
+        "我的脑海"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪt/",
+            "/slɪpt/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "它（溜出）"
+        },
+        {
+          "role": "宾语（习语）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/maɪnd/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的脑海"
+        }
+      ],
+      "explanations": [
+        "**slip one's mind** = 被遗忘（事情溜出脑海），是忘记的惯用表达。",
+        "常见错误：\"It slipped **in** my mind\" → 不需要 in。忘记做某事也可说 **It completely slipped my mind**（我完全忘了）。"
+      ],
+      "distractors": [
+        [
+          "It slip",
+          "It slips",
+          "It was slipped"
+        ],
+        [
+          "me mind.",
+          "my minds.",
+          "my memory."
+        ]
+      ]
+    },
+    {
+      "sentence": "I can't remember where I put my keys.",
+      "cid": "6abc41f7",
+      "translation": "我忘了把钥匙放哪儿了。",
+      "chunks": [
+        "I can't remember",
+        "where I put",
+        "my keys."
+      ],
+      "hints": [
+        "我想不起来",
+        "我放在哪儿",
+        "我的钥匙"
+      ],
+      "grammar": [
+        {
+          "role": "主谓否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/kænt/",
+            "/rɪˈmembər/"
+          ],
+          "pos": "否定句",
+          "meaning": "我想不起来"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wer/",
+            "/aɪ/",
+            "/pʊt/"
+          ],
+          "pos": "名词性从句",
+          "meaning": "我放在哪儿"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/kiːz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的钥匙"
+        }
+      ],
+      "explanations": [
+        "`remember + where 从句` 用陈述语序。常见错误：\n• \"where **did I** put\" → 从句内不倒装，用 I put\n• \"remember **to find**\" → remember where 是宾语从句，不是 remember to do",
+        "put 的过去式仍是 put（不规则动词不变形）。近义句：I can't find my keys anywhere."
+      ],
+      "distractors": [
+        [
+          "I can't remembered",
+          "I cann't remember",
+          "I can't to remember"
+        ],
+        [
+          "where I putted",
+          "where did I put",
+          "where I puts"
+        ],
+        [
+          "my key.",
+          "mine keys.",
+          "keys."
+        ]
+      ]
+    }
+  ]
+}

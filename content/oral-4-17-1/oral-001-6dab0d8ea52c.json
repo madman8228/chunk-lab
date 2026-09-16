@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I can't stand the noise from the street.",
+      "cid": "2b0c3220",
+      "translation": "我受不了街上传来的噪音。",
+      "chunks": [
+        "I can't stand",
+        "the noise",
+        "from the street."
+      ],
+      "hints": [
+        "我无法忍受",
+        "噪音",
+        "来自街道"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/kɑːnt/",
+            "/stænd/"
+          ],
+          "pos": "情态否定",
+          "meaning": "我无法忍受"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/nɔɪz/"
+          ],
+          "pos": "名词",
+          "meaning": "噪音"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/frɒm/",
+            "/ðə/",
+            "/striːt/"
+          ],
+          "pos": "后置定语",
+          "meaning": "来自街道"
+        }
+      ],
+      "explanations": [
+        "`can't stand` = 受不了/无法忍受（比 don't like 语气强）。常见错误：\n• \"can't **standing**\" → stand 此处是动词，can't stand + 名词\n• \"can't stand it noise\" → 直接接 the noise，不需要 it",
+        "`the noise` = 噪音（不可数）。",
+        "`from the street` 介词短语后置修饰 noise = 街上传来的噪音。"
+      ],
+      "distractors": [
+        [
+          "I couldn't stand",
+          "I can't staying",
+          "I can't stands"
+        ],
+        [
+          "the noises",
+          "noise",
+          "this noise"
+        ],
+        [
+          "from the streets.",
+          "in the street.",
+          "of the street."
+        ]
+      ]
+    },
+    {
+      "sentence": "My computer just froze again.",
+      "cid": "304eb970",
+      "translation": "我的电脑刚刚又死机了。",
+      "chunks": [
+        "My computer",
+        "just froze",
+        "again."
+      ],
+      "hints": [
+        "我的电脑",
+        "刚刚死机",
+        "又"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/maɪ/",
+            "/kəmˈpjuːtər/"
+          ],
+          "pos": "名词",
+          "meaning": "我的电脑"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/dʒʌst/",
+            "/froʊz/"
+          ],
+          "pos": "freeze 过去式",
+          "meaning": "死机"
+        },
+        {
+          "role": "频度副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈɡen/"
+          ],
+          "pos": "副词",
+          "meaning": "又"
+        }
+      ],
+      "explanations": [
+        "电脑故障。`freeze` = 死机/卡住（画面不动），过去式 froze。常见错误：\n• \"freezed\" → freeze 不规则变化 froze\n• \"my computer is froze\" → 被动是 frozen",
+        "`just` = 刚刚（与过去时连用）。口语同义：It crashed.（崩了）"
+      ],
+      "distractors": [
+        [
+          "Mine computer",
+          "My computers",
+          "Computer"
+        ],
+        [
+          "just freezes",
+          "just frozen",
+          "just freeze now"
+        ],
+        [
+          "again now.",
+          "one more.",
+          "again later."
+        ]
+      ]
+    },
+    {
+      "sentence": "I can't put up with it.",
+      "cid": "3689d2d6",
+      "translation": "我受不了这个。",
+      "chunks": [
+        "I can't",
+        "put up with it."
+      ],
+      "hints": [
+        "我不能",
+        "忍受它"
+      ],
+      "grammar": [
+        {
+          "role": "主语+情态",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/kænt/"
+          ],
+          "pos": "can not 缩写",
+          "meaning": "我不能"
+        },
+        {
+          "role": "固定表达",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pʊt/",
+            "/ʌp/",
+            "/wɪð/",
+            "/ɪt/"
+          ],
+          "pos": "put up with 短语动词",
+          "meaning": "忍受它"
+        }
+      ],
+      "explanations": [
+        "`can't` = cannot，表能力或不允许。常见错误：\n• \"I can't to put\" → 情态动词后不加 to\n• \"I can not\" → 分开写也可，但口语几乎都缩写",
+        "`put up with` 是三个词组成的短语动词，意思是「忍受」，不能拆开理解。常见错误：\n• \"put up it\" → 缺 with\n• \"put with it\" → 缺 up\n按字面理解成「把……放上去」会完全跑偏"
+      ],
+      "distractors": [
+        [
+          "I can",
+          "I can't to",
+          "I cannot to"
+        ],
+        [
+          "put up it.",
+          "put with it.",
+          "put up on it."
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you angry?",
+      "cid": "db59a3b8",
+      "translation": "你生气了吗？",
+      "chunks": [
+        "Are you",
+        "angry?"
+      ],
+      "hints": [
+        "你是",
+        "生气的"
+      ],
+      "grammar": [
+        {
+          "role": "系动词 + 主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈæŋɡri/"
+          ],
+          "pos": "形容词",
+          "meaning": "生气的"
+        }
+      ],
+      "explanations": [
+        "`angry` 重音在第一音节 /ˈæŋɡri/。常见错误：\n• \"Are you anger?\" → anger 是名词，这里用形容词 angry\n• 对某人生气要说 angry with me",
+        "程度递进：annoyed（有点烦）< angry < furious（暴怒）"
+      ],
+      "distractors": [
+        [
+          "Is you",
+          "Are your",
+          "Do you"
+        ],
+        [
+          "anger?",
+          "angrily?",
+          "angry with?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Of course not.",
+      "cid": "85acd6c2",
+      "translation": "当然没有。",
+      "chunks": [
+        "Of course",
+        "not."
+      ],
+      "hints": [
+        "当然",
+        "不"
+      ],
+      "grammar": [
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əv/",
+            "/kɔːrs/"
+          ],
+          "pos": "固定短语",
+          "meaning": "当然"
+        },
+        {
+          "role": "否定答语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/nɑːt/"
+          ],
+          "pos": "副词",
+          "meaning": "不"
+        }
+      ],
+      "explanations": [
+        "`Of course not.` 用来强烈否认，回答一般疑问句。常见错误：\n• \"Of course no\" → 否定答语用 not\n• 肯定回答是 Of course.，别在肯定回答里带 not",
+        "相关：Not at all. / Absolutely not.（语气更强）"
+      ],
+      "distractors": [
+        [
+          "Of the course",
+          "On course",
+          "Of cause"
+        ],
+        [
+          "no.",
+          "none.",
+          "not to."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm offended.",
+      "cid": "6ba05043",
+      "translation": "我觉得被冒犯了。",
+      "chunks": [
+        "I'm",
+        "offended."
+      ],
+      "hints": [
+        "我",
+        "被冒犯的"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/"
+          ],
+          "pos": "I am 缩写",
+          "meaning": "我"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/əˈfendɪd/"
+          ],
+          "pos": "过去分词作形容词",
+          "meaning": "被冒犯的"
+        }
+      ],
+      "explanations": [
+        "`be offended` = 感到被冒犯，被谁冒犯用 by。常见错误：\n• 拼写：offe**nd**ed，两个 f\n• \"I'm offending\" → offending 是「冒犯别人的」，说自己要用 offended",
+        "相关：That's offensive.（那话很冒犯）/ No offense.（无意冒犯）"
+      ],
+      "distractors": [
+        [
+          "I",
+          "I've",
+          "Me"
+        ],
+        [
+          "offending.",
+          "offense.",
+          "offend."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get off of me.",
+      "cid": "2d1602f3",
+      "translation": "放开我。",
+      "chunks": [
+        "Get off of",
+        "me."
+      ],
+      "hints": [
+        "从……上离开",
+        "我"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/ɔːf/",
+            "/əv/"
+          ],
+          "pos": "短语动词 get off of",
+          "meaning": "从……上离开"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/miː/"
+          ],
+          "pos": "人称代词宾格",
+          "meaning": "我"
+        }
+      ],
+      "explanations": [
+        "`Get off of me.` = 放开我、别压着我，of 是口语里常加的。常见错误：\n• \"Get off me\" 也很常见，美式更爱加 of\n• \"Get of me\" → 少了 f，get off 不能漏",
+        "相关：Let go of me.（放开我）/ Hands off!（别碰）"
+      ],
+      "distractors": [
+        [
+          "Get out of",
+          "Get of",
+          "Getting off of"
+        ],
+        [
+          "us.",
+          "him.",
+          "them."
+        ]
+      ]
+    }
+  ]
+}

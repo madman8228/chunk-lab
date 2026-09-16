@@ -1,0 +1,36 @@
+# oral-batch6 素材源 · 老板 2026-09-15 给（起床/睡眠主题 + 一段对话）
+# 格式：<英文> | <中文>
+# 说明：原文拼写/标点已修正；「get up soon = get out of the bed quickly」取主句；
+#      「I thought she said something to me. I said, "What?"」拆为前一句成条，引号部分入解释。
+
+I want to stay in bed for another half an hour. | 我真想在床上多睡半个小时
+It's time to get up. | 该起床了
+Let me sleep for ten minutes. | 让我再睡十分钟
+When do you get up on Saturday? | 星期六你几点起床
+Get up soon. | 快起床
+I usually sleep late on Saturday. | 我星期六通常晚起
+I don't want to get up. | 我真不想起床
+Are you awake? | 你醒了吗？
+It's too early for getting up. | 现在起床还太早
+It's still early. | 时间还早
+Why didn't the alarm go off? | 闹钟为什么没响呢
+Did you hear the alarm? | 你听到闹钟了吗
+I've been dreaming all night. | 我一直在做梦
+I feel dizzy. | 我觉得头昏脑涨的
+Is David up yet? | 大卫起床了吗
+He is still in bed. | 他还没起
+When did you go to bed last night? | 你昨晚几点睡的
+When did you fall asleep? | 你几点睡着的
+I never get up early. | 我从来不起早
+I have trouble waking up in the morning. | 早起对我是件困难的事
+What should I wear? | 穿什么好呢
+Fold up your bedding. | 把被子叠好
+Who's that woman you were talking to? | 跟你说话的那个女人是谁
+Why would I need that? | 我要那个干嘛
+I'm not gonna talk about Judy. | 我不想聊朱迪
+I think you do. | 你有的
+I don't give a shit. | 我才不在乎（比 I don't care 语气强烈得多）
+I was sitting next to her on the plane. | 在飞机上我坐她旁边
+I thought she said something to me. | 我以为她在跟我搭话
+You would be the last person I'd want to see. | 我最不想见的人就是你了
+Yeah, maybe run into her at the gym. | 也许能在健身房和她偶遇

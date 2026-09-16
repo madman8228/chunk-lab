@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Sorry, I didn't catch what you said.",
+      "cid": "67ae602e",
+      "translation": "抱歉，我没听清你说的话。",
+      "chunks": [
+        "Sorry,",
+        "I didn't catch",
+        "what you said."
+      ],
+      "hints": [
+        "抱歉",
+        "我没听清",
+        "你说的话"
+      ],
+      "grammar": [
+        {
+          "role": "插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsɒri/"
+          ],
+          "pos": "感叹词",
+          "meaning": "抱歉"
+        },
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈdɪdnt/",
+            "/kætʃ/"
+          ],
+          "pos": "一般过去时否定",
+          "meaning": "我没听清"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wɒt/",
+            "/juː/",
+            "/sed/"
+          ],
+          "pos": "名词性从句",
+          "meaning": "你说的话"
+        }
+      ],
+      "explanations": [
+        "这里 **Sorry** 是独立的礼貌用语，后面用逗号隔开。也可以说 \"Excuse me\" 或 \"Pardon\"。",
+        "**一般过去时的否定**：didn't + 动词原形。常见错误：\n• \"I **don't** catch\" → 时态错了，事情已经发生\n• \"I didn't **caught**\" → caught 是过去分词，didn't 后面要用原形 catch",
+        "**catch 后面的宾语从句用陈述语序**（主语 + 谓语），不是疑问语序。常见错误：\n• \"what **did you** say\" → 这是直接疑问句的语序，从句里要还原成 \"you said\""
+      ],
+      "distractors": [
+        [
+          "Sory,",
+          "Sorrys,",
+          "Sorry for,"
+        ],
+        [
+          "I don't catch",
+          "I didn't caught",
+          "I didn't catches"
+        ],
+        [
+          "what did you say.",
+          "that you said.",
+          "what you say."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you speak a bit more slowly, please?",
+      "cid": "c6319b49",
+      "translation": "你能说慢一点吗？",
+      "chunks": [
+        "Could you speak",
+        "a bit more slowly,",
+        "please?"
+      ],
+      "hints": [
+        "你能说",
+        "稍微慢一点",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/spiːk/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能说"
+        },
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ə/",
+            "/bɪt/",
+            "/mɔːr/",
+            "/ˈsləʊli/"
+          ],
+          "pos": "副词短语",
+          "meaning": "稍微慢一点"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "`Could you speak more slowly` 请求放慢语速。常见错误：\n• \"speak more **slow**\" → slow 是形容词，修饰动词要用副词 slowly\n• \"speak **slower**\" → 口语偶见，但 more slowly 更规范",
+        "`a bit` = 稍微，用来缓和请求语气，也可换 a little。please 放句末更礼貌。"
+      ],
+      "distractors": [
+        [
+          "Could you spoke",
+          "Could your speak",
+          "Could you to speak"
+        ],
+        [
+          "a bit more slower,",
+          "a bit of more slowly,",
+          "a more bit slowly,"
+        ],
+        [
+          "pleased?",
+          "pleases?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I didn't quite catch what you said.",
+      "cid": "9dc552cd",
+      "translation": "我没太听清你说的话。",
+      "chunks": [
+        "I didn't quite catch",
+        "what you said."
+      ],
+      "hints": [
+        "我没太听清",
+        "你说的话"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈdɪdnt/",
+            "/kwaɪt/",
+            "/kætʃ/"
+          ],
+          "pos": "过去时否定",
+          "meaning": "我没太听清"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɒt/",
+            "/juː/",
+            "/sed/"
+          ],
+          "pos": "what 从句",
+          "meaning": "你说的话"
+        }
+      ],
+      "explanations": [
+        "没听清时请对方重复。`catch` 此处 = 听清/听懂。常见错误：\n• \"I didn't **heard**\" → didn't 后接动词原形 hear/catch\n• \"I didn't quite **listen** what you said\" → 听清用 catch/hear，不用 listen",
+        "`what you said` = 你说的话（what 引导名词性从句）。注意从句语序是陈述语序（you said，不是 did you say）。"
+      ],
+      "distractors": [
+        [
+          "I don't quite catch",
+          "I didn't quite caught",
+          "I didn't quite catching"
+        ],
+        [
+          "what did you said.",
+          "what you say.",
+          "that you said."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you run that by me one more time?",
+      "cid": "a5317c23",
+      "translation": "你能再给我说一遍吗？",
+      "chunks": [
+        "Could you run that by me",
+        "one more time?"
+      ],
+      "hints": [
+        "你能给我过一遍",
+        "再一次"
+      ],
+      "grammar": [
+        {
+          "role": "情态+短语动词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/rʌn/",
+            "/ðæt/",
+            "/baɪ/",
+            "/miː/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能给我讲一遍"
+        },
+        {
+          "role": "频率状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌn/",
+            "/mɔːr/",
+            "/taɪm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "再一次"
+        }
+      ],
+      "explanations": [
+        "`run that by me` = 给我讲一遍/过一遍（美式口语，常用于确认理解）。常见错误：\n• \"run **me** by that\" → 语序固定：run that by me\n• \"say that to me again\" → 也对，但 run by 更口语",
+        "`one more time` = 再一次。同义：once more / again."
+      ],
+      "distractors": [
+        [
+          "Could you run that to me",
+          "Can you run me by that",
+          "Could your run that by me"
+        ],
+        [
+          "one another time?",
+          "more one time?",
+          "one more times?"
+        ]
+      ]
+    }
+  ]
+}

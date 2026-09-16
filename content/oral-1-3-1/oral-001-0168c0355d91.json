@@ -1,0 +1,727 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "How long have you been feeling like this?",
+      "cid": "f5a21d52",
+      "translation": "你这样感觉有多久了？",
+      "chunks": [
+        "How long",
+        "have you been feeling",
+        "like this?"
+      ],
+      "hints": [
+        "多久",
+        "你一直感觉",
+        "像这样"
+      ],
+      "grammar": [
+        {
+          "role": "疑问副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/haʊ/",
+            "/lɒŋ/"
+          ],
+          "pos": "疑问短语",
+          "meaning": "多久"
+        },
+        {
+          "role": "现在完成进行",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/juː/",
+            "/bɪn/",
+            "/ˈfiːlɪŋ/"
+          ],
+          "pos": "完成进行时",
+          "meaning": "你一直感觉"
+        },
+        {
+          "role": "介词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/laɪk/",
+            "/ðɪs/"
+          ],
+          "pos": "方式状语",
+          "meaning": "像这样"
+        }
+      ],
+      "explanations": [
+        "医生问病史的标准句。`How long + 现在完成进行` 问持续时长。常见错误：\n• \"How long **are** you feeling\" → 问持续至今要用完成进行时\n• \"How **often** have you been feeling\" → often 问频率，long 问时长",
+        "`have been feeling` 现在完成进行时表「从过去一直持续到现在」。强调 still 在持续。",
+        "`like this` 指代病人描述的症状，口语高频。"
+      ],
+      "distractors": [
+        [
+          "How much",
+          "How soon",
+          "What long"
+        ],
+        [
+          "have you feel",
+          "did you been feeling",
+          "are you been feeling"
+        ],
+        [
+          "for like this?",
+          "like that?",
+          "liked this?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Have you taken anything for it?",
+      "cid": "2f17c3e6",
+      "translation": "你吃过什么药吗？",
+      "chunks": [
+        "Have you taken",
+        "anything for it?"
+      ],
+      "hints": [
+        "你吃过",
+        "针对它的任何药"
+      ],
+      "grammar": [
+        {
+          "role": "现在完成疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/juː/",
+            "/ˈteɪkən/"
+          ],
+          "pos": "完成时疑问",
+          "meaning": "你吃过"
+        },
+        {
+          "role": "不定代词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈeniθɪŋ/",
+            "/fɔːr/",
+            "/ɪt/"
+          ],
+          "pos": "宾语",
+          "meaning": "针对它的药"
+        }
+      ],
+      "explanations": [
+        "`take` 表「吃药/喝药」，不用 eat/drink。常见错误：\n• \"Have you **eaten** anything\" → eat 表吃食物，吃药用 take\n• \"Did you taken\" → 现在完成用 have + 过去分词 taken",
+        "`anything for it` 中 it 指代病症。for it = 针对这个病。也可说 medicine for it."
+      ],
+      "distractors": [
+        [
+          "Did you took",
+          "Have you take",
+          "Has you taken"
+        ],
+        [
+          "something to it?",
+          "anything about it?",
+          "anything for that?"
+        ]
+      ]
+    },
+    {
+      "sentence": "You'd better get some rest and drink plenty of water.",
+      "cid": "c55bb082",
+      "translation": "你最好休息一下，多喝水。",
+      "chunks": [
+        "You'd better",
+        "get some rest",
+        "and drink plenty of water."
+      ],
+      "hints": [
+        "你最好",
+        "休息一下",
+        "并喝大量的水"
+      ],
+      "grammar": [
+        {
+          "role": "情态结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juːd/",
+            "/ˈbetər/"
+          ],
+          "pos": "建议结构",
+          "meaning": "你最好"
+        },
+        {
+          "role": "动词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɡet/",
+            "/sʌm/",
+            "/rest/"
+          ],
+          "pos": "祈使谓语",
+          "meaning": "休息一下"
+        },
+        {
+          "role": "并列谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ænd/",
+            "/drɪŋk/",
+            "/ˈplenti/",
+            "/əv/",
+            "/ˈwɔːtər/"
+          ],
+          "pos": "动词短语",
+          "meaning": "并大量喝水"
+        }
+      ],
+      "explanations": [
+        "`You'd better` = You had better，表强烈建议（带警告意味）。常见错误：\n• \"You'd better **to** get\" → had better 后接动词原形\n• \"You **better** get\" → 口语可省略 had，书面保留更正式",
+        "`get some rest` 固定搭配 = 休息。同义：have a rest / take a break.",
+        "`plenty of water` = 大量的水。plenty of 后可接可数/不可数名词，比 a lot of 更口语。常见错误：\n• \"plenty **waters**\" → water 不可数，不加 s\n• \"a plenty of\" → 多了一个 a"
+      ],
+      "distractors": [
+        [
+          "You've better",
+          "You had better to",
+          "Your better"
+        ],
+        [
+          "take some rests",
+          "make some rest",
+          "get any rest"
+        ],
+        [
+          "and drink plenty waters.",
+          "and drinking plenty of water.",
+          "and drink lot of water."
+        ]
+      ]
+    },
+    {
+      "sentence": "Does it hurt when I press here?",
+      "cid": "3e523059",
+      "translation": "我按这里会疼吗？",
+      "chunks": [
+        "Does it hurt",
+        "when I press here?"
+      ],
+      "hints": [
+        "它会疼吗",
+        "当我按这里"
+      ],
+      "grammar": [
+        {
+          "role": "助动词疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/dʌz/",
+            "/ɪt/",
+            "/hɜːt/"
+          ],
+          "pos": "一般疑问",
+          "meaning": "它会疼吗"
+        },
+        {
+          "role": "时间状语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wen/",
+            "/aɪ/",
+            "/pres/",
+            "/hɪər/"
+          ],
+          "pos": "when 从句",
+          "meaning": "当我按这里"
+        }
+      ],
+      "explanations": [
+        "医生按压检查时的问句。`Does it hurt` 一般现在时问当下反应。常见错误：\n• \"Is it hurt\" → hurt 是动词，问句用 Does\n• \"Does it **hurts**\" → 助动词后动词用原形",
+        "`when I press here` = 当我按这里。here 直接作地点副词，前面不加介词（不说 press at here）。"
+      ],
+      "distractors": [
+        [
+          "Is it hurt",
+          "Does it hurts",
+          "Do it hurt"
+        ],
+        [
+          "when I pressing here?",
+          "when I pressed here?",
+          "when I press there?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's take your temperature.",
+      "cid": "0e4cb67e",
+      "translation": "量一下你的体温吧。",
+      "chunks": [
+        "Let's take",
+        "your temperature."
+      ],
+      "hints": [
+        "我们来量",
+        "你的体温"
+      ],
+      "grammar": [
+        {
+          "role": "祈使提议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/teɪk/"
+          ],
+          "pos": "let us + 动词",
+          "meaning": "我们来量"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈtemprətʃər/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的体温"
+        }
+      ],
+      "explanations": [
+        "`take one's temperature` 是固定搭配，表「给某人量体温」。常见错误：\n• \"take you temperature\" → 要用所有格 your\n• \"measure your temperature\" → 也能懂，但地道的说法是 take",
+        "`temperature` 注意拼写，中间是 -pera-。常见错误：\n• \"temperture\" → 漏了 a"
+      ],
+      "distractors": [
+        [
+          "Let's taking",
+          "Let's take you",
+          "Let's takes"
+        ],
+        [
+          "your temperture.",
+          "you temperature.",
+          "your temperatures."
+        ]
+      ]
+    },
+    {
+      "sentence": "Did you eat something bad?",
+      "cid": "1d4b7d2d",
+      "translation": "你是不是吃坏东西了？",
+      "chunks": [
+        "Did you",
+        "eat something",
+        "bad?"
+      ],
+      "hints": [
+        "你是否",
+        "吃了什么",
+        "不好的"
+      ],
+      "grammar": [
+        {
+          "role": "助动词+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/dɪd/",
+            "/juː/"
+          ],
+          "pos": "一般过去时疑问",
+          "meaning": "你是否"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/iːt/",
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "动词原形 + 不定代词",
+          "meaning": "吃了什么"
+        },
+        {
+          "role": "定语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/bæd/"
+          ],
+          "pos": "形容词后置",
+          "meaning": "不好的"
+        }
+      ],
+      "explanations": [
+        "有 did 时动词用原形。常见错误：\n• \"Did you ate\" → 用 eat\n• \"Did your eat\" → 主语用 you",
+        "`something bad` 是形容词后置修饰不定代词。常见错误：\n• \"bad something\" → 修饰 something 时形容词必须放后面",
+        "`bad` 修饰 something 作定语。同义：Did you eat anything bad? / Was it something you ate?"
+      ],
+      "distractors": [
+        [
+          "Do you",
+          "Did your",
+          "Does you"
+        ],
+        [
+          "eat somethings",
+          "eating something",
+          "eats something"
+        ],
+        [
+          "badly?",
+          "badder?",
+          "a bad?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you sick?",
+      "cid": "45ae00d9",
+      "translation": "你生病了吗？",
+      "chunks": [
+        "Are you",
+        "sick?"
+      ],
+      "hints": [
+        "你是",
+        "生病的"
+      ],
+      "grammar": [
+        {
+          "role": "系动词 + 主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/sɪk/"
+          ],
+          "pos": "形容词",
+          "meaning": "生病的"
+        }
+      ],
+      "explanations": [
+        "美式用 `sick` 表生病，英式更常说 ill。常见错误：\n• \"Do you sick?\" → sick 是形容词，要用 be 动词提问\n• 说这句话时句尾语调要上扬",
+        "关心两句：Are you feeling okay? / You look pale."
+      ],
+      "distractors": [
+        [
+          "Is you",
+          "Are your",
+          "Do you"
+        ],
+        [
+          "sickly?",
+          "tired?",
+          "sad?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Take some medicine.",
+      "cid": "dc756c88",
+      "translation": "吃点药。",
+      "chunks": [
+        "Take some",
+        "medicine."
+      ],
+      "hints": [
+        "服用一些",
+        "药"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "服用一些"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈmedɪsn/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "药"
+        }
+      ],
+      "explanations": [
+        "英文「吃药」用 `take`，不用 eat。常见错误：\n• \"Eat some medicine\" → 中文说吃药，英文是 take medicine\n• \"Take some medicines\" → 泛指药物时不可数",
+        "相关：take a pill（吃一片药）/ take it twice a day（一天吃两次）"
+      ],
+      "distractors": [
+        [
+          "Eat some",
+          "Take a",
+          "Takes some"
+        ],
+        [
+          "medicines.",
+          "a medicine.",
+          "medical."
+        ]
+      ]
+    },
+    {
+      "sentence": "Where does it hurt?",
+      "cid": "7fdbc9e4",
+      "translation": "哪里疼？",
+      "chunks": [
+        "Where",
+        "does it hurt?"
+      ],
+      "hints": [
+        "哪里",
+        "它疼"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wer/"
+          ],
+          "pos": "疑问副词",
+          "meaning": "哪里"
+        },
+        {
+          "role": "助动词 + 主语 + 谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/dʌz/",
+            "/ɪt/",
+            "/hɜːrt/"
+          ],
+          "pos": "一般现在时疑问句",
+          "meaning": "它疼"
+        }
+      ],
+      "explanations": [
+        "`hurt` 可及物可不及物，问哪里疼这样说最自然。常见错误：\n• \"Where does it hurts?\" → 助动词 does 后动词要用原形\n• \"Where it hurts?\" → 疑问句缺助动词",
+        "医生还会问：Does it hurt here?（这里疼吗）"
+      ],
+      "distractors": [
+        [
+          "What",
+          "When",
+          "Which"
+        ],
+        [
+          "do it hurt?",
+          "does it hurts?",
+          "is it hurt?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Is it your stomach?",
+      "cid": "9dd8fc89",
+      "translation": "是肚子吗？",
+      "chunks": [
+        "Is it",
+        "your stomach?"
+      ],
+      "hints": [
+        "是它",
+        "你的肚子"
+      ],
+      "grammar": [
+        {
+          "role": "系动词 + 主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪz/",
+            "/ɪt/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "（它）是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈstʌmək/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的胃、肚子"
+        }
+      ],
+      "explanations": [
+        "确认疼痛位置时医生常这样问。常见错误：\n• 回答别背整句，简短答 Yes, it is. 就好\n• stomach 读 /ˈstʌmək/，ch 不发 /tʃ/；口语里也说 tummy",
+        "相关部位：chest（胸口）/ throat（喉咙）/ back（背）"
+      ],
+      "distractors": [
+        [
+          "Are it",
+          "Is your",
+          "Does it"
+        ],
+        [
+          "your stomachs?",
+          "you stomach?",
+          "your stomach ache?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Take a rest.",
+      "cid": "0d637f69",
+      "translation": "休息一下。",
+      "chunks": [
+        "Take a",
+        "rest."
+      ],
+      "hints": [
+        "休息",
+        "一下"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/ə/"
+          ],
+          "pos": "动词短语 take a rest",
+          "meaning": "休息"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/rest/"
+          ],
+          "pos": "名词",
+          "meaning": "休息"
+        }
+      ],
+      "explanations": [
+        "`take a rest` 与 `take a break` 都能表休息，rest 更偏身体恢复。常见错误：\n• \"Take rest\" → 缺少 a\n• \"Do a rest\" → 动词用 take 或 have",
+        "相关：get some rest（好好休息）/ rest up（充分休息）"
+      ],
+      "distractors": [
+        [
+          "Take the",
+          "Make a",
+          "Do a"
+        ],
+        [
+          "rests.",
+          "resting.",
+          "a rest."
+        ]
+      ]
+    },
+    {
+      "sentence": "Have some water.",
+      "cid": "f863d500",
+      "translation": "喝点水。",
+      "chunks": [
+        "Have some",
+        "water."
+      ],
+      "hints": [
+        "喝点",
+        "水"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "喝点"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈwɔːtər/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "水"
+        }
+      ],
+      "explanations": [
+        "劝人喝点水用 `have` 比 drink 更日常。常见错误：\n• \"Have some waters\" → water 不可数\n• \"Eat some water\" → 喝用 have / drink",
+        "相关：drink plenty of water（多喝水）/ stay hydrated"
+      ],
+      "distractors": [
+        [
+          "Have any",
+          "Eat some",
+          "Having some"
+        ],
+        [
+          "waters.",
+          "a water.",
+          "water is."
+        ]
+      ]
+    },
+    {
+      "sentence": "Lie down.",
+      "cid": "6c5b5c7b",
+      "translation": "躺下。",
+      "chunks": [
+        "Lie",
+        "down."
+      ],
+      "hints": [
+        "躺",
+        "下"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/laɪ/"
+          ],
+          "pos": "祈使句动词（不及物）",
+          "meaning": "躺"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/"
+          ],
+          "pos": "副词（表方向）",
+          "meaning": "下"
+        }
+      ],
+      "explanations": [
+        "`lie down` 的 lie 是不及物动词，过去式是 lay。常见错误：\n• \"Lay down\" → lay 需要宾语（lay the book down），自己躺要用 lie\n• \"Lie down you\" → 祈使句不加主语",
+        "相关：lie on the bed（躺在床上）/ lie still（躺着别动）"
+      ],
+      "distractors": [
+        [
+          "Lay",
+          "Lies",
+          "Lying"
+        ],
+        [
+          "downstairs.",
+          "up.",
+          "over."
+        ]
+      ]
+    }
+  ]
+}

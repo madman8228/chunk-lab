@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "f26b491f",
+      "sentence": "How do you usually get to work?",
+      "translation": "你平时怎么去上班？",
+      "sourceUrl": "content/oral-2-8-3/oral-001-4f92e9d0e3be.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "fdc5ae18",
+      "sentence": "I've been working on it all day.",
+      "translation": "我一整天都在忙这件事。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-4f92e9d0e3be.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "a3d72107",
+      "sentence": "Nice to meet you.",
+      "translation": "很高兴认识你。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-4f92e9d0e3be.json",
+      "sourceOffset": 2
+    }
+  ]
+}

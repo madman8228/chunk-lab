@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "581a9eab",
+      "sentence": "I don't know what to do.",
+      "translation": "该怎么办呢?",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "09f4b186",
+      "sentence": "What am I supposed to do?",
+      "translation": "我该怎么办?",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "d9a69161",
+      "sentence": "We are in trouble.",
+      "translation": "这下可麻烦了。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "1a295d11",
+      "sentence": "It's a hassle.",
+      "translation": "那很麻烦。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "a582b643",
+      "sentence": "It's really a difficult problem.",
+      "translation": "这真是个难题。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "d720d9f9",
+      "sentence": "I don't know what to say.",
+      "translation": "我不知道说什么才好。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "30112726",
+      "sentence": "You got me.",
+      "translation": "这下可难住我了。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "ca5fc7f7",
+      "sentence": "He's a nuisance.",
+      "translation": "他特招人讨厌。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "29d2a17d",
+      "sentence": "Oops!",
+      "translation": "哎哟!",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "6ba23ca4",
+      "sentence": "Oh, no!",
+      "translation": "噢!不!",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "ddfe1007",
+      "sentence": "That's the hard part.",
+      "translation": "这正是难点。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "6646ddb0",
+      "sentence": "I feel guilty.",
+      "translation": "我感到内疚。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "d9bbdd37",
+      "sentence": "You look puzzled.",
+      "translation": "你看来很困惑。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "e76c552c",
+      "sentence": "The idea haunts me.",
+      "translation": "那个念头总是萦绕着我。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "d2d4552d",
+      "sentence": "It slipped my mind.",
+      "translation": "我一时忘了。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "6abc41f7",
+      "sentence": "I can't remember where I put my keys.",
+      "translation": "我忘了把钥匙放哪儿了。",
+      "sourceUrl": "content/oral-4-22/oral-001-507352a7a28b.json",
+      "sourceOffset": 15
+    }
+  ]
+}

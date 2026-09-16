@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "85fb293b",
+      "sentence": "I don't care.",
+      "translation": "我不在乎。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "52a79fbe",
+      "sentence": "Who cares?",
+      "translation": "管它呢!",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "3708901c",
+      "sentence": "Whatever you want.",
+      "translation": "随便你!",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "c264779c",
+      "sentence": "Nobody knows.",
+      "translation": "谁知道呢。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "9c06951d",
+      "sentence": "It has nothing to do with me.",
+      "translation": "这跟我有什么关系。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "8e1a1b06",
+      "sentence": "I couldn't care less.",
+      "translation": "我才不在乎呢。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "52147c1a",
+      "sentence": "Nobody cares.",
+      "translation": "没人注意你。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "8524be46",
+      "sentence": "Let it be.",
+      "translation": "随他们去呢!",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "ead4afca",
+      "sentence": "I don't care what they say.",
+      "translation": "我才不在乎他们说什么呢。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "eea03ed4",
+      "sentence": "Anyone will do.",
+      "translation": "哪个都行。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "73db16dc",
+      "sentence": "We can do without him.",
+      "translation": "没他我们也可以。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "44e7247e",
+      "sentence": "I've got nothing special to talk about.",
+      "translation": "我没什么特别要说的。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "c427a713",
+      "sentence": "It doesn't matter.",
+      "translation": "没关系/不要紧。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "b5318ca5",
+      "sentence": "It's the same old story.",
+      "translation": "这又不是什么新鲜事。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "96d9409c",
+      "sentence": "I don't give a shit.",
+      "translation": "我才不在乎（粗俗，比 I don't care 语气强烈得多）。",
+      "sourceUrl": "content/oral-4-23/oral-001-95435e534632.json",
+      "sourceOffset": 14
+    }
+  ]
+}

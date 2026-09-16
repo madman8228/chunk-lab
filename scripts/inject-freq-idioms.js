@@ -5,7 +5,7 @@
  *   node scripts/inject-freq-idioms.js extra/batch2a.json extra/batch2b.json ...
  *
  * 规则（与 validate_freq_idioms.js 一致，注入前在本脚本复刻一遍以早失败）：
- *  1) chunks 2~5 个
+ *  1) chunks 段数 1~5 个（单字句允许 1 段，其余 ≥2；判据见 chunk-shape.js）
  *  2) chunks.join('').replace(/\s+/g, '') 必须等于 sentence.replace(/\s+/g, '')
  *  3) chunk 不以 .?!,;: 开头；非末 chunk 不以句末标点 .?! 结尾
  *  4) hints/grammar 长度等于 chunks；grammar 每块含 role/color/pos/meaning/phonetic[]
@@ -23,6 +23,8 @@
 const fs = require('fs');
 const path = require('path');
 const tr = require('./translation-rules');
+/* 「最少切几段」的唯一判据（含单字句例外）—— 与校验器共用一份，避免写侧/校验侧错配 */
+const CS = require('./chunk-shape.js');
 
 /* fnv8 与 core.js / validate_freq_idioms.js / scripts/add-cids.js 保持一致 */
 function fnv8(str) {
@@ -40,7 +42,8 @@ function validateItems(items, sourceList) {
   items.forEach((it, idx) => {
     const ms = [];
     if (!it.sentence || !it.translation) ms.push('缺 sentence/translation');
-    if (!Array.isArray(it.chunks) || it.chunks.length < 2 || it.chunks.length > 5) ms.push('chunks 需 2~5 个');
+    const chunkErr = CS.chunkCountError(it.sentence, it.chunks);
+    if (chunkErr) ms.push(chunkErr);
     else {
       const join = it.chunks.join('').replace(/\s+/g, '');
       const sent = String(it.sentence).replace(/\s+/g, '');

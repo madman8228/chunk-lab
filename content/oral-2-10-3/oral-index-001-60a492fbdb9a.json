@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "0ab455be",
+      "sentence": "Could you keep the noise down?",
+      "translation": "你能小声一点吗？",
+      "sourceUrl": "content/oral-2-10-3/oral-001-5db367c75189.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "5b616a39",
+      "sentence": "Could you turn the music down a bit?",
+      "translation": "你能把音乐声调小一点吗？",
+      "sourceUrl": "content/oral-2-10-3/oral-001-5db367c75189.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "d99feea8",
+      "sentence": "We're in a library.",
+      "translation": "我们在图书馆。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-5db367c75189.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "05cc4c9b",
+      "sentence": "You're talking too loudly.",
+      "translation": "你说话太大声了。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-5db367c75189.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "c3dee22f",
+      "sentence": "Keep it down.",
+      "translation": "小声点。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-5db367c75189.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "dfc5d91e",
+      "sentence": "Back away.",
+      "translation": "后退。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-5db367c75189.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "0718c5bc",
+      "sentence": "Don't stare.",
+      "translation": "别盯着看。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-5db367c75189.json",
+      "sourceOffset": 6
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "c331781c",
+      "sentence": "I love pizza.",
+      "translation": "我最爱吃比萨饼。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "8d26e448",
+      "sentence": "I like this dress.",
+      "translation": "我喜欢这套衣服。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "879a69e0",
+      "sentence": "Are you pleased with your new car?",
+      "translation": "你满意你的新车吗?",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "43b1a782",
+      "sentence": "I'm fond of this tea.",
+      "translation": "我喜欢这茶。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "d5b60ff3",
+      "sentence": "I prefer tea to coffee.",
+      "translation": "比起咖啡来我更喜欢红茶。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "d3192f77",
+      "sentence": "Tomato soup is my cup of tea.",
+      "translation": "我喜欢喝西红柿汤。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "3c4b1dba",
+      "sentence": "I've developed a great liking for Japanese food.",
+      "translation": "我非常喜欢吃日本食品。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "c71a382d",
+      "sentence": "I'm choosy.",
+      "translation": "我这人很挑剔。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "1078001e",
+      "sentence": "I came to like sushi.",
+      "translation": "我开始喜欢吃寿司了。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "51ea83eb",
+      "sentence": "Jane has grown on me.",
+      "translation": "简越来越让我喜欢。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "5865f0ab",
+      "sentence": "Baseball grew on me.",
+      "translation": "棒球越来越吸引我了。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "22acd978",
+      "sentence": "This will be fun!",
+      "translation": "看上去挺好玩的。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "7dad1ebf",
+      "sentence": "This is exciting!",
+      "translation": "真令人兴奋!",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "952e76cb",
+      "sentence": "I'm interested.",
+      "translation": "我很感兴趣。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "7eedc082",
+      "sentence": "I'm satisfied.",
+      "translation": "我很满足。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "9c83ab57",
+      "sentence": "I enjoyed it.",
+      "translation": "我很欣赏它。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "df7b099d",
+      "sentence": "I was deeply moved.",
+      "translation": "我被深深地感动了。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "d6ade8fc",
+      "sentence": "I don't like it.",
+      "translation": "我不喜欢这个。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "ebd930a0",
+      "sentence": "I hate it!",
+      "translation": "我最讨厌这个了。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "188b8c52",
+      "sentence": "This is disgusting.",
+      "translation": "这个真恶心!",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "7ee52560",
+      "sentence": "Yuck!",
+      "translation": "啐!",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "b75e00d3",
+      "sentence": "Peeyew!",
+      "translation": "臭死了!",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "480c53eb",
+      "sentence": "It's your attitude I don't like.",
+      "translation": "我不喜欢你的这种态度。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "acceb0cd",
+      "sentence": "I hate his guts.",
+      "translation": "我对他恨之入骨。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "d06ba239",
+      "sentence": "I don't care for it.",
+      "translation": "我不喜欢。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "e75cdb13",
+      "sentence": "I can't stand him.",
+      "translation": "看见他就心烦。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "d754db50",
+      "sentence": "Never again!",
+      "translation": "别再有第二次!",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "e4483664",
+      "sentence": "I've had it.",
+      "translation": "我已经受够了!",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "de8bc536",
+      "sentence": "You would be the last person I'd want to see.",
+      "translation": "我最不想见的人就是你了。",
+      "sourceUrl": "content/oral-4-19/oral-001-9395026345a5.json",
+      "sourceOffset": 28
+    }
+  ]
+}

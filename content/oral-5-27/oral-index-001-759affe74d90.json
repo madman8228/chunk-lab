@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "584cba91",
+      "sentence": "I sympathize with you.",
+      "translation": "我对您深表同情!",
+      "sourceUrl": "content/oral-5-27/oral-001-23e2727aa8de.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "ca483d32",
+      "sentence": "What a pity we've lost such a great man!",
+      "translation": "我们为失去一个这么好的人而感到遗憾!",
+      "sourceUrl": "content/oral-5-27/oral-001-23e2727aa8de.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "00e8bdc2",
+      "sentence": "I'm going to miss my grandpa.",
+      "translation": "我很怀念我的爷爷。",
+      "sourceUrl": "content/oral-5-27/oral-001-23e2727aa8de.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "99f6ce5f",
+      "sentence": "Try not to get depressed.",
+      "translation": "别太消沉了。",
+      "sourceUrl": "content/oral-5-27/oral-001-23e2727aa8de.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "666f9e81",
+      "sentence": "It was terrible this time, wasn't it?",
+      "translation": "这次很麻烦，对吧?",
+      "sourceUrl": "content/oral-5-27/oral-001-23e2727aa8de.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "4a35d147",
+      "sentence": "I'm so sorry.",
+      "translation": "我太难过了!",
+      "sourceUrl": "content/oral-5-27/oral-001-23e2727aa8de.json",
+      "sourceOffset": 5
+    }
+  ]
+}

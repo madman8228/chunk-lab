@@ -1,7 +1,7 @@
 /**
  * visual-round.js · 视觉走查（截图驱动验收，非断言用例）
  *
- * 跑一个「真实学习回合」：注入真实种子库句子（builtin-daily，带宪法级预置干扰）
+ * 跑一个「真实学习回合」：注入真实种子库句子（内置题库，带宪法级预置干扰）
  * → 出题态截图 → 首槽故意答错干扰项 → 反馈态截图 → 答对推进多句 → 各句出题态截图。
  * 产出到 e2e/shots/visual-round/，供截图驱动验收 D-pipeline 数据成果观感。
  *
@@ -50,13 +50,15 @@ function stopServer() {
   try { fs.rmSync(TMP_DB, { recursive: true, force: true }); } catch (e) { /* best-effort */ }
 }
 
-/* 从 builtins.js 沙箱抽真实带预置干扰的句子（builtin-daily；仅含非并入的静态主体） */
+/* 从 builtins.js 沙箱抽真实带预置干扰的句子（跨 6 个场景 deck 的静态句） */
 function sampleSentences(n) {
   const code = fs.readFileSync(path.join(ROOT, 'builtins.js'), 'utf8');
   const sandbox = { window: {} };
   vm.createContext(sandbox);
   new vm.Script(code).runInContext(sandbox);
-  const items = sandbox.window.BUILTIN[0].items;
+  /* 2026-09-15 拆场景后 BUILTIN[0] 只剩该场景的静态句 → 跨全部 deck 收集 */
+  const items = [];
+  (sandbox.window.BUILTIN || []).forEach(function (d) { (d.items || []).forEach(function (it) { items.push(it); }); });
   const withD = items.filter(function (it) {
     return Array.isArray(it.distractors)
       && it.distractors.length === it.chunks.length

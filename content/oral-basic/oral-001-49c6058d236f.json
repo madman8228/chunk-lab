@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Could you give me a moment, please?",
+      "cid": "b95cd0f4",
+      "translation": "请稍等一下好吗？",
+      "chunks": [
+        "Could you give me",
+        "a moment,",
+        "please?"
+      ],
+      "hints": [
+        "你能给我",
+        "一点时间",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态+双宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/ɡɪv/",
+            "/miː/"
+          ],
+          "pos": "情态动词+双宾语",
+          "meaning": "你能给我"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈmoʊmənt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一点时间"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "**give sb a moment** = 给某人一点时间。常见错误：\n• \"give a moment **to me**\" → 双宾 give me a moment 更自然\n• \"wait me a moment\" → wait 是不及物动词，不能直接接宾语",
+        "同义表达：Just a moment, please. / One second, please. / Hang on a second.（更口语）"
+      ],
+      "distractors": [
+        [
+          "Could your give me",
+          "Could you gives me",
+          "Could you to give me"
+        ],
+        [
+          "a minutes,",
+          "the moment,",
+          "moment,"
+        ],
+        [
+          "pleased?",
+          "pleases?"
+        ]
+      ]
+    },
+    {
+      "sentence": "No problem.",
+      "cid": "3d04d4e1",
+      "translation": "没问题/不客气。",
+      "chunks": [
+        "No",
+        "problem."
+      ],
+      "hints": [
+        "没有",
+        "问题"
+      ],
+      "grammar": [
+        {
+          "role": "限定词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/nəʊ/"
+          ],
+          "pos": "否定词",
+          "meaning": "没有"
+        },
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈprɒbləm/"
+          ],
+          "pos": "名词",
+          "meaning": "问题"
+        }
+      ],
+      "explanations": [
+        "**No problem.** 可以回应感谢（= You're welcome）也可以答应请求（= Sure / Of course）。",
+        "比 \"You're welcome\" 更轻松随意，朋友之间最常用。"
+      ],
+      "distractors": [
+        [
+          "Not",
+          "None",
+          "Any"
+        ],
+        [
+          "a problem.",
+          "the problem."
+        ]
+      ]
+    },
+    {
+      "sentence": "So far so good.",
+      "cid": "d13966c5",
+      "translation": "到目前为止都挺好。",
+      "chunks": [
+        "So far",
+        "so good."
+      ],
+      "hints": [
+        "到目前为止",
+        "都挺好"
+      ],
+      "grammar": [
+        {
+          "role": "状语（习语）",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/soʊ/",
+            "/fɑːr/"
+          ],
+          "pos": "习语",
+          "meaning": "到目前为止"
+        },
+        {
+          "role": "省略表语",
+          "color": "#c87033",
+          "phonetic": [
+            "/soʊ/",
+            "/ɡʊd/"
+          ],
+          "pos": "省略句",
+          "meaning": "都挺好"
+        }
+      ],
+      "explanations": [
+        "**So far so good.** = 到目前为止一切顺利，常回答别人对进度的询问。",
+        "口语省略句，语法上省去了 it's been。书面完整版：So far, everything is going well."
+      ],
+      "distractors": [
+        [
+          "So for",
+          "So long",
+          "Far so"
+        ],
+        [
+          "so well.",
+          "so goods.",
+          "very good."
+        ]
+      ]
+    },
+    {
+      "sentence": "I mean it.",
+      "cid": "b6c66834",
+      "translation": "我是认真的。",
+      "chunks": [
+        "I mean",
+        "it."
+      ],
+      "hints": [
+        "我说的是",
+        "认真的"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/miːn/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我（说）的"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/"
+          ],
+          "pos": "代词",
+          "meaning": "它是认真的"
+        }
+      ],
+      "explanations": [
+        "**I mean it.** = 我说的是真的/不是在开玩笑，用来强调上一句话的严肃性。",
+        "语境：— I'll quit if this continues! — Are you serious? — **I mean it!** 近义：**I'm serious.**"
+      ],
+      "distractors": [
+        [
+          "I means",
+          "I'm mean",
+          "I mean to"
+        ],
+        [
+          "them.",
+          "its."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm all right.",
+      "cid": "e24acc99",
+      "translation": "不用了。",
+      "chunks": [
+        "I'm",
+        "all right."
+      ],
+      "hints": [
+        "我",
+        "还好、不用"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/"
+          ],
+          "pos": "I + am 缩写",
+          "meaning": "我"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɔːl/",
+            "/raɪt/"
+          ],
+          "pos": "形容词短语",
+          "meaning": "还好"
+        }
+      ],
+      "explanations": [
+        "`I'm all right` 有两层意思：身体「我没事」，回答提议时是「不用了」。常见错误：\n• \"I'm alright\" → 也可接受，但规范写法是 all right\n• \"I'm right\" → 意思变成「我是对的」",
+        "同义（拒绝提议）：I'm good. / No thanks."
+      ],
+      "distractors": [
+        [
+          "I am",
+          "I'm not",
+          "I'm in"
+        ],
+        [
+          "alright.",
+          "all write.",
+          "all rights."
+        ]
+      ]
+    },
+    {
+      "sentence": "I've got this.",
+      "cid": "e70c8cf4",
+      "translation": "我可以的。",
+      "chunks": [
+        "I've got",
+        "this."
+      ],
+      "hints": [
+        "我能搞定",
+        "这件事"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/ɡɑːt/"
+          ],
+          "pos": "have got 缩写",
+          "meaning": "我能搞定"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðɪs/"
+          ],
+          "pos": "指示代词",
+          "meaning": "这件事"
+        }
+      ],
+      "explanations": [
+        "`I've got this` 是口语鼓励自己的固定说法，表「我能应付」。常见错误：\n• \"I got this\" → 也可以，语气更随意\n• \"I've got this to\" → 加 to 意思就变「我不得不处理这个」",
+        "同义：I got it. / I can handle it. / I'm on it."
+      ],
+      "distractors": [
+        [
+          "I got",
+          "I've get",
+          "I've got to"
+        ],
+        [
+          "that.",
+          "these.",
+          "this's."
+        ]
+      ]
+    },
+    {
+      "sentence": "You got it.",
+      "cid": "86ff7ccf",
+      "translation": "应该的。",
+      "chunks": [
+        "You got",
+        "it."
+      ],
+      "hints": [
+        "你拿到了",
+        "它"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ɡɑːt/"
+          ],
+          "pos": "口语省略 did",
+          "meaning": "你（做）到了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/"
+          ],
+          "pos": "代词",
+          "meaning": "它"
+        }
+      ],
+      "explanations": [
+        "`You got it` 回应感谢时表「应该的、小意思」。常见错误：\n• 用降调读 → 才表「没问题/包在我身上」，两种含义靠语境区分\n• \"You get it\" → 那是「你明白了」",
+        "同义：No problem. / Anytime. / My pleasure."
+      ],
+      "distractors": [
+        [
+          "You get",
+          "You got to",
+          "You've got"
+        ],
+        [
+          "that.",
+          "them.",
+          "it's."
+        ]
+      ]
+    },
+    {
+      "sentence": "Hold on.",
+      "cid": "4436b78d",
+      "translation": "抓紧（也可以表示等一下）。",
+      "chunks": [
+        "Hold",
+        "on."
+      ],
+      "hints": [
+        "抓",
+        "住"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hoʊld/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "抓住"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɑːn/"
+          ],
+          "pos": "副词（固定搭配）",
+          "meaning": "持住、继续"
+        }
+      ],
+      "explanations": [
+        "`hold on` 有两义：① 抓紧 ② 等一下（打电话时最常听）。常见错误：\n• \"Hold on to\" 后面要接宾语（hold on to the rail）\n• \"Hold up\" 也可表等等，但「抓紧」只用 hold on",
+        "电话里听到 Hold on, please. 就是「请稍等」。"
+      ],
+      "distractors": [
+        [
+          "Holds",
+          "Holding",
+          "Hold of"
+        ],
+        [
+          "on to.",
+          "off.",
+          "out."
+        ]
+      ]
+    },
+    {
+      "sentence": "Give me a thumbs up.",
+      "cid": "1bcdc1c7",
+      "translation": "给我竖个大拇指（点个赞）吧。",
+      "chunks": [
+        "Give me",
+        "a thumbs up."
+      ],
+      "hints": [
+        "给我",
+        "一个大拇指（赞成）"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡɪv/",
+            "/miː/"
+          ],
+          "pos": "动词 + 间接宾语",
+          "meaning": "给我"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/θʌmz/",
+            "/ʌp/"
+          ],
+          "pos": "名词短语（固定写法）",
+          "meaning": "一个大拇指"
+        }
+      ],
+      "explanations": [
+        "`a thumbs up` = 竖大拇指表示赞成，固定带 s。常见错误：\n• \"a thumb up\" → 固定写法是 thumbs up\n• 引申为「点赞」：Give it a thumbs up.",
+        "反义：a thumbs down（表示反对）"
+      ],
+      "distractors": [
+        [
+          "Give me to",
+          "Giving me",
+          "Give I"
+        ],
+        [
+          "a thumb up.",
+          "a thumbs-ups.",
+          "thumb ups."
+        ]
+      ]
+    },
+    {
+      "sentence": "We have more like this.",
+      "cid": "2dc7b93b",
+      "translation": "我们还有更多像这样的。",
+      "chunks": [
+        "We have",
+        "more like this."
+      ],
+      "hints": [
+        "我们有",
+        "更多像这样的"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/wiː/",
+            "/hæv/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我们有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/mɔːr/",
+            "/laɪk/",
+            "/ðɪs/"
+          ],
+          "pos": "名词短语",
+          "meaning": "更多像这样的"
+        }
+      ],
+      "explanations": [
+        "`more like this` = 更多像这样的，用于介绍同类内容。常见错误：\n• \"more like these\" → 指刚提到的那一类用 this 更稳\n• 只说 \"We have more\" 需要语境支撑，说完整更清楚",
+        "相关：There's plenty more.（还有很多）/ Want to see more?"
+      ],
+      "distractors": [
+        [
+          "We has",
+          "We having",
+          "We are have"
+        ],
+        [
+          "more like these.",
+          "more likes this.",
+          "much like this."
+        ]
+      ]
+    }
+  ]
+}

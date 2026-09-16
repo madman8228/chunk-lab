@@ -1,0 +1,467 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Could you tell me how to get to the station?",
+      "cid": "4226408e",
+      "translation": "你能告诉我怎么去车站吗？",
+      "chunks": [
+        "Could you tell me",
+        "how to get",
+        "to the station?"
+      ],
+      "hints": [
+        "你能告诉我吗",
+        "怎么去",
+        "到车站"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/tel/",
+            "/miː/"
+          ],
+          "pos": "情态动词+宾语",
+          "meaning": "你能告诉我"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/haʊ/",
+            "/tuː/",
+            "/ɡet/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "怎么去"
+        },
+        {
+          "role": "方向状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ðə/",
+            "/ˈsteɪʃn/"
+          ],
+          "pos": "介词短语",
+          "meaning": "到车站"
+        }
+      ],
+      "explanations": [
+        "**Could you tell me...** 是委婉的请求句型。常见错误：\n• \"Could you **say** me\" → say 后面不直接接人，要用 tell\n• \"Can you tell me\" → 也可以，但 Could 更礼貌",
+        "**how to get** 是\"疑问词 + 不定式\"结构，作 tell 的宾语。不要写成 \"how can I get\"（那是宾语从句，语法上也可以但不定式更简洁）。",
+        "**to the station** 中 **the** 不能省略——说话双方都知道指的是哪个车站（特指）。"
+      ],
+      "distractors": [
+        [
+          "Could you told me",
+          "Could your tell me",
+          "Could you to tell me"
+        ],
+        [
+          "how getting",
+          "how get",
+          "what to get"
+        ],
+        [
+          "at the station?",
+          "to station?",
+          "to the stations?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Is there a pharmacy nearby?",
+      "cid": "53af40c1",
+      "translation": "这附近有药店吗？",
+      "chunks": [
+        "Is there",
+        "a pharmacy",
+        "nearby?"
+      ],
+      "hints": [
+        "有吗",
+        "一家药店",
+        "附近"
+      ],
+      "grammar": [
+        {
+          "role": "存在句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪz/",
+            "/ðer/"
+          ],
+          "pos": "there be 疑问句",
+          "meaning": "有吗"
+        },
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈfɑːrməsi/"
+          ],
+          "pos": "名词",
+          "meaning": "一家药店"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˌnɪrˈbaɪ/"
+          ],
+          "pos": "副词",
+          "meaning": "附近"
+        }
+      ],
+      "explanations": [
+        "`Is there a...` 问某处是否有某物（单数）。常见错误：\n• \"**Are** there a pharmacy\" → 主语 pharmacy 单数，用 is\n• \"There **have** a pharmacy\" → 存在用 there be，不用 have",
+        "`nearby` 既是形容词也是副词，这里作副词「在附近」。也可说 `near here`。"
+      ],
+      "distractors": [
+        [
+          "Are there",
+          "Is their",
+          "Does there"
+        ],
+        [
+          "the pharmacy",
+          "some pharmacy",
+          "pharmacy"
+        ],
+        [
+          "near by?",
+          "near?",
+          "next door?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I think we're lost, can you help us?",
+      "cid": "4ca097f3",
+      "translation": "我想我们迷路了，你能帮我们吗？",
+      "chunks": [
+        "I think we're lost,",
+        "can you help us?"
+      ],
+      "hints": [
+        "我想我们迷路了",
+        "你能帮我们吗"
+      ],
+      "grammar": [
+        {
+          "role": "陈述+请求",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/θɪŋk/",
+            "/wɪr/",
+            "/lɒst/"
+          ],
+          "pos": "主谓+宾语从句",
+          "meaning": "我想我们迷路了"
+        },
+        {
+          "role": "情态疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kæn/",
+            "/juː/",
+            "/help/",
+            "/ʌs/"
+          ],
+          "pos": "请求帮助",
+          "meaning": "你能帮我们吗"
+        }
+      ],
+      "explanations": [
+        "`be lost` = 迷路，lost 是 lose 的过去分词作形容词。常见错误：\n• \"we **are lose**\" → 要用过去分词 lost\n• \"we **lost**\" → 缺 be 动词；若说 we lost our way 才不加 be",
+        "问路求助开场白。help sb 直接接宾语：help us，不加 to 也正确（help (to) do）。"
+      ],
+      "distractors": [
+        [
+          "I think we lost,",
+          "I think we're lose,",
+          "I thinks we're lost,"
+        ],
+        [
+          "can you helps us?",
+          "can you help we?",
+          "can your help us?"
+        ]
+      ]
+    },
+    {
+      "sentence": "How long does it take to get there?",
+      "cid": "179cbe0e",
+      "translation": "到那里要多久？",
+      "chunks": [
+        "How long",
+        "does it take",
+        "to get there?"
+      ],
+      "hints": [
+        "多长时间",
+        "要花费",
+        "到达那里"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/haʊ/",
+            "/lɔːŋ/"
+          ],
+          "pos": "时间疑问",
+          "meaning": "多长时间"
+        },
+        {
+          "role": "主谓（形式主语）",
+          "color": "#c87033",
+          "phonetic": [
+            "/dʌz/",
+            "/ɪt/",
+            "/teɪk/"
+          ],
+          "pos": "It takes 句型",
+          "meaning": "要花费"
+        },
+        {
+          "role": "不定式短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ɡet/",
+            "/ðer/"
+          ],
+          "pos": "不定式",
+          "meaning": "到达那里"
+        }
+      ],
+      "explanations": [
+        "句型 `It takes + 时间 + to do`。常见错误：\n• \"How long **does it cost**\" → cost 表花费金钱，花费时间用 take\n• \"How long **it takes**\" → 疑问句助动词要提前",
+        "`get there` 中 there 是副词，前不加 to。比较：get to the station（到车站）要加 to，there/here/home 不加。"
+      ],
+      "distractors": [
+        [
+          "How far",
+          "How often",
+          "How time"
+        ],
+        [
+          "do it take",
+          "does it takes",
+          "it takes"
+        ],
+        [
+          "to get to there?",
+          "to getting there?",
+          "to get here?"
+        ]
+      ]
+    },
+    {
+      "sentence": "By the way, do you know where the bank is?",
+      "cid": "9a4f0134",
+      "translation": "顺便问一下，你知道银行在哪吗？",
+      "chunks": [
+        "By the way,",
+        "do you know where",
+        "the bank is?"
+      ],
+      "hints": [
+        "顺便说一下",
+        "你知道哪里",
+        "银行是"
+      ],
+      "grammar": [
+        {
+          "role": "插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/baɪ/",
+            "/ðə/",
+            "/weɪ/"
+          ],
+          "pos": "固定短语",
+          "meaning": "顺便说一下"
+        },
+        {
+          "role": "疑问主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/nəʊ/",
+            "/wer/"
+          ],
+          "pos": "一般疑问",
+          "meaning": "你知道哪里"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/bæŋk/",
+            "/ɪz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "银行在"
+        }
+      ],
+      "explanations": [
+        "`By the way` = 顺便说一下（转换话题）。常见错误：\n• \"By the **ways**\" → 固定短语不加 s\n• \"By a way\" → 是 the way",
+        "`do you know where...` 后接宾语从句，用陈述语序：where **the bank is**（不是 where is the bank）。",
+        "`the bank is` = 银行在（某处）。注意从句语序 be 动词后置。"
+      ],
+      "distractors": [
+        [
+          "By a way,",
+          "By the ways,",
+          "Anyway, is"
+        ],
+        [
+          "do you know where is",
+          "did you know where",
+          "you know where"
+        ],
+        [
+          "the bank?",
+          "is the bank?",
+          "a bank is?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Is there a bank around here?",
+      "cid": "551d0bc0",
+      "translation": "这附近有银行吗？",
+      "chunks": [
+        "Is there",
+        "a bank",
+        "around here?"
+      ],
+      "hints": [
+        "是否有",
+        "一家银行",
+        "在这附近"
+      ],
+      "grammar": [
+        {
+          "role": "存在句疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪz/",
+            "/ðer/"
+          ],
+          "pos": "is there",
+          "meaning": "有……吗"
+        },
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/bæŋk/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一家银行"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈraʊnd/",
+            "/hɪr/"
+          ],
+          "pos": "短语",
+          "meaning": "这附近"
+        }
+      ],
+      "explanations": [
+        "问路找店。`Is there...?` = 有……吗？常见错误：\n• \"There is a bank?\" → 疑问句要倒装 Is there\n• \"Is there bank\" → 可数名词要 a",
+        "`around here` = 这附近。同义：nearby / in this area。"
+      ],
+      "distractors": [
+        [
+          "Are there",
+          "There is",
+          "Does there"
+        ],
+        [
+          "banks",
+          "the bank",
+          "one banks"
+        ],
+        [
+          "near here?",
+          "around there?",
+          "in here?"
+        ]
+      ]
+    },
+    {
+      "sentence": "How do I get to the train station?",
+      "cid": "d7f8b9c8",
+      "translation": "去火车站怎么走？",
+      "chunks": [
+        "How do I get to",
+        "the train station?"
+      ],
+      "hints": [
+        "我该怎么去",
+        "火车站"
+      ],
+      "grammar": [
+        {
+          "role": "疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/haʊ/",
+            "/duː/",
+            "/aɪ/",
+            "/ɡet/",
+            "/tə/"
+          ],
+          "pos": "how do I get to",
+          "meaning": "我怎么去"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/treɪn/",
+            "/ˈsteɪʃn/"
+          ],
+          "pos": "名词短语",
+          "meaning": "火车站"
+        }
+      ],
+      "explanations": [
+        "问路万能句。`How do I get to...?` = 去……怎么走？常见错误：\n• \"How can I get to\" → 也可，do 更口语\n• \"How to get to\" → 从句可用，独立问句不完整",
+        "同义：Could you tell me the way to...?"
+      ],
+      "distractors": [
+        [
+          "How I get to",
+          "How do I go",
+          "What do I get to"
+        ],
+        [
+          "the train stations?",
+          "a train station?",
+          "to the station train?"
+        ]
+      ]
+    }
+  ]
+}

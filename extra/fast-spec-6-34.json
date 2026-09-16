@@ -1,0 +1,157 @@
+[
+ {
+  "sentence": "I'd like to have a Japanese interpreter.",
+  "chunks": ["I'd like to have", "a Japanese interpreter."],
+  "hints": ["我想请", "一位日语翻译"]
+ },
+ {
+  "sentence": "I can't speak English.",
+  "chunks": ["I can't speak", "English."],
+  "hints": ["我不会说", "英语"]
+ },
+ {
+  "sentence": "My English isn't good enough.",
+  "chunks": ["My English", "isn't good enough."],
+  "hints": ["我的英语", "不够好"]
+ },
+ {
+  "sentence": "A Japanese-speaking person, please.",
+  "chunks": ["A Japanese-speaking person,", "please."],
+  "hints": ["会说日语的人", "请安排一位"]
+ },
+ {
+  "sentence": "What did you say?",
+  "chunks": ["What did you", "say?"],
+  "hints": ["你刚才", "说什么"]
+ },
+ {
+  "sentence": "Would you slow down, please?",
+  "chunks": ["Would you slow down,", "please?"],
+  "hints": ["您能说慢一点", "好吗"]
+ },
+ {
+  "sentence": "I'd like a Japanese-speaking guide, please.",
+  "chunks": ["I'd like", "a Japanese-speaking guide,", "please."],
+  "hints": ["我想请", "一位会说日语的导游", "麻烦您"]
+ },
+ {
+  "sentence": "I can't make myself understood.",
+  "chunks": ["I can't make myself", "understood."],
+  "hints": ["我没法让", "别人听懂我"]
+ },
+ {
+  "sentence": "I don't know how to say it in English.",
+  "chunks": ["I don't know how to say it", "in English."],
+  "hints": ["我不知道这该怎么说", "用英语"]
+ },
+ {
+  "sentence": "How do you say “giri” in English?",
+  "chunks": ["How do you say “giri”", "in English?"],
+  "hints": ["“义理”怎么说", "用英语"]
+ },
+ {
+  "sentence": "What do you call this in English?",
+  "chunks": ["What do you call this", "in English?"],
+  "hints": ["这个叫什么", "用英语"]
+ },
+ {
+  "sentence": "Call the police!",
+  "chunks": ["Call", "the police!"],
+  "hints": ["叫", "警察"]
+ },
+ {
+  "sentence": "I had my bag stolen.",
+  "chunks": ["I had my bag", "stolen."],
+  "hints": ["我的包被", "偷了"]
+ },
+ {
+  "sentence": "Who should I report it to?",
+  "chunks": ["Who should I", "report it to?"],
+  "hints": ["我该", "向谁报告"]
+ },
+ {
+  "sentence": "Where is the Lost and Found?",
+  "chunks": ["Where is the", "Lost and Found?"],
+  "hints": ["在哪里", "失物招领处"]
+ },
+ {
+  "sentence": "What kind of bag?",
+  "chunks": ["What kind of", "bag?"],
+  "hints": ["什么样的", "包"]
+ },
+ {
+  "sentence": "What was in it?",
+  "chunks": ["What was", "in it?"],
+  "hints": ["里面", "有什么"]
+ },
+ {
+  "sentence": "How much was in it?",
+  "chunks": ["How much", "was in it?"],
+  "hints": ["多少钱", "在里面"]
+ },
+ {
+  "sentence": "We'll call you if we find it.",
+  "chunks": ["We'll call you", "if we find it."],
+  "hints": ["我们会联系你", "如果找到了"]
+ },
+ {
+  "sentence": "Could you fill out this form?",
+  "chunks": ["Could you fill out", "this form?"],
+  "hints": ["你能填一下", "这张表吗"]
+ },
+ {
+  "sentence": "Please give me a report on the theft.",
+  "chunks": ["Please give me a report", "on the theft."],
+  "hints": ["请给我一份报告", "关于这起盗窃"]
+ },
+ {
+  "sentence": "Where is the Japanese Embassy?",
+  "chunks": ["Where is the", "Japanese Embassy?"],
+  "hints": ["在哪里", "日本大使馆"]
+ },
+ {
+  "sentence": "I lost my passport.",
+  "chunks": ["I lost", "my passport."],
+  "hints": ["我丢了", "我的护照"]
+ },
+ {
+  "sentence": "Does anyone here speak Japanese?",
+  "chunks": ["Does anyone here", "speak Japanese?"],
+  "hints": ["这里有谁", "会说日语吗"]
+ },
+ {
+  "sentence": "Can I get it reissued?",
+  "chunks": ["Can I get it", "reissued?"],
+  "hints": ["我能让它", "重新补发吗"]
+ },
+ {
+  "sentence": "Please cancel my card number.",
+  "chunks": ["Please cancel", "my card number."],
+  "hints": ["请注销", "我的卡号"]
+ },
+ {
+  "sentence": "What should I do?",
+  "chunks": ["What should I", "do?"],
+  "hints": ["我该", "怎么办"]
+ },
+ {
+  "sentence": "It's an emergency!",
+  "chunks": ["It's an", "emergency!"],
+  "hints": ["这是", "十万火急的情况"]
+ },
+ {
+  "sentence": "Please call a doctor.",
+  "chunks": ["Please call", "a doctor."],
+  "hints": ["请叫", "一位医生"]
+ },
+ {
+  "sentence": "Help!",
+  "chunks": ["Help!"],
+  "hints": ["救命"]
+ },
+ {
+  "sentence": "Thief!",
+  "chunks": ["Thief!"],
+  "hints": ["抓小偷"]
+ }
+]

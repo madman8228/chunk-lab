@@ -1,0 +1,22 @@
+[
+ {
+  "sentence": "I'm shy.",
+  "chunks": ["I'm", "shy."],
+  "hints": ["我", "不好意思"]
+ },
+ {
+  "sentence": "I'm ashamed of myself.",
+  "chunks": ["I'm ashamed", "of myself."],
+  "hints": ["我为自己", "感到惭愧"]
+ },
+ {
+  "sentence": "How shameful!",
+  "chunks": ["How", "shameful!"],
+  "hints": ["真", "恬不知耻"]
+ },
+ {
+  "sentence": "Shame on you!",
+  "chunks": ["Shame on", "you!"],
+  "hints": ["你真", "丢脸"]
+ }
+]

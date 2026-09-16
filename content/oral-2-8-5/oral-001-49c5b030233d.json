@@ -1,0 +1,463 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "It looks like it's going to rain.",
+      "cid": "05de33a5",
+      "translation": "看起来快要下雨了。",
+      "chunks": [
+        "It looks like",
+        "it's going to rain."
+      ],
+      "hints": [
+        "看起来",
+        "要下雨了"
+      ],
+      "grammar": [
+        {
+          "role": "主句主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪt/",
+            "/lʊks/",
+            "/laɪk/"
+          ],
+          "pos": "主系表结构",
+          "meaning": "看起来"
+        },
+        {
+          "role": "真正主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪts/",
+            "/ˈɡəʊɪŋ/",
+            "/tuː/",
+            "/reɪn/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "要下雨了"
+        }
+      ],
+      "explanations": [
+        "**It looks like...** 表示「看起来好像……」。常见错误：\n• \"It **look** like\" → 第三人称单数要加 s\n• \"It **seems** like\" → 也可以，但 seems 更正式",
+        "**be going to** 表示基于现有迹象的预测（看到乌云→要下雨）。与 **will** 的区别：will 是主观判断，be going to 是有客观依据的预测。"
+      ],
+      "distractors": [
+        [
+          "It look like",
+          "It looked like",
+          "It looks as"
+        ],
+        [
+          "it going to rain.",
+          "it's going to raining."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's pouring outside right now.",
+      "cid": "8139df49",
+      "translation": "外面这会儿正下着倾盆大雨。",
+      "chunks": [
+        "It's pouring",
+        "outside",
+        "right now."
+      ],
+      "hints": [
+        "正下大雨",
+        "外面",
+        "此刻"
+      ],
+      "grammar": [
+        {
+          "role": "主谓（天气）",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ˈpɔːrɪŋ/"
+          ],
+          "pos": "主系表/进行",
+          "meaning": "正下大雨"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˌaʊtˈsaɪd/"
+          ],
+          "pos": "副词",
+          "meaning": "外面"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/raɪt/",
+            "/naʊ/"
+          ],
+          "pos": "副词短语",
+          "meaning": "此刻"
+        }
+      ],
+      "explanations": [
+        "`It's pouring` 是口语化「下倾盆大雨」。常见错误：\n• \"It **pours** outside\" → 也可，但 pouring 强调此刻正在下\n• \"It is **pour**\" → 进行时要用 pouring",
+        "`right now` = 此刻、马上。区别于 `now`（较泛）。口语常缩写 it's = it is。"
+      ],
+      "distractors": [
+        [
+          "It's snowing",
+          "It's blowing",
+          "It's showing"
+        ],
+        [
+          "outdoor",
+          "in outside"
+        ],
+        [
+          "right away.",
+          "just now.",
+          "right soon."
+        ]
+      ]
+    },
+    {
+      "sentence": "If it rains, we'll just stay home.",
+      "cid": "362a9411",
+      "translation": "要是下雨，我们就待在家里。",
+      "chunks": [
+        "If it rains,",
+        "we'll just stay home."
+      ],
+      "hints": [
+        "如果下雨",
+        "我们就待在家"
+      ],
+      "grammar": [
+        {
+          "role": "条件从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪf/",
+            "/ɪt/",
+            "/reɪnz/"
+          ],
+          "pos": "if 条件状语从句",
+          "meaning": "如果下雨"
+        },
+        {
+          "role": "主句（短语动词）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wiːl/",
+            "/dʒʌst/",
+            "/steɪ/",
+            "/hoʊm/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我们就待在家"
+        }
+      ],
+      "explanations": [
+        "主将从现：if 从句用一般现在时（rains）表将来，主句用 will。常见错误：\n• \"If it **will** rain\" → if 从句不用 will\n• \"we **stay** home\" → 主句表将来要用 will stay",
+        "`stay home` 中 home 是副词，前面不加 at（区别于 stay at home 也可，但 stay home 更口语）。"
+      ],
+      "distractors": [
+        [
+          "If it rain,",
+          "If it will rain,",
+          "If it rainy,"
+        ],
+        [
+          "we just stay home.",
+          "we'll just staying home.",
+          "we'll just stays home."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's boiling hot outside today.",
+      "cid": "dd58f6c9",
+      "translation": "今天外面热死了。",
+      "chunks": [
+        "It's boiling hot",
+        "outside",
+        "today."
+      ],
+      "hints": [
+        "热死了",
+        "外面",
+        "今天"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ˈbɔɪlɪŋ/",
+            "/hɒt/"
+          ],
+          "pos": "口语夸张",
+          "meaning": "热死了"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˌaʊtˈsaɪd/"
+          ],
+          "pos": "副词",
+          "meaning": "外面"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈdeɪ/"
+          ],
+          "pos": "副词",
+          "meaning": "今天"
+        }
+      ],
+      "explanations": [
+        "`boiling hot` = 滚烫/热得要命（boiling 原义沸腾，口语表夸张）。常见错误：\n• \"boiling **hotly**\" → hot 是形容词，不加 -ly\n• 说 It's boiling 即可表很热，别再叠 very",
+        "对比说法：It's freezing (cold) 冷死了 / It's scorching 酷热。天气句用 it 作主语。"
+      ],
+      "distractors": [
+        [
+          "It's boiled hot",
+          "It's boiling hotter",
+          "It's boiling hots"
+        ],
+        [
+          "outdoor",
+          "in outside"
+        ],
+        [
+          "to day.",
+          "the today."
+        ]
+      ]
+    },
+    {
+      "sentence": "It depends on the weather, I guess.",
+      "cid": "09a7c3c3",
+      "translation": "这取决于天气，我想。",
+      "chunks": [
+        "It depends on",
+        "the weather,",
+        "I guess."
+      ],
+      "hints": [
+        "它取决于",
+        "天气",
+        "我猜"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪt/",
+            "/dɪˈpendz/",
+            "/ɒn/"
+          ],
+          "pos": "短语动词",
+          "meaning": "它取决于"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈweðər/"
+          ],
+          "pos": "名词",
+          "meaning": "天气"
+        },
+        {
+          "role": "插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/ɡes/"
+          ],
+          "pos": "口语表达",
+          "meaning": "我猜"
+        }
+      ],
+      "explanations": [
+        "`depend on` = 取决于（on 不可省）。常见错误：\n• \"It depends **of**\" → 介词是 on\n• \"It's depend on\" → be 动词多余：It depends on",
+        "`the weather` = 天气。注意 weather 与 whether（是否）同音不同拼。",
+        "`I guess` = 我想/我猜（句尾缓和语气）。"
+      ],
+      "distractors": [
+        [
+          "It depend on",
+          "It depends",
+          "It is depends on"
+        ],
+        [
+          "a weather,",
+          "weather,",
+          "the whether,"
+        ],
+        [
+          "I guessed.",
+          "I think.",
+          "I'm guess."
+        ]
+      ]
+    },
+    {
+      "sentence": "The sun's out.",
+      "cid": "d463d7c2",
+      "translation": "太阳出来了。",
+      "chunks": [
+        "The sun's",
+        "out."
+      ],
+      "hints": [
+        "太阳",
+        "出来了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðə/",
+            "/sʌnz/"
+          ],
+          "pos": "名词 + is 缩写",
+          "meaning": "太阳（出来了）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/aʊt/"
+          ],
+          "pos": "副词作表语",
+          "meaning": "出来了、露面"
+        }
+      ],
+      "explanations": [
+        "`The sun's out.` 指太阳出来了，out 在此表「露面」。常见错误：\n• \"The sun's out of\" → out 后面不加东西\n• \"The sun comes out\" 也对，但 the sun's out 更即时",
+        "同类：The moon's out. / The stars are out."
+      ],
+      "distractors": [
+        [
+          "The sun",
+          "The sunny",
+          "The sun is of"
+        ],
+        [
+          "out of.",
+          "outs.",
+          "outing."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's raining.",
+      "cid": "c9dfafd6",
+      "translation": "下雨了。",
+      "chunks": [
+        "It's",
+        "raining."
+      ],
+      "hints": [
+        "天（它）",
+        "在下雨"
+      ],
+      "grammar": [
+        {
+          "role": "形式主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/"
+          ],
+          "pos": "it 指天气",
+          "meaning": "天"
+        },
+        {
+          "role": "谓语（进行时）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈreɪnɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "正在下雨"
+        }
+      ],
+      "explanations": [
+        "谈天气时用 it 作形式主语，不能用 he/she。常见错误：\n• \"It rains now\" → 眼下正在下要用进行时\n• \"Rain is happening\" → 不地道，直接说 It's raining",
+        "相关：It's pouring.（下大雨）/ It's drizzling.（下毛毛雨）"
+      ],
+      "distractors": [
+        [
+          "It",
+          "It is raining",
+          "There's"
+        ],
+        [
+          "rains.",
+          "rained.",
+          "rainy."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's getting windy.",
+      "cid": "6db16bc7",
+      "translation": "起风了。",
+      "chunks": [
+        "It's getting",
+        "windy."
+      ],
+      "hints": [
+        "正在变得",
+        "有风"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ˈɡetɪŋ/"
+          ],
+          "pos": "get + 形容词（进行时）",
+          "meaning": "正在变得"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈwɪndi/"
+          ],
+          "pos": "形容词",
+          "meaning": "有风的"
+        }
+      ],
+      "explanations": [
+        "`windy` = wind + y，表「起风的」。常见错误：\n• \"It's getting wind\" → 形容词形式是 windy\n• \"It's getting a wind\" → 不需要冠词",
+        "同类天气变化：It's getting cloudy / foggy / chilly."
+      ],
+      "distractors": [
+        [
+          "It getting",
+          "It's got",
+          "It's get"
+        ],
+        [
+          "wind.",
+          "windily.",
+          "winds."
+        ]
+      ]
+    }
+  ]
+}

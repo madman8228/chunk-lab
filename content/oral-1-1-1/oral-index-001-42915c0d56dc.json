@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "70190b47",
+      "sentence": "Do you mind if I open the window?",
+      "translation": "你介意我开下窗吗？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "73225f28",
+      "sentence": "I didn't get much sleep last night.",
+      "translation": "我昨晚没睡多少觉。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "959fa9a7",
+      "sentence": "How'd you sleep?",
+      "translation": "你睡得怎么样？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "757da6a9",
+      "sentence": "You look refreshed.",
+      "translation": "你气色不错。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "a941aad4",
+      "sentence": "Yeah, I slept in.",
+      "translation": "嗯，我睡懒觉了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "b2921029",
+      "sentence": "I woke up at 10.",
+      "translation": "我十点醒的。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "b613eb7d",
+      "sentence": "You feelin' okay?",
+      "translation": "感觉还好吗？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "b5a62b5d",
+      "sentence": "Super good.",
+      "translation": "很好。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "21d7bd02",
+      "sentence": "Where you goin'?",
+      "translation": "你要去哪？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "6e85e8be",
+      "sentence": "Out for dinner.",
+      "translation": "出去吃晚饭。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "22684a18",
+      "sentence": "I want you home by 10.",
+      "translation": "我要你十点前回家。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "7591c63d",
+      "sentence": "Yes, ma'am.",
+      "translation": "好的，女士。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "d68791ff",
+      "sentence": "You tired?",
+      "translation": "你累了？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "8e16eb62",
+      "sentence": "A little.",
+      "translation": "有一点。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "e13305a9",
+      "sentence": "I got up late.",
+      "translation": "我起晚了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "bb4983d7",
+      "sentence": "Go clean up.",
+      "translation": "去洗漱吧。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "2684aa5f",
+      "sentence": "Go wash up.",
+      "translation": "去洗把脸、洗把手。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "c0af9f50",
+      "sentence": "Rinse your mouth.",
+      "translation": "漱漱口。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "5d687bf0",
+      "sentence": "Rinse out your mouth.",
+      "translation": "把嘴漱干净。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "3c1a2036",
+      "sentence": "Gargle with water.",
+      "translation": "用水漱漱喉咙。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "af665333",
+      "sentence": "Rinse it.",
+      "translation": "冲一冲。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "b9c23335",
+      "sentence": "Take a shower.",
+      "translation": "洗个澡。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "73504ae3",
+      "sentence": "Dry your hands.",
+      "translation": "把手擦干。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "54764003",
+      "sentence": "Go to the bathroom.",
+      "translation": "去上厕所。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "e0bd95bb",
+      "sentence": "Get out of bed.",
+      "translation": "起床了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "e082afdd",
+      "sentence": "Get dressed.",
+      "translation": "穿好衣服。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "e31c936a",
+      "sentence": "Let's go downstairs.",
+      "translation": "下楼吧。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "e01f814d",
+      "sentence": "Eat something.",
+      "translation": "吃点东西。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "a80cfc73",
+      "sentence": "I'm heading out the door.",
+      "translation": "我要出门了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "40fa1f77",
+      "sentence": "Blow your nose.",
+      "translation": "擤鼻涕。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "319a8e05",
+      "sentence": "Why didn't you wake me?",
+      "translation": "为什么不叫醒我？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "85c69d3a",
+      "sentence": "I overslept.",
+      "translation": "我睡过头了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "4aeb9a71",
+      "sentence": "I got enough sleep.",
+      "translation": "我睡够了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "830c8e09",
+      "sentence": "Make your bed.",
+      "translation": "整理你的床。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "f830f35a",
+      "sentence": "My alarm's set.",
+      "translation": "我闹钟定好了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "31bd739b",
+      "sentence": "Sleep in.",
+      "translation": "多睡会儿。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "257c6484",
+      "sentence": "I want to stay in bed for another half an hour.",
+      "translation": "我真想在床上多睡半个小时。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "f19ef7b9",
+      "sentence": "It's time to get up.",
+      "translation": "该起床了。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "3db64270",
+      "sentence": "Let me sleep for ten minutes.",
+      "translation": "让我再睡十分钟。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "4bc148af",
+      "sentence": "When do you get up on Saturday?",
+      "translation": "星期六你几点起床？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "d8351b8f",
+      "sentence": "Get up soon.",
+      "translation": "快起床。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "615604c4",
+      "sentence": "I usually sleep late on Saturday.",
+      "translation": "我星期六通常晚起。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "ad376550",
+      "sentence": "I don't want to get up.",
+      "translation": "我真不想起床。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "83b90662",
+      "sentence": "Are you awake?",
+      "translation": "你醒了吗？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "2601c5bd",
+      "sentence": "It's too early for getting up.",
+      "translation": "现在起床还太早。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "a155ee83",
+      "sentence": "It's still early.",
+      "translation": "时间还早。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "3cfec5e3",
+      "sentence": "Why didn't the alarm go off?",
+      "translation": "闹钟为什么没响呢？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "27b1176e",
+      "sentence": "Did you hear the alarm?",
+      "translation": "你听到闹钟了吗？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "a5e554a7",
+      "sentence": "Is David up yet?",
+      "translation": "大卫起床了吗？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "4778de8a",
+      "sentence": "He is still in bed.",
+      "translation": "他还没起。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "fe96fbbe",
+      "sentence": "I never get up early.",
+      "translation": "我从来不起早。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "9fa6d5b3",
+      "sentence": "I have trouble waking up in the morning.",
+      "translation": "早起对我是件困难的事。",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "7533e2a5",
+      "sentence": "What should I wear?",
+      "translation": "穿什么好呢？",
+      "sourceUrl": "content/oral-1-1-1/oral-001-b24c7bee0192.json",
+      "sourceOffset": 52
+    }
+  ]
+}

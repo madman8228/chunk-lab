@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "What time do you get off work?",
+      "cid": "5cac61f5",
+      "translation": "你几点下班？",
+      "chunks": [
+        "What time",
+        "do you get off work?"
+      ],
+      "hints": [
+        "几点",
+        "你下班"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɒt/",
+            "/taɪm/"
+          ],
+          "pos": "特殊疑问词",
+          "meaning": "几点"
+        },
+        {
+          "role": "谓语",
+          "color": "#c87033",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/ɡet/",
+            "/ɒf/",
+            "/wɜːrk/"
+          ],
+          "pos": "get off 搭配",
+          "meaning": "你下班"
+        }
+      ],
+      "explanations": [
+        "**get off work** = 下班（get off 表示「结束工作」）。常见错误：\n• \"get out of work\" → 不是下班，是「逃避工作/被解雇（口）」\n• \"leave the work\" → leave work 可以，但 get off work 更口语",
+        "相关表达：go to work 上班 / knock off (work) 收工（口语）/ be off duty 下班（值班人员）。"
+      ],
+      "distractors": [
+        [
+          "When time",
+          "How time",
+          "What times"
+        ],
+        [
+          "are you get off work?",
+          "do you gets off work?",
+          "do you get off the work?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I have a meeting at three this afternoon.",
+      "cid": "99c40243",
+      "translation": "我今天下午三点有个会。",
+      "chunks": [
+        "I have a meeting",
+        "at three",
+        "this afternoon."
+      ],
+      "hints": [
+        "我有个会",
+        "在三点",
+        "今天下午"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/",
+            "/ə/",
+            "/ˈmiːtɪŋ/"
+          ],
+          "pos": "主谓宾",
+          "meaning": "我有个会"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/θriː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在三点"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðɪs/",
+            "/ˌæftərˈnuːn/"
+          ],
+          "pos": "名词短语",
+          "meaning": "今天下午"
+        }
+      ],
+      "explanations": [
+        "`have a meeting` 表示「开会」，have 表「有」。常见错误：\n• \"I **do** a meeting\" → 错，开会用 have，不是 do\n• \"I **am** a meeting\" → 错，meeting 不是状态",
+        "具体时刻前用 `at`（at three）；泛指下午用 `this afternoon`，前不加 in/on（口语习惯）。"
+      ],
+      "distractors": [
+        [
+          "I have meeting",
+          "I has a meeting",
+          "I having a meeting"
+        ],
+        [
+          "on three",
+          "at threes",
+          "at the three"
+        ],
+        [
+          "today afternoon.",
+          "that afternoon.",
+          "in the afternoon."
+        ]
+      ]
+    },
+    {
+      "sentence": "Is the meeting still on for tomorrow?",
+      "cid": "bd1383e5",
+      "translation": "明天的会还照常开吗？",
+      "chunks": [
+        "Is the meeting",
+        "still on",
+        "for tomorrow?"
+      ],
+      "hints": [
+        "会议是",
+        "仍按计划",
+        "明天"
+      ],
+      "grammar": [
+        {
+          "role": "主系",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪz/",
+            "/ðə/",
+            "/ˈmiːtɪŋ/"
+          ],
+          "pos": "主系结构",
+          "meaning": "会议是"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/stɪl/",
+            "/ɒn/"
+          ],
+          "pos": "be on 进行中",
+          "meaning": "仍按计划"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/təˈmɒroʊ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "明天"
+        }
+      ],
+      "explanations": [
+        "`be on` = 按计划进行/上演中。常见错误：\n• \"Is the meeting still **open**\" → open 表开始报名，不表照常举行\n• \"Will the meeting **is** on\" → will 后接动词原形 be",
+        "确认会议是否照常的办公口语。也可说：\"Is the meeting still happening tomorrow?\""
+      ],
+      "distractors": [
+        [
+          "Are the meeting",
+          "Is a meeting",
+          "The meeting is"
+        ],
+        [
+          "still in",
+          "still be on",
+          "on still"
+        ],
+        [
+          "on tomorrow?",
+          "to tomorrow?",
+          "in tomorrow?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm afraid I have to ask for a day off.",
+      "cid": "13fee10d",
+      "translation": "恐怕我得请一天假。",
+      "chunks": [
+        "I'm afraid",
+        "I have to ask for",
+        "a day off."
+      ],
+      "hints": [
+        "恐怕",
+        "我得请求",
+        "一天假"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/əˈfreɪd/"
+          ],
+          "pos": "委婉表达",
+          "meaning": "恐怕"
+        },
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/",
+            "/tuː/",
+            "/ɑːsk/",
+            "/fɔːr/"
+          ],
+          "pos": "have to 结构",
+          "meaning": "我得请求"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/deɪ/",
+            "/ɒf/"
+          ],
+          "pos": "宾语",
+          "meaning": "一天假"
+        }
+      ],
+      "explanations": [
+        "`I'm afraid` 委婉开头，软化请求的唐突感。常见错误：\n• \"I'm afraid **of** I have to\" → afraid 接从句不加 of\n• \"I afraid\" → 缺 be 动词，要 I'm afraid",
+        "`have to ask for` = 不得不请求。have to 表客观必须。",
+        "`a day off` = 一天假（off 表休假）。常见错误：\n• \"a **off** day\" → 顺序颠倒，是 a day off\n• \"ask for day off\" → 可数，要 a day off"
+      ],
+      "distractors": [
+        [
+          "I afraid",
+          "I'm afraid of",
+          "I'm feared"
+        ],
+        [
+          "I has to ask for",
+          "I have to asking for",
+          "I must to ask for"
+        ],
+        [
+          "a off day.",
+          "one day offs.",
+          "a day of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could we reschedule the meeting to Friday?",
+      "cid": "4d2656c9",
+      "translation": "我们能把会议改到周五吗？",
+      "chunks": [
+        "Could we reschedule",
+        "the meeting",
+        "to Friday?"
+      ],
+      "hints": [
+        "我们能重新安排",
+        "会议",
+        "改到周五"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/wiː/",
+            "/riːˈʃedjuːl/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我们能重排"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmiːtɪŋ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "会议"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ˈfraɪdeɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "改到周五"
+        }
+      ],
+      "explanations": [
+        "改期用语。`reschedule` = 重新安排时间。常见错误：\n• \"reschedule the meeting **for** Friday\" → for 也可以，但 to 强调改到的目标\n• \"re-schedule\" → 不加连字符更常见",
+        "`the meeting` 特指已知的那场会议。",
+        "`to Friday` = 改到周五。星期几前不加 on（改期到某日用 to/for + 星期）。"
+      ],
+      "distractors": [
+        [
+          "Could we reschedules",
+          "Can we to reschedule",
+          "Could us reschedule"
+        ],
+        [
+          "a meeting",
+          "meetings",
+          "the meeting's"
+        ],
+        [
+          "at Friday?",
+          "on Friday?",
+          "to the Friday?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll get back to you by the end of the day.",
+      "cid": "ddff4543",
+      "translation": "我今天之内会回复你。",
+      "chunks": [
+        "I'll get back to you",
+        "by the end of the day."
+      ],
+      "hints": [
+        "我会回复你",
+        "在今天结束前"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/ɡet/",
+            "/bæk/",
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "将来时",
+          "meaning": "我会回复你"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/baɪ/",
+            "/ði/",
+            "/end/",
+            "/əv/",
+            "/ðə/",
+            "/deɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在今日结束前"
+        }
+      ],
+      "explanations": [
+        "商务跟进用语。`get back to someone` = 回复/再联系某人。常见错误：\n• \"get back **you**\" → 要带 to：get back to you\n• \"reply you\" → 同样漏了 to（reply to you）",
+        "`by the end of the day` = 今天之内（截止）。by + 时间点表「不迟于」。注意不是 at the end。"
+      ],
+      "distractors": [
+        [
+          "I get back to you",
+          "I'll get you back",
+          "I'll back to you"
+        ],
+        [
+          "at the end of the day.",
+          "until the end of the day.",
+          "by end of day."
+        ]
+      ]
+    },
+    {
+      "sentence": "I took that job.",
+      "cid": "4cb79c53",
+      "translation": "我接受了那份工作。",
+      "chunks": [
+        "I took",
+        "that job."
+      ],
+      "hints": [
+        "我接了",
+        "那份工作"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/tʊk/"
+          ],
+          "pos": "take 的过去式",
+          "meaning": "我接了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðæt/",
+            "/dʒɑːb/"
+          ],
+          "pos": "名词短语",
+          "meaning": "那份工作"
+        }
+      ],
+      "explanations": [
+        "`take a job` 表「接受一份工作」。常见错误：\n• \"I taked\" → take 是不规则动词，过去式是 took\n• \"took that job\" 与 \"got that job\" → got 强调「得到」，took 强调「接受」",
+        "`job` 是可数名词，特指某份工作时用 that / the。常见错误：\n• \"that works\" → job 指职位，work 是不可数名词"
+      ],
+      "distractors": [
+        [
+          "I take",
+          "I taked",
+          "I taken"
+        ],
+        [
+          "that jobs.",
+          "this job.",
+          "that work."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's close to me.",
+      "cid": "b45ed857",
+      "translation": "离我很近。",
+      "chunks": [
+        "It's close",
+        "to me."
+      ],
+      "hints": [
+        "它是近的",
+        "对我来说"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/kloʊs/"
+          ],
+          "pos": "it + is + 形容词",
+          "meaning": "它是近的"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "离我"
+        }
+      ],
+      "explanations": [
+        "`close` 作形容词读 /kloʊs/，表「近的」。常见错误：\n• \"It's closed\" → closed 读 /kloʊzd/，是「关门的」，意思完全不同\n• \"near to me\" → near 作形容词时不加 to，或直接用 close to me",
+        "`close to sb/sth` 表「离……近」。常见错误：\n• \"close me\" → 缺介词 to"
+      ],
+      "distractors": [
+        [
+          "It's closed",
+          "It's closest",
+          "It's close by"
+        ],
+        [
+          "to my.",
+          "for me.",
+          "to mine."
+        ]
+      ]
+    },
+    {
+      "sentence": "The pay is good.",
+      "cid": "4eb3eb33",
+      "translation": "薪水不错。",
+      "chunks": [
+        "The pay",
+        "is good."
+      ],
+      "hints": [
+        "薪水",
+        "不错"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðə/",
+            "/peɪ/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "薪水"
+        },
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪz/",
+            "/ɡʊd/"
+          ],
+          "pos": "is + 形容词",
+          "meaning": "不错"
+        }
+      ],
+      "explanations": [
+        "`pay` 表薪水时不可数，不加 s。常见错误：\n• \"the pays\" → 不可数名词\n• \"the salary is good\" → salary 指固定月薪，pay 更泛",
+        "表语用形容词 good。常见错误：\n• \"is well\" → well 表身体好"
+      ],
+      "distractors": [
+        [
+          "The pay's",
+          "A pay",
+          "The paying"
+        ],
+        [
+          "are good.",
+          "is well.",
+          "is good at."
+        ]
+      ]
+    },
+    {
+      "sentence": "You got a minute?",
+      "cid": "bc810920",
+      "translation": "你有空吗？",
+      "chunks": [
+        "You got",
+        "a minute?"
+      ],
+      "hints": [
+        "你有",
+        "一分钟（时间）"
+      ],
+      "alts": [
+        null,
+        [
+          "a second?",
+          "a moment?"
+        ]
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ɡɑːt/"
+          ],
+          "pos": "Do you have 的口语省略",
+          "meaning": "你有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈmɪnɪt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一分钟（时间）"
+        }
+      ],
+      "explanations": [
+        "口语省略 Do，用 got 代替 have：You got a minute? = Do you have a minute?。常见错误：\n• \"You got a minute.\" 降调 → 变陈述句\n• \"Have you got a minute?\" → 英式更常这么说",
+        "`a minute` 在口语里泛指「一点时间」，不是真的六十秒。常见错误：\n• \"a minutes\" → 前面有 a 要用单数"
+      ],
+      "distractors": [
+        [
+          "You have got",
+          "You get",
+          "You got to"
+        ],
+        [
+          "a minutes?",
+          "the minute?",
+          "a minit?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Sure, what's up?",
+      "cid": "ddab755e",
+      "translation": "有，怎么了？",
+      "chunks": [
+        "Sure,",
+        "what's up?"
+      ],
+      "hints": [
+        "当然、有",
+        "怎么了"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʃʊr/"
+          ],
+          "pos": "口语肯定词",
+          "meaning": "当然、有"
+        },
+        {
+          "role": "疑问句",
+          "color": "#c87033",
+          "phonetic": [
+            "/wʌts/",
+            "/ʌp/"
+          ],
+          "pos": "what is up 缩写",
+          "meaning": "怎么了"
+        }
+      ],
+      "explanations": [
+        "`Sure` 在回应请求时等于「当然可以」。常见错误：\n• \"Surely\" → 那是「确实、无疑」，语气不对\n• \"Of course\" → 更正式，也可以",
+        "`What's up?` 是极常用的口语问候/询问，等于「怎么了／最近怎么样」。常见错误：\n• \"What up?\" → 少 is，非常随意\n• \"What's up.\" 降调读 → 语气会显得敷衍"
+      ],
+      "distractors": [
+        [
+          "OK,",
+          "Yep,",
+          "Yeah,"
+        ],
+        [
+          "what's on?",
+          "what up?",
+          "what's new?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm not on today.",
+      "cid": "a732da43",
+      "translation": "我今天不上班。",
+      "chunks": [
+        "I'm not on",
+        "today."
+      ],
+      "hints": [
+        "我今天不上（班）",
+        "今天"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/nɑːt/",
+            "/ɑːn/"
+          ],
+          "pos": "be + not + on",
+          "meaning": "我不在班"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈdeɪ/"
+          ],
+          "pos": "时间副词",
+          "meaning": "今天"
+        }
+      ],
+      "explanations": [
+        "`be on` 在排班语境里表「上班/值班」，否定就是 I'm not on。常见错误：\n• \"I'm not work today\" → 要说 I'm not working today\n• \"I'm not in today\" → 也可以，但 on 更常用于班表",
+        "`today` 作时间状语放句末。常见错误：\n• \"on today\" → today 前不加介词"
+      ],
+      "distractors": [
+        [
+          "I'm not in",
+          "I'm no on",
+          "I'm not at"
+        ],
+        [
+          "todays.",
+          "the today.",
+          "in today."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's my day off.",
+      "cid": "1da8e217",
+      "translation": "我今天休息。",
+      "chunks": [
+        "It's my",
+        "day off."
+      ],
+      "hints": [
+        "这是我的",
+        "休息日"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/maɪ/"
+          ],
+          "pos": "it + is + 所有格",
+          "meaning": "这是我的"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/deɪ/",
+            "/ɔːf/"
+          ],
+          "pos": "名词短语",
+          "meaning": "休息日"
+        }
+      ],
+      "explanations": [
+        "`It's my` 注意 Its（它的）与 It's（它是）的区别。常见错误：\n• \"Its my day off\" → 少了撇号\n• \"It's mine day off\" → 有名词时用 my",
+        "`day off` 是固定搭配，表「休息日」。常见错误：\n• \"day of\" → 少一个 f，意思变「……的一天」\n• \"off day\" → 那是「状态不好的一天」，语序不同"
+      ],
+      "distractors": [
+        [
+          "It's mine",
+          "It's me",
+          "It's my the"
+        ],
+        [
+          "day of.",
+          "day offs.",
+          "days off."
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you off tomorrow?",
+      "cid": "f2c5b8eb",
+      "translation": "你明天休息吗？",
+      "chunks": [
+        "Are you",
+        "off tomorrow?"
+      ],
+      "hints": [
+        "你是",
+        "明天休息吗"
+      ],
+      "grammar": [
+        {
+          "role": "系动词+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "倒装疑问",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语+时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɔːf/",
+            "/təˈmɑːroʊ/"
+          ],
+          "pos": "off + 副词",
+          "meaning": "明天休息"
+        }
+      ],
+      "explanations": [
+        "`be off` 在排班语境里表「休息」。常见错误：\n• \"Do you off tomorrow?\" → off 是形容词，要用 be 动词\n• \"Are you off work?\" → 更完整的说法，也对",
+        "`tomorrow` 作时间状语不加介词。常见错误：\n• \"on tomorrow\" → 错，tomorrow 前不加介词"
+      ],
+      "distractors": [
+        [
+          "Do you",
+          "Are your",
+          "Is you"
+        ],
+        [
+          "of tomorrow?",
+          "off tomorow?",
+          "on tomorrow?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I don't work Friday.",
+      "cid": "dfcf2e40",
+      "translation": "我周五不上班。",
+      "chunks": [
+        "I don't",
+        "work Friday."
+      ],
+      "hints": [
+        "我不",
+        "周五上班"
+      ],
+      "grammar": [
+        {
+          "role": "主语+助动词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "我不"
+        },
+        {
+          "role": "谓语+时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɜːrk/",
+            "/ˈfraɪdeɪ/"
+          ],
+          "pos": "动词原形 + 星期",
+          "meaning": "周五上班"
+        }
+      ],
+      "explanations": [
+        "一般现在时否定用 don't + 动词原形。常见错误：\n• \"I not work\" → 缺助动词\n• \"I doesn't work\" → I 配 don't",
+        "口语里星期前的 on 常省略：work Friday = work on Friday。常见错误：\n• \"work in Friday\" → 用 on 或省略"
+      ],
+      "distractors": [
+        [
+          "I doesn't",
+          "I not",
+          "I don't works"
+        ],
+        [
+          "works Friday.",
+          "working Friday.",
+          "worked Friday."
+        ]
+      ]
+    },
+    {
+      "sentence": "I've been so busy.",
+      "cid": "2e8d5895",
+      "translation": "我最近太忙了。",
+      "chunks": [
+        "I've been",
+        "so busy."
+      ],
+      "hints": [
+        "我一直",
+        "这么忙"
+      ],
+      "grammar": [
+        {
+          "role": "主语+助动词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/bɪn/"
+          ],
+          "pos": "现在完成时",
+          "meaning": "我一直（是）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/soʊ/",
+            "/ˈbɪzi/"
+          ],
+          "pos": "副词 + 形容词",
+          "meaning": "这么忙"
+        }
+      ],
+      "explanations": [
+        "`I've been + 形容词` 表「（从过去到现在）一直处于某状态」。常见错误：\n• \"I been so busy\" → 少了 've\n• \"I've being busy\" → being 用错，be 的过去分词是 been",
+        "`so` 表「这么、那么」，加强语气。同义：I've been super busy. / I've been swamped."
+      ],
+      "distractors": [
+        [
+          "I been",
+          "I've being",
+          "I've be"
+        ],
+        [
+          "so busily.",
+          "such busy.",
+          "so busier."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sometimes I forget.",
+      "cid": "5010e8ef",
+      "translation": "有时候会忘。",
+      "chunks": [
+        "Sometimes",
+        "I forget."
+      ],
+      "hints": [
+        "有时候",
+        "我会忘"
+      ],
+      "grammar": [
+        {
+          "role": "频度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsʌmtaɪmz/"
+          ],
+          "pos": "频度副词",
+          "meaning": "有时候"
+        },
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/fərˈɡet/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我会忘"
+        }
+      ],
+      "explanations": [
+        "`sometimes` 写成一个词，表「有时候」。常见错误：\n• \"sometime\" → 那是「某个时候」，指不确定的一个时间点\n• \"some times\" → 那是「几次」，指次数",
+        "频度副词可放句首或句中。常见错误：\n• \"I sometimes forget\" → 也同样正确"
+      ],
+      "distractors": [
+        [
+          "Sometime",
+          "Some times",
+          "Sometimes's"
+        ],
+        [
+          "I forgets.",
+          "I forgetting.",
+          "I forgotten."
+        ]
+      ]
+    },
+    {
+      "sentence": "Can I go home early?",
+      "cid": "475674ed",
+      "translation": "我能早点回家吗？",
+      "chunks": [
+        "Can I",
+        "go home early?"
+      ],
+      "hints": [
+        "我能",
+        "早点回家吗"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/kæn/",
+            "/aɪ/"
+          ],
+          "pos": "can 引导疑问",
+          "meaning": "我能"
+        },
+        {
+          "role": "谓语+状语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡoʊ/",
+            "/hoʊm/",
+            "/ˈɜːrli/"
+          ],
+          "pos": "go home + 副词",
+          "meaning": "早点回家"
+        }
+      ],
+      "explanations": [
+        "`Can I ...?` 是请求许可的常用句型。常见错误：\n• \"Do I can go\" → 情态动词直接提前，不用 do\n• \"Can me go\" → 主语用主格 I",
+        "`go home` 固定不加 to（home 作副词）。常见错误：\n• \"go to home\" → 错，go home 才是对的\n• \"early\" 是副词，修饰 go"
+      ],
+      "distractors": [
+        [
+          "Can me",
+          "Do I can",
+          "Can I to"
+        ],
+        [
+          "go to home early?",
+          "go home earlily?",
+          "go home earlies?"
+        ]
+      ]
+    },
+    {
+      "sentence": "What time will you finish?",
+      "cid": "b4cd5f6b",
+      "translation": "你什么时候结束？",
+      "chunks": [
+        "What time",
+        "will you finish?"
+      ],
+      "hints": [
+        "什么时间",
+        "你会结束"
+      ],
+      "grammar": [
+        {
+          "role": "疑问短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌt/",
+            "/taɪm/"
+          ],
+          "pos": "疑问词 + 名词",
+          "meaning": "什么时候"
+        },
+        {
+          "role": "助动词 + 主语 + 谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɪl/",
+            "/juː/",
+            "/ˈfɪnɪʃ/"
+          ],
+          "pos": "一般将来时疑问句",
+          "meaning": "你会结束"
+        }
+      ],
+      "explanations": [
+        "问具体几点结束用 `What time...?` 比 When 更聚焦。常见错误：\n• \"What time you will finish?\" → 语序应是 will you finish\n• 也可换说法：What time will you be done?",
+        "回答模板：I'll finish at two.（我两点结束）"
+      ],
+      "distractors": [
+        [
+          "What times",
+          "Which time",
+          "How time"
+        ],
+        [
+          "you will finish?",
+          "will you finishes?",
+          "do you will finish?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll finish at two.",
+      "cid": "9a127097",
+      "translation": "我两点结束。",
+      "chunks": [
+        "I'll finish",
+        "at two."
+      ],
+      "hints": [
+        "我会结束",
+        "在两点"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/ˈfɪnɪʃ/"
+          ],
+          "pos": "will + 动词原形",
+          "meaning": "我会结束"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/tuː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在两点"
+        }
+      ],
+      "explanations": [
+        "具体钟点前用介词 `at`。常见错误：\n• \"I'll finish in two\" → in two 会被听成「两小时后」\n• \"I'll finish on two\" → 钟点前不用 on",
+        "相关：at noon（中午）/ at half past two（两点半）"
+      ],
+      "distractors": [
+        [
+          "I finish",
+          "I'll finishing",
+          "I will finished"
+        ],
+        [
+          "in two.",
+          "on two.",
+          "at the two."
+        ]
+      ]
+    }
+  ]
+}

@@ -2,9 +2,12 @@
  *
  * 不生成、不修改文件，只验证：
  * - manifest 声明的每个分片存在、JSON 格式正确、数量与 hash 一致；
- * - 分片总数与 oral8000.js / freq-idioms.js 当前源数据一致；
- * - manifest 的 baseCount / totalCount 与基础题库和扩展题库一致。
+ * - 分片总数与 oral-book.js / freq-idioms.js 当前源数据一致；
+ * - manifest 的 baseCount /totalCount 与源数据一致（口语 8000 全为 replace，baseCount=0）；
  * - index 分片与详情分片一一对应，cid、顺序和详情位置合法。
+ *
+ * 内容源（2026-09-15 起）：口语 8000 = oral-book.js（window.ORAL_BOOK.decks，构建期源）；
+ * freq-idioms.js 仍为高频短语源。builtins.js / oral8000.js 不再持有句子。
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -126,34 +129,38 @@ if (!manifest || manifest.schemaVersion !== 1 || !Array.isArray(manifest.decks))
 }
 if (!manifest.contentVersion) fail('content/manifest.json 缺少 contentVersion');
 
-const baseWindow = runScript('builtins.js');
-const baseDaily = (baseWindow.BUILTIN || []).find((deck) => deck.id === 'builtin-daily');
-const oralWindow = runScript('oral8000.js');
-const oralItems = oralWindow.DATA_ORAL8000;
+const bookWindow = runScript('oral-book.js');
+const book = bookWindow.ORAL_BOOK;
+const bookDecks = (book && Array.isArray(book.decks)) ? book.decks : [];
 const freqWindow = runScript('freq-idioms.js', { BUILTIN: [] });
 const freqDeck = (freqWindow.BUILTIN || []).find((deck) => deck.id === 'builtin-freq-idioms');
-if (!baseDaily || !Array.isArray(oralItems) || !freqDeck || !Array.isArray(freqDeck.items)) {
-  fail('无法读取内置题库源数据');
+if (!bookDecks.length || !freqDeck || !Array.isArray(freqDeck.items)) {
+  fail('无法读取内置题库源数据（oral-book.js / freq-idioms.js）');
 }
 
 const byId = new Map(manifest.decks.map((deck) => [deck.id, deck]));
-validateDeck(byId.get('builtin-daily'), {
-  id: 'builtin-daily',
-  baseCount: baseDaily.items.length,
-  extensionCount: oralItems.length,
+/* manifest 的 deck 集合必须与源数据完全一致：既无遗漏，也无陈旧 deck（如拆分前的 builtin-daily / daily-*） */
+const expectedIds = bookDecks.map((deck) => deck.id).concat(['builtin-freq-idioms']);
+manifest.decks.forEach((deck) => {
+  if (!expectedIds.includes(deck.id)) fail(`manifest 含源数据中不存在的 deck：${deck.id}`);
 });
+expectedIds.forEach((id) => { if (!byId.has(id)) fail(`manifest 缺少 deck：${id}`); });
+
+let oralTotal = 0;
+for (const deck of bookDecks) {
+  const extensionCount = deck.items.length;
+  validateDeck(byId.get(deck.id), { id: deck.id, baseCount: 0, extensionCount });
+  validateIndexDeck(byId.get(deck.id), { id: deck.id, extensionCount });
+  oralTotal += extensionCount;
+}
 validateDeck(byId.get('builtin-freq-idioms'), {
   id: 'builtin-freq-idioms',
   baseCount: 0,
   extensionCount: freqDeck.items.length,
-});
-validateIndexDeck(byId.get('builtin-daily'), {
-  id: 'builtin-daily',
-  extensionCount: oralItems.length,
 });
 validateIndexDeck(byId.get('builtin-freq-idioms'), {
   id: 'builtin-freq-idioms',
   extensionCount: freqDeck.items.length,
 });
 
-console.log(`[content] manifest、详情分片与 index 校验通过：${baseDaily.items.length + oralItems.length} 日常 + ${freqDeck.items.length} 高频短语`);
+console.log(`[content] manifest、详情分片与 index 校验通过：${bookDecks.length} 个口语 deck（合计 ${oralTotal} 句）+ ${freqDeck.items.length} 高频短语`);

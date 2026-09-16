@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Could we get the menu, please?",
+      "cid": "5e7afb03",
+      "translation": "请给我们菜单好吗？",
+      "chunks": [
+        "Could we get",
+        "the menu,",
+        "please?"
+      ],
+      "hints": [
+        "我们能要",
+        "菜单",
+        "请"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主语+谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/wiː/",
+            "/ɡet/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我们能要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmenjuː/"
+          ],
+          "pos": "名词短语",
+          "meaning": "菜单"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "请"
+        }
+      ],
+      "explanations": [
+        "`Could we get...` 在餐厅向服务员要东西的委婉说法。常见错误：\n• \"Can we **to** get\" → 情态动词后不加 to\n• \"Give us the menu\" → 太直接，缺少 please 和委婉语气",
+        "`the menu` 特指这家餐厅的菜单，用 the。餐厅场景是特指，不要 a menu。"
+      ],
+      "distractors": [
+        [
+          "Could us get",
+          "Could we to get",
+          "Could we getting"
+        ],
+        [
+          "the bill,",
+          "the table,",
+          "the food,"
+        ],
+        [
+          "pleased?",
+          "pleases?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'd like a medium latte, please.",
+      "cid": "9d02a202",
+      "translation": "我要一杯中杯拿铁，谢谢。",
+      "chunks": [
+        "I'd like",
+        "a medium latte,",
+        "please."
+      ],
+      "hints": [
+        "我想要",
+        "一杯中杯拿铁",
+        "谢谢"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/"
+          ],
+          "pos": "委婉点单",
+          "meaning": "我想要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈmiːdiəm/",
+            "/ˈlɑːteɪ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "中杯拿铁"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "谢谢"
+        }
+      ],
+      "explanations": [
+        "`I'd like = I would like`，点单比 I want 更礼貌。常见错误：\n• \"I **like** a latte\" → like 表喜好，点单要用 would like\n• \"I'd like **to** a latte\" → 接名词不要 to",
+        "咖啡杯型：small / medium / large（或 tall / grande / venti 星巴克体系）。`a medium latte` 中 a 不能省。"
+      ],
+      "distractors": [
+        [
+          "I like",
+          "I'd liked",
+          "I'd wants"
+        ],
+        [
+          "a middle latte,",
+          "a medium late,",
+          "a medium lattes,"
+        ],
+        [
+          "pleased.",
+          "please me."
+        ]
+      ]
+    },
+    {
+      "sentence": "You should definitely try this place.",
+      "cid": "ecc1d3c4",
+      "translation": "你一定要试试这家店。",
+      "chunks": [
+        "You should definitely",
+        "try this place."
+      ],
+      "hints": [
+        "你一定要",
+        "试试这家店"
+      ],
+      "grammar": [
+        {
+          "role": "主语+情态",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ʃʊd/",
+            "/ˈdefɪnətli/"
+          ],
+          "pos": "建议",
+          "meaning": "你一定要"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/traɪ/",
+            "/ðɪs/",
+            "/pleɪs/"
+          ],
+          "pos": "动词短语",
+          "meaning": "试试这家店"
+        }
+      ],
+      "explanations": [
+        "`should + 动词原形` 表建议。常见错误：\n• \"You should **to** try\" → 情态动词后不接 to\n• \"You **shoulded** try\" → should 无过去式变化",
+        "`definitely` 加强语气「一定、绝对」。位置在情态动词后、实义动词前：`should definitely try`。"
+      ],
+      "distractors": [
+        [
+          "You definite should",
+          "You should definately",
+          "You definitely should"
+        ],
+        [
+          "to try this place.",
+          "trying this place.",
+          "try this places."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'd like the steak, medium rare, please.",
+      "cid": "ef48bd78",
+      "translation": "我要牛排，五分熟，谢谢。",
+      "chunks": [
+        "I'd like the steak,",
+        "medium rare,",
+        "please."
+      ],
+      "hints": [
+        "我要牛排",
+        "五分熟",
+        "谢谢"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/",
+            "/ðə/",
+            "/steɪk/"
+          ],
+          "pos": "委婉点餐",
+          "meaning": "我要牛排"
+        },
+        {
+          "role": "补充说明",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈmiːdiəm/",
+            "/rer/"
+          ],
+          "pos": "形容词短语",
+          "meaning": "五分熟"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "谢谢"
+        }
+      ],
+      "explanations": [
+        "`medium rare` 是牛排熟度：rare 三分熟 / medium rare 五分熟 / medium 七分熟 / well done 全熟。常见错误：\n• \"**medium-rarely**\" → 熟度用形容词，不加 -ly\n• 把 medium rare 误当副词放句首",
+        "点单结构：I'd like + 菜品 + 特殊要求 + please。the steak 用 the 因为菜单上已看到特指这道。"
+      ],
+      "distractors": [
+        [
+          "I'd like steak,",
+          "I'd likes the steak,",
+          "I like the steak,"
+        ],
+        [
+          "well done,",
+          "rare,",
+          "medium well,"
+        ],
+        [
+          "pleased.",
+          "pleases."
+        ]
+      ]
+    },
+    {
+      "sentence": "Do you have any tables available for two?",
+      "cid": "a46fda11",
+      "translation": "现在有两人位吗？",
+      "chunks": [
+        "Do you have",
+        "any tables available",
+        "for two?"
+      ],
+      "hints": [
+        "你们有",
+        "空余的桌位",
+        "两人"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/hæv/"
+          ],
+          "pos": "疑问句",
+          "meaning": "你们有"
+        },
+        {
+          "role": "宾语+后置定语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈeni/",
+            "/ˈteɪblz/",
+            "/əˈveɪləbl/"
+          ],
+          "pos": "名词+形容词",
+          "meaning": "空余桌位"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/tuː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "两人"
+        }
+      ],
+      "explanations": [
+        "`available` 作后置定语放在名词后：tables available = 空着的桌位。常见错误：\n• \"available **tables**\" → 也正确但 available 作前置定语语气不同，此处后置更常用\n• \"table **is** available for us\" → 用 there be 或 have 开头更像在询问",
+        "餐厅等位专用句。答语：\"Yes, right this way.\" 或 \"Sorry, we're fully booked.\""
+      ],
+      "distractors": [
+        [
+          "Are you have",
+          "Do you has",
+          "Do you having"
+        ],
+        [
+          "any tables availables",
+          "any tables is available"
+        ],
+        [
+          "to two?",
+          "for second?",
+          "for two person?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll have a burger.",
+      "cid": "a08f34b7",
+      "translation": "我要一个汉堡。",
+      "chunks": [
+        "I'll have",
+        "a burger."
+      ],
+      "hints": [
+        "我要（点）",
+        "一个汉堡"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/hæv/"
+          ],
+          "pos": "will + 动词原形",
+          "meaning": "我要（点）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈbɜːrɡər/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个汉堡"
+        }
+      ],
+      "explanations": [
+        "点餐用 `I'll have...` 最自然，比 I want 礼貌。常见错误：\n• \"I have a burger\" → 少 will，听起来像陈述已有\n• \"I'd have a burger\" → 那是虚拟语气，点餐该用 I'll",
+        "同类：I'll take the soup. / I'll go with the salad."
+      ],
+      "distractors": [
+        [
+          "I have",
+          "I'll having",
+          "I would had"
+        ],
+        [
+          "the burger.",
+          "burger.",
+          "a burgers."
+        ]
+      ]
+    },
+    {
+      "sentence": "That's everything.",
+      "cid": "81e9a11f",
+      "translation": "就这些。",
+      "chunks": [
+        "That's",
+        "everything."
+      ],
+      "hints": [
+        "那就（是）",
+        "全部"
+      ],
+      "grammar": [
+        {
+          "role": "主语 + be",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðæts/"
+          ],
+          "pos": "that is 缩写",
+          "meaning": "那就是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈevriθɪŋ/"
+          ],
+          "pos": "不定代词",
+          "meaning": "全部、所有"
+        }
+      ],
+      "explanations": [
+        "点完单或收拾完东西时用 `That's everything.` = 就这些。常见错误：\n• \"These are everything\" → 主语用 that\n• \"That's anything\" → 意思完全不对，anything 用于疑问否定",
+        "同类收尾语：That's it. / That's all for now."
+      ],
+      "distractors": [
+        [
+          "That",
+          "These",
+          "That is of"
+        ],
+        [
+          "anything.",
+          "everythings.",
+          "all thing."
+        ]
+      ]
+    }
+  ]
+}

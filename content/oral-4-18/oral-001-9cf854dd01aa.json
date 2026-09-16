@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm really stressed out about the exam.",
+      "cid": "0c31e53d",
+      "translation": "我对考试真的压力很大。",
+      "chunks": [
+        "I'm really",
+        "stressed out",
+        "about the exam."
+      ],
+      "hints": [
+        "我真的很",
+        "压力山大",
+        "关于考试"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈriːəli/"
+          ],
+          "pos": "be + 表语",
+          "meaning": "我真的很"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/strest/",
+            "/aʊt/"
+          ],
+          "pos": "固定短语",
+          "meaning": "压力很大"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/ðə/",
+            "/ɪɡˈzæm/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于考试"
+        }
+      ],
+      "explanations": [
+        "`stressed out` = 压力极大的。常见错误：\n• \"stress out\" → 作表语要 be stressed out\n• \"I'm stress\" → stress 是名词/动词，形容词是 stressed",
+        "`about + 事由`。同义：I'm under a lot of pressure."
+      ],
+      "distractors": [
+        [
+          "I really",
+          "I'm real",
+          "I very am"
+        ],
+        [
+          "stress out",
+          "stressed of",
+          "stressing out"
+        ],
+        [
+          "about exam.",
+          "to the exam.",
+          "about the exams."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm worried about the job interview tomorrow.",
+      "cid": "edc8aa29",
+      "translation": "我很担心明天的求职面试。",
+      "chunks": [
+        "I'm worried about",
+        "the job interview",
+        "tomorrow."
+      ],
+      "hints": [
+        "我担心",
+        "求职面试",
+        "明天"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈwɜːrid/",
+            "/əˈbaʊt/"
+          ],
+          "pos": "be worried about",
+          "meaning": "我担心"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/dʒɑːb/",
+            "/ˈɪntərvjuː/"
+          ],
+          "pos": "名词短语",
+          "meaning": "求职面试"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈmɑːroʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "明天"
+        }
+      ],
+      "explanations": [
+        "`be worried about` = 担心……。常见错误：\n• \"I worried about\" → 缺 be 动词（worried 是形容词/过去分词）\n• \"worry about\" 动词短语：I worry about... 也可",
+        "`job interview` = 求职面试。"
+      ],
+      "distractors": [
+        [
+          "I worry about",
+          "I'm worrying of",
+          "I'm worried to"
+        ],
+        [
+          "a job interview",
+          "the job interviews",
+          "job's interview"
+        ],
+        [
+          "in tomorrow.",
+          "tomorrow now.",
+          "the tomorrow."
+        ]
+      ]
+    },
+    {
+      "sentence": "What if it rains on the wedding day?",
+      "cid": "96308679",
+      "translation": "万一下雨那天结婚怎么办？",
+      "chunks": [
+        "What if",
+        "it rains",
+        "on the wedding day?"
+      ],
+      "hints": [
+        "万一",
+        "天下雨",
+        "在婚礼那天"
+      ],
+      "grammar": [
+        {
+          "role": "疑问短语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wʌt/",
+            "/ɪf/"
+          ],
+          "pos": "what if",
+          "meaning": "万一……怎么办"
+        },
+        {
+          "role": "从句主谓",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/",
+            "/reɪnz/"
+          ],
+          "pos": "一般现在时(表将来)",
+          "meaning": "天下雨"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɑːn/",
+            "/ðə/",
+            "/ˈwedɪŋ/",
+            "/deɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在婚礼那天"
+        }
+      ],
+      "explanations": [
+        "`What if...?` = 万一……怎么办？假设建议。常见错误：\n• \"What about if\" → 直接用 what if\n• \"If what\" → 语序错",
+        "条件句用一般现在时表将来：What if it **rains**（不是 will rain）。"
+      ],
+      "distractors": [
+        [
+          "How if",
+          "What about if",
+          "Whatever if"
+        ],
+        [
+          "it will rain",
+          "it rain",
+          "it rained now"
+        ],
+        [
+          "on wedding day?",
+          "in the wedding day?",
+          "at the wedding day?"
+        ]
+      ]
+    }
+  ]
+}

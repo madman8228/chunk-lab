@@ -214,7 +214,12 @@ function check(name, cond, detail) {
   });
   check('main: 切换音效不显示未同步提示', soundSyncBadge === 'none', 'display=' + soundSyncBadge);
   check('main: #zh 渲染真实句子（非占位）', ok.zh.length > 0 && ok.zh.indexOf('加载中') < 0, JSON.stringify(ok.zh));
-  check('main: 顶栏题库名仅显示中文', ok.deckName.indexOf('日常对话') >= 0 && ok.deckName.indexOf('Daily Talk') < 0, JSON.stringify(ok.deckName));
+  /* 契约：顶栏经 displayDeckName() 处理后**只留中文**（纯英文别名段被剔除）。
+     不写死具体 deck 名 —— 场景拆分后 deck 名已从「日常对话 · Daily Talk」变为
+     「日常口语 8000 · 居家生活」，写死名字会随内容改名而假红。
+     负向自证：若谁绕过 displayDeckName 直接用 deck.name（带 Daily Talk）→ 含 ASCII 字母 → 必红。 */
+  check('main: 顶栏题库名只显示中文（英文别名已剔除）',
+    /[\u4e00-\u9fa5]/.test(ok.deckName) && !/[A-Za-z]/.test(ok.deckName), JSON.stringify(ok.deckName));
   check('main: 练习卡片不显示重复返回箭头', !ok.practiceBack, JSON.stringify(ok));
   check('main: 候选区渲染', ok.distractors > 0, 'n=' + ok.distractors);
   check('main: 候选项不预先泄露答案', ok.preselectedCorrectChoices === 0, 'correct=' + ok.preselectedCorrectChoices);
@@ -636,7 +641,7 @@ function check(name, cond, detail) {
     localStorage.clear();
     localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
     localStorage.setItem('chunklab.v1', JSON.stringify({
-      version: 2, decks: [], best: { 'builtin-daily': { lastPlayed: Date.now() } },
+      version: 2, decks: [], best: { 'oral-6-31': { lastPlayed: Date.now() } },
       mastered: {}, deletedItems: {}, reinforceBook: [],
       stats: { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [], daysLog: {} },
       settings: { mode: 'choose', skipMastered: false, batchSize: 10 }

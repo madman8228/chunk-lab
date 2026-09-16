@@ -62,10 +62,10 @@ function check(name, ok, detail) {
     const first = await page.evaluate(function () {
       var mem = window.CL.loadMem();
       mem.settings.skipMastered = false;
-      return window.ContentRepo.ensureDeckBatch('builtin-daily', mem, {
+      return window.ContentRepo.ensureDeckBatch('oral-6-31', mem, {
         force: true,
         limit: 3,
-        cursor: { baseOffset: 88, shardIndex: 0, shardOffset: 0 }
+        cursor: { baseOffset: 2, shardIndex: 0, shardOffset: 0 }
       });
     });
     check('分批接口只返回请求数量', first.loadedCount === 3 && first.deck.items.length === 3, JSON.stringify(first));
@@ -74,7 +74,7 @@ function check(name, ok, detail) {
     const second = await page.evaluate(function (cursor) {
       var mem = window.CL.loadMem();
       mem.settings.skipMastered = false;
-      return window.ContentRepo.ensureDeckBatch('builtin-daily', mem, {
+      return window.ContentRepo.ensureDeckBatch('oral-6-31', mem, {
         force: true,
         limit: 3,
         cursor: cursor
@@ -109,10 +109,10 @@ function check(name, ok, detail) {
     const offline = await page.evaluate(function () {
       var mem = window.CL.loadMem();
       mem.settings.skipMastered = false;
-      return window.ContentRepo.ensureDeckBatch('builtin-daily', mem, {
+      return window.ContentRepo.ensureDeckBatch('oral-6-31', mem, {
         force: true,
         limit: 3,
-        cursor: { baseOffset: 88, shardIndex: 0, shardOffset: 0 }
+        cursor: { baseOffset: 2, shardIndex: 0, shardOffset: 0 }
       });
     });
     check('离线可从 IndexedDB 命中分片', offline.loadedCount === 3 && offline.deck.items.length === 3, JSON.stringify(offline));

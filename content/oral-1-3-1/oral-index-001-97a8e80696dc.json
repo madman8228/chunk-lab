@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "f5a21d52",
+      "sentence": "How long have you been feeling like this?",
+      "translation": "你这样感觉有多久了？",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "2f17c3e6",
+      "sentence": "Have you taken anything for it?",
+      "translation": "你吃过什么药吗？",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "c55bb082",
+      "sentence": "You'd better get some rest and drink plenty of water.",
+      "translation": "你最好休息一下，多喝水。",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "3e523059",
+      "sentence": "Does it hurt when I press here?",
+      "translation": "我按这里会疼吗？",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "0e4cb67e",
+      "sentence": "Let's take your temperature.",
+      "translation": "量一下你的体温吧。",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "1d4b7d2d",
+      "sentence": "Did you eat something bad?",
+      "translation": "你是不是吃坏东西了？",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "45ae00d9",
+      "sentence": "Are you sick?",
+      "translation": "你生病了吗？",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "dc756c88",
+      "sentence": "Take some medicine.",
+      "translation": "吃点药。",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "7fdbc9e4",
+      "sentence": "Where does it hurt?",
+      "translation": "哪里疼？",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "9dd8fc89",
+      "sentence": "Is it your stomach?",
+      "translation": "是肚子吗？",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "0d637f69",
+      "sentence": "Take a rest.",
+      "translation": "休息一下。",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "f863d500",
+      "sentence": "Have some water.",
+      "translation": "喝点水。",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "6c5b5c7b",
+      "sentence": "Lie down.",
+      "translation": "躺下。",
+      "sourceUrl": "content/oral-1-3-1/oral-001-0168c0355d91.json",
+      "sourceOffset": 12
+    }
+  ]
+}

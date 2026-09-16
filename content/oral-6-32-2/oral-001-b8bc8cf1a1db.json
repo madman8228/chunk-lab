@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Could I get this to go, please?",
+      "cid": "577c7ac5",
+      "translation": "这个能打包带走吗？",
+      "chunks": [
+        "Could I get this",
+        "to go,",
+        "please?"
+      ],
+      "hints": [
+        "我能把这个",
+        "外带",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/ɡet/",
+            "/ðɪs/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我能把这个"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ɡoʊ/"
+          ],
+          "pos": "固定表达",
+          "meaning": "外带"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "`to go` = 外带（美式）。常见错误：\n• \"for **takeaway**\" → takeaway 是英式名词，美式点餐说 to go\n• \"to **going**\" → to 后接原形 go",
+        "相对的说法是 dine in / for here（堂食）。点餐收尾常用：\"Is that for here or to go?\""
+      ],
+      "distractors": [
+        [
+          "Could me get this",
+          "Could I to get this",
+          "Could I gets this"
+        ],
+        [
+          "to going,",
+          "go,",
+          "for go,"
+        ],
+        [
+          "pleased.",
+          "pleases."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could we get the check, please?",
+      "cid": "b83b9640",
+      "translation": "请给我们结账。",
+      "chunks": [
+        "Could we get",
+        "the check,",
+        "please?"
+      ],
+      "hints": [
+        "我们能要",
+        "账单",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/wiː/",
+            "/ɡet/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我们能要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/tʃek/"
+          ],
+          "pos": "名词",
+          "meaning": "账单"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "结账用语分英美：美式 `the check`，英式 `the bill`。常见错误：\n• 混说 \"get the bill\" 英式场景也通，但美式餐厅多用 check\n• \"pay the check\" → 可以，但 get the check 是「请拿来账单」",
+        "同义表达：\"Check, please!\"（最简洁）/ \"Can we have the bill, please?\""
+      ],
+      "distractors": [
+        [
+          "Could us get",
+          "Could we to get",
+          "Could we gets"
+        ],
+        [
+          "the checks,",
+          "check,",
+          "the checkout,"
+        ],
+        [
+          "pleased.",
+          "pleases."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's split the bill, shall we?",
+      "cid": "352ea243",
+      "translation": "我们平摊账单吧，好吗？",
+      "chunks": [
+        "Let's split the bill,",
+        "shall we?"
+      ],
+      "hints": [
+        "我们分摊账单",
+        "好吗"
+      ],
+      "grammar": [
+        {
+          "role": "祈使提议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/splɪt/",
+            "/ðə/",
+            "/bɪl/"
+          ],
+          "pos": "let's 结构",
+          "meaning": "我们分摊账单"
+        },
+        {
+          "role": "反意疑问",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʃæl/",
+            "/wiː/"
+          ],
+          "pos": "附加问句",
+          "meaning": "好吗"
+        }
+      ],
+      "explanations": [
+        "AA 制用语。`split the bill` = 平摊账单。常见错误：\n• \"split the **bills**\" → 一张账单用单数 the bill\n• \"divide the bill\" → 也可以，split 更口语",
+        "`Let's..., shall we?` = 我们…吧，好吗？Let's 开头的祈使句反意疑问固定用 shall we。常见错误：\n• \"Let's..., will we?\" → will we 不配 let's\n• \"Let us split\" → let us 正式，let's 口语"
+      ],
+      "distractors": [
+        [
+          "Let's splitting the bill,",
+          "Let split the bill,",
+          "Let's split the check,"
+        ],
+        [
+          "will we?",
+          "should we?",
+          "shall us?"
+        ]
+      ]
+    }
+  ]
+}

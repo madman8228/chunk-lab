@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "5e7afb03",
+      "sentence": "Could we get the menu, please?",
+      "translation": "请给我们菜单好吗？",
+      "sourceUrl": "content/oral-6-32-1/oral-001-128793874d0d.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "9d02a202",
+      "sentence": "I'd like a medium latte, please.",
+      "translation": "我要一杯中杯拿铁，谢谢。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-128793874d0d.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "ecc1d3c4",
+      "sentence": "You should definitely try this place.",
+      "translation": "你一定要试试这家店。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-128793874d0d.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "ef48bd78",
+      "sentence": "I'd like the steak, medium rare, please.",
+      "translation": "我要牛排，五分熟，谢谢。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-128793874d0d.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "a46fda11",
+      "sentence": "Do you have any tables available for two?",
+      "translation": "现在有两人位吗？",
+      "sourceUrl": "content/oral-6-32-1/oral-001-128793874d0d.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "a08f34b7",
+      "sentence": "I'll have a burger.",
+      "translation": "我要一个汉堡。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-128793874d0d.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "81e9a11f",
+      "sentence": "That's everything.",
+      "translation": "就这些。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-128793874d0d.json",
+      "sourceOffset": 6
+    }
+  ]
+}

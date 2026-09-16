@@ -1,0 +1,606 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm not feeling myself today.",
+      "cid": "edcf60c8",
+      "translation": "我今天状态不太好（身体不适）。",
+      "chunks": [
+        "I'm not feeling myself",
+        "today."
+      ],
+      "hints": [
+        "我今天状态不好",
+        "今天"
+      ],
+      "grammar": [
+        {
+          "role": "主谓表（习语）",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/nɒt/",
+            "/ˈfiːlɪŋ/",
+            "/maɪˈself/"
+          ],
+          "pos": "习语（≠字面义）",
+          "meaning": "状态不佳"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈdeɪ/"
+          ],
+          "pos": "副词",
+          "meaning": "今天"
+        }
+      ],
+      "explanations": [
+        "`not feeling myself` 是地道说法，指「不在状态/身体或精神不佳」，并非字面「感觉不到自己」。常见错误：\n• \"I'm not feeling **me**\" → 要用反身代词 myself\n• \"I don't **feel** myself\" → 也可用一般现在时",
+        "比直接说 `I'm sick` 更委婉，常用于日常寒暄中解释为何没精神。"
+      ],
+      "distractors": [
+        [
+          "I'm not feeling me",
+          "I'm not feel myself",
+          "I don't feeling myself"
+        ],
+        [
+          "this day.",
+          "todays.",
+          "the today."
+        ]
+      ]
+    },
+    {
+      "sentence": "I've got a terrible headache and a sore throat.",
+      "cid": "35fcfee6",
+      "translation": "我头疼得厉害，嗓子也疼。",
+      "chunks": [
+        "I've got",
+        "a terrible headache",
+        "and a sore throat."
+      ],
+      "hints": [
+        "我得了",
+        "剧烈的头痛",
+        "和嗓子疼"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/ɡɒt/"
+          ],
+          "pos": "现在完成",
+          "meaning": "我得了"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈterəbl/",
+            "/ˈhedeɪk/"
+          ],
+          "pos": "宾语",
+          "meaning": "剧烈的头痛"
+        },
+        {
+          "role": "并列宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ænd/",
+            "/ə/",
+            "/sɔːr/",
+            "/θrəʊt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "和嗓子疼"
+        }
+      ],
+      "explanations": [
+        "`I've got + 病症` = 我得了…病，比 I have 更口语。常见错误：\n• \"I **have got** headache\" → headache 是可数名词，需 a terrible headache\n• \"I got a headache\" → 口语可以，但 have got 表状态更准",
+        "`terrible` 表「极其严重的」，口语常用来形容疼痛程度。同义：awful / really bad.",
+        "`a sore throat` = 嗓子疼（sore 表酸痛）。固定搭配：have a sore throat / a runny nose（流鼻涕）。"
+      ],
+      "distractors": [
+        [
+          "I'm got",
+          "I has got",
+          "I've gotten"
+        ],
+        [
+          "a terrible headsick",
+          "terrible headache",
+          "the terrible headache"
+        ],
+        [
+          "and sore throat.",
+          "and a sour throat.",
+          "and a throat sore."
+        ]
+      ]
+    },
+    {
+      "sentence": "My stomach has been hurting since this morning.",
+      "cid": "df0d93d3",
+      "translation": "我从早上起胃就一直疼。",
+      "chunks": [
+        "My stomach",
+        "has been hurting",
+        "since this morning."
+      ],
+      "hints": [
+        "我的胃",
+        "一直在疼",
+        "自从今天早上"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/ˈstʌmək/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的胃"
+        },
+        {
+          "role": "现在完成进行",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæz/",
+            "/bɪn/",
+            "/ˈhɜːtɪŋ/"
+          ],
+          "pos": "完成进行时",
+          "meaning": "一直在疼"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/sɪns/",
+            "/ðɪs/",
+            "/ˈmɔːnɪŋ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "自从今早"
+        }
+      ],
+      "explanations": [
+        "`has been hurting` 现在完成进行时表「从过去持续到现在还在疼」。常见错误：\n• \"has been **hurt**\" → 主动持续用 hurting，被动受伤才是 hurt\n• \"is hurting since morning\" → 有 since 的时间段用完成进行时",
+        "`since this morning` 表起点。注意：since + 时间点，for + 时间段（for two hours）。"
+      ],
+      "distractors": [
+        [
+          "My stomachs",
+          "The my stomach",
+          "Mine stomach"
+        ],
+        [
+          "has been hurt",
+          "have been hurting",
+          "has hurting"
+        ],
+        [
+          "for this morning.",
+          "since morning ago.",
+          "after this morning."
+        ]
+      ]
+    },
+    {
+      "sentence": "I have a bump.",
+      "cid": "1834c3f7",
+      "translation": "我长了个包。",
+      "chunks": [
+        "I have",
+        "a bump."
+      ],
+      "hints": [
+        "我长了",
+        "一个包"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我有、我长了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/bʌmp/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个包"
+        }
+      ],
+      "explanations": [
+        "描述身体的包/肿起用 `have`。常见错误：\n• \"I have a bump on my head\" → 说位置更清楚，on 表表面\n• \"I am a bump\" → be 与 have 混淆",
+        "`bump` 多指撞出来的肿包。同义：I got a bump. / There's a bump on my head."
+      ],
+      "distractors": [
+        [
+          "I has",
+          "I had a",
+          "I have got"
+        ],
+        [
+          "bumps.",
+          "the bump.",
+          "a bumb."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's a pimple.",
+      "cid": "9b596270",
+      "translation": "是个痘痘。",
+      "chunks": [
+        "It's a",
+        "pimple."
+      ],
+      "hints": [
+        "它是一个",
+        "痘痘"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ə/"
+          ],
+          "pos": "it + is + a",
+          "meaning": "它是一个"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈpɪmpl/"
+          ],
+          "pos": "名词",
+          "meaning": "痘痘"
+        }
+      ],
+      "explanations": [
+        "`It's a` 后面接可数名词单数。常见错误：\n• \"It's an pimple\" → p 是辅音音素，用 a\n• \"It's pimple\" → 可数名词单数前要加冠词",
+        "`pimple` 指脸上的痘痘。口语也叫 zit。粉刺/痤疮是 acne。"
+      ],
+      "distractors": [
+        [
+          "It's an",
+          "It a",
+          "It's a the"
+        ],
+        [
+          "pimples.",
+          "a pimple.",
+          "pimpl."
+        ]
+      ]
+    },
+    {
+      "sentence": "I might have a fever.",
+      "cid": "3a50b844",
+      "translation": "我可能发烧了。",
+      "chunks": [
+        "I might",
+        "have a fever."
+      ],
+      "hints": [
+        "我可能",
+        "发烧"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/maɪt/"
+          ],
+          "pos": "情态动词 might",
+          "meaning": "我可能"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/ə/",
+            "/ˈfiːvər/"
+          ],
+          "pos": "have + 名词短语",
+          "meaning": "发烧"
+        }
+      ],
+      "explanations": [
+        "`might` 表「有可能」，比 may 更不确定，后面接动词原形。常见错误：\n• \"I might to have\" → 情态动词后不加 to\n• \"I might has\" → 用原形 have",
+        "`have a fever` 是固定搭配，fever 前要加 a。常见错误：\n• \"have fever\" → 少了冠词"
+      ],
+      "distractors": [
+        [
+          "I may to",
+          "I might to",
+          "I mights"
+        ],
+        [
+          "have fever.",
+          "has a fever.",
+          "have a fevers."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm not feeling well.",
+      "cid": "b9af65ab",
+      "translation": "我不舒服。",
+      "chunks": [
+        "I'm not",
+        "feeling well."
+      ],
+      "hints": [
+        "我不",
+        "感觉好"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/nɑːt/"
+          ],
+          "pos": "be + not",
+          "meaning": "我不"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈfiːlɪŋ/",
+            "/wel/"
+          ],
+          "pos": "feel well 进行时",
+          "meaning": "感觉好"
+        }
+      ],
+      "explanations": [
+        "否定词 not 放在 be 之后。常见错误：\n• \"I not feeling well\" → 缺 am\n• \"I don't feeling well\" → 有 be 动词时不再用 don't",
+        "`feel well` 中 well 是副词，表身体健康。常见错误：\n• \"feel good\" → 表情绪好、感觉不错，说身体不舒服要用 well\n这是英语里最容易混的一组：身体用 well，心情用 good"
+      ],
+      "distractors": [
+        [
+          "I not",
+          "I'm no",
+          "I don't"
+        ],
+        [
+          "feeling good.",
+          "feel well.",
+          "feeling goodly."
+        ]
+      ]
+    },
+    {
+      "sentence": "I sneezed.",
+      "cid": "ad88d5dc",
+      "translation": "我打了个喷嚏。",
+      "chunks": [
+        "I",
+        "sneezed."
+      ],
+      "hints": [
+        "我",
+        "打了喷嚏"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/"
+          ],
+          "pos": "第一人称代词",
+          "meaning": "我"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/sniːzd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "打了喷嚏"
+        }
+      ],
+      "explanations": [
+        "打喷嚏的动词是 `sneeze`，过去式读 /sniːzd/。常见错误：\n• \"I sneeze\" → 刚打过要用过去式\n• 拼写别漏 e：snee**ze**，不是 snez",
+        "别人打喷嚏后说 Bless you!，回一句 Thank you. 就行。"
+      ],
+      "distractors": [
+        [
+          "Me",
+          "My",
+          "I've"
+        ],
+        [
+          "sneezes.",
+          "sneezing.",
+          "sneeze."
+        ]
+      ]
+    },
+    {
+      "sentence": "Your fever broke.",
+      "cid": "978cb905",
+      "translation": "你的烧退了。",
+      "chunks": [
+        "Your fever",
+        "broke."
+      ],
+      "hints": [
+        "你的发烧",
+        "退了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈfiːvər/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的发烧"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/broʊk/"
+          ],
+          "pos": "break 的过去式（此处指退烧）",
+          "meaning": "退了"
+        }
+      ],
+      "explanations": [
+        "`break` 用于发烧指「退烧」，非常地道。常见错误：\n• break 的过去式是 broke，不是 breaked\n• \"Your fever went down\" 也对，但 break 更地道",
+        "退烧药是 a fever reducer；量体温是 take your temperature。"
+      ],
+      "distractors": [
+        [
+          "You fever",
+          "Your fevers",
+          "Your fever is"
+        ],
+        [
+          "breaks.",
+          "breaked.",
+          "broken."
+        ]
+      ]
+    },
+    {
+      "sentence": "I still have a little cough.",
+      "cid": "381f72db",
+      "translation": "我还有点咳嗽。",
+      "chunks": [
+        "I still have",
+        "a little cough."
+      ],
+      "hints": [
+        "我还有",
+        "一点咳嗽"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/stɪl/",
+            "/hæv/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我还有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈlɪtl/",
+            "/kɔːf/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一点咳嗽"
+        }
+      ],
+      "explanations": [
+        "描述症状用 `have a + 症状`。常见错误：\n• \"I still have little cough\" → 少了 a\n• cough 读 /kɔːf/，词尾是 /f/ 不是 /k/",
+        "相关：have a cold（感冒）/ have a runny nose（流鼻涕）/ have a sore throat（嗓子疼）"
+      ],
+      "distractors": [
+        [
+          "I still has",
+          "I have still",
+          "I'm still have"
+        ],
+        [
+          "a little coughs.",
+          "little cough.",
+          "a cough little."
+        ]
+      ]
+    },
+    {
+      "sentence": "I feel dizzy.",
+      "cid": "0307af34",
+      "translation": "我觉得头昏脑涨的。",
+      "chunks": [
+        "I feel",
+        "dizzy."
+      ],
+      "hints": [
+        "我觉得",
+        "晕"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/fiːl/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我觉得"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈdɪzi/"
+          ],
+          "pos": "形容词",
+          "meaning": "头晕的"
+        }
+      ],
+      "explanations": [
+        "`feel` 是系动词，后面接形容词。常见错误：\n• \"I **feeling** dizzy\" → 一般现在时用 feel\n• \"I feel **dizziness**\" → 要说感觉晕用形容词 dizzy，名词 dizziness 是「眩晕症」",
+        "同类表达：I feel light-headed.（我觉得头晕）"
+      ],
+      "distractors": [
+        [
+          "I feeling",
+          "I'm feel",
+          "I feels"
+        ],
+        [
+          "dizzily.",
+          "dizziness.",
+          "dizzying."
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "faaa45bb",
+      "sentence": "I have a reservation under the name Chen.",
+      "translation": "我以陈这个名字订了房间。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "32facf35",
+      "sentence": "What time is check-out tomorrow morning?",
+      "translation": "明天早上几点退房？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "c0724b3e",
+      "sentence": "Could I have a room with a view?",
+      "translation": "我能要一间看得见风景的房间吗？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "e0229bb6",
+      "sentence": "The air conditioner doesn't seem to work.",
+      "translation": "空调好像坏了。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "8f6161c2",
+      "sentence": "Could you send someone up to fix it?",
+      "translation": "你能派人上来修一下吗？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "cf1b44ab",
+      "sentence": "Could I see your boarding pass, please?",
+      "translation": "请出示您的登机牌好吗？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "df26fb4e",
+      "sentence": "How many bags are you checking in?",
+      "translation": "您要托运几件行李？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "284f75cd",
+      "sentence": "Get on the plane.",
+      "translation": "上飞机。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
+      "sourceOffset": 7
+    }
+  ]
+}

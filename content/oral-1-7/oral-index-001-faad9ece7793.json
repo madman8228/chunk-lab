@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "c54246fb",
+      "sentence": "What's today's date?",
+      "translation": "今天几号？",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "8b8f7ffc",
+      "sentence": "It's August thirteenth.",
+      "translation": "8月13日。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "3c137139",
+      "sentence": "What day is it?",
+      "translation": "今天星期几？",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "c63fb152",
+      "sentence": "It's Thursday.",
+      "translation": "星期四。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "b767366a",
+      "sentence": "Do you have the time?",
+      "translation": "现在几点？",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "89c32254",
+      "sentence": "It's almost noon.",
+      "translation": "快到中午了。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "1e402140",
+      "sentence": "It's one o'clock.",
+      "translation": "现在1点钟了。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "62b796d6",
+      "sentence": "It's a quarter to two.",
+      "translation": "1点45分。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "8e7a35f6",
+      "sentence": "It's five after one.",
+      "translation": "1点5分。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "45df9795",
+      "sentence": "The clock says 3:15.",
+      "translation": "指针正指到3点15分。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "a9e0bd27",
+      "sentence": "It's a quarter after three.",
+      "translation": "3点15分。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "3577f906",
+      "sentence": "It's ten to two.",
+      "translation": "差10分2点。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "cd42cad0",
+      "sentence": "It's nine thirty.",
+      "translation": "9点半。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "b0b2e2d2",
+      "sentence": "The clock is five minutes slow.",
+      "translation": "那只表慢5分钟。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "7faf94f9",
+      "sentence": "Well, time to go.",
+      "translation": "该走了。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "2feb6c07",
+      "sentence": "About when?",
+      "translation": "大约什么时候？",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "9cae6ace",
+      "sentence": "How's the time?",
+      "translation": "还来得及吗？",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "9a357eb0",
+      "sentence": "I have no time.",
+      "translation": "我没有时间。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "98abb1cb",
+      "sentence": "You must wait for five more days.",
+      "translation": "你得再等5天。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "26801504",
+      "sentence": "What is taking so long?",
+      "translation": "怎么花那么长时间？",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "a5471a5a",
+      "sentence": "I wasted a whole day.",
+      "translation": "白白浪费了一整天。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "05352d1e",
+      "sentence": "Time has come.",
+      "translation": "到时间了。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "e1b775e2",
+      "sentence": "Time is money.",
+      "translation": "时间就是金钱。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "261f2185",
+      "sentence": "I killed two hours watching TV.",
+      "translation": "我看了两个小时的电视以打发时间。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "9eedf70d",
+      "sentence": "Time is up.",
+      "translation": "没有时间了。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "e14fce73",
+      "sentence": "Do you have some free time?",
+      "translation": "你有空闲的时间吗？",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "89f4b6f6",
+      "sentence": "It's about time.",
+      "translation": "我看时间差不多了。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "fc67c37b",
+      "sentence": "Computers save us time.",
+      "translation": "电脑能帮我们省时间。",
+      "sourceUrl": "content/oral-1-7/oral-001-45e81b0cf97b.json",
+      "sourceOffset": 27
+    }
+  ]
+}

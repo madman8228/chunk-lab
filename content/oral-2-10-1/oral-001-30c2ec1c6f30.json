@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Give it a shot.",
+      "cid": "890b2dc4",
+      "translation": "试试看吧。",
+      "chunks": [
+        "Give it",
+        "a shot."
+      ],
+      "hints": [
+        "给它（试试）",
+        "一次机会"
+      ],
+      "grammar": [
+        {
+          "role": "祈使+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡɪv/",
+            "/ɪt/"
+          ],
+          "pos": "祈使句",
+          "meaning": "给它（一次）"
+        },
+        {
+          "role": "宾语（习语）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ʃɒt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "尝试"
+        }
+      ],
+      "explanations": [
+        "**give it a shot** = 尝试一下（shot 本义射击，此处引申为尝试）。",
+        "同义：give it a try / have a go。鼓励别人尝试新事物很常用：Come on, just give it a shot!"
+      ],
+      "distractors": [
+        [
+          "Gives it",
+          "To give it",
+          "Gave it"
+        ],
+        [
+          "shot.",
+          "the shot.",
+          "a shoots."
+        ]
+      ]
+    },
+    {
+      "sentence": "You should take a break now.",
+      "cid": "abfe8204",
+      "translation": "你现在该休息一下了。",
+      "chunks": [
+        "You should take a break",
+        "now."
+      ],
+      "hints": [
+        "你该休息一下",
+        "现在"
+      ],
+      "grammar": [
+        {
+          "role": "情态建议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ʃʊd/",
+            "/teɪk/",
+            "/ə/",
+            "/breɪk/"
+          ],
+          "pos": "should+动词",
+          "meaning": "你该休息一下"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/naʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "现在"
+        }
+      ],
+      "explanations": [
+        "`should + 动词原形` 表建议。常见错误：\n• \"You should **to take**\" → 情态动词后不接 to\n• \"You **shoulds** take\" → should 无第三人称变化",
+        "`take a break` = 休息一下，固定搭配。同义：have a rest / take a breather（口语稍作喘息）。"
+      ],
+      "distractors": [
+        [
+          "You should take break",
+          "You should takes a break",
+          "You should to take a break"
+        ],
+        [
+          "just now.",
+          "for now.",
+          "nows."
+        ]
+      ]
+    },
+    {
+      "sentence": "There's no point in waiting any longer.",
+      "cid": "725fe013",
+      "translation": "再等下去没有意义了。",
+      "chunks": [
+        "There's no point in",
+        "waiting",
+        "any longer."
+      ],
+      "hints": [
+        "没有意义",
+        "等待",
+        "再继续"
+      ],
+      "grammar": [
+        {
+          "role": "存在句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðerz/",
+            "/noʊ/",
+            "/pɔɪnt/",
+            "/ɪn/"
+          ],
+          "pos": "there's no point in",
+          "meaning": "……没有意义"
+        },
+        {
+          "role": "动名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈweɪtɪŋ/"
+          ],
+          "pos": "动名词",
+          "meaning": "等待"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈeni/",
+            "/ˈlɔːŋɡər/"
+          ],
+          "pos": "短语",
+          "meaning": "再继续下去"
+        }
+      ],
+      "explanations": [
+        "`There's no point in doing` = 做……没意义。常见错误：\n• \"no point to wait\" → in 后接动名词\n• \"It's no point\" → 固定 There's no point",
+        "`any longer` = 再（用于否定）。同义 no more。"
+      ],
+      "distractors": [
+        [
+          "It's no point in",
+          "There's no point to",
+          "There're no point in"
+        ],
+        [
+          "to wait",
+          "waited",
+          "wait"
+        ],
+        [
+          "any more longer.",
+          "no longer.",
+          "any long."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's worth trying one more time.",
+      "cid": "59f78fc3",
+      "translation": "值得再试一次。",
+      "chunks": [
+        "It's worth",
+        "trying",
+        "one more time."
+      ],
+      "hints": [
+        "这是值得的",
+        "尝试",
+        "再一次"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪts/",
+            "/wɜːrθ/"
+          ],
+          "pos": "be worth doing",
+          "meaning": "值得"
+        },
+        {
+          "role": "动名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈtraɪɪŋ/"
+          ],
+          "pos": "动名词(主语为it)",
+          "meaning": "尝试"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌn/",
+            "/mɔːr/",
+            "/taɪm/"
+          ],
+          "pos": "短语",
+          "meaning": "再一次"
+        }
+      ],
+      "explanations": [
+        "`be worth doing` = 值得做，主动形式表被动。常见错误：\n• \"worth to try\" → worth 后接动名词\n• \"worth **of** trying\" → 多 of\n• \"It's worthy trying\" → worth/worthy 不同搭配",
+        "`one more time` = 再一次。"
+      ],
+      "distractors": [
+        [
+          "It's worth to",
+          "It's worthy",
+          "It worth"
+        ],
+        [
+          "to try",
+          "tried",
+          "try"
+        ],
+        [
+          "one time more.",
+          "one more times.",
+          "more one time."
+        ]
+      ]
+    },
+    {
+      "sentence": "Just keep going.",
+      "cid": "de2d0d34",
+      "translation": "继续坚持。",
+      "chunks": [
+        "Just",
+        "keep going."
+      ],
+      "hints": [
+        "只管",
+        "继续走下去"
+      ],
+      "grammar": [
+        {
+          "role": "程度/语气词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/dʒʌst/"
+          ],
+          "pos": "副词（弱化语气）",
+          "meaning": "只管、就"
+        },
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/",
+            "/ˈɡoʊɪŋ/"
+          ],
+          "pos": "keep doing 固定结构",
+          "meaning": "继续走"
+        }
+      ],
+      "explanations": [
+        "`just` 在此弱化语气，表「就这样、只管」，不是「刚刚」。常见错误：\n• \"Only keep going\" → Only 表「只有」，语气不对",
+        "`keep doing sth` 表「持续做某事」，固定接动名词。常见错误：\n• \"keep to go\" → 不能接不定式\n• \"keep go\" → 少了 -ing"
+      ],
+      "distractors": [
+        [
+          "Only",
+          "Justly",
+          "Just to"
+        ],
+        [
+          "keep to go.",
+          "keep go.",
+          "keep going to."
+        ]
+      ]
+    }
+  ]
+}

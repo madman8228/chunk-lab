@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "5cac61f5",
+      "sentence": "What time do you get off work?",
+      "translation": "你几点下班？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "99c40243",
+      "sentence": "I have a meeting at three this afternoon.",
+      "translation": "我今天下午三点有个会。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "bd1383e5",
+      "sentence": "Is the meeting still on for tomorrow?",
+      "translation": "明天的会还照常开吗？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "13fee10d",
+      "sentence": "I'm afraid I have to ask for a day off.",
+      "translation": "恐怕我得请一天假。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "4d2656c9",
+      "sentence": "Could we reschedule the meeting to Friday?",
+      "translation": "我们能把会议改到周五吗？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "ddff4543",
+      "sentence": "I'll get back to you by the end of the day.",
+      "translation": "我今天之内会回复你。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "4cb79c53",
+      "sentence": "I took that job.",
+      "translation": "我接受了那份工作。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "b45ed857",
+      "sentence": "It's close to me.",
+      "translation": "离我很近。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "4eb3eb33",
+      "sentence": "The pay is good.",
+      "translation": "薪水不错。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "bc810920",
+      "sentence": "You got a minute?",
+      "translation": "你有空吗？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "ddab755e",
+      "sentence": "Sure, what's up?",
+      "translation": "有，怎么了？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "a732da43",
+      "sentence": "I'm not on today.",
+      "translation": "我今天不上班。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "1da8e217",
+      "sentence": "It's my day off.",
+      "translation": "我今天休息。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "f2c5b8eb",
+      "sentence": "Are you off tomorrow?",
+      "translation": "你明天休息吗？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "dfcf2e40",
+      "sentence": "I don't work Friday.",
+      "translation": "我周五不上班。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "2e8d5895",
+      "sentence": "I've been so busy.",
+      "translation": "我最近太忙了。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "5010e8ef",
+      "sentence": "Sometimes I forget.",
+      "translation": "有时候会忘。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "475674ed",
+      "sentence": "Can I go home early?",
+      "translation": "我能早点回家吗？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "b4cd5f6b",
+      "sentence": "What time will you finish?",
+      "translation": "你什么时候结束？",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "9a127097",
+      "sentence": "I'll finish at two.",
+      "translation": "我两点结束。",
+      "sourceUrl": "content/oral-1-5-1/oral-001-ac5bc2b57509.json",
+      "sourceOffset": 19
+    }
+  ]
+}

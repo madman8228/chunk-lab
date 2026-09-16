@@ -577,7 +577,7 @@ async function main() {
           '/.git/config', '/.git/HEAD', '/.gitignore', '/.env', '/e2e/e2e.js',
           '/deploy/nginx-chunklab.conf', '/deploy/chunklab.service',
           '/package.json', '/package-lock.json',
-          '/validate_builtins.js', '/validate_oral8000.js',
+          '/validate_builtins.js', '/validate_oral_book.js',
           '/ref/anything.html', '/diagnose.html',
           '/server/index.js', '/server/data/chunklab.db',
           '/output/e2e/e2e.js', '/scripts/deploy-security-smoke.sh',

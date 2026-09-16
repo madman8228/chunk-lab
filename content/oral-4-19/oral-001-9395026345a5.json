@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I love pizza.",
+      "translation": "我最爱吃比萨饼。",
+      "chunks": [
+        "I love",
+        "pizza."
+      ],
+      "hints": [
+        "我爱吃",
+        "比萨饼"
+      ],
+      "cid": "c331781c"
+    },
+    {
+      "sentence": "I like this dress.",
+      "translation": "我喜欢这套衣服。",
+      "chunks": [
+        "I like",
+        "this dress."
+      ],
+      "hints": [
+        "我喜欢",
+        "这套衣服"
+      ],
+      "cid": "8d26e448"
+    },
+    {
+      "sentence": "Are you pleased with your new car?",
+      "translation": "你满意你的新车吗?",
+      "chunks": [
+        "Are you pleased",
+        "with your new car?"
+      ],
+      "hints": [
+        "你满意",
+        "你的新车吗"
+      ],
+      "cid": "879a69e0"
+    },
+    {
+      "sentence": "I'm fond of this tea.",
+      "translation": "我喜欢这茶。",
+      "chunks": [
+        "I'm fond of",
+        "this tea."
+      ],
+      "hints": [
+        "我很喜欢",
+        "这茶"
+      ],
+      "cid": "43b1a782"
+    },
+    {
+      "sentence": "I prefer tea to coffee.",
+      "translation": "比起咖啡来我更喜欢红茶。",
+      "chunks": [
+        "I prefer tea",
+        "to coffee."
+      ],
+      "hints": [
+        "比起咖啡",
+        "我更爱红茶"
+      ],
+      "cid": "d5b60ff3"
+    },
+    {
+      "sentence": "Tomato soup is my cup of tea.",
+      "translation": "我喜欢喝西红柿汤。",
+      "chunks": [
+        "Tomato soup",
+        "is my cup of tea."
+      ],
+      "hints": [
+        "西红柿汤",
+        "是我的最爱"
+      ],
+      "cid": "d3192f77"
+    },
+    {
+      "sentence": "I've developed a great liking for Japanese food.",
+      "translation": "我非常喜欢吃日本食品。",
+      "chunks": [
+        "I've developed",
+        "a great liking for",
+        "Japanese food."
+      ],
+      "hints": [
+        "我养成了",
+        "……的喜好",
+        "对日本料理"
+      ],
+      "cid": "3c4b1dba"
+    },
+    {
+      "sentence": "I'm choosy.",
+      "translation": "我这人很挑剔。",
+      "chunks": [
+        "I'm",
+        "choosy."
+      ],
+      "hints": [
+        "我这人",
+        "很挑剔"
+      ],
+      "cid": "c71a382d"
+    },
+    {
+      "sentence": "I came to like sushi.",
+      "translation": "我开始喜欢吃寿司了。",
+      "chunks": [
+        "I came to like",
+        "sushi."
+      ],
+      "hints": [
+        "我开始喜欢",
+        "吃寿司了"
+      ],
+      "cid": "1078001e"
+    },
+    {
+      "sentence": "Jane has grown on me.",
+      "translation": "简越来越让我喜欢。",
+      "chunks": [
+        "Jane",
+        "has grown on me."
+      ],
+      "hints": [
+        "简",
+        "越来越让我喜欢"
+      ],
+      "cid": "51ea83eb"
+    },
+    {
+      "sentence": "Baseball grew on me.",
+      "translation": "棒球越来越吸引我了。",
+      "chunks": [
+        "Baseball",
+        "grew on me."
+      ],
+      "hints": [
+        "棒球",
+        "越来越吸引我了"
+      ],
+      "cid": "5865f0ab"
+    },
+    {
+      "sentence": "This will be fun!",
+      "translation": "看上去挺好玩的。",
+      "chunks": [
+        "This",
+        "will be fun!"
+      ],
+      "hints": [
+        "这",
+        "看上去挺好玩"
+      ],
+      "cid": "22acd978"
+    },
+    {
+      "sentence": "This is exciting!",
+      "translation": "真令人兴奋!",
+      "chunks": [
+        "This is",
+        "exciting!"
+      ],
+      "hints": [
+        "真",
+        "令人兴奋"
+      ],
+      "cid": "7dad1ebf"
+    },
+    {
+      "sentence": "I'm interested.",
+      "translation": "我很感兴趣。",
+      "chunks": [
+        "I'm",
+        "interested."
+      ],
+      "hints": [
+        "我很",
+        "感兴趣"
+      ],
+      "cid": "952e76cb"
+    },
+    {
+      "sentence": "I'm satisfied.",
+      "translation": "我很满足。",
+      "chunks": [
+        "I'm",
+        "satisfied."
+      ],
+      "hints": [
+        "我很",
+        "满足"
+      ],
+      "cid": "7eedc082"
+    },
+    {
+      "sentence": "I enjoyed it.",
+      "translation": "我很欣赏它。",
+      "chunks": [
+        "I enjoyed",
+        "it."
+      ],
+      "hints": [
+        "我很",
+        "欣赏它"
+      ],
+      "cid": "9c83ab57"
+    },
+    {
+      "sentence": "I was deeply moved.",
+      "translation": "我被深深地感动了。",
+      "chunks": [
+        "I was",
+        "deeply moved."
+      ],
+      "hints": [
+        "我被",
+        "深深地感动了"
+      ],
+      "cid": "df7b099d"
+    },
+    {
+      "sentence": "I don't like it.",
+      "translation": "我不喜欢这个。",
+      "chunks": [
+        "I don't like",
+        "it."
+      ],
+      "hints": [
+        "我不喜欢",
+        "这个"
+      ],
+      "cid": "d6ade8fc"
+    },
+    {
+      "sentence": "I hate it!",
+      "translation": "我最讨厌这个了。",
+      "chunks": [
+        "I hate",
+        "it!"
+      ],
+      "hints": [
+        "我最讨厌",
+        "这个了"
+      ],
+      "cid": "ebd930a0"
+    },
+    {
+      "sentence": "This is disgusting.",
+      "translation": "这个真恶心!",
+      "chunks": [
+        "This is",
+        "disgusting."
+      ],
+      "hints": [
+        "这个",
+        "真恶心"
+      ],
+      "cid": "188b8c52"
+    },
+    {
+      "sentence": "Yuck!",
+      "translation": "啐!",
+      "chunks": [
+        "Yuck!"
+      ],
+      "hints": [
+        "啐"
+      ],
+      "cid": "7ee52560"
+    },
+    {
+      "sentence": "Peeyew!",
+      "translation": "臭死了!",
+      "chunks": [
+        "Peeyew!"
+      ],
+      "hints": [
+        "臭死了"
+      ],
+      "cid": "b75e00d3"
+    },
+    {
+      "sentence": "It's your attitude I don't like.",
+      "translation": "我不喜欢你的这种态度。",
+      "chunks": [
+        "It's your attitude",
+        "I don't like."
+      ],
+      "hints": [
+        "我不喜欢的",
+        "是你的态度"
+      ],
+      "cid": "480c53eb"
+    },
+    {
+      "sentence": "I hate his guts.",
+      "translation": "我对他恨之入骨。",
+      "chunks": [
+        "I hate",
+        "his guts."
+      ],
+      "hints": [
+        "我对他",
+        "恨之入骨"
+      ],
+      "cid": "acceb0cd"
+    },
+    {
+      "sentence": "I don't care for it.",
+      "translation": "我不喜欢。",
+      "chunks": [
+        "I don't care for",
+        "it."
+      ],
+      "hints": [
+        "我",
+        "不喜欢"
+      ],
+      "cid": "d06ba239"
+    },
+    {
+      "sentence": "I can't stand him.",
+      "translation": "看见他就心烦。",
+      "chunks": [
+        "I can't stand",
+        "him."
+      ],
+      "hints": [
+        "看见他",
+        "就心烦"
+      ],
+      "cid": "e75cdb13"
+    },
+    {
+      "sentence": "Never again!",
+      "translation": "别再有第二次!",
+      "chunks": [
+        "Never",
+        "again!"
+      ],
+      "hints": [
+        "别再有",
+        "第二次"
+      ],
+      "cid": "d754db50"
+    },
+    {
+      "sentence": "I've had it.",
+      "translation": "我已经受够了!",
+      "chunks": [
+        "I've had",
+        "it."
+      ],
+      "hints": [
+        "我已经",
+        "受够了"
+      ],
+      "cid": "e4483664"
+    },
+    {
+      "sentence": "You would be the last person I'd want to see.",
+      "cid": "de8bc536",
+      "translation": "我最不想见的人就是你了。",
+      "chunks": [
+        "You would be the last person",
+        "I'd want to see."
+      ],
+      "hints": [
+        "你会是最后一个人",
+        "我想见到的"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/wʊd/",
+            "/biː/",
+            "/læst/"
+          ],
+          "pos": "虚拟语气",
+          "meaning": "你会是最后一个人"
+        },
+        {
+          "role": "定语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/aɪd/",
+            "/wɑːnt/",
+            "/tə/",
+            "/siː/"
+          ],
+          "pos": "定语从句",
+          "meaning": "我想见的"
+        }
+      ],
+      "explanations": [
+        "`the last person I'd want to ...` 是「我最不想……的人」的地道说法。常见错误：\n• \"the last person\" 后面定语从句省略了 that，不要加 what\n• \"I'd want to **saw**\" → 不定式用原形 see",
+        "这种 last 表「最不可能的」，语气很强：you'd be the last person = 最不想见的就是你。"
+      ],
+      "distractors": [
+        [
+          "You will be the last person",
+          "You would be the last people",
+          "You would the last person"
+        ],
+        [
+          "I want to see.",
+          "I'd want to saw.",
+          "I'd wanted to see."
+        ]
+      ]
+    }
+  ]
+}

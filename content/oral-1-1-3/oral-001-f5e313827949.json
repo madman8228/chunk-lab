@@ -1,0 +1,1925 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'd rather stay in than go out tonight.",
+      "cid": "c8ebde21",
+      "translation": "我今晚宁愿待在家里也不愿出去。",
+      "chunks": [
+        "I'd rather stay in",
+        "than go out",
+        "tonight."
+      ],
+      "hints": [
+        "我宁愿待在家",
+        "而不出去",
+        "今晚"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/ˈrɑːðər/",
+            "/steɪ/",
+            "/ɪn/"
+          ],
+          "pos": "would rather 结构",
+          "meaning": "我宁愿待在家"
+        },
+        {
+          "role": "比较连词+动词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðæn/",
+            "/ɡəʊ/",
+            "/aʊt/"
+          ],
+          "pos": "than 比较",
+          "meaning": "而不出去"
+        },
+        {
+          "role": "时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/təˈnaɪt/"
+          ],
+          "pos": "副词",
+          "meaning": "今晚"
+        }
+      ],
+      "explanations": [
+        "`would rather do A than do B` = 宁愿 A 也不 B。常见错误：\n• \"I'd rather **to** stay\" → rather 后接原形\n• \"rather than **going** out\" → than 后接与 stay 平行的原形 go out",
+        "`stay in` = 待在家（反义 go out）。",
+        "`tonight` 时间副词不加介词。"
+      ],
+      "distractors": [
+        [
+          "I rather stay in",
+          "I'd rather staying in",
+          "I'd rather to stay in"
+        ],
+        [
+          "than going out",
+          "rather than go out",
+          "than go to out"
+        ],
+        [
+          "at tonight.",
+          "yesterday.",
+          "in tonight."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm looking for an apartment near the university.",
+      "cid": "7f041d4e",
+      "translation": "我在找大学附近的公寓。",
+      "chunks": [
+        "I'm looking for",
+        "an apartment",
+        "near the university."
+      ],
+      "hints": [
+        "我在寻找",
+        "一间公寓",
+        "大学附近"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾(进行时)",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈlʊkɪŋ/",
+            "/fɔːr/"
+          ],
+          "pos": "look for 进行时",
+          "meaning": "正在寻找"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ən/",
+            "/əˈpɑːrtmənt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一间公寓"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/nɪr/",
+            "/ðə/",
+            "/ˌjuːnɪˈvɜːrsəti/"
+          ],
+          "pos": "介词短语",
+          "meaning": "大学附近"
+        }
+      ],
+      "explanations": [
+        "找房用语。`look for` = 寻找（过程），`find` = 找到（结果）。常见错误：\n• \"I **looking for**\" → 进行时缺 be 动词\n• \"I look for\" → 一般现在时表习惯，当下找房用进行时",
+        "`an apartment` — apartment 以元音音素开头用 an。常见错误：\n• \"a apartment\" → 元音前必须 an",
+        "`near the university` = 大学附近。常见错误：\n• \"near to the university\" → near 直接接地点不加 to\n• \"nearby the university\" → nearby 多作形容词/副词"
+      ],
+      "distractors": [
+        [
+          "I looking for",
+          "I'm looking at",
+          "I look for"
+        ],
+        [
+          "a apartment",
+          "apartments",
+          "an apartments"
+        ],
+        [
+          "near to the university.",
+          "nearby the university.",
+          "near the universities."
+        ]
+      ]
+    },
+    {
+      "sentence": "How much is the rent for this apartment?",
+      "cid": "26516f50",
+      "translation": "这套公寓的租金是多少？",
+      "chunks": [
+        "How much is",
+        "the rent for",
+        "this apartment?"
+      ],
+      "hints": [
+        "多少钱是",
+        "……的租金",
+        "这套公寓"
+      ],
+      "grammar": [
+        {
+          "role": "疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/haʊ/",
+            "/mʌtʃ/",
+            "/ɪz/"
+          ],
+          "pos": "how much 句型",
+          "meaning": "多少钱是"
+        },
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/rent/",
+            "/fɔːr/"
+          ],
+          "pos": "名词短语",
+          "meaning": "……的租金"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðɪs/",
+            "/əˈpɑːrtmənt/"
+          ],
+          "pos": "指示代词+名词",
+          "meaning": "这套公寓"
+        }
+      ],
+      "explanations": [
+        "问租金。`how much` 问不可数/价格，`how many` 问可数数量。常见错误：\n• \"How much **are** the rent\" → rent 不可数用 is\n• \"How many is the rent\" → 问钱用 how much",
+        "`the rent for` = 为……付的租金。常见错误：\n• \"the rent of\" → of/for 混用，此处 for 表用途\n• 漏 the → 特指这套房要加 the",
+        "`this apartment` — this 接单数。常见错误：\n• \"this apartments\" → this 后不加 s"
+      ],
+      "distractors": [
+        [
+          "How much are",
+          "How many is",
+          "What much is"
+        ],
+        [
+          "rent for",
+          "the rents for",
+          "a rent for"
+        ],
+        [
+          "this apartments?",
+          "that apartment?",
+          "an apartment?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Does the rent include the utilities?",
+      "cid": "d89f94fa",
+      "translation": "房租包含水电燃气这些费用吗？",
+      "chunks": [
+        "Does the rent",
+        "include",
+        "the utilities?"
+      ],
+      "hints": [
+        "房租是否",
+        "包含",
+        "各项杂费"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/dʌz/",
+            "/ðə/",
+            "/rent/"
+          ],
+          "pos": "does 助动词",
+          "meaning": "房租是否……"
+        },
+        {
+          "role": "谓语动词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪnˈkluːd/"
+          ],
+          "pos": "及物动词",
+          "meaning": "包含"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðə/",
+            "/juːˈtɪlətiz/"
+          ],
+          "pos": "名词(恒复数)",
+          "meaning": "杂费(水电燃气)"
+        }
+      ],
+      "explanations": [
+        "看房必问。`utilities` 指水电燃气网费等，通常用复数。常见错误：\n• \"Does the rent **includes**\" → does 后动词用原形\n• \"Do the rent\" → rent 第三人称单数，助动词用 does",
+        "`include` = 包含。",
+        "`the utilities` — 各项杂费合称。常见错误：\n• \"the utility\" → 泛指全部杂费用复数"
+      ],
+      "distractors": [
+        [
+          "Do the rent",
+          "Does rents",
+          "Is the rent"
+        ],
+        [
+          "includes",
+          "included",
+          "to include"
+        ],
+        [
+          "the utility?",
+          "a utilities?",
+          "these utilities?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I need to sign a one-year lease.",
+      "cid": "42feb2af",
+      "translation": "我需要签一份一年期的租约。",
+      "chunks": [
+        "I need to sign",
+        "a one-year",
+        "lease."
+      ],
+      "hints": [
+        "我需要签",
+        "一份一年的",
+        "租约"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/niːd/",
+            "/tə/",
+            "/saɪn/"
+          ],
+          "pos": "need to do",
+          "meaning": "我需要签"
+        },
+        {
+          "role": "定语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/wʌn/",
+            "/jɪr/"
+          ],
+          "pos": "复合形容词",
+          "meaning": "一年期的"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/liːs/"
+          ],
+          "pos": "名词",
+          "meaning": "租约"
+        }
+      ],
+      "explanations": [
+        "签约用语。`sign a lease` = 签租约。常见错误：\n• \"I need **signing**\" → need 后接 to do\n• \"I need to signed\" → to 后动词原形",
+        "`a one-year lease` — 复合形容词 one-year 用单数加连字符，作定语。常见错误：\n• \"one-year **lease**\" 丢了 a\n• \"a one-year **leases**\" → 单数租约不加 s",
+        "`lease` = 租约（美式常用 lease/rental agreement）。"
+      ],
+      "distractors": [
+        [
+          "I need signing",
+          "I need to signed",
+          "I'm need to sign"
+        ],
+        [
+          "a one-years",
+          "one-year",
+          "a one-years lease"
+        ],
+        [
+          "leases.",
+          "the lease.",
+          "a lease now?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I can't wait to move into my new place.",
+      "cid": "1319af65",
+      "translation": "我迫不及待要搬进新家了。",
+      "chunks": [
+        "I can't wait to",
+        "move into",
+        "my new place."
+      ],
+      "hints": [
+        "我迫不及待要",
+        "搬进",
+        "我的新住处"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/kænt/",
+            "/weɪt/",
+            "/tə/"
+          ],
+          "pos": "can't wait to do",
+          "meaning": "迫不及待要"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/muːv/",
+            "/ˈɪntuː/"
+          ],
+          "pos": "短语动词",
+          "meaning": "搬进"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/maɪ/",
+            "/nuː/",
+            "/pleɪs/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的新住处"
+        }
+      ],
+      "explanations": [
+        "`can't wait to do sth` = 迫不及待做某事。常见错误：\n• \"I can't **waiting** to\" → 固定 can't wait to + 原形\n• \"I don't wait to\" → 没有这个说法",
+        "`move into` = 搬进（新居）。常见错误：\n• \"move in **to** my place\" → move in 后直接接地点也可，move into 是完整短语\n• \"move to\" → 表搬到某城市/国家，搬进具体房子用 into",
+        "`place` 口语中指「住处」。"
+      ],
+      "distractors": [
+        [
+          "I don't wait to",
+          "I can't waiting to",
+          "I can't wait for"
+        ],
+        [
+          "moving into",
+          "to move in",
+          "move on"
+        ],
+        [
+          "my new places.",
+          "mine new place.",
+          "my news place."
+        ]
+      ]
+    },
+    {
+      "sentence": "Do you still have the apartment for rent?",
+      "cid": "65a045ff",
+      "translation": "这套公寓还在出租吗？",
+      "chunks": [
+        "Do you still have",
+        "the apartment",
+        "for rent?"
+      ],
+      "hints": [
+        "你是否还有",
+        "这套公寓",
+        "在出租"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/stɪl/",
+            "/hæv/"
+          ],
+          "pos": "do 助动词+still",
+          "meaning": "是否还有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/əˈpɑːrtmənt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "这套公寓"
+        },
+        {
+          "role": "补语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/rent/"
+          ],
+          "pos": "介词短语",
+          "meaning": "待出租"
+        }
+      ],
+      "explanations": [
+        "租房电话常用语。`still` 表「仍然」，放助动词后。常见错误：\n• \"Are you still **have**\" → have 是实义动词，疑问用 Do you have\n• \"Do you still **has**\" → do 后原形",
+        "`the apartment` 特指那套。",
+        "`for rent` = 出租中（美式；英式 to let）。常见错误：\n• \"for renting\" → 固定搭配 for rent\n• \"for a rent\" → 多冠词"
+      ],
+      "distractors": [
+        [
+          "Are you still have",
+          "Do you still has",
+          "Do you still got"
+        ],
+        [
+          "an apartment",
+          "the apartments",
+          "apartment"
+        ],
+        [
+          "for renting?",
+          "to rent?",
+          "for a rent?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'd like to open a savings account.",
+      "cid": "9e0805f0",
+      "translation": "我想开一个储蓄账户。",
+      "chunks": [
+        "I'd like to open",
+        "a savings",
+        "account."
+      ],
+      "hints": [
+        "我想开",
+        "一个储蓄",
+        "账户"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/",
+            "/tə/",
+            "/ˈoʊpən/"
+          ],
+          "pos": "would like to",
+          "meaning": "我想开"
+        },
+        {
+          "role": "定语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈseɪvɪŋz/"
+          ],
+          "pos": "名词作定语",
+          "meaning": "储蓄的"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈkaʊnt/"
+          ],
+          "pos": "名词",
+          "meaning": "账户"
+        }
+      ],
+      "explanations": [
+        "银行业务。`open an account` = 开户。常见错误：\n• \"I like to open\" → 表喜好，开卡要用 would like to\n• \"I'd like opening\" → would like 后接 to do",
+        "`a savings account` — savings 用复数形式作定语（checking account 同理）。常见错误：\n• \"a saving account\" → 固定 savings account\n• \"an savings\" → savings 虽以 s 开头但音素 /s/ 前用 a",
+        "`account` 账户。"
+      ],
+      "distractors": [
+        [
+          "I like to open",
+          "I'd like opening",
+          "I'd like to opening"
+        ],
+        [
+          "a saving",
+          "an savings",
+          "the savings"
+        ],
+        [
+          "accounts.",
+          "a account.",
+          "to account."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you tell me today's exchange rate?",
+      "cid": "82e48821",
+      "translation": "你能告诉我今天的汇率吗？",
+      "chunks": [
+        "Could you tell me",
+        "today's",
+        "exchange rate?"
+      ],
+      "hints": [
+        "你能告诉我",
+        "今天的",
+        "汇率"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/tel/",
+            "/miː/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "你能告诉我"
+        },
+        {
+          "role": "定语(所有格)",
+          "color": "#3358e0",
+          "phonetic": [
+            "/təˈdeɪz/"
+          ],
+          "pos": "名词所有格",
+          "meaning": "今天的"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪksˈtʃeɪndʒ/",
+            "/reɪt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "汇率"
+        }
+      ],
+      "explanations": [
+        "银行换汇用语。`Could you tell me...` = 比 Can you 更礼貌。常见错误：\n• \"Could you **told** me\" → could 后原形\n• \"Could you to tell me\" → 情态动词后直接原形",
+        "`today's` = 今天的，名词所有格表时间。常见错误：\n• \"today exchange rate\" → 缺 's\n• \"todays\" → 所有格要加撇号",
+        "`exchange rate` = 汇率。"
+      ],
+      "distractors": [
+        [
+          "Can you tell me",
+          "Could you told me",
+          "Could you to tell me"
+        ],
+        [
+          "today",
+          "today date",
+          "the today's"
+        ],
+        [
+          "exchange rates?",
+          "the exchange rate?",
+          "exchange rate now?"
+        ]
+      ]
+    },
+    {
+      "sentence": "How much would it cost to send this to China?",
+      "cid": "66658ed3",
+      "translation": "把这个寄到中国要多少钱？",
+      "chunks": [
+        "How much would",
+        "it cost",
+        "to send this to China?"
+      ],
+      "hints": [
+        "多少钱会",
+        "它花费",
+        "寄这个到中国"
+      ],
+      "grammar": [
+        {
+          "role": "疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/haʊ/",
+            "/mʌtʃ/",
+            "/wʊd/"
+          ],
+          "pos": "how much would",
+          "meaning": "多少钱会"
+        },
+        {
+          "role": "主谓",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/",
+            "/kɔːst/"
+          ],
+          "pos": "情态动词+原形",
+          "meaning": "它花费"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/send/",
+            "/ðɪs/",
+            "/tə/",
+            "/ˈtʃaɪnə/"
+          ],
+          "pos": "to do 不定式",
+          "meaning": "寄这个到中国"
+        }
+      ],
+      "explanations": [
+        "邮局寄件问价。`How much would it cost to...` = ……要花多少钱。常见错误：\n• \"How many would\" → 钱用 how much\n• \"What would it cost\" → 也可以，但 how much 最常用",
+        "`it cost` — would 后用动词原形 cost（过去式也是 cost）。",
+        "`to send this to China` — send sth to + 地点。常见错误：\n• \"send this **for** China\" → 搭配 send to\n• \"to sent\" → to 后原形"
+      ],
+      "distractors": [
+        [
+          "How much will",
+          "How many would",
+          "What would"
+        ],
+        [
+          "it costs",
+          "it to cost",
+          "it costing"
+        ],
+        [
+          "for sending this to China?",
+          "to send these to China?",
+          "to sent this to China?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'd like to get a haircut, please.",
+      "cid": "8094f354",
+      "translation": "我想理发。",
+      "chunks": [
+        "I'd like to get",
+        "a haircut,",
+        "please."
+      ],
+      "hints": [
+        "我想",
+        "理个发",
+        "谢谢"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/",
+            "/tə/",
+            "/ɡet/"
+          ],
+          "pos": "would like to",
+          "meaning": "我想做"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈherkʌt/"
+          ],
+          "pos": "名词",
+          "meaning": "理发"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "谢谢"
+        }
+      ],
+      "explanations": [
+        "理发店进门第一句。`get a haircut` = 理发。常见错误：\n• \"get **haircut**\" → 漏 a\n• \"I'd like **cutting**\" → would like to + 原形\n• \"cut my hair\" → 也可以，但 get a haircut 是地道说法",
+        "美发店常见对话：How would you like it?（想怎么剪？）/ Just a trim, please.（稍微修一下）"
+      ],
+      "distractors": [
+        [
+          "I like to get",
+          "I'd like get",
+          "I'd like to getting"
+        ],
+        [
+          "a hair cut,",
+          "haircuts,",
+          "the haircut,"
+        ],
+        [
+          "pleased.",
+          "please now."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you trim my beard a little?",
+      "cid": "4eb6f313",
+      "translation": "你能帮我把胡子修短一点吗？",
+      "chunks": [
+        "Could you trim",
+        "my beard",
+        "a little?"
+      ],
+      "hints": [
+        "你能修剪",
+        "我的胡子",
+        "一点点"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/trɪm/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "你能修剪"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/bɪrd/"
+          ],
+          "pos": "名词",
+          "meaning": "我的胡子"
+        },
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ə/",
+            "/ˈlɪtl/"
+          ],
+          "pos": "短语",
+          "meaning": "一点点"
+        }
+      ],
+      "explanations": [
+        "`trim` = 修剪（不是全剃）。常见错误：\n• \"Could you **trimmed**\" → could 后原形\n• \"cut off my beard\" → 那是全剃掉，修短用 trim",
+        "`a little` = 一点点。常见错误：\n• \"a little **bit**\" → 也可说 a little bit，但 a little 已够\n• 注意 a little 修饰不可数"
+      ],
+      "distractors": [
+        [
+          "Can you trim",
+          "Could you trimmed",
+          "Could you to trim"
+        ],
+        [
+          "my beards",
+          "mine beard",
+          "the beard"
+        ],
+        [
+          "little?",
+          "a bit little?",
+          "a little now?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you take a little off the top?",
+      "cid": "0c594885",
+      "translation": "能把头顶稍微剪短点吗？",
+      "chunks": [
+        "Could you take",
+        "a little off",
+        "the top?"
+      ],
+      "hints": [
+        "你能去掉",
+        "一点点",
+        "头顶的头发"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/teɪk/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "你能去掉"
+        },
+        {
+          "role": "数量短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈlɪtl/",
+            "/ɔːf/"
+          ],
+          "pos": "短语",
+          "meaning": "一点点"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðə/",
+            "/tɑːp/"
+          ],
+          "pos": "名词",
+          "meaning": "头顶"
+        }
+      ],
+      "explanations": [
+        "理发店高频句。`take a little off the top` = 头顶剪短一点。常见错误：\n• \"take a little **of** the top\" → 固定 off the top\n• \"take off the top\" → 少了 a little 程度",
+        "理发店其他说法：Make it shorter on the sides.（两侧短一点）"
+      ],
+      "distractors": [
+        [
+          "Can you take",
+          "Could you takes",
+          "Could you to take"
+        ],
+        [
+          "a little of",
+          "a lot off",
+          "little off"
+        ],
+        [
+          "top?",
+          "the tops?",
+          "a top?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I go to the gym twice a week.",
+      "cid": "6ea7ddb2",
+      "translation": "我每周去两次健身房。",
+      "chunks": [
+        "I go to",
+        "the gym",
+        "twice a week."
+      ],
+      "hints": [
+        "我去",
+        "健身房",
+        "每周两次"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ɡoʊ/",
+            "/tə/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我去"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/dʒɪm/"
+          ],
+          "pos": "名词",
+          "meaning": "健身房"
+        },
+        {
+          "role": "频度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/twaɪs/",
+            "/ə/",
+            "/wiːk/"
+          ],
+          "pos": "频度短语",
+          "meaning": "每周两次"
+        }
+      ],
+      "explanations": [
+        "表达频率。`twice a week` = 每周两次（once 一次 / twice 两次 / three times 三次）。常见错误：\n• \"two times a week\" → 也可以但 twice 更地道\n• \"twice every week\" → a week 更常用",
+        "`go to the gym` — 固定搭配，gym 前要 the。常见错误：\n• \"go to gym\" → 漏 the"
+      ],
+      "distractors": [
+        [
+          "I going to",
+          "I goes to",
+          "I go at"
+        ],
+        [
+          "gym",
+          "a gym",
+          "the gyms"
+        ],
+        [
+          "twice every week.",
+          "two times a week.",
+          "twice in a week."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm really out of shape these days.",
+      "cid": "b9a6bed9",
+      "translation": "我最近身体状况真的很差。",
+      "chunks": [
+        "I'm really",
+        "out of shape",
+        "these days."
+      ],
+      "hints": [
+        "我真的很",
+        "身体走样/状态差",
+        "最近"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈriːəli/"
+          ],
+          "pos": "be + 表语",
+          "meaning": "我真的很"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/aʊt/",
+            "/əv/",
+            "/ʃeɪp/"
+          ],
+          "pos": "固定短语",
+          "meaning": "身材走样/状态差"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðiːz/",
+            "/deɪz/"
+          ],
+          "pos": "短语",
+          "meaning": "最近"
+        }
+      ],
+      "explanations": [
+        "`out of shape` = 身材走样/体能差，反义 in shape。常见错误：\n• \"out of **the** shape\" → 固定短语不加 the\n• \"my shape is bad\" → 中式，直接用 out of shape",
+        "`these days` = 最近/这些天，常配现在时或现在完成。"
+      ],
+      "distractors": [
+        [
+          "I really",
+          "I'm real",
+          "I'm very much"
+        ],
+        [
+          "out of the shape",
+          "out of shapes",
+          "out in shape"
+        ],
+        [
+          "this days.",
+          "those day.",
+          "these day."
+        ]
+      ]
+    },
+    {
+      "sentence": "The Wi-Fi keeps dropping in my room.",
+      "cid": "19c737bd",
+      "translation": "我房间的无线网络老是断。",
+      "chunks": [
+        "The Wi-Fi",
+        "keeps dropping",
+        "in my room."
+      ],
+      "hints": [
+        "无线网络",
+        "老是断",
+        "在我房间"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðə/",
+            "/ˈwaɪfaɪ/"
+          ],
+          "pos": "名词",
+          "meaning": "无线网络"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/kiːps/",
+            "/ˈdrɑːpɪŋ/"
+          ],
+          "pos": "keep doing",
+          "meaning": "老是掉线"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/maɪ/",
+            "/ruːm/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在我房间"
+        }
+      ],
+      "explanations": [
+        "酒店/租房网络抱怨。`keep doing` = 一直/老是做。常见错误：\n• \"keeps **to drop**\" → keep 接 doing\n• \"the Wi-Fi is drop\" → 现在进行时是 is dropping",
+        "`drop` = 掉线（信号中断）。同义：cut out。"
+      ],
+      "distractors": [
+        [
+          "Wi-Fi",
+          "The Wi-Fis",
+          "A Wi-Fi"
+        ],
+        [
+          "keep dropping",
+          "keeps to drop",
+          "keeps dropped"
+        ],
+        [
+          "in my rooms.",
+          "at my room.",
+          "in mine room."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could I borrow your charger for a sec?",
+      "cid": "b4dc4363",
+      "translation": "我能借用一下你的充电器吗？",
+      "chunks": [
+        "Could I borrow",
+        "your charger",
+        "for a sec?"
+      ],
+      "hints": [
+        "我能借用",
+        "你的充电器",
+        "一下下"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/ˈbɑːroʊ/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "我能借用"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈtʃɑːrdʒər/"
+          ],
+          "pos": "名词",
+          "meaning": "你的充电器"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/ə/",
+            "/sek/"
+          ],
+          "pos": "短语",
+          "meaning": "一小会儿"
+        }
+      ],
+      "explanations": [
+        "`borrow` = 借入（别人给你），`lend` = 借出（你给别人）。常见错误：\n• \"Could I **lend** your charger\" → 借入用 borrow\n• \"borrow your charger **to** me\" → 语序错",
+        "`for a sec` = for a second 口语缩略，表短暂借用。"
+      ],
+      "distractors": [
+        [
+          "Can I borrow",
+          "Could I borrowed",
+          "Could me borrow"
+        ],
+        [
+          "your charges",
+          "you charger",
+          "the chargers"
+        ],
+        [
+          "for a seconds?",
+          "in a sec?",
+          "for sec?"
+        ]
+      ]
+    },
+    {
+      "sentence": "My phone is running out of battery.",
+      "cid": "5ae33cc0",
+      "translation": "我的手机快没电了。",
+      "chunks": [
+        "My phone",
+        "is running out of",
+        "battery."
+      ],
+      "hints": [
+        "我的手机",
+        "快用完",
+        "电量"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/maɪ/",
+            "/foʊn/"
+          ],
+          "pos": "名词",
+          "meaning": "我的手机"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪz/",
+            "/ˈrʌnɪŋ/",
+            "/aʊt/",
+            "/əv/"
+          ],
+          "pos": "run out of 进行时",
+          "meaning": "快耗尽"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈbætəri/"
+          ],
+          "pos": "名词",
+          "meaning": "电量"
+        }
+      ],
+      "explanations": [
+        "`run out of` = 用完/耗尽。常见错误：\n• \"is running out **off**\" → 是 out of\n• \"my phone is out of battery\" → 也可，running out of 表「正在耗尽」",
+        "口语同义：My phone is dying. / It's almost dead."
+      ],
+      "distractors": [
+        [
+          "Mine phone",
+          "My phones",
+          "The phone my"
+        ],
+        [
+          "is running out",
+          "are running out of",
+          "is run out of"
+        ],
+        [
+          "the battery.",
+          "batteries.",
+          "a battery."
+        ]
+      ]
+    },
+    {
+      "sentence": "I've got dandruff.",
+      "cid": "b62f5200",
+      "translation": "我有头皮屑。",
+      "chunks": [
+        "I've got",
+        "dandruff."
+      ],
+      "hints": [
+        "我有",
+        "头皮屑"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/ɡɑːt/"
+          ],
+          "pos": "have got 缩写",
+          "meaning": "我有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈdændrʌf/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "头皮屑"
+        }
+      ],
+      "explanations": [
+        "`I've got` 是英式/口语里表「有」的常用说法，等于 I have。常见错误：\n• \"I've get\" → got 是过去分词，不能换成原形\n• \"I got dandruff\" → 美式口语也这么说，但强调当下状态用 I've got",
+        "`dandruff` 是不可数名词，不加 s、不加 a。常见错误：\n• \"a dandruff\" → 不可数\n• \"dandruffs\" → 没有复数形式"
+      ],
+      "distractors": [
+        [
+          "I got",
+          "I've get",
+          "I've got to"
+        ],
+        [
+          "dandruffs.",
+          "a dandruff.",
+          "the dandruff."
+        ]
+      ]
+    },
+    {
+      "sentence": "Try some shampoo.",
+      "cid": "3df31aab",
+      "translation": "试试洗发水。",
+      "chunks": [
+        "Try",
+        "some shampoo."
+      ],
+      "hints": [
+        "试试",
+        "一些洗发水"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/traɪ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "试试"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/sʌm/",
+            "/ʃæmˈpuː/"
+          ],
+          "pos": "名词（不可数）",
+          "meaning": "一些洗发水"
+        }
+      ],
+      "explanations": [
+        "祈使句直接用动词原形开头。常见错误：\n• \"Trying some shampoo\" → 祈使句不带动名词\n• \"Try to some shampoo\" → try to 后面要接动词",
+        "`shampoo` 是不可数名词，用 some 修饰。常见错误：\n• \"a shampoo\" → 说「一瓶洗发水」才用 a bottle of shampoo"
+      ],
+      "distractors": [
+        [
+          "Trying",
+          "Tries",
+          "Try to"
+        ],
+        [
+          "some shampoos.",
+          "a shampoo.",
+          "some shampooing."
+        ]
+      ]
+    },
+    {
+      "sentence": "What's the rent?",
+      "cid": "af8e14de",
+      "translation": "房租多少？",
+      "chunks": [
+        "What's",
+        "the rent?"
+      ],
+      "hints": [
+        "（是）多少",
+        "房租"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wʌts/"
+          ],
+          "pos": "what + is 缩写",
+          "meaning": "（是）多少"
+        },
+        {
+          "role": "主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðə/",
+            "/rent/"
+          ],
+          "pos": "名词短语",
+          "meaning": "房租"
+        }
+      ],
+      "explanations": [
+        "`What's` = What is，问价格。常见错误：\n• \"Whats\" → 少了撇号\n• \"How much the rent?\" → 更完整的问法是 How much is the rent?",
+        "`rent` 表房租，可作名词也可作动词（rent a place）。"
+      ],
+      "distractors": [
+        [
+          "What",
+          "What're",
+          "What was"
+        ],
+        [
+          "the rents?",
+          "a rent?",
+          "the rant?"
+        ]
+      ]
+    },
+    {
+      "sentence": "300 a week.",
+      "cid": "cd8300eb",
+      "translation": "一周三百。",
+      "chunks": [
+        "300",
+        "a week."
+      ],
+      "hints": [
+        "三百",
+        "一周"
+      ],
+      "grammar": [
+        {
+          "role": "数词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈθriː/",
+            "/ˈhʌndrəd/"
+          ],
+          "pos": "金额",
+          "meaning": "三百"
+        },
+        {
+          "role": "频率状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ə/",
+            "/wiːk/"
+          ],
+          "pos": "per 的口语形式",
+          "meaning": "一周"
+        }
+      ],
+      "explanations": [
+        "报价时省略货币单位（300 dollars a week）。常见错误：\n• \"300 in a week\" → 表频率不加 in\n• \"300 every week\" → 也对，但 a week 更简洁",
+        "`a week` 在这里 = per week，表费率。同义：300 weekly. / 300 per week."
+      ],
+      "distractors": [
+        [
+          "300's",
+          "Three hundreds",
+          "3000"
+        ],
+        [
+          "a weeks.",
+          "the week.",
+          "per weeks."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get some fresh air.",
+      "cid": "a78144bd",
+      "translation": "去呼吸点新鲜空气。",
+      "chunks": [
+        "Get some",
+        "fresh air."
+      ],
+      "hints": [
+        "去弄点",
+        "新鲜空气"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "去弄点"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/freʃ/",
+            "/er/"
+          ],
+          "pos": "名词短语（不可数）",
+          "meaning": "新鲜空气"
+        }
+      ],
+      "explanations": [
+        "`get some fresh air` 就是「出去透透气」。常见错误：\n• \"Get some fresh airs\" → air 不可数，不加 s\n• \"Get some fresh water\" → 那是淡水，fresh air 才是空气",
+        "同类：take a walk / get some sun，都属「出门活动」这一族。"
+      ],
+      "distractors": [
+        [
+          "Get a",
+          "Get any",
+          "Got some"
+        ],
+        [
+          "fresh airs.",
+          "fresh the air.",
+          "freshly air."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get some sun.",
+      "cid": "8c273747",
+      "translation": "去晒晒太阳。",
+      "chunks": [
+        "Get some",
+        "sun."
+      ],
+      "hints": [
+        "去晒点",
+        "太阳"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "去晒点"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/sʌn/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "阳光"
+        }
+      ],
+      "explanations": [
+        "`get some sun` 是「晒太阳」最地道的口语说法。常见错误：\n• \"Get some suns\" → sun 不可数\n• sun 与 son 同音 /sʌn/，听写时靠上下文区分",
+        "相关：get some sunshine（更强调暖阳）、get a tan（晒黑）。"
+      ],
+      "distractors": [
+        [
+          "Get a",
+          "Got some",
+          "Get any"
+        ],
+        [
+          "suns.",
+          "the sun of.",
+          "son."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get some groceries.",
+      "cid": "1381b0a8",
+      "translation": "买点菜。",
+      "chunks": [
+        "Get some",
+        "groceries."
+      ],
+      "hints": [
+        "买点",
+        "食品杂货"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "买点"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈɡroʊsəriz/"
+          ],
+          "pos": "名词（恒用复数）",
+          "meaning": "食材杂货"
+        }
+      ],
+      "explanations": [
+        "`groceries` 指超市买回来的食材、日用品，习惯用复数。常见错误：\n• \"Get some grocery\" → 一般用复数 groceries\n• 拼写别丢 c：gro**c**eries，不是 groseries",
+        "美式也说 get some food / pick up some stuff；英式常说 do the shopping。"
+      ],
+      "distractors": [
+        [
+          "Get a",
+          "Get any",
+          "Got some"
+        ],
+        [
+          "grocery.",
+          "grocerys.",
+          "the groceries of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Take a walk.",
+      "cid": "d1fa43d8",
+      "translation": "去走走。",
+      "chunks": [
+        "Take a",
+        "walk."
+      ],
+      "hints": [
+        "去散个",
+        "步"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/ə/"
+          ],
+          "pos": "动词短语 take a walk",
+          "meaning": "去散步"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wɔːk/"
+          ],
+          "pos": "名词",
+          "meaning": "走路"
+        }
+      ],
+      "explanations": [
+        "`take a walk` 是「去走走、散步」的固定搭配。常见错误：\n• \"Take walk\" → 缺少 a\n• \"Go a walk\" → 动词用 take 或 have，不用 go",
+        "同义：go for a walk / take a stroll（更悠闲）。"
+      ],
+      "distractors": [
+        [
+          "Take the",
+          "Make a",
+          "Go a"
+        ],
+        [
+          "walks.",
+          "walking.",
+          "a walk."
+        ]
+      ]
+    },
+    {
+      "sentence": "Read a book.",
+      "cid": "623c5d57",
+      "translation": "读读书。",
+      "chunks": [
+        "Read",
+        "a book."
+      ],
+      "hints": [
+        "读",
+        "一本书"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/riːd/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "读"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/bʊk/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一本书"
+        }
+      ],
+      "explanations": [
+        "`read` 现在式读 /riːd/，过去式拼写相同但读 /red/。常见错误：\n• 别写成 \"Look a book\"（look 要接 at）\n• \"Read book\" → 可数名词单数前要加 a",
+        "相关：read to me（读给我听）/ read aloud（朗读）"
+      ],
+      "distractors": [
+        [
+          "Reads",
+          "Reading",
+          "Reader"
+        ],
+        [
+          "a books.",
+          "book.",
+          "a book of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Put on some music.",
+      "cid": "f256951c",
+      "translation": "放点音乐。",
+      "chunks": [
+        "Put on",
+        "some music."
+      ],
+      "hints": [
+        "放上、打开",
+        "一些音乐"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/pʊt/",
+            "/ɑːn/"
+          ],
+          "pos": "短语动词 put on",
+          "meaning": "打开、放上"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/sʌm/",
+            "/ˈmjuːzɪk/"
+          ],
+          "pos": "名词短语（不可数）",
+          "meaning": "一些音乐"
+        }
+      ],
+      "explanations": [
+        "音乐、灯光都用 `put on` 表示「打开、放上」。常见错误：\n• \"Open the music\" → 中文说开音乐，英文用 put on\n• \"Put on some musics\" → music 不可数",
+        "相关：play some music / turn up the music（把音乐调大）"
+      ],
+      "distractors": [
+        [
+          "Put in",
+          "Putting on",
+          "Put of"
+        ],
+        [
+          "some musics.",
+          "the music.",
+          "some musician."
+        ]
+      ]
+    },
+    {
+      "sentence": "Smell some flowers.",
+      "cid": "60c46056",
+      "translation": "闻闻花香。",
+      "chunks": [
+        "Smell some",
+        "flowers."
+      ],
+      "hints": [
+        "闻闻",
+        "一些花"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 限定词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/smel/",
+            "/sʌm/"
+          ],
+          "pos": "祈使 + 限定词",
+          "meaning": "闻闻"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈflaʊərz/"
+          ],
+          "pos": "名词（复数）",
+          "meaning": "花"
+        }
+      ],
+      "explanations": [
+        "`smell` 表「闻」时是及物动词。常见错误：\n• 说一片花丛用复数 flowers 更自然\n• smell 还能作系动词：It smells good.（闻起来很香）",
+        "相关：take a deep breath（深呼吸）/ stop and smell the roses（享受生活）"
+      ],
+      "distractors": [
+        [
+          "Smells some",
+          "Smelling some",
+          "Smell of"
+        ],
+        [
+          "flower.",
+          "flowers's.",
+          "flour."
+        ]
+      ]
+    },
+    {
+      "sentence": "Have a glass of wine.",
+      "cid": "e5ed7518",
+      "translation": "喝一杯酒。",
+      "chunks": [
+        "Have a glass of",
+        "wine."
+      ],
+      "hints": [
+        "喝一杯",
+        "葡萄酒"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 量词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/ə/",
+            "/ɡlæs/",
+            "/əv/"
+          ],
+          "pos": "动词 + 量词短语",
+          "meaning": "喝一杯"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/waɪn/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "葡萄酒"
+        }
+      ],
+      "explanations": [
+        "液体用量词 `a glass of`。常见错误：\n• \"Have a wine\" → 一杯酒要说 a glass of wine\n• \"Have a glass wine\" → 少了 of",
+        "相关：a cup of tea（一杯茶）/ a bottle of beer（一瓶啤酒）"
+      ],
+      "distractors": [
+        [
+          "Have a glass",
+          "Have the glass of",
+          "Having a glass of"
+        ],
+        [
+          "wines.",
+          "wine is.",
+          "win."
+        ]
+      ]
+    },
+    {
+      "sentence": "Have some nice food.",
+      "cid": "264a3504",
+      "translation": "吃点好的。",
+      "chunks": [
+        "Have some",
+        "nice food."
+      ],
+      "hints": [
+        "吃一点",
+        "好吃的"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 限定词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/sʌm/"
+          ],
+          "pos": "动词 + 限定词",
+          "meaning": "吃一点"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/naɪs/",
+            "/fuːd/"
+          ],
+          "pos": "名词短语（不可数）",
+          "meaning": "好吃的"
+        }
+      ],
+      "explanations": [
+        "`nice food` 泛指好吃的；food 泛指时不可数。常见错误：\n• \"Have some nice foods\" → 泛指用不可数形式\n• \"Eat some nice food\" 也行，但 have 在招待语境更自然",
+        "相关：treat yourself（犒劳一下自己）/ have a nice meal"
+      ],
+      "distractors": [
+        [
+          "Have a",
+          "Have any",
+          "Had some"
+        ],
+        [
+          "foods.",
+          "the food of.",
+          "nice foods."
+        ]
+      ]
+    }
+  ]
+}

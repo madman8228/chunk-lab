@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "43217f23",
+      "sentence": "Congratulations on your engagement.",
+      "translation": "恭喜你的订婚。",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "08a05cda",
+      "sentence": "Congratulations on your marriage.",
+      "translation": "恭喜你们喜结良缘。",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "0d6bb2e9",
+      "sentence": "Congratulations on the birth of your child.",
+      "translation": "恭喜生子。",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "586d0781",
+      "sentence": "Congratulations on entering...",
+      "translation": "恭喜你考上...大学!",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "31d5538c",
+      "sentence": "Congratulations on your promotion!",
+      "translation": "恭喜高升!",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "83c55db4",
+      "sentence": "Congratulations on your complete recovery.",
+      "translation": "祝贺你康复!",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "54572924",
+      "sentence": "I'm really happy for you!",
+      "translation": "我为你而高兴。",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "d3adf221",
+      "sentence": "Let's make a toast!",
+      "translation": "让我们干杯!",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "198b0854",
+      "sentence": "Here's to your health!",
+      "translation": "为了您的健康(干杯)!",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "d4341ef3",
+      "sentence": "Let me propose a toast to Mr. Smith.",
+      "translation": "我提议让我们为史密斯先生干杯!",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "5a663556",
+      "sentence": "Break a leg!",
+      "translation": "祝您成功!",
+      "sourceUrl": "content/oral-5-26/oral-001-42b03fe94836.json",
+      "sourceOffset": 10
+    }
+  ]
+}

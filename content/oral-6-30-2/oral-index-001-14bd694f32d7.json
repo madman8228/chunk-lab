@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "eb546ded",
+      "sentence": "Which bus goes to the station?",
+      "translation": "哪路公交车去车站？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "bfe52436",
+      "sentence": "The subway is faster than driving downtown.",
+      "translation": "进城坐地铁比开车快。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "afd0eb9f",
+      "sentence": "Could you drop me off at the airport?",
+      "translation": "你能送我到机场吗？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "20563507",
+      "sentence": "Please pull over here, that's fine.",
+      "translation": "请靠边停在这里，这就行。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "515d82ef",
+      "sentence": "Keep the change, please.",
+      "translation": "不用找零了，谢谢。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "3270501d",
+      "sentence": "I'd like to send this package by air mail.",
+      "translation": "我想用航空邮件寄这个包裹。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "742e248f",
+      "sentence": "What's the postage for a letter to Japan?",
+      "translation": "寄一封信到日本的邮费是多少？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "0bdabc0d",
+      "sentence": "My car broke down on the highway.",
+      "translation": "我的车在高速公路上抛锚了。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "69d57e53",
+      "sentence": "Could you check the tire pressure for me?",
+      "translation": "你能帮我检查一下轮胎气压吗？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "867d1dff",
+      "sentence": "Get in the car.",
+      "translation": "上车吧。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
+      "sourceOffset": 9
+    }
+  ]
+}

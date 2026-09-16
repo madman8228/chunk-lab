@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "577c7ac5",
+      "sentence": "Could I get this to go, please?",
+      "translation": "这个能打包带走吗？",
+      "sourceUrl": "content/oral-6-32-2/oral-001-b8bc8cf1a1db.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "b83b9640",
+      "sentence": "Could we get the check, please?",
+      "translation": "请给我们结账。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-b8bc8cf1a1db.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "352ea243",
+      "sentence": "Let's split the bill, shall we?",
+      "translation": "我们平摊账单吧，好吗？",
+      "sourceUrl": "content/oral-6-32-2/oral-001-b8bc8cf1a1db.json",
+      "sourceOffset": 2
+    }
+  ]
+}

@@ -1,0 +1,975 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Don't worry about it.",
+      "cid": "ea178218",
+      "translation": "别担心/没事的。",
+      "chunks": [
+        "Don't worry",
+        "about it."
+      ],
+      "hints": [
+        "别担心",
+        "关于这件事"
+      ],
+      "grammar": [
+        {
+          "role": "祈使否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/",
+            "/ˈwɜːri/"
+          ],
+          "pos": "否定祈使句",
+          "meaning": "别担心"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/ɪt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于这件事"
+        }
+      ],
+      "explanations": [
+        "**Don't worry about it.** = 别担心/没事，宽慰对方的标准说法，也可用来回应道歉（= 没关系）。",
+        "口语更短版：**No worries.**（澳洲口语最爱）/ **It's fine.** 别写成 Don't worries（worry 动词不加 s）。"
+      ],
+      "distractors": [
+        [
+          "Not worry",
+          "Don't worries",
+          "Don't worrying"
+        ],
+        [
+          "about.",
+          "about them.",
+          "of it."
+        ]
+      ]
+    },
+    {
+      "sentence": "Take your time.",
+      "cid": "22a86a18",
+      "translation": "慢慢来/别着急。",
+      "chunks": [
+        "Take your",
+        "time."
+      ],
+      "hints": [
+        "慢慢用你的",
+        "时间"
+      ],
+      "grammar": [
+        {
+          "role": "祈使+限定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/jɔːr/"
+          ],
+          "pos": "祈使句",
+          "meaning": "慢慢（用）你的"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/taɪm/"
+          ],
+          "pos": "名词",
+          "meaning": "时间"
+        }
+      ],
+      "explanations": [
+        "**Take your time.** = 慢慢来、不用急，对方需要时间思考或忙时安慰用。",
+        "结构 take one's time：take my time / take his time。反义：**Hurry up!** 别与 **It takes time**（需要时间）混淆。"
+      ],
+      "distractors": [
+        [
+          "Take you",
+          "Takes your",
+          "To take your"
+        ],
+        [
+          "times.",
+          "your times."
+        ]
+      ]
+    },
+    {
+      "sentence": "As long as you're happy, that's all that matters.",
+      "cid": "f138b191",
+      "translation": "只要你开心，其他都不重要。",
+      "chunks": [
+        "As long as you're happy,",
+        "that's all",
+        "that matters."
+      ],
+      "hints": [
+        "只要你开心",
+        "那就全部",
+        "重要的"
+      ],
+      "grammar": [
+        {
+          "role": "条件从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æz/",
+            "/lɒŋ/",
+            "/æz/",
+            "/jɔːr/",
+            "/ˈhæpi/"
+          ],
+          "pos": "as long as 从句",
+          "meaning": "只要你开心"
+        },
+        {
+          "role": "主句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðæts/",
+            "/ɔːl/"
+          ],
+          "pos": "主系表",
+          "meaning": "那就是全部"
+        },
+        {
+          "role": "定语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðæt/",
+            "/ˈmætərz/"
+          ],
+          "pos": "that 从句",
+          "meaning": "重要的"
+        }
+      ],
+      "explanations": [
+        "`As long as` = 只要（条件连词）。常见错误：\n• \"As **long** you're happy\" → 漏第二个 as\n• \"So long as\" → 也可，但 as long as 更口语",
+        "`that's all` = 那就是全部（就够了）。",
+        "`that matters` 定语从句修饰 all。matter = 重要。常见错误：\n• \"that **is** matters\" → matter 是动词，不加 is\n• \"what matters\" → 可换 but 后者语气不同"
+      ],
+      "distractors": [
+        [
+          "As long you're happy,",
+          "As far as you're happy,",
+          "As long as your happy,"
+        ],
+        [
+          "that all",
+          "that's every",
+          "it's all"
+        ],
+        [
+          "that matter.",
+          "that is matters.",
+          "what matters."
+        ]
+      ]
+    },
+    {
+      "sentence": "Cheer up, it's not the end of the world.",
+      "cid": "c66af01f",
+      "translation": "打起精神来，又不是世界末日。",
+      "chunks": [
+        "Cheer up,",
+        "it's not",
+        "the end of the world."
+      ],
+      "hints": [
+        "振作起来",
+        "这不是",
+        "世界末日"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/tʃɪr/",
+            "/ʌp/"
+          ],
+          "pos": "祈使句",
+          "meaning": "打起精神"
+        },
+        {
+          "role": "主系表(否定)",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪts/",
+            "/nɑːt/"
+          ],
+          "pos": "it's not",
+          "meaning": "这不是"
+        },
+        {
+          "role": "表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðə/",
+            "/end/",
+            "/əv/",
+            "/ðə/",
+            "/wɜːrld/"
+          ],
+          "pos": "名词短语",
+          "meaning": "世界末日"
+        }
+      ],
+      "explanations": [
+        "安慰朋友。`Cheer up!` = 振作点！常见错误：\n• \"Cheer up you\" → 祈使不加宾语\n• \"Cheer!\" → 加油欢呼，安慰用 cheer up",
+        "`It's not the end of the world.` 固定表达 = 没那么糟。"
+      ],
+      "distractors": [
+        [
+          "Cheering up,",
+          "Cheer up yourself,",
+          "Keep cheer up,"
+        ],
+        [
+          "It isn't",
+          "It not is",
+          "It's no"
+        ],
+        [
+          "an end of the world.",
+          "the end of world.",
+          "end of the world."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't worry, everything will work out fine.",
+      "cid": "b6a7287e",
+      "translation": "别担心，一切都会好起来的。",
+      "chunks": [
+        "Don't worry,",
+        "everything will",
+        "work out fine."
+      ],
+      "hints": [
+        "别担心",
+        "一切都会",
+        "顺利解决"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句(否定)",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/",
+            "/ˈwɜːri/"
+          ],
+          "pos": "don't + 动词",
+          "meaning": "别担心"
+        },
+        {
+          "role": "主谓",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈevriθɪŋ/",
+            "/wɪl/"
+          ],
+          "pos": "不定代词+will",
+          "meaning": "一切都会"
+        },
+        {
+          "role": "谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɜːrk/",
+            "/aʊt/",
+            "/faɪn/"
+          ],
+          "pos": "短语动词",
+          "meaning": "顺利解决"
+        }
+      ],
+      "explanations": [
+        "安慰他人。`Don't worry` = 别担心。常见错误：\n• \"Not worry\" → 祈使否定用 Don't\n• \"Don't worrying\" → 祈使后原形",
+        "`work out` = 解决/进展顺利。常见错误：\n• \"work out **well**\" → 也可，fine/well 皆可\n• \"work it out\" 带宾语时放中间"
+      ],
+      "distractors": [
+        [
+          "Not worry,",
+          "Don't worrying,",
+          "Doesn't worry,"
+        ],
+        [
+          "everything is",
+          "anything will",
+          "all will"
+        ],
+        [
+          "works out fine.",
+          "working out fine.",
+          "work fine out."
+        ]
+      ]
+    },
+    {
+      "sentence": "No matter what happens, I'll be here for you.",
+      "cid": "79d9ff2f",
+      "translation": "无论发生什么，我都会在你身边。",
+      "chunks": [
+        "No matter what happens,",
+        "I'll be here",
+        "for you."
+      ],
+      "hints": [
+        "无论发生什么",
+        "我都会在这里",
+        "为你"
+      ],
+      "grammar": [
+        {
+          "role": "让步状语从句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/noʊ/",
+            "/ˈmætər/",
+            "/wʌt/",
+            "/ˈhæpənz/"
+          ],
+          "pos": "no matter + 疑问词",
+          "meaning": "无论发生什么"
+        },
+        {
+          "role": "主谓",
+          "color": "#3358e0",
+          "phonetic": [
+            "/aɪl/",
+            "/biː/",
+            "/hɪr/"
+          ],
+          "pos": "将来时",
+          "meaning": "我会在这里"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "为你"
+        }
+      ],
+      "explanations": [
+        "`No matter what...` = 无论什么……（让步从句）。常见错误：\n• \"No matter **whatever**\" → no matter what 或 whatever 二选一\n• \"No matter what will happen\" → 从句用一般现在时 happens",
+        "`be here for you` = 陪着你/支持你。"
+      ],
+      "distractors": [
+        [
+          "No matter whatever happens,",
+          "Whatever no matter happens,",
+          "No matter what happen,"
+        ],
+        [
+          "I be here",
+          "I'll be there",
+          "I'll am here"
+        ],
+        [
+          "with you.",
+          "for yours.",
+          "to you."
+        ]
+      ]
+    },
+    {
+      "sentence": "Take your time, there's no rush.",
+      "cid": "1417566d",
+      "translation": "慢慢来，不用急。",
+      "chunks": [
+        "Take your time,",
+        "there's no",
+        "rush."
+      ],
+      "hints": [
+        "慢慢来",
+        "没有",
+        "急的必要"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/jʊr/",
+            "/taɪm/"
+          ],
+          "pos": "祈使句",
+          "meaning": "慢慢来"
+        },
+        {
+          "role": "存在句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðerz/",
+            "/noʊ/"
+          ],
+          "pos": "there's no",
+          "meaning": "没有"
+        },
+        {
+          "role": "名词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/rʌʃ/"
+          ],
+          "pos": "名词",
+          "meaning": "匆忙的必要"
+        }
+      ],
+      "explanations": [
+        "`Take your time` = 慢慢来/别着急。常见错误：\n• \"Take time\" → 少了 your，语义变「花时间」\n• \"Take your times\" → time 此处不可数",
+        "`there's no rush` = 不赶时间。同义：No hurry."
+      ],
+      "distractors": [
+        [
+          "Take time,",
+          "Takes your time,",
+          "Take you time,"
+        ],
+        [
+          "there's not",
+          "there're no",
+          "there no"
+        ],
+        [
+          "rushing.",
+          "a rush.",
+          "hurry up."
+        ]
+      ]
+    },
+    {
+      "sentence": "What's bothering you?",
+      "cid": "b088786f",
+      "translation": "什么事烦你了？",
+      "chunks": [
+        "What's",
+        "bothering you?"
+      ],
+      "hints": [
+        "什么（是）",
+        "烦着你的"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wʌts/"
+          ],
+          "pos": "what + is 缩写",
+          "meaning": "什么（是）"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈbɑːðərɪŋ/",
+            "/juː/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "烦着你"
+        }
+      ],
+      "explanations": [
+        "`bother` 表「打扰、使烦恼」。常见错误：\n• \"What's brother you?\" → brother 是「兄弟」，正确拼写是 bothering\n• \"What's bother you?\" → 进行时要用 -ing",
+        "现在进行时表「此刻正在」。同义：What's wrong? / What's on your mind?"
+      ],
+      "distractors": [
+        [
+          "What",
+          "What're",
+          "What was"
+        ],
+        [
+          "bother you?",
+          "bothering your?",
+          "bothers you?"
+        ]
+      ]
+    },
+    {
+      "sentence": "You'll be fine.",
+      "cid": "85107210",
+      "translation": "你会没事的。",
+      "chunks": [
+        "You'll",
+        "be fine."
+      ],
+      "hints": [
+        "你会",
+        "没事"
+      ],
+      "grammar": [
+        {
+          "role": "主语+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/juːl/"
+          ],
+          "pos": "you will 缩写",
+          "meaning": "你会"
+        },
+        {
+          "role": "系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/bi/",
+            "/faɪn/"
+          ],
+          "pos": "will be + 形容词",
+          "meaning": "没事"
+        }
+      ],
+      "explanations": [
+        "`You'll` = you will，表安慰性的预测。常见错误：\n• \"You'll be fine.\" 写成 \"Your be fine\" → Your 是所有格\n• \"You will be fine\" → 不缩写也可以，语气更正式",
+        "`fine` 表「没问题、没事」。同义：You'll do great. / You'll be okay."
+      ],
+      "distractors": [
+        [
+          "You",
+          "You're",
+          "You will be"
+        ],
+        [
+          "be find.",
+          "being fine.",
+          "be finely."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't beat yourself up.",
+      "cid": "21f94209",
+      "translation": "别太苛责自己。",
+      "chunks": [
+        "Don't",
+        "beat yourself up."
+      ],
+      "hints": [
+        "不要",
+        "责备你自己"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句(否定)",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "不要"
+        },
+        {
+          "role": "固定表达",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/biːt/",
+            "/jərˈself/",
+            "/ʌp/"
+          ],
+          "pos": "beat oneself up 习语",
+          "meaning": "苛责自己"
+        }
+      ],
+      "explanations": [
+        "否定祈使句用 Don't + 动词原形。常见错误：\n• \"Doesn't beat\" → 祈使句用 don't\n• \"Not beat\" → 缺助动词",
+        "`beat yourself up` 是习语，表「过度自责」，与「打自己」无关。常见错误：\n• \"beat up yourself\" → 反身代词要放中间\n• \"beat yourself\" → 少了 up，习语不成立"
+      ],
+      "distractors": [
+        [
+          "Doesn't",
+          "Don't to",
+          "Not"
+        ],
+        [
+          "beat up yourself.",
+          "beat yourself on.",
+          "beat yours up."
+        ]
+      ]
+    },
+    {
+      "sentence": "I've been there.",
+      "cid": "cd379d3e",
+      "translation": "我是过来人。",
+      "chunks": [
+        "I've been",
+        "there."
+      ],
+      "hints": [
+        "我去过（经历过）",
+        "那里"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/bɪn/"
+          ],
+          "pos": "现在完成时",
+          "meaning": "我去过"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðer/"
+          ],
+          "pos": "副词",
+          "meaning": "那里"
+        }
+      ],
+      "explanations": [
+        "`I've been there` 字面是「我去过那里」，引申为「我也经历过、我懂你」。常见错误：\n• \"I been there\" → 少了 've\n• \"I've gone there\" → gone 强调去了没回，表「经历过」用 been",
+        "这是安慰别人时的高频共情表达。同义：I know the feeling. / Been there."
+      ],
+      "distractors": [
+        [
+          "I been",
+          "I've being",
+          "I've be"
+        ],
+        [
+          "here.",
+          "their.",
+          "there's."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm here for you.",
+      "cid": "9042ad50",
+      "translation": "我陪你。",
+      "chunks": [
+        "I'm here",
+        "for you."
+      ],
+      "hints": [
+        "我在这儿",
+        "为你"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/hɪr/"
+          ],
+          "pos": "be + here",
+          "meaning": "我在这儿"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "为你"
+        }
+      ],
+      "explanations": [
+        "`be here for sb` 表「陪着你、支持你」。常见错误：\n• \"I'm here to you\" → 固定搭配用 for\n• \"I hear for you\" → hear 是「听见」，同音但意思完全不同",
+        "同义：I've got your back. / I'm with you."
+      ],
+      "distractors": [
+        [
+          "I here",
+          "I'm hear",
+          "I'm here to"
+        ],
+        [
+          "for your.",
+          "to you.",
+          "for yours."
+        ]
+      ]
+    },
+    {
+      "sentence": "Hope you're feeling better.",
+      "cid": "d989d51c",
+      "translation": "希望你好点了。",
+      "chunks": [
+        "Hope",
+        "you're feeling",
+        "better."
+      ],
+      "hints": [
+        "希望",
+        "你感觉",
+        "好些了"
+      ],
+      "grammar": [
+        {
+          "role": "谓语（省略主语）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hoʊp/"
+          ],
+          "pos": "省略 I 的口语",
+          "meaning": "希望"
+        },
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈfiːlɪŋ/"
+          ],
+          "pos": "you are + 现在分词",
+          "meaning": "你感觉"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈbetər/"
+          ],
+          "pos": "形容词比较级",
+          "meaning": "好些"
+        }
+      ],
+      "explanations": [
+        "口语省略主语 I，直接以 Hope 开头。常见错误：\n• \"Hoping you're feeling better\" → 句子不能以动名词开头当谓语\n• \"I hope you feeling better\" → 从句里缺 are",
+        "`better` 是 well 的比较级，表「好一些」。常见错误：\n• \"more better\" → 比较级不叠用",
+        "同义：Hope you feel better soon."
+      ],
+      "distractors": [
+        [
+          "Hoping",
+          "Hopes",
+          "I hope"
+        ],
+        [
+          "your feeling",
+          "you feeling",
+          "you're feel"
+        ],
+        [
+          "good.",
+          "best.",
+          "weller."
+        ]
+      ]
+    },
+    {
+      "sentence": "Just relax.",
+      "cid": "45b93a39",
+      "translation": "放松一下。",
+      "chunks": [
+        "Just",
+        "relax."
+      ],
+      "hints": [
+        "就、尽管",
+        "放松"
+      ],
+      "grammar": [
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/dʒʌst/"
+          ],
+          "pos": "副词（缓和语气）",
+          "meaning": "就、只管"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/rɪˈlæks/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "放松"
+        }
+      ],
+      "explanations": [
+        "`just` 在这里缓和语气，等于「你就放松吧」。常见错误：\n• \"Just relax you\" → 祈使句不加主语\n• \"Just relaxing\" → 祈使句要用动词原形",
+        "安慰别人：Take it easy. / Relax, it's fine. / Just breathe."
+      ],
+      "distractors": [
+        [
+          "Only",
+          "Just be",
+          "Very"
+        ],
+        [
+          "relaxing.",
+          "relaxes.",
+          "relaxed."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't be sad.",
+      "cid": "6010cb80",
+      "translation": "别伤心。",
+      "chunks": [
+        "Don't be",
+        "sad."
+      ],
+      "hints": [
+        "别",
+        "伤心"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "别"
+        },
+        {
+          "role": "表语",
+          "color": "#c87033",
+          "phonetic": [
+            "/sæd/"
+          ],
+          "pos": "形容词",
+          "meaning": "伤心的"
+        }
+      ],
+      "explanations": [
+        "`Don't be + 形容词` 是安慰别人时的固定否定式。常见错误：\n• \"Don't sad\" → 形容词前必须加 be\n• \"No be sad\" → 否定祈使用 don't",
+        "相关安慰语：Cheer up. / It's okay. / I'm here for you."
+      ],
+      "distractors": [
+        [
+          "Doesn't",
+          "Not be",
+          "No"
+        ],
+        [
+          "sadly.",
+          "sadness.",
+          "sading."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get yourself together.",
+      "cid": "ac89bfd8",
+      "translation": "振作起来。",
+      "chunks": [
+        "Get yourself",
+        "together."
+      ],
+      "hints": [
+        "把你自己",
+        "聚拢、振作"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 反身代词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/jərˈself/"
+          ],
+          "pos": "动词 + 反身代词",
+          "meaning": "把你自己"
+        },
+        {
+          "role": "补足语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈɡeðər/"
+          ],
+          "pos": "副词",
+          "meaning": "聚拢、振作"
+        }
+      ],
+      "explanations": [
+        "`get yourself together` = 振作起来、把状态调回来。常见错误：\n• \"Get together yourself\" → yourself 要紧跟 get\n• \"Get you together\" → 反身代词要用 yourself",
+        "更常用：Pull yourself together. / Get a grip."
+      ],
+      "distractors": [
+        [
+          "Get you",
+          "Getting yourself",
+          "Get your"
+        ],
+        [
+          "togetherness.",
+          "togather.",
+          "to gather."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let me hug you.",
+      "cid": "77eefd93",
+      "translation": "让我抱抱你。",
+      "chunks": [
+        "Let me",
+        "hug you."
+      ],
+      "hints": [
+        "让我",
+        "抱你"
+      ],
+      "grammar": [
+        {
+          "role": "使役动词 + 宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/let/",
+            "/miː/"
+          ],
+          "pos": "let + 宾格",
+          "meaning": "让我"
+        },
+        {
+          "role": "谓语 + 宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/hʌɡ/",
+            "/juː/"
+          ],
+          "pos": "动词 + 宾语",
+          "meaning": "抱你"
+        }
+      ],
+      "explanations": [
+        "`let me + 动词原形` 表请求允许自己做什么。常见错误：\n• \"Let me to hug you\" → let 后不加 to\n• \"Let I hug you\" → let 后要用宾格 me",
+        "相关：Give me a hug.（抱一下）/ Can I hug you?"
+      ],
+      "distractors": [
+        [
+          "Let I",
+          "Letting me",
+          "Let me to"
+        ],
+        [
+          "hug yours.",
+          "hugging you.",
+          "to hug you."
+        ]
+      ]
+    }
+  ]
+}

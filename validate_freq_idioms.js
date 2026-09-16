@@ -1,7 +1,7 @@
 /* 校验 freq-idioms.js 的数据质量
  * 运行: node validate_freq_idioms.js
- * 规则（与 validate_oral8000.js 完全一致，单文件聚焦 freq-idioms.js）：
- *  1) chunks 数 2~5
+ * 规则（与 validate_oral_book.js 完全一致，单文件聚焦 freq-idioms.js）：
+ *  1) chunks 段数 1~5（单字句允许 1 段，其余 ≥2；判据见 scripts/chunk-shape.js）
  *  2) 拼接(去空格) == sentence 原句, 防脱字/多字
  *  3) 无纯标点 chunk (如 "." "?" ",")
  *  4) chunk 不以标点开头
@@ -14,6 +14,8 @@
  */
 const fs = require('fs');
 const tr = require('./scripts/translation-rules');
+/* 「最少切几段」的唯一判据（含单字句例外），与 validate_oral_book.js 共用一份 */
+const CS = require('./scripts/chunk-shape.js');
 /* cid 规则与 core.js fnv8 一致 */
 function fnv8(str) {
   let h = 0x811c9dc5 >>> 0;
@@ -57,8 +59,8 @@ arr.forEach((it, i) => {
   else cidSeen[it.cid] = i;
   if (it.sentence && it.cid && /^[0-9a-f]{8}$/.test(it.cid) && it.cid !== fnv8(it.sentence))
     msgs.push('cid ≠ fnv8(sentence)（内容修订保留 cid 属预期；若未修订请检查）');
-  if (!it.chunks || it.chunks.length < 2 || it.chunks.length > 5)
-    msgs.push('chunks 数 ' + (it.chunks ? it.chunks.length : '?') + ' (需 2-5)');
+  const chunkErr = CS.chunkCountError(it.sentence, it.chunks);
+  if (chunkErr) msgs.push(chunkErr);
   if (it.chunks) {
     const joined = it.chunks.join('').replace(/\s+/g, '');
     const sent = String(it.sentence || '').replace(/\s+/g, '');

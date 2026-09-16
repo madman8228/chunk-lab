@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "4bb2e115",
+      "sentence": "Make sure you lock the door when you leave.",
+      "translation": "你离开时一定锁好门。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-69da720e9817.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "14d3f87e",
+      "sentence": "Be careful.",
+      "translation": "当心。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-69da720e9817.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "5b99a19c",
+      "sentence": "Don't fall down.",
+      "translation": "别摔了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-69da720e9817.json",
+      "sourceOffset": 2
+    }
+  ]
+}

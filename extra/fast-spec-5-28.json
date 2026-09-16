@@ -1,0 +1,82 @@
+[
+ {
+  "sentence": "Here's to the New Year!",
+  "chunks": ["Here's to", "the New Year!"],
+  "hints": ["为", "新年干杯"]
+ },
+ {
+  "sentence": "Happy New Year!",
+  "chunks": ["Happy", "New Year!"],
+  "hints": ["新年", "快乐"]
+ },
+ {
+  "sentence": "Happy Valentine's Day!",
+  "chunks": ["Happy", "Valentine's Day!"],
+  "hints": ["情人节", "快乐"]
+ },
+ {
+  "sentence": "Be my Valentine.",
+  "chunks": ["Be my", "Valentine."],
+  "hints": ["做我的", "情人吧"]
+ },
+ {
+  "sentence": "Happy Easter!",
+  "chunks": ["Happy", "Easter!"],
+  "hints": ["复活节", "快乐"]
+ },
+ {
+  "sentence": "Happy Mother's Day!",
+  "chunks": ["Happy", "Mother's Day!"],
+  "hints": ["母亲节", "快乐"]
+ },
+ {
+  "sentence": "Thanks for being such a good mom.",
+  "chunks": ["Thanks for being", "such a good mom."],
+  "hints": ["谢谢你", "做这么好的妈妈"]
+ },
+ {
+  "sentence": "Trick or treat!",
+  "chunks": ["Trick or", "treat!"],
+  "hints": ["不给糖", "就捣蛋"]
+ },
+ {
+  "sentence": "Happy Thanksgiving!",
+  "chunks": ["Happy", "Thanksgiving!"],
+  "hints": ["感恩节", "快乐"]
+ },
+ {
+  "sentence": "Let's have pumpkin pie.",
+  "chunks": ["Let's have", "pumpkin pie."],
+  "hints": ["我们来吃", "南瓜派"]
+ },
+ {
+  "sentence": "Merry Christmas!",
+  "chunks": ["Merry", "Christmas!"],
+  "hints": ["圣诞", "快乐"]
+ },
+ {
+  "sentence": "Have a Merry Christmas.",
+  "chunks": ["Have a", "Merry Christmas."],
+  "hints": ["祝你过个", "快乐的圣诞"]
+ },
+ {
+  "sentence": "Here's your birthday gift.",
+  "chunks": ["Here's your", "birthday gift."],
+  "hints": ["这是给你的", "生日礼物"]
+ },
+ {
+  "sentence": "It's my birthday.",
+  "chunks": ["It's my", "birthday."],
+  "hints": ["今天是我的", "生日"]
+ },
+ {
+  "sentence": "Happy anniversary!",
+  "chunks": ["Happy", "anniversary!"],
+  "hints": ["结婚纪念日", "快乐"]
+ },
+ {
+  "sentence": "Thanks for being in my life.",
+  "chunks": ["Thanks for being", "in my life."],
+  "hints": ["谢谢你", "陪我共度人生"]
+ }
+]

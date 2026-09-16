@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "0f83a993",
+      "sentence": "Sounds good to me.",
+      "translation": "我觉得可以/听起来不错。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "e14abd85",
+      "sentence": "That makes sense.",
+      "translation": "有道理/说得通。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "c3147310",
+      "sentence": "I can't agree more.",
+      "translation": "我完全同意。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "a964fa8d",
+      "sentence": "It's a deal.",
+      "translation": "一言为定/成交。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "89d8df40",
+      "sentence": "You said it.",
+      "translation": "你说得没错/正是我想说的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "9edbf706",
+      "sentence": "That sounds like a great idea.",
+      "translation": "那听起来是个好主意。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "aab6ad64",
+      "sentence": "That's exactly what I was thinking.",
+      "translation": "那正是我刚才想的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "0f9b4d48",
+      "sentence": "You're right.",
+      "translation": "你说的对。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
+      "sourceOffset": 7
+    }
+  ]
+}

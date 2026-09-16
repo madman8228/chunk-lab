@@ -1,0 +1,50 @@
+[
+ {
+  "sentence": "I'm shy.",
+  "translation": "我不好意思。",
+  "chunks": [
+   "I'm",
+   "shy."
+  ],
+  "hints": [
+   "我",
+   "不好意思"
+  ]
+ },
+ {
+  "sentence": "I'm ashamed of myself.",
+  "translation": "我为自己感到惭愧。",
+  "chunks": [
+   "I'm ashamed",
+   "of myself."
+  ],
+  "hints": [
+   "我为自己",
+   "感到惭愧"
+  ]
+ },
+ {
+  "sentence": "How shameful!",
+  "translation": "真恬不知耻!",
+  "chunks": [
+   "How",
+   "shameful!"
+  ],
+  "hints": [
+   "真",
+   "恬不知耻"
+  ]
+ },
+ {
+  "sentence": "Shame on you!",
+  "translation": "你真丢脸!",
+  "chunks": [
+   "Shame on",
+   "you!"
+  ],
+  "hints": [
+   "你真",
+   "丢脸"
+  ]
+ }
+]

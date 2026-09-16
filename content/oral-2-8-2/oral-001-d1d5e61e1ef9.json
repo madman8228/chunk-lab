@@ -1,0 +1,730 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'll give you a call when I get home.",
+      "cid": "efb3c8ea",
+      "translation": "我到家后给你打电话。",
+      "chunks": [
+        "I'll give you a call",
+        "when I get home."
+      ],
+      "hints": [
+        "我会给你打电话",
+        "当我到家时"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/ɡɪv/",
+            "/juː/",
+            "/ə/",
+            "/kɔːl/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我会给你打电话"
+        },
+        {
+          "role": "时间状语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wen/",
+            "/aɪ/",
+            "/ɡet/",
+            "/həʊm/"
+          ],
+          "pos": "时间状语从句",
+          "meaning": "当我到家时"
+        }
+      ],
+      "explanations": [
+        "**'ll = will**，表示将来。常见错误：\n• \"I **give** you a call\" → 缺少将来时态标记\n• \"I **would** give\" → would 是虚拟语气，这里不需要",
+        "**时间状语从句用一般现在时表将来**（主将从现原则）。常见错误：\n• \"when I **will** get\" → when/if 引导的从句不用 will\n• \"when I **got** home\" → 过去时与主句将来时矛盾\n• **home** 在这里是副词，前面不加 to（get home = 到家）"
+      ],
+      "distractors": [
+        [
+          "I'll give you the call",
+          "I give you a call",
+          "I'll gives you a call"
+        ],
+        [
+          "when I will get home.",
+          "when I got home.",
+          "when I get to home."
+        ]
+      ]
+    },
+    {
+      "sentence": "It was really nice talking to you.",
+      "cid": "3edf0897",
+      "translation": "和你聊天真的很愉快。",
+      "chunks": [
+        "It was really nice",
+        "talking to you."
+      ],
+      "hints": [
+        "真的很愉快",
+        "和你聊天"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪt/",
+            "/wɒz/",
+            "/ˈrɪəli/",
+            "/naɪs/"
+          ],
+          "pos": "主系表",
+          "meaning": "真的很愉快"
+        },
+        {
+          "role": "真正主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈtɔːkɪŋ/",
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "动名词短语",
+          "meaning": "和你聊天"
+        }
+      ],
+      "explanations": [
+        "**It was nice talking to you.** 是道别时的客气话。句型：It is/was + adj + doing（真正主语后置）。常见错误：\n• \"It was nice **to talking**\" → 只能二选一：to talk 或 talking\n• \"Nice talking **with** you\" → 可以，但 to 更常见",
+        "见面时说 Nice to meet you；分别时说 It was nice talking to you. 更合适。"
+      ],
+      "distractors": [
+        [
+          "It is really nice",
+          "It was real nice",
+          "It was really nicer"
+        ],
+        [
+          "talk to you.",
+          "talking to your.",
+          "talking you."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sorry, I have to go now.",
+      "cid": "f2d8d822",
+      "translation": "抱歉，我得走了。",
+      "chunks": [
+        "Sorry,",
+        "I have to go",
+        "now."
+      ],
+      "hints": [
+        "抱歉",
+        "我得走了",
+        "现在"
+      ],
+      "grammar": [
+        {
+          "role": "致歉插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsɒri/"
+          ],
+          "pos": "感叹词",
+          "meaning": "抱歉"
+        },
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/",
+            "/tuː/",
+            "/ɡəʊ/"
+          ],
+          "pos": "have to 结构",
+          "meaning": "我得走"
+        },
+        {
+          "role": "时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/naʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "现在"
+        }
+      ],
+      "explanations": [
+        "**have to** = 不得不（客观原因）。与 **must** 区别：must 侧重主观义务，have to 侧重客观需要。常见错误：\n• \"I have **go**\" → have to 后接动词原形\n• \"I must to go\" → must 后直接接原形，不加 to",
+        "道别常用三步：Sorry, I have to go now. → It was nice talking to you. → See you later!"
+      ],
+      "distractors": [
+        [
+          "Sory,",
+          "Sorrys,"
+        ],
+        [
+          "I has to go",
+          "I have go",
+          "I had to go"
+        ],
+        [
+          "just now.",
+          "nows.",
+          "at now."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm on my way.",
+      "cid": "d1a382b8",
+      "translation": "我在路上了。",
+      "chunks": [
+        "I'm on",
+        "my way."
+      ],
+      "hints": [
+        "我正在",
+        "路上"
+      ],
+      "grammar": [
+        {
+          "role": "主系+介词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ɒn/"
+          ],
+          "pos": "主系结构",
+          "meaning": "我正在"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/weɪ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "路上"
+        }
+      ],
+      "explanations": [
+        "**on my way** = 在（赶往）途中，回复「你到哪了？」时最常用。",
+        "扩展：**on the way to + 地点** 强调途中顺路：On the way to work, I grab a coffee. **on the way** 则强调「在途中」。"
+      ],
+      "distractors": [
+        [
+          "I'm in",
+          "I'm at",
+          "I on my way"
+        ],
+        [
+          "my ways.",
+          "the road."
+        ]
+      ]
+    },
+    {
+      "sentence": "See you later, take care.",
+      "cid": "6b70763b",
+      "translation": "回头见，保重。",
+      "chunks": [
+        "See you later,",
+        "take care."
+      ],
+      "hints": [
+        "回头见",
+        "保重"
+      ],
+      "grammar": [
+        {
+          "role": "告别语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/siː/",
+            "/juː/",
+            "/ˈleɪtər/"
+          ],
+          "pos": "固定表达",
+          "meaning": "回头见"
+        },
+        {
+          "role": "祈使句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/teɪk/",
+            "/ker/"
+          ],
+          "pos": "动词短语",
+          "meaning": "保重"
+        }
+      ],
+      "explanations": [
+        "`See you later` 是口语道别，等于 See you soon / Catch you later。常见错误：\n• \"See **your** later\" → 用 you 不是 your\n• \"See you **latter**\" → latter（后者）拼写错误，应为 later（稍后）",
+        "`take care` = 保重、注意身体。分开说时可加逗号：See you later, take care."
+      ],
+      "distractors": [
+        [
+          "See you late,",
+          "See you letter,",
+          "Seeing you later,"
+        ],
+        [
+          "take cares.",
+          "took care.",
+          "care take."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's stay in touch, okay?",
+      "cid": "4c95b52c",
+      "translation": "我们保持联系，好吗？",
+      "chunks": [
+        "Let's stay in touch,",
+        "okay?"
+      ],
+      "hints": [
+        "我们保持联系",
+        "好吗"
+      ],
+      "grammar": [
+        {
+          "role": "祈使建议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/steɪ/",
+            "/ɪn/",
+            "/tʌtʃ/"
+          ],
+          "pos": "固定搭配",
+          "meaning": "我们保持联系"
+        },
+        {
+          "role": "征询语气",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˌoʊˈkeɪ/"
+          ],
+          "pos": "附加问句",
+          "meaning": "好吗"
+        }
+      ],
+      "explanations": [
+        "`stay/keep in touch` = 保持联系，固定搭配。常见错误：\n• \"keep **the** touch\" → 不加 the\n• \"keep touch **with** each other\" → 可以说 keep in touch with sb，但单独用不加 with",
+        "道别收尾金句。答应别人可说 Sure / Definitely / I will! 更口语说法：Let's keep in touch!"
+      ],
+      "distractors": [
+        [
+          "Let's staying in touch,",
+          "Let's stay in the touch,",
+          "Let we stay in touch,"
+        ],
+        [
+          "okays?",
+          "okey?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Sorry I'm late, the traffic was terrible.",
+      "cid": "f22bd74d",
+      "translation": "抱歉我迟到了，路上堵得厉害。",
+      "chunks": [
+        "Sorry I'm late,",
+        "the traffic",
+        "was terrible."
+      ],
+      "hints": [
+        "抱歉我迟到了",
+        "交通",
+        "非常糟糕"
+      ],
+      "grammar": [
+        {
+          "role": "道歉",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈsɑːri/",
+            "/aɪm/",
+            "/leɪt/"
+          ],
+          "pos": "be late",
+          "meaning": "抱歉我迟到"
+        },
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈtræfɪk/"
+          ],
+          "pos": "名词(不可数)",
+          "meaning": "交通"
+        },
+        {
+          "role": "系表",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌz/",
+            "/ˈterəbl/"
+          ],
+          "pos": "过去时",
+          "meaning": "非常糟糕"
+        }
+      ],
+      "explanations": [
+        "迟到解释。`traffic` 不可数。常见错误：\n• \"the traffics\" → traffic 不可数\n• \"I late\" → 缺 be 动词，要说 I'm late",
+        "`was terrible` = 糟透了。同义：awful / a nightmare。"
+      ],
+      "distractors": [
+        [
+          "Sorry I late,",
+          "Sorry for I'm late,",
+          "Sorry I'm lately,"
+        ],
+        [
+          "traffics",
+          "a traffic",
+          "the traffics"
+        ],
+        [
+          "is terrible.",
+          "was terribly.",
+          "was a terrible."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll be there in about ten minutes.",
+      "cid": "8eea26b2",
+      "translation": "我大约十分钟后到。",
+      "chunks": [
+        "I'll be there",
+        "in about",
+        "ten minutes."
+      ],
+      "hints": [
+        "我会到那里",
+        "在大约",
+        "十分钟后"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/biː/",
+            "/ðer/"
+          ],
+          "pos": "将来时",
+          "meaning": "我会到那儿"
+        },
+        {
+          "role": "介词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪn/",
+            "/əˈbaʊt/"
+          ],
+          "pos": "in + 时段",
+          "meaning": "在大约(之后)"
+        },
+        {
+          "role": "时间名词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ten/",
+            "/ˈmɪnɪts/"
+          ],
+          "pos": "名词短语",
+          "meaning": "十分钟"
+        }
+      ],
+      "explanations": [
+        "`in + 一段时间` = 多久之后（将来时）。常见错误：\n• \"after ten minutes\" → 将来时用 in，after 多接时间点/过去\n• \"in ten minute\" → 复数 minutes",
+        "`about` = 大约。同义 around / roughly。"
+      ],
+      "distractors": [
+        [
+          "I'll there be",
+          "I be there",
+          "I'm going there"
+        ],
+        [
+          "after about",
+          "in around of",
+          "about in"
+        ],
+        [
+          "ten minute.",
+          "a ten minutes.",
+          "the ten minutes."
+        ]
+      ]
+    },
+    {
+      "sentence": "I brought you apples.",
+      "cid": "f1405f3f",
+      "translation": "我给你带了苹果。",
+      "chunks": [
+        "I brought",
+        "you apples."
+      ],
+      "hints": [
+        "我带了",
+        "给你苹果"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/brɔːt/"
+          ],
+          "pos": "bring 的过去式",
+          "meaning": "我带了"
+        },
+        {
+          "role": "双宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/juː/",
+            "/ˈæplz/"
+          ],
+          "pos": "间接宾语+直接宾语",
+          "meaning": "给你苹果"
+        }
+      ],
+      "explanations": [
+        "`bring` 的过去式是 brought（不规则）。常见错误：\n• \"I bringed\" → 错，应作 brought\n• \"I bought\" → bought 是「买」，读音接近但意思不同",
+        "`bring sb sth` 双宾语结构，等于 bring sth to sb（给你带了苹果）。常见错误：\n• \"bring you apple\" → 可数名词泛指要复数"
+      ],
+      "distractors": [
+        [
+          "I bring",
+          "I bought",
+          "I bringed"
+        ],
+        [
+          "you apple.",
+          "your apples.",
+          "you an apples."
+        ]
+      ]
+    },
+    {
+      "sentence": "This is way too much.",
+      "cid": "13553af7",
+      "translation": "这太多了。",
+      "chunks": [
+        "This is",
+        "way too much."
+      ],
+      "hints": [
+        "这是",
+        "实在太多了"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðɪs/",
+            "/ɪz/"
+          ],
+          "pos": "this + is",
+          "meaning": "这是"
+        },
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/weɪ/",
+            "/tuː/",
+            "/mʌtʃ/"
+          ],
+          "pos": "way + too much",
+          "meaning": "实在太多了"
+        }
+      ],
+      "explanations": [
+        "`way` 在口语里作程度副词，等于 much / far，表「远远地」。常见错误：\n• \"very too much\" → 不能用 very 修饰 too\n• \"way to much\" → 是 too 不是 to",
+        "`too much` 修饰不可数；可数名词复数用 too many。常见错误：\n• \"too many\" 接 apples 才对"
+      ],
+      "distractors": [
+        [
+          "This are",
+          "These is",
+          "This be"
+        ],
+        [
+          "way to much.",
+          "way too many.",
+          "very too much."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's partly rotten.",
+      "cid": "2af7c066",
+      "translation": "有点坏了。",
+      "chunks": [
+        "It's",
+        "partly rotten."
+      ],
+      "hints": [
+        "它是",
+        "部分烂了"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/"
+          ],
+          "pos": "it + is 缩写",
+          "meaning": "它是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈpɑːrtli/",
+            "/ˈrɑːtn/"
+          ],
+          "pos": "副词 + 形容词",
+          "meaning": "部分腐烂的"
+        }
+      ],
+      "explanations": [
+        "`partly` 表「部分地」，修饰形容词。常见错误：\n• \"part rotten\" → 少了 -ly 就变成名词修饰\n• \"partly rottened\" → rotten 已是形容词",
+        "`rotten` 是 rot 的过去分词作形容词，表「腐烂的」。常见错误：\n• \"rot\" → 那是动词原形\n• 水果「有点坏」也可说 It's going bad."
+      ],
+      "distractors": [
+        [
+          "It",
+          "It's part",
+          "It has"
+        ],
+        [
+          "part rotten.",
+          "partly rottened.",
+          "partly rot."
+        ]
+      ]
+    },
+    {
+      "sentence": "Bite that piece off.",
+      "cid": "2ca094db",
+      "translation": "把那块咬下来。",
+      "chunks": [
+        "Bite",
+        "that piece off."
+      ],
+      "hints": [
+        "咬",
+        "那一块下来"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/baɪt/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "咬"
+        },
+        {
+          "role": "宾语+副词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðæt/",
+            "/piːs/",
+            "/ɔːf/"
+          ],
+          "pos": "名词短语 + off",
+          "meaning": "把那块咬下来"
+        }
+      ],
+      "explanations": [
+        "`bite off` 是短语动词，表「咬下来」。常见错误：\n• \"Bite that piece\" → 少了 off，就没「咬掉」的意思\n• \"Bite off that piece\" → 也通，但名词较长时更常放中间",
+        "祈使句用动词原形开头。常见错误：\n• \"Biting that piece off\" → 祈使句不带动名词"
+      ],
+      "distractors": [
+        [
+          "Biting",
+          "Bites",
+          "Bite to"
+        ],
+        [
+          "that pieces off.",
+          "that piece of.",
+          "that piece on."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm coming to get you.",
+      "cid": "46bc4117",
+      "translation": "我来接你了。",
+      "chunks": [
+        "I'm coming",
+        "to get you."
+      ],
+      "hints": [
+        "我正过来",
+        "接你"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈkʌmɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "我正过来"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ɡet/",
+            "/juː/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "去接你"
+        }
+      ],
+      "explanations": [
+        "`come to get you` = 过来接你，进行时表马上就到。常见错误：\n• \"I'm coming to pick up you\" → 代词要夹中间：pick you up\n• \"I coming\" → 漏 be 动词",
+        "相关：I'll pick you up at seven.（我七点来接你）"
+      ],
+      "distractors": [
+        [
+          "I coming",
+          "I'm come",
+          "I've coming"
+        ],
+        [
+          "to get yours.",
+          "for get you.",
+          "to getting you."
+        ]
+      ]
+    }
+  ]
+}

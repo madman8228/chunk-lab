@@ -2198,7 +2198,9 @@ if(fromIdx === 0 && isLongTermDeck){
   /* ★ 临时题库前缀：仅 rev- 需要「手动」标识（与 SRS 到期复习区分）。
      错题/需巩固队列不再加『错题』前缀——队列名本身已自解释，前缀纯冗余。 */
   var _prefix = deck.id.indexOf('rev-') === 0 ? '『手动』 ' : '';
-  var _deckLabel = _prefix + displayDeckName(deck.name);
+  /* 短名优先：场景 deck 的 name 是「日常口语 8000 · 居家生活」，顶栏只要「居家生活」；
+     未提供 short 的 deck（用户导入 / 临时队列）回落到 displayDeckName 的剔英文逻辑。 */
+  var _deckLabel = _prefix + (deck.short || displayDeckName(deck.name));
   $('deckName').textContent = _deckLabel;
   $('deckName').title = _deckLabel; /* 超长省略时 hover 看全名 */
   $('result').classList.add('hidden');

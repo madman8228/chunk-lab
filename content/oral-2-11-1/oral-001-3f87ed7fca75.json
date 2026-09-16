@@ -1,0 +1,1061 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Let me know if you need anything.",
+      "cid": "9f813037",
+      "translation": "你需要什么就告诉我。",
+      "chunks": [
+        "Let me know",
+        "if you need anything."
+      ],
+      "hints": [
+        "让我知道",
+        "如果你需要什么"
+      ],
+      "grammar": [
+        {
+          "role": "祈使主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/let/",
+            "/miː/",
+            "/noʊ/"
+          ],
+          "pos": "let sb do 结构",
+          "meaning": "让我知道"
+        },
+        {
+          "role": "条件从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪf/",
+            "/juː/",
+            "/niːd/",
+            "/ˈeniθɪŋ/"
+          ],
+          "pos": "条件状语从句",
+          "meaning": "如果你需要什么"
+        }
+      ],
+      "explanations": [
+        "**Let me know if...** = 如果……就告诉我。let 后接动词原形（let sb do）。常见错误：\n• \"Let me **to** know\" → let 后不加 to\n• \"Let me **knowing**\" → 用原形 know",
+        "主动提供帮助的客套话，主人对客人、同事间都很常用。同义：If you need anything, just ask."
+      ],
+      "distractors": [
+        [
+          "Let I know",
+          "Lets me know",
+          "Let me to know"
+        ],
+        [
+          "if you needs anything.",
+          "when you need anything.",
+          "if you need something."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm looking forward to it.",
+      "cid": "afa391b8",
+      "translation": "我很期待。",
+      "chunks": [
+        "I'm looking",
+        "forward to it."
+      ],
+      "hints": [
+        "我在期待",
+        "着它"
+      ],
+      "grammar": [
+        {
+          "role": "主语+进行时",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/lʊkɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "我正在期待"
+        },
+        {
+          "role": "固定搭配",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈfɔːrwərd/",
+            "/tuː/",
+            "/ɪt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "期待着它"
+        }
+      ],
+      "explanations": [
+        "**look forward to** 中 **to** 是介词，后面要接名词或动名词（-ing）。常见错误：look forward to *see* → 应为 *seeing*。",
+        "用于回复邀请、约定等场景：See you tomorrow! — **I'm looking forward to it!**"
+      ],
+      "distractors": [
+        [
+          "I looking",
+          "I'm look",
+          "I'm looks"
+        ],
+        [
+          "forward it.",
+          "forward to them.",
+          "forward to do it."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're welcome.",
+      "cid": "11e9ed12",
+      "translation": "不客气。",
+      "chunks": [
+        "You're",
+        "welcome."
+      ],
+      "hints": [
+        "你是",
+        "受欢迎的"
+      ],
+      "grammar": [
+        {
+          "role": "主语+be",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈwelkəm/"
+          ],
+          "pos": "主系表结构",
+          "meaning": "你（被欢迎）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈwelkəm/"
+          ],
+          "pos": "形容词",
+          "meaning": "受欢迎的"
+        }
+      ],
+      "explanations": [
+        "**You're welcome.** 回应 Thank you 的标准说法：比 No problem 正式一点，比 My pleasure 更日常。",
+        "常见错误：写成 **You're welcomed**（被动语态，此义不成立）→ 正确是形容词 welcome。单独说 Welcome! 则是「欢迎（到来）」。"
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You"
+        ],
+        [
+          "welcomes.",
+          "welcome to.",
+          "welcome here."
+        ]
+      ]
+    },
+    {
+      "sentence": "Thanks for helping me out yesterday.",
+      "cid": "61b69c3a",
+      "translation": "谢谢你昨天帮我解围。",
+      "chunks": [
+        "Thanks for",
+        "helping me out",
+        "yesterday."
+      ],
+      "hints": [
+        "谢谢",
+        "帮我解围",
+        "昨天"
+      ],
+      "grammar": [
+        {
+          "role": "核心谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/θæŋks/",
+            "/fɔːr/"
+          ],
+          "pos": "介词动词",
+          "meaning": "谢谢"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈhelpɪŋ/",
+            "/miː/",
+            "/aʊt/"
+          ],
+          "pos": "动名词短语",
+          "meaning": "帮我解围"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈjestədeɪ/"
+          ],
+          "pos": "副词",
+          "meaning": "昨天"
+        }
+      ],
+      "explanations": [
+        "**Thank / Thanks + for + doing** 是固定搭配。常见错误：\n• \"Thank you **to** help\" → to 不对，要用 for\n• \"Thanks **you**\" → Thanks 已经包含「你」的意思，不需要再加 you",
+        "**help sb out** = 帮某人摆脱困境/解围。out 在这里表示「从困境中出来」。如果只说 \"helping me\" 也可以，但少了「解围」这层含义。",
+        "**yesterday** 是过去时间副词，放在句末或句首都可以。注意：yesterday 不能和现在完成时连用（不能说 \"I have seen him yesterday\"）。"
+      ],
+      "distractors": [
+        [
+          "Thanks to",
+          "Thank for",
+          "Thanks about"
+        ],
+        [
+          "help me out",
+          "helped me out",
+          "helping I out"
+        ],
+        [
+          "tomorrow.",
+          "the yesterday.",
+          "yesterdays."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm really sorry about that.",
+      "cid": "b0be2b46",
+      "translation": "那件事我真的很抱歉。",
+      "chunks": [
+        "I'm really sorry",
+        "about that."
+      ],
+      "hints": [
+        "我真的很抱歉",
+        "关于那件事"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈrɪəli/",
+            "/ˈsɒri/"
+          ],
+          "pos": "主系表结构",
+          "meaning": "我真的很抱歉"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/ðæt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于那件事"
+        }
+      ],
+      "explanations": [
+        "`be sorry about + 事` 为某事道歉。常见错误：\n• \"I'm sorry **for** that\" → for 也可以，但 about 更强调针对具体事件\n• \"I'm sorry **to** that\" → 错，about/for 才接名词",
+        "`really` 加强语气。注意位置在 be 动词后、形容词前：`I'm really sorry`，不是 `I really am sorry`（后者语法对但语气不同）。"
+      ],
+      "distractors": [
+        [
+          "I'm really angry",
+          "I'm really sad",
+          "I'm really sorries"
+        ],
+        [
+          "at that.",
+          "of that.",
+          "about those."
+        ]
+      ]
+    },
+    {
+      "sentence": "I really appreciate your help.",
+      "cid": "cb22e2a1",
+      "translation": "我真的很感激你的帮助。",
+      "chunks": [
+        "I really appreciate",
+        "your help."
+      ],
+      "hints": [
+        "我真的很感激",
+        "你的帮助"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈrɪəli/",
+            "/əˈpriːʃieɪt/"
+          ],
+          "pos": "主谓结构",
+          "meaning": "我真的很感激"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jɔːr/",
+            "/help/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的帮助"
+        }
+      ],
+      "explanations": [
+        "`appreciate` 是及物动词，直接接名词/动名词。常见错误：\n• \"I appreciate **you**\" → 语法可，但 appreciate your help 更自然；appreciate 后不接人作宾语时易歧义\n• \"I appreciate **that you help**\" → 改用动名词：appreciate your helping",
+        "`appreciate` 比 `thank` 更正式、更强调内心的感激，谢谢用 thank，感激用 appreciate。"
+      ],
+      "distractors": [
+        [
+          "I really thank",
+          "I really need",
+          "I really expect"
+        ],
+        [
+          "you help.",
+          "your helps.",
+          "a help."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm sorry to keep you waiting.",
+      "cid": "99621477",
+      "translation": "抱歉让你久等了。",
+      "chunks": [
+        "I'm sorry",
+        "to keep you waiting."
+      ],
+      "hints": [
+        "我很抱歉",
+        "让你久等"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈsɒri/"
+          ],
+          "pos": "致歉表达",
+          "meaning": "我很抱歉"
+        },
+        {
+          "role": "不定式短语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/tuː/",
+            "/kiːp/",
+            "/juː/",
+            "/ˈweɪtɪŋ/"
+          ],
+          "pos": "不定式+宾补",
+          "meaning": "让你久等"
+        }
+      ],
+      "explanations": [
+        "`sorry to do` 为做了某事道歉；`sorry for doing` 侧重为已发生的事道歉。常见错误：\n• \"sorry **for keep** you waiting\" → for 后接动名词 keeping，不是原形 keep\n• \"sorry **about** waiting\" → 语义含糊，keep you waiting 更清楚",
+        "`keep sb doing` = 让某人一直处于某种状态。原形结构：keep + 宾语 + 现在分词（waiting）。"
+      ],
+      "distractors": [
+        [
+          "I sorry",
+          "I'm sorries",
+          "I'm sorrys"
+        ],
+        [
+          "to kept you waiting.",
+          "to keep you wait.",
+          "for keep you waiting."
+        ]
+      ]
+    },
+    {
+      "sentence": "I should have called you earlier.",
+      "cid": "c3850bef",
+      "translation": "我本该早点给你打电话的。",
+      "chunks": [
+        "I should have",
+        "called you",
+        "earlier."
+      ],
+      "hints": [
+        "我本应该",
+        "给你打电话",
+        "更早"
+      ],
+      "grammar": [
+        {
+          "role": "情态完成式",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ʃʊd/",
+            "/hæv/"
+          ],
+          "pos": "should have done",
+          "meaning": "我本应该"
+        },
+        {
+          "role": "过去分词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/kɔːld/",
+            "/juː/"
+          ],
+          "pos": "完成时谓语",
+          "meaning": "给你打电话"
+        },
+        {
+          "role": "比较状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈɜːrliər/"
+          ],
+          "pos": "比较级副词",
+          "meaning": "更早"
+        }
+      ],
+      "explanations": [
+        "`should have done` = 本应该做而没做（表后悔/责备）。常见错误：\n• \"I should **called**\" → 情态动词后接 have + 过去分词\n• \"I should have **call**\" → 需用过去分词 called",
+        "表达后悔三兄弟：should have（本应该）/ could have（本可以）/ would have（本会）。earlier 是 early 的比较级。"
+      ],
+      "distractors": [
+        [
+          "I should has",
+          "I should of",
+          "I should to have"
+        ],
+        [
+          "call you",
+          "calling you",
+          "called your"
+        ],
+        [
+          "early.",
+          "more earlier.",
+          "earliest."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let me know if you need anything else.",
+      "cid": "3a6102e6",
+      "translation": "如果你还需要什么，告诉我。",
+      "chunks": [
+        "Let me know",
+        "if you need",
+        "anything else."
+      ],
+      "hints": [
+        "告诉我",
+        "如果你需要",
+        "其他任何东西"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/let/",
+            "/miː/",
+            "/nəʊ/"
+          ],
+          "pos": "使役结构",
+          "meaning": "让我知道"
+        },
+        {
+          "role": "条件从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪf/",
+            "/juː/",
+            "/niːd/"
+          ],
+          "pos": "if 从句",
+          "meaning": "如果你需要"
+        },
+        {
+          "role": "不定代词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈeniθɪŋ/",
+            "/els/"
+          ],
+          "pos": "宾语",
+          "meaning": "其他任何东西"
+        }
+      ],
+      "explanations": [
+        "服务收尾常用语。`let me know` = 告诉我（let + 人 + 动词原形）。常见错误：\n• \"Let me **to** know\" → let 后接原形，不加 to\n• \"Tell me know\" → 中式表达，正确是 let me know",
+        "`if you need anything else` = 如果你还需要别的。else 放 anything 后。"
+      ],
+      "distractors": [
+        [
+          "Let me to know",
+          "Lets me know",
+          "Tell me know"
+        ],
+        [
+          "when you need",
+          "if you needing",
+          "if your need"
+        ],
+        [
+          "anything others.",
+          "else anything.",
+          "something else."
+        ]
+      ]
+    },
+    {
+      "sentence": "I've been meaning to call you all week.",
+      "cid": "9e19d0bc",
+      "translation": "我这一整周都想给你打电话。",
+      "chunks": [
+        "I've been meaning to",
+        "call you",
+        "all week."
+      ],
+      "hints": [
+        "我一直打算",
+        "给你打电话",
+        "整个星期"
+      ],
+      "grammar": [
+        {
+          "role": "现在完成进行",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/bɪn/",
+            "/ˈmiːnɪŋ/",
+            "/tuː/"
+          ],
+          "pos": "完成进行时",
+          "meaning": "我一直打算"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/kɔːl/",
+            "/juː/"
+          ],
+          "pos": "不定式",
+          "meaning": "给你打电话"
+        },
+        {
+          "role": "时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɔːl/",
+            "/wiːk/"
+          ],
+          "pos": "名词短语",
+          "meaning": "整个星期"
+        }
+      ],
+      "explanations": [
+        "`have been meaning to do` = 一直打算做（但没做）。常见错误：\n• \"I meant to call\" → 过去时只表曾打算，完成进行强调一直拖到现在\n• \"I've been meaning **call**\" → 漏了 to：meaning to + 原形",
+        "`call you` = 给你打电话（美式，英式常用 ring you）。",
+        "`all week` = 整个星期。时间状语，前面不加介词。"
+      ],
+      "distractors": [
+        [
+          "I've meaning to",
+          "I've been meaning",
+          "I been meaning to"
+        ],
+        [
+          "calling you",
+          "to call your",
+          "call to you"
+        ],
+        [
+          "the all week.",
+          "all weeks.",
+          "for all week."
+        ]
+      ]
+    },
+    {
+      "sentence": "No wonder you look so tired.",
+      "cid": "f5fe9a5f",
+      "translation": "难怪你看起来这么累。",
+      "chunks": [
+        "No wonder",
+        "you look so tired."
+      ],
+      "hints": [
+        "难怪",
+        "你看起来这么累"
+      ],
+      "grammar": [
+        {
+          "role": "固定表达",
+          "color": "#3358e0",
+          "phonetic": [
+            "/nəʊ/",
+            "/ˈwʌndər/"
+          ],
+          "pos": "惯用语",
+          "meaning": "难怪"
+        },
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/lʊk/",
+            "/səʊ/",
+            "/ˈtaɪəd/"
+          ],
+          "pos": "系动词+表语",
+          "meaning": "你看起来这么累"
+        }
+      ],
+      "explanations": [
+        "`No wonder` = 难怪/怪不得（It's no wonder 的省略）。常见错误：\n• \"No **wonders**\" → wonder 此处不可数\n• \"Not wonder\" → 固定是 No wonder",
+        "`look tired` = 看起来累。look 是系动词接形容词 tired，不接副词 tiredly。"
+      ],
+      "distractors": [
+        [
+          "No wonders",
+          "Not wonder",
+          "Wonder no"
+        ],
+        [
+          "you are look so tired.",
+          "you looks so tired.",
+          "you look so tiredly."
+        ]
+      ]
+    },
+    {
+      "sentence": "Thanks for having me, I had a great time.",
+      "cid": "28b5e31b",
+      "translation": "谢谢招待，我玩得很开心。",
+      "chunks": [
+        "Thanks for having me,",
+        "I had",
+        "a great time."
+      ],
+      "hints": [
+        "谢谢招待我",
+        "我度过了",
+        "一段美好时光"
+      ],
+      "grammar": [
+        {
+          "role": "致谢结构",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/θæŋks/",
+            "/fɔːr/",
+            "/ˈhævɪŋ/",
+            "/miː/"
+          ],
+          "pos": "thanks for 结构",
+          "meaning": "谢谢招待我"
+        },
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæd/"
+          ],
+          "pos": "过去时",
+          "meaning": "我度过了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ɡreɪt/",
+            "/taɪm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一段美好时光"
+        }
+      ],
+      "explanations": [
+        "做客/聚会后道谢。`thanks for having me` = 谢谢邀请/招待我。常见错误：\n• \"thanks for **have** me\" → for 后接动名词 having\n• \"thanks to have me\" → 搭配是 thanks for doing",
+        "`I had` = 我度过了（过去时）。",
+        "`a great time` = 美好时光。固定搭配 have a great time。常见错误：\n• \"have great time\" → 缺 a"
+      ],
+      "distractors": [
+        [
+          "Thanks for have me,",
+          "Thank for having me,",
+          "Thanks to having me,"
+        ],
+        [
+          "I have",
+          "I've had",
+          "I was had"
+        ],
+        [
+          "great time.",
+          "a great times.",
+          "a good time."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm looking forward to seeing you again.",
+      "cid": "6159c055",
+      "translation": "我期待再次见到你。",
+      "chunks": [
+        "I'm looking forward to",
+        "seeing you",
+        "again."
+      ],
+      "hints": [
+        "我期待着",
+        "见到你",
+        "再次"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈlʊkɪŋ/",
+            "/ˈfɔːrwərd/",
+            "/tə/"
+          ],
+          "pos": "look forward to",
+          "meaning": "我期待着"
+        },
+        {
+          "role": "动名词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈsiːɪŋ/",
+            "/juː/"
+          ],
+          "pos": "动名词短语",
+          "meaning": "见到你"
+        },
+        {
+          "role": "频度副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈɡen/"
+          ],
+          "pos": "副词",
+          "meaning": "再次"
+        }
+      ],
+      "explanations": [
+        "`look forward to` = 期待，**to 是介词**后接动名词。常见错误：\n• \"look forward to **see** you\" → to 后要 doing\n• \"looking forward to see\" → 同一错误\n• 漏 be：I look forward to 也可（正式）",
+        "`again` = 再一次。"
+      ],
+      "distractors": [
+        [
+          "I look forward to",
+          "I'm looking forward",
+          "I'm looking forward for"
+        ],
+        [
+          "to see you",
+          "seeing yours",
+          "seen you"
+        ],
+        [
+          "again now.",
+          "one again.",
+          "again soon."
+        ]
+      ]
+    },
+    {
+      "sentence": "I completely forgot about our appointment.",
+      "cid": "777f5c9d",
+      "translation": "我完全忘了我们的约会。",
+      "chunks": [
+        "I completely forgot",
+        "about our",
+        "appointment."
+      ],
+      "hints": [
+        "我完全忘了",
+        "关于我们的",
+        "约定"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/kəmˈpliːtli/",
+            "/fərˈɡɑːt/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我完全忘了"
+        },
+        {
+          "role": "介词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/aʊər/"
+          ],
+          "pos": "介词+限定词",
+          "meaning": "关于我们的"
+        },
+        {
+          "role": "宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈpɔɪntmənt/"
+          ],
+          "pos": "名词",
+          "meaning": "约定/约会"
+        }
+      ],
+      "explanations": [
+        "`forget about` = 忘掉某事。常见错误：\n• \"forgot to about\" → 搭配混乱\n• \"I forget\" → 讲过去发生的忘记用 forgot",
+        "`appointment` = 预约（看病/商务）；`date` = 约会（浪漫）。"
+      ],
+      "distractors": [
+        [
+          "I complete forgot",
+          "I completely forgetted",
+          "I'm completely forgot"
+        ],
+        [
+          "to our",
+          "about hour",
+          "for our"
+        ],
+        [
+          "appointments.",
+          "a appointment.",
+          "the appointment now."
+        ]
+      ]
+    },
+    {
+      "sentence": "Want me to help?",
+      "cid": "9c364fa8",
+      "translation": "要我帮忙吗？",
+      "chunks": [
+        "Want me",
+        "to help?"
+      ],
+      "hints": [
+        "想要我",
+        "帮忙"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɑːnt/",
+            "/miː/"
+          ],
+          "pos": "省略 Do you 的问句",
+          "meaning": "想要我"
+        },
+        {
+          "role": "不定式",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/help/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "帮忙"
+        }
+      ],
+      "explanations": [
+        "口语省略句首的 Do you，直接说 Want me...? 常见错误：\n• \"Want I to help?\" → 宾语用宾格 me\n• \"Wants me to help?\" → 省略了主语，动词不加 s",
+        "`want sb to do sth` 是固定结构，不能省 to。常见错误：\n• \"Want me help?\" → 少了 to 就变错了"
+      ],
+      "distractors": [
+        [
+          "Want I",
+          "Wants me",
+          "Want my"
+        ],
+        [
+          "help?",
+          "for help?",
+          "helping?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Thanks for asking.",
+      "cid": "93a0fe58",
+      "translation": "谢谢关心。",
+      "chunks": [
+        "Thanks",
+        "for asking."
+      ],
+      "hints": [
+        "谢谢",
+        "来问（关心）"
+      ],
+      "grammar": [
+        {
+          "role": "致谢结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/θæŋks/"
+          ],
+          "pos": "名词（复数形式固定）",
+          "meaning": "谢谢"
+        },
+        {
+          "role": "介词+动名词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/ˈæskɪŋ/"
+          ],
+          "pos": "for + doing",
+          "meaning": "来问我"
+        }
+      ],
+      "explanations": [
+        "`Thanks` 比 Thank you 更随意，常用于熟人间。常见错误：\n• \"Thank you for asking\" → 更正式，也对\n• \"Thanks for ask\" → 介词 for 后要用动名词",
+        "`for + 动名词` 表感谢的原因。这个结构固定，不能换成不定式。"
+      ],
+      "distractors": [
+        [
+          "Thank",
+          "Thanks to",
+          "Thanks for"
+        ],
+        [
+          "to ask.",
+          "for ask.",
+          "for asked."
+        ]
+      ]
+    },
+    {
+      "sentence": "You matter to me.",
+      "cid": "fb895572",
+      "translation": "你对我很重要。",
+      "chunks": [
+        "You matter",
+        "to me."
+      ],
+      "hints": [
+        "你很重要",
+        "对我来说"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ˈmætər/"
+          ],
+          "pos": "matter 作动词",
+          "meaning": "你很重要"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对我来说"
+        }
+      ],
+      "explanations": [
+        "`matter` 作动词表「要紧、重要」。常见错误：\n• \"You matters\" → 主语 you 用原形\n• \"You are matter\" → be 与动词混用",
+        "`matter to sb` 表「对某人重要」。常见错误：\n• \"matter for me\" → 固定介词是 to"
+      ],
+      "distractors": [
+        [
+          "You matters",
+          "You mattering",
+          "Your matter"
+        ],
+        [
+          "to my.",
+          "for me.",
+          "to mine."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're nice to me.",
+      "cid": "09c464f6",
+      "translation": "你对我真好。",
+      "chunks": [
+        "You're nice",
+        "to me."
+      ],
+      "hints": [
+        "你很好",
+        "对我"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/naɪs/"
+          ],
+          "pos": "you are + 形容词",
+          "meaning": "你很好"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对我"
+        }
+      ],
+      "explanations": [
+        "`You're` = you are，别和 your（你的）搞混。常见错误：\n• \"Your nice to me\" → Your 不能构成主系表\n• \"You're nicely to me\" → 表语要用形容词 nice",
+        "`be nice to sb` 是固定搭配，介词用 to。常见错误：\n• \"nice for me\" → 对人态度用 to"
+      ],
+      "distractors": [
+        [
+          "Your nice",
+          "You nice",
+          "You're nicely"
+        ],
+        [
+          "to my.",
+          "for me.",
+          "to mine."
+        ]
+      ]
+    }
+  ]
+}

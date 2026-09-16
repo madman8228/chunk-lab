@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "00d6253f",
+      "sentence": "Sorry, you must have the wrong number.",
+      "translation": "抱歉，你一定是打错电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-0e301fa21a65.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "2a729d81",
+      "sentence": "Stop calling me.",
+      "translation": "别给我打电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-0e301fa21a65.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "6592bb2c",
+      "sentence": "Ma'am, you called us.",
+      "translation": "女士，是你打给我们的。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-0e301fa21a65.json",
+      "sourceOffset": 2
+    }
+  ]
+}

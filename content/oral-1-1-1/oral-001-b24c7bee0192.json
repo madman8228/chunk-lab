@@ -1,0 +1,2786 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Do you mind if I open the window?",
+      "cid": "70190b47",
+      "translation": "你介意我开下窗吗？",
+      "chunks": [
+        "Do you mind",
+        "if I open",
+        "the window?"
+      ],
+      "hints": [
+        "你介意吗",
+        "如果我打开",
+        "窗户"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/maɪnd/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你介意吗"
+        },
+        {
+          "role": "条件从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪf/",
+            "/aɪ/",
+            "/ˈəʊpən/"
+          ],
+          "pos": "条件状语从句",
+          "meaning": "如果我打开"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈwɪndəʊ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "窗户"
+        }
+      ],
+      "explanations": [
+        "**Do you mind...?** 是礼貌地询问对方是否介意。注意：回答时 **No** 表示「不介意（可以开）」，**Yes** 表示「介意（别开）」，和中文直觉相反！",
+        "**if 从句用一般现在时表将来**。常见错误：\n• \"if I **opened**\" → if 从句不用过去时\n• \"if I **opening**\" → 缺少主语和谓语结构",
+        "**the window** 特指当前这扇窗。如果泛指任何窗户可以说 \"a window\" 或 \"windows\"。"
+      ],
+      "distractors": [
+        [
+          "Do you minds",
+          "Are you mind",
+          "Do you minding"
+        ],
+        [
+          "if I will open",
+          "if I opening",
+          "if I opens"
+        ],
+        [
+          "window?",
+          "the windows?",
+          "the door?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I didn't get much sleep last night.",
+      "cid": "73225f28",
+      "translation": "我昨晚没睡多少觉。",
+      "chunks": [
+        "I didn't get",
+        "much sleep",
+        "last night."
+      ],
+      "hints": [
+        "我没得到",
+        "多少睡眠",
+        "昨晚"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈdɪdnt/",
+            "/ɡet/"
+          ],
+          "pos": "一般过去时否定",
+          "meaning": "我没得到"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/mʌtʃ/",
+            "/sliːp/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "多少睡眠"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/lɑːst/",
+            "/naɪt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "昨晚"
+        }
+      ],
+      "explanations": [
+        "**get sleep** = 睡（觉），get 后接不可数名词 sleep。常见错误：\n• \"didn't **slept**\" → did 后接原形 sleep/slept 是过去式\n• \"much **sleeps**\" → sleep 不可数，不加 s",
+        "**last night** = 昨晚。不能说 yesterday night（错误），要说 last night 或 yesterday evening。"
+      ],
+      "distractors": [
+        [
+          "I don't get",
+          "I didn't got",
+          "I didn't gets"
+        ],
+        [
+          "many sleep",
+          "much sleeps",
+          "a lot sleep"
+        ],
+        [
+          "yesterday night.",
+          "the last night.",
+          "last nights."
+        ]
+      ]
+    },
+    {
+      "sentence": "How'd you sleep?",
+      "cid": "959fa9a7",
+      "translation": "你睡得怎么样？",
+      "chunks": [
+        "How'd you",
+        "sleep?"
+      ],
+      "hints": [
+        "你（怎么）",
+        "睡"
+      ],
+      "alts": [
+        [
+          "How did you"
+        ],
+        null
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/haʊd/",
+            "/juː/"
+          ],
+          "pos": "How did 的口语缩写",
+          "meaning": "你（怎么）"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/sliːp/"
+          ],
+          "pos": "动词原形",
+          "meaning": "睡"
+        }
+      ],
+      "explanations": [
+        "`How'd` = How did 的口语缩写，问的是过去的状况。常见错误：\n• \"How'd you slept?\" → did 之后要用原形\n• 完整形式 How did you sleep? 同样正确，只是没那么口语",
+        "早上问候常用。同义：Did you sleep well? / How was your sleep?"
+      ],
+      "distractors": [
+        [
+          "How'd you been",
+          "How do you",
+          "How'd your"
+        ],
+        [
+          "sleepy?",
+          "sleeping?",
+          "slept?"
+        ]
+      ]
+    },
+    {
+      "sentence": "You look refreshed.",
+      "cid": "757da6a9",
+      "translation": "你气色不错。",
+      "chunks": [
+        "You look",
+        "refreshed."
+      ],
+      "hints": [
+        "你看起来",
+        "精神焕发"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/lʊk/"
+          ],
+          "pos": "系动词 look",
+          "meaning": "你看起来"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/rɪˈfreʃt/"
+          ],
+          "pos": "过去分词作形容词",
+          "meaning": "精神好的"
+        }
+      ],
+      "explanations": [
+        "`look` 作系动词时后面接形容词，不能接副词。常见错误：\n• \"You look refreshingly\" → 表语位置要用形容词\n• \"You looks\" → you 用 look",
+        "`refreshed` 是过去分词作形容词，表「休息好了、精神好」。常见错误：\n• \"refreshing\" → 那是「令人清爽的」，修饰事物而不是人"
+      ],
+      "distractors": [
+        [
+          "You looks",
+          "You looking",
+          "Your look"
+        ],
+        [
+          "refresh.",
+          "refreshing.",
+          "refreshment."
+        ]
+      ]
+    },
+    {
+      "sentence": "Yeah, I slept in.",
+      "cid": "a941aad4",
+      "translation": "嗯，我睡懒觉了。",
+      "chunks": [
+        "Yeah,",
+        "I slept in."
+      ],
+      "hints": [
+        "嗯、对",
+        "我睡到很晚"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jeə/"
+          ],
+          "pos": "口语肯定词",
+          "meaning": "嗯、对"
+        },
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/slept/",
+            "/ɪn/"
+          ],
+          "pos": "sleep in 的过去式",
+          "meaning": "我睡到很晚"
+        }
+      ],
+      "explanations": [
+        "`Yeah` 比 yes 更随意，日常对话里高频。常见错误：\n• 正式场合要用 Yes，Yeah 偏随意\n• 别把 Yeah 和口语里的 ya（= you）混用",
+        "`sleep in` 是固定短语，表「睡懒觉、睡到自然醒」（不是失眠）。常见错误：\n• \"sleep on\" → 那是「先睡一晚再考虑」，意思完全不同\n• \"slept in late\" → 也有人说，但 in 已经含「晚」的意思"
+      ],
+      "distractors": [
+        [
+          "Yes,",
+          "Yep,",
+          "No,"
+        ],
+        [
+          "I sleep in.",
+          "I slept on.",
+          "I sleeping in."
+        ]
+      ]
+    },
+    {
+      "sentence": "I woke up at 10.",
+      "cid": "b2921029",
+      "translation": "我十点醒的。",
+      "chunks": [
+        "I woke up",
+        "at 10."
+      ],
+      "hints": [
+        "我醒了",
+        "在十点"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/woʊk/",
+            "/ʌp/"
+          ],
+          "pos": "wake up 的过去式",
+          "meaning": "我醒了"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/ten/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在十点"
+        }
+      ],
+      "explanations": [
+        "`wake up` 的过去式是 woke up（不规则变化）。常见错误：\n• \"I waked up\" → 应作 woke\n• \"I woke at 10\" → 也通，但日常更常说 wake up",
+        "`at 10` 读作 at ten，具体钟点用 at。常见错误：\n• \"in 10\" → 具体钟点用 at，in 用于月/年\n• \"on 10\" → on 用于星期和日期"
+      ],
+      "distractors": [
+        [
+          "I wake up",
+          "I woken up",
+          "I waking up"
+        ],
+        [
+          "in 10.",
+          "on 10.",
+          "for 10."
+        ]
+      ]
+    },
+    {
+      "sentence": "You feelin' okay?",
+      "cid": "b613eb7d",
+      "translation": "感觉还好吗？",
+      "chunks": [
+        "You feelin'",
+        "okay?"
+      ],
+      "hints": [
+        "你感觉",
+        "还好吗"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/ˈfiːlɪn/"
+          ],
+          "pos": "Are you feeling 的省略",
+          "meaning": "你感觉"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˌoʊˈkeɪ/"
+          ],
+          "pos": "形容词",
+          "meaning": "还好"
+        }
+      ],
+      "explanations": [
+        "口语省略句首的 Are，feelin' 用撇号代替词尾的 g。常见错误：\n• \"You feels okay\" → you 用 feel\n• 正式书写要写 Are you feeling okay?",
+        "`okay` 也写作 OK，用来问健康状况。同义：You all right? / Are you doing okay?"
+      ],
+      "distractors": [
+        [
+          "You feel",
+          "You feels",
+          "You're feelin'"
+        ],
+        [
+          "OK?",
+          "fine?",
+          "all right?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Super good.",
+      "cid": "b5a62b5d",
+      "translation": "很好。",
+      "chunks": [
+        "Super",
+        "good."
+      ],
+      "hints": [
+        "超级",
+        "好"
+      ],
+      "grammar": [
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsuːpər/"
+          ],
+          "pos": "副词（口语加强）",
+          "meaning": "超级"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɡʊd/"
+          ],
+          "pos": "形容词",
+          "meaning": "好"
+        }
+      ],
+      "explanations": [
+        "`super` 作副词表「超级」，年轻人常用，比 very 更夸张。常见错误：\n• \"super goodly\" → goodly 不是 good 的副词\n• 正式场合要说 very good",
+        "省略了主语（I'm super good.）。同义：Awesome. / Great. / Doing great."
+      ],
+      "distractors": [
+        [
+          "Superb",
+          "Superly",
+          "Very"
+        ],
+        [
+          "well.",
+          "good at.",
+          "goodness."
+        ]
+      ]
+    },
+    {
+      "sentence": "Where you goin'?",
+      "cid": "21d7bd02",
+      "translation": "你要去哪？",
+      "chunks": [
+        "Where",
+        "you goin'?"
+      ],
+      "hints": [
+        "哪里",
+        "你去"
+      ],
+      "alts": [
+        null,
+        [
+          "are you going?"
+        ]
+      ],
+      "grammar": [
+        {
+          "role": "疑问词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wer/"
+          ],
+          "pos": "疑问副词",
+          "meaning": "哪里"
+        },
+        {
+          "role": "主语+谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ˈɡoʊɪn/"
+          ],
+          "pos": "are you going 的口语省略",
+          "meaning": "你去"
+        }
+      ],
+      "explanations": [
+        "口语里句首的 Are 常被省掉，going 写成 goin'。常见错误：\n• \"Where you go?\" → 少 goin'，语义会变成「你（平时）去哪」\n• 正式书写是 Where are you going?",
+        "同义：Where are you off to? / Where to?"
+      ],
+      "distractors": [
+        [
+          "When",
+          "What",
+          "Where's"
+        ],
+        [
+          "you go?",
+          "you gone?",
+          "your goin'?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Out for dinner.",
+      "cid": "6e85e8be",
+      "translation": "出去吃晚饭。",
+      "chunks": [
+        "Out for",
+        "dinner."
+      ],
+      "hints": [
+        "出去（为了）",
+        "晚饭"
+      ],
+      "grammar": [
+        {
+          "role": "方向状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aʊt/",
+            "/fɔːr/"
+          ],
+          "pos": "口语省略句",
+          "meaning": "出去（为了）"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈdɪnər/"
+          ],
+          "pos": "名词",
+          "meaning": "晚饭"
+        }
+      ],
+      "explanations": [
+        "回答 Where are you going 时省略了主句（I'm going out for dinner.）。常见错误：\n• \"Out for the dinner\" → 一日三餐前一般不加冠词",
+        "三餐前不加冠词：have dinner / for dinner。常见错误：\n• \"for a dinner\" → 加冠词是错的"
+      ],
+      "distractors": [
+        [
+          "Out to",
+          "Out of",
+          "Out in"
+        ],
+        [
+          "the dinners.",
+          "a dinner.",
+          "dinner plate."
+        ]
+      ]
+    },
+    {
+      "sentence": "I want you home by 10.",
+      "cid": "22684a18",
+      "translation": "我要你十点前回家。",
+      "chunks": [
+        "I want you",
+        "home by 10."
+      ],
+      "hints": [
+        "我要你",
+        "十点前到家"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/wɑːnt/",
+            "/juː/"
+          ],
+          "pos": "want + 宾语",
+          "meaning": "我要你"
+        },
+        {
+          "role": "补语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/hoʊm/",
+            "/baɪ/",
+            "/ten/"
+          ],
+          "pos": "home + 介词短语",
+          "meaning": "十点前到家"
+        }
+      ],
+      "explanations": [
+        "`want sb + 补语` 表「要求某人处于某状态」，这里 home 作副词。常见错误：\n• \"I want you to home\" → home 是副词，不加 to\n• \"I want that you home\" → 英语不用 that 从句，直接接宾语+补语",
+        "`by 10` = 十点之前（含十点），强调截止时间。常见错误：\n• \"until 10\" → until 表持续到十点，不是「在十点前完成」\n• \"in 10\" → 那是「十分钟后」"
+      ],
+      "distractors": [
+        [
+          "I want you to",
+          "I wants you",
+          "I want your"
+        ],
+        [
+          "home at 10.",
+          "home in 10.",
+          "home till 10."
+        ]
+      ]
+    },
+    {
+      "sentence": "Yes, ma'am.",
+      "cid": "7591c63d",
+      "translation": "好的，女士。",
+      "chunks": [
+        "Yes,",
+        "ma'am."
+      ],
+      "hints": [
+        "好的",
+        "女士"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jes/"
+          ],
+          "pos": "肯定应答",
+          "meaning": "好的"
+        },
+        {
+          "role": "称呼",
+          "color": "#3358e0",
+          "phonetic": [
+            "/mæm/"
+          ],
+          "pos": "名词（尊称）",
+          "meaning": "女士"
+        }
+      ],
+      "explanations": [
+        "`Yes` 是标准肯定应答，应答长辈或上级时更常用。常见错误：\n• 随意场合的 Yeah 不适合对长辈说\n• 逗号不能省：Yes ma'am 读起来会很赶",
+        "`ma'am` 是对女性的尊称（= madam 的缩写），常含撇号。常见错误：\n• \"mam\" → 少了撇号，标准写法是 ma'am\n• 对男性用 sir，不是 mister"
+      ],
+      "distractors": [
+        [
+          "Yeah,",
+          "Yep,",
+          "Yes sir,"
+        ],
+        [
+          "mam.",
+          "madam.",
+          "mister."
+        ]
+      ]
+    },
+    {
+      "sentence": "You tired?",
+      "cid": "d68791ff",
+      "translation": "你累了？",
+      "chunks": [
+        "You",
+        "tired?"
+      ],
+      "hints": [
+        "你",
+        "累了吗"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/"
+          ],
+          "pos": "人称代词",
+          "meaning": "你"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈtaɪərd/"
+          ],
+          "pos": "形容词",
+          "meaning": "累了"
+        }
+      ],
+      "explanations": [
+        "口语省略句首的 Are，只剩 You tired? 靠升调表疑问。常见错误：\n• \"You are tired?\" → 也对，但多是确认语气\n• \"You tiring?\" → tiring 是「令人累的」，形容人要用 tired",
+        "`tired` 是过去分词作形容词，表「感到累」。常见错误：\n• \"tired of\" → 那是「对……厌倦」，不是身体累"
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You're",
+          "Yours"
+        ],
+        [
+          "tiring?",
+          "tire?",
+          "tired of?"
+        ]
+      ]
+    },
+    {
+      "sentence": "A little.",
+      "cid": "8e16eb62",
+      "translation": "有一点。",
+      "chunks": [
+        "A",
+        "little."
+      ],
+      "hints": [
+        "一",
+        "点儿"
+      ],
+      "grammar": [
+        {
+          "role": "冠词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ə/"
+          ],
+          "pos": "不定冠词",
+          "meaning": "一（个）"
+        },
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈlɪtl/"
+          ],
+          "pos": "不可数名词用法",
+          "meaning": "一点儿"
+        }
+      ],
+      "explanations": [
+        "`a little` 是整体短语，表「一点点」，回答 Are you tired? 时常省略主句。常见错误：\n• \"a few\" → few 接可数名词，回答程度要用 a little\n• \"little\" 单用 → 表「几乎没有」，否定意味，跟 a little 相反",
+        "同义：A bit. / Kind of. / Somewhat."
+      ],
+      "distractors": [
+        [
+          "An",
+          "The",
+          "Some"
+        ],
+        [
+          "few.",
+          "bit.",
+          "lot."
+        ]
+      ]
+    },
+    {
+      "sentence": "I got up late.",
+      "cid": "e13305a9",
+      "translation": "我起晚了。",
+      "chunks": [
+        "I got up",
+        "late."
+      ],
+      "hints": [
+        "我起来了",
+        "晚"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ɡɑːt/",
+            "/ʌp/"
+          ],
+          "pos": "get up 的过去式",
+          "meaning": "我起来了"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/leɪt/"
+          ],
+          "pos": "副词",
+          "meaning": "晚"
+        }
+      ],
+      "explanations": [
+        "`get up` 的过去式是 got up。常见错误：\n• \"I gotten up\" → gotten 要和 have 连用\n• \"I got\" → 少了 up，意思变「我得到」",
+        "`late` 是副词，直接修饰 got up。常见错误：\n• \"lately\" → 那是「最近」，不是「晚」\n• \"later\" → 那是「稍后」"
+      ],
+      "distractors": [
+        [
+          "I get up",
+          "I got",
+          "I gotten up"
+        ],
+        [
+          "later.",
+          "lately.",
+          "latly."
+        ]
+      ]
+    },
+    {
+      "sentence": "Go clean up.",
+      "cid": "bb4983d7",
+      "translation": "去洗漱吧。",
+      "chunks": [
+        "Go",
+        "clean up."
+      ],
+      "hints": [
+        "去",
+        "收拾干净"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡoʊ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "去"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/kliːn/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词 clean up",
+          "meaning": "收拾、洗漱干净"
+        }
+      ],
+      "explanations": [
+        "`clean up` 是「把自己收拾干净」的短语动词，`up` 是固定成分。常见错误：\n• \"Go clean **yourself** up\" → 口语里针对自己时一般直接说 clean up\n• \"Go **to** clean up\" → 祈使句后直接跟动词原形，不加 to",
+        "祈使句用动词原形，主语 you 不出现。对比 `wash up`：warm water 洗手洗脸，clean up 更泛。"
+      ],
+      "distractors": [
+        [
+          "Come",
+          "Get",
+          "Come on"
+        ],
+        [
+          "cleans up.",
+          "clean on.",
+          "clean out."
+        ]
+      ]
+    },
+    {
+      "sentence": "Go wash up.",
+      "cid": "2684aa5f",
+      "translation": "去洗把脸、洗把手。",
+      "chunks": [
+        "Go",
+        "wash up."
+      ],
+      "hints": [
+        "去",
+        "洗洗（手脸）"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡoʊ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "去"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɑːʃ/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词 wash up",
+          "meaning": "洗手洗脸"
+        }
+      ],
+      "explanations": [
+        "`wash up` 在美式英语指「洗手洗脸」，英式还可指「洗碗」。常见错误：\n• \"Go wash up **you**\" → 反身代词多余，祈使句本身已隐含 you\n• \"Go **to** wash up\" → 祈使句后不加 to",
+        "与 `clean up` 的区别：wash up 专指用水洗，clean up 泛指收拾弄干净。"
+      ],
+      "distractors": [
+        [
+          "Come",
+          "Get",
+          "Come in"
+        ],
+        [
+          "washes up.",
+          "wash it up.",
+          "wash out."
+        ]
+      ]
+    },
+    {
+      "sentence": "Rinse your mouth.",
+      "cid": "c0af9f50",
+      "translation": "漱漱口。",
+      "chunks": [
+        "Rinse",
+        "your mouth."
+      ],
+      "hints": [
+        "冲洗",
+        "你的嘴"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/rɪns/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "冲洗、漱"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/maʊθ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的嘴"
+        }
+      ],
+      "explanations": [
+        "`rinse` 指用清水冲、漱，词尾是清音 /s/。常见错误：\n• 把 rinse 读成 /rɪnz/ → 动词原形清音，加了 -d 才浊化\n• \"Rinse your mouth water\" → 要喝水一起说就说 with water",
+        "用漱口水则是 `rinse with mouthwash`，漱口水这个词本身是 mouthwash。"
+      ],
+      "distractors": [
+        [
+          "Rinse out",
+          "Wash",
+          "Clean out"
+        ],
+        [
+          "your mouths.",
+          "you mouth.",
+          "your mouthing."
+        ]
+      ]
+    },
+    {
+      "sentence": "Rinse out your mouth.",
+      "cid": "5d687bf0",
+      "translation": "把嘴漱干净。",
+      "chunks": [
+        "Rinse out",
+        "your mouth."
+      ],
+      "hints": [
+        "漱干净",
+        "你的嘴"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/rɪns/",
+            "/aʊt/"
+          ],
+          "pos": "短语动词 rinse out",
+          "meaning": "漱干净"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/maʊθ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的嘴"
+        }
+      ],
+      "explanations": [
+        "`rinse out` 强调「漱干净、冲掉残留」，out 表彻底。常见错误：\n• \"Rinse out **of** your mouth\" → out 后面不接 of\n• \"Rinse out your mouths\" → 一个人只有一张嘴，用单数",
+        "对比 `rinse`：加 out 有「冲干净」的结果意味；宾语是代词时要说 rinse it out。"
+      ],
+      "distractors": [
+        [
+          "Rinse of",
+          "Rinsing out",
+          "Rinse from"
+        ],
+        [
+          "your mouths.",
+          "you mouth.",
+          "your mouth out."
+        ]
+      ]
+    },
+    {
+      "sentence": "Gargle with water.",
+      "cid": "3c1a2036",
+      "translation": "用水漱漱喉咙。",
+      "chunks": [
+        "Gargle",
+        "with water."
+      ],
+      "hints": [
+        "漱喉",
+        "用水"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈɡɑːrɡl/"
+          ],
+          "pos": "祈使句动词（不及物）",
+          "meaning": "漱喉咙"
+        },
+        {
+          "role": "方式状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɪð/",
+            "/ˈwɔːtər/"
+          ],
+          "pos": "介词短语",
+          "meaning": "用水"
+        }
+      ],
+      "explanations": [
+        "`gargle` 专指「含一口水在喉咙里咕噜」，比 rinse 更具体，且是不及物动词。常见错误：\n• \"Gargle water\" → 漏了 with\n• 记住拼写：gargle → gargling（不双写 l）",
+        "常见搭配：gargle with salt water（用盐水漱口），嗓子疼时常说。"
+      ],
+      "distractors": [
+        [
+          "Gargles",
+          "Swallow",
+          "Gargle out"
+        ],
+        [
+          "with a water.",
+          "with waters.",
+          "by water."
+        ]
+      ]
+    },
+    {
+      "sentence": "Rinse it.",
+      "cid": "af665333",
+      "translation": "冲一冲。",
+      "chunks": [
+        "Rinse",
+        "it."
+      ],
+      "hints": [
+        "冲洗",
+        "它"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/rɪns/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "冲洗"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/"
+          ],
+          "pos": "人称代词宾格",
+          "meaning": "它"
+        }
+      ],
+      "explanations": [
+        "杯子、菜、手上沾了泡沫都能说 `Rinse it.` 常见错误：\n• \"Rinse it clean\" → 想说「冲到干净」应说 Rinse it until clean\n• \"Rinse out it\" → 代词不能放在 out 后面，要说 rinse it out",
+        "代词作宾语放动词后：rinse it / rinse them，不能先说 it。"
+      ],
+      "distractors": [
+        [
+          "Rinses",
+          "Rinsing",
+          "Rinse from"
+        ],
+        [
+          "them.",
+          "its.",
+          "it is."
+        ]
+      ]
+    },
+    {
+      "sentence": "Take a shower.",
+      "cid": "b9c23335",
+      "translation": "洗个澡。",
+      "chunks": [
+        "Take a",
+        "shower."
+      ],
+      "hints": [
+        "洗",
+        "淋浴"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/ə/"
+          ],
+          "pos": "动词短语 take a shower",
+          "meaning": "洗（澡）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈʃaʊər/"
+          ],
+          "pos": "名词",
+          "meaning": "淋浴"
+        }
+      ],
+      "explanations": [
+        "`take a shower` 是「洗淋浴」的固定搭配，泡澡用 `take a bath`。常见错误：\n• \"Wash a shower\" → wash 的宾语应是身体或衣物，不是淋浴设备\n• \"Take shower\" → 可数名词单数前要加 a",
+        "同义：have a shower（英式更常用）。"
+      ],
+      "distractors": [
+        [
+          "Make a",
+          "Take the",
+          "Have the"
+        ],
+        [
+          "show.",
+          "showers.",
+          "showering."
+        ]
+      ]
+    },
+    {
+      "sentence": "Dry your hands.",
+      "cid": "73504ae3",
+      "translation": "把手擦干。",
+      "chunks": [
+        "Dry",
+        "your hands."
+      ],
+      "hints": [
+        "擦干",
+        "你的手"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/draɪ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "弄干"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/hændz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的手"
+        }
+      ],
+      "explanations": [
+        "`dry` 可以直接作动词，表示「弄干」。常见错误：\n• \"Dry your hand\" → 两只手用复数 hands\n• \"Make your hands dry\" → 啰嗦，dry 本身就能当动词",
+        "同类：dry your hair（擦干头发）/ dry the clothes（晾干衣服）。"
+      ],
+      "distractors": [
+        [
+          "Dries",
+          "Drying",
+          "Dry up"
+        ],
+        [
+          "your hand.",
+          "you hands.",
+          "your hands of."
+        ]
+      ]
+    },
+    {
+      "sentence": "Go to the bathroom.",
+      "cid": "54764003",
+      "translation": "去上厕所。",
+      "chunks": [
+        "Go to",
+        "the bathroom."
+      ],
+      "hints": [
+        "去",
+        "洗手间"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡoʊ/",
+            "/tuː/"
+          ],
+          "pos": "动词短语",
+          "meaning": "去往"
+        },
+        {
+          "role": "地点宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈbæθruːm/"
+          ],
+          "pos": "名词短语（带定冠词）",
+          "meaning": "洗手间"
+        }
+      ],
+      "explanations": [
+        "`bathroom` 是美式「洗手间」的礼貌说法；英式常用 toilet/loo。常见错误：\n• \"Go to bathroom\" → 漏定冠词 the\n• 美音读 /ˈbæθruːm/，英音才是 /ˈbɑːθruːm/",
+        "委婉说法：use the restroom / go to the loo / excuse me for a moment。"
+      ],
+      "distractors": [
+        [
+          "Go in",
+          "Go at",
+          "Go for"
+        ],
+        [
+          "the bath.",
+          "a bathroom.",
+          "the bathrooms."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get out of bed.",
+      "cid": "e0bd95bb",
+      "translation": "起床了。",
+      "chunks": [
+        "Get out of",
+        "bed."
+      ],
+      "hints": [
+        "从……出来",
+        "床"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/aʊt/",
+            "/əv/"
+          ],
+          "pos": "短语动词 get out of",
+          "meaning": "从……出来"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/bed/"
+          ],
+          "pos": "名词（表用途，不加冠词）",
+          "meaning": "床"
+        }
+      ],
+      "explanations": [
+        "`get out of bed` 指「下床、起床」，bed 前不加冠词（表床的用途）。常见错误：\n• \"Get out of the bed\" → 指某张具体的床，不表起床这个动作\n• \"Get up of bed\" → 搭配是 out of",
+        "同义：get up。区别：get up 还可表站起来，get out of bed 只指离开床。"
+      ],
+      "distractors": [
+        [
+          "Get out from",
+          "Get off of",
+          "Get up of"
+        ],
+        [
+          "the bed.",
+          "a bed.",
+          "beds."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get dressed.",
+      "cid": "e082afdd",
+      "translation": "穿好衣服。",
+      "chunks": [
+        "Get",
+        "dressed."
+      ],
+      "hints": [
+        "变得",
+        "穿好衣服的"
+      ],
+      "grammar": [
+        {
+          "role": "系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡet/"
+          ],
+          "pos": "get + 过去分词",
+          "meaning": "变得"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/drest/"
+          ],
+          "pos": "过去分词作形容词",
+          "meaning": "穿好衣服的"
+        }
+      ],
+      "explanations": [
+        "`get dressed` = 把衣服穿好，dressed 是过去分词当形容词。常见错误：\n• \"Get dress\" → 必须是 dressed\n• \"Wear dressed\" → wear 后面接具体衣物，不接 dressed",
+        "反义：get undressed（脱衣服）；换衣服说 get changed。"
+      ],
+      "distractors": [
+        [
+          "Get in",
+          "Be",
+          "Get on"
+        ],
+        [
+          "dress.",
+          "dressing.",
+          "dresses."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's go downstairs.",
+      "cid": "e31c936a",
+      "translation": "下楼吧。",
+      "chunks": [
+        "Let's go",
+        "downstairs."
+      ],
+      "hints": [
+        "我们走吧",
+        "下楼"
+      ],
+      "grammar": [
+        {
+          "role": "主谓（祈使）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/ɡoʊ/"
+          ],
+          "pos": "let us + 动词原形",
+          "meaning": "我们走吧"
+        },
+        {
+          "role": "方向状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˌdaʊnˈsterz/"
+          ],
+          "pos": "副词",
+          "meaning": "下楼"
+        }
+      ],
+      "explanations": [
+        "`Let's` = let us，后面接动词原形。常见错误：\n• \"Let's going downstairs\" → 不用 -ing\n• \"Let's to go downstairs\" → 不加 to",
+        "`downstairs` 是副词，前面不加介词：go downstairs（不说 go to downstairs）。反义 upstairs。"
+      ],
+      "distractors": [
+        [
+          "Let's going",
+          "Let us to go",
+          "Let go"
+        ],
+        [
+          "to downstairs.",
+          "downstair.",
+          "the downstairs."
+        ]
+      ]
+    },
+    {
+      "sentence": "Eat something.",
+      "cid": "e01f814d",
+      "translation": "吃点东西。",
+      "chunks": [
+        "Eat",
+        "something."
+      ],
+      "hints": [
+        "吃",
+        "一些东西"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/iːt/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "吃"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "不定代词",
+          "meaning": "一些东西"
+        }
+      ],
+      "explanations": [
+        "`something` 用于肯定、建议、邀请。常见错误：\n• \"Eat anything\" → 劝人吃点东西时用 something\n• \"Eat somethings\" → something 没有复数形式",
+        "同类：have something to eat、grab a bite（随便吃点）。"
+      ],
+      "distractors": [
+        [
+          "Eats",
+          "Eating",
+          "Have eat"
+        ],
+        [
+          "anything.",
+          "somethings.",
+          "some thing."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm heading out the door.",
+      "cid": "a80cfc73",
+      "translation": "我要出门了。",
+      "chunks": [
+        "I'm heading out",
+        "the door."
+      ],
+      "hints": [
+        "我正往外走",
+        "门"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈhedɪŋ/",
+            "/aʊt/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "我正往外走"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðə/",
+            "/dɔːr/"
+          ],
+          "pos": "名词短语",
+          "meaning": "门口"
+        }
+      ],
+      "explanations": [
+        "`head out` 是「出门、出发」的口语说法，进行时表「马上就走」。常见错误：\n• \"I heading out\" → 漏 be 动词\n• \"I'm heading out of the door\" → 口语里不加 of，直接 the door",
+        "家人告别常说：I'm heading out! 对方回 Have a good one!（路上顺利）"
+      ],
+      "distractors": [
+        [
+          "I heading out",
+          "I'm heading of",
+          "I'm head out"
+        ],
+        [
+          "a door.",
+          "the doors.",
+          "the door out."
+        ]
+      ]
+    },
+    {
+      "sentence": "Blow your nose.",
+      "cid": "40fa1f77",
+      "translation": "擤鼻涕。",
+      "chunks": [
+        "Blow",
+        "your nose."
+      ],
+      "hints": [
+        "擤",
+        "你的鼻子"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/bloʊ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "擤"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/noʊz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的鼻子"
+        }
+      ],
+      "explanations": [
+        "擤鼻涕的动词是 `blow`，名词是 nose。常见错误：\n• \"Blow your noses\" → 一人一个鼻子，用单数\n• \"Wipe your nose\" 是用纸巾擦，blow 才是擤",
+        "相关：a runny nose（流鼻涕）/ a stuffy nose（鼻塞）"
+      ],
+      "distractors": [
+        [
+          "Blows",
+          "Blowing",
+          "Blow out"
+        ],
+        [
+          "your nose's.",
+          "you nose.",
+          "your nose is."
+        ]
+      ]
+    },
+    {
+      "sentence": "Why didn't you wake me?",
+      "cid": "319a8e05",
+      "translation": "为什么不叫醒我？",
+      "chunks": [
+        "Why didn't you",
+        "wake me?"
+      ],
+      "hints": [
+        "为什么你没有",
+        "叫醒我"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词 + 助动词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/waɪ/",
+            "/ˈdɪdnt/",
+            "/juː/"
+          ],
+          "pos": "过去时否定疑问",
+          "meaning": "你为什么不"
+        },
+        {
+          "role": "谓语 + 宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/weɪk/",
+            "/miː/"
+          ],
+          "pos": "动词原形 + 宾语",
+          "meaning": "叫醒我"
+        }
+      ],
+      "explanations": [
+        "`wake` 是叫醒，代词宾语跟在后面：wake me。常见错误：\n• \"Why didn't you woke me?\" → 助动词后要用原形 wake\n• \"Why you didn't wake me?\" → 疑问句语序是 Why didn't you...",
+        "相关：wake me up（把我叫醒，代词夹中间）/ wake up（自己醒来）"
+      ],
+      "distractors": [
+        [
+          "Why you didn't",
+          "Why don't you",
+          "Why didn't not"
+        ],
+        [
+          "woke me?",
+          "waking me?",
+          "wake up me?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I overslept.",
+      "cid": "85c69d3a",
+      "translation": "我睡过头了。",
+      "chunks": [
+        "I",
+        "overslept."
+      ],
+      "hints": [
+        "我",
+        "睡过头了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/"
+          ],
+          "pos": "第一人称代词",
+          "meaning": "我"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˌoʊvərˈslept/"
+          ],
+          "pos": "oversleep 的过去式",
+          "meaning": "睡过头了"
+        }
+      ],
+      "explanations": [
+        "`oversleep` = 睡过头，过去式 overslept。常见错误：\n• \"I oversleep\" → 说的是这次的事，要用过去式\n• \"I sleep over\" → sleep over 是「在别人家过夜」，意思完全不同",
+        "相关：I slept in.（我睡了个懒觉）/ I didn't hear my alarm."
+      ],
+      "distractors": [
+        [
+          "Me",
+          "My",
+          "I've"
+        ],
+        [
+          "oversleeps.",
+          "oversleep.",
+          "oversleeping."
+        ]
+      ]
+    },
+    {
+      "sentence": "I got enough sleep.",
+      "cid": "4aeb9a71",
+      "translation": "我睡够了。",
+      "chunks": [
+        "I got",
+        "enough sleep."
+      ],
+      "hints": [
+        "我得到",
+        "足够的睡眠"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/ɡɑːt/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我得到"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪˈnʌf/",
+            "/sliːp/"
+          ],
+          "pos": "名词短语（不可数）",
+          "meaning": "足够的睡眠"
+        }
+      ],
+      "explanations": [
+        "`get enough sleep` 是「睡够了」的固定说法。常见错误：\n• \"I got enough sleeps\" → sleep 作名词不可数\n• \"I got sleep enough\" → enough 要放在名词前面",
+        "相关：I didn't get much sleep.（我没睡够）/ I'm well rested."
+      ],
+      "distractors": [
+        [
+          "I get",
+          "I'm got",
+          "I gotten"
+        ],
+        [
+          "enough sleeps.",
+          "enough sleeping.",
+          "sleep enough."
+        ]
+      ]
+    },
+    {
+      "sentence": "Make your bed.",
+      "cid": "830c8e09",
+      "translation": "整理你的床。",
+      "chunks": [
+        "Make",
+        "your bed."
+      ],
+      "hints": [
+        "整理",
+        "你的床"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/meɪk/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "整理"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/bed/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的床"
+        }
+      ],
+      "explanations": [
+        "「铺床、整理被褥」用 `make your bed`，不用 clean。常见错误：\n• \"Clean your bed\" → 床铺用 make the bed\n• \"Make your beds\" → 一人一张床，用单数",
+        "相关：make the bed（铺床）/ change the sheets（换床单）"
+      ],
+      "distractors": [
+        [
+          "Makes",
+          "Making",
+          "Make of"
+        ],
+        [
+          "your beds.",
+          "you bed.",
+          "your bed is."
+        ]
+      ]
+    },
+    {
+      "sentence": "My alarm's set.",
+      "cid": "f830f35a",
+      "translation": "我闹钟定好了。",
+      "chunks": [
+        "My alarm's",
+        "set."
+      ],
+      "hints": [
+        "我的闹钟",
+        "定好了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/maɪ/",
+            "/əˈlɑːrmz/"
+          ],
+          "pos": "名词 + is 缩写",
+          "meaning": "我的闹钟（是）"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/set/"
+          ],
+          "pos": "过去分词作形容词",
+          "meaning": "设定好的"
+        }
+      ],
+      "explanations": [
+        "`set` 在此是过去分词，表「已设定好」。常见错误：\n• \"My alarm set\" → 少了 's，句子不完整\n• 想说几点响要加 for：My alarm's set for six.",
+        "相关：set an alarm（定个闹钟）/ My alarm went off.（闹钟响了）"
+      ],
+      "distractors": [
+        [
+          "My alarm",
+          "My alarms is",
+          "My alarm is of"
+        ],
+        [
+          "sets.",
+          "setting.",
+          "sit."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sleep in.",
+      "cid": "31bd739b",
+      "translation": "多睡会儿。",
+      "chunks": [
+        "Sleep",
+        "in."
+      ],
+      "hints": [
+        "睡",
+        "（起得更晚）"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/sliːp/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "睡"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/"
+          ],
+          "pos": "副词（固定搭配）",
+          "meaning": "（比平时起得晚）"
+        }
+      ],
+      "explanations": [
+        "`sleep in` = 睡懒觉、比平时起得晚，是固定搭配。常见错误：\n• \"Sleep in bed\" → 那是「睡在床上」，意思不同\n• 说成 \"sleep late\" 也行，但 sleep in 更地道",
+        "相关：stay in bed（赖床不起）/ oversleep（睡过头，带责备意味）"
+      ],
+      "distractors": [
+        [
+          "Sleeps",
+          "Sleeping",
+          "Slept"
+        ],
+        [
+          "out.",
+          "on.",
+          "over."
+        ]
+      ]
+    },
+    {
+      "sentence": "I want to stay in bed for another half an hour.",
+      "cid": "257c6484",
+      "translation": "我真想在床上多睡半个小时。",
+      "chunks": [
+        "I want to stay in bed",
+        "for another half an hour."
+      ],
+      "hints": [
+        "我想赖在床上",
+        "再多半个小时"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/wɑːnt/",
+            "/tə/",
+            "/steɪ/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我想待"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fər/",
+            "/əˈnʌðər/",
+            "/hæf/",
+            "/ən/",
+            "/ˈaʊər/"
+          ],
+          "pos": "介词短语",
+          "meaning": "再多半个小时"
+        }
+      ],
+      "explanations": [
+        "`stay in bed` 指「赖在床上不起」，注意介词是 `in` 不是 `on`。常见错误：\n• \"stay **on** bed\" → 人躺在床上用 in bed\n• \"another half an hour\" 里 half an hour 本身带 an，前面再加 another 即可",
+        "`another half an hour` = 再半个小时，口语常缩成 another half hour（美式）。"
+      ],
+      "distractors": [
+        [
+          "I want stay in bed",
+          "I want to staying in bed",
+          "I want to stay on bed"
+        ],
+        [
+          "for other half an hour.",
+          "for another half a hour.",
+          "of another half an hour."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's time to get up.",
+      "cid": "f19ef7b9",
+      "translation": "该起床了。",
+      "chunks": [
+        "It's time",
+        "to get up."
+      ],
+      "hints": [
+        "是时候",
+        "起来了"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/taɪm/"
+          ],
+          "pos": "固定句型",
+          "meaning": "是时候了"
+        },
+        {
+          "role": "不定式",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/ɡet/",
+            "/ʌp/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "起床"
+        }
+      ],
+      "explanations": [
+        "`It's time to do sth` 是「该做某事了」的固定句型。常见错误：\n• \"It's time **for** get up\" → for 后面只能接名词，接动词要用 to\n• \"It time to get up\" → 不能丢 be 动词",
+        "对比 `It's time for bed.`（该睡了）：for + 名词 / to + 动词原形。"
+      ],
+      "distractors": [
+        [
+          "It's time for",
+          "It time",
+          "It's the time"
+        ],
+        [
+          "to got up.",
+          "to get on.",
+          "to getting up."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let me sleep for ten minutes.",
+      "cid": "3db64270",
+      "translation": "让我再睡十分钟。",
+      "chunks": [
+        "Let me sleep",
+        "for ten minutes."
+      ],
+      "hints": [
+        "让我睡",
+        "十分钟"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/let/",
+            "/miː/",
+            "/sliːp/"
+          ],
+          "pos": "使役动词祈使",
+          "meaning": "让我睡"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fər/",
+            "/ten/",
+            "/ˈmɪnɪts/"
+          ],
+          "pos": "介词短语",
+          "meaning": "十分钟"
+        }
+      ],
+      "explanations": [
+        "`Let me do sth` 表示请求允许自己做某事。常见错误：\n• \"Let me **to** sleep\" → let 后接动词原形，不加 to\n• \"Let **I** sleep\" → let 后面用宾格 me",
+        "`for ten minutes` 用 for 表示持续时长，ten 后面 minutes 要用复数。"
+      ],
+      "distractors": [
+        [
+          "Let me sleeping",
+          "Let me to sleep",
+          "Let I sleep"
+        ],
+        [
+          "for ten minute.",
+          "in ten minutes.",
+          "for ten minites."
+        ]
+      ]
+    },
+    {
+      "sentence": "When do you get up on Saturday?",
+      "cid": "4bc148af",
+      "translation": "星期六你几点起床？",
+      "chunks": [
+        "When do you",
+        "get up",
+        "on Saturday?"
+      ],
+      "hints": [
+        "你什么时候",
+        "起床",
+        "在星期六"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wen/",
+            "/duː/",
+            "/juː/"
+          ],
+          "pos": "一般现在时疑问",
+          "meaning": "你什么时候"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɡet/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词",
+          "meaning": "起床"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɒn/",
+            "/ˈsætərdeɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在星期六"
+        }
+      ],
+      "explanations": [
+        "问固定作息常用 `When do you ...?`，问某一次用 `When did you ...?`。常见错误：\n• \"When **does** you get up\" → 主语 you 用 do\n• \"**in** Saturday\" → 具体某天用 on",
+        "`get up` 是「起床」，`wake up` 是「醒来」，两者不同。",
+        "`on Saturday` 指（这个）星期六；泛指每个周六用 on Saturdays，星期前一律用 on，不用 in/at。"
+      ],
+      "distractors": [
+        [
+          "When does you",
+          "When are you",
+          "When you"
+        ],
+        [
+          "gets up",
+          "getting up",
+          "get on"
+        ],
+        [
+          "in Saturday?",
+          "at Saturday?",
+          "on the Saturday?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Get up soon.",
+      "cid": "d8351b8f",
+      "translation": "快起床。",
+      "chunks": [
+        "Get up",
+        "soon."
+      ],
+      "hints": [
+        "起来",
+        "快点"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词祈使",
+          "meaning": "起来"
+        },
+        {
+          "role": "时间副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/suːn/"
+          ],
+          "pos": "副词",
+          "meaning": "很快、尽早"
+        }
+      ],
+      "explanations": [
+        "`Get up.` 是祈使句，主语 you 不出现。常见错误：\n• \"Get **on**\" → get on 是上车/进展，起床是 get up\n• \"Getting up soon\" → 祈使句要用动词原形",
+        "`soon` 表「尽早、快点」，语气比 immediately 缓和，妈妈叫孩子起床常用。"
+      ],
+      "distractors": [
+        [
+          "Get on",
+          "Got up",
+          "Get up to"
+        ],
+        [
+          "later.",
+          "soonest.",
+          "more soon."
+        ]
+      ]
+    },
+    {
+      "sentence": "I usually sleep late on Saturday.",
+      "cid": "615604c4",
+      "translation": "我星期六通常晚起。",
+      "chunks": [
+        "I usually sleep late",
+        "on Saturday."
+      ],
+      "hints": [
+        "我通常睡到很晚",
+        "在星期六"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈjuːʒuəli/",
+            "/sliːp/",
+            "/leɪt/"
+          ],
+          "pos": "一般现在时+频度副词",
+          "meaning": "我通常睡到很晚"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɒn/",
+            "/ˈsætərdeɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在星期六"
+        }
+      ],
+      "explanations": [
+        "`sleep late` 是「睡懒觉、起得晚」，不是「睡得晚」（睡得晚是 go to bed late）。常见错误：\n• \"I usual sleep late\" → 修饰动词要用副词 usually\n• \"sleep **lately**\" → lately 是「最近」，性质完全不同",
+        "频度副词 usually 放在实义动词 sleep 之前。"
+      ],
+      "distractors": [
+        [
+          "I usual sleep late",
+          "I usually sleeps late",
+          "I usually sleep lately"
+        ],
+        [
+          "in Saturday.",
+          "at Saturday.",
+          "on the Saturday."
+        ]
+      ]
+    },
+    {
+      "sentence": "I don't want to get up.",
+      "cid": "ad376550",
+      "translation": "我真不想起床。",
+      "chunks": [
+        "I don't want",
+        "to get up."
+      ],
+      "hints": [
+        "我不想",
+        "起床"
+      ],
+      "grammar": [
+        {
+          "role": "主谓否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/doʊnt/",
+            "/wɑːnt/"
+          ],
+          "pos": "一般现在时否定",
+          "meaning": "我不想"
+        },
+        {
+          "role": "不定式",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/ɡet/",
+            "/ʌp/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "起床"
+        }
+      ],
+      "explanations": [
+        "`want to do` 表示「想做」，否定用 don't want。常见错误：\n• \"I **doesn't** want\" → 主语 I 用 don't\n• \"I don't want **get up**\" → want 后接不定式要带 to",
+        "口语里常弱读成 I don' wanna get up。"
+      ],
+      "distractors": [
+        [
+          "I doesn't want",
+          "I don't wants",
+          "I not want"
+        ],
+        [
+          "to get on.",
+          "to got up.",
+          "for get up."
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you awake?",
+      "cid": "83b90662",
+      "translation": "你醒了吗？",
+      "chunks": [
+        "Are you",
+        "awake?"
+      ],
+      "hints": [
+        "你",
+        "醒着吗"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "be 动词疑问",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/əˈweɪk/"
+          ],
+          "pos": "形容词",
+          "meaning": "醒着的"
+        }
+      ],
+      "explanations": [
+        "`awake` 是形容词，前面用 be 动词。常见错误：\n• \"**Do** you awake?\" → awake 是形容词，问「醒着吗」用 be 动词\n• \"Are you **wake**?\" → wake 是动词，形容词形式是 awake",
+        "对比 `Are you up?`（你起来了吗）：awake 指醒着，up 指已下床。"
+      ],
+      "distractors": [
+        [
+          "Do you",
+          "Is you",
+          "Are your"
+        ],
+        [
+          "wake?",
+          "awaked?",
+          "waking?"
+        ]
+      ]
+    },
+    {
+      "sentence": "It's too early for getting up.",
+      "cid": "2601c5bd",
+      "translation": "现在起床还太早。",
+      "chunks": [
+        "It's too early",
+        "for getting up."
+      ],
+      "hints": [
+        "太早了",
+        "为起床"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/tuː/",
+            "/ˈɜːrli/"
+          ],
+          "pos": "程度副词+形容词",
+          "meaning": "太早了"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fər/",
+            "/ˈɡetɪŋ/",
+            "/ʌp/"
+          ],
+          "pos": "for+动名词",
+          "meaning": "为起床"
+        }
+      ],
+      "explanations": [
+        "`too early` 意为「太早」，too 修饰形容词表程度过分。常见错误：\n• \"too **earlier**\" → too 后面用原级，不叠加比较级\n• \"for **get** up\" → for 后接动名词 getting",
+        "口语里更常说 It's too early to get up，用不定式更简练。"
+      ],
+      "distractors": [
+        [
+          "It's too earlier",
+          "It's so much early",
+          "It's very too early"
+        ],
+        [
+          "to getting up.",
+          "for get up.",
+          "for getting on."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's still early.",
+      "cid": "a155ee83",
+      "translation": "时间还早。",
+      "chunks": [
+        "It's still",
+        "early."
+      ],
+      "hints": [
+        "还是",
+        "早"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/stɪl/"
+          ],
+          "pos": "still+be",
+          "meaning": "还是（处于）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈɜːrli/"
+          ],
+          "pos": "形容词",
+          "meaning": "早的"
+        }
+      ],
+      "explanations": [
+        "`still` 表示「仍然、还」，放在 be 动词之后。常见错误：\n• \"It's **yet** early\" → yet 多用于否定句和疑问句\n• \"It's already early\" → already 表「已经」，语义相反",
+        "对比 `It's already late.`（已经很晚了）：still 强调延续，already 强调完成。"
+      ],
+      "distractors": [
+        [
+          "It's still yet",
+          "It's yet",
+          "It's ever"
+        ],
+        [
+          "earlier.",
+          "late.",
+          "so early."
+        ]
+      ]
+    },
+    {
+      "sentence": "Why didn't the alarm go off?",
+      "cid": "3cfec5e3",
+      "translation": "闹钟为什么没响呢？",
+      "chunks": [
+        "Why didn't the alarm",
+        "go off?"
+      ],
+      "hints": [
+        "为什么闹钟",
+        "没响"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/waɪ/",
+            "/ˈdɪdnt/",
+            "/ði/",
+            "/əˈlɑːrm/"
+          ],
+          "pos": "过去时否定疑问",
+          "meaning": "为什么闹钟没有"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɡoʊ/",
+            "/ɔːf/"
+          ],
+          "pos": "短语动词",
+          "meaning": "（闹钟）响起来"
+        }
+      ],
+      "explanations": [
+        "`go off` 指闹钟「响起来」，是固定短语动词。常见错误：\n• \"Why the alarm didn't go off\" → 疑问句助动词 didn't 要提到主语前\n• \"go **on**\" → go on 是「继续」，闹钟响是 go off",
+        "对比 `set the alarm`（设闹钟）/ `the alarm went off`（闹钟响了）。"
+      ],
+      "distractors": [
+        [
+          "Why the alarm didn't",
+          "Why didn't the alarms",
+          "Why does the alarm didn't"
+        ],
+        [
+          "go on?",
+          "go out?",
+          "went off?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Did you hear the alarm?",
+      "cid": "27b1176e",
+      "translation": "你听到闹钟了吗？",
+      "chunks": [
+        "Did you hear",
+        "the alarm?"
+      ],
+      "hints": [
+        "你听到",
+        "闹钟了吗"
+      ],
+      "grammar": [
+        {
+          "role": "助动词+主语+谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/dɪd/",
+            "/juː/",
+            "/hɪr/"
+          ],
+          "pos": "一般过去时疑问",
+          "meaning": "你听到了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ði/",
+            "/əˈlɑːrm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "闹钟"
+        }
+      ],
+      "explanations": [
+        "`Did you + 动词原形`构成过去时一般疑问句。常见错误：\n• \"Did you **heard**\" → 助动词 did 后面动词要用原形\n• \"**Do** you hear\" → 问已经发生的事要用 did",
+        "`hear` 强调「听见」（结果），`listen to` 强调「听」（动作）。"
+      ],
+      "distractors": [
+        [
+          "Did you heard",
+          "Did you hearing",
+          "Does you hear"
+        ],
+        [
+          "the alarms?",
+          "the alarming?",
+          "a alarming?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Is David up yet?",
+      "cid": "a5e554a7",
+      "translation": "大卫起床了吗？",
+      "chunks": [
+        "Is David up",
+        "yet?"
+      ],
+      "hints": [
+        "大卫起来了吗",
+        "还没"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪz/",
+            "/ˈdeɪvɪd/",
+            "/ʌp/"
+          ],
+          "pos": "be+up 疑问",
+          "meaning": "大卫起来了吗"
+        },
+        {
+          "role": "时间副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jet/"
+          ],
+          "pos": "副词",
+          "meaning": "（用于疑问）已经"
+        }
+      ],
+      "explanations": [
+        "`be up` 表示「已起床」。常见错误：\n• \"**Does** David up\" → up 是副词，与 be 连用，不用 do\n• \"Is David up **already**\" → 疑问句问「是否已经」用 yet",
+        "`yet` 在疑问句里表示「（到目前）已经」，回答用 Not yet.（还没）。"
+      ],
+      "distractors": [
+        [
+          "Does David up",
+          "Has David up",
+          "Is David up to"
+        ],
+        [
+          "already?",
+          "even?",
+          "soon?"
+        ]
+      ]
+    },
+    {
+      "sentence": "He is still in bed.",
+      "cid": "4778de8a",
+      "translation": "他还没起。",
+      "chunks": [
+        "He is still",
+        "in bed."
+      ],
+      "hints": [
+        "他还是",
+        "在床上"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/hiː/",
+            "/ɪz/",
+            "/stɪl/"
+          ],
+          "pos": "still+be",
+          "meaning": "他还是（处于）"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/bed/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在床上"
+        }
+      ],
+      "explanations": [
+        "`in bed` 指「躺在床上（睡觉）」，不带冠词。常见错误：\n• \"**on** bed\" → 躺床上用 in bed\n• \"in **the** bed\" → 泛指睡觉状态时不加 the（加 the 指某张具体的床）",
+        "`still` 放在 be 动词后，表示状态延续：He is still in bed = 他还没起来。"
+      ],
+      "distractors": [
+        [
+          "He still is",
+          "He is yet",
+          "He is till"
+        ],
+        [
+          "on bed.",
+          "at bed.",
+          "into bed."
+        ]
+      ]
+    },
+    {
+      "sentence": "I never get up early.",
+      "cid": "fe96fbbe",
+      "translation": "我从来不起早。",
+      "chunks": [
+        "I never get up",
+        "early."
+      ],
+      "hints": [
+        "我从不",
+        "起早"
+      ],
+      "grammar": [
+        {
+          "role": "主谓否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈnevər/",
+            "/ɡet/",
+            "/ʌp/"
+          ],
+          "pos": "频度副词否定",
+          "meaning": "我从不起来"
+        },
+        {
+          "role": "时间副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈɜːrli/"
+          ],
+          "pos": "副词",
+          "meaning": "早"
+        }
+      ],
+      "explanations": [
+        "`never` 本身已表否定，不再加 don't。常见错误：\n• \"I **don't never** get up\" → 双重否定错误\n• \"I never **gets** up\" → 主语 I 用原形 get",
+        "never 是频度副词，位置在实义动词之前、be 动词之后。"
+      ],
+      "distractors": [
+        [
+          "I never gets up",
+          "I don't never get up",
+          "I never getting up"
+        ],
+        [
+          "earlier.",
+          "late.",
+          "soon."
+        ]
+      ]
+    },
+    {
+      "sentence": "I have trouble waking up in the morning.",
+      "cid": "9fa6d5b3",
+      "translation": "早起对我是件困难的事。",
+      "chunks": [
+        "I have trouble",
+        "waking up",
+        "in the morning."
+      ],
+      "hints": [
+        "我很难",
+        "醒来",
+        "在早上"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/",
+            "/ˈtrʌbl/"
+          ],
+          "pos": "have trouble 句型",
+          "meaning": "我有困难"
+        },
+        {
+          "role": "动名词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈweɪkɪŋ/",
+            "/ʌp/"
+          ],
+          "pos": "动名词短语",
+          "meaning": "醒来"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/ðə/",
+            "/ˈmɔːrnɪŋ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在早上"
+        }
+      ],
+      "explanations": [
+        "`have trouble doing sth` 是「做某事有困难」的固定句型，trouble 后接动名词。常见错误：\n• \"have trouble **to wake** up\" → 一定用 -ing，不用不定式\n• \"have **a** trouble\" → 此处 trouble 不可数，不加 a",
+        "对比 `have a hard time doing sth`（同义）。",
+        "`in the morning` 是「在早上」的固定说法，泛指时段用 in the + 名词，不用 on/at。"
+      ],
+      "distractors": [
+        [
+          "I have troubles",
+          "I have a trouble",
+          "I am trouble"
+        ],
+        [
+          "to wake up",
+          "wake up",
+          "woke up"
+        ],
+        [
+          "on the morning.",
+          "in morning.",
+          "at the morning."
+        ]
+      ]
+    },
+    {
+      "sentence": "What should I wear?",
+      "cid": "7533e2a5",
+      "translation": "穿什么好呢？",
+      "chunks": [
+        "What should",
+        "I wear?"
+      ],
+      "hints": [
+        "我应该",
+        "穿什么"
+      ],
+      "grammar": [
+        {
+          "role": "情态动词+主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wʌt/",
+            "/ʃʊd/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "我应该（穿）什么"
+        },
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/wer/"
+          ],
+          "pos": "主语+动词",
+          "meaning": "我穿"
+        }
+      ],
+      "explanations": [
+        "`What should I do?` 是征询建议的常用句型。常见错误：\n• \"What should I **wearing**\" → should 后面用动词原形\n• \"What **do I should** wear\" → should 已是助动词，不再加 do",
+        "`wear` 强调「穿着」的状态；`put on` 强调「穿上」的动作。"
+      ],
+      "distractors": [
+        [
+          "What should I wearing",
+          "What I should",
+          "What do I should"
+        ],
+        [
+          "to wear?",
+          "wear on?",
+          "wear it?"
+        ]
+      ]
+    }
+  ]
+}

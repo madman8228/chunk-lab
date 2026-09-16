@@ -65,7 +65,7 @@ DENY_PATHS="
 /package-lock.json
 /make-icons.py
 /validate_builtins.js
-/validate_oral8000.js
+/validate_oral_book.js
 /validate_distractors.js
 /validate_freq_idioms.js
 /diagnose.html

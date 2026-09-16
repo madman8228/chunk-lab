@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "cff80fb6",
+      "sentence": "I'm going to meet a friend for lunch.",
+      "translation": "我打算和朋友一起吃午饭。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "f03e78e8",
+      "sentence": "Let's grab a coffee after work.",
+      "translation": "下班后一起去喝杯咖啡吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "b3b8b56c",
+      "sentence": "Are you doing anything this evening?",
+      "translation": "你今晚有什么安排吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "c5333fc3",
+      "sentence": "I'd love to, but I'm afraid I'm busy.",
+      "translation": "我很想去，但恐怕我没空。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "e5c1bf50",
+      "sentence": "Why don't we meet at the usual place?",
+      "translation": "我们在老地方见怎么样？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "9ae0b549",
+      "sentence": "I'll pick you up at your place.",
+      "translation": "我去你那儿接你。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "249e8feb",
+      "sentence": "Could we reschedule for tomorrow instead?",
+      "translation": "我们能改到明天吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "684f3d80",
+      "sentence": "I'm running a bit late, sorry.",
+      "translation": "我可能要晚点到，抱歉。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "5f612d59",
+      "sentence": "Shall we take a walk after dinner?",
+      "translation": "晚饭后我们去散散步好吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "f900c537",
+      "sentence": "I'll see you at the entrance at seven.",
+      "translation": "我们七点在入口见。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "15accdce",
+      "sentence": "Are you free this weekend?",
+      "translation": "你这个周末有空吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "ef7de65b",
+      "sentence": "I'm afraid I can't make it tonight.",
+      "translation": "恐怕今晚我抽不出时间。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "966b3754",
+      "sentence": "Why don't we grab a bite to eat?",
+      "translation": "我们随便吃点东西怎么样？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "09096d4a",
+      "sentence": "What time should we meet up?",
+      "translation": "我们几点碰面好？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "5dea8d2a",
+      "sentence": "Mind if I join you for lunch?",
+      "translation": "介意我跟你们一起吃午饭吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "141237b8",
+      "sentence": "I'm supposed to meet him at six.",
+      "translation": "我六点应该和他见面。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "9352bdcd",
+      "sentence": "Would you like to grab dinner sometime?",
+      "translation": "改天一起吃个晚饭怎么样？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "e4eb1b2b",
+      "sentence": "Let's catch up over coffee this weekend.",
+      "translation": "这周末我们喝咖啡聊聊近况吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "ea7d8a4b",
+      "sentence": "Why don't you come over for dinner tonight?",
+      "translation": "今晚你过来一起吃晚饭吧？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "6c4276f8",
+      "sentence": "Wanna go for a run?",
+      "translation": "想去跑步吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "d6700842",
+      "sentence": "I'm down for it.",
+      "translation": "我没问题。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "01b8d6e2",
+      "sentence": "Let's hang out.",
+      "translation": "出去玩吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-b30258ecae72.json",
+      "sourceOffset": 21
+    }
+  ]
+}

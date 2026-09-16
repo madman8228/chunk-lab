@@ -1,0 +1,168 @@
+[
+ {
+  "sentence": "I don't know what to do.",
+  "translation": "该怎么办呢?",
+  "chunks": [
+   "I don't know",
+   "what to do."
+  ],
+  "hints": [
+   "我不知道",
+   "该怎么办"
+  ]
+ },
+ {
+  "sentence": "What am I supposed to do?",
+  "translation": "我该怎么办?",
+  "chunks": [
+   "What am I",
+   "supposed to do?"
+  ],
+  "hints": [
+   "我该",
+   "怎么办才好"
+  ]
+ },
+ {
+  "sentence": "We are in trouble.",
+  "translation": "这下可麻烦了。",
+  "chunks": [
+   "We are",
+   "in trouble."
+  ],
+  "hints": [
+   "我们",
+   "有麻烦了"
+  ]
+ },
+ {
+  "sentence": "It's a hassle.",
+  "translation": "那很麻烦。",
+  "chunks": [
+   "It's",
+   "a hassle."
+  ],
+  "hints": [
+   "真是",
+   "件麻烦事"
+  ]
+ },
+ {
+  "sentence": "It's really a difficult problem.",
+  "translation": "这真是个难题。",
+  "chunks": [
+   "It's really",
+   "a difficult problem."
+  ],
+  "hints": [
+   "这真是",
+   "个难题"
+  ]
+ },
+ {
+  "sentence": "I don't know what to say.",
+  "translation": "我不知道说什么才好。",
+  "chunks": [
+   "I don't know",
+   "what to say."
+  ],
+  "hints": [
+   "我不知道",
+   "说什么才好"
+  ]
+ },
+ {
+  "sentence": "You got me.",
+  "translation": "这下可难住我了。",
+  "chunks": [
+   "You",
+   "got me."
+  ],
+  "hints": [
+   "你",
+   "可难住我了"
+  ]
+ },
+ {
+  "sentence": "He's a nuisance.",
+  "translation": "他特招人讨厌。",
+  "chunks": [
+   "He's",
+   "a nuisance."
+  ],
+  "hints": [
+   "他",
+   "真招人烦"
+  ]
+ },
+ {
+  "sentence": "Oops!",
+  "translation": "哎哟!",
+  "chunks": [
+   "Oops!"
+  ],
+  "hints": [
+   "哎哟"
+  ]
+ },
+ {
+  "sentence": "Oh, no!",
+  "translation": "噢!不!",
+  "chunks": [
+   "Oh,",
+   "no!"
+  ],
+  "hints": [
+   "噢",
+   "不"
+  ]
+ },
+ {
+  "sentence": "That's the hard part.",
+  "translation": "这正是难点。",
+  "chunks": [
+   "That's",
+   "the hard part."
+  ],
+  "hints": [
+   "难就难在",
+   "这一点"
+  ]
+ },
+ {
+  "sentence": "I feel guilty.",
+  "translation": "我感到内疚。",
+  "chunks": [
+   "I feel",
+   "guilty."
+  ],
+  "hints": [
+   "我感到",
+   "内疚"
+  ]
+ },
+ {
+  "sentence": "You look puzzled.",
+  "translation": "你看来很困惑。",
+  "chunks": [
+   "You look",
+   "puzzled."
+  ],
+  "hints": [
+   "你看起来",
+   "很困惑"
+  ]
+ },
+ {
+  "sentence": "The idea haunts me.",
+  "translation": "那个念头总是萦绕着我。",
+  "chunks": [
+   "The idea",
+   "haunts me."
+  ],
+  "hints": [
+   "那个念头",
+   "总缠着我"
+  ]
+ }
+]
