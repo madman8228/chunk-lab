@@ -121,7 +121,7 @@ const FREQ_ID = 'builtin-freq-idioms';
    原先判据只在 B 段的 page 里定义，E 段换了 context 就 `__bookShapeOk is not a function`
    （测试自身崩掉、后面 C 段直接不跑）。现在统一从这里注入每个 context。
 
-   「最少切几段」**不在这里重复实现** —— 注入 scripts/chunk-shape.js 的**同一份源码**
+   「最少切几段」**不在这里重复实现** —— 注入 js/chunk-shape.js 的**同一份源码**
    （与 5 个校验器共用一份判据），单字句（Help! / Thanks.）允许 1 段。 */
 function shapeOk(it) {
   var CS = window.ChunkShape;
