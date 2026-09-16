@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-62fc76216db09402423ced9d78d110a9425f5d8c5b2fd115a8f7377ef0e9786f",
+  "contentVersion": "v1-38c2938de33473c6d8ea34ef38ba7f50b1f63f57bc38bce8b88f5ec57646bed7",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -54,21 +54,21 @@
       "totalCount": 94,
       "shards": [
         {
-          "id": "oral-001-0347da81a5d5",
-          "url": "content/oral-1-1-1/oral-001-0347da81a5d5.json",
+          "id": "oral-001-7f7f3a88e1da",
+          "url": "content/oral-1-1-1/oral-001-7f7f3a88e1da.json",
           "count": 94,
-          "bytes": 83268,
-          "sha256": "0347da81a5d518c3e54dfe16d5bcc12889efa6836c1c41202c29cd844c8893f6",
+          "bytes": 83253,
+          "sha256": "7f7f3a88e1dab373cc046c79379a64c0f222f49645f315bf85d448f12c1581b3",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-1fd287989904",
-          "url": "content/oral-1-1-1/oral-index-001-1fd287989904.json",
+          "id": "oral-index-001-607a3136fe12",
+          "url": "content/oral-1-1-1/oral-index-001-607a3136fe12.json",
           "count": 94,
           "bytes": 20685,
-          "sha256": "1fd2879899046351c1415a537f62124171c3cd871f975bfd16b5ebdbd5561c1e",
+          "sha256": "607a3136fe125e6c57f482d295cd134284c773509e83fe1f66ae46f514404379",
           "mode": "index"
         }
       ]
@@ -86,21 +86,21 @@
       "totalCount": 125,
       "shards": [
         {
-          "id": "oral-001-dcec8bb55254",
-          "url": "content/oral-1-1-2/oral-001-dcec8bb55254.json",
+          "id": "oral-001-bdafdede0196",
+          "url": "content/oral-1-1-2/oral-001-bdafdede0196.json",
           "count": 125,
-          "bytes": 99900,
-          "sha256": "dcec8bb55254495af58bb823cf6559c1c9ad5484792fa48f547a093bcdd6aa1a",
+          "bytes": 99915,
+          "sha256": "bdafdede01966a8f5ac30c776f71c4e4b7faae0e824c10b4c545f47433de75aa",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-ddb67257d543",
-          "url": "content/oral-1-1-2/oral-index-001-ddb67257d543.json",
+          "id": "oral-index-001-5aeb145af304",
+          "url": "content/oral-1-1-2/oral-index-001-5aeb145af304.json",
           "count": 125,
           "bytes": 27054,
-          "sha256": "ddb67257d5435b34c62f5561ff449284af73713fb79ac824730e501f2ae6f3b2",
+          "sha256": "5aeb145af30481b998f7be8aa17672ac9a33f5ef4bab93b57d8c12af1da455f1",
           "mode": "index"
         }
       ]
@@ -118,21 +118,21 @@
       "totalCount": 89,
       "shards": [
         {
-          "id": "oral-001-1d693bad231b",
-          "url": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+          "id": "oral-001-31e3a8e11788",
+          "url": "content/oral-1-1-3/oral-001-31e3a8e11788.json",
           "count": 89,
-          "bytes": 66039,
-          "sha256": "1d693bad231b911668862058d3a1448ad4a8efa3304f037271dd08276c9ed637",
+          "bytes": 66018,
+          "sha256": "31e3a8e117882fcb2914e0aa4a23a5c3e7751a8f10cc5e3b6b09b5c11cfb08c8",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-097dfef8d3c1",
-          "url": "content/oral-1-1-3/oral-index-001-097dfef8d3c1.json",
+          "id": "oral-index-001-6ee218a23466",
+          "url": "content/oral-1-1-3/oral-index-001-6ee218a23466.json",
           "count": 89,
           "bytes": 20484,
-          "sha256": "097dfef8d3c140d42776096a1012575cf05d0f0cb3460680e63e561e8854e0e9",
+          "sha256": "6ee218a23466cf1cf2abdba4631052f042933ff0d0b35bbaffe470f769585f1b",
           "mode": "index"
         }
       ]
@@ -150,21 +150,21 @@
       "totalCount": 86,
       "shards": [
         {
-          "id": "oral-001-199571a453e8",
-          "url": "content/oral-1-2-1/oral-001-199571a453e8.json",
+          "id": "oral-001-abbddc842932",
+          "url": "content/oral-1-2-1/oral-001-abbddc842932.json",
           "count": 86,
-          "bytes": 53354,
-          "sha256": "199571a453e8ef71da723fd80a50a349729ccc9d9572e166339ccb8383e349eb",
+          "bytes": 53350,
+          "sha256": "abbddc8429323512fb24417fc4557a52a08e059f752c540f727234d3bcdb2cb9",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-e06e831ebd66",
-          "url": "content/oral-1-2-1/oral-index-001-e06e831ebd66.json",
+          "id": "oral-index-001-889d3d42d76f",
+          "url": "content/oral-1-2-1/oral-index-001-889d3d42d76f.json",
           "count": 86,
           "bytes": 19585,
-          "sha256": "e06e831ebd6664bb948d7ebe93e052632dbb802746e39971b8c335f00cf47b0a",
+          "sha256": "889d3d42d76f0cf37296eb7de233eef21439ba24a758270a6ee89b2f00eec16b",
           "mode": "index"
         }
       ]
@@ -182,21 +182,21 @@
       "totalCount": 61,
       "shards": [
         {
-          "id": "oral-001-8dc59e656b8d",
-          "url": "content/oral-1-2-2/oral-001-8dc59e656b8d.json",
+          "id": "oral-001-17ce4509e5c8",
+          "url": "content/oral-1-2-2/oral-001-17ce4509e5c8.json",
           "count": 61,
-          "bytes": 23872,
-          "sha256": "8dc59e656b8dc05e1611101bb5c888d11ea339afbad300606c392fe590d103dc",
+          "bytes": 23857,
+          "sha256": "17ce4509e5c8004e8cc823451d89a02f38c992e36aaf2003afa8a2bd4f0e182a",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-519e0cd7fdec",
-          "url": "content/oral-1-2-2/oral-index-001-519e0cd7fdec.json",
+          "id": "oral-index-001-237a7bab4607",
+          "url": "content/oral-1-2-2/oral-index-001-237a7bab4607.json",
           "count": 61,
           "bytes": 13935,
-          "sha256": "519e0cd7fdecce84aa658b796f6933eeb115486b4a0a548af1b4fb6918d8a017",
+          "sha256": "237a7bab4607cc9d89526873cee922b4983c83cc6fe9b938db3f9c34799bcd9b",
           "mode": "index"
         }
       ]
