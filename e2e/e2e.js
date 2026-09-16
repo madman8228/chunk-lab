@@ -218,7 +218,7 @@ function check(name, cond, detail) {
   check('main: 顶栏工具按钮去除方形容器', ok.topbarToolButtons === 3, JSON.stringify(ok));
   check('main: 进度与连击改为扁平显示', ok.metricFlat === 2, JSON.stringify(ok));
   check('main: 题库入口改为扁平显示', ok.decksFlat, JSON.stringify(ok));
-  check('main: 题库按钮提示准确', ok.decksTitle === '题库', JSON.stringify(ok));
+  check('main: 课程按钮提示准确', ok.decksTitle === '课程', JSON.stringify(ok));
   check('main: 顶栏工具按钮 Hover 无圆形背景', topbarHover.every(function (bg) { return bg === 'rgba(0, 0, 0, 0)'; }), JSON.stringify(topbarHover));
   check('main: 练习页显示音效按钮', ok.soundDisplay !== 'none', JSON.stringify(ok));
   check('main: 朗读按钮放在英文句子末尾', ok.speakAfterEnglish, JSON.stringify(ok));
@@ -955,7 +955,7 @@ function check(name, cond, detail) {
   const dsvg = decksLayout.svg;
   check('decks: SVG 图标渲染', dsvg >= 10, 'svg=' + dsvg);
   check('decks: 返回按钮文案简洁', decksLayout.back.trim() === '返回', JSON.stringify(decksLayout));
-  check('decks: 添加题库入口保留且内置题库不复制副本', decksLayout.importText.indexOf('添加题库') >= 0 && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
+  check('decks: 添加课程入口保留且内置课程不复制副本', decksLayout.importText.indexOf('添加课程') >= 0 && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
   check('decks: 题库卡片高度紧凑', decksLayout.maxRowHeight <= 60, JSON.stringify(decksLayout));
   check('decks: 零 pageerror', errsd.length === 0, errsd.join('|'));
   await pd.click('#btnImportDecks');

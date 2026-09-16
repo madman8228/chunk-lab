@@ -638,7 +638,7 @@ function renderSentenceList(body){
   });
   if(!out.length){
     body.innerHTML = '<div class="empty-tip">'+
-      (rows.length === 0 ? '题库里还没有任何句子，去练习页导入或启用内置题库吧' :
+      (rows.length === 0 ? '课程里还没有任何句子，去练习页导入或启用内置课程吧' :
        _statsFilter==='all' ? '还没有练习记录，先去练几题吧' :
        query ? '没有找到与“'+esc(_statsSearch.trim())+'”相关的句子' : '没有符合条件的句子')+'</div>';
     return;
@@ -836,7 +836,7 @@ function practiceReviewDeck(deck){
   var items = (deck.items || []).filter(function(it){
     return isMarkedForDeck(deck.id, it) || isFluencyByDeck(deck.id, it);
   }).map(function(it){ return withStatsSource(it, deck.id); });
-  if(!items.length){ alert('该题库没有已标熟/已掌握的句子'); return; }
+  if(!items.length){ alert('该课程没有已标熟/已掌握的句子'); return; }
   launchReviewItems({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name), items:items });
 }
 function practiceWrongBook(){
@@ -852,7 +852,7 @@ function practiceWrongBook(){
     var it = (deck.items||[]).find(function(x){ return x.sentence === b.sentence; });
     if(it) items.push(withStatsSource(it, b.deckId));
   });
-  if(!items.length){ alert('错题本中的句子已全部删除或找不到对应题库'); return; }
+  if(!items.length){ alert('错题本中的句子已全部删除或找不到对应课程'); return; }
   launchReviewItems({ id:'book-'+Date.now().toString(36), name:'错题', items:items });
 }
 
