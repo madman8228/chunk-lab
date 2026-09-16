@@ -3,21 +3,29 @@
  * check-cross-source-dup.mjs · 跨内容源重复句的**口径护栏**（2026-09-16 立）
  *
  * 为什么存在（根因）：
- *   本站有两个**独立内容源**同处一个 cid 空间：
+ *   本站有两个**独立内容源**：
  *     · 口语场景库 oral-book.js      （window.ORAL_BOOK.decks，按书的章节/场景）
  *     · 惯用语库   freq-idioms.js    （window.DATA_FREQ_IDIOMS，按固定表达）
- *   两者都从「句子」出题，句子文本相同 → **cid（fnv8(sentence)）相同** → 同一个学习状态。
+ *   句子文本相同 → **cid（fnv8(sentence)）相同**（两者共用一个 cid 空间）。
  *   于是「同一句话同时存在于两库」到底是允许还是缺陷，一直**没人定过**，也**没有任何闸**：
  *   2026-09-16 首次量化，实测 5 条（此前只知道 1 条 `Take it or leave it.`）。
  *
+ * ⚠️ 事实校正（2026-09-16 晚复核代码后更正 —— 本头注此前把这一点写错了）：
+ *   **cid 相同 ≠ 进度共享**。句子级档案 key = `deckId#cid`（core.js `cidKey` / `masteredKey` /
+ *   `itemKey` 三者同源），而两库 deckId 不同（如 `oral-4-17-1` vs `builtin-freq-idioms`）
+ *   ⇒ 跨库进度**始终各自独立**，与 cid 是否相同无关；即便把 punct-variant 的标点统一了，
+ *     key 前缀仍不同，依旧各记一份（`book-deck-migration.test.js` 亦断言「跨 deck 正确分流」）。
+ *   ⇒ 本闸只回答「同一句话是否在两个入口各出一遍」，**不管进度共享**。
+ *     要让跨源同句共享进度是**另一个议题**（须改 key 构造），改标点解决不了。
+ *
  * 口径（2026-09-16 定）：
  *   1. 跨源重复**允许** —— 两库入口语义不同（「这个场景怎么说」vs「这个惯用语怎么说」），
- *      句子会了就是会了，cid 相同意味着**进度天然共享**，不会产生两份记忆状态。
+ *      同一句在两种语境下都值得出题，属**有意的重复**，不是缺陷。
  *   2. 但必须**显式登记**（extra/cross-source-allowlist.json）—— 允许 ≠ 不管：
  *      新增一条未登记的重复即报错，逼人做「这里该不该重复」的判断，而不是让它悄悄长出来。
  *   3. 登记里区分两类（kind），并**双向自洽校验**：
- *        identical     —— 两库句子文本完全一致（cid 同、进度共享；纯重复，无害）
- *        punct-variant —— 只有句末标点不同（如 `!` / `.`；**cid 不同、进度不共享**）
+ *        identical     —— 两库句子文本逐字一致（cid 同）
+ *        punct-variant —— 只有句末标点不同（如 `!` / `.`；cid 不同）
  *      若哪天有人把变体统一了，kind 与事实不符也会报错 → 登记表不会腐烂成谎言。
  *
  * 用法：node scripts/check-cross-source-dup.mjs
@@ -133,7 +141,7 @@ rows.sort((a, b) => (a.kind === b.kind ? a.norm.localeCompare(b.norm) : a.kind.l
 rows.forEach((r) => {
   console.log(`  [${r.kind}] ${JSON.stringify(r.oral)}`);
   if (r.kind === 'punct-variant') {
-    console.log(`      习语库写作 ${JSON.stringify(r.idiom)} → cid 不同（${r.cidOral} vs ${r.cidIdiom}）= 进度不共享`);
+    console.log(`      习语库写作 ${JSON.stringify(r.idiom)} → cid 不同（${r.cidOral} vs ${r.cidIdiom}；仅标点差异，与进度无关）`);
   }
   console.log(`      口语 deck: ${r.decks}`);
 });
