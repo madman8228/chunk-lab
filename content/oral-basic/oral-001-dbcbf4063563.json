@@ -71,54 +71,6 @@
       ]
     },
     {
-      "sentence": "No problem.",
-      "cid": "3d04d4e1",
-      "translation": "没问题/不客气。",
-      "chunks": [
-        "No",
-        "problem."
-      ],
-      "hints": [
-        "没有",
-        "问题"
-      ],
-      "grammar": [
-        {
-          "role": "限定词",
-          "color": "#7c5cbf",
-          "phonetic": [
-            "/nəʊ/"
-          ],
-          "pos": "否定词",
-          "meaning": "没有"
-        },
-        {
-          "role": "名词",
-          "color": "#3358e0",
-          "phonetic": [
-            "/ˈprɒbləm/"
-          ],
-          "pos": "名词",
-          "meaning": "问题"
-        }
-      ],
-      "explanations": [
-        "**No problem.** 可以回应感谢（= You're welcome）也可以答应请求（= Sure / Of course）。",
-        "比 \"You're welcome\" 更轻松随意，朋友之间最常用。"
-      ],
-      "distractors": [
-        [
-          "Not",
-          "None",
-          "Any"
-        ],
-        [
-          "a problem.",
-          "the problem."
-        ]
-      ]
-    },
-    {
       "sentence": "So far so good.",
       "cid": "d13966c5",
       "translation": "到目前为止都挺好。",

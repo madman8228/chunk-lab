@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Do you mind if I ask you a favor?",
+      "translation": "我可以请您帮个忙吗?",
+      "chunks": [
+        "Do you mind",
+        "if I ask you a favor?"
+      ],
+      "hints": [
+        "你介意吗",
+        "如果我请你帮个忙"
+      ],
+      "cid": "584dc1a3"
+    },
+    {
+      "sentence": "Would you give me a hand?",
+      "translation": "能帮把手吗?",
+      "chunks": [
+        "Would you",
+        "give me a hand?"
+      ],
+      "hints": [
+        "你愿意",
+        "帮我一把手吗"
+      ],
+      "cid": "57288de5"
+    },
+    {
+      "sentence": "I'm sorry to bother you,...",
+      "translation": "对不起……",
+      "chunks": [
+        "I'm sorry",
+        "to bother you,..."
+      ],
+      "hints": [
+        "对不起",
+        "打扰你了"
+      ],
+      "cid": "9705ac23"
+    },
+    {
+      "sentence": "I'll be glad to.",
+      "translation": "乐意为您效劳。",
+      "chunks": [
+        "I'll be",
+        "glad to."
+      ],
+      "hints": [
+        "我很",
+        "乐意"
+      ],
+      "cid": "20f090fd"
+    },
+    {
+      "sentence": "Could I possibly...?",
+      "translation": "我可不可以……/可不可以让我……",
+      "chunks": [
+        "Could I",
+        "possibly...?"
+      ],
+      "hints": [
+        "我可以",
+        "……吗"
+      ],
+      "cid": "4d6864d7"
+    },
+    {
+      "sentence": "If you'd like,...",
+      "translation": "如果可以的话，……",
+      "chunks": [
+        "If you'd",
+        "like,..."
+      ],
+      "hints": [
+        "如果你",
+        "愿意的话"
+      ],
+      "cid": "3b347863"
+    },
+    {
+      "sentence": "Could you pass the sugar, please?",
+      "translation": "请您把糖拿过来行吗?",
+      "chunks": [
+        "Could you pass",
+        "the sugar,",
+        "please?"
+      ],
+      "hints": [
+        "你能递一下",
+        "糖",
+        "请"
+      ],
+      "cid": "0e829cd6"
+    },
+    {
+      "sentence": "Here you are.",
+      "translation": "给。",
+      "chunks": [
+        "Here",
+        "you are."
+      ],
+      "hints": [
+        "给",
+        "你"
+      ],
+      "cid": "41201124"
+    },
+    {
+      "sentence": "Please do this.",
+      "translation": "请做这个。",
+      "chunks": [
+        "Please",
+        "do this."
+      ],
+      "hints": [
+        "请",
+        "做这个"
+      ],
+      "cid": "3b12afb6"
+    },
+    {
+      "sentence": "Would you drive me to the store?",
+      "translation": "您能开车送我到那家店吗?",
+      "chunks": [
+        "Would you drive me",
+        "to the store?"
+      ],
+      "hints": [
+        "你能开车送我",
+        "到那家店吗"
+      ],
+      "cid": "3dd6d29d"
+    },
+    {
+      "sentence": "Would you help me find the number for the ABC Hotel?",
+      "translation": "您能帮我找到ABC饭店的电话号码吗?",
+      "chunks": [
+        "Would you help me find",
+        "the number for the ABC Hotel?"
+      ],
+      "hints": [
+        "你能帮我找到",
+        "ABC饭店的电话号码吗"
+      ],
+      "cid": "4e88bbba"
+    },
+    {
+      "sentence": "May I borrow your pen?",
+      "translation": "能借用一下你的钢笔吗?",
+      "chunks": [
+        "May I borrow",
+        "your pen?"
+      ],
+      "hints": [
+        "我可以借",
+        "你的钢笔吗"
+      ],
+      "cid": "fa523767"
+    },
+    {
+      "sentence": "Do you have a pen?",
+      "translation": "有笔吗?",
+      "chunks": [
+        "Do you",
+        "have a pen?"
+      ],
+      "hints": [
+        "你有",
+        "笔吗"
+      ],
+      "cid": "31c1b2ac"
+    },
+    {
+      "sentence": "Can you lend me ten dollars?",
+      "translation": "能借给我10美元吗?",
+      "chunks": [
+        "Can you lend me",
+        "ten dollars?"
+      ],
+      "hints": [
+        "你能借给我",
+        "10美元吗"
+      ],
+      "cid": "2a1d5c8c"
+    },
+    {
+      "sentence": "Would you give me a call?",
+      "translation": "你能给我打个电话吗?",
+      "chunks": [
+        "Would you",
+        "give me a call?"
+      ],
+      "hints": [
+        "你能",
+        "给我打个电话吗"
+      ],
+      "cid": "a66ef75a"
+    },
+    {
+      "sentence": "I'd appreciate it if you could call me tonight.",
+      "translation": "你今天晚上如果能给我打个电话的话，我将非常感激。",
+      "chunks": [
+        "I'd appreciate it",
+        "if you could call me tonight."
+      ],
+      "hints": [
+        "我会非常感激",
+        "如果你今晚能给我打电话的话"
+      ],
+      "cid": "cfcfc094"
+    },
+    {
+      "sentence": "Please turn it down.",
+      "translation": "请关小点儿声。",
+      "chunks": [
+        "Please turn",
+        "it down."
+      ],
+      "hints": [
+        "请把声音",
+        "关小一点"
+      ],
+      "cid": "3b6aef29"
+    },
+    {
+      "sentence": "Wait here until I get back.",
+      "translation": "等我回来。",
+      "chunks": [
+        "Wait here",
+        "until I get back."
+      ],
+      "hints": [
+        "在这儿等着",
+        "直到我回来"
+      ],
+      "cid": "e0950cd6"
+    },
+    {
+      "sentence": "Hello, there!",
+      "translation": "喂，你!",
+      "chunks": [
+        "Hello,",
+        "there!"
+      ],
+      "hints": [
+        "喂",
+        "你"
+      ],
+      "cid": "4c6b7772"
+    },
+    {
+      "sentence": "Hey!",
+      "translation": "喂!",
+      "chunks": [
+        "Hey!"
+      ],
+      "hints": [
+        "喂"
+      ],
+      "cid": "058292d4"
+    },
+    {
+      "sentence": "Do you have time?",
+      "translation": "你有空吗?",
+      "chunks": [
+        "Do you",
+        "have time?"
+      ],
+      "hints": [
+        "你有",
+        "空吗"
+      ],
+      "cid": "8a34f44d"
+    },
+    {
+      "sentence": "Can I ask you a favor?",
+      "translation": "我想求你件事行吗?",
+      "chunks": [
+        "Can I ask you",
+        "a favor?"
+      ],
+      "hints": [
+        "我能求你",
+        "帮个忙吗"
+      ],
+      "cid": "db584c0c"
+    },
+    {
+      "sentence": "May I ask you something?",
+      "translation": "我想打听点儿事。",
+      "chunks": [
+        "May I ask you",
+        "something?"
+      ],
+      "hints": [
+        "我可以问你",
+        "点事吗"
+      ],
+      "cid": "70dd88dc"
+    },
+    {
+      "sentence": "Guess what?",
+      "translation": "你猜怎么着?",
+      "chunks": [
+        "Guess",
+        "what?"
+      ],
+      "hints": [
+        "你猜",
+        "怎么着"
+      ],
+      "cid": "5ba92df9"
+    },
+    {
+      "sentence": "Sorry, I mistook you for someone else.",
+      "translation": "对不起，我认错人了。",
+      "chunks": [
+        "Sorry,",
+        "I mistook you",
+        "for someone else."
+      ],
+      "hints": [
+        "对不起",
+        "我把你认成了",
+        "别人"
+      ],
+      "cid": "4d14acbc"
+    },
+    {
+      "sentence": "How should I do it?",
+      "translation": "我该怎么做呢?",
+      "chunks": [
+        "How should",
+        "I do it?"
+      ],
+      "hints": [
+        "我该",
+        "怎么做呢"
+      ],
+      "cid": "2a4e8042"
+    },
+    {
+      "sentence": "This is the way you should do it.",
+      "translation": "你该这么做。",
+      "chunks": [
+        "This is the way",
+        "you should do it."
+      ],
+      "hints": [
+        "就是这样",
+        "你该这么做"
+      ],
+      "cid": "2cfabe71"
+    },
+    {
+      "sentence": "It'll do the trick.",
+      "translation": "这样的话就会很顺利。",
+      "chunks": [
+        "It'll do",
+        "the trick."
+      ],
+      "hints": [
+        "这样就能",
+        "奏效了"
+      ],
+      "cid": "3fdae928"
+    },
+    {
+      "sentence": "This looks better.",
+      "translation": "这样看上去好一些。",
+      "chunks": [
+        "This looks",
+        "better."
+      ],
+      "hints": [
+        "这样看起来",
+        "更好一些"
+      ],
+      "cid": "5b325f49"
+    },
+    {
+      "sentence": "I'll do it my own way.",
+      "translation": "我用我自己的办法。",
+      "chunks": [
+        "I'll do it",
+        "my own way."
+      ],
+      "hints": [
+        "我要照",
+        "我自己的办法做"
+      ],
+      "cid": "be1ace8a"
+    },
+    {
+      "sentence": "Like this?",
+      "translation": "像这样?",
+      "chunks": [
+        "Like",
+        "this?"
+      ],
+      "hints": [
+        "像",
+        "这样吗"
+      ],
+      "cid": "bb0166d7"
+    },
+    {
+      "sentence": "Like what?",
+      "translation": "像什么?",
+      "chunks": [
+        "Like",
+        "what?"
+      ],
+      "hints": [
+        "像",
+        "什么"
+      ],
+      "cid": "d18ff455"
+    },
+    {
+      "sentence": "It's easy.",
+      "translation": "很简单。",
+      "chunks": [
+        "It's",
+        "easy."
+      ],
+      "hints": [
+        "这很",
+        "简单"
+      ],
+      "cid": "6f69b362"
+    },
+    {
+      "sentence": "Just like that!",
+      "translation": "简单得不得了。",
+      "chunks": [
+        "Just",
+        "like that!"
+      ],
+      "hints": [
+        "就",
+        "那样而已"
+      ],
+      "cid": "02554296"
+    },
+    {
+      "sentence": "It's a little hard.",
+      "translation": "有点儿难哦。",
+      "chunks": [
+        "It's a little",
+        "hard."
+      ],
+      "hints": [
+        "有一点",
+        "难"
+      ],
+      "cid": "9857b1ba"
+    },
+    {
+      "sentence": "It's complicated.",
+      "translation": "很复杂哦。",
+      "chunks": [
+        "It's",
+        "complicated."
+      ],
+      "hints": [
+        "这很",
+        "复杂"
+      ],
+      "cid": "642f82cf"
+    },
+    {
+      "sentence": "This is the first thing to do.",
+      "translation": "首先应该做这个。",
+      "chunks": [
+        "This is the first thing",
+        "to do."
+      ],
+      "hints": [
+        "这是首先要做的",
+        "一件事"
+      ],
+      "cid": "6e4ea586"
+    },
+    {
+      "sentence": "You dropped this.",
+      "translation": "你掉了这个。",
+      "chunks": [
+        "You",
+        "dropped this."
+      ],
+      "hints": [
+        "你",
+        "掉了这个"
+      ],
+      "cid": "cb059180"
+    },
+    {
+      "sentence": "I think you dropped this.",
+      "translation": "我想这是你丢的吧!",
+      "chunks": [
+        "I think",
+        "you dropped this."
+      ],
+      "hints": [
+        "我想",
+        "这是你掉的吧"
+      ],
+      "cid": "494227a3"
+    },
+    {
+      "sentence": "Is this yours?",
+      "translation": "这是你的吗?",
+      "chunks": [
+        "Is this",
+        "yours?"
+      ],
+      "hints": [
+        "这是",
+        "你的吗"
+      ],
+      "cid": "06397cd4"
+    },
+    {
+      "sentence": "Isn't this yours?",
+      "translation": "这不是你的吗?",
+      "chunks": [
+        "Isn't this",
+        "yours?"
+      ],
+      "hints": [
+        "这不是",
+        "你的吗"
+      ],
+      "cid": "927a5ea7"
+    },
+    {
+      "sentence": "It's mine.",
+      "translation": "是我的。",
+      "chunks": [
+        "It's",
+        "mine."
+      ],
+      "hints": [
+        "它是",
+        "我的"
+      ],
+      "cid": "18091091"
+    },
+    {
+      "sentence": "I've lost my wallet.",
+      "translation": "我的钱包丢了。",
+      "chunks": [
+        "I've lost",
+        "my wallet."
+      ],
+      "hints": [
+        "我丢了",
+        "我的钱包"
+      ],
+      "cid": "01d78d95"
+    },
+    {
+      "sentence": "I'm in trouble!",
+      "translation": "这下可麻烦了。。。",
+      "chunks": [
+        "I'm in",
+        "trouble!"
+      ],
+      "hints": [
+        "我有",
+        "麻烦了"
+      ],
+      "cid": "428b28ff"
+    },
+    {
+      "sentence": "May I help?",
+      "translation": "要我帮忙吗?/要我帮你拿吗?",
+      "chunks": [
+        "May I",
+        "help?"
+      ],
+      "hints": [
+        "要我",
+        "帮忙吗"
+      ],
+      "cid": "75857a9d"
+    },
+    {
+      "sentence": "Think twice before you decide.",
+      "translation": "决定之前再好好考虑考虑。",
+      "chunks": [
+        "Think twice",
+        "before you decide."
+      ],
+      "hints": [
+        "多想两次",
+        "再决定"
+      ],
+      "cid": "0f1ea513"
+    },
+    {
+      "sentence": "How about this one?",
+      "translation": "这个怎么样?",
+      "chunks": [
+        "How about",
+        "this one?"
+      ],
+      "hints": [
+        "这个",
+        "怎么样"
+      ],
+      "cid": "ed66ca29"
+    },
+    {
+      "sentence": "I want to make a suggestion.",
+      "translation": "我提个建议。",
+      "chunks": [
+        "I want to make",
+        "a suggestion."
+      ],
+      "hints": [
+        "我想提",
+        "个建议"
+      ],
+      "cid": "0a396236"
+    },
+    {
+      "sentence": "Let's take a short cut.",
+      "translation": "我们走近道吧!",
+      "chunks": [
+        "Let's take",
+        "a short cut."
+      ],
+      "hints": [
+        "我们走",
+        "近道吧"
+      ],
+      "cid": "0ce7578c"
+    },
+    {
+      "sentence": "Let's play hooky!",
+      "translation": "咱们逃学吧!",
+      "chunks": [
+        "Let's play",
+        "hooky!"
+      ],
+      "hints": [
+        "我们",
+        "逃学吧"
+      ],
+      "cid": "45dabaff"
+    },
+    {
+      "sentence": "Let's call in sick.",
+      "translation": "我们打电话请个病假吧!",
+      "chunks": [
+        "Let's call",
+        "in sick."
+      ],
+      "hints": [
+        "我们打电话",
+        "请个病假吧"
+      ],
+      "cid": "1c1145af"
+    },
+    {
+      "sentence": "Let's play cards!",
+      "translation": "玩扑克吧!",
+      "chunks": [
+        "Let's play",
+        "cards!"
+      ],
+      "hints": [
+        "我们来",
+        "玩牌吧"
+      ],
+      "cid": "cce92168"
+    },
+    {
+      "sentence": "I have an idea.",
+      "translation": "我有个主意。",
+      "chunks": [
+        "I have",
+        "an idea."
+      ],
+      "hints": [
+        "我有",
+        "个主意"
+      ],
+      "cid": "1f99d5da"
+    },
+    {
+      "sentence": "Tell you what.",
+      "translation": "这样怎么样?",
+      "chunks": [
+        "Tell you",
+        "what."
+      ],
+      "hints": [
+        "我跟你说",
+        "这样吧"
+      ],
+      "cid": "8583075d"
+    },
+    {
+      "sentence": "Let me think for a moment.",
+      "translation": "让我考虑一下。",
+      "chunks": [
+        "Let me think",
+        "for a moment."
+      ],
+      "hints": [
+        "让我想",
+        "一会儿"
+      ],
+      "cid": "621a5b36"
+    },
+    {
+      "sentence": "Just think about it.",
+      "translation": "你好好想想看。",
+      "chunks": [
+        "Just think",
+        "about it."
+      ],
+      "hints": [
+        "好好",
+        "想一想"
+      ],
+      "cid": "cec19e0f"
+    },
+    {
+      "sentence": "You should get a haircut.",
+      "translation": "你该剪剪你的头发了。",
+      "chunks": [
+        "You should get",
+        "a haircut."
+      ],
+      "hints": [
+        "你该去",
+        "理个发"
+      ],
+      "cid": "272cc2a2"
+    },
+    {
+      "sentence": "Won't you join us?",
+      "translation": "你也一起来吧?",
+      "chunks": [
+        "Won't you",
+        "join us?"
+      ],
+      "hints": [
+        "你不",
+        "一起来吗"
+      ],
+      "cid": "48387ff4"
+    },
+    {
+      "sentence": "What do you suggest?",
+      "translation": "你有什么建议吗?",
+      "chunks": [
+        "What do you",
+        "suggest?"
+      ],
+      "hints": [
+        "你有什么",
+        "建议吗"
+      ],
+      "cid": "0c75c62e"
+    },
+    {
+      "sentence": "Wanna make a bet?",
+      "translation": "打赌?",
+      "chunks": [
+        "Wanna make",
+        "a bet?"
+      ],
+      "hints": [
+        "想不想",
+        "打个赌"
+      ],
+      "cid": "e9893d2f"
+    },
+    {
+      "sentence": "I suggest you take a taxi.",
+      "translation": "我建议你坐出租车去。",
+      "chunks": [
+        "I suggest",
+        "you take a taxi."
+      ],
+      "hints": [
+        "我建议",
+        "你坐出租车去"
+      ],
+      "cid": "2e8aa9e5"
+    },
+    {
+      "sentence": "Can you give me a hand?",
+      "cid": "a71c1752",
+      "translation": "能帮我一下吗？",
+      "chunks": [
+        "Can you give me",
+        "a hand?"
+      ],
+      "hints": [
+        "你能给我",
+        "一个手吗"
+      ],
+      "grammar": [
+        {
+          "role": "情态+宾语",
+          "color": "#c87033",
+          "phonetic": [
+            "/kæn/",
+            "/juː/",
+            "/ɡɪv/",
+            "/miː/"
+          ],
+          "pos": "情态动词+双宾语",
+          "meaning": "你能给我"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/hænd/"
+          ],
+          "pos": "习语",
+          "meaning": "帮忙（习语）"
+        }
+      ],
+      "explanations": [
+        "**give someone a hand** = 帮某人忙，是固定搭配（习语），不是真的要一只手。",
+        "其他求助说法：**Could you help me out?**（更正式）/ **Do me a favor?**（更亲密）"
+      ],
+      "distractors": [
+        [
+          "Can you give I",
+          "Can you gives me",
+          "Can you to give me"
+        ],
+        [
+          "the hand?",
+          "a hands?",
+          "hand?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you do me a favor?",
+      "cid": "534483e8",
+      "translation": "你能帮我个忙吗？",
+      "chunks": [
+        "Could you",
+        "do me a favor?"
+      ],
+      "hints": [
+        "你能",
+        "帮我个忙"
+      ],
+      "grammar": [
+        {
+          "role": "情态动词+主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能"
+        },
+        {
+          "role": "宾语+宾语补",
+          "color": "#3358e0",
+          "phonetic": [
+            "/duː/",
+            "/miː/",
+            "/ə/",
+            "/ˈfeɪvər/"
+          ],
+          "pos": "动词短语",
+          "meaning": "帮我个忙"
+        }
+      ],
+      "explanations": [
+        "`Could you...` 比 `Can you...` 更礼貌委婉。常见错误：\n• \"Can you **to** do me a favor\" → 情态动词后接动词原形，不要 to\n• \"Could you **doing**\" → 同样要用原形",
+        "`do someone a favor` 是固定搭配，中间用 a，不是 the。常见错误：\n• \"do me **the** favor\" → 泛指帮忙用 a\n• \"give me a favor\" → 搭配是 do，不是 give"
+      ],
+      "distractors": [
+        [
+          "Could your",
+          "Could you to",
+          "Do you could"
+        ],
+        [
+          "do me the favor?",
+          "does me a favor?",
+          "doing me a favor?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you give me a hand with this box?",
+      "cid": "10dca05a",
+      "translation": "你能帮我搬一下这个箱子吗？",
+      "chunks": [
+        "Could you give me",
+        "a hand",
+        "with this box?"
+      ],
+      "hints": [
+        "你能给我",
+        "帮个忙",
+        "搬这个箱子"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/ɡɪv/",
+            "/miː/"
+          ],
+          "pos": "give sb a hand",
+          "meaning": "你能帮我"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/hænd/"
+          ],
+          "pos": "固定搭配",
+          "meaning": "一个忙"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɪð/",
+            "/ðɪs/",
+            "/bɑːks/"
+          ],
+          "pos": "介词短语",
+          "meaning": "搬这个箱子"
+        }
+      ],
+      "explanations": [
+        "`give sb a hand with sth` = 帮某人做某事。常见错误：\n• \"give me hand\" → 缺 a\n• \"give a hand to me with\" → 搭配混乱，give me a hand 已含宾语",
+        "同义：help me with...（更直接）。"
+      ],
+      "distractors": [
+        [
+          "Can you give me",
+          "Could you give",
+          "Could you to give me"
+        ],
+        [
+          "hands",
+          "a hands",
+          "the hand"
+        ],
+        [
+          "to this box?",
+          "for this box?",
+          "with these box?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I need help.",
+      "cid": "1792dc97",
+      "translation": "我需要帮助。",
+      "chunks": [
+        "I need",
+        "help."
+      ],
+      "hints": [
+        "我需要",
+        "帮助"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/niːd/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我需要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/help/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "帮助"
+        }
+      ],
+      "explanations": [
+        "求助最直接的表达，`help` 不可数。常见错误：\n• \"I need a help\" → help 不可数，不加 a\n• \"I need helps\" → 也不加 s",
+        "更礼貌：Could you help me? / I need some assistance."
+      ],
+      "distractors": [
+        [
+          "I wants",
+          "I am need",
+          "I needs"
+        ],
+        [
+          "helps.",
+          "a help.",
+          "helper."
+        ]
+      ]
+    },
+    {
+      "sentence": "Lend me 10 bucks.",
+      "cid": "9187c8c7",
+      "translation": "借我10块钱。",
+      "chunks": [
+        "Lend me",
+        "10 bucks."
+      ],
+      "hints": [
+        "借给我",
+        "十块钱"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lend/",
+            "/miː/"
+          ],
+          "pos": "动词 + 间接宾语",
+          "meaning": "借给我"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ten/",
+            "/bʌks/"
+          ],
+          "pos": "数量 + 名词",
+          "meaning": "十块钱"
+        }
+      ],
+      "explanations": [
+        "`lend` 是「借出」（我借给你），`borrow` 是「借入」（我向你借）。常见错误：\n• \"Borrow me 10 bucks\" → 想说「借我钱」要用 lend me\n• bucks 是口语的「美元」，正式说法 10 dollars",
+        "还钱时说：I'll pay you back."
+      ],
+      "distractors": [
+        [
+          "Borrow me",
+          "Lends me",
+          "Lend to me"
+        ],
+        [
+          "10 buck.",
+          "ten bucks of.",
+          "10 bucks to."
+        ]
+      ]
+    },
+    {
+      "sentence": "I want my money.",
+      "cid": "fc023e5e",
+      "translation": "还我钱。",
+      "chunks": [
+        "I want",
+        "my money."
+      ],
+      "hints": [
+        "我要",
+        "我的钱"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/wɑːnt/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/ˈmʌni/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的钱"
+        }
+      ],
+      "explanations": [
+        "催人还钱最直接的表达；`money` 不可数。常见错误：\n• \"I want my moneys\" → money 没有复数\n• 想客气一点：Could you pay me back?",
+        "相关：I need it back.（我得把钱要回来）"
+      ],
+      "distractors": [
+        [
+          "I wants",
+          "I wanting",
+          "Me want"
+        ],
+        [
+          "my moneys.",
+          "mine money.",
+          "my monies."
+        ]
+      ]
+    }
+  ]
+}

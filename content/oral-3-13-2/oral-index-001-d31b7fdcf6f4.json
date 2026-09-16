@@ -1,0 +1,440 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "07f636af",
+      "sentence": "Can I help you?",
+      "translation": "有事吗?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "28939aba",
+      "sentence": "Sure. What is it?",
+      "translation": "可以，什么事?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "c8fdfb18",
+      "sentence": "Any problems?",
+      "translation": "有什么问题吗?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "fad50cec",
+      "sentence": "What's the matter?",
+      "translation": "怎么了?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "d3aa7619",
+      "sentence": "Of course.",
+      "translation": "当然。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "3d04d4e1",
+      "sentence": "No problem.",
+      "translation": "没问题/不客气。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "454b1708",
+      "sentence": "Whose idea is it?",
+      "translation": "这是谁的主意?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "48357b03",
+      "sentence": "Yes, thank you.",
+      "translation": "好的，谢谢。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "e739b8c4",
+      "sentence": "Yes, please.",
+      "translation": "是的，拜托您。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "c62862d4",
+      "sentence": "Go ahead.",
+      "translation": "您请。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "b8427548",
+      "sentence": "My pleasure.",
+      "translation": "这是我的荣幸。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "c17a695b",
+      "sentence": "No, not at all.",
+      "translation": "没关系。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "bad18a1a",
+      "sentence": "I will.",
+      "translation": "这就做。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "c6d78a11",
+      "sentence": "Got it!",
+      "translation": "明白。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "b1881a92",
+      "sentence": "Say no more.",
+      "translation": "不用多说了。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "d1602965",
+      "sentence": "I'd be happy to help you.",
+      "translation": "很高兴为您效劳。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "245ddb54",
+      "sentence": "Certainly.",
+      "translation": "遵命。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "bb87e2cb",
+      "sentence": "Whatever you say.",
+      "translation": "照您说的做。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "938163df",
+      "sentence": "Anything for you.",
+      "translation": "为你做什么都行。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "0ca82ddb",
+      "sentence": "I'll take care of it.",
+      "translation": "我来处理。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "64b942f5",
+      "sentence": "Count me in.",
+      "translation": "算我一个。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "eaae5691",
+      "sentence": "I'll do the rest.",
+      "translation": "剩下的就交给我!",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "2bb22313",
+      "sentence": "Deal.",
+      "translation": "就这么着，说好了。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "62ba4d9b",
+      "sentence": "I'll do it no matter what.",
+      "translation": "不管发生什么，我也要这样做。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "f4d5cc90",
+      "sentence": "It's quite easy.",
+      "translation": "这相当简单。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "85f6d9f3",
+      "sentence": "It's nothing.",
+      "translation": "那算不了什么。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "dba9ee22",
+      "sentence": "Would you?",
+      "translation": "行吗?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "0180d47c",
+      "sentence": "You're on!",
+      "translation": "好吧!",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "f58311b5",
+      "sentence": "If you don't mind.",
+      "translation": "如果不给您添麻烦的话。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "2ddf61a6",
+      "sentence": "Anytime.",
+      "translation": "随时为您效劳。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "c16d4bbb",
+      "sentence": "Anything.",
+      "translation": "什么都行。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "2d2b5dd1",
+      "sentence": "Let's do it!",
+      "translation": "那，我们做吧。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "64870ecc",
+      "sentence": "Your wish is my command.",
+      "translation": "满足你的希望。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "8a40af6d",
+      "sentence": "That will do.",
+      "translation": "那个可以。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "00e01c9d",
+      "sentence": "Anything'll do.",
+      "translation": "什么都可以。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "b638572c",
+      "sentence": "Anywhere'll do.",
+      "translation": "哪儿都行。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "2ba44900",
+      "sentence": "That'll be enough.",
+      "translation": "足够了。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "edd4d564",
+      "sentence": "What's it about?",
+      "translation": "什么事?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "72ddcfca",
+      "sentence": "May I have your phone number?",
+      "translation": "能告诉我您的电话号码吗?",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "1de5d226",
+      "sentence": "I wish I could, but...",
+      "translation": "我希望可以，但是……",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "6279fa43",
+      "sentence": "I won't.",
+      "translation": "我不愿意。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "fe9bf425",
+      "sentence": "No, thank you.",
+      "translation": "不，谢谢。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "27e330dd",
+      "sentence": "I don't want it.",
+      "translation": "我不要。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "ec926b40",
+      "sentence": "I really don't want it.",
+      "translation": "真的不要。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "13613ef1",
+      "sentence": "I'm sorry I can't help you.",
+      "translation": "真抱歉，我不能帮助你。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "9672d86f",
+      "sentence": "I'm against his proposal.",
+      "translation": "我反对他的建议。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "9cb9cc4a",
+      "sentence": "I wish I could help you, but I can't.",
+      "translation": "我很乐意，可我帮不了你。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "938ef2e0",
+      "sentence": "I can't do anything about it.",
+      "translation": "那事我使不上劲。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "341c1c24",
+      "sentence": "I can't make that happen.",
+      "translation": "我无法满足你的愿望。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "21239fa8",
+      "sentence": "I'm not in the mood.",
+      "translation": "我没那份心情。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "d140afc7",
+      "sentence": "I'm afraid I've got urgent business now.",
+      "translation": "很遗憾，我现在有件急事。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "23184236",
+      "sentence": "I have other business to take care of.",
+      "translation": "我有别的事。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "98091a24",
+      "sentence": "I'm sorry, but I'm busy just now.",
+      "translation": "对不起，我现在正忙着呢。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "78b9e687",
+      "sentence": "I'm sorry, but I'm in a hurry.",
+      "translation": "对不起，我有急事。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "eec2f0fe",
+      "sentence": "Not right now.",
+      "translation": "现在不行。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "451d815c",
+      "sentence": "Count me out.",
+      "translation": "我就算了吧。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "d6ce11cc",
+      "sentence": "I'd rather not.",
+      "translation": "如果可以的话，最好不……",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "df975f85",
+      "sentence": "Enough.",
+      "translation": "够了，够了。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "ad20d2e3",
+      "sentence": "I've had enough.",
+      "translation": "已经足够了。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "a5ae3aca",
+      "sentence": "Unfortunately, it's not convenient for me today.",
+      "translation": "很遗憾，今天我不太方便。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "6b201445",
+      "sentence": "That's beside the point.",
+      "translation": "没说到点儿上。/离题万里。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "529f6b92",
+      "sentence": "I'm willing to help.",
+      "translation": "我愿意帮忙。",
+      "sourceUrl": "content/oral-3-13-2/oral-001-e6c682082d2e.json",
+      "sourceOffset": 61
+    }
+  ]
+}

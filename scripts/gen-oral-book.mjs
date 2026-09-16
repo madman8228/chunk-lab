@@ -85,6 +85,8 @@ for (const bd of bookDecks) {
 const decks = [];
 const report = [];
 let totalBook = 0, totalExist = 0, dupUse = 0;
+/* 「归属让位书句」计数：4b/4c 因 claimedByBook 而跳过的旧句（必须可见，否则静默丢句无人发现） */
+let yieldToBook = 0;
 
 for (const bd of bookDecks) {
   const items = [];
@@ -121,7 +123,7 @@ for (const bd of bookDecks) {
       if (!it) throw new Error('归入索引越界：' + bd.id + ' ' + i);
       const k = norm(it.sentence);
       if (used.has(k)) continue;          /* 已在书句部分用掉 */
-      if (claimedByBook.has(k)) continue; /* 书内已认领该句 → 归属以书为准（防跨 deck cid 重复） */
+      if (claimedByBook.has(k)) { yieldToBook++; continue; } /* 书内已认领该句 → 归属以书为准（防跨 deck cid 重复） */
       items.push(Object.assign({}, it));
       used.add(k);
       existN++;
@@ -164,6 +166,10 @@ for (const bd of bookDecks) {
       const it = exist[i];
       const k = norm(it.sentence);
       if (used.has(k)) continue;
+      /* ⚠️ 4c 原先漏了这道守卫（4b 有、4c 没有）→ 书里出现同一句时跨 deck cid 重复。
+         实例：No problem. 书属 3.13-2「接受请求和建议」，同时被 ASSIGN 收进万能表达。
+         同一条规则必须两处都实现 —— 只补一处的教训（本项目「同一事实多处实现」家族）。 */
+      if (claimedByBook.has(k)) { yieldToBook++; continue; }
       items.push(Object.assign({}, it));
       used.add(k);
     }
@@ -174,6 +180,9 @@ for (const bd of bookDecks) {
     name: bd.name, short: bd.short, desc: '没有固定场景、随时能用的万能句', topics: [], items,
   });
   report.push({ bd, bookN: 0, existN: items.length, n: items.length, skip: false, owned: 0 });
+}
+if (yieldToBook) {
+  console.log('归属让位书句：' + yieldToBook + ' 句（书内已产出的句子一律按书归属，ASSIGN / 自建 deck 不再重复收入）');
 }
 
 /* ---------- 4d. 干扰项过写侧守门员（cleanDistractors） ----------

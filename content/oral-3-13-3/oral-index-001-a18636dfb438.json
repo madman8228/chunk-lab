@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "043946d5",
+      "sentence": "Is it all right if...?",
+      "translation": "做……可以吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "6bb9e4db",
+      "sentence": "May I come in?",
+      "translation": "我可以进来吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "ec3f6c3a",
+      "sentence": "May I sit here?",
+      "translation": "我可以坐这儿吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "7fce8441",
+      "sentence": "May I play catch here?",
+      "translation": "我可以在这儿玩球吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "8a7eabd8",
+      "sentence": "Am I allowed to take pictures here?",
+      "translation": "这儿可以拍照吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "e172e80a",
+      "sentence": "Let me see it.",
+      "translation": "让我看看。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "9406c6c6",
+      "sentence": "May I use the bathroom?",
+      "translation": "我可以借用您的卫生间吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "5e7e2685",
+      "sentence": "Can I park my car there?",
+      "translation": "我可以把车停在那儿吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "fce80317",
+      "sentence": "May I take a look?",
+      "translation": "我可以看一眼吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "9bd0c2c9",
+      "sentence": "You mean any place?",
+      "translation": "哪儿都可以吗?",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "1c440e8a",
+      "sentence": "Sure.",
+      "translation": "可以。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "051e9a6d",
+      "sentence": "I'm game!",
+      "translation": "行啊!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "d6050f33",
+      "sentence": "If that's all right with you.",
+      "translation": "如果你不介意的话。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "e507b401",
+      "sentence": "If it's all right with you,…",
+      "translation": "如果方便的话……",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "d71870bf",
+      "sentence": "Yes, please do.",
+      "translation": "可以，您请坐。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "822ea4d1",
+      "sentence": "You may go home now, John.",
+      "translation": "约翰，你可以回家了。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "55ee6e30",
+      "sentence": "I'm afraid not.",
+      "translation": "很遗憾，恐怕不行。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "d5c7060c",
+      "sentence": "I'd rather you didn't.",
+      "translation": "最好不要。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "d494b677",
+      "sentence": "Not on your life!",
+      "translation": "不行!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "995b0280",
+      "sentence": "Over my dead body!",
+      "translation": "绝不允许!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "71a2f6c0",
+      "sentence": "Nope!",
+      "translation": "不!不行!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "d0421716",
+      "sentence": "Not yet.",
+      "translation": "还没有。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "84b71da0",
+      "sentence": "Not now.",
+      "translation": "现在不行。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "c3c7fc9a",
+      "sentence": "Not here.",
+      "translation": "这里不行。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "34b0227a",
+      "sentence": "You may not eat here.",
+      "translation": "你不能在这儿吃东西。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "b3df1d8b",
+      "sentence": "Take a look!",
+      "translation": "看!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "a4feb5a5",
+      "sentence": "Listen!",
+      "translation": "听好喽!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "f0872a4d",
+      "sentence": "Don't ignore me.",
+      "translation": "别不理我。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "d8a533bf",
+      "sentence": "Look here!",
+      "translation": "看这儿!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "4a17d147",
+      "sentence": "Look at that!",
+      "translation": "看那儿!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "cb29db45",
+      "sentence": "Come, look!",
+      "translation": "快来看呀!",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "9bd12fae",
+      "sentence": "I heard something.",
+      "translation": "我听见有声音。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "428f87dd",
+      "sentence": "I'll go and take a look right away.",
+      "translation": "我这就去看看。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "edd88272",
+      "sentence": "It's your turn.",
+      "translation": "该你了。",
+      "sourceUrl": "content/oral-3-13-3/oral-001-27adb93df117.json",
+      "sourceOffset": 33
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Is it all right if...?",
+      "translation": "做……可以吗?",
+      "chunks": [
+        "Is it all right",
+        "if...?"
+      ],
+      "hints": [
+        "可以吗",
+        "如果……的话"
+      ],
+      "cid": "043946d5"
+    },
+    {
+      "sentence": "May I come in?",
+      "translation": "我可以进来吗?",
+      "chunks": [
+        "May I",
+        "come in?"
+      ],
+      "hints": [
+        "我可以",
+        "进来吗"
+      ],
+      "cid": "6bb9e4db"
+    },
+    {
+      "sentence": "May I sit here?",
+      "translation": "我可以坐这儿吗?",
+      "chunks": [
+        "May I",
+        "sit here?"
+      ],
+      "hints": [
+        "我可以",
+        "坐这儿吗"
+      ],
+      "cid": "ec3f6c3a"
+    },
+    {
+      "sentence": "May I play catch here?",
+      "translation": "我可以在这儿玩球吗?",
+      "chunks": [
+        "May I play catch",
+        "here?"
+      ],
+      "hints": [
+        "我可以在这儿玩球",
+        "吗"
+      ],
+      "cid": "7fce8441"
+    },
+    {
+      "sentence": "Am I allowed to take pictures here?",
+      "translation": "这儿可以拍照吗?",
+      "chunks": [
+        "Am I allowed",
+        "to take pictures here?"
+      ],
+      "hints": [
+        "我被允许吗",
+        "在这儿拍照"
+      ],
+      "cid": "8a7eabd8"
+    },
+    {
+      "sentence": "Let me see it.",
+      "translation": "让我看看。",
+      "chunks": [
+        "Let me",
+        "see it."
+      ],
+      "hints": [
+        "让我",
+        "看看"
+      ],
+      "cid": "e172e80a"
+    },
+    {
+      "sentence": "May I use the bathroom?",
+      "translation": "我可以借用您的卫生间吗?",
+      "chunks": [
+        "May I use",
+        "the bathroom?"
+      ],
+      "hints": [
+        "我可以借用",
+        "卫生间吗"
+      ],
+      "cid": "9406c6c6"
+    },
+    {
+      "sentence": "Can I park my car there?",
+      "translation": "我可以把车停在那儿吗?",
+      "chunks": [
+        "Can I park",
+        "my car there?"
+      ],
+      "hints": [
+        "我可以停",
+        "我的车在那儿吗"
+      ],
+      "cid": "5e7e2685"
+    },
+    {
+      "sentence": "May I take a look?",
+      "translation": "我可以看一眼吗?",
+      "chunks": [
+        "May I take",
+        "a look?"
+      ],
+      "hints": [
+        "我可以",
+        "看一眼吗"
+      ],
+      "cid": "fce80317"
+    },
+    {
+      "sentence": "You mean any place?",
+      "translation": "哪儿都可以吗?",
+      "chunks": [
+        "You mean",
+        "any place?"
+      ],
+      "hints": [
+        "你的意思是",
+        "任何地方吗"
+      ],
+      "cid": "9bd0c2c9"
+    },
+    {
+      "sentence": "Sure.",
+      "translation": "可以。",
+      "chunks": [
+        "Sure."
+      ],
+      "hints": [
+        "可以"
+      ],
+      "cid": "1c440e8a"
+    },
+    {
+      "sentence": "I'm game!",
+      "translation": "行啊!",
+      "chunks": [
+        "I'm",
+        "game!"
+      ],
+      "hints": [
+        "我",
+        "行啊"
+      ],
+      "cid": "051e9a6d"
+    },
+    {
+      "sentence": "If that's all right with you.",
+      "translation": "如果你不介意的话。",
+      "chunks": [
+        "If that's all right",
+        "with you."
+      ],
+      "hints": [
+        "如果那对你",
+        "都可以的话"
+      ],
+      "cid": "d6050f33"
+    },
+    {
+      "sentence": "If it's all right with you,…",
+      "translation": "如果方便的话……",
+      "chunks": [
+        "If it's all right",
+        "with you,…"
+      ],
+      "hints": [
+        "如果对你",
+        "方便的话"
+      ],
+      "cid": "e507b401"
+    },
+    {
+      "sentence": "Yes, please do.",
+      "translation": "可以，您请坐。",
+      "chunks": [
+        "Yes,",
+        "please do."
+      ],
+      "hints": [
+        "可以",
+        "请吧"
+      ],
+      "cid": "d71870bf"
+    },
+    {
+      "sentence": "You may go home now, John.",
+      "translation": "约翰，你可以回家了。",
+      "chunks": [
+        "You may go home now,",
+        "John."
+      ],
+      "hints": [
+        "你现在可以回家了",
+        "约翰"
+      ],
+      "cid": "822ea4d1"
+    },
+    {
+      "sentence": "I'm afraid not.",
+      "translation": "很遗憾，恐怕不行。",
+      "chunks": [
+        "I'm",
+        "afraid not."
+      ],
+      "hints": [
+        "恐怕",
+        "不行"
+      ],
+      "cid": "55ee6e30"
+    },
+    {
+      "sentence": "I'd rather you didn't.",
+      "translation": "最好不要。",
+      "chunks": [
+        "I'd rather",
+        "you didn't."
+      ],
+      "hints": [
+        "我宁愿",
+        "你不要"
+      ],
+      "cid": "d5c7060c"
+    },
+    {
+      "sentence": "Not on your life!",
+      "translation": "不行!",
+      "chunks": [
+        "Not on",
+        "your life!"
+      ],
+      "hints": [
+        "绝对",
+        "不行"
+      ],
+      "cid": "d494b677"
+    },
+    {
+      "sentence": "Over my dead body!",
+      "translation": "绝不允许!",
+      "chunks": [
+        "Over my",
+        "dead body!"
+      ],
+      "hints": [
+        "除非",
+        "我死了"
+      ],
+      "cid": "995b0280"
+    },
+    {
+      "sentence": "Nope!",
+      "translation": "不!不行!",
+      "chunks": [
+        "Nope!"
+      ],
+      "hints": [
+        "不"
+      ],
+      "cid": "71a2f6c0"
+    },
+    {
+      "sentence": "Not yet.",
+      "translation": "还没有。",
+      "chunks": [
+        "Not",
+        "yet."
+      ],
+      "hints": [
+        "还",
+        "没有"
+      ],
+      "cid": "d0421716"
+    },
+    {
+      "sentence": "Not now.",
+      "translation": "现在不行。",
+      "chunks": [
+        "Not",
+        "now."
+      ],
+      "hints": [
+        "不",
+        "是现在"
+      ],
+      "cid": "84b71da0"
+    },
+    {
+      "sentence": "Not here.",
+      "translation": "这里不行。",
+      "chunks": [
+        "Not",
+        "here."
+      ],
+      "hints": [
+        "不",
+        "在这里"
+      ],
+      "cid": "c3c7fc9a"
+    },
+    {
+      "sentence": "You may not eat here.",
+      "translation": "你不能在这儿吃东西。",
+      "chunks": [
+        "You may not",
+        "eat here."
+      ],
+      "hints": [
+        "你不能",
+        "在这儿吃东西"
+      ],
+      "cid": "34b0227a"
+    },
+    {
+      "sentence": "Take a look!",
+      "translation": "看!",
+      "chunks": [
+        "Take",
+        "a look!"
+      ],
+      "hints": [
+        "看",
+        "一眼"
+      ],
+      "cid": "b3df1d8b"
+    },
+    {
+      "sentence": "Listen!",
+      "translation": "听好喽!",
+      "chunks": [
+        "Listen!"
+      ],
+      "hints": [
+        "听着"
+      ],
+      "cid": "a4feb5a5"
+    },
+    {
+      "sentence": "Don't ignore me.",
+      "translation": "别不理我。",
+      "chunks": [
+        "Don't",
+        "ignore me."
+      ],
+      "hints": [
+        "别",
+        "不理我"
+      ],
+      "cid": "f0872a4d"
+    },
+    {
+      "sentence": "Look here!",
+      "translation": "看这儿!",
+      "chunks": [
+        "Look",
+        "here!"
+      ],
+      "hints": [
+        "看",
+        "这儿"
+      ],
+      "cid": "d8a533bf"
+    },
+    {
+      "sentence": "Look at that!",
+      "translation": "看那儿!",
+      "chunks": [
+        "Look at",
+        "that!"
+      ],
+      "hints": [
+        "看",
+        "那边"
+      ],
+      "cid": "4a17d147"
+    },
+    {
+      "sentence": "Come, look!",
+      "translation": "快来看呀!",
+      "chunks": [
+        "Come,",
+        "look!"
+      ],
+      "hints": [
+        "快过来",
+        "看呀"
+      ],
+      "cid": "cb29db45"
+    },
+    {
+      "sentence": "I heard something.",
+      "translation": "我听见有声音。",
+      "chunks": [
+        "I heard",
+        "something."
+      ],
+      "hints": [
+        "我听见",
+        "有动静"
+      ],
+      "cid": "9bd12fae"
+    },
+    {
+      "sentence": "I'll go and take a look right away.",
+      "translation": "我这就去看看。",
+      "chunks": [
+        "I'll go and take a look",
+        "right away."
+      ],
+      "hints": [
+        "我去看一眼",
+        "马上"
+      ],
+      "cid": "428f87dd"
+    },
+    {
+      "sentence": "It's your turn.",
+      "translation": "该你了。",
+      "chunks": [
+        "It's",
+        "your turn."
+      ],
+      "hints": [
+        "轮到",
+        "你了"
+      ],
+      "cid": "edd88272"
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "efb17d34",
+      "sentence": "Every Tom, Dick and Harry.",
+      "translation": "不管张三李四。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "1a2e972a",
+      "sentence": "Out of the frying pan into the fire.",
+      "translation": "一波未平一波又起。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "6f865fd1",
+      "sentence": "I live to eat.",
+      "translation": "舍名求实。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "86ae6c7a",
+      "sentence": "Every dog has his day.",
+      "translation": "瞎猫碰上了死耗子。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "dd5a4e73",
+      "sentence": "Speak of the devil.",
+      "translation": "说曹操，曹操到。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "929769be",
+      "sentence": "Love is blind.",
+      "translation": "情人眼里出西施。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "a6fd68c2",
+      "sentence": "Kill two birds with one stone.",
+      "translation": "一举两得。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "9d6b0363",
+      "sentence": "No news is good news.",
+      "translation": "不闻凶讯便是吉。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "48c905cd",
+      "sentence": "Time flies.",
+      "translation": "光阴似箭。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "643a9a9e",
+      "sentence": "Jack of all trades, master of none.",
+      "translation": "百艺不如一艺精。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "46f8e55e",
+      "sentence": "Look before you leap.",
+      "translation": "三思而后行。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "28db04fb",
+      "sentence": "Seeing is believing.",
+      "translation": "百闻不如一见。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "f51d9b5d",
+      "sentence": "There is no smoke without fire.",
+      "translation": "无风不起浪。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "e6278202",
+      "sentence": "Honesty is the best policy.",
+      "translation": "诚实总是上策。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "c556a208",
+      "sentence": "Better late than never.",
+      "translation": "迟做总比不做好。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "287335c4",
+      "sentence": "Boys will be boys.",
+      "translation": "男孩子就是男孩子嘛!",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "0350c6fe",
+      "sentence": "Knowledge is power.",
+      "translation": "知识就是力量。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "5a63cb54",
+      "sentence": "Rome was not built in a day.",
+      "translation": "冰冻三尺非一日之寒。/罗马不是一天就建成的。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "30d2fca9",
+      "sentence": "All roads lead to Rome.",
+      "translation": "条条大路通罗马。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "bff5a996",
+      "sentence": "When in Rome, do as the Romans do.",
+      "translation": "入乡随俗。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "f7458ab4",
+      "sentence": "Practice makes perfect.",
+      "translation": "熟能生巧。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "0f21ed10",
+      "sentence": "History repeats itself.",
+      "translation": "历史总在重演。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "b87ea098",
+      "sentence": "When it rains, it always pours.",
+      "translation": "祸不单行，福无双至。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "3dea7dfb",
+      "sentence": "Where there's a will, there's a way.",
+      "translation": "功夫不负有心人。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "4b0b8a4d",
+      "sentence": "Actions speak louder than words.",
+      "translation": "行动比语言更响亮。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "690d5aa7",
+      "sentence": "Easy come, easy go.",
+      "translation": "(钱财等)来得容易去得快。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "67f6a239",
+      "sentence": "Blood is thicker than water.",
+      "translation": "血浓于水。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "efb154c7",
+      "sentence": "Like father, like son.",
+      "translation": "有其父必有其子。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "441327b0",
+      "sentence": "All's fair in love and war.",
+      "translation": "恋爱和战争都是不择手段的。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "b9db5e28",
+      "sentence": "Beauty is only skin deep.",
+      "translation": "美貌不过一张皮。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "998fbeb3",
+      "sentence": "The grass is always greener on the other side of the fence.",
+      "translation": "东西总是人家的好。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "0bd9b70b",
+      "sentence": "You cannot make an omelet without breaking eggs.",
+      "translation": "不劳则不获。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "343b274b",
+      "sentence": "A rolling stone gathers no moss.",
+      "translation": "流水不腐，户枢不蠹。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "0507019d",
+      "sentence": "A friend in need is a friend indeed.",
+      "translation": "患难见真情。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "8240daa9",
+      "sentence": "All work and no play makes Jack a dull boy.",
+      "translation": "只会工作不会玩的人是没意思的人。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "2838e381",
+      "sentence": "The proof of the pudding is in the eating.",
+      "translation": "事实胜于雄辩。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "df249f20",
+      "sentence": "Time and tide wait for no man.",
+      "translation": "岁月不待人。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "02bdc990",
+      "sentence": "On the nose.",
+      "translation": "正好。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "642ad034",
+      "sentence": "Hide-and-seek",
+      "translation": "捉迷藏。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "e2fcbd8e",
+      "sentence": "to be continued",
+      "translation": "未完待续。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "9fa1bb04",
+      "sentence": "It takes two to tango.",
+      "translation": "一个巴掌拍不响。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "cb78e1cf",
+      "sentence": "As soon as possible.",
+      "translation": "尽快。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "b505fbd4",
+      "sentence": "All-you-can-eat.",
+      "translation": "随便吃。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "beb5490f",
+      "sentence": "multiple-choice",
+      "translation": "多项选择。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "25334735",
+      "sentence": "Ready, get set, go!",
+      "translation": "各就各位，预备，跑!",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "b3d88c55",
+      "sentence": "from A to Z.",
+      "translation": "从头到尾。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "a3c4ec4a",
+      "sentence": "all long",
+      "translation": "始终/一直/一贯",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "69da6422",
+      "sentence": "As far as I can remember,...",
+      "translation": "就我的记忆来说……",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "d7bff7ba",
+      "sentence": "Tit for tat.",
+      "translation": "以牙还牙，针锋相对。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "31bedf62",
+      "sentence": "That's what I'm here for.",
+      "translation": "这是我为什么在这儿的原因。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "a14a25f6",
+      "sentence": "Two and three is five.",
+      "translation": "2+3等于5。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "9475aa35",
+      "sentence": "We're as different as night and day.",
+      "translation": "我们有天壤之别。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "2457c3db",
+      "sentence": "Monkey see, monkey do.",
+      "translation": "东施效颦。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "40f8c582",
+      "sentence": "First come, first served.",
+      "translation": "以先后顺序为准。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "bddcc8cd",
+      "sentence": "It's out of date.",
+      "translation": "过时了。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "777ecdcd",
+      "sentence": "TV has its merits and demerits.",
+      "translation": "电视有长处，也有短处。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "424d9acc",
+      "sentence": "I took advantage of his weakness.",
+      "translation": "我利用了他的弱点。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "be193777",
+      "sentence": "I've learned something.",
+      "translation": "我长了不少见识。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "3ce76afd",
+      "sentence": "It's a fire hazard.",
+      "translation": "那会引起火灾呀!",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "2498a6a4",
+      "sentence": "Anything could happen.",
+      "translation": "什么事都有可能发生。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "5972bd02",
+      "sentence": "for future reference",
+      "translation": "将来可以用来作参考。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "9cd9bd0c",
+      "sentence": "behind my back",
+      "translation": "在我背后。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "ddf17699",
+      "sentence": "for a change",
+      "translation": "换换心情。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "59268216",
+      "sentence": "Money talks.",
+      "translation": "有钱能使鬼推磨。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "320fd326",
+      "sentence": "Never say die.",
+      "translation": "别说丧气话。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "6a02a81d",
+      "sentence": "Let bygones be bygones.",
+      "translation": "过去的事情让它过去吧。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "f00cf9d5",
+      "sentence": "A fair-weather friend.",
+      "translation": "酒肉朋友。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "6187b293",
+      "sentence": "Every little bit helps.",
+      "translation": "滴水汇成河。",
+      "sourceUrl": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+      "sourceOffset": 67
+    }
+  ]
+}
