@@ -22,7 +22,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 /* 「最少切几段」的唯一判据（含单字句例外）—— 同目录 */
-import CS from './chunk-shape.js';
+import CS from '../js/chunk-shape.js';
 /* 「本节应铺哪些句」的唯一实现（侦察/配对脚本共用同一份口径） */
 import { loadBookSection, norm } from './book-section.mjs';
 
@@ -44,12 +44,17 @@ const spec = JSON.parse(fs.readFileSync(path.resolve(ROOT, specPath), 'utf8'));
 const joined = (a) => a.join('').replace(/\s+/g, '');
 
 /* 本节在书里的全部句子（书序）+ 中文 + 应铺句清单 —— 口径唯一实现见 book-section.mjs */
-const { bookSec, decks, inScope, dedup, cnByNorm } = loadBookSection(ROOT, ch, sec);
+const { bookSec, decks, inScope, dedup, continuations, cnByNorm } = loadBookSection(ROOT, ch, sec);
 if (!bookSec.length) { console.error('书里没有第 ' + secArg + ' 节'); process.exit(1); }
 
 console.log('第 ' + secArg + ' 节「' + bookSec[0].secTitle + (bookSec[0].topic ? ' · ' + bookSec[0].topic : '') + '」');
 console.log('  书内 ' + bookSec.length + ' 句（去重 ' + new Set(bookSec.map((r) => norm(r.en))).size + '）'
   + ' / 本节的 deck ' + decks.map((d) => d.id).join('+') + ' 收录 ' + dedup.length + ' 句');
+/* 续行片段按口径不铺（判据见 book-section.mjs）→ 它不该出现在下面的「未铺」清单里
+   （否则每次重跑都在催你补一条永远补不了的句子）。这里明确说清它去哪了。 */
+if (continuations.length) {
+  continuations.forEach((s) => console.log('  [i] 续行片段（不铺）：' + JSON.stringify(s)));
+}
 
 /* ---------- 校验 spec ---------- */
 const errs = [];

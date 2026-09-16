@@ -23,7 +23,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadBookSection, norm } from './book-section.mjs';
-import CS from './chunk-shape.js';
+import CS from '../js/chunk-shape.js';
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -38,13 +38,18 @@ const ch = Number(m[1]);
 const sec = Number(m[2]);
 const secArg = args[0];
 
-const { bookSec, decks, dedup, cnByNorm } = loadBookSection(ROOT, ch, sec);
+const { bookSec, decks, dedup, continuations, cnByNorm } = loadBookSection(ROOT, ch, sec);
 if (!bookSec.length) { console.error('书里没有第 ' + secArg + ' 节'); process.exit(1); }
 
 const head = '第 ' + secArg + ' 节「' + bookSec[0].secTitle + (bookSec[0].topic ? ' · ' + bookSec[0].topic : '') + '」';
 console.log(head);
 console.log('  书内 ' + bookSec.length + ' 条 / 本节 deck ' + decks.map((d) => d.id).join('+')
   + ' 应铺 ' + dedup.length + ' 句');
+/* 续行片段按口径不铺（判据见 book-section.mjs）—— 打印出来，别让这个跳过静默发生 */
+if (continuations.length) {
+  console.log('  [i] 续行片段 ' + continuations.length + ' 条（上一句的续写，不作独立练习单元 → 不计入应铺）：');
+  continuations.forEach((s) => console.log('      ' + JSON.stringify(s)));
+}
 
 /* ---------- --list：侦察清单 ---------- */
 if (args[1] === '--list') {

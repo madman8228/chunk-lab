@@ -1635,6 +1635,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script src="js/legacy-backup.js"></script>
 <script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
+<script src="js/chunk-shape.js"></script>
 <script src="srs.js"></script>
 <script type="module" src="js/bridge.mjs"></script>
 <script>
@@ -4446,8 +4447,8 @@ function validateDeck(raw){
     if(typeof sent!=='string' || !sent.trim()){ errs.push(tag+'：缺少 sentence'); return; }
     if(!Array.isArray(chunks)){ errs.push(tag+'：缺少 chunks 数组'); return; }
     chunks = chunks.map(function(c){ return String(c==null?'':c).trim(); }).filter(function(c){ return c.length>0; });
-    if(chunks.length<2 || chunks.length>5){
-      errs.push(tag+'：chunks 数量 '+chunks.length+'，需在 2-5 之间'); return;
+    if(!ChunkShape.chunkCountOk(sent, chunks)){
+      errs.push(tag+'：'+ChunkShape.chunkCountError(sent, chunks)); return;
     }
     if(norm(chunks.join(' ')) !== norm(sent)){
       errs.push(tag+'：拼接不匹配 → "'+chunks.join(' ')+'" ≠ "'+sent+'"'); return;
@@ -4543,7 +4544,7 @@ async function doAppendValidate(){
     var s = it.sentence || it.en || it.text;
     if(!s){ errs.push('第'+(i+1)+'题缺少 sentence'); return; }
     var ch = it.chunks || it.parts;
-    if(!ch || !ch.length || ch.length<2 || ch.length>5){ errs.push('第'+(i+1)+'题 chunks 需要 2-5 个'); return; }
+    if(!Array.isArray(ch) || !ChunkShape.chunkCountOk(s, ch)){ errs.push('第'+(i+1)+'题：'+ChunkShape.chunkCountError(s, ch)); return; }
     good.push(it);
   });
   if(!good.length){

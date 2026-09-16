@@ -9,9 +9,17 @@
      （`I'm late!` 这种 2 词句照样必须切 2 段）。这是精确例外，不可滥用。
 
    为什么是「唯一实现」：
-     同一个判据曾散落在 5 个校验器里，改一处必漏一处（已在本项目反复踩过）。
+     同一个判据曾散落在 7 个校验器里，改一处必漏一处（已在本项目反复踩过）。
      全库只此一份，其余全部 require/import 本模块。
-     ⚠️ 本文件**不被运行时 import** → 不进 SW 预缓存 → 改它无需重跑 gen-sw。
+
+   ⚠️ 为什么在 js/ 而不是 scripts/（2026-09-16 迁）：
+     作者侧的三道闸（decks.html 编辑器保存 / 卡片质检、main.html 导入题库 JSON）
+     也需要同一判据，而 **scripts/ 不部署到线上**、HTML 引不到 → 那 4 处只能硬编码
+     `chunks.length 2-5`，于是单字句（Help! / Thanks.）在作者侧根本存不进去
+     （库里 39 条单字句只能靠脚本绕行，作者改一下就被拒）。
+     js/ 是运行时目录、HTML 可 `<script src>`，故唯一实现归此。
+   ⚠️ 因此本文件**进入 SW 预缓存**（scripts/gen-sw.js 按 HTML 引用自动补全）→
+     改它必须重跑 `node scripts/gen-sw.js`，与其它运行时代码同规则。
 
    运行期安全性（已查证）：
      main.html 槽位渲染是 `it.chunks.forEach`，buildChoices(it, i) 按索引取、

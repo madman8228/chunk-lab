@@ -16,7 +16,7 @@ import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 /* 「最少切几段」的唯一判据（含单字句例外）—— 同目录 */
-import CS from './chunk-shape.js';
+import CS from '../js/chunk-shape.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 

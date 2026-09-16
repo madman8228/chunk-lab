@@ -17,7 +17,7 @@ var fs = require('fs');
 var path = require('path');
 var cp = require('child_process');
 
-var CS = require('./scripts/chunk-shape.js');
+var CS = require('./js/chunk-shape.js');
 
 var pass = 0, fail = 0;
 function assert(cond, name) {
@@ -79,6 +79,17 @@ MUST_REF.forEach(function (f) {
   assert(/chunk-shape/.test(src), f + ' 引用了 chunk-shape 判据');
 });
 
+/* 作者侧（两道 HTML 闸）也必须用同一判据 —— 2026-09-16 补：这 4 处原本硬编码
+   `chunks.length 2-5`，导致库里 39 条单字句在编辑器/导入闸下存不进去。
+   ⚠️ 只断言「引了脚本」不够：引入却不调用、照样自己硬编码，照样能过 → 两条都断言。
+     调用处数用 ≥2（decks 2 处 / main 2 处），既拦「没接上」也拦「接了一处漏一处」。 */
+['decks.html', 'main.html'].forEach(function (f) {
+  var src = fs.readFileSync(path.join(__dirname, f), 'utf8');
+  assert(/<script src="js\/chunk-shape\.js">/.test(src), f + ' 引入了判据脚本 js/chunk-shape.js');
+  var n = (src.match(/ChunkShape\.chunkCountOk\(/g) || []).length;
+  assert(n >= 2, f + ' 的 ' + n + ' 处段数闸走 ChunkShape.chunkCountOk（应 ≥2）');
+});
+
 /* ★ 匹配前必须剥注释：判据的**旧写法**会被写进注释做说明（本文件第 6 行就复述了
    `chunks.length >= 2`），不剥就会把「说明」当成「违规」——假阳性会让护栏失去可信度，
    最后被人整体关掉（比没有护栏更糟）。本项目既有做法：策略类断言前先剥注释。
@@ -101,11 +112,12 @@ function stripComments(src) {
   return out;
 }
 
-/* 白名单：这些文件里的段数比较是**已知豁免**，且都不属于 oral-book 构建链：
-   - decks.html / main.html：作者侧导入 / 编辑 / 卡片质检的校验器（方案待定，见 MEMORY.md）
-   - scripts/chunk-shape.js：判据的**唯一实现**，本来就该写段数比较
-   - 本文件：判据自身的单测，负向自证的样例字面量（好样例 vs 坏样例）天然含这些写法 */
-var ALLOWED = ['decks.html', 'main.html', 'scripts/chunk-shape.js', 'chunk-shape.test.js'];
+/* 白名单：这些文件里的段数比较是**已知豁免**，且都不是「判据的调用方」：
+   - js/chunk-shape.js：判据的**唯一实现**，本来就该写段数比较
+   - 本文件：判据自身的单测，负向自证的样例字面量（好样例 vs 坏样例）天然含这些写法
+   ⚠️ decks.html / main.html **已移出白名单**（2026-09-16）：作者侧那 4 处硬编码已改为
+      调用本判据 → 它们哪天退回 `chunks.length 2-5`，下面的散落检查会立刻报红。 */
+var ALLOWED = ['js/chunk-shape.js', 'chunk-shape.test.js'];
 var RE = /chunks\s*\.\s*length\s*[<>]=?\s*2|chunks\.length\s*[<>]=?\s*5/;
 
 /* 负向自证：剥注释不许把护栏削钝 —— 真代码里的段数比较仍须被抓到，

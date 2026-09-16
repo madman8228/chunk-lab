@@ -1,0 +1,40 @@
+{
+  "$comment": "跨内容源重复句的显式登记（口径与判据见 scripts/check-cross-source-dup.mjs 头注）。口语场景库 oral-book.js 与惯用语库 freq-idioms.js 共用一个 cid 空间：句子文本相同即 cid 相同 = 同一学习状态。允许重复（两库入口语义不同），但必须在此登记；新增未登记的重复会被 check-cross-source-dup.mjs 拦红，登记失效（两库不再重复）同样报错。kind: identical = 两库文本完全一致（cid 同、进度共享）；punct-variant = 仅句末标点不同（cid 不同、进度不共享）。",
+  "entries": [
+    {
+      "norm": "icantlivewithoutyou",
+      "oral": "I can't live without you.",
+      "idiom": "I can't live without you.",
+      "kind": "identical",
+      "reason": "口语 1.4 表白场景与惯用语库都收录这句情话，文本逐字一致 → cid 相同，用户在两处练的是同一记忆状态，纯重复、无副作用。删任一条都会让某个入口少一句高频表达，且要重跑分片与 SW，收益为负。"
+    },
+    {
+      "norm": "ialmostmadeit",
+      "oral": "I almost made it.",
+      "idiom": "I almost made it.",
+      "kind": "identical",
+      "reason": "口语 4.17 生气/懊恼场景与惯用语库都收录，文本一致 → cid 相同、进度共享。保留。"
+    },
+    {
+      "norm": "takeitorleaveit",
+      "oral": "Take it or leave it.",
+      "idiom": "Take it or leave it.",
+      "kind": "identical",
+      "reason": "老板 2026-09-15 问过留/删的既是这一条（当时只知道它）。结论：留着 —— 口语 6.31 是「交涉时」场景用法、惯用语库是固定表达定位，两条用户路径不同，且 cid 相同所以进度共享，重复无害。"
+    },
+    {
+      "norm": "nomoreexcuses",
+      "oral": "No more excuses!",
+      "idiom": "No more excuses.",
+      "kind": "punct-variant",
+      "reason": "两库只差句末标点（口语用 ! 表强烈语气、惯用语库用 . 表陈述），中文译文也不同（「别再辩解了!」/「别再找借口了。」）。⚠️ 因此 cid 不同、进度**不共享**：用户会看到两道看起来一样、掌握状态却各算各的题。已知但暂不改 —— 口语侧句子来自书原文（book-content-check 要求必须属于原书该节，改不了），只能改惯用语侧，而改文本即改 cid = 动已上线内容与用户已有进度 key（须配迁移表）。留待老板拍板是否统一标点；未拍板前先登记在案，以免它被当成「查不到的幽灵重复」。"
+    },
+    {
+      "norm": "leavemealone",
+      "oral": "Leave me alone!",
+      "idiom": "Leave me alone.",
+      "kind": "punct-variant",
+      "reason": "同 nomoreexcuses：仅句末标点不同（! / .），cid 不同、进度不共享，译文也不同（「离我远点儿!」/「让我一个人待着。」）。处置同上，待老板拍板。"
+    }
+  ]
+}

@@ -11,7 +11,7 @@
     4) chunks 去空格拼接 == sentence（防脱字/多字）
     4b) chunk 形态：段数 1~5（**单字句允许 1 段**，其余 ≥2）、
         无纯标点段、不以标点开头、句末标点只在末段
-        （段数判据的唯一实现在 scripts/chunk-shape.js，含单字句例外的完整说明）
+        （段数判据的唯一实现在 js/chunk-shape.js，含单字句例外的完整说明）
         （自 validate_oral8000.js 移植，删旧脚本不丢覆盖）
     4c) alts（同义答案，可选）契约：与 chunks 等长、每项 null 或字符串数组、
         条目不得与对应 chunk 归一化后相同
@@ -22,7 +22,7 @@
 const fs = require('fs');
 const path = require('path');
 /* 「最少切几段」的**唯一**判据实现（含单字句例外），全库只此一份 */
-const CS = require(path.join(__dirname, 'scripts', 'chunk-shape.js'));
+const CS = require(path.join(__dirname, 'js', 'chunk-shape.js'));
 
 /* chunk / alts 形态规则（自 validate_oral8000.js 移植） */
 const PURE_PUNCT = /^[\s.?!,;:]+$/;   /* 纯标点/空白 */

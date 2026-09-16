@@ -479,6 +479,7 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="auth-ui.js"></script>
 <script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
+<script src="js/chunk-shape.js"></script>
 <script src="library.js"></script>
 <script src="course-package.js"></script>
 <script>
@@ -931,7 +932,7 @@ function saveEditSentence(){
   var exps = $('editSentenceExps').value.split(/\n/).map(function(s){return s.trim();});
   var msg = $('editSentenceMsg');
   if(!en){ msg.className='msg err show'; msg.textContent='英文句子不能为空'; return; }
-  if(chunks.length < 2 || chunks.length > 5){ msg.className='msg err show'; msg.textContent='chunks 数量需在 2-5 之间（当前 '+chunks.length+'）'; return; }
+  if(!ChunkShape.chunkCountOk(en, chunks)){ msg.className='msg err show'; msg.textContent=ChunkShape.chunkCountError(en, chunks); return; }
   if(norm(chunks.join(' ')) !== norm(en)){ msg.className='msg err show'; msg.textContent='chunks 拼接与原句不一致 → "'+chunks.join(' ')+'" ≠ "'+en+'"'; return; }
   if(hints.length !== chunks.length){ msg.className='msg err show'; msg.textContent='hints 数量需与 chunks 一致（hints='+hints.length+', chunks='+chunks.length+'）'; return; }
   if(exps.length > chunks.length){ msg.className='msg err show'; msg.textContent='explanations 数量不能超过 chunks 数'; return; }
@@ -1253,7 +1254,7 @@ function validateDeck(data){
     var err = [];
     var _why = [];
     if(!String(sentence).trim()) _why.push('缺英文句子');
-    if(!Array.isArray(it.chunks) || it.chunks.length < 2 || it.chunks.length > 5) _why.push('意群数需 2-5 个（当前 '+(it.chunks?it.chunks.length:'无')+'）');
+    if(!Array.isArray(it.chunks) || !ChunkShape.chunkCountOk(sentence, it.chunks)) _why.push('意群数不符：'+ChunkShape.chunkCountError(sentence, it.chunks));
     else if(norm(it.chunks.join(' ')) !== norm(sentence)) _why.push('意群拼接与原句不一致');
     if(Array.isArray(it.chunks) && Array.isArray(it.hints) && it.hints.length !== it.chunks.length) _why.push('中文提示数与意群数不一致');
     if(_why.length){

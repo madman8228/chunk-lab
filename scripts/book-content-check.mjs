@@ -6,14 +6,14 @@
  * --level=full : 再加上 grammar / explanations / distractors（精档，默认）
  *
  * chunks 段数：单字句（Help! / Thanks.）允许 1 段，其余 ≥2、≤5
- *   —— 判据唯一实现在 chunk-shape.js（本项目曾把这条判据散落在 7 个文件里）
+ *   —— 判据唯一实现在 js/chunk-shape.js（本项目曾把这条判据散落在 7 个文件里）
  *
  * 输入在**入库位** extra/oral-book/（不是 gitignore 的 output/）
  */
 import fs from 'node:fs';
 import path from 'node:path';
 /* 「最少切几段」的唯一判据（含单字句例外）—— 同目录 */
-import CS from './chunk-shape.js';
+import CS from '../js/chunk-shape.js';
 
 /* 书管线输入的入库根 */
 const BOOK_DIR = 'extra/oral-book';

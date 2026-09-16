@@ -139,7 +139,7 @@ function shapeOk(it) {
 }
 const SHAPE_INIT = 'window.__bookShapeOk = (' + shapeOk.toString() + ');';
 /* UMD：浏览器分支会挂 window.ChunkShape */
-const CS_SRC = fs.readFileSync(path.join(ROOT, 'scripts', 'chunk-shape.js'), 'utf8');
+const CS_SRC = fs.readFileSync(path.join(ROOT, 'js', 'chunk-shape.js'), 'utf8');
 
 /* 所有页面 context 都先注入判据（addInitScript 对每个新 document 生效）
    顺序要紧：ChunkShape 必须先于用它的 shapeOk 注册。 */
