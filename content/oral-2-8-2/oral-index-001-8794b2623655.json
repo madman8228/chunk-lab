@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "fc911b7a",
+      "sentence": "Goodbye.",
+      "translation": "再见!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "966426d7",
+      "sentence": "Bye.",
+      "translation": "再见!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "75735f9f",
+      "sentence": "See you.",
+      "translation": "回头见!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "f25cbf41",
+      "sentence": "I'm off now.",
+      "translation": "我去了啊。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "c602f9ab",
+      "sentence": "I have to go.",
+      "translation": "我得告辞了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "d6475888",
+      "sentence": "Good luck!",
+      "translation": "祝你好运!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "3e4584ca",
+      "sentence": "Have a nice day!",
+      "translation": "祝你愉快!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "804165ba",
+      "sentence": "Have a nice weekend.",
+      "translation": "祝你周末愉快!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "521ad6e1",
+      "sentence": "Have fun!",
+      "translation": "祝你玩得愉快。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "4f7e3361",
+      "sentence": "Keep it up!",
+      "translation": "就这样，坚持下去。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "637c8456",
+      "sentence": "Have a nice trip.",
+      "translation": "旅途愉快!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "cab4ea04",
+      "sentence": "Have a good one!",
+      "translation": "那多保重!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "da839def",
+      "sentence": "I hate to run, but...",
+      "translation": "真舍不得走，但是……",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "0d3c646e",
+      "sentence": "It was nice meeting you.",
+      "translation": "认识你我非常高兴。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "8fcd6e3d",
+      "sentence": "Please say hello to John for me.",
+      "translation": "请代我向约翰问好。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "d9760065",
+      "sentence": "Come again.",
+      "translation": "再来啊!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "9beb2d8d",
+      "sentence": "Don't forget to bring something back for me.",
+      "translation": "别忘了给我带点儿什么。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "3fe76807",
+      "sentence": "Take it easy.",
+      "translation": "放松点儿!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "e40d0ccc",
+      "sentence": "I hope to see you again soon.",
+      "translation": "希望不久能再见到你。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "f6ffdbb7",
+      "sentence": "Call me later.",
+      "translation": "给我打电话。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "7c15313f",
+      "sentence": "Take care.",
+      "translation": "多保重!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "1e10fbd5",
+      "sentence": "Take care of yourself.",
+      "translation": "你自己多保重!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "080a1039",
+      "sentence": "I'll be back.",
+      "translation": "我还会来的。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "b7dfb7b8",
+      "sentence": "It's getting late.",
+      "translation": "天不早了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "be7f3c2f",
+      "sentence": "I've got to go.",
+      "translation": "我得走了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "5925b47e",
+      "sentence": "I'll miss you.",
+      "translation": "我会想你的。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "39f02a56",
+      "sentence": "I wish I could go with you.",
+      "translation": "我真希望能和你在一起。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "e31068b4",
+      "sentence": "Please give my regards to your family.",
+      "translation": "请代我向你的家人问好。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "5c7bccc0",
+      "sentence": "You must come back.",
+      "translation": "你一定回来啊!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "9735e0c2",
+      "sentence": "Give me a call sometime.",
+      "translation": "有空给我打电话。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "c8892737",
+      "sentence": "Let's get together again sometime.",
+      "translation": "我们什么时候再聚吧。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "4fd6bb43",
+      "sentence": "Please write me a letter.",
+      "translation": "请给我写信。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "e3539bd4",
+      "sentence": "I'll write you a letter.",
+      "translation": "我会给你写信的。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "b025d597",
+      "sentence": "Let's keep in touch.",
+      "translation": "让我们保持联系。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "3d3699ce",
+      "sentence": "Don't forget to write.",
+      "translation": "别忘了写信。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "4310cfc8",
+      "sentence": "Hello! Anyone home?",
+      "translation": "喂，有人吗?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "e89ca6c7",
+      "sentence": "Please come in!",
+      "translation": "欢迎，请进!",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "77d8de22",
+      "sentence": "How nice of you to come!",
+      "translation": "你能来，太好啦。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "b1f6e350",
+      "sentence": "What do you want?",
+      "translation": "你有事吗?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "f19e6255",
+      "sentence": "Please feel free to make yourself at home.",
+      "translation": "别客气，像在自己家一样。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "224aff4d",
+      "sentence": "Have a seat.",
+      "translation": "请坐吧。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "398ebeb0",
+      "sentence": "Enjoy yourself!",
+      "translation": "您尽兴。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "dcacf251",
+      "sentence": "Would you care for something to drink?",
+      "translation": "您喝点什么吗?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "414f6393",
+      "sentence": "Don't mind me.",
+      "translation": "没关系。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "4a566472",
+      "sentence": "May I use your bathroom?",
+      "translation": "我可以用洗手间吗?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "81bc76de",
+      "sentence": "Where's the bathroom?",
+      "translation": "洗手间在哪儿?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "d7f590da",
+      "sentence": "May I use your phone?",
+      "translation": "可以借用一下您的电话吗?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "6aa69dd5",
+      "sentence": "I'd better get going now.",
+      "translation": "我得告辞了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "589831e7",
+      "sentence": "Thank you for inviting me.",
+      "translation": "非常感谢您的盛情款待。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "8a26a180",
+      "sentence": "Drop by sometime.",
+      "translation": "有空再来串门吧。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "f464b30a",
+      "sentence": "He came to see me himself.",
+      "translation": "他亲自来看我。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "11052acf",
+      "sentence": "Do you mind if I smoke?",
+      "translation": "您介意我抽烟吗?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "75b5fd98",
+      "sentence": "I like your house.",
+      "translation": "您的房子真好。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "664d8773",
+      "sentence": "I really like your apartment.",
+      "translation": "我很喜欢你的公寓。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "89843067",
+      "sentence": "Watch your step.",
+      "translation": "小心脚下。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "74afd6b4",
+      "sentence": "The floor is slippery.",
+      "translation": "地上很滑。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "688ae2f0",
+      "sentence": "Please turn on the TV.",
+      "translation": "请打开电视。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "df001175",
+      "sentence": "Can I park my car here?",
+      "translation": "我可以把车停这儿吗?",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "efb3c8ea",
+      "sentence": "I'll give you a call when I get home.",
+      "translation": "我到家后给你打电话。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "3edf0897",
+      "sentence": "It was really nice talking to you.",
+      "translation": "和你聊天真的很愉快。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "f2d8d822",
+      "sentence": "Sorry, I have to go now.",
+      "translation": "抱歉，我得走了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "d1a382b8",
+      "sentence": "I'm on my way.",
+      "translation": "我在路上了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "6b70763b",
+      "sentence": "See you later, take care.",
+      "translation": "回头见，保重。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "4c95b52c",
+      "sentence": "Let's stay in touch, okay?",
+      "translation": "我们保持联系，好吗？",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "f22bd74d",
+      "sentence": "Sorry I'm late, the traffic was terrible.",
+      "translation": "抱歉我迟到了，路上堵得厉害。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "8eea26b2",
+      "sentence": "I'll be there in about ten minutes.",
+      "translation": "我大约十分钟后到。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "f1405f3f",
+      "sentence": "I brought you apples.",
+      "translation": "我给你带了苹果。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "13553af7",
+      "sentence": "This is way too much.",
+      "translation": "这太多了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "2af7c066",
+      "sentence": "It's partly rotten.",
+      "translation": "有点坏了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "2ca094db",
+      "sentence": "Bite that piece off.",
+      "translation": "把那块咬下来。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "46bc4117",
+      "sentence": "I'm coming to get you.",
+      "translation": "我来接你了。",
+      "sourceUrl": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+      "sourceOffset": 70
+    }
+  ]
+}

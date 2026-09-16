@@ -1,0 +1,1234 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Hi!",
+      "translation": "嗨!你好!",
+      "chunks": [
+        "Hi!"
+      ],
+      "hints": [
+        "嗨！"
+      ],
+      "cid": "325d0001"
+    },
+    {
+      "sentence": "Good afternoon.",
+      "translation": "你好!/下午好!",
+      "chunks": [
+        "Good",
+        "afternoon."
+      ],
+      "hints": [
+        "下午",
+        "好！"
+      ],
+      "cid": "ec325166"
+    },
+    {
+      "sentence": "Good evening.",
+      "translation": "晚上好!",
+      "chunks": [
+        "Good",
+        "evening."
+      ],
+      "hints": [
+        "晚上",
+        "好！"
+      ],
+      "cid": "9e17682e"
+    },
+    {
+      "sentence": "How are you?",
+      "translation": "你好吗?",
+      "chunks": [
+        "How are",
+        "you?"
+      ],
+      "hints": [
+        "怎么样",
+        "你？"
+      ],
+      "cid": "73b95561"
+    },
+    {
+      "sentence": "Fine, thank you.",
+      "translation": "我很好，谢谢。",
+      "chunks": [
+        "Fine,",
+        "thank you."
+      ],
+      "hints": [
+        "很好，",
+        "谢谢你。"
+      ],
+      "cid": "90c7b48e"
+    },
+    {
+      "sentence": "Not so good.",
+      "translation": "不怎么好。",
+      "chunks": [
+        "Not so",
+        "good."
+      ],
+      "hints": [
+        "不太",
+        "好。"
+      ],
+      "cid": "748b22a9"
+    },
+    {
+      "sentence": "Nothing much.",
+      "translation": "老样子。",
+      "chunks": [
+        "Nothing",
+        "much."
+      ],
+      "hints": [
+        "没什么",
+        "特别的。"
+      ],
+      "cid": "0c14c4cb"
+    },
+    {
+      "sentence": "Glad to meet you.",
+      "translation": "认识您我很高兴。",
+      "chunks": [
+        "Glad to",
+        "meet you."
+      ],
+      "hints": [
+        "很高兴",
+        "见到你。"
+      ],
+      "cid": "131242c6"
+    },
+    {
+      "sentence": "What's up?",
+      "cid": "243188cb",
+      "translation": "怎么了？/最近怎么样？",
+      "chunks": [
+        "What's",
+        "up?"
+      ],
+      "hints": [
+        "什么",
+        "情况"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/wɒts/"
+          ],
+          "pos": "缩略形式",
+          "meaning": "What is"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʌp/"
+          ],
+          "pos": "副词",
+          "meaning": "发生/进行中"
+        }
+      ],
+      "explanations": [
+        "**What's up?** 是\"怎么了？\"或\"最近怎么样？\"的万能问候。比 \"How are you?\" 更随意、更口语化。",
+        "回答可以说 \"Not much.\"（没什么）、\"Just hanging out.\"（随便逛逛）或者反问 \"Not much, what's up with you?\""
+      ],
+      "distractors": [
+        [
+          "What",
+          "What are"
+        ],
+        [
+          "on?",
+          "wrong?"
+        ]
+      ]
+    },
+    {
+      "sentence": "How's your family?",
+      "translation": "你的家人怎么样?",
+      "chunks": [
+        "How's",
+        "your family?"
+      ],
+      "hints": [
+        "怎么样",
+        "你的家人？"
+      ],
+      "cid": "a30b70bf"
+    },
+    {
+      "sentence": "How's everything?",
+      "translation": "还好吧?",
+      "chunks": [
+        "How's",
+        "everything?"
+      ],
+      "hints": [
+        "怎么样",
+        "一切都好吗？"
+      ],
+      "cid": "75ebdcbd"
+    },
+    {
+      "sentence": "How's business?",
+      "translation": "工作怎么样?",
+      "chunks": [
+        "How's",
+        "business?"
+      ],
+      "hints": [
+        "怎么样",
+        "生意？"
+      ],
+      "cid": "94c62c0c"
+    },
+    {
+      "sentence": "Not bad.",
+      "translation": "还可以。",
+      "chunks": [
+        "Not",
+        "bad."
+      ],
+      "hints": [
+        "不",
+        "错。"
+      ],
+      "cid": "a51087ed"
+    },
+    {
+      "sentence": "Oh, same as usual.",
+      "translation": "和往常一样。",
+      "chunks": [
+        "Oh,",
+        "same as usual."
+      ],
+      "hints": [
+        "哦，",
+        "和往常一样。"
+      ],
+      "cid": "2ff78448"
+    },
+    {
+      "sentence": "What's the hurry?",
+      "translation": "急着干什么去呀?",
+      "chunks": [
+        "What's",
+        "the hurry?"
+      ],
+      "hints": [
+        "什么",
+        "事这么急？"
+      ],
+      "cid": "fddaa0d5"
+    },
+    {
+      "sentence": "Where are you headed?",
+      "translation": "你去哪儿?",
+      "chunks": [
+        "Where are you",
+        "headed?"
+      ],
+      "hints": [
+        "你去",
+        "哪儿？"
+      ],
+      "cid": "69849c2d"
+    },
+    {
+      "sentence": "I was just thinking.",
+      "translation": "我在想点事儿。",
+      "chunks": [
+        "I was just",
+        "thinking."
+      ],
+      "hints": [
+        "我刚才在",
+        "想事情。"
+      ],
+      "cid": "3af2f8cb"
+    },
+    {
+      "sentence": "I was just daydreaming.",
+      "translation": "我只是发了会儿呆。",
+      "chunks": [
+        "I was just",
+        "daydreaming."
+      ],
+      "hints": [
+        "我刚才在",
+        "发呆。"
+      ],
+      "cid": "e1ae78f0"
+    },
+    {
+      "sentence": "I'm just killing time.",
+      "translation": "我只是在消磨时间。",
+      "chunks": [
+        "I'm just",
+        "killing time."
+      ],
+      "hints": [
+        "我只是在",
+        "消磨时间。"
+      ],
+      "cid": "cf35c83f"
+    },
+    {
+      "sentence": "Nothing.",
+      "translation": "没想什么。/没什么。",
+      "chunks": [
+        "Nothing."
+      ],
+      "hints": [
+        "没什么。"
+      ],
+      "cid": "b8d0f14c"
+    },
+    {
+      "sentence": "Another day, another dollar.",
+      "translation": "和往常一样。",
+      "chunks": [
+        "Another day,",
+        "another dollar."
+      ],
+      "hints": [
+        "又是一天，",
+        "又是一块钱。"
+      ],
+      "cid": "8e28fb6d"
+    },
+    {
+      "sentence": "You've come just in time.",
+      "translation": "你来的正是时候。",
+      "chunks": [
+        "You've come",
+        "just in time."
+      ],
+      "hints": [
+        "你来得",
+        "正是时候。"
+      ],
+      "cid": "b0faabd0"
+    },
+    {
+      "sentence": "There you are!",
+      "translation": "原来你在这儿啊!",
+      "chunks": [
+        "There",
+        "you are!"
+      ],
+      "hints": [
+        "原来",
+        "你在这儿！"
+      ],
+      "cid": "cd7fd34f"
+    },
+    {
+      "sentence": "Is Jeff around?",
+      "translation": "杰夫在吗?",
+      "chunks": [
+        "Is Jeff",
+        "around?"
+      ],
+      "hints": [
+        "杰夫",
+        "在吗？"
+      ],
+      "cid": "e41edb94"
+    },
+    {
+      "sentence": "Have you seen Scott?",
+      "translation": "你见到斯科特吗?",
+      "chunks": [
+        "Have you seen",
+        "Scott?"
+      ],
+      "hints": [
+        "你见到",
+        "斯科特了吗？"
+      ],
+      "cid": "aba97789"
+    },
+    {
+      "sentence": "I ran into him.",
+      "translation": "我偶然碰到了他。",
+      "chunks": [
+        "I ran",
+        "into him."
+      ],
+      "hints": [
+        "我偶然",
+        "碰到了他。"
+      ],
+      "cid": "eed041cf"
+    },
+    {
+      "sentence": "Guess who I bumped into yesterday?",
+      "translation": "哎，你猜我昨天遇见谁了?",
+      "chunks": [
+        "Guess",
+        "who I bumped into yesterday?"
+      ],
+      "hints": [
+        "猜猜",
+        "我昨天碰到谁了？"
+      ],
+      "cid": "f896ea11"
+    },
+    {
+      "sentence": "He's a stranger to me.",
+      "translation": "我跟他素不相识。",
+      "chunks": [
+        "He's",
+        "a stranger to me."
+      ],
+      "hints": [
+        "他对我来说",
+        "是完全陌生的人。"
+      ],
+      "cid": "f8e5a148"
+    },
+    {
+      "sentence": "It's been a long time.",
+      "translation": "好久不见。",
+      "chunks": [
+        "It's been",
+        "a long time."
+      ],
+      "hints": [
+        "已经",
+        "很久了。"
+      ],
+      "cid": "ab73ddc2"
+    },
+    {
+      "sentence": "It's been so long.",
+      "translation": "好久不见。",
+      "chunks": [
+        "It's been",
+        "so long."
+      ],
+      "hints": [
+        "已经",
+        "这么久没见了。"
+      ],
+      "cid": "6573982e"
+    },
+    {
+      "sentence": "Long time no see.",
+      "cid": "e53f3d82",
+      "translation": "好久不见。",
+      "chunks": [
+        "Long time",
+        "no see."
+      ],
+      "hints": [
+        "很长时间",
+        "没见"
+      ],
+      "grammar": [
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/lɔːŋ/",
+            "/taɪm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "很长时间"
+        },
+        {
+          "role": "省略句（习语）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/noʊ/",
+            "/siː/"
+          ],
+          "pos": "口语习语",
+          "meaning": "没见"
+        }
+      ],
+      "explanations": [
+        "**Long time no see.** = 好久不见。虽有中文来源，但已被英语完全接纳，是地道寒暄。",
+        "更正式的说法：**It's been a long time / It's been ages.** 回应：Yeah, how have you been?（你最近怎么样？）"
+      ],
+      "distractors": [
+        [
+          "A long time",
+          "Long times",
+          "So long time"
+        ],
+        [
+          "no saw.",
+          "not see.",
+          "no seen."
+        ]
+      ]
+    },
+    {
+      "sentence": "How have you been?",
+      "translation": "还好吧?",
+      "chunks": [
+        "How have",
+        "you been?"
+      ],
+      "hints": [
+        "你最近",
+        "怎么样？"
+      ],
+      "cid": "6744c9d1"
+    },
+    {
+      "sentence": "How have you been doing?",
+      "translation": "最近怎么样?",
+      "chunks": [
+        "How have you",
+        "been doing?"
+      ],
+      "hints": [
+        "你最近",
+        "过得怎么样？"
+      ],
+      "cid": "c7a71cac"
+    },
+    {
+      "sentence": "What have you been doing?",
+      "translation": "忙什么呢?",
+      "chunks": [
+        "What have you",
+        "been doing?"
+      ],
+      "hints": [
+        "你最近在",
+        "忙什么呢？"
+      ],
+      "cid": "cad6a35a"
+    },
+    {
+      "sentence": "Where have you been?",
+      "translation": "你去哪儿了?",
+      "chunks": [
+        "Where have",
+        "you been?"
+      ],
+      "hints": [
+        "你去",
+        "哪儿了？"
+      ],
+      "cid": "6aa3385e"
+    },
+    {
+      "sentence": "I'm glad to see you again.",
+      "translation": "很高兴又见到你。",
+      "chunks": [
+        "I'm glad",
+        "to see you again."
+      ],
+      "hints": [
+        "很高兴",
+        "又见到你。"
+      ],
+      "cid": "ae1303f3"
+    },
+    {
+      "sentence": "You haven't changed at all.",
+      "translation": "你一点儿都没变。",
+      "chunks": [
+        "You haven't",
+        "changed at all."
+      ],
+      "hints": [
+        "你一点",
+        "都没变。"
+      ],
+      "cid": "a8cf598b"
+    },
+    {
+      "sentence": "You haven't changed much.",
+      "translation": "你没怎么变。",
+      "chunks": [
+        "You haven't",
+        "changed much."
+      ],
+      "hints": [
+        "你没",
+        "怎么变。"
+      ],
+      "cid": "c8593c9a"
+    },
+    {
+      "sentence": "You've really changed.",
+      "translation": "你变样了。",
+      "chunks": [
+        "You've really",
+        "changed."
+      ],
+      "hints": [
+        "你真的",
+        "变样了。"
+      ],
+      "cid": "0bd369a3"
+    },
+    {
+      "sentence": "You've grown up.",
+      "translation": "你长大了。",
+      "chunks": [
+        "You've",
+        "grown up."
+      ],
+      "hints": [
+        "你",
+        "长大了。"
+      ],
+      "cid": "f5adca72"
+    },
+    {
+      "sentence": "You've become so beautiful.",
+      "translation": "你越来越漂亮了。",
+      "chunks": [
+        "You've become",
+        "so beautiful."
+      ],
+      "hints": [
+        "你变得",
+        "越来越漂亮了。"
+      ],
+      "cid": "b3a6ab38"
+    },
+    {
+      "sentence": "Is John okay?",
+      "translation": "约翰他好吗?",
+      "chunks": [
+        "Is John",
+        "okay?"
+      ],
+      "hints": [
+        "约翰",
+        "他好吗？"
+      ],
+      "cid": "31e016e3"
+    },
+    {
+      "sentence": "You look great.",
+      "translation": "你看上去不错。",
+      "chunks": [
+        "You look",
+        "great."
+      ],
+      "hints": [
+        "你看上去",
+        "很不错。"
+      ],
+      "cid": "ceeec188"
+    },
+    {
+      "sentence": "How are you feeling?",
+      "translation": "你感觉怎么样?",
+      "chunks": [
+        "How are you",
+        "feeling?"
+      ],
+      "hints": [
+        "你感觉",
+        "怎么样？"
+      ],
+      "cid": "3702f995"
+    },
+    {
+      "sentence": "How's he getting along these days?",
+      "translation": "他这些日子过得怎么样?",
+      "chunks": [
+        "How's he getting along",
+        "these days?"
+      ],
+      "hints": [
+        "他这些日子",
+        "过得怎么样？"
+      ],
+      "cid": "abe84ce8"
+    },
+    {
+      "sentence": "Are you gaining weight?",
+      "translation": "最近你是不是胖了?",
+      "chunks": [
+        "Are you",
+        "gaining weight?"
+      ],
+      "hints": [
+        "你是不是",
+        "胖了？"
+      ],
+      "cid": "46bf64d6"
+    },
+    {
+      "sentence": "How was your weekend?",
+      "cid": "77588aab",
+      "translation": "你周末过得怎么样？",
+      "chunks": [
+        "How was",
+        "your weekend?"
+      ],
+      "hints": [
+        "……怎么样",
+        "你的周末"
+      ],
+      "grammar": [
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/haʊ/",
+            "/wɒz/"
+          ],
+          "pos": "疑问词组",
+          "meaning": "怎么样"
+        },
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/jɔːr/",
+            "/ˈwiːkend/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的周末"
+        }
+      ],
+      "explanations": [
+        "\"How is your weekend?\" 问的是\"现在怎么样\"，但周末已经过去了，要用过去式 **was**。",
+        "这里特指\"你刚过去的那个周末\"，所以用 **your**。如果说\"周末通常怎么样？\"才用 \"the weekend\" 或 \"weekends\"。"
+      ],
+      "distractors": [
+        [
+          "How is",
+          "How were",
+          "How has"
+        ],
+        [
+          "you weekend?",
+          "your weekends?",
+          "the weekend?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I haven't seen you for ages.",
+      "cid": "78b2ed9c",
+      "translation": "好久不见了。",
+      "chunks": [
+        "I haven't seen you",
+        "for ages."
+      ],
+      "hints": [
+        "我没见到你",
+        "有很久了"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈhævnt/",
+            "/siːn/",
+            "/juː/"
+          ],
+          "pos": "现在完成时",
+          "meaning": "我没见到你"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/ˈeɪdʒɪz/"
+          ],
+          "pos": "介词短语",
+          "meaning": "很久"
+        }
+      ],
+      "explanations": [
+        "**现在完成时**（have/has + 过去分词）表示\"从过去持续到现在的状态\"。常见错误：\n• \"I **didn't** see you\" → 一般过去时只强调过去，不含\"到现在\"的意思\n• \"I **don't** see you\" → 一般现在时表示习惯，不符合\"好久不见\"",
+        "**for + 时间段** 表示持续了多久。常见错误：\n• \"**since** ages\" → since 后接时间点（如 since 2020），不是时间段\n• \"for **age**\" → ages 用复数，表示\"许多年、很久\""
+      ],
+      "distractors": [
+        [
+          "I haven't saw you",
+          "I haven't see you",
+          "I hasn't seen you"
+        ],
+        [
+          "for age.",
+          "since ages.",
+          "for the ages."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's been a while.",
+      "cid": "4fad1198",
+      "translation": "已经有一阵子了。",
+      "chunks": [
+        "It's been",
+        "a while."
+      ],
+      "hints": [
+        "已经有",
+        "一段时间"
+      ],
+      "grammar": [
+        {
+          "role": "主系",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/biːn/"
+          ],
+          "pos": "现在完成时",
+          "meaning": "已经有"
+        },
+        {
+          "role": "表语（时间）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/waɪl/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一段时间"
+        }
+      ],
+      "explanations": [
+        "**It's been a while.** = 已经有一段时间了，常接 since：It's been a while since we met.（我们好久没见了）。",
+        "寒暄常用：It's been a while, how have you been? 也可用于提醒：It's been a while since you visited."
+      ],
+      "distractors": [
+        [
+          "It been",
+          "It's being",
+          "It was"
+        ],
+        [
+          "while.",
+          "a white.",
+          "the while."
+        ]
+      ]
+    },
+    {
+      "sentence": "How are you doing these days?",
+      "cid": "129c08c0",
+      "translation": "你最近过得怎么样？",
+      "chunks": [
+        "How are you doing",
+        "these days?"
+      ],
+      "hints": [
+        "你最近怎么样",
+        "这些天"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/haʊ/",
+            "/ɑːr/",
+            "/juː/",
+            "/ˈduːɪŋ/"
+          ],
+          "pos": "现在进行时问句",
+          "meaning": "你最近过得"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðiːz/",
+            "/deɪz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "这些天"
+        }
+      ],
+      "explanations": [
+        "`How are you doing?` 比 `How are you?` 更口语、更关心近况。常见错误：\n• \"How **is** you doing\" → you 是第二人称，要用 are\n• \"How are you **do**\" → 助动词重复，doing 已含进行含义",
+        "`these days` 表「最近、这些天」，常与现在时连用。常见错误：\n• \"this **day**\" → 单数不对，days 用复数表一段时期\n• \"in these days\" → 通常不加 in"
+      ],
+      "distractors": [
+        [
+          "How do you doing",
+          "How are you feel",
+          "How are you does"
+        ],
+        [
+          "this days?",
+          "these day?",
+          "those days?"
+        ]
+      ]
+    },
+    {
+      "sentence": "How ya doin'?",
+      "cid": "c530aed7",
+      "translation": "最近怎么样？",
+      "chunks": [
+        "How ya",
+        "doin'?"
+      ],
+      "hints": [
+        "你（怎么）",
+        "过得"
+      ],
+      "alts": [
+        null,
+        [
+          "doing?"
+        ]
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/haʊ/",
+            "/jə/"
+          ],
+          "pos": "How are you 的口语连读",
+          "meaning": "你（怎么）"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈduːɪn/"
+          ],
+          "pos": "doing 的口语拼写",
+          "meaning": "过得"
+        }
+      ],
+      "explanations": [
+        "`ya` 是 you 的口语弱读，整句源自 How are you doing?。常见错误：\n• \"How ya doing?\" → 写成 doing 更规范，doin' 是口语拼写\n• \"How you doin'?\" → 也常见，但省略了 are 的读音",
+        "这是非常随意的问候，正式场合要说 How are you?"
+      ],
+      "distractors": [
+        [
+          "How you",
+          "How are",
+          "How's ya"
+        ],
+        [
+          "do?",
+          "done?",
+          "doin's?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Not too bad.",
+      "cid": "c869e3f3",
+      "translation": "还不错。",
+      "chunks": [
+        "Not too",
+        "bad."
+      ],
+      "hints": [
+        "不算",
+        "太差"
+      ],
+      "grammar": [
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/nɑːt/",
+            "/tuː/"
+          ],
+          "pos": "否定 + 程度副词",
+          "meaning": "不算太"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/bæd/"
+          ],
+          "pos": "形容词",
+          "meaning": "差"
+        }
+      ],
+      "explanations": [
+        "`not too bad` 是英语里典型的「保守式回答」，实际意思接近「挺好的」。常见错误：\n• \"not to bad\" → 程度副词是 too，不是 to\n• \"no too bad\" → 否定词用 not",
+        "同义：Pretty good. / Can't complain. / Not bad at all."
+      ],
+      "distractors": [
+        [
+          "No too",
+          "Not to",
+          "Not to much"
+        ],
+        [
+          "badly.",
+          "worse.",
+          "bads."
+        ]
+      ]
+    },
+    {
+      "sentence": "You moved?",
+      "cid": "ac537f80",
+      "translation": "你搬家了？",
+      "chunks": [
+        "You",
+        "moved?"
+      ],
+      "hints": [
+        "你",
+        "搬了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/"
+          ],
+          "pos": "人称代词",
+          "meaning": "你"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/muːvd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "搬了"
+        }
+      ],
+      "explanations": [
+        "省略助动词 Did，只靠升调表疑问。常见错误：\n• \"You move?\" → 问已经发生的事要用过去式 moved\n• \"Did you moved?\" → 有 did 时动词要还原成 move",
+        "`move` 表搬家时不及物，常说 move in / move out / move to a new place。"
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You're",
+          "Yours"
+        ],
+        [
+          "move?",
+          "moving?",
+          "moved away?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Yes, nice place.",
+      "cid": "b0368ee8",
+      "translation": "是的，好地方。",
+      "chunks": [
+        "Yes,",
+        "nice place."
+      ],
+      "hints": [
+        "是的",
+        "好地方"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jes/"
+          ],
+          "pos": "肯定应答",
+          "meaning": "是的"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/naɪs/",
+            "/pleɪs/"
+          ],
+          "pos": "形容词+名词",
+          "meaning": "好地方"
+        }
+      ],
+      "explanations": [
+        "`nice place` 是省略句（It's a nice place.），口语常省掉冠词。常见错误：\n• \"nice places\" → 指一处住所要用单数\n• \"a nice place\" → 更完整，省略句里也常见",
+        "同义：Nice spot. / Great location."
+      ],
+      "distractors": [
+        [
+          "Yeah,",
+          "Yep,",
+          "Yup,"
+        ],
+        [
+          "a nice place.",
+          "nice places.",
+          "nice play."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sounds real nice.",
+      "cid": "7cccaf62",
+      "translation": "听起来不错。",
+      "chunks": [
+        "Sounds",
+        "real nice."
+      ],
+      "hints": [
+        "听起来",
+        "真的很不错"
+      ],
+      "grammar": [
+        {
+          "role": "系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/saʊndz/"
+          ],
+          "pos": "sound 第三人称单数",
+          "meaning": "听起来"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈriːəl/",
+            "/naɪs/"
+          ],
+          "pos": "副词 + 形容词",
+          "meaning": "真的很不错"
+        }
+      ],
+      "explanations": [
+        "`sound + 形容词` 表「听起来」。常见错误：\n• \"Sound real nice\" → 主语省略了 It，但要保留 -s 的第三人称单数\n• \"Sounds like nice\" → sound like 后面接名词",
+        "口语里 `real` 常代替 really 作副词。常见错误：\n• 正式写作要用 really nice"
+      ],
+      "distractors": [
+        [
+          "Sound",
+          "Sounding",
+          "Sounds like"
+        ],
+        [
+          "really nice.",
+          "real nicer.",
+          "real nicely."
+        ]
+      ]
+    },
+    {
+      "sentence": "Kids okay?",
+      "cid": "af4c7939",
+      "translation": "孩子们还好吗？",
+      "chunks": [
+        "Kids",
+        "okay?"
+      ],
+      "hints": [
+        "孩子们",
+        "还好吗"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/kɪdz/"
+          ],
+          "pos": "名词复数",
+          "meaning": "孩子们"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˌoʊˈkeɪ/"
+          ],
+          "pos": "形容词",
+          "meaning": "还好"
+        }
+      ],
+      "explanations": [
+        "`Kids` 前省略了冠词 the（口语中很常见）。常见错误：\n• \"The kids\" → 更完整，问熟人家里的事时省略也自然\n• \"Kids is\" → 复数主语用 are（这里省略了）",
+        "完整句是 Are the kids okay? 同义：How are the kids doing?"
+      ],
+      "distractors": [
+        [
+          "Kid",
+          "The kids",
+          "Kids is"
+        ],
+        [
+          "OK?",
+          "okay at?",
+          "alright?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Yeah, they're fine.",
+      "cid": "c0abf276",
+      "translation": "嗯，他们都好。",
+      "chunks": [
+        "Yeah,",
+        "they're fine."
+      ],
+      "hints": [
+        "嗯",
+        "他们都好"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jeə/"
+          ],
+          "pos": "口语肯定词",
+          "meaning": "嗯"
+        },
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðer/",
+            "/faɪn/"
+          ],
+          "pos": "they are 缩写 + 形容词",
+          "meaning": "他们都好"
+        }
+      ],
+      "explanations": [
+        "`they're` = they are，注意和 their（他们的）、there（那里）区分。常见错误：\n• \"their fine\" → 同音但含义不同\n• \"they fine\" → 少了 be 动词",
+        "`fine` 表「身体好、没问题」。同义：They're doing well."
+      ],
+      "distractors": [
+        [
+          "Yes,",
+          "Yep,",
+          "Yup,"
+        ],
+        [
+          "they fine.",
+          "their fine.",
+          "they're find."
+        ]
+      ]
+    }
+  ]
+}

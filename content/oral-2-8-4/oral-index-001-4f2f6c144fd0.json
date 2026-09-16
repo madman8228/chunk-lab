@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "6a4c7597",
+      "sentence": "Are you a student?",
+      "translation": "你是学生吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "ae0a9b51",
+      "sentence": "I'm a college student.",
+      "translation": "我是个大学生。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "22c88257",
+      "sentence": "I'm studying English.",
+      "translation": "我正在学习英文。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "2f681209",
+      "sentence": "I went to Meiji University.",
+      "translation": "我毕业于明治大学。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "0b00c961",
+      "sentence": "Where did you go to college?",
+      "translation": "你上的哪所大学?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "357280df",
+      "sentence": "What school do you go to?",
+      "translation": "你上什么学校?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "ca288917",
+      "sentence": "I go to...university.",
+      "translation": "我上……大学。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "6b7ad6c1",
+      "sentence": "What year are you in?",
+      "translation": "你上几年级了?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "48d290d5",
+      "sentence": "I'm a freshman.",
+      "translation": "我上一年级。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "7ad79caa",
+      "sentence": "I'll graduate next year.",
+      "translation": "我明年毕业。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "f701e5ce",
+      "sentence": "What's your major?",
+      "translation": "你的专业是什么?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "2a30e554",
+      "sentence": "I'm an English major.",
+      "translation": "我的专业是英语。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "68ff390c",
+      "sentence": "What club are you in?",
+      "translation": "你参加哪个俱乐部?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "003203eb",
+      "sentence": "I'm in the ski club.",
+      "translation": "我在滑雪俱乐部。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "97fd7007",
+      "sentence": "Do you have a part-time job?",
+      "translation": "你在打工吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "c6e0baa1",
+      "sentence": "I work at a bookstore as a cashier once a week.",
+      "translation": "我一个星期去一次书店做收银员。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "c2b76f2b",
+      "sentence": "What are your plans after graduation?",
+      "translation": "毕业以后你打算做什么?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "a73f8ab6",
+      "sentence": "How many people are in your family?",
+      "translation": "你家有几口人?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "e9e71d4e",
+      "sentence": "Four people.",
+      "translation": "四口人。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "40a3da36",
+      "sentence": "My parents and my younger sister.",
+      "translation": "父母和我的妹妹。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "484c6e89",
+      "sentence": "Any brothers or sisters?",
+      "translation": "你有兄弟姐妹吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "6a791bf1",
+      "sentence": "Just one brother.",
+      "translation": "只有一个哥哥(弟弟)。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "e08d8e2a",
+      "sentence": "Do you live with your parents?",
+      "translation": "你和父母住在一起吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "374801f9",
+      "sentence": "I live alone.",
+      "translation": "我一个人住。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "94178dac",
+      "sentence": "I live in an apartment.",
+      "translation": "我住在公寓里。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "db6c9857",
+      "sentence": "Are you married?",
+      "translation": "你结婚了吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "f3eb2c3d",
+      "sentence": "No, not yet.",
+      "translation": "不，还没有。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "87578949",
+      "sentence": "I have a fiancé.",
+      "translation": "我有对象了。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "e4f93b25",
+      "sentence": "I'm going to get married next year.",
+      "translation": "我打算明年结婚。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "8ed4a0e2",
+      "sentence": "I'm married.",
+      "translation": "我结婚了。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "0a679d49",
+      "sentence": "I'm engaged.",
+      "translation": "我订婚了。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "15c4fddd",
+      "sentence": "Any children?",
+      "translation": "有孩子吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "4790b4f7",
+      "sentence": "I have two boys.",
+      "translation": "我有两个男孩。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "5eb6c557",
+      "sentence": "I have one daughter in elementary school.",
+      "translation": "我有一个女儿，在上小学。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "8fe27b05",
+      "sentence": "I don't have any children.",
+      "translation": "我没有孩子。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "a7658759",
+      "sentence": "What are your hobbies?",
+      "translation": "你有什么爱好?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "92f01f02",
+      "sentence": "Do you have any hobbies?",
+      "translation": "你有点什么爱好吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "6f42a159",
+      "sentence": "What do you do when you have free time?",
+      "translation": "业余时间你都干什么?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "51bd714e",
+      "sentence": "I like to watch movies.",
+      "translation": "我喜欢看电影。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "298ef5a9",
+      "sentence": "What kind of movies do you like?",
+      "translation": "你喜欢看什么样的电影?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "2a575606",
+      "sentence": "You're a good pianist.",
+      "translation": "你的钢琴弹得真好。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "05456283",
+      "sentence": "What kind of sports do you like?",
+      "translation": "你喜欢哪种运动?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "6f319764",
+      "sentence": "How long have you been skiing?",
+      "translation": "你滑了多长时间雪了?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "b3f9a6f1",
+      "sentence": "I just like to watch.",
+      "translation": "我只是喜欢看。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "12fd291a",
+      "sentence": "I'm a baseball fan.",
+      "translation": "我是棒球迷。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "1ce0bb60",
+      "sentence": "I like to play golf.",
+      "translation": "我喜欢打高尔夫球。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "3f27b587",
+      "sentence": "Have you ever done aerobics?",
+      "translation": "你练过健美操吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "47a99bf0",
+      "sentence": "What are your interests?",
+      "translation": "你对什么感兴趣?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "9db891a7",
+      "sentence": "I've never done that.",
+      "translation": "我从没做过。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "b3476c93",
+      "sentence": "Have you ever traveled abroad?",
+      "translation": "你去国外旅行过吗?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "b9a5c5cc",
+      "sentence": "I've been to the U.S. and Germany.",
+      "translation": "我去美国和德国了。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "326e6a83",
+      "sentence": "Where do you want to go next?",
+      "translation": "下次你想去哪儿?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "4d62bdfa",
+      "sentence": "How old are you?",
+      "translation": "你多大了？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "650f0440",
+      "sentence": "I'm forty-eight.",
+      "translation": "我48岁。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "673770d9",
+      "sentence": "How much do you weigh?",
+      "translation": "你的体重是多少?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "20c5f7da",
+      "sentence": "About seventy-five kilograms.",
+      "translation": "75公斤左右。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "c510d51c",
+      "sentence": "I weigh a-hundred-sixty-four pounds.",
+      "translation": "我重164磅。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "f74e2382",
+      "sentence": "How tall are you?",
+      "translation": "你有多高?",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "ab2ab413",
+      "sentence": "About one-hundred-eighty centimeters.",
+      "translation": "1米80左右。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "76528873",
+      "sentence": "I'm five feet three inches tall.",
+      "translation": "我身高5英尺3寸。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "d338b9bb",
+      "sentence": "Do you enjoy watching movies?",
+      "translation": "你喜欢看电影吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "d10b5dec",
+      "sentence": "I'm pretty good at cooking.",
+      "translation": "我挺擅长做饭的。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "334cfe4a",
+      "sentence": "I usually go for a run in the morning.",
+      "translation": "我通常早上跑步。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "6de73a4a",
+      "sentence": "I'm into cooking these days.",
+      "translation": "我最近迷上做饭了。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "9850dabd",
+      "sentence": "May I hand in my homework tomorrow?",
+      "translation": "我明天交作业可以吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "2c67da0d",
+      "sentence": "I'm having trouble understanding this part.",
+      "translation": "我理解这部分有困难。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "adb3d11f",
+      "sentence": "Could you explain it in a simpler way?",
+      "translation": "你能用更简单的方式解释吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "b0d272f4",
+      "sentence": "I'll try my best to catch up with the class.",
+      "translation": "我会尽最大努力赶上班级进度。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "2458e206",
+      "sentence": "I used to play the piano when I was little.",
+      "translation": "我小时候常常弹钢琴。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "d7c85ebc",
+      "sentence": "Did you get taller?",
+      "translation": "你长高了吗？",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "c59cc387",
+      "sentence": "You are growing fast.",
+      "translation": "你长得真快。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "7fde70a6",
+      "sentence": "Twenty something.",
+      "translation": "二十多岁吧。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "744c4681",
+      "sentence": "I'm trying to study.",
+      "translation": "我在学习。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "f8afdcf8",
+      "sentence": "My test is tomorrow.",
+      "translation": "我明天有考试。",
+      "sourceUrl": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+      "sourceOffset": 73
+    }
+  ]
+}

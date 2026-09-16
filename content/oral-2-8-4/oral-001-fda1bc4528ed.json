@@ -3,6 +3,826 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Are you a student?",
+      "translation": "你是学生吗?",
+      "chunks": [
+        "Are you",
+        "a student?"
+      ],
+      "hints": [
+        "你是",
+        "学生吗？"
+      ],
+      "cid": "6a4c7597"
+    },
+    {
+      "sentence": "I'm a college student.",
+      "translation": "我是个大学生。",
+      "chunks": [
+        "I'm",
+        "a college student."
+      ],
+      "hints": [
+        "我是个",
+        "大学生。"
+      ],
+      "cid": "ae0a9b51"
+    },
+    {
+      "sentence": "I'm studying English.",
+      "translation": "我正在学习英文。",
+      "chunks": [
+        "I'm studying",
+        "English."
+      ],
+      "hints": [
+        "我正在",
+        "学英语。"
+      ],
+      "cid": "22c88257"
+    },
+    {
+      "sentence": "I went to Meiji University.",
+      "translation": "我毕业于明治大学。",
+      "chunks": [
+        "I went to",
+        "Meiji University."
+      ],
+      "hints": [
+        "我毕业于",
+        "明治大学。"
+      ],
+      "cid": "2f681209"
+    },
+    {
+      "sentence": "Where did you go to college?",
+      "translation": "你上的哪所大学?",
+      "chunks": [
+        "Where did you",
+        "go to college?"
+      ],
+      "hints": [
+        "你上的",
+        "哪所大学？"
+      ],
+      "cid": "0b00c961"
+    },
+    {
+      "sentence": "What school do you go to?",
+      "translation": "你上什么学校?",
+      "chunks": [
+        "What school",
+        "do you go to?"
+      ],
+      "hints": [
+        "你上的是",
+        "什么学校？"
+      ],
+      "cid": "357280df"
+    },
+    {
+      "sentence": "I go to...university.",
+      "translation": "我上……大学。",
+      "chunks": [
+        "I go",
+        "to...university."
+      ],
+      "hints": [
+        "我上……",
+        "大学。"
+      ],
+      "cid": "ca288917"
+    },
+    {
+      "sentence": "What year are you in?",
+      "translation": "你上几年级了?",
+      "chunks": [
+        "What year",
+        "are you in?"
+      ],
+      "hints": [
+        "你上",
+        "几年级了？"
+      ],
+      "cid": "6b7ad6c1"
+    },
+    {
+      "sentence": "I'm a freshman.",
+      "translation": "我上一年级。",
+      "chunks": [
+        "I'm",
+        "a freshman."
+      ],
+      "hints": [
+        "我上",
+        "一年级。"
+      ],
+      "cid": "48d290d5"
+    },
+    {
+      "sentence": "I'll graduate next year.",
+      "translation": "我明年毕业。",
+      "chunks": [
+        "I'll graduate",
+        "next year."
+      ],
+      "hints": [
+        "我明年",
+        "毕业。"
+      ],
+      "cid": "7ad79caa"
+    },
+    {
+      "sentence": "What's your major?",
+      "translation": "你的专业是什么?",
+      "chunks": [
+        "What's",
+        "your major?"
+      ],
+      "hints": [
+        "你的专业",
+        "是什么？"
+      ],
+      "cid": "f701e5ce"
+    },
+    {
+      "sentence": "I'm an English major.",
+      "translation": "我的专业是英语。",
+      "chunks": [
+        "I'm",
+        "an English major."
+      ],
+      "hints": [
+        "我的专业",
+        "是英语。"
+      ],
+      "cid": "2a30e554"
+    },
+    {
+      "sentence": "What club are you in?",
+      "translation": "你参加哪个俱乐部?",
+      "chunks": [
+        "What club",
+        "are you in?"
+      ],
+      "hints": [
+        "你参加",
+        "哪个俱乐部？"
+      ],
+      "cid": "68ff390c"
+    },
+    {
+      "sentence": "I'm in the ski club.",
+      "translation": "我在滑雪俱乐部。",
+      "chunks": [
+        "I'm in",
+        "the ski club."
+      ],
+      "hints": [
+        "我在",
+        "滑雪俱乐部。"
+      ],
+      "cid": "003203eb"
+    },
+    {
+      "sentence": "Do you have a part-time job?",
+      "translation": "你在打工吗?",
+      "chunks": [
+        "Do you have",
+        "a part-time job?"
+      ],
+      "hints": [
+        "你在",
+        "打工吗？"
+      ],
+      "cid": "97fd7007"
+    },
+    {
+      "sentence": "I work at a bookstore as a cashier once a week.",
+      "translation": "我一个星期去一次书店做收银员。",
+      "chunks": [
+        "I work at a bookstore",
+        "as a cashier",
+        "once a week."
+      ],
+      "hints": [
+        "我在书店",
+        "做收银员",
+        "一周一次。"
+      ],
+      "cid": "c6e0baa1"
+    },
+    {
+      "sentence": "What are your plans after graduation?",
+      "translation": "毕业以后你打算做什么?",
+      "chunks": [
+        "What are your plans",
+        "after graduation?"
+      ],
+      "hints": [
+        "毕业以后",
+        "你打算做什么？"
+      ],
+      "cid": "c2b76f2b"
+    },
+    {
+      "sentence": "How many people are in your family?",
+      "translation": "你家有几口人?",
+      "chunks": [
+        "How many people",
+        "are in your family?"
+      ],
+      "hints": [
+        "你家",
+        "有几口人？"
+      ],
+      "cid": "a73f8ab6"
+    },
+    {
+      "sentence": "Four people.",
+      "translation": "四口人。",
+      "chunks": [
+        "Four",
+        "people."
+      ],
+      "hints": [
+        "四",
+        "口人。"
+      ],
+      "cid": "e9e71d4e"
+    },
+    {
+      "sentence": "My parents and my younger sister.",
+      "translation": "父母和我的妹妹。",
+      "chunks": [
+        "My parents",
+        "and my younger sister."
+      ],
+      "hints": [
+        "我的父母",
+        "和我的妹妹。"
+      ],
+      "cid": "40a3da36"
+    },
+    {
+      "sentence": "Any brothers or sisters?",
+      "translation": "你有兄弟姐妹吗?",
+      "chunks": [
+        "Any brothers",
+        "or sisters?"
+      ],
+      "hints": [
+        "有",
+        "兄弟姐妹吗？"
+      ],
+      "cid": "484c6e89"
+    },
+    {
+      "sentence": "Just one brother.",
+      "translation": "只有一个哥哥(弟弟)。",
+      "chunks": [
+        "Just",
+        "one brother."
+      ],
+      "hints": [
+        "只有",
+        "一个哥哥。"
+      ],
+      "cid": "6a791bf1"
+    },
+    {
+      "sentence": "Do you live with your parents?",
+      "translation": "你和父母住在一起吗?",
+      "chunks": [
+        "Do you live",
+        "with your parents?"
+      ],
+      "hints": [
+        "你和父母",
+        "住在一起吗？"
+      ],
+      "cid": "e08d8e2a"
+    },
+    {
+      "sentence": "I live alone.",
+      "translation": "我一个人住。",
+      "chunks": [
+        "I live",
+        "alone."
+      ],
+      "hints": [
+        "我一个人",
+        "住。"
+      ],
+      "cid": "374801f9"
+    },
+    {
+      "sentence": "I live in an apartment.",
+      "translation": "我住在公寓里。",
+      "chunks": [
+        "I live",
+        "in an apartment."
+      ],
+      "hints": [
+        "我住在",
+        "公寓里。"
+      ],
+      "cid": "94178dac"
+    },
+    {
+      "sentence": "Are you married?",
+      "translation": "你结婚了吗?",
+      "chunks": [
+        "Are you",
+        "married?"
+      ],
+      "hints": [
+        "你",
+        "结婚了吗？"
+      ],
+      "cid": "db6c9857"
+    },
+    {
+      "sentence": "No, not yet.",
+      "translation": "不，还没有。",
+      "chunks": [
+        "No,",
+        "not yet."
+      ],
+      "hints": [
+        "不，",
+        "还没有。"
+      ],
+      "cid": "f3eb2c3d"
+    },
+    {
+      "sentence": "I have a fiancé.",
+      "translation": "我有对象了。",
+      "chunks": [
+        "I have",
+        "a fiancé."
+      ],
+      "hints": [
+        "我有",
+        "对象了。"
+      ],
+      "cid": "87578949"
+    },
+    {
+      "sentence": "I'm going to get married next year.",
+      "translation": "我打算明年结婚。",
+      "chunks": [
+        "I'm going to",
+        "get married next year."
+      ],
+      "hints": [
+        "我打算",
+        "明年结婚。"
+      ],
+      "cid": "e4f93b25"
+    },
+    {
+      "sentence": "I'm married.",
+      "translation": "我结婚了。",
+      "chunks": [
+        "I'm",
+        "married."
+      ],
+      "hints": [
+        "我",
+        "结婚了。"
+      ],
+      "cid": "8ed4a0e2"
+    },
+    {
+      "sentence": "I'm engaged.",
+      "translation": "我订婚了。",
+      "chunks": [
+        "I'm",
+        "engaged."
+      ],
+      "hints": [
+        "我",
+        "订婚了。"
+      ],
+      "cid": "0a679d49"
+    },
+    {
+      "sentence": "Any children?",
+      "translation": "有孩子吗?",
+      "chunks": [
+        "Any",
+        "children?"
+      ],
+      "hints": [
+        "有",
+        "孩子吗？"
+      ],
+      "cid": "15c4fddd"
+    },
+    {
+      "sentence": "I have two boys.",
+      "translation": "我有两个男孩。",
+      "chunks": [
+        "I have",
+        "two boys."
+      ],
+      "hints": [
+        "我有",
+        "两个男孩。"
+      ],
+      "cid": "4790b4f7"
+    },
+    {
+      "sentence": "I have one daughter in elementary school.",
+      "translation": "我有一个女儿，在上小学。",
+      "chunks": [
+        "I have one daughter",
+        "in elementary school."
+      ],
+      "hints": [
+        "我有一个女儿",
+        "在上小学。"
+      ],
+      "cid": "5eb6c557"
+    },
+    {
+      "sentence": "I don't have any children.",
+      "translation": "我没有孩子。",
+      "chunks": [
+        "I don't have",
+        "any children."
+      ],
+      "hints": [
+        "我",
+        "没有孩子。"
+      ],
+      "cid": "8fe27b05"
+    },
+    {
+      "sentence": "What are your hobbies?",
+      "translation": "你有什么爱好?",
+      "chunks": [
+        "What are",
+        "your hobbies?"
+      ],
+      "hints": [
+        "你有什么",
+        "爱好？"
+      ],
+      "cid": "a7658759"
+    },
+    {
+      "sentence": "Do you have any hobbies?",
+      "translation": "你有点什么爱好吗?",
+      "chunks": [
+        "Do you have",
+        "any hobbies?"
+      ],
+      "hints": [
+        "你有点",
+        "什么爱好吗？"
+      ],
+      "cid": "92f01f02"
+    },
+    {
+      "sentence": "What do you do when you have free time?",
+      "translation": "业余时间你都干什么?",
+      "chunks": [
+        "What do you do",
+        "when you have free time?"
+      ],
+      "hints": [
+        "业余时间",
+        "你都干什么？"
+      ],
+      "cid": "6f42a159"
+    },
+    {
+      "sentence": "I like to watch movies.",
+      "translation": "我喜欢看电影。",
+      "chunks": [
+        "I like to",
+        "watch movies."
+      ],
+      "hints": [
+        "我喜欢",
+        "看电影。"
+      ],
+      "cid": "51bd714e"
+    },
+    {
+      "sentence": "What kind of movies do you like?",
+      "translation": "你喜欢看什么样的电影?",
+      "chunks": [
+        "What kind of movies",
+        "do you like?"
+      ],
+      "hints": [
+        "你喜欢看",
+        "什么样的电影？"
+      ],
+      "cid": "298ef5a9"
+    },
+    {
+      "sentence": "You're a good pianist.",
+      "translation": "你的钢琴弹得真好。",
+      "chunks": [
+        "You're a good",
+        "pianist."
+      ],
+      "hints": [
+        "你的钢琴",
+        "弹得真好。"
+      ],
+      "cid": "2a575606"
+    },
+    {
+      "sentence": "What kind of sports do you like?",
+      "translation": "你喜欢哪种运动?",
+      "chunks": [
+        "What kind of sports",
+        "do you like?"
+      ],
+      "hints": [
+        "你喜欢",
+        "哪种运动？"
+      ],
+      "cid": "05456283"
+    },
+    {
+      "sentence": "How long have you been skiing?",
+      "translation": "你滑了多长时间雪了?",
+      "chunks": [
+        "How long have you",
+        "been skiing?"
+      ],
+      "hints": [
+        "你滑雪",
+        "滑了多久了？"
+      ],
+      "cid": "6f319764"
+    },
+    {
+      "sentence": "I just like to watch.",
+      "translation": "我只是喜欢看。",
+      "chunks": [
+        "I just like",
+        "to watch."
+      ],
+      "hints": [
+        "我只是",
+        "喜欢看。"
+      ],
+      "cid": "b3f9a6f1"
+    },
+    {
+      "sentence": "I'm a baseball fan.",
+      "translation": "我是棒球迷。",
+      "chunks": [
+        "I'm",
+        "a baseball fan."
+      ],
+      "hints": [
+        "我是",
+        "棒球迷。"
+      ],
+      "cid": "12fd291a"
+    },
+    {
+      "sentence": "I like to play golf.",
+      "translation": "我喜欢打高尔夫球。",
+      "chunks": [
+        "I like to",
+        "play golf."
+      ],
+      "hints": [
+        "我喜欢",
+        "打高尔夫球。"
+      ],
+      "cid": "1ce0bb60"
+    },
+    {
+      "sentence": "Have you ever done aerobics?",
+      "translation": "你练过健美操吗?",
+      "chunks": [
+        "Have you ever",
+        "done aerobics?"
+      ],
+      "hints": [
+        "你练过",
+        "健美操吗？"
+      ],
+      "cid": "3f27b587"
+    },
+    {
+      "sentence": "What are your interests?",
+      "translation": "你对什么感兴趣?",
+      "chunks": [
+        "What are",
+        "your interests?"
+      ],
+      "hints": [
+        "你对什么",
+        "感兴趣？"
+      ],
+      "cid": "47a99bf0"
+    },
+    {
+      "sentence": "I've never done that.",
+      "translation": "我从没做过。",
+      "chunks": [
+        "I've never",
+        "done that."
+      ],
+      "hints": [
+        "我从没",
+        "做过。"
+      ],
+      "cid": "9db891a7"
+    },
+    {
+      "sentence": "Have you ever traveled abroad?",
+      "translation": "你去国外旅行过吗?",
+      "chunks": [
+        "Have you ever",
+        "traveled abroad?"
+      ],
+      "hints": [
+        "你去国外",
+        "旅行过吗？"
+      ],
+      "cid": "b3476c93"
+    },
+    {
+      "sentence": "I've been to the U.S. and Germany.",
+      "translation": "我去美国和德国了。",
+      "chunks": [
+        "I've been to",
+        "the U.S. and Germany."
+      ],
+      "hints": [
+        "我去过",
+        "美国和德国。"
+      ],
+      "cid": "b9a5c5cc"
+    },
+    {
+      "sentence": "Where do you want to go next?",
+      "translation": "下次你想去哪儿?",
+      "chunks": [
+        "Where do you",
+        "want to go next?"
+      ],
+      "hints": [
+        "下次你想",
+        "去哪儿？"
+      ],
+      "cid": "326e6a83"
+    },
+    {
+      "sentence": "How old are you?",
+      "cid": "4d62bdfa",
+      "translation": "你多大了？",
+      "chunks": [
+        "How old",
+        "are you?"
+      ],
+      "hints": [
+        "多大",
+        "你呢"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+形容词",
+          "color": "#c87033",
+          "phonetic": [
+            "/haʊ/",
+            "/oʊld/"
+          ],
+          "pos": "询问年龄",
+          "meaning": "多大"
+        },
+        {
+          "role": "系动词+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "倒装问句",
+          "meaning": "你呢"
+        }
+      ],
+      "explanations": [
+        "问年龄固定用 `How old`。常见错误：\n• \"How age are you?\" → 错，age 是名词不能这样问\n• \"What old are you?\" → 疑问词用 How",
+        "`are you` 是主谓倒装。常见错误：\n• \"How old you are?\" → 语序没倒装，这种语序只用在宾语从句里（I know how old you are.）"
+      ],
+      "distractors": [
+        [
+          "How age",
+          "What old",
+          "How older"
+        ],
+        [
+          "you are?",
+          "are your?",
+          "do you?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm forty-eight.",
+      "translation": "我48岁。",
+      "chunks": [
+        "I'm",
+        "forty-eight."
+      ],
+      "hints": [
+        "我",
+        "四十八岁。"
+      ],
+      "cid": "650f0440"
+    },
+    {
+      "sentence": "How much do you weigh?",
+      "translation": "你的体重是多少?",
+      "chunks": [
+        "How much",
+        "do you weigh?"
+      ],
+      "hints": [
+        "你的体重",
+        "是多少？"
+      ],
+      "cid": "673770d9"
+    },
+    {
+      "sentence": "About seventy-five kilograms.",
+      "translation": "75公斤左右。",
+      "chunks": [
+        "About",
+        "seventy-five kilograms."
+      ],
+      "hints": [
+        "大约",
+        "七十五公斤。"
+      ],
+      "cid": "20c5f7da"
+    },
+    {
+      "sentence": "I weigh a-hundred-sixty-four pounds.",
+      "translation": "我重164磅。",
+      "chunks": [
+        "I weigh",
+        "a-hundred-sixty-four pounds."
+      ],
+      "hints": [
+        "我重",
+        "一百六十四磅。"
+      ],
+      "cid": "c510d51c"
+    },
+    {
+      "sentence": "How tall are you?",
+      "translation": "你有多高?",
+      "chunks": [
+        "How tall",
+        "are you?"
+      ],
+      "hints": [
+        "你",
+        "有多高？"
+      ],
+      "cid": "f74e2382"
+    },
+    {
+      "sentence": "About one-hundred-eighty centimeters.",
+      "translation": "1米80左右。",
+      "chunks": [
+        "About",
+        "one-hundred-eighty centimeters."
+      ],
+      "hints": [
+        "大约",
+        "一米八。"
+      ],
+      "cid": "ab2ab413"
+    },
+    {
+      "sentence": "I'm five feet three inches tall.",
+      "translation": "我身高5英尺3寸。",
+      "chunks": [
+        "I'm",
+        "five feet three inches tall."
+      ],
+      "hints": [
+        "我身高",
+        "五英尺三英寸。"
+      ],
+      "cid": "76528873"
+    },
+    {
       "sentence": "Do you enjoy watching movies?",
       "cid": "d338b9bb",
       "translation": "你喜欢看电影吗？",
@@ -652,57 +1472,6 @@
           "grow fast.",
           "growing fastly.",
           "grown fast."
-        ]
-      ]
-    },
-    {
-      "sentence": "How old are you?",
-      "cid": "4d62bdfa",
-      "translation": "你多大了？",
-      "chunks": [
-        "How old",
-        "are you?"
-      ],
-      "hints": [
-        "多大",
-        "你呢"
-      ],
-      "grammar": [
-        {
-          "role": "疑问词+形容词",
-          "color": "#c87033",
-          "phonetic": [
-            "/haʊ/",
-            "/oʊld/"
-          ],
-          "pos": "询问年龄",
-          "meaning": "多大"
-        },
-        {
-          "role": "系动词+主语",
-          "color": "#c87033",
-          "phonetic": [
-            "/ɑːr/",
-            "/juː/"
-          ],
-          "pos": "倒装问句",
-          "meaning": "你呢"
-        }
-      ],
-      "explanations": [
-        "问年龄固定用 `How old`。常见错误：\n• \"How age are you?\" → 错，age 是名词不能这样问\n• \"What old are you?\" → 疑问词用 How",
-        "`are you` 是主谓倒装。常见错误：\n• \"How old you are?\" → 语序没倒装，这种语序只用在宾语从句里（I know how old you are.）"
-      ],
-      "distractors": [
-        [
-          "How age",
-          "What old",
-          "How older"
-        ],
-        [
-          "you are?",
-          "are your?",
-          "do you?"
         ]
       ]
     },

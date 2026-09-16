@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "8012117b",
+      "sentence": "It's very hot today, isn't it?",
+      "translation": "今天真热呀!",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "31076740",
+      "sentence": "It's blistering hot.",
+      "translation": "天气炎热。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "05acebca",
+      "sentence": "It's a fine day today.",
+      "translation": "今天的天气真好!",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "c1be5914",
+      "sentence": "What's the forecast for tomorrow?",
+      "translation": "明天的天气怎么样?",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "7084d912",
+      "sentence": "How's the weather today?",
+      "translation": "今天的天气怎么样?",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "ce9bfc4d",
+      "sentence": "Is it going to rain today?",
+      "translation": "今天会下雨吗?",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "2ac741a8",
+      "sentence": "We're expecting some rain.",
+      "translation": "好像要下雨。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "c9dfafd6",
+      "sentence": "It's raining.",
+      "translation": "下雨了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "3dd8c82a",
+      "sentence": "It's going to rain today.",
+      "translation": "今天会下雨吧!",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "33ada786",
+      "sentence": "It's hot today.",
+      "translation": "今天很热。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "50fe57a4",
+      "sentence": "It's warm today.",
+      "translation": "今天很暖和。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "3f01085d",
+      "sentence": "It's cold today.",
+      "translation": "今天很冷。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "ee25ee28",
+      "sentence": "It's chilly today.",
+      "translation": "今天冷嗖嗖的。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "b3d261b8",
+      "sentence": "It's windy today.",
+      "translation": "今天风很大。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "b0ec0c39",
+      "sentence": "It's humid.",
+      "translation": "今天很闷热。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "1f9e9c13",
+      "sentence": "It's dry.",
+      "translation": "气候干燥。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "585da904",
+      "sentence": "It's stormy.",
+      "translation": "暴风雨天气。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "ad65a9fb",
+      "sentence": "It's snowing.",
+      "translation": "下雪了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "20a372dd",
+      "sentence": "It's gloomy.",
+      "translation": "天阴沉沉的。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "ac7c8449",
+      "sentence": "It looks like we are going to have a thunder shower.",
+      "translation": "看样子我们会遇上雷阵雨。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "94c3bf48",
+      "sentence": "A typhoon is coming.",
+      "translation": "台风快到了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "1e825a38",
+      "sentence": "It's foggy.",
+      "translation": "起雾了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "ad6c1d48",
+      "sentence": "It's freezing.",
+      "translation": "冷得像要结冰了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "b638de8f",
+      "sentence": "We're going to have a blizzard.",
+      "translation": "快要下暴风雨了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "504ca1b8",
+      "sentence": "It's pleasant.",
+      "translation": "这天真舒服。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "202ade45",
+      "sentence": "It's mild today.",
+      "translation": "今天风和日丽。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "9e131334",
+      "sentence": "It's misty.",
+      "translation": "雾蒙蒙的。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "58cd5dd4",
+      "sentence": "It's overcast today.",
+      "translation": "今天阴天。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "5059d320",
+      "sentence": "It's miserable.",
+      "translation": "糟糕的天气。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "5cc305f9",
+      "sentence": "I'm sensitive to heat.",
+      "translation": "我怕热。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "5c32176a",
+      "sentence": "It's breezy today.",
+      "translation": "今天风和日丽。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "d8447ba8",
+      "sentence": "It's uncomfortable today.",
+      "translation": "今天的天气让人不舒服。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "18927bde",
+      "sentence": "The heat is killing me.",
+      "translation": "热死我了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "7c16b26a",
+      "sentence": "It's raining cats and dogs!",
+      "translation": "下了瓢泼大雨。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "d2633cc0",
+      "sentence": "It's frosty today.",
+      "translation": "下霜了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "05de33a5",
+      "sentence": "It looks like it's going to rain.",
+      "translation": "看起来快要下雨了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "8139df49",
+      "sentence": "It's pouring outside right now.",
+      "translation": "外面这会儿正下着倾盆大雨。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "362a9411",
+      "sentence": "If it rains, we'll just stay home.",
+      "translation": "要是下雨，我们就待在家里。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "dd58f6c9",
+      "sentence": "It's boiling hot outside today.",
+      "translation": "今天外面热死了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "09a7c3c3",
+      "sentence": "It depends on the weather, I guess.",
+      "translation": "这取决于天气，我想。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "d463d7c2",
+      "sentence": "The sun's out.",
+      "translation": "太阳出来了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "6db16bc7",
+      "sentence": "It's getting windy.",
+      "translation": "起风了。",
+      "sourceUrl": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+      "sourceOffset": 41
+    }
+  ]
+}

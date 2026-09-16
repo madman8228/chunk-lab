@@ -3,6 +3,499 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "It's very hot today, isn't it?",
+      "translation": "今天真热呀!",
+      "chunks": [
+        "It's very hot today,",
+        "isn't it?"
+      ],
+      "hints": [
+        "今天真热呀，",
+        "是不是？"
+      ],
+      "cid": "8012117b"
+    },
+    {
+      "sentence": "It's blistering hot.",
+      "translation": "天气炎热。",
+      "chunks": [
+        "It's",
+        "blistering hot."
+      ],
+      "hints": [
+        "天气",
+        "炎热。"
+      ],
+      "cid": "31076740"
+    },
+    {
+      "sentence": "It's a fine day today.",
+      "translation": "今天的天气真好!",
+      "chunks": [
+        "It's a fine day",
+        "today."
+      ],
+      "hints": [
+        "今天的天气",
+        "真好！"
+      ],
+      "cid": "05acebca"
+    },
+    {
+      "sentence": "What's the forecast for tomorrow?",
+      "translation": "明天的天气怎么样?",
+      "chunks": [
+        "What's the forecast",
+        "for tomorrow?"
+      ],
+      "hints": [
+        "明天的",
+        "天气怎么样？"
+      ],
+      "cid": "c1be5914"
+    },
+    {
+      "sentence": "How's the weather today?",
+      "translation": "今天的天气怎么样?",
+      "chunks": [
+        "How's the weather",
+        "today?"
+      ],
+      "hints": [
+        "今天的",
+        "天气怎么样？"
+      ],
+      "cid": "7084d912"
+    },
+    {
+      "sentence": "Is it going to rain today?",
+      "translation": "今天会下雨吗?",
+      "chunks": [
+        "Is it going to",
+        "rain today?"
+      ],
+      "hints": [
+        "今天",
+        "会下雨吗？"
+      ],
+      "cid": "ce9bfc4d"
+    },
+    {
+      "sentence": "We're expecting some rain.",
+      "translation": "好像要下雨。",
+      "chunks": [
+        "We're expecting",
+        "some rain."
+      ],
+      "hints": [
+        "好像",
+        "要下雨。"
+      ],
+      "cid": "2ac741a8"
+    },
+    {
+      "sentence": "It's raining.",
+      "cid": "c9dfafd6",
+      "translation": "下雨了。",
+      "chunks": [
+        "It's",
+        "raining."
+      ],
+      "hints": [
+        "天（它）",
+        "在下雨"
+      ],
+      "grammar": [
+        {
+          "role": "形式主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/"
+          ],
+          "pos": "it 指天气",
+          "meaning": "天"
+        },
+        {
+          "role": "谓语（进行时）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈreɪnɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "正在下雨"
+        }
+      ],
+      "explanations": [
+        "谈天气时用 it 作形式主语，不能用 he/she。常见错误：\n• \"It rains now\" → 眼下正在下要用进行时\n• \"Rain is happening\" → 不地道，直接说 It's raining",
+        "相关：It's pouring.（下大雨）/ It's drizzling.（下毛毛雨）"
+      ],
+      "distractors": [
+        [
+          "It",
+          "It is raining",
+          "There's"
+        ],
+        [
+          "rains.",
+          "rained.",
+          "rainy."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's going to rain today.",
+      "translation": "今天会下雨吧!",
+      "chunks": [
+        "It's going to",
+        "rain today."
+      ],
+      "hints": [
+        "今天",
+        "会下雨吧！"
+      ],
+      "cid": "3dd8c82a"
+    },
+    {
+      "sentence": "It's hot today.",
+      "translation": "今天很热。",
+      "chunks": [
+        "It's hot",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "很热。"
+      ],
+      "cid": "33ada786"
+    },
+    {
+      "sentence": "It's warm today.",
+      "translation": "今天很暖和。",
+      "chunks": [
+        "It's warm",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "很暖和。"
+      ],
+      "cid": "50fe57a4"
+    },
+    {
+      "sentence": "It's cold today.",
+      "translation": "今天很冷。",
+      "chunks": [
+        "It's cold",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "很冷。"
+      ],
+      "cid": "3f01085d"
+    },
+    {
+      "sentence": "It's chilly today.",
+      "translation": "今天冷嗖嗖的。",
+      "chunks": [
+        "It's chilly",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "冷嗖嗖的。"
+      ],
+      "cid": "ee25ee28"
+    },
+    {
+      "sentence": "It's windy today.",
+      "translation": "今天风很大。",
+      "chunks": [
+        "It's windy",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "风很大。"
+      ],
+      "cid": "b3d261b8"
+    },
+    {
+      "sentence": "It's humid.",
+      "translation": "今天很闷热。",
+      "chunks": [
+        "It's",
+        "humid."
+      ],
+      "hints": [
+        "今天",
+        "很闷热。"
+      ],
+      "cid": "b0ec0c39"
+    },
+    {
+      "sentence": "It's dry.",
+      "translation": "气候干燥。",
+      "chunks": [
+        "It's",
+        "dry."
+      ],
+      "hints": [
+        "气候",
+        "干燥。"
+      ],
+      "cid": "1f9e9c13"
+    },
+    {
+      "sentence": "It's stormy.",
+      "translation": "暴风雨天气。",
+      "chunks": [
+        "It's",
+        "stormy."
+      ],
+      "hints": [
+        "暴风雨",
+        "天气。"
+      ],
+      "cid": "585da904"
+    },
+    {
+      "sentence": "It's snowing.",
+      "translation": "下雪了。",
+      "chunks": [
+        "It's",
+        "snowing."
+      ],
+      "hints": [
+        "下",
+        "雪了。"
+      ],
+      "cid": "ad65a9fb"
+    },
+    {
+      "sentence": "It's gloomy.",
+      "translation": "天阴沉沉的。",
+      "chunks": [
+        "It's",
+        "gloomy."
+      ],
+      "hints": [
+        "天",
+        "阴沉沉的。"
+      ],
+      "cid": "20a372dd"
+    },
+    {
+      "sentence": "It looks like we are going to have a thunder shower.",
+      "translation": "看样子我们会遇上雷阵雨。",
+      "chunks": [
+        "It looks like",
+        "we are going to have",
+        "a thunder shower."
+      ],
+      "hints": [
+        "看样子",
+        "我们会遇上",
+        "雷阵雨。"
+      ],
+      "cid": "ac7c8449"
+    },
+    {
+      "sentence": "A typhoon is coming.",
+      "translation": "台风快到了。",
+      "chunks": [
+        "A typhoon",
+        "is coming."
+      ],
+      "hints": [
+        "台风",
+        "快到了。"
+      ],
+      "cid": "94c3bf48"
+    },
+    {
+      "sentence": "It's foggy.",
+      "translation": "起雾了。",
+      "chunks": [
+        "It's",
+        "foggy."
+      ],
+      "hints": [
+        "起",
+        "雾了。"
+      ],
+      "cid": "1e825a38"
+    },
+    {
+      "sentence": "It's freezing.",
+      "translation": "冷得像要结冰了。",
+      "chunks": [
+        "It's",
+        "freezing."
+      ],
+      "hints": [
+        "冷得",
+        "像要结冰了。"
+      ],
+      "cid": "ad6c1d48"
+    },
+    {
+      "sentence": "We're going to have a blizzard.",
+      "translation": "快要下暴风雨了。",
+      "chunks": [
+        "We're going to have",
+        "a blizzard."
+      ],
+      "hints": [
+        "快要",
+        "下暴风雪了。"
+      ],
+      "cid": "b638de8f"
+    },
+    {
+      "sentence": "It's pleasant.",
+      "translation": "这天真舒服。",
+      "chunks": [
+        "It's",
+        "pleasant."
+      ],
+      "hints": [
+        "这天",
+        "真舒服。"
+      ],
+      "cid": "504ca1b8"
+    },
+    {
+      "sentence": "It's mild today.",
+      "translation": "今天风和日丽。",
+      "chunks": [
+        "It's mild",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "风和日丽。"
+      ],
+      "cid": "202ade45"
+    },
+    {
+      "sentence": "It's misty.",
+      "translation": "雾蒙蒙的。",
+      "chunks": [
+        "It's",
+        "misty."
+      ],
+      "hints": [
+        "雾",
+        "蒙蒙的。"
+      ],
+      "cid": "9e131334"
+    },
+    {
+      "sentence": "It's overcast today.",
+      "translation": "今天阴天。",
+      "chunks": [
+        "It's overcast",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "阴天。"
+      ],
+      "cid": "58cd5dd4"
+    },
+    {
+      "sentence": "It's miserable.",
+      "translation": "糟糕的天气。",
+      "chunks": [
+        "It's",
+        "miserable."
+      ],
+      "hints": [
+        "糟糕的",
+        "天气。"
+      ],
+      "cid": "5059d320"
+    },
+    {
+      "sentence": "I'm sensitive to heat.",
+      "translation": "我怕热。",
+      "chunks": [
+        "I'm sensitive",
+        "to heat."
+      ],
+      "hints": [
+        "我",
+        "怕热。"
+      ],
+      "cid": "5cc305f9"
+    },
+    {
+      "sentence": "It's breezy today.",
+      "translation": "今天风和日丽。",
+      "chunks": [
+        "It's breezy",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "微风习习。"
+      ],
+      "cid": "5c32176a"
+    },
+    {
+      "sentence": "It's uncomfortable today.",
+      "translation": "今天的天气让人不舒服。",
+      "chunks": [
+        "It's uncomfortable",
+        "today."
+      ],
+      "hints": [
+        "今天的天气",
+        "让人不舒服。"
+      ],
+      "cid": "d8447ba8"
+    },
+    {
+      "sentence": "The heat is killing me.",
+      "translation": "热死我了。",
+      "chunks": [
+        "The heat",
+        "is killing me."
+      ],
+      "hints": [
+        "这热天",
+        "快把我热死了。"
+      ],
+      "cid": "18927bde"
+    },
+    {
+      "sentence": "It's raining cats and dogs!",
+      "translation": "下了瓢泼大雨。",
+      "chunks": [
+        "It's raining",
+        "cats and dogs!"
+      ],
+      "hints": [
+        "下了",
+        "瓢泼大雨！"
+      ],
+      "cid": "7c16b26a"
+    },
+    {
+      "sentence": "It's frosty today.",
+      "translation": "下霜了。",
+      "chunks": [
+        "It's frosty",
+        "today."
+      ],
+      "hints": [
+        "今天",
+        "下霜了。"
+      ],
+      "cid": "d2633cc0"
+    },
+    {
       "sentence": "It looks like it's going to rain.",
       "cid": "05de33a5",
       "translation": "看起来快要下雨了。",
@@ -357,55 +850,6 @@
           "out of.",
           "outs.",
           "outing."
-        ]
-      ]
-    },
-    {
-      "sentence": "It's raining.",
-      "cid": "c9dfafd6",
-      "translation": "下雨了。",
-      "chunks": [
-        "It's",
-        "raining."
-      ],
-      "hints": [
-        "天（它）",
-        "在下雨"
-      ],
-      "grammar": [
-        {
-          "role": "形式主语",
-          "color": "#c87033",
-          "phonetic": [
-            "/ɪts/"
-          ],
-          "pos": "it 指天气",
-          "meaning": "天"
-        },
-        {
-          "role": "谓语（进行时）",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/ˈreɪnɪŋ/"
-          ],
-          "pos": "现在进行时",
-          "meaning": "正在下雨"
-        }
-      ],
-      "explanations": [
-        "谈天气时用 it 作形式主语，不能用 he/she。常见错误：\n• \"It rains now\" → 眼下正在下要用进行时\n• \"Rain is happening\" → 不地道，直接说 It's raining",
-        "相关：It's pouring.（下大雨）/ It's drizzling.（下毛毛雨）"
-      ],
-      "distractors": [
-        [
-          "It",
-          "It is raining",
-          "There's"
-        ],
-        [
-          "rains.",
-          "rained.",
-          "rainy."
         ]
       ]
     },

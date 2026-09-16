@@ -1495,55 +1495,6 @@
       ]
     },
     {
-      "sentence": "A little.",
-      "cid": "8e16eb62",
-      "translation": "有一点。",
-      "chunks": [
-        "A",
-        "little."
-      ],
-      "hints": [
-        "一",
-        "点儿"
-      ],
-      "grammar": [
-        {
-          "role": "冠词",
-          "color": "#c87033",
-          "phonetic": [
-            "/ə/"
-          ],
-          "pos": "不定冠词",
-          "meaning": "一（个）"
-        },
-        {
-          "role": "名词",
-          "color": "#3358e0",
-          "phonetic": [
-            "/ˈlɪtl/"
-          ],
-          "pos": "不可数名词用法",
-          "meaning": "一点儿"
-        }
-      ],
-      "explanations": [
-        "`a little` 是整体短语，表「一点点」，回答 Are you tired? 时常省略主句。常见错误：\n• \"a few\" → few 接可数名词，回答程度要用 a little\n• \"little\" 单用 → 表「几乎没有」，否定意味，跟 a little 相反",
-        "同义：A bit. / Kind of. / Somewhat."
-      ],
-      "distractors": [
-        [
-          "An",
-          "The",
-          "Some"
-        ],
-        [
-          "few.",
-          "bit.",
-          "lot."
-        ]
-      ]
-    },
-    {
       "sentence": "I got up late.",
       "cid": "e13305a9",
       "translation": "我起晚了。",

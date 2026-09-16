@@ -1576,56 +1576,6 @@
       ]
     },
     {
-      "sentence": "Watch your step.",
-      "cid": "89843067",
-      "translation": "小心脚下。",
-      "chunks": [
-        "Watch",
-        "your step."
-      ],
-      "hints": [
-        "注意",
-        "你的脚下"
-      ],
-      "grammar": [
-        {
-          "role": "祈使句",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/wɑːtʃ/"
-          ],
-          "pos": "祈使句动词",
-          "meaning": "注意、当心"
-        },
-        {
-          "role": "宾语",
-          "color": "#3358e0",
-          "phonetic": [
-            "/jʊr/",
-            "/step/"
-          ],
-          "pos": "名词短语",
-          "meaning": "你的脚下"
-        }
-      ],
-      "explanations": [
-        "`watch` 在此表「留意、当心」，比 look 更有警觉意味。常见错误：\n• \"Look your step\" → 固定说法是 watch your step\n• \"Watching your step\" → 祈使句用原形",
-        "`Watch your step` 既是「当心脚下」，也可引申为「小心行事」。同义：Mind the step."
-      ],
-      "distractors": [
-        [
-          "Watch out",
-          "Watching",
-          "Watches"
-        ],
-        [
-          "you step.",
-          "your steps.",
-          "your stepping."
-        ]
-      ]
-    },
-    {
       "sentence": "Your room's a mess.",
       "cid": "7bf57efa",
       "translation": "你房间很乱。",

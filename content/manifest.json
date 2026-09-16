@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-1ab9f35543613f730bd65c26fbfa94ce59605652ebedcd571e97fc4aade0254d",
+  "contentVersion": "v1-62fc76216db09402423ced9d78d110a9425f5d8c5b2fd115a8f7377ef0e9786f",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -51,24 +51,24 @@
       "sectionTitle": "在家中",
       "topic": "从起床到出门",
       "baseCount": 0,
-      "totalCount": 95,
+      "totalCount": 94,
       "shards": [
         {
-          "id": "oral-001-8c6bb1db687e",
-          "url": "content/oral-1-1-1/oral-001-8c6bb1db687e.json",
-          "count": 95,
-          "bytes": 84468,
-          "sha256": "8c6bb1db687e4297401a1244afa1f42c2c1a168634ccffe1af02bd167c4d4878",
+          "id": "oral-001-0347da81a5d5",
+          "url": "content/oral-1-1-1/oral-001-0347da81a5d5.json",
+          "count": 94,
+          "bytes": 83268,
+          "sha256": "0347da81a5d518c3e54dfe16d5bcc12889efa6836c1c41202c29cd844c8893f6",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-7f870a11311c",
-          "url": "content/oral-1-1-1/oral-index-001-7f870a11311c.json",
-          "count": 95,
-          "bytes": 20884,
-          "sha256": "7f870a11311ce688d0d35af9e8163619c62b59e726ffa5185f03da6f578672b2",
+          "id": "oral-index-001-1fd287989904",
+          "url": "content/oral-1-1-1/oral-index-001-1fd287989904.json",
+          "count": 94,
+          "bytes": 20685,
+          "sha256": "1fd2879899046351c1415a537f62124171c3cd871f975bfd16b5ebdbd5561c1e",
           "mode": "index"
         }
       ]
@@ -83,24 +83,24 @@
       "sectionTitle": "在家中",
       "topic": "从回家到就寝",
       "baseCount": 0,
-      "totalCount": 126,
+      "totalCount": 125,
       "shards": [
         {
-          "id": "oral-001-c59fb9cff85f",
-          "url": "content/oral-1-1-2/oral-001-c59fb9cff85f.json",
-          "count": 126,
-          "bytes": 101191,
-          "sha256": "c59fb9cff85f132ac53089a8d5597d32a2477887c30c3b1676cbceea0860129e",
+          "id": "oral-001-dcec8bb55254",
+          "url": "content/oral-1-1-2/oral-001-dcec8bb55254.json",
+          "count": 125,
+          "bytes": 99900,
+          "sha256": "dcec8bb55254495af58bb823cf6559c1c9ad5484792fa48f547a093bcdd6aa1a",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-90580117161f",
-          "url": "content/oral-1-1-2/oral-index-001-90580117161f.json",
-          "count": 126,
-          "bytes": 27264,
-          "sha256": "90580117161f0378bf78cdd7777f7fb6895c0da87de7c68e8f95767d6a7306c2",
+          "id": "oral-index-001-ddb67257d543",
+          "url": "content/oral-1-1-2/oral-index-001-ddb67257d543.json",
+          "count": 125,
+          "bytes": 27054,
+          "sha256": "ddb67257d5435b34c62f5561ff449284af73713fb79ac824730e501f2ae6f3b2",
           "mode": "index"
         }
       ]
@@ -531,24 +531,24 @@
       "sectionTitle": "见面、分手时",
       "topic": "碰到友人～好久不见",
       "baseCount": 0,
-      "totalCount": 13,
+      "totalCount": 57,
       "shards": [
         {
-          "id": "oral-001-833da00354ab",
-          "url": "content/oral-2-8-1/oral-001-833da00354ab.json",
-          "count": 13,
-          "bytes": 16895,
-          "sha256": "833da00354abbcdae4c21a0003bda344050053548a7e97fa0babde8c4f3ebcb0",
+          "id": "oral-001-cf5022f5a8e0",
+          "url": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+          "count": 57,
+          "bytes": 28303,
+          "sha256": "cf5022f5a8e0da86f3696e9328ee1c72b18a10c99ec45f761e11d274fc3c1d54",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-b8b200a132fc",
-          "url": "content/oral-2-8-1/oral-index-001-b8b200a132fc.json",
-          "count": 13,
-          "bytes": 2853,
-          "sha256": "b8b200a132fc141ae327045d14973c1158725165c9eedfd2b02d483d021bfc7b",
+          "id": "oral-index-001-248092b9a351",
+          "url": "content/oral-2-8-1/oral-index-001-248092b9a351.json",
+          "count": 57,
+          "bytes": 12356,
+          "sha256": "248092b9a35150f9377e08cfc28acc1af4e4f031a0c34b884736dd2ec1559587",
           "mode": "index"
         }
       ]
@@ -563,24 +563,24 @@
       "sectionTitle": "见面、分手时",
       "topic": "分手时～拜访",
       "baseCount": 0,
-      "totalCount": 13,
+      "totalCount": 71,
       "shards": [
         {
-          "id": "oral-001-d1d5e61e1ef9",
-          "url": "content/oral-2-8-2/oral-001-d1d5e61e1ef9.json",
-          "count": 13,
-          "bytes": 19170,
-          "sha256": "d1d5e61e1ef92f74446ccae7abf935d78d45a79b076beed8866bcb8560fce16c",
+          "id": "oral-001-0a1fb3489c28",
+          "url": "content/oral-2-8-2/oral-001-0a1fb3489c28.json",
+          "count": 71,
+          "bytes": 35442,
+          "sha256": "0a1fb3489c28e839d44fa2d71ff58e3c7f4b4ad20cd4b2eee97b4016c38faa50",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-36caea39a0b0",
-          "url": "content/oral-2-8-2/oral-index-001-36caea39a0b0.json",
-          "count": 13,
-          "bytes": 3019,
-          "sha256": "36caea39a0b0b5cdff8455c37d90aa24b5ae368c10bc32eba117b54ae86840b2",
+          "id": "oral-index-001-8794b2623655",
+          "url": "content/oral-2-8-2/oral-index-001-8794b2623655.json",
+          "count": 71,
+          "bytes": 15671,
+          "sha256": "8794b2623655fb744efde932aedfaaaec68cd8810b9285a31562dea42c6736dd",
           "mode": "index"
         }
       ]
@@ -595,24 +595,24 @@
       "sectionTitle": "见面、分手时",
       "topic": "介绍某人～有关工作",
       "baseCount": 0,
-      "totalCount": 3,
+      "totalCount": 63,
       "shards": [
         {
-          "id": "oral-001-4f92e9d0e3be",
-          "url": "content/oral-2-8-3/oral-001-4f92e9d0e3be.json",
-          "count": 3,
-          "bytes": 4710,
-          "sha256": "4f92e9d0e3be2900f13490a81a92f44a44d308c151ec8f660a6999cfd7e20988",
+          "id": "oral-001-5b1f3e05f830",
+          "url": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+          "count": 63,
+          "bytes": 22282,
+          "sha256": "5b1f3e05f830ceafe1dcc45a75a84a7f81748e42b7e84339d4956b438168399d",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-2c93a54683e6",
-          "url": "content/oral-2-8-3/oral-index-001-2c93a54683e6.json",
-          "count": 3,
-          "bytes": 753,
-          "sha256": "2c93a54683e60667b5413795316721d30a45f55d1c764f6a7b6f7d9162fb1476",
+          "id": "oral-index-001-517fef148ce0",
+          "url": "content/oral-2-8-3/oral-index-001-517fef148ce0.json",
+          "count": 63,
+          "bytes": 14249,
+          "sha256": "517fef148ce0d119612da52f59abe5b3651f0f5cbfcc517bb88c23534330ddad",
           "mode": "index"
         }
       ]
@@ -627,24 +627,24 @@
       "sectionTitle": "见面、分手时",
       "topic": "有关学校～有关年龄、身高和体重",
       "baseCount": 0,
-      "totalCount": 15,
+      "totalCount": 74,
       "shards": [
         {
-          "id": "oral-001-d29d77e650c8",
-          "url": "content/oral-2-8-4/oral-001-d29d77e650c8.json",
-          "count": 15,
-          "bytes": 22986,
-          "sha256": "d29d77e650c812d4c271163f39ff7c0b5186ffad4071bf5161e95e84e40eae7e",
+          "id": "oral-001-fda1bc4528ed",
+          "url": "content/oral-2-8-4/oral-001-fda1bc4528ed.json",
+          "count": 74,
+          "bytes": 39255,
+          "sha256": "fda1bc4528ed9c739dc50ef8e94339df017d7648fdec67ac7c851b5dc2add045",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-972e953d746b",
-          "url": "content/oral-2-8-4/oral-index-001-972e953d746b.json",
-          "count": 15,
-          "bytes": 3534,
-          "sha256": "972e953d746bb29d7cf320c947b3a1b85c366a5ffc30c445099b3243e376bf8b",
+          "id": "oral-index-001-4f2f6c144fd0",
+          "url": "content/oral-2-8-4/oral-index-001-4f2f6c144fd0.json",
+          "count": 74,
+          "bytes": 16754,
+          "sha256": "4f2f6c144fd0d7a03963218174490f56c24df361ae37988d47aa1cd470133b6b",
           "mode": "index"
         }
       ]
@@ -659,24 +659,24 @@
       "sectionTitle": "见面、分手时",
       "topic": "有关天气",
       "baseCount": 0,
-      "totalCount": 8,
+      "totalCount": 42,
       "shards": [
         {
-          "id": "oral-001-49c5b030233d",
-          "url": "content/oral-2-8-5/oral-001-49c5b030233d.json",
-          "count": 8,
-          "bytes": 11858,
-          "sha256": "49c5b030233d79ee4188c8ae099ca1febc6cbec4b3795f8fc0ee2d8249a5f4a2",
+          "id": "oral-001-8876c1d7e146",
+          "url": "content/oral-2-8-5/oral-001-8876c1d7e146.json",
+          "count": 42,
+          "bytes": 20762,
+          "sha256": "8876c1d7e14652d0852dd75badcf09b6c51c692dc208337b7665faa55bfb86a1",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-1ba42d0ed834",
-          "url": "content/oral-2-8-5/oral-index-001-1ba42d0ed834.json",
-          "count": 8,
-          "bytes": 1888,
-          "sha256": "1ba42d0ed834412cc175ebea2c7add13a8141bce5897dff218b2e18d0b40dd3c",
+          "id": "oral-index-001-5f85f3ed19f0",
+          "url": "content/oral-2-8-5/oral-index-001-5f85f3ed19f0.json",
+          "count": 42,
+          "bytes": 9262,
+          "sha256": "5f85f3ed19f081a8c2db1a8cea5650d435b1cb8284d7ae342c40886af790abd4",
           "mode": "index"
         }
       ]

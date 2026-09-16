@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "17a64001",
+      "sentence": "Ms. Kane, this is Mr. Sato, my boss.",
+      "translation": "凯恩女士，这位是我的上司佐藤先生。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "a3d72107",
+      "sentence": "Nice to meet you.",
+      "translation": "很高兴认识你。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "1f9df89b",
+      "sentence": "Nice to meet you, too.",
+      "translation": "彼此彼此。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "a4a5dc3e",
+      "sentence": "May I have your name, please?",
+      "translation": "您贵姓?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "bd0389b8",
+      "sentence": "I'd like you to meet a friend of mine.",
+      "translation": "我给你介绍一下我的朋友。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "21eb878f",
+      "sentence": "He's a nice guy.",
+      "translation": "他是个好人。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "0797ce5d",
+      "sentence": "I'm glad to meet you.",
+      "translation": "见到您我很高兴。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "220b9e73",
+      "sentence": "It's an honor for me to meet you.",
+      "translation": "能认识您我感到非常荣幸。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "e2b64105",
+      "sentence": "Please call me...",
+      "translation": "请叫我……",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "4ef4883e",
+      "sentence": "Don't I know you from somewhere?",
+      "translation": "我们是不是在哪儿见过面?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "d0915607",
+      "sentence": "Remember?",
+      "translation": "想起来了吗?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "08766133",
+      "sentence": "Oh, yeah, you're Mr. Smith!",
+      "translation": "啊!对了，你是史密斯先生。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "e15d5572",
+      "sentence": "I'm not sure. Maybe.",
+      "translation": "我不敢肯定，也许在哪儿见过。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "41d2e37f",
+      "sentence": "No, I don't think so.",
+      "translation": "不，我想不是这样的。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "bcd81e93",
+      "sentence": "This is the first time we have met.",
+      "translation": "这是我们第一次见面。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "fe1944a2",
+      "sentence": "Is Bob an old friend of yours?",
+      "translation": "鲍勃是你的老朋友吗?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "893c3f4f",
+      "sentence": "I can't remember his name.",
+      "translation": "我想不起来他叫什么名字了。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "1f2d9de2",
+      "sentence": "I leave it entirely to your kind consideration.",
+      "translation": "这事全拜托你了。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "f3bb8189",
+      "sentence": "I'm John Sheehan.",
+      "translation": "我叫约翰·希恩。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "280c6c10",
+      "sentence": "Where are you from?",
+      "translation": "您是哪里人?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "d9953878",
+      "sentence": "I'm from Canada.",
+      "translation": "我是加拿大人。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "32cecb88",
+      "sentence": "I come from Canada.",
+      "translation": "我从加拿大来。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "e9f55189",
+      "sentence": "How do you like Japan?",
+      "translation": "你觉得日本怎么样?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "ceb8f092",
+      "sentence": "I like it.",
+      "translation": "我很喜欢。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "d6198471",
+      "sentence": "It's a good place.",
+      "translation": "是个好地方。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "ef95b7dd",
+      "sentence": "Where have you been in Japan?",
+      "translation": "你都去过日本的哪些地方?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "38eb22d1",
+      "sentence": "Where do you live now?",
+      "translation": "你现在住在哪儿?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "d257e85f",
+      "sentence": "I live in Tokyo.",
+      "translation": "我住在东京。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "df9d4e51",
+      "sentence": "Are you here on vacation?",
+      "translation": "您是来度假的吗?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "8505e177",
+      "sentence": "I'm here on business.",
+      "translation": "我是来工作的。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "230ba4d4",
+      "sentence": "How long have you been in Japan?",
+      "translation": "您来日本多长时间了?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "d5fc620d",
+      "sentence": "About four months.",
+      "translation": "4个月左右。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "d1bf653e",
+      "sentence": "Are you used to life in Japan?",
+      "translation": "你习惯日本的生活了吗?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "63edd0f5",
+      "sentence": "How long will you be in Japan?",
+      "translation": "你在日本呆到什么时候?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "5ddce198",
+      "sentence": "Until December.",
+      "translation": "呆到12月。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "9193ce59",
+      "sentence": "Do you speak Japanese?",
+      "translation": "你说日语吗?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "8e16eb62",
+      "sentence": "A little.",
+      "translation": "有一点。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "c728bb12",
+      "sentence": "I can't speak Japanese at all.",
+      "translation": "我一点儿都不会说。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "453b444f",
+      "sentence": "I know everyday conversational Japanese.",
+      "translation": "我会一点儿日常会话。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "7b452e20",
+      "sentence": "Where did you learn Japanese?",
+      "translation": "你是在哪儿学的日语?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "0eebb0de",
+      "sentence": "At school.",
+      "translation": "在学校。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "14fc08cd",
+      "sentence": "I learned it on my own.",
+      "translation": "我自学的。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "81bc151c",
+      "sentence": "When's your birthday?",
+      "translation": "你什么时候过生日?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "8d08cdff",
+      "sentence": "Do you know his background?",
+      "translation": "你了解他的背景吗?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "20cbb4f1",
+      "sentence": "I work for a computer company.",
+      "translation": "我在一家电脑公司工作。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "94cdfe18",
+      "sentence": "I'm a government employee.",
+      "translation": "我是国家公务员。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "836a740c",
+      "sentence": "I'm self-employed.",
+      "translation": "我是个体经营者。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "6cd862ad",
+      "sentence": "Which department do you work for?",
+      "translation": "你在哪个部门工作?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "2d7f217b",
+      "sentence": "Sales.",
+      "translation": "搞销售的。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "095fb6b8",
+      "sentence": "How long have you been doing that job?",
+      "translation": "这个工作你做了多长时间了?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "d53c4b4b",
+      "sentence": "For 10 years.",
+      "translation": "10年了。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "08f43fc5",
+      "sentence": "Where is your company?",
+      "translation": "你的公司在哪儿?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "62b68e1f",
+      "sentence": "In Shinjuku.",
+      "translation": "在新宿。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "f3ff6e4b",
+      "sentence": "How long does it take you to commute?",
+      "translation": "上下班路上要花多长时间?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "7c75501e",
+      "sentence": "About one hour.",
+      "translation": "1个小时左右。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "2d4f6af4",
+      "sentence": "How do you get to work?",
+      "translation": "你怎么去上班?",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "d4ca6970",
+      "sentence": "I ride the subway.",
+      "translation": "我坐地铁。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "82714419",
+      "sentence": "I'm changing jobs.",
+      "translation": "我正在调工作。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "73dff94e",
+      "sentence": "I'm job hunting now.",
+      "translation": "我正在找工作。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "f87055cc",
+      "sentence": "I'm retiring next year.",
+      "translation": "我明年退休。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "3acc62f4",
+      "sentence": "I'm out of work now.",
+      "translation": "我现在失业了。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "f26b491f",
+      "sentence": "How do you usually get to work?",
+      "translation": "你平时怎么去上班？",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "fdc5ae18",
+      "sentence": "I've been working on it all day.",
+      "translation": "我一整天都在忙这件事。",
+      "sourceUrl": "content/oral-2-8-3/oral-001-5b1f3e05f830.json",
+      "sourceOffset": 62
+    }
+  ]
+}

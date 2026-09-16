@@ -14,6 +14,11 @@
  * 用法：node scripts/book-decks.mjs
  */
 import fs from 'node:fs';
+/* 「续行片段」判据的唯一实现（同目录）——书里以标点开头的续写片段不作独立练习单元。
+   此前本脚本不剔除它，于是 decks.json 的 count/sentences 仍含那 1 条（ch7-36），
+   而下游 mk-fast-spec / gen-fast-content 会跳过它 → 报告永远显示「待铺 1 句」、到不了 100%。
+   口径与 book-section.mjs 保持一致，一处判定、全链共用。 */
+import { isContinuation } from './book-section.mjs';
 
 const MAX = 70;
 const MIN_TAIL = 15;
@@ -23,15 +28,18 @@ const OUT = 'extra/oral-book/decks.json';
 const recs = JSON.parse(fs.readFileSync(BOOK, 'utf8'));
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
 
-/* 全局去重（保留首次出现） */
+/* 全局去重（保留首次出现）；续行片段先剔除 —— 跳过数必须可见，否则等于静默丢句 */
 const seen = new Set();
 const keep = [];
+let contSkip = 0;
 recs.forEach((r) => {
+  if (isContinuation(r.en)) { contSkip += 1; return; }
   const k = norm(r.en);
   if (seen.has(k)) return;
   seen.add(k);
   keep.push(r);
 });
+if (contSkip) console.log('续行片段（以标点开头，不作独立练习单元）跳过 ' + contSkip + ' 句');
 
 /* 章节标题（按首次出现顺序） */
 const chapters = [];

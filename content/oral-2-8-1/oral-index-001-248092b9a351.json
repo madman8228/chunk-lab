@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "325d0001",
+      "sentence": "Hi!",
+      "translation": "嗨!你好!",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "ec325166",
+      "sentence": "Good afternoon.",
+      "translation": "你好!/下午好!",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "9e17682e",
+      "sentence": "Good evening.",
+      "translation": "晚上好!",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "73b95561",
+      "sentence": "How are you?",
+      "translation": "你好吗?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "90c7b48e",
+      "sentence": "Fine, thank you.",
+      "translation": "我很好，谢谢。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "748b22a9",
+      "sentence": "Not so good.",
+      "translation": "不怎么好。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "0c14c4cb",
+      "sentence": "Nothing much.",
+      "translation": "老样子。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "131242c6",
+      "sentence": "Glad to meet you.",
+      "translation": "认识您我很高兴。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "243188cb",
+      "sentence": "What's up?",
+      "translation": "怎么了？/最近怎么样？",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "a30b70bf",
+      "sentence": "How's your family?",
+      "translation": "你的家人怎么样?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "75ebdcbd",
+      "sentence": "How's everything?",
+      "translation": "还好吧?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "94c62c0c",
+      "sentence": "How's business?",
+      "translation": "工作怎么样?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "a51087ed",
+      "sentence": "Not bad.",
+      "translation": "还可以。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "2ff78448",
+      "sentence": "Oh, same as usual.",
+      "translation": "和往常一样。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "fddaa0d5",
+      "sentence": "What's the hurry?",
+      "translation": "急着干什么去呀?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "69849c2d",
+      "sentence": "Where are you headed?",
+      "translation": "你去哪儿?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "3af2f8cb",
+      "sentence": "I was just thinking.",
+      "translation": "我在想点事儿。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "e1ae78f0",
+      "sentence": "I was just daydreaming.",
+      "translation": "我只是发了会儿呆。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "cf35c83f",
+      "sentence": "I'm just killing time.",
+      "translation": "我只是在消磨时间。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "b8d0f14c",
+      "sentence": "Nothing.",
+      "translation": "没想什么。/没什么。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "8e28fb6d",
+      "sentence": "Another day, another dollar.",
+      "translation": "和往常一样。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "b0faabd0",
+      "sentence": "You've come just in time.",
+      "translation": "你来的正是时候。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "cd7fd34f",
+      "sentence": "There you are!",
+      "translation": "原来你在这儿啊!",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "e41edb94",
+      "sentence": "Is Jeff around?",
+      "translation": "杰夫在吗?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "aba97789",
+      "sentence": "Have you seen Scott?",
+      "translation": "你见到斯科特吗?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "eed041cf",
+      "sentence": "I ran into him.",
+      "translation": "我偶然碰到了他。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "f896ea11",
+      "sentence": "Guess who I bumped into yesterday?",
+      "translation": "哎，你猜我昨天遇见谁了?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "f8e5a148",
+      "sentence": "He's a stranger to me.",
+      "translation": "我跟他素不相识。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "ab73ddc2",
+      "sentence": "It's been a long time.",
+      "translation": "好久不见。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "6573982e",
+      "sentence": "It's been so long.",
+      "translation": "好久不见。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "e53f3d82",
+      "sentence": "Long time no see.",
+      "translation": "好久不见。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "6744c9d1",
+      "sentence": "How have you been?",
+      "translation": "还好吧?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "c7a71cac",
+      "sentence": "How have you been doing?",
+      "translation": "最近怎么样?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "cad6a35a",
+      "sentence": "What have you been doing?",
+      "translation": "忙什么呢?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "6aa3385e",
+      "sentence": "Where have you been?",
+      "translation": "你去哪儿了?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "ae1303f3",
+      "sentence": "I'm glad to see you again.",
+      "translation": "很高兴又见到你。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "a8cf598b",
+      "sentence": "You haven't changed at all.",
+      "translation": "你一点儿都没变。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "c8593c9a",
+      "sentence": "You haven't changed much.",
+      "translation": "你没怎么变。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "0bd369a3",
+      "sentence": "You've really changed.",
+      "translation": "你变样了。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "f5adca72",
+      "sentence": "You've grown up.",
+      "translation": "你长大了。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "b3a6ab38",
+      "sentence": "You've become so beautiful.",
+      "translation": "你越来越漂亮了。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "31e016e3",
+      "sentence": "Is John okay?",
+      "translation": "约翰他好吗?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "ceeec188",
+      "sentence": "You look great.",
+      "translation": "你看上去不错。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "3702f995",
+      "sentence": "How are you feeling?",
+      "translation": "你感觉怎么样?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "abe84ce8",
+      "sentence": "How's he getting along these days?",
+      "translation": "他这些日子过得怎么样?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "46bf64d6",
+      "sentence": "Are you gaining weight?",
+      "translation": "最近你是不是胖了?",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "77588aab",
+      "sentence": "How was your weekend?",
+      "translation": "你周末过得怎么样？",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "78b2ed9c",
+      "sentence": "I haven't seen you for ages.",
+      "translation": "好久不见了。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "4fad1198",
+      "sentence": "It's been a while.",
+      "translation": "已经有一阵子了。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "129c08c0",
+      "sentence": "How are you doing these days?",
+      "translation": "你最近过得怎么样？",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "c530aed7",
+      "sentence": "How ya doin'?",
+      "translation": "最近怎么样？",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "c869e3f3",
+      "sentence": "Not too bad.",
+      "translation": "还不错。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "ac537f80",
+      "sentence": "You moved?",
+      "translation": "你搬家了？",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "b0368ee8",
+      "sentence": "Yes, nice place.",
+      "translation": "是的，好地方。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "7cccaf62",
+      "sentence": "Sounds real nice.",
+      "translation": "听起来不错。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "af4c7939",
+      "sentence": "Kids okay?",
+      "translation": "孩子们还好吗？",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "c0abf276",
+      "sentence": "Yeah, they're fine.",
+      "translation": "嗯，他们都好。",
+      "sourceUrl": "content/oral-2-8-1/oral-001-cf5022f5a8e0.json",
+      "sourceOffset": 56
+    }
+  ]
+}

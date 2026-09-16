@@ -3,6 +3,793 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Goodbye.",
+      "translation": "再见!",
+      "chunks": [
+        "Goodbye."
+      ],
+      "hints": [
+        "再见！"
+      ],
+      "cid": "fc911b7a"
+    },
+    {
+      "sentence": "Bye.",
+      "translation": "再见!",
+      "chunks": [
+        "Bye."
+      ],
+      "hints": [
+        "再见！"
+      ],
+      "cid": "966426d7"
+    },
+    {
+      "sentence": "See you.",
+      "translation": "回头见!",
+      "chunks": [
+        "See",
+        "you."
+      ],
+      "hints": [
+        "回头",
+        "见！"
+      ],
+      "cid": "75735f9f"
+    },
+    {
+      "sentence": "I'm off now.",
+      "translation": "我去了啊。",
+      "chunks": [
+        "I'm off",
+        "now."
+      ],
+      "hints": [
+        "我",
+        "去了啊。"
+      ],
+      "cid": "f25cbf41"
+    },
+    {
+      "sentence": "I have to go.",
+      "translation": "我得告辞了。",
+      "chunks": [
+        "I have",
+        "to go."
+      ],
+      "hints": [
+        "我得",
+        "走了。"
+      ],
+      "cid": "c602f9ab"
+    },
+    {
+      "sentence": "Good luck!",
+      "translation": "祝你好运!",
+      "chunks": [
+        "Good",
+        "luck!"
+      ],
+      "hints": [
+        "祝",
+        "你好运！"
+      ],
+      "cid": "d6475888"
+    },
+    {
+      "sentence": "Have a nice day!",
+      "translation": "祝你愉快!",
+      "chunks": [
+        "Have a",
+        "nice day!"
+      ],
+      "hints": [
+        "祝你",
+        "今天愉快！"
+      ],
+      "cid": "3e4584ca"
+    },
+    {
+      "sentence": "Have a nice weekend.",
+      "translation": "祝你周末愉快!",
+      "chunks": [
+        "Have a",
+        "nice weekend."
+      ],
+      "hints": [
+        "祝你",
+        "周末愉快！"
+      ],
+      "cid": "804165ba"
+    },
+    {
+      "sentence": "Have fun!",
+      "translation": "祝你玩得愉快。",
+      "chunks": [
+        "Have",
+        "fun!"
+      ],
+      "hints": [
+        "玩得",
+        "开心！"
+      ],
+      "cid": "521ad6e1"
+    },
+    {
+      "sentence": "Keep it up!",
+      "translation": "就这样，坚持下去。",
+      "chunks": [
+        "Keep",
+        "it up!"
+      ],
+      "hints": [
+        "继续",
+        "保持！"
+      ],
+      "cid": "4f7e3361"
+    },
+    {
+      "sentence": "Have a nice trip.",
+      "translation": "旅途愉快!",
+      "chunks": [
+        "Have a",
+        "nice trip."
+      ],
+      "hints": [
+        "祝你",
+        "旅途愉快！"
+      ],
+      "cid": "637c8456"
+    },
+    {
+      "sentence": "Have a good one!",
+      "translation": "那多保重!",
+      "chunks": [
+        "Have a",
+        "good one!"
+      ],
+      "hints": [
+        "那",
+        "多保重！"
+      ],
+      "cid": "cab4ea04"
+    },
+    {
+      "sentence": "I hate to run, but...",
+      "translation": "真舍不得走，但是……",
+      "chunks": [
+        "I hate to",
+        "run, but..."
+      ],
+      "hints": [
+        "真舍不得",
+        "走，但是……"
+      ],
+      "cid": "da839def"
+    },
+    {
+      "sentence": "It was nice meeting you.",
+      "translation": "认识你我非常高兴。",
+      "chunks": [
+        "It was nice",
+        "meeting you."
+      ],
+      "hints": [
+        "认识你",
+        "非常高兴。"
+      ],
+      "cid": "0d3c646e"
+    },
+    {
+      "sentence": "Please say hello to John for me.",
+      "translation": "请代我向约翰问好。",
+      "chunks": [
+        "Please say hello",
+        "to John for me."
+      ],
+      "hints": [
+        "请代我",
+        "向约翰问好。"
+      ],
+      "cid": "8fcd6e3d"
+    },
+    {
+      "sentence": "Come again.",
+      "translation": "再来啊!",
+      "chunks": [
+        "Come",
+        "again."
+      ],
+      "hints": [
+        "再",
+        "来啊！"
+      ],
+      "cid": "d9760065"
+    },
+    {
+      "sentence": "Don't forget to bring something back for me.",
+      "translation": "别忘了给我带点儿什么。",
+      "chunks": [
+        "Don't forget to bring",
+        "something back for me."
+      ],
+      "hints": [
+        "别忘了",
+        "给我带点儿什么回来。"
+      ],
+      "cid": "9beb2d8d"
+    },
+    {
+      "sentence": "Take it easy.",
+      "translation": "放松点儿!",
+      "chunks": [
+        "Take it",
+        "easy."
+      ],
+      "hints": [
+        "放松",
+        "点儿！"
+      ],
+      "cid": "3fe76807"
+    },
+    {
+      "sentence": "I hope to see you again soon.",
+      "translation": "希望不久能再见到你。",
+      "chunks": [
+        "I hope to see you",
+        "again soon."
+      ],
+      "hints": [
+        "希望不久",
+        "能再见到你。"
+      ],
+      "cid": "e40d0ccc"
+    },
+    {
+      "sentence": "Call me later.",
+      "translation": "给我打电话。",
+      "chunks": [
+        "Call me",
+        "later."
+      ],
+      "hints": [
+        "给我",
+        "打电话。"
+      ],
+      "cid": "f6ffdbb7"
+    },
+    {
+      "sentence": "Take care.",
+      "translation": "多保重!",
+      "chunks": [
+        "Take",
+        "care."
+      ],
+      "hints": [
+        "多",
+        "保重！"
+      ],
+      "cid": "7c15313f"
+    },
+    {
+      "sentence": "Take care of yourself.",
+      "translation": "你自己多保重!",
+      "chunks": [
+        "Take care",
+        "of yourself."
+      ],
+      "hints": [
+        "你自己",
+        "多保重！"
+      ],
+      "cid": "1e10fbd5"
+    },
+    {
+      "sentence": "I'll be back.",
+      "translation": "我还会来的。",
+      "chunks": [
+        "I'll",
+        "be back."
+      ],
+      "hints": [
+        "我",
+        "还会来的。"
+      ],
+      "cid": "080a1039"
+    },
+    {
+      "sentence": "It's getting late.",
+      "translation": "天不早了。",
+      "chunks": [
+        "It's getting",
+        "late."
+      ],
+      "hints": [
+        "天",
+        "不早了。"
+      ],
+      "cid": "b7dfb7b8"
+    },
+    {
+      "sentence": "I've got to go.",
+      "translation": "我得走了。",
+      "chunks": [
+        "I've got",
+        "to go."
+      ],
+      "hints": [
+        "我",
+        "得走了。"
+      ],
+      "cid": "be7f3c2f"
+    },
+    {
+      "sentence": "I'll miss you.",
+      "translation": "我会想你的。",
+      "chunks": [
+        "I'll",
+        "miss you."
+      ],
+      "hints": [
+        "我会",
+        "想你的。"
+      ],
+      "cid": "5925b47e"
+    },
+    {
+      "sentence": "I wish I could go with you.",
+      "translation": "我真希望能和你在一起。",
+      "chunks": [
+        "I wish I could",
+        "go with you."
+      ],
+      "hints": [
+        "我真希望",
+        "能和你一起走。"
+      ],
+      "cid": "39f02a56"
+    },
+    {
+      "sentence": "Please give my regards to your family.",
+      "translation": "请代我向你的家人问好。",
+      "chunks": [
+        "Please give my regards",
+        "to your family."
+      ],
+      "hints": [
+        "请代我",
+        "向你的家人问好。"
+      ],
+      "cid": "e31068b4"
+    },
+    {
+      "sentence": "You must come back.",
+      "translation": "你一定回来啊!",
+      "chunks": [
+        "You must",
+        "come back."
+      ],
+      "hints": [
+        "你一定",
+        "要回来啊！"
+      ],
+      "cid": "5c7bccc0"
+    },
+    {
+      "sentence": "Give me a call sometime.",
+      "translation": "有空给我打电话。",
+      "chunks": [
+        "Give me a call",
+        "sometime."
+      ],
+      "hints": [
+        "有空",
+        "给我打电话。"
+      ],
+      "cid": "9735e0c2"
+    },
+    {
+      "sentence": "Let's get together again sometime.",
+      "translation": "我们什么时候再聚吧。",
+      "chunks": [
+        "Let's get together",
+        "again sometime."
+      ],
+      "hints": [
+        "我们",
+        "什么时候再聚吧。"
+      ],
+      "cid": "c8892737"
+    },
+    {
+      "sentence": "Please write me a letter.",
+      "translation": "请给我写信。",
+      "chunks": [
+        "Please write me",
+        "a letter."
+      ],
+      "hints": [
+        "请给我",
+        "写封信。"
+      ],
+      "cid": "4fd6bb43"
+    },
+    {
+      "sentence": "I'll write you a letter.",
+      "translation": "我会给你写信的。",
+      "chunks": [
+        "I'll write you",
+        "a letter."
+      ],
+      "hints": [
+        "我会给你",
+        "写信的。"
+      ],
+      "cid": "e3539bd4"
+    },
+    {
+      "sentence": "Let's keep in touch.",
+      "translation": "让我们保持联系。",
+      "chunks": [
+        "Let's keep",
+        "in touch."
+      ],
+      "hints": [
+        "让我们",
+        "保持联系。"
+      ],
+      "cid": "b025d597"
+    },
+    {
+      "sentence": "Don't forget to write.",
+      "translation": "别忘了写信。",
+      "chunks": [
+        "Don't forget",
+        "to write."
+      ],
+      "hints": [
+        "别忘了",
+        "写信。"
+      ],
+      "cid": "3d3699ce"
+    },
+    {
+      "sentence": "Hello! Anyone home?",
+      "translation": "喂，有人吗?",
+      "chunks": [
+        "Hello! Anyone",
+        "home?"
+      ],
+      "hints": [
+        "喂，有人",
+        "在吗？"
+      ],
+      "cid": "4310cfc8"
+    },
+    {
+      "sentence": "Please come in!",
+      "translation": "欢迎，请进!",
+      "chunks": [
+        "Please",
+        "come in!"
+      ],
+      "hints": [
+        "请",
+        "进来！"
+      ],
+      "cid": "e89ca6c7"
+    },
+    {
+      "sentence": "How nice of you to come!",
+      "translation": "你能来，太好啦。",
+      "chunks": [
+        "How nice of you",
+        "to come!"
+      ],
+      "hints": [
+        "你能来",
+        "真是太好了！"
+      ],
+      "cid": "77d8de22"
+    },
+    {
+      "sentence": "What do you want?",
+      "translation": "你有事吗?",
+      "chunks": [
+        "What do you",
+        "want?"
+      ],
+      "hints": [
+        "你有",
+        "什么事？"
+      ],
+      "cid": "b1f6e350"
+    },
+    {
+      "sentence": "Please feel free to make yourself at home.",
+      "translation": "别客气，像在自己家一样。",
+      "chunks": [
+        "Please feel free",
+        "to make yourself at home."
+      ],
+      "hints": [
+        "请别客气，",
+        "就当在自己家一样。"
+      ],
+      "cid": "f19e6255"
+    },
+    {
+      "sentence": "Have a seat.",
+      "translation": "请坐吧。",
+      "chunks": [
+        "Have a",
+        "seat."
+      ],
+      "hints": [
+        "请",
+        "坐吧。"
+      ],
+      "cid": "224aff4d"
+    },
+    {
+      "sentence": "Enjoy yourself!",
+      "translation": "您尽兴。",
+      "chunks": [
+        "Enjoy",
+        "yourself!"
+      ],
+      "hints": [
+        "玩得",
+        "尽兴！"
+      ],
+      "cid": "398ebeb0"
+    },
+    {
+      "sentence": "Would you care for something to drink?",
+      "translation": "您喝点什么吗?",
+      "chunks": [
+        "Would you care for",
+        "something to drink?"
+      ],
+      "hints": [
+        "您想",
+        "喝点什么吗？"
+      ],
+      "cid": "dcacf251"
+    },
+    {
+      "sentence": "Don't mind me.",
+      "translation": "没关系。",
+      "chunks": [
+        "Don't",
+        "mind me."
+      ],
+      "hints": [
+        "别",
+        "管我。"
+      ],
+      "cid": "414f6393"
+    },
+    {
+      "sentence": "May I use your bathroom?",
+      "translation": "我可以用洗手间吗?",
+      "chunks": [
+        "May I use",
+        "your bathroom?"
+      ],
+      "hints": [
+        "我可以",
+        "用一下洗手间吗？"
+      ],
+      "cid": "4a566472"
+    },
+    {
+      "sentence": "Where's the bathroom?",
+      "translation": "洗手间在哪儿?",
+      "chunks": [
+        "Where's",
+        "the bathroom?"
+      ],
+      "hints": [
+        "洗手间",
+        "在哪儿？"
+      ],
+      "cid": "81bc76de"
+    },
+    {
+      "sentence": "May I use your phone?",
+      "translation": "可以借用一下您的电话吗?",
+      "chunks": [
+        "May I use",
+        "your phone?"
+      ],
+      "hints": [
+        "可以借用",
+        "您的电话吗？"
+      ],
+      "cid": "d7f590da"
+    },
+    {
+      "sentence": "I'd better get going now.",
+      "translation": "我得告辞了。",
+      "chunks": [
+        "I'd better",
+        "get going now."
+      ],
+      "hints": [
+        "我最好",
+        "现在就走。"
+      ],
+      "cid": "6aa69dd5"
+    },
+    {
+      "sentence": "Thank you for inviting me.",
+      "translation": "非常感谢您的盛情款待。",
+      "chunks": [
+        "Thank you",
+        "for inviting me."
+      ],
+      "hints": [
+        "谢谢你",
+        "邀请我。"
+      ],
+      "cid": "589831e7"
+    },
+    {
+      "sentence": "Drop by sometime.",
+      "translation": "有空再来串门吧。",
+      "chunks": [
+        "Drop by",
+        "sometime."
+      ],
+      "hints": [
+        "有空",
+        "再来串门吧。"
+      ],
+      "cid": "8a26a180"
+    },
+    {
+      "sentence": "He came to see me himself.",
+      "translation": "他亲自来看我。",
+      "chunks": [
+        "He came to see me",
+        "himself."
+      ],
+      "hints": [
+        "他亲自",
+        "来看我。"
+      ],
+      "cid": "f464b30a"
+    },
+    {
+      "sentence": "Do you mind if I smoke?",
+      "translation": "您介意我抽烟吗?",
+      "chunks": [
+        "Do you mind",
+        "if I smoke?"
+      ],
+      "hints": [
+        "你介意",
+        "我抽烟吗？"
+      ],
+      "cid": "11052acf"
+    },
+    {
+      "sentence": "I like your house.",
+      "translation": "您的房子真好。",
+      "chunks": [
+        "I like",
+        "your house."
+      ],
+      "hints": [
+        "我很喜欢",
+        "你的房子。"
+      ],
+      "cid": "75b5fd98"
+    },
+    {
+      "sentence": "I really like your apartment.",
+      "translation": "我很喜欢你的公寓。",
+      "chunks": [
+        "I really like",
+        "your apartment."
+      ],
+      "hints": [
+        "我很喜欢",
+        "你的公寓。"
+      ],
+      "cid": "664d8773"
+    },
+    {
+      "sentence": "Watch your step.",
+      "cid": "89843067",
+      "translation": "小心脚下。",
+      "chunks": [
+        "Watch",
+        "your step."
+      ],
+      "hints": [
+        "注意",
+        "你的脚下"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɑːtʃ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "注意、当心"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/step/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的脚下"
+        }
+      ],
+      "explanations": [
+        "`watch` 在此表「留意、当心」，比 look 更有警觉意味。常见错误：\n• \"Look your step\" → 固定说法是 watch your step\n• \"Watching your step\" → 祈使句用原形",
+        "`Watch your step` 既是「当心脚下」，也可引申为「小心行事」。同义：Mind the step."
+      ],
+      "distractors": [
+        [
+          "Watch out",
+          "Watching",
+          "Watches"
+        ],
+        [
+          "you step.",
+          "your steps.",
+          "your stepping."
+        ]
+      ]
+    },
+    {
+      "sentence": "The floor is slippery.",
+      "translation": "地上很滑。",
+      "chunks": [
+        "The floor",
+        "is slippery."
+      ],
+      "hints": [
+        "地上",
+        "很滑。"
+      ],
+      "cid": "74afd6b4"
+    },
+    {
+      "sentence": "Please turn on the TV.",
+      "translation": "请打开电视。",
+      "chunks": [
+        "Please turn on",
+        "the TV."
+      ],
+      "hints": [
+        "请",
+        "打开电视。"
+      ],
+      "cid": "688ae2f0"
+    },
+    {
+      "sentence": "Can I park my car here?",
+      "translation": "我可以把车停这儿吗?",
+      "chunks": [
+        "Can I park",
+        "my car here?"
+      ],
+      "hints": [
+        "我可以",
+        "把车停这儿吗？"
+      ],
+      "cid": "df001175"
+    },
+    {
       "sentence": "I'll give you a call when I get home.",
       "cid": "efb3c8ea",
       "translation": "我到家后给你打电话。",

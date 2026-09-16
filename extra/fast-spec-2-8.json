@@ -1,0 +1,2856 @@
+[
+ {
+  "sentence": "Hi!",
+  "chunks": [
+   "Hi!"
+  ],
+  "hints": [
+   "嗨！"
+  ]
+ },
+ {
+  "sentence": "Good afternoon.",
+  "chunks": [
+   "Good",
+   "afternoon."
+  ],
+  "hints": [
+   "下午",
+   "好！"
+  ]
+ },
+ {
+  "sentence": "Good evening.",
+  "chunks": [
+   "Good",
+   "evening."
+  ],
+  "hints": [
+   "晚上",
+   "好！"
+  ]
+ },
+ {
+  "sentence": "How are you?",
+  "chunks": [
+   "How are",
+   "you?"
+  ],
+  "hints": [
+   "怎么样",
+   "你？"
+  ]
+ },
+ {
+  "sentence": "Fine, thank you.",
+  "chunks": [
+   "Fine,",
+   "thank you."
+  ],
+  "hints": [
+   "很好，",
+   "谢谢你。"
+  ]
+ },
+ {
+  "sentence": "Not so good.",
+  "chunks": [
+   "Not so",
+   "good."
+  ],
+  "hints": [
+   "不太",
+   "好。"
+  ]
+ },
+ {
+  "sentence": "Nothing much.",
+  "chunks": [
+   "Nothing",
+   "much."
+  ],
+  "hints": [
+   "没什么",
+   "特别的。"
+  ]
+ },
+ {
+  "sentence": "Glad to meet you.",
+  "chunks": [
+   "Glad to",
+   "meet you."
+  ],
+  "hints": [
+   "很高兴",
+   "见到你。"
+  ]
+ },
+ {
+  "sentence": "What's up?",
+  "chunks": [
+   "What's",
+   "up?"
+  ],
+  "hints": [
+   "什么",
+   "事？"
+  ]
+ },
+ {
+  "sentence": "How's your family?",
+  "chunks": [
+   "How's",
+   "your family?"
+  ],
+  "hints": [
+   "怎么样",
+   "你的家人？"
+  ]
+ },
+ {
+  "sentence": "How's everything?",
+  "chunks": [
+   "How's",
+   "everything?"
+  ],
+  "hints": [
+   "怎么样",
+   "一切都好吗？"
+  ]
+ },
+ {
+  "sentence": "How's business?",
+  "chunks": [
+   "How's",
+   "business?"
+  ],
+  "hints": [
+   "怎么样",
+   "生意？"
+  ]
+ },
+ {
+  "sentence": "Not bad.",
+  "chunks": [
+   "Not",
+   "bad."
+  ],
+  "hints": [
+   "不",
+   "错。"
+  ]
+ },
+ {
+  "sentence": "Oh, same as usual.",
+  "chunks": [
+   "Oh,",
+   "same as usual."
+  ],
+  "hints": [
+   "哦，",
+   "和往常一样。"
+  ]
+ },
+ {
+  "sentence": "What's the hurry?",
+  "chunks": [
+   "What's",
+   "the hurry?"
+  ],
+  "hints": [
+   "什么",
+   "事这么急？"
+  ]
+ },
+ {
+  "sentence": "Where are you headed?",
+  "chunks": [
+   "Where are you",
+   "headed?"
+  ],
+  "hints": [
+   "你去",
+   "哪儿？"
+  ]
+ },
+ {
+  "sentence": "I was just thinking.",
+  "chunks": [
+   "I was just",
+   "thinking."
+  ],
+  "hints": [
+   "我刚才在",
+   "想事情。"
+  ]
+ },
+ {
+  "sentence": "I was just daydreaming.",
+  "chunks": [
+   "I was just",
+   "daydreaming."
+  ],
+  "hints": [
+   "我刚才在",
+   "发呆。"
+  ]
+ },
+ {
+  "sentence": "I'm just killing time.",
+  "chunks": [
+   "I'm just",
+   "killing time."
+  ],
+  "hints": [
+   "我只是在",
+   "消磨时间。"
+  ]
+ },
+ {
+  "sentence": "Nothing.",
+  "chunks": [
+   "Nothing."
+  ],
+  "hints": [
+   "没什么。"
+  ]
+ },
+ {
+  "sentence": "Another day, another dollar.",
+  "chunks": [
+   "Another day,",
+   "another dollar."
+  ],
+  "hints": [
+   "又是一天，",
+   "又是一块钱。"
+  ]
+ },
+ {
+  "sentence": "You've come just in time.",
+  "chunks": [
+   "You've come",
+   "just in time."
+  ],
+  "hints": [
+   "你来得",
+   "正是时候。"
+  ]
+ },
+ {
+  "sentence": "There you are!",
+  "chunks": [
+   "There",
+   "you are!"
+  ],
+  "hints": [
+   "原来",
+   "你在这儿！"
+  ]
+ },
+ {
+  "sentence": "Is Jeff around?",
+  "chunks": [
+   "Is Jeff",
+   "around?"
+  ],
+  "hints": [
+   "杰夫",
+   "在吗？"
+  ]
+ },
+ {
+  "sentence": "Have you seen Scott?",
+  "chunks": [
+   "Have you seen",
+   "Scott?"
+  ],
+  "hints": [
+   "你见到",
+   "斯科特了吗？"
+  ]
+ },
+ {
+  "sentence": "I ran into him.",
+  "chunks": [
+   "I ran",
+   "into him."
+  ],
+  "hints": [
+   "我偶然",
+   "碰到了他。"
+  ]
+ },
+ {
+  "sentence": "Guess who I bumped into yesterday?",
+  "chunks": [
+   "Guess",
+   "who I bumped into yesterday?"
+  ],
+  "hints": [
+   "猜猜",
+   "我昨天碰到谁了？"
+  ]
+ },
+ {
+  "sentence": "He's a stranger to me.",
+  "chunks": [
+   "He's",
+   "a stranger to me."
+  ],
+  "hints": [
+   "他对我来说",
+   "是完全陌生的人。"
+  ]
+ },
+ {
+  "sentence": "It's been a long time.",
+  "chunks": [
+   "It's been",
+   "a long time."
+  ],
+  "hints": [
+   "已经",
+   "很久了。"
+  ]
+ },
+ {
+  "sentence": "It's been so long.",
+  "chunks": [
+   "It's been",
+   "so long."
+  ],
+  "hints": [
+   "已经",
+   "这么久没见了。"
+  ]
+ },
+ {
+  "sentence": "Long time no see.",
+  "chunks": [
+   "Long time",
+   "no see."
+  ],
+  "hints": [
+   "好久",
+   "不见。"
+  ]
+ },
+ {
+  "sentence": "How have you been?",
+  "chunks": [
+   "How have",
+   "you been?"
+  ],
+  "hints": [
+   "你最近",
+   "怎么样？"
+  ]
+ },
+ {
+  "sentence": "How have you been doing?",
+  "chunks": [
+   "How have you",
+   "been doing?"
+  ],
+  "hints": [
+   "你最近",
+   "过得怎么样？"
+  ]
+ },
+ {
+  "sentence": "What have you been doing?",
+  "chunks": [
+   "What have you",
+   "been doing?"
+  ],
+  "hints": [
+   "你最近在",
+   "忙什么呢？"
+  ]
+ },
+ {
+  "sentence": "Where have you been?",
+  "chunks": [
+   "Where have",
+   "you been?"
+  ],
+  "hints": [
+   "你去",
+   "哪儿了？"
+  ]
+ },
+ {
+  "sentence": "I'm glad to see you again.",
+  "chunks": [
+   "I'm glad",
+   "to see you again."
+  ],
+  "hints": [
+   "很高兴",
+   "又见到你。"
+  ]
+ },
+ {
+  "sentence": "You haven't changed at all.",
+  "chunks": [
+   "You haven't",
+   "changed at all."
+  ],
+  "hints": [
+   "你一点",
+   "都没变。"
+  ]
+ },
+ {
+  "sentence": "You haven't changed much.",
+  "chunks": [
+   "You haven't",
+   "changed much."
+  ],
+  "hints": [
+   "你没",
+   "怎么变。"
+  ]
+ },
+ {
+  "sentence": "You've really changed.",
+  "chunks": [
+   "You've really",
+   "changed."
+  ],
+  "hints": [
+   "你真的",
+   "变样了。"
+  ]
+ },
+ {
+  "sentence": "You've grown up.",
+  "chunks": [
+   "You've",
+   "grown up."
+  ],
+  "hints": [
+   "你",
+   "长大了。"
+  ]
+ },
+ {
+  "sentence": "You've become so beautiful.",
+  "chunks": [
+   "You've become",
+   "so beautiful."
+  ],
+  "hints": [
+   "你变得",
+   "越来越漂亮了。"
+  ]
+ },
+ {
+  "sentence": "Is John okay?",
+  "chunks": [
+   "Is John",
+   "okay?"
+  ],
+  "hints": [
+   "约翰",
+   "他好吗？"
+  ]
+ },
+ {
+  "sentence": "You look great.",
+  "chunks": [
+   "You look",
+   "great."
+  ],
+  "hints": [
+   "你看上去",
+   "很不错。"
+  ]
+ },
+ {
+  "sentence": "How are you feeling?",
+  "chunks": [
+   "How are you",
+   "feeling?"
+  ],
+  "hints": [
+   "你感觉",
+   "怎么样？"
+  ]
+ },
+ {
+  "sentence": "How's he getting along these days?",
+  "chunks": [
+   "How's he getting along",
+   "these days?"
+  ],
+  "hints": [
+   "他这些日子",
+   "过得怎么样？"
+  ]
+ },
+ {
+  "sentence": "Are you gaining weight?",
+  "chunks": [
+   "Are you",
+   "gaining weight?"
+  ],
+  "hints": [
+   "你是不是",
+   "胖了？"
+  ]
+ },
+ {
+  "sentence": "Goodbye.",
+  "chunks": [
+   "Goodbye."
+  ],
+  "hints": [
+   "再见！"
+  ]
+ },
+ {
+  "sentence": "Bye.",
+  "chunks": [
+   "Bye."
+  ],
+  "hints": [
+   "再见！"
+  ]
+ },
+ {
+  "sentence": "See you.",
+  "chunks": [
+   "See",
+   "you."
+  ],
+  "hints": [
+   "回头",
+   "见！"
+  ]
+ },
+ {
+  "sentence": "I'm off now.",
+  "chunks": [
+   "I'm off",
+   "now."
+  ],
+  "hints": [
+   "我",
+   "去了啊。"
+  ]
+ },
+ {
+  "sentence": "I have to go.",
+  "chunks": [
+   "I have",
+   "to go."
+  ],
+  "hints": [
+   "我得",
+   "走了。"
+  ]
+ },
+ {
+  "sentence": "Good luck!",
+  "chunks": [
+   "Good",
+   "luck!"
+  ],
+  "hints": [
+   "祝",
+   "你好运！"
+  ]
+ },
+ {
+  "sentence": "Have a nice day!",
+  "chunks": [
+   "Have a",
+   "nice day!"
+  ],
+  "hints": [
+   "祝你",
+   "今天愉快！"
+  ]
+ },
+ {
+  "sentence": "Have a nice weekend.",
+  "chunks": [
+   "Have a",
+   "nice weekend."
+  ],
+  "hints": [
+   "祝你",
+   "周末愉快！"
+  ]
+ },
+ {
+  "sentence": "Have fun!",
+  "chunks": [
+   "Have",
+   "fun!"
+  ],
+  "hints": [
+   "玩得",
+   "开心！"
+  ]
+ },
+ {
+  "sentence": "Keep it up!",
+  "chunks": [
+   "Keep",
+   "it up!"
+  ],
+  "hints": [
+   "继续",
+   "保持！"
+  ]
+ },
+ {
+  "sentence": "Have a nice trip.",
+  "chunks": [
+   "Have a",
+   "nice trip."
+  ],
+  "hints": [
+   "祝你",
+   "旅途愉快！"
+  ]
+ },
+ {
+  "sentence": "Have a good one!",
+  "chunks": [
+   "Have a",
+   "good one!"
+  ],
+  "hints": [
+   "那",
+   "多保重！"
+  ]
+ },
+ {
+  "sentence": "I hate to run, but...",
+  "chunks": [
+   "I hate to",
+   "run, but..."
+  ],
+  "hints": [
+   "真舍不得",
+   "走，但是……"
+  ]
+ },
+ {
+  "sentence": "It was nice meeting you.",
+  "chunks": [
+   "It was nice",
+   "meeting you."
+  ],
+  "hints": [
+   "认识你",
+   "非常高兴。"
+  ]
+ },
+ {
+  "sentence": "Please say hello to John for me.",
+  "chunks": [
+   "Please say hello",
+   "to John for me."
+  ],
+  "hints": [
+   "请代我",
+   "向约翰问好。"
+  ]
+ },
+ {
+  "sentence": "Come again.",
+  "chunks": [
+   "Come",
+   "again."
+  ],
+  "hints": [
+   "再",
+   "来啊！"
+  ]
+ },
+ {
+  "sentence": "Don't forget to bring something back for me.",
+  "chunks": [
+   "Don't forget to bring",
+   "something back for me."
+  ],
+  "hints": [
+   "别忘了",
+   "给我带点儿什么回来。"
+  ]
+ },
+ {
+  "sentence": "Take it easy.",
+  "chunks": [
+   "Take it",
+   "easy."
+  ],
+  "hints": [
+   "放松",
+   "点儿！"
+  ]
+ },
+ {
+  "sentence": "I hope to see you again soon.",
+  "chunks": [
+   "I hope to see you",
+   "again soon."
+  ],
+  "hints": [
+   "希望不久",
+   "能再见到你。"
+  ]
+ },
+ {
+  "sentence": "Call me later.",
+  "chunks": [
+   "Call me",
+   "later."
+  ],
+  "hints": [
+   "给我",
+   "打电话。"
+  ]
+ },
+ {
+  "sentence": "Take care.",
+  "chunks": [
+   "Take",
+   "care."
+  ],
+  "hints": [
+   "多",
+   "保重！"
+  ]
+ },
+ {
+  "sentence": "Take care of yourself.",
+  "chunks": [
+   "Take care",
+   "of yourself."
+  ],
+  "hints": [
+   "你自己",
+   "多保重！"
+  ]
+ },
+ {
+  "sentence": "I'll be back.",
+  "chunks": [
+   "I'll",
+   "be back."
+  ],
+  "hints": [
+   "我",
+   "还会来的。"
+  ]
+ },
+ {
+  "sentence": "It's getting late.",
+  "chunks": [
+   "It's getting",
+   "late."
+  ],
+  "hints": [
+   "天",
+   "不早了。"
+  ]
+ },
+ {
+  "sentence": "I've got to go.",
+  "chunks": [
+   "I've got",
+   "to go."
+  ],
+  "hints": [
+   "我",
+   "得走了。"
+  ]
+ },
+ {
+  "sentence": "I'll miss you.",
+  "chunks": [
+   "I'll",
+   "miss you."
+  ],
+  "hints": [
+   "我会",
+   "想你的。"
+  ]
+ },
+ {
+  "sentence": "I wish I could go with you.",
+  "chunks": [
+   "I wish I could",
+   "go with you."
+  ],
+  "hints": [
+   "我真希望",
+   "能和你一起走。"
+  ]
+ },
+ {
+  "sentence": "Please give my regards to your family.",
+  "chunks": [
+   "Please give my regards",
+   "to your family."
+  ],
+  "hints": [
+   "请代我",
+   "向你的家人问好。"
+  ]
+ },
+ {
+  "sentence": "You must come back.",
+  "chunks": [
+   "You must",
+   "come back."
+  ],
+  "hints": [
+   "你一定",
+   "要回来啊！"
+  ]
+ },
+ {
+  "sentence": "Give me a call sometime.",
+  "chunks": [
+   "Give me a call",
+   "sometime."
+  ],
+  "hints": [
+   "有空",
+   "给我打电话。"
+  ]
+ },
+ {
+  "sentence": "Let's get together again sometime.",
+  "chunks": [
+   "Let's get together",
+   "again sometime."
+  ],
+  "hints": [
+   "我们",
+   "什么时候再聚吧。"
+  ]
+ },
+ {
+  "sentence": "Please write me a letter.",
+  "chunks": [
+   "Please write me",
+   "a letter."
+  ],
+  "hints": [
+   "请给我",
+   "写封信。"
+  ]
+ },
+ {
+  "sentence": "I'll write you a letter.",
+  "chunks": [
+   "I'll write you",
+   "a letter."
+  ],
+  "hints": [
+   "我会给你",
+   "写信的。"
+  ]
+ },
+ {
+  "sentence": "Let's keep in touch.",
+  "chunks": [
+   "Let's keep",
+   "in touch."
+  ],
+  "hints": [
+   "让我们",
+   "保持联系。"
+  ]
+ },
+ {
+  "sentence": "Don't forget to write.",
+  "chunks": [
+   "Don't forget",
+   "to write."
+  ],
+  "hints": [
+   "别忘了",
+   "写信。"
+  ]
+ },
+ {
+  "sentence": "Hello! Anyone home?",
+  "chunks": [
+   "Hello! Anyone",
+   "home?"
+  ],
+  "hints": [
+   "喂，有人",
+   "在吗？"
+  ]
+ },
+ {
+  "sentence": "Please come in!",
+  "chunks": [
+   "Please",
+   "come in!"
+  ],
+  "hints": [
+   "请",
+   "进来！"
+  ]
+ },
+ {
+  "sentence": "How nice of you to come!",
+  "chunks": [
+   "How nice of you",
+   "to come!"
+  ],
+  "hints": [
+   "你能来",
+   "真是太好了！"
+  ]
+ },
+ {
+  "sentence": "What do you want?",
+  "chunks": [
+   "What do you",
+   "want?"
+  ],
+  "hints": [
+   "你有",
+   "什么事？"
+  ]
+ },
+ {
+  "sentence": "Please feel free to make yourself at home.",
+  "chunks": [
+   "Please feel free",
+   "to make yourself at home."
+  ],
+  "hints": [
+   "请别客气，",
+   "就当在自己家一样。"
+  ]
+ },
+ {
+  "sentence": "Have a seat.",
+  "chunks": [
+   "Have a",
+   "seat."
+  ],
+  "hints": [
+   "请",
+   "坐吧。"
+  ]
+ },
+ {
+  "sentence": "Enjoy yourself!",
+  "chunks": [
+   "Enjoy",
+   "yourself!"
+  ],
+  "hints": [
+   "玩得",
+   "尽兴！"
+  ]
+ },
+ {
+  "sentence": "Would you care for something to drink?",
+  "chunks": [
+   "Would you care for",
+   "something to drink?"
+  ],
+  "hints": [
+   "您想",
+   "喝点什么吗？"
+  ]
+ },
+ {
+  "sentence": "Don't mind me.",
+  "chunks": [
+   "Don't",
+   "mind me."
+  ],
+  "hints": [
+   "别",
+   "管我。"
+  ]
+ },
+ {
+  "sentence": "May I use your bathroom?",
+  "chunks": [
+   "May I use",
+   "your bathroom?"
+  ],
+  "hints": [
+   "我可以",
+   "用一下洗手间吗？"
+  ]
+ },
+ {
+  "sentence": "Where's the bathroom?",
+  "chunks": [
+   "Where's",
+   "the bathroom?"
+  ],
+  "hints": [
+   "洗手间",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "May I use your phone?",
+  "chunks": [
+   "May I use",
+   "your phone?"
+  ],
+  "hints": [
+   "可以借用",
+   "您的电话吗？"
+  ]
+ },
+ {
+  "sentence": "I'd better get going now.",
+  "chunks": [
+   "I'd better",
+   "get going now."
+  ],
+  "hints": [
+   "我最好",
+   "现在就走。"
+  ]
+ },
+ {
+  "sentence": "Thank you for inviting me.",
+  "chunks": [
+   "Thank you",
+   "for inviting me."
+  ],
+  "hints": [
+   "谢谢你",
+   "邀请我。"
+  ]
+ },
+ {
+  "sentence": "Drop by sometime.",
+  "chunks": [
+   "Drop by",
+   "sometime."
+  ],
+  "hints": [
+   "有空",
+   "再来串门吧。"
+  ]
+ },
+ {
+  "sentence": "He came to see me himself.",
+  "chunks": [
+   "He came to see me",
+   "himself."
+  ],
+  "hints": [
+   "他亲自",
+   "来看我。"
+  ]
+ },
+ {
+  "sentence": "Do you mind if I smoke?",
+  "chunks": [
+   "Do you mind",
+   "if I smoke?"
+  ],
+  "hints": [
+   "你介意",
+   "我抽烟吗？"
+  ]
+ },
+ {
+  "sentence": "I like your house.",
+  "chunks": [
+   "I like",
+   "your house."
+  ],
+  "hints": [
+   "我很喜欢",
+   "你的房子。"
+  ]
+ },
+ {
+  "sentence": "I really like your apartment.",
+  "chunks": [
+   "I really like",
+   "your apartment."
+  ],
+  "hints": [
+   "我很喜欢",
+   "你的公寓。"
+  ]
+ },
+ {
+  "sentence": "Watch your step.",
+  "chunks": [
+   "Watch",
+   "your step."
+  ],
+  "hints": [
+   "小心",
+   "脚下。"
+  ]
+ },
+ {
+  "sentence": "The floor is slippery.",
+  "chunks": [
+   "The floor",
+   "is slippery."
+  ],
+  "hints": [
+   "地上",
+   "很滑。"
+  ]
+ },
+ {
+  "sentence": "Please turn on the TV.",
+  "chunks": [
+   "Please turn on",
+   "the TV."
+  ],
+  "hints": [
+   "请",
+   "打开电视。"
+  ]
+ },
+ {
+  "sentence": "Can I park my car here?",
+  "chunks": [
+   "Can I park",
+   "my car here?"
+  ],
+  "hints": [
+   "我可以",
+   "把车停这儿吗？"
+  ]
+ },
+ {
+  "sentence": "Ms. Kane, this is Mr. Sato, my boss.",
+  "chunks": [
+   "Ms. Kane,",
+   "this is Mr. Sato,",
+   "my boss."
+  ],
+  "hints": [
+   "凯恩女士，",
+   "这位是佐藤先生，",
+   "我的上司。"
+  ]
+ },
+ {
+  "sentence": "Nice to meet you.",
+  "chunks": [
+   "Nice to",
+   "meet you."
+  ],
+  "hints": [
+   "很高兴",
+   "认识您。"
+  ]
+ },
+ {
+  "sentence": "Nice to meet you, too.",
+  "chunks": [
+   "Nice to meet you,",
+   "too."
+  ],
+  "hints": [
+   "我也很高兴",
+   "认识您。"
+  ]
+ },
+ {
+  "sentence": "May I have your name, please?",
+  "chunks": [
+   "May I have",
+   "your name, please?"
+  ],
+  "hints": [
+   "请问",
+   "您贵姓？"
+  ]
+ },
+ {
+  "sentence": "I'd like you to meet a friend of mine.",
+  "chunks": [
+   "I'd like you",
+   "to meet a friend of mine."
+  ],
+  "hints": [
+   "我想",
+   "给你介绍个朋友。"
+  ]
+ },
+ {
+  "sentence": "He's a nice guy.",
+  "chunks": [
+   "He's",
+   "a nice guy."
+  ],
+  "hints": [
+   "他是个",
+   "好人。"
+  ]
+ },
+ {
+  "sentence": "I'm glad to meet you.",
+  "chunks": [
+   "I'm glad",
+   "to meet you."
+  ],
+  "hints": [
+   "很高兴",
+   "见到您。"
+  ]
+ },
+ {
+  "sentence": "It's an honor for me to meet you.",
+  "chunks": [
+   "It's an honor for me",
+   "to meet you."
+  ],
+  "hints": [
+   "能认识您",
+   "我感到非常荣幸。"
+  ]
+ },
+ {
+  "sentence": "Please call me...",
+  "chunks": [
+   "Please",
+   "call me..."
+  ],
+  "hints": [
+   "请",
+   "叫我……"
+  ]
+ },
+ {
+  "sentence": "Don't I know you from somewhere?",
+  "chunks": [
+   "Don't I know you",
+   "from somewhere?"
+  ],
+  "hints": [
+   "我是不是",
+   "在哪儿见过你？"
+  ]
+ },
+ {
+  "sentence": "Remember?",
+  "chunks": [
+   "Remember?"
+  ],
+  "hints": [
+   "想起来了吗？"
+  ]
+ },
+ {
+  "sentence": "Oh, yeah, you're Mr. Smith!",
+  "chunks": [
+   "Oh, yeah,",
+   "you're Mr. Smith!"
+  ],
+  "hints": [
+   "啊，对了，",
+   "你是史密斯先生！"
+  ]
+ },
+ {
+  "sentence": "I'm not sure. Maybe.",
+  "chunks": [
+   "I'm not",
+   "sure. Maybe."
+  ],
+  "hints": [
+   "我",
+   "不太确定，也许吧。"
+  ]
+ },
+ {
+  "sentence": "No, I don't think so.",
+  "chunks": [
+   "No,",
+   "I don't think so."
+  ],
+  "hints": [
+   "不，",
+   "我想不是这样。"
+  ]
+ },
+ {
+  "sentence": "This is the first time we have met.",
+  "chunks": [
+   "This is the first time",
+   "we have met."
+  ],
+  "hints": [
+   "这是我们",
+   "第一次见面。"
+  ]
+ },
+ {
+  "sentence": "Is Bob an old friend of yours?",
+  "chunks": [
+   "Is Bob",
+   "an old friend of yours?"
+  ],
+  "hints": [
+   "鲍勃是",
+   "你的老朋友吗？"
+  ]
+ },
+ {
+  "sentence": "I can't remember his name.",
+  "chunks": [
+   "I can't remember",
+   "his name."
+  ],
+  "hints": [
+   "我想不起来",
+   "他叫什么名字了。"
+  ]
+ },
+ {
+  "sentence": "I leave it entirely to your kind consideration.",
+  "chunks": [
+   "I leave it entirely",
+   "to your kind consideration."
+  ],
+  "hints": [
+   "这事",
+   "全拜托您了。"
+  ]
+ },
+ {
+  "sentence": "I'm John Sheehan.",
+  "chunks": [
+   "I'm",
+   "John Sheehan."
+  ],
+  "hints": [
+   "我叫",
+   "约翰·希恩。"
+  ]
+ },
+ {
+  "sentence": "Where are you from?",
+  "chunks": [
+   "Where are",
+   "you from?"
+  ],
+  "hints": [
+   "你是",
+   "哪里人？"
+  ]
+ },
+ {
+  "sentence": "I'm from Canada.",
+  "chunks": [
+   "I'm",
+   "from Canada."
+  ],
+  "hints": [
+   "我是",
+   "加拿大人。"
+  ]
+ },
+ {
+  "sentence": "I come from Canada.",
+  "chunks": [
+   "I come",
+   "from Canada."
+  ],
+  "hints": [
+   "我从",
+   "加拿大来。"
+  ]
+ },
+ {
+  "sentence": "How do you like Japan?",
+  "chunks": [
+   "How do you like",
+   "Japan?"
+  ],
+  "hints": [
+   "你觉得",
+   "日本怎么样？"
+  ]
+ },
+ {
+  "sentence": "I like it.",
+  "chunks": [
+   "I like",
+   "it."
+  ],
+  "hints": [
+   "我很",
+   "喜欢。"
+  ]
+ },
+ {
+  "sentence": "It's a good place.",
+  "chunks": [
+   "It's",
+   "a good place."
+  ],
+  "hints": [
+   "那是",
+   "个好地方。"
+  ]
+ },
+ {
+  "sentence": "Where have you been in Japan?",
+  "chunks": [
+   "Where have you been",
+   "in Japan?"
+  ],
+  "hints": [
+   "你都去过",
+   "日本的哪些地方？"
+  ]
+ },
+ {
+  "sentence": "Where do you live now?",
+  "chunks": [
+   "Where do you",
+   "live now?"
+  ],
+  "hints": [
+   "你现在",
+   "住在哪儿？"
+  ]
+ },
+ {
+  "sentence": "I live in Tokyo.",
+  "chunks": [
+   "I live",
+   "in Tokyo."
+  ],
+  "hints": [
+   "我住在",
+   "东京。"
+  ]
+ },
+ {
+  "sentence": "Are you here on vacation?",
+  "chunks": [
+   "Are you here",
+   "on vacation?"
+  ],
+  "hints": [
+   "你是来",
+   "度假的吗？"
+  ]
+ },
+ {
+  "sentence": "I'm here on business.",
+  "chunks": [
+   "I'm here",
+   "on business."
+  ],
+  "hints": [
+   "我是来",
+   "工作的。"
+  ]
+ },
+ {
+  "sentence": "How long have you been in Japan?",
+  "chunks": [
+   "How long have you been",
+   "in Japan?"
+  ],
+  "hints": [
+   "你来日本",
+   "多长时间了？"
+  ]
+ },
+ {
+  "sentence": "About four months.",
+  "chunks": [
+   "About",
+   "four months."
+  ],
+  "hints": [
+   "大约",
+   "四个月。"
+  ]
+ },
+ {
+  "sentence": "Are you used to life in Japan?",
+  "chunks": [
+   "Are you used to",
+   "life in Japan?"
+  ],
+  "hints": [
+   "你习惯",
+   "日本的生活了吗？"
+  ]
+ },
+ {
+  "sentence": "How long will you be in Japan?",
+  "chunks": [
+   "How long will you be",
+   "in Japan?"
+  ],
+  "hints": [
+   "你在日本",
+   "要待多久？"
+  ]
+ },
+ {
+  "sentence": "Until December.",
+  "chunks": [
+   "Until",
+   "December."
+  ],
+  "hints": [
+   "待",
+   "到十二月。"
+  ]
+ },
+ {
+  "sentence": "Do you speak Japanese?",
+  "chunks": [
+   "Do you speak",
+   "Japanese?"
+  ],
+  "hints": [
+   "你说",
+   "日语吗？"
+  ]
+ },
+ {
+  "sentence": "A little.",
+  "chunks": [
+   "A",
+   "little."
+  ],
+  "hints": [
+   "会",
+   "一点儿。"
+  ]
+ },
+ {
+  "sentence": "I can't speak Japanese at all.",
+  "chunks": [
+   "I can't speak Japanese",
+   "at all."
+  ],
+  "hints": [
+   "我",
+   "一点儿日语都不会说。"
+  ]
+ },
+ {
+  "sentence": "I know everyday conversational Japanese.",
+  "chunks": [
+   "I know everyday",
+   "conversational Japanese."
+  ],
+  "hints": [
+   "我会一点儿",
+   "日常会话。"
+  ]
+ },
+ {
+  "sentence": "Where did you learn Japanese?",
+  "chunks": [
+   "Where did you",
+   "learn Japanese?"
+  ],
+  "hints": [
+   "你是在哪儿",
+   "学的日语？"
+  ]
+ },
+ {
+  "sentence": "At school.",
+  "chunks": [
+   "At",
+   "school."
+  ],
+  "hints": [
+   "在",
+   "学校。"
+  ]
+ },
+ {
+  "sentence": "I learned it on my own.",
+  "chunks": [
+   "I learned it",
+   "on my own."
+  ],
+  "hints": [
+   "我是",
+   "自学的。"
+  ]
+ },
+ {
+  "sentence": "When's your birthday?",
+  "chunks": [
+   "When's",
+   "your birthday?"
+  ],
+  "hints": [
+   "你的生日",
+   "是什么时候？"
+  ]
+ },
+ {
+  "sentence": "Do you know his background?",
+  "chunks": [
+   "Do you know",
+   "his background?"
+  ],
+  "hints": [
+   "你了解",
+   "他的背景吗？"
+  ]
+ },
+ {
+  "sentence": "I work for a computer company.",
+  "chunks": [
+   "I work for",
+   "a computer company."
+  ],
+  "hints": [
+   "我在一家",
+   "电脑公司工作。"
+  ]
+ },
+ {
+  "sentence": "I'm a government employee.",
+  "chunks": [
+   "I'm",
+   "a government employee."
+  ],
+  "hints": [
+   "我是",
+   "国家公务员。"
+  ]
+ },
+ {
+  "sentence": "I'm self-employed.",
+  "chunks": [
+   "I'm",
+   "self-employed."
+  ],
+  "hints": [
+   "我是",
+   "个体经营者。"
+  ]
+ },
+ {
+  "sentence": "Which department do you work for?",
+  "chunks": [
+   "Which department",
+   "do you work for?"
+  ],
+  "hints": [
+   "你在哪个部门",
+   "工作？"
+  ]
+ },
+ {
+  "sentence": "Sales.",
+  "chunks": [
+   "Sales."
+  ],
+  "hints": [
+   "搞销售的。"
+  ]
+ },
+ {
+  "sentence": "How long have you been doing that job?",
+  "chunks": [
+   "How long have you been",
+   "doing that job?"
+  ],
+  "hints": [
+   "这个工作",
+   "你做了多久了？"
+  ]
+ },
+ {
+  "sentence": "For 10 years.",
+  "chunks": [
+   "For",
+   "10 years."
+  ],
+  "hints": [
+   "有",
+   "10 年了。"
+  ]
+ },
+ {
+  "sentence": "Where is your company?",
+  "chunks": [
+   "Where is",
+   "your company?"
+  ],
+  "hints": [
+   "你的公司",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "In Shinjuku.",
+  "chunks": [
+   "In",
+   "Shinjuku."
+  ],
+  "hints": [
+   "在",
+   "新宿。"
+  ]
+ },
+ {
+  "sentence": "How long does it take you to commute?",
+  "chunks": [
+   "How long does it take you",
+   "to commute?"
+  ],
+  "hints": [
+   "上下班路上",
+   "要花多长时间？"
+  ]
+ },
+ {
+  "sentence": "About one hour.",
+  "chunks": [
+   "About",
+   "one hour."
+  ],
+  "hints": [
+   "大约",
+   "一个小时。"
+  ]
+ },
+ {
+  "sentence": "How do you get to work?",
+  "chunks": [
+   "How do you",
+   "get to work?"
+  ],
+  "hints": [
+   "你怎么",
+   "去上班？"
+  ]
+ },
+ {
+  "sentence": "I ride the subway.",
+  "chunks": [
+   "I ride",
+   "the subway."
+  ],
+  "hints": [
+   "我坐",
+   "地铁。"
+  ]
+ },
+ {
+  "sentence": "I'm changing jobs.",
+  "chunks": [
+   "I'm",
+   "changing jobs."
+  ],
+  "hints": [
+   "我正在",
+   "调工作。"
+  ]
+ },
+ {
+  "sentence": "I'm job hunting now.",
+  "chunks": [
+   "I'm",
+   "job hunting now."
+  ],
+  "hints": [
+   "我正在",
+   "找工作。"
+  ]
+ },
+ {
+  "sentence": "I'm retiring next year.",
+  "chunks": [
+   "I'm retiring",
+   "next year."
+  ],
+  "hints": [
+   "我明年",
+   "退休。"
+  ]
+ },
+ {
+  "sentence": "I'm out of work now.",
+  "chunks": [
+   "I'm",
+   "out of work now."
+  ],
+  "hints": [
+   "我现在",
+   "失业了。"
+  ]
+ },
+ {
+  "sentence": "Are you a student?",
+  "chunks": [
+   "Are you",
+   "a student?"
+  ],
+  "hints": [
+   "你是",
+   "学生吗？"
+  ]
+ },
+ {
+  "sentence": "I'm a college student.",
+  "chunks": [
+   "I'm",
+   "a college student."
+  ],
+  "hints": [
+   "我是个",
+   "大学生。"
+  ]
+ },
+ {
+  "sentence": "I'm studying English.",
+  "chunks": [
+   "I'm studying",
+   "English."
+  ],
+  "hints": [
+   "我正在",
+   "学英语。"
+  ]
+ },
+ {
+  "sentence": "I went to Meiji University.",
+  "chunks": [
+   "I went to",
+   "Meiji University."
+  ],
+  "hints": [
+   "我毕业于",
+   "明治大学。"
+  ]
+ },
+ {
+  "sentence": "Where did you go to college?",
+  "chunks": [
+   "Where did you",
+   "go to college?"
+  ],
+  "hints": [
+   "你上的",
+   "哪所大学？"
+  ]
+ },
+ {
+  "sentence": "What school do you go to?",
+  "chunks": [
+   "What school",
+   "do you go to?"
+  ],
+  "hints": [
+   "你上的是",
+   "什么学校？"
+  ]
+ },
+ {
+  "sentence": "I go to...university.",
+  "chunks": [
+   "I go",
+   "to...university."
+  ],
+  "hints": [
+   "我上……",
+   "大学。"
+  ]
+ },
+ {
+  "sentence": "What year are you in?",
+  "chunks": [
+   "What year",
+   "are you in?"
+  ],
+  "hints": [
+   "你上",
+   "几年级了？"
+  ]
+ },
+ {
+  "sentence": "I'm a freshman.",
+  "chunks": [
+   "I'm",
+   "a freshman."
+  ],
+  "hints": [
+   "我上",
+   "一年级。"
+  ]
+ },
+ {
+  "sentence": "I'll graduate next year.",
+  "chunks": [
+   "I'll graduate",
+   "next year."
+  ],
+  "hints": [
+   "我明年",
+   "毕业。"
+  ]
+ },
+ {
+  "sentence": "What's your major?",
+  "chunks": [
+   "What's",
+   "your major?"
+  ],
+  "hints": [
+   "你的专业",
+   "是什么？"
+  ]
+ },
+ {
+  "sentence": "I'm an English major.",
+  "chunks": [
+   "I'm",
+   "an English major."
+  ],
+  "hints": [
+   "我的专业",
+   "是英语。"
+  ]
+ },
+ {
+  "sentence": "What club are you in?",
+  "chunks": [
+   "What club",
+   "are you in?"
+  ],
+  "hints": [
+   "你参加",
+   "哪个俱乐部？"
+  ]
+ },
+ {
+  "sentence": "I'm in the ski club.",
+  "chunks": [
+   "I'm in",
+   "the ski club."
+  ],
+  "hints": [
+   "我在",
+   "滑雪俱乐部。"
+  ]
+ },
+ {
+  "sentence": "Do you have a part-time job?",
+  "chunks": [
+   "Do you have",
+   "a part-time job?"
+  ],
+  "hints": [
+   "你在",
+   "打工吗？"
+  ]
+ },
+ {
+  "sentence": "I work at a bookstore as a cashier once a week.",
+  "chunks": [
+   "I work at a bookstore",
+   "as a cashier",
+   "once a week."
+  ],
+  "hints": [
+   "我在书店",
+   "做收银员",
+   "一周一次。"
+  ]
+ },
+ {
+  "sentence": "What are your plans after graduation?",
+  "chunks": [
+   "What are your plans",
+   "after graduation?"
+  ],
+  "hints": [
+   "毕业以后",
+   "你打算做什么？"
+  ]
+ },
+ {
+  "sentence": "How many people are in your family?",
+  "chunks": [
+   "How many people",
+   "are in your family?"
+  ],
+  "hints": [
+   "你家",
+   "有几口人？"
+  ]
+ },
+ {
+  "sentence": "Four people.",
+  "chunks": [
+   "Four",
+   "people."
+  ],
+  "hints": [
+   "四",
+   "口人。"
+  ]
+ },
+ {
+  "sentence": "My parents and my younger sister.",
+  "chunks": [
+   "My parents",
+   "and my younger sister."
+  ],
+  "hints": [
+   "我的父母",
+   "和我的妹妹。"
+  ]
+ },
+ {
+  "sentence": "Any brothers or sisters?",
+  "chunks": [
+   "Any brothers",
+   "or sisters?"
+  ],
+  "hints": [
+   "有",
+   "兄弟姐妹吗？"
+  ]
+ },
+ {
+  "sentence": "Just one brother.",
+  "chunks": [
+   "Just",
+   "one brother."
+  ],
+  "hints": [
+   "只有",
+   "一个哥哥。"
+  ]
+ },
+ {
+  "sentence": "Do you live with your parents?",
+  "chunks": [
+   "Do you live",
+   "with your parents?"
+  ],
+  "hints": [
+   "你和父母",
+   "住在一起吗？"
+  ]
+ },
+ {
+  "sentence": "I live alone.",
+  "chunks": [
+   "I live",
+   "alone."
+  ],
+  "hints": [
+   "我一个人",
+   "住。"
+  ]
+ },
+ {
+  "sentence": "I live in an apartment.",
+  "chunks": [
+   "I live",
+   "in an apartment."
+  ],
+  "hints": [
+   "我住在",
+   "公寓里。"
+  ]
+ },
+ {
+  "sentence": "Are you married?",
+  "chunks": [
+   "Are you",
+   "married?"
+  ],
+  "hints": [
+   "你",
+   "结婚了吗？"
+  ]
+ },
+ {
+  "sentence": "No, not yet.",
+  "chunks": [
+   "No,",
+   "not yet."
+  ],
+  "hints": [
+   "不，",
+   "还没有。"
+  ]
+ },
+ {
+  "sentence": "I have a fiancé.",
+  "chunks": [
+   "I have",
+   "a fiancé."
+  ],
+  "hints": [
+   "我有",
+   "对象了。"
+  ]
+ },
+ {
+  "sentence": "I'm going to get married next year.",
+  "chunks": [
+   "I'm going to",
+   "get married next year."
+  ],
+  "hints": [
+   "我打算",
+   "明年结婚。"
+  ]
+ },
+ {
+  "sentence": "I'm married.",
+  "chunks": [
+   "I'm",
+   "married."
+  ],
+  "hints": [
+   "我",
+   "结婚了。"
+  ]
+ },
+ {
+  "sentence": "I'm engaged.",
+  "chunks": [
+   "I'm",
+   "engaged."
+  ],
+  "hints": [
+   "我",
+   "订婚了。"
+  ]
+ },
+ {
+  "sentence": "Any children?",
+  "chunks": [
+   "Any",
+   "children?"
+  ],
+  "hints": [
+   "有",
+   "孩子吗？"
+  ]
+ },
+ {
+  "sentence": "I have two boys.",
+  "chunks": [
+   "I have",
+   "two boys."
+  ],
+  "hints": [
+   "我有",
+   "两个男孩。"
+  ]
+ },
+ {
+  "sentence": "I have one daughter in elementary school.",
+  "chunks": [
+   "I have one daughter",
+   "in elementary school."
+  ],
+  "hints": [
+   "我有一个女儿",
+   "在上小学。"
+  ]
+ },
+ {
+  "sentence": "I don't have any children.",
+  "chunks": [
+   "I don't have",
+   "any children."
+  ],
+  "hints": [
+   "我",
+   "没有孩子。"
+  ]
+ },
+ {
+  "sentence": "What are your hobbies?",
+  "chunks": [
+   "What are",
+   "your hobbies?"
+  ],
+  "hints": [
+   "你有什么",
+   "爱好？"
+  ]
+ },
+ {
+  "sentence": "Do you have any hobbies?",
+  "chunks": [
+   "Do you have",
+   "any hobbies?"
+  ],
+  "hints": [
+   "你有点",
+   "什么爱好吗？"
+  ]
+ },
+ {
+  "sentence": "What do you do when you have free time?",
+  "chunks": [
+   "What do you do",
+   "when you have free time?"
+  ],
+  "hints": [
+   "业余时间",
+   "你都干什么？"
+  ]
+ },
+ {
+  "sentence": "I like to watch movies.",
+  "chunks": [
+   "I like to",
+   "watch movies."
+  ],
+  "hints": [
+   "我喜欢",
+   "看电影。"
+  ]
+ },
+ {
+  "sentence": "What kind of movies do you like?",
+  "chunks": [
+   "What kind of movies",
+   "do you like?"
+  ],
+  "hints": [
+   "你喜欢看",
+   "什么样的电影？"
+  ]
+ },
+ {
+  "sentence": "You're a good pianist.",
+  "chunks": [
+   "You're a good",
+   "pianist."
+  ],
+  "hints": [
+   "你的钢琴",
+   "弹得真好。"
+  ]
+ },
+ {
+  "sentence": "What kind of sports do you like?",
+  "chunks": [
+   "What kind of sports",
+   "do you like?"
+  ],
+  "hints": [
+   "你喜欢",
+   "哪种运动？"
+  ]
+ },
+ {
+  "sentence": "How long have you been skiing?",
+  "chunks": [
+   "How long have you",
+   "been skiing?"
+  ],
+  "hints": [
+   "你滑雪",
+   "滑了多久了？"
+  ]
+ },
+ {
+  "sentence": "I just like to watch.",
+  "chunks": [
+   "I just like",
+   "to watch."
+  ],
+  "hints": [
+   "我只是",
+   "喜欢看。"
+  ]
+ },
+ {
+  "sentence": "I'm a baseball fan.",
+  "chunks": [
+   "I'm",
+   "a baseball fan."
+  ],
+  "hints": [
+   "我是",
+   "棒球迷。"
+  ]
+ },
+ {
+  "sentence": "I like to play golf.",
+  "chunks": [
+   "I like to",
+   "play golf."
+  ],
+  "hints": [
+   "我喜欢",
+   "打高尔夫球。"
+  ]
+ },
+ {
+  "sentence": "Have you ever done aerobics?",
+  "chunks": [
+   "Have you ever",
+   "done aerobics?"
+  ],
+  "hints": [
+   "你练过",
+   "健美操吗？"
+  ]
+ },
+ {
+  "sentence": "What are your interests?",
+  "chunks": [
+   "What are",
+   "your interests?"
+  ],
+  "hints": [
+   "你对什么",
+   "感兴趣？"
+  ]
+ },
+ {
+  "sentence": "I've never done that.",
+  "chunks": [
+   "I've never",
+   "done that."
+  ],
+  "hints": [
+   "我从没",
+   "做过。"
+  ]
+ },
+ {
+  "sentence": "Have you ever traveled abroad?",
+  "chunks": [
+   "Have you ever",
+   "traveled abroad?"
+  ],
+  "hints": [
+   "你去国外",
+   "旅行过吗？"
+  ]
+ },
+ {
+  "sentence": "I've been to the U.S. and Germany.",
+  "chunks": [
+   "I've been to",
+   "the U.S. and Germany."
+  ],
+  "hints": [
+   "我去过",
+   "美国和德国。"
+  ]
+ },
+ {
+  "sentence": "Where do you want to go next?",
+  "chunks": [
+   "Where do you",
+   "want to go next?"
+  ],
+  "hints": [
+   "下次你想",
+   "去哪儿？"
+  ]
+ },
+ {
+  "sentence": "How old are you?",
+  "chunks": [
+   "How old",
+   "are you?"
+  ],
+  "hints": [
+   "你",
+   "多大了？"
+  ]
+ },
+ {
+  "sentence": "I'm forty-eight.",
+  "chunks": [
+   "I'm",
+   "forty-eight."
+  ],
+  "hints": [
+   "我",
+   "四十八岁。"
+  ]
+ },
+ {
+  "sentence": "How much do you weigh?",
+  "chunks": [
+   "How much",
+   "do you weigh?"
+  ],
+  "hints": [
+   "你的体重",
+   "是多少？"
+  ]
+ },
+ {
+  "sentence": "About seventy-five kilograms.",
+  "chunks": [
+   "About",
+   "seventy-five kilograms."
+  ],
+  "hints": [
+   "大约",
+   "七十五公斤。"
+  ]
+ },
+ {
+  "sentence": "I weigh a-hundred-sixty-four pounds.",
+  "chunks": [
+   "I weigh",
+   "a-hundred-sixty-four pounds."
+  ],
+  "hints": [
+   "我重",
+   "一百六十四磅。"
+  ]
+ },
+ {
+  "sentence": "How tall are you?",
+  "chunks": [
+   "How tall",
+   "are you?"
+  ],
+  "hints": [
+   "你",
+   "有多高？"
+  ]
+ },
+ {
+  "sentence": "About one-hundred-eighty centimeters.",
+  "chunks": [
+   "About",
+   "one-hundred-eighty centimeters."
+  ],
+  "hints": [
+   "大约",
+   "一米八。"
+  ]
+ },
+ {
+  "sentence": "I'm five feet three inches tall.",
+  "chunks": [
+   "I'm",
+   "five feet three inches tall."
+  ],
+  "hints": [
+   "我身高",
+   "五英尺三英寸。"
+  ]
+ },
+ {
+  "sentence": "It's very hot today, isn't it?",
+  "chunks": [
+   "It's very hot today,",
+   "isn't it?"
+  ],
+  "hints": [
+   "今天真热呀，",
+   "是不是？"
+  ]
+ },
+ {
+  "sentence": "It's blistering hot.",
+  "chunks": [
+   "It's",
+   "blistering hot."
+  ],
+  "hints": [
+   "天气",
+   "炎热。"
+  ]
+ },
+ {
+  "sentence": "It's a fine day today.",
+  "chunks": [
+   "It's a fine day",
+   "today."
+  ],
+  "hints": [
+   "今天的天气",
+   "真好！"
+  ]
+ },
+ {
+  "sentence": "What's the forecast for tomorrow?",
+  "chunks": [
+   "What's the forecast",
+   "for tomorrow?"
+  ],
+  "hints": [
+   "明天的",
+   "天气怎么样？"
+  ]
+ },
+ {
+  "sentence": "How's the weather today?",
+  "chunks": [
+   "How's the weather",
+   "today?"
+  ],
+  "hints": [
+   "今天的",
+   "天气怎么样？"
+  ]
+ },
+ {
+  "sentence": "Is it going to rain today?",
+  "chunks": [
+   "Is it going to",
+   "rain today?"
+  ],
+  "hints": [
+   "今天",
+   "会下雨吗？"
+  ]
+ },
+ {
+  "sentence": "We're expecting some rain.",
+  "chunks": [
+   "We're expecting",
+   "some rain."
+  ],
+  "hints": [
+   "好像",
+   "要下雨。"
+  ]
+ },
+ {
+  "sentence": "It's raining.",
+  "chunks": [
+   "It's",
+   "raining."
+  ],
+  "hints": [
+   "下",
+   "雨了。"
+  ]
+ },
+ {
+  "sentence": "It's going to rain today.",
+  "chunks": [
+   "It's going to",
+   "rain today."
+  ],
+  "hints": [
+   "今天",
+   "会下雨吧！"
+  ]
+ },
+ {
+  "sentence": "It's hot today.",
+  "chunks": [
+   "It's hot",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "很热。"
+  ]
+ },
+ {
+  "sentence": "It's warm today.",
+  "chunks": [
+   "It's warm",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "很暖和。"
+  ]
+ },
+ {
+  "sentence": "It's cold today.",
+  "chunks": [
+   "It's cold",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "很冷。"
+  ]
+ },
+ {
+  "sentence": "It's chilly today.",
+  "chunks": [
+   "It's chilly",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "冷嗖嗖的。"
+  ]
+ },
+ {
+  "sentence": "It's windy today.",
+  "chunks": [
+   "It's windy",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "风很大。"
+  ]
+ },
+ {
+  "sentence": "It's humid.",
+  "chunks": [
+   "It's",
+   "humid."
+  ],
+  "hints": [
+   "今天",
+   "很闷热。"
+  ]
+ },
+ {
+  "sentence": "It's dry.",
+  "chunks": [
+   "It's",
+   "dry."
+  ],
+  "hints": [
+   "气候",
+   "干燥。"
+  ]
+ },
+ {
+  "sentence": "It's stormy.",
+  "chunks": [
+   "It's",
+   "stormy."
+  ],
+  "hints": [
+   "暴风雨",
+   "天气。"
+  ]
+ },
+ {
+  "sentence": "It's snowing.",
+  "chunks": [
+   "It's",
+   "snowing."
+  ],
+  "hints": [
+   "下",
+   "雪了。"
+  ]
+ },
+ {
+  "sentence": "It's gloomy.",
+  "chunks": [
+   "It's",
+   "gloomy."
+  ],
+  "hints": [
+   "天",
+   "阴沉沉的。"
+  ]
+ },
+ {
+  "sentence": "It looks like we are going to have a thunder shower.",
+  "chunks": [
+   "It looks like",
+   "we are going to have",
+   "a thunder shower."
+  ],
+  "hints": [
+   "看样子",
+   "我们会遇上",
+   "雷阵雨。"
+  ]
+ },
+ {
+  "sentence": "A typhoon is coming.",
+  "chunks": [
+   "A typhoon",
+   "is coming."
+  ],
+  "hints": [
+   "台风",
+   "快到了。"
+  ]
+ },
+ {
+  "sentence": "It's foggy.",
+  "chunks": [
+   "It's",
+   "foggy."
+  ],
+  "hints": [
+   "起",
+   "雾了。"
+  ]
+ },
+ {
+  "sentence": "It's freezing.",
+  "chunks": [
+   "It's",
+   "freezing."
+  ],
+  "hints": [
+   "冷得",
+   "像要结冰了。"
+  ]
+ },
+ {
+  "sentence": "We're going to have a blizzard.",
+  "chunks": [
+   "We're going to have",
+   "a blizzard."
+  ],
+  "hints": [
+   "快要",
+   "下暴风雪了。"
+  ]
+ },
+ {
+  "sentence": "It's pleasant.",
+  "chunks": [
+   "It's",
+   "pleasant."
+  ],
+  "hints": [
+   "这天",
+   "真舒服。"
+  ]
+ },
+ {
+  "sentence": "It's mild today.",
+  "chunks": [
+   "It's mild",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "风和日丽。"
+  ]
+ },
+ {
+  "sentence": "It's misty.",
+  "chunks": [
+   "It's",
+   "misty."
+  ],
+  "hints": [
+   "雾",
+   "蒙蒙的。"
+  ]
+ },
+ {
+  "sentence": "It's overcast today.",
+  "chunks": [
+   "It's overcast",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "阴天。"
+  ]
+ },
+ {
+  "sentence": "It's miserable.",
+  "chunks": [
+   "It's",
+   "miserable."
+  ],
+  "hints": [
+   "糟糕的",
+   "天气。"
+  ]
+ },
+ {
+  "sentence": "I'm sensitive to heat.",
+  "chunks": [
+   "I'm sensitive",
+   "to heat."
+  ],
+  "hints": [
+   "我",
+   "怕热。"
+  ]
+ },
+ {
+  "sentence": "It's breezy today.",
+  "chunks": [
+   "It's breezy",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "微风习习。"
+  ]
+ },
+ {
+  "sentence": "It's uncomfortable today.",
+  "chunks": [
+   "It's uncomfortable",
+   "today."
+  ],
+  "hints": [
+   "今天的天气",
+   "让人不舒服。"
+  ]
+ },
+ {
+  "sentence": "The heat is killing me.",
+  "chunks": [
+   "The heat",
+   "is killing me."
+  ],
+  "hints": [
+   "这热天",
+   "快把我热死了。"
+  ]
+ },
+ {
+  "sentence": "It's raining cats and dogs!",
+  "chunks": [
+   "It's raining",
+   "cats and dogs!"
+  ],
+  "hints": [
+   "下了",
+   "瓢泼大雨！"
+  ]
+ },
+ {
+  "sentence": "It's frosty today.",
+  "chunks": [
+   "It's frosty",
+   "today."
+  ],
+  "hints": [
+   "今天",
+   "下霜了。"
+  ]
+ }
+]

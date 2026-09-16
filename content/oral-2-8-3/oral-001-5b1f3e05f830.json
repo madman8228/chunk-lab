@@ -1,0 +1,994 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Ms. Kane, this is Mr. Sato, my boss.",
+      "translation": "凯恩女士，这位是我的上司佐藤先生。",
+      "chunks": [
+        "Ms. Kane,",
+        "this is Mr. Sato,",
+        "my boss."
+      ],
+      "hints": [
+        "凯恩女士，",
+        "这位是佐藤先生，",
+        "我的上司。"
+      ],
+      "cid": "17a64001"
+    },
+    {
+      "sentence": "Nice to meet you.",
+      "cid": "a3d72107",
+      "translation": "很高兴认识你。",
+      "chunks": [
+        "Nice to",
+        "meet you."
+      ],
+      "hints": [
+        "很高兴",
+        "认识你"
+      ],
+      "grammar": [
+        {
+          "role": "固定表达",
+          "color": "#3358e0",
+          "phonetic": [
+            "/naɪs/",
+            "/tuː/"
+          ],
+          "pos": "惯用语开头",
+          "meaning": "很高兴"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/miːt/",
+            "/juː/"
+          ],
+          "pos": "动词短语",
+          "meaning": "认识你"
+        }
+      ],
+      "explanations": [
+        "`Nice to meet you` 是初次见面的固定客套。常见错误：\n• \"Nice **meeting** you\" → 见面当时用 meet（进行时结构）；分手时可以说 Nice meeting you\n• \"**Glad** to meet you\" → 也可以，但 Nice 最常用",
+        "这是省略了 `It is` 的结构（It is nice to meet you）。口语中 it is 省略很自然。"
+      ],
+      "distractors": [
+        [
+          "Nice too",
+          "Nice",
+          "Nice to to"
+        ],
+        [
+          "meeting you.",
+          "met you.",
+          "meet yours."
+        ]
+      ]
+    },
+    {
+      "sentence": "Nice to meet you, too.",
+      "translation": "彼此彼此。",
+      "chunks": [
+        "Nice to meet you,",
+        "too."
+      ],
+      "hints": [
+        "我也很高兴",
+        "认识您。"
+      ],
+      "cid": "1f9df89b"
+    },
+    {
+      "sentence": "May I have your name, please?",
+      "translation": "您贵姓?",
+      "chunks": [
+        "May I have",
+        "your name, please?"
+      ],
+      "hints": [
+        "请问",
+        "您贵姓？"
+      ],
+      "cid": "a4a5dc3e"
+    },
+    {
+      "sentence": "I'd like you to meet a friend of mine.",
+      "translation": "我给你介绍一下我的朋友。",
+      "chunks": [
+        "I'd like you",
+        "to meet a friend of mine."
+      ],
+      "hints": [
+        "我想",
+        "给你介绍个朋友。"
+      ],
+      "cid": "bd0389b8"
+    },
+    {
+      "sentence": "He's a nice guy.",
+      "translation": "他是个好人。",
+      "chunks": [
+        "He's",
+        "a nice guy."
+      ],
+      "hints": [
+        "他是个",
+        "好人。"
+      ],
+      "cid": "21eb878f"
+    },
+    {
+      "sentence": "I'm glad to meet you.",
+      "translation": "见到您我很高兴。",
+      "chunks": [
+        "I'm glad",
+        "to meet you."
+      ],
+      "hints": [
+        "很高兴",
+        "见到您。"
+      ],
+      "cid": "0797ce5d"
+    },
+    {
+      "sentence": "It's an honor for me to meet you.",
+      "translation": "能认识您我感到非常荣幸。",
+      "chunks": [
+        "It's an honor for me",
+        "to meet you."
+      ],
+      "hints": [
+        "能认识您",
+        "我感到非常荣幸。"
+      ],
+      "cid": "220b9e73"
+    },
+    {
+      "sentence": "Please call me...",
+      "translation": "请叫我……",
+      "chunks": [
+        "Please",
+        "call me..."
+      ],
+      "hints": [
+        "请",
+        "叫我……"
+      ],
+      "cid": "e2b64105"
+    },
+    {
+      "sentence": "Don't I know you from somewhere?",
+      "translation": "我们是不是在哪儿见过面?",
+      "chunks": [
+        "Don't I know you",
+        "from somewhere?"
+      ],
+      "hints": [
+        "我是不是",
+        "在哪儿见过你？"
+      ],
+      "cid": "4ef4883e"
+    },
+    {
+      "sentence": "Remember?",
+      "translation": "想起来了吗?",
+      "chunks": [
+        "Remember?"
+      ],
+      "hints": [
+        "想起来了吗？"
+      ],
+      "cid": "d0915607"
+    },
+    {
+      "sentence": "Oh, yeah, you're Mr. Smith!",
+      "translation": "啊!对了，你是史密斯先生。",
+      "chunks": [
+        "Oh, yeah,",
+        "you're Mr. Smith!"
+      ],
+      "hints": [
+        "啊，对了，",
+        "你是史密斯先生！"
+      ],
+      "cid": "08766133"
+    },
+    {
+      "sentence": "I'm not sure. Maybe.",
+      "translation": "我不敢肯定，也许在哪儿见过。",
+      "chunks": [
+        "I'm not",
+        "sure. Maybe."
+      ],
+      "hints": [
+        "我",
+        "不太确定，也许吧。"
+      ],
+      "cid": "e15d5572"
+    },
+    {
+      "sentence": "No, I don't think so.",
+      "translation": "不，我想不是这样的。",
+      "chunks": [
+        "No,",
+        "I don't think so."
+      ],
+      "hints": [
+        "不，",
+        "我想不是这样。"
+      ],
+      "cid": "41d2e37f"
+    },
+    {
+      "sentence": "This is the first time we have met.",
+      "translation": "这是我们第一次见面。",
+      "chunks": [
+        "This is the first time",
+        "we have met."
+      ],
+      "hints": [
+        "这是我们",
+        "第一次见面。"
+      ],
+      "cid": "bcd81e93"
+    },
+    {
+      "sentence": "Is Bob an old friend of yours?",
+      "translation": "鲍勃是你的老朋友吗?",
+      "chunks": [
+        "Is Bob",
+        "an old friend of yours?"
+      ],
+      "hints": [
+        "鲍勃是",
+        "你的老朋友吗？"
+      ],
+      "cid": "fe1944a2"
+    },
+    {
+      "sentence": "I can't remember his name.",
+      "translation": "我想不起来他叫什么名字了。",
+      "chunks": [
+        "I can't remember",
+        "his name."
+      ],
+      "hints": [
+        "我想不起来",
+        "他叫什么名字了。"
+      ],
+      "cid": "893c3f4f"
+    },
+    {
+      "sentence": "I leave it entirely to your kind consideration.",
+      "translation": "这事全拜托你了。",
+      "chunks": [
+        "I leave it entirely",
+        "to your kind consideration."
+      ],
+      "hints": [
+        "这事",
+        "全拜托您了。"
+      ],
+      "cid": "1f2d9de2"
+    },
+    {
+      "sentence": "I'm John Sheehan.",
+      "translation": "我叫约翰·希恩。",
+      "chunks": [
+        "I'm",
+        "John Sheehan."
+      ],
+      "hints": [
+        "我叫",
+        "约翰·希恩。"
+      ],
+      "cid": "f3bb8189"
+    },
+    {
+      "sentence": "Where are you from?",
+      "translation": "您是哪里人?",
+      "chunks": [
+        "Where are",
+        "you from?"
+      ],
+      "hints": [
+        "你是",
+        "哪里人？"
+      ],
+      "cid": "280c6c10"
+    },
+    {
+      "sentence": "I'm from Canada.",
+      "translation": "我是加拿大人。",
+      "chunks": [
+        "I'm",
+        "from Canada."
+      ],
+      "hints": [
+        "我是",
+        "加拿大人。"
+      ],
+      "cid": "d9953878"
+    },
+    {
+      "sentence": "I come from Canada.",
+      "translation": "我从加拿大来。",
+      "chunks": [
+        "I come",
+        "from Canada."
+      ],
+      "hints": [
+        "我从",
+        "加拿大来。"
+      ],
+      "cid": "32cecb88"
+    },
+    {
+      "sentence": "How do you like Japan?",
+      "translation": "你觉得日本怎么样?",
+      "chunks": [
+        "How do you like",
+        "Japan?"
+      ],
+      "hints": [
+        "你觉得",
+        "日本怎么样？"
+      ],
+      "cid": "e9f55189"
+    },
+    {
+      "sentence": "I like it.",
+      "translation": "我很喜欢。",
+      "chunks": [
+        "I like",
+        "it."
+      ],
+      "hints": [
+        "我很",
+        "喜欢。"
+      ],
+      "cid": "ceb8f092"
+    },
+    {
+      "sentence": "It's a good place.",
+      "translation": "是个好地方。",
+      "chunks": [
+        "It's",
+        "a good place."
+      ],
+      "hints": [
+        "那是",
+        "个好地方。"
+      ],
+      "cid": "d6198471"
+    },
+    {
+      "sentence": "Where have you been in Japan?",
+      "translation": "你都去过日本的哪些地方?",
+      "chunks": [
+        "Where have you been",
+        "in Japan?"
+      ],
+      "hints": [
+        "你都去过",
+        "日本的哪些地方？"
+      ],
+      "cid": "ef95b7dd"
+    },
+    {
+      "sentence": "Where do you live now?",
+      "translation": "你现在住在哪儿?",
+      "chunks": [
+        "Where do you",
+        "live now?"
+      ],
+      "hints": [
+        "你现在",
+        "住在哪儿？"
+      ],
+      "cid": "38eb22d1"
+    },
+    {
+      "sentence": "I live in Tokyo.",
+      "translation": "我住在东京。",
+      "chunks": [
+        "I live",
+        "in Tokyo."
+      ],
+      "hints": [
+        "我住在",
+        "东京。"
+      ],
+      "cid": "d257e85f"
+    },
+    {
+      "sentence": "Are you here on vacation?",
+      "translation": "您是来度假的吗?",
+      "chunks": [
+        "Are you here",
+        "on vacation?"
+      ],
+      "hints": [
+        "你是来",
+        "度假的吗？"
+      ],
+      "cid": "df9d4e51"
+    },
+    {
+      "sentence": "I'm here on business.",
+      "translation": "我是来工作的。",
+      "chunks": [
+        "I'm here",
+        "on business."
+      ],
+      "hints": [
+        "我是来",
+        "工作的。"
+      ],
+      "cid": "8505e177"
+    },
+    {
+      "sentence": "How long have you been in Japan?",
+      "translation": "您来日本多长时间了?",
+      "chunks": [
+        "How long have you been",
+        "in Japan?"
+      ],
+      "hints": [
+        "你来日本",
+        "多长时间了？"
+      ],
+      "cid": "230ba4d4"
+    },
+    {
+      "sentence": "About four months.",
+      "translation": "4个月左右。",
+      "chunks": [
+        "About",
+        "four months."
+      ],
+      "hints": [
+        "大约",
+        "四个月。"
+      ],
+      "cid": "d5fc620d"
+    },
+    {
+      "sentence": "Are you used to life in Japan?",
+      "translation": "你习惯日本的生活了吗?",
+      "chunks": [
+        "Are you used to",
+        "life in Japan?"
+      ],
+      "hints": [
+        "你习惯",
+        "日本的生活了吗？"
+      ],
+      "cid": "d1bf653e"
+    },
+    {
+      "sentence": "How long will you be in Japan?",
+      "translation": "你在日本呆到什么时候?",
+      "chunks": [
+        "How long will you be",
+        "in Japan?"
+      ],
+      "hints": [
+        "你在日本",
+        "要待多久？"
+      ],
+      "cid": "63edd0f5"
+    },
+    {
+      "sentence": "Until December.",
+      "translation": "呆到12月。",
+      "chunks": [
+        "Until",
+        "December."
+      ],
+      "hints": [
+        "待",
+        "到十二月。"
+      ],
+      "cid": "5ddce198"
+    },
+    {
+      "sentence": "Do you speak Japanese?",
+      "translation": "你说日语吗?",
+      "chunks": [
+        "Do you speak",
+        "Japanese?"
+      ],
+      "hints": [
+        "你说",
+        "日语吗？"
+      ],
+      "cid": "9193ce59"
+    },
+    {
+      "sentence": "A little.",
+      "cid": "8e16eb62",
+      "translation": "有一点。",
+      "chunks": [
+        "A",
+        "little."
+      ],
+      "hints": [
+        "一",
+        "点儿"
+      ],
+      "grammar": [
+        {
+          "role": "冠词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ə/"
+          ],
+          "pos": "不定冠词",
+          "meaning": "一（个）"
+        },
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈlɪtl/"
+          ],
+          "pos": "不可数名词用法",
+          "meaning": "一点儿"
+        }
+      ],
+      "explanations": [
+        "`a little` 是整体短语，表「一点点」，回答 Are you tired? 时常省略主句。常见错误：\n• \"a few\" → few 接可数名词，回答程度要用 a little\n• \"little\" 单用 → 表「几乎没有」，否定意味，跟 a little 相反",
+        "同义：A bit. / Kind of. / Somewhat."
+      ],
+      "distractors": [
+        [
+          "An",
+          "The",
+          "Some"
+        ],
+        [
+          "few.",
+          "bit.",
+          "lot."
+        ]
+      ]
+    },
+    {
+      "sentence": "I can't speak Japanese at all.",
+      "translation": "我一点儿都不会说。",
+      "chunks": [
+        "I can't speak Japanese",
+        "at all."
+      ],
+      "hints": [
+        "我",
+        "一点儿日语都不会说。"
+      ],
+      "cid": "c728bb12"
+    },
+    {
+      "sentence": "I know everyday conversational Japanese.",
+      "translation": "我会一点儿日常会话。",
+      "chunks": [
+        "I know everyday",
+        "conversational Japanese."
+      ],
+      "hints": [
+        "我会一点儿",
+        "日常会话。"
+      ],
+      "cid": "453b444f"
+    },
+    {
+      "sentence": "Where did you learn Japanese?",
+      "translation": "你是在哪儿学的日语?",
+      "chunks": [
+        "Where did you",
+        "learn Japanese?"
+      ],
+      "hints": [
+        "你是在哪儿",
+        "学的日语？"
+      ],
+      "cid": "7b452e20"
+    },
+    {
+      "sentence": "At school.",
+      "translation": "在学校。",
+      "chunks": [
+        "At",
+        "school."
+      ],
+      "hints": [
+        "在",
+        "学校。"
+      ],
+      "cid": "0eebb0de"
+    },
+    {
+      "sentence": "I learned it on my own.",
+      "translation": "我自学的。",
+      "chunks": [
+        "I learned it",
+        "on my own."
+      ],
+      "hints": [
+        "我是",
+        "自学的。"
+      ],
+      "cid": "14fc08cd"
+    },
+    {
+      "sentence": "When's your birthday?",
+      "translation": "你什么时候过生日?",
+      "chunks": [
+        "When's",
+        "your birthday?"
+      ],
+      "hints": [
+        "你的生日",
+        "是什么时候？"
+      ],
+      "cid": "81bc151c"
+    },
+    {
+      "sentence": "Do you know his background?",
+      "translation": "你了解他的背景吗?",
+      "chunks": [
+        "Do you know",
+        "his background?"
+      ],
+      "hints": [
+        "你了解",
+        "他的背景吗？"
+      ],
+      "cid": "8d08cdff"
+    },
+    {
+      "sentence": "I work for a computer company.",
+      "translation": "我在一家电脑公司工作。",
+      "chunks": [
+        "I work for",
+        "a computer company."
+      ],
+      "hints": [
+        "我在一家",
+        "电脑公司工作。"
+      ],
+      "cid": "20cbb4f1"
+    },
+    {
+      "sentence": "I'm a government employee.",
+      "translation": "我是国家公务员。",
+      "chunks": [
+        "I'm",
+        "a government employee."
+      ],
+      "hints": [
+        "我是",
+        "国家公务员。"
+      ],
+      "cid": "94cdfe18"
+    },
+    {
+      "sentence": "I'm self-employed.",
+      "translation": "我是个体经营者。",
+      "chunks": [
+        "I'm",
+        "self-employed."
+      ],
+      "hints": [
+        "我是",
+        "个体经营者。"
+      ],
+      "cid": "836a740c"
+    },
+    {
+      "sentence": "Which department do you work for?",
+      "translation": "你在哪个部门工作?",
+      "chunks": [
+        "Which department",
+        "do you work for?"
+      ],
+      "hints": [
+        "你在哪个部门",
+        "工作？"
+      ],
+      "cid": "6cd862ad"
+    },
+    {
+      "sentence": "Sales.",
+      "translation": "搞销售的。",
+      "chunks": [
+        "Sales."
+      ],
+      "hints": [
+        "搞销售的。"
+      ],
+      "cid": "2d7f217b"
+    },
+    {
+      "sentence": "How long have you been doing that job?",
+      "translation": "这个工作你做了多长时间了?",
+      "chunks": [
+        "How long have you been",
+        "doing that job?"
+      ],
+      "hints": [
+        "这个工作",
+        "你做了多久了？"
+      ],
+      "cid": "095fb6b8"
+    },
+    {
+      "sentence": "For 10 years.",
+      "translation": "10年了。",
+      "chunks": [
+        "For",
+        "10 years."
+      ],
+      "hints": [
+        "有",
+        "10 年了。"
+      ],
+      "cid": "d53c4b4b"
+    },
+    {
+      "sentence": "Where is your company?",
+      "translation": "你的公司在哪儿?",
+      "chunks": [
+        "Where is",
+        "your company?"
+      ],
+      "hints": [
+        "你的公司",
+        "在哪儿？"
+      ],
+      "cid": "08f43fc5"
+    },
+    {
+      "sentence": "In Shinjuku.",
+      "translation": "在新宿。",
+      "chunks": [
+        "In",
+        "Shinjuku."
+      ],
+      "hints": [
+        "在",
+        "新宿。"
+      ],
+      "cid": "62b68e1f"
+    },
+    {
+      "sentence": "How long does it take you to commute?",
+      "translation": "上下班路上要花多长时间?",
+      "chunks": [
+        "How long does it take you",
+        "to commute?"
+      ],
+      "hints": [
+        "上下班路上",
+        "要花多长时间？"
+      ],
+      "cid": "f3ff6e4b"
+    },
+    {
+      "sentence": "About one hour.",
+      "translation": "1个小时左右。",
+      "chunks": [
+        "About",
+        "one hour."
+      ],
+      "hints": [
+        "大约",
+        "一个小时。"
+      ],
+      "cid": "7c75501e"
+    },
+    {
+      "sentence": "How do you get to work?",
+      "translation": "你怎么去上班?",
+      "chunks": [
+        "How do you",
+        "get to work?"
+      ],
+      "hints": [
+        "你怎么",
+        "去上班？"
+      ],
+      "cid": "2d4f6af4"
+    },
+    {
+      "sentence": "I ride the subway.",
+      "translation": "我坐地铁。",
+      "chunks": [
+        "I ride",
+        "the subway."
+      ],
+      "hints": [
+        "我坐",
+        "地铁。"
+      ],
+      "cid": "d4ca6970"
+    },
+    {
+      "sentence": "I'm changing jobs.",
+      "translation": "我正在调工作。",
+      "chunks": [
+        "I'm",
+        "changing jobs."
+      ],
+      "hints": [
+        "我正在",
+        "调工作。"
+      ],
+      "cid": "82714419"
+    },
+    {
+      "sentence": "I'm job hunting now.",
+      "translation": "我正在找工作。",
+      "chunks": [
+        "I'm",
+        "job hunting now."
+      ],
+      "hints": [
+        "我正在",
+        "找工作。"
+      ],
+      "cid": "73dff94e"
+    },
+    {
+      "sentence": "I'm retiring next year.",
+      "translation": "我明年退休。",
+      "chunks": [
+        "I'm retiring",
+        "next year."
+      ],
+      "hints": [
+        "我明年",
+        "退休。"
+      ],
+      "cid": "f87055cc"
+    },
+    {
+      "sentence": "I'm out of work now.",
+      "translation": "我现在失业了。",
+      "chunks": [
+        "I'm",
+        "out of work now."
+      ],
+      "hints": [
+        "我现在",
+        "失业了。"
+      ],
+      "cid": "3acc62f4"
+    },
+    {
+      "sentence": "How do you usually get to work?",
+      "cid": "f26b491f",
+      "translation": "你平时怎么去上班？",
+      "chunks": [
+        "How do you usually",
+        "get to work?"
+      ],
+      "hints": [
+        "你怎么通常",
+        "去上班"
+      ],
+      "grammar": [
+        {
+          "role": "疑问主句",
+          "color": "#c87033",
+          "phonetic": [
+            "/haʊ/",
+            "/duː/",
+            "/juː/",
+            "/ˈjuːʒuəli/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "你怎么通常"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/tuː/",
+            "/wɜːrk/"
+          ],
+          "pos": "动词短语",
+          "meaning": "去上班"
+        }
+      ],
+      "explanations": [
+        "**get to work** = 到达工作地点。常见错误：\n• \"go to work\" → 也可以（go 侧重去的过程），get 侧重到达\n• \"get **in** work\" → in 用于 get in the car，地点用 get to",
+        "回答交通方式：by bus / by subway / on foot / take the subway。通常用于了解对方的通勤习惯。"
+      ],
+      "distractors": [
+        [
+          "How are you usually",
+          "How do you usual",
+          "What do you usually"
+        ],
+        [
+          "get work?",
+          "get to the work?",
+          "gets to work?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I've been working on it all day.",
+      "cid": "fdc5ae18",
+      "translation": "我一整天都在忙这件事。",
+      "chunks": [
+        "I've been working",
+        "on it",
+        "all day."
+      ],
+      "hints": [
+        "我一直在忙",
+        "这件事",
+        "一整天"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/bɪn/",
+            "/ˈwɜːrkɪŋ/"
+          ],
+          "pos": "现在完成进行时",
+          "meaning": "我一直在忙"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɒn/",
+            "/ɪt/"
+          ],
+          "pos": "work on 搭配",
+          "meaning": "这件事"
+        },
+        {
+          "role": "时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɔːl/",
+            "/deɪ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一整天"
+        }
+      ],
+      "explanations": [
+        "**have been doing** = 现在完成进行时，强调动作从过去一直持续到现在。常见错误：\n• \"I **work** on it all day\" → 缺少进行/完成含义\n• \"I've been working **in** it\" → 搭配是 work on sth",
+        "**all day** = 整天（all + 时间名词）。类似：all night / all week / all morning。"
+      ],
+      "distractors": [
+        [
+          "I've been work",
+          "I been working",
+          "I've being working"
+        ],
+        [
+          "on them",
+          "in it",
+          "at it"
+        ],
+        [
+          "all the day.",
+          "whole day.",
+          "all days."
+        ]
+      ]
+    }
+  ]
+}
