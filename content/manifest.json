@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-7456493e60782eddfe13f3193bcbf7e4a779db02e44193e40e49387ffaa1e945",
+  "contentVersion": "v1-519548a83780eabfae914afaa58fa10f8f0eaea599b9229e17839ccacf87c296",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -1605,6 +1605,38 @@
           "count": 31,
           "bytes": 7046,
           "sha256": "bd387fd926b888a1700a48bf571960712fab401d8ce3b13b06350fcb1c0c82e4",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-7-36-1",
+      "name": "日常口语 8000 · 正文部分 · 叙述事情～对否定性回答的补充",
+      "short": "叙述事情～对否定性回答的补充",
+      "desc": "叙述事情～对否定性回答的补充",
+      "chapter": 7,
+      "section": "7.36",
+      "sectionTitle": "正文部分",
+      "topic": "叙述事情～对否定性回答的补充",
+      "baseCount": 0,
+      "totalCount": 71,
+      "shards": [
+        {
+          "id": "oral-001-e1a966effedc",
+          "url": "content/oral-7-36-1/oral-001-e1a966effedc.json",
+          "count": 71,
+          "bytes": 23820,
+          "sha256": "e1a966effedc71b5d01dbc4d59afd9c355262c59bf863bb083f835934111ca8d",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-10a1eb8a72df",
+          "url": "content/oral-7-36-1/oral-index-001-10a1eb8a72df.json",
+          "count": 71,
+          "bytes": 18060,
+          "sha256": "10a1eb8a72df6eb0f3f0fa001365736716b6c7a9dca9bb8441e2edbccdf07347",
           "mode": "index"
         }
       ]

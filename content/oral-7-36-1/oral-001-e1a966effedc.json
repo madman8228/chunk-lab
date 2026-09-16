@@ -1,0 +1,965 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "We are told that...",
+      "translation": "我们被告知……",
+      "chunks": [
+        "We are told",
+        "that..."
+      ],
+      "hints": [
+        "我们被告知",
+        "……"
+      ],
+      "cid": "5d66f8f5"
+    },
+    {
+      "sentence": "We understand from Mr. Aoki that...",
+      "translation": "我们从青木先生那儿了解到……",
+      "chunks": [
+        "We understand from Mr. Aoki",
+        "that..."
+      ],
+      "hints": [
+        "我们从青木先生那儿了解到",
+        "……"
+      ],
+      "cid": "24192031"
+    },
+    {
+      "sentence": "We observed that...",
+      "translation": "我们察觉到……",
+      "chunks": [
+        "We observed",
+        "that..."
+      ],
+      "hints": [
+        "我们察觉到",
+        "……"
+      ],
+      "cid": "c079b4ee"
+    },
+    {
+      "sentence": "We would like to call your attention to...",
+      "translation": "我们希望提醒贵方注意……",
+      "chunks": [
+        "We would like to",
+        "call your attention to..."
+      ],
+      "hints": [
+        "我们希望",
+        "提醒贵方注意……"
+      ],
+      "cid": "ad7a3f7c"
+    },
+    {
+      "sentence": "May we take this occasion to remind you that...",
+      "translation": "我们想利用这次的机会就……事提醒您。",
+      "chunks": [
+        "May we take this occasion",
+        "to remind you",
+        "that..."
+      ],
+      "hints": [
+        "我们想利用这次的机会",
+        "就……事",
+        "提醒您"
+      ],
+      "cid": "59799afe"
+    },
+    {
+      "sentence": "We hope that you will...",
+      "translation": "我们希望您能……",
+      "chunks": [
+        "We hope",
+        "that you will..."
+      ],
+      "hints": [
+        "我们希望",
+        "您能……"
+      ],
+      "cid": "77d2d80b"
+    },
+    {
+      "sentence": "We hope to receive...",
+      "translation": "我们希望收到……",
+      "chunks": [
+        "We hope",
+        "to receive..."
+      ],
+      "hints": [
+        "我们希望",
+        "收到……"
+      ],
+      "cid": "551bc2e3"
+    },
+    {
+      "sentence": "We are interested in...",
+      "translation": "我对……很感兴趣。",
+      "chunks": [
+        "We are",
+        "interested in..."
+      ],
+      "hints": [
+        "我们",
+        "对……很感兴趣"
+      ],
+      "cid": "28b7e4b9"
+    },
+    {
+      "sentence": "We would be interested to learn...",
+      "translation": "我们渴望知道……",
+      "chunks": [
+        "We would be interested",
+        "to learn..."
+      ],
+      "hints": [
+        "我们渴望",
+        "知道……"
+      ],
+      "cid": "da2ae55b"
+    },
+    {
+      "sentence": "We would appreciate it if you will let us know...",
+      "translation": "如果您能告诉我们……，我们将不胜感激。",
+      "chunks": [
+        "We would appreciate it",
+        "if you will let us know..."
+      ],
+      "hints": [
+        "我们将不胜感激",
+        "如果您能告诉我们……"
+      ],
+      "cid": "9f19ff85"
+    },
+    {
+      "sentence": "May we ask you to send us...?",
+      "translation": "我们能麻烦您将……寄给我们吗?",
+      "chunks": [
+        "May we ask you",
+        "to send us...?"
+      ],
+      "hints": [
+        "我们能麻烦您",
+        "将……寄给我们吗"
+      ],
+      "cid": "f56462c0"
+    },
+    {
+      "sentence": "We thank you for your offer.",
+      "translation": "非常感谢您为我们提供的一切。",
+      "chunks": [
+        "We thank you",
+        "for your offer."
+      ],
+      "hints": [
+        "非常感谢您",
+        "为我们提供的一切"
+      ],
+      "cid": "636243b8"
+    },
+    {
+      "sentence": "I appreciate very much that you...",
+      "translation": "您……，我们不胜感激。",
+      "chunks": [
+        "I appreciate very much",
+        "that you..."
+      ],
+      "hints": [
+        "我们不胜感激",
+        "您……"
+      ],
+      "cid": "3026522f"
+    },
+    {
+      "sentence": "We appreciate your cooperation and...",
+      "translation": "对贵方的大力合作我们万分感激。",
+      "chunks": [
+        "We appreciate your cooperation",
+        "and..."
+      ],
+      "hints": [
+        "对贵方的大力合作我们万分感激",
+        "以及……"
+      ],
+      "cid": "9de71ad4"
+    },
+    {
+      "sentence": "It is regretful to learn of...",
+      "translation": "得知……，我们感到很遗憾。",
+      "chunks": [
+        "It is regretful",
+        "to learn of..."
+      ],
+      "hints": [
+        "我们感到很遗憾",
+        "得知……"
+      ],
+      "cid": "542789ea"
+    },
+    {
+      "sentence": "We are very sorry that...",
+      "translation": "为……，我们深表遗憾。",
+      "chunks": [
+        "We are very sorry",
+        "that..."
+      ],
+      "hints": [
+        "我们深表遗憾",
+        "为……"
+      ],
+      "cid": "12ca18a5"
+    },
+    {
+      "sentence": "We apologize for...",
+      "translation": "就……，我们表示歉意。",
+      "chunks": [
+        "We apologize",
+        "for..."
+      ],
+      "hints": [
+        "我们表示歉意",
+        "就……"
+      ],
+      "cid": "12dbd516"
+    },
+    {
+      "sentence": "We are very sorry for...",
+      "translation": "我们对……感到非常抱歉。",
+      "chunks": [
+        "We are very sorry",
+        "for..."
+      ],
+      "hints": [
+        "我们感到非常抱歉",
+        "对……"
+      ],
+      "cid": "58295e13"
+    },
+    {
+      "sentence": "We very much regret to have to remind you of...",
+      "translation": "我们不得不很遗憾地提醒您……",
+      "chunks": [
+        "We very much regret",
+        "to have to remind you",
+        "of..."
+      ],
+      "hints": [
+        "我们不得不很遗憾地",
+        "提醒您",
+        "……"
+      ],
+      "cid": "93211638"
+    },
+    {
+      "sentence": "We invite your attention to...",
+      "translation": "我们请求您对……给予注意。",
+      "chunks": [
+        "We invite your attention",
+        "to..."
+      ],
+      "hints": [
+        "我们请求您",
+        "对……给予注意"
+      ],
+      "cid": "3e799806"
+    },
+    {
+      "sentence": "May we remind you that...?",
+      "translation": "我们想提醒您注意……",
+      "chunks": [
+        "May we remind you",
+        "that...?"
+      ],
+      "hints": [
+        "我们想提醒您注意",
+        "……"
+      ],
+      "cid": "86ccc412"
+    },
+    {
+      "sentence": "We wish to point out that...",
+      "translation": "我们想指出…… ”。",
+      "chunks": [
+        "We wish to point out",
+        "that..."
+      ],
+      "hints": [
+        "我们想指出",
+        "……"
+      ],
+      "cid": "60428ba2"
+    },
+    {
+      "sentence": "We are delighted to learn that...",
+      "translation": "我们非常高兴地获悉……",
+      "chunks": [
+        "We are delighted",
+        "to learn",
+        "that..."
+      ],
+      "hints": [
+        "我们非常高兴地",
+        "获悉",
+        "……"
+      ],
+      "cid": "362f3907"
+    },
+    {
+      "sentence": "Congratulations on your...",
+      "translation": "衷心地祝贺你……",
+      "chunks": [
+        "Congratulations",
+        "on your..."
+      ],
+      "hints": [
+        "衷心地祝贺你",
+        "……"
+      ],
+      "cid": "0bda4902"
+    },
+    {
+      "sentence": "We have just learned with profound sorrow of the passing away of...",
+      "translation": "刚刚惊悉××不幸逝世，我们深感悲痛。",
+      "chunks": [
+        "We have just learned",
+        "with profound sorrow",
+        "of the passing away of..."
+      ],
+      "hints": [
+        "刚刚惊悉",
+        "我们深感悲痛",
+        "××不幸逝世"
+      ],
+      "cid": "cea77801"
+    },
+    {
+      "sentence": "We wish to express our deep regret over the passing of...",
+      "translation": "对××的不幸逝世我们深感痛惜。",
+      "chunks": [
+        "We wish to express our deep regret",
+        "over the passing of..."
+      ],
+      "hints": [
+        "对××的不幸逝世我们深感痛惜",
+        "……"
+      ],
+      "cid": "3f5a7347"
+    },
+    {
+      "sentence": "Please accept my sincerest condolences.",
+      "translation": "请接受我们诚挚的哀悼。",
+      "chunks": [
+        "Please accept",
+        "my sincerest condolences."
+      ],
+      "hints": [
+        "请接受",
+        "我们诚挚的哀悼"
+      ],
+      "cid": "8a9545a2"
+    },
+    {
+      "sentence": "We agree with you on...",
+      "translation": "我们同意你们关于……的意见。",
+      "chunks": [
+        "We agree with you",
+        "on..."
+      ],
+      "hints": [
+        "我们同意你们",
+        "关于……的意见"
+      ],
+      "cid": "a792cbe9"
+    },
+    {
+      "sentence": "We are in full agreement with the points raised in your letter.",
+      "translation": "我们完全同意您信上所提出的所有问题。",
+      "chunks": [
+        "We are in full agreement",
+        "with the points",
+        "raised in your letter."
+      ],
+      "hints": [
+        "我们完全同意",
+        "您信上所提出的",
+        "所有问题"
+      ],
+      "cid": "2f321aa7"
+    },
+    {
+      "sentence": "We are very pleased to have the opportunity to...",
+      "translation": "我们非常高兴能有机会……",
+      "chunks": [
+        "We are very pleased",
+        "to have the opportunity",
+        "to..."
+      ],
+      "hints": [
+        "我们非常高兴",
+        "能有机会",
+        "……"
+      ],
+      "cid": "6f038625"
+    },
+    {
+      "sentence": "We will be delighted to...",
+      "translation": "我们非常高兴地……",
+      "chunks": [
+        "We will be delighted",
+        "to..."
+      ],
+      "hints": [
+        "我们非常高兴地",
+        "……"
+      ],
+      "cid": "23ee5291"
+    },
+    {
+      "sentence": "We think that...",
+      "translation": "我们认为……",
+      "chunks": [
+        "We think",
+        "that..."
+      ],
+      "hints": [
+        "我们认为",
+        "……"
+      ],
+      "cid": "c9feefc4"
+    },
+    {
+      "sentence": "We feel strongly that...",
+      "translation": "我们强烈地感到……",
+      "chunks": [
+        "We feel strongly",
+        "that..."
+      ],
+      "hints": [
+        "我们强烈地感到",
+        "……"
+      ],
+      "cid": "37e41078"
+    },
+    {
+      "sentence": "It is our understanding that...",
+      "translation": "我们所理解的是……",
+      "chunks": [
+        "It is our understanding",
+        "that..."
+      ],
+      "hints": [
+        "我们所理解的是",
+        "……"
+      ],
+      "cid": "52fe6769"
+    },
+    {
+      "sentence": "We do not anticipate any objections to...",
+      "translation": "我们对……完全没有异议。",
+      "chunks": [
+        "We do not anticipate",
+        "any objections to..."
+      ],
+      "hints": [
+        "我们完全没有异议",
+        "对……"
+      ],
+      "cid": "39631fc4"
+    },
+    {
+      "sentence": "We can see no reason why...",
+      "translation": "我们找不到任何理由……",
+      "chunks": [
+        "We can see no reason",
+        "why..."
+      ],
+      "hints": [
+        "我们找不到任何理由",
+        "……"
+      ],
+      "cid": "3e9e6ed3"
+    },
+    {
+      "sentence": "It is not quite clear to us what you had in mind.",
+      "translation": "我们不清楚您到底是怎么想的。",
+      "chunks": [
+        "It is not quite clear to us",
+        "what you had in mind."
+      ],
+      "hints": [
+        "我们不清楚",
+        "您到底是怎么想的"
+      ],
+      "cid": "6ae64100"
+    },
+    {
+      "sentence": "The one point that concerned us a little was...",
+      "translation": "使我们担心的一点是……",
+      "chunks": [
+        "The one point",
+        "that concerned us a little",
+        "was..."
+      ],
+      "hints": [
+        "使我们担心的一点",
+        "是",
+        "……"
+      ],
+      "cid": "c8b599c4"
+    },
+    {
+      "sentence": "We have become concerned with regards to...",
+      "translation": "我们对……感到担心和挂念。",
+      "chunks": [
+        "We have become concerned",
+        "with regards to..."
+      ],
+      "hints": [
+        "我们感到担心和挂念",
+        "关于……"
+      ],
+      "cid": "f5d28c58"
+    },
+    {
+      "sentence": "We are now in the process of...",
+      "translation": "我们正在……过程中。",
+      "chunks": [
+        "We are now",
+        "in the process of..."
+      ],
+      "hints": [
+        "我们正在",
+        "……过程中"
+      ],
+      "cid": "9620f031"
+    },
+    {
+      "sentence": "We value ... highly.",
+      "translation": "我们非常重视……",
+      "chunks": [
+        "We",
+        "value ... highly."
+      ],
+      "hints": [
+        "我们",
+        "非常重视……"
+      ],
+      "cid": "9d12ea25"
+    },
+    {
+      "sentence": "We thank you for raising the issue.",
+      "translation": "我们非常感谢您提出的这件事。",
+      "chunks": [
+        "We thank you",
+        "for raising the issue."
+      ],
+      "hints": [
+        "我们非常感谢",
+        "您提出的这件事"
+      ],
+      "cid": "6fe9eefc"
+    },
+    {
+      "sentence": "Your suggestions are being followed up by...",
+      "translation": "您的建议将由……进行讨论。",
+      "chunks": [
+        "Your suggestions",
+        "are being followed up",
+        "by..."
+      ],
+      "hints": [
+        "您的建议",
+        "将由",
+        "……进行讨论"
+      ],
+      "cid": "1e38c6e2"
+    },
+    {
+      "sentence": "We hope you will understand our reason for this action.",
+      "translation": "我们希望您能理解我们这次行动的理由。",
+      "chunks": [
+        "We hope you will understand",
+        "our reason for this action."
+      ],
+      "hints": [
+        "我们希望您能理解",
+        "我们这次行动的理由"
+      ],
+      "cid": "db753313"
+    },
+    {
+      "sentence": "It would be difficult for us to accept...",
+      "translation": "我们很难接受……",
+      "chunks": [
+        "It would be difficult",
+        "for us to accept..."
+      ],
+      "hints": [
+        "我们很难",
+        "接受……"
+      ],
+      "cid": "8f2ffa20"
+    },
+    {
+      "sentence": "We regret that we are unable to...",
+      "translation": "非常遗憾，我们不能……",
+      "chunks": [
+        "We regret",
+        "that we are unable to..."
+      ],
+      "hints": [
+        "非常遗憾",
+        "我们不能……"
+      ],
+      "cid": "1e31d483"
+    },
+    {
+      "sentence": "We have no alternative but to...",
+      "translation": "除……之外，没有选择的余地。",
+      "chunks": [
+        "We have no alternative",
+        "but to..."
+      ],
+      "hints": [
+        "没有选择的余地",
+        "除……之外"
+      ],
+      "cid": "ba22ba61"
+    },
+    {
+      "sentence": "Consequently we are in the position to...",
+      "translation": "因此，我们采取的立场是……",
+      "chunks": [
+        "Consequently we are",
+        "in the position to..."
+      ],
+      "hints": [
+        "因此",
+        "我们的立场是……"
+      ],
+      "cid": "c1abbd9b"
+    },
+    {
+      "sentence": "We are pleased to recommend...to you.",
+      "translation": "我非常高兴地向您推荐……",
+      "chunks": [
+        "We are pleased",
+        "to recommend...to you."
+      ],
+      "hints": [
+        "我非常高兴地",
+        "向您推荐……"
+      ],
+      "cid": "b85b105a"
+    },
+    {
+      "sentence": "We work closely together with...",
+      "translation": "我们与……有非常亲密的关系。",
+      "chunks": [
+        "We work closely",
+        "together with..."
+      ],
+      "hints": [
+        "我们",
+        "与……有非常亲密的关系"
+      ],
+      "cid": "d97c8543"
+    },
+    {
+      "sentence": "We are also told that...",
+      "translation": "我们已经得知……",
+      "chunks": [
+        "We are also told",
+        "that..."
+      ],
+      "hints": [
+        "我们已经得知",
+        "……"
+      ],
+      "cid": "915ef7fa"
+    },
+    {
+      "sentence": "The amendment provides that...",
+      "translation": "修改后规定……",
+      "chunks": [
+        "The amendment provides",
+        "that..."
+      ],
+      "hints": [
+        "修改后规定",
+        "……"
+      ],
+      "cid": "4460fb0a"
+    },
+    {
+      "sentence": "The following conditions show that...",
+      "translation": "以下的条件表明……",
+      "chunks": [
+        "The following conditions",
+        "show that..."
+      ],
+      "hints": [
+        "以下的条件",
+        "表明……"
+      ],
+      "cid": "83692e09"
+    },
+    {
+      "sentence": "The effect of this change will be to delay...",
+      "translation": "这种变更意味着将会推迟……",
+      "chunks": [
+        "The effect of this change",
+        "will be to delay..."
+      ],
+      "hints": [
+        "这种变更意味着",
+        "将会推迟……"
+      ],
+      "cid": "81f9707b"
+    },
+    {
+      "sentence": "We appreciate your business and...",
+      "translation": "我们非常感谢本次交易和……",
+      "chunks": [
+        "We appreciate",
+        "your business",
+        "and..."
+      ],
+      "hints": [
+        "我们非常感谢",
+        "本次交易",
+        "和……"
+      ],
+      "cid": "f39f8733"
+    },
+    {
+      "sentence": "We would appreciate receiving your comments.",
+      "translation": "我们非常感谢你们提供的意见。",
+      "chunks": [
+        "We would appreciate",
+        "receiving your comments."
+      ],
+      "hints": [
+        "我们非常感谢",
+        "你们提供的意见"
+      ],
+      "cid": "9fc1fe7f"
+    },
+    {
+      "sentence": "We shall be interested in receiving your comments.",
+      "translation": "我们非常欢迎你们提出宝贵意见。",
+      "chunks": [
+        "We shall be interested",
+        "in receiving your comments."
+      ],
+      "hints": [
+        "我们非常欢迎",
+        "你们提出宝贵意见"
+      ],
+      "cid": "1cc133ef"
+    },
+    {
+      "sentence": "We are confident that...",
+      "translation": "我们确信……",
+      "chunks": [
+        "We are confident",
+        "that..."
+      ],
+      "hints": [
+        "我们确信",
+        "……"
+      ],
+      "cid": "3159bc8e"
+    },
+    {
+      "sentence": "We are enthusiastic over the possibilities of...",
+      "translation": "我们就……的可能性表示极大的热忱。",
+      "chunks": [
+        "We are enthusiastic",
+        "over the possibilities of..."
+      ],
+      "hints": [
+        "我们充满热忱",
+        "对……的可能性"
+      ],
+      "cid": "dcbedf46"
+    },
+    {
+      "sentence": "We welcome this development very much.",
+      "translation": "我们非常欢迎此事有所发展。",
+      "chunks": [
+        "We welcome",
+        "this development",
+        "very much."
+      ],
+      "hints": [
+        "我们非常欢迎",
+        "此事",
+        "有所发展"
+      ],
+      "cid": "4f3d0a4f"
+    },
+    {
+      "sentence": "We will continue to do all we can to...",
+      "translation": "我们将继续做我们所能做的一切。",
+      "chunks": [
+        "We will continue",
+        "to do all we can",
+        "to..."
+      ],
+      "hints": [
+        "我们将继续",
+        "做我们所能做的一切",
+        "……"
+      ],
+      "cid": "81609150"
+    },
+    {
+      "sentence": "We will do our utmost to...",
+      "translation": "我们将竭尽全力地……",
+      "chunks": [
+        "We will do our utmost",
+        "to..."
+      ],
+      "hints": [
+        "我们将竭尽全力地",
+        "……"
+      ],
+      "cid": "15986251"
+    },
+    {
+      "sentence": "We shall do whatever we can to extend...",
+      "translation": "为了扩大……，我们将付出最大的努力。",
+      "chunks": [
+        "We shall do",
+        "whatever we can",
+        "to extend..."
+      ],
+      "hints": [
+        "我们将",
+        "尽我们所能",
+        "去扩大……"
+      ],
+      "cid": "26e7a7cb"
+    },
+    {
+      "sentence": "We will always endeavor to offer you our most favorable rates.",
+      "translation": "我们将一直地努力提供给您我们最优惠价格。",
+      "chunks": [
+        "We will always endeavor",
+        "to offer you",
+        "our most favorable rates."
+      ],
+      "hints": [
+        "我们将一直地努力",
+        "提供给您",
+        "我们最优惠价格"
+      ],
+      "cid": "cc47a762"
+    },
+    {
+      "sentence": "You may rest assured that...",
+      "translation": "就……一事，请您尽管放心。",
+      "chunks": [
+        "You may rest assured",
+        "that..."
+      ],
+      "hints": [
+        "请您尽管放心",
+        "就……一事"
+      ],
+      "cid": "0d401eab"
+    },
+    {
+      "sentence": "We wish to keep you fully informed on this matter.",
+      "translation": "我们希望就此事今后经常保持联系。",
+      "chunks": [
+        "We wish to keep you",
+        "fully informed",
+        "on this matter."
+      ],
+      "hints": [
+        "我们希望",
+        "就此事今后经常",
+        "保持联系"
+      ],
+      "cid": "d978d82d"
+    },
+    {
+      "sentence": "Kindly inform us when this is put into effect.",
+      "translation": "在本项目实行之际，烦请通知我们一声。",
+      "chunks": [
+        "Kindly inform us",
+        "when this is put into effect."
+      ],
+      "hints": [
+        "烦请通知我们一声",
+        "在本项目实行之际"
+      ],
+      "cid": "ac7b81bb"
+    },
+    {
+      "sentence": "We feel certain you will understand our position in this matter.",
+      "translation": "我们相信您能够理解我们的立场。",
+      "chunks": [
+        "We feel certain",
+        "you will understand",
+        "our position in this matter."
+      ],
+      "hints": [
+        "我们相信",
+        "您能够理解",
+        "我们的立场"
+      ],
+      "cid": "e7d2ac25"
+    },
+    {
+      "sentence": "Nevertheless, we will do everything we can to...",
+      "translation": "尽管如此，我们将做我们所能做的一切……",
+      "chunks": [
+        "Nevertheless,",
+        "we will do everything we can",
+        "to..."
+      ],
+      "hints": [
+        "尽管如此",
+        "我们将做我们所能做的一切",
+        "……"
+      ],
+      "cid": "4675c200"
+    },
+    {
+      "sentence": "There is no objection, as far as we are concerned, in...",
+      "translation": "对于……，就我们来说，没有异议。",
+      "chunks": [
+        "There is no objection,",
+        "as far as we are concerned,",
+        "in..."
+      ],
+      "hints": [
+        "没有异议",
+        "就我们来说",
+        "对于……"
+      ],
+      "cid": "f2f1a97e"
+    },
+    {
+      "sentence": "These have been placed into our files for future reference.",
+      "translation": "为作为今后的参考，我们已将此事存入了我们的文档。",
+      "chunks": [
+        "These have been placed",
+        "into our files",
+        "for future reference."
+      ],
+      "hints": [
+        "这些已被存入",
+        "我们的文档",
+        "为今后的参考"
+      ],
+      "cid": "56d6cc23"
+    }
+  ]
+}
