@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "7e18d185",
+      "sentence": "This is Dennis Smith.",
+      "translation": "我是丹尼斯·史密斯。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "6ff6c987",
+      "sentence": "Hello, John?",
+      "translation": "是约翰吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "8bbfac15",
+      "sentence": "Is this Mr. Dennis Smith?",
+      "translation": "喂， 请问是丹尼斯·史密斯先生吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "3e7ffbc9",
+      "sentence": "Is this the finance department?",
+      "translation": "请问是财务科吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "1f86a459",
+      "sentence": "Is this Dr. Jim Baker's office?",
+      "translation": "请问是吉姆·贝克医生的办公室吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "71b5c82c",
+      "sentence": "Do you mind if I use your phone?",
+      "translation": "我能借用一下您的电话吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "cc194a71",
+      "sentence": "May I speak to Mr. Sato?",
+      "translation": "我想找佐藤先生。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "469d6e6d",
+      "sentence": "Is Mark there?",
+      "translation": "马克在吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "0fb09491",
+      "sentence": "I'm sorry for calling you this late.",
+      "translation": "真对不起，这么晚了还给您打电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "c462d7d0",
+      "sentence": "I hope I'm not disturbing you.",
+      "translation": "我希望我没打扰您。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "b1d560f5",
+      "sentence": "I hope I didn't wake you up.",
+      "translation": "但愿没吵醒您。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "20bc518b",
+      "sentence": "It is urgent I talk to Mr. Barr now.",
+      "translation": "我有急事要找巴尔先生。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "35f2b103",
+      "sentence": "I'm calling about tomorrow's meeting.",
+      "translation": "有关明天开会的事给您打电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "cc2bde6b",
+      "sentence": "I'm returning your call.",
+      "translation": "我给您回电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "a521c1ff",
+      "sentence": "Hello.",
+      "translation": "喂!",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "2434b19b",
+      "sentence": "Speaking.",
+      "translation": "对，我就是。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "51242cc6",
+      "sentence": "It's me.",
+      "translation": "是我呀。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "de59203d",
+      "sentence": "ABC Business College, may I help you?",
+      "translation": "ABC商务学院。您有什么事?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "ca8315a8",
+      "sentence": "Who's calling, please?",
+      "translation": "您是哪位?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "b1320535",
+      "sentence": "Who in particular would you like to talk to?",
+      "translation": "您想找哪位接电话?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "bdd7f8a2",
+      "sentence": "He's been expecting your call.",
+      "translation": "他一直在等您的电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "cfa71368",
+      "sentence": "Which Suzuki do you want to talk to?",
+      "translation": "您要找哪个铃木?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "f08273fd",
+      "sentence": "There are three Suzukis here.",
+      "translation": "这儿有三位姓铃木的。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "3df49259",
+      "sentence": "Would you mind calling back later?",
+      "translation": "您能过会儿再打吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "4cb7df20",
+      "sentence": "Extension 103, please.",
+      "translation": "请转103。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "ec84dfe8",
+      "sentence": "I'll connect you to extension 103.",
+      "translation": "我给您接103分机。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "7ddd8a37",
+      "sentence": "Hold on, please.",
+      "translation": "请稍等一下。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "4e413b03",
+      "sentence": "I'll put him on.",
+      "translation": "我让他接电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "58680ba1",
+      "sentence": "I'll transfer your call.",
+      "translation": "我把电话给您接过去。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "ea3d2986",
+      "sentence": "I'll get your party for you.",
+      "translation": "我把电话转给负责人。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "1b2718f2",
+      "sentence": "I'm transferring your call to the sales department.",
+      "translation": "我把您的电话接到营业部去。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "7bef7cec",
+      "sentence": "Mr. Peck is on line one.",
+      "translation": "是贝克打来的，请接1号线。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "149884f6",
+      "sentence": "You have a call from Mr. Miller of ABC.",
+      "translation": "ABC公司米兰先生的电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "409bbcd0",
+      "sentence": "Your party is on the line.",
+      "translation": "您要找的人来接电话了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "94847dbb",
+      "sentence": "Her line is busy now.",
+      "translation": "她正在接电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "42f18f10",
+      "sentence": "I'm sorry, she's tied up at the moment.",
+      "translation": "对不起，她现在脱不开身。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "16933018",
+      "sentence": "I'm sorry, she has company at this time.",
+      "translation": "对不起，她正在接待客人。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "ee7f6957",
+      "sentence": "Would you like to hold?",
+      "translation": "您等会儿行吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "572d8097",
+      "sentence": "He's away from his desk now.",
+      "translation": "他现在不在座位上。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "c94cf3b6",
+      "sentence": "He's in but he's not at his desk right now.",
+      "translation": "他在公司，但现在不在座位上。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "a4a9a928",
+      "sentence": "I'm sorry, he's not in right now.",
+      "translation": "对不起，他出去了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "c2edc3a5",
+      "sentence": "When is he coming back?",
+      "translation": "他什么时候能回来?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "0a45b888",
+      "sentence": "He should be back in ten minutes.",
+      "translation": "他大概10分钟后回来。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "b5f38e60",
+      "sentence": "He should be back in the office next week.",
+      "translation": "他应该下个星期来上班。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "0adde007",
+      "sentence": "He's on vacation until next week.",
+      "translation": "他休假到下个星期。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "265e4821",
+      "sentence": "He called in sick today.",
+      "translation": "他打电话来说病了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "a4875eaf",
+      "sentence": "He's out of town now.",
+      "translation": "他现在出差去了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "47e32e9d",
+      "sentence": "He's out to lunch now.",
+      "translation": "他现在吃午饭去了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "62f47057",
+      "sentence": "He's in a meeting right now.",
+      "translation": "他现在正在开会。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "b584ca62",
+      "sentence": "He's off today.",
+      "translation": "他今天休息。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "c0891d4d",
+      "sentence": "Could you call back later?",
+      "translation": "您能过会儿再打来吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "af8f9b4d",
+      "sentence": "Please call me back in ten minutes.",
+      "translation": "请10分钟后再打。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "b063366d",
+      "sentence": "May I take a message?",
+      "translation": "您要给他留言吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "1abf34f4",
+      "sentence": "I'll try again later.",
+      "translation": "过会儿我再打。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "58a52996",
+      "sentence": "Can I leave a message?",
+      "translation": "能留个口信吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "b6d7ce31",
+      "sentence": "I called but your line was busy.",
+      "translation": "我给你打电话了，可是占线。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "757ddc01",
+      "sentence": "Would you tell him that Lynn Kane called?",
+      "translation": "请告诉他林恩·凯恩给他打过电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "f5c079cf",
+      "sentence": "Please tell him to call me.",
+      "translation": "请转告他让他给我回个电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "976c3f4d",
+      "sentence": "How can he get a hold of you?",
+      "translation": "他怎么跟您联系呢?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "0f651aaa",
+      "sentence": "Your number, please?",
+      "translation": "请告诉我您的电话号码。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "a9f7145b",
+      "sentence": "My number is 1234-1234.",
+      "translation": "我的电话号码是1234-1234。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "fb8f455d",
+      "sentence": "You can reach me at 1234-1234 until six o'clock.",
+      "translation": "请6点以前打1234-1234跟我联系。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "4a72ffd7",
+      "sentence": "Let me repeat the number. That's 1234-1234.",
+      "translation": "我再确认一下电话号码，1234-1234，对吗?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "7566017d",
+      "sentence": "OK. I'll tell him that you called.",
+      "translation": "好的，我转告他您来电话了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "c75defa6",
+      "sentence": "How do you spell your name?",
+      "translation": "您的名字怎么拼?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "b11557f8",
+      "sentence": "Mr. Smith called you during the meeting.",
+      "translation": "您开会的时候史密斯先生给您来电话了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "3babf655",
+      "sentence": "I'll have him call you back.",
+      "translation": "我让他给您回电话好了。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "d7cf7e59",
+      "sentence": "Shall I have him call you back?",
+      "translation": "是不是让他给您回电话呀?",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "a82159aa",
+      "sentence": "Can I take a message for you?",
+      "translation": "要我帮你留言吗？",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "e138468c",
+      "sentence": "Is that Mr. Chen speaking?",
+      "translation": "请问是陈先生在说话吗？",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "9c89ba9b",
+      "sentence": "He's not in the office at the moment.",
+      "translation": "他现在不在办公室。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "5893e7b7",
+      "sentence": "Could you tell him I called?",
+      "translation": "你能告诉他我打过电话吗？",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "cd3e07aa",
+      "sentence": "What's your number?",
+      "translation": "你号码多少？",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "31d5d360",
+      "sentence": "Pick up the phone.",
+      "translation": "接电话。",
+      "sourceUrl": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+      "sourceOffset": 73
+    }
+  ]
+}

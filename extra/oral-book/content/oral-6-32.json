@@ -1,0 +1,1392 @@
+[
+ {
+  "sentence": "I'd like a hamburger and an iced tea.",
+  "translation": "要一个汉堡和一杯冰茶。",
+  "chunks": [
+   "I'd like a hamburger",
+   "and an iced tea."
+  ],
+  "hints": [
+   "要一个汉堡",
+   "和一杯冰茶。"
+  ]
+ },
+ {
+  "sentence": "May I have two hot dogs, please?",
+  "translation": "我要两个热狗。",
+  "chunks": [
+   "May I have",
+   "two hot dogs, please?"
+  ],
+  "hints": [
+   "我要",
+   "两个热狗。"
+  ]
+ },
+ {
+  "sentence": "With ketchup and mustard, please.",
+  "translation": "请加蕃茄酱和芥末。",
+  "chunks": [
+   "With ketchup",
+   "and mustard, please."
+  ],
+  "hints": [
+   "请加蕃茄酱",
+   "和芥末。"
+  ]
+ },
+ {
+  "sentence": "Will that be for here or to go?",
+  "translation": "在这儿吃还是带走?",
+  "chunks": [
+   "Will that be",
+   "for here or to go?"
+  ],
+  "hints": [
+   "在这儿吃",
+   "还是带走？"
+  ]
+ },
+ {
+  "sentence": "Will that be to go?",
+  "translation": "您带走吗?",
+  "chunks": [
+   "Will that be",
+   "to go?"
+  ],
+  "hints": [
+   "您",
+   "带走吗？"
+  ]
+ },
+ {
+  "sentence": "Will you be eating here?",
+  "translation": "您是在这儿吃吗?",
+  "chunks": [
+   "Will you be",
+   "eating here?"
+  ],
+  "hints": [
+   "您是在这儿",
+   "吃吗？"
+  ]
+ },
+ {
+  "sentence": "To go, please.",
+  "translation": "带走。",
+  "chunks": [
+   "To go,",
+   "please."
+  ],
+  "hints": [
+   "请",
+   "带走。"
+  ]
+ },
+ {
+  "sentence": "For here, please.",
+  "translation": "在这儿吃。",
+  "chunks": [
+   "For here,",
+   "please."
+  ],
+  "hints": [
+   "请",
+   "在这儿吃。"
+  ]
+ },
+ {
+  "sentence": "Could you recommend a good restaurant near here?",
+  "translation": "这附近您能推荐家好吃的饭馆吗?",
+  "chunks": [
+   "Could you recommend",
+   "a good restaurant near here?"
+  ],
+  "hints": [
+   "这附近您能推荐",
+   "家好吃的饭馆吗？"
+  ]
+ },
+ {
+  "sentence": "I'd like some Italian food.",
+  "translation": "我想吃意大利菜。",
+  "chunks": [
+   "I'd like",
+   "some Italian food."
+  ],
+  "hints": [
+   "我想吃",
+   "意大利菜。"
+  ]
+ },
+ {
+  "sentence": "Which restaurant do you recommend?",
+  "translation": "您推荐哪家饭馆?",
+  "chunks": [
+   "Which restaurant",
+   "do you recommend?"
+  ],
+  "hints": [
+   "您推荐",
+   "哪家饭馆？"
+  ]
+ },
+ {
+  "sentence": "Is there a Mexican restaurant around here?",
+  "translation": "这附近有墨西哥餐馆吗?",
+  "chunks": [
+   "Is there a Mexican restaurant",
+   "around here?"
+  ],
+  "hints": [
+   "这附近有",
+   "墨西哥餐馆吗？"
+  ]
+ },
+ {
+  "sentence": "Where is the closest Mexican restaurant?",
+  "translation": "最近的墨西哥餐馆在哪儿?",
+  "chunks": [
+   "Where is the closest",
+   "Mexican restaurant?"
+  ],
+  "hints": [
+   "最近的墨西哥餐馆",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "Are there any restaurants still open near here?",
+  "translation": "这附近有没有还在营业的饭馆?",
+  "chunks": [
+   "Are there any restaurants",
+   "still open near here?"
+  ],
+  "hints": [
+   "这附近有没有",
+   "还在营业的饭馆？"
+  ]
+ },
+ {
+  "sentence": "Do I need a reservation?",
+  "translation": "我需要预订吗?",
+  "chunks": [
+   "Do I need",
+   "a reservation?"
+  ],
+  "hints": [
+   "我需要",
+   "预订吗？"
+  ]
+ },
+ {
+  "sentence": "Hello, this is the Park Restaurant. May I help you?",
+  "translation": "您好，这是公园餐厅。我可以为您服务吗?",
+  "chunks": [
+   "Hello, this is the Park Restaurant. May I",
+   "help you?"
+  ],
+  "hints": [
+   "您好，这是公园餐厅。我可以",
+   "为您服务吗？"
+  ]
+ },
+ {
+  "sentence": "I'd like to make a reservation for eight people at six o'clock tonight.",
+  "translation": "我想订餐。今天晚上6点，8个人的位子。",
+  "chunks": [
+   "I'd like to make a reservation",
+   "for eight people at six o'clock tonight."
+  ],
+  "hints": [
+   "我想订餐。今天晚上6点，",
+   "8个人的位子。"
+  ]
+ },
+ {
+  "sentence": "We are a group of eight.",
+  "translation": "我们一共8个人。",
+  "chunks": [
+   "We are",
+   "a group of eight."
+  ],
+  "hints": [
+   "我们一共",
+   "8个人。"
+  ]
+ },
+ {
+  "sentence": "I'd like to reserve a table for eight.",
+  "translation": "我想订餐8个人。",
+  "chunks": [
+   "I'd like to reserve",
+   "a table for eight."
+  ],
+  "hints": [
+   "我想订餐",
+   "8个人。"
+  ]
+ },
+ {
+  "sentence": "Could we have a table close to the band?",
+  "translation": "我们能不能要张离乐队近一点儿的桌子?",
+  "chunks": [
+   "Could we have a table",
+   "close to the band?"
+  ],
+  "hints": [
+   "我们能不能要张",
+   "离乐队近一点儿的桌子？"
+  ]
+ },
+ {
+  "sentence": "I'm sorry. We're all booked up tonight.",
+  "translation": "对不起，今天晚上都订满了。",
+  "chunks": [
+   "I'm sorry. We're all",
+   "booked up tonight."
+  ],
+  "hints": [
+   "对不起，今天晚上",
+   "都订满了。"
+  ]
+ },
+ {
+  "sentence": "How long is the wait?",
+  "translation": "要等多长时间?",
+  "chunks": [
+   "How long",
+   "is the wait?"
+  ],
+  "hints": [
+   "要等",
+   "多长时间？"
+  ]
+ },
+ {
+  "sentence": "We can wait.",
+  "translation": "我们可以等。",
+  "chunks": [
+   "We can",
+   "wait."
+  ],
+  "hints": [
+   "我们可以",
+   "等。"
+  ]
+ },
+ {
+  "sentence": "What time can we make a reservation?",
+  "translation": "可以预订几点的?",
+  "chunks": [
+   "What time can we",
+   "make a reservation?"
+  ],
+  "hints": [
+   "可以预订",
+   "几点的？"
+  ]
+ },
+ {
+  "sentence": "How late are you open?",
+  "translation": "一直营业到几点?",
+  "chunks": [
+   "How late",
+   "are you open?"
+  ],
+  "hints": [
+   "一直营业",
+   "到几点？"
+  ]
+ },
+ {
+  "sentence": "How do I get there?",
+  "translation": "我怎么才能到那儿?",
+  "chunks": [
+   "How do I",
+   "get there?"
+  ],
+  "hints": [
+   "我怎么才能",
+   "到那儿？"
+  ]
+ },
+ {
+  "sentence": "Do you accept credit cards?",
+  "translation": "可以用信用卡吗?",
+  "chunks": [
+   "Do you accept",
+   "credit cards?"
+  ],
+  "hints": [
+   "可以用",
+   "信用卡吗？"
+  ]
+ },
+ {
+  "sentence": "What is the price of a dinner course?",
+  "translation": "一顿饭多少钱?",
+  "chunks": [
+   "What is the price",
+   "of a dinner course?"
+  ],
+  "hints": [
+   "一顿饭",
+   "多少钱？"
+  ]
+ },
+ {
+  "sentence": "What is your dress code?",
+  "translation": "衣着上有什么规定?",
+  "chunks": [
+   "What is",
+   "your dress code?"
+  ],
+  "hints": [
+   "衣着上",
+   "有什么规定？"
+  ]
+ },
+ {
+  "sentence": "Should I wear a jacket and tie?",
+  "translation": "我必须得穿外衣打领带吗?",
+  "chunks": [
+   "Should I wear",
+   "a jacket and tie?"
+  ],
+  "hints": [
+   "我必须得穿",
+   "外衣打领带吗？"
+  ]
+ },
+ {
+  "sentence": "Should the ladies wear dresses?",
+  "translation": "女性必须穿礼服吗?",
+  "chunks": [
+   "Should the ladies",
+   "wear dresses?"
+  ],
+  "hints": [
+   "女性必须",
+   "穿礼服吗？"
+  ]
+ },
+ {
+  "sentence": "How many in your group?",
+  "translation": "请问您几位?",
+  "chunks": [
+   "How many",
+   "in your group?"
+  ],
+  "hints": [
+   "请问",
+   "您几位？"
+  ]
+ },
+ {
+  "sentence": "Two.",
+  "translation": "2个人。",
+  "chunks": [
+   "Two."
+  ],
+  "hints": [
+   "2个人。"
+  ]
+ },
+ {
+  "sentence": "I'm sorry, but I have to cancel my reservation.",
+  "translation": "对不起，我想取消订餐。",
+  "chunks": [
+   "I'm sorry, but I have to",
+   "cancel my reservation."
+  ],
+  "hints": [
+   "对不起，我想",
+   "取消订餐。"
+  ]
+ },
+ {
+  "sentence": "Could I have a menu, please?",
+  "translation": "请给我菜单。",
+  "chunks": [
+   "Could I have",
+   "a menu, please?"
+  ],
+  "hints": [
+   "请给我",
+   "菜单。"
+  ]
+ },
+ {
+  "sentence": "Do you have a menu in Japanese?",
+  "translation": "有日语的菜单吗?",
+  "chunks": [
+   "Do you have a menu",
+   "in Japanese?"
+  ],
+  "hints": [
+   "有日语的",
+   "菜单吗？"
+  ]
+ },
+ {
+  "sentence": "May I see the wine list, please?",
+  "translation": "请给我看一下酒单。",
+  "chunks": [
+   "May I see",
+   "the wine list, please?"
+  ],
+  "hints": [
+   "请给我看一下",
+   "酒单。"
+  ]
+ },
+ {
+  "sentence": "What kind of wine do you have?",
+  "translation": "你们都有些什么葡萄酒?",
+  "chunks": [
+   "What kind of wine",
+   "do you have?"
+  ],
+  "hints": [
+   "你们都有些",
+   "什么葡萄酒？"
+  ]
+ },
+ {
+  "sentence": "May I take your order?",
+  "translation": "点菜吗?/您来点点儿什么?",
+  "chunks": [
+   "May I take",
+   "your order?"
+  ],
+  "hints": [
+   "您来点点儿",
+   "什么？"
+  ]
+ },
+ {
+  "sentence": "Can I have the same as that?",
+  "translation": "我想要和那个一样的。",
+  "chunks": [
+   "Can I have",
+   "the same as that?"
+  ],
+  "hints": [
+   "我想要",
+   "和那个一样的。"
+  ]
+ },
+ {
+  "sentence": "I'll take this and this.",
+  "translation": "我要这个和这个。",
+  "chunks": [
+   "I'll take",
+   "this and this."
+  ],
+  "hints": [
+   "我要",
+   "这个和这个。"
+  ]
+ },
+ {
+  "sentence": "Do you have any local specialties?",
+  "translation": "您这儿有什么地方风味吗?",
+  "chunks": [
+   "Do you have",
+   "any local specialties?"
+  ],
+  "hints": [
+   "您这儿有",
+   "什么地方风味吗？"
+  ]
+ },
+ {
+  "sentence": "Could we have separate checks?",
+  "translation": "我们可以分别付款吗?",
+  "chunks": [
+   "Could we have",
+   "separate checks?"
+  ],
+  "hints": [
+   "我们可以",
+   "分别付款吗？"
+  ]
+ },
+ {
+  "sentence": "I'd like to have dinner for sixty dollars including drinks.",
+  "translation": "我要一个60美元的晚餐包括酒水。",
+  "chunks": [
+   "I'd like to have dinner for sixty dollars",
+   "including drinks."
+  ],
+  "hints": [
+   "我要一个60美元的晚餐",
+   "包括酒水。"
+  ]
+ },
+ {
+  "sentence": "I'd like a steak.",
+  "translation": "我要一份牛排。",
+  "chunks": [
+   "I'd like",
+   "a steak."
+  ],
+  "hints": [
+   "我要",
+   "一份牛排。"
+  ]
+ },
+ {
+  "sentence": "I'd like some red wine, please.",
+  "translation": "我要红葡萄酒。",
+  "chunks": [
+   "I'd like some red wine,",
+   "please."
+  ],
+  "hints": [
+   "我要",
+   "红葡萄酒。"
+  ]
+ },
+ {
+  "sentence": "How would you like it?",
+  "translation": "要几成熟的?",
+  "chunks": [
+   "How would you",
+   "like it?"
+  ],
+  "hints": [
+   "要",
+   "几成熟的？"
+  ]
+ },
+ {
+  "sentence": "Well-done, please.",
+  "translation": "烤熟点。",
+  "chunks": [
+   "Well-done,",
+   "please."
+  ],
+  "hints": [
+   "请烤",
+   "熟点。"
+  ]
+ },
+ {
+  "sentence": "Can you make it mild?",
+  "translation": "请做得清淡些。",
+  "chunks": [
+   "Can you make it",
+   "mild?"
+  ],
+  "hints": [
+   "请做得",
+   "清淡些。"
+  ]
+ },
+ {
+  "sentence": "Are you having breakfast?",
+  "translation": "您用早餐吗?",
+  "chunks": [
+   "Are you",
+   "having breakfast?"
+  ],
+  "hints": [
+   "您",
+   "用早餐吗？"
+  ]
+ },
+ {
+  "sentence": "Is coffee included with this meal?",
+  "translation": "套餐里包括咖啡吗?",
+  "chunks": [
+   "Is coffee included",
+   "with this meal?"
+  ],
+  "hints": [
+   "套餐里",
+   "包括咖啡吗？"
+  ]
+ },
+ {
+  "sentence": "I'd like a cup of coffee, please.",
+  "translation": "请给我来一杯咖啡。",
+  "chunks": [
+   "I'd like a cup of coffee,",
+   "please."
+  ],
+  "hints": [
+   "请给我",
+   "来一杯咖啡。"
+  ]
+ },
+ {
+  "sentence": "Anything else?",
+  "translation": "还要别的吗?",
+  "chunks": [
+   "Anything",
+   "else?"
+  ],
+  "hints": [
+   "还要",
+   "别的吗？"
+  ]
+ },
+ {
+  "sentence": "That's all for me.",
+  "translation": "够了/就要这些。",
+  "chunks": [
+   "That's all",
+   "for me."
+  ],
+  "hints": [
+   "够了，",
+   "就要这些。"
+  ]
+ },
+ {
+  "sentence": "I didn't order this.",
+  "translation": "我没有点这个菜。",
+  "chunks": [
+   "I didn't",
+   "order this."
+  ],
+  "hints": [
+   "我没有",
+   "点这个菜。"
+  ]
+ },
+ {
+  "sentence": "My order hasn't come yet.",
+  "translation": "我点的菜还没上。",
+  "chunks": [
+   "My order",
+   "hasn't come yet."
+  ],
+  "hints": [
+   "我点的菜",
+   "还没上。"
+  ]
+ },
+ {
+  "sentence": "I'm kind of hungry.",
+  "translation": "我有点饿了。",
+  "chunks": [
+   "I'm kind of",
+   "hungry."
+  ],
+  "hints": [
+   "我有点",
+   "饿了。"
+  ]
+ },
+ {
+  "sentence": "I'm starving.",
+  "translation": "我都快饿死了。",
+  "chunks": [
+   "I'm",
+   "starving."
+  ],
+  "hints": [
+   "我都快",
+   "饿死了。"
+  ]
+ },
+ {
+  "sentence": "I'm thirsty.",
+  "translation": "我渴了。",
+  "chunks": [
+   "I'm",
+   "thirsty."
+  ],
+  "hints": [
+   "我",
+   "渴了。"
+  ]
+ },
+ {
+  "sentence": "It smells good.",
+  "translation": "闻着真香。",
+  "chunks": [
+   "It smells",
+   "good."
+  ],
+  "hints": [
+   "闻着",
+   "真香。"
+  ]
+ },
+ {
+  "sentence": "I'm on a diet.",
+  "translation": "我在节食。",
+  "chunks": [
+   "I'm on",
+   "a diet."
+  ],
+  "hints": [
+   "我在",
+   "节食。"
+  ]
+ },
+ {
+  "sentence": "This looks great!",
+  "translation": "看上去真好吃!",
+  "chunks": [
+   "This looks",
+   "great!"
+  ],
+  "hints": [
+   "看上去",
+   "真好吃！"
+  ]
+ },
+ {
+  "sentence": "They all look good.",
+  "translation": "看上去都好吃。",
+  "chunks": [
+   "They all",
+   "look good."
+  ],
+  "hints": [
+   "看上去",
+   "都好吃。"
+  ]
+ },
+ {
+  "sentence": "Can I eat this?",
+  "translation": "我可以吃这个吗?",
+  "chunks": [
+   "Can I",
+   "eat this?"
+  ],
+  "hints": [
+   "我可以",
+   "吃这个吗？"
+  ]
+ },
+ {
+  "sentence": "You can't eat that.",
+  "translation": "你不能吃这个。",
+  "chunks": [
+   "You can't",
+   "eat that."
+  ],
+  "hints": [
+   "你不能",
+   "吃这个。"
+  ]
+ },
+ {
+  "sentence": "Is this delicious?",
+  "translation": "这个好吃吗?",
+  "chunks": [
+   "Is this",
+   "delicious?"
+  ],
+  "hints": [
+   "这个",
+   "好吃吗？"
+  ]
+ },
+ {
+  "sentence": "It's good.",
+  "translation": "好吃。",
+  "chunks": [
+   "It's",
+   "good."
+  ],
+  "hints": [
+   "味道",
+   "不错。"
+  ]
+ },
+ {
+  "sentence": "It's not good.",
+  "translation": "不好吃。",
+  "chunks": [
+   "It's not",
+   "good."
+  ],
+  "hints": [
+   "味道",
+   "不好。"
+  ]
+ },
+ {
+  "sentence": "This tastes strange.",
+  "translation": "味道很怪。",
+  "chunks": [
+   "This tastes",
+   "strange."
+  ],
+  "hints": [
+   "味道",
+   "很怪。"
+  ]
+ },
+ {
+  "sentence": "I eat anything.",
+  "translation": "我什么都能吃。",
+  "chunks": [
+   "I eat",
+   "anything."
+  ],
+  "hints": [
+   "我什么",
+   "都能吃。"
+  ]
+ },
+ {
+  "sentence": "Don't overeat.",
+  "translation": "别吃太多。",
+  "chunks": [
+   "Don't",
+   "overeat."
+  ],
+  "hints": [
+   "别",
+   "吃太多。"
+  ]
+ },
+ {
+  "sentence": "He's a big eater.",
+  "translation": "他真能吃。",
+  "chunks": [
+   "He's",
+   "a big eater."
+  ],
+  "hints": [
+   "他",
+   "真能吃。"
+  ]
+ },
+ {
+  "sentence": "I don't feel like eating anything.",
+  "translation": "我什么都不想吃。",
+  "chunks": [
+   "I don't feel like",
+   "eating anything."
+  ],
+  "hints": [
+   "我什么都",
+   "不想吃。"
+  ]
+ },
+ {
+  "sentence": "I drink like a fish.",
+  "translation": "我是海量。",
+  "chunks": [
+   "I drink",
+   "like a fish."
+  ],
+  "hints": [
+   "我是",
+   "海量。"
+  ]
+ },
+ {
+  "sentence": "I can hold my own.",
+  "translation": "我酒量还可以。",
+  "chunks": [
+   "I can",
+   "hold my own."
+  ],
+  "hints": [
+   "我酒量",
+   "还可以。"
+  ]
+ },
+ {
+  "sentence": "Cake is fattening.",
+  "translation": "吃蛋糕会发胖。",
+  "chunks": [
+   "Cake",
+   "is fattening."
+  ],
+  "hints": [
+   "吃蛋糕",
+   "会发胖。"
+  ]
+ },
+ {
+  "sentence": "Please pass me the salt.",
+  "translation": "请把盐递给我。",
+  "chunks": [
+   "Please pass me",
+   "the salt."
+  ],
+  "hints": [
+   "请把盐",
+   "递给我。"
+  ]
+ },
+ {
+  "sentence": "It's called misoshiru.",
+  "translation": "这是大酱汤。",
+  "chunks": [
+   "It's called",
+   "misoshiru."
+  ],
+  "hints": [
+   "这是",
+   "大酱汤。"
+  ]
+ },
+ {
+  "sentence": "How do you eat sushi?",
+  "translation": "寿司怎么吃呀?",
+  "chunks": [
+   "How do you",
+   "eat sushi?"
+  ],
+  "hints": [
+   "寿司",
+   "怎么吃呀？"
+  ]
+ },
+ {
+  "sentence": "You dip it in soy sauce.",
+  "translation": "你得蘸酱油。",
+  "chunks": [
+   "You dip it",
+   "in soy sauce."
+  ],
+  "hints": [
+   "你得",
+   "蘸酱油。"
+  ]
+ },
+ {
+  "sentence": "Can you use chopsticks?",
+  "translation": "你会用筷子吗?",
+  "chunks": [
+   "Can you",
+   "use chopsticks?"
+  ],
+  "hints": [
+   "你会用",
+   "筷子吗？"
+  ]
+ },
+ {
+  "sentence": "What kind of fish is this?",
+  "translation": "这是什么鱼?",
+  "chunks": [
+   "What kind of fish",
+   "is this?"
+  ],
+  "hints": [
+   "这是什么",
+   "鱼？"
+  ]
+ },
+ {
+  "sentence": "It's spicy.",
+  "translation": "真辣!",
+  "chunks": [
+   "It's",
+   "spicy."
+  ],
+  "hints": [
+   "真",
+   "辣！"
+  ]
+ },
+ {
+  "sentence": "It's salty.",
+  "translation": "真咸。",
+  "chunks": [
+   "It's",
+   "salty."
+  ],
+  "hints": [
+   "真",
+   "咸。"
+  ]
+ },
+ {
+  "sentence": "It's sweet.",
+  "translation": "真甜。",
+  "chunks": [
+   "It's",
+   "sweet."
+  ],
+  "hints": [
+   "真",
+   "甜。"
+  ]
+ },
+ {
+  "sentence": "It's crispy.",
+  "translation": "真脆。",
+  "chunks": [
+   "It's",
+   "crispy."
+  ],
+  "hints": [
+   "真",
+   "脆。"
+  ]
+ },
+ {
+  "sentence": "It's slimy.",
+  "translation": "真粘。",
+  "chunks": [
+   "It's",
+   "slimy."
+  ],
+  "hints": [
+   "真",
+   "粘。"
+  ]
+ },
+ {
+  "sentence": "This coffee is not hot enough.",
+  "translation": "这咖啡不够热。",
+  "chunks": [
+   "This coffee is",
+   "not hot enough."
+  ],
+  "hints": [
+   "这咖啡",
+   "不够热。"
+  ]
+ },
+ {
+  "sentence": "This bread is soggy.",
+  "translation": "面包没烤透。",
+  "chunks": [
+   "This bread",
+   "is soggy."
+  ],
+  "hints": [
+   "面包",
+   "没烤透。"
+  ]
+ },
+ {
+  "sentence": "These potato chips are stale.",
+  "translation": "这土豆片变味了。",
+  "chunks": [
+   "These potato chips",
+   "are stale."
+  ],
+  "hints": [
+   "这土豆片",
+   "变味了。"
+  ]
+ },
+ {
+  "sentence": "This milk is sour.",
+  "translation": "这牛奶酸了。",
+  "chunks": [
+   "This milk",
+   "is sour."
+  ],
+  "hints": [
+   "这牛奶",
+   "酸了。"
+  ]
+ },
+ {
+  "sentence": "This coffee tastes bitter.",
+  "translation": "这咖啡太苦了。",
+  "chunks": [
+   "This coffee",
+   "tastes bitter."
+  ],
+  "hints": [
+   "这咖啡",
+   "太苦了。"
+  ]
+ },
+ {
+  "sentence": "This meat is tough.",
+  "translation": "这肉太老。",
+  "chunks": [
+   "This meat",
+   "is tough."
+  ],
+  "hints": [
+   "这肉",
+   "太老。"
+  ]
+ },
+ {
+  "sentence": "This has a strong flavor.",
+  "translation": "味很重。",
+  "chunks": [
+   "This has",
+   "a strong flavor."
+  ],
+  "hints": [
+   "味",
+   "很重。"
+  ]
+ },
+ {
+  "sentence": "It's too salty.",
+  "translation": "太咸了。",
+  "chunks": [
+   "It's too",
+   "salty."
+  ],
+  "hints": [
+   "太",
+   "咸了。"
+  ]
+ },
+ {
+  "sentence": "It's too greasy.",
+  "translation": "太油腻。",
+  "chunks": [
+   "It's too",
+   "greasy."
+  ],
+  "hints": [
+   "太",
+   "油腻。"
+  ]
+ },
+ {
+  "sentence": "It's too hot.",
+  "translation": "太烫了。",
+  "chunks": [
+   "It's too",
+   "hot."
+  ],
+  "hints": [
+   "太",
+   "烫了。"
+  ]
+ },
+ {
+  "sentence": "My mouth is burning.",
+  "translation": "我的嘴都麻了。",
+  "chunks": [
+   "My mouth",
+   "is burning."
+  ],
+  "hints": [
+   "我的嘴",
+   "都麻了。"
+  ]
+ },
+ {
+  "sentence": "Would you like some?",
+  "translation": "你也来点儿吗?",
+  "chunks": [
+   "Would you",
+   "like some?"
+  ],
+  "hints": [
+   "你也",
+   "来点儿吗？"
+  ]
+ },
+ {
+  "sentence": "I'd like some more wine.",
+  "translation": "我想再要一点葡萄酒。",
+  "chunks": [
+   "I'd like",
+   "some more wine."
+  ],
+  "hints": [
+   "我想再要",
+   "一点葡萄酒。"
+  ]
+ },
+ {
+  "sentence": "I dropped my fork.",
+  "translation": "我的叉子掉了。",
+  "chunks": [
+   "I dropped",
+   "my fork."
+  ],
+  "hints": [
+   "我的叉子",
+   "掉了。"
+  ]
+ },
+ {
+  "sentence": "I'd like another cup of coffee.",
+  "translation": "再要一杯咖啡。",
+  "chunks": [
+   "I'd like another",
+   "cup of coffee."
+  ],
+  "hints": [
+   "再要",
+   "一杯咖啡。"
+  ]
+ },
+ {
+  "sentence": "That was good.",
+  "translation": "真好吃。",
+  "chunks": [
+   "That was",
+   "good."
+  ],
+  "hints": [
+   "真",
+   "好吃。"
+  ]
+ },
+ {
+  "sentence": "I'm very full.",
+  "translation": "我吃饱了。",
+  "chunks": [
+   "I'm very",
+   "full."
+  ],
+  "hints": [
+   "我",
+   "吃饱了。"
+  ]
+ },
+ {
+  "sentence": "There isn't enough food.",
+  "translation": "食物不够了。",
+  "chunks": [
+   "There isn't",
+   "enough food."
+  ],
+  "hints": [
+   "食物",
+   "不够了。"
+  ]
+ },
+ {
+  "sentence": "Would you like another drink?",
+  "translation": "再喝一杯吗?",
+  "chunks": [
+   "Would you like",
+   "another drink?"
+  ],
+  "hints": [
+   "再喝",
+   "一杯吗？"
+  ]
+ },
+ {
+  "sentence": "How do you like your coffee?",
+  "translation": "您喝什么样的咖啡?",
+  "chunks": [
+   "How do you like",
+   "your coffee?"
+  ],
+  "hints": [
+   "您喝",
+   "什么样的咖啡？"
+  ]
+ },
+ {
+  "sentence": "Bill, please.",
+  "translation": "请结账。",
+  "chunks": [
+   "Bill,",
+   "please."
+  ],
+  "hints": [
+   "请",
+   "结账。"
+  ]
+ },
+ {
+  "sentence": "Where should I pay?",
+  "translation": "在哪儿付钱?",
+  "chunks": [
+   "Where should",
+   "I pay?"
+  ],
+  "hints": [
+   "在哪儿",
+   "付钱？"
+  ]
+ },
+ {
+  "sentence": "It's on me.",
+  "translation": "我请客。",
+  "chunks": [
+   "It's",
+   "on me."
+  ],
+  "hints": [
+   "我",
+   "请客。"
+  ]
+ },
+ {
+  "sentence": "What is this for?",
+  "translation": "这是什么的钱?",
+  "chunks": [
+   "What is",
+   "this for?"
+  ],
+  "hints": [
+   "这是",
+   "什么的钱？"
+  ]
+ },
+ {
+  "sentence": "I'm afraid there is a mistake here.",
+  "translation": "我觉得这儿算错了。",
+  "chunks": [
+   "I'm afraid there is",
+   "a mistake here."
+  ],
+  "hints": [
+   "我觉得这儿",
+   "算错了。"
+  ]
+ },
+ {
+  "sentence": "Let's go Dutch.",
+  "translation": "我们各付各的吧。",
+  "chunks": [
+   "Let's",
+   "go Dutch."
+  ],
+  "hints": [
+   "我们",
+   "各付各的吧。"
+  ]
+ },
+ {
+  "sentence": "We'd like to pay separately.",
+  "translation": "我们分开付款。",
+  "chunks": [
+   "We'd like",
+   "to pay separately."
+  ],
+  "hints": [
+   "我们",
+   "分开付款。"
+  ]
+ },
+ {
+  "sentence": "Keep the change.",
+  "translation": "不用找钱了。",
+  "chunks": [
+   "Keep",
+   "the change."
+  ],
+  "hints": [
+   "不用",
+   "找钱了。"
+  ]
+ },
+ {
+  "sentence": "May I have a receipt, please?",
+  "translation": "请开张发票。",
+  "chunks": [
+   "May I have",
+   "a receipt, please?"
+  ],
+  "hints": [
+   "请开张",
+   "发票。"
+  ]
+ }
+]

@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "88109835",
+      "sentence": "I'd like a hamburger and an iced tea.",
+      "translation": "要一个汉堡和一杯冰茶。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "9002be6e",
+      "sentence": "May I have two hot dogs, please?",
+      "translation": "我要两个热狗。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "ab78fed8",
+      "sentence": "With ketchup and mustard, please.",
+      "translation": "请加蕃茄酱和芥末。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "09549397",
+      "sentence": "Will that be for here or to go?",
+      "translation": "在这儿吃还是带走?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "31250a57",
+      "sentence": "Will that be to go?",
+      "translation": "您带走吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "6b547208",
+      "sentence": "Will you be eating here?",
+      "translation": "您是在这儿吃吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "fdd9864a",
+      "sentence": "To go, please.",
+      "translation": "带走。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "f024e0fe",
+      "sentence": "For here, please.",
+      "translation": "在这儿吃。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "86828775",
+      "sentence": "Could you recommend a good restaurant near here?",
+      "translation": "这附近您能推荐家好吃的饭馆吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "da7349c4",
+      "sentence": "I'd like some Italian food.",
+      "translation": "我想吃意大利菜。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "9e994010",
+      "sentence": "Which restaurant do you recommend?",
+      "translation": "您推荐哪家饭馆?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "1058bb26",
+      "sentence": "Is there a Mexican restaurant around here?",
+      "translation": "这附近有墨西哥餐馆吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "3c89f801",
+      "sentence": "Where is the closest Mexican restaurant?",
+      "translation": "最近的墨西哥餐馆在哪儿?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "1562f39a",
+      "sentence": "Are there any restaurants still open near here?",
+      "translation": "这附近有没有还在营业的饭馆?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "a01f4875",
+      "sentence": "Do I need a reservation?",
+      "translation": "我需要预订吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "cf64f7ca",
+      "sentence": "Hello, this is the Park Restaurant. May I help you?",
+      "translation": "您好，这是公园餐厅。我可以为您服务吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "08a1b27b",
+      "sentence": "I'd like to make a reservation for eight people at six o'clock tonight.",
+      "translation": "我想订餐。今天晚上6点，8个人的位子。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "19299583",
+      "sentence": "We are a group of eight.",
+      "translation": "我们一共8个人。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "7b46da5e",
+      "sentence": "I'd like to reserve a table for eight.",
+      "translation": "我想订餐8个人。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "65cb977f",
+      "sentence": "Could we have a table close to the band?",
+      "translation": "我们能不能要张离乐队近一点儿的桌子?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "5f6d3024",
+      "sentence": "I'm sorry. We're all booked up tonight.",
+      "translation": "对不起，今天晚上都订满了。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "b568a9fe",
+      "sentence": "How long is the wait?",
+      "translation": "要等多长时间?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "27289ef2",
+      "sentence": "We can wait.",
+      "translation": "我们可以等。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "1806b2de",
+      "sentence": "What time can we make a reservation?",
+      "translation": "可以预订几点的?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "70d53ad3",
+      "sentence": "How late are you open?",
+      "translation": "一直营业到几点?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "ed3b259c",
+      "sentence": "How do I get there?",
+      "translation": "我怎么才能到那儿?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "ba5bc776",
+      "sentence": "Do you accept credit cards?",
+      "translation": "可以用信用卡吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "ccf69bd3",
+      "sentence": "What is the price of a dinner course?",
+      "translation": "一顿饭多少钱?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "12438c59",
+      "sentence": "What is your dress code?",
+      "translation": "衣着上有什么规定?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "04cc2af1",
+      "sentence": "Should I wear a jacket and tie?",
+      "translation": "我必须得穿外衣打领带吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "63cf6032",
+      "sentence": "Should the ladies wear dresses?",
+      "translation": "女性必须穿礼服吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "911b6e92",
+      "sentence": "How many in your group?",
+      "translation": "请问您几位?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "5aaf38a5",
+      "sentence": "Two.",
+      "translation": "2个人。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "be99a1d8",
+      "sentence": "I'm sorry, but I have to cancel my reservation.",
+      "translation": "对不起，我想取消订餐。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "2912235c",
+      "sentence": "Could I have a menu, please?",
+      "translation": "请给我菜单。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "e5509e16",
+      "sentence": "Do you have a menu in Japanese?",
+      "translation": "有日语的菜单吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "023aa89d",
+      "sentence": "May I see the wine list, please?",
+      "translation": "请给我看一下酒单。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "e7aad40e",
+      "sentence": "What kind of wine do you have?",
+      "translation": "你们都有些什么葡萄酒?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "1b84c744",
+      "sentence": "May I take your order?",
+      "translation": "点菜吗?/您来点点儿什么?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "0e41783b",
+      "sentence": "Can I have the same as that?",
+      "translation": "我想要和那个一样的。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "99a3c6b3",
+      "sentence": "I'll take this and this.",
+      "translation": "我要这个和这个。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "298dacdb",
+      "sentence": "Do you have any local specialties?",
+      "translation": "您这儿有什么地方风味吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "50693e3f",
+      "sentence": "Could we have separate checks?",
+      "translation": "我们可以分别付款吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "209328ae",
+      "sentence": "I'd like to have dinner for sixty dollars including drinks.",
+      "translation": "我要一个60美元的晚餐包括酒水。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "fdae2a2b",
+      "sentence": "I'd like a steak.",
+      "translation": "我要一份牛排。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "7fa1e0b6",
+      "sentence": "I'd like some red wine, please.",
+      "translation": "我要红葡萄酒。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "f006f8c4",
+      "sentence": "How would you like it?",
+      "translation": "要几成熟的?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "73f0e3d0",
+      "sentence": "Well-done, please.",
+      "translation": "烤熟点。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "193e923e",
+      "sentence": "Can you make it mild?",
+      "translation": "请做得清淡些。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "b738b03b",
+      "sentence": "Are you having breakfast?",
+      "translation": "您用早餐吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "901e749d",
+      "sentence": "Is coffee included with this meal?",
+      "translation": "套餐里包括咖啡吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "aad5e3ea",
+      "sentence": "I'd like a cup of coffee, please.",
+      "translation": "请给我来一杯咖啡。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "ca3b5c4d",
+      "sentence": "Anything else?",
+      "translation": "还要别的吗?",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "95d3baaa",
+      "sentence": "That's all for me.",
+      "translation": "够了/就要这些。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "e3ca5dec",
+      "sentence": "I didn't order this.",
+      "translation": "我没有点这个菜。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "dbb2efe4",
+      "sentence": "My order hasn't come yet.",
+      "translation": "我点的菜还没上。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "5e7afb03",
+      "sentence": "Could we get the menu, please?",
+      "translation": "请给我们菜单好吗？",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "9d02a202",
+      "sentence": "I'd like a medium latte, please.",
+      "translation": "我要一杯中杯拿铁，谢谢。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "ecc1d3c4",
+      "sentence": "You should definitely try this place.",
+      "translation": "你一定要试试这家店。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "ef48bd78",
+      "sentence": "I'd like the steak, medium rare, please.",
+      "translation": "我要牛排，五分熟，谢谢。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "a46fda11",
+      "sentence": "Do you have any tables available for two?",
+      "translation": "现在有两人位吗？",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "a08f34b7",
+      "sentence": "I'll have a burger.",
+      "translation": "我要一个汉堡。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "81e9a11f",
+      "sentence": "That's everything.",
+      "translation": "就这些。",
+      "sourceUrl": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+      "sourceOffset": 62
+    }
+  ]
+}

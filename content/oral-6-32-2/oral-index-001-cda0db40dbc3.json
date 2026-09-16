@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "d1aa6f72",
+      "sentence": "I'm kind of hungry.",
+      "translation": "我有点饿了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "354a7594",
+      "sentence": "I'm starving.",
+      "translation": "我都快饿死了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "ef438f73",
+      "sentence": "I'm thirsty.",
+      "translation": "我渴了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "2fca7e79",
+      "sentence": "It smells good.",
+      "translation": "闻着真香。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "5ba06c9e",
+      "sentence": "I'm on a diet.",
+      "translation": "我在节食。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "24d8092b",
+      "sentence": "This looks great!",
+      "translation": "看上去真好吃!",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "7d8c147a",
+      "sentence": "They all look good.",
+      "translation": "看上去都好吃。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "5ed24e85",
+      "sentence": "Can I eat this?",
+      "translation": "我可以吃这个吗?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "d6528312",
+      "sentence": "You can't eat that.",
+      "translation": "你不能吃这个。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "920ec403",
+      "sentence": "Is this delicious?",
+      "translation": "这个好吃吗?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "4fa25f13",
+      "sentence": "It's good.",
+      "translation": "好吃。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "39c0b906",
+      "sentence": "It's not good.",
+      "translation": "不好吃。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "acd7f117",
+      "sentence": "This tastes strange.",
+      "translation": "味道很怪。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "6e62f832",
+      "sentence": "I eat anything.",
+      "translation": "我什么都能吃。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "92676809",
+      "sentence": "Don't overeat.",
+      "translation": "别吃太多。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "78a9273a",
+      "sentence": "He's a big eater.",
+      "translation": "他真能吃。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "627b59e5",
+      "sentence": "I don't feel like eating anything.",
+      "translation": "我什么都不想吃。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "e5c8bdce",
+      "sentence": "I drink like a fish.",
+      "translation": "我是海量。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "4601b7cb",
+      "sentence": "I can hold my own.",
+      "translation": "我酒量还可以。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "acabb749",
+      "sentence": "Cake is fattening.",
+      "translation": "吃蛋糕会发胖。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "c469256b",
+      "sentence": "Please pass me the salt.",
+      "translation": "请把盐递给我。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "c1fe2e6e",
+      "sentence": "It's called misoshiru.",
+      "translation": "这是大酱汤。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "c1cde476",
+      "sentence": "How do you eat sushi?",
+      "translation": "寿司怎么吃呀?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "58603b07",
+      "sentence": "You dip it in soy sauce.",
+      "translation": "你得蘸酱油。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "e65a330f",
+      "sentence": "Can you use chopsticks?",
+      "translation": "你会用筷子吗?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "0e2a9d1f",
+      "sentence": "What kind of fish is this?",
+      "translation": "这是什么鱼?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "69fc5dd6",
+      "sentence": "It's spicy.",
+      "translation": "真辣!",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "fd85b57d",
+      "sentence": "It's salty.",
+      "translation": "真咸。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "a366c248",
+      "sentence": "It's sweet.",
+      "translation": "真甜。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "8f9359a2",
+      "sentence": "It's crispy.",
+      "translation": "真脆。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "27e6078c",
+      "sentence": "It's slimy.",
+      "translation": "真粘。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "b2aa5ba9",
+      "sentence": "This coffee is not hot enough.",
+      "translation": "这咖啡不够热。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "ce214414",
+      "sentence": "This bread is soggy.",
+      "translation": "面包没烤透。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "8857148f",
+      "sentence": "These potato chips are stale.",
+      "translation": "这土豆片变味了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "feafb935",
+      "sentence": "This milk is sour.",
+      "translation": "这牛奶酸了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "5a3d11e9",
+      "sentence": "This coffee tastes bitter.",
+      "translation": "这咖啡太苦了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "7d2e4f5f",
+      "sentence": "This meat is tough.",
+      "translation": "这肉太老。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "b7c8916f",
+      "sentence": "This has a strong flavor.",
+      "translation": "味很重。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "f50afb53",
+      "sentence": "It's too salty.",
+      "translation": "太咸了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "a4d2a543",
+      "sentence": "It's too greasy.",
+      "translation": "太油腻。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "386a12c3",
+      "sentence": "It's too hot.",
+      "translation": "太烫了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "b3db9f47",
+      "sentence": "My mouth is burning.",
+      "translation": "我的嘴都麻了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "4e0a46bd",
+      "sentence": "Would you like some?",
+      "translation": "你也来点儿吗?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "f1625676",
+      "sentence": "I'd like some more wine.",
+      "translation": "我想再要一点葡萄酒。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "b365ee66",
+      "sentence": "I dropped my fork.",
+      "translation": "我的叉子掉了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "f3301228",
+      "sentence": "I'd like another cup of coffee.",
+      "translation": "再要一杯咖啡。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "b6f873f4",
+      "sentence": "That was good.",
+      "translation": "真好吃。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "04518a79",
+      "sentence": "I'm very full.",
+      "translation": "我吃饱了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "15ecde6e",
+      "sentence": "There isn't enough food.",
+      "translation": "食物不够了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "1f86304e",
+      "sentence": "Would you like another drink?",
+      "translation": "再喝一杯吗?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "f8d3eb46",
+      "sentence": "How do you like your coffee?",
+      "translation": "您喝什么样的咖啡?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "56f2b280",
+      "sentence": "Bill, please.",
+      "translation": "请结账。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "8cfffc13",
+      "sentence": "Where should I pay?",
+      "translation": "在哪儿付钱?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "79da59f3",
+      "sentence": "It's on me.",
+      "translation": "我请客。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "2c6bafbd",
+      "sentence": "What is this for?",
+      "translation": "这是什么的钱?",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "a6410ea4",
+      "sentence": "I'm afraid there is a mistake here.",
+      "translation": "我觉得这儿算错了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "d6da0cf6",
+      "sentence": "Let's go Dutch.",
+      "translation": "我们各付各的吧。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "502571f8",
+      "sentence": "We'd like to pay separately.",
+      "translation": "我们分开付款。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "d8db91e5",
+      "sentence": "Keep the change.",
+      "translation": "不用找钱了。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "a8c55b99",
+      "sentence": "May I have a receipt, please?",
+      "translation": "请开张发票。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "577c7ac5",
+      "sentence": "Could I get this to go, please?",
+      "translation": "这个能打包带走吗？",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "b83b9640",
+      "sentence": "Could we get the check, please?",
+      "translation": "请给我们结账。",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "352ea243",
+      "sentence": "Let's split the bill, shall we?",
+      "translation": "我们平摊账单吧，好吗？",
+      "sourceUrl": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+      "sourceOffset": 62
+    }
+  ]
+}

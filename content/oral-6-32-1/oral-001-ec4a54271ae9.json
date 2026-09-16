@@ -1,0 +1,1156 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'd like a hamburger and an iced tea.",
+      "translation": "要一个汉堡和一杯冰茶。",
+      "chunks": [
+        "I'd like a hamburger",
+        "and an iced tea."
+      ],
+      "hints": [
+        "要一个汉堡",
+        "和一杯冰茶。"
+      ],
+      "cid": "88109835"
+    },
+    {
+      "sentence": "May I have two hot dogs, please?",
+      "translation": "我要两个热狗。",
+      "chunks": [
+        "May I have",
+        "two hot dogs, please?"
+      ],
+      "hints": [
+        "我要",
+        "两个热狗。"
+      ],
+      "cid": "9002be6e"
+    },
+    {
+      "sentence": "With ketchup and mustard, please.",
+      "translation": "请加蕃茄酱和芥末。",
+      "chunks": [
+        "With ketchup",
+        "and mustard, please."
+      ],
+      "hints": [
+        "请加蕃茄酱",
+        "和芥末。"
+      ],
+      "cid": "ab78fed8"
+    },
+    {
+      "sentence": "Will that be for here or to go?",
+      "translation": "在这儿吃还是带走?",
+      "chunks": [
+        "Will that be",
+        "for here or to go?"
+      ],
+      "hints": [
+        "在这儿吃",
+        "还是带走？"
+      ],
+      "cid": "09549397"
+    },
+    {
+      "sentence": "Will that be to go?",
+      "translation": "您带走吗?",
+      "chunks": [
+        "Will that be",
+        "to go?"
+      ],
+      "hints": [
+        "您",
+        "带走吗？"
+      ],
+      "cid": "31250a57"
+    },
+    {
+      "sentence": "Will you be eating here?",
+      "translation": "您是在这儿吃吗?",
+      "chunks": [
+        "Will you be",
+        "eating here?"
+      ],
+      "hints": [
+        "您是在这儿",
+        "吃吗？"
+      ],
+      "cid": "6b547208"
+    },
+    {
+      "sentence": "To go, please.",
+      "translation": "带走。",
+      "chunks": [
+        "To go,",
+        "please."
+      ],
+      "hints": [
+        "请",
+        "带走。"
+      ],
+      "cid": "fdd9864a"
+    },
+    {
+      "sentence": "For here, please.",
+      "translation": "在这儿吃。",
+      "chunks": [
+        "For here,",
+        "please."
+      ],
+      "hints": [
+        "请",
+        "在这儿吃。"
+      ],
+      "cid": "f024e0fe"
+    },
+    {
+      "sentence": "Could you recommend a good restaurant near here?",
+      "translation": "这附近您能推荐家好吃的饭馆吗?",
+      "chunks": [
+        "Could you recommend",
+        "a good restaurant near here?"
+      ],
+      "hints": [
+        "这附近您能推荐",
+        "家好吃的饭馆吗？"
+      ],
+      "cid": "86828775"
+    },
+    {
+      "sentence": "I'd like some Italian food.",
+      "translation": "我想吃意大利菜。",
+      "chunks": [
+        "I'd like",
+        "some Italian food."
+      ],
+      "hints": [
+        "我想吃",
+        "意大利菜。"
+      ],
+      "cid": "da7349c4"
+    },
+    {
+      "sentence": "Which restaurant do you recommend?",
+      "translation": "您推荐哪家饭馆?",
+      "chunks": [
+        "Which restaurant",
+        "do you recommend?"
+      ],
+      "hints": [
+        "您推荐",
+        "哪家饭馆？"
+      ],
+      "cid": "9e994010"
+    },
+    {
+      "sentence": "Is there a Mexican restaurant around here?",
+      "translation": "这附近有墨西哥餐馆吗?",
+      "chunks": [
+        "Is there a Mexican restaurant",
+        "around here?"
+      ],
+      "hints": [
+        "这附近有",
+        "墨西哥餐馆吗？"
+      ],
+      "cid": "1058bb26"
+    },
+    {
+      "sentence": "Where is the closest Mexican restaurant?",
+      "translation": "最近的墨西哥餐馆在哪儿?",
+      "chunks": [
+        "Where is the closest",
+        "Mexican restaurant?"
+      ],
+      "hints": [
+        "最近的墨西哥餐馆",
+        "在哪儿？"
+      ],
+      "cid": "3c89f801"
+    },
+    {
+      "sentence": "Are there any restaurants still open near here?",
+      "translation": "这附近有没有还在营业的饭馆?",
+      "chunks": [
+        "Are there any restaurants",
+        "still open near here?"
+      ],
+      "hints": [
+        "这附近有没有",
+        "还在营业的饭馆？"
+      ],
+      "cid": "1562f39a"
+    },
+    {
+      "sentence": "Do I need a reservation?",
+      "translation": "我需要预订吗?",
+      "chunks": [
+        "Do I need",
+        "a reservation?"
+      ],
+      "hints": [
+        "我需要",
+        "预订吗？"
+      ],
+      "cid": "a01f4875"
+    },
+    {
+      "sentence": "Hello, this is the Park Restaurant. May I help you?",
+      "translation": "您好，这是公园餐厅。我可以为您服务吗?",
+      "chunks": [
+        "Hello, this is the Park Restaurant. May I",
+        "help you?"
+      ],
+      "hints": [
+        "您好，这是公园餐厅。我可以",
+        "为您服务吗？"
+      ],
+      "cid": "cf64f7ca"
+    },
+    {
+      "sentence": "I'd like to make a reservation for eight people at six o'clock tonight.",
+      "translation": "我想订餐。今天晚上6点，8个人的位子。",
+      "chunks": [
+        "I'd like to make a reservation",
+        "for eight people at six o'clock tonight."
+      ],
+      "hints": [
+        "我想订餐。今天晚上6点，",
+        "8个人的位子。"
+      ],
+      "cid": "08a1b27b"
+    },
+    {
+      "sentence": "We are a group of eight.",
+      "translation": "我们一共8个人。",
+      "chunks": [
+        "We are",
+        "a group of eight."
+      ],
+      "hints": [
+        "我们一共",
+        "8个人。"
+      ],
+      "cid": "19299583"
+    },
+    {
+      "sentence": "I'd like to reserve a table for eight.",
+      "translation": "我想订餐8个人。",
+      "chunks": [
+        "I'd like to reserve",
+        "a table for eight."
+      ],
+      "hints": [
+        "我想订餐",
+        "8个人。"
+      ],
+      "cid": "7b46da5e"
+    },
+    {
+      "sentence": "Could we have a table close to the band?",
+      "translation": "我们能不能要张离乐队近一点儿的桌子?",
+      "chunks": [
+        "Could we have a table",
+        "close to the band?"
+      ],
+      "hints": [
+        "我们能不能要张",
+        "离乐队近一点儿的桌子？"
+      ],
+      "cid": "65cb977f"
+    },
+    {
+      "sentence": "I'm sorry. We're all booked up tonight.",
+      "translation": "对不起，今天晚上都订满了。",
+      "chunks": [
+        "I'm sorry. We're all",
+        "booked up tonight."
+      ],
+      "hints": [
+        "对不起，今天晚上",
+        "都订满了。"
+      ],
+      "cid": "5f6d3024"
+    },
+    {
+      "sentence": "How long is the wait?",
+      "translation": "要等多长时间?",
+      "chunks": [
+        "How long",
+        "is the wait?"
+      ],
+      "hints": [
+        "要等",
+        "多长时间？"
+      ],
+      "cid": "b568a9fe"
+    },
+    {
+      "sentence": "We can wait.",
+      "translation": "我们可以等。",
+      "chunks": [
+        "We can",
+        "wait."
+      ],
+      "hints": [
+        "我们可以",
+        "等。"
+      ],
+      "cid": "27289ef2"
+    },
+    {
+      "sentence": "What time can we make a reservation?",
+      "translation": "可以预订几点的?",
+      "chunks": [
+        "What time can we",
+        "make a reservation?"
+      ],
+      "hints": [
+        "可以预订",
+        "几点的？"
+      ],
+      "cid": "1806b2de"
+    },
+    {
+      "sentence": "How late are you open?",
+      "translation": "一直营业到几点?",
+      "chunks": [
+        "How late",
+        "are you open?"
+      ],
+      "hints": [
+        "一直营业",
+        "到几点？"
+      ],
+      "cid": "70d53ad3"
+    },
+    {
+      "sentence": "How do I get there?",
+      "translation": "我怎么才能到那儿?",
+      "chunks": [
+        "How do I",
+        "get there?"
+      ],
+      "hints": [
+        "我怎么才能",
+        "到那儿？"
+      ],
+      "cid": "ed3b259c"
+    },
+    {
+      "sentence": "Do you accept credit cards?",
+      "translation": "可以用信用卡吗?",
+      "chunks": [
+        "Do you accept",
+        "credit cards?"
+      ],
+      "hints": [
+        "可以用",
+        "信用卡吗？"
+      ],
+      "cid": "ba5bc776"
+    },
+    {
+      "sentence": "What is the price of a dinner course?",
+      "translation": "一顿饭多少钱?",
+      "chunks": [
+        "What is the price",
+        "of a dinner course?"
+      ],
+      "hints": [
+        "一顿饭",
+        "多少钱？"
+      ],
+      "cid": "ccf69bd3"
+    },
+    {
+      "sentence": "What is your dress code?",
+      "translation": "衣着上有什么规定?",
+      "chunks": [
+        "What is",
+        "your dress code?"
+      ],
+      "hints": [
+        "衣着上",
+        "有什么规定？"
+      ],
+      "cid": "12438c59"
+    },
+    {
+      "sentence": "Should I wear a jacket and tie?",
+      "translation": "我必须得穿外衣打领带吗?",
+      "chunks": [
+        "Should I wear",
+        "a jacket and tie?"
+      ],
+      "hints": [
+        "我必须得穿",
+        "外衣打领带吗？"
+      ],
+      "cid": "04cc2af1"
+    },
+    {
+      "sentence": "Should the ladies wear dresses?",
+      "translation": "女性必须穿礼服吗?",
+      "chunks": [
+        "Should the ladies",
+        "wear dresses?"
+      ],
+      "hints": [
+        "女性必须",
+        "穿礼服吗？"
+      ],
+      "cid": "63cf6032"
+    },
+    {
+      "sentence": "How many in your group?",
+      "translation": "请问您几位?",
+      "chunks": [
+        "How many",
+        "in your group?"
+      ],
+      "hints": [
+        "请问",
+        "您几位？"
+      ],
+      "cid": "911b6e92"
+    },
+    {
+      "sentence": "Two.",
+      "translation": "2个人。",
+      "chunks": [
+        "Two."
+      ],
+      "hints": [
+        "2个人。"
+      ],
+      "cid": "5aaf38a5"
+    },
+    {
+      "sentence": "I'm sorry, but I have to cancel my reservation.",
+      "translation": "对不起，我想取消订餐。",
+      "chunks": [
+        "I'm sorry, but I have to",
+        "cancel my reservation."
+      ],
+      "hints": [
+        "对不起，我想",
+        "取消订餐。"
+      ],
+      "cid": "be99a1d8"
+    },
+    {
+      "sentence": "Could I have a menu, please?",
+      "translation": "请给我菜单。",
+      "chunks": [
+        "Could I have",
+        "a menu, please?"
+      ],
+      "hints": [
+        "请给我",
+        "菜单。"
+      ],
+      "cid": "2912235c"
+    },
+    {
+      "sentence": "Do you have a menu in Japanese?",
+      "translation": "有日语的菜单吗?",
+      "chunks": [
+        "Do you have a menu",
+        "in Japanese?"
+      ],
+      "hints": [
+        "有日语的",
+        "菜单吗？"
+      ],
+      "cid": "e5509e16"
+    },
+    {
+      "sentence": "May I see the wine list, please?",
+      "translation": "请给我看一下酒单。",
+      "chunks": [
+        "May I see",
+        "the wine list, please?"
+      ],
+      "hints": [
+        "请给我看一下",
+        "酒单。"
+      ],
+      "cid": "023aa89d"
+    },
+    {
+      "sentence": "What kind of wine do you have?",
+      "translation": "你们都有些什么葡萄酒?",
+      "chunks": [
+        "What kind of wine",
+        "do you have?"
+      ],
+      "hints": [
+        "你们都有些",
+        "什么葡萄酒？"
+      ],
+      "cid": "e7aad40e"
+    },
+    {
+      "sentence": "May I take your order?",
+      "translation": "点菜吗?/您来点点儿什么?",
+      "chunks": [
+        "May I take",
+        "your order?"
+      ],
+      "hints": [
+        "您来点点儿",
+        "什么？"
+      ],
+      "cid": "1b84c744"
+    },
+    {
+      "sentence": "Can I have the same as that?",
+      "translation": "我想要和那个一样的。",
+      "chunks": [
+        "Can I have",
+        "the same as that?"
+      ],
+      "hints": [
+        "我想要",
+        "和那个一样的。"
+      ],
+      "cid": "0e41783b"
+    },
+    {
+      "sentence": "I'll take this and this.",
+      "translation": "我要这个和这个。",
+      "chunks": [
+        "I'll take",
+        "this and this."
+      ],
+      "hints": [
+        "我要",
+        "这个和这个。"
+      ],
+      "cid": "99a3c6b3"
+    },
+    {
+      "sentence": "Do you have any local specialties?",
+      "translation": "您这儿有什么地方风味吗?",
+      "chunks": [
+        "Do you have",
+        "any local specialties?"
+      ],
+      "hints": [
+        "您这儿有",
+        "什么地方风味吗？"
+      ],
+      "cid": "298dacdb"
+    },
+    {
+      "sentence": "Could we have separate checks?",
+      "translation": "我们可以分别付款吗?",
+      "chunks": [
+        "Could we have",
+        "separate checks?"
+      ],
+      "hints": [
+        "我们可以",
+        "分别付款吗？"
+      ],
+      "cid": "50693e3f"
+    },
+    {
+      "sentence": "I'd like to have dinner for sixty dollars including drinks.",
+      "translation": "我要一个60美元的晚餐包括酒水。",
+      "chunks": [
+        "I'd like to have dinner for sixty dollars",
+        "including drinks."
+      ],
+      "hints": [
+        "我要一个60美元的晚餐",
+        "包括酒水。"
+      ],
+      "cid": "209328ae"
+    },
+    {
+      "sentence": "I'd like a steak.",
+      "translation": "我要一份牛排。",
+      "chunks": [
+        "I'd like",
+        "a steak."
+      ],
+      "hints": [
+        "我要",
+        "一份牛排。"
+      ],
+      "cid": "fdae2a2b"
+    },
+    {
+      "sentence": "I'd like some red wine, please.",
+      "translation": "我要红葡萄酒。",
+      "chunks": [
+        "I'd like some red wine,",
+        "please."
+      ],
+      "hints": [
+        "我要",
+        "红葡萄酒。"
+      ],
+      "cid": "7fa1e0b6"
+    },
+    {
+      "sentence": "How would you like it?",
+      "translation": "要几成熟的?",
+      "chunks": [
+        "How would you",
+        "like it?"
+      ],
+      "hints": [
+        "要",
+        "几成熟的？"
+      ],
+      "cid": "f006f8c4"
+    },
+    {
+      "sentence": "Well-done, please.",
+      "translation": "烤熟点。",
+      "chunks": [
+        "Well-done,",
+        "please."
+      ],
+      "hints": [
+        "请烤",
+        "熟点。"
+      ],
+      "cid": "73f0e3d0"
+    },
+    {
+      "sentence": "Can you make it mild?",
+      "translation": "请做得清淡些。",
+      "chunks": [
+        "Can you make it",
+        "mild?"
+      ],
+      "hints": [
+        "请做得",
+        "清淡些。"
+      ],
+      "cid": "193e923e"
+    },
+    {
+      "sentence": "Are you having breakfast?",
+      "translation": "您用早餐吗?",
+      "chunks": [
+        "Are you",
+        "having breakfast?"
+      ],
+      "hints": [
+        "您",
+        "用早餐吗？"
+      ],
+      "cid": "b738b03b"
+    },
+    {
+      "sentence": "Is coffee included with this meal?",
+      "translation": "套餐里包括咖啡吗?",
+      "chunks": [
+        "Is coffee included",
+        "with this meal?"
+      ],
+      "hints": [
+        "套餐里",
+        "包括咖啡吗？"
+      ],
+      "cid": "901e749d"
+    },
+    {
+      "sentence": "I'd like a cup of coffee, please.",
+      "translation": "请给我来一杯咖啡。",
+      "chunks": [
+        "I'd like a cup of coffee,",
+        "please."
+      ],
+      "hints": [
+        "请给我",
+        "来一杯咖啡。"
+      ],
+      "cid": "aad5e3ea"
+    },
+    {
+      "sentence": "Anything else?",
+      "translation": "还要别的吗?",
+      "chunks": [
+        "Anything",
+        "else?"
+      ],
+      "hints": [
+        "还要",
+        "别的吗？"
+      ],
+      "cid": "ca3b5c4d"
+    },
+    {
+      "sentence": "That's all for me.",
+      "translation": "够了/就要这些。",
+      "chunks": [
+        "That's all",
+        "for me."
+      ],
+      "hints": [
+        "够了，",
+        "就要这些。"
+      ],
+      "cid": "95d3baaa"
+    },
+    {
+      "sentence": "I didn't order this.",
+      "translation": "我没有点这个菜。",
+      "chunks": [
+        "I didn't",
+        "order this."
+      ],
+      "hints": [
+        "我没有",
+        "点这个菜。"
+      ],
+      "cid": "e3ca5dec"
+    },
+    {
+      "sentence": "My order hasn't come yet.",
+      "translation": "我点的菜还没上。",
+      "chunks": [
+        "My order",
+        "hasn't come yet."
+      ],
+      "hints": [
+        "我点的菜",
+        "还没上。"
+      ],
+      "cid": "dbb2efe4"
+    },
+    {
+      "sentence": "Could we get the menu, please?",
+      "cid": "5e7afb03",
+      "translation": "请给我们菜单好吗？",
+      "chunks": [
+        "Could we get",
+        "the menu,",
+        "please?"
+      ],
+      "hints": [
+        "我们能要",
+        "菜单",
+        "请"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主语+谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/wiː/",
+            "/ɡet/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我们能要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmenjuː/"
+          ],
+          "pos": "名词短语",
+          "meaning": "菜单"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "请"
+        }
+      ],
+      "explanations": [
+        "`Could we get...` 在餐厅向服务员要东西的委婉说法。常见错误：\n• \"Can we **to** get\" → 情态动词后不加 to\n• \"Give us the menu\" → 太直接，缺少 please 和委婉语气",
+        "`the menu` 特指这家餐厅的菜单，用 the。餐厅场景是特指，不要 a menu。"
+      ],
+      "distractors": [
+        [
+          "Could us get",
+          "Could we to get",
+          "Could we getting"
+        ],
+        [
+          "the bill,",
+          "the table,",
+          "the food,"
+        ],
+        [
+          "pleased?",
+          "pleases?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'd like a medium latte, please.",
+      "cid": "9d02a202",
+      "translation": "我要一杯中杯拿铁，谢谢。",
+      "chunks": [
+        "I'd like",
+        "a medium latte,",
+        "please."
+      ],
+      "hints": [
+        "我想要",
+        "一杯中杯拿铁",
+        "谢谢"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/"
+          ],
+          "pos": "委婉点单",
+          "meaning": "我想要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈmiːdiəm/",
+            "/ˈlɑːteɪ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "中杯拿铁"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "谢谢"
+        }
+      ],
+      "explanations": [
+        "`I'd like = I would like`，点单比 I want 更礼貌。常见错误：\n• \"I **like** a latte\" → like 表喜好，点单要用 would like\n• \"I'd like **to** a latte\" → 接名词不要 to",
+        "咖啡杯型：small / medium / large（或 tall / grande / venti 星巴克体系）。`a medium latte` 中 a 不能省。"
+      ],
+      "distractors": [
+        [
+          "I like",
+          "I'd liked",
+          "I'd wants"
+        ],
+        [
+          "a middle latte,",
+          "a medium late,",
+          "a medium lattes,"
+        ],
+        [
+          "pleased.",
+          "please me."
+        ]
+      ]
+    },
+    {
+      "sentence": "You should definitely try this place.",
+      "cid": "ecc1d3c4",
+      "translation": "你一定要试试这家店。",
+      "chunks": [
+        "You should definitely",
+        "try this place."
+      ],
+      "hints": [
+        "你一定要",
+        "试试这家店"
+      ],
+      "grammar": [
+        {
+          "role": "主语+情态",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ʃʊd/",
+            "/ˈdefɪnətli/"
+          ],
+          "pos": "建议",
+          "meaning": "你一定要"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/traɪ/",
+            "/ðɪs/",
+            "/pleɪs/"
+          ],
+          "pos": "动词短语",
+          "meaning": "试试这家店"
+        }
+      ],
+      "explanations": [
+        "`should + 动词原形` 表建议。常见错误：\n• \"You should **to** try\" → 情态动词后不接 to\n• \"You **shoulded** try\" → should 无过去式变化",
+        "`definitely` 加强语气「一定、绝对」。位置在情态动词后、实义动词前：`should definitely try`。"
+      ],
+      "distractors": [
+        [
+          "You definite should",
+          "You should definately",
+          "You definitely should"
+        ],
+        [
+          "to try this place.",
+          "trying this place.",
+          "try this places."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'd like the steak, medium rare, please.",
+      "cid": "ef48bd78",
+      "translation": "我要牛排，五分熟，谢谢。",
+      "chunks": [
+        "I'd like the steak,",
+        "medium rare,",
+        "please."
+      ],
+      "hints": [
+        "我要牛排",
+        "五分熟",
+        "谢谢"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/",
+            "/ðə/",
+            "/steɪk/"
+          ],
+          "pos": "委婉点餐",
+          "meaning": "我要牛排"
+        },
+        {
+          "role": "补充说明",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈmiːdiəm/",
+            "/rer/"
+          ],
+          "pos": "形容词短语",
+          "meaning": "五分熟"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "谢谢"
+        }
+      ],
+      "explanations": [
+        "`medium rare` 是牛排熟度：rare 三分熟 / medium rare 五分熟 / medium 七分熟 / well done 全熟。常见错误：\n• \"**medium-rarely**\" → 熟度用形容词，不加 -ly\n• 把 medium rare 误当副词放句首",
+        "点单结构：I'd like + 菜品 + 特殊要求 + please。the steak 用 the 因为菜单上已看到特指这道。"
+      ],
+      "distractors": [
+        [
+          "I'd like steak,",
+          "I'd likes the steak,",
+          "I like the steak,"
+        ],
+        [
+          "well done,",
+          "rare,",
+          "medium well,"
+        ],
+        [
+          "pleased.",
+          "pleases."
+        ]
+      ]
+    },
+    {
+      "sentence": "Do you have any tables available for two?",
+      "cid": "a46fda11",
+      "translation": "现在有两人位吗？",
+      "chunks": [
+        "Do you have",
+        "any tables available",
+        "for two?"
+      ],
+      "hints": [
+        "你们有",
+        "空余的桌位",
+        "两人"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/hæv/"
+          ],
+          "pos": "疑问句",
+          "meaning": "你们有"
+        },
+        {
+          "role": "宾语+后置定语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈeni/",
+            "/ˈteɪblz/",
+            "/əˈveɪləbl/"
+          ],
+          "pos": "名词+形容词",
+          "meaning": "空余桌位"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/tuː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "两人"
+        }
+      ],
+      "explanations": [
+        "`available` 作后置定语放在名词后：tables available = 空着的桌位。常见错误：\n• \"available **tables**\" → 也正确但 available 作前置定语语气不同，此处后置更常用\n• \"table **is** available for us\" → 用 there be 或 have 开头更像在询问",
+        "餐厅等位专用句。答语：\"Yes, right this way.\" 或 \"Sorry, we're fully booked.\""
+      ],
+      "distractors": [
+        [
+          "Are you have",
+          "Do you has",
+          "Do you having"
+        ],
+        [
+          "any tables availables",
+          "any tables is available"
+        ],
+        [
+          "to two?",
+          "for second?",
+          "for two person?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll have a burger.",
+      "cid": "a08f34b7",
+      "translation": "我要一个汉堡。",
+      "chunks": [
+        "I'll have",
+        "a burger."
+      ],
+      "hints": [
+        "我要（点）",
+        "一个汉堡"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/hæv/"
+          ],
+          "pos": "will + 动词原形",
+          "meaning": "我要（点）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈbɜːrɡər/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个汉堡"
+        }
+      ],
+      "explanations": [
+        "点餐用 `I'll have...` 最自然，比 I want 礼貌。常见错误：\n• \"I have a burger\" → 少 will，听起来像陈述已有\n• \"I'd have a burger\" → 那是虚拟语气，点餐该用 I'll",
+        "同类：I'll take the soup. / I'll go with the salad."
+      ],
+      "distractors": [
+        [
+          "I have",
+          "I'll having",
+          "I would had"
+        ],
+        [
+          "the burger.",
+          "burger.",
+          "a burgers."
+        ]
+      ]
+    },
+    {
+      "sentence": "That's everything.",
+      "cid": "81e9a11f",
+      "translation": "就这些。",
+      "chunks": [
+        "That's",
+        "everything."
+      ],
+      "hints": [
+        "那就（是）",
+        "全部"
+      ],
+      "grammar": [
+        {
+          "role": "主语 + be",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðæts/"
+          ],
+          "pos": "that is 缩写",
+          "meaning": "那就是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈevriθɪŋ/"
+          ],
+          "pos": "不定代词",
+          "meaning": "全部、所有"
+        }
+      ],
+      "explanations": [
+        "点完单或收拾完东西时用 `That's everything.` = 就这些。常见错误：\n• \"These are everything\" → 主语用 that\n• \"That's anything\" → 意思完全不对，anything 用于疑问否定",
+        "同类收尾语：That's it. / That's all for now."
+      ],
+      "distractors": [
+        [
+          "That",
+          "These",
+          "That is of"
+        ],
+        [
+          "anything.",
+          "everythings.",
+          "all thing."
+        ]
+      ]
+    }
+  ]
+}

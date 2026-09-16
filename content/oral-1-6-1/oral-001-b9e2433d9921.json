@@ -1,0 +1,1232 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "This is Dennis Smith.",
+      "translation": "我是丹尼斯·史密斯。",
+      "chunks": [
+        "This is",
+        "Dennis Smith."
+      ],
+      "hints": [
+        "我是",
+        "丹尼斯·史密斯。"
+      ],
+      "cid": "7e18d185"
+    },
+    {
+      "sentence": "Hello, John?",
+      "translation": "是约翰吗?",
+      "chunks": [
+        "Hello,",
+        "John?"
+      ],
+      "hints": [
+        "喂，",
+        "是约翰吗？"
+      ],
+      "cid": "6ff6c987"
+    },
+    {
+      "sentence": "Is this Mr. Dennis Smith?",
+      "translation": "喂， 请问是丹尼斯·史密斯先生吗?",
+      "chunks": [
+        "Is this",
+        "Mr. Dennis Smith?"
+      ],
+      "hints": [
+        "请问是",
+        "丹尼斯·史密斯先生吗？"
+      ],
+      "cid": "8bbfac15"
+    },
+    {
+      "sentence": "Is this the finance department?",
+      "translation": "请问是财务科吗?",
+      "chunks": [
+        "Is this",
+        "the finance department?"
+      ],
+      "hints": [
+        "请问是",
+        "财务科吗？"
+      ],
+      "cid": "3e7ffbc9"
+    },
+    {
+      "sentence": "Is this Dr. Jim Baker's office?",
+      "translation": "请问是吉姆·贝克医生的办公室吗?",
+      "chunks": [
+        "Is this",
+        "Dr. Jim Baker's office?"
+      ],
+      "hints": [
+        "请问是",
+        "吉姆·贝克医生的办公室吗？"
+      ],
+      "cid": "1f86a459"
+    },
+    {
+      "sentence": "Do you mind if I use your phone?",
+      "translation": "我能借用一下您的电话吗?",
+      "chunks": [
+        "Do you mind",
+        "if I use your phone?"
+      ],
+      "hints": [
+        "我能借用",
+        "一下您的电话吗？"
+      ],
+      "cid": "71b5c82c"
+    },
+    {
+      "sentence": "May I speak to Mr. Sato?",
+      "translation": "我想找佐藤先生。",
+      "chunks": [
+        "May I speak",
+        "to Mr. Sato?"
+      ],
+      "hints": [
+        "我想找",
+        "佐藤先生。"
+      ],
+      "cid": "cc194a71"
+    },
+    {
+      "sentence": "Is Mark there?",
+      "translation": "马克在吗?",
+      "chunks": [
+        "Is Mark",
+        "there?"
+      ],
+      "hints": [
+        "马克",
+        "在吗？"
+      ],
+      "cid": "469d6e6d"
+    },
+    {
+      "sentence": "I'm sorry for calling you this late.",
+      "translation": "真对不起，这么晚了还给您打电话。",
+      "chunks": [
+        "I'm sorry for calling you",
+        "this late."
+      ],
+      "hints": [
+        "真对不起，",
+        "这么晚了还给您打电话。"
+      ],
+      "cid": "0fb09491"
+    },
+    {
+      "sentence": "I hope I'm not disturbing you.",
+      "translation": "我希望我没打扰您。",
+      "chunks": [
+        "I hope I'm not",
+        "disturbing you."
+      ],
+      "hints": [
+        "我希望",
+        "我没打扰您。"
+      ],
+      "cid": "c462d7d0"
+    },
+    {
+      "sentence": "I hope I didn't wake you up.",
+      "translation": "但愿没吵醒您。",
+      "chunks": [
+        "I hope I didn't",
+        "wake you up."
+      ],
+      "hints": [
+        "但愿",
+        "没吵醒您。"
+      ],
+      "cid": "b1d560f5"
+    },
+    {
+      "sentence": "It is urgent I talk to Mr. Barr now.",
+      "translation": "我有急事要找巴尔先生。",
+      "chunks": [
+        "It is urgent",
+        "I talk to Mr. Barr now."
+      ],
+      "hints": [
+        "我有急事",
+        "要找巴尔先生。"
+      ],
+      "cid": "20bc518b"
+    },
+    {
+      "sentence": "I'm calling about tomorrow's meeting.",
+      "translation": "有关明天开会的事给您打电话。",
+      "chunks": [
+        "I'm calling about",
+        "tomorrow's meeting."
+      ],
+      "hints": [
+        "有关明天开会的事",
+        "给您打电话。"
+      ],
+      "cid": "35f2b103"
+    },
+    {
+      "sentence": "I'm returning your call.",
+      "translation": "我给您回电话。",
+      "chunks": [
+        "I'm returning",
+        "your call."
+      ],
+      "hints": [
+        "我给您",
+        "回电话。"
+      ],
+      "cid": "cc2bde6b"
+    },
+    {
+      "sentence": "Hello.",
+      "translation": "喂!",
+      "chunks": [
+        "Hello."
+      ],
+      "hints": [
+        "喂！"
+      ],
+      "cid": "a521c1ff"
+    },
+    {
+      "sentence": "Speaking.",
+      "translation": "对，我就是。",
+      "chunks": [
+        "Speaking."
+      ],
+      "hints": [
+        "对，我就是。"
+      ],
+      "cid": "2434b19b"
+    },
+    {
+      "sentence": "It's me.",
+      "translation": "是我呀。",
+      "chunks": [
+        "It's",
+        "me."
+      ],
+      "hints": [
+        "是",
+        "我呀。"
+      ],
+      "cid": "51242cc6"
+    },
+    {
+      "sentence": "ABC Business College, may I help you?",
+      "translation": "ABC商务学院。您有什么事?",
+      "chunks": [
+        "ABC Business College,",
+        "may I help you?"
+      ],
+      "hints": [
+        "ABC商务学院。",
+        "您有什么事？"
+      ],
+      "cid": "de59203d"
+    },
+    {
+      "sentence": "Who's calling, please?",
+      "translation": "您是哪位?",
+      "chunks": [
+        "Who's",
+        "calling, please?"
+      ],
+      "hints": [
+        "您是",
+        "哪位？"
+      ],
+      "cid": "ca8315a8"
+    },
+    {
+      "sentence": "Who in particular would you like to talk to?",
+      "translation": "您想找哪位接电话?",
+      "chunks": [
+        "Who in particular",
+        "would you like to talk to?"
+      ],
+      "hints": [
+        "您想找",
+        "哪位接电话？"
+      ],
+      "cid": "b1320535"
+    },
+    {
+      "sentence": "He's been expecting your call.",
+      "translation": "他一直在等您的电话。",
+      "chunks": [
+        "He's been expecting",
+        "your call."
+      ],
+      "hints": [
+        "他一直在等",
+        "您的电话。"
+      ],
+      "cid": "bdd7f8a2"
+    },
+    {
+      "sentence": "Which Suzuki do you want to talk to?",
+      "translation": "您要找哪个铃木?",
+      "chunks": [
+        "Which Suzuki",
+        "do you want to talk to?"
+      ],
+      "hints": [
+        "您要找",
+        "哪个铃木？"
+      ],
+      "cid": "cfa71368"
+    },
+    {
+      "sentence": "There are three Suzukis here.",
+      "translation": "这儿有三位姓铃木的。",
+      "chunks": [
+        "There are three Suzukis",
+        "here."
+      ],
+      "hints": [
+        "这儿有",
+        "三位姓铃木的。"
+      ],
+      "cid": "f08273fd"
+    },
+    {
+      "sentence": "Would you mind calling back later?",
+      "translation": "您能过会儿再打吗?",
+      "chunks": [
+        "Would you mind",
+        "calling back later?"
+      ],
+      "hints": [
+        "您能",
+        "过会儿再打吗？"
+      ],
+      "cid": "3df49259"
+    },
+    {
+      "sentence": "Extension 103, please.",
+      "translation": "请转103。",
+      "chunks": [
+        "Extension 103,",
+        "please."
+      ],
+      "hints": [
+        "请转",
+        "103。"
+      ],
+      "cid": "4cb7df20"
+    },
+    {
+      "sentence": "I'll connect you to extension 103.",
+      "translation": "我给您接103分机。",
+      "chunks": [
+        "I'll connect you",
+        "to extension 103."
+      ],
+      "hints": [
+        "我给您接",
+        "103分机。"
+      ],
+      "cid": "ec84dfe8"
+    },
+    {
+      "sentence": "Hold on, please.",
+      "translation": "请稍等一下。",
+      "chunks": [
+        "Hold on,",
+        "please."
+      ],
+      "hints": [
+        "请稍等",
+        "一下。"
+      ],
+      "cid": "7ddd8a37"
+    },
+    {
+      "sentence": "I'll put him on.",
+      "translation": "我让他接电话。",
+      "chunks": [
+        "I'll put",
+        "him on."
+      ],
+      "hints": [
+        "我让他",
+        "接电话。"
+      ],
+      "cid": "4e413b03"
+    },
+    {
+      "sentence": "I'll transfer your call.",
+      "translation": "我把电话给您接过去。",
+      "chunks": [
+        "I'll transfer",
+        "your call."
+      ],
+      "hints": [
+        "我把电话",
+        "给您接过去。"
+      ],
+      "cid": "58680ba1"
+    },
+    {
+      "sentence": "I'll get your party for you.",
+      "translation": "我把电话转给负责人。",
+      "chunks": [
+        "I'll get your party",
+        "for you."
+      ],
+      "hints": [
+        "我把电话",
+        "转给负责人。"
+      ],
+      "cid": "ea3d2986"
+    },
+    {
+      "sentence": "I'm transferring your call to the sales department.",
+      "translation": "我把您的电话接到营业部去。",
+      "chunks": [
+        "I'm transferring your call",
+        "to the sales department."
+      ],
+      "hints": [
+        "我把您的电话",
+        "接到营业部去。"
+      ],
+      "cid": "1b2718f2"
+    },
+    {
+      "sentence": "Mr. Peck is on line one.",
+      "translation": "是贝克打来的，请接1号线。",
+      "chunks": [
+        "Mr. Peck is",
+        "on line one."
+      ],
+      "hints": [
+        "是贝克打来的，",
+        "请接1号线。"
+      ],
+      "cid": "7bef7cec"
+    },
+    {
+      "sentence": "You have a call from Mr. Miller of ABC.",
+      "translation": "ABC公司米兰先生的电话。",
+      "chunks": [
+        "You have a call",
+        "from Mr. Miller of ABC."
+      ],
+      "hints": [
+        "ABC公司",
+        "米兰先生的电话。"
+      ],
+      "cid": "149884f6"
+    },
+    {
+      "sentence": "Your party is on the line.",
+      "translation": "您要找的人来接电话了。",
+      "chunks": [
+        "Your party is",
+        "on the line."
+      ],
+      "hints": [
+        "您要找的人",
+        "来接电话了。"
+      ],
+      "cid": "409bbcd0"
+    },
+    {
+      "sentence": "Her line is busy now.",
+      "translation": "她正在接电话。",
+      "chunks": [
+        "Her line",
+        "is busy now."
+      ],
+      "hints": [
+        "她正在",
+        "接电话。"
+      ],
+      "cid": "94847dbb"
+    },
+    {
+      "sentence": "I'm sorry, she's tied up at the moment.",
+      "translation": "对不起，她现在脱不开身。",
+      "chunks": [
+        "I'm sorry, she's tied up",
+        "at the moment."
+      ],
+      "hints": [
+        "对不起，她现在",
+        "脱不开身。"
+      ],
+      "cid": "42f18f10"
+    },
+    {
+      "sentence": "I'm sorry, she has company at this time.",
+      "translation": "对不起，她正在接待客人。",
+      "chunks": [
+        "I'm sorry, she has company",
+        "at this time."
+      ],
+      "hints": [
+        "对不起，她正在",
+        "接待客人。"
+      ],
+      "cid": "16933018"
+    },
+    {
+      "sentence": "Would you like to hold?",
+      "translation": "您等会儿行吗?",
+      "chunks": [
+        "Would you like",
+        "to hold?"
+      ],
+      "hints": [
+        "您等会儿",
+        "行吗？"
+      ],
+      "cid": "ee7f6957"
+    },
+    {
+      "sentence": "He's away from his desk now.",
+      "translation": "他现在不在座位上。",
+      "chunks": [
+        "He's away",
+        "from his desk now."
+      ],
+      "hints": [
+        "他现在",
+        "不在座位上。"
+      ],
+      "cid": "572d8097"
+    },
+    {
+      "sentence": "He's in but he's not at his desk right now.",
+      "translation": "他在公司，但现在不在座位上。",
+      "chunks": [
+        "He's in but he's not",
+        "at his desk right now."
+      ],
+      "hints": [
+        "他在公司，但",
+        "现在不在座位上。"
+      ],
+      "cid": "c94cf3b6"
+    },
+    {
+      "sentence": "I'm sorry, he's not in right now.",
+      "translation": "对不起，他出去了。",
+      "chunks": [
+        "I'm sorry, he's not in",
+        "right now."
+      ],
+      "hints": [
+        "对不起，他",
+        "出去了。"
+      ],
+      "cid": "a4a9a928"
+    },
+    {
+      "sentence": "When is he coming back?",
+      "translation": "他什么时候能回来?",
+      "chunks": [
+        "When is he",
+        "coming back?"
+      ],
+      "hints": [
+        "他什么时候",
+        "能回来？"
+      ],
+      "cid": "c2edc3a5"
+    },
+    {
+      "sentence": "He should be back in ten minutes.",
+      "translation": "他大概10分钟后回来。",
+      "chunks": [
+        "He should be back",
+        "in ten minutes."
+      ],
+      "hints": [
+        "他大概",
+        "10分钟后回来。"
+      ],
+      "cid": "0a45b888"
+    },
+    {
+      "sentence": "He should be back in the office next week.",
+      "translation": "他应该下个星期来上班。",
+      "chunks": [
+        "He should be back in the office",
+        "next week."
+      ],
+      "hints": [
+        "他应该下个星期",
+        "来上班。"
+      ],
+      "cid": "b5f38e60"
+    },
+    {
+      "sentence": "He's on vacation until next week.",
+      "translation": "他休假到下个星期。",
+      "chunks": [
+        "He's on vacation",
+        "until next week."
+      ],
+      "hints": [
+        "他休假",
+        "到下个星期。"
+      ],
+      "cid": "0adde007"
+    },
+    {
+      "sentence": "He called in sick today.",
+      "translation": "他打电话来说病了。",
+      "chunks": [
+        "He called in sick",
+        "today."
+      ],
+      "hints": [
+        "他打电话来说",
+        "病了。"
+      ],
+      "cid": "265e4821"
+    },
+    {
+      "sentence": "He's out of town now.",
+      "translation": "他现在出差去了。",
+      "chunks": [
+        "He's out of town",
+        "now."
+      ],
+      "hints": [
+        "他现在",
+        "出差去了。"
+      ],
+      "cid": "a4875eaf"
+    },
+    {
+      "sentence": "He's out to lunch now.",
+      "translation": "他现在吃午饭去了。",
+      "chunks": [
+        "He's out to lunch",
+        "now."
+      ],
+      "hints": [
+        "他现在",
+        "吃午饭去了。"
+      ],
+      "cid": "47e32e9d"
+    },
+    {
+      "sentence": "He's in a meeting right now.",
+      "translation": "他现在正在开会。",
+      "chunks": [
+        "He's in a meeting",
+        "right now."
+      ],
+      "hints": [
+        "他现在",
+        "正在开会。"
+      ],
+      "cid": "62f47057"
+    },
+    {
+      "sentence": "He's off today.",
+      "translation": "他今天休息。",
+      "chunks": [
+        "He's off",
+        "today."
+      ],
+      "hints": [
+        "他今天",
+        "休息。"
+      ],
+      "cid": "b584ca62"
+    },
+    {
+      "sentence": "Could you call back later?",
+      "translation": "您能过会儿再打来吗?",
+      "chunks": [
+        "Could you",
+        "call back later?"
+      ],
+      "hints": [
+        "您能",
+        "过会儿再打来吗？"
+      ],
+      "cid": "c0891d4d"
+    },
+    {
+      "sentence": "Please call me back in ten minutes.",
+      "translation": "请10分钟后再打。",
+      "chunks": [
+        "Please call me back",
+        "in ten minutes."
+      ],
+      "hints": [
+        "请10分钟后",
+        "再打。"
+      ],
+      "cid": "af8f9b4d"
+    },
+    {
+      "sentence": "May I take a message?",
+      "translation": "您要给他留言吗?",
+      "chunks": [
+        "May I take",
+        "a message?"
+      ],
+      "hints": [
+        "您要给他",
+        "留言吗？"
+      ],
+      "cid": "b063366d"
+    },
+    {
+      "sentence": "I'll try again later.",
+      "translation": "过会儿我再打。",
+      "chunks": [
+        "I'll try again",
+        "later."
+      ],
+      "hints": [
+        "过会儿",
+        "我再打。"
+      ],
+      "cid": "1abf34f4"
+    },
+    {
+      "sentence": "Can I leave a message?",
+      "translation": "能留个口信吗?",
+      "chunks": [
+        "Can I leave",
+        "a message?"
+      ],
+      "hints": [
+        "能留个",
+        "口信吗？"
+      ],
+      "cid": "58a52996"
+    },
+    {
+      "sentence": "I called but your line was busy.",
+      "translation": "我给你打电话了，可是占线。",
+      "chunks": [
+        "I called but",
+        "your line was busy."
+      ],
+      "hints": [
+        "我给你打电话了，",
+        "可是占线。"
+      ],
+      "cid": "b6d7ce31"
+    },
+    {
+      "sentence": "Would you tell him that Lynn Kane called?",
+      "translation": "请告诉他林恩·凯恩给他打过电话。",
+      "chunks": [
+        "Would you tell him",
+        "that Lynn Kane called?"
+      ],
+      "hints": [
+        "请告诉他",
+        "林恩·凯恩给他打过电话。"
+      ],
+      "cid": "757ddc01"
+    },
+    {
+      "sentence": "Please tell him to call me.",
+      "translation": "请转告他让他给我回个电话。",
+      "chunks": [
+        "Please tell him",
+        "to call me."
+      ],
+      "hints": [
+        "请转告他",
+        "让他给我回个电话。"
+      ],
+      "cid": "f5c079cf"
+    },
+    {
+      "sentence": "How can he get a hold of you?",
+      "translation": "他怎么跟您联系呢?",
+      "chunks": [
+        "How can he",
+        "get a hold of you?"
+      ],
+      "hints": [
+        "他怎么",
+        "跟您联系呢？"
+      ],
+      "cid": "976c3f4d"
+    },
+    {
+      "sentence": "Your number, please?",
+      "translation": "请告诉我您的电话号码。",
+      "chunks": [
+        "Your number,",
+        "please?"
+      ],
+      "hints": [
+        "请告诉我",
+        "您的电话号码。"
+      ],
+      "cid": "0f651aaa"
+    },
+    {
+      "sentence": "My number is 1234-1234.",
+      "translation": "我的电话号码是1234-1234。",
+      "chunks": [
+        "My number is",
+        "1234-1234."
+      ],
+      "hints": [
+        "我的电话号码是",
+        "1234-1234。"
+      ],
+      "cid": "a9f7145b"
+    },
+    {
+      "sentence": "You can reach me at 1234-1234 until six o'clock.",
+      "translation": "请6点以前打1234-1234跟我联系。",
+      "chunks": [
+        "You can reach me at 1234-1234",
+        "until six o'clock."
+      ],
+      "hints": [
+        "请6点以前打1234-1234",
+        "跟我联系。"
+      ],
+      "cid": "fb8f455d"
+    },
+    {
+      "sentence": "Let me repeat the number. That's 1234-1234.",
+      "translation": "我再确认一下电话号码，1234-1234，对吗?",
+      "chunks": [
+        "Let me repeat",
+        "the number. That's 1234-1234."
+      ],
+      "hints": [
+        "我再确认一下",
+        "电话号码，1234-1234，对吗？"
+      ],
+      "cid": "4a72ffd7"
+    },
+    {
+      "sentence": "OK. I'll tell him that you called.",
+      "translation": "好的，我转告他您来电话了。",
+      "chunks": [
+        "OK. I'll tell him",
+        "that you called."
+      ],
+      "hints": [
+        "好的，我转告他",
+        "您来电话了。"
+      ],
+      "cid": "7566017d"
+    },
+    {
+      "sentence": "How do you spell your name?",
+      "translation": "您的名字怎么拼?",
+      "chunks": [
+        "How do you spell",
+        "your name?"
+      ],
+      "hints": [
+        "您的名字",
+        "怎么拼？"
+      ],
+      "cid": "c75defa6"
+    },
+    {
+      "sentence": "Mr. Smith called you during the meeting.",
+      "translation": "您开会的时候史密斯先生给您来电话了。",
+      "chunks": [
+        "Mr. Smith called you",
+        "during the meeting."
+      ],
+      "hints": [
+        "您开会的时候",
+        "史密斯先生给您来电话了。"
+      ],
+      "cid": "b11557f8"
+    },
+    {
+      "sentence": "I'll have him call you back.",
+      "translation": "我让他给您回电话好了。",
+      "chunks": [
+        "I'll have him",
+        "call you back."
+      ],
+      "hints": [
+        "我让他",
+        "给您回电话好了。"
+      ],
+      "cid": "3babf655"
+    },
+    {
+      "sentence": "Shall I have him call you back?",
+      "translation": "是不是让他给您回电话呀?",
+      "chunks": [
+        "Shall I have him",
+        "call you back?"
+      ],
+      "hints": [
+        "是不是让他",
+        "给您回电话呀？"
+      ],
+      "cid": "d7cf7e59"
+    },
+    {
+      "sentence": "Can I take a message for you?",
+      "cid": "a82159aa",
+      "translation": "要我帮你留言吗？",
+      "chunks": [
+        "Can I",
+        "take a message",
+        "for you?"
+      ],
+      "hints": [
+        "我能",
+        "记下留言",
+        "替你"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kæn/",
+            "/aɪ/"
+          ],
+          "pos": "委婉提议",
+          "meaning": "我能"
+        },
+        {
+          "role": "谓语+宾语（固定搭配）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/teɪk/",
+            "/ə/",
+            "/ˈmesɪdʒ/"
+          ],
+          "pos": "动词短语",
+          "meaning": "记下留言"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "替你"
+        }
+      ],
+      "explanations": [
+        "`take a message` 是「记下留言」固定搭配。常见错误：\n• \"take **the** message\" → 泛指一条留言用 a\n• \"write a message **to** you\" → 也可以，但 take a message for you 更地道",
+        "电话场景中，对方要找的人不在时，常用这句主动提议帮忙留言。"
+      ],
+      "distractors": [
+        [
+          "Can me",
+          "Can I to",
+          "Am I"
+        ],
+        [
+          "leave a message",
+          "write a message",
+          "send a message"
+        ],
+        [
+          "to you?",
+          "from you?",
+          "with you?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Is that Mr. Chen speaking?",
+      "cid": "e138468c",
+      "translation": "请问是陈先生在说话吗？",
+      "chunks": [
+        "Is that",
+        "Mr. Chen",
+        "speaking?"
+      ],
+      "hints": [
+        "那是",
+        "陈先生",
+        "在讲话"
+      ],
+      "grammar": [
+        {
+          "role": "系动词+指示代词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪz/",
+            "/ðæt/"
+          ],
+          "pos": "确认疑问",
+          "meaning": "那是"
+        },
+        {
+          "role": "称呼",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈmɪstər/",
+            "/tʃen/"
+          ],
+          "pos": "称谓短语",
+          "meaning": "陈先生"
+        },
+        {
+          "role": "现在分词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈspiːkɪŋ/"
+          ],
+          "pos": "进行时谓语",
+          "meaning": "在讲话"
+        }
+      ],
+      "explanations": [
+        "打电话确认对方身份的经典句式。常见错误：\n• \"Is that **speak** Mr. Chen\" → 词序混乱，正确为 Is that + 人名 + speaking\n• \"Are you Mr. Chen **speaking**\" → Are you 用于面对面，电话里用 Is that",
+        "`Mr. Chen` 姓氏前加 Mr./Ms. 表尊称。注意 Mr. 的缩写点不是句号，不影响断句。",
+        "`speaking?` 是进行时的省略（Is that Mr. Chen **who is** speaking?）。口语中 who is 常省略。"
+      ],
+      "distractors": [
+        [
+          "Is this",
+          "Was that",
+          "Is there"
+        ],
+        [
+          "Mr. Smith",
+          "the Mr. Chen",
+          "Mr. Chen's"
+        ],
+        [
+          "talk?",
+          "speaks?",
+          "spoke?"
+        ]
+      ]
+    },
+    {
+      "sentence": "He's not in the office at the moment.",
+      "cid": "9c89ba9b",
+      "translation": "他现在不在办公室。",
+      "chunks": [
+        "He's not in the office",
+        "at the moment."
+      ],
+      "hints": [
+        "他不在办公室",
+        "此刻"
+      ],
+      "grammar": [
+        {
+          "role": "主系表+地点",
+          "color": "#c87033",
+          "phonetic": [
+            "/hiːz/",
+            "/nɒt/",
+            "/ɪn/",
+            "/ði/",
+            "/ˈɒfɪs/"
+          ],
+          "pos": "否定陈述",
+          "meaning": "他不在办公室"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/ðə/",
+            "/ˈməʊmənt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "此刻"
+        }
+      ],
+      "explanations": [
+        "`not in the office` 表「不在办公室」，是 in 表地点的否定。常见错误：\n• \"He's not **at** the office\" → at/office 搭配也对，但 in the office 更常用\n• \"He doesn't in the office\" → be 动词否定用 isn't，不是 doesn't",
+        "`at the moment` = right now（此刻），常用于电话里说明现状。同义表达：right now / at present。"
+      ],
+      "distractors": [
+        [
+          "He doesn't in the office",
+          "He's not on the office",
+          "He not in the office"
+        ],
+        [
+          "at the minute.",
+          "in the moment.",
+          "for the moment."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you tell him I called?",
+      "cid": "5893e7b7",
+      "translation": "你能告诉他我打过电话吗？",
+      "chunks": [
+        "Could you tell him",
+        "I called?"
+      ],
+      "hints": [
+        "你能告诉他",
+        "我打过电话"
+      ],
+      "grammar": [
+        {
+          "role": "情态+谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/tel/",
+            "/hɪm/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能告诉他"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/kɔːld/"
+          ],
+          "pos": "过去时从句",
+          "meaning": "我打过电话"
+        }
+      ],
+      "explanations": [
+        "留言常用句式。`tell him + 从句` 结构。常见错误：\n• \"tell **to** him\" → tell 是双宾动词，直接接人（tell him / tell me）\n• \"tell him I **call**\" → 电话已打完要用过去式 called",
+        "`I called` 过去式表「刚才打过电话」。接电话的人回来说：He called earlier.（他之前来过电话）。"
+      ],
+      "distractors": [
+        [
+          "Can you told him",
+          "Could you tell to him",
+          "Could your tell him"
+        ],
+        [
+          "I call?",
+          "I calling?",
+          "I calls?"
+        ]
+      ]
+    },
+    {
+      "sentence": "What's your number?",
+      "cid": "cd3e07aa",
+      "translation": "你号码多少？",
+      "chunks": [
+        "What's",
+        "your number?"
+      ],
+      "hints": [
+        "什么是",
+        "你的号码"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词 + be",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌts/"
+          ],
+          "pos": "what is 缩写",
+          "meaning": "什么是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈnʌmbər/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的号码"
+        }
+      ],
+      "explanations": [
+        "问电话号码、房号都用这句。常见错误：\n• \"What your number?\" → 漏了 's\n• 口语里 What's 的 /ts/ 与后面的 your 连读",
+        "更礼貌：Could I get your number?"
+      ],
+      "distractors": [
+        [
+          "What",
+          "What are",
+          "How's"
+        ],
+        [
+          "your numbers?",
+          "you number?",
+          "your number is?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Pick up the phone.",
+      "cid": "31d5d360",
+      "translation": "接电话。",
+      "chunks": [
+        "Pick up",
+        "the phone."
+      ],
+      "hints": [
+        "拿起、接起",
+        "电话"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/pɪk/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词 pick up",
+          "meaning": "拿起、接起"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/foʊn/"
+          ],
+          "pos": "名词短语",
+          "meaning": "电话"
+        }
+      ],
+      "explanations": [
+        "`pick up the phone` = 接电话，也可说 answer the phone。常见错误：\n• \"Pick up phone\" → phone 前要加 the\n• 代词宾语要夹中间：pick it up",
+        "相关：hang up（挂电话）/ put the phone down（放下电话）"
+      ],
+      "distractors": [
+        [
+          "Pick on",
+          "Picking up",
+          "Pick of"
+        ],
+        [
+          "the phones.",
+          "a phone.",
+          "the phone up."
+        ]
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-dee8b822bc886c75c121109a71ea23aeff4efd4b533227800fba24e27513429c",
+  "contentVersion": "v1-ec1e2c4446bde7d16deb07cb6b9a318cbdf21190588e13002a700d46f653b209",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -435,24 +435,24 @@
       "sectionTitle": "电话",
       "topic": "打电话～留言、接受留言",
       "baseCount": 0,
-      "totalCount": 6,
+      "totalCount": 74,
       "shards": [
         {
-          "id": "oral-001-eca8d9f2873b",
-          "url": "content/oral-1-6-1/oral-001-eca8d9f2873b.json",
-          "count": 6,
-          "bytes": 9176,
-          "sha256": "eca8d9f2873ba25b8bd3fee78ab04375f2a125da3edd8bf9529af125d2d8c151",
+          "id": "oral-001-b9e2433d9921",
+          "url": "content/oral-1-6-1/oral-001-b9e2433d9921.json",
+          "count": 74,
+          "bytes": 29317,
+          "sha256": "b9e2433d9921af0723f43bf9aa6edf44d53d682b8df6dd4156f1239009d909b4",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-1c0160941103",
-          "url": "content/oral-1-6-1/oral-index-001-1c0160941103.json",
-          "count": 6,
-          "bytes": 1430,
-          "sha256": "1c0160941103dcbb7fd13ebccb7b6344d4f888a3064a4d599e1a557f437851e5",
+          "id": "oral-index-001-527f9e98e86a",
+          "url": "content/oral-1-6-1/oral-index-001-527f9e98e86a.json",
+          "count": 74,
+          "bytes": 17415,
+          "sha256": "527f9e98e86a1db7b5b5ec906656cb24244fe14544fef16628c901e66f2ce194",
           "mode": "index"
         }
       ]
@@ -467,24 +467,24 @@
       "sectionTitle": "电话",
       "topic": "挂断电话～打电话遇到困难时",
       "baseCount": 0,
-      "totalCount": 3,
+      "totalCount": 31,
       "shards": [
         {
-          "id": "oral-001-0e301fa21a65",
-          "url": "content/oral-1-6-2/oral-001-0e301fa21a65.json",
-          "count": 3,
-          "bytes": 4564,
-          "sha256": "0e301fa21a65b91419cc12b79707535086dbc5a8e8cf0c2eea5d269c6ef74a9b",
+          "id": "oral-001-5979cb51a865",
+          "url": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+          "count": 31,
+          "bytes": 13013,
+          "sha256": "5979cb51a865c4253a0b07f180dd5ec6712d085344c20ca18db2f9ade804d147",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-debcbed950d5",
-          "url": "content/oral-1-6-2/oral-index-001-debcbed950d5.json",
-          "count": 3,
-          "bytes": 763,
-          "sha256": "debcbed950d595922751cac4258625ea87f292e7bf5587d70748df9f62d8f326",
+          "id": "oral-index-001-ae4d4314aaac",
+          "url": "content/oral-1-6-2/oral-index-001-ae4d4314aaac.json",
+          "count": 31,
+          "bytes": 7401,
+          "sha256": "ae4d4314aaac83d21d08e5d9c1f64ad68a8402f62ea90f9b056a9e4a437a5110",
           "mode": "index"
         }
       ]
@@ -1811,24 +1811,24 @@
       "sectionTitle": "在外用餐时",
       "topic": "在快餐厅里～点菜",
       "baseCount": 0,
-      "totalCount": 7,
+      "totalCount": 63,
       "shards": [
         {
-          "id": "oral-001-128793874d0d",
-          "url": "content/oral-6-32-1/oral-001-128793874d0d.json",
-          "count": 7,
-          "bytes": 11150,
-          "sha256": "128793874d0d6f825f6e665c374550daa182a370a54b8ad096c05674a8ce9b75",
+          "id": "oral-001-ec4a54271ae9",
+          "url": "content/oral-6-32-1/oral-001-ec4a54271ae9.json",
+          "count": 63,
+          "bytes": 27597,
+          "sha256": "ec4a54271ae921b1fd3fc5f2a4c96a54d04c5a5c76451c0442437a9cf8afbf61",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-60d5e5a49290",
-          "url": "content/oral-6-32-1/oral-index-001-60d5e5a49290.json",
-          "count": 7,
-          "bytes": 1710,
-          "sha256": "60d5e5a49290b2d895adf93e9d6630c1fff4dacade12b3e980f2db1d08cf7f4b",
+          "id": "oral-index-001-6e1074e2febe",
+          "url": "content/oral-6-32-1/oral-index-001-6e1074e2febe.json",
+          "count": 63,
+          "bytes": 14840,
+          "sha256": "6e1074e2febe9af20ec3c2d070eab05102bfa19d92608049d343d1f8236615e8",
           "mode": "index"
         }
       ]
@@ -1843,24 +1843,24 @@
       "sectionTitle": "在外用餐时",
       "topic": "饭桌上～付款",
       "baseCount": 0,
-      "totalCount": 3,
+      "totalCount": 63,
       "shards": [
         {
-          "id": "oral-001-b8bc8cf1a1db",
-          "url": "content/oral-6-32-2/oral-001-b8bc8cf1a1db.json",
-          "count": 3,
-          "bytes": 4982,
-          "sha256": "b8bc8cf1a1db5f293845c730f026cffb06625074f849683c232de699800c3b0a",
+          "id": "oral-001-796ad98f2539",
+          "url": "content/oral-6-32-2/oral-001-796ad98f2539.json",
+          "count": 63,
+          "bytes": 20305,
+          "sha256": "796ad98f2539a82cbf675dedb19f44153a6399ece9cd3f769c04b261a9a493b8",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-b41623f4d135",
-          "url": "content/oral-6-32-2/oral-index-001-b41623f4d135.json",
-          "count": 3,
-          "bytes": 769,
-          "sha256": "b41623f4d13516304698a341085312fc409c0bc45890ca961a57ba593b65ee91",
+          "id": "oral-index-001-cda0db40dbc3",
+          "url": "content/oral-6-32-2/oral-index-001-cda0db40dbc3.json",
+          "count": 63,
+          "bytes": 13687,
+          "sha256": "cda0db40dbc38526a69c09fb9e02d430f13c82d369b259766e54fc5443e7f316",
           "mode": "index"
         }
       ]

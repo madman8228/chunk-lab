@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "43b6d293",
+      "sentence": "Thanks for calling.",
+      "translation": "谢谢您打来电话。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "34e68690",
+      "sentence": "Please call again anytime.",
+      "translation": "请随时来电话。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "f6cae0b1",
+      "sentence": "I'd better get off the phone.",
+      "translation": "我得挂电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "eebcffdb",
+      "sentence": "I have to go now.",
+      "translation": "我得挂电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "9405e71f",
+      "sentence": "I guess I'd better get going.",
+      "translation": "我该挂电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "8152f654",
+      "sentence": "Nice talking to you. Bye.",
+      "translation": "能跟您通上话，我非常高兴，再见。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "89bd6f41",
+      "sentence": "Please hang up the phone.",
+      "translation": "请挂电话吧。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "4cdf8062",
+      "sentence": "I was cut off.",
+      "translation": "电话断了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "01218c3d",
+      "sentence": "She hung up on me.",
+      "translation": "我还没说完呢，她就把电话挂上了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "b543e946",
+      "sentence": "The phone went dead.",
+      "translation": "电话不通。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "f41870e7",
+      "sentence": "Thank you for returning my call.",
+      "translation": "谢谢你给我回电话。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "7c35e7d9",
+      "sentence": "I'm afraid you have the wrong number.",
+      "translation": "您好像打错电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "c2e843de",
+      "sentence": "What number are you calling?",
+      "translation": "您拨的电话号码是多少?",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "d80536eb",
+      "sentence": "Who would you like to talk to?",
+      "translation": "您找哪位呀?",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "1e1c9af9",
+      "sentence": "There's no one here by that name.",
+      "translation": "这儿没有您说的这个人。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "9a23585e",
+      "sentence": "There's no Bob Hope in this office.",
+      "translation": "我们公司没有叫鲍勃·霍普的。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "42f2129f",
+      "sentence": "I'm sorry. I must have misdialed.",
+      "translation": "对不起，我好像打错了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "95a9dd6d",
+      "sentence": "This is Gary Mills calling. Please call me as soon as possible.",
+      "translation": "我是加里·米尔斯，请尽快跟我联络。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "0df52b4a",
+      "sentence": "This is Gary Mills of ABC. Please call me when you get home. My number is 1234-1234.",
+      "translation": "我是ABC公司的加里·米尔斯，请回来后给我回电话。我的电话号码是1234-1234。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "4c284ad3",
+      "sentence": "This is a recording.",
+      "translation": "这是电话录音。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "ab72202b",
+      "sentence": "Please speak a little more slowly.",
+      "translation": "您能说慢一点儿吗?",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "4a52d2fe",
+      "sentence": "I can't hear you very well.",
+      "translation": "我听不清楚。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "9aaf3caf",
+      "sentence": "We have a bad connection.",
+      "translation": "电话线好像有毛病。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "6acd2caf",
+      "sentence": "Could you speak up, please?",
+      "translation": "您能再大点儿声吗?",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "e0952ece",
+      "sentence": "The lines are crossed.",
+      "translation": "串线了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "6a24a332",
+      "sentence": "I'm sorry to have kept you waiting.",
+      "translation": "对不起，让您久等了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "42c44942",
+      "sentence": "Thank you for waiting.",
+      "translation": "谢谢您等我。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "8a8f88f2",
+      "sentence": "You gave me the wrong number.",
+      "translation": "你给我的电话号码是错的。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "00d6253f",
+      "sentence": "Sorry, you must have the wrong number.",
+      "translation": "抱歉，你一定是打错电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "2a729d81",
+      "sentence": "Stop calling me.",
+      "translation": "别给我打电话了。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "6592bb2c",
+      "sentence": "Ma'am, you called us.",
+      "translation": "女士，是你打给我们的。",
+      "sourceUrl": "content/oral-1-6-2/oral-001-5979cb51a865.json",
+      "sourceOffset": 30
+    }
+  ]
+}

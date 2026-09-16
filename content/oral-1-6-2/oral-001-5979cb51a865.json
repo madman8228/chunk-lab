@@ -1,0 +1,543 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Thanks for calling.",
+      "translation": "谢谢您打来电话。",
+      "chunks": [
+        "Thanks",
+        "for calling."
+      ],
+      "hints": [
+        "谢谢您",
+        "打来电话。"
+      ],
+      "cid": "43b6d293"
+    },
+    {
+      "sentence": "Please call again anytime.",
+      "translation": "请随时来电话。",
+      "chunks": [
+        "Please call again",
+        "anytime."
+      ],
+      "hints": [
+        "请随时",
+        "来电话。"
+      ],
+      "cid": "34e68690"
+    },
+    {
+      "sentence": "I'd better get off the phone.",
+      "translation": "我得挂电话了。",
+      "chunks": [
+        "I'd better",
+        "get off the phone."
+      ],
+      "hints": [
+        "我得",
+        "挂电话了。"
+      ],
+      "cid": "f6cae0b1"
+    },
+    {
+      "sentence": "I have to go now.",
+      "translation": "我得挂电话了。",
+      "chunks": [
+        "I have to",
+        "go now."
+      ],
+      "hints": [
+        "我得",
+        "挂电话了。"
+      ],
+      "cid": "eebcffdb"
+    },
+    {
+      "sentence": "I guess I'd better get going.",
+      "translation": "我该挂电话了。",
+      "chunks": [
+        "I guess I'd better",
+        "get going."
+      ],
+      "hints": [
+        "我该",
+        "挂电话了。"
+      ],
+      "cid": "9405e71f"
+    },
+    {
+      "sentence": "Nice talking to you. Bye.",
+      "translation": "能跟您通上话，我非常高兴，再见。",
+      "chunks": [
+        "Nice talking",
+        "to you. Bye."
+      ],
+      "hints": [
+        "能跟您通上话，",
+        "我非常高兴，再见。"
+      ],
+      "cid": "8152f654"
+    },
+    {
+      "sentence": "Please hang up the phone.",
+      "translation": "请挂电话吧。",
+      "chunks": [
+        "Please hang up",
+        "the phone."
+      ],
+      "hints": [
+        "请",
+        "挂电话吧。"
+      ],
+      "cid": "89bd6f41"
+    },
+    {
+      "sentence": "I was cut off.",
+      "translation": "电话断了。",
+      "chunks": [
+        "I was",
+        "cut off."
+      ],
+      "hints": [
+        "电话",
+        "断了。"
+      ],
+      "cid": "4cdf8062"
+    },
+    {
+      "sentence": "She hung up on me.",
+      "translation": "我还没说完呢，她就把电话挂上了。",
+      "chunks": [
+        "She hung up",
+        "on me."
+      ],
+      "hints": [
+        "我还没说完呢，",
+        "她就把电话挂上了。"
+      ],
+      "cid": "01218c3d"
+    },
+    {
+      "sentence": "The phone went dead.",
+      "translation": "电话不通。",
+      "chunks": [
+        "The phone",
+        "went dead."
+      ],
+      "hints": [
+        "电话",
+        "不通。"
+      ],
+      "cid": "b543e946"
+    },
+    {
+      "sentence": "Thank you for returning my call.",
+      "translation": "谢谢你给我回电话。",
+      "chunks": [
+        "Thank you",
+        "for returning my call."
+      ],
+      "hints": [
+        "谢谢你",
+        "给我回电话。"
+      ],
+      "cid": "f41870e7"
+    },
+    {
+      "sentence": "I'm afraid you have the wrong number.",
+      "translation": "您好像打错电话了。",
+      "chunks": [
+        "I'm afraid you have",
+        "the wrong number."
+      ],
+      "hints": [
+        "您好像",
+        "打错电话了。"
+      ],
+      "cid": "7c35e7d9"
+    },
+    {
+      "sentence": "What number are you calling?",
+      "translation": "您拨的电话号码是多少?",
+      "chunks": [
+        "What number",
+        "are you calling?"
+      ],
+      "hints": [
+        "您拨的电话号码",
+        "是多少？"
+      ],
+      "cid": "c2e843de"
+    },
+    {
+      "sentence": "Who would you like to talk to?",
+      "translation": "您找哪位呀?",
+      "chunks": [
+        "Who would you like",
+        "to talk to?"
+      ],
+      "hints": [
+        "您找",
+        "哪位呀？"
+      ],
+      "cid": "d80536eb"
+    },
+    {
+      "sentence": "There's no one here by that name.",
+      "translation": "这儿没有您说的这个人。",
+      "chunks": [
+        "There's no one here",
+        "by that name."
+      ],
+      "hints": [
+        "这儿没有",
+        "您说的这个人。"
+      ],
+      "cid": "1e1c9af9"
+    },
+    {
+      "sentence": "There's no Bob Hope in this office.",
+      "translation": "我们公司没有叫鲍勃·霍普的。",
+      "chunks": [
+        "There's no Bob Hope",
+        "in this office."
+      ],
+      "hints": [
+        "我们公司",
+        "没有叫鲍勃·霍普的。"
+      ],
+      "cid": "9a23585e"
+    },
+    {
+      "sentence": "I'm sorry. I must have misdialed.",
+      "translation": "对不起，我好像打错了。",
+      "chunks": [
+        "I'm sorry. I must",
+        "have misdialed."
+      ],
+      "hints": [
+        "对不起，",
+        "我好像打错了。"
+      ],
+      "cid": "42f2129f"
+    },
+    {
+      "sentence": "This is Gary Mills calling. Please call me as soon as possible.",
+      "translation": "我是加里·米尔斯，请尽快跟我联络。",
+      "chunks": [
+        "This is Gary Mills calling. Please",
+        "call me as soon as possible."
+      ],
+      "hints": [
+        "我是加里·米尔斯，",
+        "请尽快跟我联络。"
+      ],
+      "cid": "95a9dd6d"
+    },
+    {
+      "sentence": "This is Gary Mills of ABC. Please call me when you get home. My number is 1234-1234.",
+      "translation": "我是ABC公司的加里·米尔斯，请回来后给我回电话。我的电话号码是1234-1234。",
+      "chunks": [
+        "This is Gary Mills of ABC. Please call me",
+        "when you get home. My number is",
+        "1234-1234."
+      ],
+      "hints": [
+        "我是ABC公司的加里·米尔斯，请回来后给我回电话。",
+        "我的电话号码是",
+        "1234-1234。"
+      ],
+      "cid": "0df52b4a"
+    },
+    {
+      "sentence": "This is a recording.",
+      "translation": "这是电话录音。",
+      "chunks": [
+        "This is",
+        "a recording."
+      ],
+      "hints": [
+        "这是",
+        "电话录音。"
+      ],
+      "cid": "4c284ad3"
+    },
+    {
+      "sentence": "Please speak a little more slowly.",
+      "translation": "您能说慢一点儿吗?",
+      "chunks": [
+        "Please speak",
+        "a little more slowly."
+      ],
+      "hints": [
+        "您能说",
+        "慢一点儿吗？"
+      ],
+      "cid": "ab72202b"
+    },
+    {
+      "sentence": "I can't hear you very well.",
+      "translation": "我听不清楚。",
+      "chunks": [
+        "I can't hear you",
+        "very well."
+      ],
+      "hints": [
+        "我",
+        "听不清楚。"
+      ],
+      "cid": "4a52d2fe"
+    },
+    {
+      "sentence": "We have a bad connection.",
+      "translation": "电话线好像有毛病。",
+      "chunks": [
+        "We have",
+        "a bad connection."
+      ],
+      "hints": [
+        "电话线",
+        "好像有毛病。"
+      ],
+      "cid": "9aaf3caf"
+    },
+    {
+      "sentence": "Could you speak up, please?",
+      "translation": "您能再大点儿声吗?",
+      "chunks": [
+        "Could you speak up,",
+        "please?"
+      ],
+      "hints": [
+        "您能",
+        "再大点儿声吗？"
+      ],
+      "cid": "6acd2caf"
+    },
+    {
+      "sentence": "The lines are crossed.",
+      "translation": "串线了。",
+      "chunks": [
+        "The lines",
+        "are crossed."
+      ],
+      "hints": [
+        "串线",
+        "了。"
+      ],
+      "cid": "e0952ece"
+    },
+    {
+      "sentence": "I'm sorry to have kept you waiting.",
+      "translation": "对不起，让您久等了。",
+      "chunks": [
+        "I'm sorry to have kept you",
+        "waiting."
+      ],
+      "hints": [
+        "对不起，",
+        "让您久等了。"
+      ],
+      "cid": "6a24a332"
+    },
+    {
+      "sentence": "Thank you for waiting.",
+      "translation": "谢谢您等我。",
+      "chunks": [
+        "Thank you",
+        "for waiting."
+      ],
+      "hints": [
+        "谢谢您",
+        "等我。"
+      ],
+      "cid": "42c44942"
+    },
+    {
+      "sentence": "You gave me the wrong number.",
+      "translation": "你给我的电话号码是错的。",
+      "chunks": [
+        "You gave me",
+        "the wrong number."
+      ],
+      "hints": [
+        "你给我的",
+        "电话号码是错的。"
+      ],
+      "cid": "8a8f88f2"
+    },
+    {
+      "sentence": "Sorry, you must have the wrong number.",
+      "cid": "00d6253f",
+      "translation": "抱歉，你一定是打错电话了。",
+      "chunks": [
+        "Sorry,",
+        "you must have",
+        "the wrong number."
+      ],
+      "hints": [
+        "抱歉",
+        "你一定是",
+        "拨错了号码"
+      ],
+      "grammar": [
+        {
+          "role": "致歉词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsɒri/"
+          ],
+          "pos": "礼貌用语",
+          "meaning": "抱歉"
+        },
+        {
+          "role": "情态+完成式",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/mʌst/",
+            "/hæv/"
+          ],
+          "pos": "推测结构",
+          "meaning": "你一定是"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/rɒŋ/",
+            "/ˈnʌmbər/"
+          ],
+          "pos": "宾语",
+          "meaning": "错误的号码"
+        }
+      ],
+      "explanations": [
+        "`Sorry,` 开头加逗号表道歉语气。注意是 sorry 不是 apologize（口语更自然）。",
+        "`must have + 名词` = 一定是（对现在的推测）。这里 must have the wrong number = 一定是拿错号码了。常见错误：\n• \"you must **has**\" → must 后接动词原形 have\n• \"you **must to** have\" → 情态动词后不加 to",
+        "`the wrong number` 固定说法 = 错误号码/打错电话。完整句常接：Sorry, wrong number.（打错了）。"
+      ],
+      "distractors": [
+        [
+          "Apology,",
+          "Sorry,please",
+          "Excuse me,"
+        ],
+        [
+          "you must has",
+          "you must to have",
+          "you have must"
+        ],
+        [
+          "the wrong call.",
+          "a wrong number.",
+          "the wrongly number."
+        ]
+      ]
+    },
+    {
+      "sentence": "Stop calling me.",
+      "cid": "2a729d81",
+      "translation": "别给我打电话了。",
+      "chunks": [
+        "Stop",
+        "calling me."
+      ],
+      "hints": [
+        "停止",
+        "给我打电话"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/stɑːp/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "停止"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈkɔːlɪŋ/",
+            "/miː/"
+          ],
+          "pos": "动名词短语",
+          "meaning": "给我打电话"
+        }
+      ],
+      "explanations": [
+        "`stop doing` 表停止正在做的事，动词要用 -ing。常见错误：\n• \"Stop to call me\" → stop to do 是「停下来去打电话」，意思正好相反\n• \"Stop call me\" → 少了 -ing",
+        "想更坚决：Don't call me again."
+      ],
+      "distractors": [
+        [
+          "Stops",
+          "Stopping",
+          "Stop to"
+        ],
+        [
+          "call me.",
+          "to call me.",
+          "calling my."
+        ]
+      ]
+    },
+    {
+      "sentence": "Ma'am, you called us.",
+      "cid": "6592bb2c",
+      "translation": "女士，是你打给我们的。",
+      "chunks": [
+        "Ma'am,",
+        "you called us."
+      ],
+      "hints": [
+        "女士",
+        "你打给我们了"
+      ],
+      "grammar": [
+        {
+          "role": "称呼语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/mæm/"
+          ],
+          "pos": "名词（尊称）",
+          "meaning": "女士"
+        },
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/kɔːld/",
+            "/ʌs/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "你打给我们"
+        }
+      ],
+      "explanations": [
+        "`Ma'am` 是对女性的礼貌称呼，读 /mæm/。常见错误：\n• 拼写别写成 Mam / Maam，标准写法是 Ma'am\n• 称呼语后面要加逗号：Ma'am, ...",
+        "男性对应 Sir；服务场景常见：Sir, you dropped your card."
+      ],
+      "distractors": [
+        [
+          "Mam,",
+          "Maams,",
+          "Mister,"
+        ],
+        [
+          "you call us.",
+          "you called we.",
+          "you called ours."
+        ]
+      ]
+    }
+  ]
+}

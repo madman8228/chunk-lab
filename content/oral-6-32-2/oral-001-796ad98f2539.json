@@ -1,0 +1,974 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm kind of hungry.",
+      "translation": "我有点饿了。",
+      "chunks": [
+        "I'm kind of",
+        "hungry."
+      ],
+      "hints": [
+        "我有点",
+        "饿了。"
+      ],
+      "cid": "d1aa6f72"
+    },
+    {
+      "sentence": "I'm starving.",
+      "translation": "我都快饿死了。",
+      "chunks": [
+        "I'm",
+        "starving."
+      ],
+      "hints": [
+        "我都快",
+        "饿死了。"
+      ],
+      "cid": "354a7594"
+    },
+    {
+      "sentence": "I'm thirsty.",
+      "translation": "我渴了。",
+      "chunks": [
+        "I'm",
+        "thirsty."
+      ],
+      "hints": [
+        "我",
+        "渴了。"
+      ],
+      "cid": "ef438f73"
+    },
+    {
+      "sentence": "It smells good.",
+      "translation": "闻着真香。",
+      "chunks": [
+        "It smells",
+        "good."
+      ],
+      "hints": [
+        "闻着",
+        "真香。"
+      ],
+      "cid": "2fca7e79"
+    },
+    {
+      "sentence": "I'm on a diet.",
+      "translation": "我在节食。",
+      "chunks": [
+        "I'm on",
+        "a diet."
+      ],
+      "hints": [
+        "我在",
+        "节食。"
+      ],
+      "cid": "5ba06c9e"
+    },
+    {
+      "sentence": "This looks great!",
+      "translation": "看上去真好吃!",
+      "chunks": [
+        "This looks",
+        "great!"
+      ],
+      "hints": [
+        "看上去",
+        "真好吃！"
+      ],
+      "cid": "24d8092b"
+    },
+    {
+      "sentence": "They all look good.",
+      "translation": "看上去都好吃。",
+      "chunks": [
+        "They all",
+        "look good."
+      ],
+      "hints": [
+        "看上去",
+        "都好吃。"
+      ],
+      "cid": "7d8c147a"
+    },
+    {
+      "sentence": "Can I eat this?",
+      "translation": "我可以吃这个吗?",
+      "chunks": [
+        "Can I",
+        "eat this?"
+      ],
+      "hints": [
+        "我可以",
+        "吃这个吗？"
+      ],
+      "cid": "5ed24e85"
+    },
+    {
+      "sentence": "You can't eat that.",
+      "translation": "你不能吃这个。",
+      "chunks": [
+        "You can't",
+        "eat that."
+      ],
+      "hints": [
+        "你不能",
+        "吃这个。"
+      ],
+      "cid": "d6528312"
+    },
+    {
+      "sentence": "Is this delicious?",
+      "translation": "这个好吃吗?",
+      "chunks": [
+        "Is this",
+        "delicious?"
+      ],
+      "hints": [
+        "这个",
+        "好吃吗？"
+      ],
+      "cid": "920ec403"
+    },
+    {
+      "sentence": "It's good.",
+      "translation": "好吃。",
+      "chunks": [
+        "It's",
+        "good."
+      ],
+      "hints": [
+        "味道",
+        "不错。"
+      ],
+      "cid": "4fa25f13"
+    },
+    {
+      "sentence": "It's not good.",
+      "translation": "不好吃。",
+      "chunks": [
+        "It's not",
+        "good."
+      ],
+      "hints": [
+        "味道",
+        "不好。"
+      ],
+      "cid": "39c0b906"
+    },
+    {
+      "sentence": "This tastes strange.",
+      "translation": "味道很怪。",
+      "chunks": [
+        "This tastes",
+        "strange."
+      ],
+      "hints": [
+        "味道",
+        "很怪。"
+      ],
+      "cid": "acd7f117"
+    },
+    {
+      "sentence": "I eat anything.",
+      "translation": "我什么都能吃。",
+      "chunks": [
+        "I eat",
+        "anything."
+      ],
+      "hints": [
+        "我什么",
+        "都能吃。"
+      ],
+      "cid": "6e62f832"
+    },
+    {
+      "sentence": "Don't overeat.",
+      "translation": "别吃太多。",
+      "chunks": [
+        "Don't",
+        "overeat."
+      ],
+      "hints": [
+        "别",
+        "吃太多。"
+      ],
+      "cid": "92676809"
+    },
+    {
+      "sentence": "He's a big eater.",
+      "translation": "他真能吃。",
+      "chunks": [
+        "He's",
+        "a big eater."
+      ],
+      "hints": [
+        "他",
+        "真能吃。"
+      ],
+      "cid": "78a9273a"
+    },
+    {
+      "sentence": "I don't feel like eating anything.",
+      "translation": "我什么都不想吃。",
+      "chunks": [
+        "I don't feel like",
+        "eating anything."
+      ],
+      "hints": [
+        "我什么都",
+        "不想吃。"
+      ],
+      "cid": "627b59e5"
+    },
+    {
+      "sentence": "I drink like a fish.",
+      "translation": "我是海量。",
+      "chunks": [
+        "I drink",
+        "like a fish."
+      ],
+      "hints": [
+        "我是",
+        "海量。"
+      ],
+      "cid": "e5c8bdce"
+    },
+    {
+      "sentence": "I can hold my own.",
+      "translation": "我酒量还可以。",
+      "chunks": [
+        "I can",
+        "hold my own."
+      ],
+      "hints": [
+        "我酒量",
+        "还可以。"
+      ],
+      "cid": "4601b7cb"
+    },
+    {
+      "sentence": "Cake is fattening.",
+      "translation": "吃蛋糕会发胖。",
+      "chunks": [
+        "Cake",
+        "is fattening."
+      ],
+      "hints": [
+        "吃蛋糕",
+        "会发胖。"
+      ],
+      "cid": "acabb749"
+    },
+    {
+      "sentence": "Please pass me the salt.",
+      "translation": "请把盐递给我。",
+      "chunks": [
+        "Please pass me",
+        "the salt."
+      ],
+      "hints": [
+        "请把盐",
+        "递给我。"
+      ],
+      "cid": "c469256b"
+    },
+    {
+      "sentence": "It's called misoshiru.",
+      "translation": "这是大酱汤。",
+      "chunks": [
+        "It's called",
+        "misoshiru."
+      ],
+      "hints": [
+        "这是",
+        "大酱汤。"
+      ],
+      "cid": "c1fe2e6e"
+    },
+    {
+      "sentence": "How do you eat sushi?",
+      "translation": "寿司怎么吃呀?",
+      "chunks": [
+        "How do you",
+        "eat sushi?"
+      ],
+      "hints": [
+        "寿司",
+        "怎么吃呀？"
+      ],
+      "cid": "c1cde476"
+    },
+    {
+      "sentence": "You dip it in soy sauce.",
+      "translation": "你得蘸酱油。",
+      "chunks": [
+        "You dip it",
+        "in soy sauce."
+      ],
+      "hints": [
+        "你得",
+        "蘸酱油。"
+      ],
+      "cid": "58603b07"
+    },
+    {
+      "sentence": "Can you use chopsticks?",
+      "translation": "你会用筷子吗?",
+      "chunks": [
+        "Can you",
+        "use chopsticks?"
+      ],
+      "hints": [
+        "你会用",
+        "筷子吗？"
+      ],
+      "cid": "e65a330f"
+    },
+    {
+      "sentence": "What kind of fish is this?",
+      "translation": "这是什么鱼?",
+      "chunks": [
+        "What kind of fish",
+        "is this?"
+      ],
+      "hints": [
+        "这是什么",
+        "鱼？"
+      ],
+      "cid": "0e2a9d1f"
+    },
+    {
+      "sentence": "It's spicy.",
+      "translation": "真辣!",
+      "chunks": [
+        "It's",
+        "spicy."
+      ],
+      "hints": [
+        "真",
+        "辣！"
+      ],
+      "cid": "69fc5dd6"
+    },
+    {
+      "sentence": "It's salty.",
+      "translation": "真咸。",
+      "chunks": [
+        "It's",
+        "salty."
+      ],
+      "hints": [
+        "真",
+        "咸。"
+      ],
+      "cid": "fd85b57d"
+    },
+    {
+      "sentence": "It's sweet.",
+      "translation": "真甜。",
+      "chunks": [
+        "It's",
+        "sweet."
+      ],
+      "hints": [
+        "真",
+        "甜。"
+      ],
+      "cid": "a366c248"
+    },
+    {
+      "sentence": "It's crispy.",
+      "translation": "真脆。",
+      "chunks": [
+        "It's",
+        "crispy."
+      ],
+      "hints": [
+        "真",
+        "脆。"
+      ],
+      "cid": "8f9359a2"
+    },
+    {
+      "sentence": "It's slimy.",
+      "translation": "真粘。",
+      "chunks": [
+        "It's",
+        "slimy."
+      ],
+      "hints": [
+        "真",
+        "粘。"
+      ],
+      "cid": "27e6078c"
+    },
+    {
+      "sentence": "This coffee is not hot enough.",
+      "translation": "这咖啡不够热。",
+      "chunks": [
+        "This coffee is",
+        "not hot enough."
+      ],
+      "hints": [
+        "这咖啡",
+        "不够热。"
+      ],
+      "cid": "b2aa5ba9"
+    },
+    {
+      "sentence": "This bread is soggy.",
+      "translation": "面包没烤透。",
+      "chunks": [
+        "This bread",
+        "is soggy."
+      ],
+      "hints": [
+        "面包",
+        "没烤透。"
+      ],
+      "cid": "ce214414"
+    },
+    {
+      "sentence": "These potato chips are stale.",
+      "translation": "这土豆片变味了。",
+      "chunks": [
+        "These potato chips",
+        "are stale."
+      ],
+      "hints": [
+        "这土豆片",
+        "变味了。"
+      ],
+      "cid": "8857148f"
+    },
+    {
+      "sentence": "This milk is sour.",
+      "translation": "这牛奶酸了。",
+      "chunks": [
+        "This milk",
+        "is sour."
+      ],
+      "hints": [
+        "这牛奶",
+        "酸了。"
+      ],
+      "cid": "feafb935"
+    },
+    {
+      "sentence": "This coffee tastes bitter.",
+      "translation": "这咖啡太苦了。",
+      "chunks": [
+        "This coffee",
+        "tastes bitter."
+      ],
+      "hints": [
+        "这咖啡",
+        "太苦了。"
+      ],
+      "cid": "5a3d11e9"
+    },
+    {
+      "sentence": "This meat is tough.",
+      "translation": "这肉太老。",
+      "chunks": [
+        "This meat",
+        "is tough."
+      ],
+      "hints": [
+        "这肉",
+        "太老。"
+      ],
+      "cid": "7d2e4f5f"
+    },
+    {
+      "sentence": "This has a strong flavor.",
+      "translation": "味很重。",
+      "chunks": [
+        "This has",
+        "a strong flavor."
+      ],
+      "hints": [
+        "味",
+        "很重。"
+      ],
+      "cid": "b7c8916f"
+    },
+    {
+      "sentence": "It's too salty.",
+      "translation": "太咸了。",
+      "chunks": [
+        "It's too",
+        "salty."
+      ],
+      "hints": [
+        "太",
+        "咸了。"
+      ],
+      "cid": "f50afb53"
+    },
+    {
+      "sentence": "It's too greasy.",
+      "translation": "太油腻。",
+      "chunks": [
+        "It's too",
+        "greasy."
+      ],
+      "hints": [
+        "太",
+        "油腻。"
+      ],
+      "cid": "a4d2a543"
+    },
+    {
+      "sentence": "It's too hot.",
+      "translation": "太烫了。",
+      "chunks": [
+        "It's too",
+        "hot."
+      ],
+      "hints": [
+        "太",
+        "烫了。"
+      ],
+      "cid": "386a12c3"
+    },
+    {
+      "sentence": "My mouth is burning.",
+      "translation": "我的嘴都麻了。",
+      "chunks": [
+        "My mouth",
+        "is burning."
+      ],
+      "hints": [
+        "我的嘴",
+        "都麻了。"
+      ],
+      "cid": "b3db9f47"
+    },
+    {
+      "sentence": "Would you like some?",
+      "translation": "你也来点儿吗?",
+      "chunks": [
+        "Would you",
+        "like some?"
+      ],
+      "hints": [
+        "你也",
+        "来点儿吗？"
+      ],
+      "cid": "4e0a46bd"
+    },
+    {
+      "sentence": "I'd like some more wine.",
+      "translation": "我想再要一点葡萄酒。",
+      "chunks": [
+        "I'd like",
+        "some more wine."
+      ],
+      "hints": [
+        "我想再要",
+        "一点葡萄酒。"
+      ],
+      "cid": "f1625676"
+    },
+    {
+      "sentence": "I dropped my fork.",
+      "translation": "我的叉子掉了。",
+      "chunks": [
+        "I dropped",
+        "my fork."
+      ],
+      "hints": [
+        "我的叉子",
+        "掉了。"
+      ],
+      "cid": "b365ee66"
+    },
+    {
+      "sentence": "I'd like another cup of coffee.",
+      "translation": "再要一杯咖啡。",
+      "chunks": [
+        "I'd like another",
+        "cup of coffee."
+      ],
+      "hints": [
+        "再要",
+        "一杯咖啡。"
+      ],
+      "cid": "f3301228"
+    },
+    {
+      "sentence": "That was good.",
+      "translation": "真好吃。",
+      "chunks": [
+        "That was",
+        "good."
+      ],
+      "hints": [
+        "真",
+        "好吃。"
+      ],
+      "cid": "b6f873f4"
+    },
+    {
+      "sentence": "I'm very full.",
+      "translation": "我吃饱了。",
+      "chunks": [
+        "I'm very",
+        "full."
+      ],
+      "hints": [
+        "我",
+        "吃饱了。"
+      ],
+      "cid": "04518a79"
+    },
+    {
+      "sentence": "There isn't enough food.",
+      "translation": "食物不够了。",
+      "chunks": [
+        "There isn't",
+        "enough food."
+      ],
+      "hints": [
+        "食物",
+        "不够了。"
+      ],
+      "cid": "15ecde6e"
+    },
+    {
+      "sentence": "Would you like another drink?",
+      "translation": "再喝一杯吗?",
+      "chunks": [
+        "Would you like",
+        "another drink?"
+      ],
+      "hints": [
+        "再喝",
+        "一杯吗？"
+      ],
+      "cid": "1f86304e"
+    },
+    {
+      "sentence": "How do you like your coffee?",
+      "translation": "您喝什么样的咖啡?",
+      "chunks": [
+        "How do you like",
+        "your coffee?"
+      ],
+      "hints": [
+        "您喝",
+        "什么样的咖啡？"
+      ],
+      "cid": "f8d3eb46"
+    },
+    {
+      "sentence": "Bill, please.",
+      "translation": "请结账。",
+      "chunks": [
+        "Bill,",
+        "please."
+      ],
+      "hints": [
+        "请",
+        "结账。"
+      ],
+      "cid": "56f2b280"
+    },
+    {
+      "sentence": "Where should I pay?",
+      "translation": "在哪儿付钱?",
+      "chunks": [
+        "Where should",
+        "I pay?"
+      ],
+      "hints": [
+        "在哪儿",
+        "付钱？"
+      ],
+      "cid": "8cfffc13"
+    },
+    {
+      "sentence": "It's on me.",
+      "translation": "我请客。",
+      "chunks": [
+        "It's",
+        "on me."
+      ],
+      "hints": [
+        "我",
+        "请客。"
+      ],
+      "cid": "79da59f3"
+    },
+    {
+      "sentence": "What is this for?",
+      "translation": "这是什么的钱?",
+      "chunks": [
+        "What is",
+        "this for?"
+      ],
+      "hints": [
+        "这是",
+        "什么的钱？"
+      ],
+      "cid": "2c6bafbd"
+    },
+    {
+      "sentence": "I'm afraid there is a mistake here.",
+      "translation": "我觉得这儿算错了。",
+      "chunks": [
+        "I'm afraid there is",
+        "a mistake here."
+      ],
+      "hints": [
+        "我觉得这儿",
+        "算错了。"
+      ],
+      "cid": "a6410ea4"
+    },
+    {
+      "sentence": "Let's go Dutch.",
+      "translation": "我们各付各的吧。",
+      "chunks": [
+        "Let's",
+        "go Dutch."
+      ],
+      "hints": [
+        "我们",
+        "各付各的吧。"
+      ],
+      "cid": "d6da0cf6"
+    },
+    {
+      "sentence": "We'd like to pay separately.",
+      "translation": "我们分开付款。",
+      "chunks": [
+        "We'd like",
+        "to pay separately."
+      ],
+      "hints": [
+        "我们",
+        "分开付款。"
+      ],
+      "cid": "502571f8"
+    },
+    {
+      "sentence": "Keep the change.",
+      "translation": "不用找钱了。",
+      "chunks": [
+        "Keep",
+        "the change."
+      ],
+      "hints": [
+        "不用",
+        "找钱了。"
+      ],
+      "cid": "d8db91e5"
+    },
+    {
+      "sentence": "May I have a receipt, please?",
+      "translation": "请开张发票。",
+      "chunks": [
+        "May I have",
+        "a receipt, please?"
+      ],
+      "hints": [
+        "请开张",
+        "发票。"
+      ],
+      "cid": "a8c55b99"
+    },
+    {
+      "sentence": "Could I get this to go, please?",
+      "cid": "577c7ac5",
+      "translation": "这个能打包带走吗？",
+      "chunks": [
+        "Could I get this",
+        "to go,",
+        "please?"
+      ],
+      "hints": [
+        "我能把这个",
+        "外带",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/ɡet/",
+            "/ðɪs/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我能把这个"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ɡoʊ/"
+          ],
+          "pos": "固定表达",
+          "meaning": "外带"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "`to go` = 外带（美式）。常见错误：\n• \"for **takeaway**\" → takeaway 是英式名词，美式点餐说 to go\n• \"to **going**\" → to 后接原形 go",
+        "相对的说法是 dine in / for here（堂食）。点餐收尾常用：\"Is that for here or to go?\""
+      ],
+      "distractors": [
+        [
+          "Could me get this",
+          "Could I to get this",
+          "Could I gets this"
+        ],
+        [
+          "to going,",
+          "go,",
+          "for go,"
+        ],
+        [
+          "pleased.",
+          "pleases."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could we get the check, please?",
+      "cid": "b83b9640",
+      "translation": "请给我们结账。",
+      "chunks": [
+        "Could we get",
+        "the check,",
+        "please?"
+      ],
+      "hints": [
+        "我们能要",
+        "账单",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/wiː/",
+            "/ɡet/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我们能要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/tʃek/"
+          ],
+          "pos": "名词",
+          "meaning": "账单"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "结账用语分英美：美式 `the check`，英式 `the bill`。常见错误：\n• 混说 \"get the bill\" 英式场景也通，但美式餐厅多用 check\n• \"pay the check\" → 可以，但 get the check 是「请拿来账单」",
+        "同义表达：\"Check, please!\"（最简洁）/ \"Can we have the bill, please?\""
+      ],
+      "distractors": [
+        [
+          "Could us get",
+          "Could we to get",
+          "Could we gets"
+        ],
+        [
+          "the checks,",
+          "check,",
+          "the checkout,"
+        ],
+        [
+          "pleased.",
+          "pleases."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's split the bill, shall we?",
+      "cid": "352ea243",
+      "translation": "我们平摊账单吧，好吗？",
+      "chunks": [
+        "Let's split the bill,",
+        "shall we?"
+      ],
+      "hints": [
+        "我们分摊账单",
+        "好吗"
+      ],
+      "grammar": [
+        {
+          "role": "祈使提议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/splɪt/",
+            "/ðə/",
+            "/bɪl/"
+          ],
+          "pos": "let's 结构",
+          "meaning": "我们分摊账单"
+        },
+        {
+          "role": "反意疑问",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʃæl/",
+            "/wiː/"
+          ],
+          "pos": "附加问句",
+          "meaning": "好吗"
+        }
+      ],
+      "explanations": [
+        "AA 制用语。`split the bill` = 平摊账单。常见错误：\n• \"split the **bills**\" → 一张账单用单数 the bill\n• \"divide the bill\" → 也可以，split 更口语",
+        "`Let's..., shall we?` = 我们…吧，好吗？Let's 开头的祈使句反意疑问固定用 shall we。常见错误：\n• \"Let's..., will we?\" → will we 不配 let's\n• \"Let us split\" → let us 正式，let's 口语"
+      ],
+      "distractors": [
+        [
+          "Let's splitting the bill,",
+          "Let split the bill,",
+          "Let's split the check,"
+        ],
+        [
+          "will we?",
+          "should we?",
+          "shall us?"
+        ]
+      ]
+    }
+  ]
+}
