@@ -539,6 +539,9 @@
       if (!options.force && !shouldBatch(id)) {
         return ensureDeck(id, mem).then(function (full) { return legacyBatchResult(entry, full, mem, null); });
       }
+      if (!(entry.shards || []).length) {
+        return ensureDeck(id, mem).then(function (full) { return legacyBatchResult(entry, full, mem, null); });
+      }
 
       var limit = Math.max(1, Number(options.limit) || (mem && mem.settings && mem.settings.batchSize) || 10);
       var append = entry.shards.length && entry.shards[0].mode === 'append';

@@ -145,7 +145,7 @@ node course-resume.test.js  # 图文课程进度恢复
 ```
 > 内置句子增改后跑 `node scripts/add-cids.js` 补/重算 cid（幂等；`--force` 全量重算）再跑对应的 validate_*.js。
 >
-> 扩展内置题库后运行 `npm run content:build`：它会生成 `content/manifest.json` 和带 hash 的内容分片（每片最多 200 句）。页面启动只读取 manifest，进入具体题库时才加载分片；部署时将整个 `content/` 目录一并发布。
+> 扩展内置题库后运行 `npm run content:build`：它会生成 `content/manifest.json` 和带 hash 的内容分片（每片最多 200 句）。页面启动只读取 manifest，进入具体题库时才加载分片；部署时将整个 `content/` 目录一并发布。总量超过 1000 句的内置题库在练习页按 `batchSize` 分批读取，分片同时缓存在独立 IndexedDB，完成一批后可继续下一批。
 
 **内容管线（口语 8000 / 高频短语）—— 新 clone 也能重建**
 

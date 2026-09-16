@@ -3742,10 +3742,14 @@ function finishSession(){
   var _reinforceStatHTML = needReinforce
      ? '<div class="stat" style="border-color:#f6e0bf;background:#fff8ee"><div class="k" style="color:#b45309">错题</div><div class="v" style="color:#b45309">'+reinforceCount+'<span style="font-size:13px;color:#d97706"> 句</span></div></div>'
     : '<div class="stat" style="border-color:#c3ead4;background:#e8f9ed"><div class="k" style="color:#15803d">本轮</div><div class="v" style="color:#15803d">全部通过</div></div>';
+  var _contentNext = !!(S.contentBatch && !S.contentBatch.done && S.contentBatch.remainingCount > 0);
+  var _contentLead = S.contentBatch
+    ? '本组 '+S.items.length+' 题 · 题库剩余约 '+S.contentBatch.remainingCount+' 题'
+    : '共 '+S.items.length+' 题';
 
   var html = ''+
     `<h2>`+(acc===100?'满分通关':(acc>=80?'练完啦，稳':'练完啦，回顾一下'))+'</h2>'+
-    `<div class="lead">`+esc(S.deck.name)+' · 共 '+S.items.length+' 题'+(isBest?' · <b style="color:var(--accent)">新纪录</b>':'')+'</div>'+
+    `<div class="lead">`+esc(S.deck.name)+' · '+_contentLead+(isBest?' · <b style="color:var(--accent)">新纪录</b>':'')+'</div>'+
     /* ★ 还有 N 句被标记隐藏（用户多次反馈「103 题只练 10 题就通关」的根因）：
        - 内置 deck：拿 BUILTIN 原 items 长度对比，可一键恢复
        - 提示行直接暴露，让用户看见根因而不是默默被跳过 */
@@ -3754,7 +3758,7 @@ function finishSession(){
       var origTotal = S.deck.builtin
         ? ((window.BUILTIN || []).filter(function(b){return b.id===S.deck.id;})[0]||{}).items.length || S.deck.items.length
         : S.deck.items.length;
-      if(!S.deck.builtin || hidden <= 0) return '';
+      if(!S.deck.builtin || hidden <= 0 || S.contentBatch) return '';
       return '<div class="review" style="margin-top:12px;padding:12px 14px;border-radius:10px;background:#fff8ee;border:1px solid #f6e0bf">'+
                '<div style="color:#b45309;font-weight:700;display:flex;align-items:center;gap:5px">'+ (window.Icons?Icons.svg('warn'):'') +'还有 '+hidden+' 句被你标记隐藏（原 '+origTotal+' 题）</div>'+
                '<div style="color:#92400e;font-size:12.5px;margin-top:4px">这些句子在题库管理页被你删除过；现在 deck 只剩 '+S.items.length+' 题，练完就「通关」——实际还有 '+hidden+' 句还没碰过。</div>'+
@@ -3808,6 +3812,7 @@ function finishSession(){
   if(temp){
     _nextRemain = Math.max(0, (S.tempTotal || 0) - (S.tempEnd || 0));
   }
+  if(_contentNext) _nextRemain = S.contentBatch.remainingCount;
   html += '<div class="stage-foot" style="margin-top:20px">'+
             (_nextRemain > 0
               ? `<button class="btn primary" id="btnNextBatch">继续下一组 · 剩 `+_nextRemain+` 句</button>`+
@@ -3830,10 +3835,17 @@ function finishSession(){
   r.classList.remove('hidden');
   $('stage').classList.add('hidden');
 
-  /* ★ 继续下一组：从完整临时队列的 tempEnd 处续练下一批（分页推进，不再剩题无门） */
+  /* ★ 继续下一组：临时队列走内存分页；8000 句内置题库走内容游标 + 分片缓存。 */
   var _bnx = $('btnNextBatch');
   if(_bnx){
-    _bnx.onclick = function(){ startDeck(S.deck, 0, S.tempEnd); };
+    _bnx.onclick = function(){
+      if(S.contentBatch){
+        showPracticePage();
+        beginContentBatch(S.deck, 0, S.contentBatch.nextCursor);
+      } else {
+        startDeck(S.deck, 0, S.tempEnd);
+      }
+    };
   }
   $('btnAgain').onclick = function(){ startDeck(S.deck, true); };
   $('btnOtherDeck').onclick = function(){ location.href = 'decks.html'; };
