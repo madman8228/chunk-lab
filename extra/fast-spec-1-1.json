@@ -1,0 +1,1811 @@
+[
+ {
+  "sentence": "Good morning.",
+  "chunks": [
+   "Good",
+   "morning."
+  ],
+  "hints": [
+   "早上",
+   "好。"
+  ]
+ },
+ {
+  "sentence": "Did the alarm clock go off?",
+  "chunks": [
+   "Did the alarm clock",
+   "go off?"
+  ],
+  "hints": [
+   "闹钟",
+   "响了吗？"
+  ]
+ },
+ {
+  "sentence": "It's time to get up!",
+  "chunks": [
+   "It's time",
+   "to get up!"
+  ],
+  "hints": [
+   "该",
+   "起床了！"
+  ]
+ },
+ {
+  "sentence": "Get up soon.",
+  "chunks": [
+   "Get up",
+   "soon."
+  ],
+  "hints": [
+   "快点儿",
+   "起床！"
+  ]
+ },
+ {
+  "sentence": "Are you awake?",
+  "chunks": [
+   "Are you",
+   "awake?"
+  ],
+  "hints": [
+   "你",
+   "醒了吗？"
+  ]
+ },
+ {
+  "sentence": "Are you feeling sick?",
+  "chunks": [
+   "Are you",
+   "feeling sick?"
+  ],
+  "hints": [
+   "你",
+   "不舒服吗？"
+  ]
+ },
+ {
+  "sentence": "Did you sleep well?",
+  "chunks": [
+   "Did you sleep",
+   "well?"
+  ],
+  "hints": [
+   "睡得",
+   "好吗？"
+  ]
+ },
+ {
+  "sentence": "Would you turn off the alarm clock?",
+  "chunks": [
+   "Would you turn off",
+   "the alarm clock?"
+  ],
+  "hints": [
+   "能帮我关掉",
+   "闹钟吗？"
+  ]
+ },
+ {
+  "sentence": "You finally got up.",
+  "chunks": [
+   "You finally",
+   "got up."
+  ],
+  "hints": [
+   "你终于",
+   "起来了。"
+  ]
+ },
+ {
+  "sentence": "It's a nice day!",
+  "chunks": [
+   "It's a",
+   "nice day!"
+  ],
+  "hints": [
+   "今天是个",
+   "好天！"
+  ]
+ },
+ {
+  "sentence": "Did you stay up late last night?",
+  "chunks": [
+   "Did you stay up late",
+   "last night?"
+  ],
+  "hints": [
+   "昨晚你",
+   "熬夜了？"
+  ]
+ },
+ {
+  "sentence": "Let's fold up the futon.",
+  "chunks": [
+   "Let's fold up",
+   "the futon."
+  ],
+  "hints": [
+   "把被子",
+   "叠好。"
+  ]
+ },
+ {
+  "sentence": "You were snoring last night.",
+  "chunks": [
+   "You were snoring",
+   "last night."
+  ],
+  "hints": [
+   "昨天晚上你",
+   "打呼噜了。"
+  ]
+ },
+ {
+  "sentence": "I had a nightmare.",
+  "chunks": [
+   "I had",
+   "a nightmare."
+  ],
+  "hints": [
+   "我做了个",
+   "可怕的梦。"
+  ]
+ },
+ {
+  "sentence": "You left the light on.",
+  "chunks": [
+   "You left",
+   "the light on."
+  ],
+  "hints": [
+   "你一直",
+   "没关灯啊。"
+  ]
+ },
+ {
+  "sentence": "I have to go wash my face.",
+  "chunks": [
+   "I have to go",
+   "wash my face."
+  ],
+  "hints": [
+   "我得",
+   "洗脸了。"
+  ]
+ },
+ {
+  "sentence": "It's time to eat breakfast.",
+  "chunks": [
+   "It's time to",
+   "eat breakfast."
+  ],
+  "hints": [
+   "该吃",
+   "早饭了。"
+  ]
+ },
+ {
+  "sentence": "I'm still sleepy.",
+  "chunks": [
+   "I'm still",
+   "sleepy."
+  ],
+  "hints": [
+   "我还",
+   "困着呢。"
+  ]
+ },
+ {
+  "sentence": "I'm still yawning.",
+  "chunks": [
+   "I'm still",
+   "yawning."
+  ],
+  "hints": [
+   "我还",
+   "打哈欠呢。"
+  ]
+ },
+ {
+  "sentence": "I have a hangover.",
+  "chunks": [
+   "I have",
+   "a hangover."
+  ],
+  "hints": [
+   "昨天的酒",
+   "还没醒呢。"
+  ]
+ },
+ {
+  "sentence": "I'm a night person.",
+  "chunks": [
+   "I'm a",
+   "night person."
+  ],
+  "hints": [
+   "我是个",
+   "夜猫子。"
+  ]
+ },
+ {
+  "sentence": "Coffee wakes me up.",
+  "chunks": [
+   "Coffee wakes",
+   "me up."
+  ],
+  "hints": [
+   "我是用咖啡",
+   "来提神的。"
+  ]
+ },
+ {
+  "sentence": "Did you brush your teeth?",
+  "chunks": [
+   "Did you brush",
+   "your teeth?"
+  ],
+  "hints": [
+   "刷牙",
+   "了吗？"
+  ]
+ },
+ {
+  "sentence": "I have to comb my hair.",
+  "chunks": [
+   "I have to comb",
+   "my hair."
+  ],
+  "hints": [
+   "我得",
+   "梳梳头了。"
+  ]
+ },
+ {
+  "sentence": "What should I wear?",
+  "chunks": [
+   "What should",
+   "I wear?"
+  ],
+  "hints": [
+   "穿什么",
+   "好呢？"
+  ]
+ },
+ {
+  "sentence": "Hurry up and get dressed.",
+  "chunks": [
+   "Hurry up",
+   "and get dressed."
+  ],
+  "hints": [
+   "快",
+   "换衣服。"
+  ]
+ },
+ {
+  "sentence": "Put those pajamas away!",
+  "chunks": [
+   "Put those pajamas",
+   "away!"
+  ],
+  "hints": [
+   "把睡衣",
+   "收好。"
+  ]
+ },
+ {
+  "sentence": "I'm leaving. Bye mom!",
+  "chunks": [
+   "I'm leaving. Bye",
+   "mom!"
+  ],
+  "hints": [
+   "我走了。",
+   "妈妈再见！"
+  ]
+ },
+ {
+  "sentence": "Let's play hooky today!",
+  "chunks": [
+   "Let's play hooky",
+   "today!"
+  ],
+  "hints": [
+   "今天我们",
+   "逃学吧。"
+  ]
+ },
+ {
+  "sentence": "You're wearing your sweater inside out.",
+  "chunks": [
+   "You're wearing your sweater",
+   "inside out."
+  ],
+  "hints": [
+   "你毛衣",
+   "穿反了。"
+  ]
+ },
+ {
+  "sentence": "It's upside down.",
+  "chunks": [
+   "It's",
+   "upside down."
+  ],
+  "hints": [
+   "上下",
+   "颠倒了。"
+  ]
+ },
+ {
+  "sentence": "Don't forget to take out the garbage.",
+  "chunks": [
+   "Don't forget to take out",
+   "the garbage."
+  ],
+  "hints": [
+   "可别忘了",
+   "扔垃圾！"
+  ]
+ },
+ {
+  "sentence": "It's your turn to take out the garbage.",
+  "chunks": [
+   "It's your turn to",
+   "take out the garbage."
+  ],
+  "hints": [
+   "今天该你",
+   "扔垃圾了。"
+  ]
+ },
+ {
+  "sentence": "What are you doing today?",
+  "chunks": [
+   "What are you",
+   "doing today?"
+  ],
+  "hints": [
+   "今天你们",
+   "干嘛？"
+  ]
+ },
+ {
+  "sentence": "If you don't hurry, we'll be late.",
+  "chunks": [
+   "If you don't hurry,",
+   "we'll be late."
+  ],
+  "hints": [
+   "你快点儿，",
+   "我们该迟到了！"
+  ]
+ },
+ {
+  "sentence": "Hurry or you'll be late for school.",
+  "chunks": [
+   "Hurry or you'll be late",
+   "for school."
+  ],
+  "hints": [
+   "快点儿，",
+   "上学该迟到了。"
+  ]
+ },
+ {
+  "sentence": "Did you lock the door?",
+  "chunks": [
+   "Did you lock",
+   "the door?"
+  ],
+  "hints": [
+   "你锁门",
+   "了吗？"
+  ]
+ },
+ {
+  "sentence": "Aren't you forgetting something?",
+  "chunks": [
+   "Aren't you forgetting",
+   "something?"
+  ],
+  "hints": [
+   "没忘了",
+   "什么东西吧？"
+  ]
+ },
+ {
+  "sentence": "It's already 8:00.",
+  "chunks": [
+   "It's already",
+   "8:00."
+  ],
+  "hints": [
+   "都已经",
+   "8点了！"
+  ]
+ },
+ {
+  "sentence": "I'm late!",
+  "chunks": [
+   "I'm",
+   "late!"
+  ],
+  "hints": [
+   "我",
+   "晚了！"
+  ]
+ },
+ {
+  "sentence": "I have to rush!",
+  "chunks": [
+   "I have to",
+   "rush!"
+  ],
+  "hints": [
+   "我得",
+   "赶紧走！"
+  ]
+ },
+ {
+  "sentence": "Are you gonna be late today?",
+  "chunks": [
+   "Are you gonna be",
+   "late today?"
+  ],
+  "hints": [
+   "你今天会",
+   "回来得晚吗？"
+  ]
+ },
+ {
+  "sentence": "What time are you coming home?",
+  "chunks": [
+   "What time are you",
+   "coming home?"
+  ],
+  "hints": [
+   "几点",
+   "回来？"
+  ]
+ },
+ {
+  "sentence": "Have you got your lunch box?",
+  "chunks": [
+   "Have you got",
+   "your lunch box?"
+  ],
+  "hints": [
+   "饭盒",
+   "带了吗？"
+  ]
+ },
+ {
+  "sentence": "It might rain today.",
+  "chunks": [
+   "It might",
+   "rain today."
+  ],
+  "hints": [
+   "今天好像",
+   "要下雨。"
+  ]
+ },
+ {
+  "sentence": "Don't forget to lock the door when you leave.",
+  "chunks": [
+   "Don't forget to lock the door",
+   "when you leave."
+  ],
+  "hints": [
+   "出门的时候，",
+   "可别忘了锁门。"
+  ]
+ },
+ {
+  "sentence": "I'm home.",
+  "chunks": [
+   "I'm",
+   "home."
+  ],
+  "hints": [
+   "我",
+   "回来了。"
+  ]
+ },
+ {
+  "sentence": "Welcome home!",
+  "chunks": [
+   "Welcome",
+   "home!"
+  ],
+  "hints": [
+   "你",
+   "回来了。"
+  ]
+ },
+ {
+  "sentence": "Did you have a good time?",
+  "chunks": [
+   "Did you have",
+   "a good time?"
+  ],
+  "hints": [
+   "今天过得",
+   "愉快吗？"
+  ]
+ },
+ {
+  "sentence": "How did it go today?",
+  "chunks": [
+   "How did it",
+   "go today?"
+  ],
+  "hints": [
+   "今天",
+   "怎么样？"
+  ]
+ },
+ {
+  "sentence": "Can I go out to play?",
+  "chunks": [
+   "Can I go out",
+   "to play?"
+  ],
+  "hints": [
+   "我可以出去",
+   "玩儿会儿吗？"
+  ]
+ },
+ {
+  "sentence": "I'm hungry.",
+  "chunks": [
+   "I'm",
+   "hungry."
+  ],
+  "hints": [
+   "我",
+   "饿了。"
+  ]
+ },
+ {
+  "sentence": "Where are the snacks?",
+  "chunks": [
+   "Where are",
+   "the snacks?"
+  ],
+  "hints": [
+   "点心",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "I'm going to cram school now.",
+  "chunks": [
+   "I'm going to",
+   "cram school now."
+  ],
+  "hints": [
+   "我去补习学校",
+   "了啊。"
+  ]
+ },
+ {
+  "sentence": "May I have my allowance?",
+  "chunks": [
+   "May I have",
+   "my allowance?"
+  ],
+  "hints": [
+   "能给我点儿",
+   "零花钱吗？"
+  ]
+ },
+ {
+  "sentence": "I'm tired.",
+  "chunks": [
+   "I'm",
+   "tired."
+  ],
+  "hints": [
+   "真",
+   "累啊！"
+  ]
+ },
+ {
+  "sentence": "What would you like for dinner?",
+  "chunks": [
+   "What would you like",
+   "for dinner?"
+  ],
+  "hints": [
+   "晚饭你想",
+   "吃什么？"
+  ]
+ },
+ {
+  "sentence": "Would you help me set the table?",
+  "chunks": [
+   "Would you help me",
+   "set the table?"
+  ],
+  "hints": [
+   "你能帮我",
+   "准备餐具吗？"
+  ]
+ },
+ {
+  "sentence": "What should I make for dinner?",
+  "chunks": [
+   "What should I make",
+   "for dinner?"
+  ],
+  "hints": [
+   "晚饭做",
+   "什么好呢？"
+  ]
+ },
+ {
+  "sentence": "It's good to be home.",
+  "chunks": [
+   "It's good",
+   "to be home."
+  ],
+  "hints": [
+   "还是",
+   "家好哇。"
+  ]
+ },
+ {
+  "sentence": "Would you run to the store?",
+  "chunks": [
+   "Would you run",
+   "to the store?"
+  ],
+  "hints": [
+   "你能不能快点儿",
+   "去趟商店？"
+  ]
+ },
+ {
+  "sentence": "The bath is ready.",
+  "chunks": [
+   "The bath",
+   "is ready."
+  ],
+  "hints": [
+   "洗澡水",
+   "烧好了。"
+  ]
+ },
+ {
+  "sentence": "I'm taking a shower.",
+  "chunks": [
+   "I'm taking",
+   "a shower."
+  ],
+  "hints": [
+   "我要",
+   "冲个澡。"
+  ]
+ },
+ {
+  "sentence": "Is dinner ready?",
+  "chunks": [
+   "Is dinner",
+   "ready?"
+  ],
+  "hints": [
+   "晚饭",
+   "好了吗？"
+  ]
+ },
+ {
+  "sentence": "Mom, what's for dinner tonight?",
+  "chunks": [
+   "Mom, what's",
+   "for dinner tonight?"
+  ],
+  "hints": [
+   "妈妈，今天晚饭",
+   "吃什么？"
+  ]
+ },
+ {
+  "sentence": "What's for dinner?",
+  "chunks": [
+   "What's",
+   "for dinner?"
+  ],
+  "hints": [
+   "晚饭",
+   "吃什么？"
+  ]
+ },
+ {
+  "sentence": "Today, we're having curry.",
+  "chunks": [
+   "Today, we're having",
+   "curry."
+  ],
+  "hints": [
+   "今天吃",
+   "咖哩饭。"
+  ]
+ },
+ {
+  "sentence": "How soon can you get it ready?",
+  "chunks": [
+   "How soon can you",
+   "get it ready?"
+  ],
+  "hints": [
+   "还要多久",
+   "才能做好呀？"
+  ]
+ },
+ {
+  "sentence": "Let's eat.",
+  "chunks": [
+   "Let's",
+   "eat."
+  ],
+  "hints": [
+   "我",
+   "吃了啊。"
+  ]
+ },
+ {
+  "sentence": "Please go ahead.",
+  "chunks": [
+   "Please",
+   "go ahead."
+  ],
+  "hints": [
+   "请",
+   "先吃吧。"
+  ]
+ },
+ {
+  "sentence": "This knife cuts well, doesn't it?",
+  "chunks": [
+   "This knife cuts well,",
+   "doesn't it?"
+  ],
+  "hints": [
+   "这刀挺好使的，",
+   "是不是？"
+  ]
+ },
+ {
+  "sentence": "The water is boiling!",
+  "chunks": [
+   "The water",
+   "is boiling!"
+  ],
+  "hints": [
+   "水",
+   "开啦！"
+  ]
+ },
+ {
+  "sentence": "Come and get it!",
+  "chunks": [
+   "Come and",
+   "get it!"
+  ],
+  "hints": [
+   "开饭",
+   "啦！"
+  ]
+ },
+ {
+  "sentence": "It's time to eat.",
+  "chunks": [
+   "It's time",
+   "to eat."
+  ],
+  "hints": [
+   "该",
+   "吃饭啦！"
+  ]
+ },
+ {
+  "sentence": "I'm coming.",
+  "chunks": [
+   "I'm",
+   "coming."
+  ],
+  "hints": [
+   "这就",
+   "来啦！"
+  ]
+ },
+ {
+  "sentence": "Did you wash your hands well?",
+  "chunks": [
+   "Did you wash",
+   "your hands well?"
+  ],
+  "hints": [
+   "手洗",
+   "干净了吗？"
+  ]
+ },
+ {
+  "sentence": "Don't spill it!",
+  "chunks": [
+   "Don't",
+   "spill it!"
+  ],
+  "hints": [
+   "别",
+   "弄洒了。"
+  ]
+ },
+ {
+  "sentence": "Eat all of your vegetables.",
+  "chunks": [
+   "Eat all of",
+   "your vegetables."
+  ],
+  "hints": [
+   "把碗里的菜",
+   "吃光。"
+  ]
+ },
+ {
+  "sentence": "Finish up your plate.",
+  "chunks": [
+   "Finish up",
+   "your plate."
+  ],
+  "hints": [
+   "把碗里的饭",
+   "吃干净。"
+  ]
+ },
+ {
+  "sentence": "I don't like asparagus.",
+  "chunks": [
+   "I don't like",
+   "asparagus."
+  ],
+  "hints": [
+   "我不喜欢",
+   "吃芦笋。"
+  ]
+ },
+ {
+  "sentence": "It was very delicious. Thank you.",
+  "chunks": [
+   "It was very delicious. Thank",
+   "you."
+  ],
+  "hints": [
+   "谢谢您的",
+   "款待。"
+  ]
+ },
+ {
+  "sentence": "Would you clear the table?",
+  "chunks": [
+   "Would you clear",
+   "the table?"
+  ],
+  "hints": [
+   "能帮我",
+   "收拾盘子吗？"
+  ]
+ },
+ {
+  "sentence": "Do the dishes!",
+  "chunks": [
+   "Do",
+   "the dishes!"
+  ],
+  "hints": [
+   "把盘子",
+   "洗了。"
+  ]
+ },
+ {
+  "sentence": "I'll dry the dishes.",
+  "chunks": [
+   "I'll dry",
+   "the dishes."
+  ],
+  "hints": [
+   "我",
+   "擦盘子。"
+  ]
+ },
+ {
+  "sentence": "What are you doing?",
+  "chunks": [
+   "What are you",
+   "doing?"
+  ],
+  "hints": [
+   "你",
+   "干什么呢？"
+  ]
+ },
+ {
+  "sentence": "I'm watching TV.",
+  "chunks": [
+   "I'm watching",
+   "TV."
+  ],
+  "hints": [
+   "我",
+   "看电视呢。"
+  ]
+ },
+ {
+  "sentence": "Are there any good programs on TV?",
+  "chunks": [
+   "Are there any good programs",
+   "on TV?"
+  ],
+  "hints": [
+   "有什么好看的",
+   "节目吗？"
+  ]
+ },
+ {
+  "sentence": "Nomo is on TV.",
+  "chunks": [
+   "Nomo is",
+   "on TV."
+  ],
+  "hints": [
+   "野茂",
+   "上电视了。"
+  ]
+ },
+ {
+  "sentence": "What's on Channel 8?",
+  "chunks": [
+   "What's on",
+   "Channel 8?"
+  ],
+  "hints": [
+   "8频道",
+   "演什么呢？"
+  ]
+ },
+ {
+  "sentence": "Would you change the channel?",
+  "chunks": [
+   "Would you change",
+   "the channel?"
+  ],
+  "hints": [
+   "能不能帮我",
+   "换个台？"
+  ]
+ },
+ {
+  "sentence": "I want to watch more TV.",
+  "chunks": [
+   "I want to watch",
+   "more TV."
+  ],
+  "hints": [
+   "我还想",
+   "看电视。"
+  ]
+ },
+ {
+  "sentence": "Let's spread out the futon.",
+  "chunks": [
+   "Let's spread out",
+   "the futon."
+  ],
+  "hints": [
+   "铺床",
+   "吧。"
+  ]
+ },
+ {
+  "sentence": "I'm sleepy.",
+  "chunks": [
+   "I'm",
+   "sleepy."
+  ],
+  "hints": [
+   "我",
+   "困了。"
+  ]
+ },
+ {
+  "sentence": "Did you do your homework?",
+  "chunks": [
+   "Did you do",
+   "your homework?"
+  ],
+  "hints": [
+   "作业",
+   "做了吗？"
+  ]
+ },
+ {
+  "sentence": "Study hard.",
+  "chunks": [
+   "Study",
+   "hard."
+  ],
+  "hints": [
+   "好好",
+   "学习。"
+  ]
+ },
+ {
+  "sentence": "Hurry up and go to sleep.",
+  "chunks": [
+   "Hurry up",
+   "and go to sleep."
+  ],
+  "hints": [
+   "快点",
+   "睡觉。"
+  ]
+ },
+ {
+  "sentence": "Enough with your video games.",
+  "chunks": [
+   "Enough with",
+   "your video games."
+  ],
+  "hints": [
+   "游戏",
+   "玩够了吧。"
+  ]
+ },
+ {
+  "sentence": "Make sure you brush your teeth.",
+  "chunks": [
+   "Make sure you",
+   "brush your teeth."
+  ],
+  "hints": [
+   "一定要",
+   "刷牙噢。"
+  ]
+ },
+ {
+  "sentence": "Are you ready for tomorrow?",
+  "chunks": [
+   "Are you ready",
+   "for tomorrow?"
+  ],
+  "hints": [
+   "明天的东西",
+   "都准备好了吗？"
+  ]
+ },
+ {
+  "sentence": "I'm going to take a bath.",
+  "chunks": [
+   "I'm going to",
+   "take a bath."
+  ],
+  "hints": [
+   "我去",
+   "洗个澡。"
+  ]
+ },
+ {
+  "sentence": "Time to go to sleep.",
+  "chunks": [
+   "Time to go",
+   "to sleep."
+  ],
+  "hints": [
+   "该",
+   "睡觉了。"
+  ]
+ },
+ {
+  "sentence": "You left the TV on.",
+  "chunks": [
+   "You left",
+   "the TV on."
+  ],
+  "hints": [
+   "电视",
+   "还开着呢。"
+  ]
+ },
+ {
+  "sentence": "Don't leave your stuff here.",
+  "chunks": [
+   "Don't leave",
+   "your stuff here."
+  ],
+  "hints": [
+   "别把你的东西",
+   "都摊在这儿。"
+  ]
+ },
+ {
+  "sentence": "I set the alarm clock for 8:00.",
+  "chunks": [
+   "I set the alarm clock",
+   "for 8:00."
+  ],
+  "hints": [
+   "把闹钟",
+   "定在8点了。"
+  ]
+ },
+ {
+  "sentence": "Wake me up at seven tomorrow.",
+  "chunks": [
+   "Wake me up",
+   "at seven tomorrow."
+  ],
+  "hints": [
+   "明天7点",
+   "叫醒我。"
+  ]
+ },
+ {
+  "sentence": "Good night.",
+  "chunks": [
+   "Good",
+   "night."
+  ],
+  "hints": [
+   "晚",
+   "安。"
+  ]
+ },
+ {
+  "sentence": "Sweet dreams.",
+  "chunks": [
+   "Sweet",
+   "dreams."
+  ],
+  "hints": [
+   "做个",
+   "好梦。"
+  ]
+ },
+ {
+  "sentence": "I want to take a nap.",
+  "chunks": [
+   "I want to take",
+   "a nap."
+  ],
+  "hints": [
+   "我真想",
+   "睡个午觉。"
+  ]
+ },
+ {
+  "sentence": "I'm going to lie down.",
+  "chunks": [
+   "I'm going to",
+   "lie down."
+  ],
+  "hints": [
+   "我去",
+   "躺一会儿。"
+  ]
+ },
+ {
+  "sentence": "You're pretending to be asleep.",
+  "chunks": [
+   "You're pretending",
+   "to be asleep."
+  ],
+  "hints": [
+   "你在",
+   "装睡啊！"
+  ]
+ },
+ {
+  "sentence": "Were you sleeping?",
+  "chunks": [
+   "Were you",
+   "sleeping?"
+  ],
+  "hints": [
+   "你",
+   "睡着了吗？"
+  ]
+ },
+ {
+  "sentence": "No, I was awake.",
+  "chunks": [
+   "No, I",
+   "was awake."
+  ],
+  "hints": [
+   "没有，",
+   "还没睡呢。"
+  ]
+ },
+ {
+  "sentence": "Will you change the baby's diaper?",
+  "chunks": [
+   "Will you change",
+   "the baby's diaper?"
+  ],
+  "hints": [
+   "你能给孩子",
+   "换块尿布吗？"
+  ]
+ },
+ {
+  "sentence": "Do you need to pee?",
+  "chunks": [
+   "Do you need",
+   "to pee?"
+  ],
+  "hints": [
+   "想",
+   "尿尿吗？"
+  ]
+ },
+ {
+  "sentence": "It's time to go wee-wee.",
+  "chunks": [
+   "It's time",
+   "to go wee-wee."
+  ],
+  "hints": [
+   "该",
+   "尿尿了。"
+  ]
+ },
+ {
+  "sentence": "Peekaboo!",
+  "chunks": [
+   "Peekaboo!"
+  ],
+  "hints": [
+   "藏猫猫！"
+  ]
+ },
+ {
+  "sentence": "Kuchi-kuchi-koo.",
+  "chunks": [
+   "Kuchi-kuchi-koo."
+  ],
+  "hints": [
+   "胳肢胳肢"
+  ]
+ },
+ {
+  "sentence": "Let's play catch.",
+  "chunks": [
+   "Let's play",
+   "catch."
+  ],
+  "hints": [
+   "我们来",
+   "投球吧。"
+  ]
+ },
+ {
+  "sentence": "The water is leaking.",
+  "chunks": [
+   "The water",
+   "is leaking."
+  ],
+  "hints": [
+   "漏水",
+   "了。"
+  ]
+ },
+ {
+  "sentence": "It's so dusty.",
+  "chunks": [
+   "It's so",
+   "dusty."
+  ],
+  "hints": [
+   "全是",
+   "灰呀。"
+  ]
+ },
+ {
+  "sentence": "It's stuffy in this room.",
+  "chunks": [
+   "It's stuffy",
+   "in this room."
+  ],
+  "hints": [
+   "这间屋子",
+   "通风真差。"
+  ]
+ },
+ {
+  "sentence": "It's drafty in this room.",
+  "chunks": [
+   "It's drafty",
+   "in this room."
+  ],
+  "hints": [
+   "这个房间",
+   "很通风。"
+  ]
+ },
+ {
+  "sentence": "Will you feed the dog?",
+  "chunks": [
+   "Will you feed",
+   "the dog?"
+  ],
+  "hints": [
+   "你能去",
+   "喂喂狗吗？"
+  ]
+ },
+ {
+  "sentence": "Will you take the dog for a walk?",
+  "chunks": [
+   "Will you take the dog",
+   "for a walk?"
+  ],
+  "hints": [
+   "你去",
+   "遛遛狗吧？"
+  ]
+ },
+ {
+  "sentence": "Take care of my brother and sister.",
+  "chunks": [
+   "Take care of",
+   "my brother and sister."
+  ],
+  "hints": [
+   "帮我照看一下",
+   "弟弟和妹妹。"
+  ]
+ },
+ {
+  "sentence": "Please water the plants.",
+  "chunks": [
+   "Please water",
+   "the plants."
+  ],
+  "hints": [
+   "请给植物",
+   "浇点水。"
+  ]
+ },
+ {
+  "sentence": "What a mess!",
+  "chunks": [
+   "What a",
+   "mess!"
+  ],
+  "hints": [
+   "怎么",
+   "这么乱呀！"
+  ]
+ },
+ {
+  "sentence": "Help me.",
+  "chunks": [
+   "Help",
+   "me."
+  ],
+  "hints": [
+   "帮帮",
+   "我吧。"
+  ]
+ },
+ {
+  "sentence": "Clean up your room.",
+  "chunks": [
+   "Clean up",
+   "your room."
+  ],
+  "hints": [
+   "把你的屋子",
+   "收拾收拾。"
+  ]
+ },
+ {
+  "sentence": "Help me clean up the house.",
+  "chunks": [
+   "Help me clean up",
+   "the house."
+  ],
+  "hints": [
+   "帮我",
+   "打扫打扫卫生。"
+  ]
+ },
+ {
+  "sentence": "We're out of dish detergent.",
+  "chunks": [
+   "We're out of",
+   "dish detergent."
+  ],
+  "hints": [
+   "洗涤灵",
+   "用完啦。"
+  ]
+ },
+ {
+  "sentence": "Would you put up the clothes to dry?",
+  "chunks": [
+   "Would you put up",
+   "the clothes to dry?"
+  ],
+  "hints": [
+   "你能把衣服",
+   "晾上吗？"
+  ]
+ },
+ {
+  "sentence": "Will you help me fold up the clothes?",
+  "chunks": [
+   "Will you help me",
+   "fold up the clothes?"
+  ],
+  "hints": [
+   "你能帮我",
+   "把衣服叠起来吗？"
+  ]
+ },
+ {
+  "sentence": "Please sweep the floor.",
+  "chunks": [
+   "Please sweep",
+   "the floor."
+  ],
+  "hints": [
+   "把地",
+   "扫扫。"
+  ]
+ },
+ {
+  "sentence": "Please scrub the sink.",
+  "chunks": [
+   "Please scrub",
+   "the sink."
+  ],
+  "hints": [
+   "把厨房的池子",
+   "洗干净。"
+  ]
+ },
+ {
+  "sentence": "I have to vacuum my room.",
+  "chunks": [
+   "I have to vacuum",
+   "my room."
+  ],
+  "hints": [
+   "我得用吸尘器",
+   "吸吸我房间了。"
+  ]
+ },
+ {
+  "sentence": "Please dust the shelves.",
+  "chunks": [
+   "Please dust",
+   "the shelves."
+  ],
+  "hints": [
+   "掸掸柜子上的",
+   "土。"
+  ]
+ },
+ {
+  "sentence": "Please mop the floor.",
+  "chunks": [
+   "Please mop",
+   "the floor."
+  ],
+  "hints": [
+   "请",
+   "拖拖地。"
+  ]
+ },
+ {
+  "sentence": "Will you iron the shirt?",
+  "chunks": [
+   "Will you iron",
+   "the shirt?"
+  ],
+  "hints": [
+   "你能把那件衬衫",
+   "熨熨吗？"
+  ]
+ },
+ {
+  "sentence": "I have to iron my skirt.",
+  "chunks": [
+   "I have to iron",
+   "my skirt."
+  ],
+  "hints": [
+   "我的裙子",
+   "得熨了。"
+  ]
+ },
+ {
+  "sentence": "Let's go grocery shopping.",
+  "chunks": [
+   "Let's go",
+   "grocery shopping."
+  ],
+  "hints": [
+   "我们去超市",
+   "买东西吧。"
+  ]
+ },
+ {
+  "sentence": "The park was crowded.",
+  "chunks": [
+   "The park",
+   "was crowded."
+  ],
+  "hints": [
+   "公园里",
+   "人挤人。"
+  ]
+ },
+ {
+  "sentence": "Can you baby-sit tonight?",
+  "chunks": [
+   "Can you baby-sit",
+   "tonight?"
+  ],
+  "hints": [
+   "今晚能帮我",
+   "照看一下孩子吗？"
+  ]
+ },
+ {
+  "sentence": "This is for you.",
+  "chunks": [
+   "This is",
+   "for you."
+  ],
+  "hints": [
+   "这是",
+   "送给你的。"
+  ]
+ },
+ {
+  "sentence": "This is your share.",
+  "chunks": [
+   "This is",
+   "your share."
+  ],
+  "hints": [
+   "这是",
+   "你的那份。"
+  ]
+ },
+ {
+  "sentence": "What do you want for your birthday?",
+  "chunks": [
+   "What do you want",
+   "for your birthday?"
+  ],
+  "hints": [
+   "过生日",
+   "想要什么礼物？"
+  ]
+ },
+ {
+  "sentence": "Ta-dah!",
+  "chunks": [
+   "Ta-dah!"
+  ],
+  "hints": [
+   "噢，来喽！"
+  ]
+ },
+ {
+  "sentence": "I usually work out after work.",
+  "chunks": [
+   "I usually work out",
+   "after work."
+  ],
+  "hints": [
+   "我经常",
+   "下班以后运动。"
+  ]
+ },
+ {
+  "sentence": "I've started jogging.",
+  "chunks": [
+   "I've started",
+   "jogging."
+  ],
+  "hints": [
+   "我开始",
+   "慢跑锻炼。"
+  ]
+ },
+ {
+  "sentence": "Do you dream often?",
+  "chunks": [
+   "Do you",
+   "dream often?"
+  ],
+  "hints": [
+   "你常",
+   "做梦吗？"
+  ]
+ },
+ {
+  "sentence": "I've been forgetful lately.",
+  "chunks": [
+   "I've been",
+   "forgetful lately."
+  ],
+  "hints": [
+   "最近我总是",
+   "丢三落四的。"
+  ]
+ },
+ {
+  "sentence": "When is this due?",
+  "chunks": [
+   "When is",
+   "this due?"
+  ],
+  "hints": [
+   "什么时候",
+   "到期？"
+  ]
+ },
+ {
+  "sentence": "It's due on the thirtieth.",
+  "chunks": [
+   "It's due",
+   "on the thirtieth."
+  ],
+  "hints": [
+   "交费日期",
+   "截止到30号。"
+  ]
+ },
+ {
+  "sentence": "Could you give me change?",
+  "chunks": [
+   "Could you give me",
+   "change?"
+  ],
+  "hints": [
+   "能帮我换",
+   "一下零钱吗？"
+  ]
+ },
+ {
+  "sentence": "Do you have change for one hundred yen?",
+  "chunks": [
+   "Do you have change",
+   "for one hundred yen?"
+  ],
+  "hints": [
+   "能帮我换开",
+   "100日元吗？"
+  ]
+ },
+ {
+  "sentence": "I need to deposit five thousand yen in my savings account.",
+  "chunks": [
+   "I need to deposit five thousand yen",
+   "in my savings account."
+  ],
+  "hints": [
+   "我要存5000日元",
+   "在我的账户上。"
+  ]
+ },
+ {
+  "sentence": "I need to withdraw ¥5,000 from my savings account.",
+  "chunks": [
+   "I need to withdraw ¥5,000",
+   "from my savings account."
+  ],
+  "hints": [
+   "我要取5000日元",
+   "从我的账户上。"
+  ]
+ },
+ {
+  "sentence": "I paid out of my own pocket.",
+  "chunks": [
+   "I paid out of",
+   "my own pocket."
+  ],
+  "hints": [
+   "我是自己",
+   "掏的腰包。"
+  ]
+ },
+ {
+  "sentence": "I'm out of cash.",
+  "chunks": [
+   "I'm out of",
+   "cash."
+  ],
+  "hints": [
+   "我",
+   "没带现金。"
+  ]
+ },
+ {
+  "sentence": "I don't have much money on me now.",
+  "chunks": [
+   "I don't have much money",
+   "on me now."
+  ],
+  "hints": [
+   "我现在",
+   "没有多少现金。"
+  ]
+ },
+ {
+  "sentence": "I'm broke.",
+  "chunks": [
+   "I'm",
+   "broke."
+  ],
+  "hints": [
+   "身无",
+   "分文。"
+  ]
+ },
+ {
+  "sentence": "I have a lot of money on me now.",
+  "chunks": [
+   "I have a lot of money",
+   "on me now."
+  ],
+  "hints": [
+   "现在我",
+   "有很多现金。"
+  ]
+ },
+ {
+  "sentence": "I can't afford to be lazy.",
+  "chunks": [
+   "I can't afford",
+   "to be lazy."
+  ],
+  "hints": [
+   "我可没有",
+   "时间闲呆着。"
+  ]
+ },
+ {
+  "sentence": "What a waste!",
+  "chunks": [
+   "What a",
+   "waste!"
+  ],
+  "hints": [
+   "多",
+   "浪费呀！"
+  ]
+ },
+ {
+  "sentence": "He didn't pay the debt and disappeared.",
+  "chunks": [
+   "He didn't pay the debt",
+   "and disappeared."
+  ],
+  "hints": [
+   "他因为还不上债",
+   "而躲了起来。"
+  ]
+ }
+]

@@ -1,0 +1,608 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "15accdce",
+      "sentence": "Are you free this weekend?",
+      "translation": "你这个周末有空吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "79fcd34e",
+      "sentence": "Could I see you again?",
+      "translation": "我们还可以再见面吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "ae489ff9",
+      "sentence": "Could you give me your phone number?",
+      "translation": "能给我你的电话号码吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "7f94ae62",
+      "sentence": "Where shall we meet?",
+      "translation": "我们在哪儿见面?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "511af821",
+      "sentence": "Shall I come to pick you up?",
+      "translation": "要我开车去接你吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "785fa9bc",
+      "sentence": "Are you doing anything this afternoon?",
+      "translation": "你今天下午有安排吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "bef3c01a",
+      "sentence": "How about having dinner with me?",
+      "translation": "和我一起吃晚饭，好吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "6184e991",
+      "sentence": "Why don't we go to see a baseball game?",
+      "translation": "我们干嘛不去看棒球比赛呢?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "a095d5f4",
+      "sentence": "Sorry, I'm tied up.",
+      "translation": "真对不起，我另有安排。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "802c3fbd",
+      "sentence": "I'm afraid I can't.",
+      "translation": "实在对不起，恐怕不行。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "feea942d",
+      "sentence": "Thanks for asking, but...",
+      "translation": "谢谢您的邀请，可是……",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "7ba6597c",
+      "sentence": "How about a rain check?",
+      "translation": "另找时间可以吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "bcb3305d",
+      "sentence": "I hope you can come.",
+      "translation": "我希望你能来。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "120fac06",
+      "sentence": "When is it convenient for you?",
+      "translation": "你什么时候方便?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "84891182",
+      "sentence": "About what time?",
+      "translation": "什么时候?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "83f2adcd",
+      "sentence": "Whenever.",
+      "translation": "什么时候都行。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "7303c39d",
+      "sentence": "When you have time.",
+      "translation": "等你有时间的时候吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "95212793",
+      "sentence": "I'm free today.",
+      "translation": "我今天有空。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "90b1b154",
+      "sentence": "I'll be busy tomorrow.",
+      "translation": "明天我会很忙。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "da3f4a1d",
+      "sentence": "How about the tenth?",
+      "translation": "10号怎么样?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "0cece22b",
+      "sentence": "When are you free?",
+      "translation": "你什么时候有空?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "87becf1b",
+      "sentence": "That's a bad day for me.",
+      "translation": "那天我不行。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "d168845c",
+      "sentence": "That day is fine.",
+      "translation": "那天我可以。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "3185a4c3",
+      "sentence": "When can I come over?",
+      "translation": "我什么时候去合适?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "3caf0366",
+      "sentence": "You decide when.",
+      "translation": "你定时间吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "730ebe1b",
+      "sentence": "You decide where.",
+      "translation": "你定地点吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "8b2a8bde",
+      "sentence": "Is seven convenient for you?",
+      "translation": "7点行吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "f364443b",
+      "sentence": "When can you come over?",
+      "translation": "你几点能来?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "90d8624c",
+      "sentence": "Is it too early?",
+      "translation": "太早了吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "1697d5d5",
+      "sentence": "Is it too late?",
+      "translation": "太晚了吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "0a6941df",
+      "sentence": "It's a date.",
+      "translation": "就那个时间吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "2797237c",
+      "sentence": "See you then.",
+      "translation": "回头见。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "b93bfeba",
+      "sentence": "Are you ready?",
+      "translation": "准备好了吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "494ddace",
+      "sentence": "Ready.",
+      "translation": "准备好了。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "b0911d80",
+      "sentence": "I'm not ready.",
+      "translation": "还没准备好呢。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "75c66f0e",
+      "sentence": "What time shall we leave?",
+      "translation": "我们什么时候出发。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "5593532b",
+      "sentence": "What time do we arrive?",
+      "translation": "我们几点能到?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "7e27bc64",
+      "sentence": "Let's get going.",
+      "translation": "那我们走吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "d4977a6a",
+      "sentence": "Would you like to go to a movie?",
+      "translation": "你想去看电影吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "467d6b48",
+      "sentence": "What's on tonight?",
+      "translation": "今天晚上放什么电影?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "9f367ee8",
+      "sentence": "What movie do you want to see?",
+      "translation": "你想看什么电影?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "fe8006b2",
+      "sentence": "I want to see...",
+      "translation": "我想看《××》",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "5afa9b39",
+      "sentence": "Where is... playing?",
+      "translation": "哪儿演《××》?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "d92eca32",
+      "sentence": "How long is... playing?",
+      "translation": "《××》演到什么时候?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "7bc67021",
+      "sentence": "Who is in this movie?",
+      "translation": "这部电影是谁演的?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "b6c43aea",
+      "sentence": "How long does it last?",
+      "translation": "演多长时间?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "7fa99c90",
+      "sentence": "What time is the next showing?",
+      "translation": "下一场几点开演?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "76ce0a3d",
+      "sentence": "What time will it be over?",
+      "translation": "几点演完?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "7c2652af",
+      "sentence": "Two, please.",
+      "translation": "我买两张成人票。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "a58cd420",
+      "sentence": "I can't see because of the person in front of me.",
+      "translation": "前边的人挡着，我看不见。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "14d37341",
+      "sentence": "We are way in the back, aren't we?",
+      "translation": "我们怎么坐得这么靠后呀?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "87c09c46",
+      "sentence": "Let's sit closer up front.",
+      "translation": "我们坐到前面的座位上吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "ff7c651b",
+      "sentence": "That was interesting, wasn't it?",
+      "translation": "真太有意思了，是不是?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "22f73b7a",
+      "sentence": "That was boring, wasn't it?",
+      "translation": "这电影真没劲。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "7eb71864",
+      "sentence": "I was moved.",
+      "translation": "太让人感动了。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "eeb8ffc7",
+      "sentence": "I'd like two tickets for October 3rd, please.",
+      "translation": "我买两张10月3号的票。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "81b9ca6a",
+      "sentence": "Sorry, we're sold out.",
+      "translation": "对不起，卖完了。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "9c36ad6d",
+      "sentence": "When do you have tickets?",
+      "translation": "有什么时候的票?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "9411d247",
+      "sentence": "What time does it start?",
+      "translation": "几点开始?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "5f389b9a",
+      "sentence": "Can I make a reservation?",
+      "translation": "可以预订吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "1c1f7777",
+      "sentence": "Where can I buy a ticket?",
+      "translation": "在哪儿买票?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "a296bdc8",
+      "sentence": "Is this seat taken?",
+      "translation": "这位子有人吗?",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "478afe79",
+      "sentence": "We have great seats, don't we?",
+      "translation": "我们这个位子真棒。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "51e993a4",
+      "sentence": "Encore!",
+      "translation": "再来一个!",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "5f8a6d36",
+      "sentence": "Go for it,...!",
+      "translation": "××加油!",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "cff80fb6",
+      "sentence": "I'm going to meet a friend for lunch.",
+      "translation": "我打算和朋友一起吃午饭。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "f03e78e8",
+      "sentence": "Let's grab a coffee after work.",
+      "translation": "下班后一起去喝杯咖啡吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "b3b8b56c",
+      "sentence": "Are you doing anything this evening?",
+      "translation": "你今晚有什么安排吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "c5333fc3",
+      "sentence": "I'd love to, but I'm afraid I'm busy.",
+      "translation": "我很想去，但恐怕我没空。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "e5c1bf50",
+      "sentence": "Why don't we meet at the usual place?",
+      "translation": "我们在老地方见怎么样？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "9ae0b549",
+      "sentence": "I'll pick you up at your place.",
+      "translation": "我去你那儿接你。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "249e8feb",
+      "sentence": "Could we reschedule for tomorrow instead?",
+      "translation": "我们能改到明天吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "684f3d80",
+      "sentence": "I'm running a bit late, sorry.",
+      "translation": "我可能要晚点到，抱歉。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "5f612d59",
+      "sentence": "Shall we take a walk after dinner?",
+      "translation": "晚饭后我们去散散步好吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 73
+    },
+    {
+      "cid": "f900c537",
+      "sentence": "I'll see you at the entrance at seven.",
+      "translation": "我们七点在入口见。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 74
+    },
+    {
+      "cid": "ef7de65b",
+      "sentence": "I'm afraid I can't make it tonight.",
+      "translation": "恐怕今晚我抽不出时间。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 75
+    },
+    {
+      "cid": "966b3754",
+      "sentence": "Why don't we grab a bite to eat?",
+      "translation": "我们随便吃点东西怎么样？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 76
+    },
+    {
+      "cid": "09096d4a",
+      "sentence": "What time should we meet up?",
+      "translation": "我们几点碰面好？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 77
+    },
+    {
+      "cid": "5dea8d2a",
+      "sentence": "Mind if I join you for lunch?",
+      "translation": "介意我跟你们一起吃午饭吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 78
+    },
+    {
+      "cid": "141237b8",
+      "sentence": "I'm supposed to meet him at six.",
+      "translation": "我六点应该和他见面。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 79
+    },
+    {
+      "cid": "9352bdcd",
+      "sentence": "Would you like to grab dinner sometime?",
+      "translation": "改天一起吃个晚饭怎么样？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 80
+    },
+    {
+      "cid": "e4eb1b2b",
+      "sentence": "Let's catch up over coffee this weekend.",
+      "translation": "这周末我们喝咖啡聊聊近况吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 81
+    },
+    {
+      "cid": "ea7d8a4b",
+      "sentence": "Why don't you come over for dinner tonight?",
+      "translation": "今晚你过来一起吃晚饭吧？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 82
+    },
+    {
+      "cid": "6c4276f8",
+      "sentence": "Wanna go for a run?",
+      "translation": "想去跑步吗？",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 83
+    },
+    {
+      "cid": "d6700842",
+      "sentence": "I'm down for it.",
+      "translation": "我没问题。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 84
+    },
+    {
+      "cid": "01b8d6e2",
+      "sentence": "Let's hang out.",
+      "translation": "出去玩吧。",
+      "sourceUrl": "content/oral-1-2-1/oral-001-199571a453e8.json",
+      "sourceOffset": 85
+    }
+  ]
+}

@@ -3,6 +3,836 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "I'm home.",
+      "translation": "我回来了。",
+      "chunks": [
+        "I'm",
+        "home."
+      ],
+      "hints": [
+        "我",
+        "回来了。"
+      ],
+      "cid": "a9fb3927"
+    },
+    {
+      "sentence": "Welcome home!",
+      "translation": "你回来了。",
+      "chunks": [
+        "Welcome",
+        "home!"
+      ],
+      "hints": [
+        "你",
+        "回来了。"
+      ],
+      "cid": "317d6281"
+    },
+    {
+      "sentence": "Did you have a good time?",
+      "translation": "今天过得愉快吗?",
+      "chunks": [
+        "Did you have",
+        "a good time?"
+      ],
+      "hints": [
+        "今天过得",
+        "愉快吗？"
+      ],
+      "cid": "4d2b6285"
+    },
+    {
+      "sentence": "How did it go today?",
+      "translation": "今天怎么样?",
+      "chunks": [
+        "How did it",
+        "go today?"
+      ],
+      "hints": [
+        "今天",
+        "怎么样？"
+      ],
+      "cid": "fdeaebc9"
+    },
+    {
+      "sentence": "Can I go out to play?",
+      "translation": "我可以出去玩儿会儿吗?",
+      "chunks": [
+        "Can I go out",
+        "to play?"
+      ],
+      "hints": [
+        "我可以出去",
+        "玩儿会儿吗？"
+      ],
+      "cid": "8c3c197a"
+    },
+    {
+      "sentence": "I'm hungry.",
+      "translation": "我饿了。",
+      "chunks": [
+        "I'm",
+        "hungry."
+      ],
+      "hints": [
+        "我",
+        "饿了。"
+      ],
+      "cid": "b889eaa9"
+    },
+    {
+      "sentence": "Where are the snacks?",
+      "translation": "点心在哪儿?",
+      "chunks": [
+        "Where are",
+        "the snacks?"
+      ],
+      "hints": [
+        "点心",
+        "在哪儿？"
+      ],
+      "cid": "942e60dd"
+    },
+    {
+      "sentence": "I'm going to cram school now.",
+      "translation": "我去补习学校了啊。",
+      "chunks": [
+        "I'm going to",
+        "cram school now."
+      ],
+      "hints": [
+        "我去补习学校",
+        "了啊。"
+      ],
+      "cid": "ed4acbb8"
+    },
+    {
+      "sentence": "May I have my allowance?",
+      "translation": "能给我点儿零花钱吗?",
+      "chunks": [
+        "May I have",
+        "my allowance?"
+      ],
+      "hints": [
+        "能给我点儿",
+        "零花钱吗？"
+      ],
+      "cid": "64db5bfc"
+    },
+    {
+      "sentence": "I'm tired.",
+      "translation": "真累啊!",
+      "chunks": [
+        "I'm",
+        "tired."
+      ],
+      "hints": [
+        "真",
+        "累啊！"
+      ],
+      "cid": "4630dfdc"
+    },
+    {
+      "sentence": "What would you like for dinner?",
+      "translation": "晚饭你想吃什么?",
+      "chunks": [
+        "What would you like",
+        "for dinner?"
+      ],
+      "hints": [
+        "晚饭你想",
+        "吃什么？"
+      ],
+      "cid": "d642e7de"
+    },
+    {
+      "sentence": "Would you help me set the table?",
+      "translation": "你能帮我准备餐具吗?",
+      "chunks": [
+        "Would you help me",
+        "set the table?"
+      ],
+      "hints": [
+        "你能帮我",
+        "准备餐具吗？"
+      ],
+      "cid": "ff4ff47a"
+    },
+    {
+      "sentence": "What should I make for dinner?",
+      "translation": "晚饭做什么好呢?",
+      "chunks": [
+        "What should I make",
+        "for dinner?"
+      ],
+      "hints": [
+        "晚饭做",
+        "什么好呢？"
+      ],
+      "cid": "7edf2b33"
+    },
+    {
+      "sentence": "It's good to be home.",
+      "translation": "还是家好哇。",
+      "chunks": [
+        "It's good",
+        "to be home."
+      ],
+      "hints": [
+        "还是",
+        "家好哇。"
+      ],
+      "cid": "22305d7e"
+    },
+    {
+      "sentence": "Would you run to the store?",
+      "translation": "你能不能快点儿去趟商店?",
+      "chunks": [
+        "Would you run",
+        "to the store?"
+      ],
+      "hints": [
+        "你能不能快点儿",
+        "去趟商店？"
+      ],
+      "cid": "10e78ae8"
+    },
+    {
+      "sentence": "The bath is ready.",
+      "translation": "洗澡水烧好了。",
+      "chunks": [
+        "The bath",
+        "is ready."
+      ],
+      "hints": [
+        "洗澡水",
+        "烧好了。"
+      ],
+      "cid": "e9798442"
+    },
+    {
+      "sentence": "I'm taking a shower.",
+      "translation": "我要冲个澡。",
+      "chunks": [
+        "I'm taking",
+        "a shower."
+      ],
+      "hints": [
+        "我要",
+        "冲个澡。"
+      ],
+      "cid": "1530bc8b"
+    },
+    {
+      "sentence": "Is dinner ready?",
+      "translation": "晚饭好了吗?",
+      "chunks": [
+        "Is dinner",
+        "ready?"
+      ],
+      "hints": [
+        "晚饭",
+        "好了吗？"
+      ],
+      "cid": "4ddd2ecd"
+    },
+    {
+      "sentence": "Mom, what's for dinner tonight?",
+      "translation": "妈妈，今天晚饭吃什么?",
+      "chunks": [
+        "Mom, what's",
+        "for dinner tonight?"
+      ],
+      "hints": [
+        "妈妈，今天晚饭",
+        "吃什么？"
+      ],
+      "cid": "16b2a249"
+    },
+    {
+      "sentence": "What's for dinner?",
+      "translation": "晚饭吃什么?",
+      "chunks": [
+        "What's",
+        "for dinner?"
+      ],
+      "hints": [
+        "晚饭",
+        "吃什么？"
+      ],
+      "cid": "0bdb90f7"
+    },
+    {
+      "sentence": "Today, we're having curry.",
+      "translation": "今天吃咖哩饭。",
+      "chunks": [
+        "Today, we're having",
+        "curry."
+      ],
+      "hints": [
+        "今天吃",
+        "咖哩饭。"
+      ],
+      "cid": "7c64be12"
+    },
+    {
+      "sentence": "How soon can you get it ready?",
+      "translation": "还要多久才能做好呀?",
+      "chunks": [
+        "How soon can you",
+        "get it ready?"
+      ],
+      "hints": [
+        "还要多久",
+        "才能做好呀？"
+      ],
+      "cid": "61038372"
+    },
+    {
+      "sentence": "Let's eat.",
+      "translation": "我吃了啊。",
+      "chunks": [
+        "Let's",
+        "eat."
+      ],
+      "hints": [
+        "我",
+        "吃了啊。"
+      ],
+      "cid": "e83e2088"
+    },
+    {
+      "sentence": "Please go ahead.",
+      "translation": "请先吃吧。",
+      "chunks": [
+        "Please",
+        "go ahead."
+      ],
+      "hints": [
+        "请",
+        "先吃吧。"
+      ],
+      "cid": "f034e8d8"
+    },
+    {
+      "sentence": "This knife cuts well, doesn't it?",
+      "translation": "这刀挺好使的，是不是?",
+      "chunks": [
+        "This knife cuts well,",
+        "doesn't it?"
+      ],
+      "hints": [
+        "这刀挺好使的，",
+        "是不是？"
+      ],
+      "cid": "ccaadcfd"
+    },
+    {
+      "sentence": "The water is boiling!",
+      "translation": "水开啦!",
+      "chunks": [
+        "The water",
+        "is boiling!"
+      ],
+      "hints": [
+        "水",
+        "开啦！"
+      ],
+      "cid": "30f3a772"
+    },
+    {
+      "sentence": "Come and get it!",
+      "translation": "开饭啦!",
+      "chunks": [
+        "Come and",
+        "get it!"
+      ],
+      "hints": [
+        "开饭",
+        "啦！"
+      ],
+      "cid": "594b6c4c"
+    },
+    {
+      "sentence": "It's time to eat.",
+      "translation": "该吃饭啦!",
+      "chunks": [
+        "It's time",
+        "to eat."
+      ],
+      "hints": [
+        "该",
+        "吃饭啦！"
+      ],
+      "cid": "371fdef8"
+    },
+    {
+      "sentence": "I'm coming.",
+      "translation": "这就来啦!",
+      "chunks": [
+        "I'm",
+        "coming."
+      ],
+      "hints": [
+        "这就",
+        "来啦！"
+      ],
+      "cid": "28dbdd8b"
+    },
+    {
+      "sentence": "Did you wash your hands well?",
+      "translation": "手洗干净了吗?",
+      "chunks": [
+        "Did you wash",
+        "your hands well?"
+      ],
+      "hints": [
+        "手洗",
+        "干净了吗？"
+      ],
+      "cid": "f4e7aaf0"
+    },
+    {
+      "sentence": "Don't spill it!",
+      "translation": "别弄洒了。",
+      "chunks": [
+        "Don't",
+        "spill it!"
+      ],
+      "hints": [
+        "别",
+        "弄洒了。"
+      ],
+      "cid": "54b3afe3"
+    },
+    {
+      "sentence": "Eat all of your vegetables.",
+      "translation": "把碗里的菜吃光。",
+      "chunks": [
+        "Eat all of",
+        "your vegetables."
+      ],
+      "hints": [
+        "把碗里的菜",
+        "吃光。"
+      ],
+      "cid": "fd38da20"
+    },
+    {
+      "sentence": "Finish up your plate.",
+      "translation": "把碗里的饭吃干净。",
+      "chunks": [
+        "Finish up",
+        "your plate."
+      ],
+      "hints": [
+        "把碗里的饭",
+        "吃干净。"
+      ],
+      "cid": "94e6b14c"
+    },
+    {
+      "sentence": "I don't like asparagus.",
+      "translation": "我不喜欢吃芦笋。",
+      "chunks": [
+        "I don't like",
+        "asparagus."
+      ],
+      "hints": [
+        "我不喜欢",
+        "吃芦笋。"
+      ],
+      "cid": "8d9f12c8"
+    },
+    {
+      "sentence": "It was very delicious. Thank you.",
+      "translation": "谢谢您的款待。",
+      "chunks": [
+        "It was very delicious. Thank",
+        "you."
+      ],
+      "hints": [
+        "谢谢您的",
+        "款待。"
+      ],
+      "cid": "92166e03"
+    },
+    {
+      "sentence": "Would you clear the table?",
+      "translation": "能帮我收拾盘子吗?",
+      "chunks": [
+        "Would you clear",
+        "the table?"
+      ],
+      "hints": [
+        "能帮我",
+        "收拾盘子吗？"
+      ],
+      "cid": "a9919458"
+    },
+    {
+      "sentence": "Do the dishes.",
+      "cid": "70c23bb5",
+      "translation": "洗碗。",
+      "chunks": [
+        "Do",
+        "the dishes."
+      ],
+      "hints": [
+        "做（这件事）",
+        "碗碟"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "做（某事）"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈdɪʃɪz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "碗碟"
+        }
+      ],
+      "explanations": [
+        "`do the dishes` = 洗碗，是固定搭配。常见错误：\n• \"Do the dish\" → 用复数 dishes\n• 英式也常说 wash up，意思一样",
+        "相关：do the laundry（洗衣服）/ do the cooking（做饭）"
+      ],
+      "distractors": [
+        [
+          "Does",
+          "Doing",
+          "Done"
+        ],
+        [
+          "the dish.",
+          "a dishes.",
+          "the dishes of."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll dry the dishes.",
+      "translation": "我擦盘子。",
+      "chunks": [
+        "I'll dry",
+        "the dishes."
+      ],
+      "hints": [
+        "我",
+        "擦盘子。"
+      ],
+      "cid": "28709edd"
+    },
+    {
+      "sentence": "What are you doing?",
+      "translation": "你干什么呢?",
+      "chunks": [
+        "What are you",
+        "doing?"
+      ],
+      "hints": [
+        "你",
+        "干什么呢？"
+      ],
+      "cid": "f21e1b5a"
+    },
+    {
+      "sentence": "I'm watching TV.",
+      "translation": "我看电视呢。",
+      "chunks": [
+        "I'm watching",
+        "TV."
+      ],
+      "hints": [
+        "我",
+        "看电视呢。"
+      ],
+      "cid": "38b48495"
+    },
+    {
+      "sentence": "Are there any good programs on TV?",
+      "translation": "有什么好看的节目吗?",
+      "chunks": [
+        "Are there any good programs",
+        "on TV?"
+      ],
+      "hints": [
+        "有什么好看的",
+        "节目吗？"
+      ],
+      "cid": "51f79667"
+    },
+    {
+      "sentence": "Nomo is on TV.",
+      "translation": "野茂上电视了。",
+      "chunks": [
+        "Nomo is",
+        "on TV."
+      ],
+      "hints": [
+        "野茂",
+        "上电视了。"
+      ],
+      "cid": "91bf7697"
+    },
+    {
+      "sentence": "What's on Channel 8?",
+      "translation": "8频道演什么呢?",
+      "chunks": [
+        "What's on",
+        "Channel 8?"
+      ],
+      "hints": [
+        "8频道",
+        "演什么呢？"
+      ],
+      "cid": "939c4aa6"
+    },
+    {
+      "sentence": "Would you change the channel?",
+      "translation": "能不能帮我换个台?",
+      "chunks": [
+        "Would you change",
+        "the channel?"
+      ],
+      "hints": [
+        "能不能帮我",
+        "换个台？"
+      ],
+      "cid": "c7037ea0"
+    },
+    {
+      "sentence": "I want to watch more TV.",
+      "translation": "我还想看电视。",
+      "chunks": [
+        "I want to watch",
+        "more TV."
+      ],
+      "hints": [
+        "我还想",
+        "看电视。"
+      ],
+      "cid": "7001e3c1"
+    },
+    {
+      "sentence": "Let's spread out the futon.",
+      "translation": "铺床吧。",
+      "chunks": [
+        "Let's spread out",
+        "the futon."
+      ],
+      "hints": [
+        "铺床",
+        "吧。"
+      ],
+      "cid": "6e76dc28"
+    },
+    {
+      "sentence": "I'm sleepy.",
+      "translation": "我困了。",
+      "chunks": [
+        "I'm",
+        "sleepy."
+      ],
+      "hints": [
+        "我",
+        "困了。"
+      ],
+      "cid": "5fa9ab2c"
+    },
+    {
+      "sentence": "Did you do your homework?",
+      "translation": "作业做了吗?",
+      "chunks": [
+        "Did you do",
+        "your homework?"
+      ],
+      "hints": [
+        "作业",
+        "做了吗？"
+      ],
+      "cid": "eae4719e"
+    },
+    {
+      "sentence": "Study hard.",
+      "translation": "好好学习。",
+      "chunks": [
+        "Study",
+        "hard."
+      ],
+      "hints": [
+        "好好",
+        "学习。"
+      ],
+      "cid": "5df24c37"
+    },
+    {
+      "sentence": "Hurry up and go to sleep.",
+      "translation": "快点睡觉。",
+      "chunks": [
+        "Hurry up",
+        "and go to sleep."
+      ],
+      "hints": [
+        "快点",
+        "睡觉。"
+      ],
+      "cid": "55711453"
+    },
+    {
+      "sentence": "Enough with your video games.",
+      "translation": "游戏玩够了吧。",
+      "chunks": [
+        "Enough with",
+        "your video games."
+      ],
+      "hints": [
+        "游戏",
+        "玩够了吧。"
+      ],
+      "cid": "0f5e7d28"
+    },
+    {
+      "sentence": "Make sure you brush your teeth.",
+      "translation": "一定要刷牙噢。",
+      "chunks": [
+        "Make sure you",
+        "brush your teeth."
+      ],
+      "hints": [
+        "一定要",
+        "刷牙噢。"
+      ],
+      "cid": "f13893fa"
+    },
+    {
+      "sentence": "Are you ready for tomorrow?",
+      "translation": "明天的东西都准备好了吗?",
+      "chunks": [
+        "Are you ready",
+        "for tomorrow?"
+      ],
+      "hints": [
+        "明天的东西",
+        "都准备好了吗？"
+      ],
+      "cid": "7fdae9f2"
+    },
+    {
+      "sentence": "I'm going to take a bath.",
+      "translation": "我去洗个澡。",
+      "chunks": [
+        "I'm going to",
+        "take a bath."
+      ],
+      "hints": [
+        "我去",
+        "洗个澡。"
+      ],
+      "cid": "3326421c"
+    },
+    {
+      "sentence": "Time to go to sleep.",
+      "translation": "该睡觉了。",
+      "chunks": [
+        "Time to go",
+        "to sleep."
+      ],
+      "hints": [
+        "该",
+        "睡觉了。"
+      ],
+      "cid": "505d984d"
+    },
+    {
+      "sentence": "You left the TV on.",
+      "translation": "电视还开着呢。",
+      "chunks": [
+        "You left",
+        "the TV on."
+      ],
+      "hints": [
+        "电视",
+        "还开着呢。"
+      ],
+      "cid": "d4aeb80d"
+    },
+    {
+      "sentence": "Don't leave your stuff here.",
+      "translation": "别把你的东西都摊在这儿。",
+      "chunks": [
+        "Don't leave",
+        "your stuff here."
+      ],
+      "hints": [
+        "别把你的东西",
+        "都摊在这儿。"
+      ],
+      "cid": "8e910883"
+    },
+    {
+      "sentence": "I set the alarm clock for 8:00.",
+      "translation": "把闹钟定在8点了。",
+      "chunks": [
+        "I set the alarm clock",
+        "for 8:00."
+      ],
+      "hints": [
+        "把闹钟",
+        "定在8点了。"
+      ],
+      "cid": "8ddcbec3"
+    },
+    {
+      "sentence": "Wake me up at seven tomorrow.",
+      "translation": "明天7点叫醒我。",
+      "chunks": [
+        "Wake me up",
+        "at seven tomorrow."
+      ],
+      "hints": [
+        "明天7点",
+        "叫醒我。"
+      ],
+      "cid": "5c4f0d3d"
+    },
+    {
+      "sentence": "Good night.",
+      "translation": "晚安。",
+      "chunks": [
+        "Good",
+        "night."
+      ],
+      "hints": [
+        "晚",
+        "安。"
+      ],
+      "cid": "b4bc6200"
+    },
+    {
+      "sentence": "Sweet dreams.",
+      "translation": "做个好梦。",
+      "chunks": [
+        "Sweet",
+        "dreams."
+      ],
+      "hints": [
+        "做个",
+        "好梦。"
+      ],
+      "cid": "cb1fdbb1"
+    },
+    {
       "sentence": "I'll take out the trash after dinner.",
       "cid": "3d052989",
       "translation": "晚饭后我会把垃圾拿出去。",
@@ -2555,56 +3385,6 @@
       ]
     },
     {
-      "sentence": "Do the dishes.",
-      "cid": "70c23bb5",
-      "translation": "洗碗。",
-      "chunks": [
-        "Do",
-        "the dishes."
-      ],
-      "hints": [
-        "做（这件事）",
-        "碗碟"
-      ],
-      "grammar": [
-        {
-          "role": "谓语",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/duː/"
-          ],
-          "pos": "祈使句动词",
-          "meaning": "做（某事）"
-        },
-        {
-          "role": "宾语",
-          "color": "#3358e0",
-          "phonetic": [
-            "/ðə/",
-            "/ˈdɪʃɪz/"
-          ],
-          "pos": "名词短语",
-          "meaning": "碗碟"
-        }
-      ],
-      "explanations": [
-        "`do the dishes` = 洗碗，是固定搭配。常见错误：\n• \"Do the dish\" → 用复数 dishes\n• 英式也常说 wash up，意思一样",
-        "相关：do the laundry（洗衣服）/ do the cooking（做饭）"
-      ],
-      "distractors": [
-        [
-          "Does",
-          "Doing",
-          "Done"
-        ],
-        [
-          "the dish.",
-          "a dishes.",
-          "the dishes of."
-        ]
-      ]
-    },
-    {
       "sentence": "Put it up.",
       "cid": "fab59b9a",
       "translation": "挂上去。",
@@ -3099,57 +3879,6 @@
           "out.",
           "in.",
           "down."
-        ]
-      ]
-    },
-    {
-      "sentence": "I had a nightmare.",
-      "cid": "bb4458df",
-      "translation": "我做了个噩梦。",
-      "chunks": [
-        "I had",
-        "a nightmare."
-      ],
-      "hints": [
-        "我做了",
-        "一个噩梦"
-      ],
-      "grammar": [
-        {
-          "role": "主谓",
-          "color": "#c87033",
-          "phonetic": [
-            "/aɪ/",
-            "/hæd/"
-          ],
-          "pos": "一般过去时",
-          "meaning": "我做了"
-        },
-        {
-          "role": "宾语",
-          "color": "#3358e0",
-          "phonetic": [
-            "/ə/",
-            "/ˈnaɪtmer/"
-          ],
-          "pos": "名词短语",
-          "meaning": "一个噩梦"
-        }
-      ],
-      "explanations": [
-        "「做噩梦」用 `have a nightmare`，过去式 had。常见错误：\n• \"I have a nightmare\" → 说昨晚的事要用过去式\n• \"I made a nightmare\" → 噩梦不是「制作」的，用 have",
-        "相关：a bad dream（也行）/ a sweet dream（好梦）"
-      ],
-      "distractors": [
-        [
-          "I have",
-          "I'm had",
-          "I had got"
-        ],
-        [
-          "a nightmares.",
-          "nightmare.",
-          "a night mare."
         ]
       ]
     },

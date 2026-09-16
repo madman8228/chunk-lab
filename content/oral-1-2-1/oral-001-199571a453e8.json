@@ -3,6 +3,884 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Are you free this weekend?",
+      "cid": "15accdce",
+      "translation": "你这个周末有空吗？",
+      "chunks": [
+        "Are you free",
+        "this weekend?"
+      ],
+      "hints": [
+        "你有空吗",
+        "这个周末"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/",
+            "/friː/"
+          ],
+          "pos": "主系表",
+          "meaning": "你有空吗"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðɪs/",
+            "/ˈwiːkend/"
+          ],
+          "pos": "名词短语",
+          "meaning": "这个周末"
+        }
+      ],
+      "explanations": [
+        "`Are you free...` 询问是否有空。常见错误：\n• \"Do you **have** free\" → 不自然，have free time 才搭配 have\n• \"Are you **freed**\" → free 是形容词，不是动词过去式",
+        "`this weekend` 前不加介词（不说 on this weekend，尽管美语偶尔加 on，但 this weekend 最简洁常用）。"
+      ],
+      "distractors": [
+        [
+          "Do you free",
+          "Are you freely",
+          "Are you freedom"
+        ],
+        [
+          "this week?",
+          "that weekend?",
+          "this weekends?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could I see you again?",
+      "translation": "我们还可以再见面吗?",
+      "chunks": [
+        "Could I see you",
+        "again?"
+      ],
+      "hints": [
+        "我们还可以",
+        "再见面吗？"
+      ],
+      "cid": "79fcd34e"
+    },
+    {
+      "sentence": "Could you give me your phone number?",
+      "translation": "能给我你的电话号码吗?",
+      "chunks": [
+        "Could you give me",
+        "your phone number?"
+      ],
+      "hints": [
+        "能给我",
+        "你的电话号码吗？"
+      ],
+      "cid": "ae489ff9"
+    },
+    {
+      "sentence": "Where shall we meet?",
+      "translation": "我们在哪儿见面?",
+      "chunks": [
+        "Where shall",
+        "we meet?"
+      ],
+      "hints": [
+        "我们在哪儿",
+        "见面？"
+      ],
+      "cid": "7f94ae62"
+    },
+    {
+      "sentence": "Shall I come to pick you up?",
+      "translation": "要我开车去接你吗?",
+      "chunks": [
+        "Shall I come",
+        "to pick you up?"
+      ],
+      "hints": [
+        "要我开车",
+        "去接你吗？"
+      ],
+      "cid": "511af821"
+    },
+    {
+      "sentence": "Are you doing anything this afternoon?",
+      "translation": "你今天下午有安排吗?",
+      "chunks": [
+        "Are you doing anything",
+        "this afternoon?"
+      ],
+      "hints": [
+        "你今天下午",
+        "有安排吗？"
+      ],
+      "cid": "785fa9bc"
+    },
+    {
+      "sentence": "How about having dinner with me?",
+      "translation": "和我一起吃晚饭，好吗?",
+      "chunks": [
+        "How about having dinner",
+        "with me?"
+      ],
+      "hints": [
+        "和我一起吃晚饭，",
+        "好吗？"
+      ],
+      "cid": "bef3c01a"
+    },
+    {
+      "sentence": "Why don't we go to see a baseball game?",
+      "translation": "我们干嘛不去看棒球比赛呢?",
+      "chunks": [
+        "Why don't we go",
+        "to see a baseball game?"
+      ],
+      "hints": [
+        "我们干嘛不去",
+        "看棒球比赛呢？"
+      ],
+      "cid": "6184e991"
+    },
+    {
+      "sentence": "Sorry, I'm tied up.",
+      "translation": "真对不起，我另有安排。",
+      "chunks": [
+        "Sorry,",
+        "I'm tied up."
+      ],
+      "hints": [
+        "真对不起，",
+        "我另有安排。"
+      ],
+      "cid": "a095d5f4"
+    },
+    {
+      "sentence": "I'm afraid I can't.",
+      "translation": "实在对不起，恐怕不行。",
+      "chunks": [
+        "I'm afraid",
+        "I can't."
+      ],
+      "hints": [
+        "实在对不起，",
+        "恐怕不行。"
+      ],
+      "cid": "802c3fbd"
+    },
+    {
+      "sentence": "Thanks for asking, but...",
+      "translation": "谢谢您的邀请，可是……",
+      "chunks": [
+        "Thanks for asking,",
+        "but..."
+      ],
+      "hints": [
+        "谢谢您的邀请，",
+        "可是……"
+      ],
+      "cid": "feea942d"
+    },
+    {
+      "sentence": "How about a rain check?",
+      "translation": "另找时间可以吗?",
+      "chunks": [
+        "How about",
+        "a rain check?"
+      ],
+      "hints": [
+        "另找时间",
+        "可以吗？"
+      ],
+      "cid": "7ba6597c"
+    },
+    {
+      "sentence": "I hope you can come.",
+      "translation": "我希望你能来。",
+      "chunks": [
+        "I hope",
+        "you can come."
+      ],
+      "hints": [
+        "我希望",
+        "你能来。"
+      ],
+      "cid": "bcb3305d"
+    },
+    {
+      "sentence": "When is it convenient for you?",
+      "translation": "你什么时候方便?",
+      "chunks": [
+        "When is it convenient",
+        "for you?"
+      ],
+      "hints": [
+        "你什么时候",
+        "方便？"
+      ],
+      "cid": "120fac06"
+    },
+    {
+      "sentence": "About what time?",
+      "translation": "什么时候?",
+      "chunks": [
+        "About",
+        "what time?"
+      ],
+      "hints": [
+        "什么",
+        "时候？"
+      ],
+      "cid": "84891182"
+    },
+    {
+      "sentence": "Whenever.",
+      "translation": "什么时候都行。",
+      "chunks": [
+        "Whenever."
+      ],
+      "hints": [
+        "什么时候都行。"
+      ],
+      "cid": "83f2adcd"
+    },
+    {
+      "sentence": "When you have time.",
+      "translation": "等你有时间的时候吧。",
+      "chunks": [
+        "When you",
+        "have time."
+      ],
+      "hints": [
+        "等你有时间",
+        "的时候吧。"
+      ],
+      "cid": "7303c39d"
+    },
+    {
+      "sentence": "I'm free today.",
+      "translation": "我今天有空。",
+      "chunks": [
+        "I'm free",
+        "today."
+      ],
+      "hints": [
+        "我今天",
+        "有空。"
+      ],
+      "cid": "95212793"
+    },
+    {
+      "sentence": "I'll be busy tomorrow.",
+      "translation": "明天我会很忙。",
+      "chunks": [
+        "I'll be busy",
+        "tomorrow."
+      ],
+      "hints": [
+        "明天我",
+        "会很忙。"
+      ],
+      "cid": "90b1b154"
+    },
+    {
+      "sentence": "How about the tenth?",
+      "translation": "10号怎么样?",
+      "chunks": [
+        "How about",
+        "the tenth?"
+      ],
+      "hints": [
+        "10号",
+        "怎么样？"
+      ],
+      "cid": "da3f4a1d"
+    },
+    {
+      "sentence": "When are you free?",
+      "translation": "你什么时候有空?",
+      "chunks": [
+        "When are",
+        "you free?"
+      ],
+      "hints": [
+        "你什么时候",
+        "有空？"
+      ],
+      "cid": "0cece22b"
+    },
+    {
+      "sentence": "That's a bad day for me.",
+      "translation": "那天我不行。",
+      "chunks": [
+        "That's a bad day",
+        "for me."
+      ],
+      "hints": [
+        "那天",
+        "我不行。"
+      ],
+      "cid": "87becf1b"
+    },
+    {
+      "sentence": "That day is fine.",
+      "translation": "那天我可以。",
+      "chunks": [
+        "That day",
+        "is fine."
+      ],
+      "hints": [
+        "那天",
+        "我可以。"
+      ],
+      "cid": "d168845c"
+    },
+    {
+      "sentence": "When can I come over?",
+      "translation": "我什么时候去合适?",
+      "chunks": [
+        "When can I",
+        "come over?"
+      ],
+      "hints": [
+        "我什么时候",
+        "去合适？"
+      ],
+      "cid": "3185a4c3"
+    },
+    {
+      "sentence": "You decide when.",
+      "translation": "你定时间吧。",
+      "chunks": [
+        "You decide",
+        "when."
+      ],
+      "hints": [
+        "你定",
+        "时间吧。"
+      ],
+      "cid": "3caf0366"
+    },
+    {
+      "sentence": "You decide where.",
+      "translation": "你定地点吧。",
+      "chunks": [
+        "You decide",
+        "where."
+      ],
+      "hints": [
+        "你定",
+        "地点吧。"
+      ],
+      "cid": "730ebe1b"
+    },
+    {
+      "sentence": "Is seven convenient for you?",
+      "translation": "7点行吗?",
+      "chunks": [
+        "Is seven",
+        "convenient for you?"
+      ],
+      "hints": [
+        "7点",
+        "行吗？"
+      ],
+      "cid": "8b2a8bde"
+    },
+    {
+      "sentence": "When can you come over?",
+      "translation": "你几点能来?",
+      "chunks": [
+        "When can you",
+        "come over?"
+      ],
+      "hints": [
+        "你几点",
+        "能来？"
+      ],
+      "cid": "f364443b"
+    },
+    {
+      "sentence": "Is it too early?",
+      "translation": "太早了吗?",
+      "chunks": [
+        "Is it",
+        "too early?"
+      ],
+      "hints": [
+        "太早",
+        "了吗？"
+      ],
+      "cid": "90d8624c"
+    },
+    {
+      "sentence": "Is it too late?",
+      "translation": "太晚了吗?",
+      "chunks": [
+        "Is it",
+        "too late?"
+      ],
+      "hints": [
+        "太晚",
+        "了吗？"
+      ],
+      "cid": "1697d5d5"
+    },
+    {
+      "sentence": "It's a date.",
+      "translation": "就那个时间吧。",
+      "chunks": [
+        "It's",
+        "a date."
+      ],
+      "hints": [
+        "就那个",
+        "时间吧。"
+      ],
+      "cid": "0a6941df"
+    },
+    {
+      "sentence": "See you then.",
+      "translation": "回头见。",
+      "chunks": [
+        "See you",
+        "then."
+      ],
+      "hints": [
+        "回头",
+        "见。"
+      ],
+      "cid": "2797237c"
+    },
+    {
+      "sentence": "Are you ready?",
+      "translation": "准备好了吗?",
+      "chunks": [
+        "Are you",
+        "ready?"
+      ],
+      "hints": [
+        "准备",
+        "好了吗？"
+      ],
+      "cid": "b93bfeba"
+    },
+    {
+      "sentence": "Ready.",
+      "translation": "准备好了。",
+      "chunks": [
+        "Ready."
+      ],
+      "hints": [
+        "准备好了。"
+      ],
+      "cid": "494ddace"
+    },
+    {
+      "sentence": "I'm not ready.",
+      "translation": "还没准备好呢。",
+      "chunks": [
+        "I'm not",
+        "ready."
+      ],
+      "hints": [
+        "还没",
+        "准备好呢。"
+      ],
+      "cid": "b0911d80"
+    },
+    {
+      "sentence": "What time shall we leave?",
+      "translation": "我们什么时候出发。",
+      "chunks": [
+        "What time",
+        "shall we leave?"
+      ],
+      "hints": [
+        "我们什么时候",
+        "出发。"
+      ],
+      "cid": "75c66f0e"
+    },
+    {
+      "sentence": "What time do we arrive?",
+      "translation": "我们几点能到?",
+      "chunks": [
+        "What time",
+        "do we arrive?"
+      ],
+      "hints": [
+        "我们几点",
+        "能到？"
+      ],
+      "cid": "5593532b"
+    },
+    {
+      "sentence": "Let's get going.",
+      "translation": "那我们走吧。",
+      "chunks": [
+        "Let's",
+        "get going."
+      ],
+      "hints": [
+        "那我们",
+        "走吧。"
+      ],
+      "cid": "7e27bc64"
+    },
+    {
+      "sentence": "Would you like to go to a movie?",
+      "translation": "你想去看电影吗?",
+      "chunks": [
+        "Would you like",
+        "to go to a movie?"
+      ],
+      "hints": [
+        "你想去",
+        "看电影吗？"
+      ],
+      "cid": "d4977a6a"
+    },
+    {
+      "sentence": "What's on tonight?",
+      "translation": "今天晚上放什么电影?",
+      "chunks": [
+        "What's on",
+        "tonight?"
+      ],
+      "hints": [
+        "今天晚上",
+        "放什么电影？"
+      ],
+      "cid": "467d6b48"
+    },
+    {
+      "sentence": "What movie do you want to see?",
+      "translation": "你想看什么电影?",
+      "chunks": [
+        "What movie",
+        "do you want to see?"
+      ],
+      "hints": [
+        "你想看",
+        "什么电影？"
+      ],
+      "cid": "9f367ee8"
+    },
+    {
+      "sentence": "I want to see...",
+      "translation": "我想看《××》",
+      "chunks": [
+        "I want",
+        "to see..."
+      ],
+      "hints": [
+        "我想看",
+        "《××》"
+      ],
+      "cid": "fe8006b2"
+    },
+    {
+      "sentence": "Where is... playing?",
+      "translation": "哪儿演《××》?",
+      "chunks": [
+        "Where",
+        "is... playing?"
+      ],
+      "hints": [
+        "哪儿演",
+        "《××》？"
+      ],
+      "cid": "5afa9b39"
+    },
+    {
+      "sentence": "How long is... playing?",
+      "translation": "《××》演到什么时候?",
+      "chunks": [
+        "How long",
+        "is... playing?"
+      ],
+      "hints": [
+        "《××》演到",
+        "什么时候？"
+      ],
+      "cid": "d92eca32"
+    },
+    {
+      "sentence": "Who is in this movie?",
+      "translation": "这部电影是谁演的?",
+      "chunks": [
+        "Who is in",
+        "this movie?"
+      ],
+      "hints": [
+        "这部电影",
+        "是谁演的？"
+      ],
+      "cid": "7bc67021"
+    },
+    {
+      "sentence": "How long does it last?",
+      "translation": "演多长时间?",
+      "chunks": [
+        "How long",
+        "does it last?"
+      ],
+      "hints": [
+        "演",
+        "多长时间？"
+      ],
+      "cid": "b6c43aea"
+    },
+    {
+      "sentence": "What time is the next showing?",
+      "translation": "下一场几点开演?",
+      "chunks": [
+        "What time is",
+        "the next showing?"
+      ],
+      "hints": [
+        "下一场",
+        "几点开演？"
+      ],
+      "cid": "7fa99c90"
+    },
+    {
+      "sentence": "What time will it be over?",
+      "translation": "几点演完?",
+      "chunks": [
+        "What time will",
+        "it be over?"
+      ],
+      "hints": [
+        "几点",
+        "演完？"
+      ],
+      "cid": "76ce0a3d"
+    },
+    {
+      "sentence": "Two, please.",
+      "translation": "我买两张成人票。",
+      "chunks": [
+        "Two,",
+        "please."
+      ],
+      "hints": [
+        "我买两张",
+        "成人票。"
+      ],
+      "cid": "7c2652af"
+    },
+    {
+      "sentence": "I can't see because of the person in front of me.",
+      "translation": "前边的人挡着，我看不见。",
+      "chunks": [
+        "I can't see",
+        "because of the person in front of me."
+      ],
+      "hints": [
+        "前边的人挡着，",
+        "我看不见。"
+      ],
+      "cid": "a58cd420"
+    },
+    {
+      "sentence": "We are way in the back, aren't we?",
+      "translation": "我们怎么坐得这么靠后呀?",
+      "chunks": [
+        "We are way in the back,",
+        "aren't we?"
+      ],
+      "hints": [
+        "我们怎么坐得",
+        "这么靠后呀？"
+      ],
+      "cid": "14d37341"
+    },
+    {
+      "sentence": "Let's sit closer up front.",
+      "translation": "我们坐到前面的座位上吧。",
+      "chunks": [
+        "Let's sit closer",
+        "up front."
+      ],
+      "hints": [
+        "我们坐到",
+        "前面的座位上吧。"
+      ],
+      "cid": "87c09c46"
+    },
+    {
+      "sentence": "That was interesting, wasn't it?",
+      "translation": "真太有意思了，是不是?",
+      "chunks": [
+        "That was interesting,",
+        "wasn't it?"
+      ],
+      "hints": [
+        "真太有意思了，",
+        "是不是？"
+      ],
+      "cid": "ff7c651b"
+    },
+    {
+      "sentence": "That was boring, wasn't it?",
+      "translation": "这电影真没劲。",
+      "chunks": [
+        "That was boring,",
+        "wasn't it?"
+      ],
+      "hints": [
+        "这电影",
+        "真没劲。"
+      ],
+      "cid": "22f73b7a"
+    },
+    {
+      "sentence": "I was moved.",
+      "translation": "太让人感动了。",
+      "chunks": [
+        "I was",
+        "moved."
+      ],
+      "hints": [
+        "太让人",
+        "感动了。"
+      ],
+      "cid": "7eb71864"
+    },
+    {
+      "sentence": "I'd like two tickets for October 3rd, please.",
+      "translation": "我买两张10月3号的票。",
+      "chunks": [
+        "I'd like two tickets",
+        "for October 3rd, please."
+      ],
+      "hints": [
+        "我买两张",
+        "10月3号的票。"
+      ],
+      "cid": "eeb8ffc7"
+    },
+    {
+      "sentence": "Sorry, we're sold out.",
+      "translation": "对不起，卖完了。",
+      "chunks": [
+        "Sorry,",
+        "we're sold out."
+      ],
+      "hints": [
+        "对不起，",
+        "卖完了。"
+      ],
+      "cid": "81b9ca6a"
+    },
+    {
+      "sentence": "When do you have tickets?",
+      "translation": "有什么时候的票?",
+      "chunks": [
+        "When do you",
+        "have tickets?"
+      ],
+      "hints": [
+        "有什么时候的",
+        "票？"
+      ],
+      "cid": "9c36ad6d"
+    },
+    {
+      "sentence": "What time does it start?",
+      "translation": "几点开始?",
+      "chunks": [
+        "What time",
+        "does it start?"
+      ],
+      "hints": [
+        "几点",
+        "开始？"
+      ],
+      "cid": "9411d247"
+    },
+    {
+      "sentence": "Can I make a reservation?",
+      "translation": "可以预订吗?",
+      "chunks": [
+        "Can I make",
+        "a reservation?"
+      ],
+      "hints": [
+        "可以",
+        "预订吗？"
+      ],
+      "cid": "5f389b9a"
+    },
+    {
+      "sentence": "Where can I buy a ticket?",
+      "translation": "在哪儿买票?",
+      "chunks": [
+        "Where can I",
+        "buy a ticket?"
+      ],
+      "hints": [
+        "在哪儿",
+        "买票？"
+      ],
+      "cid": "1c1f7777"
+    },
+    {
+      "sentence": "Is this seat taken?",
+      "translation": "这位子有人吗?",
+      "chunks": [
+        "Is this seat",
+        "taken?"
+      ],
+      "hints": [
+        "这位子",
+        "有人吗？"
+      ],
+      "cid": "a296bdc8"
+    },
+    {
+      "sentence": "We have great seats, don't we?",
+      "translation": "我们这个位子真棒。",
+      "chunks": [
+        "We have great seats,",
+        "don't we?"
+      ],
+      "hints": [
+        "我们这个位子",
+        "真棒。"
+      ],
+      "cid": "478afe79"
+    },
+    {
+      "sentence": "Encore!",
+      "translation": "再来一个!",
+      "chunks": [
+        "Encore!"
+      ],
+      "hints": [
+        "再来一个！"
+      ],
+      "cid": "51e993a4"
+    },
+    {
+      "sentence": "Go for it,...!",
+      "translation": "××加油!",
+      "chunks": [
+        "Go for",
+        "it,...!"
+      ],
+      "hints": [
+        "××",
+        "加油！"
+      ],
+      "cid": "5f8a6d36"
+    },
+    {
       "sentence": "I'm going to meet a friend for lunch.",
       "cid": "cff80fb6",
       "translation": "我打算和朋友一起吃午饭。",
@@ -613,58 +1491,6 @@
           "on seven.",
           "in seven.",
           "at the seven."
-        ]
-      ]
-    },
-    {
-      "sentence": "Are you free this weekend?",
-      "cid": "15accdce",
-      "translation": "你这个周末有空吗？",
-      "chunks": [
-        "Are you free",
-        "this weekend?"
-      ],
-      "hints": [
-        "你有空吗",
-        "这个周末"
-      ],
-      "grammar": [
-        {
-          "role": "主系表",
-          "color": "#c87033",
-          "phonetic": [
-            "/ɑːr/",
-            "/juː/",
-            "/friː/"
-          ],
-          "pos": "主系表",
-          "meaning": "你有空吗"
-        },
-        {
-          "role": "时间状语",
-          "color": "#7c5cbf",
-          "phonetic": [
-            "/ðɪs/",
-            "/ˈwiːkend/"
-          ],
-          "pos": "名词短语",
-          "meaning": "这个周末"
-        }
-      ],
-      "explanations": [
-        "`Are you free...` 询问是否有空。常见错误：\n• \"Do you **have** free\" → 不自然，have free time 才搭配 have\n• \"Are you **freed**\" → free 是形容词，不是动词过去式",
-        "`this weekend` 前不加介词（不说 on this weekend，尽管美语偶尔加 on，但 this weekend 最简洁常用）。"
-      ],
-      "distractors": [
-        [
-          "Do you free",
-          "Are you freely",
-          "Are you freedom"
-        ],
-        [
-          "this week?",
-          "that weekend?",
-          "this weekends?"
         ]
       ]
     },

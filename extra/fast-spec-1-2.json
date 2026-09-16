@@ -1,0 +1,1325 @@
+[
+ {
+  "sentence": "Are you free this weekend?",
+  "chunks": [
+   "Are you free",
+   "this weekend?"
+  ],
+  "hints": [
+   "这个周末",
+   "你有空吗？"
+  ]
+ },
+ {
+  "sentence": "Could I see you again?",
+  "chunks": [
+   "Could I see you",
+   "again?"
+  ],
+  "hints": [
+   "我们还可以",
+   "再见面吗？"
+  ]
+ },
+ {
+  "sentence": "Could you give me your phone number?",
+  "chunks": [
+   "Could you give me",
+   "your phone number?"
+  ],
+  "hints": [
+   "能给我",
+   "你的电话号码吗？"
+  ]
+ },
+ {
+  "sentence": "Where shall we meet?",
+  "chunks": [
+   "Where shall",
+   "we meet?"
+  ],
+  "hints": [
+   "我们在哪儿",
+   "见面？"
+  ]
+ },
+ {
+  "sentence": "Shall I come to pick you up?",
+  "chunks": [
+   "Shall I come",
+   "to pick you up?"
+  ],
+  "hints": [
+   "要我开车",
+   "去接你吗？"
+  ]
+ },
+ {
+  "sentence": "Are you doing anything this afternoon?",
+  "chunks": [
+   "Are you doing anything",
+   "this afternoon?"
+  ],
+  "hints": [
+   "你今天下午",
+   "有安排吗？"
+  ]
+ },
+ {
+  "sentence": "How about having dinner with me?",
+  "chunks": [
+   "How about having dinner",
+   "with me?"
+  ],
+  "hints": [
+   "和我一起吃晚饭，",
+   "好吗？"
+  ]
+ },
+ {
+  "sentence": "Why don't we go to see a baseball game?",
+  "chunks": [
+   "Why don't we go",
+   "to see a baseball game?"
+  ],
+  "hints": [
+   "我们干嘛不去",
+   "看棒球比赛呢？"
+  ]
+ },
+ {
+  "sentence": "Sorry, I'm tied up.",
+  "chunks": [
+   "Sorry,",
+   "I'm tied up."
+  ],
+  "hints": [
+   "真对不起，",
+   "我另有安排。"
+  ]
+ },
+ {
+  "sentence": "I'm afraid I can't.",
+  "chunks": [
+   "I'm afraid",
+   "I can't."
+  ],
+  "hints": [
+   "实在对不起，",
+   "恐怕不行。"
+  ]
+ },
+ {
+  "sentence": "Thanks for asking, but...",
+  "chunks": [
+   "Thanks for asking,",
+   "but..."
+  ],
+  "hints": [
+   "谢谢您的邀请，",
+   "可是……"
+  ]
+ },
+ {
+  "sentence": "How about a rain check?",
+  "chunks": [
+   "How about",
+   "a rain check?"
+  ],
+  "hints": [
+   "另找时间",
+   "可以吗？"
+  ]
+ },
+ {
+  "sentence": "I hope you can come.",
+  "chunks": [
+   "I hope",
+   "you can come."
+  ],
+  "hints": [
+   "我希望",
+   "你能来。"
+  ]
+ },
+ {
+  "sentence": "When is it convenient for you?",
+  "chunks": [
+   "When is it convenient",
+   "for you?"
+  ],
+  "hints": [
+   "你什么时候",
+   "方便？"
+  ]
+ },
+ {
+  "sentence": "About what time?",
+  "chunks": [
+   "About",
+   "what time?"
+  ],
+  "hints": [
+   "什么",
+   "时候？"
+  ]
+ },
+ {
+  "sentence": "Whenever.",
+  "chunks": [
+   "Whenever."
+  ],
+  "hints": [
+   "什么时候都行。"
+  ]
+ },
+ {
+  "sentence": "When you have time.",
+  "chunks": [
+   "When you",
+   "have time."
+  ],
+  "hints": [
+   "等你有时间",
+   "的时候吧。"
+  ]
+ },
+ {
+  "sentence": "I'm free today.",
+  "chunks": [
+   "I'm free",
+   "today."
+  ],
+  "hints": [
+   "我今天",
+   "有空。"
+  ]
+ },
+ {
+  "sentence": "I'll be busy tomorrow.",
+  "chunks": [
+   "I'll be busy",
+   "tomorrow."
+  ],
+  "hints": [
+   "明天我",
+   "会很忙。"
+  ]
+ },
+ {
+  "sentence": "How about the tenth?",
+  "chunks": [
+   "How about",
+   "the tenth?"
+  ],
+  "hints": [
+   "10号",
+   "怎么样？"
+  ]
+ },
+ {
+  "sentence": "When are you free?",
+  "chunks": [
+   "When are",
+   "you free?"
+  ],
+  "hints": [
+   "你什么时候",
+   "有空？"
+  ]
+ },
+ {
+  "sentence": "That's a bad day for me.",
+  "chunks": [
+   "That's a bad day",
+   "for me."
+  ],
+  "hints": [
+   "那天",
+   "我不行。"
+  ]
+ },
+ {
+  "sentence": "That day is fine.",
+  "chunks": [
+   "That day",
+   "is fine."
+  ],
+  "hints": [
+   "那天",
+   "我可以。"
+  ]
+ },
+ {
+  "sentence": "When can I come over?",
+  "chunks": [
+   "When can I",
+   "come over?"
+  ],
+  "hints": [
+   "我什么时候",
+   "去合适？"
+  ]
+ },
+ {
+  "sentence": "You decide when.",
+  "chunks": [
+   "You decide",
+   "when."
+  ],
+  "hints": [
+   "你定",
+   "时间吧。"
+  ]
+ },
+ {
+  "sentence": "You decide where.",
+  "chunks": [
+   "You decide",
+   "where."
+  ],
+  "hints": [
+   "你定",
+   "地点吧。"
+  ]
+ },
+ {
+  "sentence": "Is seven convenient for you?",
+  "chunks": [
+   "Is seven",
+   "convenient for you?"
+  ],
+  "hints": [
+   "7点",
+   "行吗？"
+  ]
+ },
+ {
+  "sentence": "When can you come over?",
+  "chunks": [
+   "When can you",
+   "come over?"
+  ],
+  "hints": [
+   "你几点",
+   "能来？"
+  ]
+ },
+ {
+  "sentence": "Is it too early?",
+  "chunks": [
+   "Is it",
+   "too early?"
+  ],
+  "hints": [
+   "太早",
+   "了吗？"
+  ]
+ },
+ {
+  "sentence": "Is it too late?",
+  "chunks": [
+   "Is it",
+   "too late?"
+  ],
+  "hints": [
+   "太晚",
+   "了吗？"
+  ]
+ },
+ {
+  "sentence": "It's a date.",
+  "chunks": [
+   "It's",
+   "a date."
+  ],
+  "hints": [
+   "就那个",
+   "时间吧。"
+  ]
+ },
+ {
+  "sentence": "See you then.",
+  "chunks": [
+   "See you",
+   "then."
+  ],
+  "hints": [
+   "回头",
+   "见。"
+  ]
+ },
+ {
+  "sentence": "Are you ready?",
+  "chunks": [
+   "Are you",
+   "ready?"
+  ],
+  "hints": [
+   "准备",
+   "好了吗？"
+  ]
+ },
+ {
+  "sentence": "Ready.",
+  "chunks": [
+   "Ready."
+  ],
+  "hints": [
+   "准备好了。"
+  ]
+ },
+ {
+  "sentence": "I'm not ready.",
+  "chunks": [
+   "I'm not",
+   "ready."
+  ],
+  "hints": [
+   "还没",
+   "准备好呢。"
+  ]
+ },
+ {
+  "sentence": "What time shall we leave?",
+  "chunks": [
+   "What time",
+   "shall we leave?"
+  ],
+  "hints": [
+   "我们什么时候",
+   "出发。"
+  ]
+ },
+ {
+  "sentence": "What time do we arrive?",
+  "chunks": [
+   "What time",
+   "do we arrive?"
+  ],
+  "hints": [
+   "我们几点",
+   "能到？"
+  ]
+ },
+ {
+  "sentence": "Let's get going.",
+  "chunks": [
+   "Let's",
+   "get going."
+  ],
+  "hints": [
+   "那我们",
+   "走吧。"
+  ]
+ },
+ {
+  "sentence": "Would you like to go to a movie?",
+  "chunks": [
+   "Would you like",
+   "to go to a movie?"
+  ],
+  "hints": [
+   "你想去",
+   "看电影吗？"
+  ]
+ },
+ {
+  "sentence": "What's on tonight?",
+  "chunks": [
+   "What's on",
+   "tonight?"
+  ],
+  "hints": [
+   "今天晚上",
+   "放什么电影？"
+  ]
+ },
+ {
+  "sentence": "What movie do you want to see?",
+  "chunks": [
+   "What movie",
+   "do you want to see?"
+  ],
+  "hints": [
+   "你想看",
+   "什么电影？"
+  ]
+ },
+ {
+  "sentence": "I want to see...",
+  "chunks": [
+   "I want",
+   "to see..."
+  ],
+  "hints": [
+   "我想看",
+   "《××》"
+  ]
+ },
+ {
+  "sentence": "Where is... playing?",
+  "chunks": [
+   "Where",
+   "is... playing?"
+  ],
+  "hints": [
+   "哪儿演",
+   "《××》？"
+  ]
+ },
+ {
+  "sentence": "How long is... playing?",
+  "chunks": [
+   "How long",
+   "is... playing?"
+  ],
+  "hints": [
+   "《××》演到",
+   "什么时候？"
+  ]
+ },
+ {
+  "sentence": "Who is in this movie?",
+  "chunks": [
+   "Who is in",
+   "this movie?"
+  ],
+  "hints": [
+   "这部电影",
+   "是谁演的？"
+  ]
+ },
+ {
+  "sentence": "How long does it last?",
+  "chunks": [
+   "How long",
+   "does it last?"
+  ],
+  "hints": [
+   "演",
+   "多长时间？"
+  ]
+ },
+ {
+  "sentence": "What time is the next showing?",
+  "chunks": [
+   "What time is",
+   "the next showing?"
+  ],
+  "hints": [
+   "下一场",
+   "几点开演？"
+  ]
+ },
+ {
+  "sentence": "What time will it be over?",
+  "chunks": [
+   "What time will",
+   "it be over?"
+  ],
+  "hints": [
+   "几点",
+   "演完？"
+  ]
+ },
+ {
+  "sentence": "Two, please.",
+  "chunks": [
+   "Two,",
+   "please."
+  ],
+  "hints": [
+   "我买两张",
+   "成人票。"
+  ]
+ },
+ {
+  "sentence": "I can't see because of the person in front of me.",
+  "chunks": [
+   "I can't see",
+   "because of the person in front of me."
+  ],
+  "hints": [
+   "前边的人挡着，",
+   "我看不见。"
+  ]
+ },
+ {
+  "sentence": "We are way in the back, aren't we?",
+  "chunks": [
+   "We are way in the back,",
+   "aren't we?"
+  ],
+  "hints": [
+   "我们怎么坐得",
+   "这么靠后呀？"
+  ]
+ },
+ {
+  "sentence": "Let's sit closer up front.",
+  "chunks": [
+   "Let's sit closer",
+   "up front."
+  ],
+  "hints": [
+   "我们坐到",
+   "前面的座位上吧。"
+  ]
+ },
+ {
+  "sentence": "That was interesting, wasn't it?",
+  "chunks": [
+   "That was interesting,",
+   "wasn't it?"
+  ],
+  "hints": [
+   "真太有意思了，",
+   "是不是？"
+  ]
+ },
+ {
+  "sentence": "That was boring, wasn't it?",
+  "chunks": [
+   "That was boring,",
+   "wasn't it?"
+  ],
+  "hints": [
+   "这电影",
+   "真没劲。"
+  ]
+ },
+ {
+  "sentence": "I was moved.",
+  "chunks": [
+   "I was",
+   "moved."
+  ],
+  "hints": [
+   "太让人",
+   "感动了。"
+  ]
+ },
+ {
+  "sentence": "I'd like two tickets for October 3rd, please.",
+  "chunks": [
+   "I'd like two tickets",
+   "for October 3rd, please."
+  ],
+  "hints": [
+   "我买两张",
+   "10月3号的票。"
+  ]
+ },
+ {
+  "sentence": "Sorry, we're sold out.",
+  "chunks": [
+   "Sorry,",
+   "we're sold out."
+  ],
+  "hints": [
+   "对不起，",
+   "卖完了。"
+  ]
+ },
+ {
+  "sentence": "When do you have tickets?",
+  "chunks": [
+   "When do you",
+   "have tickets?"
+  ],
+  "hints": [
+   "有什么时候的",
+   "票？"
+  ]
+ },
+ {
+  "sentence": "What time does it start?",
+  "chunks": [
+   "What time",
+   "does it start?"
+  ],
+  "hints": [
+   "几点",
+   "开始？"
+  ]
+ },
+ {
+  "sentence": "Can I make a reservation?",
+  "chunks": [
+   "Can I make",
+   "a reservation?"
+  ],
+  "hints": [
+   "可以",
+   "预订吗？"
+  ]
+ },
+ {
+  "sentence": "Where can I buy a ticket?",
+  "chunks": [
+   "Where can I",
+   "buy a ticket?"
+  ],
+  "hints": [
+   "在哪儿",
+   "买票？"
+  ]
+ },
+ {
+  "sentence": "Is this seat taken?",
+  "chunks": [
+   "Is this seat",
+   "taken?"
+  ],
+  "hints": [
+   "这位子",
+   "有人吗？"
+  ]
+ },
+ {
+  "sentence": "We have great seats, don't we?",
+  "chunks": [
+   "We have great seats,",
+   "don't we?"
+  ],
+  "hints": [
+   "我们这个位子",
+   "真棒。"
+  ]
+ },
+ {
+  "sentence": "Encore!",
+  "chunks": [
+   "Encore!"
+  ],
+  "hints": [
+   "再来一个！"
+  ]
+ },
+ {
+  "sentence": "Go for it,...!",
+  "chunks": [
+   "Go for",
+   "it,...!"
+  ],
+  "hints": [
+   "××",
+   "加油！"
+  ]
+ },
+ {
+  "sentence": "I'd like to play golf.",
+  "chunks": [
+   "I'd like",
+   "to play golf."
+  ],
+  "hints": [
+   "我想打",
+   "高尔夫球。"
+  ]
+ },
+ {
+  "sentence": "Would you like to golf tomorrow?",
+  "chunks": [
+   "Would you like to golf",
+   "tomorrow?"
+  ],
+  "hints": [
+   "明天打高尔夫球，",
+   "好吗？"
+  ]
+ },
+ {
+  "sentence": "Do you want to join me?",
+  "chunks": [
+   "Do you want",
+   "to join me?"
+  ],
+  "hints": [
+   "愿意和我一起",
+   "打高尔夫球吗？"
+  ]
+ },
+ {
+  "sentence": "Are there any golf courses around here?",
+  "chunks": [
+   "Are there any golf courses",
+   "around here?"
+  ],
+  "hints": [
+   "这附近有",
+   "高尔夫球场地吗？"
+  ]
+ },
+ {
+  "sentence": "How much is it per person?",
+  "chunks": [
+   "How much is it",
+   "per person?"
+  ],
+  "hints": [
+   "1个人",
+   "多少钱？"
+  ]
+ },
+ {
+  "sentence": "How much is it per day?",
+  "chunks": [
+   "How much is it",
+   "per day?"
+  ],
+  "hints": [
+   "1天",
+   "多少钱？"
+  ]
+ },
+ {
+  "sentence": "Are there any extra charges?",
+  "chunks": [
+   "Are there",
+   "any extra charges?"
+  ],
+  "hints": [
+   "此外还有",
+   "其它的花费吗？"
+  ]
+ },
+ {
+  "sentence": "Can I rent the equipment?",
+  "chunks": [
+   "Can I rent",
+   "the equipment?"
+  ],
+  "hints": [
+   "我可以",
+   "租用用具吗？"
+  ]
+ },
+ {
+  "sentence": "Please make a reservation for golf.",
+  "chunks": [
+   "Please make a reservation",
+   "for golf."
+  ],
+  "hints": [
+   "请帮我预约",
+   "高尔夫球。"
+  ]
+ },
+ {
+  "sentence": "I'd like to make golf reservations.",
+  "chunks": [
+   "I'd like to make",
+   "golf reservations."
+  ],
+  "hints": [
+   "我想预约",
+   "高尔夫球。"
+  ]
+ },
+ {
+  "sentence": "When would you like to play?",
+  "chunks": [
+   "When would you like",
+   "to play?"
+  ],
+  "hints": [
+   "要什么",
+   "时间的？"
+  ]
+ },
+ {
+  "sentence": "This Friday, if possible.",
+  "chunks": [
+   "This Friday,",
+   "if possible."
+  ],
+  "hints": [
+   "如果可以的话，",
+   "请订这个星期五的。"
+  ]
+ },
+ {
+  "sentence": "There are four of us.",
+  "chunks": [
+   "There are",
+   "four of us."
+  ],
+  "hints": [
+   "我们一共",
+   "4个人。"
+  ]
+ },
+ {
+  "sentence": "What time are we starting?",
+  "chunks": [
+   "What time",
+   "are we starting?"
+  ],
+  "hints": [
+   "我们几点",
+   "开始？"
+  ]
+ },
+ {
+  "sentence": "How about a drink?",
+  "chunks": [
+   "How about",
+   "a drink?"
+  ],
+  "hints": [
+   "去喝一杯",
+   "怎么样？"
+  ]
+ },
+ {
+  "sentence": "I need a drink.",
+  "chunks": [
+   "I need",
+   "a drink."
+  ],
+  "hints": [
+   "我想去",
+   "喝一杯。"
+  ]
+ },
+ {
+  "sentence": "Would you like to have a drink after work?",
+  "chunks": [
+   "Would you like to have a drink",
+   "after work?"
+  ],
+  "hints": [
+   "下班以后",
+   "去喝一杯怎么样？"
+  ]
+ },
+ {
+  "sentence": "Do you have any beer?",
+  "chunks": [
+   "Do you have",
+   "any beer?"
+  ],
+  "hints": [
+   "有",
+   "啤酒吗？"
+  ]
+ },
+ {
+  "sentence": "Two bottles of beer, please.",
+  "chunks": [
+   "Two bottles of beer,",
+   "please."
+  ],
+  "hints": [
+   "请来",
+   "两瓶啤酒。"
+  ]
+ },
+ {
+  "sentence": "One whiskey with water, please.",
+  "chunks": [
+   "One whiskey with water,",
+   "please."
+  ],
+  "hints": [
+   "请来杯",
+   "掺水的威士忌。"
+  ]
+ },
+ {
+  "sentence": "What kind of snacks should we have?",
+  "chunks": [
+   "What kind of snacks",
+   "should we have?"
+  ],
+  "hints": [
+   "要什么",
+   "下酒菜呢？"
+  ]
+ },
+ {
+  "sentence": "Let's forget about work and have some fun.",
+  "chunks": [
+   "Let's forget about work",
+   "and have some fun."
+  ],
+  "hints": [
+   "让我们忘了工作，",
+   "痛快一会儿吧。"
+  ]
+ },
+ {
+  "sentence": "Cheers!",
+  "chunks": [
+   "Cheers!"
+  ],
+  "hints": [
+   "干杯！"
+  ]
+ },
+ {
+  "sentence": "What are you drinking?",
+  "chunks": [
+   "What are you",
+   "drinking?"
+  ],
+  "hints": [
+   "喝",
+   "什么呢？"
+  ]
+ },
+ {
+  "sentence": "I like to go barhopping.",
+  "chunks": [
+   "I like to",
+   "go barhopping."
+  ],
+  "hints": [
+   "我喜欢",
+   "换酒馆喝。"
+  ]
+ },
+ {
+  "sentence": "The first sip is the best!",
+  "chunks": [
+   "The first sip",
+   "is the best!"
+  ],
+  "hints": [
+   "第一口",
+   "最舒坦了。"
+  ]
+ },
+ {
+  "sentence": "Nothing beats this!",
+  "chunks": [
+   "Nothing",
+   "beats this!"
+  ],
+  "hints": [
+   "这个",
+   "最好！"
+  ]
+ },
+ {
+  "sentence": "Would you like a refill?",
+  "chunks": [
+   "Would you like",
+   "a refill?"
+  ],
+  "hints": [
+   "再来一杯，",
+   "怎么样？"
+  ]
+ },
+ {
+  "sentence": "Another beer, please.",
+  "chunks": [
+   "Another beer,",
+   "please."
+  ],
+  "hints": [
+   "再来",
+   "一瓶啤酒！"
+  ]
+ },
+ {
+  "sentence": "This whiskey is strong.",
+  "chunks": [
+   "This whiskey",
+   "is strong."
+  ],
+  "hints": [
+   "这种威士忌",
+   "挺冲。"
+  ]
+ },
+ {
+  "sentence": "How do you like sake?",
+  "chunks": [
+   "How do you like",
+   "sake?"
+  ],
+  "hints": [
+   "日本酒",
+   "怎么样？"
+  ]
+ },
+ {
+  "sentence": "It's strong.",
+  "chunks": [
+   "It's",
+   "strong."
+  ],
+  "hints": [
+   "酒劲",
+   "大。"
+  ]
+ },
+ {
+  "sentence": "I'm drunk.",
+  "chunks": [
+   "I'm",
+   "drunk."
+  ],
+  "hints": [
+   "我",
+   "喝醉了。"
+  ]
+ },
+ {
+  "sentence": "I feel a little tipsy.",
+  "chunks": [
+   "I feel",
+   "a little tipsy."
+  ],
+  "hints": [
+   "我觉得",
+   "有点儿醉了。"
+  ]
+ },
+ {
+  "sentence": "I'm loaded.",
+  "chunks": [
+   "I'm",
+   "loaded."
+  ],
+  "hints": [
+   "酩酊",
+   "大醉。"
+  ]
+ },
+ {
+  "sentence": "Drink moderately.",
+  "chunks": [
+   "Drink",
+   "moderately."
+  ],
+  "hints": [
+   "喝酒要",
+   "适可而止。"
+  ]
+ },
+ {
+  "sentence": "I get drunk easily.",
+  "chunks": [
+   "I get drunk",
+   "easily."
+  ],
+  "hints": [
+   "我的酒量",
+   "小。"
+  ]
+ },
+ {
+  "sentence": "I drank too much.",
+  "chunks": [
+   "I drank",
+   "too much."
+  ],
+  "hints": [
+   "我喝得",
+   "太多了。"
+  ]
+ },
+ {
+  "sentence": "I should have drunk less.",
+  "chunks": [
+   "I should have",
+   "drunk less."
+  ],
+  "hints": [
+   "我不该",
+   "喝这么多的。"
+  ]
+ },
+ {
+  "sentence": "Let's go to karaoke!",
+  "chunks": [
+   "Let's go",
+   "to karaoke!"
+  ],
+  "hints": [
+   "我们去",
+   "唱卡拉OK吧。"
+  ]
+ },
+ {
+  "sentence": "What is karaoke?",
+  "chunks": [
+   "What is",
+   "karaoke?"
+  ],
+  "hints": [
+   "什么是",
+   "卡拉OK？"
+  ]
+ },
+ {
+  "sentence": "Singing along with recorded music.",
+  "chunks": [
+   "Singing along",
+   "with recorded music."
+  ],
+  "hints": [
+   "就是合着录音带的音乐",
+   "一起唱歌。"
+  ]
+ },
+ {
+  "sentence": "Are you good at singing?",
+  "chunks": [
+   "Are you good",
+   "at singing?"
+  ],
+  "hints": [
+   "你唱歌",
+   "拿手吗？"
+  ]
+ },
+ {
+  "sentence": "I'd like to request a song.",
+  "chunks": [
+   "I'd like to",
+   "request a song."
+  ],
+  "hints": [
+   "我想",
+   "点首歌。"
+  ]
+ },
+ {
+  "sentence": "You sing first.",
+  "chunks": [
+   "You sing",
+   "first."
+  ],
+  "hints": [
+   "你",
+   "先唱。"
+  ]
+ },
+ {
+  "sentence": "Let's enjoy ourselves.",
+  "chunks": [
+   "Let's enjoy",
+   "ourselves."
+  ],
+  "hints": [
+   "大家高兴地",
+   "玩吧！"
+  ]
+ },
+ {
+  "sentence": "How about a song, John?",
+  "chunks": [
+   "How about a song,",
+   "John?"
+  ],
+  "hints": [
+   "约翰，",
+   "你来唱一首吧。"
+  ]
+ },
+ {
+  "sentence": "What are you going to sing?",
+  "chunks": [
+   "What are you",
+   "going to sing?"
+  ],
+  "hints": [
+   "你打算",
+   "唱什么歌？"
+  ]
+ },
+ {
+  "sentence": "Let's sing a duet.",
+  "chunks": [
+   "Let's sing",
+   "a duet."
+  ],
+  "hints": [
+   "来个",
+   "二重唱吧。"
+  ]
+ },
+ {
+  "sentence": "Now it's my turn.",
+  "chunks": [
+   "Now it's",
+   "my turn."
+  ],
+  "hints": [
+   "现在",
+   "轮到我了。"
+  ]
+ },
+ {
+  "sentence": "I don't have the nerve to sing in front of people.",
+  "chunks": [
+   "I don't have the nerve",
+   "to sing in front of people."
+  ],
+  "hints": [
+   "我不敢",
+   "在大家面前唱歌。"
+  ]
+ },
+ {
+  "sentence": "I can't keep up with the new songs.",
+  "chunks": [
+   "I can't keep up",
+   "with the new songs."
+  ],
+  "hints": [
+   "我跟不上",
+   "新歌的速度。"
+  ]
+ },
+ {
+  "sentence": "I'm tone-deaf.",
+  "chunks": [
+   "I'm",
+   "tone-deaf."
+  ],
+  "hints": [
+   "我",
+   "五音不全。"
+  ]
+ },
+ {
+  "sentence": "What's your karaoke specialty?",
+  "chunks": [
+   "What's your",
+   "karaoke specialty?"
+  ],
+  "hints": [
+   "你唱卡拉OK",
+   "有什么拿手的歌吗？"
+  ]
+ },
+ {
+  "sentence": "I've never heard of that song.",
+  "chunks": [
+   "I've never heard",
+   "of that song."
+  ],
+  "hints": [
+   "我从来没听说过",
+   "那首歌。"
+  ]
+ },
+ {
+  "sentence": "You're a good singer!",
+  "chunks": [
+   "You're a",
+   "good singer!"
+  ],
+  "hints": [
+   "你唱得",
+   "真好！"
+  ]
+ }
+]

@@ -3,6 +3,754 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "I want to take a nap.",
+      "translation": "我真想睡个午觉。",
+      "chunks": [
+        "I want to take",
+        "a nap."
+      ],
+      "hints": [
+        "我真想",
+        "睡个午觉。"
+      ],
+      "cid": "d3d1514c"
+    },
+    {
+      "sentence": "I'm going to lie down.",
+      "translation": "我去躺一会儿。",
+      "chunks": [
+        "I'm going to",
+        "lie down."
+      ],
+      "hints": [
+        "我去",
+        "躺一会儿。"
+      ],
+      "cid": "e9dfa2f3"
+    },
+    {
+      "sentence": "You're pretending to be asleep.",
+      "translation": "你在装睡啊!",
+      "chunks": [
+        "You're pretending",
+        "to be asleep."
+      ],
+      "hints": [
+        "你在",
+        "装睡啊！"
+      ],
+      "cid": "ebbcc2f2"
+    },
+    {
+      "sentence": "Were you sleeping?",
+      "translation": "你睡着了吗?",
+      "chunks": [
+        "Were you",
+        "sleeping?"
+      ],
+      "hints": [
+        "你",
+        "睡着了吗？"
+      ],
+      "cid": "c6a4a45d"
+    },
+    {
+      "sentence": "No, I was awake.",
+      "translation": "没有，还没睡呢。",
+      "chunks": [
+        "No, I",
+        "was awake."
+      ],
+      "hints": [
+        "没有，",
+        "还没睡呢。"
+      ],
+      "cid": "5b858767"
+    },
+    {
+      "sentence": "Will you change the baby's diaper?",
+      "translation": "你能给孩子换块尿布吗?",
+      "chunks": [
+        "Will you change",
+        "the baby's diaper?"
+      ],
+      "hints": [
+        "你能给孩子",
+        "换块尿布吗？"
+      ],
+      "cid": "029d8fab"
+    },
+    {
+      "sentence": "Do you need to pee?",
+      "translation": "想尿尿吗?",
+      "chunks": [
+        "Do you need",
+        "to pee?"
+      ],
+      "hints": [
+        "想",
+        "尿尿吗？"
+      ],
+      "cid": "ea9a2905"
+    },
+    {
+      "sentence": "It's time to go wee-wee.",
+      "translation": "该尿尿了。",
+      "chunks": [
+        "It's time",
+        "to go wee-wee."
+      ],
+      "hints": [
+        "该",
+        "尿尿了。"
+      ],
+      "cid": "7a7a6b4b"
+    },
+    {
+      "sentence": "Peekaboo!",
+      "translation": "孩子们在玩藏猫游戏时常用。大人有时也半带玩乐地使用。",
+      "chunks": [
+        "Peekaboo!"
+      ],
+      "hints": [
+        "藏猫猫！"
+      ],
+      "cid": "5b5d65ae"
+    },
+    {
+      "sentence": "Kuchi-kuchi-koo.",
+      "translation": "胳肢胳肢",
+      "chunks": [
+        "Kuchi-kuchi-koo."
+      ],
+      "hints": [
+        "胳肢胳肢"
+      ],
+      "cid": "0a9bed52"
+    },
+    {
+      "sentence": "Let's play catch.",
+      "translation": "我们来投球吧。",
+      "chunks": [
+        "Let's play",
+        "catch."
+      ],
+      "hints": [
+        "我们来",
+        "投球吧。"
+      ],
+      "cid": "3786f219"
+    },
+    {
+      "sentence": "The water is leaking.",
+      "translation": "漏水了。",
+      "chunks": [
+        "The water",
+        "is leaking."
+      ],
+      "hints": [
+        "漏水",
+        "了。"
+      ],
+      "cid": "9042ec5a"
+    },
+    {
+      "sentence": "It's so dusty.",
+      "translation": "全是灰呀。",
+      "chunks": [
+        "It's so",
+        "dusty."
+      ],
+      "hints": [
+        "全是",
+        "灰呀。"
+      ],
+      "cid": "973903db"
+    },
+    {
+      "sentence": "It's stuffy in this room.",
+      "translation": "这间屋子通风真差。",
+      "chunks": [
+        "It's stuffy",
+        "in this room."
+      ],
+      "hints": [
+        "这间屋子",
+        "通风真差。"
+      ],
+      "cid": "41a89f0d"
+    },
+    {
+      "sentence": "It's drafty in this room.",
+      "translation": "这个房间很通风。",
+      "chunks": [
+        "It's drafty",
+        "in this room."
+      ],
+      "hints": [
+        "这个房间",
+        "很通风。"
+      ],
+      "cid": "00a5e06a"
+    },
+    {
+      "sentence": "Will you feed the dog?",
+      "translation": "你能去喂喂狗吗?",
+      "chunks": [
+        "Will you feed",
+        "the dog?"
+      ],
+      "hints": [
+        "你能去",
+        "喂喂狗吗？"
+      ],
+      "cid": "4a9d3cd0"
+    },
+    {
+      "sentence": "Will you take the dog for a walk?",
+      "translation": "你去遛遛狗吧?",
+      "chunks": [
+        "Will you take the dog",
+        "for a walk?"
+      ],
+      "hints": [
+        "你去",
+        "遛遛狗吧？"
+      ],
+      "cid": "abe95166"
+    },
+    {
+      "sentence": "Take care of my brother and sister.",
+      "translation": "帮我照看一下弟弟和妹妹。",
+      "chunks": [
+        "Take care of",
+        "my brother and sister."
+      ],
+      "hints": [
+        "帮我照看一下",
+        "弟弟和妹妹。"
+      ],
+      "cid": "08a6d893"
+    },
+    {
+      "sentence": "Please water the plants.",
+      "translation": "请(给植物)浇点水。",
+      "chunks": [
+        "Please water",
+        "the plants."
+      ],
+      "hints": [
+        "请给植物",
+        "浇点水。"
+      ],
+      "cid": "02dcea3f"
+    },
+    {
+      "sentence": "What a mess!",
+      "translation": "啊!怎么这么乱呀!",
+      "chunks": [
+        "What a",
+        "mess!"
+      ],
+      "hints": [
+        "怎么",
+        "这么乱呀！"
+      ],
+      "cid": "d9845113"
+    },
+    {
+      "sentence": "Help me.",
+      "translation": "帮帮我吧。",
+      "chunks": [
+        "Help",
+        "me."
+      ],
+      "hints": [
+        "帮帮",
+        "我吧。"
+      ],
+      "cid": "92c849ee"
+    },
+    {
+      "sentence": "Clean up your room.",
+      "translation": "把你的屋子收拾收拾。",
+      "chunks": [
+        "Clean up",
+        "your room."
+      ],
+      "hints": [
+        "把你的屋子",
+        "收拾收拾。"
+      ],
+      "cid": "37ef59d1"
+    },
+    {
+      "sentence": "Help me clean up the house.",
+      "translation": "帮我打扫打扫卫生。",
+      "chunks": [
+        "Help me clean up",
+        "the house."
+      ],
+      "hints": [
+        "帮我",
+        "打扫打扫卫生。"
+      ],
+      "cid": "58fa2e75"
+    },
+    {
+      "sentence": "We're out of dish detergent.",
+      "translation": "洗涤灵用完啦。",
+      "chunks": [
+        "We're out of",
+        "dish detergent."
+      ],
+      "hints": [
+        "洗涤灵",
+        "用完啦。"
+      ],
+      "cid": "5793fb26"
+    },
+    {
+      "sentence": "Would you put up the clothes to dry?",
+      "translation": "你能把衣服晾上吗?",
+      "chunks": [
+        "Would you put up",
+        "the clothes to dry?"
+      ],
+      "hints": [
+        "你能把衣服",
+        "晾上吗？"
+      ],
+      "cid": "22585d5b"
+    },
+    {
+      "sentence": "Will you help me fold up the clothes?",
+      "translation": "你能帮我把衣服叠起来吗?",
+      "chunks": [
+        "Will you help me",
+        "fold up the clothes?"
+      ],
+      "hints": [
+        "你能帮我",
+        "把衣服叠起来吗？"
+      ],
+      "cid": "9bc941ab"
+    },
+    {
+      "sentence": "Please sweep the floor.",
+      "translation": "把地扫扫。",
+      "chunks": [
+        "Please sweep",
+        "the floor."
+      ],
+      "hints": [
+        "把地",
+        "扫扫。"
+      ],
+      "cid": "22045b84"
+    },
+    {
+      "sentence": "Please scrub the sink.",
+      "translation": "把厨房的池子洗干净。",
+      "chunks": [
+        "Please scrub",
+        "the sink."
+      ],
+      "hints": [
+        "把厨房的池子",
+        "洗干净。"
+      ],
+      "cid": "5813896c"
+    },
+    {
+      "sentence": "I have to vacuum my room.",
+      "translation": "我得用吸尘器吸吸我房间了。",
+      "chunks": [
+        "I have to vacuum",
+        "my room."
+      ],
+      "hints": [
+        "我得用吸尘器",
+        "吸吸我房间了。"
+      ],
+      "cid": "f291777b"
+    },
+    {
+      "sentence": "Please dust the shelves.",
+      "translation": "掸掸柜子上的土。",
+      "chunks": [
+        "Please dust",
+        "the shelves."
+      ],
+      "hints": [
+        "掸掸柜子上的",
+        "土。"
+      ],
+      "cid": "f0cb6824"
+    },
+    {
+      "sentence": "Please mop the floor.",
+      "translation": "请拖拖地。",
+      "chunks": [
+        "Please mop",
+        "the floor."
+      ],
+      "hints": [
+        "请",
+        "拖拖地。"
+      ],
+      "cid": "91578408"
+    },
+    {
+      "sentence": "Will you iron the shirt?",
+      "translation": "你能把那件衬衫熨熨吗?",
+      "chunks": [
+        "Will you iron",
+        "the shirt?"
+      ],
+      "hints": [
+        "你能把那件衬衫",
+        "熨熨吗？"
+      ],
+      "cid": "ecac32e4"
+    },
+    {
+      "sentence": "I have to iron my skirt.",
+      "translation": "我的裙子得熨了。",
+      "chunks": [
+        "I have to iron",
+        "my skirt."
+      ],
+      "hints": [
+        "我的裙子",
+        "得熨了。"
+      ],
+      "cid": "06db3c96"
+    },
+    {
+      "sentence": "Let's go grocery shopping.",
+      "translation": "我们去超市买东西吧。",
+      "chunks": [
+        "Let's go",
+        "grocery shopping."
+      ],
+      "hints": [
+        "我们去超市",
+        "买东西吧。"
+      ],
+      "cid": "54b57b33"
+    },
+    {
+      "sentence": "The park was crowded.",
+      "translation": "公园里人挤人。",
+      "chunks": [
+        "The park",
+        "was crowded."
+      ],
+      "hints": [
+        "公园里",
+        "人挤人。"
+      ],
+      "cid": "dde6dd8d"
+    },
+    {
+      "sentence": "Can you baby-sit tonight?",
+      "translation": "今晚能帮我照看一下孩子吗?",
+      "chunks": [
+        "Can you baby-sit",
+        "tonight?"
+      ],
+      "hints": [
+        "今晚能帮我",
+        "照看一下孩子吗？"
+      ],
+      "cid": "49a7aa73"
+    },
+    {
+      "sentence": "This is for you.",
+      "translation": "这是送给你的。",
+      "chunks": [
+        "This is",
+        "for you."
+      ],
+      "hints": [
+        "这是",
+        "送给你的。"
+      ],
+      "cid": "6e3c2dcf"
+    },
+    {
+      "sentence": "This is your share.",
+      "translation": "这是你的那份。",
+      "chunks": [
+        "This is",
+        "your share."
+      ],
+      "hints": [
+        "这是",
+        "你的那份。"
+      ],
+      "cid": "c848d871"
+    },
+    {
+      "sentence": "What do you want for your birthday?",
+      "translation": "过生日想要什么礼物?",
+      "chunks": [
+        "What do you want",
+        "for your birthday?"
+      ],
+      "hints": [
+        "过生日",
+        "想要什么礼物？"
+      ],
+      "cid": "2eb6efed"
+    },
+    {
+      "sentence": "Ta-dah!",
+      "translation": "噢，来喽!",
+      "chunks": [
+        "Ta-dah!"
+      ],
+      "hints": [
+        "噢，来喽！"
+      ],
+      "cid": "ee65d785"
+    },
+    {
+      "sentence": "I usually work out after work.",
+      "translation": "我经常下班以后运动。",
+      "chunks": [
+        "I usually work out",
+        "after work."
+      ],
+      "hints": [
+        "我经常",
+        "下班以后运动。"
+      ],
+      "cid": "52439749"
+    },
+    {
+      "sentence": "I've started jogging.",
+      "translation": "我开始慢跑锻炼。",
+      "chunks": [
+        "I've started",
+        "jogging."
+      ],
+      "hints": [
+        "我开始",
+        "慢跑锻炼。"
+      ],
+      "cid": "70f34e9c"
+    },
+    {
+      "sentence": "Do you dream often?",
+      "translation": "你常做梦吗?",
+      "chunks": [
+        "Do you",
+        "dream often?"
+      ],
+      "hints": [
+        "你常",
+        "做梦吗？"
+      ],
+      "cid": "361a8af9"
+    },
+    {
+      "sentence": "I've been forgetful lately.",
+      "translation": "最近我总是丢三落四的。",
+      "chunks": [
+        "I've been",
+        "forgetful lately."
+      ],
+      "hints": [
+        "最近我总是",
+        "丢三落四的。"
+      ],
+      "cid": "ed4166d9"
+    },
+    {
+      "sentence": "When is this due?",
+      "translation": "什么时候到期?",
+      "chunks": [
+        "When is",
+        "this due?"
+      ],
+      "hints": [
+        "什么时候",
+        "到期？"
+      ],
+      "cid": "2a575248"
+    },
+    {
+      "sentence": "It's due on the thirtieth.",
+      "translation": "交费日期截止到30号。",
+      "chunks": [
+        "It's due",
+        "on the thirtieth."
+      ],
+      "hints": [
+        "交费日期",
+        "截止到30号。"
+      ],
+      "cid": "76dd30f5"
+    },
+    {
+      "sentence": "Could you give me change?",
+      "translation": "能帮我换一下零钱吗?",
+      "chunks": [
+        "Could you give me",
+        "change?"
+      ],
+      "hints": [
+        "能帮我换",
+        "一下零钱吗？"
+      ],
+      "cid": "34106835"
+    },
+    {
+      "sentence": "Do you have change for one hundred yen?",
+      "translation": "能帮我换开100日元吗?",
+      "chunks": [
+        "Do you have change",
+        "for one hundred yen?"
+      ],
+      "hints": [
+        "能帮我换开",
+        "100日元吗？"
+      ],
+      "cid": "266ae683"
+    },
+    {
+      "sentence": "I need to deposit five thousand yen in my savings account.",
+      "translation": "我要存5000日元(在我的账户上。)",
+      "chunks": [
+        "I need to deposit five thousand yen",
+        "in my savings account."
+      ],
+      "hints": [
+        "我要存5000日元",
+        "在我的账户上。"
+      ],
+      "cid": "8817d710"
+    },
+    {
+      "sentence": "I need to withdraw ¥5,000 from my savings account.",
+      "translation": "我要取5000日元(从我的账户上)。",
+      "chunks": [
+        "I need to withdraw ¥5,000",
+        "from my savings account."
+      ],
+      "hints": [
+        "我要取5000日元",
+        "从我的账户上。"
+      ],
+      "cid": "5dca16e7"
+    },
+    {
+      "sentence": "I paid out of my own pocket.",
+      "translation": "我是自己掏的腰包。",
+      "chunks": [
+        "I paid out of",
+        "my own pocket."
+      ],
+      "hints": [
+        "我是自己",
+        "掏的腰包。"
+      ],
+      "cid": "4cfd418f"
+    },
+    {
+      "sentence": "I'm out of cash.",
+      "translation": "我没带现金。",
+      "chunks": [
+        "I'm out of",
+        "cash."
+      ],
+      "hints": [
+        "我",
+        "没带现金。"
+      ],
+      "cid": "295ccfaa"
+    },
+    {
+      "sentence": "I don't have much money on me now.",
+      "translation": "我现在没有多少现金。",
+      "chunks": [
+        "I don't have much money",
+        "on me now."
+      ],
+      "hints": [
+        "我现在",
+        "没有多少现金。"
+      ],
+      "cid": "f768745e"
+    },
+    {
+      "sentence": "I'm broke.",
+      "translation": "身无分文。",
+      "chunks": [
+        "I'm",
+        "broke."
+      ],
+      "hints": [
+        "身无",
+        "分文。"
+      ],
+      "cid": "dd5bd241"
+    },
+    {
+      "sentence": "I have a lot of money on me now.",
+      "translation": "现在我有很多现金。",
+      "chunks": [
+        "I have a lot of money",
+        "on me now."
+      ],
+      "hints": [
+        "现在我",
+        "有很多现金。"
+      ],
+      "cid": "71b0071c"
+    },
+    {
+      "sentence": "I can't afford to be lazy.",
+      "translation": "我可没有时间闲呆着。",
+      "chunks": [
+        "I can't afford",
+        "to be lazy."
+      ],
+      "hints": [
+        "我可没有",
+        "时间闲呆着。"
+      ],
+      "cid": "dd192d8f"
+    },
+    {
+      "sentence": "What a waste!",
+      "translation": "多浪费呀!",
+      "chunks": [
+        "What a",
+        "waste!"
+      ],
+      "hints": [
+        "多",
+        "浪费呀！"
+      ],
+      "cid": "181660d5"
+    },
+    {
+      "sentence": "He didn't pay the debt and disappeared.",
+      "translation": "他因为还不上债而躲了起来。",
+      "chunks": [
+        "He didn't pay the debt",
+        "and disappeared."
+      ],
+      "hints": [
+        "他因为还不上债",
+        "而躲了起来。"
+      ],
+      "cid": "8857865b"
+    },
+    {
       "sentence": "I'd rather stay in than go out tonight.",
       "cid": "c8ebde21",
       "translation": "我今晚宁愿待在家里也不愿出去。",

@@ -3,6 +3,793 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Good morning.",
+      "translation": "早晨好。",
+      "chunks": [
+        "Good",
+        "morning."
+      ],
+      "hints": [
+        "早上",
+        "好。"
+      ],
+      "cid": "575b1d3a"
+    },
+    {
+      "sentence": "Did the alarm clock go off?",
+      "translation": "闹钟响了吗?",
+      "chunks": [
+        "Did the alarm clock",
+        "go off?"
+      ],
+      "hints": [
+        "闹钟",
+        "响了吗？"
+      ],
+      "cid": "459a97c6"
+    },
+    {
+      "sentence": "It's time to get up.",
+      "cid": "f19ef7b9",
+      "translation": "该起床了。",
+      "chunks": [
+        "It's time",
+        "to get up."
+      ],
+      "hints": [
+        "是时候",
+        "起来了"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/taɪm/"
+          ],
+          "pos": "固定句型",
+          "meaning": "是时候了"
+        },
+        {
+          "role": "不定式",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/ɡet/",
+            "/ʌp/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "起床"
+        }
+      ],
+      "explanations": [
+        "`It's time to do sth` 是「该做某事了」的固定句型。常见错误：\n• \"It's time **for** get up\" → for 后面只能接名词，接动词要用 to\n• \"It time to get up\" → 不能丢 be 动词",
+        "对比 `It's time for bed.`（该睡了）：for + 名词 / to + 动词原形。"
+      ],
+      "distractors": [
+        [
+          "It's time for",
+          "It time",
+          "It's the time"
+        ],
+        [
+          "to got up.",
+          "to get on.",
+          "to getting up."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get up soon.",
+      "cid": "d8351b8f",
+      "translation": "快起床。",
+      "chunks": [
+        "Get up",
+        "soon."
+      ],
+      "hints": [
+        "起来",
+        "快点"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词祈使",
+          "meaning": "起来"
+        },
+        {
+          "role": "时间副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/suːn/"
+          ],
+          "pos": "副词",
+          "meaning": "很快、尽早"
+        }
+      ],
+      "explanations": [
+        "`Get up.` 是祈使句，主语 you 不出现。常见错误：\n• \"Get **on**\" → get on 是上车/进展，起床是 get up\n• \"Getting up soon\" → 祈使句要用动词原形",
+        "`soon` 表「尽早、快点」，语气比 immediately 缓和，妈妈叫孩子起床常用。"
+      ],
+      "distractors": [
+        [
+          "Get on",
+          "Got up",
+          "Get up to"
+        ],
+        [
+          "later.",
+          "soonest.",
+          "more soon."
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you awake?",
+      "cid": "83b90662",
+      "translation": "你醒了吗？",
+      "chunks": [
+        "Are you",
+        "awake?"
+      ],
+      "hints": [
+        "你",
+        "醒着吗"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "be 动词疑问",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/əˈweɪk/"
+          ],
+          "pos": "形容词",
+          "meaning": "醒着的"
+        }
+      ],
+      "explanations": [
+        "`awake` 是形容词，前面用 be 动词。常见错误：\n• \"**Do** you awake?\" → awake 是形容词，问「醒着吗」用 be 动词\n• \"Are you **wake**?\" → wake 是动词，形容词形式是 awake",
+        "对比 `Are you up?`（你起来了吗）：awake 指醒着，up 指已下床。"
+      ],
+      "distractors": [
+        [
+          "Do you",
+          "Is you",
+          "Are your"
+        ],
+        [
+          "wake?",
+          "awaked?",
+          "waking?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you feeling sick?",
+      "translation": "你不舒服吗?",
+      "chunks": [
+        "Are you",
+        "feeling sick?"
+      ],
+      "hints": [
+        "你",
+        "不舒服吗？"
+      ],
+      "cid": "15d444b1"
+    },
+    {
+      "sentence": "Did you sleep well?",
+      "translation": "睡得好吗?",
+      "chunks": [
+        "Did you sleep",
+        "well?"
+      ],
+      "hints": [
+        "睡得",
+        "好吗？"
+      ],
+      "cid": "2869bdb7"
+    },
+    {
+      "sentence": "Would you turn off the alarm clock?",
+      "translation": "能帮我关掉闹钟吗?",
+      "chunks": [
+        "Would you turn off",
+        "the alarm clock?"
+      ],
+      "hints": [
+        "能帮我关掉",
+        "闹钟吗？"
+      ],
+      "cid": "9d0dc0e2"
+    },
+    {
+      "sentence": "You finally got up.",
+      "translation": "你终于起来了。",
+      "chunks": [
+        "You finally",
+        "got up."
+      ],
+      "hints": [
+        "你终于",
+        "起来了。"
+      ],
+      "cid": "6639c370"
+    },
+    {
+      "sentence": "It's a nice day!",
+      "translation": "今天是个好天!",
+      "chunks": [
+        "It's a",
+        "nice day!"
+      ],
+      "hints": [
+        "今天是个",
+        "好天！"
+      ],
+      "cid": "9b6f06c3"
+    },
+    {
+      "sentence": "Did you stay up late last night?",
+      "translation": "昨晚你熬夜了?",
+      "chunks": [
+        "Did you stay up late",
+        "last night?"
+      ],
+      "hints": [
+        "昨晚你",
+        "熬夜了？"
+      ],
+      "cid": "6bbeb0ae"
+    },
+    {
+      "sentence": "Let's fold up the futon.",
+      "translation": "把被子叠好。",
+      "chunks": [
+        "Let's fold up",
+        "the futon."
+      ],
+      "hints": [
+        "把被子",
+        "叠好。"
+      ],
+      "cid": "ebfbfb35"
+    },
+    {
+      "sentence": "You were snoring last night.",
+      "translation": "昨天晚上你打呼噜了。",
+      "chunks": [
+        "You were snoring",
+        "last night."
+      ],
+      "hints": [
+        "昨天晚上你",
+        "打呼噜了。"
+      ],
+      "cid": "5aa97ca5"
+    },
+    {
+      "sentence": "I had a nightmare.",
+      "cid": "bb4458df",
+      "translation": "我做了个噩梦。",
+      "chunks": [
+        "I had",
+        "a nightmare."
+      ],
+      "hints": [
+        "我做了",
+        "一个噩梦"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/hæd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我做了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈnaɪtmer/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个噩梦"
+        }
+      ],
+      "explanations": [
+        "「做噩梦」用 `have a nightmare`，过去式 had。常见错误：\n• \"I have a nightmare\" → 说昨晚的事要用过去式\n• \"I made a nightmare\" → 噩梦不是「制作」的，用 have",
+        "相关：a bad dream（也行）/ a sweet dream（好梦）"
+      ],
+      "distractors": [
+        [
+          "I have",
+          "I'm had",
+          "I had got"
+        ],
+        [
+          "a nightmares.",
+          "nightmare.",
+          "a night mare."
+        ]
+      ]
+    },
+    {
+      "sentence": "You left the light on.",
+      "translation": "你一直没关灯啊。",
+      "chunks": [
+        "You left",
+        "the light on."
+      ],
+      "hints": [
+        "你一直",
+        "没关灯啊。"
+      ],
+      "cid": "8903d7a3"
+    },
+    {
+      "sentence": "I have to go wash my face.",
+      "translation": "我得洗脸了。",
+      "chunks": [
+        "I have to go",
+        "wash my face."
+      ],
+      "hints": [
+        "我得",
+        "洗脸了。"
+      ],
+      "cid": "1a03c159"
+    },
+    {
+      "sentence": "It's time to eat breakfast.",
+      "translation": "该吃早饭了。",
+      "chunks": [
+        "It's time to",
+        "eat breakfast."
+      ],
+      "hints": [
+        "该吃",
+        "早饭了。"
+      ],
+      "cid": "e00b4267"
+    },
+    {
+      "sentence": "I'm still sleepy.",
+      "translation": "我还困着呢。",
+      "chunks": [
+        "I'm still",
+        "sleepy."
+      ],
+      "hints": [
+        "我还",
+        "困着呢。"
+      ],
+      "cid": "45701dd6"
+    },
+    {
+      "sentence": "I'm still yawning.",
+      "translation": "我还打哈欠呢。",
+      "chunks": [
+        "I'm still",
+        "yawning."
+      ],
+      "hints": [
+        "我还",
+        "打哈欠呢。"
+      ],
+      "cid": "1bc9257b"
+    },
+    {
+      "sentence": "I have a hangover.",
+      "translation": "昨天的酒还没醒呢。",
+      "chunks": [
+        "I have",
+        "a hangover."
+      ],
+      "hints": [
+        "昨天的酒",
+        "还没醒呢。"
+      ],
+      "cid": "500a1ffd"
+    },
+    {
+      "sentence": "I'm a night person.",
+      "translation": "我是个夜猫子。",
+      "chunks": [
+        "I'm a",
+        "night person."
+      ],
+      "hints": [
+        "我是个",
+        "夜猫子。"
+      ],
+      "cid": "2a3883c8"
+    },
+    {
+      "sentence": "Coffee wakes me up.",
+      "translation": "我是用咖啡来提神的。",
+      "chunks": [
+        "Coffee wakes",
+        "me up."
+      ],
+      "hints": [
+        "我是用咖啡",
+        "来提神的。"
+      ],
+      "cid": "a97a39b3"
+    },
+    {
+      "sentence": "Did you brush your teeth?",
+      "translation": "刷牙了吗?",
+      "chunks": [
+        "Did you brush",
+        "your teeth?"
+      ],
+      "hints": [
+        "刷牙",
+        "了吗？"
+      ],
+      "cid": "c9352d0f"
+    },
+    {
+      "sentence": "I have to comb my hair.",
+      "translation": "我得梳梳头了。",
+      "chunks": [
+        "I have to comb",
+        "my hair."
+      ],
+      "hints": [
+        "我得",
+        "梳梳头了。"
+      ],
+      "cid": "64930508"
+    },
+    {
+      "sentence": "What should I wear?",
+      "cid": "7533e2a5",
+      "translation": "穿什么好呢？",
+      "chunks": [
+        "What should",
+        "I wear?"
+      ],
+      "hints": [
+        "我应该",
+        "穿什么"
+      ],
+      "grammar": [
+        {
+          "role": "情态动词+主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wʌt/",
+            "/ʃʊd/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "我应该（穿）什么"
+        },
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/wer/"
+          ],
+          "pos": "主语+动词",
+          "meaning": "我穿"
+        }
+      ],
+      "explanations": [
+        "`What should I do?` 是征询建议的常用句型。常见错误：\n• \"What should I **wearing**\" → should 后面用动词原形\n• \"What **do I should** wear\" → should 已是助动词，不再加 do",
+        "`wear` 强调「穿着」的状态；`put on` 强调「穿上」的动作。"
+      ],
+      "distractors": [
+        [
+          "What should I wearing",
+          "What I should",
+          "What do I should"
+        ],
+        [
+          "to wear?",
+          "wear on?",
+          "wear it?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Hurry up and get dressed.",
+      "translation": "快换衣服。",
+      "chunks": [
+        "Hurry up",
+        "and get dressed."
+      ],
+      "hints": [
+        "快",
+        "换衣服。"
+      ],
+      "cid": "c5321059"
+    },
+    {
+      "sentence": "Put those pajamas away!",
+      "translation": "把睡衣收好。",
+      "chunks": [
+        "Put those pajamas",
+        "away!"
+      ],
+      "hints": [
+        "把睡衣",
+        "收好。"
+      ],
+      "cid": "3fd9647b"
+    },
+    {
+      "sentence": "I'm leaving. Bye mom!",
+      "translation": "我走了。妈妈再见!",
+      "chunks": [
+        "I'm leaving. Bye",
+        "mom!"
+      ],
+      "hints": [
+        "我走了。",
+        "妈妈再见！"
+      ],
+      "cid": "e5903674"
+    },
+    {
+      "sentence": "Let's play hooky today!",
+      "translation": "今天我们逃学吧。",
+      "chunks": [
+        "Let's play hooky",
+        "today!"
+      ],
+      "hints": [
+        "今天我们",
+        "逃学吧。"
+      ],
+      "cid": "d510c6f4"
+    },
+    {
+      "sentence": "You're wearing your sweater inside out.",
+      "translation": "你毛衣穿反了。",
+      "chunks": [
+        "You're wearing your sweater",
+        "inside out."
+      ],
+      "hints": [
+        "你毛衣",
+        "穿反了。"
+      ],
+      "cid": "6466b1cd"
+    },
+    {
+      "sentence": "It's upside down.",
+      "translation": "上下颠倒了。",
+      "chunks": [
+        "It's",
+        "upside down."
+      ],
+      "hints": [
+        "上下",
+        "颠倒了。"
+      ],
+      "cid": "836548b6"
+    },
+    {
+      "sentence": "Don't forget to take out the garbage.",
+      "translation": "可别忘了扔垃圾!",
+      "chunks": [
+        "Don't forget to take out",
+        "the garbage."
+      ],
+      "hints": [
+        "可别忘了",
+        "扔垃圾！"
+      ],
+      "cid": "bfc4ec88"
+    },
+    {
+      "sentence": "It's your turn to take out the garbage.",
+      "translation": "今天该你扔垃圾了。",
+      "chunks": [
+        "It's your turn to",
+        "take out the garbage."
+      ],
+      "hints": [
+        "今天该你",
+        "扔垃圾了。"
+      ],
+      "cid": "54fee80e"
+    },
+    {
+      "sentence": "What are you doing today?",
+      "translation": "今天你们干嘛?",
+      "chunks": [
+        "What are you",
+        "doing today?"
+      ],
+      "hints": [
+        "今天你们",
+        "干嘛？"
+      ],
+      "cid": "6457e5c9"
+    },
+    {
+      "sentence": "If you don't hurry, we'll be late.",
+      "translation": "你快点儿，我们该迟到了!",
+      "chunks": [
+        "If you don't hurry,",
+        "we'll be late."
+      ],
+      "hints": [
+        "你快点儿，",
+        "我们该迟到了！"
+      ],
+      "cid": "21b84221"
+    },
+    {
+      "sentence": "Hurry or you'll be late for school.",
+      "translation": "快点儿，上学该迟到了。",
+      "chunks": [
+        "Hurry or you'll be late",
+        "for school."
+      ],
+      "hints": [
+        "快点儿，",
+        "上学该迟到了。"
+      ],
+      "cid": "10b2694c"
+    },
+    {
+      "sentence": "Did you lock the door?",
+      "translation": "你锁门了吗?",
+      "chunks": [
+        "Did you lock",
+        "the door?"
+      ],
+      "hints": [
+        "你锁门",
+        "了吗？"
+      ],
+      "cid": "9bff447e"
+    },
+    {
+      "sentence": "Aren't you forgetting something?",
+      "translation": "没忘了什么东西吧?",
+      "chunks": [
+        "Aren't you forgetting",
+        "something?"
+      ],
+      "hints": [
+        "没忘了",
+        "什么东西吧？"
+      ],
+      "cid": "1db5a417"
+    },
+    {
+      "sentence": "It's already 8:00.",
+      "translation": "都已经8点了!",
+      "chunks": [
+        "It's already",
+        "8:00."
+      ],
+      "hints": [
+        "都已经",
+        "8点了！"
+      ],
+      "cid": "1c27ef2a"
+    },
+    {
+      "sentence": "I'm late!",
+      "translation": "我晚了!",
+      "chunks": [
+        "I'm",
+        "late!"
+      ],
+      "hints": [
+        "我",
+        "晚了！"
+      ],
+      "cid": "7747c61b"
+    },
+    {
+      "sentence": "I have to rush!",
+      "translation": "我得赶紧走!",
+      "chunks": [
+        "I have to",
+        "rush!"
+      ],
+      "hints": [
+        "我得",
+        "赶紧走！"
+      ],
+      "cid": "a2a29322"
+    },
+    {
+      "sentence": "Are you gonna be late today?",
+      "translation": "你今天会回来得晚吗?",
+      "chunks": [
+        "Are you gonna be",
+        "late today?"
+      ],
+      "hints": [
+        "你今天会",
+        "回来得晚吗？"
+      ],
+      "cid": "57f5e766"
+    },
+    {
+      "sentence": "What time are you coming home?",
+      "translation": "几点回来?",
+      "chunks": [
+        "What time are you",
+        "coming home?"
+      ],
+      "hints": [
+        "几点",
+        "回来？"
+      ],
+      "cid": "3be47364"
+    },
+    {
+      "sentence": "Have you got your lunch box?",
+      "translation": "饭盒带了吗?",
+      "chunks": [
+        "Have you got",
+        "your lunch box?"
+      ],
+      "hints": [
+        "饭盒",
+        "带了吗？"
+      ],
+      "cid": "1fa77085"
+    },
+    {
+      "sentence": "It might rain today.",
+      "translation": "今天好像要下雨。",
+      "chunks": [
+        "It might",
+        "rain today."
+      ],
+      "hints": [
+        "今天好像",
+        "要下雨。"
+      ],
+      "cid": "621d0ce0"
+    },
+    {
+      "sentence": "Don't forget to lock the door when you leave.",
+      "translation": "出门的时候，可别忘了锁门。",
+      "chunks": [
+        "Don't forget to lock the door",
+        "when you leave."
+      ],
+      "hints": [
+        "出门的时候，",
+        "可别忘了锁门。"
+      ],
+      "cid": "3aa090c9"
+    },
+    {
       "sentence": "Do you mind if I open the window?",
       "cid": "70190b47",
       "translation": "你介意我开下窗吗？",
@@ -1917,58 +2704,6 @@
       ]
     },
     {
-      "sentence": "It's time to get up.",
-      "cid": "f19ef7b9",
-      "translation": "该起床了。",
-      "chunks": [
-        "It's time",
-        "to get up."
-      ],
-      "hints": [
-        "是时候",
-        "起来了"
-      ],
-      "grammar": [
-        {
-          "role": "主系表",
-          "color": "#c87033",
-          "phonetic": [
-            "/ɪts/",
-            "/taɪm/"
-          ],
-          "pos": "固定句型",
-          "meaning": "是时候了"
-        },
-        {
-          "role": "不定式",
-          "color": "#7c5cbf",
-          "phonetic": [
-            "/tə/",
-            "/ɡet/",
-            "/ʌp/"
-          ],
-          "pos": "不定式短语",
-          "meaning": "起床"
-        }
-      ],
-      "explanations": [
-        "`It's time to do sth` 是「该做某事了」的固定句型。常见错误：\n• \"It's time **for** get up\" → for 后面只能接名词，接动词要用 to\n• \"It time to get up\" → 不能丢 be 动词",
-        "对比 `It's time for bed.`（该睡了）：for + 名词 / to + 动词原形。"
-      ],
-      "distractors": [
-        [
-          "It's time for",
-          "It time",
-          "It's the time"
-        ],
-        [
-          "to got up.",
-          "to get on.",
-          "to getting up."
-        ]
-      ]
-    },
-    {
       "sentence": "Let me sleep for ten minutes.",
       "cid": "3db64270",
       "translation": "让我再睡十分钟。",
@@ -2092,56 +2827,6 @@
       ]
     },
     {
-      "sentence": "Get up soon.",
-      "cid": "d8351b8f",
-      "translation": "快起床。",
-      "chunks": [
-        "Get up",
-        "soon."
-      ],
-      "hints": [
-        "起来",
-        "快点"
-      ],
-      "grammar": [
-        {
-          "role": "祈使句",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/ɡet/",
-            "/ʌp/"
-          ],
-          "pos": "短语动词祈使",
-          "meaning": "起来"
-        },
-        {
-          "role": "时间副词",
-          "color": "#7c5cbf",
-          "phonetic": [
-            "/suːn/"
-          ],
-          "pos": "副词",
-          "meaning": "很快、尽早"
-        }
-      ],
-      "explanations": [
-        "`Get up.` 是祈使句，主语 you 不出现。常见错误：\n• \"Get **on**\" → get on 是上车/进展，起床是 get up\n• \"Getting up soon\" → 祈使句要用动词原形",
-        "`soon` 表「尽早、快点」，语气比 immediately 缓和，妈妈叫孩子起床常用。"
-      ],
-      "distractors": [
-        [
-          "Get on",
-          "Got up",
-          "Get up to"
-        ],
-        [
-          "later.",
-          "soonest.",
-          "more soon."
-        ]
-      ]
-    },
-    {
       "sentence": "I usually sleep late on Saturday.",
       "cid": "615604c4",
       "translation": "我星期六通常晚起。",
@@ -2244,56 +2929,6 @@
           "to get on.",
           "to got up.",
           "for get up."
-        ]
-      ]
-    },
-    {
-      "sentence": "Are you awake?",
-      "cid": "83b90662",
-      "translation": "你醒了吗？",
-      "chunks": [
-        "Are you",
-        "awake?"
-      ],
-      "hints": [
-        "你",
-        "醒着吗"
-      ],
-      "grammar": [
-        {
-          "role": "一般疑问句",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/ɑːr/",
-            "/juː/"
-          ],
-          "pos": "be 动词疑问",
-          "meaning": "你是"
-        },
-        {
-          "role": "表语",
-          "color": "#3358e0",
-          "phonetic": [
-            "/əˈweɪk/"
-          ],
-          "pos": "形容词",
-          "meaning": "醒着的"
-        }
-      ],
-      "explanations": [
-        "`awake` 是形容词，前面用 be 动词。常见错误：\n• \"**Do** you awake?\" → awake 是形容词，问「醒着吗」用 be 动词\n• \"Are you **wake**?\" → wake 是动词，形容词形式是 awake",
-        "对比 `Are you up?`（你起来了吗）：awake 指醒着，up 指已下床。"
-      ],
-      "distractors": [
-        [
-          "Do you",
-          "Is you",
-          "Are your"
-        ],
-        [
-          "wake?",
-          "awaked?",
-          "waking?"
         ]
       ]
     },
@@ -2728,57 +3363,6 @@
           "on the morning.",
           "in morning.",
           "at the morning."
-        ]
-      ]
-    },
-    {
-      "sentence": "What should I wear?",
-      "cid": "7533e2a5",
-      "translation": "穿什么好呢？",
-      "chunks": [
-        "What should",
-        "I wear?"
-      ],
-      "hints": [
-        "我应该",
-        "穿什么"
-      ],
-      "grammar": [
-        {
-          "role": "情态动词+主语",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/wʌt/",
-            "/ʃʊd/"
-          ],
-          "pos": "特殊疑问句",
-          "meaning": "我应该（穿）什么"
-        },
-        {
-          "role": "主谓",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/aɪ/",
-            "/wer/"
-          ],
-          "pos": "主语+动词",
-          "meaning": "我穿"
-        }
-      ],
-      "explanations": [
-        "`What should I do?` 是征询建议的常用句型。常见错误：\n• \"What should I **wearing**\" → should 后面用动词原形\n• \"What **do I should** wear\" → should 已是助动词，不再加 do",
-        "`wear` 强调「穿着」的状态；`put on` 强调「穿上」的动作。"
-      ],
-      "distractors": [
-        [
-          "What should I wearing",
-          "What I should",
-          "What do I should"
-        ],
-        [
-          "to wear?",
-          "wear on?",
-          "wear it?"
         ]
       ]
     }

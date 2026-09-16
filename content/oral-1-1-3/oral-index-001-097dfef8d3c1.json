@@ -1,0 +1,629 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "d3d1514c",
+      "sentence": "I want to take a nap.",
+      "translation": "我真想睡个午觉。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "e9dfa2f3",
+      "sentence": "I'm going to lie down.",
+      "translation": "我去躺一会儿。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "ebbcc2f2",
+      "sentence": "You're pretending to be asleep.",
+      "translation": "你在装睡啊!",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "c6a4a45d",
+      "sentence": "Were you sleeping?",
+      "translation": "你睡着了吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "5b858767",
+      "sentence": "No, I was awake.",
+      "translation": "没有，还没睡呢。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "029d8fab",
+      "sentence": "Will you change the baby's diaper?",
+      "translation": "你能给孩子换块尿布吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "ea9a2905",
+      "sentence": "Do you need to pee?",
+      "translation": "想尿尿吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "7a7a6b4b",
+      "sentence": "It's time to go wee-wee.",
+      "translation": "该尿尿了。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "5b5d65ae",
+      "sentence": "Peekaboo!",
+      "translation": "孩子们在玩藏猫游戏时常用。大人有时也半带玩乐地使用。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "0a9bed52",
+      "sentence": "Kuchi-kuchi-koo.",
+      "translation": "胳肢胳肢",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "3786f219",
+      "sentence": "Let's play catch.",
+      "translation": "我们来投球吧。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "9042ec5a",
+      "sentence": "The water is leaking.",
+      "translation": "漏水了。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "973903db",
+      "sentence": "It's so dusty.",
+      "translation": "全是灰呀。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "41a89f0d",
+      "sentence": "It's stuffy in this room.",
+      "translation": "这间屋子通风真差。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "00a5e06a",
+      "sentence": "It's drafty in this room.",
+      "translation": "这个房间很通风。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "4a9d3cd0",
+      "sentence": "Will you feed the dog?",
+      "translation": "你能去喂喂狗吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "abe95166",
+      "sentence": "Will you take the dog for a walk?",
+      "translation": "你去遛遛狗吧?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "08a6d893",
+      "sentence": "Take care of my brother and sister.",
+      "translation": "帮我照看一下弟弟和妹妹。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "02dcea3f",
+      "sentence": "Please water the plants.",
+      "translation": "请(给植物)浇点水。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "d9845113",
+      "sentence": "What a mess!",
+      "translation": "啊!怎么这么乱呀!",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "92c849ee",
+      "sentence": "Help me.",
+      "translation": "帮帮我吧。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "37ef59d1",
+      "sentence": "Clean up your room.",
+      "translation": "把你的屋子收拾收拾。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "58fa2e75",
+      "sentence": "Help me clean up the house.",
+      "translation": "帮我打扫打扫卫生。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "5793fb26",
+      "sentence": "We're out of dish detergent.",
+      "translation": "洗涤灵用完啦。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "22585d5b",
+      "sentence": "Would you put up the clothes to dry?",
+      "translation": "你能把衣服晾上吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "9bc941ab",
+      "sentence": "Will you help me fold up the clothes?",
+      "translation": "你能帮我把衣服叠起来吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "22045b84",
+      "sentence": "Please sweep the floor.",
+      "translation": "把地扫扫。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "5813896c",
+      "sentence": "Please scrub the sink.",
+      "translation": "把厨房的池子洗干净。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "f291777b",
+      "sentence": "I have to vacuum my room.",
+      "translation": "我得用吸尘器吸吸我房间了。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "f0cb6824",
+      "sentence": "Please dust the shelves.",
+      "translation": "掸掸柜子上的土。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "91578408",
+      "sentence": "Please mop the floor.",
+      "translation": "请拖拖地。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "ecac32e4",
+      "sentence": "Will you iron the shirt?",
+      "translation": "你能把那件衬衫熨熨吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "06db3c96",
+      "sentence": "I have to iron my skirt.",
+      "translation": "我的裙子得熨了。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "54b57b33",
+      "sentence": "Let's go grocery shopping.",
+      "translation": "我们去超市买东西吧。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "dde6dd8d",
+      "sentence": "The park was crowded.",
+      "translation": "公园里人挤人。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "49a7aa73",
+      "sentence": "Can you baby-sit tonight?",
+      "translation": "今晚能帮我照看一下孩子吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "6e3c2dcf",
+      "sentence": "This is for you.",
+      "translation": "这是送给你的。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "c848d871",
+      "sentence": "This is your share.",
+      "translation": "这是你的那份。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "2eb6efed",
+      "sentence": "What do you want for your birthday?",
+      "translation": "过生日想要什么礼物?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "ee65d785",
+      "sentence": "Ta-dah!",
+      "translation": "噢，来喽!",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "52439749",
+      "sentence": "I usually work out after work.",
+      "translation": "我经常下班以后运动。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "70f34e9c",
+      "sentence": "I've started jogging.",
+      "translation": "我开始慢跑锻炼。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "361a8af9",
+      "sentence": "Do you dream often?",
+      "translation": "你常做梦吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "ed4166d9",
+      "sentence": "I've been forgetful lately.",
+      "translation": "最近我总是丢三落四的。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "2a575248",
+      "sentence": "When is this due?",
+      "translation": "什么时候到期?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "76dd30f5",
+      "sentence": "It's due on the thirtieth.",
+      "translation": "交费日期截止到30号。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "34106835",
+      "sentence": "Could you give me change?",
+      "translation": "能帮我换一下零钱吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "266ae683",
+      "sentence": "Do you have change for one hundred yen?",
+      "translation": "能帮我换开100日元吗?",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "8817d710",
+      "sentence": "I need to deposit five thousand yen in my savings account.",
+      "translation": "我要存5000日元(在我的账户上。)",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "5dca16e7",
+      "sentence": "I need to withdraw ¥5,000 from my savings account.",
+      "translation": "我要取5000日元(从我的账户上)。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "4cfd418f",
+      "sentence": "I paid out of my own pocket.",
+      "translation": "我是自己掏的腰包。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "295ccfaa",
+      "sentence": "I'm out of cash.",
+      "translation": "我没带现金。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "f768745e",
+      "sentence": "I don't have much money on me now.",
+      "translation": "我现在没有多少现金。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "dd5bd241",
+      "sentence": "I'm broke.",
+      "translation": "身无分文。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "71b0071c",
+      "sentence": "I have a lot of money on me now.",
+      "translation": "现在我有很多现金。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "dd192d8f",
+      "sentence": "I can't afford to be lazy.",
+      "translation": "我可没有时间闲呆着。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "181660d5",
+      "sentence": "What a waste!",
+      "translation": "多浪费呀!",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "8857865b",
+      "sentence": "He didn't pay the debt and disappeared.",
+      "translation": "他因为还不上债而躲了起来。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "c8ebde21",
+      "sentence": "I'd rather stay in than go out tonight.",
+      "translation": "我今晚宁愿待在家里也不愿出去。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "7f041d4e",
+      "sentence": "I'm looking for an apartment near the university.",
+      "translation": "我在找大学附近的公寓。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "26516f50",
+      "sentence": "How much is the rent for this apartment?",
+      "translation": "这套公寓的租金是多少？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "d89f94fa",
+      "sentence": "Does the rent include the utilities?",
+      "translation": "房租包含水电燃气这些费用吗？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "42feb2af",
+      "sentence": "I need to sign a one-year lease.",
+      "translation": "我需要签一份一年期的租约。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "1319af65",
+      "sentence": "I can't wait to move into my new place.",
+      "translation": "我迫不及待要搬进新家了。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "65a045ff",
+      "sentence": "Do you still have the apartment for rent?",
+      "translation": "这套公寓还在出租吗？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "9e0805f0",
+      "sentence": "I'd like to open a savings account.",
+      "translation": "我想开一个储蓄账户。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "82e48821",
+      "sentence": "Could you tell me today's exchange rate?",
+      "translation": "你能告诉我今天的汇率吗？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "66658ed3",
+      "sentence": "How much would it cost to send this to China?",
+      "translation": "把这个寄到中国要多少钱？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "8094f354",
+      "sentence": "I'd like to get a haircut, please.",
+      "translation": "我想理发。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "4eb6f313",
+      "sentence": "Could you trim my beard a little?",
+      "translation": "你能帮我把胡子修短一点吗？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "0c594885",
+      "sentence": "Could you take a little off the top?",
+      "translation": "能把头顶稍微剪短点吗？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "6ea7ddb2",
+      "sentence": "I go to the gym twice a week.",
+      "translation": "我每周去两次健身房。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "b9a6bed9",
+      "sentence": "I'm really out of shape these days.",
+      "translation": "我最近身体状况真的很差。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "19c737bd",
+      "sentence": "The Wi-Fi keeps dropping in my room.",
+      "translation": "我房间的无线网络老是断。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 73
+    },
+    {
+      "cid": "b4dc4363",
+      "sentence": "Could I borrow your charger for a sec?",
+      "translation": "我能借用一下你的充电器吗？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 74
+    },
+    {
+      "cid": "5ae33cc0",
+      "sentence": "My phone is running out of battery.",
+      "translation": "我的手机快没电了。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 75
+    },
+    {
+      "cid": "b62f5200",
+      "sentence": "I've got dandruff.",
+      "translation": "我有头皮屑。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 76
+    },
+    {
+      "cid": "3df31aab",
+      "sentence": "Try some shampoo.",
+      "translation": "试试洗发水。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 77
+    },
+    {
+      "cid": "af8e14de",
+      "sentence": "What's the rent?",
+      "translation": "房租多少？",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 78
+    },
+    {
+      "cid": "cd8300eb",
+      "sentence": "300 a week.",
+      "translation": "一周三百。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 79
+    },
+    {
+      "cid": "a78144bd",
+      "sentence": "Get some fresh air.",
+      "translation": "去呼吸点新鲜空气。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 80
+    },
+    {
+      "cid": "8c273747",
+      "sentence": "Get some sun.",
+      "translation": "去晒晒太阳。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 81
+    },
+    {
+      "cid": "1381b0a8",
+      "sentence": "Get some groceries.",
+      "translation": "买点菜。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 82
+    },
+    {
+      "cid": "d1fa43d8",
+      "sentence": "Take a walk.",
+      "translation": "去走走。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 83
+    },
+    {
+      "cid": "623c5d57",
+      "sentence": "Read a book.",
+      "translation": "读读书。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 84
+    },
+    {
+      "cid": "f256951c",
+      "sentence": "Put on some music.",
+      "translation": "放点音乐。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 85
+    },
+    {
+      "cid": "60c46056",
+      "sentence": "Smell some flowers.",
+      "translation": "闻闻花香。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 86
+    },
+    {
+      "cid": "e5ed7518",
+      "sentence": "Have a glass of wine.",
+      "translation": "喝一杯酒。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 87
+    },
+    {
+      "cid": "264a3504",
+      "sentence": "Have some nice food.",
+      "translation": "吃点好的。",
+      "sourceUrl": "content/oral-1-1-3/oral-001-1d693bad231b.json",
+      "sourceOffset": 88
+    }
+  ]
+}
