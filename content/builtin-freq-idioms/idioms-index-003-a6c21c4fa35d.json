@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "f6d275d7",
+      "sentence": "Keep trying — that is the spirit!",
+      "translation": "继续试——这就对了！",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "0fb28a94",
+      "sentence": "The meeting is over — I will show you out.",
+      "translation": "会议结束了——我送你出去。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "46bdf6bd",
+      "sentence": "Sorry I missed dinner — something came up.",
+      "translation": "抱歉我没赶上晚饭——临时有事。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "bde9ea12",
+      "sentence": "Do not believe it — I just made that up.",
+      "translation": "别信——那是我随口编的。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "766ccc8b",
+      "sentence": "She canceled again — she is a bummer.",
+      "translation": "她又取消了——真让人扫兴。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "bace51db",
+      "sentence": "I forgot my notes — I will just wing it.",
+      "translation": "我忘带讲稿了——只好即兴发挥。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "7ac93e48",
+      "sentence": "Please talk to me — do not shut me out.",
+      "translation": "跟我说说话——别把我拒之门外。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "bdb5d28d",
+      "sentence": "Keep me updated on any changes.",
+      "translation": "有任何变动都通知我。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "570d6fe9",
+      "sentence": "Before we vote — do you want to weigh in here?",
+      "translation": "表决之前——你想说两句吗？",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "7052de7b",
+      "sentence": "Give me a minute — it is a lot to take in.",
+      "translation": "让我缓一下——一时接受不了。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "147dfcc4",
+      "sentence": "Get some rest — I will check on you later.",
+      "translation": "好好休息——我待会儿来看你。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "6efe3034",
+      "sentence": "I cannot add more meetings — I have a hectic schedule.",
+      "translation": "我没法再加会了——日程排得密不透风。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "57849aba",
+      "sentence": "What is so funny — did I say something wrong?",
+      "translation": "有什么好笑的——我说错话了吗？",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "5380d9c5",
+      "sentence": "I cannot wait to see you again.",
+      "translation": "我迫不及待想再见到你。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "a1a7b6b4",
+      "sentence": "Do not just stand there — back me up!",
+      "translation": "别光站着——帮我撑个场！",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "6755c176",
+      "sentence": "Do not mind me — I am not myself today.",
+      "translation": "别管我——我今天状态不好。",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "4fbbef22",
+      "sentence": "What is tomorrow — anything special?",
+      "translation": "明天什么日子——有什么特别的吗？",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "a3c41762",
+      "sentence": "Running into you here — what are the chances?",
+      "translation": "在这儿碰上你——多巧啊！",
+      "sourceUrl": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+      "sourceOffset": 17
+    }
+  ]
+}

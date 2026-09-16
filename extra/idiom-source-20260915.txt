@@ -1,0 +1,66 @@
+# 老板 2026-09-15 给的第二/三类素材（习语 + 道歉主题），留档备查
+# 归属判断：属 builtin-freq-idioms（高频短语库），源清单 extra/idioms-394.json
+#   其中 C 组 20 条 = idioms-394.json 的未实现词条（源数据本身带错拼，见「源清单原样」）
+# 归属未确认前不入库。入库管线：extra/batchN.json → scripts/preflight-batch.js
+#   → scripts/inject-freq-idioms.js → scripts/rebuild-freq-idioms.py → gen-sw
+
+## B 组 · 地道习语（老板文本第三段，33 条；仅 I'll take care of it 已在 builtin-daily）
+spot on | 完全正确
+fine by me | 我无所谓
+right as rain | 好得很
+I'm on board | 我同意
+I'm cranky | 我脾气爆
+here goes | 我要说了
+play nice | 友好一点
+scoot over | 挪过去一点
+put him on | 让他接电话
+just a heads up | 提醒一下
+a little cheesy | 有点俗气
+they're so nosy | 他们好八卦
+you're in for a treat | 你有口福了
+for real | 真的假的
+that's the spirit | 这就对了
+I'm running late | 我要迟到了
+I'll show you out | 我送你出去
+something came up | 临时有事
+I just made that up | 是我编的
+she's a bummer | 她是个扫兴鬼
+I don't have the heart to | 我不忍心
+wing it | 即兴发挥
+sorry to barge in | 抱歉我冒昧来访
+don't shut me out | 别把我拒之门外
+keep me updated | 有情况通知我
+you want to weigh in here | 你想说两句么
+it's a lot to take in | 让人难以接受
+I'll check on you later | 我待会再来看你
+I have a hectic schedule | 我工作很忙
+what's so funny | 你笑什么
+can't wait | 迫不及待
+back me up | 支持我一下
+
+## C 组 · 道歉主题（老板截图里的文件夹清单，20 条）
+# 左：截图里的目录名（含源数据错拼） / 右：建议的规范写法
+1-call it even            → Call it even.
+2-dont be mad at me       → Don't be mad at me.
+3-forgive me              → Forgive me.
+4-i dont mean it          → I don't mean it.
+5-i feel really bad       → I feel really bad.
+6-i since apologies       → I sincerely apologize.   ← 源清单错拼 since apoloytes
+7-it's all my fault       → It's all my fault.
+8-my bad                  → My bad.
+9-sorry to barge in       → Sorry to barge in.       ← 与 B 组重复（去重后只留一处）
+10-sorry to bother you    → Sorry to bother you.
+11-my mistake             → My mistake.
+12-my apologies           → My apologies.            ← 源清单错拼 my appologies
+13-apologies              → Apologies.
+14-don't pout             → Don't pout.
+15-i m sorry about this   → I'm sorry about this.
+16-i take full responsibility → I take full responsibility.
+17-im awf sorry           → I'm awfully sorry.       ← 源清单写作 I'm awful sorry
+18-say youre sorry        → Say you're sorry.
+19-sorry to keep you waiting → Sorry to keep you waiting.
+20-this is my fault       → This is my fault.
+
+## 可见的重叠
+- `sorry to barge in` 同时出现在 B 组与 C 组 → 入库时只保留一条。
+- `I'll take care of it` 已存在于 builtin-daily → 视为重复，跳过。

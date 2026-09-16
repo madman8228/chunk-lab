@@ -8003,6 +8003,498 @@
         "**Get loaded** = 喝醉（美式俚语）。load 本义「装载」，引申成把人「灌满酒」，比 get drunk 更随意。",
         "近义：Get wasted / Tie one on. 例句：They got loaded and sang all night."
       ]
+    },
+    {
+      "sentence": "Your guess was spot on — it turned out exactly right.",
+      "cid": "41e2a03e",
+      "translation": "你猜得完全正确——结果一点不差。",
+      "chunks": [
+        "Your guess was",
+        "spot on —",
+        "it turned out exactly right."
+      ],
+      "hints": [
+        "你的猜测",
+        "完全正确",
+        "结果分毫不差"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ɡes/",
+            "/wʌz/"
+          ],
+          "pos": "主系表",
+          "meaning": "你的猜测是"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/spɑːt/",
+            "/ɑːn/"
+          ],
+          "pos": "形容词习语",
+          "meaning": "完全正确"
+        },
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪt/",
+            "/tɜːrnd/",
+            "/aʊt/",
+            "/ɪɡˈzæktli/",
+            "/raɪt/"
+          ],
+          "pos": "主谓",
+          "meaning": "结果正是如此"
+        }
+      ],
+      "explanations": [
+        "**Spot on** = 完全正确、正中要害。英式口语常用，比 exactly right 更地道、更轻快。",
+        "近义：Right on the money / Bang on. 例句：Your summary of the case was spot on."
+      ]
+    },
+    {
+      "sentence": "We can meet at eight — that is fine by me.",
+      "cid": "20fc1cf2",
+      "translation": "我们八点见——我没意见。",
+      "chunks": [
+        "We can meet at eight —",
+        "that is fine by me."
+      ],
+      "hints": [
+        "我们八点见也行",
+        "我没意见"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/wi/",
+            "/kæn/",
+            "/miːt/",
+            "/æt/",
+            "/eɪt/"
+          ],
+          "pos": "情态动词+时间",
+          "meaning": "我们八点见面"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðæt/",
+            "/ɪz/",
+            "/faɪn/",
+            "/baɪ/",
+            "/mi/"
+          ],
+          "pos": "习语",
+          "meaning": "我没意见"
+        }
+      ],
+      "explanations": [
+        "**Fine by me** = 我没意见、我无所谓。用于爽快答应别人的安排，语气随和。",
+        "近义：Works for me / I am good with that. 例句：Take the later flight — that is fine by me."
+      ]
+    },
+    {
+      "sentence": "Count me in — I am on board with the plan.",
+      "cid": "5347bd87",
+      "translation": "算我一个——我同意这个计划。",
+      "chunks": [
+        "Count me in —",
+        "I am on board",
+        "with the plan."
+      ],
+      "hints": [
+        "算我一个",
+        "我赞成",
+        "这个计划"
+      ],
+      "grammar": [
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/kaʊnt/",
+            "/mi/",
+            "/ɪn/"
+          ],
+          "pos": "习语",
+          "meaning": "算我一个"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/æm/",
+            "/ɑːn/",
+            "/bɔːrd/"
+          ],
+          "pos": "习语",
+          "meaning": "我加入"
+        },
+        {
+          "role": "介词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wɪð/",
+            "/ðə/",
+            "/plæn/"
+          ],
+          "pos": "介词短语",
+          "meaning": "这个计划"
+        }
+      ],
+      "explanations": [
+        "**On board** 字面「在船上」，引申为「同意、加入、支持某个计划」。I am on board = 我加入、我赞成。",
+        "近义：I am in / Count me in / I am game. 例句：If everyone is on board, we will start next week."
+      ]
+    },
+    {
+      "sentence": "Here goes — I am going to ask her out.",
+      "cid": "9f9c04cb",
+      "translation": "豁出去了——我这就去约她。",
+      "chunks": [
+        "Here goes —",
+        "I am going to ask her out."
+      ],
+      "hints": [
+        "豁出去了",
+        "我这就去约她"
+      ],
+      "grammar": [
+        {
+          "role": "习语·感叹",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/hɪr/",
+            "/ɡoʊz/"
+          ],
+          "pos": "习语",
+          "meaning": "豁出去了"
+        },
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/æm/",
+            "/ˈɡoʊɪŋ/",
+            "/tu/",
+            "/æsk/"
+          ],
+          "pos": "be going to 将来时",
+          "meaning": "我准备去约她"
+        }
+      ],
+      "explanations": [
+        "**Here goes** 是「要开始了、豁出去了」的感叹，常在鼓足勇气做某件事前说，比如跳伞、表白、上台演讲。",
+        "近义：Here we go / Wish me luck. 例句：Here goes — fingers crossed!"
+      ]
+    },
+    {
+      "sentence": "Play nice with your little brother.",
+      "cid": "d6dd3437",
+      "translation": "跟你弟弟好好相处。",
+      "chunks": [
+        "Play nice",
+        "with your little brother."
+      ],
+      "hints": [
+        "友好一点",
+        "和你弟弟"
+      ],
+      "grammar": [
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pleɪ/",
+            "/naɪs/"
+          ],
+          "pos": "习语祈使",
+          "meaning": "友好一点"
+        },
+        {
+          "role": "介词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wɪð/",
+            "/jʊr/",
+            "/ˈlɪtl/",
+            "/ˈbrʌðər/"
+          ],
+          "pos": "介词短语",
+          "meaning": "和你弟弟"
+        }
+      ],
+      "explanations": [
+        "**Play nice** = 友好相处、别闹。多对孩子说，也可以调侃成年人之间「别斗了」。",
+        "近义：Be nice / Get along. 例句：Play nice, kids — no pushing."
+      ]
+    },
+    {
+      "sentence": "Scoot over — I need a seat too.",
+      "cid": "cef8580c",
+      "translation": "挪过去点——我也要坐。",
+      "chunks": [
+        "Scoot over —",
+        "I need a seat too."
+      ],
+      "hints": [
+        "挪过去点",
+        "我也要坐"
+      ],
+      "grammar": [
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/skuːt/",
+            "/ˈoʊvər/"
+          ],
+          "pos": "动词习语",
+          "meaning": "往旁边挪挪"
+        },
+        {
+          "role": "主谓宾",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/niːd/",
+            "/ə/",
+            "/siːt/"
+          ],
+          "pos": "主谓宾",
+          "meaning": "我也需要一个座位"
+        }
+      ],
+      "explanations": [
+        "**Scoot over** = 往旁边挪一点，给别人腾个位置。scoot 本义是「快速滑动」，口语里就是「挪挪屁股」。",
+        "近义：Move over / Slide over / Budge up. 例句：Scoot over so I can sit down."
+      ]
+    },
+    {
+      "sentence": "Hold on — put him on, please.",
+      "cid": "e0016c4d",
+      "translation": "等一下——请让他接电话。",
+      "chunks": [
+        "Hold on —",
+        "put him on, please."
+      ],
+      "hints": [
+        "等一下",
+        "让他接电话"
+      ],
+      "grammar": [
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/hoʊld/",
+            "/ɑːn/"
+          ],
+          "pos": "习语",
+          "meaning": "等一下"
+        },
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pʊt/",
+            "/hɪm/",
+            "/ɑːn/"
+          ],
+          "pos": "动词习语",
+          "meaning": "让他来接"
+        }
+      ],
+      "explanations": [
+        "**Put sb on**（打电话）= 让某人来接电话。Put him on 就是「把他接进来」。",
+        "反义：Take a message（代为留言）. 例句：Is Sarah there? Put her on, please."
+      ]
+    },
+    {
+      "sentence": "The movie was sweet, if a little cheesy.",
+      "cid": "024ff662",
+      "translation": "那部电影挺甜，就是有点俗气。",
+      "chunks": [
+        "The movie was sweet,",
+        "if a little cheesy."
+      ],
+      "hints": [
+        "那部电影挺甜",
+        "就是有点俗"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmuːvi/",
+            "/wʌz/",
+            "/swiːt/"
+          ],
+          "pos": "主系表",
+          "meaning": "那部电影很甜"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪf/",
+            "/ə/",
+            "/ˈlɪtl/",
+            "/ˈtʃiːzi/"
+          ],
+          "pos": "习语",
+          "meaning": "就是有点俗套"
+        }
+      ],
+      "explanations": [
+        "**Cheesy** = 俗套、煽情得让人有点尴尬。a little cheesy = 有点俗，贬中带夸。",
+        "近义：Corny / Cliché / Tacky. 例句：His pickup line was a little cheesy."
+      ]
+    },
+    {
+      "sentence": "Do not tell the neighbors — they are so nosy.",
+      "cid": "ea97a61d",
+      "translation": "别告诉邻居——他们太好打听了。",
+      "chunks": [
+        "Do not tell the neighbors —",
+        "they are so nosy."
+      ],
+      "hints": [
+        "别告诉邻居",
+        "他们太八卦了"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/duː/",
+            "/nɑːt/",
+            "/tel/",
+            "/ðə/",
+            "/ˈneɪbərz/"
+          ],
+          "pos": "祈使句",
+          "meaning": "别告诉邻居"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðeɪ/",
+            "/ɑːr/",
+            "/soʊ/",
+            "/ˈnoʊzi/"
+          ],
+          "pos": "形容词习语",
+          "meaning": "他们很好打听"
+        }
+      ],
+      "explanations": [
+        "**Nosy** = 爱打听、好管闲事，比 curious 带明显的贬义，形容总爱探听别人隐私的人。",
+        "近义：Snoopy / Have a big mouth. 例句：Our neighbor is so nosy about our plans."
+      ]
+    },
+    {
+      "sentence": "Try the dessert — you are in for a treat.",
+      "cid": "d750c2b1",
+      "translation": "尝尝这甜点——你有口福了。",
+      "chunks": [
+        "Try the dessert —",
+        "you are in for a treat."
+      ],
+      "hints": [
+        "尝尝这个甜点",
+        "你有口福了"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/traɪ/",
+            "/ðə/",
+            "/dɪˈzɜːrt/"
+          ],
+          "pos": "祈使句",
+          "meaning": "尝尝这个甜点"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ju/",
+            "/ɑːr/",
+            "/ɪn/",
+            "/fɔːr/",
+            "/ə/",
+            "/triːt/"
+          ],
+          "pos": "习语",
+          "meaning": "你有得享受了"
+        }
+      ],
+      "explanations": [
+        "**In for a treat** = 有好东西等着你、有得享受了。常用在推荐美食、演出、电影之前。",
+        "近义：You will love it / You are in for a surprise. 例句：Wait till you hear her sing — you are in for a treat."
+      ]
+    },
+    {
+      "sentence": "For real — you actually won the lottery?",
+      "cid": "daea5fc3",
+      "translation": "真的假的——你真中彩票了？",
+      "chunks": [
+        "For real —",
+        "you actually won the lottery?"
+      ],
+      "hints": [
+        "真的假的",
+        "你真中彩票了"
+      ],
+      "grammar": [
+        {
+          "role": "习语·感叹",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/riːl/"
+          ],
+          "pos": "习语",
+          "meaning": "真的假的"
+        },
+        {
+          "role": "特殊疑问句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ju/",
+            "/ˈæktʃuəli/",
+            "/wʌn/",
+            "/ðə/",
+            "/ˈlɑːtəri/"
+          ],
+          "pos": "疑问句",
+          "meaning": "你真的中奖了"
+        }
+      ],
+      "explanations": [
+        "**For real** = 真的假的、当真？既可表惊讶反问，也可以作「说真的」用。",
+        "近义：Seriously? / No way! / For real though（说真的）. 例句：For real, you are moving to Japan?"
+      ]
     }
   ]
 }

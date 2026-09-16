@@ -1,0 +1,129 @@
+[
+  {
+    "sentence": "Do not mind me — I am not myself today.",
+    "cid": "6755c176",
+    "translation": "别管我——我今天状态不好。",
+    "chunks": [
+      "Do not mind me —",
+      "I am not myself today."
+    ],
+    "hints": [
+      "别管我",
+      "我今天不在状态"
+    ],
+    "grammar": [
+      {
+        "role": "祈使句",
+        "color": "#c87033",
+        "phonetic": [
+          "/duː/",
+          "/nɑːt/",
+          "/maɪnd/",
+          "/mi/"
+        ],
+        "pos": "祈使句",
+        "meaning": "别管我"
+      },
+      {
+        "role": "习语·表语",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/aɪ/",
+          "/æm/",
+          "/nɑːt/",
+          "/maɪˈself/",
+          "/təˈdeɪ/"
+        ],
+        "pos": "习语",
+        "meaning": "我今天不在状态"
+      }
+    ],
+    "explanations": [
+      "**Not myself** = 状态不对劲、不太像平时的自己，多因情绪低落、生病或心不在焉。",
+      "近义：off my game / not feeling like myself. 例句：Sorry I snapped — I am not myself today."
+    ]
+  },
+  {
+    "sentence": "What is tomorrow — anything special?",
+    "cid": "4fbbef22",
+    "translation": "明天什么日子——有什么特别的吗？",
+    "chunks": [
+      "What is tomorrow —",
+      "anything special?"
+    ],
+    "hints": [
+      "明天什么日子",
+      "有什么特别的吗"
+    ],
+    "grammar": [
+      {
+        "role": "习语·疑问",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wʌt/",
+          "/ɪz/",
+          "/təˈmɑːroʊ/"
+        ],
+        "pos": "习语疑问",
+        "meaning": "明天什么安排"
+      },
+      {
+        "role": "疑问句",
+        "color": "#c87033",
+        "phonetic": [
+          "/ˈeniθɪŋ/",
+          "/ˈspeʃl/"
+        ],
+        "pos": "省略疑问句",
+        "meaning": "有什么特别的吗"
+      }
+    ],
+    "explanations": [
+      "**What is tomorrow?** = 明天是什么日子、什么安排？口语里省略了 is there。",
+      "近义：What is on for tomorrow? / What is happening tomorrow? 例句：What is tomorrow — your birthday?"
+    ]
+  },
+  {
+    "sentence": "Running into you here — what are the chances?",
+    "cid": "a3c41762",
+    "translation": "在这儿碰上你——多巧啊！",
+    "chunks": [
+      "Running into you here —",
+      "what are the chances?"
+    ],
+    "hints": [
+      "在这儿碰上你",
+      "这得多巧啊"
+    ],
+    "grammar": [
+      {
+        "role": "现在分词短语",
+        "color": "#c87033",
+        "phonetic": [
+          "/ˈrʌnɪŋ/",
+          "/ˈɪntu/",
+          "/ju/",
+          "/hɪr/"
+        ],
+        "pos": "现在分词状语",
+        "meaning": "在这儿遇到你"
+      },
+      {
+        "role": "习语·疑问",
+        "color": "#7c5cbf",
+        "phonetic": [
+          "/wʌt/",
+          "/ɑːr/",
+          "/ðə/",
+          "/ˈtʃænsɪz/"
+        ],
+        "pos": "习语疑问",
+        "meaning": "这多巧啊"
+      }
+    ],
+    "explanations": [
+      "**What are the chances?** 字面是「几率有多大」，实际常用来感叹巧遇：「这也太巧了吧」。",
+      "近义：What a coincidence / Small world. 例句：You are here too? What are the chances!"
+    ]
+  }
+]

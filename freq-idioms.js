@@ -1,4 +1,4 @@
-/* 高频短语 · English Idioms（运行态 389 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24 + batch13 26 + batch14 11 + batch15 3）
+/* 高频短语 · English Idioms（运行态 418 句：103 种子 + batch3 26 + batch4 32 + batch5 39 + batch6 1 + batch7 25 + batch8 26 + batch9 22 + batch10 27 + batch11 24 + batch12 24 + batch13 26 + batch14 11 + batch15 3 + batch16 29）
  * 数据源：extra/idioms-394.json（394 条 idioms，项目内资产，分批扩写；勿再引用 D:/tmp）
  * 批次主题：batch7（2026-09-10）= 态度/回应/边界类 25 条（态度表态、划边界、抱怨与劝告），
  *   顺带修正源数据错拼（hit the book→the books / of ones own accord / rub them the wrong way /
@@ -41,14 +41,26 @@
  *      —— 其中 nerve、barge in、dribs and drabs、pulling my leg 等**正确形式库内早已收录**，无需再收；
  *   ③ 碎片不成句：encore / who wants / do something / give me your attitude 等。
  *   若将来要收 C 类，须先设计「口语强度/粗俗度标签」，否则不进学习流。
+ * batch16（2026-09-15）= 老板三张截图（源清单行 142~204：感谢鼓励/情感邀约/通用表达）+ 上轮 B/C 素材，
+ *   候选 39 条，收录 29 条：B 组地道习语 26（spot on / fine by me / on board / here goes / play nice /
+ *   scoot over / put him on / cheesy / nosy / in for a treat / for real / the spirit / show you out /
+ *   came up / made that up / bummer / wing it / shut me out / keep me updated / weigh in / take in /
+ *   check on you / hectic / so funny / can't wait / back me up）+ 情感 2（not myself / what's tomorrow）
+ *   + 通用 1（what are the chances）。三张图中「感谢/鼓励」20 条**库内全有**（batch8~13 已收）。
+ *   ⚠️ 剔除 10 条语义重复：词干匹配对「中间插词」会漏判（how you gonna ≠ how are you gonna /
+ *   awfully ≠ awful），下列均系库内早已收录同义句，按历史决策剔除：heads up / running late /
+ *   awfully sorry / crush on / gonna get home / see you out / fond of you / walk you out /
+ *   walk you home / I am good。
+ *   ⚠️ **preflight 只查整句 norm 相等，抓不到语义重复** → 新批入库必须再跑一次「关键词 grep 复核」
+ *   （本次差点多加 10 条重复题）。
  * 历史批次归档说明：extra/batch2a.json + batch2b.json（30 句试产稿）未整体注入——
  *   24 句已由 batch3/4/5 以原句收录；5 句 idiom 与库内例句重复（you said it / easy for you to say /
  *   my bad / good for you / you bet，例句变体）；仅 you don't say 为库内缺词条，已单抽 batch6 注入（201）。
  *   文件保留在 extra/ 供溯源，勿再整批注入（会撞 cid 校验）。
  * 形态：每个 idiom 嵌入一个完整例句（idiom 作为可填入的 chunk）—— 用户练习时实际填的是 idiom 短语本身。
- * Schema 与 oral8000.js 完全一致：
+ * Schema 与口语库（oral-book.js）完全一致：
  *   { sentence, cid, translation, chunks[2-5], hints[], grammar[{role,color,phonetic,pos,meaning}], explanations[] }
- * 完整规范见 oral8000.js 头部注释；扩展高频短语时务必先跑：
+ * 完整规范见 validate_oral_book.js 与 js/distractor-validate.mjs；扩展高频短语时务必先跑：
  *   node validate_freq_idioms.js          # 校验本文件（npm test 已含）
  * 扩写流程：
  *   写 extra/batchN*.json（自带 cid 或不带，均自动重算）→ node scripts/inject-freq-idioms.js extra/batchN*.json
@@ -243,11 +255,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("You're joking — come off it!"),
     translation: "你在开玩笑——别扯了!",
     chunks: ["You're joking —","come off it!"],
-    hints: ["哦，","收起吧；别装了","你在开玩笑"],
+    hints: ["你在开玩笑","收起吧，别装了"],
     grammar: [
-      {role:"感叹词", color:"#c87033", phonetic:["/oʊ/"], pos:"感叹词", meaning:"哦"},
-      {role:"祈使短语", color:"#e74c7a", phonetic:["/kʌm/","/ɒf/","/ɪt/"], pos:"短语动词", meaning:"停止/别装了"},
-      {role:"回应", color:"#c87033", phonetic:["/jʊr/","/ˈdʒoʊkɪŋ/"], pos:"现在进行时", meaning:"你在开玩笑"}
+      {role:"回应", color:"#c87033", phonetic:["/jʊr/","/ˈdʒoʊkɪŋ/"], pos:"现在进行时", meaning:"你在开玩笑"},
+      {role:"祈使短语", color:"#e74c7a", phonetic:["/kʌm/","/ɒf/","/ɪt/"], pos:"短语动词", meaning:"别装了"}
     ],
     explanations: [
       "**come off it** 短语动词祈使句，意为「别装了/收起你的鬼话/别闹了」。朋友间常用，对夸张说法表达不信。",
@@ -982,7 +993,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Hold on a second — I'll get the door."),
     translation: "稍等一下——我去开门。",
     chunks: ["Hold on","a second —","I'll get the door."],
-    hints: ["让对方等一下","我去开门"],
+    hints: ["稍等一下","一会儿","我去开门"],
     grammar: [
       {role:"等待习语", color:"#7c5cbf", phonetic:["/hoʊld/","/ɑːn/"], pos:"习语·祈使", meaning:"稍等一下"},
       {role:"时间状语", color:"#7c5cbf", phonetic:["/ə/","/ˈsekənd/"], pos:"不定冠词+名词", meaning:"一会儿"},
@@ -6172,10 +6183,449 @@ window.DATA_FREQ_IDIOMS = [
       "近义：Get wasted / Tie one on. 例句：They got loaded and sang all night."
     ]
   }
+,
+  {
+    sentence: "Your guess was spot on — it turned out exactly right.",
+    cid: fnv8("Your guess was spot on — it turned out exactly right."),
+    translation: "你猜得完全正确——结果一点不差。",
+    chunks: ["Your guess was","spot on —","it turned out exactly right."],
+    hints: ["你的猜测","完全正确","结果分毫不差"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/ɡes/","/wʌz/"], pos:"主系表", meaning:"你的猜测是"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/spɑːt/","/ɑːn/"], pos:"形容词习语", meaning:"完全正确"},
+      {role:"主谓", color:"#c87033", phonetic:["/ɪt/","/tɜːrnd/","/aʊt/","/ɪɡˈzæktli/","/raɪt/"], pos:"主谓", meaning:"结果正是如此"}
+    ],
+    explanations: [
+      "**Spot on** = 完全正确、正中要害。英式口语常用，比 exactly right 更地道、更轻快。",
+      "近义：Right on the money / Bang on. 例句：Your summary of the case was spot on."
+    ]
+  },
+  {
+    sentence: "We can meet at eight — that is fine by me.",
+    cid: fnv8("We can meet at eight — that is fine by me."),
+    translation: "我们八点见——我没意见。",
+    chunks: ["We can meet at eight —","that is fine by me."],
+    hints: ["我们八点见也行","我没意见"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/wi/","/kæn/","/miːt/","/æt/","/eɪt/"], pos:"情态动词+时间", meaning:"我们八点见面"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ðæt/","/ɪz/","/faɪn/","/baɪ/","/mi/"], pos:"习语", meaning:"我没意见"}
+    ],
+    explanations: [
+      "**Fine by me** = 我没意见、我无所谓。用于爽快答应别人的安排，语气随和。",
+      "近义：Works for me / I am good with that. 例句：Take the later flight — that is fine by me."
+    ]
+  },
+  {
+    sentence: "Count me in — I am on board with the plan.",
+    cid: fnv8("Count me in — I am on board with the plan."),
+    translation: "算我一个——我同意这个计划。",
+    chunks: ["Count me in —","I am on board","with the plan."],
+    hints: ["算我一个","我赞成","这个计划"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/kaʊnt/","/mi/","/ɪn/"], pos:"习语", meaning:"算我一个"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/aɪ/","/æm/","/ɑːn/","/bɔːrd/"], pos:"习语", meaning:"我加入"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/wɪð/","/ðə/","/plæn/"], pos:"介词短语", meaning:"这个计划"}
+    ],
+    explanations: [
+      "**On board** 字面「在船上」，引申为「同意、加入、支持某个计划」。I am on board = 我加入、我赞成。",
+      "近义：I am in / Count me in / I am game. 例句：If everyone is on board, we will start next week."
+    ]
+  },
+  {
+    sentence: "Here goes — I am going to ask her out.",
+    cid: fnv8("Here goes — I am going to ask her out."),
+    translation: "豁出去了——我这就去约她。",
+    chunks: ["Here goes —","I am going to ask her out."],
+    hints: ["豁出去了","我这就去约她"],
+    grammar: [
+      {role:"习语·感叹", color:"#7c5cbf", phonetic:["/hɪr/","/ɡoʊz/"], pos:"习语", meaning:"豁出去了"},
+      {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/æm/","/ˈɡoʊɪŋ/","/tu/","/æsk/"], pos:"be going to 将来时", meaning:"我准备去约她"}
+    ],
+    explanations: [
+      "**Here goes** 是「要开始了、豁出去了」的感叹，常在鼓足勇气做某件事前说，比如跳伞、表白、上台演讲。",
+      "近义：Here we go / Wish me luck. 例句：Here goes — fingers crossed!"
+    ]
+  },
+  {
+    sentence: "Play nice with your little brother.",
+    cid: fnv8("Play nice with your little brother."),
+    translation: "跟你弟弟好好相处。",
+    chunks: ["Play nice","with your little brother."],
+    hints: ["友好一点","和你弟弟"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/pleɪ/","/naɪs/"], pos:"习语祈使", meaning:"友好一点"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/wɪð/","/jʊr/","/ˈlɪtl/","/ˈbrʌðər/"], pos:"介词短语", meaning:"和你弟弟"}
+    ],
+    explanations: [
+      "**Play nice** = 友好相处、别闹。多对孩子说，也可以调侃成年人之间「别斗了」。",
+      "近义：Be nice / Get along. 例句：Play nice, kids — no pushing."
+    ]
+  },
+  {
+    sentence: "Scoot over — I need a seat too.",
+    cid: fnv8("Scoot over — I need a seat too."),
+    translation: "挪过去点——我也要坐。",
+    chunks: ["Scoot over —","I need a seat too."],
+    hints: ["挪过去点","我也要坐"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/skuːt/","/ˈoʊvər/"], pos:"动词习语", meaning:"往旁边挪挪"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/niːd/","/ə/","/siːt/"], pos:"主谓宾", meaning:"我也需要一个座位"}
+    ],
+    explanations: [
+      "**Scoot over** = 往旁边挪一点，给别人腾个位置。scoot 本义是「快速滑动」，口语里就是「挪挪屁股」。",
+      "近义：Move over / Slide over / Budge up. 例句：Scoot over so I can sit down."
+    ]
+  },
+  {
+    sentence: "Hold on — put him on, please.",
+    cid: fnv8("Hold on — put him on, please."),
+    translation: "等一下——请让他接电话。",
+    chunks: ["Hold on —","put him on, please."],
+    hints: ["等一下","让他接电话"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/hoʊld/","/ɑːn/"], pos:"习语", meaning:"等一下"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/pʊt/","/hɪm/","/ɑːn/"], pos:"动词习语", meaning:"让他来接"}
+    ],
+    explanations: [
+      "**Put sb on**（打电话）= 让某人来接电话。Put him on 就是「把他接进来」。",
+      "反义：Take a message（代为留言）. 例句：Is Sarah there? Put her on, please."
+    ]
+  },
+  {
+    sentence: "The movie was sweet, if a little cheesy.",
+    cid: fnv8("The movie was sweet, if a little cheesy."),
+    translation: "那部电影挺甜，就是有点俗气。",
+    chunks: ["The movie was sweet,","if a little cheesy."],
+    hints: ["那部电影挺甜","就是有点俗"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ðə/","/ˈmuːvi/","/wʌz/","/swiːt/"], pos:"主系表", meaning:"那部电影很甜"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ɪf/","/ə/","/ˈlɪtl/","/ˈtʃiːzi/"], pos:"习语", meaning:"就是有点俗套"}
+    ],
+    explanations: [
+      "**Cheesy** = 俗套、煽情得让人有点尴尬。a little cheesy = 有点俗，贬中带夸。",
+      "近义：Corny / Cliché / Tacky. 例句：His pickup line was a little cheesy."
+    ]
+  },
+  {
+    sentence: "Do not tell the neighbors — they are so nosy.",
+    cid: fnv8("Do not tell the neighbors — they are so nosy."),
+    translation: "别告诉邻居——他们太好打听了。",
+    chunks: ["Do not tell the neighbors —","they are so nosy."],
+    hints: ["别告诉邻居","他们太八卦了"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/duː/","/nɑːt/","/tel/","/ðə/","/ˈneɪbərz/"], pos:"祈使句", meaning:"别告诉邻居"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ðeɪ/","/ɑːr/","/soʊ/","/ˈnoʊzi/"], pos:"形容词习语", meaning:"他们很好打听"}
+    ],
+    explanations: [
+      "**Nosy** = 爱打听、好管闲事，比 curious 带明显的贬义，形容总爱探听别人隐私的人。",
+      "近义：Snoopy / Have a big mouth. 例句：Our neighbor is so nosy about our plans."
+    ]
+  },
+  {
+    sentence: "Try the dessert — you are in for a treat.",
+    cid: fnv8("Try the dessert — you are in for a treat."),
+    translation: "尝尝这甜点——你有口福了。",
+    chunks: ["Try the dessert —","you are in for a treat."],
+    hints: ["尝尝这个甜点","你有口福了"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/traɪ/","/ðə/","/dɪˈzɜːrt/"], pos:"祈使句", meaning:"尝尝这个甜点"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ju/","/ɑːr/","/ɪn/","/fɔːr/","/ə/","/triːt/"], pos:"习语", meaning:"你有得享受了"}
+    ],
+    explanations: [
+      "**In for a treat** = 有好东西等着你、有得享受了。常用在推荐美食、演出、电影之前。",
+      "近义：You will love it / You are in for a surprise. 例句：Wait till you hear her sing — you are in for a treat."
+    ]
+  },
+  {
+    sentence: "For real — you actually won the lottery?",
+    cid: fnv8("For real — you actually won the lottery?"),
+    translation: "真的假的——你真中彩票了？",
+    chunks: ["For real —","you actually won the lottery?"],
+    hints: ["真的假的","你真中彩票了"],
+    grammar: [
+      {role:"习语·感叹", color:"#7c5cbf", phonetic:["/fɔːr/","/riːl/"], pos:"习语", meaning:"真的假的"},
+      {role:"特殊疑问句", color:"#c87033", phonetic:["/ju/","/ˈæktʃuəli/","/wʌn/","/ðə/","/ˈlɑːtəri/"], pos:"疑问句", meaning:"你真的中奖了"}
+    ],
+    explanations: [
+      "**For real** = 真的假的、当真？既可表惊讶反问，也可以作「说真的」用。",
+      "近义：Seriously? / No way! / For real though（说真的）. 例句：For real, you are moving to Japan?"
+    ]
+  },
+  {
+    sentence: "Keep trying — that is the spirit!",
+    cid: fnv8("Keep trying — that is the spirit!"),
+    translation: "继续试——这就对了！",
+    chunks: ["Keep trying —","that is the spirit!"],
+    hints: ["继续尝试","这就对了"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/kiːp/","/ˈtraɪɪŋ/"], pos:"祈使句", meaning:"继续试"},
+      {role:"习语·感叹", color:"#7c5cbf", phonetic:["/ðæt/","/ɪz/","/ðə/","/ˈspɪrɪt/"], pos:"习语", meaning:"就该有这股劲儿"}
+    ],
+    explanations: [
+      "**That is the spirit** = 这就对了、就该有这股劲儿。用来鼓励别人保持好心态。",
+      "近义：Way to go / That is the attitude. 例句：You failed once, so try again — that is the spirit!"
+    ]
+  },
+  {
+    sentence: "The meeting is over — I will show you out.",
+    cid: fnv8("The meeting is over — I will show you out."),
+    translation: "会议结束了——我送你出去。",
+    chunks: ["The meeting is over —","I will show you out."],
+    hints: ["会议结束了","我送你出去"],
+    grammar: [
+      {role:"主系表", color:"#c87033", phonetic:["/ðə/","/ˈmiːtɪŋ/","/ɪz/","/ˈoʊvər/"], pos:"主系表", meaning:"会议结束了"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/wɪl/","/ʃoʊ/","/ju/","/aʊt/"], pos:"动词习语", meaning:"我送你出去"}
+    ],
+    explanations: [
+      "**Show sb out** = 送某人出门、带客人出去。是主人或接待者的礼貌用语，略带「带路」意味。",
+      "近义：Walk you out / See you out. 例句：Thanks for coming — let me show you out."
+    ]
+  },
+  {
+    sentence: "Sorry I missed dinner — something came up.",
+    cid: fnv8("Sorry I missed dinner — something came up."),
+    translation: "抱歉我没赶上晚饭——临时有事。",
+    chunks: ["Sorry I missed dinner —","something came up."],
+    hints: ["抱歉我错过晚饭","临时有事"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/ˈsɑːri/","/aɪ/","/mɪst/","/ˈdɪnər/"], pos:"主谓+宾语", meaning:"抱歉我错过晚饭"},
+      {role:"习语·主谓", color:"#7c5cbf", phonetic:["/ˈsʌmθɪŋ/","/keɪm/","/ʌp/"], pos:"动词习语", meaning:"有突发情况"}
+    ],
+    explanations: [
+      "**Come up** = 事情突然冒出来。Something came up 是「临时有事」的标准说法。",
+      "近义：Something has come up / An emergency popped up. 例句：I cannot make it tonight — something came up."
+    ]
+  },
+  {
+    sentence: "Do not believe it — I just made that up.",
+    cid: fnv8("Do not believe it — I just made that up."),
+    translation: "别信——那是我随口编的。",
+    chunks: ["Do not believe it —","I just made that up."],
+    hints: ["别信","那是我临时编的"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/duː/","/nɑːt/","/bɪˈliːv/","/ɪt/"], pos:"祈使句", meaning:"别信"},
+      {role:"习语·主谓宾", color:"#7c5cbf", phonetic:["/aɪ/","/dʒʌst/","/meɪd/","/ðæt/","/ʌp/"], pos:"动词习语", meaning:"我随口编的"}
+    ],
+    explanations: [
+      "**Make sth up** = 编造、现编（故事、借口、答案）。I just made that up = 我随口编的。",
+      "近义：Make it up on the spot / Wing it. 例句：Relax, I made that story up."
+    ]
+  },
+  {
+    sentence: "She canceled again — she is a bummer.",
+    cid: fnv8("She canceled again — she is a bummer."),
+    translation: "她又取消了——真让人扫兴。",
+    chunks: ["She canceled again —","she is a bummer."],
+    hints: ["她又取消了","她真扫兴"],
+    grammar: [
+      {role:"主谓", color:"#c87033", phonetic:["/ʃi/","/ˈkænsəld/","/əˈɡen/"], pos:"主谓", meaning:"她又取消了"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ʃi/","/ɪz/","/ə/","/ˈbʌmər/"], pos:"名词习语", meaning:"她真让人扫兴"}
+    ],
+    explanations: [
+      "**Bummer** = 令人扫兴的人或事。That is a bummer 译「真扫兴」，形容人时指「扫兴鬼、丧气包」。",
+      "近义：a downer / a drag. 例句：He bailed on us again — what a bummer."
+    ]
+  },
+  {
+    sentence: "I forgot my notes — I will just wing it.",
+    cid: fnv8("I forgot my notes — I will just wing it."),
+    translation: "我忘带讲稿了——只好即兴发挥。",
+    chunks: ["I forgot my notes —","I will just wing it."],
+    hints: ["我忘带讲稿了","只好即兴来"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/fərˈɡɑːt/","/maɪ/","/noʊts/"], pos:"主谓宾", meaning:"我忘带讲稿了"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/wɪl/","/dʒʌst/","/wɪŋ/","/ɪt/"], pos:"动词习语", meaning:"临场即兴发挥"}
+    ],
+    explanations: [
+      "**Wing it** = 没有准备、临场即兴发挥。源自剧场里演员临时背台词救场。",
+      "近义：Play it by ear / Improvise / Ad-lib. 例句：No script? Then we will wing it."
+    ]
+  },
+  {
+    sentence: "Please talk to me — do not shut me out.",
+    cid: fnv8("Please talk to me — do not shut me out."),
+    translation: "跟我说说话——别把我拒之门外。",
+    chunks: ["Please talk to me —","do not shut me out."],
+    hints: ["跟我说说话","别把我拒之门外"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/pliːz/","/tɔːk/","/tu/","/mi/"], pos:"祈使句", meaning:"跟我说说话"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/duː/","/nɑːt/","/ʃʌt/","/mi/","/aʊt/"], pos:"动词习语", meaning:"别把我排挤在外"}
+    ],
+    explanations: [
+      "**Shut sb out** = 把某人拒之门外、在情感上疏远对方。",
+      "近义：Push me away. 例句：When you are upset, do not shut me out."
+    ]
+  },
+  {
+    sentence: "Keep me updated on any changes.",
+    cid: fnv8("Keep me updated on any changes."),
+    translation: "有任何变动都通知我。",
+    chunks: ["Keep me updated","on any changes."],
+    hints: ["随时告诉我","有什么变化"],
+    grammar: [
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/kiːp/","/mi/","/ʌpˈdeɪtɪd/"], pos:"动词习语", meaning:"随时通知我"},
+      {role:"介词短语", color:"#3358e0", phonetic:["/ɑːn/","/ˈeni/","/ˈtʃeɪndʒɪz/"], pos:"介词短语", meaning:"关于任何变动"}
+    ],
+    explanations: [
+      "**Keep sb updated** = 随时向某人通报最新情况。工作邮件和项目跟进里极常用。",
+      "近义：Keep me posted / Keep me in the loop. 例句：Keep me updated on the delivery time."
+    ]
+  },
+  {
+    sentence: "Before we vote — do you want to weigh in here?",
+    cid: fnv8("Before we vote — do you want to weigh in here?"),
+    translation: "表决之前——你想说两句吗？",
+    chunks: ["Before we vote —","do you want to weigh in here?"],
+    hints: ["表决之前","你想说两句吗"],
+    grammar: [
+      {role:"时间状语从句", color:"#c87033", phonetic:["/bɪˈfɔːr/","/wi/","/voʊt/"], pos:"时间状语从句", meaning:"在我们投票前"},
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/duː/","/ju/","/wɑːnt/","/tu/","/weɪ/","/ɪn/"], pos:"动词习语", meaning:"你想插句话吗"}
+    ],
+    explanations: [
+      "**Weigh in** = 加入讨论、表态发言。字面是「称重」，引申为「给出自己的分量」。",
+      "近义：Chime in / Add your two cents. 例句：Care to weigh in on this?"
+    ]
+  },
+  {
+    sentence: "Give me a minute — it is a lot to take in.",
+    cid: fnv8("Give me a minute — it is a lot to take in."),
+    translation: "让我缓一下——一时接受不了。",
+    chunks: ["Give me a minute —","it is a lot to take in."],
+    hints: ["给我点时间","这事信息量太大"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/ɡɪv/","/mi/","/ə/","/ˈmɪnɪt/"], pos:"祈使句", meaning:"让我缓一下"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ɪt/","/ɪz/","/ə/","/lɑːt/","/tu/","/teɪk/","/ɪn/"], pos:"习语", meaning:"信息量太大"}
+    ],
+    explanations: [
+      "**Take sth in** = 理解、消化（信息或打击）。It is a lot to take in = 一时接受不了。",
+      "近义：a lot to process / hard to digest. 例句：The news hit hard — it is a lot to take in."
+    ]
+  },
+  {
+    sentence: "Get some rest — I will check on you later.",
+    cid: fnv8("Get some rest — I will check on you later."),
+    translation: "好好休息——我待会儿来看你。",
+    chunks: ["Get some rest —","I will check on you later."],
+    hints: ["好好休息","我待会儿来看你"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/ɡet/","/sʌm/","/rest/"], pos:"祈使句", meaning:"休息一下"},
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/wɪl/","/tʃek/","/ɑːn/","/ju/","/ˈleɪtər/"], pos:"动词习语", meaning:"我稍后来探望你"}
+    ],
+    explanations: [
+      "**Check on sb** = 去看看某人是否安好。I will check on you later = 我待会儿来看你、看看你的情况。",
+      "近义：Look in on you / Stop by later. 例句：Take your medicine and I will check on you later."
+    ]
+  },
+  {
+    sentence: "I cannot add more meetings — I have a hectic schedule.",
+    cid: fnv8("I cannot add more meetings — I have a hectic schedule."),
+    translation: "我没法再加会了——日程排得密不透风。",
+    chunks: ["I cannot add more meetings —","I have a hectic schedule."],
+    hints: ["我没法再加会了","我日程满得不行"],
+    grammar: [
+      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/ˈkænɑːt/","/æd/","/mɔːr/","/ˈmiːtɪŋz/"], pos:"主谓宾", meaning:"我加不了会了"},
+      {role:"习语·宾语", color:"#7c5cbf", phonetic:["/aɪ/","/hæv/","/ə/","/ˈhektɪk/","/ˈskedʒuːl/"], pos:"名词习语", meaning:"我忙得团团转"}
+    ],
+    explanations: [
+      "**Hectic** = 忙乱、焦头烂额。a hectic schedule 就是「排得密不透风的日程」。",
+      "近义：a packed schedule / swamped / slammed. 例句：Sorry, it has been a hectic week."
+    ]
+  },
+  {
+    sentence: "What is so funny — did I say something wrong?",
+    cid: fnv8("What is so funny — did I say something wrong?"),
+    translation: "有什么好笑的——我说错话了吗？",
+    chunks: ["What is so funny —","did I say something wrong?"],
+    hints: ["你笑什么","我说错什么了吗"],
+    grammar: [
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/wʌt/","/ɪz/","/soʊ/","/ˈfʌni/"], pos:"习语疑问", meaning:"有什么好笑的"},
+      {role:"疑问句", color:"#c87033", phonetic:["/dɪd/","/aɪ/","/seɪ/","/ˈsʌmθɪŋ/","/rɔːŋ/"], pos:"疑问句", meaning:"我说错什么了吗"}
+    ],
+    explanations: [
+      "**What is so funny?** 常带质问语气：「有什么好笑的？」——被人在背后笑时用。",
+      "近义：What is the joke? / Am I missing something? 例句：What is so funny? Share it with us."
+    ]
+  },
+  {
+    sentence: "I cannot wait to see you again.",
+    cid: fnv8("I cannot wait to see you again."),
+    translation: "我迫不及待想再见到你。",
+    chunks: ["I cannot wait","to see you again."],
+    hints: ["我迫不及待","想再见到你"],
+    grammar: [
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/ˈkænɑːt/","/weɪt/"], pos:"动词习语", meaning:"我等不及了"},
+      {role:"不定式", color:"#3358e0", phonetic:["/tu/","/siː/","/ju/","/əˈɡen/"], pos:"不定式", meaning:"再次见到你"}
+    ],
+    explanations: [
+      "**Cannot wait** = 迫不及待，表达强烈的期待。后面接不定式 to do 或 for sth。",
+      "近义：Looking forward to / Dying to. 例句：Cannot wait for the weekend!"
+    ]
+  },
+  {
+    sentence: "Do not just stand there — back me up!",
+    cid: fnv8("Do not just stand there — back me up!"),
+    translation: "别光站着——帮我撑个场！",
+    chunks: ["Do not just stand there —","back me up!"],
+    hints: ["别光站着","帮我撑个场"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/duː/","/nɑːt/","/dʒʌst/","/stænd/","/ðer/"], pos:"祈使句", meaning:"别光站着"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/bæk/","/mi/","/ʌp/"], pos:"动词习语", meaning:"支持我"}
+    ],
+    explanations: [
+      "**Back sb up** = 支持某人、给某人撑腰（也可以指「备份数据」）。",
+      "近义：Have my back / Stand by me. 例句：If I am wrong, will you still back me up?"
+    ]
+  },
+  {
+    sentence: "Do not mind me — I am not myself today.",
+    cid: fnv8("Do not mind me — I am not myself today."),
+    translation: "别管我——我今天状态不好。",
+    chunks: ["Do not mind me —","I am not myself today."],
+    hints: ["别管我","我今天不在状态"],
+    grammar: [
+      {role:"祈使句", color:"#c87033", phonetic:["/duː/","/nɑːt/","/maɪnd/","/mi/"], pos:"祈使句", meaning:"别管我"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/aɪ/","/æm/","/nɑːt/","/maɪˈself/","/təˈdeɪ/"], pos:"习语", meaning:"我今天不在状态"}
+    ],
+    explanations: [
+      "**Not myself** = 状态不对劲、不太像平时的自己，多因情绪低落、生病或心不在焉。",
+      "近义：off my game / not feeling like myself. 例句：Sorry I snapped — I am not myself today."
+    ]
+  },
+  {
+    sentence: "What is tomorrow — anything special?",
+    cid: fnv8("What is tomorrow — anything special?"),
+    translation: "明天什么日子——有什么特别的吗？",
+    chunks: ["What is tomorrow —","anything special?"],
+    hints: ["明天什么日子","有什么特别的吗"],
+    grammar: [
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/wʌt/","/ɪz/","/təˈmɑːroʊ/"], pos:"习语疑问", meaning:"明天什么安排"},
+      {role:"疑问句", color:"#c87033", phonetic:["/ˈeniθɪŋ/","/ˈspeʃl/"], pos:"省略疑问句", meaning:"有什么特别的吗"}
+    ],
+    explanations: [
+      "**What is tomorrow?** = 明天是什么日子、什么安排？口语里省略了 is there。",
+      "近义：What is on for tomorrow? / What is happening tomorrow? 例句：What is tomorrow — your birthday?"
+    ]
+  },
+  {
+    sentence: "Running into you here — what are the chances?",
+    cid: fnv8("Running into you here — what are the chances?"),
+    translation: "在这儿碰上你——多巧啊！",
+    chunks: ["Running into you here —","what are the chances?"],
+    hints: ["在这儿碰上你","这得多巧啊"],
+    grammar: [
+      {role:"现在分词短语", color:"#c87033", phonetic:["/ˈrʌnɪŋ/","/ˈɪntu/","/ju/","/hɪr/"], pos:"现在分词状语", meaning:"在这儿遇到你"},
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/wʌt/","/ɑːr/","/ðə/","/ˈtʃænsɪz/"], pos:"习语疑问", meaning:"这多巧啊"}
+    ],
+    explanations: [
+      "**What are the chances?** 字面是「几率有多大」，实际常用来感叹巧遇：「这也太巧了吧」。",
+      "近义：What a coincidence / Small world. 例句：You are here too? What are the chances!"
+    ]
+  }
 ];
 
 /* 注册到 BUILTIN（按 P0 决策：不再依赖 builtins.js 占位壳）
- * 页面必须 builtins.js → oral8000.js → freq-idioms.js 顺序加载。 */
+ * 页面加载顺序：builtins.js（只剩迁移表）→ freq-idioms.js（本文件自注册）。
+ * 口语 8000 已迁到 oral-book.js（构建期源，页面不加载，见 js/content-repository.js）。 */
 (function(){
   if(!window.BUILTIN){
     console.error("[freq-idioms.js] 未找到 window.BUILTIN：builtins.js 须在 freq-idioms.js 之前加载");

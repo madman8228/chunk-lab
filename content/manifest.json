@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-1b1395a4be8e42a43539b24f069dc82a8a2832e7f346aa5962db857a3488c3a2",
+  "contentVersion": "v1-cd92f4f7d42fe6101c352edb0aa33dc48b0afb75a5c3f304cb3051ac755c8fd4",
   "decks": [
     {
       "id": "builtin-daily",
@@ -35,40 +35,56 @@
       "name": "高频短语 · English Idioms",
       "desc": "高频英语 idiom 短语：每个 idiom 嵌入完整例句，练习时填 idiom 短语本身",
       "baseCount": 0,
-      "totalCount": 389,
+      "totalCount": 418,
       "shards": [
         {
-          "id": "idioms-001-a9587ee0d88e",
-          "url": "content/builtin-freq-idioms/idioms-001-a9587ee0d88e.json",
+          "id": "idioms-001-5cafb1f0d73a",
+          "url": "content/builtin-freq-idioms/idioms-001-5cafb1f0d73a.json",
           "count": 200,
-          "bytes": 308156,
-          "sha256": "a9587ee0d88e66a3e62f986b81186b4fa5982d9039141bc75e2453a6f774fd25",
+          "bytes": 307950,
+          "sha256": "5cafb1f0d73aae1562a1602144fa9c7f652f19a831d13f4af2380a4be303646f",
           "mode": "replace"
         },
         {
-          "id": "idioms-002-0b19f2e048b2",
-          "url": "content/builtin-freq-idioms/idioms-002-0b19f2e048b2.json",
-          "count": 189,
-          "bytes": 227215,
-          "sha256": "0b19f2e048b202bd752ea2e0de2203bac1eb30756e1827df5901bf723b6ca5f1",
+          "id": "idioms-002-6d2e7cc60ebd",
+          "url": "content/builtin-freq-idioms/idioms-002-6d2e7cc60ebd.json",
+          "count": 200,
+          "bytes": 240651,
+          "sha256": "6d2e7cc60ebd5d82a3852fff27628e9fabd35ea8d58f63d5ff3f717ffea098bf",
+          "mode": "replace"
+        },
+        {
+          "id": "idioms-003-a75c8dcd0eee",
+          "url": "content/builtin-freq-idioms/idioms-003-a75c8dcd0eee.json",
+          "count": 18,
+          "bytes": 21484,
+          "sha256": "a75c8dcd0eee875a55f76256709e69eb8482e0f31f5096cc8f05c8b8031e290c",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "idioms-index-001-d24a8d5e249b",
-          "url": "content/builtin-freq-idioms/idioms-index-001-d24a8d5e249b.json",
+          "id": "idioms-index-001-6e3bf6d60435",
+          "url": "content/builtin-freq-idioms/idioms-index-001-6e3bf6d60435.json",
           "count": 200,
           "bytes": 54317,
-          "sha256": "d24a8d5e249b77cf67207fb3916e0c03022b69582ef2a98a737e1664929c6b10",
+          "sha256": "6e3bf6d60435d7ace9990bd0b5ae4bf2098ded48073ff9f459a634c1649be306",
           "mode": "index"
         },
         {
-          "id": "idioms-index-002-1ab98dd1aeee",
-          "url": "content/builtin-freq-idioms/idioms-index-002-1ab98dd1aeee.json",
-          "count": 189,
-          "bytes": 49941,
-          "sha256": "1ab98dd1aeee089c08c75554967bac5fd3061c4210f98932dfa1c2119254324d",
+          "id": "idioms-index-002-22259975c19d",
+          "url": "content/builtin-freq-idioms/idioms-index-002-22259975c19d.json",
+          "count": 200,
+          "bytes": 52911,
+          "sha256": "22259975c19df17d856fe0b4021f3125888e7df84fed41b52093182e6a84ddd2",
+          "mode": "index"
+        },
+        {
+          "id": "idioms-index-003-a6c21c4fa35d",
+          "url": "content/builtin-freq-idioms/idioms-index-003-a6c21c4fa35d.json",
+          "count": 18,
+          "bytes": 4929,
+          "sha256": "a6c21c4fa35dc956d2f70c3fdd8f510986a233d5815d79d82566bf1f1c68a909",
           "mode": "index"
         }
       ],

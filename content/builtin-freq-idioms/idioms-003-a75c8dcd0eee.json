@@ -1,0 +1,783 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Keep trying — that is the spirit!",
+      "cid": "f6d275d7",
+      "translation": "继续试——这就对了！",
+      "chunks": [
+        "Keep trying —",
+        "that is the spirit!"
+      ],
+      "hints": [
+        "继续尝试",
+        "这就对了"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/kiːp/",
+            "/ˈtraɪɪŋ/"
+          ],
+          "pos": "祈使句",
+          "meaning": "继续试"
+        },
+        {
+          "role": "习语·感叹",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðæt/",
+            "/ɪz/",
+            "/ðə/",
+            "/ˈspɪrɪt/"
+          ],
+          "pos": "习语",
+          "meaning": "就该有这股劲儿"
+        }
+      ],
+      "explanations": [
+        "**That is the spirit** = 这就对了、就该有这股劲儿。用来鼓励别人保持好心态。",
+        "近义：Way to go / That is the attitude. 例句：You failed once, so try again — that is the spirit!"
+      ]
+    },
+    {
+      "sentence": "The meeting is over — I will show you out.",
+      "cid": "0fb28a94",
+      "translation": "会议结束了——我送你出去。",
+      "chunks": [
+        "The meeting is over —",
+        "I will show you out."
+      ],
+      "hints": [
+        "会议结束了",
+        "我送你出去"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmiːtɪŋ/",
+            "/ɪz/",
+            "/ˈoʊvər/"
+          ],
+          "pos": "主系表",
+          "meaning": "会议结束了"
+        },
+        {
+          "role": "习语·谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/wɪl/",
+            "/ʃoʊ/",
+            "/ju/",
+            "/aʊt/"
+          ],
+          "pos": "动词习语",
+          "meaning": "我送你出去"
+        }
+      ],
+      "explanations": [
+        "**Show sb out** = 送某人出门、带客人出去。是主人或接待者的礼貌用语，略带「带路」意味。",
+        "近义：Walk you out / See you out. 例句：Thanks for coming — let me show you out."
+      ]
+    },
+    {
+      "sentence": "Sorry I missed dinner — something came up.",
+      "cid": "46bdf6bd",
+      "translation": "抱歉我没赶上晚饭——临时有事。",
+      "chunks": [
+        "Sorry I missed dinner —",
+        "something came up."
+      ],
+      "hints": [
+        "抱歉我错过晚饭",
+        "临时有事"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈsɑːri/",
+            "/aɪ/",
+            "/mɪst/",
+            "/ˈdɪnər/"
+          ],
+          "pos": "主谓+宾语",
+          "meaning": "抱歉我错过晚饭"
+        },
+        {
+          "role": "习语·主谓",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsʌmθɪŋ/",
+            "/keɪm/",
+            "/ʌp/"
+          ],
+          "pos": "动词习语",
+          "meaning": "有突发情况"
+        }
+      ],
+      "explanations": [
+        "**Come up** = 事情突然冒出来。Something came up 是「临时有事」的标准说法。",
+        "近义：Something has come up / An emergency popped up. 例句：I cannot make it tonight — something came up."
+      ]
+    },
+    {
+      "sentence": "Do not believe it — I just made that up.",
+      "cid": "bde9ea12",
+      "translation": "别信——那是我随口编的。",
+      "chunks": [
+        "Do not believe it —",
+        "I just made that up."
+      ],
+      "hints": [
+        "别信",
+        "那是我临时编的"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/duː/",
+            "/nɑːt/",
+            "/bɪˈliːv/",
+            "/ɪt/"
+          ],
+          "pos": "祈使句",
+          "meaning": "别信"
+        },
+        {
+          "role": "习语·主谓宾",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/dʒʌst/",
+            "/meɪd/",
+            "/ðæt/",
+            "/ʌp/"
+          ],
+          "pos": "动词习语",
+          "meaning": "我随口编的"
+        }
+      ],
+      "explanations": [
+        "**Make sth up** = 编造、现编（故事、借口、答案）。I just made that up = 我随口编的。",
+        "近义：Make it up on the spot / Wing it. 例句：Relax, I made that story up."
+      ]
+    },
+    {
+      "sentence": "She canceled again — she is a bummer.",
+      "cid": "766ccc8b",
+      "translation": "她又取消了——真让人扫兴。",
+      "chunks": [
+        "She canceled again —",
+        "she is a bummer."
+      ],
+      "hints": [
+        "她又取消了",
+        "她真扫兴"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/ʃi/",
+            "/ˈkænsəld/",
+            "/əˈɡen/"
+          ],
+          "pos": "主谓",
+          "meaning": "她又取消了"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʃi/",
+            "/ɪz/",
+            "/ə/",
+            "/ˈbʌmər/"
+          ],
+          "pos": "名词习语",
+          "meaning": "她真让人扫兴"
+        }
+      ],
+      "explanations": [
+        "**Bummer** = 令人扫兴的人或事。That is a bummer 译「真扫兴」，形容人时指「扫兴鬼、丧气包」。",
+        "近义：a downer / a drag. 例句：He bailed on us again — what a bummer."
+      ]
+    },
+    {
+      "sentence": "I forgot my notes — I will just wing it.",
+      "cid": "bace51db",
+      "translation": "我忘带讲稿了——只好即兴发挥。",
+      "chunks": [
+        "I forgot my notes —",
+        "I will just wing it."
+      ],
+      "hints": [
+        "我忘带讲稿了",
+        "只好即兴来"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/fərˈɡɑːt/",
+            "/maɪ/",
+            "/noʊts/"
+          ],
+          "pos": "主谓宾",
+          "meaning": "我忘带讲稿了"
+        },
+        {
+          "role": "习语·谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/wɪl/",
+            "/dʒʌst/",
+            "/wɪŋ/",
+            "/ɪt/"
+          ],
+          "pos": "动词习语",
+          "meaning": "临场即兴发挥"
+        }
+      ],
+      "explanations": [
+        "**Wing it** = 没有准备、临场即兴发挥。源自剧场里演员临时背台词救场。",
+        "近义：Play it by ear / Improvise / Ad-lib. 例句：No script? Then we will wing it."
+      ]
+    },
+    {
+      "sentence": "Please talk to me — do not shut me out.",
+      "cid": "7ac93e48",
+      "translation": "跟我说说话——别把我拒之门外。",
+      "chunks": [
+        "Please talk to me —",
+        "do not shut me out."
+      ],
+      "hints": [
+        "跟我说说话",
+        "别把我拒之门外"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/pliːz/",
+            "/tɔːk/",
+            "/tu/",
+            "/mi/"
+          ],
+          "pos": "祈使句",
+          "meaning": "跟我说说话"
+        },
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/duː/",
+            "/nɑːt/",
+            "/ʃʌt/",
+            "/mi/",
+            "/aʊt/"
+          ],
+          "pos": "动词习语",
+          "meaning": "别把我排挤在外"
+        }
+      ],
+      "explanations": [
+        "**Shut sb out** = 把某人拒之门外、在情感上疏远对方。",
+        "近义：Push me away. 例句：When you are upset, do not shut me out."
+      ]
+    },
+    {
+      "sentence": "Keep me updated on any changes.",
+      "cid": "bdb5d28d",
+      "translation": "有任何变动都通知我。",
+      "chunks": [
+        "Keep me updated",
+        "on any changes."
+      ],
+      "hints": [
+        "随时告诉我",
+        "有什么变化"
+      ],
+      "grammar": [
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/kiːp/",
+            "/mi/",
+            "/ʌpˈdeɪtɪd/"
+          ],
+          "pos": "动词习语",
+          "meaning": "随时通知我"
+        },
+        {
+          "role": "介词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɑːn/",
+            "/ˈeni/",
+            "/ˈtʃeɪndʒɪz/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于任何变动"
+        }
+      ],
+      "explanations": [
+        "**Keep sb updated** = 随时向某人通报最新情况。工作邮件和项目跟进里极常用。",
+        "近义：Keep me posted / Keep me in the loop. 例句：Keep me updated on the delivery time."
+      ]
+    },
+    {
+      "sentence": "Before we vote — do you want to weigh in here?",
+      "cid": "570d6fe9",
+      "translation": "表决之前——你想说两句吗？",
+      "chunks": [
+        "Before we vote —",
+        "do you want to weigh in here?"
+      ],
+      "hints": [
+        "表决之前",
+        "你想说两句吗"
+      ],
+      "grammar": [
+        {
+          "role": "时间状语从句",
+          "color": "#c87033",
+          "phonetic": [
+            "/bɪˈfɔːr/",
+            "/wi/",
+            "/voʊt/"
+          ],
+          "pos": "时间状语从句",
+          "meaning": "在我们投票前"
+        },
+        {
+          "role": "习语·疑问",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/duː/",
+            "/ju/",
+            "/wɑːnt/",
+            "/tu/",
+            "/weɪ/",
+            "/ɪn/"
+          ],
+          "pos": "动词习语",
+          "meaning": "你想插句话吗"
+        }
+      ],
+      "explanations": [
+        "**Weigh in** = 加入讨论、表态发言。字面是「称重」，引申为「给出自己的分量」。",
+        "近义：Chime in / Add your two cents. 例句：Care to weigh in on this?"
+      ]
+    },
+    {
+      "sentence": "Give me a minute — it is a lot to take in.",
+      "cid": "7052de7b",
+      "translation": "让我缓一下——一时接受不了。",
+      "chunks": [
+        "Give me a minute —",
+        "it is a lot to take in."
+      ],
+      "hints": [
+        "给我点时间",
+        "这事信息量太大"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡɪv/",
+            "/mi/",
+            "/ə/",
+            "/ˈmɪnɪt/"
+          ],
+          "pos": "祈使句",
+          "meaning": "让我缓一下"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪt/",
+            "/ɪz/",
+            "/ə/",
+            "/lɑːt/",
+            "/tu/",
+            "/teɪk/",
+            "/ɪn/"
+          ],
+          "pos": "习语",
+          "meaning": "信息量太大"
+        }
+      ],
+      "explanations": [
+        "**Take sth in** = 理解、消化（信息或打击）。It is a lot to take in = 一时接受不了。",
+        "近义：a lot to process / hard to digest. 例句：The news hit hard — it is a lot to take in."
+      ]
+    },
+    {
+      "sentence": "Get some rest — I will check on you later.",
+      "cid": "147dfcc4",
+      "translation": "好好休息——我待会儿来看你。",
+      "chunks": [
+        "Get some rest —",
+        "I will check on you later."
+      ],
+      "hints": [
+        "好好休息",
+        "我待会儿来看你"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡet/",
+            "/sʌm/",
+            "/rest/"
+          ],
+          "pos": "祈使句",
+          "meaning": "休息一下"
+        },
+        {
+          "role": "习语·谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/wɪl/",
+            "/tʃek/",
+            "/ɑːn/",
+            "/ju/",
+            "/ˈleɪtər/"
+          ],
+          "pos": "动词习语",
+          "meaning": "我稍后来探望你"
+        }
+      ],
+      "explanations": [
+        "**Check on sb** = 去看看某人是否安好。I will check on you later = 我待会儿来看你、看看你的情况。",
+        "近义：Look in on you / Stop by later. 例句：Take your medicine and I will check on you later."
+      ]
+    },
+    {
+      "sentence": "I cannot add more meetings — I have a hectic schedule.",
+      "cid": "6efe3034",
+      "translation": "我没法再加会了——日程排得密不透风。",
+      "chunks": [
+        "I cannot add more meetings —",
+        "I have a hectic schedule."
+      ],
+      "hints": [
+        "我没法再加会了",
+        "我日程满得不行"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈkænɑːt/",
+            "/æd/",
+            "/mɔːr/",
+            "/ˈmiːtɪŋz/"
+          ],
+          "pos": "主谓宾",
+          "meaning": "我加不了会了"
+        },
+        {
+          "role": "习语·宾语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/",
+            "/ə/",
+            "/ˈhektɪk/",
+            "/ˈskedʒuːl/"
+          ],
+          "pos": "名词习语",
+          "meaning": "我忙得团团转"
+        }
+      ],
+      "explanations": [
+        "**Hectic** = 忙乱、焦头烂额。a hectic schedule 就是「排得密不透风的日程」。",
+        "近义：a packed schedule / swamped / slammed. 例句：Sorry, it has been a hectic week."
+      ]
+    },
+    {
+      "sentence": "What is so funny — did I say something wrong?",
+      "cid": "57849aba",
+      "translation": "有什么好笑的——我说错话了吗？",
+      "chunks": [
+        "What is so funny —",
+        "did I say something wrong?"
+      ],
+      "hints": [
+        "你笑什么",
+        "我说错什么了吗"
+      ],
+      "grammar": [
+        {
+          "role": "习语·疑问",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌt/",
+            "/ɪz/",
+            "/soʊ/",
+            "/ˈfʌni/"
+          ],
+          "pos": "习语疑问",
+          "meaning": "有什么好笑的"
+        },
+        {
+          "role": "疑问句",
+          "color": "#c87033",
+          "phonetic": [
+            "/dɪd/",
+            "/aɪ/",
+            "/seɪ/",
+            "/ˈsʌmθɪŋ/",
+            "/rɔːŋ/"
+          ],
+          "pos": "疑问句",
+          "meaning": "我说错什么了吗"
+        }
+      ],
+      "explanations": [
+        "**What is so funny?** 常带质问语气：「有什么好笑的？」——被人在背后笑时用。",
+        "近义：What is the joke? / Am I missing something? 例句：What is so funny? Share it with us."
+      ]
+    },
+    {
+      "sentence": "I cannot wait to see you again.",
+      "cid": "5380d9c5",
+      "translation": "我迫不及待想再见到你。",
+      "chunks": [
+        "I cannot wait",
+        "to see you again."
+      ],
+      "hints": [
+        "我迫不及待",
+        "想再见到你"
+      ],
+      "grammar": [
+        {
+          "role": "习语·谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈkænɑːt/",
+            "/weɪt/"
+          ],
+          "pos": "动词习语",
+          "meaning": "我等不及了"
+        },
+        {
+          "role": "不定式",
+          "color": "#3358e0",
+          "phonetic": [
+            "/tu/",
+            "/siː/",
+            "/ju/",
+            "/əˈɡen/"
+          ],
+          "pos": "不定式",
+          "meaning": "再次见到你"
+        }
+      ],
+      "explanations": [
+        "**Cannot wait** = 迫不及待，表达强烈的期待。后面接不定式 to do 或 for sth。",
+        "近义：Looking forward to / Dying to. 例句：Cannot wait for the weekend!"
+      ]
+    },
+    {
+      "sentence": "Do not just stand there — back me up!",
+      "cid": "a1a7b6b4",
+      "translation": "别光站着——帮我撑个场！",
+      "chunks": [
+        "Do not just stand there —",
+        "back me up!"
+      ],
+      "hints": [
+        "别光站着",
+        "帮我撑个场"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/duː/",
+            "/nɑːt/",
+            "/dʒʌst/",
+            "/stænd/",
+            "/ðer/"
+          ],
+          "pos": "祈使句",
+          "meaning": "别光站着"
+        },
+        {
+          "role": "习语·祈使",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/bæk/",
+            "/mi/",
+            "/ʌp/"
+          ],
+          "pos": "动词习语",
+          "meaning": "支持我"
+        }
+      ],
+      "explanations": [
+        "**Back sb up** = 支持某人、给某人撑腰（也可以指「备份数据」）。",
+        "近义：Have my back / Stand by me. 例句：If I am wrong, will you still back me up?"
+      ]
+    },
+    {
+      "sentence": "Do not mind me — I am not myself today.",
+      "cid": "6755c176",
+      "translation": "别管我——我今天状态不好。",
+      "chunks": [
+        "Do not mind me —",
+        "I am not myself today."
+      ],
+      "hints": [
+        "别管我",
+        "我今天不在状态"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#c87033",
+          "phonetic": [
+            "/duː/",
+            "/nɑːt/",
+            "/maɪnd/",
+            "/mi/"
+          ],
+          "pos": "祈使句",
+          "meaning": "别管我"
+        },
+        {
+          "role": "习语·表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/æm/",
+            "/nɑːt/",
+            "/maɪˈself/",
+            "/təˈdeɪ/"
+          ],
+          "pos": "习语",
+          "meaning": "我今天不在状态"
+        }
+      ],
+      "explanations": [
+        "**Not myself** = 状态不对劲、不太像平时的自己，多因情绪低落、生病或心不在焉。",
+        "近义：off my game / not feeling like myself. 例句：Sorry I snapped — I am not myself today."
+      ]
+    },
+    {
+      "sentence": "What is tomorrow — anything special?",
+      "cid": "4fbbef22",
+      "translation": "明天什么日子——有什么特别的吗？",
+      "chunks": [
+        "What is tomorrow —",
+        "anything special?"
+      ],
+      "hints": [
+        "明天什么日子",
+        "有什么特别的吗"
+      ],
+      "grammar": [
+        {
+          "role": "习语·疑问",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌt/",
+            "/ɪz/",
+            "/təˈmɑːroʊ/"
+          ],
+          "pos": "习语疑问",
+          "meaning": "明天什么安排"
+        },
+        {
+          "role": "疑问句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈeniθɪŋ/",
+            "/ˈspeʃl/"
+          ],
+          "pos": "省略疑问句",
+          "meaning": "有什么特别的吗"
+        }
+      ],
+      "explanations": [
+        "**What is tomorrow?** = 明天是什么日子、什么安排？口语里省略了 is there。",
+        "近义：What is on for tomorrow? / What is happening tomorrow? 例句：What is tomorrow — your birthday?"
+      ]
+    },
+    {
+      "sentence": "Running into you here — what are the chances?",
+      "cid": "a3c41762",
+      "translation": "在这儿碰上你——多巧啊！",
+      "chunks": [
+        "Running into you here —",
+        "what are the chances?"
+      ],
+      "hints": [
+        "在这儿碰上你",
+        "这得多巧啊"
+      ],
+      "grammar": [
+        {
+          "role": "现在分词短语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ˈrʌnɪŋ/",
+            "/ˈɪntu/",
+            "/ju/",
+            "/hɪr/"
+          ],
+          "pos": "现在分词状语",
+          "meaning": "在这儿遇到你"
+        },
+        {
+          "role": "习语·疑问",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌt/",
+            "/ɑːr/",
+            "/ðə/",
+            "/ˈtʃænsɪz/"
+          ],
+          "pos": "习语疑问",
+          "meaning": "这多巧啊"
+        }
+      ],
+      "explanations": [
+        "**What are the chances?** 字面是「几率有多大」，实际常用来感叹巧遇：「这也太巧了吧」。",
+        "近义：What a coincidence / Small world. 例句：You are here too? What are the chances!"
+      ]
+    }
+  ]
+}
