@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "6d43f13c",
+      "sentence": "I'm happy.",
+      "translation": "我很高兴/幸福。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "5987b9a6",
+      "sentence": "I'm so happy.",
+      "translation": "我高兴极了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "eeb37e66",
+      "sentence": "Yahoo!",
+      "translation": "呀嗬!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "24b4d5eb",
+      "sentence": "Oh, boy!",
+      "translation": "哇!/太棒了!/好家伙!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "99cd055f",
+      "sentence": "Wow!",
+      "translation": "哇!/呀!/棒极了!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "2ea9338d",
+      "sentence": "Whoopee!",
+      "translation": "哈哈!/太棒了!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "bbc38870",
+      "sentence": "I'm glad to hear it.",
+      "translation": "听到这消息我很高兴。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "8945c063",
+      "sentence": "I'm glad that...",
+      "translation": "谢天谢地……",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "65dcafb7",
+      "sentence": "I feel like a million dollars.",
+      "translation": "感觉好极了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "9e3e8750",
+      "sentence": "I've never been this happy.",
+      "translation": "我从没有这么高兴过。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "77b53bfc",
+      "sentence": "That's good news.",
+      "translation": "真是个好消息。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "290dbbb5",
+      "sentence": "What fun!",
+      "translation": "那太棒了!/太好了!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "59117bdc",
+      "sentence": "I feel great!",
+      "translation": "舒服极了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "10919a75",
+      "sentence": "I'm in a good mood today.",
+      "translation": "我今天的心情很好。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "0a8b5d72",
+      "sentence": "I'm looking forward to this summer.",
+      "translation": "我期待着今年的夏天。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "ff01bfde",
+      "sentence": "You look happy today.",
+      "translation": "今天你看上去很高兴啊!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "6e66ae1a",
+      "sentence": "I'm walking on air.",
+      "translation": "高兴得飘飘欲仙。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "196c19f6",
+      "sentence": "I jumped for joy.",
+      "translation": "我高兴得跳了起来。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "c01b8e26",
+      "sentence": "This is too good to be true.",
+      "translation": "这简直让人不敢相信。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "0a249957",
+      "sentence": "Nothing could be more wonderful.",
+      "translation": "没有比这更让人高兴的了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "41d5602b",
+      "sentence": "You made me happy.",
+      "translation": "你使我感觉到了幸福。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "92f7ec51",
+      "sentence": "You did it!",
+      "translation": "干得不错!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "d2fd715e",
+      "sentence": "Lucky!",
+      "translation": "真运气!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "99107acd",
+      "sentence": "I lucked out today.",
+      "translation": "今天的运气真好。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "1145b46f",
+      "sentence": "It's your lucky day.",
+      "translation": "你真走运。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "5f6c6206",
+      "sentence": "Thank heavens!",
+      "translation": "感谢上帝!/谢天谢地。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "488378bb",
+      "sentence": "I hit the jackpot!",
+      "translation": "我中头彩了!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "d94756b5",
+      "sentence": "I was just lucky.",
+      "translation": "只是运气好。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "96847369",
+      "sentence": "It's a dream come true!",
+      "translation": "美梦成真!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "13480887",
+      "sentence": "Talk about luck.",
+      "translation": "真幸运呀!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "22c95403",
+      "sentence": "This is it!",
+      "translation": "就这个吧!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "ad82acb2",
+      "sentence": "It's settled!",
+      "translation": "就这么定了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "830bd017",
+      "sentence": "Sounds great!",
+      "translation": "听起来不错!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "f9a5de05",
+      "sentence": "Looks great!",
+      "translation": "真不错。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "b3f0114c",
+      "sentence": "What a relief!",
+      "translation": "啊!可以松口气了!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "3d8d3288",
+      "sentence": "I'm surprised!",
+      "translation": "吓我一跳!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "d9ce765d",
+      "sentence": "Whew!",
+      "translation": "好了!这下放心了!/唷-!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "a12e8de4",
+      "sentence": "Aah!",
+      "translation": "啊!",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "88c6f259",
+      "sentence": "I felt relieved to hear that.",
+      "translation": "听这么一说，我就放心了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "c26ecb52",
+      "sentence": "Here we are at last.",
+      "translation": "终于到了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "c71534d0",
+      "sentence": "Good riddance.",
+      "translation": "可算摆脱了。",
+      "sourceUrl": "content/oral-4-16/oral-001-58834f6307e2.json",
+      "sourceOffset": 40
+    }
+  ]
+}

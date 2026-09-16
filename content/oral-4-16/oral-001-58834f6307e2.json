@@ -1,0 +1,527 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm happy.",
+      "translation": "我很高兴/幸福。",
+      "chunks": [
+        "I'm",
+        "happy."
+      ],
+      "hints": [
+        "我",
+        "很高兴。"
+      ],
+      "cid": "6d43f13c"
+    },
+    {
+      "sentence": "I'm so happy.",
+      "translation": "我高兴极了。",
+      "chunks": [
+        "I'm so",
+        "happy."
+      ],
+      "hints": [
+        "我高兴",
+        "极了。"
+      ],
+      "cid": "5987b9a6"
+    },
+    {
+      "sentence": "Yahoo!",
+      "translation": "呀嗬!",
+      "chunks": [
+        "Yahoo!"
+      ],
+      "hints": [
+        "呀嗬！"
+      ],
+      "cid": "eeb37e66"
+    },
+    {
+      "sentence": "Oh, boy!",
+      "translation": "哇!/太棒了!/好家伙!",
+      "chunks": [
+        "Oh,",
+        "boy!"
+      ],
+      "hints": [
+        "哇，",
+        "太棒了！"
+      ],
+      "cid": "24b4d5eb"
+    },
+    {
+      "sentence": "Wow!",
+      "translation": "哇!/呀!/棒极了!",
+      "chunks": [
+        "Wow!"
+      ],
+      "hints": [
+        "哇！"
+      ],
+      "cid": "99cd055f"
+    },
+    {
+      "sentence": "Whoopee!",
+      "translation": "哈哈!/太棒了!",
+      "chunks": [
+        "Whoopee!"
+      ],
+      "hints": [
+        "哈哈！"
+      ],
+      "cid": "2ea9338d"
+    },
+    {
+      "sentence": "I'm glad to hear it.",
+      "translation": "听到这消息我很高兴。",
+      "chunks": [
+        "I'm glad",
+        "to hear it."
+      ],
+      "hints": [
+        "听到这消息",
+        "我很高兴。"
+      ],
+      "cid": "bbc38870"
+    },
+    {
+      "sentence": "I'm glad that...",
+      "translation": "谢天谢地……",
+      "chunks": [
+        "I'm glad",
+        "that..."
+      ],
+      "hints": [
+        "谢天谢地",
+        "……"
+      ],
+      "cid": "8945c063"
+    },
+    {
+      "sentence": "I feel like a million dollars.",
+      "translation": "感觉好极了。",
+      "chunks": [
+        "I feel like",
+        "a million dollars."
+      ],
+      "hints": [
+        "感觉",
+        "好极了。"
+      ],
+      "cid": "65dcafb7"
+    },
+    {
+      "sentence": "I've never been this happy.",
+      "translation": "我从没有这么高兴过。",
+      "chunks": [
+        "I've never been",
+        "this happy."
+      ],
+      "hints": [
+        "我从没有",
+        "这么高兴过。"
+      ],
+      "cid": "9e3e8750"
+    },
+    {
+      "sentence": "That's good news.",
+      "translation": "真是个好消息。",
+      "chunks": [
+        "That's",
+        "good news."
+      ],
+      "hints": [
+        "真是个",
+        "好消息。"
+      ],
+      "cid": "77b53bfc"
+    },
+    {
+      "sentence": "What fun!",
+      "translation": "那太棒了!/太好了!",
+      "chunks": [
+        "What",
+        "fun!"
+      ],
+      "hints": [
+        "那太",
+        "棒了！"
+      ],
+      "cid": "290dbbb5"
+    },
+    {
+      "sentence": "I feel great!",
+      "translation": "舒服极了。",
+      "chunks": [
+        "I feel",
+        "great!"
+      ],
+      "hints": [
+        "舒服",
+        "极了。"
+      ],
+      "cid": "59117bdc"
+    },
+    {
+      "sentence": "I'm in a good mood today.",
+      "translation": "我今天的心情很好。",
+      "chunks": [
+        "I'm in a good mood",
+        "today."
+      ],
+      "hints": [
+        "我今天",
+        "心情很好。"
+      ],
+      "cid": "10919a75"
+    },
+    {
+      "sentence": "I'm looking forward to this summer.",
+      "translation": "我期待着今年的夏天。",
+      "chunks": [
+        "I'm looking forward",
+        "to this summer."
+      ],
+      "hints": [
+        "我期待着",
+        "今年的夏天。"
+      ],
+      "cid": "0a8b5d72"
+    },
+    {
+      "sentence": "You look happy today.",
+      "translation": "今天你看上去很高兴啊!",
+      "chunks": [
+        "You look happy",
+        "today."
+      ],
+      "hints": [
+        "今天你看上去",
+        "很高兴啊！"
+      ],
+      "cid": "ff01bfde"
+    },
+    {
+      "sentence": "I'm walking on air.",
+      "translation": "高兴得飘飘欲仙。",
+      "chunks": [
+        "I'm walking",
+        "on air."
+      ],
+      "hints": [
+        "高兴得",
+        "飘飘欲仙。"
+      ],
+      "cid": "6e66ae1a"
+    },
+    {
+      "sentence": "I jumped for joy.",
+      "translation": "我高兴得跳了起来。",
+      "chunks": [
+        "I jumped",
+        "for joy."
+      ],
+      "hints": [
+        "我高兴得",
+        "跳了起来。"
+      ],
+      "cid": "196c19f6"
+    },
+    {
+      "sentence": "This is too good to be true.",
+      "translation": "这简直让人不敢相信。",
+      "chunks": [
+        "This is too good",
+        "to be true."
+      ],
+      "hints": [
+        "这简直让人",
+        "不敢相信。"
+      ],
+      "cid": "c01b8e26"
+    },
+    {
+      "sentence": "Nothing could be more wonderful.",
+      "translation": "没有比这更让人高兴的了。",
+      "chunks": [
+        "Nothing could be",
+        "more wonderful."
+      ],
+      "hints": [
+        "没有比这",
+        "更让人高兴的了。"
+      ],
+      "cid": "0a249957"
+    },
+    {
+      "sentence": "You made me happy.",
+      "translation": "你使我感觉到了幸福。",
+      "chunks": [
+        "You made me",
+        "happy."
+      ],
+      "hints": [
+        "你使我",
+        "感觉到了幸福。"
+      ],
+      "cid": "41d5602b"
+    },
+    {
+      "sentence": "You did it!",
+      "translation": "干得不错!",
+      "chunks": [
+        "You",
+        "did it!"
+      ],
+      "hints": [
+        "干得",
+        "不错！"
+      ],
+      "cid": "92f7ec51"
+    },
+    {
+      "sentence": "Lucky!",
+      "translation": "真运气!",
+      "chunks": [
+        "Lucky!"
+      ],
+      "hints": [
+        "真运气！"
+      ],
+      "cid": "d2fd715e"
+    },
+    {
+      "sentence": "I lucked out today.",
+      "translation": "今天的运气真好。",
+      "chunks": [
+        "I lucked out",
+        "today."
+      ],
+      "hints": [
+        "今天的",
+        "运气真好。"
+      ],
+      "cid": "99107acd"
+    },
+    {
+      "sentence": "It's your lucky day.",
+      "translation": "你真走运。",
+      "chunks": [
+        "It's your",
+        "lucky day."
+      ],
+      "hints": [
+        "你",
+        "真走运。"
+      ],
+      "cid": "1145b46f"
+    },
+    {
+      "sentence": "Thank heavens!",
+      "translation": "感谢上帝!/谢天谢地。",
+      "chunks": [
+        "Thank",
+        "heavens!"
+      ],
+      "hints": [
+        "感谢",
+        "上帝！"
+      ],
+      "cid": "5f6c6206"
+    },
+    {
+      "sentence": "I hit the jackpot!",
+      "translation": "我中头彩了!",
+      "chunks": [
+        "I hit",
+        "the jackpot!"
+      ],
+      "hints": [
+        "我",
+        "中头彩了！"
+      ],
+      "cid": "488378bb"
+    },
+    {
+      "sentence": "I was just lucky.",
+      "translation": "只是运气好。",
+      "chunks": [
+        "I was",
+        "just lucky."
+      ],
+      "hints": [
+        "只是",
+        "运气好。"
+      ],
+      "cid": "d94756b5"
+    },
+    {
+      "sentence": "It's a dream come true!",
+      "translation": "美梦成真!",
+      "chunks": [
+        "It's a dream",
+        "come true!"
+      ],
+      "hints": [
+        "美梦",
+        "成真！"
+      ],
+      "cid": "96847369"
+    },
+    {
+      "sentence": "Talk about luck.",
+      "translation": "真幸运呀!",
+      "chunks": [
+        "Talk about",
+        "luck."
+      ],
+      "hints": [
+        "真",
+        "幸运呀！"
+      ],
+      "cid": "13480887"
+    },
+    {
+      "sentence": "This is it!",
+      "translation": "就这个吧!",
+      "chunks": [
+        "This",
+        "is it!"
+      ],
+      "hints": [
+        "就",
+        "这个吧！"
+      ],
+      "cid": "22c95403"
+    },
+    {
+      "sentence": "It's settled!",
+      "translation": "就这么定了。",
+      "chunks": [
+        "It's",
+        "settled!"
+      ],
+      "hints": [
+        "就这么",
+        "定了。"
+      ],
+      "cid": "ad82acb2"
+    },
+    {
+      "sentence": "Sounds great!",
+      "translation": "听起来不错!",
+      "chunks": [
+        "Sounds",
+        "great!"
+      ],
+      "hints": [
+        "听起来",
+        "不错！"
+      ],
+      "cid": "830bd017"
+    },
+    {
+      "sentence": "Looks great!",
+      "translation": "真不错。",
+      "chunks": [
+        "Looks",
+        "great!"
+      ],
+      "hints": [
+        "真",
+        "不错。"
+      ],
+      "cid": "f9a5de05"
+    },
+    {
+      "sentence": "What a relief!",
+      "translation": "啊!可以松口气了!",
+      "chunks": [
+        "What a",
+        "relief!"
+      ],
+      "hints": [
+        "啊！可以",
+        "松口气了！"
+      ],
+      "cid": "b3f0114c"
+    },
+    {
+      "sentence": "I'm surprised!",
+      "translation": "吓我一跳!",
+      "chunks": [
+        "I'm",
+        "surprised!"
+      ],
+      "hints": [
+        "吓我",
+        "一跳！"
+      ],
+      "cid": "3d8d3288"
+    },
+    {
+      "sentence": "Whew!",
+      "translation": "好了!这下放心了!/唷-!",
+      "chunks": [
+        "Whew!"
+      ],
+      "hints": [
+        "好了！这下放心了！"
+      ],
+      "cid": "d9ce765d"
+    },
+    {
+      "sentence": "Aah!",
+      "translation": "啊!",
+      "chunks": [
+        "Aah!"
+      ],
+      "hints": [
+        "啊！"
+      ],
+      "cid": "a12e8de4"
+    },
+    {
+      "sentence": "I felt relieved to hear that.",
+      "translation": "听这么一说，我就放心了。",
+      "chunks": [
+        "I felt relieved",
+        "to hear that."
+      ],
+      "hints": [
+        "听这么一说，",
+        "我就放心了。"
+      ],
+      "cid": "88c6f259"
+    },
+    {
+      "sentence": "Here we are at last.",
+      "translation": "终于到了。",
+      "chunks": [
+        "Here we are",
+        "at last."
+      ],
+      "hints": [
+        "终于",
+        "到了。"
+      ],
+      "cid": "c26ecb52"
+    },
+    {
+      "sentence": "Good riddance.",
+      "translation": "可算摆脱了。",
+      "chunks": [
+        "Good",
+        "riddance."
+      ],
+      "hints": [
+        "可算",
+        "摆脱了。"
+      ],
+      "cid": "c71534d0"
+    }
+  ]
+}
