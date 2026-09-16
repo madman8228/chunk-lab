@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-4f28b4e34c19340a74b1c894909fef5ac1b1c4ebf9d112b029396071703e6ea6",
+  "contentVersion": "v1-609c64f467f2e967eda47c27097aab24be8504c7b6f3c5702cf6291b56757c5d",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -947,24 +947,24 @@
       "sectionTitle": "商谈",
       "topic": "赞成～否定",
       "baseCount": 0,
-      "totalCount": 8,
+      "totalCount": 76,
       "shards": [
         {
-          "id": "oral-001-d3dba729eadb",
-          "url": "content/oral-3-12-1/oral-001-d3dba729eadb.json",
-          "count": 8,
-          "bytes": 10119,
-          "sha256": "d3dba729eadb555ed062343e23f1dd0b86b3fa3520b1c7da326872240e76b8e1",
+          "id": "oral-001-435f499bb8ef",
+          "url": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+          "count": 76,
+          "bytes": 27935,
+          "sha256": "435f499bb8ef04879d235228fe15937a300b94fcc128e2fded57da466665c8e0",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-65bd8f7699ba",
-          "url": "content/oral-3-12-1/oral-index-001-65bd8f7699ba.json",
-          "count": 8,
-          "bytes": 1846,
-          "sha256": "65bd8f7699bad0826f64b7339cd0f75f9c2a3c894c3a9441ccecd5afbe23220e",
+          "id": "oral-index-001-2792e2cd1c6b",
+          "url": "content/oral-3-12-1/oral-index-001-2792e2cd1c6b.json",
+          "count": 76,
+          "bytes": 16367,
+          "sha256": "2792e2cd1c6b18fb53bd9e971b1f1faccf62c0ec008f77c42a735c3cb426a8fa",
           "mode": "index"
         }
       ]
@@ -979,24 +979,56 @@
       "sectionTitle": "商谈",
       "topic": "含糊其辞的回答～提出、询问意见",
       "baseCount": 0,
-      "totalCount": 6,
+      "totalCount": 67,
       "shards": [
         {
-          "id": "oral-001-a6113538939a",
-          "url": "content/oral-3-12-2/oral-001-a6113538939a.json",
-          "count": 6,
-          "bytes": 8129,
-          "sha256": "a6113538939acc2ed4a94ca36573dfcacfd9dfb21d573641cfc4f76358d2af06",
+          "id": "oral-001-a881417ab4f8",
+          "url": "content/oral-3-12-2/oral-001-a881417ab4f8.json",
+          "count": 67,
+          "bytes": 24161,
+          "sha256": "a881417ab4f800750464e26be416a06a13b6707f27a7f7ab8e689d6499ca12d2",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-ab2125b438cc",
-          "url": "content/oral-3-12-2/oral-index-001-ab2125b438cc.json",
-          "count": 6,
-          "bytes": 1407,
-          "sha256": "ab2125b438cca00c1c891e10435fb4ae85053c452e84dc1b08c0d74af48968fc",
+          "id": "oral-index-001-4c146580ac6b",
+          "url": "content/oral-3-12-2/oral-index-001-4c146580ac6b.json",
+          "count": 67,
+          "bytes": 14804,
+          "sha256": "4c146580ac6b4a50a24a79fcf61956c8075d65305d1a0210718570c92a8a2fd9",
+          "mode": "index"
+        }
+      ]
+    },
+    {
+      "id": "oral-3-12-3",
+      "name": "日常口语 8000 · 商谈 · 叙述、询问理由～指出错误",
+      "short": "叙述、询问理由～指出错误",
+      "desc": "叙述、询问理由～指出错误",
+      "chapter": 3,
+      "section": "3.12",
+      "sectionTitle": "商谈",
+      "topic": "叙述、询问理由～指出错误",
+      "baseCount": 0,
+      "totalCount": 25,
+      "shards": [
+        {
+          "id": "oral-001-ebb50c454de0",
+          "url": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+          "count": 25,
+          "bytes": 6682,
+          "sha256": "ebb50c454de08019fc8199c9e657f1f36e81a380055872df3fce2fedccb9489c",
+          "mode": "replace"
+        }
+      ],
+      "indexShards": [
+        {
+          "id": "oral-index-001-5d2e5e9edd55",
+          "url": "content/oral-3-12-3/oral-index-001-5d2e5e9edd55.json",
+          "count": 25,
+          "bytes": 5562,
+          "sha256": "5d2e5e9edd5505cc181b85566ba58c186a425727978f030f5746c77a3abb243a",
           "mode": "index"
         }
       ]
@@ -2067,24 +2099,24 @@
       "sectionTitle": "万能表达",
       "topic": "",
       "baseCount": 0,
-      "totalCount": 9,
+      "totalCount": 8,
       "shards": [
         {
-          "id": "oral-001-dbcbf4063563",
-          "url": "content/oral-basic/oral-001-dbcbf4063563.json",
-          "count": 9,
-          "bytes": 11742,
-          "sha256": "dbcbf40635636949d1cc8d3251301fd3c8a94c698aa81a57a5a9ed629f36fab3",
+          "id": "oral-001-d817880c0361",
+          "url": "content/oral-basic/oral-001-d817880c0361.json",
+          "count": 8,
+          "bytes": 10536,
+          "sha256": "d817880c0361e241a40604adb326812e52c3ab8ba25f7273e8a5de37842a2bea",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-ec57d1593d42",
-          "url": "content/oral-basic/oral-index-001-ec57d1593d42.json",
-          "count": 9,
-          "bytes": 2026,
-          "sha256": "ec57d1593d4258c872b4b8d2ee3a7a35b1e460eb1fc6c5f0a56171bf68fbe412",
+          "id": "oral-index-001-82988fe40fcd",
+          "url": "content/oral-basic/oral-index-001-82988fe40fcd.json",
+          "count": 8,
+          "bytes": 1826,
+          "sha256": "82988fe40fcdc63ca4b995d0144b42258d9b91d583a6aa3acd0087cb5cdf85e5",
           "mode": "index"
         }
       ]

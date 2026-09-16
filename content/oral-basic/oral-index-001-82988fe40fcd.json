@@ -6,64 +6,57 @@
       "cid": "b95cd0f4",
       "sentence": "Could you give me a moment, please?",
       "translation": "请稍等一下好吗？",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
       "sourceOffset": 0
     },
     {
       "cid": "d13966c5",
       "sentence": "So far so good.",
       "translation": "到目前为止都挺好。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
       "sourceOffset": 1
     },
     {
       "cid": "b6c66834",
       "sentence": "I mean it.",
       "translation": "我是认真的。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
       "sourceOffset": 2
     },
     {
       "cid": "e24acc99",
       "sentence": "I'm all right.",
       "translation": "不用了。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
       "sourceOffset": 3
     },
     {
       "cid": "e70c8cf4",
       "sentence": "I've got this.",
       "translation": "我可以的。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
       "sourceOffset": 4
-    },
-    {
-      "cid": "86ff7ccf",
-      "sentence": "You got it.",
-      "translation": "应该的。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
-      "sourceOffset": 5
     },
     {
       "cid": "4436b78d",
       "sentence": "Hold on.",
       "translation": "抓紧（也可以表示等一下）。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
-      "sourceOffset": 6
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
+      "sourceOffset": 5
     },
     {
       "cid": "1bcdc1c7",
       "sentence": "Give me a thumbs up.",
       "translation": "给我竖个大拇指（点个赞）吧。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
-      "sourceOffset": 7
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
+      "sourceOffset": 6
     },
     {
       "cid": "2dc7b93b",
       "sentence": "We have more like this.",
       "translation": "我们还有更多像这样的。",
-      "sourceUrl": "content/oral-basic/oral-001-dbcbf4063563.json",
-      "sourceOffset": 8
+      "sourceUrl": "content/oral-basic/oral-001-d817880c0361.json",
+      "sourceOffset": 7
     }
   ]
 }

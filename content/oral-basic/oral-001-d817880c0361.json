@@ -271,56 +271,6 @@
       ]
     },
     {
-      "sentence": "You got it.",
-      "cid": "86ff7ccf",
-      "translation": "应该的。",
-      "chunks": [
-        "You got",
-        "it."
-      ],
-      "hints": [
-        "你拿到了",
-        "它"
-      ],
-      "grammar": [
-        {
-          "role": "主谓宾",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/juː/",
-            "/ɡɑːt/"
-          ],
-          "pos": "口语省略 did",
-          "meaning": "你（做）到了"
-        },
-        {
-          "role": "宾语",
-          "color": "#3358e0",
-          "phonetic": [
-            "/ɪt/"
-          ],
-          "pos": "代词",
-          "meaning": "它"
-        }
-      ],
-      "explanations": [
-        "`You got it` 回应感谢时表「应该的、小意思」。常见错误：\n• 用降调读 → 才表「没问题/包在我身上」，两种含义靠语境区分\n• \"You get it\" → 那是「你明白了」",
-        "同义：No problem. / Anytime. / My pleasure."
-      ],
-      "distractors": [
-        [
-          "You get",
-          "You got to",
-          "You've got"
-        ],
-        [
-          "that.",
-          "them.",
-          "it's."
-        ]
-      ]
-    },
-    {
       "sentence": "Hold on.",
       "cid": "4436b78d",
       "translation": "抓紧（也可以表示等一下）。",

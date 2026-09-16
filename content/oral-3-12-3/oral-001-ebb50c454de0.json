@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Why?",
+      "translation": "为什么?",
+      "chunks": [
+        "Why?"
+      ],
+      "hints": [
+        "为什么？"
+      ],
+      "cid": "50d99212"
+    },
+    {
+      "sentence": "How come?",
+      "translation": "为什么?",
+      "chunks": [
+        "How",
+        "come?"
+      ],
+      "hints": [
+        "怎么",
+        "回事？"
+      ],
+      "cid": "68e7e4dc"
+    },
+    {
+      "sentence": "What makes you think that?",
+      "translation": "你怎么会那么想呢?",
+      "chunks": [
+        "What makes you",
+        "think that?"
+      ],
+      "hints": [
+        "你怎么会",
+        "那么想呢？"
+      ],
+      "cid": "e5726875"
+    },
+    {
+      "sentence": "Tell me why.",
+      "translation": "告诉我为什么。",
+      "chunks": [
+        "Tell me",
+        "why."
+      ],
+      "hints": [
+        "告诉我",
+        "为什么。"
+      ],
+      "cid": "8b5b2800"
+    },
+    {
+      "sentence": "How did it happen?",
+      "translation": "是怎么发生的?",
+      "chunks": [
+        "How did",
+        "it happen?"
+      ],
+      "hints": [
+        "是",
+        "怎么发生的？"
+      ],
+      "cid": "ae7df83c"
+    },
+    {
+      "sentence": "What are you doing this for?",
+      "translation": "你干吗要去做这种事呢?",
+      "chunks": [
+        "What are you",
+        "doing this for?"
+      ],
+      "hints": [
+        "你干吗要",
+        "去做这种事呢？"
+      ],
+      "cid": "edeb5371"
+    },
+    {
+      "sentence": "Why did you do that?",
+      "translation": "你为什么干那样的事呢?",
+      "chunks": [
+        "Why did you",
+        "do that?"
+      ],
+      "hints": [
+        "你为什么",
+        "干那样的事呢？"
+      ],
+      "cid": "3a3c72ba"
+    },
+    {
+      "sentence": "What causes it?",
+      "translation": "是什么原因?",
+      "chunks": [
+        "What",
+        "causes it?"
+      ],
+      "hints": [
+        "是什么",
+        "原因？"
+      ],
+      "cid": "7020e323"
+    },
+    {
+      "sentence": "Explain it to me.",
+      "translation": "请给我解释一下。",
+      "chunks": [
+        "Explain",
+        "it to me."
+      ],
+      "hints": [
+        "请给我",
+        "解释一下。"
+      ],
+      "cid": "695f9462"
+    },
+    {
+      "sentence": "What are you so happy about?",
+      "translation": "你怎么那么高兴?",
+      "chunks": [
+        "What are you so",
+        "happy about?"
+      ],
+      "hints": [
+        "你怎么",
+        "那么高兴？"
+      ],
+      "cid": "0346f470"
+    },
+    {
+      "sentence": "For who?",
+      "translation": "为了谁?",
+      "chunks": [
+        "For",
+        "who?"
+      ],
+      "hints": [
+        "为了",
+        "谁？"
+      ],
+      "cid": "710bfb35"
+    },
+    {
+      "sentence": "What's the purpose of your visit?",
+      "translation": "你旅行的目的是什么?",
+      "chunks": [
+        "What's the purpose",
+        "of your visit?"
+      ],
+      "hints": [
+        "你旅行的",
+        "目的是什么？"
+      ],
+      "cid": "636ceefc"
+    },
+    {
+      "sentence": "No reason not to.",
+      "translation": "没有理由不让做吧。",
+      "chunks": [
+        "No reason",
+        "not to."
+      ],
+      "hints": [
+        "没有理由",
+        "不让做吧。"
+      ],
+      "cid": "2ba1ff6a"
+    },
+    {
+      "sentence": "Why are you here?",
+      "translation": "你怎么在这儿?",
+      "chunks": [
+        "Why are",
+        "you here?"
+      ],
+      "hints": [
+        "你",
+        "怎么在这儿？"
+      ],
+      "cid": "7ad93e4b"
+    },
+    {
+      "sentence": "I'll tell you why...",
+      "translation": "我告诉你为什么……",
+      "chunks": [
+        "I'll tell you",
+        "why..."
+      ],
+      "hints": [
+        "我告诉你",
+        "为什么……"
+      ],
+      "cid": "25b608c9"
+    },
+    {
+      "sentence": "In brief, it's like this.",
+      "translation": "总之，是这么回事儿。",
+      "chunks": [
+        "In brief,",
+        "it's like this."
+      ],
+      "hints": [
+        "总之，",
+        "是这么回事儿。"
+      ],
+      "cid": "379ba692"
+    },
+    {
+      "sentence": "It started like this...",
+      "translation": "它的由来是这样的……",
+      "chunks": [
+        "It started",
+        "like this..."
+      ],
+      "hints": [
+        "它的由来",
+        "是这样的……"
+      ],
+      "cid": "72013e3e"
+    },
+    {
+      "sentence": "That's why!",
+      "translation": "原来如此!",
+      "chunks": [
+        "That's",
+        "why!"
+      ],
+      "hints": [
+        "原来",
+        "如此！"
+      ],
+      "cid": "4b3fd43f"
+    },
+    {
+      "sentence": "I think you're mistaken.",
+      "translation": "我觉得你错了。",
+      "chunks": [
+        "I think",
+        "you're mistaken."
+      ],
+      "hints": [
+        "我觉得",
+        "你错了。"
+      ],
+      "cid": "cdb07be5"
+    },
+    {
+      "sentence": "You're wrong.",
+      "translation": "你错了。",
+      "chunks": [
+        "You're",
+        "wrong."
+      ],
+      "hints": [
+        "你",
+        "错了。"
+      ],
+      "cid": "ba8f41c5"
+    },
+    {
+      "sentence": "Whose fault is that?",
+      "translation": "那是谁的错呀?",
+      "chunks": [
+        "Whose fault",
+        "is that?"
+      ],
+      "hints": [
+        "那是",
+        "谁的错呀？"
+      ],
+      "cid": "a3968a67"
+    },
+    {
+      "sentence": "I think it's sour grapes.",
+      "translation": "吃不着葡萄就说葡萄是酸的(还嘴硬!)",
+      "chunks": [
+        "I think",
+        "it's sour grapes."
+      ],
+      "hints": [
+        "吃不着葡萄",
+        "就说葡萄是酸的。"
+      ],
+      "cid": "4de230c2"
+    },
+    {
+      "sentence": "That's up to you.",
+      "translation": "那就随便你。",
+      "chunks": [
+        "That's up",
+        "to you."
+      ],
+      "hints": [
+        "那就",
+        "随便你。"
+      ],
+      "cid": "732a32fb"
+    },
+    {
+      "sentence": "That's not the point.",
+      "translation": "你没说到点儿上。",
+      "chunks": [
+        "That's not",
+        "the point."
+      ],
+      "hints": [
+        "你没",
+        "说到点儿上。"
+      ],
+      "cid": "3d684f34"
+    },
+    {
+      "sentence": "Excuse me. That's mine.",
+      "translation": "对不起，那是我的。",
+      "chunks": [
+        "Excuse me. That's",
+        "mine."
+      ],
+      "hints": [
+        "对不起，",
+        "那是我的。"
+      ],
+      "cid": "516b311c"
+    }
+  ]
+}

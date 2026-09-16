@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "50d99212",
+      "sentence": "Why?",
+      "translation": "为什么?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "68e7e4dc",
+      "sentence": "How come?",
+      "translation": "为什么?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "e5726875",
+      "sentence": "What makes you think that?",
+      "translation": "你怎么会那么想呢?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "8b5b2800",
+      "sentence": "Tell me why.",
+      "translation": "告诉我为什么。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "ae7df83c",
+      "sentence": "How did it happen?",
+      "translation": "是怎么发生的?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "edeb5371",
+      "sentence": "What are you doing this for?",
+      "translation": "你干吗要去做这种事呢?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "3a3c72ba",
+      "sentence": "Why did you do that?",
+      "translation": "你为什么干那样的事呢?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "7020e323",
+      "sentence": "What causes it?",
+      "translation": "是什么原因?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "695f9462",
+      "sentence": "Explain it to me.",
+      "translation": "请给我解释一下。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "0346f470",
+      "sentence": "What are you so happy about?",
+      "translation": "你怎么那么高兴?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "710bfb35",
+      "sentence": "For who?",
+      "translation": "为了谁?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "636ceefc",
+      "sentence": "What's the purpose of your visit?",
+      "translation": "你旅行的目的是什么?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "2ba1ff6a",
+      "sentence": "No reason not to.",
+      "translation": "没有理由不让做吧。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "7ad93e4b",
+      "sentence": "Why are you here?",
+      "translation": "你怎么在这儿?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "25b608c9",
+      "sentence": "I'll tell you why...",
+      "translation": "我告诉你为什么……",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "379ba692",
+      "sentence": "In brief, it's like this.",
+      "translation": "总之，是这么回事儿。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "72013e3e",
+      "sentence": "It started like this...",
+      "translation": "它的由来是这样的……",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "4b3fd43f",
+      "sentence": "That's why!",
+      "translation": "原来如此!",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "cdb07be5",
+      "sentence": "I think you're mistaken.",
+      "translation": "我觉得你错了。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "ba8f41c5",
+      "sentence": "You're wrong.",
+      "translation": "你错了。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "a3968a67",
+      "sentence": "Whose fault is that?",
+      "translation": "那是谁的错呀?",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "4de230c2",
+      "sentence": "I think it's sour grapes.",
+      "translation": "吃不着葡萄就说葡萄是酸的(还嘴硬!)",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "732a32fb",
+      "sentence": "That's up to you.",
+      "translation": "那就随便你。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "3d684f34",
+      "sentence": "That's not the point.",
+      "translation": "你没说到点儿上。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "516b311c",
+      "sentence": "Excuse me. That's mine.",
+      "translation": "对不起，那是我的。",
+      "sourceUrl": "content/oral-3-12-3/oral-001-ebb50c454de0.json",
+      "sourceOffset": 24
+    }
+  ]
+}

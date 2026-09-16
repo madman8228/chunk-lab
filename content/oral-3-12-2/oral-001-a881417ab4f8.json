@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Maybe.",
+      "translation": "也许吧。",
+      "chunks": [
+        "Maybe."
+      ],
+      "hints": [
+        "也许吧。"
+      ],
+      "cid": "876376ff"
+    },
+    {
+      "sentence": "Not exactly.",
+      "translation": "不完全。",
+      "chunks": [
+        "Not",
+        "exactly."
+      ],
+      "hints": [
+        "不",
+        "完全。"
+      ],
+      "cid": "6bb77304"
+    },
+    {
+      "sentence": "I guess so.",
+      "translation": "可能是吧!",
+      "chunks": [
+        "I",
+        "guess so."
+      ],
+      "hints": [
+        "可能",
+        "是吧！"
+      ],
+      "cid": "ead6c269"
+    },
+    {
+      "sentence": "It might be true.",
+      "translation": "也许是真的吧。",
+      "chunks": [
+        "It might",
+        "be true."
+      ],
+      "hints": [
+        "也许",
+        "是真的吧。"
+      ],
+      "cid": "11dc9036"
+    },
+    {
+      "sentence": "It could be.",
+      "translation": "可能会吧。",
+      "chunks": [
+        "It",
+        "could be."
+      ],
+      "hints": [
+        "可能",
+        "会吧。"
+      ],
+      "cid": "5f3ebc60"
+    },
+    {
+      "sentence": "I'm not sure.",
+      "translation": "我不太清楚。",
+      "chunks": [
+        "I'm",
+        "not sure."
+      ],
+      "hints": [
+        "我",
+        "不太清楚。"
+      ],
+      "cid": "b8516454"
+    },
+    {
+      "sentence": "I hope you're right.",
+      "translation": "但愿是这样。",
+      "chunks": [
+        "I hope",
+        "you're right."
+      ],
+      "hints": [
+        "但愿",
+        "是这样。"
+      ],
+      "cid": "fd63da79"
+    },
+    {
+      "sentence": "Sort of.",
+      "translation": "有那么点儿。",
+      "chunks": [
+        "Sort",
+        "of."
+      ],
+      "hints": [
+        "有那么",
+        "点儿。"
+      ],
+      "cid": "e5b545b8"
+    },
+    {
+      "sentence": "It's something like that.",
+      "translation": "差不多吧!",
+      "chunks": [
+        "It's something",
+        "like that."
+      ],
+      "hints": [
+        "差不多",
+        "吧！"
+      ],
+      "cid": "7eaf07fc"
+    },
+    {
+      "sentence": "It depends.",
+      "translation": "那得看情况。",
+      "chunks": [
+        "It",
+        "depends."
+      ],
+      "hints": [
+        "那得",
+        "看情况。"
+      ],
+      "cid": "91e2af23"
+    },
+    {
+      "sentence": "Maybe yes, maybe no.",
+      "translation": "也许是，也许不是。",
+      "chunks": [
+        "Maybe yes,",
+        "maybe no."
+      ],
+      "hints": [
+        "也许是，",
+        "也许不是。"
+      ],
+      "cid": "af96a1bf"
+    },
+    {
+      "sentence": "Hopefully.",
+      "translation": "但愿能去。",
+      "chunks": [
+        "Hopefully."
+      ],
+      "hints": [
+        "但愿能去。"
+      ],
+      "cid": "ae2957ed"
+    },
+    {
+      "sentence": "There's no guarantee.",
+      "translation": "不能保证。",
+      "chunks": [
+        "There's",
+        "no guarantee."
+      ],
+      "hints": [
+        "不能",
+        "保证。"
+      ],
+      "cid": "d6e7e38a"
+    },
+    {
+      "sentence": "I can't say.",
+      "translation": "我说不好。",
+      "chunks": [
+        "I",
+        "can't say."
+      ],
+      "hints": [
+        "我",
+        "说不好。"
+      ],
+      "cid": "b81dea8c"
+    },
+    {
+      "sentence": "Yes and no.",
+      "translation": "也是也不是。",
+      "chunks": [
+        "Yes",
+        "and no."
+      ],
+      "hints": [
+        "也是",
+        "也不是。"
+      ],
+      "cid": "9892163a"
+    },
+    {
+      "sentence": "Half and half.",
+      "translation": "喜忧参半。/一半一半。",
+      "chunks": [
+        "Half",
+        "and half."
+      ],
+      "hints": [
+        "一半",
+        "一半。"
+      ],
+      "cid": "766605fc"
+    },
+    {
+      "sentence": "I'll try.",
+      "translation": "我会试试。",
+      "chunks": [
+        "I'll",
+        "try."
+      ],
+      "hints": [
+        "我",
+        "会试试。"
+      ],
+      "cid": "f9379b06"
+    },
+    {
+      "sentence": "It's difficult to say.",
+      "translation": "怎么说呢。",
+      "chunks": [
+        "It's difficult",
+        "to say."
+      ],
+      "hints": [
+        "怎么",
+        "说呢。"
+      ],
+      "cid": "f632db58"
+    },
+    {
+      "sentence": "Could be better.",
+      "translation": "还可以更好点。",
+      "chunks": [
+        "Could be",
+        "better."
+      ],
+      "hints": [
+        "还可以",
+        "更好点。"
+      ],
+      "cid": "e818f7e3"
+    },
+    {
+      "sentence": "He gave me an ambiguous answer.",
+      "translation": "他给我的回答很含糊。",
+      "chunks": [
+        "He gave me",
+        "an ambiguous answer."
+      ],
+      "hints": [
+        "他给我的",
+        "回答很含糊。"
+      ],
+      "cid": "da0547f2"
+    },
+    {
+      "sentence": "Let me think about it.",
+      "cid": "f50d7898",
+      "translation": "让我考虑一下。",
+      "chunks": [
+        "Let me",
+        "think about it."
+      ],
+      "hints": [
+        "让我",
+        "想想这件事"
+      ],
+      "grammar": [
+        {
+          "role": "祈使结构",
+          "color": "#c87033",
+          "phonetic": [
+            "/let/",
+            "/miː/"
+          ],
+          "pos": "使役动词",
+          "meaning": "让我"
+        },
+        {
+          "role": "谓语短语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/θɪŋk/",
+            "/əˈbaʊt/",
+            "/ɪt/"
+          ],
+          "pos": "动词短语",
+          "meaning": "考虑一下"
+        }
+      ],
+      "explanations": [
+        "**Let me think about it.** 委婉地表示需要时间考虑，不直接拒绝。",
+        "在谈价格、做决定时非常常用。比直接说 \"No\" 礼貌得多。"
+      ],
+      "distractors": [
+        [
+          "Lets me",
+          "Let I",
+          "Let me to"
+        ],
+        [
+          "think it.",
+          "thinking about it.",
+          "think about them."
+        ]
+      ]
+    },
+    {
+      "sentence": "I need some time to think it over.",
+      "translation": "请给我点儿时间考虑。",
+      "chunks": [
+        "I need some time",
+        "to think it over."
+      ],
+      "hints": [
+        "请给我点儿时间",
+        "考虑。"
+      ],
+      "cid": "8f7e05cb"
+    },
+    {
+      "sentence": "I'll consider it.",
+      "translation": "我会考虑的。",
+      "chunks": [
+        "I'll",
+        "consider it."
+      ],
+      "hints": [
+        "我",
+        "会考虑的。"
+      ],
+      "cid": "be17b471"
+    },
+    {
+      "sentence": "I'll think about it.",
+      "translation": "我考虑考虑吧。",
+      "chunks": [
+        "I'll think",
+        "about it."
+      ],
+      "hints": [
+        "我",
+        "考虑考虑吧。"
+      ],
+      "cid": "ee420d0d"
+    },
+    {
+      "sentence": "I'll think it over.",
+      "translation": "我得琢磨琢磨。",
+      "chunks": [
+        "I'll think",
+        "it over."
+      ],
+      "hints": [
+        "我",
+        "得琢磨琢磨。"
+      ],
+      "cid": "9c0bc01e"
+    },
+    {
+      "sentence": "Let me sleep on it.",
+      "translation": "请给我一个晚上的时间考虑。",
+      "chunks": [
+        "Let me",
+        "sleep on it."
+      ],
+      "hints": [
+        "请给我一个晚上",
+        "的时间考虑。"
+      ],
+      "cid": "5d4f9d11"
+    },
+    {
+      "sentence": "I'll see what I can do.",
+      "cid": "abc317f8",
+      "translation": "我看看能做点什么。",
+      "chunks": [
+        "I'll see",
+        "what I can do."
+      ],
+      "hints": [
+        "我会看看",
+        "我能做什么"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/siː/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我会看看"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wɒt/",
+            "/aɪ/",
+            "/kæn/",
+            "/duː/"
+          ],
+          "pos": "名词性从句",
+          "meaning": "我能做什么"
+        }
+      ],
+      "explanations": [
+        "**I'll see what I can do.** = 我尽量想办法，是不打包票的承诺，比 Yes 留有余地。",
+        "宾语从句用陈述语序 what I can do，不倒装。对方语境常是请求帮助时表示愿意尽力。"
+      ],
+      "distractors": [
+        [
+          "I see",
+          "I'll to see",
+          "I'll saw"
+        ],
+        [
+          "what can I do.",
+          "that I can do.",
+          "what I can does."
+        ]
+      ]
+    },
+    {
+      "sentence": "How about you?",
+      "translation": "你呢?",
+      "chunks": [
+        "How",
+        "about you?"
+      ],
+      "hints": [
+        "你",
+        "呢？"
+      ],
+      "cid": "4c042890"
+    },
+    {
+      "sentence": "What do you think?",
+      "translation": "你觉得呢?",
+      "chunks": [
+        "What do you",
+        "think?"
+      ],
+      "hints": [
+        "你",
+        "觉得呢？"
+      ],
+      "cid": "2e87dc8c"
+    },
+    {
+      "sentence": "What's your opinion?",
+      "translation": "你的意见呢?",
+      "chunks": [
+        "What's",
+        "your opinion?"
+      ],
+      "hints": [
+        "你的",
+        "意见呢？"
+      ],
+      "cid": "3956576f"
+    },
+    {
+      "sentence": "What's your suggestion?",
+      "translation": "你的建议呢?",
+      "chunks": [
+        "What's",
+        "your suggestion?"
+      ],
+      "hints": [
+        "你的",
+        "建议呢？"
+      ],
+      "cid": "81004cd1"
+    },
+    {
+      "sentence": "What else?",
+      "translation": "还有别的吗?",
+      "chunks": [
+        "What",
+        "else?"
+      ],
+      "hints": [
+        "还有",
+        "别的吗？"
+      ],
+      "cid": "b534d5c5"
+    },
+    {
+      "sentence": "Any question will do.",
+      "translation": "什么问题都可以。",
+      "chunks": [
+        "Any question",
+        "will do."
+      ],
+      "hints": [
+        "什么问题",
+        "都可以。"
+      ],
+      "cid": "ae8f2178"
+    },
+    {
+      "sentence": "What do you recommend?",
+      "translation": "你有什么建议吗?",
+      "chunks": [
+        "What do you",
+        "recommend?"
+      ],
+      "hints": [
+        "你有什么",
+        "建议吗？"
+      ],
+      "cid": "74b6650e"
+    },
+    {
+      "sentence": "Don't you think so?",
+      "translation": "你不这样认为吗?",
+      "chunks": [
+        "Don't you",
+        "think so?"
+      ],
+      "hints": [
+        "你不",
+        "这样认为吗？"
+      ],
+      "cid": "4b853871"
+    },
+    {
+      "sentence": "Do you agree?",
+      "translation": "你同意吗?",
+      "chunks": [
+        "Do you",
+        "agree?"
+      ],
+      "hints": [
+        "你",
+        "同意吗？"
+      ],
+      "cid": "bf1f2dac"
+    },
+    {
+      "sentence": "Give me a definite answer.",
+      "translation": "给我一个明确的答复。",
+      "chunks": [
+        "Give me",
+        "a definite answer."
+      ],
+      "hints": [
+        "给我一个",
+        "明确的答复。"
+      ],
+      "cid": "07b2a1d7"
+    },
+    {
+      "sentence": "Is it “yes” or “no”?",
+      "translation": "“是”还是“不是”?",
+      "chunks": [
+        "Is it “yes”",
+        "or “no”?"
+      ],
+      "hints": [
+        "“是”",
+        "还是“不是”？"
+      ],
+      "cid": "e64e967e"
+    },
+    {
+      "sentence": "It doesn't answer my question.",
+      "translation": "这可不算答复。",
+      "chunks": [
+        "It doesn't answer",
+        "my question."
+      ],
+      "hints": [
+        "这可",
+        "不算答复。"
+      ],
+      "cid": "30b1bc20"
+    },
+    {
+      "sentence": "You don't stand a chance.",
+      "translation": "你没有希望赢。",
+      "chunks": [
+        "You don't stand",
+        "a chance."
+      ],
+      "hints": [
+        "你",
+        "没有希望赢。"
+      ],
+      "cid": "0dea6d73"
+    },
+    {
+      "sentence": "It's the last straw.",
+      "translation": "我已经忍无可忍了。",
+      "chunks": [
+        "It's the",
+        "last straw."
+      ],
+      "hints": [
+        "我已经",
+        "忍无可忍了。"
+      ],
+      "cid": "0938bec6"
+    },
+    {
+      "sentence": "Let me hear your candid opinion.",
+      "translation": "让我听听您的直言。",
+      "chunks": [
+        "Let me hear",
+        "your candid opinion."
+      ],
+      "hints": [
+        "让我听听",
+        "您的直言。"
+      ],
+      "cid": "c6409e82"
+    },
+    {
+      "sentence": "Can you think of anything better?",
+      "translation": "你有什么更好的主意吗?",
+      "chunks": [
+        "Can you think of",
+        "anything better?"
+      ],
+      "hints": [
+        "你有什么",
+        "更好的主意吗？"
+      ],
+      "cid": "9ad8ca04"
+    },
+    {
+      "sentence": "Any complaints?",
+      "translation": "有什么不满意的吗?",
+      "chunks": [
+        "Any",
+        "complaints?"
+      ],
+      "hints": [
+        "有什么",
+        "不满意的吗？"
+      ],
+      "cid": "b97217fe"
+    },
+    {
+      "sentence": "What is your complaint?",
+      "translation": "你不满意什么?",
+      "chunks": [
+        "What is",
+        "your complaint?"
+      ],
+      "hints": [
+        "你",
+        "不满意什么？"
+      ],
+      "cid": "cd693d06"
+    },
+    {
+      "sentence": "I'm fairly broad-minded.",
+      "translation": "我是个有气量的人。",
+      "chunks": [
+        "I'm fairly",
+        "broad-minded."
+      ],
+      "hints": [
+        "我是个",
+        "有气量的人。"
+      ],
+      "cid": "791e8b89"
+    },
+    {
+      "sentence": "That kind of chance comes once in a blue moon.",
+      "translation": "这是一个难得的机会。",
+      "chunks": [
+        "That kind of chance comes",
+        "once in a blue moon."
+      ],
+      "hints": [
+        "这是一个",
+        "难得的机会。"
+      ],
+      "cid": "5b22aa74"
+    },
+    {
+      "sentence": "In my opinion...",
+      "translation": "照我的想法……",
+      "chunks": [
+        "In my",
+        "opinion..."
+      ],
+      "hints": [
+        "照我的",
+        "想法……"
+      ],
+      "cid": "ab1f545c"
+    },
+    {
+      "sentence": "What I meant was...",
+      "translation": "我的意思是……",
+      "chunks": [
+        "What I meant",
+        "was..."
+      ],
+      "hints": [
+        "我的",
+        "意思是……"
+      ],
+      "cid": "20fa630c"
+    },
+    {
+      "sentence": "I don't think so.",
+      "translation": "我想不是。",
+      "chunks": [
+        "I don't",
+        "think so."
+      ],
+      "hints": [
+        "我",
+        "想不是。"
+      ],
+      "cid": "cddb04a2"
+    },
+    {
+      "sentence": "I think it is a matter of opinion.",
+      "translation": "我认为这要看个人的看法。",
+      "chunks": [
+        "I think it is",
+        "a matter of opinion."
+      ],
+      "hints": [
+        "我认为这要看",
+        "个人的看法。"
+      ],
+      "cid": "cb2fa33a"
+    },
+    {
+      "sentence": "It's not important.",
+      "translation": "那并不重要。",
+      "chunks": [
+        "It's not",
+        "important."
+      ],
+      "hints": [
+        "那并",
+        "不重要。"
+      ],
+      "cid": "d37b7865"
+    },
+    {
+      "sentence": "That's a good idea.",
+      "translation": "那是个好主意。",
+      "chunks": [
+        "That's a",
+        "good idea."
+      ],
+      "hints": [
+        "那是",
+        "个好主意。"
+      ],
+      "cid": "738f5fd5"
+    },
+    {
+      "sentence": "That's not true.",
+      "translation": "那是胡说。",
+      "chunks": [
+        "That's not",
+        "true."
+      ],
+      "hints": [
+        "那是",
+        "胡说。"
+      ],
+      "cid": "ddbd34c9"
+    },
+    {
+      "sentence": "I can't afford it.",
+      "translation": "我可负担不起。",
+      "chunks": [
+        "I can't",
+        "afford it."
+      ],
+      "hints": [
+        "我可",
+        "负担不起。"
+      ],
+      "cid": "5b59f084"
+    },
+    {
+      "sentence": "It's worth a look.",
+      "translation": "值得一看。",
+      "chunks": [
+        "It's worth",
+        "a look."
+      ],
+      "hints": [
+        "值得",
+        "一看。"
+      ],
+      "cid": "1f967e9a"
+    },
+    {
+      "sentence": "You see...",
+      "translation": "这不，你看……",
+      "chunks": [
+        "You",
+        "see..."
+      ],
+      "hints": [
+        "这不，",
+        "你看……"
+      ],
+      "cid": "665b7a3b"
+    },
+    {
+      "sentence": "Let's get this straight.",
+      "translation": "我可跟你说清楚。",
+      "chunks": [
+        "Let's get",
+        "this straight."
+      ],
+      "hints": [
+        "我可跟你",
+        "说清楚。"
+      ],
+      "cid": "f48260cc"
+    },
+    {
+      "sentence": "I would not do that.",
+      "translation": "我是不会做那种事儿的。",
+      "chunks": [
+        "I would not",
+        "do that."
+      ],
+      "hints": [
+        "我是不会",
+        "做那种事儿的。"
+      ],
+      "cid": "bdbf175c"
+    },
+    {
+      "sentence": "You ain't seen nothing yet.",
+      "translation": "还有更厉害的呢。",
+      "chunks": [
+        "You ain't seen",
+        "nothing yet."
+      ],
+      "hints": [
+        "还有",
+        "更厉害的呢。"
+      ],
+      "cid": "16643f71"
+    },
+    {
+      "sentence": "Let's leave well enough alone.",
+      "translation": "不要画蛇添足了。",
+      "chunks": [
+        "Let's leave",
+        "well enough alone."
+      ],
+      "hints": [
+        "不要",
+        "画蛇添足了。"
+      ],
+      "cid": "d91a9c46"
+    },
+    {
+      "sentence": "It must be my imagination.",
+      "translation": "肯定是我的幻觉。",
+      "chunks": [
+        "It must be",
+        "my imagination."
+      ],
+      "hints": [
+        "肯定是",
+        "我的幻觉。"
+      ],
+      "cid": "1dde6d78"
+    },
+    {
+      "sentence": "In the long run,...",
+      "translation": "从长远来看……",
+      "chunks": [
+        "In the",
+        "long run,..."
+      ],
+      "hints": [
+        "从长远",
+        "来看……"
+      ],
+      "cid": "b26f5732"
+    },
+    {
+      "sentence": "I'm not sure about that.",
+      "cid": "806439ee",
+      "translation": "我不太确定那件事。",
+      "chunks": [
+        "I'm not sure",
+        "about that."
+      ],
+      "hints": [
+        "我不确定",
+        "关于那个"
+      ],
+      "grammar": [
+        {
+          "role": "主语+否定",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/nɒt/",
+            "/ʃʊər/"
+          ],
+          "pos": "主语+be+形容词",
+          "meaning": "我不确定"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/ðæt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于那件事"
+        }
+      ],
+      "explanations": [
+        "**I'm not sure about that.** 委婉地表达不确定或保留意见。",
+        "比直接说 \"I don't know.\" 或 \"No.\" 更礼貌、更有回旋余地。"
+      ],
+      "distractors": [
+        [
+          "I not sure",
+          "I'm no sure",
+          "I'm not surely"
+        ],
+        [
+          "at that.",
+          "about those.",
+          "about the."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's up to you.",
+      "cid": "fb54ce6f",
+      "translation": "由你决定。",
+      "chunks": [
+        "It's up",
+        "to you."
+      ],
+      "hints": [
+        "取决于",
+        "由你"
+      ],
+      "grammar": [
+        {
+          "role": "主系结构",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ʌp/"
+          ],
+          "pos": "主系+副词",
+          "meaning": "取决于"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "由你"
+        }
+      ],
+      "explanations": [
+        "**It's up to you.** = 由你决定/你说了算，把选择权交给对方。点餐、约时间的高频句。",
+        "扩展：**It's up to sb to do sth** = 由某人负责做某事。问句 **What's up?**（怎么了）与本句无关，注意区分。"
+      ],
+      "distractors": [
+        [
+          "It up",
+          "It's upon"
+        ],
+        [
+          "for you.",
+          "to your.",
+          "on you."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's up to you, I'm fine either way.",
+      "cid": "0951976a",
+      "translation": "你决定吧，我怎么样都行。",
+      "chunks": [
+        "It's up to you,",
+        "I'm fine",
+        "either way."
+      ],
+      "hints": [
+        "由你决定",
+        "我没问题",
+        "任何一种方式"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ʌp/",
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "惯用表达",
+          "meaning": "由你决定"
+        },
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/faɪn/"
+          ],
+          "pos": "陈述",
+          "meaning": "我没问题"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈaɪðər/",
+            "/weɪ/"
+          ],
+          "pos": "短语",
+          "meaning": "任何一种方式"
+        }
+      ],
+      "explanations": [
+        "`It's up to you` = 由你决定（把选择权交给对方）。常见错误：\n• \"It's **up to your**\" → your 是物主代词，要用宾格 you\n• \"up to you\" → 缺 it's：It's up to you",
+        "`I'm fine either way` = 我哪种都行。either way = 无论哪种方式。"
+      ],
+      "distractors": [
+        [
+          "It's up for you,",
+          "It's up to yours,",
+          "It's depends on you,"
+        ],
+        [
+          "I fine",
+          "I'm very fine,",
+          "I'm well and"
+        ],
+        [
+          "either ways.",
+          "neither way.",
+          "any way."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're in charge.",
+      "cid": "5a4799a1",
+      "translation": "你说了算。",
+      "chunks": [
+        "You're",
+        "in charge."
+      ],
+      "hints": [
+        "你是",
+        "负责的"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/"
+          ],
+          "pos": "you are 缩写",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪn/",
+            "/tʃɑːrdʒ/"
+          ],
+          "pos": "介词短语（固定）",
+          "meaning": "负责的"
+        }
+      ],
+      "explanations": [
+        "`be in charge` 是固定短语，表「负责、主管」。常见错误：\n• \"in charged\" → charge 在此不加 ed\n• \"in the charge\" → 加 the 后意思变成「在……看管下」，正好相反",
+        "`You're in charge` 口语里也可表「你说了算」。同义：It's up to you. / You're the boss."
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You",
+          "You've"
+        ],
+        [
+          "in charged.",
+          "in charge of.",
+          "in the charge."
+        ]
+      ]
+    }
+  ]
+}

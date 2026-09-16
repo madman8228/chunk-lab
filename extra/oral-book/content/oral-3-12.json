@@ -1,0 +1,1852 @@
+[
+ {
+  "sentence": "I agree.",
+  "translation": "赞成。",
+  "chunks": [
+   "I",
+   "agree."
+  ],
+  "hints": [
+   "我",
+   "同意。"
+  ]
+ },
+ {
+  "sentence": "I think so, too.",
+  "translation": "我也这样认为。",
+  "chunks": [
+   "I think so,",
+   "too."
+  ],
+  "hints": [
+   "我也这么",
+   "认为。"
+  ]
+ },
+ {
+  "sentence": "Anything you say!",
+  "translation": "好哇!",
+  "chunks": [
+   "Anything",
+   "you say!"
+  ],
+  "hints": [
+   "都听",
+   "你的！"
+  ]
+ },
+ {
+  "sentence": "No objection!",
+  "translation": "没有异议。",
+  "chunks": [
+   "No",
+   "objection!"
+  ],
+  "hints": [
+   "没有",
+   "异议。"
+  ]
+ },
+ {
+  "sentence": "I don't have any objection to it.",
+  "translation": "我不反对。",
+  "chunks": [
+   "I don't have",
+   "any objection to it."
+  ],
+  "hints": [
+   "我对它",
+   "没有任何异议。"
+  ]
+ },
+ {
+  "sentence": "That's fine with me.",
+  "translation": "我觉得那样很好。",
+  "chunks": [
+   "That's fine",
+   "with me."
+  ],
+  "hints": [
+   "我觉得那样",
+   "很好。"
+  ]
+ },
+ {
+  "sentence": "Fine.",
+  "translation": "很好!",
+  "chunks": [
+   "Fine."
+  ],
+  "hints": [
+   "很好！"
+  ]
+ },
+ {
+  "sentence": "That's fair.",
+  "translation": "那就行了。",
+  "chunks": [
+   "That's",
+   "fair."
+  ],
+  "hints": [
+   "那就",
+   "行了。"
+  ]
+ },
+ {
+  "sentence": "You can say that again.",
+  "translation": "我也有同样感觉。",
+  "chunks": [
+   "You can say",
+   "that again."
+  ],
+  "hints": [
+   "我也有",
+   "同样感觉。"
+  ]
+ },
+ {
+  "sentence": "Sounds like fun.",
+  "translation": "好像挺有意思。",
+  "chunks": [
+   "Sounds",
+   "like fun."
+  ],
+  "hints": [
+   "好像",
+   "挺有意思。"
+  ]
+ },
+ {
+  "sentence": "Are you for or against his idea?",
+  "translation": "你是反对还是赞成他的主意?",
+  "chunks": [
+   "Are you for",
+   "or against his idea?"
+  ],
+  "hints": [
+   "你是赞成",
+   "还是反对他的主意？"
+  ]
+ },
+ {
+  "sentence": "Good idea.",
+  "translation": "好主意。",
+  "chunks": [
+   "Good",
+   "idea."
+  ],
+  "hints": [
+   "好",
+   "主意。"
+  ]
+ },
+ {
+  "sentence": "What you say is partly right.",
+  "translation": "你说的有一部分是对的。",
+  "chunks": [
+   "What you say",
+   "is partly right."
+  ],
+  "hints": [
+   "你说的",
+   "有一部分是对的。"
+  ]
+ },
+ {
+  "sentence": "I don't agree.",
+  "translation": "我反对。",
+  "chunks": [
+   "I don't",
+   "agree."
+  ],
+  "hints": [
+   "我",
+   "反对。"
+  ]
+ },
+ {
+  "sentence": "I can't agree.",
+  "translation": "我不能同意。",
+  "chunks": [
+   "I can't",
+   "agree."
+  ],
+  "hints": [
+   "我不能",
+   "同意。"
+  ]
+ },
+ {
+  "sentence": "I doubt it.",
+  "translation": "我怀疑。",
+  "chunks": [
+   "I",
+   "doubt it."
+  ],
+  "hints": [
+   "我",
+   "怀疑。"
+  ]
+ },
+ {
+  "sentence": "Objection!",
+  "translation": "我反对。",
+  "chunks": [
+   "Objection!"
+  ],
+  "hints": [
+   "我反对！"
+  ]
+ },
+ {
+  "sentence": "That's not what you said.",
+  "translation": "你不是这么说的。",
+  "chunks": [
+   "That's not",
+   "what you said."
+  ],
+  "hints": [
+   "你不是",
+   "这么说的。"
+  ]
+ },
+ {
+  "sentence": "I can't buy that!",
+  "translation": "我无法相信。",
+  "chunks": [
+   "I can't",
+   "buy that!"
+  ],
+  "hints": [
+   "我无法",
+   "相信！"
+  ]
+ },
+ {
+  "sentence": "Bad idea.",
+  "translation": "馊主意。",
+  "chunks": [
+   "Bad",
+   "idea."
+  ],
+  "hints": [
+   "馊",
+   "主意。"
+  ]
+ },
+ {
+  "sentence": "No good.",
+  "translation": "那可不好哦!",
+  "chunks": [
+   "No",
+   "good."
+  ],
+  "hints": [
+   "那可",
+   "不好哦！"
+  ]
+ },
+ {
+  "sentence": "Let's not.",
+  "translation": "算了吧!",
+  "chunks": [
+   "Let's",
+   "not."
+  ],
+  "hints": [
+   "算",
+   "了吧！"
+  ]
+ },
+ {
+  "sentence": "That's impossible.",
+  "translation": "那怎么可能。",
+  "chunks": [
+   "That's",
+   "impossible."
+  ],
+  "hints": [
+   "那",
+   "怎么可能。"
+  ]
+ },
+ {
+  "sentence": "That's absolute nonsense.",
+  "translation": "那完全是胡说八道。",
+  "chunks": [
+   "That's absolute",
+   "nonsense."
+  ],
+  "hints": [
+   "那完全是",
+   "胡说八道。"
+  ]
+ },
+ {
+  "sentence": "It won't work.",
+  "translation": "行不通。",
+  "chunks": [
+   "It won't",
+   "work."
+  ],
+  "hints": [
+   "行",
+   "不通。"
+  ]
+ },
+ {
+  "sentence": "Not always.",
+  "translation": "不总是这样。",
+  "chunks": [
+   "Not",
+   "always."
+  ],
+  "hints": [
+   "不总是",
+   "这样。"
+  ]
+ },
+ {
+  "sentence": "Not really.",
+  "translation": "不是那样。",
+  "chunks": [
+   "Not",
+   "really."
+  ],
+  "hints": [
+   "不是",
+   "那样。"
+  ]
+ },
+ {
+  "sentence": "Yes, I am.",
+  "translation": "对，是我。",
+  "chunks": [
+   "Yes,",
+   "I am."
+  ],
+  "hints": [
+   "对，",
+   "是我。"
+  ]
+ },
+ {
+  "sentence": "Yeah.",
+  "translation": "嗯。",
+  "chunks": [
+   "Yeah."
+  ],
+  "hints": [
+   "嗯。"
+  ]
+ },
+ {
+  "sentence": "I think so.",
+  "translation": "我想是吧。",
+  "chunks": [
+   "I",
+   "think so."
+  ],
+  "hints": [
+   "我想",
+   "是吧。"
+  ]
+ },
+ {
+  "sentence": "Right.",
+  "translation": "是的。/对。",
+  "chunks": [
+   "Right."
+  ],
+  "hints": [
+   "是的。/对。"
+  ]
+ },
+ {
+  "sentence": "Absolutely!",
+  "translation": "一点儿没错!",
+  "chunks": [
+   "Absolutely!"
+  ],
+  "hints": [
+   "一点儿没错！"
+  ]
+ },
+ {
+  "sentence": "In a word, yes.",
+  "translation": "一句话，是。",
+  "chunks": [
+   "In a word,",
+   "yes."
+  ],
+  "hints": [
+   "一句话，",
+   "是。"
+  ]
+ },
+ {
+  "sentence": "You're perfectly correct.",
+  "translation": "完全和你说的一样。",
+  "chunks": [
+   "You're perfectly",
+   "correct."
+  ],
+  "hints": [
+   "完全和",
+   "你说的一样。"
+  ]
+ },
+ {
+  "sentence": "In a sense he's right.",
+  "translation": "在某种意义上，他是对的。",
+  "chunks": [
+   "In a sense",
+   "he's right."
+  ],
+  "hints": [
+   "在某种意义上，",
+   "他是对的。"
+  ]
+ },
+ {
+  "sentence": "That's it!",
+  "translation": "啊，对啦!",
+  "chunks": [
+   "That's",
+   "it!"
+  ],
+  "hints": [
+   "啊，",
+   "对啦！"
+  ]
+ },
+ {
+  "sentence": "You got it.",
+  "translation": "正是!",
+  "chunks": [
+   "You",
+   "got it."
+  ],
+  "hints": [
+   "你",
+   "说对了。"
+  ]
+ },
+ {
+  "sentence": "Your answer is to the point.",
+  "translation": "你说到点子上了。",
+  "chunks": [
+   "Your answer is",
+   "to the point."
+  ],
+  "hints": [
+   "你说到",
+   "点子上了。"
+  ]
+ },
+ {
+  "sentence": "I bet.",
+  "translation": "应该是吧。",
+  "chunks": [
+   "I",
+   "bet."
+  ],
+  "hints": [
+   "应该",
+   "是吧。"
+  ]
+ },
+ {
+  "sentence": "Why not?",
+  "translation": "①那好吧，拜托您了!/那谢谢了。②为什么不行?",
+  "chunks": [
+   "Why",
+   "not?"
+  ],
+  "hints": [
+   "为什么",
+   "不行？"
+  ]
+ },
+ {
+  "sentence": "Bingo!",
+  "translation": "对啰!",
+  "chunks": [
+   "Bingo!"
+  ],
+  "hints": [
+   "对啰！"
+  ]
+ },
+ {
+  "sentence": "Hear, hear!",
+  "translation": "说得对!说得对!",
+  "chunks": [
+   "Hear,",
+   "hear!"
+  ],
+  "hints": [
+   "说得对，",
+   "说得对！"
+  ]
+ },
+ {
+  "sentence": "Yes, sir.",
+  "translation": "是，先生。 Yes, ma'am. 对女性。",
+  "chunks": [
+   "Yes,",
+   "sir."
+  ],
+  "hints": [
+   "是，",
+   "先生。"
+  ]
+ },
+ {
+  "sentence": "No doubt.",
+  "translation": "确实是这样。",
+  "chunks": [
+   "No",
+   "doubt."
+  ],
+  "hints": [
+   "确实",
+   "是这样。"
+  ]
+ },
+ {
+  "sentence": "Fair enough.",
+  "translation": "当然可以。",
+  "chunks": [
+   "Fair",
+   "enough."
+  ],
+  "hints": [
+   "当然",
+   "可以。"
+  ]
+ },
+ {
+  "sentence": "I'm afraid so.",
+  "translation": "恐怕就是这样了。",
+  "chunks": [
+   "I'm",
+   "afraid so."
+  ],
+  "hints": [
+   "恐怕",
+   "就是这样了。"
+  ]
+ },
+ {
+  "sentence": "Your opinion is reasonable.",
+  "translation": "你的意见有道理。",
+  "chunks": [
+   "Your opinion",
+   "is reasonable."
+  ],
+  "hints": [
+   "你的意见",
+   "有道理。"
+  ]
+ },
+ {
+  "sentence": "If you say so.",
+  "translation": "如果你说是的话，那就是吧。",
+  "chunks": [
+   "If you",
+   "say so."
+  ],
+  "hints": [
+   "如果你",
+   "这么说的话。"
+  ]
+ },
+ {
+  "sentence": "Yeah, as far as I know.",
+  "translation": "据我所知，是的。",
+  "chunks": [
+   "Yeah, as far as",
+   "I know."
+  ],
+  "hints": [
+   "据我",
+   "所知，是的。"
+  ]
+ },
+ {
+  "sentence": "I'm going to.",
+  "translation": "我这就做。",
+  "chunks": [
+   "I'm",
+   "going to."
+  ],
+  "hints": [
+   "我",
+   "这就做。"
+  ]
+ },
+ {
+  "sentence": "No, I'm not.",
+  "translation": "不，没有。",
+  "chunks": [
+   "No,",
+   "I'm not."
+  ],
+  "hints": [
+   "不，",
+   "没有。"
+  ]
+ },
+ {
+  "sentence": "Wrong.",
+  "translation": "不对。",
+  "chunks": [
+   "Wrong."
+  ],
+  "hints": [
+   "不对。"
+  ]
+ },
+ {
+  "sentence": "That's not right.",
+  "translation": "那是不对的。",
+  "chunks": [
+   "That's not",
+   "right."
+  ],
+  "hints": [
+   "那是",
+   "不对的。"
+  ]
+ },
+ {
+  "sentence": "Your idea is fundamentally wrong.",
+  "translation": "你的想法根本上就是错误的。",
+  "chunks": [
+   "Your idea is",
+   "fundamentally wrong."
+  ],
+  "hints": [
+   "你的想法",
+   "根本上就是错误的。"
+  ]
+ },
+ {
+  "sentence": "That's not what I mean.",
+  "translation": "我不是那个意思。",
+  "chunks": [
+   "That's not",
+   "what I mean."
+  ],
+  "hints": [
+   "我不是",
+   "那个意思。"
+  ]
+ },
+ {
+  "sentence": "Certainly not.",
+  "translation": "哪儿有的事儿。/当然不是。",
+  "chunks": [
+   "Certainly",
+   "not."
+  ],
+  "hints": [
+   "当然",
+   "不是。"
+  ]
+ },
+ {
+  "sentence": "No, never.",
+  "translation": "没有，从没去过。",
+  "chunks": [
+   "No,",
+   "never."
+  ],
+  "hints": [
+   "没有，",
+   "从没去过。"
+  ]
+ },
+ {
+  "sentence": "No, not a bit.",
+  "translation": "不，一点儿都不。",
+  "chunks": [
+   "No,",
+   "not a bit."
+  ],
+  "hints": [
+   "不，",
+   "一点儿都不。"
+  ]
+ },
+ {
+  "sentence": "No way!",
+  "translation": "肯定不对!",
+  "chunks": [
+   "No",
+   "way!"
+  ],
+  "hints": [
+   "肯定",
+   "不对！"
+  ]
+ },
+ {
+  "sentence": "How can that be?",
+  "translation": "怎么可能呢?",
+  "chunks": [
+   "How can",
+   "that be?"
+  ],
+  "hints": [
+   "怎么",
+   "可能呢？"
+  ]
+ },
+ {
+  "sentence": "We don't agree on this point.",
+  "translation": "在这一点上我们意见分歧。",
+  "chunks": [
+   "We don't agree",
+   "on this point."
+  ],
+  "hints": [
+   "在这一点上",
+   "我们意见分歧。"
+  ]
+ },
+ {
+  "sentence": "I'm not talking about that.",
+  "translation": "我没说那个。",
+  "chunks": [
+   "I'm not talking",
+   "about that."
+  ],
+  "hints": [
+   "我没说",
+   "那个。"
+  ]
+ },
+ {
+  "sentence": "Uh-uh.",
+  "translation": "这个嘛……",
+  "chunks": [
+   "Uh-uh."
+  ],
+  "hints": [
+   "这个嘛……"
+  ]
+ },
+ {
+  "sentence": "That won't do.",
+  "translation": "那样不行。",
+  "chunks": [
+   "That",
+   "won't do."
+  ],
+  "hints": [
+   "那样",
+   "不行。"
+  ]
+ },
+ {
+  "sentence": "He won't do.",
+  "translation": "他呀，不行。",
+  "chunks": [
+   "He",
+   "won't do."
+  ],
+  "hints": [
+   "他呀，",
+   "不行。"
+  ]
+ },
+ {
+  "sentence": "That makes no sense.",
+  "translation": "那也太没道理了。",
+  "chunks": [
+   "That makes",
+   "no sense."
+  ],
+  "hints": [
+   "那也太",
+   "没道理了。"
+  ]
+ },
+ {
+  "sentence": "Not me.",
+  "translation": "不是我。",
+  "chunks": [
+   "Not",
+   "me."
+  ],
+  "hints": [
+   "不是",
+   "我。"
+  ]
+ },
+ {
+  "sentence": "I deny that.",
+  "translation": "我否认。",
+  "chunks": [
+   "I",
+   "deny that."
+  ],
+  "hints": [
+   "我",
+   "否认。"
+  ]
+ },
+ {
+  "sentence": "Maybe.",
+  "translation": "也许吧。",
+  "chunks": [
+   "Maybe."
+  ],
+  "hints": [
+   "也许吧。"
+  ]
+ },
+ {
+  "sentence": "Not exactly.",
+  "translation": "不完全。",
+  "chunks": [
+   "Not",
+   "exactly."
+  ],
+  "hints": [
+   "不",
+   "完全。"
+  ]
+ },
+ {
+  "sentence": "I guess so.",
+  "translation": "可能是吧!",
+  "chunks": [
+   "I",
+   "guess so."
+  ],
+  "hints": [
+   "可能",
+   "是吧！"
+  ]
+ },
+ {
+  "sentence": "It might be true.",
+  "translation": "也许是真的吧。",
+  "chunks": [
+   "It might",
+   "be true."
+  ],
+  "hints": [
+   "也许",
+   "是真的吧。"
+  ]
+ },
+ {
+  "sentence": "It could be.",
+  "translation": "可能会吧。",
+  "chunks": [
+   "It",
+   "could be."
+  ],
+  "hints": [
+   "可能",
+   "会吧。"
+  ]
+ },
+ {
+  "sentence": "I'm not sure.",
+  "translation": "我不太清楚。",
+  "chunks": [
+   "I'm",
+   "not sure."
+  ],
+  "hints": [
+   "我",
+   "不太清楚。"
+  ]
+ },
+ {
+  "sentence": "I hope you're right.",
+  "translation": "但愿是这样。",
+  "chunks": [
+   "I hope",
+   "you're right."
+  ],
+  "hints": [
+   "但愿",
+   "是这样。"
+  ]
+ },
+ {
+  "sentence": "Sort of.",
+  "translation": "有那么点儿。",
+  "chunks": [
+   "Sort",
+   "of."
+  ],
+  "hints": [
+   "有那么",
+   "点儿。"
+  ]
+ },
+ {
+  "sentence": "It's something like that.",
+  "translation": "差不多吧!",
+  "chunks": [
+   "It's something",
+   "like that."
+  ],
+  "hints": [
+   "差不多",
+   "吧！"
+  ]
+ },
+ {
+  "sentence": "It depends.",
+  "translation": "那得看情况。",
+  "chunks": [
+   "It",
+   "depends."
+  ],
+  "hints": [
+   "那得",
+   "看情况。"
+  ]
+ },
+ {
+  "sentence": "Maybe yes, maybe no.",
+  "translation": "也许是，也许不是。",
+  "chunks": [
+   "Maybe yes,",
+   "maybe no."
+  ],
+  "hints": [
+   "也许是，",
+   "也许不是。"
+  ]
+ },
+ {
+  "sentence": "Hopefully.",
+  "translation": "但愿能去。",
+  "chunks": [
+   "Hopefully."
+  ],
+  "hints": [
+   "但愿能去。"
+  ]
+ },
+ {
+  "sentence": "There's no guarantee.",
+  "translation": "不能保证。",
+  "chunks": [
+   "There's",
+   "no guarantee."
+  ],
+  "hints": [
+   "不能",
+   "保证。"
+  ]
+ },
+ {
+  "sentence": "I can't say.",
+  "translation": "我说不好。",
+  "chunks": [
+   "I",
+   "can't say."
+  ],
+  "hints": [
+   "我",
+   "说不好。"
+  ]
+ },
+ {
+  "sentence": "Yes and no.",
+  "translation": "也是也不是。",
+  "chunks": [
+   "Yes",
+   "and no."
+  ],
+  "hints": [
+   "也是",
+   "也不是。"
+  ]
+ },
+ {
+  "sentence": "Half and half.",
+  "translation": "喜忧参半。/一半一半。",
+  "chunks": [
+   "Half",
+   "and half."
+  ],
+  "hints": [
+   "一半",
+   "一半。"
+  ]
+ },
+ {
+  "sentence": "I'll try.",
+  "translation": "我会试试。",
+  "chunks": [
+   "I'll",
+   "try."
+  ],
+  "hints": [
+   "我",
+   "会试试。"
+  ]
+ },
+ {
+  "sentence": "It's difficult to say.",
+  "translation": "怎么说呢。",
+  "chunks": [
+   "It's difficult",
+   "to say."
+  ],
+  "hints": [
+   "怎么",
+   "说呢。"
+  ]
+ },
+ {
+  "sentence": "Could be better.",
+  "translation": "还可以更好点。",
+  "chunks": [
+   "Could be",
+   "better."
+  ],
+  "hints": [
+   "还可以",
+   "更好点。"
+  ]
+ },
+ {
+  "sentence": "He gave me an ambiguous answer.",
+  "translation": "他给我的回答很含糊。",
+  "chunks": [
+   "He gave me",
+   "an ambiguous answer."
+  ],
+  "hints": [
+   "他给我的",
+   "回答很含糊。"
+  ]
+ },
+ {
+  "sentence": "Let me think about it.",
+  "translation": "让我想想。",
+  "chunks": [
+   "Let me think",
+   "about it."
+  ],
+  "hints": [
+   "让我",
+   "想想。"
+  ]
+ },
+ {
+  "sentence": "I need some time to think it over.",
+  "translation": "请给我点儿时间考虑。",
+  "chunks": [
+   "I need some time",
+   "to think it over."
+  ],
+  "hints": [
+   "请给我点儿时间",
+   "考虑。"
+  ]
+ },
+ {
+  "sentence": "I'll consider it.",
+  "translation": "我会考虑的。",
+  "chunks": [
+   "I'll",
+   "consider it."
+  ],
+  "hints": [
+   "我",
+   "会考虑的。"
+  ]
+ },
+ {
+  "sentence": "I'll think about it.",
+  "translation": "我考虑考虑吧。",
+  "chunks": [
+   "I'll think",
+   "about it."
+  ],
+  "hints": [
+   "我",
+   "考虑考虑吧。"
+  ]
+ },
+ {
+  "sentence": "I'll think it over.",
+  "translation": "我得琢磨琢磨。",
+  "chunks": [
+   "I'll think",
+   "it over."
+  ],
+  "hints": [
+   "我",
+   "得琢磨琢磨。"
+  ]
+ },
+ {
+  "sentence": "Let me sleep on it.",
+  "translation": "请给我一个晚上的时间考虑。",
+  "chunks": [
+   "Let me",
+   "sleep on it."
+  ],
+  "hints": [
+   "请给我一个晚上",
+   "的时间考虑。"
+  ]
+ },
+ {
+  "sentence": "I'll see what I can do.",
+  "translation": "我得研究研究。",
+  "chunks": [
+   "I'll see",
+   "what I can do."
+  ],
+  "hints": [
+   "我",
+   "得研究研究。"
+  ]
+ },
+ {
+  "sentence": "How about you?",
+  "translation": "你呢?",
+  "chunks": [
+   "How",
+   "about you?"
+  ],
+  "hints": [
+   "你",
+   "呢？"
+  ]
+ },
+ {
+  "sentence": "What do you think?",
+  "translation": "你觉得呢?",
+  "chunks": [
+   "What do you",
+   "think?"
+  ],
+  "hints": [
+   "你",
+   "觉得呢？"
+  ]
+ },
+ {
+  "sentence": "What's your opinion?",
+  "translation": "你的意见呢?",
+  "chunks": [
+   "What's",
+   "your opinion?"
+  ],
+  "hints": [
+   "你的",
+   "意见呢？"
+  ]
+ },
+ {
+  "sentence": "What's your suggestion?",
+  "translation": "你的建议呢?",
+  "chunks": [
+   "What's",
+   "your suggestion?"
+  ],
+  "hints": [
+   "你的",
+   "建议呢？"
+  ]
+ },
+ {
+  "sentence": "What else?",
+  "translation": "还有别的吗?",
+  "chunks": [
+   "What",
+   "else?"
+  ],
+  "hints": [
+   "还有",
+   "别的吗？"
+  ]
+ },
+ {
+  "sentence": "Any question will do.",
+  "translation": "什么问题都可以。",
+  "chunks": [
+   "Any question",
+   "will do."
+  ],
+  "hints": [
+   "什么问题",
+   "都可以。"
+  ]
+ },
+ {
+  "sentence": "What do you recommend?",
+  "translation": "你有什么建议吗?",
+  "chunks": [
+   "What do you",
+   "recommend?"
+  ],
+  "hints": [
+   "你有什么",
+   "建议吗？"
+  ]
+ },
+ {
+  "sentence": "Don't you think so?",
+  "translation": "你不这样认为吗?",
+  "chunks": [
+   "Don't you",
+   "think so?"
+  ],
+  "hints": [
+   "你不",
+   "这样认为吗？"
+  ]
+ },
+ {
+  "sentence": "Do you agree?",
+  "translation": "你同意吗?",
+  "chunks": [
+   "Do you",
+   "agree?"
+  ],
+  "hints": [
+   "你",
+   "同意吗？"
+  ]
+ },
+ {
+  "sentence": "Give me a definite answer.",
+  "translation": "给我一个明确的答复。",
+  "chunks": [
+   "Give me",
+   "a definite answer."
+  ],
+  "hints": [
+   "给我一个",
+   "明确的答复。"
+  ]
+ },
+ {
+  "sentence": "Is it “yes” or “no”?",
+  "translation": "“是”还是“不是”?",
+  "chunks": [
+   "Is it “yes”",
+   "or “no”?"
+  ],
+  "hints": [
+   "“是”",
+   "还是“不是”？"
+  ]
+ },
+ {
+  "sentence": "It doesn't answer my question.",
+  "translation": "这可不算答复。",
+  "chunks": [
+   "It doesn't answer",
+   "my question."
+  ],
+  "hints": [
+   "这可",
+   "不算答复。"
+  ]
+ },
+ {
+  "sentence": "You don't stand a chance.",
+  "translation": "你没有希望赢。",
+  "chunks": [
+   "You don't stand",
+   "a chance."
+  ],
+  "hints": [
+   "你",
+   "没有希望赢。"
+  ]
+ },
+ {
+  "sentence": "It's the last straw.",
+  "translation": "我已经忍无可忍了。",
+  "chunks": [
+   "It's the",
+   "last straw."
+  ],
+  "hints": [
+   "我已经",
+   "忍无可忍了。"
+  ]
+ },
+ {
+  "sentence": "Let me hear your candid opinion.",
+  "translation": "让我听听您的直言。",
+  "chunks": [
+   "Let me hear",
+   "your candid opinion."
+  ],
+  "hints": [
+   "让我听听",
+   "您的直言。"
+  ]
+ },
+ {
+  "sentence": "Can you think of anything better?",
+  "translation": "你有什么更好的主意吗?",
+  "chunks": [
+   "Can you think of",
+   "anything better?"
+  ],
+  "hints": [
+   "你有什么",
+   "更好的主意吗？"
+  ]
+ },
+ {
+  "sentence": "Any complaints?",
+  "translation": "有什么不满意的吗?",
+  "chunks": [
+   "Any",
+   "complaints?"
+  ],
+  "hints": [
+   "有什么",
+   "不满意的吗？"
+  ]
+ },
+ {
+  "sentence": "What is your complaint?",
+  "translation": "你不满意什么?",
+  "chunks": [
+   "What is",
+   "your complaint?"
+  ],
+  "hints": [
+   "你",
+   "不满意什么？"
+  ]
+ },
+ {
+  "sentence": "I'm fairly broad-minded.",
+  "translation": "我是个有气量的人。",
+  "chunks": [
+   "I'm fairly",
+   "broad-minded."
+  ],
+  "hints": [
+   "我是个",
+   "有气量的人。"
+  ]
+ },
+ {
+  "sentence": "That kind of chance comes once in a blue moon.",
+  "translation": "这是一个难得的机会。",
+  "chunks": [
+   "That kind of chance comes",
+   "once in a blue moon."
+  ],
+  "hints": [
+   "这是一个",
+   "难得的机会。"
+  ]
+ },
+ {
+  "sentence": "In my opinion...",
+  "translation": "照我的想法……",
+  "chunks": [
+   "In my",
+   "opinion..."
+  ],
+  "hints": [
+   "照我的",
+   "想法……"
+  ]
+ },
+ {
+  "sentence": "What I meant was...",
+  "translation": "我的意思是……",
+  "chunks": [
+   "What I meant",
+   "was..."
+  ],
+  "hints": [
+   "我的",
+   "意思是……"
+  ]
+ },
+ {
+  "sentence": "I don't think so.",
+  "translation": "我想不是。",
+  "chunks": [
+   "I don't",
+   "think so."
+  ],
+  "hints": [
+   "我",
+   "想不是。"
+  ]
+ },
+ {
+  "sentence": "I think it is a matter of opinion.",
+  "translation": "我认为这要看个人的看法。",
+  "chunks": [
+   "I think it is",
+   "a matter of opinion."
+  ],
+  "hints": [
+   "我认为这要看",
+   "个人的看法。"
+  ]
+ },
+ {
+  "sentence": "It's not important.",
+  "translation": "那并不重要。",
+  "chunks": [
+   "It's not",
+   "important."
+  ],
+  "hints": [
+   "那并",
+   "不重要。"
+  ]
+ },
+ {
+  "sentence": "That's a good idea.",
+  "translation": "那是个好主意。",
+  "chunks": [
+   "That's a",
+   "good idea."
+  ],
+  "hints": [
+   "那是",
+   "个好主意。"
+  ]
+ },
+ {
+  "sentence": "That's not true.",
+  "translation": "那是胡说。",
+  "chunks": [
+   "That's not",
+   "true."
+  ],
+  "hints": [
+   "那是",
+   "胡说。"
+  ]
+ },
+ {
+  "sentence": "I can't afford it.",
+  "translation": "我可负担不起。",
+  "chunks": [
+   "I can't",
+   "afford it."
+  ],
+  "hints": [
+   "我可",
+   "负担不起。"
+  ]
+ },
+ {
+  "sentence": "It's worth a look.",
+  "translation": "值得一看。",
+  "chunks": [
+   "It's worth",
+   "a look."
+  ],
+  "hints": [
+   "值得",
+   "一看。"
+  ]
+ },
+ {
+  "sentence": "You see...",
+  "translation": "这不，你看……",
+  "chunks": [
+   "You",
+   "see..."
+  ],
+  "hints": [
+   "这不，",
+   "你看……"
+  ]
+ },
+ {
+  "sentence": "Let's get this straight.",
+  "translation": "我可跟你说清楚。",
+  "chunks": [
+   "Let's get",
+   "this straight."
+  ],
+  "hints": [
+   "我可跟你",
+   "说清楚。"
+  ]
+ },
+ {
+  "sentence": "I would not do that.",
+  "translation": "我是不会做那种事儿的。",
+  "chunks": [
+   "I would not",
+   "do that."
+  ],
+  "hints": [
+   "我是不会",
+   "做那种事儿的。"
+  ]
+ },
+ {
+  "sentence": "You ain't seen nothing yet.",
+  "translation": "还有更厉害的呢。",
+  "chunks": [
+   "You ain't seen",
+   "nothing yet."
+  ],
+  "hints": [
+   "还有",
+   "更厉害的呢。"
+  ]
+ },
+ {
+  "sentence": "Let's leave well enough alone.",
+  "translation": "不要画蛇添足了。",
+  "chunks": [
+   "Let's leave",
+   "well enough alone."
+  ],
+  "hints": [
+   "不要",
+   "画蛇添足了。"
+  ]
+ },
+ {
+  "sentence": "It must be my imagination.",
+  "translation": "肯定是我的幻觉。",
+  "chunks": [
+   "It must be",
+   "my imagination."
+  ],
+  "hints": [
+   "肯定是",
+   "我的幻觉。"
+  ]
+ },
+ {
+  "sentence": "In the long run,...",
+  "translation": "从长远来看……",
+  "chunks": [
+   "In the",
+   "long run,..."
+  ],
+  "hints": [
+   "从长远",
+   "来看……"
+  ]
+ },
+ {
+  "sentence": "Why?",
+  "translation": "为什么?",
+  "chunks": [
+   "Why?"
+  ],
+  "hints": [
+   "为什么？"
+  ]
+ },
+ {
+  "sentence": "How come?",
+  "translation": "为什么?",
+  "chunks": [
+   "How",
+   "come?"
+  ],
+  "hints": [
+   "怎么",
+   "回事？"
+  ]
+ },
+ {
+  "sentence": "What makes you think that?",
+  "translation": "你怎么会那么想呢?",
+  "chunks": [
+   "What makes you",
+   "think that?"
+  ],
+  "hints": [
+   "你怎么会",
+   "那么想呢？"
+  ]
+ },
+ {
+  "sentence": "Tell me why.",
+  "translation": "告诉我为什么。",
+  "chunks": [
+   "Tell me",
+   "why."
+  ],
+  "hints": [
+   "告诉我",
+   "为什么。"
+  ]
+ },
+ {
+  "sentence": "How did it happen?",
+  "translation": "是怎么发生的?",
+  "chunks": [
+   "How did",
+   "it happen?"
+  ],
+  "hints": [
+   "是",
+   "怎么发生的？"
+  ]
+ },
+ {
+  "sentence": "What are you doing this for?",
+  "translation": "你干吗要去做这种事呢?",
+  "chunks": [
+   "What are you",
+   "doing this for?"
+  ],
+  "hints": [
+   "你干吗要",
+   "去做这种事呢？"
+  ]
+ },
+ {
+  "sentence": "Why did you do that?",
+  "translation": "你为什么干那样的事呢?",
+  "chunks": [
+   "Why did you",
+   "do that?"
+  ],
+  "hints": [
+   "你为什么",
+   "干那样的事呢？"
+  ]
+ },
+ {
+  "sentence": "What causes it?",
+  "translation": "是什么原因?",
+  "chunks": [
+   "What",
+   "causes it?"
+  ],
+  "hints": [
+   "是什么",
+   "原因？"
+  ]
+ },
+ {
+  "sentence": "Explain it to me.",
+  "translation": "请给我解释一下。",
+  "chunks": [
+   "Explain",
+   "it to me."
+  ],
+  "hints": [
+   "请给我",
+   "解释一下。"
+  ]
+ },
+ {
+  "sentence": "What are you so happy about?",
+  "translation": "你怎么那么高兴?",
+  "chunks": [
+   "What are you so",
+   "happy about?"
+  ],
+  "hints": [
+   "你怎么",
+   "那么高兴？"
+  ]
+ },
+ {
+  "sentence": "For who?",
+  "translation": "为了谁?",
+  "chunks": [
+   "For",
+   "who?"
+  ],
+  "hints": [
+   "为了",
+   "谁？"
+  ]
+ },
+ {
+  "sentence": "What's the purpose of your visit?",
+  "translation": "你旅行的目的是什么?",
+  "chunks": [
+   "What's the purpose",
+   "of your visit?"
+  ],
+  "hints": [
+   "你旅行的",
+   "目的是什么？"
+  ]
+ },
+ {
+  "sentence": "No reason not to.",
+  "translation": "没有理由不让做吧。",
+  "chunks": [
+   "No reason",
+   "not to."
+  ],
+  "hints": [
+   "没有理由",
+   "不让做吧。"
+  ]
+ },
+ {
+  "sentence": "Why are you here?",
+  "translation": "你怎么在这儿?",
+  "chunks": [
+   "Why are",
+   "you here?"
+  ],
+  "hints": [
+   "你",
+   "怎么在这儿？"
+  ]
+ },
+ {
+  "sentence": "I'll tell you why...",
+  "translation": "我告诉你为什么……",
+  "chunks": [
+   "I'll tell you",
+   "why..."
+  ],
+  "hints": [
+   "我告诉你",
+   "为什么……"
+  ]
+ },
+ {
+  "sentence": "In brief, it's like this.",
+  "translation": "总之，是这么回事儿。",
+  "chunks": [
+   "In brief,",
+   "it's like this."
+  ],
+  "hints": [
+   "总之，",
+   "是这么回事儿。"
+  ]
+ },
+ {
+  "sentence": "It started like this...",
+  "translation": "它的由来是这样的……",
+  "chunks": [
+   "It started",
+   "like this..."
+  ],
+  "hints": [
+   "它的由来",
+   "是这样的……"
+  ]
+ },
+ {
+  "sentence": "That's why!",
+  "translation": "原来如此!",
+  "chunks": [
+   "That's",
+   "why!"
+  ],
+  "hints": [
+   "原来",
+   "如此！"
+  ]
+ },
+ {
+  "sentence": "I think you're mistaken.",
+  "translation": "我觉得你错了。",
+  "chunks": [
+   "I think",
+   "you're mistaken."
+  ],
+  "hints": [
+   "我觉得",
+   "你错了。"
+  ]
+ },
+ {
+  "sentence": "You're wrong.",
+  "translation": "你错了。",
+  "chunks": [
+   "You're",
+   "wrong."
+  ],
+  "hints": [
+   "你",
+   "错了。"
+  ]
+ },
+ {
+  "sentence": "Whose fault is that?",
+  "translation": "那是谁的错呀?",
+  "chunks": [
+   "Whose fault",
+   "is that?"
+  ],
+  "hints": [
+   "那是",
+   "谁的错呀？"
+  ]
+ },
+ {
+  "sentence": "I think it's sour grapes.",
+  "translation": "吃不着葡萄就说葡萄是酸的(还嘴硬!)",
+  "chunks": [
+   "I think",
+   "it's sour grapes."
+  ],
+  "hints": [
+   "吃不着葡萄",
+   "就说葡萄是酸的。"
+  ]
+ },
+ {
+  "sentence": "That's up to you.",
+  "translation": "那就随便你。",
+  "chunks": [
+   "That's up",
+   "to you."
+  ],
+  "hints": [
+   "那就",
+   "随便你。"
+  ]
+ },
+ {
+  "sentence": "That's not the point.",
+  "translation": "你没说到点儿上。",
+  "chunks": [
+   "That's not",
+   "the point."
+  ],
+  "hints": [
+   "你没",
+   "说到点儿上。"
+  ]
+ },
+ {
+  "sentence": "Excuse me. That's mine.",
+  "translation": "对不起，那是我的。",
+  "chunks": [
+   "Excuse me. That's",
+   "mine."
+  ],
+  "hints": [
+   "对不起，",
+   "那是我的。"
+  ]
+ }
+]

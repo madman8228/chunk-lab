@@ -1,0 +1,1317 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I agree.",
+      "translation": "赞成。",
+      "chunks": [
+        "I",
+        "agree."
+      ],
+      "hints": [
+        "我",
+        "同意。"
+      ],
+      "cid": "7cd6522e"
+    },
+    {
+      "sentence": "I think so, too.",
+      "translation": "我也这样认为。",
+      "chunks": [
+        "I think so,",
+        "too."
+      ],
+      "hints": [
+        "我也这么",
+        "认为。"
+      ],
+      "cid": "39eee8f2"
+    },
+    {
+      "sentence": "Anything you say!",
+      "translation": "好哇!",
+      "chunks": [
+        "Anything",
+        "you say!"
+      ],
+      "hints": [
+        "都听",
+        "你的！"
+      ],
+      "cid": "a7d37e3a"
+    },
+    {
+      "sentence": "No objection!",
+      "translation": "没有异议。",
+      "chunks": [
+        "No",
+        "objection!"
+      ],
+      "hints": [
+        "没有",
+        "异议。"
+      ],
+      "cid": "abef467c"
+    },
+    {
+      "sentence": "I don't have any objection to it.",
+      "translation": "我不反对。",
+      "chunks": [
+        "I don't have",
+        "any objection to it."
+      ],
+      "hints": [
+        "我对它",
+        "没有任何异议。"
+      ],
+      "cid": "eba37757"
+    },
+    {
+      "sentence": "That's fine with me.",
+      "translation": "我觉得那样很好。",
+      "chunks": [
+        "That's fine",
+        "with me."
+      ],
+      "hints": [
+        "我觉得那样",
+        "很好。"
+      ],
+      "cid": "ee039896"
+    },
+    {
+      "sentence": "Fine.",
+      "translation": "很好!",
+      "chunks": [
+        "Fine."
+      ],
+      "hints": [
+        "很好！"
+      ],
+      "cid": "7d606019"
+    },
+    {
+      "sentence": "That's fair.",
+      "translation": "那就行了。",
+      "chunks": [
+        "That's",
+        "fair."
+      ],
+      "hints": [
+        "那就",
+        "行了。"
+      ],
+      "cid": "1f069072"
+    },
+    {
+      "sentence": "You can say that again.",
+      "translation": "我也有同样感觉。",
+      "chunks": [
+        "You can say",
+        "that again."
+      ],
+      "hints": [
+        "我也有",
+        "同样感觉。"
+      ],
+      "cid": "8a75b9e4"
+    },
+    {
+      "sentence": "Sounds like fun.",
+      "translation": "好像挺有意思。",
+      "chunks": [
+        "Sounds",
+        "like fun."
+      ],
+      "hints": [
+        "好像",
+        "挺有意思。"
+      ],
+      "cid": "ac25cf01"
+    },
+    {
+      "sentence": "Are you for or against his idea?",
+      "translation": "你是反对还是赞成他的主意?",
+      "chunks": [
+        "Are you for",
+        "or against his idea?"
+      ],
+      "hints": [
+        "你是赞成",
+        "还是反对他的主意？"
+      ],
+      "cid": "31590c6d"
+    },
+    {
+      "sentence": "Good idea.",
+      "translation": "好主意。",
+      "chunks": [
+        "Good",
+        "idea."
+      ],
+      "hints": [
+        "好",
+        "主意。"
+      ],
+      "cid": "3e77ed57"
+    },
+    {
+      "sentence": "What you say is partly right.",
+      "translation": "你说的有一部分是对的。",
+      "chunks": [
+        "What you say",
+        "is partly right."
+      ],
+      "hints": [
+        "你说的",
+        "有一部分是对的。"
+      ],
+      "cid": "49238603"
+    },
+    {
+      "sentence": "I don't agree.",
+      "translation": "我反对。",
+      "chunks": [
+        "I don't",
+        "agree."
+      ],
+      "hints": [
+        "我",
+        "反对。"
+      ],
+      "cid": "083bca6c"
+    },
+    {
+      "sentence": "I can't agree.",
+      "translation": "我不能同意。",
+      "chunks": [
+        "I can't",
+        "agree."
+      ],
+      "hints": [
+        "我不能",
+        "同意。"
+      ],
+      "cid": "7a2bf8c5"
+    },
+    {
+      "sentence": "I doubt it.",
+      "translation": "我怀疑。",
+      "chunks": [
+        "I",
+        "doubt it."
+      ],
+      "hints": [
+        "我",
+        "怀疑。"
+      ],
+      "cid": "fbb49e03"
+    },
+    {
+      "sentence": "Objection!",
+      "translation": "我反对。",
+      "chunks": [
+        "Objection!"
+      ],
+      "hints": [
+        "我反对！"
+      ],
+      "cid": "8b3f83cf"
+    },
+    {
+      "sentence": "That's not what you said.",
+      "translation": "你不是这么说的。",
+      "chunks": [
+        "That's not",
+        "what you said."
+      ],
+      "hints": [
+        "你不是",
+        "这么说的。"
+      ],
+      "cid": "0a9558cd"
+    },
+    {
+      "sentence": "I can't buy that!",
+      "translation": "我无法相信。",
+      "chunks": [
+        "I can't",
+        "buy that!"
+      ],
+      "hints": [
+        "我无法",
+        "相信！"
+      ],
+      "cid": "9963b52d"
+    },
+    {
+      "sentence": "Bad idea.",
+      "translation": "馊主意。",
+      "chunks": [
+        "Bad",
+        "idea."
+      ],
+      "hints": [
+        "馊",
+        "主意。"
+      ],
+      "cid": "4703a3f7"
+    },
+    {
+      "sentence": "No good.",
+      "translation": "那可不好哦!",
+      "chunks": [
+        "No",
+        "good."
+      ],
+      "hints": [
+        "那可",
+        "不好哦！"
+      ],
+      "cid": "332907eb"
+    },
+    {
+      "sentence": "Let's not.",
+      "translation": "算了吧!",
+      "chunks": [
+        "Let's",
+        "not."
+      ],
+      "hints": [
+        "算",
+        "了吧！"
+      ],
+      "cid": "8113aa51"
+    },
+    {
+      "sentence": "That's impossible.",
+      "translation": "那怎么可能。",
+      "chunks": [
+        "That's",
+        "impossible."
+      ],
+      "hints": [
+        "那",
+        "怎么可能。"
+      ],
+      "cid": "c80fe84f"
+    },
+    {
+      "sentence": "That's absolute nonsense.",
+      "translation": "那完全是胡说八道。",
+      "chunks": [
+        "That's absolute",
+        "nonsense."
+      ],
+      "hints": [
+        "那完全是",
+        "胡说八道。"
+      ],
+      "cid": "5ea3b1a0"
+    },
+    {
+      "sentence": "It won't work.",
+      "translation": "行不通。",
+      "chunks": [
+        "It won't",
+        "work."
+      ],
+      "hints": [
+        "行",
+        "不通。"
+      ],
+      "cid": "c3e4935e"
+    },
+    {
+      "sentence": "Not always.",
+      "translation": "不总是这样。",
+      "chunks": [
+        "Not",
+        "always."
+      ],
+      "hints": [
+        "不总是",
+        "这样。"
+      ],
+      "cid": "1f8ef26f"
+    },
+    {
+      "sentence": "Not really.",
+      "translation": "不是那样。",
+      "chunks": [
+        "Not",
+        "really."
+      ],
+      "hints": [
+        "不是",
+        "那样。"
+      ],
+      "cid": "20045ad9"
+    },
+    {
+      "sentence": "Yes, I am.",
+      "translation": "对，是我。",
+      "chunks": [
+        "Yes,",
+        "I am."
+      ],
+      "hints": [
+        "对，",
+        "是我。"
+      ],
+      "cid": "c83137cf"
+    },
+    {
+      "sentence": "Yeah.",
+      "translation": "嗯。",
+      "chunks": [
+        "Yeah."
+      ],
+      "hints": [
+        "嗯。"
+      ],
+      "cid": "165294ec"
+    },
+    {
+      "sentence": "I think so.",
+      "translation": "我想是吧。",
+      "chunks": [
+        "I",
+        "think so."
+      ],
+      "hints": [
+        "我想",
+        "是吧。"
+      ],
+      "cid": "ce71d770"
+    },
+    {
+      "sentence": "Right.",
+      "translation": "是的。/对。",
+      "chunks": [
+        "Right."
+      ],
+      "hints": [
+        "是的。/对。"
+      ],
+      "cid": "deb55a31"
+    },
+    {
+      "sentence": "Absolutely!",
+      "translation": "一点儿没错!",
+      "chunks": [
+        "Absolutely!"
+      ],
+      "hints": [
+        "一点儿没错！"
+      ],
+      "cid": "26a93bde"
+    },
+    {
+      "sentence": "In a word, yes.",
+      "translation": "一句话，是。",
+      "chunks": [
+        "In a word,",
+        "yes."
+      ],
+      "hints": [
+        "一句话，",
+        "是。"
+      ],
+      "cid": "3f71b0b0"
+    },
+    {
+      "sentence": "You're perfectly correct.",
+      "translation": "完全和你说的一样。",
+      "chunks": [
+        "You're perfectly",
+        "correct."
+      ],
+      "hints": [
+        "完全和",
+        "你说的一样。"
+      ],
+      "cid": "bb9d9d0e"
+    },
+    {
+      "sentence": "In a sense he's right.",
+      "translation": "在某种意义上，他是对的。",
+      "chunks": [
+        "In a sense",
+        "he's right."
+      ],
+      "hints": [
+        "在某种意义上，",
+        "他是对的。"
+      ],
+      "cid": "d781149c"
+    },
+    {
+      "sentence": "That's it!",
+      "translation": "啊，对啦!",
+      "chunks": [
+        "That's",
+        "it!"
+      ],
+      "hints": [
+        "啊，",
+        "对啦！"
+      ],
+      "cid": "febf818a"
+    },
+    {
+      "sentence": "You got it.",
+      "cid": "86ff7ccf",
+      "translation": "应该的。",
+      "chunks": [
+        "You got",
+        "it."
+      ],
+      "hints": [
+        "你拿到了",
+        "它"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ɡɑːt/"
+          ],
+          "pos": "口语省略 did",
+          "meaning": "你（做）到了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/"
+          ],
+          "pos": "代词",
+          "meaning": "它"
+        }
+      ],
+      "explanations": [
+        "`You got it` 回应感谢时表「应该的、小意思」。常见错误：\n• 用降调读 → 才表「没问题/包在我身上」，两种含义靠语境区分\n• \"You get it\" → 那是「你明白了」",
+        "同义：No problem. / Anytime. / My pleasure."
+      ],
+      "distractors": [
+        [
+          "You get",
+          "You got to",
+          "You've got"
+        ],
+        [
+          "that.",
+          "them.",
+          "it's."
+        ]
+      ]
+    },
+    {
+      "sentence": "Your answer is to the point.",
+      "translation": "你说到点子上了。",
+      "chunks": [
+        "Your answer is",
+        "to the point."
+      ],
+      "hints": [
+        "你说到",
+        "点子上了。"
+      ],
+      "cid": "6ffc15a6"
+    },
+    {
+      "sentence": "I bet.",
+      "translation": "应该是吧。",
+      "chunks": [
+        "I",
+        "bet."
+      ],
+      "hints": [
+        "应该",
+        "是吧。"
+      ],
+      "cid": "a531b2bf"
+    },
+    {
+      "sentence": "Why not?",
+      "translation": "①那好吧，拜托您了!/那谢谢了。②为什么不行?",
+      "chunks": [
+        "Why",
+        "not?"
+      ],
+      "hints": [
+        "为什么",
+        "不行？"
+      ],
+      "cid": "57c59239"
+    },
+    {
+      "sentence": "Bingo!",
+      "translation": "对啰!",
+      "chunks": [
+        "Bingo!"
+      ],
+      "hints": [
+        "对啰！"
+      ],
+      "cid": "417a5327"
+    },
+    {
+      "sentence": "Hear, hear!",
+      "translation": "说得对!说得对!",
+      "chunks": [
+        "Hear,",
+        "hear!"
+      ],
+      "hints": [
+        "说得对，",
+        "说得对！"
+      ],
+      "cid": "e7f8ce78"
+    },
+    {
+      "sentence": "Yes, sir.",
+      "translation": "是，先生。 Yes, ma'am. 对女性。",
+      "chunks": [
+        "Yes,",
+        "sir."
+      ],
+      "hints": [
+        "是，",
+        "先生。"
+      ],
+      "cid": "67ab8dac"
+    },
+    {
+      "sentence": "No doubt.",
+      "translation": "确实是这样。",
+      "chunks": [
+        "No",
+        "doubt."
+      ],
+      "hints": [
+        "确实",
+        "是这样。"
+      ],
+      "cid": "d69d3076"
+    },
+    {
+      "sentence": "Fair enough.",
+      "translation": "当然可以。",
+      "chunks": [
+        "Fair",
+        "enough."
+      ],
+      "hints": [
+        "当然",
+        "可以。"
+      ],
+      "cid": "3d471761"
+    },
+    {
+      "sentence": "I'm afraid so.",
+      "translation": "恐怕就是这样了。",
+      "chunks": [
+        "I'm",
+        "afraid so."
+      ],
+      "hints": [
+        "恐怕",
+        "就是这样了。"
+      ],
+      "cid": "4f7358a7"
+    },
+    {
+      "sentence": "Your opinion is reasonable.",
+      "translation": "你的意见有道理。",
+      "chunks": [
+        "Your opinion",
+        "is reasonable."
+      ],
+      "hints": [
+        "你的意见",
+        "有道理。"
+      ],
+      "cid": "4b879d52"
+    },
+    {
+      "sentence": "If you say so.",
+      "translation": "如果你说是的话，那就是吧。",
+      "chunks": [
+        "If you",
+        "say so."
+      ],
+      "hints": [
+        "如果你",
+        "这么说的话。"
+      ],
+      "cid": "25fc9c42"
+    },
+    {
+      "sentence": "Yeah, as far as I know.",
+      "translation": "据我所知，是的。",
+      "chunks": [
+        "Yeah, as far as",
+        "I know."
+      ],
+      "hints": [
+        "据我",
+        "所知，是的。"
+      ],
+      "cid": "f500b589"
+    },
+    {
+      "sentence": "I'm going to.",
+      "translation": "我这就做。",
+      "chunks": [
+        "I'm",
+        "going to."
+      ],
+      "hints": [
+        "我",
+        "这就做。"
+      ],
+      "cid": "bec3dc33"
+    },
+    {
+      "sentence": "No, I'm not.",
+      "translation": "不，没有。",
+      "chunks": [
+        "No,",
+        "I'm not."
+      ],
+      "hints": [
+        "不，",
+        "没有。"
+      ],
+      "cid": "5cfc2956"
+    },
+    {
+      "sentence": "Wrong.",
+      "translation": "不对。",
+      "chunks": [
+        "Wrong."
+      ],
+      "hints": [
+        "不对。"
+      ],
+      "cid": "fd9c3828"
+    },
+    {
+      "sentence": "That's not right.",
+      "translation": "那是不对的。",
+      "chunks": [
+        "That's not",
+        "right."
+      ],
+      "hints": [
+        "那是",
+        "不对的。"
+      ],
+      "cid": "1db9f019"
+    },
+    {
+      "sentence": "Your idea is fundamentally wrong.",
+      "translation": "你的想法根本上就是错误的。",
+      "chunks": [
+        "Your idea is",
+        "fundamentally wrong."
+      ],
+      "hints": [
+        "你的想法",
+        "根本上就是错误的。"
+      ],
+      "cid": "f7d9efd0"
+    },
+    {
+      "sentence": "That's not what I mean.",
+      "translation": "我不是那个意思。",
+      "chunks": [
+        "That's not",
+        "what I mean."
+      ],
+      "hints": [
+        "我不是",
+        "那个意思。"
+      ],
+      "cid": "1ef421d1"
+    },
+    {
+      "sentence": "Certainly not.",
+      "translation": "哪儿有的事儿。/当然不是。",
+      "chunks": [
+        "Certainly",
+        "not."
+      ],
+      "hints": [
+        "当然",
+        "不是。"
+      ],
+      "cid": "81ae25b7"
+    },
+    {
+      "sentence": "No, never.",
+      "translation": "没有，从没去过。",
+      "chunks": [
+        "No,",
+        "never."
+      ],
+      "hints": [
+        "没有，",
+        "从没去过。"
+      ],
+      "cid": "bc10f6ca"
+    },
+    {
+      "sentence": "No, not a bit.",
+      "translation": "不，一点儿都不。",
+      "chunks": [
+        "No,",
+        "not a bit."
+      ],
+      "hints": [
+        "不，",
+        "一点儿都不。"
+      ],
+      "cid": "26e42927"
+    },
+    {
+      "sentence": "No way!",
+      "translation": "肯定不对!",
+      "chunks": [
+        "No",
+        "way!"
+      ],
+      "hints": [
+        "肯定",
+        "不对！"
+      ],
+      "cid": "850eecbc"
+    },
+    {
+      "sentence": "How can that be?",
+      "translation": "怎么可能呢?",
+      "chunks": [
+        "How can",
+        "that be?"
+      ],
+      "hints": [
+        "怎么",
+        "可能呢？"
+      ],
+      "cid": "b80984da"
+    },
+    {
+      "sentence": "We don't agree on this point.",
+      "translation": "在这一点上我们意见分歧。",
+      "chunks": [
+        "We don't agree",
+        "on this point."
+      ],
+      "hints": [
+        "在这一点上",
+        "我们意见分歧。"
+      ],
+      "cid": "60cb4b6c"
+    },
+    {
+      "sentence": "I'm not talking about that.",
+      "translation": "我没说那个。",
+      "chunks": [
+        "I'm not talking",
+        "about that."
+      ],
+      "hints": [
+        "我没说",
+        "那个。"
+      ],
+      "cid": "9913b3e3"
+    },
+    {
+      "sentence": "Uh-uh.",
+      "translation": "这个嘛……",
+      "chunks": [
+        "Uh-uh."
+      ],
+      "hints": [
+        "这个嘛……"
+      ],
+      "cid": "8db96364"
+    },
+    {
+      "sentence": "That won't do.",
+      "translation": "那样不行。",
+      "chunks": [
+        "That",
+        "won't do."
+      ],
+      "hints": [
+        "那样",
+        "不行。"
+      ],
+      "cid": "c77a2f8e"
+    },
+    {
+      "sentence": "He won't do.",
+      "translation": "他呀，不行。",
+      "chunks": [
+        "He",
+        "won't do."
+      ],
+      "hints": [
+        "他呀，",
+        "不行。"
+      ],
+      "cid": "7756fa58"
+    },
+    {
+      "sentence": "That makes no sense.",
+      "translation": "那也太没道理了。",
+      "chunks": [
+        "That makes",
+        "no sense."
+      ],
+      "hints": [
+        "那也太",
+        "没道理了。"
+      ],
+      "cid": "17c06966"
+    },
+    {
+      "sentence": "Not me.",
+      "translation": "不是我。",
+      "chunks": [
+        "Not",
+        "me."
+      ],
+      "hints": [
+        "不是",
+        "我。"
+      ],
+      "cid": "1b10f63e"
+    },
+    {
+      "sentence": "I deny that.",
+      "translation": "我否认。",
+      "chunks": [
+        "I",
+        "deny that."
+      ],
+      "hints": [
+        "我",
+        "否认。"
+      ],
+      "cid": "c26552af"
+    },
+    {
+      "sentence": "Sounds good to me.",
+      "cid": "0f83a993",
+      "translation": "我觉得可以/听起来不错。",
+      "chunks": [
+        "Sounds good",
+        "to me."
+      ],
+      "hints": [
+        "听起来好",
+        "对我来说"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#c87033",
+          "phonetic": [
+            "/saʊndz/",
+            "/ɡʊd/"
+          ],
+          "pos": "系动词+形容词",
+          "meaning": "听起来不错"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对我而言"
+        }
+      ],
+      "explanations": [
+        "**Sounds good to me.** 同意提议时最自然的表达之一。",
+        "简短版：**Sounds good.** / **Works for me.** / **I'm down with that.**（更年轻）"
+      ],
+      "distractors": [
+        [
+          "Sound good",
+          "Sounds well",
+          "Sounds goods"
+        ],
+        [
+          "for me.",
+          "with me.",
+          "me."
+        ]
+      ]
+    },
+    {
+      "sentence": "That makes sense.",
+      "cid": "e14abd85",
+      "translation": "有道理/说得通。",
+      "chunks": [
+        "That makes",
+        "sense."
+      ],
+      "hints": [
+        "那说得出",
+        "道理"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðæt/",
+            "/meɪks/"
+          ],
+          "pos": "主语+谓语",
+          "meaning": "那（说）"
+        },
+        {
+          "role": "宾语（习语）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/sens/"
+          ],
+          "pos": "名词",
+          "meaning": "道理"
+        }
+      ],
+      "explanations": [
+        "**make sense** = 说得通、有道理，固定搭配。**That makes sense.** 是回应他人解释时最自然的认可句。",
+        "否定：**That doesn't make sense.**（说不通）。同义替换：That's reasonable / I see what you mean."
+      ],
+      "distractors": [
+        [
+          "That make",
+          "That made",
+          "That making"
+        ],
+        [
+          "senses.",
+          "a sense.",
+          "the sense."
+        ]
+      ]
+    },
+    {
+      "sentence": "I can't agree more.",
+      "cid": "c3147310",
+      "translation": "我完全同意。",
+      "chunks": [
+        "I can't",
+        "agree more."
+      ],
+      "hints": [
+        "我不能（再）",
+        "更同意"
+      ],
+      "grammar": [
+        {
+          "role": "主语+否定",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/kænt/"
+          ],
+          "pos": "主语+助动词",
+          "meaning": "我不能（再）"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/əˈɡriː/",
+            "/mɔːr/"
+          ],
+          "pos": "动词+程度比较",
+          "meaning": "更同意"
+        }
+      ],
+      "explanations": [
+        "**I can't agree more.** 字面「不能再更同意」= 完全同意，是加强同意的惯用表达。",
+        "同义：**I couldn't agree more.** 常见错误：\"I can't agree **no** more\" → 双重否定错误；应为 can't ... more。"
+      ],
+      "distractors": [
+        [
+          "I don't",
+          "I won't",
+          "I'm not"
+        ],
+        [
+          "agree.",
+          "agrees more.",
+          "to agree more."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's a deal.",
+      "cid": "a964fa8d",
+      "translation": "一言为定/成交。",
+      "chunks": [
+        "It's",
+        "a deal."
+      ],
+      "hints": [
+        "这是",
+        "一桩成交"
+      ],
+      "grammar": [
+        {
+          "role": "主系",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/"
+          ],
+          "pos": "主系结构",
+          "meaning": "这是"
+        },
+        {
+          "role": "表语（习语）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/diːl/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一言为定"
+        }
+      ],
+      "explanations": [
+        "**It's a deal.** = 一言为定/成交，用来敲定双方约定。",
+        "场景：— Let's meet at three. — **It's a deal!** 更口语的单字版：**Deal!** 双方都同意也可回 **Done.**"
+      ],
+      "distractors": [
+        [
+          "It",
+          "It are"
+        ],
+        [
+          "deal.",
+          "the deal.",
+          "a deals."
+        ]
+      ]
+    },
+    {
+      "sentence": "You said it.",
+      "cid": "89d8df40",
+      "translation": "你说得没错/正是我想说的。",
+      "chunks": [
+        "You said",
+        "it."
+      ],
+      "hints": [
+        "你说出了",
+        "它"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/sed/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "你说出了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/"
+          ],
+          "pos": "代词",
+          "meaning": "它（心声）"
+        }
+      ],
+      "explanations": [
+        "**You said it.** = 你说得对/深表赞同，强调对方说出了你的心声。",
+        "注意别直译为「你说了它」。语境：— This place is overpriced. — **You said it!**（可不是嘛！）"
+      ],
+      "distractors": [
+        [
+          "You say",
+          "You says",
+          "You sayed"
+        ],
+        [
+          "them.",
+          "that.",
+          "this."
+        ]
+      ]
+    },
+    {
+      "sentence": "That sounds like a great idea.",
+      "cid": "9edbf706",
+      "translation": "那听起来是个好主意。",
+      "chunks": [
+        "That sounds like",
+        "a great idea."
+      ],
+      "hints": [
+        "那听起来像",
+        "一个好主意"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðæt/",
+            "/saʊndz/",
+            "/laɪk/"
+          ],
+          "pos": "主谓结构",
+          "meaning": "那听起来像"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ɡreɪt/",
+            "/aɪˈdɪə/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个好主意"
+        }
+      ],
+      "explanations": [
+        "`sound like + 名词` 表示「听起来像…」。常见错误：\n• \"That sounds **good idea**\" → 缺冠词，应为 a good idea\n• \"That **is** sound like\" → sound 已含 be 含义，不要再加 is",
+        "第三人称单数 `sounds`，that 是单数。口语中 like 后可接名词或句子。"
+      ],
+      "distractors": [
+        [
+          "That sound like",
+          "That sounds as",
+          "That sounding like"
+        ],
+        [
+          "a great ideal.",
+          "great idea.",
+          "a great ideas."
+        ]
+      ]
+    },
+    {
+      "sentence": "That's exactly what I was thinking.",
+      "cid": "aab6ad64",
+      "translation": "那正是我刚才想的。",
+      "chunks": [
+        "That's exactly",
+        "what I was thinking."
+      ],
+      "hints": [
+        "那正是",
+        "我正在想的"
+      ],
+      "grammar": [
+        {
+          "role": "主系表+副词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðæts/",
+            "/ɪɡˈzæktli/"
+          ],
+          "pos": "强调结构",
+          "meaning": "那正是"
+        },
+        {
+          "role": "表语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɒt/",
+            "/aɪ/",
+            "/wɒz/",
+            "/ˈθɪŋkɪŋ/"
+          ],
+          "pos": "what 从句",
+          "meaning": "我刚才想的"
+        }
+      ],
+      "explanations": [
+        "附和对方观点的用语。`That's exactly...` = 那正是…。常见错误：\n• \"That's **exact**\" → 修饰动词用副词 exactly\n• \"Exactly that's\" → 语序：That's exactly + 从句",
+        "`what I was thinking` = 我刚才在想的事。过去进行时表「刚才那个时刻的想法」。"
+      ],
+      "distractors": [
+        [
+          "That's exact",
+          "That exactly",
+          "It's exactly"
+        ],
+        [
+          "what I thinking.",
+          "what was I thinking.",
+          "that I was thinking."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're right.",
+      "cid": "0f9b4d48",
+      "translation": "你说的对。",
+      "chunks": [
+        "You're",
+        "right."
+      ],
+      "hints": [
+        "你是",
+        "对的"
+      ],
+      "grammar": [
+        {
+          "role": "主语 + be",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/"
+          ],
+          "pos": "you are 缩写",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/raɪt/"
+          ],
+          "pos": "形容词",
+          "meaning": "对的"
+        }
+      ],
+      "explanations": [
+        "`You're right.` = 你说得对。常见错误：\n• \"Your right\" → your 是「你的」，要说 You're\n• 说成 \"You are right\" 也没错，只是口语更常缩写",
+        "相关：That's right.（没错）/ You've got a point."
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You",
+          "Yours"
+        ],
+        [
+          "wright.",
+          "rite.",
+          "rights."
+        ]
+      ]
+    }
+  ]
+}

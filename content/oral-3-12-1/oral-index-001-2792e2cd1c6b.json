@@ -1,0 +1,538 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "7cd6522e",
+      "sentence": "I agree.",
+      "translation": "赞成。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "39eee8f2",
+      "sentence": "I think so, too.",
+      "translation": "我也这样认为。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "a7d37e3a",
+      "sentence": "Anything you say!",
+      "translation": "好哇!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "abef467c",
+      "sentence": "No objection!",
+      "translation": "没有异议。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "eba37757",
+      "sentence": "I don't have any objection to it.",
+      "translation": "我不反对。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "ee039896",
+      "sentence": "That's fine with me.",
+      "translation": "我觉得那样很好。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "7d606019",
+      "sentence": "Fine.",
+      "translation": "很好!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "1f069072",
+      "sentence": "That's fair.",
+      "translation": "那就行了。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "8a75b9e4",
+      "sentence": "You can say that again.",
+      "translation": "我也有同样感觉。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "ac25cf01",
+      "sentence": "Sounds like fun.",
+      "translation": "好像挺有意思。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "31590c6d",
+      "sentence": "Are you for or against his idea?",
+      "translation": "你是反对还是赞成他的主意?",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "3e77ed57",
+      "sentence": "Good idea.",
+      "translation": "好主意。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "49238603",
+      "sentence": "What you say is partly right.",
+      "translation": "你说的有一部分是对的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "083bca6c",
+      "sentence": "I don't agree.",
+      "translation": "我反对。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "7a2bf8c5",
+      "sentence": "I can't agree.",
+      "translation": "我不能同意。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "fbb49e03",
+      "sentence": "I doubt it.",
+      "translation": "我怀疑。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "8b3f83cf",
+      "sentence": "Objection!",
+      "translation": "我反对。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "0a9558cd",
+      "sentence": "That's not what you said.",
+      "translation": "你不是这么说的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "9963b52d",
+      "sentence": "I can't buy that!",
+      "translation": "我无法相信。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "4703a3f7",
+      "sentence": "Bad idea.",
+      "translation": "馊主意。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "332907eb",
+      "sentence": "No good.",
+      "translation": "那可不好哦!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "8113aa51",
+      "sentence": "Let's not.",
+      "translation": "算了吧!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "c80fe84f",
+      "sentence": "That's impossible.",
+      "translation": "那怎么可能。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "5ea3b1a0",
+      "sentence": "That's absolute nonsense.",
+      "translation": "那完全是胡说八道。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "c3e4935e",
+      "sentence": "It won't work.",
+      "translation": "行不通。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "1f8ef26f",
+      "sentence": "Not always.",
+      "translation": "不总是这样。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "20045ad9",
+      "sentence": "Not really.",
+      "translation": "不是那样。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "c83137cf",
+      "sentence": "Yes, I am.",
+      "translation": "对，是我。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "165294ec",
+      "sentence": "Yeah.",
+      "translation": "嗯。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "ce71d770",
+      "sentence": "I think so.",
+      "translation": "我想是吧。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "deb55a31",
+      "sentence": "Right.",
+      "translation": "是的。/对。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "26a93bde",
+      "sentence": "Absolutely!",
+      "translation": "一点儿没错!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "3f71b0b0",
+      "sentence": "In a word, yes.",
+      "translation": "一句话，是。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "bb9d9d0e",
+      "sentence": "You're perfectly correct.",
+      "translation": "完全和你说的一样。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "d781149c",
+      "sentence": "In a sense he's right.",
+      "translation": "在某种意义上，他是对的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "febf818a",
+      "sentence": "That's it!",
+      "translation": "啊，对啦!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "86ff7ccf",
+      "sentence": "You got it.",
+      "translation": "应该的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "6ffc15a6",
+      "sentence": "Your answer is to the point.",
+      "translation": "你说到点子上了。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "a531b2bf",
+      "sentence": "I bet.",
+      "translation": "应该是吧。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "57c59239",
+      "sentence": "Why not?",
+      "translation": "①那好吧，拜托您了!/那谢谢了。②为什么不行?",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "417a5327",
+      "sentence": "Bingo!",
+      "translation": "对啰!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "e7f8ce78",
+      "sentence": "Hear, hear!",
+      "translation": "说得对!说得对!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "67ab8dac",
+      "sentence": "Yes, sir.",
+      "translation": "是，先生。 Yes, ma'am. 对女性。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "d69d3076",
+      "sentence": "No doubt.",
+      "translation": "确实是这样。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "3d471761",
+      "sentence": "Fair enough.",
+      "translation": "当然可以。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "4f7358a7",
+      "sentence": "I'm afraid so.",
+      "translation": "恐怕就是这样了。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "4b879d52",
+      "sentence": "Your opinion is reasonable.",
+      "translation": "你的意见有道理。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "25fc9c42",
+      "sentence": "If you say so.",
+      "translation": "如果你说是的话，那就是吧。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "f500b589",
+      "sentence": "Yeah, as far as I know.",
+      "translation": "据我所知，是的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "bec3dc33",
+      "sentence": "I'm going to.",
+      "translation": "我这就做。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "5cfc2956",
+      "sentence": "No, I'm not.",
+      "translation": "不，没有。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "fd9c3828",
+      "sentence": "Wrong.",
+      "translation": "不对。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "1db9f019",
+      "sentence": "That's not right.",
+      "translation": "那是不对的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "f7d9efd0",
+      "sentence": "Your idea is fundamentally wrong.",
+      "translation": "你的想法根本上就是错误的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "1ef421d1",
+      "sentence": "That's not what I mean.",
+      "translation": "我不是那个意思。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "81ae25b7",
+      "sentence": "Certainly not.",
+      "translation": "哪儿有的事儿。/当然不是。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "bc10f6ca",
+      "sentence": "No, never.",
+      "translation": "没有，从没去过。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "26e42927",
+      "sentence": "No, not a bit.",
+      "translation": "不，一点儿都不。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "850eecbc",
+      "sentence": "No way!",
+      "translation": "肯定不对!",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "b80984da",
+      "sentence": "How can that be?",
+      "translation": "怎么可能呢?",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "60cb4b6c",
+      "sentence": "We don't agree on this point.",
+      "translation": "在这一点上我们意见分歧。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "9913b3e3",
+      "sentence": "I'm not talking about that.",
+      "translation": "我没说那个。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "8db96364",
+      "sentence": "Uh-uh.",
+      "translation": "这个嘛……",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "c77a2f8e",
+      "sentence": "That won't do.",
+      "translation": "那样不行。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "7756fa58",
+      "sentence": "He won't do.",
+      "translation": "他呀，不行。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "17c06966",
+      "sentence": "That makes no sense.",
+      "translation": "那也太没道理了。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "1b10f63e",
+      "sentence": "Not me.",
+      "translation": "不是我。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "c26552af",
+      "sentence": "I deny that.",
+      "translation": "我否认。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "0f83a993",
+      "sentence": "Sounds good to me.",
+      "translation": "我觉得可以/听起来不错。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "e14abd85",
+      "sentence": "That makes sense.",
+      "translation": "有道理/说得通。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "c3147310",
+      "sentence": "I can't agree more.",
+      "translation": "我完全同意。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "a964fa8d",
+      "sentence": "It's a deal.",
+      "translation": "一言为定/成交。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "89d8df40",
+      "sentence": "You said it.",
+      "translation": "你说得没错/正是我想说的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "9edbf706",
+      "sentence": "That sounds like a great idea.",
+      "translation": "那听起来是个好主意。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 73
+    },
+    {
+      "cid": "aab6ad64",
+      "sentence": "That's exactly what I was thinking.",
+      "translation": "那正是我刚才想的。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 74
+    },
+    {
+      "cid": "0f9b4d48",
+      "sentence": "You're right.",
+      "translation": "你说的对。",
+      "sourceUrl": "content/oral-3-12-1/oral-001-435f499bb8ef.json",
+      "sourceOffset": 75
+    }
+  ]
+}
