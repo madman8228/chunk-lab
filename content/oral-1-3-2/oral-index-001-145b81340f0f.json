@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "4b8014b7",
+      "sentence": "Are you feeling okay?",
+      "translation": "你不舒服吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "91639729",
+      "sentence": "What's wrong?",
+      "translation": "你怎么了?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "6ef8e189",
+      "sentence": "You look pale.",
+      "translation": "你的脸色真不好。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "44cf5580",
+      "sentence": "I don't feel well.",
+      "translation": "我觉得难受。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "e60f961b",
+      "sentence": "You don't look well.",
+      "translation": "你好像不太舒服。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "d11f5933",
+      "sentence": "She passed out.",
+      "translation": "她昏过去了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "01ce8728",
+      "sentence": "I feel sick.",
+      "translation": "我觉得难受。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "bc4a65b3",
+      "sentence": "I have a stomachache.",
+      "translation": "我肚子疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "113c93fe",
+      "sentence": "I have a dull pain.",
+      "translation": "隐隐作痛。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "5f21789f",
+      "sentence": "I have a sharp pain.",
+      "translation": "钻心地疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "5d0ac20a",
+      "sentence": "I have a throbbing pain.",
+      "translation": "一跳一跳地疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "428ea54a",
+      "sentence": "I have a piercing pain.",
+      "translation": "我感到巨痛。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "e410dc6f",
+      "sentence": "I have a stabbing pain.",
+      "translation": "像针扎似地疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "ff7aa0b4",
+      "sentence": "I have diarrhea.",
+      "translation": "我拉肚子了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "5a94bf18",
+      "sentence": "I have food poisoning.",
+      "translation": "我食物中毒了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "8e48ff3d",
+      "sentence": "I have high blood pressure.",
+      "translation": "血压高。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "2de1074b",
+      "sentence": "I have low blood pressure.",
+      "translation": "血压低。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "d0d1a6f0",
+      "sentence": "I have a headache.",
+      "translation": "我头疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "05627472",
+      "sentence": "I have a toothache.",
+      "translation": "我牙疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "0307af34",
+      "sentence": "I feel dizzy.",
+      "translation": "我觉得头昏脑涨的。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "d5647b56",
+      "sentence": "I feel sluggish.",
+      "translation": "我浑身没劲。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "d78462b6",
+      "sentence": "I don't have any appetite.",
+      "translation": "我没有一点儿食欲。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "8061adc4",
+      "sentence": "I have a slight cold.",
+      "translation": "我有点儿感冒。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "88a93221",
+      "sentence": "I feel chilly.",
+      "translation": "我浑身发冷。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "48a2901a",
+      "sentence": "I have a bad cold.",
+      "translation": "我得了重感冒。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "d2355f09",
+      "sentence": "I have a stuffy nose.",
+      "translation": "鼻子堵了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "c608c316",
+      "sentence": "I have a runny nose.",
+      "translation": "我在流鼻涕。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "ceae4888",
+      "sentence": "I have a bit of a fever.",
+      "translation": "我有点儿发烧。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "256ddcd4",
+      "sentence": "I think I have a fever.",
+      "translation": "我好像发烧了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "8ae964c5",
+      "sentence": "I have a high temperature.",
+      "translation": "我在发高烧。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "23f2fc5c",
+      "sentence": "I feel like throwing up.",
+      "translation": "我想吐。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "81522481",
+      "sentence": "Ouch!",
+      "translation": "好疼!/好烫!",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "7f611e4f",
+      "sentence": "It's itchy.",
+      "translation": "痒痒。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "c50f3894",
+      "sentence": "Ahchoo!",
+      "translation": "啊嚏!",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "5d1c22b5",
+      "sentence": "I broke my leg.",
+      "translation": "我腿骨折了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "bffdf646",
+      "sentence": "How long will the cast be on?",
+      "translation": "要打多长时间石膏?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "b63e8207",
+      "sentence": "I burned my hand.",
+      "translation": "我把手给烫了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "47f376c1",
+      "sentence": "I sprained my ankle.",
+      "translation": "我崴脚了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "1d70eaf4",
+      "sentence": "I caught a cold from you.",
+      "translation": "你把感冒传染给我了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "f1f76bc8",
+      "sentence": "I must stay in bed.",
+      "translation": "我必须静养。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "d091a5e9",
+      "sentence": "I have stiff shoulders.",
+      "translation": "我肩膀酸痛。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "4ea76643",
+      "sentence": "My eyes are tired.",
+      "translation": "我眼睛发酸。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "9299f5a1",
+      "sentence": "Is somebody hurt?",
+      "translation": "有谁受伤了?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "0f226f9a",
+      "sentence": "My fever has gone down.",
+      "translation": "我退烧了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "2b3489eb",
+      "sentence": "I can't stop coughing.",
+      "translation": "我咳嗽不止。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "796fab06",
+      "sentence": "My throat's sore.",
+      "translation": "我嗓子疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "ef13bfe4",
+      "sentence": "It's bleeding.",
+      "translation": "我流血了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "6d8d6b41",
+      "sentence": "I've got a cut here.",
+      "translation": "我这儿割破了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "4b3ed608",
+      "sentence": "It hurts.",
+      "translation": "好疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "5511244f",
+      "sentence": "I got stung by a bee.",
+      "translation": "我被蜜蜂蜇了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "3536bb46",
+      "sentence": "Do I need an operation?",
+      "translation": "我需要动手术吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "4155fd92",
+      "sentence": "Will it take long?",
+      "translation": "要花很长时间吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "cf6ded74",
+      "sentence": "Can I take a bath?",
+      "translation": "我可以洗澡吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "29b59cc2",
+      "sentence": "Is it okay to drink?",
+      "translation": "我可以喝酒吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "8554499f",
+      "sentence": "Should I be hospitalized?",
+      "translation": "我一定要住院吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "038fc0ef",
+      "sentence": "Do you have a fever?",
+      "translation": "你发烧吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "bb38e214",
+      "sentence": "I feel better.",
+      "translation": "我觉得好多了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "9ff5bfd0",
+      "sentence": "I don't feel any better.",
+      "translation": "我觉得没什么好转。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "3e0e6a2c",
+      "sentence": "Are you alright again?",
+      "translation": "你的病好了吗?",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "01d972ee",
+      "sentence": "He passed away.",
+      "translation": "他去世了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "edcf60c8",
+      "sentence": "I'm not feeling myself today.",
+      "translation": "我今天状态不太好（身体不适）。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "35fcfee6",
+      "sentence": "I've got a terrible headache and a sore throat.",
+      "translation": "我头疼得厉害，嗓子也疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "df0d93d3",
+      "sentence": "My stomach has been hurting since this morning.",
+      "translation": "我从早上起胃就一直疼。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "1834c3f7",
+      "sentence": "I have a bump.",
+      "translation": "我长了个包。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "9b596270",
+      "sentence": "It's a pimple.",
+      "translation": "是个痘痘。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "3a50b844",
+      "sentence": "I might have a fever.",
+      "translation": "我可能发烧了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "ad88d5dc",
+      "sentence": "I sneezed.",
+      "translation": "我打了个喷嚏。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "978cb905",
+      "sentence": "Your fever broke.",
+      "translation": "你的烧退了。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "381f72db",
+      "sentence": "I still have a little cough.",
+      "translation": "我还有点咳嗽。",
+      "sourceUrl": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+      "sourceOffset": 68
+    }
+  ]
+}

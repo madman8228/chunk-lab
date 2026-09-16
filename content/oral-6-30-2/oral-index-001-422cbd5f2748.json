@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "cf9c51f9",
+      "sentence": "A subway map, please.",
+      "translation": "请给我一张地铁图。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "a6e529dc",
+      "sentence": "Where's the ticket counter?",
+      "translation": "售票处在哪儿?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "2ad943ca",
+      "sentence": "How much is the fare to Shinjuku?",
+      "translation": "到新宿多少钱?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "ec7d7e56",
+      "sentence": "It's one hundred fifty yen.",
+      "translation": "150日元。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "890b02de",
+      "sentence": "Which train should I take to Shinjuku?",
+      "translation": "到新宿，我该坐哪趟车?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "0ada1c64",
+      "sentence": "Where am I supposed to change?",
+      "translation": "我应该在哪站换车?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "92d9369a",
+      "sentence": "Where am I supposed to get off for Ogikubo?",
+      "translation": "我要到荻洼在哪儿下车?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "f5aee97d",
+      "sentence": "You can change to the JR Chuo Line at Shinjuku.",
+      "translation": "到新宿换乘JR的中央线。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "89ac1e48",
+      "sentence": "Where can I catch an express train?",
+      "translation": "在哪儿能坐上快车?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "191e7b0c",
+      "sentence": "Go to track number two.",
+      "translation": "到第二站台。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "5ec700e5",
+      "sentence": "How often do the trains come?",
+      "translation": "电车多长时间来一趟?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "98ab5a62",
+      "sentence": "The trains come every ten minutes.",
+      "translation": "10分钟一趟。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "13ee055a",
+      "sentence": "When is the next express?",
+      "translation": "下趟快车是几点?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "6c8ff1f2",
+      "sentence": "What time is the last train to Chofu?",
+      "translation": "到调布的末班车是几点?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "6bb00dbd",
+      "sentence": "Is the next train an express?",
+      "translation": "下趟车是快车吗?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "d749c01f",
+      "sentence": "Does this train stop at Chofu?",
+      "translation": "这趟车在调布停吗?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "b7c022c3",
+      "sentence": "It's the fourth stop from here.",
+      "translation": "从这里数第4站。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "4c65f091",
+      "sentence": "After the next stop.",
+      "translation": "下下站。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "aa72fd54",
+      "sentence": "How many stops are there to Shinjuku?",
+      "translation": "到新宿还有几站?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "ebb5c356",
+      "sentence": "What's the next stop?",
+      "translation": "下站是哪儿?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "2d483d72",
+      "sentence": "The next stop is Chofu.",
+      "translation": "下站是调布。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "ed1f408b",
+      "sentence": "Where can I get a taxi?",
+      "translation": "我在哪儿可以打到车?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "e8f2b838",
+      "sentence": "Where's the taxi stand?",
+      "translation": "出租车站在哪儿?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "baacc802",
+      "sentence": "Call me a taxi, please.",
+      "translation": "请帮我叫辆出租车。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "2d0e82c6",
+      "sentence": "How long does it take to get downtown?",
+      "translation": "到市中心得多长时间?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "3bdad172",
+      "sentence": "How much does it cost?",
+      "translation": "要花多少钱?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "75f74a5a",
+      "sentence": "Where to?",
+      "translation": "您去哪儿?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "c34c89d9",
+      "sentence": "To Wall Street, please.",
+      "translation": "请到华尔街。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "eb55667c",
+      "sentence": "To this address, please.",
+      "translation": "请到这个地址。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "82c952bc",
+      "sentence": "I'm in a hurry.",
+      "translation": "我有急事。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "8d616cd6",
+      "sentence": "Take the shortest way, please.",
+      "translation": "请走最近的路。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "0b09d220",
+      "sentence": "Could you wait for me, please?",
+      "translation": "请您在这儿稍等一下。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "3c49313f",
+      "sentence": "Stop here, please.",
+      "translation": "请在这儿停吧。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "ffab3760",
+      "sentence": "Could you help me carry my bag?",
+      "translation": "您能帮我拿一下行李吗?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "01cd2149",
+      "sentence": "How much would it cost to get there?",
+      "translation": "到那儿的话要花多少钱?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "49459476",
+      "sentence": "Where's the bus stop?",
+      "translation": "公共汽车站在哪儿?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "c76f2a50",
+      "sentence": "Is there a bus to the airport?",
+      "translation": "有去机场的汽车吗?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "bee2e3b8",
+      "sentence": "How many stops to the museum?",
+      "translation": "美术馆是第几站?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "aaa746ac",
+      "sentence": "When is the next bus to Narita?",
+      "translation": "下趟到成田机场的车是几点?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "35c1f5e6",
+      "sentence": "Does this bus go to the airport?",
+      "translation": "这辆车是去机场的吗?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "0ddca78f",
+      "sentence": "Could you tell me when to get off?",
+      "translation": "麻烦您到站时告诉我一声。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "f1b38325",
+      "sentence": "The bus has just left.",
+      "translation": "汽车刚走。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "62b5d178",
+      "sentence": "The buses don't come on time.",
+      "translation": "汽车没有准时来。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "76175584",
+      "sentence": "Isn't the traffic heavy?",
+      "translation": "路上是不是很堵车?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "8cafbb51",
+      "sentence": "Who should I ask about car rentals?",
+      "translation": "租车的事，我该问谁?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "c2167301",
+      "sentence": "I'd like to rent a car, please.",
+      "translation": "我想借辆车。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "fce01309",
+      "sentence": "What type do you have in mind?",
+      "translation": "你喜欢什么车型?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "82e16c9f",
+      "sentence": "A compact, please.",
+      "translation": "小型车就可以。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "7b8db31c",
+      "sentence": "Do you have any Japanese cars?",
+      "translation": "有日本车吗?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "487d8a2d",
+      "sentence": "What's the rental fee?",
+      "translation": "租金是多少?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "fb741b75",
+      "sentence": "Thirty dollars a day, plus twenty cents per mile.",
+      "translation": "一天30美金，每公里加20美分。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "30361c48",
+      "sentence": "Do you want insurance?",
+      "translation": "你要上保险吗?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "e9ee1a8f",
+      "sentence": "I'd like full insurance.",
+      "translation": "我要上全部的保险。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "0b9738a5",
+      "sentence": "Can I drop off the car in...?",
+      "translation": "我能把车放在……?",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "a40080ae",
+      "sentence": "No outlet!",
+      "translation": "禁行!",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "e6d5b1d1",
+      "sentence": "No parking!",
+      "translation": "禁止停车!",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "f8582108",
+      "sentence": "No passing!",
+      "translation": "禁止超车!",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "729e1bbb",
+      "sentence": "One-way street!",
+      "translation": "单行线。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "d086c510",
+      "sentence": "road junction!",
+      "translation": "十字路口。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "eb546ded",
+      "sentence": "Which bus goes to the station?",
+      "translation": "哪路公交车去车站？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "bfe52436",
+      "sentence": "The subway is faster than driving downtown.",
+      "translation": "进城坐地铁比开车快。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "afd0eb9f",
+      "sentence": "Could you drop me off at the airport?",
+      "translation": "你能送我到机场吗？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "20563507",
+      "sentence": "Please pull over here, that's fine.",
+      "translation": "请靠边停在这里，这就行。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "515d82ef",
+      "sentence": "Keep the change, please.",
+      "translation": "不用找零了，谢谢。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "3270501d",
+      "sentence": "I'd like to send this package by air mail.",
+      "translation": "我想用航空邮件寄这个包裹。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "742e248f",
+      "sentence": "What's the postage for a letter to Japan?",
+      "translation": "寄一封信到日本的邮费是多少？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "0bdabc0d",
+      "sentence": "My car broke down on the highway.",
+      "translation": "我的车在高速公路上抛锚了。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "69d57e53",
+      "sentence": "Could you check the tire pressure for me?",
+      "translation": "你能帮我检查一下轮胎气压吗？",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "867d1dff",
+      "sentence": "Get in the car.",
+      "translation": "上车吧。",
+      "sourceUrl": "content/oral-6-30-2/oral-001-844a25680299.json",
+      "sourceOffset": 68
+    }
+  ]
+}

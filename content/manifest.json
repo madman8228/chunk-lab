@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-609c64f467f2e967eda47c27097aab24be8504c7b6f3c5702cf6291b56757c5d",
+  "contentVersion": "v1-596200a3d14b07d3f2971ab111c11c2acb07d642558f340da73f612247e4b70a",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -211,24 +211,24 @@
       "sectionTitle": "生病、受伤时",
       "topic": "请医生看病",
       "baseCount": 0,
-      "totalCount": 13,
+      "totalCount": 27,
       "shards": [
         {
-          "id": "oral-001-0168c0355d91",
-          "url": "content/oral-1-3-1/oral-001-0168c0355d91.json",
-          "count": 13,
-          "bytes": 18870,
-          "sha256": "0168c0355d91f3eaf6d1b4f96ed9bf4447f2533607625ad88055fe2abc7fc900",
+          "id": "oral-001-d30c57dcf59c",
+          "url": "content/oral-1-3-1/oral-001-d30c57dcf59c.json",
+          "count": 27,
+          "bytes": 23844,
+          "sha256": "d30c57dcf59cb56b344c58671d708e4f22b1011cae86079c0b08861a03598f28",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-97a8e80696dc",
-          "url": "content/oral-1-3-1/oral-index-001-97a8e80696dc.json",
-          "count": 13,
-          "bytes": 2946,
-          "sha256": "97a8e80696dc002446cd53e1d95548f92789254c9d1d789ce775cd69009e8afd",
+          "id": "oral-index-001-713d525ee40b",
+          "url": "content/oral-1-3-1/oral-index-001-713d525ee40b.json",
+          "count": 27,
+          "bytes": 6072,
+          "sha256": "713d525ee40b001fdbd27e5525d9617d8ab64e39e913ea92a9d4c3f271f5f168",
           "mode": "index"
         }
       ]
@@ -243,24 +243,24 @@
       "sectionTitle": "生病、受伤时",
       "topic": "陈述症状",
       "baseCount": 0,
-      "totalCount": 11,
+      "totalCount": 69,
       "shards": [
         {
-          "id": "oral-001-ad1fed106d99",
-          "url": "content/oral-1-3-2/oral-001-ad1fed106d99.json",
-          "count": 11,
-          "bytes": 15724,
-          "sha256": "ad1fed106d9996572c7eb0f397366d3b3e8701f203a1986b35bdc14f6b110a79",
+          "id": "oral-001-bfec95d14c8e",
+          "url": "content/oral-1-3-2/oral-001-bfec95d14c8e.json",
+          "count": 69,
+          "bytes": 29439,
+          "sha256": "bfec95d14c8ead561b5db95b5f6866b7ecf9a47ef790c478fa6c82505d84d1dd",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-75e2fb154d63",
-          "url": "content/oral-1-3-2/oral-index-001-75e2fb154d63.json",
-          "count": 11,
-          "bytes": 2540,
-          "sha256": "75e2fb154d63ff763ab322c3a8c8627ef10729e930b03a39354a043120665409",
+          "id": "oral-index-001-145b81340f0f",
+          "url": "content/oral-1-3-2/oral-index-001-145b81340f0f.json",
+          "count": 69,
+          "bytes": 15019,
+          "sha256": "145b81340f0f65028751ffa00c01da6e48b3e8cbd8c9594052943f6477396cdc",
           "mode": "index"
         }
       ]
@@ -883,24 +883,24 @@
       "sectionTitle": "内心表白",
       "topic": "道谢～关心对方",
       "baseCount": 0,
-      "totalCount": 18,
+      "totalCount": 71,
       "shards": [
         {
-          "id": "oral-001-3f87ed7fca75",
-          "url": "content/oral-2-11-1/oral-001-3f87ed7fca75.json",
-          "count": 18,
-          "bytes": 28268,
-          "sha256": "3f87ed7fca757be0359da4004a998d48cc02c9a95ca00427c287cba12cf41dc5",
+          "id": "oral-001-92241452590e",
+          "url": "content/oral-2-11-1/oral-001-92241452590e.json",
+          "count": 71,
+          "bytes": 43044,
+          "sha256": "92241452590ecdc7ba10aa6bad13efa790298936a794d75bd570b8ba30280037",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-dba3b3ad8c52",
-          "url": "content/oral-2-11-1/oral-index-001-dba3b3ad8c52.json",
-          "count": 18,
-          "bytes": 4287,
-          "sha256": "dba3b3ad8c528829798e03f3c086d856568cb19a50ec10e7840e81293acabe4c",
+          "id": "oral-index-001-255e1a6d9e20",
+          "url": "content/oral-2-11-1/oral-index-001-255e1a6d9e20.json",
+          "count": 71,
+          "bytes": 16359,
+          "sha256": "255e1a6d9e2037e617ed742eef7905464f6d58c12c38a2178d258cf1a751774d",
           "mode": "index"
         }
       ]
@@ -915,24 +915,24 @@
       "sectionTitle": "内心表白",
       "topic": "表扬",
       "baseCount": 0,
-      "totalCount": 6,
+      "totalCount": 33,
       "shards": [
         {
-          "id": "oral-001-299ce5935370",
-          "url": "content/oral-2-11-2/oral-001-299ce5935370.json",
-          "count": 6,
-          "bytes": 7794,
-          "sha256": "299ce5935370917a8730727e24aeb628c0b97c549a9a236c55c9268b1f7311c8",
+          "id": "oral-001-aac6fef18a6d",
+          "url": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+          "count": 33,
+          "bytes": 14882,
+          "sha256": "aac6fef18a6d926bdba296213142b01a3b1e7ec806f3409e4a23ac3a0779f86d",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-c1cbd546f7b2",
-          "url": "content/oral-2-11-2/oral-index-001-c1cbd546f7b2.json",
-          "count": 6,
-          "bytes": 1364,
-          "sha256": "c1cbd546f7b2934837cdb690a7de50a29416e26ceb23b163fe44860640bb835c",
+          "id": "oral-index-001-a34254b5e0a8",
+          "url": "content/oral-2-11-2/oral-index-001-a34254b5e0a8.json",
+          "count": 33,
+          "bytes": 7290,
+          "sha256": "a34254b5e0a8af2d6e72f34e3c75b4aafa11bd07256963893787557a6c154c9e",
           "mode": "index"
         }
       ]
@@ -1715,24 +1715,24 @@
       "sectionTitle": "走在街上的时候",
       "topic": "问路",
       "baseCount": 0,
-      "totalCount": 7,
+      "totalCount": 37,
       "shards": [
         {
-          "id": "oral-001-d640065a17d7",
-          "url": "content/oral-6-30-1/oral-001-d640065a17d7.json",
-          "count": 7,
-          "bytes": 12162,
-          "sha256": "d640065a17d7bbfe37ffdbb8b4d8d41c474cfa68f436bf4fd4daea5b3472920a",
+          "id": "oral-001-819f1ebe824c",
+          "url": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+          "count": 37,
+          "bytes": 20723,
+          "sha256": "819f1ebe824c60f83eac32e9a10652fa24009ad6090eb164fea1db198f1b4546",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-0b8b5d563d85",
-          "url": "content/oral-6-30-1/oral-index-001-0b8b5d563d85.json",
-          "count": 7,
-          "bytes": 1772,
-          "sha256": "0b8b5d563d8599e074a7fd7bd9b252d95ecada7f1378f11bc769109f5267109e",
+          "id": "oral-index-001-df910762b769",
+          "url": "content/oral-6-30-1/oral-index-001-df910762b769.json",
+          "count": 37,
+          "bytes": 8673,
+          "sha256": "df910762b769dc067007e2872d088e7704794b561bbb6c33062a00d2a984b10a",
           "mode": "index"
         }
       ]
@@ -1747,24 +1747,24 @@
       "sectionTitle": "走在街上的时候",
       "topic": "乘坐交通工具～交通标志",
       "baseCount": 0,
-      "totalCount": 10,
+      "totalCount": 69,
       "shards": [
         {
-          "id": "oral-001-9cfd0d03d58a",
-          "url": "content/oral-6-30-2/oral-001-9cfd0d03d58a.json",
-          "count": 10,
-          "bytes": 16367,
-          "sha256": "9cfd0d03d58af834d8972ace61b491db4de811b0c86d065896779a274fdf7a71",
+          "id": "oral-001-844a25680299",
+          "url": "content/oral-6-30-2/oral-001-844a25680299.json",
+          "count": 69,
+          "bytes": 33001,
+          "sha256": "844a25680299a11183eccad5f4abf63aacc2ad45abf5de7189f647f55e0f8a82",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-14bd694f32d7",
-          "url": "content/oral-6-30-2/oral-index-001-14bd694f32d7.json",
-          "count": 10,
-          "bytes": 2503,
-          "sha256": "14bd694f32d713101ce0b5ad13a1950abcbd00ad77e17c473b5b40d2febe80b9",
+          "id": "oral-index-001-422cbd5f2748",
+          "url": "content/oral-6-30-2/oral-index-001-422cbd5f2748.json",
+          "count": 69,
+          "bytes": 15977,
+          "sha256": "422cbd5f2748cc4cc7babbc4af329475006314cf39066b8f0dd008b168167c0d",
           "mode": "index"
         }
       ]

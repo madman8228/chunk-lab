@@ -1,0 +1,1070 @@
+[
+ {
+  "sentence": "Where is the shoe store?",
+  "translation": "鞋店在哪儿?",
+  "chunks": [
+   "Where is",
+   "the shoe store?"
+  ],
+  "hints": [
+   "鞋店",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "Excuse me, but I'm lost.",
+  "translation": "对不起，我迷路了。",
+  "chunks": [
+   "Excuse me,",
+   "but I'm lost."
+  ],
+  "hints": [
+   "对不起，",
+   "我迷路了。"
+  ]
+ },
+ {
+  "sentence": "Where am I on this map?",
+  "translation": "我在地图上的什么地方?",
+  "chunks": [
+   "Where am I",
+   "on this map?"
+  ],
+  "hints": [
+   "我在地图上的",
+   "什么地方？"
+  ]
+ },
+ {
+  "sentence": "What's the name of this street?",
+  "translation": "这条街叫什么名字?",
+  "chunks": [
+   "What's the name",
+   "of this street?"
+  ],
+  "hints": [
+   "这条街",
+   "叫什么名字？"
+  ]
+ },
+ {
+  "sentence": "Is there a post office near here?",
+  "translation": "这附近有邮局吗?",
+  "chunks": [
+   "Is there a post office",
+   "near here?"
+  ],
+  "hints": [
+   "这附近",
+   "有邮局吗？"
+  ]
+ },
+ {
+  "sentence": "How do I get to the Sakura Hotel?",
+  "translation": "去樱花饭店怎么走?",
+  "chunks": [
+   "How do I get to",
+   "the Sakura Hotel?"
+  ],
+  "hints": [
+   "去樱花饭店",
+   "怎么走？"
+  ]
+ },
+ {
+  "sentence": "Turn right at the first traffic light.",
+  "translation": "从第一个信号灯往右拐。",
+  "chunks": [
+   "Turn right at",
+   "the first traffic light."
+  ],
+  "hints": [
+   "从第一个信号灯",
+   "往右拐。"
+  ]
+ },
+ {
+  "sentence": "Where's the rest room?",
+  "translation": "洗手间在哪儿?",
+  "chunks": [
+   "Where's",
+   "the rest room?"
+  ],
+  "hints": [
+   "洗手间",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "It's on the right.",
+  "translation": "在右边。",
+  "chunks": [
+   "It's",
+   "on the right."
+  ],
+  "hints": [
+   "在",
+   "右边。"
+  ]
+ },
+ {
+  "sentence": "Go straight for two blocks.",
+  "translation": "一直走到第二个街区。",
+  "chunks": [
+   "Go straight",
+   "for two blocks."
+  ],
+  "hints": [
+   "一直走到",
+   "第二个街区。"
+  ]
+ },
+ {
+  "sentence": "You'll see it at the corner on your left.",
+  "translation": "在左侧拐角那儿就能看见。",
+  "chunks": [
+   "You'll see it",
+   "at the corner on your left."
+  ],
+  "hints": [
+   "在左侧拐角那儿",
+   "就能看见。"
+  ]
+ },
+ {
+  "sentence": "Sorry, I'm new here, too.",
+  "translation": "对不起，我也是第一次来这儿。",
+  "chunks": [
+   "Sorry,",
+   "I'm new here, too."
+  ],
+  "hints": [
+   "对不起，",
+   "我也是第一次来这儿。"
+  ]
+ },
+ {
+  "sentence": "It's next to the coffee shop.",
+  "translation": "在那家咖啡馆的旁边。",
+  "chunks": [
+   "It's next to",
+   "the coffee shop."
+  ],
+  "hints": [
+   "在那家咖啡馆",
+   "的旁边。"
+  ]
+ },
+ {
+  "sentence": "It's across from City Hall.",
+  "translation": "在市政厅的对面。",
+  "chunks": [
+   "It's across from",
+   "City Hall."
+  ],
+  "hints": [
+   "在市政厅",
+   "的对面。"
+  ]
+ },
+ {
+  "sentence": "It faces City Hall.",
+  "translation": "正对着市政厅。",
+  "chunks": [
+   "It faces",
+   "City Hall."
+  ],
+  "hints": [
+   "正对着",
+   "市政厅。"
+  ]
+ },
+ {
+  "sentence": "It's between the bookstore and the drugstore.",
+  "translation": "在书店和药店之间。",
+  "chunks": [
+   "It's between",
+   "the bookstore and the drugstore."
+  ],
+  "hints": [
+   "在书店和药店",
+   "之间。"
+  ]
+ },
+ {
+  "sentence": "It's on this side of the church.",
+  "translation": "在教堂的这一边。",
+  "chunks": [
+   "It's on this side",
+   "of the church."
+  ],
+  "hints": [
+   "在教堂的",
+   "这一边。"
+  ]
+ },
+ {
+  "sentence": "It's at of this street.",
+  "translation": "在这条路的尽头。",
+  "chunks": [
+   "It's at",
+   "of this street."
+  ],
+  "hints": [
+   "就在这条",
+   "路的尽头。"
+  ]
+ },
+ {
+  "sentence": "Am I near Shinjuku?",
+  "translation": "这儿离新宿近吗?",
+  "chunks": [
+   "Am I near",
+   "Shinjuku?"
+  ],
+  "hints": [
+   "这儿离新宿",
+   "近吗？"
+  ]
+ },
+ {
+  "sentence": "How far is it to Shinjuku?",
+  "translation": "这儿离新宿有多远?",
+  "chunks": [
+   "How far is it",
+   "to Shinjuku?"
+  ],
+  "hints": [
+   "这儿离新宿",
+   "有多远？"
+  ]
+ },
+ {
+  "sentence": "How long will it take?",
+  "translation": "要多长时间?",
+  "chunks": [
+   "How long",
+   "will it take?"
+  ],
+  "hints": [
+   "要",
+   "多长时间？"
+  ]
+ },
+ {
+  "sentence": "About five minutes.",
+  "translation": "5分钟左右。",
+  "chunks": [
+   "About",
+   "five minutes."
+  ],
+  "hints": [
+   "5分钟",
+   "左右。"
+  ]
+ },
+ {
+  "sentence": "Is it far?",
+  "translation": "到那儿远吗?",
+  "chunks": [
+   "Is it",
+   "far?"
+  ],
+  "hints": [
+   "到那儿",
+   "远吗？"
+  ]
+ },
+ {
+  "sentence": "Not far.",
+  "translation": "不远。",
+  "chunks": [
+   "Not",
+   "far."
+  ],
+  "hints": [
+   "不",
+   "远。"
+  ]
+ },
+ {
+  "sentence": "What's the easiest way to get to Shinjuku?",
+  "translation": "到新宿哪条路最好走?",
+  "chunks": [
+   "What's the easiest way",
+   "to get to Shinjuku?"
+  ],
+  "hints": [
+   "到新宿",
+   "哪条路最好走？"
+  ]
+ },
+ {
+  "sentence": "The easiest way is to take a taxi.",
+  "translation": "坐出租车去最容易找到。",
+  "chunks": [
+   "The easiest way",
+   "is to take a taxi."
+  ],
+  "hints": [
+   "坐出租车去",
+   "最容易找到。"
+  ]
+ },
+ {
+  "sentence": "What's the quickest way to get to Shinjuku?",
+  "translation": "到新宿哪条道最快?",
+  "chunks": [
+   "What's the quickest way",
+   "to get to Shinjuku?"
+  ],
+  "hints": [
+   "到新宿",
+   "哪条道最快？"
+  ]
+ },
+ {
+  "sentence": "Where can I mail this?",
+  "translation": "在哪儿可以发信?",
+  "chunks": [
+   "Where can I",
+   "mail this?"
+  ],
+  "hints": [
+   "在哪儿",
+   "可以发信？"
+  ]
+ },
+ {
+  "sentence": "Where can I make a phone call?",
+  "translation": "在哪儿可以打电话?",
+  "chunks": [
+   "Where can I",
+   "make a phone call?"
+  ],
+  "hints": [
+   "在哪儿",
+   "可以打电话？"
+  ]
+ },
+ {
+  "sentence": "Is this the shortcut?",
+  "translation": "这是条近路吗?",
+  "chunks": [
+   "Is this",
+   "the shortcut?"
+  ],
+  "hints": [
+   "这是条",
+   "近路吗？"
+  ]
+ },
+ {
+  "sentence": "A subway map, please.",
+  "translation": "请给我一张地铁图。",
+  "chunks": [
+   "A subway map,",
+   "please."
+  ],
+  "hints": [
+   "请给我一张",
+   "地铁图。"
+  ]
+ },
+ {
+  "sentence": "Where's the ticket counter?",
+  "translation": "售票处在哪儿?",
+  "chunks": [
+   "Where's",
+   "the ticket counter?"
+  ],
+  "hints": [
+   "售票处",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "How much is the fare to Shinjuku?",
+  "translation": "到新宿多少钱?",
+  "chunks": [
+   "How much is the fare",
+   "to Shinjuku?"
+  ],
+  "hints": [
+   "到新宿",
+   "多少钱？"
+  ]
+ },
+ {
+  "sentence": "It's one hundred fifty yen.",
+  "translation": "150日元。",
+  "chunks": [
+   "It's one hundred",
+   "fifty yen."
+  ],
+  "hints": [
+   "150",
+   "日元。"
+  ]
+ },
+ {
+  "sentence": "Which train should I take to Shinjuku?",
+  "translation": "到新宿，我该坐哪趟车?",
+  "chunks": [
+   "Which train should I take",
+   "to Shinjuku?"
+  ],
+  "hints": [
+   "到新宿，",
+   "我该坐哪趟车？"
+  ]
+ },
+ {
+  "sentence": "Where am I supposed to change?",
+  "translation": "我应该在哪站换车?",
+  "chunks": [
+   "Where am I supposed",
+   "to change?"
+  ],
+  "hints": [
+   "我应该",
+   "在哪站换车？"
+  ]
+ },
+ {
+  "sentence": "Where am I supposed to get off for Ogikubo?",
+  "translation": "我要到荻洼在哪儿下车?",
+  "chunks": [
+   "Where am I supposed to get off",
+   "for Ogikubo?"
+  ],
+  "hints": [
+   "我要到荻洼",
+   "在哪儿下车？"
+  ]
+ },
+ {
+  "sentence": "You can change to the JR Chuo Line at Shinjuku.",
+  "translation": "到新宿换乘JR的中央线。",
+  "chunks": [
+   "You can change to the JR Chuo Line",
+   "at Shinjuku."
+  ],
+  "hints": [
+   "到新宿换乘",
+   "JR的中央线。"
+  ]
+ },
+ {
+  "sentence": "Where can I catch an express train?",
+  "translation": "在哪儿能坐上快车?",
+  "chunks": [
+   "Where can I catch",
+   "an express train?"
+  ],
+  "hints": [
+   "在哪儿能",
+   "坐上快车？"
+  ]
+ },
+ {
+  "sentence": "Go to track number two.",
+  "translation": "到第二站台。",
+  "chunks": [
+   "Go to",
+   "track number two."
+  ],
+  "hints": [
+   "到",
+   "第二站台。"
+  ]
+ },
+ {
+  "sentence": "How often do the trains come?",
+  "translation": "电车多长时间来一趟?",
+  "chunks": [
+   "How often",
+   "do the trains come?"
+  ],
+  "hints": [
+   "电车多长时间",
+   "来一趟？"
+  ]
+ },
+ {
+  "sentence": "The trains come every ten minutes.",
+  "translation": "10分钟一趟。",
+  "chunks": [
+   "The trains come",
+   "every ten minutes."
+  ],
+  "hints": [
+   "10分钟",
+   "一趟。"
+  ]
+ },
+ {
+  "sentence": "When is the next express?",
+  "translation": "下趟快车是几点?",
+  "chunks": [
+   "When is",
+   "the next express?"
+  ],
+  "hints": [
+   "下趟快车",
+   "是几点？"
+  ]
+ },
+ {
+  "sentence": "What time is the last train to Chofu?",
+  "translation": "到调布的末班车是几点?",
+  "chunks": [
+   "What time is the last train",
+   "to Chofu?"
+  ],
+  "hints": [
+   "到调布的末班车",
+   "是几点？"
+  ]
+ },
+ {
+  "sentence": "Is the next train an express?",
+  "translation": "下趟车是快车吗?",
+  "chunks": [
+   "Is the next train",
+   "an express?"
+  ],
+  "hints": [
+   "下趟车",
+   "是快车吗？"
+  ]
+ },
+ {
+  "sentence": "Does this train stop at Chofu?",
+  "translation": "这趟车在调布停吗?",
+  "chunks": [
+   "Does this train stop",
+   "at Chofu?"
+  ],
+  "hints": [
+   "这趟车",
+   "在调布停吗？"
+  ]
+ },
+ {
+  "sentence": "It's the fourth stop from here.",
+  "translation": "从这里数第4站。",
+  "chunks": [
+   "It's the fourth stop",
+   "from here."
+  ],
+  "hints": [
+   "从这里数",
+   "第4站。"
+  ]
+ },
+ {
+  "sentence": "After the next stop.",
+  "translation": "下下站。",
+  "chunks": [
+   "After",
+   "the next stop."
+  ],
+  "hints": [
+   "下",
+   "下站。"
+  ]
+ },
+ {
+  "sentence": "How many stops are there to Shinjuku?",
+  "translation": "到新宿还有几站?",
+  "chunks": [
+   "How many stops",
+   "are there to Shinjuku?"
+  ],
+  "hints": [
+   "到新宿",
+   "还有几站？"
+  ]
+ },
+ {
+  "sentence": "What's the next stop?",
+  "translation": "下站是哪儿?",
+  "chunks": [
+   "What's",
+   "the next stop?"
+  ],
+  "hints": [
+   "下站",
+   "是哪儿？"
+  ]
+ },
+ {
+  "sentence": "The next stop is Chofu.",
+  "translation": "下站是调布。",
+  "chunks": [
+   "The next stop",
+   "is Chofu."
+  ],
+  "hints": [
+   "下站",
+   "是调布。"
+  ]
+ },
+ {
+  "sentence": "Where can I get a taxi?",
+  "translation": "我在哪儿可以打到车?",
+  "chunks": [
+   "Where can I",
+   "get a taxi?"
+  ],
+  "hints": [
+   "我在哪儿",
+   "可以打到车？"
+  ]
+ },
+ {
+  "sentence": "Where's the taxi stand?",
+  "translation": "出租车站在哪儿?",
+  "chunks": [
+   "Where's",
+   "the taxi stand?"
+  ],
+  "hints": [
+   "出租车",
+   "站在哪儿？"
+  ]
+ },
+ {
+  "sentence": "Call me a taxi, please.",
+  "translation": "请帮我叫辆出租车。",
+  "chunks": [
+   "Call me",
+   "a taxi, please."
+  ],
+  "hints": [
+   "请帮我",
+   "叫辆出租车。"
+  ]
+ },
+ {
+  "sentence": "How long does it take to get downtown?",
+  "translation": "到市中心得多长时间?",
+  "chunks": [
+   "How long does it take",
+   "to get downtown?"
+  ],
+  "hints": [
+   "到市中心",
+   "得多长时间？"
+  ]
+ },
+ {
+  "sentence": "How much does it cost?",
+  "translation": "要花多少钱?",
+  "chunks": [
+   "How much",
+   "does it cost?"
+  ],
+  "hints": [
+   "要花",
+   "多少钱？"
+  ]
+ },
+ {
+  "sentence": "Where to?",
+  "translation": "您去哪儿?",
+  "chunks": [
+   "Where",
+   "to?"
+  ],
+  "hints": [
+   "您",
+   "去哪儿？"
+  ]
+ },
+ {
+  "sentence": "To Wall Street, please.",
+  "translation": "请到华尔街。",
+  "chunks": [
+   "To Wall Street,",
+   "please."
+  ],
+  "hints": [
+   "请到",
+   "华尔街。"
+  ]
+ },
+ {
+  "sentence": "To this address, please.",
+  "translation": "请到这个地址。",
+  "chunks": [
+   "To this address,",
+   "please."
+  ],
+  "hints": [
+   "请到",
+   "这个地址。"
+  ]
+ },
+ {
+  "sentence": "I'm in a hurry.",
+  "translation": "我有急事。",
+  "chunks": [
+   "I'm in",
+   "a hurry."
+  ],
+  "hints": [
+   "我有",
+   "急事。"
+  ]
+ },
+ {
+  "sentence": "Take the shortest way, please.",
+  "translation": "请走最近的路。",
+  "chunks": [
+   "Take the shortest way,",
+   "please."
+  ],
+  "hints": [
+   "请走",
+   "最近的路。"
+  ]
+ },
+ {
+  "sentence": "Could you wait for me, please?",
+  "translation": "请您在这儿稍等一下。",
+  "chunks": [
+   "Could you wait",
+   "for me, please?"
+  ],
+  "hints": [
+   "请您在这儿",
+   "稍等一下。"
+  ]
+ },
+ {
+  "sentence": "Stop here, please.",
+  "translation": "请在这儿停吧。",
+  "chunks": [
+   "Stop here,",
+   "please."
+  ],
+  "hints": [
+   "请在这儿",
+   "停吧。"
+  ]
+ },
+ {
+  "sentence": "Could you help me carry my bag?",
+  "translation": "您能帮我拿一下行李吗?",
+  "chunks": [
+   "Could you help me",
+   "carry my bag?"
+  ],
+  "hints": [
+   "您能帮我",
+   "拿一下行李吗？"
+  ]
+ },
+ {
+  "sentence": "How much would it cost to get there?",
+  "translation": "到那儿的话要花多少钱?",
+  "chunks": [
+   "How much would it cost",
+   "to get there?"
+  ],
+  "hints": [
+   "到那儿的话",
+   "要花多少钱？"
+  ]
+ },
+ {
+  "sentence": "Where's the bus stop?",
+  "translation": "公共汽车站在哪儿?",
+  "chunks": [
+   "Where's",
+   "the bus stop?"
+  ],
+  "hints": [
+   "公共汽车站",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "Is there a bus to the airport?",
+  "translation": "有去机场的汽车吗?",
+  "chunks": [
+   "Is there a bus",
+   "to the airport?"
+  ],
+  "hints": [
+   "有去机场",
+   "的汽车吗？"
+  ]
+ },
+ {
+  "sentence": "How many stops to the museum?",
+  "translation": "美术馆是第几站?",
+  "chunks": [
+   "How many stops",
+   "to the museum?"
+  ],
+  "hints": [
+   "美术馆",
+   "是第几站？"
+  ]
+ },
+ {
+  "sentence": "When is the next bus to Narita?",
+  "translation": "下趟到成田机场的车是几点?",
+  "chunks": [
+   "When is the next bus",
+   "to Narita?"
+  ],
+  "hints": [
+   "下趟到成田机场",
+   "的车是几点？"
+  ]
+ },
+ {
+  "sentence": "Does this bus go to the airport?",
+  "translation": "这辆车是去机场的吗?",
+  "chunks": [
+   "Does this bus go",
+   "to the airport?"
+  ],
+  "hints": [
+   "这辆车",
+   "是去机场的吗？"
+  ]
+ },
+ {
+  "sentence": "Could you tell me when to get off?",
+  "translation": "麻烦您到站时告诉我一声。",
+  "chunks": [
+   "Could you tell me",
+   "when to get off?"
+  ],
+  "hints": [
+   "麻烦您到站时",
+   "告诉我一声。"
+  ]
+ },
+ {
+  "sentence": "The bus has just left.",
+  "translation": "汽车刚走。",
+  "chunks": [
+   "The bus has",
+   "just left."
+  ],
+  "hints": [
+   "汽车",
+   "刚走。"
+  ]
+ },
+ {
+  "sentence": "The buses don't come on time.",
+  "translation": "汽车没有准时来。",
+  "chunks": [
+   "The buses don't come",
+   "on time."
+  ],
+  "hints": [
+   "汽车没有",
+   "准时来。"
+  ]
+ },
+ {
+  "sentence": "Isn't the traffic heavy?",
+  "translation": "路上是不是很堵车?",
+  "chunks": [
+   "Isn't the traffic",
+   "heavy?"
+  ],
+  "hints": [
+   "路上是不是",
+   "很堵车？"
+  ]
+ },
+ {
+  "sentence": "Who should I ask about car rentals?",
+  "translation": "租车的事，我该问谁?",
+  "chunks": [
+   "Who should I ask",
+   "about car rentals?"
+  ],
+  "hints": [
+   "租车的事，",
+   "我该问谁？"
+  ]
+ },
+ {
+  "sentence": "I'd like to rent a car, please.",
+  "translation": "我想借辆车。",
+  "chunks": [
+   "I'd like to rent",
+   "a car, please."
+  ],
+  "hints": [
+   "我想",
+   "借辆车。"
+  ]
+ },
+ {
+  "sentence": "What type do you have in mind?",
+  "translation": "你喜欢什么车型?",
+  "chunks": [
+   "What type",
+   "do you have in mind?"
+  ],
+  "hints": [
+   "你喜欢",
+   "什么车型？"
+  ]
+ },
+ {
+  "sentence": "A compact, please.",
+  "translation": "小型车就可以。",
+  "chunks": [
+   "A compact,",
+   "please."
+  ],
+  "hints": [
+   "小型车",
+   "就可以。"
+  ]
+ },
+ {
+  "sentence": "Do you have any Japanese cars?",
+  "translation": "有日本车吗?",
+  "chunks": [
+   "Do you have",
+   "any Japanese cars?"
+  ],
+  "hints": [
+   "有",
+   "日本车吗？"
+  ]
+ },
+ {
+  "sentence": "What's the rental fee?",
+  "translation": "租金是多少?",
+  "chunks": [
+   "What's",
+   "the rental fee?"
+  ],
+  "hints": [
+   "租金",
+   "是多少？"
+  ]
+ },
+ {
+  "sentence": "Thirty dollars a day, plus twenty cents per mile.",
+  "translation": "一天30美金，每公里加20美分。",
+  "chunks": [
+   "Thirty dollars a day,",
+   "plus twenty cents per mile."
+  ],
+  "hints": [
+   "一天30美金，",
+   "每公里加20美分。"
+  ]
+ },
+ {
+  "sentence": "Do you want insurance?",
+  "translation": "你要上保险吗?",
+  "chunks": [
+   "Do you want",
+   "insurance?"
+  ],
+  "hints": [
+   "你要",
+   "上保险吗？"
+  ]
+ },
+ {
+  "sentence": "I'd like full insurance.",
+  "translation": "我要上全部的保险。",
+  "chunks": [
+   "I'd like",
+   "full insurance."
+  ],
+  "hints": [
+   "我要上",
+   "全部的保险。"
+  ]
+ },
+ {
+  "sentence": "Can I drop off the car in...?",
+  "translation": "我能把车放在……?",
+  "chunks": [
+   "Can I drop off",
+   "the car in...?"
+  ],
+  "hints": [
+   "我能把车",
+   "放在……？"
+  ]
+ },
+ {
+  "sentence": "No outlet!",
+  "translation": "禁行!",
+  "chunks": [
+   "No",
+   "outlet!"
+  ],
+  "hints": [
+   "禁",
+   "行！"
+  ]
+ },
+ {
+  "sentence": "No parking!",
+  "translation": "禁止停车!",
+  "chunks": [
+   "No",
+   "parking!"
+  ],
+  "hints": [
+   "禁止",
+   "停车！"
+  ]
+ },
+ {
+  "sentence": "No passing!",
+  "translation": "禁止超车!",
+  "chunks": [
+   "No",
+   "passing!"
+  ],
+  "hints": [
+   "禁止",
+   "超车！"
+  ]
+ },
+ {
+  "sentence": "One-way street!",
+  "translation": "单行线。",
+  "chunks": [
+   "One-way",
+   "street!"
+  ],
+  "hints": [
+   "单",
+   "行线。"
+  ]
+ },
+ {
+  "sentence": "road junction!",
+  "translation": "十字路口。",
+  "chunks": [
+   "road",
+   "junction!"
+  ],
+  "hints": [
+   "十字",
+   "路口。"
+  ]
+ }
+]

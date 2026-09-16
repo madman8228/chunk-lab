@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "fa18b162",
+      "sentence": "Thank you.",
+      "translation": "谢谢!",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "e0a259da",
+      "sentence": "Thanks.",
+      "translation": "多谢!",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "b882bf75",
+      "sentence": "Thank you very much.",
+      "translation": "非常感谢!",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "5d0f4f0f",
+      "sentence": "Much appreciated. Thank you.",
+      "translation": "真是非常感谢。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "93fd93f7",
+      "sentence": "Thanks for your kindness.",
+      "translation": "谢谢您的好意。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "f447ecb4",
+      "sentence": "I appreciate your kindness.",
+      "translation": "非常感谢你的关怀。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "4157dce8",
+      "sentence": "I can't thank you enough.",
+      "translation": "我无法表达对您的感谢。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "da0d7bcc",
+      "sentence": "I can hardly thank you enough for your kindness.",
+      "translation": "真不知如何感谢你的关心。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "f3a2b67a",
+      "sentence": "You've been very helpful.",
+      "translation": "你帮我大忙了。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "cdf5bdab",
+      "sentence": "Thank you for the help.",
+      "translation": "谢谢你的帮助。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "8c80cbf3",
+      "sentence": "Thanks for your time.",
+      "translation": "耽误您时间，实在对不起。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "249b19b2",
+      "sentence": "Thanks for everything.",
+      "translation": "感谢您为我做的一切。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "2ac75d95",
+      "sentence": "Thank you anyway.",
+      "translation": "不管怎么都要谢谢您。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "f02b812d",
+      "sentence": "How nice!",
+      "translation": "哦!那太好了。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "e40fa374",
+      "sentence": "I owe you one.",
+      "translation": "我欠你的情。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "f3978b69",
+      "sentence": "Thanks a lot for your present.",
+      "translation": "谢谢你送给我的礼物。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "1f519414",
+      "sentence": "Thanks for saying so.",
+      "translation": "您能这样说，我非常感谢。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "bce51732",
+      "sentence": "Thanks for telling me.",
+      "translation": "谢谢你告诉我。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "5fd1b5c3",
+      "sentence": "Thanks for waiting for me.",
+      "translation": "非常感谢你等着我。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "1941d106",
+      "sentence": "Thanks for asking me out.",
+      "translation": "谢谢你约我出来。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "e878d299",
+      "sentence": "Thanks for cheering me up.",
+      "translation": "谢谢你鼓励我。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "c626e787",
+      "sentence": "You saved my life.",
+      "translation": "你救了我一命。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "e33bb81b",
+      "sentence": "Thanks for warning me.",
+      "translation": "谢谢你对我的忠告。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "a7a60cbd",
+      "sentence": "Thanks for coming all the way over here.",
+      "translation": "谢谢你不远万里专程跑一趟。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "9816ee6e",
+      "sentence": "Thank you for your letter. It was very kind of you.",
+      "translation": "谢谢你的来信，你对我太好了。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "11e9ed12",
+      "sentence": "You're welcome.",
+      "translation": "不客气。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "81cd2ec2",
+      "sentence": "Don't mention it.",
+      "translation": "不必客气。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "2a177bbb",
+      "sentence": "I'm glad I could help.",
+      "translation": "能帮助您，我非常高兴。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "b3d2e4fd",
+      "sentence": "I'm sorry.",
+      "translation": "对不起。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "02c86168",
+      "sentence": "Whoops, excuse me.",
+      "translation": "啊!对不起。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "94bb5add",
+      "sentence": "I'm awfully sorry.",
+      "translation": "真的非常抱歉。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "eb45a005",
+      "sentence": "I'm sorry about that.",
+      "translation": "那件事真对不起。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "21e6b1a6",
+      "sentence": "It's my fault.",
+      "translation": "这是我的疏忽。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "aded6adc",
+      "sentence": "Oops. My mistake.",
+      "translation": "哎呀，我弄错了。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "b34a7d0f",
+      "sentence": "I feel bad about it.",
+      "translation": "那事我觉得很抱歉。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "3556c15e",
+      "sentence": "I'm sorry I couldn't come.",
+      "translation": "真抱歉，我不能来。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "daccefa3",
+      "sentence": "I'm sorry about the other day.",
+      "translation": "前几天真是很抱歉。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "943b59f0",
+      "sentence": "Please forgive my rudeness.",
+      "translation": "请您原谅我的失礼。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "2296f776",
+      "sentence": "I don't know how to apologize to you.",
+      "translation": "我不知该怎样向您道歉。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "b51bec02",
+      "sentence": "I didn't mean that.",
+      "translation": "我并没有那个意思。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "461eba94",
+      "sentence": "I'm sorry to trouble you.",
+      "translation": "真对不起，给您添麻烦了。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "ec63fa00",
+      "sentence": "I'm really sorry for troubling you.",
+      "translation": "实在对不起，让您费心了。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "f9476499",
+      "sentence": "I wish I could...",
+      "translation": "我希望……可是……",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "15fadbc3",
+      "sentence": "That's all right.",
+      "translation": "没事儿。/别放在心里!",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "7a072f0b",
+      "sentence": "Please be more careful next time.",
+      "translation": "下次要多加小心。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "87f02154",
+      "sentence": "Let me get your coat for you.",
+      "translation": "我帮您收大衣吧。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "9b787492",
+      "sentence": "Make yourself at home.",
+      "translation": "别拘束，像在自己家一样吧。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "43ed253d",
+      "sentence": "Do you have a minute?",
+      "translation": "现在您有空吗?",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "18cac98f",
+      "sentence": "Can I talk to you for a minute?",
+      "translation": "我能跟您说几句话吗?",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "20f7a6ec",
+      "sentence": "After you.",
+      "translation": "您先请。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "40dfa6d5",
+      "sentence": "Can I give you a hand?",
+      "translation": "我帮您一把吧!",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "d626de3a",
+      "sentence": "I'll accept your offer.",
+      "translation": "我接受你的建议。/就照你说的。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "1b7a1af3",
+      "sentence": "Sorry to interrupt you.",
+      "translation": "对不起，打断一下。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "de1387ae",
+      "sentence": "Sorry for the short notice.",
+      "translation": "真抱歉，这么突然。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "9f813037",
+      "sentence": "Let me know if you need anything.",
+      "translation": "你需要什么就告诉我。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "afa391b8",
+      "sentence": "I'm looking forward to it.",
+      "translation": "我很期待。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "61b69c3a",
+      "sentence": "Thanks for helping me out yesterday.",
+      "translation": "谢谢你昨天帮我解围。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "b0be2b46",
+      "sentence": "I'm really sorry about that.",
+      "translation": "那件事我真的很抱歉。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "cb22e2a1",
+      "sentence": "I really appreciate your help.",
+      "translation": "我真的很感激你的帮助。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "99621477",
+      "sentence": "I'm sorry to keep you waiting.",
+      "translation": "抱歉让你久等了。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "c3850bef",
+      "sentence": "I should have called you earlier.",
+      "translation": "我本该早点给你打电话的。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "3a6102e6",
+      "sentence": "Let me know if you need anything else.",
+      "translation": "如果你还需要什么，告诉我。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "9e19d0bc",
+      "sentence": "I've been meaning to call you all week.",
+      "translation": "我这一整周都想给你打电话。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "f5fe9a5f",
+      "sentence": "No wonder you look so tired.",
+      "translation": "难怪你看起来这么累。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "28b5e31b",
+      "sentence": "Thanks for having me, I had a great time.",
+      "translation": "谢谢招待，我玩得很开心。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "6159c055",
+      "sentence": "I'm looking forward to seeing you again.",
+      "translation": "我期待再次见到你。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "777f5c9d",
+      "sentence": "I completely forgot about our appointment.",
+      "translation": "我完全忘了我们的约会。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "9c364fa8",
+      "sentence": "Want me to help?",
+      "translation": "要我帮忙吗？",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "93a0fe58",
+      "sentence": "Thanks for asking.",
+      "translation": "谢谢关心。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "fb895572",
+      "sentence": "You matter to me.",
+      "translation": "你对我很重要。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "09c464f6",
+      "sentence": "You're nice to me.",
+      "translation": "你对我真好。",
+      "sourceUrl": "content/oral-2-11-1/oral-001-92241452590e.json",
+      "sourceOffset": 70
+    }
+  ]
+}

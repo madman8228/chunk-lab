@@ -1,0 +1,657 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "John is incredible!",
+      "translation": "约翰你真够出色的!",
+      "chunks": [
+        "John is",
+        "incredible!"
+      ],
+      "hints": [
+        "约翰你",
+        "真够出色的！"
+      ],
+      "cid": "250bf736"
+    },
+    {
+      "sentence": "Good job!",
+      "translation": "真不错!",
+      "chunks": [
+        "Good",
+        "job!"
+      ],
+      "hints": [
+        "真",
+        "不错！"
+      ],
+      "cid": "9b27c35e"
+    },
+    {
+      "sentence": "Way to go!",
+      "translation": "干得真好!",
+      "chunks": [
+        "Way",
+        "to go!"
+      ],
+      "hints": [
+        "干得",
+        "真好！"
+      ],
+      "cid": "91ae566c"
+    },
+    {
+      "sentence": "Well done, son!",
+      "translation": "儿子，你真棒!",
+      "chunks": [
+        "Well done,",
+        "son!"
+      ],
+      "hints": [
+        "儿子，",
+        "你真棒！"
+      ],
+      "cid": "31e30c78"
+    },
+    {
+      "sentence": "Congratulations!",
+      "translation": "恭喜了!",
+      "chunks": [
+        "Congratulations!"
+      ],
+      "hints": [
+        "恭喜了！"
+      ],
+      "cid": "a577628f"
+    },
+    {
+      "sentence": "You were great!",
+      "translation": "你真了不起!",
+      "chunks": [
+        "You were",
+        "great!"
+      ],
+      "hints": [
+        "你真",
+        "了不起！"
+      ],
+      "cid": "0576ff27"
+    },
+    {
+      "sentence": "Good for you.",
+      "cid": "d43245c6",
+      "translation": "真不错（为你高兴）。",
+      "chunks": [
+        "Good",
+        "for you."
+      ],
+      "hints": [
+        "好",
+        "对你来说"
+      ],
+      "grammar": [
+        {
+          "role": "表语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡʊd/"
+          ],
+          "pos": "形容词（省略主语）",
+          "meaning": "好"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对你来说"
+        }
+      ],
+      "explanations": [
+        "`Good for you` 是回应别人好消息的固定说法，表「为你高兴」。常见错误：\n• 理解成「对你有好处」→ 那是 Good for your health 之类的含义，语境不同\n• \"Good to you\" → 固定搭配用 for",
+        "同义：Nice! / That's great! / I'm happy for you."
+      ],
+      "distractors": [
+        [
+          "Good at",
+          "Good to",
+          "Better"
+        ],
+        [
+          "for your.",
+          "to you.",
+          "for yours."
+        ]
+      ]
+    },
+    {
+      "sentence": "Good boy.",
+      "translation": "真是好孩子。",
+      "chunks": [
+        "Good",
+        "boy."
+      ],
+      "hints": [
+        "真是",
+        "好孩子。"
+      ],
+      "cid": "16bd6800"
+    },
+    {
+      "sentence": "What a nice dress!",
+      "translation": "多漂亮的裙子呀!",
+      "chunks": [
+        "What a",
+        "nice dress!"
+      ],
+      "hints": [
+        "多漂亮的",
+        "裙子呀！"
+      ],
+      "cid": "9c115791"
+    },
+    {
+      "sentence": "I like your shirt.",
+      "translation": "我真喜欢你的衬衫。",
+      "chunks": [
+        "I like",
+        "your shirt."
+      ],
+      "hints": [
+        "我真喜欢",
+        "你的衬衫。"
+      ],
+      "cid": "560de3f4"
+    },
+    {
+      "sentence": "That's a great tie.",
+      "translation": "你的领带真漂亮。",
+      "chunks": [
+        "That's a",
+        "great tie."
+      ],
+      "hints": [
+        "你的领带",
+        "真漂亮。"
+      ],
+      "cid": "fdbb0968"
+    },
+    {
+      "sentence": "You have a nice car.",
+      "translation": "你有辆好车呀!",
+      "chunks": [
+        "You have",
+        "a nice car."
+      ],
+      "hints": [
+        "你有辆",
+        "好车呀！"
+      ],
+      "cid": "a596679e"
+    },
+    {
+      "sentence": "Where did you buy it?",
+      "translation": "在哪儿买的?",
+      "chunks": [
+        "Where did you",
+        "buy it?"
+      ],
+      "hints": [
+        "在哪儿",
+        "买的？"
+      ],
+      "cid": "c91806c8"
+    },
+    {
+      "sentence": "I bought it at the K store.",
+      "translation": "是在K店买的。",
+      "chunks": [
+        "I bought it",
+        "at the K store."
+      ],
+      "hints": [
+        "是在",
+        "K店买的。"
+      ],
+      "cid": "abba5b98"
+    },
+    {
+      "sentence": "It was on sale.",
+      "translation": "在特别降价的时候。",
+      "chunks": [
+        "It was",
+        "on sale."
+      ],
+      "hints": [
+        "在特别",
+        "降价的时候。"
+      ],
+      "cid": "eee6b4f1"
+    },
+    {
+      "sentence": "You look nice.",
+      "translation": "你看上去真好/真帅。",
+      "chunks": [
+        "You",
+        "look nice."
+      ],
+      "hints": [
+        "你看上去",
+        "真好/真帅。"
+      ],
+      "cid": "f65af60e"
+    },
+    {
+      "sentence": "It looks nice on you.",
+      "translation": "对你正合适。",
+      "chunks": [
+        "It looks nice",
+        "on you."
+      ],
+      "hints": [
+        "对你",
+        "正合适。"
+      ],
+      "cid": "34b3f361"
+    },
+    {
+      "sentence": "All the credit goes to you.",
+      "translation": "这得归功于您呀!",
+      "chunks": [
+        "All the credit",
+        "goes to you."
+      ],
+      "hints": [
+        "这得",
+        "归功于您呀！"
+      ],
+      "cid": "72d28a6a"
+    },
+    {
+      "sentence": "Brilliant!",
+      "translation": "非常出色!",
+      "chunks": [
+        "Brilliant!"
+      ],
+      "hints": [
+        "非常出色！"
+      ],
+      "cid": "b18c961b"
+    },
+    {
+      "sentence": "What a man!",
+      "translation": "真是个男子汉!",
+      "chunks": [
+        "What a",
+        "man!"
+      ],
+      "hints": [
+        "真是个",
+        "男子汉！"
+      ],
+      "cid": "db0b5a7b"
+    },
+    {
+      "sentence": "Wow, you're on a winning streak.",
+      "translation": "真不愧是你，干得好!",
+      "chunks": [
+        "Wow, you're",
+        "on a winning streak."
+      ],
+      "hints": [
+        "真不愧是你，",
+        "干得好！"
+      ],
+      "cid": "fa50aa7d"
+    },
+    {
+      "sentence": "You have a cute son.",
+      "translation": "你的儿子真可爱。",
+      "chunks": [
+        "You have",
+        "a cute son."
+      ],
+      "hints": [
+        "你的儿子",
+        "真可爱。"
+      ],
+      "cid": "877fa736"
+    },
+    {
+      "sentence": "You look young for your age.",
+      "translation": "您看上去很年轻。",
+      "chunks": [
+        "You look young",
+        "for your age."
+      ],
+      "hints": [
+        "您看上去",
+        "很年轻。"
+      ],
+      "cid": "bbc010d6"
+    },
+    {
+      "sentence": "I appreciate your effort very much.",
+      "translation": "我非常感谢您为此所做出的努力。",
+      "chunks": [
+        "I appreciate",
+        "your effort very much."
+      ],
+      "hints": [
+        "我非常感谢您",
+        "为此所做出的努力。"
+      ],
+      "cid": "58e092d6"
+    },
+    {
+      "sentence": "I envy you.",
+      "translation": "真羡慕你。",
+      "chunks": [
+        "I",
+        "envy you."
+      ],
+      "hints": [
+        "真",
+        "羡慕你。"
+      ],
+      "cid": "362b6a79"
+    },
+    {
+      "sentence": "He thinks highly of you.",
+      "translation": "他对你的评价很高。",
+      "chunks": [
+        "He thinks",
+        "highly of you."
+      ],
+      "hints": [
+        "他对你的",
+        "评价很高。"
+      ],
+      "cid": "79cc94ea"
+    },
+    {
+      "sentence": "I need a boss I can look up to.",
+      "translation": "我需要一个值得我尊敬的老板。",
+      "chunks": [
+        "I need a boss",
+        "I can look up to."
+      ],
+      "hints": [
+        "我需要一个",
+        "值得我尊敬的老板。"
+      ],
+      "cid": "4ee383bc"
+    },
+    {
+      "sentence": "He's got guts.",
+      "translation": "他真有勇气。",
+      "chunks": [
+        "He's got",
+        "guts."
+      ],
+      "hints": [
+        "他真有",
+        "勇气。"
+      ],
+      "cid": "f82a6e63"
+    },
+    {
+      "sentence": "Keep up the good work.",
+      "cid": "10e9ea4a",
+      "translation": "继续保持/干得漂亮。",
+      "chunks": [
+        "Keep up",
+        "the good work."
+      ],
+      "hints": [
+        "保持住",
+        "这份好工作"
+      ],
+      "grammar": [
+        {
+          "role": "祈使+副词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/",
+            "/ʌp/"
+          ],
+          "pos": "短语动词",
+          "meaning": "保持住"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ɡʊd/",
+            "/wɜːrk/"
+          ],
+          "pos": "名词短语",
+          "meaning": "好表现"
+        }
+      ],
+      "explanations": [
+        "**keep up the good work** = 继续加油/保持好表现，上司表扬下属的高频句。",
+        "keep up 后接抽象名词：keep up the pace（保持节奏）。若指「赶上进度」是 catch up，注意区分。"
+      ],
+      "distractors": [
+        [
+          "Keeps up",
+          "Keeping up",
+          "To keep up"
+        ],
+        [
+          "good work.",
+          "a good work.",
+          "the good works."
+        ]
+      ]
+    },
+    {
+      "sentence": "You really changed.",
+      "cid": "b8116edf",
+      "translation": "你真的变了。",
+      "chunks": [
+        "You really",
+        "changed."
+      ],
+      "hints": [
+        "你真的",
+        "变了"
+      ],
+      "grammar": [
+        {
+          "role": "主语+状语",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/ˈriːəli/"
+          ],
+          "pos": "副词修饰谓语",
+          "meaning": "你真的"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/tʃeɪndʒd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "变了"
+        }
+      ],
+      "explanations": [
+        "`really` 修饰谓语时放在实义动词之前。常见错误：\n• \"You changed really\" → 语序错，副词不能放句末表程度\n• \"You real changed\" → 要用 really，real 是形容词",
+        "`changed` 用过去式表「已经发生了变化」。常见错误：\n• \"You are changed\" → 也可表被动，但口语直接说 changed 更自然"
+      ],
+      "distractors": [
+        [
+          "You real",
+          "You really's",
+          "You really are"
+        ],
+        [
+          "change.",
+          "changing.",
+          "changeed."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm so proud of you.",
+      "cid": "9e2532fc",
+      "translation": "我为你骄傲。",
+      "chunks": [
+        "I'm so",
+        "proud of you."
+      ],
+      "hints": [
+        "我非常",
+        "为你骄傲"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/soʊ/"
+          ],
+          "pos": "be + so",
+          "meaning": "我非常"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/praʊd/",
+            "/əv/",
+            "/juː/"
+          ],
+          "pos": "be proud of 固定搭配",
+          "meaning": "为你骄傲"
+        }
+      ],
+      "explanations": [
+        "`so` 修饰形容词，表程度。常见错误：\n• \"I so proud\" → 缺 be 动词\n• \"I'm such proud\" → such 后接名词短语",
+        "`be proud of sb` 是固定搭配，介词用 of。常见错误：\n• \"proud for you\" → 不用 for\n• \"proud at you\" → 不用 at"
+      ],
+      "distractors": [
+        [
+          "I so",
+          "I'm very",
+          "I'm such"
+        ],
+        [
+          "proud for you.",
+          "proud at you.",
+          "proud of your."
+        ]
+      ]
+    },
+    {
+      "sentence": "Great job.",
+      "cid": "8ec45499",
+      "translation": "做得好。",
+      "chunks": [
+        "Great",
+        "job."
+      ],
+      "hints": [
+        "很棒的",
+        "活儿、表现"
+      ],
+      "grammar": [
+        {
+          "role": "形容词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɡreɪt/"
+          ],
+          "pos": "形容词",
+          "meaning": "很棒的"
+        },
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/dʒɑːb/"
+          ],
+          "pos": "名词",
+          "meaning": "活儿、表现"
+        }
+      ],
+      "explanations": [
+        "`Great job.` 是表扬别人的固定说法，前面常省略 What a。常见错误：\n• 说成 \"Great work\" 也对，但 job 更口语\n• 想完整表达：You did a great job.",
+        "同类：Nice work. / Well done. / Good for you."
+      ],
+      "distractors": [
+        [
+          "Greatly",
+          "Greater",
+          "Greeting"
+        ],
+        [
+          "jop.",
+          "job's.",
+          "jobb."
+        ]
+      ]
+    },
+    {
+      "sentence": "You look great today.",
+      "cid": "734357e7",
+      "translation": "你今天精神很好。",
+      "chunks": [
+        "You look",
+        "great today."
+      ],
+      "hints": [
+        "你看起来",
+        "今天很棒"
+      ],
+      "grammar": [
+        {
+          "role": "主系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/",
+            "/lʊk/"
+          ],
+          "pos": "look + 形容词",
+          "meaning": "你看起来"
+        },
+        {
+          "role": "表语 + 时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɡreɪt/",
+            "/təˈdeɪ/"
+          ],
+          "pos": "形容词 + 副词",
+          "meaning": "今天很棒"
+        }
+      ],
+      "explanations": [
+        "`look` 作系动词后接形容词，不接副词。常见错误：\n• \"You look greatly\" → 要用形容词 great\n• \"You look like great\" → like 后面必须接名词",
+        "相关：You look tired.（你看起来很累）/ You look nice today."
+      ],
+      "distractors": [
+        [
+          "You looks",
+          "You looking",
+          "You are look"
+        ],
+        [
+          "greatly today.",
+          "great to day.",
+          "great todays."
+        ]
+      ]
+    }
+  ]
+}

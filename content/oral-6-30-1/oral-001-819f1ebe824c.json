@@ -3,6 +3,396 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Where is the shoe store?",
+      "translation": "鞋店在哪儿?",
+      "chunks": [
+        "Where is",
+        "the shoe store?"
+      ],
+      "hints": [
+        "鞋店",
+        "在哪儿？"
+      ],
+      "cid": "d8b48e4c"
+    },
+    {
+      "sentence": "Excuse me, but I'm lost.",
+      "translation": "对不起，我迷路了。",
+      "chunks": [
+        "Excuse me,",
+        "but I'm lost."
+      ],
+      "hints": [
+        "对不起，",
+        "我迷路了。"
+      ],
+      "cid": "1ba7b906"
+    },
+    {
+      "sentence": "Where am I on this map?",
+      "translation": "我在地图上的什么地方?",
+      "chunks": [
+        "Where am I",
+        "on this map?"
+      ],
+      "hints": [
+        "我在地图上的",
+        "什么地方？"
+      ],
+      "cid": "2d8d6061"
+    },
+    {
+      "sentence": "What's the name of this street?",
+      "translation": "这条街叫什么名字?",
+      "chunks": [
+        "What's the name",
+        "of this street?"
+      ],
+      "hints": [
+        "这条街",
+        "叫什么名字？"
+      ],
+      "cid": "f4bcb7f6"
+    },
+    {
+      "sentence": "Is there a post office near here?",
+      "translation": "这附近有邮局吗?",
+      "chunks": [
+        "Is there a post office",
+        "near here?"
+      ],
+      "hints": [
+        "这附近",
+        "有邮局吗？"
+      ],
+      "cid": "c9a0e04b"
+    },
+    {
+      "sentence": "How do I get to the Sakura Hotel?",
+      "translation": "去樱花饭店怎么走?",
+      "chunks": [
+        "How do I get to",
+        "the Sakura Hotel?"
+      ],
+      "hints": [
+        "去樱花饭店",
+        "怎么走？"
+      ],
+      "cid": "394a7afd"
+    },
+    {
+      "sentence": "Turn right at the first traffic light.",
+      "translation": "从第一个信号灯往右拐。",
+      "chunks": [
+        "Turn right at",
+        "the first traffic light."
+      ],
+      "hints": [
+        "从第一个信号灯",
+        "往右拐。"
+      ],
+      "cid": "feb9fc11"
+    },
+    {
+      "sentence": "Where's the rest room?",
+      "translation": "洗手间在哪儿?",
+      "chunks": [
+        "Where's",
+        "the rest room?"
+      ],
+      "hints": [
+        "洗手间",
+        "在哪儿？"
+      ],
+      "cid": "0dec8881"
+    },
+    {
+      "sentence": "It's on the right.",
+      "translation": "在右边。",
+      "chunks": [
+        "It's",
+        "on the right."
+      ],
+      "hints": [
+        "在",
+        "右边。"
+      ],
+      "cid": "5755d438"
+    },
+    {
+      "sentence": "Go straight for two blocks.",
+      "translation": "一直走到第二个街区。",
+      "chunks": [
+        "Go straight",
+        "for two blocks."
+      ],
+      "hints": [
+        "一直走到",
+        "第二个街区。"
+      ],
+      "cid": "ef6c0e16"
+    },
+    {
+      "sentence": "You'll see it at the corner on your left.",
+      "translation": "在左侧拐角那儿就能看见。",
+      "chunks": [
+        "You'll see it",
+        "at the corner on your left."
+      ],
+      "hints": [
+        "在左侧拐角那儿",
+        "就能看见。"
+      ],
+      "cid": "a68a2339"
+    },
+    {
+      "sentence": "Sorry, I'm new here, too.",
+      "translation": "对不起，我也是第一次来这儿。",
+      "chunks": [
+        "Sorry,",
+        "I'm new here, too."
+      ],
+      "hints": [
+        "对不起，",
+        "我也是第一次来这儿。"
+      ],
+      "cid": "5762a937"
+    },
+    {
+      "sentence": "It's next to the coffee shop.",
+      "translation": "在那家咖啡馆的旁边。",
+      "chunks": [
+        "It's next to",
+        "the coffee shop."
+      ],
+      "hints": [
+        "在那家咖啡馆",
+        "的旁边。"
+      ],
+      "cid": "23b32487"
+    },
+    {
+      "sentence": "It's across from City Hall.",
+      "translation": "在市政厅的对面。",
+      "chunks": [
+        "It's across from",
+        "City Hall."
+      ],
+      "hints": [
+        "在市政厅",
+        "的对面。"
+      ],
+      "cid": "6a9bb6fb"
+    },
+    {
+      "sentence": "It faces City Hall.",
+      "translation": "正对着市政厅。",
+      "chunks": [
+        "It faces",
+        "City Hall."
+      ],
+      "hints": [
+        "正对着",
+        "市政厅。"
+      ],
+      "cid": "4441b1ce"
+    },
+    {
+      "sentence": "It's between the bookstore and the drugstore.",
+      "translation": "在书店和药店之间。",
+      "chunks": [
+        "It's between",
+        "the bookstore and the drugstore."
+      ],
+      "hints": [
+        "在书店和药店",
+        "之间。"
+      ],
+      "cid": "bbf5c738"
+    },
+    {
+      "sentence": "It's on this side of the church.",
+      "translation": "在教堂的这一边。",
+      "chunks": [
+        "It's on this side",
+        "of the church."
+      ],
+      "hints": [
+        "在教堂的",
+        "这一边。"
+      ],
+      "cid": "a7eb35f5"
+    },
+    {
+      "sentence": "It's at of this street.",
+      "translation": "在这条路的尽头。",
+      "chunks": [
+        "It's at",
+        "of this street."
+      ],
+      "hints": [
+        "就在这条",
+        "路的尽头。"
+      ],
+      "cid": "2ec8b5a3"
+    },
+    {
+      "sentence": "Am I near Shinjuku?",
+      "translation": "这儿离新宿近吗?",
+      "chunks": [
+        "Am I near",
+        "Shinjuku?"
+      ],
+      "hints": [
+        "这儿离新宿",
+        "近吗？"
+      ],
+      "cid": "a1b94820"
+    },
+    {
+      "sentence": "How far is it to Shinjuku?",
+      "translation": "这儿离新宿有多远?",
+      "chunks": [
+        "How far is it",
+        "to Shinjuku?"
+      ],
+      "hints": [
+        "这儿离新宿",
+        "有多远？"
+      ],
+      "cid": "4866d6c4"
+    },
+    {
+      "sentence": "How long will it take?",
+      "translation": "要多长时间?",
+      "chunks": [
+        "How long",
+        "will it take?"
+      ],
+      "hints": [
+        "要",
+        "多长时间？"
+      ],
+      "cid": "28e3585c"
+    },
+    {
+      "sentence": "About five minutes.",
+      "translation": "5分钟左右。",
+      "chunks": [
+        "About",
+        "five minutes."
+      ],
+      "hints": [
+        "5分钟",
+        "左右。"
+      ],
+      "cid": "fc6a0377"
+    },
+    {
+      "sentence": "Is it far?",
+      "translation": "到那儿远吗?",
+      "chunks": [
+        "Is it",
+        "far?"
+      ],
+      "hints": [
+        "到那儿",
+        "远吗？"
+      ],
+      "cid": "5eda7294"
+    },
+    {
+      "sentence": "Not far.",
+      "translation": "不远。",
+      "chunks": [
+        "Not",
+        "far."
+      ],
+      "hints": [
+        "不",
+        "远。"
+      ],
+      "cid": "b083e28f"
+    },
+    {
+      "sentence": "What's the easiest way to get to Shinjuku?",
+      "translation": "到新宿哪条路最好走?",
+      "chunks": [
+        "What's the easiest way",
+        "to get to Shinjuku?"
+      ],
+      "hints": [
+        "到新宿",
+        "哪条路最好走？"
+      ],
+      "cid": "c9299f37"
+    },
+    {
+      "sentence": "The easiest way is to take a taxi.",
+      "translation": "坐出租车去最容易找到。",
+      "chunks": [
+        "The easiest way",
+        "is to take a taxi."
+      ],
+      "hints": [
+        "坐出租车去",
+        "最容易找到。"
+      ],
+      "cid": "04df5f8e"
+    },
+    {
+      "sentence": "What's the quickest way to get to Shinjuku?",
+      "translation": "到新宿哪条道最快?",
+      "chunks": [
+        "What's the quickest way",
+        "to get to Shinjuku?"
+      ],
+      "hints": [
+        "到新宿",
+        "哪条道最快？"
+      ],
+      "cid": "47c0b804"
+    },
+    {
+      "sentence": "Where can I mail this?",
+      "translation": "在哪儿可以发信?",
+      "chunks": [
+        "Where can I",
+        "mail this?"
+      ],
+      "hints": [
+        "在哪儿",
+        "可以发信？"
+      ],
+      "cid": "52d857e9"
+    },
+    {
+      "sentence": "Where can I make a phone call?",
+      "translation": "在哪儿可以打电话?",
+      "chunks": [
+        "Where can I",
+        "make a phone call?"
+      ],
+      "hints": [
+        "在哪儿",
+        "可以打电话？"
+      ],
+      "cid": "1ffb3c3b"
+    },
+    {
+      "sentence": "Is this the shortcut?",
+      "translation": "这是条近路吗?",
+      "chunks": [
+        "Is this",
+        "the shortcut?"
+      ],
+      "hints": [
+        "这是条",
+        "近路吗？"
+      ],
+      "cid": "e202bcd3"
+    },
+    {
       "sentence": "Could you tell me how to get to the station?",
       "cid": "4226408e",
       "translation": "你能告诉我怎么去车站吗？",

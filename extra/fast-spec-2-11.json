@@ -1,0 +1,898 @@
+[
+ {
+  "sentence": "Thank you.",
+  "chunks": [
+   "Thank",
+   "you."
+  ],
+  "hints": [
+   "谢",
+   "谢！"
+  ]
+ },
+ {
+  "sentence": "Thanks.",
+  "chunks": [
+   "Thanks."
+  ],
+  "hints": [
+   "多谢！"
+  ]
+ },
+ {
+  "sentence": "Thank you very much.",
+  "chunks": [
+   "Thank you",
+   "very much."
+  ],
+  "hints": [
+   "非常",
+   "感谢！"
+  ]
+ },
+ {
+  "sentence": "Much appreciated. Thank you.",
+  "chunks": [
+   "Much appreciated. Thank",
+   "you."
+  ],
+  "hints": [
+   "真是",
+   "非常感谢。"
+  ]
+ },
+ {
+  "sentence": "Thanks for your kindness.",
+  "chunks": [
+   "Thanks for",
+   "your kindness."
+  ],
+  "hints": [
+   "谢谢您的",
+   "好意。"
+  ]
+ },
+ {
+  "sentence": "I appreciate your kindness.",
+  "chunks": [
+   "I appreciate",
+   "your kindness."
+  ],
+  "hints": [
+   "非常感谢",
+   "你的关怀。"
+  ]
+ },
+ {
+  "sentence": "I can't thank you enough.",
+  "chunks": [
+   "I can't thank you",
+   "enough."
+  ],
+  "hints": [
+   "我无法表达",
+   "对您的感谢。"
+  ]
+ },
+ {
+  "sentence": "I can hardly thank you enough for your kindness.",
+  "chunks": [
+   "I can hardly thank you enough",
+   "for your kindness."
+  ],
+  "hints": [
+   "真不知如何感谢",
+   "你的关心。"
+  ]
+ },
+ {
+  "sentence": "You've been very helpful.",
+  "chunks": [
+   "You've been",
+   "very helpful."
+  ],
+  "hints": [
+   "你帮我",
+   "大忙了。"
+  ]
+ },
+ {
+  "sentence": "Thank you for the help.",
+  "chunks": [
+   "Thank you",
+   "for the help."
+  ],
+  "hints": [
+   "谢谢你的",
+   "帮助。"
+  ]
+ },
+ {
+  "sentence": "Thanks for your time.",
+  "chunks": [
+   "Thanks for",
+   "your time."
+  ],
+  "hints": [
+   "谢谢你的",
+   "时间。"
+  ]
+ },
+ {
+  "sentence": "Thanks for everything.",
+  "chunks": [
+   "Thanks for",
+   "everything."
+  ],
+  "hints": [
+   "感谢您为我",
+   "做的一切。"
+  ]
+ },
+ {
+  "sentence": "Thank you anyway.",
+  "chunks": [
+   "Thank you",
+   "anyway."
+  ],
+  "hints": [
+   "不管怎么",
+   "都要谢谢您。"
+  ]
+ },
+ {
+  "sentence": "How nice!",
+  "chunks": [
+   "How",
+   "nice!"
+  ],
+  "hints": [
+   "哦！那",
+   "太好了。"
+  ]
+ },
+ {
+  "sentence": "I owe you one.",
+  "chunks": [
+   "I owe",
+   "you one."
+  ],
+  "hints": [
+   "我欠",
+   "你的情。"
+  ]
+ },
+ {
+  "sentence": "Thanks a lot for your present.",
+  "chunks": [
+   "Thanks a lot",
+   "for your present."
+  ],
+  "hints": [
+   "谢谢你送给",
+   "我的礼物。"
+  ]
+ },
+ {
+  "sentence": "Thanks for saying so.",
+  "chunks": [
+   "Thanks for",
+   "saying so."
+  ],
+  "hints": [
+   "您能这样说，",
+   "我非常感谢。"
+  ]
+ },
+ {
+  "sentence": "Thanks for telling me.",
+  "chunks": [
+   "Thanks for",
+   "telling me."
+  ],
+  "hints": [
+   "谢谢你",
+   "告诉我。"
+  ]
+ },
+ {
+  "sentence": "Thanks for waiting for me.",
+  "chunks": [
+   "Thanks for",
+   "waiting for me."
+  ],
+  "hints": [
+   "非常感谢你",
+   "等着我。"
+  ]
+ },
+ {
+  "sentence": "Thanks for asking me out.",
+  "chunks": [
+   "Thanks for",
+   "asking me out."
+  ],
+  "hints": [
+   "谢谢你",
+   "约我出来。"
+  ]
+ },
+ {
+  "sentence": "Thanks for cheering me up.",
+  "chunks": [
+   "Thanks for",
+   "cheering me up."
+  ],
+  "hints": [
+   "谢谢你",
+   "鼓励我。"
+  ]
+ },
+ {
+  "sentence": "You saved my life.",
+  "chunks": [
+   "You saved",
+   "my life."
+  ],
+  "hints": [
+   "你救了",
+   "我一命。"
+  ]
+ },
+ {
+  "sentence": "Thanks for warning me.",
+  "chunks": [
+   "Thanks for",
+   "warning me."
+  ],
+  "hints": [
+   "谢谢你",
+   "对我的忠告。"
+  ]
+ },
+ {
+  "sentence": "Thanks for coming all the way over here.",
+  "chunks": [
+   "Thanks for coming",
+   "all the way over here."
+  ],
+  "hints": [
+   "谢谢你不远万里",
+   "专程跑一趟。"
+  ]
+ },
+ {
+  "sentence": "Thank you for your letter. It was very kind of you.",
+  "chunks": [
+   "Thank you for your letter. It was",
+   "very kind of you."
+  ],
+  "hints": [
+   "谢谢你的来信，你对我",
+   "太好了。"
+  ]
+ },
+ {
+  "sentence": "You're welcome.",
+  "chunks": [
+   "You're",
+   "welcome."
+  ],
+  "hints": [
+   "不",
+   "客气。"
+  ]
+ },
+ {
+  "sentence": "Don't mention it.",
+  "chunks": [
+   "Don't",
+   "mention it."
+  ],
+  "hints": [
+   "不必",
+   "客气。"
+  ]
+ },
+ {
+  "sentence": "I'm glad I could help.",
+  "chunks": [
+   "I'm glad",
+   "I could help."
+  ],
+  "hints": [
+   "能帮助您，",
+   "我非常高兴。"
+  ]
+ },
+ {
+  "sentence": "I'm sorry.",
+  "chunks": [
+   "I'm",
+   "sorry."
+  ],
+  "hints": [
+   "对",
+   "不起。"
+  ]
+ },
+ {
+  "sentence": "Whoops, excuse me.",
+  "chunks": [
+   "Whoops,",
+   "excuse me."
+  ],
+  "hints": [
+   "啊！",
+   "对不起。"
+  ]
+ },
+ {
+  "sentence": "I'm awfully sorry.",
+  "chunks": [
+   "I'm awfully",
+   "sorry."
+  ],
+  "hints": [
+   "真的非常",
+   "抱歉。"
+  ]
+ },
+ {
+  "sentence": "I'm sorry about that.",
+  "chunks": [
+   "I'm sorry",
+   "about that."
+  ],
+  "hints": [
+   "那件事",
+   "真对不起。"
+  ]
+ },
+ {
+  "sentence": "It's my fault.",
+  "chunks": [
+   "It's",
+   "my fault."
+  ],
+  "hints": [
+   "这是我的",
+   "疏忽。"
+  ]
+ },
+ {
+  "sentence": "Oops. My mistake.",
+  "chunks": [
+   "Oops. My",
+   "mistake."
+  ],
+  "hints": [
+   "哎呀，",
+   "我弄错了。"
+  ]
+ },
+ {
+  "sentence": "I feel bad about it.",
+  "chunks": [
+   "I feel bad",
+   "about it."
+  ],
+  "hints": [
+   "那事我觉得",
+   "很抱歉。"
+  ]
+ },
+ {
+  "sentence": "I'm sorry I couldn't come.",
+  "chunks": [
+   "I'm sorry",
+   "I couldn't come."
+  ],
+  "hints": [
+   "真抱歉，",
+   "我不能来。"
+  ]
+ },
+ {
+  "sentence": "I'm sorry about the other day.",
+  "chunks": [
+   "I'm sorry",
+   "about the other day."
+  ],
+  "hints": [
+   "前几天",
+   "真是很抱歉。"
+  ]
+ },
+ {
+  "sentence": "Please forgive my rudeness.",
+  "chunks": [
+   "Please forgive",
+   "my rudeness."
+  ],
+  "hints": [
+   "请您原谅",
+   "我的失礼。"
+  ]
+ },
+ {
+  "sentence": "I don't know how to apologize to you.",
+  "chunks": [
+   "I don't know",
+   "how to apologize to you."
+  ],
+  "hints": [
+   "我不知该怎样",
+   "向您道歉。"
+  ]
+ },
+ {
+  "sentence": "I didn't mean that.",
+  "chunks": [
+   "I didn't",
+   "mean that."
+  ],
+  "hints": [
+   "我并没有",
+   "那个意思。"
+  ]
+ },
+ {
+  "sentence": "I'm sorry to trouble you.",
+  "chunks": [
+   "I'm sorry",
+   "to trouble you."
+  ],
+  "hints": [
+   "真对不起，",
+   "给您添麻烦了。"
+  ]
+ },
+ {
+  "sentence": "I'm really sorry for troubling you.",
+  "chunks": [
+   "I'm really sorry",
+   "for troubling you."
+  ],
+  "hints": [
+   "实在对不起，",
+   "让您费心了。"
+  ]
+ },
+ {
+  "sentence": "I wish I could...",
+  "chunks": [
+   "I wish",
+   "I could..."
+  ],
+  "hints": [
+   "我希望……",
+   "可是……"
+  ]
+ },
+ {
+  "sentence": "That's all right.",
+  "chunks": [
+   "That's",
+   "all right."
+  ],
+  "hints": [
+   "没事儿。",
+   "别放在心里！"
+  ]
+ },
+ {
+  "sentence": "Please be more careful next time.",
+  "chunks": [
+   "Please be more",
+   "careful next time."
+  ],
+  "hints": [
+   "下次",
+   "要多加小心。"
+  ]
+ },
+ {
+  "sentence": "Let me get your coat for you.",
+  "chunks": [
+   "Let me get",
+   "your coat for you."
+  ],
+  "hints": [
+   "我帮您",
+   "收大衣吧。"
+  ]
+ },
+ {
+  "sentence": "Make yourself at home.",
+  "chunks": [
+   "Make yourself",
+   "at home."
+  ],
+  "hints": [
+   "别拘束，",
+   "像在自己家一样吧。"
+  ]
+ },
+ {
+  "sentence": "Do you have a minute?",
+  "chunks": [
+   "Do you have",
+   "a minute?"
+  ],
+  "hints": [
+   "现在您",
+   "有空吗？"
+  ]
+ },
+ {
+  "sentence": "Can I talk to you for a minute?",
+  "chunks": [
+   "Can I talk to you",
+   "for a minute?"
+  ],
+  "hints": [
+   "我能跟您",
+   "说几句话吗？"
+  ]
+ },
+ {
+  "sentence": "After you.",
+  "chunks": [
+   "After",
+   "you."
+  ],
+  "hints": [
+   "您",
+   "先请。"
+  ]
+ },
+ {
+  "sentence": "Can I give you a hand?",
+  "chunks": [
+   "Can I give you",
+   "a hand?"
+  ],
+  "hints": [
+   "我帮您",
+   "一把吧！"
+  ]
+ },
+ {
+  "sentence": "I'll accept your offer.",
+  "chunks": [
+   "I'll accept",
+   "your offer."
+  ],
+  "hints": [
+   "我接受",
+   "你的建议。"
+  ]
+ },
+ {
+  "sentence": "Sorry to interrupt you.",
+  "chunks": [
+   "Sorry to",
+   "interrupt you."
+  ],
+  "hints": [
+   "对不起，",
+   "打断一下。"
+  ]
+ },
+ {
+  "sentence": "Sorry for the short notice.",
+  "chunks": [
+   "Sorry for",
+   "the short notice."
+  ],
+  "hints": [
+   "真抱歉，",
+   "这么突然。"
+  ]
+ },
+ {
+  "sentence": "John is incredible!",
+  "chunks": [
+   "John is",
+   "incredible!"
+  ],
+  "hints": [
+   "约翰你",
+   "真够出色的！"
+  ]
+ },
+ {
+  "sentence": "Good job!",
+  "chunks": [
+   "Good",
+   "job!"
+  ],
+  "hints": [
+   "真",
+   "不错！"
+  ]
+ },
+ {
+  "sentence": "Way to go!",
+  "chunks": [
+   "Way",
+   "to go!"
+  ],
+  "hints": [
+   "干得",
+   "真好！"
+  ]
+ },
+ {
+  "sentence": "Well done, son!",
+  "chunks": [
+   "Well done,",
+   "son!"
+  ],
+  "hints": [
+   "儿子，",
+   "你真棒！"
+  ]
+ },
+ {
+  "sentence": "Congratulations!",
+  "chunks": [
+   "Congratulations!"
+  ],
+  "hints": [
+   "恭喜了！"
+  ]
+ },
+ {
+  "sentence": "You were great!",
+  "chunks": [
+   "You were",
+   "great!"
+  ],
+  "hints": [
+   "你真",
+   "了不起！"
+  ]
+ },
+ {
+  "sentence": "Good for you.",
+  "chunks": [
+   "Good",
+   "for you."
+  ],
+  "hints": [
+   "恭喜你。",
+   "干得不错。"
+  ]
+ },
+ {
+  "sentence": "Good boy.",
+  "chunks": [
+   "Good",
+   "boy."
+  ],
+  "hints": [
+   "真是",
+   "好孩子。"
+  ]
+ },
+ {
+  "sentence": "What a nice dress!",
+  "chunks": [
+   "What a",
+   "nice dress!"
+  ],
+  "hints": [
+   "多漂亮的",
+   "裙子呀！"
+  ]
+ },
+ {
+  "sentence": "I like your shirt.",
+  "chunks": [
+   "I like",
+   "your shirt."
+  ],
+  "hints": [
+   "我真喜欢",
+   "你的衬衫。"
+  ]
+ },
+ {
+  "sentence": "That's a great tie.",
+  "chunks": [
+   "That's a",
+   "great tie."
+  ],
+  "hints": [
+   "你的领带",
+   "真漂亮。"
+  ]
+ },
+ {
+  "sentence": "You have a nice car.",
+  "chunks": [
+   "You have",
+   "a nice car."
+  ],
+  "hints": [
+   "你有辆",
+   "好车呀！"
+  ]
+ },
+ {
+  "sentence": "Where did you buy it?",
+  "chunks": [
+   "Where did you",
+   "buy it?"
+  ],
+  "hints": [
+   "在哪儿",
+   "买的？"
+  ]
+ },
+ {
+  "sentence": "I bought it at the K store.",
+  "chunks": [
+   "I bought it",
+   "at the K store."
+  ],
+  "hints": [
+   "是在",
+   "K店买的。"
+  ]
+ },
+ {
+  "sentence": "It was on sale.",
+  "chunks": [
+   "It was",
+   "on sale."
+  ],
+  "hints": [
+   "在特别",
+   "降价的时候。"
+  ]
+ },
+ {
+  "sentence": "You look nice.",
+  "chunks": [
+   "You",
+   "look nice."
+  ],
+  "hints": [
+   "你看上去",
+   "真好/真帅。"
+  ]
+ },
+ {
+  "sentence": "It looks nice on you.",
+  "chunks": [
+   "It looks nice",
+   "on you."
+  ],
+  "hints": [
+   "对你",
+   "正合适。"
+  ]
+ },
+ {
+  "sentence": "All the credit goes to you.",
+  "chunks": [
+   "All the credit",
+   "goes to you."
+  ],
+  "hints": [
+   "这得",
+   "归功于您呀！"
+  ]
+ },
+ {
+  "sentence": "Brilliant!",
+  "chunks": [
+   "Brilliant!"
+  ],
+  "hints": [
+   "非常出色！"
+  ]
+ },
+ {
+  "sentence": "What a man!",
+  "chunks": [
+   "What a",
+   "man!"
+  ],
+  "hints": [
+   "真是个",
+   "男子汉！"
+  ]
+ },
+ {
+  "sentence": "Wow, you're on a winning streak.",
+  "chunks": [
+   "Wow, you're",
+   "on a winning streak."
+  ],
+  "hints": [
+   "真不愧是你，",
+   "干得好！"
+  ]
+ },
+ {
+  "sentence": "You have a cute son.",
+  "chunks": [
+   "You have",
+   "a cute son."
+  ],
+  "hints": [
+   "你的儿子",
+   "真可爱。"
+  ]
+ },
+ {
+  "sentence": "You look young for your age.",
+  "chunks": [
+   "You look young",
+   "for your age."
+  ],
+  "hints": [
+   "您看上去",
+   "很年轻。"
+  ]
+ },
+ {
+  "sentence": "I appreciate your effort very much.",
+  "chunks": [
+   "I appreciate",
+   "your effort very much."
+  ],
+  "hints": [
+   "我非常感谢您",
+   "为此所做出的努力。"
+  ]
+ },
+ {
+  "sentence": "I envy you.",
+  "chunks": [
+   "I",
+   "envy you."
+  ],
+  "hints": [
+   "真",
+   "羡慕你。"
+  ]
+ },
+ {
+  "sentence": "He thinks highly of you.",
+  "chunks": [
+   "He thinks",
+   "highly of you."
+  ],
+  "hints": [
+   "他对你的",
+   "评价很高。"
+  ]
+ },
+ {
+  "sentence": "I need a boss I can look up to.",
+  "chunks": [
+   "I need a boss",
+   "I can look up to."
+  ],
+  "hints": [
+   "我需要一个",
+   "值得我尊敬的老板。"
+  ]
+ },
+ {
+  "sentence": "He's got guts.",
+  "chunks": [
+   "He's got",
+   "guts."
+  ],
+  "hints": [
+   "他真有",
+   "勇气。"
+  ]
+ }
+]

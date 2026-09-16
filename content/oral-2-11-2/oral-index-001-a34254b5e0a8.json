@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "250bf736",
+      "sentence": "John is incredible!",
+      "translation": "约翰你真够出色的!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "9b27c35e",
+      "sentence": "Good job!",
+      "translation": "真不错!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "91ae566c",
+      "sentence": "Way to go!",
+      "translation": "干得真好!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "31e30c78",
+      "sentence": "Well done, son!",
+      "translation": "儿子，你真棒!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "a577628f",
+      "sentence": "Congratulations!",
+      "translation": "恭喜了!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "0576ff27",
+      "sentence": "You were great!",
+      "translation": "你真了不起!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "d43245c6",
+      "sentence": "Good for you.",
+      "translation": "真不错（为你高兴）。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "16bd6800",
+      "sentence": "Good boy.",
+      "translation": "真是好孩子。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "9c115791",
+      "sentence": "What a nice dress!",
+      "translation": "多漂亮的裙子呀!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "560de3f4",
+      "sentence": "I like your shirt.",
+      "translation": "我真喜欢你的衬衫。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "fdbb0968",
+      "sentence": "That's a great tie.",
+      "translation": "你的领带真漂亮。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "a596679e",
+      "sentence": "You have a nice car.",
+      "translation": "你有辆好车呀!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "c91806c8",
+      "sentence": "Where did you buy it?",
+      "translation": "在哪儿买的?",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "abba5b98",
+      "sentence": "I bought it at the K store.",
+      "translation": "是在K店买的。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "eee6b4f1",
+      "sentence": "It was on sale.",
+      "translation": "在特别降价的时候。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "f65af60e",
+      "sentence": "You look nice.",
+      "translation": "你看上去真好/真帅。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "34b3f361",
+      "sentence": "It looks nice on you.",
+      "translation": "对你正合适。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "72d28a6a",
+      "sentence": "All the credit goes to you.",
+      "translation": "这得归功于您呀!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "b18c961b",
+      "sentence": "Brilliant!",
+      "translation": "非常出色!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "db0b5a7b",
+      "sentence": "What a man!",
+      "translation": "真是个男子汉!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "fa50aa7d",
+      "sentence": "Wow, you're on a winning streak.",
+      "translation": "真不愧是你，干得好!",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "877fa736",
+      "sentence": "You have a cute son.",
+      "translation": "你的儿子真可爱。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "bbc010d6",
+      "sentence": "You look young for your age.",
+      "translation": "您看上去很年轻。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "58e092d6",
+      "sentence": "I appreciate your effort very much.",
+      "translation": "我非常感谢您为此所做出的努力。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "362b6a79",
+      "sentence": "I envy you.",
+      "translation": "真羡慕你。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "79cc94ea",
+      "sentence": "He thinks highly of you.",
+      "translation": "他对你的评价很高。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "4ee383bc",
+      "sentence": "I need a boss I can look up to.",
+      "translation": "我需要一个值得我尊敬的老板。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "f82a6e63",
+      "sentence": "He's got guts.",
+      "translation": "他真有勇气。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "10e9ea4a",
+      "sentence": "Keep up the good work.",
+      "translation": "继续保持/干得漂亮。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "b8116edf",
+      "sentence": "You really changed.",
+      "translation": "你真的变了。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "9e2532fc",
+      "sentence": "I'm so proud of you.",
+      "translation": "我为你骄傲。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "8ec45499",
+      "sentence": "Great job.",
+      "translation": "做得好。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "734357e7",
+      "sentence": "You look great today.",
+      "translation": "你今天精神很好。",
+      "sourceUrl": "content/oral-2-11-2/oral-001-aac6fef18a6d.json",
+      "sourceOffset": 32
+    }
+  ]
+}

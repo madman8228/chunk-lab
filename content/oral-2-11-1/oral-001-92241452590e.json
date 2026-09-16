@@ -3,6 +3,742 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Thank you.",
+      "translation": "谢谢!",
+      "chunks": [
+        "Thank",
+        "you."
+      ],
+      "hints": [
+        "谢",
+        "谢！"
+      ],
+      "cid": "fa18b162"
+    },
+    {
+      "sentence": "Thanks.",
+      "translation": "多谢!",
+      "chunks": [
+        "Thanks."
+      ],
+      "hints": [
+        "多谢！"
+      ],
+      "cid": "e0a259da"
+    },
+    {
+      "sentence": "Thank you very much.",
+      "translation": "非常感谢!",
+      "chunks": [
+        "Thank you",
+        "very much."
+      ],
+      "hints": [
+        "非常",
+        "感谢！"
+      ],
+      "cid": "b882bf75"
+    },
+    {
+      "sentence": "Much appreciated. Thank you.",
+      "translation": "真是非常感谢。",
+      "chunks": [
+        "Much appreciated. Thank",
+        "you."
+      ],
+      "hints": [
+        "真是",
+        "非常感谢。"
+      ],
+      "cid": "5d0f4f0f"
+    },
+    {
+      "sentence": "Thanks for your kindness.",
+      "translation": "谢谢您的好意。",
+      "chunks": [
+        "Thanks for",
+        "your kindness."
+      ],
+      "hints": [
+        "谢谢您的",
+        "好意。"
+      ],
+      "cid": "93fd93f7"
+    },
+    {
+      "sentence": "I appreciate your kindness.",
+      "translation": "非常感谢你的关怀。",
+      "chunks": [
+        "I appreciate",
+        "your kindness."
+      ],
+      "hints": [
+        "非常感谢",
+        "你的关怀。"
+      ],
+      "cid": "f447ecb4"
+    },
+    {
+      "sentence": "I can't thank you enough.",
+      "translation": "我无法表达对您的感谢。",
+      "chunks": [
+        "I can't thank you",
+        "enough."
+      ],
+      "hints": [
+        "我无法表达",
+        "对您的感谢。"
+      ],
+      "cid": "4157dce8"
+    },
+    {
+      "sentence": "I can hardly thank you enough for your kindness.",
+      "translation": "真不知如何感谢你的关心。",
+      "chunks": [
+        "I can hardly thank you enough",
+        "for your kindness."
+      ],
+      "hints": [
+        "真不知如何感谢",
+        "你的关心。"
+      ],
+      "cid": "da0d7bcc"
+    },
+    {
+      "sentence": "You've been very helpful.",
+      "translation": "你帮我大忙了。",
+      "chunks": [
+        "You've been",
+        "very helpful."
+      ],
+      "hints": [
+        "你帮我",
+        "大忙了。"
+      ],
+      "cid": "f3a2b67a"
+    },
+    {
+      "sentence": "Thank you for the help.",
+      "translation": "谢谢你的帮助。",
+      "chunks": [
+        "Thank you",
+        "for the help."
+      ],
+      "hints": [
+        "谢谢你的",
+        "帮助。"
+      ],
+      "cid": "cdf5bdab"
+    },
+    {
+      "sentence": "Thanks for your time.",
+      "translation": "耽误您时间，实在对不起。",
+      "chunks": [
+        "Thanks for",
+        "your time."
+      ],
+      "hints": [
+        "谢谢你的",
+        "时间。"
+      ],
+      "cid": "8c80cbf3"
+    },
+    {
+      "sentence": "Thanks for everything.",
+      "translation": "感谢您为我做的一切。",
+      "chunks": [
+        "Thanks for",
+        "everything."
+      ],
+      "hints": [
+        "感谢您为我",
+        "做的一切。"
+      ],
+      "cid": "249b19b2"
+    },
+    {
+      "sentence": "Thank you anyway.",
+      "translation": "不管怎么都要谢谢您。",
+      "chunks": [
+        "Thank you",
+        "anyway."
+      ],
+      "hints": [
+        "不管怎么",
+        "都要谢谢您。"
+      ],
+      "cid": "2ac75d95"
+    },
+    {
+      "sentence": "How nice!",
+      "translation": "哦!那太好了。",
+      "chunks": [
+        "How",
+        "nice!"
+      ],
+      "hints": [
+        "哦！那",
+        "太好了。"
+      ],
+      "cid": "f02b812d"
+    },
+    {
+      "sentence": "I owe you one.",
+      "translation": "我欠你的情。",
+      "chunks": [
+        "I owe",
+        "you one."
+      ],
+      "hints": [
+        "我欠",
+        "你的情。"
+      ],
+      "cid": "e40fa374"
+    },
+    {
+      "sentence": "Thanks a lot for your present.",
+      "translation": "谢谢你送给我的礼物。",
+      "chunks": [
+        "Thanks a lot",
+        "for your present."
+      ],
+      "hints": [
+        "谢谢你送给",
+        "我的礼物。"
+      ],
+      "cid": "f3978b69"
+    },
+    {
+      "sentence": "Thanks for saying so.",
+      "translation": "您能这样说，我非常感谢。",
+      "chunks": [
+        "Thanks for",
+        "saying so."
+      ],
+      "hints": [
+        "您能这样说，",
+        "我非常感谢。"
+      ],
+      "cid": "1f519414"
+    },
+    {
+      "sentence": "Thanks for telling me.",
+      "translation": "谢谢你告诉我。",
+      "chunks": [
+        "Thanks for",
+        "telling me."
+      ],
+      "hints": [
+        "谢谢你",
+        "告诉我。"
+      ],
+      "cid": "bce51732"
+    },
+    {
+      "sentence": "Thanks for waiting for me.",
+      "translation": "非常感谢你等着我。",
+      "chunks": [
+        "Thanks for",
+        "waiting for me."
+      ],
+      "hints": [
+        "非常感谢你",
+        "等着我。"
+      ],
+      "cid": "5fd1b5c3"
+    },
+    {
+      "sentence": "Thanks for asking me out.",
+      "translation": "谢谢你约我出来。",
+      "chunks": [
+        "Thanks for",
+        "asking me out."
+      ],
+      "hints": [
+        "谢谢你",
+        "约我出来。"
+      ],
+      "cid": "1941d106"
+    },
+    {
+      "sentence": "Thanks for cheering me up.",
+      "translation": "谢谢你鼓励我。",
+      "chunks": [
+        "Thanks for",
+        "cheering me up."
+      ],
+      "hints": [
+        "谢谢你",
+        "鼓励我。"
+      ],
+      "cid": "e878d299"
+    },
+    {
+      "sentence": "You saved my life.",
+      "translation": "你救了我一命。",
+      "chunks": [
+        "You saved",
+        "my life."
+      ],
+      "hints": [
+        "你救了",
+        "我一命。"
+      ],
+      "cid": "c626e787"
+    },
+    {
+      "sentence": "Thanks for warning me.",
+      "translation": "谢谢你对我的忠告。",
+      "chunks": [
+        "Thanks for",
+        "warning me."
+      ],
+      "hints": [
+        "谢谢你",
+        "对我的忠告。"
+      ],
+      "cid": "e33bb81b"
+    },
+    {
+      "sentence": "Thanks for coming all the way over here.",
+      "translation": "谢谢你不远万里专程跑一趟。",
+      "chunks": [
+        "Thanks for coming",
+        "all the way over here."
+      ],
+      "hints": [
+        "谢谢你不远万里",
+        "专程跑一趟。"
+      ],
+      "cid": "a7a60cbd"
+    },
+    {
+      "sentence": "Thank you for your letter. It was very kind of you.",
+      "translation": "谢谢你的来信，你对我太好了。",
+      "chunks": [
+        "Thank you for your letter. It was",
+        "very kind of you."
+      ],
+      "hints": [
+        "谢谢你的来信，你对我",
+        "太好了。"
+      ],
+      "cid": "9816ee6e"
+    },
+    {
+      "sentence": "You're welcome.",
+      "cid": "11e9ed12",
+      "translation": "不客气。",
+      "chunks": [
+        "You're",
+        "welcome."
+      ],
+      "hints": [
+        "你是",
+        "受欢迎的"
+      ],
+      "grammar": [
+        {
+          "role": "主语+be",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈwelkəm/"
+          ],
+          "pos": "主系表结构",
+          "meaning": "你（被欢迎）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈwelkəm/"
+          ],
+          "pos": "形容词",
+          "meaning": "受欢迎的"
+        }
+      ],
+      "explanations": [
+        "**You're welcome.** 回应 Thank you 的标准说法：比 No problem 正式一点，比 My pleasure 更日常。",
+        "常见错误：写成 **You're welcomed**（被动语态，此义不成立）→ 正确是形容词 welcome。单独说 Welcome! 则是「欢迎（到来）」。"
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You"
+        ],
+        [
+          "welcomes.",
+          "welcome to.",
+          "welcome here."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't mention it.",
+      "translation": "不必客气。",
+      "chunks": [
+        "Don't",
+        "mention it."
+      ],
+      "hints": [
+        "不必",
+        "客气。"
+      ],
+      "cid": "81cd2ec2"
+    },
+    {
+      "sentence": "I'm glad I could help.",
+      "translation": "能帮助您，我非常高兴。",
+      "chunks": [
+        "I'm glad",
+        "I could help."
+      ],
+      "hints": [
+        "能帮助您，",
+        "我非常高兴。"
+      ],
+      "cid": "2a177bbb"
+    },
+    {
+      "sentence": "I'm sorry.",
+      "translation": "对不起。",
+      "chunks": [
+        "I'm",
+        "sorry."
+      ],
+      "hints": [
+        "对",
+        "不起。"
+      ],
+      "cid": "b3d2e4fd"
+    },
+    {
+      "sentence": "Whoops, excuse me.",
+      "translation": "啊!对不起。",
+      "chunks": [
+        "Whoops,",
+        "excuse me."
+      ],
+      "hints": [
+        "啊！",
+        "对不起。"
+      ],
+      "cid": "02c86168"
+    },
+    {
+      "sentence": "I'm awfully sorry.",
+      "translation": "真的非常抱歉。",
+      "chunks": [
+        "I'm awfully",
+        "sorry."
+      ],
+      "hints": [
+        "真的非常",
+        "抱歉。"
+      ],
+      "cid": "94bb5add"
+    },
+    {
+      "sentence": "I'm sorry about that.",
+      "translation": "那件事真对不起。",
+      "chunks": [
+        "I'm sorry",
+        "about that."
+      ],
+      "hints": [
+        "那件事",
+        "真对不起。"
+      ],
+      "cid": "eb45a005"
+    },
+    {
+      "sentence": "It's my fault.",
+      "translation": "这是我的疏忽。",
+      "chunks": [
+        "It's",
+        "my fault."
+      ],
+      "hints": [
+        "这是我的",
+        "疏忽。"
+      ],
+      "cid": "21e6b1a6"
+    },
+    {
+      "sentence": "Oops. My mistake.",
+      "translation": "哎呀，我弄错了。",
+      "chunks": [
+        "Oops. My",
+        "mistake."
+      ],
+      "hints": [
+        "哎呀，",
+        "我弄错了。"
+      ],
+      "cid": "aded6adc"
+    },
+    {
+      "sentence": "I feel bad about it.",
+      "translation": "那事我觉得很抱歉。",
+      "chunks": [
+        "I feel bad",
+        "about it."
+      ],
+      "hints": [
+        "那事我觉得",
+        "很抱歉。"
+      ],
+      "cid": "b34a7d0f"
+    },
+    {
+      "sentence": "I'm sorry I couldn't come.",
+      "translation": "真抱歉，我不能来。",
+      "chunks": [
+        "I'm sorry",
+        "I couldn't come."
+      ],
+      "hints": [
+        "真抱歉，",
+        "我不能来。"
+      ],
+      "cid": "3556c15e"
+    },
+    {
+      "sentence": "I'm sorry about the other day.",
+      "translation": "前几天真是很抱歉。",
+      "chunks": [
+        "I'm sorry",
+        "about the other day."
+      ],
+      "hints": [
+        "前几天",
+        "真是很抱歉。"
+      ],
+      "cid": "daccefa3"
+    },
+    {
+      "sentence": "Please forgive my rudeness.",
+      "translation": "请您原谅我的失礼。",
+      "chunks": [
+        "Please forgive",
+        "my rudeness."
+      ],
+      "hints": [
+        "请您原谅",
+        "我的失礼。"
+      ],
+      "cid": "943b59f0"
+    },
+    {
+      "sentence": "I don't know how to apologize to you.",
+      "translation": "我不知该怎样向您道歉。",
+      "chunks": [
+        "I don't know",
+        "how to apologize to you."
+      ],
+      "hints": [
+        "我不知该怎样",
+        "向您道歉。"
+      ],
+      "cid": "2296f776"
+    },
+    {
+      "sentence": "I didn't mean that.",
+      "translation": "我并没有那个意思。",
+      "chunks": [
+        "I didn't",
+        "mean that."
+      ],
+      "hints": [
+        "我并没有",
+        "那个意思。"
+      ],
+      "cid": "b51bec02"
+    },
+    {
+      "sentence": "I'm sorry to trouble you.",
+      "translation": "真对不起，给您添麻烦了。",
+      "chunks": [
+        "I'm sorry",
+        "to trouble you."
+      ],
+      "hints": [
+        "真对不起，",
+        "给您添麻烦了。"
+      ],
+      "cid": "461eba94"
+    },
+    {
+      "sentence": "I'm really sorry for troubling you.",
+      "translation": "实在对不起，让您费心了。",
+      "chunks": [
+        "I'm really sorry",
+        "for troubling you."
+      ],
+      "hints": [
+        "实在对不起，",
+        "让您费心了。"
+      ],
+      "cid": "ec63fa00"
+    },
+    {
+      "sentence": "I wish I could...",
+      "translation": "我希望……可是……",
+      "chunks": [
+        "I wish",
+        "I could..."
+      ],
+      "hints": [
+        "我希望……",
+        "可是……"
+      ],
+      "cid": "f9476499"
+    },
+    {
+      "sentence": "That's all right.",
+      "translation": "没事儿。/别放在心里!",
+      "chunks": [
+        "That's",
+        "all right."
+      ],
+      "hints": [
+        "没事儿。",
+        "别放在心里！"
+      ],
+      "cid": "15fadbc3"
+    },
+    {
+      "sentence": "Please be more careful next time.",
+      "translation": "下次要多加小心。",
+      "chunks": [
+        "Please be more",
+        "careful next time."
+      ],
+      "hints": [
+        "下次",
+        "要多加小心。"
+      ],
+      "cid": "7a072f0b"
+    },
+    {
+      "sentence": "Let me get your coat for you.",
+      "translation": "我帮您收大衣吧。",
+      "chunks": [
+        "Let me get",
+        "your coat for you."
+      ],
+      "hints": [
+        "我帮您",
+        "收大衣吧。"
+      ],
+      "cid": "87f02154"
+    },
+    {
+      "sentence": "Make yourself at home.",
+      "translation": "别拘束，像在自己家一样吧。",
+      "chunks": [
+        "Make yourself",
+        "at home."
+      ],
+      "hints": [
+        "别拘束，",
+        "像在自己家一样吧。"
+      ],
+      "cid": "9b787492"
+    },
+    {
+      "sentence": "Do you have a minute?",
+      "translation": "现在您有空吗?",
+      "chunks": [
+        "Do you have",
+        "a minute?"
+      ],
+      "hints": [
+        "现在您",
+        "有空吗？"
+      ],
+      "cid": "43ed253d"
+    },
+    {
+      "sentence": "Can I talk to you for a minute?",
+      "translation": "我能跟您说几句话吗?",
+      "chunks": [
+        "Can I talk to you",
+        "for a minute?"
+      ],
+      "hints": [
+        "我能跟您",
+        "说几句话吗？"
+      ],
+      "cid": "18cac98f"
+    },
+    {
+      "sentence": "After you.",
+      "translation": "您先请。",
+      "chunks": [
+        "After",
+        "you."
+      ],
+      "hints": [
+        "您",
+        "先请。"
+      ],
+      "cid": "20f7a6ec"
+    },
+    {
+      "sentence": "Can I give you a hand?",
+      "translation": "我帮您一把吧!",
+      "chunks": [
+        "Can I give you",
+        "a hand?"
+      ],
+      "hints": [
+        "我帮您",
+        "一把吧！"
+      ],
+      "cid": "40dfa6d5"
+    },
+    {
+      "sentence": "I'll accept your offer.",
+      "translation": "我接受你的建议。/就照你说的。",
+      "chunks": [
+        "I'll accept",
+        "your offer."
+      ],
+      "hints": [
+        "我接受",
+        "你的建议。"
+      ],
+      "cid": "d626de3a"
+    },
+    {
+      "sentence": "Sorry to interrupt you.",
+      "translation": "对不起，打断一下。",
+      "chunks": [
+        "Sorry to",
+        "interrupt you."
+      ],
+      "hints": [
+        "对不起，",
+        "打断一下。"
+      ],
+      "cid": "1b7a1af3"
+    },
+    {
+      "sentence": "Sorry for the short notice.",
+      "translation": "真抱歉，这么突然。",
+      "chunks": [
+        "Sorry for",
+        "the short notice."
+      ],
+      "hints": [
+        "真抱歉，",
+        "这么突然。"
+      ],
+      "cid": "de1387ae"
+    },
+    {
       "sentence": "Let me know if you need anything.",
       "cid": "9f813037",
       "translation": "你需要什么就告诉我。",
@@ -105,55 +841,6 @@
           "forward it.",
           "forward to them.",
           "forward to do it."
-        ]
-      ]
-    },
-    {
-      "sentence": "You're welcome.",
-      "cid": "11e9ed12",
-      "translation": "不客气。",
-      "chunks": [
-        "You're",
-        "welcome."
-      ],
-      "hints": [
-        "你是",
-        "受欢迎的"
-      ],
-      "grammar": [
-        {
-          "role": "主语+be",
-          "color": "#c87033",
-          "phonetic": [
-            "/jʊr/",
-            "/ˈwelkəm/"
-          ],
-          "pos": "主系表结构",
-          "meaning": "你（被欢迎）"
-        },
-        {
-          "role": "表语",
-          "color": "#3358e0",
-          "phonetic": [
-            "/ˈwelkəm/"
-          ],
-          "pos": "形容词",
-          "meaning": "受欢迎的"
-        }
-      ],
-      "explanations": [
-        "**You're welcome.** 回应 Thank you 的标准说法：比 No problem 正式一点，比 My pleasure 更日常。",
-        "常见错误：写成 **You're welcomed**（被动语态，此义不成立）→ 正确是形容词 welcome。单独说 Welcome! 则是「欢迎（到来）」。"
-      ],
-      "distractors": [
-        [
-          "Your",
-          "You"
-        ],
-        [
-          "welcomes.",
-          "welcome to.",
-          "welcome here."
         ]
       ]
     },

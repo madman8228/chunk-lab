@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "d8b48e4c",
+      "sentence": "Where is the shoe store?",
+      "translation": "鞋店在哪儿?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "1ba7b906",
+      "sentence": "Excuse me, but I'm lost.",
+      "translation": "对不起，我迷路了。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "2d8d6061",
+      "sentence": "Where am I on this map?",
+      "translation": "我在地图上的什么地方?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "f4bcb7f6",
+      "sentence": "What's the name of this street?",
+      "translation": "这条街叫什么名字?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "c9a0e04b",
+      "sentence": "Is there a post office near here?",
+      "translation": "这附近有邮局吗?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "394a7afd",
+      "sentence": "How do I get to the Sakura Hotel?",
+      "translation": "去樱花饭店怎么走?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "feb9fc11",
+      "sentence": "Turn right at the first traffic light.",
+      "translation": "从第一个信号灯往右拐。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "0dec8881",
+      "sentence": "Where's the rest room?",
+      "translation": "洗手间在哪儿?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "5755d438",
+      "sentence": "It's on the right.",
+      "translation": "在右边。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "ef6c0e16",
+      "sentence": "Go straight for two blocks.",
+      "translation": "一直走到第二个街区。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "a68a2339",
+      "sentence": "You'll see it at the corner on your left.",
+      "translation": "在左侧拐角那儿就能看见。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "5762a937",
+      "sentence": "Sorry, I'm new here, too.",
+      "translation": "对不起，我也是第一次来这儿。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "23b32487",
+      "sentence": "It's next to the coffee shop.",
+      "translation": "在那家咖啡馆的旁边。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "6a9bb6fb",
+      "sentence": "It's across from City Hall.",
+      "translation": "在市政厅的对面。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "4441b1ce",
+      "sentence": "It faces City Hall.",
+      "translation": "正对着市政厅。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "bbf5c738",
+      "sentence": "It's between the bookstore and the drugstore.",
+      "translation": "在书店和药店之间。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "a7eb35f5",
+      "sentence": "It's on this side of the church.",
+      "translation": "在教堂的这一边。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "2ec8b5a3",
+      "sentence": "It's at of this street.",
+      "translation": "在这条路的尽头。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "a1b94820",
+      "sentence": "Am I near Shinjuku?",
+      "translation": "这儿离新宿近吗?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "4866d6c4",
+      "sentence": "How far is it to Shinjuku?",
+      "translation": "这儿离新宿有多远?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "28e3585c",
+      "sentence": "How long will it take?",
+      "translation": "要多长时间?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "fc6a0377",
+      "sentence": "About five minutes.",
+      "translation": "5分钟左右。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "5eda7294",
+      "sentence": "Is it far?",
+      "translation": "到那儿远吗?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "b083e28f",
+      "sentence": "Not far.",
+      "translation": "不远。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "c9299f37",
+      "sentence": "What's the easiest way to get to Shinjuku?",
+      "translation": "到新宿哪条路最好走?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "04df5f8e",
+      "sentence": "The easiest way is to take a taxi.",
+      "translation": "坐出租车去最容易找到。",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "47c0b804",
+      "sentence": "What's the quickest way to get to Shinjuku?",
+      "translation": "到新宿哪条道最快?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "52d857e9",
+      "sentence": "Where can I mail this?",
+      "translation": "在哪儿可以发信?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "1ffb3c3b",
+      "sentence": "Where can I make a phone call?",
+      "translation": "在哪儿可以打电话?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "e202bcd3",
+      "sentence": "Is this the shortcut?",
+      "translation": "这是条近路吗?",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "4226408e",
+      "sentence": "Could you tell me how to get to the station?",
+      "translation": "你能告诉我怎么去车站吗？",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "53af40c1",
+      "sentence": "Is there a pharmacy nearby?",
+      "translation": "这附近有药店吗？",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "4ca097f3",
+      "sentence": "I think we're lost, can you help us?",
+      "translation": "我想我们迷路了，你能帮我们吗？",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "179cbe0e",
+      "sentence": "How long does it take to get there?",
+      "translation": "到那里要多久？",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "9a4f0134",
+      "sentence": "By the way, do you know where the bank is?",
+      "translation": "顺便问一下，你知道银行在哪吗？",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "551d0bc0",
+      "sentence": "Is there a bank around here?",
+      "translation": "这附近有银行吗？",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "d7f8b9c8",
+      "sentence": "How do I get to the train station?",
+      "translation": "去火车站怎么走？",
+      "sourceUrl": "content/oral-6-30-1/oral-001-819f1ebe824c.json",
+      "sourceOffset": 36
+    }
+  ]
+}

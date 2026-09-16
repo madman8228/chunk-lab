@@ -3,6 +3,226 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Do you need a doctor?",
+      "translation": "用叫医生吗?",
+      "chunks": [
+        "Do you need",
+        "a doctor?"
+      ],
+      "hints": [
+        "你需要",
+        "叫医生吗？"
+      ],
+      "cid": "6e1a797a"
+    },
+    {
+      "sentence": "Please call an ambulance.",
+      "translation": "请叫救护车。",
+      "chunks": [
+        "Please call",
+        "an ambulance."
+      ],
+      "hints": [
+        "请叫",
+        "救护车。"
+      ],
+      "cid": "d109b3d8"
+    },
+    {
+      "sentence": "I'd like to see a doctor.",
+      "translation": "我要看病。",
+      "chunks": [
+        "I'd like to see",
+        "a doctor."
+      ],
+      "hints": [
+        "我要",
+        "看病。"
+      ],
+      "cid": "84adbe48"
+    },
+    {
+      "sentence": "I'm not feeling well.",
+      "cid": "b9af65ab",
+      "translation": "我不舒服。",
+      "chunks": [
+        "I'm not",
+        "feeling well."
+      ],
+      "hints": [
+        "我不",
+        "感觉好"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/nɑːt/"
+          ],
+          "pos": "be + not",
+          "meaning": "我不"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈfiːlɪŋ/",
+            "/wel/"
+          ],
+          "pos": "feel well 进行时",
+          "meaning": "感觉好"
+        }
+      ],
+      "explanations": [
+        "否定词 not 放在 be 之后。常见错误：\n• \"I not feeling well\" → 缺 am\n• \"I don't feeling well\" → 有 be 动词时不再用 don't",
+        "`feel well` 中 well 是副词，表身体健康。常见错误：\n• \"feel good\" → 表情绪好、感觉不错，说身体不舒服要用 well\n这是英语里最容易混的一组：身体用 well，心情用 good"
+      ],
+      "distractors": [
+        [
+          "I not",
+          "I'm no",
+          "I don't"
+        ],
+        [
+          "feeling good.",
+          "feel well.",
+          "feeling goodly."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you send me a doctor?",
+      "translation": "你能帮我请位医生吗?",
+      "chunks": [
+        "Could you send me",
+        "a doctor?"
+      ],
+      "hints": [
+        "你能帮我",
+        "请位医生吗？"
+      ],
+      "cid": "121a9c6a"
+    },
+    {
+      "sentence": "What's wrong with you?",
+      "translation": "你怎么啦?",
+      "chunks": [
+        "What's wrong",
+        "with you?"
+      ],
+      "hints": [
+        "你",
+        "怎么啦？"
+      ],
+      "cid": "077f60e8"
+    },
+    {
+      "sentence": "What are your symptoms?",
+      "translation": "是什么症状?",
+      "chunks": [
+        "What are",
+        "your symptoms?"
+      ],
+      "hints": [
+        "是什么",
+        "症状？"
+      ],
+      "cid": "90fcc339"
+    },
+    {
+      "sentence": "Let me check your temperature.",
+      "translation": "量一下体温吧。",
+      "chunks": [
+        "Let me check",
+        "your temperature."
+      ],
+      "hints": [
+        "量一下",
+        "体温吧。"
+      ],
+      "cid": "f08e4511"
+    },
+    {
+      "sentence": "Did you eat something unusual?",
+      "translation": "吃了什么不对劲的东西没有?",
+      "chunks": [
+        "Did you eat",
+        "something unusual?"
+      ],
+      "hints": [
+        "吃了什么",
+        "不对劲的东西没有？"
+      ],
+      "cid": "4d934ced"
+    },
+    {
+      "sentence": "Let me check your blood pressure.",
+      "translation": "量一下血压吧。",
+      "chunks": [
+        "Let me check",
+        "your blood pressure."
+      ],
+      "hints": [
+        "量一下",
+        "血压吧。"
+      ],
+      "cid": "606ed174"
+    },
+    {
+      "sentence": "Are you taking any medication regularly?",
+      "translation": "你常服用什么药?",
+      "chunks": [
+        "Are you taking",
+        "any medication regularly?"
+      ],
+      "hints": [
+        "你常服用",
+        "什么药？"
+      ],
+      "cid": "42ed2f99"
+    },
+    {
+      "sentence": "I'm not taking any medication.",
+      "translation": "我没服用任何药。",
+      "chunks": [
+        "I'm not taking",
+        "any medication."
+      ],
+      "hints": [
+        "我没服用",
+        "任何药。"
+      ],
+      "cid": "cb4ef5fa"
+    },
+    {
+      "sentence": "What's wrong with me?",
+      "translation": "我哪儿不好?",
+      "chunks": [
+        "What's wrong",
+        "with me?"
+      ],
+      "hints": [
+        "我",
+        "哪儿不好？"
+      ],
+      "cid": "cab09bff"
+    },
+    {
+      "sentence": "Is it serious?",
+      "translation": "严重吗?",
+      "chunks": [
+        "Is it",
+        "serious?"
+      ],
+      "hints": [
+        "严重",
+        "吗？"
+      ],
+      "cid": "e540bba9"
+    },
+    {
       "sentence": "How long have you been feeling like this?",
       "cid": "f5a21d52",
       "translation": "你这样感觉有多久了？",

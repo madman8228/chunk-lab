@@ -1,0 +1,812 @@
+[
+ {
+  "sentence": "Do you need a doctor?",
+  "chunks": [
+   "Do you need",
+   "a doctor?"
+  ],
+  "hints": [
+   "你需要",
+   "叫医生吗？"
+  ]
+ },
+ {
+  "sentence": "Please call an ambulance.",
+  "chunks": [
+   "Please call",
+   "an ambulance."
+  ],
+  "hints": [
+   "请叫",
+   "救护车。"
+  ]
+ },
+ {
+  "sentence": "I'd like to see a doctor.",
+  "chunks": [
+   "I'd like to see",
+   "a doctor."
+  ],
+  "hints": [
+   "我要",
+   "看病。"
+  ]
+ },
+ {
+  "sentence": "I'm not feeling well.",
+  "chunks": [
+   "I'm not",
+   "feeling well."
+  ],
+  "hints": [
+   "我觉得",
+   "身体不舒服。"
+  ]
+ },
+ {
+  "sentence": "Could you send me a doctor?",
+  "chunks": [
+   "Could you send me",
+   "a doctor?"
+  ],
+  "hints": [
+   "你能帮我",
+   "请位医生吗？"
+  ]
+ },
+ {
+  "sentence": "What's wrong with you?",
+  "chunks": [
+   "What's wrong",
+   "with you?"
+  ],
+  "hints": [
+   "你",
+   "怎么啦？"
+  ]
+ },
+ {
+  "sentence": "What are your symptoms?",
+  "chunks": [
+   "What are",
+   "your symptoms?"
+  ],
+  "hints": [
+   "是什么",
+   "症状？"
+  ]
+ },
+ {
+  "sentence": "Let me check your temperature.",
+  "chunks": [
+   "Let me check",
+   "your temperature."
+  ],
+  "hints": [
+   "量一下",
+   "体温吧。"
+  ]
+ },
+ {
+  "sentence": "Did you eat something unusual?",
+  "chunks": [
+   "Did you eat",
+   "something unusual?"
+  ],
+  "hints": [
+   "吃了什么",
+   "不对劲的东西没有？"
+  ]
+ },
+ {
+  "sentence": "Let me check your blood pressure.",
+  "chunks": [
+   "Let me check",
+   "your blood pressure."
+  ],
+  "hints": [
+   "量一下",
+   "血压吧。"
+  ]
+ },
+ {
+  "sentence": "Are you taking any medication regularly?",
+  "chunks": [
+   "Are you taking",
+   "any medication regularly?"
+  ],
+  "hints": [
+   "你常服用",
+   "什么药？"
+  ]
+ },
+ {
+  "sentence": "I'm not taking any medication.",
+  "chunks": [
+   "I'm not taking",
+   "any medication."
+  ],
+  "hints": [
+   "我没服用",
+   "任何药。"
+  ]
+ },
+ {
+  "sentence": "What's wrong with me?",
+  "chunks": [
+   "What's wrong",
+   "with me?"
+  ],
+  "hints": [
+   "我",
+   "哪儿不好？"
+  ]
+ },
+ {
+  "sentence": "Is it serious?",
+  "chunks": [
+   "Is it",
+   "serious?"
+  ],
+  "hints": [
+   "严重",
+   "吗？"
+  ]
+ },
+ {
+  "sentence": "Are you feeling okay?",
+  "chunks": [
+   "Are you",
+   "feeling okay?"
+  ],
+  "hints": [
+   "你",
+   "不舒服吗？"
+  ]
+ },
+ {
+  "sentence": "What's wrong?",
+  "chunks": [
+   "What's",
+   "wrong?"
+  ],
+  "hints": [
+   "你",
+   "怎么了？"
+  ]
+ },
+ {
+  "sentence": "You look pale.",
+  "chunks": [
+   "You",
+   "look pale."
+  ],
+  "hints": [
+   "你",
+   "脸色真不好。"
+  ]
+ },
+ {
+  "sentence": "I don't feel well.",
+  "chunks": [
+   "I don't",
+   "feel well."
+  ],
+  "hints": [
+   "我觉得",
+   "难受。"
+  ]
+ },
+ {
+  "sentence": "You don't look well.",
+  "chunks": [
+   "You don't",
+   "look well."
+  ],
+  "hints": [
+   "你好像",
+   "不太舒服。"
+  ]
+ },
+ {
+  "sentence": "She passed out.",
+  "chunks": [
+   "She",
+   "passed out."
+  ],
+  "hints": [
+   "她",
+   "昏过去了。"
+  ]
+ },
+ {
+  "sentence": "I feel sick.",
+  "chunks": [
+   "I feel",
+   "sick."
+  ],
+  "hints": [
+   "我觉得",
+   "难受。"
+  ]
+ },
+ {
+  "sentence": "I have a stomachache.",
+  "chunks": [
+   "I have",
+   "a stomachache."
+  ],
+  "hints": [
+   "我",
+   "肚子疼。"
+  ]
+ },
+ {
+  "sentence": "I have a dull pain.",
+  "chunks": [
+   "I have",
+   "a dull pain."
+  ],
+  "hints": [
+   "隐隐",
+   "作痛。"
+  ]
+ },
+ {
+  "sentence": "I have a sharp pain.",
+  "chunks": [
+   "I have",
+   "a sharp pain."
+  ],
+  "hints": [
+   "钻心地",
+   "疼。"
+  ]
+ },
+ {
+  "sentence": "I have a throbbing pain.",
+  "chunks": [
+   "I have",
+   "a throbbing pain."
+  ],
+  "hints": [
+   "一跳一跳",
+   "地疼。"
+  ]
+ },
+ {
+  "sentence": "I have a piercing pain.",
+  "chunks": [
+   "I have",
+   "a piercing pain."
+  ],
+  "hints": [
+   "我感到",
+   "巨痛。"
+  ]
+ },
+ {
+  "sentence": "I have a stabbing pain.",
+  "chunks": [
+   "I have",
+   "a stabbing pain."
+  ],
+  "hints": [
+   "像针扎",
+   "似地疼。"
+  ]
+ },
+ {
+  "sentence": "I have diarrhea.",
+  "chunks": [
+   "I have",
+   "diarrhea."
+  ],
+  "hints": [
+   "我",
+   "拉肚子了。"
+  ]
+ },
+ {
+  "sentence": "I have food poisoning.",
+  "chunks": [
+   "I have",
+   "food poisoning."
+  ],
+  "hints": [
+   "我",
+   "食物中毒了。"
+  ]
+ },
+ {
+  "sentence": "I have high blood pressure.",
+  "chunks": [
+   "I have",
+   "high blood pressure."
+  ],
+  "hints": [
+   "血压",
+   "高。"
+  ]
+ },
+ {
+  "sentence": "I have low blood pressure.",
+  "chunks": [
+   "I have",
+   "low blood pressure."
+  ],
+  "hints": [
+   "血压",
+   "低。"
+  ]
+ },
+ {
+  "sentence": "I have a headache.",
+  "chunks": [
+   "I have",
+   "a headache."
+  ],
+  "hints": [
+   "我",
+   "头疼。"
+  ]
+ },
+ {
+  "sentence": "I have a toothache.",
+  "chunks": [
+   "I have",
+   "a toothache."
+  ],
+  "hints": [
+   "我",
+   "牙疼。"
+  ]
+ },
+ {
+  "sentence": "I feel dizzy.",
+  "chunks": [
+   "I feel",
+   "dizzy."
+  ],
+  "hints": [
+   "我",
+   "头晕目眩。"
+  ]
+ },
+ {
+  "sentence": "I feel sluggish.",
+  "chunks": [
+   "I feel",
+   "sluggish."
+  ],
+  "hints": [
+   "我",
+   "浑身没劲。"
+  ]
+ },
+ {
+  "sentence": "I don't have any appetite.",
+  "chunks": [
+   "I don't have",
+   "any appetite."
+  ],
+  "hints": [
+   "我没有",
+   "一点儿食欲。"
+  ]
+ },
+ {
+  "sentence": "I have a slight cold.",
+  "chunks": [
+   "I have",
+   "a slight cold."
+  ],
+  "hints": [
+   "我有点儿",
+   "感冒。"
+  ]
+ },
+ {
+  "sentence": "I feel chilly.",
+  "chunks": [
+   "I feel",
+   "chilly."
+  ],
+  "hints": [
+   "我",
+   "浑身发冷。"
+  ]
+ },
+ {
+  "sentence": "I have a bad cold.",
+  "chunks": [
+   "I have",
+   "a bad cold."
+  ],
+  "hints": [
+   "我得了",
+   "重感冒。"
+  ]
+ },
+ {
+  "sentence": "I have a stuffy nose.",
+  "chunks": [
+   "I have",
+   "a stuffy nose."
+  ],
+  "hints": [
+   "鼻子",
+   "堵了。"
+  ]
+ },
+ {
+  "sentence": "I have a runny nose.",
+  "chunks": [
+   "I have",
+   "a runny nose."
+  ],
+  "hints": [
+   "我",
+   "在流鼻涕。"
+  ]
+ },
+ {
+  "sentence": "I have a bit of a fever.",
+  "chunks": [
+   "I have",
+   "a bit of a fever."
+  ],
+  "hints": [
+   "我有点儿",
+   "发烧。"
+  ]
+ },
+ {
+  "sentence": "I think I have a fever.",
+  "chunks": [
+   "I think",
+   "I have a fever."
+  ],
+  "hints": [
+   "我好像",
+   "发烧了。"
+  ]
+ },
+ {
+  "sentence": "I have a high temperature.",
+  "chunks": [
+   "I have",
+   "a high temperature."
+  ],
+  "hints": [
+   "我",
+   "在发高烧。"
+  ]
+ },
+ {
+  "sentence": "I feel like throwing up.",
+  "chunks": [
+   "I feel like",
+   "throwing up."
+  ],
+  "hints": [
+   "我",
+   "想吐。"
+  ]
+ },
+ {
+  "sentence": "Ouch!",
+  "chunks": [
+   "Ouch!"
+  ],
+  "hints": [
+   "好疼！/好烫！"
+  ]
+ },
+ {
+  "sentence": "It's itchy.",
+  "chunks": [
+   "It's",
+   "itchy."
+  ],
+  "hints": [
+   "有点",
+   "痒。"
+  ]
+ },
+ {
+  "sentence": "Ahchoo!",
+  "chunks": [
+   "Ahchoo!"
+  ],
+  "hints": [
+   "啊嚏！"
+  ]
+ },
+ {
+  "sentence": "I broke my leg.",
+  "chunks": [
+   "I broke",
+   "my leg."
+  ],
+  "hints": [
+   "我腿",
+   "骨折了。"
+  ]
+ },
+ {
+  "sentence": "How long will the cast be on?",
+  "chunks": [
+   "How long will",
+   "the cast be on?"
+  ],
+  "hints": [
+   "要打多长时间",
+   "石膏？"
+  ]
+ },
+ {
+  "sentence": "I burned my hand.",
+  "chunks": [
+   "I burned",
+   "my hand."
+  ],
+  "hints": [
+   "我把手",
+   "给烫了。"
+  ]
+ },
+ {
+  "sentence": "I sprained my ankle.",
+  "chunks": [
+   "I sprained",
+   "my ankle."
+  ],
+  "hints": [
+   "我",
+   "崴脚了。"
+  ]
+ },
+ {
+  "sentence": "I caught a cold from you.",
+  "chunks": [
+   "I caught a cold",
+   "from you."
+  ],
+  "hints": [
+   "你把感冒",
+   "传染给我了。"
+  ]
+ },
+ {
+  "sentence": "I must stay in bed.",
+  "chunks": [
+   "I must",
+   "stay in bed."
+  ],
+  "hints": [
+   "我必须",
+   "静养。"
+  ]
+ },
+ {
+  "sentence": "I have stiff shoulders.",
+  "chunks": [
+   "I have",
+   "stiff shoulders."
+  ],
+  "hints": [
+   "我肩膀",
+   "酸痛。"
+  ]
+ },
+ {
+  "sentence": "My eyes are tired.",
+  "chunks": [
+   "My eyes",
+   "are tired."
+  ],
+  "hints": [
+   "我眼睛",
+   "发酸。"
+  ]
+ },
+ {
+  "sentence": "Is somebody hurt?",
+  "chunks": [
+   "Is somebody",
+   "hurt?"
+  ],
+  "hints": [
+   "有谁",
+   "受伤了？"
+  ]
+ },
+ {
+  "sentence": "My fever has gone down.",
+  "chunks": [
+   "My fever has",
+   "gone down."
+  ],
+  "hints": [
+   "我",
+   "退烧了。"
+  ]
+ },
+ {
+  "sentence": "I can't stop coughing.",
+  "chunks": [
+   "I can't",
+   "stop coughing."
+  ],
+  "hints": [
+   "我",
+   "咳嗽不止。"
+  ]
+ },
+ {
+  "sentence": "My throat's sore.",
+  "chunks": [
+   "My throat's",
+   "sore."
+  ],
+  "hints": [
+   "我嗓子",
+   "疼。"
+  ]
+ },
+ {
+  "sentence": "It's bleeding.",
+  "chunks": [
+   "It's",
+   "bleeding."
+  ],
+  "hints": [
+   "伤口",
+   "在流血。"
+  ]
+ },
+ {
+  "sentence": "I've got a cut here.",
+  "chunks": [
+   "I've got",
+   "a cut here."
+  ],
+  "hints": [
+   "我这儿",
+   "割破了。"
+  ]
+ },
+ {
+  "sentence": "It hurts.",
+  "chunks": [
+   "It",
+   "hurts."
+  ],
+  "hints": [
+   "好",
+   "疼。"
+  ]
+ },
+ {
+  "sentence": "I got stung by a bee.",
+  "chunks": [
+   "I got stung",
+   "by a bee."
+  ],
+  "hints": [
+   "我被",
+   "蜜蜂蜇了。"
+  ]
+ },
+ {
+  "sentence": "Do I need an operation?",
+  "chunks": [
+   "Do I need",
+   "an operation?"
+  ],
+  "hints": [
+   "我需要",
+   "动手术吗？"
+  ]
+ },
+ {
+  "sentence": "Will it take long?",
+  "chunks": [
+   "Will it",
+   "take long?"
+  ],
+  "hints": [
+   "要花",
+   "很长时间吗？"
+  ]
+ },
+ {
+  "sentence": "Can I take a bath?",
+  "chunks": [
+   "Can I",
+   "take a bath?"
+  ],
+  "hints": [
+   "我",
+   "可以洗澡吗？"
+  ]
+ },
+ {
+  "sentence": "Is it okay to drink?",
+  "chunks": [
+   "Is it okay",
+   "to drink?"
+  ],
+  "hints": [
+   "我",
+   "可以喝酒吗？"
+  ]
+ },
+ {
+  "sentence": "Should I be hospitalized?",
+  "chunks": [
+   "Should I",
+   "be hospitalized?"
+  ],
+  "hints": [
+   "我一定要",
+   "住院吗？"
+  ]
+ },
+ {
+  "sentence": "Do you have a fever?",
+  "chunks": [
+   "Do you have",
+   "a fever?"
+  ],
+  "hints": [
+   "你",
+   "发烧吗？"
+  ]
+ },
+ {
+  "sentence": "I feel better.",
+  "chunks": [
+   "I feel",
+   "better."
+  ],
+  "hints": [
+   "我觉得",
+   "好多了。"
+  ]
+ },
+ {
+  "sentence": "I don't feel any better.",
+  "chunks": [
+   "I don't feel",
+   "any better."
+  ],
+  "hints": [
+   "我觉得",
+   "没什么好转。"
+  ]
+ },
+ {
+  "sentence": "Are you alright again?",
+  "chunks": [
+   "Are you",
+   "alright again?"
+  ],
+  "hints": [
+   "你的病",
+   "好了吗？"
+  ]
+ },
+ {
+  "sentence": "He passed away.",
+  "chunks": [
+   "He",
+   "passed away."
+  ],
+  "hints": [
+   "他",
+   "去世了。"
+  ]
+ }
+]
