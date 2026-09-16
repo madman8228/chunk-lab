@@ -1,0 +1,682 @@
+[
+ {
+  "sentence": "What a disappointment!",
+  "chunks": [
+   "What a",
+   "disappointment!"
+  ],
+  "hints": [
+   "真让人",
+   "失望！"
+  ]
+ },
+ {
+  "sentence": "What a pity.",
+  "chunks": [
+   "What a",
+   "pity."
+  ],
+  "hints": [
+   "太",
+   "遗憾了。"
+  ]
+ },
+ {
+  "sentence": "It was a waste of effort.",
+  "chunks": [
+   "It was a waste",
+   "of effort."
+  ],
+  "hints": [
+   "白费",
+   "力气了。"
+  ]
+ },
+ {
+  "sentence": "a wild-goose chase.",
+  "chunks": [
+   "a wild-goose",
+   "chase."
+  ],
+  "hints": [
+   "白费",
+   "劲。"
+  ]
+ },
+ {
+  "sentence": "All that for nothing.",
+  "chunks": [
+   "All that",
+   "for nothing."
+  ],
+  "hints": [
+   "前功",
+   "尽弃。"
+  ]
+ },
+ {
+  "sentence": "You let me down.",
+  "chunks": [
+   "You let",
+   "me down."
+  ],
+  "hints": [
+   "你",
+   "真让我失望。"
+  ]
+ },
+ {
+  "sentence": "I blew it.",
+  "chunks": [
+   "I blew",
+   "it."
+  ],
+  "hints": [
+   "我真",
+   "失策。"
+  ]
+ },
+ {
+  "sentence": "It can't be helped.",
+  "chunks": [
+   "It can't",
+   "be helped."
+  ],
+  "hints": [
+   "毫无",
+   "办法。"
+  ]
+ },
+ {
+  "sentence": "It's a waste of time.",
+  "chunks": [
+   "It's a waste",
+   "of time."
+  ],
+  "hints": [
+   "纯属",
+   "浪费时间。"
+  ]
+ },
+ {
+  "sentence": "I feel sad.",
+  "chunks": [
+   "I feel",
+   "sad."
+  ],
+  "hints": [
+   "我感到",
+   "悲伤。"
+  ]
+ },
+ {
+  "sentence": "I feel really sad.",
+  "chunks": [
+   "I feel really",
+   "sad."
+  ],
+  "hints": [
+   "我感到",
+   "非常痛苦。"
+  ]
+ },
+ {
+  "sentence": "Oh, dear!",
+  "chunks": [
+   "Oh,",
+   "dear!"
+  ],
+  "hints": [
+   "哦！",
+   "天哪！"
+  ]
+ },
+ {
+  "sentence": "Boohoo.",
+  "chunks": [
+   "Boohoo."
+  ],
+  "hints": [
+   "呜呜！"
+  ]
+ },
+ {
+  "sentence": "My heart broke.",
+  "chunks": [
+   "My heart",
+   "broke."
+  ],
+  "hints": [
+   "我的心",
+   "都碎了。"
+  ]
+ },
+ {
+  "sentence": "My heart has been filled with grief.",
+  "chunks": [
+   "My heart has been",
+   "filled with grief."
+  ],
+  "hints": [
+   "我的内心",
+   "充满了悲伤。"
+  ]
+ },
+ {
+  "sentence": "The sad story depressed me.",
+  "chunks": [
+   "The sad story",
+   "depressed me."
+  ],
+  "hints": [
+   "那悲惨的故事",
+   "使我心情抑郁。"
+  ]
+ },
+ {
+  "sentence": "How ruthless!",
+  "chunks": [
+   "How",
+   "ruthless!"
+  ],
+  "hints": [
+   "真",
+   "无情！"
+  ]
+ },
+ {
+  "sentence": "No one can understand how I really feel",
+  "chunks": [
+   "No one can understand",
+   "how I really feel"
+  ],
+  "hints": [
+   "没人能知道",
+   "我的感受。"
+  ]
+ },
+ {
+  "sentence": "I feel lonely.",
+  "chunks": [
+   "I feel",
+   "lonely."
+  ],
+  "hints": [
+   "我感到",
+   "很寂寞。"
+  ]
+ },
+ {
+  "sentence": "I hate being alone.",
+  "chunks": [
+   "I hate",
+   "being alone."
+  ],
+  "hints": [
+   "我讨厌",
+   "孤独。"
+  ]
+ },
+ {
+  "sentence": "I don't mind being alone.",
+  "chunks": [
+   "I don't mind",
+   "being alone."
+  ],
+  "hints": [
+   "我不在乎",
+   "孤独。"
+  ]
+ },
+ {
+  "sentence": "I miss you.",
+  "chunks": [
+   "I miss",
+   "you."
+  ],
+  "hints": [
+   "我",
+   "想念你。"
+  ]
+ },
+ {
+  "sentence": "I feel empty.",
+  "chunks": [
+   "I feel",
+   "empty."
+  ],
+  "hints": [
+   "我觉得",
+   "空荡荡的。"
+  ]
+ },
+ {
+  "sentence": "My life is empty.",
+  "chunks": [
+   "My life",
+   "is empty."
+  ],
+  "hints": [
+   "我的生活",
+   "很空虚。"
+  ]
+ },
+ {
+  "sentence": "Alone at last.",
+  "chunks": [
+   "Alone",
+   "at last."
+  ],
+  "hints": [
+   "最终",
+   "只剩下了我一个人。"
+  ]
+ },
+ {
+  "sentence": "I'm depressed.",
+  "chunks": [
+   "I'm",
+   "depressed."
+  ],
+  "hints": [
+   "我很",
+   "沮丧。"
+  ]
+ },
+ {
+  "sentence": "I've got the blues today.",
+  "chunks": [
+   "I've got the blues",
+   "today."
+  ],
+  "hints": [
+   "我今天",
+   "感到很忧郁。"
+  ]
+ },
+ {
+  "sentence": "It's depressing.",
+  "chunks": [
+   "It's",
+   "depressing."
+  ],
+  "hints": [
+   "这真",
+   "让人沮丧。"
+  ]
+ },
+ {
+  "sentence": "Rainy days get me down.",
+  "chunks": [
+   "Rainy days",
+   "get me down."
+  ],
+  "hints": [
+   "雨天",
+   "使我感到消沉。"
+  ]
+ },
+ {
+  "sentence": "I don't feel like doing anything.",
+  "chunks": [
+   "I don't feel like",
+   "doing anything."
+  ],
+  "hints": [
+   "我提不起精神来",
+   "做事。"
+  ]
+ },
+ {
+  "sentence": "He looks melancholy.",
+  "chunks": [
+   "He looks",
+   "melancholy."
+  ],
+  "hints": [
+   "他",
+   "满脸忧愁。"
+  ]
+ },
+ {
+  "sentence": "He looks gloomy today.",
+  "chunks": [
+   "He looks gloomy",
+   "today."
+  ],
+  "hints": [
+   "今天，",
+   "他看上去很郁闷。"
+  ]
+ },
+ {
+  "sentence": "I give up.",
+  "chunks": [
+   "I give",
+   "up."
+  ],
+  "hints": [
+   "放弃",
+   "了。"
+  ]
+ },
+ {
+  "sentence": "I can't help it.",
+  "chunks": [
+   "I can't",
+   "help it."
+  ],
+  "hints": [
+   "没",
+   "法子。"
+  ]
+ },
+ {
+  "sentence": "Not a chance!",
+  "chunks": [
+   "Not a",
+   "chance!"
+  ],
+  "hints": [
+   "没",
+   "戏。"
+  ]
+ },
+ {
+  "sentence": "That's the way it goes.",
+  "chunks": [
+   "That's the way",
+   "it goes."
+  ],
+  "hints": [
+   "毫无",
+   "办法。"
+  ]
+ },
+ {
+  "sentence": "I have no clue.",
+  "chunks": [
+   "I have",
+   "no clue."
+  ],
+  "hints": [
+   "毫无",
+   "线索。"
+  ]
+ },
+ {
+  "sentence": "I'm throwing in the towel.",
+  "chunks": [
+   "I'm throwing in",
+   "the towel."
+  ],
+  "hints": [
+   "我",
+   "认输了。"
+  ]
+ },
+ {
+  "sentence": "It's hopeless.",
+  "chunks": [
+   "It's",
+   "hopeless."
+  ],
+  "hints": [
+   "绝望",
+   "了。"
+  ]
+ },
+ {
+  "sentence": "Better than nothing.",
+  "chunks": [
+   "Better than",
+   "nothing."
+  ],
+  "hints": [
+   "总比",
+   "没有强。"
+  ]
+ },
+ {
+  "sentence": "It was fate.",
+  "chunks": [
+   "It was",
+   "fate."
+  ],
+  "hints": [
+   "这就是",
+   "命运呀！"
+  ]
+ },
+ {
+  "sentence": "It's history.",
+  "chunks": [
+   "It's",
+   "history."
+  ],
+  "hints": [
+   "都已经",
+   "过去了。"
+  ]
+ },
+ {
+  "sentence": "It beats me.",
+  "chunks": [
+   "It beats",
+   "me."
+  ],
+  "hints": [
+   "这可难倒了我。",
+   "不知道。"
+  ]
+ },
+ {
+  "sentence": "I have no other choice but to do so.",
+  "chunks": [
+   "I have no other choice",
+   "but to do so."
+  ],
+  "hints": [
+   "除此之外",
+   "我别无选择。"
+  ]
+ },
+ {
+  "sentence": "I no longer feel devoted to this company.",
+  "chunks": [
+   "I no longer feel devoted",
+   "to this company."
+  ],
+  "hints": [
+   "我已经不再留恋",
+   "这个公司了。"
+  ]
+ },
+ {
+  "sentence": "That figures.",
+  "chunks": [
+   "That",
+   "figures."
+  ],
+  "hints": [
+   "果不",
+   "其然。"
+  ]
+ },
+ {
+  "sentence": "It is just as I imagined.",
+  "chunks": [
+   "It is just",
+   "as I imagined."
+  ],
+  "hints": [
+   "正如我",
+   "所想像的那样。"
+  ]
+ },
+ {
+  "sentence": "See, didn't I tell you so?",
+  "chunks": [
+   "See,",
+   "didn't I tell you so?"
+  ],
+  "hints": [
+   "瞧，",
+   "我不早告诉你了吗？"
+  ]
+ },
+ {
+  "sentence": "Serves you right.",
+  "chunks": [
+   "Serves",
+   "you right."
+  ],
+  "hints": [
+   "报应！",
+   "活该。"
+  ]
+ },
+ {
+  "sentence": "You never know.",
+  "chunks": [
+   "You never",
+   "know."
+  ],
+  "hints": [
+   "很难说。",
+   "世事难料。"
+  ]
+ },
+ {
+  "sentence": "No wonder.",
+  "chunks": [
+   "No",
+   "wonder."
+  ],
+  "hints": [
+   "不足为奇。",
+   "没什么奇怪的。"
+  ]
+ },
+ {
+  "sentence": "I shouldn't have done it.",
+  "chunks": [
+   "I shouldn't have",
+   "done it."
+  ],
+  "hints": [
+   "我真不该",
+   "那样。"
+  ]
+ },
+ {
+  "sentence": "I shouldn't have said that.",
+  "chunks": [
+   "I shouldn't have",
+   "said that."
+  ],
+  "hints": [
+   "我要是不说那话",
+   "就好了。"
+  ]
+ },
+ {
+  "sentence": "I should have known.",
+  "chunks": [
+   "I should have",
+   "known."
+  ],
+  "hints": [
+   "我早该",
+   "知道了。"
+  ]
+ },
+ {
+  "sentence": "It was careless of me to do so.",
+  "chunks": [
+   "It was careless of me",
+   "to do so."
+  ],
+  "hints": [
+   "做那种事，",
+   "我也太不小心了。"
+  ]
+ },
+ {
+  "sentence": "I regret doing that.",
+  "chunks": [
+   "I regret",
+   "doing that."
+  ],
+  "hints": [
+   "我后悔",
+   "我做的事。"
+  ]
+ },
+ {
+  "sentence": "I had no choice.",
+  "chunks": [
+   "I had",
+   "no choice."
+  ],
+  "hints": [
+   "我",
+   "别无选择。"
+  ]
+ },
+ {
+  "sentence": "I went too far.",
+  "chunks": [
+   "I went",
+   "too far."
+  ],
+  "hints": [
+   "我做得",
+   "太过了。"
+  ]
+ },
+ {
+  "sentence": "I was too nervous.",
+  "chunks": [
+   "I was",
+   "too nervous."
+  ],
+  "hints": [
+   "我",
+   "太紧张了。"
+  ]
+ },
+ {
+  "sentence": "I wish I had studied harder.",
+  "chunks": [
+   "I wish I had",
+   "studied harder."
+  ],
+  "hints": [
+   "我要是",
+   "再用功点就好了。"
+  ]
+ },
+ {
+  "sentence": "I should have asked him.",
+  "chunks": [
+   "I should have",
+   "asked him."
+  ],
+  "hints": [
+   "我要是",
+   "问他一下就好了。"
+  ]
+ },
+ {
+  "sentence": "It slipped my mind.",
+  "chunks": [
+   "It slipped",
+   "my mind."
+  ],
+  "hints": [
+   "不留神",
+   "给忘了。"
+  ]
+ }
+]

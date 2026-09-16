@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-596200a3d14b07d3f2971ab111c11c2acb07d642558f340da73f612247e4b70a",
+  "contentVersion": "v1-224e51f0ebf5986fc5e74b88da2804318e8c355fc11e6fe51ebe505e5e4eb094",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -83,24 +83,24 @@
       "sectionTitle": "在家中",
       "topic": "从回家到就寝",
       "baseCount": 0,
-      "totalCount": 68,
+      "totalCount": 67,
       "shards": [
         {
-          "id": "oral-001-38cd51c51fda",
-          "url": "content/oral-1-1-2/oral-001-38cd51c51fda.json",
-          "count": 68,
-          "bytes": 87628,
-          "sha256": "38cd51c51fda56fd58c99836f89480118541993ec458c711c8264b63f8832d9f",
+          "id": "oral-001-7228d061d964",
+          "url": "content/oral-1-1-2/oral-001-7228d061d964.json",
+          "count": 67,
+          "bytes": 86458,
+          "sha256": "7228d061d964cd9c4ada252dd3c2eb8aaf51e3a86d15a8ebdbce53d3322e138a",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-41f2912140e4",
-          "url": "content/oral-1-1-2/oral-index-001-41f2912140e4.json",
-          "count": 68,
-          "bytes": 14451,
-          "sha256": "41f2912140e4a14add59d932e68da78fb0df2b9d5ac4c08ade9af03769678737",
+          "id": "oral-index-001-0ea6f4028166",
+          "url": "content/oral-1-1-2/oral-index-001-0ea6f4028166.json",
+          "count": 67,
+          "bytes": 14256,
+          "sha256": "0ea6f4028166bc099aac45042094ffa741ae94ea19e38a85d292fd5e4c79fccd",
           "mode": "index"
         }
       ]
@@ -1331,24 +1331,24 @@
       "sectionTitle": "悲伤时",
       "topic": "",
       "baseCount": 0,
-      "totalCount": 3,
+      "totalCount": 65,
       "shards": [
         {
-          "id": "oral-001-9cf854dd01aa",
-          "url": "content/oral-4-18/oral-001-9cf854dd01aa.json",
-          "count": 3,
-          "bytes": 5286,
-          "sha256": "9cf854dd01aa76ec1cd61aef838bfb7262df666d6011e9350fc0019be4ed3f8d",
+          "id": "oral-001-ea88004ca9a1",
+          "url": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+          "count": 65,
+          "bytes": 22696,
+          "sha256": "ea88004ca9a1d28fb98b58c547eee781f2ee9989d97e83ab59f1da98be0f7a41",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-55b3afbce0b6",
-          "url": "content/oral-4-18/oral-index-001-55b3afbce0b6.json",
-          "count": 3,
-          "bytes": 814,
-          "sha256": "55b3afbce0b667bdf9f542593e89bfcfe2762798db290ef8d9d4f5d8ff758bfb",
+          "id": "oral-index-001-8f26a1f24f69",
+          "url": "content/oral-4-18/oral-index-001-8f26a1f24f69.json",
+          "count": 65,
+          "bytes": 14351,
+          "sha256": "8f26a1f24f69626dca14174e23586075a71309e36b2ce4f114e8e62a8dec4fde",
           "mode": "index"
         }
       ]
@@ -1395,24 +1395,24 @@
       "sectionTitle": "安慰时",
       "topic": "",
       "baseCount": 0,
-      "totalCount": 16,
+      "totalCount": 81,
       "shards": [
         {
-          "id": "oral-001-5ad11e0638fe",
-          "url": "content/oral-4-20/oral-001-5ad11e0638fe.json",
-          "count": 16,
-          "bytes": 23477,
-          "sha256": "5ad11e0638fea614f5fd2b4c3246c6f93107b3bdf8baa41481424d0371d63443",
+          "id": "oral-001-17c82a2b0dc9",
+          "url": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+          "count": 81,
+          "bytes": 40733,
+          "sha256": "17c82a2b0dc9fea3fb96b2ed3494b70717bbb662a0fc4c469ab390d1d9a3d74c",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-ee152b3a3aee",
-          "url": "content/oral-4-20/oral-index-001-ee152b3a3aee.json",
-          "count": 16,
-          "bytes": 3675,
-          "sha256": "ee152b3a3aee640630617353c32c56d0411465559d06686410663fc007c42dd6",
+          "id": "oral-index-001-b7bce3ad9990",
+          "url": "content/oral-4-20/oral-index-001-b7bce3ad9990.json",
+          "count": 81,
+          "bytes": 17879,
+          "sha256": "b7bce3ad999050cb38e401e49137cecd3677083677df2b6988e79d093b923ed7",
           "mode": "index"
         }
       ]
@@ -1459,24 +1459,24 @@
       "sectionTitle": "为难时",
       "topic": "",
       "baseCount": 0,
-      "totalCount": 16,
+      "totalCount": 15,
       "shards": [
         {
-          "id": "oral-001-507352a7a28b",
-          "url": "content/oral-4-22/oral-001-507352a7a28b.json",
-          "count": 16,
-          "bytes": 6706,
-          "sha256": "507352a7a28bc27f653eaf41c7bc4b60082bdee2320e20573bff472faa6b2913",
+          "id": "oral-001-81c1c621986b",
+          "url": "content/oral-4-22/oral-001-81c1c621986b.json",
+          "count": 15,
+          "bytes": 5442,
+          "sha256": "81c1c621986b982b0d99c959c1dd995e3ca560ef9c0fd01be5614563d20f63c6",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-39a4f3e5185e",
-          "url": "content/oral-4-22/oral-index-001-39a4f3e5185e.json",
-          "count": 16,
-          "bytes": 3507,
-          "sha256": "39a4f3e5185e2abb999366b78f481732d8aee18b74a3c47f4ddfcc86bf942f41",
+          "id": "oral-index-001-a2a818c93236",
+          "url": "content/oral-4-22/oral-index-001-a2a818c93236.json",
+          "count": 15,
+          "bytes": 3293,
+          "sha256": "a2a818c93236a461ddf4de1b9def8642a15cd96391dd57260d9d5478f0bf727d",
           "mode": "index"
         }
       ]
@@ -1683,24 +1683,24 @@
       "sectionTitle": "在飞机上、饭店里",
       "topic": "在飞机上～在饭店遇到困难时",
       "baseCount": 0,
-      "totalCount": 8,
+      "totalCount": 81,
       "shards": [
         {
-          "id": "oral-001-307fc7ed253a",
-          "url": "content/oral-6-29-1/oral-001-307fc7ed253a.json",
-          "count": 8,
-          "bytes": 12578,
-          "sha256": "307fc7ed253a3aa3410316d77a9100f2dcdf6394c53296ae29e5fa91be86110f",
+          "id": "oral-001-6d5facc088cf",
+          "url": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+          "count": 81,
+          "bytes": 34423,
+          "sha256": "6d5facc088cfe4b9fee0c7adddcdc3d895715af0af9353c9cefc25ebb0ece7c5",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-bca65e6ad8e0",
-          "url": "content/oral-6-29-1/oral-index-001-bca65e6ad8e0.json",
-          "count": 8,
-          "bytes": 1999,
-          "sha256": "bca65e6ad8e0f0fb1edc0ebf61caa4119182bd7858ab8e42414a3a4c92cc68da",
+          "id": "oral-index-001-93d7a5b2c6b2",
+          "url": "content/oral-6-29-1/oral-index-001-93d7a5b2c6b2.json",
+          "count": 81,
+          "bytes": 18845,
+          "sha256": "93d7a5b2c6b26353402ae4ab9aa43a90a5d6731f7cc5a9b06b81ba7c32f87ad0",
           "mode": "index"
         }
       ]

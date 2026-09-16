@@ -1,0 +1,717 @@
+[
+ {
+  "sentence": "Are you okay?",
+  "chunks": [
+   "Are you",
+   "okay?"
+  ],
+  "hints": [
+   "你",
+   "没事吧？"
+  ]
+ },
+ {
+  "sentence": "What's going on?",
+  "chunks": [
+   "What's",
+   "going on?"
+  ],
+  "hints": [
+   "到底",
+   "怎么回事？"
+  ]
+ },
+ {
+  "sentence": "Is something on your mind?",
+  "chunks": [
+   "Is something",
+   "on your mind?"
+  ],
+  "hints": [
+   "你",
+   "有什么心事吗？"
+  ]
+ },
+ {
+  "sentence": "I was worried about you.",
+  "chunks": [
+   "I was worried",
+   "about you."
+  ],
+  "hints": [
+   "我",
+   "担心你。"
+  ]
+ },
+ {
+  "sentence": "Please don't go out of your way.",
+  "chunks": [
+   "Please don't go out of",
+   "your way."
+  ],
+  "hints": [
+   "请不要",
+   "特地为我麻烦。"
+  ]
+ },
+ {
+  "sentence": "You look serious.",
+  "chunks": [
+   "You look",
+   "serious."
+  ],
+  "hints": [
+   "你怎么",
+   "那么严肃。"
+  ]
+ },
+ {
+  "sentence": "You look sad today.",
+  "chunks": [
+   "You look sad",
+   "today."
+  ],
+  "hints": [
+   "你今天",
+   "看上去很悲伤。"
+  ]
+ },
+ {
+  "sentence": "You don't look very happy today.",
+  "chunks": [
+   "You don't look",
+   "very happy today."
+  ],
+  "hints": [
+   "你今天",
+   "怎么满脸的不高兴。"
+  ]
+ },
+ {
+  "sentence": "Why are you so glum?",
+  "chunks": [
+   "Why are you",
+   "so glum?"
+  ],
+  "hints": [
+   "你怎么",
+   "闷闷不乐的呀？"
+  ]
+ },
+ {
+  "sentence": "You look exhausted.",
+  "chunks": [
+   "You look",
+   "exhausted."
+  ],
+  "hints": [
+   "你看起来",
+   "很疲惫。"
+  ]
+ },
+ {
+  "sentence": "You need a break.",
+  "chunks": [
+   "You need",
+   "a break."
+  ],
+  "hints": [
+   "你该",
+   "休息一会儿。"
+  ]
+ },
+ {
+  "sentence": "Something is wrong with you today.",
+  "chunks": [
+   "Something is wrong",
+   "with you today."
+  ],
+  "hints": [
+   "你今天",
+   "有点儿不大对劲。"
+  ]
+ },
+ {
+  "sentence": "Who are you irritated with?",
+  "chunks": [
+   "Who are you",
+   "irritated with?"
+  ],
+  "hints": [
+   "谁让你",
+   "烦躁了？"
+  ]
+ },
+ {
+  "sentence": "You're nervous.",
+  "chunks": [
+   "You're",
+   "nervous."
+  ],
+  "hints": [
+   "你",
+   "太紧张。"
+  ]
+ },
+ {
+  "sentence": "I'm sorry to hear that.",
+  "chunks": [
+   "I'm sorry",
+   "to hear that."
+  ],
+  "hints": [
+   "听到这事",
+   "我很难过。"
+  ]
+ },
+ {
+  "sentence": "That's unfortunate.",
+  "chunks": [
+   "That's",
+   "unfortunate."
+  ],
+  "hints": [
+   "真不",
+   "走运！"
+  ]
+ },
+ {
+  "sentence": "It happens!",
+  "chunks": [
+   "It",
+   "happens!"
+  ],
+  "hints": [
+   "常有",
+   "的事。"
+  ]
+ },
+ {
+  "sentence": "It's a common mistake.",
+  "chunks": [
+   "It's a common",
+   "mistake."
+  ],
+  "hints": [
+   "这是常见的",
+   "错误。"
+  ]
+ },
+ {
+  "sentence": "It must be tough for you.",
+  "chunks": [
+   "It must be tough",
+   "for you."
+  ],
+  "hints": [
+   "那你肯定",
+   "很难受吧。"
+  ]
+ },
+ {
+  "sentence": "Oh, poor thing!",
+  "chunks": [
+   "Oh,",
+   "poor thing!"
+  ],
+  "hints": [
+   "啊，",
+   "真可怜！"
+  ]
+ },
+ {
+  "sentence": "I know how you feel.",
+  "chunks": [
+   "I know",
+   "how you feel."
+  ],
+  "hints": [
+   "我理解",
+   "你的心情。"
+  ]
+ },
+ {
+  "sentence": "Never mind.",
+  "chunks": [
+   "Never",
+   "mind."
+  ],
+  "hints": [
+   "别",
+   "在意。"
+  ]
+ },
+ {
+  "sentence": "What bad luck.",
+  "chunks": [
+   "What",
+   "bad luck."
+  ],
+  "hints": [
+   "太",
+   "遗憾了。"
+  ]
+ },
+ {
+  "sentence": "Don't blame yourself.",
+  "chunks": [
+   "Don't blame",
+   "yourself."
+  ],
+  "hints": [
+   "别",
+   "责备自己了。"
+  ]
+ },
+ {
+  "sentence": "It's not your fault.",
+  "chunks": [
+   "It's not",
+   "your fault."
+  ],
+  "hints": [
+   "这不是",
+   "你的错。"
+  ]
+ },
+ {
+  "sentence": "It happens to the best of us.",
+  "chunks": [
+   "It happens",
+   "to the best of us."
+  ],
+  "hints": [
+   "这种事",
+   "谁都会遇到。"
+  ]
+ },
+ {
+  "sentence": "There's no need to worry about it.",
+  "chunks": [
+   "There's no need",
+   "to worry about it."
+  ],
+  "hints": [
+   "不必",
+   "为那事烦恼。"
+  ]
+ },
+ {
+  "sentence": "Don't give it another thought.",
+  "chunks": [
+   "Don't give it",
+   "another thought."
+  ],
+  "hints": [
+   "别",
+   "想得太多。"
+  ]
+ },
+ {
+  "sentence": "I don't want to put you out.",
+  "chunks": [
+   "I don't want",
+   "to put you out."
+  ],
+  "hints": [
+   "我不想",
+   "给您添麻烦。"
+  ]
+ },
+ {
+  "sentence": "This is nothing.",
+  "chunks": [
+   "This is",
+   "nothing."
+  ],
+  "hints": [
+   "这",
+   "算什么呀。"
+  ]
+ },
+ {
+  "sentence": "How terrible!",
+  "chunks": [
+   "How",
+   "terrible!"
+  ],
+  "hints": [
+   "多",
+   "糟糕呀！"
+  ]
+ },
+ {
+  "sentence": "No big deal.",
+  "chunks": [
+   "No big",
+   "deal."
+  ],
+  "hints": [
+   "别",
+   "小题大作。"
+  ]
+ },
+ {
+  "sentence": "I've seen worse.",
+  "chunks": [
+   "I've seen",
+   "worse."
+  ],
+  "hints": [
+   "这还算",
+   "好的呢。"
+  ]
+ },
+ {
+  "sentence": "Don't feel so bad about yourself.",
+  "chunks": [
+   "Don't feel so bad",
+   "about yourself."
+  ],
+  "hints": [
+   "别那么",
+   "自暴自弃。"
+  ]
+ },
+ {
+  "sentence": "It'll work out.",
+  "chunks": [
+   "It'll",
+   "work out."
+  ],
+  "hints": [
+   "总会有",
+   "办法的。"
+  ]
+ },
+ {
+  "sentence": "She's just upset.",
+  "chunks": [
+   "She's just",
+   "upset."
+  ],
+  "hints": [
+   "她只是",
+   "有点心烦。"
+  ]
+ },
+ {
+  "sentence": "Don't cry.",
+  "chunks": [
+   "Don't",
+   "cry."
+  ],
+  "hints": [
+   "别",
+   "哭了。"
+  ]
+ },
+ {
+  "sentence": "Wipe your tears.",
+  "chunks": [
+   "Wipe",
+   "your tears."
+  ],
+  "hints": [
+   "擦擦",
+   "眼泪。"
+  ]
+ },
+ {
+  "sentence": "Cheer up!",
+  "chunks": [
+   "Cheer",
+   "up!"
+  ],
+  "hints": [
+   "振作",
+   "起来！"
+  ]
+ },
+ {
+  "sentence": "We'll cheer for your team.",
+  "chunks": [
+   "We'll cheer",
+   "for your team."
+  ],
+  "hints": [
+   "我们会",
+   "给你们队助威的。"
+  ]
+ },
+ {
+  "sentence": "Try harder next time.",
+  "chunks": [
+   "Try harder",
+   "next time."
+  ],
+  "hints": [
+   "下次",
+   "再努力吧。"
+  ]
+ },
+ {
+  "sentence": "Hang in there!",
+  "chunks": [
+   "Hang",
+   "in there!"
+  ],
+  "hints": [
+   "别",
+   "松劲！"
+  ]
+ },
+ {
+  "sentence": "Don't give up!",
+  "chunks": [
+   "Don't give",
+   "up!"
+  ],
+  "hints": [
+   "别认输！",
+   "别放弃！"
+  ]
+ },
+ {
+  "sentence": "You can do it!",
+  "chunks": [
+   "You can",
+   "do it!"
+  ],
+  "hints": [
+   "你可以",
+   "的！"
+  ]
+ },
+ {
+  "sentence": "Look on the bright side.",
+  "chunks": [
+   "Look on",
+   "the bright side."
+  ],
+  "hints": [
+   "你得看到",
+   "事情好的一面。"
+  ]
+ },
+ {
+  "sentence": "Don't take it too seriously!",
+  "chunks": [
+   "Don't take it",
+   "too seriously!"
+  ],
+  "hints": [
+   "别看得",
+   "那么严重！"
+  ]
+ },
+ {
+  "sentence": "Keep your chin up!",
+  "chunks": [
+   "Keep your",
+   "chin up!"
+  ],
+  "hints": [
+   "别",
+   "灰心！"
+  ]
+ },
+ {
+  "sentence": "You can do anything if you really want to.",
+  "chunks": [
+   "You can do anything",
+   "if you really want to."
+  ],
+  "hints": [
+   "只要你想做，",
+   "你就一定能做得到。"
+  ]
+ },
+ {
+  "sentence": "There's a chance.",
+  "chunks": [
+   "There's",
+   "a chance."
+  ],
+  "hints": [
+   "这是一个",
+   "机会。"
+  ]
+ },
+ {
+  "sentence": "Worrying about it won't solve anything.",
+  "chunks": [
+   "Worrying about it",
+   "won't solve anything."
+  ],
+  "hints": [
+   "担心",
+   "解决不了任何问题。"
+  ]
+ },
+ {
+  "sentence": "Get it together, Jack!",
+  "chunks": [
+   "Get it together,",
+   "Jack!"
+  ],
+  "hints": [
+   "振作起来！",
+   "杰克。"
+  ]
+ },
+ {
+  "sentence": "Just try it.",
+  "chunks": [
+   "Just",
+   "try it."
+  ],
+  "hints": [
+   "试试",
+   "看。"
+  ]
+ },
+ {
+  "sentence": "Try and do it.",
+  "chunks": [
+   "Try and",
+   "do it."
+  ],
+  "hints": [
+   "试着",
+   "做做。"
+  ]
+ },
+ {
+  "sentence": "Try again.",
+  "chunks": [
+   "Try",
+   "again."
+  ],
+  "hints": [
+   "再试",
+   "一遍。"
+  ]
+ },
+ {
+  "sentence": "Don't be a chicken.",
+  "chunks": [
+   "Don't be",
+   "a chicken."
+  ],
+  "hints": [
+   "别",
+   "害怕。"
+  ]
+ },
+ {
+  "sentence": "Let's face facts.",
+  "chunks": [
+   "Let's face",
+   "facts."
+  ],
+  "hints": [
+   "让我们",
+   "面对现实。"
+  ]
+ },
+ {
+  "sentence": "Let's cheer him up.",
+  "chunks": [
+   "Let's cheer",
+   "him up."
+  ],
+  "hints": [
+   "我们得让他",
+   "振作起来。"
+  ]
+ },
+ {
+  "sentence": "I wish you success!",
+  "chunks": [
+   "I wish",
+   "you success!"
+  ],
+  "hints": [
+   "我祝你",
+   "成功！"
+  ]
+ },
+ {
+  "sentence": "Tell him to his face.",
+  "chunks": [
+   "Tell him",
+   "to his face."
+  ],
+  "hints": [
+   "应当",
+   "面对他说。"
+  ]
+ },
+ {
+  "sentence": "I'm serious.",
+  "chunks": [
+   "I'm",
+   "serious."
+  ],
+  "hints": [
+   "我是",
+   "认真的。"
+  ]
+ },
+ {
+  "sentence": "Take my word for it.",
+  "chunks": [
+   "Take my word",
+   "for it."
+  ],
+  "hints": [
+   "这是",
+   "真的呀！"
+  ]
+ },
+ {
+  "sentence": "You'd better believe it!",
+  "chunks": [
+   "You'd better",
+   "believe it!"
+  ],
+  "hints": [
+   "请",
+   "相信！"
+  ]
+ },
+ {
+  "sentence": "I'm sure of it.",
+  "chunks": [
+   "I'm sure",
+   "of it."
+  ],
+  "hints": [
+   "我敢",
+   "肯定。"
+  ]
+ },
+ {
+  "sentence": "It may sound strange, but it's true.",
+  "chunks": [
+   "It may sound strange,",
+   "but it's true."
+  ],
+  "hints": [
+   "听起来也许奇怪，",
+   "但它是真的。"
+  ]
+ },
+ {
+  "sentence": "I'm innocent!",
+  "chunks": [
+   "I'm",
+   "innocent!"
+  ],
+  "hints": [
+   "我是",
+   "无辜的！"
+  ]
+ }
+]

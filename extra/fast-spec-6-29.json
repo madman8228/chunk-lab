@@ -1,0 +1,803 @@
+[
+ {
+  "sentence": "What would you like to drink?",
+  "chunks": [
+   "What would you like",
+   "to drink?"
+  ],
+  "hints": [
+   "您想喝点儿",
+   "什么？"
+  ]
+ },
+ {
+  "sentence": "Coffee, please.",
+  "chunks": [
+   "Coffee,",
+   "please."
+  ],
+  "hints": [
+   "请来",
+   "一杯咖啡。"
+  ]
+ },
+ {
+  "sentence": "With sugar and cream?",
+  "chunks": [
+   "With sugar",
+   "and cream?"
+  ],
+  "hints": [
+   "要加牛奶",
+   "和糖吗？"
+  ]
+ },
+ {
+  "sentence": "What would you like for dinner, beef or fish?",
+  "chunks": [
+   "What would you like for dinner,",
+   "beef or fish?"
+  ],
+  "hints": [
+   "午餐您要",
+   "牛肉还是要鱼？"
+  ]
+ },
+ {
+  "sentence": "Beef, please.",
+  "chunks": [
+   "Beef,",
+   "please."
+  ],
+  "hints": [
+   "请给我",
+   "牛肉。"
+  ]
+ },
+ {
+  "sentence": "Have you finished?",
+  "chunks": [
+   "Have you",
+   "finished?"
+  ],
+  "hints": [
+   "您",
+   "用完了吗？"
+  ]
+ },
+ {
+  "sentence": "May I clear the table?",
+  "chunks": [
+   "May I clear",
+   "the table?"
+  ],
+  "hints": [
+   "我可以",
+   "收走了吗？"
+  ]
+ },
+ {
+  "sentence": "Clear the table, please.",
+  "chunks": [
+   "Clear the table,",
+   "please."
+  ],
+  "hints": [
+   "请您",
+   "收拾一下桌子吧。"
+  ]
+ },
+ {
+  "sentence": "Can I have some water?",
+  "chunks": [
+   "Can I have",
+   "some water?"
+  ],
+  "hints": [
+   "您能给我",
+   "杯水吗？"
+  ]
+ },
+ {
+  "sentence": "Can I have something to drink?",
+  "chunks": [
+   "Can I have",
+   "something to drink?"
+  ],
+  "hints": [
+   "能给我",
+   "点儿喝的吗？"
+  ]
+ },
+ {
+  "sentence": "A blanket, please.",
+  "chunks": [
+   "A blanket,",
+   "please."
+  ],
+  "hints": [
+   "请给我",
+   "一条毯子。"
+  ]
+ },
+ {
+  "sentence": "I feel cold.",
+  "chunks": [
+   "I feel",
+   "cold."
+  ],
+  "hints": [
+   "我觉得",
+   "冷。"
+  ]
+ },
+ {
+  "sentence": "I feel hot.",
+  "chunks": [
+   "I feel",
+   "hot."
+  ],
+  "hints": [
+   "我觉得",
+   "热。"
+  ]
+ },
+ {
+  "sentence": "Can I have some medicine?",
+  "chunks": [
+   "Can I have",
+   "some medicine?"
+  ],
+  "hints": [
+   "能给我",
+   "点儿药吗？"
+  ]
+ },
+ {
+  "sentence": "Could you tell me how to fill out this form?",
+  "chunks": [
+   "Could you tell me",
+   "how to fill out this form?"
+  ],
+  "hints": [
+   "您能告诉我",
+   "怎么填这张表吗？"
+  ]
+ },
+ {
+  "sentence": "May I see your passport, please?",
+  "chunks": [
+   "May I see",
+   "your passport, please?"
+  ],
+  "hints": [
+   "请出示",
+   "您的护照。"
+  ]
+ },
+ {
+  "sentence": "How long will you be staying in the United States?",
+  "chunks": [
+   "How long will you be staying",
+   "in the United States?"
+  ],
+  "hints": [
+   "您在美国",
+   "停留多长时间？"
+  ]
+ },
+ {
+  "sentence": "Sightseeing.",
+  "chunks": [
+   "Sightseeing."
+  ],
+  "hints": [
+   "旅游。"
+  ]
+ },
+ {
+  "sentence": "Business.",
+  "chunks": [
+   "Business."
+  ],
+  "hints": [
+   "工作。"
+  ]
+ },
+ {
+  "sentence": "I'm here on vacation.",
+  "chunks": [
+   "I'm here",
+   "on vacation."
+  ],
+  "hints": [
+   "我是来",
+   "度假的。"
+  ]
+ },
+ {
+  "sentence": "Where are you staying?",
+  "chunks": [
+   "Where are you",
+   "staying?"
+  ],
+  "hints": [
+   "您",
+   "住哪儿？"
+  ]
+ },
+ {
+  "sentence": "Do you have anything to declare?",
+  "chunks": [
+   "Do you have",
+   "anything to declare?"
+  ],
+  "hints": [
+   "有什么",
+   "需要报关的吗？"
+  ]
+ },
+ {
+  "sentence": "At the Washington Hotel.",
+  "chunks": [
+   "At the Washington",
+   "Hotel."
+  ],
+  "hints": [
+   "在华盛顿",
+   "饭店。"
+  ]
+ },
+ {
+  "sentence": "How much money do you have?",
+  "chunks": [
+   "How much money",
+   "do you have?"
+  ],
+  "hints": [
+   "您带了",
+   "多少现金？"
+  ]
+ },
+ {
+  "sentence": "Four hundred dollars and one hundred thousand yen.",
+  "chunks": [
+   "Four hundred dollars",
+   "and one hundred thousand yen."
+  ],
+  "hints": [
+   "我有400美金",
+   "和10万日元。"
+  ]
+ },
+ {
+  "sentence": "Okay. Have a nice stay.",
+  "chunks": [
+   "Okay. Have a",
+   "nice stay."
+  ],
+  "hints": [
+   "好了，",
+   "祝您愉快！"
+  ]
+ },
+ {
+  "sentence": "I can't find my baggage.",
+  "chunks": [
+   "I can't find",
+   "my baggage."
+  ],
+  "hints": [
+   "我找不着",
+   "行李了。"
+  ]
+ },
+ {
+  "sentence": "Please check it immediately.",
+  "chunks": [
+   "Please check it",
+   "immediately."
+  ],
+  "hints": [
+   "请马上",
+   "查一查。"
+  ]
+ },
+ {
+  "sentence": "Please deliver the baggage to my hotel as soon as you have located it.",
+  "chunks": [
+   "Please deliver the baggage to my hotel",
+   "as soon as you have located it."
+  ],
+  "hints": [
+   "找到后",
+   "请马上把我的行李送到饭店。"
+  ]
+ },
+ {
+  "sentence": "I'd like to reconfirm my flight.",
+  "chunks": [
+   "I'd like to",
+   "reconfirm my flight."
+  ],
+  "hints": [
+   "我想确认",
+   "一下我的机票。"
+  ]
+ },
+ {
+  "sentence": "Where is the Japan Airlines counter?",
+  "chunks": [
+   "Where is the",
+   "Japan Airlines counter?"
+  ],
+  "hints": [
+   "日本航空公司的",
+   "柜台在哪儿？"
+  ]
+ },
+ {
+  "sentence": "Where is the boarding gate?",
+  "chunks": [
+   "Where is",
+   "the boarding gate?"
+  ],
+  "hints": [
+   "登机口",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "What time do you start boarding?",
+  "chunks": [
+   "What time do you",
+   "start boarding?"
+  ],
+  "hints": [
+   "什么时候",
+   "开始登机？"
+  ]
+ },
+ {
+  "sentence": "Has this flight begun boarding?",
+  "chunks": [
+   "Has this flight",
+   "begun boarding?"
+  ],
+  "hints": [
+   "这个航班",
+   "开始登机了吗？"
+  ]
+ },
+ {
+  "sentence": "What time will we arrive in Tokyo?",
+  "chunks": [
+   "What time will we",
+   "arrive in Tokyo?"
+  ],
+  "hints": [
+   "几点",
+   "到东京？"
+  ]
+ },
+ {
+  "sentence": "Is there a room available for tonight?",
+  "chunks": [
+   "Is there a room",
+   "available for tonight?"
+  ],
+  "hints": [
+   "今天晚上",
+   "有空房间吗？"
+  ]
+ },
+ {
+  "sentence": "I reserved a room for tonight.",
+  "chunks": [
+   "I reserved a room",
+   "for tonight."
+  ],
+  "hints": [
+   "我预订了",
+   "一个房间。"
+  ]
+ },
+ {
+  "sentence": "Check in, please.",
+  "chunks": [
+   "Check in,",
+   "please."
+  ],
+  "hints": [
+   "请办",
+   "入住手续。"
+  ]
+ },
+ {
+  "sentence": "Take my baggage, please.",
+  "chunks": [
+   "Take my baggage,",
+   "please."
+  ],
+  "hints": [
+   "请帮我",
+   "拿一下行李。"
+  ]
+ },
+ {
+  "sentence": "I'd like a key to room 809, please.",
+  "chunks": [
+   "I'd like a key",
+   "to room 809, please."
+  ],
+  "hints": [
+   "请给我",
+   "809房间的钥匙。"
+  ]
+ },
+ {
+  "sentence": "Where is the dining room?",
+  "chunks": [
+   "Where is",
+   "the dining room?"
+  ],
+  "hints": [
+   "餐厅",
+   "在哪儿？"
+  ]
+ },
+ {
+  "sentence": "What time does the dining room open?",
+  "chunks": [
+   "What time does",
+   "the dining room open?"
+  ],
+  "hints": [
+   "餐厅",
+   "几点开门？"
+  ]
+ },
+ {
+  "sentence": "What time can I have breakfast?",
+  "chunks": [
+   "What time can I",
+   "have breakfast?"
+  ],
+  "hints": [
+   "几点",
+   "吃早饭？"
+  ]
+ },
+ {
+  "sentence": "Where can I get some beer?",
+  "chunks": [
+   "Where can I get",
+   "some beer?"
+  ],
+  "hints": [
+   "我在哪儿",
+   "可以买到啤酒？"
+  ]
+ },
+ {
+  "sentence": "Can you keep my valuables?",
+  "chunks": [
+   "Can you keep",
+   "my valuables?"
+  ],
+  "hints": [
+   "我可以把",
+   "贵重物品存这儿吗？"
+  ]
+ },
+ {
+  "sentence": "Yen to dollars, please.",
+  "chunks": [
+   "Yen to dollars,",
+   "please."
+  ],
+  "hints": [
+   "我想把",
+   "日元换成美金。"
+  ]
+ },
+ {
+  "sentence": "Cash, please.",
+  "chunks": [
+   "Cash,",
+   "please."
+  ],
+  "hints": [
+   "请换成",
+   "现金。"
+  ]
+ },
+ {
+  "sentence": "Could you cash this traveler's check for me?",
+  "chunks": [
+   "Could you cash",
+   "this traveler's check for me?"
+  ],
+  "hints": [
+   "您能帮我把",
+   "旅行支票换成现金吗？"
+  ]
+ },
+ {
+  "sentence": "Would you exchange this one hundred dollar bill with five twenties?",
+  "chunks": [
+   "Would you exchange",
+   "this one hundred dollar bill",
+   "with five twenties?"
+  ],
+  "hints": [
+   "请帮我把这100美元",
+   "换成",
+   "5张20美元的。"
+  ]
+ },
+ {
+  "sentence": "Does anyone speak Japanese?",
+  "chunks": [
+   "Does anyone",
+   "speak Japanese?"
+  ],
+  "hints": [
+   "有人会",
+   "说日语吗？"
+  ]
+ },
+ {
+  "sentence": "Are there any messages for me?",
+  "chunks": [
+   "Are there any",
+   "messages for me?"
+  ],
+  "hints": [
+   "有给我的",
+   "留言吗？"
+  ]
+ },
+ {
+  "sentence": "Check out, please.",
+  "chunks": [
+   "Check out,",
+   "please."
+  ],
+  "hints": [
+   "我办",
+   "退房手续。"
+  ]
+ },
+ {
+  "sentence": "Here's my room key.",
+  "chunks": [
+   "Here's",
+   "my room key."
+  ],
+  "hints": [
+   "这是我",
+   "房间的钥匙。"
+  ]
+ },
+ {
+  "sentence": "I didn't make any phone calls.",
+  "chunks": [
+   "I didn't make",
+   "any phone calls."
+  ],
+  "hints": [
+   "我",
+   "没用电话。"
+  ]
+ },
+ {
+  "sentence": "Here's your bill.",
+  "chunks": [
+   "Here's",
+   "your bill."
+  ],
+  "hints": [
+   "这是",
+   "您的账单。"
+  ]
+ },
+ {
+  "sentence": "Could you call a taxi for me?",
+  "chunks": [
+   "Could you call",
+   "a taxi for me?"
+  ],
+  "hints": [
+   "能帮我",
+   "叫一辆出租车吗？"
+  ]
+ },
+ {
+  "sentence": "Room service, please.",
+  "chunks": [
+   "Room service,",
+   "please."
+  ],
+  "hints": [
+   "请提供",
+   "客房服务。"
+  ]
+ },
+ {
+  "sentence": "A wake-up call, please.",
+  "chunks": [
+   "A wake-up call,",
+   "please."
+  ],
+  "hints": [
+   "请提供",
+   "叫早服务。"
+  ]
+ },
+ {
+  "sentence": "Can I borrow a hair dryer?",
+  "chunks": [
+   "Can I borrow",
+   "a hair dryer?"
+  ],
+  "hints": [
+   "我可以借",
+   "一下吹风机吗？"
+  ]
+ },
+ {
+  "sentence": "Please bring me a pot of coffee.",
+  "chunks": [
+   "Please bring me",
+   "a pot of coffee."
+  ],
+  "hints": [
+   "请送",
+   "一壶咖啡。"
+  ]
+ },
+ {
+  "sentence": "Laundry service, please.",
+  "chunks": [
+   "Laundry service,",
+   "please."
+  ],
+  "hints": [
+   "请提供",
+   "洗衣服务。"
+  ]
+ },
+ {
+  "sentence": "When will it be ready?",
+  "chunks": [
+   "When will it",
+   "be ready?"
+  ],
+  "hints": [
+   "什么时候",
+   "能弄好？"
+  ]
+ },
+ {
+  "sentence": "Your room number, please.",
+  "chunks": [
+   "Your room number,",
+   "please."
+  ],
+  "hints": [
+   "请告诉我",
+   "您的房间号码。"
+  ]
+ },
+ {
+  "sentence": "This is room 501.",
+  "chunks": [
+   "This is",
+   "room 501."
+  ],
+  "hints": [
+   "501",
+   "房间。"
+  ]
+ },
+ {
+  "sentence": "Come in.",
+  "chunks": [
+   "Come",
+   "in."
+  ],
+  "hints": [
+   "请",
+   "进。"
+  ]
+ },
+ {
+  "sentence": "There is no hot water.",
+  "chunks": [
+   "There is",
+   "no hot water."
+  ],
+  "hints": [
+   "没有",
+   "热水。"
+  ]
+ },
+ {
+  "sentence": "The room next door is noisy.",
+  "chunks": [
+   "The room next door",
+   "is noisy."
+  ],
+  "hints": [
+   "隔壁",
+   "太吵了。"
+  ]
+ },
+ {
+  "sentence": "Could I possibly have another room key?",
+  "chunks": [
+   "Could I possibly have",
+   "another room key?"
+  ],
+  "hints": [
+   "我能再要",
+   "一把房间钥匙吗？"
+  ]
+ },
+ {
+  "sentence": "I locked myself out.",
+  "chunks": [
+   "I locked",
+   "myself out."
+  ],
+  "hints": [
+   "我把钥匙",
+   "忘在房间里了。"
+  ]
+ },
+ {
+  "sentence": "I'm locked out.",
+  "chunks": [
+   "I'm",
+   "locked out."
+  ],
+  "hints": [
+   "我被锁",
+   "在外面了。"
+  ]
+ },
+ {
+  "sentence": "The TV doesn't work in my room.",
+  "chunks": [
+   "The TV doesn't work",
+   "in my room."
+  ],
+  "hints": [
+   "我房间的",
+   "电视不能看。"
+  ]
+ },
+ {
+  "sentence": "Could you send someone to fix it?",
+  "chunks": [
+   "Could you send someone",
+   "to fix it?"
+  ],
+  "hints": [
+   "您能派人",
+   "给修理一下儿吗？"
+  ]
+ },
+ {
+  "sentence": "Could you send someone up?",
+  "chunks": [
+   "Could you send",
+   "someone up?"
+  ],
+  "hints": [
+   "请叫位",
+   "服务员来一下。"
+  ]
+ }
+]

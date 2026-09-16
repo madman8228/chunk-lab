@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "6d709def",
+      "sentence": "Are you okay?",
+      "translation": "你没事吧?",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "2ea696dd",
+      "sentence": "What's going on?",
+      "translation": "到底怎么回事?",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "d07d86d8",
+      "sentence": "Is something on your mind?",
+      "translation": "你有什么心事吗?",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "420f6e47",
+      "sentence": "I was worried about you.",
+      "translation": "我担心你。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "5f351754",
+      "sentence": "Please don't go out of your way.",
+      "translation": "请不要特地为我(而麻烦您吧)。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "6b8e5a11",
+      "sentence": "You look serious.",
+      "translation": "你怎么那么严肃。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "c4efbb98",
+      "sentence": "You look sad today.",
+      "translation": "你今天看上去很悲伤。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "26def8ba",
+      "sentence": "You don't look very happy today.",
+      "translation": "你今天怎么满脸的不高兴。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "fdbfd3d8",
+      "sentence": "Why are you so glum?",
+      "translation": "你怎么闷闷不乐的呀?",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "72104fee",
+      "sentence": "You look exhausted.",
+      "translation": "你看起来很疲惫。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "72997dde",
+      "sentence": "You need a break.",
+      "translation": "你该休息一会儿。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "e39b9260",
+      "sentence": "Something is wrong with you today.",
+      "translation": "你今天有点儿不大对劲。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "f59455dd",
+      "sentence": "Who are you irritated with?",
+      "translation": "谁让你烦躁了?",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "50de5378",
+      "sentence": "You're nervous.",
+      "translation": "你太紧张。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "1540d3b7",
+      "sentence": "I'm sorry to hear that.",
+      "translation": "听到这事我很难过。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "c673cd15",
+      "sentence": "That's unfortunate.",
+      "translation": "真不走运!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "161015ac",
+      "sentence": "It happens!",
+      "translation": "常有的事。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "29387c50",
+      "sentence": "It's a common mistake.",
+      "translation": "这是常见的错误。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "362e25a5",
+      "sentence": "It must be tough for you.",
+      "translation": "那你肯定很难受吧。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "fc6a1959",
+      "sentence": "Oh, poor thing!",
+      "translation": "啊，真可怜!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "2d901bac",
+      "sentence": "I know how you feel.",
+      "translation": "我理解你的心情。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "923df2af",
+      "sentence": "Never mind.",
+      "translation": "别在意。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "c762df0d",
+      "sentence": "What bad luck.",
+      "translation": "太遗憾了。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "dd4f0c8b",
+      "sentence": "Don't blame yourself.",
+      "translation": "别责备自己了。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "d42d3248",
+      "sentence": "It's not your fault.",
+      "translation": "这不是你的错。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "92646d84",
+      "sentence": "It happens to the best of us.",
+      "translation": "这种事谁都会遇到。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "32862c36",
+      "sentence": "There's no need to worry about it.",
+      "translation": "不必为那事烦恼。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "94e19475",
+      "sentence": "Don't give it another thought.",
+      "translation": "别想得太多。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "21fcd62b",
+      "sentence": "I don't want to put you out.",
+      "translation": "我不想给您添麻烦。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "ba8edb8c",
+      "sentence": "This is nothing.",
+      "translation": "这算什么呀。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "528fca93",
+      "sentence": "How terrible!",
+      "translation": "多糟糕呀!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "658ab018",
+      "sentence": "No big deal.",
+      "translation": "别小题大作。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "b0695d53",
+      "sentence": "I've seen worse.",
+      "translation": "这还算好的呢。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "be78558c",
+      "sentence": "Don't feel so bad about yourself.",
+      "translation": "别那么自暴自弃。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "10e21874",
+      "sentence": "It'll work out.",
+      "translation": "总会有办法的。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "e6d8699e",
+      "sentence": "She's just upset.",
+      "translation": "她只是有点心烦。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "75388b45",
+      "sentence": "Don't cry.",
+      "translation": "别哭了。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "e921cb86",
+      "sentence": "Wipe your tears.",
+      "translation": "擦擦眼泪。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "7114cd16",
+      "sentence": "Cheer up!",
+      "translation": "振作起来!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "46923862",
+      "sentence": "We'll cheer for your team.",
+      "translation": "我们会给你们队助威的。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "70d3237c",
+      "sentence": "Try harder next time.",
+      "translation": "下次再努力吧。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "c038ca39",
+      "sentence": "Hang in there!",
+      "translation": "别松劲!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "839ac17a",
+      "sentence": "Don't give up!",
+      "translation": "别认输!/别放弃!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "714dcaa3",
+      "sentence": "You can do it!",
+      "translation": "你可以的!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "2d1689b3",
+      "sentence": "Look on the bright side.",
+      "translation": "你得看到事情好的一面。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "e1038261",
+      "sentence": "Don't take it too seriously!",
+      "translation": "别看得那么严重!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "8e0d8f99",
+      "sentence": "Keep your chin up!",
+      "translation": "别灰心!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "50881daf",
+      "sentence": "You can do anything if you really want to.",
+      "translation": "只要你想做，你就一定能做得到。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "f04792ea",
+      "sentence": "There's a chance.",
+      "translation": "这是一个机会。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "4026dbb0",
+      "sentence": "Worrying about it won't solve anything.",
+      "translation": "担心解决不了任何问题。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "e78104fc",
+      "sentence": "Get it together, Jack!",
+      "translation": "振作起来!杰克。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "fe8cb4e3",
+      "sentence": "Just try it.",
+      "translation": "试试看。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "2cbe0679",
+      "sentence": "Try and do it.",
+      "translation": "试着做做。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "297dfdbc",
+      "sentence": "Try again.",
+      "translation": "再试一遍。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "b67c4458",
+      "sentence": "Don't be a chicken.",
+      "translation": "别害怕。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "948f1970",
+      "sentence": "Let's face facts.",
+      "translation": "让我们面对现实。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "3b767232",
+      "sentence": "Let's cheer him up.",
+      "translation": "我们得让他振作起来。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "a9964d16",
+      "sentence": "I wish you success!",
+      "translation": "我祝你成功!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "00b1bbf0",
+      "sentence": "Tell him to his face.",
+      "translation": "应当面对他说。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "6a097be0",
+      "sentence": "I'm serious.",
+      "translation": "我是认真的。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "e4975ade",
+      "sentence": "Take my word for it.",
+      "translation": "这是真的呀!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "ae7c3c5b",
+      "sentence": "You'd better believe it!",
+      "translation": "请相信!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "1618921b",
+      "sentence": "I'm sure of it.",
+      "translation": "我敢肯定。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "efd52aaa",
+      "sentence": "It may sound strange, but it's true.",
+      "translation": "听起来也许奇怪，但它是真的。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "bc880e0d",
+      "sentence": "I'm innocent!",
+      "translation": "我是无辜的!",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "ea178218",
+      "sentence": "Don't worry about it.",
+      "translation": "别担心/没事的。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "f138b191",
+      "sentence": "As long as you're happy, that's all that matters.",
+      "translation": "只要你开心，其他都不重要。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "c66af01f",
+      "sentence": "Cheer up, it's not the end of the world.",
+      "translation": "打起精神来，又不是世界末日。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "b6a7287e",
+      "sentence": "Don't worry, everything will work out fine.",
+      "translation": "别担心，一切都会好起来的。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "79d9ff2f",
+      "sentence": "No matter what happens, I'll be here for you.",
+      "translation": "无论发生什么，我都会在你身边。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "1417566d",
+      "sentence": "Take your time, there's no rush.",
+      "translation": "慢慢来，不用急。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "b088786f",
+      "sentence": "What's bothering you?",
+      "translation": "什么事烦你了？",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "85107210",
+      "sentence": "You'll be fine.",
+      "translation": "你会没事的。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "21f94209",
+      "sentence": "Don't beat yourself up.",
+      "translation": "别太苛责自己。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 73
+    },
+    {
+      "cid": "cd379d3e",
+      "sentence": "I've been there.",
+      "translation": "我是过来人。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 74
+    },
+    {
+      "cid": "9042ad50",
+      "sentence": "I'm here for you.",
+      "translation": "我陪你。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 75
+    },
+    {
+      "cid": "d989d51c",
+      "sentence": "Hope you're feeling better.",
+      "translation": "希望你好点了。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 76
+    },
+    {
+      "cid": "45b93a39",
+      "sentence": "Just relax.",
+      "translation": "放松一下。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 77
+    },
+    {
+      "cid": "6010cb80",
+      "sentence": "Don't be sad.",
+      "translation": "别伤心。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 78
+    },
+    {
+      "cid": "ac89bfd8",
+      "sentence": "Get yourself together.",
+      "translation": "振作起来。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 79
+    },
+    {
+      "cid": "77eefd93",
+      "sentence": "Let me hug you.",
+      "translation": "让我抱抱你。",
+      "sourceUrl": "content/oral-4-20/oral-001-17c82a2b0dc9.json",
+      "sourceOffset": 80
+    }
+  ]
+}

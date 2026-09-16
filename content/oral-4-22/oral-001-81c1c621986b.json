@@ -183,57 +183,6 @@
       "cid": "e76c552c"
     },
     {
-      "sentence": "It slipped my mind.",
-      "cid": "d2d4552d",
-      "translation": "我一时忘了。",
-      "chunks": [
-        "It slipped",
-        "my mind."
-      ],
-      "hints": [
-        "它溜出了",
-        "我的脑海"
-      ],
-      "grammar": [
-        {
-          "role": "主谓",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/ɪt/",
-            "/slɪpt/"
-          ],
-          "pos": "一般过去时",
-          "meaning": "它（溜出）"
-        },
-        {
-          "role": "宾语（习语）",
-          "color": "#3358e0",
-          "phonetic": [
-            "/maɪ/",
-            "/maɪnd/"
-          ],
-          "pos": "名词短语",
-          "meaning": "我的脑海"
-        }
-      ],
-      "explanations": [
-        "**slip one's mind** = 被遗忘（事情溜出脑海），是忘记的惯用表达。",
-        "常见错误：\"It slipped **in** my mind\" → 不需要 in。忘记做某事也可说 **It completely slipped my mind**（我完全忘了）。"
-      ],
-      "distractors": [
-        [
-          "It slip",
-          "It slips",
-          "It was slipped"
-        ],
-        [
-          "me mind.",
-          "my minds.",
-          "my memory."
-        ]
-      ]
-    },
-    {
       "sentence": "I can't remember where I put my keys.",
       "cid": "6abc41f7",
       "translation": "我忘了把钥匙放哪儿了。",

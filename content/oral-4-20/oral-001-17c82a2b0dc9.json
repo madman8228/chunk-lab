@@ -3,6 +3,851 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Are you okay?",
+      "translation": "你没事吧?",
+      "chunks": [
+        "Are you",
+        "okay?"
+      ],
+      "hints": [
+        "你",
+        "没事吧？"
+      ],
+      "cid": "6d709def"
+    },
+    {
+      "sentence": "What's going on?",
+      "translation": "到底怎么回事?",
+      "chunks": [
+        "What's",
+        "going on?"
+      ],
+      "hints": [
+        "到底",
+        "怎么回事？"
+      ],
+      "cid": "2ea696dd"
+    },
+    {
+      "sentence": "Is something on your mind?",
+      "translation": "你有什么心事吗?",
+      "chunks": [
+        "Is something",
+        "on your mind?"
+      ],
+      "hints": [
+        "你",
+        "有什么心事吗？"
+      ],
+      "cid": "d07d86d8"
+    },
+    {
+      "sentence": "I was worried about you.",
+      "translation": "我担心你。",
+      "chunks": [
+        "I was worried",
+        "about you."
+      ],
+      "hints": [
+        "我",
+        "担心你。"
+      ],
+      "cid": "420f6e47"
+    },
+    {
+      "sentence": "Please don't go out of your way.",
+      "translation": "请不要特地为我(而麻烦您吧)。",
+      "chunks": [
+        "Please don't go out of",
+        "your way."
+      ],
+      "hints": [
+        "请不要",
+        "特地为我麻烦。"
+      ],
+      "cid": "5f351754"
+    },
+    {
+      "sentence": "You look serious.",
+      "translation": "你怎么那么严肃。",
+      "chunks": [
+        "You look",
+        "serious."
+      ],
+      "hints": [
+        "你怎么",
+        "那么严肃。"
+      ],
+      "cid": "6b8e5a11"
+    },
+    {
+      "sentence": "You look sad today.",
+      "translation": "你今天看上去很悲伤。",
+      "chunks": [
+        "You look sad",
+        "today."
+      ],
+      "hints": [
+        "你今天",
+        "看上去很悲伤。"
+      ],
+      "cid": "c4efbb98"
+    },
+    {
+      "sentence": "You don't look very happy today.",
+      "translation": "你今天怎么满脸的不高兴。",
+      "chunks": [
+        "You don't look",
+        "very happy today."
+      ],
+      "hints": [
+        "你今天",
+        "怎么满脸的不高兴。"
+      ],
+      "cid": "26def8ba"
+    },
+    {
+      "sentence": "Why are you so glum?",
+      "translation": "你怎么闷闷不乐的呀?",
+      "chunks": [
+        "Why are you",
+        "so glum?"
+      ],
+      "hints": [
+        "你怎么",
+        "闷闷不乐的呀？"
+      ],
+      "cid": "fdbfd3d8"
+    },
+    {
+      "sentence": "You look exhausted.",
+      "translation": "你看起来很疲惫。",
+      "chunks": [
+        "You look",
+        "exhausted."
+      ],
+      "hints": [
+        "你看起来",
+        "很疲惫。"
+      ],
+      "cid": "72104fee"
+    },
+    {
+      "sentence": "You need a break.",
+      "translation": "你该休息一会儿。",
+      "chunks": [
+        "You need",
+        "a break."
+      ],
+      "hints": [
+        "你该",
+        "休息一会儿。"
+      ],
+      "cid": "72997dde"
+    },
+    {
+      "sentence": "Something is wrong with you today.",
+      "translation": "你今天有点儿不大对劲。",
+      "chunks": [
+        "Something is wrong",
+        "with you today."
+      ],
+      "hints": [
+        "你今天",
+        "有点儿不大对劲。"
+      ],
+      "cid": "e39b9260"
+    },
+    {
+      "sentence": "Who are you irritated with?",
+      "translation": "谁让你烦躁了?",
+      "chunks": [
+        "Who are you",
+        "irritated with?"
+      ],
+      "hints": [
+        "谁让你",
+        "烦躁了？"
+      ],
+      "cid": "f59455dd"
+    },
+    {
+      "sentence": "You're nervous.",
+      "translation": "你太紧张。",
+      "chunks": [
+        "You're",
+        "nervous."
+      ],
+      "hints": [
+        "你",
+        "太紧张。"
+      ],
+      "cid": "50de5378"
+    },
+    {
+      "sentence": "I'm sorry to hear that.",
+      "translation": "听到这事我很难过。",
+      "chunks": [
+        "I'm sorry",
+        "to hear that."
+      ],
+      "hints": [
+        "听到这事",
+        "我很难过。"
+      ],
+      "cid": "1540d3b7"
+    },
+    {
+      "sentence": "That's unfortunate.",
+      "translation": "真不走运!",
+      "chunks": [
+        "That's",
+        "unfortunate."
+      ],
+      "hints": [
+        "真不",
+        "走运！"
+      ],
+      "cid": "c673cd15"
+    },
+    {
+      "sentence": "It happens!",
+      "translation": "常有的事。",
+      "chunks": [
+        "It",
+        "happens!"
+      ],
+      "hints": [
+        "常有",
+        "的事。"
+      ],
+      "cid": "161015ac"
+    },
+    {
+      "sentence": "It's a common mistake.",
+      "translation": "这是常见的错误。",
+      "chunks": [
+        "It's a common",
+        "mistake."
+      ],
+      "hints": [
+        "这是常见的",
+        "错误。"
+      ],
+      "cid": "29387c50"
+    },
+    {
+      "sentence": "It must be tough for you.",
+      "translation": "那你肯定很难受吧。",
+      "chunks": [
+        "It must be tough",
+        "for you."
+      ],
+      "hints": [
+        "那你肯定",
+        "很难受吧。"
+      ],
+      "cid": "362e25a5"
+    },
+    {
+      "sentence": "Oh, poor thing!",
+      "translation": "啊，真可怜!",
+      "chunks": [
+        "Oh,",
+        "poor thing!"
+      ],
+      "hints": [
+        "啊，",
+        "真可怜！"
+      ],
+      "cid": "fc6a1959"
+    },
+    {
+      "sentence": "I know how you feel.",
+      "translation": "我理解你的心情。",
+      "chunks": [
+        "I know",
+        "how you feel."
+      ],
+      "hints": [
+        "我理解",
+        "你的心情。"
+      ],
+      "cid": "2d901bac"
+    },
+    {
+      "sentence": "Never mind.",
+      "translation": "别在意。",
+      "chunks": [
+        "Never",
+        "mind."
+      ],
+      "hints": [
+        "别",
+        "在意。"
+      ],
+      "cid": "923df2af"
+    },
+    {
+      "sentence": "What bad luck.",
+      "translation": "太遗憾了。",
+      "chunks": [
+        "What",
+        "bad luck."
+      ],
+      "hints": [
+        "太",
+        "遗憾了。"
+      ],
+      "cid": "c762df0d"
+    },
+    {
+      "sentence": "Don't blame yourself.",
+      "translation": "别责备自己了。",
+      "chunks": [
+        "Don't blame",
+        "yourself."
+      ],
+      "hints": [
+        "别",
+        "责备自己了。"
+      ],
+      "cid": "dd4f0c8b"
+    },
+    {
+      "sentence": "It's not your fault.",
+      "translation": "这不是你的错。",
+      "chunks": [
+        "It's not",
+        "your fault."
+      ],
+      "hints": [
+        "这不是",
+        "你的错。"
+      ],
+      "cid": "d42d3248"
+    },
+    {
+      "sentence": "It happens to the best of us.",
+      "translation": "这种事谁都会遇到。",
+      "chunks": [
+        "It happens",
+        "to the best of us."
+      ],
+      "hints": [
+        "这种事",
+        "谁都会遇到。"
+      ],
+      "cid": "92646d84"
+    },
+    {
+      "sentence": "There's no need to worry about it.",
+      "translation": "不必为那事烦恼。",
+      "chunks": [
+        "There's no need",
+        "to worry about it."
+      ],
+      "hints": [
+        "不必",
+        "为那事烦恼。"
+      ],
+      "cid": "32862c36"
+    },
+    {
+      "sentence": "Don't give it another thought.",
+      "translation": "别想得太多。",
+      "chunks": [
+        "Don't give it",
+        "another thought."
+      ],
+      "hints": [
+        "别",
+        "想得太多。"
+      ],
+      "cid": "94e19475"
+    },
+    {
+      "sentence": "I don't want to put you out.",
+      "translation": "我不想给您添麻烦。",
+      "chunks": [
+        "I don't want",
+        "to put you out."
+      ],
+      "hints": [
+        "我不想",
+        "给您添麻烦。"
+      ],
+      "cid": "21fcd62b"
+    },
+    {
+      "sentence": "This is nothing.",
+      "translation": "这算什么呀。",
+      "chunks": [
+        "This is",
+        "nothing."
+      ],
+      "hints": [
+        "这",
+        "算什么呀。"
+      ],
+      "cid": "ba8edb8c"
+    },
+    {
+      "sentence": "How terrible!",
+      "translation": "多糟糕呀!",
+      "chunks": [
+        "How",
+        "terrible!"
+      ],
+      "hints": [
+        "多",
+        "糟糕呀！"
+      ],
+      "cid": "528fca93"
+    },
+    {
+      "sentence": "No big deal.",
+      "translation": "别小题大作。",
+      "chunks": [
+        "No big",
+        "deal."
+      ],
+      "hints": [
+        "别",
+        "小题大作。"
+      ],
+      "cid": "658ab018"
+    },
+    {
+      "sentence": "I've seen worse.",
+      "translation": "这还算好的呢。",
+      "chunks": [
+        "I've seen",
+        "worse."
+      ],
+      "hints": [
+        "这还算",
+        "好的呢。"
+      ],
+      "cid": "b0695d53"
+    },
+    {
+      "sentence": "Don't feel so bad about yourself.",
+      "translation": "别那么自暴自弃。",
+      "chunks": [
+        "Don't feel so bad",
+        "about yourself."
+      ],
+      "hints": [
+        "别那么",
+        "自暴自弃。"
+      ],
+      "cid": "be78558c"
+    },
+    {
+      "sentence": "It'll work out.",
+      "translation": "总会有办法的。",
+      "chunks": [
+        "It'll",
+        "work out."
+      ],
+      "hints": [
+        "总会有",
+        "办法的。"
+      ],
+      "cid": "10e21874"
+    },
+    {
+      "sentence": "She's just upset.",
+      "translation": "她只是有点心烦。",
+      "chunks": [
+        "She's just",
+        "upset."
+      ],
+      "hints": [
+        "她只是",
+        "有点心烦。"
+      ],
+      "cid": "e6d8699e"
+    },
+    {
+      "sentence": "Don't cry.",
+      "translation": "别哭了。",
+      "chunks": [
+        "Don't",
+        "cry."
+      ],
+      "hints": [
+        "别",
+        "哭了。"
+      ],
+      "cid": "75388b45"
+    },
+    {
+      "sentence": "Wipe your tears.",
+      "translation": "擦擦眼泪。",
+      "chunks": [
+        "Wipe",
+        "your tears."
+      ],
+      "hints": [
+        "擦擦",
+        "眼泪。"
+      ],
+      "cid": "e921cb86"
+    },
+    {
+      "sentence": "Cheer up!",
+      "translation": "振作起来!",
+      "chunks": [
+        "Cheer",
+        "up!"
+      ],
+      "hints": [
+        "振作",
+        "起来！"
+      ],
+      "cid": "7114cd16"
+    },
+    {
+      "sentence": "We'll cheer for your team.",
+      "translation": "我们会给你们队助威的。",
+      "chunks": [
+        "We'll cheer",
+        "for your team."
+      ],
+      "hints": [
+        "我们会",
+        "给你们队助威的。"
+      ],
+      "cid": "46923862"
+    },
+    {
+      "sentence": "Try harder next time.",
+      "translation": "下次再努力吧。",
+      "chunks": [
+        "Try harder",
+        "next time."
+      ],
+      "hints": [
+        "下次",
+        "再努力吧。"
+      ],
+      "cid": "70d3237c"
+    },
+    {
+      "sentence": "Hang in there!",
+      "translation": "别松劲!",
+      "chunks": [
+        "Hang",
+        "in there!"
+      ],
+      "hints": [
+        "别",
+        "松劲！"
+      ],
+      "cid": "c038ca39"
+    },
+    {
+      "sentence": "Don't give up!",
+      "translation": "别认输!/别放弃!",
+      "chunks": [
+        "Don't give",
+        "up!"
+      ],
+      "hints": [
+        "别认输！",
+        "别放弃！"
+      ],
+      "cid": "839ac17a"
+    },
+    {
+      "sentence": "You can do it!",
+      "translation": "你可以的!",
+      "chunks": [
+        "You can",
+        "do it!"
+      ],
+      "hints": [
+        "你可以",
+        "的！"
+      ],
+      "cid": "714dcaa3"
+    },
+    {
+      "sentence": "Look on the bright side.",
+      "translation": "你得看到事情好的一面。",
+      "chunks": [
+        "Look on",
+        "the bright side."
+      ],
+      "hints": [
+        "你得看到",
+        "事情好的一面。"
+      ],
+      "cid": "2d1689b3"
+    },
+    {
+      "sentence": "Don't take it too seriously!",
+      "translation": "别看得那么严重!",
+      "chunks": [
+        "Don't take it",
+        "too seriously!"
+      ],
+      "hints": [
+        "别看得",
+        "那么严重！"
+      ],
+      "cid": "e1038261"
+    },
+    {
+      "sentence": "Keep your chin up!",
+      "translation": "别灰心!",
+      "chunks": [
+        "Keep your",
+        "chin up!"
+      ],
+      "hints": [
+        "别",
+        "灰心！"
+      ],
+      "cid": "8e0d8f99"
+    },
+    {
+      "sentence": "You can do anything if you really want to.",
+      "translation": "只要你想做，你就一定能做得到。",
+      "chunks": [
+        "You can do anything",
+        "if you really want to."
+      ],
+      "hints": [
+        "只要你想做，",
+        "你就一定能做得到。"
+      ],
+      "cid": "50881daf"
+    },
+    {
+      "sentence": "There's a chance.",
+      "translation": "这是一个机会。",
+      "chunks": [
+        "There's",
+        "a chance."
+      ],
+      "hints": [
+        "这是一个",
+        "机会。"
+      ],
+      "cid": "f04792ea"
+    },
+    {
+      "sentence": "Worrying about it won't solve anything.",
+      "translation": "担心解决不了任何问题。",
+      "chunks": [
+        "Worrying about it",
+        "won't solve anything."
+      ],
+      "hints": [
+        "担心",
+        "解决不了任何问题。"
+      ],
+      "cid": "4026dbb0"
+    },
+    {
+      "sentence": "Get it together, Jack!",
+      "translation": "振作起来!杰克。",
+      "chunks": [
+        "Get it together,",
+        "Jack!"
+      ],
+      "hints": [
+        "振作起来！",
+        "杰克。"
+      ],
+      "cid": "e78104fc"
+    },
+    {
+      "sentence": "Just try it.",
+      "translation": "试试看。",
+      "chunks": [
+        "Just",
+        "try it."
+      ],
+      "hints": [
+        "试试",
+        "看。"
+      ],
+      "cid": "fe8cb4e3"
+    },
+    {
+      "sentence": "Try and do it.",
+      "translation": "试着做做。",
+      "chunks": [
+        "Try and",
+        "do it."
+      ],
+      "hints": [
+        "试着",
+        "做做。"
+      ],
+      "cid": "2cbe0679"
+    },
+    {
+      "sentence": "Try again.",
+      "translation": "再试一遍。",
+      "chunks": [
+        "Try",
+        "again."
+      ],
+      "hints": [
+        "再试",
+        "一遍。"
+      ],
+      "cid": "297dfdbc"
+    },
+    {
+      "sentence": "Don't be a chicken.",
+      "translation": "别害怕。",
+      "chunks": [
+        "Don't be",
+        "a chicken."
+      ],
+      "hints": [
+        "别",
+        "害怕。"
+      ],
+      "cid": "b67c4458"
+    },
+    {
+      "sentence": "Let's face facts.",
+      "translation": "让我们面对现实。",
+      "chunks": [
+        "Let's face",
+        "facts."
+      ],
+      "hints": [
+        "让我们",
+        "面对现实。"
+      ],
+      "cid": "948f1970"
+    },
+    {
+      "sentence": "Let's cheer him up.",
+      "translation": "我们得让他振作起来。",
+      "chunks": [
+        "Let's cheer",
+        "him up."
+      ],
+      "hints": [
+        "我们得让他",
+        "振作起来。"
+      ],
+      "cid": "3b767232"
+    },
+    {
+      "sentence": "I wish you success!",
+      "translation": "我祝你成功!",
+      "chunks": [
+        "I wish",
+        "you success!"
+      ],
+      "hints": [
+        "我祝你",
+        "成功！"
+      ],
+      "cid": "a9964d16"
+    },
+    {
+      "sentence": "Tell him to his face.",
+      "translation": "应当面对他说。",
+      "chunks": [
+        "Tell him",
+        "to his face."
+      ],
+      "hints": [
+        "应当",
+        "面对他说。"
+      ],
+      "cid": "00b1bbf0"
+    },
+    {
+      "sentence": "I'm serious.",
+      "translation": "我是认真的。",
+      "chunks": [
+        "I'm",
+        "serious."
+      ],
+      "hints": [
+        "我是",
+        "认真的。"
+      ],
+      "cid": "6a097be0"
+    },
+    {
+      "sentence": "Take my word for it.",
+      "translation": "这是真的呀!",
+      "chunks": [
+        "Take my word",
+        "for it."
+      ],
+      "hints": [
+        "这是",
+        "真的呀！"
+      ],
+      "cid": "e4975ade"
+    },
+    {
+      "sentence": "You'd better believe it!",
+      "translation": "请相信!",
+      "chunks": [
+        "You'd better",
+        "believe it!"
+      ],
+      "hints": [
+        "请",
+        "相信！"
+      ],
+      "cid": "ae7c3c5b"
+    },
+    {
+      "sentence": "I'm sure of it.",
+      "translation": "我敢肯定。",
+      "chunks": [
+        "I'm sure",
+        "of it."
+      ],
+      "hints": [
+        "我敢",
+        "肯定。"
+      ],
+      "cid": "1618921b"
+    },
+    {
+      "sentence": "It may sound strange, but it's true.",
+      "translation": "听起来也许奇怪，但它是真的。",
+      "chunks": [
+        "It may sound strange,",
+        "but it's true."
+      ],
+      "hints": [
+        "听起来也许奇怪，",
+        "但它是真的。"
+      ],
+      "cid": "efd52aaa"
+    },
+    {
+      "sentence": "I'm innocent!",
+      "translation": "我是无辜的!",
+      "chunks": [
+        "I'm",
+        "innocent!"
+      ],
+      "hints": [
+        "我是",
+        "无辜的！"
+      ],
+      "cid": "bc880e0d"
+    },
+    {
       "sentence": "Don't worry about it.",
       "cid": "ea178218",
       "translation": "别担心/没事的。",

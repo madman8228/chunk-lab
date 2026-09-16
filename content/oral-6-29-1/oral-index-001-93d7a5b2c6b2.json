@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "c0dc7d58",
+      "sentence": "What would you like to drink?",
+      "translation": "您想喝点儿什么?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "37268267",
+      "sentence": "Coffee, please.",
+      "translation": "请来一杯咖啡。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "f41e6b05",
+      "sentence": "With sugar and cream?",
+      "translation": "要加牛奶和糖吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "f4dc1b0b",
+      "sentence": "What would you like for dinner, beef or fish?",
+      "translation": "午餐您要牛肉还是要鱼?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "d49fde9d",
+      "sentence": "Beef, please.",
+      "translation": "请给我牛肉。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "8e9dbaf3",
+      "sentence": "Have you finished?",
+      "translation": "您用完了吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "e1b012e0",
+      "sentence": "May I clear the table?",
+      "translation": "我可以收走了吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "aa32f72f",
+      "sentence": "Clear the table, please.",
+      "translation": "请您收拾一下桌子吧。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "eca9d228",
+      "sentence": "Can I have some water?",
+      "translation": "您能给我杯水吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "dd9e2f54",
+      "sentence": "Can I have something to drink?",
+      "translation": "能给我点儿喝的吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "860ba6e5",
+      "sentence": "A blanket, please.",
+      "translation": "请给我一条毯子。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "172a2fac",
+      "sentence": "I feel cold.",
+      "translation": "我觉得冷。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "0bf8d6c7",
+      "sentence": "I feel hot.",
+      "translation": "我觉得热。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "f8d04d65",
+      "sentence": "Can I have some medicine?",
+      "translation": "能给我点儿药吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "234c3c81",
+      "sentence": "Could you tell me how to fill out this form?",
+      "translation": "您能告诉我怎么填这张表吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "8c81fba0",
+      "sentence": "May I see your passport, please?",
+      "translation": "请出示您的护照。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "c3f77802",
+      "sentence": "How long will you be staying in the United States?",
+      "translation": "您在美国停留多长时间?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "e478b71b",
+      "sentence": "Sightseeing.",
+      "translation": "旅游。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "a3d4e99f",
+      "sentence": "Business.",
+      "translation": "工作。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "1604efb4",
+      "sentence": "I'm here on vacation.",
+      "translation": "我是来度假的。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "d80cda9b",
+      "sentence": "Where are you staying?",
+      "translation": "您住哪儿?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "187f57b3",
+      "sentence": "Do you have anything to declare?",
+      "translation": "有什么需要报关的吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "94c87f81",
+      "sentence": "At the Washington Hotel.",
+      "translation": "在华盛顿饭店。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "39081a37",
+      "sentence": "How much money do you have?",
+      "translation": "您带了多少现金?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "b0e792cb",
+      "sentence": "Four hundred dollars and one hundred thousand yen.",
+      "translation": "我有400美金和10万日元。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "d4144f0e",
+      "sentence": "Okay. Have a nice stay.",
+      "translation": "好了，祝您愉快!",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "2951153a",
+      "sentence": "I can't find my baggage.",
+      "translation": "我找不着行李了。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "bd5fa6e4",
+      "sentence": "Please check it immediately.",
+      "translation": "请马上查一查。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "d301252f",
+      "sentence": "Please deliver the baggage to my hotel as soon as you have located it.",
+      "translation": "找到后请马上把我的行李送到饭店。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "7f76b6e6",
+      "sentence": "I'd like to reconfirm my flight.",
+      "translation": "我想确认一下我的机票。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "bb638bdb",
+      "sentence": "Where is the Japan Airlines counter?",
+      "translation": "日本航空公司的柜台在哪儿?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "08be4399",
+      "sentence": "Where is the boarding gate?",
+      "translation": "登机口在哪儿?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "13cb7d97",
+      "sentence": "What time do you start boarding?",
+      "translation": "什么时候开始登机?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "050f1d09",
+      "sentence": "Has this flight begun boarding?",
+      "translation": "这个航班开始登机了吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "1eb96825",
+      "sentence": "What time will we arrive in Tokyo?",
+      "translation": "几点到东京?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "193a09a7",
+      "sentence": "Is there a room available for tonight?",
+      "translation": "今天晚上有空房间吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "85c2ea02",
+      "sentence": "I reserved a room for tonight.",
+      "translation": "我预订了一个房间。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "33a4f94e",
+      "sentence": "Check in, please.",
+      "translation": "请办入住手续。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "f1f4867e",
+      "sentence": "Take my baggage, please.",
+      "translation": "请帮我拿一下行李。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "51912087",
+      "sentence": "I'd like a key to room 809, please.",
+      "translation": "请给我809房间的钥匙。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "8908d568",
+      "sentence": "Where is the dining room?",
+      "translation": "餐厅在哪儿?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "68fb336f",
+      "sentence": "What time does the dining room open?",
+      "translation": "餐厅几点开门?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "ff786355",
+      "sentence": "What time can I have breakfast?",
+      "translation": "几点吃早饭?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "a1fc4148",
+      "sentence": "Where can I get some beer?",
+      "translation": "我在哪儿可以买到啤酒?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "a7a6135d",
+      "sentence": "Can you keep my valuables?",
+      "translation": "我可以把贵重物品存这儿吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "e82aba2d",
+      "sentence": "Yen to dollars, please.",
+      "translation": "我想把日元换成美金。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "6500f822",
+      "sentence": "Cash, please.",
+      "translation": "请换成现金。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "37f9eac5",
+      "sentence": "Could you cash this traveler's check for me?",
+      "translation": "您能帮我把旅行支票换成现金吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "8f561de7",
+      "sentence": "Would you exchange this one hundred dollar bill with five twenties?",
+      "translation": "请帮我把这100美元换成5张20美元的。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "e1003cb0",
+      "sentence": "Does anyone speak Japanese?",
+      "translation": "有人会说日语吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "d9b5584b",
+      "sentence": "Are there any messages for me?",
+      "translation": "有给我的留言吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "08800961",
+      "sentence": "Check out, please.",
+      "translation": "我办退房手续。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "3c09b183",
+      "sentence": "Here's my room key.",
+      "translation": "这是我房间的钥匙。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "f726b6d7",
+      "sentence": "I didn't make any phone calls.",
+      "translation": "我没用电话。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "2c8fb98d",
+      "sentence": "Here's your bill.",
+      "translation": "这是您的账单。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "45a7feb0",
+      "sentence": "Could you call a taxi for me?",
+      "translation": "能帮我叫一辆出租车吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "9b60a1ab",
+      "sentence": "Room service, please.",
+      "translation": "请提供客房服务。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "98a7f04e",
+      "sentence": "A wake-up call, please.",
+      "translation": "请提供叫早服务。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "1a16614f",
+      "sentence": "Can I borrow a hair dryer?",
+      "translation": "我可以借一下吹风机吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "103edabe",
+      "sentence": "Please bring me a pot of coffee.",
+      "translation": "请送一壶咖啡。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "977d261f",
+      "sentence": "Laundry service, please.",
+      "translation": "请提供洗衣服务。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "bc4027c7",
+      "sentence": "When will it be ready?",
+      "translation": "什么时候能弄好?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "13eef39e",
+      "sentence": "Your room number, please.",
+      "translation": "请告诉我您的房间号码。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "7f4d3048",
+      "sentence": "This is room 501.",
+      "translation": "501房间。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "6de68bea",
+      "sentence": "Come in.",
+      "translation": "进来。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "bc24cb70",
+      "sentence": "There is no hot water.",
+      "translation": "没有热水。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "18564538",
+      "sentence": "The room next door is noisy.",
+      "translation": "隔壁太吵了。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "8afc0384",
+      "sentence": "Could I possibly have another room key?",
+      "translation": "我能再要一把房间钥匙吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "2b75b5cc",
+      "sentence": "I locked myself out.",
+      "translation": "我把钥匙忘在房间里了。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "082f36f4",
+      "sentence": "I'm locked out.",
+      "translation": "我被锁在外面了。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "5ecc1eb9",
+      "sentence": "The TV doesn't work in my room.",
+      "translation": "我房间的电视不能看。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "83ea6863",
+      "sentence": "Could you send someone to fix it?",
+      "translation": "您能派人给修理一下儿吗?",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 71
+    },
+    {
+      "cid": "75cb60af",
+      "sentence": "Could you send someone up?",
+      "translation": "请叫位服务员来一下。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 72
+    },
+    {
+      "cid": "faaa45bb",
+      "sentence": "I have a reservation under the name Chen.",
+      "translation": "我以陈这个名字订了房间。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 73
+    },
+    {
+      "cid": "32facf35",
+      "sentence": "What time is check-out tomorrow morning?",
+      "translation": "明天早上几点退房？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 74
+    },
+    {
+      "cid": "c0724b3e",
+      "sentence": "Could I have a room with a view?",
+      "translation": "我能要一间看得见风景的房间吗？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 75
+    },
+    {
+      "cid": "e0229bb6",
+      "sentence": "The air conditioner doesn't seem to work.",
+      "translation": "空调好像坏了。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 76
+    },
+    {
+      "cid": "8f6161c2",
+      "sentence": "Could you send someone up to fix it?",
+      "translation": "你能派人上来修一下吗？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 77
+    },
+    {
+      "cid": "cf1b44ab",
+      "sentence": "Could I see your boarding pass, please?",
+      "translation": "请出示您的登机牌好吗？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 78
+    },
+    {
+      "cid": "df26fb4e",
+      "sentence": "How many bags are you checking in?",
+      "translation": "您要托运几件行李？",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 79
+    },
+    {
+      "cid": "284f75cd",
+      "sentence": "Get on the plane.",
+      "translation": "上飞机。",
+      "sourceUrl": "content/oral-6-29-1/oral-001-6d5facc088cf.json",
+      "sourceOffset": 80
+    }
+  ]
+}

@@ -2154,55 +2154,6 @@
       ]
     },
     {
-      "sentence": "Come in.",
-      "cid": "6de68bea",
-      "translation": "进来。",
-      "chunks": [
-        "Come",
-        "in."
-      ],
-      "hints": [
-        "来",
-        "进来"
-      ],
-      "grammar": [
-        {
-          "role": "谓语",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/kʌm/"
-          ],
-          "pos": "祈使句动词",
-          "meaning": "来"
-        },
-        {
-          "role": "副词",
-          "color": "#7c5cbf",
-          "phonetic": [
-            "/ɪn/"
-          ],
-          "pos": "副词（表方向）",
-          "meaning": "进来"
-        }
-      ],
-      "explanations": [
-        "`Come in.` 是让人进屋最常用的说法，也用来回应敲门。常见错误：\n• \"Come into\" → into 后面必须接宾语（come into the room）\n• \"Enter in\" → enter 本身不接 in",
-        "相关：Come on in.（快进来，更热情）/ After you.（您先请）"
-      ],
-      "distractors": [
-        [
-          "Comes",
-          "Coming",
-          "Come to"
-        ],
-        [
-          "into.",
-          "on.",
-          "out."
-        ]
-      ]
-    },
-    {
       "sentence": "Lock the door.",
       "cid": "d403abf3",
       "translation": "把门锁上。",

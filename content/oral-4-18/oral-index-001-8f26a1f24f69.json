@@ -1,0 +1,461 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "87777ff4",
+      "sentence": "What a disappointment!",
+      "translation": "真让人失望!",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "127f114a",
+      "sentence": "What a pity.",
+      "translation": "太遗憾了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "aac1dcf5",
+      "sentence": "It was a waste of effort.",
+      "translation": "白费力了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "23882fb6",
+      "sentence": "a wild-goose chase.",
+      "translation": "白费劲。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "534f8bdb",
+      "sentence": "All that for nothing.",
+      "translation": "前功尽弃。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "8d12fb3f",
+      "sentence": "You let me down.",
+      "translation": "你真让我失望。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "3a0ea893",
+      "sentence": "I blew it.",
+      "translation": "我真失策。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "b83dceaa",
+      "sentence": "It can't be helped.",
+      "translation": "毫无办法。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "9de1d6f1",
+      "sentence": "It's a waste of time.",
+      "translation": "纯属浪费时间。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "c28a9e4e",
+      "sentence": "I feel sad.",
+      "translation": "我感到悲伤。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "fb0644e7",
+      "sentence": "I feel really sad.",
+      "translation": "我感到非常痛苦。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "96a1e605",
+      "sentence": "Oh, dear!",
+      "translation": "哦!天哪!",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "5ec96753",
+      "sentence": "Boohoo.",
+      "translation": "呜呜!",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "942594f8",
+      "sentence": "My heart broke.",
+      "translation": "我的心都碎了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "be0764a6",
+      "sentence": "My heart has been filled with grief.",
+      "translation": "我的内心充满了悲伤。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "072ceade",
+      "sentence": "The sad story depressed me.",
+      "translation": "那悲惨的故事使我心情抑郁。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "046d3d0e",
+      "sentence": "How ruthless!",
+      "translation": "真无情!",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "5102d3de",
+      "sentence": "No one can understand how I really feel",
+      "translation": ".没人能知道我的感受。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "7662e3a3",
+      "sentence": "I feel lonely.",
+      "translation": "我感到很寂寞。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "8221946a",
+      "sentence": "I hate being alone.",
+      "translation": "我讨厌孤独。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "5f1fb6c4",
+      "sentence": "I don't mind being alone.",
+      "translation": "我不在乎孤独。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "5f6d50eb",
+      "sentence": "I miss you.",
+      "translation": "我想念你。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "883a270d",
+      "sentence": "I feel empty.",
+      "translation": "我觉得空荡荡的。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "d6cc1c4a",
+      "sentence": "My life is empty.",
+      "translation": "我的生活很空虚。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "5186665f",
+      "sentence": "Alone at last.",
+      "translation": "最终只剩下了我一个人。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "0c9cdc2b",
+      "sentence": "I'm depressed.",
+      "translation": "我很沮丧。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "1d1356c1",
+      "sentence": "I've got the blues today.",
+      "translation": "我今天感到很忧郁。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "92a0b29a",
+      "sentence": "It's depressing.",
+      "translation": "这真让人沮丧。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "9fd94553",
+      "sentence": "Rainy days get me down.",
+      "translation": "雨天使我感到消沉。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "6eb54c86",
+      "sentence": "I don't feel like doing anything.",
+      "translation": "我提不起精神来做事。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "149ca620",
+      "sentence": "He looks melancholy.",
+      "translation": "他满脸忧愁。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "c5723152",
+      "sentence": "He looks gloomy today.",
+      "translation": "今天，他看上去很郁闷。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "92ae2264",
+      "sentence": "I give up.",
+      "translation": "放弃了。/投降了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "7f6c40ed",
+      "sentence": "I can't help it.",
+      "translation": "没法子。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "93c377f2",
+      "sentence": "Not a chance!",
+      "translation": "没戏。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "10f0017b",
+      "sentence": "That's the way it goes.",
+      "translation": "毫无办法。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "a4a83c28",
+      "sentence": "I have no clue.",
+      "translation": "毫无线索。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "5a660b57",
+      "sentence": "I'm throwing in the towel.",
+      "translation": "我认输了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "d9141a2d",
+      "sentence": "It's hopeless.",
+      "translation": "绝望了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "579b28b3",
+      "sentence": "Better than nothing.",
+      "translation": "总比没有强。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "712a7ca5",
+      "sentence": "It was fate.",
+      "translation": "这就是命运呀!",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "68a96a90",
+      "sentence": "It's history.",
+      "translation": "都已经过去了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "6b82e755",
+      "sentence": "It beats me.",
+      "translation": "这可难倒了我。/不知道。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "8081355f",
+      "sentence": "I have no other choice but to do so.",
+      "translation": "除此之外我别无选择。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "8f318dd5",
+      "sentence": "I no longer feel devoted to this company.",
+      "translation": "我已经不再留恋这个公司了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "ec990221",
+      "sentence": "That figures.",
+      "translation": "果不其然。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "d561cfbb",
+      "sentence": "It is just as I imagined.",
+      "translation": "正如我所想像的那样。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "ffdcf2f8",
+      "sentence": "See, didn't I tell you so?",
+      "translation": "瞧，我不早告诉你了吗?",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "09e58b2a",
+      "sentence": "Serves you right.",
+      "translation": "报应!/活该。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "c7e44e31",
+      "sentence": "You never know.",
+      "translation": "很难说。/世事难料。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "e7031d7d",
+      "sentence": "No wonder.",
+      "translation": "不足为奇。/没什么奇怪的。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "35225687",
+      "sentence": "I shouldn't have done it.",
+      "translation": "我真不该那样。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "a2b84d52",
+      "sentence": "I shouldn't have said that.",
+      "translation": "我要是不说那话就好了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "df6209ba",
+      "sentence": "I should have known.",
+      "translation": "我早该知道了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "29276560",
+      "sentence": "It was careless of me to do so.",
+      "translation": "做那种事，我也太不小心了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "4968ba8f",
+      "sentence": "I regret doing that.",
+      "translation": "我后悔我做的事。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "cd62105f",
+      "sentence": "I had no choice.",
+      "translation": "我别无选择。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "ca4ddce5",
+      "sentence": "I went too far.",
+      "translation": "我做得太过了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "4ed006e5",
+      "sentence": "I was too nervous.",
+      "translation": "我太紧张了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "fbbb7865",
+      "sentence": "I wish I had studied harder.",
+      "translation": "我要是再用功点就好了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "11fe04f1",
+      "sentence": "I should have asked him.",
+      "translation": "我要是问他一下就好了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "d2d4552d",
+      "sentence": "It slipped my mind.",
+      "translation": "我一时忘了。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "0c31e53d",
+      "sentence": "I'm really stressed out about the exam.",
+      "translation": "我对考试真的压力很大。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "edc8aa29",
+      "sentence": "I'm worried about the job interview tomorrow.",
+      "translation": "我很担心明天的求职面试。",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "96308679",
+      "sentence": "What if it rains on the wedding day?",
+      "translation": "万一下雨那天结婚怎么办？",
+      "sourceUrl": "content/oral-4-18/oral-001-ea88004ca9a1.json",
+      "sourceOffset": 64
+    }
+  ]
+}

@@ -1,0 +1,1450 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "What would you like to drink?",
+      "translation": "您想喝点儿什么?",
+      "chunks": [
+        "What would you like",
+        "to drink?"
+      ],
+      "hints": [
+        "您想喝点儿",
+        "什么？"
+      ],
+      "cid": "c0dc7d58"
+    },
+    {
+      "sentence": "Coffee, please.",
+      "translation": "请来一杯咖啡。",
+      "chunks": [
+        "Coffee,",
+        "please."
+      ],
+      "hints": [
+        "请来",
+        "一杯咖啡。"
+      ],
+      "cid": "37268267"
+    },
+    {
+      "sentence": "With sugar and cream?",
+      "translation": "要加牛奶和糖吗?",
+      "chunks": [
+        "With sugar",
+        "and cream?"
+      ],
+      "hints": [
+        "要加牛奶",
+        "和糖吗？"
+      ],
+      "cid": "f41e6b05"
+    },
+    {
+      "sentence": "What would you like for dinner, beef or fish?",
+      "translation": "午餐您要牛肉还是要鱼?",
+      "chunks": [
+        "What would you like for dinner,",
+        "beef or fish?"
+      ],
+      "hints": [
+        "午餐您要",
+        "牛肉还是要鱼？"
+      ],
+      "cid": "f4dc1b0b"
+    },
+    {
+      "sentence": "Beef, please.",
+      "translation": "请给我牛肉。",
+      "chunks": [
+        "Beef,",
+        "please."
+      ],
+      "hints": [
+        "请给我",
+        "牛肉。"
+      ],
+      "cid": "d49fde9d"
+    },
+    {
+      "sentence": "Have you finished?",
+      "translation": "您用完了吗?",
+      "chunks": [
+        "Have you",
+        "finished?"
+      ],
+      "hints": [
+        "您",
+        "用完了吗？"
+      ],
+      "cid": "8e9dbaf3"
+    },
+    {
+      "sentence": "May I clear the table?",
+      "translation": "我可以收走了吗?",
+      "chunks": [
+        "May I clear",
+        "the table?"
+      ],
+      "hints": [
+        "我可以",
+        "收走了吗？"
+      ],
+      "cid": "e1b012e0"
+    },
+    {
+      "sentence": "Clear the table, please.",
+      "translation": "请您收拾一下桌子吧。",
+      "chunks": [
+        "Clear the table,",
+        "please."
+      ],
+      "hints": [
+        "请您",
+        "收拾一下桌子吧。"
+      ],
+      "cid": "aa32f72f"
+    },
+    {
+      "sentence": "Can I have some water?",
+      "translation": "您能给我杯水吗?",
+      "chunks": [
+        "Can I have",
+        "some water?"
+      ],
+      "hints": [
+        "您能给我",
+        "杯水吗？"
+      ],
+      "cid": "eca9d228"
+    },
+    {
+      "sentence": "Can I have something to drink?",
+      "translation": "能给我点儿喝的吗?",
+      "chunks": [
+        "Can I have",
+        "something to drink?"
+      ],
+      "hints": [
+        "能给我",
+        "点儿喝的吗？"
+      ],
+      "cid": "dd9e2f54"
+    },
+    {
+      "sentence": "A blanket, please.",
+      "translation": "请给我一条毯子。",
+      "chunks": [
+        "A blanket,",
+        "please."
+      ],
+      "hints": [
+        "请给我",
+        "一条毯子。"
+      ],
+      "cid": "860ba6e5"
+    },
+    {
+      "sentence": "I feel cold.",
+      "translation": "我觉得冷。",
+      "chunks": [
+        "I feel",
+        "cold."
+      ],
+      "hints": [
+        "我觉得",
+        "冷。"
+      ],
+      "cid": "172a2fac"
+    },
+    {
+      "sentence": "I feel hot.",
+      "translation": "我觉得热。",
+      "chunks": [
+        "I feel",
+        "hot."
+      ],
+      "hints": [
+        "我觉得",
+        "热。"
+      ],
+      "cid": "0bf8d6c7"
+    },
+    {
+      "sentence": "Can I have some medicine?",
+      "translation": "能给我点儿药吗?",
+      "chunks": [
+        "Can I have",
+        "some medicine?"
+      ],
+      "hints": [
+        "能给我",
+        "点儿药吗？"
+      ],
+      "cid": "f8d04d65"
+    },
+    {
+      "sentence": "Could you tell me how to fill out this form?",
+      "translation": "您能告诉我怎么填这张表吗?",
+      "chunks": [
+        "Could you tell me",
+        "how to fill out this form?"
+      ],
+      "hints": [
+        "您能告诉我",
+        "怎么填这张表吗？"
+      ],
+      "cid": "234c3c81"
+    },
+    {
+      "sentence": "May I see your passport, please?",
+      "translation": "请出示您的护照。",
+      "chunks": [
+        "May I see",
+        "your passport, please?"
+      ],
+      "hints": [
+        "请出示",
+        "您的护照。"
+      ],
+      "cid": "8c81fba0"
+    },
+    {
+      "sentence": "How long will you be staying in the United States?",
+      "translation": "您在美国停留多长时间?",
+      "chunks": [
+        "How long will you be staying",
+        "in the United States?"
+      ],
+      "hints": [
+        "您在美国",
+        "停留多长时间？"
+      ],
+      "cid": "c3f77802"
+    },
+    {
+      "sentence": "Sightseeing.",
+      "translation": "旅游。",
+      "chunks": [
+        "Sightseeing."
+      ],
+      "hints": [
+        "旅游。"
+      ],
+      "cid": "e478b71b"
+    },
+    {
+      "sentence": "Business.",
+      "translation": "工作。",
+      "chunks": [
+        "Business."
+      ],
+      "hints": [
+        "工作。"
+      ],
+      "cid": "a3d4e99f"
+    },
+    {
+      "sentence": "I'm here on vacation.",
+      "translation": "我是来度假的。",
+      "chunks": [
+        "I'm here",
+        "on vacation."
+      ],
+      "hints": [
+        "我是来",
+        "度假的。"
+      ],
+      "cid": "1604efb4"
+    },
+    {
+      "sentence": "Where are you staying?",
+      "translation": "您住哪儿?",
+      "chunks": [
+        "Where are you",
+        "staying?"
+      ],
+      "hints": [
+        "您",
+        "住哪儿？"
+      ],
+      "cid": "d80cda9b"
+    },
+    {
+      "sentence": "Do you have anything to declare?",
+      "translation": "有什么需要报关的吗?",
+      "chunks": [
+        "Do you have",
+        "anything to declare?"
+      ],
+      "hints": [
+        "有什么",
+        "需要报关的吗？"
+      ],
+      "cid": "187f57b3"
+    },
+    {
+      "sentence": "At the Washington Hotel.",
+      "translation": "在华盛顿饭店。",
+      "chunks": [
+        "At the Washington",
+        "Hotel."
+      ],
+      "hints": [
+        "在华盛顿",
+        "饭店。"
+      ],
+      "cid": "94c87f81"
+    },
+    {
+      "sentence": "How much money do you have?",
+      "translation": "您带了多少现金?",
+      "chunks": [
+        "How much money",
+        "do you have?"
+      ],
+      "hints": [
+        "您带了",
+        "多少现金？"
+      ],
+      "cid": "39081a37"
+    },
+    {
+      "sentence": "Four hundred dollars and one hundred thousand yen.",
+      "translation": "我有400美金和10万日元。",
+      "chunks": [
+        "Four hundred dollars",
+        "and one hundred thousand yen."
+      ],
+      "hints": [
+        "我有400美金",
+        "和10万日元。"
+      ],
+      "cid": "b0e792cb"
+    },
+    {
+      "sentence": "Okay. Have a nice stay.",
+      "translation": "好了，祝您愉快!",
+      "chunks": [
+        "Okay. Have a",
+        "nice stay."
+      ],
+      "hints": [
+        "好了，",
+        "祝您愉快！"
+      ],
+      "cid": "d4144f0e"
+    },
+    {
+      "sentence": "I can't find my baggage.",
+      "translation": "我找不着行李了。",
+      "chunks": [
+        "I can't find",
+        "my baggage."
+      ],
+      "hints": [
+        "我找不着",
+        "行李了。"
+      ],
+      "cid": "2951153a"
+    },
+    {
+      "sentence": "Please check it immediately.",
+      "translation": "请马上查一查。",
+      "chunks": [
+        "Please check it",
+        "immediately."
+      ],
+      "hints": [
+        "请马上",
+        "查一查。"
+      ],
+      "cid": "bd5fa6e4"
+    },
+    {
+      "sentence": "Please deliver the baggage to my hotel as soon as you have located it.",
+      "translation": "找到后请马上把我的行李送到饭店。",
+      "chunks": [
+        "Please deliver the baggage to my hotel",
+        "as soon as you have located it."
+      ],
+      "hints": [
+        "找到后",
+        "请马上把我的行李送到饭店。"
+      ],
+      "cid": "d301252f"
+    },
+    {
+      "sentence": "I'd like to reconfirm my flight.",
+      "translation": "我想确认一下我的机票。",
+      "chunks": [
+        "I'd like to",
+        "reconfirm my flight."
+      ],
+      "hints": [
+        "我想确认",
+        "一下我的机票。"
+      ],
+      "cid": "7f76b6e6"
+    },
+    {
+      "sentence": "Where is the Japan Airlines counter?",
+      "translation": "日本航空公司的柜台在哪儿?",
+      "chunks": [
+        "Where is the",
+        "Japan Airlines counter?"
+      ],
+      "hints": [
+        "日本航空公司的",
+        "柜台在哪儿？"
+      ],
+      "cid": "bb638bdb"
+    },
+    {
+      "sentence": "Where is the boarding gate?",
+      "translation": "登机口在哪儿?",
+      "chunks": [
+        "Where is",
+        "the boarding gate?"
+      ],
+      "hints": [
+        "登机口",
+        "在哪儿？"
+      ],
+      "cid": "08be4399"
+    },
+    {
+      "sentence": "What time do you start boarding?",
+      "translation": "什么时候开始登机?",
+      "chunks": [
+        "What time do you",
+        "start boarding?"
+      ],
+      "hints": [
+        "什么时候",
+        "开始登机？"
+      ],
+      "cid": "13cb7d97"
+    },
+    {
+      "sentence": "Has this flight begun boarding?",
+      "translation": "这个航班开始登机了吗?",
+      "chunks": [
+        "Has this flight",
+        "begun boarding?"
+      ],
+      "hints": [
+        "这个航班",
+        "开始登机了吗？"
+      ],
+      "cid": "050f1d09"
+    },
+    {
+      "sentence": "What time will we arrive in Tokyo?",
+      "translation": "几点到东京?",
+      "chunks": [
+        "What time will we",
+        "arrive in Tokyo?"
+      ],
+      "hints": [
+        "几点",
+        "到东京？"
+      ],
+      "cid": "1eb96825"
+    },
+    {
+      "sentence": "Is there a room available for tonight?",
+      "translation": "今天晚上有空房间吗?",
+      "chunks": [
+        "Is there a room",
+        "available for tonight?"
+      ],
+      "hints": [
+        "今天晚上",
+        "有空房间吗？"
+      ],
+      "cid": "193a09a7"
+    },
+    {
+      "sentence": "I reserved a room for tonight.",
+      "translation": "我预订了一个房间。",
+      "chunks": [
+        "I reserved a room",
+        "for tonight."
+      ],
+      "hints": [
+        "我预订了",
+        "一个房间。"
+      ],
+      "cid": "85c2ea02"
+    },
+    {
+      "sentence": "Check in, please.",
+      "translation": "请办入住手续。",
+      "chunks": [
+        "Check in,",
+        "please."
+      ],
+      "hints": [
+        "请办",
+        "入住手续。"
+      ],
+      "cid": "33a4f94e"
+    },
+    {
+      "sentence": "Take my baggage, please.",
+      "translation": "请帮我拿一下行李。",
+      "chunks": [
+        "Take my baggage,",
+        "please."
+      ],
+      "hints": [
+        "请帮我",
+        "拿一下行李。"
+      ],
+      "cid": "f1f4867e"
+    },
+    {
+      "sentence": "I'd like a key to room 809, please.",
+      "translation": "请给我809房间的钥匙。",
+      "chunks": [
+        "I'd like a key",
+        "to room 809, please."
+      ],
+      "hints": [
+        "请给我",
+        "809房间的钥匙。"
+      ],
+      "cid": "51912087"
+    },
+    {
+      "sentence": "Where is the dining room?",
+      "translation": "餐厅在哪儿?",
+      "chunks": [
+        "Where is",
+        "the dining room?"
+      ],
+      "hints": [
+        "餐厅",
+        "在哪儿？"
+      ],
+      "cid": "8908d568"
+    },
+    {
+      "sentence": "What time does the dining room open?",
+      "translation": "餐厅几点开门?",
+      "chunks": [
+        "What time does",
+        "the dining room open?"
+      ],
+      "hints": [
+        "餐厅",
+        "几点开门？"
+      ],
+      "cid": "68fb336f"
+    },
+    {
+      "sentence": "What time can I have breakfast?",
+      "translation": "几点吃早饭?",
+      "chunks": [
+        "What time can I",
+        "have breakfast?"
+      ],
+      "hints": [
+        "几点",
+        "吃早饭？"
+      ],
+      "cid": "ff786355"
+    },
+    {
+      "sentence": "Where can I get some beer?",
+      "translation": "我在哪儿可以买到啤酒?",
+      "chunks": [
+        "Where can I get",
+        "some beer?"
+      ],
+      "hints": [
+        "我在哪儿",
+        "可以买到啤酒？"
+      ],
+      "cid": "a1fc4148"
+    },
+    {
+      "sentence": "Can you keep my valuables?",
+      "translation": "我可以把贵重物品存这儿吗?",
+      "chunks": [
+        "Can you keep",
+        "my valuables?"
+      ],
+      "hints": [
+        "我可以把",
+        "贵重物品存这儿吗？"
+      ],
+      "cid": "a7a6135d"
+    },
+    {
+      "sentence": "Yen to dollars, please.",
+      "translation": "我想把日元换成美金。",
+      "chunks": [
+        "Yen to dollars,",
+        "please."
+      ],
+      "hints": [
+        "我想把",
+        "日元换成美金。"
+      ],
+      "cid": "e82aba2d"
+    },
+    {
+      "sentence": "Cash, please.",
+      "translation": "请换成现金。",
+      "chunks": [
+        "Cash,",
+        "please."
+      ],
+      "hints": [
+        "请换成",
+        "现金。"
+      ],
+      "cid": "6500f822"
+    },
+    {
+      "sentence": "Could you cash this traveler's check for me?",
+      "translation": "您能帮我把旅行支票换成现金吗?",
+      "chunks": [
+        "Could you cash",
+        "this traveler's check for me?"
+      ],
+      "hints": [
+        "您能帮我把",
+        "旅行支票换成现金吗？"
+      ],
+      "cid": "37f9eac5"
+    },
+    {
+      "sentence": "Would you exchange this one hundred dollar bill with five twenties?",
+      "translation": "请帮我把这100美元换成5张20美元的。",
+      "chunks": [
+        "Would you exchange",
+        "this one hundred dollar bill",
+        "with five twenties?"
+      ],
+      "hints": [
+        "请帮我把这100美元",
+        "换成",
+        "5张20美元的。"
+      ],
+      "cid": "8f561de7"
+    },
+    {
+      "sentence": "Does anyone speak Japanese?",
+      "translation": "有人会说日语吗?",
+      "chunks": [
+        "Does anyone",
+        "speak Japanese?"
+      ],
+      "hints": [
+        "有人会",
+        "说日语吗？"
+      ],
+      "cid": "e1003cb0"
+    },
+    {
+      "sentence": "Are there any messages for me?",
+      "translation": "有给我的留言吗?",
+      "chunks": [
+        "Are there any",
+        "messages for me?"
+      ],
+      "hints": [
+        "有给我的",
+        "留言吗？"
+      ],
+      "cid": "d9b5584b"
+    },
+    {
+      "sentence": "Check out, please.",
+      "translation": "我办退房手续。",
+      "chunks": [
+        "Check out,",
+        "please."
+      ],
+      "hints": [
+        "我办",
+        "退房手续。"
+      ],
+      "cid": "08800961"
+    },
+    {
+      "sentence": "Here's my room key.",
+      "translation": "这是我房间的钥匙。",
+      "chunks": [
+        "Here's",
+        "my room key."
+      ],
+      "hints": [
+        "这是我",
+        "房间的钥匙。"
+      ],
+      "cid": "3c09b183"
+    },
+    {
+      "sentence": "I didn't make any phone calls.",
+      "translation": "我没用电话。",
+      "chunks": [
+        "I didn't make",
+        "any phone calls."
+      ],
+      "hints": [
+        "我",
+        "没用电话。"
+      ],
+      "cid": "f726b6d7"
+    },
+    {
+      "sentence": "Here's your bill.",
+      "translation": "这是您的账单。",
+      "chunks": [
+        "Here's",
+        "your bill."
+      ],
+      "hints": [
+        "这是",
+        "您的账单。"
+      ],
+      "cid": "2c8fb98d"
+    },
+    {
+      "sentence": "Could you call a taxi for me?",
+      "translation": "能帮我叫一辆出租车吗?",
+      "chunks": [
+        "Could you call",
+        "a taxi for me?"
+      ],
+      "hints": [
+        "能帮我",
+        "叫一辆出租车吗？"
+      ],
+      "cid": "45a7feb0"
+    },
+    {
+      "sentence": "Room service, please.",
+      "translation": "请提供客房服务。",
+      "chunks": [
+        "Room service,",
+        "please."
+      ],
+      "hints": [
+        "请提供",
+        "客房服务。"
+      ],
+      "cid": "9b60a1ab"
+    },
+    {
+      "sentence": "A wake-up call, please.",
+      "translation": "请提供叫早服务。",
+      "chunks": [
+        "A wake-up call,",
+        "please."
+      ],
+      "hints": [
+        "请提供",
+        "叫早服务。"
+      ],
+      "cid": "98a7f04e"
+    },
+    {
+      "sentence": "Can I borrow a hair dryer?",
+      "translation": "我可以借一下吹风机吗?",
+      "chunks": [
+        "Can I borrow",
+        "a hair dryer?"
+      ],
+      "hints": [
+        "我可以借",
+        "一下吹风机吗？"
+      ],
+      "cid": "1a16614f"
+    },
+    {
+      "sentence": "Please bring me a pot of coffee.",
+      "translation": "请送一壶咖啡。",
+      "chunks": [
+        "Please bring me",
+        "a pot of coffee."
+      ],
+      "hints": [
+        "请送",
+        "一壶咖啡。"
+      ],
+      "cid": "103edabe"
+    },
+    {
+      "sentence": "Laundry service, please.",
+      "translation": "请提供洗衣服务。",
+      "chunks": [
+        "Laundry service,",
+        "please."
+      ],
+      "hints": [
+        "请提供",
+        "洗衣服务。"
+      ],
+      "cid": "977d261f"
+    },
+    {
+      "sentence": "When will it be ready?",
+      "translation": "什么时候能弄好?",
+      "chunks": [
+        "When will it",
+        "be ready?"
+      ],
+      "hints": [
+        "什么时候",
+        "能弄好？"
+      ],
+      "cid": "bc4027c7"
+    },
+    {
+      "sentence": "Your room number, please.",
+      "translation": "请告诉我您的房间号码。",
+      "chunks": [
+        "Your room number,",
+        "please."
+      ],
+      "hints": [
+        "请告诉我",
+        "您的房间号码。"
+      ],
+      "cid": "13eef39e"
+    },
+    {
+      "sentence": "This is room 501.",
+      "translation": "501房间。",
+      "chunks": [
+        "This is",
+        "room 501."
+      ],
+      "hints": [
+        "501",
+        "房间。"
+      ],
+      "cid": "7f4d3048"
+    },
+    {
+      "sentence": "Come in.",
+      "cid": "6de68bea",
+      "translation": "进来。",
+      "chunks": [
+        "Come",
+        "in."
+      ],
+      "hints": [
+        "来",
+        "进来"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʌm/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "来"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/"
+          ],
+          "pos": "副词（表方向）",
+          "meaning": "进来"
+        }
+      ],
+      "explanations": [
+        "`Come in.` 是让人进屋最常用的说法，也用来回应敲门。常见错误：\n• \"Come into\" → into 后面必须接宾语（come into the room）\n• \"Enter in\" → enter 本身不接 in",
+        "相关：Come on in.（快进来，更热情）/ After you.（您先请）"
+      ],
+      "distractors": [
+        [
+          "Comes",
+          "Coming",
+          "Come to"
+        ],
+        [
+          "into.",
+          "on.",
+          "out."
+        ]
+      ]
+    },
+    {
+      "sentence": "There is no hot water.",
+      "translation": "没有热水。",
+      "chunks": [
+        "There is",
+        "no hot water."
+      ],
+      "hints": [
+        "没有",
+        "热水。"
+      ],
+      "cid": "bc24cb70"
+    },
+    {
+      "sentence": "The room next door is noisy.",
+      "translation": "隔壁太吵了。",
+      "chunks": [
+        "The room next door",
+        "is noisy."
+      ],
+      "hints": [
+        "隔壁",
+        "太吵了。"
+      ],
+      "cid": "18564538"
+    },
+    {
+      "sentence": "Could I possibly have another room key?",
+      "translation": "我能再要一把房间钥匙吗?",
+      "chunks": [
+        "Could I possibly have",
+        "another room key?"
+      ],
+      "hints": [
+        "我能再要",
+        "一把房间钥匙吗？"
+      ],
+      "cid": "8afc0384"
+    },
+    {
+      "sentence": "I locked myself out.",
+      "translation": "我把钥匙忘在房间里了。",
+      "chunks": [
+        "I locked",
+        "myself out."
+      ],
+      "hints": [
+        "我把钥匙",
+        "忘在房间里了。"
+      ],
+      "cid": "2b75b5cc"
+    },
+    {
+      "sentence": "I'm locked out.",
+      "translation": "我被锁在外面了。",
+      "chunks": [
+        "I'm",
+        "locked out."
+      ],
+      "hints": [
+        "我被锁",
+        "在外面了。"
+      ],
+      "cid": "082f36f4"
+    },
+    {
+      "sentence": "The TV doesn't work in my room.",
+      "translation": "我房间的电视不能看。",
+      "chunks": [
+        "The TV doesn't work",
+        "in my room."
+      ],
+      "hints": [
+        "我房间的",
+        "电视不能看。"
+      ],
+      "cid": "5ecc1eb9"
+    },
+    {
+      "sentence": "Could you send someone to fix it?",
+      "translation": "您能派人给修理一下儿吗?",
+      "chunks": [
+        "Could you send someone",
+        "to fix it?"
+      ],
+      "hints": [
+        "您能派人",
+        "给修理一下儿吗？"
+      ],
+      "cid": "83ea6863"
+    },
+    {
+      "sentence": "Could you send someone up?",
+      "translation": "请叫位服务员来一下。",
+      "chunks": [
+        "Could you send",
+        "someone up?"
+      ],
+      "hints": [
+        "请叫位",
+        "服务员来一下。"
+      ],
+      "cid": "75cb60af"
+    },
+    {
+      "sentence": "I have a reservation under the name Chen.",
+      "cid": "faaa45bb",
+      "translation": "我以陈这个名字订了房间。",
+      "chunks": [
+        "I have a reservation",
+        "under the name Chen."
+      ],
+      "hints": [
+        "我有一个预订",
+        "以陈这个名字"
+      ],
+      "grammar": [
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/",
+            "/ə/",
+            "/ˌrezəˈveɪʃn/"
+          ],
+          "pos": "完成陈述",
+          "meaning": "我有预订"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈʌndər/",
+            "/ðə/",
+            "/neɪm/",
+            "/tʃen/"
+          ],
+          "pos": "方式状语",
+          "meaning": "以陈这个名字"
+        }
+      ],
+      "explanations": [
+        "酒店前台报预订名的标准句。`have a reservation` = 有预订。常见错误：\n• \"I **reserved** a room\" → 也正确但 hotel 场景用 have a reservation 更自然\n• \"I have reservation\" → 可数名词要加 a",
+        "`under the name Chen` = 以…名义预订，介词用 under 不用 with/in。"
+      ],
+      "distractors": [
+        [
+          "I've reservation",
+          "I have the reservation",
+          "I'm have a reservation"
+        ],
+        [
+          "with the name Chen.",
+          "on the name Chen.",
+          "under name Chen."
+        ]
+      ]
+    },
+    {
+      "sentence": "What time is check-out tomorrow morning?",
+      "cid": "32facf35",
+      "translation": "明天早上几点退房？",
+      "chunks": [
+        "What time is",
+        "check-out",
+        "tomorrow morning?"
+      ],
+      "hints": [
+        "几点是",
+        "退房",
+        "明天早上"
+      ],
+      "grammar": [
+        {
+          "role": "疑问结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɒt/",
+            "/taɪm/",
+            "/ɪz/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "几点是"
+        },
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈtʃekaʊt/"
+          ],
+          "pos": "复合名词",
+          "meaning": "退房"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈmɒrəʊ/",
+            "/ˈmɔːnɪŋ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "明天早上"
+        }
+      ],
+      "explanations": [
+        "酒店场景问退房时间。`check-out`（退房）对应 check-in（入住）。常见错误：\n• \"What time **is it** check-out\" → 直接 What time is + 事件，不加 it\n• \"when is checkout\" → 也可以，但 what time 更精确到几点",
+        "`tomorrow morning` 时间状语，前面不加 in/on。同系列：this morning / yesterday morning。"
+      ],
+      "distractors": [
+        [
+          "What time does",
+          "Which time is",
+          "What time was"
+        ],
+        [
+          "check in",
+          "the check-out",
+          "checking-out"
+        ],
+        [
+          "in tomorrow morning?",
+          "next morning?",
+          "on tomorrow morning?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could I have a room with a view?",
+      "cid": "c0724b3e",
+      "translation": "我能要一间看得见风景的房间吗？",
+      "chunks": [
+        "Could I have",
+        "a room with a view?"
+      ],
+      "hints": [
+        "我能要",
+        "一间带风景的房间"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/hæv/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我能要"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ruːm/",
+            "/wɪð/",
+            "/ə/",
+            "/vjuː/"
+          ],
+          "pos": "宾语",
+          "meaning": "带风景的房间"
+        }
+      ],
+      "explanations": [
+        "`Could I have...` 酒店委婉索取句式（同 Could we have / May I have）。",
+        "`a room with a view` = 景观房。with 引导后置定语修饰 room。常见错误：\n• \"a view room\" → 不地道，用 a room with a view\n• \"a room **has** a view\" → 定语用 with，不能直接接动词"
+      ],
+      "distractors": [
+        [
+          "Can I had",
+          "Could I to have",
+          "Could me have"
+        ],
+        [
+          "a view room?",
+          "a room in a view?",
+          "a room with view?"
+        ]
+      ]
+    },
+    {
+      "sentence": "The air conditioner doesn't seem to work.",
+      "cid": "e0229bb6",
+      "translation": "空调好像坏了。",
+      "chunks": [
+        "The air conditioner",
+        "doesn't seem to work."
+      ],
+      "hints": [
+        "空调",
+        "似乎不工作了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ði/",
+            "/eər/",
+            "/kənˈdɪʃənər/"
+          ],
+          "pos": "名词短语",
+          "meaning": "空调"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈdʌznt/",
+            "/siːm/",
+            "/tuː/",
+            "/wɜːk/"
+          ],
+          "pos": "seem 结构",
+          "meaning": "似乎不工作"
+        }
+      ],
+      "explanations": [
+        "`the air conditioner` 空调（口语常缩略为 the AC）。",
+        "`doesn't seem to work` = 似乎坏了。seem to do = 看起来…。常见错误：\n• \"doesn't seems to work\" → 助动词后接原形 seem\n• \"doesn't work\" → 少了 seem 的委婉，直接说坏了语气太绝对"
+      ],
+      "distractors": [
+        [
+          "The air conditioners",
+          "An air conditioner",
+          "The air's conditioner"
+        ],
+        [
+          "doesn't seems to work.",
+          "isn't seem to work.",
+          "doesn't work to seem."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you send someone up to fix it?",
+      "cid": "8f6161c2",
+      "translation": "你能派人上来修一下吗？",
+      "chunks": [
+        "Could you send someone up",
+        "to fix it?"
+      ],
+      "hints": [
+        "你能派个人上来",
+        "修理它"
+      ],
+      "grammar": [
+        {
+          "role": "情态+谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/send/",
+            "/ˈsʌmwʌn/",
+            "/ʌp/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能派人上来"
+        },
+        {
+          "role": "不定式目的",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/fɪks/",
+            "/ɪt/"
+          ],
+          "pos": "目的状语",
+          "meaning": "去修理"
+        }
+      ],
+      "explanations": [
+        "酒店报修用语。`send someone up` = 派人上来（up 指上楼到客房）。常见错误：\n• \"send someone **to** up\" → up 是副词，直接接在宾语后\n• \"send up someone\" → 宾语长时 up 放后更自然",
+        "`to fix it` 不定式表目的 = 来修理。同义：to repair it / to take a look at it."
+      ],
+      "distractors": [
+        [
+          "Could you sent someone up",
+          "Can you to send someone up",
+          "Could you send anyone up"
+        ],
+        [
+          "fixing it?",
+          "to fixing it?",
+          "for fix it?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could I see your boarding pass, please?",
+      "cid": "cf1b44ab",
+      "translation": "请出示您的登机牌好吗？",
+      "chunks": [
+        "Could I see",
+        "your boarding pass,",
+        "please?"
+      ],
+      "hints": [
+        "我能看一下",
+        "您的登机牌",
+        "请"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/siː/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我能看"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jɔːr/",
+            "/ˈbɔːdɪŋ/",
+            "/pɑːs/"
+          ],
+          "pos": "名词短语",
+          "meaning": "您的登机牌"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "请"
+        }
+      ],
+      "explanations": [
+        "机场登机口查验登机牌的用语。`boarding pass` = 登机牌（boarding card 同义）。",
+        "`your boarding pass,` 名词短语作宾语，后接 please 表请求。注意 boarding pass 中间不加空格外的词：不说 boarding **the** pass。",
+        "`please?` 放在句尾升调表请求。也可前置：Please, could I see…?"
+      ],
+      "distractors": [
+        [
+          "Can I saw",
+          "Could me see",
+          "Could I seeing"
+        ],
+        [
+          "your board pass,",
+          "you boarding pass,",
+          "your boarding ticket,"
+        ],
+        [
+          "pleased?",
+          "pleases?"
+        ]
+      ]
+    },
+    {
+      "sentence": "How many bags are you checking in?",
+      "cid": "df26fb4e",
+      "translation": "您要托运几件行李？",
+      "chunks": [
+        "How many bags",
+        "are you checking in?"
+      ],
+      "hints": [
+        "多少件行李",
+        "你要托运"
+      ],
+      "grammar": [
+        {
+          "role": "疑问短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/haʊ/",
+            "/ˈmeni/",
+            "/bæɡz/"
+          ],
+          "pos": "疑问词+名词",
+          "meaning": "多少件行李"
+        },
+        {
+          "role": "现在进行疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/",
+            "/ˈtʃekɪŋ/",
+            "/ɪn/"
+          ],
+          "pos": "进行时疑问",
+          "meaning": "你要托运"
+        }
+      ],
+      "explanations": [
+        "值机柜台问行李数。`bags` 口语指行李箱。常见错误：\n• \"How **much** bags\" → bags 可数用 many\n• \"How many **baggage**\" → baggage 不可数，不用 many 修饰",
+        "`check in` 此处指「托运行李」（check in bags）。注意拆开使用：checking **in** 的 in 不能丢。"
+      ],
+      "distractors": [
+        [
+          "How much bags",
+          "How many bag",
+          "How many luggages"
+        ],
+        [
+          "you are checking in?",
+          "are you check in?",
+          "are you checking on?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Get on the plane.",
+      "cid": "284f75cd",
+      "translation": "上飞机。",
+      "chunks": [
+        "Get on",
+        "the plane."
+      ],
+      "hints": [
+        "登上",
+        "飞机"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/ɑːn/"
+          ],
+          "pos": "短语动词 get on",
+          "meaning": "登上"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/pleɪn/"
+          ],
+          "pos": "名词短语",
+          "meaning": "飞机"
+        }
+      ],
+      "explanations": [
+        "飞机、公交、火车、船这类「登上去」的交通工具用 `get on`。常见错误：\n• \"Get in the plane\" → in 指进到某个内部空间，登机用 on\n• \"Get the plane\" → 少了 on，意思变成得到飞机",
+        "下机：get off the plane。"
+      ],
+      "distractors": [
+        [
+          "Get in",
+          "Get at",
+          "Get of"
+        ],
+        [
+          "the planes.",
+          "a plane.",
+          "the plane of."
+        ]
+      ]
+    }
+  ]
+}
