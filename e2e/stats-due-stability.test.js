@@ -88,8 +88,12 @@ function makeMem(count) {
       await route.continue();
     });
     await page.goto(BASE + '/stats.html', { waitUntil: 'domcontentloaded' });
+    /* 探针必须等「同步中的 loading 状态」本身，而不是静态的 #statsCards/#reviewTabCount：
+       后两者在 DOMContentLoaded 时就已存在，早于 renderStats() 插入 .stats-loading 的时机，
+       若在此间隙读取会得到 {count:'', loading:false} 的假失败（全量跑红、单跑绿）。
+       同步被刻意延迟 700ms，故 .stats-loading 一旦出现会稳定驻留，等它是确定性的。 */
     await page.waitForFunction(function () {
-      return document.querySelector('#reviewTabCount') && document.querySelector('#statsCards');
+      return document.querySelector('#reviewTabCount') && document.querySelector('.stats-loading');
     });
     var first = await page.evaluate(function () {
       return { count: document.querySelector('#reviewTabCount').textContent, loading: !!document.querySelector('.stats-loading') };
