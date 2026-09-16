@@ -9,3 +9,12 @@
 # 修法不是让校验器宽容，而是**产物根本不该被转换**：仓库内归一为 LF、checkout 也出 LF，
 # 保证「同一 commit → 同一字节」。
 content/** text eol=lf
+
+# ── 构建输入（extra/oral-book 管线）同理 ───────────────────────────────────
+# extra/ 下的内容 JSON 是**入库的构建输入**（书原文 / 已铺节内容 / 切分 spec），
+# 上游脚本对它们的**原始字节**敏感：
+#   - scripts/clean-book-punct.mjs 逐字节探测原文件格式才肯写回（探测不到 fail-closed 拒写）
+#     → 新检出若变 CRLF，字符串比较必然不等 → 该脚本在新 clone 里直接不可用
+#   - scripts/gen-fast-content.mjs 重跑时写 LF → 与检出的 CRLF 产生「假 diff」
+# 与 content/** 同理：保证「同一 commit → 同一字节」。
+extra/**/*.json text eol=lf
