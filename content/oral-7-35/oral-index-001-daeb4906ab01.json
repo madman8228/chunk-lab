@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "f7bbd0d6",
+      "sentence": "We have received your letter of April 14, 1998.",
+      "translation": "我们收到了您1998年4月14日的来信。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "18512825",
+      "sentence": "We thank you for your inquiry.",
+      "translation": "我们收到了您的咨询函，非常感谢。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "0dcc3329",
+      "sentence": "We are pleased to learn from your letter...",
+      "translation": "我们非常高兴从您的来信中获悉……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "b6eb27ae",
+      "sentence": "We are grateful for your inquiry of May 23,1998.",
+      "translation": "我们收到了您1998年5月23日的来函查询，非常感激。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "d3219877",
+      "sentence": "This is to acknowledge your letter of June 6, 1998.",
+      "translation": "我们已经收到了您1998年6月6日的来信。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "3a846bcc",
+      "sentence": "We are pleased to respond to your inquiry of August 18, 1998.",
+      "translation": "我非常愉快地回复您1998年8月18日的来函查询。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "caf2b7b4",
+      "sentence": "We are writing in response to your letter of October 21, 1998.",
+      "translation": "以下是就您1998年10月21日来信的回函。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "648f1a29",
+      "sentence": "This refers to your letter of October 29, 1998.",
+      "translation": "这是对您1998年10月29日来信的复函。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "fa55a789",
+      "sentence": "This is in response to your letter of November 4, 1998.",
+      "translation": "这是对您1998年11月4日来信给予的答复。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "40a7af48",
+      "sentence": "We are happy to learn from your letter that...",
+      "translation": "我们高兴地从您的来信中得知……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "2356196f",
+      "sentence": "We regret to learn from your letter that...",
+      "translation": "我们很遗憾地从您的信中得知……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "24c88426",
+      "sentence": "We would like to offer our sincere apologies for the mistake.",
+      "translation": "我们为我们的差错向您表示真诚的歉意。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "e1a94ecc",
+      "sentence": "It is nice to know that...",
+      "translation": "得知……真是太好了。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "85a006df",
+      "sentence": "It is regretted that...",
+      "translation": "为……(我们很遗憾。)",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "69ac90e1",
+      "sentence": "We are pleased to inform you that...",
+      "translation": "我们非常愉快地通知您……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "fd39bc0b",
+      "sentence": "We would like to inform you that...",
+      "translation": "我们想通知您……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "f4f4cd7f",
+      "sentence": "We take pleasure in informing you of...",
+      "translation": "我们非常荣幸地通知您……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "32bc6e6e",
+      "sentence": "We regret to inform you that...",
+      "translation": "我们很遗憾地通知您……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "8a5faaae",
+      "sentence": "We are sorry to inform you that...",
+      "translation": "我们抱歉地通知您……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "509b8221",
+      "sentence": "Please be advised that...",
+      "translation": "请允许我通知您……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "d6c32634",
+      "sentence": "We will enclose...",
+      "translation": "随信附上……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "7aea43ba",
+      "sentence": "We are enclosing a copy of...",
+      "translation": "随信附上……的复印件",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "846d88c1",
+      "sentence": "There is a copy of... attached to this letter.",
+      "translation": "……复印件随信一并寄上。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "3a0a8b95",
+      "sentence": "Attached you will find...",
+      "translation": "附上了你要的……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "7e2358a3",
+      "sentence": "Enclosed is a copy of...",
+      "translation": "附寄在内的是一份……的复印件。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "6e61eb1a",
+      "sentence": "We will send you...",
+      "translation": "我们将寄给你……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "15ba3f9f",
+      "sentence": "We are pleased to send you...",
+      "translation": "我们非常高兴地寄给你……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "fee7600d",
+      "sentence": "We are sending you the contract separately.",
+      "translation": "我们另外再把合同书寄给您。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "d8511ff8",
+      "sentence": "Would you please send us...?",
+      "translation": "您能将……寄给我们吗?",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "507af060",
+      "sentence": "We would appreciate it if you would send us...",
+      "translation": "如果你能将……寄给我的话，我们将非常感谢。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "c9b5047e",
+      "sentence": "Some months ago we wrote you regarding...",
+      "translation": "几个月前，我们曾就……事给您写了一封信。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "34902e63",
+      "sentence": "So far, we do not seem to have received word from you...",
+      "translation": "就……事我们至今没有得到您的回音。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "e102aabd",
+      "sentence": "If we do not hear from you by December 1, 1998...",
+      "translation": "如果在1998年12月1日前还得不到您的回音的话，……",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "447f01cf",
+      "sentence": "So far, we have not received word from you...",
+      "translation": "有关……事，我们还未收到您的任何回音。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "c5124d7b",
+      "sentence": "We apologize for not replying to you earlier.",
+      "translation": "很抱歉未能尽早给您回信。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "e6509599",
+      "sentence": "We are sorry for not answering your letter sooner.",
+      "translation": "未能及时给您回信，我们深表歉意。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "ae0bbdb5",
+      "sentence": "Thank you for your patience.",
+      "translation": "久未回信，让您久等了。",
+      "sourceUrl": "content/oral-7-35/oral-001-bfd996ea75dd.json",
+      "sourceOffset": 36
+    }
+  ]
+}

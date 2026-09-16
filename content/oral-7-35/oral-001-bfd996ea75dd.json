@@ -1,0 +1,487 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "We have received your letter of April 14, 1998.",
+      "translation": "我们收到了您1998年4月14日的来信。",
+      "chunks": [
+        "We have received your letter",
+        "of April 14, 1998."
+      ],
+      "hints": [
+        "我们已收到您的来信",
+        "1998年4月14日的"
+      ],
+      "cid": "f7bbd0d6"
+    },
+    {
+      "sentence": "We thank you for your inquiry.",
+      "translation": "我们收到了您的咨询函，非常感谢。",
+      "chunks": [
+        "We thank you",
+        "for your inquiry."
+      ],
+      "hints": [
+        "我们感谢您",
+        "的来函咨询。"
+      ],
+      "cid": "18512825"
+    },
+    {
+      "sentence": "We are pleased to learn from your letter...",
+      "translation": "我们非常高兴从您的来信中获悉……",
+      "chunks": [
+        "We are pleased to learn",
+        "from your letter..."
+      ],
+      "hints": [
+        "我们很高兴地得知",
+        "从您的来信中……"
+      ],
+      "cid": "0dcc3329"
+    },
+    {
+      "sentence": "We are grateful for your inquiry of May 23,1998.",
+      "translation": "我们收到了您1998年5月23日的来函查询，非常感激。",
+      "chunks": [
+        "We are grateful for",
+        "your inquiry of May 23,1998."
+      ],
+      "hints": [
+        "我们很感激",
+        "您1998年5月23日的来函查询。"
+      ],
+      "cid": "b6eb27ae"
+    },
+    {
+      "sentence": "This is to acknowledge your letter of June 6, 1998.",
+      "translation": "我们已经收到了您1998年6月6日的来信。",
+      "chunks": [
+        "This is to acknowledge",
+        "your letter of June 6, 1998."
+      ],
+      "hints": [
+        "此函确认收到",
+        "您1998年6月6日的来信。"
+      ],
+      "cid": "d3219877"
+    },
+    {
+      "sentence": "We are pleased to respond to your inquiry of August 18, 1998.",
+      "translation": "我非常愉快地回复您1998年8月18日的来函查询。",
+      "chunks": [
+        "We are pleased to respond",
+        "to your inquiry of August 18, 1998."
+      ],
+      "hints": [
+        "我们很乐意回复",
+        "您1998年8月18日的来函查询。"
+      ],
+      "cid": "3a846bcc"
+    },
+    {
+      "sentence": "We are writing in response to your letter of October 21, 1998.",
+      "translation": "以下是就您1998年10月21日来信的回函。",
+      "chunks": [
+        "We are writing in response",
+        "to your letter of October 21, 1998."
+      ],
+      "hints": [
+        "我们写信回复",
+        "您1998年10月21日的来信。"
+      ],
+      "cid": "caf2b7b4"
+    },
+    {
+      "sentence": "This refers to your letter of October 29, 1998.",
+      "translation": "这是对您1998年10月29日来信的复函。",
+      "chunks": [
+        "This refers to",
+        "your letter of October 29, 1998."
+      ],
+      "hints": [
+        "这是关于",
+        "您1998年10月29日的来信。"
+      ],
+      "cid": "648f1a29"
+    },
+    {
+      "sentence": "This is in response to your letter of November 4, 1998.",
+      "translation": "这是对您1998年11月4日来信给予的答复。",
+      "chunks": [
+        "This is in response",
+        "to your letter of November 4, 1998."
+      ],
+      "hints": [
+        "这是对",
+        "您1998年11月4日来信的答复。"
+      ],
+      "cid": "fa55a789"
+    },
+    {
+      "sentence": "We are happy to learn from your letter that...",
+      "translation": "我们高兴地从您的来信中得知……",
+      "chunks": [
+        "We are happy to learn",
+        "from your letter that..."
+      ],
+      "hints": [
+        "我们高兴地得知",
+        "从您的来信中……"
+      ],
+      "cid": "40a7af48"
+    },
+    {
+      "sentence": "We regret to learn from your letter that...",
+      "translation": "我们很遗憾地从您的信中得知……",
+      "chunks": [
+        "We regret to learn",
+        "from your letter that..."
+      ],
+      "hints": [
+        "我们遗憾地得知",
+        "从您的来信中……"
+      ],
+      "cid": "2356196f"
+    },
+    {
+      "sentence": "We would like to offer our sincere apologies for the mistake.",
+      "translation": "我们为我们的差错向您表示真诚的歉意。",
+      "chunks": [
+        "We would like to offer",
+        "our sincere apologies for the mistake."
+      ],
+      "hints": [
+        "我们想表达",
+        "对此次差错的诚挚歉意。"
+      ],
+      "cid": "24c88426"
+    },
+    {
+      "sentence": "It is nice to know that...",
+      "translation": "得知……真是太好了。",
+      "chunks": [
+        "It is nice",
+        "to know that..."
+      ],
+      "hints": [
+        "很高兴",
+        "得知……"
+      ],
+      "cid": "e1a94ecc"
+    },
+    {
+      "sentence": "It is regretted that...",
+      "translation": "为……(我们很遗憾。)",
+      "chunks": [
+        "It is regretted",
+        "that..."
+      ],
+      "hints": [
+        "很遗憾",
+        "……"
+      ],
+      "cid": "85a006df"
+    },
+    {
+      "sentence": "We are pleased to inform you that...",
+      "translation": "我们非常愉快地通知您……",
+      "chunks": [
+        "We are pleased to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们很高兴地通知",
+        "您……"
+      ],
+      "cid": "69ac90e1"
+    },
+    {
+      "sentence": "We would like to inform you that...",
+      "translation": "我们想通知您……",
+      "chunks": [
+        "We would like to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们想通知",
+        "您……"
+      ],
+      "cid": "fd39bc0b"
+    },
+    {
+      "sentence": "We take pleasure in informing you of...",
+      "translation": "我们非常荣幸地通知您……",
+      "chunks": [
+        "We take pleasure in",
+        "informing you of..."
+      ],
+      "hints": [
+        "我们很荣幸",
+        "通知您……"
+      ],
+      "cid": "f4f4cd7f"
+    },
+    {
+      "sentence": "We regret to inform you that...",
+      "translation": "我们很遗憾地通知您……",
+      "chunks": [
+        "We regret to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们遗憾地通知",
+        "您……"
+      ],
+      "cid": "32bc6e6e"
+    },
+    {
+      "sentence": "We are sorry to inform you that...",
+      "translation": "我们抱歉地通知您……",
+      "chunks": [
+        "We are sorry to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们很抱歉地通知",
+        "您……"
+      ],
+      "cid": "8a5faaae"
+    },
+    {
+      "sentence": "Please be advised that...",
+      "translation": "请允许我通知您……",
+      "chunks": [
+        "Please be advised",
+        "that..."
+      ],
+      "hints": [
+        "敬请知悉",
+        "……"
+      ],
+      "cid": "509b8221"
+    },
+    {
+      "sentence": "We will enclose...",
+      "translation": "随信附上……",
+      "chunks": [
+        "We will",
+        "enclose..."
+      ],
+      "hints": [
+        "我们将",
+        "随信附上……"
+      ],
+      "cid": "d6c32634"
+    },
+    {
+      "sentence": "We are enclosing a copy of...",
+      "translation": "随信附上……的复印件",
+      "chunks": [
+        "We are enclosing",
+        "a copy of..."
+      ],
+      "hints": [
+        "随信附上",
+        "……的复印件"
+      ],
+      "cid": "7aea43ba"
+    },
+    {
+      "sentence": "There is a copy of... attached to this letter.",
+      "translation": "……复印件随信一并寄上。",
+      "chunks": [
+        "There is a copy",
+        "of... attached to this letter."
+      ],
+      "hints": [
+        "有一份……的复印件",
+        "随本函附上。"
+      ],
+      "cid": "846d88c1"
+    },
+    {
+      "sentence": "Attached you will find...",
+      "translation": "附上了你要的……",
+      "chunks": [
+        "Attached",
+        "you will find..."
+      ],
+      "hints": [
+        "随函附上",
+        "您会看到……"
+      ],
+      "cid": "3a0a8b95"
+    },
+    {
+      "sentence": "Enclosed is a copy of...",
+      "translation": "附寄在内的是一份……的复印件。",
+      "chunks": [
+        "Enclosed is",
+        "a copy of..."
+      ],
+      "hints": [
+        "随附的是",
+        "……的复印件"
+      ],
+      "cid": "7e2358a3"
+    },
+    {
+      "sentence": "We will send you...",
+      "translation": "我们将寄给你……",
+      "chunks": [
+        "We will",
+        "send you..."
+      ],
+      "hints": [
+        "我们将",
+        "寄给您……"
+      ],
+      "cid": "6e61eb1a"
+    },
+    {
+      "sentence": "We are pleased to send you...",
+      "translation": "我们非常高兴地寄给你……",
+      "chunks": [
+        "We are pleased to",
+        "send you..."
+      ],
+      "hints": [
+        "我们很高兴",
+        "寄给您……"
+      ],
+      "cid": "15ba3f9f"
+    },
+    {
+      "sentence": "We are sending you the contract separately.",
+      "translation": "我们另外再把合同书寄给您。",
+      "chunks": [
+        "We are sending you",
+        "the contract separately."
+      ],
+      "hints": [
+        "我们将",
+        "另行寄出合同。"
+      ],
+      "cid": "fee7600d"
+    },
+    {
+      "sentence": "Would you please send us...?",
+      "translation": "您能将……寄给我们吗?",
+      "chunks": [
+        "Would you please",
+        "send us...?"
+      ],
+      "hints": [
+        "能否请您",
+        "把……寄给我们？"
+      ],
+      "cid": "d8511ff8"
+    },
+    {
+      "sentence": "We would appreciate it if you would send us...",
+      "translation": "如果你能将……寄给我的话，我们将非常感谢。",
+      "chunks": [
+        "We would appreciate it",
+        "if you would send us..."
+      ],
+      "hints": [
+        "我们将不胜感激",
+        "如果您能把……寄给我们"
+      ],
+      "cid": "507af060"
+    },
+    {
+      "sentence": "Some months ago we wrote you regarding...",
+      "translation": "几个月前，我们曾就……事给您写了一封信。",
+      "chunks": [
+        "Some months ago we wrote you",
+        "regarding..."
+      ],
+      "hints": [
+        "几个月前我们写信给您",
+        "关于……"
+      ],
+      "cid": "c9b5047e"
+    },
+    {
+      "sentence": "So far, we do not seem to have received word from you...",
+      "translation": "就……事我们至今没有得到您的回音。",
+      "chunks": [
+        "So far, we do not seem",
+        "to have received word from you..."
+      ],
+      "hints": [
+        "到目前为止，我们似乎",
+        "还未收到您的回音……"
+      ],
+      "cid": "34902e63"
+    },
+    {
+      "sentence": "If we do not hear from you by December 1, 1998...",
+      "translation": "如果在1998年12月1日前还得不到您的回音的话，……",
+      "chunks": [
+        "If we do not hear from you",
+        "by December 1, 1998..."
+      ],
+      "hints": [
+        "如果我们未能在",
+        "1998年12月1日前收到您的回音……"
+      ],
+      "cid": "e102aabd"
+    },
+    {
+      "sentence": "So far, we have not received word from you...",
+      "translation": "有关……事，我们还未收到您的任何回音。",
+      "chunks": [
+        "So far, we have not",
+        "received word from you..."
+      ],
+      "hints": [
+        "到目前为止，我们还没有",
+        "收到您的回音……"
+      ],
+      "cid": "447f01cf"
+    },
+    {
+      "sentence": "We apologize for not replying to you earlier.",
+      "translation": "很抱歉未能尽早给您回信。",
+      "chunks": [
+        "We apologize",
+        "for not replying to you earlier."
+      ],
+      "hints": [
+        "我们道歉",
+        "未能更早回复您。"
+      ],
+      "cid": "c5124d7b"
+    },
+    {
+      "sentence": "We are sorry for not answering your letter sooner.",
+      "translation": "未能及时给您回信，我们深表歉意。",
+      "chunks": [
+        "We are sorry",
+        "for not answering your letter sooner."
+      ],
+      "hints": [
+        "我们很抱歉",
+        "未能更早回您的信。"
+      ],
+      "cid": "e6509599"
+    },
+    {
+      "sentence": "Thank you for your patience.",
+      "translation": "久未回信，让您久等了。",
+      "chunks": [
+        "Thank you",
+        "for your patience."
+      ],
+      "hints": [
+        "谢谢您",
+        "的耐心等待。"
+      ],
+      "cid": "ae0bbdb5"
+    }
+  ]
+}

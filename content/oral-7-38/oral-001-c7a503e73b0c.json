@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Yours very truly,",
+      "translation": "谨致问候",
+      "chunks": [
+        "Yours very",
+        "truly,"
+      ],
+      "hints": [
+        "您诚挚的",
+        "敬上，"
+      ],
+      "cid": "326a2f75"
+    },
+    {
+      "sentence": "Sincerely yours,",
+      "translation": "谨致问候",
+      "chunks": [
+        "Sincerely",
+        "yours,"
+      ],
+      "hints": [
+        "诚挚地",
+        "敬上，"
+      ],
+      "cid": "68f170bd"
+    },
+    {
+      "sentence": "Cordially,",
+      "translation": "谨致问候",
+      "chunks": [
+        "Cordially,"
+      ],
+      "hints": [
+        "谨致问候，"
+      ],
+      "cid": "18f43dce"
+    },
+    {
+      "sentence": "My best regards,",
+      "translation": "谨致问候",
+      "chunks": [
+        "My best",
+        "regards,"
+      ],
+      "hints": [
+        "我最好的",
+        "问候，"
+      ],
+      "cid": "74057271"
+    },
+    {
+      "sentence": "With best regards,",
+      "translation": "谨致问候",
+      "chunks": [
+        "With best",
+        "regards,"
+      ],
+      "hints": [
+        "致以最好的",
+        "问候，"
+      ],
+      "cid": "eda8c4af"
+    },
+    {
+      "sentence": "The very best to you,",
+      "translation": "谨致问候",
+      "chunks": [
+        "The very best",
+        "to you,"
+      ],
+      "hints": [
+        "最美好的祝愿",
+        "给您，"
+      ],
+      "cid": "43ada8d0"
+    },
+    {
+      "sentence": "Best wishes,",
+      "translation": "谨致问候",
+      "chunks": [
+        "Best",
+        "wishes,"
+      ],
+      "hints": [
+        "最好的",
+        "祝愿，"
+      ],
+      "cid": "cbbc7c26"
+    }
+  ]
+}

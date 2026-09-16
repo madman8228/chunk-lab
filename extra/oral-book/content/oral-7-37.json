@@ -1,0 +1,266 @@
+[
+ {
+  "sentence": "We would appreciate an early reply.",
+  "translation": "如能尽早回复，我们将不胜感激。",
+  "chunks": [
+   "We would appreciate",
+   "an early reply."
+  ],
+  "hints": [
+   "如能尽早回复",
+   "我们不胜感激。"
+  ]
+ },
+ {
+  "sentence": "We look forward to your favorable reply.",
+  "translation": "我们期待着您满意的回答。",
+  "chunks": [
+   "We look forward",
+   "to your favorable reply."
+  ],
+  "hints": [
+   "我们期待",
+   "您的满意答复。"
+  ]
+ },
+ {
+  "sentence": "We look forward to hearing from you soon.",
+  "translation": "我们盼望着不久能听到您的回音。",
+  "chunks": [
+   "We look forward",
+   "to hearing from you soon."
+  ],
+  "hints": [
+   "我们期待",
+   "不久能收到您的回音。"
+  ]
+ },
+ {
+  "sentence": "Your prompt attention to this matter will be appreciated.",
+  "translation": "如果就此事您能尽早回信的话，我们将衷心感谢。",
+  "chunks": [
+   "Your prompt attention",
+   "to this matter will be appreciated."
+  ],
+  "hints": [
+   "您对此事的尽快关注",
+   "我们将不胜感激。"
+  ]
+ },
+ {
+  "sentence": "Please write us at the above address.",
+  "translation": "回信请寄到上述地址。",
+  "chunks": [
+   "Please write us",
+   "at the above address."
+  ],
+  "hints": [
+   "请写信给我们",
+   "寄至上述地址。"
+  ]
+ },
+ {
+  "sentence": "Your kind cooperation in this respect is greatly appreciated.",
+  "translation": "在此方面如果能够得到您的合作我将非常感谢。",
+  "chunks": [
+   "Your kind cooperation",
+   "in this respect is greatly appreciated."
+  ],
+  "hints": [
+   "您的热心合作",
+   "在这方面我们非常感谢。"
+  ]
+ },
+ {
+  "sentence": "We hope we can count on your continued cooperation and support.",
+  "translation": "我们希望能够继续得到你们的合作和支持。",
+  "chunks": [
+   "We hope we can count on",
+   "your continued cooperation and support."
+  ],
+  "hints": [
+   "我们希望可以依靠",
+   "你们持续的合作与支持。"
+  ]
+ },
+ {
+  "sentence": "We look forward to your...",
+  "translation": "我们期待着您的……",
+  "chunks": [
+   "We look forward",
+   "to your..."
+  ],
+  "hints": [
+   "我们期待",
+   "您的……"
+  ]
+ },
+ {
+  "sentence": "We trust our request will...",
+  "translation": "我们确信我们的请求将……",
+  "chunks": [
+   "We trust",
+   "our request will..."
+  ],
+  "hints": [
+   "我们相信",
+   "我们的请求将……"
+  ]
+ },
+ {
+  "sentence": "We are looking forward to the time when...",
+  "translation": "我们期待着当……的那一刻。",
+  "chunks": [
+   "We are looking forward",
+   "to the time when..."
+  ],
+  "hints": [
+   "我们期待着",
+   "……的那一天"
+  ]
+ },
+ {
+  "sentence": "Please do not hesitate to contact us.",
+  "translation": "请您不必客气，尽管与我们联系。",
+  "chunks": [
+   "Please do not hesitate",
+   "to contact us."
+  ],
+  "hints": [
+   "请不必犹豫",
+   "与我们联系。"
+  ]
+ },
+ {
+  "sentence": "We are always anxious to assist you in...",
+  "translation": "我们渴望在……方面给您以援助。",
+  "chunks": [
+   "We are always anxious",
+   "to assist you in..."
+  ],
+  "hints": [
+   "我们一直乐于",
+   "在……方面协助您"
+  ]
+ },
+ {
+  "sentence": "Should you have any questions, please do not hesitate to contact us.",
+  "translation": "如果您有什么问题的话，请不必客气，尽管与我们联系。",
+  "chunks": [
+   "Should you have any questions,",
+   "please do not hesitate to contact us."
+  ],
+  "hints": [
+   "如果您有任何问题，",
+   "请不必客气与我们联系。"
+  ]
+ },
+ {
+  "sentence": "Thank you for calling this matter to our attention.",
+  "translation": "谢谢您提醒我们注意此事。",
+  "chunks": [
+   "Thank you for calling",
+   "this matter to our attention."
+  ],
+  "hints": [
+   "感谢您提醒",
+   "我们注意此事。"
+  ]
+ },
+ {
+  "sentence": "Thank you very much for your cooperation.",
+  "translation": "非常感谢您给予我们的合作。",
+  "chunks": [
+   "Thank you very much",
+   "for your cooperation."
+  ],
+  "hints": [
+   "非常感谢",
+   "您的合作。"
+  ]
+ },
+ {
+  "sentence": "Thank you for the opportunity to be of service.",
+  "translation": "谢谢您提供给我们这样服务的机会。",
+  "chunks": [
+   "Thank you for the opportunity",
+   "to be of service."
+  ],
+  "hints": [
+   "感谢您给我们",
+   "提供服务的机会。"
+  ]
+ },
+ {
+  "sentence": "We appreciate this opportunity to...",
+  "translation": "我们感谢能有这样的机会去……",
+  "chunks": [
+   "We appreciate",
+   "this opportunity to..."
+  ],
+  "hints": [
+   "我们感谢",
+   "这次……的机会"
+  ]
+ },
+ {
+  "sentence": "It is always a pleasure doing business with you.",
+  "translation": "很高兴和你们保持贸易关系。",
+  "chunks": [
+   "It is always a pleasure",
+   "doing business with you."
+  ],
+  "hints": [
+   "很荣幸",
+   "与您做生意。"
+  ]
+ },
+ {
+  "sentence": "Please accept our sincere apologies.",
+  "translation": "请接受我们诚挚的歉意。",
+  "chunks": [
+   "Please accept",
+   "our sincere apologies."
+  ],
+  "hints": [
+   "请接受",
+   "我们诚挚的歉意。"
+  ]
+ },
+ {
+  "sentence": "I want to extend my personal apologies for...",
+  "translation": "我以我个人的身份为……向您赔礼道歉。",
+  "chunks": [
+   "I want to extend",
+   "my personal apologies for..."
+  ],
+  "hints": [
+   "我想表达",
+   "我个人的歉意，为……"
+  ]
+ },
+ {
+  "sentence": "We wish you a bright and successful New Year.",
+  "translation": "我们预祝您在新的一年里将更加辉煌和成功。",
+  "chunks": [
+   "We wish you a bright",
+   "and successful New Year."
+  ],
+  "hints": [
+   "祝您有一个光明",
+   "而成功的新年。"
+  ]
+ },
+ {
+  "sentence": "We trust that an increase in ... will continue in the future.",
+  "translation": "我们确信今后……将继续不断地增加。",
+  "chunks": [
+   "We trust that an increase",
+   "in ... will continue in the future."
+  ],
+  "hints": [
+   "我们相信",
+   "……今后将继续增长。"
+  ]
+ }
+]

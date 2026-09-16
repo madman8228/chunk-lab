@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "326a2f75",
+      "sentence": "Yours very truly,",
+      "translation": "谨致问候",
+      "sourceUrl": "content/oral-7-38/oral-001-c7a503e73b0c.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "68f170bd",
+      "sentence": "Sincerely yours,",
+      "translation": "谨致问候",
+      "sourceUrl": "content/oral-7-38/oral-001-c7a503e73b0c.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "18f43dce",
+      "sentence": "Cordially,",
+      "translation": "谨致问候",
+      "sourceUrl": "content/oral-7-38/oral-001-c7a503e73b0c.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "74057271",
+      "sentence": "My best regards,",
+      "translation": "谨致问候",
+      "sourceUrl": "content/oral-7-38/oral-001-c7a503e73b0c.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "eda8c4af",
+      "sentence": "With best regards,",
+      "translation": "谨致问候",
+      "sourceUrl": "content/oral-7-38/oral-001-c7a503e73b0c.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "43ada8d0",
+      "sentence": "The very best to you,",
+      "translation": "谨致问候",
+      "sourceUrl": "content/oral-7-38/oral-001-c7a503e73b0c.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "cbbc7c26",
+      "sentence": "Best wishes,",
+      "translation": "谨致问候",
+      "sourceUrl": "content/oral-7-38/oral-001-c7a503e73b0c.json",
+      "sourceOffset": 6
+    }
+  ]
+}
