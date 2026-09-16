@@ -23,6 +23,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 /* 「最少切几段」的唯一判据（含单字句例外）—— 同目录 */
 import CS from './chunk-shape.js';
+/* 「本节应铺哪些句」的唯一实现（侦察/配对脚本共用同一份口径） */
+import { loadBookSection, norm } from './book-section.mjs';
 
 const ROOT = process.cwd();
 /* 书管线输入的入库根 */
@@ -37,25 +39,13 @@ if (!m) { console.error('节号格式应为 <章>.<节>，如 6.34'); process.ex
 const ch = Number(m[1]);
 const sec = Number(m[2]);
 
-const B = JSON.parse(fs.readFileSync(path.join(ROOT, BOOK + '/book.json'), 'utf8'));
-const D = JSON.parse(fs.readFileSync(path.join(ROOT, BOOK + '/decks.json'), 'utf8'));
 const spec = JSON.parse(fs.readFileSync(path.resolve(ROOT, specPath), 'utf8'));
 
-const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const joined = (a) => a.join('').replace(/\s+/g, '');
 
-/* 本节在书里的全部句子（书序）+ 中文 */
-const bookSec = B.filter((r) => r.ch === ch && r.sec === sec);
+/* 本节在书里的全部句子（书序）+ 中文 + 应铺句清单 —— 口径唯一实现见 book-section.mjs */
+const { bookSec, decks, inScope, dedup, cnByNorm } = loadBookSection(ROOT, ch, sec);
 if (!bookSec.length) { console.error('书里没有第 ' + secArg + ' 节'); process.exit(1); }
-const cnByNorm = new Map();
-bookSec.forEach((r) => { if (!cnByNorm.has(norm(r.en))) cnByNorm.set(norm(r.en), r.cn); });
-
-/* 本节被拆成的 deck（大节可能拆成 oral-1-1-1/2/3）→ 收集**实际会装配**的句清单 */
-const decks = D.decks.filter((d) => d.chapter === ch && Number(String(d.section).split('.')[1]) === sec);
-const inScope = new Set();
-decks.forEach((d) => d.sentences.forEach((s) => inScope.add(norm(s))));
-const scopedSentences = bookSec.map((r) => r.en).filter((en) => inScope.has(norm(en)));
-const dedup = [...new Set(scopedSentences.map((s) => norm(s)))].map((k) => scopedSentences.find((s) => norm(s) === k));
 
 console.log('第 ' + secArg + ' 节「' + bookSec[0].secTitle + (bookSec[0].topic ? ' · ' + bookSec[0].topic : '') + '」');
 console.log('  书内 ' + bookSec.length + ' 句（去重 ' + new Set(bookSec.map((r) => norm(r.en))).size + '）'
