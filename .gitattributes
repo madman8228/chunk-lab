@@ -1,0 +1,11 @@
+# ── 换行符策略 ────────────────────────────────────────────────────────────
+# 本机 / 多数 Windows 环境 core.autocrlf=true。仓库里有一类**内容寻址**的生成物：
+# 文件名带内容 sha256，manifest 里又登记同一个 hash（content/ 下的分片）。
+# 一旦 checkout 时被转成 CRLF，字节就变了：
+#   - node scripts/validate-content.mjs 第一片即判红 → npm test 全红
+#   - 浏览器端拿到的是 CRLF 文件，与 SW/分片缓存键对不上
+# 2026-09-16 实测：新检出后 oral-001-*.json 由 71943 字节（LF）变成 74729 字节（2786 行 CRLF），
+# sha256 b24c7bee0192 → 7eb32483bdee，与 manifest 登记值不符。
+# 修法不是让校验器宽容，而是**产物根本不该被转换**：仓库内归一为 LF、checkout 也出 LF，
+# 保证「同一 commit → 同一字节」。
+content/** text eol=lf
