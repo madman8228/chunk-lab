@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "f922ab2c",
+      "sentence": "Tom is a lady-killer.",
+      "translation": "汤姆是个美男子。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "e6c71b91",
+      "sentence": "Tom really turns me on.",
+      "translation": "汤姆真让我神魂颠倒。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "a11a2126",
+      "sentence": "Chris is really a heartbreaker.",
+      "translation": "克里斯长得真帅。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "558283d8",
+      "sentence": "Janet is a knockout.",
+      "translation": "珍妮特真迷人呀。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "12087deb",
+      "sentence": "I think he has a crush on you.",
+      "translation": "他好像看上你了。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "c36b65fa",
+      "sentence": "Jane seems to like me.",
+      "translation": "简好像喜欢上我了。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "856eb9ee",
+      "sentence": "Diana's been coming on to Jack.",
+      "translation": "戴安娜对杰克有意思。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "6ad2f456",
+      "sentence": "I can't handle a girl like her.",
+      "translation": "我不敢打像她那样的姑娘的主意。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "917f89bc",
+      "sentence": "I'm dying to see her.",
+      "translation": "我非常想见到她。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "f7f3c3ca",
+      "sentence": "I'm trying to make a pass at her.",
+      "translation": "我想追求她。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "f51d3ef9",
+      "sentence": "You broke my heart.",
+      "translation": "你也太狠心了。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "08c77e0e",
+      "sentence": "Are you free tonight?",
+      "translation": "今晚有空吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "6fc15082",
+      "sentence": "Do you want to go out with me tonight?",
+      "translation": "今晚你能和我约会吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "8e61cff5",
+      "sentence": "Would you like to go to the movies with me?",
+      "translation": "愿意和我一起去看电影吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "48bfe7e5",
+      "sentence": "Let's have tea or something.",
+      "translation": "我们喝点茶什么的吧。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "085a87c2",
+      "sentence": "Please keep me company for a while.",
+      "translation": "能陪陪我吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "426e932a",
+      "sentence": "I'd like to invite you to a show.",
+      "translation": "我想请你去看演出。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "cfb85740",
+      "sentence": "May I ask you out?",
+      "translation": "我能和你约会吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "c72a4df5",
+      "sentence": "Are you trying to pick me up?",
+      "translation": "你是想和我约会吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "9201402d",
+      "sentence": "Where do you want to meet?",
+      "translation": "在哪儿见面?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "1915bfe1",
+      "sentence": "What time should we meet?",
+      "translation": "我们几点见面?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "75a818c7",
+      "sentence": "I want to talk to you.",
+      "translation": "我有话要对你说。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "d5098cc4",
+      "sentence": "Are you seeing anyone now?",
+      "translation": "你现在有朋友吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "74b28be7",
+      "sentence": "What do you think of me?",
+      "translation": "你觉得我怎么样?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "2cb3942b",
+      "sentence": "I love you.",
+      "translation": "我爱你。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "3338d07b",
+      "sentence": "You're the most beautiful woman I've ever seen.",
+      "translation": "你是我见到过的最美的女人。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "c662f419",
+      "sentence": "I'm crazy for you.",
+      "translation": "你使我发疯。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "b2f67baf",
+      "sentence": "Don't play hard to get.",
+      "translation": "别装腔作势。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "cbec3119",
+      "sentence": "I don't want to get serious yet.",
+      "translation": "我还不想太认真。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "3ea73f27",
+      "sentence": "It was love at first sight.",
+      "translation": "我是一见钟情。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "28452198",
+      "sentence": "I wish I had never met you.",
+      "translation": "我真希望我从来都没遇到过你。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "0137ed9c",
+      "sentence": "You're my type.",
+      "translation": "你是我喜欢的那种类型。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "f12fe490",
+      "sentence": "You make me happy.",
+      "translation": "你使我感到幸福。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "bd5b1093",
+      "sentence": "I'm happy to have known you.",
+      "translation": "能认识你我非常幸福。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "ae20f37d",
+      "sentence": "You have beautiful eyes.",
+      "translation": "你的眼睛真美。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "b03bba02",
+      "sentence": "You're sweet.",
+      "translation": "你真好。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "e1e9ca0f",
+      "sentence": "You're sexy.",
+      "translation": "你真性感。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "3b0f5620",
+      "sentence": "Let's walk hand in hand.",
+      "translation": "我们拉着手走吧。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "c7e16acf",
+      "sentence": "May I hold your hand?",
+      "translation": "我可以牵你的手吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "5ecfd183",
+      "sentence": "You're beautiful.",
+      "translation": "你真漂亮。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "c2e23297",
+      "sentence": "I want to know all about you.",
+      "translation": "我想知道你的一切。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "3b5b8dbd",
+      "sentence": "I want you.",
+      "translation": "我想要你。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "8d2028cf",
+      "sentence": "I need you.",
+      "translation": "我需要你。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "465cf306",
+      "sentence": "You're everything to me.",
+      "translation": "你是我的一切。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "c0c92963",
+      "sentence": "You're mine.",
+      "translation": "你是我的。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "66924fee",
+      "sentence": "I'm yours.",
+      "translation": "我是你的。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "26811d24",
+      "sentence": "I can't live without you.",
+      "translation": "没有你我无法活下去。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "df9dbbdd",
+      "sentence": "Come closer.",
+      "translation": "再靠近我些。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "55dc5b48",
+      "sentence": "What's on your mind?",
+      "translation": "你想什么呢?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "fe13cef7",
+      "sentence": "I think of you night and day.",
+      "translation": "我时时刻刻都想着你。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "00713920",
+      "sentence": "There will never be another you.",
+      "translation": "你是这个世界上独一无二的人。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "b001063d",
+      "sentence": "I like your dress.",
+      "translation": "你的连衣裙真漂亮。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "11d175b1",
+      "sentence": "Nothing is too good for you.",
+      "translation": "为你我在所不惜。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "98c3ba55",
+      "sentence": "Are you seducing me?",
+      "translation": "你在引诱我吗?",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "01e889c8",
+      "sentence": "Hold me tight.",
+      "translation": "抱紧我。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "2b5c3905",
+      "sentence": "Don't go away.",
+      "translation": "别离开我。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "107f3851",
+      "sentence": "I can't help falling in love with you.",
+      "translation": "我无法不爱你。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "52834e5d",
+      "sentence": "I've never felt like this before.",
+      "translation": "我从来没有过这种感觉。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "5fa18058",
+      "sentence": "You're the one for me.",
+      "translation": "你是我的惟一。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "59638967",
+      "sentence": "I'll love you forever.",
+      "translation": "我永远爱你。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "8ed24255",
+      "sentence": "I always speak my mind.",
+      "translation": "我一直都说的是真心话。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "b4d165a3",
+      "sentence": "Love me, love my dog.",
+      "translation": "既然那样，那你也要爱屋及乌噢。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "62fa51b1",
+      "sentence": "Be gentle.",
+      "translation": "请温柔些。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "9031ee34",
+      "sentence": "Love me more.",
+      "translation": "再多爱我一些。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "b8fe3842",
+      "sentence": "Look at me!",
+      "translation": "看着我!",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "6177e4c3",
+      "sentence": "I fell in love with Rose.",
+      "translation": "我爱上了罗丝。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "c3d54333",
+      "sentence": "I'm deeply in love with Rose.",
+      "translation": "我深深地爱着罗丝。",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "a75c2df3",
+      "sentence": "Smooch!",
+      "translation": "唧!",
+      "sourceUrl": "content/oral-1-4-1/oral-001-5c90f526a703.json",
+      "sourceOffset": 67
+    }
+  ]
+}

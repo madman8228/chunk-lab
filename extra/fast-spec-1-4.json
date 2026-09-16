@@ -1,0 +1,1166 @@
+[
+ {
+  "sentence": "Tom is a lady-killer.",
+  "chunks": [
+   "Tom is",
+   "a lady-killer."
+  ],
+  "hints": [
+   "汤姆是",
+   "一个美男子"
+  ]
+ },
+ {
+  "sentence": "Tom really turns me on.",
+  "chunks": [
+   "Tom really",
+   "turns me on."
+  ],
+  "hints": [
+   "汤姆真的",
+   "让我神魂颠倒"
+  ]
+ },
+ {
+  "sentence": "Chris is really a heartbreaker.",
+  "chunks": [
+   "Chris is really",
+   "a heartbreaker."
+  ],
+  "hints": [
+   "克里斯真是",
+   "个让人心碎的家伙"
+  ]
+ },
+ {
+  "sentence": "Janet is a knockout.",
+  "chunks": [
+   "Janet is",
+   "a knockout."
+  ],
+  "hints": [
+   "珍妮特是",
+   "个大美人"
+  ]
+ },
+ {
+  "sentence": "I think he has a crush on you.",
+  "chunks": [
+   "I think he has",
+   "a crush on you."
+  ],
+  "hints": [
+   "我觉得他",
+   "看上你了"
+  ]
+ },
+ {
+  "sentence": "Jane seems to like me.",
+  "chunks": [
+   "Jane seems",
+   "to like me."
+  ],
+  "hints": [
+   "简好像",
+   "喜欢上我了"
+  ]
+ },
+ {
+  "sentence": "Diana's been coming on to Jack.",
+  "chunks": [
+   "Diana's been",
+   "coming on to Jack."
+  ],
+  "hints": [
+   "戴安娜一直",
+   "对杰克有意思"
+  ]
+ },
+ {
+  "sentence": "I can't handle a girl like her.",
+  "chunks": [
+   "I can't handle",
+   "a girl like her."
+  ],
+  "hints": [
+   "我应付不了",
+   "像她那样的姑娘"
+  ]
+ },
+ {
+  "sentence": "I'm dying to see her.",
+  "chunks": [
+   "I'm dying",
+   "to see her."
+  ],
+  "hints": [
+   "我非常想",
+   "见到她"
+  ]
+ },
+ {
+  "sentence": "I'm trying to make a pass at her.",
+  "chunks": [
+   "I'm trying to",
+   "make a pass at her."
+  ],
+  "hints": [
+   "我想",
+   "追求她"
+  ]
+ },
+ {
+  "sentence": "You broke my heart.",
+  "chunks": [
+   "You broke",
+   "my heart."
+  ],
+  "hints": [
+   "你伤了",
+   "我的心"
+  ]
+ },
+ {
+  "sentence": "Are you free tonight?",
+  "chunks": [
+   "Are you",
+   "free tonight?"
+  ],
+  "hints": [
+   "你",
+   "今晚有空吗"
+  ]
+ },
+ {
+  "sentence": "Do you want to go out with me tonight?",
+  "chunks": [
+   "Do you want to go out",
+   "with me tonight?"
+  ],
+  "hints": [
+   "你想不想出去",
+   "今晚和我约会"
+  ]
+ },
+ {
+  "sentence": "Would you like to go to the movies with me?",
+  "chunks": [
+   "Would you like",
+   "to go to the movies with me?"
+  ],
+  "hints": [
+   "你愿意",
+   "和我一起去看电影吗"
+  ]
+ },
+ {
+  "sentence": "Let's have tea or something.",
+  "chunks": [
+   "Let's have",
+   "tea or something."
+  ],
+  "hints": [
+   "我们喝点",
+   "茶什么的吧"
+  ]
+ },
+ {
+  "sentence": "Please keep me company for a while.",
+  "chunks": [
+   "Please keep me company",
+   "for a while."
+  ],
+  "hints": [
+   "请陪我",
+   "一会儿"
+  ]
+ },
+ {
+  "sentence": "I'd like to invite you to a show.",
+  "chunks": [
+   "I'd like to invite you",
+   "to a show."
+  ],
+  "hints": [
+   "我想请你",
+   "去看演出"
+  ]
+ },
+ {
+  "sentence": "May I ask you out?",
+  "chunks": [
+   "May I",
+   "ask you out?"
+  ],
+  "hints": [
+   "我可以",
+   "和你约会吗"
+  ]
+ },
+ {
+  "sentence": "Are you trying to pick me up?",
+  "chunks": [
+   "Are you trying",
+   "to pick me up?"
+  ],
+  "hints": [
+   "你是不是想",
+   "和我搭讪"
+  ]
+ },
+ {
+  "sentence": "Where do you want to meet?",
+  "chunks": [
+   "Where do you",
+   "want to meet?"
+  ],
+  "hints": [
+   "你想在哪儿",
+   "见面"
+  ]
+ },
+ {
+  "sentence": "What time should we meet?",
+  "chunks": [
+   "What time",
+   "should we meet?"
+  ],
+  "hints": [
+   "什么时间",
+   "我们见面"
+  ]
+ },
+ {
+  "sentence": "I want to talk to you.",
+  "chunks": [
+   "I want",
+   "to talk to you."
+  ],
+  "hints": [
+   "我想",
+   "和你说说话"
+  ]
+ },
+ {
+  "sentence": "Are you seeing anyone now?",
+  "chunks": [
+   "Are you seeing",
+   "anyone now?"
+  ],
+  "hints": [
+   "你现在",
+   "有交往对象吗"
+  ]
+ },
+ {
+  "sentence": "What do you think of me?",
+  "chunks": [
+   "What do you",
+   "think of me?"
+  ],
+  "hints": [
+   "你觉得",
+   "我怎么样"
+  ]
+ },
+ {
+  "sentence": "I love you.",
+  "chunks": [
+   "I",
+   "love you."
+  ],
+  "hints": [
+   "我",
+   "爱你"
+  ]
+ },
+ {
+  "sentence": "You're the most beautiful woman I've ever seen.",
+  "chunks": [
+   "You're the most beautiful woman",
+   "I've ever seen."
+  ],
+  "hints": [
+   "你是我见过的",
+   "最美的女人"
+  ]
+ },
+ {
+  "sentence": "I'm crazy for you.",
+  "chunks": [
+   "I'm crazy",
+   "for you."
+  ],
+  "hints": [
+   "我为你",
+   "发疯"
+  ]
+ },
+ {
+  "sentence": "Don't play hard to get.",
+  "chunks": [
+   "Don't play",
+   "hard to get."
+  ],
+  "hints": [
+   "别",
+   "装腔作势"
+  ]
+ },
+ {
+  "sentence": "I don't want to get serious yet.",
+  "chunks": [
+   "I don't want",
+   "to get serious yet."
+  ],
+  "hints": [
+   "我还不想",
+   "太认真"
+  ]
+ },
+ {
+  "sentence": "It was love at first sight.",
+  "chunks": [
+   "It was love",
+   "at first sight."
+  ],
+  "hints": [
+   "那真是",
+   "一见钟情"
+  ]
+ },
+ {
+  "sentence": "I wish I had never met you.",
+  "chunks": [
+   "I wish",
+   "I had never met you."
+  ],
+  "hints": [
+   "我真希望",
+   "从来没遇到过你"
+  ]
+ },
+ {
+  "sentence": "You're my type.",
+  "chunks": [
+   "You're",
+   "my type."
+  ],
+  "hints": [
+   "你是",
+   "我喜欢的类型"
+  ]
+ },
+ {
+  "sentence": "You make me happy.",
+  "chunks": [
+   "You make me",
+   "happy."
+  ],
+  "hints": [
+   "你让我",
+   "感到幸福"
+  ]
+ },
+ {
+  "sentence": "I'm happy to have known you.",
+  "chunks": [
+   "I'm happy",
+   "to have known you."
+  ],
+  "hints": [
+   "我很高兴",
+   "能认识你"
+  ]
+ },
+ {
+  "sentence": "You have beautiful eyes.",
+  "chunks": [
+   "You have",
+   "beautiful eyes."
+  ],
+  "hints": [
+   "你有一双",
+   "美丽的眼睛"
+  ]
+ },
+ {
+  "sentence": "You're sweet.",
+  "chunks": [
+   "You're",
+   "sweet."
+  ],
+  "hints": [
+   "你",
+   "真好"
+  ]
+ },
+ {
+  "sentence": "You're sexy.",
+  "chunks": [
+   "You're",
+   "sexy."
+  ],
+  "hints": [
+   "你",
+   "真性感"
+  ]
+ },
+ {
+  "sentence": "Let's walk hand in hand.",
+  "chunks": [
+   "Let's walk",
+   "hand in hand."
+  ],
+  "hints": [
+   "我们",
+   "拉着手走吧"
+  ]
+ },
+ {
+  "sentence": "May I hold your hand?",
+  "chunks": [
+   "May I",
+   "hold your hand?"
+  ],
+  "hints": [
+   "我可以",
+   "牵你的手吗"
+  ]
+ },
+ {
+  "sentence": "You're beautiful.",
+  "chunks": [
+   "You're",
+   "beautiful."
+  ],
+  "hints": [
+   "你",
+   "真漂亮"
+  ]
+ },
+ {
+  "sentence": "I want to know all about you.",
+  "chunks": [
+   "I want to know",
+   "all about you."
+  ],
+  "hints": [
+   "我想知道",
+   "你的一切"
+  ]
+ },
+ {
+  "sentence": "I want you.",
+  "chunks": [
+   "I",
+   "want you."
+  ],
+  "hints": [
+   "我",
+   "想要你"
+  ]
+ },
+ {
+  "sentence": "I need you.",
+  "chunks": [
+   "I",
+   "need you."
+  ],
+  "hints": [
+   "我",
+   "需要你"
+  ]
+ },
+ {
+  "sentence": "You're everything to me.",
+  "chunks": [
+   "You're everything",
+   "to me."
+  ],
+  "hints": [
+   "你对我",
+   "就是一切"
+  ]
+ },
+ {
+  "sentence": "You're mine.",
+  "chunks": [
+   "You're",
+   "mine."
+  ],
+  "hints": [
+   "你是",
+   "我的"
+  ]
+ },
+ {
+  "sentence": "I'm yours.",
+  "chunks": [
+   "I'm",
+   "yours."
+  ],
+  "hints": [
+   "我是",
+   "你的"
+  ]
+ },
+ {
+  "sentence": "I can't live without you.",
+  "chunks": [
+   "I can't live",
+   "without you."
+  ],
+  "hints": [
+   "我没法活下去",
+   "没有你"
+  ]
+ },
+ {
+  "sentence": "Come closer.",
+  "chunks": [
+   "Come",
+   "closer."
+  ],
+  "hints": [
+   "再",
+   "靠近些"
+  ]
+ },
+ {
+  "sentence": "What's on your mind?",
+  "chunks": [
+   "What's",
+   "on your mind?"
+  ],
+  "hints": [
+   "你在",
+   "想什么呢"
+  ]
+ },
+ {
+  "sentence": "I think of you night and day.",
+  "chunks": [
+   "I think of you",
+   "night and day."
+  ],
+  "hints": [
+   "我时时刻刻",
+   "都想着你"
+  ]
+ },
+ {
+  "sentence": "There will never be another you.",
+  "chunks": [
+   "There will never be",
+   "another you."
+  ],
+  "hints": [
+   "再也不会有",
+   "第二个你"
+  ]
+ },
+ {
+  "sentence": "I like your dress.",
+  "chunks": [
+   "I like",
+   "your dress."
+  ],
+  "hints": [
+   "我喜欢",
+   "你的连衣裙"
+  ]
+ },
+ {
+  "sentence": "Nothing is too good for you.",
+  "chunks": [
+   "Nothing is",
+   "too good for you."
+  ],
+  "hints": [
+   "没有什么",
+   "对你是过分的"
+  ]
+ },
+ {
+  "sentence": "Are you seducing me?",
+  "chunks": [
+   "Are you",
+   "seducing me?"
+  ],
+  "hints": [
+   "你是在",
+   "引诱我吗"
+  ]
+ },
+ {
+  "sentence": "Hold me tight.",
+  "chunks": [
+   "Hold me",
+   "tight."
+  ],
+  "hints": [
+   "抱紧",
+   "我"
+  ]
+ },
+ {
+  "sentence": "Don't go away.",
+  "chunks": [
+   "Don't",
+   "go away."
+  ],
+  "hints": [
+   "别",
+   "离开"
+  ]
+ },
+ {
+  "sentence": "I can't help falling in love with you.",
+  "chunks": [
+   "I can't help",
+   "falling in love with you."
+  ],
+  "hints": [
+   "我忍不住",
+   "爱上了你"
+  ]
+ },
+ {
+  "sentence": "I've never felt like this before.",
+  "chunks": [
+   "I've never felt",
+   "like this before."
+  ],
+  "hints": [
+   "我从来没有过",
+   "这种感觉"
+  ]
+ },
+ {
+  "sentence": "You're the one for me.",
+  "chunks": [
+   "You're the one",
+   "for me."
+  ],
+  "hints": [
+   "你是",
+   "我的唯一"
+  ]
+ },
+ {
+  "sentence": "I'll love you forever.",
+  "chunks": [
+   "I'll love you",
+   "forever."
+  ],
+  "hints": [
+   "我会爱你",
+   "到永远"
+  ]
+ },
+ {
+  "sentence": "I always speak my mind.",
+  "chunks": [
+   "I always speak",
+   "my mind."
+  ],
+  "hints": [
+   "我一直说的",
+   "都是真心话"
+  ]
+ },
+ {
+  "sentence": "Love me, love my dog.",
+  "chunks": [
+   "Love me,",
+   "love my dog."
+  ],
+  "hints": [
+   "爱我",
+   "也要爱我的狗"
+  ]
+ },
+ {
+  "sentence": "Be gentle.",
+  "chunks": [
+   "Be",
+   "gentle."
+  ],
+  "hints": [
+   "请",
+   "温柔些"
+  ]
+ },
+ {
+  "sentence": "Love me more.",
+  "chunks": [
+   "Love me",
+   "more."
+  ],
+  "hints": [
+   "再",
+   "多爱我一些"
+  ]
+ },
+ {
+  "sentence": "Look at me!",
+  "chunks": [
+   "Look",
+   "at me!"
+  ],
+  "hints": [
+   "看",
+   "着我"
+  ]
+ },
+ {
+  "sentence": "I fell in love with Rose.",
+  "chunks": [
+   "I fell in love",
+   "with Rose."
+  ],
+  "hints": [
+   "我爱上了",
+   "罗丝"
+  ]
+ },
+ {
+  "sentence": "I'm deeply in love with Rose.",
+  "chunks": [
+   "I'm deeply in love",
+   "with Rose."
+  ],
+  "hints": [
+   "我深深地",
+   "爱着罗丝"
+  ]
+ },
+ {
+  "sentence": "Smooch!",
+  "chunks": [
+   "Smooch!"
+  ],
+  "hints": [
+   "唧（亲吻声）"
+  ]
+ },
+ {
+  "sentence": "Will you marry me?",
+  "chunks": [
+   "Will you",
+   "marry me?"
+  ],
+  "hints": [
+   "你愿意",
+   "嫁给我吗"
+  ]
+ },
+ {
+  "sentence": "I don't want to get engaged yet.",
+  "chunks": [
+   "I don't want",
+   "to get engaged yet."
+  ],
+  "hints": [
+   "我还不想",
+   "订婚"
+  ]
+ },
+ {
+  "sentence": "I don't want to get married yet.",
+  "chunks": [
+   "I don't want",
+   "to get married yet."
+  ],
+  "hints": [
+   "我还不想",
+   "结婚"
+  ]
+ },
+ {
+  "sentence": "I haven't thought about marriage yet.",
+  "chunks": [
+   "I haven't thought",
+   "about marriage yet."
+  ],
+  "hints": [
+   "结婚的事",
+   "我还没想过"
+  ]
+ },
+ {
+  "sentence": "I love you but I can't marry you.",
+  "chunks": [
+   "I love you",
+   "but I can't marry you."
+  ],
+  "hints": [
+   "我爱你",
+   "可是不能和你结婚"
+  ]
+ },
+ {
+  "sentence": "I hesitate to marry her.",
+  "chunks": [
+   "I hesitate",
+   "to marry her."
+  ],
+  "hints": [
+   "我下不了决心",
+   "和她结婚"
+  ]
+ },
+ {
+  "sentence": "He's a newlywed.",
+  "chunks": [
+   "He's",
+   "a newlywed."
+  ],
+  "hints": [
+   "他",
+   "刚结婚"
+  ]
+ },
+ {
+  "sentence": "How's your married life?",
+  "chunks": [
+   "How's",
+   "your married life?"
+  ],
+  "hints": [
+   "你的婚后生活",
+   "怎么样"
+  ]
+ },
+ {
+  "sentence": "We're happy together now.",
+  "chunks": [
+   "We're happy",
+   "together now."
+  ],
+  "hints": [
+   "我们俩",
+   "现在很幸福"
+  ]
+ },
+ {
+  "sentence": "I love my wife.",
+  "chunks": [
+   "I love",
+   "my wife."
+  ],
+  "hints": [
+   "我很爱",
+   "我的妻子"
+  ]
+ },
+ {
+  "sentence": "We're two of a kind.",
+  "chunks": [
+   "We're",
+   "two of a kind."
+  ],
+  "hints": [
+   "我们俩",
+   "性格相似"
+  ]
+ },
+ {
+  "sentence": "We're a well-matched couple.",
+  "chunks": [
+   "We're",
+   "a well-matched couple."
+  ],
+  "hints": [
+   "我们是",
+   "很般配的一对"
+  ]
+ },
+ {
+  "sentence": "I'm a family-centered person.",
+  "chunks": [
+   "I'm a",
+   "family-centered person."
+  ],
+  "hints": [
+   "我是个",
+   "顾家的人"
+  ]
+ },
+ {
+  "sentence": "She wants to start a family.",
+  "chunks": [
+   "She wants",
+   "to start a family."
+  ],
+  "hints": [
+   "她想要",
+   "个孩子"
+  ]
+ },
+ {
+  "sentence": "I'm pregnant.",
+  "chunks": [
+   "I'm",
+   "pregnant."
+  ],
+  "hints": [
+   "我",
+   "怀孕了"
+  ]
+ },
+ {
+  "sentence": "What did she have?",
+  "chunks": [
+   "What",
+   "did she have?"
+  ],
+  "hints": [
+   "她生的",
+   "是男孩还是女孩"
+  ]
+ },
+ {
+  "sentence": "We can work it out.",
+  "chunks": [
+   "We can",
+   "work it out."
+  ],
+  "hints": [
+   "问题",
+   "总会解决的"
+  ]
+ },
+ {
+  "sentence": "I think of my wife first.",
+  "chunks": [
+   "I think of",
+   "my wife first."
+  ],
+  "hints": [
+   "我首先想到的",
+   "是我妻子"
+  ]
+ },
+ {
+  "sentence": "We as a husband and a wife don't have any fights.",
+  "chunks": [
+   "We as a husband and a wife",
+   "don't have any fights."
+  ],
+  "hints": [
+   "我们夫妻俩",
+   "从不吵架"
+  ]
+ },
+ {
+  "sentence": "Family man.",
+  "chunks": [
+   "Family",
+   "man."
+  ],
+  "hints": [
+   "拖家带口的",
+   "人"
+  ]
+ },
+ {
+  "sentence": "We fight a lot.",
+  "chunks": [
+   "We fight",
+   "a lot."
+  ],
+  "hints": [
+   "我们经常",
+   "吵架"
+  ]
+ },
+ {
+  "sentence": "I don't love my wife any more.",
+  "chunks": [
+   "I don't love",
+   "my wife any more."
+  ],
+  "hints": [
+   "我不再爱",
+   "我的妻子了"
+  ]
+ },
+ {
+  "sentence": "My wife's cheating on me.",
+  "chunks": [
+   "My wife's",
+   "cheating on me."
+  ],
+  "hints": [
+   "我老婆",
+   "有外遇"
+  ]
+ },
+ {
+  "sentence": "We had a falling-out.",
+  "chunks": [
+   "We had",
+   "a falling-out."
+  ],
+  "hints": [
+   "我们",
+   "感情不和"
+  ]
+ },
+ {
+  "sentence": "I've changed my mind.",
+  "chunks": [
+   "I've changed",
+   "my mind."
+  ],
+  "hints": [
+   "我已经",
+   "改变心意了"
+  ]
+ },
+ {
+  "sentence": "You have changed.",
+  "chunks": [
+   "You have",
+   "changed."
+  ],
+  "hints": [
+   "你",
+   "变了"
+  ]
+ },
+ {
+  "sentence": "Are you seeing someone now?",
+  "chunks": [
+   "Are you seeing",
+   "someone now?"
+  ],
+  "hints": [
+   "你现在是不是",
+   "和谁在交往"
+  ]
+ },
+ {
+  "sentence": "I don't see eye to eye with my wife.",
+  "chunks": [
+   "I don't see eye to eye",
+   "with my wife."
+  ],
+  "hints": [
+   "我和妻子",
+   "没什么共同语言"
+  ]
+ },
+ {
+  "sentence": "We just don't get along.",
+  "chunks": [
+   "We just",
+   "don't get along."
+  ],
+  "hints": [
+   "我们俩",
+   "合不来"
+  ]
+ },
+ {
+  "sentence": "I thought I knew you.",
+  "chunks": [
+   "I thought",
+   "I knew you."
+  ],
+  "hints": [
+   "我以为",
+   "我了解你"
+  ]
+ },
+ {
+  "sentence": "I had an affair with my secretary.",
+  "chunks": [
+   "I had an affair",
+   "with my secretary."
+  ],
+  "hints": [
+   "我和我的秘书",
+   "有了婚外情"
+  ]
+ },
+ {
+  "sentence": "I don't enjoy being with you.",
+  "chunks": [
+   "I don't enjoy",
+   "being with you."
+  ],
+  "hints": [
+   "和你在一起",
+   "没意思"
+  ]
+ },
+ {
+  "sentence": "Let's get divorced.",
+  "chunks": [
+   "Let's get",
+   "divorced."
+  ],
+  "hints": [
+   "我们",
+   "离婚吧"
+  ]
+ },
+ {
+  "sentence": "I'm separated from my wife.",
+  "chunks": [
+   "I'm separated",
+   "from my wife."
+  ],
+  "hints": [
+   "我和妻子",
+   "分居了"
+  ]
+ },
+ {
+  "sentence": "I can't get over losing you.",
+  "chunks": [
+   "I can't get over",
+   "losing you."
+  ],
+  "hints": [
+   "我没法接受",
+   "失去你"
+  ]
+ },
+ {
+  "sentence": "Breaking up is hard to do.",
+  "chunks": [
+   "Breaking up",
+   "is hard to do."
+  ],
+  "hints": [
+   "分手",
+   "是很难的"
+  ]
+ },
+ {
+  "sentence": "Don't break my heart.",
+  "chunks": [
+   "Don't break",
+   "my heart."
+  ],
+  "hints": [
+   "请别伤",
+   "我的心"
+  ]
+ },
+ {
+  "sentence": "We argued for hours.",
+  "chunks": [
+   "We argued",
+   "for hours."
+  ],
+  "hints": [
+   "我们争论了",
+   "好几个小时"
+  ]
+ }
+]

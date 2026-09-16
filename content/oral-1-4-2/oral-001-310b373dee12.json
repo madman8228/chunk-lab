@@ -1,0 +1,500 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Will you marry me?",
+      "translation": "愿意和我结婚吗?",
+      "chunks": [
+        "Will you",
+        "marry me?"
+      ],
+      "hints": [
+        "你愿意",
+        "嫁给我吗"
+      ],
+      "cid": "a5a2f9cc"
+    },
+    {
+      "sentence": "I don't want to get engaged yet.",
+      "translation": "我还不想订婚。",
+      "chunks": [
+        "I don't want",
+        "to get engaged yet."
+      ],
+      "hints": [
+        "我还不想",
+        "订婚"
+      ],
+      "cid": "d6a36ed8"
+    },
+    {
+      "sentence": "I don't want to get married yet.",
+      "translation": "我还不想结婚。",
+      "chunks": [
+        "I don't want",
+        "to get married yet."
+      ],
+      "hints": [
+        "我还不想",
+        "结婚"
+      ],
+      "cid": "98fb73d3"
+    },
+    {
+      "sentence": "I haven't thought about marriage yet.",
+      "translation": "结婚，我还没想过呢。",
+      "chunks": [
+        "I haven't thought",
+        "about marriage yet."
+      ],
+      "hints": [
+        "结婚的事",
+        "我还没想过"
+      ],
+      "cid": "49de12a3"
+    },
+    {
+      "sentence": "I love you but I can't marry you.",
+      "translation": "我爱你，可是不能和你结婚。",
+      "chunks": [
+        "I love you",
+        "but I can't marry you."
+      ],
+      "hints": [
+        "我爱你",
+        "可是不能和你结婚"
+      ],
+      "cid": "39ea312a"
+    },
+    {
+      "sentence": "I hesitate to marry her.",
+      "translation": "我还下不了决心和她结婚。",
+      "chunks": [
+        "I hesitate",
+        "to marry her."
+      ],
+      "hints": [
+        "我下不了决心",
+        "和她结婚"
+      ],
+      "cid": "c5dedc14"
+    },
+    {
+      "sentence": "He's a newlywed.",
+      "translation": "他刚刚结婚。",
+      "chunks": [
+        "He's",
+        "a newlywed."
+      ],
+      "hints": [
+        "他",
+        "刚结婚"
+      ],
+      "cid": "dc11e094"
+    },
+    {
+      "sentence": "How's your married life?",
+      "translation": "婚后生活怎么样?",
+      "chunks": [
+        "How's",
+        "your married life?"
+      ],
+      "hints": [
+        "你的婚后生活",
+        "怎么样"
+      ],
+      "cid": "f28619f5"
+    },
+    {
+      "sentence": "We're happy together now.",
+      "translation": "我们俩都感到很幸福。",
+      "chunks": [
+        "We're happy",
+        "together now."
+      ],
+      "hints": [
+        "我们俩",
+        "现在很幸福"
+      ],
+      "cid": "d643a6b9"
+    },
+    {
+      "sentence": "I love my wife.",
+      "translation": "我很爱我的妻子。",
+      "chunks": [
+        "I love",
+        "my wife."
+      ],
+      "hints": [
+        "我很爱",
+        "我的妻子"
+      ],
+      "cid": "d9bd2bdf"
+    },
+    {
+      "sentence": "We're two of a kind.",
+      "translation": "我们夫妻俩性格相似。",
+      "chunks": [
+        "We're",
+        "two of a kind."
+      ],
+      "hints": [
+        "我们俩",
+        "性格相似"
+      ],
+      "cid": "c23de3a5"
+    },
+    {
+      "sentence": "We're a well-matched couple.",
+      "translation": "我们俩很般配。",
+      "chunks": [
+        "We're",
+        "a well-matched couple."
+      ],
+      "hints": [
+        "我们是",
+        "很般配的一对"
+      ],
+      "cid": "001d3c9b"
+    },
+    {
+      "sentence": "I'm a family-centered person.",
+      "translation": "我是个顾家的人。",
+      "chunks": [
+        "I'm a",
+        "family-centered person."
+      ],
+      "hints": [
+        "我是个",
+        "顾家的人"
+      ],
+      "cid": "dff3d3a5"
+    },
+    {
+      "sentence": "She wants to start a family.",
+      "translation": "她想要个孩子。",
+      "chunks": [
+        "She wants",
+        "to start a family."
+      ],
+      "hints": [
+        "她想要",
+        "个孩子"
+      ],
+      "cid": "a78bb49a"
+    },
+    {
+      "sentence": "I'm pregnant.",
+      "translation": "我怀孕了。",
+      "chunks": [
+        "I'm",
+        "pregnant."
+      ],
+      "hints": [
+        "我",
+        "怀孕了"
+      ],
+      "cid": "060e83f5"
+    },
+    {
+      "sentence": "What did she have?",
+      "translation": "怀的是男孩还是女孩?",
+      "chunks": [
+        "What",
+        "did she have?"
+      ],
+      "hints": [
+        "她生的",
+        "是男孩还是女孩"
+      ],
+      "cid": "6ef2b67f"
+    },
+    {
+      "sentence": "We can work it out.",
+      "translation": "问题总会解决的。",
+      "chunks": [
+        "We can",
+        "work it out."
+      ],
+      "hints": [
+        "问题",
+        "总会解决的"
+      ],
+      "cid": "6e5e708d"
+    },
+    {
+      "sentence": "I think of my wife first.",
+      "translation": "我首先想到的是我妻子。",
+      "chunks": [
+        "I think of",
+        "my wife first."
+      ],
+      "hints": [
+        "我首先想到的",
+        "是我妻子"
+      ],
+      "cid": "de0b23c2"
+    },
+    {
+      "sentence": "We as a husband and a wife don't have any fights.",
+      "translation": "我们夫妻从不吵架。",
+      "chunks": [
+        "We as a husband and a wife",
+        "don't have any fights."
+      ],
+      "hints": [
+        "我们夫妻俩",
+        "从不吵架"
+      ],
+      "cid": "3c55698b"
+    },
+    {
+      "sentence": "Family man.",
+      "translation": "拖家带口的人。",
+      "chunks": [
+        "Family",
+        "man."
+      ],
+      "hints": [
+        "拖家带口的",
+        "人"
+      ],
+      "cid": "7a961d91"
+    },
+    {
+      "sentence": "We fight a lot.",
+      "translation": "我们经常吵架。",
+      "chunks": [
+        "We fight",
+        "a lot."
+      ],
+      "hints": [
+        "我们经常",
+        "吵架"
+      ],
+      "cid": "3f7ea1d3"
+    },
+    {
+      "sentence": "I don't love my wife any more.",
+      "translation": "我不再爱我的妻子了。",
+      "chunks": [
+        "I don't love",
+        "my wife any more."
+      ],
+      "hints": [
+        "我不再爱",
+        "我的妻子了"
+      ],
+      "cid": "88953dfa"
+    },
+    {
+      "sentence": "My wife's cheating on me.",
+      "translation": "我老婆有外遇。",
+      "chunks": [
+        "My wife's",
+        "cheating on me."
+      ],
+      "hints": [
+        "我老婆",
+        "有外遇"
+      ],
+      "cid": "f7f71cb4"
+    },
+    {
+      "sentence": "We had a falling-out.",
+      "translation": "我们感情不和。",
+      "chunks": [
+        "We had",
+        "a falling-out."
+      ],
+      "hints": [
+        "我们",
+        "感情不和"
+      ],
+      "cid": "1e55aebd"
+    },
+    {
+      "sentence": "I've changed my mind.",
+      "translation": "我已经改变心意了。",
+      "chunks": [
+        "I've changed",
+        "my mind."
+      ],
+      "hints": [
+        "我已经",
+        "改变心意了"
+      ],
+      "cid": "7cdb4218"
+    },
+    {
+      "sentence": "You have changed.",
+      "translation": "你变了。",
+      "chunks": [
+        "You have",
+        "changed."
+      ],
+      "hints": [
+        "你",
+        "变了"
+      ],
+      "cid": "4091ff7c"
+    },
+    {
+      "sentence": "Are you seeing someone now?",
+      "translation": "你现在是不是和谁交往呢?",
+      "chunks": [
+        "Are you seeing",
+        "someone now?"
+      ],
+      "hints": [
+        "你现在是不是",
+        "和谁在交往"
+      ],
+      "cid": "61dfc8e8"
+    },
+    {
+      "sentence": "I don't see eye to eye with my wife.",
+      "translation": "我和妻子没什么共同语言。",
+      "chunks": [
+        "I don't see eye to eye",
+        "with my wife."
+      ],
+      "hints": [
+        "我和妻子",
+        "没什么共同语言"
+      ],
+      "cid": "0a1bf683"
+    },
+    {
+      "sentence": "We just don't get along.",
+      "translation": "我们俩合不来了。",
+      "chunks": [
+        "We just",
+        "don't get along."
+      ],
+      "hints": [
+        "我们俩",
+        "合不来"
+      ],
+      "cid": "7ca24be4"
+    },
+    {
+      "sentence": "I thought I knew you.",
+      "translation": "我想我很了解你。",
+      "chunks": [
+        "I thought",
+        "I knew you."
+      ],
+      "hints": [
+        "我以为",
+        "我了解你"
+      ],
+      "cid": "cd2b6952"
+    },
+    {
+      "sentence": "I had an affair with my secretary.",
+      "translation": "我和我的秘书有了婚外情。",
+      "chunks": [
+        "I had an affair",
+        "with my secretary."
+      ],
+      "hints": [
+        "我和我的秘书",
+        "有了婚外情"
+      ],
+      "cid": "e4e57bed"
+    },
+    {
+      "sentence": "I don't enjoy being with you.",
+      "translation": "和你在一起没意思。",
+      "chunks": [
+        "I don't enjoy",
+        "being with you."
+      ],
+      "hints": [
+        "和你在一起",
+        "没意思"
+      ],
+      "cid": "a7ac79e5"
+    },
+    {
+      "sentence": "Let's get divorced.",
+      "translation": "我们离婚吧。",
+      "chunks": [
+        "Let's get",
+        "divorced."
+      ],
+      "hints": [
+        "我们",
+        "离婚吧"
+      ],
+      "cid": "368558ec"
+    },
+    {
+      "sentence": "I'm separated from my wife.",
+      "translation": "现在我和我妻子分居了。",
+      "chunks": [
+        "I'm separated",
+        "from my wife."
+      ],
+      "hints": [
+        "我和妻子",
+        "分居了"
+      ],
+      "cid": "af4053b8"
+    },
+    {
+      "sentence": "I can't get over losing you.",
+      "translation": "我不能失去你。",
+      "chunks": [
+        "I can't get over",
+        "losing you."
+      ],
+      "hints": [
+        "我没法接受",
+        "失去你"
+      ],
+      "cid": "730cddfc"
+    },
+    {
+      "sentence": "Breaking up is hard to do.",
+      "translation": "和你分手是我最大的痛苦。",
+      "chunks": [
+        "Breaking up",
+        "is hard to do."
+      ],
+      "hints": [
+        "分手",
+        "是很难的"
+      ],
+      "cid": "14208828"
+    },
+    {
+      "sentence": "Don't break my heart.",
+      "translation": "请不要伤我的心。",
+      "chunks": [
+        "Don't break",
+        "my heart."
+      ],
+      "hints": [
+        "请别伤",
+        "我的心"
+      ],
+      "cid": "8ff6ee26"
+    },
+    {
+      "sentence": "We argued for hours.",
+      "translation": "我们争论了好几个小时。",
+      "chunks": [
+        "We argued",
+        "for hours."
+      ],
+      "hints": [
+        "我们争论了",
+        "好几个小时"
+      ],
+      "cid": "e8dbcb19"
+    }
+  ]
+}

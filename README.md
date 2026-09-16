@@ -18,7 +18,7 @@ Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句�
 | 能力 | 说明 |
 |------|------|
 | 🧩 意群练习 | 拼句 / 选词 / 填空 / 打字 4 种作答模式，逐语块即时判定 |
-| 📚 内置题库 | 2 套：「日常口语 8000」（51 个题库 / 968 句，按原书 8 章 39 节拆分）+「高频短语 · English Idioms」（418 句）；扩展内容由 manifest + hash 分片按需加载。⚠️ 句数是动态值，权威数字见 `output/oral-book-report.md` |
+| 📚 内置题库 | 2 套：「日常口语 8000」（54 个题库 / 1145 句，按原书 8 章 39 节拆分）+「高频短语 · English Idioms」（418 句）；扩展内容由 manifest + hash 分片按需加载。⚠️ 句数是动态值，权威数字见 `output/oral-book-report.md` |
 | 📖 图文课程 | ZIP 课程包导入 + 图推理对话练习 + 课前预习 / 主课程 / 课后测试三段式 |
 | 🔁 SRS 间隔重复 | 艾宾浩斯节奏 `1→3→7→14→30→60→120→180→365` 天，答错重置（纯函数，可单测） |
 | 📝 句子详解 | 课程自带结构化讲解（语法 / 搭配 / 句型，随句渲染）；AI 联网生成为**可选后端能力**（服务端代理 + 限流 + 缓存，`AI_EXPLAIN_ENABLED=true` 开启，默认停用） |
@@ -247,7 +247,7 @@ node server/backup-cli.js list                # 列出备份
 - 🔴 **开放模式公网 = 数据裸奔**：默认共享单用户 + 默认 JWT 密钥。任何公网 / 可访问网络部署必须先 `REQUIRE_AUTH=true` + 强随机 `JWT_SECRET`（详见上「安全部署清单 · ADR-006」）
 - 🟡 `main.html` 仍是 ~5.0k 行单体：ADR-007 已抽出 4 个纯逻辑 ESM（chunk-engine / format / ai-prompts / backup），剩余 DOM/流程层待二次拆分（2026-09-08 已清 ~800 行绞杀者死代码）
 - 🟡 联网 AI 详解默认停用（产品决策）：需要时置 `AI_EXPLAIN_ENABLED=true` + `DEEPSEEK_API_KEY`；课程自带讲解不受影响
-- 🟡 口语题库现为 **`oral-book.js` 唯一内容源**（「日常口语 8000」，2026-09-16 起 50 个 `oral-*` deck / 690 句，仅构建期使用）；`builtins.js` 只保留旧 key 迁移表、`oral8000.js` 为空壳。输入的**入库位**在 `extra/oral-book/`（见上「内容管线」），`oral-book.js` 本身是产物、**不入库**。分片运行 `npm run content:build` 生成，页面经 `content/manifest.json` + 分片按需加载并写入独立内容缓存（`oral-book.js` 绝不进 SW 预缓存）
+- 🟡 口语题库现为 **`oral-book.js` 唯一内容源**（「日常口语 8000」，2026-09-16 起按原书节拆分为 `oral-*` deck，仅构建期使用；**规模不写死在此**，见 `output/oral-book-report.md`）；`builtins.js` 只保留旧 key 迁移表、`oral8000.js` 为空壳。输入的**入库位**在 `extra/oral-book/`（见上「内容管线」），`oral-book.js` 本身是产物、**不入库**。分片运行 `npm run content:build` 生成，页面经 `content/manifest.json` + 分片按需加载并写入独立内容缓存（`oral-book.js` 绝不进 SW 预缓存）
 - 🟡 统计与到期复习已使用轻量内容索引；8000 句上线前仍需完成内容质量门禁和真实移动端压力验收
 - 🟡 主流程改动后记得跑 `npm run e2e:all`（当前 35 套件 / 含主 UI 回归，自动按需拉起临时 server）确认无回归；`e2e/` 与 `output/e2e/` 套件均已随版本入库（`.gitignore` 对 `output/` 开白名单，仅忽略运行产物）
 

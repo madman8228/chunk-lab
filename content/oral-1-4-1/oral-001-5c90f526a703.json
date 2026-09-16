@@ -1,0 +1,888 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Tom is a lady-killer.",
+      "translation": "汤姆是个美男子。",
+      "chunks": [
+        "Tom is",
+        "a lady-killer."
+      ],
+      "hints": [
+        "汤姆是",
+        "一个美男子"
+      ],
+      "cid": "f922ab2c"
+    },
+    {
+      "sentence": "Tom really turns me on.",
+      "translation": "汤姆真让我神魂颠倒。",
+      "chunks": [
+        "Tom really",
+        "turns me on."
+      ],
+      "hints": [
+        "汤姆真的",
+        "让我神魂颠倒"
+      ],
+      "cid": "e6c71b91"
+    },
+    {
+      "sentence": "Chris is really a heartbreaker.",
+      "translation": "克里斯长得真帅。",
+      "chunks": [
+        "Chris is really",
+        "a heartbreaker."
+      ],
+      "hints": [
+        "克里斯真是",
+        "个让人心碎的家伙"
+      ],
+      "cid": "a11a2126"
+    },
+    {
+      "sentence": "Janet is a knockout.",
+      "translation": "珍妮特真迷人呀。",
+      "chunks": [
+        "Janet is",
+        "a knockout."
+      ],
+      "hints": [
+        "珍妮特是",
+        "个大美人"
+      ],
+      "cid": "558283d8"
+    },
+    {
+      "sentence": "I think he has a crush on you.",
+      "translation": "他好像看上你了。",
+      "chunks": [
+        "I think he has",
+        "a crush on you."
+      ],
+      "hints": [
+        "我觉得他",
+        "看上你了"
+      ],
+      "cid": "12087deb"
+    },
+    {
+      "sentence": "Jane seems to like me.",
+      "translation": "简好像喜欢上我了。",
+      "chunks": [
+        "Jane seems",
+        "to like me."
+      ],
+      "hints": [
+        "简好像",
+        "喜欢上我了"
+      ],
+      "cid": "c36b65fa"
+    },
+    {
+      "sentence": "Diana's been coming on to Jack.",
+      "translation": "戴安娜对杰克有意思。",
+      "chunks": [
+        "Diana's been",
+        "coming on to Jack."
+      ],
+      "hints": [
+        "戴安娜一直",
+        "对杰克有意思"
+      ],
+      "cid": "856eb9ee"
+    },
+    {
+      "sentence": "I can't handle a girl like her.",
+      "translation": "我不敢打像她那样的姑娘的主意。",
+      "chunks": [
+        "I can't handle",
+        "a girl like her."
+      ],
+      "hints": [
+        "我应付不了",
+        "像她那样的姑娘"
+      ],
+      "cid": "6ad2f456"
+    },
+    {
+      "sentence": "I'm dying to see her.",
+      "translation": "我非常想见到她。",
+      "chunks": [
+        "I'm dying",
+        "to see her."
+      ],
+      "hints": [
+        "我非常想",
+        "见到她"
+      ],
+      "cid": "917f89bc"
+    },
+    {
+      "sentence": "I'm trying to make a pass at her.",
+      "translation": "我想追求她。",
+      "chunks": [
+        "I'm trying to",
+        "make a pass at her."
+      ],
+      "hints": [
+        "我想",
+        "追求她"
+      ],
+      "cid": "f7f3c3ca"
+    },
+    {
+      "sentence": "You broke my heart.",
+      "translation": "你也太狠心了。",
+      "chunks": [
+        "You broke",
+        "my heart."
+      ],
+      "hints": [
+        "你伤了",
+        "我的心"
+      ],
+      "cid": "f51d3ef9"
+    },
+    {
+      "sentence": "Are you free tonight?",
+      "translation": "今晚有空吗?",
+      "chunks": [
+        "Are you",
+        "free tonight?"
+      ],
+      "hints": [
+        "你",
+        "今晚有空吗"
+      ],
+      "cid": "08c77e0e"
+    },
+    {
+      "sentence": "Do you want to go out with me tonight?",
+      "translation": "今晚你能和我约会吗?",
+      "chunks": [
+        "Do you want to go out",
+        "with me tonight?"
+      ],
+      "hints": [
+        "你想不想出去",
+        "今晚和我约会"
+      ],
+      "cid": "6fc15082"
+    },
+    {
+      "sentence": "Would you like to go to the movies with me?",
+      "translation": "愿意和我一起去看电影吗?",
+      "chunks": [
+        "Would you like",
+        "to go to the movies with me?"
+      ],
+      "hints": [
+        "你愿意",
+        "和我一起去看电影吗"
+      ],
+      "cid": "8e61cff5"
+    },
+    {
+      "sentence": "Let's have tea or something.",
+      "translation": "我们喝点茶什么的吧。",
+      "chunks": [
+        "Let's have",
+        "tea or something."
+      ],
+      "hints": [
+        "我们喝点",
+        "茶什么的吧"
+      ],
+      "cid": "48bfe7e5"
+    },
+    {
+      "sentence": "Please keep me company for a while.",
+      "translation": "能陪陪我吗?",
+      "chunks": [
+        "Please keep me company",
+        "for a while."
+      ],
+      "hints": [
+        "请陪我",
+        "一会儿"
+      ],
+      "cid": "085a87c2"
+    },
+    {
+      "sentence": "I'd like to invite you to a show.",
+      "translation": "我想请你去看演出。",
+      "chunks": [
+        "I'd like to invite you",
+        "to a show."
+      ],
+      "hints": [
+        "我想请你",
+        "去看演出"
+      ],
+      "cid": "426e932a"
+    },
+    {
+      "sentence": "May I ask you out?",
+      "translation": "我能和你约会吗?",
+      "chunks": [
+        "May I",
+        "ask you out?"
+      ],
+      "hints": [
+        "我可以",
+        "和你约会吗"
+      ],
+      "cid": "cfb85740"
+    },
+    {
+      "sentence": "Are you trying to pick me up?",
+      "translation": "你是想和我约会吗?",
+      "chunks": [
+        "Are you trying",
+        "to pick me up?"
+      ],
+      "hints": [
+        "你是不是想",
+        "和我搭讪"
+      ],
+      "cid": "c72a4df5"
+    },
+    {
+      "sentence": "Where do you want to meet?",
+      "translation": "在哪儿见面?",
+      "chunks": [
+        "Where do you",
+        "want to meet?"
+      ],
+      "hints": [
+        "你想在哪儿",
+        "见面"
+      ],
+      "cid": "9201402d"
+    },
+    {
+      "sentence": "What time should we meet?",
+      "translation": "我们几点见面?",
+      "chunks": [
+        "What time",
+        "should we meet?"
+      ],
+      "hints": [
+        "什么时间",
+        "我们见面"
+      ],
+      "cid": "1915bfe1"
+    },
+    {
+      "sentence": "I want to talk to you.",
+      "translation": "我有话要对你说。",
+      "chunks": [
+        "I want",
+        "to talk to you."
+      ],
+      "hints": [
+        "我想",
+        "和你说说话"
+      ],
+      "cid": "75a818c7"
+    },
+    {
+      "sentence": "Are you seeing anyone now?",
+      "translation": "你现在有朋友吗?",
+      "chunks": [
+        "Are you seeing",
+        "anyone now?"
+      ],
+      "hints": [
+        "你现在",
+        "有交往对象吗"
+      ],
+      "cid": "d5098cc4"
+    },
+    {
+      "sentence": "What do you think of me?",
+      "translation": "你觉得我怎么样?",
+      "chunks": [
+        "What do you",
+        "think of me?"
+      ],
+      "hints": [
+        "你觉得",
+        "我怎么样"
+      ],
+      "cid": "74b28be7"
+    },
+    {
+      "sentence": "I love you.",
+      "translation": "我爱你。",
+      "chunks": [
+        "I",
+        "love you."
+      ],
+      "hints": [
+        "我",
+        "爱你"
+      ],
+      "cid": "2cb3942b"
+    },
+    {
+      "sentence": "You're the most beautiful woman I've ever seen.",
+      "translation": "你是我见到过的最美的女人。",
+      "chunks": [
+        "You're the most beautiful woman",
+        "I've ever seen."
+      ],
+      "hints": [
+        "你是我见过的",
+        "最美的女人"
+      ],
+      "cid": "3338d07b"
+    },
+    {
+      "sentence": "I'm crazy for you.",
+      "translation": "你使我发疯。",
+      "chunks": [
+        "I'm crazy",
+        "for you."
+      ],
+      "hints": [
+        "我为你",
+        "发疯"
+      ],
+      "cid": "c662f419"
+    },
+    {
+      "sentence": "Don't play hard to get.",
+      "translation": "别装腔作势。",
+      "chunks": [
+        "Don't play",
+        "hard to get."
+      ],
+      "hints": [
+        "别",
+        "装腔作势"
+      ],
+      "cid": "b2f67baf"
+    },
+    {
+      "sentence": "I don't want to get serious yet.",
+      "translation": "我还不想太认真。",
+      "chunks": [
+        "I don't want",
+        "to get serious yet."
+      ],
+      "hints": [
+        "我还不想",
+        "太认真"
+      ],
+      "cid": "cbec3119"
+    },
+    {
+      "sentence": "It was love at first sight.",
+      "translation": "我是一见钟情。",
+      "chunks": [
+        "It was love",
+        "at first sight."
+      ],
+      "hints": [
+        "那真是",
+        "一见钟情"
+      ],
+      "cid": "3ea73f27"
+    },
+    {
+      "sentence": "I wish I had never met you.",
+      "translation": "我真希望我从来都没遇到过你。",
+      "chunks": [
+        "I wish",
+        "I had never met you."
+      ],
+      "hints": [
+        "我真希望",
+        "从来没遇到过你"
+      ],
+      "cid": "28452198"
+    },
+    {
+      "sentence": "You're my type.",
+      "translation": "你是我喜欢的那种类型。",
+      "chunks": [
+        "You're",
+        "my type."
+      ],
+      "hints": [
+        "你是",
+        "我喜欢的类型"
+      ],
+      "cid": "0137ed9c"
+    },
+    {
+      "sentence": "You make me happy.",
+      "translation": "你使我感到幸福。",
+      "chunks": [
+        "You make me",
+        "happy."
+      ],
+      "hints": [
+        "你让我",
+        "感到幸福"
+      ],
+      "cid": "f12fe490"
+    },
+    {
+      "sentence": "I'm happy to have known you.",
+      "translation": "能认识你我非常幸福。",
+      "chunks": [
+        "I'm happy",
+        "to have known you."
+      ],
+      "hints": [
+        "我很高兴",
+        "能认识你"
+      ],
+      "cid": "bd5b1093"
+    },
+    {
+      "sentence": "You have beautiful eyes.",
+      "translation": "你的眼睛真美。",
+      "chunks": [
+        "You have",
+        "beautiful eyes."
+      ],
+      "hints": [
+        "你有一双",
+        "美丽的眼睛"
+      ],
+      "cid": "ae20f37d"
+    },
+    {
+      "sentence": "You're sweet.",
+      "translation": "你真好。",
+      "chunks": [
+        "You're",
+        "sweet."
+      ],
+      "hints": [
+        "你",
+        "真好"
+      ],
+      "cid": "b03bba02"
+    },
+    {
+      "sentence": "You're sexy.",
+      "translation": "你真性感。",
+      "chunks": [
+        "You're",
+        "sexy."
+      ],
+      "hints": [
+        "你",
+        "真性感"
+      ],
+      "cid": "e1e9ca0f"
+    },
+    {
+      "sentence": "Let's walk hand in hand.",
+      "translation": "我们拉着手走吧。",
+      "chunks": [
+        "Let's walk",
+        "hand in hand."
+      ],
+      "hints": [
+        "我们",
+        "拉着手走吧"
+      ],
+      "cid": "3b0f5620"
+    },
+    {
+      "sentence": "May I hold your hand?",
+      "translation": "我可以牵你的手吗?",
+      "chunks": [
+        "May I",
+        "hold your hand?"
+      ],
+      "hints": [
+        "我可以",
+        "牵你的手吗"
+      ],
+      "cid": "c7e16acf"
+    },
+    {
+      "sentence": "You're beautiful.",
+      "translation": "你真漂亮。",
+      "chunks": [
+        "You're",
+        "beautiful."
+      ],
+      "hints": [
+        "你",
+        "真漂亮"
+      ],
+      "cid": "5ecfd183"
+    },
+    {
+      "sentence": "I want to know all about you.",
+      "translation": "我想知道你的一切。",
+      "chunks": [
+        "I want to know",
+        "all about you."
+      ],
+      "hints": [
+        "我想知道",
+        "你的一切"
+      ],
+      "cid": "c2e23297"
+    },
+    {
+      "sentence": "I want you.",
+      "translation": "我想要你。",
+      "chunks": [
+        "I",
+        "want you."
+      ],
+      "hints": [
+        "我",
+        "想要你"
+      ],
+      "cid": "3b5b8dbd"
+    },
+    {
+      "sentence": "I need you.",
+      "translation": "我需要你。",
+      "chunks": [
+        "I",
+        "need you."
+      ],
+      "hints": [
+        "我",
+        "需要你"
+      ],
+      "cid": "8d2028cf"
+    },
+    {
+      "sentence": "You're everything to me.",
+      "translation": "你是我的一切。",
+      "chunks": [
+        "You're everything",
+        "to me."
+      ],
+      "hints": [
+        "你对我",
+        "就是一切"
+      ],
+      "cid": "465cf306"
+    },
+    {
+      "sentence": "You're mine.",
+      "translation": "你是我的。",
+      "chunks": [
+        "You're",
+        "mine."
+      ],
+      "hints": [
+        "你是",
+        "我的"
+      ],
+      "cid": "c0c92963"
+    },
+    {
+      "sentence": "I'm yours.",
+      "translation": "我是你的。",
+      "chunks": [
+        "I'm",
+        "yours."
+      ],
+      "hints": [
+        "我是",
+        "你的"
+      ],
+      "cid": "66924fee"
+    },
+    {
+      "sentence": "I can't live without you.",
+      "translation": "没有你我无法活下去。",
+      "chunks": [
+        "I can't live",
+        "without you."
+      ],
+      "hints": [
+        "我没法活下去",
+        "没有你"
+      ],
+      "cid": "26811d24"
+    },
+    {
+      "sentence": "Come closer.",
+      "translation": "再靠近我些。",
+      "chunks": [
+        "Come",
+        "closer."
+      ],
+      "hints": [
+        "再",
+        "靠近些"
+      ],
+      "cid": "df9dbbdd"
+    },
+    {
+      "sentence": "What's on your mind?",
+      "translation": "你想什么呢?",
+      "chunks": [
+        "What's",
+        "on your mind?"
+      ],
+      "hints": [
+        "你在",
+        "想什么呢"
+      ],
+      "cid": "55dc5b48"
+    },
+    {
+      "sentence": "I think of you night and day.",
+      "translation": "我时时刻刻都想着你。",
+      "chunks": [
+        "I think of you",
+        "night and day."
+      ],
+      "hints": [
+        "我时时刻刻",
+        "都想着你"
+      ],
+      "cid": "fe13cef7"
+    },
+    {
+      "sentence": "There will never be another you.",
+      "translation": "你是这个世界上独一无二的人。",
+      "chunks": [
+        "There will never be",
+        "another you."
+      ],
+      "hints": [
+        "再也不会有",
+        "第二个你"
+      ],
+      "cid": "00713920"
+    },
+    {
+      "sentence": "I like your dress.",
+      "translation": "你的连衣裙真漂亮。",
+      "chunks": [
+        "I like",
+        "your dress."
+      ],
+      "hints": [
+        "我喜欢",
+        "你的连衣裙"
+      ],
+      "cid": "b001063d"
+    },
+    {
+      "sentence": "Nothing is too good for you.",
+      "translation": "为你我在所不惜。",
+      "chunks": [
+        "Nothing is",
+        "too good for you."
+      ],
+      "hints": [
+        "没有什么",
+        "对你是过分的"
+      ],
+      "cid": "11d175b1"
+    },
+    {
+      "sentence": "Are you seducing me?",
+      "translation": "你在引诱我吗?",
+      "chunks": [
+        "Are you",
+        "seducing me?"
+      ],
+      "hints": [
+        "你是在",
+        "引诱我吗"
+      ],
+      "cid": "98c3ba55"
+    },
+    {
+      "sentence": "Hold me tight.",
+      "translation": "抱紧我。",
+      "chunks": [
+        "Hold me",
+        "tight."
+      ],
+      "hints": [
+        "抱紧",
+        "我"
+      ],
+      "cid": "01e889c8"
+    },
+    {
+      "sentence": "Don't go away.",
+      "translation": "别离开我。",
+      "chunks": [
+        "Don't",
+        "go away."
+      ],
+      "hints": [
+        "别",
+        "离开"
+      ],
+      "cid": "2b5c3905"
+    },
+    {
+      "sentence": "I can't help falling in love with you.",
+      "translation": "我无法不爱你。",
+      "chunks": [
+        "I can't help",
+        "falling in love with you."
+      ],
+      "hints": [
+        "我忍不住",
+        "爱上了你"
+      ],
+      "cid": "107f3851"
+    },
+    {
+      "sentence": "I've never felt like this before.",
+      "translation": "我从来没有过这种感觉。",
+      "chunks": [
+        "I've never felt",
+        "like this before."
+      ],
+      "hints": [
+        "我从来没有过",
+        "这种感觉"
+      ],
+      "cid": "52834e5d"
+    },
+    {
+      "sentence": "You're the one for me.",
+      "translation": "你是我的惟一。",
+      "chunks": [
+        "You're the one",
+        "for me."
+      ],
+      "hints": [
+        "你是",
+        "我的唯一"
+      ],
+      "cid": "5fa18058"
+    },
+    {
+      "sentence": "I'll love you forever.",
+      "translation": "我永远爱你。",
+      "chunks": [
+        "I'll love you",
+        "forever."
+      ],
+      "hints": [
+        "我会爱你",
+        "到永远"
+      ],
+      "cid": "59638967"
+    },
+    {
+      "sentence": "I always speak my mind.",
+      "translation": "我一直都说的是真心话。",
+      "chunks": [
+        "I always speak",
+        "my mind."
+      ],
+      "hints": [
+        "我一直说的",
+        "都是真心话"
+      ],
+      "cid": "8ed24255"
+    },
+    {
+      "sentence": "Love me, love my dog.",
+      "translation": "既然那样，那你也要爱屋及乌噢。",
+      "chunks": [
+        "Love me,",
+        "love my dog."
+      ],
+      "hints": [
+        "爱我",
+        "也要爱我的狗"
+      ],
+      "cid": "b4d165a3"
+    },
+    {
+      "sentence": "Be gentle.",
+      "translation": "请温柔些。",
+      "chunks": [
+        "Be",
+        "gentle."
+      ],
+      "hints": [
+        "请",
+        "温柔些"
+      ],
+      "cid": "62fa51b1"
+    },
+    {
+      "sentence": "Love me more.",
+      "translation": "再多爱我一些。",
+      "chunks": [
+        "Love me",
+        "more."
+      ],
+      "hints": [
+        "再",
+        "多爱我一些"
+      ],
+      "cid": "9031ee34"
+    },
+    {
+      "sentence": "Look at me!",
+      "translation": "看着我!",
+      "chunks": [
+        "Look",
+        "at me!"
+      ],
+      "hints": [
+        "看",
+        "着我"
+      ],
+      "cid": "b8fe3842"
+    },
+    {
+      "sentence": "I fell in love with Rose.",
+      "translation": "我爱上了罗丝。",
+      "chunks": [
+        "I fell in love",
+        "with Rose."
+      ],
+      "hints": [
+        "我爱上了",
+        "罗丝"
+      ],
+      "cid": "6177e4c3"
+    },
+    {
+      "sentence": "I'm deeply in love with Rose.",
+      "translation": "我深深地爱着罗丝。",
+      "chunks": [
+        "I'm deeply in love",
+        "with Rose."
+      ],
+      "hints": [
+        "我深深地",
+        "爱着罗丝"
+      ],
+      "cid": "c3d54333"
+    },
+    {
+      "sentence": "Smooch!",
+      "translation": "唧!",
+      "chunks": [
+        "Smooch!"
+      ],
+      "hints": [
+        "唧（亲吻声）"
+      ],
+      "cid": "a75c2df3"
+    }
+  ]
+}
