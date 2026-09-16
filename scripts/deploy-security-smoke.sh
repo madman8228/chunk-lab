@@ -10,7 +10,8 @@
 #   任何 ✗（200）  → 立刻处理，存在真实信息泄露
 #   ! 连接失败     → 网络/DNS 不可达，本机换网络重试（不要当成"安全"）
 #
-# 对应防护：server/index.js:500-510 静态白名单中间件 + :519-522 生产断言
+# 对应防护：server/index.js「静态托管前端」段的路径白名单中间件
+#           + server/auth.js assertSecure()（REQUIRE_AUTH=true 时强制 JWT_SECRET 非占位且 ≥32 字符）
 
 set -u
 
@@ -38,7 +39,7 @@ echo "=============================================="
 
 # ---------- 1. 敏感路径必须被拒 ----------
 echo ""
-echo "[1/4] 敏感路径必须被拒（403 / 404 / 401）"
+echo "[1/5] 敏感路径必须被拒（403 / 404 / 401）"
 DENY_PATHS="
 /server/index.js
 /server/auth.js
@@ -85,7 +86,7 @@ done
 
 # ---------- 2. 前端必需资源必须可达 ----------
 echo ""
-echo "[2/4] 前端必需资源必须可达（200）"
+echo "[2/5] 前端必需资源必须可达（200）"
 for p in /main.html /decks.html /stats.html /courses.html /manifest.json /sw.js /favicon.ico /icon-32.png /api/health; do
   c=$(code_of "$BASE$p")
   if [ "$c" = "200" ]; then

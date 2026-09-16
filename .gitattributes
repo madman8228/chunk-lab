@@ -18,3 +18,10 @@ content/** text eol=lf
 #   - scripts/gen-fast-content.mjs 重跑时写 LF → 与检出的 CRLF 产生「假 diff」
 # 与 content/** 同理：保证「同一 commit → 同一字节」。
 extra/**/*.json text eol=lf
+
+# ── shell 脚本必须 LF ────────────────────────────────────────────────────
+# 与上面同理（同一 commit → 同一字节），但这条影响的是**可执行性**：
+# bash 无法解析 CRLF 脚本 —— 在第一个 set -u 就报 "\r: command not found"，
+# 表现为「脚本完全跑不起来」而非「某步失败」。2026-09-16 实测：本地检出后
+# scripts/deploy-prod.sh（发布主链路）与 scripts/deploy-security-smoke.sh（G2 冒烟）均不可执行。
+*.sh text eol=lf
