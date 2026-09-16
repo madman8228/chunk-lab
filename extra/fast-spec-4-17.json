@@ -1,0 +1,1575 @@
+[
+ {
+  "sentence": "Oh, heck!",
+  "chunks": [
+   "Oh,",
+   "heck!"
+  ],
+  "hints": [
+   "哦，",
+   "真见鬼！"
+  ]
+ },
+ {
+  "sentence": "Shucks!",
+  "chunks": [
+   "Shucks!"
+  ],
+  "hints": [
+   "什么！"
+  ]
+ },
+ {
+  "sentence": "Shit!",
+  "chunks": [
+   "Shit!"
+  ],
+  "hints": [
+   "他妈的！"
+  ]
+ },
+ {
+  "sentence": "Uh-oh.",
+  "chunks": [
+   "Uh-oh."
+  ],
+  "hints": [
+   "啊！糟了！"
+  ]
+ },
+ {
+  "sentence": "Not everything is logical.",
+  "chunks": [
+   "Not everything",
+   "is logical."
+  ],
+  "hints": [
+   "不是所有事",
+   "都合乎逻辑。"
+  ]
+ },
+ {
+  "sentence": "It went down the drain.",
+  "chunks": [
+   "It went",
+   "down the drain."
+  ],
+  "hints": [
+   "它",
+   "全都打水漂了。"
+  ]
+ },
+ {
+  "sentence": "I almost made it.",
+  "chunks": [
+   "I almost",
+   "made it."
+  ],
+  "hints": [
+   "我差一点儿",
+   "就成功了。"
+  ]
+ },
+ {
+  "sentence": "Do something!",
+  "chunks": [
+   "Do",
+   "something!"
+  ],
+  "hints": [
+   "想点儿",
+   "办法吧！"
+  ]
+ },
+ {
+  "sentence": "I'm so busy.",
+  "chunks": [
+   "I'm so",
+   "busy."
+  ],
+  "hints": [
+   "我",
+   "忙得要命。"
+  ]
+ },
+ {
+  "sentence": "This task is too much for me.",
+  "chunks": [
+   "This task",
+   "is too much for me."
+  ],
+  "hints": [
+   "这项工作",
+   "对我来说太重了。"
+  ]
+ },
+ {
+  "sentence": "I can't make ends meet on my small salary.",
+  "chunks": [
+   "I can't make",
+   "ends meet on my small salary."
+  ],
+  "hints": [
+   "我没法",
+   "靠这点工资过活。"
+  ]
+ },
+ {
+  "sentence": "This is the last straw.",
+  "chunks": [
+   "This is",
+   "the last straw."
+  ],
+  "hints": [
+   "这真是",
+   "最后一根稻草了。"
+  ]
+ },
+ {
+  "sentence": "Your response is unacceptable.",
+  "chunks": [
+   "Your response",
+   "is unacceptable."
+  ],
+  "hints": [
+   "你的答复",
+   "我接受不了。"
+  ]
+ },
+ {
+  "sentence": "I'm not satisfied with his answer.",
+  "chunks": [
+   "I'm not satisfied",
+   "with his answer."
+  ],
+  "hints": [
+   "我不满意",
+   "他的回答。"
+  ]
+ },
+ {
+  "sentence": "He's got a chip on his shoulder today.",
+  "chunks": [
+   "He's got a chip",
+   "on his shoulder today."
+  ],
+  "hints": [
+   "他今天",
+   "一副挑衅的样子。"
+  ]
+ },
+ {
+  "sentence": "Play fair!",
+  "chunks": [
+   "Play",
+   "fair!"
+  ],
+  "hints": [
+   "公平",
+   "点儿！"
+  ]
+ },
+ {
+  "sentence": "What a waste of time and money!",
+  "chunks": [
+   "What a waste",
+   "of time and money!"
+  ],
+  "hints": [
+   "多浪费",
+   "时间和金钱呀！"
+  ]
+ },
+ {
+  "sentence": "You're too generous.",
+  "chunks": [
+   "You're too",
+   "generous."
+  ],
+  "hints": [
+   "你太",
+   "慷慨了。"
+  ]
+ },
+ {
+  "sentence": "He told me all about it.",
+  "chunks": [
+   "He told me",
+   "all about it."
+  ],
+  "hints": [
+   "他把一切",
+   "都告诉我了。"
+  ]
+ },
+ {
+  "sentence": "What's taking so long?",
+  "chunks": [
+   "What's taking",
+   "so long?"
+  ],
+  "hints": [
+   "怎么",
+   "花这么长时间？"
+  ]
+ },
+ {
+  "sentence": "I can't make it in ten minutes.",
+  "chunks": [
+   "I can't make it",
+   "in ten minutes."
+  ],
+  "hints": [
+   "我十分钟",
+   "怎么也来不及。"
+  ]
+ },
+ {
+  "sentence": "He looks down on me.",
+  "chunks": [
+   "He looks",
+   "down on me."
+  ],
+  "hints": [
+   "他",
+   "看不起我。"
+  ]
+ },
+ {
+  "sentence": "You're good for nothing.",
+  "chunks": [
+   "You're good",
+   "for nothing."
+  ],
+  "hints": [
+   "你",
+   "什么忙也帮不了。"
+  ]
+ },
+ {
+  "sentence": "It drives me crazy.",
+  "chunks": [
+   "It drives me",
+   "crazy."
+  ],
+  "hints": [
+   "简直快让",
+   "我疯了。"
+  ]
+ },
+ {
+  "sentence": "Is that all?",
+  "chunks": [
+   "Is",
+   "that all?"
+  ],
+  "hints": [
+   "就",
+   "这些吗？"
+  ]
+ },
+ {
+  "sentence": "That's not enough.",
+  "chunks": [
+   "That's",
+   "not enough."
+  ],
+  "hints": [
+   "这",
+   "太少了。"
+  ]
+ },
+ {
+  "sentence": "He's unfair to me.",
+  "chunks": [
+   "He's unfair",
+   "to me."
+  ],
+  "hints": [
+   "他对我",
+   "不公平。"
+  ]
+ },
+ {
+  "sentence": "No more excuses!",
+  "chunks": [
+   "No more",
+   "excuses!"
+  ],
+  "hints": [
+   "别再",
+   "辩解了！"
+  ]
+ },
+ {
+  "sentence": "I've heard enough of your excuses.",
+  "chunks": [
+   "I've heard enough",
+   "of your excuses."
+  ],
+  "hints": [
+   "我不想再听",
+   "你的辩解了。"
+  ]
+ },
+ {
+  "sentence": "I don't want to hear any excuses.",
+  "chunks": [
+   "I don't want to hear",
+   "any excuses."
+  ],
+  "hints": [
+   "我不想听",
+   "任何解释。"
+  ]
+ },
+ {
+  "sentence": "That's not a good excuse.",
+  "chunks": [
+   "That's not",
+   "a good excuse."
+  ],
+  "hints": [
+   "这样也",
+   "解释不通呀。"
+  ]
+ },
+ {
+  "sentence": "What's the big idea?",
+  "chunks": [
+   "What's",
+   "the big idea?"
+  ],
+  "hints": [
+   "你到底",
+   "在想什么呢？"
+  ]
+ },
+ {
+  "sentence": "Don't give me any lip service!",
+  "chunks": [
+   "Don't give me",
+   "any lip service!"
+  ],
+  "hints": [
+   "别给我",
+   "开空头支票！"
+  ]
+ },
+ {
+  "sentence": "Don't tell me what to do!",
+  "chunks": [
+   "Don't tell me",
+   "what to do!"
+  ],
+  "hints": [
+   "你少",
+   "命令我！"
+  ]
+ },
+ {
+  "sentence": "I'm mad!",
+  "chunks": [
+   "I'm",
+   "mad!"
+  ],
+  "hints": [
+   "气死",
+   "我了！"
+  ]
+ },
+ {
+  "sentence": "That's disgusting.",
+  "chunks": [
+   "That's",
+   "disgusting."
+  ],
+  "hints": [
+   "那",
+   "真讨厌！"
+  ]
+ },
+ {
+  "sentence": "You're getting on my nerves.",
+  "chunks": [
+   "You're getting",
+   "on my nerves."
+  ],
+  "hints": [
+   "你真让我",
+   "心烦。"
+  ]
+ },
+ {
+  "sentence": "Don't make fun of me.",
+  "chunks": [
+   "Don't make fun",
+   "of me."
+  ],
+  "hints": [
+   "别",
+   "取笑我！"
+  ]
+ },
+ {
+  "sentence": "Don't be upset.",
+  "chunks": [
+   "Don't",
+   "be upset."
+  ],
+  "hints": [
+   "请",
+   "别上火。"
+  ]
+ },
+ {
+  "sentence": "I've run out of patience.",
+  "chunks": [
+   "I've run",
+   "out of patience."
+  ],
+  "hints": [
+   "我再也没",
+   "耐心了。"
+  ]
+ },
+ {
+  "sentence": "What nerve!",
+  "chunks": [
+   "What",
+   "nerve!"
+  ],
+  "hints": [
+   "你",
+   "放肆！"
+  ]
+ },
+ {
+  "sentence": "How impudent you are to say such a thing!",
+  "chunks": [
+   "How impudent you are",
+   "to say such a thing!"
+  ],
+  "hints": [
+   "你竟有脸",
+   "说这种事！"
+  ]
+ },
+ {
+  "sentence": "What he says offends me.",
+  "chunks": [
+   "What he says",
+   "offends me."
+  ],
+  "hints": [
+   "他说的话",
+   "多气人呀。"
+  ]
+ },
+ {
+  "sentence": "We've got to get even.",
+  "chunks": [
+   "We've got to",
+   "get even."
+  ],
+  "hints": [
+   "我们得",
+   "反击。"
+  ]
+ },
+ {
+  "sentence": "I wasn't born yesterday.",
+  "chunks": [
+   "I wasn't",
+   "born yesterday."
+  ],
+  "hints": [
+   "我又不是",
+   "不懂。"
+  ]
+ },
+ {
+  "sentence": "Don't think you can make a fool out of me!",
+  "chunks": [
+   "Don't think you can make",
+   "a fool out of me!"
+  ],
+  "hints": [
+   "别把我",
+   "当傻瓜。"
+  ]
+ },
+ {
+  "sentence": "You're making fun of me.",
+  "chunks": [
+   "You're making fun",
+   "of me."
+  ],
+  "hints": [
+   "你拿我",
+   "开涮呢。"
+  ]
+ },
+ {
+  "sentence": "That's asking too much.",
+  "chunks": [
+   "That's asking",
+   "too much."
+  ],
+  "hints": [
+   "真是",
+   "狮子大开口。"
+  ]
+ },
+ {
+  "sentence": "He has a quick temper.",
+  "chunks": [
+   "He has",
+   "a quick temper."
+  ],
+  "hints": [
+   "他是",
+   "急脾气。"
+  ]
+ },
+ {
+  "sentence": "Who do you think you're talking to?",
+  "chunks": [
+   "Who do you think",
+   "you're talking to?"
+  ],
+  "hints": [
+   "你知道你是在",
+   "对谁说话吗？"
+  ]
+ },
+ {
+  "sentence": "Do you have anything to say?",
+  "chunks": [
+   "Do you have",
+   "anything to say?"
+  ],
+  "hints": [
+   "你有",
+   "什么要说的吗？"
+  ]
+ },
+ {
+  "sentence": "I won't let you have your own way.",
+  "chunks": [
+   "I won't let you",
+   "have your own way."
+  ],
+  "hints": [
+   "我不能让你",
+   "随心所欲。"
+  ]
+ },
+ {
+  "sentence": "That's blackmail!",
+  "chunks": [
+   "That's",
+   "blackmail!"
+  ],
+  "hints": [
+   "这是",
+   "恐吓。"
+  ]
+ },
+ {
+  "sentence": "Don't insult me.",
+  "chunks": [
+   "Don't",
+   "insult me."
+  ],
+  "hints": [
+   "你别",
+   "侮辱人。"
+  ]
+ },
+ {
+  "sentence": "You're a filthy liar.",
+  "chunks": [
+   "You're a",
+   "filthy liar."
+  ],
+  "hints": [
+   "你是一个",
+   "卑鄙的骗子。"
+  ]
+ },
+ {
+  "sentence": "You'll be sorry.",
+  "chunks": [
+   "You'll",
+   "be sorry."
+  ],
+  "hints": [
+   "你会",
+   "后悔的。"
+  ]
+ },
+ {
+  "sentence": "Are you crazy?",
+  "chunks": [
+   "Are you",
+   "crazy?"
+  ],
+  "hints": [
+   "你",
+   "疯啦？"
+  ]
+ },
+ {
+  "sentence": "Don't look at me like that!",
+  "chunks": [
+   "Don't look at me",
+   "like that!"
+  ],
+  "hints": [
+   "别用那种眼神",
+   "看着我！"
+  ]
+ },
+ {
+  "sentence": "I want to get even with him.",
+  "chunks": [
+   "I want to get even",
+   "with him."
+  ],
+  "hints": [
+   "我要",
+   "报复他。"
+  ]
+ },
+ {
+  "sentence": "That sneaky, low life creep!",
+  "chunks": [
+   "That sneaky, low life",
+   "creep!"
+  ],
+  "hints": [
+   "那个狡猾、卑鄙的",
+   "家伙！"
+  ]
+ },
+ {
+  "sentence": "Is not!? Is too!",
+  "chunks": [
+   "Is not!? Is",
+   "too!"
+  ],
+  "hints": [
+   "（根本）不是！？",
+   "是的！"
+  ]
+ },
+ {
+  "sentence": "Have it your way!",
+  "chunks": [
+   "Have it",
+   "your way!"
+  ],
+  "hints": [
+   "随",
+   "你便吧！"
+  ]
+ },
+ {
+  "sentence": "It's boring.",
+  "chunks": [
+   "It's",
+   "boring."
+  ],
+  "hints": [
+   "真",
+   "无聊！"
+  ]
+ },
+ {
+  "sentence": "Dull.",
+  "chunks": [
+   "Dull."
+  ],
+  "hints": [
+   "真没意思！"
+  ]
+ },
+ {
+  "sentence": "It's for the birds.",
+  "chunks": [
+   "It's for",
+   "the birds."
+  ],
+  "hints": [
+   "简直是",
+   "毫无价值！"
+  ]
+ },
+ {
+  "sentence": "I'm not interested.",
+  "chunks": [
+   "I'm not",
+   "interested."
+  ],
+  "hints": [
+   "我不",
+   "感兴趣。"
+  ]
+ },
+ {
+  "sentence": "It's nothing great.",
+  "chunks": [
+   "It's",
+   "nothing great."
+  ],
+  "hints": [
+   "没什么",
+   "了不起的。"
+  ]
+ },
+ {
+  "sentence": "I'm not satisfied.",
+  "chunks": [
+   "I'm not",
+   "satisfied."
+  ],
+  "hints": [
+   "我不",
+   "满意。"
+  ]
+ },
+ {
+  "sentence": "It was just another meeting.",
+  "chunks": [
+   "It was just",
+   "another meeting."
+  ],
+  "hints": [
+   "就是常见的",
+   "那种会议。"
+  ]
+ },
+ {
+  "sentence": "I can't get into my work.",
+  "chunks": [
+   "I can't get into",
+   "my work."
+  ],
+  "hints": [
+   "我不能",
+   "专心工作。"
+  ]
+ },
+ {
+  "sentence": "It's outdated.",
+  "chunks": [
+   "It's",
+   "outdated."
+  ],
+  "hints": [
+   "那早",
+   "过时了。"
+  ]
+ },
+ {
+  "sentence": "Give me a break",
+  "chunks": [
+   "Give me",
+   "a break"
+  ],
+  "hints": [
+   "饶了我吧，",
+   "拜托！"
+  ]
+ },
+ {
+  "sentence": "I can't stand it.",
+  "chunks": [
+   "I can't",
+   "stand it."
+  ],
+  "hints": [
+   "我",
+   "忍受不了。"
+  ]
+ },
+ {
+  "sentence": "That's enough.",
+  "chunks": [
+   "That's",
+   "enough."
+  ],
+  "hints": [
+   "那",
+   "够了。"
+  ]
+ },
+ {
+  "sentence": "Have a heart!",
+  "chunks": [
+   "Have",
+   "a heart!"
+  ],
+  "hints": [
+   "饶了",
+   "我吧！"
+  ]
+ },
+ {
+  "sentence": "The more I hear about it, the more disgusted I get.",
+  "chunks": [
+   "The more I hear about it,",
+   "the more disgusted I get."
+  ],
+  "hints": [
+   "越听",
+   "越烦。"
+  ]
+ },
+ {
+  "sentence": "There she goes again.",
+  "chunks": [
+   "There she goes",
+   "again."
+  ],
+  "hints": [
+   "她又",
+   "来了。"
+  ]
+ },
+ {
+  "sentence": "Oh, man!",
+  "chunks": [
+   "Oh,",
+   "man!"
+  ],
+  "hints": [
+   "哦，",
+   "真烦。"
+  ]
+ },
+ {
+  "sentence": "I don't want to hear it.",
+  "chunks": [
+   "I don't want",
+   "to hear it."
+  ],
+  "hints": [
+   "我",
+   "不想听。"
+  ]
+ },
+ {
+  "sentence": "Now what?",
+  "chunks": [
+   "Now",
+   "what?"
+  ],
+  "hints": [
+   "这次又",
+   "是什么？"
+  ]
+ },
+ {
+  "sentence": "Shut up!",
+  "chunks": [
+   "Shut",
+   "up!"
+  ],
+  "hints": [
+   "闭",
+   "嘴！"
+  ]
+ },
+ {
+  "sentence": "Don't be a back seat driver.",
+  "chunks": [
+   "Don't be a",
+   "back seat driver."
+  ],
+  "hints": [
+   "别",
+   "指手划脚！"
+  ]
+ },
+ {
+  "sentence": "Stop shouting!",
+  "chunks": [
+   "Stop",
+   "shouting!"
+  ],
+  "hints": [
+   "别大声",
+   "嚷嚷！"
+  ]
+ },
+ {
+  "sentence": "Stop complaining!",
+  "chunks": [
+   "Stop",
+   "complaining!"
+  ],
+  "hints": [
+   "别",
+   "抱怨了！"
+  ]
+ },
+ {
+  "sentence": "Calm down, will you?",
+  "chunks": [
+   "Calm down,",
+   "will you?"
+  ],
+  "hints": [
+   "安静点，",
+   "行不行？"
+  ]
+ },
+ {
+  "sentence": "Stop nagging!",
+  "chunks": [
+   "Stop",
+   "nagging!"
+  ],
+  "hints": [
+   "唠叨",
+   "什么呀！"
+  ]
+ },
+ {
+  "sentence": "Get off my back.",
+  "chunks": [
+   "Get off",
+   "my back."
+  ],
+  "hints": [
+   "别再",
+   "啰嗦了！"
+  ]
+ },
+ {
+  "sentence": "Don't talk back to me!",
+  "chunks": [
+   "Don't talk back",
+   "to me!"
+  ],
+  "hints": [
+   "别跟我",
+   "顶嘴！"
+  ]
+ },
+ {
+  "sentence": "Big mouth!",
+  "chunks": [
+   "Big",
+   "mouth!"
+  ],
+  "hints": [
+   "多",
+   "嘴！"
+  ]
+ },
+ {
+  "sentence": "Leave me alone!",
+  "chunks": [
+   "Leave me",
+   "alone!"
+  ],
+  "hints": [
+   "离我",
+   "远点儿！"
+  ]
+ },
+ {
+  "sentence": "None of your business.",
+  "chunks": [
+   "None of",
+   "your business."
+  ],
+  "hints": [
+   "没",
+   "你的事！"
+  ]
+ },
+ {
+  "sentence": "Who asked you?",
+  "chunks": [
+   "Who",
+   "asked you?"
+  ],
+  "hints": [
+   "谁",
+   "问你了？"
+  ]
+ },
+ {
+  "sentence": "I can't talk to you now.",
+  "chunks": [
+   "I can't talk",
+   "to you now."
+  ],
+  "hints": [
+   "现在不能",
+   "跟你说。"
+  ]
+ },
+ {
+  "sentence": "I don't need your help.",
+  "chunks": [
+   "I don't need",
+   "your help."
+  ],
+  "hints": [
+   "我不需要",
+   "你的帮助。"
+  ]
+ },
+ {
+  "sentence": "Get out of my face!",
+  "chunks": [
+   "Get out of",
+   "my face!"
+  ],
+  "hints": [
+   "别让我",
+   "看见你！"
+  ]
+ },
+ {
+  "sentence": "Don't bother me!",
+  "chunks": [
+   "Don't",
+   "bother me!"
+  ],
+  "hints": [
+   "别",
+   "打扰我！"
+  ]
+ },
+ {
+  "sentence": "Are you trying to get rid of me?",
+  "chunks": [
+   "Are you trying",
+   "to get rid of me?"
+  ],
+  "hints": [
+   "你想把我",
+   "轰走吗？"
+  ]
+ },
+ {
+  "sentence": "Liar!",
+  "chunks": [
+   "Liar!"
+  ],
+  "hints": [
+   "骗子！"
+  ]
+ },
+ {
+  "sentence": "That's a lie!",
+  "chunks": [
+   "That's",
+   "a lie!"
+  ],
+  "hints": [
+   "那是",
+   "瞎说！"
+  ]
+ },
+ {
+  "sentence": "Don't lie to me.",
+  "chunks": [
+   "Don't lie",
+   "to me."
+  ],
+  "hints": [
+   "别",
+   "骗我。"
+  ]
+ },
+ {
+  "sentence": "Stop joking!",
+  "chunks": [
+   "Stop",
+   "joking!"
+  ],
+  "hints": [
+   "别",
+   "开玩笑！"
+  ]
+ },
+ {
+  "sentence": "I've had enough of your nonsense.",
+  "chunks": [
+   "I've had enough",
+   "of your nonsense."
+  ],
+  "hints": [
+   "你开玩笑",
+   "也该适可而止！"
+  ]
+ },
+ {
+  "sentence": "Stop putting us on.",
+  "chunks": [
+   "Stop putting",
+   "us on."
+  ],
+  "hints": [
+   "别",
+   "捉弄人。"
+  ]
+ },
+ {
+  "sentence": "Don't act stupid!",
+  "chunks": [
+   "Don't act",
+   "stupid!"
+  ],
+  "hints": [
+   "别干那种",
+   "傻事！"
+  ]
+ },
+ {
+  "sentence": "That's stupid.",
+  "chunks": [
+   "That's",
+   "stupid."
+  ],
+  "hints": [
+   "那也太",
+   "蠢了！"
+  ]
+ },
+ {
+  "sentence": "Don't pull my leg!",
+  "chunks": [
+   "Don't pull",
+   "my leg!"
+  ],
+  "hints": [
+   "别",
+   "逗了！"
+  ]
+ },
+ {
+  "sentence": "Take it back!",
+  "chunks": [
+   "Take it",
+   "back!"
+  ],
+  "hints": [
+   "收回",
+   "你说过的话。"
+  ]
+ },
+ {
+  "sentence": "I don't want to hear any more of your lies.",
+  "chunks": [
+   "I don't want to hear",
+   "any more of your lies."
+  ],
+  "hints": [
+   "我不想再听",
+   "你说的谎话。"
+  ]
+ },
+ {
+  "sentence": "Did you make up a story?",
+  "chunks": [
+   "Did you make up",
+   "a story?"
+  ],
+  "hints": [
+   "你在",
+   "编故事吗？"
+  ]
+ },
+ {
+  "sentence": "Phony!",
+  "chunks": [
+   "Phony!"
+  ],
+  "hints": [
+   "搞什么鬼！"
+  ]
+ },
+ {
+  "sentence": "Don't play dumb!",
+  "chunks": [
+   "Don't play",
+   "dumb!"
+  ],
+  "hints": [
+   "别",
+   "装傻！"
+  ]
+ },
+ {
+  "sentence": "You tricked me.",
+  "chunks": [
+   "You",
+   "tricked me."
+  ],
+  "hints": [
+   "你在",
+   "骗我呢吧！"
+  ]
+ },
+ {
+  "sentence": "None of your tricks will work on me.",
+  "chunks": [
+   "None of your tricks",
+   "will work on me."
+  ],
+  "hints": [
+   "你骗人的把戏",
+   "可蒙不了我。"
+  ]
+ },
+ {
+  "sentence": "You coward!",
+  "chunks": [
+   "You",
+   "coward!"
+  ],
+  "hints": [
+   "胆",
+   "小鬼！"
+  ]
+ },
+ {
+  "sentence": "Nobody's perfect!",
+  "chunks": [
+   "Nobody's",
+   "perfect!"
+  ],
+  "hints": [
+   "人无",
+   "完人！"
+  ]
+ },
+ {
+  "sentence": "Stingy.",
+  "chunks": [
+   "Stingy."
+  ],
+  "hints": [
+   "小气鬼。"
+  ]
+ },
+ {
+  "sentence": "Fuck you!",
+  "chunks": [
+   "Fuck",
+   "you!"
+  ],
+  "hints": [
+   "你这",
+   "混蛋！"
+  ]
+ },
+ {
+  "sentence": "You asshole!",
+  "chunks": [
+   "You",
+   "asshole!"
+  ],
+  "hints": [
+   "饭",
+   "桶！"
+  ]
+ },
+ {
+  "sentence": "Christ!",
+  "chunks": [
+   "Christ!"
+  ],
+  "hints": [
+   "混帐！"
+  ]
+ },
+ {
+  "sentence": "You beast!",
+  "chunks": [
+   "You",
+   "beast!"
+  ],
+  "hints": [
+   "你这",
+   "畜牲！"
+  ]
+ },
+ {
+  "sentence": "You tomboy!",
+  "chunks": [
+   "You",
+   "tomboy!"
+  ],
+  "hints": [
+   "野",
+   "丫头！"
+  ]
+ },
+ {
+  "sentence": "You sly dog!",
+  "chunks": [
+   "You",
+   "sly dog!"
+  ],
+  "hints": [
+   "滑头的",
+   "家伙！"
+  ]
+ },
+ {
+  "sentence": "Fag!",
+  "chunks": [
+   "Fag!"
+  ],
+  "hints": [
+   "同性恋！"
+  ]
+ },
+ {
+  "sentence": "Hey, ugly!",
+  "chunks": [
+   "Hey,",
+   "ugly!"
+  ],
+  "hints": [
+   "丑",
+   "八怪！"
+  ]
+ },
+ {
+  "sentence": "Fatso!",
+  "chunks": [
+   "Fatso!"
+  ],
+  "hints": [
+   "肥猪！"
+  ]
+ },
+ {
+  "sentence": "Shorty!",
+  "chunks": [
+   "Shorty!"
+  ],
+  "hints": [
+   "矬子！"
+  ]
+ },
+ {
+  "sentence": "What an ungrateful man!",
+  "chunks": [
+   "What an",
+   "ungrateful man!"
+  ],
+  "hints": [
+   "忘恩负义的",
+   "家伙！"
+  ]
+ },
+ {
+  "sentence": "You lowlife!",
+  "chunks": [
+   "You",
+   "lowlife!"
+  ],
+  "hints": [
+   "你这",
+   "下流坯！"
+  ]
+ },
+ {
+  "sentence": "Stop trying to be cool!",
+  "chunks": [
+   "Stop trying",
+   "to be cool!"
+  ],
+  "hints": [
+   "别硬",
+   "装酷了。"
+  ]
+ },
+ {
+  "sentence": "Calm down.",
+  "chunks": [
+   "Calm",
+   "down."
+  ],
+  "hints": [
+   "镇静",
+   "些。"
+  ]
+ },
+ {
+  "sentence": "Don't get so uptight.",
+  "chunks": [
+   "Don't get",
+   "so uptight."
+  ],
+  "hints": [
+   "何必",
+   "当真了呢。"
+  ]
+ },
+ {
+  "sentence": "Don't be so stiff.",
+  "chunks": [
+   "Don't be",
+   "so stiff."
+  ],
+  "hints": [
+   "放松",
+   "点儿。"
+  ]
+ },
+ {
+  "sentence": "Kick back!",
+  "chunks": [
+   "Kick",
+   "back!"
+  ],
+  "hints": [
+   "放松",
+   "点儿。"
+  ]
+ },
+ {
+  "sentence": "Take your time.",
+  "chunks": [
+   "Take your",
+   "time."
+  ],
+  "hints": [
+   "不用",
+   "着急。"
+  ]
+ },
+ {
+  "sentence": "There's no need to rush.",
+  "chunks": [
+   "There's no need",
+   "to rush."
+  ],
+  "hints": [
+   "别",
+   "急。"
+  ]
+ },
+ {
+  "sentence": "Let's make up.",
+  "chunks": [
+   "Let's",
+   "make up."
+  ],
+  "hints": [
+   "我们",
+   "和好吧！"
+  ]
+ },
+ {
+  "sentence": "Did you make up?",
+  "chunks": [
+   "Did you",
+   "make up?"
+  ],
+  "hints": [
+   "和好",
+   "了吗？"
+  ]
+ },
+ {
+  "sentence": "Can't we talk it over?",
+  "chunks": [
+   "Can't we",
+   "talk it over?"
+  ],
+  "hints": [
+   "我们就不能",
+   "好好谈谈吗？"
+  ]
+ },
+ {
+  "sentence": "Try to get along.",
+  "chunks": [
+   "Try to",
+   "get along."
+  ],
+  "hints": [
+   "你俩要",
+   "好好相处。"
+  ]
+ },
+ {
+  "sentence": "Let's forgive and forget!",
+  "chunks": [
+   "Let's forgive",
+   "and forget!"
+  ],
+  "hints": [
+   "过去的事",
+   "就让它过去吧。"
+  ]
+ },
+ {
+  "sentence": "I've beaten you.",
+  "chunks": [
+   "I've",
+   "beaten you."
+  ],
+  "hints": [
+   "你",
+   "输了。"
+  ]
+ },
+ {
+  "sentence": "I didn't mean to hurt you.",
+  "chunks": [
+   "I didn't mean",
+   "to hurt you."
+  ],
+  "hints": [
+   "我无意",
+   "伤害你。"
+  ]
+ },
+ {
+  "sentence": "I missed you.",
+  "chunks": [
+   "I",
+   "missed you."
+  ],
+  "hints": [
+   "我",
+   "很想念你。"
+  ]
+ },
+ {
+  "sentence": "I get lonely easily.",
+  "chunks": [
+   "I get lonely",
+   "easily."
+  ],
+  "hints": [
+   "我是个容易",
+   "感到寂寞的人。"
+  ]
+ },
+ {
+  "sentence": "Can't you patch things up?",
+  "chunks": [
+   "Can't you",
+   "patch things up?"
+  ],
+  "hints": [
+   "你们就不能",
+   "和好吗？"
+  ]
+ }
+]

@@ -1,0 +1,1197 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Oh, heck!",
+      "translation": "啊呸!真见鬼!",
+      "chunks": [
+        "Oh,",
+        "heck!"
+      ],
+      "hints": [
+        "哦，",
+        "真见鬼！"
+      ],
+      "cid": "eec54f4e"
+    },
+    {
+      "sentence": "Shucks!",
+      "translation": "什么!",
+      "chunks": [
+        "Shucks!"
+      ],
+      "hints": [
+        "什么！"
+      ],
+      "cid": "c8c3b8e7"
+    },
+    {
+      "sentence": "Shit!",
+      "translation": "他妈的!",
+      "chunks": [
+        "Shit!"
+      ],
+      "hints": [
+        "他妈的！"
+      ],
+      "cid": "38904876"
+    },
+    {
+      "sentence": "Uh-oh.",
+      "translation": "啊!糟了!",
+      "chunks": [
+        "Uh-oh."
+      ],
+      "hints": [
+        "啊！糟了！"
+      ],
+      "cid": "9b498f92"
+    },
+    {
+      "sentence": "Not everything is logical.",
+      "translation": "有的事是行不通的。",
+      "chunks": [
+        "Not everything",
+        "is logical."
+      ],
+      "hints": [
+        "不是所有事",
+        "都合乎逻辑。"
+      ],
+      "cid": "3cfdb070"
+    },
+    {
+      "sentence": "It went down the drain.",
+      "translation": "(金钱)全都浪费了。",
+      "chunks": [
+        "It went",
+        "down the drain."
+      ],
+      "hints": [
+        "它",
+        "全都打水漂了。"
+      ],
+      "cid": "fd11d4d7"
+    },
+    {
+      "sentence": "I almost made it.",
+      "translation": "就差那么一点儿。",
+      "chunks": [
+        "I almost",
+        "made it."
+      ],
+      "hints": [
+        "我差一点儿",
+        "就成功了。"
+      ],
+      "cid": "07b5dc42"
+    },
+    {
+      "sentence": "Do something!",
+      "translation": "想点儿办法吧!",
+      "chunks": [
+        "Do",
+        "something!"
+      ],
+      "hints": [
+        "想点儿",
+        "办法吧！"
+      ],
+      "cid": "f3bc196b"
+    },
+    {
+      "sentence": "I'm so busy.",
+      "translation": "我忙得要命。",
+      "chunks": [
+        "I'm so",
+        "busy."
+      ],
+      "hints": [
+        "我",
+        "忙得要命。"
+      ],
+      "cid": "4d788943"
+    },
+    {
+      "sentence": "This task is too much for me.",
+      "translation": "这项工作对我来说太重了。",
+      "chunks": [
+        "This task",
+        "is too much for me."
+      ],
+      "hints": [
+        "这项工作",
+        "对我来说太重了。"
+      ],
+      "cid": "0aea8692"
+    },
+    {
+      "sentence": "I can't make ends meet on my small salary.",
+      "translation": "这么点儿薪水我怎么够活呀!",
+      "chunks": [
+        "I can't make",
+        "ends meet on my small salary."
+      ],
+      "hints": [
+        "我没法",
+        "靠这点工资过活。"
+      ],
+      "cid": "6d47b16a"
+    },
+    {
+      "sentence": "This is the last straw.",
+      "translation": "我再也忍不下去了。",
+      "chunks": [
+        "This is",
+        "the last straw."
+      ],
+      "hints": [
+        "这真是",
+        "最后一根稻草了。"
+      ],
+      "cid": "3cfe03af"
+    },
+    {
+      "sentence": "Your response is unacceptable.",
+      "translation": "你的答复我接受不了。",
+      "chunks": [
+        "Your response",
+        "is unacceptable."
+      ],
+      "hints": [
+        "你的答复",
+        "我接受不了。"
+      ],
+      "cid": "dec01180"
+    },
+    {
+      "sentence": "I'm not satisfied with his answer.",
+      "translation": "我不满意他的回答。",
+      "chunks": [
+        "I'm not satisfied",
+        "with his answer."
+      ],
+      "hints": [
+        "我不满意",
+        "他的回答。"
+      ],
+      "cid": "4c856b67"
+    },
+    {
+      "sentence": "He's got a chip on his shoulder today.",
+      "translation": "他今天一副挑衅的样子。",
+      "chunks": [
+        "He's got a chip",
+        "on his shoulder today."
+      ],
+      "hints": [
+        "他今天",
+        "一副挑衅的样子。"
+      ],
+      "cid": "1458ed3b"
+    },
+    {
+      "sentence": "Play fair!",
+      "translation": "公平点儿!",
+      "chunks": [
+        "Play",
+        "fair!"
+      ],
+      "hints": [
+        "公平",
+        "点儿！"
+      ],
+      "cid": "0cf64c5a"
+    },
+    {
+      "sentence": "What a waste of time and money!",
+      "translation": "多费时费钱呀!",
+      "chunks": [
+        "What a waste",
+        "of time and money!"
+      ],
+      "hints": [
+        "多浪费",
+        "时间和金钱呀！"
+      ],
+      "cid": "5200b4d8"
+    },
+    {
+      "sentence": "You're too generous.",
+      "translation": "你太慷慨了。",
+      "chunks": [
+        "You're too",
+        "generous."
+      ],
+      "hints": [
+        "你太",
+        "慷慨了。"
+      ],
+      "cid": "0f5c698e"
+    },
+    {
+      "sentence": "He told me all about it.",
+      "translation": "他把一切都告诉了我。",
+      "chunks": [
+        "He told me",
+        "all about it."
+      ],
+      "hints": [
+        "他把一切",
+        "都告诉我了。"
+      ],
+      "cid": "a98633c8"
+    },
+    {
+      "sentence": "What's taking so long?",
+      "translation": "怎么花这么长时间?",
+      "chunks": [
+        "What's taking",
+        "so long?"
+      ],
+      "hints": [
+        "怎么",
+        "花这么长时间？"
+      ],
+      "cid": "9b12ba20"
+    },
+    {
+      "sentence": "I can't make it in ten minutes.",
+      "translation": "10分钟怎么也来不及。",
+      "chunks": [
+        "I can't make it",
+        "in ten minutes."
+      ],
+      "hints": [
+        "我十分钟",
+        "怎么也来不及。"
+      ],
+      "cid": "7a73e3c7"
+    },
+    {
+      "sentence": "He looks down on me.",
+      "translation": "他看不起我。",
+      "chunks": [
+        "He looks",
+        "down on me."
+      ],
+      "hints": [
+        "他",
+        "看不起我。"
+      ],
+      "cid": "d94f6f2b"
+    },
+    {
+      "sentence": "You're good for nothing.",
+      "translation": "你什么忙也帮不了。",
+      "chunks": [
+        "You're good",
+        "for nothing."
+      ],
+      "hints": [
+        "你",
+        "什么忙也帮不了。"
+      ],
+      "cid": "86039a0f"
+    },
+    {
+      "sentence": "It drives me crazy.",
+      "translation": "简直快让我疯了。",
+      "chunks": [
+        "It drives me",
+        "crazy."
+      ],
+      "hints": [
+        "简直快让",
+        "我疯了。"
+      ],
+      "cid": "bc987462"
+    },
+    {
+      "sentence": "Is that all?",
+      "translation": "就这些吗?",
+      "chunks": [
+        "Is",
+        "that all?"
+      ],
+      "hints": [
+        "就",
+        "这些吗？"
+      ],
+      "cid": "bf559eba"
+    },
+    {
+      "sentence": "That's not enough.",
+      "translation": "这太少了。/这不够。",
+      "chunks": [
+        "That's",
+        "not enough."
+      ],
+      "hints": [
+        "这",
+        "太少了。"
+      ],
+      "cid": "625e578d"
+    },
+    {
+      "sentence": "He's unfair to me.",
+      "translation": "他对我不公平。",
+      "chunks": [
+        "He's unfair",
+        "to me."
+      ],
+      "hints": [
+        "他对我",
+        "不公平。"
+      ],
+      "cid": "377826fa"
+    },
+    {
+      "sentence": "No more excuses!",
+      "translation": "别再辩解了!",
+      "chunks": [
+        "No more",
+        "excuses!"
+      ],
+      "hints": [
+        "别再",
+        "辩解了！"
+      ],
+      "cid": "e3adb4f8"
+    },
+    {
+      "sentence": "I've heard enough of your excuses.",
+      "translation": "我不想再听你的辩解了。",
+      "chunks": [
+        "I've heard enough",
+        "of your excuses."
+      ],
+      "hints": [
+        "我不想再听",
+        "你的辩解了。"
+      ],
+      "cid": "2083cdb4"
+    },
+    {
+      "sentence": "I don't want to hear any excuses.",
+      "translation": "我不想听任何解释。",
+      "chunks": [
+        "I don't want to hear",
+        "any excuses."
+      ],
+      "hints": [
+        "我不想听",
+        "任何解释。"
+      ],
+      "cid": "2f62089b"
+    },
+    {
+      "sentence": "That's not a good excuse.",
+      "translation": "这样也解释不通呀。",
+      "chunks": [
+        "That's not",
+        "a good excuse."
+      ],
+      "hints": [
+        "这样也",
+        "解释不通呀。"
+      ],
+      "cid": "c8fded90"
+    },
+    {
+      "sentence": "What's the big idea?",
+      "translation": "你到底在想什么呢?",
+      "chunks": [
+        "What's",
+        "the big idea?"
+      ],
+      "hints": [
+        "你到底",
+        "在想什么呢？"
+      ],
+      "cid": "26aa1408"
+    },
+    {
+      "sentence": "Don't give me any lip service!",
+      "translation": "别给我开空头支票。",
+      "chunks": [
+        "Don't give me",
+        "any lip service!"
+      ],
+      "hints": [
+        "别给我",
+        "开空头支票！"
+      ],
+      "cid": "13065977"
+    },
+    {
+      "sentence": "Don't tell me what to do!",
+      "translation": "你少命令我!",
+      "chunks": [
+        "Don't tell me",
+        "what to do!"
+      ],
+      "hints": [
+        "你少",
+        "命令我！"
+      ],
+      "cid": "2934b601"
+    },
+    {
+      "sentence": "I'm mad!",
+      "translation": "气疯了我了!",
+      "chunks": [
+        "I'm",
+        "mad!"
+      ],
+      "hints": [
+        "气死",
+        "我了！"
+      ],
+      "cid": "e1e8bb0d"
+    },
+    {
+      "sentence": "That's disgusting.",
+      "translation": "那真讨厌!",
+      "chunks": [
+        "That's",
+        "disgusting."
+      ],
+      "hints": [
+        "那",
+        "真讨厌！"
+      ],
+      "cid": "2dc0212f"
+    },
+    {
+      "sentence": "You're getting on my nerves.",
+      "translation": "你真让我心烦。",
+      "chunks": [
+        "You're getting",
+        "on my nerves."
+      ],
+      "hints": [
+        "你真让我",
+        "心烦。"
+      ],
+      "cid": "a9d2931c"
+    },
+    {
+      "sentence": "Don't make fun of me.",
+      "translation": "别取笑我!",
+      "chunks": [
+        "Don't make fun",
+        "of me."
+      ],
+      "hints": [
+        "别",
+        "取笑我！"
+      ],
+      "cid": "3d3ee815"
+    },
+    {
+      "sentence": "Don't be upset.",
+      "translation": "请别上火。",
+      "chunks": [
+        "Don't",
+        "be upset."
+      ],
+      "hints": [
+        "请",
+        "别上火。"
+      ],
+      "cid": "ec19dfd9"
+    },
+    {
+      "sentence": "I've run out of patience.",
+      "translation": "我再也没耐心了。",
+      "chunks": [
+        "I've run",
+        "out of patience."
+      ],
+      "hints": [
+        "我再也没",
+        "耐心了。"
+      ],
+      "cid": "89ff64e1"
+    },
+    {
+      "sentence": "What nerve!",
+      "translation": "你放肆!",
+      "chunks": [
+        "What",
+        "nerve!"
+      ],
+      "hints": [
+        "你",
+        "放肆！"
+      ],
+      "cid": "c3c48d8e"
+    },
+    {
+      "sentence": "How impudent you are to say such a thing!",
+      "translation": "你竟有脸说这种事!",
+      "chunks": [
+        "How impudent you are",
+        "to say such a thing!"
+      ],
+      "hints": [
+        "你竟有脸",
+        "说这种事！"
+      ],
+      "cid": "8db7d937"
+    },
+    {
+      "sentence": "What he says offends me.",
+      "translation": "他说的话多气人呀。",
+      "chunks": [
+        "What he says",
+        "offends me."
+      ],
+      "hints": [
+        "他说的话",
+        "多气人呀。"
+      ],
+      "cid": "51753151"
+    },
+    {
+      "sentence": "We've got to get even.",
+      "translation": "我们得反击。",
+      "chunks": [
+        "We've got to",
+        "get even."
+      ],
+      "hints": [
+        "我们得",
+        "反击。"
+      ],
+      "cid": "11377eb0"
+    },
+    {
+      "sentence": "I wasn't born yesterday.",
+      "translation": "我又不是不懂。",
+      "chunks": [
+        "I wasn't",
+        "born yesterday."
+      ],
+      "hints": [
+        "我又不是",
+        "不懂。"
+      ],
+      "cid": "e3c4dbed"
+    },
+    {
+      "sentence": "Don't think you can make a fool out of me!",
+      "translation": "别把我当傻瓜。",
+      "chunks": [
+        "Don't think you can make",
+        "a fool out of me!"
+      ],
+      "hints": [
+        "别把我",
+        "当傻瓜。"
+      ],
+      "cid": "824797b1"
+    },
+    {
+      "sentence": "You're making fun of me.",
+      "translation": "你拿我开涮呢。",
+      "chunks": [
+        "You're making fun",
+        "of me."
+      ],
+      "hints": [
+        "你拿我",
+        "开涮呢。"
+      ],
+      "cid": "9d88d329"
+    },
+    {
+      "sentence": "That's asking too much.",
+      "translation": "真是狮子大开口。",
+      "chunks": [
+        "That's asking",
+        "too much."
+      ],
+      "hints": [
+        "真是",
+        "狮子大开口。"
+      ],
+      "cid": "dd562cc2"
+    },
+    {
+      "sentence": "He has a quick temper.",
+      "translation": "他是急脾气。",
+      "chunks": [
+        "He has",
+        "a quick temper."
+      ],
+      "hints": [
+        "他是",
+        "急脾气。"
+      ],
+      "cid": "833a084f"
+    },
+    {
+      "sentence": "Who do you think you're talking to?",
+      "translation": "你知道你是在对谁说话吗?",
+      "chunks": [
+        "Who do you think",
+        "you're talking to?"
+      ],
+      "hints": [
+        "你知道你是在",
+        "对谁说话吗？"
+      ],
+      "cid": "90ff56cc"
+    },
+    {
+      "sentence": "Do you have anything to say?",
+      "translation": "你有什么要说的吗?",
+      "chunks": [
+        "Do you have",
+        "anything to say?"
+      ],
+      "hints": [
+        "你有",
+        "什么要说的吗？"
+      ],
+      "cid": "2d2258e4"
+    },
+    {
+      "sentence": "I won't let you have your own way.",
+      "translation": "我不能让你随心所欲。",
+      "chunks": [
+        "I won't let you",
+        "have your own way."
+      ],
+      "hints": [
+        "我不能让你",
+        "随心所欲。"
+      ],
+      "cid": "f4650d27"
+    },
+    {
+      "sentence": "That's blackmail!",
+      "translation": "这是恐吓。",
+      "chunks": [
+        "That's",
+        "blackmail!"
+      ],
+      "hints": [
+        "这是",
+        "恐吓。"
+      ],
+      "cid": "0e071ad5"
+    },
+    {
+      "sentence": "Don't insult me.",
+      "translation": "你别侮辱人。",
+      "chunks": [
+        "Don't",
+        "insult me."
+      ],
+      "hints": [
+        "你别",
+        "侮辱人。"
+      ],
+      "cid": "e721b940"
+    },
+    {
+      "sentence": "You're a filthy liar.",
+      "translation": "你是一个卑鄙的骗子。",
+      "chunks": [
+        "You're a",
+        "filthy liar."
+      ],
+      "hints": [
+        "你是一个",
+        "卑鄙的骗子。"
+      ],
+      "cid": "d495c0fd"
+    },
+    {
+      "sentence": "You'll be sorry.",
+      "translation": "你会后悔的。",
+      "chunks": [
+        "You'll",
+        "be sorry."
+      ],
+      "hints": [
+        "你会",
+        "后悔的。"
+      ],
+      "cid": "926e59e3"
+    },
+    {
+      "sentence": "Are you crazy?",
+      "translation": "你疯啦?",
+      "chunks": [
+        "Are you",
+        "crazy?"
+      ],
+      "hints": [
+        "你",
+        "疯啦？"
+      ],
+      "cid": "c8969fd0"
+    },
+    {
+      "sentence": "Don't look at me like that!",
+      "translation": "别用那种眼神看着我!",
+      "chunks": [
+        "Don't look at me",
+        "like that!"
+      ],
+      "hints": [
+        "别用那种眼神",
+        "看着我！"
+      ],
+      "cid": "3a3bea0c"
+    },
+    {
+      "sentence": "I want to get even with him.",
+      "translation": "我要报复。",
+      "chunks": [
+        "I want to get even",
+        "with him."
+      ],
+      "hints": [
+        "我要",
+        "报复他。"
+      ],
+      "cid": "81178239"
+    },
+    {
+      "sentence": "That sneaky, low life creep!",
+      "translation": "那个狡猾、卑鄙的家伙。",
+      "chunks": [
+        "That sneaky, low life",
+        "creep!"
+      ],
+      "hints": [
+        "那个狡猾、卑鄙的",
+        "家伙！"
+      ],
+      "cid": "97dd32cd"
+    },
+    {
+      "sentence": "Is not!? Is too!",
+      "translation": "(根本)不是!?是的!",
+      "chunks": [
+        "Is not!? Is",
+        "too!"
+      ],
+      "hints": [
+        "（根本）不是！？",
+        "是的！"
+      ],
+      "cid": "980dae6d"
+    },
+    {
+      "sentence": "Have it your way!",
+      "translation": "随便吧!",
+      "chunks": [
+        "Have it",
+        "your way!"
+      ],
+      "hints": [
+        "随",
+        "你便吧！"
+      ],
+      "cid": "e1a6997f"
+    },
+    {
+      "sentence": "I can't stand the noise from the street.",
+      "cid": "2b0c3220",
+      "translation": "我受不了街上传来的噪音。",
+      "chunks": [
+        "I can't stand",
+        "the noise",
+        "from the street."
+      ],
+      "hints": [
+        "我无法忍受",
+        "噪音",
+        "来自街道"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/kɑːnt/",
+            "/stænd/"
+          ],
+          "pos": "情态否定",
+          "meaning": "我无法忍受"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/nɔɪz/"
+          ],
+          "pos": "名词",
+          "meaning": "噪音"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/frɒm/",
+            "/ðə/",
+            "/striːt/"
+          ],
+          "pos": "后置定语",
+          "meaning": "来自街道"
+        }
+      ],
+      "explanations": [
+        "`can't stand` = 受不了/无法忍受（比 don't like 语气强）。常见错误：\n• \"can't **standing**\" → stand 此处是动词，can't stand + 名词\n• \"can't stand it noise\" → 直接接 the noise，不需要 it",
+        "`the noise` = 噪音（不可数）。",
+        "`from the street` 介词短语后置修饰 noise = 街上传来的噪音。"
+      ],
+      "distractors": [
+        [
+          "I couldn't stand",
+          "I can't staying",
+          "I can't stands"
+        ],
+        [
+          "the noises",
+          "noise",
+          "this noise"
+        ],
+        [
+          "from the streets.",
+          "in the street.",
+          "of the street."
+        ]
+      ]
+    },
+    {
+      "sentence": "My computer just froze again.",
+      "cid": "304eb970",
+      "translation": "我的电脑刚刚又死机了。",
+      "chunks": [
+        "My computer",
+        "just froze",
+        "again."
+      ],
+      "hints": [
+        "我的电脑",
+        "刚刚死机",
+        "又"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/maɪ/",
+            "/kəmˈpjuːtər/"
+          ],
+          "pos": "名词",
+          "meaning": "我的电脑"
+        },
+        {
+          "role": "谓语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/dʒʌst/",
+            "/froʊz/"
+          ],
+          "pos": "freeze 过去式",
+          "meaning": "死机"
+        },
+        {
+          "role": "频度副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈɡen/"
+          ],
+          "pos": "副词",
+          "meaning": "又"
+        }
+      ],
+      "explanations": [
+        "电脑故障。`freeze` = 死机/卡住（画面不动），过去式 froze。常见错误：\n• \"freezed\" → freeze 不规则变化 froze\n• \"my computer is froze\" → 被动是 frozen",
+        "`just` = 刚刚（与过去时连用）。口语同义：It crashed.（崩了）"
+      ],
+      "distractors": [
+        [
+          "Mine computer",
+          "My computers",
+          "Computer"
+        ],
+        [
+          "just freezes",
+          "just frozen",
+          "just freeze now"
+        ],
+        [
+          "again now.",
+          "one more.",
+          "again later."
+        ]
+      ]
+    },
+    {
+      "sentence": "I can't put up with it.",
+      "cid": "3689d2d6",
+      "translation": "我受不了这个。",
+      "chunks": [
+        "I can't",
+        "put up with it."
+      ],
+      "hints": [
+        "我不能",
+        "忍受它"
+      ],
+      "grammar": [
+        {
+          "role": "主语+情态",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/kænt/"
+          ],
+          "pos": "can not 缩写",
+          "meaning": "我不能"
+        },
+        {
+          "role": "固定表达",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pʊt/",
+            "/ʌp/",
+            "/wɪð/",
+            "/ɪt/"
+          ],
+          "pos": "put up with 短语动词",
+          "meaning": "忍受它"
+        }
+      ],
+      "explanations": [
+        "`can't` = cannot，表能力或不允许。常见错误：\n• \"I can't to put\" → 情态动词后不加 to\n• \"I can not\" → 分开写也可，但口语几乎都缩写",
+        "`put up with` 是三个词组成的短语动词，意思是「忍受」，不能拆开理解。常见错误：\n• \"put up it\" → 缺 with\n• \"put with it\" → 缺 up\n按字面理解成「把……放上去」会完全跑偏"
+      ],
+      "distractors": [
+        [
+          "I can",
+          "I can't to",
+          "I cannot to"
+        ],
+        [
+          "put up it.",
+          "put with it.",
+          "put up on it."
+        ]
+      ]
+    },
+    {
+      "sentence": "Are you angry?",
+      "cid": "db59a3b8",
+      "translation": "你生气了吗？",
+      "chunks": [
+        "Are you",
+        "angry?"
+      ],
+      "hints": [
+        "你是",
+        "生气的"
+      ],
+      "grammar": [
+        {
+          "role": "系动词 + 主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈæŋɡri/"
+          ],
+          "pos": "形容词",
+          "meaning": "生气的"
+        }
+      ],
+      "explanations": [
+        "`angry` 重音在第一音节 /ˈæŋɡri/。常见错误：\n• \"Are you anger?\" → anger 是名词，这里用形容词 angry\n• 对某人生气要说 angry with me",
+        "程度递进：annoyed（有点烦）< angry < furious（暴怒）"
+      ],
+      "distractors": [
+        [
+          "Is you",
+          "Are your",
+          "Do you"
+        ],
+        [
+          "anger?",
+          "angrily?",
+          "angry with?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Of course not.",
+      "cid": "85acd6c2",
+      "translation": "当然没有。",
+      "chunks": [
+        "Of course",
+        "not."
+      ],
+      "hints": [
+        "当然",
+        "不"
+      ],
+      "grammar": [
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əv/",
+            "/kɔːrs/"
+          ],
+          "pos": "固定短语",
+          "meaning": "当然"
+        },
+        {
+          "role": "否定答语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/nɑːt/"
+          ],
+          "pos": "副词",
+          "meaning": "不"
+        }
+      ],
+      "explanations": [
+        "`Of course not.` 用来强烈否认，回答一般疑问句。常见错误：\n• \"Of course no\" → 否定答语用 not\n• 肯定回答是 Of course.，别在肯定回答里带 not",
+        "相关：Not at all. / Absolutely not.（语气更强）"
+      ],
+      "distractors": [
+        [
+          "Of the course",
+          "On course",
+          "Of cause"
+        ],
+        [
+          "no.",
+          "none.",
+          "not to."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm offended.",
+      "cid": "6ba05043",
+      "translation": "我觉得被冒犯了。",
+      "chunks": [
+        "I'm",
+        "offended."
+      ],
+      "hints": [
+        "我",
+        "被冒犯的"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/"
+          ],
+          "pos": "I am 缩写",
+          "meaning": "我"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/əˈfendɪd/"
+          ],
+          "pos": "过去分词作形容词",
+          "meaning": "被冒犯的"
+        }
+      ],
+      "explanations": [
+        "`be offended` = 感到被冒犯，被谁冒犯用 by。常见错误：\n• 拼写：offe**nd**ed，两个 f\n• \"I'm offending\" → offending 是「冒犯别人的」，说自己要用 offended",
+        "相关：That's offensive.（那话很冒犯）/ No offense.（无意冒犯）"
+      ],
+      "distractors": [
+        [
+          "I",
+          "I've",
+          "Me"
+        ],
+        [
+          "offending.",
+          "offense.",
+          "offend."
+        ]
+      ]
+    },
+    {
+      "sentence": "Get off of me.",
+      "cid": "2d1602f3",
+      "translation": "放开我。",
+      "chunks": [
+        "Get off of",
+        "me."
+      ],
+      "hints": [
+        "从……上离开",
+        "我"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/ɔːf/",
+            "/əv/"
+          ],
+          "pos": "短语动词 get off of",
+          "meaning": "从……上离开"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/miː/"
+          ],
+          "pos": "人称代词宾格",
+          "meaning": "我"
+        }
+      ],
+      "explanations": [
+        "`Get off of me.` = 放开我、别压着我，of 是口语里常加的。常见错误：\n• \"Get off me\" 也很常见，美式更爱加 of\n• \"Get of me\" → 少了 f，get off 不能漏",
+        "相关：Let go of me.（放开我）/ Hands off!（别碰）"
+      ],
+      "distractors": [
+        [
+          "Get out of",
+          "Get of",
+          "Getting off of"
+        ],
+        [
+          "us.",
+          "him.",
+          "them."
+        ]
+      ]
+    }
+  ]
+}

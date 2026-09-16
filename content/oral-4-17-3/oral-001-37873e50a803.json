@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Calm down.",
+      "translation": "镇静些。",
+      "chunks": [
+        "Calm",
+        "down."
+      ],
+      "hints": [
+        "镇静",
+        "些。"
+      ],
+      "cid": "9a1a2a3c"
+    },
+    {
+      "sentence": "Don't get so uptight.",
+      "translation": "何必当真了呢。",
+      "chunks": [
+        "Don't get",
+        "so uptight."
+      ],
+      "hints": [
+        "何必",
+        "当真了呢。"
+      ],
+      "cid": "4cc0bec0"
+    },
+    {
+      "sentence": "Don't be so stiff.",
+      "translation": "放松点儿。",
+      "chunks": [
+        "Don't be",
+        "so stiff."
+      ],
+      "hints": [
+        "放松",
+        "点儿。"
+      ],
+      "cid": "de8ead9c"
+    },
+    {
+      "sentence": "Kick back!",
+      "translation": "放松点儿。",
+      "chunks": [
+        "Kick",
+        "back!"
+      ],
+      "hints": [
+        "放松",
+        "点儿。"
+      ],
+      "cid": "f3d79d61"
+    },
+    {
+      "sentence": "Take your time.",
+      "cid": "22a86a18",
+      "translation": "慢慢来/别着急。",
+      "chunks": [
+        "Take your",
+        "time."
+      ],
+      "hints": [
+        "慢慢用你的",
+        "时间"
+      ],
+      "grammar": [
+        {
+          "role": "祈使+限定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/jɔːr/"
+          ],
+          "pos": "祈使句",
+          "meaning": "慢慢（用）你的"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/taɪm/"
+          ],
+          "pos": "名词",
+          "meaning": "时间"
+        }
+      ],
+      "explanations": [
+        "**Take your time.** = 慢慢来、不用急，对方需要时间思考或忙时安慰用。",
+        "结构 take one's time：take my time / take his time。反义：**Hurry up!** 别与 **It takes time**（需要时间）混淆。"
+      ],
+      "distractors": [
+        [
+          "Take you",
+          "Takes your",
+          "To take your"
+        ],
+        [
+          "times.",
+          "your times."
+        ]
+      ]
+    },
+    {
+      "sentence": "There's no need to rush.",
+      "translation": "别急。",
+      "chunks": [
+        "There's no need",
+        "to rush."
+      ],
+      "hints": [
+        "别",
+        "急。"
+      ],
+      "cid": "050703df"
+    },
+    {
+      "sentence": "Let's make up.",
+      "translation": "我们和好吧!",
+      "chunks": [
+        "Let's",
+        "make up."
+      ],
+      "hints": [
+        "我们",
+        "和好吧！"
+      ],
+      "cid": "50e3dfab"
+    },
+    {
+      "sentence": "Did you make up?",
+      "translation": "和好了吗?",
+      "chunks": [
+        "Did you",
+        "make up?"
+      ],
+      "hints": [
+        "和好",
+        "了吗？"
+      ],
+      "cid": "f9f5bbb7"
+    },
+    {
+      "sentence": "Can't we talk it over?",
+      "translation": "我们就不能好好谈谈吗?",
+      "chunks": [
+        "Can't we",
+        "talk it over?"
+      ],
+      "hints": [
+        "我们就不能",
+        "好好谈谈吗？"
+      ],
+      "cid": "b346db1a"
+    },
+    {
+      "sentence": "Try to get along.",
+      "translation": "你俩要好好相处。",
+      "chunks": [
+        "Try to",
+        "get along."
+      ],
+      "hints": [
+        "你俩要",
+        "好好相处。"
+      ],
+      "cid": "88b38414"
+    },
+    {
+      "sentence": "Let's forgive and forget!",
+      "translation": "过去的事就让它过去吧。",
+      "chunks": [
+        "Let's forgive",
+        "and forget!"
+      ],
+      "hints": [
+        "过去的事",
+        "就让它过去吧。"
+      ],
+      "cid": "0d434eef"
+    },
+    {
+      "sentence": "I've beaten you.",
+      "translation": "你输了。",
+      "chunks": [
+        "I've",
+        "beaten you."
+      ],
+      "hints": [
+        "你",
+        "输了。"
+      ],
+      "cid": "6e2e28ee"
+    },
+    {
+      "sentence": "I didn't mean to hurt you.",
+      "translation": "我无意伤害你。",
+      "chunks": [
+        "I didn't mean",
+        "to hurt you."
+      ],
+      "hints": [
+        "我无意",
+        "伤害你。"
+      ],
+      "cid": "92d5aac4"
+    },
+    {
+      "sentence": "I missed you.",
+      "translation": "我很想念你。",
+      "chunks": [
+        "I",
+        "missed you."
+      ],
+      "hints": [
+        "我",
+        "很想念你。"
+      ],
+      "cid": "5188d030"
+    },
+    {
+      "sentence": "I get lonely easily.",
+      "translation": "我是个容易感到寂寞的人。",
+      "chunks": [
+        "I get lonely",
+        "easily."
+      ],
+      "hints": [
+        "我是个容易",
+        "感到寂寞的人。"
+      ],
+      "cid": "e94e0c7e"
+    },
+    {
+      "sentence": "Can't you patch things up?",
+      "translation": "你们就不能和好吗?",
+      "chunks": [
+        "Can't you",
+        "patch things up?"
+      ],
+      "hints": [
+        "你们就不能",
+        "和好吗？"
+      ],
+      "cid": "6eebdafe"
+    }
+  ]
+}

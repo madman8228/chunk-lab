@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "eec54f4e",
+      "sentence": "Oh, heck!",
+      "translation": "啊呸!真见鬼!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "c8c3b8e7",
+      "sentence": "Shucks!",
+      "translation": "什么!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "38904876",
+      "sentence": "Shit!",
+      "translation": "他妈的!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "9b498f92",
+      "sentence": "Uh-oh.",
+      "translation": "啊!糟了!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "3cfdb070",
+      "sentence": "Not everything is logical.",
+      "translation": "有的事是行不通的。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "fd11d4d7",
+      "sentence": "It went down the drain.",
+      "translation": "(金钱)全都浪费了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "07b5dc42",
+      "sentence": "I almost made it.",
+      "translation": "就差那么一点儿。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "f3bc196b",
+      "sentence": "Do something!",
+      "translation": "想点儿办法吧!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "4d788943",
+      "sentence": "I'm so busy.",
+      "translation": "我忙得要命。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "0aea8692",
+      "sentence": "This task is too much for me.",
+      "translation": "这项工作对我来说太重了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "6d47b16a",
+      "sentence": "I can't make ends meet on my small salary.",
+      "translation": "这么点儿薪水我怎么够活呀!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "3cfe03af",
+      "sentence": "This is the last straw.",
+      "translation": "我再也忍不下去了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "dec01180",
+      "sentence": "Your response is unacceptable.",
+      "translation": "你的答复我接受不了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "4c856b67",
+      "sentence": "I'm not satisfied with his answer.",
+      "translation": "我不满意他的回答。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "1458ed3b",
+      "sentence": "He's got a chip on his shoulder today.",
+      "translation": "他今天一副挑衅的样子。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "0cf64c5a",
+      "sentence": "Play fair!",
+      "translation": "公平点儿!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "5200b4d8",
+      "sentence": "What a waste of time and money!",
+      "translation": "多费时费钱呀!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "0f5c698e",
+      "sentence": "You're too generous.",
+      "translation": "你太慷慨了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "a98633c8",
+      "sentence": "He told me all about it.",
+      "translation": "他把一切都告诉了我。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "9b12ba20",
+      "sentence": "What's taking so long?",
+      "translation": "怎么花这么长时间?",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "7a73e3c7",
+      "sentence": "I can't make it in ten minutes.",
+      "translation": "10分钟怎么也来不及。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "d94f6f2b",
+      "sentence": "He looks down on me.",
+      "translation": "他看不起我。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "86039a0f",
+      "sentence": "You're good for nothing.",
+      "translation": "你什么忙也帮不了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "bc987462",
+      "sentence": "It drives me crazy.",
+      "translation": "简直快让我疯了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "bf559eba",
+      "sentence": "Is that all?",
+      "translation": "就这些吗?",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "625e578d",
+      "sentence": "That's not enough.",
+      "translation": "这太少了。/这不够。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "377826fa",
+      "sentence": "He's unfair to me.",
+      "translation": "他对我不公平。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "e3adb4f8",
+      "sentence": "No more excuses!",
+      "translation": "别再辩解了!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "2083cdb4",
+      "sentence": "I've heard enough of your excuses.",
+      "translation": "我不想再听你的辩解了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "2f62089b",
+      "sentence": "I don't want to hear any excuses.",
+      "translation": "我不想听任何解释。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "c8fded90",
+      "sentence": "That's not a good excuse.",
+      "translation": "这样也解释不通呀。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "26aa1408",
+      "sentence": "What's the big idea?",
+      "translation": "你到底在想什么呢?",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "13065977",
+      "sentence": "Don't give me any lip service!",
+      "translation": "别给我开空头支票。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "2934b601",
+      "sentence": "Don't tell me what to do!",
+      "translation": "你少命令我!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "e1e8bb0d",
+      "sentence": "I'm mad!",
+      "translation": "气疯了我了!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "2dc0212f",
+      "sentence": "That's disgusting.",
+      "translation": "那真讨厌!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "a9d2931c",
+      "sentence": "You're getting on my nerves.",
+      "translation": "你真让我心烦。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "3d3ee815",
+      "sentence": "Don't make fun of me.",
+      "translation": "别取笑我!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "ec19dfd9",
+      "sentence": "Don't be upset.",
+      "translation": "请别上火。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "89ff64e1",
+      "sentence": "I've run out of patience.",
+      "translation": "我再也没耐心了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "c3c48d8e",
+      "sentence": "What nerve!",
+      "translation": "你放肆!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "8db7d937",
+      "sentence": "How impudent you are to say such a thing!",
+      "translation": "你竟有脸说这种事!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "51753151",
+      "sentence": "What he says offends me.",
+      "translation": "他说的话多气人呀。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "11377eb0",
+      "sentence": "We've got to get even.",
+      "translation": "我们得反击。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "e3c4dbed",
+      "sentence": "I wasn't born yesterday.",
+      "translation": "我又不是不懂。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "824797b1",
+      "sentence": "Don't think you can make a fool out of me!",
+      "translation": "别把我当傻瓜。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "9d88d329",
+      "sentence": "You're making fun of me.",
+      "translation": "你拿我开涮呢。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "dd562cc2",
+      "sentence": "That's asking too much.",
+      "translation": "真是狮子大开口。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "833a084f",
+      "sentence": "He has a quick temper.",
+      "translation": "他是急脾气。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "90ff56cc",
+      "sentence": "Who do you think you're talking to?",
+      "translation": "你知道你是在对谁说话吗?",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "2d2258e4",
+      "sentence": "Do you have anything to say?",
+      "translation": "你有什么要说的吗?",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "f4650d27",
+      "sentence": "I won't let you have your own way.",
+      "translation": "我不能让你随心所欲。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "0e071ad5",
+      "sentence": "That's blackmail!",
+      "translation": "这是恐吓。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "e721b940",
+      "sentence": "Don't insult me.",
+      "translation": "你别侮辱人。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "d495c0fd",
+      "sentence": "You're a filthy liar.",
+      "translation": "你是一个卑鄙的骗子。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "926e59e3",
+      "sentence": "You'll be sorry.",
+      "translation": "你会后悔的。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "c8969fd0",
+      "sentence": "Are you crazy?",
+      "translation": "你疯啦?",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "3a3bea0c",
+      "sentence": "Don't look at me like that!",
+      "translation": "别用那种眼神看着我!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "81178239",
+      "sentence": "I want to get even with him.",
+      "translation": "我要报复。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "97dd32cd",
+      "sentence": "That sneaky, low life creep!",
+      "translation": "那个狡猾、卑鄙的家伙。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "980dae6d",
+      "sentence": "Is not!? Is too!",
+      "translation": "(根本)不是!?是的!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "e1a6997f",
+      "sentence": "Have it your way!",
+      "translation": "随便吧!",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "2b0c3220",
+      "sentence": "I can't stand the noise from the street.",
+      "translation": "我受不了街上传来的噪音。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "304eb970",
+      "sentence": "My computer just froze again.",
+      "translation": "我的电脑刚刚又死机了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "3689d2d6",
+      "sentence": "I can't put up with it.",
+      "translation": "我受不了这个。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "db59a3b8",
+      "sentence": "Are you angry?",
+      "translation": "你生气了吗？",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "85acd6c2",
+      "sentence": "Of course not.",
+      "translation": "当然没有。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "6ba05043",
+      "sentence": "I'm offended.",
+      "translation": "我觉得被冒犯了。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "2d1602f3",
+      "sentence": "Get off of me.",
+      "translation": "放开我。",
+      "sourceUrl": "content/oral-4-17-1/oral-001-dfc61df40f8f.json",
+      "sourceOffset": 68
+    }
+  ]
+}

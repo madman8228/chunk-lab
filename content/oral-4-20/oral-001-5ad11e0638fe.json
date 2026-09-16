@@ -54,55 +54,6 @@
       ]
     },
     {
-      "sentence": "Take your time.",
-      "cid": "22a86a18",
-      "translation": "慢慢来/别着急。",
-      "chunks": [
-        "Take your",
-        "time."
-      ],
-      "hints": [
-        "慢慢用你的",
-        "时间"
-      ],
-      "grammar": [
-        {
-          "role": "祈使+限定",
-          "color": "#e74c7a",
-          "phonetic": [
-            "/teɪk/",
-            "/jɔːr/"
-          ],
-          "pos": "祈使句",
-          "meaning": "慢慢（用）你的"
-        },
-        {
-          "role": "宾语",
-          "color": "#3358e0",
-          "phonetic": [
-            "/taɪm/"
-          ],
-          "pos": "名词",
-          "meaning": "时间"
-        }
-      ],
-      "explanations": [
-        "**Take your time.** = 慢慢来、不用急，对方需要时间思考或忙时安慰用。",
-        "结构 take one's time：take my time / take his time。反义：**Hurry up!** 别与 **It takes time**（需要时间）混淆。"
-      ],
-      "distractors": [
-        [
-          "Take you",
-          "Takes your",
-          "To take your"
-        ],
-        [
-          "times.",
-          "your times."
-        ]
-      ]
-    },
-    {
       "sentence": "As long as you're happy, that's all that matters.",
       "cid": "f138b191",
       "translation": "只要你开心，其他都不重要。",

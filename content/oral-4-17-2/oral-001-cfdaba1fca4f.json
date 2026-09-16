@@ -1,0 +1,861 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "It's boring.",
+      "translation": "真无聊!",
+      "chunks": [
+        "It's",
+        "boring."
+      ],
+      "hints": [
+        "真",
+        "无聊！"
+      ],
+      "cid": "7d1a31c3"
+    },
+    {
+      "sentence": "Dull.",
+      "translation": "真没意思!",
+      "chunks": [
+        "Dull."
+      ],
+      "hints": [
+        "真没意思！"
+      ],
+      "cid": "a6f4e1c4"
+    },
+    {
+      "sentence": "It's for the birds.",
+      "translation": "毫无价值!/不值一提!",
+      "chunks": [
+        "It's for",
+        "the birds."
+      ],
+      "hints": [
+        "简直是",
+        "毫无价值！"
+      ],
+      "cid": "49d2d930"
+    },
+    {
+      "sentence": "I'm not interested.",
+      "translation": "我不感兴趣。",
+      "chunks": [
+        "I'm not",
+        "interested."
+      ],
+      "hints": [
+        "我不",
+        "感兴趣。"
+      ],
+      "cid": "d3228102"
+    },
+    {
+      "sentence": "It's nothing great.",
+      "translation": "没什么了不起的。",
+      "chunks": [
+        "It's",
+        "nothing great."
+      ],
+      "hints": [
+        "没什么",
+        "了不起的。"
+      ],
+      "cid": "a5ffdfa8"
+    },
+    {
+      "sentence": "I'm not satisfied.",
+      "translation": "我不满意。",
+      "chunks": [
+        "I'm not",
+        "satisfied."
+      ],
+      "hints": [
+        "我不",
+        "满意。"
+      ],
+      "cid": "a0c88b41"
+    },
+    {
+      "sentence": "It was just another meeting.",
+      "translation": "就是常见的那种会议。",
+      "chunks": [
+        "It was just",
+        "another meeting."
+      ],
+      "hints": [
+        "就是常见的",
+        "那种会议。"
+      ],
+      "cid": "2da32e1f"
+    },
+    {
+      "sentence": "I can't get into my work.",
+      "translation": "我不能专心工作。",
+      "chunks": [
+        "I can't get into",
+        "my work."
+      ],
+      "hints": [
+        "我不能",
+        "专心工作。"
+      ],
+      "cid": "b8d24250"
+    },
+    {
+      "sentence": "It's outdated.",
+      "translation": "那早过时了。",
+      "chunks": [
+        "It's",
+        "outdated."
+      ],
+      "hints": [
+        "那早",
+        "过时了。"
+      ],
+      "cid": "89ab6ea0"
+    },
+    {
+      "sentence": "Give me a break",
+      "translation": ".拜托!",
+      "chunks": [
+        "Give me",
+        "a break"
+      ],
+      "hints": [
+        "饶了我吧，",
+        "拜托！"
+      ],
+      "cid": "5d29495a"
+    },
+    {
+      "sentence": "I can't stand it.",
+      "translation": "我忍受不了。",
+      "chunks": [
+        "I can't",
+        "stand it."
+      ],
+      "hints": [
+        "我",
+        "忍受不了。"
+      ],
+      "cid": "e2c185a0"
+    },
+    {
+      "sentence": "That's enough.",
+      "translation": "够了!",
+      "chunks": [
+        "That's",
+        "enough."
+      ],
+      "hints": [
+        "那",
+        "够了。"
+      ],
+      "cid": "bd48d404"
+    },
+    {
+      "sentence": "Have a heart!",
+      "translation": "饶了我吧!",
+      "chunks": [
+        "Have",
+        "a heart!"
+      ],
+      "hints": [
+        "饶了",
+        "我吧！"
+      ],
+      "cid": "29176067"
+    },
+    {
+      "sentence": "The more I hear about it, the more disgusted I get.",
+      "translation": "越听越烦。",
+      "chunks": [
+        "The more I hear about it,",
+        "the more disgusted I get."
+      ],
+      "hints": [
+        "越听",
+        "越烦。"
+      ],
+      "cid": "72a1f935"
+    },
+    {
+      "sentence": "There she goes again.",
+      "translation": "她又来了。",
+      "chunks": [
+        "There she goes",
+        "again."
+      ],
+      "hints": [
+        "她又",
+        "来了。"
+      ],
+      "cid": "201d877b"
+    },
+    {
+      "sentence": "Oh, man!",
+      "translation": "哦，真烦。",
+      "chunks": [
+        "Oh,",
+        "man!"
+      ],
+      "hints": [
+        "哦，",
+        "真烦。"
+      ],
+      "cid": "dd8413b9"
+    },
+    {
+      "sentence": "I don't want to hear it.",
+      "translation": "我不想听。",
+      "chunks": [
+        "I don't want",
+        "to hear it."
+      ],
+      "hints": [
+        "我",
+        "不想听。"
+      ],
+      "cid": "dec40676"
+    },
+    {
+      "sentence": "Now what?",
+      "translation": "这次又是什么?",
+      "chunks": [
+        "Now",
+        "what?"
+      ],
+      "hints": [
+        "这次又",
+        "是什么？"
+      ],
+      "cid": "6fbc9600"
+    },
+    {
+      "sentence": "Shut up!",
+      "translation": "闭嘴!",
+      "chunks": [
+        "Shut",
+        "up!"
+      ],
+      "hints": [
+        "闭",
+        "嘴！"
+      ],
+      "cid": "37fb578b"
+    },
+    {
+      "sentence": "Don't be a back seat driver.",
+      "translation": "别指手划脚!",
+      "chunks": [
+        "Don't be a",
+        "back seat driver."
+      ],
+      "hints": [
+        "别",
+        "指手划脚！"
+      ],
+      "cid": "6143c661"
+    },
+    {
+      "sentence": "Stop shouting!",
+      "translation": "别大声嚷嚷!",
+      "chunks": [
+        "Stop",
+        "shouting!"
+      ],
+      "hints": [
+        "别大声",
+        "嚷嚷！"
+      ],
+      "cid": "ef0d37b3"
+    },
+    {
+      "sentence": "Stop complaining!",
+      "translation": "别抱怨了!",
+      "chunks": [
+        "Stop",
+        "complaining!"
+      ],
+      "hints": [
+        "别",
+        "抱怨了！"
+      ],
+      "cid": "7cc10ddb"
+    },
+    {
+      "sentence": "Calm down, will you?",
+      "translation": "安静点，行不行?",
+      "chunks": [
+        "Calm down,",
+        "will you?"
+      ],
+      "hints": [
+        "安静点，",
+        "行不行？"
+      ],
+      "cid": "c702772e"
+    },
+    {
+      "sentence": "Stop nagging!",
+      "translation": "唠叨什么呀!",
+      "chunks": [
+        "Stop",
+        "nagging!"
+      ],
+      "hints": [
+        "唠叨",
+        "什么呀！"
+      ],
+      "cid": "82313627"
+    },
+    {
+      "sentence": "Get off my back.",
+      "translation": "别再啰嗦了!",
+      "chunks": [
+        "Get off",
+        "my back."
+      ],
+      "hints": [
+        "别再",
+        "啰嗦了！"
+      ],
+      "cid": "0ca09aef"
+    },
+    {
+      "sentence": "Don't talk back to me!",
+      "translation": "别跟我顶嘴!",
+      "chunks": [
+        "Don't talk back",
+        "to me!"
+      ],
+      "hints": [
+        "别跟我",
+        "顶嘴！"
+      ],
+      "cid": "8b8dcbe4"
+    },
+    {
+      "sentence": "Big mouth!",
+      "translation": "多嘴!",
+      "chunks": [
+        "Big",
+        "mouth!"
+      ],
+      "hints": [
+        "多",
+        "嘴！"
+      ],
+      "cid": "14a5e161"
+    },
+    {
+      "sentence": "Leave me alone!",
+      "translation": "离我远点儿!",
+      "chunks": [
+        "Leave me",
+        "alone!"
+      ],
+      "hints": [
+        "离我",
+        "远点儿！"
+      ],
+      "cid": "5e16b0d4"
+    },
+    {
+      "sentence": "None of your business.",
+      "translation": "没你的事!",
+      "chunks": [
+        "None of",
+        "your business."
+      ],
+      "hints": [
+        "没",
+        "你的事！"
+      ],
+      "cid": "efd57bbf"
+    },
+    {
+      "sentence": "Who asked you?",
+      "translation": "谁问你了?",
+      "chunks": [
+        "Who",
+        "asked you?"
+      ],
+      "hints": [
+        "谁",
+        "问你了？"
+      ],
+      "cid": "44f4277d"
+    },
+    {
+      "sentence": "I can't talk to you now.",
+      "translation": "现在不能跟你说。",
+      "chunks": [
+        "I can't talk",
+        "to you now."
+      ],
+      "hints": [
+        "现在不能",
+        "跟你说。"
+      ],
+      "cid": "6faf0309"
+    },
+    {
+      "sentence": "I don't need your help.",
+      "translation": "我不需要你的帮助。",
+      "chunks": [
+        "I don't need",
+        "your help."
+      ],
+      "hints": [
+        "我不需要",
+        "你的帮助。"
+      ],
+      "cid": "f7229c5e"
+    },
+    {
+      "sentence": "Get out of my face!",
+      "translation": "别让我看见你!",
+      "chunks": [
+        "Get out of",
+        "my face!"
+      ],
+      "hints": [
+        "别让我",
+        "看见你！"
+      ],
+      "cid": "59809d42"
+    },
+    {
+      "sentence": "Don't bother me!",
+      "translation": "别打扰我!",
+      "chunks": [
+        "Don't",
+        "bother me!"
+      ],
+      "hints": [
+        "别",
+        "打扰我！"
+      ],
+      "cid": "108eec46"
+    },
+    {
+      "sentence": "Are you trying to get rid of me?",
+      "translation": "你想把我轰走吗?",
+      "chunks": [
+        "Are you trying",
+        "to get rid of me?"
+      ],
+      "hints": [
+        "你想把我",
+        "轰走吗？"
+      ],
+      "cid": "a5bbce7d"
+    },
+    {
+      "sentence": "Liar!",
+      "translation": "骗子!",
+      "chunks": [
+        "Liar!"
+      ],
+      "hints": [
+        "骗子！"
+      ],
+      "cid": "6b53d39c"
+    },
+    {
+      "sentence": "That's a lie!",
+      "translation": "那是瞎说!",
+      "chunks": [
+        "That's",
+        "a lie!"
+      ],
+      "hints": [
+        "那是",
+        "瞎说！"
+      ],
+      "cid": "9d691ad6"
+    },
+    {
+      "sentence": "Don't lie to me.",
+      "translation": "别骗我。",
+      "chunks": [
+        "Don't lie",
+        "to me."
+      ],
+      "hints": [
+        "别",
+        "骗我。"
+      ],
+      "cid": "05d9b444"
+    },
+    {
+      "sentence": "Stop joking!",
+      "translation": "别开玩笑!",
+      "chunks": [
+        "Stop",
+        "joking!"
+      ],
+      "hints": [
+        "别",
+        "开玩笑！"
+      ],
+      "cid": "30ba812a"
+    },
+    {
+      "sentence": "I've had enough of your nonsense.",
+      "translation": "你开玩笑也该适可而止!",
+      "chunks": [
+        "I've had enough",
+        "of your nonsense."
+      ],
+      "hints": [
+        "你开玩笑",
+        "也该适可而止！"
+      ],
+      "cid": "f5bc1610"
+    },
+    {
+      "sentence": "Stop putting us on.",
+      "translation": "别捉弄人。",
+      "chunks": [
+        "Stop putting",
+        "us on."
+      ],
+      "hints": [
+        "别",
+        "捉弄人。"
+      ],
+      "cid": "af727489"
+    },
+    {
+      "sentence": "Don't act stupid!",
+      "translation": "别干那种傻事!",
+      "chunks": [
+        "Don't act",
+        "stupid!"
+      ],
+      "hints": [
+        "别干那种",
+        "傻事！"
+      ],
+      "cid": "8a0d828b"
+    },
+    {
+      "sentence": "That's stupid.",
+      "translation": "那也太蠢了!",
+      "chunks": [
+        "That's",
+        "stupid."
+      ],
+      "hints": [
+        "那也太",
+        "蠢了！"
+      ],
+      "cid": "f48dba29"
+    },
+    {
+      "sentence": "Don't pull my leg!",
+      "translation": "别逗了!",
+      "chunks": [
+        "Don't pull",
+        "my leg!"
+      ],
+      "hints": [
+        "别",
+        "逗了！"
+      ],
+      "cid": "8231b309"
+    },
+    {
+      "sentence": "Take it back!",
+      "translation": "收回你说过的话。",
+      "chunks": [
+        "Take it",
+        "back!"
+      ],
+      "hints": [
+        "收回",
+        "你说过的话。"
+      ],
+      "cid": "a13cc761"
+    },
+    {
+      "sentence": "I don't want to hear any more of your lies.",
+      "translation": "我不想再听你说的谎话。",
+      "chunks": [
+        "I don't want to hear",
+        "any more of your lies."
+      ],
+      "hints": [
+        "我不想再听",
+        "你说的谎话。"
+      ],
+      "cid": "70041919"
+    },
+    {
+      "sentence": "Did you make up a story?",
+      "translation": "你在编故事吗?",
+      "chunks": [
+        "Did you make up",
+        "a story?"
+      ],
+      "hints": [
+        "你在",
+        "编故事吗？"
+      ],
+      "cid": "91c29e49"
+    },
+    {
+      "sentence": "Phony!",
+      "translation": "搞什么鬼!",
+      "chunks": [
+        "Phony!"
+      ],
+      "hints": [
+        "搞什么鬼！"
+      ],
+      "cid": "9d5b877e"
+    },
+    {
+      "sentence": "Don't play dumb!",
+      "translation": "别装傻!",
+      "chunks": [
+        "Don't play",
+        "dumb!"
+      ],
+      "hints": [
+        "别",
+        "装傻！"
+      ],
+      "cid": "2230ba76"
+    },
+    {
+      "sentence": "You tricked me.",
+      "translation": "你在骗我呢吧!",
+      "chunks": [
+        "You",
+        "tricked me."
+      ],
+      "hints": [
+        "你在",
+        "骗我呢吧！"
+      ],
+      "cid": "035a8206"
+    },
+    {
+      "sentence": "None of your tricks will work on me.",
+      "translation": "你骗人的把戏可蒙不了我。",
+      "chunks": [
+        "None of your tricks",
+        "will work on me."
+      ],
+      "hints": [
+        "你骗人的把戏",
+        "可蒙不了我。"
+      ],
+      "cid": "88773455"
+    },
+    {
+      "sentence": "You coward!",
+      "translation": "胆小鬼!",
+      "chunks": [
+        "You",
+        "coward!"
+      ],
+      "hints": [
+        "胆",
+        "小鬼！"
+      ],
+      "cid": "e55d1b23"
+    },
+    {
+      "sentence": "Nobody's perfect!",
+      "translation": "人无完人!",
+      "chunks": [
+        "Nobody's",
+        "perfect!"
+      ],
+      "hints": [
+        "人无",
+        "完人！"
+      ],
+      "cid": "c8146114"
+    },
+    {
+      "sentence": "Stingy.",
+      "translation": "小气鬼。",
+      "chunks": [
+        "Stingy."
+      ],
+      "hints": [
+        "小气鬼。"
+      ],
+      "cid": "e0fa9ab1"
+    },
+    {
+      "sentence": "Fuck you!",
+      "translation": "你这混蛋!",
+      "chunks": [
+        "Fuck",
+        "you!"
+      ],
+      "hints": [
+        "你这",
+        "混蛋！"
+      ],
+      "cid": "a25c1e30"
+    },
+    {
+      "sentence": "You asshole!",
+      "translation": "饭桶!",
+      "chunks": [
+        "You",
+        "asshole!"
+      ],
+      "hints": [
+        "饭",
+        "桶！"
+      ],
+      "cid": "d096ab7e"
+    },
+    {
+      "sentence": "Christ!",
+      "translation": "混帐!/天哪!",
+      "chunks": [
+        "Christ!"
+      ],
+      "hints": [
+        "混帐！"
+      ],
+      "cid": "658be19b"
+    },
+    {
+      "sentence": "You beast!",
+      "translation": "你这畜牲!",
+      "chunks": [
+        "You",
+        "beast!"
+      ],
+      "hints": [
+        "你这",
+        "畜牲！"
+      ],
+      "cid": "c0c4acce"
+    },
+    {
+      "sentence": "You tomboy!",
+      "translation": "野丫头!",
+      "chunks": [
+        "You",
+        "tomboy!"
+      ],
+      "hints": [
+        "野",
+        "丫头！"
+      ],
+      "cid": "38f9d165"
+    },
+    {
+      "sentence": "You sly dog!",
+      "translation": "滑头的家伙!",
+      "chunks": [
+        "You",
+        "sly dog!"
+      ],
+      "hints": [
+        "滑头的",
+        "家伙！"
+      ],
+      "cid": "3393ee13"
+    },
+    {
+      "sentence": "Fag!",
+      "translation": "同性恋!",
+      "chunks": [
+        "Fag!"
+      ],
+      "hints": [
+        "同性恋！"
+      ],
+      "cid": "681c7514"
+    },
+    {
+      "sentence": "Hey, ugly!",
+      "translation": "丑八怪!",
+      "chunks": [
+        "Hey,",
+        "ugly!"
+      ],
+      "hints": [
+        "丑",
+        "八怪！"
+      ],
+      "cid": "8d7d1239"
+    },
+    {
+      "sentence": "Fatso!",
+      "translation": "肥猪!",
+      "chunks": [
+        "Fatso!"
+      ],
+      "hints": [
+        "肥猪！"
+      ],
+      "cid": "1d78772d"
+    },
+    {
+      "sentence": "Shorty!",
+      "translation": "矬子!",
+      "chunks": [
+        "Shorty!"
+      ],
+      "hints": [
+        "矬子！"
+      ],
+      "cid": "706f311f"
+    },
+    {
+      "sentence": "What an ungrateful man!",
+      "translation": "忘恩负义的家伙!",
+      "chunks": [
+        "What an",
+        "ungrateful man!"
+      ],
+      "hints": [
+        "忘恩负义的",
+        "家伙！"
+      ],
+      "cid": "7176d06e"
+    },
+    {
+      "sentence": "You lowlife!",
+      "translation": "你这下流坯!",
+      "chunks": [
+        "You",
+        "lowlife!"
+      ],
+      "hints": [
+        "你这",
+        "下流坯！"
+      ],
+      "cid": "67b09d4f"
+    },
+    {
+      "sentence": "Stop trying to be cool!",
+      "translation": "别硬装酷了。",
+      "chunks": [
+        "Stop trying",
+        "to be cool!"
+      ],
+      "hints": [
+        "别硬",
+        "装酷了。"
+      ],
+      "cid": "b5991276"
+    }
+  ]
+}

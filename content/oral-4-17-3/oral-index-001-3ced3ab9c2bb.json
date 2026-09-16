@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "9a1a2a3c",
+      "sentence": "Calm down.",
+      "translation": "镇静些。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "4cc0bec0",
+      "sentence": "Don't get so uptight.",
+      "translation": "何必当真了呢。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "de8ead9c",
+      "sentence": "Don't be so stiff.",
+      "translation": "放松点儿。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "f3d79d61",
+      "sentence": "Kick back!",
+      "translation": "放松点儿。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "22a86a18",
+      "sentence": "Take your time.",
+      "translation": "慢慢来/别着急。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "050703df",
+      "sentence": "There's no need to rush.",
+      "translation": "别急。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "50e3dfab",
+      "sentence": "Let's make up.",
+      "translation": "我们和好吧!",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "f9f5bbb7",
+      "sentence": "Did you make up?",
+      "translation": "和好了吗?",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "b346db1a",
+      "sentence": "Can't we talk it over?",
+      "translation": "我们就不能好好谈谈吗?",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "88b38414",
+      "sentence": "Try to get along.",
+      "translation": "你俩要好好相处。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "0d434eef",
+      "sentence": "Let's forgive and forget!",
+      "translation": "过去的事就让它过去吧。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "6e2e28ee",
+      "sentence": "I've beaten you.",
+      "translation": "你输了。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "92d5aac4",
+      "sentence": "I didn't mean to hurt you.",
+      "translation": "我无意伤害你。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "5188d030",
+      "sentence": "I missed you.",
+      "translation": "我很想念你。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "e94e0c7e",
+      "sentence": "I get lonely easily.",
+      "translation": "我是个容易感到寂寞的人。",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "6eebdafe",
+      "sentence": "Can't you patch things up?",
+      "translation": "你们就不能和好吗?",
+      "sourceUrl": "content/oral-4-17-3/oral-001-37873e50a803.json",
+      "sourceOffset": 15
+    }
+  ]
+}

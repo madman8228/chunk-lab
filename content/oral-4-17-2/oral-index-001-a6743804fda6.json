@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "7d1a31c3",
+      "sentence": "It's boring.",
+      "translation": "真无聊!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "a6f4e1c4",
+      "sentence": "Dull.",
+      "translation": "真没意思!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "49d2d930",
+      "sentence": "It's for the birds.",
+      "translation": "毫无价值!/不值一提!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "d3228102",
+      "sentence": "I'm not interested.",
+      "translation": "我不感兴趣。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "a5ffdfa8",
+      "sentence": "It's nothing great.",
+      "translation": "没什么了不起的。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "a0c88b41",
+      "sentence": "I'm not satisfied.",
+      "translation": "我不满意。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "2da32e1f",
+      "sentence": "It was just another meeting.",
+      "translation": "就是常见的那种会议。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "b8d24250",
+      "sentence": "I can't get into my work.",
+      "translation": "我不能专心工作。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "89ab6ea0",
+      "sentence": "It's outdated.",
+      "translation": "那早过时了。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "5d29495a",
+      "sentence": "Give me a break",
+      "translation": ".拜托!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "e2c185a0",
+      "sentence": "I can't stand it.",
+      "translation": "我忍受不了。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "bd48d404",
+      "sentence": "That's enough.",
+      "translation": "够了!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "29176067",
+      "sentence": "Have a heart!",
+      "translation": "饶了我吧!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "72a1f935",
+      "sentence": "The more I hear about it, the more disgusted I get.",
+      "translation": "越听越烦。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "201d877b",
+      "sentence": "There she goes again.",
+      "translation": "她又来了。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "dd8413b9",
+      "sentence": "Oh, man!",
+      "translation": "哦，真烦。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "dec40676",
+      "sentence": "I don't want to hear it.",
+      "translation": "我不想听。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "6fbc9600",
+      "sentence": "Now what?",
+      "translation": "这次又是什么?",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "37fb578b",
+      "sentence": "Shut up!",
+      "translation": "闭嘴!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "6143c661",
+      "sentence": "Don't be a back seat driver.",
+      "translation": "别指手划脚!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "ef0d37b3",
+      "sentence": "Stop shouting!",
+      "translation": "别大声嚷嚷!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "7cc10ddb",
+      "sentence": "Stop complaining!",
+      "translation": "别抱怨了!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "c702772e",
+      "sentence": "Calm down, will you?",
+      "translation": "安静点，行不行?",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "82313627",
+      "sentence": "Stop nagging!",
+      "translation": "唠叨什么呀!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "0ca09aef",
+      "sentence": "Get off my back.",
+      "translation": "别再啰嗦了!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "8b8dcbe4",
+      "sentence": "Don't talk back to me!",
+      "translation": "别跟我顶嘴!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "14a5e161",
+      "sentence": "Big mouth!",
+      "translation": "多嘴!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "5e16b0d4",
+      "sentence": "Leave me alone!",
+      "translation": "离我远点儿!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "efd57bbf",
+      "sentence": "None of your business.",
+      "translation": "没你的事!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "44f4277d",
+      "sentence": "Who asked you?",
+      "translation": "谁问你了?",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "6faf0309",
+      "sentence": "I can't talk to you now.",
+      "translation": "现在不能跟你说。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "f7229c5e",
+      "sentence": "I don't need your help.",
+      "translation": "我不需要你的帮助。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "59809d42",
+      "sentence": "Get out of my face!",
+      "translation": "别让我看见你!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "108eec46",
+      "sentence": "Don't bother me!",
+      "translation": "别打扰我!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "a5bbce7d",
+      "sentence": "Are you trying to get rid of me?",
+      "translation": "你想把我轰走吗?",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "6b53d39c",
+      "sentence": "Liar!",
+      "translation": "骗子!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "9d691ad6",
+      "sentence": "That's a lie!",
+      "translation": "那是瞎说!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "05d9b444",
+      "sentence": "Don't lie to me.",
+      "translation": "别骗我。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "30ba812a",
+      "sentence": "Stop joking!",
+      "translation": "别开玩笑!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "f5bc1610",
+      "sentence": "I've had enough of your nonsense.",
+      "translation": "你开玩笑也该适可而止!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "af727489",
+      "sentence": "Stop putting us on.",
+      "translation": "别捉弄人。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "8a0d828b",
+      "sentence": "Don't act stupid!",
+      "translation": "别干那种傻事!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "f48dba29",
+      "sentence": "That's stupid.",
+      "translation": "那也太蠢了!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "8231b309",
+      "sentence": "Don't pull my leg!",
+      "translation": "别逗了!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "a13cc761",
+      "sentence": "Take it back!",
+      "translation": "收回你说过的话。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "70041919",
+      "sentence": "I don't want to hear any more of your lies.",
+      "translation": "我不想再听你说的谎话。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "91c29e49",
+      "sentence": "Did you make up a story?",
+      "translation": "你在编故事吗?",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "9d5b877e",
+      "sentence": "Phony!",
+      "translation": "搞什么鬼!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "2230ba76",
+      "sentence": "Don't play dumb!",
+      "translation": "别装傻!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "035a8206",
+      "sentence": "You tricked me.",
+      "translation": "你在骗我呢吧!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "88773455",
+      "sentence": "None of your tricks will work on me.",
+      "translation": "你骗人的把戏可蒙不了我。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "e55d1b23",
+      "sentence": "You coward!",
+      "translation": "胆小鬼!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "c8146114",
+      "sentence": "Nobody's perfect!",
+      "translation": "人无完人!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "e0fa9ab1",
+      "sentence": "Stingy.",
+      "translation": "小气鬼。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "a25c1e30",
+      "sentence": "Fuck you!",
+      "translation": "你这混蛋!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "d096ab7e",
+      "sentence": "You asshole!",
+      "translation": "饭桶!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "658be19b",
+      "sentence": "Christ!",
+      "translation": "混帐!/天哪!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "c0c4acce",
+      "sentence": "You beast!",
+      "translation": "你这畜牲!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "38f9d165",
+      "sentence": "You tomboy!",
+      "translation": "野丫头!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "3393ee13",
+      "sentence": "You sly dog!",
+      "translation": "滑头的家伙!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "681c7514",
+      "sentence": "Fag!",
+      "translation": "同性恋!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "8d7d1239",
+      "sentence": "Hey, ugly!",
+      "translation": "丑八怪!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "1d78772d",
+      "sentence": "Fatso!",
+      "translation": "肥猪!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "706f311f",
+      "sentence": "Shorty!",
+      "translation": "矬子!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "7176d06e",
+      "sentence": "What an ungrateful man!",
+      "translation": "忘恩负义的家伙!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "67b09d4f",
+      "sentence": "You lowlife!",
+      "translation": "你这下流坯!",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "b5991276",
+      "sentence": "Stop trying to be cool!",
+      "translation": "别硬装酷了。",
+      "sourceUrl": "content/oral-4-17-2/oral-001-cfdaba1fca4f.json",
+      "sourceOffset": 66
+    }
+  ]
+}
