@@ -68,6 +68,19 @@
       "cid": "d5b60ff3"
     },
     {
+      "sentence": "I'm hooked on...",
+      "translation": "我对……上瘾。",
+      "chunks": [
+        "I'm hooked",
+        "on..."
+      ],
+      "hints": [
+        "我对",
+        "……上瘾。"
+      ],
+      "cid": "c6c78e0b"
+    },
+    {
       "sentence": "Tomato soup is my cup of tea.",
       "translation": "我喜欢喝西红柿汤。",
       "chunks": [

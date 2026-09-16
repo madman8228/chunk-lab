@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-224e51f0ebf5986fc5e74b88da2804318e8c355fc11e6fe51ebe505e5e4eb094",
+  "contentVersion": "v1-dee8b822bc886c75c121109a71ea23aeff4efd4b533227800fba24e27513429c",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -1363,24 +1363,24 @@
       "sectionTitle": "喜欢、讨厌时",
       "topic": "",
       "baseCount": 0,
-      "totalCount": 29,
+      "totalCount": 30,
       "shards": [
         {
-          "id": "oral-001-9395026345a5",
-          "url": "content/oral-4-19/oral-001-9395026345a5.json",
-          "count": 29,
-          "bytes": 8975,
-          "sha256": "9395026345a5215d22dd0e77f91ef63a1a53e935c16424b797829b1c48c54d44",
+          "id": "oral-001-1f26d2ae395c",
+          "url": "content/oral-4-19/oral-001-1f26d2ae395c.json",
+          "count": 30,
+          "bytes": 9231,
+          "sha256": "1f26d2ae395c729195a0e6f1379ea1d89f326655169c71bc7d1683844aeddbd9",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-a3d713781da3",
-          "url": "content/oral-4-19/oral-index-001-a3d713781da3.json",
-          "count": 29,
-          "bytes": 6405,
-          "sha256": "a3d713781da364e609aac82cd4d6ab95681962cdc7e564294564ba3dbc087ccd",
+          "id": "oral-index-001-d20411a65f5e",
+          "url": "content/oral-4-19/oral-index-001-d20411a65f5e.json",
+          "count": 30,
+          "bytes": 6619,
+          "sha256": "d20411a65f5ea41802630ab428bde2e06b59fb64fe7049ff8612d49b17b7432a",
           "mode": "index"
         }
       ]

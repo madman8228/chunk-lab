@@ -60,6 +60,18 @@
   ]
  },
  {
+  "sentence": "I'm hooked on...",
+  "translation": "我对……上瘾。",
+  "chunks": [
+   "I'm hooked",
+   "on..."
+  ],
+  "hints": [
+   "我对",
+   "……上瘾。"
+  ]
+ },
+ {
   "sentence": "Tomato soup is my cup of tea.",
   "translation": "我喜欢喝西红柿汤。",
   "chunks": [
