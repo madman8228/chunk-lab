@@ -152,27 +152,9 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
   .srow .en{-webkit-line-clamp:2}
   .srow .cn{-webkit-line-clamp:2}
 }
-/* 概览分三层：行动（能点）→ 状态（只能看）→ 时间（本月 + 近 7 天）。
-   行动层复用主页 .htc 计数卡的视觉语言（软色底 + 彩色边 + chevron），
-   卡片本身即入口 —— 与首页「计数卡本身即入口」同一套心智。
-   计数 0 → disabled + 去底色 + 无箭头（数字 0 仍显 --ok 绿）。 */
+/* 概览分两层：状态（只能看）→ 时间（本月 + 近 7 天）。
+   待复习与错题本保留在顶部页签中作为清单入口，概览不再重复显示可点击卡片。 */
 [hidden]{display:none!important}
-.overview-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px}
-.ov-act{position:relative;display:flex;align-items:baseline;gap:10px;min-width:0;padding:11px 34px 11px 15px;border:1px solid var(--border);border-radius:12px;background:var(--surface);text-align:left;transition:border-color .15s}
-.ov-act:hover:not(:disabled){border-color:var(--border-strong)}
-.ov-act:active:not(:disabled){transform:scale(.98)}
-.ov-act:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.ov-act .n{font-size:33px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15}
-.ov-act .l{font-size:12.5px;color:var(--faint);min-width:0}
-.ov-act .chev{position:absolute;top:50%;right:10px;line-height:0;transform:translateY(-50%)}
-.ov-act .chev .icon{width:13px;height:13px;color:var(--faint)}
-.ov-act.due{border-color:#cfd9f5;background:var(--accent-soft)}
-.ov-act.due .n{color:var(--accent)}
-.ov-act.book{border-color:#f3d4d0;background:var(--bad-soft)}
-.ov-act.book .n{color:var(--bad)}
-.ov-act .n.ok{color:var(--ok)}
-.ov-act:disabled{cursor:default;background:var(--surface);border-color:var(--border)}
-.ov-act:disabled .chev{display:none}
 .overview-status{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
 .ov-stat{min-width:0;padding:10px 12px;border-radius:10px;background:var(--surface-2)}
 .ov-stat .l{display:block;font-size:11.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -233,10 +215,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 }
 @media(max-width:600px){
   .wrap{padding:12px 14px 24px}
-  .overview-actions{gap:8px;margin-bottom:10px}
-  .ov-act{padding:9px 30px 9px 12px;gap:8px}
-  .ov-act .n{font-size:24px}
-  .ov-act .l{font-size:11.5px}
   .overview-status{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
   .ov-stat{padding:8px 10px}
   .ov-stat .n{font-size:18px}
@@ -464,27 +442,13 @@ function renderStats(){
   var audit = CL.answerStatsAudit(mem);
   var month = monthActivitySummary(mem);
   var dueCnt = dueSentences().length;
-  /* 三层结构：行动（能点）→ 状态（只能看）→ 时间（本月 + 近 7 天）。
-     行动层卡片本身即入口，与首页 .htc 计数卡同一套心智；
-     计数为 0 → disabled + 去底色 + 无箭头，数字 0 仍显 --ok 绿（「没有待办」是好消息）。 */
-  var iconOf = function(name){ return window.Icons ? Icons.svg(name) : ''; };
-  var actCard = function(kind,label,count,id){
-    var can = count > 0;
-    return '<button class="ov-act '+kind+'" type="button" id="'+id+'"'+(can?'':' disabled')+
-      ' aria-label="'+label+'，'+count+' 句">'+
-      '<span class="n'+(can?'':' ok')+'">'+count+'</span><span class="l">'+label+'</span>'+
-      '<span class="chev">'+(can?iconOf('chevR'):'')+'</span></button>';
-  };
   var statCell = function(label,value,opt){
     opt = opt || {};
     return '<div class="ov-stat'+(opt.warn?' is-warn':'')+'">'+
       '<span class="l">'+label+'</span>'+
       '<strong class="n"'+(opt.id?' id="'+opt.id+'"':'')+'>'+value+'</strong></div>';
   };
-  var html = '<div class="overview-actions">'+
-    actCard('due','待复习',dueCnt,'ovActDue')+
-    actCard('book','错题本',wrongCnt,'ovActBook')+'</div>';
-  html += '<div class="overview-status">'+
+  var html = '<div class="overview-status">'+
     statCell('今日答题',today.answered,{id:'todayAnswered'})+
     statCell('已熟练',masteredCnt)+
     statCell('需巩固',weakCnt,{warn:true})+
@@ -525,10 +489,6 @@ function renderStats(){
   }
   $('statsCards').innerHTML=html;
   $('statsCards').hidden=_statsTab!=='overview';
-  /* 行动层入口：卡片本身即「开始做」，与首页计数卡同一套心智；
-     要查看清单仍走下方 tab —— 卡＝动手，tab＝查看。 */
-  var actDue = $('ovActDue'); if(actDue) actDue.onclick = practiceDue;
-  var actBook = $('ovActBook'); if(actBook) actBook.onclick = practiceWrongBook;
   Array.prototype.forEach.call($('statsTabs').children,function(b){
     b.classList.toggle('on',b.dataset.tab===_statsTab);
     b.setAttribute('aria-pressed',String(b.dataset.tab===_statsTab));

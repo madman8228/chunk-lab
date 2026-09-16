@@ -1023,21 +1023,11 @@ function check(name, cond, detail) {
     var head = Array.from(document.querySelectorAll('.page-head > *')).map(function(el){
       var r=el.getBoundingClientRect(); return Math.round(r.top+r.height/2);
     });
-    var acts = tops('.overview-actions > .ov-act');
     var stats = tops('.overview-status > .ov-stat');
     var pair = tops('.activity-day');
     var labels = tops('.activity-week-labels > span');
     var rounds = document.querySelector('.overview-note');
     var reconcileNote = document.querySelector('.stats-reconcile-note');
-    /* 行动卡契约：计数 0 → disabled + 无箭头 + 数字显 --ok；非 0 → 可点 + 必须有箭头。
-       仅断言「同行」会漏掉「卡看起来不能点/能点但没箭头」的回归。 */
-    var actCards = Array.from(document.querySelectorAll('.overview-actions > .ov-act'));
-    var actContract = actCards.length === 2 && actCards.every(function (el) {
-      var n = el.querySelector('.n');
-      var zero = !!n && n.textContent.trim() === '0';
-      if (zero) return el.disabled && !el.querySelector('.chev svg') && n.classList.contains('ok');
-      return !el.disabled && !!el.querySelector('.chev svg');
-    });
     var firstRow = document.querySelector('.stats-detail-row');
     var firstNum = firstRow && firstRow.querySelector('.row-num');
     var firstEn = firstRow && firstRow.querySelector('.en');
@@ -1045,9 +1035,7 @@ function check(name, cond, detail) {
     var enTop = firstEn ? Math.round(firstEn.getBoundingClientRect().top) : 0;
     return {
       headRows: head.length ? (Math.max.apply(Math, head) - Math.min.apply(Math, head) <= 2 ? 1 : new Set(head).size) : 0,
-      actsSameRow: acts.length === 2 && acts[0] === acts[1],
-      actsCount: acts.length,
-      actContract: actContract,
+      overviewActionsPresent: document.querySelectorAll('.overview-actions, .ov-act').length > 0,
       statsTwoPerRow: stats.length === 4 && stats[0] === stats[1] && stats[2] === stats[3] && stats[0] !== stats[2],
       statsCount: stats.length,
       roundsDisplay: rounds ? getComputedStyle(rounds).display : '',
@@ -1059,8 +1047,7 @@ function check(name, cond, detail) {
     };
   });
   check('stats mobile: 顶部操作保持一行', statsMobileLayout.headRows === 1, JSON.stringify(statsMobileLayout));
-  check('stats mobile: 两张行动卡保持一行', statsMobileLayout.actsSameRow && statsMobileLayout.actsCount === 2, JSON.stringify(statsMobileLayout));
-  check('stats mobile: 行动卡 0 值禁用且无箭头、非 0 有箭头', statsMobileLayout.actContract, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 概览不显示待复习和错题本可点击卡片', !statsMobileLayout.overviewActionsPresent, JSON.stringify(statsMobileLayout));
   check('stats mobile: 4 项状态指标两两成行', statsMobileLayout.statsTwoPerRow && statsMobileLayout.statsCount === 4, JSON.stringify(statsMobileLayout));
   check('stats mobile: 轮次口径可见', statsMobileLayout.roundsDisplay !== 'none', JSON.stringify(statsMobileLayout));
   check('stats mobile: 近7天柱形保持一行', statsMobileLayout.pairSameRow, JSON.stringify(statsMobileLayout));
