@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "21149afb",
+      "sentence": "I get along well with him.",
+      "translation": "我和他很合得来。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "e130013e",
+      "sentence": "I don't get along well with her.",
+      "translation": "我跟她合不来。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "24756192",
+      "sentence": "I respect him.",
+      "translation": "我很尊敬他。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "e450bb7d",
+      "sentence": "I despise him.",
+      "translation": "我瞧不起他。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "b2e41adf",
+      "sentence": "I want to get along with everyone.",
+      "translation": "我想和大家和睦相处。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "4f2583bb",
+      "sentence": "Are you getting along with her?",
+      "translation": "你跟她合得来吗?",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "3782994b",
+      "sentence": "She ignored me.",
+      "translation": "她根本不搭理我。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "2c8a9a3f",
+      "sentence": "I don't know what he's really thinking.",
+      "translation": "我不知道他在想什么。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "aefee696",
+      "sentence": "I have no reason to be envied.",
+      "translation": "我没有理由让人嫉妒。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "895798c9",
+      "sentence": "I don't like brownnosers.",
+      "translation": "我讨厌爱拍马屁的人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "d86fd686",
+      "sentence": "I'm neglecting my family.",
+      "translation": "我是个不顾家的人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "c518adf9",
+      "sentence": "Which side are you?",
+      "translation": "你站在哪一方?",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "02f4f27b",
+      "sentence": "I'm on your side.",
+      "translation": "我是站在你这边的。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "2bc89c1a",
+      "sentence": "He's very hard on me.",
+      "translation": "他对我很不客气的。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "d3a9f6ca",
+      "sentence": "He always treats me like an enemy.",
+      "translation": "他总把我当作眼中钉。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "3db8648f",
+      "sentence": "He treated me badly.",
+      "translation": "他对我很蛮横。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "aded363c",
+      "sentence": "I'm obligated to him.",
+      "translation": "我欠他的情。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "3fe16fec",
+      "sentence": "We're on a first name basis.",
+      "translation": "我们很熟，互相直呼其名。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "a4a90ceb",
+      "sentence": "He's quick on the uptake.",
+      "translation": "他的理解力很强。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "d333b04d",
+      "sentence": "He'll never let you down.",
+      "translation": "他不会让你失望的。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "758f4b57",
+      "sentence": "He's efficient.",
+      "translation": "他很能干。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "90d67c2b",
+      "sentence": "He's a good guy.",
+      "translation": "他是个好人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "5b057fd7",
+      "sentence": "He looks old for his age.",
+      "translation": "他显老。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "6d17501f",
+      "sentence": "You look younger than me.",
+      "translation": "你看上去比我年轻。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "6668a8e7",
+      "sentence": "That's the way he is.",
+      "translation": "他就是那种人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "ed7c339c",
+      "sentence": "Who is he like?",
+      "translation": "他长得像谁?",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "eb0efd2c",
+      "sentence": "He has a lot of common sense.",
+      "translation": "他有丰富的常识。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "df047ab2",
+      "sentence": "He's wise for his age.",
+      "translation": "他虽年轻，却很博学。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "d1b58b60",
+      "sentence": "He knows a lot of people.",
+      "translation": "他交际很广。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "76b1f601",
+      "sentence": "He's a go-getter.",
+      "translation": "他是个有才干的人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "b65ef75b",
+      "sentence": "You're so sympathetic.",
+      "translation": "你真体谅人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "609d300b",
+      "sentence": "He's faithful.",
+      "translation": "他是守信用的人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "cf38e723",
+      "sentence": "He has a deep voice.",
+      "translation": "他的嗓音低沉。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "6b2ad1be",
+      "sentence": "He has put on weight.",
+      "translation": "他发福了。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "abf64f84",
+      "sentence": "He's overweight.",
+      "translation": "他太胖了。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "9d2b921f",
+      "sentence": "You have a lot of nerve.",
+      "translation": "你真有胆量。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "89d4d21b",
+      "sentence": "He's a very modest man.",
+      "translation": "他是个很谦虚的人。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "610c4073",
+      "sentence": "He has a good temper.",
+      "translation": "他有个好脾气。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "34b6f00f",
+      "sentence": "He has a bad temper.",
+      "translation": "他这个人脾气暴躁。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "bb912209",
+      "sentence": "There's something strange about her.",
+      "translation": "她不知哪儿有点怪。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "0b47504f",
+      "sentence": "She's not herself.",
+      "translation": "她有点不太对劲儿。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "5de715dc",
+      "sentence": "She's so weird.",
+      "translation": "她真让人捉摸不透。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "a6507135",
+      "sentence": "Tammy eats like a bird.",
+      "translation": "塔米饭量很小。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "8785e2a9",
+      "sentence": "She has a nice figure.",
+      "translation": "她的身材很好。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "00551fb7",
+      "sentence": "His best days are gone.",
+      "translation": "他已过壮年。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "e599b7db",
+      "sentence": "My father's getting on in years.",
+      "translation": "我父亲上年纪了。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "665fce4a",
+      "sentence": "What does he look like?",
+      "translation": "他长得什么样?",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "702c4a44",
+      "sentence": "They're making a big fuss.",
+      "translation": "他们闹得天翻地覆。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "d9a0bec3",
+      "sentence": "He's a chain smoker.",
+      "translation": "他抽烟抽得没完没了。",
+      "sourceUrl": "content/oral-1-5-2/oral-001-ba4e1f5fb4b4.json",
+      "sourceOffset": 48
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "a3540e30",
+      "sentence": "As a matter of fact, ...",
+      "translation": "说实话……",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "c4097778",
+      "sentence": "Don't tell anyone.",
+      "translation": "别告诉任何人。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "819e73ee",
+      "sentence": "I have a confession.",
+      "translation": "我有件事要坦白。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "e503d49b",
+      "sentence": "I have a secret.",
+      "translation": "我有一个秘密。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "2aeb5f0a",
+      "sentence": "I'll fill you in.",
+      "translation": "我把一切告诉你。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "32e9fbf8",
+      "sentence": "I'll level with you.",
+      "translation": "我就直说吧。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "9c3e60a2",
+      "sentence": "That is about all I know.",
+      "translation": "我知道的大概就是这些。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "d94108e5",
+      "sentence": "This is just between you and me.",
+      "translation": "我们关起门来在这儿说。/咱们俩私下里说。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "87d0712b",
+      "sentence": "It's a secret.",
+      "translation": "这是一个秘密。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "de186925",
+      "sentence": "Let me tell you a secret.",
+      "translation": "我告诉你一个秘密。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "ad1eb1dd",
+      "sentence": "He can't keep a secret.",
+      "translation": "他不能保守秘密。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "db791de3",
+      "sentence": "You've got a big mouth!",
+      "translation": "你的嘴不严。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "383b9203",
+      "sentence": "I don't have the guts to say that to my boss.",
+      "translation": "我不敢对我的老板说。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "be540290",
+      "sentence": "A little bird told me.",
+      "translation": "听小道消息说。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "c9b4c895",
+      "sentence": "I didn't say anything.",
+      "translation": "我什么都没说。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "7b5507a4",
+      "sentence": "It was a slip of the tongue.",
+      "translation": "无意中说漏了嘴。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "fb9cffdd",
+      "sentence": "I won't say a word.",
+      "translation": "我一个字都不说出去。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "92a89581",
+      "sentence": "I promise.",
+      "translation": "我保证。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "98230fee",
+      "sentence": "I can't promise.",
+      "translation": "我不能保证。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "1eda82d4",
+      "sentence": "Will do.",
+      "translation": "一定。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "eadbaf38",
+      "sentence": "I swear.",
+      "translation": "我发誓。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "24d186f5",
+      "sentence": "Trust me.",
+      "translation": "请相信我。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "fbe0ff28",
+      "sentence": "A promise is a promise!",
+      "translation": "说到就得做到。",
+      "sourceUrl": "content/oral-3-14/oral-001-3e5dfdccb319.json",
+      "sourceOffset": 22
+    }
+  ]
+}

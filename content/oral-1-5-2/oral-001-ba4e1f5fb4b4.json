@@ -1,0 +1,643 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I get along well with him.",
+      "translation": "我和他很合得来。",
+      "chunks": [
+        "I get along well",
+        "with him."
+      ],
+      "hints": [
+        "我和他",
+        "很合得来"
+      ],
+      "cid": "21149afb"
+    },
+    {
+      "sentence": "I don't get along well with her.",
+      "translation": "我跟她合不来。",
+      "chunks": [
+        "I don't get along well",
+        "with her."
+      ],
+      "hints": [
+        "我跟她",
+        "合不来"
+      ],
+      "cid": "e130013e"
+    },
+    {
+      "sentence": "I respect him.",
+      "translation": "我很尊敬他。",
+      "chunks": [
+        "I respect",
+        "him."
+      ],
+      "hints": [
+        "我很",
+        "尊敬他"
+      ],
+      "cid": "24756192"
+    },
+    {
+      "sentence": "I despise him.",
+      "translation": "我瞧不起他。",
+      "chunks": [
+        "I",
+        "despise him."
+      ],
+      "hints": [
+        "我",
+        "瞧不起他"
+      ],
+      "cid": "e450bb7d"
+    },
+    {
+      "sentence": "I want to get along with everyone.",
+      "translation": "我想和大家和睦相处。",
+      "chunks": [
+        "I want to get along",
+        "with everyone."
+      ],
+      "hints": [
+        "我想和大家",
+        "和睦相处"
+      ],
+      "cid": "b2e41adf"
+    },
+    {
+      "sentence": "Are you getting along with her?",
+      "translation": "你跟她合得来吗?",
+      "chunks": [
+        "Are you getting along",
+        "with her?"
+      ],
+      "hints": [
+        "你跟她",
+        "合得来吗"
+      ],
+      "cid": "4f2583bb"
+    },
+    {
+      "sentence": "She ignored me.",
+      "translation": "她根本不搭理我。",
+      "chunks": [
+        "She",
+        "ignored me."
+      ],
+      "hints": [
+        "她",
+        "根本不搭理我"
+      ],
+      "cid": "3782994b"
+    },
+    {
+      "sentence": "I don't know what he's really thinking.",
+      "translation": "我不知道他在想什么。",
+      "chunks": [
+        "I don't know",
+        "what he's really thinking."
+      ],
+      "hints": [
+        "我不知道他",
+        "在想什么"
+      ],
+      "cid": "2c8a9a3f"
+    },
+    {
+      "sentence": "I have no reason to be envied.",
+      "translation": "我没有理由让人嫉妒。",
+      "chunks": [
+        "I have no reason",
+        "to be envied."
+      ],
+      "hints": [
+        "我没有理由",
+        "让人嫉妒"
+      ],
+      "cid": "aefee696"
+    },
+    {
+      "sentence": "I don't like brownnosers.",
+      "translation": "我讨厌爱拍马屁的人。",
+      "chunks": [
+        "I don't like",
+        "brownnosers."
+      ],
+      "hints": [
+        "我讨厌爱",
+        "拍马屁的人"
+      ],
+      "cid": "895798c9"
+    },
+    {
+      "sentence": "I'm neglecting my family.",
+      "translation": "我是个不顾家的人。",
+      "chunks": [
+        "I'm neglecting",
+        "my family."
+      ],
+      "hints": [
+        "我是个",
+        "不顾家的人"
+      ],
+      "cid": "d86fd686"
+    },
+    {
+      "sentence": "Which side are you?",
+      "translation": "你站在哪一方?",
+      "chunks": [
+        "Which side",
+        "are you?"
+      ],
+      "hints": [
+        "你站在",
+        "哪一方"
+      ],
+      "cid": "c518adf9"
+    },
+    {
+      "sentence": "I'm on your side.",
+      "translation": "我是站在你这边的。",
+      "chunks": [
+        "I'm on",
+        "your side."
+      ],
+      "hints": [
+        "我",
+        "站在你这边"
+      ],
+      "cid": "02f4f27b"
+    },
+    {
+      "sentence": "He's very hard on me.",
+      "translation": "他对我很不客气的。",
+      "chunks": [
+        "He's very",
+        "hard on me."
+      ],
+      "hints": [
+        "他对我",
+        "很不客气"
+      ],
+      "cid": "2bc89c1a"
+    },
+    {
+      "sentence": "He always treats me like an enemy.",
+      "translation": "他总把我当作眼中钉。",
+      "chunks": [
+        "He always treats me",
+        "like an enemy."
+      ],
+      "hints": [
+        "他总把我",
+        "当作眼中钉"
+      ],
+      "cid": "d3a9f6ca"
+    },
+    {
+      "sentence": "He treated me badly.",
+      "translation": "他对我很蛮横。",
+      "chunks": [
+        "He treated me",
+        "badly."
+      ],
+      "hints": [
+        "他对我",
+        "很蛮横"
+      ],
+      "cid": "3db8648f"
+    },
+    {
+      "sentence": "I'm obligated to him.",
+      "translation": "我欠他的情。",
+      "chunks": [
+        "I'm obligated",
+        "to him."
+      ],
+      "hints": [
+        "我",
+        "欠他的情"
+      ],
+      "cid": "aded363c"
+    },
+    {
+      "sentence": "We're on a first name basis.",
+      "translation": "我们很熟，互相直呼其名。",
+      "chunks": [
+        "We're on",
+        "a first name basis."
+      ],
+      "hints": [
+        "我们很熟",
+        "互相直呼其名"
+      ],
+      "cid": "3fe16fec"
+    },
+    {
+      "sentence": "He's quick on the uptake.",
+      "translation": "他的理解力很强。",
+      "chunks": [
+        "He's quick",
+        "on the uptake."
+      ],
+      "hints": [
+        "他的",
+        "理解力很强"
+      ],
+      "cid": "a4a90ceb"
+    },
+    {
+      "sentence": "He'll never let you down.",
+      "translation": "他不会让你失望的。",
+      "chunks": [
+        "He'll never",
+        "let you down."
+      ],
+      "hints": [
+        "他不会",
+        "让你失望"
+      ],
+      "cid": "d333b04d"
+    },
+    {
+      "sentence": "He's efficient.",
+      "translation": "他很能干。",
+      "chunks": [
+        "He's",
+        "efficient."
+      ],
+      "hints": [
+        "他很",
+        "能干"
+      ],
+      "cid": "758f4b57"
+    },
+    {
+      "sentence": "He's a good guy.",
+      "translation": "他是个好人。",
+      "chunks": [
+        "He's a",
+        "good guy."
+      ],
+      "hints": [
+        "他是个",
+        "好人"
+      ],
+      "cid": "90d67c2b"
+    },
+    {
+      "sentence": "He looks old for his age.",
+      "translation": "他显老。",
+      "chunks": [
+        "He looks old",
+        "for his age."
+      ],
+      "hints": [
+        "他",
+        "显老"
+      ],
+      "cid": "5b057fd7"
+    },
+    {
+      "sentence": "You look younger than me.",
+      "translation": "你看上去比我年轻。",
+      "chunks": [
+        "You look",
+        "younger than me."
+      ],
+      "hints": [
+        "你看上去",
+        "比我年轻"
+      ],
+      "cid": "6d17501f"
+    },
+    {
+      "sentence": "That's the way he is.",
+      "translation": "他就是那种人。",
+      "chunks": [
+        "That's the way",
+        "he is."
+      ],
+      "hints": [
+        "他",
+        "就是那种人"
+      ],
+      "cid": "6668a8e7"
+    },
+    {
+      "sentence": "Who is he like?",
+      "translation": "他长得像谁?",
+      "chunks": [
+        "Who is",
+        "he like?"
+      ],
+      "hints": [
+        "他长得",
+        "像谁"
+      ],
+      "cid": "ed7c339c"
+    },
+    {
+      "sentence": "He has a lot of common sense.",
+      "translation": "他有丰富的常识。",
+      "chunks": [
+        "He has a lot of",
+        "common sense."
+      ],
+      "hints": [
+        "他有丰富的",
+        "常识"
+      ],
+      "cid": "eb0efd2c"
+    },
+    {
+      "sentence": "He's wise for his age.",
+      "translation": "他虽年轻，却很博学。",
+      "chunks": [
+        "He's wise",
+        "for his age."
+      ],
+      "hints": [
+        "他虽年轻",
+        "却很博学"
+      ],
+      "cid": "df047ab2"
+    },
+    {
+      "sentence": "He knows a lot of people.",
+      "translation": "他交际很广。",
+      "chunks": [
+        "He knows",
+        "a lot of people."
+      ],
+      "hints": [
+        "他",
+        "交际很广"
+      ],
+      "cid": "d1b58b60"
+    },
+    {
+      "sentence": "He's a go-getter.",
+      "translation": "他是个有才干的人。",
+      "chunks": [
+        "He's a",
+        "go-getter."
+      ],
+      "hints": [
+        "他是个",
+        "有才干的人"
+      ],
+      "cid": "76b1f601"
+    },
+    {
+      "sentence": "You're so sympathetic.",
+      "translation": "你真体谅人。",
+      "chunks": [
+        "You're so",
+        "sympathetic."
+      ],
+      "hints": [
+        "你真",
+        "体谅人"
+      ],
+      "cid": "b65ef75b"
+    },
+    {
+      "sentence": "He's faithful.",
+      "translation": "他是守信用的人。",
+      "chunks": [
+        "He's",
+        "faithful."
+      ],
+      "hints": [
+        "他是",
+        "守信用的人"
+      ],
+      "cid": "609d300b"
+    },
+    {
+      "sentence": "He has a deep voice.",
+      "translation": "他的嗓音低沉。",
+      "chunks": [
+        "He has",
+        "a deep voice."
+      ],
+      "hints": [
+        "他的嗓音",
+        "低沉"
+      ],
+      "cid": "cf38e723"
+    },
+    {
+      "sentence": "He has put on weight.",
+      "translation": "他发福了。",
+      "chunks": [
+        "He has",
+        "put on weight."
+      ],
+      "hints": [
+        "他",
+        "发福了"
+      ],
+      "cid": "6b2ad1be"
+    },
+    {
+      "sentence": "He's overweight.",
+      "translation": "他太胖了。",
+      "chunks": [
+        "He's",
+        "overweight."
+      ],
+      "hints": [
+        "他",
+        "太胖了"
+      ],
+      "cid": "abf64f84"
+    },
+    {
+      "sentence": "You have a lot of nerve.",
+      "translation": "你真有胆量。",
+      "chunks": [
+        "You have",
+        "a lot of nerve."
+      ],
+      "hints": [
+        "你真有",
+        "胆量"
+      ],
+      "cid": "9d2b921f"
+    },
+    {
+      "sentence": "He's a very modest man.",
+      "translation": "他是个很谦虚的人。",
+      "chunks": [
+        "He's a very",
+        "modest man."
+      ],
+      "hints": [
+        "他是个很",
+        "谦虚的人"
+      ],
+      "cid": "89d4d21b"
+    },
+    {
+      "sentence": "He has a good temper.",
+      "translation": "他有个好脾气。",
+      "chunks": [
+        "He has",
+        "a good temper."
+      ],
+      "hints": [
+        "他有个",
+        "好脾气"
+      ],
+      "cid": "610c4073"
+    },
+    {
+      "sentence": "He has a bad temper.",
+      "translation": "他这个人脾气暴躁。",
+      "chunks": [
+        "He has",
+        "a bad temper."
+      ],
+      "hints": [
+        "他这个人",
+        "脾气暴躁"
+      ],
+      "cid": "34b6f00f"
+    },
+    {
+      "sentence": "There's something strange about her.",
+      "translation": "她不知哪儿有点怪。",
+      "chunks": [
+        "There's something strange",
+        "about her."
+      ],
+      "hints": [
+        "她不知哪儿",
+        "有点怪"
+      ],
+      "cid": "bb912209"
+    },
+    {
+      "sentence": "She's not herself.",
+      "translation": "她有点不太对劲儿。",
+      "chunks": [
+        "She's not",
+        "herself."
+      ],
+      "hints": [
+        "她有点",
+        "不太对劲儿"
+      ],
+      "cid": "0b47504f"
+    },
+    {
+      "sentence": "She's so weird.",
+      "translation": "她真让人捉摸不透。",
+      "chunks": [
+        "She's so",
+        "weird."
+      ],
+      "hints": [
+        "她真让人",
+        "捉摸不透"
+      ],
+      "cid": "5de715dc"
+    },
+    {
+      "sentence": "Tammy eats like a bird.",
+      "translation": "塔米饭量很小。",
+      "chunks": [
+        "Tammy eats",
+        "like a bird."
+      ],
+      "hints": [
+        "塔米饭量",
+        "很小"
+      ],
+      "cid": "a6507135"
+    },
+    {
+      "sentence": "She has a nice figure.",
+      "translation": "她的身材很好。",
+      "chunks": [
+        "She has",
+        "a nice figure."
+      ],
+      "hints": [
+        "她的身材",
+        "很好"
+      ],
+      "cid": "8785e2a9"
+    },
+    {
+      "sentence": "His best days are gone.",
+      "translation": "他已过壮年。",
+      "chunks": [
+        "His best days",
+        "are gone."
+      ],
+      "hints": [
+        "他",
+        "已过壮年"
+      ],
+      "cid": "00551fb7"
+    },
+    {
+      "sentence": "My father's getting on in years.",
+      "translation": "我父亲上年纪了。",
+      "chunks": [
+        "My father's getting on",
+        "in years."
+      ],
+      "hints": [
+        "我父亲",
+        "上年纪了"
+      ],
+      "cid": "e599b7db"
+    },
+    {
+      "sentence": "What does he look like?",
+      "translation": "他长得什么样?",
+      "chunks": [
+        "What does he",
+        "look like?"
+      ],
+      "hints": [
+        "他长得",
+        "什么样"
+      ],
+      "cid": "665fce4a"
+    },
+    {
+      "sentence": "They're making a big fuss.",
+      "translation": "他们闹得天翻地覆。",
+      "chunks": [
+        "They're making",
+        "a big fuss."
+      ],
+      "hints": [
+        "他们闹得",
+        "天翻地覆"
+      ],
+      "cid": "702c4a44"
+    },
+    {
+      "sentence": "He's a chain smoker.",
+      "translation": "他抽烟抽得没完没了。",
+      "chunks": [
+        "He's a",
+        "chain smoker."
+      ],
+      "hints": [
+        "他抽烟",
+        "没完没了"
+      ],
+      "cid": "d9a0bec3"
+    }
+  ]
+}

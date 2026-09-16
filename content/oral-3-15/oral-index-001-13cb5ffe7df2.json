@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "a3c241e2",
+      "sentence": "What's that smell?",
+      "translation": "这是什么味儿?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "aae3e13d",
+      "sentence": "What's that noise?",
+      "translation": "什么声音?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "e55865fd",
+      "sentence": "What is this line for?",
+      "translation": "这是排什么的队?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "2a4989a9",
+      "sentence": "What are you up to?",
+      "translation": "打什么鬼主意呢?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "cf07a445",
+      "sentence": "May I ask you a question?",
+      "translation": "我可以问一个问题吗?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "5b067edd",
+      "sentence": "What does “drowsy” mean?",
+      "translation": "“drowsy”是什么意思?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "9938b2cc",
+      "sentence": "What's this?",
+      "translation": "这是什么?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "325ee5f7",
+      "sentence": "What's that?",
+      "translation": "那是什么?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "8e9bc3c5",
+      "sentence": "Who does this belong to?",
+      "translation": "这是谁的?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "c13ba143",
+      "sentence": "Which one?",
+      "translation": "哪一个?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "19955760",
+      "sentence": "What's it called?",
+      "translation": "这叫什么?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "d6f3ed35",
+      "sentence": "What did you get for me?",
+      "translation": "是什么礼物?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "aab658e3",
+      "sentence": "For example?",
+      "translation": "比如说?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "00a87a12",
+      "sentence": "How often?",
+      "translation": "隔多长时间?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "87bb0b79",
+      "sentence": "What does USA stand for?",
+      "translation": "U.S.A.是什么的缩写?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "922c374a",
+      "sentence": "How long?",
+      "translation": "多长?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "fc16d84b",
+      "sentence": "How early?",
+      "translation": "多早?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "255b32d9",
+      "sentence": "When does summer break start?",
+      "translation": "暑假什么时候开始?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "b7f95aa2",
+      "sentence": "When was the opening ceremony?",
+      "translation": "开学典礼是哪天?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "bb9433fc",
+      "sentence": "Do you know the meaning of this word?",
+      "translation": "你知道这个生词的意思吗?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "ebb4da0f",
+      "sentence": "How do you pronounce this word?",
+      "translation": "这个词怎么发音?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "9821459e",
+      "sentence": "What's the difference between A and B?",
+      "translation": "A和B之间有什么区别?",
+      "sourceUrl": "content/oral-3-15/oral-001-f912b07dff5f.json",
+      "sourceOffset": 21
+    }
+  ]
+}

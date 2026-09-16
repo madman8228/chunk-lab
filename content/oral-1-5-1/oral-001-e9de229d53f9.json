@@ -3,6 +3,1033 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "I made it!",
+      "translation": "我赶上了!",
+      "chunks": [
+        "I",
+        "made it!"
+      ],
+      "hints": [
+        "我",
+        "赶上了"
+      ],
+      "cid": "ec1f2115"
+    },
+    {
+      "sentence": "Be punctual!",
+      "translation": "要严格遵守时间。",
+      "chunks": [
+        "Be",
+        "punctual!"
+      ],
+      "hints": [
+        "要",
+        "严格遵守时间"
+      ],
+      "cid": "7fddf895"
+    },
+    {
+      "sentence": "You are late again.",
+      "translation": "你又迟到了。",
+      "chunks": [
+        "You are late",
+        "again."
+      ],
+      "hints": [
+        "你又",
+        "迟到了"
+      ],
+      "cid": "9632e6ac"
+    },
+    {
+      "sentence": "I was only late by five minutes.",
+      "translation": "我只迟到了5分钟。",
+      "chunks": [
+        "I was only late",
+        "by five minutes."
+      ],
+      "hints": [
+        "我只迟到了",
+        "五分钟"
+      ],
+      "cid": "ffbfaec5"
+    },
+    {
+      "sentence": "Did you punch in?",
+      "translation": "打出勤卡了吗?",
+      "chunks": [
+        "Did you",
+        "punch in?"
+      ],
+      "hints": [
+        "你",
+        "打出勤卡了吗"
+      ],
+      "cid": "51df1ffd"
+    },
+    {
+      "sentence": "Did you punch out?",
+      "translation": "打出勤卡了吗?",
+      "chunks": [
+        "Did you",
+        "punch out?"
+      ],
+      "hints": [
+        "你",
+        "打下班卡了吗"
+      ],
+      "cid": "873cfa3e"
+    },
+    {
+      "sentence": "Let me check my schedule.",
+      "translation": "让我看看我的日程安排。",
+      "chunks": [
+        "Let me check",
+        "my schedule."
+      ],
+      "hints": [
+        "让我看看",
+        "我的日程安排"
+      ],
+      "cid": "acee3473"
+    },
+    {
+      "sentence": "I've got so much to do.",
+      "translation": "我有好多事要干。",
+      "chunks": [
+        "I've got",
+        "so much to do."
+      ],
+      "hints": [
+        "我有",
+        "好多事要干"
+      ],
+      "cid": "c118a103"
+    },
+    {
+      "sentence": "I'm pressed for time.",
+      "translation": "我的时间安排很紧。",
+      "chunks": [
+        "I'm pressed",
+        "for time."
+      ],
+      "hints": [
+        "我",
+        "时间安排很紧"
+      ],
+      "cid": "68b9fb50"
+    },
+    {
+      "sentence": "I'm an ordinary office worker.",
+      "translation": "我是个普通的公司职员。",
+      "chunks": [
+        "I'm an ordinary",
+        "office worker."
+      ],
+      "hints": [
+        "我是个普通的",
+        "公司职员"
+      ],
+      "cid": "66b27ffd"
+    },
+    {
+      "sentence": "The work doesn't need much effort.",
+      "translation": "这工作不太费事。",
+      "chunks": [
+        "The work doesn't need",
+        "much effort."
+      ],
+      "hints": [
+        "这工作",
+        "不太费事"
+      ],
+      "cid": "ae926e9a"
+    },
+    {
+      "sentence": "Don't neglect your duties!",
+      "translation": "干活别偷懒。",
+      "chunks": [
+        "Don't neglect",
+        "your duties!"
+      ],
+      "hints": [
+        "干活",
+        "别偷懒"
+      ],
+      "cid": "a62fa405"
+    },
+    {
+      "sentence": "I take charge of the west side.",
+      "translation": "西区由我负责。",
+      "chunks": [
+        "I take charge of",
+        "the west side."
+      ],
+      "hints": [
+        "西区",
+        "由我负责"
+      ],
+      "cid": "94a8f5a3"
+    },
+    {
+      "sentence": "I'm done with the work.",
+      "translation": "我已结束那项工作了。",
+      "chunks": [
+        "I'm done",
+        "with the work."
+      ],
+      "hints": [
+        "我已结束",
+        "那项工作"
+      ],
+      "cid": "63dd9cc2"
+    },
+    {
+      "sentence": "I can still work for a long time.",
+      "translation": "我还能工作好长时间呢。",
+      "chunks": [
+        "I can still work",
+        "for a long time."
+      ],
+      "hints": [
+        "我还能",
+        "工作好长时间"
+      ],
+      "cid": "f8ddc168"
+    },
+    {
+      "sentence": "Our boss has been fired.",
+      "translation": "我们的上司被解雇了。",
+      "chunks": [
+        "Our boss",
+        "has been fired."
+      ],
+      "hints": [
+        "我们的上司",
+        "被解雇了"
+      ],
+      "cid": "e3bfc522"
+    },
+    {
+      "sentence": "Please staple these together.",
+      "translation": "请把这个订在一起。",
+      "chunks": [
+        "Please staple",
+        "these together."
+      ],
+      "hints": [
+        "请把这些",
+        "订在一起"
+      ],
+      "cid": "7a6fcbff"
+    },
+    {
+      "sentence": "Would you copy these papers?",
+      "translation": "能帮我复印一下这份材料吗?",
+      "chunks": [
+        "Would you copy",
+        "these papers?"
+      ],
+      "hints": [
+        "能帮我复印",
+        "这份材料吗"
+      ],
+      "cid": "c8624b8d"
+    },
+    {
+      "sentence": "This copy machine doesn't work.",
+      "translation": "复印机有毛病了。",
+      "chunks": [
+        "This copy machine",
+        "doesn't work."
+      ],
+      "hints": [
+        "这台复印机",
+        "有毛病了"
+      ],
+      "cid": "63726b88"
+    },
+    {
+      "sentence": "I think it ran out of paper.",
+      "translation": "我想复印机是没纸了。",
+      "chunks": [
+        "I think it",
+        "ran out of paper."
+      ],
+      "hints": [
+        "我想它是",
+        "没纸了"
+      ],
+      "cid": "8d129c97"
+    },
+    {
+      "sentence": "Let's take a break.",
+      "translation": "我们休息一会儿吧。",
+      "chunks": [
+        "Let's take",
+        "a break."
+      ],
+      "hints": [
+        "我们",
+        "休息一会儿吧"
+      ],
+      "cid": "a2742647"
+    },
+    {
+      "sentence": "Get me a cup of coffee, will you?",
+      "translation": "能帮我倒杯咖啡吗?",
+      "chunks": [
+        "Get me a cup of coffee,",
+        "will you?"
+      ],
+      "hints": [
+        "帮我倒杯咖啡",
+        "好吗"
+      ],
+      "cid": "4cfc8999"
+    },
+    {
+      "sentence": "Would you like some coffee?",
+      "translation": "您想喝杯咖啡吗?",
+      "chunks": [
+        "Would you like",
+        "some coffee?"
+      ],
+      "hints": [
+        "你想来点",
+        "咖啡吗"
+      ],
+      "cid": "78864d39"
+    },
+    {
+      "sentence": "That would be great.",
+      "translation": "那真是太好了。",
+      "chunks": [
+        "That would",
+        "be great."
+      ],
+      "hints": [
+        "那真是",
+        "太好了"
+      ],
+      "cid": "699f68bf"
+    },
+    {
+      "sentence": "It's almost lunchtime.",
+      "translation": "快到午饭时间了。",
+      "chunks": [
+        "It's almost",
+        "lunchtime."
+      ],
+      "hints": [
+        "快到",
+        "午饭时间了"
+      ],
+      "cid": "3c28ea21"
+    },
+    {
+      "sentence": "We took an hour lunch break.",
+      "translation": "我们有1小时的午休时间。",
+      "chunks": [
+        "We took",
+        "an hour lunch break."
+      ],
+      "hints": [
+        "我们有",
+        "一小时的午休"
+      ],
+      "cid": "0adc8892"
+    },
+    {
+      "sentence": "Let's get started.",
+      "translation": "我们开始吧。",
+      "chunks": [
+        "Let's get",
+        "started."
+      ],
+      "hints": [
+        "我们",
+        "开始吧"
+      ],
+      "cid": "d951b2e9"
+    },
+    {
+      "sentence": "I can't leave this job at the moment.",
+      "translation": "现在我不能放下这个工作。",
+      "chunks": [
+        "I can't leave this job",
+        "at the moment."
+      ],
+      "hints": [
+        "现在我不能",
+        "放下这个工作"
+      ],
+      "cid": "26dbed9b"
+    },
+    {
+      "sentence": "I'm too busy to bother with such details.",
+      "translation": "我太忙了，顾不上那么琐碎的事。",
+      "chunks": [
+        "I'm too busy to bother",
+        "with such details."
+      ],
+      "hints": [
+        "我太忙了",
+        "顾不上这种琐事"
+      ],
+      "cid": "c2dd30e1"
+    },
+    {
+      "sentence": "I'm so busy, I'd really appreciate any help I could get.",
+      "translation": "我忙得四脚朝天。",
+      "chunks": [
+        "I'm so busy,",
+        "I'd really appreciate",
+        "any help I could get."
+      ],
+      "hints": [
+        "我忙得",
+        "四脚朝天，",
+        "谁来帮帮我"
+      ],
+      "cid": "1522a3a1"
+    },
+    {
+      "sentence": "Don't slack off!",
+      "translation": "别偷懒!",
+      "chunks": [
+        "Don't",
+        "slack off!"
+      ],
+      "hints": [
+        "别",
+        "偷懒"
+      ],
+      "cid": "5d3a3983"
+    },
+    {
+      "sentence": "Do your best!",
+      "translation": "尽你的全力!",
+      "chunks": [
+        "Do",
+        "your best!"
+      ],
+      "hints": [
+        "尽你的",
+        "全力"
+      ],
+      "cid": "9e63f7a2"
+    },
+    {
+      "sentence": "Don't work too hard.",
+      "translation": "悠着点儿。",
+      "chunks": [
+        "Don't work",
+        "too hard."
+      ],
+      "hints": [
+        "别太",
+        "拼命"
+      ],
+      "cid": "a2b8b2d5"
+    },
+    {
+      "sentence": "Pull yourself together.",
+      "translation": "打起精神来。",
+      "chunks": [
+        "Pull yourself",
+        "together."
+      ],
+      "hints": [
+        "打起",
+        "精神来"
+      ],
+      "cid": "6576ae63"
+    },
+    {
+      "sentence": "You can count on me.",
+      "translation": "你可以找我呀!",
+      "chunks": [
+        "You can",
+        "count on me."
+      ],
+      "hints": [
+        "你可以",
+        "找我呀"
+      ],
+      "cid": "8f00cb22"
+    },
+    {
+      "sentence": "I don't even have time to catch my breath.",
+      "translation": "连喘口气的工夫都没有。",
+      "chunks": [
+        "I don't even have time",
+        "to catch my breath."
+      ],
+      "hints": [
+        "我连喘口气的",
+        "工夫都没有"
+      ],
+      "cid": "e8d2634d"
+    },
+    {
+      "sentence": "What's keeping you?",
+      "translation": "你怎么耽搁了?",
+      "chunks": [
+        "What's",
+        "keeping you?"
+      ],
+      "hints": [
+        "什么",
+        "耽搁你了"
+      ],
+      "cid": "be405ede"
+    },
+    {
+      "sentence": "Changing jobs is the only way out.",
+      "translation": "换个工作是惟一的解决办法。",
+      "chunks": [
+        "Changing jobs",
+        "is the only way out."
+      ],
+      "hints": [
+        "换个工作",
+        "是唯一的出路"
+      ],
+      "cid": "4956bbd4"
+    },
+    {
+      "sentence": "You'd better work harder.",
+      "translation": "你应该更加努力工作。",
+      "chunks": [
+        "You'd better",
+        "work harder."
+      ],
+      "hints": [
+        "你最好",
+        "更努力些"
+      ],
+      "cid": "a78b0190"
+    },
+    {
+      "sentence": "I'm a workaholic.",
+      "translation": "我是个工作狂。",
+      "chunks": [
+        "I'm a",
+        "workaholic."
+      ],
+      "hints": [
+        "我是个",
+        "工作狂"
+      ],
+      "cid": "a3f381d0"
+    },
+    {
+      "sentence": "I don't know how to fill out this form.",
+      "translation": "我不知道这张表怎么填。",
+      "chunks": [
+        "I don't know how",
+        "to fill out this form."
+      ],
+      "hints": [
+        "我不知道这张表",
+        "怎么填"
+      ],
+      "cid": "fcf64dcf"
+    },
+    {
+      "sentence": "How do I fill out this form?",
+      "translation": "这张表怎么填?",
+      "chunks": [
+        "How do I",
+        "fill out this form?"
+      ],
+      "hints": [
+        "这张表",
+        "怎么填"
+      ],
+      "cid": "66f5dd55"
+    },
+    {
+      "sentence": "Can you help me with this form?",
+      "translation": "您能帮我填一下这张表吗?",
+      "chunks": [
+        "Can you help me",
+        "with this form?"
+      ],
+      "hints": [
+        "你能帮我",
+        "填一下这张表吗"
+      ],
+      "cid": "fde31956"
+    },
+    {
+      "sentence": "It looks like it's going to be a long meeting, doesn't it?",
+      "translation": "看来会议要开长时间了，是吧?",
+      "chunks": [
+        "It looks like it's going to be",
+        "a long meeting, doesn't it?"
+      ],
+      "hints": [
+        "看来会议要开",
+        "很长时间，是吧"
+      ],
+      "cid": "8dbfabbc"
+    },
+    {
+      "sentence": "The meeting went well.",
+      "translation": "会议开得很成功。",
+      "chunks": [
+        "The meeting",
+        "went well."
+      ],
+      "hints": [
+        "会议",
+        "开得很成功"
+      ],
+      "cid": "7709f28b"
+    },
+    {
+      "sentence": "I did all I could do.",
+      "translation": "我已经尽了最大的努力了。",
+      "chunks": [
+        "I did",
+        "all I could do."
+      ],
+      "hints": [
+        "我已经",
+        "尽了最大的努力"
+      ],
+      "cid": "6328e4e9"
+    },
+    {
+      "sentence": "Are you impressed?",
+      "translation": "你觉得印象深刻吗?",
+      "chunks": [
+        "Are you",
+        "impressed?"
+      ],
+      "hints": [
+        "你觉得",
+        "印象深刻吗"
+      ],
+      "cid": "077dc857"
+    },
+    {
+      "sentence": "Please underline the important items.",
+      "translation": "请在重要事项的下面划线。",
+      "chunks": [
+        "Please underline",
+        "the important items."
+      ],
+      "hints": [
+        "请在重要事项的",
+        "下面划线"
+      ],
+      "cid": "026dbe80"
+    },
+    {
+      "sentence": "Check.",
+      "translation": "好，没问题!",
+      "chunks": [
+        "Check."
+      ],
+      "hints": [
+        "好，没问题"
+      ],
+      "cid": "2a23336b"
+    },
+    {
+      "sentence": "Would you get to the point?",
+      "translation": "你能把要点说得再清楚点儿吗?",
+      "chunks": [
+        "Would you",
+        "get to the point?"
+      ],
+      "hints": [
+        "你能",
+        "说到点子上吗"
+      ],
+      "cid": "2446e728"
+    },
+    {
+      "sentence": "Please do it all over again.",
+      "translation": "全部重做。",
+      "chunks": [
+        "Please do it",
+        "all over again."
+      ],
+      "hints": [
+        "全部",
+        "重做"
+      ],
+      "cid": "7572409a"
+    },
+    {
+      "sentence": "Fax this paper to Mr. Tanaka.",
+      "translation": "把这个给田中先生传真过去。",
+      "chunks": [
+        "Fax this paper",
+        "to Mr. Tanaka."
+      ],
+      "hints": [
+        "把这份文件",
+        "传真给田中先生"
+      ],
+      "cid": "7cde5024"
+    },
+    {
+      "sentence": "Please hand the document in to me.",
+      "translation": "请把那份文件交给我。",
+      "chunks": [
+        "Please hand",
+        "the document in to me."
+      ],
+      "hints": [
+        "请把那份文件",
+        "交给我"
+      ],
+      "cid": "ef02e9b8"
+    },
+    {
+      "sentence": "This is a piece of work I can be proud of.",
+      "translation": "这是我的得意之作。",
+      "chunks": [
+        "This is a piece of work",
+        "I can be proud of."
+      ],
+      "hints": [
+        "这是我的",
+        "得意之作"
+      ],
+      "cid": "75e5c215"
+    },
+    {
+      "sentence": "I can't find my white-out.",
+      "translation": "我找不到我的涂改液了。",
+      "chunks": [
+        "I can't find",
+        "my white-out."
+      ],
+      "hints": [
+        "我找不到",
+        "我的涂改液了"
+      ],
+      "cid": "09c5ab7c"
+    },
+    {
+      "sentence": "Are you working overtime tonight?",
+      "translation": "今晚你加班吗?",
+      "chunks": [
+        "Are you working",
+        "overtime tonight?"
+      ],
+      "hints": [
+        "今晚你",
+        "加班吗"
+      ],
+      "cid": "e473d13e"
+    },
+    {
+      "sentence": "Business is business.",
+      "translation": "工作就是工作，不能讲私情。",
+      "chunks": [
+        "Business",
+        "is business."
+      ],
+      "hints": [
+        "公事",
+        "公办，不能讲私情"
+      ],
+      "cid": "1b6ced71"
+    },
+    {
+      "sentence": "He's a hard worker.",
+      "translation": "他是个努力工作的人。",
+      "chunks": [
+        "He's a",
+        "hard worker."
+      ],
+      "hints": [
+        "他是个",
+        "努力工作的人"
+      ],
+      "cid": "3264ce08"
+    },
+    {
+      "sentence": "You're overworking.",
+      "translation": "你超负荷工作了。",
+      "chunks": [
+        "You're",
+        "overworking."
+      ],
+      "hints": [
+        "你",
+        "超负荷工作了"
+      ],
+      "cid": "5f439671"
+    },
+    {
+      "sentence": "Finish this report today!",
+      "translation": "今天必须完成这份报告。",
+      "chunks": [
+        "Finish this report",
+        "today!"
+      ],
+      "hints": [
+        "今天必须",
+        "完成这份报告"
+      ],
+      "cid": "1d5002a0"
+    },
+    {
+      "sentence": "When is the paper due?",
+      "translation": "报告截止到几号?",
+      "chunks": [
+        "When is",
+        "the paper due?"
+      ],
+      "hints": [
+        "报告",
+        "截止到几号"
+      ],
+      "cid": "babbeff5"
+    },
+    {
+      "sentence": "There's a lot of work piled up on my desk.",
+      "translation": "瞧我桌上堆了一堆的事儿。",
+      "chunks": [
+        "There's a lot of work",
+        "piled up on my desk."
+      ],
+      "hints": [
+        "我桌上",
+        "堆了一堆活儿"
+      ],
+      "cid": "f02cf586"
+    },
+    {
+      "sentence": "We'll fake it.",
+      "translation": "差不多就得了。",
+      "chunks": [
+        "We'll",
+        "fake it."
+      ],
+      "hints": [
+        "差不多",
+        "就得了"
+      ],
+      "cid": "443c1682"
+    },
+    {
+      "sentence": "All done!",
+      "translation": "全都做完了。",
+      "chunks": [
+        "All",
+        "done!"
+      ],
+      "hints": [
+        "全都",
+        "做完了"
+      ],
+      "cid": "224233b7"
+    },
+    {
+      "sentence": "It's been a long day.",
+      "translation": "今天忙了一天。",
+      "chunks": [
+        "It's been",
+        "a long day."
+      ],
+      "hints": [
+        "今天",
+        "忙了一天"
+      ],
+      "cid": "f4b8e915"
+    },
+    {
+      "sentence": "I can't make an exception for you.",
+      "translation": "我不能为你破例。",
+      "chunks": [
+        "I can't make",
+        "an exception for you."
+      ],
+      "hints": [
+        "我不能",
+        "为你破例"
+      ],
+      "cid": "a49f5dfd"
+    },
+    {
+      "sentence": "It's dark outside already.",
+      "translation": "外边天都黑了。",
+      "chunks": [
+        "It's dark",
+        "outside already."
+      ],
+      "hints": [
+        "外边",
+        "天都黑了"
+      ],
+      "cid": "3b35cd69"
+    },
+    {
+      "sentence": "Let's finish up.",
+      "translation": "就干到这儿吧。",
+      "chunks": [
+        "Let's",
+        "finish up."
+      ],
+      "hints": [
+        "就",
+        "干到这儿吧"
+      ],
+      "cid": "27df0bf6"
+    },
+    {
+      "sentence": "I've just finished work.",
+      "translation": "正好工作刚做完。",
+      "chunks": [
+        "I've just",
+        "finished work."
+      ],
+      "hints": [
+        "正好",
+        "工作刚做完"
+      ],
+      "cid": "95d1d6ed"
+    },
+    {
+      "sentence": "Today's payday!",
+      "translation": "今天发工资。",
+      "chunks": [
+        "Today's",
+        "payday!"
+      ],
+      "hints": [
+        "今天",
+        "发工资"
+      ],
+      "cid": "5b11c57f"
+    },
+    {
+      "sentence": "Let's have a drink.",
+      "translation": "我们一起去喝一杯吧。",
+      "chunks": [
+        "Let's have",
+        "a drink."
+      ],
+      "hints": [
+        "我们",
+        "一起去喝一杯吧"
+      ],
+      "cid": "548acc6f"
+    },
+    {
+      "sentence": "Thanks for your hard work.",
+      "translation": "你辛苦了。",
+      "chunks": [
+        "Thanks for",
+        "your hard work."
+      ],
+      "hints": [
+        "你",
+        "辛苦了"
+      ],
+      "cid": "6dcfa5da"
+    },
+    {
+      "sentence": "I hope you don't mind my leaving now.",
+      "translation": "我先走了。",
+      "chunks": [
+        "I hope you don't mind",
+        "my leaving now."
+      ],
+      "hints": [
+        "我希望你不介意",
+        "我先走了"
+      ],
+      "cid": "4f874ff5"
+    },
+    {
+      "sentence": "Sorry for interrupting.",
+      "translation": "对不起，打断一下。",
+      "chunks": [
+        "Sorry for",
+        "interrupting."
+      ],
+      "hints": [
+        "对不起",
+        "打断一下"
+      ],
+      "cid": "546ff738"
+    },
+    {
+      "sentence": "May I interrupt you?",
+      "translation": "打扰一下可以吗?",
+      "chunks": [
+        "May I",
+        "interrupt you?"
+      ],
+      "hints": [
+        "打扰一下",
+        "可以吗"
+      ],
+      "cid": "ae7d10ce"
+    },
+    {
+      "sentence": "Mr. Smith is on line one.",
+      "translation": "史密斯先生在1号线听电话。",
+      "chunks": [
+        "Mr. Smith",
+        "is on line one."
+      ],
+      "hints": [
+        "史密斯先生",
+        "在一号线听电话"
+      ],
+      "cid": "09571966"
+    },
+    {
+      "sentence": "I have an appointment with Mr. Aoki.",
+      "translation": "我已经和青木先生约好了。",
+      "chunks": [
+        "I have an appointment",
+        "with Mr. Aoki."
+      ],
+      "hints": [
+        "我已经和青木先生",
+        "约好了"
+      ],
+      "cid": "e1671ff5"
+    },
+    {
+      "sentence": "What floor is ABC on?",
+      "translation": "ABC公司在几楼?",
+      "chunks": [
+        "What floor",
+        "is ABC on?"
+      ],
+      "hints": [
+        "ABC公司",
+        "在几楼"
+      ],
+      "cid": "9334c14d"
+    },
+    {
+      "sentence": "Where are the elevators?",
+      "translation": "电梯在哪儿?",
+      "chunks": [
+        "Where are",
+        "the elevators?"
+      ],
+      "hints": [
+        "电梯",
+        "在哪儿"
+      ],
+      "cid": "10e6543f"
+    },
+    {
       "sentence": "What time do you get off work?",
       "cid": "5cac61f5",
       "translation": "你几点下班？",

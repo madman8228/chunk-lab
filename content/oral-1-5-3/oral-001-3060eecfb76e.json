@@ -1,0 +1,487 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "He's selfish.",
+      "translation": "他很自私。",
+      "chunks": [
+        "He's",
+        "selfish."
+      ],
+      "hints": [
+        "他",
+        "很自私"
+      ],
+      "cid": "02919b84"
+    },
+    {
+      "sentence": "He takes things too seriously.",
+      "translation": "他总把问题想得过于严重。",
+      "chunks": [
+        "He takes things",
+        "too seriously."
+      ],
+      "hints": [
+        "他总把问题",
+        "想得过于严重"
+      ],
+      "cid": "60fc7a3e"
+    },
+    {
+      "sentence": "He's simpleminded.",
+      "translation": "他头脑简单。",
+      "chunks": [
+        "He's",
+        "simpleminded."
+      ],
+      "hints": [
+        "他",
+        "头脑简单"
+      ],
+      "cid": "cf37cc83"
+    },
+    {
+      "sentence": "He's on edge today.",
+      "translation": "今天他情绪烦躁。",
+      "chunks": [
+        "He's on edge",
+        "today."
+      ],
+      "hints": [
+        "今天他",
+        "情绪烦躁"
+      ],
+      "cid": "8c961137"
+    },
+    {
+      "sentence": "He's talkative.",
+      "translation": "他真是个多嘴多舌的人。",
+      "chunks": [
+        "He's",
+        "talkative."
+      ],
+      "hints": [
+        "他真是个",
+        "多嘴多舌的人"
+      ],
+      "cid": "3ce3c2a3"
+    },
+    {
+      "sentence": "He's quite well off.",
+      "translation": "他非常有钱。",
+      "chunks": [
+        "He's quite",
+        "well off."
+      ],
+      "hints": [
+        "他",
+        "非常有钱"
+      ],
+      "cid": "565b3b93"
+    },
+    {
+      "sentence": "He's fresh.",
+      "translation": "他很好色。",
+      "chunks": [
+        "He's",
+        "fresh."
+      ],
+      "hints": [
+        "他",
+        "很好色"
+      ],
+      "cid": "c4d979ce"
+    },
+    {
+      "sentence": "He's a smooth talker.",
+      "translation": "他的嘴甜着呢。",
+      "chunks": [
+        "He's a",
+        "smooth talker."
+      ],
+      "hints": [
+        "他的",
+        "嘴甜着呢"
+      ],
+      "cid": "caf3bc4a"
+    },
+    {
+      "sentence": "He's nobody's fool.",
+      "translation": "他是个不可小看的人。",
+      "chunks": [
+        "He's",
+        "nobody's fool."
+      ],
+      "hints": [
+        "他是个",
+        "不可小看的人"
+      ],
+      "cid": "305475ff"
+    },
+    {
+      "sentence": "He often says absurd things.",
+      "translation": "他净说些傻话。",
+      "chunks": [
+        "He often says",
+        "absurd things."
+      ],
+      "hints": [
+        "他净说些",
+        "傻话"
+      ],
+      "cid": "f385c806"
+    },
+    {
+      "sentence": "He has no sense of responsibility.",
+      "translation": "他一点儿责任心都没有。",
+      "chunks": [
+        "He has no sense",
+        "of responsibility."
+      ],
+      "hints": [
+        "他一点儿",
+        "责任心都没有"
+      ],
+      "cid": "fa141e2c"
+    },
+    {
+      "sentence": "He's very offensive.",
+      "translation": "他真是个让人讨厌的人。",
+      "chunks": [
+        "He's very",
+        "offensive."
+      ],
+      "hints": [
+        "他真是个",
+        "让人讨厌的人"
+      ],
+      "cid": "354851bf"
+    },
+    {
+      "sentence": "He's a difficult man to deal with.",
+      "translation": "他这人很难对付。",
+      "chunks": [
+        "He's a difficult man",
+        "to deal with."
+      ],
+      "hints": [
+        "他这人",
+        "很难对付"
+      ],
+      "cid": "47f158da"
+    },
+    {
+      "sentence": "He's a stubborn old man.",
+      "translation": "他是个倔老头。",
+      "chunks": [
+        "He's a stubborn",
+        "old man."
+      ],
+      "hints": [
+        "他是个",
+        "倔老头"
+      ],
+      "cid": "9f55c3cf"
+    },
+    {
+      "sentence": "He's aiming too high.",
+      "translation": "他总是好高骛远。",
+      "chunks": [
+        "He's aiming",
+        "too high."
+      ],
+      "hints": [
+        "他总是",
+        "好高骛远"
+      ],
+      "cid": "1ca41063"
+    },
+    {
+      "sentence": "That man never admits defeat.",
+      "translation": "他从不认输。",
+      "chunks": [
+        "That man never",
+        "admits defeat."
+      ],
+      "hints": [
+        "他从不",
+        "认输"
+      ],
+      "cid": "a48379bb"
+    },
+    {
+      "sentence": "He's very vague.",
+      "translation": "他是个难以捉摸的人。",
+      "chunks": [
+        "He's very",
+        "vague."
+      ],
+      "hints": [
+        "他是个",
+        "难以捉摸的人"
+      ],
+      "cid": "5d37e3d6"
+    },
+    {
+      "sentence": "He's crooked.",
+      "translation": "他性格乖张。",
+      "chunks": [
+        "He's",
+        "crooked."
+      ],
+      "hints": [
+        "他",
+        "性格乖张"
+      ],
+      "cid": "8eaf0999"
+    },
+    {
+      "sentence": "He's good for nothing.",
+      "translation": "他一无是处。",
+      "chunks": [
+        "He's good",
+        "for nothing."
+      ],
+      "hints": [
+        "他",
+        "一无是处"
+      ],
+      "cid": "b09f9b4b"
+    },
+    {
+      "sentence": "She's shy around strangers.",
+      "translation": "她认生。",
+      "chunks": [
+        "She's shy",
+        "around strangers."
+      ],
+      "hints": [
+        "她",
+        "认生"
+      ],
+      "cid": "52e1e3cd"
+    },
+    {
+      "sentence": "You're too timid.",
+      "translation": "你是个胆小鬼。",
+      "chunks": [
+        "You're too",
+        "timid."
+      ],
+      "hints": [
+        "你是个",
+        "胆小鬼"
+      ],
+      "cid": "212ac0ed"
+    },
+    {
+      "sentence": "He's acting big.",
+      "translation": "他在逞强。",
+      "chunks": [
+        "He's",
+        "acting big."
+      ],
+      "hints": [
+        "他在",
+        "逞强"
+      ],
+      "cid": "86250d64"
+    },
+    {
+      "sentence": "He has a short temper.",
+      "translation": "他动不动就生气。",
+      "chunks": [
+        "He has",
+        "a short temper."
+      ],
+      "hints": [
+        "他",
+        "动不动就生气"
+      ],
+      "cid": "601d401e"
+    },
+    {
+      "sentence": "He eats like a horse.",
+      "translation": "他很能吃。",
+      "chunks": [
+        "He eats",
+        "like a horse."
+      ],
+      "hints": [
+        "他",
+        "很能吃"
+      ],
+      "cid": "74c4a2c4"
+    },
+    {
+      "sentence": "Your perfume is strong.",
+      "translation": "你的香水味真够呛人的。",
+      "chunks": [
+        "Your perfume",
+        "is strong."
+      ],
+      "hints": [
+        "你的香水味",
+        "真够呛人的"
+      ],
+      "cid": "c2b91a0d"
+    },
+    {
+      "sentence": "I'm young in spirit.",
+      "translation": "我的心还很年轻。",
+      "chunks": [
+        "I'm young",
+        "in spirit."
+      ],
+      "hints": [
+        "我的心",
+        "还很年轻"
+      ],
+      "cid": "ceb706ce"
+    },
+    {
+      "sentence": "I'm all thumbs.",
+      "translation": "我笨手笨脚的。",
+      "chunks": [
+        "I'm all",
+        "thumbs."
+      ],
+      "hints": [
+        "我",
+        "笨手笨脚的"
+      ],
+      "cid": "ae396052"
+    },
+    {
+      "sentence": "I like being alone.",
+      "translation": "我喜欢独处。",
+      "chunks": [
+        "I like",
+        "being alone."
+      ],
+      "hints": [
+        "我",
+        "喜欢独处"
+      ],
+      "cid": "7f10618b"
+    },
+    {
+      "sentence": "I'm easygoing.",
+      "translation": "我这个人比较随和。",
+      "chunks": [
+        "I'm",
+        "easygoing."
+      ],
+      "hints": [
+        "我这个人",
+        "比较随和"
+      ],
+      "cid": "663b4082"
+    },
+    {
+      "sentence": "I get embarrassed easily.",
+      "translation": "我遇事就慌。",
+      "chunks": [
+        "I get embarrassed",
+        "easily."
+      ],
+      "hints": [
+        "我遇事",
+        "就慌"
+      ],
+      "cid": "84e95760"
+    },
+    {
+      "sentence": "I'm practical about everything.",
+      "translation": "我做什么事都很现实。",
+      "chunks": [
+        "I'm practical",
+        "about everything."
+      ],
+      "hints": [
+        "我做什么事",
+        "都很现实"
+      ],
+      "cid": "0fc3e307"
+    },
+    {
+      "sentence": "I have a one-track mind.",
+      "translation": "我是一根筋。",
+      "chunks": [
+        "I have",
+        "a one-track mind."
+      ],
+      "hints": [
+        "我是",
+        "一根筋"
+      ],
+      "cid": "c99d7c25"
+    },
+    {
+      "sentence": "I'm a good judge of character.",
+      "translation": "我看人很准。",
+      "chunks": [
+        "I'm a good judge",
+        "of character."
+      ],
+      "hints": [
+        "我看人",
+        "很准"
+      ],
+      "cid": "6553f10b"
+    },
+    {
+      "sentence": "I have a sweet tooth.",
+      "translation": "我爱吃甜食。",
+      "chunks": [
+        "I have",
+        "a sweet tooth."
+      ],
+      "hints": [
+        "我",
+        "爱吃甜食"
+      ],
+      "cid": "935bd23f"
+    },
+    {
+      "sentence": "I prefer wine to sweets.",
+      "translation": "我是个酒鬼。",
+      "chunks": [
+        "I prefer wine",
+        "to sweets."
+      ],
+      "hints": [
+        "比起甜食",
+        "我更爱喝酒"
+      ],
+      "cid": "fc4254c5"
+    },
+    {
+      "sentence": "I have led a dog's life.",
+      "translation": "我过着悲惨的生活。",
+      "chunks": [
+        "I have led",
+        "a dog's life."
+      ],
+      "hints": [
+        "我过着",
+        "悲惨的生活"
+      ],
+      "cid": "37941864"
+    },
+    {
+      "sentence": "I have poor eyesight.",
+      "translation": "我的视力不好。",
+      "chunks": [
+        "I have",
+        "poor eyesight."
+      ],
+      "hints": [
+        "我的视力",
+        "不好"
+      ],
+      "cid": "3e6f7722"
+    }
+  ]
+}

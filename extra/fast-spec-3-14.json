@@ -1,0 +1,255 @@
+[
+ {
+  "sentence": "As a matter of fact, ...",
+  "chunks": [
+   "As a matter",
+   "of fact, ..."
+  ],
+  "hints": [
+   "说句",
+   "实话……"
+  ]
+ },
+ {
+  "sentence": "Don't tell anyone.",
+  "chunks": [
+   "Don't tell",
+   "anyone."
+  ],
+  "hints": [
+   "别告诉",
+   "任何人"
+  ]
+ },
+ {
+  "sentence": "I have a confession.",
+  "chunks": [
+   "I have",
+   "a confession."
+  ],
+  "hints": [
+   "我有件事",
+   "要坦白"
+  ]
+ },
+ {
+  "sentence": "I have a secret.",
+  "chunks": [
+   "I have",
+   "a secret."
+  ],
+  "hints": [
+   "我",
+   "有个秘密"
+  ]
+ },
+ {
+  "sentence": "I'll fill you in.",
+  "chunks": [
+   "I'll fill",
+   "you in."
+  ],
+  "hints": [
+   "我把一切",
+   "告诉你"
+  ]
+ },
+ {
+  "sentence": "I'll level with you.",
+  "chunks": [
+   "I'll level",
+   "with you."
+  ],
+  "hints": [
+   "我就",
+   "直说吧"
+  ]
+ },
+ {
+  "sentence": "That is about all I know.",
+  "chunks": [
+   "That is about",
+   "all I know."
+  ],
+  "hints": [
+   "我知道的",
+   "大概就这些"
+  ]
+ },
+ {
+  "sentence": "This is just between you and me.",
+  "chunks": [
+   "This is just between",
+   "you and me."
+  ],
+  "hints": [
+   "咱们俩",
+   "私下里说"
+  ]
+ },
+ {
+  "sentence": "It's a secret.",
+  "chunks": [
+   "It's",
+   "a secret."
+  ],
+  "hints": [
+   "这是个",
+   "秘密"
+  ]
+ },
+ {
+  "sentence": "Let me tell you a secret.",
+  "chunks": [
+   "Let me tell you",
+   "a secret."
+  ],
+  "hints": [
+   "我告诉你",
+   "一个秘密"
+  ]
+ },
+ {
+  "sentence": "He can't keep a secret.",
+  "chunks": [
+   "He can't keep",
+   "a secret."
+  ],
+  "hints": [
+   "他守不住",
+   "秘密"
+  ]
+ },
+ {
+  "sentence": "You've got a big mouth!",
+  "chunks": [
+   "You've got",
+   "a big mouth!"
+  ],
+  "hints": [
+   "你的嘴",
+   "不严"
+  ]
+ },
+ {
+  "sentence": "I don't have the guts to say that to my boss.",
+  "chunks": [
+   "I don't have the guts",
+   "to say that to my boss."
+  ],
+  "hints": [
+   "我不敢",
+   "对我的老板说"
+  ]
+ },
+ {
+  "sentence": "A little bird told me.",
+  "chunks": [
+   "A little bird",
+   "told me."
+  ],
+  "hints": [
+   "听小道消息",
+   "说的"
+  ]
+ },
+ {
+  "sentence": "I didn't say anything.",
+  "chunks": [
+   "I didn't",
+   "say anything."
+  ],
+  "hints": [
+   "我",
+   "什么都没说"
+  ]
+ },
+ {
+  "sentence": "It was a slip of the tongue.",
+  "chunks": [
+   "It was a slip",
+   "of the tongue."
+  ],
+  "hints": [
+   "无意中",
+   "说漏了嘴"
+  ]
+ },
+ {
+  "sentence": "I won't say a word.",
+  "chunks": [
+   "I won't say",
+   "a word."
+  ],
+  "hints": [
+   "我一个字",
+   "都不说出去"
+  ]
+ },
+ {
+  "sentence": "I promise.",
+  "chunks": [
+   "I",
+   "promise."
+  ],
+  "hints": [
+   "我",
+   "保证"
+  ]
+ },
+ {
+  "sentence": "I can't promise.",
+  "chunks": [
+   "I can't",
+   "promise."
+  ],
+  "hints": [
+   "我不能",
+   "保证"
+  ]
+ },
+ {
+  "sentence": "Will do.",
+  "chunks": [
+   "Will",
+   "do."
+  ],
+  "hints": [
+   "一定",
+   "做到"
+  ]
+ },
+ {
+  "sentence": "I swear.",
+  "chunks": [
+   "I",
+   "swear."
+  ],
+  "hints": [
+   "我",
+   "发誓"
+  ]
+ },
+ {
+  "sentence": "Trust me.",
+  "chunks": [
+   "Trust",
+   "me."
+  ],
+  "hints": [
+   "请",
+   "相信我"
+  ]
+ },
+ {
+  "sentence": "A promise is a promise!",
+  "chunks": [
+   "A promise",
+   "is a promise!"
+  ],
+  "hints": [
+   "说到",
+   "就得做到"
+  ]
+ }
+]

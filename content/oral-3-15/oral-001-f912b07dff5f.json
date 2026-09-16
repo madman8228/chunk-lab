@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "What's that smell?",
+      "translation": "这是什么味儿?",
+      "chunks": [
+        "What's that",
+        "smell?"
+      ],
+      "hints": [
+        "这是什么",
+        "味儿"
+      ],
+      "cid": "a3c241e2"
+    },
+    {
+      "sentence": "What's that noise?",
+      "translation": "什么声音?",
+      "chunks": [
+        "What's that",
+        "noise?"
+      ],
+      "hints": [
+        "什么",
+        "声音"
+      ],
+      "cid": "aae3e13d"
+    },
+    {
+      "sentence": "What is this line for?",
+      "translation": "这是排什么的队?",
+      "chunks": [
+        "What is this",
+        "line for?"
+      ],
+      "hints": [
+        "这是排",
+        "什么的队"
+      ],
+      "cid": "e55865fd"
+    },
+    {
+      "sentence": "What are you up to?",
+      "translation": "打什么鬼主意呢?",
+      "chunks": [
+        "What are you",
+        "up to?"
+      ],
+      "hints": [
+        "打什么",
+        "鬼主意呢"
+      ],
+      "cid": "2a4989a9"
+    },
+    {
+      "sentence": "May I ask you a question?",
+      "translation": "我可以问一个问题吗?",
+      "chunks": [
+        "May I ask you",
+        "a question?"
+      ],
+      "hints": [
+        "我可以问",
+        "一个问题吗"
+      ],
+      "cid": "cf07a445"
+    },
+    {
+      "sentence": "What does “drowsy” mean?",
+      "translation": "“drowsy”是什么意思?",
+      "chunks": [
+        "What does “drowsy”",
+        "mean?"
+      ],
+      "hints": [
+        "“drowsy”",
+        "是什么意思"
+      ],
+      "cid": "5b067edd"
+    },
+    {
+      "sentence": "What's this?",
+      "translation": "这是什么?",
+      "chunks": [
+        "What's",
+        "this?"
+      ],
+      "hints": [
+        "这",
+        "是什么"
+      ],
+      "cid": "9938b2cc"
+    },
+    {
+      "sentence": "What's that?",
+      "translation": "那是什么?",
+      "chunks": [
+        "What's",
+        "that?"
+      ],
+      "hints": [
+        "那",
+        "是什么"
+      ],
+      "cid": "325ee5f7"
+    },
+    {
+      "sentence": "Who does this belong to?",
+      "translation": "这是谁的?",
+      "chunks": [
+        "Who does this",
+        "belong to?"
+      ],
+      "hints": [
+        "这是",
+        "谁的"
+      ],
+      "cid": "8e9bc3c5"
+    },
+    {
+      "sentence": "Which one?",
+      "translation": "哪一个?",
+      "chunks": [
+        "Which",
+        "one?"
+      ],
+      "hints": [
+        "哪",
+        "一个"
+      ],
+      "cid": "c13ba143"
+    },
+    {
+      "sentence": "What's it called?",
+      "translation": "这叫什么?",
+      "chunks": [
+        "What's it",
+        "called?"
+      ],
+      "hints": [
+        "这",
+        "叫什么"
+      ],
+      "cid": "19955760"
+    },
+    {
+      "sentence": "What did you get for me?",
+      "translation": "是什么礼物?",
+      "chunks": [
+        "What did you get",
+        "for me?"
+      ],
+      "hints": [
+        "是什么",
+        "礼物"
+      ],
+      "cid": "d6f3ed35"
+    },
+    {
+      "sentence": "For example?",
+      "translation": "比如说?",
+      "chunks": [
+        "For",
+        "example?"
+      ],
+      "hints": [
+        "比如",
+        "说"
+      ],
+      "cid": "aab658e3"
+    },
+    {
+      "sentence": "How often?",
+      "translation": "隔多长时间?",
+      "chunks": [
+        "How",
+        "often?"
+      ],
+      "hints": [
+        "隔多",
+        "长时间"
+      ],
+      "cid": "00a87a12"
+    },
+    {
+      "sentence": "What does USA stand for?",
+      "translation": "U.S.A.是什么的缩写?",
+      "chunks": [
+        "What does USA",
+        "stand for?"
+      ],
+      "hints": [
+        "U.S.A.是",
+        "什么的缩写"
+      ],
+      "cid": "87bb0b79"
+    },
+    {
+      "sentence": "How long?",
+      "translation": "多长?",
+      "chunks": [
+        "How",
+        "long?"
+      ],
+      "hints": [
+        "多",
+        "长"
+      ],
+      "cid": "922c374a"
+    },
+    {
+      "sentence": "How early?",
+      "translation": "多早?",
+      "chunks": [
+        "How",
+        "early?"
+      ],
+      "hints": [
+        "多",
+        "早"
+      ],
+      "cid": "fc16d84b"
+    },
+    {
+      "sentence": "When does summer break start?",
+      "translation": "暑假什么时候开始?",
+      "chunks": [
+        "When does summer break",
+        "start?"
+      ],
+      "hints": [
+        "暑假",
+        "什么时候开始"
+      ],
+      "cid": "255b32d9"
+    },
+    {
+      "sentence": "When was the opening ceremony?",
+      "translation": "开学典礼是哪天?",
+      "chunks": [
+        "When was",
+        "the opening ceremony?"
+      ],
+      "hints": [
+        "开学典礼",
+        "是哪天"
+      ],
+      "cid": "b7f95aa2"
+    },
+    {
+      "sentence": "Do you know the meaning of this word?",
+      "translation": "你知道这个生词的意思吗?",
+      "chunks": [
+        "Do you know the meaning",
+        "of this word?"
+      ],
+      "hints": [
+        "你知道这个生词",
+        "的意思吗"
+      ],
+      "cid": "bb9433fc"
+    },
+    {
+      "sentence": "How do you pronounce this word?",
+      "translation": "这个词怎么发音?",
+      "chunks": [
+        "How do you pronounce",
+        "this word?"
+      ],
+      "hints": [
+        "这个词",
+        "怎么发音"
+      ],
+      "cid": "ebb4da0f"
+    },
+    {
+      "sentence": "What's the difference between A and B?",
+      "translation": "A和B之间有什么区别?",
+      "chunks": [
+        "What's the difference",
+        "between A and B?"
+      ],
+      "hints": [
+        "A和B之间",
+        "有什么区别"
+      ],
+      "cid": "9821459e"
+    }
+  ]
+}

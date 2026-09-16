@@ -1,0 +1,1817 @@
+[
+ {
+  "sentence": "I made it!",
+  "chunks": [
+   "I",
+   "made it!"
+  ],
+  "hints": [
+   "我",
+   "赶上了"
+  ]
+ },
+ {
+  "sentence": "Be punctual!",
+  "chunks": [
+   "Be",
+   "punctual!"
+  ],
+  "hints": [
+   "要",
+   "严格遵守时间"
+  ]
+ },
+ {
+  "sentence": "You are late again.",
+  "chunks": [
+   "You are late",
+   "again."
+  ],
+  "hints": [
+   "你又",
+   "迟到了"
+  ]
+ },
+ {
+  "sentence": "I was only late by five minutes.",
+  "chunks": [
+   "I was only late",
+   "by five minutes."
+  ],
+  "hints": [
+   "我只迟到了",
+   "五分钟"
+  ]
+ },
+ {
+  "sentence": "Did you punch in?",
+  "chunks": [
+   "Did you",
+   "punch in?"
+  ],
+  "hints": [
+   "你",
+   "打出勤卡了吗"
+  ]
+ },
+ {
+  "sentence": "Did you punch out?",
+  "chunks": [
+   "Did you",
+   "punch out?"
+  ],
+  "hints": [
+   "你",
+   "打下班卡了吗"
+  ]
+ },
+ {
+  "sentence": "Let me check my schedule.",
+  "chunks": [
+   "Let me check",
+   "my schedule."
+  ],
+  "hints": [
+   "让我看看",
+   "我的日程安排"
+  ]
+ },
+ {
+  "sentence": "I've got so much to do.",
+  "chunks": [
+   "I've got",
+   "so much to do."
+  ],
+  "hints": [
+   "我有",
+   "好多事要干"
+  ]
+ },
+ {
+  "sentence": "I'm pressed for time.",
+  "chunks": [
+   "I'm pressed",
+   "for time."
+  ],
+  "hints": [
+   "我",
+   "时间安排很紧"
+  ]
+ },
+ {
+  "sentence": "I'm an ordinary office worker.",
+  "chunks": [
+   "I'm an ordinary",
+   "office worker."
+  ],
+  "hints": [
+   "我是个普通的",
+   "公司职员"
+  ]
+ },
+ {
+  "sentence": "The work doesn't need much effort.",
+  "chunks": [
+   "The work doesn't need",
+   "much effort."
+  ],
+  "hints": [
+   "这工作",
+   "不太费事"
+  ]
+ },
+ {
+  "sentence": "Don't neglect your duties!",
+  "chunks": [
+   "Don't neglect",
+   "your duties!"
+  ],
+  "hints": [
+   "干活",
+   "别偷懒"
+  ]
+ },
+ {
+  "sentence": "I take charge of the west side.",
+  "chunks": [
+   "I take charge of",
+   "the west side."
+  ],
+  "hints": [
+   "西区",
+   "由我负责"
+  ]
+ },
+ {
+  "sentence": "I'm done with the work.",
+  "chunks": [
+   "I'm done",
+   "with the work."
+  ],
+  "hints": [
+   "我已结束",
+   "那项工作"
+  ]
+ },
+ {
+  "sentence": "I can still work for a long time.",
+  "chunks": [
+   "I can still work",
+   "for a long time."
+  ],
+  "hints": [
+   "我还能",
+   "工作好长时间"
+  ]
+ },
+ {
+  "sentence": "Our boss has been fired.",
+  "chunks": [
+   "Our boss",
+   "has been fired."
+  ],
+  "hints": [
+   "我们的上司",
+   "被解雇了"
+  ]
+ },
+ {
+  "sentence": "Please staple these together.",
+  "chunks": [
+   "Please staple",
+   "these together."
+  ],
+  "hints": [
+   "请把这些",
+   "订在一起"
+  ]
+ },
+ {
+  "sentence": "Would you copy these papers?",
+  "chunks": [
+   "Would you copy",
+   "these papers?"
+  ],
+  "hints": [
+   "能帮我复印",
+   "这份材料吗"
+  ]
+ },
+ {
+  "sentence": "This copy machine doesn't work.",
+  "chunks": [
+   "This copy machine",
+   "doesn't work."
+  ],
+  "hints": [
+   "这台复印机",
+   "有毛病了"
+  ]
+ },
+ {
+  "sentence": "I think it ran out of paper.",
+  "chunks": [
+   "I think it",
+   "ran out of paper."
+  ],
+  "hints": [
+   "我想它是",
+   "没纸了"
+  ]
+ },
+ {
+  "sentence": "Let's take a break.",
+  "chunks": [
+   "Let's take",
+   "a break."
+  ],
+  "hints": [
+   "我们",
+   "休息一会儿吧"
+  ]
+ },
+ {
+  "sentence": "Get me a cup of coffee, will you?",
+  "chunks": [
+   "Get me a cup of coffee,",
+   "will you?"
+  ],
+  "hints": [
+   "帮我倒杯咖啡",
+   "好吗"
+  ]
+ },
+ {
+  "sentence": "Would you like some coffee?",
+  "chunks": [
+   "Would you like",
+   "some coffee?"
+  ],
+  "hints": [
+   "你想来点",
+   "咖啡吗"
+  ]
+ },
+ {
+  "sentence": "That would be great.",
+  "chunks": [
+   "That would",
+   "be great."
+  ],
+  "hints": [
+   "那真是",
+   "太好了"
+  ]
+ },
+ {
+  "sentence": "It's almost lunchtime.",
+  "chunks": [
+   "It's almost",
+   "lunchtime."
+  ],
+  "hints": [
+   "快到",
+   "午饭时间了"
+  ]
+ },
+ {
+  "sentence": "We took an hour lunch break.",
+  "chunks": [
+   "We took",
+   "an hour lunch break."
+  ],
+  "hints": [
+   "我们有",
+   "一小时的午休"
+  ]
+ },
+ {
+  "sentence": "Let's get started.",
+  "chunks": [
+   "Let's get",
+   "started."
+  ],
+  "hints": [
+   "我们",
+   "开始吧"
+  ]
+ },
+ {
+  "sentence": "I can't leave this job at the moment.",
+  "chunks": [
+   "I can't leave this job",
+   "at the moment."
+  ],
+  "hints": [
+   "现在我不能",
+   "放下这个工作"
+  ]
+ },
+ {
+  "sentence": "I'm too busy to bother with such details.",
+  "chunks": [
+   "I'm too busy to bother",
+   "with such details."
+  ],
+  "hints": [
+   "我太忙了",
+   "顾不上这种琐事"
+  ]
+ },
+ {
+  "sentence": "I'm so busy, I'd really appreciate any help I could get.",
+  "chunks": [
+   "I'm so busy,",
+   "I'd really appreciate",
+   "any help I could get."
+  ],
+  "hints": [
+   "我忙得",
+   "四脚朝天，",
+   "谁来帮帮我"
+  ]
+ },
+ {
+  "sentence": "Don't slack off!",
+  "chunks": [
+   "Don't",
+   "slack off!"
+  ],
+  "hints": [
+   "别",
+   "偷懒"
+  ]
+ },
+ {
+  "sentence": "Do your best!",
+  "chunks": [
+   "Do",
+   "your best!"
+  ],
+  "hints": [
+   "尽你的",
+   "全力"
+  ]
+ },
+ {
+  "sentence": "Don't work too hard.",
+  "chunks": [
+   "Don't work",
+   "too hard."
+  ],
+  "hints": [
+   "别太",
+   "拼命"
+  ]
+ },
+ {
+  "sentence": "Pull yourself together.",
+  "chunks": [
+   "Pull yourself",
+   "together."
+  ],
+  "hints": [
+   "打起",
+   "精神来"
+  ]
+ },
+ {
+  "sentence": "You can count on me.",
+  "chunks": [
+   "You can",
+   "count on me."
+  ],
+  "hints": [
+   "你可以",
+   "找我呀"
+  ]
+ },
+ {
+  "sentence": "I don't even have time to catch my breath.",
+  "chunks": [
+   "I don't even have time",
+   "to catch my breath."
+  ],
+  "hints": [
+   "我连喘口气的",
+   "工夫都没有"
+  ]
+ },
+ {
+  "sentence": "What's keeping you?",
+  "chunks": [
+   "What's",
+   "keeping you?"
+  ],
+  "hints": [
+   "什么",
+   "耽搁你了"
+  ]
+ },
+ {
+  "sentence": "Changing jobs is the only way out.",
+  "chunks": [
+   "Changing jobs",
+   "is the only way out."
+  ],
+  "hints": [
+   "换个工作",
+   "是唯一的出路"
+  ]
+ },
+ {
+  "sentence": "You'd better work harder.",
+  "chunks": [
+   "You'd better",
+   "work harder."
+  ],
+  "hints": [
+   "你最好",
+   "更努力些"
+  ]
+ },
+ {
+  "sentence": "I'm a workaholic.",
+  "chunks": [
+   "I'm a",
+   "workaholic."
+  ],
+  "hints": [
+   "我是个",
+   "工作狂"
+  ]
+ },
+ {
+  "sentence": "I don't know how to fill out this form.",
+  "chunks": [
+   "I don't know how",
+   "to fill out this form."
+  ],
+  "hints": [
+   "我不知道这张表",
+   "怎么填"
+  ]
+ },
+ {
+  "sentence": "How do I fill out this form?",
+  "chunks": [
+   "How do I",
+   "fill out this form?"
+  ],
+  "hints": [
+   "这张表",
+   "怎么填"
+  ]
+ },
+ {
+  "sentence": "Can you help me with this form?",
+  "chunks": [
+   "Can you help me",
+   "with this form?"
+  ],
+  "hints": [
+   "你能帮我",
+   "填一下这张表吗"
+  ]
+ },
+ {
+  "sentence": "It looks like it's going to be a long meeting, doesn't it?",
+  "chunks": [
+   "It looks like it's going to be",
+   "a long meeting, doesn't it?"
+  ],
+  "hints": [
+   "看来会议要开",
+   "很长时间，是吧"
+  ]
+ },
+ {
+  "sentence": "The meeting went well.",
+  "chunks": [
+   "The meeting",
+   "went well."
+  ],
+  "hints": [
+   "会议",
+   "开得很成功"
+  ]
+ },
+ {
+  "sentence": "I did all I could do.",
+  "chunks": [
+   "I did",
+   "all I could do."
+  ],
+  "hints": [
+   "我已经",
+   "尽了最大的努力"
+  ]
+ },
+ {
+  "sentence": "Are you impressed?",
+  "chunks": [
+   "Are you",
+   "impressed?"
+  ],
+  "hints": [
+   "你觉得",
+   "印象深刻吗"
+  ]
+ },
+ {
+  "sentence": "Please underline the important items.",
+  "chunks": [
+   "Please underline",
+   "the important items."
+  ],
+  "hints": [
+   "请在重要事项的",
+   "下面划线"
+  ]
+ },
+ {
+  "sentence": "Check.",
+  "chunks": [
+   "Check."
+  ],
+  "hints": [
+   "好，没问题"
+  ]
+ },
+ {
+  "sentence": "Would you get to the point?",
+  "chunks": [
+   "Would you",
+   "get to the point?"
+  ],
+  "hints": [
+   "你能",
+   "说到点子上吗"
+  ]
+ },
+ {
+  "sentence": "Please do it all over again.",
+  "chunks": [
+   "Please do it",
+   "all over again."
+  ],
+  "hints": [
+   "全部",
+   "重做"
+  ]
+ },
+ {
+  "sentence": "Fax this paper to Mr. Tanaka.",
+  "chunks": [
+   "Fax this paper",
+   "to Mr. Tanaka."
+  ],
+  "hints": [
+   "把这份文件",
+   "传真给田中先生"
+  ]
+ },
+ {
+  "sentence": "Please hand the document in to me.",
+  "chunks": [
+   "Please hand",
+   "the document in to me."
+  ],
+  "hints": [
+   "请把那份文件",
+   "交给我"
+  ]
+ },
+ {
+  "sentence": "This is a piece of work I can be proud of.",
+  "chunks": [
+   "This is a piece of work",
+   "I can be proud of."
+  ],
+  "hints": [
+   "这是我的",
+   "得意之作"
+  ]
+ },
+ {
+  "sentence": "I can't find my white-out.",
+  "chunks": [
+   "I can't find",
+   "my white-out."
+  ],
+  "hints": [
+   "我找不到",
+   "我的涂改液了"
+  ]
+ },
+ {
+  "sentence": "Are you working overtime tonight?",
+  "chunks": [
+   "Are you working",
+   "overtime tonight?"
+  ],
+  "hints": [
+   "今晚你",
+   "加班吗"
+  ]
+ },
+ {
+  "sentence": "Business is business.",
+  "chunks": [
+   "Business",
+   "is business."
+  ],
+  "hints": [
+   "公事",
+   "公办，不能讲私情"
+  ]
+ },
+ {
+  "sentence": "He's a hard worker.",
+  "chunks": [
+   "He's a",
+   "hard worker."
+  ],
+  "hints": [
+   "他是个",
+   "努力工作的人"
+  ]
+ },
+ {
+  "sentence": "You're overworking.",
+  "chunks": [
+   "You're",
+   "overworking."
+  ],
+  "hints": [
+   "你",
+   "超负荷工作了"
+  ]
+ },
+ {
+  "sentence": "Finish this report today!",
+  "chunks": [
+   "Finish this report",
+   "today!"
+  ],
+  "hints": [
+   "今天必须",
+   "完成这份报告"
+  ]
+ },
+ {
+  "sentence": "When is the paper due?",
+  "chunks": [
+   "When is",
+   "the paper due?"
+  ],
+  "hints": [
+   "报告",
+   "截止到几号"
+  ]
+ },
+ {
+  "sentence": "There's a lot of work piled up on my desk.",
+  "chunks": [
+   "There's a lot of work",
+   "piled up on my desk."
+  ],
+  "hints": [
+   "我桌上",
+   "堆了一堆活儿"
+  ]
+ },
+ {
+  "sentence": "We'll fake it.",
+  "chunks": [
+   "We'll",
+   "fake it."
+  ],
+  "hints": [
+   "差不多",
+   "就得了"
+  ]
+ },
+ {
+  "sentence": "All done!",
+  "chunks": [
+   "All",
+   "done!"
+  ],
+  "hints": [
+   "全都",
+   "做完了"
+  ]
+ },
+ {
+  "sentence": "It's been a long day.",
+  "chunks": [
+   "It's been",
+   "a long day."
+  ],
+  "hints": [
+   "今天",
+   "忙了一天"
+  ]
+ },
+ {
+  "sentence": "I can't make an exception for you.",
+  "chunks": [
+   "I can't make",
+   "an exception for you."
+  ],
+  "hints": [
+   "我不能",
+   "为你破例"
+  ]
+ },
+ {
+  "sentence": "It's dark outside already.",
+  "chunks": [
+   "It's dark",
+   "outside already."
+  ],
+  "hints": [
+   "外边",
+   "天都黑了"
+  ]
+ },
+ {
+  "sentence": "Let's finish up.",
+  "chunks": [
+   "Let's",
+   "finish up."
+  ],
+  "hints": [
+   "就",
+   "干到这儿吧"
+  ]
+ },
+ {
+  "sentence": "I've just finished work.",
+  "chunks": [
+   "I've just",
+   "finished work."
+  ],
+  "hints": [
+   "正好",
+   "工作刚做完"
+  ]
+ },
+ {
+  "sentence": "Today's payday!",
+  "chunks": [
+   "Today's",
+   "payday!"
+  ],
+  "hints": [
+   "今天",
+   "发工资"
+  ]
+ },
+ {
+  "sentence": "Let's have a drink.",
+  "chunks": [
+   "Let's have",
+   "a drink."
+  ],
+  "hints": [
+   "我们",
+   "一起去喝一杯吧"
+  ]
+ },
+ {
+  "sentence": "Thanks for your hard work.",
+  "chunks": [
+   "Thanks for",
+   "your hard work."
+  ],
+  "hints": [
+   "你",
+   "辛苦了"
+  ]
+ },
+ {
+  "sentence": "I hope you don't mind my leaving now.",
+  "chunks": [
+   "I hope you don't mind",
+   "my leaving now."
+  ],
+  "hints": [
+   "我希望你不介意",
+   "我先走了"
+  ]
+ },
+ {
+  "sentence": "Sorry for interrupting.",
+  "chunks": [
+   "Sorry for",
+   "interrupting."
+  ],
+  "hints": [
+   "对不起",
+   "打断一下"
+  ]
+ },
+ {
+  "sentence": "May I interrupt you?",
+  "chunks": [
+   "May I",
+   "interrupt you?"
+  ],
+  "hints": [
+   "打扰一下",
+   "可以吗"
+  ]
+ },
+ {
+  "sentence": "Mr. Smith is on line one.",
+  "chunks": [
+   "Mr. Smith",
+   "is on line one."
+  ],
+  "hints": [
+   "史密斯先生",
+   "在一号线听电话"
+  ]
+ },
+ {
+  "sentence": "I have an appointment with Mr. Aoki.",
+  "chunks": [
+   "I have an appointment",
+   "with Mr. Aoki."
+  ],
+  "hints": [
+   "我已经和青木先生",
+   "约好了"
+  ]
+ },
+ {
+  "sentence": "What floor is ABC on?",
+  "chunks": [
+   "What floor",
+   "is ABC on?"
+  ],
+  "hints": [
+   "ABC公司",
+   "在几楼"
+  ]
+ },
+ {
+  "sentence": "Where are the elevators?",
+  "chunks": [
+   "Where are",
+   "the elevators?"
+  ],
+  "hints": [
+   "电梯",
+   "在哪儿"
+  ]
+ },
+ {
+  "sentence": "I get along well with him.",
+  "chunks": [
+   "I get along well",
+   "with him."
+  ],
+  "hints": [
+   "我和他",
+   "很合得来"
+  ]
+ },
+ {
+  "sentence": "I don't get along well with her.",
+  "chunks": [
+   "I don't get along well",
+   "with her."
+  ],
+  "hints": [
+   "我跟她",
+   "合不来"
+  ]
+ },
+ {
+  "sentence": "I respect him.",
+  "chunks": [
+   "I respect",
+   "him."
+  ],
+  "hints": [
+   "我很",
+   "尊敬他"
+  ]
+ },
+ {
+  "sentence": "I despise him.",
+  "chunks": [
+   "I",
+   "despise him."
+  ],
+  "hints": [
+   "我",
+   "瞧不起他"
+  ]
+ },
+ {
+  "sentence": "I want to get along with everyone.",
+  "chunks": [
+   "I want to get along",
+   "with everyone."
+  ],
+  "hints": [
+   "我想和大家",
+   "和睦相处"
+  ]
+ },
+ {
+  "sentence": "Are you getting along with her?",
+  "chunks": [
+   "Are you getting along",
+   "with her?"
+  ],
+  "hints": [
+   "你跟她",
+   "合得来吗"
+  ]
+ },
+ {
+  "sentence": "She ignored me.",
+  "chunks": [
+   "She",
+   "ignored me."
+  ],
+  "hints": [
+   "她",
+   "根本不搭理我"
+  ]
+ },
+ {
+  "sentence": "I don't know what he's really thinking.",
+  "chunks": [
+   "I don't know",
+   "what he's really thinking."
+  ],
+  "hints": [
+   "我不知道他",
+   "在想什么"
+  ]
+ },
+ {
+  "sentence": "I have no reason to be envied.",
+  "chunks": [
+   "I have no reason",
+   "to be envied."
+  ],
+  "hints": [
+   "我没有理由",
+   "让人嫉妒"
+  ]
+ },
+ {
+  "sentence": "I don't like brownnosers.",
+  "chunks": [
+   "I don't like",
+   "brownnosers."
+  ],
+  "hints": [
+   "我讨厌爱",
+   "拍马屁的人"
+  ]
+ },
+ {
+  "sentence": "I'm neglecting my family.",
+  "chunks": [
+   "I'm neglecting",
+   "my family."
+  ],
+  "hints": [
+   "我是个",
+   "不顾家的人"
+  ]
+ },
+ {
+  "sentence": "Which side are you?",
+  "chunks": [
+   "Which side",
+   "are you?"
+  ],
+  "hints": [
+   "你站在",
+   "哪一方"
+  ]
+ },
+ {
+  "sentence": "I'm on your side.",
+  "chunks": [
+   "I'm on",
+   "your side."
+  ],
+  "hints": [
+   "我",
+   "站在你这边"
+  ]
+ },
+ {
+  "sentence": "He's very hard on me.",
+  "chunks": [
+   "He's very",
+   "hard on me."
+  ],
+  "hints": [
+   "他对我",
+   "很不客气"
+  ]
+ },
+ {
+  "sentence": "He always treats me like an enemy.",
+  "chunks": [
+   "He always treats me",
+   "like an enemy."
+  ],
+  "hints": [
+   "他总把我",
+   "当作眼中钉"
+  ]
+ },
+ {
+  "sentence": "He treated me badly.",
+  "chunks": [
+   "He treated me",
+   "badly."
+  ],
+  "hints": [
+   "他对我",
+   "很蛮横"
+  ]
+ },
+ {
+  "sentence": "I'm obligated to him.",
+  "chunks": [
+   "I'm obligated",
+   "to him."
+  ],
+  "hints": [
+   "我",
+   "欠他的情"
+  ]
+ },
+ {
+  "sentence": "We're on a first name basis.",
+  "chunks": [
+   "We're on",
+   "a first name basis."
+  ],
+  "hints": [
+   "我们很熟",
+   "互相直呼其名"
+  ]
+ },
+ {
+  "sentence": "He's quick on the uptake.",
+  "chunks": [
+   "He's quick",
+   "on the uptake."
+  ],
+  "hints": [
+   "他的",
+   "理解力很强"
+  ]
+ },
+ {
+  "sentence": "He'll never let you down.",
+  "chunks": [
+   "He'll never",
+   "let you down."
+  ],
+  "hints": [
+   "他不会",
+   "让你失望"
+  ]
+ },
+ {
+  "sentence": "He's efficient.",
+  "chunks": [
+   "He's",
+   "efficient."
+  ],
+  "hints": [
+   "他很",
+   "能干"
+  ]
+ },
+ {
+  "sentence": "He's a good guy.",
+  "chunks": [
+   "He's a",
+   "good guy."
+  ],
+  "hints": [
+   "他是个",
+   "好人"
+  ]
+ },
+ {
+  "sentence": "He looks old for his age.",
+  "chunks": [
+   "He looks old",
+   "for his age."
+  ],
+  "hints": [
+   "他",
+   "显老"
+  ]
+ },
+ {
+  "sentence": "You look younger than me.",
+  "chunks": [
+   "You look",
+   "younger than me."
+  ],
+  "hints": [
+   "你看上去",
+   "比我年轻"
+  ]
+ },
+ {
+  "sentence": "That's the way he is.",
+  "chunks": [
+   "That's the way",
+   "he is."
+  ],
+  "hints": [
+   "他",
+   "就是那种人"
+  ]
+ },
+ {
+  "sentence": "Who is he like?",
+  "chunks": [
+   "Who is",
+   "he like?"
+  ],
+  "hints": [
+   "他长得",
+   "像谁"
+  ]
+ },
+ {
+  "sentence": "He has a lot of common sense.",
+  "chunks": [
+   "He has a lot of",
+   "common sense."
+  ],
+  "hints": [
+   "他有丰富的",
+   "常识"
+  ]
+ },
+ {
+  "sentence": "He's wise for his age.",
+  "chunks": [
+   "He's wise",
+   "for his age."
+  ],
+  "hints": [
+   "他虽年轻",
+   "却很博学"
+  ]
+ },
+ {
+  "sentence": "He knows a lot of people.",
+  "chunks": [
+   "He knows",
+   "a lot of people."
+  ],
+  "hints": [
+   "他",
+   "交际很广"
+  ]
+ },
+ {
+  "sentence": "He's a go-getter.",
+  "chunks": [
+   "He's a",
+   "go-getter."
+  ],
+  "hints": [
+   "他是个",
+   "有才干的人"
+  ]
+ },
+ {
+  "sentence": "You're so sympathetic.",
+  "chunks": [
+   "You're so",
+   "sympathetic."
+  ],
+  "hints": [
+   "你真",
+   "体谅人"
+  ]
+ },
+ {
+  "sentence": "He's faithful.",
+  "chunks": [
+   "He's",
+   "faithful."
+  ],
+  "hints": [
+   "他是",
+   "守信用的人"
+  ]
+ },
+ {
+  "sentence": "He has a deep voice.",
+  "chunks": [
+   "He has",
+   "a deep voice."
+  ],
+  "hints": [
+   "他的嗓音",
+   "低沉"
+  ]
+ },
+ {
+  "sentence": "He has put on weight.",
+  "chunks": [
+   "He has",
+   "put on weight."
+  ],
+  "hints": [
+   "他",
+   "发福了"
+  ]
+ },
+ {
+  "sentence": "He's overweight.",
+  "chunks": [
+   "He's",
+   "overweight."
+  ],
+  "hints": [
+   "他",
+   "太胖了"
+  ]
+ },
+ {
+  "sentence": "You have a lot of nerve.",
+  "chunks": [
+   "You have",
+   "a lot of nerve."
+  ],
+  "hints": [
+   "你真有",
+   "胆量"
+  ]
+ },
+ {
+  "sentence": "He's a very modest man.",
+  "chunks": [
+   "He's a very",
+   "modest man."
+  ],
+  "hints": [
+   "他是个很",
+   "谦虚的人"
+  ]
+ },
+ {
+  "sentence": "He has a good temper.",
+  "chunks": [
+   "He has",
+   "a good temper."
+  ],
+  "hints": [
+   "他有个",
+   "好脾气"
+  ]
+ },
+ {
+  "sentence": "He has a bad temper.",
+  "chunks": [
+   "He has",
+   "a bad temper."
+  ],
+  "hints": [
+   "他这个人",
+   "脾气暴躁"
+  ]
+ },
+ {
+  "sentence": "There's something strange about her.",
+  "chunks": [
+   "There's something strange",
+   "about her."
+  ],
+  "hints": [
+   "她不知哪儿",
+   "有点怪"
+  ]
+ },
+ {
+  "sentence": "She's not herself.",
+  "chunks": [
+   "She's not",
+   "herself."
+  ],
+  "hints": [
+   "她有点",
+   "不太对劲儿"
+  ]
+ },
+ {
+  "sentence": "She's so weird.",
+  "chunks": [
+   "She's so",
+   "weird."
+  ],
+  "hints": [
+   "她真让人",
+   "捉摸不透"
+  ]
+ },
+ {
+  "sentence": "Tammy eats like a bird.",
+  "chunks": [
+   "Tammy eats",
+   "like a bird."
+  ],
+  "hints": [
+   "塔米饭量",
+   "很小"
+  ]
+ },
+ {
+  "sentence": "She has a nice figure.",
+  "chunks": [
+   "She has",
+   "a nice figure."
+  ],
+  "hints": [
+   "她的身材",
+   "很好"
+  ]
+ },
+ {
+  "sentence": "His best days are gone.",
+  "chunks": [
+   "His best days",
+   "are gone."
+  ],
+  "hints": [
+   "他",
+   "已过壮年"
+  ]
+ },
+ {
+  "sentence": "My father's getting on in years.",
+  "chunks": [
+   "My father's getting on",
+   "in years."
+  ],
+  "hints": [
+   "我父亲",
+   "上年纪了"
+  ]
+ },
+ {
+  "sentence": "What does he look like?",
+  "chunks": [
+   "What does he",
+   "look like?"
+  ],
+  "hints": [
+   "他长得",
+   "什么样"
+  ]
+ },
+ {
+  "sentence": "They're making a big fuss.",
+  "chunks": [
+   "They're making",
+   "a big fuss."
+  ],
+  "hints": [
+   "他们闹得",
+   "天翻地覆"
+  ]
+ },
+ {
+  "sentence": "He's a chain smoker.",
+  "chunks": [
+   "He's a",
+   "chain smoker."
+  ],
+  "hints": [
+   "他抽烟",
+   "没完没了"
+  ]
+ },
+ {
+  "sentence": "He's selfish.",
+  "chunks": [
+   "He's",
+   "selfish."
+  ],
+  "hints": [
+   "他",
+   "很自私"
+  ]
+ },
+ {
+  "sentence": "He takes things too seriously.",
+  "chunks": [
+   "He takes things",
+   "too seriously."
+  ],
+  "hints": [
+   "他总把问题",
+   "想得过于严重"
+  ]
+ },
+ {
+  "sentence": "He's simpleminded.",
+  "chunks": [
+   "He's",
+   "simpleminded."
+  ],
+  "hints": [
+   "他",
+   "头脑简单"
+  ]
+ },
+ {
+  "sentence": "He's on edge today.",
+  "chunks": [
+   "He's on edge",
+   "today."
+  ],
+  "hints": [
+   "今天他",
+   "情绪烦躁"
+  ]
+ },
+ {
+  "sentence": "He's talkative.",
+  "chunks": [
+   "He's",
+   "talkative."
+  ],
+  "hints": [
+   "他真是个",
+   "多嘴多舌的人"
+  ]
+ },
+ {
+  "sentence": "He's quite well off.",
+  "chunks": [
+   "He's quite",
+   "well off."
+  ],
+  "hints": [
+   "他",
+   "非常有钱"
+  ]
+ },
+ {
+  "sentence": "He's fresh.",
+  "chunks": [
+   "He's",
+   "fresh."
+  ],
+  "hints": [
+   "他",
+   "很好色"
+  ]
+ },
+ {
+  "sentence": "He's a smooth talker.",
+  "chunks": [
+   "He's a",
+   "smooth talker."
+  ],
+  "hints": [
+   "他的",
+   "嘴甜着呢"
+  ]
+ },
+ {
+  "sentence": "He's nobody's fool.",
+  "chunks": [
+   "He's",
+   "nobody's fool."
+  ],
+  "hints": [
+   "他是个",
+   "不可小看的人"
+  ]
+ },
+ {
+  "sentence": "He often says absurd things.",
+  "chunks": [
+   "He often says",
+   "absurd things."
+  ],
+  "hints": [
+   "他净说些",
+   "傻话"
+  ]
+ },
+ {
+  "sentence": "He has no sense of responsibility.",
+  "chunks": [
+   "He has no sense",
+   "of responsibility."
+  ],
+  "hints": [
+   "他一点儿",
+   "责任心都没有"
+  ]
+ },
+ {
+  "sentence": "He's very offensive.",
+  "chunks": [
+   "He's very",
+   "offensive."
+  ],
+  "hints": [
+   "他真是个",
+   "让人讨厌的人"
+  ]
+ },
+ {
+  "sentence": "He's a difficult man to deal with.",
+  "chunks": [
+   "He's a difficult man",
+   "to deal with."
+  ],
+  "hints": [
+   "他这人",
+   "很难对付"
+  ]
+ },
+ {
+  "sentence": "He's a stubborn old man.",
+  "chunks": [
+   "He's a stubborn",
+   "old man."
+  ],
+  "hints": [
+   "他是个",
+   "倔老头"
+  ]
+ },
+ {
+  "sentence": "He's aiming too high.",
+  "chunks": [
+   "He's aiming",
+   "too high."
+  ],
+  "hints": [
+   "他总是",
+   "好高骛远"
+  ]
+ },
+ {
+  "sentence": "That man never admits defeat.",
+  "chunks": [
+   "That man never",
+   "admits defeat."
+  ],
+  "hints": [
+   "他从不",
+   "认输"
+  ]
+ },
+ {
+  "sentence": "He's very vague.",
+  "chunks": [
+   "He's very",
+   "vague."
+  ],
+  "hints": [
+   "他是个",
+   "难以捉摸的人"
+  ]
+ },
+ {
+  "sentence": "He's crooked.",
+  "chunks": [
+   "He's",
+   "crooked."
+  ],
+  "hints": [
+   "他",
+   "性格乖张"
+  ]
+ },
+ {
+  "sentence": "He's good for nothing.",
+  "chunks": [
+   "He's good",
+   "for nothing."
+  ],
+  "hints": [
+   "他",
+   "一无是处"
+  ]
+ },
+ {
+  "sentence": "She's shy around strangers.",
+  "chunks": [
+   "She's shy",
+   "around strangers."
+  ],
+  "hints": [
+   "她",
+   "认生"
+  ]
+ },
+ {
+  "sentence": "You're too timid.",
+  "chunks": [
+   "You're too",
+   "timid."
+  ],
+  "hints": [
+   "你是个",
+   "胆小鬼"
+  ]
+ },
+ {
+  "sentence": "He's acting big.",
+  "chunks": [
+   "He's",
+   "acting big."
+  ],
+  "hints": [
+   "他在",
+   "逞强"
+  ]
+ },
+ {
+  "sentence": "He has a short temper.",
+  "chunks": [
+   "He has",
+   "a short temper."
+  ],
+  "hints": [
+   "他",
+   "动不动就生气"
+  ]
+ },
+ {
+  "sentence": "He eats like a horse.",
+  "chunks": [
+   "He eats",
+   "like a horse."
+  ],
+  "hints": [
+   "他",
+   "很能吃"
+  ]
+ },
+ {
+  "sentence": "Your perfume is strong.",
+  "chunks": [
+   "Your perfume",
+   "is strong."
+  ],
+  "hints": [
+   "你的香水味",
+   "真够呛人的"
+  ]
+ },
+ {
+  "sentence": "I'm young in spirit.",
+  "chunks": [
+   "I'm young",
+   "in spirit."
+  ],
+  "hints": [
+   "我的心",
+   "还很年轻"
+  ]
+ },
+ {
+  "sentence": "I'm all thumbs.",
+  "chunks": [
+   "I'm all",
+   "thumbs."
+  ],
+  "hints": [
+   "我",
+   "笨手笨脚的"
+  ]
+ },
+ {
+  "sentence": "I like being alone.",
+  "chunks": [
+   "I like",
+   "being alone."
+  ],
+  "hints": [
+   "我",
+   "喜欢独处"
+  ]
+ },
+ {
+  "sentence": "I'm easygoing.",
+  "chunks": [
+   "I'm",
+   "easygoing."
+  ],
+  "hints": [
+   "我这个人",
+   "比较随和"
+  ]
+ },
+ {
+  "sentence": "I get embarrassed easily.",
+  "chunks": [
+   "I get embarrassed",
+   "easily."
+  ],
+  "hints": [
+   "我遇事",
+   "就慌"
+  ]
+ },
+ {
+  "sentence": "I'm practical about everything.",
+  "chunks": [
+   "I'm practical",
+   "about everything."
+  ],
+  "hints": [
+   "我做什么事",
+   "都很现实"
+  ]
+ },
+ {
+  "sentence": "I have a one-track mind.",
+  "chunks": [
+   "I have",
+   "a one-track mind."
+  ],
+  "hints": [
+   "我是",
+   "一根筋"
+  ]
+ },
+ {
+  "sentence": "I'm a good judge of character.",
+  "chunks": [
+   "I'm a good judge",
+   "of character."
+  ],
+  "hints": [
+   "我看人",
+   "很准"
+  ]
+ },
+ {
+  "sentence": "I have a sweet tooth.",
+  "chunks": [
+   "I have",
+   "a sweet tooth."
+  ],
+  "hints": [
+   "我",
+   "爱吃甜食"
+  ]
+ },
+ {
+  "sentence": "I prefer wine to sweets.",
+  "chunks": [
+   "I prefer wine",
+   "to sweets."
+  ],
+  "hints": [
+   "比起甜食",
+   "我更爱喝酒"
+  ]
+ },
+ {
+  "sentence": "I have led a dog's life.",
+  "chunks": [
+   "I have led",
+   "a dog's life."
+  ],
+  "hints": [
+   "我过着",
+   "悲惨的生活"
+  ]
+ },
+ {
+  "sentence": "I have poor eyesight.",
+  "chunks": [
+   "I have",
+   "poor eyesight."
+  ],
+  "hints": [
+   "我的视力",
+   "不好"
+  ]
+ }
+]

@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "As a matter of fact, ...",
+      "translation": "说实话……",
+      "chunks": [
+        "As a matter",
+        "of fact, ..."
+      ],
+      "hints": [
+        "说句",
+        "实话……"
+      ],
+      "cid": "a3540e30"
+    },
+    {
+      "sentence": "Don't tell anyone.",
+      "translation": "别告诉任何人。",
+      "chunks": [
+        "Don't tell",
+        "anyone."
+      ],
+      "hints": [
+        "别告诉",
+        "任何人"
+      ],
+      "cid": "c4097778"
+    },
+    {
+      "sentence": "I have a confession.",
+      "translation": "我有件事要坦白。",
+      "chunks": [
+        "I have",
+        "a confession."
+      ],
+      "hints": [
+        "我有件事",
+        "要坦白"
+      ],
+      "cid": "819e73ee"
+    },
+    {
+      "sentence": "I have a secret.",
+      "translation": "我有一个秘密。",
+      "chunks": [
+        "I have",
+        "a secret."
+      ],
+      "hints": [
+        "我",
+        "有个秘密"
+      ],
+      "cid": "e503d49b"
+    },
+    {
+      "sentence": "I'll fill you in.",
+      "translation": "我把一切告诉你。",
+      "chunks": [
+        "I'll fill",
+        "you in."
+      ],
+      "hints": [
+        "我把一切",
+        "告诉你"
+      ],
+      "cid": "2aeb5f0a"
+    },
+    {
+      "sentence": "I'll level with you.",
+      "translation": "我就直说吧。",
+      "chunks": [
+        "I'll level",
+        "with you."
+      ],
+      "hints": [
+        "我就",
+        "直说吧"
+      ],
+      "cid": "32e9fbf8"
+    },
+    {
+      "sentence": "That is about all I know.",
+      "translation": "我知道的大概就是这些。",
+      "chunks": [
+        "That is about",
+        "all I know."
+      ],
+      "hints": [
+        "我知道的",
+        "大概就这些"
+      ],
+      "cid": "9c3e60a2"
+    },
+    {
+      "sentence": "This is just between you and me.",
+      "translation": "我们关起门来在这儿说。/咱们俩私下里说。",
+      "chunks": [
+        "This is just between",
+        "you and me."
+      ],
+      "hints": [
+        "咱们俩",
+        "私下里说"
+      ],
+      "cid": "d94108e5"
+    },
+    {
+      "sentence": "It's a secret.",
+      "translation": "这是一个秘密。",
+      "chunks": [
+        "It's",
+        "a secret."
+      ],
+      "hints": [
+        "这是个",
+        "秘密"
+      ],
+      "cid": "87d0712b"
+    },
+    {
+      "sentence": "Let me tell you a secret.",
+      "translation": "我告诉你一个秘密。",
+      "chunks": [
+        "Let me tell you",
+        "a secret."
+      ],
+      "hints": [
+        "我告诉你",
+        "一个秘密"
+      ],
+      "cid": "de186925"
+    },
+    {
+      "sentence": "He can't keep a secret.",
+      "translation": "他不能保守秘密。",
+      "chunks": [
+        "He can't keep",
+        "a secret."
+      ],
+      "hints": [
+        "他守不住",
+        "秘密"
+      ],
+      "cid": "ad1eb1dd"
+    },
+    {
+      "sentence": "You've got a big mouth!",
+      "translation": "你的嘴不严。",
+      "chunks": [
+        "You've got",
+        "a big mouth!"
+      ],
+      "hints": [
+        "你的嘴",
+        "不严"
+      ],
+      "cid": "db791de3"
+    },
+    {
+      "sentence": "I don't have the guts to say that to my boss.",
+      "translation": "我不敢对我的老板说。",
+      "chunks": [
+        "I don't have the guts",
+        "to say that to my boss."
+      ],
+      "hints": [
+        "我不敢",
+        "对我的老板说"
+      ],
+      "cid": "383b9203"
+    },
+    {
+      "sentence": "A little bird told me.",
+      "translation": "听小道消息说。",
+      "chunks": [
+        "A little bird",
+        "told me."
+      ],
+      "hints": [
+        "听小道消息",
+        "说的"
+      ],
+      "cid": "be540290"
+    },
+    {
+      "sentence": "I didn't say anything.",
+      "translation": "我什么都没说。",
+      "chunks": [
+        "I didn't",
+        "say anything."
+      ],
+      "hints": [
+        "我",
+        "什么都没说"
+      ],
+      "cid": "c9b4c895"
+    },
+    {
+      "sentence": "It was a slip of the tongue.",
+      "translation": "无意中说漏了嘴。",
+      "chunks": [
+        "It was a slip",
+        "of the tongue."
+      ],
+      "hints": [
+        "无意中",
+        "说漏了嘴"
+      ],
+      "cid": "7b5507a4"
+    },
+    {
+      "sentence": "I won't say a word.",
+      "translation": "我一个字都不说出去。",
+      "chunks": [
+        "I won't say",
+        "a word."
+      ],
+      "hints": [
+        "我一个字",
+        "都不说出去"
+      ],
+      "cid": "fb9cffdd"
+    },
+    {
+      "sentence": "I promise.",
+      "translation": "我保证。",
+      "chunks": [
+        "I",
+        "promise."
+      ],
+      "hints": [
+        "我",
+        "保证"
+      ],
+      "cid": "92a89581"
+    },
+    {
+      "sentence": "I can't promise.",
+      "translation": "我不能保证。",
+      "chunks": [
+        "I can't",
+        "promise."
+      ],
+      "hints": [
+        "我不能",
+        "保证"
+      ],
+      "cid": "98230fee"
+    },
+    {
+      "sentence": "Will do.",
+      "translation": "一定。",
+      "chunks": [
+        "Will",
+        "do."
+      ],
+      "hints": [
+        "一定",
+        "做到"
+      ],
+      "cid": "1eda82d4"
+    },
+    {
+      "sentence": "I swear.",
+      "translation": "我发誓。",
+      "chunks": [
+        "I",
+        "swear."
+      ],
+      "hints": [
+        "我",
+        "发誓"
+      ],
+      "cid": "eadbaf38"
+    },
+    {
+      "sentence": "Trust me.",
+      "translation": "请相信我。",
+      "chunks": [
+        "Trust",
+        "me."
+      ],
+      "hints": [
+        "请",
+        "相信我"
+      ],
+      "cid": "24d186f5"
+    },
+    {
+      "sentence": "A promise is a promise!",
+      "translation": "说到就得做到。",
+      "chunks": [
+        "A promise",
+        "is a promise!"
+      ],
+      "hints": [
+        "说到",
+        "就得做到"
+      ],
+      "cid": "fbe0ff28"
+    }
+  ]
+}

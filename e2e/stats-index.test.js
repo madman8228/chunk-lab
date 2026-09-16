@@ -73,13 +73,30 @@ function check(name, ok, detail) {
     check('学习档案按行动顺序排列并明确命名学习记录',
       tabLayout.map(function (tab) { return tab.key; }).join('|') === 'overview|review|wrong|sent' &&
       tabLayout[3].text === '学习记录', JSON.stringify(tabLayout));
-    await page.fill('#statsSentenceSearch', 'looks like');
-    await page.waitForFunction(function () {
-      return document.querySelectorAll('.stats-detail-row').length === 1;
+    /* 契约：搜索必须真的过滤（行数 < 整页 50），且**每一行都含关键词**。
+       ⚠️ 不要写死「恰好 1 行」—— 那是数据巧合：2026-09-16 铺 1.5 节新增
+       "It looks like it's going to be a long meeting, doesn't it?" 之后，全库含
+       "looks like" 的句子由 1 句变 2 句，写死条数的断言当场变红。
+       出问题的是断言（绑定了数据），不是产品行为。 */
+    var SEARCH_KW = 'looks like';
+    await page.fill('#statsSentenceSearch', SEARCH_KW);
+    await page.waitForFunction(function (kw) {
+      var rows = document.querySelectorAll('.stats-detail-row');
+      if (!rows.length || rows.length >= 50) return false;
+      return Array.prototype.every.call(rows, function (r) {
+        var en = r.querySelector('.en');
+        return !!en && en.textContent.toLowerCase().indexOf(kw) >= 0;
+      });
+    }, SEARCH_KW);
+    var searchRows = await page.evaluate(function () {
+      return Array.prototype.map.call(document.querySelectorAll('.stats-detail-row .en'), function (el) {
+        return el.textContent.trim();
+      });
     });
-    check('学习记录支持按句子即时搜索',
-      await page.locator('.stats-detail-row .en').first().innerText() === "It looks like it's going to rain.",
-      await page.locator('.stats-detail-row .en').first().innerText());
+    check('学习记录按句子即时搜索（结果全部命中关键词、且确实过滤了）',
+      searchRows.length > 0 && searchRows.length < 50 &&
+      searchRows.every(function (t) { return t.toLowerCase().indexOf('looks like') >= 0; }),
+      JSON.stringify(searchRows));
     await page.fill('#statsSentenceSearch', '');
     await page.waitForFunction(function () {
       return document.querySelectorAll('.stats-detail-row').length === 50;

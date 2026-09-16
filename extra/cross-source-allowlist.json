@@ -35,6 +35,13 @@
       "idiom": "Leave me alone.",
       "kind": "punct-variant",
       "reason": "同 nomoreexcuses：仅句末标点不同（! / .），cid 不同、进度不共享，译文也不同（「离我远点儿!」/「让我一个人待着。」）。处置同上，待老板拍板。"
+    },
+    {
+      "norm": "pullyourselftogether",
+      "oral": "Pull yourself together.",
+      "idiom": "Pull yourself together.",
+      "kind": "identical",
+      "reason": "2026-09-16 铺 1.5 节时被护栏抓出（新内容首次触发该闸，反证闸有效）。两库文本逐字一致 → cid 相同（6576ae63）、进度共享；口语 1.5 是「同事间互相鼓劲」的场景用法，惯用语库是固定表达定位，用户路径不同、重复无害。两库中译略有差异（「打起精神来。」/「振作起来。」）属正常，不构成不一致。"
     }
   ]
 }
