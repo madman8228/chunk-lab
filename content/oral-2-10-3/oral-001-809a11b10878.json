@@ -3,6 +3,527 @@
   "mode": "replace",
   "items": [
     {
+      "sentence": "Hold it!",
+      "translation": "停!",
+      "chunks": [
+        "Hold",
+        "it!"
+      ],
+      "hints": [
+        "停",
+        "一下！"
+      ],
+      "cid": "0fa1d0cc"
+    },
+    {
+      "sentence": "Wait!",
+      "translation": "等等!",
+      "chunks": [
+        "Wait!"
+      ],
+      "hints": [
+        "等等！"
+      ],
+      "cid": "8151f533"
+    },
+    {
+      "sentence": "Uh-uh-uh!",
+      "translation": "别动!别动!",
+      "chunks": [
+        "Uh-uh-uh!"
+      ],
+      "hints": [
+        "别动！别动！"
+      ],
+      "cid": "78fd9783"
+    },
+    {
+      "sentence": "Don't do that!",
+      "translation": "别干那事!",
+      "chunks": [
+        "Don't do",
+        "that!"
+      ],
+      "hints": [
+        "别",
+        "干那事！"
+      ],
+      "cid": "bfba081a"
+    },
+    {
+      "sentence": "Why are you doing that?",
+      "translation": "你干吗要干那种事?",
+      "chunks": [
+        "Why are you",
+        "doing that?"
+      ],
+      "hints": [
+        "你为什么要",
+        "干那种事？"
+      ],
+      "cid": "4dfb1ad1"
+    },
+    {
+      "sentence": "Please line up!",
+      "translation": "请排队!",
+      "chunks": [
+        "Please",
+        "line up!"
+      ],
+      "hints": [
+        "请",
+        "排队！"
+      ],
+      "cid": "2007dca7"
+    },
+    {
+      "sentence": "Don't cut in line!",
+      "translation": "别夹塞儿!",
+      "chunks": [
+        "Don't cut",
+        "in line!"
+      ],
+      "hints": [
+        "别",
+        "夹塞儿！"
+      ],
+      "cid": "0e068025"
+    },
+    {
+      "sentence": "Don't push!",
+      "translation": "别推呀!",
+      "chunks": [
+        "Don't",
+        "push!"
+      ],
+      "hints": [
+        "别",
+        "推呀！"
+      ],
+      "cid": "c59ff246"
+    },
+    {
+      "sentence": "Don't call me names!",
+      "translation": "别张口就骂人。",
+      "chunks": [
+        "Don't call me",
+        "names!"
+      ],
+      "hints": [
+        "别",
+        "张口就骂人。"
+      ],
+      "cid": "fb8b0dea"
+    },
+    {
+      "sentence": "Don't be a blabber mouth!",
+      "translation": "别多嘴多舌的。",
+      "chunks": [
+        "Don't be a",
+        "blabber mouth!"
+      ],
+      "hints": [
+        "别",
+        "多嘴多舌的。"
+      ],
+      "cid": "4610d457"
+    },
+    {
+      "sentence": "Keep it out of sight.",
+      "translation": "要做得不露痕迹。",
+      "chunks": [
+        "Keep it",
+        "out of sight."
+      ],
+      "hints": [
+        "要做得",
+        "不露痕迹。"
+      ],
+      "cid": "3b5e18cb"
+    },
+    {
+      "sentence": "Stay away from me.",
+      "translation": "离我远点儿。",
+      "chunks": [
+        "Stay away",
+        "from me."
+      ],
+      "hints": [
+        "离我",
+        "远点儿。"
+      ],
+      "cid": "17df306e"
+    },
+    {
+      "sentence": "No funny stuff!",
+      "translation": "不许耍花样!",
+      "chunks": [
+        "No",
+        "funny stuff!"
+      ],
+      "hints": [
+        "不许",
+        "耍花样！"
+      ],
+      "cid": "89e05cbb"
+    },
+    {
+      "sentence": "Stay out of this!",
+      "translation": "别介入那件事!",
+      "chunks": [
+        "Stay out",
+        "of this!"
+      ],
+      "hints": [
+        "别",
+        "介入那件事！"
+      ],
+      "cid": "1609aa42"
+    },
+    {
+      "sentence": "Don't ruin it.",
+      "translation": "别给弄砸了。",
+      "chunks": [
+        "Don't",
+        "ruin it."
+      ],
+      "hints": [
+        "别",
+        "给弄砸了。"
+      ],
+      "cid": "6ff6ff00"
+    },
+    {
+      "sentence": "Stop fighting.",
+      "translation": "别打架!",
+      "chunks": [
+        "Stop",
+        "fighting."
+      ],
+      "hints": [
+        "别",
+        "打架！"
+      ],
+      "cid": "f1db4095"
+    },
+    {
+      "sentence": "Freeze!",
+      "translation": "别动!",
+      "chunks": [
+        "Freeze!"
+      ],
+      "hints": [
+        "别动！"
+      ],
+      "cid": "d2fbb559"
+    },
+    {
+      "sentence": "Duck!",
+      "translation": "蹲下!",
+      "chunks": [
+        "Duck!"
+      ],
+      "hints": [
+        "蹲下！"
+      ],
+      "cid": "41b56c3b"
+    },
+    {
+      "sentence": "Hands up!",
+      "translation": "举起手来!",
+      "chunks": [
+        "Hands",
+        "up!"
+      ],
+      "hints": [
+        "举起",
+        "手来！"
+      ],
+      "cid": "8d9738ed"
+    },
+    {
+      "sentence": "Don't move!",
+      "translation": "不许动!",
+      "chunks": [
+        "Don't",
+        "move!"
+      ],
+      "hints": [
+        "不许",
+        "动！"
+      ],
+      "cid": "cd59d43d"
+    },
+    {
+      "sentence": "You listen to me!",
+      "translation": "照我说的去做!",
+      "chunks": [
+        "You listen",
+        "to me!"
+      ],
+      "hints": [
+        "你",
+        "照我说的去做！"
+      ],
+      "cid": "ede20571"
+    },
+    {
+      "sentence": "Get down!",
+      "translation": "趴下!",
+      "chunks": [
+        "Get",
+        "down!"
+      ],
+      "hints": [
+        "趴",
+        "下！"
+      ],
+      "cid": "e0287f8c"
+    },
+    {
+      "sentence": "Halt!",
+      "translation": "站住!",
+      "chunks": [
+        "Halt!"
+      ],
+      "hints": [
+        "站住！"
+      ],
+      "cid": "653e7fe1"
+    },
+    {
+      "sentence": "Stay where you are!",
+      "translation": "呆在那儿!",
+      "chunks": [
+        "Stay",
+        "where you are!"
+      ],
+      "hints": [
+        "待在",
+        "原地别动！"
+      ],
+      "cid": "b19b67e9"
+    },
+    {
+      "sentence": "Move on!",
+      "translation": "往前走!",
+      "chunks": [
+        "Move",
+        "on!"
+      ],
+      "hints": [
+        "往前",
+        "走！"
+      ],
+      "cid": "9127822c"
+    },
+    {
+      "sentence": "On your knees!",
+      "translation": "跪下!",
+      "chunks": [
+        "On your",
+        "knees!"
+      ],
+      "hints": [
+        "跪",
+        "下！"
+      ],
+      "cid": "44852e52"
+    },
+    {
+      "sentence": "Let go of me!",
+      "translation": "放手!",
+      "chunks": [
+        "Let go",
+        "of me!"
+      ],
+      "hints": [
+        "放开",
+        "我！"
+      ],
+      "cid": "af35f748"
+    },
+    {
+      "sentence": "Run for your lives!",
+      "translation": "快逃吧!",
+      "chunks": [
+        "Run for",
+        "your lives!"
+      ],
+      "hints": [
+        "快",
+        "逃命吧！"
+      ],
+      "cid": "b7dbe2d2"
+    },
+    {
+      "sentence": "Stop him!",
+      "translation": "截住他!",
+      "chunks": [
+        "Stop",
+        "him!"
+      ],
+      "hints": [
+        "截住",
+        "他！"
+      ],
+      "cid": "3731b02e"
+    },
+    {
+      "sentence": "Can it!",
+      "translation": "闭嘴!",
+      "chunks": [
+        "Can",
+        "it!"
+      ],
+      "hints": [
+        "闭",
+        "嘴！"
+      ],
+      "cid": "f9bd9239"
+    },
+    {
+      "sentence": "Stand back!",
+      "translation": "后退!",
+      "chunks": [
+        "Stand",
+        "back!"
+      ],
+      "hints": [
+        "往",
+        "后退！"
+      ],
+      "cid": "b77296b5"
+    },
+    {
+      "sentence": "Cut it out!",
+      "translation": "算了吧!",
+      "chunks": [
+        "Cut it",
+        "out!"
+      ],
+      "hints": [
+        "算了",
+        "吧！"
+      ],
+      "cid": "11c70beb"
+    },
+    {
+      "sentence": "You're under arrest.",
+      "translation": "你被逮捕了。",
+      "chunks": [
+        "You're",
+        "under arrest."
+      ],
+      "hints": [
+        "你",
+        "被逮捕了。"
+      ],
+      "cid": "e30096c3"
+    },
+    {
+      "sentence": "Spread'em!",
+      "translation": "手脚分开。",
+      "chunks": [
+        "Spread'em!"
+      ],
+      "hints": [
+        "手脚分开！"
+      ],
+      "cid": "a66ee14c"
+    },
+    {
+      "sentence": "Heads up!",
+      "translation": "小心!",
+      "chunks": [
+        "Heads",
+        "up!"
+      ],
+      "hints": [
+        "当心",
+        "！有情况！"
+      ],
+      "cid": "fd0e3b94"
+    },
+    {
+      "sentence": "Drop it!",
+      "translation": "放下!",
+      "chunks": [
+        "Drop",
+        "it!"
+      ],
+      "hints": [
+        "放",
+        "下！"
+      ],
+      "cid": "2a5f4748"
+    },
+    {
+      "sentence": "Get your hands off!",
+      "translation": "拿开你的手!",
+      "chunks": [
+        "Get your hands",
+        "off!"
+      ],
+      "hints": [
+        "把你的手",
+        "拿开！"
+      ],
+      "cid": "d7c0726c"
+    },
+    {
+      "sentence": "Stay down!",
+      "translation": "趴下!",
+      "chunks": [
+        "Stay",
+        "down!"
+      ],
+      "hints": [
+        "趴",
+        "下别动！"
+      ],
+      "cid": "adebee17"
+    },
+    {
+      "sentence": "Get lost!",
+      "translation": "快溜走吧!",
+      "chunks": [
+        "Get",
+        "lost!"
+      ],
+      "hints": [
+        "快",
+        "溜走吧！"
+      ],
+      "cid": "0497fabe"
+    },
+    {
+      "sentence": "Get out of here!",
+      "translation": "滚出去。",
+      "chunks": [
+        "Get out",
+        "of here!"
+      ],
+      "hints": [
+        "滚",
+        "出去！"
+      ],
+      "cid": "1c9e35dd"
+    },
+    {
+      "sentence": "Back off!",
+      "translation": "闪开!",
+      "chunks": [
+        "Back",
+        "off!"
+      ],
+      "hints": [
+        "闪",
+        "开！"
+      ],
+      "cid": "275ecde6"
+    },
+    {
       "sentence": "Could you keep the noise down?",
       "cid": "0ab455be",
       "translation": "你能小声一点吗？",

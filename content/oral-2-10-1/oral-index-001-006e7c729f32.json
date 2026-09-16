@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "a30603da",
+      "sentence": "John, apologize to her.",
+      "translation": "约翰，向她道歉。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "7178fbb6",
+      "sentence": "John, you listen to me!",
+      "translation": "约翰，你听我说!",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "d5d8430a",
+      "sentence": "Watch out! Don't play with that thing.",
+      "translation": "危险，别淘气。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "f92c16ac",
+      "sentence": "Do it yourself.",
+      "translation": "自己的事情自己做。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "b43380fb",
+      "sentence": "You should finish what you start.",
+      "translation": "你别半途而废。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "25536be3",
+      "sentence": "I'm ready to throw in the towel.",
+      "translation": "我认输了。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "0128f318",
+      "sentence": "It's your duty to do that.",
+      "translation": "这是你(应尽)的责任。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "8de537d9",
+      "sentence": "Be good to others.",
+      "translation": "要善待他人。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "5134cad6",
+      "sentence": "You can't be too careful.",
+      "translation": "你要再三小心。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "48e72423",
+      "sentence": "Make up your mind after thinking it over carefully.",
+      "translation": "三思而后行。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "88996c55",
+      "sentence": "I'm counting on you.",
+      "translation": "我全靠你了。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "828399e0",
+      "sentence": "You'll see.",
+      "translation": "你终究会明白的。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "0f64660e",
+      "sentence": "Calm down and think carefully.",
+      "translation": "冷静下来好好想想。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "1a5e57ec",
+      "sentence": "That's the most important thing.",
+      "translation": "这是最重要的事情。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "5be9a602",
+      "sentence": "Don't bite off more than you can chew.",
+      "translation": "人要有自知之明。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "aa72c5d8",
+      "sentence": "There isn't much merit in doing so.",
+      "translation": "这事做起来没有太大价值。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "295b0176",
+      "sentence": "What you need is a little more effort.",
+      "translation": "你还得再加把劲儿。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "a9e585c8",
+      "sentence": "Respect yourself.",
+      "translation": "有点自尊心吧!",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "c899d2f4",
+      "sentence": "I hope you'll be more positive overall.",
+      "translation": "我希望你事事要积极。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "a14f8458",
+      "sentence": "That's easy for you to say.",
+      "translation": "你说得容易。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "6c7d2809",
+      "sentence": "There's no reason for complaints.",
+      "translation": "你发什么牢骚?",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "04b4807e",
+      "sentence": "It's written all over your face.",
+      "translation": "你脸上都写着呢呀!",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "7d4a8564",
+      "sentence": "It's natural for me to get angry.",
+      "translation": "我当然会生气了。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "aaf06ad2",
+      "sentence": "I'm telling you this from my experience.",
+      "translation": "我是根据我的经验才这样说的。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "74ae1dba",
+      "sentence": "Can't you think of it differently?",
+      "translation": "没其他不同的看法吗?",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "136c1498",
+      "sentence": "Just think of it!",
+      "translation": "好好想想。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "4a2b9b9e",
+      "sentence": "Don't trust it.",
+      "translation": "不要轻信。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "6129d4a4",
+      "sentence": "I'm so gullible.",
+      "translation": "我是个容易上当的人。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "1facc4d3",
+      "sentence": "Don't underestimate him.",
+      "translation": "别小看他。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "b6eb4a72",
+      "sentence": "That's the name of the game.",
+      "translation": "那是最重要的呀!",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "68e8722f",
+      "sentence": "I can't make any exceptions for you.",
+      "translation": "我不能对你特殊。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "7b26aeb6",
+      "sentence": "Use your head!",
+      "translation": "动动脑子。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "33dc36c7",
+      "sentence": "You asked for it!",
+      "translation": "自作自受。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "1aa3b83e",
+      "sentence": "If the shoe fits, wear it.",
+      "translation": "如果批评得对，你就接受吧。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "890b2dc4",
+      "sentence": "Give it a shot.",
+      "translation": "试试看吧。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "abfe8204",
+      "sentence": "You should take a break now.",
+      "translation": "你现在该休息一下了。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "725fe013",
+      "sentence": "There's no point in waiting any longer.",
+      "translation": "再等下去没有意义了。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "59f78fc3",
+      "sentence": "It's worth trying one more time.",
+      "translation": "值得再试一次。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "de2d0d34",
+      "sentence": "Just keep going.",
+      "translation": "继续坚持。",
+      "sourceUrl": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+      "sourceOffset": 38
+    }
+  ]
+}

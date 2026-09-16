@@ -29,10 +29,10 @@ window.BUILTIN_MIGRATION = {
   "oral-2-8-4": ["d338b9bb","d10b5dec","334cfe4a","6de73a4a","9850dabd","2c67da0d","adb3d11f","b0d272f4","2458e206","d7c85ebc","c59cc387","4d62bdfa","7fde70a6","744c4681","f8afdcf8"],
   "oral-2-8-5": ["05de33a5","8139df49","362a9411","dd58f6c9","09a7c3c3","d463d7c2","c9dfafd6","6db16bc7"],
   "oral-2-9-1": ["5b28a18d","300d8e13","a5117784","5e6bba59"],
-  "oral-2-9-2": ["67ae602e","c6319b49","9dc552cd","a5317c23"],
-  "oral-2-9-3": ["f40f7098","841bd042","9d0c16ea","03cbee2b","46893aac","18e9ee1b","7bec57ab","efcd6d0e","3aa31e0a","307d29b1","c1caeb1d"],
+  "oral-2-9-2": ["67ae602e","d13966c5","c6319b49","9dc552cd","a5317c23"],
+  "oral-2-9-3": ["fb54ce6f","f40f7098","841bd042","9d0c16ea","03cbee2b","46893aac","18e9ee1b","7bec57ab","efcd6d0e","3aa31e0a","307d29b1","c1caeb1d"],
   "oral-3-12-1": ["0f83a993","e14abd85","c3147310","a964fa8d","89d8df40","9edbf706","aab6ad64","86ff7ccf","0f9b4d48"],
-  "oral-3-12-2": ["f50d7898","806439ee","fb54ce6f","abc317f8","0951976a","5a4799a1"],
+  "oral-3-12-2": ["f50d7898","806439ee","abc317f8","0951976a","5a4799a1"],
   "oral-3-13-1": ["a71c1752","534483e8","10dca05a","1792dc97","9187c8c7","fc023e5e"],
   "oral-3-13-2": ["3d04d4e1","0ca82ddb","529f6b92"],
   "oral-4-17-1": ["2b0c3220","304eb970","3689d2d6","db59a3b8","85acd6c2","6ba05043","2d1602f3"],
@@ -52,5 +52,5 @@ window.BUILTIN_MIGRATION = {
   "oral-6-32-2": ["577c7ac5","b83b9640","352ea243"],
   "oral-6-33": ["79068a2f","c44e93b0"],
   "oral-8-39": ["c556a208","f7458ab4"],
-  "oral-basic": ["b95cd0f4","d13966c5","b6c66834","e24acc99","e70c8cf4","4436b78d","1bcdc1c7","2dc7b93b"]
+  "oral-basic": ["b95cd0f4","b6c66834","e24acc99","e70c8cf4","4436b78d","1bcdc1c7","2dc7b93b"]
 };

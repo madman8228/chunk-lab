@@ -71,57 +71,6 @@
       ]
     },
     {
-      "sentence": "So far so good.",
-      "cid": "d13966c5",
-      "translation": "到目前为止都挺好。",
-      "chunks": [
-        "So far",
-        "so good."
-      ],
-      "hints": [
-        "到目前为止",
-        "都挺好"
-      ],
-      "grammar": [
-        {
-          "role": "状语（习语）",
-          "color": "#7c5cbf",
-          "phonetic": [
-            "/soʊ/",
-            "/fɑːr/"
-          ],
-          "pos": "习语",
-          "meaning": "到目前为止"
-        },
-        {
-          "role": "省略表语",
-          "color": "#c87033",
-          "phonetic": [
-            "/soʊ/",
-            "/ɡʊd/"
-          ],
-          "pos": "省略句",
-          "meaning": "都挺好"
-        }
-      ],
-      "explanations": [
-        "**So far so good.** = 到目前为止一切顺利，常回答别人对进度的询问。",
-        "口语省略句，语法上省去了 it's been。书面完整版：So far, everything is going well."
-      ],
-      "distractors": [
-        [
-          "So for",
-          "So long",
-          "Far so"
-        ],
-        [
-          "so well.",
-          "so goods.",
-          "very good."
-        ]
-      ]
-    },
-    {
       "sentence": "I mean it.",
       "cid": "b6c66834",
       "translation": "我是认真的。",

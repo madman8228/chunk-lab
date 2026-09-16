@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "0fa1d0cc",
+      "sentence": "Hold it!",
+      "translation": "停!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "8151f533",
+      "sentence": "Wait!",
+      "translation": "等等!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "78fd9783",
+      "sentence": "Uh-uh-uh!",
+      "translation": "别动!别动!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "bfba081a",
+      "sentence": "Don't do that!",
+      "translation": "别干那事!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "4dfb1ad1",
+      "sentence": "Why are you doing that?",
+      "translation": "你干吗要干那种事?",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "2007dca7",
+      "sentence": "Please line up!",
+      "translation": "请排队!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "0e068025",
+      "sentence": "Don't cut in line!",
+      "translation": "别夹塞儿!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "c59ff246",
+      "sentence": "Don't push!",
+      "translation": "别推呀!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "fb8b0dea",
+      "sentence": "Don't call me names!",
+      "translation": "别张口就骂人。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "4610d457",
+      "sentence": "Don't be a blabber mouth!",
+      "translation": "别多嘴多舌的。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "3b5e18cb",
+      "sentence": "Keep it out of sight.",
+      "translation": "要做得不露痕迹。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "17df306e",
+      "sentence": "Stay away from me.",
+      "translation": "离我远点儿。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "89e05cbb",
+      "sentence": "No funny stuff!",
+      "translation": "不许耍花样!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "1609aa42",
+      "sentence": "Stay out of this!",
+      "translation": "别介入那件事!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "6ff6ff00",
+      "sentence": "Don't ruin it.",
+      "translation": "别给弄砸了。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "f1db4095",
+      "sentence": "Stop fighting.",
+      "translation": "别打架!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "d2fbb559",
+      "sentence": "Freeze!",
+      "translation": "别动!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "41b56c3b",
+      "sentence": "Duck!",
+      "translation": "蹲下!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "8d9738ed",
+      "sentence": "Hands up!",
+      "translation": "举起手来!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "cd59d43d",
+      "sentence": "Don't move!",
+      "translation": "不许动!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "ede20571",
+      "sentence": "You listen to me!",
+      "translation": "照我说的去做!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "e0287f8c",
+      "sentence": "Get down!",
+      "translation": "趴下!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "653e7fe1",
+      "sentence": "Halt!",
+      "translation": "站住!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "b19b67e9",
+      "sentence": "Stay where you are!",
+      "translation": "呆在那儿!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "9127822c",
+      "sentence": "Move on!",
+      "translation": "往前走!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "44852e52",
+      "sentence": "On your knees!",
+      "translation": "跪下!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "af35f748",
+      "sentence": "Let go of me!",
+      "translation": "放手!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "b7dbe2d2",
+      "sentence": "Run for your lives!",
+      "translation": "快逃吧!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "3731b02e",
+      "sentence": "Stop him!",
+      "translation": "截住他!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "f9bd9239",
+      "sentence": "Can it!",
+      "translation": "闭嘴!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "b77296b5",
+      "sentence": "Stand back!",
+      "translation": "后退!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "11c70beb",
+      "sentence": "Cut it out!",
+      "translation": "算了吧!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "e30096c3",
+      "sentence": "You're under arrest.",
+      "translation": "你被逮捕了。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "a66ee14c",
+      "sentence": "Spread'em!",
+      "translation": "手脚分开。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "fd0e3b94",
+      "sentence": "Heads up!",
+      "translation": "小心!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "2a5f4748",
+      "sentence": "Drop it!",
+      "translation": "放下!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "d7c0726c",
+      "sentence": "Get your hands off!",
+      "translation": "拿开你的手!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "adebee17",
+      "sentence": "Stay down!",
+      "translation": "趴下!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "0497fabe",
+      "sentence": "Get lost!",
+      "translation": "快溜走吧!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "1c9e35dd",
+      "sentence": "Get out of here!",
+      "translation": "滚出去。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "275ecde6",
+      "sentence": "Back off!",
+      "translation": "闪开!",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "0ab455be",
+      "sentence": "Could you keep the noise down?",
+      "translation": "你能小声一点吗？",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "5b616a39",
+      "sentence": "Could you turn the music down a bit?",
+      "translation": "你能把音乐声调小一点吗？",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "d99feea8",
+      "sentence": "We're in a library.",
+      "translation": "我们在图书馆。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "05cc4c9b",
+      "sentence": "You're talking too loudly.",
+      "translation": "你说话太大声了。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "c3dee22f",
+      "sentence": "Keep it down.",
+      "translation": "小声点。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "dfc5d91e",
+      "sentence": "Back away.",
+      "translation": "后退。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "0718c5bc",
+      "sentence": "Don't stare.",
+      "translation": "别盯着看。",
+      "sourceUrl": "content/oral-2-10-3/oral-001-809a11b10878.json",
+      "sourceOffset": 47
+    }
+  ]
+}

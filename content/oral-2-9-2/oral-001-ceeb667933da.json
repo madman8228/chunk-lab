@@ -1,0 +1,1144 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Yes?",
+      "translation": "有事吗?",
+      "chunks": [
+        "Yes?"
+      ],
+      "hints": [
+        "有事吗？"
+      ],
+      "cid": "da81199d"
+    },
+    {
+      "sentence": "What for?",
+      "translation": "为何?",
+      "chunks": [
+        "What",
+        "for?"
+      ],
+      "hints": [
+        "为了",
+        "什么呢？"
+      ],
+      "cid": "0d42e255"
+    },
+    {
+      "sentence": "Pardon me?",
+      "translation": "您说什么?",
+      "chunks": [
+        "Pardon",
+        "me?"
+      ],
+      "hints": [
+        "抱歉，",
+        "您说什么？"
+      ],
+      "cid": "235630ca"
+    },
+    {
+      "sentence": "How about now?",
+      "translation": "现在怎么样?",
+      "chunks": [
+        "How about",
+        "now?"
+      ],
+      "hints": [
+        "现在",
+        "怎么样？"
+      ],
+      "cid": "6a7a7df1"
+    },
+    {
+      "sentence": "Excuse me?",
+      "translation": "对不起，你说什么?",
+      "chunks": [
+        "Excuse",
+        "me?"
+      ],
+      "hints": [
+        "对不起，",
+        "你说什么？"
+      ],
+      "cid": "87361343"
+    },
+    {
+      "sentence": "What?",
+      "translation": "什么?",
+      "chunks": [
+        "What?"
+      ],
+      "hints": [
+        "什么？"
+      ],
+      "cid": "29829b50"
+    },
+    {
+      "sentence": "Did you say anything?",
+      "translation": "你说什么来着?",
+      "chunks": [
+        "Did you say",
+        "anything?"
+      ],
+      "hints": [
+        "你刚说",
+        "什么了吗？"
+      ],
+      "cid": "d06fbab1"
+    },
+    {
+      "sentence": "I'm sorry, what did you say?",
+      "translation": "对不起，你说什么来着?",
+      "chunks": [
+        "I'm sorry,",
+        "what did you say?"
+      ],
+      "hints": [
+        "对不起，",
+        "你说什么来着？"
+      ],
+      "cid": "163799ff"
+    },
+    {
+      "sentence": "So what?",
+      "translation": "那又怎么样呢?",
+      "chunks": [
+        "So",
+        "what?"
+      ],
+      "hints": [
+        "那",
+        "又怎么样？"
+      ],
+      "cid": "8b3fdd20"
+    },
+    {
+      "sentence": "What does it mean?",
+      "translation": "什么意思?",
+      "chunks": [
+        "What does",
+        "it mean?"
+      ],
+      "hints": [
+        "它",
+        "是什么意思？"
+      ],
+      "cid": "db180147"
+    },
+    {
+      "sentence": "Are you saying that...?",
+      "translation": "你是说……吗?",
+      "chunks": [
+        "Are you",
+        "saying that...?"
+      ],
+      "hints": [
+        "你是",
+        "说……吗？"
+      ],
+      "cid": "61a25703"
+    },
+    {
+      "sentence": "Then what?",
+      "translation": "后来怎么样了?",
+      "chunks": [
+        "Then",
+        "what?"
+      ],
+      "hints": [
+        "后来",
+        "怎么样？"
+      ],
+      "cid": "d1473595"
+    },
+    {
+      "sentence": "What's he driving at?",
+      "translation": "他到底想干吗?",
+      "chunks": [
+        "What's he",
+        "driving at?"
+      ],
+      "hints": [
+        "他到底",
+        "想说什么？"
+      ],
+      "cid": "9ff2f32d"
+    },
+    {
+      "sentence": "Would you repeat that, please?",
+      "translation": "您能再说一遍吗?",
+      "chunks": [
+        "Would you repeat",
+        "that, please?"
+      ],
+      "hints": [
+        "你能重复",
+        "一遍吗？"
+      ],
+      "cid": "a5820f00"
+    },
+    {
+      "sentence": "You're speaking too quickly.",
+      "translation": "您说得太快了。",
+      "chunks": [
+        "You're speaking",
+        "too quickly."
+      ],
+      "hints": [
+        "你说得",
+        "太快了。"
+      ],
+      "cid": "66d5d54a"
+    },
+    {
+      "sentence": "Please say it more slowly.",
+      "translation": "请您再说慢一点儿。",
+      "chunks": [
+        "Please say it",
+        "more slowly."
+      ],
+      "hints": [
+        "请说得",
+        "再慢一点儿。"
+      ],
+      "cid": "06844c4e"
+    },
+    {
+      "sentence": "I can't keep up.",
+      "translation": "我跟不上您说的。",
+      "chunks": [
+        "I can't",
+        "keep up."
+      ],
+      "hints": [
+        "我",
+        "跟不上。"
+      ],
+      "cid": "368e5213"
+    },
+    {
+      "sentence": "Please speak a little louder.",
+      "translation": "请再大一点儿声说。",
+      "chunks": [
+        "Please speak",
+        "a little louder."
+      ],
+      "hints": [
+        "请说得",
+        "大声一点儿。"
+      ],
+      "cid": "c37be529"
+    },
+    {
+      "sentence": "I can't hear you.",
+      "translation": "我听不见。",
+      "chunks": [
+        "I can't",
+        "hear you."
+      ],
+      "hints": [
+        "我",
+        "听不见你说话。"
+      ],
+      "cid": "4664a58a"
+    },
+    {
+      "sentence": "I couldn't catch what you said.",
+      "translation": "我没听见你说什么。",
+      "chunks": [
+        "I couldn't catch",
+        "what you said."
+      ],
+      "hints": [
+        "我没听清",
+        "你说什么。"
+      ],
+      "cid": "c7d3e207"
+    },
+    {
+      "sentence": "What are you talking about?",
+      "translation": "你在说什么呢?",
+      "chunks": [
+        "What are you",
+        "talking about?"
+      ],
+      "hints": [
+        "你在",
+        "说什么呢？"
+      ],
+      "cid": "c441f0e2"
+    },
+    {
+      "sentence": "Just like me!",
+      "translation": "就像我一样。",
+      "chunks": [
+        "Just",
+        "like me!"
+      ],
+      "hints": [
+        "就",
+        "像我一样！"
+      ],
+      "cid": "b4c57b93"
+    },
+    {
+      "sentence": "Was it good?",
+      "translation": "好吃吗?",
+      "chunks": [
+        "Was",
+        "it good?"
+      ],
+      "hints": [
+        "它",
+        "好吃吗？"
+      ],
+      "cid": "b53a3071"
+    },
+    {
+      "sentence": "Did you have fun?",
+      "translation": "玩得高兴吗?",
+      "chunks": [
+        "Did you",
+        "have fun?"
+      ],
+      "hints": [
+        "你",
+        "玩得开心吗？"
+      ],
+      "cid": "dd1007bd"
+    },
+    {
+      "sentence": "How do you like this suit?",
+      "translation": "这套衣服怎么样?",
+      "chunks": [
+        "How do you like",
+        "this suit?"
+      ],
+      "hints": [
+        "你觉得",
+        "这套衣服怎么样？"
+      ],
+      "cid": "4e1003a6"
+    },
+    {
+      "sentence": "How did you like it?",
+      "translation": "你觉得怎么样?",
+      "chunks": [
+        "How did you",
+        "like it?"
+      ],
+      "hints": [
+        "你觉得",
+        "它怎么样？"
+      ],
+      "cid": "1717b650"
+    },
+    {
+      "sentence": "Did you like it?",
+      "translation": "你喜欢吗?",
+      "chunks": [
+        "Did you",
+        "like it?"
+      ],
+      "hints": [
+        "你",
+        "喜欢它吗？"
+      ],
+      "cid": "b7ffe4b2"
+    },
+    {
+      "sentence": "What do you think of it?",
+      "translation": "你觉得那个怎么样?",
+      "chunks": [
+        "What do you think",
+        "of it?"
+      ],
+      "hints": [
+        "你觉得",
+        "那个怎么样？"
+      ],
+      "cid": "26d75aaa"
+    },
+    {
+      "sentence": "How'd things turn out?",
+      "translation": "结果怎么样?",
+      "chunks": [
+        "How'd things",
+        "turn out?"
+      ],
+      "hints": [
+        "事情",
+        "结果怎么样？"
+      ],
+      "cid": "9baef383"
+    },
+    {
+      "sentence": "To make a long story short,...",
+      "translation": "长话短说……",
+      "chunks": [
+        "To make",
+        "a long story short,..."
+      ],
+      "hints": [
+        "长话",
+        "短说……"
+      ],
+      "cid": "7cc5f514"
+    },
+    {
+      "sentence": "Just tell me the story in a nutshell.",
+      "translation": "你就简明扼要地说吧。",
+      "chunks": [
+        "Just tell me the story",
+        "in a nutshell."
+      ],
+      "hints": [
+        "你就",
+        "简明扼要地说吧。"
+      ],
+      "cid": "393bb56d"
+    },
+    {
+      "sentence": "Let me know the circumstances.",
+      "translation": "告诉我详细情况。",
+      "chunks": [
+        "Let me know",
+        "the circumstances."
+      ],
+      "hints": [
+        "告诉我",
+        "详细情况。"
+      ],
+      "cid": "8923209c"
+    },
+    {
+      "sentence": "A piece of cake.",
+      "translation": "轻而易举。",
+      "chunks": [
+        "A piece",
+        "of cake."
+      ],
+      "hints": [
+        "小菜",
+        "一碟。"
+      ],
+      "cid": "25578e81"
+    },
+    {
+      "sentence": "So far so good.",
+      "cid": "d13966c5",
+      "translation": "到目前为止都挺好。",
+      "chunks": [
+        "So far",
+        "so good."
+      ],
+      "hints": [
+        "到目前为止",
+        "都挺好"
+      ],
+      "grammar": [
+        {
+          "role": "状语（习语）",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/soʊ/",
+            "/fɑːr/"
+          ],
+          "pos": "习语",
+          "meaning": "到目前为止"
+        },
+        {
+          "role": "省略表语",
+          "color": "#c87033",
+          "phonetic": [
+            "/soʊ/",
+            "/ɡʊd/"
+          ],
+          "pos": "省略句",
+          "meaning": "都挺好"
+        }
+      ],
+      "explanations": [
+        "**So far so good.** = 到目前为止一切顺利，常回答别人对进度的询问。",
+        "口语省略句，语法上省去了 it's been。书面完整版：So far, everything is going well."
+      ],
+      "distractors": [
+        [
+          "So for",
+          "So long",
+          "Far so"
+        ],
+        [
+          "so well.",
+          "so goods.",
+          "very good."
+        ]
+      ]
+    },
+    {
+      "sentence": "So-so.",
+      "translation": "马马虎虎。",
+      "chunks": [
+        "So-so."
+      ],
+      "hints": [
+        "马马虎虎。"
+      ],
+      "cid": "121825c2"
+    },
+    {
+      "sentence": "That's about it.",
+      "translation": "(事情)就是这样。",
+      "chunks": [
+        "That's",
+        "about it."
+      ],
+      "hints": [
+        "就",
+        "这些了。"
+      ],
+      "cid": "e08902ce"
+    },
+    {
+      "sentence": "It was nothing.",
+      "translation": "没什么了不起的。",
+      "chunks": [
+        "It was",
+        "nothing."
+      ],
+      "hints": [
+        "这",
+        "没什么。"
+      ],
+      "cid": "40c2a822"
+    },
+    {
+      "sentence": "There's nothing to it.",
+      "translation": "这很简单。",
+      "chunks": [
+        "There's nothing",
+        "to it."
+      ],
+      "hints": [
+        "这",
+        "没什么难的。"
+      ],
+      "cid": "0c204246"
+    },
+    {
+      "sentence": "It worked!",
+      "translation": "啊，真灵!",
+      "chunks": [
+        "It",
+        "worked!"
+      ],
+      "hints": [
+        "真的",
+        "管用了！"
+      ],
+      "cid": "ae645ebf"
+    },
+    {
+      "sentence": "It needs work.",
+      "translation": "还需再加把劲。",
+      "chunks": [
+        "It needs",
+        "work."
+      ],
+      "hints": [
+        "还",
+        "需要改进。"
+      ],
+      "cid": "d6790a0c"
+    },
+    {
+      "sentence": "Almost!",
+      "translation": "就差那么一点儿。",
+      "chunks": [
+        "Almost!"
+      ],
+      "hints": [
+        "就差一点儿！"
+      ],
+      "cid": "999c54ea"
+    },
+    {
+      "sentence": "Going from bad to worse.",
+      "translation": "越来越不好。",
+      "chunks": [
+        "Going from",
+        "bad to worse."
+      ],
+      "hints": [
+        "越来越",
+        "糟。"
+      ],
+      "cid": "b12877a1"
+    },
+    {
+      "sentence": "He made it big.",
+      "translation": "他一举成名。",
+      "chunks": [
+        "He made",
+        "it big."
+      ],
+      "hints": [
+        "他",
+        "一举成名。"
+      ],
+      "cid": "6a21ea88"
+    },
+    {
+      "sentence": "We're set.",
+      "translation": "问题解决了。",
+      "chunks": [
+        "We're",
+        "set."
+      ],
+      "hints": [
+        "我们",
+        "搞定了。"
+      ],
+      "cid": "ba0f4167"
+    },
+    {
+      "sentence": "I see.",
+      "translation": "我知道了。",
+      "chunks": [
+        "I",
+        "see."
+      ],
+      "hints": [
+        "我",
+        "明白了。"
+      ],
+      "cid": "cf4071cb"
+    },
+    {
+      "sentence": "Uh-huh.",
+      "translation": "嗯，嗯。",
+      "chunks": [
+        "Uh-huh."
+      ],
+      "hints": [
+        "嗯，嗯。"
+      ],
+      "cid": "f29799a2"
+    },
+    {
+      "sentence": "You have?",
+      "translation": "是吗?",
+      "chunks": [
+        "You",
+        "have?"
+      ],
+      "hints": [
+        "是",
+        "吗？"
+      ],
+      "cid": "87dab11f"
+    },
+    {
+      "sentence": "Is that right?",
+      "translation": "是那样吗?",
+      "chunks": [
+        "Is that",
+        "right?"
+      ],
+      "hints": [
+        "是",
+        "那样吗？"
+      ],
+      "cid": "b6cc6395"
+    },
+    {
+      "sentence": "That's right.",
+      "translation": "是那样。",
+      "chunks": [
+        "That's",
+        "right."
+      ],
+      "hints": [
+        "是",
+        "那样。"
+      ],
+      "cid": "a1ef9c1a"
+    },
+    {
+      "sentence": "Exactly!",
+      "translation": "没错!",
+      "chunks": [
+        "Exactly!"
+      ],
+      "hints": [
+        "没错！"
+      ],
+      "cid": "20b555b6"
+    },
+    {
+      "sentence": "Oh, yeah?",
+      "translation": "是吗?",
+      "chunks": [
+        "Oh,",
+        "yeah?"
+      ],
+      "hints": [
+        "哦，",
+        "是吗？"
+      ],
+      "cid": "85bdd3da"
+    },
+    {
+      "sentence": "Is that so?",
+      "translation": "是吗?",
+      "chunks": [
+        "Is that",
+        "so?"
+      ],
+      "hints": [
+        "是",
+        "这样吗？"
+      ],
+      "cid": "d651d749"
+    },
+    {
+      "sentence": "And?",
+      "translation": "然后呢?",
+      "chunks": [
+        "And?"
+      ],
+      "hints": [
+        "然后呢？"
+      ],
+      "cid": "7a64d57b"
+    },
+    {
+      "sentence": "Me, too.",
+      "translation": "我也是。",
+      "chunks": [
+        "Me,",
+        "too."
+      ],
+      "hints": [
+        "我",
+        "也是。"
+      ],
+      "cid": "95d15fe7"
+    },
+    {
+      "sentence": "Neither do I.",
+      "translation": "我也不……",
+      "chunks": [
+        "Neither",
+        "do I."
+      ],
+      "hints": [
+        "我",
+        "也不。"
+      ],
+      "cid": "89b98bc0"
+    },
+    {
+      "sentence": "Don't be silly.",
+      "translation": "别说傻话。",
+      "chunks": [
+        "Don't be",
+        "silly."
+      ],
+      "hints": [
+        "别",
+        "说傻话。"
+      ],
+      "cid": "1ac5dda9"
+    },
+    {
+      "sentence": "That's too bad.",
+      "translation": "真是太倒霉了。",
+      "chunks": [
+        "That's",
+        "too bad."
+      ],
+      "hints": [
+        "太",
+        "倒霉了。"
+      ],
+      "cid": "f74524ff"
+    },
+    {
+      "sentence": "Are you sure?",
+      "translation": "真的吗?",
+      "chunks": [
+        "Are you",
+        "sure?"
+      ],
+      "hints": [
+        "你",
+        "确定吗？"
+      ],
+      "cid": "68981be8"
+    },
+    {
+      "sentence": "What a shame!",
+      "translation": "真是太过分(遗憾)了!",
+      "chunks": [
+        "What",
+        "a shame!"
+      ],
+      "hints": [
+        "真",
+        "遗憾！"
+      ],
+      "cid": "9d7a1413"
+    },
+    {
+      "sentence": "Good!",
+      "translation": "那好哇。",
+      "chunks": [
+        "Good!"
+      ],
+      "hints": [
+        "那好哇。"
+      ],
+      "cid": "c42a1c9b"
+    },
+    {
+      "sentence": "What a surprise!",
+      "translation": "真叫人吃惊。",
+      "chunks": [
+        "What",
+        "a surprise!"
+      ],
+      "hints": [
+        "真",
+        "叫人吃惊！"
+      ],
+      "cid": "637df0ba"
+    },
+    {
+      "sentence": "I hope not.",
+      "translation": "我真希望不是这样。",
+      "chunks": [
+        "I",
+        "hope not."
+      ],
+      "hints": [
+        "我",
+        "希望不是这样。"
+      ],
+      "cid": "ec13b76f"
+    },
+    {
+      "sentence": "I hope so.",
+      "translation": "要是那样就好了!",
+      "chunks": [
+        "I",
+        "hope so."
+      ],
+      "hints": [
+        "我",
+        "希望如此。"
+      ],
+      "cid": "d1b37a32"
+    },
+    {
+      "sentence": "Great!",
+      "translation": "太棒了!",
+      "chunks": [
+        "Great!"
+      ],
+      "hints": [
+        "太棒了！"
+      ],
+      "cid": "bdb20c7d"
+    },
+    {
+      "sentence": "Unbelievable!",
+      "translation": "难以置信!",
+      "chunks": [
+        "Unbelievable!"
+      ],
+      "hints": [
+        "难以置信！"
+      ],
+      "cid": "553e02da"
+    },
+    {
+      "sentence": "No kidding!",
+      "translation": "开玩笑吧!",
+      "chunks": [
+        "No",
+        "kidding!"
+      ],
+      "hints": [
+        "别",
+        "开玩笑吧！"
+      ],
+      "cid": "af53e44d"
+    },
+    {
+      "sentence": "You bet.",
+      "translation": "行!没问题!",
+      "chunks": [
+        "You",
+        "bet."
+      ],
+      "hints": [
+        "行，",
+        "没问题！"
+      ],
+      "cid": "e5a45f97"
+    },
+    {
+      "sentence": "Sorry, I didn't catch what you said.",
+      "cid": "67ae602e",
+      "translation": "抱歉，我没听清你说的话。",
+      "chunks": [
+        "Sorry,",
+        "I didn't catch",
+        "what you said."
+      ],
+      "hints": [
+        "抱歉",
+        "我没听清",
+        "你说的话"
+      ],
+      "grammar": [
+        {
+          "role": "插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsɒri/"
+          ],
+          "pos": "感叹词",
+          "meaning": "抱歉"
+        },
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈdɪdnt/",
+            "/kætʃ/"
+          ],
+          "pos": "一般过去时否定",
+          "meaning": "我没听清"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wɒt/",
+            "/juː/",
+            "/sed/"
+          ],
+          "pos": "名词性从句",
+          "meaning": "你说的话"
+        }
+      ],
+      "explanations": [
+        "这里 **Sorry** 是独立的礼貌用语，后面用逗号隔开。也可以说 \"Excuse me\" 或 \"Pardon\"。",
+        "**一般过去时的否定**：didn't + 动词原形。常见错误：\n• \"I **don't** catch\" → 时态错了，事情已经发生\n• \"I didn't **caught**\" → caught 是过去分词，didn't 后面要用原形 catch",
+        "**catch 后面的宾语从句用陈述语序**（主语 + 谓语），不是疑问语序。常见错误：\n• \"what **did you** say\" → 这是直接疑问句的语序，从句里要还原成 \"you said\""
+      ],
+      "distractors": [
+        [
+          "Sory,",
+          "Sorrys,",
+          "Sorry for,"
+        ],
+        [
+          "I don't catch",
+          "I didn't caught",
+          "I didn't catches"
+        ],
+        [
+          "what did you say.",
+          "that you said.",
+          "what you say."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you speak a bit more slowly, please?",
+      "cid": "c6319b49",
+      "translation": "你能说慢一点吗？",
+      "chunks": [
+        "Could you speak",
+        "a bit more slowly,",
+        "please?"
+      ],
+      "hints": [
+        "你能说",
+        "稍微慢一点",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/spiːk/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能说"
+        },
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ə/",
+            "/bɪt/",
+            "/mɔːr/",
+            "/ˈsləʊli/"
+          ],
+          "pos": "副词短语",
+          "meaning": "稍微慢一点"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "`Could you speak more slowly` 请求放慢语速。常见错误：\n• \"speak more **slow**\" → slow 是形容词，修饰动词要用副词 slowly\n• \"speak **slower**\" → 口语偶见，但 more slowly 更规范",
+        "`a bit` = 稍微，用来缓和请求语气，也可换 a little。please 放句末更礼貌。"
+      ],
+      "distractors": [
+        [
+          "Could you spoke",
+          "Could your speak",
+          "Could you to speak"
+        ],
+        [
+          "a bit more slower,",
+          "a bit of more slowly,",
+          "a more bit slowly,"
+        ],
+        [
+          "pleased?",
+          "pleases?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I didn't quite catch what you said.",
+      "cid": "9dc552cd",
+      "translation": "我没太听清你说的话。",
+      "chunks": [
+        "I didn't quite catch",
+        "what you said."
+      ],
+      "hints": [
+        "我没太听清",
+        "你说的话"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈdɪdnt/",
+            "/kwaɪt/",
+            "/kætʃ/"
+          ],
+          "pos": "过去时否定",
+          "meaning": "我没太听清"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɒt/",
+            "/juː/",
+            "/sed/"
+          ],
+          "pos": "what 从句",
+          "meaning": "你说的话"
+        }
+      ],
+      "explanations": [
+        "没听清时请对方重复。`catch` 此处 = 听清/听懂。常见错误：\n• \"I didn't **heard**\" → didn't 后接动词原形 hear/catch\n• \"I didn't quite **listen** what you said\" → 听清用 catch/hear，不用 listen",
+        "`what you said` = 你说的话（what 引导名词性从句）。注意从句语序是陈述语序（you said，不是 did you say）。"
+      ],
+      "distractors": [
+        [
+          "I don't quite catch",
+          "I didn't quite caught",
+          "I didn't quite catching"
+        ],
+        [
+          "what did you said.",
+          "what you say.",
+          "that you said."
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you run that by me one more time?",
+      "cid": "a5317c23",
+      "translation": "你能再给我说一遍吗？",
+      "chunks": [
+        "Could you run that by me",
+        "one more time?"
+      ],
+      "hints": [
+        "你能给我过一遍",
+        "再一次"
+      ],
+      "grammar": [
+        {
+          "role": "情态+短语动词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/rʌn/",
+            "/ðæt/",
+            "/baɪ/",
+            "/miː/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "你能给我讲一遍"
+        },
+        {
+          "role": "频率状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌn/",
+            "/mɔːr/",
+            "/taɪm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "再一次"
+        }
+      ],
+      "explanations": [
+        "`run that by me` = 给我讲一遍/过一遍（美式口语，常用于确认理解）。常见错误：\n• \"run **me** by that\" → 语序固定：run that by me\n• \"say that to me again\" → 也对，但 run by 更口语",
+        "`one more time` = 再一次。同义：once more / again."
+      ],
+      "distractors": [
+        [
+          "Could you run that to me",
+          "Can you run me by that",
+          "Could your run that by me"
+        ],
+        [
+          "one another time?",
+          "more one time?",
+          "one more times?"
+        ]
+      ]
+    }
+  ]
+}

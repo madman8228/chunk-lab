@@ -1,0 +1,739 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "John, apologize to her.",
+      "translation": "约翰，向她道歉。",
+      "chunks": [
+        "John,",
+        "apologize to her."
+      ],
+      "hints": [
+        "约翰，",
+        "向她道歉。"
+      ],
+      "cid": "a30603da"
+    },
+    {
+      "sentence": "John, you listen to me!",
+      "translation": "约翰，你听我说!",
+      "chunks": [
+        "John,",
+        "you listen to me!"
+      ],
+      "hints": [
+        "约翰，",
+        "你听我说！"
+      ],
+      "cid": "7178fbb6"
+    },
+    {
+      "sentence": "Watch out! Don't play with that thing.",
+      "translation": "危险，别淘气。",
+      "chunks": [
+        "Watch out! Don't play",
+        "with that thing."
+      ],
+      "hints": [
+        "危险！别玩",
+        "那个东西。"
+      ],
+      "cid": "d5d8430a"
+    },
+    {
+      "sentence": "Do it yourself.",
+      "translation": "自己的事情自己做。",
+      "chunks": [
+        "Do it",
+        "yourself."
+      ],
+      "hints": [
+        "你自己的事",
+        "自己做。"
+      ],
+      "cid": "f92c16ac"
+    },
+    {
+      "sentence": "You should finish what you start.",
+      "translation": "你别半途而废。",
+      "chunks": [
+        "You should finish",
+        "what you start."
+      ],
+      "hints": [
+        "你应该完成",
+        "你开始做的事。"
+      ],
+      "cid": "b43380fb"
+    },
+    {
+      "sentence": "I'm ready to throw in the towel.",
+      "translation": "我认输了。",
+      "chunks": [
+        "I'm ready to throw",
+        "in the towel."
+      ],
+      "hints": [
+        "我准备",
+        "认输了。"
+      ],
+      "cid": "25536be3"
+    },
+    {
+      "sentence": "It's your duty to do that.",
+      "translation": "这是你(应尽)的责任。",
+      "chunks": [
+        "It's your duty",
+        "to do that."
+      ],
+      "hints": [
+        "这是你的责任，",
+        "你该做的。"
+      ],
+      "cid": "0128f318"
+    },
+    {
+      "sentence": "Be good to others.",
+      "translation": "要善待他人。",
+      "chunks": [
+        "Be good",
+        "to others."
+      ],
+      "hints": [
+        "要善待",
+        "他人。"
+      ],
+      "cid": "8de537d9"
+    },
+    {
+      "sentence": "You can't be too careful.",
+      "translation": "你要再三小心。",
+      "chunks": [
+        "You can't be",
+        "too careful."
+      ],
+      "hints": [
+        "你再小心",
+        "也不为过。"
+      ],
+      "cid": "5134cad6"
+    },
+    {
+      "sentence": "Make up your mind after thinking it over carefully.",
+      "translation": "三思而后行。",
+      "chunks": [
+        "Make up your mind",
+        "after thinking it over carefully."
+      ],
+      "hints": [
+        "仔细考虑之后",
+        "再下决心。"
+      ],
+      "cid": "48e72423"
+    },
+    {
+      "sentence": "I'm counting on you.",
+      "translation": "我全靠你了。",
+      "chunks": [
+        "I'm counting",
+        "on you."
+      ],
+      "hints": [
+        "我",
+        "全靠你了。"
+      ],
+      "cid": "88996c55"
+    },
+    {
+      "sentence": "You'll see.",
+      "translation": "你终究会明白的。",
+      "chunks": [
+        "You'll",
+        "see."
+      ],
+      "hints": [
+        "你",
+        "终究会明白的。"
+      ],
+      "cid": "828399e0"
+    },
+    {
+      "sentence": "Calm down and think carefully.",
+      "translation": "冷静下来好好想想。",
+      "chunks": [
+        "Calm down",
+        "and think carefully."
+      ],
+      "hints": [
+        "冷静下来",
+        "好好想想。"
+      ],
+      "cid": "0f64660e"
+    },
+    {
+      "sentence": "That's the most important thing.",
+      "translation": "这是最重要的事情。",
+      "chunks": [
+        "That's the most",
+        "important thing."
+      ],
+      "hints": [
+        "这是最",
+        "重要的事情。"
+      ],
+      "cid": "1a5e57ec"
+    },
+    {
+      "sentence": "Don't bite off more than you can chew.",
+      "translation": "人要有自知之明。",
+      "chunks": [
+        "Don't bite off more",
+        "than you can chew."
+      ],
+      "hints": [
+        "别贪多",
+        "嚼不烂。"
+      ],
+      "cid": "5be9a602"
+    },
+    {
+      "sentence": "There isn't much merit in doing so.",
+      "translation": "这事做起来没有太大价值。",
+      "chunks": [
+        "There isn't much merit",
+        "in doing so."
+      ],
+      "hints": [
+        "这么做",
+        "没多大价值。"
+      ],
+      "cid": "aa72c5d8"
+    },
+    {
+      "sentence": "What you need is a little more effort.",
+      "translation": "你还得再加把劲儿。",
+      "chunks": [
+        "What you need is",
+        "a little more effort."
+      ],
+      "hints": [
+        "你需要的是",
+        "再加把劲儿。"
+      ],
+      "cid": "295b0176"
+    },
+    {
+      "sentence": "Respect yourself.",
+      "translation": "有点自尊心吧!",
+      "chunks": [
+        "Respect",
+        "yourself."
+      ],
+      "hints": [
+        "有点",
+        "自尊心吧！"
+      ],
+      "cid": "a9e585c8"
+    },
+    {
+      "sentence": "I hope you'll be more positive overall.",
+      "translation": "我希望你事事要积极。",
+      "chunks": [
+        "I hope you'll be",
+        "more positive overall."
+      ],
+      "hints": [
+        "我希望你",
+        "事事都更积极些。"
+      ],
+      "cid": "c899d2f4"
+    },
+    {
+      "sentence": "That's easy for you to say.",
+      "translation": "你说得容易。",
+      "chunks": [
+        "That's easy",
+        "for you to say."
+      ],
+      "hints": [
+        "你说得",
+        "倒容易。"
+      ],
+      "cid": "a14f8458"
+    },
+    {
+      "sentence": "There's no reason for complaints.",
+      "translation": "你发什么牢骚?",
+      "chunks": [
+        "There's no reason",
+        "for complaints."
+      ],
+      "hints": [
+        "没什么",
+        "好抱怨的。"
+      ],
+      "cid": "6c7d2809"
+    },
+    {
+      "sentence": "It's written all over your face.",
+      "translation": "你脸上都写着呢呀!",
+      "chunks": [
+        "It's written",
+        "all over your face."
+      ],
+      "hints": [
+        "全都写在",
+        "你脸上了！"
+      ],
+      "cid": "04b4807e"
+    },
+    {
+      "sentence": "It's natural for me to get angry.",
+      "translation": "我当然会生气了。",
+      "chunks": [
+        "It's natural for me",
+        "to get angry."
+      ],
+      "hints": [
+        "我生气",
+        "是理所当然的。"
+      ],
+      "cid": "7d4a8564"
+    },
+    {
+      "sentence": "I'm telling you this from my experience.",
+      "translation": "我是根据我的经验才这样说的。",
+      "chunks": [
+        "I'm telling you this",
+        "from my experience."
+      ],
+      "hints": [
+        "我是根据",
+        "我的经验说的。"
+      ],
+      "cid": "aaf06ad2"
+    },
+    {
+      "sentence": "Can't you think of it differently?",
+      "translation": "没其他不同的看法吗?",
+      "chunks": [
+        "Can't you think of it",
+        "differently?"
+      ],
+      "hints": [
+        "你不能",
+        "换个角度想吗？"
+      ],
+      "cid": "74ae1dba"
+    },
+    {
+      "sentence": "Just think of it!",
+      "translation": "好好想想。",
+      "chunks": [
+        "Just think",
+        "of it!"
+      ],
+      "hints": [
+        "你",
+        "好好想想！"
+      ],
+      "cid": "136c1498"
+    },
+    {
+      "sentence": "Don't trust it.",
+      "translation": "不要轻信。",
+      "chunks": [
+        "Don't",
+        "trust it."
+      ],
+      "hints": [
+        "别",
+        "轻信。"
+      ],
+      "cid": "4a2b9b9e"
+    },
+    {
+      "sentence": "I'm so gullible.",
+      "translation": "我是个容易上当的人。",
+      "chunks": [
+        "I'm so",
+        "gullible."
+      ],
+      "hints": [
+        "我太",
+        "容易上当了。"
+      ],
+      "cid": "6129d4a4"
+    },
+    {
+      "sentence": "Don't underestimate him.",
+      "translation": "别小看他。",
+      "chunks": [
+        "Don't underestimate",
+        "him."
+      ],
+      "hints": [
+        "别小看",
+        "他。"
+      ],
+      "cid": "1facc4d3"
+    },
+    {
+      "sentence": "That's the name of the game.",
+      "translation": "那是最重要的呀!",
+      "chunks": [
+        "That's the name",
+        "of the game."
+      ],
+      "hints": [
+        "那才是",
+        "最重要的呀！"
+      ],
+      "cid": "b6eb4a72"
+    },
+    {
+      "sentence": "I can't make any exceptions for you.",
+      "translation": "我不能对你特殊。",
+      "chunks": [
+        "I can't make",
+        "any exceptions for you."
+      ],
+      "hints": [
+        "我不能",
+        "对你特殊。"
+      ],
+      "cid": "68e8722f"
+    },
+    {
+      "sentence": "Use your head!",
+      "translation": "动动脑子。",
+      "chunks": [
+        "Use your",
+        "head!"
+      ],
+      "hints": [
+        "动动",
+        "脑子！"
+      ],
+      "cid": "7b26aeb6"
+    },
+    {
+      "sentence": "You asked for it!",
+      "translation": "自作自受。",
+      "chunks": [
+        "You asked",
+        "for it!"
+      ],
+      "hints": [
+        "这是你",
+        "自作自受！"
+      ],
+      "cid": "33dc36c7"
+    },
+    {
+      "sentence": "If the shoe fits, wear it.",
+      "translation": "如果批评得对，你就接受吧。",
+      "chunks": [
+        "If the shoe fits,",
+        "wear it."
+      ],
+      "hints": [
+        "批评得对，",
+        "你就接受吧。"
+      ],
+      "cid": "1aa3b83e"
+    },
+    {
+      "sentence": "Give it a shot.",
+      "cid": "890b2dc4",
+      "translation": "试试看吧。",
+      "chunks": [
+        "Give it",
+        "a shot."
+      ],
+      "hints": [
+        "给它（试试）",
+        "一次机会"
+      ],
+      "grammar": [
+        {
+          "role": "祈使+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡɪv/",
+            "/ɪt/"
+          ],
+          "pos": "祈使句",
+          "meaning": "给它（一次）"
+        },
+        {
+          "role": "宾语（习语）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ʃɒt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "尝试"
+        }
+      ],
+      "explanations": [
+        "**give it a shot** = 尝试一下（shot 本义射击，此处引申为尝试）。",
+        "同义：give it a try / have a go。鼓励别人尝试新事物很常用：Come on, just give it a shot!"
+      ],
+      "distractors": [
+        [
+          "Gives it",
+          "To give it",
+          "Gave it"
+        ],
+        [
+          "shot.",
+          "the shot.",
+          "a shoots."
+        ]
+      ]
+    },
+    {
+      "sentence": "You should take a break now.",
+      "cid": "abfe8204",
+      "translation": "你现在该休息一下了。",
+      "chunks": [
+        "You should take a break",
+        "now."
+      ],
+      "hints": [
+        "你该休息一下",
+        "现在"
+      ],
+      "grammar": [
+        {
+          "role": "情态建议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ʃʊd/",
+            "/teɪk/",
+            "/ə/",
+            "/breɪk/"
+          ],
+          "pos": "should+动词",
+          "meaning": "你该休息一下"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/naʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "现在"
+        }
+      ],
+      "explanations": [
+        "`should + 动词原形` 表建议。常见错误：\n• \"You should **to take**\" → 情态动词后不接 to\n• \"You **shoulds** take\" → should 无第三人称变化",
+        "`take a break` = 休息一下，固定搭配。同义：have a rest / take a breather（口语稍作喘息）。"
+      ],
+      "distractors": [
+        [
+          "You should take break",
+          "You should takes a break",
+          "You should to take a break"
+        ],
+        [
+          "just now.",
+          "for now.",
+          "nows."
+        ]
+      ]
+    },
+    {
+      "sentence": "There's no point in waiting any longer.",
+      "cid": "725fe013",
+      "translation": "再等下去没有意义了。",
+      "chunks": [
+        "There's no point in",
+        "waiting",
+        "any longer."
+      ],
+      "hints": [
+        "没有意义",
+        "等待",
+        "再继续"
+      ],
+      "grammar": [
+        {
+          "role": "存在句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðerz/",
+            "/noʊ/",
+            "/pɔɪnt/",
+            "/ɪn/"
+          ],
+          "pos": "there's no point in",
+          "meaning": "……没有意义"
+        },
+        {
+          "role": "动名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈweɪtɪŋ/"
+          ],
+          "pos": "动名词",
+          "meaning": "等待"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈeni/",
+            "/ˈlɔːŋɡər/"
+          ],
+          "pos": "短语",
+          "meaning": "再继续下去"
+        }
+      ],
+      "explanations": [
+        "`There's no point in doing` = 做……没意义。常见错误：\n• \"no point to wait\" → in 后接动名词\n• \"It's no point\" → 固定 There's no point",
+        "`any longer` = 再（用于否定）。同义 no more。"
+      ],
+      "distractors": [
+        [
+          "It's no point in",
+          "There's no point to",
+          "There're no point in"
+        ],
+        [
+          "to wait",
+          "waited",
+          "wait"
+        ],
+        [
+          "any more longer.",
+          "no longer.",
+          "any long."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's worth trying one more time.",
+      "cid": "59f78fc3",
+      "translation": "值得再试一次。",
+      "chunks": [
+        "It's worth",
+        "trying",
+        "one more time."
+      ],
+      "hints": [
+        "这是值得的",
+        "尝试",
+        "再一次"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪts/",
+            "/wɜːrθ/"
+          ],
+          "pos": "be worth doing",
+          "meaning": "值得"
+        },
+        {
+          "role": "动名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈtraɪɪŋ/"
+          ],
+          "pos": "动名词(主语为it)",
+          "meaning": "尝试"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌn/",
+            "/mɔːr/",
+            "/taɪm/"
+          ],
+          "pos": "短语",
+          "meaning": "再一次"
+        }
+      ],
+      "explanations": [
+        "`be worth doing` = 值得做，主动形式表被动。常见错误：\n• \"worth to try\" → worth 后接动名词\n• \"worth **of** trying\" → 多 of\n• \"It's worthy trying\" → worth/worthy 不同搭配",
+        "`one more time` = 再一次。"
+      ],
+      "distractors": [
+        [
+          "It's worth to",
+          "It's worthy",
+          "It worth"
+        ],
+        [
+          "to try",
+          "tried",
+          "try"
+        ],
+        [
+          "one time more.",
+          "one more times.",
+          "more one time."
+        ]
+      ]
+    },
+    {
+      "sentence": "Just keep going.",
+      "cid": "de2d0d34",
+      "translation": "继续坚持。",
+      "chunks": [
+        "Just",
+        "keep going."
+      ],
+      "hints": [
+        "只管",
+        "继续走下去"
+      ],
+      "grammar": [
+        {
+          "role": "程度/语气词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/dʒʌst/"
+          ],
+          "pos": "副词（弱化语气）",
+          "meaning": "只管、就"
+        },
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/",
+            "/ˈɡoʊɪŋ/"
+          ],
+          "pos": "keep doing 固定结构",
+          "meaning": "继续走"
+        }
+      ],
+      "explanations": [
+        "`just` 在此弱化语气，表「就这样、只管」，不是「刚刚」。常见错误：\n• \"Only keep going\" → Only 表「只有」，语气不对",
+        "`keep doing sth` 表「持续做某事」，固定接动名词。常见错误：\n• \"keep to go\" → 不能接不定式\n• \"keep go\" → 少了 -ing"
+      ],
+      "distractors": [
+        [
+          "Only",
+          "Justly",
+          "Just to"
+        ],
+        [
+          "keep to go.",
+          "keep go.",
+          "keep going to."
+        ]
+      ]
+    }
+  ]
+}

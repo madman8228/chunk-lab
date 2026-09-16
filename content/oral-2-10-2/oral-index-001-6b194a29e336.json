@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "2c0e7e7a",
+      "sentence": "Let me give you a piece of advice.",
+      "translation": "我得提醒一句。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "a36c3007",
+      "sentence": "Watch out!",
+      "translation": "小心!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "fac24826",
+      "sentence": "Hold on to me tight.",
+      "translation": "抓紧我。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "c012a540",
+      "sentence": "Watch out for him!",
+      "translation": "要提防着点儿他!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "f016df93",
+      "sentence": "There's a little catch.",
+      "translation": "这里有点儿蹊跷。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "1c9a6d9f",
+      "sentence": "Think twice before you do it.",
+      "translation": "三思而后行。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "63bbcbdd",
+      "sentence": "Easy does it.",
+      "translation": "轻拿轻放。/动作轻点儿。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "1453e4a4",
+      "sentence": "Please go easy on me.",
+      "translation": "手下留情。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "2ff8110c",
+      "sentence": "Let's not jump the gun.",
+      "translation": "别操之过急。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "83db9e9f",
+      "sentence": "Let's not go overboard.",
+      "translation": "不要做得太过火。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "5302923a",
+      "sentence": "Let's wait and see how things go.",
+      "translation": "我们看情况再说。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "365228b7",
+      "sentence": "Don't jump to conclusions!",
+      "translation": "别这么快地下结论。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "65d1a1ae",
+      "sentence": "Don't be selfish.",
+      "translation": "别那么自私。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "0df2bdb9",
+      "sentence": "Your work is always inconsistent.",
+      "translation": "你的工作表现总是不稳定。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "c1fb72e3",
+      "sentence": "You shouldn't spend money foolishly.",
+      "translation": "你不该随便乱花钱。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "a7592a98",
+      "sentence": "You have an attitude problem.",
+      "translation": "你的态度太恶劣了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "942c8512",
+      "sentence": "Don't be so naughty.",
+      "translation": "别那么没有礼貌。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "c10e709e",
+      "sentence": "Hold it down!",
+      "translation": "请安静!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "7437e10c",
+      "sentence": "Hush!",
+      "translation": "嘘!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "ae2d3c8c",
+      "sentence": "It's too noisy.",
+      "translation": "太吵了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "5dd2b7d2",
+      "sentence": "Don't make a fool of yourself.",
+      "translation": "别丢人现眼了!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "77d753c6",
+      "sentence": "Think about where you are.",
+      "translation": "分清场合。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "c3563299",
+      "sentence": "Act your age.",
+      "translation": "你也不看看你多大了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "bf109e22",
+      "sentence": "Your view is too optimistic.",
+      "translation": "你想得也太天真了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "860fd1fa",
+      "sentence": "You should get your head out of the clouds.",
+      "translation": "你的想法太不现实了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "30f11657",
+      "sentence": "Don't make such stupid mistakes again!",
+      "translation": "不要重复这种愚蠢的错误。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "bbb46736",
+      "sentence": "Don't be stuck-up.",
+      "translation": "别那么自命不凡。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "80bf0e94",
+      "sentence": "Don't judge a book by its cover.",
+      "translation": "人不可貌相。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "1fee68bd",
+      "sentence": "Watch your tongue.",
+      "translation": "说话要留神。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "b94e6576",
+      "sentence": "Follow the rules.",
+      "translation": "要遵守规则。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "57cda8ac",
+      "sentence": "Stop goofing off!",
+      "translation": "别偷懒!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "ffe44987",
+      "sentence": "Do as I said!",
+      "translation": "照我说的做!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "3b98e4f8",
+      "sentence": "Don't say bad things about others.",
+      "translation": "不要说别人的坏话。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "4f4ec61b",
+      "sentence": "Don't go back on your word!",
+      "translation": "别食言。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "4f400bc2",
+      "sentence": "Don't take on more than you can.",
+      "translation": "做你能做的。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "4a9be27f",
+      "sentence": "Don't be rude!",
+      "translation": "别那么粗鲁!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "53633217",
+      "sentence": "You're fired!",
+      "translation": "你被开除了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "5332d16e",
+      "sentence": "Be a man!",
+      "translation": "你得像个男子汉!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "8374c1da",
+      "sentence": "Don't talk boastfully.",
+      "translation": "别自吹自擂。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "70c3400e",
+      "sentence": "Please don't disappoint me.",
+      "translation": "请别让我失望。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "cd038038",
+      "sentence": "Don't flirt with girls!",
+      "translation": "别挑逗女孩!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "8f66a1a0",
+      "sentence": "Don't flirt with boys!",
+      "translation": "别挑逗男孩!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "285f9636",
+      "sentence": "Don't complain and do as you are told.",
+      "translation": "别抱怨，叫你怎么做，就怎么做。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "ce479742",
+      "sentence": "Make it snappy!",
+      "translation": "干脆点!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "19899e9c",
+      "sentence": "Step on it!",
+      "translation": "麻利点!/利索点!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "325c176a",
+      "sentence": "Don't blame me.",
+      "translation": "别把责任推给我。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "5cf07698",
+      "sentence": "You're to blame.",
+      "translation": "这是你的过错。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "bb43392e",
+      "sentence": "Put yourself in my shoes.",
+      "translation": "你站在我的立场上想想。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "9ac831e9",
+      "sentence": "Aren't you ashamed of yourself?",
+      "translation": "你就不觉得害臊吗?",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "e2a13522",
+      "sentence": "I'll give him a piece of my mind.",
+      "translation": "我要教训他一顿。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "3a78d601",
+      "sentence": "Don't involve me!",
+      "translation": "别把我卷进去。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "ffce96b6",
+      "sentence": "I told you so.",
+      "translation": "我早说过了吧。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "50331490",
+      "sentence": "You knew that, didn't you?",
+      "translation": "你知道的吧?",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "cfe63654",
+      "sentence": "It is as if I had done something wrong.",
+      "translation": "好像是我做错了什么事似的。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "7e3234bc",
+      "sentence": "He chickened out at the last moment.",
+      "translation": "他在最后关头胆怯了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "c8fada0e",
+      "sentence": "Don't take it out on me.",
+      "translation": "别冲我发火。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "2d32a7cd",
+      "sentence": "Pay up!",
+      "translation": "还我钱!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "f2c685fa",
+      "sentence": "You'll pay for this.",
+      "translation": "我会找你算帐的。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "8d788dcb",
+      "sentence": "You're out of your mind!",
+      "translation": "你疯了!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "549c8ed2",
+      "sentence": "You shouldn't say things like that.",
+      "translation": "你怎么这么说?",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "019c7158",
+      "sentence": "It's for your own good!",
+      "translation": "这可全为了你!",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "f64db5a3",
+      "sentence": "Why are you picking on me?",
+      "translation": "你干吗老挑我的刺儿?",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "fe5568b4",
+      "sentence": "He always finds fault with my work.",
+      "translation": "他对我的工作总是鸡蛋里挑骨头。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "4bb2e115",
+      "sentence": "Make sure you lock the door when you leave.",
+      "translation": "你离开时一定锁好门。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "14d3f87e",
+      "sentence": "Be careful.",
+      "translation": "当心。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "5b99a19c",
+      "sentence": "Don't fall down.",
+      "translation": "别摔了。",
+      "sourceUrl": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+      "sourceOffset": 65
+    }
+  ]
+}

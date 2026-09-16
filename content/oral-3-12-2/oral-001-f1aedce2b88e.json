@@ -949,56 +949,6 @@
       ]
     },
     {
-      "sentence": "It's up to you.",
-      "cid": "fb54ce6f",
-      "translation": "由你决定。",
-      "chunks": [
-        "It's up",
-        "to you."
-      ],
-      "hints": [
-        "取决于",
-        "由你"
-      ],
-      "grammar": [
-        {
-          "role": "主系结构",
-          "color": "#c87033",
-          "phonetic": [
-            "/ɪts/",
-            "/ʌp/"
-          ],
-          "pos": "主系+副词",
-          "meaning": "取决于"
-        },
-        {
-          "role": "介词短语",
-          "color": "#7c5cbf",
-          "phonetic": [
-            "/tuː/",
-            "/juː/"
-          ],
-          "pos": "介词短语",
-          "meaning": "由你"
-        }
-      ],
-      "explanations": [
-        "**It's up to you.** = 由你决定/你说了算，把选择权交给对方。点餐、约时间的高频句。",
-        "扩展：**It's up to sb to do sth** = 由某人负责做某事。问句 **What's up?**（怎么了）与本句无关，注意区分。"
-      ],
-      "distractors": [
-        [
-          "It up",
-          "It's upon"
-        ],
-        [
-          "for you.",
-          "to your.",
-          "on you."
-        ]
-      ]
-    },
-    {
       "sentence": "It's up to you, I'm fine either way.",
       "cid": "0951976a",
       "translation": "你决定吧，我怎么样都行。",

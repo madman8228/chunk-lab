@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "e511244d",
+      "sentence": "Well...",
+      "translation": "嗯……",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "5835969b",
+      "sentence": "Let me see.",
+      "translation": "让我想想。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "07beb7e9",
+      "sentence": "I mean...",
+      "translation": "我的意思是……",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "e684353a",
+      "sentence": "It's on the tip of my tongue.",
+      "translation": "话就在嘴边上。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "97a797f8",
+      "sentence": "What should I say...",
+      "translation": "说什么好呢?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "bddd32e5",
+      "sentence": "I don't know quite how to put this.",
+      "translation": "我真不知道该说什么好……",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "58445136",
+      "sentence": "Beats me.",
+      "translation": "这可让你问着了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "c699a7eb",
+      "sentence": "What do you call it?",
+      "translation": "叫什么来着?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "48f2f6ca",
+      "sentence": "You've got me.",
+      "translation": "让你问住了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "49bf2a2e",
+      "sentence": "Say something.",
+      "translation": "你说点什么吧!",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "17bb54bd",
+      "sentence": "Tell me more about it.",
+      "translation": "我想知道得详细一些。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "a5af70a3",
+      "sentence": "How was your trip?",
+      "translation": "你的旅行怎么样?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "8818b3c2",
+      "sentence": "I'm all ears.",
+      "translation": "我在认真地听呢。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "eb460a73",
+      "sentence": "How was the meeting?",
+      "translation": "会开得怎么样?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "2e1079e5",
+      "sentence": "I'm listening.",
+      "translation": "继续说呀。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "3a23321f",
+      "sentence": "I'd like to hear the story.",
+      "translation": "我很想听听那件事。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "c49d9c17",
+      "sentence": "We had small talk.",
+      "translation": "我们只是闲聊一会儿。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "6ef89d44",
+      "sentence": "How was the movie?",
+      "translation": "电影怎么样?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "1c4e59ea",
+      "sentence": "Did you enjoy the play?",
+      "translation": "那部戏有意思吗?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "bcd9f5f7",
+      "sentence": "I want to talk about it now.",
+      "translation": "我想现在就谈谈那件事。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "950fe523",
+      "sentence": "Shoot!",
+      "translation": "说吧，说吧。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "9e257ff5",
+      "sentence": "Let's talk in English.",
+      "translation": "咱们说英语吧。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "bc5c08b5",
+      "sentence": "Let's have a chat.",
+      "translation": "咱们聊会儿天吧!",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "51ee2b7f",
+      "sentence": "To the point, please.",
+      "translation": "抓重点的说。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "11c84232",
+      "sentence": "How was your day?",
+      "translation": "今天过得怎么样?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "bd1edf1b",
+      "sentence": "Let's change the subject.",
+      "translation": "我们换个话题吧!",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "14eee15f",
+      "sentence": "Let's get back to the subject.",
+      "translation": "言归正传。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "1120ad09",
+      "sentence": "I don't want to talk about it now.",
+      "translation": "我现在不想谈那件事。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "5508cd34",
+      "sentence": "Let's talk about it later.",
+      "translation": "那事儿以后再说吧。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "cb8e20ab",
+      "sentence": "To change the subject...",
+      "translation": "另外我们说说……",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "afb0301e",
+      "sentence": "Well, all joking aside,...",
+      "translation": "好了，玩笑就到此……",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "472a55d6",
+      "sentence": "By the way,...",
+      "translation": "顺便提一下……",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "ad51ec73",
+      "sentence": "You were saying?",
+      "translation": "你刚才说什么来着?",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "72e47c6a",
+      "sentence": "That reminds me.",
+      "translation": "啊，我想起来了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "76a83900",
+      "sentence": "Let's stop talking.",
+      "translation": "别说了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "c1a74ed5",
+      "sentence": "I've heard the story before.",
+      "translation": "那事儿我听过了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "6e006988",
+      "sentence": "Let's drop the subject.",
+      "translation": "这件事别再说了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "f666e55d",
+      "sentence": "Don't say it so loud.",
+      "translation": "别那么大声说。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "9238d6be",
+      "sentence": "I've decided.",
+      "translation": "我已经决定了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "fb54ce6f",
+      "sentence": "It's up to you.",
+      "translation": "由你决定。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "6a8ac1fe",
+      "sentence": "You decide.",
+      "translation": "你决定吧!",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "7b9089f2",
+      "sentence": "This is the important point.",
+      "translation": "这是关键性的一点。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "44c77204",
+      "sentence": "This is my personal problem.",
+      "translation": "这是我个人的问题。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "841d39d6",
+      "sentence": "It's a matter of life and death.",
+      "translation": "这是生死攸关的大事。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "5d9803c1",
+      "sentence": "You're free to go or stay.",
+      "translation": "是去是留，随你。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "70474b40",
+      "sentence": "There's no turning back.",
+      "translation": "已经无可挽回了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "cd689cae",
+      "sentence": "Let's play it by ear.",
+      "translation": "走一步看一步吧!",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "a8d43e80",
+      "sentence": "I'm sure I can do it.",
+      "translation": "我确信我能做好。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "075cd628",
+      "sentence": "I'm still unable to decide what to do.",
+      "translation": "我仍然无法决定我该做什么。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "804615cd",
+      "sentence": "I'll follow her.",
+      "translation": "我跟着她。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "2b9ee56c",
+      "sentence": "Let's all get together and act as one.",
+      "translation": "我们拧成一股绳地去干。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "a0c32177",
+      "sentence": "I have to do it anyhow.",
+      "translation": "反正，也得干。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "f20c2b8d",
+      "sentence": "It's now or never.",
+      "translation": "机不可失，时不再来。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "09bcfc5f",
+      "sentence": "The sooner, the better.",
+      "translation": "越早越好。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "6f829e39",
+      "sentence": "I'll take a chance.",
+      "translation": "碰碰运气看。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "6ddd4d10",
+      "sentence": "Have more guts!",
+      "translation": "再拿出点勇气来。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "519e5c04",
+      "sentence": "Let's finish it somehow.",
+      "translation": "我们总得想办法完成。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "b668e02e",
+      "sentence": "It's worth a try.",
+      "translation": "值得一试。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "e3681795",
+      "sentence": "We must function as one mind and one body.",
+      "translation": "我们必须同心同德。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "a377deb7",
+      "sentence": "You just wait.",
+      "translation": "你等着瞧吧。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "4d18241f",
+      "sentence": "It's all or nothing.",
+      "translation": "豁出去了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "f40f7098",
+      "sentence": "Guess what happened to me today!",
+      "translation": "你猜我今天发生了什么！",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "841bd042",
+      "sentence": "To be honest, I didn't expect it to be so good.",
+      "translation": "说实话，我没料到会这么好。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "9d0c16ea",
+      "sentence": "You're not going to believe this.",
+      "translation": "你不会相信这个的。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "03cbee2b",
+      "sentence": "I bet he's already left for work.",
+      "translation": "我打赌他已经去上班了。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "46893aac",
+      "sentence": "Who's that woman you were talking to?",
+      "translation": "跟你说话的那个女人是谁？",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "18e9ee1b",
+      "sentence": "Why would I need that?",
+      "translation": "我要那个干嘛？",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "7bec57ab",
+      "sentence": "I'm not gonna talk about Judy.",
+      "translation": "我不想聊朱迪。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "efcd6d0e",
+      "sentence": "I think you do.",
+      "translation": "我觉着你有（你不承认而已）。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "3aa31e0a",
+      "sentence": "I was sitting next to her on the plane.",
+      "translation": "在飞机上我坐她旁边。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "307d29b1",
+      "sentence": "I thought she said something to me.",
+      "translation": "我以为她在跟我搭话。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 70
+    },
+    {
+      "cid": "c1caeb1d",
+      "sentence": "Yeah, maybe run into her at the gym.",
+      "translation": "也许能在健身房和她偶遇。",
+      "sourceUrl": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+      "sourceOffset": 71
+    }
+  ]
+}

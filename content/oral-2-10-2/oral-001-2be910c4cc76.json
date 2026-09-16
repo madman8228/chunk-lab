@@ -1,0 +1,994 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Let me give you a piece of advice.",
+      "translation": "我得提醒一句。",
+      "chunks": [
+        "Let me give you",
+        "a piece of advice."
+      ],
+      "hints": [
+        "我得给你",
+        "提个醒。"
+      ],
+      "cid": "2c0e7e7a"
+    },
+    {
+      "sentence": "Watch out!",
+      "translation": "小心!",
+      "chunks": [
+        "Watch",
+        "out!"
+      ],
+      "hints": [
+        "小心",
+        "点儿！"
+      ],
+      "cid": "a36c3007"
+    },
+    {
+      "sentence": "Hold on to me tight.",
+      "translation": "抓紧我。",
+      "chunks": [
+        "Hold on to me",
+        "tight."
+      ],
+      "hints": [
+        "抓紧我",
+        "别松手。"
+      ],
+      "cid": "fac24826"
+    },
+    {
+      "sentence": "Watch out for him!",
+      "translation": "要提防着点儿他!",
+      "chunks": [
+        "Watch out",
+        "for him!"
+      ],
+      "hints": [
+        "要提防",
+        "着点儿他！"
+      ],
+      "cid": "c012a540"
+    },
+    {
+      "sentence": "There's a little catch.",
+      "translation": "这里有点儿蹊跷。",
+      "chunks": [
+        "There's a little",
+        "catch."
+      ],
+      "hints": [
+        "这里有点",
+        "蹊跷。"
+      ],
+      "cid": "f016df93"
+    },
+    {
+      "sentence": "Think twice before you do it.",
+      "translation": "三思而后行。",
+      "chunks": [
+        "Think twice",
+        "before you do it."
+      ],
+      "hints": [
+        "做之前",
+        "要三思。"
+      ],
+      "cid": "1c9a6d9f"
+    },
+    {
+      "sentence": "Easy does it.",
+      "translation": "轻拿轻放。/动作轻点儿。",
+      "chunks": [
+        "Easy",
+        "does it."
+      ],
+      "hints": [
+        "轻拿",
+        "轻放。"
+      ],
+      "cid": "63bbcbdd"
+    },
+    {
+      "sentence": "Please go easy on me.",
+      "translation": "手下留情。",
+      "chunks": [
+        "Please go",
+        "easy on me."
+      ],
+      "hints": [
+        "请对我",
+        "手下留情。"
+      ],
+      "cid": "1453e4a4"
+    },
+    {
+      "sentence": "Let's not jump the gun.",
+      "translation": "别操之过急。",
+      "chunks": [
+        "Let's not jump",
+        "the gun."
+      ],
+      "hints": [
+        "别",
+        "操之过急。"
+      ],
+      "cid": "2ff8110c"
+    },
+    {
+      "sentence": "Let's not go overboard.",
+      "translation": "不要做得太过火。",
+      "chunks": [
+        "Let's not",
+        "go overboard."
+      ],
+      "hints": [
+        "不要",
+        "做得太过火。"
+      ],
+      "cid": "83db9e9f"
+    },
+    {
+      "sentence": "Let's wait and see how things go.",
+      "translation": "我们看情况再说。",
+      "chunks": [
+        "Let's wait and see",
+        "how things go."
+      ],
+      "hints": [
+        "我们看看",
+        "情况再说。"
+      ],
+      "cid": "5302923a"
+    },
+    {
+      "sentence": "Don't jump to conclusions!",
+      "translation": "别这么快地下结论。",
+      "chunks": [
+        "Don't jump",
+        "to conclusions!"
+      ],
+      "hints": [
+        "别急着",
+        "下结论！"
+      ],
+      "cid": "365228b7"
+    },
+    {
+      "sentence": "Don't be selfish.",
+      "translation": "别那么自私。",
+      "chunks": [
+        "Don't be",
+        "selfish."
+      ],
+      "hints": [
+        "别",
+        "那么自私。"
+      ],
+      "cid": "65d1a1ae"
+    },
+    {
+      "sentence": "Your work is always inconsistent.",
+      "translation": "你的工作表现总是不稳定。",
+      "chunks": [
+        "Your work is",
+        "always inconsistent."
+      ],
+      "hints": [
+        "你的工作表现",
+        "总是不稳定。"
+      ],
+      "cid": "0df2bdb9"
+    },
+    {
+      "sentence": "You shouldn't spend money foolishly.",
+      "translation": "你不该随便乱花钱。",
+      "chunks": [
+        "You shouldn't spend",
+        "money foolishly."
+      ],
+      "hints": [
+        "你不该",
+        "随便乱花钱。"
+      ],
+      "cid": "c1fb72e3"
+    },
+    {
+      "sentence": "You have an attitude problem.",
+      "translation": "你的态度太恶劣了。",
+      "chunks": [
+        "You have",
+        "an attitude problem."
+      ],
+      "hints": [
+        "你的态度",
+        "有问题。"
+      ],
+      "cid": "a7592a98"
+    },
+    {
+      "sentence": "Don't be so naughty.",
+      "translation": "别那么没有礼貌。",
+      "chunks": [
+        "Don't be",
+        "so naughty."
+      ],
+      "hints": [
+        "别",
+        "那么没有礼貌。"
+      ],
+      "cid": "942c8512"
+    },
+    {
+      "sentence": "Hold it down!",
+      "translation": "请安静!",
+      "chunks": [
+        "Hold it",
+        "down!"
+      ],
+      "hints": [
+        "请",
+        "安静！"
+      ],
+      "cid": "c10e709e"
+    },
+    {
+      "sentence": "Hush!",
+      "translation": "嘘!",
+      "chunks": [
+        "Hush!"
+      ],
+      "hints": [
+        "嘘！"
+      ],
+      "cid": "7437e10c"
+    },
+    {
+      "sentence": "It's too noisy.",
+      "translation": "太吵了。",
+      "chunks": [
+        "It's",
+        "too noisy."
+      ],
+      "hints": [
+        "太",
+        "吵了。"
+      ],
+      "cid": "ae2d3c8c"
+    },
+    {
+      "sentence": "Don't make a fool of yourself.",
+      "translation": "别丢人现眼了!",
+      "chunks": [
+        "Don't make a fool",
+        "of yourself."
+      ],
+      "hints": [
+        "别",
+        "丢人现眼了！"
+      ],
+      "cid": "5dd2b7d2"
+    },
+    {
+      "sentence": "Think about where you are.",
+      "translation": "分清场合。",
+      "chunks": [
+        "Think about",
+        "where you are."
+      ],
+      "hints": [
+        "想想",
+        "你身处什么场合。"
+      ],
+      "cid": "77d753c6"
+    },
+    {
+      "sentence": "Act your age.",
+      "translation": "你也不看看你多大了。",
+      "chunks": [
+        "Act",
+        "your age."
+      ],
+      "hints": [
+        "表现",
+        "得像个成年人。"
+      ],
+      "cid": "c3563299"
+    },
+    {
+      "sentence": "Your view is too optimistic.",
+      "translation": "你想得也太天真了。",
+      "chunks": [
+        "Your view is",
+        "too optimistic."
+      ],
+      "hints": [
+        "你的想法",
+        "也太天真了。"
+      ],
+      "cid": "bf109e22"
+    },
+    {
+      "sentence": "You should get your head out of the clouds.",
+      "translation": "你的想法太不现实了。",
+      "chunks": [
+        "You should get your head",
+        "out of the clouds."
+      ],
+      "hints": [
+        "你该",
+        "现实一点儿了。"
+      ],
+      "cid": "860fd1fa"
+    },
+    {
+      "sentence": "Don't make such stupid mistakes again!",
+      "translation": "不要重复这种愚蠢的错误。",
+      "chunks": [
+        "Don't make such",
+        "stupid mistakes again!"
+      ],
+      "hints": [
+        "别再犯",
+        "这么愚蠢的错误！"
+      ],
+      "cid": "30f11657"
+    },
+    {
+      "sentence": "Don't be stuck-up.",
+      "translation": "别那么自命不凡。",
+      "chunks": [
+        "Don't be",
+        "stuck-up."
+      ],
+      "hints": [
+        "别",
+        "那么自命不凡。"
+      ],
+      "cid": "bbb46736"
+    },
+    {
+      "sentence": "Don't judge a book by its cover.",
+      "translation": "人不可貌相。",
+      "chunks": [
+        "Don't judge a book",
+        "by its cover."
+      ],
+      "hints": [
+        "人不可",
+        "貌相。"
+      ],
+      "cid": "80bf0e94"
+    },
+    {
+      "sentence": "Watch your tongue.",
+      "translation": "说话要留神。",
+      "chunks": [
+        "Watch",
+        "your tongue."
+      ],
+      "hints": [
+        "说话",
+        "要留神。"
+      ],
+      "cid": "1fee68bd"
+    },
+    {
+      "sentence": "Follow the rules.",
+      "translation": "要遵守规则。",
+      "chunks": [
+        "Follow",
+        "the rules."
+      ],
+      "hints": [
+        "要遵守",
+        "规则。"
+      ],
+      "cid": "b94e6576"
+    },
+    {
+      "sentence": "Stop goofing off!",
+      "translation": "别偷懒!",
+      "chunks": [
+        "Stop",
+        "goofing off!"
+      ],
+      "hints": [
+        "别",
+        "偷懒！"
+      ],
+      "cid": "57cda8ac"
+    },
+    {
+      "sentence": "Do as I said!",
+      "translation": "照我说的做!",
+      "chunks": [
+        "Do as",
+        "I said!"
+      ],
+      "hints": [
+        "照我说的",
+        "去做！"
+      ],
+      "cid": "ffe44987"
+    },
+    {
+      "sentence": "Don't say bad things about others.",
+      "translation": "不要说别人的坏话。",
+      "chunks": [
+        "Don't say bad things",
+        "about others."
+      ],
+      "hints": [
+        "别说",
+        "别人的坏话。"
+      ],
+      "cid": "3b98e4f8"
+    },
+    {
+      "sentence": "Don't go back on your word!",
+      "translation": "别食言。",
+      "chunks": [
+        "Don't go back",
+        "on your word!"
+      ],
+      "hints": [
+        "别",
+        "食言。"
+      ],
+      "cid": "4f4ec61b"
+    },
+    {
+      "sentence": "Don't take on more than you can.",
+      "translation": "做你能做的。",
+      "chunks": [
+        "Don't take on more",
+        "than you can."
+      ],
+      "hints": [
+        "别揽",
+        "你干不了的活。"
+      ],
+      "cid": "4f400bc2"
+    },
+    {
+      "sentence": "Don't be rude!",
+      "translation": "别那么粗鲁!",
+      "chunks": [
+        "Don't be",
+        "rude!"
+      ],
+      "hints": [
+        "别",
+        "那么粗鲁！"
+      ],
+      "cid": "4a9be27f"
+    },
+    {
+      "sentence": "You're fired!",
+      "translation": "你被开除了。",
+      "chunks": [
+        "You're",
+        "fired!"
+      ],
+      "hints": [
+        "你",
+        "被开除了！"
+      ],
+      "cid": "53633217"
+    },
+    {
+      "sentence": "Be a man!",
+      "translation": "你得像个男子汉!",
+      "chunks": [
+        "Be",
+        "a man!"
+      ],
+      "hints": [
+        "拿出",
+        "男子汉的样子来！"
+      ],
+      "cid": "5332d16e"
+    },
+    {
+      "sentence": "Don't talk boastfully.",
+      "translation": "别自吹自擂。",
+      "chunks": [
+        "Don't talk",
+        "boastfully."
+      ],
+      "hints": [
+        "别",
+        "自吹自擂。"
+      ],
+      "cid": "8374c1da"
+    },
+    {
+      "sentence": "Please don't disappoint me.",
+      "translation": "请别让我失望。",
+      "chunks": [
+        "Please don't",
+        "disappoint me."
+      ],
+      "hints": [
+        "请别让我",
+        "失望。"
+      ],
+      "cid": "70c3400e"
+    },
+    {
+      "sentence": "Don't flirt with girls!",
+      "translation": "别挑逗女孩!",
+      "chunks": [
+        "Don't flirt",
+        "with girls!"
+      ],
+      "hints": [
+        "别去挑逗",
+        "女孩子！"
+      ],
+      "cid": "cd038038"
+    },
+    {
+      "sentence": "Don't flirt with boys!",
+      "translation": "别挑逗男孩!",
+      "chunks": [
+        "Don't flirt",
+        "with boys!"
+      ],
+      "hints": [
+        "别去挑逗",
+        "男孩子！"
+      ],
+      "cid": "8f66a1a0"
+    },
+    {
+      "sentence": "Don't complain and do as you are told.",
+      "translation": "别抱怨，叫你怎么做，就怎么做。",
+      "chunks": [
+        "Don't complain",
+        "and do as you are told."
+      ],
+      "hints": [
+        "别抱怨，",
+        "叫你怎么做就怎么做。"
+      ],
+      "cid": "285f9636"
+    },
+    {
+      "sentence": "Make it snappy!",
+      "translation": "干脆点!",
+      "chunks": [
+        "Make it",
+        "snappy!"
+      ],
+      "hints": [
+        "动作",
+        "快点！"
+      ],
+      "cid": "ce479742"
+    },
+    {
+      "sentence": "Step on it!",
+      "translation": "麻利点!/利索点!",
+      "chunks": [
+        "Step",
+        "on it!"
+      ],
+      "hints": [
+        "麻利",
+        "一点儿！"
+      ],
+      "cid": "19899e9c"
+    },
+    {
+      "sentence": "Don't blame me.",
+      "translation": "别把责任推给我。",
+      "chunks": [
+        "Don't blame",
+        "me."
+      ],
+      "hints": [
+        "别把责任",
+        "推给我。"
+      ],
+      "cid": "325c176a"
+    },
+    {
+      "sentence": "You're to blame.",
+      "translation": "这是你的过错。",
+      "chunks": [
+        "You're",
+        "to blame."
+      ],
+      "hints": [
+        "这是",
+        "你的过错。"
+      ],
+      "cid": "5cf07698"
+    },
+    {
+      "sentence": "Put yourself in my shoes.",
+      "translation": "你站在我的立场上想想。",
+      "chunks": [
+        "Put yourself",
+        "in my shoes."
+      ],
+      "hints": [
+        "你站在",
+        "我的立场上想想。"
+      ],
+      "cid": "bb43392e"
+    },
+    {
+      "sentence": "Aren't you ashamed of yourself?",
+      "translation": "你就不觉得害臊吗?",
+      "chunks": [
+        "Aren't you ashamed",
+        "of yourself?"
+      ],
+      "hints": [
+        "你就不觉得",
+        "害臊吗？"
+      ],
+      "cid": "9ac831e9"
+    },
+    {
+      "sentence": "I'll give him a piece of my mind.",
+      "translation": "我要教训他一顿。",
+      "chunks": [
+        "I'll give him",
+        "a piece of my mind."
+      ],
+      "hints": [
+        "我要",
+        "教训他一顿。"
+      ],
+      "cid": "e2a13522"
+    },
+    {
+      "sentence": "Don't involve me!",
+      "translation": "别把我卷进去。",
+      "chunks": [
+        "Don't involve",
+        "me!"
+      ],
+      "hints": [
+        "别把",
+        "我卷进去！"
+      ],
+      "cid": "3a78d601"
+    },
+    {
+      "sentence": "I told you so.",
+      "translation": "我早说过了吧。",
+      "chunks": [
+        "I told you",
+        "so."
+      ],
+      "hints": [
+        "我早",
+        "说过了吧。"
+      ],
+      "cid": "ffce96b6"
+    },
+    {
+      "sentence": "You knew that, didn't you?",
+      "translation": "你知道的吧?",
+      "chunks": [
+        "You knew that,",
+        "didn't you?"
+      ],
+      "hints": [
+        "你是知道的，",
+        "对吧？"
+      ],
+      "cid": "50331490"
+    },
+    {
+      "sentence": "It is as if I had done something wrong.",
+      "translation": "好像是我做错了什么事似的。",
+      "chunks": [
+        "It is as if",
+        "I had done something wrong."
+      ],
+      "hints": [
+        "就好像",
+        "我做错了什么事似的。"
+      ],
+      "cid": "cfe63654"
+    },
+    {
+      "sentence": "He chickened out at the last moment.",
+      "translation": "他在最后关头胆怯了。",
+      "chunks": [
+        "He chickened out",
+        "at the last moment."
+      ],
+      "hints": [
+        "他在最后关头",
+        "胆怯了。"
+      ],
+      "cid": "7e3234bc"
+    },
+    {
+      "sentence": "Don't take it out on me.",
+      "translation": "别冲我发火。",
+      "chunks": [
+        "Don't take it",
+        "out on me."
+      ],
+      "hints": [
+        "别拿我",
+        "出气。"
+      ],
+      "cid": "c8fada0e"
+    },
+    {
+      "sentence": "Pay up!",
+      "translation": "还我钱!",
+      "chunks": [
+        "Pay",
+        "up!"
+      ],
+      "hints": [
+        "把钱",
+        "还我！"
+      ],
+      "cid": "2d32a7cd"
+    },
+    {
+      "sentence": "You'll pay for this.",
+      "translation": "我会找你算帐的。",
+      "chunks": [
+        "You'll pay",
+        "for this."
+      ],
+      "hints": [
+        "我会",
+        "找你算账的。"
+      ],
+      "cid": "f2c685fa"
+    },
+    {
+      "sentence": "You're out of your mind!",
+      "translation": "你疯了!",
+      "chunks": [
+        "You're out",
+        "of your mind!"
+      ],
+      "hints": [
+        "你",
+        "疯了！"
+      ],
+      "cid": "8d788dcb"
+    },
+    {
+      "sentence": "You shouldn't say things like that.",
+      "translation": "你怎么这么说?",
+      "chunks": [
+        "You shouldn't say",
+        "things like that."
+      ],
+      "hints": [
+        "你不该",
+        "说这种话。"
+      ],
+      "cid": "549c8ed2"
+    },
+    {
+      "sentence": "It's for your own good!",
+      "translation": "这可全为了你!",
+      "chunks": [
+        "It's for",
+        "your own good!"
+      ],
+      "hints": [
+        "这可全是为了",
+        "你好！"
+      ],
+      "cid": "019c7158"
+    },
+    {
+      "sentence": "Why are you picking on me?",
+      "translation": "你干吗老挑我的刺儿?",
+      "chunks": [
+        "Why are you",
+        "picking on me?"
+      ],
+      "hints": [
+        "你为什么",
+        "老挑我的刺儿？"
+      ],
+      "cid": "f64db5a3"
+    },
+    {
+      "sentence": "He always finds fault with my work.",
+      "translation": "他对我的工作总是鸡蛋里挑骨头。",
+      "chunks": [
+        "He always finds fault",
+        "with my work."
+      ],
+      "hints": [
+        "他对我的工作",
+        "总是鸡蛋里挑骨头。"
+      ],
+      "cid": "fe5568b4"
+    },
+    {
+      "sentence": "Make sure you lock the door when you leave.",
+      "cid": "4bb2e115",
+      "translation": "你离开时一定锁好门。",
+      "chunks": [
+        "Make sure",
+        "you lock the door",
+        "when you leave."
+      ],
+      "hints": [
+        "确保",
+        "你锁门",
+        "当你离开时"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/meɪk/",
+            "/ʃʊər/"
+          ],
+          "pos": "祈使短语",
+          "meaning": "确保"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/juː/",
+            "/lɒk/",
+            "/ðə/",
+            "/dɔːr/"
+          ],
+          "pos": "从句",
+          "meaning": "你锁门"
+        },
+        {
+          "role": "时间状语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/wen/",
+            "/juː/",
+            "/liːv/"
+          ],
+          "pos": "when 从句",
+          "meaning": "当你离开时"
+        }
+      ],
+      "explanations": [
+        "`Make sure` = 确保（后接从句）。常见错误：\n• \"Make **sure** you will lock\" → 表将来用一般现在即可，不加 will\n• \"Be sure lock\" → 漏了 that 或结构错：make sure (that) you lock",
+        "`you lock the door` = 你锁门。lock the door 固定搭配。",
+        "`when you leave` = 当你离开时。主将从现：主句祈使（现在时），when 从句也用现在时 leave。"
+      ],
+      "distractors": [
+        [
+          "Making sure",
+          "Be sure",
+          "Make certain"
+        ],
+        [
+          "you locking the door",
+          "you locks the door",
+          "you lock a door"
+        ],
+        [
+          "when you leaving.",
+          "while you leave.",
+          "when you left."
+        ]
+      ]
+    },
+    {
+      "sentence": "Be careful.",
+      "cid": "14d3f87e",
+      "translation": "当心。",
+      "chunks": [
+        "Be",
+        "careful."
+      ],
+      "hints": [
+        "要（保持）",
+        "小心"
+      ],
+      "grammar": [
+        {
+          "role": "系动词（祈使）",
+          "color": "#c87033",
+          "phonetic": [
+            "/biː/"
+          ],
+          "pos": "be 的祈使形式",
+          "meaning": "要（处于某状态）"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈkerfl/"
+          ],
+          "pos": "形容词",
+          "meaning": "小心的"
+        }
+      ],
+      "explanations": [
+        "祈使句里 be 用原形：Be careful. 常见错误：\n• \"Are careful\" → 祈使句不用 are\n• \"Be carefully\" → carefully 是副词，这里需要形容词 careful",
+        "加限定：Be careful with the knife.（用刀当心）/ Be careful out there."
+      ],
+      "distractors": [
+        [
+          "Are",
+          "Being",
+          "Was"
+        ],
+        [
+          "carefully.",
+          "care.",
+          "cares."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't fall down.",
+      "cid": "5b99a19c",
+      "translation": "别摔了。",
+      "chunks": [
+        "Don't",
+        "fall down."
+      ],
+      "hints": [
+        "别",
+        "摔下来"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "别"
+        },
+        {
+          "role": "谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːl/",
+            "/daʊn/"
+          ],
+          "pos": "短语动词 fall down",
+          "meaning": "摔倒、掉下来"
+        }
+      ],
+      "explanations": [
+        "否定祈使用 `Don't + 动词原形`。常见错误：\n• \"Don't falls down\" → 不用第三人称单数\n• \"No fall down\" → 英语没有 no + 动词 的祈使形式",
+        "`fall down` 指摔倒、跌落；从某物上掉下来用 fall off（fall off the bike）。"
+      ],
+      "distractors": [
+        [
+          "Doesn't",
+          "No",
+          "Not"
+        ],
+        [
+          "falls down.",
+          "fell down.",
+          "fall on."
+        ]
+      ]
+    }
+  ]
+}

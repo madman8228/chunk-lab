@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "da81199d",
+      "sentence": "Yes?",
+      "translation": "有事吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "0d42e255",
+      "sentence": "What for?",
+      "translation": "为何?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "235630ca",
+      "sentence": "Pardon me?",
+      "translation": "您说什么?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "6a7a7df1",
+      "sentence": "How about now?",
+      "translation": "现在怎么样?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "87361343",
+      "sentence": "Excuse me?",
+      "translation": "对不起，你说什么?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "29829b50",
+      "sentence": "What?",
+      "translation": "什么?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "d06fbab1",
+      "sentence": "Did you say anything?",
+      "translation": "你说什么来着?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "163799ff",
+      "sentence": "I'm sorry, what did you say?",
+      "translation": "对不起，你说什么来着?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "8b3fdd20",
+      "sentence": "So what?",
+      "translation": "那又怎么样呢?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "db180147",
+      "sentence": "What does it mean?",
+      "translation": "什么意思?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "61a25703",
+      "sentence": "Are you saying that...?",
+      "translation": "你是说……吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "d1473595",
+      "sentence": "Then what?",
+      "translation": "后来怎么样了?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "9ff2f32d",
+      "sentence": "What's he driving at?",
+      "translation": "他到底想干吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "a5820f00",
+      "sentence": "Would you repeat that, please?",
+      "translation": "您能再说一遍吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "66d5d54a",
+      "sentence": "You're speaking too quickly.",
+      "translation": "您说得太快了。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "06844c4e",
+      "sentence": "Please say it more slowly.",
+      "translation": "请您再说慢一点儿。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "368e5213",
+      "sentence": "I can't keep up.",
+      "translation": "我跟不上您说的。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "c37be529",
+      "sentence": "Please speak a little louder.",
+      "translation": "请再大一点儿声说。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "4664a58a",
+      "sentence": "I can't hear you.",
+      "translation": "我听不见。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "c7d3e207",
+      "sentence": "I couldn't catch what you said.",
+      "translation": "我没听见你说什么。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "c441f0e2",
+      "sentence": "What are you talking about?",
+      "translation": "你在说什么呢?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "b4c57b93",
+      "sentence": "Just like me!",
+      "translation": "就像我一样。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "b53a3071",
+      "sentence": "Was it good?",
+      "translation": "好吃吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "dd1007bd",
+      "sentence": "Did you have fun?",
+      "translation": "玩得高兴吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "4e1003a6",
+      "sentence": "How do you like this suit?",
+      "translation": "这套衣服怎么样?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "1717b650",
+      "sentence": "How did you like it?",
+      "translation": "你觉得怎么样?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "b7ffe4b2",
+      "sentence": "Did you like it?",
+      "translation": "你喜欢吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "26d75aaa",
+      "sentence": "What do you think of it?",
+      "translation": "你觉得那个怎么样?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "9baef383",
+      "sentence": "How'd things turn out?",
+      "translation": "结果怎么样?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "7cc5f514",
+      "sentence": "To make a long story short,...",
+      "translation": "长话短说……",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "393bb56d",
+      "sentence": "Just tell me the story in a nutshell.",
+      "translation": "你就简明扼要地说吧。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "8923209c",
+      "sentence": "Let me know the circumstances.",
+      "translation": "告诉我详细情况。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "25578e81",
+      "sentence": "A piece of cake.",
+      "translation": "轻而易举。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "d13966c5",
+      "sentence": "So far so good.",
+      "translation": "到目前为止都挺好。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "121825c2",
+      "sentence": "So-so.",
+      "translation": "马马虎虎。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "e08902ce",
+      "sentence": "That's about it.",
+      "translation": "(事情)就是这样。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "40c2a822",
+      "sentence": "It was nothing.",
+      "translation": "没什么了不起的。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "0c204246",
+      "sentence": "There's nothing to it.",
+      "translation": "这很简单。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "ae645ebf",
+      "sentence": "It worked!",
+      "translation": "啊，真灵!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "d6790a0c",
+      "sentence": "It needs work.",
+      "translation": "还需再加把劲。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "999c54ea",
+      "sentence": "Almost!",
+      "translation": "就差那么一点儿。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "b12877a1",
+      "sentence": "Going from bad to worse.",
+      "translation": "越来越不好。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "6a21ea88",
+      "sentence": "He made it big.",
+      "translation": "他一举成名。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "ba0f4167",
+      "sentence": "We're set.",
+      "translation": "问题解决了。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "cf4071cb",
+      "sentence": "I see.",
+      "translation": "我知道了。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "f29799a2",
+      "sentence": "Uh-huh.",
+      "translation": "嗯，嗯。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "87dab11f",
+      "sentence": "You have?",
+      "translation": "是吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "b6cc6395",
+      "sentence": "Is that right?",
+      "translation": "是那样吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "a1ef9c1a",
+      "sentence": "That's right.",
+      "translation": "是那样。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "20b555b6",
+      "sentence": "Exactly!",
+      "translation": "没错!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "85bdd3da",
+      "sentence": "Oh, yeah?",
+      "translation": "是吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "d651d749",
+      "sentence": "Is that so?",
+      "translation": "是吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "7a64d57b",
+      "sentence": "And?",
+      "translation": "然后呢?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "95d15fe7",
+      "sentence": "Me, too.",
+      "translation": "我也是。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "89b98bc0",
+      "sentence": "Neither do I.",
+      "translation": "我也不……",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "1ac5dda9",
+      "sentence": "Don't be silly.",
+      "translation": "别说傻话。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 55
+    },
+    {
+      "cid": "f74524ff",
+      "sentence": "That's too bad.",
+      "translation": "真是太倒霉了。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 56
+    },
+    {
+      "cid": "68981be8",
+      "sentence": "Are you sure?",
+      "translation": "真的吗?",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 57
+    },
+    {
+      "cid": "9d7a1413",
+      "sentence": "What a shame!",
+      "translation": "真是太过分(遗憾)了!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 58
+    },
+    {
+      "cid": "c42a1c9b",
+      "sentence": "Good!",
+      "translation": "那好哇。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 59
+    },
+    {
+      "cid": "637df0ba",
+      "sentence": "What a surprise!",
+      "translation": "真叫人吃惊。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 60
+    },
+    {
+      "cid": "ec13b76f",
+      "sentence": "I hope not.",
+      "translation": "我真希望不是这样。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 61
+    },
+    {
+      "cid": "d1b37a32",
+      "sentence": "I hope so.",
+      "translation": "要是那样就好了!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 62
+    },
+    {
+      "cid": "bdb20c7d",
+      "sentence": "Great!",
+      "translation": "太棒了!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 63
+    },
+    {
+      "cid": "553e02da",
+      "sentence": "Unbelievable!",
+      "translation": "难以置信!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 64
+    },
+    {
+      "cid": "af53e44d",
+      "sentence": "No kidding!",
+      "translation": "开玩笑吧!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 65
+    },
+    {
+      "cid": "e5a45f97",
+      "sentence": "You bet.",
+      "translation": "行!没问题!",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 66
+    },
+    {
+      "cid": "67ae602e",
+      "sentence": "Sorry, I didn't catch what you said.",
+      "translation": "抱歉，我没听清你说的话。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 67
+    },
+    {
+      "cid": "c6319b49",
+      "sentence": "Could you speak a bit more slowly, please?",
+      "translation": "你能说慢一点吗？",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 68
+    },
+    {
+      "cid": "9dc552cd",
+      "sentence": "I didn't quite catch what you said.",
+      "translation": "我没太听清你说的话。",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 69
+    },
+    {
+      "cid": "a5317c23",
+      "sentence": "Could you run that by me one more time?",
+      "translation": "你能再给我说一遍吗？",
+      "sourceUrl": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+      "sourceOffset": 70
+    }
+  ]
+}

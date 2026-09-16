@@ -1,0 +1,1469 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Well...",
+      "translation": "嗯……",
+      "chunks": [
+        "Well..."
+      ],
+      "hints": [
+        "嗯……"
+      ],
+      "cid": "e511244d"
+    },
+    {
+      "sentence": "Let me see.",
+      "translation": "让我想想。",
+      "chunks": [
+        "Let me",
+        "see."
+      ],
+      "hints": [
+        "让我",
+        "想想。"
+      ],
+      "cid": "5835969b"
+    },
+    {
+      "sentence": "I mean...",
+      "translation": "我的意思是……",
+      "chunks": [
+        "I",
+        "mean..."
+      ],
+      "hints": [
+        "我的",
+        "意思是……"
+      ],
+      "cid": "07beb7e9"
+    },
+    {
+      "sentence": "It's on the tip of my tongue.",
+      "translation": "话就在嘴边上。",
+      "chunks": [
+        "It's on the tip",
+        "of my tongue."
+      ],
+      "hints": [
+        "话就在",
+        "我的嘴边上。"
+      ],
+      "cid": "e684353a"
+    },
+    {
+      "sentence": "What should I say...",
+      "translation": "说什么好呢?",
+      "chunks": [
+        "What should",
+        "I say..."
+      ],
+      "hints": [
+        "我该",
+        "说什么好呢……"
+      ],
+      "cid": "97a797f8"
+    },
+    {
+      "sentence": "I don't know quite how to put this.",
+      "translation": "我真不知道该说什么好……",
+      "chunks": [
+        "I don't know quite",
+        "how to put this."
+      ],
+      "hints": [
+        "我真不知道",
+        "该怎么说。"
+      ],
+      "cid": "bddd32e5"
+    },
+    {
+      "sentence": "Beats me.",
+      "translation": "这可让你问着了。",
+      "chunks": [
+        "Beats",
+        "me."
+      ],
+      "hints": [
+        "这可问倒",
+        "我了。"
+      ],
+      "cid": "58445136"
+    },
+    {
+      "sentence": "What do you call it?",
+      "translation": "叫什么来着?",
+      "chunks": [
+        "What do you",
+        "call it?"
+      ],
+      "hints": [
+        "你管它",
+        "叫什么来着？"
+      ],
+      "cid": "c699a7eb"
+    },
+    {
+      "sentence": "You've got me.",
+      "translation": "让你问住了。",
+      "chunks": [
+        "You've",
+        "got me."
+      ],
+      "hints": [
+        "让你",
+        "问住了。"
+      ],
+      "cid": "48f2f6ca"
+    },
+    {
+      "sentence": "Say something.",
+      "translation": "你说点什么吧!",
+      "chunks": [
+        "Say",
+        "something."
+      ],
+      "hints": [
+        "你",
+        "说点什么吧！"
+      ],
+      "cid": "49bf2a2e"
+    },
+    {
+      "sentence": "Tell me more about it.",
+      "translation": "我想知道得详细一些。",
+      "chunks": [
+        "Tell me more",
+        "about it."
+      ],
+      "hints": [
+        "多告诉我一些",
+        "那件事吧。"
+      ],
+      "cid": "17bb54bd"
+    },
+    {
+      "sentence": "How was your trip?",
+      "translation": "你的旅行怎么样?",
+      "chunks": [
+        "How was",
+        "your trip?"
+      ],
+      "hints": [
+        "你的旅行",
+        "怎么样？"
+      ],
+      "cid": "a5af70a3"
+    },
+    {
+      "sentence": "I'm all ears.",
+      "translation": "我在认真地听呢。",
+      "chunks": [
+        "I'm",
+        "all ears."
+      ],
+      "hints": [
+        "我",
+        "洗耳恭听。"
+      ],
+      "cid": "8818b3c2"
+    },
+    {
+      "sentence": "How was the meeting?",
+      "translation": "会开得怎么样?",
+      "chunks": [
+        "How was",
+        "the meeting?"
+      ],
+      "hints": [
+        "会",
+        "开得怎么样？"
+      ],
+      "cid": "eb460a73"
+    },
+    {
+      "sentence": "I'm listening.",
+      "translation": "继续说呀。",
+      "chunks": [
+        "I'm",
+        "listening."
+      ],
+      "hints": [
+        "我",
+        "在听，继续说。"
+      ],
+      "cid": "2e1079e5"
+    },
+    {
+      "sentence": "I'd like to hear the story.",
+      "translation": "我很想听听那件事。",
+      "chunks": [
+        "I'd like",
+        "to hear the story."
+      ],
+      "hints": [
+        "我想",
+        "听听那件事。"
+      ],
+      "cid": "3a23321f"
+    },
+    {
+      "sentence": "We had small talk.",
+      "translation": "我们只是闲聊一会儿。",
+      "chunks": [
+        "We had",
+        "small talk."
+      ],
+      "hints": [
+        "我们",
+        "闲聊了几句。"
+      ],
+      "cid": "c49d9c17"
+    },
+    {
+      "sentence": "How was the movie?",
+      "translation": "电影怎么样?",
+      "chunks": [
+        "How was",
+        "the movie?"
+      ],
+      "hints": [
+        "电影",
+        "怎么样？"
+      ],
+      "cid": "6ef89d44"
+    },
+    {
+      "sentence": "Did you enjoy the play?",
+      "translation": "那部戏有意思吗?",
+      "chunks": [
+        "Did you enjoy",
+        "the play?"
+      ],
+      "hints": [
+        "你喜欢",
+        "那部戏吗？"
+      ],
+      "cid": "1c4e59ea"
+    },
+    {
+      "sentence": "I want to talk about it now.",
+      "translation": "我想现在就谈谈那件事。",
+      "chunks": [
+        "I want to talk",
+        "about it now."
+      ],
+      "hints": [
+        "我想现在",
+        "就谈谈那件事。"
+      ],
+      "cid": "bcd9f5f7"
+    },
+    {
+      "sentence": "Shoot!",
+      "translation": "说吧，说吧。",
+      "chunks": [
+        "Shoot!"
+      ],
+      "hints": [
+        "说吧，说吧。"
+      ],
+      "cid": "950fe523"
+    },
+    {
+      "sentence": "Let's talk in English.",
+      "translation": "咱们说英语吧。",
+      "chunks": [
+        "Let's talk",
+        "in English."
+      ],
+      "hints": [
+        "咱们",
+        "说英语吧。"
+      ],
+      "cid": "9e257ff5"
+    },
+    {
+      "sentence": "Let's have a chat.",
+      "translation": "咱们聊会儿天吧!",
+      "chunks": [
+        "Let's have",
+        "a chat."
+      ],
+      "hints": [
+        "咱们",
+        "聊会儿天吧！"
+      ],
+      "cid": "bc5c08b5"
+    },
+    {
+      "sentence": "To the point, please.",
+      "translation": "抓重点的说。",
+      "chunks": [
+        "To the point,",
+        "please."
+      ],
+      "hints": [
+        "请",
+        "抓重点说。"
+      ],
+      "cid": "51ee2b7f"
+    },
+    {
+      "sentence": "How was your day?",
+      "translation": "今天过得怎么样?",
+      "chunks": [
+        "How was",
+        "your day?"
+      ],
+      "hints": [
+        "你今天",
+        "过得怎么样？"
+      ],
+      "cid": "11c84232"
+    },
+    {
+      "sentence": "Let's change the subject.",
+      "translation": "我们换个话题吧!",
+      "chunks": [
+        "Let's change",
+        "the subject."
+      ],
+      "hints": [
+        "我们",
+        "换个话题吧！"
+      ],
+      "cid": "bd1edf1b"
+    },
+    {
+      "sentence": "Let's get back to the subject.",
+      "translation": "言归正传。",
+      "chunks": [
+        "Let's get back",
+        "to the subject."
+      ],
+      "hints": [
+        "让我们回到",
+        "正题。"
+      ],
+      "cid": "14eee15f"
+    },
+    {
+      "sentence": "I don't want to talk about it now.",
+      "translation": "我现在不想谈那件事。",
+      "chunks": [
+        "I don't want",
+        "to talk about it now."
+      ],
+      "hints": [
+        "我现在不想",
+        "谈那件事。"
+      ],
+      "cid": "1120ad09"
+    },
+    {
+      "sentence": "Let's talk about it later.",
+      "translation": "那事儿以后再说吧。",
+      "chunks": [
+        "Let's talk about it",
+        "later."
+      ],
+      "hints": [
+        "那事",
+        "以后再说吧。"
+      ],
+      "cid": "5508cd34"
+    },
+    {
+      "sentence": "To change the subject...",
+      "translation": "另外我们说说……",
+      "chunks": [
+        "To change",
+        "the subject..."
+      ],
+      "hints": [
+        "另外",
+        "我们说说……"
+      ],
+      "cid": "cb8e20ab"
+    },
+    {
+      "sentence": "Well, all joking aside,...",
+      "translation": "好了，玩笑就到此……",
+      "chunks": [
+        "Well,",
+        "all joking aside,..."
+      ],
+      "hints": [
+        "好了，",
+        "玩笑就到此……"
+      ],
+      "cid": "afb0301e"
+    },
+    {
+      "sentence": "By the way,...",
+      "translation": "顺便提一下……",
+      "chunks": [
+        "By the",
+        "way,..."
+      ],
+      "hints": [
+        "顺便",
+        "提一下……"
+      ],
+      "cid": "472a55d6"
+    },
+    {
+      "sentence": "You were saying?",
+      "translation": "你刚才说什么来着?",
+      "chunks": [
+        "You were",
+        "saying?"
+      ],
+      "hints": [
+        "你刚才",
+        "说什么来着？"
+      ],
+      "cid": "ad51ec73"
+    },
+    {
+      "sentence": "That reminds me.",
+      "translation": "啊，我想起来了。",
+      "chunks": [
+        "That",
+        "reminds me."
+      ],
+      "hints": [
+        "这",
+        "让我想起来了。"
+      ],
+      "cid": "72e47c6a"
+    },
+    {
+      "sentence": "Let's stop talking.",
+      "translation": "别说了。",
+      "chunks": [
+        "Let's",
+        "stop talking."
+      ],
+      "hints": [
+        "我们",
+        "别说了。"
+      ],
+      "cid": "76a83900"
+    },
+    {
+      "sentence": "I've heard the story before.",
+      "translation": "那事儿我听过了。",
+      "chunks": [
+        "I've heard",
+        "the story before."
+      ],
+      "hints": [
+        "那件事我",
+        "听过了。"
+      ],
+      "cid": "c1a74ed5"
+    },
+    {
+      "sentence": "Let's drop the subject.",
+      "translation": "这件事别再说了。",
+      "chunks": [
+        "Let's drop",
+        "the subject."
+      ],
+      "hints": [
+        "这件事",
+        "别再说了。"
+      ],
+      "cid": "6e006988"
+    },
+    {
+      "sentence": "Don't say it so loud.",
+      "translation": "别那么大声说。",
+      "chunks": [
+        "Don't say it",
+        "so loud."
+      ],
+      "hints": [
+        "别说得",
+        "那么大声。"
+      ],
+      "cid": "f666e55d"
+    },
+    {
+      "sentence": "I've decided.",
+      "translation": "我已经决定了。",
+      "chunks": [
+        "I've",
+        "decided."
+      ],
+      "hints": [
+        "我",
+        "已经决定了。"
+      ],
+      "cid": "9238d6be"
+    },
+    {
+      "sentence": "It's up to you.",
+      "cid": "fb54ce6f",
+      "translation": "由你决定。",
+      "chunks": [
+        "It's up",
+        "to you."
+      ],
+      "hints": [
+        "取决于",
+        "由你"
+      ],
+      "grammar": [
+        {
+          "role": "主系结构",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ʌp/"
+          ],
+          "pos": "主系+副词",
+          "meaning": "取决于"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "由你"
+        }
+      ],
+      "explanations": [
+        "**It's up to you.** = 由你决定/你说了算，把选择权交给对方。点餐、约时间的高频句。",
+        "扩展：**It's up to sb to do sth** = 由某人负责做某事。问句 **What's up?**（怎么了）与本句无关，注意区分。"
+      ],
+      "distractors": [
+        [
+          "It up",
+          "It's upon"
+        ],
+        [
+          "for you.",
+          "to your.",
+          "on you."
+        ]
+      ]
+    },
+    {
+      "sentence": "You decide.",
+      "translation": "你决定吧!",
+      "chunks": [
+        "You",
+        "decide."
+      ],
+      "hints": [
+        "你",
+        "决定吧！"
+      ],
+      "cid": "6a8ac1fe"
+    },
+    {
+      "sentence": "This is the important point.",
+      "translation": "这是关键性的一点。",
+      "chunks": [
+        "This is",
+        "the important point."
+      ],
+      "hints": [
+        "这是",
+        "关键性的一点。"
+      ],
+      "cid": "7b9089f2"
+    },
+    {
+      "sentence": "This is my personal problem.",
+      "translation": "这是我个人的问题。",
+      "chunks": [
+        "This is",
+        "my personal problem."
+      ],
+      "hints": [
+        "这是",
+        "我个人的问题。"
+      ],
+      "cid": "44c77204"
+    },
+    {
+      "sentence": "It's a matter of life and death.",
+      "translation": "这是生死攸关的大事。",
+      "chunks": [
+        "It's a matter of",
+        "life and death."
+      ],
+      "hints": [
+        "这是",
+        "生死攸关的大事。"
+      ],
+      "cid": "841d39d6"
+    },
+    {
+      "sentence": "You're free to go or stay.",
+      "translation": "是去是留，随你。",
+      "chunks": [
+        "You're free",
+        "to go or stay."
+      ],
+      "hints": [
+        "是去是留",
+        "随你的便。"
+      ],
+      "cid": "5d9803c1"
+    },
+    {
+      "sentence": "There's no turning back.",
+      "translation": "已经无可挽回了。",
+      "chunks": [
+        "There's no",
+        "turning back."
+      ],
+      "hints": [
+        "已经",
+        "无可挽回了。"
+      ],
+      "cid": "70474b40"
+    },
+    {
+      "sentence": "Let's play it by ear.",
+      "translation": "走一步看一步吧!",
+      "chunks": [
+        "Let's play it",
+        "by ear."
+      ],
+      "hints": [
+        "我们",
+        "走一步看一步吧！"
+      ],
+      "cid": "cd689cae"
+    },
+    {
+      "sentence": "I'm sure I can do it.",
+      "translation": "我确信我能做好。",
+      "chunks": [
+        "I'm sure",
+        "I can do it."
+      ],
+      "hints": [
+        "我确信",
+        "我能做好。"
+      ],
+      "cid": "a8d43e80"
+    },
+    {
+      "sentence": "I'm still unable to decide what to do.",
+      "translation": "我仍然无法决定我该做什么。",
+      "chunks": [
+        "I'm still unable",
+        "to decide what to do."
+      ],
+      "hints": [
+        "我仍然无法",
+        "决定该做什么。"
+      ],
+      "cid": "075cd628"
+    },
+    {
+      "sentence": "I'll follow her.",
+      "translation": "我跟着她。",
+      "chunks": [
+        "I'll",
+        "follow her."
+      ],
+      "hints": [
+        "我",
+        "跟着她。"
+      ],
+      "cid": "804615cd"
+    },
+    {
+      "sentence": "Let's all get together and act as one.",
+      "translation": "我们拧成一股绳地去干。",
+      "chunks": [
+        "Let's all get together",
+        "and act as one."
+      ],
+      "hints": [
+        "我们拧成一股绳",
+        "一起去干。"
+      ],
+      "cid": "2b9ee56c"
+    },
+    {
+      "sentence": "I have to do it anyhow.",
+      "translation": "反正，也得干。",
+      "chunks": [
+        "I have to",
+        "do it anyhow."
+      ],
+      "hints": [
+        "反正",
+        "也得干。"
+      ],
+      "cid": "a0c32177"
+    },
+    {
+      "sentence": "It's now or never.",
+      "translation": "机不可失，时不再来。",
+      "chunks": [
+        "It's now",
+        "or never."
+      ],
+      "hints": [
+        "机不可失",
+        "时不再来。"
+      ],
+      "cid": "f20c2b8d"
+    },
+    {
+      "sentence": "The sooner, the better.",
+      "translation": "越早越好。",
+      "chunks": [
+        "The sooner,",
+        "the better."
+      ],
+      "hints": [
+        "越早",
+        "越好。"
+      ],
+      "cid": "09bcfc5f"
+    },
+    {
+      "sentence": "I'll take a chance.",
+      "translation": "碰碰运气看。",
+      "chunks": [
+        "I'll take",
+        "a chance."
+      ],
+      "hints": [
+        "我",
+        "碰碰运气看。"
+      ],
+      "cid": "6f829e39"
+    },
+    {
+      "sentence": "Have more guts!",
+      "translation": "再拿出点勇气来。",
+      "chunks": [
+        "Have more",
+        "guts!"
+      ],
+      "hints": [
+        "再拿出点",
+        "勇气来！"
+      ],
+      "cid": "6ddd4d10"
+    },
+    {
+      "sentence": "Let's finish it somehow.",
+      "translation": "我们总得想办法完成。",
+      "chunks": [
+        "Let's finish it",
+        "somehow."
+      ],
+      "hints": [
+        "我们总得",
+        "想办法完成。"
+      ],
+      "cid": "519e5c04"
+    },
+    {
+      "sentence": "It's worth a try.",
+      "translation": "值得一试。",
+      "chunks": [
+        "It's worth",
+        "a try."
+      ],
+      "hints": [
+        "值得",
+        "一试。"
+      ],
+      "cid": "b668e02e"
+    },
+    {
+      "sentence": "We must function as one mind and one body.",
+      "translation": "我们必须同心同德。",
+      "chunks": [
+        "We must function",
+        "as one mind and one body."
+      ],
+      "hints": [
+        "我们必须",
+        "同心同德。"
+      ],
+      "cid": "e3681795"
+    },
+    {
+      "sentence": "You just wait.",
+      "translation": "你等着瞧吧。",
+      "chunks": [
+        "You just",
+        "wait."
+      ],
+      "hints": [
+        "你",
+        "等着瞧吧。"
+      ],
+      "cid": "a377deb7"
+    },
+    {
+      "sentence": "It's all or nothing.",
+      "translation": "豁出去了。",
+      "chunks": [
+        "It's all",
+        "or nothing."
+      ],
+      "hints": [
+        "豁出去",
+        "了。"
+      ],
+      "cid": "4d18241f"
+    },
+    {
+      "sentence": "Guess what happened to me today!",
+      "cid": "f40f7098",
+      "translation": "你猜我今天发生了什么！",
+      "chunks": [
+        "Guess what",
+        "happened to me today!"
+      ],
+      "hints": [
+        "猜猜什么",
+        "发生在我身上今天"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡes/",
+            "/wɒt/"
+          ],
+          "pos": "祈使+疑问词",
+          "meaning": "猜猜什么"
+        },
+        {
+          "role": "谓语+状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈhæpənd/",
+            "/tuː/",
+            "/miː/",
+            "/təˈdeɪ/"
+          ],
+          "pos": "过去时",
+          "meaning": "发生在我身上今天"
+        }
+      ],
+      "explanations": [
+        "分享新闻的开场白。`Guess what` = 你猜怎么着。常见错误：\n• \"Guess **that** what\" → what 引导从句，不加 that\n• \"Guessing what\" → 祈使用动词原形 Guess",
+        "`happened to me` = 发生在我身上。happen 是不及物动词，接人用 happen to sb。"
+      ],
+      "distractors": [
+        [
+          "Guess that",
+          "Guessing what",
+          "Guess who"
+        ],
+        [
+          "happened to you today!",
+          "happens to me today!",
+          "happened to me yesterday!"
+        ]
+      ]
+    },
+    {
+      "sentence": "To be honest, I didn't expect it to be so good.",
+      "cid": "841bd042",
+      "translation": "说实话，我没料到会这么好。",
+      "chunks": [
+        "To be honest,",
+        "I didn't expect it",
+        "to be so good."
+      ],
+      "hints": [
+        "说实话",
+        "我没料到它",
+        "会这么好"
+      ],
+      "grammar": [
+        {
+          "role": "插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/biː/",
+            "/ˈɒnɪst/"
+          ],
+          "pos": "固定短语",
+          "meaning": "说实话"
+        },
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈdɪdnt/",
+            "/ɪkˈspekt/",
+            "/ɪt/"
+          ],
+          "pos": "过去时否定",
+          "meaning": "我没料到它"
+        },
+        {
+          "role": "不定式",
+          "color": "#3358e0",
+          "phonetic": [
+            "/tuː/",
+            "/biː/",
+            "/səʊ/",
+            "/ɡʊd/"
+          ],
+          "pos": "结果补语",
+          "meaning": "会这么好"
+        }
+      ],
+      "explanations": [
+        "`To be honest` = 说实话（坦率开场）。常见错误：\n• \"To be **honesty**\" → honest 是形容词，honesty 是名词\n• \"Honest\" → 单独说太生硬，用 to be honest",
+        "`didn't expect it` = 没料到它。expect 后接不定式 it to be…。常见错误：\n• \"didn't **expected**\" → didn't 后接原形 expect",
+        "`to be so good` = 会这么好。so 修饰形容词表程度。"
+      ],
+      "distractors": [
+        [
+          "To be honesty,",
+          "Being honest,",
+          "To be honestly,"
+        ],
+        [
+          "I didn't expected it",
+          "I don't expect it",
+          "I didn't expect that"
+        ],
+        [
+          "to being so good.",
+          "to be very good.",
+          "so good to be."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're not going to believe this.",
+      "cid": "9d0c16ea",
+      "translation": "你不会相信这个的。",
+      "chunks": [
+        "You're not going to",
+        "believe this."
+      ],
+      "hints": [
+        "你不会要",
+        "相信这个"
+      ],
+      "grammar": [
+        {
+          "role": "将来时否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/jʊər/",
+            "/nɒt/",
+            "/ˈɡəʊɪŋ/",
+            "/tuː/"
+          ],
+          "pos": "be going to",
+          "meaning": "你不会要"
+        },
+        {
+          "role": "动词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/bɪˈliːv/",
+            "/ðɪs/"
+          ],
+          "pos": "谓语",
+          "meaning": "相信这个"
+        }
+      ],
+      "explanations": [
+        "预告惊人消息的口语开场。`be going to` 表将来。常见错误：\n• \"You're not **go** to believe\" → going to 结构：be + going to\n• \"You won't believe\" → 同义，但 you're not going to 更口语",
+        "`believe this` = 相信这件事。this 指代即将讲述的消息。"
+      ],
+      "distractors": [
+        [
+          "You not going to",
+          "You're not going",
+          "You're no going to"
+        ],
+        [
+          "believes this.",
+          "believed this.",
+          "believe it."
+        ]
+      ]
+    },
+    {
+      "sentence": "I bet he's already left for work.",
+      "cid": "03cbee2b",
+      "translation": "我打赌他已经去上班了。",
+      "chunks": [
+        "I bet",
+        "he's already left",
+        "for work."
+      ],
+      "hints": [
+        "我敢打赌",
+        "他已经离开了",
+        "去上班"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/bet/"
+          ],
+          "pos": "I bet",
+          "meaning": "我敢打赌"
+        },
+        {
+          "role": "现在完成",
+          "color": "#3358e0",
+          "phonetic": [
+            "/hiːz/",
+            "/ɔːlˈredi/",
+            "/left/"
+          ],
+          "pos": "have done",
+          "meaning": "他已经离开"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/wɜːrk/"
+          ],
+          "pos": "介词短语",
+          "meaning": "去上班"
+        }
+      ],
+      "explanations": [
+        "`I bet` = 我敢打赌/我肯定（口语）。常见错误：\n• \"I bet **on**\" → 表断言不加 on\n• \"I'm bet\" → bet 是动词不加 be",
+        "`leave for + 目的地` = 动身去……。常见错误：\n• \"leave to work\" → 搭配 leave for\n• \"left to work\" → 离开去某地用 for"
+      ],
+      "distractors": [
+        [
+          "I'm bet",
+          "I bet on",
+          "I better"
+        ],
+        [
+          "he has already leave",
+          "he already left",
+          "he's left already for"
+        ],
+        [
+          "to work.",
+          "work.",
+          "for the work."
+        ]
+      ]
+    },
+    {
+      "sentence": "Who's that woman you were talking to?",
+      "cid": "46893aac",
+      "translation": "跟你说话的那个女人是谁？",
+      "chunks": [
+        "Who's that woman",
+        "you were talking to?"
+      ],
+      "hints": [
+        "那个女人是谁",
+        "你在跟她说话的"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/huːz/",
+            "/ðæt/",
+            "/ˈwʊmən/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "那个女人是谁"
+        },
+        {
+          "role": "定语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/juː/",
+            "/wɜːr/",
+            "/ˈtɔːkɪŋ/",
+            "/tuː/"
+          ],
+          "pos": "定语从句",
+          "meaning": "你刚才在跟她说话的"
+        }
+      ],
+      "explanations": [
+        "`talk to sb` 是「跟某人说话」，用介词 to。常见错误：\n• \"Who **that** woman\" → 缺 be 动词，应为 Who's\n• \"Who's that **women**\" → 单数用 woman，复数才是 women",
+        "定语从句里介词 to 留在句尾：the woman (that) you were talking to。"
+      ],
+      "distractors": [
+        [
+          "Who that woman",
+          "Who's that women",
+          "Whose that woman"
+        ],
+        [
+          "you was talking to?",
+          "you were talked to?",
+          "you talking to?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Why would I need that?",
+      "cid": "18e9ee1b",
+      "translation": "我要那个干嘛？",
+      "chunks": [
+        "Why would",
+        "I need that?"
+      ],
+      "hints": [
+        "为什么会",
+        "我需要那个"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+情态",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/waɪ/",
+            "/wʊd/"
+          ],
+          "pos": "情态疑问",
+          "meaning": "为什么会"
+        },
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/niːd/",
+            "/ðæt/"
+          ],
+          "pos": "主语+动词+宾语",
+          "meaning": "我需要那个"
+        }
+      ],
+      "explanations": [
+        "`Why would I ...?` 用虚拟语气反问，暗含「我没理由需要」。常见错误：\n• \"Why **will** I need\" → 反问用 would 更自然\n• \"Why would **me** need\" → 主语用主格 I",
+        "这类 would 用于表达「假设/反问」，不是将来时。"
+      ],
+      "distractors": [
+        [
+          "Why will",
+          "Why are",
+          "Why would me"
+        ],
+        [
+          "I needed that?",
+          "I need this?",
+          "me need that?"
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm not gonna talk about Judy.",
+      "cid": "7bec57ab",
+      "translation": "我不想聊朱迪。",
+      "chunks": [
+        "I'm not gonna",
+        "talk about Judy."
+      ],
+      "hints": [
+        "我不会",
+        "谈朱迪"
+      ],
+      "grammar": [
+        {
+          "role": "主谓否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/nɑːt/",
+            "/ˈɡənə/"
+          ],
+          "pos": "be going to 否定",
+          "meaning": "我不打算"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tɔːk/",
+            "/əˈbaʊt/",
+            "/ˈdʒuːdi/"
+          ],
+          "pos": "短语动词",
+          "meaning": "谈（关于）"
+        }
+      ],
+      "explanations": [
+        "`gonna` 是 going to 的口语缩略，用于非正式场合。常见错误：\n• \"I'm not **going talk**\" → 口语 gonna 对应 going to + 动词原形\n• \"talk **with** Judy\" → 谈及某事用 talk about",
+        "`talk about sth` 谈某事；`talk to sb` 跟某人说话。"
+      ],
+      "distractors": [
+        [
+          "I not gonna",
+          "I'm not going talk",
+          "I'm no gonna"
+        ],
+        [
+          "talking about Judy.",
+          "talk about Judys.",
+          "talked about Judy."
+        ]
+      ]
+    },
+    {
+      "sentence": "I think you do.",
+      "cid": "efcd6d0e",
+      "translation": "我觉着你有（你不承认而已）。",
+      "chunks": [
+        "I think",
+        "you do."
+      ],
+      "hints": [
+        "我觉得",
+        "你是的"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/θɪŋk/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我觉得"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/juː/",
+            "/duː/"
+          ],
+          "pos": "宾语从句",
+          "meaning": "你确实（有/是）"
+        }
+      ],
+      "explanations": [
+        "`you do` 是替代式肯定，用 do 代指上文动词，起强调作用。常见错误：\n• \"I **thinking**\" → 一般现在时用 think\n• \"you **does**\" → 主语 you 配 do",
+        "这种 `do` 叫代动词（pro-verb），避免重复上文动词：I think you do = I think you do have it."
+      ],
+      "distractors": [
+        [
+          "I thinking",
+          "I thinks",
+          "I am think"
+        ],
+        [
+          "you does.",
+          "you doing.",
+          "you will."
+        ]
+      ]
+    },
+    {
+      "sentence": "I was sitting next to her on the plane.",
+      "cid": "3aa31e0a",
+      "translation": "在飞机上我坐她旁边。",
+      "chunks": [
+        "I was sitting next to her",
+        "on the plane."
+      ],
+      "hints": [
+        "我当时坐在她旁边",
+        "在飞机上"
+      ],
+      "grammar": [
+        {
+          "role": "过去进行时",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/wʌz/",
+            "/ˈsɪtɪŋ/",
+            "/nekst/"
+          ],
+          "pos": "过去进行时",
+          "meaning": "我当时坐在她旁边"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɒn/",
+            "/ðə/",
+            "/pleɪn/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在飞机上"
+        }
+      ],
+      "explanations": [
+        "`next to` 是「在……旁边」的固定搭配。常见错误：\n• \"next **her**\" → 必须带 to：next to her\n• \"I **were** sitting\" → 主语 I 配 was",
+        "`on the plane` 指在飞机上；注意 train/bus 也用 on。"
+      ],
+      "distractors": [
+        [
+          "I was sitting next her",
+          "I was sat next to her",
+          "I were sitting next to her"
+        ],
+        [
+          "in the plane.",
+          "on plane.",
+          "at the plane."
+        ]
+      ]
+    },
+    {
+      "sentence": "I thought she said something to me.",
+      "cid": "307d29b1",
+      "translation": "我以为她在跟我搭话。",
+      "chunks": [
+        "I thought",
+        "she said something",
+        "to me."
+      ],
+      "hints": [
+        "我以为",
+        "她说了什么",
+        "对我"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/θɔːt/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我以为"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʃiː/",
+            "/sed/",
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "宾语从句",
+          "meaning": "她说了些什么"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对我"
+        }
+      ],
+      "explanations": [
+        "`say sth to sb` 是「对某人说某事」的固定搭配。常见错误：\n• \"say something **for** me\" → 对某人说用 to\n• \"she **says** something\" → 与主句时态一致，用过去式 said",
+        "注意 say 后面直接接内容，tell 需接人：say to me = tell me。",
+        "`I thought ...` 用过去时表示「我（原）以为」，常暗含事实上并非如此。"
+      ],
+      "distractors": [
+        [
+          "I think",
+          "I was thought",
+          "I thought that"
+        ],
+        [
+          "she says something",
+          "she say something",
+          "she said anything"
+        ],
+        [
+          "for me.",
+          "on me.",
+          "in me."
+        ]
+      ]
+    },
+    {
+      "sentence": "Yeah, maybe run into her at the gym.",
+      "cid": "c1caeb1d",
+      "translation": "也许能在健身房和她偶遇。",
+      "chunks": [
+        "Yeah, maybe run into her",
+        "at the gym."
+      ],
+      "hints": [
+        "也许碰到她",
+        "在健身房"
+      ],
+      "grammar": [
+        {
+          "role": "省略句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/jæ/",
+            "/ˈmeɪbi/",
+            "/rʌn/",
+            "/ˈɪntuː/"
+          ],
+          "pos": "省略主语的口语句",
+          "meaning": "嗯，也许（我）会遇到她"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/ðə/",
+            "/dʒɪm/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在健身房"
+        }
+      ],
+      "explanations": [
+        "`run into sb` 是「偶然遇到某人」的固定搭配。常见错误：\n• \"run **to** her\" → 偶遇用 run into，不是 run to\n• \"maybe **running**\" → maybe 后面接动词原形（省略了 I might）",
+        "对比 `run into`（偶遇）/ `bump into`（同义）/ `meet`（约见或相遇）。"
+      ],
+      "distractors": [
+        [
+          "Yeah, maybe run to her",
+          "Yeah, maybe running into her",
+          "Yeah, maybe ran into her"
+        ],
+        [
+          "on the gym.",
+          "at gym.",
+          "to the gym."
+        ]
+      ]
+    }
+  ]
+}

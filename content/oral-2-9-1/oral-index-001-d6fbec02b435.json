@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "f6bd3104",
+      "sentence": "Do you understand?",
+      "translation": "懂吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "fc596479",
+      "sentence": "Understood?",
+      "translation": "懂了吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "c51af574",
+      "sentence": "Is that clear?",
+      "translation": "清楚了吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "727d70eb",
+      "sentence": "Get the picture?",
+      "translation": "你了解情况吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "538a6a81",
+      "sentence": "Do you know what I mean?",
+      "translation": "你懂我说的意思吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "2d4624cb",
+      "sentence": "Are you listening to me?",
+      "translation": "你在听吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "782de9ce",
+      "sentence": "Are you blind?",
+      "translation": "你不知道吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "89b53307",
+      "sentence": "You know what I'm talking about.",
+      "translation": "你明白我说的意思吧。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "b6390910",
+      "sentence": "I said that, didn't I?",
+      "translation": "我是那样说的吧?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "d8eb39f0",
+      "sentence": "Do you know that?",
+      "translation": "你知道那事吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "9982f162",
+      "sentence": "Do you happen to know...?",
+      "translation": "说不定你知道……吧?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "48be7874",
+      "sentence": "I can't tell the difference.",
+      "translation": "我辨别不出来。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "a26299b5",
+      "sentence": "Can you hear me?",
+      "translation": "你听得见吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "36a11a1c",
+      "sentence": "Did you hear me?",
+      "translation": "你听见我说的了吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "50e68df0",
+      "sentence": "I understand.",
+      "translation": "知道了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "2b72980d",
+      "sentence": "See?",
+      "translation": "明白了吗?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "14c146f8",
+      "sentence": "I understand very well.",
+      "translation": "完全明白。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "7ffebedf",
+      "sentence": "I think I understand.",
+      "translation": "我想我懂了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "7b5c9de1",
+      "sentence": "I see what you mean.",
+      "translation": "我明白你说的了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "0bc4bc40",
+      "sentence": "I know that too well.",
+      "translation": "我太清楚那种事了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "bfdf119a",
+      "sentence": "I see your point.",
+      "translation": "我明白你的意思。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "f7cec091",
+      "sentence": "I get it.",
+      "translation": "噢，我终于明白了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "778524a7",
+      "sentence": "I got it.",
+      "translation": "这样啊，原来是这么回事。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "fb98cca8",
+      "sentence": "I know that much!",
+      "translation": "这点事儿我还是知道的。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "e625717d",
+      "sentence": "That solves it.",
+      "translation": "原来是这样啊!",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "91d91604",
+      "sentence": "All right, all right. I understand.",
+      "translation": "好吧，好吧，我知道了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "543caffb",
+      "sentence": "I know.",
+      "translation": "我知道呀。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "0c3465fd",
+      "sentence": "I know that person.",
+      "translation": "我认识那个人。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "998f9c2f",
+      "sentence": "I know him by sight.",
+      "translation": "我见过他。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "21c20c7d",
+      "sentence": "Yeah, I heard about it.",
+      "translation": "嗯，我听说了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "ec91d953",
+      "sentence": "I hear you.",
+      "translation": "我听着呢。/我知道了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "1138639e",
+      "sentence": "I'm following you.",
+      "translation": "我理解了。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "ad531bc4",
+      "sentence": "Makes sense.",
+      "translation": "言之有理。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "2226081a",
+      "sentence": "I don't understand.",
+      "translation": "我不明白。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "fd42aa91",
+      "sentence": "I don't really understand.",
+      "translation": "我不太明白。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "85da5e3c",
+      "sentence": "That's not clear.",
+      "translation": "我不清楚。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "b74a1d37",
+      "sentence": "I can't see your point.",
+      "translation": "我不明白你在说什么。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 36
+    },
+    {
+      "cid": "c794456b",
+      "sentence": "I can't understand what you mean.",
+      "translation": "我不明白你的意思。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 37
+    },
+    {
+      "cid": "0e85410e",
+      "sentence": "I'm not sure what you mean.",
+      "translation": "我弄不清楚你想说什么。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 38
+    },
+    {
+      "cid": "cd4162bf",
+      "sentence": "I don't know what's what.",
+      "translation": "我根本不知道这是怎么回事。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 39
+    },
+    {
+      "cid": "33a7a7a6",
+      "sentence": "It's over my head.",
+      "translation": "太难了，我弄不懂。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 40
+    },
+    {
+      "cid": "06b1157f",
+      "sentence": "Your guess is as good as mine.",
+      "translation": "我也搞不清楚。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 41
+    },
+    {
+      "cid": "b58b230a",
+      "sentence": "The more I think about it, the less I understand it.",
+      "translation": "越想越糊涂。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 42
+    },
+    {
+      "cid": "e07bab12",
+      "sentence": "I don't know what he is driving at.",
+      "translation": "我不知道他要干什么。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 43
+    },
+    {
+      "cid": "49b97732",
+      "sentence": "What's she after?",
+      "translation": "她到底想干什么?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 44
+    },
+    {
+      "cid": "bc4791c6",
+      "sentence": "I have no idea.",
+      "translation": "我一点儿都不知道。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 45
+    },
+    {
+      "cid": "4187b494",
+      "sentence": "I didn't know that.",
+      "translation": "我怎么不知道。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 46
+    },
+    {
+      "cid": "4b3f475d",
+      "sentence": "I don't know.",
+      "translation": "不知道。/不太清楚。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 47
+    },
+    {
+      "cid": "e3888ed3",
+      "sentence": "I don't know for sure.",
+      "translation": "我不太清楚。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 48
+    },
+    {
+      "cid": "dccc9a2c",
+      "sentence": "No one knows for sure.",
+      "translation": "谁也不知道确切的情况。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 49
+    },
+    {
+      "cid": "74765fb7",
+      "sentence": "How should I know?",
+      "translation": "我怎么会知道?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 50
+    },
+    {
+      "cid": "74a2b484",
+      "sentence": "Who knows?",
+      "translation": "谁能知道?",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 51
+    },
+    {
+      "cid": "5b28a18d",
+      "sentence": "Do you prefer coffee or tea?",
+      "translation": "你更喜欢咖啡还是茶？",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 52
+    },
+    {
+      "cid": "300d8e13",
+      "sentence": "What's your favorite way to relax?",
+      "translation": "你最喜欢的放松方式是什么？",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 53
+    },
+    {
+      "cid": "a5117784",
+      "sentence": "What do you think of this idea?",
+      "translation": "你觉得这个主意怎么样？",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 54
+    },
+    {
+      "cid": "5e6bba59",
+      "sentence": "That reminds me of something.",
+      "translation": "那让我想起了一件事。",
+      "sourceUrl": "content/oral-2-9-1/oral-001-157b5f290795.json",
+      "sourceOffset": 55
+    }
+  ]
+}

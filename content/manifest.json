@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-6ecb1f6d2e05efbdc0dd5c9fe3cbca8719ae0eaa684d14fdc9a1aa3b9a19003a",
+  "contentVersion": "v1-1ab9f35543613f730bd65c26fbfa94ce59605652ebedcd571e97fc4aade0254d",
   "series": "日常口语 8000",
   "chapters": [
     {
@@ -691,24 +691,24 @@
       "sectionTitle": "随意的谈话",
       "topic": "征求意见～不明白、不知道",
       "baseCount": 0,
-      "totalCount": 4,
+      "totalCount": 56,
       "shards": [
         {
-          "id": "oral-001-d69c2adaa760",
-          "url": "content/oral-2-9-1/oral-001-d69c2adaa760.json",
-          "count": 4,
-          "bytes": 6126,
-          "sha256": "d69c2adaa760220392bf12eca630315d008c966ff15fab6879cde96c5af5aa5e",
+          "id": "oral-001-157b5f290795",
+          "url": "content/oral-2-9-1/oral-001-157b5f290795.json",
+          "count": 56,
+          "bytes": 19931,
+          "sha256": "157b5f2907956572af42b5733a07d81cff0a6b86a42ec6dc6e145d62a3295fdd",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-63359497f0ff",
-          "url": "content/oral-2-9-1/oral-index-001-63359497f0ff.json",
-          "count": 4,
-          "bytes": 1023,
-          "sha256": "63359497f0ff6b2dca159feef40e26a727b424bbf74dc853731947df7fa7b63d",
+          "id": "oral-index-001-d6fbec02b435",
+          "url": "content/oral-2-9-1/oral-index-001-d6fbec02b435.json",
+          "count": 56,
+          "bytes": 12437,
+          "sha256": "d6fbec02b435dc6f09312d1d458688792ad4774f67682620482386fdda713c17",
           "mode": "index"
         }
       ]
@@ -723,24 +723,24 @@
       "sectionTitle": "随意的谈话",
       "topic": "反问～随声附和",
       "baseCount": 0,
-      "totalCount": 4,
+      "totalCount": 71,
       "shards": [
         {
-          "id": "oral-001-370263e6ca03",
-          "url": "content/oral-2-9-2/oral-001-370263e6ca03.json",
-          "count": 4,
-          "bytes": 7047,
-          "sha256": "370263e6ca03dd37c38820d833ba88106848781366509776fd965e196b783e01",
+          "id": "oral-001-ceeb667933da",
+          "url": "content/oral-2-9-2/oral-001-ceeb667933da.json",
+          "count": 71,
+          "bytes": 24436,
+          "sha256": "ceeb667933dae5a0f8bb2e5c30803c134245b09f1ec87972d8d38f75dc9d5bf3",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-6c01371911c7",
-          "url": "content/oral-2-9-2/oral-index-001-6c01371911c7.json",
-          "count": 4,
-          "bytes": 1041,
-          "sha256": "6c01371911c7d84b926e54a8dd808418caf0f59a4396ad51f24e8e8175cb779e",
+          "id": "oral-index-001-f11e9b590670",
+          "url": "content/oral-2-9-2/oral-index-001-f11e9b590670.json",
+          "count": 71,
+          "bytes": 15161,
+          "sha256": "f11e9b5906700678d7bef213177d14693b3000640cd34d716a8a6459b9297066",
           "mode": "index"
         }
       ]
@@ -755,24 +755,24 @@
       "sectionTitle": "随意的谈话",
       "topic": "一时语塞～下决心",
       "baseCount": 0,
-      "totalCount": 11,
+      "totalCount": 72,
       "shards": [
         {
-          "id": "oral-001-3e5dd044154c",
-          "url": "content/oral-2-9-3/oral-001-3e5dd044154c.json",
-          "count": 11,
-          "bytes": 17308,
-          "sha256": "3e5dd044154c214af5243632c4ed2bd89004615cc4b98148c773e81e01d6ed03",
+          "id": "oral-001-7c6c24de23ae",
+          "url": "content/oral-2-9-3/oral-001-7c6c24de23ae.json",
+          "count": 72,
+          "bytes": 34673,
+          "sha256": "7c6c24de23aed5da556997ebbb84971c77d7c0f38071886efb9b3e26a1b4435c",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-f75b857e2025",
-          "url": "content/oral-2-9-3/oral-index-001-f75b857e2025.json",
-          "count": 11,
-          "bytes": 2716,
-          "sha256": "f75b857e20251178b3442dde7398248ddb1feb7811b8bb85e3729fdeb2aac25d",
+          "id": "oral-index-001-9765bacbd8b3",
+          "url": "content/oral-2-9-3/oral-index-001-9765bacbd8b3.json",
+          "count": 72,
+          "bytes": 16215,
+          "sha256": "9765bacbd8b32fd6aa8096cffcaa683c737ede00027989678f78e8bfa1562476",
           "mode": "index"
         }
       ]
@@ -787,24 +787,24 @@
       "sectionTitle": "提醒、忠告",
       "topic": "教诲、告诫",
       "baseCount": 0,
-      "totalCount": 5,
+      "totalCount": 39,
       "shards": [
         {
-          "id": "oral-001-30c2ec1c6f30",
-          "url": "content/oral-2-10-1/oral-001-30c2ec1c6f30.json",
-          "count": 5,
-          "bytes": 7374,
-          "sha256": "30c2ec1c6f30a81a58827de6ad287b580512ccfddc30e8a86645e1096639b596",
+          "id": "oral-001-7f24be08aad1",
+          "url": "content/oral-2-10-1/oral-001-7f24be08aad1.json",
+          "count": 39,
+          "bytes": 17095,
+          "sha256": "7f24be08aad1f53b9373babe854ec5d2b66fcdbd53a386e05b89378d4e2c8cec",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-c8971d24c460",
-          "url": "content/oral-2-10-1/oral-index-001-c8971d24c460.json",
-          "count": 5,
-          "bytes": 1192,
-          "sha256": "c8971d24c460ebe420a21a617582e7d1bd78415f77318fcafe445723f70de1b0",
+          "id": "oral-index-001-006e7c729f32",
+          "url": "content/oral-2-10-1/oral-index-001-006e7c729f32.json",
+          "count": 39,
+          "bytes": 9003,
+          "sha256": "006e7c729f3218b27aa9363b0382549de5fb97ddffd4e33f3192c35b849fce83",
           "mode": "index"
         }
       ]
@@ -819,24 +819,24 @@
       "sectionTitle": "提醒、忠告",
       "topic": "提醒～责备",
       "baseCount": 0,
-      "totalCount": 3,
+      "totalCount": 66,
       "shards": [
         {
-          "id": "oral-001-69da720e9817",
-          "url": "content/oral-2-10-2/oral-001-69da720e9817.json",
-          "count": 3,
-          "bytes": 4464,
-          "sha256": "69da720e9817184810df101ff33bd786d97bd15103c4df67ff07b3c418639161",
+          "id": "oral-001-2be910c4cc76",
+          "url": "content/oral-2-10-2/oral-001-2be910c4cc76.json",
+          "count": 66,
+          "bytes": 21642,
+          "sha256": "2be910c4cc7694539eb6376c0d0c136ca40e4dc0e6700dc6266936fb44a3a48b",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-daca999849a0",
-          "url": "content/oral-2-10-2/oral-index-001-daca999849a0.json",
-          "count": 3,
-          "bytes": 716,
-          "sha256": "daca999849a06b3205df644f51d68a500a9f4ea211b40d98766091d7a70ac438",
+          "id": "oral-index-001-6b194a29e336",
+          "url": "content/oral-2-10-2/oral-index-001-6b194a29e336.json",
+          "count": 66,
+          "bytes": 14805,
+          "sha256": "6b194a29e33698e96e69aa99d22726b614aa595596b7cd9ffd3bfa3e508a18d6",
           "mode": "index"
         }
       ]
@@ -851,24 +851,24 @@
       "sectionTitle": "提醒、忠告",
       "topic": "制止～警告",
       "baseCount": 0,
-      "totalCount": 7,
+      "totalCount": 48,
       "shards": [
         {
-          "id": "oral-001-5db367c75189",
-          "url": "content/oral-2-10-3/oral-001-5db367c75189.json",
-          "count": 7,
-          "bytes": 9752,
-          "sha256": "5db367c75189862bde5fb31015850458982f09772fef859f455a399ca0798459",
+          "id": "oral-001-809a11b10878",
+          "url": "content/oral-2-10-3/oral-001-809a11b10878.json",
+          "count": 48,
+          "bytes": 19246,
+          "sha256": "809a11b10878efcb39a79ec51b2797fbcca0636624a3af32c0514ed7ade96530",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-60a492fbdb9a",
-          "url": "content/oral-2-10-3/oral-index-001-60a492fbdb9a.json",
-          "count": 7,
-          "bytes": 1594,
-          "sha256": "60a492fbdb9a208470fa36f906bcb4acd01ffeb0b04d346eabe8497488e00727",
+          "id": "oral-index-001-2d4b2dd14855",
+          "url": "content/oral-2-10-3/oral-index-001-2d4b2dd14855.json",
+          "count": 48,
+          "bytes": 9957,
+          "sha256": "2d4b2dd148556834c4957a97d1e5b9031cbc33f51a4852b3c80702f0d4dd8068",
           "mode": "index"
         }
       ]
@@ -979,24 +979,24 @@
       "sectionTitle": "商谈",
       "topic": "含糊其辞的回答～提出、询问意见",
       "baseCount": 0,
-      "totalCount": 67,
+      "totalCount": 66,
       "shards": [
         {
-          "id": "oral-001-a881417ab4f8",
-          "url": "content/oral-3-12-2/oral-001-a881417ab4f8.json",
-          "count": 67,
-          "bytes": 24161,
-          "sha256": "a881417ab4f800750464e26be416a06a13b6707f27a7f7ab8e689d6499ca12d2",
+          "id": "oral-001-f1aedce2b88e",
+          "url": "content/oral-3-12-2/oral-001-f1aedce2b88e.json",
+          "count": 66,
+          "bytes": 22954,
+          "sha256": "f1aedce2b88ee0b76145ec9651bc134beb90046bb11beae742ecf1a3343cec6d",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-4c146580ac6b",
-          "url": "content/oral-3-12-2/oral-index-001-4c146580ac6b.json",
-          "count": 67,
-          "bytes": 14804,
-          "sha256": "4c146580ac6b4a50a24a79fcf61956c8075d65305d1a0210718570c92a8a2fd9",
+          "id": "oral-index-001-5e7663795182",
+          "url": "content/oral-3-12-2/oral-index-001-5e7663795182.json",
+          "count": 66,
+          "bytes": 14595,
+          "sha256": "5e76637951829ef56fd9cc6e007ee16f693c060527c79db08e05222ac1bf073a",
           "mode": "index"
         }
       ]
@@ -2099,24 +2099,24 @@
       "sectionTitle": "万能表达",
       "topic": "",
       "baseCount": 0,
-      "totalCount": 8,
+      "totalCount": 7,
       "shards": [
         {
-          "id": "oral-001-d817880c0361",
-          "url": "content/oral-basic/oral-001-d817880c0361.json",
-          "count": 8,
-          "bytes": 10536,
-          "sha256": "d817880c0361e241a40604adb326812e52c3ab8ba25f7273e8a5de37842a2bea",
+          "id": "oral-001-727282a495ab",
+          "url": "content/oral-basic/oral-001-727282a495ab.json",
+          "count": 7,
+          "bytes": 9333,
+          "sha256": "727282a495ab6d0ee934bb2741d735c57c9d1b9605c6f3d9ba5903ebfa335843",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-82988fe40fcd",
-          "url": "content/oral-basic/oral-index-001-82988fe40fcd.json",
-          "count": 8,
-          "bytes": 1826,
-          "sha256": "82988fe40fcdc63ca4b995d0144b42258d9b91d583a6aa3acd0087cb5cdf85e5",
+          "id": "oral-index-001-e8872e7eb41d",
+          "url": "content/oral-basic/oral-index-001-e8872e7eb41d.json",
+          "count": 7,
+          "bytes": 1607,
+          "sha256": "e8872e7eb41dc7a97d3510ba764ce1a195789103fc2dfc05328ea02b388fca56",
           "mode": "index"
         }
       ]

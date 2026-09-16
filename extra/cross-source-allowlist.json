@@ -49,6 +49,34 @@
       "idiom": "Make yourself at home.",
       "kind": "identical",
       "reason": "2026-09-16 铺 2.11 节时被护栏抓出（第二次拦红）。两库文本逐字一致 → cid 相同（9b787492）、进度共享；口语 2.11 是「接待客人」场景用法，惯用语库是固定表达定位，用户路径不同、重复无害。⚠️ 注意两库**切分不同**（口语 [\"Make yourself\",\"at home.\"] / 惯用语 [\"Make\",\"yourself at home.\"]），但 cid 由句子文本算出、与切分无关 → 不影响进度共享；中译略有差异（「别拘束，像在自己家一样吧。」/「别客气，像在自己家一样。」）属正常。"
+    },
+    {
+      "norm": "dontcallmenames",
+      "oral": "Don't call me names!",
+      "idiom": "Don't call me names!",
+      "kind": "identical",
+      "reason": "2026-09-16 铺 2.10 节时被护栏抓出（第三次拦红，同批 4 条全出自 oral-2-10-3「制止～警告」）。两库文本逐字一致 → cid 相同（fb8b0dea）、进度共享；口语 2.10 是场景对话里的制止用法，惯用语库是固定表达定位，用户路径不同、重复无害。中译略异（「别张口就骂人。」/「别骂我！」）属正常。"
+    },
+    {
+      "norm": "getoutofhere",
+      "oral": "Get out of here!",
+      "idiom": "Get out of here!",
+      "kind": "identical",
+      "reason": "同批 4 条之一（铺 2.10 节时护栏抓出）。两库文本逐字一致 → cid 相同（1c9e35dd）、进度共享；两库中译一致（「滚出去。」）→ 连译文都无差异，纯重复、保留。"
+    },
+    {
+      "norm": "keepitoutofsight",
+      "oral": "Keep it out of sight.",
+      "idiom": "Keep it out of sight.",
+      "kind": "identical",
+      "reason": "同批 4 条之一（铺 2.10 节时护栏抓出）。两库文本逐字一致 → cid 相同（3b5e18cb）、进度共享；中译略异（「要做得不露痕迹。」/「把它藏好别让人看见。」）属正常重述，保留。"
+    },
+    {
+      "norm": "stayawayfromme",
+      "oral": "Stay away from me.",
+      "idiom": "Stay away from me.",
+      "kind": "identical",
+      "reason": "同批 4 条之一（铺 2.10 节时护栏抓出）。两库文本逐字一致 → cid 相同（17df306e）、进度共享；中译略异（「离我远点儿。」/「离我远点。」）仅语气助词差异，保留。"
     }
   ]
 }

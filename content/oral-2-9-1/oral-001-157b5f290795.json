@@ -1,0 +1,890 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Do you understand?",
+      "translation": "懂吗?",
+      "chunks": [
+        "Do you",
+        "understand?"
+      ],
+      "hints": [
+        "你",
+        "明白吗？"
+      ],
+      "cid": "f6bd3104"
+    },
+    {
+      "sentence": "Understood?",
+      "translation": "懂了吗?",
+      "chunks": [
+        "Understood?"
+      ],
+      "hints": [
+        "懂了吗？"
+      ],
+      "cid": "fc596479"
+    },
+    {
+      "sentence": "Is that clear?",
+      "translation": "清楚了吗?",
+      "chunks": [
+        "Is that",
+        "clear?"
+      ],
+      "hints": [
+        "这样",
+        "清楚吗？"
+      ],
+      "cid": "c51af574"
+    },
+    {
+      "sentence": "Get the picture?",
+      "translation": "你了解情况吗?",
+      "chunks": [
+        "Get the",
+        "picture?"
+      ],
+      "hints": [
+        "了解",
+        "情况了吗？"
+      ],
+      "cid": "727d70eb"
+    },
+    {
+      "sentence": "Do you know what I mean?",
+      "translation": "你懂我说的意思吗?",
+      "chunks": [
+        "Do you know",
+        "what I mean?"
+      ],
+      "hints": [
+        "你懂",
+        "我的意思吗？"
+      ],
+      "cid": "538a6a81"
+    },
+    {
+      "sentence": "Are you listening to me?",
+      "translation": "你在听吗?",
+      "chunks": [
+        "Are you",
+        "listening to me?"
+      ],
+      "hints": [
+        "你",
+        "在听我说话吗？"
+      ],
+      "cid": "2d4624cb"
+    },
+    {
+      "sentence": "Are you blind?",
+      "translation": "你不知道吗?",
+      "chunks": [
+        "Are you",
+        "blind?"
+      ],
+      "hints": [
+        "你",
+        "看不见吗？"
+      ],
+      "cid": "782de9ce"
+    },
+    {
+      "sentence": "You know what I'm talking about.",
+      "translation": "你明白我说的意思吧。",
+      "chunks": [
+        "You know",
+        "what I'm talking about."
+      ],
+      "hints": [
+        "你明白",
+        "我在说什么吧。"
+      ],
+      "cid": "89b53307"
+    },
+    {
+      "sentence": "I said that, didn't I?",
+      "translation": "我是那样说的吧?",
+      "chunks": [
+        "I said that,",
+        "didn't I?"
+      ],
+      "hints": [
+        "我是那样说的",
+        "对吧？"
+      ],
+      "cid": "b6390910"
+    },
+    {
+      "sentence": "Do you know that?",
+      "translation": "你知道那事吗?",
+      "chunks": [
+        "Do you",
+        "know that?"
+      ],
+      "hints": [
+        "你",
+        "知道那件事吗？"
+      ],
+      "cid": "d8eb39f0"
+    },
+    {
+      "sentence": "Do you happen to know...?",
+      "translation": "说不定你知道……吧?",
+      "chunks": [
+        "Do you happen",
+        "to know...?"
+      ],
+      "hints": [
+        "你也许",
+        "知道……吧？"
+      ],
+      "cid": "9982f162"
+    },
+    {
+      "sentence": "I can't tell the difference.",
+      "translation": "我辨别不出来。",
+      "chunks": [
+        "I can't tell",
+        "the difference."
+      ],
+      "hints": [
+        "我分辨不出",
+        "区别。"
+      ],
+      "cid": "48be7874"
+    },
+    {
+      "sentence": "Can you hear me?",
+      "translation": "你听得见吗?",
+      "chunks": [
+        "Can you",
+        "hear me?"
+      ],
+      "hints": [
+        "你",
+        "听得见我说话吗？"
+      ],
+      "cid": "a26299b5"
+    },
+    {
+      "sentence": "Did you hear me?",
+      "translation": "你听见我说的了吗?",
+      "chunks": [
+        "Did you",
+        "hear me?"
+      ],
+      "hints": [
+        "你",
+        "听见我说的了吗？"
+      ],
+      "cid": "36a11a1c"
+    },
+    {
+      "sentence": "I understand.",
+      "translation": "知道了。",
+      "chunks": [
+        "I",
+        "understand."
+      ],
+      "hints": [
+        "我",
+        "知道了。"
+      ],
+      "cid": "50e68df0"
+    },
+    {
+      "sentence": "See?",
+      "translation": "明白了吗?",
+      "chunks": [
+        "See?"
+      ],
+      "hints": [
+        "明白了吗？"
+      ],
+      "cid": "2b72980d"
+    },
+    {
+      "sentence": "I understand very well.",
+      "translation": "完全明白。",
+      "chunks": [
+        "I understand",
+        "very well."
+      ],
+      "hints": [
+        "我",
+        "完全明白。"
+      ],
+      "cid": "14c146f8"
+    },
+    {
+      "sentence": "I think I understand.",
+      "translation": "我想我懂了。",
+      "chunks": [
+        "I think",
+        "I understand."
+      ],
+      "hints": [
+        "我想",
+        "我懂了。"
+      ],
+      "cid": "7ffebedf"
+    },
+    {
+      "sentence": "I see what you mean.",
+      "translation": "我明白你说的了。",
+      "chunks": [
+        "I see",
+        "what you mean."
+      ],
+      "hints": [
+        "我明白",
+        "你的意思了。"
+      ],
+      "cid": "7b5c9de1"
+    },
+    {
+      "sentence": "I know that too well.",
+      "translation": "我太清楚那种事了。",
+      "chunks": [
+        "I know that",
+        "too well."
+      ],
+      "hints": [
+        "那种事",
+        "我太清楚了。"
+      ],
+      "cid": "0bc4bc40"
+    },
+    {
+      "sentence": "I see your point.",
+      "translation": "我明白你的意思。",
+      "chunks": [
+        "I see",
+        "your point."
+      ],
+      "hints": [
+        "我明白",
+        "你的意思。"
+      ],
+      "cid": "bfdf119a"
+    },
+    {
+      "sentence": "I get it.",
+      "translation": "噢，我终于明白了。",
+      "chunks": [
+        "I",
+        "get it."
+      ],
+      "hints": [
+        "我",
+        "明白了。"
+      ],
+      "cid": "f7cec091"
+    },
+    {
+      "sentence": "I got it.",
+      "translation": "这样啊，原来是这么回事。",
+      "chunks": [
+        "I",
+        "got it."
+      ],
+      "hints": [
+        "我",
+        "懂了。"
+      ],
+      "cid": "778524a7"
+    },
+    {
+      "sentence": "I know that much!",
+      "translation": "这点事儿我还是知道的。",
+      "chunks": [
+        "I know",
+        "that much!"
+      ],
+      "hints": [
+        "这点事",
+        "我还是知道的！"
+      ],
+      "cid": "fb98cca8"
+    },
+    {
+      "sentence": "That solves it.",
+      "translation": "原来是这样啊!",
+      "chunks": [
+        "That",
+        "solves it."
+      ],
+      "hints": [
+        "原来",
+        "是这么回事。"
+      ],
+      "cid": "e625717d"
+    },
+    {
+      "sentence": "All right, all right. I understand.",
+      "translation": "好吧，好吧，我知道了。",
+      "chunks": [
+        "All right, all right. I",
+        "understand."
+      ],
+      "hints": [
+        "好吧，好吧，我",
+        "知道了。"
+      ],
+      "cid": "91d91604"
+    },
+    {
+      "sentence": "I know.",
+      "translation": "我知道呀。",
+      "chunks": [
+        "I",
+        "know."
+      ],
+      "hints": [
+        "我",
+        "知道呀。"
+      ],
+      "cid": "543caffb"
+    },
+    {
+      "sentence": "I know that person.",
+      "translation": "我认识那个人。",
+      "chunks": [
+        "I know",
+        "that person."
+      ],
+      "hints": [
+        "我认识",
+        "那个人。"
+      ],
+      "cid": "0c3465fd"
+    },
+    {
+      "sentence": "I know him by sight.",
+      "translation": "我见过他。",
+      "chunks": [
+        "I know him",
+        "by sight."
+      ],
+      "hints": [
+        "我认得他",
+        "只是面熟。"
+      ],
+      "cid": "998f9c2f"
+    },
+    {
+      "sentence": "Yeah, I heard about it.",
+      "translation": "嗯，我听说了。",
+      "chunks": [
+        "Yeah,",
+        "I heard about it."
+      ],
+      "hints": [
+        "嗯，",
+        "我听说了。"
+      ],
+      "cid": "21c20c7d"
+    },
+    {
+      "sentence": "I hear you.",
+      "translation": "我听着呢。/我知道了。",
+      "chunks": [
+        "I",
+        "hear you."
+      ],
+      "hints": [
+        "我",
+        "听着呢。"
+      ],
+      "cid": "ec91d953"
+    },
+    {
+      "sentence": "I'm following you.",
+      "translation": "我理解了。",
+      "chunks": [
+        "I'm",
+        "following you."
+      ],
+      "hints": [
+        "我",
+        "在跟着你的思路。"
+      ],
+      "cid": "1138639e"
+    },
+    {
+      "sentence": "Makes sense.",
+      "translation": "言之有理。",
+      "chunks": [
+        "Makes",
+        "sense."
+      ],
+      "hints": [
+        "说得",
+        "有道理。"
+      ],
+      "cid": "ad531bc4"
+    },
+    {
+      "sentence": "I don't understand.",
+      "translation": "我不明白。",
+      "chunks": [
+        "I don't",
+        "understand."
+      ],
+      "hints": [
+        "我",
+        "不明白。"
+      ],
+      "cid": "2226081a"
+    },
+    {
+      "sentence": "I don't really understand.",
+      "translation": "我不太明白。",
+      "chunks": [
+        "I don't really",
+        "understand."
+      ],
+      "hints": [
+        "我不",
+        "太明白。"
+      ],
+      "cid": "fd42aa91"
+    },
+    {
+      "sentence": "That's not clear.",
+      "translation": "我不清楚。",
+      "chunks": [
+        "That's",
+        "not clear."
+      ],
+      "hints": [
+        "这",
+        "不太清楚。"
+      ],
+      "cid": "85da5e3c"
+    },
+    {
+      "sentence": "I can't see your point.",
+      "translation": "我不明白你在说什么。",
+      "chunks": [
+        "I can't see",
+        "your point."
+      ],
+      "hints": [
+        "我看不出",
+        "你的意思。"
+      ],
+      "cid": "b74a1d37"
+    },
+    {
+      "sentence": "I can't understand what you mean.",
+      "translation": "我不明白你的意思。",
+      "chunks": [
+        "I can't understand",
+        "what you mean."
+      ],
+      "hints": [
+        "我不明白",
+        "你的意思。"
+      ],
+      "cid": "c794456b"
+    },
+    {
+      "sentence": "I'm not sure what you mean.",
+      "translation": "我弄不清楚你想说什么。",
+      "chunks": [
+        "I'm not sure",
+        "what you mean."
+      ],
+      "hints": [
+        "我不确定",
+        "你是什么意思。"
+      ],
+      "cid": "0e85410e"
+    },
+    {
+      "sentence": "I don't know what's what.",
+      "translation": "我根本不知道这是怎么回事。",
+      "chunks": [
+        "I don't know",
+        "what's what."
+      ],
+      "hints": [
+        "我根本不知道",
+        "这是怎么回事。"
+      ],
+      "cid": "cd4162bf"
+    },
+    {
+      "sentence": "It's over my head.",
+      "translation": "太难了，我弄不懂。",
+      "chunks": [
+        "It's over",
+        "my head."
+      ],
+      "hints": [
+        "这",
+        "超出了我的理解。"
+      ],
+      "cid": "33a7a7a6"
+    },
+    {
+      "sentence": "Your guess is as good as mine.",
+      "translation": "我也搞不清楚。",
+      "chunks": [
+        "Your guess is",
+        "as good as mine."
+      ],
+      "hints": [
+        "你猜的",
+        "和我一样（都不知道）。"
+      ],
+      "cid": "06b1157f"
+    },
+    {
+      "sentence": "The more I think about it, the less I understand it.",
+      "translation": "越想越糊涂。",
+      "chunks": [
+        "The more I think about it,",
+        "the less I understand it."
+      ],
+      "hints": [
+        "我越想",
+        "越不明白。"
+      ],
+      "cid": "b58b230a"
+    },
+    {
+      "sentence": "I don't know what he is driving at.",
+      "translation": "我不知道他要干什么。",
+      "chunks": [
+        "I don't know",
+        "what he is driving at."
+      ],
+      "hints": [
+        "我不知道",
+        "他到底想说什么。"
+      ],
+      "cid": "e07bab12"
+    },
+    {
+      "sentence": "What's she after?",
+      "translation": "她到底想干什么?",
+      "chunks": [
+        "What's she",
+        "after?"
+      ],
+      "hints": [
+        "她到底",
+        "想干什么？"
+      ],
+      "cid": "49b97732"
+    },
+    {
+      "sentence": "I have no idea.",
+      "translation": "我一点儿都不知道。",
+      "chunks": [
+        "I have",
+        "no idea."
+      ],
+      "hints": [
+        "我",
+        "一点儿都不知道。"
+      ],
+      "cid": "bc4791c6"
+    },
+    {
+      "sentence": "I didn't know that.",
+      "translation": "我怎么不知道。",
+      "chunks": [
+        "I didn't",
+        "know that."
+      ],
+      "hints": [
+        "我",
+        "不知道有这回事。"
+      ],
+      "cid": "4187b494"
+    },
+    {
+      "sentence": "I don't know.",
+      "translation": "不知道。/不太清楚。",
+      "chunks": [
+        "I don't",
+        "know."
+      ],
+      "hints": [
+        "我",
+        "不知道。"
+      ],
+      "cid": "4b3f475d"
+    },
+    {
+      "sentence": "I don't know for sure.",
+      "translation": "我不太清楚。",
+      "chunks": [
+        "I don't know",
+        "for sure."
+      ],
+      "hints": [
+        "我",
+        "不太确定。"
+      ],
+      "cid": "e3888ed3"
+    },
+    {
+      "sentence": "No one knows for sure.",
+      "translation": "谁也不知道确切的情况。",
+      "chunks": [
+        "No one knows",
+        "for sure."
+      ],
+      "hints": [
+        "谁也",
+        "说不准。"
+      ],
+      "cid": "dccc9a2c"
+    },
+    {
+      "sentence": "How should I know?",
+      "translation": "我怎么会知道?",
+      "chunks": [
+        "How should",
+        "I know?"
+      ],
+      "hints": [
+        "我",
+        "怎么会知道？"
+      ],
+      "cid": "74765fb7"
+    },
+    {
+      "sentence": "Who knows?",
+      "translation": "谁能知道?",
+      "chunks": [
+        "Who",
+        "knows?"
+      ],
+      "hints": [
+        "谁",
+        "知道呢？"
+      ],
+      "cid": "74a2b484"
+    },
+    {
+      "sentence": "Do you prefer coffee or tea?",
+      "cid": "5b28a18d",
+      "translation": "你更喜欢咖啡还是茶？",
+      "chunks": [
+        "Do you prefer",
+        "coffee or tea?"
+      ],
+      "hints": [
+        "你更喜欢",
+        "咖啡还是茶"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/prɪˈfɜːr/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你更喜欢"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈkɒfi/",
+            "/ɔːr/",
+            "/tiː/"
+          ],
+          "pos": "选择疑问句",
+          "meaning": "咖啡还是茶"
+        }
+      ],
+      "explanations": [
+        "**prefer A or B?** 是选择题问法。常见错误：\n• \"Do you **more** like coffee\" → 比较要用 prefer，不是 more like\n• \"Do you prefer **to** coffee\" → prefer 直接接名词，不加 to",
+        "**prefer** 常见搭配：prefer A to B（比起 B 更喜欢 A）、prefer doing。注意这里 A or B 问句结构。"
+      ],
+      "distractors": [
+        [
+          "Are you prefer",
+          "Do you prefers",
+          "Do you prefer to"
+        ],
+        [
+          "coffee and tea?",
+          "a coffee or tea?",
+          "coffee or the tea?"
+        ]
+      ]
+    },
+    {
+      "sentence": "What's your favorite way to relax?",
+      "cid": "300d8e13",
+      "translation": "你最喜欢的放松方式是什么？",
+      "chunks": [
+        "What's your favorite way",
+        "to relax?"
+      ],
+      "hints": [
+        "你最喜欢的方式",
+        "去放松"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#c87033",
+          "phonetic": [
+            "/wɒts/",
+            "/jɔːr/",
+            "/ˈfeɪvərɪt/",
+            "/weɪ/"
+          ],
+          "pos": "主系表",
+          "meaning": "你最喜欢的方式"
+        },
+        {
+          "role": "后置定语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/tuː/",
+            "/rɪˈlæks/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "用来放松"
+        }
+      ],
+      "explanations": [
+        "**What's your favorite way to...?** = 你最喜欢用什么方式做……？常见错误：\n• \"What **is your favorite way for** relax\" → 固定搭配 way to do\n• \"How's your favorite way\" → how 问方式，这里问的是「什么」",
+        "回答：I like to watch movies / go for a walk / listen to music. 类似问法：What do you do to relax?"
+      ],
+      "distractors": [
+        [
+          "What your favorite way",
+          "What's you favorite way",
+          "What's your favorite ways"
+        ],
+        [
+          "to relaxing?",
+          "for relax?",
+          "relaxing?"
+        ]
+      ]
+    },
+    {
+      "sentence": "What do you think of this idea?",
+      "cid": "a5117784",
+      "translation": "你觉得这个主意怎么样？",
+      "chunks": [
+        "What do you think",
+        "of this idea?"
+      ],
+      "hints": [
+        "你怎么看",
+        "这个主意"
+      ],
+      "grammar": [
+        {
+          "role": "疑问主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɒt/",
+            "/duː/",
+            "/juː/",
+            "/θɪŋk/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "你怎么看"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əv/",
+            "/ðɪs/",
+            "/aɪˈdɪə/"
+          ],
+          "pos": "介词短语",
+          "meaning": "这个主意"
+        }
+      ],
+      "explanations": [
+        "**What do you think of...?** = 你对……怎么看？常见错误：\n• \"How do you think **about** it\" → 也有人说，但标准句式是 What ... think of\n• \"What are you think\" → 疑问句用助动词 do，不是 be",
+        "征求意见的两大句式：What do you think of...? / How do you like...? 回答：I think it's great / I'm not sure about it."
+      ],
+      "distractors": [
+        [
+          "What do you thinks",
+          "What are you think",
+          "What do you thinking"
+        ],
+        [
+          "in this idea?",
+          "of that idea?",
+          "of this ideal?"
+        ]
+      ]
+    },
+    {
+      "sentence": "That reminds me of something.",
+      "cid": "5e6bba59",
+      "translation": "那让我想起了一件事。",
+      "chunks": [
+        "That reminds me",
+        "of something."
+      ],
+      "hints": [
+        "那提醒我",
+        "关于某事"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðæt/",
+            "/rɪˈmaɪndz/",
+            "/miː/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "那提醒我"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əv/",
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "remind of 搭配",
+          "meaning": "关于某事"
+        }
+      ],
+      "explanations": [
+        "**remind sb of sth** = 让某人想起某事。常见错误：\n• \"remind me **about** something\" → about 是「提醒」，of 是「使想起」，语境不同\n• \"That **remember** me\" → 人作主语才用 remember，事物用 remind",
+        "口语中常用来引出话题：That reminds me of a funny story...（那让我想起一个有趣的故事）。"
+      ],
+      "distractors": [
+        [
+          "That remind me",
+          "That reminded me",
+          "That reminds I"
+        ],
+        [
+          "of anything.",
+          "about something.",
+          "of somethings."
+        ]
+      ]
+    }
+  ]
+}
