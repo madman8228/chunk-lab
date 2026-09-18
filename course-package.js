@@ -7,7 +7,7 @@
   var PROGRESS_STORE_KEY = 'chunklab.course-progress.v1';
   var DECK_STORE_KEY = 'chunklab.v1';
   var state = { courses: [], active: null, nodeId: '', gapAnswers: [], feedback: '', moduleStage: 'core', assessmentIndex: 0, moduleAnswer: '', moduleFeedback: '' };
-  var _pendingLib = null;   // 导入时挂起的层级元数据
+  var _pendingLib = null;   // 导入时挂起的课程归属元数据
   var _pendingFile = null;  // 导入时挂起的文件
   var dom = {};
 
@@ -417,6 +417,7 @@
     var role = (course.practiceRoles || []).find(function (item) { return item.id === speaker; });
     var npc = (course.npcs || []).find(function (item) { return item.id === speaker; });
     var label = localized((role || npc || {}).label || (role || npc || {}).name) || '';
+    if (isUnspecifiedSpeakerLabel(label)) label = defaultSpeakerLabel(course, speaker);
     var dialogue = semanticNodeValue(course, node, 'sceneDialogue');
     var source = semanticNodeValue(course, node, 'learnerTarget');
     var dialogueEn = englishText(dialogue);
@@ -434,19 +435,20 @@
     /* NPC 气泡（左侧） */
     if (dialogueEn || dialogueZh) {
       html += '<div class="chat-bubble npc">';
-      html += '<div class="bubble-meta"><span class="bubble-avatar">' + getAvatar(label) + '</span><span class="bubble-name">' + esc(label || 'NPC') + '</span></div>';
+      html += '<div class="bubble-main-row"><div class="bubble-meta"><span class="bubble-avatar">' + getAvatar(label) + '</span><span class="bubble-name">' + esc(label || 'NPC') + '</span></div><div class="bubble-line-content">';
       if (dialogueEn) html += '<div class="bubble-en">' + esc(dialogueEn) + '</div>';
       if (dialogueZh && dialogueZh !== dialogueEn) {
         html += '<button class="bubble-translate-btn" data-translate="npc"></button>';
         html += '<div class="bubble-zh hidden" data-translation="npc">' + esc(dialogueZh) + '</div>';
       }
+      html += '</div></div>';
       html += '</div>';
     }
 
     /* 学习者气泡（右侧） */
     if (hasInput) {
       html += '<div class="chat-bubble learner">';
-      html += '<div class="bubble-meta"><span class="bubble-name">你</span><span class="bubble-avatar">' + getAvatar('你') + '</span></div>';
+      html += '<div class="bubble-main-row"><div class="bubble-meta"><span class="bubble-name">你</span><span class="bubble-avatar">' + getAvatar('你') + '</span></div><div class="bubble-line-content">';
       if (isCloze) {
         html += renderClozeInline(node, course);
       } else if (isChoices) {
@@ -462,15 +464,17 @@
           html += '<div class="bubble-zh hidden" data-translation="learner">' + esc(sourceZh) + '</div>';
         }
       }
+      html += '</div></div>';
       html += '</div>';
     } else if (sourceEn || sourceZh) {
       html += '<div class="chat-bubble learner">';
-      html += '<div class="bubble-meta"><span class="bubble-name">你</span><span class="bubble-avatar">' + getAvatar('你') + '</span></div>';
+      html += '<div class="bubble-main-row"><div class="bubble-meta"><span class="bubble-name">你</span><span class="bubble-avatar">' + getAvatar('你') + '</span></div><div class="bubble-line-content">';
       if (sourceEn) html += '<div class="bubble-en">' + esc(sourceEn) + '</div>';
       if (sourceZh && sourceZh !== sourceEn) {
         html += '<button class="bubble-translate-btn" data-translate="learner"></button>';
-        html += '<div class="bubble-zh hidden" data-translation="learner">' + esc(sourceZh) + '</div>';
+          html += '<div class="bubble-zh hidden" data-translation="learner">' + esc(sourceZh) + '</div>';
       }
+      html += '</div></div>';
       html += '</div>';
     }
 
@@ -486,6 +490,22 @@
     }
     if (state.feedback) html += '<div class="node-feedback ' + (state.feedback.kind || '') + '">' + esc(state.feedback.text) + '</div>';
     return html;
+  }
+
+  function isUnspecifiedSpeakerLabel(label) {
+    return !label || /未指定|未命名|unknown|^npc$/i.test(String(label).trim());
+  }
+
+  function defaultSpeakerLabel(course, speaker) {
+    var ids = [];
+    (course.story && course.story.nodes || []).forEach(function (item) {
+      var id = item.speakerId || item.npcId || '';
+      if (id && ids.indexOf(id) < 0) ids.push(id);
+    });
+    var key = speaker || '__unspecified__';
+    var index = ids.indexOf(key);
+    if (index < 0) index = 0;
+    return String.fromCharCode(65 + Math.min(index, 25));
   }
 
   function semanticNodeValue(course, node, meaning) {
@@ -508,6 +528,7 @@
        有名字的角色仍用首字/首字母（那是文本缩写，不是字符 icon） */
     if (!label) return global.Icons ? global.Icons.svg('user') : '';
     if (label === '你') return global.Icons ? global.Icons.svg('grad') : '';
+    if (/^[A-Z]$/.test(label)) return global.Icons ? global.Icons.svg('user') : '';
     var first = label.charAt(0);
     return /[\u4e00-\u9fa5]/.test(first) ? first : first.toUpperCase();
   }
@@ -544,20 +565,13 @@
 
   function renderWordBank(node, course) {
     var gaps = semanticNodeArray(course, node, 'answerGaps');
-    var allChoices = [];
-    var seen = {};
-    gaps.forEach(function (gap) {
-      (gap.choices || []).forEach(function (choice) {
-        if (!seen[choice.id]) {
-          seen[choice.id] = true;
-          allChoices.push(choice);
-        }
-      });
-    });
+    var allChoices = global.CourseCloze
+      ? global.CourseCloze.buildWordBank({ gaps: gaps, wordBank: node.wordBank })
+      : gaps.map(function (gap) { return (gap.choices || []).find(function (choice) { return choice.id === gap.correctChoiceId; }); }).filter(Boolean);
     allChoices.sort(function () { return Math.random() - 0.5; });
 
     var html = '<div class="word-bank">';
-    html += '<div class="word-bank-head"><span>词块区</span><small>点击词块，再点击句子中的空位填入；点击已填入的空位可取回</small></div>';
+    html += '<div class="word-bank-head"><span><span class="word-bank-icon">' + (global.Icons ? global.Icons.svg('puzzle') : '') + '</span>词块区</span></div>';
     html += '<div class="word-bank-chips">';
     allChoices.forEach(function (choice) {
       var choiceEn = englishText(choice.text) || localized(choice.text);
@@ -709,7 +723,7 @@
          但课程从未持久化 → 树/分级都不显示 */
       throw new Error(errors.slice(0, 4).join('；'));
     }
-    if (lib) {
+    if (lib && (lib.seriesId || lib.seriesName || lib.volumeIndex != null || lib.volumeName || lib.level2Name)) {
       course.lib = {
         seriesId: lib.seriesId,
         seriesName: lib.seriesName,
@@ -719,6 +733,9 @@
         sortOrder: 0
       };
     }
+    /* 逻辑课程是用户明确选择的归属，不根据课包标题或教材元数据自动推断。 */
+    if (lib && lib.logicalCourseId) course.logicalCourseId = String(lib.logicalCourseId);
+    else delete course.logicalCourseId;
     var record = { course: course, assets: assets || {} };
     var nextCourses = storedCourses().slice();
     var existingIndex = nextCourses.findIndex(function (item) { return item.courseId === course.courseId; });
@@ -799,6 +816,11 @@
     return assets;
   }
 
+  function catalogReturnHref() {
+    var courseId = new URLSearchParams(global.location.search).get('catalogCourse');
+    return courseId ? 'decks.html?course=' + encodeURIComponent(courseId) : 'decks.html';
+  }
+
   function boot() {
     var _cloud = (global.CL && global.CL.ensureCloud) ? global.CL.ensureCloud() : Promise.resolve();
     _cloud.then(function(){
@@ -807,8 +829,8 @@
     readStoredCourses();
     /* courses.html 播放器专属绑定；decks.html 中这些 DOM 不存在，需守卫 */
     if (dom.player) {
-      var backBtn = $('backToLibrary'); if (backBtn) backBtn.onclick = function () { global.location.href = 'decks.html'; };
-      var pBack = $('playerBack'); if (pBack) pBack.onclick = function () { global.location.href = 'decks.html'; };
+      var backBtn = $('backToLibrary'); if (backBtn) backBtn.onclick = function () { global.location.href = catalogReturnHref(); };
+      var pBack = $('playerBack'); if (pBack) pBack.onclick = function () { global.location.href = catalogReturnHref(); };
       if (dom.btnRestart) dom.btnRestart.onclick = function () { if (state.active) openCourse(state.active); };
     }
     /* courses.html 独立页（含课程库列表）才绑定导入相关 */
@@ -889,6 +911,7 @@
           volumeIndex: extLib.volumeIndex,
           volumeName: extLib.volumeName,
           level2Name: extLib.level2Name || null,
+          logicalCourseId: extLib.logicalCourseId || null,
           sortOrder: 0
         };
         global._pendingLibForImport = null; // 消费一次

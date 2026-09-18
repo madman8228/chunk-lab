@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>学习档案 · Chunk Lab</title>
 <style>
-:root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--surface-stat:#f1eee8;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
+:root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--surface-stat:#f7f4ef;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
 html,body{margin:0;padding:0;color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 html{background:var(--bg)}
@@ -156,7 +156,7 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
    待复习与错题本保留在顶部页签中作为清单入口，概览不再重复显示可点击卡片。 */
 [hidden]{display:none!important}
 .overview-status{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
-.ov-stat{min-width:0;padding:10px 12px;border-radius:10px;background:var(--surface-stat)}
+.ov-stat{min-width:0;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface-stat)}
 .ov-stat .l{display:block;font-size:11.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ov-stat .n{display:block;margin-top:2px;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
 .ov-stat.is-warn .n{color:var(--warn)}
@@ -175,7 +175,6 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .activity-track>div{width:100%;background:rgba(44,98,201,.34);border-radius:3px 3px 0 0}
 .activity-day.is-today b{color:var(--accent);font-weight:700}
 .activity-day.is-today .activity-track>div{background:var(--accent)}
-.activity-avg{position:absolute;left:0;right:0;border-top:1px dashed var(--border-strong);pointer-events:none}
 .activity-week-labels{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;margin-top:6px;font-size:11px;text-align:center;color:var(--muted)}
 .activity-week-labels .is-today{color:var(--text);font-weight:600}
 .overview-note{font-size:12px;color:var(--muted);margin:10px 0 0}
@@ -275,6 +274,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <script src="js/account-storage.js"></script>
 <script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
+<script src="js/course-catalog.js"></script>
+<script src="js/course-progress.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/batch-sync.js"></script>
@@ -474,10 +475,6 @@ function renderStats(){
       '<b>'+d.count+'</b>'+
       '<div class="activity-track"><div style="height:'+h+'px"></div></div></div>';
   });
-  /* 均值虚线：absolute 不参与 grid 布局；日均 0 时不画（否则与基线重叠成脏线）。 */
-  if(avg > 0){
-    html += '<div class="activity-avg" style="bottom:'+(avg/max*TRACK_H).toFixed(1)+'px" aria-hidden="true"></div>';
-  }
   html += '</div>';
   html += '<div class="activity-week-labels">';
   week.forEach(function(d){ html += '<span'+(d.today?' class="is-today"':'')+'>'+d.label+'</span>'; });

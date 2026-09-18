@@ -262,6 +262,71 @@ async function main() {
   check('s2: 合并后上行不误 bump courses rev（仍 7）', pl.revs.courses.rc === 7, 'rev=' + pl.revs.courses.rc);
   check('s2: 合并后上行不误 bump decks rev（仍 5）', pl.revs.decks.r1 === 5, 'rev=' + pl.revs.decks.r1);
 
+  /* ★ 回归（2026-09-17）：best 是按题库记录的单调学习元数据。
+     两端同一 rev 仅 lastPlayed 不同，不应升级成永久同步冲突；应按题库合并后
+     以新 rev 上行，acc/perfect/combo 取历史较优值，lastAcc 跟随最近一次练习。 */
+  m = CL.loadMem();
+  m.best = { r1: { acc: 80, perfect: 2, combo: 3, lastPlayed: 100, lastAcc: 80 } };
+  CL.saveMem(m);
+  var sameBestRev = getRevs().kv.best;
+  var remoteBestMem = JSON.parse(JSON.stringify(m));
+  remoteBestMem.best = { r1: { acc: 75, perfect: 4, combo: 2, lastPlayed: 200, lastAcc: 75 } };
+  remoteData = { mem: remoteBestMem, courses: [], courseProgress: {},
+    revs: { decks: {}, kv: { best: sameBestRev }, courses: {}, courseProgress: {} } };
+  var bestPayloadsBefore = lastPayloads.length;
+  await CL.syncFromCloud();
+  var bestAfter = CL.loadMem().best.r1;
+  check('s2: best 同 rev 差异自动合并而非持续冲突',
+    bestAfter && bestAfter.acc === 80 && bestAfter.perfect === 4 && bestAfter.combo === 3 &&
+    bestAfter.lastPlayed === 200 && bestAfter.lastAcc === 75 && !CL.getSyncConflict(),
+    JSON.stringify(bestAfter));
+  check('s2: best 合并后自动以新 rev 补传', lastPayloads.length > bestPayloadsBefore,
+    'before=' + bestPayloadsBefore + ' after=' + lastPayloads.length);
+
+  /* ★ 回归（2026-09-17）：账号级 baseSeq 冲突不能把本机卡在旧快照。
+     自动恢复只合并可安全合并的学习数据：远端较新实体优先，本机新增实体保留，
+     stats 按事件 ID 合并，并清掉明显异常的巨量句子次数。 */
+  var batchLocal = {
+    mem: {
+      decks: [{ id: 'local-only', name: 'local', items: [] }, { id: 'shared', name: 'local-old', items: [] }],
+      best: { shared: { acc: 80, perfect: 1, combo: 2, lastPlayed: 10, lastAcc: 80 } },
+      mastered: { 'local#x': 1 }, settings: { batchSize: 10 },
+      deletedItems: {}, reinforceBook: [],
+      stats: { totalAnswered: 1, totalRounds: 0,
+        bySentence: { 'daily#x': { deckId: 'daily', times: 3145728, okTimes: 3145728, wrongTimes: 0 } },
+        events: [{ id: 'local-answer', kind: 'answer', key: 'daily#x', ok: true, at: 1 }], daysLog: {} }
+    },
+    courses: [{ courseId: 'local-course', title: 'local' }], courseProgress: {},
+    revs: { decks: { 'local-only': 2, shared: 1 }, kv: { best: 1, settings: 1 }, courses: { 'local-course': 2 }, courseProgress: {} }
+  };
+  var batchRemote = {
+    seq: 20,
+    mem: {
+      decks: [{ id: 'shared', name: 'remote-new', items: [] }, { id: 'remote-only', name: 'remote', items: [] }],
+      best: { shared: { acc: 70, perfect: 3, combo: 1, lastPlayed: 20, lastAcc: 70 } },
+      mastered: { 'remote#y': 1 }, settings: { batchSize: 20 },
+      deletedItems: {}, reinforceBook: [],
+      stats: { totalAnswered: 1, totalRounds: 0,
+        bySentence: { 'daily#x': { deckId: 'daily', times: 1, okTimes: 1, wrongTimes: 0 } },
+        events: [{ id: 'remote-answer', kind: 'answer', key: 'daily#x', ok: true, at: 2 }], daysLog: {} }
+    },
+    courses: [{ courseId: 'remote-course', title: 'remote' }], courseProgress: {},
+    revs: { decks: { shared: 4, 'remote-only': 1 }, kv: { best: 1, settings: 2 }, courses: { 'remote-course': 1 }, courseProgress: {} }
+  };
+  var batchMerged = typeof CL.mergeBatchSnapshots === 'function'
+    ? CL.mergeBatchSnapshots(batchLocal, batchRemote) : null;
+  check('batch: 冲突合并 helper 存在', !!batchMerged);
+  check('batch: 合并快照补齐前端版本字段', !!batchMerged && batchMerged.mem.version === CL.store.CURRENT_VERSION);
+  check('batch: 远端较新题库实体优先且双方新增保留', !!batchMerged &&
+    batchMerged.mem.decks.some(function(d){ return d.id === 'shared' && d.name === 'remote-new'; }) &&
+    batchMerged.mem.decks.some(function(d){ return d.id === 'local-only'; }) &&
+    batchMerged.mem.decks.some(function(d){ return d.id === 'remote-only'; }));
+  check('batch: 课程双方新增保留', !!batchMerged && batchMerged.courses.length === 2);
+  var batchStatKey = batchMerged && Object.keys(batchMerged.mem.stats.bySentence || {})[0];
+  check('batch: stats 异常巨量次数被事件合并归一', !!batchMerged &&
+    batchMerged.mem.stats.totalAnswered === 2 && batchMerged.mem.stats.bySentence[batchStatKey].times === 2 &&
+    batchMerged.mem.stats.events.length === 2, JSON.stringify(batchMerged && batchMerged.mem.stats));
+
   /* ===== 离线 change-log（轻量版）：dirty 标志 + 重连补传 ===== */
   // 13. scheduleCloudSync 置 dirty；同步成功清位；syncStatus 事件发出
   var syncEvents = [];

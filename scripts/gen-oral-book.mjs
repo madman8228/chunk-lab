@@ -157,7 +157,7 @@ for (const bd of bookDecks) {
 {
   const bd = {
     id: 'oral-basic', chapter: 0, section: '0', sectionTitle: '万能表达', topic: '',
-    name: '日常口语 8000 · 万能表达', short: '万能表达', topics: [],
+    name: '口语3000句 · 万能表达', short: '万能表达', topics: [],
   };
   const items = [];
   const used = new Set();
@@ -210,7 +210,7 @@ console.log('干扰项过闸：' + distSlots + ' 槽 / 收 ' + distReceived + ' 
 /* ---------- 5. 输出 ---------- */
 const chapterList = [{ no: 0, title: '万能表达（无固定场景）' }].concat(chapters);
 const OUT = {
-  series: '日常口语 8000',
+  series: '口语3000句',
   source: '《英语口语 8000 句·简版》(解析结果见 extra/oral-book/book.json)',
   chapters: chapterList,
   decks,

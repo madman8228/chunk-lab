@@ -456,6 +456,33 @@
     if(!theirs || !Object.keys(theirs).length) return ours || {};
     return mergeKeyedMap(base, ours, theirs);
   }
+  /* best 是每个题库一条的学习成绩，不是需要人工裁决的文档。
+     同一 rev 下的并发更新可以安全按字段合并：历史最佳取 max，最近一次成绩
+     跟随 lastPlayed 较新的记录。这样两台设备同时结束练习不会制造永久冲突。 */
+  function mergeBest(ours, theirs){
+    ours = (ours && typeof ours === 'object') ? ours : {};
+    theirs = (theirs && typeof theirs === 'object') ? theirs : {};
+    var out = {}, keys = {};
+    Object.keys(ours).forEach(function(k){ keys[k] = 1; });
+    Object.keys(theirs).forEach(function(k){ keys[k] = 1; });
+    Object.keys(keys).forEach(function(k){
+      var a = ours[k], b = theirs[k];
+      if(a && typeof a === 'object' && !Array.isArray(a) && b && typeof b === 'object' && !Array.isArray(b)){
+        var latest = (Number(a.lastPlayed) || 0) >= (Number(b.lastPlayed) || 0) ? a : b;
+        var merged = Object.assign({}, latest);
+        ['acc', 'perfect', 'combo'].forEach(function(field){
+          if(typeof a[field] === 'number' || typeof b[field] === 'number'){
+            merged[field] = Math.max(Number(a[field]) || 0, Number(b[field]) || 0);
+          }
+        });
+        merged.lastPlayed = Math.max(Number(a.lastPlayed) || 0, Number(b.lastPlayed) || 0);
+        if(Object.prototype.hasOwnProperty.call(latest, 'lastAcc')) merged.lastAcc = latest.lastAcc;
+        out[k] = merged;
+      }else if(a === undefined){ out[k] = b; }
+      else { out[k] = a; }
+    });
+    return out;
+  }
   /* events：按 id 并集（本页在前，补对方独有），绝不因合并丢事件。 */
   function mergeEventsTabs(base, ours, theirs){
     var oa = Array.isArray(ours) ? ours : [];
@@ -1554,6 +1581,11 @@
     }).catch(function(error){
       _cloudInFlight=null; _dirty=true; notifySync();
       console.warn('[cloud sync] 准备同步失败:', error.message);
+      /* BatchSync.retry 在组装新 payload 之前执行。若这里的旧请求撞上
+         账号级 baseSeq 冲突，错误不会经过 sendCloudData 后半段的 catch，
+         过去因此只打日志、不持久化冲突，导致每次启动都无限重试同一旧批次。 */
+      if(error && error.code === 'SYNC_CONFLICT') rememberSyncConflict(error.conflicts || [], error.deleted);
+      notifySync();
       /* A local edit may land while the payload is waiting for IDB writes.
          Do not send that stale payload; schedule a successor built from the
          current local view instead. */
@@ -1721,6 +1753,44 @@
     if(_resolutionPaused) return Promise.resolve(false);
     if(!coursesChecked && canReplayCourses()) return replayCourseIntents().then(function(ok){return ok ? syncFromCloud(true,true) : false;});
     if(_syncConflict){
+      if(_syncConflict.length === 1 && _syncConflict[0].entity === 'batch'){
+        /* 账号级 baseSeq 冲突只代表云端先发生了变化。若原批次仍在持久队列中，
+           可按领域合并后安全重提交；不再让用户永远停留在旧本机快照。 */
+        return autoRecoverBatchConflict();
+      }
+      /* best 是可按字段合并的学习元数据。旧版本已经把它记成冲突时，
+         先读取双方同一 rev 的记录并自动修复，再继续正常上行；否则每次启动
+         都只重试同一个 409，用户永远只能看到“同步冲突”。 */
+      if(_syncConflict.length === 1 && _syncConflict[0].entity === 'kv' && _syncConflict[0].id === 'best'){
+        return Promise.resolve().then(async function(){
+          var local = readSyncLocal('kv', 'best');
+          var remote = await global.ChunkAPI.getSyncEntity('kv', 'best');
+          if(!local || local.deleted || !remote || remote.deleted || local.rev !== remote.rev || _eqJson(local.value, remote.value)) return false;
+          var mergedBest = mergeBest(local.value, remote.value);
+          var m = loadMem(); m.best = mergedBest;
+          var revs = loadRevs(); if(!revs.kv) revs.kv = {};
+          revs.kv.best = Math.max(local.rev, remote.rev) + 1;
+          saveRevs(revs);
+          _prevSnap = null;
+          if(saveMem(m, false) === false) return false;
+          /* 旧冲突可能在页面离线期间产生；实体比较只带项目 token，不能
+             更新条件批次所需的账号级 baseSeq。先接受同一时刻的批次水位，
+             再提交合并结果，避免修好 best 后又因旧水位再次卡成待同步。 */
+          if(global.BatchSync && global.ChunkAPI.getSyncBatch){
+            var batch = await global.ChunkAPI.getSyncBatch();
+            var batchState = await global.BatchSync.state();
+            if(batch && Number.isSafeInteger(batch.seq) && batchState.baseline !== batch.seq){
+              await global.BatchSync.observe(batch.seq, batchState.baseline);
+            }
+          }
+          _dirty = true;
+          rememberSyncConflict(null); notifySync();
+          return true;
+        }).then(function(repaired){ return repaired ? cloudSyncNow(loadMem()) : false; }).catch(function(e){
+          console.warn('[cloud sync ←] best 冲突自动合并失败:', e.message);
+          return false;
+        });
+      }
       // 未解决的本地版本不能被启动时的 LWW 拉取覆盖。先重试原版本，
       // 若云端仍不同则继续明确报冲突；不擅自抬高 rev 强制覆盖。
       var pending = loadMem();
@@ -1741,6 +1811,18 @@
       if(courseIntentScope()!==pullScope) throw new Error('账号已切换，停止拉取合并');
       var remoteMem = data.mem || {};
       var remoteRevs = data.revs || { decks: {}, kv: {} };
+      /* 先记住云端原始行的水位，再归一化旧口语快照。这样修复后的 deckId / times
+         会被作为真实变更回写，而不是只在本机“看起来修好了”。 */
+      var rawRemoteStats = (remoteMem.stats && typeof remoteMem.stats === 'object') ? remoteMem.stats : {};
+      var remoteBsSig = {}, remoteEvIds = {};
+      var rawRemoteBy = (rawRemoteStats.bySentence && typeof rawRemoteStats.bySentence === 'object') ? rawRemoteStats.bySentence : {};
+      Object.keys(rawRemoteBy).forEach(function(rk){ remoteBsSig[rk] = statSig(rawRemoteBy[rk]); });
+      var rawRemoteEvents = Array.isArray(rawRemoteStats.events) ? rawRemoteStats.events : [];
+      rawRemoteEvents.forEach(function(ev){ if(ev && ev.id) remoteEvIds[ev.id] = 1; });
+      var normalizedRemoteStats = normalizeSyncedStats(remoteMem.stats);
+      var remoteStatsWasNormalized = !!normalizedRemoteStats.changed;
+      var remoteRepairEventIds = normalizedRemoteStats.repairedEventIds || {};
+      if(remoteMem.stats && normalizedRemoteStats.stats) remoteMem.stats = normalizedRemoteStats.stats;
       var localRevs = loadRevs();
       if(!localRevs.decks) localRevs.decks = {};
       if(!localRevs.kv) localRevs.kv = {};
@@ -1757,12 +1839,6 @@
          合并后本地会包含远端全部内容，但那**不等于**「云端需要再收一次」——
          若不用远端实际内容对齐水位，每次启动都会把 8000 条档案全量回传（2674KB），
          拆表省下的流量会被这一步整个吃掉。 */
-      var remoteBsSig = {}, remoteEvIds = {};
-      var rstats = (remoteMem.stats && typeof remoteMem.stats === 'object') ? remoteMem.stats : {};
-      var rby = (rstats.bySentence && typeof rstats.bySentence === 'object') ? rstats.bySentence : {};
-      for(var rk in rby){ if(rby.hasOwnProperty(rk)) remoteBsSig[rk] = statSig(rby[rk]); }
-      var revList = Array.isArray(rstats.events) ? rstats.events : [];
-      for(var ri = 0; ri < revList.length; ri++){ if(revList[ri] && revList[ri].id) remoteEvIds[revList[ri].id] = 1; }
       // decks：per-entity LWW 合并（取 rev 大者）；采纳远程时同步写回 localRevs，
       //   否则新设备首拉后本地 rev=0/1，下一次本地修改会被服务端按旧 rev 拒绝
       var merged = {};
@@ -1786,7 +1862,14 @@
         var lRev = localRevs.kv[k] || 0;
         if(k === 'stats' && remoteMem[k] !== undefined){
           var beforeStats = JSON.stringify(m.stats || {});
-          var mergedStats = mergeStats(m.stats, remoteMem[k]);
+          /* 没有待上传的学习明细时，云端快照就是已提交的权威结果。
+             之前无条件 mergeStats(local, remote)，会把一个历史上已被放大的
+             冗余 totalAnswered 当成“本地遗留基线”反复带回，刷新一次就再膨胀一次。
+             只有确实存在本地待发明细时才做事件并集合并，避免覆盖离线练习。 */
+          var hasPendingLearning = pendingLearning.length > 0;
+          var mergedStats = hasPendingLearning
+            ? mergeStats(m.stats, remoteMem[k])
+            : cloneJSON(remoteMem[k]);
           if(JSON.stringify(mergedStats) !== beforeStats){
             m.stats = mergedStats;
             /* 合并后的新结果需要一个更高 rev，确保能回写云端。 */
@@ -1794,6 +1877,12 @@
           } else if(rRev > lRev){
             localRevs.kv[k] = rRev;
           }
+          if(remoteStatsWasNormalized) _dirty = true;
+        } else if(k === 'best' && remoteMem[k] !== undefined && rRev === lRev &&
+                  !_eqJson(m[k], remoteMem[k])){
+          m[k] = mergeBest(m[k], remoteMem[k]);
+          localRevs.kv[k] = Math.max(lRev, rRev) + 1;
+          _dirty = true;
         } else if(rRev > lRev && remoteMem[k] !== undefined){ m[k] = remoteMem[k]; localRevs.kv[k] = rRev; }
         /* rRev <= lRev：本地更新优先，下次 PUT 覆盖 */
       });
@@ -1878,6 +1967,7 @@
          必须在合并结果写盘后立即就位 —— 之后任何一次 scheduleCloudSync 都要基于它。 */
       _cloudBsSig = remoteBsSig;
       _cloudEvIds = remoteEvIds;
+      Object.keys(remoteRepairEventIds).forEach(function(id){ delete _cloudEvIds[id]; });
       /* 行级实体同样要把水位对齐到云端实况 —— 否则每次启动都会把 mastered / 错题本
          / deletedItems 全量重推一遍，拆表省下的流量被这一步整个吃掉。 */
       alignEntityMarks(remoteMem);
@@ -1951,6 +2041,14 @@
       return true;
     }).catch(function(e){
       console.warn('[cloud sync ←] 失败:', e.message);
+      /* 初始拉取前会先重试持久批次。该 retry 若收到 409，会在这里直接结束，
+         绕过 cloudSyncNow 的错误处理；必须同样落下账号级冲突标记，下一次启动
+         才能进入安全合并，而不是无限重复旧请求。 */
+      if(e && e.code === 'SYNC_CONFLICT'){
+        _dirty = true;
+        rememberSyncConflict(e.conflicts || [], e.deleted);
+        notifySync();
+      }
       return false;
     });
   }
@@ -1976,6 +2074,128 @@
       revs: loadRevs(),
       generation: _syncGeneration
     });
+  }
+  /* 账号级条件批次冲突的安全合并器。
+     409 只说明「读取基线以后云端有变化」，不等于本机或云端整份数据应该被覆盖。
+     这里复用各领域已经验证过的合并语义：实体按 rev 取较新版本，学习统计按事件 ID
+     并集，mastered / 错题本按 key 并集；stats 先归一化旧迁移快照，因此异常巨量次数
+     只能作为不可信冗余被丢弃，不能再次写回云端。该函数保持纯函数，便于回归测试。 */
+  function mergeBatchSnapshots(local, remote){
+    local = local && typeof local === 'object' ? local : {};
+    remote = remote && typeof remote === 'object' ? remote : {};
+    var lm = local.mem && typeof local.mem === 'object' ? local.mem : {};
+    var rm = remote.mem && typeof remote.mem === 'object' ? remote.mem : {};
+    var lr = local.revs || {}, rr = remote.revs || {};
+    function revOf(revs, group, id){
+      var value = revs[group] && revs[group][id];
+      return Number.isSafeInteger(value) && value >= 0 ? value : 0;
+    }
+    function mergeList(localList, remoteList, group, idOf){
+      var a = {}, b = {}, keys = {};
+      (Array.isArray(localList) ? localList : []).forEach(function(item){
+        var id = item && idOf(item); if(!id) return; a[id] = item; keys[id] = 1;
+      });
+      (Array.isArray(remoteList) ? remoteList : []).forEach(function(item){
+        var id = item && idOf(item); if(!id) return; b[id] = item; keys[id] = 1;
+      });
+      return Object.keys(keys).sort().reduce(function(out,id){
+        var av = a[id], bv = b[id], al = revOf(lr, group, id), br = revOf(rr, group, id);
+        if(av && (!bv || al >= br)) out.push(av);
+        else if(bv && (!av || br >= al)) out.push(bv);
+        return out;
+      }, []);
+    }
+    function mergeMap(localMap, remoteMap, group){
+      var a = localMap && typeof localMap === 'object' ? localMap : {};
+      var b = remoteMap && typeof remoteMap === 'object' ? remoteMap : {};
+      var keys = {}; Object.keys(a).forEach(function(k){keys[k]=1;}); Object.keys(b).forEach(function(k){keys[k]=1;});
+      var out = {};
+      Object.keys(keys).sort().forEach(function(id){
+        var al = revOf(lr, group, id), br = revOf(rr, group, id);
+        if(Object.prototype.hasOwnProperty.call(a,id) && (!Object.prototype.hasOwnProperty.call(b,id) || al >= br)) out[id] = a[id];
+        else if(Object.prototype.hasOwnProperty.call(b,id) && (!Object.prototype.hasOwnProperty.call(a,id) || br >= al)) out[id] = b[id];
+      });
+      return out;
+    }
+    function mergeBook(a, b){
+      var seen = {}, out = [];
+      (Array.isArray(b) ? b : []).concat(Array.isArray(a) ? a : []).forEach(function(item){
+        if(!item || !item._key || seen[item._key]) return;
+        seen[item._key] = 1; out.push(item);
+      });
+      return out;
+    }
+    var localStats = normalizeSyncedStats(cloneJSON(lm.stats || {})).stats || {};
+    var remoteStats = normalizeSyncedStats(cloneJSON(rm.stats || {})).stats || {};
+    var outMem = cloneJSON(rm);
+    /* 服务端快照不保存前端运行版本；saveMem/loadMem 会始终补成当前版本。
+       这里提前补齐，applySyncBatchResolution 的严格“处理期间未修改”校验才不会
+       把这个正常的加载器补字段误判成并发编辑。 */
+    outMem.version = CURRENT_VERSION;
+    outMem.decks = mergeList(lm.decks, rm.decks, 'decks', function(d){return d.id;});
+    outMem.best = mergeBest(lm.best, rm.best);
+    outMem.settings = revOf(lr,'kv','settings') >= revOf(rr,'kv','settings')
+      ? cloneJSON(lm.settings || {}) : cloneJSON(rm.settings || {});
+    outMem.stats = mergeStats(localStats, remoteStats);
+    outMem.mastered = Object.assign({}, rm.mastered || {}, lm.mastered || {});
+    outMem.deletedItems = Object.assign({}, rm.deletedItems || {}, lm.deletedItems || {});
+    outMem.reinforceBook = mergeBook(lm.reinforceBook, rm.reinforceBook);
+    /* mergeStats 已处理 stats；这里再统一处理其它三处句子身份，避免一个批次里出现
+       mastered 用旧 key、stats 用新 key 的半迁移状态。 */
+    migrateCidKeys(outMem); migrateToBookDecks(outMem);
+    return {
+      mem: outMem,
+      courses: mergeList(local.courses, remote.courses, 'courses', function(c){return c.courseId;}),
+      courseProgress: mergeMap(local.courseProgress, remote.courseProgress, 'courseProgress'),
+      revs: cloneJSON(lr),
+      generation: local.generation
+    };
+  }
+  async function autoRecoverBatchConflict(){
+    if(!global.ChunkAPI || !global.ChunkAPI.getSyncBatch || !global.ChunkAPI.resolveSyncBatch || !global.BatchSync) return false;
+    var wasPaused = _resolutionPaused;
+    setResolutionPaused(true);
+    try{
+      console.info('[cloud sync] 检测到账号级冲突，尝试安全合并');
+      var batch = await global.ChunkAPI.getSyncBatch();
+      if(!batch || !batch.snapshot || !batch.token) return false;
+      var original = readSyncSnapshot();
+      var merged = mergeBatchSnapshots(original, batch.snapshot);
+      /* 这里不再依赖 BatchSync.state() 读取旧请求：旧版本可能留下无法解析/无法完成的
+         大批次，读取它会把恢复路径再次卡住。服务端的 batch resolution 自带完整备份，
+         使用新的请求编号提交“双方合并结果”即可；最后 finishResolution 不带 requestId，
+         会原子清理任意遗留 pending，避免旧请求再次触发 409。 */
+      var receipt = await global.ChunkAPI.resolveSyncBatch({
+        requestId: 'auto-reconcile-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2),
+        expectedToken: batch.token,
+        choice: 'local', local: merged
+      });
+      if(!receipt || receipt.ok !== true) throw new Error('服务器未确认统计冲突修复');
+      /* 网络往返期间若本机有新练习，停止自动应用，避免覆盖刚产生的事件；
+         原批次仍保留，下一次可继续用同一 requestId 恢复。 */
+      if(!sameSyncValue(readSyncSnapshot(), original)){
+        var changed = new Error('处理期间本机已有新修改，已保留，请重新同步');
+        changed.code = 'LOCAL_CHANGED'; throw changed;
+      }
+      if(saveMem(merged.mem, false) === false) throw new Error('修复后的学习数据写入本机失败');
+      await _lastSavePromise;
+      await persistCourseValue('courses', merged.courses || [], false);
+      await persistCourseValue('progress', merged.courseProgress || {}, false);
+      /* saveMem 会按当前内容维护 rev；把它写回比较基线，避免 apply 阶段把“修复本身”
+         误判成并发修改。 */
+      merged.revs = loadRevs(); merged.generation = _syncGeneration;
+      adoptConfirmedBatchSnapshot(receipt.snapshot);
+      await global.BatchSync.finishResolution(receipt.seq);
+      _lastSyncMeta=null; _dirty=false; rememberSyncConflict(null); notifySync();
+      emit('syncResolved',{entity:'batch',id:receipt.requestId,choice:'local'});
+      console.info('[cloud sync] 已自动合并并修复账号级统计冲突');
+      return true;
+    }catch(e){
+      console.warn('[cloud sync] 账号级冲突自动修复失败，保留人工处理入口:', e.message);
+      return false;
+    }finally{
+      if(!wasPaused) setResolutionPaused(false);
+    }
   }
   /* 整账号冲突处理成功后，选中的快照就是新的已确认基线。
      不能把 _prevSnap / 云端增量水位留空：否则紧接着删除或修改一个题库时，
@@ -2149,7 +2369,13 @@
         global.ChunkAPI.getConfig().then(function(cfg){
           _cloudConfig = cfg || null;
           var needAuth = cfg && cfg.requireAuth;
-          if(needAuth && (!global.ChunkAPI.isLoggedIn() || _loadGuest())){
+          /* 只在「确实没有可用令牌」时才走静默游客引导。
+             根因（2026-09-17 探针实测）：此处曾有 `|| _loadGuest()`，即只要本地存着游客凭据就每次启动
+             都静默重登 → api.setToken 写回令牌 → AccountStorage 代次变化 → 触发整页重载 → 再重登…
+             新访客陷入无限重载（实测 6 秒 33 次导航，首屏永远定不下来）。
+             续期能力不受影响：令牌过期时 api.js 遇 401 会 clearToken，下次启动 isLoggedIn() 为假，
+             仍会进入本分支用保存的凭据静默重登。 */
+          if(needAuth && !global.ChunkAPI.isLoggedIn()){
             /* 鉴权模式：无 token 或有游客凭据（过期续期）→ 先试静默游客引导，失败再弹登录框 */
             guestBootstrap().then(function(ok){
               if(ok){ _cloudOn = true; syncFromCloud().then(resolve, resolve); }
@@ -2201,6 +2427,51 @@
        pass2  遍历去重并集，建 byKeyU + union 计数
        主循环 每个 key 只做 O(1) 查表
      总复杂度 O(events + keys)。语义与原实现逐条对齐（见下方注释中的兼容点）。 */
+  /* totalAnswered 是可由句子档案/事件重建的冗余字段。
+     旧版本确实可能存在少量没有事件明细的历史答题，所以不能简单取明细最大值；
+     但当冗余值远超明细时，它已经不再是“旧历史基线”，而是重复合并造成的污染。
+     保留一个小范围的历史差额兼容窗口，同时阻止异常值继续传播。 */
+  function normalizedAnsweredTotal(stats){
+    stats = (stats && typeof stats === 'object') ? stats : {};
+    var by = (stats.bySentence && typeof stats.bySentence === 'object') ? stats.bySentence : {};
+    var events = Array.isArray(stats.events) ? stats.events : [];
+    var sentenceAnswered = 0, eventAnswered = 0, seen = {};
+    Object.keys(by).forEach(function(key){
+      var n = Number(by[key] && by[key].times);
+      if(isFinite(n) && n > 0) sentenceAnswered += n;
+    });
+    events.forEach(function(ev){
+      if(!ev || ev.kind !== 'answer') return;
+      if(ev.id){ if(seen[ev.id]) return; seen[ev.id] = true; }
+      eventAnswered++;
+    });
+    var stored = Math.max(0, Number(stats.totalAnswered) || 0);
+    var detail = Math.max(sentenceAnswered, eventAnswered);
+    if(detail <= 0) return stored;
+    /* 少量旧数据可能只保留了累计基线；只在差额明显失控时丢弃它。 */
+    var legacyWindow = Math.max(32, Math.ceil(Math.max(stored, detail) * 0.25));
+    var normalized;
+    if(sentenceAnswered > stored + legacyWindow && eventAnswered <= stored + legacyWindow){
+      /* 句子行可能已被重复合并，但事件仍是稳定的逐次记录；保留总基线及少量旧历史。 */
+      normalized = Math.max(stored, eventAnswered);
+    }else if(stored > detail + legacyWindow){
+      /* 汇总基座异常放大，回到仍可验证的句子/事件明细。 */
+      normalized = detail;
+    }else normalized = Math.max(stored, detail);
+    return normalized;
+  }
+  function hasPoisonedSentenceRows(stats, trustedTotal){
+    stats = (stats && typeof stats === 'object') ? stats : {};
+    var by = (stats.bySentence && typeof stats.bySentence === 'object') ? stats.bySentence : {};
+    var sentenceAnswered = 0;
+    Object.keys(by).forEach(function(key){
+      var n = Number(by[key] && by[key].times);
+      if(isFinite(n) && n > 0) sentenceAnswered += n;
+    });
+    var rowWindow = Math.max(32, Math.ceil(Math.max(trustedTotal, sentenceAnswered) * 0.25));
+    return sentenceAnswered > trustedTotal + rowWindow;
+  }
+
   function mergeStats(a, b){
     a = (a && typeof a === 'object') ? a : {};
     b = (b && typeof b === 'object') ? b : {};
@@ -2260,13 +2531,17 @@
       } else if(e.kind === 'round'){ roundU++; }
     }
 
-    var baseAnswered = events.length
-      ? Math.max(Math.max(0, (Number(a.totalAnswered)||0) - answerA), Math.max(0, (Number(b.totalAnswered)||0) - answerB))
-      : Math.max(Number(a.totalAnswered)||0, Number(b.totalAnswered)||0);
+    var aTotal = normalizedAnsweredTotal(a), bTotal = normalizedAnsweredTotal(b);
+    var hasAnswerEventsOnBothSides = events.length && answerA > 0 && answerB > 0;
+    var poisonedSide = hasPoisonedSentenceRows(a, aTotal) || hasPoisonedSentenceRows(b, bTotal);
+    var baseAnswered = hasAnswerEventsOnBothSides
+      ? Math.max(Math.max(0, aTotal - answerA), Math.max(0, bTotal - answerB))
+      : Math.max(aTotal, bTotal);
     var baseRounds = events.length
       ? Math.max(Math.max(0, (Number(a.totalRounds)||0) - roundA), Math.max(0, (Number(b.totalRounds)||0) - roundB))
       : Math.max(Number(a.totalRounds)||0, Number(b.totalRounds)||0);
-    var out = { totalRounds: baseRounds + roundU, totalAnswered: baseAnswered + answerU, bySentence:{}, events:events };
+    var mergedAnswered = (hasAnswerEventsOnBothSides || !poisonedSide) ? baseAnswered + answerU : baseAnswered;
+    var out = { totalRounds: baseRounds + roundU, totalAnswered: mergedAnswered, bySentence:{}, events:events };
     /* ★ 修复（2026-09-09）：mergeStats 此前重建 out 时丢掉 daysLog —— 每次启动云同步合并
        后 saveMem 回写，连续打卡数据被清零。补：按天合并，rounds 取两侧较大值（daysLog 是
        events 的按日汇总，取 max 对齐 bySentence 的基线取大策略，单调不回退）。 */
@@ -2285,21 +2560,45 @@
     Object.keys(bBy).forEach(function(k){ keys[k] = true; });
     Object.keys(setOnlyKeys).forEach(function(k){ keys[k] = true; });
     var EMPTY_C = { ok:0, wrong:0, lastAt:0 };
+    function rowIsPoisoned(row, sideTotal){
+      if(!row) return false;
+      var times = Math.max(0, Number(row.times) || 0);
+      var rowWindow = Math.max(32, Math.ceil(Math.max(sideTotal, times) * 0.25));
+      return times > sideTotal + rowWindow;
+    }
+    function rowBaseline(row, eventCount, sideTotal){
+      if(!row) return 0;
+      var times = Math.max(0, Number(row.times) || 0);
+      /* 单句次数不可能明显超过该侧累计答题；异常行只保留事件增量，
+         防止污染在每次云同步中继续滚雪球。 */
+      var rowWindow = Math.max(32, Math.ceil(Math.max(sideTotal, times) * 0.25));
+      if(times > sideTotal + rowWindow) return 0;
+      return Math.max(0, times - eventCount);
+    }
+    function rowFieldBaseline(row, field, sideTotal){
+      if(!row) return 0;
+      var value = Math.max(0, Number(row[field]) || 0);
+      var rowWindow = Math.max(32, Math.ceil(Math.max(sideTotal, value) * 0.25));
+      return value > sideTotal + rowWindow ? 0 : value;
+    }
     Object.keys(keys).sort().forEach(function(key){
       var ra = aBy[key] || null;
       var rb = bBy[key] || null;
       if(!ra && !rb) return;
       var ca = byKeyA[key] || EMPTY_C, cb = byKeyB[key] || EMPTY_C, cu = byKeyU[key] || EMPTY_C;
       var ea = ca.ok + ca.wrong, eb = cb.ok + cb.wrong, eu = cu.ok + cu.wrong;
-      var baseTimes = Math.max(ra ? Math.max(0, (ra.times||0) - ea) : 0, rb ? Math.max(0, (rb.times||0) - eb) : 0);
+      var poisonA = rowIsPoisoned(ra, aTotal), poisonB = rowIsPoisoned(rb, bTotal);
+      var baseTimes = Math.max(rowBaseline(ra, ea, aTotal), rowBaseline(rb, eb, bTotal));
       /* ★ 修复（2026-09-10）：baseOk 必须减去「本侧 ok 事件数」而非「本侧全部 answer 事件数」。
          原实现用 ea（含 wrong 事件），导致每次合并 okTimes 都被多减 ca.wrong：
            merged.okTimes = okTimes - ea + ok_union = okTimes - ca.wrong
          而 syncFromCloud 每次启动都跑 mergeStats(x, x)，于是 okTimes 逐次下沉，
          直到塌回事件里 ok 事件的条数 —— 准确率虚低、isFluencyByDeck 的 okTimes>=3 判定失真。
          旧测试每侧只放 1 条事件（ca.wrong 恒为 0）恰好掩盖了它。修正后 mergeStats 幂等。 */
-      var baseOk = Math.max(ra ? Math.max(0, (ra.okTimes||0) - ca.ok) : 0, rb ? Math.max(0, (rb.okTimes||0) - cb.ok) : 0);
-      var baseWrong = Math.max(ra ? Math.max(0, (ra.wrongTimes||0) - ca.wrong) : 0, rb ? Math.max(0, (rb.wrongTimes||0) - cb.wrong) : 0);
+      var baseOk = Math.max(rowFieldBaseline(ra, 'okTimes', aTotal) - ca.ok,
+        rowFieldBaseline(rb, 'okTimes', bTotal) - cb.ok, 0);
+      var baseWrong = Math.max(rowFieldBaseline(ra, 'wrongTimes', aTotal) - ca.wrong,
+        rowFieldBaseline(rb, 'wrongTimes', bTotal) - cb.wrong, 0);
       if(!events.length){
         var legacy = (ra && rb) ? ((ra.times||0) >= (rb.times||0) ? ra : rb) : (ra || rb);
         out.bySentence[key] = Object.assign({}, legacy);
@@ -2307,10 +2606,19 @@
       }
       var latest = (ra && rb) ? ((ra.lastAt||0) >= (rb.lastAt||0) ? ra : rb) : (ra || rb);
       var merged = Object.assign({}, latest);
-      merged.times = baseTimes + eu;
+      /* 异常行常与另一侧的无事件快照同时出现；该快照已包含这些事件，
+         再加 eu 就会把次数翻倍。异常分支只采用可信行，实在没有可信行才用事件数。 */
+      merged.times = (poisonA || poisonB) ? (baseTimes || eu) : (baseTimes + eu);
       /* answer 事件带 ok 字段；正确/错误增量直接取并集索引计数。 */
-      merged.okTimes = baseOk + cu.ok;
-      merged.wrongTimes = baseWrong + cu.wrong;
+      if(poisonA || poisonB){
+        var trustedOk = Math.max(poisonA ? 0 : rowFieldBaseline(ra, 'okTimes', aTotal), poisonB ? 0 : rowFieldBaseline(rb, 'okTimes', bTotal));
+        var trustedWrong = Math.max(poisonA ? 0 : rowFieldBaseline(ra, 'wrongTimes', aTotal), poisonB ? 0 : rowFieldBaseline(rb, 'wrongTimes', bTotal));
+        merged.okTimes = trustedOk || cu.ok;
+        merged.wrongTimes = trustedWrong || cu.wrong;
+      }else{
+        merged.okTimes = baseOk + cu.ok;
+        merged.wrongTimes = baseWrong + cu.wrong;
+      }
       merged.lastAt = Math.max((ra&&ra.lastAt)||0, (rb&&rb.lastAt)||0, cu.lastAt);
       merged.maxStreak = Math.max((ra&&ra.maxStreak)||0, (rb&&rb.maxStreak)||0);
       out.bySentence[key] = merged;
@@ -2390,9 +2698,11 @@
 
   /* ★ 口语 8000 合并为 oral-book.js 后的档案 key 迁移（2026-09-15，幂等）。
      映射表 window.BUILTIN_MIGRATION（随 builtins.js 加载）= { 新deckId: [cid, ...] }。
-     必须同时兼容三代老 key：
+     必须同时兼容四代老 key：
        - `builtin-daily#cid` —— 初版单 deck；
        - `daily-home|social|chat|basic|emotion|work#cid` —— 上一版按 6 场景拆分的 deck。
+       - `builtin-oral-8000#cid` —— 更早的 8000 句单 deck 别名；
+       - `oral-*#cid` —— 当前内容源（保持不变）。
      覆盖与 migrateCidKeys 相同的四处（mastered / deletedItems / bySentence / events）；
      另加错题本 —— 它的 key 是 `deckId::sentence`，历史 cid 迁移不覆盖，换 deck 后会指向不存在的库。 */
   function migrateToBookDecks(o){
@@ -2400,7 +2710,8 @@
     if(!map) return false;                       /* 迁移表未加载（如旧页面）→ 不动任何数据 */
     var OLD_DECKS = {
       'builtin-daily': 1, 'daily-home': 1, 'daily-social': 1, 'daily-chat': 1,
-      'daily-basic': 1, 'daily-emotion': 1, 'daily-work': 1
+      'daily-basic': 1, 'daily-emotion': 1, 'daily-work': 1,
+      'builtin-oral-8000': 1
     };
     /* 惰性反向索引：cid → 新 deckId（只在首次命中时构建一次） */
     var cidToDeck = null;
@@ -2442,6 +2753,15 @@
     moveMap(o.deletedItems);
     if(o.stats && typeof o.stats === 'object'){
       moveMap(o.stats.bySentence);
+      /* 云端行表曾出现过「key 已迁到 oral-*，行内 deckId 仍是旧值」的混合快照。
+         页面按行内 deckId 建索引，这种快照会让答题记录看似已同步、实际完全不可见。 */
+      Object.keys(o.stats.bySentence || {}).forEach(function(k){
+        var sep = k.indexOf('#'), keyDeck = sep > 0 ? k.slice(0, sep) : '';
+        var row = o.stats.bySentence[k];
+        if(!row || !keyDeck || !/^oral-/.test(keyDeck) || !OLD_DECKS[row.deckId]) return;
+        row.deckId = keyDeck;
+        changed = true;
+      });
       if(Array.isArray(o.stats.events)){
         o.stats.events.forEach(function(e){ if(e && e.key){ e.key = remapKey(e.key); } });
       }
@@ -2457,6 +2777,37 @@
       });
     }
     return changed;
+  }
+
+  /* 对刚从云端读回的 stats 做一次兼容归一化。
+     线上曾有一批快照的 bySentence 行已换成 oral-* key，但事件仍是旧 key，且行的
+     times=0；只做 key 迁移仍然不够，必须用同一份事件并集重建一次，才能恢复真实次数。
+     返回需要重新上行的事件 ID，供服务端按相同主键更新旧事件内容。 */
+  function normalizeSyncedStats(stats){
+    if(!stats || typeof stats !== 'object') return { stats: stats, changed: false, repairedEventIds: {} };
+    var beforeEvents = {}, eventsBefore = Array.isArray(stats.events) ? stats.events : [];
+    eventsBefore.forEach(function(e){ if(e && e.id) beforeEvents[e.id] = e.key || ''; });
+    var holder = { stats: stats };
+    var changed = migrateCidKeys(holder) || migrateToBookDecks(holder);
+    var by = (stats.bySentence && typeof stats.bySentence === 'object') ? stats.bySentence : {};
+    var ev = Array.isArray(stats.events) ? stats.events : [], counts = {};
+    ev.forEach(function(e){
+      if(!e || e.kind !== 'answer' || !e.key) return;
+      counts[e.key] = (counts[e.key] || 0) + 1;
+    });
+    /* 行次数少于已确认事件数时，行是旧迁移产物；mergeStats(stats, stats) 会保留
+       历史基线并把事件按 ID 去重计入，且对正常快照是幂等的。 */
+    var rebuild = false;
+    Object.keys(counts).forEach(function(k){
+      var row = by[k], times = row && Number(row.times);
+      if(!row || !isFinite(times) || times < counts[k]) rebuild = true;
+    });
+    if(rebuild){ stats = mergeStats(stats, stats); changed = true; }
+    var repairedEventIds = {};
+    (Array.isArray(stats.events) ? stats.events : []).forEach(function(e){
+      if(e && e.id && beforeEvents[e.id] !== undefined && beforeEvents[e.id] !== (e.key || '')) repairedEventIds[e.id] = 1;
+    });
+    return { stats: stats, changed: changed, repairedEventIds: repairedEventIds };
   }
 
   /* ---------- 领域：题库 ---------- */
@@ -2531,7 +2882,7 @@
     var storedAnswered = Math.max(0, Number(stats.totalAnswered) || 0);
     /* 正常数据三者相等；若某个旧字段缺失，使用仍能证明答题发生过的较大值，
        同时把差异暴露给界面，而不是继续显示一个偏小的累计数。 */
-    var totalAnswered = Math.max(storedAnswered, sentenceAnswered, eventAnswered);
+    var totalAnswered = normalizedAnsweredTotal(stats);
     return {
       totalAnswered: totalAnswered,
       storedAnswered: storedAnswered,
@@ -2763,17 +3114,19 @@
     isMastered: isMastered, isFluencyByDeck: isFluencyByDeck, isMarkedForDeck: isMarkedForDeck,
     classifyStat: classifyStat,
     demoStatsSample: demoStatsSample,
-    mergeStats: mergeStats,
+    mergeStats: mergeStats, mergeBest: mergeBest,
     ymd: ymd, answerStatsAudit: answerStatsAudit, dailyActivity: dailyActivity, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
     backfillDaysLog: backfillDaysLog,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
     fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,
+    normalizeSyncedStats: normalizeSyncedStats,
     on: on, emit: emit,
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,
     isDirty: function(){ return _dirty; },
     getSyncConflict: function(){ return _syncConflict; },
-    readSyncLocal: readSyncLocal, readSyncSnapshot: readSyncSnapshot, applySyncResolution: applySyncResolution,
+    readSyncLocal: readSyncLocal, readSyncSnapshot: readSyncSnapshot, mergeBatchSnapshots: mergeBatchSnapshots,
+    applySyncResolution: applySyncResolution,
     applySyncBatchResolution: applySyncBatchResolution,
     setResolutionPaused: setResolutionPaused,
     waitForSync: function(){ return Promise.all([_cloudInFlight, _courseDrain, _courseWriteTail, _progressWriteTail, _statsWriteTail]); },

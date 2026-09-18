@@ -191,5 +191,29 @@ console.log('\n【反向自证 C：未拆分的自定义 deck → 不得被误�
   assertEq(m.reinforceBook[0].deckId, 'my-own-deck', '【守卫】用户自建 deck 的错题本不受影响');
 })();
 
+console.log('\n【兼容：云端混合快照必须归一化旧口语 key 与 deckId】');
+(function () {
+  var env = makeEnv(true);
+  var canonical = deckA + '#' + cidA;
+  var legacy = 'builtin-oral-8000#' + cidA;
+  var seed = { version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
+    stats: { totalRounds: 0, totalAnswered: 2, bySentence: {}, events: [] }, settings: {}, reinforceBook: [] };
+  /* 这是线上曾出现过的混合形态：行 key 已迁到新 deck，但行内 deckId 仍是旧值，
+     事件 key 还保留 builtin-oral-8000。loadMem 必须把三者收敛到同一个现行 deck。 */
+  seed.stats.bySentence[canonical] = { deckId: 'builtin-daily', times: 0, okTimes: 0, wrongTimes: 0 };
+  seed.stats.events = [
+    { id: 'legacy-oral-1', kind: 'answer', key: legacy, ok: true, at: 1000 },
+    { id: 'legacy-oral-2', kind: 'answer', key: legacy, ok: false, at: 2000 }
+  ];
+  env.storage['chunklab.v1'] = JSON.stringify(seed);
+
+  var m = env.CL.loadMem();
+  assertEq(m.stats.events[0].key, canonical, 'builtin-oral-8000 事件迁移到现行 deck');
+  assertEq(m.stats.bySentence[canonical].deckId, deckA, '混合行 deckId 归一化到现行 deck');
+  var normalized = env.CL.normalizeSyncedStats(seed.stats);
+  assertEq(normalized.stats.bySentence[canonical].times, 2, '云端混合行按事件恢复答题次数');
+  assert(!!normalized.repairedEventIds['legacy-oral-1'] && !!normalized.repairedEventIds['legacy-oral-2'], '旧事件标记为需要回写');
+})();
+
 console.log('\n结果：' + pass + ' 通过 / ' + fail + ' 失败');
 if (fail) process.exit(1);

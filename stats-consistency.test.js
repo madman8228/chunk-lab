@@ -55,6 +55,40 @@ eq(audit.datedAnswered, 138, '有日期答题次数');
 eq(audit.undatedAnswered, 8, '未记录日期答题次数');
 eq(dated, 138, '日历活动答题次数');
 
+/* ★ 回归：旧同步基座可能被重复合并放大，但句子档案仍是完整明细。
+   展示/后续同步不能继续把这个冗余的大数当成真实累计答题。 */
+var inflated = {
+  stats: {
+    totalAnswered: 237615,
+    bySentence: { 'daily#canonical': { times: 161, okTimes: 161, wrongTimes: 0 } },
+    events: []
+  }
+};
+eq(CL.answerStatsAudit(inflated).totalAnswered, 161, '统计基座异常放大时回到句子明细口径');
+eq(CL.mergeStats(inflated.stats, {
+  totalAnswered: 161,
+  bySentence: { 'daily#canonical': { times: 161, okTimes: 161, wrongTimes: 0 } },
+  events: []
+}).totalAnswered, 161, '统计基座异常放大时同步合并不再传播大数');
+
+var poisonedEvents = [];
+for (i = 0; i < 161; i++) {
+  poisonedEvents.push({ id: 'stable-answer-' + i, kind: 'answer', key: 'daily#canonical', ok: true, at: i + 1 });
+}
+var poisoned = {
+  totalAnswered: 168,
+  bySentence: { 'daily#canonical': { times: 237615, okTimes: 237615, wrongTimes: 0 } },
+  events: poisonedEvents
+};
+eq(CL.answerStatsAudit({ stats: poisoned }).totalAnswered, 168, '明细行异常放大时保留可信累计基线');
+var repaired = CL.mergeStats(poisoned, {
+  totalAnswered: 161,
+  bySentence: { 'daily#canonical': { times: 161, okTimes: 161, wrongTimes: 0 } },
+  events: []
+});
+eq(repaired.totalAnswered, 168, '异常明细行合并后累计答题保持稳定');
+eq(repaired.bySentence['daily#canonical'].times, 161, '异常明细行合并后句子次数不再膨胀');
+
 console.log('【同步合并不放大偏差】');
 var merged = CL.mergeStats(mem.stats, mem.stats);
 eq(merged.totalAnswered, 146, '同一份统计重复合并后累计答题');

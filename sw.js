@@ -53,7 +53,7 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-eb2369d3'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-ef912e11'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 /* 硬预缓存清单：小体积、离线必需。install 用 addAll 一次性装好，任一失败即安装失败
    （老 SW 继续服务 —— 这是正确的失败语义，不做"部分成功"的兜底）。 */
 const PRECACHE = [
@@ -70,6 +70,7 @@ const PRECACHE = [
   '/course-package.js',
   '/courses.html',
   '/decks.html',
+  '/assets/catalog/lesson-placeholder.svg',
   '/stats.html',
   '/js/idb.js',
   '/js/icons.js',
@@ -90,6 +91,10 @@ const PRECACHE = [
   '/js/legacy-restore.js',
   '/js/batch-sync.js',
   '/js/chunk-shape.js',
+  '/js/course-catalog.js',
+  '/js/course-progress.js',
+  '/js/logical-course-store.js',
+  '/js/course-cloze.js',
 ];
 
 /* 软预缓存清单：仅保留旧版源文件作为兼容回退。
@@ -98,6 +103,8 @@ const PRECACHE = [
    与 PRECACHE 一样计入 CACHE 版本哈希；内容分片由首次访问后的 fetch 分支缓存。 */
 const PRECACHE_SOFT = [
   '/builtins.js',
+  '/assets/covers/oral-3000.png',
+  '/assets/covers/idioms.png',
 ];
 
 /* 把 PRECACHE_SOFT 资产从既有 chunklab-* 缓存搬进新 CACHE。

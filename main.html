@@ -1579,10 +1579,11 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
           </button>
           <span class="acct-tip" id="acctTip" aria-live="polite"></span>
           <span style="flex:1"></span>
+          <button class="btn sm" id="btnAccountSet" hidden>设置账号</button>
           <button class="btn sm" id="btnAccountLogin" hidden>登录</button>
           <button class="btn sm ghost" id="btnAccountLogout" hidden>退出登录</button>
         </div>
-        <div style="font-size:11.5px;color:var(--faint);margin-top:8px;line-height:1.55">点击账号名复制到剪贴板；退出后可切换账号。学习数据在云服务器上，退出前请确认已同步（顶栏无「待同步」徽标）。</div>
+        <div id="acctHint" style="font-size:11.5px;color:var(--faint);margin-top:8px;line-height:1.55">点击账号名复制到剪贴板；退出后可切换账号。学习数据在云服务器上，退出前请确认已同步（顶栏无「待同步」徽标）。</div>
       </div>
     </div>
     <div class="modal-foot">
@@ -1624,6 +1625,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script src="js/account-storage.js"></script>
 <script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
+<script src="js/course-catalog.js"></script>
+<script src="js/course-progress.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/batch-sync.js"></script>
@@ -4090,6 +4093,24 @@ function startBookNow(){
 }
 
 /* 今日首页渲染（数据依赖 mem，boot 后调用；页面内事件全部就地绑定） */
+function courseContextForDeck(deck){
+  if(!deck || !window.CourseCatalog) return { id:'deck:'+deck.id, title:displayDeckName(deck.name), lessonTitle:displayDeckName(deck.name) };
+  try{
+    var manifest = window.ContentRepo && ContentRepo.getManifest ? ContentRepo.getManifest() : { decks:[] };
+    var catalog = CourseCatalog.buildCatalog({
+      manifest: manifest,
+      userDecks: mem.decks || [],
+      storyPackages: window.CL && CL.readCourses ? CL.readCourses() : []
+    });
+    var owner = catalog.ownerByContentRef && catalog.ownerByContentRef[CourseCatalog.refKey({type:'sentence-deck',id:deck.id})];
+    var course = owner && CourseCatalog.getCourse(catalog, owner);
+    var lesson = course && CourseCatalog.listLessons(course).find(function(item){ return item.contentRef && item.contentRef.id === deck.id; });
+    if(course && lesson){
+      return { id:course.id, title:course.title, lessonTitle:lesson.title, label:course.title === lesson.title ? course.title : course.title+' · '+lesson.title };
+    }
+  }catch(e){}
+  return { id:'deck:'+deck.id, title:displayDeckName(deck.name), lessonTitle:displayDeckName(deck.name), label:displayDeckName(deck.name) };
+}
 function renderHome(){
   var t = computeToday();
   var ic = function(n){ return window.Icons ? Icons.svg(n) : ''; };
@@ -4101,6 +4122,8 @@ function renderHome(){
   var byKeys = (mem.stats && mem.stats.bySentence) ? Object.keys(mem.stats.bySentence).length : 0;
   var hasEver = !!((mem.stats && mem.stats.totalAnswered) || byKeys);
   var decks = allDecks();
+  var contextByDeckId = {};
+  decks.forEach(function(d){ contextByDeckId[d.id] = courseContextForDeck(d); });
   /* 继续上次：activeDeckId 有效 → 首卡；否则最近 lastPlayed 的 deck */
   var resume = null;
   var act = mem.activeDeckId ? findDeck(mem.activeDeckId) : null;
@@ -4118,10 +4141,22 @@ function renderHome(){
   }
   var recent = decks.filter(function(d){
     if(resume && d.id === resume.deck.id) return false;
+    if(resume && contextByDeckId[d.id] && contextByDeckId[resume.deck.id] &&
+        contextByDeckId[d.id].id === contextByDeckId[resume.deck.id].id) return false;
     return !!(mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed);
   }).sort(function(a, b){
     return (mem.best[b.id].lastPlayed) - (mem.best[a.id].lastPlayed);
-  }).slice(0, resume ? 4 : 5);
+  });
+  /* 最近练习按课程合并：口语3000句的多个场景仍保留最近的真实 deck 作为启动目标，
+     但首页只显示一个“课程 · 课节”入口，避免把一门课拆成一串看似独立的课程。 */
+  var recentByCourse = {};
+  recent.forEach(function(d){
+    var context = contextByDeckId[d.id] || { id:'deck:'+d.id, label:displayDeckName(d.name) };
+    if(!recentByCourse[context.id]) recentByCourse[context.id] = { deck:d, context:context };
+  });
+  recent = Object.keys(recentByCourse).map(function(id){ return recentByCourse[id]; })
+    .sort(function(a,b){ return (mem.best[b.deck.id].lastPlayed) - (mem.best[a.deck.id].lastPlayed); })
+    .slice(0, resume ? 4 : 5);
   /* 行数从 2/3 放宽到 4/5（2026-09-14）：右列「最近练习」原本只有 2-3 行约 110px，
      而左列日历 283px → 合并卡右下永远空着约 170px。放宽后右列填满，
      且**不增加页面高度** —— 合并卡高度由更高的左列决定。 */
@@ -4211,12 +4246,12 @@ function renderHome(){
     var _rows = [];
     if(resume){
       var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
-        _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d1.name)) + '</div>' + deckProgressMarkup(d1, resume.idx, b1) + '</div>'
+        _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX((contextByDeckId[d1.id] || {}).label || displayDeckName(d1.name)) + '</div>' + deckProgressMarkup(d1, resume.idx, b1) + '</div>'
           + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
     }
-    recent.forEach(function(d){
-      var b = mem.best && mem.best[d.id];
-      _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(displayDeckName(d.name)) + '</div>' + deckProgressMarkup(d, 0, b) + '</div>'
+    recent.forEach(function(entry){
+      var d = entry.deck, b = mem.best && mem.best[d.id];
+      _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(entry.context.label || displayDeckName(d.name)) + '</div>' + deckProgressMarkup(d, 0, b) + '</div>'
         + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
     });
 
@@ -5014,10 +5049,10 @@ function refreshAccountUi(){
     if(!cfg || !cfg.requireAuth){ sec.hidden = true; return; } /* 开放模式无需账号概念 */
     sec.hidden = false;
     var btnName = $('acctNameBtn'), nameText = $('acctNameText'),
-        btnLogin = $('btnAccountLogin'), btnLogout = $('btnAccountLogout'),
-        tip = $('acctTip');
+        btnLogin = $('btnAccountLogin'), btnLogout = $('btnAccountLogout'), btnSet = $('btnAccountSet'),
+        tip = $('acctTip'), hint = $('acctHint');
     if(window.ChunkAPI.isLoggedIn()){
-      btnLogin.hidden = true; btnLogout.hidden = false;
+      btnLogin.hidden = true; btnLogout.hidden = false; btnSet.hidden = false;
       btnName.hidden = false;
       nameText.textContent = '…';
       nameText.title = '';
@@ -5027,9 +5062,19 @@ function refreshAccountUi(){
         nameText.textContent = username;
         nameText.title = username;
         btnName.dataset.username = username;
-      }).catch(function(){ btnName.hidden = true; tip.textContent = '已登录（获取账号失败）'; });
+        /* 游客账号（guest_<随机>）只存在于本设备：密码随机且用户不知晓，换个设备登不回来。
+           引导用户就地设置自己的账号名与密码。 */
+        if(/^guest_/.test(username)){
+          hint.textContent = '当前是自动生成的临时账号，只存在于这台设备。点「设置账号」起一个自己记得住的账号，就能在别的设备登回同一份数据。';
+        } else {
+          hint.textContent = '点击账号名复制到剪贴板；退出后可切换账号。学习数据在云服务器上，退出前请确认已同步（顶栏无「待同步」徽标）。';
+        }
+      }).catch(function(e){
+        if(e && e.code === 'NOT_AUTH'){ tip.textContent = '登录已过期，请重新登录'; refreshAccountUi(); return; }
+        btnName.hidden = true; tip.textContent = '已登录（获取账号失败）';
+      });
     } else {
-      btnLogin.hidden = false; btnLogout.hidden = true;
+      btnLogin.hidden = false; btnLogout.hidden = true; btnSet.hidden = true;
       btnName.hidden = true;
       nameText.textContent = ''; nameText.title = '';
     }
@@ -5056,6 +5101,22 @@ $('acctNameBtn').onclick = function(){
 };
 $('btnAccountLogin').onclick = function(){
   window.ChunkAuthUI.showLogin(function(){ location.reload(); });
+};
+/* 把当前游客账号就地升级为可跨设备账号。改名不换 user_id ⇒ 云端与本机数据零迁移，
+   故不需要 reload；成功后刷新账号区块即可（账号名唯一真相在服务端 users 表，me() 会回查）。 */
+$('btnAccountSet').onclick = function(){
+  var current = $('acctNameText').textContent || '';
+  window.ChunkAuthUI.showSetAccount(current, function(name){
+    var tip = $('acctTip');
+    tip.textContent = '已设置 ' + name + '，可在其他设备用这个账号登录';
+    tip.classList.add('show');
+    if(_acctCopyTimer) clearTimeout(_acctCopyTimer);
+    _acctCopyTimer = setTimeout(function(){
+      tip.classList.remove('show');
+      _acctCopyTimer = null;
+    }, 5000);
+    refreshAccountUi();
+  });
 };
 $('btnAccountLogout').onclick = function(){
   if(window.ChunkAuthUI) window.ChunkAuthUI.logout(); /* 清 token；重载后进入未登录态 */
@@ -5617,6 +5678,35 @@ function resumeOrStart(){
   startDeck(_resumeDeck || allDecks()[0] || BUILTIN[0]);
 }
 function decideEntry(){
+  /* 新目录入口只传课程/课节引用，实际内容仍由当前账号的原 deck 身份解析。 */
+  try{
+    var _intentRaw = sessionStorage.getItem('_startIntent');
+    if(_intentRaw){
+      var _intent = JSON.parse(_intentRaw);
+      sessionStorage.removeItem('_startIntent');
+      if(_intent && _intent.version === 1 && _intent.kind === 'unit' && _intent.unitId){
+        var _intentDeck = findDeck(_intent.unitId);
+        if(_intentDeck){ showPracticePage(); startDeck(_intentDeck, 0); return; }
+        showPracticePage(); $('zh').textContent = '找不到这节课程，请返回课程列表重试'; return;
+      }
+    }
+  }catch(e){ console.warn('[catalog] 新课程入口解析失败：', e); }
+  var _catalogCourse = new URLSearchParams(location.search).get('course');
+  var _catalogLesson = new URLSearchParams(location.search).get('lesson');
+  if(_catalogCourse && _catalogLesson && window.CourseCatalog){
+    var _catalog = CourseCatalog.buildCatalog({
+      manifest: window.ContentRepo && ContentRepo.getManifest ? (ContentRepo.getManifest() || {}) : {},
+      userDecks: mem.decks || [],
+      storyPackages: window.CL && CL.readCourses ? CL.readCourses() : []
+    });
+    var _course = CourseCatalog.getCourse(_catalog, _catalogCourse);
+    var _lesson = _course && CourseCatalog.resolveLesson(_course, _catalogLesson);
+    if(_lesson && _lesson.contentRef && _lesson.contentRef.type === 'sentence-deck'){
+      var _urlDeck = findDeck(_lesson.contentRef.id);
+      if(_urlDeck){ showPracticePage(); startDeck(_urlDeck, 0); return; }
+    }
+    showPracticePage(); $('zh').textContent = '课程内容不存在或当前版本不支持，请返回课程列表'; return;
+  }
   try{
     var _sd = sessionStorage.getItem('_startDeck');
     if(_sd){

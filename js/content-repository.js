@@ -86,10 +86,31 @@
     return null;
   }
 
+  /* 产品显示名统一收口：旧版缓存/离线回退清单也不能把已废弃的系列名带回界面。
+     内部 deck id 与原始书名不变，避免影响历史学习记录和内容迁移。 */
+  function canonicalDeckName(name) {
+    return String(name || '').replace(/^日常口语\s*8000/, '口语3000句');
+  }
+
+  FALLBACK_MANIFEST.series = '口语3000句';
+  FALLBACK_MANIFEST.decks.forEach(function (entry) {
+    entry.name = canonicalDeckName(entry.name);
+  });
+
   function entryById(id) {
     var list = (manifest && manifest.decks) || [];
     for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
     return null;
+  }
+
+  /* 旧版 manifest 没有 catalog 时只按稳定内容 ID 生成兼容目录；
+     目录抽象不依赖页面标题匹配，也不复制题目内容。 */
+  function ensureCatalog(data) {
+    if (data && !data.catalog && global.CourseCatalog && global.CourseCatalog.legacyCatalog) {
+      data.catalog = global.CourseCatalog.legacyCatalog(data);
+      data.catalog.version = '';
+    }
+    return data;
   }
 
   function copyDeck(deck, mem) {
@@ -112,12 +133,15 @@
         deck = {
           id: entry.id,
           builtin: true,
-          name: entry.name || entry.id,
+          name: canonicalDeckName(entry.name || entry.id),
+          short: entry.short || '',
           desc: entry.desc || '',
           items: []
         };
         decks.push(deck);
       }
+      deck.name = canonicalDeckName(entry.name || deck.name || entry.id);
+      deck.short = entry.short || deck.short || '';
       deck._content = entry;
       deck.itemCount = Number(entry.totalCount) || (deck.items || []).length;
       deck._contentReady = false;
@@ -228,13 +252,13 @@
       })
       .then(function (data) {
         if (!data || data.schemaVersion !== 1 || !Array.isArray(data.decks)) throw new Error('manifest 格式不受支持');
-        manifest = data;
+        manifest = ensureCatalog(data);
         installSummaries();
         return pruneCache(manifest).then(function () { return manifest; });
       })
       .catch(function (err) {
         /* manifest 缺失时不阻塞旧版本启动；真正练习时仍可加载旧版源文件。 */
-        manifest = FALLBACK_MANIFEST;
+        manifest = ensureCatalog(FALLBACK_MANIFEST);
         installSummaries();
         console.warn('[content] manifest 加载失败，使用兼容回退：', err && err.message);
         return manifest;

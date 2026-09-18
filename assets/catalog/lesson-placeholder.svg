@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-labelledby="title desc">
+  <title id="title">课程封面占位图</title>
+  <desc id="desc">蓝色与青绿色的抽象学习主题插画</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dce8ff"/>
+      <stop offset="1" stop-color="#c3e8df"/>
+    </linearGradient>
+    <linearGradient id="book" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3268cc"/>
+      <stop offset="1" stop-color="#1c9b79"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="220" rx="20" fill="url(#bg)"/>
+  <circle cx="560" cy="12" r="112" fill="#fff" opacity=".34"/>
+  <circle cx="610" cy="180" r="150" fill="#fff" opacity=".25"/>
+  <path d="M174 68c0-12 11-21 23-17l119 37c9 3 15 11 15 20v65c0 13-12 22-24 18l-119-37c-8-3-14-11-14-19z" fill="url(#book)"/>
+  <path d="M331 88c0-10 6-17 15-20l119-37c12-4 23 5 23 17v67c0 8-6 16-14 19l-119 37c-12 4-24-5-24-18z" fill="#f8fbff" opacity=".94"/>
+  <path d="M331 88v83" stroke="#fff" stroke-width="7" opacity=".86"/>
+  <path d="M373 70l76-24M373 88l91-28M373 108l68-21" stroke="#3268cc" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+</svg>

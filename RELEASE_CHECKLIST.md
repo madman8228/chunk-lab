@@ -28,12 +28,33 @@
   `node e2e/upgrade-check.js` → **24/0**（**本次新增**，见 G5）；`node e2e/e2e.js` → **149/0**；`node e2e/sw-cache.test.js` → **14/0**。
 - **公网安全冒烟（2026-09-16 只读实测）**：`bash scripts/deploy-security-smoke.sh https://chunklab.jqka.top` → **48 通过 / 0 失败 / 1 WARN**（WARN 仅 `Server: nginx`）。
   33 个敏感路径全 **403**、未登录 `/api/data` 401、`/api/config` 报 `requireAuth=true`、无 `X-Powered-By`、有 HSTS、证书 2026-12-08 到期。
-- **自动代码侧未发现新的 P0/P1 阻断项。仍不可直接发布**，剩余为：
+- ✅ **本轮（2026-09-17）实修一处 P0：新访客无限重载。**
+  `core.js ensureCloud()` 的 `needAuth && (!isLoggedIn() || _loadGuest())` 与本次换血新引入的会话代次机制
+  （`api.js` 的 `chunklab.session.v1` / `epoch` + `js/account-storage.js`）叠加成环：只要本地存有游客凭据，
+  每次启动都静默重登 → `api.setToken` 写回令牌 → 代次变化 → `AccountStorage.changed()` 触发整页重载 → 再重登。
+  **探针实测：新访客 6 秒 33 次导航，首屏永不落定。**
+  - **归类：①类（本次改动新增的风险，必须清零）** —— 只读实测线上：`api.js` 无代次机制（`chunklab.session.v1` 命中 **0**）、
+    `core.js` 不引用 `AccountStorage`（**0 次**）、`js/account-storage.js` **404** ⇒ 线上同一条件只多一次登录，**不重载**。
+  - **已修**：`ensureCloud()` 改为仅 `!isLoggedIn()` 时才走静默游客引导。过期续期不受影响 ——
+    令牌过期时 `api.js` 遇 401 会 `clearToken`，下次启动 `isLoggedIn()` 为假，仍进该分支用保存的凭据静默重登。
+  - **已验证**：探针 **33 次 → 2 次**（第 2 次为游客创建后应有的一次），会话代次全程稳定；
+    新增 `e2e/account-set-credentials.test.js` 13 项全过。
+  - **为何此前 50+ 条 e2e 都没发现**：既有账号类 e2e 都先置 `chunklab_manual=1`（主动绕过游客路径）
+    或用开放模式，**没有一条**覆盖「`requireAuth=true` 下的纯首次访客」。该路径现已纳入门禁。
+- **除上述已修项外，自动代码侧未发现新的 P0/P1 阻断项。仍不可直接发布**，剩余为：
   ① **G2** 生产鉴权/HTTPS/限流与密钥配置（含两个真实账号互不可读写，需凭据）
   ② **G3** 独立实例备份恢复演练（需 SSH，且服务端启动迁移是**有损**的 → 回滚不能只回代码）
   ③ **G4** Android/iOS 真机验收
-  ④ **D2 前端接入未接通**：`core.js` 普通同步仍未发 `baseSeq`/`requestId`；`js/batch-sync.js` 未由 HTML 加载、未进部署清单 → 连带 **D1 剩余**「恢复后云同步安全重接入」
-  ⑤ **G5** 发布授权（用户参与）
+  ④ **G5** 发布授权（用户参与）
+- ✅ **原第 ④ 条「D2 前端接入未接通」已于 2026-09-17 复核推翻并删除**（读 HEAD 提交版逐条核实，三句全不成立）：
+  | 原断言 | 实测 | 证据 |
+  | --- | --- | --- |
+  | `core.js` 普通同步未发 `baseSeq`/`requestId` | ❌ 不成立 | `core.js:1567 putConditionalCloud()` 就是普通同步的**唯一**上行口（`1683` 行调用），内部 `BatchSync.stage(payload, state.baseline, expectedGeneration, operationReceipts)` = 基线 + 请求编号 + 代次，缺基线直接抛 `SYNC_BASELINE_REQUIRED` fail-closed |
+  | `js/batch-sync.js` 未由 HTML 加载 | ❌ 不成立 | 四页全部加载：`main.html:1629` / `decks.html:475` / `stats.html:280` / `courses.html:193` |
+  | 未进部署清单 | ❌ 不成立 | `scripts/deploy-prod.sh:34` 白名单已含；`sw.js:91` 预缓存已含；`scripts/check-deploy-files.js` 是专门防「清单漏 `js/`」的护栏 |
+  → 与本文件 G1 表 `D2` 行「…**已接通**」及 `docs/implementation/2026-09-12-prelaunch-data-safety.md` 的收口记录一致 ⇒ **原条目属陈旧残留**（该文档第 73 行本就写明「后面的 D1/D2 历史段落不应再作为当前实现状态判断」）。
+- **D1/D2 的剩余部分已并入 G2/G4**：D1 剩「生产实例验证鉴权/HTTPS/过期会话/旧页刷新」、D2 剩「生产环境确认所有公开写入口均启用条件保护」——两者都是**生产实例上的验证动作**，不是代码缺口，与 G2（生产配置）/G4（真机）本就是同一批动作，不再单列阻塞。
+  → **剩余阻塞由 5 条收敛为 4 条**（G2 / G3 / G4 / G5）。
 - ⚠️ **SW 缓存切换需用户硬刷一次**（CACHE 名变更 → `activate` 清旧缓存）。老用户升级路径的代码侧验收已由 `e2e/upgrade-check.js` 覆盖，**真机上的升级仍需随 G4 验**。
 - ⚠️ **待单独确认（2026-09-16 发现，尚未定性）**：`best` 属 `SYNC_KV_KEYS`（LWW 整块替换语义）。
   实测**带云同步时 `best['<老deck>']` 会被清**，把 `**/api/**` 全 `abort` 则保留 ⇒ 出在「同步」这一路，**非本地迁移**。

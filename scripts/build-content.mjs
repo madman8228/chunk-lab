@@ -15,10 +15,12 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
+import CourseCatalog from '../js/course-catalog.js';
 /* 「最少切几段」的唯一判据（含单字句例外）—— 同目录 */
 import CS from '../js/chunk-shape.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const courseCatalogSeed = JSON.parse(fs.readFileSync(path.join(ROOT, 'extra/course-catalog.json'), 'utf8'));
 
 function runScript(file, initialWindow) {
   const context = {
@@ -193,6 +195,16 @@ manifest.decks.push({
   indexShards: freqIndexShards,
 });
 console.log(`[content] ${'builtin-freq-idioms'.padEnd(14)} ${String(freqDeck.items.length).padStart(3)} 句  （${freqShards.length} 详情 / ${freqIndexShards.length} index）`);
+
+/* 课程目录与内容分片分离：catalog 只保存课程/分组/课节引用，不复制题目正文。
+   内置逻辑课程来自声明文件；课程骨架可使用 lessonRange 生成稳定课节 ID，
+   不需要为每门课程编写一段页面逻辑。 */
+manifest.catalog = CourseCatalog.mergeCatalogs(
+  CourseCatalog.legacyCatalog(manifest),
+  courseCatalogSeed,
+);
+manifest.catalog.version = 'v1-' + crypto.createHash('sha256')
+  .update(JSON.stringify(manifest.catalog.courses)).digest('hex');
 
 // Deterministic release identity: includes shard order/content, so any edit
 // invalidates saved offsets.

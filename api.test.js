@@ -65,7 +65,7 @@ async function main() {
   assert.equal(api.getToken(),'new-account');
   api.setBase('https://third.invalid');
   assert.equal(api.getToken(),null,'changing server alone must not forward the old server token');
-  context.AccountStorage={storage:context.localStorage,assertCurrent() {}};
+  context.AccountStorage={storage:context.localStorage,assertCurrent() {},credentialsChanged() {}};
   storage.set('chunklab.restore-cloud-hold','1');
   context.fetch=async(url)=>({status:200,ok:true,text:async()=>
     url.endsWith('/api/sync/batch') ? '{"seq":4,"snapshot":{}}' : '{"ok":true}'});
@@ -91,6 +91,24 @@ async function main() {
   assert.equal(stagedPublication.baseline,7,'发布使用已确认基线');
   assert.equal(stagedPublication.generation,4,'发布绑定本地代次');
   assert.deepEqual(JSON.parse(JSON.stringify(stagedPublication.payload.publications)),[{deckId:'deck-1',publish:true}], '发布以固定载荷入队');
+  /* 设置账号凭据（把静默游客账号就地升级为可跨设备账号）：
+     路径虽以 /api/auth/ 开头，但不是登录/注册，必须照常带上既有 token ——
+     服务端正是据 token 判定「改的是哪个账号」，漏带就变成未鉴权，用户会改不动自己的账号。 */
+  let credUrl, credHeaders, credBody;
+  context.fetch = async (url, options) => {
+    credUrl = url; credHeaders = options.headers; credBody = options.body;
+    return { status: 200, ok: true, text: async () => '{"ok":true,"user":{"id":7,"username":"zhangsan"}}' };
+  };
+  api.setToken('guest-account-token');
+  const credResult = await api.setCredentials({ username: 'zhangsan', password: 'secret123' });
+  assert.equal(credResult.user.username, 'zhangsan');
+  assert.ok(credUrl.endsWith('/api/auth/credentials'), '设置账号端点路径: ' + credUrl);
+  assert.equal(credHeaders.Authorization, 'Bearer guest-account-token', '设置账号必须带 token');
+  assert.deepEqual(JSON.parse(credBody), { username: 'zhangsan', password: 'secret123' }, '请求体只含用户显式给出的字段');
+  /* 失败（如用户名已被占用）不得清掉会话，否则用户一输错就被登出、以为账号丢了 */
+  context.fetch = async () => ({ status: 400, ok: false, text: async () => '{"error":"用户名已被占用"}' });
+  await assert.rejects(api.setCredentials({ username: 'taken' }), /已被占用/);
+  assert.equal(api.getToken(), 'guest-account-token', '设置失败必须保留当前会话');
   console.log('[api] stale token/base/body responses rejected; late 401 preserves new login');
   console.log('[api] error receipts preserved; success unaffected');
 }

@@ -74,6 +74,68 @@ function signToken(userId, username) {
   return jwt.sign({ uid: userId, uname: username }, JWT_SECRET, { expiresIn: TOKEN_TTL });
 }
 
+/** 读取账号当前状态。username 的唯一真相是 users 表——token 里的 uname 只是签发时的副本，
+ *  改名后即过期，任何「当前账号名」的展示都必须走这里，不能读 token。 */
+function readUser(userId) {
+  const row = db.prepare('SELECT id, username FROM users WHERE id = ?').get(userId);
+  return row ? { id: row.id, username: row.username } : null;
+}
+
+/**
+ * 修改「自己的」账号凭据（用户名 / 密码，二者可只给其一）。
+ *
+ * 为什么需要：首次访问会自动注册静默游客账号（guest_<随机>，密码随机且用户不知晓），
+ * 用户无法在另一台设备登回同一份数据。本函数让用户就地把自己这个账号
+ * 设成「用户名 + 自己记得住的密码」——user_id 不变 ⇒ 数据零迁移。
+ *
+ * 越权防护：userId 只由调用方从 token 取（server/index.js 的 auth.authenticate），
+ * 本函数不接受来自请求体的 userId，因此无法改到别人的账号。
+ */
+function setCredentials(userId, changes) {
+  if (!Number.isSafeInteger(userId) || userId <= 0) throw new Error('账号无效');
+  changes = changes || {};
+  const wantsUser = changes.username != null;
+  const wantsPass = changes.password != null;
+  if (!wantsUser && !wantsPass) throw new Error('没有需要修改的内容');
+
+  let nextUsername = null, nextHash = null;
+  if (wantsUser) {
+    if (typeof changes.username !== 'string') throw new Error('用户名必须是字符串');
+    const username = changes.username.trim();
+    if (username.length < 2) throw new Error('用户名至少 2 个字符');
+    if (username.length > 32) throw new Error('用户名最长 32 个字符');
+    /* 预检只为给出友好提示；真正的唯一性由 users.username UNIQUE 约束保证
+       （预检与 UPDATE 之间存在竞态，故 UPDATE 仍需捕获约束错误，见下）。 */
+    const taken = db.prepare('SELECT id FROM users WHERE username = ? AND id <> ?').get(username, userId);
+    if (taken) throw new Error('用户名已被占用');
+    nextUsername = username;
+  }
+  if (wantsPass) {
+    if (typeof changes.password !== 'string') throw new Error('密码必须是字符串');
+    if (changes.password.length < 6) throw new Error('密码至少 6 位');
+    /* 与 register 同口径：bcrypt 只取前 72 字节，超长明确拒绝而非静默截断 */
+    if (Buffer.byteLength(changes.password, 'utf8') > 72) throw new Error('密码最长 72 字节');
+    nextHash = bcrypt.hashSync(changes.password, 10);
+  }
+
+  try {
+    if (nextUsername !== null && nextHash !== null) {
+      db.prepare('UPDATE users SET username = ?, password_hash = ? WHERE id = ?').run(nextUsername, nextHash, userId);
+    } else if (nextUsername !== null) {
+      db.prepare('UPDATE users SET username = ? WHERE id = ?').run(nextUsername, userId);
+    } else {
+      db.prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(nextHash, userId);
+    }
+  } catch (e) {
+    if (/UNIQUE/i.test(String(e && e.code) + String(e && e.message))) throw new Error('用户名已被占用');
+    throw e;
+  }
+
+  const updated = readUser(userId);
+  if (!updated) throw new Error('账号不存在');
+  return updated;
+}
+
 function verifyToken(token) {
   if (!isSecure()) return null; // 配置不安全一律视为未登录（401），绝不用占位密钥验签
   try {
@@ -104,4 +166,4 @@ function authenticate(req, res, next) {
   next();
 }
 
-module.exports = { register, login, signToken, verifyToken, authenticate, ensureDefaultUser, REQUIRE_AUTH, assertSecure };
+module.exports = { register, login, signToken, verifyToken, authenticate, ensureDefaultUser, readUser, setCredentials, REQUIRE_AUTH, assertSecure };

@@ -163,4 +163,49 @@ validateIndexDeck(byId.get('builtin-freq-idioms'), {
   extensionCount: freqDeck.items.length,
 });
 
+/* 目录是 manifest 的声明层：只引用现有内容，不复制题目正文，也不能漏掉任何内置单元。 */
+const catalog = manifest.catalog;
+if (!catalog || catalog.schemaVersion !== 1 || !Array.isArray(catalog.courses) || !catalog.version) {
+  fail('content/manifest.json 缺少合法 catalog/schemaVersion/version');
+}
+const catalogCourseIds = new Set();
+const catalogRefs = new Set();
+const catalogDeckIds = new Set();
+function walkCatalogNodes(nodes, courseId, pathName) {
+  if (!Array.isArray(nodes)) fail(`${courseId} ${pathName} 缺少节点数组`);
+  nodes.forEach((node, index) => {
+    const p = `${pathName}[${index}]`;
+    if (!node || typeof node !== 'object' || !node.id || !node.kind) fail(`${courseId} ${p} 节点格式错误`);
+    if (node.kind === 'group') {
+      if (!Array.isArray(node.children)) fail(`${courseId} ${p} group 缺少 children`);
+      walkCatalogNodes(node.children, courseId, `${p}.children`);
+      return;
+    }
+    if (node.kind !== 'lesson' || !node.contentRef || !node.contentRef.type || !node.contentRef.id) {
+      fail(`${courseId} ${p} lesson 缺少 contentRef`);
+    }
+    const refKey = JSON.stringify([String(node.contentRef.type), String(node.contentRef.id)]);
+    if (catalogRefs.has(refKey)) fail(`目录内容引用重复：${refKey}`);
+    catalogRefs.add(refKey);
+    if (node.contentRef.type === 'sentence-deck') {
+      if (!byId.has(node.contentRef.id)) fail(`${courseId} ${p} 引用不存在的 deck：${node.contentRef.id}`);
+      catalogDeckIds.add(node.contentRef.id);
+      const count = Number(node.itemCount);
+      if (!Number.isInteger(count) || count !== Number(byId.get(node.contentRef.id).totalCount)) {
+        fail(`${courseId} ${p} itemCount 与 deck totalCount 不一致`);
+      }
+    } else if (node.contentRef.type !== 'story-package') {
+      fail(`${courseId} ${p} contentRef.type 不受支持：${node.contentRef.type}`);
+    }
+  });
+}
+catalog.courses.forEach((course, index) => {
+  if (!course || !course.id || catalogCourseIds.has(course.id)) fail(`catalog.courses[${index}] 课程 ID 缺失或重复`);
+  catalogCourseIds.add(course.id);
+  walkCatalogNodes(course.outline, course.id, `catalog.courses[${index}].outline`);
+});
+expectedIds.forEach((id) => { if (!catalogDeckIds.has(id)) fail(`catalog 缺少 deck 课节引用：${id}`); });
+const expectedCatalogVersion = 'v1-' + sha256(Buffer.from(JSON.stringify(catalog.courses), 'utf8'));
+if (catalog.version !== expectedCatalogVersion) fail('catalog.version 与课程声明不一致');
+
 console.log(`[content] manifest、详情分片与 index 校验通过：${bookDecks.length} 个口语 deck（合计 ${oralTotal} 句）+ ${freqDeck.items.length} 高频短语`);

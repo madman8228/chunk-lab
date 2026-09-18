@@ -15,7 +15,7 @@
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:880px;margin:0 auto;padding:14px 18px 32px}
+.wrap{max-width:1280px;margin:0 auto;padding:14px 24px 32px}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .page-head h2{margin:0;font-size:18px;font-weight:700}
 .spacer{flex:1}
@@ -32,15 +32,105 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .pill.warn{background:#fff0ea;color:#c4362b;border:1px solid #f3c4ba}
 
 .deck-list{display:flex;flex-direction:column;gap:6px}
+#deckList,#marketList{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+#deckList .deck-section-title,#marketList .deck-section-title{grid-column:1 / -1}
 .deck-section-title{display:flex;align-items:center;gap:8px;margin:10px 2px 0;color:var(--muted);font-size:12.5px;font-weight:700}
 .deck-section-title:first-child{margin-top:0}
 .deck-section-title::after{content:"";height:1px;flex:1;background:var(--border)}
-.deck-item{display:flex;align-items:center;gap:12px;padding:8px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.deck-item{display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:0;border:1px solid var(--border);border-radius:10px;background:var(--surface);overflow:hidden}
 .deck-item.cur{border-color:var(--accent);background:var(--accent-soft)}
-.deck-item .info{flex:1;min-width:0}
-.deck-item .nm{font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:7px}
+.deck-cover{position:relative;display:flex;align-items:flex-end;aspect-ratio:16 / 9;min-height:112px;padding:12px 13px;overflow:hidden;background:linear-gradient(135deg,#e8efff 0%,#c8dafb 100%);color:#173b7a}
+.deck-cover-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.76;filter:saturate(.86);transition:opacity .22s ease,filter .22s ease}
+.deck-cover.has-image .deck-cover-image{opacity:1;filter:none}
+.deck-cover.has-image .deck-cover-wash{opacity:0}
+.deck-item:hover .deck-cover-image,.deck-item:focus-within .deck-cover-image{opacity:1;filter:none}
+.deck-cover::before{content:"";position:absolute;z-index:0;width:46%;height:130%;right:-8%;bottom:-54%;border-radius:50%;background:rgba(255,255,255,.48);transform:rotate(-18deg)}
+.deck-cover::after{content:"";position:absolute;z-index:0;width:32%;height:75%;right:13%;top:-28%;border:1px solid rgba(44,98,201,.18);border-radius:50%;transform:rotate(24deg)}
+.deck-cover.other{background:linear-gradient(135deg,#f2eee7 0%,#e1d8ca 100%);color:#59482f}
+.deck-cover.mine{background:linear-gradient(135deg,#e8f5ee 0%,#cbe7d7 100%);color:#1c7050}
+.deck-cover-wash{position:absolute;inset:0;z-index:2;background:rgba(66,70,76,.08);transition:opacity .22s ease}
+.deck-cover-caption{position:relative;z-index:3;display:flex;align-items:center;gap:6px;max-width:100%;padding:5px 7px;border-radius:8px;background:rgba(255,255,255,.84);color:inherit;box-shadow:0 1px 4px rgba(24,28,34,.08);backdrop-filter:blur(2px)}
+.deck-cover-mark,.deck-cover-label{position:relative;z-index:3}
+.deck-cover-mark{display:flex;align-items:center;justify-content:center;flex:0 0 24px;width:24px;height:24px;border-radius:7px;background:rgba(255,255,255,.72);font-size:14px}
+.deck-cover-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:700;letter-spacing:.02em}
+.deck-card-body{display:flex;flex-direction:column;gap:6px;min-height:96px;padding:9px 12px 10px}
+.deck-card-body{cursor:pointer}
+.deck-cover{cursor:pointer}
+.course-card{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.course-card:hover{border-color:var(--border-strong);box-shadow:0 4px 14px rgba(46,43,37,.1);transform:translateY(-1px)}
+.course-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.course-card,.catalog-lesson{position:relative}
+.course-manage-wrap{position:absolute;top:7px;right:7px;z-index:5}
+.course-manage-trigger{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;padding:0;border:1px solid rgba(255,255,255,.75);border-radius:8px;background:rgba(255,255,255,.88);color:var(--muted);box-shadow:0 2px 7px rgba(25,35,50,.12);cursor:pointer;opacity:1;transition:background .15s,color .15s}
+.course-card:hover .course-manage-trigger,.course-card:focus-within .course-manage-trigger,.catalog-lesson:hover .course-manage-trigger,.catalog-lesson:focus-within .course-manage-trigger,.course-manage-wrap.is-open .course-manage-trigger{opacity:1}
+.course-manage-trigger:hover{background:var(--surface);color:var(--accent)}
+.course-manage-trigger:focus-visible{opacity:1;outline:2px solid var(--accent);outline-offset:2px}
+.course-manage-trigger .icon{width:17px;height:17px}
+.course-manage-menu{display:none;position:absolute;top:34px;right:0;min-width:128px;padding:4px;border:1px solid var(--border);border-radius:9px;background:var(--surface);box-shadow:0 8px 22px rgba(25,35,50,.16)}
+.course-manage-wrap.is-open .course-manage-menu{display:grid;gap:2px}
+.course-manage-item{width:100%;padding:7px 9px;border:0;border-radius:6px;background:transparent;color:var(--text);font:inherit;font-size:12px;text-align:left;white-space:nowrap;cursor:pointer}
+.course-manage-item:hover,.course-manage-item:focus-visible{background:var(--surface-2);color:var(--accent);outline:0}
+.course-manage-item.is-danger{color:var(--bad)}
+.course-manage-item.is-danger:hover,.course-manage-item.is-danger:focus-visible{background:#fff1ef;color:var(--bad)}
+.course-manage-inline{position:static;display:inline-flex;align-items:center;margin:0 0 0 6px;vertical-align:middle}
+.course-manage-inline .course-manage-trigger{width:28px;min-width:28px;height:24px;padding:0;border:0;border-radius:6px;background:transparent;box-shadow:none;color:var(--muted);opacity:1}
+.course-manage-inline .course-manage-trigger:hover{background:var(--surface-2);color:var(--accent)}
+.course-manage-inline .course-manage-menu{top:auto;right:0;bottom:29px}
+.course-card .deck-card-body .meta{display:flex;align-items:center}
+.course-card .deck-card-body .meta .course-manage-inline{margin-left:auto}
+.catalog-lesson-footer .course-manage-inline{margin-left:auto}
+.course-card .deck-card-body{position:relative;z-index:4;min-height:0;margin-top:-12px;padding:7px 10px 7px;gap:0;border-top:1px solid rgba(255,255,255,.72);border-radius:10px 10px 0 0;background:rgba(255,253,250,.72);box-shadow:0 -4px 14px rgba(42,48,58,.08);backdrop-filter:blur(12px) saturate(125%);-webkit-backdrop-filter:blur(12px) saturate(125%)}
+.deck-item .info{min-width:0;flex:1}
+.deck-item .nm{font-size:13px;font-weight:600;display:flex;align-items:flex-start;gap:7px;line-height:1.4;word-break:break-word}
+.deck-item .deck-title{min-width:0;flex:1;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.deck-item .nm .pill{flex-shrink:0;white-space:nowrap}
 .deck-item .meta{font-size:12px;color:var(--faint);margin-top:1px}
-.deck-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-shrink:0}
+.deck-actions{margin-left:0;display:flex;gap:4px;align-items:center;justify-content:flex-end;flex-wrap:wrap;flex-shrink:0}
+.catalog-directory{display:grid !important;grid-template-columns:repeat(auto-fill,minmax(220px,280px));justify-content:start;gap:10px;max-width:none}
+#deckList.catalog-directory{grid-template-columns:repeat(auto-fill,minmax(220px,280px))}
+.catalog-directory > .catalog-group,.catalog-directory > .catalog-flat-lessons{grid-column:1 / -1}
+.catalog-directory .deck-section-title{margin:4px 0 8px}
+.catalog-group{padding-top:4px;padding-bottom:5px;margin-top:3px}
+.catalog-group:first-of-type{margin-top:0}
+.catalog-group-title{margin:0 0 3px}
+.catalog-group-title{position:relative}
+.catalog-group-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:5px 2px;border:0;background:transparent;color:var(--text);font:inherit;font-size:13px;font-weight:700;text-align:left;cursor:pointer}
+.catalog-group-toggle:hover{color:var(--accent)}
+.catalog-group-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:5px}
+.catalog-group-caret{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;color:var(--accent);line-height:1;transform:rotate(90deg);transition:transform .15s ease}
+.catalog-group-caret .icon{width:14px;height:14px}
+.catalog-group-toggle:hover .catalog-group-caret{color:var(--text)}
+.catalog-group.is-collapsed .catalog-group-caret{transform:rotate(0deg)}
+.catalog-group-title small{font-size:11.5px;font-weight:400;color:var(--faint)}
+.catalog-lessons{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,280px));justify-content:start;gap:10px}
+.catalog-lessons[hidden]{display:none !important}
+.catalog-lesson{display:flex;flex-direction:column;min-width:0;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--surface);overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(46,43,37,.04);transition:border-color .15s,box-shadow .15s,transform .15s}
+.catalog-lesson:hover{border-color:var(--border-strong);box-shadow:0 4px 14px rgba(46,43,37,.1);transform:translateY(-1px)}
+.catalog-lesson.is-unavailable{cursor:default;opacity:.72}
+.catalog-lesson.is-unavailable:hover{border-color:var(--border);box-shadow:0 1px 2px rgba(46,43,37,.04);transform:none}
+.catalog-lesson:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.catalog-lesson-media{width:100%;aspect-ratio:16 / 9;height:auto;overflow:hidden;background:linear-gradient(135deg,#dce8ff,#c5d8f7);position:relative}
+.catalog-lesson-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,54,120,.08),transparent 52%,rgba(255,255,255,.22))}
+.catalog-lesson-media img{display:block;width:100%;height:100%;object-fit:cover;opacity:.9}
+.catalog-lesson-media.is-custom img{opacity:1}
+.catalog-lesson-caption{position:absolute;z-index:1;right:0;bottom:0;left:0;display:flex;align-items:flex-end;gap:7px;padding:24px 10px 9px;background:linear-gradient(transparent,rgba(16,35,62,.72));color:#fff}
+.catalog-lesson .lesson-index{flex-shrink:0;font-size:11px;font-weight:700;opacity:.9}
+.catalog-lesson .lesson-name{min-width:0;font-size:13px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.22)}
+.catalog-lesson-footer{display:flex;align-items:center;justify-content:flex-start;min-height:30px;padding:5px 10px 7px}
+.catalog-lesson .lesson-meta{font-size:12px;color:var(--faint);white-space:nowrap}
+.catalog-lesson.is-unavailable .lesson-meta{color:var(--warn)}
+.catalog-view-toggle{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-left:auto;padding:0;border:0;border-radius:0;background:transparent;color:var(--muted);cursor:pointer}
+.catalog-view-toggle:hover{background:transparent;color:var(--accent)}
+.catalog-view-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.catalog-view-toggle .icon{width:17px;height:17px}
+.catalog-view-toggle svg{display:block}
+.catalog-directory.catalog-flat-view .catalog-flat-lessons{grid-template-columns:repeat(auto-fill,minmax(220px,280px));gap:10px}
+.course-card .meta{line-height:1.5}
+.course-progress{display:inline-flex;align-items:center;vertical-align:middle;gap:6px;margin-left:7px;color:var(--faint);white-space:nowrap}
+.course-progress-track{display:block;width:88px;height:5px;overflow:hidden;border-radius:999px;background:var(--border)}
+.course-progress-fill{display:block;width:0;height:100%;border-radius:inherit;background:var(--accent);transition:width .25s ease}
+.course-progress-count{font-size:11px;line-height:1;color:var(--faint)}
+.course-progress.is-due .course-progress-fill{background:var(--warn)}
 
 /* 编辑页句子行 */
 .edit-row{display:flex;align-items:flex-start;gap:8px;padding:9px 4px;border-bottom:1px solid var(--border)}
@@ -66,6 +156,10 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .modal-body::-webkit-scrollbar-track{background:transparent}
 .modal-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:4px}
 .modal-foot{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;border-radius:0 0 14px 14px}
+.course-confirm-modal{max-width:420px}
+.course-confirm-message{margin:0;color:var(--text);line-height:1.65;white-space:pre-line}
+.course-confirm-danger{border-color:var(--bad);background:var(--bad);color:#fff}
+.course-confirm-danger:hover{border-color:#9f3d35;background:#9f3d35;color:#fff}
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
 .set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
 .msg{min-height:20px;font-size:12.5px;margin-top:8px}
@@ -94,22 +188,30 @@ textarea{outline:none;resize:vertical}
 .drop textarea{width:100%;min-height:110px;border:0;background:transparent;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px}
 .dropzone-hint{font-size:11.5px;color:var(--faint);margin-top:6px}
 
-/* 课程导入拖拽区 */
-.course-drop-zone{border:2px dashed var(--border-strong);border-radius:14px;padding:36px 20px;text-align:center;cursor:pointer;transition:border-color .2s, background .2s;background:var(--surface-2);position:relative}
-.course-drop-zone:hover,.course-drop-zone.drag-over{border-color:var(--accent);background:rgba(26,92,255,.03)}
-.course-drop-zone.drag-over{box-shadow:0 0 0 3px rgba(26,92,255,.08)}
-.course-drop-hint{pointer-events:none}
-.course-drop-icon{font-size:40px;display:block;margin-bottom:10px;line-height:1}
-.course-drop-hint p{margin:4px 0 2px;font-size:14px;color:var(--text)}
+/* 课程导入：用轻分隔代替盒中盒，文件区仍保留拖放反馈 */
+#courseImpMask .modal-body{padding-top:10px;padding-bottom:12px}
+.course-drop-zone{border:0;border-bottom:1px solid var(--border);border-radius:0;padding:8px 0 15px;text-align:left;cursor:pointer;transition:background .2s;padding-left:8px;padding-right:8px}
+.course-drop-zone:hover,.course-drop-zone.drag-over{background:rgba(26,92,255,.035);border-radius:8px}
+.course-drop-zone.drag-over{box-shadow:inset 0 0 0 1px rgba(44,98,201,.16)}
+.course-drop-hint{pointer-events:none;display:grid;grid-template-columns:26px 1fr;column-gap:10px;align-items:center}
+.course-drop-icon{font-size:24px;display:flex;align-items:center;justify-content:center;line-height:1;grid-row:span 2}
+.course-drop-hint p{margin:0;font-size:13px;color:var(--text)}
 .course-drop-hint small{color:var(--faint);font-size:12px}
 
-/* 层级选择 */
-.level-section{margin-top:14px;padding:14px;background:var(--surface-2);border-radius:10px;border:1px solid var(--border)}
+/* 课程目录归属：平面分区，避免弹窗内再次套卡片 */
+.level-section{margin-top:0;padding:15px 8px 3px;background:transparent;border:0;border-radius:0}
 .level-row{display:flex;gap:12px;margin-bottom:0}
 .level-row+.level-row{margin-top:10px}
 .level-row.two-col{gap:12px}
+.logical-course-draft{margin-top:12px;padding-top:0;border-top:0}
+.logical-course-cover-drop{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:112px;border:1px dashed var(--border-strong);border-radius:8px;background:var(--surface-2);color:var(--faint);cursor:pointer;overflow:hidden;transition:border-color .2s,background .2s}
+.logical-course-cover-drop:hover,.logical-course-cover-drop.drag-over{border-color:var(--accent);background:rgba(26,92,255,.035)}
+.logical-course-cover-drop-hint{font-size:12px;pointer-events:none}
+.logical-course-cover-preview{position:absolute;inset:0;overflow:hidden;background:var(--surface);background-size:cover;background-position:center}
+.logical-course-cover-preview img{display:block;width:100%;height:100%;object-fit:cover}
 .level-field{flex:1;min-width:0}
 .level-lbl{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;display:block}
+.required-mark{font-size:10px;font-weight:500;color:var(--bad);margin-left:3px}
 .level-hint{font-size:11px;color:var(--faint);margin-top:3px;display:block}
 
 /* 详解页 */
@@ -163,6 +265,10 @@ textarea{outline:none;resize:vertical}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
 @keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
+@media (hover:hover) and (pointer:fine){
+  .deck-item:hover .deck-cover-wash{opacity:0}
+}
+
 /* 移动端：题库信息与操作分行，避免操作按钮挤压标题造成逐字换行 */
 @media (max-width:600px){
   .wrap{padding:10px 8px 24px}
@@ -172,12 +278,25 @@ textarea{outline:none;resize:vertical}
   .page-head .tabs{justify-self:center;max-width:100%;overflow:hidden}
   .page-head .tabs .tab{padding:4px 10px;font-size:12px;white-space:nowrap}
   .page-head #btnImportDecks{white-space:nowrap;padding:5px 8px;font-size:12px}
+  #deckList,#marketList{grid-template-columns:minmax(0,1fr);gap:8px}
   .deck-list{gap:6px}
   .deck-section-title{margin:8px 2px 0;font-size:12px}
-  .deck-item{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;padding:10px;border-radius:10px}
+  .deck-item{display:grid;grid-template-columns:minmax(0,1fr);gap:0;border-radius:10px}
+  .deck-cover{min-height:0}
+  .deck-card-body{min-height:0;gap:7px;padding:10px}
+  .course-card .deck-card-body{min-height:0;padding:6px 9px}
   .deck-item .info{grid-column:1;min-width:0}
-  .deck-item .nm{font-size:14px;line-height:1.3;flex-wrap:wrap;gap:4px}
+  .deck-item .nm{font-size:13.5px;line-height:1.3;flex-wrap:wrap;gap:4px}
   .deck-item .meta{font-size:11.5px;margin-top:3px}
+  .catalog-directory,#deckList.catalog-directory{grid-template-columns:minmax(0,1fr);gap:8px}
+  .catalog-lessons{grid-template-columns:minmax(0,1fr);gap:8px}
+  .catalog-lesson-caption{padding:20px 9px 8px}
+  .catalog-lesson-footer{min-height:28px;padding:4px 9px 6px}
+  .catalog-view-toggle{width:24px;height:24px}
+  .catalog-directory.catalog-flat-view .catalog-flat-lessons{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .catalog-lesson .lesson-name{font-size:12.5px;white-space:normal;line-height:1.35}
+  .catalog-lesson .lesson-meta{grid-column:2;font-size:11px}
+  .catalog-lesson .btn{grid-column:2;grid-row:auto}
   .deck-actions{grid-column:1;margin:0;width:100%;display:flex;justify-content:flex-end;gap:2px;flex-wrap:nowrap}
   .deck-actions .btn{padding:4px 8px;font-size:12px}
   .market-head{margin-bottom:4px}
@@ -189,6 +308,7 @@ textarea{outline:none;resize:vertical}
   .course-tree .lesson{padding:7px 6px;gap:6px}
   .course-tree .lesson .nm{font-size:12.5px}
   .course-tree .lesson .meta{font-size:11px}
+  .course-manage-trigger{opacity:1}
   .mask{padding:0}
   .modal{max-width:none;width:100vw;height:100vh;max-height:100vh;border-radius:0}
   .modal-head{border-radius:0;padding:11px 14px}
@@ -196,6 +316,12 @@ textarea{outline:none;resize:vertical}
   .modal-body{padding:12px 14px}
   .modal-foot{padding:9px 14px;border-radius:0}
   #impMask .add-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+}
+
+@media (min-width:601px) and (max-width:780px){
+  #deckList,#marketList{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .catalog-lessons{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .catalog-directory.catalog-flat-view .catalog-flat-lessons{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 </style>
 </head>
@@ -206,14 +332,15 @@ textarea{outline:none;resize:vertical}
   <div id="pageDecks">
     <div class="page-head">
       <button class="btn sm" id="decksBack">返回</button>
-      <h2>课程</h2>
+      <h2 id="deckPageTitle" class="hidden"></h2>
+      <button type="button" class="catalog-view-toggle hidden" id="catalogViewSwitch" aria-label="切换为不分类视图" title="切换为不分类视图"></button>
       <span class="spacer"></span>
       <div class="tabs">
         <button class="tab on" id="tabDecks">句子课程</button>
         <button class="tab" id="tabCourses">图文课程</button>
       </div>
       <span class="spacer"></span>
-      <button class="btn sm primary" id="btnImportDecks">＋ 添加课程</button>
+      <button class="btn sm primary" id="btnImportDecks" aria-label="添加课程" title="添加课程">＋</button>
     </div>
     <div class="deck-list" id="deckList"></div>
     <div class="course-tree hidden" id="courseTree"></div>
@@ -264,6 +391,25 @@ textarea{outline:none;resize:vertical}
 
 <div class="deck-notice" id="deckNotice" role="status" aria-live="polite"></div>
 
+<!-- 课程管理确认弹窗：避免使用浏览器原生 confirm 的 IP 来源提示 -->
+<div class="mask" id="courseConfirmMask" hidden>
+  <div class="modal course-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="courseConfirmTitle">
+    <div class="modal-head">
+      <h3 id="courseConfirmTitle">确认操作</h3>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" id="courseConfirmClose" data-icon="close" aria-label="关闭弹窗"></button>
+    </div>
+    <div class="modal-body">
+      <p class="course-confirm-message" id="courseConfirmMessage"></p>
+    </div>
+    <div class="modal-foot">
+      <span class="spacer"></span>
+      <button class="btn ghost" id="courseConfirmCancel">取消</button>
+      <button class="btn primary" id="courseConfirmOk">确定</button>
+    </div>
+  </div>
+</div>
+
   <!-- 添加课程弹窗 -->
 <div class="mask" id="impMask" hidden>
   <div class="modal">
@@ -306,12 +452,12 @@ textarea{outline:none;resize:vertical}
   </div>
 </div>
 
-<!-- 导入图文课程弹窗（文件选择 + 层级归并） -->
+<!-- 导入图文课程弹窗：先选择课程目录，再导入一个课包作为课节 -->
 <div class="mask" id="courseImpMask" hidden>
   <div class="modal" style="max-width:520px">
     <div class="modal-head">
       <h3>导入图文课程</h3>
-      <span style="font-size:12.5px;color:var(--faint)">选择 ZIP 课程包，指定所属层级</span>
+      <span style="font-size:12.5px;color:var(--faint)">一个 ZIP 课程包对应一个课节</span>
       <span class="spacer"></span>
       <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
@@ -326,28 +472,24 @@ textarea{outline:none;resize:vertical}
         </div>
       </div>
 
-      <!-- 层级选择 -->
-      <div class="level-section" id="levelSection">
-        <div class="level-row">
-          <div class="level-field">
-            <label class="level-lbl">系列 / 大类</label>
-            <input type="text" id="ciSeries" class="set-inp" style="width:100%" list="ciSeriesList" placeholder="如：新概念英语 / 绘本 / 美剧">
-            <datalist id="ciSeriesList"></datalist>
-            <small class="level-hint">已有系列自动补全；新名称创建新系列</small>
-          </div>
+      <!-- 课程目录归属 -->
+      <div class="level-section logical-course-section" id="logicalCourseSection">
+        <div class="level-field">
+          <label class="level-lbl" for="ciLogicalCourse">归属课程目录</label>
+          <select id="ciLogicalCourse" class="set-inp" style="width:100%"></select>
         </div>
-        <div class="level-row two-col">
+        <div id="logicalCourseDraft" class="logical-course-draft">
           <div class="level-field">
-            <label class="level-lbl">1 级</label>
-            <input type="text" id="ciLevel1" class="set-inp" style="width:100%" list="ciLevel1List" placeholder="留空或自定义，如：第1册 / Season 1 / 上册">
-            <datalist id="ciLevel1List"></datalist>
-            <small class="level-hint">已有值自动补全；输入新名称即可创建</small>
+            <label class="level-lbl" for="ciLogicalTitle">新目录名称</label>
+            <input type="text" id="ciLogicalTitle" class="set-inp" style="width:100%" placeholder="如：新概念英语第一册">
           </div>
-          <div class="level-field">
-            <label class="level-lbl">2 级（可选）</label>
-            <input type="text" id="ciLevel2" class="set-inp" style="width:100%" list="ciLevel2List" placeholder="留空或自定义，如：Unit 1 / Part A">
-            <datalist id="ciLevel2List"></datalist>
-            <small class="level-hint">可选，更细分的层级</small>
+          <div class="level-field" style="margin-top:10px">
+            <label class="level-lbl" for="ciLogicalCover">目录封面 <span class="required-mark">必填</span></label>
+            <div class="logical-course-cover-drop" id="ciLogicalCoverDrop" role="button" tabindex="0" aria-label="选择或拖入目录封面">
+              <input type="file" id="ciLogicalCover" accept="image/*" class="hidden">
+              <span class="logical-course-cover-drop-hint" id="ciLogicalCoverDropHint">点击选择或拖入封面图片</span>
+              <div class="logical-course-cover-preview hidden" id="ciLogicalCoverPreview"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -355,6 +497,7 @@ textarea{outline:none;resize:vertical}
       <div class="msg" id="courseImpMsg"></div>
     </div>
     <div class="modal-foot">
+      <button class="btn ghost" id="btnCreateLogicalCourse">仅创建课程目录</button>
       <button class="btn primary" id="btnCourseImport">确认导入</button>
       <span class="spacer"></span>
       <button class="btn ghost" data-close>关闭</button>
@@ -470,6 +613,9 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/account-storage.js"></script>
 <script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
+<script src="js/logical-course-store.js"></script>
+<script src="js/course-catalog.js"></script>
+<script src="js/course-progress.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/batch-sync.js"></script>
@@ -490,6 +636,8 @@ if(window.Icons) Icons.install();
    postMessage 通知主页：startDeck（启动练习）/ memUpdated（数据变更） */
 
 var mem = { decks:[], best:{}, mastered:{}, stats:{}, settings:{} };
+var decksReady = false;
+var requestedTab = 'decks';
 /* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
 function loadMem(){ mem = CL.loadMem(); }
 function saveStore(){ return CL.saveAndNotify(mem); }
@@ -505,9 +653,12 @@ if(window.CL && CL.on){
   });
 }
 function notifyMain(type, payload){
-  if(type === 'startDeck' && payload && payload.deck){
+  if((type === 'startIntent' || type === 'startDeck') && payload){
     /* 独立页面模式：存 sessionStorage + 导航回主页启动练习 */
-    try{ sessionStorage.setItem('_startDeck', JSON.stringify(payload.deck)); }catch(e){}
+    try{
+      if(payload.intent) sessionStorage.setItem('_startIntent', JSON.stringify(payload.intent));
+      else if(payload.deck) sessionStorage.setItem('_startDeck', JSON.stringify(payload.deck));
+    }catch(e){}
     /* 练习页使用顶部统一入口，不再注入专用的 from=decks 返回分流参数 */
     window.location.href = './main.html';
   }
@@ -528,6 +679,11 @@ function displayDeckName(name){
     return !/^[A-Za-z][A-Za-z\s&'’\-]*$/.test(part.trim());
   });
   return (kept.length ? kept : parts).join(' · ');
+}
+function deckCardTitle(name){
+  var raw = String(name || '').trim();
+  var stripped = raw.replace(/^(?:口语3000句|日常口语\s*8000|高频短语)\s*[·•｜|]\s*/,'').trim();
+  return stripped || displayDeckName(raw);
 }
 function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
 function allDecks(){
@@ -581,10 +737,461 @@ var _editDeck = null, _editIdx = -1;
 var _explainDeck = null, _explainIdx = -1;
 var _editStatMsg = '';
 var _editOnlyMastered = false;
+var _catalog = null;
+
+function currentCatalog(){
+  var manifest = window.ContentRepo && ContentRepo.getManifest ? ContentRepo.getManifest() : null;
+  _catalog = CourseCatalog.buildCatalog({
+    manifest: manifest || { decks: [] },
+    userDecks: mem.decks || [],
+    storyPackages: window.CL && CL.readCourses ? CL.readCourses() : [],
+    logicalCourses: window.LogicalCourseStore ? LogicalCourseStore.read() : []
+  });
+  return _catalog;
+}
+function courseById(courseId){ return CourseCatalog.getCourse(_catalog || currentCatalog(), courseId); }
+function routeCourse(courseId){
+  var url = new URL(window.location.href);
+  if(courseId) url.searchParams.set('course', courseId); else url.searchParams.delete('course');
+  history.pushState({}, '', url.pathname + (url.search ? url.search : '') + (url.hash || ''));
+  openDecks();
+}
+function setCourseRouteUI(inDirectory){
+  var back = $('decksBack'), pageTitle = $('deckPageTitle'), viewSwitch = $('catalogViewSwitch'), tabs = document.querySelector('#pageDecks .tabs'), add = $('btnImportDecks');
+  if(inDirectory){
+    back.textContent = '返回';
+    back.title = '返回课程总览';
+    back.onclick = function(){ routeCourse(''); };
+    if(tabs) tabs.classList.add('hidden');
+    if(add) add.classList.add('hidden');
+    if(viewSwitch) viewSwitch.classList.remove('hidden');
+    $('marketSection').classList.add('hidden');
+  }else{
+    back.textContent = '返回';
+    back.title = '返回主页';
+    if(pageTitle) pageTitle.classList.add('hidden');
+    if(viewSwitch) viewSwitch.classList.add('hidden');
+    back.onclick = function(){ window.location.href = './main.html'; };
+    if(tabs) tabs.classList.remove('hidden');
+    if(add) add.classList.remove('hidden');
+  }
+}
+function startCatalogLesson(course, lesson){
+  if(!course || !lesson || !lesson.contentRef || lesson.available === false) return;
+  if(lesson.contentRef.type === 'sentence-deck'){
+    var url = './main.html?course='+encodeURIComponent(course.id)+'&lesson='+encodeURIComponent(lesson.id);
+    window.location.href = url;
+  }else if(lesson.contentRef.type === 'story-package'){
+    var url = './courses.html?id='+encodeURIComponent(lesson.contentRef.id)+'&catalogCourse='+encodeURIComponent(course.id)+'&catalogLesson='+encodeURIComponent(lesson.id);
+    window.location.href = url;
+  }
+}
+function closeCourseManageMenus(except){
+  document.querySelectorAll('.course-manage-wrap.is-open').forEach(function(wrap){
+    if(wrap !== except) {
+      wrap.classList.remove('is-open');
+      var trigger = wrap.querySelector('.course-manage-trigger');
+      if(trigger) trigger.setAttribute('aria-expanded','false');
+    }
+  });
+}
+function addCourseManageMenu(parent, items, label){
+  if(!parent || !items || !items.length) return null;
+  var wrap = document.createElement('div');
+  wrap.className = 'course-manage-wrap';
+  var trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'course-manage-trigger';
+  trigger.setAttribute('aria-label', label || '课程管理');
+  trigger.setAttribute('aria-haspopup','menu');
+  trigger.setAttribute('aria-expanded','false');
+  var inline = parent.classList && (parent.classList.contains('meta') || parent.classList.contains('deck-card-body') || parent.classList.contains('catalog-lesson-footer'));
+  if(inline) wrap.classList.add('course-manage-inline');
+  trigger.innerHTML = window.Icons && Icons.svg ? Icons.svg('more') : '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.6" fill="currentColor"></circle><circle cx="12" cy="12" r="1.6" fill="currentColor"></circle><circle cx="12" cy="19" r="1.6" fill="currentColor"></circle></svg>';
+  var menu = document.createElement('div');
+  menu.className = 'course-manage-menu';
+  menu.setAttribute('role','menu');
+  items.forEach(function(item){
+    if(!item || typeof item.action !== 'function') return;
+    var action = document.createElement('button');
+    action.type = 'button';
+    action.className = 'course-manage-item'+(item.danger ? ' is-danger' : '');
+    action.setAttribute('role','menuitem');
+    action.textContent = item.label;
+    action.onclick = function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      wrap.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded','false');
+      item.action();
+    };
+    menu.appendChild(action);
+  });
+  trigger.onclick = function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var open = !wrap.classList.contains('is-open');
+    closeCourseManageMenus(wrap);
+    wrap.classList.toggle('is-open', open);
+    trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+  wrap.onclick = function(e){ e.stopPropagation(); };
+  wrap.appendChild(trigger);
+  wrap.appendChild(menu);
+  parent.appendChild(wrap);
+  return wrap;
+}
+document.addEventListener('click', function(){ closeCourseManageMenus(); });
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Escape') return;
+  closeCourseManageMenus();
+  closeCourseConfirm();
+});
+var _courseConfirmAction = null;
+function closeCourseConfirm(){
+  var mask = $('courseConfirmMask');
+  if(mask) mask.hidden = true;
+  _courseConfirmAction = null;
+}
+function openCourseConfirm(title, message, confirmLabel, action, danger){
+  var mask = $('courseConfirmMask');
+  var titleEl = $('courseConfirmTitle');
+  var messageEl = $('courseConfirmMessage');
+  var ok = $('courseConfirmOk');
+  var cancel = $('courseConfirmCancel');
+  var close = $('courseConfirmClose');
+  if(!mask || !titleEl || !messageEl || !ok || !cancel || !close){
+    if(window.showDeckNotice) showDeckNotice('确认框未就绪，请刷新页面后重试', 'err');
+    return;
+  }
+  titleEl.textContent = title || '确认操作';
+  messageEl.textContent = message || '';
+  ok.textContent = confirmLabel || '确定';
+  ok.className = 'btn '+(danger ? 'course-confirm-danger' : 'primary');
+  _courseConfirmAction = action;
+  mask.hidden = false;
+  ok.onclick = function(){
+    var next = _courseConfirmAction;
+    closeCourseConfirm();
+    if(typeof next === 'function') next();
+  };
+  cancel.onclick = closeCourseConfirm;
+  close.onclick = closeCourseConfirm;
+  mask.onclick = function(e){ if(e.target === mask) closeCourseConfirm(); };
+  ok.focus();
+}
+function refreshCourseDataView(){
+  var courseParam = new URLSearchParams(window.location.search).get('course');
+  if(courseParam){
+    var selected = CourseCatalog.getCourse(currentCatalog(), courseParam);
+    if(selected && selected.available !== false) renderCourseDirectory(selected);
+    else routeCourse('');
+    return;
+  }
+  if($('tabCourses') && $('tabCourses').classList.contains('on')) renderStoryCourseList(currentCatalog());
+  else openDecks();
+}
+function updateStoryPackage(courseId, mutate){
+  if(!window.CL || !CL.readCourses || !CL.writeCourses) return Promise.reject(new Error('课程存储模块未就绪，请刷新页面重试'));
+  var list = CL.readCourses();
+  if(!Array.isArray(list)) list = [];
+  var source = list.find(function(course){ return course && course.courseId === courseId; });
+  if(!source) return Promise.reject(new Error('找不到这门图文课程，可能已被删除'));
+  mutate(source);
+  return Promise.resolve(CL.writeCourses(list)).then(function(){
+    if(window.ChunkCourse && ChunkCourse.refreshList) ChunkCourse.refreshList();
+    refreshCourseDataView();
+  });
+}
+function clearStoryProgress(courseId){
+  if(!window.CL || !CL.readProgress || !CL.writeProgress) return Promise.resolve();
+  var progress = CL.readProgress();
+  if(!progress || typeof progress !== 'object' || !Object.prototype.hasOwnProperty.call(progress, courseId)) return Promise.resolve();
+  delete progress[courseId];
+  return Promise.resolve(CL.writeProgress(progress));
+}
+function removeStoryPackage(courseId, title){
+  openCourseConfirm('删除课程', '删除课程「'+title+'」？\n课程内容和学习进度都会删除，且无法恢复。', '删除课程', function(){
+    if(!window.CL || !CL.readCourses || !CL.writeCourses){ alert('课程存储模块未就绪，请刷新页面重试'); return; }
+    var list = CL.readCourses();
+    if(!Array.isArray(list) || !list.some(function(source){ return source && source.courseId === courseId; })){
+      alert('找不到这门图文课程，可能已被删除');
+      return;
+    }
+    list = list.filter(function(source){ return source && source.courseId !== courseId; });
+    Promise.resolve(CL.writeCourses(list)).then(function(){ return clearStoryProgress(courseId); }).then(function(){
+      if(window.ChunkCourse && ChunkCourse.refreshList) ChunkCourse.refreshList();
+      refreshCourseDataView();
+      showDeckNotice('已删除课程：'+title, 'ok');
+    }).catch(function(error){ alert('删除失败：'+(error && error.message || error)); });
+  }, true);
+}
+function moveStoryPackageOutOfCategory(courseId, title){
+  openCourseConfirm('移出分类', '将「'+title+'」移出当前分类？\n课程内容会保留，并显示为未分类课程。', '移出分类', function(){
+    updateStoryPackage(courseId, function(source){ delete source.logicalCourseId; }).then(function(){
+      showDeckNotice('已移出分类：'+title, 'ok');
+    }).catch(function(error){ alert('操作失败：'+(error && error.message || error)); });
+  }, false);
+}
+function removeLogicalCourse(courseId, title, lessonCount){
+  if(!window.LogicalCourseStore || !LogicalCourseStore.remove) return;
+  openCourseConfirm('删除分类', '删除分类「'+title+'」？\n其中 '+lessonCount+' 个课节会移入未分类，不会删除课程内容。', '删除分类', function(){
+    try{
+      LogicalCourseStore.remove(courseId);
+      refreshCourseDataView();
+      showDeckNotice('已删除分类：'+title, 'ok');
+    }catch(error){ alert('删除失败：'+(error && error.message || error)); }
+  }, true);
+}
+function addCourseCard(course, list){
+  var lessons = CourseCatalog.listLessons(course);
+  var row = document.createElement('div');
+  row.className = 'deck-item course-card';
+  row.setAttribute('role','button');
+  row.setAttribute('tabindex','0');
+  row.setAttribute('aria-label','打开课程 '+course.title);
+  var lastPlayed = 0;
+  lessons.forEach(function(lesson){
+    var d = lesson.contentRef && lesson.contentRef.type === 'sentence-deck' ? findDeck(lesson.contentRef.id) : null;
+    var played = d && mem.best[d.id] && mem.best[d.id].lastPlayed || 0;
+    if(played > lastPlayed) lastPlayed = played;
+  });
+  var meta = course.contentType === 'story'
+    ? (lessons.length ? '图文课程 · '+lessons.length+' 个课节' : '图文课程 · 尚未导入课节')
+    : (lessons.length > 1 ? lessons.length+' 个课节' : course.itemCount+' 句');
+  if(course.available === false) meta += ' · 目录不可用';
+  var coverCaption = course.coverImage && course.origin === 'builtin' ? '' : '<span class="deck-cover-caption"><span class="deck-cover-mark">'+(window.Icons?Icons.svg('book'):'')+'</span><span class="deck-cover-label">'+esc(course.title)+'</span></span>';
+  row.innerHTML = '<div class="deck-cover'+(course.id === 'builtin:idioms' ? ' other' : '')+(course.coverImage ? ' has-image' : '')+'" aria-hidden="true"><span class="deck-cover-wash"></span>'+coverCaption+'</div>'+
+    '<div class="deck-card-body"><div class="info"><div class="meta">'+esc(meta)+(lastPlayed ? ' · 最近学习' : '')+(course.contentType === 'sentence' ? ' <span class="course-progress" data-course-progress aria-label="进度计算中" title="进度计算中"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">0 / '+course.itemCount+'</span></span>' : '')+'</div></div></div>';
+  if(course.coverImage){
+    var coverImg=document.createElement('img');
+    coverImg.className='deck-cover-image';
+    coverImg.alt='';
+    coverImg.src=String(course.coverImage);
+    row.querySelector('.deck-cover').insertBefore(coverImg, row.querySelector('.deck-cover').firstChild);
+  }
+  if(course.contentType === 'story' && course.origin === 'user'){
+    var isLogicalCourse = String(course.id).indexOf('logical-course:') === 0;
+    var firstLesson = lessons[0];
+    addCourseManageMenu(row.querySelector('.deck-card-body .meta'), isLogicalCourse ? [{
+      label:'删除分类', danger:true,
+      action:function(){ removeLogicalCourse(course.id, course.title, lessons.length); }
+    }] : [{
+      label:'删除课程', danger:true,
+      action:function(){ if(firstLesson && firstLesson.contentRef) removeStoryPackage(firstLesson.contentRef.id, course.title); }
+    }], isLogicalCourse ? '分类管理' : '课程管理');
+  }
+  var openCourse = function(){
+    if(course.available === false) return;
+    var isLogicalStoryCourse = course.contentType === 'story' && (course.origin === 'builtin' || course.catalogKey);
+    if(isLogicalStoryCourse || lessons.length > 1) routeCourse(course.id); else startCatalogLesson(course, lessons[0]);
+  };
+  row.onclick = openCourse;
+  row.onkeydown = function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openCourse(); } };
+  list.appendChild(row);
+  if(course.contentType === 'sentence') refreshCourseCardProgress(course, row);
+}
+function courseHasActivity(course){
+  var by = mem && mem.stats && mem.stats.bySentence || {};
+  var ids = {};
+  CourseCatalog.listLessons(course).forEach(function(lesson){
+    if(lesson.contentRef && lesson.contentRef.type === 'sentence-deck') ids[lesson.contentRef.id] = true;
+  });
+  return Object.keys(by).some(function(key){
+    var i = key.indexOf('#');
+    return i > 0 && ids[key.slice(0, i)] && by[key] && Number(by[key].times) > 0;
+  });
+}
+function courseProgressText(summary){
+  if(!summary || summary.status !== 'ready') return { text:'进度计算中…', cls:'', percent:0, countText:'0 / 0' };
+  if(!summary.effectiveCount) return { text:'暂无可用句子', cls:'', percent:0, countText:'0 / 0' };
+  var pct = Math.round((summary.coverage || 0) * 100);
+  var percent = Math.max(0, Math.min(100, (summary.coverage || 0) * 100));
+  var due = summary.dueCount ? ' · 待复习 '+summary.dueCount : '';
+  return { text:'已覆盖 '+summary.practicedCount+' / '+summary.effectiveCount+' 句 · '+pct+'%'+due,
+    cls:summary.dueCount ? 'is-due' : (summary.practicedCount ? 'is-active' : ''), percent:percent,
+    countText:summary.practicedCount+' / '+summary.effectiveCount };
+}
+function setCourseProgress(target, text, cls, percent, countText){
+  target.className = 'course-progress '+(cls || '');
+  target.setAttribute('aria-label', text);
+  target.title = text;
+  var fill = target.querySelector('.course-progress-fill');
+  if(!fill){ fill = document.createElement('span'); fill.className = 'course-progress-fill'; target.appendChild(fill); }
+  var count = target.querySelector('.course-progress-count');
+  if(!count){ count = document.createElement('span'); count.className = 'course-progress-count'; target.appendChild(count); }
+  count.textContent = countText || '0 / 0';
+  fill.style.width = Math.max(0, Math.min(100, Number(percent) || 0))+'%';
+}
+function refreshCourseCardProgress(course, row){
+  var target = row.querySelector('[data-course-progress]');
+  if(!target || !window.CourseProgress) return;
+  if(!courseHasActivity(course)){
+    setCourseProgress(target, '尚未开始学习', '', 0, '0 / '+course.itemCount);
+    return;
+  }
+  var indexesByRef = {};
+  var lessons = CourseCatalog.listLessons(course).filter(function(lesson){
+    return lesson.contentRef && lesson.contentRef.type === 'sentence-deck';
+  });
+  Promise.all(lessons.map(function(lesson){
+    return window.ContentRepo && ContentRepo.ensureDeckIndex
+      ? ContentRepo.ensureDeckIndex(lesson.contentRef.id, mem).then(function(deck){ indexesByRef[lesson.contentRef.id] = deck && deck.items || []; })
+      : Promise.reject(new Error('内容索引模块未加载'));
+  })).then(function(){
+    var summary = CourseProgress.summarizeCourse(course, {
+      mem: mem,
+      indexesByRef: indexesByRef,
+      isMarked: function(deckId, item){ return !!(CL.isMarkedForDeck && CL.isMarkedForDeck(mem, deckId, item)); },
+      isDue: function(stat){ return !!(stat && CL.srs && CL.srs.isDue && CL.srs.isDue(stat, Date.now())); }
+    });
+    var view = courseProgressText(summary);
+    setCourseProgress(target, view.text, view.cls, view.percent, view.countText);
+  }).catch(function(){
+    setCourseProgress(target, '进度暂不可用', '', 0, '0 / '+course.itemCount);
+  });
+}
+function catalogImageSrc(lesson){
+  /* 目录封面只代表目录，不向内部课节继承；课节没有独立图片时使用统一占位图。 */
+  var src = lesson && (lesson.image || lesson.imageUrl);
+  if(!src || !/^(?:data:image\/|https?:\/\/|\/|\.\/|\.\.\/)/i.test(String(src))) return 'assets/catalog/lesson-placeholder.svg';
+  return String(src);
+}
+function catalogViewSvg(name){
+  var icon = window.Icons && Icons.svg ? Icons.svg(name) : '';
+  if(icon) return icon;
+  var defs = {
+    gridRows: '<circle cx="6" cy="5" r="2" fill="currentColor" stroke="none"/><circle cx="18" cy="5" r="2" fill="currentColor" stroke="none"/><circle cx="6" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="6" cy="19" r="2" fill="currentColor" stroke="none"/><circle cx="18" cy="19" r="2" fill="currentColor" stroke="none"/>',
+    gridCols: '<circle cx="5" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="19" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="5" cy="17" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="17" r="2" fill="currentColor" stroke="none"/><circle cx="19" cy="17" r="2" fill="currentColor" stroke="none"/>'
+  };
+  if(!defs[name]) return '';
+  return '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+defs[name]+'</svg>';
+}
+function renderCourseDirectory(course){
+  var viewKey = 'chunklab.catalog.view.'+course.id;
+  var view = 'grouped';
+  try{ view = sessionStorage.getItem(viewKey) === 'flat' ? 'flat' : 'grouped'; }catch(e){}
+  var list = $('deckList'); list.className = 'deck-list catalog-directory'+(view === 'flat' ? ' catalog-flat-view' : ''); list.innerHTML = '';
+  setCourseRouteUI(true);
+  var viewToggle = $('catalogViewSwitch');
+  function setView(next){
+    var nextView = next === 'flat' ? 'flat' : 'grouped';
+    try{ sessionStorage.setItem(viewKey, nextView); }catch(e){}
+    renderCourseDirectory(course);
+  }
+  if(viewToggle){
+    var nextViewLabel = view === 'flat' ? '分组' : '不分类';
+    viewToggle.innerHTML = catalogViewSvg(view === 'flat' ? 'gridCols' : 'gridRows');
+    viewToggle.setAttribute('aria-label','切换为'+nextViewLabel+'视图');
+    viewToggle.title = '切换为'+nextViewLabel+'视图';
+    viewToggle.onclick = function(){ setView(view === 'flat' ? 'grouped' : 'flat'); };
+  }
+  var pageTitle = $('deckPageTitle');
+  if(pageTitle){ pageTitle.textContent = course.title+' · '+course.lessonCount+' 个课节'; pageTitle.classList.remove('hidden'); }
+  if(!course.lessonCount){
+    var empty = document.createElement('div');
+    empty.className = 'empty-tip';
+    empty.style.gridColumn = '1 / -1';
+    empty.textContent = '还没有导入课节。导入课程包后，已导入的课节会显示在这里。';
+    list.appendChild(empty);
+    showPage('pageDecks');
+    return;
+  }
+  var stateKey = 'chunklab.catalog.groups.'+course.id;
+  var groupState = {};
+  try{ groupState = JSON.parse(sessionStorage.getItem(stateKey) || '{}') || {}; }catch(e){}
+  var counter = 0;
+  function renderLesson(node){
+    counter++;
+    var lessonAvailable = node.available !== false;
+    var lesson = document.createElement('div'); lesson.className='catalog-lesson'+(lessonAvailable ? '' : ' is-unavailable');
+    var src = catalogImageSrc(node);
+    var customImage = !!(node.image || node.imageUrl);
+    lesson.setAttribute('role','button'); lesson.setAttribute('tabindex', lessonAvailable ? '0' : '-1'); lesson.setAttribute('aria-label', lessonAvailable ? '开始 '+node.title : node.title+'，待导入内容');
+    if(!lessonAvailable) lesson.setAttribute('aria-disabled','true');
+    var media = document.createElement('div'); media.className='catalog-lesson-media'+(customImage ? ' is-custom' : '');
+    var image = document.createElement('img'); image.src=src; image.alt=node.imageAlt || node.title || '课节封面'; image.loading='lazy';
+    var caption = document.createElement('div'); caption.className='catalog-lesson-caption';
+    var index = document.createElement('span'); index.className='lesson-index'; index.textContent=counter;
+    var name = document.createElement('span'); name.className='lesson-name'; name.title=node.title; name.textContent=node.title;
+    caption.appendChild(index); caption.appendChild(name); media.appendChild(image); media.appendChild(caption); lesson.appendChild(media);
+    var footer = document.createElement('div'); footer.className='catalog-lesson-footer';
+    var meta = document.createElement('span'); meta.className='lesson-meta';
+    if(!lessonAvailable) meta.textContent = '待导入内容';
+    else if(node.contentRef && node.contentRef.type === 'story-package') meta.textContent = '图文课节';
+    else meta.textContent = (node.itemCount || 0)+' 句';
+    footer.appendChild(meta); lesson.appendChild(footer);
+    var editableCategory = course.origin === 'user' && String(course.id).indexOf('logical-course:') === 0;
+    if(editableCategory && lessonAvailable && node.contentRef && node.contentRef.type === 'story-package'){
+      addCourseManageMenu(footer, [{
+        label:'移出分类',
+        action:function(){ moveStoryPackageOutOfCategory(node.contentRef.id, node.title); }
+      },{
+        label:'删除课程', danger:true,
+        action:function(){ removeStoryPackage(node.contentRef.id, node.title); }
+      }], '课节管理');
+    }
+    lesson.onclick=function(){ if(lessonAvailable) startCatalogLesson(course,node); };
+    lesson.onkeydown=function(e){ if(lessonAvailable && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); startCatalogLesson(course,node); } };
+    list.appendChild(lesson);
+  }
+  function renderFlatNodes(nodes){
+    (nodes || []).forEach(function(node){
+      if(node.kind === 'lesson') renderLesson(node);
+      else renderFlatNodes(node.children);
+    });
+  }
+  function renderNodes(nodes){
+    (nodes || []).forEach(function(node){
+      if(node.kind === 'lesson'){
+        renderLesson(node); return;
+      }
+      var group=document.createElement('section'); group.className='catalog-group';
+      var head=document.createElement('div'); head.className='catalog-group-title';
+      var toggle=document.createElement('button'); toggle.type='button'; toggle.className='catalog-group-toggle';
+      var caret=document.createElement('span'); caret.className='catalog-group-caret'; caret.innerHTML=window.Icons ? Icons.svg('chevR') : '›';
+      var label=document.createElement('span'); label.textContent=node.title;
+      var count=document.createElement('small'); count.textContent=CourseCatalog.flattenLessons(node.children,[]).length+' 个课节';
+      toggle.appendChild(caret); toggle.appendChild(label); toggle.appendChild(count); head.appendChild(toggle);
+      group.appendChild(head); var body=document.createElement('div'); body.className='catalog-lessons';
+      var collapsed = groupState[node.id] === true;
+      body.hidden = collapsed; group.classList.toggle('is-collapsed', collapsed); toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      toggle.setAttribute('aria-controls','catalog-group-'+String(node.id).replace(/[^a-zA-Z0-9_-]/g,'-'));
+      body.id = 'catalog-group-'+String(node.id).replace(/[^a-zA-Z0-9_-]/g,'-');
+      toggle.onclick=function(){
+        var open = body.hidden;
+        body.hidden = !open; group.classList.toggle('is-collapsed', !open); toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        groupState[node.id] = !open;
+        try{ sessionStorage.setItem(stateKey, JSON.stringify(groupState)); }catch(e){}
+      };
+      var before=list; list=body; renderNodes(node.children); list=before; group.appendChild(body); before.appendChild(group);
+    });
+  }
+  if(view === 'flat'){
+    var flat = document.createElement('div'); flat.className = 'catalog-lessons catalog-flat-lessons';
+    var before = list; list = flat; renderFlatNodes(course.outline); list = before; list.appendChild(flat);
+  }else{
+    renderNodes(course.outline);
+  }
+  showPage('pageDecks');
+}
 
 /* ===== 题库列表 ===== */
 function openDecks(){
   var list = $('deckList');
+  var courseParam = new URLSearchParams(window.location.search).get('course');
+  var catalog = currentCatalog();
+  if(courseParam){
+    var selectedCourse = CourseCatalog.getCourse(catalog, courseParam);
+    if(selectedCourse && selectedCourse.available !== false){ renderCourseDirectory(selectedCourse); return; }
+    setCourseRouteUI(true);
+    list.className = 'deck-list catalog-directory';
+    list.innerHTML = '<div class="empty-tip">课程不存在或目录版本不受支持，请返回课程列表。</div>';
+    showPage('pageDecks');
+    return;
+  }
+  setCourseRouteUI(false);
+  list.className = 'deck-list';
   list.innerHTML = '';
   var decks = allDecks().slice().sort(function(a,b){
     var ta = (mem.best && mem.best[a.id] && mem.best[a.id].lastPlayed) || 0;
@@ -593,17 +1200,12 @@ function openDecks(){
   });
   /* 内置课程只作为练习来源；用户内容通过顶部「添加课程」进入“我的课程” */
   var mine = decks.filter(function(d){ return !d.builtin; });
-  var builtin = decks.filter(function(d){ return d.builtin; });
   function addSectionTitle(text){
     var title = document.createElement('div');
     title.className = 'deck-section-title';
     title.textContent = text;
     list.appendChild(title);
   }
-  /* 「日常口语 8000」是一个系列：6 个场景 deck 带 `short` 标记 → 单独成节，
-     与其它内置库（高频短语/习语）区分；组内顺序仍沿用上面的 lastPlayed 排序。 */
-  var series = builtin.filter(function(d){ return !!d.short; });
-  var builtinOther = builtin.filter(function(d){ return !d.short; });
   /* 渲染单行 → 抽成命名函数，好让「组标题紧随该组行」按组交错追加
      （原实现把所有标题先 append、行再 append → 标题全堆在列表顶部，分组形同虚设） */
   function addDeckRow(d){
@@ -626,16 +1228,19 @@ function openDecks(){
     }
     var row = document.createElement('div');
     row.className = 'deck-item';
+    var coverClass = d.builtin ? ' other' : ' mine';
+    var coverLabel = d.builtin ? '内置课程' : '我的课程';
     row.innerHTML =
-      '<div class="info"><div class="nm">'+esc(d.name)+
-        (d.builtin?'<span class="pill">内置</span>':'<span class="pill mine">导入</span>')+
+      '<div class="deck-cover'+coverClass+'" aria-hidden="true"><span class="deck-cover-wash"></span><span class="deck-cover-mark">'+(window.Icons?Icons.svg('book'):'')+'</span><span class="deck-cover-label">'+esc(coverLabel)+'</span></div>'+
+      '<div class="deck-card-body"><div class="info"><div class="nm"><span class="deck-title" title="'+esc(d.name)+'">'+esc(deckCardTitle(d.name))+'</span>'+
+        (d.builtin?'':'<span class="pill mine">导入</span>')+
         hiddenBadge+
         '</div>'+
       '<div class="meta">'+deckItemCount(d)+' 题'+
         (originalTotal > deckItemCount(d) ? '（原 '+originalTotal+' 题）' : '')+
         (lastStr ? ' · <span style="color:var(--accent)">'+lastStr+'</span>' : '')+
         (mCnt ? ' · <span style="color:#12924f;font-weight:600">熟 '+mCnt+'</span>' : '')+
-      '</div></div>';
+      '</div></div></div>';
     var actions = document.createElement('div');
     actions.className = 'deck-actions';
     if(!d.builtin){
@@ -656,10 +1261,12 @@ function openDecks(){
       };
       actions.appendChild(del);
     }
-    var exp = document.createElement('button');
-    exp.className = 'btn sm ghost'; exp.textContent = '导出';
-    exp.onclick = function(){ exportDeck(d); };
-    actions.appendChild(exp);
+    if(!d.builtin){
+      var exp = document.createElement('button');
+      exp.className = 'btn sm ghost'; exp.textContent = '导出';
+      exp.onclick = function(){ exportDeck(d); };
+      actions.appendChild(exp);
+    }
     /* 发布/下架：我的题库可发布到公共题库市场（内置题库只读，不发布） */
     if(!d.builtin && window.ChunkAPI && ChunkAPI.publishDeck){
       var pub = document.createElement('button');
@@ -698,15 +1305,23 @@ function openDecks(){
     }
     var go = document.createElement('button');
     go.className = 'btn sm primary'; go.textContent = '开始';
-    go.onclick = function(){ notifyMain('startDeck', { deck:d }); };
+    var startDeck = function(){ notifyMain('startDeck', { deck:d }); };
+    go.onclick = startDeck;
     actions.appendChild(go);
-    row.appendChild(actions);
+    var cover = row.querySelector('.deck-cover');
+    var body = row.querySelector('.deck-card-body');
+    cover.removeAttribute('aria-hidden'); cover.setAttribute('role','button'); cover.setAttribute('tabindex','0'); cover.setAttribute('aria-label','开始练习 '+deckCardTitle(d.name));
+    cover.onclick = startDeck;
+    cover.onkeydown = function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); startDeck(); } };
+    body.onclick = function(e){ if(e.target.closest('button,a,input,select,textarea')) return; startDeck(); };
+    body.appendChild(actions);
     list.appendChild(row);
   }
-  /* 按组交错渲染：标题 → 该组的行 → 下一标题（组顺序 = 我的题库 / 8000 系列 / 其它内置） */
-  if(mine.length){ addSectionTitle('我的课程'); mine.forEach(addDeckRow); }
-  if(series.length){ addSectionTitle('日常口语 8000 · 按场景练习'); series.forEach(addDeckRow); }
-  if(builtinOther.length){ addSectionTitle('内置课程（只读）'); builtinOther.forEach(addDeckRow); }
+  /* 课程卡片按课程展示；口语场景只在进入课程后作为课节出现。
+     图文课程由顶部「图文课程」标签单独展示，避免跨内容类型重复出现。 */
+  if(mine.length){ addSectionTitle('我的课程（'+mine.length+' 个）'); mine.forEach(addDeckRow); }
+  var builtinCourses = catalog.courses.filter(function(course){ return course.origin === 'builtin' && course.contentType === 'sentence'; });
+  if(builtinCourses.length){ addSectionTitle('内置课程（'+builtinCourses.length+' 门）'); builtinCourses.forEach(function(course){ addCourseCard(course, list); }); }
   showPage('pageDecks');
 }
 
@@ -839,12 +1454,13 @@ function editDeck(d){
     '<span class="spacer"></span>'+
     '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? (window.Icons?Icons.svg('rotateCcw'):'')+' 看全部' : '只看已标熟' )+'</button>'+
     (!d.builtin && pendingExplainCount ? '<button class="btn sm" id="editBatchExplain" title="为多条暂无讲解的句子生成 AI 讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量生成讲解</button>' : '')+ 
-    '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>'+
+    (d.builtin ? '' : '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>')+
     (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 导入更多句子</button>');
   $('editMasterFilter').onclick = function(){ _editOnlyMastered = !_editOnlyMastered; editDeck(d); };
   var batchExplainBtn = $('editBatchExplain');
   if(batchExplainBtn) batchExplainBtn.onclick = function(){ openBatchExplain(d); };
-  $('editExportBtn').onclick = function(){ exportDeck(d); };
+  var editExportBtn = $('editExportBtn');
+  if(editExportBtn) editExportBtn.onclick = function(){ exportDeck(d); };
   var imp = $('editImportBtn'); if(imp) imp.onclick = function(){ openAppend(d); };
   $('editBack').onclick = openDecks;
 
@@ -1352,10 +1968,8 @@ function commitImport(items, name){
   openDecks();
 }
 function exportDeck(d){
-  if(d && d.builtin && window.ContentRepo && d._content && !d._contentReady){
-    showDeckNotice('正在加载课程…', 'ok');
-    ContentRepo.ensureDeck(d, mem).then(function(full){ exportDeck(full); })
-      .catch(function(){ showDeckNotice('课程加载失败，请联网后重试', 'err'); });
+  if(!d || d.builtin){
+    showDeckNotice('内置课程不支持导出，请先复制到我的课程', 'err');
     return;
   }
   var payload = {
@@ -1506,13 +2120,21 @@ $('btnGenSplitPrompt').onclick = function(){
   $('appendMsg').textContent = '拆分 Prompt 已生成，点「复制」粘贴给大模型';
 };
 
-/* ===== 图文课程树（统一题库视图） ===== */
+/* ===== 图文课程树（旧导入兼容视图） ===== */
 function renderCourseTree(){
+  /* 图文课程列表已经统一到 CourseCatalog；保留这个入口供旧导入/跨标签刷新调用。 */
+  if($('tabCourses') && $('tabCourses').classList.contains('on')){
+    renderStoryCourseList(currentCatalog());
+    return;
+  }
+  renderLegacyCourseTree();
+}
+function renderLegacyCourseTree(){
   var box = $('courseTree');
   if(!box) return;
   if(!window.Library){ box.innerHTML = '<div class="course-empty">Library 模块未加载</div>'; return; }
   var tree = Library.buildTree();
-  if(!tree.series.length){ box.innerHTML = '<div class="course-empty">还没有图文课程。点击右上角「＋ 导入课程」导入并归类 ZIP 课程包，即可在此按层级浏览。</div>'; return; }
+  if(!tree.series.length){ box.innerHTML = '<div class="course-empty">还没有图文课程。点击右上角加号导入并归类 ZIP 课程包，即可在此按层级浏览。</div>'; return; }
   box.innerHTML = '';
   tree.series.forEach(function(s){
     var ser = document.createElement('div');
@@ -1551,6 +2173,29 @@ function renderCourseTree(){
     box.appendChild(ser);
   });
 }
+function renderStoryCourseList(catalog){
+  var list = $('deckList');
+  if(!list) return;
+  list.className = 'deck-list';
+  list.innerHTML = '';
+  var stories = (catalog && catalog.courses || []).filter(function(course){
+    return course.contentType === 'story';
+  });
+  var title = document.createElement('div');
+  title.className = 'deck-section-title';
+  title.textContent = '图文课程（'+stories.length+' 门）';
+  list.appendChild(title);
+  if(!stories.length){
+    var empty = document.createElement('div');
+    empty.className = 'empty-tip';
+    empty.style.gridColumn = '1 / -1';
+    empty.textContent = '还没有图文课程。点击右上角加号导入课程包，即可开始学习。';
+    list.appendChild(empty);
+  }else{
+    stories.forEach(function(course){ addCourseCard(course, list); });
+  }
+  showPage('pageDecks');
+}
 function lessonRow(c){
   var row = document.createElement('div');
   row.className = 'lesson';
@@ -1561,50 +2206,114 @@ function lessonRow(c){
   return row;
 }
 function deleteCourse(courseId, title){
-  if(!confirm('确定要删除课程「'+title+'」吗？\n删除后需重新导入 ZIP 才能恢复。')) return;
-  try {
-    var list;
-    if(window.CL && CL.readCourses){
-      list = CL.readCourses();
-    } else {
-      var raw = businessStorage.getItem(Library.COURSE_STORE_KEY);
-      list = raw ? JSON.parse(raw) : [];
-    }
-    if(!Array.isArray(list)) list = [];
-    list = list.filter(function(c){ return c.courseId !== courseId; });
-    if(window.CL && CL.writeCourses) CL.writeCourses(list);
-    else businessStorage.setItem(Library.COURSE_STORE_KEY, JSON.stringify(list));
-    /* 同步刷新内存中的 state.courses（如果 course-package.js 已加载） */
-    if(window.ChunkCourse) ChunkCourse.refreshList();
-    renderCourseTree();
-  } catch(err){ alert('删除失败：'+err.message); }
+  openCourseConfirm('删除课程', '确定要删除课程「'+title+'」吗？\n删除后需重新导入 ZIP 才能恢复。', '删除课程', function(){
+    try {
+      var list;
+      if(window.CL && CL.readCourses){
+        list = CL.readCourses();
+      } else {
+        var raw = businessStorage.getItem(Library.COURSE_STORE_KEY);
+        list = raw ? JSON.parse(raw) : [];
+      }
+      if(!Array.isArray(list)) list = [];
+      list = list.filter(function(c){ return c && c.courseId !== courseId; });
+      if(window.CL && CL.writeCourses) CL.writeCourses(list);
+      else businessStorage.setItem(Library.COURSE_STORE_KEY, JSON.stringify(list));
+      /* 同步刷新内存中的 state.courses（如果 course-package.js 已加载） */
+      if(window.ChunkCourse) ChunkCourse.refreshList();
+      renderCourseTree();
+    } catch(err){ alert('删除失败：'+err.message); }
+  }, true);
 }
 
 /* ===== 图文课程导入弹窗 ===== */
 var _pendingCourseFile = null;
+var _pendingLogicalCoverFile = null;
 
 function openCourseImport(){
   _pendingCourseFile = null;
+  _pendingLogicalCoverFile = null;
   var msg = $('courseImpMsg'); if(msg){ msg.textContent=''; msg.className='msg'; }
   var zone = $('courseDropZone'); if(zone) zone.classList.remove('drag-over');
-  /* 填充已有系列到 datalist */
-  var dl = $('ciSeriesList'); if(dl && window.Library){ dl.innerHTML=''; Library.knownSeriesOptions().forEach(function(o){ var op=document.createElement('option'); op.value=o.name; dl.appendChild(op); }); }
-  /* 填充已有 1 级 / 2 级到 datalist（纯动态，无预设） */
-  var dl1=$('ciLevel1List'); if(dl1&&window.Library){ dl1.innerHTML=''; Library.knownLevel1Options().forEach(function(n){ var o=document.createElement('option'); o.value=n; dl1.appendChild(o); }); }
-  var dl2=$('ciLevel2List'); if(dl2&&window.Library){ dl2.innerHTML=''; Library.knownLevel2Options().forEach(function(n){ var o=document.createElement('option'); o.value=n; dl2.appendChild(o); }); }
-  /* 重置表单 */
-  var s=$('ciSeries'); if(s) s.value='';
-  var l1=$('ciLevel1'); if(l1) l1.value='';
-  var l2=$('ciLevel2'); if(l2) l2.value='';
+  refreshLogicalCourseOptions();
+  var title=$('ciLogicalTitle'); if(title) title.value='';
+  var cover=$('ciLogicalCover'); if(cover) cover.value='';
+  var preview=$('ciLogicalCoverPreview'); if(preview){ preview.innerHTML=''; preview.style.backgroundImage=''; preview.classList.add('hidden'); }
+  var coverHint=$('ciLogicalCoverDropHint'); if(coverHint) coverHint.classList.remove('hidden');
+  var coverDrop=$('ciLogicalCoverDrop'); if(coverDrop) coverDrop.classList.remove('drag-over');
+  toggleLogicalCourseDraft();
   /* 更新拖拽区提示 */
   updateDropHint(null);
   $('courseImpMask').hidden = false;
+}
+function refreshLogicalCourseOptions(){
+  var select = $('ciLogicalCourse');
+  if(!select) return;
+  select.innerHTML = '';
+  var create = document.createElement('option'); create.value='new'; create.textContent='新建课程目录'; select.appendChild(create);
+  var existing = window.LogicalCourseStore ? LogicalCourseStore.read() : [];
+  existing.forEach(function(course){
+    var option=document.createElement('option'); option.value=course.id; option.textContent='导入到：'+course.title; select.appendChild(option);
+  });
+  var standalone=document.createElement('option'); standalone.value='standalone'; standalone.textContent='不归属课程目录（独立课节）'; select.appendChild(standalone);
+}
+function toggleLogicalCourseDraft(){
+  var select=$('ciLogicalCourse'), draft=$('logicalCourseDraft'), createBtn=$('btnCreateLogicalCourse');
+  if(!select || !draft) return;
+  draft.classList.toggle('hidden', select.value !== 'new');
+  if(createBtn) createBtn.classList.toggle('hidden', select.value !== 'new');
+}
+function readCoverImage(file){
+  return new Promise(function(resolve, reject){
+    if(!file) return reject(new Error('请选择目录封面图片'));
+    if(!/^image\//i.test(file.type || '')) return reject(new Error('课程封面必须是图片文件'));
+    var reader = new FileReader();
+    reader.onerror = function(){ reject(new Error('读取课程封面失败')); };
+    reader.onload = function(){
+      var raw = reader.result;
+      var image = new Image();
+      image.onerror = function(){ resolve(raw); };
+      image.onload = function(){
+        var max = 1200, scale = Math.min(1, max / Math.max(image.naturalWidth || image.width, image.naturalHeight || image.height));
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.max(1, Math.round((image.naturalWidth || image.width) * scale));
+        canvas.height = Math.max(1, Math.round((image.naturalHeight || image.height) * scale));
+        var ctx = canvas.getContext('2d');
+        if(!ctx) return resolve(raw);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', .82));
+      };
+      image.src = raw;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+async function createLogicalCourseFromForm(){
+  if(!window.LogicalCourseStore){ throw new Error('课程目录模块未就绪，请刷新页面重试'); }
+  var title=(($('ciLogicalTitle')||{}).value || '').trim();
+  if(!title) throw new Error('请填写课程目录名称');
+  var coverFile=_pendingLogicalCoverFile;
+  if(!coverFile) throw new Error('请选择目录封面图片');
+  var coverImage=await readCoverImage(coverFile);
+  return LogicalCourseStore.create({title:title, coverImage:coverImage});
+}
+function previewLogicalCover(file){
+  var preview=$('ciLogicalCoverPreview');
+  if(!preview || !file) return;
+  var reader=new FileReader();
+  reader.onload=function(){
+    preview.innerHTML='';
+    var image=document.createElement('img'); image.alt='课程封面预览'; image.src=String(reader.result);
+    preview.appendChild(image); preview.classList.remove('hidden');
+    var hint=$('ciLogicalCoverDropHint'); if(hint) hint.classList.add('hidden');
+  };
+  reader.readAsDataURL(file);
 }
 function updateDropHint(file){
   var hint = document.querySelector('#courseDropZone .course-drop-hint');
   if(!hint) return;
   if(file){
-    hint.innerHTML = '<span class="course-drop-icon">'+(window.Icons?Icons.svg('check'):'')+'</span><p><strong>'+esc(file.name)+'</strong></p><small>已选择，填写下方层级后点击「确认导入」</small>';
+    hint.innerHTML = '<span class="course-drop-icon">'+(window.Icons?Icons.svg('check'):'')+'</span><p><strong>'+esc(file.name)+'</strong></p><small>已选择，设置课程目录归属后点击「确认导入」</small>';
   } else {
     hint.innerHTML = '<span class="course-drop-icon" data-icon="box"></span><p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p><small>支持 .zip 格式（English MUD 导出）</small>';
   }
@@ -1637,70 +2346,109 @@ function updateDropHint(file){
   /* 确认导入按钮 */
   var btn = $('btnCourseImport');
   if(btn) btn.onclick = onCourseImportConfirm;
+  var createBtn=$('btnCreateLogicalCourse');
+  if(createBtn) createBtn.onclick = onCreateLogicalCourseOnly;
+  var courseSelect=$('ciLogicalCourse');
+  if(courseSelect) courseSelect.addEventListener('change', toggleLogicalCourseDraft);
+  var coverInput=$('ciLogicalCover');
+  var coverDrop=$('ciLogicalCoverDrop');
+  if(coverInput) coverInput.addEventListener('change', function(){
+    _pendingLogicalCoverFile=coverInput.files[0] || null;
+    previewLogicalCover(_pendingLogicalCoverFile);
+  });
+  if(coverDrop){
+    coverDrop.addEventListener('click', function(e){ if(e.target !== coverInput) coverInput.click(); });
+    coverDrop.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); coverInput.click(); } });
+    coverDrop.addEventListener('dragover', function(e){ e.preventDefault(); e.stopPropagation(); coverDrop.classList.add('drag-over'); });
+    coverDrop.addEventListener('dragleave', function(e){ e.preventDefault(); e.stopPropagation(); if(coverDrop.contains(e.relatedTarget)) return; coverDrop.classList.remove('drag-over'); });
+    coverDrop.addEventListener('drop', function(e){
+      e.preventDefault(); e.stopPropagation(); coverDrop.classList.remove('drag-over');
+      var file=e.dataTransfer.files && e.dataTransfer.files[0];
+      if(!file) return;
+      if(!/^image\//i.test(file.type || '')){ showCourseMsg('请选择图片文件','err'); return; }
+      _pendingLogicalCoverFile=file;
+      previewLogicalCover(file);
+    });
+  }
 })();
 function showCourseMsg(text, kind){
   var msg = $('courseImpMsg'); if(!msg) return;
   msg.textContent = text || '';
   msg.className = 'msg' + (kind ? ' ' + kind : '') + (text ? ' show' : '');
 }
-function onCourseImportConfirm(){
+async function onCreateLogicalCourseOnly(){
+  try{
+    showCourseMsg('正在保存课程目录…','ok');
+    await createLogicalCourseFromForm();
+    renderCourseTree();
+    showCourseMsg('课程目录已创建，之后可继续导入课节。','ok');
+    setTimeout(function(){ $('courseImpMask').hidden=true; }, 900);
+  }catch(e){ showCourseMsg(e && e.message || e,'err'); }
+}
+async function onCourseImportConfirm(){
   if(!_pendingCourseFile){ showCourseMsg('请先选择一个 ZIP 文件','err'); return; }
-
-  var sname = ($('ciSeries')||{}).value.trim();
-  var l1 = (($('ciLevel1')||{}).value || '').trim();
-  var l2 = (($('ciLevel2')||{}).value || '').trim();
-
-  if(!sname){ showCourseMsg('请填写系列/大类名称','err'); return; }
-
-  var sid = window.Library ? Library.seriesIdOf(sname) : ('s-' + sname);
-  var libMeta = {
-    seriesId: sid,
-    seriesName: sname,
-    volumeIndex: l1 ? 1 : null,
-    volumeName: l1 || null,
-    level2Name: l2 || null
-  };
-
-  showCourseMsg('正在导入「'+_pendingCourseFile.name+'」…','ok');
-
-  var file = _pendingCourseFile;
-
-  if(window.ChunkCourse){
-    /* 先设置 pendingLib 元数据，再导入 */
-    window._pendingLibForImport = libMeta;
-    var p = ChunkCourse.importZipDirect(file);
-    if(p && p.then){
-      p.then(function(){
-        renderCourseTree();
-        showCourseMsg('导入完成！','ok');
-        setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
-      }).catch(function(e){ showCourseMsg('导入失败：'+e.message,'err'); });
-    } else {
-      renderCourseTree();
-      showCourseMsg('导入完成！','ok');
-      setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
+  if(!window.ChunkCourse){ showCourseMsg('课程模块未就绪，请刷新页面重试','err'); return; }
+  var mode=(($('ciLogicalCourse')||{}).value || 'new');
+  var createdId='';
+  try {
+    var logicalCourseId='';
+    if(mode === 'new'){
+      showCourseMsg('正在处理课程封面…','ok');
+      var definition=await createLogicalCourseFromForm();
+      logicalCourseId=definition.id; createdId=definition.id;
+    }else if(mode !== 'standalone'){
+      var selected=window.LogicalCourseStore && LogicalCourseStore.get(mode);
+      if(!selected) throw new Error('所选课程目录不存在，请重新打开导入窗口');
+      logicalCourseId=selected.id;
     }
-  } else {
-    showCourseMsg('课程模块未就绪，请刷新页面重试','err');
+    showCourseMsg('正在导入「'+_pendingCourseFile.name+'」…','ok');
+    window._pendingLibForImport = {logicalCourseId: logicalCourseId || null};
+    await ChunkCourse.importZipDirect(_pendingCourseFile);
+    renderCourseTree();
+    showCourseMsg('导入完成！','ok');
+    setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
+  } catch(e){
+    /* 目录与课节是两个独立实体：课节导入失败时保留用户刚创建的目录，
+       方便用户修正 ZIP 后再次导入，也避免出现“目录消失、课节变成顶层课程”的断链。 */
+    var detail='导入失败：'+(e && e.message || e);
+    if(createdId) detail += '；课程目录已保留，可修正文件后重新导入。';
+    showCourseMsg(detail,'err');
   }
 }
 
 function showTab(which){
   var decksTab = $('tabDecks'), coursesTab = $('tabCourses');
   var deckList = $('deckList'), tree = $('courseTree'), importBtn = $('btnImportDecks');
+  requestedTab = which === 'courses' ? 'courses' : 'decks';
+  if(!decksReady){
+    decksTab.classList.toggle('on', requestedTab === 'decks');
+    coursesTab.classList.toggle('on', requestedTab === 'courses');
+    deckList.classList.remove('hidden'); tree.classList.add('hidden');
+    deckList.className = 'deck-list';
+    deckList.innerHTML = '<div class="empty-tip" style="grid-column:1 / -1">正在加载课程…</div>';
+    showPage('pageDecks');
+    return;
+  }
   if(which === 'courses'){
     decksTab.classList.remove('on'); coursesTab.classList.add('on');
-    deckList.classList.add('hidden'); tree.classList.remove('hidden');
+    setCourseRouteUI(false);
+    deckList.classList.remove('hidden'); tree.classList.add('hidden');
     $('marketSection').classList.add('hidden');
-    importBtn.textContent = '＋ 导入课程';
+    importBtn.textContent = '＋';
+    importBtn.setAttribute('aria-label', '导入图文课程');
+    importBtn.title = '导入图文课程';
     importBtn.onclick = function(){ openCourseImport(); };
-    renderCourseTree();
+    renderStoryCourseList(currentCatalog());
   } else {
     coursesTab.classList.remove('on'); decksTab.classList.add('on');
     tree.classList.add('hidden'); deckList.classList.remove('hidden');
     $('marketSection').classList.remove('hidden');
-    importBtn.textContent = '＋ 添加课程';
+    importBtn.textContent = '＋';
+    importBtn.setAttribute('aria-label', '添加课程');
+    importBtn.title = '添加课程';
     importBtn.onclick = function(){ openImport(); };
+    /* 页签切换必须同时恢复句子课程主列表；公共市场是附属区域，不能代替主列表渲染。 */
+    openDecks();
     openMarket();
   }
 }
@@ -1742,6 +2490,7 @@ function bindCommon(){
   if(mktBtn) mktBtn.onclick = function(){ openMarket(); };
   openMarket();
 }
+window.addEventListener('popstate', function(){ openDecks(); });
 function setupDrop(dropId, inputId, boxId){
   var drop = $(dropId), input = $(inputId), box = $(boxId);
   drop.addEventListener('click', function(){ input.click(); });
@@ -1793,14 +2542,22 @@ window.addEventListener('message', function(ev){
   }
 });
 
-Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
-loadMem();
-bindCommon();
-openDecks();
-/* 页面初始化即渲染一次图文课程树（即使隐藏），保证切 tab 时数据已就绪 */
-renderCourseTree();
+/* 课程数据尚未完成水合时也先接住页签点击，避免用户的第一次切换被初始化竞态吞掉。 */
 $('tabDecks').onclick = function(){ showTab('decks'); };
 $('tabCourses').onclick = function(){ showTab('courses'); };
+
+Promise.all([
+  CL.ensureCloud(),
+  /* 明确等待课程数据从持久层完成水合，避免冷启动先把图文课节误显示成顶层课程。 */
+  CL.preload ? CL.preload() : Promise.resolve(),
+  window.ContentRepo ? ContentRepo.ready : Promise.resolve()
+]).then(function(){
+loadMem();
+bindCommon();
+decksReady = true;
+/* 保留用户在冷启动期间点击的页签意图，数据水合完成后再渲染真实课程树。 */
+if(requestedTab === 'courses') showTab('courses');
+else { openDecks(); renderCourseTree(); }
 }); /* CL.ensureCloud().then */
 </script>
 

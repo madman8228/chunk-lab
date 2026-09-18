@@ -125,7 +125,8 @@ if (TRUST_PROXY) app.set('trust proxy', 1);
 const RATE_WINDOW_MS = 15 * 60 * 1000;
 const AUTH_RATE = {
   register: 10,  // 每 IP 每窗口最多 10 次注册请求（成功/失败都计，防枚举与批量建号）
-  loginFail: 10  // 每 IP 每窗口最多 10 次登录失败 → 锁定 429（成功登录清零）
+  loginFail: 10, // 每 IP 每窗口最多 10 次登录失败 → 锁定 429（成功登录清零）
+  credChange: 10 // 每 IP 每窗口最多 10 次凭据修改；同源「用户名已被占用」提示也是枚举面，故一并限速
 };
 const rateBuckets = new Map(); // ip -> { register:number[], loginFail:number[] } 时间戳数组
 
@@ -196,7 +197,25 @@ app.post('/api/auth/login', function (req, res) {
 });
 
 app.get('/api/auth/me', auth.authenticate, function (req, res) {
-  res.json({ user: { id: req.userId, username: req.username } });
+  /* 账号名的唯一真相是 users 表 —— token 里的 uname 只是签发时的副本，用户改名后即过期，
+     故此处必须回查数据库，不能直接把 req.username 回给前端。 */
+  const user = auth.readUser(req.userId);
+  if (!user) return res.status(401).json({ error: '账号不存在或已注销' });
+  res.json({ user: user });
+});
+
+/* 设置「自己」账号的用户名 / 密码（二者可只传其一）。
+   用途：首访自动注册的静默游客账号（guest_<随机>，密码随机且用户不知晓）无法在另一台设备登回，
+   本接口让用户就地把它设成自己记得住的账号 —— user_id 不变 ⇒ 学习数据零迁移。
+   越权防护：userId 只取自 token（req.userId），不接受请求体传入，因此改不到别人的账号。 */
+app.post('/api/auth/credentials', auth.authenticate, function (req, res) {
+  if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无账号概念' });
+  if (!rateHit(req.ip, 'credChange', AUTH_RATE.credChange)) return send429(res);
+  try {
+    const body = req.body || {};
+    const user = auth.setCredentials(req.userId, { username: body.username, password: body.password });
+    res.json({ ok: true, user: user });
+  } catch (e) { res.status(400).json({ error: e.message }); }
 });
 
 /* ===================== 数据读写 ===================== */
