@@ -311,7 +311,7 @@
     if (!assetId) return { html: '', hasImage: false, assetMissing: false };
     var asset = getAsset(record.course, assetId);
     var url = assetUrl(record, assetId);
-    if (url) return { html: '<img src="' + esc(url) + '" alt="' + esc(localized(asset && asset.alt)) + '">', hasImage: true, assetMissing: false };
+    if (url) return { html: '<img draggable="false" src="' + esc(url) + '" alt="' + esc(localized(asset && asset.alt)) + '">', hasImage: true, assetMissing: false };
     return {
       html: '<div class="image-placeholder"><span class="ph-ico">' + (global.Icons ? global.Icons.svg('image') : '') + '</span><small>课程包缺少图片：' + esc(asset ? (asset.fileName || asset.id) : assetId) + '<br>图片不影响学习，可继续练习</small></div>',
       hasImage: false,
@@ -352,9 +352,8 @@
       stageEl.classList.toggle('no-image', !imageResult.hasImage && !imageResult.assetMissing);
       stageEl.classList.toggle('missing-image', imageResult.assetMissing);
     }
+    /* 图片保持静止，避免节点重绘时产生边缘闪动。 */
     dom.playerImage.classList.remove('image-enter');
-    void dom.playerImage.offsetWidth;
-    dom.playerImage.classList.add('image-enter');
     dom.playerScene.textContent = localized((getScene(course, node.sceneId) || {}).name) || '';
     dom.playerContent.innerHTML = node.type === 'end' ? renderEnd(node, course) : renderInteraction(node, course);
     bindNodeActions(node, course);

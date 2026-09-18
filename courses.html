@@ -167,6 +167,7 @@ button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.
 .btn-restart{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;line-height:1.2}
 .btn-restart .icon{width:17px;height:17px;display:block;flex:0 0 17px}
 .stage-image img{object-fit:contain;background:#e1ded6}
+.image-enter{animation:none!important}
 </style>
 <style>
 /* 对话播放器：沿用参考页的紧凑双栏阅读结构 */
@@ -207,7 +208,18 @@ body{background:var(--bg)}
 .word-chip{padding:6px 13px;border:1px solid #cfd8e5;border-radius:8px;background:#fff;font-size:14px}
 .word-chip:hover{transform:none}
 .player-foot{margin-top:12px;padding:8px 0;font-size:11px}
+html,body{height:100%;overflow:hidden}
+.shell{height:100vh;min-height:0;display:flex;flex-direction:column;padding-bottom:12px}
+#coursePlayer{display:flex;flex:1;flex-direction:column;min-height:0}
+.course-stage{flex:1;min-height:0}
+.player-foot{flex:0 0 auto}
+#coursePlayer,#coursePlayer *{user-select:none;-webkit-user-select:none}
+#coursePlayer input,#coursePlayer textarea,#coursePlayer [contenteditable="true"]{user-select:text;-webkit-user-select:text}
+#playerImage img{-webkit-user-drag:none;user-drag:none}
 @media(max-width:800px){
+  html,body{height:auto;overflow:auto}
+  .shell{height:auto;min-height:100vh}
+  #coursePlayer{display:block}
   .shell{padding:12px 15px 32px}
   .player-head{padding:9px 12px}
   .course-stage{display:flex;flex-direction:column;min-height:0}
