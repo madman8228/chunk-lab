@@ -15,7 +15,15 @@
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1280px;margin:0 auto;padding:14px 24px 32px}
+html,body{height:100%;overflow:hidden}
+.wrap{max-width:1280px;width:100%;height:100vh;height:100dvh;min-height:0;margin:0 auto;padding:14px 24px 18px;display:flex;flex-direction:column;overflow:hidden}
+.wrap > #pageDecks,.wrap > .page{flex:1 1 auto;min-height:0;overflow:hidden}
+#pageDecks{display:flex;flex-direction:column;min-height:0}
+#pageDecks > #deckList,#pageDecks > #courseTree{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;align-content:start;padding-bottom:1px;scrollbar-width:thin;scrollbar-color:rgba(95,92,85,.3) transparent}
+#pageDecks > #deckList::-webkit-scrollbar,#pageDecks > #courseTree::-webkit-scrollbar{width:7px}
+#pageDecks > #deckList::-webkit-scrollbar-track,#pageDecks > #courseTree::-webkit-scrollbar-track{background:transparent}
+#pageDecks > #deckList::-webkit-scrollbar-thumb,#pageDecks > #courseTree::-webkit-scrollbar-thumb{background:rgba(95,92,85,.3);border-radius:999px}
+#pageDecks > #marketSection{flex:0 0 auto;min-height:0;max-height:32%;overflow:auto;scrollbar-width:thin}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .page-head h2{margin:0;font-size:18px;font-weight:700}
 .spacer{flex:1}
@@ -49,10 +57,10 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .deck-cover.other{background:linear-gradient(135deg,#f2eee7 0%,#e1d8ca 100%);color:#59482f}
 .deck-cover.mine{background:linear-gradient(135deg,#e8f5ee 0%,#cbe7d7 100%);color:#1c7050}
 .deck-cover-wash{position:absolute;inset:0;z-index:2;background:rgba(66,70,76,.08);transition:opacity .22s ease}
-.deck-cover-caption{position:relative;z-index:3;display:flex;align-items:center;gap:6px;max-width:100%;padding:5px 7px;border-radius:8px;background:rgba(255,255,255,.84);color:inherit;box-shadow:0 1px 4px rgba(24,28,34,.08);backdrop-filter:blur(2px)}
+.deck-cover-caption{position:absolute;top:8px;left:8px;z-index:3;display:flex;align-items:center;gap:4px;max-width:calc(100% - 16px);padding:2px 5px;border-radius:5px;background:rgba(255,255,255,.7);color:inherit;box-shadow:0 1px 3px rgba(24,28,34,.05);backdrop-filter:blur(1px);user-select:none;-webkit-user-select:none;caret-color:transparent;-webkit-user-modify:read-only;user-modify:read-only;pointer-events:none}
 .deck-cover-mark,.deck-cover-label{position:relative;z-index:3}
-.deck-cover-mark{display:flex;align-items:center;justify-content:center;flex:0 0 24px;width:24px;height:24px;border-radius:7px;background:rgba(255,255,255,.72);font-size:14px}
-.deck-cover-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:700;letter-spacing:.02em}
+.deck-cover-mark{display:flex;align-items:center;justify-content:center;flex:0 0 18px;width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,.56);font-size:12px}
+.deck-cover-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:.01em;user-select:none;-webkit-user-select:none;caret-color:transparent;-webkit-user-modify:read-only;user-modify:read-only;pointer-events:none}
 .deck-card-body{display:flex;flex-direction:column;gap:6px;min-height:96px;padding:9px 12px 10px}
 .deck-card-body{cursor:pointer}
 .deck-cover{cursor:pointer}
@@ -109,9 +117,9 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:13.5px/
 .catalog-lesson.is-unavailable{cursor:default;opacity:.72}
 .catalog-lesson.is-unavailable:hover{border-color:var(--border);box-shadow:0 1px 2px rgba(46,43,37,.04);transform:none}
 .catalog-lesson:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.catalog-lesson-media{width:100%;aspect-ratio:16 / 9;height:auto;overflow:hidden;background:linear-gradient(135deg,#dce8ff,#c5d8f7);position:relative}
+.catalog-lesson-media{width:100%;aspect-ratio:16 / 9;height:auto;overflow:hidden;background:#eef2f7;position:relative}
 .catalog-lesson-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,54,120,.08),transparent 52%,rgba(255,255,255,.22))}
-.catalog-lesson-media img{display:block;width:100%;height:100%;object-fit:cover;opacity:.9}
+.catalog-lesson-media img{display:block;width:100%;height:100%;object-fit:fill;opacity:.9}
 .catalog-lesson-media.is-custom img{opacity:1}
 .catalog-lesson-caption{position:absolute;z-index:1;right:0;bottom:0;left:0;display:flex;align-items:flex-end;gap:7px;padding:24px 10px 9px;background:linear-gradient(transparent,rgba(16,35,62,.72));color:#fff}
 .catalog-lesson .lesson-index{flex-shrink:0;font-size:11px;font-weight:700;opacity:.9}
@@ -410,6 +418,28 @@ textarea{outline:none;resize:vertical}
   </div>
 </div>
 
+<!-- 修复历史未归类课节：把已有图文课程移入用户目录 -->
+<div class="mask" id="moveStoryMask" hidden>
+  <div class="modal course-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="moveStoryTitle">
+    <div class="modal-head">
+      <h3 id="moveStoryTitle">移入课程目录</h3>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" id="moveStoryClose" data-icon="close" aria-label="关闭弹窗"></button>
+    </div>
+    <div class="modal-body">
+      <p class="course-confirm-message" id="moveStoryMessage">选择要归入的课程目录。</p>
+      <label class="level-lbl" for="moveStorySelect" style="margin-top:12px">课程目录</label>
+      <select id="moveStorySelect" class="set-inp" style="width:100%"></select>
+      <div class="msg" id="moveStoryMsg"></div>
+    </div>
+    <div class="modal-foot">
+      <span class="spacer"></span>
+      <button class="btn ghost" id="moveStoryCancel">取消</button>
+      <button class="btn primary" id="moveStoryConfirm">移入目录</button>
+    </div>
+  </div>
+</div>
+
   <!-- 添加课程弹窗 -->
 <div class="mask" id="impMask" hidden>
   <div class="modal">
@@ -619,6 +649,26 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/batch-sync.js"></script>
+<script src="js/core-identity.js"></script>
+<script src="js/core-merge.js"></script>
+<script src="js/core-activity.js"></script>
+<script src="js/core-event-bus.js"></script>
+<script src="js/core-migrations.js"></script>
+<script src="js/core-stats-signature.js"></script>
+<script src="js/core-storage-state.js"></script>
+<script src="js/core-entity-delta.js"></script>
+<script src="js/core-sync-delta.js"></script>
+<script src="js/core-sync-intents.js"></script>
+<script src="js/core-sync-payload.js"></script>
+<script src="js/core-sync-transport.js"></script>
+<script src="js/core-sync-replay.js"></script>
+<script src="js/core-sync-batch-merge.js"></script>
+<script src="js/core-sync-stats-normalize.js"></script>
+<script src="js/core-sync-learning-marks.js"></script>
+<script src="js/core-sync-entity-merge.js"></script>
+<script src="js/core-sync-kv.js"></script>
+<script src="js/core-revision-delta.js"></script>
+<script src="js/core-runtime.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="js/sync-resolution.js"></script>
@@ -627,6 +677,8 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/icons.js"></script>
 <script src="js/chunk-shape.js"></script>
 <script src="library.js"></script>
+<script src="js/course-package-contract.js"></script>
+<script src="js/vendor/course-schema-validator.js"></script>
 <script src="course-package.js"></script>
 <script>
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
@@ -754,7 +806,8 @@ function routeCourse(courseId){
   var url = new URL(window.location.href);
   if(courseId) url.searchParams.set('course', courseId); else url.searchParams.delete('course');
   history.pushState({}, '', url.pathname + (url.search ? url.search : '') + (url.hash || ''));
-  openDecks();
+  /* 课程路由只负责改地址，渲染统一交给当前页签分发，避免图文页签被 openDecks() 覆盖成句子课程。 */
+  refreshCourseDataView();
 }
 function setCourseRouteUI(inDirectory){
   var back = $('decksBack'), pageTitle = $('deckPageTitle'), viewSwitch = $('catalogViewSwitch'), tabs = document.querySelector('#pageDecks .tabs'), add = $('btnImportDecks');
@@ -903,6 +956,45 @@ function updateStoryPackage(courseId, mutate){
     refreshCourseDataView();
   });
 }
+var _pendingStoryMove = null;
+function closeMoveStory(){
+  var mask = $('moveStoryMask');
+  if(mask) mask.hidden = true;
+  _pendingStoryMove = null;
+}
+function openMoveStoryPackage(courseId, title){
+  var dirs = window.LogicalCourseStore && LogicalCourseStore.read ? LogicalCourseStore.read() : [];
+  if(!dirs.length){
+    showDeckNotice('请先创建课程目录，再执行移入操作。', 'err');
+    return;
+  }
+  var mask = $('moveStoryMask'), select = $('moveStorySelect'), message = $('moveStoryMessage'), msg = $('moveStoryMsg');
+  if(!mask || !select) return;
+  _pendingStoryMove = { courseId: courseId, title: title };
+  select.innerHTML = '';
+  dirs.forEach(function(dir){
+    var option = document.createElement('option');
+    option.value = dir.id;
+    option.textContent = dir.title;
+    select.appendChild(option);
+  });
+  message.textContent = '将「'+title+'」移入所选课程目录。';
+  if(msg){ msg.textContent = ''; msg.className = 'msg'; }
+  mask.hidden = false;
+  select.focus();
+}
+function confirmMoveStoryPackage(){
+  var pending = _pendingStoryMove, select = $('moveStorySelect'), msg = $('moveStoryMsg');
+  if(!pending || !select) return closeMoveStory();
+  var selected = window.LogicalCourseStore && LogicalCourseStore.get ? LogicalCourseStore.get(select.value) : null;
+  if(!selected){ if(msg){ msg.textContent = '所选课程目录不存在，请刷新后重试。'; msg.className = 'msg err show'; } return; }
+  updateStoryPackage(pending.courseId, function(source){ source.logicalCourseId = selected.id; }).then(function(){
+    closeMoveStory();
+    showDeckNotice('已移入目录：'+selected.title, 'ok');
+  }).catch(function(error){
+    if(msg){ msg.textContent = '操作失败：'+(error && error.message || error); msg.className = 'msg err show'; }
+  });
+}
 function clearStoryProgress(courseId){
   if(!window.CL || !CL.readProgress || !CL.writeProgress) return Promise.resolve();
   var progress = CL.readProgress();
@@ -958,9 +1050,9 @@ function addCourseCard(course, list){
   });
   var meta = course.contentType === 'story'
     ? (lessons.length ? '图文课程 · '+lessons.length+' 个课节' : '图文课程 · 尚未导入课节')
-    : (lessons.length > 1 ? lessons.length+' 个课节' : course.itemCount+' 句');
+    : (lessons.length > 1 ? lessons.length+'个课程' : course.itemCount+' 句');
   if(course.available === false) meta += ' · 目录不可用';
-  var coverCaption = course.coverImage && course.origin === 'builtin' ? '' : '<span class="deck-cover-caption"><span class="deck-cover-mark">'+(window.Icons?Icons.svg('book'):'')+'</span><span class="deck-cover-label">'+esc(course.title)+'</span></span>';
+  var coverCaption = '<span class="deck-cover-caption" contenteditable="false"><span class="deck-cover-mark" contenteditable="false">'+(window.Icons?Icons.svg('book'):'')+'</span><span class="deck-cover-label" contenteditable="false">'+esc(course.title)+'</span></span>';
   row.innerHTML = '<div class="deck-cover'+(course.id === 'builtin:idioms' ? ' other' : '')+(course.coverImage ? ' has-image' : '')+'" aria-hidden="true"><span class="deck-cover-wash"></span>'+coverCaption+'</div>'+
     '<div class="deck-card-body"><div class="info"><div class="meta">'+esc(meta)+(lastPlayed ? ' · 最近学习' : '')+(course.contentType === 'sentence' ? ' <span class="course-progress" data-course-progress aria-label="进度计算中" title="进度计算中"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">0 / '+course.itemCount+'</span></span>' : '')+'</div></div></div>';
   if(course.coverImage){
@@ -977,6 +1069,9 @@ function addCourseCard(course, list){
       label:'删除分类', danger:true,
       action:function(){ removeLogicalCourse(course.id, course.title, lessons.length); }
     }] : [{
+      label:'移入目录',
+      action:function(){ if(firstLesson && firstLesson.contentRef) openMoveStoryPackage(firstLesson.contentRef.id, course.title); }
+    },{
       label:'删除课程', danger:true,
       action:function(){ if(firstLesson && firstLesson.contentRef) removeStoryPackage(firstLesson.contentRef.id, course.title); }
     }], isLogicalCourse ? '分类管理' : '课程管理');
@@ -1054,7 +1149,7 @@ function refreshCourseCardProgress(course, row){
 function catalogImageSrc(lesson){
   /* 目录封面只代表目录，不向内部课节继承；课节没有独立图片时使用统一占位图。 */
   var src = lesson && (lesson.image || lesson.imageUrl);
-  if(!src || !/^(?:data:image\/|https?:\/\/|\/|\.\/|\.\.\/)/i.test(String(src))) return 'assets/catalog/lesson-placeholder.svg';
+  if(!src || !/^(?:data:image\/|https?:\/\/|\/|\.\/|\.\.\/|[A-Za-z0-9_-]+\/)/i.test(String(src))) return 'assets/catalog/lesson-placeholder.svg';
   return String(src);
 }
 function catalogViewSvg(name){
@@ -2176,6 +2271,7 @@ function renderLegacyCourseTree(){
 function renderStoryCourseList(catalog){
   var list = $('deckList');
   if(!list) return;
+  setCourseRouteUI(false);
   list.className = 'deck-list';
   list.innerHTML = '';
   var stories = (catalog && catalog.courses || []).filter(function(course){
@@ -2402,8 +2498,7 @@ async function onCourseImportConfirm(){
       logicalCourseId=selected.id;
     }
     showCourseMsg('正在导入「'+_pendingCourseFile.name+'」…','ok');
-    window._pendingLibForImport = {logicalCourseId: logicalCourseId || null};
-    await ChunkCourse.importZipDirect(_pendingCourseFile);
+    await ChunkCourse.importZipDirect(_pendingCourseFile, {logicalCourseId: logicalCourseId || null});
     renderCourseTree();
     showCourseMsg('导入完成！','ok');
     setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
@@ -2459,6 +2554,10 @@ function bindCommon(){
   Array.prototype.forEach.call(document.querySelectorAll('.mask [data-close]'), function(b){
     b.onclick = function(){ b.closest('.mask').hidden = true; };
   });
+  $('moveStoryClose').onclick = closeMoveStory;
+  $('moveStoryCancel').onclick = closeMoveStory;
+  $('moveStoryConfirm').onclick = confirmMoveStoryPackage;
+  $('moveStoryMask').onclick = function(e){ if(e.target === $('moveStoryMask')) closeMoveStory(); };
   /* 导入 */
   $('btnImportDecks').onclick = function(){ openImport(); };
   $('btnCopy').onclick = function(){ copyText($('promptBox').value); };
@@ -2490,7 +2589,7 @@ function bindCommon(){
   if(mktBtn) mktBtn.onclick = function(){ openMarket(); };
   openMarket();
 }
-window.addEventListener('popstate', function(){ openDecks(); });
+window.addEventListener('popstate', function(){ refreshCourseDataView(); });
 function setupDrop(dropId, inputId, boxId){
   var drop = $(dropId), input = $(inputId), box = $(boxId);
   drop.addEventListener('click', function(){ input.click(); });

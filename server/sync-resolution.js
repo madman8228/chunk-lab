@@ -76,7 +76,7 @@ function createResolutionService(db, write, allocSeq) {
     const backupJSON = JSON.stringify(archive);
     const usage = db.prepare('SELECT count(*) AS n, coalesce(sum(length(CAST(backup_json AS BLOB))),0) AS bytes FROM user_sync_resolutions WHERE user_id=?').get(userId);
     // No automatic deletion of recovery data. Stop rather than discard the user's backups.
-    if (usage.n >= 100 || usage.bytes + Buffer.byteLength(backupJSON) > 64 * 1024 * 1024) fail(507, '冲突备份空间已满，请联系管理员导出归档后再处理');
+    if (usage.n >= 100 || usage.bytes + Buffer.byteLength(backupJSON) > 64 * 1024 * 1024) fail(507, '冲突备份空间已满，请联系管理员导出归档后再处理', 'RESOLUTION_ARCHIVE_FULL');
     const selected = body.choice === 'local' ? local : remote;
     const rev = Math.max(local.rev, remote.rev) + 1;
     if (!Number.isSafeInteger(rev)) fail(400, '版本号超出范围');
@@ -132,7 +132,7 @@ function createBatchResolutionService(db, readSnapshot, applyLocal) {
       const archive = { kind: 'batch', choice: body.choice, local, remote: remote.snapshot, at: new Date().toISOString() };
       const backupJSON = JSON.stringify(archive);
       const usage = db.prepare('SELECT count(*) AS n, coalesce(sum(length(CAST(backup_json AS BLOB))),0) AS bytes FROM user_sync_resolutions WHERE user_id=?').get(userId);
-      if (usage.n >= 100 || usage.bytes + Buffer.byteLength(backupJSON) > 64 * 1024 * 1024) fail(507, '冲突备份空间已满，请先导出归档后再处理');
+      if (usage.n >= 100 || usage.bytes + Buffer.byteLength(backupJSON) > 64 * 1024 * 1024) fail(507, '冲突备份空间已满，请先导出归档后再处理', 'RESOLUTION_ARCHIVE_FULL');
       if (body.choice === 'local') applyLocal(userId, local, remote.snapshot, body.requestId);
       const result = { ok: true, kind: 'batch', requestId: body.requestId, choice: body.choice,
         seq: currentSeqForSnapshot(body.choice === 'local' ? readSnapshot(userId) : remote.snapshot), snapshot: body.choice === 'local' ? readSnapshot(userId) : remote.snapshot };

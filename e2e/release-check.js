@@ -25,8 +25,7 @@ const { chromium } = require('playwright-core');
 const ROOT = path.resolve(__dirname, '..');
 const PORT = require('./lib/free-port').freePort(8931, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-rel-'));
-const CHROMIUM = process.env.CHROMIUM_PATH ||
-  'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe';
+const CHROMIUM = process.env.CHROMIUM_PATH || chromium.executablePath();
 
 let server = null;
 

@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm ci
+        working-directory: server
+      - run: npm run prepare:ci
+      # When generated browser files are present in the checkout, verify the
+      # candidate before rebuilding them. A clean checkout may not contain
+      # ignored/untracked generated files, so the build below is still the
+      # source of truth for that case.
+      - run: |
+          if [ -e js/core-runtime.js ]; then
+            npm run build:check
+          else
+            echo "generated browser artifacts absent; checking after build"
+          fi
+      - run: npm run build
+      - run: npm run build:check
+      - run: npm run content:check-generated
+      - run: node scripts/check-sw.js --strict
+      - run: node scripts/check-deploy-files.js
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test:checks
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: check-results
+          path: output/test-results/
+          if-no-files-found: ignore
+
+  unit:
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run prepare:ci
+      - run: npm run build
+      - run: npm run test:unit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-results
+          path: output/test-results/
+          if-no-files-found: ignore
+
+  server:
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm ci
+        working-directory: server
+      - run: npm run prepare:ci
+      - run: npm run build
+      - run: npm run test:server
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: server-results
+          path: output/test-results/
+          if-no-files-found: ignore
+
+  browser:
+    needs: checks
+    runs-on: ubuntu-latest
+    env:
+      TEST_RETRIES: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm ci
+        working-directory: server
+      - run: npm run prepare:ci
+      - run: npm run build
+      - run: npm exec --no -- playwright-core install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-results
+          path: output/test-results/
+          if-no-files-found: ignore

@@ -42,7 +42,7 @@ const JS_RE = /\.(m?js)$/i;
 const TEST_RE = /\.test\.mjs$/i;
 
 /* 前端入口 HTML（与 gen-sw.js / deploy 清单同源，改这里即三处生效） */
-const HTML_ENTRIES = ['main.html', 'courses.html', 'decks.html', 'stats.html'];
+const HTML_ENTRIES = ['main.html', 'courses.html', 'decks.html', 'stats.html', 'admin.html'];
 
 function abs(rel) { return path.join(ROOT, rel); }
 
@@ -53,13 +53,18 @@ function readIfExists(rel) {
 }
 
 /* HTML 属性值 → 归一化相对路径（不可用引用返回 null） */
-function normalizeRef(u) {
+function normalizeRef(u, fromRel) {
   if (SKIP_SCHEME.test(u)) return null;
   if (u.indexOf('/api/') === 0) return null;
-  if (u.indexOf('..') >= 0) return null;              /* 本项目不越界引用 */
   let s = u.split('#')[0].split('?')[0];
-  s = s.replace(/^\/+/, '').replace(/^\.\//, '');
-  return s || null;
+  if (s.startsWith('/')) s = s.slice(1);
+  else {
+    const base = fromRel ? path.posix.dirname(fromRel.split(path.sep).join('/')) : '';
+    s = path.posix.join(base === '.' ? '' : base, s);
+  }
+  s = path.posix.normalize(s).replace(/^\.\//, '');
+  if (!s || s === '..' || s.startsWith('../')) return null;
+  return s;
 }
 
 /* 一个 JS 文件里的相对依赖说明符（裸 npm 包名 / 越界路径跳过） */
@@ -81,10 +86,11 @@ function moduleRefs(rel) {
 /* 说明符 → 归一化相对路径；仅接受同项目内的相对引用 */
 function resolveSpecifier(spec, fromRel) {
   if (!/^\.{1,2}\//.test(spec)) return null;          /* 裸模块（npm 依赖）不算运行时静态资源 */
-  if (spec.indexOf('..') >= 0) return null;
   const dir = path.posix.dirname(fromRel.split(path.sep).join('/'));
   const joined = path.posix.join(dir === '.' ? '' : dir, spec);
-  return joined.replace(/^\/+/, '') || null;
+  const normalized = joined.replace(/^\/+/, '');
+  if (!normalized || normalized === '..' || normalized.startsWith('../')) return null;
+  return normalized;
 }
 
 /* 归一化路径 → 实际存在的文件（处理 CJS 的无扩展名 require 与目录 index 约定） */
@@ -107,7 +113,7 @@ function manifestRefs(rel) {
   const out = [];
   (j.icons || []).forEach(function (ic) { if (ic && ic.src) out.push(ic.src); });
   if (j.start_url) out.push(j.start_url);
-  return out.map(normalizeRef).filter(Boolean);
+  return out.map(function (ref) { return normalizeRef(ref, rel); }).filter(Boolean);
 }
 
 /* 递归展开模块闭包。返回 { files:Set, missing:Set } */
@@ -148,7 +154,7 @@ function runtimeAssets(htmlFiles, extraSeeds) {
     let m;
     HTML_ATTR_RE.lastIndex = 0;
     while ((m = HTML_ATTR_RE.exec(src)) !== null) {
-      const r = normalizeRef(m[1]);
+      const r = normalizeRef(m[1], f);
       if (r) direct.add(r);
     }
   });

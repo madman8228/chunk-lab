@@ -6,7 +6,7 @@
  * 于是 SRS 在体验上是个黑盒（会误判成「怎么又考这句」）。
  * 本用例守住三个事实：
  *   1. 出题态不显示排期行（新句子开始时必须复位）
- *   2. 答完一句后显示「下次复习：第 N 阶段 · 还有 X 天」，且 N/X 由真实 SRS 状态推出
+ *   2. 答完一句后显示「下次复习:X天后」，且天数由真实 SRS 状态推出
  *   3. 该行的可见性是真被测量的 —— 用 !important 隐藏它，断言必须变红（负向自证）
  *
  * 运行：node e2e/srs-surface.test.js
@@ -155,7 +155,7 @@ async function boot(browser, seed) {
 (async function () {
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
 
     /* ===== A：首次练这句（无历史） ===== */
     console.log('【场景 A：首次练这句，无历史 SRS 状态】');
@@ -167,8 +167,8 @@ async function boot(browser, seed) {
 
       const after = await answerUntilSched(s.page);
       check('A2 答完一句后显示排期行', after.visible === true, 'visible=' + after.visible + ' text="' + after.text + '"');
-      check('A3 文案 = 下次复习：第 1 阶段 · 还有 1 天', after.text === '下次复习：第 1 阶段 · 还有 1 天', '实际 "' + after.text + '"');
-      check('A4 文案结构恒为「下次复习：第 N 阶段 · …」', /^下次复习：第 \d+ 阶段 · (还有 \d+ 天|今天到期|已逾期 \d+ 天)$/.test(after.text), '实际 "' + after.text + '"');
+      check('A3 文案 = 下次复习:1天后', after.text === '下次复习:1天后', '实际 "' + after.text + '"');
+      check('A4 文案结构恒为「下次复习:X天后」', /^下次复习:(\d+天后|今天|逾期\d+天)$/.test(after.text), '实际 "' + after.text + '"');
       check('A5 无 JS 运行时错误', s.errs.length === 0, s.errs.join(' | '));
       await s.ctx.close();
     }
@@ -181,7 +181,7 @@ async function boot(browser, seed) {
         prior: { repetition: 2, interval: 3, ease: 2.5, dueAt: Date.now() - 3600000 }
       });
       const after = await answerUntilSched(s.page);
-      check('B1 文案 = 下次复习：第 3 阶段 · 还有 7 天', after.text === '下次复习：第 3 阶段 · 还有 7 天', '实际 "' + after.text + '"');
+      check('B1 文案 = 下次复习:7天后', after.text === '下次复习:7天后', '实际 "' + after.text + '"');
       await s.ctx.close();
     }
 

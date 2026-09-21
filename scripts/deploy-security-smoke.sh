@@ -2,20 +2,30 @@
 # Chunk Lab · 部署安全自检（30 秒定性）
 #
 # 用法：
-#   bash scripts/deploy-security-smoke.sh                                  # 默认 https://chunk-lab.jaas.app
+#   bash scripts/deploy-security-smoke.sh                                  # 默认 https://chunklab.jqka.top
 #   bash scripts/deploy-security-smoke.sh https://your-domain.example
 #
 # 判读：
-#   全 ✓           → 代码侧无洞，问题只在平台选型
+#   全 ✓           → **本脚本覆盖的**路径与变体均被拒。这只是必要条件，不是充分证明。
 #   任何 ✗（200）  → 立刻处理，存在真实信息泄露
 #   ! 连接失败     → 网络/DNS 不可达，本机换网络重试（不要当成"安全"）
 #
-# 对应防护：server/index.js「静态托管前端」段的路径白名单中间件
+# ⚠️ 能力边界（2026-09-21 P0 之后写死，别再把它当成「代码侧无洞」的证明）：
+#    本脚本是**黑名单抽样**，只能证明「已列的路径与已生成的变体没漏」。
+#    2026-09-21 实测：朴素路径 34 条全 403，而 `//server/index.js`、`/%73erver/index.js`
+#    在线上返回 200 —— 可下载后端源码与 SQLite 整库（含 WAL）。旧版本只测朴素写法，
+#    因此**结构上不可能发现该洞**，却报告「48 通过 / 0 失败」，被当成已验证。
+#    所以：① 敏感路径一律连**变体族**一起测；② curl 必须 `--path-as-is`
+#    （否则 curl 自己会规范化 `//`，测不到真实行为）；③ 换域名/换反代后必须重跑。
+#
+# 对应防护：server/middleware/static-guard.js（先规范化再判定；**是黑名单**）
 #           + server/auth.js assertSecure()（REQUIRE_AUTH=true 时强制 JWT_SECRET 非占位且 ≥32 字符）
+#
+# 回归测试：server/static-guard.test.js（变体族 + 负向自证，离线可跑）
 
 set -u
 
-BASE="${1:-https://chunk-lab.jaas.app}"
+BASE="${1:-https://chunklab.jqka.top}"
 BASE="${BASE%/}"
 
 PASS=0; FAIL=0; WARN=0
@@ -26,8 +36,23 @@ c_warn() { printf "  \033[33m!\033[0m %s\n" "$1"; WARN=$((WARN+1)); }
 
 code_of() {
   local out
-  out=$(curl -s -o /dev/null -w '%{http_code}' --max-time 12 "$1" 2>/dev/null)
+  # --path-as-is 是必需的：不加的话 curl 会把 `//` 规范化掉，变体族就永远测不出真实行为。
+  out=$(curl -s --path-as-is -o /dev/null -w '%{http_code}' --max-time 12 "$1" 2>/dev/null)
   if [ -z "$out" ] || [ "$out" = "000" ]; then echo "000"; else echo "$out"; fi
+}
+
+# 敏感路径的**变体族**：每一种都是历史上真实可用（或理论上可构造）的绕过写法。
+# 原理：守卫若把正则打在未解码的 req.path 上，而 express.static 会解码，则全部可绕过。
+enc_first() { printf '%%%02X' "'${1:0:1}"; }
+variants_of() {
+  local p="$1" rest first
+  rest="${p#/}"
+  first="${rest%%/*}"
+  printf '%s\n' "/$p"                                # 双斜杠
+  printf '%s\n' "/$(enc_first "$first")${p:2}"       # 首段首字符百分号编码
+  printf '%s\n' "/%2F$rest"                          # 前导斜杠编码
+  printf '%s\n' "/..%2F$rest"                        # 编码穿越
+  case "$p" in *.*) printf '%s\n' "$(printf '%s' "$p" | sed 's/\./%2E/g')" ;; esac   # 点编码
 }
 
 echo ""
@@ -39,7 +64,7 @@ echo "=============================================="
 
 # ---------- 1. 敏感路径必须被拒 ----------
 echo ""
-echo "[1/5] 敏感路径必须被拒（403 / 404 / 401）"
+echo "[1/5] 敏感路径必须被拒（朴素写法 + 变体族）"
 DENY_PATHS="
 /server/index.js
 /server/auth.js
@@ -75,6 +100,7 @@ DENY_PATHS="
 /store.test.js
 /rev.test.js
 "
+VARIANT_OK=0
 for p in $DENY_PATHS; do
   c=$(code_of "$BASE$p")
   case "$c" in
@@ -82,7 +108,21 @@ for p in $DENY_PATHS; do
     000)         c_warn "$(printf '%-48s 连接失败（网络/DNS 不可达）' "$p")" ;;
     *)           c_bad  "$(printf '%-48s %s  ← 应被拒，实际可访问！' "$p" "$c")" ;;
   esac
+  # —— 变体族：任一可访问即 FAIL。2026-09-21 P0 的回归点，不要删。——
+  #    该洞的特征是「朴素 403、变体 200」，只测朴素写法必然报假绿。
+  while IFS= read -r v; do
+    [ -n "$v" ] || continue
+    cv=$(code_of "$BASE$v")
+    case "$cv" in
+      403|404|401|400) VARIANT_OK=$((VARIANT_OK+1)) ;;
+      000)             c_warn "$(printf '%-52s 连接失败（变体）' "$v")" ;;
+      *)               c_bad  "$(printf '%-52s %s  ← 变体绕过！应被拒（检查 static-guard 的规范化）' "$v" "$cv")" ;;
+    esac
+  done <<VARIANTS
+$(variants_of "$p")
+VARIANTS
 done
+echo "      （变体族被拒 $VARIANT_OK 条 —— 只统计通过项，避免刷屏）"
 
 # ---------- 2. 前端必需资源必须可达 ----------
 echo ""
@@ -174,7 +214,7 @@ esac
 # ---------- 汇总 ----------
 echo ""
 echo "=============================================="
-printf " 通过 %d · 失败 %d · 待人工判断 %d\n" "$PASS" "$FAIL" "$WARN"
+printf " 通过 %d · 失败 %d · 待人工判断 %d · 变体族被拒 %d\n" "$PASS" "$FAIL" "$WARN" "$VARIANT_OK"
 echo "=============================================="
 if [ "$FAIL" -gt 0 ]; then
   echo ""
@@ -182,10 +222,12 @@ if [ "$FAIL" -gt 0 ]; then
   exit 1
 elif [ "$WARN" -gt 0 ]; then
   echo ""
-  echo "结论：无致命泄露；WARN 项按需加固（package.json 拦截 / HSTS）。"
+  echo "结论：本轮覆盖项未见泄露；WARN 项按需加固（package.json 拦截 / HSTS）。"
   exit 0
 else
   echo ""
-  echo "结论：代码侧无洞，剩余风险只在托管平台本身。"
+  echo "结论：本轮覆盖的路径与变体均被拒。"
+  echo "⚠️ 这是必要条件，不是「代码侧无洞」的证明 —— 黑名单抽样只能证明「已列的没漏」。"
+  echo "   新增敏感目录、更换反向代理或域名后必须重跑本脚本。"
   exit 0
 fi

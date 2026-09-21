@@ -50,7 +50,7 @@ button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.
 .chat-area{display:flex;flex-direction:column;gap:20px;margin-bottom:6px}
 
 /* 气泡通用 */
-.chat-bubble{max-width:88%;padding:14px 18px 12px;border-radius:18px;position:relative;box-shadow:0 2px 12px rgba(46,43,37,.08);animation:bubble-in .35s ease both;border:1px solid transparent}
+.chat-bubble{max-width:88%;padding:14px 18px 12px;border-radius:18px;position:relative;box-shadow:0 2px 12px rgba(46,43,37,.08);animation:bubble-in .35s ease both;border:1px solid transparent}.bubble-audio-btn{border:0;background:transparent;color:var(--accent);padding:4px;cursor:pointer}.bubble-audio-btn svg{width:16px;height:16px;display:block}
 @keyframes bubble-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* 气泡元信息（头像+名字） */
@@ -129,8 +129,8 @@ button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.
 /* 覆盖旧样式 */
 .exercise-divider{display:none}
 .cloze-translation{display:none}
-.gap-choices{display:none}
-.exercise-label{display:none}
+.gap-choices{display:flex}
+.exercise-label{display:block}
 .exercise-help{display:none}
 .dialogue-translation{display:none}
 .scene-context{display:none}
@@ -171,7 +171,7 @@ button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.
 </style>
 <style>
 /* 对话播放器：沿用参考页的紧凑双栏阅读结构 */
-:root{--bg:#f3f5fb;--paper:#fff;--ink:#102038;--muted:#66748a;--line:#dce2eb;--accent:#2f65d6;--accent-soft:#e8f0ff;--shadow:0 8px 22px rgba(37,55,82,.10)}
+:root{--bg:#f3f5fb;--paper:#fff;--ink:#102038;--muted:#5f6e85;--line:#dce2eb;--accent:#2f65d6;--accent-soft:#e8f0ff;--shadow:0 8px 22px rgba(37,55,82,.10)}
 body{background:var(--bg)}
 .shell{max-width:1180px;padding:18px 18px 44px}
 .player-head{min-height:56px;padding:10px 16px;border:1px solid #dfe4ec;border-radius:16px;box-shadow:0 5px 16px rgba(37,55,82,.08);margin-bottom:14px}
@@ -262,6 +262,26 @@ html,body{height:100%;overflow:hidden}
 <script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="js/idb.js"></script>
 <script src="js/batch-sync.js"></script>
+<script src="js/core-identity.js"></script>
+<script src="js/core-merge.js"></script>
+<script src="js/core-activity.js"></script>
+<script src="js/core-event-bus.js"></script>
+<script src="js/core-migrations.js"></script>
+<script src="js/core-stats-signature.js"></script>
+<script src="js/core-storage-state.js"></script>
+<script src="js/core-entity-delta.js"></script>
+<script src="js/core-sync-delta.js"></script>
+<script src="js/core-sync-intents.js"></script>
+<script src="js/core-sync-payload.js"></script>
+<script src="js/core-sync-transport.js"></script>
+<script src="js/core-sync-replay.js"></script>
+<script src="js/core-sync-batch-merge.js"></script>
+<script src="js/core-sync-stats-normalize.js"></script>
+<script src="js/core-sync-learning-marks.js"></script>
+<script src="js/core-sync-entity-merge.js"></script>
+<script src="js/core-sync-kv.js"></script>
+<script src="js/core-revision-delta.js"></script>
+<script src="js/core-runtime.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="js/sync-resolution.js"></script>
@@ -270,6 +290,8 @@ html,body{height:100%;overflow:hidden}
 <script src="library.js"></script>
 <script src="js/icons.js"></script>
 <script src="js/course-cloze.js"></script>
+<script src="js/course-package-contract.js"></script>
+<script src="js/vendor/course-schema-validator.js"></script>
 <script src="course-package.js"></script>
 </body>
 </html>

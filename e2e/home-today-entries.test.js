@@ -185,7 +185,7 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
 (async function () {
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
 
     /* ===== 场景 A：1 到期 + 1 需巩固 + 0 错题本 ===== */
     {

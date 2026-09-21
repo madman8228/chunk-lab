@@ -73,8 +73,7 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
 
   const browser = await chromium.launch({
     headless: true,
-    executablePath: process.env.CHROMIUM_PATH ||
-      'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe'
+    executablePath: process.env.CHROMIUM_PATH || chromium.executablePath()
   });
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const p = await ctx.newPage();

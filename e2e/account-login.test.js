@@ -8,7 +8,9 @@ let browser,server;
 (async()=>{try{
   server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test'},stdio:'ignore'});
   let ready=false;
-  for(let i=0;i<60;i++){try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}if(ready)break;await new Promise(r=>setTimeout(r,100));}
+  /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：实测为临界窗口，宿主 node 冷启动 5.4s。
+     health 一旦 200 立即 break ⇒ 成功路径不增加耗时。 */
+  for(let i=0;i<300;i++){try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}if(ready)break;await new Promise(r=>setTimeout(r,100));}
   assert.ok(ready);
   for(const username of ['alice-test','bob-test']){
     const r=await fetch(base+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password:'test-only-password'})});
@@ -21,7 +23,12 @@ let browser,server;
   async function login(name){
     await page.locator('#chunkauth-mask input[placeholder="用户名"]').fill(name);
     await page.locator('#chunkauth-mask input[type="password"]').fill('test-only-password');
-    await page.locator('#chunkauth-mask button').click();
+    /* 登录成功后 setSession 会触发 AccountStorage 的受控 reload。
+       必须先等待这次导航完成，不能在旧页面卸载期间调用 CL.preload()。 */
+    await Promise.all([
+      page.waitForNavigation({waitUntil:'domcontentloaded'}),
+      page.locator('#chunkauth-mask button').click()
+    ]);
     await page.waitForFunction(name=>window.ChunkAPI && ChunkAPI.getToken() && JSON.parse(atob(ChunkAPI.getToken().split('.')[1])).uname===name && window.CL && !document.getElementById('chunkauth-mask') && document.documentElement.style.visibility!=='hidden',name);
     await page.evaluate(()=>CL.preload());
   }

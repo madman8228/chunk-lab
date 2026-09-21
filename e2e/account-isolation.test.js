@@ -11,7 +11,11 @@ function check(label,value){assert.ok(value,label);count++;console.log('  ✓ '+
 (async()=>{try{
   server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'false',NODE_ENV:'test'},stdio:'ignore'});
   let ready=false;
-  for(let i=0;i<60;i++){
+  /* 就绪窗口 300×100ms=30s。原为 60×100ms=6s —— 已实测为【临界窗口】：
+     同一 6s 窗口下 batch-sync 本轮通过、本文件与 account-login/account-set-credentials 本轮红，
+     而 20s/30s 窗口的用例全部通过 ⇒ 根因是窗口太短（宿主 node 冷启动实测 5.4s），非服务起不来。
+     health 一旦 200 立即 break ⇒ 放大窗口在成功路径上不增加任何耗时。 */
+  for(let i=0;i<300;i++){
     try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}
     if(ready)break;await new Promise(r=>setTimeout(r,100));
   }

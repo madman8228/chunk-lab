@@ -60,8 +60,6 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .badge.new{background:#eef1f6;color:var(--muted)}
 .badge.learn{background:var(--accent-soft);color:var(--accent)}
 
-.wrong-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.wrong-head .spacer{flex:1}
 .wrong-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--border);background:transparent}
 .wrong-row .sen{flex:1;min-width:0}
 .wrong-row .en{font-size:13.5px;font-weight:600;line-height:1.3}
@@ -71,6 +69,7 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .wrong-del{flex-shrink:0;border:none;background:transparent;color:var(--faint);width:24px;height:24px;border-radius:50%;cursor:pointer;line-height:1;padding:0;display:grid;place-items:center}
 .wrong-del .icon{width:14px;height:14px}
 .wrong-del:hover{background:var(--bad-soft);color:var(--bad)}
+.wrong-filter #btnClearWrongBook{margin-left:auto;color:var(--bad)}
 /* 触摸按压反馈（2026-09-10）：tap-highlight 已全局关闭，按压态由 :active 提供 */
 .btn:active{transform:translateY(1px)}
 .wrong-del:active{background:var(--bad-soft);color:var(--bad)}
@@ -80,7 +79,9 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 
 /* 练习临时题库按钮（在 stats 内可触发进入复习队列） */
 .review-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
-.review-row .nm{flex:1;font-size:13.5px;font-weight:600}
+.review-row .review-info{flex:1;min-width:0}
+.review-row .nm{font-size:13.5px;font-weight:600}
+.review-preview{margin-top:3px;color:var(--muted);font-size:12px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* 跨页跳转消息 */
 .cross-page-hint{font-size:12px;color:var(--faint);text-align:center;padding:8px 12px;background:var(--surface-2);border-radius:8px;margin-top:14px}
@@ -279,6 +280,26 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/batch-sync.js"></script>
+<script src="js/core-identity.js"></script>
+<script src="js/core-merge.js"></script>
+<script src="js/core-activity.js"></script>
+<script src="js/core-event-bus.js"></script>
+<script src="js/core-migrations.js"></script>
+<script src="js/core-stats-signature.js"></script>
+<script src="js/core-storage-state.js"></script>
+<script src="js/core-entity-delta.js"></script>
+<script src="js/core-sync-delta.js"></script>
+<script src="js/core-sync-intents.js"></script>
+<script src="js/core-sync-payload.js"></script>
+<script src="js/core-sync-transport.js"></script>
+<script src="js/core-sync-replay.js"></script>
+<script src="js/core-sync-batch-merge.js"></script>
+<script src="js/core-sync-stats-normalize.js"></script>
+<script src="js/core-sync-learning-marks.js"></script>
+<script src="js/core-sync-entity-merge.js"></script>
+<script src="js/core-sync-kv.js"></script>
+<script src="js/core-revision-delta.js"></script>
+<script src="js/core-runtime.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="js/sync-resolution.js"></script>
@@ -436,7 +457,19 @@ function renderStats(){
     var sep = k.indexOf('#');
     return !CL.isItemDeleted(mem,k.slice(0,sep),{cid:k.slice(sep+1)});
   });
-  var masteredCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'master'; }).length;
+  /* 「已熟练」= 考试验证通过 ∪ 用户手动标熟；两者共用同一个句子 key 去重。
+     学习记录列表早已按这个口径展示，概览也必须与之保持一致。 */
+  var masteredKeys = {};
+  keys.forEach(function(k){
+    if(classifyStat(by[k]) === 'master') masteredKeys[k] = true;
+  });
+  Object.keys(mem.mastered || {}).forEach(function(k){
+    var sep = k.indexOf('#');
+    var deckId = sep >= 0 ? k.slice(0, sep) : k;
+    var cid = sep >= 0 ? k.slice(sep + 1) : '';
+    if(!CL.isItemDeleted(mem, deckId, {cid:cid})) masteredKeys[k] = true;
+  });
+  var masteredCnt = Object.keys(masteredKeys).length;
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'weak'; }).length;
   var wrongCnt = getReinforceBook().length;
   var days = CL.dailyActivity(mem), now = new Date(), today = days[CL.ymd(now)] || {answered:0};
@@ -636,12 +669,10 @@ function renderWrongBook(body){
   }
   var focusBook = book.filter(function(b){ return reinforceNeedsReview(b); });
   var shownBook = _wrongBookFilter === 'focus' ? focusBook : book;
-  var html = '<div class="wrong-head">'+
-    '<b>错题本</b><span class="spacer"></span>'+
-    '<button class="btn sm ghost" id="btnClearWrongBook" style="color:var(--bad)">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
-  html += '<div class="stats-filter wrong-filter">'+
+  var html = '<div class="stats-filter wrong-filter">'+
     '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+book.length+'</button>'+
-    '<button class="f '+(_wrongBookFilter==='focus'?'on':'')+'" data-wrong-filter="focus">需巩固 '+focusBook.length+'</button></div>';
+    '<button class="f '+(_wrongBookFilter==='focus'?'on':'')+'" data-wrong-filter="focus">需巩固 '+focusBook.length+'</button>'+
+    '<button class="btn sm ghost" id="btnClearWrongBook">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
   if(!shownBook.length){
     html += '<div class="empty-tip" style="padding:18px">当前没有需巩固的错题。切换到“全部”可查看所有记录。</div>';
   } else {
@@ -749,7 +780,7 @@ function renderReviewList(body){
   html += listPager(dues.length,'due');
   html += '<div style="margin-top:18px;padding-top:14px">'+
     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'+
-    '<b style="font-size:13px;color:var(--muted)">复测熟练句子</b> '+
+    '<b style="font-size:13px;color:var(--muted)">复测熟练句子（不计入待复习）</b> '+
     '</div>';
   var decksWithMarked = [];
   allDecks().forEach(function(d){
@@ -764,8 +795,12 @@ function renderReviewList(body){
     html += '<div class="stats-list">';
     decksWithMarked.forEach(function(entry){
       var d = entry.deck;
+      var preview = entry.items[0] && entry.items[0].sentence ? entry.items[0].sentence : '';
       html += '<div class="review-row">'+
+        '<div class="review-info">'+
         '<div class="nm">'+esc(displayDeckName(d.name))+' <span style="font-size:12px;color:var(--faint);font-weight:400">'+entry.items.length+' 句</span></div>'+ 
+        '<div class="review-preview">'+esc(preview)+(entry.items.length > 1 ? ' …' : '')+'</div>'+
+        '</div>'+
         '<button class="btn sm" data-rev-deck="'+esc(d.id)+'" style="color:#b45309;border-color:#fcd34d">'+(window.Icons?Icons.svg('book'):'')+' 复习 '+entry.items.length+' 句</button>'+
         '</div>';
     });

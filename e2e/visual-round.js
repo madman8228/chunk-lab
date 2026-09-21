@@ -85,8 +85,7 @@ function sampleSentences(n) {
   const BASE = 'http://127.0.0.1:' + PORT;
   const browser = await chromium.launch({
     headless: true,
-    executablePath: process.env.CHROMIUM_PATH ||
-      'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe'
+  executablePath: process.env.CHROMIUM_PATH || chromium.executablePath()
   });
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
   await startServer();

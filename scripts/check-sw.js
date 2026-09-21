@@ -22,17 +22,18 @@ const { hashFiles } = require('./sw-hash.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const SW = path.join(ROOT, 'sw.js');
+const STRICT = process.argv.includes('--strict') || process.env.CI === 'true' || process.env.CI === '1';
 
 let sw;
 try { sw = fs.readFileSync(SW, 'utf8'); }
-catch (e) { console.error('[check-sw] 找不到 sw.js，跳过'); process.exit(0); }
+catch (e) { console.error('[check-sw] 找不到 sw.js'); process.exit(STRICT ? 1 : 0); }
 
 const cacheMatch = sw.match(/^const CACHE = '([^']*)';/m);
 const listMatch = sw.match(/const PRECACHE = \[([\s\S]*?)\n\];/);
 const softMatch = sw.match(/const PRECACHE_SOFT = \[([\s\S]*?)\n\];/);
 if (!cacheMatch || !listMatch) {
-  console.error('[check-sw] 未能在 sw.js 找到 CACHE 常量或 PRECACHE 数组，跳过（文件结构变了？）');
-  process.exit(0);
+  console.error('[check-sw] 未能在 sw.js 找到 CACHE 常量或 PRECACHE 数组');
+  process.exit(STRICT ? 1 : 0);
 }
 
 const precache = listMatch[1].split(',').map(s => s.trim().replace(/['"]/g, '')).filter(Boolean);
@@ -79,7 +80,7 @@ try {
 if (dirty) {
   console.warn('[check-sw] ⚠ CACHE=' + cur + ' 与工作区哈希 ' + calc + ' 不一致，但检测到未提交的业务文件改动（WIP）');
   console.warn('[check-sw]   提交前请运行 `node scripts/gen-sw.js` 并一并提交，否则线上/缓存仍是旧版。');
-  process.exit(0);
+  process.exit(STRICT ? 1 : 0);
 }
 console.error('[check-sw] ✗ CACHE=' + cur + ' 与资源内容哈希 ' + calc + ' 不一致，且工作区干净 → 漏跑 gen-sw');
 console.error('[check-sw] 运行 `node scripts/gen-sw.js` 重新生成后再提交');

@@ -48,7 +48,7 @@ function check(name, ok, detail) {
 (async function () {
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage();
     const contentRequests = [];
     const errors = [];
@@ -167,7 +167,8 @@ function check(name, ok, detail) {
     await p.route('**/api/**', r => r.abort());
     await p.goto(BASE+'/main.html?direct=1');
     await p.waitForFunction(() => window.S && S.items && S.items.length > 1 && typeof showFullSentence === 'function');
-    await p.evaluate(async () => { showFullSentence(); await saveStore(); });
+    const answerPersist = await p.evaluate(async () => { showFullSentence(); const saved = await saveStore(); const current = CL.loadMem(); return { saved, events: current.stats.events.length, answered: current.stats.totalAnswered }; });
+    if (!answerPersist.saved || answerPersist.events < 1 || answerPersist.answered < 1) throw new Error('答题记录未完成持久化：' + JSON.stringify(answerPersist));
     await p.goto(BASE+'/stats.html');
     /* ⚠️ 只等「元素出现」不够：stats.html 是两段式渲染 ——
        ① paintLocalStats（180ms 定时器）先用 localStorage 同步副本画一版，

@@ -38,6 +38,28 @@ CREATE TABLE IF NOT EXISTS users (
   created_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+/* 固定管理员账号：用户名固定为 admin，密码只保存 bcrypt 哈希。首次启动时由
+   ADMIN_PASSWORD 初始化，之后管理员密码修改直接写入本表，不依赖明文环境变量。 */
+CREATE TABLE IF NOT EXISTS admin_users (
+  id            INTEGER PRIMARY KEY CHECK (id = 1),
+  username      TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  token_version INTEGER NOT NULL DEFAULT 1,
+  created_at    TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+/* 每个账号每天最多一行，用于统计访问活跃度，避免给每次打开页面写一条明细事件。 */
+CREATE TABLE IF NOT EXISTS user_activity (
+  user_id       INTEGER NOT NULL,
+  day           TEXT NOT NULL,
+  first_seen_at INTEGER NOT NULL,
+  last_seen_at  INTEGER NOT NULL,
+  page_views    INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (user_id, day),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS user_batch_receipts (
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   request_id TEXT NOT NULL,
@@ -218,6 +240,7 @@ CREATE INDEX IF NOT EXISTS idx_sbs_user ON user_sentence_stats(user_id);
 CREATE INDEX IF NOT EXISTS idx_events_user ON user_events(user_id);
 CREATE INDEX IF NOT EXISTS idx_events_user_at ON user_events(user_id, at);
 CREATE INDEX IF NOT EXISTS idx_feedback_created ON feedback(created_at);
+CREATE INDEX IF NOT EXISTS idx_activity_day ON user_activity(day);
 `);
 
 /* ----- ADR-005 迁移：给已存在的表补 rev / deleted_at 列 -----
@@ -255,6 +278,8 @@ db.exec(SEQ_TABLES.map(function (t) {
 /* 反馈多图（2026-09-11）：feedback 加 image_paths（JSON 数组字符串）。
    保留 image_path 不动 —— 它继续存第一张图，旧读法（含既有查询与测试）不受影响。 */
 addColumnIfMissing('feedback', 'image_paths', 'TEXT');
+addColumnIfMissing('feedback', 'status', "TEXT NOT NULL DEFAULT 'open'");
+addColumnIfMissing('admin_users', 'token_version', 'INTEGER NOT NULL DEFAULT 1');
 
 /* 存量行回填 + 计数器初始化（幂等）。
    ★ 两者必须一起做：回填把存量行盖成 seq=1，计数器也必须抬到 ≥1，

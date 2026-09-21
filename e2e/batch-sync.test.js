@@ -8,7 +8,10 @@ function check(label,v){assert.ok(v,label);count++;console.log('  ✓ '+label);}
 (async()=>{try{
   server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test'},stdio:'ignore'});
   let ready=false;
-  for(let i=0;i<60;i++){try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}if(ready)break;await new Promise(r=>setTimeout(r,100));}assert.ok(ready);
+  /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：实测为临界窗口，宿主 node 冷启动 5.4s。
+     本文件上轮靠重试才过、本轮直接过 ⇒ 落在临界带上，必须抬窗口。
+     health 一旦 200 立即 break ⇒ 成功路径不增加耗时。 */
+  for(let i=0;i<300;i++){try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}if(ready)break;await new Promise(r=>setTimeout(r,100));}assert.ok(ready);
   const registered=await fetch(base+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'batch-client',password:'test-password'})});assert.ok(registered.ok);
   const token=(await registered.json()).token;
   browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||chromium.executablePath()});

@@ -250,6 +250,45 @@ export function buildDistractors(it, currentItems, allItems) {
   return picks;
 }
 
+/* 生成选择模式的一次性选项池。
+   选项池只负责纯数据：正确项、干扰项和固定的展示顺序；页面负责保存题目引用、
+   处理点击以及根据答题状态重新渲染。random 可注入，便于稳定测试和复现问题。 */
+export function buildChoicePool(corrects, distractors, random) {
+  var right = Array.isArray(corrects) ? corrects.slice() : [];
+  var wrong = Array.isArray(distractors) ? distractors.slice() : [];
+  var order = [];
+  var rng = typeof random === 'function' ? random : Math.random;
+  wrong.forEach(function (v) { order.push({ v: v, ci: -1 }); });
+  right.forEach(function (v, i) { order.push({ v: v, ci: i }); });
+  for (var i = order.length - 1; i > 0; i--) {
+    var j = Math.floor(rng() * (i + 1));
+    var t = order[i]; order[i] = order[j]; order[j] = t;
+  }
+  return { corrects: right, distractors: wrong, order: order };
+}
+
+/* 生成选择按钮 HTML。
+   不包含 DOM 操作，也不把已答对的正确项重新展示；escapeHtml 由页面注入，
+   使这个边界既能单测，又不会把安全策略复制到核心模块里。 */
+export function buildChoiceMarkup(pool, status, onboardingSeen, escapeHtml) {
+  var source = pool && Array.isArray(pool.order) ? pool.order : [];
+  var states = Array.isArray(status) ? status : [];
+  var esc = typeof escapeHtml === 'function' ? escapeHtml : function (v) { return String(v == null ? '' : v); };
+  var html = '';
+  if (onboardingSeen !== true) {
+    html += '<div id="chunkOnboardingHint" role="status" aria-live="polite">'
+      + '<span>点选词块作答，答对后自动进入下一空</span>'
+      + '<button type="button" class="onboarding-dismiss" data-dismiss-chunk-onboarding>知道了</button>'
+      + '</div>';
+  }
+  source.forEach(function (entry) {
+    if (!entry || (entry.ci >= 0 && states[entry.ci] === 'ok')) return;
+    html += '<button class="choice' + (entry.ci < 0 ? ' distractor' : '')
+      + '" type="button" data-v="' + esc(entry.v) + '">' + esc(entry.v) + '</button>';
+  });
+  return html;
+}
+
 /* chunk 作答判定：归一化比较 + 同义替换 alternatives */
 export function judgeChunk(val, right, alternatives) {
   return [right].concat(alternatives || []).some(function (a) { return norm(val) === norm(a); });

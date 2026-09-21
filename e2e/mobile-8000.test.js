@@ -35,7 +35,9 @@ const manifest = {schemaVersion:1,contentVersion:'capacity-fixture-v1',decks:[en
 let server,browser,passed=0;
 function check(name,ok){ if(!ok) throw new Error(name); passed++; console.log('  ✓ '+name); }
 async function ready(){
-  for(let i=0;i<50;i++){
+  /* 就绪窗口 300×100ms=30s。原为 50×100ms=5s，小于宿主普通 node 冷启动实测 5.4s ⇒ 必然假红。
+     health 一旦 200 立即 return，放大窗口在成功路径上不增加任何耗时。 */
+  for(let i=0;i<300;i++){
     const ok = await new Promise(resolve=>{
       const req = http.get(BASE+'/api/health',res=>{res.resume();resolve(res.statusCode===200);});
       req.on('error',()=>resolve(false)); req.setTimeout(500,()=>req.destroy());
@@ -60,9 +62,10 @@ async function ready(){
       if(url.includes('/detail-')){details++;detailBytes+=Buffer.byteLength(body);} else indexes++;
       return route.fulfill({contentType:'application/json',body});
     });
-    const page = await context.newPage(), errors=[];
+    const page = await context.newPage(), errors=[], consoleLogs=[];
     page.setDefaultTimeout(30000);
     page.on('pageerror',e=>errors.push(e.message));
+    page.on('console',msg=>consoleLogs.push(msg.type()+':'+msg.text()));
     const cdp = await context.newCDPSession(page);
     await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
     await cdp.send('Performance.enable');
@@ -86,7 +89,8 @@ async function ready(){
     await page.click('[data-tab="sent"]');
     await page.waitForFunction(()=>document.querySelectorAll('.stats-detail-row').length>0);
     const statsMs=Date.now()-statsStart;
-    check('统计只加载索引，不额外请求详情',details===1 && indexes===40);
+    if(!(details===1 && indexes===40)) throw new Error('统计只加载索引，不额外请求详情（details='+details+'，indexes='+indexes+'）');
+    passed++; console.log('  ✓ 统计只加载索引，不额外请求详情');
     check('8000-句统计每页最多50条',await page.locator('.stats-detail-row').count()===50);
     await page.locator('[data-list-key="sent-all"][data-list-page="1"]').click();
     check('统计下一页保持50条且编号连续',(await page.locator('.row-num').first().textContent())==='#51' && await page.locator('.stats-detail-row').count()===50);
@@ -165,7 +169,21 @@ async function ready(){
       page.waitForURL('**/main.html?autostart=1', {waitUntil:'domcontentloaded'}),
       page.locator('#testStartDue').click()
     ]);
-    await page.waitForFunction(()=>window.S && S.items.length===10 && S.deck.id.startsWith('srs-'), {timeout:60000});
+    try{
+      await page.waitForFunction(()=>window.S && S.items.length===10 && S.deck.id.startsWith('srs-'), undefined, {timeout:60000});
+    }catch(error){
+      const state = await page.evaluate(()=>({
+        href:location.href,
+        pagePractice:!!document.querySelector('#pagePractice:not(.hidden)'),
+        bootHidden:document.querySelector('#bootScreen') && document.querySelector('#bootScreen').hidden,
+        deck:window.S && window.S.deck && {id:window.S.deck.id,items:(window.S.deck.items||[]).length},
+        items:window.S && window.S.items && window.S.items.length,
+        zh:document.querySelector('#zh') && document.querySelector('#zh').textContent,
+        pending:localStorage.getItem('chunklab_pending_review_deck'),
+        logs:consoleLogs.slice(-20)
+      }));
+      throw new Error(error.message+'; state='+JSON.stringify(state));
+    }
     const reviewMs=Date.now()-reviewStart;
     check('开始复习不补齐整个队列详情',details===1 && await page.evaluate(()=>S.tempTotal===8000 && S.items.every(it=>Array.isArray(it.chunks))));
     check('复习来源ID保留',await page.evaluate(id=>S.items.every(it=>it._statsDeckId===id),deckId));

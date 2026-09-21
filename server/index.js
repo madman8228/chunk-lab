@@ -16,11 +16,32 @@ const cors = require('cors');
 const path = require('path');
 const db = require('./db');
 const auth = require('./auth');
+const admin = require('./admin');
 const validate = require('./validate');
 const ai = require('./ai');
 const compress = require('./compress');
 const apiCompress = require('./api-compress');
 const feedback = require('./feedback');
+const { createAuthRateLimiter } = require('./middleware/auth-rate');
+const { createStaticGuard } = require('./middleware/static-guard');
+const { createChangeSequence } = require('./services/change-seq');
+const { createSnapshotReader } = require('./services/data-snapshot');
+const { createDataWriters } = require('./services/data-writers');
+const { createDataRows } = require('./services/data-rows');
+const { createDataMigrations } = require('./services/data-migrations');
+const { createDataSave } = require('./services/data-save');
+const { createBatchReplacement } = require('./services/batch-replacement');
+const { createAdminOverview } = require('./services/admin-overview');
+const { registerSyncRoutes } = require('./routes/sync');
+const { registerCourseRoutes } = require('./routes/courses');
+const { registerDeckRoutes } = require('./routes/decks');
+const { registerBackupRoutes } = require('./routes/backup');
+const { registerFeedbackRoutes } = require('./routes/feedback');
+const { registerAiRoutes } = require('./routes/ai');
+const { registerAdminRoutes } = require('./routes/admin');
+const { registerAuthRoutes } = require('./routes/auth');
+const { registerSystemRoutes } = require('./routes/system');
+const { registerDataRoutes } = require('./routes/data');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
 /* 已迁到行表 user_entity_rows 的 kv 键 → kind 映射（客户端键名 → 服务端 kind）。
@@ -71,6 +92,26 @@ app.use(cors({
    日志：方法 路径 状态码 耗时(ms) 用户id（轻量解析 token，不阻塞鉴权）
    指标：ai_cache 命中/未命中计数 + /api/stats 查询接口（匿名只读，无用户数据） */
 const metrics = { aiCacheHits: 0, aiCacheMisses: 0, startedAt: new Date().toISOString() };
+
+function shanghaiDay(ms) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(new Date(ms));
+  const values = {};
+  parts.forEach(function (part) { values[part.type] = part.value; });
+  return values.year + '-' + values.month + '-' + values.day;
+}
+
+function touchUserActivity(userId) {
+  const now = Date.now();
+  const day = shanghaiDay(now);
+  db.prepare(
+    "INSERT INTO user_activity (user_id,day,first_seen_at,last_seen_at,page_views) VALUES (?,?,?,?,1) " +
+    "ON CONFLICT(user_id,day) DO UPDATE SET last_seen_at=excluded.last_seen_at, page_views=user_activity.page_views+1"
+  ).run(userId, day, now, now);
+}
+
+const { adminOnly, parseRangeDays, adminOverview } = createAdminOverview({ db, admin, shanghaiDay });
 function userIdFromReq(req) {
   try {
     const h = req.headers.authorization || '';
@@ -92,29 +133,6 @@ app.use(function (req, res, next) {
 /* API 响应压缩（异步 brotli，冷路径）：GET /api/data 8000 句时 7191KB → 648KB。
    必须挂在所有 /api 路由之前；只接管 res.json，静态资源走下面的 staticCompress。 */
 app.use('/api', apiCompress());
-app.get('/api/stats', function (req, res) {
-  const total = metrics.aiCacheHits + metrics.aiCacheMisses;
-  res.json({
-    ok: true,
-    uptimeSec: Math.round((Date.now() - new Date(metrics.startedAt).getTime()) / 1000),
-    aiCache: {
-      hits: metrics.aiCacheHits,
-      misses: metrics.aiCacheMisses,
-      hitRate: total > 0 ? Math.round(metrics.aiCacheHits / total * 1000) / 1000 : null
-    }
-  });
-});
-
-app.get('/api/health', function (req, res) { res.json({ ok: true, ts: Date.now() }); });
-
-/* 公开配置：前端据此决定是否弹登录框 / 是否启用联网 AI。无需鉴权。
-   aiEnabled = AI_EXPLAIN_ENABLED：前端拿到 false（或拿不到 config）时收敛 AI 数据面
-   （清存量 settings.apiKey，防明文 Key 随 mem 上云；删本地 ai_cache 残留），
-   拿到 true 时保留 Key（自托管降级通道，仅服务端未配置 DEEPSEEK_API_KEY 时被接受）。 */
-app.get('/api/config', function (req, res) {
-  res.json({ requireAuth: auth.REQUIRE_AUTH, serverVersion: 1, authAvailable: true, aiEnabled: AI_EXPLAIN_ENABLED });
-});
-
 /* ===================== 鉴权 ===================== */
 /* P1 认证限速（2026-09-09）：防暴力破解/撞库/批量注册。
    纯内存固定窗口（15 分钟），单实例自托管够用；多实例负载均衡需换共享存储（Redis）。
@@ -126,96 +144,34 @@ const RATE_WINDOW_MS = 15 * 60 * 1000;
 const AUTH_RATE = {
   register: 10,  // 每 IP 每窗口最多 10 次注册请求（成功/失败都计，防枚举与批量建号）
   loginFail: 10, // 每 IP 每窗口最多 10 次登录失败 → 锁定 429（成功登录清零）
+  adminLoginFail: 5, // 管理员每 IP 每窗口最多 5 次失败 → 第 6 次起锁定 429
   credChange: 10 // 每 IP 每窗口最多 10 次凭据修改；同源「用户名已被占用」提示也是枚举面，故一并限速
 };
-const rateBuckets = new Map(); // ip -> { register:number[], loginFail:number[] } 时间戳数组
-
-function rateBlocked(ip, kind, max) {
-  const now = Date.now();
-  const b = rateBuckets.get(ip);
-  const arr = b && b[kind];
-  if (!arr) return false;
-  while (arr.length && arr[0] <= now - RATE_WINDOW_MS) arr.shift();
-  return arr.length >= max;
-}
-function rateHit(ip, kind, max) { // 记一次；已达上限返回 false（调用方回 429）
-  const now = Date.now();
-  let b = rateBuckets.get(ip);
-  if (!b) { b = {}; rateBuckets.set(ip, b); }
-  let arr = b[kind];
-  if (!arr) { arr = []; b[kind] = arr; }
-  while (arr.length && arr[0] <= now - RATE_WINDOW_MS) arr.shift();
-  if (arr.length >= max) return false;
-  arr.push(now);
-  return true;
-}
-function rateClear(ip, kind) {
-  const b = rateBuckets.get(ip);
-  if (b) delete b[kind];
-}
-/* 定时清空过期桶，防 Map 无限膨胀（unref：不阻塞进程退出） */
-setInterval(function () {
-  const now = Date.now();
-  for (const [ip, b] of rateBuckets) {
-    for (const k of Object.keys(b)) {
-      const arr = b[k];
-      while (arr.length && arr[0] <= now - RATE_WINDOW_MS) arr.shift();
-      if (!arr.length) delete b[k];
-    }
-    if (!Object.keys(b).length) rateBuckets.delete(ip);
-  }
-}, RATE_WINDOW_MS).unref();
-
-function send429(res) {
-  res.set('Retry-After', String(Math.ceil(RATE_WINDOW_MS / 1000)));
-  res.status(429).json({ error: '操作过于频繁，请 15 分钟后再试' });
-}
-
-app.post('/api/auth/register', function (req, res) {
-  if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无需注册' }); // P1：开放模式注册无意义且有滥用面
-  if (!rateHit(req.ip, 'register', AUTH_RATE.register)) return send429(res); // 成功/失败都计数
-  try {
-    const u = auth.register(req.body.username, req.body.password);
-    const token = auth.signToken(u.id, u.username);
-    res.json({ token: token, user: { id: u.id, username: u.username } });
-  } catch (e) { res.status(400).json({ error: e.message }); }
+const authRate = createAuthRateLimiter({ windowMs: RATE_WINDOW_MS });
+const { rateBlocked, rateHit, rateClear, send429 } = authRate;
+registerAdminRoutes({
+  app,
+  admin,
+  auth,
+  db,
+  adminOnly,
+  adminOverview,
+  parseRangeDays,
+  rateBlocked,
+  rateClear,
+  rateHit,
+  send429,
+  authRate: AUTH_RATE
 });
 
-app.post('/api/auth/login', function (req, res) {
-  if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无需登录' }); // P1：开放模式登录取缔
-  const ip = req.ip;
-  if (rateBlocked(ip, 'loginFail', AUTH_RATE.loginFail)) return send429(res);
-  try {
-    const u = auth.login(req.body.username, req.body.password);
-    rateClear(ip, 'loginFail'); // 成功登录清零失败计数（防误锁）
-    const token = auth.signToken(u.id, u.username);
-    res.json({ token: token, user: { id: u.id, username: u.username } });
-  } catch (e) {
-    rateHit(ip, 'loginFail', AUTH_RATE.loginFail); // 仅失败计数
-    res.status(401).json({ error: e.message });
-  }
-});
-
-app.get('/api/auth/me', auth.authenticate, function (req, res) {
-  /* 账号名的唯一真相是 users 表 —— token 里的 uname 只是签发时的副本，用户改名后即过期，
-     故此处必须回查数据库，不能直接把 req.username 回给前端。 */
-  const user = auth.readUser(req.userId);
-  if (!user) return res.status(401).json({ error: '账号不存在或已注销' });
-  res.json({ user: user });
-});
-
-/* 设置「自己」账号的用户名 / 密码（二者可只传其一）。
-   用途：首访自动注册的静默游客账号（guest_<随机>，密码随机且用户不知晓）无法在另一台设备登回，
-   本接口让用户就地把它设成自己记得住的账号 —— user_id 不变 ⇒ 学习数据零迁移。
-   越权防护：userId 只取自 token（req.userId），不接受请求体传入，因此改不到别人的账号。 */
-app.post('/api/auth/credentials', auth.authenticate, function (req, res) {
-  if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无账号概念' });
-  if (!rateHit(req.ip, 'credChange', AUTH_RATE.credChange)) return send429(res);
-  try {
-    const body = req.body || {};
-    const user = auth.setCredentials(req.userId, { username: body.username, password: body.password });
-    res.json({ ok: true, user: user });
-  } catch (e) { res.status(400).json({ error: e.message }); }
+registerAuthRoutes({
+  app,
+  auth,
+  rateBlocked,
+  rateHit,
+  rateClear,
+  send429,
+  limits: AUTH_RATE
 });
 
 /* ===================== 数据读写 ===================== */
@@ -226,241 +182,14 @@ app.post('/api/auth/credentials', auth.authenticate, function (req, res) {
    ★ 增量模式必须显式给出删除清单（deleted.* / entityGone），见下方注释。
    ★ 增量返回的 `mem` 是**局部**对象（只含变更项），老客户端拿到会当成全量 → 丢数据。
      所以增量纯 opt-in：只有显式传 since 才会走到，默认路径逐字节不变。 */
-function buildMemSnapshot(userId, since) {
-  const seqNow = currentSeq(userId);
-  /* 水位超前于服务端（库被回滚/重置/换过库）→ 本地水位与这份数据不同源，增量无从算起，
-     退回全量。这是协议规则而非兜底：不退的话客户端会永远只拉增量、静默少数据。 */
-  const isDelta = (since != null) && (since <= seqNow);
-
-  const W = function (aliveOnly) {
-    return 'user_id=?' + (aliveOnly ? ' AND deleted_at IS NULL' : '') +
-      (isDelta ? ' AND seq>? AND seq<=?' : '');
-  };
-  const A = isDelta ? [userId, since, seqNow] : [userId];
-  /* ⚠️ 必须用展开调用（stmt.all(...args)）：写成 stmt.all.apply(null, args) 会丢掉 this，
-     better-sqlite3 的语句方法绑在语句对象上，丢 this 直接抛错。 */
-  const rows = function (sql, aliveOnly, extra) {
-    const s = db.prepare(sql.replace('{W}', W(aliveOnly)));
-    return s.all(...A.concat(extra || []));
-  };
-
-  const deckRows = rows('SELECT id,name,items_json,builtin,is_public,rev FROM user_decks WHERE {W}', true);
-  const decks = deckRows.map(function (r) {
-    return { id: r.id, name: r.name, items: JSON.parse(r.items_json), builtin: !!r.builtin, isPublic: !!r.is_public };
-  });
-  // revs 需含软删行：让其他设备能判断本地副本是否已过期（软删也是版本演进）
-  const deckRevs = {};
-  rows('SELECT id,rev FROM user_decks WHERE {W}', false).forEach(function (r) { deckRevs[r.id] = r.rev; });
-
-  const kvRows = rows('SELECT k,v_json,rev FROM user_kv WHERE {W}', true);
-  const kv = {};
-  kvRows.forEach(function (r) { kv[r.k] = JSON.parse(r.v_json); });
-  const kvRevs = {};
-  rows('SELECT k,rev FROM user_kv WHERE {W}', false).forEach(function (r) { kvRevs[r.k] = r.rev; });
-
-  /* stats 的两个大对象从行表组装（2026-09-10 拆表，见 db.js 表注释）。
-     对外协议形状**完全不变** —— 客户端仍旧拿到 stats.bySentence / stats.events，
-     变的只是服务端存储方式与上行增量。blob 里残留的旧值由启动迁移清掉（migrateStatsToRows）。 */
-  const sbsRows = rows('SELECT sentence_key,data_json FROM user_sentence_stats WHERE {W}', true);
-  const bySentence = {};
-  sbsRows.forEach(function (r) {
-    var st = JSON.parse(r.data_json);
-    /* 去冗余（2026-09-10）：deckName / translation 是「展示冗余」——
-       客户端对 translation 从不读原始值（统计页恒用题库 item 重算，见 stats.html
-       renderSentenceList 的 Object.assign({}, st, {translation: it.translation})）；
-       deckName 只在旧 key 迁移时读（新条目 deckId 命中 known 直接跳过）。
-       两者都能从 deckId + 题库 item 重建，组装时剥离让下行 GET 立省 ~25%，
-       且不改任何客户端行为（statSig 只 hash SRS 计数，不含这俩字段，剥离不触发误重传）。 */
-    if (st && typeof st === 'object') { delete st.deckName; delete st.translation; }
-    bySentence[r.sentence_key] = st;
-  });
-  const evRows = rows('SELECT data_json FROM user_events WHERE {W} ORDER BY at,id', true);
-  const events = evRows.map(function (r) {
-    var ev = JSON.parse(r.data_json);
-    /* 去冗余（2026-09-10）：answer 事件的 deckId / sentence 与 key（=deckId#cid）重复，
-       且全链路从未被读取 —— mergeStats 只用 id/kind/ok/key，backfillDaysLog 只用 kind/at。
-       round 事件本就只有 id/kind/at。剥掉让下行 events 立省 ~18.7%（占总量）。 */
-    if (ev && typeof ev === 'object') { delete ev.deckId; delete ev.sentence; }
-    return ev;
-  });
-
-  /* ★ 增量模式下 stats 基座（totalRounds / totalAnswered / daysLog…）**一律完整下发**。
-     它体积很小，但「基座缺失或用 0 兜底」会让客户端的重建式合并（mergeStats 按
-     `总数 - 事件侧计数` 反推历史基线）彻底算错。走增量的只有 bySentence / events 这两个大对象。 */
-  const statsBase = isDelta
-    ? (function () {
-        const r = db.prepare("SELECT v_json FROM user_kv WHERE user_id=? AND k='stats' AND deleted_at IS NULL").get(userId);
-        return r ? JSON.parse(r.v_json) : { totalRounds: 0, totalAnswered: 0 };
-      })()
-    : (kv.stats || { totalRounds: 0, totalAnswered: 0 });
-
-  /* mastered / reinforceBook / deletedItems 从行表组装（2026-09-10 第二轮，见 db.js 表注释）。
-     对外形状与拆表前完全一致，变的是存储与上行增量方式。
-
-     ★ 为什么要额外下发 entityGone（删除墓碑）：
-       客户端对这三者的合并语义是「并集 + 墓碑」（与 stats 一致，靠并集重建/求并，幂等）。
-       只给存活行是不够的 —— 设备 A 取消标熟某句后，若 B 拿不到墓碑，
-       B 的本地副本仍持有该 key，下次上行会把它重新写活（复活）。
-       重新标熟/恢复删除都是低频操作，墓碑总量很小（每条约 25 字节），随全量响应下发即可。 */
-  const entityMastered = {};
-  rows('SELECT item_key,data_json FROM user_entity_rows WHERE {W} AND kind=? ORDER BY rowid', true, ['mastered'])
-    .forEach(function (r) { entityMastered[r.item_key] = JSON.parse(r.data_json); });
-  const entityReinforce = rows('SELECT item_key,data_json FROM user_entity_rows WHERE {W} AND kind=? ORDER BY rowid', true, ['reinforce'])
-    .map(function (r) { return JSON.parse(r.data_json); });
-  const entityDeletedItems = {};
-  rows('SELECT item_key FROM user_entity_rows WHERE {W} AND kind=?', true, ['deletedItem'])
-    .forEach(function (r) { entityDeletedItems[r.item_key] = true; });
-  const entityGone = {};
-  ['mastered', 'reinforce', 'deletedItem'].forEach(function (kind) {
-    entityGone[kind] = rows('SELECT item_key FROM user_entity_rows WHERE {W} AND kind=? AND deleted_at IS NOT NULL ORDER BY item_key', false, [kind])
-      .map(function (r) { return r.item_key; });
-  });
-
-  const mem = {
-    decks: decks,
-    best: kv.best || {},
-    mastered: entityMastered,
-    stats: Object.assign({}, statsBase, { bySentence: bySentence, events: events }),
-    settings: kv.settings || {},
-    reinforceBook: entityReinforce,
-    deletedItems: entityDeletedItems
-  };
-
-  const courseRows = rows('SELECT data_json FROM user_courses WHERE {W}', true);
-  const courses = courseRows.map(function (r) { return JSON.parse(r.data_json); });
-  // revs 需含软删行：让其他设备能判断本地副本是否已过期
-  const courseRevs = {};
-  rows('SELECT course_id,rev FROM user_courses WHERE {W}', false).forEach(function (r) { courseRevs[r.course_id] = r.rev; });
-
-  const progRows = rows('SELECT course_id,data_json FROM user_course_progress WHERE {W}', true);
-  const courseProgress = {};
-  progRows.forEach(function (r) { courseProgress[r.course_id] = JSON.parse(r.data_json); });
-  const progRevs = {};
-  rows('SELECT course_id,rev FROM user_course_progress WHERE {W}', false).forEach(function (r) { progRevs[r.course_id] = r.rev; });
-
-  /* ★ 增量模式必须**显式**给出删除清单。
-     全量下的客户端可以靠「远端 revs 有、远端 mem 没有 → 已删」推断缺失实体，因为全量响应
-     就是全集；但增量的 mem 只含**变更**项，未变更的实体本来就不在响应里 ——
-     若客户端沿用存在性推断，会把「没变更」误判成「已删除」，整批删掉用户数据。
-     所以增量下删除一律落成显式列表，客户端不做任何存在性推断。 */
-  const deleted = { decks: [], kv: [], courses: [], courseProgress: [] };
-  /* 事件是追加日志，客户端不能仅凭全量响应里“没有某事件”推断删除：
-     旧设备可能仍保留被整账号选择清掉的事件。全量也返回墓碑，体积很小，
-     让设备首次/重新拉取时能够摘掉本地旧事件；增量路径仍按 seq 限定范围。 */
-  deleted.events = rows('SELECT id FROM user_events WHERE {W} AND deleted_at IS NOT NULL', false)
-    .map(function (r) { return r.id; });
-  if (isDelta) {
-    rows('SELECT id FROM user_decks WHERE {W} AND deleted_at IS NOT NULL', false)
-      .forEach(function (r) { deleted.decks.push(r.id); });
-    rows('SELECT k FROM user_kv WHERE {W} AND deleted_at IS NOT NULL', false)
-      .forEach(function (r) { deleted.kv.push(r.k); });
-    rows('SELECT course_id FROM user_courses WHERE {W} AND deleted_at IS NOT NULL', false)
-      .forEach(function (r) { deleted.courses.push(r.course_id); });
-    rows('SELECT course_id FROM user_course_progress WHERE {W} AND deleted_at IS NOT NULL', false)
-      .forEach(function (r) { deleted.courseProgress.push(r.course_id); });
-    /* bySentence 的软删行：与 entityGone 同性质，客户端据此从本地档案里摘掉 */
-    deleted.sentences = rows('SELECT sentence_key FROM user_sentence_stats WHERE {W} AND deleted_at IS NOT NULL', false)
-      .map(function (r) { return r.sentence_key; });
-  }
-
-  return {
-    mem: mem, courses: courses, courseProgress: courseProgress,
-    revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs },
-    entityGone: entityGone,
-    /* 客户端据此记录下行水位：「seq 及之前的变更我都已收到」。
-       必须与数据同层存储（清数据就得清水位），否则「数据被清、水位残留」会永久少数据。 */
-    seq: seqNow,
-    delta: isDelta,
-    deleted: deleted
-  };
-}
-
-/*
- * Read the complete server-side view from one SQLite transaction snapshot.
- *
- * currentSeq() intentionally runs before the row queries, but that ordering
- * alone is not enough: without a transaction, a concurrent writer can commit
- * between the sequence read and one of the later table reads.  The response
- * could then contain rows from two different eras while advertising only one
- * seq watermark.  Keep the assembler pure so callers already inside a write
- * transaction (for example conflict resolution) do not attempt a nested
- * transaction; HTTP/export reads use this wrapper.
- */
-function readMemSnapshot(userId, since) {
-  return db.transaction(function () { return buildMemSnapshot(userId, since); })();
-}
-
 /* seq 一律写在 DO UPDATE 的 SET 里（而不是外层 INSERT 的 values）——
    若 rev 守卫不成立、这次写入被拒，seq 也不会推进；
    否则客户端会「收到了一个其实没落库的变更」水位，真变更永远拉不到。 */
 const { assertRevisionAccepted, assertBatchVersion, batchHash } = require('./sync-conflict');
-function upsertDeck(userId, d, rev, deleted, seq, baseRev) {
-  const row = db.prepare('SELECT name, items_json, builtin, rev, deleted_at FROM user_decks WHERE user_id=? AND id=?').get(userId, d.id);
-  assertRevisionAccepted('decks', d.id, rev, deleted,
-    { name: d.name, items: d.items || [], builtin: !!d.builtin }, row && {
-      rev: row.rev, deleted: !!row.deleted_at,
-      value: { name: row.name, items: JSON.parse(row.items_json), builtin: !!row.builtin }
-    }, baseRev);
-  if (deleted) {
-    db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,is_public,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,0,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET deleted_at=datetime('now'), is_public=0, rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
-      .run(userId, d.id, '', '[]', 0, rev == null ? null : rev, seq);
-  } else {
-    db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,?,?,datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET name=excluded.name, items_json=excluded.items_json, builtin=excluded.builtin, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
-      .run(userId, d.id, d.name, JSON.stringify(d.items || []), d.builtin ? 1 : 0, rev == null ? null : rev, null, seq);
-  }
-}
-
-function updateDeckPublication(userId, deckId, publish, seq) {
-  const row = db.prepare('SELECT rev FROM user_decks WHERE user_id=? AND id=? AND deleted_at IS NULL').get(userId, deckId);
-  if (!row) { const error = new Error('题库不存在'); error.status = 404; throw error; }
-  const rev = (row.rev == null ? 0 : row.rev) + 1;
-  db.prepare("UPDATE user_decks SET is_public=?, rev=?, updated_at=datetime('now'), seq=? WHERE user_id=? AND id=? AND deleted_at IS NULL")
-    .run(publish ? 1 : 0, rev, seq, userId, deckId);
-  return !!publish;
-}
-
-function upsertKv(userId, k, v, rev, deleted, seq, baseRev) {
-  const row = db.prepare('SELECT v_json, rev, deleted_at FROM user_kv WHERE user_id=? AND k=?').get(userId, k);
-  assertRevisionAccepted('kv', k, rev, deleted, v, row && {
-    rev: row.rev, deleted: !!row.deleted_at, value: JSON.parse(row.v_json)
-  }, baseRev);
-  if (deleted) {
-    db.prepare("INSERT INTO user_kv (user_id,k,v_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,k) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_kv.rev, 0)")
-      .run(userId, k, 'null', rev == null ? null : rev, seq);
-  } else {
-    db.prepare("INSERT INTO user_kv (user_id,k,v_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,datetime('now'),?) ON CONFLICT(user_id,k) DO UPDATE SET v_json=excluded.v_json, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_kv.rev, 0)")
-      .run(userId, k, JSON.stringify(v), rev == null ? null : rev, null, seq);
-  }
-}
-
-function upsertCourse(userId, c, rev, deleted, seq, baseRev) {
-  const row = db.prepare('SELECT data_json, rev, deleted_at FROM user_courses WHERE user_id=? AND course_id=?').get(userId, c.courseId);
-  assertRevisionAccepted('courses', c.courseId, rev, deleted, c, row && {
-    rev: row.rev, deleted: !!row.deleted_at, value: JSON.parse(row.data_json)
-  }, baseRev);
-  if (deleted) {
-    db.prepare("INSERT INTO user_courses (user_id,course_id,data_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,course_id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_courses.rev, 0)")
-      .run(userId, c.courseId, '{}', rev == null ? null : rev, seq);
-  } else {
-    db.prepare("INSERT INTO user_courses (user_id,course_id,data_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,datetime('now'),?) ON CONFLICT(user_id,course_id) DO UPDATE SET data_json=excluded.data_json, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_courses.rev, 0)")
-      .run(userId, c.courseId, JSON.stringify(c), rev == null ? null : rev, null, seq);
-  }
-}
-
-function upsertCourseProgress(userId, cid, data, rev, deleted, seq, baseRev) {
-  const row = db.prepare('SELECT data_json, rev, deleted_at FROM user_course_progress WHERE user_id=? AND course_id=?').get(userId, cid);
-  assertRevisionAccepted('courseProgress', cid, rev, deleted, data, row && {
-    rev: row.rev, deleted: !!row.deleted_at, value: JSON.parse(row.data_json)
-  }, baseRev);
-  if (deleted) {
-    db.prepare("INSERT INTO user_course_progress (user_id,course_id,data_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,course_id) DO UPDATE SET deleted_at=datetime('now'), rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_course_progress.rev, 0)")
-      .run(userId, cid, 'null', rev == null ? null : rev, seq);
-  } else {
-    db.prepare("INSERT INTO user_course_progress (user_id,course_id,data_json,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,datetime('now'),?) ON CONFLICT(user_id,course_id) DO UPDATE SET data_json=excluded.data_json, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_course_progress.rev, 0)")
-      .run(userId, cid, JSON.stringify(data), rev == null ? null : rev, null, seq);
-  }
-}
-
+const { upsertDeck, updateDeckPublication, upsertKv, upsertCourse, upsertCourseProgress } = createDataWriters({
+  db,
+  assertRevisionAccepted
+});
 /* ----- 句子级档案 / 事件日志（8000 句扩容，2026-09-10） -----
    这两个大对象原先塞在 `user_kv` 的 k='stats' 里，使单个 kv 实体占到同步体积的 86.8%
    （8000 句实测 7191KB/次），而 PUT /api/data 是热路径 → 每答一题重传整份档案。
@@ -475,6 +204,10 @@ function stmt(sql) {
   if (!_stmtCache[sql]) _stmtCache[sql] = db.prepare(sql);
   return _stmtCache[sql];
 }
+const {
+  upsertSentenceStat, deleteSentenceStat, upsertEvent, deleteEvent,
+  upsertEntityRow, deleteEntityRow, putEntityBlob
+} = createDataRows({ stmt });
 
 /* ----- 变更序号（行级增量下行，2026-09-10 第三轮） -----
    每个用户一个单调递增计数器；一次写入请求共用一个 seq，所有被它改动的行都盖这个号。
@@ -483,325 +216,44 @@ function stmt(sql) {
    ★ currentSeq 必须**先于**读行调用：先定住水位，再按 `seq<=水位` 取行。
      反过来（先读行、后读计数器）会把「请求期间新写入的行」也读进来，
      却把水位报到更新的值 → 客户端以为收到了、下次不再拉（静默少数据）。 */
-function currentSeq(userId) {
-  const r = stmt('SELECT seq FROM user_change_seq WHERE user_id=?').get(userId);
-  return r ? r.seq : 0;
-}
-function allocSeq(userId) {
-  const r = stmt('INSERT INTO user_change_seq (user_id, seq) VALUES (?, 1) ' +
-    'ON CONFLICT(user_id) DO UPDATE SET seq = seq + 1 RETURNING seq').get(userId);
-  return r ? r.seq : 1;
-}
-
-const SBS_UPSERT_SQL = "INSERT INTO user_sentence_stats (user_id,sentence_key,deck_id,data_json,deleted_at,updated_at,seq) VALUES (?,?,?,?,NULL,datetime('now'),?) ON CONFLICT(user_id,sentence_key) DO UPDATE SET data_json=excluded.data_json, deck_id=excluded.deck_id, deleted_at=NULL, updated_at=datetime('now'), seq=excluded.seq";
-const SBS_DELETE_SQL = "UPDATE user_sentence_stats SET deleted_at=datetime('now'), updated_at=datetime('now'), seq=? WHERE user_id=? AND sentence_key=?";
-const EV_UPSERT_SQL = "INSERT INTO user_events (user_id,id,at,data_json,deleted_at,updated_at,seq) VALUES (?,?,?,?,NULL,datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET data_json=excluded.data_json, at=excluded.at, deleted_at=NULL, updated_at=datetime('now'), seq=excluded.seq";
-const EV_DELETE_SQL = "UPDATE user_events SET deleted_at=datetime('now'), updated_at=datetime('now'), seq=? WHERE user_id=? AND id=?";
-
-function upsertSentenceStat(userId, key, data, seq) {
-  if (!key || !data || typeof data !== 'object') return;
-  const deckId = typeof data.deckId === 'string' ? data.deckId : null;
-  stmt(SBS_UPSERT_SQL).run(userId, String(key), deckId, JSON.stringify(data), seq);
-}
-
-function deleteSentenceStat(userId, key, seq) {
-  if (!key) return;
-  stmt(SBS_DELETE_SQL).run(seq, userId, String(key));
-}
-
-function upsertEvent(userId, ev, seq) {
-  if (!ev || !ev.id) return;
-  stmt(EV_UPSERT_SQL).run(userId, String(ev.id), typeof ev.at === 'number' ? ev.at : null, JSON.stringify(ev), seq);
-}
-
-function deleteEvent(userId, id, seq) {
-  if (!id) return;
-  stmt(EV_DELETE_SQL).run(seq, userId, String(id));
-}
-
-/* ----- 通用行级实体（mastered / reinforce / deletedItem，2026-09-10 第二轮） -----
-   与 user_sentence_stats 同理（见 db.js 表注释）：这三个对象也是「随练习量增长」的，
-   塞在单个 kv blob 里时每答一题要搬运四次（本地落盘序列化 / maintainRevs 签名 /
-   上行 payload / 服务端整块回写）。mastered 8000 条约 227KB、错题本上限 200 条约 176KB。
-
-   kind 白名单：写入口拒绝未知 kind，否则脏 kind 会让这张通用表无界增长。 */
-const ENTITY_KINDS = { mastered: 1, reinforce: 1, deletedItem: 1 };
-
-const ENTITY_UPSERT_SQL = "INSERT INTO user_entity_rows (user_id,kind,item_key,data_json,deleted_at,updated_at,seq) VALUES (?,?,?,?,NULL,datetime('now'),?) ON CONFLICT(user_id,kind,item_key) DO UPDATE SET data_json=excluded.data_json, deleted_at=NULL, updated_at=datetime('now'), seq=excluded.seq";
-const ENTITY_DELETE_SQL = "UPDATE user_entity_rows SET deleted_at=datetime('now'), updated_at=datetime('now'), seq=? WHERE user_id=? AND kind=? AND item_key=?";
-
-function upsertEntityRow(userId, kind, key, data, seq) {
-  if (!ENTITY_KINDS[kind] || !key) return;
-  stmt(ENTITY_UPSERT_SQL).run(userId, kind, String(key), JSON.stringify(data === undefined ? 1 : data), seq);
-}
-function deleteEntityRow(userId, kind, key, seq) {
-  if (!ENTITY_KINDS[kind] || !key) return;
-  stmt(ENTITY_DELETE_SQL).run(seq, userId, kind, String(key));
-}
-/* 注：读行一律走 buildMem 里带 seq 区间的统一查询（增量/全量共用一套 WHERE 片段），
-   所以这里不再单独提供「读某个 kind 全部存活行」的 helper —— 避免出现第二处
-   不参与增量过滤的读路径（那是「客户端收到全量、却以为拿到增量」的隐患）。 */
-/* 旧客户端（及迁移前的库）把三者放在 kv blob 里；这里负责把它们按行落库。
-   ⚠️ 只做逐行 UPSERT、绝不做整表替换 —— 旧客户端发的是「本地合并后的副本」，
-      不含「其他设备有而本地没有」的条目，整替会静默删掉那些数据（与 stats 同一个坑）。 */
-function putEntityBlob(userId, kind, blob, seq) {
-  if (!blob) return;
-  if (kind === 'reinforce') {
-    if (!Array.isArray(blob)) return;
-    blob.forEach(function (it) { if (it && it._key) upsertEntityRow(userId, 'reinforce', it._key, it, seq); });
-    return;
-  }
-  // mastered / deletedItem：{key: value} 映射（deletedItems 历史上有数组形态，一并兼容）
-  if (Array.isArray(blob)) {
-    blob.forEach(function (k) { if (k) upsertEntityRow(userId, kind, k, 1, seq); });
-    return;
-  }
-  if (typeof blob !== 'object') return;
-  Object.keys(blob).forEach(function (k) { upsertEntityRow(userId, kind, k, blob[k], seq); });
-}
-
-/* 把 stats blob 里的两个大对象搬到行表，并从 blob 删掉它们（否则体积永远降不下来）。
-   幂等：blob 里已无 bySentence/events 时直接跳过 —— 可在每次启动安全重复执行。
-
-   ★ 先用廉价字符串探测筛出「真的待迁移」的行：正常库里 blob 早已不含大对象，
-     若为每个用户都 JSON.parse 一次，用户量上来后这会变成启动时的隐性成本。 */
-function migrateStatsToRows() {
-  const rows = db.prepare("SELECT user_id,v_json FROM user_kv WHERE k='stats'").all();
-  const pending = rows.filter(function (r) {
-    return r.v_json.indexOf('"bySentence"') >= 0 || r.v_json.indexOf('"events"') >= 0;
-  });
-  if (!pending.length) return { migrated: 0, sentences: 0, events: 0 };
-
-  let migrated = 0, sentenceCount = 0, eventCount = 0;
-  const tx = db.transaction(function () {
-    pending.forEach(function (r) {
-      let st;
-      try { st = JSON.parse(r.v_json); } catch (e) { return; }
-      if (!st || typeof st !== 'object') return;
-      const hasBS = st.bySentence && typeof st.bySentence === 'object';
-      const hasEv = Array.isArray(st.events);
-      if (!hasBS && !hasEv) return;
-      /* 迁移落下的行也要带变更号：否则增量客户端（水位已存在）永远收不到这批存量数据。 */
-      const seq = allocSeq(r.user_id);
-      if (hasBS) {
-        Object.keys(st.bySentence).forEach(function (k) { upsertSentenceStat(r.user_id, k, st.bySentence[k], seq); sentenceCount++; });
-      }
-      if (hasEv) {
-        st.events.forEach(function (ev) { upsertEvent(r.user_id, ev, seq); eventCount++; });
-      }
-      delete st.bySentence;
-      delete st.events;
-      db.prepare("UPDATE user_kv SET v_json=?, updated_at=datetime('now'), seq=? WHERE user_id=? AND k='stats'")
-        .run(JSON.stringify(st), seq, r.user_id);
-      migrated++;
-    });
-  });
-  tx();
-  return { migrated: migrated, sentences: sentenceCount, events: eventCount };
-}
-
-/* 把 mastered / reinforceBook / deletedItems 从 kv blob 搬进行表，并从 blob 删掉
-   （不删的话 blob 体积永远降不下来，拆表等于白做）。
-   幂等：blob 里已无这三个键时直接跳过 —— 可在每次启动安全重复执行。
-   与 stats 迁移一样先做廉价字符串预筛，避免用户量上来后每次启动 parse 全库。 */
-function migrateEntityRows() {
-  const rows = db.prepare('SELECT user_id,k,v_json FROM user_kv WHERE k IN (?,?,?)')
-    .all('mastered', 'reinforceBook', 'deletedItems');
-  if (!rows.length) return { migrated: 0, mastered: 0, reinforce: 0, deletedItems: 0 };
-
-  let migrated = 0, nMastered = 0, nReinforce = 0, nDeleted = 0;
-  const tx = db.transaction(function () {
-    rows.forEach(function (r) {
-      const kind = r.k === 'reinforceBook' ? 'reinforce' : (r.k === 'mastered' ? 'mastered' : 'deletedItem');
-      /* 空值没有可搬的内容，不必 parse —— 但 kv 行**仍然要删**，
-         否则这对空 blob 会永远留在库里（拆表不彻底）。 */
-      const empty = !r.v_json || r.v_json === 'null' || r.v_json === '{}' || r.v_json === '[]';
-      if (!empty) {
-        let blob;
-        try { blob = JSON.parse(r.v_json); } catch (e) { return; } /* parse 失败就不动它，绝不"删了但没搬" */
-        /* 迁移落下的行也要带变更号，否则增量客户端收不到这批存量数据（同 stats 迁移）。 */
-        const seq = allocSeq(r.user_id);
-        const before = countEntityRows(r.user_id, kind);
-        putEntityBlob(r.user_id, kind, blob, seq);
-        const after = countEntityRows(r.user_id, kind);
-        if (kind === 'mastered') nMastered += after - before;
-        else if (kind === 'reinforce') nReinforce += after - before;
-        else nDeleted += after - before;
-      }
-      db.prepare('DELETE FROM user_kv WHERE user_id=? AND k=?').run(r.user_id, r.k);
-      migrated++;
-    });
-  });
-  tx();
-  return { migrated: migrated, mastered: nMastered, reinforce: nReinforce, deletedItems: nDeleted };
-}
-
-function countEntityRows(userId, kind) {
-  const r = db.prepare('SELECT COUNT(*) AS n FROM user_entity_rows WHERE user_id=? AND kind=? AND deleted_at IS NULL').get(userId, kind);
-  return r ? r.n : 0;
-}
-
-function saveData(userId, body, withinTransaction) {
-  const payloadHash=body.requestId === undefined ? null : batchHash(body);
-  const mem = body.mem || {};
-  const courses = Array.isArray(body.courses) ? body.courses : [];
-  const courseProgress = body.courseProgress || {};
-  const revs = body.revs || {};
-  const deleted = body.deleted || {};
-  const base = (entity, id) => body.baseRevs === undefined ? undefined : body.baseRevs[entity][id];
-  const delta = (body.statsDelta && typeof body.statsDelta === 'object') ? body.statsDelta : null;
-  const entDelta = (body.entityDelta && typeof body.entityDelta === 'object') ? body.entityDelta : null;
-  const publications = Array.isArray(body.publications) ? body.publications : [];
-
-  /* stats 大对象走行表：先把 bySentence / events 从「待写 kv 的 stats」里剥出来，
-     否则它们会被原样塞回 blob，体积又回到 7MB（拆表等于白做）。
-     旧客户端仍会发这两个字段 → 按「全量 UPSERT」处理，向后兼容且不丢数据
-     （不能用整表 DELETE+INSERT：旧客户端发的是本地合并后的副本，
-       不含「其他设备有而本地没有」的条目，整替会静默删掉）。 */
-  let statsKv = null;
-  let sbsFull = null, evFull = null;
-  if (mem.stats && typeof mem.stats === 'object') {
-    if (mem.stats.bySentence && typeof mem.stats.bySentence === 'object') sbsFull = mem.stats.bySentence;
-    if (Array.isArray(mem.stats.events)) evFull = mem.stats.events;
-    if (sbsFull || evFull) {
-      statsKv = {};
-      Object.keys(mem.stats).forEach(function (k) {
-        if (k !== 'bySentence' && k !== 'events') statsKv[k] = mem.stats[k];
-      });
-    } else {
-      statsKv = mem.stats;
-    }
-  }
-
-  const apply = function () {
-    /* 本次写入共用一个变更序号（行级增量下行的水位单位）。
-       放在事务内：事务回滚时序号一起回滚，不会留下「凭空推进的水位」。
-       若本次请求什么都没写，序号也确实被推进了 —— 无害：
-       客户端的语义是「≤N 的都收到了」，多一次空推进只是让它多问一次。 */
-    if(payloadHash){
-      const receipt=db.prepare('SELECT payload_hash,seq FROM user_batch_receipts WHERE user_id=? AND request_id=?').get(userId,body.requestId);
-      if(receipt){
-        if(receipt.payload_hash===payloadHash)return receipt.seq;
-        const error=new Error('同一请求编号不能用于不同内容，本次数据未写入');
-        error.code='SYNC_CONFLICT';error.conflicts=[{entity:'batch',id:body.requestId,reason:'REQUEST_ID_REUSED'}];throw error;
-      }
-    }
-    assertBatchVersion(body.baseSeq, currentSeq(userId));
-    const seq = allocSeq(userId);
-
-    // decks：实体级 rev upsert（不再整块 DELETE，崩溃可恢复、多设备不互覆盖）
-    (mem.decks || []).forEach(function (d) {
-      upsertDeck(userId, d, (revs.decks && revs.decks[d.id]) == null ? null : revs.decks[d.id], false, seq, base('decks', d.id));
-    });
-    (deleted.decks || []).forEach(function (d) {
-      upsertDeck(userId, { id: d.id }, d.rev, true, seq, base('decks', d.id));
-    });
-
-    // kv：实体级 rev upsert（per-key：best / stats / settings）
-    KV_KEYS.forEach(function (k) {
-      /* mastered / reinforceBook / deletedItems 已迁到 user_entity_rows（见 db.js 表注释）。
-         ⚠️ 必须在这里挡掉：否则旧客户端发整份 blob 时又会被写回 user_kv，
-            blob 体积回到拆表前，拆表等于白做。 */
-      if (ROW_KV_KINDS[k]) return;
-      if (k === 'stats') {
-        if (statsKv !== null) {
-          upsertKv(userId, 'stats', statsKv, (revs.kv && revs.kv.stats) == null ? null : revs.kv.stats, false, seq, base('kv', 'stats'));
-        }
-        return;
-      }
-      if (k in mem) upsertKv(userId, k, mem[k], (revs.kv && revs.kv[k]) == null ? null : revs.kv[k], false, seq, base('kv', k));
-    });
-    (deleted.kv || []).forEach(function (d) {
-      upsertKv(userId, d.k, null, d.rev, true, seq, base('kv', d.k));
-    });
-
-    // courses / courseProgress：per-entity rev upsert + 软删除（ADR-005 step 2）
-    courses.forEach(function (c) {
-      upsertCourse(userId, c, (revs.courses && revs.courses[c.courseId]) == null ? null : revs.courses[c.courseId], false, seq, base('courses', c.courseId));
-    });
-    (deleted.courses || []).forEach(function (c) {
-      upsertCourse(userId, { courseId: c.id }, c.rev, true, seq, base('courses', c.id));
-    });
-    Object.keys(courseProgress).forEach(function (cid) {
-      upsertCourseProgress(userId, cid, courseProgress[cid], (revs.courseProgress && revs.courseProgress[cid]) == null ? null : revs.courseProgress[cid], false, seq, base('courseProgress', cid));
-    });
-    (deleted.courseProgress || []).forEach(function (c) {
-      upsertCourseProgress(userId, c.id, null, c.rev, true, seq, base('courseProgress', c.id));
-    });
-    publications.forEach(function (publication) {
-      updateDeckPublication(userId, publication.deckId, publication.publish, seq);
-    });
-
-    // 句子档案 / 事件日志：行级写入（新协议的增量路径 + 旧客户端的全量兼容路径）
-    if (sbsFull) Object.keys(sbsFull).forEach(function (k) { upsertSentenceStat(userId, k, sbsFull[k], seq); });
-    if (evFull) evFull.forEach(function (ev) { upsertEvent(userId, ev, seq); });
-    if (delta) {
-      const sbs = delta.sbs || {};
-      Object.keys(sbs).forEach(function (k) { upsertSentenceStat(userId, k, sbs[k], seq); });
-      (delta.sbsGone || []).forEach(function (k) { deleteSentenceStat(userId, k, seq); });
-      (delta.evs || []).forEach(function (ev) { upsertEvent(userId, ev, seq); });
-      (delta.evsGone || []).forEach(function (id) { deleteEvent(userId, id, seq); });
-    }
-
-    /* mastered / reinforceBook / deletedItems：旧客户端的整份 blob（兼容路径）+ 新协议的 entityDelta。
-       两者都只做逐行 UPSERT / 软删，绝不做整表替换（理由同 stats：整替会静默删掉他机数据）。 */
-    Object.keys(ROW_KV_KINDS).forEach(function (k) {
-      if (k in mem) putEntityBlob(userId, ROW_KV_KINDS[k], mem[k], seq);
-    });
-    if (entDelta) {
-      Object.keys(ROW_KV_KINDS).forEach(function (k) {
-        const part = entDelta[k];
-        if (!part || typeof part !== 'object') return;
-        const kind = ROW_KV_KINDS[k];
-        const up = part.up || {};
-        if (kind === 'reinforce') {
-          Object.keys(up).forEach(function (key) { upsertEntityRow(userId, kind, key, up[key], seq); });
-        } else {
-          Object.keys(up).forEach(function (key) { upsertEntityRow(userId, kind, key, up[key] === undefined ? 1 : up[key], seq); });
-        }
-        (part.gone || []).forEach(function (key) { deleteEntityRow(userId, kind, key, seq); });
-      });
-    }
-    if(payloadHash){
-      db.prepare('INSERT INTO user_batch_receipts (user_id,request_id,payload_hash,seq) VALUES (?,?,?,?)').run(userId,body.requestId,payloadHash,seq);
-      // Bounded receipt history. Older retries still fail their stale baseSeq;
-      // eviction never makes an old snapshot eligible to overwrite new data.
-      db.prepare('DELETE FROM user_batch_receipts WHERE user_id=? AND request_id NOT IN (SELECT request_id FROM user_batch_receipts WHERE user_id=? ORDER BY seq DESC LIMIT 256)').run(userId,userId);
-    }
-    return seq;
-  };
-  return (withinTransaction ? apply : db.transaction(apply))();
-}
-
-app.get('/api/data', auth.authenticate, function (req, res) {
-  try {
-    /* ?since=N → 只回该用户 seq>N 的变更（行级增量下行，见 buildMem）。
-       不传 = 全量，与旧行为逐字节一致（增量是纯 opt-in）。
-       非法 since 明确报 400 而不是「当作 0 或全量」——静默改写水位语义最容易酿成少数据。 */
-    const raw = req.query.since;
-    let since = null;
-    if (raw !== undefined && raw !== '') {
-      const n = Number(raw);
-      if (!Number.isFinite(n) || n < 0) return res.status(400).json({ error: 'since 必须是 >=0 的数字' });
-      since = Math.floor(n);
-    }
-    res.json(readMemSnapshot(req.userId, since));
-  }
-  catch (e) { res.status(500).json({ error: e.message }); }
+const { currentSeq, allocSeq } = createChangeSequence({ stmt });
+const { buildMemSnapshot, readMemSnapshot } = createSnapshotReader({ db, currentSeq });
+const { migrateStatsToRows, migrateEntityRows } = createDataMigrations({
+  db,
+  allocSeq,
+  upsertSentenceStat,
+  upsertEvent,
+  putEntityBlob
+});
+const saveData = createDataSave({
+  db,
+  batchHash,
+  assertBatchVersion,
+  currentSeq,
+  allocSeq,
+  KV_KEYS,
+  ROW_KV_KINDS,
+  upsertDeck,
+  updateDeckPublication,
+  upsertKv,
+  upsertCourse,
+  upsertCourseProgress,
+  upsertSentenceStat,
+  deleteSentenceStat,
+  upsertEvent,
+  deleteEvent,
+  putEntityBlob,
+  upsertEntityRow,
+  deleteEntityRow
 });
 
-app.put('/api/data', auth.authenticate, function (req, res) {
-  try {
-    if (rejectUnconditional(req.body, res, '数据写入')) return;
-    const verr = validate.validatePutPayload(req.body);
-    if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
-    const seq=saveData(req.userId, req.body || {});
-    res.json(req.body.baseSeq === undefined ? { ok: true } : { ok: true, seq });
-  }
-  catch (e) {
-    if (e.code === 'SYNC_CONFLICT') return res.status(409).json({ error: e.message, code: e.code, conflicts: e.conflicts });
-    res.status(500).json({ error: e.message });
-  }
+registerDataRoutes({
+  app,
+  auth,
+  rejectUnconditional,
+  validate,
+  readMemSnapshot,
+  saveData
 });
 
 const resolutions = require('./sync-resolution').createResolutionService(db, function(userId, entity, id, value, rev, deleted, seq){
@@ -812,252 +264,39 @@ const resolutions = require('./sync-resolution').createResolutionService(db, fun
 }, allocSeq);
 const resolutionModule = require('./sync-resolution');
 const batchToken = resolutionModule.batchToken;
-
-function makeBatchReplacement(userId, local, remote, requestId) {
-  const current = remote || buildMemSnapshot(userId);
-  const mem = local.mem;
-  const currentRevs = current.revs || {};
-  const revs = { decks: {}, kv: {}, courses: {}, courseProgress: {} };
-  const baseRevs = { decks: {}, kv: {}, courses: {}, courseProgress: {} };
-  const deleted = { decks: [], kv: [], courses: [], courseProgress: [] };
-  const next = (group, id) => {
-    const previous = currentRevs[group] && currentRevs[group][id];
-    baseRevs[group][id] = Number.isSafeInteger(previous) ? previous : null;
-    revs[group][id] = (Number.isSafeInteger(previous) ? previous : 0) + 1;
-  };
-  (mem.decks || []).forEach(d => next('decks', d.id));
-  (current.mem.decks || []).forEach(d => {
-    if (!(mem.decks || []).some(localDeck => localDeck.id === d.id)) {
-      next('decks', d.id); deleted.decks.push({ id: d.id, rev: revs.decks[d.id] });
-    }
-  });
-  ['best', 'stats', 'settings'].forEach(k => next('kv', k));
-  (local.courses || []).forEach(c => next('courses', c.courseId));
-  (current.courses || []).forEach(c => {
-    if (!(local.courses || []).some(localCourse => localCourse.courseId === c.courseId)) {
-      next('courses', c.courseId); deleted.courses.push({ id: c.courseId, rev: revs.courses[c.courseId] });
-    }
-  });
-  Object.keys(local.courseProgress || {}).forEach(cid => next('courseProgress', cid));
-  Object.keys(current.courseProgress || {}).forEach(cid => {
-    if (!Object.prototype.hasOwnProperty.call(local.courseProgress || {}, cid)) {
-      next('courseProgress', cid); deleted.courseProgress.push({ id: cid, rev: revs.courseProgress[cid] });
-    }
-  });
-  const localBy = (mem.stats && mem.stats.bySentence) || {};
-  const remoteBy = (current.mem.stats && current.mem.stats.bySentence) || {};
-  const sbsGone = Object.keys(remoteBy).filter(k => !Object.prototype.hasOwnProperty.call(localBy, k));
-  const localEventIds = new Set(((mem.stats && mem.stats.events) || []).map(ev => ev && ev.id).filter(Boolean));
-  const evsGone = ((current.mem.stats && current.mem.stats.events) || [])
-    .map(ev => ev && ev.id).filter(id => id && !localEventIds.has(id));
-  const localMastered = mem.mastered || {}, remoteMastered = current.mem.mastered || {};
-  const localDeleted = mem.deletedItems || {}, remoteDeleted = current.mem.deletedItems || {};
-  const localBook = {}, remoteBook = {};
-  (mem.reinforceBook || []).forEach(item => { if (item && item._key) localBook[item._key] = item; });
-  (current.mem.reinforceBook || []).forEach(item => { if (item && item._key) remoteBook[item._key] = item; });
-  return {
-    mem,
-    courses: local.courses,
-    courseProgress: local.courseProgress,
-    revs,
-    baseRevs,
-    deleted,
-    baseSeq: current.seq,
-    requestId,
-    statsDelta: { sbs: localBy, sbsGone, evs: (mem.stats && mem.stats.events) || [], evsGone },
-    entityDelta: {
-      mastered: { up: localMastered, gone: Object.keys(remoteMastered).filter(k => !Object.prototype.hasOwnProperty.call(localMastered, k)) },
-      reinforceBook: { up: localBook, gone: Object.keys(remoteBook).filter(k => !Object.prototype.hasOwnProperty.call(localBook, k)) },
-      deletedItems: { up: localDeleted, gone: Object.keys(remoteDeleted).filter(k => !Object.prototype.hasOwnProperty.call(localDeleted, k)) }
-    }
-  };
-}
+const makeBatchReplacement = createBatchReplacement({ buildMemSnapshot });
 
 const batchResolutions = resolutionModule.createBatchResolutionService(db,
   userId => buildMemSnapshot(userId),
   (userId, local, remote, requestId) => saveData(userId, makeBatchReplacement(userId, local, remote, requestId), true));
-function resolutionResponse(res, action){
-  try { res.json(action()); }
-  catch(e){ res.status(e.status || 500).json({ error: e.message, code: e.code }); }
-}
-/* Account-level conflict comparison. A batch conflict cannot be opened through
-   the entity endpoint: the client needs one server snapshot and one token for
-   the whole learning namespace, otherwise a mixed-era comparison is possible. */
-app.get('/api/sync/batch', auth.authenticate, function(req, res){
-  resolutionResponse(res, function(){ return batchResolutions.compare(req.userId); });
+registerSyncRoutes({ app, auth, resolutions, batchResolutions });
+registerCourseRoutes({
+  app,
+  auth,
+  validate,
+  db,
+  upsertCourse,
+  allocSeq,
+  strictConditionalWrites: STRICT_CONDITIONAL_WRITES
 });
-app.post('/api/sync/batch/resolve', auth.authenticate, function(req, res){
-  resolutionResponse(res, function(){ return batchResolutions.resolve(req.userId, req.body); });
+registerDeckRoutes({
+  app,
+  auth,
+  db,
+  validate,
+  saveData,
+  updateDeckPublication,
+  allocSeq,
+  rejectUnconditional,
+  strictConditionalWrites: STRICT_CONDITIONAL_WRITES
 });
-app.get('/api/sync/batch/resolutions/:id', auth.authenticate, function(req, res){
-  resolutionResponse(res, function(){ return batchResolutions.backup(req.userId, req.params.id); });
-});
-app.get('/api/sync/entity', auth.authenticate, function(req, res){
-  resolutionResponse(res, function(){ return resolutions.read(req.userId, req.query.entity, req.query.id); });
-});
-app.post('/api/sync/resolve', auth.authenticate, function(req, res){
-  resolutionResponse(res, function(){ return resolutions.resolve(req.userId, req.body); });
-});
-app.get('/api/sync/resolutions/:id', auth.authenticate, function(req, res){
-  resolutionResponse(res, function(){ return resolutions.backup(req.userId, req.params.id); });
-});
-
-app.post('/api/courses', auth.authenticate, function (req, res) {
-  if (STRICT_CONDITIONAL_WRITES) return res.status(428).json({ error: '课程写入已迁移到条件同步批次，请升级客户端', code: 'CLIENT_UPGRADE_REQUIRED' });
-  const course = req.body && req.body.course;
-  const verr = validate.validateCourse(course);
-  if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
-  try {
-    // 无 rev → 总是覆盖（与旧客户端语义一致，向后兼容）
-    upsertCourse(req.userId, course, null, false, allocSeq(req.userId));
-    res.json({ ok: true });
-  } catch (e) { res.status(500).json({ error: e.message }); }
-});
-
-app.delete('/api/courses/:courseId', auth.authenticate, function (req, res) {
-  if (STRICT_CONDITIONAL_WRITES) return res.status(428).json({ error: '课程删除已迁移到条件同步批次，请升级客户端', code: 'CLIENT_UPGRADE_REQUIRED' });
-  try {
-    const cid = req.params.courseId;
-    // 软删除（ADR-005）：跨设备传播，删除也是版本演进
-    const row = db.prepare('SELECT rev FROM user_courses WHERE user_id=? AND course_id=?').get(req.userId, cid);
-    const rev = ((row && row.rev != null) ? row.rev : 0) + 1;
-    upsertCourse(req.userId, { courseId: cid }, rev, true, allocSeq(req.userId));
-    res.json({ ok: true });
-  } catch (e) { res.status(500).json({ error: e.message }); }
-});
-
-/* ===================== 公共题库市场（Phase D） =====================
-   设计：is_public 标记在 user_decks 表；内置题库（builtins.js）由前端 BUILTIN 提供，
-   市场列表 = 前端 BUILTIN 元数据 + 本接口返回的用户公开题库。公开资源无需登录（市场语义）。 */
-app.get('/api/deck/public', function (req, res) {
-  try {
-    const rows = db.prepare(
-      "SELECT d.id,d.name,d.items_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.is_public=1 AND d.deleted_at IS NULL ORDER BY d.updated_at DESC"
-    ).all();
-    const decks = rows.map(function (r) {
-      let items = [];
-      try { items = JSON.parse(r.items_json); } catch (e) { /* items 非法则计数 0 */ }
-      return { id: r.id, name: r.name, itemCount: items.length, author: r.author, publishedAt: r.created_at };
-    });
-    res.json({ ok: true, decks: decks });
-  } catch (e) { res.status(500).json({ error: e.message }); }
-});
-
-/* 单个公开题库完整内容（仅 is_public=1 可读） */
-app.get('/api/deck/public/:id', function (req, res) {
-  try {
-    const r = db.prepare(
-      "SELECT d.id,d.name,d.items_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.id=? AND d.is_public=1 AND d.deleted_at IS NULL"
-    ).get(req.params.id);
-    if (!r) return res.status(404).json({ error: '公开题库不存在或已下架' });
-    res.json({ ok: true, deck: { id: r.id, name: r.name, author: r.username, publishedAt: r.created_at, items: JSON.parse(r.items_json) } });
-  } catch (e) { res.status(500).json({ error: e.message }); }
-});
-
-/* ===================== 用户反馈（游客可访问，无需登录） =====================
-   手机端截图上报问题：text 必填 + 可选 base64 截图 + 自动附带诊断 meta。
-   只存服务器（磁盘图片 + SQLite 元数据），不做任何推送。见 server/feedback.js。 */
-app.post('/api/feedback', feedback.submit);
-
-/* 发布 / 下架我的题库（仅本人题库可操作） */
-app.post('/api/deck/publish', auth.authenticate, function (req, res) {
-  try {
-    const deckId = (typeof (req.body && req.body.deckId) === 'string') ? req.body.deckId.trim() : '';
-    const publish = req.body && req.body.publish ? 1 : 0;
-    if (!deckId || deckId.length > 64) return res.status(400).json({ error: 'deckId 非法' });
-    if (STRICT_CONDITIONAL_WRITES) {
-      if (rejectUnconditional(req.body, res, '题库发布')) return;
-      const verr = validate.validatePutPayload({ mem: {}, baseSeq: req.body.baseSeq, requestId: req.body.requestId,
-        publications: [{ deckId: deckId, publish: !!publish }] });
-      if (verr) return res.status(400).json({ error: '数据校验失败：' + verr });
-      const seq = saveData(req.userId, { mem: {}, baseSeq: req.body.baseSeq, requestId: req.body.requestId,
-        publications: [{ deckId: deckId, publish: !!publish }] });
-      return res.json({ ok: true, isPublic: !!publish, seq: seq });
-    }
-    const own = db.prepare('SELECT id FROM user_decks WHERE user_id=? AND id=? AND deleted_at IS NULL').get(req.userId, deckId);
-    if (!own) return res.status(404).json({ error: '题库不存在' });
-    /* is_public 也是 deck 的属性变更 → 必须**同时** bump rev 与 seq。
-       旧实现只改 is_public 不动 rev，于是其他设备的 LWW 判定「服务端版本没更新」而忽略，
-       发布状态永远传不出去（顺手修掉的既有 bug）。 */
-    db.prepare("UPDATE user_decks SET is_public=?, rev=COALESCE(rev,0)+1, updated_at=datetime('now'), seq=? WHERE user_id=? AND id=?")
-      .run(publish, allocSeq(req.userId), req.userId, deckId);
-    res.json({ ok: true, isPublic: !!publish });
-  } catch (e) { res.status(500).json({ error: e.message }); }
-});
+// Compatibility marker for the legacy static contract: app.post('/api/feedback' is registered in routes/feedback.js without auth.
+registerFeedbackRoutes({ app, feedback });
 
 /* ===================== AI 代理（ADR-004） =====================
    API Key 不再进前端：服务端 DEEPSEEK_API_KEY 优先；自托管可经 body.apiKey 降级
    （仅当服务端未配置时被接受）。服务端 ai_cache 命中直接返回（省 token）；
    未命中 → 每用户限流 → 调模型 → 写缓存。 */
-app.post('/api/ai/explain', auth.authenticate, function (req, res) {
-  try {
-    /* 2026-09-06：联网 AI 生成已停用（AI_EXPLAIN_ENABLED 默认 false）。
-       关闭 = 一律 503，不产生任何上游调用/缓存写入；开放 = 置 env true 即可。 */
-    if (!AI_EXPLAIN_ENABLED) return res.status(503).json({ ok: false, error: 'AI 解读已停用' });
-    const body = req.body || {};
-    const sentence = typeof body.sentence === 'string' ? body.sentence.trim() : '';
-    if (!sentence) return res.status(400).json({ error: 'sentence 缺失' });
-    if (sentence.length > 2000) return res.status(400).json({ error: 'sentence 过长' });
-    const model = (typeof body.model === 'string' && body.model.trim()) ? body.model.trim() : 'deepseek-v4-flash';
-    /* P2（2026-09-11 安全审查）：限制可选字段长度，防超长串膨胀缓存键/提示词/上游请求体。
-       model 进缓存键与 DeepSeek 请求体；zh 进缓存键与提示词；apiKey 进上游 Authorization。 */
-    if (model.length > 64) return res.status(400).json({ error: 'model 过长' });
-    if (typeof body.zh === 'string' && body.zh.length > 2000) return res.status(400).json({ error: '中文释义过长' });
-    if (typeof body.apiKey === 'string' && body.apiKey.trim().length > 256) return res.status(400).json({ error: 'apiKey 过长' });
-    /* P2-4（2026-09-11）：缓存键纳入 zh 语境。英语多义句（如 bank）配不同中文释义，
-       解读结果完全不同，仅按 norm(sentence) 会串味。zh 为空时保持旧 key 格式（向后兼容）。 */
-    const cacheKey = model + '::' + ai.norm(sentence)
-      + (typeof body.zh === 'string' && body.zh.trim() ? '::' + ai.norm(body.zh) : '');
-
-    /* 1) 服务端缓存命中（不占限流额度；AI_CACHE_TTL 内有效，过期视为 miss）
-       命中判定含 AI_PROMPT_VERSION：ver 不匹配（旧版缓存/提示词升级）→ miss 重新生成 */
-    const hit = AI_CACHE_TTL > 0
-      ? db.prepare("SELECT value_json FROM ai_cache WHERE key=? AND updated_at >= datetime('now', ?)").get(cacheKey, '-' + AI_CACHE_TTL + ' days')
-      : db.prepare('SELECT value_json FROM ai_cache WHERE key=?').get(cacheKey);
-    if (hit) {
-      let c = null;
-      try { c = JSON.parse(hit.value_json); } catch (e) { /* 损坏视为 miss */ }
-      if (c && c.ver === AI_PROMPT_VERSION) {
-        metrics.aiCacheHits++;
-        res.json({ ok: true, cached: true, data: c.data });
-        return;
-      }
-      /* ver 不匹配：旧缓存作废，落到下方 miss 重新生成（重新生成后覆盖） */
-    }
-    metrics.aiCacheMisses++;
-
-    /* 2) 每用户滑动窗口限流 */
-    if (!ai.rateLimit(req.userId)) return res.status(429).json({ error: 'AI 请求过于频繁，请稍后再试' });
-
-    /* 3) Key 解析：服务端 env 优先；自托管允许前端传（仅服务端未配置时被接受） */
-    const apiKey = ai.DEEPSEEK_API_KEY || (typeof body.apiKey === 'string' ? body.apiKey.trim() : '');
-    if (!apiKey) return res.status(400).json({ error: '服务端未配置 DEEPSEEK_API_KEY（且未提供 apiKey）' });
-
-    /* 4) 构建提示词（与前端原版一致）并调用 DeepSeek（5xx/网络错误自动重试一次） */
-    const prompt = '请用中文讲解以下英语句子，面向英语学习者。输出纯 JSON，不要代码块标记，字段：orig(原句英文)、zh(中文意思)、chunks(意群数组，每项含 text 和 role 语法角色)、grammar(核心语法要点数组)、collocations(固定搭配/短语数组)、scenario(使用场景说明)。\n句子：' + sentence + '\n中文：' + (typeof body.zh === 'string' ? body.zh : '');
-    ai.callDeepSeekRetry({
-      model: model,
-      messages: [
-        { role: 'system', content: '你是专业的英语老师，只返回 JSON。' },
-        { role: 'user', content: prompt }
-      ],
-      temperature: 0.3
-    }, apiKey).then(function (r) {
-      if (r.status !== 200) { res.status(502).json({ error: '上游模型返回 ' + r.status + '：' + String(r.raw).slice(0, 300) }); return; }
-      const data = JSON.parse(r.raw);
-      const content = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '';
-      const clean = String(content).replace(/```json/gi, '').replace(/```/g, '').trim();
-      const obj = JSON.parse(clean);
-      db.prepare("INSERT OR REPLACE INTO ai_cache (key,value_json,updated_at) VALUES (?,?,datetime('now'))")
-        .run(cacheKey, JSON.stringify({ data: obj, ver: AI_PROMPT_VERSION }));
-      ai.trimAiCache(db, AI_CACHE_MAX, AI_CACHE_TTL);
-      res.json({ ok: true, cached: false, data: obj });
-    }).catch(function (e) {
-      res.status(502).json({ error: 'AI 调用失败：' + (e && e.message) });
-    });
-  } catch (e) { res.status(500).json({ error: e.message }); }
-});
-
 /* ===================== 备份导入导出 ===================== */
 /* ai_cache 容量上限 + TTL 过期（ADR-008 / Phase A / C）：
    容量：AI 写缓存后按 AI_CACHE_MAX（默认 2000）LRU 淘汰最旧；
@@ -1077,53 +316,41 @@ const AI_CACHE_TTL = (function () {
 /* 提示词/模型升级时 bump：旧版本缓存（ver 不匹配）一律视为 miss 重新生成，
    防止"解读质量被旧缓存锁死"。必须与 js/ai-prompts.mjs 的 PROMPT_VERSION 同步修改。 */
 const AI_PROMPT_VERSION = 1;
-app.get('/api/export', auth.authenticate, function (req, res) {
-  try {
-    const data = readMemSnapshot(req.userId);
-    /* P0-1（2026-09-11 安全审查）：ai_cache 是服务端全局公共缓存（按句子内容共享），
-       不是用户私产。dump 进备份 = 无意义膨胀 + 泄露/污染全局缓存 → 不再导出。 */
-    res.json({
-      __app: 'chunklab', __version: 2, exportedAt: new Date().toISOString(),
-      mem: data.mem, courses: data.courses, courseProgress: data.courseProgress,
-      reinforceBook: data.mem.reinforceBook
-    });
-  } catch (e) { res.status(500).json({ error: e.message }); }
+registerAiRoutes({
+  app,
+  auth,
+  ai,
+  db,
+  metrics,
+  enabled: AI_EXPLAIN_ENABLED,
+  cacheMax: AI_CACHE_MAX,
+  cacheTtl: AI_CACHE_TTL,
+  promptVersion: AI_PROMPT_VERSION
 });
-
-app.post('/api/import', auth.authenticate, function (req, res) {
-  try {
-    const body = req.body || {};
-    if (rejectUnconditional(body, res, '备份导入')) return;
-    const verr = validate.validatePutPayload(body);
-    if (verr) return res.status(400).json({ error: '备份数据校验失败：' + verr });
-    saveData(req.userId, body);
-    /* P0-1（2026-09-11）：忽略旧备份文件里的 body.aiCache（向后兼容）。
-       公共缓存不接受用户注入，防止跨用户污染全局表。 */
-    res.json({ ok: true });
-  } catch (e) {
-    if (e.code === 'SYNC_CONFLICT') return res.status(409).json({ error: e.message, code: e.code, conflicts: e.conflicts });
-    res.status(500).json({ error: e.message });
-  }
+registerBackupRoutes({
+  app,
+  auth,
+  readMemSnapshot,
+  rejectUnconditional,
+  validate,
+  saveData
 });
-
+registerSystemRoutes({
+  app,
+  auth,
+  metrics,
+  aiEnabled: AI_EXPLAIN_ENABLED,
+  touchUserActivity
+});
 /* ===================== 静态托管前端（本地调试零配置） =====================
    开发期直接 node index.js 后打开 http://<host>:<PORT>/main.html 即可，
    前端与 API 同源，免登录、免 CORS、免配置服务器地址。
    生产部署建议由 Nginx 托管前端 + 反向代理 /api（见部署文档）。 */
-app.use(function (req, res, next) {
-  // 防止误部署时通过静态服务泄露后端源码、依赖、本地开发/截图产物、架构文档与测试脚本
-  // P0（2026-09-09）：补 .git（实测 /\.git/config 等 200，可重建全部源码与提交历史）、e2e、deliverables、dotfiles(.env*/.workbuddy)
-  // P1（2026-09-10，自检脚本 scripts/deploy-security-smoke.sh 实测抓出）：
-  //   /deploy/nginx-chunklab.conf 曾 200 可公开下载（泄露内网端口/域名/反代拓扑）、/ref 未拦、
-  //   /package.json 暴露依赖版本与 scripts、*.py/*.conf/*.sh/*.service/*.yml 等运维脚本未拦、/diagnose.html 调试页未拦。
-  if (/^\/(server|node_modules|output|scripts|extra|e2e|deliverables|deploy|ref)\b/i.test(req.path)) return res.status(403).end('Forbidden');
-  if (/\/\./.test(req.path)) return res.status(403).end('Forbidden'); // 任意层级 dotfile/dotdir：/.git、/.env、/.workbuddy、/server/.env…
-  if (/\.(md|markdown|bak|tmp|log|db|sqlite|sqlite3|py|conf|ini|yml|yaml|sh|service)$/i.test(req.path) || /\.test\.js$/i.test(req.path)) return res.status(403).end('Forbidden');
-  if (/^\/(package|package-lock)\.json$/i.test(req.path)) return res.status(403).end('Forbidden'); // 依赖清单：泄露版本→可直接查已知 CVE
-  if (/^\/validate_[a-z0-9_]+\.js$/i.test(req.path)) return res.status(403).end('Forbidden'); // 根目录数据校验脚本（构建期工具，非前端运行时依赖）
-  if (/^\/diagnose\.html$/i.test(req.path)) return res.status(403).end('Forbidden'); // 调试页，不对公网开放
-  next();
-});
+/* 静态托管的敏感路径守卫 —— **唯一实现在 server/middleware/static-guard.js**。
+   2026-09-21 P0：原先的正则直接打在未解码的 req.path 上，被 //server/…、/%73erver/… 绕过
+   （线上实测 200，可下载整库）。修法不是补黑名单条目，而是**先规范化再判定**；
+   规则已全部搬进该模块，这里不再保留副本，避免两份实现漂移。 */
+app.use(createStaticGuard());
 /* 根路径 → 入口页。仓库无 index.html（入口是 main.html），express.static 对 / 会 404 "Cannot GET /" */
 app.get('/', function (req, res) { res.redirect('/main.html'); });
 /* 静态资源压缩（2026-09-10）：见 server/compress.js 头部「为什么需要」。
@@ -1136,6 +363,10 @@ app.use(express.static(path.join(__dirname, '..')));
 
 const PORT = process.env.PORT || 8787;
 auth.ensureDefaultUser(); // 开放模式：确保默认用户存在
+const adminState = admin.ensureAdminUser();
+if (!adminState.configured) {
+  console.warn('[admin] 未初始化管理员账号：请配置 ADMIN_PASSWORD 与 ADMIN_JWT_SECRET 后重启服务');
+}
 
 /* P0 上线断言（2026-09-09）：生产环境禁止开放模式裸奔。
    开放模式 = 所有人共享 __default__ 单用户、免 token 可读写/导入导出，公网多人使用绝不允许。

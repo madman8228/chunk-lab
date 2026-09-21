@@ -76,7 +76,7 @@
   async function finishResolution(seq,requestId){
     if(!validSeq(seq))fail('INVALID_RECEIPT','整账号处理未返回有效版本');
     return lock(function(){return change(function(r){
-      if(r.pending && requestId && r.pending.requestId!==requestId)fail('BATCH_CHANGED','待发请求已变化，不能确认整账号处理');
+      if(r.pending && (!requestId || r.pending.requestId!==requestId))fail('BATCH_CHANGED','待发请求已变化，不能确认整账号处理');
       r.baseline=seq;r.acceptedSeq=seq;r.acceptedGeneration=r.localGeneration;r.pending=null;r.status='clean';
       return r;
     });});

@@ -12,31 +12,45 @@ const PORT = require('./lib/free-port').freePort(9950, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-exit-choices-'));
 const BASE = 'http://127.0.0.1:' + PORT;
 let server;
+let serverOutput = '';
 
 function startServer() {
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(ROOT, 'server'),
       env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test' }),
-      stdio: 'ignore'
+      stdio: ['ignore', 'pipe', 'pipe']
     });
+    server.stdout.on('data', function (chunk) { serverOutput += String(chunk); });
+    server.stderr.on('data', function (chunk) { serverOutput += String(chunk); });
     let tries = 0;
     const iv = setInterval(function () {
-      if (server.exitCode !== null) { clearInterval(iv); reject(new Error('server exit ' + server.exitCode)); return; }
+      if (server.exitCode !== null) { clearInterval(iv); reject(new Error('server exit ' + server.exitCode + '\n' + serverOutput.slice(-3000))); return; }
       const req = http.get({ host: '127.0.0.1', port: PORT, path: '/api/health' }, function (res) {
         res.resume();
         if (res.statusCode === 200) { clearInterval(iv); resolve(); }
       });
       req.on('error', function () {});
       req.setTimeout(600, function () { req.destroy(); });
-      if (++tries > 40) { clearInterval(iv); reject(new Error('server 启动超时')); }
+      if (++tries > 120) { clearInterval(iv); reject(new Error('server 启动超时\n' + serverOutput.slice(-3000))); }
     }, 100);
   });
 }
 
 function stopServer() {
-  if (server) { try { server.kill('SIGKILL'); } catch (e) {} }
-  try { fs.rmSync(TMP_DB, { recursive: true, force: true }); } catch (e) {}
+  if (!server) { try { fs.rmSync(TMP_DB, { recursive: true, force: true }); } catch (e) {} return Promise.resolve(); }
+  return new Promise(function (resolve) {
+    let settled = false;
+    function finish() {
+      if (settled) return;
+      settled = true;
+      try { fs.rmSync(TMP_DB, { recursive: true, force: true }); } catch (e) {}
+      resolve();
+    }
+    server.once('close', finish);
+    try { server.kill('SIGKILL'); } catch (e) { finish(); }
+    setTimeout(finish, 3000);
+  });
 }
 
 function seedExitCourse() {
@@ -68,7 +82,7 @@ function seedExitCourse() {
   let browser;
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
     const errors = [];
     page.on('pageerror', function (error) { errors.push(error.message); });
@@ -107,6 +121,6 @@ function seedExitCourse() {
     process.exitCode = 1;
   } finally {
     if (browser) { try { await browser.close(); } catch (e) {} }
-    stopServer();
+    await stopServer();
   }
 })();

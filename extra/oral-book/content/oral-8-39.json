@@ -9,7 +9,26 @@
   "hints": [
    "不管",
    "张三李四"
-  ]
+  ],
+  "explanation": {
+   "meaning": "Every Tom, Dick and Harry 是一个非常常见、略带随意或轻微贬义色彩的英语习语，指“随便什么人”“张三李四”“阿猫阿狗”等普通人。",
+   "usage": "当说话人想强调某件事不应向所有普通人开放，或想泛指一群没有特殊身份的人时使用。正式场合通常改用 everyone、anyone 或 the general public。",
+   "note": "Tom、Dick、Harry 是英语里常用来泛指普通人的名字，三个名字连在一起时要整体理解，不能按字面理解为三个人的姓名。",
+   "examples": [
+    {
+     "en": "You can't just let every Tom, Dick and Harry into the VIP lounge.",
+     "zh": "你不能随便让张三李四都进贵宾室。"
+    },
+    {
+     "en": "I don't want every Tom, Dick and Harry knowing my private business.",
+     "zh": "我不想让随便什么人知道我的私事。"
+    },
+    {
+     "en": "It used to be an exclusive club, but now every Tom, Dick and Harry is a member.",
+     "zh": "它曾经是个专属俱乐部，但现在随便什么人都能成为会员。"
+    }
+   ]
+  }
  },
  {
   "sentence": "Out of the frying pan into the fire.",
@@ -345,7 +364,18 @@
   "hints": [
    "都是公平的",
    "在爱情和战争中"
-  ]
+  ],
+  "explanation": {
+   "meaning": "这句话表达了一种“目的证明手段合理”的逻辑。它暗示在追求爱情（比如争夺爱人）或参与战争（或竞争）时，为了取得胜利，人们可以使用任何策略、手段甚至欺骗，而不应受到常规道德或公平原则的约束。",
+   "usage": "用于说明竞争或争夺中的特殊规则：当目标是取得胜利时，参与者可能不会拘泥于通常的公平标准。语气可带有解释、辩护或讽刺意味。",
+   "note": "中文可对应“兵不厌诈”（最贴切的军事对应）、“情场如战场”，也可以说“为了达到目的，可以不择手段”。",
+   "examples": [
+    {
+     "en": "In love and war, all's fair.",
+     "zh": "在爱情和战争中，为了达到目的可以不择手段。"
+    }
+   ]
+  }
  },
  {
   "sentence": "Beauty is only skin deep.",

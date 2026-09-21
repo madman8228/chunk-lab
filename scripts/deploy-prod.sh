@@ -18,21 +18,28 @@ HOST="$1"
 APP=/opt/chunklab
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
+DEPLOY_TOKEN="chunklab-deploy-$$-$(date +%s)"
+REMOTE_DIR="/tmp/$DEPLOY_TOKEN"
+cleanup_remote_stage() {
+  ssh "$HOST" "rm -rf -- '$REMOTE_DIR'" >/dev/null 2>&1 || true
+}
+trap cleanup_remote_stage EXIT
 
 # 要部署的文件（前端静态 + 后端服务端）。
 # ⚠ 别再手工核对完整性——scripts/check-deploy-files.js 会按「HTML 引用 + ESM import 递归闭包
 #   + manifest 图标 + server require 闭包」算出必需项，与本清单比对，缺了就中止部署。
 #   本脚本第 [2/9] 步自动跑它；`npm test` 也会跑。（2026-09-10：本清单曾漏掉整个 js/ 目录）
 FILES=(
-  main.html decks.html stats.html courses.html
+  main.html decks.html stats.html courses.html admin.html
   core.js api.js auth-ui.js sw.js manifest.json content
   js/account-storage.js
   js/legacy-backup.js
   js/legacy-restore.js
   favicon.ico icon-16.png icon-32.png icon-180.png icon-192.png icon-512.png
   builtins.js oral8000.js freq-idioms.js library.js srs.js course-package.js server/backup-cli.js
-  js/idb.js js/batch-sync.js js/icons.js js/chunk-shape.js js/course-catalog.js js/course-progress.js js/content-repository.js js/sync-resolution.js js/sync-resolution-ui.js js/bridge.mjs js/chunk-engine.mjs js/format.mjs js/ai-prompts.mjs js/backup.mjs js/distractor-cause.mjs
-  server/index.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js server/sync-conflict.js server/sync-resolution.js
+  js/idb.js js/batch-sync.js js/icons.js js/chunk-shape.js js/course-catalog.js js/course-progress.js js/content-repository.js js/course-cloze.js js/course-package-contract.js js/core-identity.js js/core-merge.js js/core-activity.js js/core-event-bus.js js/core-migrations.js js/core-stats-signature.js js/core-storage-state.js js/core-entity-delta.js js/core-sync-delta.js js/core-sync-intents.js js/core-sync-payload.js js/core-sync-transport.js js/core-sync-replay.js js/core-sync-batch-merge.js js/core-sync-stats-normalize.js js/core-sync-learning-marks.js js/core-sync-entity-merge.js js/core-sync-kv.js js/core-revision-delta.js js/core-runtime.js js/main.js js/main-lifecycle.js js/main-explanation.js js/main-practice-policy.js js/main-practice-classification.js js/main-course-navigation.js js/main-deck-progress.js js/main-home-summary.js js/main-practice-state.js js/main-practice-markup.js js/main-legacy-stats.js js/vendor/course-schema-validator.js js/logical-course-store.js js/sync-resolution.js js/sync-resolution-ui.js js/bridge.mjs js/chunk-engine.mjs js/format.mjs js/ai-prompts.mjs js/backup.mjs js/distractor-cause.mjs
+  assets/icons/teacher-explain.svg
+  server/index.js server/admin.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js server/sync-conflict.js server/sync-resolution.js server/middleware/auth-rate.js server/middleware/static-guard.js server/services/change-seq.js server/services/admin-overview.js server/services/data-snapshot.js server/services/data-writers.js server/services/data-rows.js server/services/data-migrations.js server/services/data-save.js server/services/batch-replacement.js server/routes/sync.js server/routes/courses.js server/routes/decks.js server/routes/backup.js server/routes/feedback.js server/routes/ai.js server/routes/admin.js server/routes/auth.js server/routes/system.js server/routes/data.js server/package.json server/package-lock.json
   package.json
 )
 
@@ -49,7 +56,16 @@ ssh "$HOST" "sudo test -r /etc/chunklab/env && \
   sudo grep -Eq '^NODE_ENV=production([[:space:]]|$)' /etc/chunklab/env && \
   sudo grep -Eq '^REQUIRE_AUTH=true([[:space:]]|$)' /etc/chunklab/env && \
   sudo awk -F= '/^JWT_SECRET=/{if(length(\$2)>=32) ok=1} END{exit !ok}' /etc/chunklab/env && \
-  echo '      OK: production + auth + strong JWT_SECRET'"
+  sudo awk -F= '/^ADMIN_JWT_SECRET=/{if(length(\$2)>=32) ok=1} END{exit !ok}' /etc/chunklab/env && \
+  sudo awk -F= '/^ADMIN_PASSWORD=/{if(length(\$2)>=8) ok=1} END{exit !ok}' /etc/chunklab/env && \
+  echo '      OK: production + auth + strong JWT_SECRET + admin credentials'"
+
+# 本轮发布不会在正在运行的目录里偷偷执行 npm ci。依赖锁文件变化必须走单独的
+# 依赖升级/回滚流程，避免代码已经替换而 node_modules 仍是另一套版本。
+SERVER_LOCK_SHA=$(sha256sum server/package-lock.json | awk '{print $1}')
+ssh "$HOST" "test -r '$APP/server/package-lock.json' && \
+  test \"\$(sha256sum '$APP/server/package-lock.json' | awk '{print \$1}')\" = '$SERVER_LOCK_SHA' && \
+  echo '      OK: server package-lock unchanged'"
 
 echo "[2/9] 校验部署清单覆盖运行时依赖"
 node scripts/check-deploy-files.js
@@ -83,13 +99,13 @@ node scripts/gen-sw.js
 CACHE=$(grep -o "chunklab-[0-9a-f]*" sw.js | head -1)
 echo "      CACHE=$CACHE"
 
-echo "[5/9] 上传 $((${#FILES[@]})) 个文件 → $HOST:/tmp/chunklab-deploy/"
-ssh "$HOST" 'mkdir -p /tmp/chunklab-deploy'
-tar czf - "${FILES[@]}" | ssh "$HOST" 'tar xzf - -C /tmp/chunklab-deploy'
+echo "[5/9] 上传 $((${#FILES[@]})) 个文件 → $HOST:$REMOTE_DIR"
+ssh "$HOST" "mkdir -p '$REMOTE_DIR'"
+tar czf - "${FILES[@]}" | ssh "$HOST" "tar xzf - -C '$REMOTE_DIR'"
 echo "      OK"
 
 echo "[6/9] 服务端校验内容特征"
-ssh "$HOST" "cd /tmp/chunklab-deploy && \
+ssh "$HOST" "cd '$REMOTE_DIR' && \
   test -f main.html && test -f server/index.js && test -f sw.js && \
   test -f js/bridge.mjs && test -f js/chunk-engine.mjs && test -f js/distractor-cause.mjs && \
   grep -q '$CACHE' sw.js && \
@@ -97,17 +113,30 @@ ssh "$HOST" "cd /tmp/chunklab-deploy && \
   echo '      OK: 文件齐（含 js/ 模块）+ sw cache 一致 + 根路由存在'"
 
 echo "[7/9] 落盘 + 重启服务"
-ssh "$HOST" "sudo cp -r /tmp/chunklab-deploy/. $APP/ && \
-  sudo chown -R chunklab:chunklab $APP/server $APP/js 2>/dev/null; \
-  sudo chown chunklab:chunklab $APP/*.html $APP/*.js $APP/*.json $APP/*.ico $APP/*.png 2>/dev/null; \
-  sudo systemctl restart chunklab && sleep 2 && systemctl is-active chunklab && rm -rf /tmp/chunklab-deploy"
+ssh "$HOST" "bash -s -- '$APP' '$REMOTE_DIR'" <<'REMOTE_DEPLOY'
+set -euo pipefail
+APP="$1"
+STAGE="$2"
+sudo cp -r "$STAGE"/. "$APP"/
+sudo chown -R chunklab:chunklab "$APP/server" "$APP/js"
+sudo chown chunklab:chunklab "$APP"/*.html "$APP"/*.js "$APP"/*.json "$APP"/*.ico "$APP"/*.png
+sudo systemctl restart chunklab
+sleep 2
+sudo systemctl is-active --quiet chunklab
+REMOTE_DEPLOY
 
 echo "[8/9] 冒烟 + 迁移确认 + js/ 落盘一致性"
-ssh "$HOST" "curl -s -m 5 http://127.0.0.1:8787/api/health && echo && \
-  curl -s -m 5 -o /dev/null -w 'local-/: %{http_code}\n' http://127.0.0.1:8787/ && \
-  curl -s -m 5 -o /dev/null -w 'sw.js: %{http_code}\n' http://127.0.0.1:8787/sw.js && \
-  curl -s -m 5 -o /dev/null -w 'js/bridge.mjs: %{http_code}\n' http://127.0.0.1:8787/js/bridge.mjs && \
-  curl -s -m 5 http://127.0.0.1:8787/sw.js | grep -o 'chunklab-[0-9a-f]*' | head -1"
+ssh "$HOST" "bash -s -- '$CACHE'" <<'REMOTE_SMOKE'
+set -euo pipefail
+CACHE="$1"
+curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8787/api/health
+ROOT_CODE="$(curl --silent --show-error --max-time 5 -o /dev/null -w '%{http_code}' http://127.0.0.1:8787/)"
+test "$ROOT_CODE" = 302
+curl --fail --silent --show-error --max-time 5 -o /dev/null http://127.0.0.1:8787/sw.js
+curl --fail --silent --show-error --max-time 5 -o /dev/null http://127.0.0.1:8787/js/bridge.mjs
+REMOTE_CACHE="$(curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8787/sw.js | grep -o 'chunklab-[0-9a-f]*' | head -1)"
+test "$REMOTE_CACHE" = "$CACHE"
+REMOTE_SMOKE
 
 # 启动迁移是静默的（只在真有东西可搬时才打日志），所以这里不是「必须看到」而是「看到了要核对」。
 # 首次上线会打印「行级实体迁移完成：N 条 kv → ...」；核对 N 与用户数/标熟量级是否合理。

@@ -77,6 +77,7 @@
   var loaded = {};
   var memoryShards = {};
   var memoryIndexShards = {};
+  var indexLoading = {};
   var contentDb = null;
   var contentDbOpening = null;
 
@@ -309,7 +310,8 @@
 
   function loadIndexShard(shard) {
     if (memoryIndexShards[shard.url]) return Promise.resolve(memoryIndexShards[shard.url]);
-    return cacheGet(shard.url).then(function (record) {
+    if (indexLoading[shard.url]) return indexLoading[shard.url];
+    var task = cacheGet(shard.url).then(function (record) {
       if (record && validIndexData(record.data, shard, record)) {
         memoryIndexShards[shard.url] = record.data;
         return record.data;
@@ -334,6 +336,14 @@
           return data;
         });
     });
+    indexLoading[shard.url] = task.then(function (data) {
+      delete indexLoading[shard.url];
+      return data;
+    }, function (error) {
+      delete indexLoading[shard.url];
+      throw error;
+    });
+    return indexLoading[shard.url];
   }
 
   function loadLegacyContent(entry) {

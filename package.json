@@ -2,12 +2,25 @@
   "name": "chunk-practice",
   "version": "1.0.0",
   "private": true,
-  "description": "Chunk Lab · 英语句型意群练习（无构建、原生 ESM 前端 + Express/SQLite 后端）",
+  "description": "Chunk Lab · 英语句型意群练习（静态多页面 + Express/SQLite 后端）",
   "scripts": {
+    "course:schema": "node scripts/build-course-schema-validator.js",
+    "build": "node scripts/build-app.mjs",
+    "build:check": "node scripts/check-generated.mjs",
+    "prepare:test": "node scripts/build-course-schema-validator.js && node scripts/gen-oral-book.mjs && node scripts/gen-sw.js",
+    "prepare:ci": "node scripts/build-course-schema-validator.js && node scripts/gen-oral-book.mjs",
     "content:build": "node scripts/build-content.mjs",
+    "content:check-generated": "node scripts/check-content-generated.mjs",
     "content:assemble": "node scripts/gen-oral-book.mjs && node scripts/gen-builtins-stub.mjs && node scripts/build-content.mjs && node scripts/gen-sw.js",
-    "pretest": "node scripts/gen-oral-book.mjs",
-    "test": "node scripts/check-sw.js && node scripts/sw-hash.test.js && node scripts/check-contrast.js && node scripts/check-contrast.js --selftest && node sw-policy.test.js && node scripts/check-deploy-files.js && node scripts/deploy-safety.test.js && node srs.test.js && node store.test.js && node book-deck-migration.test.js && node chunk-shape.test.js && node js/course-cloze.test.js && node course-catalog.test.js && node course-progress.test.js && node stats-idb.test.js && node stats-consistency.test.js && node course-storage.test.js && node api.test.js && node sync-outbox.test.js && node validate_builtins.js && node validate_oral_book.js && node scripts/check-cross-source-dup.mjs && node scripts/validate-content.mjs && node validate_distractors.js && node scripts/book-content-check.mjs && node course-resume.test.js && node js/chunk-engine.test.mjs && node js/distractor-validate.test.mjs && node js/distractor-cause.test.mjs && node js/format.test.mjs && node js/ai-prompts.test.mjs && node js/backup.test.mjs && node rev.test.js && node multitab.test.js && node multitab-idb.test.js && node e2e/migrate-open-to-user.test.js && node e2e/home-today-entries.test.js && node e2e/srs-surface.test.js && node e2e/daily-goal.test.js && node e2e/main-startup.test.js && node e2e/course-catalog.test.js && node e2e/progress-coverage.test.js && node e2e/exit-clears-choices.test.js && node e2e/deck-progress-diagnostic.test.js && node e2e/stats-back.test.js && node e2e/stats-index.test.js && node e2e/stats-due-stability.test.js && node e2e/chunk-intro.test.js && cd server && node sync-conflict.test.js && node batch-version.test.js && node conditional-required.test.js && node ai.test.js && node credentials.test.js && node smoke.test.js && node sync-delta.test.js && node downstream-delta.test.js && node backup-cli.test.js && node compress.test.js && node api-compress.test.js && node feedback.test.js",
+    "pretest": "npm run prepare:test",
+    "test": "node scripts/run-tests.cjs all",
+    "test:checks": "node scripts/run-tests.cjs checks",
+    "test:unit": "node scripts/run-tests.cjs unit",
+    "test:server": "node scripts/run-tests.cjs server",
+    "test:browser": "node scripts/run-tests.cjs browser",
+    "test:main-lifecycle": "node scripts/main-lifecycle.test.mjs",
+    "lint": "eslint scripts/test-manifest.cjs scripts/run-tests.cjs scripts/run-tests.test.js scripts/lib-deps.js scripts/lib-deps.test.js scripts/core-revision-delta.test.mjs scripts/core-identity.test.js scripts/core-merge.test.js scripts/core-activity.test.js scripts/core-event-bus.test.js scripts/core-migrations.test.js scripts/core-stats-signature.test.js scripts/core-storage-state.test.js scripts/core-entity-delta.test.js scripts/core-sync-delta.test.js scripts/core-sync-intents.test.mjs scripts/core-sync-payload.test.mjs scripts/core-sync-transport.test.mjs scripts/core-sync-replay.test.mjs scripts/core-sync-batch-merge.test.mjs scripts/core-sync-stats-normalize.test.mjs scripts/core-sync-learning-marks.test.mjs scripts/core-sync-entity-merge.test.mjs scripts/core-sync-kv.test.mjs scripts/core-runtime.test.js scripts/main-explanation.test.mjs scripts/main-practice-policy.test.mjs scripts/main-practice-classification.test.mjs scripts/main-course-navigation.test.mjs scripts/main-deck-progress.test.mjs scripts/main-home-summary.test.mjs scripts/main-practice-state.test.mjs scripts/main-legacy-stats.test.mjs src/core/revision-delta.mjs src/core/identity.mjs src/core/merge.mjs src/core/activity.mjs src/core/event-bus.mjs src/core/migrations.mjs src/core/stats-signature.mjs src/core/storage-state.mjs src/core/entity-delta.mjs src/core/sync-delta.mjs src/core/sync-intents.mjs src/core/sync-payload.mjs src/core/sync-transport.mjs src/core/sync-replay.mjs src/core/sync-batch-merge.mjs src/core/sync-stats-normalize.mjs src/core/sync-learning-marks.mjs src/core/sync-entity-merge.mjs src/core/sync-kv-merge.mjs src/core/runtime.mjs src/main/entry.mjs src/main/lifecycle.mjs src/main/index.mjs src/main/resume.mjs src/main/boot.mjs src/main/feedback-effects.mjs src/main/answer-evaluation.mjs src/main/explanation.mjs src/main/practice-policy.mjs src/main/practice-classification.mjs src/main/course-navigation.mjs src/main/deck-progress.mjs src/main/home-summary.mjs src/main/practice-state.mjs src/main/legacy-stats.mjs e2e/lib/free-port.js e2e/upgrade-check.js server/middleware/auth-rate.js server/middleware/auth-rate.test.js server/services/change-seq.js server/services/change-seq.test.js server/services/admin-overview.js server/services/data-snapshot.js server/services/data-writers.js server/services/data-rows.js server/services/data-migrations.js server/services/data-save.js server/services/batch-replacement.js server/routes/sync.js server/routes/courses.js server/routes/decks.js server/routes/backup.js server/routes/feedback.js server/routes/ai.js server/routes/admin.js server/routes/auth.js server/routes/system.js server/routes/data.js",
+    "typecheck": "tsc -p tsconfig.check.json",
     "e2e": "node e2e/e2e.js",
     "e2e:release": "node e2e/release-check.js",
     "e2e:upgrade": "node e2e/upgrade-check.js",
@@ -18,6 +31,12 @@
     "test:migration": "node e2e/migrate-open-to-user.test.js"
   },
   "devDependencies": {
-    "playwright-core": "^1.53.0"
+    "@types/node": "^22.20.4",
+    "ajv": "8.17.1",
+    "esbuild": "0.25.9",
+    "eslint": "^9.39.4",
+    "playwright": "^1.53.0",
+    "playwright-core": "^1.53.0",
+    "typescript": "^5.9.3"
   }
 }

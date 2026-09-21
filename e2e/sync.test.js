@@ -82,8 +82,7 @@ const INJECT_SRC = [
   const BASE = 'http://127.0.0.1:' + PORT;
   const browser = await chromium.launch({
     headless: true,
-    executablePath: process.env.CHROMIUM_PATH ||
-      'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe'
+    executablePath: process.env.CHROMIUM_PATH || chromium.executablePath()
   });
   await startServer();
   console.log('sync-test server: ' + BASE);
@@ -142,6 +141,20 @@ const INJECT_SRC = [
   const bLww = await doPull(pB);
   check('S2: 设备 B 自见 deckA = "B 改 v3"', 
     (bLww.decks.find(function (d) { return d.id === 'deckA'; }) || {}).name === 'B 改 v3');
+
+  /* ===== 2a. 相同业务内容的账号版本冲突可自动确认且请求可恢复 ===== */
+  console.log('\n--- 场景 2a：相同内容冲突自动确认 ---');
+  await doPull(pA); await doPull(pB);
+  await pageEval(pA, 'window.__syncDo', { op: 'rename', id: 'deckA', name: '双方相同内容' });
+  await pageEval(pB, 'window.__syncDo', { op: 'rename', id: 'deckA', name: '双方相同内容' });
+  const autoPull = await doPull(pB);
+  const autoState = await pB.evaluate(async function () {
+    var batch = await BatchSync.state();
+    return { name: CL.loadMem().decks.find(function(d){ return d.id === 'deckA'; }).name,
+      conflict: CL.getSyncConflict(), pending: batch.pending, status: batch.status };
+  });
+  check('S2a: 相同业务内容冲突自动确认后保持本机数据', !!autoPull && autoState.name === '双方相同内容', JSON.stringify({ autoPull: !!autoPull, name: autoState.name }));
+  check('S2a: 自动确认完成后不残留冲突或待发请求', !autoState.conflict && !autoState.pending && autoState.status === 'clean', JSON.stringify(autoState));
 
   /* ===== 2b. 整账号本机选择必须删除远端独有事件 ===== */
   console.log('\n--- 场景 2b：整账号选择的事件删除语义 ---');
@@ -226,6 +239,11 @@ const INJECT_SRC = [
   check('S6: local and remote versions both preserved', conflictState.local === 'B concurrent' && conflictState.remote === 'A concurrent');
   check('S6: 失败方保留固定待发请求', typeof conflictState.pending === 'string' && conflictState.pendingBase !== null);
   check('S6: 冲突由账号级批次报告', conflictState.conflict[0].entity === 'batch');
+  const conflictBadge = await pB.evaluate(function(){
+    var b = document.getElementById('syncBadge');
+    return b ? { display: getComputedStyle(b).display, text: b.textContent, label: b.getAttribute('aria-label') } : null;
+  });
+  check('S6: 首页保留同步冲突入口', !!conflictBadge && conflictBadge.display !== 'none' && conflictBadge.text === '同步冲突' && /同步冲突/.test(conflictBadge.label || ''), JSON.stringify(conflictBadge));
   const batchView = await pB.evaluate(async function(){ return await SyncResolution.preview(); });
   check('S6: 真实页面可读取整账号双方快照', batchView.batch === true && batchView.local.value.mem.decks.some(function(d){ return d.id === 'deckA'; }) && batchView.remote.value.mem.decks.some(function(d){ return d.id === 'deckA'; }));
   check('S6: 整账号比较带服务端绑定 token', typeof batchView.remoteToken === 'string' && /^[a-f0-9]{64}$/.test(batchView.remoteToken));

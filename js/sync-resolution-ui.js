@@ -32,7 +32,8 @@
   function message(text){ $('syncResolveMessage').textContent = text; }
   function buttons(){
     $('syncKeepLocal').hidden = $('syncUseRemote').hidden = !view || !!view.pending;
-    $('syncRetry').hidden = !view || !view.pending;
+    $('syncRetry').hidden = !view || !view.pending || view.pendingState === 'blocked-local-change';
+    $('syncRecheck').hidden = !view || (view.pending && view.pendingState === 'blocked-local-change');
     $('syncDownload').hidden = !view && !receipt;
     mask.querySelectorAll('button').forEach(function(b){ b.disabled = busy; });
   }
@@ -63,7 +64,13 @@
       if(view){ renderState('syncLocal',view.local); renderState('syncRemote',view.remote); }
       if(view && view.batch) $('syncResolveIntro').textContent='这是整份学习数据冲突，选择后会替换当前账号的学习数据；双方版本都会先备份。';
       else $('syncResolveIntro').textContent='本机和云端有不同版本。请选择保留哪一版；另一版会先备份，不会直接丢弃。';
-      message(view ? (view.pending ? '上次处理尚未确认完成，点击继续即可安全重试。' : view.batch ? '请选择使用本机或使用云端。整份数据会一起处理。' : '只处理当前项目，其他题库和学习记录不受影响。') : (global.CL.isDirty() ? '没有待选择的冲突。本机改动仍在等待同步，请检查网络后重试。' : '同步已完成，没有待处理的冲突。'));
+      var pendingMessage = view && view.pending ? (
+        view.pendingState === 'blocked-capacity' ? '服务器冲突归档空间已满。请先下载双方备份；下载不会释放容量，确认容量可用后再显式重试。' :
+        view.pendingState === 'blocked-local-change' ? '处理期间本机产生了新学习记录。原请求不会自动重发，请下载原始版本、服务端回执和当前版本后再决定。' :
+        view.pendingState === 'applying' ? '服务器已确认处理，当前页面尚未完成本机恢复。点击“继续上次处理”完成恢复。' :
+        '上次处理尚未确认完成，点击“继续上次处理”可安全重试。'
+      ) : '';
+      message(view ? (view.pending ? pendingMessage : view.batch ? '请选择使用本机或使用云端。整份数据会一起处理。' : '只处理当前项目，其他题库和学习记录不受影响。') : (global.CL.isDirty() ? '没有待选择的冲突。本机改动仍在等待同步，请检查网络后重试。' : '同步已完成，没有待处理的冲突。'));
     }catch(e){ view = null; $('syncVersions').hidden = true; message(e.message); }
     finally { busy = false; buttons(); }
   }
@@ -84,7 +91,10 @@
   async function download(){
     busy = true; buttons();
     try {
-      var data = view ? { local:view.local, remote:view.remote, entity:view.entity, id:view.id } :
+      var data = view && view.pending ? { kind:'sync-recovery-backup', entity:view.entity, id:view.id,
+        original:view.pendingOriginal, receipt:view.pendingReceipt,
+        current:view.batch ? global.CL.readSyncSnapshot() : global.CL.readSyncLocal(view.entity,view.id),
+        local:view.local, remote:view.remote } : view ? { local:view.local, remote:view.remote, entity:view.entity, id:view.id } :
         await (receipt && receipt.kind === 'batch' ? global.ChunkAPI.getSyncBatchResolution(receipt.requestId) : global.ChunkAPI.getSyncResolution(receipt.requestId));
       var url = URL.createObjectURL(new Blob([JSON.stringify(data,null,2)], {type:'application/json'}));
       var link = document.createElement('a'); link.href = url; link.download = 'sync-backup-' + Date.now() + '.json'; link.click();

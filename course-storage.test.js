@@ -7,7 +7,7 @@ const COURSES = 'chunklab.courses.v1', PROGRESS = 'chunklab.course-progress.v1';
 const clone = value => JSON.parse(JSON.stringify(value));
 function sampleCourse() {
   // Read the shipped course fixture without creating or modifying extracted files.
-  const zip = fs.readFileSync(require('node:path').join(__dirname, 'extra/lesson_1_excuse_me-1.0.0.course-package.zip'));
+  const zip = fs.readFileSync(require('node:path').join(__dirname, 'ref/0.1.0-1789739161756.zip'));
   for (let offset = 0; offset < zip.length - 46; offset++) {
     if (zip.readUInt32LE(offset) !== 0x02014b50) continue;
     const size = zip.readUInt32LE(offset + 20), nameLength = zip.readUInt16LE(offset + 28);

@@ -112,6 +112,23 @@ else {
   console.log('  ✗ 基线不通过，后续结论无意义：\n    ' + base.out.trim().split('\n').join('\n    '));
 }
 
+/* [1b] 发布阶段自身的 fail-closed 合同：这些约束必须跟随脚本变更持续验证，
+   不能只依赖人工阅读远端 SSH 命令。 */
+if (base.code === 0) {
+  const contracts = [
+    ['使用唯一临时目录并在退出时清理', /DEPLOY_TOKEN=.*chunklab-deploy-/.test(ORIG) && /REMOTE_DIR="\/tmp\/\$DEPLOY_TOKEN"/.test(ORIG) && /trap cleanup_remote_stage EXIT/.test(ORIG)],
+    ['远端落盘命令启用 fail-closed shell', /bash -s -- '\$APP' '\$REMOTE_DIR'/.test(ORIG) && /set -euo pipefail/.test(ORIG)],
+    ['健康检查拒绝 HTTP 错误', /curl --fail --silent --show-error/.test(ORIG)],
+    ['根路径严格校验重定向', /test "\$ROOT_CODE" = 302/.test(ORIG)],
+    ['部署前锁定服务端依赖版本', /server\/package-lock\.json/.test(ORIG) && /SERVER_LOCK_SHA=/.test(ORIG)],
+  ];
+  contracts.forEach(function (entry) {
+    total++;
+    if (entry[1]) { pass++; console.log('  ✓ ' + entry[0]); }
+    else console.log('  ✗ ' + entry[0]);
+  });
+}
+
 if (base.code === 0) {
   for (const c of CASES) {
     fs.writeFileSync(TMP, c.mutate(ORIG));

@@ -44,7 +44,7 @@ function stopServer() {
   let browser;
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage();
     await page.goto(BASE + '/decks.html?e2e=course-catalog', { waitUntil: 'networkidle' });
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
@@ -52,11 +52,11 @@ function stopServer() {
     if (cards !== 2) throw new Error('内置课程卡片数错误：' + cards);
     if (await page.locator('.course-card .deck-cover-image[src$="oral-3000.png"]').count() !== 1) throw new Error('口语3000句封面未加载');
     if (await page.locator('.course-card .deck-cover-image[src$="idioms.png"]').count() !== 1) throw new Error('高频短语封面未加载');
-    if (await page.locator('.course-card .deck-cover.has-image .deck-cover-caption').count() !== 0) throw new Error('图片已包含课程标题，不应重复叠加标题');
+    if (await page.locator('.course-card .deck-cover-caption').count() !== 2) throw new Error('课程卡片封面标签未完整显示');
     if (await page.locator('.course-card .deck-card-body .deck-title').count() !== 0) throw new Error('课程卡片正文仍重复显示课程标题');
     const oralCard = page.locator('.course-card[aria-label="打开课程 口语3000句"]');
     if (await oralCard.locator('.deck-actions').count() !== 0) throw new Error('课程总览仍保留重复操作按钮');
-    if ((await oralCard.locator('.deck-card-body .meta').innerText()).indexOf('65 个课节 · 3259 句') >= 0) throw new Error('课程卡片正文重复显示总句数');
+    if ((await oralCard.locator('.deck-card-body .meta').innerText()).indexOf('65个课程 · 3259 句') >= 0) throw new Error('课程卡片正文重复显示总句数');
     const overviewBody = await oralCard.locator('.deck-card-body').boundingBox();
     if (!overviewBody || overviewBody.height > 60) throw new Error('课程总览卡片底部空间过大：' + JSON.stringify(overviewBody));
     if ((await oralCard.locator('[data-course-progress]').innerText()).trim() !== '0 / 3259' || await oralCard.locator('[data-course-progress]').getAttribute('aria-label') !== '尚未开始学习') throw new Error('课程卡片未显示初始进度条');
@@ -83,37 +83,29 @@ function stopServer() {
     if (await page.locator('.catalog-lesson').count() !== 0 || await page.locator('.catalog-group').count() !== 0 || (await page.locator('.empty-tip').innerText()).indexOf('还没有导入课节') === -1) throw new Error('空目录内部不应出现课节或分类');
     await page.locator('#decksBack').click();
     await page.waitForFunction(() => new URL(location.href).searchParams.get('course') === null);
+    if (!await page.locator('#tabCourses').evaluate(function(el){ return el.classList.contains('on'); })) throw new Error('从图文课程目录返回后页签状态丢失');
+    if ((await page.locator('#deckList .deck-section-title').innerText()) !== '图文课程（1 门）' || (await page.locator('#deckList .course-card').filter({ hasText: '空目录回归测试' }).count()) !== 1) throw new Error('从图文课程目录返回后错误渲染成句子课程列表：' + (await page.locator('#deckList').innerText()));
 
     /* 图文课程真实回归：从统一课程卡进入播放器，再由播放器返回统一目录。 */
     const storyFixture = {
-      schemaVersion: '1.0',
+      schemaVersion: '2.0',
       courseId: 'story-catalog-e2e',
-      metadata: { title: { 'zh-CN': '图文回归课程', en: 'Story catalog regression' }, description: { 'zh-CN': '统一课程目录回归测试' }, learningLocale: 'en', supportLocales: [] },
-      learningObjectives: [], assets: [], scenes: [], npcs: [], practiceRoles: [],
-      courseSemantics: {
-        schemaVersion: '0.1', courseType: 'image_dialogue', learningFlow: 'story_graph',
-        primaryLocale: 'en', supportLocales: [], learnerRoleIds: [], roleSources: [], exerciseModels: ['none'],
-        modules: { core: true, preStudy: false, postAssessment: true },
-        fields: { sceneDialogue: 'story.nodes[].npcMessage', learnerTarget: 'story.nodes[].sourceText', translation: 'localizedText[locale]', exerciseInstruction: 'story.nodes[].input.prompt', exerciseTemplate: 'story.nodes[].clozeTemplate', answerGaps: 'story.nodes[].gaps', answerChoices: 'story.nodes[].gaps[].choices', correctAnswer: 'story.nodes[].gaps[].correctChoiceId', speaker: 'story.nodes[].speakerId' },
-        roles: { learnerRoles: 'practiceRoles[].learnerPlayable', speakers: 'npcs[] + practiceRoles[]', speakerReference: 'story.nodes[].speakerId' },
-        flow: { entryPoint: 'story.startNodeId', nextNode: 'story.nodes[].transitions[].toNodeId', completion: 'completion.endings' },
-        assets: { catalog: 'assets[]', reference: '*AssetId', filePath: 'assets[].path' }
-      },
-      courseGuide: { schemaVersion: '0.1', summary: { 'zh-CN': '完成这节图文课程。' }, steps: [{ order: 1, title: { 'zh-CN': '开始' }, description: { 'zh-CN': '完成课程节点。' } }], contentLegend: [{ kind: 'image', label: { 'zh-CN': '图片' } }] },
-      story: {
-        startNodeId: 'n_0',
-        nodes: [
-          { id: 'n_0', type: 'interaction', speakerId: 'npc', npcMessage: { en: 'Is this your handbag?', 'zh-CN': '这是您的手提包吗？' }, input: { modes: ['choice'] }, clozeTemplate: { en: '{{gap}} {{gap}} {{gap}} {{gap}}?' }, gaps: [
-            { id: 'g0', correctChoiceId: 'c0', choices: [{ id: 'c0', text: { en: 'is' } }, { id: 'd0', text: { en: 'excuse' } }] },
-            { id: 'g1', correctChoiceId: 'c1', choices: [{ id: 'c1', text: { en: 'this' } }, { id: 'd1', text: { en: 'excuse' } }] },
-            { id: 'g2', correctChoiceId: 'c2', choices: [{ id: 'c2', text: { en: 'your' } }, { id: 'd2', text: { en: 'me' } }] },
-            { id: 'g3', correctChoiceId: 'c3', choices: [{ id: 'c3', text: { en: 'handbag' } }, { id: 'd3', text: { en: 'yes' } }] }
-          ], transitions: [{ toNodeId: 'end', fallback: true }] },
-          { id: 'end', type: 'end', endingId: 'done' }
-        ]
-      },
-      completion: { endings: [{ id: 'done', label: { 'zh-CN': '完成' }, description: { 'zh-CN': '图文课程已完成。' } }] },
-      learningModules: { postAssessment: { schemaVersion: '0.1', title: { 'zh-CN': '课后测试' }, items: [{ id: 'check', type: 'choice', prompt: { 'zh-CN': '测试' }, targetIds: ['end'], choices: [{ id: 'yes', text: { 'zh-CN': '是', en: 'Yes' } }, { id: 'no', text: { 'zh-CN': '否', en: 'No' } }], correctChoiceId: 'yes' }] } }
+      version: '1.0.0',
+      metadata: { title: { 'zh-CN': '图文回归课程', en: 'Story catalog regression' }, description: { 'zh-CN': '统一课程目录回归测试' }, learningLocale: 'en', supportLocales: ['zh-CN'] },
+      assets: [],
+      roles: [{ id: 'npc', name: 'Guide', label: { 'zh-CN': '向导', en: 'Guide' } }],
+      utterances: [{
+        id: 'u0', roleId: 'npc',
+        text: { en: 'Is this your handbag?', 'zh-CN': '这是您的手提包吗？' },
+        acceptedAnswers: { en: ['Is this your handbag?'] },
+        chunks: {
+          items: [{ id: 'c0', text: 'Is' }, { id: 'c1', text: 'this' }, { id: 'c2', text: 'your' }, { id: 'c3', text: 'handbag?' }],
+          correctOrder: ['c0', 'c1', 'c2', 'c3'],
+          distractors: []
+        }
+      }],
+      sequence: ['u0'],
+      capabilities: { text: true, audio: false, translation: true, chunkSelection: true, roleplay: false }
     };
     const logicalId = await page.evaluate(function(){
       return LogicalCourseStore.create({ title:'我的新概念英语第一册', coverImage:'data:image/png;base64,e2e-cover' }).id;
@@ -158,8 +150,8 @@ function stopServer() {
     await page.waitForURL(/courses\.html\?.*id=story-catalog-e2e.*catalogCourse=logical-course%3A/);
     await page.waitForSelector('#coursePlayer:not(.hidden)');
     if (await page.locator('#playerTitle').innerText() !== '图文回归课程') throw new Error('图文课程播放器未加载');
-    const wordBankTexts = await page.locator('.word-chip').allTextContents();
-    if (wordBankTexts.length !== 4 || wordBankTexts.sort().join('|') !== 'handbag|is|this|your') throw new Error('填空题词块池不应混入各空位的局部干扰项：' + JSON.stringify(wordBankTexts));
+    if (await page.locator('[data-action="select-v2-mode"]').count() !== 5) throw new Error('2.0 课程未显示完整练习方式选择');
+    if (await page.locator('[data-action="select-v2-mode"]:not(:disabled)').count() !== 2) throw new Error('2.0 能力声明与练习方式按钮不一致');
     const restartIconSize = await page.locator('#btnRestart .icon').evaluate(function(el){ const r = el.getBoundingClientRect(); return { width:r.width, height:r.height }; });
     if (restartIconSize.width > 20 || restartIconSize.height > 20) throw new Error('重新开始图标尺寸异常：' + JSON.stringify(restartIconSize));
     const playerImage = page.locator('#playerImage img');
@@ -198,6 +190,29 @@ function stopServer() {
     await page.waitForURL(/decks\.html\?.*course=builtin%3Aoral/);
     const lessons = await page.locator('.catalog-lesson').count();
     if (lessons !== 65) throw new Error('口语目录课节数错误：' + lessons);
+    const oralCoverChecks = [
+      ['万能表达', 'assets/catalog/oral-3000/1_1.png'],
+      ['从起床到出门', 'assets/catalog/oral-3000/1_2.png'],
+      ['从回家到就寝', 'assets/catalog/oral-3000/1_3.png'],
+      ['休息日～理财', 'assets/catalog/oral-3000/1_4.png'],
+      ['邀请友人～去听音乐会', 'assets/catalog/oral-3000/2_1.png'],
+      ['打高尔夫球～唱卡拉OK', 'assets/catalog/oral-3000/2_2.png'],
+      ['请医生看病', 'assets/catalog/oral-3000/2_3.png'],
+      ['陈述症状', 'assets/catalog/oral-3000/2_4.png'],
+      ['喜欢、爱上……～表白', 'assets/catalog/oral-3000/3_1.png'],
+      ['结婚～离婚', 'assets/catalog/oral-3000/3_2.png'],
+      ['在办公室', 'assets/catalog/oral-3000/3_3.png'],
+      ['工作单位的人际关系～评论他人', 'assets/catalog/oral-3000/3_4.png']
+    ];
+    for (const [title, src] of oralCoverChecks) {
+      const cover = page.locator('.catalog-lesson').filter({ hasText: title }).locator('.catalog-lesson-media img');
+      if (await cover.count() !== 1 || await cover.getAttribute('src') !== src) throw new Error('口语课节封面映射错误：' + title);
+    }
+    for (let lessonNumber = 13; lessonNumber <= 64; lessonNumber++) {
+      const cover = page.locator('.catalog-lesson').nth(lessonNumber - 1).locator('.catalog-lesson-media img');
+      const expectedSrc = 'assets/catalog/oral-3000/' + lessonNumber + '.png';
+      if (await cover.count() !== 1 || await cover.getAttribute('src') !== expectedSrc) throw new Error('口语第 ' + lessonNumber + ' 课节封面映射错误');
+    }
     if (await page.locator('#deckPageTitle').innerText() !== '口语3000句 · 65 个课节') throw new Error('课程标题未移到页面顶部');
     if (await page.locator('#catalogViewSwitch').evaluate(el => el.classList.contains('hidden')) || await page.locator('#catalogViewSwitch').count() !== 1) throw new Error('课程目录缺少视图切换');
     if (await page.locator('#deckList.catalog-flat-view').count() !== 0 || await page.locator('#catalogViewSwitch svg').count() !== 1 || await page.locator('#catalogViewSwitch svg').evaluate(el => el.getBoundingClientRect().width <= 0)) throw new Error('课程目录默认应为分组卡片视图');

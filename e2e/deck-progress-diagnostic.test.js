@@ -29,7 +29,9 @@ function startServer() {
       });
       req.on('error', function () {});
       req.setTimeout(600, function () { req.destroy(); });
-      if (++tries > 40) { clearInterval(iv); reject(new Error('server 启动超时')); }
+      /* 就绪窗口 300×100ms=30s。原为 40×100ms=4s，小于宿主普通 node 冷启动实测 5.4s ⇒ 必然假红。
+         health 一旦 200 立即 resolve，放大窗口在成功路径上不增加任何耗时。 */
+      if (++tries > 300) { clearInterval(iv); reject(new Error('server 启动超时')); }
     }, 100);
   });
 }
@@ -52,6 +54,11 @@ function seed() {
       streak: 1, maxStreak: 1, lastAt: now - 86400000, interval: 1, ease: 2.5, dueAt: now - 1000
     };
   }
+  /* 旧内容中曾练过、但已经不属于当前题库的句子不能继续计入覆盖。 */
+  by['progress-d1#retired-cid'] = {
+    deckId: 'progress-d1', sentence: 'Retired sentence.', times: 1, okTimes: 1, wrongTimes: 0,
+    streak: 1, maxStreak: 1, lastAt: now - 86400000, interval: 1, ease: 2.5, dueAt: now - 1000
+  };
   localStorage.setItem('chunklab.v1', JSON.stringify({
     version: 2,
     decks: [{ id: 'progress-d1', name: '进度诊断', items: items }], best: {}, mastered: {}, deletedItems: {}, reinforceBook: [],
@@ -65,7 +72,7 @@ function seed() {
   let browser;
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
     await page.route('**/api/**', function (route) { route.abort('failed'); });
     await page.addInitScript(seed);
@@ -86,7 +93,7 @@ function seed() {
         keys: Object.keys((mem.stats && mem.stats.bySentence) || {}).filter(function (k) { return k.indexOf('progress-d1#') === 0; }).length
       };
     });
-    if (result.keys !== 4 || result.text.indexOf('已覆盖 4 / 5 句') < 0 || result.text.indexOf('本次完成 2 句') < 0 || result.title.indexOf('重复练习不会增加') < 0) {
+    if (result.keys !== 5 || result.text.indexOf('已覆盖 4 / 5 句') < 0 || result.text.indexOf('本次完成 2 句') < 0 || result.title.indexOf('重复练习不会增加') < 0) {
       throw new Error('新句答题后进度不符合预期：' + JSON.stringify(result));
     }
     console.log('[deck-progress-diagnostic] 新句答题写入统计，首页显示 4/5 与本次 2 句');

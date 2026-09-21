@@ -20,6 +20,8 @@ import CourseCatalog from '../js/course-catalog.js';
 import CS from '../js/chunk-shape.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+/* CI 的 content:check-generated 使用临时输出目录；默认仍写入仓库 content/。 */
+const OUTPUT_ROOT = path.resolve(process.env.CONTENT_OUTPUT_ROOT || ROOT);
 const courseCatalogSeed = JSON.parse(fs.readFileSync(path.join(ROOT, 'extra/course-catalog.json'), 'utf8'));
 
 function runScript(file, initialWindow) {
@@ -49,7 +51,7 @@ function removeDirDeep(dir) {
 const SHARD_SIZE = 200;
 
 function writeShards(relativeDir, prefix, items, mode) {
-  const outputDir = path.join(ROOT, relativeDir);
+  const outputDir = path.join(OUTPUT_ROOT, relativeDir);
   if (fs.existsSync(outputDir)) {
     for (const oldFile of fs.readdirSync(outputDir)) {
       if (oldFile.startsWith(`${prefix}-`) && oldFile.endsWith('.json')) {
@@ -65,7 +67,7 @@ function writeShards(relativeDir, prefix, items, mode) {
     const partNo = String(Math.floor(offset / SHARD_SIZE) + 1).padStart(3, '0');
     const filePrefix = `${prefix}-${partNo}`;
     const relativePath = path.posix.join(relativeDir.replaceAll(path.sep, '/'), `${filePrefix}-${hash}.json`);
-    const absolutePath = path.join(ROOT, relativePath);
+    const absolutePath = path.join(OUTPUT_ROOT, relativePath);
     fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
     fs.writeFileSync(absolutePath, body, 'utf8');
     shards.push({
@@ -134,7 +136,7 @@ if (!freqDeck || !Array.isArray(freqDeck.items) || !freqDeck.items.length) {
 }
 
 /* ---------- 清理旧分片目录（content/ 下均为生成物；物理删除避免孤儿文件） ---------- */
-const contentRoot = path.join(ROOT, 'content');
+const contentRoot = path.join(OUTPUT_ROOT, 'content');
 if (fs.existsSync(contentRoot)) {
   for (const name of fs.readdirSync(contentRoot)) {
     const target = path.join(contentRoot, name);
@@ -210,8 +212,8 @@ manifest.catalog.version = 'v1-' + crypto.createHash('sha256')
 // invalidates saved offsets.
 manifest.contentVersion = 'v1-' + crypto.createHash('sha256')
   .update(JSON.stringify({ decks: manifest.decks })).digest('hex');
-fs.mkdirSync(path.join(ROOT, 'content'), { recursive: true });
-fs.writeFileSync(path.join(ROOT, 'content/manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+fs.mkdirSync(path.join(OUTPUT_ROOT, 'content'), { recursive: true });
+fs.writeFileSync(path.join(OUTPUT_ROOT, 'content/manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
 
 const total = decks.reduce((sum, d) => sum + d.items.length, 0);
 console.log(`[content] 共 ${manifest.decks.length} 个 deck（口语 8000：${decks.length} 个 / ${total} 句 + 高频短语 ${freqDeck.items.length} 句）`);

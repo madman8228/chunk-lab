@@ -72,7 +72,7 @@ function makeMem(count) {
   try {
     await startServer();
     await putRemote(makeMem(38));
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     var page = await browser.newPage();
     await page.addInitScript(function (localMem) {
       localStorage.clear();

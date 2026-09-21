@@ -25,6 +25,7 @@
 const { execSync } = require('child_process');
 
 let _used = null;
+let _excludedRanges = null;
 
 function usedPorts() {
   if (_used) return _used;
@@ -48,6 +49,28 @@ function usedPorts() {
   return set;
 }
 
+function excludedRanges() {
+  if (_excludedRanges) return _excludedRanges;
+  _excludedRanges = [];
+  if (process.platform !== 'win32') return _excludedRanges;
+  try {
+    const raw = execSync('netsh interface ipv4 show excludedportrange protocol=tcp', {
+      encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 10000
+    });
+    String(raw).split(/\r?\n/).forEach(function (line) {
+      const m = line.match(/^\s*(\d+)\s+(\d+)\s*$/);
+      if (m) _excludedRanges.push([parseInt(m[1], 10), parseInt(m[2], 10)]);
+    });
+  } catch (e) {
+    /* Older Windows/container images may not expose netsh; netstat probing still applies. */
+  }
+  return _excludedRanges;
+}
+
+function isExcluded(port) {
+  return excludedRanges().some(function (range) { return port >= range[0] && port <= range[1]; });
+}
+
 /**
  * @param {number} base 起始端口
  * @param {number} span 区间长度（默认 100）
@@ -57,10 +80,13 @@ function freePort(base, span) {
   span = span || 100;
   const start = Math.floor(Math.random() * span);
   const used = usedPorts();
-  if (!used.size) return base + start; /* netstat 拿不到 → 保持改造前行为 */
-  for (let i = 0; i < span; i++) {
-    const p = base + ((start + i) % span);
-    if (!used.has(p)) return p;
+  if (!used.size && !excludedRanges().length) return base + start; /* 探测均不可用 → 保持改造前行为 */
+  /* Windows may reserve an entire nominal test range (for example 10167–10466).
+     Continue past the requested window instead of returning a port guaranteed to
+     fail with EACCES. The extended scan remains bounded and deterministic. */
+  for (let i = 0; i < span * 20; i++) {
+    const p = base + start + i;
+    if (!used.has(p) && !isExcluded(p)) return p;
   }
   return base + start; /* 整段占满（实际不可能） */
 }

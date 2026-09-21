@@ -7,7 +7,9 @@ const root=path.resolve(__dirname,'..'),port=require('./lib/free-port').freePort
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cl-outbox-'));
 let browser,server;
 async function ready(){
-  for(let i=0;i<60;i++){
+  /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：同库其余 6s 窗口已实测为临界窗口，
+     宿主 node 冷启动实测 5.4s。health 一旦 200 立即 return ⇒ 成功路径不增加耗时。 */
+  for(let i=0;i<300;i++){
     const ok=await new Promise(resolve=>{
       const req=http.get('http://127.0.0.1:'+port+'/api/health',res=>{res.resume();resolve(res.statusCode===200);});
       req.on('error',()=>resolve(false));req.setTimeout(500,()=>req.destroy());

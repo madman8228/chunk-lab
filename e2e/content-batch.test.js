@@ -48,7 +48,7 @@ function check(name, ok, detail) {
 (async function () {
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage();
     const errors = [];
     page.on('pageerror', function (e) { errors.push(e.message); });

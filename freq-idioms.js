@@ -2657,20 +2657,20 @@ window.DATA_FREQ_IDIOMS = [
     distractors: [["Give me a hand —","Give me a chance —"],["I've been working nonstop for eight days.","I've been working here for eight hours."]]
   },
   {
-    sentence: "It's my treat tonight — the dinner is on me.",
-    cid: fnv8("It's my treat tonight — the dinner is on me."),
-    translation: "今晚我请客，这顿饭我来付。",
-    chunks: ["It's my treat tonight —","the dinner is on me."],
-    hints: ["今晚我请客","这顿饭我买单"],
+    sentence: "You paid for dinner last time, so drinks are on me.",
+    cid: fnv8("You paid for dinner last time, so drinks are on me."),
+    translation: "上次晚饭你付的钱，这次饮料我请。",
+    chunks: ["You paid for dinner last time, so","drinks are on me."],
+    hints: ["上次晚饭你付的钱","这次饮料我请"],
     grammar: [
-      {role:"主系表", color:"#c87033", phonetic:["/ɪts/","/maɪ/","/triːt/","/təˈnaɪt/"], pos:"主系表·请客", meaning:"今晚我请客"},
-      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ðə/","/ˈdɪnər/","/ɪz/","/ɑːn/","/miː/"], pos:"习语·费用承担", meaning:"这顿饭算我头上（我买单）"}
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/peɪd/","/fər/","/ˈdɪnər/","/læst/","/taɪm/","/soʊ/"], pos:"过去时·请客", meaning:"上次你付了晚饭钱"},
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/drɪŋks/","/ɑːr/","/ɑːn/","/miː/"], pos:"习语·费用承担", meaning:"这次饮料我请"}
     ],
     explanations: [
-      "**it's on me** 表示「费用我来付」，结账场景万能句。同义 It's my treat / I'll pick up the tab。",
-      "例句：You paid last time — this round is on me."
+      "**it's on me** 表示「费用我来付」，可用于吃饭、饮料、票等具体花费。同义：It's my treat / I'll pick up the tab。",
+      "例句：I got the tickets, so popcorn is on me."
     ],
-    distractors: [["It's my turn tonight —","It's my treat tomorrow —"],["the dinner is at my place.","the dinner is at eight."]]
+    distractors: [["You cooked dinner last time, so","You ordered dinner last time, so"],["drinks are at home.","drinks are for everyone."]]
   },
   {
     sentence: "Just a minute — I need to grab my keys.",

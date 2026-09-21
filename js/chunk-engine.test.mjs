@@ -12,7 +12,7 @@
 
 import {
   classifyWord, patternOf, normPattern, norm,
-  buildChoices, buildDistractors, judgeChunk
+  buildChoices, buildDistractors, buildChoicePool, buildChoiceMarkup, judgeChunk
 } from './chunk-engine.mjs';
 
 let passed = 0, failed = 0;
@@ -41,6 +41,28 @@ const sentA = { chunks: ['I am', 'a student', 'in Beijing'] };
 const sentB = { chunks: ['She is', 'a teacher', 'in Shanghai'] };
 const sentC = { chunks: ['We are', 'good friends'] };
 const items = [sentA, sentB, sentC];
+
+/* ===== buildChoicePool / buildChoiceMarkup ===== */
+(function () {
+  const pool = buildChoicePool(['first', 'second'], ['wrong'], () => 0);
+  check('buildChoicePool: 正确项/干扰项带索引',
+    pool.corrects.join('|') === 'first|second' && pool.distractors[0] === 'wrong' &&
+      pool.order.every(e => e.ci === -1 || e.ci === 0 || e.ci === 1), JSON.stringify(pool));
+  check('buildChoicePool: random 可注入且顺序固定',
+    JSON.stringify(buildChoicePool(['first', 'second'], ['wrong'], () => 0)) === JSON.stringify(pool));
+
+  const escaped = function (value) {
+    return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  };
+  const markup = buildChoiceMarkup({ order: [
+    { v: 'right&safe', ci: 0 }, { v: 'wrong', ci: -1 }, { v: 'done', ci: 1 }
+  ] }, ['pending', 'ok'], false, escaped);
+  check('buildChoiceMarkup: 首次显示操作提示', markup.includes('chunkOnboardingHint') && markup.includes('知道了'));
+  check('buildChoiceMarkup: 已答对正确项不再展示，干扰项保留',
+    markup.includes('data-v="wrong"') && !markup.includes('data-v="done"') && markup.includes('right&amp;safe'));
+  check('buildChoiceMarkup: 已看过提示时不重复插入',
+    !buildChoiceMarkup({ order: [] }, [], true, escaped).includes('chunkOnboardingHint'));
+})();
 
 (function () {
   const cs = buildChoices(sentA, 0, items, items); // 正确答案 'I am'

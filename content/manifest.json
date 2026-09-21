@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-4d5210125be8122e7834593986dbb729c9946de493414fd880e987f4dfe995a3",
+  "contentVersion": "v1-cf8954a2d110d71f775a9d4ec1a2a865ace41aca6b016ad7850cbdfb68a51b1f",
   "series": "口语3000句",
   "chapters": [
     {
@@ -2070,21 +2070,21 @@
       "totalCount": 68,
       "shards": [
         {
-          "id": "oral-001-1e9df1d635b3",
-          "url": "content/oral-8-39/oral-001-1e9df1d635b3.json",
+          "id": "oral-001-36aaccccdabf",
+          "url": "content/oral-8-39/oral-001-36aaccccdabf.json",
           "count": 68,
-          "bytes": 20961,
-          "sha256": "1e9df1d635b363b6fd2b995302b68df7c9f302a2ff8cb52f8513b848905ce714",
+          "bytes": 23090,
+          "sha256": "36aaccccdabfec4e3b80fca760fc8c3ba0e5b8cb1d850b9fde2f0df6219dd51c",
           "mode": "replace"
         }
       ],
       "indexShards": [
         {
-          "id": "oral-index-001-20dd7563088e",
-          "url": "content/oral-8-39/oral-index-001-20dd7563088e.json",
+          "id": "oral-index-001-e6cd1193418c",
+          "url": "content/oral-8-39/oral-index-001-e6cd1193418c.json",
           "count": 68,
           "bytes": 15273,
-          "sha256": "20dd7563088ea0fb6cfd9d1cd2c9257e94e27940bd2358ce57fd21eba11756e9",
+          "sha256": "e6cd1193418c0a676d7aa43c1090878af497b7ae35a0593a4912352072c09b1d",
           "mode": "index"
         }
       ]
@@ -2134,11 +2134,11 @@
       "totalCount": 418,
       "shards": [
         {
-          "id": "idioms-001-5cafb1f0d73a",
-          "url": "content/builtin-freq-idioms/idioms-001-5cafb1f0d73a.json",
+          "id": "idioms-001-51b2755e0862",
+          "url": "content/builtin-freq-idioms/idioms-001-51b2755e0862.json",
           "count": 200,
-          "bytes": 307950,
-          "sha256": "5cafb1f0d73aae1562a1602144fa9c7f652f19a831d13f4af2380a4be303646f",
+          "bytes": 308043,
+          "sha256": "51b2755e0862ae0a19f87bc1c474b3764a238550f46f5b9e9e9c404bab50bf72",
           "mode": "replace"
         },
         {
@@ -2160,11 +2160,11 @@
       ],
       "indexShards": [
         {
-          "id": "idioms-index-001-6e3bf6d60435",
-          "url": "content/builtin-freq-idioms/idioms-index-001-6e3bf6d60435.json",
+          "id": "idioms-index-001-4db11b37ad84",
+          "url": "content/builtin-freq-idioms/idioms-index-001-4db11b37ad84.json",
           "count": 200,
-          "bytes": 54317,
-          "sha256": "6e3bf6d60435d7ace9990bd0b5ae4bf2098ded48073ff9f459a634c1649be306",
+          "bytes": 54331,
+          "sha256": "4db11b37ad848df2fe6ef39a3dd146e2dfc69968d46309f3963b7d8a93c646a7",
           "mode": "index"
         },
         {
@@ -2188,7 +2188,7 @@
   ],
   "catalog": {
     "schemaVersion": 1,
-    "version": "v1-0da6d876d2d2d29d4445a143a6a80c80e89c4df0ff731a7d0ceb514185d1a379",
+    "version": "v1-f006970f4ced9cfcff1bb67ce778128be263fc1708ab800196eb42ca534eeae4",
     "courses": [
       {
         "id": "builtin:oral",
@@ -2213,7 +2213,8 @@
                   "type": "sentence-deck",
                   "id": "oral-basic"
                 },
-                "itemCount": 7
+                "itemCount": 7,
+                "image": "assets/catalog/oral-3000/1_1.png"
               }
             ]
           },
@@ -2231,7 +2232,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-1-1"
                 },
-                "itemCount": 94
+                "itemCount": 94,
+                "image": "assets/catalog/oral-3000/1_2.png"
               },
               {
                 "id": "lesson:oral-1-1-2",
@@ -2241,7 +2243,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-1-2"
                 },
-                "itemCount": 125
+                "itemCount": 125,
+                "image": "assets/catalog/oral-3000/1_3.png"
               },
               {
                 "id": "lesson:oral-1-1-3",
@@ -2251,7 +2254,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-1-3"
                 },
-                "itemCount": 89
+                "itemCount": 89,
+                "image": "assets/catalog/oral-3000/1_4.png"
               }
             ]
           },
@@ -2269,7 +2273,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-2-1"
                 },
-                "itemCount": 86
+                "itemCount": 86,
+                "image": "assets/catalog/oral-3000/2_1.png"
               },
               {
                 "id": "lesson:oral-1-2-2",
@@ -2279,7 +2284,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-2-2"
                 },
-                "itemCount": 61
+                "itemCount": 61,
+                "image": "assets/catalog/oral-3000/2_2.png"
               }
             ]
           },
@@ -2297,7 +2303,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-3-1"
                 },
-                "itemCount": 27
+                "itemCount": 27,
+                "image": "assets/catalog/oral-3000/2_3.png"
               },
               {
                 "id": "lesson:oral-1-3-2",
@@ -2307,7 +2314,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-3-2"
                 },
-                "itemCount": 69
+                "itemCount": 69,
+                "image": "assets/catalog/oral-3000/2_4.png"
               }
             ]
           },
@@ -2325,7 +2333,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-4-1"
                 },
-                "itemCount": 68
+                "itemCount": 68,
+                "image": "assets/catalog/oral-3000/3_1.png"
               },
               {
                 "id": "lesson:oral-1-4-2",
@@ -2335,7 +2344,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-4-2"
                 },
-                "itemCount": 38
+                "itemCount": 38,
+                "image": "assets/catalog/oral-3000/3_2.png"
               }
             ]
           },
@@ -2353,7 +2363,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-5-1"
                 },
-                "itemCount": 99
+                "itemCount": 99,
+                "image": "assets/catalog/oral-3000/3_3.png"
               },
               {
                 "id": "lesson:oral-1-5-2",
@@ -2363,7 +2374,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-5-2"
                 },
-                "itemCount": 49
+                "itemCount": 49,
+                "image": "assets/catalog/oral-3000/3_4.png"
               },
               {
                 "id": "lesson:oral-1-5-3",
@@ -2373,7 +2385,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-5-3"
                 },
-                "itemCount": 37
+                "itemCount": 37,
+                "image": "assets/catalog/oral-3000/13.png"
               }
             ]
           },
@@ -2391,7 +2404,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-6-1"
                 },
-                "itemCount": 74
+                "itemCount": 74,
+                "image": "assets/catalog/oral-3000/14.png"
               },
               {
                 "id": "lesson:oral-1-6-2",
@@ -2401,7 +2415,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-6-2"
                 },
-                "itemCount": 31
+                "itemCount": 31,
+                "image": "assets/catalog/oral-3000/15.png"
               }
             ]
           },
@@ -2419,7 +2434,8 @@
                   "type": "sentence-deck",
                   "id": "oral-1-7"
                 },
-                "itemCount": 28
+                "itemCount": 28,
+                "image": "assets/catalog/oral-3000/16.png"
               }
             ]
           },
@@ -2437,7 +2453,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-8-1"
                 },
-                "itemCount": 57
+                "itemCount": 57,
+                "image": "assets/catalog/oral-3000/17.png"
               },
               {
                 "id": "lesson:oral-2-8-2",
@@ -2447,7 +2464,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-8-2"
                 },
-                "itemCount": 71
+                "itemCount": 71,
+                "image": "assets/catalog/oral-3000/18.png"
               },
               {
                 "id": "lesson:oral-2-8-3",
@@ -2457,7 +2475,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-8-3"
                 },
-                "itemCount": 63
+                "itemCount": 63,
+                "image": "assets/catalog/oral-3000/19.png"
               },
               {
                 "id": "lesson:oral-2-8-4",
@@ -2467,7 +2486,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-8-4"
                 },
-                "itemCount": 74
+                "itemCount": 74,
+                "image": "assets/catalog/oral-3000/20.png"
               },
               {
                 "id": "lesson:oral-2-8-5",
@@ -2477,7 +2497,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-8-5"
                 },
-                "itemCount": 42
+                "itemCount": 42,
+                "image": "assets/catalog/oral-3000/21.png"
               }
             ]
           },
@@ -2495,7 +2516,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-9-1"
                 },
-                "itemCount": 56
+                "itemCount": 56,
+                "image": "assets/catalog/oral-3000/22.png"
               },
               {
                 "id": "lesson:oral-2-9-2",
@@ -2505,7 +2527,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-9-2"
                 },
-                "itemCount": 71
+                "itemCount": 71,
+                "image": "assets/catalog/oral-3000/23.png"
               },
               {
                 "id": "lesson:oral-2-9-3",
@@ -2515,7 +2538,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-9-3"
                 },
-                "itemCount": 72
+                "itemCount": 72,
+                "image": "assets/catalog/oral-3000/24.png"
               }
             ]
           },
@@ -2533,7 +2557,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-10-1"
                 },
-                "itemCount": 39
+                "itemCount": 39,
+                "image": "assets/catalog/oral-3000/25.png"
               },
               {
                 "id": "lesson:oral-2-10-2",
@@ -2543,7 +2568,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-10-2"
                 },
-                "itemCount": 66
+                "itemCount": 66,
+                "image": "assets/catalog/oral-3000/26.png"
               },
               {
                 "id": "lesson:oral-2-10-3",
@@ -2553,7 +2579,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-10-3"
                 },
-                "itemCount": 48
+                "itemCount": 48,
+                "image": "assets/catalog/oral-3000/27.png"
               }
             ]
           },
@@ -2571,7 +2598,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-11-1"
                 },
-                "itemCount": 71
+                "itemCount": 71,
+                "image": "assets/catalog/oral-3000/28.png"
               },
               {
                 "id": "lesson:oral-2-11-2",
@@ -2581,7 +2609,8 @@
                   "type": "sentence-deck",
                   "id": "oral-2-11-2"
                 },
-                "itemCount": 33
+                "itemCount": 33,
+                "image": "assets/catalog/oral-3000/29.png"
               }
             ]
           },
@@ -2599,7 +2628,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-12-1"
                 },
-                "itemCount": 76
+                "itemCount": 76,
+                "image": "assets/catalog/oral-3000/30.png"
               },
               {
                 "id": "lesson:oral-3-12-2",
@@ -2609,7 +2639,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-12-2"
                 },
-                "itemCount": 66
+                "itemCount": 66,
+                "image": "assets/catalog/oral-3000/31.png"
               },
               {
                 "id": "lesson:oral-3-12-3",
@@ -2619,7 +2650,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-12-3"
                 },
-                "itemCount": 25
+                "itemCount": 25,
+                "image": "assets/catalog/oral-3000/32.png"
               }
             ]
           },
@@ -2637,7 +2669,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-13-1"
                 },
-                "itemCount": 67
+                "itemCount": 67,
+                "image": "assets/catalog/oral-3000/33.png"
               },
               {
                 "id": "lesson:oral-3-13-2",
@@ -2647,7 +2680,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-13-2"
                 },
-                "itemCount": 62
+                "itemCount": 62,
+                "image": "assets/catalog/oral-3000/34.png"
               },
               {
                 "id": "lesson:oral-3-13-3",
@@ -2657,7 +2691,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-13-3"
                 },
-                "itemCount": 34
+                "itemCount": 34,
+                "image": "assets/catalog/oral-3000/35.png"
               }
             ]
           },
@@ -2675,7 +2710,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-14"
                 },
-                "itemCount": 23
+                "itemCount": 23,
+                "image": "assets/catalog/oral-3000/36.png"
               }
             ]
           },
@@ -2693,7 +2729,8 @@
                   "type": "sentence-deck",
                   "id": "oral-3-15"
                 },
-                "itemCount": 22
+                "itemCount": 22,
+                "image": "assets/catalog/oral-3000/37.png"
               }
             ]
           },
@@ -2711,7 +2748,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-16"
                 },
-                "itemCount": 41
+                "itemCount": 41,
+                "image": "assets/catalog/oral-3000/38.png"
               }
             ]
           },
@@ -2729,7 +2767,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-17-1"
                 },
-                "itemCount": 69
+                "itemCount": 69,
+                "image": "assets/catalog/oral-3000/39.png"
               },
               {
                 "id": "lesson:oral-4-17-2",
@@ -2739,7 +2778,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-17-2"
                 },
-                "itemCount": 67
+                "itemCount": 67,
+                "image": "assets/catalog/oral-3000/40.png"
               },
               {
                 "id": "lesson:oral-4-17-3",
@@ -2749,7 +2789,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-17-3"
                 },
-                "itemCount": 16
+                "itemCount": 16,
+                "image": "assets/catalog/oral-3000/41.png"
               }
             ]
           },
@@ -2767,7 +2808,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-18"
                 },
-                "itemCount": 65
+                "itemCount": 65,
+                "image": "assets/catalog/oral-3000/42.png"
               }
             ]
           },
@@ -2785,7 +2827,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-19"
                 },
-                "itemCount": 30
+                "itemCount": 30,
+                "image": "assets/catalog/oral-3000/43.png"
               }
             ]
           },
@@ -2803,7 +2846,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-20"
                 },
-                "itemCount": 81
+                "itemCount": 81,
+                "image": "assets/catalog/oral-3000/44.png"
               }
             ]
           },
@@ -2821,7 +2865,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-21"
                 },
-                "itemCount": 10
+                "itemCount": 10,
+                "image": "assets/catalog/oral-3000/45.png"
               }
             ]
           },
@@ -2839,7 +2884,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-22"
                 },
-                "itemCount": 15
+                "itemCount": 15,
+                "image": "assets/catalog/oral-3000/46.png"
               }
             ]
           },
@@ -2857,7 +2903,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-23"
                 },
-                "itemCount": 15
+                "itemCount": 15,
+                "image": "assets/catalog/oral-3000/47.png"
               }
             ]
           },
@@ -2875,7 +2922,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-24"
                 },
-                "itemCount": 4
+                "itemCount": 4,
+                "image": "assets/catalog/oral-3000/48.png"
               }
             ]
           },
@@ -2893,7 +2941,8 @@
                   "type": "sentence-deck",
                   "id": "oral-4-25"
                 },
-                "itemCount": 16
+                "itemCount": 16,
+                "image": "assets/catalog/oral-3000/49.png"
               }
             ]
           },
@@ -2911,7 +2960,8 @@
                   "type": "sentence-deck",
                   "id": "oral-5-26"
                 },
-                "itemCount": 11
+                "itemCount": 11,
+                "image": "assets/catalog/oral-3000/50.png"
               }
             ]
           },
@@ -2929,7 +2979,8 @@
                   "type": "sentence-deck",
                   "id": "oral-5-27"
                 },
-                "itemCount": 6
+                "itemCount": 6,
+                "image": "assets/catalog/oral-3000/51.png"
               }
             ]
           },
@@ -2947,7 +2998,8 @@
                   "type": "sentence-deck",
                   "id": "oral-5-28"
                 },
-                "itemCount": 16
+                "itemCount": 16,
+                "image": "assets/catalog/oral-3000/52.png"
               }
             ]
           },
@@ -2965,7 +3017,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-29-1"
                 },
-                "itemCount": 81
+                "itemCount": 81,
+                "image": "assets/catalog/oral-3000/53.png"
               }
             ]
           },
@@ -2983,7 +3036,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-30-1"
                 },
-                "itemCount": 37
+                "itemCount": 37,
+                "image": "assets/catalog/oral-3000/54.png"
               },
               {
                 "id": "lesson:oral-6-30-2",
@@ -2993,7 +3047,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-30-2"
                 },
-                "itemCount": 69
+                "itemCount": 69,
+                "image": "assets/catalog/oral-3000/55.png"
               }
             ]
           },
@@ -3011,7 +3066,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-31"
                 },
-                "itemCount": 96
+                "itemCount": 96,
+                "image": "assets/catalog/oral-3000/56.png"
               }
             ]
           },
@@ -3029,7 +3085,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-32-1"
                 },
-                "itemCount": 63
+                "itemCount": 63,
+                "image": "assets/catalog/oral-3000/57.png"
               },
               {
                 "id": "lesson:oral-6-32-2",
@@ -3039,7 +3096,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-32-2"
                 },
-                "itemCount": 63
+                "itemCount": 63,
+                "image": "assets/catalog/oral-3000/58.png"
               }
             ]
           },
@@ -3057,7 +3115,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-33"
                 },
-                "itemCount": 32
+                "itemCount": 32,
+                "image": "assets/catalog/oral-3000/59.png"
               }
             ]
           },
@@ -3075,7 +3134,8 @@
                   "type": "sentence-deck",
                   "id": "oral-6-34"
                 },
-                "itemCount": 31
+                "itemCount": 31,
+                "image": "assets/catalog/oral-3000/60.png"
               }
             ]
           },
@@ -3093,7 +3153,8 @@
                   "type": "sentence-deck",
                   "id": "oral-7-35"
                 },
-                "itemCount": 37
+                "itemCount": 37,
+                "image": "assets/catalog/oral-3000/61.png"
               }
             ]
           },
@@ -3111,7 +3172,8 @@
                   "type": "sentence-deck",
                   "id": "oral-7-36-1"
                 },
-                "itemCount": 71
+                "itemCount": 71,
+                "image": "assets/catalog/oral-3000/62.png"
               }
             ]
           },
@@ -3129,7 +3191,8 @@
                   "type": "sentence-deck",
                   "id": "oral-7-37"
                 },
-                "itemCount": 22
+                "itemCount": 22,
+                "image": "assets/catalog/oral-3000/63.png"
               }
             ]
           },
@@ -3147,7 +3210,8 @@
                   "type": "sentence-deck",
                   "id": "oral-7-38"
                 },
-                "itemCount": 7
+                "itemCount": 7,
+                "image": "assets/catalog/oral-3000/64.png"
               }
             ]
           },

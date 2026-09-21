@@ -16,6 +16,7 @@
 
 - 前端静态 + API 同源由 Express 托管，**无跨域**，`CORS_ORIGINS` 留空即 fail-closed。
 - 多用户：注册/登录签发 JWT，数据按 user_id 隔离；未登录前端自动弹登录框。
+- 管理后台：`/admin.html`，固定管理员用户名 `admin`；密码由 `/etc/chunklab/env` 的 `ADMIN_PASSWORD` 首次初始化，令牌使用独立的 `ADMIN_JWT_SECRET`。
 - `NODE_ENV=production` 时若 `REQUIRE_AUTH` 非 true，服务**拒绝启动**（P0 断言，防裸奔）。
 
 ---

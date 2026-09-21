@@ -72,8 +72,7 @@ function check(name, cond, detail) {
   const BASE = 'http://127.0.0.1:' + PORT;
   const browser = await chromium.launch({
     headless: true,
-    executablePath: process.env.CHROMIUM_PATH ||
-      'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe'
+    executablePath: process.env.CHROMIUM_PATH || chromium.executablePath()
   });
   await startServer();
   console.log('E2E server: ' + BASE);
@@ -873,7 +872,7 @@ function check(name, cond, detail) {
     mobileLayout.masterHeight === mobileLayout.explainHeight && mobileLayout.masterHeight >= 32,
     JSON.stringify(mobileLayout));
   check('mobile: 标熟按钮显示为“熟”', mobileLayout.masterText === '熟', JSON.stringify(mobileLayout));
-  check('mobile: 查看讲解按钮不显示 Icon', mobileLayout.explainText === '查看讲解' && mobileLayout.explainIconCount === 0, JSON.stringify(mobileLayout));
+  check('mobile: 查看讲解按钮使用明确文字', mobileLayout.explainText === '详解' && mobileLayout.explainIconCount === 0, JSON.stringify(mobileLayout));
   /* 用受控内容探针判「布局允不允许并排两个」——不受随机句子影响（根因见 evaluate 内注释）。
      真实行数仍在 detail 里带着，便于诊断时区分「内容本来放不下」与「布局被压成一列」。 */
   check('mobile: 候选 chunk 布局允许并排两个',
@@ -940,23 +939,30 @@ function check(name, cond, detail) {
   await pd.goto(BASE + '/decks.html', { waitUntil: 'domcontentloaded' });
   await pd.waitForTimeout(1200);
   const decksLayout = await pd.evaluate(function () {
+    var importButton = document.getElementById('btnImportDecks');
     return {
       svg: document.querySelectorAll('svg.icon').length,
       back: (document.getElementById('decksBack') || {}).textContent || '',
-      importText: (document.getElementById('btnImportDecks') || {}).textContent || '',
+      importText: importButton ? importButton.textContent : '',
+      importAria: importButton ? importButton.getAttribute('aria-label') : '',
+      importTitle: importButton ? importButton.getAttribute('title') : '',
       builtinImportCount: Array.from(document.querySelectorAll('#deckList .deck-item')).filter(function(el){
         return el.querySelector('.pill:not(.mine)') && Array.from(el.querySelectorAll('.deck-actions button')).some(function(btn){ return btn.textContent.trim() === '导入'; });
       }).length,
-      maxRowHeight: Math.max.apply(Math, Array.from(document.querySelectorAll('#deckList .deck-item')).map(function (el) {
+      maxCardBodyHeight: Math.max.apply(Math, Array.from(document.querySelectorAll('#deckList .course-card .deck-card-body')).map(function (el) {
         return Math.round(el.getBoundingClientRect().height);
-      }))
+      })),
+      coverAspectOk: Array.from(document.querySelectorAll('#deckList .course-card .deck-cover')).every(function (el) {
+        var r = el.getBoundingClientRect();
+        return r.width > 0 && Math.abs((r.width / r.height) - (16 / 9)) < 0.06;
+      })
     };
   });
   const dsvg = decksLayout.svg;
   check('decks: SVG 图标渲染', dsvg >= 10, 'svg=' + dsvg);
   check('decks: 返回按钮文案简洁', decksLayout.back.trim() === '返回', JSON.stringify(decksLayout));
-  check('decks: 添加课程入口保留且内置课程不复制副本', decksLayout.importText.indexOf('添加课程') >= 0 && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
-  check('decks: 题库卡片高度紧凑', decksLayout.maxRowHeight <= 60, JSON.stringify(decksLayout));
+  check('decks: 添加课程入口保留且内置课程不复制副本', decksLayout.importText.trim() === '＋' && decksLayout.importAria === '添加课程' && decksLayout.importTitle === '添加课程' && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
+  check('decks: 课程卡片正文紧凑且封面比例稳定', decksLayout.maxCardBodyHeight <= 60 && decksLayout.coverAspectOk, JSON.stringify(decksLayout));
   check('decks: 零 pageerror', errsd.length === 0, errsd.join('|'));
   await pd.click('#btnImportDecks');
   await pd.waitForSelector('#impMask:not([hidden])', { timeout: 5000 });
@@ -1208,9 +1214,11 @@ function check(name, cond, detail) {
       return {
         rows: document.querySelectorAll('#statsBody .wrong-row').length,
         text: (document.getElementById('statsBody') || {}).textContent || '',
+        duplicateHead: !!document.querySelector('#statsBody .wrong-head'),
         topPracticeButton: !!document.getElementById('btnPracticeWrong'),
         tabPracticeButton: !!document.getElementById('btnPracticeWrongTab'),
         clearButton: !!document.getElementById('btnClearWrongBook'),
+        clearInFilter: !!document.querySelector('#statsBody .wrong-filter #btnClearWrongBook'),
         wrongTabCount: document.getElementById('wrongTabCount') && document.getElementById('wrongTabCount').textContent,
         allFilter: document.querySelector('[data-wrong-filter="all"]') && document.querySelector('[data-wrong-filter="all"]').textContent,
         focusFilter: document.querySelector('[data-wrong-filter="focus"]') && document.querySelector('[data-wrong-filter="focus"]').textContent,
@@ -1218,7 +1226,8 @@ function check(name, cond, detail) {
       };
     });
     check('reinforce 4c: stats 错题本 tab 渲染错题', w4c.rows === 1 && w4c.text.indexOf('Visible wrong sentence.') >= 0 && w4c.wrongTabCount === '(1)', JSON.stringify(w4c));
-    check('reinforce 4c: 错题本不显示重复练习入口且保留清空操作', !w4c.topPracticeButton && !w4c.tabPracticeButton && w4c.clearButton, JSON.stringify(w4c));
+    check('reinforce 4c: 错题本不显示重复标题/练习入口且清空与筛选同行',
+      !w4c.duplicateHead && !w4c.topPracticeButton && !w4c.tabPracticeButton && w4c.clearButton && w4c.clearInFilter, JSON.stringify(w4c));
     check('reinforce 4c: 需巩固作为错题本筛选而非独立入口', /需巩固\s+1/.test(w4c.focusFilter || '') && !w4c.weakPracticeRow, JSON.stringify(w4c));
     await p4c.locator('[data-wrong-filter="focus"]').click();
     await p4c.waitForTimeout(120);

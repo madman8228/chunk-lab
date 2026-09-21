@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Chunk Lab 生产环境文件生成器（在服务器上执行一次）
-# 生成：/etc/chunklab/env（强随机 JWT_SECRET + REQUIRE_AUTH=true 等）
+# 生成：/etc/chunklab/env（多用户鉴权 + 固定 admin 后台 + 强随机密钥）
 # 用法：sudo bash deploy/setup-env.sh   （提示输入域名；不输入=不写 CORS，同源反代用不到）
 set -euo pipefail
 
@@ -16,12 +16,21 @@ CORS=""
 if [ -n "$DOMAIN" ]; then CORS="https://$DOMAIN"; fi
 
 SECRET=$(openssl rand -hex 32)
+ADMIN_SECRET=$(openssl rand -hex 32)
+read -rsp "管理员 admin 密码（至少 8 位）: " ADMIN_PASSWORD
+echo
+if [ "${#ADMIN_PASSWORD}" -lt 8 ]; then
+  echo "管理员密码至少 8 位"
+  exit 2
+fi
 
 sudo tee "$ENV_FILE" > /dev/null <<EOF
 # Chunk Lab 生产环境（由 setup-env.sh 生成，勿提交仓库）
 NODE_ENV=production
 REQUIRE_AUTH=true
 JWT_SECRET=$SECRET
+ADMIN_PASSWORD=$ADMIN_PASSWORD
+ADMIN_JWT_SECRET=$ADMIN_SECRET
 TOKEN_TTL=30d
 CORS_ORIGINS=$CORS
 TRUST_PROXY=true
@@ -34,5 +43,5 @@ AI_EXPLAIN_ENABLED=false
 EOF
 
 sudo chmod 600 "$ENV_FILE"
-echo "✅ 已生成 $ENV_FILE（JWT_SECRET 强随机 64 hex）"
+echo "✅ 已生成 $ENV_FILE（JWT_SECRET / ADMIN_JWT_SECRET 均为强随机 64 hex）"
 echo "   下一步：sudo systemctl daemon-reload && sudo systemctl restart chunklab"

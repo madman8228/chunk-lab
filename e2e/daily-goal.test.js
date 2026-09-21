@@ -145,7 +145,7 @@ async function openHome(seed) {
 (async function () {
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
 
     /* ===== A：设了目标 20，今天练了 12 句 → 进度 12/20 = 60% ===== */
     console.log('【场景 A：目标 20，今日已练 12】');

@@ -62,7 +62,8 @@ function check(name, cond, detail) {
 /* 在页面里读 IDB 的辅助脚本（同源，页面内执行才有 IndexedDB 权限） */
 const READ_IDB = function () {
   return new Promise(function (resolve) {
-    var req = indexedDB.open('chunklab-idb');
+    /* 账户隔离开启后，数据库名可能包含 owner；始终读取应用实际使用的库。 */
+    var req = indexedDB.open(window.AccountStorage ? window.AccountStorage.databaseName : 'chunklab-idb');
     req.onsuccess = function () {
       var db = req.result;
       var names = Array.prototype.slice.call(db.objectStoreNames);
@@ -119,7 +120,6 @@ async function main() {
     }));
   });
   const page = await ctx.newPage();
-  page.on('pageerror', function (e) { console.log('  [pageerror] ' + e.message); });
   await page.goto(BASE + '/main.html', { waitUntil: 'load' });
   await page.waitForFunction(function () { return window.CL && window.CL.statsStoreMode() === 'idb'; }, null, { timeout: 15000 });
 
@@ -143,6 +143,8 @@ async function main() {
   console.log('\n【2. 迁移后刷新：loadMem 从 IDB 内存桥还原（不丢数据）】');
   await page.reload({ waitUntil: 'load' });
   await page.waitForFunction(function () { return window.CL && window.CL.statsStoreMode() === 'idb'; }, null, { timeout: 15000 });
+  /* reload 后先等初始化/迁移写入排空，避免本测试的增量提交与首屏全量水合竞争同一写入队列。 */
+  await page.evaluate(function () { return window.CL.waitForSync(); });
   const restored = await page.evaluate(function () {
     var m = window.CL.loadMem();
     return {
@@ -171,10 +173,65 @@ async function main() {
   });
   check('saveMem 返回成功', practice.ok === true, JSON.stringify(practice));
   check('答题后 localStorage 仍不含 bySentence / events', !practice.hasBS && !practice.hasEv, JSON.stringify(practice));
-  await page.waitForTimeout(300);
+  /* saveMem 保持同步返回值，但 IDB 事务通过 CL.lastSave() 异步提交。
+     固定 sleep 在 Windows 慢机器上会早于事务完成，读到旧 events 数量。 */
+  await page.evaluate(function () { return window.CL.lastSave(); });
   const idb2 = await page.evaluate(READ_IDB);
   check('答题已增量落盘（sentenceStats 仍 2 行）', idb2.sentenceStats === 2, 'got=' + idb2.sentenceStats);
   check('答题已增量落盘（events 增至 2 条）', idb2.events === 2, 'got=' + idb2.events);
+
+  /* 让下一段交错夹具从一次真实刷新后的 IDB 水合状态开始，避免使用仍停留在迁移前的
+     内存桥快照；这也顺便保留“保存后刷新继续答题”的真实入口。 */
+  await page.reload({ waitUntil: 'load' });
+  await page.waitForFunction(function () { return window.CL && window.CL.statsStoreMode() === 'idb'; }, null, { timeout: 15000 });
+  await page.evaluate(function () { return window.CL.waitForSync(); });
+
+  /* ---------- 3b. 受控交错：首批提交等待时追加后继事件 ---------- */
+  console.log('\n【3b. 慢事务交错：后继事件不能被已提交水位跳过】');
+  const interleaved = await page.evaluate(async function () {
+    var original = IDBStore.writeStatsBatch;
+    var release;
+    var firstStartedResolve;
+    var gate = new Promise(function (resolve) { release = resolve; });
+    var firstStarted = new Promise(function (resolve) { firstStartedResolve = resolve; });
+    var calls = 0;
+    IDBStore.writeStatsBatch = function () {
+      calls++;
+      if (calls === 1) {
+        var args = arguments;
+        firstStartedResolve();
+        return gate.then(function () { return original.apply(IDBStore, args); });
+      }
+      return original.apply(IDBStore, arguments);
+    };
+    try {
+      var m = window.CL.loadMem();
+      m.stats.events.push({ id: 'ev-race-1', kind: 'answer', key: 'builtin-daily#11111111', ok: true, at: 1300 });
+      window.CL.saveMem(m);
+      await firstStarted;
+      m.stats.events.push({ id: 'ev-race-2', kind: 'answer', key: 'builtin-daily#11111111', ok: true, at: 1400 });
+      window.CL.saveMem(m);
+      release();
+      await window.CL.waitForSync();
+      var persisted = await window.IDBStore.loadAll();
+      var ids = (persisted.events || []).map(function (event) { return event.id; });
+      return {
+        calls: calls,
+        ids: ids,
+        count: ids.length,
+        times: m.stats.bySentence['builtin-daily#11111111'].times,
+        hasFirst: ids.indexOf('ev-race-1') >= 0,
+        hasSecond: ids.indexOf('ev-race-2') >= 0
+      };
+    } finally {
+      release();
+      IDBStore.writeStatsBatch = original;
+    }
+  });
+  check('慢事务交错后两条后继事件都已落盘',
+    interleaved.hasFirst && interleaved.hasSecond,
+    JSON.stringify(interleaved));
+  console.log('  [交错落盘状态] ' + JSON.stringify(interleaved));
 
   /* 小字段 localStorage 投影损坏时，只从同 owner 的已提交 IDB 投影重建，
      不覆盖有效投影，也不伪造未进入投影的题库内容。 */
@@ -185,7 +242,7 @@ async function main() {
     var m=window.CL.loadMem(), raw=JSON.parse(localStorage.getItem('chunklab.v1')||'{}');
     return { rounds:m.stats.totalRounds, events:m.stats.events.length, hasStorage:!!raw.stats };
   });
-  check('小字段投影损坏后可从同账号 IDB 重建', projectionRecovery.hasStorage && projectionRecovery.events === 2,
+  check('小字段投影损坏后可从同账号 IDB 重建', projectionRecovery.hasStorage && projectionRecovery.events === 4,
     JSON.stringify(projectionRecovery));
 
   /* 刷新后新写入的答题记录仍在 */
@@ -196,7 +253,7 @@ async function main() {
     return { times: m.stats.bySentence['builtin-daily#11111111'].times, ev: m.stats.events.length };
   });
   check('刷新后增量写入的档案保留（times=4）', afterReload.times === 4, JSON.stringify(afterReload));
-  check('刷新后增量写入的事件保留（2 条）', afterReload.ev === 2, JSON.stringify(afterReload));
+  check('刷新后增量写入的事件保留（4 条）', afterReload.ev === 4, JSON.stringify(afterReload));
 
   await ctx.close();
 

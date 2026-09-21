@@ -99,7 +99,7 @@ function cacheUrls(page) {
 
 (async function () {
   await startServer();
-  const browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+  const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
 
   /* ---------- 1. 首次在线访问 ---------- */
   console.log('【1. 首次在线访问：SW 安装 + manifest 入缓存】');
@@ -133,15 +133,22 @@ function cacheUrls(page) {
      resumeOrStart() 里回落到 allDecks()[0]（一个从没访问过、分片也没缓存的 deck），
      于是「离线出不了首卡」被误报成离线缺陷（2026-09-16 判明：是测试没铺垫，不是离线坏）。 */
   const ONLINE_DECK = 'oral-6-31';
-  const online = await page.evaluate(function (deckId) {
+  await page.evaluate(function (deckId) {
     return window.ContentRepo.ensureDeck(deckId).then(function (deck) {
       window.startDeck(deck, 0);
-      return {
-        deckId: window.S && S.deck ? S.deck.id : null,
-        items: window.S && S.items ? S.items.length : 0
-      };
     });
   }, ONLINE_DECK);
+  /* startDeck may wait for the lazily loaded practice modules or a content
+     batch; sample its state only after the real entry has rendered a deck. */
+  await page.waitForFunction(function (deckId) {
+    return window.S && S.deck && S.deck.id === deckId && S.items && S.items.length > 0;
+  }, ONLINE_DECK, { timeout: 30000 });
+  const online = await page.evaluate(function () {
+    return {
+      deckId: window.S && S.deck ? S.deck.id : null,
+      items: window.S && S.items ? S.items.length : 0
+    };
+  });
   let contentUrls = [];
   for (let i = 0; i < 30; i++) {
     contentUrls = (await cacheUrls(page)).urls;

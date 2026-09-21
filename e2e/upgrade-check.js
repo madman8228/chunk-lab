@@ -34,8 +34,7 @@ const { chromium } = require('playwright-core');
 const ROOT = path.resolve(__dirname, '..');
 const PORT = require('./lib/free-port').freePort(8951, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-upgrade-'));
-const CHROMIUM = process.env.CHROMIUM_PATH ||
-  'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe';
+const CHROMIUM = process.env.CHROMIUM_PATH || chromium.executablePath();
 const BASE = 'http://127.0.0.1:' + PORT;
 /* 老版本从未记录 owner 之外的身份时用的无前缀单用户态（与 e2e/e2e.js 的种子一致） */
 const LOCAL_OWNER = [BASE, 'local'];
@@ -176,6 +175,11 @@ function buildOldMem(cidA, cidB, sample) {
     /* ================= 1~4. 老用户升级：档案 key 迁移 ================= */
     console.log('== 1 初版 key（builtin-daily#cid）迁移 ==');
     const ctxB = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    /* This section validates the local upgrade contract. Keep cloud sync out of
+       the fixture so a previously migrated server snapshot cannot replace the
+       seeded legacy keys while the page is booting. Sync behavior is covered by
+       the dedicated sync suites. */
+    await ctxB.route('**/api/**', function (route) { route.abort('failed'); });
     await ctxB.addInitScript(function (payload) {
       /* addInitScript 在页面任何脚本之前执行 —— 这是「模拟升级前的老用户」唯一不产生
          写盘竞态的方式（事后 evaluate 写入会与首屏 ensureCloud/saveMem 抢同一个键）。 */
@@ -327,6 +331,11 @@ function buildOldMem(cidA, cidB, sample) {
     /* 吞掉 builtins.js 对 window.BUILTIN_MIGRATION 的赋值 → core.js 拿不到映射表 →
        migrateToBookDecks 直接 return false → 老 key 不被改写。若 1.1 此刻仍绿，说明判据恒真。 */
     const ctxE = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    /* Negative migration proof must isolate local loading from the cloud state
+       created by the positive migration scenario above; otherwise the server's
+       already-migrated snapshot can make the target key appear even when the
+       migration table is intentionally unavailable. */
+    await ctxE.route('**/api/**', function (route) { route.abort('failed'); });
     await ctxE.addInitScript(function (payload) {
       try {
         Object.defineProperty(window, 'BUILTIN_MIGRATION', {

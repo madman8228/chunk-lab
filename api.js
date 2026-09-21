@@ -123,6 +123,7 @@
     register: function (u, p, base) { return request('/api/auth/register', { base: base, method: 'POST', body: JSON.stringify({ username: u, password: p }) }); },
     login: function (u, p, base) { return request('/api/auth/login', { base: base, method: 'POST', body: JSON.stringify({ username: u, password: p }) }); },
     me: function () { return request('/api/auth/me'); },
+    heartbeat: function () { return request('/api/usage/heartbeat', { method: 'POST', body: '{}' }); },
     /* 设置自己账号的用户名 / 密码（可只传其一）。路径以 /api/auth/ 开头但**不是**登录或注册，
        故 request() 会照常带上既有 token —— 服务端据 token 判定改的是哪个账号。 */
     setCredentials: function (payload) { return request('/api/auth/credentials', { method: 'POST', body: JSON.stringify(payload) }); },

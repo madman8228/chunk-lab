@@ -73,11 +73,16 @@
     return Math.min(Math.max(c.repetition, 1), SEQ.length);
   }
 
-  /* 一次性文案：'第 N 阶段 · 还有 X 天'。未排过期（dueAt=0）返回 ''，与 dueLabel 同口径，
-     调用方据此决定「是否显示」——不要在 UI 里重写判断。 */
+  /* 一次性展示文案：'下次复习:X天后'。
+     未排期（dueAt=0）返回 ''，与 dueLabel 同口径，调用方据此决定「是否显示」。
+     阶段信息保留在 SRS 数据和统计中，不在练习卡片的即时提示里重复展示。 */
   function scheduleLabel(st, now){
     if(!st || typeof st.dueAt !== 'number' || !st.dueAt) return '';
-    return '第 ' + stageOf(st) + ' 阶段 · ' + dueLabel(st, now);
+    var t = (typeof now === 'number') ? now : Date.now();
+    var diffDays = Math.round((st.dueAt - t) / DAY_MS);
+    var dueText = diffDays > 0 ? diffDays + '天后'
+      : (diffDays === 0 ? '今天' : '逾期' + (-diffDays) + '天');
+    return '下次复习:' + dueText;
   }
 
   global.CL = global.CL || {};

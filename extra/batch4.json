@@ -1380,48 +1380,50 @@
     "cid": "067344f6"
   },
   {
-    "sentence": "It's my treat tonight — the dinner is on me.",
-    "translation": "今晚我请客，这顿饭我来付。",
+    "sentence": "You paid for dinner last time, so drinks are on me.",
+    "translation": "上次晚饭你付的钱，这次饮料我请。",
     "chunks": [
-      "It's my treat tonight —",
-      "the dinner is on me."
+      "You paid for dinner last time, so",
+      "drinks are on me."
     ],
     "hints": [
-      "今晚我请客",
-      "这顿饭我买单"
+      "上次晚饭你付的钱",
+      "这次饮料我请"
     ],
     "grammar": [
       {
-        "role": "主系表",
+          "role": "主谓宾",
         "color": "#c87033",
         "phonetic": [
-          "/ɪts/",
-          "/maɪ/",
-          "/triːt/",
-          "/təˈnaɪt/"
+            "/juː/",
+            "/peɪd/",
+            "/fər/",
+            "/ˈdɪnər/",
+            "/læst/",
+            "/taɪm/",
+            "/soʊ/"
         ],
-        "pos": "主系表·请客",
-        "meaning": "今晚我请客"
+          "pos": "过去时·请客",
+          "meaning": "上次你付了晚饭钱"
       },
       {
         "role": "习语·表语",
         "color": "#7c5cbf",
         "phonetic": [
-          "/ðə/",
-          "/ˈdɪnər/",
-          "/ɪz/",
-          "/ɑːn/",
-          "/miː/"
+            "/drɪŋks/",
+            "/ɑːr/",
+            "/ɑːn/",
+            "/miː/"
         ],
         "pos": "习语·费用承担",
-        "meaning": "这顿饭算我头上（我买单）"
+        "meaning": "这次饮料我请"
       }
     ],
     "explanations": [
-      "**it's on me** 表示「费用我来付」，结账场景万能句。同义 It's my treat / I'll pick up the tab。",
-      "例句：You paid last time — this round is on me."
+      "**it's on me** 表示「费用我来付」，可用于吃饭、饮料、票等具体花费。同义：It's my treat / I'll pick up the tab。",
+      "例句：I got the tickets, so popcorn is on me."
     ],
-    "cid": "7ba453c3"
+    "cid": "bdc0c10e"
   },
   {
     "sentence": "Just a minute — I need to grab my keys.",

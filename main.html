@@ -63,8 +63,8 @@ input,textarea,select{font:inherit;color:inherit}
 .brand{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.01em}
 .brand .logo{
   width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
-  background:linear-gradient(140deg,#3358e0,#6b7cff);color:#fff;font-size:13px;font-weight:800;
-  box-shadow:0 3px 8px -2px rgba(51,88,224,.5);
+  background:linear-gradient(140deg,#3358e0,#5d6bdc);color:#fff;font-size:13px;font-weight:800;
+  box-shadow:0 2px 6px -2px rgba(46,43,37,.22);
 }
 /* ★ 面包屑 home button：logo 区可点回题库首页（肌肉记忆：logo = home）
    负 margin 抵消 padding，保持原视觉占位不变 */
@@ -165,7 +165,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
   background:var(--surface);border:1px solid var(--border);
   border-radius:16px;box-shadow:var(--shadow);
 }
-.stage{padding:10px 26px 12px;position:relative;overflow:hidden;margin-bottom:14px}
+.stage{padding:10px 26px 12px;position:relative;overflow:hidden;margin-bottom:8px}
 /* stage-head：flex 布局 + zh-wrap 绝对定位到卡片正中
    （不再用三栏 grid——左右列宽度不对称时中间列会偏离卡片中心） */
 /* 标熟按钮三态：
@@ -174,17 +174,17 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
    done   = 绿色实心徽章（已标熟，点击撤销） */
 .stage-master{
   display:inline-flex;align-items:center;justify-content:center;
-  font-size:12.5px;font-weight:600;color:var(--accent);letter-spacing:.01em;
-  border:1px solid var(--border-strong);border-radius:7px;
-  background:var(--surface);padding:5px 12px;cursor:pointer;line-height:1.4;
-  min-width:56px;flex-shrink:0;
+  font-size:11.5px;font-weight:600;color:var(--accent);letter-spacing:.01em;
+  border:1px solid var(--border-strong);border-radius:6px;
+  background:var(--surface);padding:4px 8px;cursor:pointer;line-height:1.2;
+  min-width:44px;flex-shrink:0;
   transition:background .2s,color .2s,border-color .2s,transform .15s;
 }
 .stage-master.hidden{display:none !important}
 .stage-master:hover{transform:translateY(-1px)}
 /* 自动标熟：圆形徽章 + 动画圆环 + 中央「熟」字 */
 .stage-master.auto{
-  position:relative;width:34px;height:34px;min-width:34px;padding:0;border-radius:50%;
+  position:relative;width:30px;height:30px;min-width:30px;padding:0;border-radius:50%;
   border-color:var(--ok);color:var(--ok);background:var(--surface);
 }
 .stage-master.auto svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -277,6 +277,15 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .track-line{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;max-width:100%;margin:8px 0 4px}
 .track-line > #track{min-width:0;flex:0 1 auto}
 .track-line > .sentence-speak{flex-shrink:0}
+.chunk-concept-hint{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  width:fit-content;max-width:100%;margin:5px auto 0;padding:3px 8px;
+  border:0;border-radius:7px;background:transparent;color:var(--muted);
+  font-size:12px;line-height:1.35;cursor:pointer;
+}
+.chunk-concept-hint:hover{background:var(--accent-soft);color:var(--accent)}
+.chunk-concept-hint .more{color:var(--accent);font-weight:700;white-space:nowrap}
+.chunk-concept-hint:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .track{
   display:flex;flex-wrap:wrap;gap:12px 16px;margin:0;
   align-items:flex-end;position:relative;justify-content:center;
@@ -336,6 +345,21 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 #stageChoices{display:none;position:fixed;left:50%;bottom:32px;transform:translateX(-50%);
   z-index:55;width:min(92vw,760px);flex-wrap:wrap;justify-content:center;gap:10px;max-width:92vw}
 #stageChoices:has(.choice){display:flex}
+/* 首次使用提示：跟随候选词块出现，只占一行，不把说明永久塞进练习卡。 */
+#chunkOnboardingHint{
+  flex:1 0 100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  min-width:0;padding:7px 10px;border:1px solid rgba(44,98,201,.22);
+  border-radius:10px;background:var(--accent-soft);color:var(--text);
+  box-shadow:0 3px 10px -7px rgba(44,98,201,.4);
+  font-size:12.5px;line-height:1.35;text-align:center;
+}
+#chunkOnboardingHint .onboarding-dismiss{
+  flex:0 0 auto;padding:2px 7px;border:0;border-radius:6px;
+  background:transparent;color:var(--accent);font:inherit;font-weight:700;
+  cursor:pointer;white-space:nowrap;
+}
+#chunkOnboardingHint .onboarding-dismiss:hover{background:rgba(44,98,201,.1)}
+#chunkOnboardingHint .onboarding-dismiss:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .choice{
   position:relative;min-height:42px;border:1px solid rgba(145,135,121,.48);border-radius:999px;
   padding:9px 19px 10px;font-size:15px;font-weight:600;text-align:left;cursor:pointer;letter-spacing:.005em;
@@ -374,7 +398,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
    因为「中灰调色相」本来就不适合做浅底上的小字。
    改法：**色相只做底色，文字统一走主题深色** → 对比度与数据色解耦，任何自定义题库
    配色都天然达标（深字 / 浅底 ≈ 12:1）。「等待作答」的弱化也改成换色而非压 opacity。 */
-.chunk-role{font-size:9.5px;font-weight:600;padding:1px 7px;border-radius:999px;display:inline-block;margin-bottom:2px;letter-spacing:.02em;white-space:nowrap;color:var(--text)}
+.chunk-role{font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;display:inline-block;margin-bottom:2px;letter-spacing:.02em;white-space:nowrap;color:var(--text)}
 .chunk-role-wrap{display:flex;justify-content:center;line-height:1}
 .chunk.wait .chunk-role{color:var(--muted)}
 .chunk.revealed .chunk-role{color:var(--muted)}
@@ -473,10 +497,11 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 
 /* ★ 练习页专属上下文：从旧 topbar 拆出 deckName / 进度 / 连击 / 进度条，仅在 pagePractice 显示。
    元素 ID 不变（deckName / mProgress / mCombo / progFill），JS 零改。
-   物理位置在 stage-tip-bar 之上，视觉沿用旧 topbar 两层布局（row + progress bar）。*/
-.practice-context{margin:2px 0 12px}
-.practice-context .pc-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.practice-context .progress{margin-top:6px}
+   进度条与课程名、退出按钮、统计信息保持同一行，避免单独占用一行。*/
+.practice-context{margin:2px 0 5px}
+.practice-context .pc-row{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0}
+.practice-context .pc-progress{flex:1 1 auto;min-width:32px;margin:0}
+.practice-context .metrics{flex:0 0 auto}
 /* 退出当前课程：放在课程名旁，作为低强调的页面级动作，不与答题按钮抢层级 */
 .practice-exit{
   flex:0 0 auto;min-height:30px;padding:4px 6px;border:0;border-radius:6px;
@@ -504,7 +529,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .reveal-tag.miss{ background:#fff8e6;color:#946c00;border-color:#fbbf24 }
 .reveal-tag .tag-icon{ font-size:11px }
 
-/* SRS 白盒化（2026-09-13）：答完一句后显式给出「下次复习：第 N 阶段 · 还有 X 天」，
+/* SRS 白盒化（2026-09-13）：答完一句后显式给出「下次复习:X天后」，
    消除「系统为什么现在考这句」的黑盒感。文案统一由 CL.srs.scheduleLabel 产出，
    UI 不重写间隔算法，未排期时该行整块隐藏。 */
 .sched-line{
@@ -514,22 +539,29 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .sched-line.hidden{display:none}
 .sched-line .sched-ic{display:inline-flex;align-items:center;font-size:13px;color:var(--accent)}
 
-.stage-tip-bar{display:flex;align-items:center;justify-content:center;padding:2px 0 3px;margin-bottom:2px}
-.stage-tip-bar .foot-tip{display:inline-flex;align-items:center;gap:4px}
+.stage-tip-bar{display:flex;align-items:center;justify-content:center;min-height:18px;padding:0;margin:-1px 0 1px}
+.stage-tip-bar .foot-tip{display:inline-flex;align-items:center;gap:3px;line-height:1.2}
 .stage-foot{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;min-height:32px}
 .stage-foot > button{white-space:nowrap}
 /* 底部操作按钮共享同一触控尺寸；自动标熟圆环保留独立的圆形状态样式 */
-  .stage-foot > #btnMaster:not(.auto),
+  .stage-head-right > #btnMaster:not(.auto),
   .stage-foot > #btnExplain{
-  box-sizing:border-box;height:34px;min-height:34px;
+  box-sizing:border-box;height:28px;min-height:28px;
   display:inline-flex;align-items:center;justify-content:center;
-  padding:0 8px;line-height:1;touch-action:manipulation;
+  padding:0 6px;line-height:1;touch-action:manipulation;
 }
-.stage-foot > #btnMaster:not(.auto){width:auto;min-width:0;padding-left:10px;padding-right:10px}
-.stage-foot > #btnExplain{width:72px;min-width:72px}
+.stage-head-right > #btnMaster:not(.auto){width:28px;min-width:28px;padding:0;font-size:11px}
+.stage-head-right > #btnMaster.done{width:auto;min-width:0;padding-left:7px;padding-right:7px}
+.stage-foot > #btnExplain.explain-text-button{
+  width:auto;min-width:44px;height:28px;min-height:28px;padding:0 8px;
+  border:0;border-radius:6px;background:transparent;box-shadow:none;gap:0;color:var(--muted);
+  font-size:12.5px;font-weight:600;
+}
+.stage-foot > #btnExplain.explain-text-button:hover{border-color:transparent;background:var(--accent-soft);color:var(--accent);transform:none}
+.stage-foot > #btnExplain.explain-text-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .kbd{
-  font:11.5px/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);
-  border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:5px;padding:3px 5px;background:#fff;
+  font:11px/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);
+  border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:5px;padding:2px 5px;background:#fff;
 }
 button.kbd{cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .06s}
 button.kbd-action:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
@@ -566,20 +598,20 @@ button.kbd-action:active{transform:translateY(1px)}
 
 /* ---------- 扩展知识卡片（通用：单词 / 例句 / 词组 / 错误讲解 等） ---------- */
 .explain-panel{
-  margin-top:12px;padding:14px 16px 12px;border-radius:12px;
+  margin-top:8px;padding:10px 12px 8px;border-radius:12px;
   background:var(--surface);border:1px solid var(--border);
   box-shadow:var(--shadow);animation:anaIn .4s cubic-bezier(.2,.8,.3,1) both;
 }
-.explain-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.explain-title{flex:1;font-size:14.5px;font-weight:700;letter-spacing:-.005em}
-.explain-close{flex-shrink:0;width:26px;height:26px;border:none;border-radius:50%;
+.explain-head{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.explain-title{flex:1;font-size:14px;font-weight:700;letter-spacing:-.005em}
+.explain-close{flex-shrink:0;width:24px;height:24px;border:none;border-radius:50%;
   background:transparent;color:var(--faint);font-size:16px;line-height:1;
   cursor:pointer;padding:0;display:grid;place-items:center}
 .explain-close:hover{background:var(--surface-2);color:var(--text)}
-.explain-sections{display:flex;flex-direction:column;gap:8px}
-.exp-section{padding:9px 12px;border-radius:8px;font-size:13px;line-height:1.6}
+.explain-sections{display:flex;flex-direction:column;gap:6px}
+.exp-section{padding:7px 10px;border-radius:8px;font-size:13px;line-height:1.45}
 .exp-section:last-child{margin-bottom:0}
-.exp-tag{font-size:11px;font-weight:700;letter-spacing:.04em;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.exp-tag{font-size:11px;font-weight:700;letter-spacing:.04em;margin-bottom:2px;display:flex;align-items:center;gap:4px}
 .exp-body{word-break:break-word}
 .exp-body b{font-weight:700}
 .exp-ok{background:var(--ok-soft);color:#0b6b3a}
@@ -591,6 +623,27 @@ button.kbd-action:active{transform:translateY(1px)}
 .exp-info{background:var(--surface-2);color:var(--text)}
 .exp-info .exp-tag{color:var(--accent)}
 .exp-strike{text-decoration:line-through;opacity:.7}
+.explain-overview{font-size:14px;line-height:1.65;color:var(--text)}
+.explain-overview strong{font-weight:750}
+.explain-bullets{margin:0;padding-left:18px;display:grid;gap:5px}
+.explain-bullets li{padding-left:2px}
+.explain-example{display:grid;gap:3px}
+.explain-example-en{font-size:14px;font-weight:700;color:var(--text)}
+.explain-example-zh{font-size:12.5px;color:var(--muted)}
+@media (max-width:640px){
+  /* 移动端讲解过长时在面板内部滚动，避免内容把首屏整体撑出可视区域。 */
+  .explain-panel{
+    max-height:min(62vh, 520px);
+    max-height:min(62dvh, 520px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(0,0,0,.24) transparent;
+  }
+  .explain-panel::-webkit-scrollbar{width:7px}
+  .explain-panel::-webkit-scrollbar-track{background:transparent}
+  .explain-panel::-webkit-scrollbar-thumb{background:rgba(0,0,0,.24);border-radius:4px}
+}
 /* ---------- result ---------- */
 .result{margin-top:14px;padding:30px 26px}
 .result h2{margin:0 0 4px;font-size:24px;letter-spacing:-.02em}
@@ -610,6 +663,21 @@ button.kbd-action:active{transform:translateY(1px)}
 .review .cn{font-size:12px;color:var(--muted);margin-top:1px;line-height:1.3}
 .review .diff{font-size:12px;margin-top:4px;color:var(--bad)}
 .review .diff b{color:var(--ok);font-weight:600}
+@media (max-width:640px){
+  .result{margin-top:8px;padding:16px 12px;border-radius:12px}
+  .result h2{font-size:20px;line-height:1.2;margin-bottom:3px}
+  .result .lead{font-size:12px;line-height:1.35;margin-bottom:12px}
+  .result .stats{gap:6px;margin-bottom:12px}
+  .result .stat{padding:8px 9px;border-radius:9px}
+  .result .stat .k{font-size:10px}
+  .result .stat .v{font-size:19px;line-height:1.1}
+  .result .review h4{padding:7px 9px;font-size:12px}
+  .result .review .row{padding:6px 8px;gap:7px}
+  .result .r-idx{width:21px;height:21px;line-height:21px;font-size:11px}
+  .result .review .en{font-size:13px;line-height:1.25}
+  .result .review .cn,.result .review .diff{font-size:11px;line-height:1.25}
+  .result > .stage-foot{gap:6px;margin-top:12px !important;min-height:32px}
+}
 /* 巩固统计卡片 */
 .reinforce{
   border:1px solid var(--border);border-radius:12px;overflow:hidden;
@@ -854,7 +922,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
      #2a4ac4 → 5.84、#1c7050 → 4.91（本次采用）
    另注：练习页 .chunk-role 原先内联 color 直接用题库色相、还带 opacity:.8（实测 3.0 上下，
    不合格）；2026-09-14 已改为「色相只做底色 + CSS 统一深色字」，两处口径现在一致。 */
-.ci-pill .r{font-size:9.5px;font-weight:600;padding:1px 7px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.ci-pill .r{font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
 .ci-pill .r.ci-blue{background:#2a4ac422;color:#2a4ac4}
 .ci-pill .r.ci-green{background:#1c705022;color:#1c7050}
 .ci-note{font-size:12.5px;color:var(--muted);line-height:1.7;margin:12px 0 0}
@@ -866,6 +934,15 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 /* ===== 页面系统 ===== */
 .page{display:none}
 .page:not(.hidden){display:block}
+.boot-screen{
+  min-height:112px;display:grid;place-items:center;gap:10px;padding:24px 18px;
+  color:var(--muted);font-size:14px;text-align:center;
+}
+.boot-screen .boot-message{display:inline-flex;align-items:center;gap:7px}
+.boot-screen .icon-spin{display:inline-flex;width:16px;height:16px}
+.boot-screen .boot-actions{display:flex;justify-content:center;gap:8px}
+.boot-screen.error{color:var(--bad);background:var(--bad-soft);border:1px solid #efc3bd;border-radius:12px}
+.boot-screen[hidden]{display:none !important}
 .page-head{
   display:flex;align-items:center;gap:12px;padding:16px 4px 12px;
   margin-bottom:14px;flex-wrap:wrap;
@@ -960,6 +1037,15 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   /* 练习区输入/选项紧凑 */
   .chunk-input{font-size:17px}
   .choice{padding:9px 12px;font-size:13px}
+  /* 候选区固定在拇指区，但自身可滚动，避免长句把页面底部挡住。 */
+  #stageChoices{
+    bottom:max(12px, env(safe-area-inset-bottom));
+    max-height:min(44vh, 360px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    padding:6px 4px;
+  }
   /* 顶栏次要元素：标签+同步状态文字隐藏，仅留按钮 */
   .topbar-reveal,.topbar-status-text{display:none}
   /* 手机没有 Ctrl 键，隐藏整条键盘操作提示，避免占用练习区高度 */
@@ -969,12 +1055,12 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   #aiBody{font-size:14.5px}
   /* ★ 移动端：把"下一题"按钮从卡片内抽到屏幕底部中央（FAB 风），符合拇指操作区；「熟/详解」留在卡片内 */
   .stage-foot > #btnNext{
-    position:fixed;left:50%;bottom:14px;transform:translateX(-50%);
+    position:fixed;left:50%;bottom:max(14px, env(safe-area-inset-bottom));transform:translateX(-50%);
     z-index:200;font-size:14px;padding:11px 24px;
     border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18);
   }
   /* 给最外层滚动容器加底部内边距，确保"核心语法/分析区"等最后一行能滚到 FAB 上方不被遮挡 */
-  .wrap{padding-bottom:80px}
+  .wrap{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
   .stage{padding-bottom:24px}
 }
 /* 窄视口（含平板/应用窄面板）以及触控设备不显示键盘快捷键提示 */
@@ -995,7 +1081,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .chunk-input{font-size:16px;min-width:18px}
   .choice{padding:10px 11px;font-size:13px;min-height:40px}
   /* 固定候选区使用明确宽度，允许多个短 chunk 并排，避免一项占满一行 */
-  #stageChoices{width:calc(100vw - 16px);max-width:calc(100vw - 16px);gap:8px}
+  #stageChoices{width:calc(100vw - 16px);max-width:calc(100vw - 16px);gap:8px;padding-bottom:max(6px, env(safe-area-inset-bottom))}
   .btn{padding:8px 12px}
   .btn.sm{padding:5px 9px}
   /* zh 绝对定位宽度收窄（左右控件占位） */
@@ -1007,10 +1093,11 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .stage-master{min-width:0;font-size:12px;padding:4px 8px}
   .stage-master.auto{width:28px;height:28px;min-width:28px}
 }
-/* 手机首屏紧凑布局：练习卡与结构分析在同一视口内完成，不产生页面滚动 */
+/* 手机首屏紧凑布局：练习卡保持紧凑，长内容交给页面/面板滚动。 */
 @media (max-width:840px){
-  html,body{overflow:hidden;overscroll-behavior:none}
-  .wrap{padding:6px 10px 8px}
+  html{overflow-x:hidden;overflow-y:auto;overscroll-behavior-x:none}
+  body{min-height:100%;overflow-x:hidden;overscroll-behavior-x:none}
+  .wrap{padding:6px 10px calc(96px + env(safe-area-inset-bottom))}
   .topbar{margin:0 -10px 8px;padding:6px 10px}
   .topbar-row{gap:4px}
   .stage{padding:10px 8px 8px;border-radius:12px;margin-bottom:6px}
@@ -1032,8 +1119,11 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .chunk.active .chunk-answer,.chunk.wait .chunk-answer{width:clamp(48px,calc(var(--answer-chars,12) * 7px + 16px),100%);min-width:0;height:30px}
   .chunk.ok .chunk-answer,.chunk.bad .chunk-answer,.chunk.revealed .chunk-answer{width:fit-content;height:auto}
   .chunk-hint{font-size:12px;line-height:1.35;min-height:16px;height:auto;padding-left:0;max-width:100%;overflow:visible;overflow-wrap:anywhere}
-  .chunk-role{font-size:9px;padding:1px 5px;margin-bottom:0}
+  .chunk-role{font-size:11px;padding:1px 5px;margin-bottom:0}
   .stage-foot{gap:6px;margin-top:7px;min-height:34px}
+  /* 移动端两个次要操作保持一致的触控高度，文字按钮也不被压成图标尺寸。 */
+  .stage-head-right > #btnMaster:not(.auto),
+  .stage-foot > #btnExplain.explain-text-button{height:32px;min-height:32px}
 }
 /* 设置面板紧凑样式 */
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
@@ -1154,28 +1244,32 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
     <div class="home-body" id="homeBody"></div>
   </div>
 
+  <div class="card boot-screen" id="bootScreen" hidden role="status" aria-live="polite">
+    <div class="boot-message"><span class="icon-spin" data-icon="refresh"></span><span id="bootMessage">正在打开首页…</span></div>
+    <div class="boot-actions"><button class="btn sm hidden" id="bootRetry" type="button">重试</button><button class="btn sm hidden" id="bootHome" type="button">回首页</button></div>
+  </div>
+
   <!-- 练习页专属上下文（deckName / 进度 / 连击 / 进度条）：仅在 pagePractice 内可见，
        拆自旧 topbar，避免首页误显「日常对话 1/10」的语义错位。
        物理位置在 pagePractice 内部首层，元素 ID 不变，JS 零改。 -->
-  <div class="page" id="pagePractice">
+  <div class="page hidden" id="pagePractice">
   <div class="practice-context">
     <div class="pc-row">
       <span class="deck-name" id="deckName"></span>
       <button type="button" class="practice-exit" id="btnExitPractice" title="退出当前学习课程" aria-label="退出当前学习课程">退出</button>
-      <span class="spacer"></span>
+      <div class="progress pc-progress"><i id="progFill"></i></div>
       <div class="metrics">
         <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">--/--</span></div>
         <div class="metric combo" id="mComboBox"><span class="lbl">连击</span><span class="val" id="mCombo">0</span></div>
       </div>
     </div>
-    <div class="progress"><i id="progFill"></i></div>
   </div>
   <div class="stage-tip-bar" id="stageTipBar">
     <span class="foot-tip">
       <span class="sp-enter" id="spEnterTip"><span class="kbd">Enter</span> 确认</span>
       <span class="sp-tip" id="spTipBar" style="display:none"> · <span class="kbd">空格</span> 下一词</span>
       <span class="sp-tip-sep" id="spTipBarSep" style="display:none"> ·</span>
-      · <button class="kbd kbd-action" data-action="hint" title="点击：提示当前 chunk 首词">Ctrl+M</button> 提示 · <button class="kbd kbd-action" data-action="reveal" title="点击：显示当前 chunk 答案">Ctrl+F</button> 显示答案 · <button class="kbd kbd-action" data-action="full" title="点击：显示全句答案">Ctrl+P</button> 全句
+      <button class="kbd kbd-action" data-action="hint" title="点击：提示当前 chunk 首词">Ctrl+M</button> 提示 · <button class="kbd kbd-action" data-action="reveal" title="点击：显示当前 chunk 答案">Ctrl+F</button> 显示答案 · <button class="kbd kbd-action" data-action="full" title="点击：显示全句答案">Ctrl+P</button> 全句
     </span>
   </div>
   <div class="card stage" id="stage">
@@ -1195,9 +1289,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       </div>
       <div class="stage-head-right">
         <span class="reveal-tag hidden" id="revealTagWrap"></span>
+        <button class="stage-master" id="btnMaster" title="标记为已掌握" data-state="manual">熟</button>
       </div>
     </div>
-    <!-- SRS 白盒化：答完一句后显示「下次复习：第 N 阶段 · 还有 X 天」（未排期时整行隐藏） -->
+    <!-- SRS 白盒化：答完一句后显示「下次复习:X天后」（未排期时整行隐藏） -->
     <div class="sched-line hidden" id="schedLine"></div>
 
     <!-- 标熟：直接是按钮自身的圆环动画徽章（无单独提示条） -->
@@ -1205,11 +1300,13 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       <div class="track" id="track"></div>
       <button class="icon-action sentence-speak hidden" id="btnSpeak" title="朗读当前句子" aria-label="朗读当前句子"><span data-icon="speak"></span></button>
     </div>
+    <button class="chunk-concept-hint hidden" id="chunkConceptHint" type="button" aria-label="了解意群概念">
+      <span>意群：按自然停顿理解的一组词</span><span class="more">了解更多</span>
+    </button>
 
     <div class="stage-foot">
       <span class="spacer"></span>
-      <button class="stage-master" id="btnMaster" title="标记为已掌握" data-state="manual">熟</button>
-      <button class="btn sm hidden" id="btnExplain">查看讲解</button>
+      <button class="btn sm flat-action explain-text-button hidden" id="btnExplain" aria-label="查看讲解" title="查看讲解">详解</button>
       <button class="btn sm primary hidden" id="btnNext">下一题</button>
     </div>
   </div>
@@ -1630,6 +1727,26 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/batch-sync.js"></script>
+<script src="js/core-identity.js"></script>
+<script src="js/core-merge.js"></script>
+<script src="js/core-activity.js"></script>
+<script src="js/core-event-bus.js"></script>
+<script src="js/core-migrations.js"></script>
+<script src="js/core-stats-signature.js"></script>
+<script src="js/core-storage-state.js"></script>
+<script src="js/core-entity-delta.js"></script>
+<script src="js/core-sync-delta.js"></script>
+<script src="js/core-sync-intents.js"></script>
+<script src="js/core-sync-payload.js"></script>
+<script src="js/core-sync-transport.js"></script>
+<script src="js/core-sync-replay.js"></script>
+<script src="js/core-sync-batch-merge.js"></script>
+<script src="js/core-sync-stats-normalize.js"></script>
+<script src="js/core-sync-learning-marks.js"></script>
+<script src="js/core-sync-entity-merge.js"></script>
+<script src="js/core-sync-kv.js"></script>
+<script src="js/core-revision-delta.js"></script>
+<script src="js/core-runtime.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
 <script src="js/sync-resolution.js"></script>
@@ -1638,6 +1755,16 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script src="js/legacy-backup.js"></script>
 <script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script src="js/main-explanation.js"></script>
+<script src="js/main-practice-policy.js"></script>
+<script src="js/main-practice-classification.js"></script>
+<script src="js/main-course-navigation.js"></script>
+<script src="js/main-deck-progress.js"></script>
+<script src="js/main-home-summary.js"></script>
+<script src="js/main-practice-state.js"></script>
+<script src="js/main-practice-markup.js"></script>
+<script src="js/main-legacy-stats.js"></script>
 <script src="js/chunk-shape.js"></script>
 <script src="srs.js"></script>
 <script type="module" src="js/bridge.mjs"></script>
@@ -1678,110 +1805,16 @@ var $ = function(id){ return document.getElementById(id); };
 var pad2 = function(n){ return (n<10?'0':'')+n; };
 var _anaTimer = null; /* 分析面板定时器句柄（renderQ/finishSentence 共用到） */
 
-/* 音效反馈（Web Audio API 合成，无需外部文件） */
-var SFX = (function(){
-  var ctx = null;
-  function ac(){ if(!ctx) try{ ctx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} return ctx; }
-  function beep(freq, dur, type, vol){
-    var c = ac(); if(!c) return;
-    if(c.state === 'suspended') c.resume();
-    var o = c.createOscillator(), g = c.createGain();
-    o.type = type || 'sine'; o.frequency.value = freq || 440;
-    g.gain.value = vol || 0.1;
-    o.connect(g); g.connect(c.destination);
-    o.start(); o.stop(c.currentTime + (dur || 0.1));
-  }
-  return {
-    ok: function(){ if(!mem.settings.sound) return; beep(880, 0.08, 'sine', 0.08); setTimeout(function(){ beep(1100, 0.12, 'sine', 0.06); }, 80); },
-    bad: function(){ if(!mem.settings.sound) return; beep(220, 0.15, 'sawtooth', 0.08); },
-    perfect: function(){ if(!mem.settings.sound) return; beep(660, 0.08, 'sine', 0.07); setTimeout(function(){ beep(880, 0.08, 'sine', 0.07); }, 80); setTimeout(function(){ beep(1320, 0.15, 'sine', 0.06); }, 160); }
-  };
-})();
-/* ★ 整句朗读（SpeechSynthesis）—— btnSpeak 手动点击 + finishSentence 自动朗读共用
-   ★ 根因修复（2026-09-08）：设置面板里的「自动朗读」开关存在但功能没接通（只有 setter 没有 trigger），
-     现统一用此函数触发。browser autoplay policy：答完一题时用户已与页面交互，可正常播放。 */
-function speakSentence(){
-  try{
-    var it = cur();
-    if(!it || !it.sentence) return;
-    var u = new SpeechSynthesisUtterance(it.sentence);
-    u.lang='en-US'; u.rate=0.92;
-    speechSynthesis.cancel(); speechSynthesis.speak(u);
-  }catch(e){}
-}
-/* ===== 视觉特效（彩纸/烟花）===== */
-var FX = (function(){
-  var cv, cx;
-  function ensureCanvas(){
-    if(cv) return;
-    cv = document.createElement('canvas');
-    cv.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
-    document.body.appendChild(cv);
-    cx = cv.getContext('2d');
-    resize();
-    window.addEventListener('resize', resize);
-  }
-  function resize(){ if(cv){ cv.width=window.innerWidth; cv.height=window.innerHeight; } }
-  var ps = [];
-  function spawn(x,y,vx,vy,c,life,size,type){
-    ps.push({x:x,y:y,vx:vx,vy:vy,c:c,l:life,ml:life,s:size,t:type,r:Math.random()*6.28});
-  }
-  function tick(){
-    if(!cx) return;
-    cx.clearRect(0,0,cv.width,cv.height);
-    for(var i=ps.length-1;i>=0;i--){
-      var p=ps[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=0.12; p.l--; p.r+=0.15;
-      var a=p.l/p.ml;
-      cx.globalAlpha=Math.max(0,a); cx.fillStyle=p.c;
-      var sz = Math.max(0, p.s*a);  /* 防负数：life 趋近 0 时 a 可能为浮点负值 */
-      if(p.t===0){ cx.fillRect(p.x-sz/2,p.y-sz/2,sz,sz); }
-      else{ cx.beginPath(); cx.arc(p.x,p.y,sz,0,6.28); cx.fill(); }
-      if(p.l<=0) ps.splice(i,1);
-    }
-    cx.globalAlpha=1;
-    if(ps.length>0) requestAnimationFrame(tick);
-    else { cv.remove(); cv=null; cx=null; }
-  }
-  function randColor(){
-    var cs=['#ff4757','#2ed573','#1e90ff','#ffa502','#ff6b81','#7bed9f','#70a1ff','#eccc68'];
-    return cs[(Math.random()*cs.length)|0];
-  }
-  return {
-    confetti:function(n){
-      n=n||30; ensureCanvas();
-      for(var i=0;i<n;i++){
-        spawn(cv.width*0.3+Math.random()*cv.width*0.4, -10,
-          (Math.random()-0.5)*6, 2+Math.random()*4,
-          randColor(), 80+Math.random()*60, 4+Math.random()*4, Math.random()>0.5?1:0);
-      }
-      if(ps.length>0) tick();
-    },
-    show:function(n){
-      n=n||5; ensureCanvas();
-      for(var i=0;i<n;i++){
-        (function(i){
-          setTimeout(function(){
-            var x=cv.width*0.2+Math.random()*cv.width*0.6;
-            var y=cv.height*0.3+Math.random()*cv.height*0.3;
-            for(var j=0;j<40;j++){
-              var a=Math.random()*6.28, sp=1+Math.random()*4;
-              spawn(x,y, Math.cos(a)*sp, Math.sin(a)*sp-2, randColor(), 50+Math.random()*40, 2+Math.random()*3, 1);
-            }
-            if(ps.length>0&&!ps._running){ ps._running=true; tick(); }
-          }, i*250);
-        })(i);
-      }
-    },
-    mini:function(x,y){
-      ensureCanvas();
-      for(var i=0;i<20;i++){
-        var a=Math.random()*6.28, sp=1+Math.random()*3;
-        spawn(x,y, Math.cos(a)*sp, Math.sin(a)*sp-1.5, randColor(), 40+Math.random()*30, 2+Math.random()*2, 1);
-      }
-      if(ps.length>0) tick();
-    }
-  };
-})();
+/* 反馈效果统一由可测试模块提供；这里保留旧的 SFX/FX/speakSentence 名称，减少练习流程改动面。 */
+var _feedbackEffects = MainLifecycle.createFeedbackEffects({
+  window: window,
+  document: document,
+  getSettings: function(){ return mem.settings || {}; },
+  getCurrentItem: function(){ return cur(); }
+});
+var SFX = _feedbackEffects.sfx;
+var FX = _feedbackEffects.fx;
+function speakSentence(){ _feedbackEffects.speakSentence(); }
 /* 纯工具函数单源化：实现只在 js/format.mjs（ADR-007 Step 2），此处仅转发。
    2026-09-08：bootApp 守卫已纳入 FormatTools 就绪检查（与 ChunkEngine 同出于
    bridge.mjs 单次 module 加载），内联双实现兜底分支为死代码 → 已删，不再有
@@ -1811,7 +1844,7 @@ function setSoundIcon(){
 /* ============================================================
    1. 存储
 ============================================================ */
-var mem = { decks:[], best:{}, mastered:{}, deletedItems:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{}, events:[] }, settings:{ sound:true, shuffle:false, fxStack:true, celebrate:'confetti', mode:'choose', skipMastered:true, batchSize:10, autoSpeak:false, darkMode:false, provider:'deepseek', model:'deepseek-v4-flash', apiKey:'' } };
+var mem = { decks:[], best:{}, mastered:{}, deletedItems:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{}, events:[] }, settings:{ sound:true, shuffle:false, fxStack:true, celebrate:'confetti', mode:'choose', skipMastered:true, batchSize:10, autoSpeak:false, darkMode:false, provider:'deepseek', model:'deepseek-v4-flash', apiKey:'', chunkOnboardingSeen:false, chunkIntroSeen:false } };
 /* ★ 存储统一走 core.js（ADR：版本化 + 统一键 'chunklab.v1'）
    - 此前主页面独立用 KEY='chunklab.v1'，子页面用 chunklab_mem_v1 → 数据不同步（已修根因）
    - loadStore/saveStore 桥接到 CL，保证三页共享同一份数据 */
@@ -1819,10 +1852,14 @@ function loadStore(){
   try{
     var o = CL.loadMem();
     mem.decks = o.decks;
+    mem.activeDeckId = typeof o.activeDeckId === 'string' ? o.activeDeckId : '';
     mem.best = o.best;
     mem.mastered = o.mastered;
     mem.stats = o.stats;
-    mem.settings = o.settings;
+    mem.settings = o.settings || mem.settings;
+    /* 旧版本没有此字段；提示属于本设备的首次使用状态，缺失时默认未看过。 */
+    if(typeof mem.settings.chunkOnboardingSeen !== 'boolean') mem.settings.chunkOnboardingSeen = false;
+    if(typeof mem.settings.chunkIntroSeen !== 'boolean') mem.settings.chunkIntroSeen = false;
     mem.deletedItems = o.deletedItems || {};
     mem.reinforceBook = o.reinforceBook; /* CL.loadMem 恒返回数组 */
     if(o.progress && Object.keys(o.progress).length && !mem.progress) mem.progress = o.progress;
@@ -2097,8 +2134,31 @@ function beginContentBatch(deck, fromIdx, cursor){
    - 排序：到期复习最优先 + 熟练度分级
    - 洗牌（设置开启时） + 截断到 batchSize */
 var _deckLoadGeneration = 0;
+/* 所有题目异步加载共用一个生命周期令牌；离开练习页或切换课程后，
+   旧请求只能结束，不能再写入当前题目和页面。 */
+var _mainPracticeLifecycle = window.MainLifecycle && MainLifecycle.createLifecycle
+  ? MainLifecycle.createLifecycle({ onState:function(state){
+      if(state.state === 'error') console.warn('[practice lifecycle]', state.error);
+    } }) : null;
+window._mainPracticeLifecycle = _mainPracticeLifecycle;
 function startDeck(deck, fromIdx, tempStart){
+  var lifecycleToken = _mainPracticeLifecycle ? _mainPracticeLifecycle.begin('practice') : null;
   var loadGeneration = ++_deckLoadGeneration;
+  if(window.ensurePracticeReady && !window.ChunkEngine){
+    $('zh').innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 正在准备练习…';
+    window.ensurePracticeReady().then(function(){
+      if(_mainPracticeLifecycle && !_mainPracticeLifecycle.isCurrent(lifecycleToken)) return;
+      startDeck(deck, fromIdx, tempStart);
+    }).catch(function(error){
+      if(_mainPracticeLifecycle && !_mainPracticeLifecycle.isCurrent(lifecycleToken)) return;
+      console.error('[practice] 练习模块加载失败', error);
+      showBootError('学习模块加载失败，请重试', function(){
+        showPracticePage();
+        startDeck(deck, fromIdx, tempStart);
+      });
+    });
+    return;
+  }
   if(deck && isTempQueueDeck(deck.id) && window.ContentRepo && ContentRepo.hydrateItemBatch){
     var reviewIndex = deck._reviewIndexItems || deck.items || [];
     var reviewStart = Math.max(0, Math.floor(Number(tempStart) || 0));
@@ -2108,12 +2168,12 @@ function startDeck(deck, fromIdx, tempStart){
         (deck._reviewBatchStart !== reviewStart || deck._reviewBatchLimit !== reviewLimit)){
       $('zh').textContent = '正在加载本组复习内容…';
       ContentRepo.hydrateItemBatch(reviewIndex, reviewStart, reviewLimit).then(function(items){
-        if(loadGeneration !== _deckLoadGeneration) return;
+        if(loadGeneration !== _deckLoadGeneration || (_mainPracticeLifecycle && !_mainPracticeLifecycle.isCurrent(lifecycleToken))) return;
         var batchDeck = Object.assign({},deck,{items:reviewIndex.slice(),_reviewIndexItems:reviewIndex,_reviewBatchStart:reviewStart,_reviewBatchLimit:reviewLimit});
         items.forEach(function(it,i){ batchDeck.items[reviewStart+i] = it; });
         startDeck(batchDeck,fromIdx,reviewStart);
       }).catch(function(err){
-        if(loadGeneration !== _deckLoadGeneration) return;
+        if(loadGeneration !== _deckLoadGeneration || (_mainPracticeLifecycle && !_mainPracticeLifecycle.isCurrent(lifecycleToken))) return;
         console.error('[review] 批次加载失败',err);
         $('zh').textContent = '本组内容加载失败，请联网后从学习档案重新开始复习';
       });
@@ -2124,7 +2184,7 @@ function startDeck(deck, fromIdx, tempStart){
       && window.ContentRepo && ContentRepo.shouldBatch && ContentRepo.shouldBatch(deck)){
     var _savedProgress = mem.progress && mem.progress[deck.id];
     var _savedCursor = _savedProgress && _savedProgress.contentCursor;
-    beginContentBatch(deck, fromIdx, _savedCursor);
+    beginContentBatch(deck, fromIdx, _savedCursor, lifecycleToken);
     return;
   }
   /* 内置扩展题库按需加载：页面启动只保留基础题与 manifest，真正进入题库时才取分片。
@@ -2133,12 +2193,14 @@ function startDeck(deck, fromIdx, tempStart){
   if(deck && deck.builtin && deck._content && !deck._contentReady && !deck._contentBatchReady && window.ContentRepo){
     $('zh').innerHTML = (window.Icons ? Icons.svg('refresh') : '') + ' 正在加载课程…';
     ContentRepo.ensureDeck(deck, mem).then(function(full){
+      if(_mainPracticeLifecycle && !_mainPracticeLifecycle.isCurrent(lifecycleToken)) return;
       if(!full || !full.items || !full.items.length){
         $('zh').textContent = '课程内容为空，无法开始练习';
         return;
       }
       startDeck(full, fromIdx, tempStart);
     }).catch(function(err){
+      if(_mainPracticeLifecycle && !_mainPracticeLifecycle.isCurrent(lifecycleToken)) return;
       console.error('[content] 题库加载失败', err);
       $('zh').textContent = '课程加载失败，请联网后重试';
     });
@@ -2213,6 +2275,7 @@ if(fromIdx === 0 && isLongTermDeck){
   /* v7 diagnostic */
   $('zh').innerHTML = (window.Icons ? '<span class="icon-spin">' + Icons.svg('refresh') + '</span>' : '') + ' 渲染中…';
   try { renderQ(); } catch(err){ console.error('[renderQ]', err); $('zh').textContent = '加载出错：' + (err && err.message || err); }
+  if(_mainPracticeLifecycle) _mainPracticeLifecycle.complete(lifecycleToken, deck.id);
   goPractice();
   /* 记录 lastPlayed + 活跃题库（走统一访问层，防 {lastPlayed} 残壳）。
      长期 deck 才写 best；临时队列（book-/weak-/srs-/rev-/#）不落 best——
@@ -2235,18 +2298,7 @@ if(fromIdx === 0 && isLongTermDeck){
 
 /* ★ 会话状态对象 S —— 之前与 BUILTIN 同区域被误删，重建
    所有 S.* 字段必须先初始化，否则 startDeck / renderQ 抛 undefined 错误 */
-var S = {
-  deck: null, items: [], idx: 0,
-  chunkIdx: 0, status: [], answers: [], wrongAttempts: [], wrongAnswers: [],
-  combo: 0, maxCombo: 0, perfectCount: 0,
-  chunkTotal: 0, chunkRight: 0, wrong: [], sessionByDeck: {},
-  finished: false, _finishing: false,
-  perfectThis: true, hinted: false, _hintedChunks: [],
-  /* 超大内置题库当前练习批次与内容游标（非临时队列分页） */
-  contentBatch: null,
-  /* 临时队列分页游标（见 startDeck / finishSession「继续下一组」） */
-  tempTotal: 0, tempStart: 0, tempEnd: 0
-};
+var S = MainPracticeState.createPracticeState();
 
 /* 当前题（cur = S.items[S.idx]）—— 之前与 BUILTIN 同区域被误删，重建 */
 function cur(){
@@ -2271,51 +2323,14 @@ function findDeck(deckId){
    能唯一映射到当前题库的记录自动合并；同句存在多个题库且无法判断时保留原记录。 */
 function migrateLegacyStatKeys(){
   if(!mem.stats || !mem.stats.bySentence) return false;
-  var decks = allDecks();
-  var known = {};
-  decks.forEach(function(d){ known[d.id] = d; });
-  var changed = false;
-  var by = mem.stats.bySentence;
-  function merge(a, b){
-    var latest = (a.lastAt||0) >= (b.lastAt||0) ? a : b;
-    var out = Object.assign({}, latest);
-    out.times = (a.times||0) + (b.times||0);
-    out.okTimes = (a.okTimes||0) + (b.okTimes||0);
-    out.wrongTimes = (a.wrongTimes||0) + (b.wrongTimes||0);
-    out.maxStreak = Math.max(a.maxStreak||0, b.maxStreak||0);
-    return out;
-  }
-  Object.keys(by).forEach(function(oldKey){
-    var st = by[oldKey];
-    if(!st || !st.deckId || known[st.deckId]) return;
-    var sourceId = '';
-    /* rev-<原题库ID>-<时间戳> 可以无歧义恢复原题库。 */
-    if(st.deckId.indexOf('rev-') === 0){
-      decks.forEach(function(d){
-        if(!sourceId && st.deckId.indexOf('rev-'+d.id+'-') === 0) sourceId = d.id;
-      });
-    }
-    /* 其他临时队列没有来源字段，只在句子文本唯一命中时迁移。 */
-    if(!sourceId){
-      var candidates = [];
-      decks.forEach(function(d){
-        if((d.items||[]).some(function(it){ return normSent(it.sentence||it.en||'') === normSent(st.sentence||''); })) candidates.push(d);
-      });
-      if(candidates.length === 1) sourceId = candidates[0].id;
-      if(candidates.length > 1){
-        var named = candidates.filter(function(d){ return d.name === st.deckName; });
-        if(named.length === 1) sourceId = named[0].id;
-      }
-    }
-    if(!sourceId) return;
-    var newKey = sourceId + '#' + CL.fnv8(st.sentence || '');
-    if(by[newKey]) by[newKey] = merge(by[newKey], st);
-    else { st.deckId = sourceId; st.deckName = known[sourceId].name; by[newKey] = st; }
-    if(newKey !== oldKey) delete by[oldKey];
-    changed = true;
+  var migration = MainLegacyStats.migrateLegacyStatKeys(mem.stats.bySentence, allDecks(), {
+    normalizeSentence: normSent,
+    hash: CL.fnv8
   });
-  if(changed) saveStore();
-  return changed;
+  if(!migration.changed) return false;
+  mem.stats.bySentence = migration.by;
+  saveStore();
+  return true;
 }
 
 function renderQ(){
@@ -2362,7 +2377,11 @@ function renderQ(){
     var box = document.createElement('div');
     box.className = 'chunk wait';
 
-    if(isChoose){
+    if(window.MainPracticeMarkup && typeof MainPracticeMarkup.buildChunkMarkup === 'function'){
+      box.innerHTML = MainPracticeMarkup.buildChunkMarkup({
+        chunk:c, index:i, hint:hint, grammar:gm, mode:isChoose ? 'choose' : 'type', escapeHtml:esc
+      });
+    } else if(isChoose){
       /* 选择模式：chunk 内顺序 = 答案(块) → 角色 → hint */
       box.innerHTML =
       `<div class="chunk-answer" data-i="`+i+`" style="--answer-chars:`+Math.max(1, c.trim().length)+`"></div>`+
@@ -2434,8 +2453,10 @@ function renderQ(){
         if(cur) cur.remove();
       });
     });
-    track.appendChild(box);
+  track.appendChild(box);
   });
+
+  syncChunkConceptHint();
 
   $('topbarReveal').classList.add('hidden');
   $('revealTagWrap').classList.add('hidden');
@@ -2819,28 +2840,75 @@ function renderActiveChoices(){
        只洗一次（不是每次渲染都洗）：否则每答完一个 chunk 按钮整体重排，点击目标会跳动。 */
   if(!S.choicesPool || S.choicesPool.it !== it){
     var corrects = it.chunks.slice(), distractors = buildDistractors(it);
-    var order = [];
-    distractors.forEach(function(v){ order.push({ v:v, ci:-1 }); });
-    corrects.forEach(function(v, k){ order.push({ v:v, ci:k }); });
-    for(var i=order.length-1; i>0; i--){
-      var j = Math.floor(Math.random()*(i+1));
-      var t = order[i]; order[i] = order[j]; order[j] = t;
+    var poolBuilder = window.ChunkEngine && typeof window.ChunkEngine.buildChoicePool === 'function'
+      ? window.ChunkEngine.buildChoicePool : null;
+    var built = poolBuilder ? poolBuilder(corrects, distractors) : null;
+    if(!built){
+      var order = [];
+      distractors.forEach(function(v){ order.push({ v:v, ci:-1 }); });
+      corrects.forEach(function(v, k){ order.push({ v:v, ci:k }); });
+      for(var i=order.length-1; i>0; i--){
+        var j = Math.floor(Math.random()*(i+1));
+        var t = order[i]; order[i] = order[j]; order[j] = t;
+      }
+      built = { corrects: corrects, distractors: distractors, order: order };
     }
-    S.choicesPool = { it: it, corrects: corrects, distractors: distractors, order: order };
+    S.choicesPool = { it: it, corrects: built.corrects, distractors: built.distractors, order: built.order };
   }
   var pool = S.choicesPool;
   /* 答完全部 chunks 不再清空 chips：distractors 仍可见，可"自由试错"（重选同一项）
      + 已 ok 的 correct 在渲染循环里跳过（不重复显示）；视觉通过 :has([data-done]) 控制半透明 */
-  var html = '';
-  pool.order.forEach(function(e){
-    if(e.ci >= 0 && S.status[e.ci] === 'ok') return;
-    html += '<button class="choice'+(e.ci<0?' distractor':'')+'" type="button" data-v="'+esc(e.v)+'">'+esc(e.v)+'</button>';
-  });
+  var markupBuilder = window.ChunkEngine && typeof window.ChunkEngine.buildChoiceMarkup === 'function'
+    ? window.ChunkEngine.buildChoiceMarkup : null;
+  var html = markupBuilder
+    ? markupBuilder(pool, S.status, mem.settings.chunkOnboardingSeen, esc)
+    : '';
+  if(!markupBuilder){
+    if(mem.settings.chunkOnboardingSeen !== true){
+      html += '<div id="chunkOnboardingHint" role="status" aria-live="polite">'
+        + '<span>点选词块作答，答对后自动进入下一空</span>'
+        + '<button type="button" class="onboarding-dismiss" data-dismiss-chunk-onboarding>知道了</button>'
+        + '</div>';
+    }
+    pool.order.forEach(function(e){
+      if(e.ci >= 0 && S.status[e.ci] === 'ok') return;
+      html += '<button class="choice'+(e.ci<0?' distractor':'')+'" type="button" data-v="'+esc(e.v)+'">'+esc(e.v)+'</button>';
+    });
+  }
   box.innerHTML = html;
   /* revealTagWrap 只在"已掌握/需巩固"两条 actionable 复习建议分支里显示（见 finishSentence）。
      「已答完」outcome tag 已于 2026-09-10 移除——错 1 自纠态的"沉默"本来就是正确反馈
      （错处红字 + track 补全 + 下一题按钮 3 重信号已足够），补绿 tag 属兜底式过度反馈，
      且与「已掌握」绿 tag 撞色撞语义。 */
+}
+
+/* 首次词块提示只在第一次实际交互前保留；记录为本设备偏好，不进入学习统计。 */
+function markChunkOnboardingSeen(){
+  if(!mem.settings || mem.settings.chunkOnboardingSeen === true) return;
+  mem.settings.chunkOnboardingSeen = true;
+  var hint = $('chunkOnboardingHint');
+  if(hint) hint.remove();
+  /* 首次操作完成后立即进入第二层提示，不必等到下一道题才刷新整张题卡。 */
+  syncChunkConceptHint();
+  try{ saveStore('local'); }catch(e){ console.warn('[onboarding] 保存提示状态失败', e); }
+}
+
+/* 「意群」解释采用渐进披露：先完成词块操作，再出现一句概念解释；
+   用户点击后复用完整说明弹窗，此后不再重复打扰。 */
+function syncChunkConceptHint(){
+  var hint = $('chunkConceptHint');
+  if(!hint) return;
+  var canShow = mem.settings && mem.settings.chunkIntroSeen !== true &&
+    (mem.settings.mode !== 'choose' || mem.settings.chunkOnboardingSeen === true);
+  hint.classList.toggle('hidden', !canShow);
+}
+
+function markChunkIntroSeen(){
+  if(!mem.settings || mem.settings.chunkIntroSeen === true) return;
+  mem.settings.chunkIntroSeen = true;
+  var hint = $('chunkConceptHint');
+  if(hint) hint.classList.add('hidden');
+  try{ saveStore('local'); }catch(e){ console.warn('[onboarding] 保存意群提示状态失败', e); }
 }
 
 /* 在 chunk 内显示答题结果（ok/bad/revealed）。bad 且 picked 不是正确答案时同时显示错选 + 正确 */
@@ -2867,8 +2935,16 @@ function markChoices(i, pick){
 
 /* 在 #stageChoices 上委托点击） */
 $('stageChoices').addEventListener('click', function(e){
+  var dismiss = e.target.closest && e.target.closest('[data-dismiss-chunk-onboarding]');
+  if(dismiss){
+    e.preventDefault();
+    e.stopPropagation();
+    markChunkOnboardingSeen();
+    return;
+  }
   var btn = e.target.closest && e.target.closest('.choice'); if(!btn) return;
   if(btn.disabled) return;
+  markChunkOnboardingSeen();
   var st = S.status[S.chunkIdx];
   if(st==='ok' || st==='bad' || st==='revealed'){ next(); return; }
   chooseSubmit(btn.dataset.v);
@@ -2881,7 +2957,7 @@ function chooseSubmit(choice){
   if(i >= it.chunks.length) return;
   var right = it.chunks[i];
   var alternatives = (it.alts && it.alts[i]) || [];
-  var ok = [right].concat(alternatives).some(function(a){ return norm(choice) === norm(a); });
+  var ok = MainLifecycle.evaluateChunkAnswer({ value:choice, right:right, alternatives:alternatives, normalize:norm });
   S.chunkTotal++;
   S.answers[i] = choice;
   var b = boxAt(i);
@@ -2952,9 +3028,12 @@ function submitChunk(){
   }
   var right = it.chunks[i];
   var alternatives = (it.alts && it.alts[i]) || [];
-  var ok = safeCall('ChunkEngine', 'judgeChunk',
-    [right].concat(alternatives).some(function(a){ return norm(val) === norm(a); }),
-    [val, right, alternatives]);
+  var ok = MainLifecycle.evaluateChunkAnswer({
+    value: val, right: right, alternatives: alternatives, normalize: norm,
+    judge: window.ChunkEngine && typeof window.ChunkEngine.judgeChunk === 'function'
+      ? window.ChunkEngine.judgeChunk
+      : null,
+  });
 
   S.chunkTotal++;
   S.answers[i] = val;
@@ -3013,13 +3092,8 @@ function revealCurrentChunk(){
   if($('stage').classList.contains('hidden') || S.finished) return;
   var it = cur();
   /* 优先揭示当前 chunk；若当前已作答，则找下一个未揭示的 chunk */
-  var i = S.chunkIdx;
-  if(i >= it.chunks.length || (S.status[i]==='ok' || S.status[i]==='bad' || S.status[i]==='revealed')){
-    i = -1;
-    for(var k=0;k<it.chunks.length;k++){
-      if(S.status[k]!=='ok' && S.status[k]!=='bad' && S.status[k]!=='revealed'){ i=k; break; }
-    }
-  }
+  var _revealPlan = MainPracticeState.buildRevealPlan(S.status, S.chunkIdx);
+  var i = _revealPlan.indices.length ? _revealPlan.indices[0] : -1;
   if(i < 0 || i >= it.chunks.length) return;
   var right = it.chunks[i];
   S.status[i]='revealed';
@@ -3037,8 +3111,8 @@ function revealCurrentChunk(){
 function showFullSentence(){
   if($('stage').classList.contains('hidden') || S.finished) return;
   var it = cur();
-  for(var i=0;i<it.chunks.length;i++){
-    if(S.status[i]!=='ok' && S.status[i]!=='bad' && S.status[i]!=='revealed'){
+  var _revealPlan = MainPracticeState.buildRevealPlan(S.status, S.chunkIdx, true);
+  _revealPlan.indices.forEach(function(i){
       var right = it.chunks[i];
       S.status[i]='revealed';
       S.perfectThis=false;
@@ -3048,8 +3122,7 @@ function showFullSentence(){
       bb.classList.remove('active','wait'); bb.classList.add('revealed');
       if(mem.settings.mode === 'choose'){ markChoices(i, ''); showChunkAnswer(i, 'revealed', ''); }
       else { setChunkValueAt(i, right); inputsAt(i).forEach(function(x){ x.readOnly=true; }); }
-    }
-  }
+  });
   /* 全句显示后直接结束当前句 */
   finishSentence();
 }
@@ -3223,16 +3296,16 @@ function finishSentence(){
     var _mastered = isMastered(statDeckId(it), it);
     /* ★ “需巩固”是优先级标签：总错误 ≥2 次，或用过提示/跳过 → 需巩固；
        只错 1 次且自己纠正（无提示）不显示该标签，但仍要进入错题本。 */
-    var _totalWrong = S.wrongAttempts.reduce(function(a,b){ return a + (b||0); }, 0);
-    var _needsReview = (_totalWrong >= 2) || !!S.hinted;
-    var _hadIssue = (_totalWrong > 0) || !!S.hinted || S.status.some(function(st){ return st==='bad' || st==='revealed'; });
-    var wrongIdx = [];
-    S.wrongAttempts.forEach(function(n,i){
-      if((n||0) > 0 || S.status[i]==='bad' || S.status[i]==='revealed') wrongIdx.push(i);
+    var _outcome = MainPracticeState.buildSentenceOutcome({
+      item:it, wrongAttempts:S.wrongAttempts, status:S.status, hinted:S.hinted,
+      answers:S.answers, wrongAnswers:S.wrongAnswers, existingWrong:S.wrong
     });
+    var _totalWrong = _outcome.totalWrong;
+    var _needsReview = _outcome.needsReview;
+    var _hadIssue = _outcome.hadIssue;
     /* 错题本记录“发生过错误”的事实；需巩固只是其中更需要优先复习的子集。 */
-    if(_hadIssue && !S.wrong.some(function(w){ return w.it === it; })){
-      var _wrongEntry = { it:it, idx:wrongIdx, answers:S.answers.slice(), wrongAnswers:S.wrongAnswers.map(function(a){ return Array.isArray(a) ? a.slice() : []; }), needsReview:_needsReview };
+    if(_outcome.shouldRecord){
+      var _wrongEntry = _outcome.wrongEntry;
       S.wrong.push(_wrongEntry);
       /* 句子完成即落错题本，用户中途关闭页面也不会丢掉刚刚发生的错误。 */
       saveReinforceList(S.deck, [_wrongEntry]);
@@ -3254,7 +3327,7 @@ function finishSentence(){
     }
     var nb = $('btnNext');
     nb.classList.remove('hidden');
-    nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果' : '下一题';
+    nb.textContent = MainPracticePolicy.getNextLabel(S.idx, S.items.length);
     nb.focus();
     /* 即使有错误，句子已完成，仍展示结构分析面板 */
     clearTimeout(_anaTimer);
@@ -3417,35 +3490,6 @@ function showErrorToast(correct, wrong, explain, alts){
   showExplanationPanel(correct, sections);
 }
 
-/* ---------- 句子结构分析面板 ---------- */
-function buildGrammar(it){
-  /* 如果题目自带 grammar 数据，直接用；否则按 chunk 自动生成降级版 */
-  if(it.grammar && Array.isArray(it.grammar) && it.grammar.length === it.chunks.length){
-    return it.grammar;
-  }
-  /* 降级：无语法标注时自动生成基础版 */
-  var roles = ['主语','谓语','宾语','状语','定语','补语','表语'];
-  var colors = ['#c87033','#e74c7a','#3358e0','#7c5cbf','#d4a017','#2d9d78','#c56cf0'];
-  return it.chunks.map(function(ch, i){
-    var words = ch.trim().split(/\s+/);
-    var ph = words.map(function(){ return ''; });
-    return {
-      role: roles[i % roles.length],
-      color: colors[i % colors.length],
-      phonetic: ph,
-      pos: '—',
-      meaning: (it.hints && it.hints[i]) || ''
-    };
-  });
-}
-
-/* 讲解文本的极简 Markdown：**加粗** / *斜体*（讲解数据里大量使用星号标记，直出星号体验差） */
-function miniMd(s){
-  return esc(s)
-    .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
-    .replace(/\*([^*\s][^*]*)\*/g, '<i>$1</i>');
-}
-
 /* ---------- 下一题自动倒计时（2026-09-04 P1） ----------
    答完一句话后按表现自动推进，减少"下一步干嘛"的决策疲劳：
    - 本轮全对（perfectThis）→ 3s：保持连击节奏
@@ -3454,7 +3498,7 @@ function miniMd(s){
    - 任何用户点击（FAB 除外）→ 取消倒计时，交还控制权 */
 var _autoNextTimer = null, _autoNextBound = false;
 function autoNextBaseText(){
-  return (S.idx+1 >= S.items.length) ? '查看结果' : '下一题';
+  return MainPracticePolicy.getNextLabel(S.idx, S.items.length);
 }
 function stopAutoNext(){
   if(_autoNextTimer){ clearTimeout(_autoNextTimer); _autoNextTimer = null; }
@@ -3465,7 +3509,7 @@ function stopAutoNext(){
   /* 恢复按钮静态文案（回车快捷仍全局生效，无需 ↵ 装饰） */
   var nb = $('btnNext');
   if(nb && !nb.classList.contains('hidden')){
-    nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果' : '下一题';
+    nb.textContent = MainPracticePolicy.getNextLabel(S.idx, S.items.length);
   }
 }
 function onAutoNextUserCancel(ev){
@@ -3475,15 +3519,17 @@ function onAutoNextUserCancel(ev){
 }
 function startAutoNext(){
   stopAutoNext();
-  if(S.finished) return;
   var nb = $('btnNext');
-  if(!nb || nb.classList.contains('hidden')) return;
-  /* 有任何瑕疵不自动跳：错过（wrongAttempts）/ 提示（hinted）/ 跳过或揭示（bad/revealed） */
-  var flawed = (S.wrongAttempts && S.wrongAttempts.some(function(w){ return (w||0) > 0; })) ||
-               !!S.hinted ||
-               (S.status && S.status.some(function(st){ return st === 'bad' || st === 'revealed'; }));
-  if(flawed) return;
-  var sec = S.perfectThis ? 3 : 5;
+  var decision = MainPracticePolicy.getAutoAdvanceDecision({
+    finished: S.finished,
+    available: !!nb && !nb.classList.contains('hidden'),
+    wrongAttempts: S.wrongAttempts,
+    hinted: S.hinted,
+    status: S.status,
+    perfectThis: S.perfectThis
+  });
+  if(!decision.eligible) return;
+  var sec = decision.seconds;
   var tick = function(){
     sec--;
     if(sec <= 0){ stopAutoNext(); nextQuestion(); return; }
@@ -3496,65 +3542,9 @@ function startAutoNext(){
   _autoNextTimer = setTimeout(tick, 1000);
 }
 
-/* ---------- 本句讲解（2026-09-04 P1 改造） ----------
-   语法速览 + 讲解要点是唯一的讲解内容源；练习后的卡片和「查看讲解」弹窗共用。
-   这样两个入口不会因为各自拼装 UI 而出现内容缩水或口径不一致。 */
-function buildAnalysisSections(it){
-  var gram = buildGrammar(it);
-
-  /* 语法速览：每 chunk 一行（role 徽章 + chunk + 音标 + 中文·pos），紧凑行式 */
-  var gramHtml = '<div style="display:flex;flex-direction:column;gap:6px">';
-  gram.forEach(function(g, i){
-    var ph = (g.phonetic || []).filter(Boolean).join(' ');
-    gramHtml += '<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">'+
-      '<span style="flex-shrink:0;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:999px;background:'+esc(g.color)+'22;color:'+esc(g.color)+'">'+esc(g.role)+'</span>'+
-      '<b style="font-size:14.5px;color:var(--text)">'+esc(it.chunks[i])+'</b>'+
-      (ph ? '<span style="font-size:11px;color:var(--faint)">'+esc(ph)+'</span>' : '')+
-      '<span style="font-size:12px;color:var(--muted)">'+esc(g.meaning || '')+(g.pos ? ' · '+esc(g.pos) : '')+'</span>'+
-    '</div>';
-  });
-  gramHtml += '</div>';
-
-  var sections = [{ tag: '语法速览', html: gramHtml, variant: 'info' }];
-
-  /* 讲解要点：explanations 按索引对应 chunk；兼容对象（多维度）/字符串两种格式（同 openExplain） */
-  var exps = it.explanations || [];
-  var hasAny = false;
-  exps.forEach(function(raw, i){
-    if(!raw || !String(typeof raw === 'object' ? JSON.stringify(raw) : raw).trim()) return;
-    hasAny = true;
-    var tag = '讲解 ' + (i+1);
-    if(raw && typeof raw === 'object'){
-      var dims = [
-        ['语法', 'grammar', '#e74c7a'],
-        ['句法', 'syntax', '#3358e0'],
-        ['固定搭配', 'collocation', '#c87033'],
-        ['固定句型', 'pattern', '#7c5cbf'],
-        ['口语/俚语', 'oral', '#2d9d78']
-      ];
-      var body = '';
-      dims.forEach(function(d){
-        var v = raw[d[1]];
-        if(v && String(v).trim()){
-          body += '<div style="padding:2px 0"><span style="font-size:11px;font-weight:700;color:'+d[2]+'">'+d[0]+'：</span>'+miniMd(String(v))+'</div>';
-        }
-      });
-      if(Array.isArray(raw.words) && raw.words.length){
-        body += '<div style="padding:2px 0">'+raw.words.map(function(w){
-          return '<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border:1px solid var(--border-strong);border-radius:5px;font-size:11.5px;color:var(--accent)"><b>'+esc(w.w||w.word||'')+'</b>'+(w.p ? ' <span style="color:var(--faint)">('+esc(w.p)+')</span>' : '')+(w.m ? ' '+esc(w.m) : '')+'</span>';
-        }).join('')+'</div>';
-      }
-      if(body) sections.push({ tag: tag, html: body, variant: 'info' });
-    } else {
-      sections.push({ tag: tag, html: miniMd(String(raw)), variant: 'info' });
-    }
-  });
-  if(!hasAny){
-    sections.push({ tag: '讲解', html: '本句暂无讲解要点', variant: 'warn' });
-  }
-
-  return sections;
-}
+/* 解释内容由纯模块组装；这里保留旧函数名，控制 DOM 的渲染流程不变。 */
+function buildFallbackExplanation(it){ return MainExplanation.buildFallbackExplanation(it); }
+function buildAnalysisSections(it){ return MainExplanation.buildAnalysisSections(it); }
 
 function renderAnalysis(it){
   showExplanationPanel('本句讲解', buildAnalysisSections(it));
@@ -3562,7 +3552,7 @@ function renderAnalysis(it){
   /* 显示"下一题"按钮 + 启动自动倒计时 */
   var nb = $('btnNext');
   nb.classList.remove('hidden');
-  nb.textContent = (S.idx+1 >= S.items.length) ? '查看结果' : '下一题';
+  nb.textContent = MainPracticePolicy.getNextLabel(S.idx, S.items.length);
   nb.focus();
   startAutoNext();
 }
@@ -3679,7 +3669,7 @@ function renderSchedLine(st){
   var txt = (window.CL && CL.srs && CL.srs.scheduleLabel) ? CL.srs.scheduleLabel(st, Date.now()) : '';
   if(!txt){ el.classList.add('hidden'); el.innerHTML = ''; return; }
   el.innerHTML = '<span class="sched-ic">'+(window.Icons?Icons.svg('calendar'):'')+'</span>'
-    + '<span>下次复习：'+esc(txt)+'</span>';
+    + '<span>'+esc(txt)+'</span>';
   el.classList.remove('hidden');
 }
 
@@ -3749,10 +3739,14 @@ function finishSession(){
   var _contentLead = S.contentBatch
     ? '本组 '+S.items.length+' 题 · 课程剩余约 '+S.contentBatch.remainingCount+' 题'
     : '共 '+S.items.length+' 题';
+  var _courseNavigation = courseNavigationForDeck(S.deck);
+  var _nextCourseDeck = _courseNavigation && !_contentNext && _courseNavigation.next && _courseNavigation.next.deck;
+  var _nextCourseTitle = _courseNavigation && _courseNavigation.next && _courseNavigation.next.lesson.title;
+  var _courseComplete = !!(_courseNavigation && !_contentNext && _courseNavigation.allComplete);
 
   var html = ''+
     `<h2>`+(acc===100?'满分通关':(acc>=80?'练完啦，稳':'练完啦，回顾一下'))+'</h2>'+
-    `<div class="lead">`+esc(S.deck.name)+' · '+_contentLead+(isBest?' · <b style="color:var(--accent)">新纪录</b>':'')+'</div>'+
+    `<div class="lead">`+esc(S.deck.name)+' · '+_contentLead+(isBest?' · <b style="color:var(--accent)">新纪录</b>':'')+(_nextCourseDeck?' · 下一课：'+esc(_nextCourseTitle):(_courseComplete?' · 本课程已完成':''))+'</div>'+
     /* ★ 还有 N 句被标记隐藏（用户多次反馈「103 题只练 10 题就通关」的根因）：
        - 内置 deck：拿 BUILTIN 原 items 长度对比，可一键恢复
        - 提示行直接暴露，让用户看见根因而不是默默被跳过 */
@@ -3816,12 +3810,15 @@ function finishSession(){
     _nextRemain = Math.max(0, (S.tempTotal || 0) - (S.tempEnd || 0));
   }
   if(_contentNext) _nextRemain = S.contentBatch.remainingCount;
+  var _finishActions = _nextRemain > 0
+            ? `<button class="btn primary" id="btnNextBatch">继续下一组 · 剩 `+_nextRemain+` 句</button>`+
+              `<button class="btn" id="btnAgain">再练一遍</button>`
+            : (_nextCourseDeck
+              ? `<button class="btn primary" id="btnNextCourse">下一课：`+esc(_nextCourseTitle)+`</button>`+
+                `<button class="btn" id="btnAgain">重练本课</button>`
+              : `<button class="btn primary" id="btnAgain">`+(_courseComplete?'复习本课':'再练一遍')+`</button>`);
   html += '<div class="stage-foot" style="margin-top:20px">'+
-            (_nextRemain > 0
-              ? `<button class="btn primary" id="btnNextBatch">继续下一组 · 剩 `+_nextRemain+` 句</button>`+
-                `<button class="btn" id="btnAgain">再练一遍</button>`
-              : `<button class="btn primary" id="btnAgain">再练一遍</button>`
-            )+
+            _finishActions+
             `<button class="btn" id="btnWrongOnly"`+(S.wrong.length?'':' disabled')+'>只练错题 ('+S.wrong.length+')</button>'+
             `<button class="btn" id="btnOtherDeck">换个课程</button>`+
             `<button class="btn" id="btnHome">回今日</button>`+
@@ -3848,6 +3845,13 @@ function finishSession(){
       } else {
         startDeck(S.deck, 0, S.tempEnd);
       }
+    };
+  }
+  var _bnc = $('btnNextCourse');
+  if(_bnc){
+    _bnc.onclick = function(){
+      showPracticePage();
+      startDeck(_nextCourseDeck, 0);
     };
   }
   $('btnAgain').onclick = function(){ startDeck(S.deck, true); };
@@ -3886,11 +3890,9 @@ function finishSession(){
 
 /* 熟练度分档：熟练（≥3次且正确率≥80%）；需巩固（有错且正确率<60%，或仅练过但全错）；学习中（其他已练）；未练过 */
 function classifyStat(s){
-  if(!s || !s.times) return 'unseen';
-  var acc = s.times ? s.okTimes/s.times : 0;
-  if(s.times >= 3 && acc >= 0.8) return 'master';
-  if(acc < 0.6) return 'weak';
-  return 'learn';
+  return window.MainPracticeClassification && MainPracticeClassification.classifyStat
+    ? MainPracticeClassification.classifyStat(s)
+    : (!s || !s.times ? 'unseen' : (s.times >= 3 && s.okTimes/s.times >= 0.8 ? 'master' : (s.okTimes/s.times < 0.6 ? 'weak' : 'learn')));
 }
 
 /* 智能推荐排序等级：返回 0/1/2/3，数值小优先出题 */
@@ -3900,7 +3902,9 @@ function sentenceClassify(it){
   return rankOfClassify(classifyStat(mem.stats.bySentence[key]));
 }
 function rankOfClassify(c){
-  return c === 'weak' ? 0 : c === 'unseen' ? 1 : c === 'learn' ? 2 : 3;
+  return window.MainPracticeClassification && MainPracticeClassification.rankOfClassify
+    ? MainPracticeClassification.rankOfClassify(c)
+    : (c === 'weak' ? 0 : c === 'unseen' ? 1 : c === 'learn' ? 2 : 3);
 }
 
 /* 「掌握」= 经过考试验证：累计答对≥3 次 且 当前连对≥3 次（标熟 ≠ 掌握，标熟只是自选标记） */
@@ -3908,14 +3912,18 @@ function isFluency(it){
   if(!mem.stats || !mem.stats.bySentence || !S.deck) return false;
   var key = statKey(it);
   var st = mem.stats.bySentence[key];
-  return !!(st && st.okTimes >= 3 && st.streak >= 3);
+  return window.MainPracticeClassification && MainPracticeClassification.isFluencyStat
+    ? MainPracticeClassification.isFluencyStat(st)
+    : !!(st && st.okTimes >= 3 && st.streak >= 3);
 }
 
 /* 「已标熟」= 用户自选/自动标记（不再参与学习，仅在复习时出现） */
 function isMarked(it){
   if(!mem.mastered || !S.deck) return false;
   var key = masteredKey(statDeckId(it), it);
-  return !!mem.mastered[key];
+  return window.MainPracticeClassification && MainPracticeClassification.hasMasteredKey
+    ? MainPracticeClassification.hasMasteredKey(mem.mastered, key)
+    : !!mem.mastered[key];
 }
 
 /* 「到期复习」= SRS 间隔到达（dueAt ≤ now），无论标熟/掌握都要复习 */
@@ -3924,6 +3932,9 @@ function isDue(it){
   var key = statKey(it);
   var st = mem.stats.bySentence[key];
   /* 统一走 CL.srs 判定（ADR-003，单一事实来源） */
+  if(window.MainPracticeClassification && MainPracticeClassification.isDueStat){
+    return MainPracticeClassification.isDueStat(st, function(stat){ return CL.srs.isDue(stat, Date.now()); });
+  }
   return CL.srs.isDue(st, Date.now());
 }
 
@@ -3948,8 +3959,10 @@ function clearStageChoices(){
 function showHomePage(){
   setPracticeOnlyUi(false);
   clearStageChoices();
+  if(window._mainPracticeLifecycle) window._mainPracticeLifecycle.cancel('home');
   var p = $('pagePractice'); if(p) p.classList.add('hidden');
   var h = $('pageHome'); if(h) h.classList.remove('hidden');
+  var b = $('bootScreen'); if(b) b.hidden = true;
   var r = $('result'); if(r) r.classList.add('hidden');
   /* 其他标签页写入期间本页正在练习 → 回到首页时先采纳最新磁盘态（P0 多标签页防护）。
      走 CL.refreshExternal 一并重载 IDB 大对象内存桥（bySentence/courses），再渲染首页，
@@ -3960,10 +3973,12 @@ function showHomePage(){
 }
 function showPracticePage(){
   /* 用户已经明确进入练习：后续 bootMain 只能补充初始化，不能再次执行默认入口决策。 */
+  _mainBootState().claimEntry();
   _mainEntryClaimed = true;
   setPracticeOnlyUi(true);
   var h = $('pageHome'); if(h) h.classList.add('hidden');
   var p = $('pagePractice'); if(p) p.classList.remove('hidden');
+  var b = $('bootScreen'); if(b) b.hidden = true;
 }
 /* 退出当前课程：保留已完成的练习记录和当前进度，只离开练习页回到首页。
    先做一次 local-only 保存，避免退出动作重新发起云同步；再等待当前已排队的
@@ -4003,6 +4018,16 @@ function computeToday(){
   var now = Date.now(), due = 0, known = {};
   /* 统计档案本身已经带 deckId/cid；首页只需计算数字，不应为了显示到期数加载全部题库内容。 */
   allDecks().forEach(function(d){ known[d.id] = true; });
+  if(window.MainHomeSummary && MainHomeSummary.computeTodaySummary){
+    return MainHomeSummary.computeTodaySummary({
+      stats: mem.stats,
+      knownDeckIds: Object.keys(known),
+      reinforceBook: mem.reinforceBook,
+      now: now,
+      isDue: function(stat, timestamp){ return CL.srs.isDue(stat, timestamp); },
+      isDeleted: function(deckId, cid){ return CL.isItemDeleted(mem, deckId, {cid:cid}); }
+    });
+  }
   Object.keys(by).forEach(function(key){
     var st = by[key];
     if(!st || !st.times || !st.deckId || !known[st.deckId]) return;
@@ -4025,25 +4050,70 @@ function ensureStatDecks(deckIds){
 }
 
 /* 首页课程进度：进度表示“已经覆盖过多少个不同句子”，不是累计答题次数。
-   统计按稳定的 deckId#cid 去重，因此重复练习不会把覆盖率算高；已删除句子也不计入。
+   统计按稳定的 deckId#cid 去重，并与当前内容索引取交集；已删除或已退出当前内容的旧记录不计入。
    练习中途退出时，尚未完成的句子不会提前算入覆盖。 */
+var _homeProgressIndexes = {};
+var _homeProgressIndexLoading = {};
+function homeProgressItems(deck){
+  if(!deck) return null;
+  if(Array.isArray(_homeProgressIndexes[deck.id])) return _homeProgressIndexes[deck.id];
+  if(Array.isArray(deck.items) && deck.items.length) return deck.items;
+  return null;
+}
+function ensureHomeProgressIndexes(decks){
+  if(!window.ContentRepo || typeof ContentRepo.ensureDeckIndex !== 'function') return;
+  (decks || []).forEach(function(deck){
+    if(!deck || homeProgressItems(deck) || _homeProgressIndexLoading[deck.id]) return;
+    _homeProgressIndexLoading[deck.id] = true;
+    Promise.resolve(ContentRepo.ensureDeckIndex(deck.id, mem)).then(function(indexed){
+      if(indexed && Array.isArray(indexed.items)) _homeProgressIndexes[deck.id] = indexed.items;
+      delete _homeProgressIndexLoading[deck.id];
+      try{ renderHome(); }catch(e){}
+    }).catch(function(){ delete _homeProgressIndexLoading[deck.id]; });
+  });
+}
 function deckLearningProgress(deck){
   var total = Math.max(0, deckItemCount(deck));
+  var currentItems = homeProgressItems(deck);
+  if(window.MainDeckProgress && MainDeckProgress.calculateDeckLearningProgress){
+    return MainDeckProgress.calculateDeckLearningProgress({
+      deckId: deck && deck.id,
+      total: total,
+      items: currentItems,
+      stats: mem.stats,
+      cidOf: function(item){ return CL && typeof CL.cidOf === 'function' ? CL.cidOf(item) : (item && item.cid); },
+      isDeleted: function(deckId, cid){ return CL.isItemDeleted(mem, deckId, {cid:cid}); }
+    });
+  }
+  if(!currentItems) return {done:null, total:total, pct:null, ready:false};
   var by = (mem.stats && mem.stats.bySentence) || {}, seen = {};
   var prefix = String(deck && deck.id || '') + '#';
+  var currentCids = {};
+  currentItems.forEach(function(item){
+    var cid = CL && typeof CL.cidOf === 'function' ? CL.cidOf(item) : (item && item.cid);
+    if(cid) currentCids[cid] = true;
+  });
   Object.keys(by).forEach(function(key){
     if(key.indexOf(prefix) !== 0) return;
     var st = by[key];
     if(!st || !st.times) return;
     var cid = key.slice(prefix.length);
+    if(!currentCids[cid]) return;
     if(CL.isItemDeleted(mem, deck.id, {cid:cid})) return;
     seen[cid] = true;
   });
   var done = Math.min(total, Object.keys(seen).length);
-  return {done:done, total:total, pct:total ? Math.round(done / total * 100) : 0};
+  return {done:done, total:total, pct:total ? Math.round(done / total * 100) : 0, ready:true};
 }
 function deckProgressMarkup(deck, resumeIdx, best){
   var p = deckLearningProgress(deck);
+  if(window.MainDeckProgress && MainDeckProgress.buildDeckProgressMarkup){
+    return MainDeckProgress.buildDeckProgressMarkup({ progress:p, resumeIdx:resumeIdx, best:best, sessionCount:S.sessionByDeck && S.sessionByDeck[deck.id] || 0 });
+  }
+  if(!p.ready){
+    return '<div class="sub home-deck-progress" aria-label="正在核对课节进度"><span>正在核对进度…</span></div>' +
+      '<div class="home-deck-progress-track" aria-hidden="true"><i style="width:0"></i></div>';
+  }
   var current = resumeIdx > 0 ? '<span class="current">当前第 ' + Math.min(resumeIdx + 1, p.total || resumeIdx + 1) + ' 句</span>' : '';
   var last = best && typeof best.lastAcc === 'number' && isFinite(best.lastAcc)
     ? '<span class="last-acc">上次 ' + best.lastAcc + '%</span>' : '';
@@ -4106,10 +4176,40 @@ function courseContextForDeck(deck){
     var course = owner && CourseCatalog.getCourse(catalog, owner);
     var lesson = course && CourseCatalog.listLessons(course).find(function(item){ return item.contentRef && item.contentRef.id === deck.id; });
     if(course && lesson){
-      return { id:course.id, title:course.title, lessonTitle:lesson.title, label:course.title === lesson.title ? course.title : course.title+' · '+lesson.title };
+      return { id:course.id, title:course.title, lessonTitle:lesson.title, label:course.title === lesson.title ? course.title : course.title+' · '+lesson.title+'（课节）', course:course, lesson:lesson };
     }
   }catch(e){}
-  return { id:'deck:'+deck.id, title:displayDeckName(deck.name), lessonTitle:displayDeckName(deck.name), label:displayDeckName(deck.name) };
+  return { id:'deck:'+deck.id, title:displayDeckName(deck.name), lessonTitle:displayDeckName(deck.name), label:displayDeckName(deck.name), course:null, lesson:null };
+}
+/* 课程级继续学习目标：已完成当前课节后，优先找同课程中当前课节之后的未完成课节；
+   如果后面没有，则从课程开头寻找未完成课节。当前课节全部完成才允许进入下一课，
+   避免用户中途退出时被错误跳过。 */
+function courseNavigationForDeck(deck){
+  if(!deck || !window.CourseCatalog) return null;
+  var context = courseContextForDeck(deck), course = context && context.course;
+  if(!course) return null;
+  var lessons = CourseCatalog.listLessons(course), currentIndex = -1, states = [];
+  lessons.forEach(function(lesson, index){
+    if(lesson.contentRef && lesson.contentRef.id === deck.id) currentIndex = index;
+    var lessonDeck = lesson.contentRef && lesson.contentRef.type === 'sentence-deck' ? findDeck(lesson.contentRef.id) : null;
+    var progress = lessonDeck ? deckLearningProgress(lessonDeck) : { done:0, total:Number(lesson.itemCount) || 0, pct:0 };
+    states.push({ lesson:lesson, deck:lessonDeck, progress:progress, complete:progress.total > 0 && progress.pct >= 100 });
+  });
+  if(window.MainCourseNavigation && MainCourseNavigation.chooseCourseNavigation){
+    var pureDecision = MainCourseNavigation.chooseCourseNavigation(states, deck.id);
+    if(pureDecision) return { context:context, current:pureDecision.current, next:pureDecision.next, allComplete:pureDecision.allComplete };
+  }
+  if(currentIndex < 0) return null;
+  var current = states[currentIndex], order = [];
+  states.slice(currentIndex + 1).concat(states.slice(0, currentIndex)).forEach(function(state){
+    if(state.deck && !state.complete) order.push(state);
+  });
+  return { context:context, current:current, next:order[0] || null, allComplete:states.length > 0 && states.every(function(state){ return state.complete; }) };
+}
+function preferredCourseResume(deck){
+  var nav = courseNavigationForDeck(deck);
+  if(!nav || !nav.current.complete || !nav.next) return { deck:deck, mode:'current' };
+  return { deck:nav.next.deck, mode:'course-next' };
 }
 function renderHome(){
   var t = computeToday();
@@ -4130,14 +4230,14 @@ function renderHome(){
   if(act){
     var rp = mem.progress && mem.progress[act.id];
     var idx = (rp && rp.idx > 0 && rp.idx < deckItemCount(act)) ? rp.idx : 0;
-    resume = { deck: act, idx: idx };
+    resume = idx > 0 ? { deck: act, idx: idx, mode:'current' } : Object.assign(preferredCourseResume(act), { idx:0 });
   } else {
     var bd = null, bt = 0;
     decks.forEach(function(d){
       var l = (mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed) || 0;
       if(l > bt){ bt = l; bd = d; }
     });
-    if(bd) resume = { deck: bd, idx: 0 };
+    if(bd) resume = bd ? Object.assign(preferredCourseResume(bd), { idx:0 }) : null;
   }
   var recent = decks.filter(function(d){
     if(resume && d.id === resume.deck.id) return false;
@@ -4177,10 +4277,10 @@ function renderHome(){
   h.push('<div class="home-card home-today-card' + (hasEver ? ' has-activity' : '') + '">');
   if(!hasEver){
     h.push('<div class="home-empty">'
-      + '<div class="t">档案还空着，从这里开始</div>'
-      + '<div class="d">意群 = 一句话里按自然停顿切出的意思小块，练习就是按顺序把它们还原出来。<br>去课程页挑一套开始练习。练过的句子会按间隔重复（1→3→7→14→30 天）自动排入到期复习，先练先得。</div>'
-      + '<div class="home-actions" style="justify-content:center"><button class="btn primary" id="homeGoDecks">' + ic('book') + ' 去课程页挑一套</button>'
-      +   '<button class="btn ghost" id="homeChunkIntro">' + ic('help') + ' 意群是什么？</button></div>'
+      + '<div class="t">从课程开始练习</div>'
+      + '<div class="d">按意群还原句子，完成后会自动安排间隔复习。</div>'
+      + '<div class="home-actions" style="justify-content:center"><button class="btn primary" id="homeGoDecks">' + ic('book') + ' 去课程</button>'
+      +   '<button class="btn ghost" id="homeChunkIntro">' + ic('help') + ' 意群说明</button></div>'
       + '</div>');
   } else {
     /* 原本的「今天有 N 句到期复习」headline 已删：与下方 .htc.due 卡片数字重复，纯属废话 */
@@ -4247,12 +4347,14 @@ function renderHome(){
     if(resume){
       var d1 = resume.deck, b1 = mem.best && mem.best[d1.id];
         _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX((contextByDeckId[d1.id] || {}).label || displayDeckName(d1.name)) + '</div>' + deckProgressMarkup(d1, resume.idx, b1) + '</div>'
-          + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' 开始</button></div>');
+          + '<button class="btn ghost" data-start="' + escX(d1.id) + '" data-idx="' + resume.idx + '">' + ic('play') + ' ' + (resume.mode === 'course-next' ? '下一课' : (deckLearningProgress(d1).pct >= 100 ? '复习' : '继续')) + '</button></div>');
     }
     recent.forEach(function(entry){
       var d = entry.deck, b = mem.best && mem.best[d.id];
+      var recentProgress = deckLearningProgress(d);
+      var recentAction = recentProgress.pct >= 100 ? '复习' : (recentProgress.done > 0 ? '继续' : '开始');
       _rows.push('<div class="hd-row"><div class="grow"><div class="nm">' + escX(entry.context.label || displayDeckName(d.name)) + '</div>' + deckProgressMarkup(d, 0, b) + '</div>'
-        + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' 开始</button></div>');
+        + '<button class="btn ghost" data-start="' + escX(d.id) + '" data-idx="0">' + ic('play') + ' ' + recentAction + '</button></div>');
     });
 
     h.push('<div class="home-card merge-row">'
@@ -4281,6 +4383,7 @@ function renderHome(){
   /* 日历 popover：grid 事件代理到 document（bindCalPop 内 _calPopBound 守卫一次性），
      renderHome 重渲染 grid 也无需重绑 */
   bindCalPop();
+  ensureHomeProgressIndexes((resume ? [resume.deck] : []).concat(recent));
   /* 注意：此处不再调 showHomePage()——切页职责归 showHomePage，二者互相调用会无限递归 */
 }
 
@@ -4805,6 +4908,7 @@ function goPractice(){ showPage('pagePractice'); }
    「意群是什么？」与设置面板的同名按钮。打开前先收起设置面板，避免两层 mask 叠加；
    关闭复用全局的 [data-close] / Esc / 点背景委托（见下方 document 级监听），无需另写。 */
 function openChunkIntro(){
+  markChunkIntroSeen();
   var s = $('settingsMask'); if(s) s.hidden = true;
   if(window.hideSetHint) window.hideSetHint();
   $('chunkIntroMask').hidden = false;
@@ -4911,6 +5015,7 @@ $('btnExplain').onclick = function(){
   if(!S.deck) return;
   showCurrentExplanation();
 };
+$('chunkConceptHint').onclick = openChunkIntro;
 /* 管理页已迁独立 decks.html（句子行上的「详解/编辑」由该页自行绑定） */
 /* 音效开关：练习反馈的即时偏好，不触发学习数据的云同步提示 */
 $('btnSound').onclick = function(){
@@ -5544,9 +5649,11 @@ if(window.__chunklabUpgradeRequired) showUpdateToast(true);
 /* 离线 change-log 可见性：监听同步状态，有本地变更待上传时显示"待同步"徽标 */
 function refreshSyncBadge(dirty, conflict){
   var b = $('syncBadge'); if(!b) return;
-  b.style.display = dirty ? 'inline-flex' : 'none';
-  b.textContent = conflict ? '同步冲突' : '待同步';
-  b.title = conflict ? '点击比较本机与云端版本，选择如何处理' : '点击查看同步状态';
+  var hasConflict = Array.isArray(conflict) ? conflict.length > 0 : !!conflict;
+  b.style.display = (dirty || hasConflict) ? 'inline-flex' : 'none';
+  b.textContent = hasConflict ? '同步冲突' : '待同步';
+  b.title = hasConflict ? '本机与云端数据存在冲突，点击查看处理状态' : '点击查看同步状态';
+  b.setAttribute('aria-label', hasConflict ? '同步冲突，点击查看处理状态' : '待同步，点击查看同步状态');
 }
 if(CL && CL.on && CL.isDirty){
   CL.on('syncResolved', function(target){
@@ -5577,14 +5684,97 @@ if(CL && CL.on && CL.isDirty){
    原实现会永远停在空的 pagePractice，用户看到只有顶栏。
    先从本地投影绘制首页，云端/内容初始化仍按原流程继续；bootMain 一旦真正启动，
    兜底计时器自动失效，避免 direct=1 或外部跳转被错误带回首页。 */
+var _mainBootCoordinator = null;
+/* 兼容旧 E2E/诊断口：真实状态由 coordinator 持有，这些只读镜像保持动态更新。 */
 var _mainBooted = false;
 var _mainEntryClaimed = false;
 var _mainLocalPainted = false;
+function _mainBootState(){
+  return _mainBootCoordinator || {
+    shouldPaintLocal:function(){ return !_mainEntryRequested; },
+    markLocalPainted:function(){ return true; },
+    markBooted:function(){ return true; },
+    claimEntry:function(){ return true; },
+    isBooted:function(){ return false; },
+    isEntryClaimed:function(){ return false; }
+  };
+}
+/*
+   启动入口只允许由「本次导航」声明一次。
+
+   这里不能仅依赖 sessionStorage：它会跨刷新保留。此前的时序是：
+   1) 180ms 先画今日首页；
+   2) 练习引擎约 3s 后就绪；
+   3) bootMain 再消费旧的 _startDeck / _startIntent；
+   于是刷新主页也会在几秒后被旧课程劫持。
+
+   reload 或回退/前进明确表示用户要留在当前页，因此清掉未消费的一次性入口。
+   从课程列表来的普通导航仍保留旧协议，保证现有外部入口和测试兼容。 */
+function _mainNavigationType(){
+  return window.MainLifecycle && MainLifecycle.navigationType
+    ? MainLifecycle.navigationType(window.performance) : 'navigate';
+}
+var _mainQuery = new URLSearchParams(location.search || '');
+var _mainNavigation = _mainNavigationType();
+var _mainEntryPlan = window.MainLifecycle && MainLifecycle.resolveEntry
+  ? MainLifecycle.resolveEntry({ search:_mainQuery, navigationType:_mainNavigation }) : { kind:'home' };
+var _mainExplicitEntry = _mainEntryPlan.kind !== 'home';
+var _mainFreshNavigation = _mainNavigation === 'navigate';
+var _mainHasHandoff = false;
+try{
+  _mainHasHandoff = !!(sessionStorage.getItem('_startIntent') || sessionStorage.getItem('_startDeck'));
+}catch(e){}
+if(!_mainFreshNavigation && !_mainExplicitEntry){
+  try{
+    sessionStorage.removeItem('_startIntent');
+    sessionStorage.removeItem('_startDeck');
+  }catch(e){}
+  try{ businessStorage.removeItem('chunklab_pending_review_deck'); }catch(e){}
+  _mainHasHandoff = false;
+}
+var _mainEntryRequested = _mainExplicitEntry || (_mainFreshNavigation && _mainHasHandoff);
+_mainBootCoordinator = window.MainLifecycle && MainLifecycle.createBootCoordinator
+  ? MainLifecycle.createBootCoordinator({entryRequested:_mainEntryRequested})
+  : null;
+function showBootError(message, retry){
+  var b = $('bootScreen');
+  if(!b) return;
+  b.hidden = false;
+  b.classList.add('error');
+  var m = $('bootMessage');
+  if(m) m.textContent = message;
+  var retryBtn = $('bootRetry');
+  var homeBtn = $('bootHome');
+  if(retryBtn){
+    retryBtn.classList.toggle('hidden', typeof retry !== 'function');
+    retryBtn.onclick = typeof retry === 'function' ? retry : function(){ location.reload(); };
+  }
+  if(homeBtn){
+    homeBtn.classList.remove('hidden');
+    homeBtn.onclick = showHomePage;
+  }
+}
+function showBootScreen(message){
+  var b = $('bootScreen');
+  if(!b) return;
+  b.hidden = false;
+  b.classList.remove('error');
+  var m = $('bootMessage');
+  if(m) m.textContent = message || '正在打开首页…';
+}
+/* 普通刷新直接走本地首页，不展示启动占位；只有明确课程入口且启动较慢时才提示。 */
+var _mainBootRevealTimer = _mainEntryRequested ? setTimeout(function(){
+  var state = _mainBootState();
+  if(!state.isBooted() && !state.isEntryClaimed() && _mainEntryRequested) showBootScreen();
+}, 350) : null;
 function paintLocalHome(){
-  if(_mainBooted || _mainLocalPainted) return;
+  /* 有明确课程入口时保持加载态，避免先闪首页再进入课程。 */
+  var state = _mainBootState();
+  if(!state.shouldPaintLocal()) return;
   try{
     loadStore();
     showHomePage();
+    state.markLocalPainted();
     _mainLocalPainted = true;
   }catch(e){
     console.warn('[boot] 本地首页首屏绘制失败，等待完整启动：', e);
@@ -5609,41 +5799,31 @@ Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.
     paintLocalHome();
   });
 
-/* ★ 引擎+FormatTools 就绪守卫（boot 竞态根治，2026-09-08）
-   根因：bridge.mjs 是 <script type="module">（defer 语义，文档 parse 完成后才执行），
-   晚于内联脚本的同步段。CL.ensureCloud() 在真实网络下通常比 module 慢 → 无竞态；
-   但在缓存/PWA/离线（abort）快路径下 ensureCloud 先返回 → 启动段在 window.ChunkEngine
-   就绪前就 startDeck → renderActiveChoices 懒建池时 safeCall 兜底返回 [] → 空干扰池
-   落定且永不重建 → 该句永久无干扰（静默劣化，宪法禁止的兜底当默认路径）。
-   守卫扩展（2026-09-08 晚）：FormatTools 与 ChunkEngine 同出于 bridge.mjs 单次
-   module 加载 → 引擎就绪即 FormatTools 必已就绪 → esc/norm/wordCount/normSent
-   内联双实现兜底成死代码已删（单源化，见函数定义处注释）。
-   守卫：双模块就绪（或 3s 超时，防模块真挂卡死页面）才启动。 */
+/* 基础格式工具就绪守卫：首页启动不再等待练习引擎；练习入口由
+   startDeck() 调用 ensurePracticeReady() 按需加载。 */
 function _bootDepsReady(){
-  return !!(window.ChunkEngine && window.ChunkEngine.buildChoices
-    && window.FormatTools && typeof window.FormatTools.norm === 'function');
+  return !!(window.FormatTools && typeof window.FormatTools.norm === 'function');
 }
 function bootApp(){
   if(_bootDepsReady()){ bootMain(); return; }
-  var _bt = 0;
-  var _biv = setInterval(function(){
-    if(_bootDepsReady()){ clearInterval(_biv); bootMain(); return; }
-    if(++_bt <= 180) return;   /* ~2.9s 内继续等 */
-    /* ★ 超时后**不再"照样启动"**（2026-09-10 修）。
-       原实现 `else if(++_bt > 180){ bootMain(); }` 是把失败当默认路径：esc/norm/wordCount/normSent
-       全部转发到 FormatTools，依赖缺失时启动段必然抛 TypeError，把「模块没加载」
-       掩盖成一串看起来毫不相关的报错（实测就是报 esc 未定义，排查方向被带偏）。
-       改为如实呈现失败并说明最可能的原因，不再往下走。 */
-    clearInterval(_biv);
-    var zh = $('zh');
-    if(zh){
-      zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') +
-        ' 启动失败：练习引擎未加载（js/bridge.mjs）。<br>若是首次离线打开，请先联网访问一次让资源入缓存。';
-    }
-    console.error('[boot] js/bridge.mjs 未就绪（ChunkEngine=' + typeof window.ChunkEngine +
-      ', FormatTools=' + typeof window.FormatTools + '）；已中止启动，避免级联报错。' +
-      '常见原因：离线且该模块未入 SW 缓存 / MIME 类型不正确 / 模块语法错误。');
-  }, 16);
+  var _settled = false;
+  var _onReady = function(){
+    if(_settled) return;
+    _settled = true;
+    window.removeEventListener('chunklab-format-ready', _onReady);
+    clearTimeout(_timeout);
+    if(_bootDepsReady()) bootMain();
+  };
+  var _timeout = setTimeout(function(){
+    if(_settled) return;
+    _settled = true;
+    window.removeEventListener('chunklab-format-ready', _onReady);
+    showBootError('启动失败：基础模块未加载，请刷新后重试');
+    console.error('[boot] js/bridge.mjs 未就绪（FormatTools=' + typeof window.FormatTools + '）；已中止启动。');
+  }, 3000);
+  window.addEventListener('chunklab-format-ready', _onReady, { once: true });
+  /* The module can finish between the readiness check and listener install. */
+  if(window.__chunklabFormatReady) _onReady();
 }
 
 /* ★ 入口决策：打开 main.html 落在哪
@@ -5653,44 +5833,17 @@ function bootApp(){
    3. ?direct=1（e2e / 收藏夹深度链接）：旧「智能恢复」逻辑直接开练
    4. 默认 renderHome() —— 今日首页（先决策再练习，不再无脑续练） */
 function resumeOrStart(){
-  var _resumeDeck = null;
-  if(mem.activeDeckId){
-    var _rd = findDeck(mem.activeDeckId);
-    if(_rd){
-      var _rp = mem.progress && mem.progress[mem.activeDeckId];
-      if(_rp && _rp.idx > 0 && _rp.idx < _rd.items.length){
-        showPracticePage();
-        startDeck(_rd, _rp.idx); /* 断点续练 */
-        return;
-      }
-      _resumeDeck = _rd;
-    }
-  }
-  if(!_resumeDeck){
-    var _bestDeck = null, _bestTime = 0;
-    allDecks().forEach(function(d){
-      var t = (mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed) || 0;
-      if(t > _bestTime){ _bestTime = t; _bestDeck = d; }
-    });
-    _resumeDeck = _bestDeck;
-  }
+  var _resumePlan = window.MainLifecycle && MainLifecycle.selectResumeDeck
+    ? MainLifecycle.selectResumeDeck({ mem:mem, findDeck:findDeck, allDecks:allDecks })
+    : { deck:allDecks()[0] || BUILTIN[0], index:0, resumed:false };
   showPracticePage();
-  startDeck(_resumeDeck || allDecks()[0] || BUILTIN[0]);
+  startDeck(_resumePlan.deck || allDecks()[0] || BUILTIN[0], _resumePlan.index || 0);
 }
 function decideEntry(){
+  /* 首屏已经按普通主页启动，异步初始化完成后不得再次消费入口状态。 */
+  if(!_mainEntryRequested){ showHomePage(); return; }
+  _mainEntryRequested = false;
   /* 新目录入口只传课程/课节引用，实际内容仍由当前账号的原 deck 身份解析。 */
-  try{
-    var _intentRaw = sessionStorage.getItem('_startIntent');
-    if(_intentRaw){
-      var _intent = JSON.parse(_intentRaw);
-      sessionStorage.removeItem('_startIntent');
-      if(_intent && _intent.version === 1 && _intent.kind === 'unit' && _intent.unitId){
-        var _intentDeck = findDeck(_intent.unitId);
-        if(_intentDeck){ showPracticePage(); startDeck(_intentDeck, 0); return; }
-        showPracticePage(); $('zh').textContent = '找不到这节课程，请返回课程列表重试'; return;
-      }
-    }
-  }catch(e){ console.warn('[catalog] 新课程入口解析失败：', e); }
   var _catalogCourse = new URLSearchParams(location.search).get('course');
   var _catalogLesson = new URLSearchParams(location.search).get('lesson');
   if(_catalogCourse && _catalogLesson && window.CourseCatalog){
@@ -5703,38 +5856,44 @@ function decideEntry(){
     var _lesson = _course && CourseCatalog.resolveLesson(_course, _catalogLesson);
     if(_lesson && _lesson.contentRef && _lesson.contentRef.type === 'sentence-deck'){
       var _urlDeck = findDeck(_lesson.contentRef.id);
-      if(_urlDeck){ showPracticePage(); startDeck(_urlDeck, 0); return; }
+      if(_urlDeck){
+        /* 课程目录参数是一次性进入指令；消费后清理，避免浏览器刷新重复进入同一课节。 */
+        try{ history.replaceState(null, document.title, location.pathname); }catch(e){}
+        showPracticePage(); startDeck(_urlDeck, 0); return;
+      }
     }
     showPracticePage(); $('zh').textContent = '课程内容不存在或当前版本不支持，请返回课程列表'; return;
   }
-  try{
-    var _sd = sessionStorage.getItem('_startDeck');
-    if(_sd){
-      var _pd = JSON.parse(_sd);
-      sessionStorage.removeItem('_startDeck');
-      if(_pd){ showPracticePage(); startDeck(_pd, 0); return; }
-    }
-  }catch(e){}
-  try{
-    var _s = businessStorage.getItem('chunklab_pending_review_deck');
-    if(_s){
-      var _o = JSON.parse(_s);
-      businessStorage.removeItem('chunklab_pending_review_deck');
-      if(Date.now() - (_o.ts || 0) < 30000 && _o.deck){
-        showPracticePage();
-        startDeck(_o.deck);
-        return;
-      }
-    }
-  }catch(e){}
-  if((location.search || '').indexOf('direct=1') !== -1){ resumeOrStart(); return; }
+  var _sessionStorage = null;
+  try{ _sessionStorage = window.sessionStorage; }catch(e){}
+  var _handoff = window.MainLifecycle && MainLifecycle.consumeStartHandoff
+    ? MainLifecycle.consumeStartHandoff({ sessionStorage:_sessionStorage, businessStorage:businessStorage })
+    : { kind:'none' };
+  if(_handoff.kind === 'unit'){
+    var _intentDeck = findDeck(_handoff.unitId);
+    if(_intentDeck){ showPracticePage(); startDeck(_intentDeck, 0); return; }
+    showPracticePage(); $('zh').textContent = '找不到这节课程，请返回课程列表重试'; return;
+  }
+  if(_handoff.kind === 'deck' || _handoff.kind === 'review'){
+    showPracticePage(); startDeck(_handoff.deck, 0); return;
+  }
+  if(_mainEntryPlan.kind === 'direct'){ resumeOrStart(); return; }
   showHomePage(); /* 默认：今日首页（切页 + 渲染） */
 }
 
 function bootMain(){
-_mainBooted = true;
-try {
-if(_mainEntryClaimed){
+/* IDB migration must settle before the full boot reads/writes the projected
+   localStorage view. The local home paint above still provides the fast first
+   frame, so this wait does not block the visible UI. */
+if(CL && typeof CL.preload === 'function' && !window.__chunklabBootPreloaded){
+  window.__chunklabBootPreloaded = true;
+  Promise.resolve(CL.preload()).then(bootMain, bootMain);
+  return;
+}
+ _mainBootState().markBooted();
+ _mainBooted = true;
+ try {
+ if(_mainBootState().isEntryClaimed()){
   /* 提前首屏后用户可能已经开始练习；此时保留当前 mem、S 和页面，不重跑入口。
      云端同步完成后的最新态由既有 memExternal/安全退出路径采纳。 */
   setSoundIcon();
@@ -5757,8 +5916,7 @@ if(_mainEntryClaimed){
 }
 } catch (e) {
   /* 启动段任何异常都写到 #zh（替代"永远卡在加载中"），并打 console 便于 F12 排查 */
-  var zh = document.getElementById('zh');
-  if (zh) zh.innerHTML = (window.Icons ? Icons.svg('warn') : '!') + ' 启动失败：' + esc(e && e.message || e);
+  showBootError('启动失败：' + (e && e.message || e));
   console.error('[boot] failed:', e);
 }
 } /* bootMain 结束 */

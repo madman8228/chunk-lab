@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chunk Lab · 管理后台</title>
+<style>
+:root{--bg:#f6f5f1;--panel:#fffdfa;--line:#dfdcd5;--text:#202326;--muted:#77736c;--accent:#2d62c9;--accent-soft:#edf3ff;--good:#19764d;--warn:#a65c16;--shadow:0 12px 32px rgba(32,35,38,.06)}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
+button,input,select{font:inherit} button{cursor:pointer;border:0} .hidden{display:none!important}
+.shell{width:min(1160px,calc(100% - 32px));margin:0 auto;padding:28px 0 52px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}.brand{display:flex;align-items:center;gap:10px}.logo{width:30px;height:30px;border-radius:9px;background:#456ff0;color:#fff;display:grid;place-items:center;font-weight:700;box-shadow:0 5px 14px rgba(69,111,240,.25)}.brand h1{font-size:19px;margin:0;letter-spacing:-.02em}.badge{font-size:12px;color:var(--muted);background:#eceae4;border-radius:999px;padding:3px 9px}
+.actions{display:flex;align-items:center;gap:9px}.btn{background:var(--accent);color:#fff;border-radius:9px;padding:8px 14px}.btn.secondary{background:transparent;color:var(--muted);border:1px solid var(--line)}.btn.small{padding:5px 10px;font-size:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+#loginView{max-width:390px;margin:13vh auto 0;padding:28px}.login-title{font-size:22px;font-weight:700;margin:0 0 18px}.field{width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px 11px;outline:none}.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(45,98,201,.12)}.password-field{position:relative}.password-field .field{padding-right:42px}.password-toggle{position:absolute;right:8px;top:50%;width:28px;height:28px;transform:translateY(-50%);display:grid;place-items:center;background:transparent;color:var(--muted);border-radius:6px}.password-toggle:hover{background:#f0eee9;color:var(--accent)}.password-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.password-toggle .eye-open{display:none}.password-toggle.is-visible .eye-open{display:block}.password-toggle.is-visible .eye-closed{display:none}.error{color:#b34a3d;min-height:20px;font-size:13px;margin:8px 0}
+.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.metric{padding:17px 18px}.metric-label{font-size:12px;color:var(--muted)}.metric-value{font-size:27px;font-weight:700;line-height:1.25;margin-top:4px}.metric-note{font-size:12px;color:var(--muted);margin-top:4px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.toolbar h2{font-size:17px;margin:0}.toolbar-right{display:flex;align-items:center;gap:9px}.select{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:7px 9px;color:var(--text)}
+.grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);gap:16px;margin-bottom:18px}.section{padding:18px}.section h2{font-size:16px;margin:0 0 14px}.section-title{display:flex;justify-content:space-between;align-items:center}.muted{color:var(--muted)}
+.bars{display:flex;align-items:flex-end;gap:7px;height:155px;padding:8px 0 23px;border-bottom:1px solid var(--line)}.bar-item{height:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;position:relative}.bar{width:100%;max-width:32px;border-radius:5px 5px 0 0;background:linear-gradient(#5684e2,#2d62c9);min-height:2px}.bar-label{position:absolute;bottom:-22px;font-size:11px;color:var(--muted)}.bar-value{position:absolute;top:-18px;font-size:11px;color:var(--accent)}
+.course-list{display:flex;flex-direction:column;gap:10px}.course-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px solid #eeeae3;padding-bottom:9px}.course-row:last-child{border-bottom:0;padding-bottom:0}.course-name{font-size:13px;word-break:break-all}.course-meta{font-size:12px;color:var(--muted);text-align:right}
+.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:720px}.table th,.table td{padding:10px 8px;text-align:left;border-bottom:1px solid #eeeae3;white-space:nowrap}.table th{color:var(--muted);font-size:12px;font-weight:500}.table td{font-size:13px}.table tbody tr[data-user-id]{cursor:pointer}.table tbody tr[data-user-id]:hover{background:#faf8f3}.type{display:inline-block;border-radius:999px;background:#f0eee9;padding:2px 8px;font-size:11px;color:var(--muted)}.type.registered{background:#edf3ff;color:var(--accent)}.type.guest{background:#fff5e8;color:var(--warn)}.num{text-align:right!important}.empty{padding:25px 0;text-align:center;color:var(--muted)}
+.feedback-row{border-bottom:1px solid #eeeae3;padding:10px 0}.feedback-row:last-child{border-bottom:0}.feedback-head{display:flex;justify-content:space-between;gap:10px}.feedback-text{white-space:pre-wrap;word-break:break-word;margin:5px 0}.feedback-meta{color:var(--muted);font-size:12px}.status{border:1px solid var(--line);border-radius:7px;background:var(--panel);padding:3px 7px;font-size:12px;color:var(--muted)}
+.status.ok{color:var(--good);border-color:#b8ddca}.toast{position:fixed;right:20px;bottom:20px;background:#202326;color:#fff;border-radius:9px;padding:10px 14px;box-shadow:var(--shadow);font-size:13px}
+@media(max-width:800px){.summary{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:1fr}.shell{width:min(100% - 20px,1160px);padding-top:18px}.topbar{align-items:flex-start}.brand{flex-wrap:wrap}.toolbar{align-items:flex-start;gap:10px;flex-direction:column}.toolbar-right{width:100%}.select{flex:1}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <section id="loginView" class="card">
+    <div class="brand"><div class="logo">C</div><span class="badge">管理后台</span></div>
+    <h1 class="login-title">管理员登录</h1>
+    <form id="loginForm">
+      <div class="password-field"><input id="adminPassword" class="field" type="password" autocomplete="current-password" placeholder="管理员密码"><button id="togglePassword" class="password-toggle" type="button" aria-label="显示密码" aria-pressed="false"><svg class="eye-closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18"></path><path d="M10.6 10.7a2 2 0 0 0 2.7 2.7"></path><path d="M9.9 5.3A10.7 10.7 0 0 1 12 5c5.2 0 8.8 4.3 9.8 6.8a10.7 10.7 0 0 1-3 4.1"></path><path d="M6.2 6.2A11.8 11.8 0 0 0 2.2 12c1 2.5 4.6 6.8 9.8 6.8 1.3 0 2.5-.3 3.6-.8"></path></svg><svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.2 12S5.8 5.2 12 5.2 21.8 12 21.8 12 18.2 18.8 12 18.8 2.2 12 2.2 12Z"></path><circle cx="12" cy="12" r="2.8"></circle></svg></button></div>
+      <div id="loginError" class="error"></div>
+      <button class="btn" type="submit" style="width:100%">登录后台</button>
+    </form>
+  </section>
+
+  <section id="appView" class="hidden">
+    <header class="topbar">
+      <div class="brand"><div class="logo">C</div><h1>Chunk Lab</h1><span class="badge">管理后台</span></div>
+      <div class="actions"><button id="refreshBtn" class="btn secondary small">刷新</button><button id="logoutBtn" class="btn secondary small">退出</button></div>
+    </header>
+
+    <div class="toolbar"><h2>使用概览</h2><div class="toolbar-right"><span id="rangeText" class="muted"></span><select id="rangeSelect" class="select"><option value="7">近 7 天</option><option value="30">近 30 天</option><option value="90">近 90 天</option></select></div></div>
+    <section class="summary">
+      <div class="metric card"><div class="metric-label">账号总数</div><div id="mTotal" class="metric-value">—</div><div id="mTotalNote" class="metric-note"></div></div>
+      <div class="metric card"><div class="metric-label">时间范围新增</div><div id="mNew" class="metric-value">—</div><div class="metric-note">不含默认账号</div></div>
+      <div class="metric card"><div class="metric-label">访问活跃账号</div><div id="mVisitors" class="metric-value">—</div><div class="metric-note">打开过网站</div></div>
+      <div class="metric card"><div class="metric-label">学习活跃账号</div><div id="mLearners" class="metric-value">—</div><div class="metric-note">完成过答题</div></div>
+      <div class="metric card"><div class="metric-label">答题次数</div><div id="mAnswers" class="metric-value">—</div><div class="metric-note">按答题事件统计</div></div>
+      <div class="metric card"><div class="metric-label">已熟练句子</div><div id="mMastered" class="metric-value">—</div><div class="metric-note">全站当前累计</div></div>
+      <div class="metric card"><div class="metric-label">正式账号</div><div id="mRegistered" class="metric-value">—</div><div class="metric-note">不含游客</div></div>
+      <div class="metric card"><div class="metric-label">游客账号</div><div id="mGuests" class="metric-value">—</div><div class="metric-note">自动生成账号</div></div>
+    </section>
+
+    <div class="grid">
+      <section class="card section"><div class="section-title"><h2>每日访问活跃</h2><span id="dailyHint" class="muted"></span></div><div id="dailyBars" class="bars"></div></section>
+      <section class="card section"><h2>课程答题排行</h2><div id="courseList" class="course-list"></div></section>
+    </div>
+
+    <section class="card section" style="margin-bottom:18px"><div class="toolbar"><h2>用户列表</h2><div class="toolbar-right"><input id="userSearch" class="field" style="width:210px;padding:7px 9px" placeholder="搜索用户名"><button id="userSearchBtn" class="btn small">搜索</button></div></div><div class="table-wrap"><table class="table"><thead><tr><th>账号</th><th>类型</th><th>注册时间</th><th>最近活跃</th><th class="num">答题</th><th class="num">学习天数</th><th class="num">已熟练</th></tr></thead><tbody id="userRows"></tbody></table></div></section>
+    <section id="userDetail" class="card section hidden" style="margin-bottom:18px"><div class="section-title"><h2 id="detailTitle">用户详情</h2><span id="detailSummary" class="muted"></span></div><div id="detailRecent" class="muted" style="margin-top:10px"></div></section>
+
+    <section class="card section"><div class="section-title"><h2>用户反馈</h2><span class="muted">最近 100 条</span></div><div id="feedbackList"></div></section>
+  </section>
+</main>
+<div id="toast" class="toast hidden"></div>
+<script>
+(function(){
+  'use strict';
+  var API_KEY='chunklab_admin_token';
+  var base='';
+  try{base=localStorage.getItem('chunklab_api_base')||'';}catch(e){}
+  if(!base && location.protocol==='file:') base='http://localhost:8787';
+  base=base.replace(/\/+$/,'');
+  var loginView=document.getElementById('loginView'), appView=document.getElementById('appView');
+  var token=''; try{token=localStorage.getItem(API_KEY)||'';}catch(e){}
+  function $(id){return document.getElementById(id)}
+  function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function formatTime(value){if(!value)return '—';var d=new Date(typeof value==='number'?value:String(value).replace(' ','T')+'Z');if(isNaN(d.getTime()))return String(value);return d.toLocaleString('zh-CN',{hour12:false})}
+  function toast(message){var t=$('toast');t.textContent=message;t.classList.remove('hidden');setTimeout(function(){t.classList.add('hidden')},2200)}
+  function parseResponse(res){return res.text().then(function(text){var data=null;try{data=text?JSON.parse(text):null}catch(e){data={error:res.status===404?'后台服务未连接，请启动新版后端':'服务器返回了非 JSON 错误页（HTTP '+res.status+'）'}}if(res.status===401){token='';try{localStorage.removeItem(API_KEY)}catch(e){}showLogin();throw new Error((data&&data.error)||'登录已过期')}if(!res.ok)throw new Error((data&&data.error)||('请求失败 '+res.status));return data})}
+  function request(path,opts){opts=opts||{};var headers=Object.assign({'Content-Type':'application/json'},opts.headers||{});if(token)headers.Authorization='Bearer '+token;return fetch(base+path,Object.assign({},opts,{headers:headers})).then(parseResponse)}
+  function showLogin(){loginView.classList.remove('hidden');appView.classList.add('hidden');$('adminPassword').focus()}
+  function showApp(){loginView.classList.add('hidden');appView.classList.remove('hidden')}
+  function renderOverview(data){var a=data.accounts,u=data.usage;$('mTotal').textContent=a.total;$('mNew').textContent=a.newAccounts;$('mVisitors').textContent=u.activeVisitors;$('mLearners').textContent=u.activeLearners;$('mAnswers').textContent=u.answers;$('mMastered').textContent=u.mastered;$('mRegistered').textContent=a.registered;$('mGuests').textContent=a.guests;$('mTotalNote').textContent='正式 '+a.registered+' · 游客 '+a.guests;$('rangeText').textContent=data.range.startDay+' 至 '+data.range.endDay;$('dailyHint').textContent='访问过网站的账号数';
+    var daily=data.daily||[], max=1;daily.forEach(function(x){max=Math.max(max,Number(x.active_users)||0)});$('dailyBars').innerHTML=daily.length?daily.map(function(x){var v=Number(x.active_users)||0;return '<div class="bar-item"><span class="bar-value">'+v+'</span><span class="bar" style="height:'+Math.max(2,Math.round(v/max*100))+'%"></span><span class="bar-label">'+esc(String(x.day).slice(5))+'</span></div>'}).join(''):'<div class="empty" style="width:100%">暂无访问记录</div>';
+    var courses=data.topCourses||[];$('courseList').innerHTML=courses.length?courses.map(function(x){return '<div class="course-row"><div class="course-name">'+esc(x.deckId)+'</div><div class="course-meta">'+x.answers+' 次 · '+x.users+' 人</div></div>'}).join(''):'<div class="empty">暂无答题记录</div>';
+  }
+  function renderUsers(data){var rows=data.users||[];$('userRows').innerHTML=rows.length?rows.map(function(u){var type=u.type==='registered'?'正式':u.type==='guest'?'游客':'默认';return '<tr data-user-id="'+u.id+'"><td>'+esc(u.username)+'</td><td><span class="type '+esc(u.type)+'">'+type+'</span></td><td>'+esc(formatTime(u.createdAt))+'</td><td>'+esc(formatTime(u.lastSeenAt))+'</td><td class="num">'+u.answers+'</td><td class="num">'+u.learningDays+'</td><td class="num">'+u.mastered+'</td></tr>'}).join(''):'<tr><td colspan="7" class="empty">没有用户</td></tr>'}
+  function loadUserDetail(id){request('/api/admin/users/'+encodeURIComponent(id)).then(function(data){var u=data.user,s=data.summary||{};$('userDetail').classList.remove('hidden');$('detailTitle').textContent='用户详情 · '+u.username;$('detailSummary').textContent='注册于 '+formatTime(u.created_at)+' · 答题 '+s.answers+' · 已熟练 '+s.mastered+' · 有进度课程 '+s.courses;var recent=data.recent||[];$('detailRecent').innerHTML=recent.length?'<div style="color:var(--text);margin-bottom:6px">最近学习记录</div>'+recent.map(function(item){return '<div style="padding:7px 0;border-bottom:1px solid #eeeae3">'+esc(formatTime(item.at))+' · '+esc(item.kind)+(item.key?' · '+esc(item.key):'')+(item.ok==null?'':(item.ok?' · 正确':' · 错误'))+'</div>'}).join(''):'暂无学习记录'}).catch(function(e){toast(e.message)})}
+  function renderFeedback(data){var list=data.feedback||[];$('feedbackList').innerHTML=list.length?list.map(function(item){var done=item.status==='done';return '<div class="feedback-row"><div class="feedback-head"><span class="feedback-meta">#'+item.id+' · '+esc(formatTime(item.createdAt))+(item.hasImage?' · 含截图':'')+'</span><button class="status '+(done?'ok':'')+'" data-feedback-id="'+item.id+'" data-feedback-status="'+(done?'open':'done')+'">'+(done?'已处理':'待处理')+'</button></div><div class="feedback-text">'+esc(item.text)+'</div></div>'}).join(''):'<div class="empty">暂无反馈</div>'}
+  function load(){showApp();var days=$('rangeSelect').value;Promise.all([request('/api/admin/overview?days='+encodeURIComponent(days)),request('/api/admin/users?search='+encodeURIComponent($('userSearch').value.trim())),request('/api/admin/feedback')]).then(function(data){renderOverview(data[0]);renderUsers(data[1]);renderFeedback(data[2])}).catch(function(e){if(e.message!=='登录已过期')toast(e.message)})}
+  $('togglePassword').addEventListener('click',function(){var visible=$('adminPassword').type==='text';$('adminPassword').type=visible?'password':'text';this.classList.toggle('is-visible',!visible);this.setAttribute('aria-pressed',String(!visible));this.setAttribute('aria-label',visible?'显示密码':'隐藏密码')});
+  $('loginForm').addEventListener('submit',function(e){e.preventDefault();var password=$('adminPassword').value;$('loginError').textContent='';if(!password){$('loginError').textContent='请输入管理员密码';return}fetch(base+'/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:password})}).then(parseResponse).then(function(data){token=data.token;try{localStorage.setItem(API_KEY,token)}catch(e){}$('adminPassword').value='';load()}).catch(function(e){$('loginError').textContent=e.message})});
+  $('refreshBtn').addEventListener('click',load);$('rangeSelect').addEventListener('change',load);$('userSearchBtn').addEventListener('click',load);$('userSearch').addEventListener('keydown',function(e){if(e.key==='Enter')load()});$('logoutBtn').addEventListener('click',function(){token='';try{localStorage.removeItem(API_KEY)}catch(e){}showLogin()});$('userRows').addEventListener('click',function(e){var row=e.target.closest('[data-user-id]');if(row)loadUserDetail(row.dataset.userId)});
+  $('feedbackList').addEventListener('click',function(e){var btn=e.target.closest('[data-feedback-id]');if(!btn)return;request('/api/admin/feedback/'+btn.dataset.feedbackId,{method:'PATCH',body:JSON.stringify({status:btn.dataset.feedbackStatus})}).then(function(){load()}).catch(function(err){toast(err.message)})});
+  if(token){request('/api/admin/me').then(load).catch(function(){showLogin()})}else showLogin();
+})();
+</script>
+</body>
+</html>

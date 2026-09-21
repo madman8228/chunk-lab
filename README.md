@@ -8,7 +8,7 @@
 Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句子被拆成 2~5 个语义完整、带语法角色标注的意群，学习者通过选词、填空、打字的方式把整句还原。相比背单词，这种练习直接作用于"句子结构"和"语块记忆"，配合 SRS 间隔重复与逐句讲解（课程打包的结构化数据），是面向口语和阅读的轻量训练方案。
 
 **技术特征**
-- 前端：零构建、零运行时依赖的静态页（`main.html` 等），双击或起服务即可运行
+- 前端：静态多页面运行时；开发产物可由锁定的 esbuild 确定性生成，页面运行仍不依赖构建服务
 - 后端（可选）：Node + Express + SQLite（`better-sqlite3`）+ JWT，提供云端持久化与多用户
 - 同步：浏览器 `localStorage` 仍作离线优先缓存，云端在后台异步同步
 - 两种运行模式：`REQUIRE_AUTH` 切换开放模式 / 多用户模式，无需改表
@@ -117,6 +117,19 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 
 > 数据库位置：`CHUNKLAB_DATA_DIR` 或 `server/data/chunklab.db`；备份用 `GET /api/export`、恢复用 `POST /api/import`。
 
+## 管理后台
+
+服务启动后打开 `/admin.html`。管理员用户名固定为 `admin`，首次启动前在 `server/.env` 设置：
+
+```env
+ADMIN_PASSWORD=请替换为管理员密码
+ADMIN_JWT_SECRET=请替换为至少32位随机字符串
+```
+
+首次启动会把密码以 bcrypt 哈希写入 `admin_users` 表；以后修改环境变量不会覆盖已存在的管理员密码。后台可以查看账号构成、时间范围内的访问活跃账号、学习活跃账号、答题量、课程排行、用户列表和反馈处理状态。
+
+访问活跃从网站心跳开始累计，历史数据不会补造。开放模式下所有请求都落到 `__default__`，后台会把它排除在真实账号统计之外；面向多人使用时仍需开启 `REQUIRE_AUTH=true` 并配置强随机 `JWT_SECRET`。
+
 ## 页面导航
 
 | 文件 | 入口 | 职责 |
@@ -130,6 +143,25 @@ REQUIRE_AUTH=true JWT_SECRET=$(openssl rand -hex 32) PORT=8787 node index.js
 > 重构前的单体遗留 `chunk-practice.html` 已被 `main.html` 取代并从仓库移除。
 
 ## 开发与测试
+
+工程检查入口：
+```bash
+npm run build          # 生成确定性的浏览器校验器与 core 纯模块产物
+npm run build:check    # 不写工作区，检查生成物是否与源码一致
+npm run content:check-generated # 临时目录重建内容分片并比较，不改工作区
+npm run lint           # 检查维护脚本与依赖扫描器
+npm run typecheck      # 对同一范围做 JSDoc 类型检查
+node scripts/check-sw.js --strict
+npm run test:checks    # 生成物、SW、部署清单与内容运行时契约
+npm run test:unit      # Node 单元测试
+npm run test:server    # server/ 套件
+npm run test:browser   # 自包含 Playwright 套件
+npm test               # 上述四组的完整汇总
+```
+
+测试按 checks / unit / server / browser 分组，由 `scripts/test-manifest.cjs` 统一发现并由 `scripts/run-tests.cjs` 汇总；单项失败不会跳过后续套件。GitHub Actions 配置只做安装、检查与回归，不包含部署。
+
+当前不引入 Vite，也不做全仓 TypeScript 迁移：现有 esbuild 已足以支持确定性生成，类型检查从新增边界逐步扩大。内容运行源仍保留现有格式，页面使用 `content/manifest.json` 和 JSON 分片按需加载。
 
 前端单测（Node 直跑，零依赖）：
 ```bash
@@ -162,7 +194,7 @@ node scripts/gen-fast-content.mjs 6.34 extra/fast-spec-6-34.json   # 铺一节�
 node scripts/book-content-check.mjs                                 # 书内容规范自检
 node scripts/book-dedup.mjs                                         # 规模/重叠统计（只读）
 ```
-> `npm test` 挂了 `pretest`（只跑 `gen-oral-book.mjs`）→ 新 clone 开箱即可跑测试；`builtins.js` 是入库文件、**故意不自动重建**，这样「改了内容忘了重出迁移表」会被 `validate_builtins.js` 抓到。
+> `npm test` 挂了 `pretest`（重建 `oral-book.js` 并刷新 SW 内容哈希）→ 新 clone 开箱即可跑测试；`builtins.js` 是入库文件、**故意不自动重建**，这样「改了内容忘了重出迁移表」会被 `validate_builtins.js` 抓到。
 > 原书 `ref/*.txt` **不入库**（外部素材）；换书源时才需要 `node scripts/book-parse.mjs` → `node scripts/book-decks.mjs` 重出 `book.json` / `decks.json`。
 > 高频短语：`extra/idioms-394.json` + `extra/batch*.json` → `scripts/inject-freq-idioms.js` → `content:build`。
 

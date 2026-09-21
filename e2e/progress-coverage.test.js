@@ -29,7 +29,9 @@ function startServer() {
       });
       req.on('error', function () {});
       req.setTimeout(600, function () { req.destroy(); });
-      if (++tries > 40) { clearInterval(iv); reject(new Error('server 启动超时')); }
+      /* 就绪窗口 300×100ms=30s。原为 40×100ms=4s，小于宿主普通 node 冷启动实测 5.4s ⇒ 必然假红。
+         health 一旦 200 立即 resolve，放大窗口在成功路径上不增加任何耗时。 */
+      if (++tries > 300) { clearInterval(iv); reject(new Error('server 启动超时')); }
     }, 100);
   });
 }
@@ -71,7 +73,7 @@ function seedRepeatedReview() {
   let browser;
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
     const page = await ctx.newPage();
     await page.route('**/api/**', function (route) { route.abort('failed'); });

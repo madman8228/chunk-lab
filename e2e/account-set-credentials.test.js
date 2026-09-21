@@ -43,20 +43,28 @@ async function settleSession(page){
       return !!(window.AccountStorage && rec && rec.epoch && AccountStorage.sessionEpoch===rec.epoch);
     }catch(e){ return false; }
   },null,{timeout:25000});
+  /* sessionEpoch 对齐发生在受控 reload 之后；等新文档进入 DOMContentLoaded，
+     再调用 CL.preload，避免命中旧文档卸载中的 promise。 */
+  await page.waitForLoadState('domcontentloaded');
 }
 async function loginOn(page,user,pass){
   await page.locator('#chunkauth-mask input[placeholder="用户名"]').fill(user);
   await page.locator('#chunkauth-mask input[type="password"]').fill(pass);
-  await page.locator('#chunkauth-mask button').first().click();
+  await Promise.all([
+    page.waitForNavigation({waitUntil:'domcontentloaded'}),
+    page.locator('#chunkauth-mask button').first().click()
+  ]);
   await page.waitForFunction(()=>window.CL && !document.getElementById('chunkauth-mask'),null,{timeout:20000});
   await settleSession(page);
-  await page.evaluate(()=>CL.preload());
+  await page.evaluate(()=>CL.ensureCloud());
 }
 
 (async()=>{try{
   server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test'},stdio:'ignore'});
   let ready=false;
-  for(let i=0;i<60;i++){try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}if(ready)break;await new Promise(r=>setTimeout(r,100));}
+  /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：实测为临界窗口，宿主 node 冷启动 5.4s。
+     health 一旦 200 立即 break ⇒ 成功路径不增加耗时。 */
+  for(let i=0;i<300;i++){try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}if(ready)break;await new Promise(r=>setTimeout(r,100));}
   assert.ok(ready,'server ready');
   browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||chromium.executablePath()});
 
@@ -66,7 +74,7 @@ async function loginOn(page,user,pass){
   await pageA.waitForFunction(()=>window.ChunkAPI && ChunkAPI.getToken() && window.CL && window.AccountStorage,
     null,{timeout:20000});
   await settleSession(pageA); /* 游客自动注册写 token → 触发一次重载，必须等它落定 */
-  await pageA.evaluate(()=>CL.preload());
+  await pageA.evaluate(()=>CL.ensureCloud());
   const guestName=await pageA.evaluate(async()=>(await ChunkAPI.me()).user.username);
   check('首访自动获得游客账号', /^guest_/.test(guestName), 'name='+guestName);
   const uidBefore=await pageA.evaluate(async()=>(await ChunkAPI.me()).user.id);

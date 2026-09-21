@@ -179,7 +179,7 @@ function readBadges(page) {
 (async function () {
   try {
     await startServer();
-    browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath() });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
 
     /* ===== A：新用户首页（空档案）===== */
     console.log('【场景 A：新用户空档案首页】');

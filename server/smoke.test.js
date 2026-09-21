@@ -114,6 +114,8 @@ const childEnv = Object.assign({}, process.env, {
   NODE_ENV: 'test',
   REQUIRE_AUTH: 'true',
   JWT_SECRET: 'smoke-test-secret-not-for-production',
+  ADMIN_PASSWORD: 'smoke-admin-pass',
+  ADMIN_JWT_SECRET: 'smoke-admin-secret-not-for-production-0123456789',
   TOKEN_TTL: '30d',
   PORT: String(PORT),
   CHUNKLAB_DATA_DIR: TMP_DB,
@@ -149,6 +151,15 @@ async function main() {
     r = await request('GET', '/api/config');
     check('GET /api/config requireAuth=true', r.status === 200 && r.json && r.json.requireAuth === true, 'status=' + r.status);
     check('GET /api/config aiEnabled=true（本实例 AI_EXPLAIN_ENABLED=true）', r.status === 200 && r.json && r.json.aiEnabled === true, 'status=' + r.status + ' aiEnabled=' + (r.json && r.json.aiEnabled));
+
+    const adminWrongStatuses = [];
+    for (let i = 0; i < 6; i++) {
+      r = await request('POST', '/api/admin/login', null, { password: 'wrong-admin-password' });
+      adminWrongStatuses.push(r.status);
+    }
+    check('admin login 连续失败第 6 次触发 429', adminWrongStatuses.join(',') === '401,401,401,401,401,429', 'statuses=' + adminWrongStatuses.join(','));
+    r = await request('POST', '/api/admin/login', null, { password: 'smoke-admin-pass' });
+    check('admin login 被锁定后正确密码仍拒绝', r.status === 429, 'status=' + r.status);
 
     r = await request('POST', '/api/auth/register', null, { username: 'smoke_a', password: 'smoke123' });
     check('register returns token', r.status === 200 && r.json && typeof r.json.token === 'string', 'status=' + r.status);

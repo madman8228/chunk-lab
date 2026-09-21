@@ -84,8 +84,7 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
 
   const browser = await chromium.launch({
     headless: true,
-    executablePath: process.env.CHROMIUM_PATH ||
-      'C:/Users/Administrator/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe'
+    executablePath: process.env.CHROMIUM_PATH || chromium.executablePath()
   });
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const p = await ctx.newPage();
@@ -123,11 +122,37 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
     if (info && info.rec) info.rec.encoded = e.encodedDataLength;
   });
 
-  await p.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
+  function waitForDataGet() {
+    return p.waitForResponse(function (response) {
+      return response.url().indexOf('/api/data') >= 0 &&
+        response.request().method() === 'GET' && response.status() === 200;
+    }, { timeout: 15000 });
+  }
+
+  const initialDataResponse = waitForDataGet();
+  /* 这里验证 API 压缩与页面启动，不需要自动进入练习。
+     direct=1 会在刷新后写入“最近练习”记录，和云同步启动交叉，
+     把练习入口的写入竞态混入本测试，降低故障定位价值。 */
+  await p.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
+  await initialDataResponse;
   await p.waitForFunction(function () {
     return !!(window.CL && window.CL.cloudSyncNow && window.CL.loadMem);
   }, { timeout: 15000 });
-  await p.waitForTimeout(1800); /* 等 ensureCloud 首轮握手 */
+  await p.waitForFunction(function () {
+    return !!(window.CL && window.CL.getCloudConfig && window.CL.getCloudConfig() !== null);
+  }, { timeout: 15000 });
+  /* getCloudConfig 只代表配置请求完成；_cloudOn/首轮拉取仍可能在随后完成。
+     显式等待入口 promise，避免在首轮同步尚未建立 BatchSync 基线时抢先上行。 */
+  await p.evaluate(function () { return window.CL.ensureCloud(); });
+  await p.evaluate(function () { return window.CL.waitForSync(); });
+
+  async function waitForBatchClean() {
+    await p.waitForFunction(async function () {
+      if (!window.BatchSync) return true;
+      var s = await window.BatchSync.state();
+      return !s.pending && s.status === 'clean' && s.localGeneration === s.acceptedGeneration;
+    }, { timeout: 15000 });
+  }
 
   /* ---------- 1. 造足够大的档案并上传（<1KB 不会触发压缩） ---------- */
   const pushed = await p.evaluate(async function () {
@@ -156,7 +181,8 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
     return { ok: ok, sbs: Object.keys(m.stats.bySentence).length, events: m.stats.events.length };
   });
   check('1.1 档案已上传（1200 条 / 2400 事件）', pushed.ok === true && pushed.sbs === 1200, JSON.stringify(pushed));
-  await p.waitForTimeout(400);
+  await p.evaluate(function () { return window.CL.waitForSync(); });
+  await waitForBatchClean();
 
   /* ---------- 2. 不带 Accept-Encoding 的对照（证明压缩确实由协商驱动） ---------- */
   const plain = await getRaw('/api/data', null);
@@ -165,16 +191,27 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
   check('2.2 未压缩响应大于阈值（确实该压）', plainLen > 1024, kb(plainLen));
 
   /* ---------- 3. 刷新页面 → 真实浏览器发起 GET /api/data ---------- */
+  const reloadGetStart = gets.length;
   await p.reload({ waitUntil: 'domcontentloaded' });
   await p.waitForFunction(function () {
     return !!(window.CL && window.CL.loadMem);
   }, { timeout: 15000 });
+  await p.waitForFunction(function () {
+    return !!(window.CL && window.CL.getCloudConfig && window.CL.getCloudConfig() !== null);
+  }, { timeout: 15000 });
+  await p.evaluate(function () { return window.CL.ensureCloud(); });
+  await p.evaluate(function () { return window.CL.waitForSync(); });
+  await waitForBatchClean();
   /* 轮询等待「数据齐全后的那次 GET」出现（云握手是异步的，固定 sleep 会假失败）。
      判据：encoded > 0（网络字节已知）且 enc 已确定。 */
   let g = null;
   for (let i = 0; i < 40; i++) {
     await p.waitForTimeout(250);
-    const cand = gets.filter(function (x) { return x.encoded > 0; }).sort(function (a, b) { return b.encoded - a.encoded; })[0];
+    /* 只看本次刷新之后的请求，并等到它确实完成了大响应。
+       否则首轮空账号的 0.7KB GET 可能先完成，被误当成压缩验证对象。 */
+    const cand = gets.slice(reloadGetStart).filter(function (x) {
+      return x.encoded > apiCompressMinBytes;
+    }).sort(function (a, b) { return b.encoded - a.encoded; })[0];
     if (cand) { g = cand; break; }
   }
 
@@ -207,9 +244,16 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
     var m = window.CL.loadMem();
     m.stats.totalAnswered = (m.stats.totalAnswered || 0) + 1;
     window.CL.saveMem(m);
-    return await window.CL.cloudSyncNow(m);
+    var ok = await window.CL.cloudSyncNow(m);
+    var batch = window.BatchSync && window.BatchSync.state ? await window.BatchSync.state() : null;
+    return {
+      ok: ok,
+      dirty: window.CL.isDirty ? window.CL.isDirty() : null,
+      conflict: window.CL.getSyncConflict ? window.CL.getSyncConflict() : null,
+      batch: batch
+    };
   });
-  check('5.1 增量上行仍成功', inc === true, 'ok=' + inc);
+  check('5.1 增量上行仍成功', inc.ok === true, JSON.stringify(inc));
 
   /* ---------- 6. 小响应不该被压（阈值以下压了反而更大） ---------- */
   const small = await getRaw('/api/health', 'br');
