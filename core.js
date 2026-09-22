@@ -38,6 +38,61 @@
   var CONFLICT_KEY = 'chunklab.sync-conflict.v1';
   var LISTENERS = {};
 
+  /* ============================================================
+     必需核心模块闸（fail-closed）· 2026-09-22
+     ------------------------------------------------------------
+     `CoreStatsSignature` / `CoreStorageState` 由四个页面（main/decks/stats/courses）
+     在与 core.js **同一个静态服务、同一份 SW 预缓存**下提前加载，正常部署必然同时到达。
+     本文件过去为它们保留了手写内联副本（`if(CoreStatsSignature)` / `if(!plan)` 分支）——
+     那是同一判据的第二份实现，会各自漂移；更坏的是「模块缺失」被副本消化掉，
+     表现为**界面一切正常、写入的数据却由另一套判据算出**，没有任何报错。
+
+     副本已在 D-1/D-2 清理中删除 ⇒ 模块缺失不再能降级，必须在加载期就**用户可见**地失败。
+
+     ⚠️ 不复用 `emit('persistError')` 作为唯一信号：全站没有任何页面订阅它
+        （只有单测订阅），用户看不到 = 静默失败。故这里直接落一个页面级可见节点。
+     ⚠️ 只用单层节点 + 直接属性赋值（不用 setAttribute / 嵌套 appendChild）：
+        部分单测 harness 的 document 桩只实现了 getElementById/createElement/body.appendChild。 */
+  var _CORE_REQUIRED = [
+    ['CoreStatsSignature', 'js/core-stats-signature.js', ['statSig', 'eventSnapshot']],
+    ['CoreStorageState', 'js/core-storage-state.js', ['buildStatsPersistencePlan', 'buildStatsBusinessMeta']]
+  ];
+  function coreFatalSurface(text){
+    if(typeof document === 'undefined' || !document.body) return;
+    try{
+      if(document.getElementById && document.getElementById('coreFatal')) return;
+      var el = document.createElement('div');
+      el.id = 'coreFatal';
+      el.textContent = text;
+      el.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:2147483000;' +
+        'background:#fef2f2;border-bottom:1px solid #fca5a5;color:#b91c1c;' +
+        'font:600 13px/1.5 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;' +
+        'padding:8px 12px;white-space:pre-wrap';
+      document.body.appendChild(el);
+    }catch(e){}
+  }
+  /* 加载期检查（IIFE 初始化段）：缺失即立刻进入可见失败态，不必等第一次落盘。
+     之所以不能推迟到调用点：saveMem 整段包在 try/catch 里，异常会被吞成「一次保存失败」。 */
+  (function(){
+    var missing = [];
+    _CORE_REQUIRED.forEach(function(pair){
+      var mod = global[pair[0]];
+      if(!mod || typeof mod !== 'object'){ missing.push(pair[1]); return; }
+      /* 只判「模块对象在不在」不够：SW 缓存半更新时可能拿到「新 core.js + 旧模块」，
+         模块在、但少了本次用到的函数 ⇒ 调用点 TypeError 会被 saveMem 的 try/catch
+         吞成「一次保存失败」，又是静默失败。故按**实际用到的函数名**判定，
+         版本错配与整文件缺失走同一条可见失败路径。 */
+      var lack = pair[2].filter(function(fn){ return typeof mod[fn] !== 'function'; });
+      if(lack.length) missing.push(pair[1] + '（缺 ' + lack.join('、') + '）');
+    });
+    if(!missing.length) return;
+    global.__coreModuleFatal = { missing: missing, at: Date.now() };
+    var msg = '启动失败：核心模块未加载（' + missing.join('；') + '）。请刷新页面；若持续出现请清除缓存后重试。';
+    console.error('[core] 必需核心模块缺失或版本不匹配：' + missing.join('；'));
+    coreFatalSurface(msg);
+    try{ emit('persistError', { area: 'coreModule', error: new Error(msg) }); }catch(e){}
+  })();
+
   /* ADR-005 rev 基础设施：本地为每个可同步实体维护 rev（版本号），离线改动时升 rev；
      同步时随 payload 上送，服务端按 rev 冲突检测取新版本。多设备互不覆盖无关改动；
      删除走软删除标记跨设备传播。调用方（页面/业务模块）零改动。 */
@@ -1268,41 +1323,18 @@
          签名比对是自愈的，没有「忘记标记」这个失败模式。
      _statsStore 语义：'idb' = 大对象已托管（localStorage 不再留副本）；'local' = 保留旧行为。 */
   /* 句子档案的廉价签名：建档后只有计数字段会变（sentence/translation/deckName 是常量），
-     故只需混算数字字段即可判定「这一行是否需要重写」。
-     浮点（ease）放大 1000 倍后取整；时间戳（lastAt/dueAt）经 int32 回绕 ——
-     需恰好相差 2^32 才碰撞，实用上不可能。 */
-  function _mix(h, n){ return Math.imul(h ^ (n | 0), 0x01000193) >>> 0; }
-  function statSig(v){
-    if(CoreStatsSignature && CoreStatsSignature.statSig) return CoreStatsSignature.statSig(v);
-    if(!v) return 0;
-    var h = 0x811c9dc5;
-    h = _mix(h, v.times || 0);
-    h = _mix(h, v.okTimes || 0);
-    h = _mix(h, v.wrongTimes || 0);
-    h = _mix(h, v.streak || 0);
-    h = _mix(h, v.maxStreak || 0);
-    h = _mix(h, v.interval || 0);
-    h = _mix(h, v.repetition || 0);
-    h = _mix(h, (v.ease || 0) * 1000);
-    h = _mix(h, v.dueAt || 0);
-    h = _mix(h, v.lastAt || 0);
-    return h >>> 0;
-  }
+     故只需混算数字字段即可判定「这一行是否需要重写」。算法与碰撞论证见唯一实现处
+     （src/core/stats-signature.mjs）；这里只委派，不再保留内联副本 ——
+     副本会与源各自漂移，更会把「模块缺失」静默消化成另一套判据的静默写入。 */
+  function statSig(v){ return CoreStatsSignature.statSig(v); }
 
   /* 事件数组的落盘标记：首/尾 id + 长度三锚点。
      之所以要三个锚点：只比长度和尾 id 时，「整体替换成另一个首尾恰好相同的数组」会误判为
      可增量追加 → IDB 内容静默错位。三锚点让纯追加（首不变、尾=上一个尾、长度增长）
      与任何替换都能区分开；而唯一会整体替换 events 的地方（syncFromCloud 的合并）已显式
-     置 _evSnap = null 强制全量覆盖，不依赖锚点猜测。 */
-  function evSnapOf(ev){
-    if(CoreStatsSignature && CoreStatsSignature.eventSnapshot) return CoreStatsSignature.eventSnapshot(ev);
-    ev = Array.isArray(ev) ? ev : [];
-    return {
-      count: ev.length,
-      firstId: ev.length ? (ev[0] && ev[0].id) : null,
-      lastId: ev.length ? (ev[ev.length-1] && ev[ev.length-1].id) : null
-    };
-  }
+     置 _evSnap = null 强制全量覆盖，不依赖锚点猜测。
+     算法唯一实现处 = src/core/stats-signature.mjs；这里只委派（同 statSig）。 */
+  function evSnapOf(ev){ return CoreStatsSignature.eventSnapshot(ev); }
 
   /* 把 stats 大对象异步落到 IDB：只写变更行。返回 Promise（无 IDB 时 resolve(false)）。
      这里故意不在排队入口 clone 整份 stats：8000 句时 bySentence/events 可能已经是
@@ -1390,27 +1422,32 @@
   function persistStatsSnapshot(stats,scope,commitGeneration,businessMem){
     if(_statsStore !== 'idb' || !global.IDBStore) return Promise.resolve(false);
     stats = stats || {};
-    var plan = CoreStorageState && typeof CoreStorageState.buildStatsPersistencePlan === 'function'
-      ? CoreStorageState.buildStatsPersistencePlan(
-        stats, _bsSig, _evSnap, _statsFullRewrite, statSig, evSnapOf)
-      : null;
-    var by = plan ? plan.by : (stats.bySentence || {});
-    var ev = plan ? plan.events : (Array.isArray(stats.events) ? stats.events : []);
-    var dirty = plan ? plan.dirty : [], gone = plan ? plan.gone : [], k;
-    var businessMeta = CoreStorageState && typeof CoreStorageState.buildStatsBusinessMeta === 'function'
-      ? CoreStorageState.buildStatsBusinessMeta(
-        businessMem,
-        global.AccountStorage ? global.AccountStorage.owner : null,
-        commitGeneration)
-      : (businessMem ? (function(){
-        var light = {}, source = businessMem.stats || {};
-        Object.keys(source).forEach(function(key){ if(key !== 'bySentence' && key !== 'events') light[key] = source[key]; });
-        return {
-          owner: global.AccountStorage ? global.AccountStorage.owner : null,
-          localGeneration: Number.isSafeInteger(commitGeneration) && commitGeneration >= 0 ? commitGeneration : 0,
-          data: { best: businessMem.best || {}, settings: businessMem.settings || {}, stats: light }
-        };
-      })() : null);
+    /* ★ 判据唯一实现处 = js/core-storage-state.js（src/core/storage-state.mjs）。
+       这里**不再**保留 `if(!plan)` 手写同构分支：那是一条与源各自漂移的第二套判据，
+       而且是 fail-open —— 模块缺失时静默换一套算法继续写，界面一切正常、数据却是另一套
+       判据算出来的。清理后的口径：
+         1) 模块缺失已在**加载期**被 _CORE_REQUIRED 闸拦成用户可见失败，正常不可能走到这里；
+         2) 真走到这里 = 加载期闸与调用期不一致，必须 fail-closed：明确失败 + 拒绝写入
+            + 不返回成功（返回 false 让调用方按「未提交」处理），而不是悄悄换判据。 */
+    if(!CoreStorageState || typeof CoreStorageState.buildStatsPersistencePlan !== 'function'){
+      var fatalReason = '启动失败：核心模块未加载（js/core-storage-state.js）。本次学习记录未写入。' +
+        '请刷新页面；若持续出现请清除缓存后重试。';
+      if(!global.__coreModuleFatal){
+        global.__coreModuleFatal = { missing: ['js/core-storage-state.js'], at: Date.now() };
+      }
+      console.error('[core] buildStatsPersistencePlan 缺失 → 拒绝写入统计（fail-closed）');
+      coreFatalSurface(fatalReason);
+      return Promise.resolve(false);
+    }
+    var plan = CoreStorageState.buildStatsPersistencePlan(
+      stats, _bsSig, _evSnap, _statsFullRewrite, statSig, evSnapOf);
+    var by = plan.by;
+    var ev = plan.events;
+    var dirty = plan.dirty, gone = plan.gone, k;
+    var businessMeta = CoreStorageState.buildStatsBusinessMeta(
+      businessMem,
+      global.AccountStorage ? global.AccountStorage.owner : null,
+      commitGeneration);
     if(_statsFullRewrite){
       /* 固定本次全量提交的内容和水位。stats/by/events 会在 IDB open 等待期间继续变化，
          不能在事务成功回调里重新读取它们来推断“已经落盘到哪里”。 */
@@ -1440,39 +1477,14 @@
         return false;
       });
     }
-    var nextSignatures;
-    if(!plan){
-      nextSignatures = Object.assign({}, _bsSig);
-      for(k in by){
-        var s = statSig(by[k]);
-        if(nextSignatures[k] !== s){ dirty.push(k); }
-        nextSignatures[k] = s;
-      }
-      for(k in nextSignatures){ if(!(k in by)) gone.push(k); }
-      gone.forEach(function(g){ delete nextSignatures[g]; });
-    }else{
-      nextSignatures = plan.nextSignatures;
-    }
-    /* 事件：三锚点全对得上 → 只追加新增的；否则（被合并/重排/截断）整体替换 */
-    var evRows = plan ? plan.eventRows : [], evFull = plan ? plan.eventFull : true;
-    if(!plan){
-      var canAppend = false;
-      if(_evSnap && ev.length >= _evSnap.count){
-        if(_evSnap.count === 0) canAppend = true;
-        else canAppend = (ev[0] && ev[0].id) === _evSnap.firstId &&
-                         (ev[_evSnap.count-1] && ev[_evSnap.count-1].id) === _evSnap.lastId;
-      }
-      if(canAppend) evRows = ev.slice(_evSnap.count);
-      evFull = !canAppend;
-    }
+    var nextSignatures = plan.nextSignatures;
+    /* 事件：三锚点全对得上 → 只追加新增的；否则（被合并/重排/截断）整体替换。
+       三锚点判定（canAppend）的唯一实现处 = plan.eventRows / plan.eventFull。 */
+    var evRows = plan.eventRows, evFull = plan.eventFull;
     /* changed/eventRows/businessMeta 都必须是本次计划的固定副本。否则后续答题可能在
        IDB open 或事务排队期间修改同一对象，导致提交内容与 nextEventSnapshot 不一致。 */
     var plannedChanged = {};
-    if(plan){
-      Object.keys(plan.changed).forEach(function(id){ plannedChanged[id] = cloneJSON(plan.changed[id]); });
-    }else{
-      dirty.forEach(function(id){ plannedChanged[id] = cloneJSON(by[id]); });
-    }
+    Object.keys(plan.changed).forEach(function(id){ plannedChanged[id] = cloneJSON(plan.changed[id]); });
     var plannedEvents = cloneJSON(evFull ? ev : evRows);
     var plannedEventSnapshot = evSnapOf(ev);
     var plannedBusinessMeta = businessMeta ? cloneJSON(businessMeta) : null;

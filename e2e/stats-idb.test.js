@@ -219,6 +219,7 @@ async function main() {
         calls: calls,
         ids: ids,
         count: ids.length,
+        memCount: m.stats.events.length,
         times: m.stats.bySentence['builtin-daily#11111111'].times,
         hasFirst: ids.indexOf('ev-race-1') >= 0,
         hasSecond: ids.indexOf('ev-race-2') >= 0
@@ -231,6 +232,12 @@ async function main() {
   check('慢事务交错后两条后继事件都已落盘',
     interleaved.hasFirst && interleaved.hasSecond,
     JSON.stringify(interleaved));
+  /* 计数不变量：交错后 IDB 事件数必须等于内存事件数。
+     只断言「两条 id 都在」时，「第二批 eventRows 为空但仍侥幸命中」这类改写不会被发现；
+     这条把 A1 的失效形态（水位虚高 → 下一批切片为空 → 静默丢事件）钉成显式等式。 */
+  check('交错后 IDB 事件数 == 内存事件数（水位未虚高）',
+    interleaved.count === interleaved.memCount,
+    'idb=' + interleaved.count + ' mem=' + interleaved.memCount + ' ' + JSON.stringify(interleaved));
   console.log('  [交错落盘状态] ' + JSON.stringify(interleaved));
 
   /* 小字段 localStorage 投影损坏时，只从同 owner 的已提交 IDB 投影重建，

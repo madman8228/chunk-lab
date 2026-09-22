@@ -4,6 +4,8 @@ const {chromium}=require('playwright-core');
 const {spawn}=require('child_process');
 const http=require('http'),fs=require('fs'),path=require('path'),os=require('os');
 const root=path.resolve(__dirname,'..'),port=require('./lib/free-port').freePort(9400,100);
+/* core.js 的必需依赖模块（合成页面必须与真实页面一样在 core.js 之前加载；单一来源见 lib/core-deps.js）。 */
+const coreDeps=require('./lib/core-deps');
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cl-outbox-'));
 let browser,server;
 async function ready(){
@@ -72,6 +74,7 @@ function check(label,ok){if(!ok)throw new Error(label);console.log('  ✓ '+labe
     }));
     await second.addScriptTag({path:path.join(root,'js','idb.js')});
     for(const tab of [page,second]){
+      await coreDeps.addCoreDependencies(tab, root);
       await tab.addScriptTag({path:path.join(root,'core.js')});
       await tab.evaluate(async()=>{await CL.preload(); window.beforeCourses=CL.readCourses();});
     }
@@ -136,6 +139,7 @@ function check(label,ok){if(!ok)throw new Error(label);console.log('  ✓ '+labe
       window.ChunkAPI={getBase:()=>'',getToken:()=>null,isLoggedIn:()=>false,
         getConfig:async()=>({requireAuth:false}),getData:async()=>({}),putData:async()=>({ok:true})};
     });
+    await coreDeps.addCoreDependencies(sending, root);
     await sending.addScriptTag({path:path.join(root,'core.js')});
     check('真实保存与上传成功后清理对应日志',await sending.evaluate(async()=>{
       await CL.preload();await CL.ensureCloud();
@@ -189,7 +193,9 @@ function check(label,ok){if(!ok)throw new Error(label);console.log('  ✓ '+labe
     const recoveryContext=await browser.newContext({serviceWorkers:'block'}), recovery=await recoveryContext.newPage();
     async function bootRecovery(){
       await recovery.goto('http://127.0.0.1:'+port+'/api/health');
-      for(const file of ['js/idb.js','api.js','core.js','js/sync-resolution.js']) await recovery.addScriptTag({path:path.join(root,file)});
+      for(const file of ['js/idb.js','api.js']) await recovery.addScriptTag({path:path.join(root,file)});
+      await coreDeps.addCoreDependencies(recovery, root);
+      for(const file of ['core.js','js/sync-resolution.js']) await recovery.addScriptTag({path:path.join(root,file)});
       await recovery.evaluate(()=>CL.ensureCloud());
     }
     await bootRecovery();

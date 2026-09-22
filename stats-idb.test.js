@@ -87,6 +87,13 @@ var window = {
   addEventListener: function () {},
   IDBStore: IDBStore
 };
+/* core.js 的必需核心模块：四个真实页面都在 core.js 之前用 <script> 加载它们
+   （src/core/stats-signature.mjs、src/core/storage-state.mjs 的构建产物）。
+   这里注入**真实产物**而不是手写 stub —— stub 会与源各自漂移，那正是本次清理要消除的问题。
+   产物用 globalThis 挂载，故把它显式指向本 harness 的 window。 */
+['js/core-stats-signature.js', 'js/core-storage-state.js'].forEach(function (f) {
+  new Function('window', 'globalThis', fs.readFileSync(path.join(__dirname, f), 'utf8'))(window, window);
+});
 new Function('window', fs.readFileSync(path.join(__dirname, 'core.js'), 'utf8'))(window);
 new Function('window', fs.readFileSync(path.join(__dirname, 'srs.js'), 'utf8'))(window);
 var CL = window.CL;

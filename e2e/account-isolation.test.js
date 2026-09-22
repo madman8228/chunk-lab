@@ -3,6 +3,9 @@ const {chromium}=require('playwright-core');
 const {spawn}=require('child_process');
 const fs=require('fs'),path=require('path'),os=require('os'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),port=require('./lib/free-port').freePort(9400,100);
+/* core.js 的必需依赖模块：合成页面必须与四个真实页面一样，在 core.js 之前加载它们
+   （否则会命中 core.js 加载期的 fail-closed 闸，页面被判为加载失败）。单一来源见 lib/core-deps.js。 */
+const coreDeps=require('./lib/core-deps');
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cl-account-'));
 const base='http://127.0.0.1:'+port;
 const token=uid=>'eyJhbGciOiJub25lIn0.'+Buffer.from(JSON.stringify({uid})).toString('base64url')+'.test';
@@ -23,7 +26,7 @@ function check(label,value){assert.ok(value,label);count++;console.log('  ✓ '+
   browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||chromium.executablePath()});
   const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage();
   await context.route('**/isolation.html',route=>route.fulfill({contentType:'text/html',body:
-    '<!doctype html><body><script src="/js/account-storage.js"></script><script src="/js/idb.js"></script><script src="/js/batch-sync.js"></script><script src="/core.js"></script><script src="/api.js"></script><script src="/js/sync-resolution.js"></script><script src="/js/legacy-backup.js"></script><script src="/js/legacy-restore.js"></script><script>CL.preload().then(()=>window.ready=true)</script></body>'}));
+    '<!doctype html><body><script src="/js/account-storage.js"></script><script src="/js/idb.js"></script><script src="/js/batch-sync.js"></script>'+coreDeps.dependencyTags()+'<script src="/core.js"></script><script src="/api.js"></script><script src="/js/sync-resolution.js"></script><script src="/js/legacy-backup.js"></script><script src="/js/legacy-restore.js"></script><script>CL.preload().then(()=>window.ready=true)</script></body>'}));
   await page.goto(base+'/api/health');
   await page.evaluate(t=>{localStorage.setItem('chunklab_token',t);localStorage.setItem('chunklab.v1',JSON.stringify({decks:[{id:'legacy-private',name:'unknown owner'}]}));},token(101));
   await page.addScriptTag({path:path.join(root,'js/idb.js')});
