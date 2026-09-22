@@ -50,8 +50,8 @@ function stopServer() {
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
     const cards = await page.locator('#pageDecks:not(.hidden) .course-card').count();
     if (cards !== 2) throw new Error('内置课程卡片数错误：' + cards);
-    if (await page.locator('.course-card .deck-cover-image[src$="oral-3000.png"]').count() !== 1) throw new Error('口语3000句封面未加载');
-    if (await page.locator('.course-card .deck-cover-image[src$="idioms.png"]').count() !== 1) throw new Error('高频短语封面未加载');
+    if (await page.locator('.course-card .deck-cover-image[src$="oral-3000.webp"]').count() !== 1) throw new Error('口语3000句封面未加载');
+    if (await page.locator('.course-card .deck-cover-image[src$="idioms.webp"]').count() !== 1) throw new Error('高频短语封面未加载');
     if (await page.locator('.course-card .deck-cover-caption').count() !== 2) throw new Error('课程卡片封面标签未完整显示');
     if (await page.locator('.course-card .deck-card-body .deck-title').count() !== 0) throw new Error('课程卡片正文仍重复显示课程标题');
     const oralCard = page.locator('.course-card[aria-label="打开课程 口语3000句"]');
@@ -191,18 +191,18 @@ function stopServer() {
     const lessons = await page.locator('.catalog-lesson').count();
     if (lessons !== 65) throw new Error('口语目录课节数错误：' + lessons);
     const oralCoverChecks = [
-      ['万能表达', 'assets/catalog/oral-3000/1_1.png'],
-      ['从起床到出门', 'assets/catalog/oral-3000/1_2.png'],
-      ['从回家到就寝', 'assets/catalog/oral-3000/1_3.png'],
-      ['休息日～理财', 'assets/catalog/oral-3000/1_4.png'],
-      ['邀请友人～去听音乐会', 'assets/catalog/oral-3000/2_1.png'],
-      ['打高尔夫球～唱卡拉OK', 'assets/catalog/oral-3000/2_2.png'],
-      ['请医生看病', 'assets/catalog/oral-3000/2_3.png'],
-      ['陈述症状', 'assets/catalog/oral-3000/2_4.png'],
-      ['喜欢、爱上……～表白', 'assets/catalog/oral-3000/3_1.png'],
-      ['结婚～离婚', 'assets/catalog/oral-3000/3_2.png'],
-      ['在办公室', 'assets/catalog/oral-3000/3_3.png'],
-      ['工作单位的人际关系～评论他人', 'assets/catalog/oral-3000/3_4.png']
+      ['万能表达', 'assets/catalog/oral-3000/1_1.webp'],
+      ['从起床到出门', 'assets/catalog/oral-3000/1_2.webp'],
+      ['从回家到就寝', 'assets/catalog/oral-3000/1_3.webp'],
+      ['休息日～理财', 'assets/catalog/oral-3000/1_4.webp'],
+      ['邀请友人～去听音乐会', 'assets/catalog/oral-3000/2_1.webp'],
+      ['打高尔夫球～唱卡拉OK', 'assets/catalog/oral-3000/2_2.webp'],
+      ['请医生看病', 'assets/catalog/oral-3000/2_3.webp'],
+      ['陈述症状', 'assets/catalog/oral-3000/2_4.webp'],
+      ['喜欢、爱上……～表白', 'assets/catalog/oral-3000/3_1.webp'],
+      ['结婚～离婚', 'assets/catalog/oral-3000/3_2.webp'],
+      ['在办公室', 'assets/catalog/oral-3000/3_3.webp'],
+      ['工作单位的人际关系～评论他人', 'assets/catalog/oral-3000/3_4.webp']
     ];
     for (const [title, src] of oralCoverChecks) {
       const cover = page.locator('.catalog-lesson').filter({ hasText: title }).locator('.catalog-lesson-media img');
@@ -210,7 +210,7 @@ function stopServer() {
     }
     for (let lessonNumber = 13; lessonNumber <= 64; lessonNumber++) {
       const cover = page.locator('.catalog-lesson').nth(lessonNumber - 1).locator('.catalog-lesson-media img');
-      const expectedSrc = 'assets/catalog/oral-3000/' + lessonNumber + '.png';
+      const expectedSrc = 'assets/catalog/oral-3000/' + lessonNumber + '.webp';
       if (await cover.count() !== 1 || await cover.getAttribute('src') !== expectedSrc) throw new Error('口语第 ' + lessonNumber + ' 课节封面映射错误');
     }
     if (await page.locator('#deckPageTitle').innerText() !== '口语3000句 · 65 个课节') throw new Error('课程标题未移到页面顶部');

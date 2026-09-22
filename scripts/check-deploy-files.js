@@ -16,10 +16,13 @@
  *   必需项 = 前端运行时资源（HTML 引用 + ESM import 递归闭包 + manifest 图标）
  *          + 后端运行时资源（server/index.js 的 require 闭包）
  *          + sw.js（浏览器 register('sw.js') 引入，不出现在任何 HTML 里）
+ *          + sw.js 的 PRECACHE / PRECACHE_SOFT 资源（由 Service Worker 按 URL 运行时请求）
  *   等价类：
  *     ✗ 必需项不在 FILES          → exit 1（部署后会静默漂移）
  *     ✗ FILES 里有不存在的文件    → exit 1（tar 阶段直接失败）
  *     ⚠ FILES 里有非必需项        → 仅提示（可能是有意为之，如根 package.json）
+ *       ⚠ 但**目录项不算非必需**：目录覆盖其下的必需文件（如 assets 覆盖 SW 预缓存里的 67 条图片）。
+ *         把目录项误报成「非必需」会诱人删掉它 —— 2026-09-21 的封面全 404 + SW 装不上就是这么来的。
  *
  * 附带第二段护栏：deploy-prod.sh 的**部署安全顺序**（2026-09-10 加）
  *   服务端启动迁移是「有损」的——把 mastered/reinforceBook/deletedItems 从 user_kv 的
@@ -61,7 +64,7 @@ function parseFiles() {
      ④ 进度判定不能取原始输出的最后一行（backup-db.js 超出保留份数会打印
         「清理旧备份」，那是最后一行 —— tail -1 会在备份满 14 份后稳定误判）
      ⑤ 上传前必须跑本地完整回归（主套件、账号、批次、8000句移动专项）
-     ⑥ 远端必须显式启用生产模式、鉴权和强 JWT 密钥
+     ⑥ 远端必须显式启用生产模式、鉴权、反向代理信任和强 JWT 密钥
      ⑦ 部署目标必须由操作者显式传入，不能有危险默认主机 */
 function checkDeploySafety() {
   const problems = [];
@@ -84,8 +87,9 @@ function checkDeploySafety() {
   }
   if (SH.indexOf("grep -Eq '^NODE_ENV=production") < 0 ||
       SH.indexOf("grep -Eq '^REQUIRE_AUTH=true") < 0 ||
+      SH.indexOf("grep -Eq '^TRUST_PROXY=true") < 0 ||
       !/JWT_SECRET[\s\S]*length\(\\?\$2\)>=32/.test(SH)) {
-    problems.push('部署脚本缺少远端生产配置预检（NODE_ENV=production、REQUIRE_AUTH=true、JWT_SECRET≥32）');
+    problems.push('部署脚本缺少远端生产配置预检（NODE_ENV=production、REQUIRE_AUTH=true、TRUST_PROXY=true、JWT_SECRET≥32）');
   }
   const snapIdx = SH.indexOf('backup-db.js backup');
   const restartIdx = SH.indexOf('systemctl restart chunklab');
@@ -142,6 +146,35 @@ const beFiles = Array.from(beClosure.files).sort();
      - server/backup-db.js  ：cron 直接 `node server/backup-db.js backup` 调用，不被 require */
 const OUT_OF_GRAPH_REQUIRED = ['sw.js', 'server/loadenv.js', 'server/backup-db.js', 'content/manifest.json'];
 
+/* Service Worker 资源不会出现在 HTML / require 依赖图里：
+   - PRECACHE 由 install 阶段 addAll，漏传会直接造成安装失败；
+   - PRECACHE_SOFT 由运行时尽力缓存，漏传会让课程封面/图片线上 404，
+     但 check-sw.js 只检查工作区文件存在，无法发现部署白名单漏项。
+   两类资源都必须被 deploy-prod.sh 的 FILES 覆盖。 */
+function serviceWorkerResources() {
+  const file = path.join(ROOT, 'sw.js');
+  if (!fs.existsSync(file)) return [];
+  const source = fs.readFileSync(file, 'utf8');
+  const resources = [];
+  ['PRECACHE', 'PRECACHE_SOFT'].forEach(function (name) {
+    const match = source.match(new RegExp('const\\s+' + name + '\\s*=\\s*\\[([\\s\\S]*?)\\n\\];'));
+    if (!match) {
+      if (name === 'PRECACHE') {
+        console.error('[check-deploy] ✗ sw.js 缺少 PRECACHE 数组（结构变了？）');
+        process.exit(1);
+      }
+      return;
+    }
+    match[1].split(',').forEach(function (entry) {
+      const value = entry.trim().replace(/^['"]|['"]$/g, '').replace(/^\/+/, '');
+      if (value) resources.push(value);
+    });
+  });
+  return Array.from(new Set(resources));
+}
+
+const SERVICE_WORKER_REQUIRED = serviceWorkerResources();
+
 /* 内容分片由 manifest 在运行时按需请求，HTML/require 依赖图无法看见它们。
    把 manifest 中声明的每个分片也纳入部署闭包，避免部署了 manifest 却漏传新题库。 */
 function manifestContentFiles() {
@@ -158,7 +191,12 @@ function manifestContentFiles() {
   }
 }
 
-const required = Array.from(new Set(feFiles.concat(beFiles).concat(OUT_OF_GRAPH_REQUIRED).concat(manifestContentFiles()))).sort();
+const required = Array.from(new Set(
+  feFiles.concat(beFiles)
+    .concat(OUT_OF_GRAPH_REQUIRED)
+    .concat(SERVICE_WORKER_REQUIRED)
+    .concat(manifestContentFiles())
+)).sort();
 
 /* ---------- 比对 ---------- */
 /* FILES 允许用目录（当前 content/ 分片会随扩容持续增加），目录覆盖其下所有运行时文件。 */
@@ -174,11 +212,23 @@ function isCovered(requiredPath) {
 }
 const missing = required.filter(function (r) { return !isCovered(r); });
 const absent = deployed.filter(function (d) { return !existsAny(d); });
-const extra = deployed.filter(function (d) { return required.indexOf(d) < 0; });
+
+/* 「非必需项」必须把**目录项**排除在外：目录（assets / content）自身不会出现在 required 里，
+   但它**覆盖**了下游的必需文件。2026-09-21 的事故正是 assets 未进 FILES ⇒ 65 张课节封面线上 404，
+   外加 lesson-placeholder.svg 404 让 SW 的原子 addAll 永久失败、离线能力全废。
+   若把 assets 误报成「确认是有意保留的非必需项」，下一个读日志的人就可能顺手删掉它、原样复现该事故。
+   ⇒ 判据改成：**覆盖 ≥1 个必需路径的目录项 = 必需项**。 */
+function coverageCount(dir) {
+  const prefix = dir.replace(/[\\/]$/, '').replace(/\\/g, '/') + '/';
+  return required.filter(function (r) { return r.replace(/\\/g, '/').indexOf(prefix) === 0; }).length;
+}
+const dirCoverage = deployedDirs.map(function (d) { return { dir: d, count: coverageCount(d) }; })
+  .filter(function (x) { return x.count > 0; });
+const extra = deployed.filter(function (d) { return required.indexOf(d) < 0 && coverageCount(d) === 0; });
 
 console.log('[check-deploy] FILES ' + deployed.length + ' 项 / 运行时必需 ' + required.length +
             ' 项（前端 ' + feFiles.length + ' + 后端依赖图 ' + beFiles.length + ' + 图外 ' +
-            OUT_OF_GRAPH_REQUIRED.length + '）');
+            OUT_OF_GRAPH_REQUIRED.length + ' + Service Worker ' + SERVICE_WORKER_REQUIRED.length + '）');
 
 if (feRes.missingRefs.length) {
   console.error('[check-deploy] ✗ 前端引用了但不存在的文件: ' + feRes.missingRefs.join(', '));
@@ -210,6 +260,11 @@ if (safetyProblems.length) {
   process.exit(1);
 }
 
+if (dirCoverage.length) {
+  console.log('[check-deploy] 目录项覆盖的必需文件数: ' +
+    dirCoverage.map(function (x) { return x.dir + '=' + x.count; }).join('、') +
+    '（目录项本身不计入「非必需」，删了它们 = 下游这批文件会漏发）');
+}
 if (extra.length) {
   console.log('[check-deploy] ⚠ FILES 中的非运行时依赖项（确认是有意保留）: ' + extra.join(', '));
 }

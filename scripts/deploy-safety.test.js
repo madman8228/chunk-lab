@@ -88,6 +88,11 @@ const CASES = [
     expect: '缺少远端生产配置预检',
   },
   {
+    name: 'I 删除反向代理信任预检',
+    mutate: function (s) { return s.replace("grep -Eq '^TRUST_PROXY=true", "grep -Eq '^TRUST_PROXY=missing"); },
+    expect: '缺少远端生产配置预检',
+  },
+  {
     name: 'H 恢复危险默认部署目标',
     mutate: function (s) { return s.replace('if [ "$#" -ne 1 ] || [ -z "$1" ]; then', 'if [ "$#" -ne 0 ] || [ -z "$1" ]; then'); },
     expect: '必须显式传入唯一目标主机',

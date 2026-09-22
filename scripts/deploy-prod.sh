@@ -27,7 +27,8 @@ trap cleanup_remote_stage EXIT
 
 # 要部署的文件（前端静态 + 后端服务端）。
 # ⚠ 别再手工核对完整性——scripts/check-deploy-files.js 会按「HTML 引用 + ESM import 递归闭包
-#   + manifest 图标 + server require 闭包」算出必需项，与本清单比对，缺了就中止部署。
+#   + manifest 图标 + server require 闭包 + Service Worker 的两类缓存资源」算出必需项，
+#   与本清单比对，缺了就中止部署。
 #   本脚本第 [2/9] 步自动跑它；`npm test` 也会跑。（2026-09-10：本清单曾漏掉整个 js/ 目录）
 FILES=(
   main.html decks.html stats.html courses.html admin.html
@@ -38,7 +39,7 @@ FILES=(
   favicon.ico icon-16.png icon-32.png icon-180.png icon-192.png icon-512.png
   builtins.js oral8000.js freq-idioms.js library.js srs.js course-package.js server/backup-cli.js
   js/idb.js js/batch-sync.js js/icons.js js/chunk-shape.js js/course-catalog.js js/course-progress.js js/content-repository.js js/course-cloze.js js/course-package-contract.js js/core-identity.js js/core-merge.js js/core-activity.js js/core-event-bus.js js/core-migrations.js js/core-stats-signature.js js/core-storage-state.js js/core-entity-delta.js js/core-sync-delta.js js/core-sync-intents.js js/core-sync-payload.js js/core-sync-transport.js js/core-sync-replay.js js/core-sync-batch-merge.js js/core-sync-stats-normalize.js js/core-sync-learning-marks.js js/core-sync-entity-merge.js js/core-sync-kv.js js/core-revision-delta.js js/core-runtime.js js/main.js js/main-lifecycle.js js/main-explanation.js js/main-practice-policy.js js/main-practice-classification.js js/main-course-navigation.js js/main-deck-progress.js js/main-home-summary.js js/main-practice-state.js js/main-practice-markup.js js/main-legacy-stats.js js/vendor/course-schema-validator.js js/logical-course-store.js js/sync-resolution.js js/sync-resolution-ui.js js/bridge.mjs js/chunk-engine.mjs js/format.mjs js/ai-prompts.mjs js/backup.mjs js/distractor-cause.mjs
-  assets/icons/teacher-explain.svg
+  assets
   server/index.js server/admin.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js server/sync-conflict.js server/sync-resolution.js server/middleware/auth-rate.js server/middleware/static-guard.js server/services/change-seq.js server/services/admin-overview.js server/services/data-snapshot.js server/services/data-writers.js server/services/data-rows.js server/services/data-migrations.js server/services/data-save.js server/services/batch-replacement.js server/routes/sync.js server/routes/courses.js server/routes/decks.js server/routes/backup.js server/routes/feedback.js server/routes/ai.js server/routes/admin.js server/routes/auth.js server/routes/system.js server/routes/data.js server/package.json server/package-lock.json
   package.json
 )
@@ -59,6 +60,19 @@ ssh "$HOST" "sudo test -r /etc/chunklab/env && \
   sudo awk -F= '/^ADMIN_JWT_SECRET=/{if(length(\$2)>=32) ok=1} END{exit !ok}' /etc/chunklab/env && \
   sudo awk -F= '/^ADMIN_PASSWORD=/{if(length(\$2)>=8) ok=1} END{exit !ok}' /etc/chunklab/env && \
   echo '      OK: production + auth + strong JWT_SECRET + admin credentials'"
+
+# TRUST_PROXY 单独判定 —— 它是**拓扑前提**，不是「越安全越好」的开关，所以不混进上面那条
+# 六连贯的 && 里（混进去只会让失败时只吐一句 OK/失败，看不出前提是什么）。
+#   · 本项目生产固定为 nginx → Express（后端只听 127.0.0.1:8787）⇒ 反代必须开 trust proxy，
+#     否则 req.ip 恒为 127.0.0.1，登录限速退化成「全站共享一个桶」（任意人 5 次错密码锁死全站）。
+#   · ⛔ 反方向的陷阱：若将来改成「客户端直连 Express」而 trust proxy 仍为 true，
+#     客户端就能伪造 X-Forwarded-For **绕过限速** —— 那种拓扑下必须连这一条预检一起删掉。
+ssh "$HOST" "sudo grep -Eq '^TRUST_PROXY=true([[:space:]]|$)' /etc/chunklab/env" || {
+  echo '[1/9] ✗ TRUST_PROXY 未开：反代部署下 req.ip 会退化成 127.0.0.1，登录限速变成全站单桶' >&2
+  echo '      → 在 /etc/chunklab/env 设 TRUST_PROXY=true（前提是确有反代前置；客户端直连拓扑请勿开启，会引入 XFF 伪造绕过限速）' >&2
+  exit 1
+}
+echo '      OK: TRUST_PROXY=true（nginx → Express 反代拓扑）'
 
 # 本轮发布不会在正在运行的目录里偷偷执行 npm ci。依赖锁文件变化必须走单独的
 # 依赖升级/回滚流程，避免代码已经替换而 node_modules 仍是另一套版本。
