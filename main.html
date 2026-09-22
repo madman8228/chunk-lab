@@ -2328,7 +2328,14 @@ function migrateLegacyStatKeys(){
     hash: CL.fnv8
   });
   if(!migration.changed) return false;
-  mem.stats.bySentence = migration.by;
+  /* ★ 回归修复（2026-09-22，e2e §1c）：bySentence 大对象托管在 IDB，core 的
+     _bySentenceCache 按引用持有（core.js loadMem 优先读缓存）。此处曾整对象替换
+     （mem.stats.bySentence = migration.by）→ 缓存指针脱钩，下一次 loadMem 读回
+     换之前的陈旧对象，迁移看似从未发生。stats.html 同款逻辑一直是原地改写，对齐之；
+     引用一致后 saveMem→persistStats 的增量计划（dirty/gone）也会同步删掉 IDB 旧键。 */
+  var by = mem.stats.bySentence;
+  Object.keys(by).forEach(function(k){ if(!(k in migration.by)) delete by[k]; });
+  Object.keys(migration.by).forEach(function(k){ by[k] = migration.by[k]; });
   saveStore();
   return true;
 }
