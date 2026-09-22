@@ -44,11 +44,22 @@ function mergeSyncKv(localMem, remoteMem, localRevs, remoteRevs, keys, pendingLe
         revisions.kv[key] = remoteRev;
       }
       if (remoteStatsWasNormalized) dirty = true;
-    } else if (key === 'best' && remote[key] !== undefined && remoteRev === localRev
-      && !eqJson(mem[key], remote[key])) {
-      mem[key] = mergeBest(mem[key], remote[key]);
-      revisions.kv[key] = Math.max(localRev, remoteRev) + 1;
-      dirty = true;
+    } else if (key === 'best' && remote[key] !== undefined) {
+      /* best 是按字段可合并的学习元数据（每个题库一条，历史最佳取 max）。
+         两侧都存在时**一律并集**，不再要求 rev 相等 ——
+         否则「本机已产生、尚未上行」的 best 条目会在 remoteRev > localRev 时
+         被整块替换**静默丢弃**（core.js 的 SYNC_KV_KEYS 注释即此根因：
+         mastered / reinforceBook / deletedItems 已因此移出，best 是遗留的同类）。
+         已知代价（可接受）：删除题库后其 best 条目不再跨设备传播删除，
+         会留下不可见孤立条目 —— best 只按 decks 列表里的 deck id 读取，孤立条目不渲染。 */
+      const mergedBest = mergeBest(mem[key], remote[key]);
+      if (!eqJson(mergedBest, mem[key])) {
+        mem[key] = mergedBest;
+        revisions.kv[key] = Math.max(localRev, remoteRev) + 1;
+        dirty = true;
+      } else if (remoteRev > localRev) {
+        revisions.kv[key] = remoteRev;
+      }
     } else if (remoteRev > localRev && remote[key] !== undefined) {
       mem[key] = remote[key];
       revisions.kv[key] = remoteRev;

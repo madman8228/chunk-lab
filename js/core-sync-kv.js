@@ -37,10 +37,15 @@
           revisions.kv[key] = remoteRev;
         }
         if (remoteStatsWasNormalized) dirty = true;
-      } else if (key === "best" && remote[key] !== void 0 && remoteRev === localRev && !eqJson(mem[key], remote[key])) {
-        mem[key] = mergeBest(mem[key], remote[key]);
-        revisions.kv[key] = Math.max(localRev, remoteRev) + 1;
-        dirty = true;
+      } else if (key === "best" && remote[key] !== void 0) {
+        const mergedBest = mergeBest(mem[key], remote[key]);
+        if (!eqJson(mergedBest, mem[key])) {
+          mem[key] = mergedBest;
+          revisions.kv[key] = Math.max(localRev, remoteRev) + 1;
+          dirty = true;
+        } else if (remoteRev > localRev) {
+          revisions.kv[key] = remoteRev;
+        }
       } else if (remoteRev > localRev && remote[key] !== void 0) {
         mem[key] = remote[key];
         revisions.kv[key] = remoteRev;

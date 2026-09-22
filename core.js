@@ -3329,8 +3329,12 @@
         if(JSON.stringify(mergedStats) !== JSON.stringify(nextMem.stats || {})){ nextMem.stats = mergedStats; nextRevs.kv[k] = Math.max(lRev, rRev) + 1; }
         else if(rRev > lRev) nextRevs.kv[k] = rRev;
         if(remoteStatsWasNormalized) dirty = true;
-      } else if(k === 'best' && remote[k] !== undefined && rRev === lRev && !_eqJson(nextMem[k], remote[k])){
-        nextMem[k] = mergeBest(nextMem[k], remote[k]); nextRevs.kv[k] = Math.max(lRev, rRev) + 1; dirty = true;
+      } else if(k === 'best' && remote[k] !== undefined){
+        /* 与唯一来源 src/core/sync-kv-merge.mjs 同形：best 两侧都存在时**一律并集**，
+           避免「本机已产生、尚未上行」的条目被 remoteRev > lRev 的整块替换静默丢弃。 */
+        var mergedBest = mergeBest(nextMem[k], remote[k]);
+        if(!_eqJson(mergedBest, nextMem[k])){ nextMem[k] = mergedBest; nextRevs.kv[k] = Math.max(lRev, rRev) + 1; dirty = true; }
+        else if(rRev > lRev){ nextRevs.kv[k] = rRev; }
       } else if(rRev > lRev && remote[k] !== undefined){ nextMem[k] = remote[k]; nextRevs.kv[k] = rRev; }
     });
     return { mem:nextMem, localRevs:nextRevs, dirty:dirty };

@@ -274,13 +274,17 @@ function buildOldMem(cidA, cidB, sample) {
     const lost = survived.filter(function (x) { return !x[1]; }).map(function (x) { return x[0]; });
     check('4.3 句子级 key 数据守恒（5 个种子 key 全部存活，无一被删）',
       lost.length === 0, '丢失 ' + lost.join('、'));
-    /* 观察（**不断言**）：deck 级 best / progress 不属于「句子级进度」。`best` 在 SYNC_KV_KEYS 里
-       走 LWW 整块替换，而本 fixture 只种 localStorage、**没有建模同步 revs**，故无法在此判定
-       「被云端空值覆盖」是产品行为还是 fixture 失真。
-       实测（2026-09-16）：带云同步时 best['builtin-daily'] 消失、progress['builtin-daily'] 保留；
-       把 /api/** 全掐断则 best 也保留 ⇒ 出在「同步」这一路，不是本地迁移。待单独确认。 */
-    console.log('   [观察·不判定] deck 级记录 best=' + JSON.stringify(after.bestKeys) +
-      ' / progress=' + JSON.stringify(after.progressKeys));
+    /* 4.4 deck 级 best / progress 不属于「句子级进度」。migrateToBookDecks 不处理它们
+       （一个老 deck → 多个新 deck，无法一对一），契约只有一条：**不被本地迁移删除**。
+       本段已 `route.abort('**\/api/**')` 掐断云同步 ⇒ 这里只能验**本地这一路**，确定性成立。
+       ⚠️ 「best 在同步中被整块替换丢弃」是**另一条路**（`best ∈ SYNC_KV_KEYS` 的 LWW 语义），
+          根因已于 2026-09-22 定位并修复，但它的回归**故意不放这里**：
+          本 fixture 未建模同步 revs，在此断言会**修前修后都绿**（= 假绿，本项目最恨的一类）。
+          该修复的权威回归 = `scripts/core-sync-kv.test.mjs`（附负向自证：关掉修复即变红）。
+          ⇒ 同步路径的**浏览器端**端到端复现仍未做（登记在案，见 RELEASE_CHECKLIST）。 */
+    check('4.4 老 deck 级记录 best / progress 不被本地迁移删除（同步已掐断，仅验本地一路）',
+      after.bestKeys.indexOf('builtin-daily') >= 0 && after.progressKeys.indexOf('builtin-daily') >= 0,
+      'best=' + JSON.stringify(after.bestKeys) + ' / progress=' + JSON.stringify(after.progressKeys));
     console.log('');
 
     /* ================= 5. 迁移表 ↔ 内容一致（自维护不变量） ================= */
