@@ -25,25 +25,44 @@
 | **新内容架构（66 deck）** | ✅ **已上线** | `/content/manifest.json` 200；`main.html` 308,909 B |
 | **封面破图 / SW 装不上** | ✅ **已关闭** | 66/66 图 200 + `image/webp`；`lesson-placeholder.svg` 200；SW `registrations=1 / activated / 缓存 140 条`；封面破图 0 |
 | **A1 统计提交竞态** | ✅ **已关闭**（非本轮新增） | 已在 `92e810d` 修好；`git log -S` 语句变迁 + 对照复现（OLD 丢 `[e3]` / HEAD 丢 `[]`）；护栏见 `e2e/stats-idb.test.js` §3b |
-| **D-1/D-2 重复实现清理** | 🟡 已提交、**未部署** | 提交 `32b251f`（父 `f5219ef`）；123/123 本地绿；工作区 `CACHE=chunklab-6066d9f0` ≠ 线上 `5b6fbce9` |
+| **D-1/D-2 重复实现清理** | ✅ **已提交 + 已部署** | 提交 `32b251f`；`352e131`（best LWW 修复）；推送 `f5219ef..9e98353`；部署 `DEPLOY_EXIT=0` ⇒ **线上 = 本地 = 远端 = `9e98353`**，线上 `CACHE=chunklab-b0c12217` |
+| **线上安全复检（生产机执行）** | ✅ | **48 通过 / 0 失败 / 1 待人工（`Server: nginx`）/ 变体族 165 条全被拒**；HSTS 有；证书有效至 2026-12-08 |
+| **G3 备份恢复演练** | 🟡 **已演练（换库路径通过，账号级路径查出 `F-002`）** | 快照 `integrity_check=ok`、16/16 表齐全、**15 张内容表与生产逐表一致**、独立实例启动不吃内容数据；账号级恢复在 `rev=NULL` 时失败 ⇒ `F-002`。详见 `deliverables/gstack/g3-restore-drill-chunklab-2026-09-22.md` |
 
-**剩余阻塞仍为 4 条**（与 09-16 收敛结论一致，全部是生产环境 / 用户侧动作，无代码缺口）：
+**剩余阻塞降为 3 条**（原 4 条，G3 已演练降级；全部是生产环境 / 用户侧动作，无代码缺口）：
 
 ① **G2 残余** —— 生产环境「两个真实账号互不可读写」（需真实凭据；现有 25 项跑的是测试 token + 临时服务）
-② **G3** —— 独立实例备份恢复演练（部署 `[3/9]` 只打全库快照，且服务端启动迁移**有损** ⇒ 回滚不能只回代码）
-③ **G4** —— Android/iOS 真机验收
-④ **G5** —— 发布授权（用户参与）+ 首发内容人工抽检 + **老用户 SW 升级实测**
+② **G4** —— Android/iOS 真机验收
+③ **G5** —— 发布授权（用户参与）+ 首发内容人工抽检 + **老用户 SW 升级实测**
 
-**本轮新增登记（不阻塞，需拍板）**：
+**G3 残余（原阻塞项，已降级为「执行动作」）**：生产上停服换库的真机演练 —— 路径已在本机独立实例验完，
+剩生产执行（有停机与回滚风险，须单独授权）。
 
-- ⚠️ **`best` 的 LWW 是条件触发的真缺陷**（2026-09-22 实测判定，非「既定语义」）：
-  `best ∈ SYNC_KV_KEYS`（`core.js:107`）⇒ 走 LWW 整块替换；`mergeBest`（并集）**只在 rev 严格相等时**生效
-  ⇒ 当 `remoteRev > localRev` 时，本地**未上行**的 `best[<deck>]` 条目被**静默丢弃**。
-  证据：`.workbuddy/_audit/best-lww-defect.mjs`（用出厂真实纯函数，rRev>lRev 场景实测丢弃）。
-  触发条件三条同时成立：本地有 `best` 记录 + 云端已有 `best`（rev≥1）+ **首次同步前未初始化 `revs.kv.best`**。
-  ⚠️ `core.js:99-106` 自己把这种配置定性为「本机未上行的改动被他机覆盖的**根因**」，
-  并已把 `mastered/reinforceBook/deletedItems` 移出 —— **`best` 未移出，属遗留同类问题**。
+**本轮新增/变更登记**：
+
+- ✅ **`best` 的 LWW 缺陷已修**（2026-09-22，提交 `352e131`）：两侧都存在时**一律 `mergeBest`**，仅结果变化才升 rev。
+  唯一来源 `src/core/sync-kv-merge.mjs`；`core.js` 内联镜像同步改；`js/core-sync-kv.js` 重建；
+  `scripts/core-sync-kv.test.mjs` 新增 3 条 + **负向自证通过**。验收 **123/123**。
+- ✅ **`F-002` 已修**（2026-09-22，提交 `f3f2ed5`）：账号级恢复 / 客户端「使用本机」在 `user_kv.rev = NULL` 且值不同时**整批被拒**（`SYNC_CONFLICT`）。
+  根因（已核到行号）：读侧 `server/services/data-snapshot.js:39` 把 `null` 原样暴露，写侧 `server/sync-conflict.js:9` 却归一为 `0`；
+  `server/services/batch-replacement.js:16` 据此推出 `baseRev = null`，而 `baseRev === null` 的旧语义是**「实体必须不存在」** ⇒ `BASE_REV_MISMATCH`。
+  `rev = NULL` 由 `server/services/data-save.js:95`（载荷不带 `revs`）写入。
+  **生产命中面：`user_kv.rev` NULL=7 / 非 NULL=17；8 个有 kv 数据的账号中 7 个的 `settings` 是 `rev=NULL`。**
+  不受影响：全库换库回滚；无静默损坏（fail-closed 拒绝）。
+  **为何 123/123 没抓到**：e2e 的 `route.fetch()` 确实打到真实服务端，但全部由**版本化客户端路径**写入（`rev` 为整数）
+  ⇒ **无「`rev=NULL` + 值不同」用例，结构性测不到**。
+  **修复语义（老板拍板「语义① + 候选 a + 409」）**：`baseRev === null` = **「不存在或未版本化」**；
+  客户端处理成功后**保留已确认快照的 rev 基线**（`core.js` `applySyncBatchResolution` 不再置空 `_lastSyncMeta`），
+  后续推送复用整数 rev，`rev = NULL` 不再被重新写入；
+  `SYNC_CONFLICT` 统一携带 `status = 409`（`sync-conflict.js` 三处 + `data-save.js` 的 `REQUEST_ID_REUSED`），sync 路由不再把冲突回成 500。
+- ✅ **新增回归（F-002 护栏 + 同类 500 归零）**：`server/sync-nullrev.test.js`（四 group + 负向自证 + `SYNC_CONFLICT` / `REQUEST_ID_REUSED` → 409）
+  与 `e2e/sync-resolution-nullrev.test.js`（真实浏览器点「使用本机」、四个 group 恢复后仍为整数 rev、冲突仍 409），
+  均由 `scripts/test-manifest.cjs` 的 `walk()` 自动纳入门禁。
+- 🛠 **`rev = NULL` 历史数据校正脚本**（`scripts/normalize-null-revs.js`；默认 dry-run，`--confirm` 才写库）**已备好并本机演练，未在生产执行**。
+  建议执行时机：**新版前端 + 本次服务端修复都上线、用户刷新到新版之后**（旧前端在冲突处理成功后会把 rev 重写回 NULL）。
 - **TOPO-1**（`server/data` 仍在静态根内）仍未消，现由 static-guard + nginx 双层挡着。
+- **生产数据画像（本轮实测）**：`users=43`（**42 个是 `guest_*` 游客账号**）、`user_decks=1`、`user_courses=0`、`user_course_progress=0`
+  ⇒ **线上实质没有真实学习数据**，这一点既限制了 G3 的取证方式，也是「`F-002` 现在修成本最低」的依据。
 
 ---
 

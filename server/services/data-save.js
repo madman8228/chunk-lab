@@ -64,8 +64,14 @@ function createDataSave(options) {
         const receipt=db.prepare('SELECT payload_hash,seq FROM user_batch_receipts WHERE user_id=? AND request_id=?').get(userId,body.requestId);
         if(receipt){
           if(receipt.payload_hash===payloadHash)return receipt.seq;
-          /** @type {Error & {code?: string, conflicts?: Array<unknown>}} */
+          /** @type {Error & {status?: number, code?: string, conflicts?: Array<unknown>}} */
           const error=new Error('同一请求编号不能用于不同内容，本次数据未写入');
+          /* Same conflict class as assertRevisionAccepted: the batch was built on a
+             request identity the cloud already used for different content. routes/data.js
+             and routes/backup.js already answer 409 for every SYNC_CONFLICT, and the sync
+             resolution route (routes/sync.js -> resolutionResponse) maps conflict errors by
+             `e.status`; carrying 409 here keeps it from surfacing as a misleading 500. */
+          error.status=409;
           error.code='SYNC_CONFLICT';error.conflicts=[{entity:'batch',id:body.requestId,reason:'REQUEST_ID_REUSED'}];throw error;
         }
       }

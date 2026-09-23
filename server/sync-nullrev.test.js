@@ -82,6 +82,43 @@ async function assertResolveRouteMaps409() {
   } finally { srv.close(); }
 }
 
+/* ---------- http: a reused requestId is a conflict (409), never a 500 ---------- */
+/* QA reproduced this on the real server: a requestId first consumed by a successful
+ * PUT leaves a user_batch_receipts row; feeding the SAME requestId to
+ * /api/sync/batch/resolve carries different content, so saveData rejects the batch
+ * with REQUEST_ID_REUSED. Before the status was carried it fell through
+ * routes/sync.js -> resolutionResponse -> `e.status || 500` and answered 500. */
+async function assertRequestIdReuseMaps409() {
+  const requestId = 'reuse-request-0001';
+  const before = await request('GET', '/api/sync/batch');
+  assert.equal(before.status, 200);
+  /* A successful conditional PUT consumes the requestId and leaves a
+     user_batch_receipts row bound to that exact payload (validate.js requires
+     requestId to travel with baseSeq). */
+  const first = await request('PUT', '/api/data', {
+    baseSeq: before.json.seq, requestId, mem: { settings: { reuse: 1 } }
+  });
+  assert.equal(first.status, 200, 'the receipt-seeding PUT must succeed: ' + JSON.stringify(first.json));
+  const batch = await request('GET', '/api/sync/batch');
+  assert.equal(batch.status, 200);
+  const local = {
+    mem: {
+      decks: [], best: {}, mastered: {}, deletedItems: {}, reinforceBook: [],
+      settings: { reuse: 2 },
+      stats: { bySentence: {}, events: [] }
+    },
+    courses: [], courseProgress: {}, revs: {}
+  };
+  const reused = await request('POST', '/api/sync/batch/resolve', {
+    requestId, expectedToken: batch.json.token, choice: 'local', local
+  });
+  assert.equal(reused.status, 409, 'a reused requestId must surface as 409, not 500: ' + JSON.stringify(reused.json));
+  assert.equal(reused.json.code, 'SYNC_CONFLICT');
+  /* routes/sync.js resolutionResponse returns { error, code } only, so pin the
+     specific conflict by its message (the REQUEST_ID_REUSED text). */
+  assert.match(reused.json.error, /\u540c\u4e00\u8bf7\u6c42\u7f16\u53f7/, 'conflict must be the reused-requestId one, got: ' + reused.json.error);
+}
+
 /* ---------- http: four groups end to end ---------- */
 const PORT = freePort(9650, 100);
 const BASE = 'http://127.0.0.1:' + PORT;
@@ -158,7 +195,8 @@ async function request(method, url, body) {
     }
 
     await assertResolveRouteMaps409();
-    console.log('[sync-nullrev] rev=NULL rows accepted for all four groups; SYNC_CONFLICT maps to 409');
+    await assertRequestIdReuseMaps409();
+    console.log('[sync-nullrev] rev=NULL rows accepted for all four groups; SYNC_CONFLICT maps to 409 (incl. REQUEST_ID_REUSED)');
   } finally {
     if (server && server.exitCode === null) { const ended = new Promise((r) => server.once('exit', r)); server.kill(); await ended; }
     fs.rmSync(TMP, { recursive: true, force: true });
