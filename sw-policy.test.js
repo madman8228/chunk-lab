@@ -18,7 +18,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { spawnSync } = require('child_process');
 const { hashFiles } = require('./scripts/sw-hash.js');
 
 const ROOT = path.resolve(__dirname);
@@ -129,7 +129,10 @@ console.log('');
 console.log('【5. gen-sw.js 不会把软清单补回原子清单（回归 A 的行为验证）】');
 try {
   const before = fs.readFileSync(SW, 'utf8');
-  execSync('node scripts/gen-sw.js', { cwd: ROOT, stdio: 'pipe' });
+  /* 显式 spawn node 绕过 cmd.exe；gen-sw 无输出需求 → stdio:"ignore"
+     （嵌套会话下同步 spawn + stdio:"pipe" 会间歇性 EBUSY，ignore 不受影响） */
+  const r = spawnSync(process.execPath, ['scripts/gen-sw.js'], { cwd: ROOT, stdio: 'ignore' });
+  if (r.status !== 0) throw new Error('gen-sw 退出码 ' + r.status + (r.error ? ' ' + r.error.code : ''));
   const after = fs.readFileSync(SW, 'utf8');
   const hard2 = ((after.match(/const PRECACHE = \[([\s\S]*?)\n\];/) || [])[1] || '').match(/'([^']+)'/g) || [];
   const names = hard2.map(function (s) { return s.slice(1, -1); });

@@ -38,6 +38,7 @@
     var indexReady = true, published = 0, effective = 0, practiced = 0, mastered = 0, due = 0;
     var isDue = options.isDue;
     var marked = options.isMarked;
+    var lessonsTotal = 0, lessonsPracticed = 0;
     prepared.lessons.forEach(function (lesson) {
       var ref = lesson.contentRef || {};
       if (ref.type !== 'sentence-deck') return;
@@ -46,14 +47,20 @@
       var count = Number(lesson.itemCount) || 0;
       published += count;
       if (!items) { indexReady = false; return; }
+      /* 课节级进度：课节内全部有效句都练过（times>0）→ 该课节计为已学。
+         与句级 practiced 同一判定、同一次遍历，避免第二份实现 */
+      var lTotal = 0, lPracticed = 0;
       items.forEach(function (item) {
         if (!item || !item.cid || deleted[ref.id + '#' + item.cid]) return;
         effective++;
+        lTotal++;
         var key = ref.id + '#' + item.cid, stat = stats[key];
-        if (stat && Number(stat.times) > 0) practiced++;
+        if (stat && Number(stat.times) > 0) { practiced++; lPracticed++; }
         if (marked ? marked(ref.id, item, stat) : false) mastered++;
         if (isDue && stat && isDue(stat, item, ref.id)) due++;
       });
+      lessonsTotal++;
+      if (lTotal > 0 && lPracticed === lTotal) lessonsPracticed++;
     });
     var status = indexReady ? 'ready' : 'loading';
     var coverage = indexReady && effective ? practiced / effective : null;
@@ -61,6 +68,7 @@
       status: status, lessonCount: prepared.lessons.length, publishedCount: published,
       effectiveCount: indexReady ? effective : null, practicedCount: indexReady ? practiced : null,
       masteredCount: indexReady ? mastered : null, dueCount: indexReady ? due : null,
+      lessonsTotal: indexReady ? lessonsTotal : null, lessonsPracticed: indexReady ? lessonsPracticed : null,
       coverage: coverage, courseRef: refKey({ type: 'course', id: course && course.id })
     };
   }

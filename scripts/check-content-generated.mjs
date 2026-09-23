@@ -17,14 +17,17 @@ function files(dir, prefix = '') {
 }
 
 try {
+  /* stdio:"ignore"：成功与否只看退出码（产物比对读文件，不读 stdout）。
+     默认 pipe 在嵌套会话下会间歇性 EBUSY（status=null 被误判为失败） */
   const result = spawnSync(process.execPath, ['scripts/build-content.mjs'], {
     cwd: root,
     env: { ...process.env, CONTENT_OUTPUT_ROOT: temp },
     encoding: 'utf8',
+    stdio: 'ignore',
   });
   if (result.status !== 0) {
-    process.stderr.write(result.stdout || '');
-    process.stderr.write(result.stderr || '');
+    process.stderr.write('[content:check-generated] build-content 运行失败 (status=' + result.status +
+      (result.error ? ' ' + result.error.code : '') + ')\n');
     process.exitCode = result.status || 1;
   } else {
     const expected = files(path.join(root, 'content')).sort();

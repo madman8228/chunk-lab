@@ -1050,11 +1050,14 @@ function addCourseCard(course, list){
   });
   var meta = course.contentType === 'story'
     ? (lessons.length ? '图文课程 · '+lessons.length+' 个课节' : '图文课程 · 尚未导入课节')
-    : (lessons.length > 1 ? lessons.length+'个课程' : course.itemCount+' 句');
+    : (lessons.length > 1 ? lessons.length+' 课节' : course.itemCount+' 句');
   if(course.available === false) meta += ' · 目录不可用';
+  /* 进度主单位：多课节课程以「课节」计数（16/3260 句的进度条≈0 不可见，3/65 课节才有正反馈）；
+     单课节课程直接用句数。count 不带单位（单位由 meta 头表达），句级细节放 hover tooltip */
+  var initCount = lessons.length > 1 ? '0 / '+lessons.length : '0 / '+course.itemCount;
   var coverCaption = '<span class="deck-cover-caption" contenteditable="false"><span class="deck-cover-mark" contenteditable="false">'+(window.Icons?Icons.svg('book'):'')+'</span><span class="deck-cover-label" contenteditable="false">'+esc(course.title)+'</span></span>';
   row.innerHTML = '<div class="deck-cover'+(course.id === 'builtin:idioms' ? ' other' : '')+(course.coverImage ? ' has-image' : '')+'" aria-hidden="true"><span class="deck-cover-wash"></span>'+coverCaption+'</div>'+
-    '<div class="deck-card-body"><div class="info"><div class="meta">'+esc(meta)+(lastPlayed ? ' · 最近学习' : '')+(course.contentType === 'sentence' ? ' <span class="course-progress" data-course-progress aria-label="进度计算中" title="进度计算中"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">0 / '+course.itemCount+'</span></span>' : '')+'</div></div></div>';
+    '<div class="deck-card-body"><div class="info"><div class="meta">'+esc(meta)+(lastPlayed ? ' · 最近学习' : '')+(course.contentType === 'sentence' ? ' <span class="course-progress" data-course-progress aria-label="进度计算中" title="进度计算中"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">'+initCount+'</span></span>' : '')+'</div></div></div>';
   if(course.coverImage){
     var coverImg=document.createElement('img');
     coverImg.className='deck-cover-image';
@@ -1097,12 +1100,25 @@ function courseHasActivity(course){
     return i > 0 && ids[key.slice(0, i)] && by[key] && Number(by[key].times) > 0;
   });
 }
+function courseIdleCountText(course){
+  /* 未开始/进度不可用时的静态计数：与 courseProgressText 同一主单位规则（多课节→课节数，单课节→句数），count 不带单位 */
+  var ls = CourseCatalog.listLessons(course).filter(function(l){ return l.contentRef && l.contentRef.type === 'sentence-deck'; });
+  return ls.length > 1 ? '0 / '+ls.length : '0 / '+course.itemCount;
+}
 function courseProgressText(summary){
   if(!summary || summary.status !== 'ready') return { text:'进度计算中…', cls:'', percent:0, countText:'0 / 0' };
   if(!summary.effectiveCount) return { text:'暂无可用句子', cls:'', percent:0, countText:'0 / 0' };
+  var due = summary.dueCount ? ' · 待复习 '+summary.dueCount : '';
+  /* 多课节：课节为主单位（进度条走课节完成度），句级覆盖放 tooltip 做细节 */
+  if((summary.lessonsTotal || 0) > 1){
+    var lp = summary.lessonsPracticed || 0, lt = summary.lessonsTotal;
+    var lpct = Math.max(0, Math.min(100, lp / lt * 100));
+    return { text:'已学 '+lp+' / '+lt+' 课节 · 覆盖 '+summary.practicedCount+' / '+summary.effectiveCount+' 句 · '+Math.round(lpct)+'%'+due,
+      cls:summary.dueCount ? 'is-due' : (summary.practicedCount ? 'is-active' : ''), percent:lpct,
+      countText:lp+' / '+lt };
+  }
   var pct = Math.round((summary.coverage || 0) * 100);
   var percent = Math.max(0, Math.min(100, (summary.coverage || 0) * 100));
-  var due = summary.dueCount ? ' · 待复习 '+summary.dueCount : '';
   return { text:'已覆盖 '+summary.practicedCount+' / '+summary.effectiveCount+' 句 · '+pct+'%'+due,
     cls:summary.dueCount ? 'is-due' : (summary.practicedCount ? 'is-active' : ''), percent:percent,
     countText:summary.practicedCount+' / '+summary.effectiveCount };
@@ -1122,7 +1138,7 @@ function refreshCourseCardProgress(course, row){
   var target = row.querySelector('[data-course-progress]');
   if(!target || !window.CourseProgress) return;
   if(!courseHasActivity(course)){
-    setCourseProgress(target, '尚未开始学习', '', 0, '0 / '+course.itemCount);
+    setCourseProgress(target, '尚未开始学习', '', 0, courseIdleCountText(course));
     return;
   }
   var indexesByRef = {};
@@ -1143,7 +1159,7 @@ function refreshCourseCardProgress(course, row){
     var view = courseProgressText(summary);
     setCourseProgress(target, view.text, view.cls, view.percent, view.countText);
   }).catch(function(){
-    setCourseProgress(target, '进度暂不可用', '', 0, '0 / '+course.itemCount);
+    setCourseProgress(target, '进度暂不可用', '', 0, courseIdleCountText(course));
   });
 }
 function catalogImageSrc(lesson){

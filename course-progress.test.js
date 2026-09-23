@@ -32,10 +32,13 @@ assert.equal(summary.practicedCount, 2);
 assert.equal(summary.masteredCount, 1);
 assert.equal(summary.dueCount, 1);
 assert.equal(summary.coverage, 2 / 3);
+/* 课节级：lesson a 全练完（a#1 练过、a#2 已删），lesson b 半练（b#1 练过） */
+assert.equal(summary.lessonsTotal, 2);
+assert.equal(summary.lessonsPracticed, 1);
 
 const loading = Progress.summarizeCourse(course, { mem, indexesByRef: { a: [] } });
 assert.equal(loading.status, 'loading');
 assert.equal(loading.effectiveCount, null);
 assert.equal(loading.coverage, null);
 
-console.log('course-progress.test: 10 passed / 0 failed');
+console.log('course-progress.test: 12 passed / 0 failed');

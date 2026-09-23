@@ -59,7 +59,7 @@ function stopServer() {
     if ((await oralCard.locator('.deck-card-body .meta').innerText()).indexOf('65个课程 · 3259 句') >= 0) throw new Error('课程卡片正文重复显示总句数');
     const overviewBody = await oralCard.locator('.deck-card-body').boundingBox();
     if (!overviewBody || overviewBody.height > 60) throw new Error('课程总览卡片底部空间过大：' + JSON.stringify(overviewBody));
-    if ((await oralCard.locator('[data-course-progress]').innerText()).trim() !== '0 / 3259' || await oralCard.locator('[data-course-progress]').getAttribute('aria-label') !== '尚未开始学习') throw new Error('课程卡片未显示初始进度条');
+    if ((await oralCard.locator('[data-course-progress]').innerText()).trim() !== '0 / 65' || await oralCard.locator('[data-course-progress]').getAttribute('aria-label') !== '尚未开始学习') throw new Error('课程卡片未显示初始进度条（多课节课程进度主单位=课节，count 不带单位）');
 
     /* 系统不预置逻辑课程：没有用户创建的课程时，不应凭教材元数据生成 NCE 卡片。 */
     await page.locator('#tabCourses').click();
@@ -179,9 +179,10 @@ function stopServer() {
     });
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
-    await page.waitForFunction(() => Array.from(document.querySelectorAll('[data-course-progress]')).some(function(el){ return (el.getAttribute('aria-label') || '').indexOf('已覆盖 1 / 3259 句') >= 0; }));
+    await page.waitForFunction(() => Array.from(document.querySelectorAll('[data-course-progress]')).some(function(el){ return (el.getAttribute('aria-label') || '').indexOf('覆盖 1 / 3259 句') >= 0; }));
     const progressCard = page.locator('.course-card[aria-label="打开课程 口语3000句"]').locator('[data-course-progress]');
-    if (await progressCard.getAttribute('aria-label') !== '已覆盖 1 / 3259 句 · 0%' || await progressCard.innerText() !== '1 / 3259' || await progressCard.locator('.course-progress-fill').evaluate(el => parseFloat(el.style.width) <= 0)) throw new Error('课程卡片进度条口径错误');
+    /* 课节主单位口径：练 1 句但未完成任何课节 → count '0 / 65'，句覆盖细节在 aria-label tooltip */
+    if (await progressCard.getAttribute('aria-label') !== '已学 0 / 65 课节 · 覆盖 1 / 3259 句 · 0%' || await progressCard.innerText() !== '0 / 65') throw new Error('课程卡片进度条口径错误（应为课节主单位 + 句覆盖 tooltip）');
     await oralCard.click();
     await page.waitForFunction(() => new URL(location.href).searchParams.get('course') === 'builtin:oral');
     await page.goto(BASE + '/decks.html?e2e=course-catalog', { waitUntil: 'networkidle' });
@@ -331,7 +332,7 @@ function stopServer() {
     await page.waitForFunction(() => !Array.from(document.querySelectorAll('.course-card')).some(function(el){ return el.textContent.indexOf('图文回归课程') >= 0; }));
     console.log('[course-catalog] 课程卡片、65 课节目录、URL 启动与返回通过');
   } catch (error) {
-    console.error('[course-catalog] failed:', error && error.message || error);
+    console.error('[course-catalog] failed:', error && error.stack || error.message || error);
     process.exitCode = 1;
   } finally {
     if (browser) { try { await browser.close(); } catch (e) {} }
