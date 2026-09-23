@@ -4,17 +4,31 @@ const { isDeepStrictEqual } = require('node:util');
 
 /* A skipped UPSERT is only an acknowledgement if the desired value already exists.
  * Run inside the caller's transaction so a conflict rolls back the entire batch.
- * baseRev undefined keeps the legacy protocol; null requires an absent entity. */
+ * baseRev undefined keeps the legacy protocol; null requires an absent OR
+ * unversioned entity.
+ *
+ * Root cause (F-002): the read side exposes a NULL rev verbatim
+ * (services/data-snapshot.js:39 `kvRevs[r.k] = r.rev`), and the write side persists
+ * NULL for any payload that omits `revs` (services/data-save.js:95). Three layers
+ * therefore disagreed about what NULL means: the snapshot treats it as "no
+ * version", the producer (services/batch-replacement.js:16) maps a non-integer
+ * revision back to a `null` baseline, and this guard used to read `null` as "the
+ * entity must not exist" while normalising the current revision to 0
+ * (`current.rev != null ? current.rev : 0`). An existing-but-unversioned row then
+ * failed with BASE_REV_MISMATCH and the whole account-level replacement rolled
+ * back. NULL must mean "absent or unversioned"; a row that exists with a real
+ * revision is still protected by the exact-revision check. */
 function assertRevisionAccepted(entity, id, incomingRev, deleted, value, current, baseRev) {
   const currentRev = current && current.rev != null ? current.rev : 0;
   const same = !!current && deleted === current.deleted && (deleted || isDeepStrictEqual(value, current.value));
   if (baseRev !== undefined) {
-    const matches = baseRev === null ? !current : !!current && baseRev === currentRev;
+    const matches = baseRev === null ? (!current || current.rev == null) : !!current && baseRev === currentRev;
     // Exact retries can be acknowledged after the first response was lost.
     // A larger proposed revision never bypasses a different base version.
     if (!matches && !same) {
       const error = new Error('云端已更新，请先比较双方版本，本次同步未写入');
       error.code = 'SYNC_CONFLICT';
+      error.status = 409; // Conflict with the current cloud state (routes/data.js already answers 409).
       error.conflicts = [{ entity, id, baseRev, incomingRev, currentRev,
         deleted: !current || current.deleted, reason: 'BASE_REV_MISMATCH' }];
       throw error;
@@ -25,6 +39,7 @@ function assertRevisionAccepted(entity, id, incomingRev, deleted, value, current
   if (same) return; // Idempotent retry; key ordering is immaterial.
   const error = new Error('本机与云端数据版本冲突，本次同步未写入');
   error.code = 'SYNC_CONFLICT';
+  error.status = 409; // Conflict with the current cloud revision.
   error.conflicts = [{ entity, id, incomingRev, currentRev, deleted: current.deleted }];
   throw error;
 }
@@ -34,6 +49,12 @@ function assertBatchVersion(baseSeq, currentSeq) {
   if(baseSeq === currentSeq) return;
   const error=new Error('云端在本次修改期间发生变化，本批数据未写入，请先核对双方数据');
   error.code='SYNC_CONFLICT';
+  /* BASE_SEQ_MISMATCH is the batch-level twin of BASE_REV_MISMATCH: the client
+     built the whole batch on a baseline the cloud has since moved past, i.e. a
+     conflict with the current state. routes/data.js already answers 409 for every
+     SYNC_CONFLICT, so carrying 409 here keeps the sync routes consistent instead
+     of surfacing a misleading 500. */
+  error.status=409;
   error.conflicts=[{entity:'batch',id:'data',baseSeq,currentSeq,reason:'BASE_SEQ_MISMATCH'}];
   throw error;
 }

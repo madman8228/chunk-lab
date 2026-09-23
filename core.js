@@ -2648,7 +2648,16 @@
     if(global.AccountStorage && global.AccountStorage.storage.getItem('chunklab.restore-cloud-hold')){
       global.AccountStorage.storage.removeItem('chunklab.restore-cloud-hold');
     }
-    _lastSyncMeta=null; _dirty=false; rememberSyncConflict(null); notifySync();
+    /* Keep the confirmed baseline for the next ordinary push. `adoptConfirmedBatchSnapshot`
+       above already rebuilt _prevSnap / _coursesSnap / _progressSnap and saved the
+       snapshot's revs, so the very next cloudSyncNow must reuse those revs instead of
+       starting from an empty one. Nulling _lastSyncMeta (as before) made that push send
+       an empty revs.kv / revs.decks, and the server persisted rev = NULL for every kv key
+       it carried (services/data-save.js:95) — re-arming the exact unversioned state that
+       caused F-002 and leaving the conditional guard permanently degraded. */
+    var _snapRevs = (receipt.snapshot && receipt.snapshot.revs) || {};
+    _lastSyncMeta = { revs: { decks: _snapRevs.decks || {}, kv: _snapRevs.kv || {} }, deleted: { decks: [], kv: [] } };
+    _dirty=false; rememberSyncConflict(null); notifySync();
     emit('syncResolved',{entity:'batch',id:receipt.requestId,choice:receipt.choice});
   }
   async function applySyncResolution(receipt, original){
