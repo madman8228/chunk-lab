@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="bDvWu4hudbrxQGlWPhIgtC" data-dm-ref="2" style=""><head data-page-node-id="aBOeWUvKtNCVccqhsV15lh">
+<meta charset="utf-8" data-page-node-id="c876a7AhKwAAP0gA4TqKS2">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="6DJ77FZ4QNiWzE10FWvjG2">
+<title>jqka.top — 英语学习站 | 从 Jack 到 Ace</title>
+<meta name="description" content="jqka.top 英语学习站：J·Q·K·A 四张牌，Join → Question → Knowledge → Ace。卡通插画风英语学习乐园。" data-page-node-id="Oav8mc6Z7XzFGb30KHa87c">
+<style>
+:root{
+  /* 天空 */
+  --sky-1:#4FB6E8; --sky-2:#7ED0F0; --sky-3:#C6ECF9; --sky-4:#EAF7FE;
+  /* 绿地 */
+  --hill-1:#8CD35C; --hill-2:#6EC24B; --hill-3:#4FA32F; --hill-4:#3C8523;
+  /* 木牌 */
+  --wood-1:#FFDD7A; --wood-2:#F6C544; --wood-3:#DFA72C; --wood-4:#C98C1E;
+  /* 描边（统一深棕） */
+  --line:#4A2A12; --line-2:#6B3E1E; --line-3:#8A5A2E;
+  /* 纸 */
+  --cream:#FFF7E6; --paper:#FFFDF7; --paper-2:#FFF3D6;
+  /* 强调 */
+  --yellow:#FFD93B; --yellow-d:#F0B71C;
+  --red:#E8503F; --red-d:#C93A2A;
+  --green:#4CAF50; --leaf:#58B843; --leaf-d:#3E9A2E;
+  --blue:#3B7DD8; --water:#63CBE0; --pink:#F47C8C;
+  /* 文字 */
+  --ink:#3A2412; --ink-2:#7C6349; --ink-3:#A08A70;
+  --sans:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --round:"Comic Sans MS","Segoe UI Rounded","Segoe UI",sans-serif;
+  --sh:0 6px 0 rgba(74,42,18,.22);
+  --sh-lg:0 12px 0 rgba(74,42,18,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  font-family:var(--sans); color:var(--ink); line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  background:linear-gradient(#C6ECF9 0,#EAF7FE 26%,#FFFDF7 46%,#FFFDF7 100%);
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.deco{position:absolute;pointer-events:none;z-index:0}
+
+/* ---------- 通用“卡通风”组件 ---------- */
+.panel{
+  background:var(--paper); border:4px solid var(--line); border-radius:22px;
+  box-shadow:0 7px 0 rgba(74,42,18,.18);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:800;
+  padding:13px 24px;border-radius:999px;border:4px solid var(--line);cursor:pointer;
+  background:var(--yellow);color:var(--line);box-shadow:0 5px 0 var(--line);
+  transition:transform .12s,box-shadow .12s,background .16s;white-space:nowrap;
+}
+.btn:hover{background:#FFE470}
+.btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--line)}
+.btn svg{width:18px;height:18px;flex:0 0 18px}
+.btn-white{background:var(--paper)}
+.btn-white:hover{background:#FFF4DE}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#F06552}
+
+.sec{padding:56px 0;position:relative;overflow:hidden}
+.eyebrow{
+  display:inline-block;font-family:var(--round);font-size:13px;font-weight:700;letter-spacing:.08em;
+  background:var(--yellow);border:3px solid var(--line);border-radius:999px;padding:5px 14px;
+  color:var(--line);box-shadow:0 3px 0 rgba(74,42,18,.25);
+}
+h2.sec-t{
+  font-size:clamp(27px,4vw,42px);font-weight:900;letter-spacing:-.01em;margin:16px 0 10px;
+  color:var(--line);line-height:1.2;
+}
+h2.sec-t .hl{
+  background:linear-gradient(transparent 58%,var(--yellow) 58%,var(--yellow) 92%,transparent 92%);
+  padding:0 4px;
+}
+.sec-d{color:var(--ink-2);max-width:640px;font-size:15.5px;font-weight:500}
+
+/* ================= NAV ================= */
+nav{position:sticky;top:0;z-index:90;padding:12px 0;
+  background:linear-gradient(#8FD8F2,rgba(143,216,242,0));}
+.nav-in{
+  max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:16px;
+  background:var(--paper);border:4px solid var(--line);border-radius:18px;
+  box-shadow:0 5px 0 rgba(74,42,18,.22);
+}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--round);font-size:20px;
+  font-weight:900;letter-spacing:.01em;color:var(--line)}
+.logo .chip{
+  width:30px;height:30px;flex:0 0 30px;border-radius:9px;background:var(--red);
+  border:3px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:#fff;font-weight:900;box-shadow:0 2px 0 rgba(74,42,18,.35);
+}
+.logo .tld{color:var(--red)}
+.nav-links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{
+  font-size:14px;font-weight:700;color:var(--ink-2);padding:8px 14px;border-radius:999px;
+  border:3px solid transparent;transition:.16s;
+}
+.nav-links a:hover{color:var(--line);background:var(--paper-2);border-color:var(--line)}
+.nav-links a.go{background:var(--red);color:#fff;border-color:var(--line)}
+.nav-links a.go:hover{background:#F06552;color:#fff}
+
+/* ================= HERO ================= */
+.hero{position:relative;padding:26px 0 0;overflow:hidden}
+.scene{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 22px;text-align:center}
+
+.signboard{width:min(940px,100%);margin:0 auto;filter:drop-shadow(0 10px 0 rgba(74,42,18,.28))}
+.hand{display:flex;justify-content:center;gap:16px;margin:30px 0 0;perspective:1400px}
+.card{
+  width:108px;height:156px;position:relative;cursor:pointer;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  animation:deal .7s cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes deal{from{transform:translate3d(340px,-180px,-460px) rotateY(150deg) rotateZ(30deg);opacity:0}}
+.card:nth-child(1){animation-delay:.05s}
+.card:nth-child(2){animation-delay:.18s}
+.card:nth-child(3){animation-delay:.31s}
+.card:nth-child(4){animation-delay:.44s}
+.face{
+  position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;
+  border:4px solid var(--line);box-shadow:0 5px 0 rgba(74,42,18,.3);
+}
+/* 牌面：标准扑克布局 —— 左上 / 右下双角标（右下旋转 180°）+ 中央大花色 */
+.front{background:linear-gradient(158deg,#FFFFFF,#F2F5F9)}
+.corner{position:absolute;display:flex;flex-direction:column;align-items:center;line-height:1}
+.corner .cr{font-family:var(--round);font-size:27px;font-weight:900;line-height:.88}
+.corner .cs{display:block;width:15px;height:15px;margin-top:2px}
+.corner.tl{left:8px;top:6px}
+.corner.br{right:8px;bottom:6px;transform:rotate(180deg)}
+.front .pip{position:absolute;left:50%;top:50%;width:52px;height:52px;
+  transform:translate(-50%,-53%)}
+.card.r .front .cr{color:var(--red)}
+.card.k .front .cr{color:#232B3A}
+.card.r .front .cs,.card.r .front .pip{fill:var(--red)}
+.card.k .front .cs,.card.k .front .pip{fill:#232B3A}
+.back{
+  transform:rotateY(180deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  background:
+    repeating-linear-gradient(48deg,rgba(255,255,255,.16) 0 5px,transparent 5px 11px),
+    linear-gradient(158deg,var(--red),#A3201A);
+}
+.back .mark{font-family:var(--round);font-size:13px;font-weight:900;letter-spacing:.1em;color:#fff}
+.back .zh{font-size:11px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.88)}
+.card:hover{transform:translateY(-13px) rotateZ(-2deg)}
+.card.flipped{transform:rotateY(180deg)}
+.card.flipped:hover{transform:rotateY(180deg) translateY(-13px)}
+.card.hot{transform:translateY(-17px) scale(1.06)}
+.card.hot.flipped{transform:rotateY(180deg) translateY(-17px) scale(1.06)}
+.card.hot .face{box-shadow:0 0 0 4px var(--yellow),0 8px 0 rgba(74,42,18,.3)}
+
+.hero-copy{position:relative;display:inline-block;margin-top:26px}
+.tagline{
+  font-size:clamp(16px,2.2vw,20px);font-weight:800;color:var(--line);
+  background:var(--paper);border:4px solid var(--line);border-radius:999px;padding:10px 24px;
+  box-shadow:0 5px 0 rgba(74,42,18,.2);display:inline-block;
+}
+.tagline em{font-style:normal;color:var(--red)}
+.sub{margin:16px auto 0;color:var(--ink);font-size:15.5px;max-width:740px;font-weight:600;
+  background:var(--paper);border:4px solid var(--line);border-radius:18px;padding:14px 22px;
+  box-shadow:0 5px 0 rgba(74,42,18,.18)}
+.sub b{color:var(--red)}
+.hero-cta{margin:24px 0 0;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-bottom{height:132px}
+
+/* ================= 双关释义 ================= */
+.pun{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px;position:relative;z-index:2}
+.pun-item{
+  background:var(--paper);border:4px solid var(--line);border-radius:20px;padding:22px 18px;
+  box-shadow:0 7px 0 rgba(74,42,18,.18);transition:.18s;position:relative;
+}
+.pun-item:hover{transform:translateY(-6px);box-shadow:0 13px 0 rgba(74,42,18,.18)}
+.pun-item .badge{
+  width:52px;height:52px;border-radius:14px;border:4px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--round);font-size:28px;font-weight:900;color:#fff;
+  box-shadow:0 4px 0 rgba(74,42,18,.3);
+}
+.pun-item:nth-child(1) .badge{background:var(--red)}
+.pun-item:nth-child(2) .badge{background:#F06552}
+.pun-item:nth-child(3) .badge{background:var(--yellow-d)}
+.pun-item:nth-child(4) .badge{background:var(--leaf)}
+.pun-item .card-name{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:800;margin-top:14px}
+.pun-item .verb{font-family:var(--round);font-size:21px;font-weight:900;color:var(--line);line-height:1.25}
+.pun-item .verb em{font-style:normal;color:var(--red)}
+.pun-item .phon{font-size:12.5px;color:var(--ink-3);font-style:italic}
+.pun-item p{font-size:13.5px;color:var(--ink-2);margin-top:8px;font-weight:500}
+
+.anchors{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;position:relative;z-index:2}
+.anchor{background:var(--paper-2);border:4px solid var(--line);border-radius:20px;padding:22px;
+  box-shadow:0 7px 0 rgba(74,42,18,.16)}
+.anchor .ic{width:46px;height:46px;border-radius:13px;background:#fff;border:4px solid var(--line);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  box-shadow:0 4px 0 rgba(74,42,18,.22)}
+.anchor .ic svg{width:22px;height:22px;stroke:var(--red);fill:none;stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round}
+.anchor h3{font-size:17px;font-weight:900;color:var(--line)}
+.anchor p{font-size:13.5px;color:var(--ink-2);margin-top:6px;font-weight:500}
+
+/* ================= 词卡 ================= */
+.deck-head{position:relative;z-index:2}
+.tabs{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;position:relative;z-index:2}
+.tab{
+  font:inherit;font-size:14.5px;font-weight:800;padding:10px 18px;border-radius:999px;cursor:pointer;
+  background:var(--paper);color:var(--ink-2);border:4px solid var(--line);
+  box-shadow:0 4px 0 rgba(74,42,18,.2);transition:.14s;display:inline-flex;align-items:center;gap:9px;
+}
+.tab:hover{transform:translateY(-3px);box-shadow:0 7px 0 rgba(74,42,18,.2)}
+.tab .sw{width:11px;height:11px;border-radius:50%;background:var(--ink-3);border:2px solid var(--line)}
+.tab[aria-selected="true"]{background:var(--yellow);color:var(--line)}
+.tab[aria-selected="true"] .sw{background:var(--red)}
+.ftabs{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;position:relative;z-index:2}
+.ftab{
+  font:inherit;font-size:13px;font-weight:800;padding:6px 14px;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--ink-3);border:3px solid var(--line);transition:.14s;
+}
+.ftab:hover{color:var(--ink-2);border-color:var(--ink-3)}
+.ftab[aria-pressed="true"]{background:var(--red);color:#fff;border-color:var(--line)}
+.empty-hint{grid-column:1/-1;text-align:center;padding:36px 0;font-weight:800;color:var(--ink-3)}
+/* ---------- 我的词库 ---------- */
+.lib-sum{margin-top:10px;font-weight:800;color:var(--ink-2);font-size:14.5px}
+.lib-group{margin-top:26px}
+.lib-rt{font-family:var(--round);font-weight:900;font-size:17px;letter-spacing:.02em}
+.lib-rt span{opacity:.6;font-weight:700;font-size:13px;margin-left:8px}
+.lib-item{display:flex;align-items:center;gap:14px;padding:11px 4px;border-bottom:2px solid rgba(74,42,18,.08);cursor:pointer}
+.lib-item:hover .li-w{color:var(--red)}
+.li-w{font-family:var(--round);font-weight:900;font-size:16.5px;min-width:32%}
+.li-cn{flex:1;color:var(--ink-2);font-weight:600;font-size:13.5px}
+.li-st{font:inherit;font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px;border:3px solid var(--line);cursor:pointer;flex-shrink:0;transition:.14s}
+.li-st.s1{background:var(--yellow);color:var(--line)}
+.li-st.s2{background:#3E9A2E;color:#fff}
+.lib-empty{margin-top:30px;padding:34px 26px;border:3px dashed var(--line);border-radius:18px;font-weight:800;color:var(--ink-3);text-align:center}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;position:relative;z-index:2}
+.fc{height:210px;perspective:1200px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:14px;
+  display:flex;flex-direction:column;border:4px solid var(--line);
+  background:var(--paper);box-shadow:0 6px 0 rgba(74,42,18,.2);transition:box-shadow .16s;
+}
+.fc:hover .fc-f{box-shadow:0 11px 0 rgba(74,42,18,.2)}
+.fc-front{justify-content:center;align-items:center;text-align:center}
+.fc-front .tags{position:absolute;right:15px;top:12px;display:flex;align-items:center;gap:7px}
+.fc-front .lv{font-family:var(--round);font-size:11.5px;
+  font-weight:900;color:#fff;border:3px solid var(--line);border-radius:999px;
+  padding:2px 10px;letter-spacing:.05em;box-shadow:0 2px 0 rgba(74,42,18,.28);white-space:nowrap}
+.fc-front .w{font-family:var(--round);font-size:35px;font-weight:900;letter-spacing:-.01em;
+  color:var(--line);line-height:1.15}
+.fc-front .ph{font-size:14px;color:var(--red);font-weight:700;margin-top:3px}
+.fc-front .w.is-phrase{font-size:23px;line-height:1.25;padding:0 6px}
+.fc-front .hint{font-size:12px;color:var(--ink-3);position:absolute;left:18px;bottom:15px;
+  display:flex;align-items:center;gap:7px;font-weight:700}
+.fc-front .hint svg{width:13px;height:13px;stroke:var(--ink-3);fill:none;stroke-width:2.6}
+.fc-front .master{font:inherit;font-size:11px;font-weight:800;
+  letter-spacing:.04em;color:var(--ink-2);background:var(--paper-2);border:2.5px solid var(--line-3);
+  border-radius:999px;padding:2px 9px;cursor:pointer;box-shadow:0 2px 0 rgba(74,42,18,.22);
+  transition:background .15s,color .15s,transform .1s}
+.fc-front .master:hover{background:var(--yellow)}
+.fc-front .master:active{transform:translateY(2px);box-shadow:0 0 0 rgba(74,42,18,.22)}
+.fc-front .master.on{background:var(--leaf);border-color:var(--leaf-d);color:#fff}
+.fc-back{transform:rotateY(180deg);background:var(--paper-2)}
+.fc-back .meta{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--red)}
+.fc-back .cn{font-size:18px;font-weight:900;color:var(--line);line-height:1.22}
+.fc-back .col{font-size:12.5px;font-weight:800;color:var(--line);margin-top:7px;
+  background:#fff;border:3px solid var(--line);border-radius:9px;padding:2px 10px;
+  display:inline-block;box-shadow:0 2px 0 rgba(74,42,18,.16);line-height:1.3}
+.fc-back .eg{font-size:12.5px;color:var(--ink);margin-top:7px;font-weight:600;line-height:1.38}
+.fc-back .eg-zh{font-size:12px;color:var(--ink-2);margin-top:2px;font-weight:500}
+.fc-back .tip{font-size:11.5px;color:var(--red-d);font-weight:700;margin-top:4px}
+.spk{
+  margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font:inherit;
+  font-size:12.5px;font-weight:800;padding:6px 14px;border-radius:999px;cursor:pointer;
+  background:var(--red);color:#fff;border:3px solid var(--line);
+  box-shadow:0 3px 0 var(--line);transition:.12s;
+}
+.spk:hover{background:#F06552}
+.spk:active{transform:translateY(3px);box-shadow:0 0 0 var(--line)}
+.spk svg{width:15px;height:15px;fill:#fff}
+.deck-foot{margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:relative;z-index:2}
+.deck-note{font-size:13px;color:var(--ink-2);font-weight:700;background:var(--paper-2);
+  border:3px solid var(--line);border-radius:999px;padding:7px 15px}
+
+/* ================= 路径 ================= */
+.path{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:2}
+.step{
+  background:var(--paper);border:4px solid var(--line);border-radius:20px;padding:22px 18px;
+  box-shadow:0 7px 0 rgba(74,42,18,.18);transition:.18s;
+}
+.step:hover{transform:translateY(-6px)}
+.step:nth-child(1){margin-top:54px}
+.step:nth-child(2){margin-top:36px}
+.step:nth-child(3){margin-top:18px}
+.step .n{font-family:var(--round);font-size:12px;font-weight:900;letter-spacing:.1em;color:#fff;
+  background:var(--line-2);display:inline-block;padding:3px 11px;border-radius:999px}
+.step .t{font-family:var(--round);font-size:27px;font-weight:900;margin-top:10px;color:var(--line)}
+.step:nth-child(1) .t{color:var(--red)}
+.step:nth-child(4) .t{color:var(--leaf-d)}
+.step .lv{font-size:13px;color:var(--ink-2);font-weight:800;margin-top:2px}
+.step p{font-size:13.5px;color:var(--ink-2);margin-top:9px;font-weight:500}
+.step .goal{margin-top:13px;font-size:12px;font-weight:800;color:var(--line);
+  background:var(--yellow);border:3px solid var(--line);display:inline-block;padding:4px 11px;
+  border-radius:999px;box-shadow:0 3px 0 rgba(74,42,18,.22)}
+
+/* ================= 学科 ================= */
+#subjects{padding:30px 0}
+.subj{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px;position:relative;z-index:2}
+.sb{background:var(--paper);border:4px solid var(--line);border-radius:20px;padding:20px;
+  box-shadow:0 7px 0 rgba(74,42,18,.18);transition:.18s}
+.sb:hover{transform:translateY(-6px)}
+.sb.on{background:linear-gradient(160deg,#EAF9DC,var(--paper))}
+.sb .row{display:flex;align-items:center;gap:10px}
+.sb .row svg{width:20px;height:20px;stroke:var(--ink-2);fill:none;stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round}
+.sb.on .row svg{stroke:var(--leaf-d)}
+.sb h4{font-size:16px;font-weight:900;color:var(--line)}
+.sb p{font-size:13px;color:var(--ink-2);margin-top:7px;font-weight:500}
+.sb .st{display:inline-block;margin-top:12px;font-size:11.5px;font-weight:800;padding:4px 12px;
+  border-radius:999px;background:var(--paper-2);color:var(--ink-2);border:3px solid var(--line)}
+.sb.on .st{background:var(--green);color:#fff}
+.sb.soon{display:flex;align-items:center;justify-content:center}
+.sb.soon .wait{font-size:15px;font-weight:800;color:var(--ink-3);letter-spacing:.18em}
+
+/* ================= FOOTER ================= */
+footer{position:relative;padding:0 0 34px;overflow:hidden}
+.foot-grass{display:block;width:100%;height:auto;margin-bottom:-6px}
+.foot-in{position:relative;z-index:2;text-align:center;padding-top:8px}
+.chant{font-size:clamp(24px,4.4vw,42px);font-weight:900;color:var(--line);letter-spacing:-.01em}
+.chant .a{color:var(--red)}
+.dom{margin-top:14px;display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--round);font-size:26px;font-weight:900;color:var(--line);
+  background:var(--wood-2);border:4px solid var(--line);border-radius:999px;padding:8px 26px;
+  box-shadow:0 6px 0 rgba(74,42,18,.3)}
+.dom .tld{color:var(--red)}
+.fine{margin-top:16px;font-size:13.5px;color:var(--ink-2);font-weight:600}
+
+/* ================= 响应式 ================= */
+@media(max-width:1440px){.deco{transform:scale(.82)}}
+@media(max-width:1180px){.deco{display:none}}
+@media(max-width:900px){
+  .pun,.anchors,.path,.subj{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .step:nth-child(n){margin-top:0}
+  .sec{padding:44px 0}
+}
+@media(max-width:620px){
+  .pun,.anchors,.subj{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .hand{gap:9px}
+  .card{width:76px;height:112px}
+  .corner .cr{font-size:19px}
+  .corner .cs{width:11px;height:11px;margin-top:1px}
+  .corner.tl{left:5px;top:4px}
+  .corner.br{right:5px;bottom:4px}
+  .front .pip{width:36px;height:36px}
+  .nav-links{display:none}
+  .hero-inner{padding:0 16px}
+  .tagline{font-size:15px;padding:9px 16px}
+  .sub{font-size:14px;padding:12px 14px}
+  .hero-bottom{height:70px}
+  .signboard{width:106%;margin-left:-3%}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
+<body data-page-node-id="hxcOjzA2HoE41Xa9m51Whq" style="position: relative;">
+
+<!-- ===== 可复用插画素材 ===== -->
+<svg width="0" height="0" style="position: absolute;" aria-hidden="true" data-page-node-id="Jk19CChQ8f1b3x6vhRmged">
+  <defs data-page-node-id="7GgXsFoG9nKDGNRt0IYoCY">
+    <linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1" data-page-node-id="6uaug8H3P8AUhvOC05b9aY">
+      <stop offset="0" stop-color="#4FB6E8" data-page-node-id="TIwomZ8sCBdyaHCcPOQyxe"></stop><stop offset="58%" stop-color="#7ED0F0" data-page-node-id="oLCIK4IdZzFPYq1VnCGu9q"></stop><stop offset="100%" stop-color="#C6ECF9" data-page-node-id="UEi5OZMF9iA3Yv3TUmxvQk"></stop>
+    </linearGradient>
+    <linearGradient id="g-lake" x1="0" y1="0" x2="0" y2="1" data-page-node-id="XFebz9Hx5Ek3YQTOKon053">
+      <stop offset="0" stop-color="#9AE6EF" data-page-node-id="NekCSXKAWaY62Znl4WJB1j"></stop><stop offset="100%" stop-color="#4FBED8" data-page-node-id="dXa1JBUJa8yiNyOJsbaN18"></stop>
+    </linearGradient>
+    <radialGradient id="g-sun" cx=".5" cy=".5" r=".5" data-page-node-id="QglUQUi7MdFczrLn75x2pC">
+      <stop offset="0" stop-color="#FFF3B0" stop-opacity=".95" data-page-node-id="OOOkoUH9uGYOdQVPIiePjp"></stop><stop offset="100%" stop-color="#FFF3B0" stop-opacity="0" data-page-node-id="ee3lBWWBJ9N1qLwLhVBPB6"></stop>
+    </radialGradient>
+    <linearGradient id="g-wood" x1="0" y1="0" x2="0" y2="1" data-page-node-id="fhyI7A0C3S1GWnG5A4lyUE">
+      <stop offset="0" stop-color="#FFDD7A" data-page-node-id="dgBcL6TqUacrPeOYQY85Kg"></stop><stop offset="46%" stop-color="#F6C544" data-page-node-id="fPttpYfDiA79yF33umODUD"></stop><stop offset="100%" stop-color="#DFA72C" data-page-node-id="toEvgB6esUvDwYkLTVmNly"></stop>
+    </linearGradient>
+    <!-- 扑克四花色（牌面角标 + 中央大花色复用） -->
+    <g id="su-spade" data-page-node-id="SZi0Md9Z0ZJw7DkbOmp52J">
+      <path d="M12 2l8 12c0 3-2 5.5-4.5 5.5C14 19.5 12.7 18.6 12 17.5 11.3 18.6 10 19.5 8.5 19.5 6 19.5 4 17 4 14z" data-page-node-id="BW8jiBzEcbnZPueaW3L3vi"></path>
+      <path d="M10.8 17L9.2 22h5.6l-1.6-5z" data-page-node-id="RfnZlbcRyo59XkclPUYTZa"></path>
+    </g>
+    <g id="su-heart" data-page-node-id="6MW27iyhGoeeEIYbTzntMo">
+      <path d="M12 21S3 14.5 3 9c0-3 2.2-5 4.8-5C9.6 4 11 5 12 6.5 13 5 14.4 4 16.2 4 18.8 4 21 6 21 9c0 5.5-9 12-9 12z" data-page-node-id="hB9bdWnpqoTCyfJtJqKNXb"></path>
+    </g>
+    <g id="su-club" data-page-node-id="7GlTTteApqXd8ncyCrTw2o">
+      <circle cx="12" cy="7.5" r="4.5" data-page-node-id="IxNqvPcYDudtrFOmVWH1En"></circle><circle cx="7.6" cy="13.5" r="4.5" data-page-node-id="v3Cfy2KIZ7oeHRtJcoYErR"></circle><circle cx="16.4" cy="13.5" r="4.5" data-page-node-id="7wqfHeNWAXbDOX97qAPayN"></circle>
+      <path d="M12 10c-.8 3-1.9 6-3 11h6c-1.1-5-2.2-8-3-11z" data-page-node-id="uMZzxw8Imt7Y1e1bDa9teC"></path>
+    </g>
+    <g id="su-diamond" data-page-node-id="tBgcA5MceyLWyoH1HMhqDz">
+      <path d="M12 2l9 10-9 10-9-10z" data-page-node-id="2gZ9GyPJAST1HotBLNGoyA"></path>
+    </g>
+    <!-- 云 -->
+    <g id="d-cloud" data-page-node-id="XIqWFBaELYxDfWfVqjEc6C">
+      <path d="M20 60c-11 0-20-8-20-18s9-18 20-18c3-13 15-22 28-22 12 0 22 7 26 17 3-2 7-3 11-3 12 0 21 9 21 20 0 1 0 2-.3 3H38c-9 0-16 5-18 12H20z" fill="#fff" data-page-node-id="T5ZJDuxD4Sj4DhAoCBKmsC"></path>
+    </g>
+    <!-- 黄感叹号 -->
+    <g id="d-exclaim" stroke-linejoin="round" data-page-node-id="Hq3O0j5gUC2BPj58XkuJfS">
+      <path d="M14 4l10 22-13 5L10 9z" fill="#FFD93B" stroke="#4A2A12" stroke-width="4" data-page-node-id="mlmH8WerY5UtdqyCnqp7Xv"></path>
+      <path d="M40 0l6 26-14 1L32 3z" fill="#FFE24A" stroke="#4A2A12" stroke-width="4" data-page-node-id="arPpIK6GNSCeS01CvOmiBp"></path>
+      <path d="M64 8l1 24-13-2L52 7z" fill="#FFD93B" stroke="#4A2A12" stroke-width="4" data-page-node-id="1Q9XVHxz5EjBNnLjdQjk8z"></path>
+    </g>
+    <!-- 对话气泡 -->
+    <g id="d-bubble" data-page-node-id="DnZGmHZc96cAael4Ij4fQv">
+      <path d="M8 6h84c5 0 9 4 9 9v42c0 5-4 9-9 9H46l-16 15 2-15H8c-5 0-9-4-9-9V15c0-5 4-9 9-9z" fill="#fff" stroke="#4A2A12" stroke-width="5" stroke-linejoin="round" data-page-node-id="k5E10dz1IELswGzqAnLB0T"></path>
+      <circle cx="26" cy="36" r="5" fill="#4FB6E8" data-page-node-id="h8DHt5tk3UR4hoj750dNmm"></circle>
+      <circle cx="50" cy="36" r="5" fill="#4FB6E8" data-page-node-id="FXtBGRFGR6iadz3NqhByym"></circle>
+      <circle cx="74" cy="36" r="5" fill="#4FB6E8" data-page-node-id="Yl99gjSAOYIT7DPV61ODIm"></circle>
+    </g>
+    <!-- 书本 -->
+    <g id="d-books" stroke="#4A2A12" stroke-width="5" stroke-linejoin="round" data-page-node-id="KoiP01LybX4cGQKs88IYon">
+      <rect x="4" y="52" width="104" height="30" rx="7" fill="#3B7DD8" data-page-node-id="jMYwn1hoYnldVjT0rfEIVY"></rect>
+      <rect x="4" y="24" width="118" height="30" rx="7" fill="#E8503F" data-page-node-id="8oy0DChYsYsg535RsEp851"></rect>
+      <path d="M14 24v30M14 52v30" stroke-width="4" opacity=".55" data-page-node-id="2UEH1lF3s0jENT5t4DfFyD"></path>
+      <path d="M18 34h34M18 62h30" stroke="#fff" stroke-width="4" opacity=".65" stroke-linecap="round" data-page-node-id="IzuZhXhV1GOgmG7GsF3i0m"></path>
+    </g>
+    <!-- 铅笔 -->
+    <g id="d-pencil" stroke="#4A2A12" stroke-width="5" stroke-linejoin="round" data-page-node-id="Q6gKLdjznZyJ7EAmupZ3rl">
+      <path d="M34 6h26v86H34z" fill="#FFD93B" data-page-node-id="n5c8CaCFpIcARn3BKUAfPD"></path>
+      <path d="M34 92h26l-13 20z" fill="#F5D9A8" data-page-node-id="SGdoDLxVibvP2a0nRItHui"></path>
+      <path d="M41 104l6 8 6-8z" fill="#4A2A12" stroke-width="0" data-page-node-id="mtlk6ElRgBCMt2BKQrY6Ep"></path>
+      <path d="M34 6h26v11H34z" fill="#E8503F" data-page-node-id="pyUqFruC0CawDDSar5uFmx"></path>
+    </g>
+    <!-- 绿植 -->
+    <g id="d-plant" data-page-node-id="WYNEmqdnlO176sQbxvmEfE">
+      <path d="M40 118c-22 0-40-16-40-36s18-36 40-36c4 0 7 .4 10 1.2C55 30 71 20 90 20c25 0 46 19 46 42 0 8-2 15-7 21 8 4 13 12 13 21 0 8-3 14-8 14z" fill="#58B843" stroke="#4A2A12" stroke-width="5" stroke-linejoin="round" data-page-node-id="Tz0JyiBN5raAdmgqn5U168"></path>
+      <path d="M28 96c10-14 30-20 48-16M92 44c-12 6-20 18-22 32" stroke="#3E9A2E" stroke-width="5" fill="none" stroke-linecap="round" data-page-node-id="MSHEoryZsFufRT8cD6EQBQ"></path>
+    </g>
+    <!-- 小花 -->
+    <g id="d-flower" data-page-node-id="ebgDChuQrq034qJgiQ44KA">
+      <circle cx="20" cy="8" r="8" fill="#F47C8C" data-page-node-id="1qf3X6YON2nV0M5BI0MzLE"></circle><circle cx="34" cy="16" r="8" fill="#F47C8C" data-page-node-id="EsrhRqUOiMq8SnF6WM76v0"></circle>
+      <circle cx="28" cy="31" r="8" fill="#F47C8C" data-page-node-id="1XNYC4ttXl0NdLT20wChGl"></circle><circle cx="11" cy="30" r="8" fill="#F47C8C" data-page-node-id="7GNssEWH1og7o9CTiL8LOZ"></circle>
+      <circle cx="6" cy="15" r="8" fill="#F47C8C" data-page-node-id="7HBNEoW9xmHqdiqb3Kv16l"></circle><circle cx="20" cy="20" r="7" fill="#FFD93B" data-page-node-id="5vDLw3UHiUCQw189Sp6EKO"></circle>
+    </g>
+    <!-- 手机 + 消息 -->
+    <g id="d-phone" stroke="#4A2A12" stroke-width="5" stroke-linejoin="round" data-page-node-id="F2YNvpFAlOsltUWw8lTyFM">
+      <rect x="6" y="4" width="76" height="128" rx="12" fill="#4A5A73" data-page-node-id="AMKSooDYdxCzR8N93FOGG6"></rect>
+      <rect x="13" y="14" width="62" height="108" rx="7" fill="#EAF7FE" data-page-node-id="YlvzeAh6q6zrCCCI3EO76c"></rect>
+      <rect x="20" y="30" width="40" height="14" rx="7" fill="#7BD389" data-page-node-id="5o7GaNJ7zufkdDN7HNDuwo"></rect>
+      <rect x="28" y="52" width="40" height="14" rx="7" fill="#7BD389" data-page-node-id="msihzuNxY0IFJ7dp0thVJA"></rect>
+      <rect x="20" y="74" width="34" height="14" rx="7" fill="#C9D6E4" data-page-node-id="gcj37WfuMKDqn7KHU18CHB"></rect>
+    </g>
+    <!-- 木牌材质：分层打光 / 奶油字渐变 / 铆钉金属 / 文字立体投影 -->
+    <linearGradient id="g-board" x1="0" y1="0" x2="0.16" y2="1" data-page-node-id="ojFWFQpDhXDrzXEA2IBUmh">
+      <stop offset="0" stop-color="#FFEBAB" data-page-node-id="QGOVjGsxF0FF5CkoFxDVqR"></stop>
+      <stop offset="24%" stop-color="#F9CD57" data-page-node-id="58KZLi8DpIh5deE2TpqBBh"></stop>
+      <stop offset="66%" stop-color="#EFB733" data-page-node-id="WCnvCopSp8JdsnmjxOHVO0"></stop>
+      <stop offset="100%" stop-color="#D2921C" data-page-node-id="4FnsBPIKXMIxzBk3IFumu0"></stop>
+    </linearGradient>
+    <linearGradient id="g-board-shade" x1="0" y1="0" x2="0" y2="1" data-page-node-id="pccXTzd5GH9RbNNRWjLhdh">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".44" data-page-node-id="kKJFDLmhVLOYCEOOLMCJHY"></stop>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0" data-page-node-id="ZNRMF9WJzZ9KKk5IkC53Ut"></stop>
+      <stop offset="72%" stop-color="#8A5A16" stop-opacity="0" data-page-node-id="CDkII3tECRI9EhurA0Z5TS"></stop>
+      <stop offset="100%" stop-color="#8A5A16" stop-opacity=".36" data-page-node-id="iG1eGTxgisho35Kx7KUsCL"></stop>
+    </linearGradient>
+    <linearGradient id="g-cream" x1="0" y1="0" x2="0" y2="1" data-page-node-id="TT8Ay62E379zApb2VvLz79">
+      <stop offset="0" stop-color="#FFFFFC" data-page-node-id="XGEDw2fKeztCZkMi3FQYBP"></stop>
+      <stop offset="46%" stop-color="#FFF8E6" data-page-node-id="FBnYtMq5xFBDhy3MsYmvCB"></stop>
+      <stop offset="100%" stop-color="#F7E8C8" data-page-node-id="ffJeOvrS9xiwSZ5JVAPq38"></stop>
+    </linearGradient>
+    <radialGradient id="g-rivet" cx="0.34" cy="0.28" r="0.9" data-page-node-id="6SA24b3Bd3OuHDavAQgRVT">
+      <stop offset="0" stop-color="#EFC68E" data-page-node-id="1VIOJXHwNBKlVdCQJqs7Ho"></stop>
+      <stop offset="42%" stop-color="#A9713A" data-page-node-id="0poEsPizuIl0Dla74MnOpE"></stop>
+      <stop offset="100%" stop-color="#57300F" data-page-node-id="UrYARlGnk0fva6tap1waYI"></stop>
+    </radialGradient>
+    <filter id="f-textlift" x="-18%" y="-18%" width="136%" height="152%" data-page-node-id="VZ8LfHE4VbLu7cPmiDHDLx">
+      <feDropShadow dx="0" dy="9" stdDeviation="0" flood-color="#3B2210" flood-opacity=".5" data-page-node-id="mGanrDLfdhUkZ8DeCrW1ch"></feDropShadow>
+    </filter>
+    <!-- 文字描边工具滤镜 -->
+    <filter id="f-lift" x="-20%" y="-20%" width="140%" height="150%" data-page-node-id="1uvIb46GqZT6m3mxz83Sv1">
+      <feDropShadow dx="0" dy="7" stdDeviation="0" flood-color="#4A2A12" flood-opacity=".5" data-page-node-id="K3xmxIh0vCxYXcOIHiJqr5"></feDropShadow>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<nav data-page-node-id="3MOBa0geqTdV6M3Iawoltj">
+  <div class="nav-in" data-page-node-id="f0IqV3OEjEmomRqdzytQRG">
+    <a class="logo" href="#top" aria-label="jqka.top 首页" data-page-node-id="kOOgajgRjCVDZgFvlCpEsG">
+      <span class="chip" data-page-node-id="7PT34a4KSmHE7gG1KqL2q4">A</span>jqka<span class="tld" data-page-node-id="T7igzOqLXNFgt73kdnMG6N">.top</span>
+    </a>
+    <div class="nav-links" data-page-node-id="Z7Ddo042OygIletaEcolhP">
+      
+      <a href="#deck" data-page-node-id="NYhPE28D8gHrpHZDyFyxK7">词卡练习</a>
+      <a href="#path" data-page-node-id="KxWNUMG7SVDi4AZKdhTsXH">段位路径</a>
+      <a href="#subjects" data-page-node-id="kB88QKS9oe0HBflwH1vLA4">学科</a>
+      <a class="go" href="/main.html">开始练习 →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top" data-page-node-id="mAF2Xlb9HepF51DgVIkU0h" style="">
+  <!-- 卡通场景插画 -->
+  <svg class="scene" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true" data-page-node-id="ouDY6J8rTSWVK2zL5xInL6" style="">
+    <rect width="1440" height="760" fill="url(#g-sky)" data-page-node-id="EEliIUA59AkTg3cJq5obsi"></rect>
+    <circle cx="1160" cy="120" r="250" fill="url(#g-sun)" data-page-node-id="LJWdVHRM8JYfFW6kKFB3o4"></circle>
+    <!-- 云 -->
+    <g opacity=".95" data-page-node-id="uniw5YCyz5Q9thBjfiO0b6">
+      <use href="#d-cloud" transform="translate(120,86) scale(1.5)" data-page-node-id="YxJckaCEms6HiRkljO8P2n"></use>
+      <use href="#d-cloud" transform="translate(560,40) scale(1.1)" opacity=".9" data-page-node-id="HhVoOTJ8I81oBxJu686llM"></use>
+      <use href="#d-cloud" transform="translate(980,150) scale(.9)" opacity=".85" data-page-node-id="1s5Pr3bFKjmbBRUrJ44f6Q"></use>
+      <use href="#d-cloud" transform="translate(1290,60) scale(1.25)" data-page-node-id="ORYY8XvOOA81zN1oK9lx5A"></use>
+      <use href="#d-cloud" transform="translate(360,190) scale(.72)" opacity=".7" data-page-node-id="OdCTRHkhO47xgbxNJQwIvk"></use>
+    </g>
+    <!-- 远山 -->
+    <path d="M0 400C170 316 320 356 470 322 640 284 780 344 920 316 1070 286 1230 344 1440 300V760H0z" fill="#9BD97F" opacity=".85" data-page-node-id="KcImJxCh8OI1jTXIabXnE6"></path>
+    <!-- 城市剪影 -->
+    <g fill="#7FA9C9" opacity=".5" data-page-node-id="bFOkfZmc5jMSJGwZb4T5iv">
+      <rect x="760" y="352" width="40" height="80" rx="4" data-page-node-id="kqGMtav9VhsnvEOGt0CoN6"></rect>
+      <rect x="812" y="330" width="30" height="102" rx="4" data-page-node-id="9ul1iORPhEsvOgQdd3lG52"></rect>
+      <rect x="856" y="368" width="46" height="64" rx="4" data-page-node-id="lyTKbYH6kjCIdVEce6kSRu"></rect>
+      <rect x="914" y="342" width="26" height="90" rx="4" data-page-node-id="Npe8YwPgqw2hHSHQqR3s55"></rect>
+      <rect x="952" y="360" width="38" height="72" rx="4" data-page-node-id="wbg0cUjFAzAtsgwb6dGdRX"></rect>
+      <rect x="884" y="286" width="14" height="150" rx="6" data-page-node-id="O492lFpOXNfkxbJcKAxmWu"></rect>
+      <circle cx="891" cy="278" r="15" data-page-node-id="DB0u0YCtttBMfK3ILFDmAa"></circle>
+      <rect x="866" y="300" width="12" height="60" rx="5" data-page-node-id="YKoKpi13QzKMo4GdmNLVAe"></rect>
+      <rect x="904" y="300" width="12" height="60" rx="5" data-page-node-id="t1iQSAGKS3ymkI4zr9mLzu"></rect>
+    </g>
+    <!-- 中景山丘 -->
+    <path d="M0 470C200 392 400 442 620 406 850 368 1090 430 1440 388V760H0z" fill="#6EC24B" data-page-node-id="RDHng4oA2ydiYptSwIAikA"></path>
+    <!-- 湖面 -->
+    <path d="M0 546C300 508 700 556 1440 520V760H0z" fill="url(#g-lake)" data-page-node-id="HF1ZAaLDJtXYX1Q7PV2Pgi"></path>
+    <g stroke="#BFF0F6" stroke-width="6" stroke-linecap="round" opacity=".85" fill="none" data-page-node-id="VpzbzN6k7qb1WsLOxQ4XKW">
+      <path d="M300 590h60M520 616h48M840 596h66M1080 626h54M200 646h44" data-page-node-id="zaWvevBpdChFRZjzneOCHd"></path>
+    </g>
+    <!-- 近景草坡 -->
+    <path d="M0 640C240 596 520 640 780 618 1040 596 1240 636 1440 610V760H0z" fill="#7FD156" data-page-node-id="5B7rGR3G0UZ6GKEjnXBX2L"></path>
+    <!-- 近景绿植 + 花 -->
+    <use href="#d-plant" transform="translate(-40,470) scale(.86)" data-page-node-id="jZHWqTgL0sb5wD4uADs6QU"></use>
+    <use href="#d-plant" transform="translate(1230,486) scale(1.02)" data-page-node-id="7PLySemAYmRhWFL3ddwXBI"></use>
+    <use href="#d-flower" transform="translate(196,690)" data-page-node-id="3BSSkzSuXh4BF5MI054b0N"></use>
+    <use href="#d-flower" transform="translate(1180,700) scale(.85)" data-page-node-id="hZrmzZebbtRkrfhA6GcwWN"></use>
+    <use href="#d-flower" transform="translate(660,716) scale(.7)" data-page-node-id="GwpOYGwm2eR9uxCYoJ4XjF"></use>
+  </svg>
+
+  <!-- 装饰：左右书本铅笔 + 气泡 -->
+  <svg class="deco" style="left: 1.4%; top: 44%; width: 150px;" viewBox="0 0 130 120" data-page-node-id="aZ1l9YgWa5HKuJ9YaZPOhZ"><use href="#d-books" data-page-node-id="kHizeNk337nG9PDpUy9FDc"></use></svg>
+  <svg class="deco" style="left: 9%; top: 66%; width: 62px;" viewBox="0 0 100 120" data-page-node-id="rJ9nJGgUFJut5mblHOaCgW"><use href="#d-pencil" data-page-node-id="jmHoj5t2cWcxXkKBieYEi3"></use></svg>
+  <svg class="deco" style="right: 1%; top: 40%; width: 110px;" viewBox="0 0 105 90" data-page-node-id="aZ6QISUMy0p4XbN0VnZBy8"><use href="#d-bubble" data-page-node-id="Ak6MpNs4T76cHefbum01QM"></use></svg>
+  <svg class="deco" style="right: 13%; top: 62%; width: 76px;" viewBox="0 0 76 140" data-page-node-id="ebCa30dqCYkXC7gKbHJbVe"><use href="#d-phone" data-page-node-id="xgcgIUqwRadsWbZgezZyZo"></use></svg>
+  <svg class="deco" style="right: 6.5%; top: 8%; width: 64px;" viewBox="0 0 76 34" data-page-node-id="2A5cblBep6T7BTYHl9wdMa"><use href="#d-exclaim" data-page-node-id="HUOvmsL0fhebhb5TlffFXr"></use></svg>
+
+  <div class="hero-inner" data-page-node-id="Z2MiCVPsMFpBnR2mHpKRW9">
+    <!-- 木牌招牌 -->
+    <svg class="signboard" viewBox="0 0 1000 300" role="img" aria-label="jqka.top 英语学习站" data-page-node-id="PNIiiOZLmDDWVxeToLwqUP" style="">
+      <g data-page-node-id="IoZZbjnFeQXioqF8I3NNjm" filter="url(#f-lift)">
+        <rect x="52" y="52" width="896" height="196" rx="26" fill="url(#g-board)" stroke="#4A2A12" stroke-width="12" data-page-node-id="1SJaulU5CLnGrYKbGV34EQ"></rect>
+        <rect x="58" y="58" width="884" height="184" rx="21" fill="url(#g-board-shade)" data-page-node-id="fFQKNPDdpSj5ThP2t52mJK"></rect>
+        <g fill="none" stroke="#B8821D" stroke-linecap="round" opacity=".17" data-page-node-id="EDpacBHANPUkIJCY0i1PkD">
+          <path d="M104 100c52-14 110-11 162 3" stroke-width="3" data-page-node-id="y9BymTYYWTM0xZeCMoMcuq"></path>
+          <path d="M112 128c62 9 118 7 176-7" stroke-width="2.4" data-page-node-id="nIYHDmKNqp4pyDSUgZGWs8"></path>
+          <path d="M336 88c56 15 118 17 172 5" stroke-width="3" data-page-node-id="eOzuNR8fqwCI55pKKKFnTH"></path>
+          <path d="M336 160c50-11 106-13 158-3" stroke-width="2.4" data-page-node-id="Az34WHMf43foNBYZ3arryK"></path>
+          <path d="M120 198c58 12 116 13 174 2" stroke-width="2.6" data-page-node-id="cwGRHBit9DGFSnaa13XMGB"></path>
+          <path d="M560 96c56-12 112-13 166-2" stroke-width="3" data-page-node-id="1yWUIqu00Kb9PCNrchs7Es"></path>
+          <path d="M560 170c60 11 116 11 170-2" stroke-width="2.4" data-page-node-id="UDdSbopesNzWGiScOnWP8Y"></path>
+          <path d="M152 224c60-9 120-10 178-1" stroke-width="2.4" data-page-node-id="tPEI9YGJ1dSh4NmN6vD2xM"></path>
+          <path d="M584 220c54 8 110 8 164-1" stroke-width="2.4" data-page-node-id="lm8mxVJi6hFuLnIUq1Ap4I"></path>
+        </g>
+        <g fill="none" stroke="#B8821D" opacity=".2" data-page-node-id="NtWwtGASEsyUMCJ92BXQWG">
+          <ellipse cx="252" cy="168" rx="17" ry="11" stroke-width="2.6" data-page-node-id="9XEPDVrUjK1V56hlesBZ6l"></ellipse>
+          <ellipse cx="252" cy="168" rx="7" ry="4" stroke-width="2.2" data-page-node-id="4zdOIEY0fAeb88zeSFs47z"></ellipse>
+          <ellipse cx="742" cy="128" rx="14" ry="9" stroke-width="2.4" data-page-node-id="u6ZXZ4wOE9C3Tvu3fgthu1"></ellipse>
+          <ellipse cx="742" cy="128" rx="5.5" ry="3.4" stroke-width="2" data-page-node-id="ZVOFYzfR5DMnjoVw6fColc"></ellipse>
+        </g>
+        <g stroke="#A9761B" stroke-width="4" stroke-linecap="round" opacity=".48" data-page-node-id="GouMRErT4wizNUG3SHFqGh">
+          <path d="M150 76v148M300 76v148M700 76v148M850 76v148" data-page-node-id="q71hxjobVFThHvVJt6f77R"></path>
+        </g>
+        <g stroke="#FFF3C8" stroke-width="3" stroke-linecap="round" opacity=".5" data-page-node-id="r0cL99s535UylPwjZmVkY3">
+          <path d="M156 78v144M306 78v144M706 78v144M856 78v144" data-page-node-id="fyEaKdJg2DE0OhUrbLUMjq"></path>
+        </g>
+        <rect x="72" y="72" width="856" height="156" rx="16" fill="none" stroke="#FFF3C8" stroke-width="4" opacity=".5" data-page-node-id="L6sBaqmxSORfJIIsbNgi8J"></rect>
+        <rect x="78" y="78" width="844" height="144" rx="12" fill="none" stroke="#BE8417" stroke-width="3" opacity=".3" data-page-node-id="HiVRVqcVBj4OFnDQOfLyRa"></rect>
+        <g opacity=".2" fill="#4A2A12" data-page-node-id="DxrN6qBBTX71XaGfcNhqPd">
+          <ellipse cx="86" cy="92" rx="12" ry="7" data-page-node-id="ODsSJalltmfhlspKWwwt8x"></ellipse><ellipse cx="914" cy="92" rx="12" ry="7" data-page-node-id="wGB9tEOHSyRgBC2zFj5G73"></ellipse>
+          <ellipse cx="86" cy="220" rx="12" ry="7" data-page-node-id="iB3Hj8Se7wIlQgs7lMMcC5"></ellipse><ellipse cx="914" cy="220" rx="12" ry="7" data-page-node-id="gWW5FVYsZDVF8GM8vF2IJB"></ellipse>
+        </g>
+        <g fill="url(#g-rivet)" stroke="#3B2210" stroke-width="5" data-page-node-id="IMeeGY01VB3Scv35nQPgbg">
+          <circle cx="86" cy="86" r="11" data-page-node-id="2Hn8jEJ05UK8JsKEYP4Rrl"></circle><circle cx="914" cy="86" r="11" data-page-node-id="ld2WsPm1fJAHiKoI7B53TS"></circle>
+          <circle cx="86" cy="214" r="11" data-page-node-id="tlHLsC6ZvGZwccF9mp46zM"></circle><circle cx="914" cy="214" r="11" data-page-node-id="F2dfHCbhQMHvnQbmwlXLqy"></circle>
+        </g>
+        <g fill="#FFEBC4" opacity=".85" data-page-node-id="8ccyqmFBqizsF1bCkCVLlG">
+          <circle cx="82.4" cy="82.4" r="3.6" data-page-node-id="X0epukAgOWMTdRQjYa7Ccs"></circle><circle cx="910.4" cy="82.4" r="3.6" data-page-node-id="is793I8ugGpQDBpCgLyrq4"></circle>
+          <circle cx="82.4" cy="210.4" r="3.6" data-page-node-id="GGXZLzGS7Xw85Q3KeHee4f"></circle><circle cx="910.4" cy="210.4" r="3.6" data-page-node-id="5CxT71SDoWVippqiPw2ib5"></circle>
+        </g>
+      </g>
+      <g filter="url(#f-textlift)" data-page-node-id="HmMTEguvNEEUc2joIOPPpp">
+        <text x="500" y="190" text-anchor="middle" font-size="110" font-weight="900" letter-spacing="4" font-family="'Comic Sans MS','Arial Rounded MT Bold','Segoe UI',sans-serif" fill="url(#g-cream)" stroke="#3B2210" stroke-width="16" paint-order="stroke fill" stroke-linejoin="round" data-page-node-id="g3exXk3pZHaLC0XCaagN1g">jqka.top</text>
+      </g>
+    </svg>
+
+    <!-- 四张牌 -->
+    <div class="hand" id="hand" data-page-node-id="HkROy14NvuN3UVq9G7ScDv">
+      <div class="card k" data-rank="J" tabindex="0" role="button" aria-label="翻开 J 牌 Jack" data-page-node-id="4CrhkmfdVa0IrGdi47ucy0">
+        <div class="face front" data-page-node-id="YxYjsAy908EWGveeACzZzd">
+          <span class="corner tl" data-page-node-id="7xa7YutJHBY2fWkYdwiFLO"><span class="cr" data-page-node-id="SJGL4U2Do2s7ycaMuXmhlC">J</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="I7TpG9dBFh8IjiYcQJUNF1" style=""><use href="#su-spade" data-page-node-id="XIQrAHdqsjh2meSl4ojF4W"></use></svg></span>
+          <svg class="pip" viewBox="0 0 24 24" data-page-node-id="phXPyED6sToFIYeYS409qJ" style=""><use href="#su-spade" data-page-node-id="7ZUhM6EpGU3QD8IXhkLNNu"></use></svg>
+          <span class="corner br" data-page-node-id="YFMUBiy6RMsquSwLTdUUlF"><span class="cr" data-page-node-id="aCXHDRQMjyJN8Ygr3jHVHG">J</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="wDTX2zuTMq3NFCf4J76kd8" style=""><use href="#su-spade" data-page-node-id="O1dSLrqODuOaEDq2zv8yRQ"></use></svg></span>
+        </div>
+        <div class="face back" data-page-node-id="2fLwaPmqf1fdKG6yGZ4dmn"><span class="mark" data-page-node-id="FiRRmaGPkaWHbTGj0FdiJN">JOIN</span><span class="zh" data-page-node-id="cXD9LHgqbeksPxogON0ii1">加入</span></div>
+      </div>
+      <div class="card r" data-rank="Q" tabindex="0" role="button" aria-label="翻开 Q 牌 Queen" data-page-node-id="bEobTCrXIeSTj50lZYxQS5">
+        <div class="face front" data-page-node-id="0sRknvriqMxvlbcOvanQoj">
+          <span class="corner tl" data-page-node-id="C56EMCyLPEK9Mfm1Ig6R6e"><span class="cr" data-page-node-id="lN4IgmWhI7DlxOxEIeuyks">Q</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="T0Mkdl3gseYPDWvcuoZDQC" style=""><use href="#su-heart" data-page-node-id="y4jDTdzINdGb49KW7blLYy"></use></svg></span>
+          <svg class="pip" viewBox="0 0 24 24" data-page-node-id="cHUMYknIN5McjcQJ1HfUCi" style=""><use href="#su-heart" data-page-node-id="flyy2HgTbtOFKDwwqB02L9"></use></svg>
+          <span class="corner br" data-page-node-id="4hPmXMKC48YTOCtxUxQgPg"><span class="cr" data-page-node-id="tG1lrL5o7BWuzmINudU8AD">Q</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="yzlasaoYhK6FreHRRzBNwQ" style=""><use href="#su-heart" data-page-node-id="5M8wV9N9lfagCVYjUb8shk"></use></svg></span>
+        </div>
+        <div class="face back" data-page-node-id="m7NKvaFoRomd0lqnfGMuh4"><span class="mark" data-page-node-id="X20JwSM074hFci2GGvuH5z">QUESTION</span><span class="zh" data-page-node-id="z9f5FtGBy5uiNvnHVMgCyb">提问</span></div>
+      </div>
+      <div class="card k" data-rank="K" tabindex="0" role="button" aria-label="翻开 K 牌 King" data-page-node-id="nOEhCHWNVndlSji7SWwJgR">
+        <div class="face front" data-page-node-id="3aJvYOq1CWu78XvNthzWF8">
+          <span class="corner tl" data-page-node-id="W29HU67X4reVS8uz35Xnri"><span class="cr" data-page-node-id="MbYQJme9XYraTOsIMdRnD0">K</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="GCrtOFJJjx6Irt7oQun4Hd" style=""><use href="#su-club" data-page-node-id="axv8K3N7wCmikuJbTJwCmp"></use></svg></span>
+          <svg class="pip" viewBox="0 0 24 24" data-page-node-id="LmIZ6KuETEvKC8Y0Je0gIe" style=""><use href="#su-club" data-page-node-id="5bNZMnKnBA2rUPD2Yg0al0"></use></svg>
+          <span class="corner br" data-page-node-id="hnssymQERuXrY1ndwj8cvh"><span class="cr" data-page-node-id="0CEiF8odtCaICkeeHhCfCJ">K</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="FgtFlqMFvFVHLSLdSEgP3l" style=""><use href="#su-club" data-page-node-id="vxY9T9I7Rr96LKI8pr4DNU"></use></svg></span>
+        </div>
+        <div class="face back" data-page-node-id="Om9fNugJq2lI1QfgvBgQYs"><span class="mark" data-page-node-id="BFdxe7heqp2W3qmr9eO5mk">KNOWLEDGE</span><span class="zh" data-page-node-id="s0GbYnZqTUxFlz9kPz56Fl">积累</span></div>
+      </div>
+      <div class="card r" data-rank="A" tabindex="0" role="button" aria-label="翻开 A 牌 Ace" data-page-node-id="rQndlkxHML9GiU1A82aiuF">
+        <div class="face front" data-page-node-id="uuXLs5YHPv3HBF6MCYrVri">
+          <span class="corner tl" data-page-node-id="K52SWev5dMMXdV1rVz7Eey"><span class="cr" data-page-node-id="Fj1pKp58GF5o2JFmXXeYJd">A</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="rSiJig3SGQzsvB7JRGMYoV" style=""><use href="#su-diamond" data-page-node-id="TDLS8tOsrU1n04QecweMyI"></use></svg></span>
+          <svg class="pip" viewBox="0 0 24 24" data-page-node-id="EUcm5sIYGfoUPMacA9ph34" style=""><use href="#su-diamond" data-page-node-id="7248rOiZaMOS9AC94jZQjW"></use></svg>
+          <span class="corner br" data-page-node-id="C0zbIcE8RMgHgIUPeNsvz5"><span class="cr" data-page-node-id="4LYDzN2EHXmbiTUNLBoe1y">A</span><svg class="cs" viewBox="0 0 24 24" data-page-node-id="uUyDTkxepUE5yRkvsQsGaq" style=""><use href="#su-diamond" data-page-node-id="6o9gxW0STBr1rSUB7Imyz0"></use></svg></span>
+        </div>
+        <div class="face back" data-page-node-id="GBiTa1ZOnkfuL93o3RTirv"><span class="mark" data-page-node-id="en2UzJ6byfEqgwL2dYtNcD">ACE</span><span class="zh" data-page-node-id="y3AHcjVbPaxOuHkHiXDY5H">拿下</span></div>
+      </div>
+    </div>
+
+    <div class="hero-copy" data-page-node-id="CZgiFVOU5CkN5oGE7Wunro">
+      
+    </div>
+    
+
+    <div class="hero-cta" data-page-node-id="xVqH9Rx76VLxdbWBlAsqvh">
+      <a class="btn btn-red" href="/main.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"></path></svg>
+        进入 Chunk Lab 开始练习
+      </a>
+      <a class="btn btn-white" href="#deck">先翻几张卡试试</a>
+    </div>
+    
+  </div>
+</header>
+
+<!-- ================= 双关释义 ================= -->
+
+
+<!-- ================= 词卡 ================= -->
+<section class="sec" id="deck" style="background: linear-gradient(rgb(255, 246, 228), rgb(234, 249, 220));" data-page-node-id="4jQxPcvuppHXA9MaxZ5SDQ">
+  <svg class="deco" style="left: 1%; top: 44px; width: 140px;" viewBox="0 0 130 120" data-page-node-id="HBAx5D2zKKnEq6ZPbzVO3A"><use href="#d-books" data-page-node-id="SxgIlVdMINK2AQeGK3LEoW"></use></svg>
+  <svg class="deco" style="right: 2%; top: 60px; width: 58px;" viewBox="0 0 100 120" data-page-node-id="REFSlfKhUi8TIbikOmthse"><use href="#d-pencil" data-page-node-id="DvON9XY3BRvxyfG7QYYRoN"></use></svg>
+  <div class="wrap" data-page-node-id="2UKRtUl21ieBiombs2o3Ne">
+    <div class="deck-head" data-page-node-id="xSTKAnVJqLuMjNJ5xGABMQ">
+      <span class="eyebrow" data-page-node-id="J7CETky6A2w2qtn6FOodCd">FLASHCARDS</span>
+      
+    </div>
+
+    <div class="tabs" role="tablist" id="tabs" data-page-node-id="kQye1QBYfGdZvniwXFSIuQ"><button class="tab" role="tab" data-r="J" aria-selected="true"><span class="sw" style="background:#E8503F"></span>J · Jack<span style="opacity:.65;font-weight:600">A1-A2</span></button><button class="tab" role="tab" data-r="Q" aria-selected="false"><span class="sw" style="background:"></span>Q · Queen<span style="opacity:.65;font-weight:600">B1</span></button><button class="tab" role="tab" data-r="K" aria-selected="false"><span class="sw" style="background:"></span>K · King<span style="opacity:.65;font-weight:600">B2</span></button><button class="tab" role="tab" data-r="A" aria-selected="false"><span class="sw" style="background:"></span>A · Ace<span style="opacity:.65;font-weight:600">C1-C2</span></button></div>
+    <div class="ftabs" id="ftabs" role="group" aria-label="内容类型筛选"></div>
+    <div class="grid" id="cards" data-page-node-id="jTNHEf3WFJhJh27YJtEYSs"><article class="fc" tabindex="0" role="button" aria-label="单词卡 decide，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="decide" aria-label="标熟 decide">标熟</button></div><div><div class="w">decide</div><div class="ph">/dɪˈsaɪd/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">决定</div><div class="col">decide to do sth</div><div class="eg">I decided to practise English every morning.</div><div class="eg-zh">我决定每天早上练英语。</div><button class="spk" data-w="decide"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 borrow，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="borrow" aria-label="标熟 borrow">标熟</button></div><div><div class="w">borrow</div><div class="ph">/ˈbɒrəʊ/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">借入</div><div class="col">borrow sth from sb</div><div class="eg">May I borrow your dictionary for a minute?</div><div class="eg-zh">能借你的字典用一下吗？</div><div class="tip">易混：lend 才是借出</div><button class="spk" data-w="borrow"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 advice，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="advice" aria-label="标熟 advice">标熟</button></div><div><div class="w">advice</div><div class="ph">/ədˈvaɪs/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">n.</div><div class="cn">建议（不可数）</div><div class="col">a piece of advice</div><div class="eg">She gave me a piece of useful advice.</div><div class="eg-zh">她给了我一条有用的建议。</div><div class="tip">易错：没有 advices 这种写法</div><button class="spk" data-w="advice"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 avoid，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="avoid" aria-label="标熟 avoid">标熟</button></div><div><div class="w">avoid</div><div class="ph">/əˈvɔɪd/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">避免</div><div class="col">avoid doing sth</div><div class="eg">Avoid translating every word in your head.</div><div class="eg-zh">别在心里逐字翻译。</div><div class="tip">易错：不说 avoid to do</div><button class="spk" data-w="avoid"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 explain，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="explain" aria-label="标熟 explain">标熟</button></div><div><div class="w">explain</div><div class="ph">/ɪkˈspleɪn/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">解释</div><div class="col">explain sth to sb</div><div class="eg">Can you explain this rule to me?</div><div class="eg-zh">能给我讲讲这条规则吗？</div><div class="tip">易错：不说 explain me</div><button class="spk" data-w="explain"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 enough，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="enough" aria-label="标熟 enough">标熟</button></div><div><div class="w">enough</div><div class="ph">/ɪˈnʌf/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">adj./adv.</div><div class="cn">足够的</div><div class="col">修饰名词在前，修饰形容词在后</div><div class="eg">Ten minutes is enough for a quick review.</div><div class="eg-zh">十分钟够快速复习一遍。</div><button class="spk" data-w="enough"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article></div>
+
+    <div class="deck-foot" data-page-node-id="WaUjpc4pqUQpUJ5r97aMw3">
+      <button class="btn btn-white" id="btnShuffle" data-page-node-id="WNbv5Q0t8BPAOvgvrWMDO1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="aRzuOdtIrtYBLWW5XfriD5" style=""><path d="M16 3h5v5" data-page-node-id="JjxIIWSYUOMx8ACTj0xJzO"></path><path d="M21 3l-7 7" data-page-node-id="p7Q3PGlNz4G4BmQUrNm91p"></path><path d="M8 21H3v-5" data-page-node-id="jHEYT4bAEqhp5aoOxl0kT3"></path><path d="M3 21l7-7" data-page-node-id="bOTo95c7fHstpYJAZlJsHE"></path><path d="M21 16v5h-5" data-page-node-id="kTdzAY298q2aX4kCBAWOK2"></path><path d="M21 21l-7-7" data-page-node-id="trdSaiogdrnEuTDew1bBxO"></path><path d="M3 8V3h5" data-page-node-id="6Ti42t3sfLmCCnz3XnLnjd"></path><path d="M3 3l7 7" data-page-node-id="fxB65ZUAW292zCbo1iDCy7"></path></svg>
+        洗牌换一组
+      </button>
+      <button class="btn btn-white" id="btnFlipAll" data-page-node-id="2dnsseFqkvmTSBAVmYbPAK">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="emewM0RUvoA8vvm0mgvDrx" style=""><path d="M3 12a9 9 0 0115.5-6.2L21 8" data-page-node-id="tEXlH3HGzSQhNHGRZZGPFP"></path><path d="M21 4v4h-4" data-page-node-id="Rw18dMFfWFWQoTq5n1pdM2"></path><path d="M21 12a9 9 0 01-15.5 6.2L3 16" data-page-node-id="gEDIdUE2y9dejbIVAKOOVV"></path><path d="M3 20v-4h4" data-page-node-id="GGOBGAwnKYICQBOHmwbSXo"></path></svg>
+        全部翻面
+      </button>
+      <span class="deck-note" id="deckNote" data-page-node-id="DE2mrxxXQJxLXVNCUPDmLC">Jack 段 · A1-A2 基础高频 · 当前 6 张 · 已熟 0</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= 路径 ================= -->
+<section class="sec" id="path" style="background: linear-gradient(rgb(234, 249, 220), rgb(226, 246, 249));" data-page-node-id="hCs8uasqmQGedANV1RQ1lG">
+  <svg class="deco" style="right: 3%; top: 34px; width: 70px;" viewBox="0 0 76 34" data-page-node-id="a2dlKfncPL3varfdlEITGH"><use href="#d-exclaim" data-page-node-id="vo8bmtv5QagsITeWsAXYAY"></use></svg>
+  <svg class="deco" style="left: 3%; top: 120px; width: 86px; opacity: 0.85;" viewBox="0 0 130 70" data-page-node-id="LQ3bFPP0CA5mZavH8OpYJN"><use href="#d-cloud" data-page-node-id="5wUCxHiQOAggAjxArEjeET"></use></svg>
+  <div class="wrap" data-page-node-id="ERQNltlbDP3fHyVEAeTrMt">
+    <span class="eyebrow" data-page-node-id="6NQ3j8oIOhEbNPZU2UvTXd">LEARNING PATH</span>
+    
+    
+    <div class="path" data-page-node-id="jWUCdoOLUFPgSrw2EHQ0cq">
+      <div class="step" data-page-node-id="pCwDTkJEo7u8ClbXTCfFCy">
+        <div class="n" data-page-node-id="oMtEvrfCNXu9X5OIaPWqAA">STAGE 01</div><div class="t" data-page-node-id="X96z6WJTBuMFVN2dJGRczn">Jack</div><div class="lv" data-page-node-id="tCgPaGjis3QBUlEQvMIFvg">入门 · 侍从</div>
+        <p data-page-node-id="su6kWIUAGfMx487vNT9qu9">能读懂简单句子，会自我介绍，敢开口说短的。</p>
+        <span class="goal" data-page-node-id="Yi9FR6qf02YVe5ZrHARUYU">A1-A2 基础高频</span>
+      </div>
+      <div class="step" data-page-node-id="Otlb5IUs0DCSlEs5X0hRE2">
+        <div class="n" data-page-node-id="HYeL6tClpspt3vyxU4poCI">STAGE 02</div><div class="t" data-page-node-id="M00TXHpuf487GpPfzOGimR">Queen</div><div class="lv" data-page-node-id="p8nMXbXr49uDU5MQABBl7H">进阶 · 王后</div>
+        <p data-page-node-id="4apNKa77GBcGnfy30AADJX">能聊日常话题，看懂短视频和新闻标题，会提问。</p>
+        <span class="goal" data-page-node-id="oVjzsLP9Girbe9RiVo18Gl">B1 日常进阶</span>
+      </div>
+      <div class="step" data-page-node-id="7zPXpluOQIOVHe0cFMw4tz">
+        <div class="n" data-page-node-id="DoDYB2ej8bgmqTFxfxR5PK">STAGE 03</div><div class="t" data-page-node-id="bgd6FFNJevcYYGCoyBUAf1">King</div><div class="lv" data-page-node-id="uC8igw9H4fK8X14nnjkaEI">流利 · 国王</div>
+        <p data-page-node-id="q4W8FkWHtOesOG1sc7pyLV">能表达自己的观点，听懂正常语速，写作有结构。</p>
+        <span class="goal" data-page-node-id="1w8D3YjFTrvqcQExLkwMqP">B2 流利表达</span>
+      </div>
+      <div class="step" data-page-node-id="snrxLhtCT8FvslRN1Ff9YR">
+        <div class="n" data-page-node-id="c7KwTLQMJCDsezdHuZRltn">STAGE 04</div><div class="t" data-page-node-id="uqCznk5tc3dAouJMXvo42y">Ace</div><div class="lv" data-page-node-id="vQJDc6e7JmCHyP84wa2qpq">精通 · 王牌</div>
+        <p data-page-node-id="VJdDrmcdHHemvcEikkk1J4">接近母语者语感，能精准用词，能讲能写能辩。</p>
+        <span class="goal" data-page-node-id="1pHxejrMExFT9VBBiAMzpf">C1-C2 地道用法</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 学科 ================= -->
+<section class="sec" id="subjects" style="background: linear-gradient(rgb(226, 246, 249), rgb(255, 253, 247));" data-page-node-id="88JnHpYHNDKlAyZDIiSXtk">
+  <svg class="deco" style="right: 2%; top: 230px; width: 104px;" viewBox="0 0 105 90" data-page-node-id="32h7eORLMCkq1sPVAfYROs"><use href="#d-bubble" data-page-node-id="Wfylcy6ZvYga8gqAILS02a"></use></svg>
+  <div class="wrap" data-page-node-id="ao7xA6VvDbabHEdKtSqJvi">
+    <span class="eyebrow" data-page-node-id="QDnxjlgHJZGcJzDRd0ZA65">SUBJECTS</span>
+    
+    
+    <div class="subj" data-page-node-id="sNCJ6SNt2aNYSXbJBitC5H">
+      <div class="sb on" data-page-node-id="K3xYO8ObUzkE0vPbhawGvY">
+        <div class="row" data-page-node-id="ANDOzGtAO6aWU4XdKGsYPU">
+          <svg viewBox="0 0 24 24" data-page-node-id="DL8VKwpgjZRzl3riCfm5pE" style=""><path d="M4 5.5A2.5 2.5 0 016.5 3H19v18H6.5A2.5 2.5 0 014 18.5z" data-page-node-id="u0FTbkRDZN2nhLlZAlaGkj"></path><path d="M8 7h7M8 11h7M8 15h4" data-page-node-id="DmROgGhmOUCXMsIFctptPm"></path></svg>
+          <h4 data-page-node-id="GYOLZbA9xMchdlGtbTrKpP">English</h4>
+        </div>
+        <p data-page-node-id="h6FYnNvc7bjrN7195x3yTu">词卡 · 发音 · 段位路径</p>
+        <span class="st" data-page-node-id="ZP9oMFBZzMJpiNVR2XiXPT">已上线</span>
+      </div>
+      <div class="sb soon" data-page-node-id="FzNwTA4PMwsXoAijIEGxD7">
+        <div class="row" data-page-node-id="D902DeK8vm6LUWhRHTW1my">
+          
+          
+        </div>
+        <span class="wait" data-page-node-id="Ydz5Exdg7zpayiApxIEe5c">规划中</span>
+      </div>
+      
+      
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer data-page-node-id="skK8oY4TYovDLlHpUOV1Fi" style="">
+  <svg class="foot-grass" viewBox="0 0 1440 210" preserveAspectRatio="none" aria-hidden="true" data-page-node-id="5t76Y80I0Y1MYfZL9L6aMe" style="">
+    <path d="M0 92C220 46 460 96 720 74 980 52 1220 96 1440 66V210H0z" fill="#7FD156" data-page-node-id="YmhKxsx13qlxzDEv2HvGjv"></path>
+    <path d="M0 130C260 92 520 136 780 116 1040 96 1220 132 1440 110V210H0z" fill="#6EC24B" data-page-node-id="6uJ1Vc0IFM6U91JUbOR1Dn"></path>
+    <use href="#d-plant" transform="translate(60,60) scale(.66)" data-page-node-id="7fwmAbSyCGrKyb0ZmDk93P"></use>
+    <use href="#d-plant" transform="translate(1290,70) scale(.72)" data-page-node-id="mL6AVcOcENfLQ0bMERdAuz"></use>
+    <use href="#d-flower" transform="translate(260,120)" data-page-node-id="cix4DLQpzJWEiW7VCAhFMb"></use>
+    <use href="#d-flower" transform="translate(1160,126) scale(.9)" data-page-node-id="2edAkZKo8o161yw28j2IE2"></use>
+  </svg>
+  <div class="wrap foot-in" data-page-node-id="LA68QRWlKErRt6pWaUaOSq">
+    <p class="chant" data-page-node-id="yjaxRSRmFijwdC6vfEVQNH" style="cursor: text;">J · Q · K · <span class="a" data-page-node-id="aI3FHACxjlHFMY6PAtq6gA">A</span> —— 一手好牌</p>
+    
+    
+  </div>
+</footer>
+
+<script src="landing/deck.js"></script>
+<script src="landing/phrases.js"></script>
+<script src="landing/store.js"></script>
+<script>
+/* DECK / RANKS / 存储层 / ITEM_INDEX 均由 landing/store.js 提供 */
+
+function pool(rank){
+  const all = DECK[rank].words;
+  return typeFilter === 'all' ? all : all.filter(d => d.t === typeFilter);
+}
+let cur = 'J', shown = {};
+
+function masteredCount(){ return pool(cur).filter(d => stateOf(d.t, d.w) >= 1).length; }
+function updateNote(){
+  // 张数按实际渲染数算：某段某类型可能不足 6 条，写死会撒谎
+  const n = Math.min(6, pool(cur).length);
+  noteEl.textContent = DECK[cur].name + ' 段 · ' + DECK[cur].cefr + ' · 当前 ' + n + ' 张 · 已熟 ' + masteredCount();
+}
+
+const tabsEl = document.getElementById('tabs');
+const ftabsEl = document.getElementById('ftabs');
+const cardsEl = document.getElementById('cards');
+const noteEl = document.getElementById('deckNote');
+
+const SPK = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>';
+const FLIPIC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"/></svg>';
+
+function pick(rank, seed){
+  const list = pool(rank).slice();
+  if(seed){ for(let i=list.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [list[i],list[j]]=[list[j],list[i]]; } }
+  return list.slice(0,6);
+}
+
+function renderTabs(){
+  tabsEl.innerHTML = RANKS.map(r=>{
+    const on = r===cur;
+    return '<button class="tab" role="tab" data-r="'+r+'" aria-selected="'+on+'">'
+      + '<span class="sw" style="background:'+(on ? DECK[r].color : '')+'"></span>'
+      + r + ' · ' + DECK[r].name
+      + '<span style="opacity:.65;font-weight:600">' + DECK[r].cefr.split(' ')[0] + '</span></button>';
+  }).join('');
+}
+
+/* 类型筛选条：只有数据里真实存在的类型才生成按钮。
+   只有一种内容时整行不渲染 —— 一排「全部 / 单词」没有意义，也是空占位。 */
+function renderTypeTabs(){
+  const types = availableTypes();
+  if(types.length < 2){ ftabsEl.innerHTML = ''; return; }
+  const opts = [['all','全部']].concat(types.map(t => [t, TYPE_NAME[t]]));
+  ftabsEl.innerHTML = opts.map(o =>
+    '<button class="ftab" data-t="'+o[0]+'" aria-pressed="'+(typeFilter===o[0])+'">'+o[1]+'</button>'
+  ).join('');
+}
+
+function renderCards(){
+  const words = pick(cur, shown[cur]||0);
+  if(!words.length){
+    cardsEl.innerHTML = '<p class="empty-hint">这一段暂无该类内容</p>';
+    updateNote();
+    return;
+  }
+  cardsEl.innerHTML = words.map(d=>
+    '<article class="fc" tabindex="0" role="button" aria-label="词条 '+d.w+'，点击翻面">'
+    + '<div class="fc-in">'
+    +   '<div class="fc-f fc-front">'
+    +     '<div class="tags">'
+    +       '<span class="lv" style="background:'+DECK[cur].color+'">'+d.lv+'</span>'
+    +       '<button class="master'+(stateOf(d.t,d.w)>=1?' on':'')+'" data-t="'+d.t+'" data-w="'+d.w+'" aria-label="标熟 '+d.w+'">'+(stateOf(d.t,d.w)>=1?'已熟':'标熟')+'</button>'
+    +     '</div>'
+    +     '<div><div class="w'+(d.t==='phrase'?' is-phrase':'')+'">'+d.w+'</div>'+(d.ph?'<div class="ph">'+d.ph+'</div>':'')+'</div>'
+    +     '<div class="hint">'+FLIPIC+' 点击翻面看释义</div>'
+    +   '</div>'
+    +   '<div class="fc-f fc-back">'
+    +     '<div class="meta">'+(d.pos || TYPE_NAME[d.t] || '')+'</div>'
+    +     '<div class="cn">'+d.cn+'</div>'
+    +     (d.col ? '<div class="col">'+d.col+'</div>' : '')
+    +     '<div class="eg">'+d.eg+'</div>'
+    +     '<div class="eg-zh">'+d.zh+'</div>'
+    +     (d.tip ? '<div class="tip">'+d.tip+'</div>' : '')
+    +     '<button class="spk" data-w="'+d.w+'">'+SPK+' 朗读</button>'
+    +   '</div>'
+    + '</div></article>').join('');
+  updateNote();
+}
+
+cardsEl.addEventListener('click', e=>{
+  const spk = e.target.closest('.spk');
+  if(spk){ e.stopPropagation(); speak(spk.dataset.w); return; }
+  const mb = e.target.closest('.master');
+  if(mb){
+    e.stopPropagation();
+    const w = mb.dataset.w, t = mb.dataset.t;
+    const next = stateOf(t, w) >= 1 ? 0 : 1;   // 目前 UI 是熟悉/未熟悉二态；存储已支持 s=2 掌握态
+    setState(t, w, next);
+    const on = stateOf(t, w) >= 1;
+    mb.classList.toggle('on', on);
+    mb.textContent = on ? '已熟' : '标熟';
+    updateNote();
+    return;
+  }
+  const fc = e.target.closest('.fc');
+  if(fc) fc.classList.toggle('flip');
+});
+cardsEl.addEventListener('keydown', e=>{
+  if(e.key!=='Enter' && e.key!==' ') return;
+  const fc = e.target.closest('.fc');
+  if(fc){ e.preventDefault(); fc.classList.toggle('flip'); }
+});
+tabsEl.addEventListener('click', e=>{
+  const t = e.target.closest('.tab');
+  if(!t) return;
+  cur = t.dataset.r; renderTabs(); renderCards();
+});
+ftabsEl.addEventListener('click', e=>{
+  const b = e.target.closest('.ftab');
+  if(!b) return;
+  typeFilter = b.dataset.t; renderTypeTabs(); renderCards();
+});
+
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=.85;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+
+document.getElementById('btnShuffle').addEventListener('click', ()=>{
+  shown[cur] = (shown[cur]||0) + 13; renderCards();
+});
+document.getElementById('btnFlipAll').addEventListener('click', ()=>{
+  const list = [...cardsEl.querySelectorAll('.fc')];
+  const anyClosed = list.some(c=>!c.classList.contains('flip'));
+  list.forEach(c=>c.classList.toggle('flip', anyClosed));
+});
+
+const heroCards = [...document.querySelectorAll('#hand .card')];
+heroCards.forEach(c=>{
+  const go = ()=>c.classList.toggle('flipped');
+  c.addEventListener('click', go);
+  c.addEventListener('mouseenter', ()=>c.classList.add('hot'));
+  c.addEventListener('mouseleave', ()=>c.classList.remove('hot'));
+  c.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); }});
+});
+
+renderTabs(); renderTypeTabs(); renderCards();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
