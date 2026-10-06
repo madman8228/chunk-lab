@@ -24,11 +24,8 @@ async function main(){
     assert.equal(reg.status,200);const token=(await reg.json()).token;
     let r=await request(token,'GET','/api/data');
     const batch=await request(token,'GET','/api/sync/batch');
-    assert.equal(batch.status,200);
-    assert.equal(batch.json.kind,'batch');
-    assert.equal(batch.json.seq,r.json.seq);
-    assert.match(batch.json.token,/^[a-f0-9]{64}$/);
-    assert.deepEqual(batch.json.snapshot.mem.decks,[]);
+    assert.equal(batch.status,428,'retired batch comparison is closed in protocol 3');
+    assert.equal(batch.json.code,'CLIENT_UPDATE_REQUIRED');
     for(const [label,method,payload] of [
       ['PUT data','PUT','/api/data'],
       ['POST import','POST','/api/import'],

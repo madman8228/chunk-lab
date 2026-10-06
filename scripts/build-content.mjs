@@ -20,16 +20,18 @@ import CourseCatalog from '../js/course-catalog.js';
 import CS from '../js/chunk-shape.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+/* Isolated rebuild tests may supply their own immutable source fixtures. */
+const SOURCE_ROOT = path.resolve(process.env.CONTENT_SOURCE_ROOT || ROOT);
 /* CI 的 content:check-generated 使用临时输出目录；默认仍写入仓库 content/。 */
 const OUTPUT_ROOT = path.resolve(process.env.CONTENT_OUTPUT_ROOT || ROOT);
-const courseCatalogSeed = JSON.parse(fs.readFileSync(path.join(ROOT, 'extra/course-catalog.json'), 'utf8'));
+const courseCatalogSeed = JSON.parse(fs.readFileSync(path.join(SOURCE_ROOT, 'extra/course-catalog.json'), 'utf8'));
 
 function runScript(file, initialWindow) {
   const context = {
     window: initialWindow || {},
     console: { log() {}, warn() {}, error() {} },
   };
-  vm.runInNewContext(fs.readFileSync(path.join(ROOT, file), 'utf8'), context, { filename: file });
+  vm.runInNewContext(fs.readFileSync(path.join(SOURCE_ROOT, file), 'utf8'), context, { filename: file });
   return context.window;
 }
 
@@ -37,28 +39,9 @@ function hashBytes(value) {
   return crypto.createHash('sha256').update(value).digest('hex').slice(0, 12);
 }
 
-/* 递归删除目录（用 unlink+rmdir 而非 rmSync —— 本仓沙箱下后者更易被拦） */
-function removeDirDeep(dir) {
-  if (!fs.existsSync(dir)) return;
-  for (const name of fs.readdirSync(dir)) {
-    const target = path.join(dir, name);
-    if (fs.statSync(target).isDirectory()) removeDirDeep(target);
-    else fs.unlinkSync(target);
-  }
-  fs.rmdirSync(dir);
-}
-
 const SHARD_SIZE = 200;
 
 function writeShards(relativeDir, prefix, items, mode) {
-  const outputDir = path.join(OUTPUT_ROOT, relativeDir);
-  if (fs.existsSync(outputDir)) {
-    for (const oldFile of fs.readdirSync(outputDir)) {
-      if (oldFile.startsWith(`${prefix}-`) && oldFile.endsWith('.json')) {
-        fs.unlinkSync(path.join(outputDir, oldFile));
-      }
-    }
-  }
   const shards = [];
   for (let offset = 0; offset < items.length; offset += SHARD_SIZE) {
     const part = items.slice(offset, offset + SHARD_SIZE);
@@ -69,7 +52,13 @@ function writeShards(relativeDir, prefix, items, mode) {
     const relativePath = path.posix.join(relativeDir.replaceAll(path.sep, '/'), `${filePrefix}-${hash}.json`);
     const absolutePath = path.join(OUTPUT_ROOT, relativePath);
     fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
-    fs.writeFileSync(absolutePath, body, 'utf8');
+    if (fs.existsSync(absolutePath)) {
+      if (fs.readFileSync(absolutePath, 'utf8') !== body) {
+        throw new Error(`不可覆盖已有内容分片：${relativePath}`);
+      }
+    } else {
+      fs.writeFileSync(absolutePath, body, 'utf8');
+    }
     shards.push({
       id: `${filePrefix}-${hash}`,
       url: relativePath,
@@ -111,6 +100,21 @@ if (!book || !Array.isArray(book.decks) || !book.decks.length) {
   throw new Error('oral-book.js 没有 window.ORAL_BOOK.decks');
 }
 const decks = book.decks;
+/* 管理工作台发布的覆盖文件是可重建源码；重建分片时必须重新应用。 */
+const overridesDir = path.resolve(process.env.CONTENT_OVERRIDE_ROOT || path.join(ROOT, 'extra/content-overrides'));
+function applyOverride(deck) {
+  const file = path.join(overridesDir, deck.id + '.json');
+  if (!fs.existsSync(file)) return deck;
+  const override = JSON.parse(fs.readFileSync(file, 'utf8'));
+  if (!override || override.schemaVersion !== 1 || override.profile !== 'sentence-deck/1'
+    || !override.course || override.course.id !== deck.id || !Array.isArray(override.course.items)
+    || override.course.items.length !== deck.items.length
+    || override.course.items.some((item, index) => !item || item.cid !== deck.items[index].cid)) {
+    throw new Error(`课程覆盖文件与源课程结构不匹配：${deck.id}`);
+  }
+  return Object.assign({}, deck, override.course, { items: override.course.items });
+}
+for (let i = 0; i < decks.length; i += 1) decks[i] = applyOverride(decks[i]);
 /* 结构自检：id 唯一、cid 唯一、必填字段 */
 const seenId = new Set();
 for (const deck of decks) {
@@ -134,15 +138,10 @@ const freqDeck = (freqWindow.BUILTIN || []).find((deck) => deck.id === 'builtin-
 if (!freqDeck || !Array.isArray(freqDeck.items) || !freqDeck.items.length) {
   throw new Error('freq-idioms.js 中缺少 builtin-freq-idioms');
 }
+const publishedFreqDeck = applyOverride(freqDeck);
 
-/* ---------- 清理旧分片目录（content/ 下均为生成物；物理删除避免孤儿文件） ---------- */
-const contentRoot = path.join(OUTPUT_ROOT, 'content');
-if (fs.existsSync(contentRoot)) {
-  for (const name of fs.readdirSync(contentRoot)) {
-    const target = path.join(contentRoot, name);
-    if (fs.statSync(target).isDirectory()) removeDirDeep(target);
-  }
-}
+/* Immutable prior shards remain available to existing course references.
+   Any asset cleanup is a separate, explicitly authorized maintenance action. */
 
 /* ---------- 逐 deck 生成分片 ---------- */
 const manifest = {
@@ -175,24 +174,24 @@ for (const deck of decks) {
   console.log(`[content] ${deck.id.padEnd(14)} ${String(deck.items.length).padStart(3)} 句  （${shards.length} 详情 / ${indexShards.length} index）  ${deck.name}`);
 }
 
-const freqShards = writeShards('content/builtin-freq-idioms', 'idioms', freqDeck.items, 'replace');
+const freqShards = writeShards('content/builtin-freq-idioms', 'idioms', publishedFreqDeck.items, 'replace');
 const freqIndexShards = writeShards(
   'content/builtin-freq-idioms',
   'idioms-index',
-  buildIndexItems(freqDeck.items, freqShards),
+  buildIndexItems(publishedFreqDeck.items, freqShards),
   'index',
 );
 manifest.decks.push({
   id: 'builtin-freq-idioms',
-  name: freqDeck.name,
+  name: publishedFreqDeck.name,
   short: '高频短语',
-  desc: freqDeck.desc || '高频英语短语',
+  desc: publishedFreqDeck.desc || '高频英语短语',
   chapter: null,
   section: '',
   sectionTitle: '',
   topic: '',
   baseCount: 0,
-  totalCount: freqDeck.items.length,
+  totalCount: publishedFreqDeck.items.length,
   shards: freqShards,
   indexShards: freqIndexShards,
 });

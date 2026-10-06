@@ -26,6 +26,14 @@ function makeIsolatedContentRoot() {
   for (const file of entry.shards.concat(entry.indexShards)) {
     fs.copyFileSync(path.resolve(__dirname, '..', file.url), path.join(TMP_APP, file.url));
   }
+  // Rebuild from dedicated temporary source files, not a generated oral-book.js
+  // in the user's checkout. Published overrides must apply to these originals.
+  const sourceItems = entry.shards.flatMap(file => JSON.parse(fs.readFileSync(path.join(TMP_APP, file.url), 'utf8')).items);
+  const sourceBook = { series: 'Isolated fixture', chapters: [], decks: [{ id: entry.id, name: entry.name, items: sourceItems }] };
+  fs.writeFileSync(path.join(TMP_APP, 'oral-book.js'), 'window.ORAL_BOOK = ' + JSON.stringify(sourceBook) + ';\n');
+  fs.mkdirSync(path.join(TMP_APP, 'extra'), { recursive: true });
+  fs.copyFileSync(path.resolve(__dirname, '..', 'extra/course-catalog.json'), path.join(TMP_APP, 'extra/course-catalog.json'));
+  fs.copyFileSync(path.resolve(__dirname, '..', 'freq-idioms.js'), path.join(TMP_APP, 'freq-idioms.js'));
   fs.copyFileSync(path.join(__dirname, '..', 'scripts', 'sw-hash.js'), path.join(TMP_APP, 'scripts', 'sw-hash.js'));
   fs.writeFileSync(path.join(TMP_APP, 'sw.js'), "const CACHE = 'chunklab-test';\nconst PRECACHE = [\n  '/content/manifest.json',\n];\nconst PRECACHE_SOFT = [\n];\n");
 }
@@ -166,12 +174,17 @@ async function main() {
     assert.ok(fs.existsSync(path.join(TMP_APP, 'extra', 'content-overrides', 'oral-basic.json')));
     assert.match(fs.readFileSync(path.join(TMP_APP, 'sw.js'), 'utf8'), new RegExp("const CACHE = '" + published.json.cacheVersion + "';"));
     const { execFileSync } = require('node:child_process');
+    const retainedShard = path.join(TMP_OUTPUT, 'content', 'oral-basic', 'oral-000-retained-fixture.json');
+    fs.mkdirSync(path.dirname(retainedShard), { recursive: true });
+    const retainedBytes = '{"originalAsset":true}\n';
+    fs.writeFileSync(retainedShard, retainedBytes);
     execFileSync(process.execPath, [path.join(__dirname, '..', 'scripts', 'build-content.mjs')], {
       cwd: path.join(__dirname, '..'),
-      env: Object.assign({}, process.env, { CONTENT_OUTPUT_ROOT: TMP_OUTPUT, CONTENT_OVERRIDE_ROOT: path.join(TMP_APP, 'extra', 'content-overrides') }),
+      env: Object.assign({}, process.env, { CONTENT_SOURCE_ROOT: TMP_APP, CONTENT_OUTPUT_ROOT: TMP_OUTPUT, CONTENT_OVERRIDE_ROOT: path.join(TMP_APP, 'extra', 'content-overrides') }),
       stdio: 'pipe',
     });
     const rebuiltManifest = JSON.parse(fs.readFileSync(path.join(TMP_OUTPUT, 'content', 'manifest.json'), 'utf8'));
+    assert.equal(fs.readFileSync(retainedShard, 'utf8'), retainedBytes, 'rebuilding never deletes an earlier immutable course asset');
     const rebuiltCourse = rebuiltManifest.decks.find((item) => item.id === 'oral-basic');
     const rebuiltShard = JSON.parse(fs.readFileSync(path.join(TMP_OUTPUT, rebuiltCourse.shards[0].url), 'utf8'));
     assert.equal(rebuiltShard.items.find((item) => item.cid === 'e70c8cf4').explanations[0], '工作台保存的草稿讲解');
