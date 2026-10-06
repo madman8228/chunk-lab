@@ -13,6 +13,12 @@ assert.match(choose, /chunk-role-wrap/);
 assert.match(choose, /固定表达/);
 assert.doesNotMatch(choose, /word-input/);
 
+const uncoloredRole = buildChunkMarkup({ chunk:'there?', hint:'那里？', grammar:{ role:'状语' }, mode:'choose', escapeHtml:esc });
+assert.match(uncoloredRole, /class="chunk-role">状语<\/span>/);
+assert.doesNotMatch(uncoloredRole, /#ccc22|background:undefined/);
+const stringRole = buildChunkMarkup({ chunk:'there?', grammar:'状语', mode:'choose', escapeHtml:esc });
+assert.match(stringRole, /class="chunk-role">状语<\/span>/);
+
 const typed = buildChunkMarkup({
   chunk: 'go home', index: 1, hint: '2 词', mode: 'type', escapeHtml: esc,
 });

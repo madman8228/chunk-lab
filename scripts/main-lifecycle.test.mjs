@@ -15,6 +15,9 @@ assert.deepEqual(resolveEntry({ search: '', navigationType: 'reload', intent, de
 assert.deepEqual(resolveEntry({ search: '', navigationType: 'navigate', intent }), { kind: 'unit', unitId: 'lesson-1' });
 assert.deepEqual(resolveEntry({ search: '?autostart=1', review: { ts: 100, deck: { id: 'review' } }, now: 101 }), { kind: 'review', deck: { id: 'review' }, explicit: true });
 assert.equal(resolveEntry({ search: '?autostart=1', review: { ts: 100, deck: { id: 'review' } }, now: 30101 }).kind, 'invalid');
+assert.deepEqual(resolveEntry({ search: '?autostart=1&reviewHandoff=handoff-1' }), {
+  kind: 'review-handoff', id: 'handoff-1', explicit: true,
+});
 
 function storage(values) {
   return {

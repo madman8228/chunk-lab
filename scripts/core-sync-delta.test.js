@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 (async function () {
   const { CoreSyncDelta } = await import('../src/core/sync-delta.mjs');
   const mem = {
-    stats: { totalRounds: 1, bySentence: { a: { times: 1 } }, events: [{ id: 'e1' }], },
+    stats: { totalRounds: 1, bySentence: { a: { times: 1, sentence: 'This sentence stays in the course content.' } }, events: [{ id: 'e1' }], },
     mastered: { a: true },
     reinforceBook: [],
     deletedItems: {},
@@ -17,6 +17,8 @@ const assert = require('node:assert/strict');
   assert.equal(mem.stats.bySentence.a.times, 1);
   const first = CoreSyncDelta.buildStatsDelta(mem, { bsSig: null, evIds: null });
   assert.deepEqual(Object.keys(first.sbs), ['a']);
+  assert.deepEqual(first.sbs.a, { times: 1 });
+  assert.equal(mem.stats.bySentence.a.sentence, 'This sentence stays in the course content.');
   assert.deepEqual(first.evs, [{ id: 'e1' }]);
   const second = CoreSyncDelta.buildStatsDelta(mem, first.mark);
   assert.deepEqual(second.sbs, {});

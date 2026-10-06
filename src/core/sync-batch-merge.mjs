@@ -1,3 +1,5 @@
+import { MistakeEvidence } from '../mistake-review/evidence.mjs';
+
 function mergeBatchSnapshots(local, remote, dependencies) {
   const input = dependencies || {};
   const cloneJSON = input.cloneJSON;
@@ -59,13 +61,12 @@ function mergeBatchSnapshots(local, remote, dependencies) {
     return out;
   };
   const mergeBook = (a, b) => {
-    const seen = {}, out = [];
+    const byKey = new Map();
     (Array.isArray(b) ? b : []).concat(Array.isArray(a) ? a : []).forEach((item) => {
-      if (!item || !item._key || seen[item._key]) return;
-      seen[item._key] = 1;
-      out.push(item);
+      if (!item || !item._key) return;
+      byKey.set(item._key, byKey.has(item._key) ? MistakeEvidence.mergeEvidenceRows(byKey.get(item._key), item) : MistakeEvidence.normalizeEvidenceRow(item));
     });
-    return out;
+    return [...byKey.values()];
   };
 
   const localStats = normalizeSyncedStats(cloneJSON(lm.stats || {})).stats || {};

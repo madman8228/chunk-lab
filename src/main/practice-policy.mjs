@@ -10,7 +10,8 @@ export function getAutoAdvanceDecision(options = {}) {
   const flawed = wrongAttempts.some((count) => (count || 0) > 0)
     || Boolean(options.hinted)
     || status.some((value) => value === 'bad' || value === 'revealed');
-  if (flawed) return { eligible: false, seconds: 0 };
-  return { eligible: true, seconds: options.perfectThis ? 3 : 5 };
+  /* Every completed answer may advance. Give imperfect answers a longer review
+     window; the page cancels the timer as soon as the learner interacts. */
+  return { eligible: true, seconds: flawed ? 6 : (options.perfectThis ? 3 : 5) };
 }
 

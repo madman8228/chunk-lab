@@ -14,12 +14,28 @@ export function createPracticeState(overrides = {}) {
     perfectCount: 0,
     chunkTotal: 0,
     chunkRight: 0,
-    wrong: [],
-    sessionByDeck: {},
-    finished: false,
+      wrong: [],
+      sessionByDeck: {},
+      sessionId: "",
+      generation: 0,
+      answerOrder: 0,
+      answerChunkRightStart: 0,
+      answerChunkTotalStart: 0,
+      _answerQueued: false,
+      _pendingAnswerOperation: null,
+      _pendingResumeOperation: null,
+      _pendingRoundOperation: null,
+      _resumeSubmitting: false,
+      _roundSubmitting: false,
+      _roundQueued: false,
+      _saveRetry: false,
+      finished: false,
     _finishing: false,
     perfectThis: true,
     hinted: false,
+    attemptId: '',
+    attemptStartedAt: 0,
+    hintedChunks: {},
     _hintedChunks: [],
     contentBatch: null,
     tempTotal: 0,
@@ -44,13 +60,21 @@ export function buildSentenceOutcome(options = {}) {
     if ((count || 0) > 0 || status[index] === 'bad' || status[index] === 'revealed') wrongIdx.push(index);
   });
   const existingWrong = Array.isArray(options.existingWrong) ? options.existingWrong : [];
-  const shouldRecord = hadIssue && !existingWrong.some((entry) => entry && entry.it === options.item);
+  const attemptId = String(options.attemptId || '');
+  const shouldRecord = hadIssue && (!attemptId || !existingWrong.some((entry) => entry && entry.eventId === attemptId));
   const wrongEntry = shouldRecord ? {
     it: options.item,
+    eventId: attemptId,
+    at: Number.isFinite(options.attemptStartedAt) ? options.attemptStartedAt : null,
+    mode: options.mode === 'type' ? 'typing' : (options.mode === 'choose' ? 'chunkSelection' : 'unknown'),
     idx: wrongIdx,
     answers: answers.slice(),
     wrongAnswers: wrongAnswers.map((list) => Array.isArray(list) ? list.slice() : []),
+    wrongAttempts: wrongAttempts.slice(),
     needsReview,
+    hinted: options.hinted === true,
+    revealed: status.some((value) => value === 'revealed'),
+    hintedChunks: options.hintedChunks && typeof options.hintedChunks === 'object' ? { ...options.hintedChunks } : {},
   } : null;
   return { totalWrong, needsReview, hadIssue, wrongIdx, shouldRecord, wrongEntry };
 }

@@ -16,6 +16,14 @@ const assert = require('node:assert/strict');
   same.bySentence.a.okTimes += 1;
   assert.notEqual(CoreStatsSignature.statsSig(base), CoreStatsSignature.statsSig(same));
   assert.notEqual(CoreStatsSignature.statSig({ times: 1 }), CoreStatsSignature.statSig({ times: 2 }));
+  const evidence = { times: 1, learningV1: { version: 1, phase: 'learning', evidence: [{
+    id: 'assessment-1', key: 'deck#item', sessionId: 'session-1', type: 'assessment', mode: 'typing',
+    contentFingerprint: 'v1-a', policyVersion: 1, stage: 'initial', at: 100, ok: true,
+    firstAttempt: true, eligibleAt: 90,
+  }] } };
+  const changedStage = JSON.parse(JSON.stringify(evidence));
+  changedStage.learningV1.evidence[0].stage = 'delayed';
+  assert.notEqual(CoreStatsSignature.statSig(evidence), CoreStatsSignature.statSig(changedStage), 'assessment stage must participate in sync signature');
   assert.deepEqual(CoreStatsSignature.eventSnapshot([]), { count: 0, firstId: null, lastId: null });
   assert.deepEqual(CoreStatsSignature.eventSnapshot([{ id: 'a' }, { id: 'b' }]), { count: 2, firstId: 'a', lastId: 'b' });
   console.log('core-stats-signature.test.js passed');

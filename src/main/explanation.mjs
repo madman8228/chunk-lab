@@ -53,7 +53,9 @@ function buildFallbackExplanation(item) {
     return '<div class="explain-example-en">' + miniMd(String(example)) + '</div>';
   });
   if (exampleHtml.length) sections.push({ tag: list.length ? '经典例句' : '本句例句', html: exampleHtml.join(''), variant: 'info' });
-  if (!sections.length) sections.push({ tag: '说明', html: '<div class="explain-overview">本句暂无补充讲解。</div>', variant: 'info' });
+  /* 无任何可展示字段时返回空数组（2026-09-23）：空讲解由调用方决定「不渲染」。
+     旧实现 push 一条「说明 / 本句暂无补充讲解。」占位，把「没有数据」伪装成「有内容」，
+     结果在无讲解的句子上渲染出一张零信息量的卡片（oral-1-1-1 中约 44% 的句子命中）。 */
   return sections;
 }
 
@@ -92,7 +94,26 @@ function buildAnalysisSections(item) {
       sections.push({ tag, html: miniMd(String(raw)), variant: 'info' });
     }
   });
-  return hasAny ? sections : sections.concat(buildFallbackExplanation(item));
+  if (!hasAny) sections.push(...buildFallbackExplanation(item));
+
+  /* Imported/AI-authored courses commonly contain chunk, role and hint metadata
+     without a separate long-form explanation. Turn those authored learning cues
+     into a useful, deterministic breakdown instead of showing an empty panel. */
+  const chunks = item && Array.isArray(item.chunks) ? item.chunks : [];
+  const grammar = item && Array.isArray(item.grammar) ? item.grammar : [];
+  const hints = item && Array.isArray(item.hints) ? item.hints : [];
+  if (chunks.length && (grammar.some((entry) => typeof entry === 'string' ? entry.trim() : entry && entry.role) || hints.some((hint) => String(hint || '').trim()))) {
+    const rows = chunks.map((chunk, index) => {
+      const roleEntry = grammar[index];
+      const role = typeof roleEntry === 'string' ? roleEntry : (roleEntry && roleEntry.role);
+      const hint = hints[index];
+      return '<div class="explain-chunk-row"><div class="explain-chunk-main"><strong>' + escapeHtml(chunk) + '</strong>' +
+        (role ? '<span class="explain-chunk-role">' + escapeHtml(role) + '</span>' : '') +
+        '</div>' + (hint ? '<div class="explain-chunk-hint">' + escapeHtml(hint) + '</div>' : '') + '</div>';
+    }).join('');
+    sections.push({ tag: '句子拆解', html: '<div class="explain-chunk-list">' + rows + '</div>', variant: 'info' });
+  }
+  return sections;
 }
 
 export { buildAnalysisSections, buildFallbackExplanation, escapeHtml, miniMd };

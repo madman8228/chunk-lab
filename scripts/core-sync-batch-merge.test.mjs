@@ -51,10 +51,10 @@ assert.deepEqual(result.courses, [
   { courseId: 'c2', title: 'remote' },
 ]);
 assert.deepEqual(result.courseProgress, { c1: { done: 2 }, c2: { done: 1 } });
-assert.deepEqual(result.mem.reinforceBook, [
-  { _key: 'r1', sentence: 'remote' },
-  { _key: 'r2' },
-]);
+assert.deepEqual(result.mem.mastered, { a: { markedAt: 1 }, b: { markedAt: 2 } });
+assert.equal(result.mem.reinforceBook.length, 2);
+assert.ok(result.mem.reinforceBook.some((row) => row._key === 'r1' && row.history.length === 2));
+assert.ok(result.mem.reinforceBook.some((row) => row._key === 'r2'));
 assert.equal(result.generation, 7);
 
 const business = CoreSyncBatchMerge.buildBusinessSnapshot({
@@ -74,5 +74,23 @@ assert.equal(business.mem.decks[1].builtin, true);
 assert.equal(business.mem.decks[1].isPublic, false);
 assert.deepEqual(business.courses.map((course) => course.courseId), ['c1', 'c2']);
 assert.deepEqual(business.courseProgress, { c1: { done: 1 } });
+
+const localOnlyMark = CoreSyncBatchMerge.mergeBatchSnapshots({
+  mem: { mastered: { 'oral#item': { markedAt: 2 } }, stats: {} },
+  courses: [], courseProgress: {}, revs: {}, generation: 3,
+}, {
+  mem: { mastered: {}, stats: {} },
+  courses: [], courseProgress: {}, revs: {}, generation: 4,
+}, {
+  cloneJSON: identity,
+  normalizeSyncedStats: (stats) => ({ stats, changed: false }),
+  mergeBest: (left, right) => ({ ...(left || {}), ...(right || {}) }),
+  mergeStats: (left, right) => ({ ...(left || {}), ...(right || {}) }),
+  migrateCidKeys: () => {},
+  migrateToBookDecks: () => {},
+  currentVersion: 9,
+});
+assert.deepEqual(localOnlyMark.mem.mastered, { 'oral#item': { markedAt: 2 } },
+  'a batch snapshot omission alone is not deletion evidence');
 
 console.log('core-sync-batch-merge.test.mjs passed');

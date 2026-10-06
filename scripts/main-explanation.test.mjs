@@ -20,5 +20,22 @@ assert.equal(analysis.length, 1);
 assert.equal(analysis[0].tag, '讲解 1');
 assert.match(analysis[0].html, /固定表达/);
 assert.match(analysis[0].html, /Every/);
-assert.deepEqual(buildFallbackExplanation({}), [{ tag: '说明', html: '<div class="explain-overview">本句暂无补充讲解。</div>', variant: 'info' }]);
+/* 2026-09-23：无任何可展示字段时返回空数组，不再产出「说明 / 本句暂无补充讲解。」占位。
+   空讲解由调用方 showExplanationPanel 判定为「不渲染」（整卡不出现）。 */
+assert.deepEqual(buildFallbackExplanation({}), []);
+assert.deepEqual(buildFallbackExplanation({ sentence: 'No explanation.', translation: '无讲解。' }), []);
+assert.deepEqual(buildAnalysisSections({ sentence: 'No explanation.', translation: '无讲解。' }), []);
+/* 只有译文时也不得凭空造出 section（旧的「核心含义」伪装已不复现） */
+assert.deepEqual(buildAnalysisSections({ translation: '只有译文。' }).map((s) => s.tag), []);
+const authoredBreakdown = buildAnalysisSections({
+  sentence: 'How do we get there?',
+  translation: '我们怎么去那里？',
+  chunks: ['How do we get', 'there?'],
+  hints: ['我们如何到达', '那里？'],
+  grammar: [{ role: '疑问词+助动词+主语+谓语' }, { role: '状语' }],
+});
+assert.equal(authoredBreakdown.at(-1).tag, '句子拆解');
+assert.match(authoredBreakdown.at(-1).html, /How do we get/);
+assert.match(authoredBreakdown.at(-1).html, /我们如何到达/);
+assert.match(authoredBreakdown.at(-1).html, /疑问词\+助动词\+主语\+谓语/);
 console.log('main-explanation.test.mjs passed');

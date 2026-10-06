@@ -175,4 +175,16 @@ export function createTabNotifier(options = {}) {
   });
 }
 
-export const CoreRuntime = Object.freeze({ createSingleFlight, createTaskQueue, createWriteCoordinator, createLatestWriteLane, createTabNotifier });
+export function classifyPersistenceState(input) {
+  input = input || {};
+  const configState = input.configState || 'unknown';
+  if (configState === 'checking' || configState === 'unknown') return configState;
+  if (configState === 'offline') return 'offline';
+  if (configState !== 'known' || !input.config || typeof input.config !== 'object') return 'config-invalid';
+  if (input.config.persistenceMode === 'server-authoritative' && Number(input.config.writeProtocol) === 3) {
+    return input.ready === true ? 'protocol3-ready' : 'protocol3-initializing';
+  }
+  return input.quarantined === true ? 'legacy-quarantined' : 'legacy';
+}
+
+export const CoreRuntime = Object.freeze({ createSingleFlight, createTaskQueue, createWriteCoordinator, createLatestWriteLane, createTabNotifier, classifyPersistenceState });

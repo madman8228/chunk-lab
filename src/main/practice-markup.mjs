@@ -4,14 +4,18 @@ export function buildChunkMarkup(options = {}) {
   const index = Number.isInteger(options.index) ? options.index : 0;
   const words = chunk.trim().split(/\s+/);
   const hint = options.hint || `${words.length} 词`;
-  const grammar = options.grammar && typeof options.grammar === 'object' ? options.grammar : null;
+  const grammar = typeof options.grammar === 'string'
+    ? { role: options.grammar.trim() }
+    : (options.grammar && typeof options.grammar === 'object' ? options.grammar : null);
   const mode = options.mode === 'choose' ? 'choose' : 'type';
   const esc = typeof options.escapeHtml === 'function'
     ? options.escapeHtml
     : (value) => String(value == null ? '' : value);
-  const roleHtml = grammar
-    ? '<span class="chunk-role" style="background:' + String(grammar.color || '#ccc') + '22">'
-      + esc(grammar.role) + '</span>'
+  const role = String(grammar && grammar.role || '').trim();
+  const color = String(grammar && grammar.color || '');
+  const roleStyle = /^#[0-9a-f]{6}$/i.test(color) ? ' style="background:' + color + '22"' : '';
+  const roleHtml = role
+    ? '<span class="chunk-role"' + roleStyle + '>' + esc(role) + '</span>'
     : '';
 
   if (mode === 'choose') {

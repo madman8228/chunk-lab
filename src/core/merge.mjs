@@ -1,3 +1,6 @@
+import { MistakeEvidence } from '../mistake-review/evidence.mjs';
+import { mergeLearningEvidence } from '../learning/state.mjs';
+
 /* Pure three-way merge helpers for cross-tab and cloud snapshots. */
 const has = (object, key) => !!object && Object.prototype.hasOwnProperty.call(object, key);
 const equalJson = (left, right) => {
@@ -39,7 +42,18 @@ function daysLog(base, ours, theirs) {
 
 function bySentence(base, ours, theirs) {
   if (!theirs || !Object.keys(theirs).length) return ours || {};
-  return keyedMap(base, ours, theirs);
+  const merged = keyedMap(base, ours, theirs);
+  for (const key of Object.keys(merged)) {
+    const left = ours && ours[key];
+    const right = theirs && theirs[key];
+    if (!left || !right || (!left.learningV1 && !right.learningV1)) continue;
+    const a = left.learningV1 || {}, b = right.learningV1 || {};
+    const latest = (Number(a.lastExposureAt) || 0) >= (Number(b.lastExposureAt) || 0) ? a : b;
+    merged[key] = { ...merged[key], learningV1: { ...latest, version: 1,
+      lastExposureAt: Math.max(Number(a.lastExposureAt) || 0, Number(b.lastExposureAt) || 0),
+      evidence: mergeLearningEvidence(a.evidence, b.evidence) } };
+  }
+  return merged;
 }
 
 function best(ours, theirs) {
@@ -125,7 +139,14 @@ function memInto(target, disk, base) {
   const deckKey = (item) => item && item.id;
   const bookKey = (item) => item && (item._key || item.id || item.sentence);
   target.decks = listFromKeyed(target.decks, keyedMap(toMap(base.decks, deckKey), toMap(target.decks, deckKey), toMap(disk.decks, deckKey)), deckKey);
-  target.reinforceBook = listFromKeyed(target.reinforceBook, keyedMap(toMap(base.reinforceBook, bookKey), toMap(target.reinforceBook, bookKey), toMap(disk.reinforceBook, bookKey)), bookKey);
+  const allowedReinforce = keyedMap(toMap(base.reinforceBook, bookKey), toMap(target.reinforceBook, bookKey), toMap(disk.reinforceBook, bookKey));
+  const reinforce = new Map();
+  [...(Array.isArray(target.reinforceBook) ? target.reinforceBook : []), ...(Array.isArray(disk.reinforceBook) ? disk.reinforceBook : [])].forEach((item) => {
+    const key = bookKey(item);
+    if (!key || !has(allowedReinforce, key)) return;
+    reinforce.set(key, reinforce.has(key) ? MistakeEvidence.mergeEvidenceRows(reinforce.get(key), item) : MistakeEvidence.normalizeEvidenceRow(item));
+  });
+  target.reinforceBook = [...reinforce.values()];
   target.mastered = keyedMap(base.mastered, target.mastered, disk.mastered);
   target.deletedItems = keyedMap(base.deletedItems, target.deletedItems, disk.deletedItems);
   target.best = keyedMap(base.best, target.best, disk.best);

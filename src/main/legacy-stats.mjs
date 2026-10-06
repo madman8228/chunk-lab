@@ -29,6 +29,7 @@ export function migrateLegacyStatKeys(bySentence, decks, options = {}) {
   const known = {};
   list.forEach((deck) => { if (deck && deck.id) known[deck.id] = deck; });
   let changed = false;
+  const migrations = [];
 
   Object.keys(bySentence).forEach((oldKey) => {
     const source = bySentence[oldKey];
@@ -49,12 +50,17 @@ export function migrateLegacyStatKeys(bySentence, decks, options = {}) {
       }
     }
     if (!sourceId || !known[sourceId]) return;
-    const newKey = sourceId + '#' + hash(source.sentence || '');
+    const oldCid = String(oldKey).slice(String(oldKey).indexOf('#') + 1);
+    const sourceItem = (known[sourceId].items || []).find((item) =>
+      String(item.cid || hash(item.sentence || item.en || '')) === oldCid ||
+      normalize(item.sentence || item.en || '') === normalize(source.sentence || ''));
+    const stableCid = sourceItem ? String(sourceItem.cid || hash(sourceItem.sentence || sourceItem.en || '')) : hash(source.sentence || '');
+    const newKey = sourceId + '#' + stableCid;
     const migrated = Object.assign({}, source, { deckId: sourceId, deckName: known[sourceId].name });
     by[newKey] = by[newKey] ? mergeStats(by[newKey], migrated) : migrated;
     if (newKey !== oldKey) delete by[oldKey];
+    if (newKey !== oldKey) migrations.push({ oldKey, newKey, deckId: sourceId });
     changed = true;
   });
-  return { changed, by };
+  return { changed, by, migrations };
 }
-

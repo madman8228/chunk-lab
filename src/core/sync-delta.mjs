@@ -18,6 +18,14 @@ function memForCloud(mem) {
   return out;
 }
 
+function compactSentenceStat(row) {
+  if (!row || typeof row !== 'object' || Array.isArray(row)
+    || !Object.prototype.hasOwnProperty.call(row, 'sentence')) return row;
+  const compact = { ...row };
+  delete compact.sentence;
+  return compact;
+}
+
 function buildStatsDelta(mem, marks) {
   const stats = (mem && mem.stats) || {};
   const bySentence = stats.bySentence && typeof stats.bySentence === 'object' ? stats.bySentence : {};
@@ -29,10 +37,10 @@ function buildStatsDelta(mem, marks) {
   const sbs = {};
   const sbsGone = [];
   if (previousStats === null || previousStats === undefined) {
-    Object.keys(bySentence).forEach((key) => { sbs[key] = bySentence[key]; });
+    Object.keys(bySentence).forEach((key) => { sbs[key] = compactSentenceStat(bySentence[key]); });
   } else {
     Object.keys(bySentence).forEach((key) => {
-      if (previousStats[key] !== statSig(bySentence[key])) sbs[key] = bySentence[key];
+      if (previousStats[key] !== statSig(bySentence[key])) sbs[key] = compactSentenceStat(bySentence[key]);
     });
     Object.keys(previousStats).forEach((key) => {
       if (!(key in bySentence)) sbsGone.push(key);

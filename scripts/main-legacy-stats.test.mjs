@@ -13,6 +13,7 @@ assert.deepEqual(result.by['source#hash'], {
   deckId: 'source', sentence: 'Every Tom', times: 5, okTimes: 3, wrongTimes: 2, maxStreak: 2, lastAt: 20,
 });
 assert.equal(result.by.old, undefined);
+assert.deepEqual(result.migrations, [{ oldKey: 'old', newKey: 'source#hash', deckId: 'source' }]);
 
 const ambiguous = migrateLegacyStatKeys({ old: { deckId: 'temp', sentence: 'same', deckName: 'No match', times: 1 } }, [
   { id: 'a', name: 'A', items: [{ sentence: 'same' }] },
@@ -20,4 +21,5 @@ const ambiguous = migrateLegacyStatKeys({ old: { deckId: 'temp', sentence: 'same
 ], { normalizeSentence: (value) => value });
 assert.equal(ambiguous.changed, false);
 assert.ok(ambiguous.by.old);
+assert.deepEqual(ambiguous.migrations, []);
 console.log('main-legacy-stats.test.mjs passed');

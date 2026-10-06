@@ -26,7 +26,7 @@ function migrateCidKeys(value) {
   return changed;
 }
 
-function migrateToBookDecks(value, migrationMap) {
+function migrateToBookDecks(value, migrationMap, cidAliases) {
   const target = value && typeof value === 'object' ? value : {};
   const map = migrationMap;
   if (!map || typeof map !== 'object') return false;
@@ -45,6 +45,15 @@ function migrateToBookDecks(value, migrationMap) {
   Object.keys(map).forEach((deckId) => {
     (Array.isArray(map[deckId]) ? map[deckId] : []).forEach((cid) => { cidToDeck[cid] = deckId; });
   });
+  const aliases = cidAliases && typeof cidAliases === 'object' ? cidAliases : {};
+  function resolveCid(cid) {
+    const deckId = cidToDeck[cid];
+    if (deckId) return { deckId: deckId, cid: cid };
+    const alias = aliases[cid];
+    if (!alias || typeof alias !== 'object' || typeof alias.deckId !== 'string' ||
+        typeof alias.cid !== 'string' || cidToDeck[alias.cid] !== alias.deckId) return null;
+    return { deckId: alias.deckId, cid: alias.cid };
+  }
   function remapKey(key) {
     if (typeof key !== 'string') return key;
     const sep = key.indexOf('#');
@@ -52,15 +61,19 @@ function migrateToBookDecks(value, migrationMap) {
     const oldDeck = key.slice(0, sep);
     const cid = key.slice(sep + 1);
     if (!oldDecks[oldDeck] || !/^[0-9a-f]{8}$/.test(cid)) return key;
-    const deck = cidToDeck[cid];
-    return deck ? deck + '#' + cid : key;
+    const resolved = resolveCid(cid);
+    return resolved ? resolved.deckId + '#' + resolved.cid : key;
   }
   function moveMap(mapValue) {
     if (!mapValue || typeof mapValue !== 'object') return;
     Object.keys(mapValue).forEach((key) => {
       const next = remapKey(key);
       if (next === key) return;
-      if (!(next in mapValue)) mapValue[next] = mapValue[key];
+      /* A canonical row can already coexist with its legacy alias. There is
+         no safe generic merge for stats/SRS values here; retain the old row
+         rather than silently discarding it. */
+      if (next in mapValue) return;
+      mapValue[next] = mapValue[key];
       delete mapValue[key];
       changed = true;
     });
@@ -86,10 +99,10 @@ function migrateToBookDecks(value, migrationMap) {
   if (Array.isArray(target.reinforceBook)) {
     target.reinforceBook.forEach((item) => {
       if (!item || !oldDecks[item.deckId]) return;
-      const deck = cidToDeck[fnv8(item.sentence || '')];
-      if (!deck) return;
-      item.deckId = deck;
-      item._key = deck + '::' + (item.sentence || '');
+      const resolved = resolveCid(fnv8(item.sentence || ''));
+      if (!resolved) return;
+      item.deckId = resolved.deckId;
+      item._key = resolved.deckId + '::' + (item.sentence || '');
       changed = true;
     });
   }

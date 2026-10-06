@@ -5,6 +5,16 @@ const assert = require('node:assert/strict');
 async function main() {
   const { CoreRuntime } = await import('../src/core/runtime.mjs');
 
+  const classify = CoreRuntime.classifyPersistenceState;
+  assert.equal(classify({ configState: 'unknown' }), 'unknown');
+  assert.equal(classify({ configState: 'checking' }), 'checking');
+  assert.equal(classify({ configState: 'offline' }), 'offline');
+  assert.equal(classify({ configState: 'known', config: null }), 'config-invalid');
+  assert.equal(classify({ configState: 'known', config: { writeProtocol: 2 } }), 'legacy');
+  assert.equal(classify({ configState: 'known', config: { writeProtocol: 2 }, quarantined: true }), 'legacy-quarantined');
+  assert.equal(classify({ configState: 'known', config: { persistenceMode: 'server-authoritative', writeProtocol: 3 }, ready: false }), 'protocol3-initializing');
+  assert.equal(classify({ configState: 'known', config: { persistenceMode: 'server-authoritative', writeProtocol: 3 }, ready: true }), 'protocol3-ready');
+
   const flight = CoreRuntime.createSingleFlight();
   let calls = 0;
   let release;

@@ -2,7 +2,6 @@
 export function classifyStat(stat) {
   if (!stat || !stat.times) return 'unseen';
   const accuracy = stat.okTimes / stat.times;
-  if (stat.times >= 3 && accuracy >= 0.8) return 'master';
   if (accuracy < 0.6) return 'weak';
   return 'learn';
 }
@@ -13,9 +12,7 @@ export function rankOfClassify(classification) {
       : classification === 'learn' ? 2 : 3;
 }
 
-export function isFluencyStat(stat) {
-  return Boolean(stat && stat.okTimes >= 3 && stat.streak >= 3);
-}
+export function isFluencyStat() { return false; }
 
 export function hasMasteredKey(mastered, key) {
   return Boolean(mastered && key && mastered[key]);

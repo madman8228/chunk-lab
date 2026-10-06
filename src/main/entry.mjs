@@ -72,6 +72,10 @@ function resolveEntry(options) {
   if (explicitCatalog) {
     return { kind: 'catalog', course: params.get('course'), lesson: params.get('lesson'), explicit: true };
   }
+  var reviewHandoff = params.get('reviewHandoff');
+  if (params.get('autostart') === '1' && reviewHandoff) {
+    return { kind: 'review-handoff', id: reviewHandoff, explicit: true };
+  }
   if (params.get('direct') === '1') return { kind: 'direct', explicit: true };
   if (params.get('autostart') === '1') {
     var review = opts.review;

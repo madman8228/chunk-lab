@@ -1,3 +1,5 @@
+import { MistakeEvidence } from '../mistake-review/evidence.mjs';
+
 function strHash(value) {
   let hash = 0x811c9dc5;
   const text = String(value == null ? '' : value);
@@ -10,7 +12,8 @@ function sigMasteredRow(value) {
 }
 
 function sigReinforceRow(value) {
-  return `${value && value.addedAt || ''}:${strHash(value && value.sentence || '')}`;
+  const normalized = MistakeEvidence.normalizeEvidenceRow(value || {});
+  return strHash(JSON.stringify(normalized));
 }
 
 function sigDeletedRow() {
