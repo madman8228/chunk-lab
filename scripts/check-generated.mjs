@@ -407,7 +407,10 @@ try {
     esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')], outfile: actualMistakeEvidenceBrowser, bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' }),
     esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')], outfile: actualMistakeEvidenceServer, bundle: true, format: 'cjs', platform: 'node', minify: false, legalComments: 'none' }),
   ]);
-  const hash = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  // Git may check text out as CRLF on Windows; esbuild always emits LF.
+  // Normalize only line endings so actual source/output changes still fail.
+  const readGeneratedText = (file) => fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+  const hash = (file) => crypto.createHash('sha256').update(readGeneratedText(file)).digest('hex');
   if (!fs.existsSync(expectedMainPracticeClassification)
     || hash(expectedMainPracticeClassification) !== hash(actualMainPracticeClassification)) {
     console.error('[build:check] main practice classification output differs; run npm run build');
@@ -463,7 +466,7 @@ try {
     process.exitCode = 1;
   }
   const expectedKit = { kitVersion: '1.1', courseTypes: COURSE_TYPES, draftSchema: DRAFT_SPEC.schema, examples: DRAFT_SPEC.examples, imageTextDraftSchema: IMAGE_TEXT_DRAFT_SPEC.schema, imageTextExample: IMAGE_TEXT_DRAFT_SPEC.example, imageMediaLimits: IMAGE_TEXT_DRAFT_SPEC.mediaLimits, interactionRules: DRAFT_SPEC.interactionRules, capabilities: CourseCapabilityCatalog.describeCreationOptions() };
-  if (!fs.existsSync(path.join(root, 'ai-course-kit.json')) || fs.readFileSync(path.join(root, 'ai-course-kit.json'), 'utf8') !== JSON.stringify(expectedKit, null, 2) + '\n') {
+  if (!fs.existsSync(path.join(root, 'ai-course-kit.json')) || readGeneratedText(path.join(root, 'ai-course-kit.json')) !== JSON.stringify(expectedKit, null, 2) + '\n') {
     console.error('[build:check] AI course kit differs; run npm run build');
     process.exitCode = 1;
   }

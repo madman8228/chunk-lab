@@ -31,7 +31,7 @@ trap cleanup_remote_stage EXIT
 #   与本清单比对，缺了就中止部署。
 #   本脚本第 [2/9] 步自动跑它；`npm test` 也会跑。（2026-09-10：本清单曾漏掉整个 js/ 目录）
 FILES=(
-  main.html decks.html stats.html courses.html course-create.html admin.html content-studio.html ai-course-kit.json
+  main.html decks.html stats.html courses.html course-create.html admin.html ai-course-kit.json
   core.js api.js auth-ui.js sw.js manifest.json content
   js/account-storage.js
   js/legacy-backup.js
