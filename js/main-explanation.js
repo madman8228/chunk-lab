@@ -74,7 +74,6 @@ var MainExplanation = (() => {
       return '<div class="explain-example-en">' + miniMd(String(example)) + "</div>";
     });
     if (exampleHtml.length) sections.push({ tag: list.length ? "\u7ECF\u5178\u4F8B\u53E5" : "\u672C\u53E5\u4F8B\u53E5", html: exampleHtml.join(""), variant: "info" });
-    if (!sections.length) sections.push({ tag: "\u8BF4\u660E", html: '<div class="explain-overview">\u672C\u53E5\u6682\u65E0\u8865\u5145\u8BB2\u89E3\u3002</div>', variant: "info" });
     return sections;
   }
   function buildAnalysisSections(item) {
@@ -108,7 +107,20 @@ var MainExplanation = (() => {
         sections.push({ tag, html: miniMd(String(raw)), variant: "info" });
       }
     });
-    return hasAny ? sections : sections.concat(buildFallbackExplanation(item));
+    if (!hasAny) sections.push(...buildFallbackExplanation(item));
+    const chunks = item && Array.isArray(item.chunks) ? item.chunks : [];
+    const grammar = item && Array.isArray(item.grammar) ? item.grammar : [];
+    const hints = item && Array.isArray(item.hints) ? item.hints : [];
+    if (chunks.length && (grammar.some((entry) => typeof entry === "string" ? entry.trim() : entry && entry.role) || hints.some((hint) => String(hint || "").trim()))) {
+      const rows = chunks.map((chunk, index) => {
+        const roleEntry = grammar[index];
+        const role = typeof roleEntry === "string" ? roleEntry : roleEntry && roleEntry.role;
+        const hint = hints[index];
+        return '<div class="explain-chunk-row"><div class="explain-chunk-main"><strong>' + escapeHtml(chunk) + "</strong>" + (role ? '<span class="explain-chunk-role">' + escapeHtml(role) + "</span>" : "") + "</div>" + (hint ? '<div class="explain-chunk-hint">' + escapeHtml(hint) + "</div>" : "") + "</div>";
+      }).join("");
+      sections.push({ tag: "\u53E5\u5B50\u62C6\u89E3", html: '<div class="explain-chunk-list">' + rows + "</div>", variant: "info" });
+    }
+    return sections;
   }
   return __toCommonJS(main_explanation_entry_exports);
 })();

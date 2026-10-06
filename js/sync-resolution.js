@@ -2,7 +2,7 @@
    replies/reloads without putting course images into localStorage. */
 (function(global){
   'use strict';
-  var opening, active = null, resumeAttemptedScope = null;
+  var opening, active = null, quarantineActive = null, resumeAttemptedScope = null;
   var CURRENT_SCHEMA = 2;
   function scope(){
     var token = global.ChunkAPI.getToken(), uid = 'open';
@@ -243,6 +243,42 @@
       return execute(record,key);
     });
   }); }
+  function quarantineConflict(){
+    if(quarantineActive) return quarantineActive;
+    quarantineActive = Promise.resolve().then(async function(){
+      var key = scope();
+      return withRecoveryLock(key, async function(){
+      var conflicts = global.CL.getSyncConflict ? global.CL.getSyncConflict() : null;
+      if((!Array.isArray(conflicts) || !conflicts.length) && !global.CL.isResolutionPaused()) return null;
+      if(!global.LegacyRecovery || typeof global.LegacyRecovery.archiveConflictPair !== 'function') {
+        var unavailable = new Error('冲突原件保全暂不可用'); unavailable.code = 'CONFLICT_ARCHIVE_UNAVAILABLE'; throw unavailable;
+      }
+      var view = await preview();
+      if(!view || !view.local || !view.remote ||
+          ((!Array.isArray(conflicts) || !conflicts.length) && view.pending !== true)) {
+        var incomplete = new Error('冲突双方快照暂不可读取'); incomplete.code = 'CONFLICT_SNAPSHOT_UNAVAILABLE'; throw incomplete;
+      }
+      if(scope() !== key) { var changed = new Error('账号已切换；冲突原件仍保留在原账号'); changed.code = 'SESSION_CHANGED'; throw changed; }
+      var receipt = await global.LegacyRecovery.archiveConflictPair(view);
+      if(scope() !== key) { var late = new Error('账号已切换；归档记录保留在原账号'); late.code = 'SESSION_CHANGED'; throw late; }
+      if(!receipt || !['archived','already-archived'].includes(receipt.state) || !receipt.receipt ||
+          receipt.receipt.ok !== true || receipt.receipt.manifest.verified !== true ||
+          receipt.receipt.sourceHash !== receipt.receipt.manifest.sourceHash) {
+        var unverified = new Error('服务端尚未验证冲突原件归档');
+        unverified.code = 'CONFLICT_ARCHIVE_UNVERIFIED';
+        unverified.details = { state: receipt && receipt.state || null, hasReceipt: !!(receipt && receipt.receipt),
+          receiptOk: !!(receipt && receipt.receipt && receipt.receipt.ok === true),
+          manifestVerified: !!(receipt && receipt.receipt && receipt.receipt.manifest && receipt.receipt.manifest.verified === true),
+          hashMatches: !!(receipt && receipt.receipt && receipt.receipt.manifest &&
+            receipt.receipt.sourceHash === receipt.receipt.manifest.sourceHash) };
+        throw unverified;
+      }
+      return { sourceId: receipt.receipt.sourceId, sourceHash: receipt.receipt.sourceHash,
+        verified: true, state: receipt.state };
+      });
+    }).finally(function(){ quarantineActive = null; });
+    return quarantineActive;
+  }
   function resumeOnStartup(){ return single(async function(){
     var key = scope();
     if(resumeAttemptedScope === key) return false;
@@ -259,5 +295,5 @@
     });
   }); }
   global.SyncResolution = { preview: preview, resolve: resolve, retry: retry, startAutoBatch: startAutoBatch,
-    restorePause: restorePause, resumeOnStartup: resumeOnStartup };
+    quarantineConflict: quarantineConflict, restorePause: restorePause, resumeOnStartup: resumeOnStartup };
 })(window);

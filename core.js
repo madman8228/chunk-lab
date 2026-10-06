@@ -18,16 +18,7 @@
   var CoreStatsSignature = global.CoreStatsSignature || null;
   var CoreStorageState = global.CoreStorageState || null;
   var CoreEntityDelta = global.CoreEntityDelta || null;
-  var CoreSyncDelta = global.CoreSyncDelta || null;
-  var CoreSyncIntents = global.CoreSyncIntents || null;
-  var CoreSyncPayload = global.CoreSyncPayload || null;
-  var CoreSyncTransport = global.CoreSyncTransport || null;
-  var CoreSyncReplay = global.CoreSyncReplay || null;
-  var CoreSyncBatchMerge = global.CoreSyncBatchMerge || null;
   var CoreSyncStats = global.CoreSyncStats || null;
-  var CoreSyncMarks = global.CoreSyncMarks || null;
-  var CoreSyncEntities = global.CoreSyncEntities || null;
-  var CoreSyncKv = global.CoreSyncKv || null;
   var CoreRevisionDelta = global.CoreRevisionDelta || null;
   var eventBus = CoreEventBus && CoreEventBus.createEventBus ? CoreEventBus.createEventBus() : null;
 
@@ -35,7 +26,6 @@
      （此前 stats/decks 用 chunklab_mem_v1 → 数据不同步，已修根因） */
   var STORE_KEY = 'chunklab.v1';
   var REVS_KEY = 'chunklab_revs_v1'; /* ADR-005：per-entity 版本号，独立于 mem 存储 */
-  var CONFLICT_KEY = 'chunklab.sync-conflict.v1';
   var LISTENERS = {};
 
   /* ============================================================
@@ -252,72 +242,13 @@
        否则它们永远不会被上行（例如首次上行还在传输时新建的 deck）。
      all = true 表示「尚无确认基准」→ 首次上行全量发送。 */
   function makePending() {
-    if(CoreSyncDelta && CoreSyncDelta.createPendingSet) return CoreSyncDelta.createPendingSet();
     return { all: true, dirty: {}, gone: {} };
   }
   function markPending(p, id) {
-    if(CoreSyncDelta && CoreSyncDelta.markPending) return CoreSyncDelta.markPending(p, id);
     p.dirty[id] = 1;
   }
   function markGone(p, id, rev) {
-    if(CoreSyncDelta && CoreSyncDelta.markGone) return CoreSyncDelta.markGone(p, id, rev);
     p.gone[id] = rev;
-  }
-  function pendingList(p, list, keyOf) {
-    if(CoreSyncDelta && CoreSyncDelta.pendingList) return CoreSyncDelta.pendingList(p, list, keyOf);
-    if (p.all) return list;
-    return list.filter(function (x) { return !!p.dirty[keyOf(x)]; });
-  }
-  function pendingMap(p, map) {
-    if(CoreSyncDelta && CoreSyncDelta.pendingMap) return CoreSyncDelta.pendingMap(p, map);
-    if (p.all) return map;
-    var out = {};
-    Object.keys(map).forEach(function (k) { if (p.dirty[k]) out[k] = map[k]; });
-    return out;
-  }
-  /* 待发删除 = 累积集合 ∪ 本次 diff（两者都不完整：累积集合覆盖跨多次 saveMem 的删除，
-     diff 覆盖首次上行那一次 —— 此时累积集合还是空的）。返回下发列表 + 本次发出的 id 集合。 */
-  function pendingGone(p, diffList) {
-    if(CoreSyncDelta && CoreSyncDelta.pendingGone) return CoreSyncDelta.pendingGone(p, diffList);
-    var sent = {}, res = [];
-    Object.keys(p.gone).forEach(function (id) { sent[id] = 1; res.push({ id: id, rev: p.gone[id] }); });
-    (diffList || []).forEach(function (d) { if (!sent[d.id]) { sent[d.id] = 1; res.push(d); } });
-    return { list: res, sent: sent };
-  }
-  function ackPending(p, sentUp, sentGone) {
-    if(CoreSyncDelta && CoreSyncDelta.ackPending) return CoreSyncDelta.ackPending(p, sentUp, sentGone);
-    Object.keys(sentUp || {}).forEach(function (id) { delete p.dirty[id]; });
-    Object.keys(sentGone || {}).forEach(function (id) { delete p.gone[id]; });
-    p.all = false;
-  }
-  function discardSupersededDeletes(p, batch, sentUp, revs){
-    if(CoreSyncDelta && CoreSyncDelta.discardSupersededDeletes) return CoreSyncDelta.discardSupersededDeletes(p, batch, sentUp, revs);
-    batch.list = batch.list.filter(function(d){
-      if(sentUp[d.id] && (revs[d.id] || 0) > d.rev){
-        delete p.gone[d.id]; delete batch.sent[d.id];
-        return false; // 删除尚未确认时又重建：只发送较新的重建意图。
-      }
-      return true;
-    });
-  }
-  function idsOf(list, keyOf) {
-    if(CoreSyncDelta && CoreSyncDelta.idsOf) return CoreSyncDelta.idsOf(list, keyOf);
-    var out = {};
-    (list || []).forEach(function (x) { out[keyOf(x)] = 1; });
-    return out;
-  }
-  /* 算出「服务端还不知道 / 版本更旧」的实体 id 集合 —— 合并前的本地 rev 与远端 rev 比较。
-     ★ 必须用**合并前**的本地 rev：合并会把 localRevs 抬到 max(本地, 远端)，
-       之后就分辨不出「本地更新」，刷新页面后会把全部 deck / 课程重传一遍。 */
-  function entitiesNeedingPush(list, keyOf, localMap, remoteMap) {
-    if(CoreSyncDelta && CoreSyncDelta.entitiesNeedingPush) return CoreSyncDelta.entitiesNeedingPush(list, keyOf, localMap, remoteMap);
-    var out = {};
-    (list || []).forEach(function (x) {
-      var id = keyOf(x);
-      if (!(id in (remoteMap || {}))) { out[id] = 1; return; } /* 服务端没有 → 必须上行 */
-      if ((localMap[id] || 0) > (remoteMap[id] || 0)) out[id] = 1; /* 本地更新 → 必须上行 */
-    });
-    return out;
   }
 
   var _pendingDecks = makePending();     /* 用户 deck（导入题库可达数百 KB，不该每答一题重传） */
@@ -325,107 +256,6 @@
   var _pendingProgress = makePending();  /* 课程进度 */
   function sigCourse(c) { return JSON.stringify(c); }
 
-  function maintainCoursesRevs() {
-    var revs = loadRevs();
-    if (!revs.courses) revs.courses = {};
-    if (!revs.courseProgress) revs.courseProgress = {};
-    var deleted = { courses: [], courseProgress: [] };
-
-    if (CoreRevisionDelta && CoreRevisionDelta.calculateKeyedRevisionDelta) {
-      var courseDelta = CoreRevisionDelta.calculateKeyedRevisionDelta({
-        group: 'courses',
-        current: readCoursesRaw(),
-        previous: _coursesSnap,
-        revisions: revs,
-        keyOf: function (course) { return course.courseId; },
-        signature: function (course) { return sigCourse(course); }
-      });
-      (courseDelta.changed || []).forEach(function (id) {
-        markPending(_pendingCourses, id);
-      });
-      (courseDelta.deleted || []).forEach(function (item) {
-        markGone(_pendingCourses, item.id, item.rev);
-      });
-
-      var progressDelta = CoreRevisionDelta.calculateKeyedRevisionDelta({
-        group: 'courseProgress',
-        current: readProgressRaw(),
-        previous: _progressSnap,
-        revisions: courseDelta.revisions,
-        keyOf: function (_value, id) { return id; },
-        signature: function (value) { return sigKv(value); }
-      });
-      (progressDelta.changed || []).forEach(function (id) {
-        markPending(_pendingProgress, id);
-      });
-      (progressDelta.deleted || []).forEach(function (item) {
-        markGone(_pendingProgress, item.id, item.rev);
-      });
-      _coursesSnap = courseDelta.snapshot;
-      _progressSnap = progressDelta.snapshot;
-      saveRevs(progressDelta.revisions);
-      return {
-        revs: progressDelta.revisions,
-        deleted: { courses: courseDelta.deleted, courseProgress: progressDelta.deleted }
-      };
-    }
-
-    var cur = readCoursesRaw();
-    var curIds = {};
-    cur.forEach(function (c) { curIds[c.courseId] = true; });
-    if (_coursesSnap) {
-      cur.forEach(function (c) {
-        var prev = _coursesSnap[c.courseId];
-        if (prev === undefined || sigCourse(c) !== prev) {
-          revs.courses[c.courseId] = (revs.courses[c.courseId] || 0) + 1;
-          markPending(_pendingCourses, c.courseId); /* 只上行变更课程（课程可含 base64 图片） */
-        }
-      });
-      Object.keys(_coursesSnap).forEach(function (cid) {
-        if (!curIds[cid]) {
-          revs.courses[cid] = (revs.courses[cid] || 0) + 1;
-          deleted.courses.push({ id: cid, rev: revs.courses[cid] });
-          markGone(_pendingCourses, cid, revs.courses[cid]);
-        }
-      });
-    } else {
-      /* 同理：快照被 syncFromCloud 置回 null 时，无 rev 的课程就是「服务端还不知道」的。
-         不标记的话，syncFromCloud 之后新建的课程（`_pendingCourses.all` 已为 false）
-         会被 pendingList 过滤掉，永远不上行。 */
-      cur.forEach(function (c) {
-        if (!(c.courseId in revs.courses)) { revs.courses[c.courseId] = 1; markPending(_pendingCourses, c.courseId); }
-      });
-    }
-    _coursesSnap = {};
-    cur.forEach(function (c) { _coursesSnap[c.courseId] = sigCourse(c); });
-
-    var pcur = readProgressRaw();
-    if (_progressSnap) {
-      Object.keys(pcur).forEach(function (cid) {
-        var prev = _progressSnap[cid];
-        if (prev === undefined || sigKv(pcur[cid]) !== prev) {
-          revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1;
-          markPending(_pendingProgress, cid);
-        }
-      });
-      Object.keys(_progressSnap).forEach(function (cid) {
-        if (!(cid in pcur)) {
-          revs.courseProgress[cid] = (revs.courseProgress[cid] || 0) + 1;
-          deleted.courseProgress.push({ id: cid, rev: revs.courseProgress[cid] });
-          markGone(_pendingProgress, cid, revs.courseProgress[cid]);
-        }
-      });
-    } else {
-      Object.keys(pcur).forEach(function (cid) {
-        if (!(cid in revs.courseProgress)) { revs.courseProgress[cid] = 1; markPending(_pendingProgress, cid); }
-      });
-    }
-    _progressSnap = {};
-    Object.keys(pcur).forEach(function (cid) { _progressSnap[cid] = sigKv(pcur[cid]); });
-
-    saveRevs(revs);
-    return { revs: revs, deleted: deleted };
-  }
 
   /* ---------- 存储版本化（版本迁移链） ----------
      version 语义：缺省 = 1（legacy）。写入时强制打当前版本。
@@ -508,6 +338,10 @@
   var _memBaseRaw = null;
   var _memBaseMem = null;
   var _memBaseReady = false;
+  /* A caller may keep an older loadMem() result while unrelated reads/migrations
+     advance the page-wide baseline. Keep the originating base with each snapshot
+     so a later save can still distinguish that snapshot's edits from disk edits. */
+  var _memSnapshotBases = typeof WeakMap === 'function' ? new WeakMap() : null;
   /* courses / progress 的跨标签页信号与基线（大对象在 IDB，不能靠 chunklab.v1 原文判变） */
   var _coursesDiskBase = null;
   var _progressDiskBase = null;
@@ -692,7 +526,14 @@
     var bookKey = function(it){ return it && (it._key || it.id || it.sentence); };
     target.decks = _listFromKeyed(target.decks,
       mergeKeyedMap(_toMap(base.decks, deckKey), _toMap(target.decks, deckKey), _toMap(disk.decks, deckKey)), deckKey);
-    target.reinforceBook = _listFromKeyed(target.reinforceBook,
+    if(window.MistakeEvidence){
+      var _reinforce = {};
+      (Array.isArray(target.reinforceBook)?target.reinforceBook:[]).concat(Array.isArray(disk.reinforceBook)?disk.reinforceBook:[]).forEach(function(item){
+        if(!item) return; var key = bookKey(item); if(!key) return;
+        _reinforce[key] = _reinforce[key] ? MistakeEvidence.mergeEvidenceRows(_reinforce[key],item) : MistakeEvidence.normalizeEvidenceRow(item);
+      });
+      target.reinforceBook = Object.keys(_reinforce).map(function(key){ return _reinforce[key]; });
+    }else target.reinforceBook = _listFromKeyed(target.reinforceBook,
       mergeKeyedMap(_toMap(base.reinforceBook, bookKey), _toMap(target.reinforceBook, bookKey), _toMap(disk.reinforceBook, bookKey)), bookKey);
     target.mastered = mergeKeyedMap(base.mastered, target.mastered, disk.mastered);
     target.deletedItems = mergeKeyedMap(base.deletedItems, target.deletedItems, disk.deletedItems);
@@ -840,15 +681,15 @@
           if(!_r.kv) _r.kv = {};
           ['stats'].forEach(function(k){ if(k in out) _r.kv[k] = (_r.kv[k] || 0) + 1; });
           saveRevs(_r);
-          /* 句子 key 被改写 → mastered / deletedItems / 错题本的行主键也变了。
-             旧水位里的 key 已不复存在，必须整批重推（置 null = 水位未知 → 下次全量上行）。
-             这与 stats 走 rev+1 是同一个目的，只是这三个走水位机制而非 rev。 */
-          _cloudMasteredSig = null;
-          _cloudReinforceSig = null;
-          _cloudDeletedSig = null;
           _prevSnap = null; /* 让下一次 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
         }
       }catch(e){ console.error('[core.migrateKeys]', e); }
+      if(_memSnapshotBases){
+        try{
+          var snapshotRaw = _readRaw(STORE_KEY);
+          _memSnapshotBases.set(out, { raw: snapshotRaw, mem: parseLocalMem(snapshotRaw) });
+        }catch(_snapshotError){}
+      }
       return out;
     }catch(e){
       console.error('[core.loadMem]', e);
@@ -903,10 +744,16 @@
        再整份落盘；绝不拿旧内存态覆盖别人刚写的。返回 false 表示「为避免覆盖而放弃本次落盘」。 */
   function writeLocalMem(m){
     var diskRaw = _readRaw(STORE_KEY);
-    if(_memBaseReady && diskRaw !== null && diskRaw !== _memBaseRaw){
+    var snapshotBase = null;
+    if(_memSnapshotBases && m && typeof m === 'object'){
+      try{ snapshotBase = _memSnapshotBases.get(m) || null; }catch(_snapshotReadError){}
+    }
+    var baseRaw = snapshotBase ? snapshotBase.raw : _memBaseRaw;
+    var baseMem = snapshotBase ? snapshotBase.mem : _memBaseMem;
+    if(_memBaseReady && diskRaw !== null && diskRaw !== baseRaw){
       var okMerge = true;
       try{
-        mergeMemInto(m, parseLocalMem(diskRaw), _memBaseMem || parseLocalMem(null));
+        mergeMemInto(m, parseLocalMem(diskRaw), baseMem || parseLocalMem(null));
         /* 合并后 stats 可能是新对象：重挂大对象内存桥，避免后续 loadMem 又取回合并前的旧 bySentence/events。
            'local' 模式且内存桥为 null 时保持 null（让 loadMem 始终读 localStorage 真值，不制造「粘住」的副本）。 */
         if(m.stats){
@@ -932,13 +779,24 @@
     var str = JSON.stringify(out);
     businessStorage.setItem(STORE_KEY, str);
     adoptMemBase(str);   /* 提交成功：本页内存与磁盘就此一致 */
+    if(_memSnapshotBases && m && typeof m === 'object'){
+      try{ _memSnapshotBases.set(m, { raw: str, mem: parseLocalMem(str) }); }catch(_snapshotWriteError){}
+    }
     notifyTabs('mem');
     return true;
   }
   /* 数据变更统一入口：保存 + 本地事件 + 通知父窗口 + 后台同步云端 */
   function saveAndNotify(memObj, syncMode){
+    if(syncMode !== 'local' && serverAuthoritativeProtocolActive()){
+      var protocolError = new Error('学习数据需要通过服务端学习操作保存；请刷新页面后重试。');
+      protocolError.code = 'PROTOCOL3_NARROW_WRITE_REQUIRED';
+      return Promise.reject(protocolError);
+    }
     /* 代次候选值随本地提交一起进入 IDB；只有提交成功后才正式调度云同步。 */
-    var shouldSync = syncMode !== 'local' && _cloudOn && global.ChunkAPI;
+    // Protocol 3 owns writes through ServerStore operations. A legacy caller
+    // may still persist a local projection, but must never dirty/schedule the
+    // account-wide snapshot pipeline or resurrect its conflict badge.
+    var shouldSync = syncMode !== 'local' && !serverAuthoritativeProtocolActive() && _cloudOn && global.ChunkAPI;
     /* Reserve the generation before the asynchronous persistence lane.  Two
        saves can be queued before either IDB transaction completes; deriving
        both from the old value would give them the same generation and could
@@ -953,6 +811,15 @@
       var generationAtomic = shouldSync && _statsStore === 'idb' && global.IDBStore &&
         typeof global.IDBStore.writeStatsBatch === 'function';
       if(shouldSync) scheduleCloudSync(memObj, generationAtomic ? commitGeneration : null);
+      else if(syncMode !== 'local' && ['unknown','checking','offline'].indexOf(getPersistenceState()) >= 0){
+        /* The operation has crossed the durable local commit boundary, but no
+           cloud request can be confirmed yet. Notify the shared status surface
+           without pretending that an upload is pending or already synchronized. */
+        emit('syncStatus', { dirty:true, conflict:null, quarantined:false, quarantinePending:false, localDurable:true });
+        if(typeof global.dispatchEvent === 'function' && typeof global.CustomEvent === 'function'){
+          global.dispatchEvent(new global.CustomEvent('chunklab-local-save-durable'));
+        }
+      }
       emit('memUpdated', memObj);
       if(global.parent && global.parent !== global){
         try{ global.parent.postMessage({ type:'memUpdated' }, '*'); }catch(e){}
@@ -1105,8 +972,15 @@
       var legacy = readLegacyStatsRaw();
       var idbBS = (data.sentenceStats && typeof data.sentenceStats === 'object') ? data.sentenceStats : {};
       var bsMap = {};
-      Object.keys(legacy.bySentence).forEach(function(k){ bsMap[k] = legacy.bySentence[k]; });
-      Object.keys(idbBS).forEach(function(k){ bsMap[k] = idbBS[k]; });   /* IDB 优先 */
+      function compactLegacyStat(row){
+        if(!row || typeof row !== 'object' || Array.isArray(row) ||
+           !Object.prototype.hasOwnProperty.call(row, 'sentence')) return row;
+        var compact = Object.assign({}, row);
+        delete compact.sentence;
+        return compact;
+      }
+      Object.keys(legacy.bySentence).forEach(function(k){ bsMap[k] = compactLegacyStat(legacy.bySentence[k]); });
+      Object.keys(idbBS).forEach(function(k){ bsMap[k] = compactLegacyStat(idbBS[k]); });   /* IDB 优先 */
       _bySentenceCache = bsMap;
       var evMap = {};
       (Array.isArray(data.events) ? data.events : []).forEach(function(e){ if(e && e.id) evMap[e.id] = e; });
@@ -1216,6 +1090,15 @@
     return JSON.stringify([base.replace(/\/+$/,''),account]);
   }
   function persistCourseValue(kind, value, sync, allowOperations){
+    /* Protocol 3 mutations must use revision-guarded domain operations. Do not
+       let an old whole-list caller turn a user edit into an unacknowledged local
+       projection (and a legacy sync intent that the authoritative writer will
+       never send). Confirmed projections and recovery still use sync=false. */
+    if(sync && serverAuthoritativeProtocolActive()){
+      var protocolError = new Error('课程数据需要通过服务端课程操作保存；请刷新页面后重试。');
+      protocolError.code = 'PROTOCOL3_NARROW_WRITE_REQUIRED';
+      return Promise.reject(protocolError);
+    }
     var snapshot = cloneJSON(value);
     var intentScope = sync ? courseIntentScope() : null;
     /* Reserve a monotonic local generation before entering the per-entity
@@ -1307,6 +1190,42 @@
   }
   function writeCourses(list){ return persistCourseValue('courses', Array.isArray(list) ? list : [], true); }
   function writeProgress(obj){ return persistCourseValue('progress', (obj && typeof obj === 'object') ? obj : {}, true); }
+  /* Adopt a server-confirmed account snapshot as the local read projection.
+     This is cache hydration, not a user edit: it must not create sync intents,
+     advance the legacy generation, or schedule a full-snapshot upload. */
+  function adoptServerCourseValueProjection(kind,obj){
+    var isCourses=kind==='courses';
+    var snapshot = cloneJSON(isCourses?(Array.isArray(obj)?obj:[]):((obj && typeof obj === 'object') ? obj : {}));
+    var write = async function(){
+      if(_preloadTask) await _preloadTask;
+      var storeMethod=isCourses?'putCourses':'putProgress';
+      if(!global.IDBStore || typeof global.IDBStore[storeMethod] !== 'function'){
+        throw new Error('服务器课程数据投影需要 IndexedDB 支持');
+      }
+      var current=isCourses?_coursesCache:_progressCache;
+      if(current !== null && _eqJson(current,snapshot)){
+        if(isCourses){_coursesDiskBase=current;_coursesExternal=false;}
+        else {_progressDiskBase=current;_progressExternal=false;}
+        return true;
+      }
+      await global.IDBStore[storeMethod](snapshot);
+      businessStorage.removeItem(isCourses?COURSES_KEY:PROGRESS_KEY);
+      if(isCourses){_coursesCache=snapshot;_coursesDiskBase=snapshot;_coursesExternal=false;}
+      else {_progressCache=snapshot;_progressDiskBase=snapshot;_progressExternal=false;}
+      notifyTabs(isCourses?'courses':'progress');
+      return true;
+    };
+    var coordinator=isCourses?_courseWriteCoordinator:_progressWriteCoordinator;
+    var queue=isCourses?_courseWriteQueue:_progressWriteQueue;
+    var tail=isCourses?_courseWriteTail:_progressWriteTail;
+    var task = coordinator ? coordinator.enqueue(write) : (queue ? queue.enqueue(write) : tail.then(write));
+    var settled=task.catch(function(error){emit('persistError',{area:kind,error:error});});
+    if(isCourses)_courseWriteTail=coordinator?coordinator.wait():(queue?queue.wait():settled);
+    else _progressWriteTail=coordinator?coordinator.wait():(queue?queue.wait():settled);
+    return task;
+  }
+  function adoptServerCoursesProjection(list){return adoptServerCourseValueProjection('courses',list);}
+  function adoptServerProgressProjection(obj){return adoptServerCourseValueProjection('progress',obj);}
 
   /* ---------- 句子档案 / 事件日志的持久化分层（2026-09-10 扩容 8000 句） ----------
      根因：stats.bySentence 与 stats.events 是「随练习量无限增长」的数据，而 localStorage
@@ -1539,53 +1458,37 @@
     }catch(e){ return { bySentence: {}, events: [] }; }
   }
 
-  var _cloudTimer = null;
   var _cloudOn = false; /* 云端是否启用：服务器可达（开放模式）或已登录（鉴权模式）时为 true */
-  var _cloudConfig = null; /* 最近一次 /api/config 结果（含 aiEnabled），供页面做 AI 数据面收敛 */
-  var _cloudStartupPromise = null; /* 同一页面内的云启动只允许有一个实例 */
-  var _dirty = false;   /* 待同步标志（离线 change-log 轻量版）：有本地变更未上云时为 true */
-  var _syncGeneration = 0;
-  var _syncConflict = null;
-  var _rejectedDeletes = {};
-  try{
-    var storedConflict = JSON.parse(businessStorage.getItem(CONFLICT_KEY) || 'null');
-    if(storedConflict && Array.isArray(storedConflict.conflicts)){
-      _syncConflict = storedConflict.conflicts; _dirty = true;
-      _rejectedDeletes = storedConflict.deleted || {};
-      (_rejectedDeletes.decks || []).forEach(function(d){ markGone(_pendingDecks, d.id, d.rev); });
-      (_rejectedDeletes.courses || []).forEach(function(d){ markGone(_pendingCourses, d.id, d.rev); });
-      (_rejectedDeletes.courseProgress || []).forEach(function(d){ markGone(_pendingProgress, d.id, d.rev); });
-    }
-  }catch(e){}
-  function rememberSyncConflict(conflicts, deleted){
-    _syncConflict = conflicts;
-    _rejectedDeletes = deleted || {};
-    try{
-      if(conflicts) businessStorage.setItem(CONFLICT_KEY, JSON.stringify({ conflicts: conflicts, deleted: _rejectedDeletes }));
-      else businessStorage.removeItem(CONFLICT_KEY);
-    }catch(e){ emit('persistError', { area: 'syncConflict', error: e }); }
+  var _serverPersistenceReady = false; /* protocol 3 drain waits only for the current account's confirmed cache */
+  function serverAuthoritativeProtocolActive(){
+    var config = global.CL && typeof global.CL.getCloudConfig === 'function' ? global.CL.getCloudConfig() : null;
+    return !!(config && config.persistenceMode === 'server-authoritative' && Number(config.writeProtocol) === 3);
   }
-
-  /* 有变更待同步时通知 UI（main.html 顶栏"未同步"徽标） */
-  function notifySync(){ emit('syncStatus', { dirty: _dirty, conflict: _syncConflict }); }
-
-  /* ---------- 云端增量水位（2026-09-10，8000 句扩容） ----------
-     bySentence / events 已从「stats 整块」拆到服务端行表，客户端改为只上行变更行。
-     为什么要独立一套水位、不复用 _bsSig / _evSnap：那是 **IndexedDB 已落盘**的水位。
-     IDB 写成功 ≠ 云端收到了（可能未登录、离线、PUT 失败）—— 把两者混用，
-     会出现「IDB 已推进、云端没收到」→ 该批变更永不再发（静默丢数据）。
-     null 语义 = 水位未知 → 下一次全量上行（安全兜底方向）。 */
-  var _cloudBsSig = null;   /* {key: statSig}，已确认被云端接收的句子档案 */
-  var _cloudEvIds = null;   /* {eventId: 1}，已确认被云端接收的事件 id */
-  /* 行级实体（mastered / reinforceBook / deletedItems）的云端水位，语义与上面两个完全一致：
-     {key: 行签名}，null = 水位未知 → 下次全量上行。 */
-  var _cloudMasteredSig = null;
-  var _cloudReinforceSig = null;
-  var _cloudDeletedSig = null;
-
-  /* 32 位 FNV-1a；行级实体用它做「键 + 值」的廉价指纹。
-     ★ 绝不能退回 JSON.stringify：maintainRevs/buildEntityDelta 在每次 saveMem 都要比对，
-       mastered 8000 条时那是 227KB 的序列化（与 sigStats 修掉的是同一个坑）。 */
+  var _cloudConfig = null; /* 最近一次 /api/config 结果（含 aiEnabled），供页面做 AI 数据面收敛 */
+  var _cloudConfigState = 'unknown';
+  function getPersistenceState(){
+    var classify = global.CoreRuntime && global.CoreRuntime.classifyPersistenceState;
+    if(typeof classify === 'function') return classify({
+      configState: _cloudConfigState, config: _cloudConfig, ready: _serverPersistenceReady,
+      quarantined: false
+    });
+    if(_cloudConfigState === 'offline' || _cloudConfigState === 'checking' || _cloudConfigState === 'unknown') return _cloudConfigState;
+    if(_cloudConfigState !== 'known' || !_cloudConfig || typeof _cloudConfig !== 'object') return 'config-invalid';
+    if(_cloudConfig.persistenceMode === 'server-authoritative' && Number(_cloudConfig.writeProtocol) === 3)
+      return _serverPersistenceReady ? 'protocol3-ready' : 'protocol3-initializing';
+    return 'config-invalid';
+  }
+  function notifyCloudConfigChanged(){
+    if(typeof global.dispatchEvent === 'function' && typeof global.CustomEvent === 'function'){
+      global.dispatchEvent(new global.CustomEvent('cloud-config-changed', { detail: {
+        state: getPersistenceState(), writeProtocol: Number(_cloudConfig && _cloudConfig.writeProtocol) || null
+      }}));
+    }
+  }
+  var _cloudStartupPromise = null; /* 同一页面内的云启动只允许有一个实例 */
+  var _cloudStartupRetryTimer = null;
+  var _cloudStartupRetryDelay = 1000;
+  var _syncGeneration = 0;
   function strHash(s){
     if(CoreEntityDelta && CoreEntityDelta.strHash) return CoreEntityDelta.strHash(s);
     var h = 0x811c9dc5;
@@ -1610,1116 +1513,21 @@
     return '1';
   }
 
-  /* 通用行级增量：与 buildStatsDelta 同构（签名水位 + gone 集合）。
-     返回 { up, gone, next }；next = 本次**成功后**应推进到的水位。
-     ★ 失败时绝不推进水位，否则这批变更永远不会重发。 */
-  function rowDelta(map, mark, rowSig){
-    if(CoreEntityDelta && CoreEntityDelta.rowDelta) return CoreEntityDelta.rowDelta(map, mark, rowSig);
-    var up = {}, gone = [], k;
-    if(mark === null){
-      for(k in map){ if(map.hasOwnProperty(k)) up[k] = map[k]; }
-    } else {
-      for(k in map){ if(map.hasOwnProperty(k) && mark[k] !== rowSig(map[k])) up[k] = map[k]; }
-      for(k in mark){ if(mark.hasOwnProperty(k) && !(k in map)) gone.push(k); }
-    }
-    var next = {};
-    if(mark){ for(k in mark){ if(mark.hasOwnProperty(k)) next[k] = mark[k]; } }
-    for(k in up){ if(up.hasOwnProperty(k)) next[k] = rowSig(map[k]); }
-    gone.forEach(function(g){ delete next[g]; });
-    return { up: up, gone: gone, next: next };
-  }
-  function deltaHasRows(d){ return Object.keys(d.up).length > 0 || d.gone.length > 0; }
 
-  /* 上行增量：mastered / reinforceBook / deletedItems。错题本是数组，先按 _key 归一成映射，
-     与服务端的行主键（user_entity_rows.item_key）对齐。 */
-  function buildEntityDelta(memObj){
-    if(CoreEntityDelta && CoreEntityDelta.buildEntityDelta){
-      return CoreEntityDelta.buildEntityDelta(memObj, {
-        mastered: _cloudMasteredSig,
-        reinforceBook: _cloudReinforceSig,
-        deletedItems: _cloudDeletedSig
-      });
-    }
-    var mastered = (memObj && memObj.mastered && typeof memObj.mastered === 'object') ? memObj.mastered : {};
-    var deleted = (memObj && memObj.deletedItems && typeof memObj.deletedItems === 'object') ? memObj.deletedItems : {};
-    var book = Array.isArray(memObj && memObj.reinforceBook) ? memObj.reinforceBook : [];
-    var rMap = {};
-    for(var i = 0; i < book.length; i++){ if(book[i] && book[i]._key) rMap[book[i]._key] = book[i]; }
-    return {
-      mastered: rowDelta(mastered, _cloudMasteredSig, sigMasteredRow),
-      reinforceBook: rowDelta(rMap, _cloudReinforceSig, sigReinforceRow),
-      deletedItems: rowDelta(deleted, _cloudDeletedSig, sigDeletedRow)
-    };
-  }
-  /* 把水位对齐到「云端实际内容」（远端已有的不再回传，本地独有的下次上行）。
-     syncFromCloud 用：不回传 ≠ 不需要，若不用远端实况对齐，每次启动都会全量重推这三块。 */
-  function alignEntityMarks(remoteMem){
-    if(CoreEntityDelta && CoreEntityDelta.alignEntityMarks){
-      var aligned = CoreEntityDelta.alignEntityMarks(remoteMem);
-      _cloudMasteredSig = aligned.mastered;
-      _cloudReinforceSig = aligned.reinforceBook;
-      _cloudDeletedSig = aligned.deletedItems;
-      return;
-    }
-    var rMastered = (remoteMem && remoteMem.mastered && typeof remoteMem.mastered === 'object') ? remoteMem.mastered : {};
-    var rDeleted = (remoteMem && remoteMem.deletedItems && typeof remoteMem.deletedItems === 'object') ? remoteMem.deletedItems : {};
-    var rBook = (remoteMem && Array.isArray(remoteMem.reinforceBook)) ? remoteMem.reinforceBook : [];
-    var wM = {}, wD = {}, wR = {};
-    Object.keys(rMastered).forEach(function(k){ wM[k] = sigMasteredRow(rMastered[k]); });
-    Object.keys(rDeleted).forEach(function(k){ wD[k] = sigDeletedRow(rDeleted[k]); });
-    rBook.forEach(function(it){ if(it && it._key) wR[it._key] = sigReinforceRow(it); });
-    /* 墓碑不进水位：它们只用于「把本机残留的条目删掉」，服务端已经记着了，
-       再当成待推变更会让每次上行都白跑一批已删除的键。 */
-    _cloudMasteredSig = wM;
-    _cloudReinforceSig = wR;
-    _cloudDeletedSig = wD;
-  }
-
-  /* 把「走增量通道」的大对象从上行 payload 里剥离：
-       stats.bySentence / stats.events            → statsDelta
-       mastered / reinforceBook / deletedItems    → entityDelta
-     必须浅拷贝：memObj 是与调用方共享的活对象，直接 delete 会破坏内存里的 mem。
-     ⚠️ 不能因为「某个字段不存在」就提前 return 原对象 —— 那样其余大对象会被原样带上去
-        （原实现只判 stats，正是 mastered / 错题本每答一题全量重传的原因）。 */
-  function memForCloud(memObj){
-    if(CoreSyncDelta && CoreSyncDelta.memForCloud) return CoreSyncDelta.memForCloud(memObj);
-    if(!memObj) return memObj;
-    var out = {}, k;
-    for(k in memObj){ if(memObj.hasOwnProperty(k)) out[k] = memObj[k]; }
-    var st = memObj.stats;
-    if(st && typeof st === 'object' && (st.bySentence || st.events)){
-      var light = {};
-      for(k in st){ if(st.hasOwnProperty(k) && k !== 'bySentence' && k !== 'events') light[k] = st[k]; }
-      out.stats = light;
-    }
-    ROW_ENTITY_KEYS.forEach(function(rk){ delete out[rk]; });
-    return out;
-  }
-
-  /* 生成上行增量：只带「云端还没确认收到的部分」。
-     返回 { sbs, sbsGone, evs, mark }；mark = 本次**成功后**应推进到的水位。
-     ★ 失败时绝不推进水位，否则这批变更永远不会重发。 */
-  function buildStatsDelta(memObj){
-    if(CoreSyncDelta && CoreSyncDelta.buildStatsDelta){
-      return CoreSyncDelta.buildStatsDelta(memObj, { bsSig: _cloudBsSig, evIds: _cloudEvIds });
-    }
-    var stats = (memObj && memObj.stats) || {};
-    var by = (stats.bySentence && typeof stats.bySentence === 'object') ? stats.bySentence : {};
-    var ev = Array.isArray(stats.events) ? stats.events : [];
-    var sbs = {}, sbsGone = [], k, i;
-
-    if(_cloudBsSig === null){
-      for(k in by){ if(by.hasOwnProperty(k)) sbs[k] = by[k]; }
-    } else {
-      for(k in by){ if(by.hasOwnProperty(k) && _cloudBsSig[k] !== statSig(by[k])) sbs[k] = by[k]; }
-      for(k in _cloudBsSig){ if(_cloudBsSig.hasOwnProperty(k) && !(k in by)) sbsGone.push(k); }
-    }
-
-    var evs = [];
-    if(_cloudEvIds === null){
-      evs = ev;
-    } else {
-      for(i = 0; i < ev.length; i++){ if(ev[i] && ev[i].id && !_cloudEvIds[ev[i].id]) evs.push(ev[i]); }
-    }
-
-    /* 新水位 = 云端的「已有 ∪ 本次发送」；本地删除的 key 要去掉（sbsGone 已通知服务端）。 */
-    var nextBs = {};
-    if(_cloudBsSig){ for(k in _cloudBsSig){ if(_cloudBsSig.hasOwnProperty(k)) nextBs[k] = _cloudBsSig[k]; } }
-    for(k in by){ if(by.hasOwnProperty(k)) nextBs[k] = statSig(by[k]); }
-    sbsGone.forEach(function(g){ delete nextBs[g]; });
-    var nextEvIds = {};
-    if(_cloudEvIds){ for(k in _cloudEvIds){ if(_cloudEvIds.hasOwnProperty(k)) nextEvIds[k] = 1; } }
-    for(i = 0; i < ev.length; i++){ if(ev[i] && ev[i].id) nextEvIds[ev[i].id] = 1; }
-
-    return { sbs: sbs, sbsGone: sbsGone, evs: evs, mark: { bsSig: nextBs, evIds: nextEvIds } };
-  }
-
-  function scheduleCloudSync(memObj,committedGeneration){
-    if(!_cloudOn || !global.ChunkAPI) return;
-    var generationWasCommitted=Number.isSafeInteger(committedGeneration) && committedGeneration>=0;
-    if(generationWasCommitted) _syncGeneration=Math.max(_syncGeneration,committedGeneration);
-    else _syncGeneration++;
-    if(!generationWasCommitted && global.BatchSync && global.BatchSync.noteLocalGeneration){
-      global.BatchSync.noteLocalGeneration(_syncGeneration).catch(function(error){
-        _dirty=true; notifySync(); console.warn('[cloud sync] 保存本地同步代次失败:',error.message);
-      });
-    }
-    _dirty = true;
-    notifySync();
-    if(_cloudTimer) clearTimeout(_cloudTimer);
-    _cloudTimer = setTimeout(function(){ cloudSyncNow(memObj); }, 400);
-  }
-  var _cloudInFlight = null;
-  var _courseDrain = null;
-  var _protectedCourses = Object.create(null), _protectedProgress = Object.create(null);
-  function canReplayCourses(){
-    /* The account-wide conditional writer owns the request/receipt boundary.
-       Keeping the older per-course HTTP drain active would create a second
-       sender that can advance revisions outside that boundary. Its durable
-       intents remain in the normal batch until the batch is acknowledged. */
-    if(global.BatchSync) return false;
-    return global.IDBStore && global.IDBStore.freezeSyncIntent && global.ChunkAPI && global.ChunkAPI.getSyncEntity;
-  }
-  function sameSyncValue(a,b){
-    if(CoreSyncDelta && CoreSyncDelta.sameValue) return CoreSyncDelta.sameValue(a,b);
-    function stable(value){
-      if(Array.isArray(value)) return value.map(stable);
-      if(value && typeof value==='object'){
-        var obj=Object.create(null); Object.keys(value).sort().forEach(function(k){obj[k]=stable(value[k]);}); return obj;
-      }
-      return value;
-    }
-    return JSON.stringify(stable(a))===JSON.stringify(stable(b));
-  }
-  function buildSyncIntentReceipts(intents, learningIntents, payload, coursePayload, progPayload, delta, sentEvents, sentGone){
-    if(CoreSyncIntents && CoreSyncIntents.buildReceipts){
-      return CoreSyncIntents.buildReceipts({
-        intents: intents,
-        learningIntents: learningIntents,
-        deleted: payload.deleted,
-        coursePayload: coursePayload,
-        progressPayload: progPayload,
-        statsDelta: delta,
-        sentEvents: sentEvents,
-        sentGone: sentGone,
-        equalJson: _eqJson,
-        sameValue: sameSyncValue
-      });
-    }
-    var receipts=intents.filter(function(record){
-      if(record.deleted) return (payload.deleted[record.entity] || []).some(function(d){return d.id===record.id;});
-      var value=record.entity==='courses' ? coursePayload.find(function(c){return c.courseId===record.id;}) : progPayload[record.id];
-      return value!==undefined && _eqJson(value,record.value);
-    }).map(function(record){return {key:record.key,operationId:record.operationId};});
-    learningIntents.forEach(function(record){
-      var matches=record.entity==='events'
-        ? !record.deleted && !!sentEvents[record.id]
-        : record.deleted ? sentGone.has(record.id) : sameSyncValue(delta.sbs[record.id],record.value);
-      if(matches) receipts.push({key:record.key,operationId:record.operationId});
-    });
-    return receipts;
-  }
-  function buildSyncPayload(options){
-    if(CoreSyncPayload && CoreSyncPayload.buildSyncPayload){
-      return CoreSyncPayload.buildSyncPayload(options);
-    }
-    var memObj=options.memObj || {}, meta=options.meta || {revs:{decks:{},kv:{}},deleted:{decks:[],kv:[]}}, cmeta=options.cmeta || {revs:{courses:{},courseProgress:{}},deleted:{courses:[],courseProgress:[]}};
-    var deckPayload=pendingList(options.pendingDecks,memObj.decks || [],function(d){return d.id;});
-    var coursePayload=pendingList(options.pendingCourses,options.courses || [],function(c){return c.courseId;});
-    var progPayload=pendingMap(options.pendingProgress,options.progress || {});
-    if(options.canReplayCourses){
-      (options.intents || []).forEach(function(record){(record.entity==='courses' ? options.protectedCourses : options.protectedProgress)[record.id]=true;});
-      coursePayload=coursePayload.filter(function(c){return !options.protectedCourses[c.courseId];});
-      Object.keys(progPayload).forEach(function(id){if(options.protectedProgress[id]) delete progPayload[id];});
-    }
-    var sentDecks=idsOf(deckPayload,function(d){return d.id;}), sentCourses=idsOf(coursePayload,function(c){return c.courseId;}), sentProgress={};
-    Object.keys(progPayload).forEach(function(cid){sentProgress[cid]=1;});
-    var deckGone=pendingGone(options.pendingDecks,meta.deleted.decks), courseGone=pendingGone(options.pendingCourses,cmeta.deleted.courses), progGone=pendingGone(options.pendingProgress,cmeta.deleted.courseProgress);
-    if(options.canReplayCourses){
-      courseGone.list=courseGone.list.filter(function(d){return !options.protectedCourses[d.id];});
-      progGone.list=progGone.list.filter(function(d){return !options.protectedProgress[d.id];});
-    }
-    discardSupersededDeletes(options.pendingDecks,deckGone,sentDecks,meta.revs.decks || {});
-    discardSupersededDeletes(options.pendingCourses,courseGone,sentCourses,cmeta.revs.courses || {});
-    discardSupersededDeletes(options.pendingProgress,progGone,sentProgress,cmeta.revs.courseProgress || {});
-    var memToSend=options.memForCloud(memObj) || {}; memToSend.decks=deckPayload;
-    var payload={mem:memToSend,courses:coursePayload,courseProgress:progPayload,revs:{decks:meta.revs.decks,kv:meta.revs.kv,courses:cmeta.revs.courses,courseProgress:cmeta.revs.courseProgress},deleted:{decks:deckGone.list,kv:(meta.deleted.kv || []).concat((options.rejectedDeletesKv || []).filter(function(d){return !(meta.deleted.kv || []).some(function(current){return current.k===d.k;});})),courses:courseGone.list,courseProgress:progGone.list}};
-    var delta=options.delta || {sbs:{},sbsGone:[],evs:[]};
-    if(Object.keys(delta.sbs).length || delta.sbsGone.length || delta.evs.length) payload.statsDelta={sbs:delta.sbs,sbsGone:delta.sbsGone,evs:delta.evs};
-    var ent=options.entityDelta;
-    if(ent && (deltaHasRows(ent.mastered) || deltaHasRows(ent.reinforceBook) || deltaHasRows(ent.deletedItems))){
-      payload.entityDelta={};
-      if(deltaHasRows(ent.mastered)) payload.entityDelta.mastered={up:ent.mastered.up,gone:ent.mastered.gone};
-      if(deltaHasRows(ent.reinforceBook)) payload.entityDelta.reinforceBook={up:ent.reinforceBook.up,gone:ent.reinforceBook.gone};
-      if(deltaHasRows(ent.deletedItems)) payload.entityDelta.deletedItems={up:ent.deletedItems.up,gone:ent.deletedItems.gone};
-    }
-    var sentEvents=Object.create(null); (delta.evs || []).forEach(function(event){sentEvents[event.id]=event;});
-    return {payload:payload,deckPayload:deckPayload,coursePayload:coursePayload,progPayload:progPayload,sentDecks:sentDecks,sentCourses:sentCourses,sentProgress:sentProgress,deckGone:deckGone,courseGone:courseGone,progGone:progGone,sentEvents:sentEvents,sentGone:new Set(delta.sbsGone || [])};
-  }
-  function replayCourseIntents(){
-    if(!canReplayCourses()) return Promise.resolve(true);
-    if(_courseDrain) return _courseDrain;
-    _courseDrain=drainCourseIntents().finally(function(){_courseDrain=null;});
-    return _courseDrain;
-  }
-  async function drainCourseIntents(){
-    if(CoreSyncReplay && CoreSyncReplay.drainCourseIntents){
-      return CoreSyncReplay.drainCourseIntents({
-        store:global.IDBStore,
-        api:global.ChunkAPI,
-        getScope:courseIntentScope,
-        waitForWrites:function(){return Promise.all([_courseWriteTail,_progressWriteTail]);},
-        sameValue:sameSyncValue,
-        isPaused:function(){return _resolutionPaused;},
-        markProtected:function(group,id){(group==='courses' ? _protectedCourses : _protectedProgress)[id]=true;},
-        loadRevs:loadRevs,
-        rememberRevision:rememberCourseRevision,
-        markDirty:function(){_dirty=true;},
-        notify:notifySync,
-        schedule:function(fn,delay){_cloudTimer=setTimeout(fn,delay);},
-        syncFromCloud:function(){return syncFromCloud();},
-        onFailure:function(error){
-          _dirty=true;
-          if(error.code==='SYNC_CONFLICT') rememberSyncConflict(error.conflicts || []);
-          notifySync(); console.warn('[course replay] 恢复暂停:',error.message); return false;
-        }
-      });
-    }
-    var scope=courseIntentScope(), store=global.IDBStore, api=global.ChunkAPI;
-    function checkScope(){if(courseIntentScope()!==scope) throw new Error('账号已切换，停止恢复同步');}
-    try{
-      await Promise.all([_courseWriteTail,_progressWriteTail]);
-      for(var round=0;round<64;round++){
-        checkScope();
-        if(_resolutionPaused) return false;
-        var records=await store.readSyncIntents(scope);
-        checkScope();
-        if(!records.length) return true;
-        var record=records[0], group=record.entity;
-        (group==='courses' ? _protectedCourses : _protectedProgress)[record.id]=true;
-        var frozen=record.frozen;
-        if(!frozen){
-          var remote=await api.getSyncEntity(group,record.id);
-          checkScope();
-          if(!remote || typeof remote.exists!=='boolean' || !Number.isSafeInteger(remote.rev) || remote.rev<0 || typeof remote.deleted!=='boolean') throw new Error('服务端需升级后才能安全恢复课程同步');
-          var remoteValue=remote.deleted ? null : remote.value;
-          if(record.deleted===remote.deleted && sameSyncValue(record.value,remoteValue)){
-            // Already delivered (including a previously lost response): no write needed.
-            await store.acknowledgeSyncIntents(scope,[{key:record.key,operationId:record.operationId}]);
-            rememberCourseRevision(group,record.id,remote.rev);
-            continue;
-          }
-          if(!sameSyncValue(record.original,remoteValue)){
-            var conflict=new Error('云端课程已有修改，请先比较双方版本');
-            conflict.code='SYNC_CONFLICT';
-            conflict.conflicts=[{entity:group,id:record.id,currentRev:remote.rev,reason:'BASE_CONTENT_CHANGED'}];
-            throw conflict;
-          }
-          var rev=Math.max(remote.rev,(loadRevs()[group] || {})[record.id] || 0)+1;
-          if(!Number.isSafeInteger(rev)) throw new Error('课程版本号超出范围');
-          var payload={mem:{},revs:{},baseRevs:{},deleted:{}};
-          payload.revs[group]={[record.id]:rev};
-          payload.baseRevs[group]={[record.id]:remote.exists ? remote.rev : null};
-          if(record.deleted) payload.deleted[group]=[{id:record.id,rev:rev}];
-          else if(group==='courses') payload.courses=[record.value];
-          else payload.courseProgress={[record.id]:record.value};
-          frozen=await store.freezeSyncIntent(scope,record.key,record.operationId,payload);
-          checkScope();
-          if(!frozen) continue; // Another tab changed the draft before it was frozen.
-        }
-        checkScope();
-        var receipt=await api.putData(frozen.payload);
-        checkScope();
-        if(!receipt || receipt.ok!==true) throw new Error('服务器未确认课程保存成功');
-        await store.confirmSyncIntent(scope,record.key,frozen.operationId);
-        rememberCourseRevision(group,record.id,frozen.payload.revs[group][record.id]);
-      }
-      // Bound a run when another tab is continuously editing; leave the rest durable.
-      _dirty=true; notifySync();
-      if(_cloudTimer) clearTimeout(_cloudTimer);
-      _cloudTimer=setTimeout(function(){
-        if(courseIntentScope()===scope && !_resolutionPaused) syncFromCloud();
-      },400);
-      return false;
-    }catch(error){
-      _dirty=true;
-      if(error.code==='SYNC_CONFLICT') rememberSyncConflict(error.conflicts || []);
-      notifySync(); console.warn('[course replay] 恢复暂停:',error.message); return false;
-    }
-  }
-  function rememberCourseRevision(group,id,rev){
-    var revs=loadRevs(); if(!revs[group]) revs[group]={};
-    revs[group][id]=Math.max(revs[group][id] || 0,rev); saveRevs(revs);
-  }
-  var _resolutionPaused = false;
-  function setResolutionPaused(paused){
-    _resolutionPaused = !!paused;
-    if(paused){ _dirty = true; if(_cloudTimer) clearTimeout(_cloudTimer); }
-    notifySync();
-  }
-  function cloudSyncNow(memObj){
-    if(_resolutionPaused) return Promise.resolve(false);
-    /* 保存后的显式同步可能撞上上一批请求：直接返回旧 promise 会让调用方
-       误以为本次改动已经确认，而新改动则留在 BatchSync.pending 里，下一次拉取
-       还会被旧基线挡住。等待在途批次结束后，若本地代次已变化，立即用最新快照
-       发送后继批次；这样 saveAndNotify + cloudSyncNow 的调用也有确定语义。 */
-    if(_cloudInFlight){
-      var requestedGeneration = _syncGeneration;
-      var active = _cloudInFlight;
-      return active.then(function(ok){
-        if(!_resolutionPaused && _syncGeneration > requestedGeneration) return cloudSyncNow(loadMem());
-        return ok;
-      });
-    }
-    var sentGeneration = _syncGeneration;
-    _cloudInFlight = sendCloudData(memObj).then(function(ok){
-      _cloudInFlight = null;
-      if(ok && _syncGeneration !== sentGeneration) scheduleCloudSync(loadMem());
-      return ok;
-    }).catch(function(error){
-      _cloudInFlight=null; _dirty=true; notifySync();
-      console.warn('[cloud sync] 准备同步失败:', error.message);
-      /* BatchSync.retry 在组装新 payload 之前执行。若这里的旧请求撞上
-         账号级 baseSeq 冲突，错误不会经过 sendCloudData 后半段的 catch，
-         过去因此只打日志、不持久化冲突，导致每次启动都无限重试同一旧批次。 */
-      if(error && error.code === 'SYNC_CONFLICT') rememberSyncConflict(error.conflicts || [], error.deleted);
-      notifySync();
-      /* A local edit may land while the payload is waiting for IDB writes.
-         Do not send that stale payload; schedule a successor built from the
-         current local view instead. */
-      if(_syncGeneration !== sentGeneration && !_resolutionPaused){
-        setTimeout(function(){ scheduleCloudSync(loadMem()); },0);
-      }
-      return false;
-    });
-    return _cloudInFlight;
-  }
-  async function putConditionalCloud(payload,expectedGeneration,operationReceipts){
-    if(CoreSyncTransport && CoreSyncTransport.putConditional){
-      return CoreSyncTransport.putConditional({
-        api:global.ChunkAPI,
-        batchSync:global.BatchSync,
-        payload:payload,
-        expectedGeneration:expectedGeneration,
-        operationReceipts:operationReceipts
-      });
-    }
-    if(!global.BatchSync) return global.ChunkAPI.putData(payload);
-    var state=await global.BatchSync.state();
-    if(!Number.isSafeInteger(state.baseline) || state.baseline<0){
-      var baseError=new Error('尚未确认云端基线，暂不上传本地数据');
-      baseError.code='SYNC_BASELINE_REQUIRED';
-      throw baseError;
-    }
-    await global.BatchSync.stage(payload,state.baseline,expectedGeneration,operationReceipts);
-    var outcome=await global.BatchSync.retry();
-    if(!outcome || !outcome.receipt) throw new Error('服务器未确认条件同步');
-    return outcome.receipt;
-  }
-  async function sendCloudData(memObj){
-    if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
-    if(global.IDBStore) await Promise.all([_courseWriteTail,_progressWriteTail,_statsWriteTail]);
-    /* A lost response leaves the exact request durable. Confirm it before
-       constructing a successor payload, otherwise a stale in-memory payload
-       could be staged after the old request has already committed. */
-    if(global.BatchSync){
-      var queued=await global.BatchSync.state();
-      if(queued.pending){ await global.BatchSync.retry(); memObj=loadMem(); }
-    }
-    if(canReplayCourses() && !await replayCourseIntents()) return false;
-    var intentScope=courseIntentScope();
-    var intents=global.IDBStore && global.IDBStore.readSyncIntents
-      ? await global.IDBStore.readSyncIntents(intentScope) : [];
-    var learningIntents=global.IDBStore && global.IDBStore.readLearningIntents
-      ? await global.IDBStore.readLearningIntents(intentScope) : [];
-    if(courseIntentScope()!==intentScope) throw new Error('账号已切换，停止同步');
-    var sentGeneration = _syncGeneration;
-    var meta = _lastSyncMeta || { revs: { decks: {}, kv: {} }, deleted: { decks: [], kv: [] } };
-    var cmeta = maintainCoursesRevs();
-    var delta = buildStatsDelta(memObj);
-    // Persistent tombstones survive loss of the in-memory cloud signature map.
-    learningIntents.forEach(function(record){
-      if(record.entity==='sentenceStats' && record.deleted &&
-         !Object.prototype.hasOwnProperty.call((memObj.stats || {}).bySentence || {},record.id)){
-        if(delta.sbsGone.indexOf(record.id)<0) delta.sbsGone.push(record.id);
-        delete delta.sbs[record.id]; delete delta.mark.bsSig[record.id];
-      }
-    });
-    var ent = buildEntityDelta(memObj);
-
-    /* 只上行变更过的实体；payload 组装由纯边界统一负责，网络、回执和 ack 仍留在 core。 */
-    var syncPayload=buildSyncPayload({
-      memObj:memObj,
-      courses:readCoursesRaw(),
-      progress:readProgressRaw(),
-      pendingDecks:_pendingDecks,
-      pendingCourses:_pendingCourses,
-      pendingProgress:_pendingProgress,
-      meta:meta,
-      cmeta:cmeta,
-      rejectedDeletesKv:_rejectedDeletes.kv || [],
-      intents:intents,
-      canReplayCourses:canReplayCourses(),
-      protectedCourses:_protectedCourses,
-      protectedProgress:_protectedProgress,
-      delta:delta,
-      entityDelta:ent,
-      memForCloud:memForCloud,
-      pendingList:pendingList,
-      pendingMap:pendingMap,
-      pendingGone:pendingGone,
-      discardSupersededDeletes:discardSupersededDeletes,
-      idsOf:idsOf,
-      deltaHasRows:deltaHasRows
-    });
-    var payload=syncPayload.payload;
-    var deckPayload=syncPayload.deckPayload, coursePayload=syncPayload.coursePayload, progPayload=syncPayload.progPayload;
-    var sentDecks=syncPayload.sentDecks, sentCourses=syncPayload.sentCourses, sentProgress=syncPayload.sentProgress;
-    var deckGone=syncPayload.deckGone, courseGone=syncPayload.courseGone, progGone=syncPayload.progGone;
-    var sentEvents=syncPayload.sentEvents, sentGone=syncPayload.sentGone;
-    var intentReceipts=buildSyncIntentReceipts(intents, learningIntents, payload, coursePayload, progPayload, delta, sentEvents, sentGone);
-    return putConditionalCloud(payload,sentGeneration,intentReceipts).then(async function(result){
-      if(!result || result.ok !== true){
-        var error = new Error('服务器未确认保存成功');
-        error.code = result && result.code;
-        error.conflicts = result && result.conflicts;
-        throw error;
-      }
-      if(courseIntentScope()!==intentScope) throw new Error('账号已切换，原账号的待同步记录已保留');
-      if(!global.BatchSync && intentReceipts.length && global.IDBStore.acknowledgeSyncIntents){
-        await global.IDBStore.acknowledgeSyncIntents(intentScope,intentReceipts);
-      }
-      /* ★ 只有确认送达才推进水位（失败保持 → 下次自动重发这批变更） */
-      _cloudBsSig = delta.mark.bsSig;
-      _cloudEvIds = delta.mark.evIds;
-      _cloudMasteredSig = ent.mastered.next;
-      _cloudReinforceSig = ent.reinforceBook.next;
-      _cloudDeletedSig = ent.deletedItems.next;
-      /* 待发集合只摘掉「本次真正发出去的」id（在途新增/变更的留待下次），见 makePending 注释 */
-      if(_syncGeneration === sentGeneration){
-        ackPending(_pendingDecks, sentDecks, deckGone.sent);
-        ackPending(_pendingCourses, sentCourses, courseGone.sent);
-        ackPending(_pendingProgress, sentProgress, progGone.sent);
-      }
-      _dirty = _syncGeneration !== sentGeneration;
-      rememberSyncConflict(null);
-      notifySync();
-      return true;
-    }).catch(function(e){
-      console.warn('[cloud sync →] 失败:', e.message);
-      _dirty = true;
-      if(e.code === 'SYNC_CONFLICT') rememberSyncConflict(e.conflicts || [], payload.deleted);
-      notifySync();
-      return false;
+  // Server-owned learning uses durable domain operations, never snapshot uploads.
+  function scheduleCloudSync(){
+    if(!serverAuthoritativeProtocolActive() || !_serverPersistenceReady || !global.ServerStore) return;
+    global.ServerStore.retryPending().catch(function(error){
+      console.warn('[saving] 待保存操作将在恢复连接后重试：',error && error.message || error);
     });
   }
-  function syncFromCloud(pendingChecked, coursesChecked){
-    if(!_cloudOn || !global.ChunkAPI) return Promise.resolve(false);
-    if(!pendingChecked && global.SyncResolution) return global.SyncResolution.resumeOnStartup().then(function(){ return syncFromCloud(true); });
-    if(_resolutionPaused) return Promise.resolve(false);
-    if(!coursesChecked && canReplayCourses()) return replayCourseIntents().then(function(ok){return ok ? syncFromCloud(true,true) : false;});
-    if(_syncConflict){
-      if(_syncConflict.length === 1 && _syncConflict[0].entity === 'batch'){
-        /* 账号级 baseSeq 冲突只代表云端先发生了变化。若原批次仍在持久队列中，
-           可按领域合并后安全重提交；不再让用户永远停留在旧本机快照。 */
-        return autoRecoverBatchConflict();
-      }
-      /* best 是可按字段合并的学习元数据。旧版本已经把它记成冲突时，
-         先读取双方同一 rev 的记录并自动修复，再继续正常上行；否则每次启动
-         都只重试同一个 409，用户永远只能看到“同步冲突”。 */
-      if(_syncConflict.length === 1 && _syncConflict[0].entity === 'kv' && _syncConflict[0].id === 'best'){
-        return Promise.resolve().then(async function(){
-          var local = readSyncLocal('kv', 'best');
-          var remote = await global.ChunkAPI.getSyncEntity('kv', 'best');
-          if(!local || local.deleted || !remote || remote.deleted || local.rev !== remote.rev || _eqJson(local.value, remote.value)) return false;
-          var mergedBest = mergeBest(local.value, remote.value);
-          var m = loadMem(); m.best = mergedBest;
-          var revs = loadRevs(); if(!revs.kv) revs.kv = {};
-          revs.kv.best = Math.max(local.rev, remote.rev) + 1;
-          saveRevs(revs);
-          _prevSnap = null;
-          if(saveMem(m, false) === false) return false;
-          /* 旧冲突可能在页面离线期间产生；实体比较只带项目 token，不能
-             更新条件批次所需的账号级 baseSeq。先接受同一时刻的批次水位，
-             再提交合并结果，避免修好 best 后又因旧水位再次卡成待同步。 */
-          if(global.BatchSync && global.ChunkAPI.getSyncBatch){
-            var batch = await global.ChunkAPI.getSyncBatch();
-            var batchState = await global.BatchSync.state();
-            if(batch && Number.isSafeInteger(batch.seq) && batchState.baseline !== batch.seq){
-              await global.BatchSync.observe(batch.seq, batchState.baseline);
-            }
-          }
-          _dirty = true;
-          rememberSyncConflict(null); notifySync();
-          return true;
-        }).then(function(repaired){ return repaired ? cloudSyncNow(loadMem()) : false; }).catch(function(e){
-          console.warn('[cloud sync ←] best 冲突自动合并失败:', e.message);
-          return false;
-        });
-      }
-      // 未解决的本地版本不能被启动时的 LWW 拉取覆盖。先重试原版本，
-      // 若云端仍不同则继续明确报冲突；不擅自抬高 rev 强制覆盖。
-      var pending = loadMem();
-      maintainRevs(pending);
-      return cloudSyncNow(pending);
-    }
-    var pullScope=courseIntentScope(), pullGeneration=_syncGeneration;
-    /* Retry the durable request before reading a new snapshot. A GET first
-       could make the following write use a newer baseline than the request
-       that was already committed but whose response was lost. */
-    var retryBeforePull=global.BatchSync ? global.BatchSync.retry() : Promise.resolve();
-    return retryBeforePull.then(function(){ return global.ChunkAPI.getData(); }).then(async function(data){
-      if(!data) return false;
-      // Pull must merge committed imports, not a snapshot taken before their writes finish.
-      await Promise.all([_courseWriteTail, _progressWriteTail, _statsWriteTail]);
-      var pendingLearning=global.IDBStore && global.IDBStore.readLearningIntents
-        ? await global.IDBStore.readLearningIntents(pullScope) : [];
-      if(courseIntentScope()!==pullScope) throw new Error('账号已切换，停止拉取合并');
-      var remoteMem = data.mem || {};
-      var remoteRevs = data.revs || { decks: {}, kv: {} };
-      /* 先记住云端原始行的水位，再归一化旧口语快照。这样修复后的 deckId / times
-         会被作为真实变更回写，而不是只在本机“看起来修好了”。 */
-      var rawRemoteStats = (remoteMem.stats && typeof remoteMem.stats === 'object') ? remoteMem.stats : {};
-      var remoteBsSig = {}, remoteEvIds = {};
-      var rawRemoteBy = (rawRemoteStats.bySentence && typeof rawRemoteStats.bySentence === 'object') ? rawRemoteStats.bySentence : {};
-      Object.keys(rawRemoteBy).forEach(function(rk){ remoteBsSig[rk] = statSig(rawRemoteBy[rk]); });
-      var rawRemoteEvents = Array.isArray(rawRemoteStats.events) ? rawRemoteStats.events : [];
-      rawRemoteEvents.forEach(function(ev){ if(ev && ev.id) remoteEvIds[ev.id] = 1; });
-      var normalizedRemoteStats = normalizeSyncedStats(remoteMem.stats);
-      var remoteStatsWasNormalized = !!normalizedRemoteStats.changed;
-      var remoteRepairEventIds = normalizedRemoteStats.repairedEventIds || {};
-      if(remoteMem.stats && normalizedRemoteStats.stats) remoteMem.stats = normalizedRemoteStats.stats;
-      var localRevs = loadRevs();
-      if(!localRevs.decks) localRevs.decks = {};
-      if(!localRevs.kv) localRevs.kv = {};
-      if(!localRevs.courses) localRevs.courses = {};
-      if(!localRevs.courseProgress) localRevs.courseProgress = {};
-      /* 合并前快照本地 rev（合并会把 localRevs 抬到 max(本地,远端)），供待发集合对齐使用 */
-      var preLocalRevs = {
-        decks: Object.assign({}, localRevs.decks),
-        courses: Object.assign({}, localRevs.courses),
-        courseProgress: Object.assign({}, localRevs.courseProgress)
-      };
-      var m = loadMem();
-      /* 记录「云端当前已有什么」，作为增量上行的水位基准。
-         合并后本地会包含远端全部内容，但那**不等于**「云端需要再收一次」——
-         若不用远端实际内容对齐水位，每次启动都会把 8000 条档案全量回传（2674KB），
-         拆表省下的流量会被这一步整个吃掉。 */
-      // decks：per-entity LWW 合并 + 软删传播，复用实体合并边界。
-      var mergedDeckResult = mergeSyncedEntityList(
-        m.decks || [], remoteMem.decks || [], localRevs, remoteRevs, 'decks',
-        function(deck){ return deck.id; }
-      );
-      m.decks = mergedDeckResult.value;
-      localRevs.decks = mergedDeckResult.revisions.decks || {};
-      // kv：per-key LWW 合并；纯决策由模块优先实现，旧实现保留回退。
-      var mergedKv = mergeSyncedKv(m, remoteMem, localRevs, remoteRevs, pendingLearning, remoteStatsWasNormalized);
-      m = mergedKv.mem;
-      localRevs = mergedKv.localRevs;
-      if(mergedKv.dirty) _dirty = true;
-
-      /* mastered / reinforceBook / deletedItems：**并集 + 墓碑**合并。
-         服务端持有的是「全设备并集」，而本地可能还有尚未上行的自有条目 → 不能整块替换
-         （整块替换 = LWW，正是「本机未上行的标熟被他机覆盖」的根因）。
-         ⚠️ 墓碑（entityGone）不能省：设备 A 取消标熟某句后若 B 拿不到墓碑，
-            B 的本地副本会把它重新写活 —— 取消标熟就永远不会生效。
-         老客户端不认 entityGone（服务端只会对它下发块状形态），这里做存在性判断即兼容。 */
-      /* 错题本/标熟/删除标记按并集加墓碑合并；纯逻辑由模块优先实现，旧实现保留回退。 */
-      if(CoreSyncMarks && CoreSyncMarks.mergeLearningMarks){
-        var mergedMarks = CoreSyncMarks.mergeLearningMarks(m, remoteMem, data.entityGone);
-        m.mastered = mergedMarks.mastered;
-        m.deletedItems = mergedMarks.deletedItems;
-        m.reinforceBook = mergedMarks.reinforceBook;
-      } else {
-        var goneM = (data.entityGone && data.entityGone.mastered) || [];
-        var goneR = (data.entityGone && data.entityGone.reinforce) || [];
-        var goneD = (data.entityGone && data.entityGone.deletedItem) || [];
-        var rMastered = (remoteMem.mastered && typeof remoteMem.mastered === 'object') ? remoteMem.mastered : {};
-        var rDeleted = (remoteMem.deletedItems && typeof remoteMem.deletedItems === 'object') ? remoteMem.deletedItems : {};
-        var rBook = Array.isArray(remoteMem.reinforceBook) ? remoteMem.reinforceBook : [];
-        var mergedMastered = {};
-        Object.keys(m.mastered || {}).forEach(function(k){ mergedMastered[k] = m.mastered[k]; });
-        Object.keys(rMastered).forEach(function(k){ mergedMastered[k] = rMastered[k]; });
-        goneM.forEach(function(k){ delete mergedMastered[k]; });
-        m.mastered = mergedMastered;
-        var mergedDeleted = {};
-        Object.keys(m.deletedItems || {}).forEach(function(k){ if(m.deletedItems[k]) mergedDeleted[k] = true; });
-        Object.keys(rDeleted).forEach(function(k){ mergedDeleted[k] = true; });
-        goneD.forEach(function(k){ delete mergedDeleted[k]; });
-        m.deletedItems = mergedDeleted;
-        var goneRSet = {};
-        goneR.forEach(function(k){ goneRSet[k] = 1; });
-        var mergedBook = [], seenBook = {};
-        rBook.concat(Array.isArray(m.reinforceBook) ? m.reinforceBook : []).forEach(function(it){
-          if(!it || !it._key || seenBook[it._key] || goneRSet[it._key]) return;
-          seenBook[it._key] = 1; mergedBook.push(it);
-        });
-        m.reinforceBook = mergedBook;
-      }
-
-      pendingLearning.forEach(function(record){
-        if(record.entity==='sentenceStats' && record.deleted) delete m.stats.bySentence[record.id];
-      });
-      /* 事件在普通答题路径只追加；整账号显式选择可产生事件墓碑。
-         先合并远端新增，再应用墓碑，避免已删除事件被本地旧副本复活。 */
-      var goneEvents = data.deleted && Array.isArray(data.deleted.events) ? data.deleted.events : [];
-      if(goneEvents.length){
-        var goneEventSet = {};
-        goneEvents.forEach(function(id){ goneEventSet[id]=1; });
-        /* 事件 id 是不可变主键；若本机曾在旧 key 迁移前写入过 intent，
-           仅靠整对象比较会让这条已经被云端明确删除的 intent 永久待发，
-           下一次拉取又会把“空 payload”卡在旧基线。整账号选择的删除是
-           明确的权威结果，因此同步摘除对应本机 intent。 */
-        if(global.IDBStore && global.IDBStore.acknowledgeSyncIntents){
-          var goneReceipts = pendingLearning.filter(function(record){
-            return record.entity==='events' && !record.deleted && goneEventSet[record.id];
-          }).map(function(record){ return {key:record.key,operationId:record.operationId}; });
-          if(goneReceipts.length) await global.IDBStore.acknowledgeSyncIntents(pullScope,goneReceipts);
-          pendingLearning = pendingLearning.filter(function(record){
-            return !(record.entity==='events' && !record.deleted && goneEventSet[record.id]);
-          });
-        }
-        m.stats.events = (Array.isArray(m.stats.events) ? m.stats.events : []).filter(function(ev){
-          return !ev || !goneEventSet[ev.id];
-        });
-      }
-      if(pendingLearning.length) _dirty=true;
-
-      saveRevs(localRevs);
-      _prevSnap = null; /* 让 saveMem 的 maintainRevs 走初始化分支，避免误 bump 合并结果 */
-      /* ★ 合并结果必须同步回内存桥：否则下一次 loadMem() 仍会取到合并前的旧 bySentence/events，
-         合并成果在内存里被丢弃（大对象已迁 IDB 后才有这个陷阱）。
-         _evSnap 置 null：并集事件是整体替换（顺序/内容都变了），强制事件全量覆盖，
-         不依赖三锚点去猜「能否增量追加」——只有本轮练习真正 append 时才走增量路径。 */
-      if(_statsStore === 'idb'){
-        _bySentenceCache = m.stats.bySentence;
-        _eventsCache = m.stats.events;
-        _evSnap = null;
-      }
-      saveMem(m,false);
-      /* 增量水位对齐到云端实际内容：远端已有的不再回传，本地独有的下次上行。
-         必须在合并结果写盘后立即就位 —— 之后任何一次 scheduleCloudSync 都要基于它。 */
-      _cloudBsSig = remoteBsSig;
-      _cloudEvIds = remoteEvIds;
-      Object.keys(remoteRepairEventIds).forEach(function(id){ delete _cloudEvIds[id]; });
-      /* 行级实体同样要把水位对齐到云端实况 —— 否则每次启动都会把 mastered / 错题本
-         / deletedItems 全量重推一遍，拆表省下的流量被这一步整个吃掉。 */
-      alignEntityMarks(remoteMem);
-      // courses / courseProgress：per-entity LWW 合并 + 软删传播（ADR-005 step 2）
-      var mergedCourseResult = mergeSyncedEntityList(
-        readCoursesRaw(), data.courses || [], localRevs, remoteRevs, 'courses',
-        function(course){ return course.courseId; }
-      );
-      localRevs.courses = mergedCourseResult.revisions.courses || {};
-      await persistCourseValue('courses', mergedCourseResult.value, false);
-      var mergedProgressResult = mergeSyncedEntityMap(
-        readProgressRaw(), data.courseProgress || {}, localRevs, remoteRevs, 'courseProgress'
-      );
-      localRevs.courseProgress = mergedProgressResult.revisions.courseProgress || {};
-      await persistCourseValue('progress', mergedProgressResult.value, false);
-      saveRevs(localRevs);
-      /* The read is now accepted and all merged local values are persisted.
-         Only this point may advance the baseline; a concurrent local edit
-         keeps the old relation so its next PUT can surface a real conflict. */
-      if(global.BatchSync && Number.isSafeInteger(data.seq) && data.seq>=0 &&
-         _syncGeneration===pullGeneration && !_dirty){
-        var accepted=await global.BatchSync.state();
-        if(accepted.baseline===null || accepted.baseline!==data.seq){
-          await global.BatchSync.observe(data.seq,accepted.baseline);
-        }
-      }
-      /* 重置 courses/progress 快照：合并结果已采纳（localRevs 已对齐），下次上行走初始化分支不误 bump */
-      _coursesSnap = null;
-      _progressSnap = null;
-      /* ---------- 待发集合对齐到「服务端实况」 ----------
-         合并后本地包含云端全部内容，但那**不等于**服务端需要再收一次。
-         不对齐的话，刷新页面后第一次上行会把全部 deck / 课程 / 进度重传一遍
-         （含 base64 图片的课程可达数 MB）—— 只上行变更实体省下的流量会被这一个场景吃掉。
-         判定用**合并前**的本地 rev（见 preLocalRevs 注释）。
-         gone 集合不动：那是「本机删了但还没上行的」实体，清掉就真的丢了。 */
-      _pendingDecks.all = false;
-      _pendingCourses.all = false;
-      _pendingProgress.all = false;
-      var pushDecks = entitiesNeedingPush(m.decks || [], function(d){ return d.id; }, preLocalRevs.decks, remoteRevs.decks);
-      Object.keys(pushDecks).forEach(function(id){ _pendingDecks.dirty[id] = 1; });
-      var pushCourses = entitiesNeedingPush(_coursesCache || [], function(c){ return c.courseId; }, preLocalRevs.courses, remoteRevs.courses);
-      Object.keys(pushCourses).forEach(function(id){ _pendingCourses.dirty[id] = 1; });
-      var pushProg = entitiesNeedingPush(Object.keys(_progressCache || {}), function(cid){ return cid; }, preLocalRevs.courseProgress, remoteRevs.courseProgress);
-      Object.keys(pushProg).forEach(function(id){ _pendingProgress.dirty[id] = 1; });
-      /* 离线 change-log（轻量版）：拉取合并成功后，若本地仍有未同步变更（离线期间产生），立即补传 push */
-      if(_dirty){
-        notifySync();
-        cloudSyncNow(loadMem());
-      }
-      return true;
-    }).catch(function(e){
-      console.warn('[cloud sync ←] 失败:', e.message);
-      /* 初始拉取前会先重试持久批次。该 retry 若收到 409，会在这里直接结束，
-         绕过 cloudSyncNow 的错误处理；必须同样落下账号级冲突标记，下一次启动
-         才能进入安全合并，而不是无限重复旧请求。 */
-      if(e && e.code === 'SYNC_CONFLICT'){
-        _dirty = true;
-        rememberSyncConflict(e.conflicts || [], e.deleted);
-        notifySync();
-      }
-      return false;
-    });
+  function cloudSyncNow(){
+    if(!serverAuthoritativeProtocolActive() || !_serverPersistenceReady || !global.ServerStore) return Promise.resolve(false);
+    return global.ServerStore.retryPending();
   }
-  function readSyncLocal(entity, id){
-    var value, m = loadMem();
-    if(entity === 'courses' || entity === 'courseProgress') maintainCoursesRevs(); else maintainRevs(m);
-    if(entity === 'decks') value = (m.decks || []).find(function(d){ return d.id === id; });
-    else if(entity === 'courses') value = readCoursesRaw().find(function(c){ return c.courseId === id; });
-    else if(entity === 'courseProgress') value = readProgressRaw()[id];
-    else if(entity === 'kv' && SYNC_KV_KEYS.indexOf(id) >= 0) value = memForCloud(m)[id];
-    else throw new Error('不支持的冲突项目');
-    var revs = loadRevs();
-    return cloneJSON({ rev: (revs[entity] && revs[entity][id]) || 0, deleted: value == null, value: value == null ? null : value });
-  }
-  /* Full local learning snapshot used only after an account-level conflict.
-     It is intentionally on-demand: normal answering and sync continue to use
-     row-level deltas, so an 8000-sentence account is not cloned per answer. */
-  function readSyncSnapshot(){
-    return cloneJSON({
-      mem: loadMem(),
-      courses: readCoursesRaw(),
-      courseProgress: readProgressRaw(),
-      revs: loadRevs(),
-      generation: _syncGeneration
-    });
-  }
-  /* 账号级条件批次冲突的安全合并器。
-     409 只说明「读取基线以后云端有变化」，不等于本机或云端整份数据应该被覆盖。
-     这里复用各领域已经验证过的合并语义：实体按 rev 取较新版本，学习统计按事件 ID
-     并集，mastered / 错题本按 key 并集；stats 先归一化旧迁移快照，因此异常巨量次数
-     只能作为不可信冗余被丢弃，不能再次写回云端。该函数保持纯函数，便于回归测试。 */
-  function mergeBatchSnapshots(local, remote){
-    if(CoreSyncBatchMerge && CoreSyncBatchMerge.mergeBatchSnapshots){
-      return CoreSyncBatchMerge.mergeBatchSnapshots(local, remote, {
-        cloneJSON:cloneJSON,
-        normalizeSyncedStats:normalizeSyncedStats,
-        mergeBest:mergeBest,
-        mergeStats:mergeStats,
-        migrateCidKeys:migrateCidKeys,
-        migrateToBookDecks:migrateToBookDecks,
-        currentVersion:CURRENT_VERSION
-      });
-    }
-    local = local && typeof local === 'object' ? local : {};
-    remote = remote && typeof remote === 'object' ? remote : {};
-    var lm = local.mem && typeof local.mem === 'object' ? local.mem : {};
-    var rm = remote.mem && typeof remote.mem === 'object' ? remote.mem : {};
-    var lr = local.revs || {}, rr = remote.revs || {};
-    function revOf(revs, group, id){
-      var value = revs[group] && revs[group][id];
-      return Number.isSafeInteger(value) && value >= 0 ? value : 0;
-    }
-    function mergeList(localList, remoteList, group, idOf){
-      var a = {}, b = {}, keys = {};
-      (Array.isArray(localList) ? localList : []).forEach(function(item){
-        var id = item && idOf(item); if(!id) return; a[id] = item; keys[id] = 1;
-      });
-      (Array.isArray(remoteList) ? remoteList : []).forEach(function(item){
-        var id = item && idOf(item); if(!id) return; b[id] = item; keys[id] = 1;
-      });
-      return Object.keys(keys).sort().reduce(function(out,id){
-        var av = a[id], bv = b[id], al = revOf(lr, group, id), br = revOf(rr, group, id);
-        if(av && (!bv || al >= br)) out.push(av);
-        else if(bv && (!av || br >= al)) out.push(bv);
-        return out;
-      }, []);
-    }
-    function mergeMap(localMap, remoteMap, group){
-      var a = localMap && typeof localMap === 'object' ? localMap : {};
-      var b = remoteMap && typeof remoteMap === 'object' ? remoteMap : {};
-      var keys = {}; Object.keys(a).forEach(function(k){keys[k]=1;}); Object.keys(b).forEach(function(k){keys[k]=1;});
-      var out = {};
-      Object.keys(keys).sort().forEach(function(id){
-        var al = revOf(lr, group, id), br = revOf(rr, group, id);
-        if(Object.prototype.hasOwnProperty.call(a,id) && (!Object.prototype.hasOwnProperty.call(b,id) || al >= br)) out[id] = a[id];
-        else if(Object.prototype.hasOwnProperty.call(b,id) && (!Object.prototype.hasOwnProperty.call(a,id) || br >= al)) out[id] = b[id];
-      });
-      return out;
-    }
-    function mergeBook(a, b){
-      var seen = {}, out = [];
-      (Array.isArray(b) ? b : []).concat(Array.isArray(a) ? a : []).forEach(function(item){
-        if(!item || !item._key || seen[item._key]) return;
-        seen[item._key] = 1; out.push(item);
-      });
-      return out;
-    }
-    var localStats = normalizeSyncedStats(cloneJSON(lm.stats || {})).stats || {};
-    var remoteStats = normalizeSyncedStats(cloneJSON(rm.stats || {})).stats || {};
-    var outMem = cloneJSON(rm);
-    /* 服务端快照不保存前端运行版本；saveMem/loadMem 会始终补成当前版本。
-       这里提前补齐，applySyncBatchResolution 的严格“处理期间未修改”校验才不会
-       把这个正常的加载器补字段误判成并发编辑。 */
-    outMem.version = CURRENT_VERSION;
-    outMem.decks = mergeList(lm.decks, rm.decks, 'decks', function(d){return d.id;});
-    outMem.best = mergeBest(lm.best, rm.best);
-    outMem.settings = revOf(lr,'kv','settings') >= revOf(rr,'kv','settings')
-      ? cloneJSON(lm.settings || {}) : cloneJSON(rm.settings || {});
-    outMem.stats = mergeStats(localStats, remoteStats);
-    outMem.mastered = Object.assign({}, rm.mastered || {}, lm.mastered || {});
-    outMem.deletedItems = Object.assign({}, rm.deletedItems || {}, lm.deletedItems || {});
-    outMem.reinforceBook = mergeBook(lm.reinforceBook, rm.reinforceBook);
-    /* mergeStats 已处理 stats；这里再统一处理其它三处句子身份，避免一个批次里出现
-       mastered 用旧 key、stats 用新 key 的半迁移状态。 */
-    migrateCidKeys(outMem); migrateToBookDecks(outMem);
-    return {
-      mem: outMem,
-      courses: mergeList(local.courses, remote.courses, 'courses', function(c){return c.courseId;}),
-      courseProgress: mergeMap(local.courseProgress, remote.courseProgress, 'courseProgress'),
-      revs: cloneJSON(lr),
-      generation: local.generation
-    };
-  }
-  function batchBusinessSnapshot(snapshot){
-    if(CoreSyncBatchMerge && CoreSyncBatchMerge.buildBusinessSnapshot){
-      return CoreSyncBatchMerge.buildBusinessSnapshot(snapshot, {
-        cloneJSON: cloneJSON,
-        normalizeSyncedStats: normalizeSyncedStats
-      });
-    }
-    var source = snapshot || {}, mem = source.mem || {};
-    var decks = (Array.isArray(mem.decks) ? mem.decks : []).map(function(deck){
-      var normalized = cloneJSON(deck || {});
-      normalized.builtin = !!normalized.builtin;
-      normalized.isPublic = !!normalized.isPublic;
-      return normalized;
-    }).sort(function(a,b){
-      var left = String(a && a.id || ''), right = String(b && b.id || '');
-      return left < right ? -1 : left > right ? 1 : 0;
-    });
-    var courses = (Array.isArray(source.courses) ? source.courses : []).map(cloneJSON).sort(function(a,b){
-      var left = String(a && a.courseId || ''), right = String(b && b.courseId || '');
-      return left < right ? -1 : left > right ? 1 : 0;
-    });
-    return { mem: {
-      decks: decks,
-      best: cloneJSON(mem.best || {}),
-      mastered: cloneJSON(mem.mastered || {}),
-      deletedItems: cloneJSON(mem.deletedItems || {}),
-      stats: normalizeSyncedStats(cloneJSON(mem.stats || {})).stats || {},
-      settings: cloneJSON(mem.settings || {}),
-      reinforceBook: cloneJSON(mem.reinforceBook || [])
-    }, courses: courses, courseProgress: cloneJSON(source.courseProgress || {}) };
-  }
-  function sameBatchBusiness(local, remote){
-    return sameSyncValue(batchBusinessSnapshot(local), batchBusinessSnapshot(remote));
-  }
-  async function autoRecoverBatchConflict(){
-    if(!global.ChunkAPI || !global.ChunkAPI.getSyncBatch || !global.SyncResolution ||
-       typeof global.SyncResolution.startAutoBatch !== 'function') return false;
-    try{
-      var batch = await global.ChunkAPI.getSyncBatch();
-      if(!batch || !batch.snapshot || !batch.token) return false;
-      var original = readSyncSnapshot();
-      /* 只有双方业务内容完全相同、差异仅来自同步元数据时才自动确认。
-         课程、设置、统计或删除状态有任何内容差异，都交给人工比较入口。 */
-      if(!sameBatchBusiness(original, batch.snapshot)){
-        console.info('[cloud sync] 账号冲突包含业务内容差异，保留人工处理入口');
-        return false;
-      }
-      console.info('[cloud sync] 检测到仅同步元数据差异，创建可恢复的自动确认请求');
-      var receipt = await global.SyncResolution.startAutoBatch({
-        batch: true, entity: 'batch', id: '',
-        local: { rev: 0, deleted: false, value: original },
-        remote: { rev: batch.seq, deleted: false, value: batch.snapshot },
-        remoteToken: batch.token
-      });
-      if(!receipt || receipt.ok !== true) return false;
-      console.info('[cloud sync] 已自动确认相同业务数据的同步冲突');
-      return true;
-    }catch(e){
-      console.warn('[cloud sync] 自动恢复失败，保留人工处理入口:', e.message);
-      return false;
-    }
-  }
-  /* 整账号冲突处理成功后，选中的快照就是新的已确认基线。
-     不能把 _prevSnap / 云端增量水位留空：否则紧接着删除或修改一个题库时，
-     maintainRevs 只能走“首次保存”分支，既检测不到删除，也可能用旧 rev 上行。
-     这里一次性重建所有轻量水位；8000 句只在低频的冲突处理路径执行。 */
-  function adoptConfirmedBatchSnapshot(snapshot){
-    snapshot = snapshot || {};
-    var cm = snapshot.mem || loadMem();
-    var cs = cm.stats || {};
-    _prevSnap = { decks: {}, kv: {} };
-    (cm.decks || []).forEach(function(d){ _prevSnap.decks[d.id] = sigDeck(d); });
-    SYNC_KV_KEYS.forEach(function(k){ if(k in cm) _prevSnap.kv[k] = kvSig(k, cm[k]); });
-    _coursesSnap = {};
-    (snapshot.courses || readCoursesRaw()).forEach(function(c){ _coursesSnap[c.courseId] = sigCourse(c); });
-    _progressSnap = {};
-    var cp = snapshot.courseProgress || readProgressRaw();
-    Object.keys(cp).forEach(function(id){ _progressSnap[id] = sigKv(cp[id]); });
-    var by = cs.bySentence && typeof cs.bySentence === 'object' ? cs.bySentence : {};
-    _cloudBsSig = {};
-    Object.keys(by).forEach(function(k){ _cloudBsSig[k] = statSig(by[k]); });
-    _cloudEvIds = {};
-    (Array.isArray(cs.events) ? cs.events : []).forEach(function(ev){ if(ev && ev.id) _cloudEvIds[ev.id] = 1; });
-    alignEntityMarks(cm);
-    if(snapshot.revs) saveRevs(snapshot.revs);
-    [_pendingDecks, _pendingCourses, _pendingProgress].forEach(function(p){
-      p.all = false; p.dirty = {}; p.gone = {};
-    });
-  }
-  async function applySyncBatchResolution(receipt, original, linkedPendingId){
-    if(!receipt || receipt.kind!=='batch' || !receipt.snapshot || !global.BatchSync || !global.BatchSync.finishResolution){
-      throw new Error('整账号处理回执无效');
-    }
-    if(global.AccountStorage && global.AccountStorage.assertCurrent) global.AccountStorage.assertCurrent();
-    function business(snapshot){
-      var copy=cloneJSON(snapshot || {});
-      delete copy.generation; delete copy.revs;
-      if(copy.mem) delete copy.mem.version;
-      return copy;
-    }
-    function changed(){
-      var e=new Error('处理期间本机已有新修改，已保留。请重新比较双方版本');
-      e.code='LOCAL_CHANGED'; return e;
-    }
-    function statsBlend(now,before,wanted){
-      now=now || {}; before=before || {}; wanted=wanted || {};
-      if(sameSyncValue(now,before) || sameSyncValue(now,wanted)) return true;
-      function events(value){
-        var out={}; (Array.isArray(value) ? value : []).forEach(function(event){
-          if(event && event.id) out[event.id]=event;
-        }); return out;
-      }
-      var currentEvents=events(now.events), beforeEvents=events(before.events), wantedEvents=events(wanted.events), expected={};
-      Object.keys(beforeEvents).forEach(function(id){expected[id]=1;}); Object.keys(wantedEvents).forEach(function(id){expected[id]=1;});
-      if(Object.keys(currentEvents).length!==Object.keys(expected).length ||
-         !Object.keys(expected).every(function(id){
-           return currentEvents[id] && (sameSyncValue(currentEvents[id],beforeEvents[id]) || sameSyncValue(currentEvents[id],wantedEvents[id]));
-         })) return false;
-      var keys={}; Object.keys(now).forEach(function(k){keys[k]=1;});
-      Object.keys(before).forEach(function(k){keys[k]=1;}); Object.keys(wanted).forEach(function(k){keys[k]=1;});
-      return Object.keys(keys).filter(function(k){return k!=='events';}).every(function(k){
-        return sameSyncValue(now[k],before[k]) || sameSyncValue(now[k],wanted[k]);
-      });
-    }
-    function isBlend(now,before,wanted){
-      now=now || {}; before=before || {}; wanted=wanted || {};
-      var keys={}; Object.keys(now).forEach(function(k){keys[k]=1;});
-      Object.keys(before).forEach(function(k){keys[k]=1;}); Object.keys(wanted).forEach(function(k){keys[k]=1;});
-      return Object.keys(keys).every(function(k){
-        if(k==='stats' && now[k] && before[k] && wanted[k]) return statsBlend(now[k],before[k],wanted[k]);
-        return sameSyncValue(now[k],before[k]) || sameSyncValue(now[k],wanted[k]);
-      });
-    }
-    function keyedBlend(now,before,wanted,idKey){
-      function index(value){
-        var out={};
-        if(Array.isArray(value)) value.forEach(function(row){if(row && row[idKey]!=null) out[row[idKey]]=row;});
-        else if(value && typeof value==='object') Object.keys(value).forEach(function(k){out[k]=value[k];});
-        return out;
-      }
-      return isBlend(index(now),index(before),index(wanted));
-    }
-    var current=readSyncSnapshot(), target=receipt.snapshot;
-    var originalBusiness=business(original), currentBusiness=business(current), targetBusiness=business(target);
-    /* A refresh can change generation/version metadata. Compare business data,
-       but keep every learning/stat/deletion field in the comparison. */
-    if(receipt.choice!=='remote' && !sameSyncValue(currentBusiness, originalBusiness) && !sameSyncValue(currentBusiness, targetBusiness)) throw changed();
-    if(receipt.choice==='remote'){
-      var parts=[['mem', current.mem, original.mem, target.mem],
-        ['courses', current.courses || [], original.courses || [], target.courses || []],
-        ['courseProgress', current.courseProgress || {}, original.courseProgress || {}, target.courseProgress || {}]];
-      /* Validate every component before writing any new component. This keeps
-         an answer added during recovery intact instead of overwriting it. */
-      parts.forEach(function(part){
-        var now=cloneJSON(part[1]), before=cloneJSON(part[2]), wanted=cloneJSON(part[3]);
-        if(part[0]==='mem'){
-          delete now.version; delete before.version; delete wanted.version;
-          /* A failed IDB commit can leave localStorage fields from the target
-             while stats still come from the original snapshot. Validate each
-             mem field independently so this recoverable blend is accepted,
-             while a new answer (a third stats value) still blocks. */
-          if(!isBlend(now,before,wanted)) throw changed();
-        }else if(part[0]==='courses'){
-          if(!keyedBlend(now,before,wanted,'courseId')) throw changed();
-        }else if(part[0]==='courseProgress'){
-          if(!keyedBlend(now,before,wanted,'__unused__')) throw changed();
-        }
-      });
-      if(!sameSyncValue(business(current).mem,business(target).mem)){
-        if(saveMem(target.mem,false)===false) throw new Error('云端版本写入本机失败，原数据未切换');
-        /* saveMem keeps its historical synchronous return value, while the
-           IDB-backed stats write completes asynchronously.  A resolution is
-           not durable until that second boundary succeeds; otherwise we could
-           acknowledge the server receipt and clear the journal while the
-           learning record is still only in the page memory. */
-        if(global.CL.lastSave){
-          var persisted=await global.CL.lastSave();
-          if(persisted===false) throw new Error('云端版本写入本机失败，原数据未切换');
-        }
-      }
-      if(!sameSyncValue(current.courses || [], target.courses || [])) await persistCourseValue('courses', target.courses || [], false);
-      if(!sameSyncValue(current.courseProgress || {}, target.courseProgress || {})) await persistCourseValue('progress', target.courseProgress || {}, false);
-    }
-    await global.BatchSync.finishResolution(receipt.seq,linkedPendingId || receipt.requestId);
-    /* Baseline projection is only rebuilt after durable pending confirmation.
-       If this step fails, the journaled receipt can safely repeat activation. */
-    adoptConfirmedBatchSnapshot(receipt.snapshot);
-    /* A recovered namespace remains local-only until this exact comparison
-       and resolution succeeds.  Remove the hold only after both local
-       activation and the durable sync baseline have completed. */
-    if(global.AccountStorage && global.AccountStorage.storage.getItem('chunklab.restore-cloud-hold')){
-      global.AccountStorage.storage.removeItem('chunklab.restore-cloud-hold');
-    }
-    /* Keep the confirmed baseline for the next ordinary push. `adoptConfirmedBatchSnapshot`
-       above already rebuilt _prevSnap / _coursesSnap / _progressSnap and saved the
-       snapshot's revs, so the very next cloudSyncNow must reuse those revs instead of
-       starting from an empty one. Nulling _lastSyncMeta (as before) made that push send
-       an empty revs.kv / revs.decks, and the server persisted rev = NULL for every kv key
-       it carried (services/data-save.js:95) — re-arming the exact unversioned state that
-       caused F-002 and leaving the conditional guard permanently degraded. */
-    var _snapRevs = (receipt.snapshot && receipt.snapshot.revs) || {};
-    _lastSyncMeta = { revs: { decks: _snapRevs.decks || {}, kv: _snapRevs.kv || {} }, deleted: { decks: [], kv: [] } };
-    _dirty=false; rememberSyncConflict(null); notifySync();
-    emit('syncResolved',{entity:'batch',id:receipt.requestId,choice:receipt.choice});
-  }
-  async function applySyncResolution(receipt, original){
-    await Promise.all([_courseWriteTail, _progressWriteTail]);
-    var entity = receipt.entity, id = receipt.id, state = receipt.state;
-    var current = readSyncLocal(entity, id);
-    var intentScope=courseIntentScope();
-    var resolutionIntents=global.IDBStore && global.IDBStore.readSyncIntents
-      ? (await global.IDBStore.readSyncIntents(intentScope)).filter(function(record){
-        return record.entity===entity && record.id===id && record.deleted===original.deleted && sameSyncValue(record.value,original.value);
-      }) : [];
-    var sameData = function(a,b){ return a.deleted === b.deleted && JSON.stringify(a.value) === JSON.stringify(b.value); };
-    if(!sameData(current, original) && !sameData(current, state)){
-      var changed = new Error('本机在处理期间有新修改，已保留。请重新比较双方版本。');
-      changed.code = 'LOCAL_CHANGED'; throw changed;
-    }
-    var m = loadMem();
-    if(entity === 'courses'){
-      var courses = readCoursesRaw().filter(function(c){ return c.courseId !== id; });
-      if(!state.deleted) courses.push(state.value);
-      await persistCourseValue('courses', courses, false,resolutionIntents.map(function(r){return r.operationId;}));
-      if(_coursesSnap){ if(state.deleted) delete _coursesSnap[id]; else _coursesSnap[id] = sigCourse(state.value); }
-    }else if(entity === 'courseProgress'){
-      var progress = cloneJSON(readProgressRaw());
-      if(state.deleted) delete progress[id]; else progress[id] = state.value;
-      await persistCourseValue('progress', progress, false,resolutionIntents.map(function(r){return r.operationId;}));
-      if(_progressSnap){ if(state.deleted) delete _progressSnap[id]; else _progressSnap[id] = sigKv(state.value); }
-    }else{
-      if(entity === 'decks'){
-        m.decks = m.decks.filter(function(d){ return d.id !== id; });
-        if(!state.deleted) m.decks.push(state.value);
-      }else if(id === 'stats'){
-        // Only the conflicting summary changes; sentence cards and events stay intact.
-        m.stats = Object.assign({}, state.deleted ? {} : state.value, { bySentence: m.stats.bySentence, events: m.stats.events });
-      }else m[id] = state.deleted ? {} : state.value;
-      writeLocalMem(m);
-      if(_prevSnap){
-        if(entity === 'decks'){ if(state.deleted) delete _prevSnap.decks[id]; else _prevSnap.decks[id] = sigDeck(state.value); }
-        else _prevSnap.kv[id] = kvSig(id, m[id]);
-      }
-    }
-    if((entity==='courses' || entity==='courseProgress') && !sameData(readSyncLocal(entity,id),state)){
-      var raced=new Error('处理期间出现新修改，已保留，请重新比较'); raced.code='LOCAL_CHANGED'; throw raced;
-    }
-    var revs = loadRevs();
-    if(!revs[entity]) revs[entity] = {};
-    revs[entity][id] = state.rev;
-    /* 走 saveRevs（逐键 max 合并）而非直接 setItem：避免把其他标签页刚升的 rev 覆盖回退 */
-    saveRevs(revs);
-    if(resolutionIntents.length){
-      if(courseIntentScope()!==intentScope) throw new Error('账号已切换，处理记录已保留');
-      await global.IDBStore.acknowledgeSyncIntents(intentScope,resolutionIntents);
-    }
-    _lastSyncMeta.revs = revs;
-    var pending = entity === 'decks' ? _pendingDecks : entity === 'courses' ? _pendingCourses : entity === 'courseProgress' ? _pendingProgress : null;
-    if(pending){ delete pending.dirty[id]; delete pending.gone[id]; }
-    _rejectedDeletes[entity] = (_rejectedDeletes[entity] || []).filter(function(d){ return (d.id || d.k) !== id; });
-    if(_lastSyncMeta.deleted[entity]) _lastSyncMeta.deleted[entity] = _lastSyncMeta.deleted[entity].filter(function(d){ return (d.id || d.k) !== id; });
-    var remaining = (_syncConflict || []).filter(function(c){ return c.entity !== entity || c.id !== id; });
-    var hasDeletes = Object.keys(_rejectedDeletes).some(function(k){ return _rejectedDeletes[k].length; });
-    rememberSyncConflict(remaining.length || hasDeletes ? remaining : null, _rejectedDeletes);
-    emit('memUpdated', loadMem()); emit('syncResolved', { entity: entity, id: id }); notifySync();
+  function syncFromCloud(){
+    if(!serverAuthoritativeProtocolActive() || !_serverPersistenceReady || !global.ServerCache) return Promise.resolve(false);
+    return global.ServerCache.refresh();
   }
 
   /* ---------- 静默游客账号 ----------
@@ -2774,7 +1582,17 @@
   }
   function finishCloudStartup(resolve){
     _cloudOn = true;
-    Promise.resolve(syncFromCloud()).then(function(result){
+    _serverPersistenceReady = false;
+    // Learning starts from the current account's confirmed server cache.
+    // Legacy browser snapshots and recovery tools are not part of startup.
+    var startupSync = Promise.resolve().then(function(){
+          if(!global.ServerCache || typeof global.ServerCache.refresh !== 'function'){
+            throw new Error('服务端确认缓存尚未加载');
+          }
+          return global.ServerCache.refresh();
+        });
+    Promise.resolve(startupSync).then(function(result){
+      _serverPersistenceReady = true; notifyCloudConfigChanged();
       if(global.ChunkAPI && global.ChunkAPI.heartbeat){
         global.ChunkAPI.heartbeat().catch(function(error){
           console.warn('[cloud] 活跃记录失败：', error && error.message || error);
@@ -2782,25 +1600,64 @@
       }
       resolve(result);
     }, function(error){
-      /* 学习页不能因为统计心跳失败而卡住；同步失败也沿用原有本地可用策略。 */
-      if(global.ChunkAPI && global.ChunkAPI.heartbeat){
-        global.ChunkAPI.heartbeat().catch(function(){});
-      }
+      _serverPersistenceReady = false; notifyCloudConfigChanged();
       resolve(false);
-      console.warn('[cloud] 启动同步失败，继续使用本地数据：', error && error.message || error);
+      console.warn('[cloud] 服务端缓存暂不可用，待保存操作将在恢复连接后重试：',
+        error && error.message || error);
     });
+  }
+  function scheduleCloudStartupRetry(){
+    if(_cloudStartupRetryTimer || !global.ChunkAPI || (global.navigator && global.navigator.onLine === false)) return;
+    var baseDelay = _cloudStartupRetryDelay;
+    _cloudStartupRetryDelay = Math.min(30000, baseDelay * 2);
+    var delay = Math.round(baseDelay * (0.8 + Math.random() * 0.4));
+    _cloudStartupRetryTimer = global.setTimeout(function(){
+      _cloudStartupRetryTimer = null;
+      if(!_serverPersistenceReady) ensureCloud();
+    }, delay);
+  }
+  function retryCloudStartupSoon(){
+    if(!global.ChunkAPI || _serverPersistenceReady) return;
+    if(_cloudStartupRetryTimer){ global.clearTimeout(_cloudStartupRetryTimer); _cloudStartupRetryTimer = null; }
+    _cloudStartupRetryDelay = 1000;
+    ensureCloud();
   }
   function ensureCloud(){
     /* 页面入口、课程页和测试可能同时调用 ensureCloud。若每次都重新执行，
        会并行拉取并合并同一份快照，后完成的合并可能覆盖先完成的结果。
        共享启动 Promise 既避免重复请求，也让调用方真正等到同一轮初始化结束。 */
     if(_cloudStartupPromise) return _cloudStartupPromise;
-    _cloudStartupPromise = new Promise(function(resolve){
-      if(!global.ChunkAPI){ resolve(); return; }
+    if(!global.ChunkAPI){ _cloudConfigState = 'unknown'; notifyCloudConfigChanged(); return Promise.resolve(); }
+    _cloudConfigState = 'checking';
+    notifyCloudConfigChanged();
+    var startupPromise = new Promise(function(resolve){
       preload().then(function(){
         global.ChunkAPI.getConfig().then(function(cfg){
           _cloudConfig = cfg || null;
+          _cloudConfigState = 'known';
+          // Keep the saving protocol for this account when the next page opens offline.
+          // Cached configuration never opens the network write gate.
+          if(global.AccountStorage && global.AccountStorage.storage){
+            try{
+              if(serverAuthoritativeProtocolActive()){
+                global.AccountStorage.storage.setItem('chunklab.server-config.v3', JSON.stringify({
+                  persistenceMode:cfg.persistenceMode, writeProtocol:3, requireAuth:!!cfg.requireAuth
+                }));
+              }else global.AccountStorage.storage.removeItem('chunklab.server-config.v3');
+            }catch(ignoreConfigCache){}
+          }
+          if(serverAuthoritativeProtocolActive()) _serverPersistenceReady = false;
+          notifyCloudConfigChanged();
           var needAuth = cfg && cfg.requireAuth;
+          if(!serverAuthoritativeProtocolActive()){
+            _cloudOn = false;
+            _serverPersistenceReady = false;
+            _cloudConfigState = 'config-invalid';
+            notifyCloudConfigChanged();
+            console.error('[saving] 服务配置不支持当前保存协议，未启用旧版上传');
+            resolve(false);
+            return;
+          }
           /* 只在「确实没有可用令牌」时才走静默游客引导。
              根因（2026-09-17 探针实测）：此处曾有 `|| _loadGuest()`，即只要本地存着游客凭据就每次启动
              都静默重登 → api.setToken 写回令牌 → AccountStorage 代次变化 → 触发整页重载 → 再重登…
@@ -2820,14 +1677,51 @@
             finishCloudStartup(resolve);
           }
         }).catch(function(){
-          /* 服务器不可达 → 纯本地模式，不阻塞启动 */
+          /* An offline page keeps using the same durable operation queue.
+             Never turn known server-owned data into legacy local-only writes. */
           _cloudConfig = null;
-          console.warn('[cloud] 服务器不可达，使用纯本地存储');
-          resolve();
+          if(global.AccountStorage && global.AccountStorage.storage){
+            try{
+              var cachedConfig = JSON.parse(global.AccountStorage.storage.getItem('chunklab.server-config.v3'));
+              if(cachedConfig && cachedConfig.persistenceMode === 'server-authoritative' && cachedConfig.writeProtocol === 3)
+                _cloudConfig = cachedConfig;
+            }catch(ignoreCachedConfig){}
+          }
+          _serverPersistenceReady = false;
+          _cloudConfigState = 'offline';
+          notifyCloudConfigChanged();
+          console.warn('[cloud] 连接暂不可用，待保存操作保留在此设备');
+          resolve(false);
         });
       });
     });
-    return _cloudStartupPromise;
+    var trackedPromise = startupPromise.then(function(result){
+      if(result === false || _cloudConfig === null){
+        if(_cloudStartupPromise === trackedPromise) _cloudStartupPromise = null;
+        scheduleCloudStartupRetry();
+      }else{
+        _cloudStartupRetryDelay = 1000;
+        if(_cloudStartupRetryTimer){ global.clearTimeout(_cloudStartupRetryTimer); _cloudStartupRetryTimer = null; }
+      }
+      return result;
+    }, function(error){
+      if(_cloudStartupPromise === trackedPromise) _cloudStartupPromise = null;
+      console.warn('[cloud] 启动初始化失败，将在后台重试：', error && error.message || error);
+      scheduleCloudStartupRetry();
+      return false;
+    });
+    _cloudStartupPromise = trackedPromise;
+    return trackedPromise;
+  }
+
+  if(global.addEventListener){
+    global.addEventListener('online', retryCloudStartupSoon);
+    global.addEventListener('focus', retryCloudStartupSoon);
+  }
+  if(global.document && global.document.addEventListener){
+    global.document.addEventListener('visibilitychange', function(){
+      if(global.document.visibilityState === 'visible') retryCloudStartupSoon();
+    });
   }
 
   /* ---------- 工具 ---------- */
@@ -2903,6 +1797,17 @@
     });
     var rowWindow = Math.max(32, Math.ceil(Math.max(trustedTotal, sentenceAnswered) * 0.25));
     return sentenceAnswered > trustedTotal + rowWindow;
+  }
+
+  function mergeLearningV1(a, b){
+    a = (a && typeof a === 'object') ? a : {};
+    b = (b && typeof b === 'object') ? b : {};
+    if(!Object.keys(a).length && !Object.keys(b).length) return null;
+    var latest = (Number(a.lastExposureAt)||0) > (Number(b.lastExposureAt)||0) ? a : b;
+    var evidence = window.LearningEngine && LearningEngine.mergeLearningEvidence
+      ? LearningEngine.mergeLearningEvidence(a.evidence||[],b.evidence||[])
+      : (a.evidence||[]).concat((b.evidence||[]).filter(function(ev){return !(a.evidence||[]).some(function(old){return old.id===ev.id;});}));
+    return Object.assign({},latest,{version:1,evidence:evidence,lastExposureAt:Math.max(Number(a.lastExposureAt)||0,Number(b.lastExposureAt)||0)});
   }
 
   function mergeStats(a, b){
@@ -3035,10 +1940,14 @@
       if(!events.length){
         var legacy = (ra && rb) ? ((ra.times||0) >= (rb.times||0) ? ra : rb) : (ra || rb);
         out.bySentence[key] = Object.assign({}, legacy);
+        var legacyLearning = mergeLearningV1(ra && ra.learningV1, rb && rb.learningV1);
+        if(legacyLearning) out.bySentence[key].learningV1 = legacyLearning;
         return;
       }
       var latest = (ra && rb) ? ((ra.lastAt||0) >= (rb.lastAt||0) ? ra : rb) : (ra || rb);
       var merged = Object.assign({}, latest);
+      var learning = mergeLearningV1(ra && ra.learningV1, rb && rb.learningV1);
+      if(learning) merged.learningV1 = learning;
       /* 异常行常与另一侧的无事件快照同时出现；该快照已包含这些事件，
          再加 eu 就会把次数翻倍。异常分支只采用可信行，实在没有可信行才用事件数。 */
       merged.times = (poisonA || poisonB) ? (baseTimes || eu) : (baseTimes + eu);
@@ -3146,9 +2055,10 @@
      覆盖与 migrateCidKeys 相同的四处（mastered / deletedItems / bySentence / events）；
      另加错题本 —— 它的 key 是 `deckId::sentence`，历史 cid 迁移不覆盖，换 deck 后会指向不存在的库。 */
   function migrateToBookDecks(o){
-    if(CoreMigrations && CoreMigrations.migrateToBookDecks) return CoreMigrations.migrateToBookDecks(o, global.BUILTIN_MIGRATION);
+    if(CoreMigrations && CoreMigrations.migrateToBookDecks) return CoreMigrations.migrateToBookDecks(o, global.BUILTIN_MIGRATION, global.BUILTIN_CID_ALIASES);
     var map = global.BUILTIN_MIGRATION;
     if(!map) return false;                       /* 迁移表未加载（如旧页面）→ 不动任何数据 */
+    var aliases = global.BUILTIN_CID_ALIASES || {};
     var OLD_DECKS = {
       'builtin-daily': 1, 'daily-home': 1, 'daily-social': 1, 'daily-chat': 1,
       'daily-basic': 1, 'daily-emotion': 1, 'daily-work': 1,
@@ -3167,6 +2077,14 @@
       }
       return cidToDeck[cid] || null;
     }
+    function resolveCid(cid){
+      var deck = deckOfCid(cid);
+      if(deck) return {deckId:deck,cid:cid};
+      var alias = aliases[cid];
+      if(!alias || typeof alias !== 'object' || typeof alias.deckId !== 'string' ||
+          typeof alias.cid !== 'string' || deckOfCid(alias.cid) !== alias.deckId) return null;
+      return {deckId:alias.deckId,cid:alias.cid};
+    }
     /* 只改写「已 cid 化」的老 key（<老deck>#8位hex）；找不到归属就原样保留（不删数据）。
        新 deck id（oral-*）不在 OLD_DECKS 里 → 二次执行无变化，天然幂等。 */
     function remapKey(k){
@@ -3176,8 +2094,8 @@
       var oldDeck = k.slice(0, sep), cid = k.slice(sep + 1);
       if(!OLD_DECKS[oldDeck]) return k;
       if(!/^[0-9a-f]{8}$/.test(cid)) return k;
-      var deck = deckOfCid(cid);
-      return deck ? deck + '#' + cid : k;
+      var resolved = resolveCid(cid);
+      return resolved ? resolved.deckId + '#' + resolved.cid : k;
     }
     var changed = false;
     function moveMap(mapObj){
@@ -3185,7 +2103,9 @@
       Object.keys(mapObj).forEach(function(k){
         var nk = remapKey(k);
         if(nk === k) return;
-        if(!(nk in mapObj)) mapObj[nk] = mapObj[k];
+        /* 不对统计/SRS 冲突猜测合并；保留旧行供后续恢复审阅。 */
+        if(nk in mapObj) return;
+        mapObj[nk] = mapObj[k];
         delete mapObj[k];
         changed = true;
       });
@@ -3210,10 +2130,10 @@
     if(Array.isArray(o.reinforceBook)){
       o.reinforceBook.forEach(function(it){
         if(!it || !OLD_DECKS[it.deckId]) return;
-        var deck = deckOfCid(fnv8(it.sentence || ''));
-        if(!deck) return;
-        it.deckId = deck;
-        it._key = deck + '::' + (it.sentence || '');
+        var resolved = resolveCid(fnv8(it.sentence || ''));
+        if(!resolved) return;
+        it.deckId = resolved.deckId;
+        it._key = resolved.deckId + '::' + (it.sentence || '');
         changed = true;
       });
     }
@@ -3258,100 +2178,18 @@
     return { stats: stats, changed: changed, repairedEventIds: repairedEventIds };
   }
 
-  function mergeSyncedEntityList(localList, remoteList, localRevs, remoteRevs, group, idOf){
-    if(CoreSyncEntities && CoreSyncEntities.mergeEntityList){
-      return CoreSyncEntities.mergeEntityList(localList, remoteList, localRevs, remoteRevs, group, idOf);
-    }
-    var left = Array.isArray(localList) ? localList : [], right = Array.isArray(remoteList) ? remoteList : [];
-    var a = {}, b = {}, keys = {}, order = [];
-    left.forEach(function(item){ var id=item && idOf(item); if(!id || keys[id]) return; keys[id]=1; order.push(id); a[id]=item; });
-    right.forEach(function(item){ var id=item && idOf(item); if(!id) return; if(!keys[id]){ keys[id]=1; order.push(id); } b[id]=item; });
-    var revisions = cloneJSON(localRevs || {}); if(!revisions[group]) revisions[group] = {};
-    order.forEach(function(id){
-      var lr = Number.isSafeInteger(localRevs && localRevs[group] && localRevs[group][id]) ? localRevs[group][id] : 0;
-      var rr = Number.isSafeInteger(remoteRevs && remoteRevs[group] && remoteRevs[group][id]) ? remoteRevs[group][id] : 0;
-      if(b[id] && rr > lr) revisions[group][id] = rr;
-    });
-    Object.keys((remoteRevs && remoteRevs[group]) || {}).forEach(function(id){
-      var rr = remoteRevs[group][id], lr = (localRevs && localRevs[group] && localRevs[group][id]) || 0;
-      if(!b[id] && rr > lr) revisions[group][id] = rr;
-    });
-    var value = order.reduce(function(out,id){
-      var lr = Number.isSafeInteger(localRevs && localRevs[group] && localRevs[group][id]) ? localRevs[group][id] : 0;
-      var rr = Number.isSafeInteger(remoteRevs && remoteRevs[group] && remoteRevs[group][id]) ? remoteRevs[group][id] : 0;
-      if(a[id] && (!b[id] || lr >= rr)) out.push(a[id]); else if(b[id] && (!a[id] || rr >= lr)) out.push(b[id]);
-      return out;
-    }, []);
-    Object.keys((remoteRevs && remoteRevs[group]) || {}).forEach(function(id){
-      var rr = remoteRevs[group][id], lr = (localRevs && localRevs[group] && localRevs[group][id]) || 0;
-      if(!b[id] && rr > lr) value = value.filter(function(item){ return idOf(item) !== id; });
-    });
-    return { value: value, revisions: revisions };
-  }
-  function mergeSyncedEntityMap(localMap, remoteMap, localRevs, remoteRevs, group){
-    if(CoreSyncEntities && CoreSyncEntities.mergeEntityMap){
-      return CoreSyncEntities.mergeEntityMap(localMap, remoteMap, localRevs, remoteRevs, group);
-    }
-    var left = localMap && typeof localMap === 'object' ? localMap : {};
-    var right = remoteMap && typeof remoteMap === 'object' ? remoteMap : {};
-    var keys = {}; Object.keys(left).forEach(function(id){ keys[id]=1; }); Object.keys(right).forEach(function(id){ keys[id]=1; });
-    var revisions = cloneJSON(localRevs || {}); if(!revisions[group]) revisions[group] = {};
-    var value = {};
-    Object.keys(keys).forEach(function(id){
-      var lr = Number.isSafeInteger(localRevs && localRevs[group] && localRevs[group][id]) ? localRevs[group][id] : 0;
-      var rr = Number.isSafeInteger(remoteRevs && remoteRevs[group] && remoteRevs[group][id]) ? remoteRevs[group][id] : 0;
-      if(Object.prototype.hasOwnProperty.call(right,id) && rr > lr) revisions[group][id] = rr;
-      if(Object.prototype.hasOwnProperty.call(left,id) && (!Object.prototype.hasOwnProperty.call(right,id) || lr >= rr)) value[id] = left[id];
-      else if(Object.prototype.hasOwnProperty.call(right,id) && (!Object.prototype.hasOwnProperty.call(left,id) || rr >= lr)) value[id] = right[id];
-    });
-    Object.keys((remoteRevs && remoteRevs[group]) || {}).forEach(function(id){
-      var rr = remoteRevs[group][id], lr = (localRevs && localRevs[group] && localRevs[group][id]) || 0;
-      if(!Object.prototype.hasOwnProperty.call(right,id) && rr > lr){ delete value[id]; revisions[group][id] = rr; }
-    });
-    return { value: value, revisions: revisions };
-  }
-  function mergeSyncedKv(mem, remoteMem, localRevs, remoteRevs, pendingLearning, remoteStatsWasNormalized){
-    if(CoreSyncKv && CoreSyncKv.mergeSyncKv){
-      return CoreSyncKv.mergeSyncKv(mem, remoteMem, localRevs, remoteRevs, SYNC_KV_KEYS,
-        pendingLearning, remoteStatsWasNormalized, {
-          cloneJSON:cloneJSON,
-          mergeStats:mergeStats,
-          mergeBest:mergeBest,
-          eqJson:_eqJson
-        });
-    }
-    var nextMem = cloneJSON(mem || {}), nextRevs = cloneJSON(localRevs || {}), dirty = false;
-    var remote = remoteMem && typeof remoteMem === 'object' ? remoteMem : {};
-    if(!nextRevs.kv) nextRevs.kv = {};
-    SYNC_KV_KEYS.forEach(function(k){
-      var rRev = (remoteRevs.kv && remoteRevs.kv[k]) || 0, lRev = nextRevs.kv[k] || 0;
-      if(k === 'stats' && remote[k] !== undefined){
-        var localStats = nextMem.stats && typeof nextMem.stats === 'object' ? nextMem.stats : {};
-        var remoteStats = remote[k] && typeof remote[k] === 'object' ? remote[k] : {};
-        var localHasStats = Number(localStats.totalRounds || 0) > 0 || Number(localStats.totalAnswered || 0) > 0 || Object.keys(localStats.bySentence || {}).length > 0 || (Array.isArray(localStats.events) && localStats.events.length > 0);
-        var remoteHasStats = Number(remoteStats.totalRounds || 0) > 0 || Number(remoteStats.totalAnswered || 0) > 0 || Object.keys(remoteStats.bySentence || {}).length > 0 || (Array.isArray(remoteStats.events) && remoteStats.events.length > 0);
-        var remoteStatsKnown = Object.prototype.hasOwnProperty.call(remoteRevs.kv || {}, 'stats');
-        var hasPendingLearning = pendingLearning.length > 0;
-        var keepLocalForEmptyRemote = !hasPendingLearning && localHasStats && !remoteStatsKnown && !remoteHasStats;
-        var mergedStats = hasPendingLearning ? mergeStats(nextMem.stats, remote[k]) : keepLocalForEmptyRemote ? cloneJSON(nextMem.stats) : cloneJSON(remote[k]);
-        if(keepLocalForEmptyRemote) dirty = true;
-        if(JSON.stringify(mergedStats) !== JSON.stringify(nextMem.stats || {})){ nextMem.stats = mergedStats; nextRevs.kv[k] = Math.max(lRev, rRev) + 1; }
-        else if(rRev > lRev) nextRevs.kv[k] = rRev;
-        if(remoteStatsWasNormalized) dirty = true;
-      } else if(k === 'best' && remote[k] !== undefined){
-        /* 与唯一来源 src/core/sync-kv-merge.mjs 同形：best 两侧都存在时**一律并集**，
-           避免「本机已产生、尚未上行」的条目被 remoteRev > lRev 的整块替换静默丢弃。 */
-        var mergedBest = mergeBest(nextMem[k], remote[k]);
-        if(!_eqJson(mergedBest, nextMem[k])){ nextMem[k] = mergedBest; nextRevs.kv[k] = Math.max(lRev, rRev) + 1; dirty = true; }
-        else if(rRev > lRev){ nextRevs.kv[k] = rRev; }
-      } else if(rRev > lRev && remote[k] !== undefined){ nextMem[k] = remote[k]; nextRevs.kv[k] = rRev; }
-    });
-    return { mem:nextMem, localRevs:nextRevs, dirty:dirty };
-  }
-
-  /* ---------- 领域：题库 ---------- */
   function masteredKey(deckId, it){ return cidKey(deckId, it); }
-  function allDecks(m){ return (m.decks || []).slice(); }
+  function allDecks(m){
+    var source = m && Array.isArray(m.decks) ? m.decks : [];
+    var retired = m && m.deletedItems && typeof m.deletedItems === 'object' ? m.deletedItems : {};
+    /* An old cloud snapshot can briefly restore a deck after the user deletes it.
+       Keep the raw record for sync/explicit recovery, but do not surface a retired
+       AI conversion in home, library, or catalog until the user confirms reuse. */
+    return source.filter(function(deck){
+      var id = deck && deck.id;
+      return !id || !retired['ai-course-retired:' + String(id)];
+    });
+  }
   /* 内置题库只读视图：按 deletedItems 过滤，返回副本（不改写静态 BUILTIN） */
   function builtinDecks(m){
     return (global.BUILTIN || []).map(function(bd){
@@ -3368,12 +2206,14 @@
     return null;
   }
   function isMastered(m, deckId, it){
+    /* Legacy name retained for older consumers; this is the user's familiarity self-rating. */
     return !!(m.mastered && m.mastered[masteredKey(deckId, it)]);
   }
   function isFluencyByDeck(m, deckId, it){
     if(!m.stats || !m.stats.bySentence) return false;
     var st = m.stats.bySentence[cidKey(deckId, it)];
-    return !!(st && st.okTimes >= 3 && st.streak >= 3);
+    if(!st || !st.learningV1 || !global.LearningEngine) return false;
+    return global.LearningEngine.resolveLearningState({stat:st,contentFingerprint:global.LearningEngine.fingerprintAssessmentItem(it),now:Date.now()}).verifiedMastered;
   }
   function isMarkedForDeck(m, deckId, it){
     return isMastered(m, deckId, it) || isFluencyByDeck(m, deckId, it);
@@ -3381,10 +2221,44 @@
   function classifyStat(s){
     if(!s || !s.times) return 'unseen';
     var acc = s.times ? s.okTimes / s.times : 0;
-    if(s.times >= 3 && acc >= 0.8) return 'master';
     if(acc < 0.6) return 'weak';
     return 'learn';
   }
+
+  /* ---------- 句子级档案 key 的拆分（全站唯一实现） ----------
+     key 形态统一是 deckId#cid（见 cidKey）。stats.bySentence / mastered / deletedItems 三处
+     都按它拆；此前各页面各自手写 indexOf('#') 切片，其中 stats.html 那版用了
+     k.slice(0, sep) 而 sep 可能为 -1 → 无 '#' 的旧 key 会被切掉最后一个字符，
+     判删除时查的是另一个 deck。收敛到这里，顺手把这类手写切片的差异消掉。 */
+  function splitItemKey(key){
+    var k = String(key == null ? '' : key);
+    var sep = k.indexOf('#');
+    return sep >= 0 ? { deckId: k.slice(0, sep), cid: k.slice(sep + 1) } : { deckId: k, cid: '' };
+  }
+  function isItemDeletedByKey(m, key){
+    var p = splitItemKey(key);
+    return isItemDeleted(m, p.deckId, { cid: p.cid });
+  }
+
+  /* Verified mastery is derived only from versioned, current-content assessment evidence. */
+  function masteredSentenceKeys(m, currentDecks){
+    var out = {};
+    var by = (m && m.stats && m.stats.bySentence) || {};
+    var itemsByKey = {};
+    (Array.isArray(currentDecks) ? currentDecks : allDecksView(m)).forEach(function(deck){(deck.items||[]).forEach(function(item){itemsByKey[cidKey(deck.id,item)] = item;});});
+    Object.keys(by).forEach(function(k){
+      if(!global.LearningEngine) return;
+      if(isItemDeletedByKey(m, k)) return;
+      var item = itemsByKey[k];
+      var hasCurrentIndex = Array.isArray(currentDecks);
+      if(!item && hasCurrentIndex) return;
+      var verified = global.LearningEngine.resolveLearningState({stat:by[k],contentFingerprint:item?global.LearningEngine.fingerprintAssessmentItem(item):undefined,now:Date.now()}).verifiedMastered;
+      if(verified) out[k] = true;
+    });
+    return out;
+  }
+  function masteredSentenceCount(m, currentDecks){ return Object.keys(masteredSentenceKeys(m,currentDecks)).length; }
+  function familiaritySentenceCount(m){ return Object.keys((m && m.mastered) || {}).filter(function(k){return !isItemDeletedByKey(m,k);}).length; }
 
   /* ---------- 打卡 streak（首页今日卡上方紧凑 chip 的数据源） ----------
      daysLog 格式：{ 'YYYY-MM-DD': { rounds: <Number> } }
@@ -3569,10 +2443,9 @@
       var key = cidKey(src.dId, src.it);
       if(by[key]) continue; /* 防御：采样撞同一句时跳过 */
       var lastAt = Date.now() - tpl.day * 86400000 - (2 + ((i * 37) % 540)) * 60000;
-      /* 去冗余（2026-09-10）：不写 deckName/translation（展示冗余，可重建）。 */
+      /* 示范统计与真实记录共用最小行形状，不复制课程中的原句。 */
       by[key] = {
         deckId: src.dId,
-        sentence: src.it.sentence || '',
         times: tpl.times, okTimes: tpl.ok, wrongTimes: tpl.w,
         streak: tpl.streak, maxStreak: tpl.ms,
         lastAt: lastAt, interval: Math.max(1, tpl.day + 1), ease: 2.5,
@@ -3656,35 +2529,56 @@
     saveMem: saveMem,
     saveAndNotify: saveAndNotify,
     lastSave: function(){ return _lastSavePromise; },
+    /* 操作先入账号隔离的 IDB 队列，再由服务端确认；不再提供旧快照上传路径。 */
+    submitOperation: function(type, payload, options){
+      if(!global.ServerStore || typeof global.ServerStore.submit !== 'function'){
+        var error = new Error('服务端操作队列尚未加载'); error.code = 'SERVER_STORE_UNAVAILABLE';
+        return Promise.reject(error);
+      }
+      return global.ServerStore.submit(type, payload, options);
+    },
+    retryPendingOperations: function(){
+      if(!global.ServerStore || typeof global.ServerStore.retryPending !== 'function') return Promise.reject(new Error('服务端操作队列尚未加载'));
+      return global.ServerStore.retryPending();
+    },
+    refreshPendingOperationState: function(){
+      if(!global.ServerStore || typeof global.ServerStore.refreshState !== 'function') return Promise.reject(new Error('服务端操作队列尚未加载'));
+      return global.ServerStore.refreshState();
+    },
+    serverSaveState: function(){
+      return global.ServerStore && typeof global.ServerStore.state === 'function'
+        ? global.ServerStore.state() : { phase: 'unavailable', pending: 0, error: null };
+    },
     $: $, esc: esc, norm: norm, normSent: normSent, timeAgo: timeAgo, copyText: copyText,
     masteredKey: masteredKey, allDecks: allDecks, allDecksView: allDecksView, builtinDecks: builtinDecks, findDeck: findDeck,
     deckItems: deckItems, hiddenCount: hiddenCount, restoreAllDeleted: restoreAllDeleted,
-    isMastered: isMastered, isFluencyByDeck: isFluencyByDeck, isMarkedForDeck: isMarkedForDeck,
+    isMastered: isMastered, isFamiliar:isMastered, isVerifiedMastered:isFluencyByDeck, isFluencyByDeck: isFluencyByDeck, isMarkedForDeck: isMarkedForDeck,
     classifyStat: classifyStat,
+    masteredSentenceKeys: masteredSentenceKeys, masteredSentenceCount: masteredSentenceCount, familiaritySentenceCount:familiaritySentenceCount,
     demoStatsSample: demoStatsSample,
-    mergeStats: mergeStats, mergeBest: mergeBest, sameBatchBusiness: sameBatchBusiness,
+    mergeStats: mergeStats, mergeBest: mergeBest,
     ymd: ymd, answerStatsAudit: answerStatsAudit, dailyActivity: dailyActivity, streakDays: streakDays, todayRounds: todayRounds, bumpDaysLog: bumpDaysLog,
     backfillDaysLog: backfillDaysLog,
     itemKey: itemKey, isItemDeleted: isItemDeleted, deleteItem: deleteItem, deckItems: deckItems,
+    splitItemKey: splitItemKey, isItemDeletedByKey: isItemDeletedByKey,
     fnv8: fnv8, cidOf: cidOf, cidKey: cidKey, migrateCidKeys: migrateCidKeys, moveKeyToCid: moveKeyToCid,
     normalizeSyncedStats: normalizeSyncedStats,
     on: on, emit: emit,
     scheduleCloudSync: scheduleCloudSync, cloudSyncNow: cloudSyncNow,
     syncFromCloud: syncFromCloud, ensureCloud: ensureCloud,
-    isDirty: function(){ return _dirty; },
-    getSyncConflict: function(){ return _syncConflict; },
-    readSyncLocal: readSyncLocal, readSyncSnapshot: readSyncSnapshot, mergeBatchSnapshots: mergeBatchSnapshots,
-    applySyncResolution: applySyncResolution,
-    applySyncBatchResolution: applySyncBatchResolution,
-    setResolutionPaused: setResolutionPaused,
-    waitForSync: function(){ return Promise.all([_cloudInFlight, _courseDrain, _courseWriteTail, _progressWriteTail, _statsWriteTail]); },
+    isDirty: function(){ return !!(global.ServerStore && global.ServerStore.state().pending); },
+    waitForSync: function(){ return Promise.all([_courseWriteTail, _progressWriteTail, _statsWriteTail]); },
     /* stats 大对象的持久化托管模式：'idb' = 已分层（localStorage 只留小字段）；'local' = 旧行为 */
     statsStoreMode: function(){ return _statsStore; },
     getCloudConfig: function(){ return _cloudConfig; },
+    getPersistenceState: getPersistenceState,
+    serverPersistenceReady: function(){ return _serverPersistenceReady; },
     preload: preload,
     readCourses: function(){ return cloneJSON(readCoursesRaw()); },
     readProgress: function(){ return cloneJSON(readProgressRaw()); },
     writeCourses: writeCourses, writeProgress: writeProgress,
+    adoptServerCoursesProjection: adoptServerCoursesProjection,
+    adoptServerProgressProjection: adoptServerProgressProjection,
     COURSES_KEY: COURSES_KEY, PROGRESS_KEY: PROGRESS_KEY,
     startReviewDeck: startReviewDeck, goBack: goBack,
     /* 多标签页旧快照防护（P0）：tabId / 采纳磁盘最新态 / 诊断计数。

@@ -19,6 +19,15 @@ html,body{height:100%;overflow:hidden}
 .wrap{max-width:1280px;width:100%;height:100vh;height:100dvh;min-height:0;margin:0 auto;padding:14px 24px 18px;display:flex;flex-direction:column;overflow:hidden}
 .wrap > #pageDecks,.wrap > .page{flex:1 1 auto;min-height:0;overflow:hidden}
 #pageDecks{display:flex;flex-direction:column;min-height:0}
+#pageEdit{display:flex;flex-direction:column;min-height:0}
+#pageEdit > #editHead{flex:0 0 auto}
+#pageEdit > #editList{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:rgba(95,92,85,.3) transparent}
+#pageEdit > #editList::-webkit-scrollbar{width:7px}
+#pageEdit > #editList::-webkit-scrollbar-track{background:transparent}
+#pageEdit > #editList::-webkit-scrollbar-thumb{background:rgba(95,92,85,.3);border-radius:999px}
+#pageEdit > #editStat{flex:0 0 auto}
+#courseMembershipNav{flex:0 1 auto;max-width:100%}
+.tabs.course-type-nav{align-self:flex-start;display:flex;align-items:center;gap:18px;width:max-content;max-width:100%;margin:0 0 8px;padding:0 2px 2px;background:transparent;border:0;border-radius:0}
 #pageDecks > #deckList,#pageDecks > #courseTree{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;align-content:start;padding-bottom:1px;scrollbar-width:thin;scrollbar-color:rgba(95,92,85,.3) transparent}
 #pageDecks > #deckList::-webkit-scrollbar,#pageDecks > #courseTree::-webkit-scrollbar{width:7px}
 #pageDecks > #deckList::-webkit-scrollbar-track,#pageDecks > #courseTree::-webkit-scrollbar-track{background:transparent}
@@ -26,8 +35,10 @@ html,body{height:100%;overflow:hidden}
 #pageDecks > #marketSection{flex:0 0 auto;min-height:0;max-height:32%;overflow:auto;scrollbar-width:thin}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .page-head h2{margin:0;font-size:18px;font-weight:700}
+.course-header-actions{display:flex;align-items:center;gap:6px;flex:0 0 auto}
 .spacer{flex:1}
 .btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:8px;padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
+.page-head a.btn{text-decoration:none}
 .btn:hover{background:var(--surface-2)}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn.primary:hover{background:#1e4fa3}
@@ -44,8 +55,10 @@ html,body{height:100%;overflow:hidden}
 #deckList .deck-section-title,#marketList .deck-section-title{grid-column:1 / -1}
 .deck-section-title{display:flex;align-items:center;gap:8px;margin:10px 2px 0;color:var(--muted);font-size:12.5px;font-weight:700}
 .deck-section-title:first-child{margin-top:0}
+.deck-section-title.course-type-heading{margin-top:14px;color:var(--text);font-size:14px}
 .deck-section-title::after{content:"";height:1px;flex:1;background:var(--border)}
 .deck-item{display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:0;border:1px solid var(--border);border-radius:10px;background:var(--surface);overflow:hidden}
+.deck-item.has-open-menu{position:relative;z-index:20;overflow:visible}
 .deck-item.cur{border-color:var(--accent);background:var(--accent-soft)}
 .deck-cover{position:relative;display:flex;align-items:flex-end;aspect-ratio:16 / 9;min-height:112px;padding:12px 13px;overflow:hidden;background:linear-gradient(135deg,#e8efff 0%,#c8dafb 100%);color:#173b7a}
 .deck-cover-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.76;filter:saturate(.86);transition:opacity .22s ease,filter .22s ease}
@@ -61,9 +74,13 @@ html,body{height:100%;overflow:hidden}
 .deck-cover-mark,.deck-cover-label{position:relative;z-index:3}
 .deck-cover-mark{display:flex;align-items:center;justify-content:center;flex:0 0 18px;width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,.56);font-size:12px}
 .deck-cover-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:.01em;user-select:none;-webkit-user-select:none;caret-color:transparent;-webkit-user-modify:read-only;user-modify:read-only;pointer-events:none}
+.deck-cover-origin{position:absolute;top:10px;right:10px;z-index:3}
 .deck-card-body{display:flex;flex-direction:column;gap:6px;min-height:96px;padding:9px 12px 10px}
 .deck-card-body{cursor:pointer}
 .deck-cover{cursor:pointer}
+.deck-item[role="button"]{cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.deck-item[role="button"]:hover{border-color:var(--border-strong);box-shadow:0 3px 10px rgba(46,43,37,.08)}
+.deck-item[role="button"]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .course-card{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
 .course-card:hover{border-color:var(--border-strong);box-shadow:0 4px 14px rgba(46,43,37,.1);transform:translateY(-1px)}
 .course-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -76,6 +93,11 @@ html,body{height:100%;overflow:hidden}
 .course-manage-trigger .icon{width:17px;height:17px}
 .course-manage-menu{display:none;position:absolute;top:34px;right:0;min-width:128px;padding:4px;border:1px solid var(--border);border-radius:9px;background:var(--surface);box-shadow:0 8px 22px rgba(25,35,50,.16)}
 .course-manage-wrap.is-open .course-manage-menu{display:grid;gap:2px}
+.edit-manage-actions{position:relative;flex:0 0 auto}
+.edit-manage-actions .course-manage-wrap{position:relative;inset:auto}
+.edit-manage-actions .course-manage-trigger{width:auto;min-width:0;height:29px;padding:0 9px;gap:6px;border-color:var(--border-strong);background:var(--surface);box-shadow:none;opacity:1}
+.edit-manage-trigger-label{font-size:12px;white-space:nowrap}
+.edit-manage-actions .course-manage-menu{top:calc(100% + 4px);right:0;z-index:25}
 .course-manage-item{width:100%;padding:7px 9px;border:0;border-radius:6px;background:transparent;color:var(--text);font:inherit;font-size:12px;text-align:left;white-space:nowrap;cursor:pointer}
 .course-manage-item:hover,.course-manage-item:focus-visible{background:var(--surface-2);color:var(--accent);outline:0}
 .course-manage-item.is-danger{color:var(--bad)}
@@ -84,8 +106,10 @@ html,body{height:100%;overflow:hidden}
 .course-manage-inline .course-manage-trigger{width:28px;min-width:28px;height:24px;padding:0;border:0;border-radius:6px;background:transparent;box-shadow:none;color:var(--muted);opacity:1}
 .course-manage-inline .course-manage-trigger:hover{background:var(--surface-2);color:var(--accent)}
 .course-manage-inline .course-manage-menu{top:auto;right:0;bottom:29px}
+.course-manage-inline.course-manage-down .course-manage-menu{top:calc(100% + 4px);bottom:auto}
 .course-card .deck-card-body .meta{display:flex;align-items:center}
 .course-card .deck-card-body .meta .course-manage-inline{margin-left:auto}
+.course-card .course-progress-track{width:clamp(42px,7vw,72px)}
 .catalog-lesson-footer .course-manage-inline{margin-left:auto}
 .course-card .deck-card-body{position:relative;z-index:4;min-height:0;margin-top:-12px;padding:7px 10px 7px;gap:0;border-top:1px solid rgba(255,255,255,.72);border-radius:10px 10px 0 0;background:rgba(255,253,250,.72);box-shadow:0 -4px 14px rgba(42,48,58,.08);backdrop-filter:blur(12px) saturate(125%);-webkit-backdrop-filter:blur(12px) saturate(125%)}
 .deck-item .info{min-width:0;flex:1}
@@ -93,7 +117,7 @@ html,body{height:100%;overflow:hidden}
 .deck-item .deck-title{min-width:0;flex:1;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .deck-item .nm .pill{flex-shrink:0;white-space:nowrap}
 .deck-item .meta{font-size:12px;color:var(--faint);margin-top:1px}
-.deck-actions{margin-left:0;display:flex;gap:4px;align-items:center;justify-content:flex-end;flex-wrap:wrap;flex-shrink:0}
+.deck-actions{margin-left:auto;display:flex;gap:4px;align-items:center;justify-content:flex-end;flex-wrap:wrap;flex-shrink:0}
 .catalog-directory{display:grid !important;grid-template-columns:repeat(auto-fill,minmax(220px,280px));justify-content:start;gap:10px;max-width:none}
 #deckList.catalog-directory{grid-template-columns:repeat(auto-fill,minmax(220px,280px))}
 .catalog-directory > .catalog-group,.catalog-directory > .catalog-flat-lessons{grid-column:1 / -1}
@@ -164,6 +188,16 @@ html,body{height:100%;overflow:hidden}
 .modal-body::-webkit-scrollbar-track{background:transparent}
 .modal-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:4px}
 .modal-foot{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;border-radius:0 0 14px 14px}
+.course-import-type-modal{max-width:460px}
+.course-import-type-modal > .modal-head,.course-import-type-modal > .modal-foot{border:0}
+.course-type-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.course-type-choice{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:82px;padding:14px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .15s,background .15s}
+.course-type-choice:hover{border-color:var(--accent);background:var(--accent-soft)}
+.course-type-choice:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.course-type-choice strong{font-size:14px}
+.course-type-choice span{color:var(--muted);font-size:12px}
+.append-modal-foot{flex-wrap:wrap}
+.append-modal-foot .spacer{min-width:8px}
 .course-confirm-modal{max-width:420px}
 .course-confirm-message{margin:0;color:var(--text);line-height:1.65;white-space:pre-line}
 .course-confirm-danger{border-color:var(--bad);background:var(--bad);color:#fff}
@@ -194,11 +228,13 @@ textarea,input[type=text],select{font:inherit;color:var(--text)}
 textarea{outline:none;resize:vertical}
 .drop{border:1px dashed var(--border-strong);border-radius:10px;padding:8px;cursor:pointer;background:var(--surface-2)}
 .drop textarea{width:100%;min-height:110px;border:0;background:transparent;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px}
+.drop.paste-only{cursor:default}
+.drop.paste-only textarea{cursor:text}
 .dropzone-hint{font-size:11.5px;color:var(--faint);margin-top:6px}
 
-/* 课程导入：用轻分隔代替盒中盒，文件区仍保留拖放反馈 */
+/* 课程导入：用虚线框明确标出文件拖放区 */
 #courseImpMask .modal-body{padding-top:10px;padding-bottom:12px}
-.course-drop-zone{border:0;border-bottom:1px solid var(--border);border-radius:0;padding:8px 0 15px;text-align:left;cursor:pointer;transition:background .2s;padding-left:8px;padding-right:8px}
+.course-drop-zone{border:1px dashed var(--border-strong);border-radius:8px;padding:8px;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
 .course-drop-zone:hover,.course-drop-zone.drag-over{background:rgba(26,92,255,.035);border-radius:8px}
 .course-drop-zone.drag-over{box-shadow:inset 0 0 0 1px rgba(44,98,201,.16)}
 .course-drop-hint{pointer-events:none;display:grid;grid-template-columns:26px 1fr;column-gap:10px;align-items:center}
@@ -208,6 +244,7 @@ textarea{outline:none;resize:vertical}
 
 /* 课程目录归属：平面分区，避免弹窗内再次套卡片 */
 .level-section{margin-top:0;padding:15px 8px 3px;background:transparent;border:0;border-radius:0}
+#ciLogicalCourse{-webkit-appearance:none;appearance:none;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m3 4.5 3 3 3-3' fill='none' stroke='%23202326' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:12px 12px}
 .level-row{display:flex;gap:12px;margin-bottom:0}
 .level-row+.level-row{margin-top:10px}
 .level-row.two-col{gap:12px}
@@ -228,10 +265,15 @@ textarea{outline:none;resize:vertical}
 .exp-row .dim-lbl{flex-shrink:0;font-size:11px;font-weight:700;margin-top:2px}
 .empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:12px}
 
-/* 双 Tab */
+/* 顶部课程范围：分段控件 */
 .tabs{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:3px}
 .tab{border:0;background:transparent;color:var(--muted);padding:5px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
 .tab.on{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(28,32,36,.06)}
+/* 课程类型：轻量文字导航，选中态只由 aria-current 驱动 */
+.course-type-nav .tab{position:relative;padding:4px 2px 7px;border-radius:0;background:transparent;color:var(--muted);font-weight:500;box-shadow:none;white-space:nowrap}
+.course-type-nav .tab:hover{color:var(--text)}
+.course-type-nav .tab[aria-current="page"]{color:var(--accent);font-weight:700;box-shadow:inset 0 -2px 0 var(--accent)}
+.course-type-nav .tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
 /* 课程树 */
 .series{border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-bottom:10px;overflow:hidden}
 .series-head{display:flex;align-items:center;gap:10px;padding:13px 15px;cursor:pointer}
@@ -266,6 +308,12 @@ textarea{outline:none;resize:vertical}
 .deck-notice.show{opacity:1;transform:translate(-50%,0)}
 .deck-notice.ok{border-color:#b9e5cc;color:#0b6b3a}
 .deck-notice.err{border-color:#f0c2bd;color:var(--bad)}
+.content-conflict-drafts{margin:0 0 14px;padding:14px 16px;border:1px solid #e8cf8d;border-radius:12px;background:#fff8e7;color:var(--text)}
+.content-conflict-drafts h3{margin:0 0 5px;font-size:14px}
+.content-conflict-drafts p{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.5}
+.content-conflict-draft-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid #eadfbf}
+.content-conflict-draft-name{min-width:0;overflow-wrap:anywhere;font-size:13px}
+.content-conflict-draft-actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end}
 .market-head{display:flex;align-items:center;gap:8px;margin-bottom:5px}
 #marketSection{margin-top:14px !important}
 #marketList{margin-top:6px !important}
@@ -280,7 +328,7 @@ textarea{outline:none;resize:vertical}
 /* 移动端：题库信息与操作分行，避免操作按钮挤压标题造成逐字换行 */
 @media (max-width:600px){
   .wrap{padding:10px 8px 24px}
-  .page-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px;margin-bottom:8px}
+  .page-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto auto;align-items:center;gap:6px;margin-bottom:8px}
   .page-head .spacer{display:none}
   .page-head h2{font-size:17px;white-space:nowrap}
   .page-head .tabs{justify-self:center;max-width:100%;overflow:hidden}
@@ -305,8 +353,6 @@ textarea{outline:none;resize:vertical}
   .catalog-lesson .lesson-name{font-size:12.5px;white-space:normal;line-height:1.35}
   .catalog-lesson .lesson-meta{grid-column:2;font-size:11px}
   .catalog-lesson .btn{grid-column:2;grid-row:auto}
-  .deck-actions{grid-column:1;margin:0;width:100%;display:flex;justify-content:flex-end;gap:2px;flex-wrap:nowrap}
-  .deck-actions .btn{padding:4px 8px;font-size:12px}
   .market-head{margin-bottom:4px}
   .market-head h3{font-size:14px !important}
   .course-tree .series-head{padding:10px 12px}
@@ -324,6 +370,7 @@ textarea{outline:none;resize:vertical}
   .modal-body{padding:12px 14px}
   .modal-foot{padding:9px 14px;border-radius:0}
   #impMask .add-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .course-type-choices{grid-template-columns:minmax(0,1fr)}
 }
 
 @media (min-width:601px) and (max-width:780px){
@@ -336,6 +383,12 @@ textarea{outline:none;resize:vertical}
 <body>
 
 <div class="wrap">
+  <section id="contentConflictDrafts" class="content-conflict-drafts" hidden role="status" aria-live="polite">
+    <h3>有修改未覆盖当前课程</h3>
+    <p>课程已在其他位置更新。你的修改已在此设备耐久保留；可另存为一份新草稿，再对照现行版本整理。</p>
+    <p id="contentConflictDraftStatus" hidden role="status" aria-live="polite"></p>
+    <div id="contentConflictDraftList"></div>
+  </section>
   <!-- 课程列表 -->
   <div id="pageDecks">
     <div class="page-head">
@@ -343,13 +396,21 @@ textarea{outline:none;resize:vertical}
       <h2 id="deckPageTitle" class="hidden"></h2>
       <button type="button" class="catalog-view-toggle hidden" id="catalogViewSwitch" aria-label="切换为不分类视图" title="切换为不分类视图"></button>
       <span class="spacer"></span>
-      <div class="tabs">
-        <button class="tab on" id="tabDecks">句子课程</button>
-        <button class="tab" id="tabCourses">图文课程</button>
-      </div>
+      <nav id="courseMembershipNav" class="tabs" aria-label="课程范围">
+        <button type="button" class="tab" id="courseViewJoined" aria-current="false">我的课程</button>
+        <button type="button" class="tab" id="courseViewDiscover" aria-current="false">发现课程</button>
+      </nav>
       <span class="spacer"></span>
-      <button class="btn sm primary" id="btnImportDecks" aria-label="添加课程" title="添加课程">＋</button>
+      <div class="course-header-actions">
+        <a class="btn sm secondary" href="course-create.html" aria-label="用 AI 制作课程" title="用 AI 制作课程">AI 制作</a>
+        <button type="button" class="btn sm primary hidden" id="btnImportDecks" aria-label="导入课程" title="导入课程">＋</button>
+      </div>
     </div>
+    <nav id="courseTypeNav" class="tabs course-type-nav" aria-label="课程类型">
+      <button type="button" class="tab" id="tabAll" aria-current="page">全部</button>
+      <button type="button" class="tab" id="tabDecks" aria-current="false">句子课程</button>
+      <button type="button" class="tab" id="tabCourses" aria-current="false">图文课程</button>
+    </nav>
     <div class="deck-list" id="deckList"></div>
     <div class="course-tree hidden" id="courseTree"></div>
     <div class="market-section" id="marketSection" style="margin-top:22px">
@@ -440,6 +501,31 @@ textarea{outline:none;resize:vertical}
   </div>
 </div>
 
+<!-- 先选课程类型，再进入对应的导入流程 -->
+<div class="mask" id="courseImportTypeMask" hidden>
+  <div class="modal course-import-type-modal" role="dialog" aria-modal="true" aria-labelledby="courseImportTypeTitle">
+    <div class="modal-head">
+      <h3 id="courseImportTypeTitle">选择课程类型</h3>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
+    </div>
+    <div class="modal-body">
+      <div class="course-type-choices">
+        <button type="button" class="course-type-choice" id="btnChooseSentenceImport">
+          <strong>句子课程</strong><span>导入句子与意群练习内容</span>
+        </button>
+        <button type="button" class="course-type-choice" id="btnImportStoryCourse" aria-label="图文课程">
+          <strong>图文课程</strong><span>导入带图片与场景的课程包</span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <span class="spacer"></span>
+      <button class="btn ghost" data-close>取消</button>
+    </div>
+  </div>
+</div>
+
   <!-- 添加课程弹窗 -->
 <div class="mask" id="impMask" hidden>
   <div class="modal">
@@ -461,7 +547,7 @@ textarea{outline:none;resize:vertical}
       <label class="add-custom" for="customSentences">
         <span class="lbl">指定句子（可选，每行一句）</span>
         <textarea id="customSentences" rows="3" placeholder="留空：按主题生成新句子\n填写：只整理你指定的句子，不新增、不改写"></textarea>
-        <span class="hint">适合只添加 1-2 句；大模型会补齐翻译、意群和中文提示。</span>
+        <span class="hint">适合只添加 1-2 句；大模型会补齐翻译、意群、中文提示和句子成分。</span>
       </label>
       <div class="step-title"><span class="step">1</span>提示词<span class="note">复制给任意外部大模型</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px"><span data-icon="copy"></span>复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
       <textarea id="promptBox" readonly placeholder="提示词会根据上方参数自动更新…" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;background:var(--surface-2)"></textarea>
@@ -498,7 +584,7 @@ textarea{outline:none;resize:vertical}
         <div class="course-drop-hint">
           <span class="course-drop-icon" data-icon="box"></span>
           <p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p>
-          <small>支持 .zip 格式（English MUD 导出）</small>
+          <small>支持 .zip 格式</small>
         </div>
       </div>
 
@@ -559,7 +645,7 @@ textarea{outline:none;resize:vertical}
 Could you tell me how to get to the station?' style="min-height:140px"></textarea>
           <input type="file" id="appendMineFile" accept=".txt,.json,.csv,text/plain" class="hidden">
         </div>
-        <div class="dropzone-hint">支持 .txt 文件（每行一句）· 大模型将给每句拆意群 chunks + 中文翻译 + hints</div>
+        <div class="dropzone-hint">支持 .txt 文件（每行一句）· 大模型将补齐中文翻译、逐意群中文提示和句子成分</div>
         <div style="display:flex;gap:8px;margin-top:8px">
           <button class="btn" id="btnGenSplitPrompt"><span data-icon="settings"></span>生成拆分 Prompt</button>
           <span style="font-size:12px;color:var(--faint);align-self:center" id="appendMineCnt"></span>
@@ -572,16 +658,17 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
       </div>
       <div>
         <div class="step-title"><span class="step" id="appendStepNum2">3</span>粘贴返回的 JSON<span class="note">自动去重</span><button class="btn sm ghost" id="btnAppendClear" style="margin-left:8px">清空</button></div>
-        <div class="drop" id="appendDrop">
-          <textarea id="appendJsonBox" placeholder='粘贴模型返回的 JSON 数组… 或拖入 / 点击选择文件' style="min-height:120px"></textarea>
-          <input type="file" id="appendFileInput" accept=".json,.txt,application/json" class="hidden">
+        <div class="drop paste-only" id="appendDrop">
+          <textarea id="appendJsonBox" placeholder="粘贴模型返回的 JSON 数组…" style="min-height:120px"></textarea>
         </div>
-        <div class="dropzone-hint">支持 .json / .txt</div>
+        <div class="dropzone-hint">可直接粘贴 JSON，也可拖入 .json / .txt 文件</div>
       </div>
       <div class="msg" id="appendMsg"></div>
     </div>
-    <div class="modal-foot">
+    <div class="modal-foot append-modal-foot">
       <button class="btn primary" id="btnAppendValidate">校验并追加</button>
+      <button class="btn primary" id="appendGoPractice" hidden>去练习这批</button>
+      <button class="btn" id="appendContinue" hidden>继续追加下一批</button>
       <span class="spacer"></span>
       <button class="btn ghost" data-close>取消</button>
     </div>
@@ -646,9 +733,10 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/logical-course-store.js"></script>
 <script src="js/course-catalog.js"></script>
 <script src="js/course-progress.js"></script>
+<script src="js/main-deck-progress.js"></script>
+<script src="js/course-enrollment.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
-<script src="js/batch-sync.js"></script>
 <script src="js/core-identity.js"></script>
 <script src="js/core-merge.js"></script>
 <script src="js/core-activity.js"></script>
@@ -657,29 +745,24 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/core-stats-signature.js"></script>
 <script src="js/core-storage-state.js"></script>
 <script src="js/core-entity-delta.js"></script>
-<script src="js/core-sync-delta.js"></script>
-<script src="js/core-sync-intents.js"></script>
-<script src="js/core-sync-payload.js"></script>
-<script src="js/core-sync-transport.js"></script>
-<script src="js/core-sync-replay.js"></script>
-<script src="js/core-sync-batch-merge.js"></script>
 <script src="js/core-sync-stats-normalize.js"></script>
-<script src="js/core-sync-learning-marks.js"></script>
-<script src="js/core-sync-entity-merge.js"></script>
-<script src="js/core-sync-kv.js"></script>
 <script src="js/core-revision-delta.js"></script>
 <script src="js/core-runtime.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
-<script src="js/sync-resolution.js"></script>
+<script src="js/server-cache.js"></script>
+<script src="js/server-store.js"></script>
+<script src="js/save-status.js"></script>
 <script src="auth-ui.js"></script>
 <script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
 <script src="js/chunk-shape.js"></script>
 <script src="library.js"></script>
 <script src="js/course-package-contract.js"></script>
+<script src="js/course-capabilities.js"></script>
 <script src="js/vendor/course-schema-validator.js"></script>
 <script src="course-package.js"></script>
+<script src="js/course-learning-launch.js"></script>
 <script>
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
 if(window.Icons) Icons.install();
@@ -689,10 +772,12 @@ if(window.Icons) Icons.install();
 
 var mem = { decks:[], best:{}, mastered:{}, stats:{}, settings:{} };
 var decksReady = false;
-var requestedTab = 'decks';
+var _initialParams = new URLSearchParams(window.location.search);
+var requestedTab = ['all','decks','courses'].indexOf(_initialParams.get('courseType')) >= 0 ? _initialParams.get('courseType') : 'all';
+var courseView = _initialParams.get('courseView') === 'joined' ? 'joined' : 'discover';
 /* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
 function loadMem(){ mem = CL.loadMem(); }
-function saveStore(){ return CL.saveAndNotify(mem); }
+function saveStore(syncMode){ return CL.saveAndNotify(mem, syncMode); }
 /* ★ 多标签页旧快照防护（P0）：其他标签页有新写入 → 采纳磁盘最新态并刷新题库树，
    避免本页一直显示旧列表、或以旧 mem 覆盖对方改动（写入侧由 core 三路合并兜底）。 */
 if(window.CL && CL.on){
@@ -700,7 +785,7 @@ if(window.CL && CL.on){
     var p = (CL.refreshExternal ? CL.refreshExternal() : Promise.resolve(CL.loadMem()));
     p.catch(function(){}).then(function(m){
       if(m) mem = m; else loadMem();
-      try{ renderCourseTree(); }catch(e){}
+      try{ refreshCourseDataView(); }catch(e){ try{ renderCourseTree(); }catch(ignore){} }
     });
   });
 }
@@ -738,11 +823,50 @@ function deckCardTitle(name){
   return stripped || displayDeckName(raw);
 }
 function masteredKey(deckId, it){ return CL.masteredKey(deckId, it); }
+function catalogMem(){ return serverCatalogView ? Object.assign({},mem,{deletedItems:serverCatalogView.deletedItems||{}}) : mem; }
 function allDecks(){
   /* 收敛：内置（deletedItems 过滤副本）+ 用户导入，统一走 CL（core.js 单一实现） */
+  if(serverCatalogView) return CL.builtinDecks(catalogMem()).concat(serverCatalogView.decks);
   return CL.allDecksView(mem);
 }
-function findDeck(deckId){ return CL.findDeck(mem, deckId); }
+function setBuiltinItemsHidden(deckId,keys,hidden){
+  if(protocol3CatalogSelected()&&!serverCatalogView) return Promise.reject(new Error('课程目录正在从服务器恢复，请稍后重试。'));
+  keys=Array.from(new Set((keys||[]).filter(function(key){return typeof key==='string'&&key.length>0;})));
+  if(!keys.length) return Promise.resolve(true);
+  if(keys.some(function(key){return !key.startsWith(deckId+'#');})) return Promise.reject(new Error('所选句子与课程不匹配，未修改任何内容'));
+  if(!protocol3CatalogEnabled()){
+    mem.deletedItems=mem.deletedItems||{};
+    keys.forEach(function(key){if(hidden)mem.deletedItems[key]=true;else delete mem.deletedItems[key];});
+    saveStore();notifyMain('memUpdated');
+    return Promise.resolve(true);
+  }
+  var deleted=catalogMem().deletedItems||{};
+  var expectedHidden=keys.length>0&&keys.every(function(key){return !!deleted[key];});
+  if(keys.some(function(key){return !!deleted[key]!==expectedHidden;})) return Promise.reject(new Error('所选句子状态不一致，请刷新后重试'));
+  if(expectedHidden===hidden) return Promise.resolve(true);
+  var completed=0,chunkSize=2000;
+  function applyBatch(offset){
+    if(offset>=keys.length) return Promise.resolve(true);
+    var batch=keys.slice(offset,offset+chunkSize), current=serverCatalogView&&serverCatalogView.deletedItems||{};
+    if(batch.some(function(key){return !!current[key]!==expectedHidden;})){
+      throw new Error('课程句子状态已在其他页面更新；已完成 '+completed+' 句，其余未更改，请刷新后重试。');
+    }
+    var eventId='visibility-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+    var payload={eventId:eventId,deckId:deckId,keys:batch,hidden:hidden,expectedHidden:expectedHidden};
+    return ServerStore.submitCommitted('deck.itemsVisibility',payload,{requestId:eventId}).then(function(){
+      completed+=batch.length;
+      mem.deletedItems=mem.deletedItems||{};
+      batch.forEach(function(key){if(hidden)mem.deletedItems[key]=true;else delete mem.deletedItems[key];});
+      notifyMain('memUpdated');
+      return loadServerCatalogView();
+    }).then(function(){return applyBatch(offset+batch.length);});
+  }
+  return Promise.resolve().then(function(){return applyBatch(0);}).catch(function(error){
+    if(completed>0) error.message='已完成 '+completed+' / '+keys.length+' 句；其余内容未更改。'+(error.message||'请刷新后重试。');
+    throw error;
+  });
+}
+function findDeck(deckId){ return serverCatalogView ? allDecks().find(function(deck){return deck.id===deckId;}) || null : CL.findDeck(mem, deckId); }
 function deckItemCount(deck){
   return deck && typeof deck.itemCount === 'number' ? deck.itemCount : ((deck && deck.items) || []).length;
 }
@@ -790,15 +914,224 @@ var _explainDeck = null, _explainIdx = -1;
 var _editStatMsg = '';
 var _editOnlyMastered = false;
 var _catalog = null;
+var _catalogMemberships = {};
+var _catalogJoinedCount = 0;
+var _catalogAliases = {};
+var serverCatalogView = null;
+
+async function loadServerCatalogView(){
+  var config=CL&&CL.getCloudConfig?CL.getCloudConfig():null;
+  if(!(config&&config.persistenceMode==='server-authoritative'&&Number(config.writeProtocol)===3&&CL.serverPersistenceReady&&CL.serverPersistenceReady())) return;
+  var account=window.AccountStorage, owner=account&&account.owner;
+  if(!owner||!window.ServerCache||!window.ServerStore) throw new Error('课程目录尚未就绪');
+  var row=await ServerCache.read(), pending=await ServerStore.pending();
+  account.assertCurrent();
+  if(!row||row.owner!==owner) throw new Error('课程目录尚未就绪');
+  serverCatalogView=ServerCache.projectCatalog(row,pending);
+}
+function catalogLogicalCourses(){
+  return serverCatalogView ? (serverCatalogView.logicalCourses||[]) : (window.LogicalCourseStore ? LogicalCourseStore.read() : []);
+}
+function protocol3CatalogSelected(){
+  var config=CL&&CL.getCloudConfig?CL.getCloudConfig():null;
+  return !!(config&&config.persistenceMode==='server-authoritative'&&Number(config.writeProtocol)===3);
+}
+function protocol3CatalogEnabled(){
+  return !!(serverCatalogView&&protocol3CatalogSelected());
+}
+async function persistLogicalCourseCreate(input){
+  if(protocol3CatalogSelected()&&!serverCatalogView) throw new Error('课程目录正在从服务器恢复，请稍后重试。');
+  if(!protocol3CatalogEnabled()) return LogicalCourseStore.create(input);
+  AccountStorage.assertCurrent();
+  var course=LogicalCourseStore.build(input);
+  var row=await ServerCache.read();
+  if(!row||row.owner!==AccountStorage.owner) throw new Error('课程目录尚未从服务器确认；创建未提交。');
+  var revisions=row.snapshot.revs.logicalCourses||{};
+  var requestId='logical-course-put-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+  await ServerStore.submitCommitted('logicalCourse.put',{course:course,expectedSeq:Object.prototype.hasOwnProperty.call(revisions,course.id)?revisions[course.id]:null},{requestId:requestId});
+  await loadServerCatalogView();
+  var confirmed=serverCatalogView.logicalCourses.find(function(item){return item.id===course.id;});
+  if(!confirmed) throw new Error('课程目录已提交，但服务器确认内容暂不可用；请刷新查看结果。');
+  return confirmed;
+}
+async function persistLogicalCourseDelete(courseId){
+  if(protocol3CatalogSelected()&&!serverCatalogView) throw new Error('课程目录正在从服务器恢复，请稍后重试。');
+  if(!protocol3CatalogEnabled()){ LogicalCourseStore.remove(courseId); return; }
+  AccountStorage.assertCurrent();
+  var row=await ServerCache.read();
+  if(!row||row.owner!==AccountStorage.owner) throw new Error('课程目录尚未从服务器确认；删除未提交。');
+  var revisions=row.snapshot.revs.logicalCourses||{};
+  if(!Object.prototype.hasOwnProperty.call(revisions,courseId)||revisions[courseId]==null) throw new Error('找不到这门课程目录，可能已被删除。');
+  await ServerStore.submitCommitted('logicalCourse.delete',{courseId:courseId,expectedSeq:revisions[courseId]},
+    {requestId:'logical-course-delete-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10)});
+  await loadServerCatalogView();
+  if(serverCatalogView.logicalCourses.some(function(item){return item.id===courseId;})) throw new Error('课程目录删除尚未得到服务器确认；请刷新查看结果。');
+}
+async function persistDeckPublication(deckId,publish){
+  if(!serverCatalogView||!CL.getCloudConfig||CL.getCloudConfig().writeProtocol!==3)
+    throw new Error('课程市场状态尚未就绪，请刷新后重试');
+  var row=await ServerCache.read();
+  if(!row||row.owner!==AccountStorage.owner) throw new Error('课程数据尚未从服务器确认');
+  var deck=(row.snapshot.mem&&row.snapshot.mem.decks||[]).find(function(item){return item.id===deckId;});
+  if(!deck) throw new Error('找不到这门课程，可能已被删除');
+  var expectedRev=row.snapshot.revs.decks[deckId];
+  await ServerStore.submitCommitted('deck.publish',{deckId:deckId,publish:!!publish},
+    {requestId:'deck-publish-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10),expectedRev:expectedRev});
+  await ServerCache.refresh();
+  await loadServerCatalogView();
+  return serverCatalogView.decks.find(function(item){return item.id===deckId;})||null;
+}
+async function resetDeckLearning(deckId){
+  if(!protocol3CatalogSelected()) throw new Error('学习记录重置需要先升级到新版保存协议。');
+  if(!serverCatalogView) throw new Error('课程目录正在从服务器恢复，请稍后重试。');
+  AccountStorage.assertCurrent();
+  var row=await ServerCache.read();
+  if(!row||row.owner!==AccountStorage.owner) throw new Error('学习记录尚未从服务器确认；未执行重置。');
+  var generations=row.snapshot.learningGenerations||{};
+  var expectedGeneration=Number(generations['course:'+deckId])||0;
+  var eventId='learning-reset-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+  await ServerStore.submitCommitted('learning.reset',
+    {eventId:eventId,courseId:deckId,expectedGeneration:expectedGeneration},{requestId:eventId});
+  await ServerCache.refresh();
+  await loadServerCatalogView();
+  var confirmed=await ServerCache.read();
+  var nextGeneration=Number(confirmed&&confirmed.snapshot&&confirmed.snapshot.learningGenerations&&confirmed.snapshot.learningGenerations['course:'+deckId]);
+  if(nextGeneration!==expectedGeneration+1) throw new Error('服务器尚未确认新的学习代次；请刷新查看状态。');
+  notifyMain('memUpdated');
+  return {generation:nextGeneration};
+}
+async function persistDeckContent(deck){
+  if(protocol3CatalogSelected()&&!serverCatalogView) throw new Error('课程目录正在从服务器恢复，请稍后重试。');
+  if(!protocol3CatalogEnabled()) return saveStore();
+  AccountStorage.assertCurrent();
+  var row=await ServerCache.read();
+  if(!row||row.owner!==AccountStorage.owner) throw new Error('题库数据尚未从服务器确认；修改未提交。');
+  var current=(row.snapshot.mem&&row.snapshot.mem.decks||[]).find(function(item){return item.id===deck.id;});
+  if(current&&JSON.stringify(current)===JSON.stringify(deck)) return true;
+  var expectedRev=current?row.snapshot.revs.decks[deck.id]:null;
+  var requestId='deck-put-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+  try{
+    await ServerStore.submitCommitted('deck.put',{deck:JSON.parse(JSON.stringify(deck))},
+      {requestId:requestId,expectedRev:expectedRev});
+  }catch(error){
+    if(error&&error.code==='ENTITY_CHANGED') error.recoveryDraftRequestId=requestId;
+    throw error;
+  }
+  await ServerCache.refresh();
+  await loadServerCatalogView();
+  var confirmed=serverCatalogView.decks.find(function(item){return item.id===deck.id;});
+  if(!confirmed) throw new Error('题库写入已发送，但确认内容暂不可用；请刷新查看结果。');
+  Object.keys(deck).forEach(function(key){delete deck[key];});
+  Object.assign(deck,JSON.parse(JSON.stringify(confirmed)));
+  return true;
+}
+async function deleteDeckContent(deckId){
+  if(!(serverCatalogView&&CL.getCloudConfig&&CL.getCloudConfig().writeProtocol===3)) throw new Error('题库保存协议尚未就绪');
+  AccountStorage.assertCurrent();
+  var row=await ServerCache.read();
+  if(!row||row.owner!==AccountStorage.owner) throw new Error('题库数据尚未从服务器确认；删除未提交。');
+  var deck=(row.snapshot.mem&&row.snapshot.mem.decks||[]).find(function(item){return item.id===deckId;});
+  if(!deck) throw new Error('找不到这门题库，可能已被删除');
+  var expectedRev=row.snapshot.revs.decks[deckId];
+  await ServerStore.submitCommitted('deck.delete',{deckId:deckId},
+    {requestId:'deck-delete-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10),expectedRev:expectedRev});
+  await ServerCache.refresh();
+  await loadServerCatalogView();
+  return true;
+}
+function commitDeckContent(deck){
+  return Promise.resolve(persistDeckContent(deck)).then(function(){notifyMain('memUpdated');return true;}).catch(function(error){
+    if(error&&error.code==='ENTITY_CHANGED') refreshContentConflictDrafts().catch(function(){});
+    throw error;
+  });
+}
+function conflictDraftId(prefix){
+  var suffix=window.crypto&&typeof window.crypto.randomUUID==='function'?window.crypto.randomUUID():
+    Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12);
+  return prefix+'-'+suffix;
+}
+function refreshContentConflictDrafts(){
+  var panel=$('contentConflictDrafts'), list=$('contentConflictDraftList');
+  if(!panel||!list||!ServerStore||!protocol3CatalogEnabled()) return Promise.resolve([]);
+  return ServerStore.pending().then(function(rows){
+    var drafts=(rows||[]).filter(function(row){
+      return row&&row.status==='blocked'&&row.lastError==='ENTITY_CHANGED'&&row.operation&&
+        row.operation.type==='deck.put'&&row.operation.payload&&row.operation.payload.deck;
+    });
+    list.replaceChildren();
+    drafts.forEach(function(row){
+      var deck=row.operation.payload.deck;
+      var item=document.createElement('div'); item.className='content-conflict-draft-row';
+      var label=document.createElement('div'); label.className='content-conflict-draft-name';
+      label.textContent=String(deck.name||deck.id||'未命名课程')+' · 修改未覆盖现行版本';
+      var actions=document.createElement('div'); actions.className='content-conflict-draft-actions';
+      var save=document.createElement('button'); save.type='button'; save.className='btn sm primary';
+      save.textContent='另存为新草稿';
+      save.addEventListener('click',function(){ saveContentConflictAsDraft(row,save); });
+      actions.appendChild(save); item.append(label,actions); list.appendChild(item);
+    });
+    panel.hidden=drafts.length===0;
+    return drafts;
+  });
+}
+async function saveContentConflictAsDraft(row,button){
+  if(!row||!row.operation||!row.operation.payload||!row.operation.payload.deck||!ServerStore) return;
+  button.disabled=true;
+  var status=$('contentConflictDraftStatus');
+  if(status){status.hidden=false;status.textContent='正在把修改另存为新草稿…';}
+  var draft=JSON.parse(JSON.stringify(row.operation.payload.deck));
+  var priorName=String(draft.name||'课程');
+  draft.id=conflictDraftId('recovered-deck');
+  draft.name=priorName.slice(0,96)+'（修改草稿）';
+  draft.builtin=false;
+  try{
+    await ServerStore.submitCommitted('deck.put',{deck:draft},{requestId:conflictDraftId('deck-conflict-draft'),expectedRev:null});
+    var discarded=await ServerStore.discardBlockedContentConflict(row.requestId);
+    await ServerCache.refresh();
+    await loadServerCatalogView();
+    notifyMain('memUpdated');
+    await refreshContentConflictDrafts();
+    openDecks();
+    if(status){status.hidden=false;status.textContent='修改已另存为新草稿；原课程版本未被覆盖。';}
+    showDeckNotice(discarded?'修改已另存为新草稿；原课程版本未被覆盖。':'草稿已另存；旧待处理记录仍保留在此设备。','ok');
+  }catch(error){
+    button.disabled=false;
+    if(status){status.hidden=false;status.textContent='草稿暂未保存。原修改仍留在本机待处理记录；请确认网络后重试。';}
+    showDeckNotice('草稿未能另存，原修改仍保留在此设备；请联网后重试。','err');
+    console.warn('[catalog] conflict draft save failed:',error&&error.message||error);
+  }
+}
+window.addEventListener('server-store-state',function(){refreshContentConflictDrafts().catch(function(){});});
+if(window.addEventListener) window.addEventListener('server-cache-applied',function(event){
+  if(!serverCatalogView||!window.AccountStorage||event.detail.owner!==AccountStorage.owner) return;
+  loadServerCatalogView().then(function(){refreshCourseDataView();}).catch(function(error){
+    console.warn('[catalog] confirmed refresh unavailable; keeping current view:',error&&error.message||error);
+  });
+});
+var _catalogLastFocusRefreshAt=Date.now();
+if(window.addEventListener) window.addEventListener('focus',function(){
+  if(!protocol3CatalogSelected()||!CL.serverPersistenceReady||!CL.serverPersistenceReady()||
+     !window.ServerCache||!window.AccountStorage||!window.AccountStorage.owner) return;
+  var now=Date.now();
+  if(now-_catalogLastFocusRefreshAt<5000) return;
+  _catalogLastFocusRefreshAt=now;
+  ServerCache.refresh().catch(function(error){
+    console.warn('[catalog] cross-device refresh deferred:',error&&error.message||error);
+  });
+});
 
 function currentCatalog(){
   var manifest = window.ContentRepo && ContentRepo.getManifest ? ContentRepo.getManifest() : null;
   _catalog = CourseCatalog.buildCatalog({
     manifest: manifest || { decks: [] },
-    userDecks: mem.decks || [],
-    storyPackages: window.CL && CL.readCourses ? CL.readCourses() : [],
-    logicalCourses: window.LogicalCourseStore ? LogicalCourseStore.read() : []
+    userDecks: serverCatalogView ? serverCatalogView.decks : CL.allDecks(mem),
+    storyPackages: serverCatalogView ? serverCatalogView.courses : (window.CL && CL.readCourses ? CL.readCourses() : []),
+    logicalCourses: catalogLogicalCourses()
   });
+  _catalogAliases = CourseCatalog.getEnrollmentAliases(_catalog);
+  _catalogMemberships = window.CourseEnrollment
+    ? CourseEnrollment.readMemberships(serverCatalogView ? serverCatalogView.courseProgress : null, _catalogAliases) : {};
+  _catalogJoinedCount = Object.keys(_catalogMemberships).filter(function(courseId){ return _catalogMemberships[courseId].joined; }).length;
   return _catalog;
 }
 function courseById(courseId){ return CourseCatalog.getCourse(_catalog || currentCatalog(), courseId); }
@@ -810,12 +1143,13 @@ function routeCourse(courseId){
   refreshCourseDataView();
 }
 function setCourseRouteUI(inDirectory){
-  var back = $('decksBack'), pageTitle = $('deckPageTitle'), viewSwitch = $('catalogViewSwitch'), tabs = document.querySelector('#pageDecks .tabs'), add = $('btnImportDecks');
+  var back = $('decksBack'), pageTitle = $('deckPageTitle'), viewSwitch = $('catalogViewSwitch'), scopeNav = $('courseMembershipNav'), typeNav = $('courseTypeNav'), add = $('btnImportDecks');
   if(inDirectory){
     back.textContent = '返回';
     back.title = '返回课程总览';
     back.onclick = function(){ routeCourse(''); };
-    if(tabs) tabs.classList.add('hidden');
+    if(scopeNav) scopeNav.classList.add('hidden');
+    if(typeNav) typeNav.classList.add('hidden');
     if(add) add.classList.add('hidden');
     if(viewSwitch) viewSwitch.classList.remove('hidden');
     $('marketSection').classList.add('hidden');
@@ -825,9 +1159,86 @@ function setCourseRouteUI(inDirectory){
     if(pageTitle) pageTitle.classList.add('hidden');
     if(viewSwitch) viewSwitch.classList.add('hidden');
     back.onclick = function(){ window.location.href = './main.html'; };
-    if(tabs) tabs.classList.remove('hidden');
-    if(add) add.classList.remove('hidden');
+    if(scopeNav) scopeNav.classList.remove('hidden');
+    if(typeNav) typeNav.classList.remove('hidden');
+    updateCourseViewControls();
+    updateCourseTypeControls();
+    if(add) add.classList.toggle('hidden', courseView !== 'joined');
   }
+}
+function updateCourseViewControls(){
+  var joined = $('courseViewJoined'), discover = $('courseViewDiscover');
+  if(joined){ joined.setAttribute('aria-current', courseView === 'joined' ? 'page' : 'false'); joined.classList.toggle('on', courseView === 'joined'); }
+  if(discover){ discover.setAttribute('aria-current', courseView === 'discover' ? 'page' : 'false'); discover.classList.toggle('on', courseView === 'discover'); }
+}
+function updateCourseTypeControls(catalog){
+  catalog = catalog || currentCatalog();
+  var visibleCourses = (catalog && catalog.courses || []).filter(function(course){ return courseMatchesView(course.id, course); });
+  var availableTypes = visibleCourses.reduce(function(types, course){
+    if(course.contentType === 'sentence') types.sentence = true;
+    if(course.contentType === 'story') types.story = true;
+    return types;
+  }, { sentence:false, story:false });
+  /* AI 创作课程属于“我的课程”，即使用户没有单独点过“加入学习”，也计入句子课程。 */
+  if(courseView === 'joined' && CL.allDecks(mem).some(isAICreatedCourse)) availableTypes.sentence = true;
+  var hasSentenceCourses = availableTypes.sentence;
+  var hasStoryCourses = availableTypes.story;
+
+  var nextTab = requestedTab;
+  if(!hasSentenceCourses && !hasStoryCourses) nextTab = 'all';
+  else if(requestedTab === 'all' && hasSentenceCourses !== hasStoryCourses) nextTab = hasSentenceCourses ? 'decks' : 'courses';
+  else if(requestedTab === 'decks' && !hasSentenceCourses) nextTab = hasStoryCourses ? 'courses' : 'all';
+  else if(requestedTab === 'courses' && !hasStoryCourses) nextTab = hasSentenceCourses ? 'decks' : 'all';
+  if(nextTab !== requestedTab){
+    requestedTab = nextTab;
+    var url = new URL(window.location.href);
+    url.searchParams.set('courseType', requestedTab);
+    history.replaceState({}, '', url.pathname + url.search + (url.hash || ''));
+  }
+  var typeNav = $('courseTypeNav');
+  if(typeNav) typeNav.classList.toggle('hidden', !hasSentenceCourses && !hasStoryCourses);
+  $('tabAll').classList.toggle('hidden', !hasSentenceCourses || !hasStoryCourses);
+  $('tabDecks').classList.toggle('hidden', !hasSentenceCourses);
+  $('tabCourses').classList.toggle('hidden', !hasStoryCourses);
+  var importBtn = $('btnImportDecks');
+  if(importBtn){
+    importBtn.classList.toggle('hidden', courseView !== 'joined');
+    importBtn.textContent = '＋';
+    importBtn.setAttribute('aria-label', '导入课程');
+    importBtn.title = '导入课程';
+  }
+  var active = { all:'tabAll', decks:'tabDecks', courses:'tabCourses' }[requestedTab] || 'tabAll';
+  ['tabAll','tabDecks','tabCourses'].forEach(function(id){
+    var button = $(id), selected = id === active;
+    if(button) button.setAttribute('aria-current', selected ? 'page' : 'false');
+  });
+}
+function courseMatchesView(courseId, course){
+  course = course || courseById(courseId);
+  /* 用户导入/创作的内容始终属于个人课程库；加入学习是独立关系，不决定它是否出现在发现页。 */
+  if(course && course.origin === 'user') return courseView === 'joined';
+  var joined = !!(_catalogMemberships[courseId] && _catalogMemberships[courseId].joined);
+  return courseView === 'joined' ? joined : !joined;
+}
+function isAICreatedCourse(deck){
+  return !!(deck && !deck.builtin && deck.authoring && deck.authoring.template === 'sentence-practice');
+}
+function setCourseView(next){
+  courseView = next === 'joined' ? 'joined' : 'discover';
+  var url = new URL(window.location.href);
+  url.searchParams.set('courseView', courseView);
+  history.pushState({}, '', url.pathname + url.search + (url.hash || ''));
+  updateCourseViewControls();
+  $('marketSection').classList.toggle('hidden', courseView === 'joined' || requestedTab === 'courses');
+  renderCourseBrowse();
+  if(courseView === 'discover' && requestedTab !== 'courses') openMarket();
+}
+function renderCourseBrowse(){
+  var catalog = currentCatalog();
+  updateCourseTypeControls(catalog);
+  if(requestedTab === 'courses') renderStoryCourseList(catalog);
+  else if(requestedTab === 'decks') openDecks({ catalog:catalog });
+  else openDecks({ catalog:catalog, includeStories:true });
 }
 function startCatalogLesson(course, lesson){
   if(!course || !lesson || !lesson.contentRef || lesson.available === false) return;
@@ -843,6 +1254,9 @@ function closeCourseManageMenus(except){
   document.querySelectorAll('.course-manage-wrap.is-open').forEach(function(wrap){
     if(wrap !== except) {
       wrap.classList.remove('is-open');
+      wrap.classList.remove('course-manage-down');
+      var card = wrap.closest('.deck-item');
+      if(card) card.classList.remove('has-open-menu');
       var trigger = wrap.querySelector('.course-manage-trigger');
       if(trigger) trigger.setAttribute('aria-expanded','false');
     }
@@ -858,8 +1272,9 @@ function addCourseManageMenu(parent, items, label){
   trigger.setAttribute('aria-label', label || '课程管理');
   trigger.setAttribute('aria-haspopup','menu');
   trigger.setAttribute('aria-expanded','false');
-  var inline = parent.classList && (parent.classList.contains('meta') || parent.classList.contains('deck-card-body') || parent.classList.contains('catalog-lesson-footer'));
+  var inline = parent.classList && (parent.classList.contains('meta') || parent.classList.contains('deck-card-body') || parent.classList.contains('catalog-lesson-footer') || parent.classList.contains('deck-actions'));
   if(inline) wrap.classList.add('course-manage-inline');
+  var adaptiveDeckMenu = parent.classList && (parent.classList.contains('deck-actions') || (parent.classList.contains('meta') && parent.closest('.deck-item')));
   trigger.innerHTML = window.Icons && Icons.svg ? Icons.svg('more') : '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.6" fill="currentColor"></circle><circle cx="12" cy="12" r="1.6" fill="currentColor"></circle><circle cx="12" cy="19" r="1.6" fill="currentColor"></circle></svg>';
   var menu = document.createElement('div');
   menu.className = 'course-manage-menu';
@@ -871,10 +1286,14 @@ function addCourseManageMenu(parent, items, label){
     action.className = 'course-manage-item'+(item.danger ? ' is-danger' : '');
     action.setAttribute('role','menuitem');
     action.textContent = item.label;
+    if(item.disabled){ action.disabled = true; action.title = item.title || ''; action.setAttribute('aria-disabled','true'); }
     action.onclick = function(e){
       e.preventDefault();
       e.stopPropagation();
       wrap.classList.remove('is-open');
+      wrap.classList.remove('course-manage-down');
+      var card = wrap.closest('.deck-item');
+      if(card) card.classList.remove('has-open-menu');
       trigger.setAttribute('aria-expanded','false');
       item.action();
     };
@@ -886,6 +1305,17 @@ function addCourseManageMenu(parent, items, label){
     var open = !wrap.classList.contains('is-open');
     closeCourseManageMenus(wrap);
     wrap.classList.toggle('is-open', open);
+    var card = wrap.closest('.deck-item');
+    if(card) card.classList.toggle('has-open-menu', open);
+    wrap.classList.remove('course-manage-down');
+    if(open && adaptiveDeckMenu){
+      var triggerRect = trigger.getBoundingClientRect();
+      var menuRect = menu.getBoundingClientRect();
+      var roomAbove = triggerRect.top;
+      var roomBelow = window.innerHeight - triggerRect.bottom;
+      var openDown = roomBelow >= menuRect.height + 8 || roomBelow >= roomAbove;
+      wrap.classList.toggle('course-manage-down', openDown);
+    }
     trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
   };
   wrap.onclick = function(e){ e.stopPropagation(); };
@@ -941,17 +1371,28 @@ function refreshCourseDataView(){
     else routeCourse('');
     return;
   }
-  if($('tabCourses') && $('tabCourses').classList.contains('on')) renderStoryCourseList(currentCatalog());
-  else openDecks();
+  renderCourseBrowse();
 }
 function updateStoryPackage(courseId, mutate){
-  if(!window.CL || !CL.readCourses || !CL.writeCourses) return Promise.reject(new Error('课程存储模块未就绪，请刷新页面重试'));
-  var list = CL.readCourses();
+  var protocol3=protocol3CatalogEnabled();
+  if(protocol3CatalogSelected()&&!serverCatalogView) return Promise.reject(new Error('课程目录正在从服务器恢复，请稍后重试。'));
+  if(protocol3){
+    if(!window.ChunkCourse||typeof ChunkCourse.saveCourse!=='function') return Promise.reject(new Error('课程保存服务尚未就绪；修改未提交，请刷新后重试。'));
+    if(!Array.isArray(serverCatalogView.courses)) return Promise.reject(new Error('课程目录尚未从服务器确认；修改未提交，请稍后重试。'));
+  }else if(!window.CL||!CL.readCourses||!CL.writeCourses){
+    return Promise.reject(new Error('课程存储模块未就绪，请刷新页面重试'));
+  }
+  var list = protocol3 ? serverCatalogView.courses : CL.readCourses();
   if(!Array.isArray(list)) list = [];
-  var source = list.find(function(course){ return course && course.courseId === courseId; });
-  if(!source) return Promise.reject(new Error('找不到这门图文课程，可能已被删除'));
+  var sourceIndex = list.findIndex(function(course){ return course && course.courseId === courseId; });
+  if(sourceIndex < 0) return Promise.reject(new Error('找不到这门图文课程，可能已被删除'));
+  var source=JSON.parse(JSON.stringify(list[sourceIndex]));
   mutate(source);
-  return Promise.resolve(CL.writeCourses(list)).then(function(){
+  list[sourceIndex]=source;
+  var saved=protocol3
+    ? ChunkCourse.saveCourse(source).then(loadServerCatalogView)
+    : CL.writeCourses(list);
+  return Promise.resolve(saved).then(function(){
     if(window.ChunkCourse && ChunkCourse.refreshList) ChunkCourse.refreshList();
     refreshCourseDataView();
   });
@@ -963,7 +1404,7 @@ function closeMoveStory(){
   _pendingStoryMove = null;
 }
 function openMoveStoryPackage(courseId, title){
-  var dirs = window.LogicalCourseStore && LogicalCourseStore.read ? LogicalCourseStore.read() : [];
+  var dirs = catalogLogicalCourses();
   if(!dirs.length){
     showDeckNotice('请先创建课程目录，再执行移入操作。', 'err');
     return;
@@ -1004,6 +1445,18 @@ function clearStoryProgress(courseId){
 }
 function removeStoryPackage(courseId, title){
   openCourseConfirm('删除课程', '删除课程「'+title+'」？\n课程内容和学习进度都会删除，且无法恢复。', '删除课程', function(){
+    if(protocol3CatalogSelected()){
+      if(!window.ChunkCourse||typeof ChunkCourse.deleteCourse!=='function'){
+        alert('课程删除服务尚未就绪；课程未删除，请刷新后重试。');
+        return;
+      }
+      ChunkCourse.deleteCourse(courseId).then(function(){
+        if(window.ChunkCourse && ChunkCourse.refreshList) ChunkCourse.refreshList();
+        refreshCourseDataView();
+        showDeckNotice('已删除课程：'+title, 'ok');
+      }).catch(function(error){ alert('删除失败：'+(error && error.message || error)); });
+      return;
+    }
     if(!window.CL || !CL.readCourses || !CL.writeCourses){ alert('课程存储模块未就绪，请刷新页面重试'); return; }
     var list = CL.readCourses();
     if(!Array.isArray(list) || !list.some(function(source){ return source && source.courseId === courseId; })){
@@ -1028,20 +1481,82 @@ function moveStoryPackageOutOfCategory(courseId, title){
 function removeLogicalCourse(courseId, title, lessonCount){
   if(!window.LogicalCourseStore || !LogicalCourseStore.remove) return;
   openCourseConfirm('删除分类', '删除分类「'+title+'」？\n其中 '+lessonCount+' 个课节会移入未分类，不会删除课程内容。', '删除分类', function(){
-    try{
-      LogicalCourseStore.remove(courseId);
+    persistLogicalCourseDelete(courseId).then(function(){
       refreshCourseDataView();
       showDeckNotice('已删除分类：'+title, 'ok');
-    }catch(error){ alert('删除失败：'+(error && error.message || error)); }
+    }).catch(function(error){ alert('删除失败：'+(error && error.message || error)); });
   }, true);
+}
+/* 所有课程类型共用同一张卡片骨架；内容来源只决定封面、元信息和可用操作，不决定尺寸。 */
+function createCourseCardShell(options){
+  options = options || {};
+  var row = document.createElement('div');
+  row.className = 'deck-item course-card'+(options.variant ? ' '+options.variant : '');
+  row.setAttribute('role','button');
+  row.setAttribute('tabindex','0');
+  row.setAttribute('aria-label',options.ariaLabel || ('打开课程 '+(options.title || '')));
+
+  var cover = document.createElement('div');
+  cover.className = 'deck-cover'+(options.coverClass ? ' '+options.coverClass : '')+(options.coverImage ? ' has-image' : '');
+  cover.setAttribute('aria-hidden','true');
+  if(options.coverImage){
+    var image = document.createElement('img');
+    image.className = 'deck-cover-image';
+    image.alt = '';
+    image.src = String(options.coverImage);
+    cover.appendChild(image);
+  }
+  var wash = document.createElement('span');
+  wash.className = 'deck-cover-wash';
+  cover.appendChild(wash);
+  var caption = document.createElement('span');
+  caption.className = 'deck-cover-caption';
+  var mark = document.createElement('span');
+  mark.className = 'deck-cover-mark';
+  mark.innerHTML = window.Icons ? Icons.svg('book') : '';
+  var title = document.createElement('span');
+  title.className = 'deck-cover-label';
+  title.textContent = options.title || '';
+  caption.appendChild(mark);
+  caption.appendChild(title);
+  cover.appendChild(caption);
+  if(options.coverBadge){
+    var badge = document.createElement('span');
+    badge.className = 'pill mine deck-cover-origin';
+    badge.textContent = options.coverBadge;
+    cover.appendChild(badge);
+  }
+  row.appendChild(cover);
+
+  var body = document.createElement('div');
+  body.className = 'deck-card-body';
+  var info = document.createElement('div');
+  info.className = 'info';
+  var meta = document.createElement('div');
+  meta.className = 'meta';
+  info.appendChild(meta);
+  body.appendChild(info);
+  row.appendChild(body);
+  row.addEventListener('click', function(e){
+    var target = e.target;
+    if(target && target.closest && target.closest('button,a,input,select,textarea,[role="menuitem"]')) return;
+    if(typeof row.onCourseActivate === 'function') row.onCourseActivate(e);
+  });
+  row.onkeydown = function(e){
+    if(e.target.closest('button,a,input,select,textarea')) return;
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); row.click(); }
+  };
+  return { row:row, cover:cover, body:body, info:info, meta:meta };
 }
 function addCourseCard(course, list){
   var lessons = CourseCatalog.listLessons(course);
-  var row = document.createElement('div');
-  row.className = 'deck-item course-card';
-  row.setAttribute('role','button');
-  row.setAttribute('tabindex','0');
-  row.setAttribute('aria-label','打开课程 '+course.title);
+  var card = createCourseCardShell({
+    title:course.title,
+    ariaLabel:'打开课程 '+course.title,
+    coverClass:course.id === 'builtin:idioms' ? 'other' : '',
+    coverImage:course.coverImage
+  });
+  var row = card.row;
   var lastPlayed = 0;
   lessons.forEach(function(lesson){
     var d = lesson.contentRef && lesson.contentRef.type === 'sentence-deck' ? findDeck(lesson.contentRef.id) : null;
@@ -1055,20 +1570,29 @@ function addCourseCard(course, list){
   /* 进度主单位：多课节课程以「课节」计数（16/3260 句的进度条≈0 不可见，3/65 课节才有正反馈）；
      单课节课程直接用句数。count 不带单位（单位由 meta 头表达），句级细节放 hover tooltip */
   var initCount = lessons.length > 1 ? '0 / '+lessons.length : '0 / '+course.itemCount;
-  var coverCaption = '<span class="deck-cover-caption" contenteditable="false"><span class="deck-cover-mark" contenteditable="false">'+(window.Icons?Icons.svg('book'):'')+'</span><span class="deck-cover-label" contenteditable="false">'+esc(course.title)+'</span></span>';
-  row.innerHTML = '<div class="deck-cover'+(course.id === 'builtin:idioms' ? ' other' : '')+(course.coverImage ? ' has-image' : '')+'" aria-hidden="true"><span class="deck-cover-wash"></span>'+coverCaption+'</div>'+
-    '<div class="deck-card-body"><div class="info"><div class="meta">'+esc(meta)+(lastPlayed ? ' · 最近学习' : '')+(course.contentType === 'sentence' ? ' <span class="course-progress" data-course-progress aria-label="进度计算中" title="进度计算中"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">'+initCount+'</span></span>' : '')+'</div></div></div>';
-  if(course.coverImage){
-    var coverImg=document.createElement('img');
-    coverImg.className='deck-cover-image';
-    coverImg.alt='';
-    coverImg.src=String(course.coverImage);
-    row.querySelector('.deck-cover').insertBefore(coverImg, row.querySelector('.deck-cover').firstChild);
-  }
+  var metaNode = card.meta;
+  metaNode.innerHTML = esc(meta)+(lastPlayed ? ' · 最近学习' : '')+(course.contentType === 'sentence' ? ' <span class="course-progress" data-course-progress aria-label="进度计算中" title="进度计算中"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">'+initCount+'</span></span>' : '');
+  var membership = _catalogMemberships[course.id];
+  var joined = !!(membership && membership.joined);
+  var joinBlocked = !joined && _catalogJoinedCount >= (CourseEnrollment.MAX_JOINED_COURSES || 3);
+  var courseActions = [{
+    label:joined ? '移出学习' : (joinBlocked ? '已达 3 门上限' : '加入学习'),
+    disabled:joinBlocked,
+    title:joinBlocked ? '最多加入 3 门课程；请先移出一门，再加入新课程。' : '',
+    action:function(){
+      if(!window.CourseEnrollment) return alert('加入功能暂不可用，请刷新页面重试。');
+      var operation = joined ? CourseEnrollment.leave(course.id) : CourseEnrollment.join(course.id, _catalogAliases);
+      operation.then(function(){ refreshCourseDataView(); }).catch(function(error){ alert((error && error.message || error)); });
+    }
+  }];
+  if(course.origin === 'user') courseActions.push({
+    label:'以此为参考创作',
+    action:function(){ window.location.href='course-create.html?source='+encodeURIComponent(course.id); }
+  });
   if(course.contentType === 'story' && course.origin === 'user'){
     var isLogicalCourse = String(course.id).indexOf('logical-course:') === 0;
     var firstLesson = lessons[0];
-    addCourseManageMenu(row.querySelector('.deck-card-body .meta'), isLogicalCourse ? [{
+    courseActions = courseActions.concat(isLogicalCourse ? [{
       label:'删除分类', danger:true,
       action:function(){ removeLogicalCourse(course.id, course.title, lessons.length); }
     }] : [{
@@ -1077,15 +1601,15 @@ function addCourseCard(course, list){
     },{
       label:'删除课程', danger:true,
       action:function(){ if(firstLesson && firstLesson.contentRef) removeStoryPackage(firstLesson.contentRef.id, course.title); }
-    }], isLogicalCourse ? '分类管理' : '课程管理');
+    }]);
   }
+  addCourseManageMenu(metaNode, courseActions, '课程操作');
   var openCourse = function(){
     if(course.available === false) return;
     var isLogicalStoryCourse = course.contentType === 'story' && (course.origin === 'builtin' || course.catalogKey);
     if(isLogicalStoryCourse || lessons.length > 1) routeCourse(course.id); else startCatalogLesson(course, lessons[0]);
   };
-  row.onclick = openCourse;
-  row.onkeydown = function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openCourse(); } };
+  row.onCourseActivate = openCourse;
   list.appendChild(row);
   if(course.contentType === 'sentence') refreshCourseCardProgress(course, row);
 }
@@ -1127,12 +1651,37 @@ function setCourseProgress(target, text, cls, percent, countText){
   target.className = 'course-progress '+(cls || '');
   target.setAttribute('aria-label', text);
   target.title = text;
+  target.setAttribute('role','progressbar');
+  target.setAttribute('aria-valuemin','0');
+  target.setAttribute('aria-valuemax','100');
+  target.setAttribute('aria-valuenow',String(Math.max(0, Math.min(100, Number(percent) || 0))));
   var fill = target.querySelector('.course-progress-fill');
   if(!fill){ fill = document.createElement('span'); fill.className = 'course-progress-fill'; target.appendChild(fill); }
   var count = target.querySelector('.course-progress-count');
   if(!count){ count = document.createElement('span'); count.className = 'course-progress-count'; target.appendChild(count); }
   count.textContent = countText || '0 / 0';
   fill.style.width = Math.max(0, Math.min(100, Number(percent) || 0))+'%';
+}
+function refreshDeckProgress(deck, row){
+  var target = row.querySelector('[data-deck-progress]');
+  if(!target) return;
+  var total = deckItemCount(deck);
+  var progress = window.MainDeckProgress && MainDeckProgress.calculateDeckLearningProgress
+    ? MainDeckProgress.calculateDeckLearningProgress({
+        deckId:deck.id,
+        total:total,
+        items:Array.isArray(deck.items) ? deck.items : null,
+        stats:mem.stats,
+        cidOf:function(item){ return CL && typeof CL.cidOf === 'function' ? CL.cidOf(item) : (item && item.cid); },
+        isDeleted:function(deckId,cid){ return CL.isItemDeleted(mem, deckId, {cid:cid}); }
+      })
+    : {ready:false, done:null, total:total, pct:null};
+  var done = progress.ready ? progress.done : 0;
+  var pct = progress.ready ? progress.pct : 0;
+  var label = progress.ready
+    ? '已覆盖 '+done+' / '+progress.total+' 句，覆盖 '+pct+'%'
+    : '进度暂不可用，课程共 '+total+' 题';
+  setCourseProgress(target, label, done ? 'is-active' : '', pct, done+' / '+total);
 }
 function refreshCourseCardProgress(course, row){
   var target = row.querySelector('[data-course-progress]');
@@ -1288,10 +1837,11 @@ function renderCourseDirectory(course){
 }
 
 /* ===== 题库列表 ===== */
-function openDecks(){
+function openDecks(options){
+  options = options || {};
   var list = $('deckList');
   var courseParam = new URLSearchParams(window.location.search).get('course');
-  var catalog = currentCatalog();
+  var catalog = options.catalog || currentCatalog();
   if(courseParam){
     var selectedCourse = CourseCatalog.getCourse(catalog, courseParam);
     if(selectedCourse && selectedCourse.available !== false){ renderCourseDirectory(selectedCourse); return; }
@@ -1309,130 +1859,157 @@ function openDecks(){
     var tb = (mem.best && mem.best[b.id] && mem.best[b.id].lastPlayed) || 0;
     return tb - ta;
   });
-  /* 内置课程只作为练习来源；用户内容通过顶部「添加课程」进入“我的课程” */
-  var mine = decks.filter(function(d){ return !d.builtin; });
+  /* 课程身份以目录的内容归属为准。AI 课程可能使用 package:<id>，不一定是 user-deck:<id>。 */
+  function catalogCourseIdForDeck(deck){
+    var course = CourseCatalog.getCourseForContent(catalog, 'sentence-deck', deck.id);
+    return course ? course.id : 'user-deck:'+deck.id;
+  }
+  /* AI 作者课程属于用户自己的内容，不以“是否加入学习”决定出现在课程库的哪个视图。 */
+  var authored = decks.filter(function(d){ return isAICreatedCourse(d) && courseView === 'joined'; });
+  /* 普通导入题库与 AI 创作课一样属于个人内容；加入状态只影响学习安排。 */
+  var mine = decks.filter(function(d){ return !d.builtin && !isAICreatedCourse(d) && courseView === 'joined'; });
   function addSectionTitle(text){
     var title = document.createElement('div');
     title.className = 'deck-section-title';
     title.textContent = text;
     list.appendChild(title);
   }
+  if(options.includeStories){
+    var typeTitle = document.createElement('div');
+    typeTitle.className = 'deck-section-title course-type-heading';
+    typeTitle.textContent = '句子课程';
+    list.appendChild(typeTitle);
+  }
   /* 渲染单行 → 抽成命名函数，好让「组标题紧随该组行」按组交错追加
      （原实现把所有标题先 append、行再 append → 标题全堆在列表顶部，分组形同虚设） */
   function addDeckRow(d){
-    var b = mem.best[d.id];
-    var lastStr = '';
-    if(b && b.lastPlayed){
-      var diff = Date.now() - b.lastPlayed;
-      if(diff < 60000) lastStr = '刚刚';
-      else if(diff < 3600000) lastStr = Math.floor(diff/60000)+' 分钟前';
-      else if(diff < 86400000) lastStr = Math.floor(diff/3600000)+' 小时前';
-      else lastStr = Math.floor(diff/86400000)+' 天前';
-    }
-    var mCnt = deckMarkedCount(d);
     /* ★ 「已隐藏 N 句」= 删除标记数（用户可能误删/暂存，旧版 hidden 在 finish 阶段无症状暴露，2026-09-06 反馈） */
-    var hiddenCnt = CL.hiddenCount(d, mem);
+    var hiddenCnt = CL.hiddenCount(d, catalogMem());
     var originalTotal = d.builtin ? deckItemCount(d) : (d._originalTotal || deckItemCount(d));
     var hiddenBadge = '';
     if(hiddenCnt > 0){
       hiddenBadge = '<span class="pill warn" data-hide-tip="已被你标记删除的句子会在这里显示">[隐藏 '+hiddenCnt+' / '+originalTotal+' 句]</span>';
     }
-    var row = document.createElement('div');
-    row.className = 'deck-item';
-    var coverClass = d.builtin ? ' other' : ' mine';
-    var coverLabel = d.builtin ? '内置课程' : '我的课程';
-    row.innerHTML =
-      '<div class="deck-cover'+coverClass+'" aria-hidden="true"><span class="deck-cover-wash"></span><span class="deck-cover-mark">'+(window.Icons?Icons.svg('book'):'')+'</span><span class="deck-cover-label">'+esc(coverLabel)+'</span></div>'+
-      '<div class="deck-card-body"><div class="info"><div class="nm"><span class="deck-title" title="'+esc(d.name)+'">'+esc(deckCardTitle(d.name))+'</span>'+
-        (d.builtin?'':'<span class="pill mine">导入</span>')+
-        hiddenBadge+
-        '</div>'+
-      '<div class="meta">'+deckItemCount(d)+' 题'+
-        (originalTotal > deckItemCount(d) ? '（原 '+originalTotal+' 题）' : '')+
-        (lastStr ? ' · <span style="color:var(--accent)">'+lastStr+'</span>' : '')+
-        (mCnt ? ' · <span style="color:#12924f;font-weight:600">熟 '+mCnt+'</span>' : '')+
-      '</div></div></div>';
-    var actions = document.createElement('div');
-    actions.className = 'deck-actions';
-    if(!d.builtin){
-      var ai = document.createElement('button');
-      ai.className = 'btn sm';
-      ai.textContent = '＋ AI 追加';
-      ai.title = '复制 Prompt → 粘贴 AI 返回 → 自动续写并去重';
-      ai.onclick = function(){ openAppend(d); };
-      actions.appendChild(ai);
-      var del = document.createElement('button');
-      del.className = 'btn sm ghost'; del.textContent = '删除';
-      del.style.cssText = 'color:var(--bad)';
-      del.onclick = function(){
-        if(!confirm('删除课程「'+d.name+'」？此操作不可恢复。')) return;
-        mem.decks = mem.decks.filter(function(x){ return x.id!==d.id; });
-        delete mem.best[d.id];
-        saveStore(); notifyMain('memUpdated'); openDecks();
-      };
-      actions.appendChild(del);
+    var coverClass = d.builtin ? 'other' : 'mine';
+    var aiCreated = isAICreatedCourse(d);
+    var coverLabel = d.builtin ? '内置课程' : deckCardTitle(d.name);
+    var coverOrigin = aiCreated ? 'AI 创作' : '已导入';
+    var card = createCourseCardShell({
+      title:coverLabel,
+      ariaLabel:'开始练习 '+deckCardTitle(d.name),
+      coverClass:coverClass,
+      coverBadge:d.builtin ? '' : coverOrigin,
+      coverImage:d.coverImage && /^(?:data:image\/|https?:\/\/)/i.test(String(d.coverImage)) ? d.coverImage : ''
+    });
+    var row = card.row;
+    var meta = card.meta;
+    meta.innerHTML = '<span>'+deckItemCount(d)+' 题</span>'+
+      '<span class="course-progress" data-deck-progress aria-label="进度计算中" title="进度计算中" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">0 / '+deckItemCount(d)+'</span></span>'+hiddenBadge;
+    var menuItems = [];
+    var coverPicker = null;
+    if(!d.builtin && window.CourseEnrollment){
+      var enrollmentId = catalogCourseIdForDeck(d);
+      var joined = !!(_catalogMemberships[enrollmentId] && _catalogMemberships[enrollmentId].joined);
+      var joinBlocked = !joined && _catalogJoinedCount >= (CourseEnrollment.MAX_JOINED_COURSES || 3);
+      menuItems.push({label:joined ? '移出学习' : (joinBlocked ? '已达 3 门上限' : '加入学习'), disabled:joinBlocked,
+        title:joinBlocked ? '最多加入 3 门课程；请先移出一门，再加入新课程。' : '', action:function(){
+        var operation = joined ? CourseEnrollment.leave(enrollmentId) : CourseEnrollment.join(enrollmentId, _catalogAliases);
+        operation.then(function(){ openDecks(); }).catch(function(error){ alert((error && error.message || error)); });
+      }});
     }
     if(!d.builtin){
-      var exp = document.createElement('button');
-      exp.className = 'btn sm ghost'; exp.textContent = '导出';
-      exp.onclick = function(){ exportDeck(d); };
-      actions.appendChild(exp);
-    }
-    /* 发布/下架：我的题库可发布到公共题库市场（内置题库只读，不发布） */
-    if(!d.builtin && window.ChunkAPI && ChunkAPI.publishDeck){
-      var pub = document.createElement('button');
-      pub.className = 'btn sm ghost';
-      pub.innerHTML = (d.isPublic ? ((window.Icons?Icons.svg('check'):'')+' 已发布') : '发布');
-      pub.title = d.isPublic ? '从公共课程市场下架' : '发布到公共课程市场，其他用户可一键导入';
-      if(d.isPublic) pub.style.cssText = 'color:var(--ok)';
-      pub.onclick = function(){
-        var target = !d.isPublic;
-        ChunkAPI.publishDeck(d.id, target).then(function(){
-          d.isPublic = target;
+      coverPicker = document.createElement('input');
+      coverPicker.type = 'file';
+      coverPicker.accept = 'image/*';
+      coverPicker.className = 'hidden';
+      coverPicker.setAttribute('aria-label','选择课程封面图片');
+      coverPicker.onchange = function(){
+        var file = coverPicker.files && coverPicker.files[0];
+        coverPicker.value = '';
+        if(!file) return;
+        var previousCover = d.coverImage;
+        readCoverImage(file).then(function(image){
+          d.coverImage = image;
+          return commitDeckContent(d).then(function(saved){
+            if(saved === false) throw new Error('课程封面未能保存，请检查存储空间后重试。');
+            openDecks();
+          });
+        }).catch(function(error){
+          d.coverImage = previousCover;
+          alert('更换封面失败：'+(error && error.message || error));
           openDecks();
-        }).catch(function(e){ alert('操作失败：' + e.message); });
+        });
       };
-      actions.appendChild(pub);
+      meta.appendChild(coverPicker);
+      menuItems.push({label:'更换封面图片', action:function(){ coverPicker.click(); }});
+      if(d.coverImage){
+        menuItems.push({label:'恢复默认封面', action:function(){
+          var previousCover = d.coverImage;
+          delete d.coverImage;
+          commitDeckContent(d).then(function(saved){
+            if(saved === false) throw new Error('封面恢复未能保存，请检查存储状态后重试。');
+            openDecks();
+          }).catch(function(error){
+            d.coverImage = previousCover;
+            alert('恢复封面失败：'+(error && error.message || error));
+            openDecks();
+          });
+        }});
+      }
+      menuItems.push({label:'管理课程', action:function(){ editDeck(d); }});
+      if(protocol3CatalogSelected()) menuItems.push({label:'清除本课程学习统计',danger:true,action:function(){
+        openCourseConfirm('清除本课程学习统计',
+          '将把本课程的答题次数、错题统计和间隔复习安排清零。课程内容、课程进度、错题回顾与熟悉标记保留；此操作不可撤销。',
+          '清除统计',function(){
+            resetDeckLearning(d.id).then(function(){
+              openDecks();
+              showDeckNotice('本课程学习统计已清除。','ok');
+            }).catch(function(error){showDeckNotice('重置未完成：'+(error&&error.message||error),'err');});
+          },true);
+      }});
     }
-    var edit = document.createElement('button');
-    edit.className = 'btn sm ghost'; edit.textContent = '管理';
-    edit.onclick = function(){ editDeck(d); };
-    actions.appendChild(edit);
     /* ★ 恢复已删除句（仅内置 deck 可一键全量恢复；导入 deck cid 与原 cid 不一定一致，安全 NOOP） */
     if(d.builtin && hiddenCnt > 0){
-      var restore = document.createElement('button');
-      restore.className = 'btn sm ghost';
-      restore.textContent = '恢复 ' + hiddenCnt;
-      restore.title = '把「'+hiddenCnt+' 句被你标记删除的」内置句一次性全部恢复';
-      restore.style.color = 'var(--ok)';
-      restore.onclick = function(){
+      menuItems.push({label:'恢复已删除的 '+hiddenCnt+' 句', action:function(){
         if(!confirm('把「'+d.name+'」里被你标记删除的 '+hiddenCnt+' 句一次性全部恢复？\n\n仅恢复内置 deck 内被删除的句子，不影响你的「已标熟/已掌握」。')) return;
+        if(protocol3CatalogSelected()){
+          var prefix=d.id+'#', keys=Object.keys(catalogMem().deletedItems||{}).filter(function(key){return key.indexOf(prefix)===0;});
+          setBuiltinItemsHidden(d.id,keys,false).then(function(){
+            alert('已恢复 '+keys.length+' 句。请刷新页面后重新开始该 deck。');openDecks();
+          }).catch(function(error){alert('恢复失败：'+(error&&error.message||error));});
+          return;
+        }
         var n = CL.restoreAllDeleted(mem, d);
         saveStore(); notifyMain('memUpdated');
         alert('已恢复 ' + n + ' 句。请刷新页面后重新开始该 deck。');
         openDecks();
-      };
-      actions.appendChild(restore);
+      }});
+    }else if(d.builtin){
+      menuItems.push({label:'管理课程', action:function(){ editDeck(d); }});
     }
-    var go = document.createElement('button');
-    go.className = 'btn sm primary'; go.textContent = '开始';
+    addCourseManageMenu(meta, menuItems, '课程操作');
     var startDeck = function(){ notifyMain('startDeck', { deck:d }); };
-    go.onclick = startDeck;
-    actions.appendChild(go);
-    var cover = row.querySelector('.deck-cover');
-    var body = row.querySelector('.deck-card-body');
-    cover.removeAttribute('aria-hidden'); cover.setAttribute('role','button'); cover.setAttribute('tabindex','0'); cover.setAttribute('aria-label','开始练习 '+deckCardTitle(d.name));
-    cover.onclick = startDeck;
-    cover.onkeydown = function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); startDeck(); } };
-    body.onclick = function(e){ if(e.target.closest('button,a,input,select,textarea')) return; startDeck(); };
-    body.appendChild(actions);
+    row.setAttribute('role','button');
+    row.setAttribute('tabindex','0');
+    row.setAttribute('aria-label','开始练习 '+deckCardTitle(d.name));
+    row.onCourseActivate = startDeck;
+    refreshDeckProgress(d, row);
     list.appendChild(row);
   }
   /* 课程卡片按课程展示；口语场景只在进入课程后作为课节出现。
      图文课程由顶部「图文课程」标签单独展示，避免跨内容类型重复出现。 */
-  if(mine.length){ addSectionTitle('我的课程（'+mine.length+' 个）'); mine.forEach(addDeckRow); }
-  var builtinCourses = catalog.courses.filter(function(course){ return course.origin === 'builtin' && course.contentType === 'sentence'; });
+  if(authored.length){ addSectionTitle('我创作的课程（'+authored.length+' 门）'); authored.forEach(addDeckRow); }
+  if(mine.length){ addSectionTitle('已导入课程（'+mine.length+' 个）'); mine.forEach(addDeckRow); }
+  var builtinCourses = catalog.courses.filter(function(course){ return course.origin === 'builtin' && course.contentType === 'sentence' && courseMatchesView(course.id, course); });
   if(builtinCourses.length){ addSectionTitle('内置课程（'+builtinCourses.length+' 门）'); builtinCourses.forEach(function(course){ addCourseCard(course, list); }); }
+  if(!authored.length && !mine.length && !builtinCourses.length){
+    var empty = document.createElement('div');
+    empty.className = 'empty-tip';
+    empty.style.gridColumn = '1 / -1';
+    empty.textContent = courseView === 'joined' ? '还没有已加入的句子课程。' : '没有可加入的句子课程。';
+    list.appendChild(empty);
+  }
+  if(options.includeStories) renderStoryCourseList(catalog, { append:true, typeHeading:true });
   showPage('pageDecks');
 }
 
@@ -1460,6 +2037,10 @@ function openMarket(){
       var key = norm(d.name) + '::' + (d.itemCount || 0);
       return !localIds[d.id] && !localNames[key];
     });
+    if(courseView === 'joined' || requestedTab === 'courses'){
+      section.classList.add('hidden');
+      return;
+    }
     if(!all.length){ box.innerHTML = ''; section.classList.add('hidden'); return; }
     section.classList.remove('hidden');
     box.innerHTML = '';
@@ -1512,12 +2093,15 @@ function importPublicDeck(d){
         (x.name === srcDeck.name && x.items.length === srcDeck.items.length);
     });
     if(exists){ showDeckNotice('“我的课程”中已有「' + srcDeck.name + '」','err'); return; }
-    mem.decks.push({ id: 'imported-' + Date.now(), sourceDeckId: srcDeck.id, name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false });
+    var importedDeck={ id: 'imported-' + Date.now(), sourceDeckId: srcDeck.id, name: srcDeck.name + '（副本）', items: srcDeck.items, builtin: false };
+    mem.decks.push(importedDeck);
     try{
-      var saved = saveStore();
+      var saved = commitDeckContent(importedDeck);
       saved = await Promise.resolve(saved);
       if(saved === false) throw new Error('本地提交未完成');
     }catch(error){
+      mem.decks=mem.decks.filter(function(item){return item.id!==importedDeck.id;});
+      notifyMain('memUpdated');
       showDeckNotice('保存失败：'+error.message+'。导入未确认，请重试','err');
       return;
     }
@@ -1543,6 +2127,61 @@ function showPage(id){
 }
 
 /* ===== 管理页 ===== */
+function renderEditCourseActions(deck){
+  var slot = $('editManageActions');
+  if(!slot || !deck || deck.builtin) return;
+  slot.innerHTML = '';
+  var actions = [{
+    label:deck.isPublic ? '从课程市场下架' : '发布到课程市场',
+    action:function(){
+      var publish = !deck.isPublic;
+      var title = publish ? '发布到课程市场' : '从课程市场下架';
+      var message = publish
+        ? '发布后，其他用户可以在课程市场查看并导入这门课程的完整内容（包括句子、翻译和学习提示）。确定发布？'
+        : '下架后，其他用户将不能再从课程市场找到这门课程；已导入的副本不受影响。确定下架？';
+      openCourseConfirm(title, message, publish ? '确认发布' : '确认下架', function(){
+        if(!protocol3CatalogSelected()){
+          showDeckNotice('课程市场暂不可用，请刷新页面后重试。', 'err');
+          return;
+        }
+        var publishOperation=persistDeckPublication(deck.id,publish);
+        Promise.resolve(publishOperation).then(function(updatedDeck){
+          deck.isPublic = updatedDeck ? updatedDeck.isPublic===true || updatedDeck.is_public===true || updatedDeck.is_public===1 : publish;
+          renderEditCourseActions(deck);
+          showDeckNotice(publish ? '课程已发布到课程市场。' : '课程已从市场下架。', 'ok');
+        }).catch(function(error){ showDeckNotice('操作失败：'+(error && error.message || error), 'err'); });
+      });
+    }
+  },{
+    label:'删除课程', danger:true,
+    action:function(){
+      openCourseConfirm('删除课程', '确定删除课程「'+deck.name+'」？课程将从你的课程列表中移除，无法直接恢复。', '删除课程', function(){
+        if(protocol3CatalogSelected()){
+          deleteDeckContent(deck.id).then(function(){
+            notifyMain('memUpdated');
+            openDecks();
+            showDeckNotice('课程已删除。','ok');
+          }).catch(function(error){showDeckNotice('删除失败：'+(error && error.message || error),'err');});
+          return;
+        }
+        Promise.resolve().then(function(){
+          if(deck.authoring && deck.authoring.legacySource && window.CourseLearningLaunch) CourseLearningLaunch.markDeleted(deck.authoring.legacySource.courseId, mem);
+          mem.decks = mem.decks.filter(function(item){ return item.id !== deck.id; });
+          delete mem.best[deck.id];
+          return saveStore();
+        }).then(function(saved){
+          if(saved === false) throw new Error('课程没有保存删除结果，请检查存储状态后重试。');
+          notifyMain('memUpdated');
+          openDecks();
+          showDeckNotice('课程已删除。', 'ok');
+        }).catch(function(error){ showDeckNotice('删除失败：'+(error && error.message || error), 'err'); });
+      }, true);
+    }
+  }];
+  var wrap = addCourseManageMenu(slot, actions, '课程操作');
+  var trigger = wrap && wrap.querySelector('.course-manage-trigger');
+  if(trigger) trigger.innerHTML = (window.Icons && Icons.svg ? Icons.svg('more') : '')+'<span class="edit-manage-trigger-label">课程操作</span>';
+}
 function editDeck(d){
   /* 始终从 allDecks() 重新取（首行即过滤掉已删的内置句），保证删除后刷新正确 */
   var fresh = allDecks().filter(function(x){ return x.id === d.id; })[0];
@@ -1565,8 +2204,10 @@ function editDeck(d){
     '<span class="spacer"></span>'+
     '<button class="btn sm" id="editMasterFilter">'+( _editOnlyMastered ? (window.Icons?Icons.svg('rotateCcw'):'')+' 看全部' : '只看已标熟' )+'</button>'+
     (!d.builtin && pendingExplainCount ? '<button class="btn sm" id="editBatchExplain" title="为多条暂无讲解的句子生成 AI 讲解">'+(window.Icons?Icons.svg('book'):'')+' 批量生成讲解</button>' : '')+ 
-    (d.builtin ? '' : '<button class="btn sm" id="editExportBtn">'+(window.Icons?Icons.svg('export'):'')+' 导出</button>')+
-    (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 导入更多句子</button>');
+    (d.builtin ? '' : '<button class="btn sm" id="editExportBtn" title="下载课程内容的 JSON 备份">'+(window.Icons?Icons.svg('export'):'')+' 导出备份</button>')+
+    (d.builtin ? '' : '<button class="btn sm primary" id="editImportBtn">'+(window.Icons?Icons.svg('import'):'')+' 追加句子</button>')+
+    (d.builtin ? '' : '<div id="editManageActions" class="edit-manage-actions"></div>');
+  renderEditCourseActions(d);
   $('editMasterFilter').onclick = function(){ _editOnlyMastered = !_editOnlyMastered; editDeck(d); };
   var batchExplainBtn = $('editBatchExplain');
   if(batchExplainBtn) batchExplainBtn.onclick = function(){ openBatchExplain(d); };
@@ -1611,13 +2252,24 @@ function editDeck(d){
     var db = row.querySelector('[data-op="del"]'); if(db) db.onclick = function(){
       if(!confirm('删除第 '+(i+1)+' 句：\n\n'+esc(it.sentence||it.en||'')+'\n\n确定删除？')) return;
       if(d.builtin){
+        if(protocol3CatalogSelected()){
+          var itemKey=CL.itemKey(d.id,it);
+          setBuiltinItemsHidden(d.id,[itemKey],true).then(function(){editDeck(d);}).catch(function(error){
+            alert('删除句子失败：'+(error&&error.message||error));
+          });
+          return;
+        }
         CL.deleteItem(mem, d.id, it);
         saveStore(); notifyMain('memUpdated');
         editDeck(d);
       } else {
+        var priorItems=d.items.slice();
         d.items.splice(i, 1);
-        saveStore(); notifyMain('memUpdated');
-        editDeck(d);
+        commitDeckContent(d).then(function(){editDeck(d);}).catch(function(error){
+          d.items=priorItems;
+          alert('删除句子失败：'+(error && error.message || error));
+          editDeck(d);
+        });
       }
     };
     list.appendChild(row);
@@ -1663,6 +2315,7 @@ function saveEditSentence(){
   if(norm(chunks.join(' ')) !== norm(en)){ msg.className='msg err show'; msg.textContent='chunks 拼接与原句不一致 → "'+chunks.join(' ')+'" ≠ "'+en+'"'; return; }
   if(hints.length !== chunks.length){ msg.className='msg err show'; msg.textContent='hints 数量需与 chunks 一致（hints='+hints.length+', chunks='+chunks.length+'）'; return; }
   if(exps.length > chunks.length){ msg.className='msg err show'; msg.textContent='explanations 数量不能超过 chunks 数'; return; }
+  var priorDeck=JSON.parse(JSON.stringify(_editDeck));
   var it = _editDeck.items[_editIdx];
   /* cid 固化：句子首次编辑时锚定原文本（fnv8），此后改文本保留 cid → 学习档案 key 不漂移 */
   var _prevEn = it.sentence || it.en || '';
@@ -1670,12 +2323,17 @@ function saveEditSentence(){
   it.sentence = en; it.translation = cn; it.chunks = chunks; it.hints = hints;
   if(exps.length){ it.explanations = exps; } else { delete it.explanations; }
   delete it.en; delete it.cn;
-  saveStore(); notifyMain('memUpdated');
   var d = _editDeck;
-  _editDeck = null; _editIdx = -1;
-  $('editSentenceMask').hidden = true;
-  _editStatMsg = '已保存编辑';
-  editDeck(d);
+  commitDeckContent(d).then(function(){
+    _editDeck = null; _editIdx = -1;
+    $('editSentenceMask').hidden = true;
+    _editStatMsg = '已保存编辑';
+    editDeck(d);
+  }).catch(function(error){
+    Object.keys(d).forEach(function(key){delete d[key];});
+    Object.assign(d,priorDeck);
+    msg.className='msg err show'; msg.textContent='保存失败，原内容已保留：'+(error && error.message || error);
+  });
 }
 
 /* ===== 详解 ===== */
@@ -1784,10 +2442,11 @@ $('explainApply').onclick = function(){
     if(x && x.chunk && x.explain) return x.explain;
     return JSON.stringify(x);
   });
-  saveStore(); notifyMain('memUpdated');
-  msg.className='msg ok show';
-  msg.textContent='已保存 ' + arr.length + ' 条详解';
-  renderExplain();
+  commitDeckContent(_explainDeck).then(function(){
+    msg.className='msg ok show';
+    msg.textContent='已保存 ' + arr.length + ' 条详解';
+    renderExplain();
+  }).catch(function(error){msg.className='msg err show';msg.textContent='保存失败：'+(error && error.message || error);});
 };
 $('explainReset').onclick = function(){ $('explainJsonBox').value=''; };
 $('explainBack').onclick = function(){ if(_explainDeck){ editDeck(_explainDeck); } else { openDecks(); } };
@@ -1869,6 +2528,7 @@ $('batchExplainApply').onclick = function(){
     msg.className='msg err show'; msg.textContent='需要数组或含 items 数组的对象';
     return;
   }
+  var priorDeck=JSON.parse(JSON.stringify(_batchDeck));
   var bySen = {};
   items.forEach(function(it){
     if(it && it.sentence) bySen[normSent(it.sentence)] = it;
@@ -1880,14 +2540,25 @@ $('batchExplainApply').onclick = function(){
     it.explanations = hit.explanations;
     saved++;
   });
-  saveStore(); notifyMain('memUpdated');
-  msg.className='msg ok show';
-  msg.textContent='已批量保存 ' + saved + ' 句详解';
-  setTimeout(function(){ $('batchExplainMask').hidden = true; editDeck(_batchDeck); }, 900);
+  commitDeckContent(_batchDeck).then(function(){
+    msg.className='msg ok show';
+    msg.textContent='已批量保存 ' + saved + ' 句详解';
+    setTimeout(function(){ $('batchExplainMask').hidden = true; editDeck(_batchDeck); }, 900);
+  }).catch(function(error){
+    Object.keys(_batchDeck).forEach(function(key){delete _batchDeck[key];});
+    Object.assign(_batchDeck,priorDeck);
+    msg.className='msg err show'; msg.textContent='保存失败：'+(error && error.message || error);
+  });
 };
 
 /* ===== 导入 ===== */
 var lastValid = null;
+function openImportTypeChooser(){
+  $('courseImportTypeMask').hidden = false;
+  $('btnChooseSentenceImport').focus();
+}
+function chooseSentenceImport(){ $('courseImportTypeMask').hidden = true; openImport(); }
+function chooseStoryImport(){ $('courseImportTypeMask').hidden = true; openCourseImport(); }
 function openImport(deck){
   _appendDeck = deck || null;
   var name = $('deckName'); if(name) name.value = '';
@@ -1936,9 +2607,9 @@ function renderPrompt(){
   var format = [
     '输出 JSON 数组，不要输出其他文字：',
     '[',
-    '  { "sentence": "完整英文句子", "translation": "中文翻译", "chunks": ["意群1", "意群2"], "hints": ["提示1", "提示2"] }',
+    '  { "sentence": "完整英文句子", "translation": "整句中文翻译", "chunks": ["意群1", "意群2"], "hints": ["每个意群的中文提示1", "每个意群的中文提示2"], "grammar": [{"role":"主语"}, {"role":"谓语"}] }',
     ']',
-    '要求：chunks 用单个空格连接后必须与 sentence 完全一致（忽略大小写和标点）；每个句子 '+($('optChunks').value || '2-4')+' 个意群；难度：'+($('optLevel').value||'进阶')+'。'
+    '要求：chunks 用单个空格连接后必须与 sentence 完全一致（忽略大小写和标点）；每个句子 '+($('optChunks').value || '2-4')+' 个意群；translation 必须非空；hints 和 grammar 必须与 chunks 等长且逐项非空；grammar.role 标注该意群在句中的成分/功能（如主语、谓语、宾语、表语、定语、状语、补语、介词短语或从句）；难度：'+($('optLevel').value||'进阶')+'。'
   ];
   var p;
   if(raw.length){
@@ -1977,17 +2648,35 @@ function validateDeck(data){
   items.forEach(function(it, i){
     if(!it) return;
     var sentence = it.sentence || it.en || '';
+    var translation = String(it.translation || it.cn || it.chinese || it.zh || '').trim();
+    var hints = it.hints || it.cn_hints || it.tips;
+    var grammar = it.grammar || it.chunkGrammar;
     /* 错误带句子原文（自助用户可读：哪句错 + 为什么） */
     var err = [];
     var _why = [];
     if(!String(sentence).trim()) _why.push('缺英文句子');
+    if(!translation) _why.push('缺整句中文翻译');
     if(!Array.isArray(it.chunks) || !ChunkShape.chunkCountOk(sentence, it.chunks)) _why.push('意群数不符：'+ChunkShape.chunkCountError(sentence, it.chunks));
     else if(norm(it.chunks.join(' ')) !== norm(sentence)) _why.push('意群拼接与原句不一致');
-    if(Array.isArray(it.chunks) && Array.isArray(it.hints) && it.hints.length !== it.chunks.length) _why.push('中文提示数与意群数不一致');
+    if(Array.isArray(it.chunks)){
+      if(!Array.isArray(hints) || hints.length !== it.chunks.length || hints.some(function(h){ return !String(h == null ? '' : h).trim(); })) _why.push('每个意群都需要一个非空中文提示');
+      if(!Array.isArray(grammar) || grammar.length !== it.chunks.length || grammar.some(function(g){ return !g || !String(typeof g === 'string' ? g : g.role || '').trim(); })) _why.push('每个意群都需要一个句子成分/功能标签');
+    }
     if(_why.length){
       errs.push({ idx: i+1, sentence: String(sentence).slice(0,80), why: _why.join('；') });
     }
-    else { good.push(it); }
+    else {
+      var grammarItems = grammar.map(function(g){
+        var role = String(typeof g === 'string' ? g : g.role || '').trim();
+        var color = g && typeof g === 'object' && /^#[0-9a-f]{6}$/i.test(String(g.color || '')) ? String(g.color).toLowerCase() : undefined;
+        return color ? { role:role, color:color } : { role:role };
+      });
+      good.push(Object.assign({}, it, {
+        sentence:String(sentence).trim(), translation:translation,
+        chunks:it.chunks.map(function(chunk){ return String(chunk).trim(); }),
+        hints:hints.map(function(h){ return String(h).trim(); }), grammar:grammarItems
+      }));
+    }
   });
   return { ok: errs.length===0 && good.length>0, errs:errs, good:good, name:String(name).trim()||'我的句子' };
 }
@@ -2037,28 +2726,58 @@ function doValidate(autoImport){
   $('btnPartial').classList.toggle('hidden', r.good.length===0);
 }
 function mergeDedup(existing, incoming){
-  var seen = {};
-  existing.forEach(function(it){ seen[normSent(it.sentence||it.en||'')] = 1; });
-  var added = [], dup = 0;
+  var bySentence = Object.create(null);
+  var merged = (existing||[]).map(function(it){ return Object.assign({}, it); });
+  merged.forEach(function(it){ bySentence[normSent(it.sentence||it.en||'')] = it; });
+  var added = [], dup = 0, enriched = 0;
   incoming.forEach(function(it){
     var k = normSent(it.sentence||it.en||'');
-    if(seen[k]){ dup++; return; }
-    seen[k] = 1;
+    var current = bySentence[k];
+    if(current){
+      dup++;
+      var changed = false;
+      if(!String(current.translation || current.cn || current.chinese || current.zh || '').trim() && String(it.translation || '').trim()){ current.translation = it.translation; changed = true; }
+      if(!Array.isArray(current.hints)) current.hints = [];
+      if(!Array.isArray(current.grammar)) current.grammar = [];
+      (it.chunks||[]).forEach(function(_, i){
+        if(!String(current.hints[i] || '').trim() && String(it.hints[i] || '').trim()){ current.hints[i] = it.hints[i]; changed = true; }
+        var oldRole = current.grammar[i] && (typeof current.grammar[i] === 'string' ? current.grammar[i] : current.grammar[i].role);
+        if(!String(oldRole || '').trim() && it.grammar[i]){
+          current.grammar[i] = typeof it.grammar[i] === 'string' ? it.grammar[i] : Object.assign({}, it.grammar[i]); changed = true;
+        }
+      });
+      if(changed) enriched++;
+      return;
+    }
+    bySentence[k] = it;
     added.push(it);
   });
-  return { items: existing.concat(added), added: added.length, dup: dup };
+  return { items: merged.concat(added), added: added.length, dup: dup, enriched:enriched };
+}
+function applyMergedItemsToDeck(deck, items){
+  if(!deck) return;
+  deck.items = items;
+  var current = (mem.decks||[]).filter(function(item){ return item && item.id === deck.id; })[0];
+  if(current && current !== deck) current.items = items;
 }
 function commitImport(items, name){
   if(_appendDeck){
+    var appendDeck=_appendDeck;
+    var priorDeck=JSON.parse(JSON.stringify(appendDeck));
     var m = mergeDedup(_appendDeck.items, items);
-    _appendDeck.items = m.items;
-    saveStore(); notifyMain('memUpdated');
-    var d = _appendDeck; _appendDeck = null;
-    $('impMask').hidden = true;
-    $('jsonBox').value = '';
-    $('impMsg').className = 'msg';
-    _editStatMsg = '导入 '+items.length+' 句，去重 '+m.dup+' 句，现共 '+m.items.length+' 句';
-    editDeck(d);
+    applyMergedItemsToDeck(_appendDeck, m.items);
+    commitDeckContent(appendDeck).then(function(){
+      _appendDeck = null;
+      $('impMask').hidden = true;
+      $('jsonBox').value = '';
+      $('impMsg').className = 'msg';
+      _editStatMsg = '新增 '+m.added+' 句，补全 '+m.enriched+' 句的中文提示/成分，去重 '+m.dup+' 句，现共 '+m.items.length+' 句';
+      editDeck(appendDeck);
+    }).catch(function(error){
+      Object.keys(appendDeck).forEach(function(key){delete appendDeck[key];});
+      Object.assign(appendDeck,priorDeck);
+      var message=$('impMsg'); message.className='msg err show'; message.textContent='保存失败，服务器原内容未覆盖：'+(error && error.message || error);
+    });
     return;
   }
   var deck = {
@@ -2068,15 +2787,21 @@ function commitImport(items, name){
     items: items
   };
   mem.decks.push(deck);
-  /* 触碰纪录：完整五字段形初始化（与 main.html touchDeckBest 同构，防残壳） */
-  if(!mem.best) mem.best = {};
-  var _drec = mem.best[deck.id] = mem.best[deck.id] || {acc:0, perfect:0, combo:0, lastPlayed:0, lastAcc:null};
-  _drec.lastPlayed = Date.now();
-  saveStore(); notifyMain('memUpdated');
-  $('impMask').hidden = true;
-  $('jsonBox').value = '';
-  $('impMsg').className = 'msg';
-  openDecks();
+  if(!protocol3CatalogSelected()){
+    /* 触碰纪录：完整五字段形初始化（与 main.html touchDeckBest 同构，防残壳） */
+    if(!mem.best) mem.best = {};
+    var _drec = mem.best[deck.id] = mem.best[deck.id] || {acc:0, perfect:0, combo:0, lastPlayed:0, lastAcc:null};
+    _drec.lastPlayed = Date.now();
+  }
+  commitDeckContent(deck).then(function(){
+    $('impMask').hidden = true;
+    $('jsonBox').value = '';
+    $('impMsg').className = 'msg';
+    openDecks();
+  }).catch(function(error){
+    mem.decks=mem.decks.filter(function(item){return item.id!==deck.id;});
+    var message=$('impMsg'); message.className='msg err show'; message.textContent='导入保存失败：'+(error && error.message || error);
+  });
 }
 function exportDeck(d){
   if(!d || d.builtin){
@@ -2087,7 +2812,7 @@ function exportDeck(d){
     name: d.name,
     desc: d.desc || '',
     items: d.items.map(function(it){
-      var o = { sentence: it.sentence || it.en || '', translation: it.translation || it.cn || '', chunks: it.chunks, hints: it.hints || [] };
+      var o = { sentence: it.sentence || it.en || '', translation: it.translation || it.cn || '', chunks: it.chunks, hints: it.hints || [], grammar: it.grammar || [] };
       if(it.explanations) o.explanations = it.explanations;
       return o;
     })
@@ -2104,8 +2829,10 @@ function exportDeck(d){
 function doAppendValidate(){
   var msg = $('appendMsg');
   var text = $('appendJsonBox').value;
+  $('appendGoPractice').hidden = true;
+  $('appendContinue').hidden = true;
   if(!_appendDeck){ msg.className='msg err show'; msg.textContent='未指定目标课程'; return; }
-  if(!text.trim()){ msg.className='msg err show'; msg.textContent='请粘贴 JSON 或选择文件'; return; }
+  if(!text.trim()){ msg.className='msg err show'; msg.textContent='请粘贴 JSON 内容或拖入文件'; return; }
   var data;
   try{ data = extractJSON(text); }
   catch(e){ msg.className='msg err show'; msg.innerHTML='<b>JSON 解析失败</b><div style="font-size:12px">'+esc(e.message)+'</div>'; return; }
@@ -2121,40 +2848,47 @@ function doAppendValidate(){
       '<ul style="margin:8px 0 4px;padding-left:18px;font-size:12.5px">'+li+(r.errs.length>6?'<li>… 还有 '+(r.errs.length-6)+' 处</li>':'')+'</ul>';
     return;
   }
+  var priorDeck=JSON.parse(JSON.stringify(_appendDeck));
   var m = mergeDedup(_appendDeck.items, r.good);
-  _appendDeck.items = m.items;
-  saveStore(); notifyMain('memUpdated');
+  applyMergedItemsToDeck(_appendDeck, m.items);
   var deckRef = _appendDeck;
   var addedItems = r.good;
-  /* 成功闭环：显示入库结果 + 「去练习这批 / 继续追加」按钮 */
-  msg.className='msg ok show';
-  msg.innerHTML = '<b>'+(window.Icons?Icons.svg('check'):'')+' 入库成功</b>：追加 '+m.added+' 句（去重 '+m.dup+' 句）<br>'+
-    '<span style="font-size:12.5px">课程「'+esc(deckRef.name)+'」现有 '+m.items.length+' 句</span>'+
-    '<div style="display:flex;gap:8px;margin-top:10px">'+
-      '<button class="btn primary" id="appendGoPractice">'+(window.Icons?Icons.svg('play'):'')+' 去练习这批</button>'+
-      '<button class="btn" id="appendContinue">继续追加下一批</button>'+
-    '</div>';
-  $('appendGoPractice').onclick = function(){
-    $('appendMask').hidden = true;
-    notifyMain('startDeck', { deck:{ id:'rev-'+deckRef.id+'-'+Date.now().toString(36), name:'新导入 · '+addedItems.length+' 句', items:addedItems } });
-  };
-  $('appendContinue').onclick = function(){
-    $('appendJsonBox').value = '';
-    $('appendPromptBox').value = '';
-    $('appendMineBoxIn').value = '';
-    msg.className = 'msg';
-    msg.innerHTML = '';
-    if(_appendMode === 'B') setAppendMode('B');
-    $('appendMineBoxIn').focus();
-  };
+  commitDeckContent(deckRef).then(function(){
+    msg.className='msg ok show';
+    msg.innerHTML = '<b>'+(window.Icons?Icons.svg('check'):'')+' 入库成功</b>：新增 '+m.added+' 句，补全旧句元数据 '+m.enriched+' 句（重复 '+m.dup+' 句，不重复添加）<br>'+
+      '<span style="font-size:12.5px">课程「'+esc(deckRef.name)+'」现有 '+m.items.length+' 句</span>';
+    $('appendGoPractice').hidden = false;
+    $('appendContinue').hidden = false;
+    $('appendGoPractice').onclick = function(){
+      $('appendMask').hidden = true;
+      notifyMain('startDeck', { deck:{ id:'rev-'+deckRef.id+'-'+Date.now().toString(36), name:'新导入 · '+addedItems.length+' 句', items:addedItems } });
+    };
+    $('appendContinue').onclick = function(){
+      $('appendGoPractice').hidden = true;
+      $('appendContinue').hidden = true;
+      $('appendJsonBox').value = '';
+      $('appendPromptBox').value = '';
+      $('appendMineBoxIn').value = '';
+      msg.className = 'msg';
+      msg.innerHTML = '';
+      if(_appendMode === 'B') setAppendMode('B');
+      $('appendMineBoxIn').focus();
+    };
+  }).catch(function(error){
+    Object.keys(deckRef).forEach(function(key){delete deckRef[key];});
+    Object.assign(deckRef,priorDeck);
+    msg.className='msg err show'; msg.textContent='保存失败，服务器原内容已保留：'+(error && error.message || error);
+    $('appendGoPractice').hidden = true;
+    $('appendContinue').hidden = true;
+  });
 }
 function buildAppendPrompt(deck){
   return [
-    '请为「'+deck.name+'」课程追加 10 条新的英语口语练习句子（不要与已有句子重复），JSON 格式：',
+    '请为「'+deck.name+'」课程追加 10 条新的英语口语练习句子（不要与已有句子重复）；如果给出的原句与课程中已有句子相同，也请输出完整元数据，系统会仅补齐旧句缺失字段、不重复添加句子。JSON 格式：',
     '[',
-    '  { "sentence":"...", "translation":"...", "chunks":["...","..."], "hints":["...","..."] }',
+    '  { "sentence":"...", "translation":"整句中文翻译", "chunks":["...","..."], "hints":["逐意群中文提示","..."], "grammar":[{"role":"主语"},{"role":"谓语"}] }',
     ']',
-    'chunks 拼接必须与原句一致，2-4 个意群。'
+    'chunks 拼接必须与原句一致，2-4 个意群；translation 非空；hints 和 grammar 必须与 chunks 等长，grammar.role 标注各意群的句子成分/功能。'
   ].join('\n');
 }
 
@@ -2163,6 +2897,8 @@ var _appendMode = 'A';
 function openAppend(deck){
   _appendDeck = deck;
   $('appendDeckName').textContent = '目标课程：'+deck.name+'（'+deck.items.length+' 句）';
+  $('appendGoPractice').hidden = true;
+  $('appendContinue').hidden = true;
   $('appendMsg').className = 'msg';
   $('appendMsg').textContent = '';
   $('appendJsonBox').value = '';
@@ -2199,12 +2935,12 @@ function buildSplitPrompt(deck, rawLines){
     '',
     '要求：',
     '1. 每句 chunks 用单个空格连接后与原句完全一致（忽略大小写和标点）',
-    '2. chunks 2-4 个；hints 是每个意群的中文提示',
+    '2. chunks 2-4 个；hints 是每个意群的中文提示；grammar 按相同顺序标注每个意群的句子成分/功能',
     '3. translation 是整句中文翻译',
     '',
     '输出格式：',
     '[',
-    '  { "sentence":"原句", "translation":"中文翻译", "chunks":["意群1","意群2"], "hints":["提示1","提示2"] }',
+    '  { "sentence":"原句", "translation":"中文翻译", "chunks":["意群1","意群2"], "hints":["提示1","提示2"], "grammar":[{"role":"主语"},{"role":"谓语"}] }',
     ']',
     '',
     '待拆分句子：',
@@ -2233,12 +2969,8 @@ $('btnGenSplitPrompt').onclick = function(){
 
 /* ===== 图文课程树（旧导入兼容视图） ===== */
 function renderCourseTree(){
-  /* 图文课程列表已经统一到 CourseCatalog；保留这个入口供旧导入/跨标签刷新调用。 */
-  if($('tabCourses') && $('tabCourses').classList.contains('on')){
-    renderStoryCourseList(currentCatalog());
-    return;
-  }
-  renderLegacyCourseTree();
+  /* 旧导入/跨标签刷新入口统一回到当前的课程归属与类型筛选。 */
+  renderCourseBrowse();
 }
 function renderLegacyCourseTree(){
   var box = $('courseTree');
@@ -2284,24 +3016,26 @@ function renderLegacyCourseTree(){
     box.appendChild(ser);
   });
 }
-function renderStoryCourseList(catalog){
+function renderStoryCourseList(catalog, options){
+  options = options || {};
   var list = $('deckList');
   if(!list) return;
   setCourseRouteUI(false);
   list.className = 'deck-list';
-  list.innerHTML = '';
+  if(!options.append) list.innerHTML = '';
   var stories = (catalog && catalog.courses || []).filter(function(course){
-    return course.contentType === 'story';
+    return course.contentType === 'story' && courseMatchesView(course.id, course);
   });
   var title = document.createElement('div');
   title.className = 'deck-section-title';
-  title.textContent = '图文课程（'+stories.length+' 门）';
+  if(options.typeHeading) title.classList.add('course-type-heading');
+  title.textContent = (courseView === 'joined' ? '我的图文课程（' : '可加入的图文课程（')+stories.length+' 门）';
   list.appendChild(title);
   if(!stories.length){
     var empty = document.createElement('div');
     empty.className = 'empty-tip';
     empty.style.gridColumn = '1 / -1';
-    empty.textContent = '还没有图文课程。点击右上角加号导入课程包，即可开始学习。';
+    empty.textContent = courseView === 'joined' ? '还没有个人或已加入的图文课程。可点击右上角加号导入课程包。' : '没有可加入的图文课程。';
     list.appendChild(empty);
   }else{
     stories.forEach(function(course){ addCourseCard(course, list); });
@@ -2319,6 +3053,22 @@ function lessonRow(c){
 }
 function deleteCourse(courseId, title){
   openCourseConfirm('删除课程', '确定要删除课程「'+title+'」吗？\n删除后需重新导入 ZIP 才能恢复。', '删除课程', function(){
+    if(protocol3CatalogSelected()){
+      if(!window.ChunkCourse||typeof ChunkCourse.deleteCourse!=='function'){
+        alert('课程删除服务尚未就绪；课程未删除，请刷新后重试。');
+        return;
+      }
+      if(!serverCatalogView||!Array.isArray(serverCatalogView.courses)){
+        alert('课程目录尚未从服务器确认；课程未删除，请稍后重试。');
+        return;
+      }
+      ChunkCourse.deleteCourse(courseId).then(function(){
+        if(window.ChunkCourse) ChunkCourse.refreshList();
+        renderCourseTree();
+        showDeckNotice('已删除课程：'+title, 'ok');
+      }).catch(function(error){ alert('删除失败：'+(error && error.message || error)); });
+      return;
+    }
     try {
       var list;
       if(window.CL && CL.readCourses){
@@ -2363,7 +3113,7 @@ function refreshLogicalCourseOptions(){
   if(!select) return;
   select.innerHTML = '';
   var create = document.createElement('option'); create.value='new'; create.textContent='新建课程目录'; select.appendChild(create);
-  var existing = window.LogicalCourseStore ? LogicalCourseStore.read() : [];
+  var existing = catalogLogicalCourses();
   existing.forEach(function(course){
     var option=document.createElement('option'); option.value=course.id; option.textContent='导入到：'+course.title; select.appendChild(option);
   });
@@ -2407,7 +3157,7 @@ async function createLogicalCourseFromForm(){
   var coverFile=_pendingLogicalCoverFile;
   if(!coverFile) throw new Error('请选择目录封面图片');
   var coverImage=await readCoverImage(coverFile);
-  return LogicalCourseStore.create({title:title, coverImage:coverImage});
+  return persistLogicalCourseCreate({title:title, coverImage:coverImage});
 }
 function previewLogicalCover(file){
   var preview=$('ciLogicalCoverPreview');
@@ -2427,7 +3177,7 @@ function updateDropHint(file){
   if(file){
     hint.innerHTML = '<span class="course-drop-icon">'+(window.Icons?Icons.svg('check'):'')+'</span><p><strong>'+esc(file.name)+'</strong></p><small>已选择，设置课程目录归属后点击「确认导入」</small>';
   } else {
-    hint.innerHTML = '<span class="course-drop-icon" data-icon="box"></span><p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p><small>支持 .zip 格式（English MUD 导出）</small>';
+    hint.innerHTML = '<span class="course-drop-icon" data-icon="box"></span><p><strong>点击选择文件</strong> 或拖入 ZIP 课程包到此处</p><small>支持 .zip 格式</small>';
   }
 }
 (function initCourseImport(){
@@ -2515,7 +3265,7 @@ async function onCourseImportConfirm(){
     }
     showCourseMsg('正在导入「'+_pendingCourseFile.name+'」…','ok');
     await ChunkCourse.importZipDirect(_pendingCourseFile, {logicalCourseId: logicalCourseId || null});
-    renderCourseTree();
+    showTab('courses');
     showCourseMsg('导入完成！','ok');
     setTimeout(function(){ $('courseImpMask').hidden=true; }, 1200);
   } catch(e){
@@ -2528,40 +3278,25 @@ async function onCourseImportConfirm(){
 }
 
 function showTab(which){
-  var decksTab = $('tabDecks'), coursesTab = $('tabCourses');
   var deckList = $('deckList'), tree = $('courseTree'), importBtn = $('btnImportDecks');
-  requestedTab = which === 'courses' ? 'courses' : 'decks';
+  requestedTab = ['all','decks','courses'].indexOf(which) >= 0 ? which : 'all';
+  var url = new URL(window.location.href);
+  url.searchParams.set('courseType', requestedTab);
+  history.pushState({}, '', url.pathname + url.search + (url.hash || ''));
+  updateCourseTypeControls();
   if(!decksReady){
-    decksTab.classList.toggle('on', requestedTab === 'decks');
-    coursesTab.classList.toggle('on', requestedTab === 'courses');
     deckList.classList.remove('hidden'); tree.classList.add('hidden');
     deckList.className = 'deck-list';
     deckList.innerHTML = '<div class="empty-tip" style="grid-column:1 / -1">正在加载课程…</div>';
     showPage('pageDecks');
     return;
   }
-  if(which === 'courses'){
-    decksTab.classList.remove('on'); coursesTab.classList.add('on');
-    setCourseRouteUI(false);
-    deckList.classList.remove('hidden'); tree.classList.add('hidden');
-    $('marketSection').classList.add('hidden');
-    importBtn.textContent = '＋';
-    importBtn.setAttribute('aria-label', '导入图文课程');
-    importBtn.title = '导入图文课程';
-    importBtn.onclick = function(){ openCourseImport(); };
-    renderStoryCourseList(currentCatalog());
-  } else {
-    coursesTab.classList.remove('on'); decksTab.classList.add('on');
-    tree.classList.add('hidden'); deckList.classList.remove('hidden');
-    $('marketSection').classList.remove('hidden');
-    importBtn.textContent = '＋';
-    importBtn.setAttribute('aria-label', '添加课程');
-    importBtn.title = '添加课程';
-    importBtn.onclick = function(){ openImport(); };
-    /* 页签切换必须同时恢复句子课程主列表；公共市场是附属区域，不能代替主列表渲染。 */
-    openDecks();
-    openMarket();
-  }
+  setCourseRouteUI(false);
+  tree.classList.add('hidden'); deckList.classList.remove('hidden');
+  $('marketSection').classList.toggle('hidden', courseView === 'joined' || requestedTab === 'courses');
+  importBtn.onclick = openImportTypeChooser;
+  renderCourseBrowse();
+  if(courseView === 'discover' && requestedTab !== 'courses') openMarket();
 }
 
 /* ===== 事件绑定 ===== */
@@ -2575,7 +3310,9 @@ function bindCommon(){
   $('moveStoryConfirm').onclick = confirmMoveStoryPackage;
   $('moveStoryMask').onclick = function(e){ if(e.target === $('moveStoryMask')) closeMoveStory(); };
   /* 导入 */
-  $('btnImportDecks').onclick = function(){ openImport(); };
+  $('btnImportDecks').onclick = openImportTypeChooser;
+  $('btnChooseSentenceImport').onclick = chooseSentenceImport;
+  $('btnImportStoryCourse').onclick = chooseStoryImport;
   $('btnCopy').onclick = function(){ copyText($('promptBox').value); };
   $('btnClear').onclick = function(){ $('jsonBox').value=''; };
   $('btnValidate').onclick = function(){ doValidate(true); };
@@ -2586,7 +3323,7 @@ function bindCommon(){
   $('customSentences').oninput = renderPrompt;
   /* 拖拽/文件 */
   setupDrop('drop', 'fileInput', 'jsonBox');
-  setupDrop('appendDrop', 'appendFileInput', 'appendJsonBox');
+  setupDrop('appendDrop', null, 'appendJsonBox');
   /* 追加 */
   $('btnAppendCopy').onclick = function(){
     if(!_appendDeck) return;
@@ -2603,12 +3340,20 @@ function bindCommon(){
   /* 公共题库市场：刷新 + 首次打开加载 */
   var mktBtn = $('btnRefreshMarket');
   if(mktBtn) mktBtn.onclick = function(){ openMarket(); };
-  openMarket();
+  if(courseView === 'discover' && requestedTab !== 'courses') openMarket();
 }
-window.addEventListener('popstate', function(){ refreshCourseDataView(); });
+window.addEventListener('popstate', function(){
+  var params = new URLSearchParams(window.location.search);
+  courseView = params.get('courseView') === 'joined' ? 'joined' : 'discover';
+  requestedTab = ['all','decks','courses'].indexOf(params.get('courseType')) >= 0 ? params.get('courseType') : 'all';
+  updateCourseViewControls();
+  updateCourseTypeControls();
+  $('marketSection').classList.toggle('hidden', courseView === 'joined' || requestedTab === 'courses');
+  refreshCourseDataView();
+});
 function setupDrop(dropId, inputId, boxId){
   var drop = $(dropId), input = $(inputId), box = $(boxId);
-  drop.addEventListener('click', function(){ input.click(); });
+  if(input) drop.addEventListener('click', function(e){ if(e.target === box) return; input.click(); });
   drop.addEventListener('dragover', function(e){ e.preventDefault(); drop.style.borderColor='var(--accent)'; });
   drop.addEventListener('dragleave', function(){ drop.style.borderColor=''; });
   drop.addEventListener('drop', function(e){
@@ -2617,7 +3362,7 @@ function setupDrop(dropId, inputId, boxId){
     var f = e.dataTransfer.files && e.dataTransfer.files[0];
     if(f){ readFileToBox(f, box); }
   });
-  input.addEventListener('change', function(){
+  if(input) input.addEventListener('change', function(){
     var f = input.files && input.files[0];
     if(f) readFileToBox(f, box);
     input.value = '';
@@ -2658,11 +3403,14 @@ window.addEventListener('message', function(ev){
 });
 
 /* 课程数据尚未完成水合时也先接住页签点击，避免用户的第一次切换被初始化竞态吞掉。 */
+$('tabAll').onclick = function(){ showTab('all'); };
 $('tabDecks').onclick = function(){ showTab('decks'); };
 $('tabCourses').onclick = function(){ showTab('courses'); };
+$('courseViewJoined').onclick = function(){ setCourseView('joined'); };
+$('courseViewDiscover').onclick = function(){ setCourseView('discover'); };
 
 Promise.all([
-  CL.ensureCloud(),
+  CL.ensureCloud().then(loadServerCatalogView),
   /* 明确等待课程数据从持久层完成水合，避免冷启动先把图文课节误显示成顶层课程。 */
   CL.preload ? CL.preload() : Promise.resolve(),
   window.ContentRepo ? ContentRepo.ready : Promise.resolve()
@@ -2670,9 +3418,9 @@ Promise.all([
 loadMem();
 bindCommon();
 decksReady = true;
+refreshContentConflictDrafts().catch(function(){});
 /* 保留用户在冷启动期间点击的页签意图，数据水合完成后再渲染真实课程树。 */
-if(requestedTab === 'courses') showTab('courses');
-else { openDecks(); renderCourseTree(); }
+showTab(requestedTab);
 }); /* CL.ensureCloud().then */
 </script>
 

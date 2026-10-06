@@ -33,8 +33,7 @@ var MainPracticePolicy = (() => {
     const wrongAttempts = Array.isArray(options.wrongAttempts) ? options.wrongAttempts : [];
     const status = Array.isArray(options.status) ? options.status : [];
     const flawed = wrongAttempts.some((count) => (count || 0) > 0) || Boolean(options.hinted) || status.some((value) => value === "bad" || value === "revealed");
-    if (flawed) return { eligible: false, seconds: 0 };
-    return { eligible: true, seconds: options.perfectThis ? 3 : 5 };
+    return { eligible: true, seconds: flawed ? 6 : options.perfectThis ? 3 : 5 };
   }
   return __toCommonJS(main_practice_policy_entry_exports);
 })();

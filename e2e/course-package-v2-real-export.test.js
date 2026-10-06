@@ -36,8 +36,10 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     var page = await browser.newPage();
     await page.goto(BASE + '/decks.html?e2e=course-package-v2-real', { waitUntil: 'networkidle' });
     var logicalId = await page.evaluate(function () { return LogicalCourseStore.create({ title: '真实 2.0 回归目录', coverImage: 'data:image/png;base64,e2e-real-cover' }).id; });
-    await page.locator('#tabCourses').click();
+    await page.locator('#courseViewJoined').click();
     await page.locator('#btnImportDecks').click();
+    await page.locator('#courseImportTypeMask:not([hidden])').waitFor({ state:'visible' });
+    await page.locator('#btnImportStoryCourse').click();
     await page.locator('#ciLogicalCourse').selectOption(logicalId);
     await page.locator('#courseFileInput').setInputFiles(ZIP);
     await page.locator('#btnCourseImport').click();
@@ -47,10 +49,14 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     var course = await page.evaluate(async function () { await CL.preload(); return CL.readCourses().find(function (item) { return item.schemaVersion === '2.0'; }); });
     if (!course || !course.courseId || course.utterances.length !== 7) throw new Error('真实 2.0 导出包未正确保存');
     await page.goto(BASE + '/courses.html?id=' + encodeURIComponent(course.courseId) + '&e2e=course-package-v2-real', { waitUntil: 'networkidle' });
+    await page.waitForSelector('.mode-guide');
     await page.waitForSelector('[data-action="select-v2-mode"]');
     if (await page.locator('[data-action="select-v2-mode"]').count() !== 5) throw new Error('真实 2.0 包未显示五种模式入口');
     if (await page.locator('[data-mode="chunkSelection"]:disabled').count() !== 1 || await page.locator('[data-mode="roleplay"]:disabled').count() !== 1) throw new Error('真实包未按 capabilities 禁用不具备的模式');
+    var initialProgress = await page.evaluate(function (id) { return CL.readProgress()[id] || null; }, course.courseId);
+    if (initialProgress && (initialProgress.seen || []).length) throw new Error('答题模式引导页不应提前记录已看节点');
     await page.locator('[data-action="select-v2-mode"][data-mode="typing"]').click();
+    await page.locator('[data-action="start-v2-learning"]').click();
     for (var i = 0; i < course.sequence.length; i++) {
       var answer = course.utterances.find(function (item) { return item.id === course.sequence[i]; }).acceptedAnswers.en[0];
       await page.locator('#v2Answer').fill(answer);

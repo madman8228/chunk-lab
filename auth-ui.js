@@ -20,8 +20,15 @@
      用队列合并，登录成功后依次通知所有等待方，避免回调丢失 */
   var _loginWaiters = [];
   var _loginShown = false;
+  var _authExpired = false;
+  global.addEventListener('chunklab-auth-expired', function () {
+    _authExpired = true;
+    var message = global.document.querySelector('#chunkauth-mask [data-auth-message]');
+    if (message) message.textContent = '登录已过期，请重新登录；未提交记录会保留。';
+  });
   function finishLogin(r) {
     _loginShown = false;
+    _authExpired = false;
     /* 根因修复（2026-09-09，A2 浏览器实测发现）：此前只通知 waiters 不移除遮罩，
        登录/注册成功后页面被 #chunkauth-mask 永久挡住，多用户模式无法使用。 */
     var mask = global.document.getElementById('chunkauth-mask');
@@ -45,7 +52,8 @@
     var mode = 'login';
     var title = el('h2', null, '登录 Chunk Lab');
     title.style.cssText = 'margin:0 0 4px;font-size:19px;letter-spacing:-.01em;color:#202326';
-    var sub = el('p', null, '数据已存到你的云服务器，登录后同步');
+    var sub = el('p', null, _authExpired ? '登录已过期，请重新登录；未提交记录会保留。' : '数据已存到你的云服务器，登录后同步');
+    sub.setAttribute('data-auth-message', '');
     sub.style.cssText = 'margin:0 0 18px;font-size:13px;color:#74716a';
 
     var apiInput = el('input');

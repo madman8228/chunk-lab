@@ -2,7 +2,7 @@
  * imports or uploads data. Confirmation is required before reading private data. */
 (function(global){
   'use strict';
-  var keys=['chunklab.v1','chunklab.courses.v1','chunklab.course-progress.v1','chunklab_reinforce'];
+  var keys=['chunklab.v1','chunklab.courses.v1','chunklab.course-progress.v1','chunklab_reinforce','chunklab.logical-courses.v1'];
   function readLocal(){
     return keys.map(function(key){return global.localStorage.getItem(key);});
   }
@@ -64,6 +64,17 @@
         global.setTimeout(function(){URL.revokeObjectURL(url);},1000);
         status.textContent='已请求下载备份，请确认文件保存成功。原数据和当前数据均未修改。';
       }catch(error){status.textContent=error.message || '读取失败，原数据未修改';}
+      finally{trigger.disabled=false;}
+    };
+    var archiveButton=global.document.getElementById('legacyArchiveToAccount');
+    if(archiveButton)archiveButton.onclick=async function(){
+      var trigger=this;trigger.disabled=true;
+      try{
+        var receipt=await global.LegacyRecovery.archiveConfirmedUnassigned(global.document.getElementById('legacyMine').checked);
+        status.textContent=receipt.state==='archived'
+          ? '旧数据原件已安全保存在当前账号的恢复区；尚未合并，设备上的原数据保持不变。'
+          : '暂时没有需要保全的旧数据；设备上的原数据保持不变。';
+      }catch(error){status.textContent=error.message || '旧数据尚未保全，原数据保持不变';}
       finally{trigger.disabled=false;}
     };
   }

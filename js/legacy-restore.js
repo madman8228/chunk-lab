@@ -10,6 +10,10 @@
     return JSON.stringify(v);
   }
   function clone(v){return JSON.parse(JSON.stringify(v));}
+  function serverAuthoritative(){
+    var config=g.CL&&g.CL.getCloudConfig?g.CL.getCloudConfig():null;
+    return !!(config&&config.persistenceMode==='server-authoritative'&&Number(config.writeProtocol)===3);
+  }
   function hasPendingBatch(rows){
     return (rows && rows.syncMeta||[]).some(function(row){return row && row.key==='conditional-batch-v1' && row.pending;})
       || (rows && rows.syncIntents||[]).some(function(row){return row && row.key==='conditional-batch-v1' && row.pending;});
@@ -99,7 +103,8 @@
     var legacy={mem:clone(data.mem),courses:Array.isArray(data.courses)?clone(data.courses):[],
       courseProgress:data.courseProgress&&typeof data.courseProgress==='object'?clone(data.courseProgress):{},
       reinforceBook:Array.isArray(data.book)?clone(data.book):[],
-      legacyArchive:data.legacyArchive&&typeof data.legacyArchive==='object'?clone(data.legacyArchive):{}};
+      legacyArchive:data.legacyArchive&&typeof data.legacyArchive==='object'?clone(data.legacyArchive):{},
+      saveState:data.saveState&&typeof data.saveState==='object'?clone(data.saveState):null};
     var current=await snapshot(),plan=merge(current,legacy);
     return {owner:g.AccountStorage.owner,current:current,legacy:legacy,result:plan.result,conflicts:plan.conflicts};
   }
@@ -109,6 +114,7 @@
     if(JSON.stringify([base,uid])!==owner)throw new Error('账号已切换，请回到原账号重试');
   }
   async function apply(view){
+    if(serverAuthoritative())throw new Error('新版账号不能切换本机数据版本；请在“已保全的恢复来源”中预览并选择可新增内容');
     if(!g.navigator.locks)throw new Error('此浏览器暂不支持安全恢复，请使用支持 Web Locks 的浏览器');
     if(view.conflicts.length)throw new Error('存在冲突，未恢复任何数据');
     return g.navigator.locks.request('chunklab-restore',async function(){

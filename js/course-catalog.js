@@ -472,14 +472,17 @@
 
     (options.userDecks || []).forEach(function (deck) {
       if (!deck || !deck.id || deck.builtin) return;
-      var id = 'user-deck:' + deck.id;
+      var id = deck.authoring && deck.authoring.catalogCourseId || 'user-deck:' + deck.id;
       var lesson = leafForDeck({
         id: deck.id, name: deck.name, short: deck.name,
         totalCount: Array.isArray(deck.items) ? deck.items.length : deck.itemCount
       }, 'lesson:user-deck:');
+      if (deck.authoring && deck.authoring.legacySource && deck.authoring.legacySource.courseId) {
+        lesson.legacyAliases = ['lesson:story-package:' + deck.authoring.legacySource.courseId];
+      }
       courses.push({
         id: id, kind: 'course', title: text(deck.name, '我的课程'), origin: 'user',
-        contentType: 'sentence', coverKey: 'user', outline: [lesson],
+        contentType: 'sentence', coverKey: 'user', coverImage: text(deck.coverImage, ''), outline: [lesson],
         lessons: [lesson], lessonCount: 1, itemCount: lesson.itemCount
       });
       ownerByContentRef[refKey(lesson.contentRef)] = id;
@@ -489,7 +492,10 @@
     /* 没有用户逻辑课程归属的图文包保持独立课程；系统不根据包内标题或教材标识擅自合并。 */
     var declaredKeys = {};
     courses.forEach(function (course) { if (course.catalogKey) declaredKeys[course.catalogKey] = course.id; });
+    var convertedSources = {};
+    (options.userDecks || []).forEach(function (deck) { if (deck && deck.authoring && deck.authoring.legacySource && deck.authoring.legacySource.courseId) convertedSources[deck.authoring.legacySource.courseId] = true; });
     storyPackages.forEach(function (source) {
+      if (source && convertedSources[source.courseId]) return;
       var groupKey = storyCatalogKey(source);
       if (groupKey && declaredKeys[groupKey]) return;
       addStoryCourse(source);
@@ -527,9 +533,32 @@
   }
 
   function getCourse(catalog, id) { return catalog && catalog.byCourseId && catalog.byCourseId[id] || null; }
+  function getCourseForContent(catalog, type, id) {
+    if (!catalog || !catalog.ownerByContentRef) return null;
+    return getCourse(catalog, catalog.ownerByContentRef[refKey({ type: type, id: id })]);
+  }
+  function getEnrollmentAliases(catalog) {
+    var aliases = Object.create(null);
+    (catalog && catalog.courses || []).forEach(function (course) {
+      if (!course || course.origin !== 'user') return;
+      listLessons(course).forEach(function (lesson) {
+        var ref = lesson.contentRef;
+        if (course.contentType === 'sentence' && ref && ref.type === 'sentence-deck' && ref.id) {
+          var legacyId = 'user-deck:' + ref.id;
+          if (legacyId !== course.id) aliases[legacyId] = course.id;
+        } else if (course.contentType === 'story' && ref && ref.type === 'story-package' && ref.id) {
+          /* 导入包原先可独立登记为 package:<courseId>；归入用户逻辑课程后，
+             用包自身稳定 ID 迁移旧登记，避免变成无法启动的孤儿课程。 */
+          var legacyPackageId = 'package:' + ref.id;
+          if (legacyPackageId !== course.id) aliases[legacyPackageId] = course.id;
+        }
+      });
+    });
+    return aliases;
+  }
   function listLessons(course) { return course && Array.isArray(course.lessons) ? course.lessons.slice() : flattenLessons(course && course.outline, []); }
   function resolveLesson(course, lessonIdValue) {
-    return listLessons(course).find(function (lesson) { return lesson.id === lessonIdValue; }) || null;
+    return listLessons(course).find(function (lesson) { return lesson.id === lessonIdValue || (lesson.legacyAliases || []).includes(lessonIdValue); }) || null;
   }
 
   var api = {
@@ -540,6 +569,8 @@
     logicalCourse: logicalCourse,
     buildCatalog: buildCatalog,
     getCourse: getCourse,
+    getCourseForContent: getCourseForContent,
+    getEnrollmentAliases: getEnrollmentAliases,
     listLessons: listLessons,
     resolveLesson: resolveLesson,
     flattenLessons: flattenLessons,

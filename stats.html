@@ -51,6 +51,10 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .srow .en{font-size:13.5px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .srow .cn{font-size:11.5px;color:var(--faint);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .srow .meta{flex-shrink:0;text-align:right;font-size:11.5px;color:var(--muted)}
+.stats-detail-row .meta-correct{color:var(--ok)}
+.stats-detail-row .meta-wrong{color:var(--bad)}
+.stats-detail-row .meta-time{display:inline-block;width:4.4em;text-align:right;white-space:nowrap}
+.stats-state-cell{display:flex;align-items:center;flex:0 0 56px}
 .row-detail-toggle{display:none;flex-shrink:0;width:24px;height:24px;border:0;border-radius:50%;background:transparent;position:relative;cursor:pointer}
 .row-detail-toggle::before{content:"";position:absolute;left:8px;top:7px;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .15s ease}
 .stats-detail-row.is-expanded .row-detail-toggle::before{transform:rotate(225deg);top:10px}
@@ -70,6 +74,12 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .wrong-del .icon{width:14px;height:14px}
 .wrong-del:hover{background:var(--bad-soft);color:var(--bad)}
 .wrong-filter #btnClearWrongBook{margin-left:auto;color:var(--bad)}
+.wrong-row .wrong-actions{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.muted{color:var(--muted);font-size:12px}
+.mistake-export-panel{min-width:0;margin:0 0 4px;padding:5px 10px;border:1px solid #bfd0f7;border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}
+.export-progress{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}.export-progress .export-close{margin-left:auto}
+.mistake-export-panel textarea{display:block;width:100%;min-height:180px;max-height:55vh;resize:vertical;margin-top:8px;border:1px solid var(--border-strong);border-radius:8px;padding:9px;background:var(--surface-2);color:var(--text);font:12px/1.5 ui-monospace,Consolas,monospace;overflow:auto}
+.export-warning{color:var(--warn);background:var(--warn-soft);border-radius:7px;padding:7px 9px;font-size:12px;margin:0 0 8px}.export-message{color:var(--ok);font-size:12px;line-height:1.3;margin:0;flex:1;min-width:160px}
 /* 触摸按压反馈（2026-09-10）：tap-highlight 已全局关闭，按压态由 :active 提供 */
 .btn:active{transform:translateY(1px)}
 .wrong-del:active{background:var(--bad-soft);color:var(--bad)}
@@ -128,10 +138,10 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
   .srow .row-num{width:24px;font-size:11px}
   .srow .en{font-size:12px}
   .srow .cn{font-size:10.5px}
-  .stats-detail-row{display:grid;grid-template-columns:24px minmax(0,1fr) auto 24px;grid-template-areas:"num sen badge toggle" "detail detail detail detail";column-gap:6px;row-gap:3px;align-items:center;cursor:pointer}
+  .stats-detail-row{display:grid;grid-template-columns:24px minmax(0,1fr) 56px 24px;grid-template-areas:"num sen badge toggle" "detail detail detail detail";column-gap:6px;row-gap:3px;align-items:center;cursor:pointer}
   .stats-detail-row .row-num{grid-area:num}
   .stats-detail-row .sen{grid-area:sen}
-  .stats-detail-row .badge{grid-area:badge}
+  .stats-detail-row .stats-state-cell{grid-area:badge}
   .stats-detail-row .row-detail-toggle{grid-area:toggle}
   .stats-detail-row .meta{display:none;grid-area:detail;font-size:10px;width:auto;margin:0;padding-top:5px;border-top:1px solid var(--border);text-align:left}
   .stats-detail-row.is-expanded .meta{display:block}
@@ -153,10 +163,10 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
   .srow .en{-webkit-line-clamp:2}
   .srow .cn{-webkit-line-clamp:2}
 }
-/* 概览分两层：状态（只能看）→ 时间（本月 + 近 7 天）。
+/* 概览分两层：状态（只能看）→ 时间（月度汇总 + 打卡日历）。
    待复习与错题本保留在顶部页签中作为清单入口，概览不再重复显示可点击卡片。 */
 [hidden]{display:none!important}
-.overview-status{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.overview-status{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:16px}
 .ov-stat{min-width:0;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface-stat)}
 .ov-stat .l{display:block;font-size:11.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ov-stat .n{display:block;margin-top:2px;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
@@ -164,20 +174,6 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .overview-time{padding:14px 16px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
 .activity-section{padding:14px 0 2px}
 .activity-section h3{display:flex;align-items:baseline;gap:8px;font-size:13px;margin:0 0 12px}
-.activity-section h3 .avg-note{font-size:11.5px;font-weight:400;color:var(--faint)}
-.activity-week{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
-.activity-day{min-width:0;text-align:center;font-size:12px;color:var(--muted)}
-.activity-day b{display:block;height:18px;font-size:12px;color:var(--text);font-variant-numeric:tabular-nums}
-/* 柱宽：移动端（≤600px）列宽 < 40px 时柱子自然填满列宽，这个值不起作用；
-   桌面端列宽约 110px，靠 @media(min-width:601px) 放宽到 40px，否则柱子只占三分之一显得瘦。 */
-.activity-track{height:56px;display:flex;align-items:flex-end;max-width:32px;margin:0 auto;border-bottom:1px solid var(--border)}
-/* 柱高由渲染层算成 px：非零值最少 3px，0 值不画柱、只留基线。
-   旧版按百分比算 + 76px 容器 → 1 句只剩 1.5px、0 句整列空白，会被读成「图表坏了」。 */
-.activity-track>div{width:100%;background:rgba(44,98,201,.34);border-radius:3px 3px 0 0}
-.activity-day.is-today b{color:var(--accent);font-weight:700}
-.activity-day.is-today .activity-track>div{background:var(--accent)}
-.activity-week-labels{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;margin-top:6px;font-size:11px;text-align:center;color:var(--muted)}
-.activity-week-labels .is-today{color:var(--text);font-weight:600}
 .overview-note{font-size:12px;color:var(--muted);margin:10px 0 0}
 .stats-loading{min-height:72px;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:13px}
 .stats-sync-status{margin:0 0 10px;padding:5px 9px;border-radius:7px;background:var(--warn-soft);color:var(--warn);font-size:12px;text-align:center}
@@ -187,6 +183,19 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 /* 异常项（没带日期的答题）从句子流里独立出来：只靠文字变色区分度太弱。 */
 .overview-month-summary .undated{padding:1px 9px;border-radius:999px;background:var(--warn-soft);color:var(--warn)}
 .overview-month-summary .undated b{color:var(--warn)}
+.month-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;max-width:378px;margin:0 auto}
+.month-calendar-weekday{text-align:center;padding:2px 0;font-size:10.5px;color:var(--faint)}
+.month-calendar-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;min-width:0;border-radius:7px;
+  color:var(--text);font-size:11px;font-variant-numeric:tabular-nums}
+.month-calendar-day.l0{background:var(--surface-2);color:var(--faint)}
+.month-calendar-day.l1{background:rgba(200,90,30,.22)}
+.month-calendar-day.l2{background:rgba(200,90,30,.42)}
+.month-calendar-day.l3{background:rgba(200,90,30,.68);color:#fff}
+.month-calendar-day.l4{background:#c05a1d;color:#fff}
+.month-calendar-day.future{background:transparent;color:var(--faint);opacity:.5}
+.month-calendar-day.today{font-weight:800;outline:1px solid var(--text);outline-offset:-1px}
+.month-calendar-day.pad{visibility:hidden}
+.month-calendar-section{padding-bottom:0}
 .stats-tabs{border-bottom:1px solid var(--border);gap:6px;margin:0 0 12px}
 .stats-tabs .tab{border:0;border-radius:0;background:transparent;min-height:44px;padding:8px 12px}
 .stats-tabs .tab.on{background:transparent;border-bottom:2px solid var(--accent)}
@@ -195,7 +204,7 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .stats-record-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 8px}
 .stats-search{display:flex;align-items:center;gap:8px;flex:1 1 240px;min-width:220px}
 .stats-search label{font-size:12px;color:var(--muted);white-space:nowrap}
-.stats-search input{width:100%;max-width:280px;height:32px;border:1px solid var(--border-strong);border-radius:7px;background:var(--surface);color:var(--text);padding:5px 9px;font:inherit;outline:none}
+.stats-search input{width:100%;max-width:140px;height:32px;border:1px solid var(--border-strong);border-radius:7px;background:var(--surface);color:var(--text);padding:5px 9px;font:inherit;outline:none}
 .stats-search input::placeholder{color:var(--faint)}
 .stats-search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .stats-search-clear{padding-left:7px;padding-right:7px;color:var(--muted)}
@@ -226,13 +235,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
   .stats-search input{max-width:none}
   .stats-record-toolbar .stats-filter{width:100%}
   .records-summary{min-height:22px}
-  .activity-week{gap:5px}
-  .activity-week-labels{gap:5px}
-  .activity-day b{height:16px;font-size:11px}
   .btn,.stats-filter .f,.wrong-del,.row-detail-toggle{min-height:44px}
   .wrong-del,.row-detail-toggle{min-width:44px}
+  .mistake-export-panel{padding:5px 8px}.export-progress .btn{flex:0 0 auto}
   .srow,.review-row{padding:8px 0}
-  .stats-detail-row{grid-template-columns:24px minmax(0,1fr) auto 44px}
+  .stats-detail-row{grid-template-columns:24px minmax(0,1fr) 56px 44px}
 }
 </style>
 </head>
@@ -262,7 +269,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
     </div>
     <div class="stats-filter" id="statsFilter">
       <button class="f on" data-f="all">全部</button>
-      <button class="f" data-f="mastered">已熟</button>
+      <button class="f" data-f="familiar">已熟悉</button>
+      <button class="f" data-f="initialPassed">初测通过</button>
+      <button class="f" data-f="mastered">已掌握</button>
+      <button class="f" data-f="reinforce">需再验证</button>
       <button class="f" data-f="weak">需巩固</button>
       <button class="f" data-f="unseen">未练过</button>
     </div>
@@ -279,7 +289,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <script src="js/course-progress.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
-<script src="js/batch-sync.js"></script>
 <script src="js/core-identity.js"></script>
 <script src="js/core-merge.js"></script>
 <script src="js/core-activity.js"></script>
@@ -288,25 +297,29 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <script src="js/core-stats-signature.js"></script>
 <script src="js/core-storage-state.js"></script>
 <script src="js/core-entity-delta.js"></script>
-<script src="js/core-sync-delta.js"></script>
-<script src="js/core-sync-intents.js"></script>
-<script src="js/core-sync-payload.js"></script>
-<script src="js/core-sync-transport.js"></script>
-<script src="js/core-sync-replay.js"></script>
-<script src="js/core-sync-batch-merge.js"></script>
 <script src="js/core-sync-stats-normalize.js"></script>
-<script src="js/core-sync-learning-marks.js"></script>
-<script src="js/core-sync-entity-merge.js"></script>
-<script src="js/core-sync-kv.js"></script>
 <script src="js/core-revision-delta.js"></script>
 <script src="js/core-runtime.js"></script>
+<script src="js/learning-engine.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
-<script src="js/sync-resolution.js"></script>
+<script src="js/server-cache.js"></script>
+<script src="js/server-store.js"></script>
+<script src="js/server-stat-key-migration.js"></script>
+<script src="js/main-legacy-stats.js"></script>
+<script src="js/save-status.js"></script>
+<script src="js/legacy-recovery.js"></script>
 <script src="auth-ui.js"></script>
 <script src="js/legacy-restore.js"></script>
 <script src="js/icons.js"></script>
 <script src="srs.js"></script>
+<script src="js/chunk-shape.js"></script>
+<script src="library.js"></script>
+<script src="js/course-package-contract.js"></script>
+<script src="js/course-capabilities.js"></script>
+<script src="js/vendor/course-schema-validator.js"></script>
+<script src="course-package.js"></script>
+<script src="js/mistake-review.js"></script>
 <script>
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
 if(window.Icons) Icons.install();
@@ -318,7 +331,32 @@ var mem = { decks:[], best:{}, mastered:{}, stats:{ totalRounds:0, totalAnswered
 var _statsDecks = null; /* 内置题库使用轻量 index；完整详情只在开始练习时取 */
 /* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
 function loadMem(){ mem = CL.loadMem(); _statsDecks = null; }
-function saveStore(){ return CL.saveAndNotify(mem); }
+function refreshConfirmedStatsProjection(){
+  if(!statsProtocol3Active() || !CL.serverPersistenceReady || !CL.serverPersistenceReady() ||
+     !window.ServerStore || !window.ServerCache) return Promise.resolve(false);
+  var account=window.AccountStorage, owner=account&&account.owner;
+  if(!owner) return Promise.resolve(false);
+  return Promise.all([ServerStore.pending(),ServerCache.read()]).then(function(result){
+    var pending=result[0], row=result[1];
+    if(pending.length || !row || row.owner!==owner || !row.snapshot || !row.snapshot.mem ||
+       !window.AccountStorage || window.AccountStorage.owner!==owner || !CL.serverPersistenceReady()) return false;
+    /* Never project a possibly stale confirmed snapshot over unsent local work. */
+    var local=CL.loadMem(), confirmed=row.snapshot.mem;
+    mem=Object.assign({},local,confirmed);
+    mem.settings=Object.assign({},local.settings||{},confirmed.settings||{});
+    mem.progress=local.progress||{};
+    _statsDecks=null;
+    return true;
+  }).catch(function(error){
+    console.warn('[stats] confirmed projection unavailable; keeping local view:',error&&error.message||error);
+    return false;
+  });
+}
+function statsProtocol3Active(){
+  var config = CL && CL.getCloudConfig ? CL.getCloudConfig() : null;
+  return !!(config && config.persistenceMode === 'server-authoritative' && Number(config.writeProtocol) === 3);
+}
+function saveStore(syncMode){ return CL.saveAndNotify(mem, syncMode); }
 function $(id){ return CL.$(id); }
 function esc(s){ return CL.esc(s); }
 function normSent(s){ return CL.normSent(s); }
@@ -351,32 +389,29 @@ function withStatsSource(it, deckId){
 /* 与主页一致：旧版本临时复习 ID 能唯一对应题库时自动并回稳定统计键。 */
 function migrateLegacyStatKeys(){
   if(!mem.stats || !mem.stats.bySentence) return false;
-  var decks = allDecks(), known = {};
-  decks.forEach(function(d){ known[d.id] = d; });
-  var changed = false, by = mem.stats.bySentence;
-  function merge(a,b){
-    var latest = (a.lastAt||0) >= (b.lastAt||0) ? a : b;
-    var out = Object.assign({}, latest);
-    out.times=(a.times||0)+(b.times||0); out.okTimes=(a.okTimes||0)+(b.okTimes||0);
-    out.wrongTimes=(a.wrongTimes||0)+(b.wrongTimes||0); out.maxStreak=Math.max(a.maxStreak||0,b.maxStreak||0);
-    return out;
+  if(statsProtocol3Active()){
+    if(!window.ServerCache||!window.ServerStatKeyMigration||!window.MainLegacyStats) return Promise.resolve(false);
+    var owner=window.AccountStorage&&window.AccountStorage.owner;
+    return ServerCache.read().then(function(row){
+      if(!row||row.owner!==owner||!row.snapshot||!row.snapshot.mem) return false;
+      var migration=MainLegacyStats.migrateLegacyStatKeys(mem.stats.bySentence,allDecks(),{
+        normalizeSentence:normSent,hash:CL.fnv8
+      });
+      return ServerStatKeyMigration.run(migration.migrations,function(){return mem;});
+    }).catch(function(error){
+      console.warn('[stats] server-confirmed legacy migration unavailable:',error&&error.message||error);
+      return false;
+    });
   }
-  Object.keys(by).forEach(function(oldKey){
-    var st=by[oldKey]; if(!st || !st.deckId || known[st.deckId]) return;
-    var sourceId='';
-    if(st.deckId.indexOf('rev-')===0) decks.forEach(function(d){ if(!sourceId && st.deckId.indexOf('rev-'+d.id+'-')===0) sourceId=d.id; });
-    if(!sourceId){
-      var candidates=decks.filter(function(d){ return (d.items||[]).some(function(it){ return normSent(it.sentence||it.en||'')===normSent(st.sentence||''); }); });
-      if(candidates.length===1) sourceId=candidates[0].id;
-      if(candidates.length>1){ var named=candidates.filter(function(d){ return d.name===st.deckName; }); if(named.length===1) sourceId=named[0].id; }
-    }
-    if(!sourceId) return;
-    var newKey=sourceId+'#'+CL.fnv8(st.sentence||'');
-    by[newKey]=by[newKey]?merge(by[newKey],st):Object.assign(st,{deckId:sourceId,deckName:known[sourceId].name});
-    if(newKey!==oldKey) delete by[oldKey]; changed=true;
+  var migration = MainLegacyStats.migrateLegacyStatKeys(mem.stats.bySentence, allDecks(), {
+    normalizeSentence: normSent, hash: CL.fnv8
   });
-  if(changed) saveStore();
-  return changed;
+  if(!migration.changed) return false;
+  var by=mem.stats.bySentence;
+  Object.keys(by).forEach(function(key){if(!(key in migration.by))delete by[key];});
+  Object.keys(migration.by).forEach(function(key){by[key]=migration.by[key];});
+  saveStore();
+  return true;
 }
 
 /* ===== 渲染 ===== */
@@ -384,6 +419,21 @@ var _statsTab = 'overview';
 var _statsFilter = 'all';
 var _statsSearch = '';
 var _wrongBookFilter = 'all';
+var _mistakeExport = { open:false, snapshot:null, sourceRows:null, accountScope:'', batchIndex:0, lastCopiedIndex:-1, prompt:'', manualFallback:false, message:'', generating:false, stale:false };
+var _mistakeExportGeneration = 0;
+var _statsReinforceSaveFailed = false;
+var _statsSaveFailureShown = false;
+function saveWrongBookFromStats(){
+  var result=statsProtocol3Active() ? CL.saveAndNotify(mem, 'local') : saveStore();
+  if(result===false){_statsReinforceSaveFailed=true;if(!_statsSaveFailureShown){_statsSaveFailureShown=true;alert('错题未确认保存；当前页面仍可导出，刷新后可能无法恢复。');}return;}
+  Promise.resolve(result).then(function(ok){
+    _statsReinforceSaveFailed=ok===false;
+    if(ok===false&&!_statsSaveFailureShown){_statsSaveFailureShown=true;alert('错题未确认保存；当前页面仍可导出，刷新后可能无法恢复。');}
+    if(ok===true)_statsSaveFailureShown=false;
+    renderStats();
+  });
+}
+/* Deletion requires a server receipt; offline clicks leave the authoritative row untouched. */
 var _listPages = {}, LIST_PAGE_SIZE = 50;
 function listPage(rows, key){
   var page = Math.min(_listPages[key] || 0, Math.max(0, Math.ceil(rows.length / LIST_PAGE_SIZE)-1));
@@ -397,6 +447,10 @@ function listPager(total, key){
     '<button class="btn sm" data-list-key="'+key+'" data-list-page="'+(page-1)+'"'+(page===0?' disabled':'')+'>上一页</button>'+
     '<span>'+(page+1)+' / '+count+' 页 · '+total+' 条</span>'+
     '<button class="btn sm" data-list-key="'+key+'" data-list-page="'+(page+1)+'"'+(page+1>=count?' disabled':'')+'>下一页</button></div>';
+}
+function mistakeExportAccountScope(){
+  var account=window.AccountStorage;
+  return account ? [account.owner||'',account.sessionEpoch||'',account.databaseName||''].join('|') : 'unknown-scope';
 }
 function recordSearchText(value){
   return String(value || '').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
@@ -417,7 +471,30 @@ function monthActivitySummary(mem){
   return { days: days, rounds: rounds, answered: monthAnswered, totalAnswered: audit.totalAnswered };
 }
 
-/* Overview uses the same dated activity as the home calendar. */
+function monthCalendarMarkup(activity, now){
+  var year = now.getFullYear(), month = now.getMonth();
+  var daysInMonth = new Date(year, month + 1, 0).getDate();
+  var leading = (new Date(year, month, 1).getDay() + 6) % 7;
+  var today = now.getDate();
+  var cells = ['一','二','三','四','五','六','日'].map(function(label){
+    return '<span class="month-calendar-weekday" aria-hidden="true">'+label+'</span>';
+  }).join('');
+  for(var pad=0; pad<leading; pad++) cells += '<span class="month-calendar-day pad" aria-hidden="true"></span>';
+  for(var day=1; day<=daysInMonth; day++){
+    var key = CL.ymd(new Date(year, month, day));
+    var record = activity[key] || {answered:0,rounds:0};
+    var answered = Number(record.answered) || 0, rounds = Number(record.rounds) || 0;
+    var level = answered >= 40 ? 4 : answered >= 20 ? 3 : answered >= 10 ? 2 : (answered || rounds) ? 1 : 0;
+    var future = day > today;
+    var label = key+'：答题 '+answered+' 句，完成练习 '+rounds+' 轮';
+    cells += '<time class="month-calendar-day '+(future?'future':'l'+level)+(day===today?' today':'')+'" datetime="'+key+'" data-day="'+key+'" data-answered="'+answered+'" data-rounds="'+rounds+'" aria-label="'+label+'" title="'+label+'">'+day+'</time>';
+  }
+  var monthLabel = year+'年'+(month+1)+'月';
+  return '<section class="activity-section month-calendar-section" aria-label="'+monthLabel+'打卡日历">'+
+    '<h3>本月打卡</h3><div class="month-calendar-grid">'+cells+'</div></section>';
+}
+
+/* Overview uses dated activity records for the monthly calendar. */
 var _statsInitialSync = true;
 var _statsSyncState = 'waiting';
 var _statsSyncTimer = null;
@@ -453,23 +530,10 @@ function renderStats(){
   }
   if(!mem.stats) mem.stats = {totalRounds:0,totalAnswered:0,bySentence:{},events:[]};
   var by = mem.stats.bySentence || {};
-  var keys = Object.keys(by).filter(function(k){
-    var sep = k.indexOf('#');
-    return !CL.isItemDeleted(mem,k.slice(0,sep),{cid:k.slice(sep+1)});
-  });
-  /* 「已熟练」= 考试验证通过 ∪ 用户手动标熟；两者共用同一个句子 key 去重。
-     学习记录列表早已按这个口径展示，概览也必须与之保持一致。 */
-  var masteredKeys = {};
-  keys.forEach(function(k){
-    if(classifyStat(by[k]) === 'master') masteredKeys[k] = true;
-  });
-  Object.keys(mem.mastered || {}).forEach(function(k){
-    var sep = k.indexOf('#');
-    var deckId = sep >= 0 ? k.slice(0, sep) : k;
-    var cid = sep >= 0 ? k.slice(sep + 1) : '';
-    if(!CL.isItemDeleted(mem, deckId, {cid:cid})) masteredKeys[k] = true;
-  });
-  var masteredCnt = Object.keys(masteredKeys).length;
+  var keys = Object.keys(by).filter(function(k){ return !CL.isItemDeletedByKey(mem, k); });
+  /* 已掌握只计当前内容版本的延迟测评证据；熟悉自评单独计数。 */
+  var masteredCnt = CL.masteredSentenceCount(mem,_statsDecks || allDecks());
+  var familiarCnt = CL.familiaritySentenceCount(mem);
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'weak'; }).length;
   var wrongCnt = getReinforceBook().length;
   var days = CL.dailyActivity(mem), now = new Date(), today = days[CL.ymd(now)] || {answered:0};
@@ -484,35 +548,15 @@ function renderStats(){
   };
   var html = '<div class="overview-status">'+
     statCell('今日答题',today.answered,{id:'todayAnswered'})+
-    statCell('已熟练',masteredCnt)+
+    statCell('已掌握',masteredCnt,{id:'masteredCount'})+
+    statCell('已熟悉',familiarCnt,{id:'familiarCount'})+
     statCell('需巩固',weakCnt,{warn:true})+
     statCell('累计答题',audit.totalAnswered)+'</div>';
   html += '<div class="overview-time">';
   html += '<div class="overview-month-summary"><span class="period-label">本月</span>'+
     '<span>学习 <b>'+month.days+'</b> 天</span><span>完成 <b>'+month.rounds+'</b> 轮</span><span>答题 <b id="monthAnswered">'+month.answered+'</b> 句</span></div>';
-  var week = [];
-  for(var i=6;i>=0;i--){
-    var date = new Date(now); date.setDate(date.getDate()-i);
-    var key=CL.ymd(date);
-    week.push({key:key,label:i===0?'今天':(date.getMonth()+1)+'/'+date.getDate(),count:(days[key]||{}).answered||0,today:i===0});
-  }
-  var max=Math.max.apply(null,week.map(function(d){return d.count;}))||1;
-  var avg=week.reduce(function(a,d){return a+d.count;},0)/week.length;
-  var TRACK_H=52; /* 最大柱高；CSS .activity-track 为 56px，留 4px 顶部呼吸位 */
-  html += '<section class="activity-section"><h3>近 7 天答题'+
-    '<span class="avg-note">日均 '+Math.round(avg)+' 句</span></h3><div class="activity-week">';
-  week.forEach(function(d){
-    /* 非零值最少 3px：38 与 1 同轴时，1 会被画成 1.5px 等于消失；0 值不画柱、只留基线。 */
-    var h = d.count ? Math.max(3, Math.round(d.count / max * TRACK_H)) : 0;
-    html += '<div class="activity-day'+(d.today?' is-today':'')+'" aria-label="'+d.key+' 答题 '+d.count+' 句">'+
-      '<b>'+d.count+'</b>'+
-      '<div class="activity-track"><div style="height:'+h+'px"></div></div></div>';
-  });
-  html += '</div>';
-  html += '<div class="activity-week-labels">';
-  week.forEach(function(d){ html += '<span'+(d.today?' class="is-today"':'')+'>'+d.label+'</span>'; });
-  html += '</div></section>';
-  html += '<p class="overview-note">累计完成 '+(Number(mem.stats.totalRounds)||0)+' 轮 · 每完整练完一批计 1 轮</p>';
+  if(month.totalAnswered || Number(mem.stats.totalRounds)) html += monthCalendarMarkup(days, now);
+  html += '<p class="overview-note">每完整练完一批计 1 轮</p>';
   html += '</div>'; /* /overview-time */
   if(!keys.length && !mem.stats.totalAnswered){
     html += '<div class="empty-tip">还没有学习记录。<a href="./main.html">开始练习</a></div>';
@@ -565,7 +609,7 @@ function renderSentenceList(body){
       var st = by[key];
       if(st && st.times){
         /* 已练过：用 stats 数据（spread 防 mutate）+ 叠加 item 的 translation */
-        rows.push(Object.assign({}, st, { translation: it.translation || '' }));
+        rows.push(Object.assign({}, st, { sentence:it.sentence||it.en||st.sentence||'', translation: it.translation || '', _key:key, _item:it, _familiar:!!(mem.mastered&&mem.mastered[key]) }));
       } else {
         /* 未练过：构造伪 stat，classifyStat 会返回 'unseen' */
         rows.push({
@@ -574,7 +618,7 @@ function renderSentenceList(body){
           translation: it.translation || '',
           times: 0, okTimes: 0, wrongTimes: 0, streak: 0, maxStreak: 0,
           lastAt: 0, interval: 1, ease: 2.5, dueAt: 0,
-          _masteredOnly: !!(mem.mastered && mem.mastered[key])
+          _masteredOnly: !!(mem.mastered && mem.mastered[key]), _key:key, _item:it, _familiar:!!(mem.mastered&&mem.mastered[key])
         });
       }
     });
@@ -586,31 +630,37 @@ function renderSentenceList(body){
     Object.keys(mem.mastered).forEach(function(key){
       if(seen[key]) return;
       var m = mem.mastered[key];
-      var sep = key.indexOf('#');
-      var dId = sep > 0 ? key.substring(0, sep) : '';
-      var cid = sep > 0 ? key.substring(sep + 1) : '';
+      var _kp = CL.splitItemKey(key);
+      var dId = _kp.deckId, cid = _kp.cid;
       if(CL.isItemDeleted(mem, dId, { cid: cid })) return;  /* 已被删 → 跳过 */
       seen[key] = true;
       rows.push({
         deckId: dId, sentence: m.sentence || '', translation: '',
         times: 0, okTimes: 0, wrongTimes: 0, streak: 0, maxStreak: 0,
         lastAt: m.markedAt || 0, interval: 1, ease: 2.5, dueAt: 0,
-        _masteredOnly: true
+        _masteredOnly: true, _key:key, _familiar:true
       });
     });
   }
 
   /* 给每个 row 算 _practiceState（master/learn/weak/unseen），filter 统一判断 */
   rows.forEach(function(r){ r._practiceState = classifyStat(r); });
+  rows.forEach(function(r){
+    if(r._item && window.LearningEngine){
+      var status = LearningEngine.resolveLearningState({stat:r, familiarity:r._familiar?mem.mastered[r._key]:null,
+        contentFingerprint:LearningEngine.fingerprintAssessmentItem(r._item),now:Date.now()});
+      r._learningPrimary = status.primary;
+    }else r._learningPrimary = r._familiar ? 'familiar' : r._practiceState;
+  });
 
-  /* 排序：先按状态优先级（master > learn > weak > unseen），再按 lastAt desc；
+  /* 排序：先按学习状态优先级，再按 lastAt desc；
      unseen 桶内按 deckId + sentence 字典序（首次接触顺序无意义，给个稳定排序即可） */
-  var stateOrder = { master: 0, learn: 1, weak: 2, unseen: 3 };
+  var stateOrder = { reinforce: 0, mastered: 1, initialPassed: 2, familiar: 3, weak: 4, learning: 5, learn: 6, unseen: 7 };
   rows.sort(function(a, b){
-    var sa = stateOrder[a._practiceState]; if(sa === undefined) sa = 99;
-    var sb = stateOrder[b._practiceState]; if(sb === undefined) sb = 99;
+    var sa = stateOrder[a._learningPrimary]; if(sa === undefined) sa = stateOrder[a._practiceState]; if(sa === undefined) sa = 99;
+    var sb = stateOrder[b._learningPrimary]; if(sb === undefined) sb = stateOrder[b._practiceState]; if(sb === undefined) sb = 99;
     if(sa !== sb) return sa - sb;
-    if(a._practiceState === 'unseen') return (a.deckId + '\u0001' + a.sentence).localeCompare(b.deckId + '\u0001' + b.sentence);
+    if(a._learningPrimary === 'unseen') return (a.deckId + '\u0001' + a.sentence).localeCompare(b.deckId + '\u0001' + b.sentence);
     return (b.lastAt || 0) - (a.lastAt || 0);
   });
 
@@ -619,8 +669,10 @@ function renderSentenceList(body){
     /* 只标熟未练过的句子（_masteredOnly=true）只出现在「已熟」tab，不出现在其它 tab */
     var matchesFilter;
     if(_statsFilter === 'all') matchesFilter = true;
-    else if(_statsFilter === 'mastered') matchesFilter = s._masteredOnly || s._practiceState === 'master';
-    else if(s._masteredOnly) matchesFilter = false;
+    else if(_statsFilter === 'mastered') matchesFilter = s._learningPrimary === 'mastered';
+    else if(_statsFilter === 'familiar') matchesFilter = !!s._familiar;
+    else if(_statsFilter === 'initialPassed') matchesFilter = s._learningPrimary === 'initialPassed';
+    else if(_statsFilter === 'reinforce') matchesFilter = s._learningPrimary === 'reinforce' || s._learningPrimary === 'needsRevalidation';
     else matchesFilter = s._practiceState === _statsFilter;
     if(!matchesFilter) return false;
     if(!query) return true;
@@ -642,9 +694,19 @@ function renderSentenceList(body){
     (out.length > LIST_PAGE_SIZE ? '<span>· 显示 '+pageStart+'–'+pageEnd+'</span>' : '')+'</div>';
   var html = summary + '<div class="stats-list">';
   pageRows.forEach(function(s, idx){
+    var assessment = s._item && window.LearningEngine
+      ? LearningEngine.getAssessmentEligibility({key:s._key,zh:s.translation,chunks:s._item.chunks,alts:s._item.alts,stat:s,familiarity:s._familiar?mem.mastered[s._key]:null},{now:Date.now()})
+      : {eligible:false,eligibleAt:0};
+    var assessmentAction = s._item && (s.times || s._familiar)
+      ? (assessment.eligible
+        ? '<a class="btn sm primary assessment-launch" href="./main.html?direct=1&amp;assessmentKey='+encodeURIComponent(s._key)+'">测这一句</a>'
+        : '<span class="assessment-wait" title="达到复测周期后开放">'+(assessment.eligibleAt?('可测 '+new Date(assessment.eligibleAt).toLocaleDateString()):'暂不可测')+'</span>')
+      : '';
     var badgeHtml =
-      s._masteredOnly ? '<span class="badge master">已标记</span>' :
-      s._practiceState==='master' ? '<span class="badge master">熟练</span>' :
+      s._learningPrimary==='mastered' ? '<span class="badge master">已掌握</span>' :
+      s._learningPrimary==='initialPassed' ? '<span class="badge learn">初测通过</span>' :
+      s._learningPrimary==='reinforce' || s._learningPrimary==='needsRevalidation' ? '<span class="badge weak">需再验证</span>' :
+      s._familiar ? '<span class="badge learn">已熟悉</span>' :
       s._practiceState==='weak'   ? '<span class="badge weak">需巩固</span>' :
       s._practiceState==='learn'  ? '<span class="badge learn">学习中</span>' :
                                     '<span class="badge new">未练过</span>';
@@ -652,9 +714,9 @@ function renderSentenceList(body){
     html += '<div class="srow stats-detail-row"><span class="row-num">#'+(_listPages[pageKey]*LIST_PAGE_SIZE+idx+1)+'</span><div class="sen">'+
       '<div class="en">'+esc(s.sentence)+'</div>'+
       '<div class="cn">'+esc(s.translation||'')+'</div></div>'+
-      badgeHtml+
+      '<span class="stats-state-cell">'+badgeHtml+'</span>'+
       '<button class="row-detail-toggle" type="button" aria-expanded="false" aria-label="展开统计详情"></button>'+
-      '<div class="meta">'+s.times+' 次 · 对 '+s.okTimes+'/错 '+s.wrongTimes+' · '+tStr+'</div>'+
+      '<div class="meta"><span class="meta-correct">'+s.okTimes+'</span>/<span class="meta-wrong">'+s.wrongTimes+'</span>/<span class="meta-total">'+s.times+'</span> · <span class="meta-time">'+tStr+'</span> '+assessmentAction+'</div>'+
     '</div>';
   });
   html += '</div>' + listPager(out.length, pageKey);
@@ -672,7 +734,9 @@ function renderWrongBook(body){
   var html = '<div class="stats-filter wrong-filter">'+
     '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+book.length+'</button>'+
     '<button class="f '+(_wrongBookFilter==='focus'?'on':'')+'" data-wrong-filter="focus">需巩固 '+focusBook.length+'</button>'+
+    '<button class="btn sm primary" data-mistake-export-open>复制错题分析提示词</button>'+
     '<button class="btn sm ghost" id="btnClearWrongBook">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
+  html += _mistakeExport.open ? renderMistakeExportPanel(book) : '';
   if(!shownBook.length){
     html += '<div class="empty-tip" style="padding:18px">当前没有需巩固的错题。切换到“全部”可查看所有记录。</div>';
   } else {
@@ -684,18 +748,34 @@ function renderWrongBook(body){
         return esc(m.userAnswer||'（空）')+' → <b>'+esc(m.chunk)+'</b>';
       }).join('<br>');
     }
+    var history = Array.isArray(b.history) ? b.history : [];
+    var historyCount = history.length;
+    var historyNote = historyCount ? '<details class="wrong-history"><summary>答题证据 '+historyCount+' 次'+(b.historyTruncated?' · 仅保留最近记录':'')+'</summary>'+history.slice().reverse().slice(0,5).map(function(event){
+      var when=event.at?timeAgo(event.at):'时间未知';
+      var mode=event.mode==='typing'?'输入':(event.mode==='chunkSelection'?'意群选择':'方式未知');
+      var issues=(event.mistakes||[]).map(function(m){var wrong=(m.wrongAnswers||[]).length?(m.wrongAnswers||[]).map(esc).join(' / '):'（未记录答案）';return '意群 '+(Number(m.chunkIdx)+1)+'：'+wrong+' → <b>'+esc(m.chunk||'')+'</b>'+(m.wrongAttemptCount==null?'':' · 错答 '+m.wrongAttemptCount+' 次');}).join('<br>');
+      return '<div class="wrong-history-event"><span>'+esc(when)+' · '+esc(mode)+(event.hinted===true?' · 用过提示':'')+(event.revealed===true?' · 看过答案':'')+'</span><div>'+issues+'</div></div>';
+    }).join('')+'</details>' : '<div class="wrong-history">仅有旧版错题快照，历史记录不完整</div>';
     html += '<div class="wrong-row"><div class="sen">'+
       '<div class="en">'+esc(b.sentence)+'</div>'+
       '<div class="cn">'+esc(b.translation||'')+'</div>'+
-      '<div class="wrong-detail">错点：'+mine+'</div>'+
+      '<div class="wrong-detail">错点：'+mine+'</div>'+historyNote+
     '</div>'+
-    '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">'+(window.Icons?Icons.svg('close'):'')+'</button></div>';
+    '<div class="wrong-actions"><button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">'+(window.Icons?Icons.svg('close'):'')+'</button></div></div>';
   });
     html += '</div>';
   }
   body.innerHTML = html;
   body.insertAdjacentHTML('beforeend', listPager(shownBook.length,'wrong'));
-  var bc = $('btnClearWrongBook'); if(bc) bc.onclick = function(){ if(confirm('清空错题本？')){ mem.reinforceBook = []; saveStore(); renderStats(); } };
+  var bc = $('btnClearWrongBook'); if(bc) bc.onclick = function(){
+    if(!confirm('清空错题本？')) return;
+    var keys=(mem.reinforceBook||[]).map(function(item){return item&&item._key;}).filter(Boolean);
+    bc.disabled=true;
+    removeMistakeRows(keys).catch(function(error){
+      alert(error && error.message ? error.message : '部分错题未能安排删除，请重试。');
+    }).finally(function(){renderStats();});
+  };
+  var openExport=body.querySelector('[data-mistake-export-open]'); if(openExport) openExport.onclick=function(){startMistakeBatchExport(book);};
   Array.prototype.forEach.call(body.querySelectorAll('[data-wrong-filter]'), function(btn){
     btn.onclick = function(){
       _wrongBookFilter = btn.getAttribute('data-wrong-filter') || 'all';
@@ -706,10 +786,117 @@ function renderWrongBook(body){
   Array.prototype.forEach.call(body.querySelectorAll('.wrong-del'), function(btn){
     btn.onclick = function(){
       var key = btn.getAttribute('data-key');
-      mem.reinforceBook = (mem.reinforceBook || []).filter(function(x){ return x._key !== key; });
-      saveStore(); renderStats();
+      btn.disabled=true;
+      removeMistakeRows([key]).catch(function(error){
+        alert(error && error.message ? error.message : '错题未能安排删除，请重试。');
+      }).finally(function(){renderStats();});
     };
   });
+  bindMistakeExport(body);
+}
+
+function mistakeOperationId(){
+  var token=window.crypto&&typeof window.crypto.randomUUID==='function'
+    ? window.crypto.randomUUID().replace(/-/g,'')
+    : Date.now().toString(36)+Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+  return 'mistake_remove_'+token;
+}
+async function removeMistakeRows(keys){
+  var unique=Array.from(new Set((keys||[]).filter(function(key){return typeof key==='string'&&key.length>0;})));
+  if(!unique.length) return;
+  if(!statsProtocol3Active()){
+    mem.reinforceBook=(mem.reinforceBook||[]).filter(function(item){return unique.indexOf(item._key)<0;});
+    saveWrongBookFromStats();
+    renderStats();
+    return;
+  }
+  if(!window.ServerStore||typeof ServerStore.submitCommitted!=='function') throw new Error('保存服务暂不可用，错题仍保留在列表中。');
+  if(navigator.onLine===false) throw new Error('请联网后再删除错题；当前记录尚未改变。');
+  var completed=0;
+  for(var i=0;i<unique.length;i++){
+    var eventId=mistakeOperationId();
+    await ServerStore.submitCommitted('mistake.remove',{eventId:eventId,key:unique[i]},{requestId:eventId});
+    mem.reinforceBook=(mem.reinforceBook||[]).filter(function(item){return item._key!==unique[i];});
+    completed++;
+    var projected=await CL.saveAndNotify(mem,'local');
+    if(projected===false) throw new Error('已安排删除 '+completed+' 条；本机显示状态未能更新，请刷新后核对其余错题。');
+    if(projected&&typeof projected.then==='function'&&await projected===false){
+      throw new Error('已安排删除 '+completed+' 条；本机显示状态未能更新，请刷新后核对其余错题。');
+    }
+  }
+  renderStats();
+}
+
+function renderMistakeExportPanel(allRows){
+  if(_mistakeExport.snapshot && _mistakeExport.accountScope!==mistakeExportAccountScope()){
+    _mistakeExportGeneration++;_mistakeExport.snapshot=null;_mistakeExport.sourceRows=null;_mistakeExport.prompt='';_mistakeExport.manualFallback=false;_mistakeExport.generating=false;_mistakeExport.lastCopiedIndex=-1;_mistakeExport.message='账号已切换，请重新复制。';
+  }
+  var snapshot=_mistakeExport.snapshot, stale=_mistakeExport.stale || !!(snapshot && (_mistakeExport.sourceRows!==allRows || _mistakeExport.accountScope!==mistakeExportAccountScope()));
+  var pages=snapshot?snapshot.batchCount:0, index=Math.max(0,_mistakeExport.batchIndex), copied=_mistakeExport.lastCopiedIndex;
+  var action='';
+  if(_mistakeExport.generating) action='<span class="muted">正在准备并复制第 '+(index+1)+' 批…</span>';
+  else if(snapshot&&pages&&copied<index) action='<button class="btn sm primary" data-export-next>重试复制本批</button>';
+  else if(snapshot&&pages&&copied+1<pages) action='<button class="btn sm primary" data-export-next>复制下一批</button>';
+  var status=_mistakeExport.message||'';
+  if(!_mistakeExport.generating&&snapshot&&pages&&copied>=0&&!_mistakeExport.manualFallback){
+    var label=MistakeReview.describeBatch(snapshot,copied);
+    status=copied+1===pages?'已复制全部 '+snapshot.totalQuestions+' 道错题（'+pages+' 批）':'已复制第 '+(copied+1)+' / '+pages+' 批 · '+label.count+' 道';
+  }
+  return '<section class="mistake-export-panel" aria-label="错题分析提示词">'+
+    (_statsReinforceSaveFailed?'<p class="export-warning">部分错题尚未保存，当前数据仍可复制。</p>':'')+
+    (stale?'<p class="export-warning">错题有更新；重新点击上方按钮可复制最新内容。</p>':'')+
+    '<div class="export-progress"><p class="export-message" role="status">'+esc(status)+'</p>'+action+'<button class="btn sm ghost export-close" data-export-close>收起</button></div>'+
+    (_mistakeExport.manualFallback&&_mistakeExport.prompt?'<textarea readonly data-export-text aria-label="错题分析提示词" onfocus="this.select()">'+esc(_mistakeExport.prompt)+'</textarea>':'')+
+    '</section>';
+}
+
+function bindMistakeExport(body){
+  var panel=body.querySelector('.mistake-export-panel'); if(!panel) return;
+  var close=panel.querySelector('[data-export-close]'); if(close) close.onclick=function(){_mistakeExport.open=false;renderStats();};
+  var next=panel.querySelector('[data-export-next]'); if(next) next.onclick=function(){copyMistakeBatch(_mistakeExport.lastCopiedIndex<0?_mistakeExport.batchIndex:_mistakeExport.lastCopiedIndex+1,_mistakeExportGeneration);};
+}
+
+function resolveMistakeBatchSources(snapshot,index){
+  var entries=snapshot.records.slice(index*200,index*200+200), wanted=new Set();
+  entries.forEach(function(entry){var row=entry.row||{};if(!row.sentence||!row.translation){if(row.deckId)wanted.add(String(row.deckId));}});
+  if(!wanted.size)return null;
+  var byCid=new Map(),bySentence=new Map();
+  allDecks().forEach(function(deck){if(!wanted.has(String(deck.id)))return;(Array.isArray(deck.items)?deck.items:[]).forEach(function(item){if(item.cid)byCid.set(String(deck.id)+'#'+String(item.cid),item);if(item.sentence)bySentence.set(String(deck.id)+'#'+normSent(item.sentence),item);});});
+  return function(row){return (row.cid&&byCid.get(String(row.deckId)+'#'+String(row.cid)))||bySentence.get(String(row.deckId)+'#'+normSent(row.sentence))||null;};
+}
+
+async function startMistakeBatchExport(rows){
+  var token=++_mistakeExportGeneration, sourceMem=mem, accountScope=mistakeExportAccountScope();
+  _mistakeExport.open=true;_mistakeExport.snapshot=null;_mistakeExport.sourceRows=rows;_mistakeExport.accountScope=accountScope;_mistakeExport.batchIndex=0;_mistakeExport.lastCopiedIndex=-1;_mistakeExport.prompt='';_mistakeExport.manualFallback=false;_mistakeExport.stale=false;_mistakeExport.generating=true;_mistakeExport.message='正在准备并复制第 1 批…';renderStats();
+  function stillCurrent(){try{if(window.AccountStorage){AccountStorage.assertCurrent();if(AccountStorage.credentialsChanged())return false;}}catch(_){return false;}return token===_mistakeExportGeneration&&sourceMem===mem&&accountScope===mistakeExportAccountScope();}
+  try{
+    var snapshot=await MistakeReview.createExportSnapshotAsync({rows:rows,scopeLabel:'全部错题'},{shouldContinue:stillCurrent});
+    if(!stillCurrent())return;
+    _mistakeExport.snapshot=snapshot;_mistakeExport.generating=false;
+    await copyMistakeBatch(0,token);
+  }catch(error){if(stillCurrent())_mistakeExport.message=error.message||'复制失败，请重试。';}
+  finally{if(token===_mistakeExportGeneration){_mistakeExport.generating=false;renderStats();}}
+}
+
+async function copyMistakeBatch(index,token){
+  var snapshot=_mistakeExport.snapshot, accountScope=_mistakeExport.accountScope;
+  if(_mistakeExport.generating||!snapshot||!snapshot.batchCount||token!==_mistakeExportGeneration)return;
+  index=Math.max(0,Math.min(snapshot.batchCount-1,index));
+  function stillCurrent(){try{if(window.AccountStorage){AccountStorage.assertCurrent();if(AccountStorage.credentialsChanged())return false;}}catch(_){return false;}return snapshot===_mistakeExport.snapshot&&token===_mistakeExportGeneration&&accountScope===mistakeExportAccountScope();}
+  _mistakeExport.batchIndex=index;_mistakeExport.generating=true;_mistakeExport.manualFallback=false;_mistakeExport.message='正在复制第 '+(index+1)+' 批…';
+  renderStats();
+  try{
+    var built=MistakeReview.buildBatchExport(snapshot,index,resolveMistakeBatchSources(snapshot,index));
+    var prompt=MistakeReview.composeBatchSummaryPrompt(built);
+    _mistakeExport.prompt=prompt;
+    if(!stillCurrent())return;
+    await navigator.clipboard.writeText(prompt);
+    if(!stillCurrent())return;
+    _mistakeExport.lastCopiedIndex=index;_mistakeExport.message='';
+  }catch(error){
+    if(!stillCurrent())return;
+    _mistakeExport.manualFallback=true;_mistakeExport.message='复制失败，请手动复制下方内容。';
+  }finally{if(token===_mistakeExportGeneration){_mistakeExport.generating=false;renderStats();}}
 }
 
 function getReinforceBook(){
@@ -721,12 +908,10 @@ function getReinforceBook(){
 function reinforceNeedsReview(b){
   if(b && b.needsReview) return true;
   var by = (mem.stats && mem.stats.bySentence) || {};
-  return Object.keys(by).some(function(k){
-    var st = by[k];
-    return st && st.deckId === (b && b.deckId) &&
-      normSent(st.sentence) === normSent(b && b.sentence) &&
-      classifyStat(st) === 'weak';
-  });
+  if(!b || !b.deckId) return false;
+  var cid = b.cid || (b.sentence ? CL.fnv8(b.sentence) : '');
+  var stat = cid ? by[b.deckId + '#' + cid] : null;
+  return !!(stat && classifyStat(stat) === 'weak');
 }
 
 /* ===== SRS 复习 ===== */
@@ -853,13 +1038,23 @@ function launchReviewItems(deck){
   launchReviewDeck(deck);
 }
 
-/* ★ 跨页面通信：通过 postMessage 通知主页启动临时题库（统一走 CL） */
+/* 大型临时复习队列存入账号隔离的 IndexedDB；URL 只携带一次性短 ID。 */
 function launchReviewDeck(deck){
-  try{
-    businessStorage.setItem('chunklab_pending_review_deck', JSON.stringify({ deck:deck, ts:Date.now() }));
-  }catch(e){ console.error(e); alert('复习队列保存失败，可能是浏览器存储空间不足。请先备份数据后重试。'); return; }
-  /* 同 tab 导航回主页：autostart=1 + pendingReviewDeck 自动启动复习队列 */
-  window.location.href = './main.html?autostart=1';
+  var id=window.crypto&&typeof window.crypto.randomUUID==='function'
+    ? window.crypto.randomUUID()
+    : 'review-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+'-'+Math.random().toString(36).slice(2);
+  var account=window.AccountStorage, api=window.ChunkAPI;
+  if(!window.IDBStore||typeof IDBStore.putNavigationHandoff!=='function'||!account||!account.owner||!api||typeof api.getBase!=='function'){
+    alert('复习暂时无法启动；当前页面没有更改，请稍后重试。');
+    return;
+  }
+  var scope=JSON.stringify([account.owner,api.getBase()]);
+  IDBStore.putNavigationHandoff(id,deck,scope).then(function(){
+    window.location.href='./main.html?autostart=1&reviewHandoff='+encodeURIComponent(id);
+  }).catch(function(error){
+    console.warn('[stats] review handoff was not stored:',error&&error.message||error);
+    alert('复习暂时无法启动；当前页面没有更改，请稍后重试。');
+  });
 }
 
 /* 移动端记录采用渐进式展示：点击整行展开/收起次数、对错和最近练习时间。
@@ -911,12 +1106,17 @@ $('statsBody').addEventListener('click', function(ev){
   var row = ev.target.closest && ev.target.closest('.stats-detail-row');
   if(row) toggleSentenceDetail(row);
 });
+function discardMistakeExportSnapshot(){
+  _mistakeExportGeneration++;
+  _mistakeExport.stale=!!_mistakeExport.snapshot;_mistakeExport.generating=false;_mistakeExport.message='学习数据已刷新；当前快照仍保留原始范围，重新生成可纳入最新错题。';
+}
 /* ★ 返回主页（独立窗口场景通用） */
 $('statsBack').onclick = function(){ window.location.href = './main.html'; };
 
 /* 接收主页面消息：刷新数据 */
 window.addEventListener('message', function(ev){
   if(ev.data && ev.data.type === 'memUpdated'){
+    discardMistakeExportSnapshot();
     loadMem();
     var p = window.ContentRepo && ContentRepo.ensureIndexAll ? ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; }) : Promise.resolve();
     p.then(renderStats);
@@ -929,6 +1129,7 @@ window.addEventListener('message', function(ev){
    触发源由 core.js 统一处理（BroadcastChannel 主通道 + beacon/storage 降级通道），
    故这里只订阅 CL 事件，不再自行监听 storage（避免重复渲染）。 */
 function reloadFromOtherTab(){
+  discardMistakeExportSnapshot();
   var p = (CL.refreshExternal ? CL.refreshExternal() : Promise.resolve(CL.loadMem()));
   p.catch(function(){}).then(function(m){
     if(m) mem = m; else loadMem();
@@ -950,6 +1151,29 @@ if(CL && CL.on){
     }
   });
 }
+window.addEventListener('server-cache-applied', function(event){
+  var detail=event&&event.detail;
+  var account=window.AccountStorage;
+  if(detail&&account&&detail.owner!==account.owner) return;
+  refreshConfirmedStatsProjection().then(function(applied){
+    if(!applied) return;
+    var ready=window.ContentRepo&&ContentRepo.ensureIndexAll
+      ? ContentRepo.ensureIndexAll(mem).then(function(decks){_statsDecks=decks;})
+      : Promise.resolve();
+    ready.then(renderStats);
+  });
+});
+var _statsLastFocusRefreshAt = Date.now();
+window.addEventListener('focus', function(){
+  if(!statsProtocol3Active() || !CL.serverPersistenceReady || !CL.serverPersistenceReady() ||
+     !window.ServerCache || !window.AccountStorage || !window.AccountStorage.owner) return;
+  var now=Date.now();
+  if(now-_statsLastFocusRefreshAt<5000) return;
+  _statsLastFocusRefreshAt=now;
+  ServerCache.refresh().catch(function(error){
+    console.warn('[stats] cross-device refresh deferred:',error&&error.message||error);
+  });
+});
 
 /* 首屏先走本地快路径。云端请求或题库资源即使迟到，也不会把页面锁成只有 Tab 的空壳。
    若统计已迁到 IndexedDB，先等本地预载完成，避免把 localStorage 的旧投影短暂显示成最新值；
@@ -970,11 +1194,13 @@ Promise.resolve(CL.preload ? CL.preload() : true).catch(function(error){
   paintLocalStats();
 });
 Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
-  loadMem();
-  if(window.ContentRepo && ContentRepo.ensureIndexAll){
-    return ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; });
-  }
-  return window.ContentRepo ? ContentRepo.ensureAll(mem).then(function(){ _statsDecks = CL.allDecksView(mem); }) : Promise.resolve();
+  return refreshConfirmedStatsProjection().then(function(applied){
+    if(!applied) loadMem();
+    if(window.ContentRepo && ContentRepo.ensureIndexAll){
+      return ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; });
+    }
+    return window.ContentRepo ? ContentRepo.ensureAll(mem).then(function(){ _statsDecks = CL.allDecksView(mem); }) : Promise.resolve();
+  });
 }).then(function(){
   clearTimeout(_statsSyncTimer);
   _statsSyncTimer = null;

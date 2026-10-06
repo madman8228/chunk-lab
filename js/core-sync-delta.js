@@ -3,6 +3,11 @@
   function mix(hash, value) {
     return Math.imul(hash ^ (value | 0), 16777619) >>> 0;
   }
+  function mixText(hash, value) {
+    const text = String(value == null ? "" : value);
+    for (let index = 0; index < text.length; index += 1) hash = mix(hash, text.charCodeAt(index));
+    return mix(hash, 255);
+  }
   function statSig(value) {
     if (!value) return 0;
     let hash = 2166136261;
@@ -16,6 +21,30 @@
     hash = mix(hash, (value.ease || 0) * 1e3);
     hash = mix(hash, value.dueAt || 0);
     hash = mix(hash, value.lastAt || 0);
+    const learning = value.learningV1 && typeof value.learningV1 === "object" ? value.learningV1 : {};
+    hash = mix(hash, learning.version || 0);
+    hash = mix(hash, learning.baselineAt || 0);
+    hash = mix(hash, learning.lastExposureAt || 0);
+    hash = mix(hash, learning.dueAt || 0);
+    hash = mixText(hash, learning.phase || "");
+    hash = mix(hash, learning.interval || 0);
+    hash = mix(hash, learning.repetition || 0);
+    hash = mix(hash, (learning.ease || 0) * 1e3);
+    (Array.isArray(learning.evidence) ? learning.evidence : []).forEach((event) => {
+      hash = mixText(hash, event && event.id || "");
+      hash = mixText(hash, event && event.key || "");
+      hash = mixText(hash, event && event.sessionId || "");
+      hash = mixText(hash, event && event.type || "");
+      hash = mixText(hash, event && event.mode || "");
+      hash = mixText(hash, event && event.contentFingerprint || "");
+      hash = mixText(hash, event && event.stage || "");
+      hash = mix(hash, event && event.policyVersion || 0);
+      hash = mix(hash, event && event.at || 0);
+      hash = mix(hash, event && event.ok ? 1 : 0);
+      hash = mix(hash, event && event.assisted ? 1 : 0);
+      hash = mix(hash, event && event.firstAttempt ? 1 : 0);
+      hash = mix(hash, event && event.eligibleAt || 0);
+    });
     return hash >>> 0;
   }
   function statsSig(stats) {
@@ -62,6 +91,12 @@
     });
     return out;
   }
+  function compactSentenceStat(row) {
+    if (!row || typeof row !== "object" || Array.isArray(row) || !Object.prototype.hasOwnProperty.call(row, "sentence")) return row;
+    const compact = { ...row };
+    delete compact.sentence;
+    return compact;
+  }
   function buildStatsDelta(mem, marks) {
     const stats = mem && mem.stats || {};
     const bySentence = stats.bySentence && typeof stats.bySentence === "object" ? stats.bySentence : {};
@@ -74,11 +109,11 @@
     const sbsGone = [];
     if (previousStats === null || previousStats === void 0) {
       Object.keys(bySentence).forEach((key) => {
-        sbs[key] = bySentence[key];
+        sbs[key] = compactSentenceStat(bySentence[key]);
       });
     } else {
       Object.keys(bySentence).forEach((key) => {
-        if (previousStats[key] !== statSig2(bySentence[key])) sbs[key] = bySentence[key];
+        if (previousStats[key] !== statSig2(bySentence[key])) sbs[key] = compactSentenceStat(bySentence[key]);
       });
       Object.keys(previousStats).forEach((key) => {
         if (!(key in bySentence)) sbsGone.push(key);

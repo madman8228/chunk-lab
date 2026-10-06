@@ -60,7 +60,7 @@ async function loginOn(page,user,pass){
 }
 
 (async()=>{try{
-  server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test'},stdio:'ignore'});
+  server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test',CHUNKLAB_WRITE_PROTOCOL:'3'},stdio:'ignore'});
   let ready=false;
   /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：实测为临界窗口，宿主 node 冷启动 5.4s。
      health 一旦 200 立即 break ⇒ 成功路径不增加耗时。 */
@@ -78,7 +78,9 @@ async function loginOn(page,user,pass){
   const guestName=await pageA.evaluate(async()=>(await ChunkAPI.me()).user.username);
   check('首访自动获得游客账号', /^guest_/.test(guestName), 'name='+guestName);
   const uidBefore=await pageA.evaluate(async()=>(await ChunkAPI.me()).user.id);
-  await pageA.evaluate(async(id)=>{await CL.writeCourses([{courseId:id,name:'Carried over'}]);await CL.cloudSyncNow(CL.loadMem());},COURSE_ID);
+  await pageA.waitForFunction(()=>CL.serverPersistenceReady());
+  await pageA.evaluate(id=>ServerStore.submitCommitted('deck.put',{deck:{id,name:'Carried over',items:[{cid:'one',en:'Hello.',zh:'你好。'}]}},{expectedRev:null}),COURSE_ID);
+  check('个人课程已获服务器确认',await pageA.evaluate(async id=>(await ChunkAPI.getData()).mem.decks.some(deck=>deck.id===id),COURSE_ID));
 
   /* ---------- 2. 在设置里「设置账号」 ---------- */
   await pageA.locator('#btnSettingsTop').click();
@@ -120,10 +122,16 @@ async function loginOn(page,user,pass){
   const bUid=await pageB.evaluate(async()=>(await ChunkAPI.me()).user.id);
   check('新设备登录到同一个账号（user_id 相同）', bUid===uidBefore, 'A='+uidBefore+' B='+bUid);
   const bSeesCourse=await pageB.evaluate(async(id)=>{
-    await ChunkAPI.getData();
-    return CL.readCourses().some(c=>c.courseId===id);
+    await ServerCache.refresh();
+    return (await ServerCache.read()).snapshot.mem.decks.some(c=>c.id===id) && (await ChunkAPI.getData()).mem.decks.some(c=>c.id===id);
   },COURSE_ID);
   check('新设备能看到原账号的数据（跨设备同一份学习数据）', bSeesCourse===true);
+  await pageB.goto(base+'/decks.html?courseView=joined&courseType=all');
+  await pageB.locator('#deckList').getByText('Carried over',{exact:true}).waitFor({timeout:15000});
+  check('新设备课程列表实际显示原课程',true);
+  await pageB.goto(base+'/main.html');
+  await settleSession(pageB);
+  await pageB.waitForFunction(()=>window.ChunkAuthUI && window.CL);
 
   /* ---------- 4. 错密码必须报错，且不得静默换成新游客 ---------- */
   await pageB.evaluate(()=>ChunkAuthUI.logout());
