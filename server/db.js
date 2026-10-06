@@ -38,6 +38,15 @@ CREATE TABLE IF NOT EXISTS users (
   created_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+/* A protocol activation is a database fact, not a process flag. Once a
+   database has accepted operation-protocol writes, an environment rollback
+   must never silently reopen whole-snapshot writes against the same data. */
+CREATE TABLE IF NOT EXISTS app_runtime_settings (
+  setting_key TEXT PRIMARY KEY,
+  setting_value TEXT NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 /* 固定管理员账号：用户名固定为 admin，密码只保存 bcrypt 哈希。首次启动时由
    ADMIN_PASSWORD 初始化，之后管理员密码修改直接写入本表，不依赖明文环境变量。 */
 CREATE TABLE IF NOT EXISTS admin_users (
@@ -47,6 +56,19 @@ CREATE TABLE IF NOT EXISTS admin_users (
   token_version INTEGER NOT NULL DEFAULT 1,
   created_at    TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+/* 内置课程内容的不可变编辑历史；课程级 revision 防止多个编辑会话互相覆盖。 */
+CREATE TABLE IF NOT EXISTS admin_content_revisions (
+  project_id TEXT NOT NULL,
+  course_id TEXT NOT NULL,
+  revision INTEGER NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('draft', 'published')),
+  content_json TEXT NOT NULL,
+  content_hash TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  created_by INTEGER NOT NULL DEFAULT 1,
+  PRIMARY KEY (project_id, course_id, revision)
 );
 
 /* 每个账号每天最多一行，用于统计访问活跃度，避免给每次打开页面写一条明细事件。 */
@@ -66,6 +88,177 @@ CREATE TABLE IF NOT EXISTS user_batch_receipts (
   payload_hash TEXT NOT NULL,
   seq INTEGER NOT NULL,
   PRIMARY KEY (user_id, request_id)
+);
+
+/* Durable idempotency receipts for narrow server-authoritative mutations.
+   Unlike legacy batch receipts, these are retained so an old pending operation
+   cannot be applied twice after a long offline period. */
+CREATE TABLE IF NOT EXISTS user_operation_receipts (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  request_id TEXT NOT NULL,
+  payload_hash TEXT NOT NULL,
+  result_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, request_id)
+);
+
+/* Durable logical-event deduplication survives request retries, alternate
+   request IDs, and deletion/reset of the projected learning rows. */
+CREATE TABLE IF NOT EXISTS user_operation_events (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  event_id TEXT NOT NULL,
+  payload_hash TEXT NOT NULL,
+  operation_id TEXT NOT NULL,
+  result_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, event_id)
+);
+
+/* Minimal, bounded operational breadcrumbs for rejected/failed saves. Never
+   store request bodies, learning text, credentials, or server error messages. */
+CREATE TABLE IF NOT EXISTS user_operation_failures (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  code TEXT NOT NULL,
+  status INTEGER NOT NULL,
+  trace_id TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_user_operation_failures_created
+  ON user_operation_failures(created_at DESC, code, status);
+
+/* Latest bounded aggregate queue health per authenticated browser installation.
+   It contains counters/timestamps only, never pending operation bodies. */
+CREATE TABLE IF NOT EXISTS user_client_save_health (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  client_id TEXT NOT NULL,
+  pending INTEGER NOT NULL,
+  blocked INTEGER NOT NULL,
+  retry_attempts INTEGER NOT NULL,
+  oldest_pending_at INTEGER,
+  error_code TEXT,
+  trace_id TEXT,
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY (user_id, client_id)
+);
+CREATE INDEX IF NOT EXISTS idx_user_client_save_health_updated
+  ON user_client_save_health(updated_at DESC);
+
+/* Immutable, account-scoped copies of legacy browser state and old sync
+   journals. This archive is deliberately independent of the capped conflict
+   resolution table; it is not evidence that the archived entries were merged. */
+CREATE TABLE IF NOT EXISTS user_recovery_sources (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  source_id TEXT NOT NULL,
+  source_hash TEXT NOT NULL,
+  codec TEXT NOT NULL CHECK (codec = 'gzip'),
+  payload_blob BLOB NOT NULL,
+  manifest_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, source_id),
+  UNIQUE (user_id, source_hash)
+);
+
+/* Large recovery archives upload in independently verified, retryable pieces.
+   Staging rows are not considered recovered until the final source is verified
+   and inserted in the same transaction that removes these temporary pieces. */
+CREATE TABLE IF NOT EXISTS user_recovery_source_uploads (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  source_id TEXT NOT NULL,
+  source_hash TEXT NOT NULL,
+  chunk_count INTEGER NOT NULL,
+  uncompressed_bytes INTEGER NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, source_id)
+);
+CREATE TABLE IF NOT EXISTS user_recovery_source_chunks (
+  user_id INTEGER NOT NULL,
+  source_id TEXT NOT NULL,
+  chunk_index INTEGER NOT NULL,
+  chunk_hash TEXT NOT NULL,
+  chunk_blob BLOB NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, source_id, chunk_index),
+  FOREIGN KEY (user_id, source_id) REFERENCES user_recovery_source_uploads(user_id, source_id) ON DELETE CASCADE
+);
+
+/* First server-authoritative learning write snapshots the pre-protocol stat row
+   once. Future projections replay only immutable v3 events against this base. */
+CREATE TABLE IF NOT EXISTS user_learning_baselines (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  sentence_key TEXT NOT NULL,
+  baseline_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, sentence_key)
+);
+
+/* Each learning generation has its own replay baseline. Course re-entry starts
+   the new generation from the last confirmed stat; an explicit reset starts
+   it from zero without mutating the immutable legacy baseline. */
+CREATE TABLE IF NOT EXISTS user_learning_generation_baselines (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  scope_key TEXT NOT NULL,
+  sentence_key TEXT NOT NULL,
+  generation INTEGER NOT NULL,
+  baseline_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, scope_key, sentence_key, generation)
+);
+
+CREATE TABLE IF NOT EXISTS user_learning_events (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  sentence_key TEXT NOT NULL,
+  event_id TEXT NOT NULL,
+  generation INTEGER NOT NULL DEFAULT 0,
+  event_json TEXT NOT NULL,
+  received_at INTEGER NOT NULL,
+  PRIMARY KEY (user_id, sentence_key, event_id)
+);
+CREATE INDEX IF NOT EXISTS idx_learning_events_generation
+  ON user_learning_events(user_id, sentence_key, generation, received_at);
+CREATE INDEX IF NOT EXISTS idx_learning_events_session_order
+  ON user_learning_events(user_id, json_extract(event_json, '$.sessionId'), json_extract(event_json, '$.answerOrder'))
+  WHERE json_extract(event_json, '$.type')='practice';
+
+CREATE TABLE IF NOT EXISTS user_learning_generations (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  scope_key TEXT NOT NULL,
+  generation INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, scope_key)
+);
+
+CREATE TABLE IF NOT EXISTS user_learning_resumes (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  session_id TEXT NOT NULL,
+  deck_id TEXT NOT NULL,
+  course_id TEXT,
+  generation INTEGER NOT NULL DEFAULT 0,
+  idx INTEGER NOT NULL DEFAULT 0,
+  content_cursor TEXT,
+  practice_mode TEXT,
+  updated_at INTEGER NOT NULL,
+  seq INTEGER,
+  deleted_at INTEGER,
+  PRIMARY KEY (user_id, session_id)
+);
+CREATE INDEX IF NOT EXISTS idx_learning_resumes_user_seq
+  ON user_learning_resumes(user_id, seq);
+
+/* Server-owned assessment sessions snapshot trusted prompt/chunk content and
+   submitted answer slots so stale clients cannot rewrite their final score. */
+CREATE TABLE IF NOT EXISTS user_assessment_sessions (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  session_id TEXT NOT NULL,
+  scope_key TEXT NOT NULL,
+  generation INTEGER NOT NULL DEFAULT 0,
+  revision INTEGER NOT NULL DEFAULT 1,
+  status TEXT NOT NULL CHECK (status IN ('active', 'completed')),
+  data_json TEXT NOT NULL,
+  result_json TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY (user_id, session_id)
 );
 
 CREATE TABLE IF NOT EXISTS user_decks (
