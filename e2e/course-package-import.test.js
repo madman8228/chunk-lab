@@ -37,13 +37,21 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     var context = await browser.newContext();
     var page = await context.newPage();
-    await page.goto(BASE + '/decks.html?e2e=course-package', { waitUntil: 'networkidle' });
-    var logicalId = await page.evaluate(function(){
-      return LogicalCourseStore.create({ title: '导入归属回归目录', coverImage: 'data:image/png;base64,e2e-import-cover' }).id;
+    await page.goto(BASE + '/decks.html?courseType=decks&courseView=joined&e2e=course-package', { waitUntil: 'networkidle' });
+    var logicalId = await page.evaluate(async function(){
+      var id = LogicalCourseStore.create({ title: '导入归属回归目录', coverImage: 'data:image/png;base64,e2e-import-cover' }).id;
+      var userMemory = CL.loadMem();
+      userMemory.decks.push({ id:'e2e-existing-sentence-course', name:'已有句子课程', items:[], builtin:false, authoring:{ template:'sentence-practice' } });
+      await CL.saveAndNotify(userMemory);
+      return id;
     });
-    await page.locator('#tabCourses').click();
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.locator('#courseViewJoined').click();
+    await page.locator('#tabDecks').click();
     await page.locator('#btnImportDecks').click();
-    await page.locator('#ciLogicalCourse').selectOption(logicalId);
+    await page.locator('#courseImportTypeMask:not([hidden])').waitFor({ state:'visible' });
+    await page.locator('#btnImportStoryCourse').click();
+    await page.locator('#ciLogicalCourse').selectOption('standalone');
     await page.locator('#courseFileInput').setInputFiles(ZIP);
     await page.locator('#btnCourseImport').click();
     await page.waitForFunction(function () { return document.body.innerText.indexOf('导入完成') >= 0 || document.querySelector('#courseImpMsg.err'); }, { timeout: 45000 });
@@ -54,33 +62,29 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
       return;
     }
     if (importError) throw new Error(importError);
-    var importedAssociation = await page.evaluate(async function(id){
+    var importedAssociation = await page.evaluate(async function(){
       await CL.preload();
       var courses = CL.readCourses();
       var imported = courses.find(function(item){ return item.courseId === 'course_fde7e455'; });
-      return imported && imported.logicalCourseId === id;
-    }, logicalId);
-    if (!importedAssociation) throw new Error('导入课程未保存所选逻辑课程归属');
-    await page.locator('#tabCourses').click();
-    await page.waitForFunction(function(){ return document.querySelectorAll('#deckList .course-card').length > 0; });
-    var logicalCard = page.locator('#deckList .course-card').filter({ hasText: '导入归属回归目录' });
-    if (await logicalCard.count() !== 1 || (await logicalCard.innerText()).indexOf('1 个课节') === -1) throw new Error('导入课程未显示在所选目录内');
-    var coverLabelStyle = await logicalCard.locator('.deck-cover-label').evaluate(function(el){
-      var style = getComputedStyle(el);
-      return { userSelect: style.userSelect, caretColor: style.caretColor, contentEditable: el.contentEditable };
+      return imported && !imported.logicalCourseId;
     });
-    if (coverLabelStyle.userSelect !== 'none' || !/rgba\(0, 0, 0, 0\)|transparent/i.test(coverLabelStyle.caretColor) || coverLabelStyle.contentEditable !== 'false') throw new Error('图文课程标题仍可能显示文本光标：' + JSON.stringify(coverLabelStyle) + ' flags=' + [coverLabelStyle.userSelect !== 'none', !/rgba\(0, 0, 0, 0\)|transparent/i.test(coverLabelStyle.caretColor), coverLabelStyle.contentEditable !== 'false'].join(','));
-    /* 历史数据修复回归：未归类课节可以从平级卡片移入已有目录，无需重新上传 ZIP。 */
+    if (!importedAssociation) throw new Error('导入课程未保持独立课节归属');
     var storyTitle = await page.evaluate(function(){
       var item = CL.readCourses().find(function(course){ return course.courseId === 'course_fde7e455'; });
       return item && item.metadata && item.metadata.title && (item.metadata.title['zh-CN'] || item.metadata.title.en);
     });
-    await page.evaluate(async function(){
-      var courses = CL.readCourses();
-      var item = courses.find(function(course){ return course.courseId === 'course_fde7e455'; });
-      delete item.logicalCourseId;
-      await CL.writeCourses(courses);
+    var importedCard = page.locator('#deckList .course-card').filter({ hasText: storyTitle });
+    if (await page.locator('#tabCourses').getAttribute('aria-current') !== 'page' || await importedCard.count() !== 1 || !await importedCard.isVisible()) throw new Error('图文课程导入完成后应切换到图文课程并立即显示新课节');
+    await page.locator('#tabCourses').click();
+    await page.waitForFunction(function(){ return document.querySelectorAll('#deckList .course-card').length > 0; });
+    var logicalCard = page.locator('#deckList .course-card').filter({ hasText: '导入归属回归目录' });
+    if (await logicalCard.count() !== 1 || (await logicalCard.innerText()).indexOf('尚未导入课节') === -1) throw new Error('空课程目录未显示在图文课程列表中');
+    var coverLabelStyle = await logicalCard.locator('.deck-cover-label').evaluate(function(el){
+      var style = getComputedStyle(el);
+      return { userSelect: style.userSelect, caretColor: style.caretColor, isContentEditable: el.isContentEditable };
     });
+    if (coverLabelStyle.userSelect !== 'none' || !/rgba\(0, 0, 0, 0\)|transparent/i.test(coverLabelStyle.caretColor) || coverLabelStyle.isContentEditable) throw new Error('图文课程标题仍可能显示文本光标：' + JSON.stringify(coverLabelStyle) + ' flags=' + [coverLabelStyle.userSelect !== 'none', !/rgba\(0, 0, 0, 0\)|transparent/i.test(coverLabelStyle.caretColor), coverLabelStyle.isContentEditable].join(','));
+    /* 独立导入的课节可从平级卡片移入已有目录，无需重新上传 ZIP。 */
     await page.reload({ waitUntil: 'networkidle' });
     await page.locator('#tabCourses').click();
     await page.waitForFunction(function(){ return document.querySelectorAll('#deckList .course-card').length > 0; });
@@ -111,7 +115,10 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     await page.waitForSelector('#courseTyping');
     if (await page.locator('.chat-bubble.learner .bubble-en').count()) throw new Error('新版 sourceText 被重复渲染为学习者台词');
     if (await page.locator('.chat-bubble.npc .bubble-en').count()) throw new Error('1.1 npcMessage 在答题前泄露了学习目标');
+    if (await page.locator('.legacy-interaction .v2-chat-bubble').count() !== 2 || await page.locator('.legacy-answer-turn #courseTyping').count() !== 1) throw new Error('1.1 听写课程应将音频提示和作答输入呈现在对话气泡中');
+    if ((await page.locator('.legacy-interaction').innerText()).indexOf('Excuse me!') >= 0) throw new Error('1.1 气泡在答题前泄露了目标句子');
     if (await page.locator('[data-action="play-audio"]').count() !== 1) throw new Error('音频播放按钮未接通');
+    if ((await page.locator('.legacy-interaction [data-action="play-audio"]').innerText()).trim() || await page.locator('.legacy-interaction .v2-speaker-row [data-action="play-audio"] svg').count() !== 1) throw new Error('1.1 音频入口应为标题行右侧的纯 SVG 图标');
     await page.locator('[data-action="play-audio"]').click();
     await page.waitForSelector('[data-action="play-audio"][data-audio-state="ready"]', { timeout: 10000 });
     var input = page.locator('#courseTyping');

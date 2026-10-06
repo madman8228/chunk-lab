@@ -1,7 +1,7 @@
 /* CoursePackage 1.1/2.0 contract helpers. Browser global + CommonJS for focused tests. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
-  else root.CoursePackageContract = factory();
+  else /** @type {any} */ (root).CoursePackageContract = factory();
 }(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var MAX_ZIP_BYTES = 100 * 1024 * 1024;

@@ -45,7 +45,76 @@ function stopServer() {
   try {
     await startServer();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
+    const responsivePage = await browser.newPage({ viewport: { width:803, height:700 } });
+    await responsivePage.goto(BASE + '/main.html?e2e=chunk-responsive', { waitUntil:'domcontentloaded' });
+    await responsivePage.waitForSelector('#track', { state:'attached' });
+    await responsivePage.evaluate(function(){
+      var track = document.createElement('div');
+      track.className = 'track compact-chunks';
+      track.style.width = 'min(760px, calc(100vw - 32px))';
+      track.innerHTML = ["She's", 'a teacher', 'at heart.'].map(function(text){
+        return '<div class="chunk"><div class="chunk-answer">' + text + '</div></div>';
+      }).join('');
+      document.body.appendChild(track);
+    });
+    const tabletChunkRows = await responsivePage.locator('body > .track.compact-chunks').evaluate(function(track){
+      return Array.from(track.children).map(function(chunk){ return Math.round(chunk.getBoundingClientRect().top); });
+    });
+    if (Math.max.apply(Math, tabletChunkRows) - Math.min.apply(Math, tabletChunkRows) > 1) {
+      throw new Error('803px 宽度下可容纳的三个短意群被强制拆行：' + JSON.stringify(tabletChunkRows));
+    }
+    await responsivePage.setViewportSize({ width:375, height:812 });
+    const phoneChunkLayout = await responsivePage.locator('body > .track.compact-chunks').evaluate(function(track){
+      var rect = track.getBoundingClientRect();
+      return {
+        viewport:document.documentElement.clientWidth,
+        trackRight:rect.right,
+        children:Array.from(track.children).map(function(chunk){ var r=chunk.getBoundingClientRect(); return {left:r.left,right:r.right,top:Math.round(r.top)}; }),
+        documentWidth:document.documentElement.scrollWidth
+      };
+    });
+    if (phoneChunkLayout.trackRight > phoneChunkLayout.viewport + 1 || phoneChunkLayout.documentWidth > phoneChunkLayout.viewport ||
+        phoneChunkLayout.children.some(function(item){ return item.right > phoneChunkLayout.trackRight + 1; })) {
+      throw new Error('375px 手机宽度下意群布局溢出：' + JSON.stringify(phoneChunkLayout));
+    }
+    await responsivePage.close();
     const page = await browser.newPage();
+    await page.goto(BASE + '/decks.html?e2e=course-catalog', { waitUntil: 'networkidle' });
+    await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
+    await page.waitForFunction(function(){ return new URL(location.href).searchParams.get('courseType') === 'decks'; });
+    const typeNavStyle = await page.evaluate(function(){
+      var nav = getComputedStyle(document.querySelector('#courseTypeNav'));
+      var active = document.querySelector('#tabDecks');
+      return { background:nav.backgroundColor, border:nav.borderTopStyle, aria:active.getAttribute('aria-current'), classOn:active.classList.contains('on'), activeShadow:getComputedStyle(active).boxShadow, allHidden:document.querySelector('#tabAll').classList.contains('hidden') };
+    });
+    if (typeNavStyle.background !== 'rgba(0, 0, 0, 0)' || typeNavStyle.border !== 'none' || typeNavStyle.aria !== 'page' || typeNavStyle.classOn || !typeNavStyle.allHidden || typeNavStyle.activeShadow.indexOf('inset') < 0) {
+      throw new Error('课程类型导航未使用轻量样式或 aria-current 选中态：' + JSON.stringify(typeNavStyle));
+    }
+    if (await page.locator('#btnImportDecks').isVisible()) throw new Error('发现课程页不应显示导入入口');
+    await page.locator('#courseViewJoined').click();
+    await page.locator('#btnImportDecks').click();
+    await page.locator('#courseImportTypeMask:not([hidden])').waitFor({ state:'visible' });
+    if (await page.locator('#btnChooseSentenceImport').isVisible() !== true || await page.locator('#btnImportStoryCourse').isVisible() !== true) throw new Error('我的课程添加入口未先提供两种课程类型');
+    await page.locator('#btnImportStoryCourse').click();
+    if (await page.locator('#courseImpMask').isHidden()) throw new Error('图文课程导入入口未打开正确的导入弹窗');
+    await page.locator('#courseImpMask [data-close]').first().click();
+    await page.locator('#courseViewDiscover').click();
+    await page.setViewportSize({ width:375, height:812 });
+    const narrowHeader = await page.evaluate(function(){
+      var width = document.documentElement.clientWidth;
+      return ['decksBack','courseMembershipNav','btnImportStoryCourse','btnImportDecks'].map(function(id){
+        var rect = document.getElementById(id).getBoundingClientRect();
+        return { id:id, left:rect.left, right:rect.right, width:width };
+      });
+    });
+    if (narrowHeader.some(function(box){ return box.left < 0 || box.right > box.width; })) throw new Error('窄屏课程导航或图文导入入口溢出：' + JSON.stringify(narrowHeader));
+    await page.setViewportSize({ width:1280, height:900 });
+    await page.goto(BASE + '/decks.html?e2e=course-catalog&courseView=joined&courseType=courses', { waitUntil: 'networkidle' });
+    await page.waitForFunction(function(){ return new URL(location.href).searchParams.get('courseType') === 'all'; });
+    const emptyJoinedTypes = await page.evaluate(function(){
+      return ['courseTypeNav','tabAll','tabDecks','tabCourses'].map(function(id){ return document.getElementById(id).classList.contains('hidden'); });
+    });
+    if (emptyJoinedTypes.some(function(hidden){ return !hidden; })) throw new Error('当前课程范围为空时，课程类型导航应整体隐藏：' + JSON.stringify(emptyJoinedTypes));
     await page.goto(BASE + '/decks.html?e2e=course-catalog', { waitUntil: 'networkidle' });
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
     const cards = await page.locator('#pageDecks:not(.hidden) .course-card').count();
@@ -56,25 +125,43 @@ function stopServer() {
     if (await page.locator('.course-card .deck-card-body .deck-title').count() !== 0) throw new Error('课程卡片正文仍重复显示课程标题');
     const oralCard = page.locator('.course-card[aria-label="打开课程 口语3000句"]');
     if (await oralCard.locator('.deck-actions').count() !== 0) throw new Error('课程总览仍保留重复操作按钮');
+    await oralCard.locator('.course-manage-trigger').click();
+    const builtinActions = await oralCard.locator('.course-manage-item').allTextContents();
+    if (builtinActions.includes('用 AI 改编课程') || builtinActions.some(function(item){ return item.indexOf('AI 改编') >= 0; })) throw new Error('内置课程不应提供会新增课程的“AI 改编”入口');
+    if (!builtinActions.includes('加入学习')) throw new Error('内置课程的加入学习操作应收纳在三点菜单中');
+    await oralCard.locator('.course-manage-trigger').click();
+    await oralCard.locator('.course-manage-trigger').click();
+    await oralCard.getByRole('menuitem', { name:'加入学习' }).click();
+    await page.waitForFunction(function(){ return CourseEnrollment.isJoined('builtin:oral'); });
+    await page.locator('#courseViewJoined').click();
+    await page.waitForFunction(function(){ return document.querySelector('#courseViewJoined').getAttribute('aria-current') === 'page'; });
+    await oralCard.locator('.course-manage-trigger').click();
+    await oralCard.getByRole('menuitem', { name:'移出学习' }).click();
+    await page.waitForFunction(function(){ return !CourseEnrollment.isJoined('builtin:oral'); });
+    await page.locator('#courseViewDiscover').click();
+    await page.waitForFunction(function(){ return document.querySelector('#courseViewDiscover').getAttribute('aria-current') === 'page'; });
     if ((await oralCard.locator('.deck-card-body .meta').innerText()).indexOf('65个课程 · 3259 句') >= 0) throw new Error('课程卡片正文重复显示总句数');
     const overviewBody = await oralCard.locator('.deck-card-body').boundingBox();
     if (!overviewBody || overviewBody.height > 60) throw new Error('课程总览卡片底部空间过大：' + JSON.stringify(overviewBody));
     if ((await oralCard.locator('[data-course-progress]').innerText()).trim() !== '0 / 65' || await oralCard.locator('[data-course-progress]').getAttribute('aria-label') !== '尚未开始学习') throw new Error('课程卡片未显示初始进度条（多课节课程进度主单位=课节，count 不带单位）');
 
-    /* 系统不预置逻辑课程：没有用户创建的课程时，不应凭教材元数据生成 NCE 卡片。 */
-    await page.locator('#tabCourses').click();
+    /* 当前范围没有图文课程时隐藏分类；不能凭教材元数据生成逻辑课程卡片。 */
+    if (await page.locator('#tabCourses').isVisible()) throw new Error('没有图文课程时应隐藏图文课程页签');
     if (await page.locator('.course-card').filter({ hasText: '新概念英语第一册' }).count() !== 0) throw new Error('系统不应预置新概念逻辑课程');
 
     /* 页签切回句子课程时，列表必须同步切回句子课程内容，而不是只切换按钮样式。 */
     await page.locator('#tabDecks').click();
-    await page.waitForFunction(() => document.querySelector('#tabDecks').classList.contains('on'));
+    await page.waitForFunction(() => document.querySelector('#tabDecks').getAttribute('aria-current') === 'page');
     if (await page.locator('#deckList .deck-section-title').first().innerText() !== '内置课程（2 门）') throw new Error('切回句子课程后列表未刷新');
     if (await page.locator('#deckList .course-card').count() !== 2) throw new Error('切回句子课程后课程卡片数量错误');
 
     /* 空目录回归：创建目录只创建目录，不凭空生成课节或内部分类。 */
+    await page.locator('#courseViewJoined').click();
     await page.evaluate(function(){
       LogicalCourseStore.create({ title:'空目录回归测试', coverImage:'data:image/png;base64,e2e-empty-cover' });
     });
+    await page.evaluate(function(){ showTab('all'); });
+    await page.waitForFunction(function(){ return !document.querySelector('#tabCourses').classList.contains('hidden'); });
     await page.locator('#tabCourses').click();
     const emptyCard = page.locator('.course-card').filter({ hasText: '空目录回归测试' });
     if (await emptyCard.count() !== 1 || (await emptyCard.locator('.meta').innerText()).indexOf('尚未导入课节') === -1) throw new Error('空目录不应生成课程内容');
@@ -83,8 +170,8 @@ function stopServer() {
     if (await page.locator('.catalog-lesson').count() !== 0 || await page.locator('.catalog-group').count() !== 0 || (await page.locator('.empty-tip').innerText()).indexOf('还没有导入课节') === -1) throw new Error('空目录内部不应出现课节或分类');
     await page.locator('#decksBack').click();
     await page.waitForFunction(() => new URL(location.href).searchParams.get('course') === null);
-    if (!await page.locator('#tabCourses').evaluate(function(el){ return el.classList.contains('on'); })) throw new Error('从图文课程目录返回后页签状态丢失');
-    if ((await page.locator('#deckList .deck-section-title').innerText()) !== '图文课程（1 门）' || (await page.locator('#deckList .course-card').filter({ hasText: '空目录回归测试' }).count()) !== 1) throw new Error('从图文课程目录返回后错误渲染成句子课程列表：' + (await page.locator('#deckList').innerText()));
+    if (!await page.locator('#tabCourses').evaluate(function(el){ return el.getAttribute('aria-current') === 'page'; })) throw new Error('从图文课程目录返回后页签状态丢失');
+    if ((await page.locator('#deckList .deck-section-title').innerText()) !== '我的图文课程（1 门）' || (await page.locator('#deckList .course-card').filter({ hasText: '空目录回归测试' }).count()) !== 1) throw new Error('从图文课程目录返回后未恢复个人课程列表：' + (await page.locator('#deckList').innerText()));
 
     /* 图文课程真实回归：从统一课程卡进入播放器，再由播放器返回统一目录。 */
     const storyFixture = {
@@ -112,14 +199,14 @@ function stopServer() {
     });
     storyFixture.logicalCourseId = logicalId;
     await page.evaluate(async function(course){ await CL.preload(); await CL.writeCourses([course]); }, storyFixture);
-    await page.goto(BASE + '/decks.html?e2e=course-catalog', { waitUntil: 'networkidle' });
+    await page.goto(BASE + '/decks.html?e2e=course-catalog&courseView=joined', { waitUntil: 'networkidle' });
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
     if (await page.locator('.course-card').filter({ hasText: '图文回归课程' }).count() !== 0) {
       throw new Error('图文课程不应重复出现在句子课程标签');
     }
 
     /* 冷启动时直接切换标签也必须先看到目录卡，不能把已归属课节短暂渲染成顶层课程。 */
-    await page.goto(BASE + '/decks.html?e2e=course-catalog&cold=1', { waitUntil: 'domcontentloaded' });
+    await page.goto(BASE + '/decks.html?e2e=course-catalog&courseView=joined&cold=1', { waitUntil: 'domcontentloaded' });
     await page.locator('#tabCourses').click();
     await page.waitForSelector('#pageDecks:not(.hidden) .deck-section-title');
     if (await page.locator('.course-card').filter({ hasText: '我的新概念英语第一册' }).count() !== 1 || await page.locator('.course-card').filter({ hasText: '图文回归课程' }).count() !== 0) {
@@ -149,9 +236,20 @@ function stopServer() {
     await page.locator('.catalog-lesson').first().click();
     await page.waitForURL(/courses\.html\?.*id=story-catalog-e2e.*catalogCourse=logical-course%3A/);
     await page.waitForSelector('#coursePlayer:not(.hidden)');
-    if (await page.locator('#playerTitle').innerText() !== '图文回归课程') throw new Error('图文课程播放器未加载');
+    if (await page.locator('#playerTitle').innerText() !== 'Story catalog regression' ||
+        await page.locator('#playerTitleTranslation').innerText() !== '图文回归课程') {
+      throw new Error('图文课程播放器标题未按英文课程名 + 中文释义显示：' + JSON.stringify({
+        title: await page.locator('#playerTitle').innerText(),
+        translation: await page.locator('#playerTitleTranslation').innerText()
+      }));
+    }
     if (await page.locator('[data-action="select-v2-mode"]').count() !== 5) throw new Error('2.0 课程未显示完整练习方式选择');
     if (await page.locator('[data-action="select-v2-mode"]:not(:disabled)').count() !== 2) throw new Error('2.0 能力声明与练习方式按钮不一致');
+    if (await page.locator('.mode-option-copy .mode-option-title').count() !== 5) throw new Error('独立模式引导页未显示全部练习方式名称');
+    const unavailableMode = page.locator('[data-action="select-v2-mode"]:disabled').first();
+    const unavailableModeReason = await unavailableMode.getAttribute('aria-label');
+    const unavailableModeTitle = await unavailableMode.getAttribute('title');
+    if (!unavailableModeReason || !unavailableModeTitle || !unavailableModeReason.includes(unavailableModeTitle)) throw new Error('不可用练习方式应通过辅助说明和提示说明原因');
     const restartIconSize = await page.locator('#btnRestart .icon').evaluate(function(el){ const r = el.getBoundingClientRect(); return { width:r.width, height:r.height }; });
     if (restartIconSize.width > 20 || restartIconSize.height > 20) throw new Error('重新开始图标尺寸异常：' + JSON.stringify(restartIconSize));
     const playerImage = page.locator('#playerImage img');
@@ -169,6 +267,7 @@ function stopServer() {
     await page.locator('#decksBack').click();
     await page.waitForFunction(() => new URL(location.href).searchParams.get('course') === null);
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
+    await page.locator('#tabDecks').click();
     if (await page.locator('.course-card').filter({ hasText: '我的新概念英语第一册' }).count() !== 0) throw new Error('返回后图文课程仍混入句子课程标签');
     await page.evaluate(async function(){
       var m = CL.loadMem();
@@ -281,7 +380,7 @@ function stopServer() {
     extraStoryFixture.metadata.title['zh-CN'] = '待删除课节';
     extraStoryFixture.logicalCourseId = logicalId;
     await page.evaluate(async function(courses){ await CL.preload(); await CL.writeCourses(courses); }, [storyFixture, extraStoryFixture]);
-    await page.reload({ waitUntil: 'networkidle' });
+    await page.goto(BASE + '/decks.html?e2e=course-catalog&courseView=joined', { waitUntil: 'networkidle' });
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
     await page.locator('#tabCourses').click();
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
@@ -297,7 +396,7 @@ function stopServer() {
     });
     if (manageLayout.position !== 'static' || !manageLayout.sameLine || !manageLayout.rightAligned) throw new Error('课程管理菜单未与描述内容同一行并右对齐：' + JSON.stringify(manageLayout));
     await managedCategory.locator('.course-manage-trigger').click();
-    if ((await managedCategory.locator('.course-manage-item').allTextContents()).join('|') !== '删除分类') throw new Error('分类管理菜单内容错误');
+    if ((await managedCategory.locator('.course-manage-item').allTextContents()).join('|') !== '加入学习|以此为参考创作|删除分类') throw new Error('分类操作菜单内容错误');
     await managedCategory.click();
     await page.waitForURL(/decks\.html\?.*course=logical-course%3A/);
     if (await page.locator('.catalog-lesson .course-manage-trigger').count() !== 2) throw new Error('分类内课程缺少管理菜单');

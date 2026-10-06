@@ -47,6 +47,19 @@ assert.equal(story.courses[0].id, 'package:story-1');
 assert.equal(story.courses[0].contentType, 'story');
 assert.equal(story.courses[0].lessons[0].contentRef.type, 'story-package');
 
+const convertedLegacy = Catalog.buildCatalog({
+  manifest: { decks: [] },
+  userDecks: [{ id: 'story-1', name: '故事课', items: [{ cid: 'line-a' }], authoring: { catalogCourseId: 'package:story-1', legacySource: { courseId: 'story-1', version: '1.0.0' } } }],
+  storyPackages: [{ courseId: 'story-1', metadata: { title: { 'zh-CN': '故事课' } } }]
+});
+assert.equal(convertedLegacy.courses.length, 1);
+assert.equal(convertedLegacy.courses[0].id, 'package:story-1');
+assert.equal(convertedLegacy.courses[0].contentType, 'sentence');
+assert.equal(Catalog.resolveLesson(convertedLegacy.courses[0], 'lesson:story-package:story-1').contentRef.type, 'sentence-deck');
+assert.equal(Catalog.getCourseForContent(convertedLegacy, 'sentence-deck', 'story-1').id, 'package:story-1');
+assert.equal(Catalog.getCourseForContent(convertedLegacy, 'story-package', 'story-1'), null);
+assert.equal(Catalog.getEnrollmentAliases(convertedLegacy)['user-deck:story-1'], 'package:story-1');
+
 const logicalDefinition = {
   id: 'logical-course:nce-book-1',
   title: '新概念英语第一册',
@@ -82,6 +95,8 @@ assert.equal(nceWithLesson.courses[0].lessons[0].contentRef.id, 'lesson_1_excuse
 assert.equal(nceWithLesson.courses[0].lessons[0].title, '对不起！');
 assert.equal(nceWithLesson.courses[0].lessons[0].available, true);
 assert.equal(nceWithLesson.courses[0].outline[0].kind, 'lesson');
+assert.equal(Catalog.getEnrollmentAliases(nceWithLesson)['package:lesson_1_excuse_me'], logicalDefinition.id,
+  '导入包从独立课程归入逻辑课程后，旧登记应按稳定包 ID 指向新课程');
 
 const groupedPackages = Catalog.buildCatalog({
   manifest: { decks: [] },
