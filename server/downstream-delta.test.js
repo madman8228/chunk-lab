@@ -163,14 +163,13 @@ function getData(token, since) {
     !!r.json.mem.stats.bySentence['d1#aaaaaaaa'] &&
     !!r.json.mem.mastered['d1#aaaaaaaa']);
 
-  /* B3~B5：去冗余（2026-09-10）—— buildMem 组装时剥离 deckName/translation，
-     但保留 sentence/deckId（反查锚点）与 SRS 计数。 */
+  /* B3~B5：去冗余——bySentence 用 deckId#cid 作稳定索引，服务端剥离可从题库重建的文本。 */
   const _sbs = r.json.mem.stats.bySentence['d1#aaaaaaaa'];
   check('B3 bySentence 已剥离 deckName/translation',
     _sbs && !('deckName' in _sbs) && !('translation' in _sbs),
     JSON.stringify(_sbs));
-  check('B4 bySentence 保留 sentence/deckId 反查锚点',
-    _sbs && _sbs.sentence === 'I have a dream.' && _sbs.deckId === 'd1',
+  check('B4 bySentence 剥离 sentence 并保留 deckId 索引锚点',
+    _sbs && !('sentence' in _sbs) && _sbs.deckId === 'd1',
     JSON.stringify(_sbs));
   check('B5 bySentence 保留 SRS 计数', _sbs && _sbs.times === 1 && _sbs.okTimes === 1 && typeof _sbs.dueAt === 'number');
 

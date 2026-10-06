@@ -90,7 +90,84 @@ function createAdminOverview(options) {
     };
   }
 
-  return { adminOnly, parseRangeDays, adminOverview };
+  function adminSyncQuarantines(limit) {
+    const safeLimit = Number.isSafeInteger(limit) ? Math.min(Math.max(limit, 1), 200) : 100;
+    return db.prepare(
+      "SELECT s.user_id, u.username, s.source_id, s.source_hash, s.created_at, s.manifest_json " +
+      "FROM user_recovery_sources s JOIN users u ON u.id=s.user_id " +
+      "WHERE json_extract(s.manifest_json, '$.verified')=1 " +
+      "AND json_extract(s.manifest_json, '$.syncConflict.kind')='background-conflict-quarantine' " +
+      "ORDER BY s.created_at DESC, s.source_id DESC LIMIT ?"
+    ).all(safeLimit).map(row => {
+      let manifest = {};
+      try { manifest = JSON.parse(row.manifest_json); } catch (_) {}
+      const conflict = manifest.syncConflict || {};
+      return {
+        userId: row.user_id,
+        username: row.username,
+        sourceId: row.source_id,
+        sourceHash: row.source_hash,
+        archivedAt: row.created_at,
+        state: 'archived-unresolved',
+        conflict: {
+          entity: conflict.entity || 'unknown',
+          batch: conflict.batch === true,
+          capturedAt: conflict.capturedAt || null,
+          localHash: conflict.localHash || null,
+          remoteHash: conflict.remoteHash || null
+        }
+      };
+    });
+  }
+
+  function adminSaveFailures(limit) {
+    const safeLimit = Number.isSafeInteger(limit) ? Math.min(Math.max(limit, 1), 200) : 100;
+    return db.prepare(
+      "SELECT code, status, COUNT(*) AS occurrences, MAX(created_at) AS latest_at, " +
+      "(SELECT f2.trace_id FROM user_operation_failures f2 WHERE f2.code=f.code AND f2.status=f.status " +
+      "AND f2.created_at >= datetime('now', '-7 days') ORDER BY f2.created_at DESC, f2.id DESC LIMIT 1) AS trace_id " +
+      "FROM user_operation_failures f WHERE f.created_at >= datetime('now', '-7 days') " +
+      "GROUP BY code, status ORDER BY latest_at DESC LIMIT ?"
+    ).all(safeLimit).map(row => ({
+      code: row.code,
+      status: Number(row.status),
+      occurrences: Number(row.occurrences),
+      latestAt: row.latest_at,
+      traceId: row.trace_id
+    }));
+  }
+
+  function adminSaveHealth() {
+    const now = Date.now();
+    const row = db.prepare(
+      'SELECT COUNT(*) AS clients, COUNT(DISTINCT user_id) AS accounts, ' +
+      'COALESCE(SUM(pending),0) AS pending, COALESCE(SUM(blocked),0) AS blocked, ' +
+      'COALESCE(SUM(retry_attempts),0) AS retry_attempts, MIN(oldest_pending_at) AS oldest_pending_at, ' +
+      'MAX(updated_at) AS latest_at FROM user_client_save_health WHERE updated_at >= ?'
+    ).get(now - 30 * 60 * 1000);
+    const successfulOperations = Number(db.prepare(
+      "SELECT COUNT(*) AS count FROM user_operation_receipts WHERE created_at >= datetime('now', '-7 days')"
+    ).get().count);
+    const migrationRetainedItems = Number(db.prepare(
+      "SELECT COUNT(*) AS count FROM user_recovery_sources s, json_tree(s.manifest_json, '$.migration.items') item " +
+      "WHERE json_extract(s.manifest_json, '$.verified')=1 AND item.type='object' " +
+      "AND json_extract(item.value, '$.status')='retained-with-reason'"
+    ).get().count);
+    return {
+      windowMinutes: 30,
+      activeClients: Number(row.clients),
+      activeAccounts: Number(row.accounts),
+      pending: Number(row.pending),
+      blocked: Number(row.blocked),
+      retryAttempts: Number(row.retry_attempts),
+      successfulOperations,
+      migrationRetainedItems,
+      oldestPendingAt: row.oldest_pending_at == null ? null : Number(row.oldest_pending_at),
+      latestAt: row.latest_at == null ? null : Number(row.latest_at)
+    };
+  }
+
+  return { adminOnly, parseRangeDays, adminOverview, adminSyncQuarantines, adminSaveFailures, adminSaveHealth };
 }
 
 module.exports = { createAdminOverview };

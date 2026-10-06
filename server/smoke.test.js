@@ -11,14 +11,56 @@
 
 const { spawn } = require('child_process');
 const http = require('http');
+const net = require('net');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
 const SERVER_DIR = __dirname;
-const PORT = 8799;
-const BASE = 'http://127.0.0.1:' + PORT;
+let PORT = Number(process.env.CHUNKLAB_SMOKE_PORT) || 0;
+let BASE = '';
 const TMP_DB = path.join(os.tmpdir(), 'chunklab-smoke-' + Date.now());
+
+function reservePortBlock() {
+  return new Promise(function (resolve, reject) {
+    let attempts = 0;
+    function attempt() {
+      const held = [];
+      function closeAll(callback) {
+        let remaining = held.length;
+        if (!remaining) return callback();
+        held.forEach(function (server) {
+          if (!server.listening) {
+            if (--remaining === 0) callback();
+            return;
+          }
+          server.close(function () { if (--remaining === 0) callback(); });
+        });
+      }
+      function fail() {
+        closeAll(function () {
+          if (++attempts >= 20) reject(new Error('could not reserve a local test port block'));
+          else attempt();
+        });
+      }
+      function bind(port) {
+        const server = net.createServer();
+        server.once('error', fail);
+        server.listen(port, '127.0.0.1', function () {
+          held.push(server);
+          if (!PORT) PORT = server.address().port;
+          const basePort = PORT;
+          const offset = held.length;
+          if (offset >= 3) return closeAll(function () { resolve(basePort); });
+          if (basePort + 2 > 65535) return fail();
+          bind(basePort + offset);
+        });
+      }
+      bind(PORT || 0);
+    }
+    attempt();
+  });
+}
 
 let passed = 0;
 let failed = 0;
@@ -131,6 +173,9 @@ const childEnv = Object.assign({}, process.env, {
 let child = null;
 
 async function main() {
+  PORT = await reservePortBlock();
+  BASE = 'http://127.0.0.1:' + PORT;
+  childEnv.PORT = String(PORT);
   console.log('[smoke] starting server (multi-user mode) on port ' + PORT);
   console.log('[smoke] temp DB: ' + TMP_DB);
   child = spawn(process.execPath, ['index.js'], {
@@ -221,7 +266,7 @@ async function main() {
     check(
       'GET /api/export has structure（且不再导出全局 aiCache）',
       r.status === 200 && r.json && r.json.__app === 'chunklab' && r.json.mem &&
-      !r.json.aiCache,
+      Number.isSafeInteger(r.json.seq) && !r.json.aiCache,
       'status=' + r.status
     );
 
@@ -401,6 +446,34 @@ async function main() {
     check('ADR-005s2 progress 旧 rev1 被拒（仍 done=2）',
       r.status === 200 && r.json && r.json.courseProgress && r.json.courseProgress.pX && r.json.courseProgress.pX.done === 2,
       'pX=' + JSON.stringify(r.json && r.json.courseProgress && r.json.courseProgress.pX));
+
+    function membership(courseId, joined) {
+      return { kind:'course-enrollment', schemaVersion:1, courseId:courseId, joined:joined, joinedAt:1, changedAt:1 };
+    }
+    var limitProgress = {};
+    ['limit-one','limit-two','limit-three'].forEach(function(id){ limitProgress['enrollment:v1:'+id] = membership(id, true); });
+    r = await request('PUT', '/api/data', token, {
+      mem: {}, courses: [], courseProgress: limitProgress,
+      revs: { decks:{}, kv:{}, courses:{}, courseProgress:{
+        'enrollment:v1:limit-one':1, 'enrollment:v1:limit-two':1, 'enrollment:v1:limit-three':1
+      } }, deleted: { decks:[], kv:[], courses:[], courseProgress:[] }
+    });
+    check('课程加入上限允许达到 3 门', r.status === 200, 'status=' + r.status + ' ' + JSON.stringify(r.json));
+    r = await request('PUT', '/api/data', token, {
+      mem: {}, courses: [], courseProgress: { 'enrollment:v1:limit-four': membership('limit-four', true) },
+      revs: { decks:{}, kv:{}, courses:{}, courseProgress:{ 'enrollment:v1:limit-four':1 } },
+      deleted: { decks:[], kv:[], courses:[], courseProgress:[] }
+    });
+    check('课程加入上限拒绝第 4 门并返回 409', r.status === 409 && r.json && r.json.code === 'COURSE_LIMIT_REACHED', 'status=' + r.status + ' ' + JSON.stringify(r.json));
+    r = await request('PUT', '/api/data', token, {
+      mem: {}, courses: [], courseProgress: {
+        'enrollment:v1:limit-one': membership('limit-one', false),
+        'enrollment:v1:limit-four': membership('limit-four', true)
+      },
+      revs: { decks:{}, kv:{}, courses:{}, courseProgress:{ 'enrollment:v1:limit-one':2, 'enrollment:v1:limit-four':1 } },
+      deleted: { decks:[], kv:[], courses:[], courseProgress:[] }
+    });
+    check('移出一门后可加入另一门', r.status === 200, 'status=' + r.status + ' ' + JSON.stringify(r.json));
 
     // DELETE /api/courses/:id 软删语义（cB rev1 → rev2）
     r = await request('DELETE', '/api/courses/cB', token);

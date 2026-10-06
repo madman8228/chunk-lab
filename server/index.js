@@ -3,9 +3,9 @@
  *
  * 路由总览（前缀 /api）：
  *   鉴权：POST /auth/register  POST /auth/login  GET /auth/me
- *   数据：GET  /data          PUT /data            （整份 mem + courses + courseProgress）
- *         POST /courses       DELETE /courses/:id  （单条课程导入/删除）
- *   备份：GET  /export        POST /import          （完整备份 JSON 导入导出）
+ *   数据：GET /data；POST /operations、POST /content-import（确认读取与窄操作写入）
+ *   备份：GET /export；显式恢复使用 /recovery（保留归档，禁止覆盖非空账号）
+ *   旧版整份写入/冲突处理接口在新协议下只返回升级拒绝，不应用数据。
  *   健康：GET  /health
  *
  * 所有数据接口需 Authorization: Bearer <token>（JWT）。
@@ -29,19 +29,26 @@ const { createSnapshotReader } = require('./services/data-snapshot');
 const { createDataWriters } = require('./services/data-writers');
 const { createDataRows } = require('./services/data-rows');
 const { createDataMigrations } = require('./services/data-migrations');
-const { createDataSave } = require('./services/data-save');
-const { createBatchReplacement } = require('./services/batch-replacement');
 const { createAdminOverview } = require('./services/admin-overview');
-const { registerSyncRoutes } = require('./routes/sync');
-const { registerCourseRoutes } = require('./routes/courses');
 const { registerDeckRoutes } = require('./routes/decks');
 const { registerBackupRoutes } = require('./routes/backup');
 const { registerFeedbackRoutes } = require('./routes/feedback');
 const { registerAiRoutes } = require('./routes/ai');
 const { registerAdminRoutes } = require('./routes/admin');
+const { registerContentStudioRoutes } = require('./routes/content-studio');
+const { createContentStudio } = require('./services/content-studio');
 const { registerAuthRoutes } = require('./routes/auth');
 const { registerSystemRoutes } = require('./routes/system');
 const { registerDataRoutes } = require('./routes/data');
+const { registerOperationRoutes } = require('./routes/operations');
+const { createOperations, MAX_CONTENT_IMPORT_BYTES } = require('./services/operations');
+const { registerContentImportRoutes } = require('./routes/content-import');
+const { registerClientSaveHealthRoutes } = require('./routes/client-save-health');
+const { registerRecoveryRoutes } = require('./routes/recovery');
+const { createRecoveryIngest } = require('./services/recovery-ingest');
+const { reducePracticeEvents } = require('./services/learning-replay');
+const { createAssessmentContent } = require('./services/assessment-content');
+const serverSrs = require('../srs');
 
 const KV_KEYS = ['best', 'mastered', 'stats', 'settings', 'reinforceBook', 'deletedItems'];
 /* 已迁到行表 user_entity_rows 的 kv 键 → kind 映射（客户端键名 → 服务端 kind）。
@@ -51,6 +58,16 @@ const ROW_KV_KINDS = { mastered: 'mastered', reinforceBook: 'reinforce', deleted
    Tests run in an isolated compatibility mode so old migration fixtures can
    still exercise their pre-upgrade behavior; no deploy-time switch reopens it. */
 const STRICT_CONDITIONAL_WRITES = process.env.NODE_ENV !== 'test';
+/* Production boots into the operation-based protocol by default. Tests keep
+   the legacy fixture mode unless they explicitly opt into protocol 3. */
+const requestedWriteProtocol = process.env.NODE_ENV === 'test'
+  ? (process.env.CHUNKLAB_WRITE_PROTOCOL === '3' ? 3 : 2)
+  : 3;
+const storedWriteProtocolRow = db.prepare("SELECT setting_value FROM app_runtime_settings WHERE setting_key='write_protocol'").get();
+let WRITE_PROTOCOL = Number(storedWriteProtocolRow && storedWriteProtocolRow.setting_value) >= 3 ? 3 : requestedWriteProtocol;
+if (WRITE_PROTOCOL >= 3 && !(Number(storedWriteProtocolRow && storedWriteProtocolRow.setting_value) >= 3)) {
+  db.prepare("INSERT INTO app_runtime_settings(setting_key,setting_value) VALUES('write_protocol','3') ON CONFLICT(setting_key) DO UPDATE SET setting_value='3',updated_at=datetime('now')").run();
+}
 function rejectUnconditional(body, res, label) {
   if (!STRICT_CONDITIONAL_WRITES) return false;
   if (!body || body.baseSeq === undefined || body.requestId === undefined) {
@@ -68,11 +85,11 @@ const app = express();
 /* 安全加固（2026-09-10）：移除 Express 默认的 `X-Powered-By: Express` 响应头。
    暴露后端技术栈会帮攻击者直接定位已知漏洞版本，属零成本减少攻击面。 */
 app.disable('x-powered-by');
-/* 分层 body 上限（2026-09-11 安全审查 P0-2）：鉴权接口 payload 极小（用户名/密码），
-   先于全局大限注册，用 64kb 兜住；后续全局 80mb 只服务于图文课程/反馈截图等真正的大 payload。
+/* 分层 body 上限：鉴权接口 payload 极小（用户名/密码），先于全局大限注册，用 64kb 兜住；
+   全局上限与协议 3 单实体 content-import 的 80 MiB 服务端合同保持一致。
    body-parser 会在首个解析后置 req._body，后续 parser 自动跳过，故按路径前置是安全的最小改法。 */
 app.use('/api/auth', express.json({ limit: '64kb' }));
-app.use(express.json({ limit: '80mb' })); // 图文课程含 base64 图片，可能很大
+app.use(express.json({ limit: MAX_CONTENT_IMPORT_BYTES })); // 数值字节，避免 80mb 被解释成十进制 80,000,000
 
 const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
 app.use(cors({
@@ -111,7 +128,14 @@ function touchUserActivity(userId) {
   ).run(userId, day, now, now);
 }
 
-const { adminOnly, parseRangeDays, adminOverview } = createAdminOverview({ db, admin, shanghaiDay });
+const { adminOnly, parseRangeDays, adminOverview, adminSyncQuarantines, adminSaveFailures, adminSaveHealth } = createAdminOverview({ db, admin, shanghaiDay });
+function recordSaveFailure(userId, code, status, traceId) {
+  db.prepare('INSERT INTO user_operation_failures(user_id,code,status,trace_id) VALUES(?,?,?,?)')
+    .run(userId, code, status, traceId);
+  db.prepare("DELETE FROM user_operation_failures WHERE created_at < datetime('now', '-30 days')").run();
+  db.prepare('DELETE FROM user_operation_failures WHERE user_id=? AND id NOT IN ' +
+    '(SELECT id FROM user_operation_failures WHERE user_id=? ORDER BY id DESC LIMIT 500)').run(userId, userId);
+}
 function userIdFromReq(req) {
   try {
     const h = req.headers.authorization || '';
@@ -156,12 +180,22 @@ registerAdminRoutes({
   db,
   adminOnly,
   adminOverview,
+  adminSyncQuarantines,
+  adminSaveFailures,
+  adminSaveHealth,
   parseRangeDays,
   rateBlocked,
   rateClear,
   rateHit,
   send429,
   authRate: AUTH_RATE
+});
+
+registerContentStudioRoutes({
+  app,
+  adminOnly,
+  writeProtocol: WRITE_PROTOCOL,
+  studio: createContentStudio({ db, appRoot: process.env.CHUNKLAB_APP_ROOT || path.resolve(__dirname, '..') }),
 });
 
 registerAuthRoutes({
@@ -205,7 +239,7 @@ function stmt(sql) {
   return _stmtCache[sql];
 }
 const {
-  upsertSentenceStat, deleteSentenceStat, upsertEvent, deleteEvent,
+  upsertSentenceStat, replaceSentenceStat, deleteSentenceStat, upsertEvent, deleteEvent,
   upsertEntityRow, deleteEntityRow, putEntityBlob
 } = createDataRows({ stmt });
 
@@ -225,71 +259,125 @@ const { migrateStatsToRows, migrateEntityRows } = createDataMigrations({
   upsertEvent,
   putEntityBlob
 });
-const saveData = createDataSave({
+let legacyDataWriter;
+function getLegacyDataWriter() {
+  if (legacyDataWriter) return legacyDataWriter;
+  legacyDataWriter = require('./services/data-save').createDataSave({
+    db, batchHash, assertBatchVersion, currentSeq, allocSeq, KV_KEYS, ROW_KV_KINDS,
+    upsertDeck, updateDeckPublication, upsertKv, upsertCourse, upsertCourseProgress,
+    upsertSentenceStat, deleteSentenceStat, upsertEvent, deleteEvent,
+    putEntityBlob, upsertEntityRow, deleteEntityRow
+  });
+  return legacyDataWriter;
+}
+const hasAccountPersistenceState = db.prepare(`SELECT EXISTS(
+  SELECT 1 FROM user_batch_receipts WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_operation_receipts WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_operation_events WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_learning_baselines WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_learning_generation_baselines WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_learning_events WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_learning_generations WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_learning_resumes WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_assessment_sessions WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_decks WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_kv WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_courses WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_course_progress WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_sentence_stats WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_events WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_entity_rows WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_sync_resolutions WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_recovery_sources WHERE user_id=? AND source_id<>?
+  UNION ALL SELECT 1 FROM user_recovery_source_uploads WHERE user_id=?
+  UNION ALL SELECT 1 FROM user_recovery_source_chunks WHERE user_id=?
+) AS has_state`);
+function isAccountPersistenceEmpty(userId, sourceId) {
+  // initChangeSeq seeds new accounts at 1. A later sequence is evidence of a
+  // prior server write even if its business row was subsequently removed.
+  if (currentSeq(userId) > 1) return false;
+  const params = Array(17).fill(userId);
+  params.push(userId, sourceId, userId, userId);
+  return hasAccountPersistenceState.get(...params).has_state === 0;
+}
+
+const operations = createOperations({
   db,
-  batchHash,
-  assertBatchVersion,
-  currentSeq,
   allocSeq,
-  KV_KEYS,
-  ROW_KV_KINDS,
+  readChanges: (userId, seq) => buildMemSnapshot(userId, Math.max(0, seq - 1)),
   upsertDeck,
-  updateDeckPublication,
-  upsertKv,
   upsertCourse,
   upsertCourseProgress,
+  upsertKv,
   upsertSentenceStat,
+  replaceSentenceStat,
   deleteSentenceStat,
   upsertEvent,
-  deleteEvent,
-  putEntityBlob,
   upsertEntityRow,
-  deleteEntityRow
+  deleteEntityRow,
+  srs: serverSrs,
+  reducePracticeEvents,
+  resolveAssessmentItem: createAssessmentContent({ db }).resolve,
+  hash: batchHash
+});
+registerOperationRoutes({ app, auth, operations, writeProtocol: WRITE_PROTOCOL, recordSaveFailure });
+registerContentImportRoutes({ app, auth, operations, validate, writeProtocol: WRITE_PROTOCOL, recordSaveFailure });
+registerClientSaveHealthRoutes({ app, auth, db, writeProtocol: WRITE_PROTOCOL });
+registerRecoveryRoutes({
+  app,
+  auth,
+  express,
+  recovery: createRecoveryIngest(db, {
+    ownerIdentityForUser: userId => auth.REQUIRE_AUTH ? String(userId) : 'local',
+    legacyWritesFenced: WRITE_PROTOCOL >= 3,
+    validatePutPayload: validate.validatePutPayload,
+    currentSeq,
+    readCurrentSnapshot: buildMemSnapshot,
+    isAccountEmpty: isAccountPersistenceEmpty,
+    executeRecoveryOperation: function (userId, operation) { return operations.execute(userId, operation); },
+    saveLegacyBaseline: require('./services/recovery-baseline').createRecoveryBaselineWriter({
+      db, isAccountEmpty: isAccountPersistenceEmpty, getWriter: getLegacyDataWriter, upsertEntityRow
+    })
+  })
 });
 
 registerDataRoutes({
   app,
   auth,
-  rejectUnconditional,
-  validate,
-  readMemSnapshot,
-  saveData
+  readMemSnapshot
 });
 
-const resolutions = require('./sync-resolution').createResolutionService(db, function(userId, entity, id, value, rev, deleted, seq){
-  if (entity === 'decks') upsertDeck(userId, value || { id }, rev, deleted, seq);
-  else if (entity === 'courses') upsertCourse(userId, value || { courseId: id }, rev, deleted, seq);
-  else if (entity === 'courseProgress') upsertCourseProgress(userId, id, value, rev, deleted, seq);
-  else upsertKv(userId, id, value, rev, deleted, seq);
-}, allocSeq);
-const resolutionModule = require('./sync-resolution');
-const batchToken = resolutionModule.batchToken;
-const makeBatchReplacement = createBatchReplacement({ buildMemSnapshot });
-
-const batchResolutions = resolutionModule.createBatchResolutionService(db,
-  userId => buildMemSnapshot(userId),
-  (userId, local, remote, requestId) => saveData(userId, makeBatchReplacement(userId, local, remote, requestId), true));
-registerSyncRoutes({ app, auth, resolutions, batchResolutions });
-registerCourseRoutes({
-  app,
-  auth,
-  validate,
-  db,
-  upsertCourse,
-  allocSeq,
-  strictConditionalWrites: STRICT_CONDITIONAL_WRITES
-});
-registerDeckRoutes({
-  app,
-  auth,
-  db,
-  validate,
-  saveData,
-  updateDeckPublication,
-  allocSeq,
-  rejectUnconditional,
-  strictConditionalWrites: STRICT_CONDITIONAL_WRITES
-});
+if (WRITE_PROTOCOL === 3) {
+  require('./routes/retired-sync').registerRetiredSyncRoutes({ app, auth, db });
+} else {
+  const saveData = getLegacyDataWriter();
+  // Only isolated historical test fixtures need these route constructors.
+  require('./routes/legacy-snapshot-writes').registerLegacySnapshotWrites({app,auth,rejectUnconditional,validate,saveData});
+  const { createBatchReplacement } = require('./services/batch-replacement');
+  const { registerSyncRoutes } = require('./routes/sync');
+  const resolutionModule = require('./sync-resolution');
+  const resolutions = resolutionModule.createResolutionService(db, function(userId, entity, id, value, rev, deleted, seq){
+    if (entity === 'decks') upsertDeck(userId, value || { id }, rev, deleted, seq);
+    else if (entity === 'courses') upsertCourse(userId, value || { courseId: id }, rev, deleted, seq);
+    else if (entity === 'courseProgress') upsertCourseProgress(userId, id, value, rev, deleted, seq);
+    else upsertKv(userId, id, value, rev, deleted, seq);
+  }, allocSeq);
+  const makeBatchReplacement = createBatchReplacement({ buildMemSnapshot });
+  const batchResolutions = resolutionModule.createBatchResolutionService(db,
+    userId => buildMemSnapshot(userId),
+    (userId, local, remote, requestId) => saveData(userId, makeBatchReplacement(userId, local, remote, requestId), true));
+  registerSyncRoutes({ app, auth, resolutions, batchResolutions, writeProtocol: WRITE_PROTOCOL });
+  require('./routes/courses').registerCourseRoutes({
+    app, auth, validate, db, upsertCourse, allocSeq,
+    strictConditionalWrites: STRICT_CONDITIONAL_WRITES,
+    writeProtocol: WRITE_PROTOCOL
+  });
+  require('./routes/legacy-deck-publication').registerLegacyDeckPublication({
+    app, auth, db, validate, saveData, updateDeckPublication, allocSeq, rejectUnconditional,
+    strictConditionalWrites: STRICT_CONDITIONAL_WRITES
+  });
+}
+registerDeckRoutes({ app, db });
 // Compatibility marker for the legacy static contract: app.post('/api/feedback' is registered in routes/feedback.js without auth.
 registerFeedbackRoutes({ app, feedback });
 
@@ -330,16 +418,14 @@ registerAiRoutes({
 registerBackupRoutes({
   app,
   auth,
-  readMemSnapshot,
-  rejectUnconditional,
-  validate,
-  saveData
+  readMemSnapshot
 });
 registerSystemRoutes({
   app,
   auth,
   metrics,
   aiEnabled: AI_EXPLAIN_ENABLED,
+  writeProtocol: WRITE_PROTOCOL,
   touchUserActivity
 });
 /* ===================== 静态托管前端（本地调试零配置） =====================
@@ -351,8 +437,9 @@ registerSystemRoutes({
    （线上实测 200，可下载整库）。修法不是补黑名单条目，而是**先规范化再判定**；
    规则已全部搬进该模块，这里不再保留副本，避免两份实现漂移。 */
 app.use(createStaticGuard());
-/* 根路径 → 入口页。仓库无 index.html（入口是 main.html），express.static 对 / 会 404 "Cannot GET /" */
-app.get('/', function (req, res) { res.redirect('/main.html'); });
+/* 根路径 → 落地页 index.html。2026-10-05 合并落地页进本仓库后，
+   仓库已有 index.html，由下方 express.static 自动托管（默认 index: 'index.html'）。
+   原先「仓库无 index.html → 重定向 /main.html」的那一行已删除 —— 保留它会让落地页永远看不到。 */
 /* 静态资源压缩（2026-09-10）：见 server/compress.js 头部「为什么需要」。
    8000 句题库 7.80MB → brotli ~1.8MB，是扩容后唯一真正卡前端的瓶颈。
    必须放在 express.static 之前：命中则直接返回压缩体，未命中（客户端不要压缩 / 含 Range / 非文本）
@@ -362,6 +449,7 @@ app.use(staticCompress);
 app.use(express.static(path.join(__dirname, '..')));
 
 const PORT = process.env.PORT || 8787;
+const HOST = process.env.HOST || '127.0.0.1';
 auth.ensureDefaultUser(); // 开放模式：确保默认用户存在
 const adminState = admin.ensureAdminUser();
 if (!adminState.configured) {
@@ -417,8 +505,8 @@ if (_seqBackfill) {
   console.log('[chunklab-server] 变更序号回填完成：' + _seqBackfill + ' 行 → seq=1（计数器同步抬到 1）');
 }
 
-app.listen(PORT, function () {
-  console.log('[chunklab-server] listening on http://0.0.0.0:' + PORT +
+app.listen(PORT, HOST, function () {
+  console.log('[chunklab-server] listening on http://' + HOST + ':' + PORT +
     (auth.REQUIRE_AUTH ? ' (多用户模式)' : ' (开放模式·免登录)'));
   securityWarnings.forEach(function (w) { console.warn(w); });
   /* 后台预热大文件压缩体：让第一个访客不必等现场压缩（见 server/compress.js warm） */

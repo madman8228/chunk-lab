@@ -1,5 +1,20 @@
 'use strict';
 
+const ENROLLMENT_PREFIX = 'enrollment:v1:';
+const MAX_JOINED_COURSES = 3;
+
+function isJoinedEnrollment(id, value) {
+  return !!(value && value.kind === 'course-enrollment' && value.schemaVersion === 1 &&
+    value.joined === true && typeof value.courseId === 'string' && value.courseId.trim() &&
+    id === ENROLLMENT_PREFIX + encodeURIComponent(value.courseId));
+}
+
+function courseLimitError() {
+  return Object.assign(new Error('最多加入 3 门课程；请先移出一门，再加入新课程。'), {
+    code: 'COURSE_LIMIT_REACHED', status: 409
+  });
+}
+
 /* Batch data write coordinator. All persistence and conflict dependencies are
  * injected so routes can call one stable service without owning storage logic. */
 function createDataSave(options) {
@@ -77,6 +92,30 @@ function createDataSave(options) {
       }
       assertBatchVersion(body.baseSeq, currentSeq(userId));
       const seq = allocSeq(userId);
+
+      /* Enforce the account limit against the post-merge membership set.
+         Existing accounts above the limit can still remove courses or sync other data,
+         but cannot increase their joined-course count further. */
+      const currentJoined = new Set();
+      db.prepare('SELECT course_id,data_json FROM user_course_progress WHERE user_id=? AND deleted_at IS NULL').all(userId).forEach(function (row) {
+        try {
+          const value = JSON.parse(row.data_json);
+          if (isJoinedEnrollment(row.course_id, value)) currentJoined.add(value.courseId);
+        } catch (error) { /* Ignore malformed or unrelated progress rows. */ }
+      });
+      const nextJoined = new Set(currentJoined);
+      Object.keys(courseProgress).forEach(function (id) {
+        if (isJoinedEnrollment(id, courseProgress[id])) nextJoined.add(courseProgress[id].courseId);
+        else if (id.indexOf(ENROLLMENT_PREFIX) === 0) {
+          try { nextJoined.delete(decodeURIComponent(id.slice(ENROLLMENT_PREFIX.length))); } catch (error) { /* Ignore malformed keys. */ }
+        }
+      });
+      (deleted.courseProgress || []).forEach(function (item) {
+        if (item && typeof item.id === 'string' && item.id.indexOf(ENROLLMENT_PREFIX) === 0) {
+          try { nextJoined.delete(decodeURIComponent(item.id.slice(ENROLLMENT_PREFIX.length))); } catch (error) { /* Ignore malformed keys. */ }
+        }
+      });
+      if (nextJoined.size > MAX_JOINED_COURSES && nextJoined.size > currentJoined.size) throw courseLimitError();
   
       // decks：实体级 rev upsert（不再整块 DELETE，崩溃可恢复、多设备不互覆盖）
       (mem.decks || []).forEach(function (d) {

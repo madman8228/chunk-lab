@@ -90,8 +90,14 @@ function createSnapshotReader(options) {
     const entityDeletedItems = {};
     rows('SELECT item_key FROM user_entity_rows WHERE {W} AND kind=?', true, ['deletedItem'])
       .forEach(function (r) { entityDeletedItems[r.item_key] = true; });
+    const logicalCourses = {};
+    rows('SELECT item_key,data_json FROM user_entity_rows WHERE {W} AND kind=?', true, ['logicalCourse'])
+      .forEach(function (r) { logicalCourses[r.item_key] = JSON.parse(r.data_json); });
+    const logicalCourseRevs = {};
+    rows('SELECT item_key,seq FROM user_entity_rows WHERE {W} AND kind=?', false, ['logicalCourse'])
+      .forEach(function (r) { logicalCourseRevs[r.item_key] = r.seq == null ? null : Number(r.seq); });
     const entityGone = {};
-    ['mastered', 'reinforce', 'deletedItem'].forEach(function (kind) {
+    ['mastered', 'reinforce', 'deletedItem', 'logicalCourse'].forEach(function (kind) {
       entityGone[kind] = rows('SELECT item_key FROM user_entity_rows WHERE {W} AND kind=? AND deleted_at IS NOT NULL ORDER BY item_key', false, [kind])
         .map(function (r) { return r.item_key; });
     });
@@ -103,7 +109,8 @@ function createSnapshotReader(options) {
       stats: Object.assign({}, statsBase, { bySentence: bySentence, events: events }),
       settings: kv.settings || {},
       reinforceBook: entityReinforce,
-      deletedItems: entityDeletedItems
+      deletedItems: entityDeletedItems,
+      logicalCourses: logicalCourses
     };
   
     const courseRows = rows('SELECT data_json FROM user_courses WHERE {W}', true);
@@ -117,13 +124,28 @@ function createSnapshotReader(options) {
     progRows.forEach(function (r) { courseProgress[r.course_id] = JSON.parse(r.data_json); });
     const progRevs = {};
     rows('SELECT course_id,rev FROM user_course_progress WHERE {W}', false).forEach(function (r) { progRevs[r.course_id] = r.rev; });
+
+    const learningResumes = {};
+    rows('SELECT session_id,deck_id,course_id,generation,idx,content_cursor,practice_mode,updated_at FROM user_learning_resumes WHERE {W}', true)
+      .forEach(function (r) {
+        learningResumes[r.session_id] = { sessionId: r.session_id, deckId: r.deck_id, courseId: r.course_id || null,
+          generation: r.generation, idx: r.idx, contentCursor: r.content_cursor, practiceMode: r.practice_mode,
+          updatedAt: r.updated_at };
+      });
+
+    /* Generation is compact control metadata, not a row-level content delta.
+       Return the complete per-scope map even on incremental reads so a client
+       can safely adopt resets it did not initiate before accepting new work. */
+    const learningGenerations = {};
+    db.prepare('SELECT scope_key,generation FROM user_learning_generations WHERE user_id=? ORDER BY scope_key')
+      .all(userId).forEach(function (r) { learningGenerations[r.scope_key] = Number(r.generation) || 0; });
   
     /* ★ 增量模式必须**显式**给出删除清单。
        全量下的客户端可以靠「远端 revs 有、远端 mem 没有 → 已删」推断缺失实体，因为全量响应
        就是全集；但增量的 mem 只含**变更**项，未变更的实体本来就不在响应里 ——
        若客户端沿用存在性推断，会把「没变更」误判成「已删除」，整批删掉用户数据。
        所以增量下删除一律落成显式列表，客户端不做任何存在性推断。 */
-    const deleted = { decks: [], kv: [], courses: [], courseProgress: [] };
+    const deleted = { decks: [], kv: [], courses: [], courseProgress: [], learningResumes: [] };
     /* 事件是追加日志，客户端不能仅凭全量响应里“没有某事件”推断删除：
        旧设备可能仍保留被整账号选择清掉的事件。全量也返回墓碑，体积很小，
        让设备首次/重新拉取时能够摘掉本地旧事件；增量路径仍按 seq 限定范围。 */
@@ -141,11 +163,14 @@ function createSnapshotReader(options) {
       /* bySentence 的软删行：与 entityGone 同性质，客户端据此从本地档案里摘掉 */
       deleted.sentences = rows('SELECT sentence_key FROM user_sentence_stats WHERE {W} AND deleted_at IS NOT NULL', false)
         .map(function (r) { return r.sentence_key; });
+      deleted.learningResumes = rows('SELECT session_id FROM user_learning_resumes WHERE {W} AND deleted_at IS NOT NULL', false)
+        .map(function (r) { return r.session_id; });
     }
   
     return {
-      mem: mem, courses: courses, courseProgress: courseProgress,
-      revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs },
+      mem: mem, courses: courses, courseProgress: courseProgress, learningResumes: learningResumes,
+      learningGenerations: learningGenerations,
+      revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs, logicalCourses: logicalCourseRevs },
       entityGone: entityGone,
       /* 客户端据此记录下行水位：「seq 及之前的变更我都已收到」。
          必须与数据同层存储（清数据就得清水位），否则「数据被清、水位残留」会永久少数据。 */
@@ -175,4 +200,3 @@ function createSnapshotReader(options) {
 }
 
 module.exports = { createSnapshotReader };
-

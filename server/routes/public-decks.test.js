@@ -1,0 +1,27 @@
+'use strict';
+const assert=require('node:assert/strict');
+const Database=require('../node_modules/better-sqlite3');
+const {registerDeckRoutes}=require('./decks');
+const db=new Database(':memory:');
+db.exec(`CREATE TABLE users(id INTEGER,username TEXT);
+CREATE TABLE user_decks(id TEXT,user_id INTEGER,name TEXT,items_json TEXT,created_at TEXT,updated_at TEXT,is_public INTEGER,deleted_at TEXT);
+INSERT INTO users VALUES(1,'author');`);
+const insert=db.prepare('INSERT INTO user_decks VALUES(?,?,?,?,?,?,?,?)');
+insert.run('public',1,'Published','[{"id":"sentence"}]','2026-01-01','2026-01-01',1,null);
+insert.run('private',1,'Private','[]','2026-01-01','2026-01-01',0,null);
+insert.run('deleted',1,'Removed','[]','2026-01-01','2026-01-01',1,'2026-01-02');
+const before=db.serialize(),routes=new Map();
+registerDeckRoutes({app:{get(url,handler){routes.set(url,handler);}},db});
+function read(url,id){
+  const res={statusCode:200,status(n){this.statusCode=n;return this;},json(body){this.body=body;return this;}};
+  routes.get(url)({params:{id}},res);return res;
+}
+const list=read('/api/deck/public').body.decks;
+assert.deepEqual(list.map(item=>item.id),['public']);
+assert.equal(list[0].author,'author');
+assert.equal(list[0].itemCount,1);
+assert.equal(read('/api/deck/public/:id','public').body.deck.items.length,1);
+for(const id of ['private','deleted','missing'])assert.equal(read('/api/deck/public/:id',id).statusCode,404);
+assert.deepEqual(db.serialize(),before,'market reads must never alter courses');
+db.close();
+console.log('[public-decks] public content remains readable; private/deleted content hidden; database unchanged');

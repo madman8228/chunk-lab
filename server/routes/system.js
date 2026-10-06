@@ -6,6 +6,7 @@ function registerSystemRoutes(options) {
   const metrics = options.metrics;
   const aiEnabled = options.aiEnabled;
   const touchUserActivity = options.touchUserActivity;
+  const writeProtocol = options.writeProtocol || 2;
 
   app.get('/api/stats', function (req, res) {
     const total = metrics.aiCacheHits + metrics.aiCacheMisses;
@@ -23,7 +24,9 @@ function registerSystemRoutes(options) {
   app.get('/api/health', function (req, res) { res.json({ ok: true, ts: Date.now() }); });
 
   app.get('/api/config', function (req, res) {
-    res.json({ requireAuth: auth.REQUIRE_AUTH, serverVersion: 1, authAvailable: true, aiEnabled: aiEnabled });
+    res.json({ requireAuth: auth.REQUIRE_AUTH, serverVersion: 1, authAvailable: true,
+      aiEnabled: aiEnabled, writeProtocol: writeProtocol,
+      persistenceMode: writeProtocol === 3 ? 'server-authoritative' : 'legacy' });
   });
 
   app.post('/api/usage/heartbeat', auth.authenticate, function (req, res) {

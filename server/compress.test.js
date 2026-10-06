@@ -19,12 +19,13 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const http = require('http');
+const net = require('net');
 const zlib = require('zlib');
 const { spawn } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const compress = require('./compress');
-const PORT = require('../e2e/lib/free-port').freePort(9600, 200);
+let PORT;
 
 let passed = 0, failed = 0;
 function check(name, cond, detail) {
@@ -53,10 +54,22 @@ check('br / gzip 的 ETag 不同（防 Vary 分桶下 304 命中错误 body）',
 check('同编码同 mtime → ETag 稳定', eBr === compress._internal.etagFor(st, 'br'));
 check('mtime 变 → ETag 变', eBr !== compress._internal.etagFor({ size: 1234, mtimeMs: 1700000000001 }, 'br'));
 
+function reservePort() {
+  return new Promise(function (resolve, reject) {
+    const probe = net.createServer();
+    probe.once('error', reject);
+    probe.listen(0, '127.0.0.1', function () {
+      const port = probe.address().port;
+      probe.close(function (error) { if (error) reject(error); else resolve(port); });
+    });
+  });
+}
+
 /* ---------- 启动服务器 ---------- */
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-compress-'));
 let server = null;
-function startServer() {
+async function startServer() {
+  PORT = await reservePort();
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, ['index.js'], {
       cwd: __dirname,

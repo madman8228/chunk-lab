@@ -1,4 +1,5 @@
 'use strict';
+const { rejectLegacyWrite } = require('./protocol-guard');
 
 function registerCourseRoutes(options) {
   const app = options.app;
@@ -8,8 +9,10 @@ function registerCourseRoutes(options) {
   const upsertCourse = options.upsertCourse;
   const allocSeq = options.allocSeq;
   const strictConditionalWrites = options.strictConditionalWrites;
+  const writeProtocol = options.writeProtocol || 2;
 
   app.post('/api/courses', auth.authenticate, function (req, res) {
+    if (rejectLegacyWrite(writeProtocol, res, '课程写入')) return;
     if (strictConditionalWrites) return res.status(428).json({ error: '课程写入已迁移到条件同步批次，请升级客户端', code: 'CLIENT_UPGRADE_REQUIRED' });
     const course = req.body && req.body.course;
     const verr = validate.validateCourse(course);
@@ -21,6 +24,7 @@ function registerCourseRoutes(options) {
   });
 
   app.delete('/api/courses/:courseId', auth.authenticate, function (req, res) {
+    if (rejectLegacyWrite(writeProtocol, res, '课程删除')) return;
     if (strictConditionalWrites) return res.status(428).json({ error: '课程删除已迁移到条件同步批次，请升级客户端', code: 'CLIENT_UPGRADE_REQUIRED' });
     try {
       const cid = req.params.courseId;

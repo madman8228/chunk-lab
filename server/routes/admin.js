@@ -7,6 +7,9 @@ function registerAdminRoutes(options) {
   const db = options.db;
   const adminOnly = options.adminOnly;
   const adminOverview = options.adminOverview;
+  const adminSyncQuarantines = options.adminSyncQuarantines;
+  const adminSaveFailures = options.adminSaveFailures;
+  const adminSaveHealth = options.adminSaveHealth;
   const parseRangeDays = options.parseRangeDays;
   const rateBlocked = options.rateBlocked;
   const rateClear = options.rateClear;
@@ -41,6 +44,36 @@ function registerAdminRoutes(options) {
     } catch (e) {
       console.error('[admin] overview failed:', e.message);
       res.status(500).json({ error: '统计读取失败' });
+    }
+  });
+
+  app.get('/api/admin/sync-quarantines', adminOnly, function (req, res) {
+    try {
+      const requested = Number(req.query && req.query.limit);
+      const limit = Number.isSafeInteger(requested) && requested > 0 ? requested : 100;
+      res.json({ quarantines: adminSyncQuarantines(limit) });
+    } catch (e) {
+      console.error('[admin] sync quarantine listing failed:', e.message);
+      res.status(500).json({ error: '隔离状态读取失败' });
+    }
+  });
+
+  app.get('/api/admin/save-failures', adminOnly, function (req, res) {
+    try {
+      const requested = Number(req.query && req.query.limit);
+      const limit = Number.isSafeInteger(requested) && requested > 0 ? requested : 100;
+      res.json({ failures: adminSaveFailures(limit) });
+    } catch (e) {
+      console.error('[admin] save failure summary failed:', e.message);
+      res.status(500).json({ error: '保存诊断读取失败' });
+    }
+  });
+
+  app.get('/api/admin/save-health', adminOnly, function (_req, res) {
+    try { res.json({ health: adminSaveHealth() }); }
+    catch (error) {
+      console.error('[admin] save health summary failed:', error.message);
+      res.status(500).json({ error: '保存队列摘要读取失败' });
     }
   });
   

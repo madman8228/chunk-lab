@@ -1,4 +1,5 @@
 'use strict';
+const { rejectLegacyWrite } = require('./protocol-guard');
 
 /* Register sync conflict endpoints against already-created services. */
 function registerSyncRoutes(options) {
@@ -6,6 +7,7 @@ function registerSyncRoutes(options) {
   const auth = options.auth;
   const resolutions = options.resolutions;
   const batchResolutions = options.batchResolutions;
+  const writeProtocol = options.writeProtocol || 2;
 
   function resolutionResponse(res, action) {
     try { res.json(action()); }
@@ -18,6 +20,7 @@ function registerSyncRoutes(options) {
     resolutionResponse(res, function () { return batchResolutions.compare(req.userId); });
   });
   app.post('/api/sync/batch/resolve', auth.authenticate, function (req, res) {
+    if (rejectLegacyWrite(writeProtocol, res, '整账号冲突处理')) return;
     resolutionResponse(res, function () { return batchResolutions.resolve(req.userId, req.body); });
   });
   app.get('/api/sync/batch/resolutions/:id', auth.authenticate, function (req, res) {
@@ -27,6 +30,7 @@ function registerSyncRoutes(options) {
     resolutionResponse(res, function () { return resolutions.read(req.userId, req.query.entity, req.query.id); });
   });
   app.post('/api/sync/resolve', auth.authenticate, function (req, res) {
+    if (rejectLegacyWrite(writeProtocol, res, '旧版冲突处理')) return;
     resolutionResponse(res, function () { return resolutions.resolve(req.userId, req.body); });
   });
   app.get('/api/sync/resolutions/:id', auth.authenticate, function (req, res) {

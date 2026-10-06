@@ -48,7 +48,7 @@ function createDataMigrations(options) {
     tx();
     return { migrated: migrated, sentences: sentenceCount, events: eventCount };
   }
-  
+
   /* 把 mastered / reinforceBook / deletedItems 从 kv blob 搬进行表，并从 blob 删掉
      （不删的话 blob 体积永远降不下来，拆表等于白做）。
      幂等：blob 里已无这三个键时直接跳过 —— 可在每次启动安全重复执行。
