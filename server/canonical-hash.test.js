@@ -1,0 +1,14 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {canonicalJson,canonicalHash}=require('./canonical-hash');
+const a={payload:{text:'你好',values:[1,null,true]},requestId:'fixed-request'};
+const b={requestId:'fixed-request',payload:{values:[1,null,true],text:'你好'}};
+assert.equal(canonicalJson(a),canonicalJson(b),'object field order must not change request identity');
+assert.equal(canonicalHash(a),canonicalHash(b));
+assert.match(canonicalHash(a),/^[a-f0-9]{64}$/);
+assert.notEqual(canonicalHash([1,2]),canonicalHash([2,1]),'array order is meaningful');
+assert.notEqual(canonicalHash({value:1}),canonicalHash({value:'1'}),'types remain distinct');
+assert.notEqual(canonicalHash({value:null}),canonicalHash({}),'null is not absent');
+assert.notEqual(canonicalHash({text:'Original.'}),canonicalHash({text:'Changed.'}),'changed content changes identity');
+const before=JSON.stringify(a);canonicalHash(a);assert.equal(JSON.stringify(a),before,'hashing never changes input');
+console.log('[canonical-hash] stable object ordering, meaningful array order, distinct content and nonmutation verified');

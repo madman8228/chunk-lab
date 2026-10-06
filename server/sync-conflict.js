@@ -1,6 +1,7 @@
 'use strict';
 
 const { isDeepStrictEqual } = require('node:util');
+const { canonicalHash } = require('./canonical-hash');
 
 /* A skipped UPSERT is only an acknowledgement if the desired value already exists.
  * Run inside the caller's transaction so a conflict rolls back the entire batch.
@@ -61,12 +62,7 @@ function assertBatchVersion(baseSeq, currentSeq) {
 
 // Canonical object order permits an exact logical retry after serialization.
 function batchHash(value) {
-  function canonical(v){
-    if(Array.isArray(v)) return '['+v.map(canonical).join(',')+']';
-    if(v && typeof v==='object') return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+canonical(v[k])).join(',')+'}';
-    return JSON.stringify(v);
-  }
-  return require('node:crypto').createHash('sha256').update(canonical(value)).digest('hex');
+  return canonicalHash(value);
 }
 
 module.exports = { assertRevisionAccepted, assertBatchVersion, batchHash };
