@@ -168,8 +168,8 @@ function getData(token, since) {
   check('B3 bySentence 已剥离 deckName/translation',
     _sbs && !('deckName' in _sbs) && !('translation' in _sbs),
     JSON.stringify(_sbs));
-  check('B4 bySentence 剥离 sentence 并保留 deckId 索引锚点',
-    _sbs && !('sentence' in _sbs) && _sbs.deckId === 'd1',
+  check('B4 bySentence 保留 sentence 与 deckId 索引锚点',
+    _sbs && _sbs.sentence === 'I have a dream.' && _sbs.deckId === 'd1',
     JSON.stringify(_sbs));
   check('B5 bySentence 保留 SRS 计数', _sbs && _sbs.times === 1 && _sbs.okTimes === 1 && typeof _sbs.dueAt === 'number');
 

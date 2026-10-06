@@ -11,7 +11,7 @@
  *   1. 老用户迁移：localStorage 里的 bySentence/events 迁进 IDB，且副本被剥离
  *   2. 迁移后刷新页面：loadMem 能从 IDB 内存桥还原（数据不丢）
  *   3. 真答题：答题后 localStorage 仍不含大对象（热路径不再整份重写）
- *   4. db 版本升级：v1 老库（只有 courses/progress）能升到 v2 并补齐新 store
+ *   4. db 版本升级：v4 老库的统计原文、课程与统计值保留
  *
  * 自带服务器（spawn index.js），不依赖外部端口。
  */
@@ -127,10 +127,25 @@ async function main() {
   check('IDB 已建 sentenceStats / events store',
     idb1.stores && idb1.stores.indexOf('sentenceStats') >= 0 && idb1.stores.indexOf('events') >= 0,
     JSON.stringify(idb1.stores));
-  check('DB 版本为 4', idb1.version === 4, 'version=' + idb1.version);
+  check('DB 版本为 9', idb1.version === 9, 'version=' + idb1.version);
   check('同步元数据 store 已建立', idb1.stores.indexOf('syncMeta') >= 0, JSON.stringify(idb1.stores));
   check('迁移后 sentenceStats 行数 = 2', idb1.sentenceStats === 2, 'got=' + idb1.sentenceStats);
   check('迁移后 events 行数 = 1', idb1.events === 1, 'got=' + idb1.events);
+  const compactedLegacyStats = await page.evaluate(async function () {
+    var data = await IDBStore.loadAll();
+    var first = data.sentenceStats['builtin-daily#11111111'];
+    var second = data.sentenceStats['builtin-daily#22222222'];
+    return {
+      firstHasSentence: !!(first && Object.prototype.hasOwnProperty.call(first, 'sentence')),
+      secondHasSentence: !!(second && Object.prototype.hasOwnProperty.call(second, 'sentence')),
+      firstTimes: first && first.times,
+      secondTimes: second && second.times
+    };
+  });
+  check('旧统计行迁移后保留 sentence 与统计值',
+    compactedLegacyStats.firstHasSentence && compactedLegacyStats.secondHasSentence
+      && compactedLegacyStats.firstTimes === 3 && compactedLegacyStats.secondTimes === 5,
+    JSON.stringify(compactedLegacyStats));
 
   const ls1 = await page.evaluate(function () {
     var o = JSON.parse(localStorage.getItem('chunklab.v1') || '{}');
@@ -264,34 +279,35 @@ async function main() {
 
   await ctx.close();
 
-  /* ---------- 4. v1 老库升级到 v2 ---------- */
-  console.log('\n【4. IndexedDB v1 老库（仅 courses/progress）升级到 v2】');
+  /* ---------- 4. v4 老库升级并保留原始统计行 ---------- */
+  console.log('\n【4. IndexedDB v4 老库升级到 v9 并保留句子原文】');
   const ctx2 = await browser.newContext();
-  /* 必须在页面脚本执行前把库建到 v1：js/idb.js 一旦以 v2 打开，「用低版本号再 open」会被
-     浏览器以 VersionError 拒绝，事后没法再造出 v1 老库这个前置条件。 */
+  /* 必须在页面脚本执行前造出 v4 旧行：应用打开 v8 后，低版本库无法再复现。 */
   await ctx2.addInitScript(function () {
-    if (localStorage.getItem('__seeded_v1')) return;
+    if (localStorage.getItem('__seeded_v4')) return;
     localStorage.setItem('chunklab.storage-owner.v1',JSON.stringify([location.origin,'local']));
-    localStorage.setItem('__seeded_v1', '1');
-    localStorage.setItem('chunklab.v1', JSON.stringify({
-      version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
-      stats: { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [], daysLog: {} },
-      settings: {}, reinforceBook: [], progress: {}
-    }));
+    localStorage.setItem('__seeded_v4', '1');
     return new Promise(function (resolve) {
-      var req = indexedDB.open('chunklab-idb', 1);
+      var req = indexedDB.open('chunklab-idb', 4);
       req.onupgradeneeded = function (e) {
         var db = e.target.result;
         if (!db.objectStoreNames.contains('courses')) db.createObjectStore('courses', { keyPath: 'courseId' });
         if (!db.objectStoreNames.contains('progress')) db.createObjectStore('progress', { keyPath: 'cid' });
+        if (!db.objectStoreNames.contains('sentenceStats')) db.createObjectStore('sentenceStats', { keyPath: 'key' });
+        if (!db.objectStoreNames.contains('events')) db.createObjectStore('events', { keyPath: 'id' });
+        if (!db.objectStoreNames.contains('syncIntents')) db.createObjectStore('syncIntents', { keyPath: 'key' });
+        if (!db.objectStoreNames.contains('syncMeta')) db.createObjectStore('syncMeta', { keyPath: 'key' });
       };
       req.onsuccess = function () {
         var db = req.result;
-        /* 记下升级前的 store 清单（页面加载后 js/idb.js 会立刻把它升到 v2，事后读不到 v1 状态） */
-        window.__v1Stores = Array.prototype.slice.call(db.objectStoreNames);
-        var t = db.transaction('courses', 'readwrite').objectStore('courses');
-        t.put({ courseId: 'legacy-course', title: '老课程' });
-        t.oncomplete = function () { db.close(); resolve(); };
+        /* 页面加载后 js/idb.js 会升级到 v9；这里保存旧库 store 清单供前置条件断言。 */
+        window.__v4Stores = Array.prototype.slice.call(db.objectStoreNames);
+        var tx = db.transaction(['courses', 'sentenceStats'], 'readwrite');
+        tx.objectStore('courses').put({ courseId: 'legacy-course', title: '老课程' });
+        tx.objectStore('sentenceStats').put({ key: 'legacy-course#old-cid', data: {
+          deckId: 'legacy-course', sentence: 'Old sentence copy', times: 6, okTimes: 4, wrongTimes: 2, dueAt: 1234
+        } });
+        tx.oncomplete = function () { db.close(); resolve(); };
       };
       req.onerror = function () { resolve(); };
     });
@@ -299,16 +315,15 @@ async function main() {
   const page2 = await ctx2.newPage();
   page2.on('pageerror', function (e) { console.log('  [pageerror] ' + e.message); });
   await page2.goto(BASE + '/main.html', { waitUntil: 'load' });
-  /* 前置条件自检：addInitScript 建出的是 v1 老库（仅 courses/progress）。
-     页面加载后 js/idb.js 会立刻升级 → 事后读不到 v1 状态，故用 init 阶段记下的快照。 */
-  const built = await page2.evaluate(function () { return window.__v1Stores || []; });
-  check('已建出 v1 库（仅 courses/progress）',
-    built.indexOf('courses') >= 0 && built.indexOf('sentenceStats') < 0, JSON.stringify(built));
+  /* 前置条件自检：init 阶段记录 v4 store 清单；页面脚本之后已经将其升级到 v9。 */
+  const built = await page2.evaluate(function () { return window.__v4Stores || []; });
+  check('已建出包含 sentenceStats 的 v4 旧库',
+    built.indexOf('sentenceStats') >= 0 && built.indexOf('syncMeta') >= 0, JSON.stringify(built));
 
   await page2.reload({ waitUntil: 'load' });
   await page2.waitForFunction(function () { return window.CL && window.CL.statsStoreMode() === 'idb'; }, null, { timeout: 15000 });
   const up = await page2.evaluate(READ_IDB);
-  check('升级后版本为 4', up.version === 4, 'version=' + up.version);
+  check('升级后版本为 9', up.version === 9, 'version=' + up.version);
   check('升级后补齐 sentenceStats / events store',
     up.stores.indexOf('sentenceStats') >= 0 && up.stores.indexOf('events') >= 0 && up.stores.indexOf('syncMeta') >= 0, JSON.stringify(up.stores));
   const courseKept = await page2.evaluate(function () {
@@ -316,6 +331,21 @@ async function main() {
     return m.length;
   });
   check('升级不清空既有 courses 数据', courseKept === 1, 'got=' + courseKept);
+  const compactedV4 = await page2.evaluate(async function () {
+    var data = await IDBStore.loadAll();
+    var statKey = Object.keys(data.sentenceStats).find(function (key) { return key.indexOf('legacy-course#') === 0; });
+    var stat = statKey && data.sentenceStats[statKey];
+    return {
+      hasStat: !!stat,
+      hasSentence: !!(stat && Object.prototype.hasOwnProperty.call(stat, 'sentence')),
+      times: stat && stat.times,
+      okTimes: stat && stat.okTimes,
+      dueAt: stat && stat.dueAt
+    };
+  });
+  check('v4 旧统计行升级时保留原文与统计字段',
+    compactedV4.hasSentence && compactedV4.times === 6 && compactedV4.okTimes === 4 && compactedV4.dueAt === 1234,
+    JSON.stringify(compactedV4));
 
   await ctx2.close();
   await browser.close();

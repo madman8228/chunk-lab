@@ -145,8 +145,8 @@ function openDb() {
   let st = r.json && r.json.mem && r.json.mem.stats;
   check('A2 bySentence 落库', !!(st && st.bySentence && st.bySentence['d1#aaaaaaaa']), JSON.stringify(st && Object.keys(st.bySentence || {})));
   check('A3 bySentence times 正确', !!(st && st.bySentence['d1#aaaaaaaa'].times === 1));
-  check('A3b 服务端句子统计行剥离冗余原文',
-    !!(st && st.bySentence && !Object.prototype.hasOwnProperty.call(st.bySentence['d1#aaaaaaaa'], 'sentence')));
+  check('A3b 服务端句子统计行保留原文',
+    !!(st && st.bySentence && st.bySentence['d1#aaaaaaaa'].sentence === 'I have a dream.'));
   check('A4 events 落库', !!(st && st.events && st.events.length === 1), 'len=' + (st && st.events && st.events.length));
   check('A5 stats 小字段同批写入', !!(st && st.totalRounds === 1 && st.daysLog && st.daysLog['2026-09-10']));
 

@@ -972,15 +972,8 @@
       var legacy = readLegacyStatsRaw();
       var idbBS = (data.sentenceStats && typeof data.sentenceStats === 'object') ? data.sentenceStats : {};
       var bsMap = {};
-      function compactLegacyStat(row){
-        if(!row || typeof row !== 'object' || Array.isArray(row) ||
-           !Object.prototype.hasOwnProperty.call(row, 'sentence')) return row;
-        var compact = Object.assign({}, row);
-        delete compact.sentence;
-        return compact;
-      }
-      Object.keys(legacy.bySentence).forEach(function(k){ bsMap[k] = compactLegacyStat(legacy.bySentence[k]); });
-      Object.keys(idbBS).forEach(function(k){ bsMap[k] = compactLegacyStat(idbBS[k]); });   /* IDB 优先 */
+      Object.keys(legacy.bySentence).forEach(function(k){ bsMap[k] = legacy.bySentence[k]; });
+      Object.keys(idbBS).forEach(function(k){ bsMap[k] = idbBS[k]; });   /* IDB 优先，保留原始统计字段 */
       _bySentenceCache = bsMap;
       var evMap = {};
       (Array.isArray(data.events) ? data.events : []).forEach(function(e){ if(e && e.id) evMap[e.id] = e; });

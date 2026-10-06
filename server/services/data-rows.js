@@ -16,7 +16,6 @@ function createDataRows(options) {
     if (!key || !data || typeof data !== 'object') return;
     const deckId = typeof data.deckId === 'string' ? data.deckId : null;
     const compact = Object.assign({}, data);
-    delete compact.sentence;
     const existing = stmt('SELECT data_json FROM user_sentence_stats WHERE user_id=? AND sentence_key=? AND deleted_at IS NULL').get(userId, String(key));
     if (existing) {
       try {
@@ -40,7 +39,6 @@ function createDataRows(options) {
     if (!key || !data || typeof data !== 'object') return;
     const deckId = typeof data.deckId === 'string' ? data.deckId : null;
     const compact = Object.assign({}, data);
-    delete compact.sentence;
     stmt(SBS_UPSERT_SQL).run(userId, String(key), deckId, JSON.stringify(compact), seq);
   }
   

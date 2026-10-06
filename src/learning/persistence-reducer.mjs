@@ -8,7 +8,6 @@ const ordered = (events) => events.slice().sort((left, right) => left.at - right
  * converge to the same SRS state on every server replay. */
 export function reducePracticeEvents(baseline = {}, events = [], options = {}) {
   const stat = { ...(baseline && typeof baseline === 'object' ? baseline : {}) };
-  delete stat.sentence;
   const baseLearning = stat.learningV1 && typeof stat.learningV1 === 'object' ? stat.learningV1 : {};
   let learning = {
     version: 1, evidence: [], baselineAt: Number(stat.lastAt) || 0,

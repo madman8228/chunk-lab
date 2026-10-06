@@ -6,7 +6,7 @@ const require = createRequire(import.meta.url);
 const { reducePracticeEvents: reduceServerPracticeEvents } = require('../server/services/learning-replay.js');
 
 const baseline = {
-  deckId: 'deck-a', times: 3, okTimes: 2, wrongTimes: 1, streak: 0, maxStreak: 2,
+  deckId: 'deck-a', sentence: 'Original learning record', times: 3, okTimes: 2, wrongTimes: 1, streak: 0, maxStreak: 2,
   lastAt: 1_700_000_000_000, interval: 1, ease: 2.5, dueAt: 0,
   learningV1: { version: 1, evidence: [], baselineAt: 1_700_000_000_000, interval: 1, ease: 2.5, repetition: 0 }
 };
@@ -17,6 +17,7 @@ const events = [
 
 const first = reducePracticeEvents(baseline, events, { srs });
 const replayed = reducePracticeEvents(baseline, events.slice().reverse(), { srs });
+assert.equal(first.stat.sentence, baseline.sentence, 'replay preserves original record fields');
 assert.deepEqual(replayed, first, 'arrival order does not change the replayed projection');
 assert.equal(first.eventCount, 2);
 assert.equal(first.stat.times, 5, 'the immutable legacy baseline is retained and accepted events are counted once');

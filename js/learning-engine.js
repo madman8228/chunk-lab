@@ -315,7 +315,6 @@ var LearningEngine = (() => {
   var ordered = (events) => events.slice().sort((left, right) => left.at - right.at || String(left.id).localeCompare(String(right.id)));
   function reducePracticeEvents(baseline = {}, events = [], options = {}) {
     const stat = { ...baseline && typeof baseline === "object" ? baseline : {} };
-    delete stat.sentence;
     const baseLearning = stat.learningV1 && typeof stat.learningV1 === "object" ? stat.learningV1 : {};
     let learning = {
       version: 1,
