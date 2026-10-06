@@ -53,11 +53,7 @@
   function isLoggedIn() { return !!getToken(); }
 
   function recoveryPathAllowed(path) {
-    return path === '/api/sync/batch' ||
-      path === '/api/sync/batch/resolve' ||
-      path.indexOf('/api/sync/batch/resolutions/') === 0 ||
-      path.indexOf('/api/sync/entity?') === 0 ||
-      path === '/api/sync/resolve' ||
+    return path.indexOf('/api/sync/batch/resolutions/') === 0 ||
       path.indexOf('/api/sync/resolutions/') === 0;
   }
 
@@ -65,7 +61,7 @@
     if(global.AccountStorage && path.indexOf('/api/auth/')!==0 && path!=='/api/config'){
       try{global.AccountStorage.assertCurrent();}catch(error){return Promise.reject(error);}
       if(global.AccountStorage.storage.getItem('chunklab.restore-cloud-hold') && !recoveryPathAllowed(path) &&
-         (path==='/api/data' || path.indexOf('/api/sync/')===0 || path==='/api/import' || path.indexOf('/api/courses')===0 || path==='/api/deck/publish')){
+         (path==='/api/data' || path.indexOf('/api/sync/')===0 || path==='/api/import' || path==='/api/content-import' || path.indexOf('/api/courses')===0 || path==='/api/deck/publish')){
         var held=new Error('恢复后的数据仅在本机保存，云端同步暂未启用');held.code='RESTORE_LOCAL_ONLY';return Promise.reject(held);
       }
     }
@@ -89,7 +85,10 @@
       body: opts.body
     }).then(function (res) {
       checkSession();
-      if (res.status === 401 && !authenticating) { clearToken(); var e = new Error('NOT_AUTH'); e.code = 'NOT_AUTH'; throw e; }
+      if (res.status === 401 && !authenticating) {
+        try { global.dispatchEvent(new CustomEvent('chunklab-auth-expired')); } catch (_) {}
+        clearToken(); var e = new Error('NOT_AUTH'); e.code = 'NOT_AUTH'; e.status = 401; throw e;
+      }
       return res.text().then(function (text) {
         checkSession();
         var data = null;
@@ -98,7 +97,21 @@
           var error = new Error((data && data.error) || ('HTTP ' + res.status));
           error.status = res.status;
           error.code = data && data.code;
+          error.traceId = data && data.traceId;
           error.conflicts = data && data.conflicts;
+          var retryAfter = res.headers && typeof res.headers.get === 'function'
+            ? res.headers.get('Retry-After') : null;
+          if (retryAfter != null && String(retryAfter).trim()) {
+            var retryValue = String(retryAfter).trim();
+            var retryMs = /^\d+$/.test(retryValue)
+              ? Number(retryValue) * 1000
+              : Date.parse(retryValue) - Date.now();
+            if (Number.isFinite(retryMs) && retryMs >= 0) {
+              /* Keep setTimeout within its signed 32-bit range; long server
+                 delays are still honored up to the browser's maximum timer. */
+              error.retryAfterMs = Math.min(retryMs, 2147483647);
+            }
+          }
           if (res.status === 428 || error.code === 'CLIENT_UPGRADE_REQUIRED') {
             /* Keep the signal even when the request happens during boot, before
                the page has attached its visible update handler. */
@@ -128,47 +141,23 @@
        故 request() 会照常带上既有 token —— 服务端据 token 判定改的是哪个账号。 */
     setCredentials: function (payload) { return request('/api/auth/credentials', { method: 'POST', body: JSON.stringify(payload) }); },
     getConfig: function () { return request('/api/config'); },
-    getData: function () { return request('/api/data'); },
-    putData: function (payload) { return request('/api/data', { method: 'PUT', body: JSON.stringify(payload) }); },
-    getSyncBatch: function () { return request('/api/sync/batch'); },
-    resolveSyncBatch: function (payload) { return request('/api/sync/batch/resolve', { method: 'POST', body: JSON.stringify(payload) }); },
+    getData: function (since) {
+      var path = '/api/data';
+      if (since != null) path += '?since=' + encodeURIComponent(String(since));
+      return request(path);
+    },
+    submitOperation: function (operation) { return request('/api/operations', { method: 'POST', body: JSON.stringify(operation) }); },
+    reportSaveHealth: function (summary) { return request('/api/client-save-health', { method: 'POST', body: JSON.stringify(summary) }); },
+    getOperationReceipt: function (id) { return request('/api/operations/' + encodeURIComponent(id)); },
+    importCourseContent: function (operation) { return request('/api/content-import', { method: 'POST', body: JSON.stringify(operation) }); },
+    getAssessmentSession: function (id) { return request('/api/assessment-sessions/' + encodeURIComponent(id)); },
+    /* Historical receipts are read-only and remain available for explicit backups. */
     getSyncBatchResolution: function (id) { return request('/api/sync/batch/resolutions/' + encodeURIComponent(id)); },
-    getSyncEntity: function(entity, id) { return request('/api/sync/entity?entity=' + encodeURIComponent(entity) + '&id=' + encodeURIComponent(id)); },
-    resolveSync: function(payload) { return request('/api/sync/resolve', { method: 'POST', body: JSON.stringify(payload) }); },
     getSyncResolution: function(id) { return request('/api/sync/resolutions/' + encodeURIComponent(id)); },
     exportData: function () { return request('/api/export'); },
-    importData: function (payload) { return request('/api/import', { method: 'POST', body: JSON.stringify(payload) }); },
-    postCourse: function (course) { return request('/api/courses', { method: 'POST', body: JSON.stringify({ course: course }) }); },
-    deleteCourse: function (id) { return request('/api/courses/' + encodeURIComponent(id), { method: 'DELETE' }); },
     /* 公共题库市场（Phase D） */
     getPublicDecks: function () { return request('/api/deck/public'); },
-    getPublicDeck: function (id) { return request('/api/deck/public/' + encodeURIComponent(id)); },
-    publishDeck: function (deckId, publish) {
-      /* Publication is a versioned mutation too. Keep it in the same durable
-         conditional queue as learning data so a lost response is retryable. */
-      if (global.BatchSync && typeof global.BatchSync.state === 'function') {
-        return global.BatchSync.state().then(function (state) {
-          if (!Number.isSafeInteger(state.baseline) || state.baseline < 0) {
-            var baseError = new Error('尚未确认云端版本，暂不能发布题库');
-            baseError.code = 'SYNC_BASELINE_REQUIRED';
-            throw baseError;
-          }
-          return global.BatchSync.stage({ mem: {}, publications: [{ deckId: deckId, publish: !!publish }] },
-            state.baseline, state.localGeneration, []).then(function () {
-            return global.BatchSync.retry();
-          }).then(function (outcome) {
-            if (!outcome || !outcome.receipt || outcome.receipt.ok !== true) {
-              throw new Error('服务器未确认题库发布');
-            }
-            return outcome.receipt;
-          });
-        });
-      }
-      var upgrade = new Error('当前页面版本过旧，请刷新后再发布题库');
-      upgrade.code = 'CLIENT_UPGRADE_REQUIRED';
-      global.__chunklabUpgradeRequired = true;
-      return Promise.reject(upgrade);
-    }
+    getPublicDeck: function (id) { return request('/api/deck/public/' + encodeURIComponent(id)); }
   };
 
   global.ChunkAPI = api;

@@ -11,24 +11,24 @@
  * 设计：
  *   - 内存缓存桥在 core.js（loadMem 内存优先），本模块只负责 IndexedDB 读写，不碰 localStorage。
  *   - 全部 store 按实体逐条存（增量友好）：courses→courseId、progress→cid、
- *     sentenceStats→key(deckId#cid)、events→id。
+ *     sentenceStats→key(deckId#cid)、events→id、assessmentDrafts→sessionId。
  *   - 全量替换语义（clear + 批量 put，单事务）：putCourses / putProgress /
  *     replaceSentenceStats / replaceEvents；
  *     增量语义（只写传入的行，单事务）：putSentenceStats / deleteSentenceStats / appendEvents。
  *
- * 迁移：v2 新增统计存储，v3 新增 syncIntents，v4 新增 syncMeta；只建缺失存储，不动既有数据。
+ * 迁移：v2 新增统计存储，v3 新增 syncIntents，v4 新增 syncMeta，v6 新增待提交服务端操作队列，v8 新增独立测评草稿，v9 新增一次性导航 handoff。升级只补对象仓库，保留已有课程、进度与学习记录。确认缓存复用 syncMeta，不另增对象仓库。
  * 浏览器：<script src="js/idb.js"></script>（core.js 之前加载）
  */
 (function (global) {
   'use strict';
 
   var DB_NAME = global.AccountStorage ? global.AccountStorage.databaseName : 'chunklab-idb';
-  var DB_VERSION = 4;
+  var DB_VERSION = 9;
   var _db = null;
   var _opening = null;
 
   /* 所有 objectStore 定义集中一处，建库与升级共用 */
-  var STORES = ['courses', 'progress', 'sentenceStats', 'events', 'syncIntents', 'syncMeta'];
+  var STORES = ['courses', 'progress', 'sentenceStats', 'events', 'syncIntents', 'syncMeta', 'pendingOperations', 'assessmentDrafts', 'navigationHandoffs'];
 
   function open() {
     if(global.AccountStorage){
@@ -48,6 +48,12 @@
         if (!db.objectStoreNames.contains('events')) db.createObjectStore('events', { keyPath: 'id' });
         if (!db.objectStoreNames.contains('syncIntents')) db.createObjectStore('syncIntents', { keyPath: 'key' });
         if (!db.objectStoreNames.contains('syncMeta')) db.createObjectStore('syncMeta', { keyPath: 'key' });
+        // v6：待提交操作仅作为可重试传输日志；业务权威数据仍由服务端维护。
+        if (!db.objectStoreNames.contains('pendingOperations')) db.createObjectStore('pendingOperations', { keyPath: 'requestId' });
+        // v8：正在进行的测评草稿单独耐久保存，不混入旧 mem 整份快照。
+        if (!db.objectStoreNames.contains('assessmentDrafts')) db.createObjectStore('assessmentDrafts', { keyPath: 'sessionId' });
+        // v9：跨页面一次性导航数据单独保存，避免把大型临时复习队列塞进 localStorage。
+        if (!db.objectStoreNames.contains('navigationHandoffs')) db.createObjectStore('navigationHandoffs', { keyPath: 'id' });
       };
       var blocked = false;
       req.onblocked = function(){ blocked=true; reject(new Error('请关闭旧页面后重试存储升级')); };
@@ -112,6 +118,215 @@
         t.oncomplete = function () { resolve(keys.length); };
         t.onerror = function () { reject(t.error); };
         t.onabort = function () { reject(t.error || new Error('abort')); };
+      });
+    });
+  }
+
+  function putPendingOperation(operation, limits) {
+    if (!operation || typeof operation.requestId !== 'string' || !operation.requestId ||
+        !operation.owner || !operation.scope || !Number.isFinite(operation.createdAt) ||
+        !Number.isFinite(operation.bytes) || operation.bytes < 0) {
+      return Promise.reject(new Error('待提交操作缺少账号或请求信息'));
+    }
+    limits = limits || {};
+    return open().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var t = db.transaction('pendingOperations', 'readwrite');
+        var store = t.objectStore('pendingOperations'), result = null, failure = null;
+        t.oncomplete = function () { resolve(result); };
+        t.onerror = t.onabort = function () { reject(failure || t.error || new Error('保存待提交操作失败')); };
+        var req = store.getAll();
+        req.onerror = function () { failure = req.error || new Error('读取待提交操作失败'); t.abort(); };
+        req.onsuccess = function () {
+          var allRows = req.result || [];
+          var scoped = allRows.filter(function (row) { return row && row.scope === operation.scope; });
+          var previous = allRows.find(function (row) { return row && row.requestId === operation.requestId; });
+          function canonical(value) {
+            if (Array.isArray(value)) return '[' + value.map(canonical).join(',') + ']';
+            if (value && typeof value === 'object') {
+              return '{' + Object.keys(value).sort().map(function (key) {
+                return JSON.stringify(key) + ':' + canonical(value[key]);
+              }).join(',') + '}';
+            }
+            return JSON.stringify(value);
+          }
+          if (previous) {
+            if (previous.owner !== operation.owner || previous.base !== operation.base ||
+                previous.scope !== operation.scope || canonical(previous.operation) !== canonical(operation.operation)) {
+              failure = new Error('请求编号已用于其他保存内容，原记录已保留');
+              failure.code = 'REQUEST_ID_REUSED';
+              t.abort();
+              return;
+            }
+            result = previous;
+            return;
+          }
+          var count = scoped.length;
+          var bytes = scoped.reduce(function (sum, row) { return sum + (Number(row.bytes) || 0); }, 0);
+          if (count + 1 > (limits.maxCount || 10000) || bytes + operation.bytes > (limits.maxBytes || 20 * 1024 * 1024)) {
+            failure = new Error('本地待保存记录已满，请联网完成保存后再继续');
+            failure.code = 'PENDING_CAPACITY';
+            t.abort();
+            return;
+          }
+          operation.ordinal = scoped.reduce(function (max, row) {
+            return Math.max(max, Number(row.ordinal) || 0);
+          }, 0) + 1;
+          result = store.put(operation);
+          result = operation;
+        };
+      });
+    });
+  }
+
+  function updatePendingOperation(requestId, patch) {
+    return open().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var t = db.transaction('pendingOperations', 'readwrite');
+        var store = t.objectStore('pendingOperations'), result = null;
+        t.oncomplete = function () { resolve(result); };
+        t.onerror = t.onabort = function () { reject(t.error || new Error('更新待提交操作失败')); };
+        var req = store.get(requestId);
+        req.onsuccess = function () {
+          if (!req.result) return;
+          result = Object.assign({}, req.result, patch || {});
+          store.put(result);
+        };
+      });
+    });
+  }
+
+  function removePendingOperation(requestId) {
+    return deleteKeys('pendingOperations', [requestId]);
+  }
+
+  var SERVER_CACHE_KEY = 'server-cache-v3';
+  function readServerCache(scope, owner) {
+    return readSyncMeta(SERVER_CACHE_KEY).then(function (row) {
+      if (!row) return null;
+      if (row.scope !== scope || row.owner !== owner) return null;
+      return row;
+    });
+  }
+
+  function markPendingAcknowledged(requestId, receipt) {
+    if (!requestId || !receipt || receipt.ok !== true || receipt.requestId !== requestId ||
+        !Number.isSafeInteger(Number(receipt.seq)) || Number(receipt.seq) < 0) {
+      return Promise.reject(new Error('服务端回执格式无效'));
+    }
+    return open().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var t = db.transaction('pendingOperations', 'readwrite');
+        var store = t.objectStore('pendingOperations'), result = null, failure = null;
+        t.oncomplete = function () { resolve(result); };
+        t.onerror = t.onabort = function () { reject(failure || t.error || new Error('保存服务端回执失败')); };
+        var req = store.get(requestId);
+        req.onerror = function () { failure = req.error || new Error('读取待提交操作失败'); t.abort(); };
+        req.onsuccess = function () {
+          var row = req.result;
+          if (!row) { result = { retired: true, row: null }; return; }
+          if (row.status === 'acked-awaiting-apply') {
+            if (Number(row.receipt && row.receipt.seq) !== Number(receipt.seq)) {
+              failure = new Error('同一请求收到不一致的服务端回执');
+              failure.code = 'RECEIPT_MISMATCH'; t.abort(); return;
+            }
+            result = { retired: false, row: row }; return;
+          }
+          row.status = 'acked-awaiting-apply';
+          row.receipt = receipt;
+          row.ackedAt = Date.now();
+          result = { retired: false, row: row };
+          store.put(row);
+        };
+      });
+    });
+  }
+
+  /* Persist the merged confirmed snapshot and retire only ACKs covered by its
+     seq in one transaction. expectedAppliedSeq is a compare-and-swap guard for
+     deltas: two tabs cannot apply the same delta to different cache versions. */
+  function commitServerCache(cacheRow, expectedAppliedSeq, isFullSnapshot) {
+    if (!cacheRow || cacheRow.key !== SERVER_CACHE_KEY || !cacheRow.owner || !cacheRow.scope ||
+        !cacheRow.snapshot || !Number.isSafeInteger(cacheRow.appliedSeq) || cacheRow.appliedSeq < 0) {
+      return Promise.reject(new Error('确认缓存格式无效'));
+    }
+    if (global.AccountStorage && cacheRow.owner !== global.AccountStorage.owner) {
+      return Promise.reject(new Error('确认缓存账号已切换'));
+    }
+    return open().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var t = db.transaction(['syncMeta', 'pendingOperations'], 'readwrite');
+        var meta = t.objectStore('syncMeta'), pending = t.objectStore('pendingOperations');
+        var result = null, failure = null;
+        t.oncomplete = function () { resolve(result || { applied: false, retired: [] }); };
+        t.onerror = t.onabort = function () { reject(failure || t.error || new Error('确认缓存事务失败')); };
+        meta.get(SERVER_CACHE_KEY).onsuccess = function (event) {
+          try {
+            if (global.AccountStorage) global.AccountStorage.assertCurrent();
+            var current = event.target.result || null;
+            if (current && (current.owner !== cacheRow.owner || current.scope !== cacheRow.scope)) {
+              throw new Error('确认缓存账号或服务范围不一致');
+            }
+            var currentSeq = current ? current.appliedSeq : null;
+            if (isFullSnapshot) {
+              if (currentSeq != null && cacheRow.appliedSeq < currentSeq) {
+                result = { applied: false, stale: true, retired: [] }; return;
+              }
+            } else if (currentSeq !== expectedAppliedSeq) {
+              result = { applied: false, stale: true, retired: [] }; return;
+            }
+            meta.put(cacheRow);
+            pending.getAll().onsuccess = function (pendingEvent) {
+              try {
+                var retired = [];
+                (pendingEvent.target.result || []).forEach(function (row) {
+                  var receiptSeq = Number(row && row.receipt && row.receipt.seq);
+                  if (row && row.owner === cacheRow.owner && row.scope === cacheRow.scope &&
+                      row.status === 'acked-awaiting-apply' && Number.isSafeInteger(receiptSeq) &&
+                      receiptSeq <= cacheRow.appliedSeq) {
+                    pending.delete(row.requestId); retired.push(row);
+                  }
+                });
+                result = { applied: true, stale: false, retired: retired, appliedSeq: cacheRow.appliedSeq };
+              } catch (error) { failure = error; t.abort(); }
+            };
+          } catch (error) { failure = error; t.abort(); }
+        };
+      });
+    });
+  }
+
+  function putAssessmentDraft(session, metadata) {
+    if (!session || typeof session.id !== 'string' || !session.id || !global.AccountStorage || !global.AccountStorage.owner) {
+      return Promise.reject(new Error('测评草稿缺少会话或账号信息'));
+    }
+    var row = { sessionId: session.id, owner: global.AccountStorage.owner, data: session,
+      metadata: metadata || {}, updatedAt: Date.now() };
+    return putRows('assessmentDrafts', [row]);
+  }
+
+  function listAssessmentDrafts() {
+    if (!global.AccountStorage || !global.AccountStorage.owner) return Promise.reject(new Error('测评草稿账号不可用'));
+    var owner = global.AccountStorage.owner;
+    return getAllRows('assessmentDrafts').then(function (rows) {
+      return rows.filter(function (row) { return row && row.owner === owner; });
+    });
+  }
+
+  function deleteAssessmentDraft(sessionId) {
+    if (typeof sessionId !== 'string' || !sessionId || !global.AccountStorage || !global.AccountStorage.owner) {
+      return Promise.reject(new Error('测评草稿编号或账号无效'));
+    }
+    var owner = global.AccountStorage.owner;
+    return open().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var t = db.transaction('assessmentDrafts', 'readwrite'), store = t.objectStore('assessmentDrafts');
+        var req = store.get(sessionId);
+        t.oncomplete = function () { resolve(); };
+        t.onerror = t.onabort = function () { reject(t.error || new Error('删除测评草稿失败')); };
+        req.onsuccess = function () {
+          if (req.result && req.result.owner === owner) store.delete(sessionId);
+        };
       });
     });
   }
@@ -388,6 +603,36 @@
     });
   }
 
+  function putNavigationHandoff(id, value, scope) {
+    if (typeof id !== 'string' || !id || id.length > 160 || typeof scope !== 'string' || !scope) {
+      return Promise.reject(new Error('导航数据标识无效'));
+    }
+    return open().then(function (db) { return new Promise(function (resolve, reject) {
+      var tx = db.transaction('navigationHandoffs', 'readwrite');
+      tx.oncomplete = function () { resolve(true); };
+      tx.onerror = tx.onabort = function () { reject(tx.error || new Error('临时导航数据未能保存')); };
+      try {
+        tx.objectStore('navigationHandoffs').put({ id: id, value: value, scope: scope, createdAt: Date.now() });
+      } catch (error) { try { tx.abort(); } catch (_) {} reject(error); }
+    }); });
+  }
+
+  function consumeNavigationHandoff(id, scope) {
+    if (typeof id !== 'string' || !id || id.length > 160 || typeof scope !== 'string' || !scope) {
+      return Promise.resolve(null);
+    }
+    return open().then(function (db) { return new Promise(function (resolve, reject) {
+      var result = null, tx = db.transaction('navigationHandoffs', 'readwrite'), store = tx.objectStore('navigationHandoffs');
+      tx.oncomplete = function () { resolve(result && result.scope === scope ? result : null); };
+      tx.onerror = tx.onabort = function () { reject(tx.error || new Error('临时导航数据暂不可用')); };
+      var request = store.get(id);
+      request.onsuccess = function () {
+        result = request.result || null;
+        if (result && result.scope === scope) store.delete(id);
+      };
+    }); });
+  }
+
   /* 全量替换 courses（单事务） */
   function putCourses(list) {
     return replaceAll('courses', (list || []).filter(function (c) { return c && c.courseId; }));
@@ -504,6 +749,18 @@
     replaceSentenceStats: replaceSentenceStats,
     appendEvents: appendEvents,
     replaceEvents: replaceEvents,
+    putPendingOperation: putPendingOperation,
+    listPendingOperations: function () { return getAllRows('pendingOperations'); },
+    updatePendingOperation: updatePendingOperation,
+    removePendingOperation: removePendingOperation,
+    markPendingAcknowledged: markPendingAcknowledged,
+    readServerCache: readServerCache,
+    commitServerCache: commitServerCache,
+    putAssessmentDraft: putAssessmentDraft,
+    listAssessmentDrafts: listAssessmentDrafts,
+    deleteAssessmentDraft: deleteAssessmentDraft,
+    putNavigationHandoff: putNavigationHandoff,
+    consumeNavigationHandoff: consumeNavigationHandoff,
     readSyncMeta: readSyncMeta,
     readBusinessMem: readBusinessMem,
     updateSyncMeta: updateSyncMeta,

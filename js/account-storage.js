@@ -59,6 +59,7 @@
   global.AccountStorage={
     owner:owner,
     sessionEpoch:epoch,
+    sessionEpoch:epoch,
     databaseName:originalDatabase+(revision ? '-restore-'+revision : ''),
     recovery:{pointerKey:pointerKey,lockKey:lockKey,prefix:prefix,originalPrefix:originalPrefix,originalDatabase:originalDatabase,revision:revision},
     assertCurrent:assertCurrent,
