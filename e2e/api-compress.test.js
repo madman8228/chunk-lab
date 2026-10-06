@@ -33,7 +33,7 @@ function startServer() {
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(ROOT, 'server'),
-      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test' }),
+      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', REQUIRE_AUTH:'false', CHUNKLAB_WRITE_PROTOCOL:'3' }),
       stdio: 'ignore'
     });
     let tries = 0;
@@ -88,6 +88,12 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
   });
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const p = await ctx.newPage();
+  const legacyWrites=[];
+  p.on('request',request=>{
+    const pathname=new URL(request.url()).pathname;
+    if(request.method()!=='GET'&&['/api/data','/api/import','/api/sync/resolve','/api/sync/batch/resolve'].includes(pathname))
+      legacyWrites.push({method:request.method(),path:pathname});
+  });
 
   /* 捕获 GET /api/data 的「原始响应头 + 真实网络字节数」。
      ⚠️ 不能用 playwright 的 response.body()：大响应被页面消费后 body 不可用，
@@ -136,53 +142,29 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
   await p.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
   await initialDataResponse;
   await p.waitForFunction(function () {
-    return !!(window.CL && window.CL.cloudSyncNow && window.CL.loadMem);
-  }, { timeout: 15000 });
+    return !!(window.CL && window.ServerCache && window.ServerStore);
+  }, null, { timeout: 15000 });
   await p.waitForFunction(function () {
     return !!(window.CL && window.CL.getCloudConfig && window.CL.getCloudConfig() !== null);
-  }, { timeout: 15000 });
-  /* getCloudConfig 只代表配置请求完成；_cloudOn/首轮拉取仍可能在随后完成。
-     显式等待入口 promise，避免在首轮同步尚未建立 BatchSync 基线时抢先上行。 */
+  }, null, { timeout: 15000 });
+  /* 配置完成不等于首轮确认缓存已就绪。 */
   await p.evaluate(function () { return window.CL.ensureCloud(); });
-  await p.evaluate(function () { return window.CL.waitForSync(); });
+  await p.waitForFunction(()=>CL.serverPersistenceReady());
 
-  async function waitForBatchClean() {
-    await p.waitForFunction(async function () {
-      if (!window.BatchSync) return true;
-      var s = await window.BatchSync.state();
-      return !s.pending && s.status === 'clean' && s.localGeneration === s.acceptedGeneration;
-    }, { timeout: 15000 });
-  }
-
-  /* ---------- 1. 造足够大的档案并上传（<1KB 不会触发压缩） ---------- */
-  const pushed = await p.evaluate(async function () {
-    var m = window.CL.loadMem();
-    if (!m.stats) m.stats = { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] };
-    if (!m.stats.bySentence) m.stats.bySentence = {};
-    if (!Array.isArray(m.stats.events)) m.stats.events = [];
-    for (var i = 0; i < 1200; i++) {
-      m.stats.bySentence['freq-idioms#' + ('0000000' + i).slice(-8)] = {
-        deckId: 'freq-idioms', deckName: '高频短语 · English Idioms',
-        sentence: 'This is a longer sample sentence used to measure downstream payload number ' + i + '.',
-        translation: '这是一个用来测量下行体积的较长示例句子，序号 ' + i + '。',
-        times: 3 + (i % 5), okTimes: 2 + (i % 3), wrongTimes: 1, streak: 1, maxStreak: 2,
-        lastAt: 1700000000000 + i * 4000, interval: 4, ease: 2.5,
-        dueAt: 1700003600000 + i * 4000, repetition: 2
-      };
-    }
-    for (var j = 0; j < 2400; j++) {
-      m.stats.events.push({
-        id: 'ev' + j, kind: 'answer', key: 'freq-idioms#00000000', deckId: 'freq-idioms',
-        sentence: 'This is a longer sample sentence used to measure downstream payload number ' + (j % 1200) + '.',
-        ok: true, at: 1700000000000 + j
-      });
-    }
-    var ok = await window.CL.cloudSyncNow(m);
-    return { ok: ok, sbs: Object.keys(m.stats.bySentence).length, events: m.stats.events.length };
-  });
-  check('1.1 档案已上传（1200 条 / 2400 事件）', pushed.ok === true && pushed.sbs === 1200, JSON.stringify(pushed));
-  await p.evaluate(function () { return window.CL.waitForSync(); });
-  await waitForBatchClean();
+  /* Compression fixture only: write the isolated database, not a retired API.
+     Real operation submission is verified below, independently of sample size. */
+  const db=new (require('../server/node_modules/better-sqlite3'))(path.join(TMP_DB,'chunklab.db'));
+  try {
+    db.transaction(()=>{
+      const seq=db.prepare('UPDATE user_change_seq SET seq=seq+1 WHERE user_id=1 RETURNING seq').get().seq;
+      const stat=db.prepare('INSERT INTO user_sentence_stats(user_id,sentence_key,deck_id,data_json,seq) VALUES(?,?,?,?,?)');
+      const event=db.prepare('INSERT INTO user_events(user_id,id,at,data_json,seq) VALUES(?,?,?,?,?)');
+      for(let i=0;i<1200;i++)stat.run(1,'compression#'+i,'compression',JSON.stringify({times:3,okTimes:2,wrongTimes:1,lastAt:1700000000000+i,interval:4,ease:2.5,dueAt:1700003600000+i}),seq);
+      for(let i=0;i<2400;i++)event.run(1,'compression-event-'+i,1700000000000+i,JSON.stringify({id:'compression-event-'+i,kind:'answer',key:'compression#'+(i%1200),ok:true,at:1700000000000+i}),seq);
+    })();
+  } finally {db.close();}
+  const pushed=await p.evaluate(()=>ChunkAPI.getData().then(data=>({sbs:Object.keys(data.mem.stats.bySentence).length,events:data.mem.stats.events.length})));
+  check('1.1 隔离服务器大样本已确认',pushed.sbs===1200&&pushed.events===2400,JSON.stringify(pushed));
 
   /* ---------- 2. 不带 Accept-Encoding 的对照（证明压缩确实由协商驱动） ---------- */
   const plain = await getRaw('/api/data', null);
@@ -194,14 +176,13 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
   const reloadGetStart = gets.length;
   await p.reload({ waitUntil: 'domcontentloaded' });
   await p.waitForFunction(function () {
-    return !!(window.CL && window.CL.loadMem);
-  }, { timeout: 15000 });
+    return !!(window.CL && window.ServerCache);
+  }, null, { timeout: 15000 });
   await p.waitForFunction(function () {
     return !!(window.CL && window.CL.getCloudConfig && window.CL.getCloudConfig() !== null);
-  }, { timeout: 15000 });
+  }, null, { timeout: 15000 });
   await p.evaluate(function () { return window.CL.ensureCloud(); });
-  await p.evaluate(function () { return window.CL.waitForSync(); });
-  await waitForBatchClean();
+  await p.waitForFunction(()=>CL.serverPersistenceReady());
   /* 轮询等待「数据齐全后的那次 GET」出现（云握手是异步的，固定 sleep 会假失败）。
      判据：encoded > 0（网络字节已知）且 enc 已确定。 */
   let g = null;
@@ -226,13 +207,13 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
   }
 
   /* ---------- 4. 页面实际拿到了数据（压缩没有把前端弄坏） ---------- */
-  const after = await p.evaluate(function () {
-    var m = window.CL.loadMem();
+  const after = await p.evaluate(async function () {
+    var m = (await ServerCache.read()).snapshot.mem;
     var st = (m && m.stats) || {};
     return {
       sbs: st.bySentence ? Object.keys(st.bySentence).length : 0,
       events: Array.isArray(st.events) ? st.events.length : 0,
-      hasEngine: !!(window.CL && typeof window.CL.cloudSyncNow === 'function')
+      hasEngine: !!(window.ServerStore && typeof window.ServerStore.submitCommitted === 'function')
     };
   });
   check('4.1 前端解析出全部 1200 条档案', after.sbs === 1200, 'sbs=' + after.sbs);
@@ -241,19 +222,14 @@ const kb = (n) => (n / 1024).toFixed(1) + ' KB';
 
   /* ---------- 5. 增量上行没被这次改动破坏 ---------- */
   const inc = await p.evaluate(async function () {
-    var m = window.CL.loadMem();
-    m.stats.totalAnswered = (m.stats.totalAnswered || 0) + 1;
-    window.CL.saveMem(m);
-    var ok = await window.CL.cloudSyncNow(m);
-    var batch = window.BatchSync && window.BatchSync.state ? await window.BatchSync.state() : null;
-    return {
-      ok: ok,
-      dirty: window.CL.isDirty ? window.CL.isDirty() : null,
-      conflict: window.CL.getSyncConflict ? window.CL.getSyncConflict() : null,
-      batch: batch
-    };
+    await ServerStore.submitCommitted('learning.answer',{
+      eventId:'compression-real-answer',deckId:'compression',key:'compression#0',ok:true,mode:'chunkSelection'
+    },{requestId:'compression-real-request'});
+    var data=await ChunkAPI.getData();
+    return {ok:data.mem.stats.events.some(event=>event.id==='compression-real-answer')};
   });
-  check('5.1 增量上行仍成功', inc.ok === true, JSON.stringify(inc));
+  check('5.1 新版答题获服务器确认且下行可读', inc.ok === true, JSON.stringify(inc));
+  check('5.2 未调用旧整份写入或冲突处理接口',legacyWrites.length===0,JSON.stringify(legacyWrites));
 
   /* ---------- 6. 小响应不该被压（阈值以下压了反而更大） ---------- */
   const small = await getRaw('/api/health', 'br');

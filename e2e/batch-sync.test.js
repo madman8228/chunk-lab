@@ -6,7 +6,7 @@ const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cl-batch-client-'));
 let browser,server,count=0;
 function check(label,v){assert.ok(v,label);count++;console.log('  ✓ '+label);}
 (async()=>{try{
-  server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test'},stdio:'ignore'});
+  server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test',CHUNKLAB_WRITE_PROTOCOL:'2'},stdio:'ignore'});
   let ready=false;
   /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：实测为临界窗口，宿主 node 冷启动 5.4s。
      本文件上轮靠重试才过、本轮直接过 ⇒ 落在临界带上，必须抬窗口。
@@ -17,7 +17,12 @@ function check(label,v){assert.ok(v,label);count++;console.log('  ✓ '+label);}
   browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||chromium.executablePath()});
   const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage();
   await page.goto(base+'/api/health');await page.evaluate(t=>localStorage.setItem('chunklab_token',t),token);
-  async function init(p){for(const file of ['js/account-storage.js','js/idb.js','api.js','js/batch-sync.js'])await p.addScriptTag({path:path.join(root,file)});}
+  async function init(p){
+    for(const file of ['js/account-storage.js','js/idb.js','api.js'])await p.addScriptTag({path:path.join(root,file)});
+    // Historical isolated fixture adapter, not part of the shipped API.
+    await p.evaluate(()=>{ChunkAPI.putData=payload=>ChunkAPI.request('/api/data',{method:'PUT',body:JSON.stringify(payload)});});
+    await p.addScriptTag({path:path.join(root,'js/batch-sync.js')});
+  }
   await init(page);
   check('旧 conditional-batch-v1 记录迁移到 syncMeta',await page.evaluate(async()=>{
     const db=await IDBStore.open();
@@ -90,86 +95,8 @@ function check(label,v){assert.ok(v,label);count++;console.log('  ✓ '+label);}
     const before=JSON.stringify((await BatchSync.state()).pending);
     try{await BatchSync.retry();return false;}catch(e){return e.code==='SYNC_CONFLICT' && before===JSON.stringify((await BatchSync.state()).pending);}
   }));
-  /* Real entry-point smoke: the module must be on main.html and core must
-     send the same conditional contract, rather than only passing the
-     isolated queue tests above. */
-  const liveContext=await browser.newContext({serviceWorkers:'block'});
-  const live=await liveContext.newPage();
-  await live.goto(base+'/api/health');
-  await live.evaluate(t=>localStorage.setItem('chunklab_token',t),token);
-  const requests=[];
-  live.on('request',request=>{if(request.method()==='PUT'&&request.url().endsWith('/api/data'))requests.push(request.postDataJSON());});
-  await live.goto(base+'/main.html');
-  await live.waitForFunction(()=>window.CL&&window.BatchSync);
-  await live.evaluate(()=>CL.ensureCloud());
-  /* A page refresh must restore the durable localGeneration before the next
-     save reserves a successor.  Without this, syncMeta at generation 50
-     would be followed by an in-memory generation 1 and the request would be
-     rejected as stale forever. */
-  await live.evaluate(async()=>{
-    await IDBStore.updateSyncMeta('conditional-batch-v1',function(record){
-      record.localGeneration=Math.max(record.localGeneration||0,50);
-      record.acceptedGeneration=record.localGeneration;
-      record.pending=null; record.status='clean';
-      return record;
-    });
-  });
-  await live.reload();
-  await live.waitForFunction(()=>window.CL&&window.BatchSync);
-  await live.evaluate(()=>CL.ensureCloud());
-  const restoredGeneration=await live.evaluate(async()=>{
-    const state=await BatchSync.state();
-    return {localGeneration:state.localGeneration,acceptedGeneration:state.acceptedGeneration};
-  });
-  check('刷新后恢复持久同步代次',restoredGeneration.localGeneration>=50 && restoredGeneration.acceptedGeneration>=50,JSON.stringify(restoredGeneration));
-  await live.evaluate(async()=>{
-    const mem=CL.loadMem();
-    mem.decks=(mem.decks||[]).filter(d=>d.id!=='live-conditional-smoke');
-    mem.decks.push({id:'live-conditional-smoke',name:'live conditional smoke',builtin:false,items:[{sentence:'Live smoke',translation:'',chunks:['Live','smoke'],hints:[],alts:[]}]});
-    CL.saveAndNotify(mem);
-    await CL.cloudSyncNow(mem);
-  });
-  check('真实 main.html 已加载 BatchSync 并发出条件请求',requests.some(p=>Number.isSafeInteger(p.baseSeq)&&typeof p.requestId==='string'));
-  const liveState=await live.evaluate(async()=>BatchSync.state());
-  check('真实保存完成后固定请求已确认',!liveState.pending,JSON.stringify(liveState));
-  check('真实条件同步回执推进本地基线',Number.isSafeInteger(liveState.baseline),JSON.stringify(liveState));
-  const rapidSave=await live.evaluate(async()=>{
-    const first=CL.loadMem();
-    first.decks=(first.decks||[]).filter(d=>d.id!=='rapid-a'&&d.id!=='rapid-b');
-    first.decks.push({id:'rapid-a',name:'rapid A',builtin:false,items:[]});
-    const second=JSON.parse(JSON.stringify(first));
-    second.decks.push({id:'rapid-b',name:'rapid B',builtin:false,items:[]});
-    const results=await Promise.all([CL.saveAndNotify(first),CL.saveAndNotify(second)]);
-    await CL.cloudSyncNow(CL.loadMem());
-    const remote=await ChunkAPI.getData(), state=await BatchSync.state();
-    return {results,ids:(remote.mem.decks||[]).map(d=>d.id),state};
-  });
-  check('异步连续保存均成功并最终同步最新内容',rapidSave.results.every(Boolean) && rapidSave.ids.includes('rapid-a') && rapidSave.ids.includes('rapid-b') && !rapidSave.state.pending,JSON.stringify(rapidSave));
-  const courseGeneration=await live.evaluate(async()=>{
-    const before=await BatchSync.state();
-    const courses=CL.readCourses();
-    await CL.writeCourses(courses.concat([{courseId:'live-course-generation',title:'generation smoke',events:[]} ]));
-    const after=await BatchSync.state();
-    return {before:before.localGeneration,after:after.localGeneration};
-  });
-  check('真实课程保存与同步代次在同一持久边界推进',courseGeneration.after>courseGeneration.before,JSON.stringify(courseGeneration));
-  await live.route('**/api/data',async route=>{
-    if(route.request().method()==='PUT'){await route.fetch();await route.abort();}else await route.continue();
-  });
-  const lostPublication=await live.evaluate(async()=>{
-    try{await ChunkAPI.publishDeck('live-conditional-smoke',true);return false;}
-    catch(e){return !!(await BatchSync.state()).pending;}
-  });
-  await live.unroute('**/api/data');
-  const publicationRetry=await live.evaluate(async()=>{
-    const retry=await BatchSync.retry(),remote=await ChunkAPI.getData();
-    const deck=(remote.mem.decks||[]).find(d=>d.id==='live-conditional-smoke');
-    return {retry,public:!!(deck&&deck.isPublic),pending:(await BatchSync.state()).pending};
-  });
-  check('题库发布复用条件队列，丢回执后可重试且状态保留',lostPublication && publicationRetry.public && !publicationRetry.pending,JSON.stringify(publicationRetry));
-  await live.close();
-  await liveContext.close();
-  console.log('[batch-sync browser] '+count+' passed; core ordinary-sync integration verified');
+  // Current page integration is covered separately in operation-page-integration.test.js.
+  console.log('[legacy batch fixture] '+count+' passed; historical queue only, not product-page integration');
 }finally{
   if(browser)await browser.close();
   if(server && server.exitCode===null){const ended=new Promise(r=>server.once('exit',r));server.kill();await ended;}
