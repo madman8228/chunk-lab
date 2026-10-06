@@ -4,6 +4,10 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import esbuild from 'esbuild';
+import { DRAFT_SPEC } from '../src/course-authoring/draft-spec.mjs';
+import { CourseCapabilityCatalog } from '../src/course-authoring/capabilities.mjs';
+import { IMAGE_TEXT_DRAFT_SPEC } from '../src/course-authoring/image-text-draft-spec.mjs';
+import { COURSE_TYPES } from '../src/course-authoring/course-types.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'chunklab-generated-'));
@@ -69,8 +73,26 @@ const expectedMainPracticeState = path.join(root, 'js', 'main-practice-state.js'
 const actualMainPracticeState = path.join(temp, 'main-practice-state.js');
 const expectedMainPracticeMarkup = path.join(root, 'js', 'main-practice-markup.js');
 const actualMainPracticeMarkup = path.join(temp, 'main-practice-markup.js');
+const expectedMainCourseLearningPolicy = path.join(root, 'js', 'main-course-learning-policy.js');
+const actualMainCourseLearningPolicy = path.join(temp, 'main-course-learning-policy.js');
+const expectedLearningEngine = path.join(root, 'js', 'learning-engine.js');
+const actualLearningEngine = path.join(temp, 'learning-engine.js');
+const expectedLearningEngineServer = path.join(root, 'js', 'learning-engine.cjs');
+const actualLearningEngineServer = path.join(temp, 'learning-engine.cjs');
 const expectedMainLegacyStats = path.join(root, 'js', 'main-legacy-stats.js');
 const actualMainLegacyStats = path.join(temp, 'main-legacy-stats.js');
+const expectedAuthoring = path.join(root, 'js', 'course-authoring.js');
+const actualAuthoring = path.join(temp, 'course-authoring.js');
+const expectedCapabilities = path.join(root, 'js', 'course-capabilities.js');
+const actualCapabilities = path.join(temp, 'course-capabilities.js');
+const expectedLearningLaunch = path.join(root, 'js', 'course-learning-launch.js');
+const actualLearningLaunch = path.join(temp, 'course-learning-launch.js');
+const expectedMistakeReview = path.join(root, 'js', 'mistake-review.js');
+const actualMistakeReview = path.join(temp, 'mistake-review.js');
+const expectedMistakeEvidenceBrowser = path.join(root, 'js', 'mistake-evidence.js');
+const actualMistakeEvidenceBrowser = path.join(temp, 'mistake-evidence.js');
+const expectedMistakeEvidenceServer = path.join(root, 'js', 'mistake-evidence.cjs');
+const actualMistakeEvidenceServer = path.join(temp, 'mistake-evidence.cjs');
 try {
   await Promise.all([
     esbuild.build({
@@ -365,6 +387,9 @@ try {
       minify: false,
       legalComments: 'none',
     }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'main-course-learning-policy-entry.mjs')], outfile: actualMainCourseLearningPolicy, bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'learning-engine-entry.mjs')], outfile: actualLearningEngine, bundle: true, format: 'iife', platform: 'browser', globalName: 'LearningEngine', minify: false, legalComments: 'none' }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'learning-engine-entry.mjs')], outfile: actualLearningEngineServer, bundle: true, format: 'cjs', platform: 'node', minify: false, legalComments: 'none', banner: { js: '// @ts-nocheck Generated CommonJS bundle; source modules are checked directly.' } }),
     esbuild.build({
       entryPoints: [path.join(root, 'scripts', 'main-legacy-stats-entry.mjs')],
       outfile: actualMainLegacyStats,
@@ -375,6 +400,12 @@ try {
       minify: false,
       legalComments: 'none',
     }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'course-authoring-entry.mjs')], outfile: actualAuthoring, bundle: true, format: 'iife', platform: 'browser', globalName: 'ChunkCourseAuthoring', minify: false, legalComments: 'none' }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'course-capabilities-entry.mjs')], outfile: actualCapabilities, bundle: true, format: 'iife', platform: 'browser', globalName: 'ChunkCourseCapabilitiesBundle', minify: false, legalComments: 'none' }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'course-learning-launch-entry.mjs')], outfile: actualLearningLaunch, bundle: true, format: 'iife', platform: 'browser', globalName: 'ChunkCourseLearningLaunchBundle', minify: false, legalComments: 'none' }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-review-entry.mjs')], outfile: actualMistakeReview, bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')], outfile: actualMistakeEvidenceBrowser, bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' }),
+    esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')], outfile: actualMistakeEvidenceServer, bundle: true, format: 'cjs', platform: 'node', minify: false, legalComments: 'none' }),
   ]);
   const hash = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
   if (!fs.existsSync(expectedMainPracticeClassification)
@@ -405,6 +436,35 @@ try {
   if (!fs.existsSync(expectedMainPracticeMarkup)
     || hash(expectedMainPracticeMarkup) !== hash(actualMainPracticeMarkup)) {
     console.error('[build:check] main practice markup output differs; run npm run build');
+    process.exitCode = 1;
+  }
+  if (!fs.existsSync(expectedMainCourseLearningPolicy) || hash(expectedMainCourseLearningPolicy) !== hash(actualMainCourseLearningPolicy)) {
+    console.error('[build:check] main course learning policy output differs; run npm run build');
+    process.exitCode = 1;
+  }
+  if (!fs.existsSync(expectedLearningEngine) || hash(expectedLearningEngine) !== hash(actualLearningEngine)) {
+    console.error('[build:check] learning engine output differs; run npm run build');
+    process.exitCode = 1;
+  }
+  if (!fs.existsSync(expectedLearningEngineServer) || hash(expectedLearningEngineServer) !== hash(actualLearningEngineServer)) {
+    console.error('[build:check] learning engine server bundle differs; run npm run build');
+    process.exitCode = 1;
+  }
+  if (!fs.existsSync(expectedAuthoring) || hash(expectedAuthoring) !== hash(actualAuthoring)
+    || !fs.existsSync(expectedCapabilities) || hash(expectedCapabilities) !== hash(actualCapabilities)
+    || !fs.existsSync(expectedLearningLaunch) || hash(expectedLearningLaunch) !== hash(actualLearningLaunch)
+    || !fs.existsSync(expectedMistakeReview) || hash(expectedMistakeReview) !== hash(actualMistakeReview)) {
+    console.error('[build:check] AI course authoring bundles differ; run npm run build');
+    process.exitCode = 1;
+  }
+  if (!fs.existsSync(expectedMistakeEvidenceBrowser) || hash(expectedMistakeEvidenceBrowser) !== hash(actualMistakeEvidenceBrowser)
+    || !fs.existsSync(expectedMistakeEvidenceServer) || hash(expectedMistakeEvidenceServer) !== hash(actualMistakeEvidenceServer)) {
+    console.error('[build:check] mistake evidence bundles differ; run npm run build');
+    process.exitCode = 1;
+  }
+  const expectedKit = { kitVersion: '1.1', courseTypes: COURSE_TYPES, draftSchema: DRAFT_SPEC.schema, examples: DRAFT_SPEC.examples, imageTextDraftSchema: IMAGE_TEXT_DRAFT_SPEC.schema, imageTextExample: IMAGE_TEXT_DRAFT_SPEC.example, imageMediaLimits: IMAGE_TEXT_DRAFT_SPEC.mediaLimits, interactionRules: DRAFT_SPEC.interactionRules, capabilities: CourseCapabilityCatalog.describeCreationOptions() };
+  if (!fs.existsSync(path.join(root, 'ai-course-kit.json')) || fs.readFileSync(path.join(root, 'ai-course-kit.json'), 'utf8') !== JSON.stringify(expectedKit, null, 2) + '\n') {
+    console.error('[build:check] AI course kit differs; run npm run build');
     process.exitCode = 1;
   }
   if (!fs.existsSync(expected) || hash(expected) !== hash(actual) || !fs.existsSync(expectedIdentity) || hash(expectedIdentity) !== hash(actualIdentity) || !fs.existsSync(expectedMerge) || hash(expectedMerge) !== hash(actualMerge) || !fs.existsSync(expectedActivity) || hash(expectedActivity) !== hash(actualActivity) || !fs.existsSync(expectedEventBus) || hash(expectedEventBus) !== hash(actualEventBus) || !fs.existsSync(expectedMigrations) || hash(expectedMigrations) !== hash(actualMigrations) || !fs.existsSync(expectedStatsSignature) || hash(expectedStatsSignature) !== hash(actualStatsSignature) || !fs.existsSync(expectedStorageState) || hash(expectedStorageState) !== hash(actualStorageState) || !fs.existsSync(expectedEntityDelta) || hash(expectedEntityDelta) !== hash(actualEntityDelta) || !fs.existsSync(expectedSyncDelta) || hash(expectedSyncDelta) !== hash(actualSyncDelta) || !fs.existsSync(expectedSyncIntents) || hash(expectedSyncIntents) !== hash(actualSyncIntents) || !fs.existsSync(expectedSyncPayload) || hash(expectedSyncPayload) !== hash(actualSyncPayload) || !fs.existsSync(expectedSyncTransport) || hash(expectedSyncTransport) !== hash(actualSyncTransport) || !fs.existsSync(expectedSyncReplay) || hash(expectedSyncReplay) !== hash(actualSyncReplay) || !fs.existsSync(expectedSyncBatchMerge) || hash(expectedSyncBatchMerge) !== hash(actualSyncBatchMerge) || !fs.existsSync(expectedSyncStatsNormalize) || hash(expectedSyncStatsNormalize) !== hash(actualSyncStatsNormalize) || !fs.existsSync(expectedSyncLearningMarks) || hash(expectedSyncLearningMarks) !== hash(actualSyncLearningMarks) || !fs.existsSync(expectedSyncEntityMerge) || hash(expectedSyncEntityMerge) !== hash(actualSyncEntityMerge) || !fs.existsSync(expectedSyncKv) || hash(expectedSyncKv) !== hash(actualSyncKv) || !fs.existsSync(expectedRuntime) || hash(expectedRuntime) !== hash(actualRuntime) || !fs.existsSync(expectedMainLifecycle) || hash(expectedMainLifecycle) !== hash(actualMainLifecycle) || !fs.existsSync(expectedMain) || hash(expectedMain) !== hash(actualMain) || !fs.existsSync(expectedMainExplanation) || hash(expectedMainExplanation) !== hash(actualMainExplanation) || !fs.existsSync(expectedMainPracticePolicy) || hash(expectedMainPracticePolicy) !== hash(actualMainPracticePolicy) || !fs.existsSync(expectedMainPracticeState) || hash(expectedMainPracticeState) !== hash(actualMainPracticeState) || !fs.existsSync(expectedMainLegacyStats) || hash(expectedMainLegacyStats) !== hash(actualMainLegacyStats)) {

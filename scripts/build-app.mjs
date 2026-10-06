@@ -2,8 +2,25 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import esbuild from 'esbuild';
+import fs from 'node:fs';
+import { DRAFT_SPEC } from '../src/course-authoring/draft-spec.mjs';
+import { CourseCapabilityCatalog } from '../src/course-authoring/capabilities.mjs';
+import { IMAGE_TEXT_DRAFT_SPEC } from '../src/course-authoring/image-text-draft-spec.mjs';
+import { COURSE_TYPES } from '../src/course-authoring/course-types.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
+
+await esbuild.build({
+  entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')],
+  outfile: path.join(root, 'js', 'mistake-evidence.js'),
+  bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none',
+});
+await esbuild.build({
+  entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')],
+  outfile: path.join(root, 'js', 'mistake-evidence.cjs'),
+  bundle: true, format: 'cjs', platform: 'node', minify: false, legalComments: 'none',
+});
+console.log('[build] mistake evidence module generated for browser and server');
 
 const result = spawnSync(process.execPath, ['scripts/build-course-schema-validator.js'], { stdio: 'inherit' });
 if (result.status !== 0) process.exit(result.status || 1);
@@ -350,6 +367,13 @@ await esbuild.build({
 });
 console.log('[build] main practice markup module generated');
 
+await esbuild.build({ entryPoints: [path.join(root, 'scripts', 'main-course-learning-policy-entry.mjs')], outfile: path.join(root, 'js', 'main-course-learning-policy.js'), bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' });
+console.log('[build] main course learning policy generated');
+
+await esbuild.build({ entryPoints: [path.join(root, 'scripts', 'learning-engine-entry.mjs')], outfile: path.join(root, 'js', 'learning-engine.js'), bundle: true, format: 'iife', platform: 'browser', globalName: 'LearningEngine', minify: false, legalComments: 'none' });
+await esbuild.build({ entryPoints: [path.join(root, 'scripts', 'learning-engine-entry.mjs')], outfile: path.join(root, 'js', 'learning-engine.cjs'), bundle: true, format: 'cjs', platform: 'node', minify: false, legalComments: 'none', banner: { js: '// @ts-nocheck Generated CommonJS bundle; source modules are checked directly.' } });
+console.log('[build] learning state and assessment engine generated');
+
 await esbuild.build({
   entryPoints: [path.join(root, 'scripts', 'main-legacy-stats-entry.mjs')],
   outfile: path.join(root, 'js', 'main-legacy-stats.js'),
@@ -361,3 +385,17 @@ await esbuild.build({
   legalComments: 'none',
 });
 console.log('[build] main legacy stats module generated');
+
+await Promise.all([
+  esbuild.build({ entryPoints: [path.join(root, 'scripts', 'course-authoring-entry.mjs')], outfile: path.join(root, 'js', 'course-authoring.js'), bundle: true, format: 'iife', platform: 'browser', globalName: 'ChunkCourseAuthoring', minify: false, legalComments: 'none' }),
+  esbuild.build({ entryPoints: [path.join(root, 'scripts', 'course-capabilities-entry.mjs')], outfile: path.join(root, 'js', 'course-capabilities.js'), bundle: true, format: 'iife', platform: 'browser', globalName: 'ChunkCourseCapabilitiesBundle', minify: false, legalComments: 'none' }),
+  esbuild.build({ entryPoints: [path.join(root, 'scripts', 'course-learning-launch-entry.mjs')], outfile: path.join(root, 'js', 'course-learning-launch.js'), bundle: true, format: 'iife', platform: 'browser', globalName: 'ChunkCourseLearningLaunchBundle', minify: false, legalComments: 'none' }),
+  esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-review-entry.mjs')], outfile: path.join(root, 'js', 'mistake-review.js'), bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' }),
+]);
+const kit = { kitVersion: '1.1', courseTypes: COURSE_TYPES,
+  draftSchema: DRAFT_SPEC.schema, examples: DRAFT_SPEC.examples,
+  imageTextDraftSchema: IMAGE_TEXT_DRAFT_SPEC.schema, imageTextExample: IMAGE_TEXT_DRAFT_SPEC.example,
+  imageMediaLimits: IMAGE_TEXT_DRAFT_SPEC.mediaLimits,
+  interactionRules: DRAFT_SPEC.interactionRules, capabilities: CourseCapabilityCatalog.describeCreationOptions() };
+fs.writeFileSync(path.join(root, 'ai-course-kit.json'), JSON.stringify(kit, null, 2) + '\n', 'utf8');
+console.log('[build] AI course authoring bundles and public kit generated');
