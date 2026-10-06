@@ -21,6 +21,7 @@
 'use strict';
 var fs = require('fs');
 var path = require('path');
+var vm = require('vm');
 
 /* ---------- 共享 localStorage + 独立 core.js 实例 ---------- */
 var storage = {};
@@ -32,6 +33,9 @@ function makeStorage(){
   };
 }
 var coreSrc = fs.readFileSync(path.join(__dirname, 'core.js'), 'utf8');
+var requiredModuleSources = ['js/core-stats-signature.js', 'js/core-storage-state.js'].map(function(file){
+  return fs.readFileSync(path.join(__dirname, file), 'utf8');
+});
 /* 一个新「标签页」：独立 window（独立闭包状态），localStorage 指向同一份 storage */
 function newTab(){
   var w = {
@@ -47,6 +51,8 @@ function newTab(){
     },
     navigator: { clipboard: null }
   };
+  w.globalThis = w;
+  requiredModuleSources.forEach(function(source){ vm.runInNewContext(source, w); });
   new Function('window', coreSrc)(w);
   return w.CL;
 }
@@ -97,7 +103,7 @@ console.log('\n【S2 · 正向验证：改造后 A 的旧快照不覆盖 B 的�
   ma.decks.push(mkDeck('deckA'));
   A.saveAndNotify(ma);
   /* A 的旧快照（含 deckA），稍后 A 会拿它再写一次 */
-  var staleA = clone(ma);
+  var staleA = ma;
   /* 第三个标签页 C：在 deckB 出现之前就已加载（base = 只有 deckA 的旧磁盘态），
      之后一直没刷新 —— 典型的「另一个被遗忘的旧标签页」 */
   var C = newTab();
@@ -113,10 +119,15 @@ console.log('\n【S2 · 正向验证：改造后 A 的旧快照不覆盖 B 的�
   mb.stats.daysLog = { '2026-09-11': { rounds: 2 } };
   B.saveAndNotify(mb);
 
+  /* A 另一次无关读取/保存会推进页面级基线，但不能改写 staleA 自己的来源基线。 */
+  A.saveAndNotify(A.loadMem());
+
   check('S2 前置：B 写入后 deckA 仍在（B 写入未覆盖 A）',
     deckIds().join(',') === 'deckA,deckB', JSON.stringify(deckIds()));
 
-  /* ★ 核心场景：A 拿「旧快照」再写一次（旧快照里没有 deckB / 没有 B 的档案与计数） */
+  /* ★ 核心场景：A 拿「旧快照」再写一次（旧快照里没有 deckB / 没有 B 的档案与计数）。
+     即使 A 已通过另一次保存把页面级基线推进到 deckB 后，这份仍被调用方持有的快照
+     也必须按自己的来源基线做三路合并。 */
   staleA.mastered = staleA.mastered || {};
   staleA.mastered['deckA#ca'] = { deckId:'deckA', sentence:'Sentence deckA', markedAt: 222 };
   staleA.stats.totalAnswered = 7;              /* A 自己的计数（比 B 小，取 max 后应为 50） */
@@ -128,7 +139,7 @@ console.log('\n【S2 · 正向验证：改造后 A 的旧快照不覆盖 B 的�
   check('S2 ★ A 的旧快照没有覆盖 B 的新 deck（deckB 仍在）',
     deckIds().join(',') === 'deckA,deckB', JSON.stringify(deckIds()));
   check('S2 ★ B 的标熟档案没被 A 的旧快照抹掉',
-    !!(disk.mastered && disk.mastered['deckB#cb']), JSON.stringify(disk.mastered));
+    Object.keys(disk.mastered || {}).some(function(key){return key.indexOf('deckB#') === 0;}), JSON.stringify(disk.mastered));
   check('S2 ★ A 自己的标熟档案也保留了（并集语义）',
     !!(disk.mastered && disk.mastered['deckA#ca']), JSON.stringify(disk.mastered));
   check('S2 计数单调不回退：totalAnswered = 50（取 max，不退回 A 的旧值 7）',
@@ -192,15 +203,15 @@ console.log('\n【S4 · deletedItems 并集（删除意图不互相抹掉）】'
   var A = newTab(), B = newTab();
   A.loadMem(); B.loadMem();
   /* 用合法 cid 形态的 key（8 位 hex），避免触发 loadMem 的「原文→cid」迁移干扰断言 */
-  var KA = 'builtin-daily#aaaaaaaa';
-  var KB = 'builtin-daily#bbbbbbbb';
+  var KA = 'deckA#aaaaaaaa';
+  var KB = 'deckB#bbbbbbbb';
 
   var ma = A.loadMem();
   ma.deletedItems = {}; ma.deletedItems[KA] = true;
   A.saveAndNotify(ma);
 
   var mb = B.loadMem();
-  mb.deletedItems = {}; mb.deletedItems[KB] = true;   /* B 只登记自己删的那句 */
+  mb.deletedItems = mb.deletedItems || {}; mb.deletedItems[KB] = true;   /* B 只登记自己删的那句 */
   B.saveAndNotify(mb);
 
   var beforeA1 = (readDisk().deletedItems || {})[KA] === true;

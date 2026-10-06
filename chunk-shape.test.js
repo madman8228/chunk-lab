@@ -86,8 +86,13 @@ MUST_REF.forEach(function (f) {
 ['decks.html', 'main.html'].forEach(function (f) {
   var src = fs.readFileSync(path.join(__dirname, f), 'utf8');
   assert(/<script src="js\/chunk-shape\.js">/.test(src), f + ' 引入了判据脚本 js/chunk-shape.js');
-  var n = (src.match(/ChunkShape\.chunkCountOk\(/g) || []).length;
-  assert(n >= 2, f + ' 的 ' + n + ' 处段数闸走 ChunkShape.chunkCountOk（应 ≥2）');
+  if (f === 'main.html') {
+    assert(/var r = validateDeck\(data\)/.test(src) && /var checked = validateDeck\(data\)/.test(src),
+      '主导入与追加导入均复用 validateDeck 的 ChunkShape 校验');
+  } else {
+    var n = (src.match(/ChunkShape\.chunkCountOk\(/g) || []).length;
+    assert(n >= 2, f + ' 的 ' + n + ' 个独立作者入口均走 ChunkShape.chunkCountOk（应 ≥2）');
+  }
 });
 
 /* ★ 匹配前必须剥注释：判据的**旧写法**会被写进注释做说明（本文件第 6 行就复述了

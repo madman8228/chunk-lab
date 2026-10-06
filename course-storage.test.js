@@ -6,18 +6,17 @@ const source = fs.readFileSync(require.resolve('./core.js'), 'utf8');
 const COURSES = 'chunklab.courses.v1', PROGRESS = 'chunklab.course-progress.v1';
 const clone = value => JSON.parse(JSON.stringify(value));
 function sampleCourse() {
-  // Read the shipped course fixture without creating or modifying extracted files.
-  const zip = fs.readFileSync(require('node:path').join(__dirname, 'ref/0.1.0-1789739161756.zip'));
-  for (let offset = 0; offset < zip.length - 46; offset++) {
-    if (zip.readUInt32LE(offset) !== 0x02014b50) continue;
-    const size = zip.readUInt32LE(offset + 20), nameLength = zip.readUInt16LE(offset + 28);
-    if (zip.toString('utf8', offset + 46, offset + 46 + nameLength) !== 'course.json') continue;
-    const local = zip.readUInt32LE(offset + 42);
-    const start = local + 30 + zip.readUInt16LE(local + 26) + zip.readUInt16LE(local + 28);
-    const bytes = zip.subarray(start, start + size);
-    return JSON.parse((zip.readUInt16LE(offset + 10) === 0 ? bytes : require('node:zlib').inflateRawSync(bytes)).toString('utf8'));
-  }
-  throw new Error('fixture missing course.json');
+  return {
+    schemaVersion: '2.0', courseId: 'storage-fixture', version: '0.1.0',
+    metadata: { title: { en: 'Storage fixture', 'zh-CN': '存储测试' } },
+    assets: [{ id: 'a1', path: 'assets/a.mp3' }],
+    roles: [{ id: 'r1', name: 'Speaker' }],
+    utterances: [{ id: 'u1', text: { en: 'Hello', 'zh-CN': '你好' },
+      roleId: 'r1', audioAssetId: 'a1', acceptedAnswers: { en: ['Hello'] },
+      chunks: { items: [{ id: 'c1', text: 'Hello' }], correctOrder: ['c1'], distractors: [] } }],
+    sequence: ['u1'],
+    capabilities: { text: true, audio: true, translation: true, chunkSelection: true, roleplay: false }
+  };
 }
 const deferred = () => { let resolve, reject; const promise = new Promise((a, b) => { resolve = a; reject = b; }); return { promise, resolve, reject }; };
 function setup(seed = {}, overrides = {}) {
@@ -34,6 +33,9 @@ function setup(seed = {}, overrides = {}) {
     removeItem: key => { delete storage[key]; }
   }};
   context.window = context;
+  for (const dependency of require('./e2e/lib/core-deps').CORE_DEPS) {
+    vm.runInNewContext(fs.readFileSync(require.resolve('./' + dependency), 'utf8'), context);
+  }
   vm.runInNewContext(source, context);
   context.CL.on('persistError', event => errors.push(event));
   return { CL: context.CL, context, storage, disk, idb, errors };
@@ -102,6 +104,7 @@ async function main() {
   const d = setup();
   await d.CL.preload();
   d.context.document = { addEventListener() {}, getElementById() { return null; } };
+  vm.runInNewContext(fs.readFileSync(require.resolve('./js/course-package-contract.js'), 'utf8'), d.context);
   vm.runInNewContext(fs.readFileSync(require.resolve('./course-package.js'), 'utf8'), d.context);
   const course = sampleCourse(), importGate = deferred();
   d.idb.putCourses = () => importGate.promise;

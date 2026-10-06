@@ -179,28 +179,20 @@ async function main() {
   assertEq(idbEventIds().length, 1, '替换后 IDB 事件数');
   assert(idb.events['zz1'] !== undefined && idb.events['e1'] === undefined, 'IDB 事件内容已整体刷新');
 
-  /* ---------- 5. 云合并后内存桥同步 ---------- */
-  console.log('\n【5. 云合并结果不能被下一次 loadMem 丢弃】');
-  window.ChunkAPI = {
-    getConfig: function () { return Promise.resolve({ requireAuth: false }); },
-    getData: function () {
-      return Promise.resolve({
-        mem: { stats: { totalRounds: 9, totalAnswered: 99, bySentence: { 'd1#cccccccc': stat(7) }, events: [ev('e9', 'd1#cccccccc')], daysLog: {} } },
-        revs: { decks: {}, kv: { stats: 5 } }, deleted: { decks: [], kv: [] }, courses: [], courseProgress: {}
-      });
-    },
-    putData: function () { return Promise.resolve({ ok: true }); },
-    isLoggedIn: function () { return false; }
-  };
-  window.ChunkAPI.getConfig().then(function (cfg) {
-    /* 直接走 ensureCloud 的真实路径：preload → getConfig → syncFromCloud */
-  });
-  await CL.ensureCloud();
+  /* Server-confirmed cache synchronization is covered by server-cache and e2e/sync.
+     This suite verifies the local legacy statistics bridge and its failure fallback. */
+  console.log('\n【5. 本地统计提交后内存桥保持一致】');
+  var next = CL.loadMem();
+  next.stats.totalRounds = 9;
+  next.stats.totalAnswered = 99;
+  next.stats.bySentence['d1#cccccccc'] = stat(7);
+  next.stats.events.push(ev('e9', 'd1#cccccccc'));
+  CL.saveMem(next);
   await new Promise(function (r) { setTimeout(r, 30); });
   var after = CL.loadMem();
-  assert(after.stats.bySentence['d1#cccccccc'] !== undefined, '合并进来的新档案在 loadMem 中可见（内存桥已同步）');
-  assertEq(after.stats.totalAnswered, 99, '合并后的聚合值可见');
-  assert(idb.sentenceStats['d1#cccccccc'] !== undefined, 'IDB 中已含合并进来的档案（合并自身已落盘）');
+  assert(after.stats.bySentence['d1#cccccccc'] !== undefined, '提交的新档案在 loadMem 中可见');
+  assertEq(after.stats.totalAnswered, 99, '提交后的聚合值可见');
+  assert(idb.sentenceStats['d1#cccccccc'] !== undefined, 'IDB 中已含提交的新档案');
   /* 幂等：没有新变更时再 saveMem 不应产生任何 IDB 写入（否则每次渲染都会白写一遍） */
   calls.length = 0;
   CL.saveMem(after);

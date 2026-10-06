@@ -14,6 +14,9 @@ var path = require('path');
 var builtinsSrc = fs.readFileSync(path.join(__dirname, 'builtins.js'), 'utf8');
 var bookSrc = fs.readFileSync(path.join(__dirname, 'oral-book.js'), 'utf8');
 var coreSrc = fs.readFileSync(path.join(__dirname, 'core.js'), 'utf8');
+var coreStatsSignatureSrc = fs.readFileSync(path.join(__dirname, 'js/core-stats-signature.js'), 'utf8');
+var coreStorageStateSrc = fs.readFileSync(path.join(__dirname, 'js/core-storage-state.js'), 'utf8');
+var coreMigrationsSrc = fs.readFileSync(path.join(__dirname, 'js/core-migrations.js'), 'utf8');
 
 var pass = 0, fail = 0;
 function assert(cond, name) {
@@ -59,6 +62,11 @@ function makeEnv(withMigration) {
     addEventListener: function () {}
   };
   if (withMigration) win.BUILTIN_MIGRATION = MIG;
+  /* core.js loads these as real pages do; without them this isolated migration
+     harness enters its deliberate fail-closed state and cannot exercise loadMem. */
+  new Function('window', 'globalThis', coreStatsSignatureSrc)(win, win);
+  new Function('window', 'globalThis', coreStorageStateSrc)(win, win);
+  new Function('window', 'globalThis', coreMigrationsSrc)(win, win);
   new Function('window', coreSrc)(win);
   return { win: win, storage: storage, CL: win.CL };
 }

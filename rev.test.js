@@ -3,8 +3,9 @@
  *
  * 验证 core.js：
  *   - maintainRevs（saveMem 内触发）：新增/修改/删除实体自动升 rev，kv 变更升 rev、未变不 bump
- *   - maintainCoursesRevs（cloudSyncNow 内触发）：courses / courseProgress 惰性 diff 维护 rev
- *   - syncFromCloud：per-entity LWW 合并采纳远程 rev（含修复：合并后本地 revs 同步对齐，不误 bump）
+ *   - preload：旧浏览器课程缓存合并与失败安全迁移
+ *   - retired protocol：普通同步包装器不再上传整份快照
+ * 服务端版本、并发修改、去重与重试由 server/operations.test.js 和 e2e/sync*.test.js 覆盖。
  * 用最小 localStorage mock + mock ChunkAPI 在 Node 直跑，不依赖浏览器。
  *
  * 运行：node rev.test.js
@@ -28,6 +29,8 @@ global.ChunkAPI = {
   isLoggedIn: function () { return false; }
 };
 
+require('./js/core-stats-signature.js');
+require('./js/core-storage-state.js');
 require('./core.js');
 var CL = global.CL;
 
@@ -142,48 +145,10 @@ async function main() {
   var a5 = getRevs().kv.best;
   check('rev: kv.best 未变 → rev 不递增', a5 === b5, 'before=' + b5 + ' after=' + a5);
 
-  /* ===== ADR-005 step 2：courses / courseProgress（cloudSyncNow 惰性 diff） =====
-     大对象已迁 IndexedDB 内存桥：写入走 CL.writeCourses/writeProgress（真实调用路径）。 */
-  await CL.ensureCloud();
-
-  // 6. 新增 course → rev=1 且上行 payload 携带
-  await CL.writeCourses([{ courseId: 'cA', title: 'A' }]);
-  await CL.cloudSyncNow(CL.loadMem());
-  revs = getRevs();
-  check('s2: 新增 course cA → rev=1', revs.courses && revs.courses.cA === 1, 'revs=' + JSON.stringify(revs.courses));
-  var pl = lastPayloads[lastPayloads.length - 1];
-  check('s2: 上行 payload 含 revs.courses.cA=1', pl.revs.courses.cA === 1, 'revs=' + JSON.stringify(pl.revs));
-
-  // 7. 修改 course → rev=2
-  await CL.writeCourses([{ courseId: 'cA', title: 'A2' }]);
-  await CL.cloudSyncNow(CL.loadMem());
-  revs = getRevs();
-  check('s2: 修改 course cA → rev=2', revs.courses.cA === 2, 'rev=' + revs.courses.cA);
-
-  // 8. 删除 course → rev 递增 + deleted 登记
-  await CL.writeCourses([]);
-  await CL.cloudSyncNow(CL.loadMem());
-  revs = getRevs();
-  pl = lastPayloads[lastPayloads.length - 1];
-  check('s2: 删除 course cA → rev=3 且 deleted 登记',
-    revs.courses.cA === 3 && pl.deleted.courses.some(function (d) { return d.id === 'cA' && d.rev === 3; }),
-    'rev=' + revs.courses.cA + ' del=' + JSON.stringify(pl.deleted.courses));
-
-  // 9. courseProgress 新增/修改
-  await CL.writeProgress({ pA: { done: 1 } });
-  await CL.cloudSyncNow(CL.loadMem());
-  revs = getRevs();
-  check('s2: 新增 progress pA → rev=1', revs.courseProgress && revs.courseProgress.pA === 1, 'revs=' + JSON.stringify(revs.courseProgress));
-  await CL.writeProgress({ pA: { done: 2 } });
-  await CL.cloudSyncNow(CL.loadMem());
-  revs = getRevs();
-  check('s2: 修改 progress pA → rev=2', revs.courseProgress.pA === 2, 'rev=' + revs.courseProgress.pA);
-
-  // 10. courseProgress 未变 → 不 bump
-  var b10 = getRevs().courseProgress.pA;
-  await CL.writeProgress({ pA: { done: 2 } });
-  await CL.cloudSyncNow(CL.loadMem());
-  check('s2: progress 未变 → rev 不递增', getRevs().courseProgress.pA === b10, 'before=' + b10 + ' after=' + getRevs().courseProgress.pA);
+  // The retired whole-snapshot API must never be called by normal sync wrappers.
+  check('retired protocol: upload disabled', await CL.cloudSyncNow() === false);
+  check('retired protocol: download disabled', await CL.syncFromCloud() === false);
+  check('retired protocol: no snapshot writes', lastPayloads.length === 0);
 
   // 10b. preload 防丢课：IDB 与旧 localStorage 同时有数据时按 courseId 合并
   var unionCourseWrites = null;
@@ -233,186 +198,6 @@ async function main() {
     migrated === true && !('chunklab.courses.v1' in store) && !('chunklab.course-progress.v1' in store),
     'migrated=' + migrated + ' hasKey=' + ('chunklab.courses.v1' in store));
   delete global.IDBStore;
-  await CL.ensureCloud(); /* 重载后的新实例：重新启用云同步（remoteData 暂为空，无副作用） */
-
-  /* ===== syncFromCloud 合并：采纳远程 rev（含修复：合并后本地 revs 对齐） ===== */
-  // 11. 远程 rev 更高 → 本地采纳，且本地 revs 同步对齐（修 bug：此前不写回 localRevs，首拉后本地修改被服务端拒绝）
-  remoteData = {
-    mem: {
-      decks: [{ id: 'r1', name: 'R', items: [], builtin: false }], best: {}, mastered: {},
-      stats: { totalRounds: 0, totalAnswered: 0, bySentence: {} }, settings: {}, reinforceBook: [], deletedItems: []
-    },
-    courses: [{ courseId: 'rc', title: 'Remote' }],
-    courseProgress: { rp: { done: 9 } },
-    revs: { decks: { r1: 5 }, kv: {}, courses: { rc: 7 }, courseProgress: { rp: 8 } }
-  };
-  await CL.syncFromCloud();
-  revs = getRevs();
-  check('s2: 合并后本地 revs 采纳远程 decks rev', revs.decks.r1 === 5, 'rev=' + revs.decks.r1);
-  check('s2: 合并后本地 revs 采纳远程 courses rev', revs.courses.rc === 7, 'rev=' + revs.courses.rc);
-  check('s2: 合并后本地 revs 采纳远程 progress rev', revs.courseProgress.rp === 8, 'rev=' + revs.courseProgress.rp);
-  check('s2: 合并后本地 courses 含远程课程',
-    CL.readCourses().some(function (c) { return c.courseId === 'rc'; }), '');
-  check('s2: 合并后本地 progress 含远程进度',
-    CL.readProgress().rp && CL.readProgress().rp.done === 9, '');
-
-  // 12. 合并后立即上行 → 不误 bump（已采纳 rev 应保持原值）
-  await CL.cloudSyncNow(CL.loadMem());
-  pl = lastPayloads[lastPayloads.length - 1];
-  check('s2: 合并后上行不误 bump courses rev（仍 7）', pl.revs.courses.rc === 7, 'rev=' + pl.revs.courses.rc);
-  check('s2: 合并后上行不误 bump decks rev（仍 5）', pl.revs.decks.r1 === 5, 'rev=' + pl.revs.decks.r1);
-
-  /* ★ 回归（2026-09-17）：best 是按题库记录的单调学习元数据。
-     两端同一 rev 仅 lastPlayed 不同，不应升级成永久同步冲突；应按题库合并后
-     以新 rev 上行，acc/perfect/combo 取历史较优值，lastAcc 跟随最近一次练习。 */
-  m = CL.loadMem();
-  m.best = { r1: { acc: 80, perfect: 2, combo: 3, lastPlayed: 100, lastAcc: 80 } };
-  CL.saveMem(m);
-  var sameBestRev = getRevs().kv.best;
-  var remoteBestMem = JSON.parse(JSON.stringify(m));
-  remoteBestMem.best = { r1: { acc: 75, perfect: 4, combo: 2, lastPlayed: 200, lastAcc: 75 } };
-  remoteData = { mem: remoteBestMem, courses: [], courseProgress: {},
-    revs: { decks: {}, kv: { best: sameBestRev }, courses: {}, courseProgress: {} } };
-  var bestPayloadsBefore = lastPayloads.length;
-  await CL.syncFromCloud();
-  var bestAfter = CL.loadMem().best.r1;
-  check('s2: best 同 rev 差异自动合并而非持续冲突',
-    bestAfter && bestAfter.acc === 80 && bestAfter.perfect === 4 && bestAfter.combo === 3 &&
-    bestAfter.lastPlayed === 200 && bestAfter.lastAcc === 75 && !CL.getSyncConflict(),
-    JSON.stringify(bestAfter));
-  check('s2: best 合并后自动以新 rev 补传', lastPayloads.length > bestPayloadsBefore,
-    'before=' + bestPayloadsBefore + ' after=' + lastPayloads.length);
-
-  /* ★ 回归（2026-09-17）：账号级 baseSeq 冲突不能把本机卡在旧快照。
-     自动恢复只合并可安全合并的学习数据：远端较新实体优先，本机新增实体保留，
-     stats 按事件 ID 合并，并清掉明显异常的巨量句子次数。 */
-  var batchLocal = {
-    mem: {
-      decks: [{ id: 'local-only', name: 'local', items: [] }, { id: 'shared', name: 'local-old', items: [] }],
-      best: { shared: { acc: 80, perfect: 1, combo: 2, lastPlayed: 10, lastAcc: 80 } },
-      mastered: { 'local#x': 1 }, settings: { batchSize: 10 },
-      deletedItems: {}, reinforceBook: [],
-      stats: { totalAnswered: 1, totalRounds: 0,
-        bySentence: { 'daily#x': { deckId: 'daily', times: 3145728, okTimes: 3145728, wrongTimes: 0 } },
-        events: [{ id: 'local-answer', kind: 'answer', key: 'daily#x', ok: true, at: 1 }], daysLog: {} }
-    },
-    courses: [{ courseId: 'local-course', title: 'local' }], courseProgress: {},
-    revs: { decks: { 'local-only': 2, shared: 1 }, kv: { best: 1, settings: 1 }, courses: { 'local-course': 2 }, courseProgress: {} }
-  };
-  var batchRemote = {
-    seq: 20,
-    mem: {
-      decks: [{ id: 'shared', name: 'remote-new', items: [] }, { id: 'remote-only', name: 'remote', items: [] }],
-      best: { shared: { acc: 70, perfect: 3, combo: 1, lastPlayed: 20, lastAcc: 70 } },
-      mastered: { 'remote#y': 1 }, settings: { batchSize: 20 },
-      deletedItems: {}, reinforceBook: [],
-      stats: { totalAnswered: 1, totalRounds: 0,
-        bySentence: { 'daily#x': { deckId: 'daily', times: 1, okTimes: 1, wrongTimes: 0 } },
-        events: [{ id: 'remote-answer', kind: 'answer', key: 'daily#x', ok: true, at: 2 }], daysLog: {} }
-    },
-    courses: [{ courseId: 'remote-course', title: 'remote' }], courseProgress: {},
-    revs: { decks: { shared: 4, 'remote-only': 1 }, kv: { best: 1, settings: 2 }, courses: { 'remote-course': 1 }, courseProgress: {} }
-  };
-  var batchMerged = typeof CL.mergeBatchSnapshots === 'function'
-    ? CL.mergeBatchSnapshots(batchLocal, batchRemote) : null;
-  check('batch: 冲突合并 helper 存在', !!batchMerged);
-  check('batch: 合并快照补齐前端版本字段', !!batchMerged && batchMerged.mem.version === CL.store.CURRENT_VERSION);
-  check('batch: 远端较新题库实体优先且双方新增保留', !!batchMerged &&
-    batchMerged.mem.decks.some(function(d){ return d.id === 'shared' && d.name === 'remote-new'; }) &&
-    batchMerged.mem.decks.some(function(d){ return d.id === 'local-only'; }) &&
-    batchMerged.mem.decks.some(function(d){ return d.id === 'remote-only'; }));
-  check('batch: 课程双方新增保留', !!batchMerged && batchMerged.courses.length === 2);
-  var batchStatKey = batchMerged && Object.keys(batchMerged.mem.stats.bySentence || {})[0];
-  check('batch: stats 异常巨量次数被事件合并归一', !!batchMerged &&
-    batchMerged.mem.stats.totalAnswered === 2 && batchMerged.mem.stats.bySentence[batchStatKey].times === 2 &&
-    batchMerged.mem.stats.events.length === 2, JSON.stringify(batchMerged && batchMerged.mem.stats));
-
-  /* ===== 离线 change-log（轻量版）：dirty 标志 + 重连补传 ===== */
-  // 13. scheduleCloudSync 置 dirty；同步成功清位；syncStatus 事件发出
-  var syncEvents = [];
-  var offSync = CL.on('syncStatus', function (st) { syncEvents.push(!!st.dirty); });
-  CL.scheduleCloudSync(CL.loadMem());
-  check('offline: scheduleCloudSync 置 dirty', CL.isDirty() === true, 'dirty=' + CL.isDirty());
-  await CL.cloudSyncNow(CL.loadMem());
-  check('offline: 同步成功清除 dirty', CL.isDirty() === false, 'dirty=' + CL.isDirty());
-  check('offline: syncStatus 事件（置位→清位）', syncEvents.length >= 2 && syncEvents[0] === true && syncEvents[syncEvents.length - 1] === false, JSON.stringify(syncEvents));
-  offSync();
-
-  // 14. 同步失败 → dirty 保持；重连拉取（syncFromCloud）成功后自动补传 push
-  var origPut = global.ChunkAPI.putData;
-  var failOnce = true;
-  global.ChunkAPI.putData = function (p) {
-    lastPayloads.push(JSON.parse(JSON.stringify(p)));
-    if (failOnce) { failOnce = false; return Promise.reject(new Error('offline')); }
-    return Promise.resolve({ ok: true });
-  };
-  CL.scheduleCloudSync(CL.loadMem());
-  check('offline: 离线保存置 dirty', CL.isDirty() === true, 'dirty=' + CL.isDirty());
-  await CL.cloudSyncNow(CL.loadMem());
-  check('offline: 同步失败保持 dirty', CL.isDirty() === true, 'dirty=' + CL.isDirty());
-  var before = lastPayloads.length;
-  remoteData = {};                       /* 模拟重连后拉取（空数据，合并无副作用） */
-  await CL.syncFromCloud();
-  await new Promise(function (r) { setTimeout(r, 60); }); /* 等待补传异步完成 */
-  check('offline: 重连拉取后自动补传 push', lastPayloads.length > before, 'before=' + before + ' after=' + lastPayloads.length);
-  check('offline: 补传后 dirty 清除', CL.isDirty() === false, 'dirty=' + CL.isDirty());
-  global.ChunkAPI.putData = origPut;
-
-  // 15. HTTP 409 不得推进增量水位或清除待发数据。
-  m = CL.loadMem();
-  m.decks.push({ id: 'ack-local', name: 'local', items: [] });
-  m.stats.events = (m.stats.events || []).concat([{ id: 'ack-event', kind: 'round', at: 2 }]);
-  CL.saveMem(m);
-  CL.scheduleCloudSync(m);
-  var rejectedPayload;
-  global.ChunkAPI.putData = function(p){
-    rejectedPayload = JSON.parse(JSON.stringify(p));
-    var e = new Error('conflict'); e.code = 'SYNC_CONFLICT';
-    e.conflicts = [{ entity: 'decks', id: 'ack-local' }];
-    return Promise.reject(e);
-  };
-  check('ack: conflict returns false', await CL.cloudSyncNow(m) === false);
-  check('ack: conflict remains visible and dirty', CL.isDirty() && CL.getSyncConflict()[0].id === 'ack-local');
-  global.ChunkAPI.putData = origPut;
-  await CL.cloudSyncNow(m);
-  pl = lastPayloads[lastPayloads.length - 1];
-  check('ack: retry retains rejected deck and event', pl.mem.decks.some(function(d){ return d.id === 'ack-local'; }) && JSON.stringify(pl.statsDelta) === JSON.stringify(rejectedPayload.statsDelta));
-  check('ack: confirmed success clears conflict', !CL.isDirty() && !CL.getSyncConflict());
-  global.ChunkAPI.putData = function(){ return Promise.resolve({}); };
-  check('ack: missing ok is not success', await CL.cloudSyncNow(m) === false && CL.isDirty());
-
-  // 16. 在途修改同一实体：旧回执不能清除新变更，且只能有一个 PUT 在途。
-  var release;
-  var concurrentPuts = 0;
-  global.ChunkAPI.putData = function(p){
-    concurrentPuts++;
-    lastPayloads.push(JSON.parse(JSON.stringify(p)));
-    if(concurrentPuts === 1) return new Promise(function(resolve){ release = resolve; });
-    return Promise.resolve({ ok: true });
-  };
-  CL.scheduleCloudSync(m);
-  var inFlight = CL.cloudSyncNow(m);
-  m.decks.find(function(d){ return d.id === 'ack-local'; }).name = 'changed-during-request';
-  CL.saveMem(m); CL.scheduleCloudSync(m);
-  var successor = CL.cloudSyncNow(m);
-  check('ack: 在途请求等待后继同步而不重复并发发送', successor !== inFlight && concurrentPuts === 1);
-  release({ ok: true });
-  await Promise.all([inFlight, successor]);
-  check('ack: 后继请求发送最新修改并收敛', concurrentPuts === 2 && !CL.isDirty());
-  var successorPayload = lastPayloads[lastPayloads.length - 1];
-  global.ChunkAPI.putData = origPut;
-  check('ack: 后继固定请求含最新 same-id 值', successorPayload.mem.decks.some(function(d){ return d.id === 'ack-local' && d.name === 'changed-during-request'; }));
-  m.decks = m.decks.filter(function(d){ return d.id !== 'ack-local'; });
-  CL.saveMem(m); CL.scheduleCloudSync(m);
-  global.ChunkAPI.putData = function(){ return Promise.reject(new Error('offline')); };
-  await CL.cloudSyncNow(m);
-  m.decks.push({ id: 'ack-local', name: 'recreated-before-ack', items: [] });
-  CL.saveMem(m); CL.scheduleCloudSync(m);
-  global.ChunkAPI.putData = origPut;
-  await CL.cloudSyncNow(m);
-  pl = lastPayloads[lastPayloads.length - 1];
-  check('ack: recreation supersedes unacknowledged tombstone', pl.mem.decks.some(function(d){ return d.id === 'ack-local'; }) && !pl.deleted.decks.some(function(d){ return d.id === 'ack-local'; }));
-
   console.log('\n[rev.test] passed=' + passed + ' failed=' + failed);
   process.exit(failed === 0 ? 0 : 1);
 }

@@ -22,6 +22,10 @@ var window = {
   navigator: { clipboard: null },
   addEventListener: function(){}
 };
+require('./js/core-stats-signature.js');
+require('./js/core-storage-state.js');
+window.CoreStatsSignature = globalThis.CoreStatsSignature;
+window.CoreStorageState = globalThis.CoreStorageState;
 var coreSrc = fs.readFileSync(path.join(__dirname, 'core.js'), 'utf8');
 new Function('window', coreSrc)(window);
 var CL = window.CL;
@@ -147,11 +151,12 @@ var demo1 = CL.demoStatsSample(demoDecks);
 assert(demo1 !== null, '正常题库 → 返回示例（非 null）');
 assertEq(Object.keys(demo1.bySentence).length, 12, '12 个模板全部落地');
 assertEq(demo1.rounds, 3, '示例完成轮次 = 3');
-var dSum = 0, cls = { master:0, learn:0, weak:0 };
+var dSum = 0, cls = { learn:0, weak:0 };
 Object.keys(demo1.bySentence).forEach(function(k){
   var st = demo1.bySentence[k];
   assert(/^[^#]+#[0-9a-f]{8}$/.test(k), 'key 为 deckId#cid 格式 → ' + k);
-  assertEq(typeof st.sentence, 'string', '条目含真实 sentence');
+  assert(!Object.prototype.hasOwnProperty.call(st, 'sentence'), '紧凑统计行不复制题库原句');
+  assert(!st.learningV1, '纯统计示例不能伪造学习或掌握证据');
   assert(st.times === st.okTimes + st.wrongTimes, 'times=ok+wrong');
   assert(st.times >= 1 && st.okTimes >= 0, '计数合法');
   assert(typeof st.lastAt === 'number' && st.lastAt > 0, '含 lastAt 时间戳');
@@ -159,7 +164,6 @@ Object.keys(demo1.bySentence).forEach(function(k){
   cls[CL.classifyStat(st)]++;
 });
 assertEq(dSum, demo1.answered, 'totalAnswered 增量 = Σtimes');
-assert(cls.master >= 3, '含 master 形态（≥3）');
 assert(cls.learn >= 5, '含 learn 形态');
 assert(cls.weak >= 1, '含 weak 形态');
 assertEq(Object.keys(demo1.bySentence).filter(function(k){ return /^custom-deck#/.test(k); }).length >= 2, true, '线性插值覆盖导入 deck 尾部（≥2 句）');
