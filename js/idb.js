@@ -172,8 +172,13 @@
           operation.ordinal = scoped.reduce(function (max, row) {
             return Math.max(max, Number(row.ordinal) || 0);
           }, 0) + 1;
-          result = store.put(operation);
-          result = operation;
+          try {
+            store.put(operation);
+            result = operation;
+          } catch (error) {
+            failure = error;
+            t.abort();
+          }
         };
       });
     });
