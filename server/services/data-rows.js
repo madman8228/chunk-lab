@@ -1,5 +1,8 @@
 'use strict';
 
+const { MistakeEvidence } = require('../../js/mistake-evidence.cjs');
+const { mergeLearningEvidence } = require('../../js/learning-engine.cjs');
+
 /* Row-level stat/event/entity writers shared by migrations and saveData. */
 function createDataRows(options) {
   const stmt = options.stmt;
@@ -12,7 +15,33 @@ function createDataRows(options) {
   function upsertSentenceStat(userId, key, data, seq) {
     if (!key || !data || typeof data !== 'object') return;
     const deckId = typeof data.deckId === 'string' ? data.deckId : null;
-    stmt(SBS_UPSERT_SQL).run(userId, String(key), deckId, JSON.stringify(data), seq);
+    const compact = Object.assign({}, data);
+    delete compact.sentence;
+    const existing = stmt('SELECT data_json FROM user_sentence_stats WHERE user_id=? AND sentence_key=? AND deleted_at IS NULL').get(userId, String(key));
+    if (existing) {
+      try {
+        const previous = JSON.parse(existing.data_json);
+        if (previous.learningV1 && !compact.learningV1) compact.learningV1 = previous.learningV1;
+        else if (previous.learningV1 && compact.learningV1) {
+          const a = previous.learningV1, b = compact.learningV1;
+          const latest = (Number(a.lastExposureAt) || 0) >= (Number(b.lastExposureAt) || 0) ? a : b;
+          compact.learningV1 = { ...latest, version: 1, lastExposureAt: Math.max(Number(a.lastExposureAt) || 0, Number(b.lastExposureAt) || 0),
+            evidence: mergeLearningEvidence(a.evidence, b.evidence) };
+        }
+      } catch (_) { /* A malformed prior stat must not block recording the current valid row. */ }
+    }
+    stmt(SBS_UPSERT_SQL).run(userId, String(key), deckId, JSON.stringify(compact), seq);
+  }
+
+  /* Operation replay is authoritative for this row: its immutable baseline and
+     accepted events have already been merged deterministically. Do not merge a
+     stale projection back over that result. */
+  function replaceSentenceStat(userId, key, data, seq) {
+    if (!key || !data || typeof data !== 'object') return;
+    const deckId = typeof data.deckId === 'string' ? data.deckId : null;
+    const compact = Object.assign({}, data);
+    delete compact.sentence;
+    stmt(SBS_UPSERT_SQL).run(userId, String(key), deckId, JSON.stringify(compact), seq);
   }
   
   function deleteSentenceStat(userId, key, seq) {
@@ -36,13 +65,25 @@ function createDataRows(options) {
      上行 payload / 服务端整块回写）。mastered 8000 条约 227KB、错题本上限 200 条约 176KB。
   
      kind 白名单：写入口拒绝未知 kind，否则脏 kind 会让这张通用表无界增长。 */
-  const ENTITY_KINDS = { mastered: 1, reinforce: 1, deletedItem: 1 };
+  const ENTITY_KINDS = { mastered: 1, reinforce: 1, deletedItem: 1, logicalCourse: 1 };
   
   const ENTITY_UPSERT_SQL = "INSERT INTO user_entity_rows (user_id,kind,item_key,data_json,deleted_at,updated_at,seq) VALUES (?,?,?,?,NULL,datetime('now'),?) ON CONFLICT(user_id,kind,item_key) DO UPDATE SET data_json=excluded.data_json, deleted_at=NULL, updated_at=datetime('now'), seq=excluded.seq";
   const ENTITY_DELETE_SQL = "UPDATE user_entity_rows SET deleted_at=datetime('now'), updated_at=datetime('now'), seq=? WHERE user_id=? AND kind=? AND item_key=?";
   
   function upsertEntityRow(userId, kind, key, data, seq) {
     if (!ENTITY_KINDS[kind] || !key) return;
+    if (kind === 'reinforce') {
+      const existing = stmt("SELECT data_json,deleted_at FROM user_entity_rows WHERE user_id=? AND kind='reinforce' AND item_key=?").get(userId, String(key));
+      if (existing && existing.deleted_at) {
+        const row = data && typeof data === 'object' ? MistakeEvidence.normalizeEvidenceRow(data) : null;
+        const deletedAt = Date.parse(String(existing.deleted_at).replace(' ', 'T') + 'Z');
+        const latestEventAt = row && row.history.reduce((latest, event) => Math.max(latest, event.at || 0), 0);
+        if (!row || !latestEventAt || !Number.isFinite(deletedAt) || latestEventAt <= deletedAt) return;
+        data = row; // only a genuinely newer answer event may intentionally recreate a removed row
+      } else if (existing && data && typeof data === 'object') {
+        try { data = MistakeEvidence.mergeEvidenceRows(JSON.parse(existing.data_json), data); } catch (_) { data = MistakeEvidence.normalizeEvidenceRow(data); }
+      } else if (data && typeof data === 'object') data = MistakeEvidence.normalizeEvidenceRow(data);
+    }
     stmt(ENTITY_UPSERT_SQL).run(userId, kind, String(key), JSON.stringify(data === undefined ? 1 : data), seq);
   }
   function deleteEntityRow(userId, kind, key, seq) {
@@ -74,6 +115,7 @@ function createDataRows(options) {
 
   return {
     upsertSentenceStat,
+    replaceSentenceStat,
     deleteSentenceStat,
     upsertEvent,
     deleteEvent,
