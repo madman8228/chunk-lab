@@ -1,7 +1,7 @@
 # Chunk Lab · 英语句型意群练习
 
-> 本地优先（Local-first）的英语意群学习工具 —— 把句子拆成语块，拼出真正的语感。
-> 前端纯静态 + 后端 Node/SQLite 云端持久化，可纯本地离线运行，也可一键开启云端同步。
+> 英语意群练习工具 —— 把句子拆成语块，拼出真正的语感。
+> 静态前端 + Node/SQLite 服务端持久化；无服务端时可纯本地运行，连接服务端时通过可恢复的操作队列保存学习记录。
 
 ## 项目简介
 
@@ -9,8 +9,9 @@ Chunk Lab 的核心玩法是**意群（chunk）拆解练习**：每个英语句�
 
 **技术特征**
 - 前端：静态多页面运行时；开发产物可由锁定的 esbuild 确定性生成，页面运行仍不依赖构建服务
-- 后端（可选）：Node + Express + SQLite（`better-sqlite3`）+ JWT，提供云端持久化与多用户
-- 同步：浏览器 `localStorage` 仍作离线优先缓存，云端在后台异步同步
+- 后端：Node + Express + SQLite（`better-sqlite3`）+ JWT，提供服务端权威持久化与多用户隔离
+- 学习保存：浏览器先将操作写入 IndexedDB 持久队列，再由服务端确认并回填增量；离线时队列自动重试，不以未确认操作冒充云端已保存
+- 本地运行：`file://` 无服务端模式仍可将数据保存在当前浏览器；这与连接服务端后的权威数据模式不同
 - 两种运行模式：`REQUIRE_AUTH` 切换开放模式 / 多用户模式，无需改表
 
 ## 功能特性
@@ -51,7 +52,7 @@ UI 层        main.html（练习入口）· decks.html（题库管理）· stats
 ### 方式一：纯本地（无云端，最简单）
 双击 `main.html`，`file://` 协议下即可完整运行，数据只存在本机浏览器。
 
-### 方式二：本地调试 + 云端同步（推荐开发）
+### 方式二：连接本地服务端（服务端权威持久化）
 ```bash
 cd server
 npm install                 # 安装后端依赖（express/better-sqlite3/jsonwebtoken/bcryptjs/cors）
@@ -59,7 +60,7 @@ cp .env.example .env        # 按需修改；.env 已被 .gitignore 忽略
 node -r ./loadenv.js index.js
 # 浏览器打开 http://localhost:8787/main.html （同源、免 CORS）
 ```
-> 本地调试可用开放模式（`REQUIRE_AUTH=false`，免登录即学）；UI 与 API 同源，零配置。
+> 本地调试可用开放模式（`REQUIRE_AUTH=false`，免登录即学）；新服务端默认使用协议 3，UI 与 API 同源。生产环境必须开启鉴权。
 
 ### 方式三：生产部署（多用户 + 安全）
 必须开启多用户模式并收口网络，详见下方「安全部署清单」：
@@ -139,7 +140,7 @@ ADMIN_JWT_SECRET=请替换为至少32位随机字符串
 | `stats.html` | 主页右上「档案」 | 学习档案：KPI 卡片、熟练度分布、句子记录、错题本、到期复习 |
 | `courses.html` | 题库页·图文课程 | 图文课程播放器（支持 `?id=<courseId>` 深链直达；无 id 时跳回 decks.html） |
 
-> 页面间为**整页跳转**（`location.href`），非 iframe 嵌入；错题/复习等跨页操作通过 `localStorage`（`chunklab_pending_review_deck`）+ 主页启动时读取完成接力。
+> 页面间为**整页跳转**（`location.href`），非 iframe 嵌入；错题/复习等大型临时队列先写入账号隔离的 IndexedDB，再通过 URL 中的一次性 handoff ID 交给主页消费，避免占用 localStorage 配额。旧版 30 秒 localStorage handoff 仍只为兼容已打开的旧页面保留。
 > 重构前的单体遗留 `chunk-practice.html` 已被 `main.html` 取代并从仓库移除。
 
 ## 开发与测试
@@ -237,12 +238,13 @@ npm run e2e-sync   # 双设备同步对抗 7 项（ADR-005 端到端：per-entit
 
 ## 自动备份（上线准备 · 推荐配置）
 
-零依赖 CLI（`server/backup-cli.js`），备份走应用级 `/api/export`；恢复必须先固定账号级预览，再明确确认，不再使用覆盖式导入：
+零依赖 CLI（`server/backup-cli.js`），备份走应用级 `/api/export`；恢复先把来源校验后归档到服务器，再固定账号版本/hash 预览并明确确认，不再调用旧整账号冲突接口：
 
 ```bash
 node server/backup-cli.js backup              # 备份 → server/backups/chunklab_backup_*.json
 node server/backup-cli.js preview <file>      # 生成固定预览（只读）
-node server/backup-cli.js apply <preview> --confirm  # 按预览执行恢复
+node server/backup-cli.js apply <preview> --confirm  # 空账号按预览恢复
+node server/backup-cli.js apply <preview> --confirm --selection <file>  # 非空账号按选择恢复无冲突项
 node server/backup-cli.js list                # 列出备份
 ```
 
@@ -252,7 +254,9 @@ node server/backup-cli.js list                # 列出备份
 - **Linux**：`0 3 * * *  cd /path/to/chunk-practice && BASE_URL=http://localhost:8787 TOKEN=xxx node server/backup-cli.js backup`
 - **Windows**：任务计划程序 → 每日 03:00 → 程序 `node`，参数 `server/backup-cli.js backup`，起始于项目目录，环境变量 `BASE_URL`/`TOKEN`/`BACKUP_DIR`
 
-> **恢复演练（建议每月一次）**：`list` → 选一份 → `preview 文件` → 人工核对预览 → `apply 预览 --confirm` → 浏览器确认题库/错题本/统计回来。预览或执行过期会拒绝，原备份保持只读。
+> **当前恢复边界**：preview 会在服务器新增不可变恢复归档，但不会改活动学习数据。空账号可按固定预览完整恢复；非空账号只能通过 `--selection` JSON 明确选择预览中标为新增的题库、课程、课程进度或逻辑目录。ID 冲突、服务端删除记录及其他不安全项目不会覆盖；统计/掌握记录保留为原件，不猜测累加。过期预览需重新预览，服务器原归档保留。选择文件格式为 `{"decks":["deck-id"],"courses":[],"courseProgress":[],"logicalCourses":[]}`，列表可省略但至少选一个安全项目。`TOKEN` 指向目标账号，执行前确认服务地址与账号。
+>
+> **恢复演练（建议每月一次）**：`list` → 选一份 → `preview 文件` → 人工核对账号、预览中的条目状态 → 空账号使用 `apply 预览 --confirm`；非空账号先编写选择 JSON，再使用 `apply 预览 --confirm --selection 选择.json` → 浏览器核对。原备份保持只读。
 
 ## 环境变量（server/.env.example）
 

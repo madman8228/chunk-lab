@@ -18,16 +18,18 @@ Baseline: `4dce31a` (HEAD before this audit checkpoint).
 
 ## This checkpoint
 
-Only `AGENTS.md`, the independent read-only `scripts/audit-course-assets.cjs`, and this report belong to this checkpoint. It is not a saved snapshot of all persistence implementation changes, nor a deployable completion of that work.
+The asset-protection checkpoint contains `AGENTS.md`, the independent read-only `scripts/audit-course-assets.cjs`, and this report. Persistence work was subsequently recorded in local commits through `a521c28` (course package writes). The current branch is ahead of `origin/master`; these commits have not been pushed or deployed.
+
+The persistence commits cover protocol fencing/schema, canonical hashing, replayable evidence, operation services, server route wiring/recovery, durable browser queue/cache, learning page integration, and course-package persistence. They do not yet represent a clean-checkout release candidate: changes to test/build manifests and some legacy sync tests remain in the worktree, and the latest commits have not been revalidated as a clean staged snapshot. No full-suite pass is claimed.
 
 The audit command returns nonzero on exact identity differences, even when total counts match. Compare against `4dce31a` explicitly to preserve the original baseline after later commits. It reads Git and static content files only, never the live database or browser storage.
 
-## Pending commit groups
+## Remaining work
 
-1. Review remaining persistence code and its new dependencies together; stage only coherent implementation groups with their tests. The working tree contains unrelated work, so blanket staging is prohibited.
-2. Review content edits and generated filenames independently; preserve original assets and do not authorize deletes implicitly through code cleanup.
-3. Review other UI, authoring and build edits separately.
-4. Run staged-tree/full acceptance checks before claiming a complete release checkpoint. Existing working-tree tests do not prove every partial commit can run independently.
+1. Reconcile old sync/outbox/conflict tests with the retired endpoints and verify new tests are discovered by the committed test manifest.
+2. Review build, service-worker and release-checklist changes so generated assets match the committed source tree.
+3. Independently review content edits and generated filenames. Preserve original assets; do not authorize deletes implicitly through code cleanup. Six same-CID text edits and broad field changes still need owner/content review.
+4. Run clean-snapshot and full acceptance checks before calling this a release candidate. Existing worktree test results do not prove all partial commits form a passing clean checkout.
 5. Database files, environment credentials and user backups must not enter source commits. Git is not a consistent live SQLite backup.
 
 No live course, database or backup was deleted, restored, regenerated or overwritten during this audit. Port 8787 was not restarted.
