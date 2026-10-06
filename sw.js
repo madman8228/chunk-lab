@@ -9,6 +9,7 @@
  *   - 版本更新时 activate 删除旧版本缓存。
  *
  * 注意：开发期 SW 缓存会"冻结"旧文件——改代码后需要：
+ *   本次 protocol 3 全站切换也必须翻新缓存，使仍打开旧版页面的用户刷新后拿到新页面与 428 升级处理。
  *   1) 刷新页面自动触发 SW 更新检查（导航时），新版 install 后 skipWaiting+clients.claim
  *      立即激活，activate 清理旧版本缓存 → 资源从网络重拉，一次刷新即生效
  *   2) 或 DevTools → Application → Service Workers → Update / Unregister
@@ -53,7 +54,7 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-a94c0fec'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-92ecfa45'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 /* 硬预缓存清单：小体积、离线必需。install 用 addAll 一次性装好，任一失败即安装失败
    （老 SW 继续服务 —— 这是正确的失败语义，不做"部分成功"的兜底）。 */
 const PRECACHE = [
@@ -71,11 +72,7 @@ const PRECACHE = [
   '/auth-ui.js',
   '/srs.js',
   '/library.js',
-  '/course-package.js',
-  '/courses.html',
-  '/decks.html',
   '/assets/catalog/lesson-placeholder.svg',
-  '/stats.html',
   '/js/idb.js',
   '/js/icons.js',
   '/js/chunk-engine.mjs',
@@ -88,55 +85,63 @@ const PRECACHE = [
   '/icon-32.png',
   '/js/distractor-cause.mjs',
   '/js/content-repository.js',
-  '/js/sync-resolution-ui.js',
-  '/js/sync-resolution.js',
   '/js/account-storage.js',
   '/js/legacy-backup.js',
   '/js/legacy-restore.js',
-  '/js/batch-sync.js',
+  '/js/legacy-recovery.js',
   '/js/chunk-shape.js',
   '/js/course-catalog.js',
   '/js/course-progress.js',
   '/js/logical-course-store.js',
   '/js/course-cloze.js',
   '/assets/icons/teacher-explain.svg',
-  '/admin.html',
-  '/js/course-package-contract.js',
-  '/js/vendor/course-schema-validator.js',
   '/js/core-migrations.js',
   '/js/main-lifecycle.js',
   '/js/core-stats-signature.js',
   '/js/core-storage-state.js',
   '/js/core-entity-delta.js',
-  '/js/core-sync-delta.js',
   '/js/core-runtime.js',
   '/js/main-explanation.js',
   '/js/main-practice-policy.js',
   '/js/main-practice-state.js',
   '/js/main-practice-markup.js',
   '/js/main-legacy-stats.js',
-  '/js/core-sync-intents.js',
-  '/js/core-sync-payload.js',
-  '/js/core-sync-transport.js',
-  '/js/core-sync-replay.js',
-  '/js/core-sync-batch-merge.js',
   '/js/core-sync-stats-normalize.js',
-  '/js/core-sync-learning-marks.js',
-  '/js/core-sync-entity-merge.js',
-  '/js/core-sync-kv.js',
   '/js/main.js',
   '/js/main-practice-classification.js',
   '/js/main-course-navigation.js',
   '/js/main-deck-progress.js',
   '/js/main-home-summary.js',
   '/js/core-revision-delta.js',
+  '/js/course-enrollment.js',
+  '/js/server-store.js',
+  '/js/server-cache.js',
+  '/js/course-capabilities.js',
+  '/js/main-course-learning-policy.js',
+  '/js/mistake-evidence.js',
+  '/js/learning-engine.js',
+  '/js/save-status.js',
+  '/js/server-stat-key-migration.js',
 ];
 
-/* 软预缓存清单：仅保留旧版源文件作为兼容回退。
+/* 软预缓存清单：次要页面/管理及课程作者工具尽力缓存；
+   同时保留旧版源文件作为兼容回退。
    新题库内容改由 content/manifest.json + 带 hash 的 JSON 分片按需加载，
-   不再把会增长到 8000 句的整库作为页面 script 或安装资产。
-   与 PRECACHE 一样计入 CACHE 版本哈希；内容分片由首次访问后的 fetch 分支缓存。 */
+   不再把会增长到 8000 句的整库作为页面 script 或安装资产。小而必要的主页/练习引擎仍在
+   原子清单；课程目录、统计和作者页在线可加载、离线则尽力提供。所有软资源同样计入版本哈希。 */
 const PRECACHE_SOFT = [
+  '/course-package.js',
+  '/courses.html',
+  '/decks.html',
+  '/stats.html',
+  '/admin.html',
+  '/course-create.html',
+  '/assets/course-create.css',
+  '/js/course-package-contract.js',
+  '/js/vendor/course-schema-validator.js',
+  '/js/course-authoring.js',
+  '/js/course-learning-launch.js',
+  '/js/mistake-review.js',
   '/builtins.js',
   '/assets/covers/oral-3000.webp',
   '/assets/covers/idioms.webp',

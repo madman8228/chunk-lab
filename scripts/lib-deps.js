@@ -42,7 +42,7 @@ const JS_RE = /\.(m?js)$/i;
 const TEST_RE = /\.test\.mjs$/i;
 
 /* 前端入口 HTML（与 gen-sw.js / deploy 清单同源，改这里即三处生效） */
-const HTML_ENTRIES = ['main.html', 'courses.html', 'decks.html', 'stats.html', 'admin.html'];
+const HTML_ENTRIES = ['main.html', 'courses.html', 'decks.html', 'course-create.html', 'stats.html', 'admin.html'];
 
 function abs(rel) { return path.join(ROOT, rel); }
 
@@ -54,6 +54,10 @@ function readIfExists(rel) {
 
 /* HTML 属性值 → 归一化相对路径（不可用引用返回 null） */
 function normalizeRef(u, fromRel) {
+  /* HTML_ATTR_RE also sees attributes embedded in concatenated inline-script
+     strings (for example `<img src="' + escX(src) + '">`). They are runtime
+     expressions, not literal deployment paths; don't report them as missing. */
+  if (/[\s"'<>]/.test(String(u || ''))) return null;
   if (SKIP_SCHEME.test(u)) return null;
   if (u.indexOf('/api/') === 0) return null;
   let s = u.split('#')[0].split('?')[0];

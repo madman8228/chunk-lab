@@ -107,9 +107,21 @@ function cacheUrls(page) {
   const page = await ctx.newPage();
   const errs = [];
   page.on('pageerror', function (e) { errs.push(e.message); });
+  page.on('console', function (message) { if (message.type() === 'error') console.log('  [console.error] ' + message.text()); });
   await page.goto(BASE + '/main.html', { waitUntil: 'load' });
   const state = await waitSwActive(page, 30000);
-  check('SW 安装并激活成功', state === 'active', String(state));
+  let registrationState = null;
+  if (state !== 'active') registrationState = await page.evaluate(async function () {
+    let registerAttempt = null;
+    if ('serviceWorker' in navigator) registerAttempt = await navigator.serviceWorker.register('/sw.js').then(function (r) {
+      return { ok:true, scope:r.scope, active:r.active && r.active.state, installing:r.installing && r.installing.state, waiting:r.waiting && r.waiting.state };
+    }).catch(function (e) { return { ok:false, error:e.name + ': ' + e.message }; });
+    const registrations = 'serviceWorker' in navigator ? await navigator.serviceWorker.getRegistrations() : [];
+    return { supported:'serviceWorker' in navigator, controller:!!navigator.serviceWorker?.controller,
+      registrations:registrations.map(function (r) { return { scope:r.scope, active:r.active && r.active.state, installing:r.installing && r.installing.state, waiting:r.waiting && r.waiting.state }; }),
+      caches:await caches.keys(), swFetch:(await fetch('/sw.js')).status, registerAttempt };
+  }).catch(function (error) { return { diagnosticError:error.message }; });
+  check('SW 安装并激活成功', state === 'active', JSON.stringify({ state, registrationState }));
 
   /* install 的 waitUntil 覆盖 addAll + carryOver + fillSoft，active 时应已写完 */
   let urls = [];
@@ -179,6 +191,7 @@ function cacheUrls(page) {
           clearInterval(iv);
           resolve({
             ok: !!ok,
+            coreReady: !!(window.CL && typeof CL.ensureCloud === 'function'),
             engine: typeof window.ChunkEngine,
             format: typeof window.FormatTools,
             /* 旧指标读 window.BUILTIN，而 builtins.js 自 2026-09-15 起是空壳
@@ -193,6 +206,7 @@ function cacheUrls(page) {
       }, 100);
     });
   });
+  check('首次安装后离线仍能加载核心脚本', off.coreReady === true, JSON.stringify(off));
   check('离线启动后引擎模块已就绪（ChunkEngine / FormatTools）',
     off.engine === 'object' && off.format === 'object',
     'ChunkEngine=' + off.engine + ' FormatTools=' + off.format);
