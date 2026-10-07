@@ -12,7 +12,7 @@ const base = 'http://127.0.0.1:' + port;
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-nullrev-cutover-'));
 let server, browser;
 async function start(protocol) {
-  server = spawn(process.execPath, ['index.js'], { cwd: path.join(root, 'server'),
+  server = spawn(process.execPath, [Number(protocol) === 2 ? 'testing/start-historical.js' : 'index.js'], { cwd: path.join(root, 'server'),
     env: { ...process.env, PORT: String(port), CHUNKLAB_DATA_DIR: temp,
       NODE_ENV: 'test', REQUIRE_AUTH: 'false', CHUNKLAB_WRITE_PROTOCOL: String(protocol) }, stdio: 'ignore' });
   for (let attempt = 0; attempt < 300; attempt++) {

@@ -9,7 +9,7 @@ const code=`
   const assert=require('node:assert/strict');
   require('./index');
   for(const file of [
-    './services/data-save','./services/batch-replacement','./sync-resolution',
+    './services/data-save','./services/batch-replacement','./sync-resolution','./testing/legacy-protocol',
     './routes/sync','./routes/courses','./routes/legacy-snapshot-writes','./routes/legacy-deck-publication'
   ]) assert.equal(require.cache[require.resolve(file)],undefined,'new startup loaded '+file);
   for(const file of ['./routes/operations','./routes/content-import','./routes/recovery','./services/recovery-baseline'])
