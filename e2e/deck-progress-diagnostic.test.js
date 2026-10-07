@@ -65,6 +65,12 @@ function seed() {
     stats: { totalRounds: 1, totalAnswered: 2, bySentence: by, events: [] },
     settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: false }
   }));
+  localStorage.setItem('chunklab.course-progress.v1', JSON.stringify({
+    'enrollment:v1:user-deck%3Aprogress-d1': {
+      kind: 'course-enrollment', schemaVersion: 1, courseId: 'user-deck:progress-d1',
+      joined: true, joinedAt: now, changedAt: now
+    }
+  }));
   sessionStorage.setItem('_startDeck', JSON.stringify({ id: 'progress-d1', name: '进度诊断', items: items.slice(2) }));
 }
 
@@ -85,18 +91,21 @@ function seed() {
     await page.locator('#btnExitPractice').click();
     await page.waitForSelector('#pageHome:not(.hidden) .home-deck-progress', { timeout: 10000 });
     var result = await page.evaluate(function () {
-      var row = document.querySelector('#pageHome .home-deck-progress');
+      var row = document.querySelector('#pageHome [data-home-course="user-deck:progress-d1"]');
       return {
         text: row ? row.textContent : '',
         aria: row ? row.getAttribute('aria-label') : '',
-        title: row && row.querySelector('[title]') ? row.querySelector('[title]').getAttribute('title') : '',
-        keys: Object.keys((mem.stats && mem.stats.bySentence) || {}).filter(function (k) { return k.indexOf('progress-d1#') === 0; }).length
+        keys: Object.keys((mem.stats && mem.stats.bySentence) || {}).filter(function (k) { return k.indexOf('progress-d1#') === 0; }).length,
+        totalAnswered: mem.stats && mem.stats.totalAnswered,
+        progress: row && row.querySelector('[aria-valuenow]') && row.querySelector('[aria-valuenow]').getAttribute('aria-valuenow')
       };
     });
-    if (result.keys !== 5 || result.text.indexOf('已覆盖 4 / 5 句') < 0 || result.text.indexOf('本次完成 2 句') < 0 || result.title.indexOf('重复练习不会增加') < 0) {
+    /* 首页当前把覆盖口径显示为“已学 X / Y 句”；被移除的历史句子不进入当前课程覆盖数。 */
+    if (result.keys !== 5 || result.totalAnswered !== 4 || result.text.indexOf('已学 4 / 5 句') < 0 ||
+        !result.aria || result.aria.indexOf('已学 4 / 5 句') < 0 || result.progress !== '80') {
       throw new Error('新句答题后进度不符合预期：' + JSON.stringify(result));
     }
-    console.log('[deck-progress-diagnostic] 新句答题写入统计，首页显示 4/5 与本次 2 句');
+    console.log('[deck-progress-diagnostic] 新句答题写入统计，首页显示 已学 4 / 5 句（80%）');
   } catch (error) {
     console.error('[deck-progress-diagnostic] failed:', error && error.message || error);
     process.exitCode = 1;

@@ -66,16 +66,23 @@ function seedRepeatedReview() {
     ] },
     settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: false }
   }));
+  localStorage.setItem('chunklab.course-progress.v1', JSON.stringify({
+    'enrollment:v1:user-deck%3Aprogress-d1': {
+      kind: 'course-enrollment', schemaVersion: 1, courseId: 'user-deck:progress-d1',
+      joined: true, joinedAt: now, changedAt: now
+    }
+  }));
   sessionStorage.setItem('_startDeck', JSON.stringify({ id: 'progress-d1', name: '覆盖测试', items: items }));
 }
 
 (async function () {
   let browser;
+  let page;
   try {
     await startServer();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
-    const page = await ctx.newPage();
+    page = await ctx.newPage();
     await page.route('**/api/**', function (route) { route.abort('failed'); });
     await page.addInitScript(seedRepeatedReview);
     await page.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
@@ -86,14 +93,34 @@ function seedRepeatedReview() {
     await page.locator('#btnNext').click();
     await page.locator('#btnExitPractice').click();
     await page.waitForSelector('#pageHome:not(.hidden) .home-deck-progress', { timeout: 10000 });
-    const text = await page.locator('#pageHome .home-deck-progress').first().innerText();
-    if (text.indexOf('41 / 43') < 0 || text.indexOf('本次完成 2 句') < 0) {
-      throw new Error('进度文案不符合预期：' + text);
+    /* 首页课程行当前以“已学 X / Y 句”直显覆盖数；本次答题数由全局“今日已练”维护。 */
+    const courseAction = page.locator('#pageHome [data-home-course="user-deck:progress-d1"]');
+    const text = await courseAction.innerText();
+    const aria = await courseAction.getAttribute('aria-label');
+    const sessionTotal = await page.evaluate(function () { return mem.stats.totalAnswered; });
+    if (text.indexOf('已学 41 / 43 句') < 0) {
+      throw new Error('首页课程行未显示去重后的覆盖数：' + JSON.stringify(text));
     }
-    console.log('[progress-coverage] 重复复习不虚增覆盖数，并显示本次完成数');
+    if (!aria || aria.indexOf('已学 41 / 43 句') < 0) {
+      throw new Error('课程入口辅助说明未包含覆盖数：' + JSON.stringify(aria));
+    }
+    if (sessionTotal !== 43) {
+      throw new Error('重复练习没有完整写入两次答题记录：' + JSON.stringify(sessionTotal));
+    }
+    console.log('[progress-coverage] 重复复习保留两次答题记录，已学句数保持 41 / 43');
     await ctx.close();
   } catch (error) {
     console.error('[progress-coverage] failed:', error && error.message || error);
+    if (page && !page.isClosed()) {
+      try { console.error('[progress-coverage] page:', JSON.stringify(await page.evaluate(() => ({
+        home:document.getElementById('pageHome')&&document.getElementById('pageHome').className,
+        practice:document.getElementById('pagePractice')&&document.getElementById('pagePractice').className,
+        homeText:document.getElementById('pageHome')&&document.getElementById('pageHome').innerText.slice(0,1200),
+        deck:window.S&&S.deck&&{id:S.deck.id,name:S.deck.name},index:window.S&&S.idx,
+        stageChoices:document.querySelectorAll('#stageChoices .choice').length,
+        main:document.body.innerText.slice(0,1800),
+      })))); } catch (diagnosticError) { console.error('[progress-coverage] diagnostic failed:',diagnosticError.message); }
+    }
     process.exitCode = 1;
   } finally {
     if (browser) { try { await browser.close(); } catch (e) {} }
