@@ -26,6 +26,12 @@
 
 ## 学习档案统计验收
 
+### 剩余旧前端发布项
+
+- 发布清单再移除九个无运行依赖的 core-sync 模块及旧 recovery-center；保留新版仍依赖的 core-sync-stats-normalize、legacy-recovery 和全部课程内容。只修改清单，没有删除源文件或数据。
+- 加入部署边界断言，防止旧模块重新进入发布。隔离副本依赖清单覆盖检查、正常运行边界及部署安全 17/17 通过。
+- 服务器历史分支和旧测试的收尾尚未完成，本次未更新实际服务。
+
 ### 旧同步发布边界核对
 
 - 正常页面、core/API 与预缓存均不加载旧同步模块，server-runtime-boundary 在隔离副本通过。旧 sync-recovery 仍等待 BatchSync/SyncResolution，因此其失败是历史合同未整理，不能据此恢复旧模块。

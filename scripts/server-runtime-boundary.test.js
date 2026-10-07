@@ -14,6 +14,8 @@ const core=fs.readFileSync(path.join(root,'core.js'),'utf8');
 assert.ok(!/\.putData\(|getSyncBatch\(|applySyncBatchResolution|loadLegacyBatchSync/.test(core),
   'shared runtime contains no legacy snapshot writer or conflict resolver');
 const sw=fs.readFileSync(path.join(root,'sw.js'),'utf8');
+const deploy=fs.readFileSync(path.join(root,'scripts/deploy-prod.sh'),'utf8');
+for(const module of retired) assert.ok(!deploy.includes('js/'+module+'.js'), 'deployment includes retired module '+module);
 const api=fs.readFileSync(path.join(root,'api.js'),'utf8');
 assert.ok(!/putData:|importData:|getSyncBatch:|resolveSyncBatch:|getSyncEntity:|resolveSync:|postCourse:|deleteCourse:|publishDeck:|global\.BatchSync/.test(api),
   'normal API exposes no retired conflict, course or publication writer');
