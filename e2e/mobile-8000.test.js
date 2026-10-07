@@ -77,7 +77,7 @@ async function ready(){
     const homeMs=Date.now()-start;
     check('8000-句首页不请求详情或索引',details===0 && indexes===0);
     await heap();
-    await page.evaluate(id=>{mem.settings.skipMastered=false;mem.settings.batchSize=10;startDeck(findDeck(id),0);},deckId);
+    await page.evaluate(id=>{mem.settings.skipMastered=false;mem.settings.batchSize=10;showPracticePage();startDeck(findDeck(id),0);},deckId);
     try {
       await page.waitForFunction(()=>S.items.length===10 && S.items.some(it=>it.cid==='perf-0'));
     } catch (error) {
