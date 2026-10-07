@@ -19,7 +19,7 @@ let server;
 
 function startServer(protocol) {
   return new Promise(function (resolve, reject) {
-    server = spawn(process.execPath, ['index.js'], { cwd: path.join(ROOT, 'server'), env: Object.assign({}, process.env, {
+    server = spawn(process.execPath, [Number(protocol || 2) === 2 ? 'testing/start-historical.js' : 'index.js'], { cwd: path.join(ROOT, 'server'), env: Object.assign({}, process.env, {
       CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: String(protocol || 2)
     }), stdio: 'ignore' });
     var tries = 0;

@@ -26,6 +26,12 @@
 
 ## 学习档案统计验收
 
+### 升级持久化与课程包准备入口迁移
+
+- write-protocol-persistence 的无新版启用变量重启改走历史启动器；数据库已固定协议 3 时仍使用协议 3，旧写入继续拒绝，学习代次和确认回执跨重启保留。隔离复验退出 0。
+- 课程包 2.0 测试协议 2 准备走专用入口，协议 3 阶段走正常 index。COURSE_PACKAGE_PROTOCOL3=1 全流程退出 0，外部 ZIP 只读提供。
+- 未迁移剩余 smoke/其他浏览器夹具，主入口回退仍存在。课程资产、原始备份及当前服务均未改动。
+
 ### 四项服务器历史测试迁移
 
 - batch-version、downstream-delta、sync-delta、sync-nullrev 的历史服务启动改为 testing/start-historical.js，原断言保留，原有数据库操作仅针对各测试自己的临时目录。

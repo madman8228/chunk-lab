@@ -22,7 +22,7 @@ async function start(enableProtocol3) {
     ADMIN_PASSWORD: 'protocol-admin-password', ADMIN_JWT_SECRET: 'admin-write-protocol-test-secret-long-enough' };
   if (enableProtocol3) env.CHUNKLAB_WRITE_PROTOCOL = '3';
   else delete env.CHUNKLAB_WRITE_PROTOCOL;
-  const child = spawn(process.execPath, ['index.js'], { cwd: __dirname, env, stdio: 'ignore' });
+  const child = spawn(process.execPath, [enableProtocol3 ? 'index.js' : 'testing/start-historical.js'], { cwd: __dirname, env, stdio: 'ignore' });
   for (let attempt = 0; attempt < 100; attempt++) {
     if (child.exitCode !== null) throw new Error('server exited before becoming ready');
     try { if ((await fetch(base + '/api/health')).ok) return child; } catch (_) {}
