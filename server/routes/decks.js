@@ -20,10 +20,12 @@ function registerDeckRoutes(options) {
   app.get('/api/deck/public/:id', function (req, res) {
     try {
       const r = db.prepare(
-        "SELECT d.id,d.name,d.items_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.id=? AND d.is_public=1 AND d.deleted_at IS NULL"
+        "SELECT d.id,d.name,d.items_json,d.authoring_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.id=? AND d.is_public=1 AND d.deleted_at IS NULL"
       ).get(req.params.id);
       if (!r) return res.status(404).json({ error: '公开题库不存在或已下架' });
-      res.json({ ok: true, deck: { id: r.id, name: r.name, author: r.username, publishedAt: r.created_at, items: JSON.parse(r.items_json) } });
+      const deck = { id: r.id, name: r.name, author: r.username, publishedAt: r.created_at, items: JSON.parse(r.items_json) };
+      if (r.authoring_json) deck.authoring = JSON.parse(r.authoring_json);
+      res.json({ ok: true, deck });
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 }
