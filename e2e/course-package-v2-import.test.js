@@ -144,7 +144,7 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     var course = await page.evaluate(async function () { await CL.preload(); return CL.readCourses().find(function (item) { return item.courseId === 'course_d50da551'; }); });
     await page.goto(BASE + '/courses.html?id=' + encodeURIComponent(COURSE_ID) + '&e2e=course-package-v2', { waitUntil: 'networkidle' });
     var courseScriptUrl = await page.locator('script[src^="course-package.js"]').getAttribute('src');
-    var expectedCourseScriptHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, 'course-package.js'))).digest('hex').slice(0, 12);
+    var expectedCourseScriptHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, 'course-package.js'), 'utf8').replace(/\r\n/g, '\n')).digest('hex').slice(0, 12);
     if (new URL(courseScriptUrl, BASE).searchParams.get('v') !== expectedCourseScriptHash) throw new Error('课程页面脚本缓存版本未随 course-package.js 内容更新');
     await page.waitForSelector('.mode-guide');
     await page.waitForFunction(function(){ return !!CL.getCloudConfig(); }, null, { timeout:15000 });
