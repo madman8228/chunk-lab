@@ -291,10 +291,10 @@ function classifySentence(it) {
 
 /* 错因类 → 中文展示文案（C2-II 答错 Toast 消费） */
 const CAUSE_INFO = {
-  verb: { name: '动词形态', tip: '时态 / 主谓一致 / 非谓语形式与正确表达不同' },
-  function: { name: '虚词搭配', tip: '冠词、介词、代词或助词与正确表达不同' },
-  form: { name: '形近词', tip: '拼写或词形与正确表达接近，注意区分' },
-  semantic: { name: '语义偏移', tip: '换词改变了句意，与语境不符' }
+  verb: { tip: '动词形式不合适，留意时态和主谓一致。' },
+  function: { tip: '这里的冠词、介词、代词或助动词用法不合适。' },
+  form: { tip: '这两个词拼写或词形接近，注意区分。' },
+  semantic: { tip: '换成这个词后，句意变了，和上下文不符。' }
 };
 function causeInfo(c) { return CAUSE_INFO[c] || CAUSE_INFO.semantic; }
 

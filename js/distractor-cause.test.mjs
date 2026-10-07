@@ -2,7 +2,7 @@
  * js/distractor-cause.test.mjs · 错因分类引擎单测（C2-I）
  * 运行：node js/distractor-cause.test.mjs
  */
-import { classifyOne, classifySentence } from './distractor-cause.mjs';
+import { classifyOne, classifySentence, causeInfo } from './distractor-cause.mjs';
 
 let passed = 0, failed = 0;
 function check(name, cond, detail) {
@@ -68,6 +68,14 @@ check('causes 与 distractors 同形（2 槽 × 2 条）', cs.length === 2 && cs
 check('slot0 全 verb', cs[0].every(function (e) { return e.c === 'verb'; }));
 check('slot1 function+form', cs[1][0].c === 'function' && cs[1][1].c === 'form');
 check('保留干扰原文', cs[0][0].d === 'How is');
+
+/* ===== 用户可读的答错提示 ===== */
+console.log('\n答错提示文案');
+check('语义提示使用直白表达', causeInfo('semantic').tip === '换成这个词后，句意变了，和上下文不符。');
+check('搭配提示避免内部术语', causeInfo('function').tip === '这里的冠词、介词、代词或助动词用法不合适。');
+check('提示文案不再出现「近失」', ['verb', 'function', 'form', 'semantic'].every(function (cause) {
+  return !causeInfo(cause).tip.includes('近失');
+}));
 
 /* ===== 极端输入不抛错 ===== */
 console.log('\n极端输入容错');

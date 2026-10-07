@@ -66,12 +66,17 @@ function check(name, cond, detail) {
     mem: { decks: [{ id: 'a' }, { id: 'b' }], mastered: { x: 1 }, stats: { bySentence: { s: 1, t: 2 } }, settings: { sound: true } },
     reinforceBook: [{ sentence: 'X' }, { sentence: 'Y' }],
     courses: [{ courseId: 'c1' }],
-    courseProgress: { c1: { done: 2 } }
+    courseProgress: { c1: { done: 2 } },
+    saveState: { version: 1, source: 'server-confirmed', seq: 24,
+      unconfirmedOperations: [{ requestId: 'pending-request-0001', operation: { protocol: 3, type: 'settings.patch' } }] }
   };
   r = parseExport(JSON.stringify(good));
   check('parseExport: 正常解析', r.ok === true && r.data.mem.decks.length === 2 && r.data.book.length === 2 && r.data.courses.length === 1);
+  check('parseExport: 保留服务端确认水位和未确认操作元数据', r.data.saveState.seq === 24 && r.data.saveState.unconfirmedOperations[0].requestId === 'pending-request-0001');
+  check('parseExport: 明确提示未确认操作不会自动重放', r.data.summary.indexOf('未确认操作 1 条') >= 0 && r.data.summary.indexOf('不会自动重放') >= 0);
   check('parseExport: 摘要统计', r.data.summary.indexOf('· 题库 2 个') >= 0 && r.data.summary.indexOf('· 标熟 1 句') >= 0 && r.data.summary.indexOf('· 统计 2 句') >= 0 && r.data.summary.indexOf('· 错题本 2 条') >= 0 && r.data.summary.indexOf('· 图文课程 1 个') >= 0);
   check('parseExport: 摘要说明预览冲突与安全恢复', r.data.summary.indexOf('预览') >= 0 && r.data.summary.indexOf('冲突') >= 0);
+  check('parseExport: 不把新版恢复描述为本地版本替换', !r.data.summary.includes('新本地版本'));
 })();
 
 /* ===== extractJSON ===== */

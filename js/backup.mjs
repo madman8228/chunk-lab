@@ -92,16 +92,20 @@ export function parseExport(text) {
   var dBook = Array.isArray(data.reinforceBook) ? data.reinforceBook : [];
   var dCourses = Array.isArray(data.courses) ? data.courses : [];
   var dCourseProgress = (data.courseProgress && typeof data.courseProgress === 'object') ? data.courseProgress : {};
+  var saveState = data.saveState && typeof data.saveState === 'object' ? data.saveState : null;
+  var unconfirmedCount = saveState && Array.isArray(saveState.unconfirmedOperations) ? saveState.unconfirmedOperations.length : 0;
   var summary = '导入内容：\n' +
     '· 题库 ' + (dMem.decks || []).length + ' 个\n' +
     '· 标熟 ' + Object.keys(dMem.mastered || {}).length + ' 句\n' +
     '· 统计 ' + Object.keys((dMem.stats || {}).bySentence || {}).length + ' 句\n' +
     '· 错题本 ' + dBook.length + ' 条\n' +
     (dCourses.length ? '· 图文课程 ' + dCourses.length + ' 个\n' : '') +
-    '· 设置 已含\n\n系统会先预览并检查冲突；发现冲突时不会执行，确认后以新本地版本恢复。';
+    '· 设置 已含\n' + (unconfirmedCount ? '· 未确认操作 ' + unconfirmedCount + ' 条（仅保存在恢复归档，不会自动重放）\n' : '') +
+    '\n系统会先预览并检查冲突；发现冲突时不会执行，确认后按预览执行恢复。';
   return {
     ok: true,
     data: { mem: dMem, book: dBook, courses: dCourses, courseProgress: dCourseProgress,
-      legacyArchive: data.legacyArchive && typeof data.legacyArchive === 'object' ? data.legacyArchive : {}, summary: summary }
+      legacyArchive: data.legacyArchive && typeof data.legacyArchive === 'object' ? data.legacyArchive : {},
+      saveState: saveState, summary: summary }
   };
 }
