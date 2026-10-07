@@ -270,17 +270,11 @@ export function buildChoicePool(corrects, distractors, random) {
 /* 生成选择按钮 HTML。
    不包含 DOM 操作，也不把已答对的正确项重新展示；escapeHtml 由页面注入，
    使这个边界既能单测，又不会把安全策略复制到核心模块里。 */
-export function buildChoiceMarkup(pool, status, onboardingSeen, escapeHtml) {
+export function buildChoiceMarkup(pool, status, escapeHtml) {
   var source = pool && Array.isArray(pool.order) ? pool.order : [];
   var states = Array.isArray(status) ? status : [];
   var esc = typeof escapeHtml === 'function' ? escapeHtml : function (v) { return String(v == null ? '' : v); };
   var html = '';
-  if (onboardingSeen !== true) {
-    html += '<div id="chunkOnboardingHint" role="status" aria-live="polite">'
-      + '<span>点选词块作答，答对后自动进入下一空</span>'
-      + '<button type="button" class="onboarding-dismiss" data-dismiss-chunk-onboarding>知道了</button>'
-      + '</div>';
-  }
   source.forEach(function (entry) {
     if (!entry || (entry.ci >= 0 && states[entry.ci] === 'ok')) return;
     html += '<button class="choice' + (entry.ci < 0 ? ' distractor' : '')

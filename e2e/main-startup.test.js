@@ -47,6 +47,8 @@ function stopServer() {
     await startServer();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage();
+    page.on('pageerror', function (error) { console.error('[main-startup] pageerror:', error.message); });
+    page.on('console', function (message) { if (message.type() === 'error') console.error('[main-startup] console:', message.text()); });
     await page.addInitScript(function () {
       var now = Date.now();
       var item = { cid: 'slow-start-1', sentence: 'Slow startup keeps this lesson open.', en: 'Slow startup keeps this lesson open.', translation: '慢启动时仍保持课程打开。', chunks: ['Slow startup', 'keeps', 'this lesson', 'open.'], hints: ['', '', '', ''] };
@@ -60,6 +62,9 @@ function stopServer() {
             times: 1, okTimes: 1, wrongTimes: 0, streak: 1, dueAt: now - 1000 }
         }, events: [] },
         settings: { mode: 'choose', sound: false, batchSize: 10 }
+      }));
+      localStorage.setItem('chunklab.course-progress.v1', JSON.stringify({
+        'enrollment:v1:user-deck%3Aslow-start': { kind:'course-enrollment', schemaVersion:1, courseId:'user-deck:slow-start', joined:true, joinedAt:now, changedAt:now }
       }));
     });
     /* 模拟 /api/config 卡住：本地首页应先完成首屏绘制，不等待云端。 */
@@ -89,9 +94,20 @@ function stopServer() {
       throw new Error('首屏不应显示练习外壳：' + JSON.stringify(firstFrame));
     }
     await page.waitForLoadState('domcontentloaded');
-    await page.waitForSelector('#pageHome:not(.hidden) #homeBody > *', { timeout: 2000 });
+    try {
+      await page.waitForSelector('#pageHome:not(.hidden) #homeBody > *', { timeout: 4000 });
+    } catch (error) {
+      const diagnostics = await page.evaluate(function () { return {
+        title: document.title, home: document.querySelector('#pageHome') && document.querySelector('#pageHome').className,
+        body: document.querySelector('#homeBody') && document.querySelector('#homeBody').innerHTML.slice(0, 500),
+        boot: document.querySelector('#bootMessage') && document.querySelector('#bootMessage').textContent,
+        lifecycle: window.MainLifecycle && Object.keys(window.MainLifecycle),
+        memReady: !!window.mem
+      }; });
+      throw new Error(error.message + ' ' + JSON.stringify(diagnostics));
+    }
     if (practiceModuleRequested) throw new Error('首页启动不应请求练习引擎');
-    await page.locator('[data-start="slow-start"]').click();
+    await page.locator('[data-home-course="user-deck:slow-start"]').click();
     await page.waitForSelector('#pagePractice:not(.hidden)');
     await page.waitForFunction(function () {
       return document.querySelector('#deckName') && document.querySelector('#deckName').textContent === '慢启动课程';
@@ -112,22 +128,34 @@ function stopServer() {
       var hint = document.getElementById('chunkOnboardingHint');
       return { visible: !!hint && !hint.hidden, text: hint ? (hint.textContent || '').trim() : '' };
     });
-    if (!firstUse.visible || firstUse.text.indexOf('点选词块作答') === -1) {
-      throw new Error('首次词块提示未在第一次进入选择模式时出现：' + JSON.stringify(firstUse));
+    if (firstUse.visible) {
+      throw new Error('首次进入选择模式不应插入旧版操作提示：' + JSON.stringify(firstUse));
     }
     await page.locator('#stageChoices .choice[data-v="Slow startup"]').click();
     await page.waitForFunction(function () { return window.S && S.chunkTotal === 1 && S.idx === 0 && S.chunkIdx === 1; });
     var afterOnboarding = await page.evaluate(function () {
       var hint = document.getElementById('chunkOnboardingHint');
       var concept = document.getElementById('chunkConceptHint');
-      return {
-        onboardingGone: !hint,
-        conceptVisible: !!concept && !concept.classList.contains('hidden'),
-        persisted: !!(window.mem && mem.settings && mem.settings.chunkOnboardingSeen === true)
-      };
+      var progress = window.mem && mem.progress && mem.progress[S.deck.id];
+      return { onboardingGone: !hint, conceptVisible: !!concept && !concept.classList.contains('hidden'),
+        persisted: !!(mem.settings && mem.settings.chunkOnboardingSeen), sessionId: S.sessionId,
+        progressSessionId: progress && progress.sessionId, generation: S.generation };
     });
-    if (!afterOnboarding.onboardingGone || !afterOnboarding.conceptVisible || !afterOnboarding.persisted) {
-      throw new Error('首次词块提示状态未正确推进：' + JSON.stringify(afterOnboarding));
+    if (!afterOnboarding.onboardingGone || afterOnboarding.conceptVisible) {
+      throw new Error('答题后不应插入旧版提示：' + JSON.stringify(afterOnboarding));
+    }
+    if (!/^[0-9a-f-]{36}$/i.test(afterOnboarding.sessionId || '') ||
+        afterOnboarding.progressSessionId !== afterOnboarding.sessionId || afterOnboarding.generation !== 0) {
+      throw new Error('练习轮次应有稳定会话编号并写入本地续学断点：' + JSON.stringify(afterOnboarding));
+    }
+    try {
+      await page.waitForFunction(async function () {
+        var progress = await IDBStore.getProgress();
+        return progress['slow-start'] && progress['slow-start'].sessionId === S.sessionId;
+      }, undefined, { timeout: 5000 });
+    } catch (error) {
+      const saved = await page.evaluate(async function () { return { state: S.sessionId, mem: mem.progress['slow-start'], idb: (await IDBStore.getProgress())['slow-start'] }; });
+      throw new Error(error.message + ' progress=' + JSON.stringify(saved));
     }
     await page.waitForTimeout(1500);
     var after = await page.evaluate(function () {

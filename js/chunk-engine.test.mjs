@@ -56,12 +56,12 @@ const items = [sentA, sentB, sentC];
   };
   const markup = buildChoiceMarkup({ order: [
     { v: 'right&safe', ci: 0 }, { v: 'wrong', ci: -1 }, { v: 'done', ci: 1 }
-  ] }, ['pending', 'ok'], false, escaped);
-  check('buildChoiceMarkup: 首次显示操作提示', markup.includes('chunkOnboardingHint') && markup.includes('知道了'));
+  ] }, ['pending', 'ok'], escaped);
+  check('buildChoiceMarkup: 不插入旧版操作提示', !markup.includes('chunkOnboardingHint'));
   check('buildChoiceMarkup: 已答对正确项不再展示，干扰项保留',
     markup.includes('data-v="wrong"') && !markup.includes('data-v="done"') && markup.includes('right&amp;safe'));
   check('buildChoiceMarkup: 已看过提示时不重复插入',
-    !buildChoiceMarkup({ order: [] }, [], true, escaped).includes('chunkOnboardingHint'));
+    !buildChoiceMarkup({ order: [] }, [], escaped).includes('chunkOnboardingHint'));
 })();
 
 (function () {
