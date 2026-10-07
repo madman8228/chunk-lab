@@ -12,7 +12,7 @@
  *   decks    该节被拆成的 deck（大节会拆成 oral-1-1-1/2/3）
  *   inScope  decks 收录的句子集合（norm 后）
  *   dedup    该节**实际会装配**的句清单：书序 → 只留 inScope → 按 norm 去重（保留首个原文形式）
- *   cnByNorm norm(英文句) → 中文（书里第一条为准）
+ *   cnByNorm norm(英文句) → 中文（书里第一条为准，显式修订表优先）
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -22,6 +22,19 @@ export const BOOK_DIR = 'extra/oral-book';
 
 /** 句子归一化：只留字母数字，用于「同一句」的判定 */
 export const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+export function translationOverrideEntries(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Translation overrides must be an object');
+  const entries = new Map();
+  for (const [sentence, translation] of Object.entries(value)) {
+    const key = norm(sentence);
+    if (!key || typeof translation !== 'string' || !translation.trim()) throw new Error('Invalid translation override: ' + sentence);
+    const text = translation.trim();
+    if (entries.has(key) && entries.get(key) !== text) throw new Error('Conflicting translation override: ' + sentence);
+    entries.set(key, text);
+  }
+  return entries;
+}
 
 /**
  * 「续行片段」判据（2026-09-16 定，全库唯一实现）。
@@ -51,6 +64,13 @@ export function loadBookSection(ROOT, ch, sec) {
 
   const cnByNorm = new Map();
   bookSec.forEach((r) => { if (!cnByNorm.has(norm(r.en))) cnByNorm.set(norm(r.en), r.cn); });
+  const translationOverridesPath = path.join(ROOT, BOOK_DIR, 'translation-overrides.json');
+  if (fs.existsSync(translationOverridesPath)) {
+    const translationOverrides = JSON.parse(fs.readFileSync(translationOverridesPath, 'utf8'));
+    for (const [sentence, translation] of translationOverrideEntries(translationOverrides)) {
+      cnByNorm.set(sentence, translation);
+    }
+  }
 
   const decks = D.decks.filter((d) => d.chapter === ch && Number(String(d.section).split('.')[1]) === sec);
   const inScope = new Set();
