@@ -12,7 +12,8 @@
 
 import {
   classifyWord, patternOf, normPattern, norm,
-  buildChoices, buildDistractors, buildChoicePool, buildChoiceMarkup, judgeChunk
+  buildChoices, buildDistractors, buildChoicePool, buildChoiceMarkup, judgeChunk,
+  getDistractorBudget, collectCorrectAnswerSet, isValidDistractor
 } from './chunk-engine.mjs';
 
 let passed = 0, failed = 0;
@@ -35,6 +36,7 @@ check('normPattern: 归一化', normPattern('S-C-PP') === 'S-C-P' && normPattern
 check('norm: 大小写/标点/空格', norm('  Hello, World!!  ') === 'hello world');
 check('norm: 撇号差异归一', norm("it's") === norm('its') && norm('it\u2019s') === norm("it's"));
 check('norm: 空值安全', norm(null) === '' && norm(undefined) === '');
+check('getDistractorBudget: 防御非法值并限制上限', getDistractorBudget(0) === 0 && getDistractorBudget(-1) === 0 && getDistractorBudget(1) === 1 && getDistractorBudget(8) === 4 && getDistractorBudget(1.5) === 0);
 
 /* ===== buildChoices ===== */
 const sentA = { chunks: ['I am', 'a student', 'in Beijing'] };
@@ -50,6 +52,8 @@ const items = [sentA, sentB, sentC];
       pool.order.every(e => e.ci === -1 || e.ci === 0 || e.ci === 1), JSON.stringify(pool));
   check('buildChoicePool: random 可注入且顺序固定',
     JSON.stringify(buildChoicePool(['first', 'second'], ['wrong'], () => 0)) === JSON.stringify(pool));
+  const repeatedCorrect = buildChoicePool(['again', 'again'], [], () => 0);
+  check('buildChoicePool: 重复正确 chunk 仍保留独立 ci', repeatedCorrect.corrects.length === 2 && [0, 1].every(function (ci) { return repeatedCorrect.order.some(function (entry) { return entry.ci === ci; }); }));
 
   const escaped = function (value) {
     return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -57,16 +61,16 @@ const items = [sentA, sentB, sentC];
   const markup = buildChoiceMarkup({ order: [
     { v: 'right&safe', ci: 0 }, { v: 'wrong', ci: -1 }, { v: 'done', ci: 1 }
   ] }, ['pending', 'ok'], escaped);
-  check('buildChoiceMarkup: 不插入旧版操作提示', !markup.includes('chunkOnboardingHint'));
+  check('buildChoiceMarkup: 不显示多余操作提示', !markup.includes('chunkOnboardingHint') && !markup.includes('知道了'));
   check('buildChoiceMarkup: 已答对正确项不再展示，干扰项保留',
     markup.includes('data-v="wrong"') && !markup.includes('data-v="done"') && markup.includes('right&amp;safe'));
-  check('buildChoiceMarkup: 已看过提示时不重复插入',
+  check('buildChoiceMarkup: 空候选也不生成操作提示',
     !buildChoiceMarkup({ order: [] }, [], escaped).includes('chunkOnboardingHint'));
 })();
 
 (function () {
   const cs = buildChoices(sentA, 0, items, items); // 正确答案 'I am'
-  check('buildChoices: 返回 3 个候选（1 正确 + 2 干扰）', cs.length === 3, 'len=' + cs.length + ' cs=' + JSON.stringify(cs));
+  check('buildChoices: 最多返回正确项 + 1 个干扰', cs.length === 2, 'len=' + cs.length + ' cs=' + JSON.stringify(cs));
   check('buildChoices: 包含正确答案', cs.indexOf('I am') >= 0);
   const wrongs = cs.filter(c => c !== 'I am');
   check('buildChoices: 干扰项与正确答案不同', wrongs.every(w => norm(w) !== norm('I am')));
@@ -90,16 +94,14 @@ const items = [sentA, sentB, sentC];
 /* ===== buildDistractors ===== */
 (function () {
   const ds = buildDistractors(sentA, items, items);
-  // 可用候选 = 其它两句的 5 个不同 chunk（'She is','a teacher','in Shanghai','We are','good friends'）
-  // 首 chunk 'I am'(S-S，i/am 均小词) 的同模式候选 2 个（'She is','We are'）；池子取尽 → 5 个
-  check('buildDistractors: 取尽可用候选', ds.length === 5, 'got=' + ds.length + ' ds=' + JSON.stringify(ds));
+  // 首 chunk 'I am' 仅包含小词；无句境关联时不接受任意片段兜底。
+  check('buildDistractors: 无语境关联时不任意兜底', ds.length === 0, 'got=' + ds.length + ' ds=' + JSON.stringify(ds));
   const normSet = new Set(sentA.chunks.map(norm));
   check('buildDistractors: 不含整句的正确答案 chunk', ds.every(d => !normSet.has(norm(d))));
   check('buildDistractors: 无重复', new Set(ds.map(norm)).size === ds.length);
   const pat = patternOf(sentA.chunks[0]); // 'I am' = S-S
   const samePatternCount = ds.filter(d => patternOf(d) === pat).length;
-  check('buildDistractors: 同模式优先（2 个 S-S 全在前）',
-    samePatternCount === 2 && ds.slice(0, 2).every(d => patternOf(d) === pat), JSON.stringify(ds));
+  check('buildDistractors: 空候选池保持为空', samePatternCount === 0, JSON.stringify(ds));
 })();
 
 (function () {
@@ -139,7 +141,7 @@ const items = [sentA, sentB, sentC];
     { sentence: 'She eats.',   chunks: ['She eats'] }        // 同 pattern S-C 且重叠 "she"
   ];
   const cs = buildChoices(target, 0, pool, pool);
-  check('buildChoices: 桶 A 同 pattern 优先（pattern 强信号即使 overlap=0 也入选）',
+  check('buildChoices: 同 pattern 可作为结构近失项',
     cs.filter(c => c !== 'She walks').includes('He runs') || cs.filter(c => c !== 'She walks').includes('She eats'),
     'cs=' + JSON.stringify(cs));
 })();
@@ -176,18 +178,15 @@ const items = [sentA, sentB, sentC];
     { sentence: "He asked her for directions.", chunks: ['asked her for it'] }    // 句内关联：asked/for→停用词外 asked
   ]);
   const ds = buildDistractors(target, curItems, allItems);
-  // 有句内关联的干扰（She ignored the advice / asked her for it）应全排在零关联（ages/truth）之前
-  const relIdx = ds.map((d, idx) => ({ d, idx })).filter(x => x.d === 'She ignored the advice' || x.d === 'asked her for it').map(x => x.idx);
-  const zeroIdx = ds.map((d, idx) => ({ d, idx })).filter(x => x.d === "I haven't seen you for ages —" || x.d === 'before the truth comes out.').map(x => x.idx);
-  check('buildDistractors: 句内关联干扰排在零关联之前（截图场景防回潮）',
-    relIdx.length === 2 && zeroIdx.length === 2 && Math.max(...relIdx) < Math.min(...zeroIdx),
+  check('buildDistractors: 只保留语境关联的干扰项',
+    ds.length <= 3 && ds.every(function (d) { return d === 'She ignored the advice' || d === 'asked her for it'; }),
     'ds=' + JSON.stringify(ds));
 
   // buildChoices 同理：句内关联排序后，正确答案 + 高质量干扰优先
   const cs = buildChoices(target, 2, curItems, allItems); // 正确 '— he asked for it.'
   const wrongs = cs.filter(c => c !== '— he asked for it.');
-  check('buildChoices: 桶排序句内关联优先（wrongs 含 ignored/advice 类干扰优先于 ages/truth）',
-    wrongs.length === 2 && (wrongs.includes('She ignored the advice') || wrongs.includes('asked her for it')),
+  check('buildChoices: 只保留一个语境相关干扰项',
+    wrongs.length === 1 && (wrongs.includes('She ignored the advice') || wrongs.includes('asked her for it')),
     'cs=' + JSON.stringify(cs));
 })();
 
@@ -197,7 +196,7 @@ const items = [sentA, sentB, sentC];
   const sparse = [{ chunks: ['totally unrelated'] }, { chunks: ['something else entirely'] }];
   const cs = buildChoices(presets, 0, sparse, sparse);
   check('D: 预置干扰项入选（chunk 级，优先于运行时生成）', cs.includes('She left the meeting late.'), JSON.stringify(cs));
-  check('D: 预置干扰不足 2 时全收', cs.includes('They stayed till midnight.'), JSON.stringify(cs));
+  check('D: 每槽最多选择一个预置干扰', !cs.includes('They stayed till midnight.'), JSON.stringify(cs));
 
   const it2 = { sentence: 'He left the party early.', chunks: ['He', 'left the party', 'early.'], distractors: [['She'], ['stayed all night'], ['late.']] };
   const sparse2 = [{ chunks: ['x y z'] }, { chunks: ['a b c'] }];
@@ -211,6 +210,24 @@ const items = [sentA, sentB, sentC];
 
   const cs4 = buildChoices({ sentence: 'Go home.', chunks: ['Go home.'] }, 0, sparse, sparse);
   check('D: 无 distractors 字段 → 行为不变', Array.isArray(cs4) && cs4.length >= 1, JSON.stringify(cs4));
+})();
+
+/* 全句预算均衡，并从任何槽排除合法替代答案。 */
+(function () {
+  const alarm = {
+    sentence: 'My alarm is set.',
+    chunks: ['My alarm', 'is set.'],
+    alts: [['My alarms'], ['It is set.']],
+    distractors: [['My alarms', "My alarm's", 'My alarm is'], ['It is set.', 'The alarm is']]
+  };
+  const picks = buildDistractors(alarm, [], []);
+  check('alarm: 每槽最多一个且总额不超过 chunk 数', picks.length === 2 && picks[0] === 'My alarm is' && picks[1] === 'The alarm is', JSON.stringify(picks));
+  check('alarm: 任一槽的合法替代答案都不进入干扰池', picks.every(function (candidate) { return isValidDistractor(candidate, collectCorrectAnswerSet(alarm)); }), JSON.stringify(picks));
+  const choices = buildChoices(alarm, 0, [], []);
+  check('buildChoices: 排除 alts 并最多选一个干扰项', choices.length <= 2 && !choices.includes('My alarms'), JSON.stringify(choices));
+  const fallback = buildDistractors(alarm, [], [{ chunks: ['My alarms', 'is working.'] }]);
+  check('fallback: 题库中的合法 alt 也不能变成干扰项', !fallback.includes('My alarms'), JSON.stringify(fallback));
+  check('judgeChunk: 词形差异仍不等价', !judgeChunk('sets', 'set', []));
 })();
 
 /* ===== judgeChunk ===== */

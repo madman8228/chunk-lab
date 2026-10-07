@@ -44,6 +44,33 @@ export function norm(s) {
     .trim();
 }
 
+/* 一句最多一个干扰项，整句干扰总额随正确 chunk 数增长但封顶为 4。 */
+export function getDistractorBudget(chunkCount) {
+  return Number.isInteger(chunkCount) && chunkCount > 0 ? Math.min(4, chunkCount) : 0;
+}
+
+/* 所有可被判为正确的表达：句内 chunks 与逐 chunk alts。 */
+export function collectCorrectAnswerSet(it) {
+  var correct = new Set();
+  (it && Array.isArray(it.chunks) ? it.chunks : []).forEach(function (value) {
+    var key = norm(value);
+    if (key) correct.add(key);
+  });
+  (it && Array.isArray(it.alts) ? it.alts : []).forEach(function (slot) {
+    (Array.isArray(slot) ? slot : (typeof slot === 'string' ? [slot] : [])).forEach(function (value) {
+      var key = norm(value);
+      if (key) correct.add(key);
+    });
+  });
+  return correct;
+}
+
+export function isValidDistractor(candidate, correctAnswers) {
+  if (typeof candidate !== 'string' || !candidate.trim()) return false;
+  var key = norm(candidate);
+  return !!key && !(correctAnswers && correctAnswers.has(key));
+}
+
 /* 候选与正确答案的非停用词重叠数（语义相关性的轻量代理）：
    排除 SMALL_WORDS + 标点，纯字母数字词干交集；词性对位是更高优先信号（桶 A 单独按 pattern 匹配），
    桶 B 强制要求此值 ≥ 1 以过滤"词数相同但毫不相干"的整句片段（如 "meet a friend" vs "It looks like"）。 */
@@ -69,7 +96,7 @@ function sentenceContextOf(it) {
   return (it && it.sentence) || (it && it.chunks || []).join(' ');
 }
 
-/* 生成候选：1 个正确答案 + 2 个干扰项（三档质量：同 pattern → 同长度+语义重叠 → 兜底）。
+/* 兼容逐 chunk 选择入口：1 个正确答案 + 至多 1 个结构或语境相关干扰项。
    currentItems = 当前题库 items（优先同语境）；allItems = 全部题库 items。
    ★ 候选池 = 当前题库 + 全题库合并：单题库 chunk 池稀疏（如 10 句 ≈ 25 chunks），
      若只在当前题库找，同 pattern / 同长度+重叠 的高质量干扰常不足 2 个 → 被迫兜底到零相关。
@@ -77,98 +104,38 @@ function sentenceContextOf(it) {
    ★ 桶内排序（降级）：句内关联 → 正确答案关联。零句内关联的同 pattern 干扰排在后面，
      仅供题库过小时兜底。 */
 export function buildChoices(it, i, currentItems, allItems) {
-  var right = it.chunks[i], rn = norm(right);
-  var rightPattern = patternOf(right);
+  var right = it.chunks[i];
+  var correctAnswers = collectCorrectAnswerSet(it);
   var sentCtx = sentenceContextOf(it);
-
-  var pool = [];
-  (currentItems || []).forEach(function (o) {
-    if (o === it) return;
-    (o.chunks || []).forEach(function (c) { pool.push(c); });
-  });
-  (allItems || []).forEach(function (o) {
-    if (o === it) return;
-    (o.chunks || []).forEach(function (c) { pool.push(c); });
-  });
-
-  /* 桶 A：词性模式完全相同（结构对位，内容词不同 → 高质量干扰） */
-  var samePattern = [];
-  var seen = {};
-  pool.forEach(function (c) {
-    var k = norm(c);
-    if (!k || k === rn || seen[k]) return;
-    if (normPattern(patternOf(c)) === normPattern(rightPattern)) {
-      seen[k] = 1;
-      samePattern.push(c);
-    }
-  });
-  /* 桶 B：词数相同 + 与正确答案有非停用词重叠（同长度兜底太宽，加语义约束排除"句式像但不相关"的整句片段） */
-  var rightWords = right.trim().split(/\s+/).length;
-  var sameLenOverlap = [];
-  var seen2 = {};
-  pool.forEach(function (c) {
-    var k = norm(c);
-    if (!k || k === rn || seen[k] || seen2[k]) return;
-    if (c.trim().split(/\s+/).length === rightWords && overlapScore(c, right) >= 1) {
-      seen2[k] = 1;
-      sameLenOverlap.push(c);
-    }
-  });
-
-  /* 桶内排序：句内关联降序（主）→ 正确答案关联降序（次）。
-     主排序修复根因：零句内关联的干扰项排最后，仅题库过小时兜底入选。 */
-  function byCtxDesc(a, b) {
-    return (overlapScore(b, sentCtx) - overlapScore(a, sentCtx)) || (overlapScore(b, right) - overlapScore(a, right));
+  var wrong = null;
+  var seen = new Set();
+  var preset = it.distractors && Array.isArray(it.distractors[i]) ? it.distractors[i] : [];
+  for (var p = 0; p < preset.length; p++) {
+    var pk = norm(preset[p]);
+    if (!isValidDistractor(preset[p], correctAnswers) || seen.has(pk)) continue;
+    wrong = preset[p]; seen.add(pk); break;
   }
-  samePattern.sort(byCtxDesc);
-  sameLenOverlap.sort(byCtxDesc);
-  /* 桶 C：句内关联 ≥1（任意 pattern/长度，主题相关的兜底前先吃掉） */
-  var ctxRelated = [];
-  var seen3 = {};
-  pool.forEach(function (c) {
-    var k = norm(c);
-    if (!k || k === rn || seen[k] || seen2[k] || seen3[k]) return;
-    if (overlapScore(c, sentCtx) >= 1) {
-      seen3[k] = 1;
-      ctxRelated.push(c);
-    }
-  });
-  ctxRelated.sort(byCtxDesc);
-
-  /* 五级选取：预置 → 同模式 → 同长度+重叠 → 句内关联 → 任意不同（兜底） */
-  var wrongs = [];
-  var seen4 = {};
-
-  /* 桶 0：预置干扰项（D-schema，2026-09-08）：it.distractors[i] = 第 i 个 chunk 的可选干扰列表，
-     与 it.alts[i]（判对同义替换）同构。课程打包时由作者/LLM 预生成 → 最高质量（可含
-     运行时生成不出的语法近失项）；运行时生成只是兜底。 */
-  var preset = [];
-  var seenP = {};
-  if (it.distractors && Array.isArray(it.distractors[i])) {
-    it.distractors[i].forEach(function (d) {
-      var k = norm(d);
-      if (!k || k === rn || seenP[k] || seen4[k]) return;
-      seenP[k] = 1;
-      preset.push(d);
+  if (!wrong) {
+    var pool = [];
+    (currentItems || []).concat(allItems || []).forEach(function (o) {
+      if (!o || o === it) return;
+      (o.chunks || []).forEach(function (candidate) { pool.push(candidate); });
     });
+    var rightPattern = normPattern(patternOf(right));
+    var eligible = pool.filter(function (candidate) {
+      var key = norm(candidate);
+      var structuralNearMiss = normPattern(patternOf(candidate)) === rightPattern;
+      return isValidDistractor(candidate, correctAnswers) && !seen.has(key)
+        && (structuralNearMiss || overlapScore(candidate, sentCtx) >= 1);
+    });
+    eligible.sort(function (a, b) {
+      return (Number(normPattern(patternOf(b)) === rightPattern) - Number(normPattern(patternOf(a)) === rightPattern))
+        || (overlapScore(b, sentCtx) - overlapScore(a, sentCtx))
+        || (overlapScore(b, right) - overlapScore(a, right));
+    });
+    if (eligible.length) wrong = eligible[0];
   }
-  function pick(source, cap) {
-    for (var j = 0; j < source.length && wrongs.length < cap; j++) {
-      var c = source[j];
-      var k = norm(c);
-      if (!k || k === rn || seen4[k]) continue;
-      seen4[k] = 1;
-      wrongs.push(c);
-    }
-  }
-  pick(preset, 2);
-  pick(samePattern, 2);
-  if (wrongs.length < 2) pick(sameLenOverlap, 2);
-  if (wrongs.length < 2) pick(ctxRelated, 2);
-  if (wrongs.length < 2) pick(pool, 2);
-  /* 仍不足 2 个时（题库太小），只返回正确答案 */
-  if (wrongs.length < 2) return [right];
-  var choices = [right].concat(wrongs);
+  var choices = wrong ? [right, wrong] : [right];
   /* 洗牌 */
   for (var k = choices.length - 1; k > 0; k--) {
     var j = Math.floor(Math.random() * (k + 1));
@@ -177,12 +144,12 @@ export function buildChoices(it, i, currentItems, allItems) {
   return choices;
 }
 
-/* 收集整句的干扰项（一次性大池子，所有 chunks 共享，不逐 chunk 刷新）
-   ★ 2026-09-08 修根因：原 pass-2 零过滤任意捞取 → 跨题库干扰与整句零语义关联（截图实证）。
-     现三段式：同 pattern+句内关联 → 句内关联 → 兜底（题库过小时）。 */
+/* 收集整句的干扰项（一次性大池子，所有 chunks 共享，不逐 chunk 刷新）。
+   每槽最多贡献一条；不足预算时只接受同结构且与整句至少共享一个内容词的题库候选。 */
 export function buildDistractors(it, currentItems, allItems) {
-  var correctCount = it.chunks.length;
-  var distractorCount = Math.max(4, correctCount * 2);
+  var correctCount = it && Array.isArray(it.chunks) ? it.chunks.length : 0;
+  var distractorCount = getDistractorBudget(correctCount);
+  if (!distractorCount) return [];
   var sentCtx = sentenceContextOf(it);
   var pool = [];
   (currentItems || []).forEach(function (o) {
@@ -193,60 +160,42 @@ export function buildDistractors(it, currentItems, allItems) {
     if (o === it) return;
     (o.chunks || []).forEach(function (c) { pool.push(c); });
   });
-  var correctSet = {};
-  it.chunks.forEach(function (v) { correctSet[norm(v)] = 1; });
+  var correctSet = collectCorrectAnswerSet(it);
   var picks = [];
-  var seen = {};
-  /* pass 0：预置干扰项（D-schema）：当前句各 chunk 的 it.distractors[j] 展平先收
-     （作者/LLM 预审过的高质量干扰，含运行时生成不出的语法近失项） */
-  (it.distractors || []).forEach(function (list) {
-    if (picks.length >= distractorCount) return;
-    (list || []).forEach(function (d) {
-      if (picks.length >= distractorCount) return;
-      var nk = norm(d);
-      if (!nk || correctSet[nk] || seen[nk]) return;
-      seen[nk] = 1;
-      picks.push(d);
+  var seen = new Set();
+  var slots = Array.isArray(it.distractors) ? it.distractors : [];
+  var selectedBySlot = new Array(correctCount).fill(null);
+  /* 第一遍逐槽取第一条合法预置项：某个 chunk 不能独占整池名额。 */
+  for (var slotIndex = 0; slotIndex < correctCount && picks.length < distractorCount; slotIndex++) {
+    var slot = Array.isArray(slots[slotIndex]) ? slots[slotIndex] : [];
+    for (var candidateIndex = 0; candidateIndex < slot.length; candidateIndex++) {
+      var preset = slot[candidateIndex];
+      var presetKey = norm(preset);
+      if (!isValidDistractor(preset, correctSet) || seen.has(presetKey)) continue;
+      selectedBySlot[slotIndex] = preset;
+      seen.add(presetKey); picks.push(preset); break;
+    }
+  }
+  /* 第二遍只为尚空的槽找候选，限定为该槽自身结构且与句境至少共享一个内容词；
+     稳定排序不改变同分候选的来源顺序，也不做无关联的任意兜底。 */
+  for (var fillIndex = 0; fillIndex < correctCount && picks.length < distractorCount; fillIndex++) {
+    if (selectedBySlot[fillIndex]) continue;
+    var target = it.chunks[fillIndex];
+    var targetPattern = normPattern(patternOf(target));
+    var candidates = pool.filter(function (candidate) {
+      var key = norm(candidate);
+      return isValidDistractor(candidate, correctSet) && !seen.has(key)
+        && normPattern(patternOf(candidate)) === targetPattern && overlapScore(candidate, sentCtx) >= 1;
     });
-  });
-  /* pass 1：同模式（chunk[0]）+ 句内关联 ≥1（高质量：结构对位且语境相关） */
-  pool.forEach(function (c) {
-    if (picks.length >= distractorCount) return;
-    var nk = norm(c);
-    if (!nk || correctSet[nk] || seen[nk]) return;
-    if (normPattern(patternOf(c)) === normPattern(patternOf(it.chunks[0])) && overlapScore(c, sentCtx) >= 1) {
-      seen[nk] = 1;
-      picks.push(c);
+    candidates = candidates.map(function (candidate, order) {
+      return { candidate: candidate, order: order, context: overlapScore(candidate, sentCtx), target: overlapScore(candidate, target) };
+    }).sort(function (a, b) { return (b.context - a.context) || (b.target - a.target) || (a.order - b.order); });
+    if (candidates.length) {
+      var chosen = candidates[0].candidate;
+      var chosenKey = norm(chosen);
+      seen.add(chosenKey); picks.push(chosen); selectedBySlot[fillIndex] = chosen;
     }
-  });
-  /* pass 2：句内关联 ≥1（任意 pattern，主题相关） */
-  pool.forEach(function (c) {
-    if (picks.length >= distractorCount) return;
-    var nk = norm(c);
-    if (!nk || correctSet[nk] || seen[nk]) return;
-    if (overlapScore(c, sentCtx) >= 1) {
-      seen[nk] = 1;
-      picks.push(c);
-    }
-  });
-  /* pass 3：同模式（保老算法语义：结构对位优先于任意兜底，零句内关联时仍排前） */
-  pool.forEach(function (c) {
-    if (picks.length >= distractorCount) return;
-    var nk = norm(c);
-    if (!nk || correctSet[nk] || seen[nk]) return;
-    if (normPattern(patternOf(c)) === normPattern(patternOf(it.chunks[0]))) {
-      seen[nk] = 1;
-      picks.push(c);
-    }
-  });
-  /* pass 4：兜底（题库过小时） */
-  pool.forEach(function (c) {
-    if (picks.length >= distractorCount) return;
-    var nk = norm(c);
-    if (!nk || correctSet[nk] || seen[nk]) return;
-    seen[nk] = 1;
-    picks.push(c);
-  });
+  }
   return picks;
 }
 

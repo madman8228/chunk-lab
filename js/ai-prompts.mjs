@@ -21,7 +21,7 @@ export const PROMPT_VERSION = 1;
 
 /* D-pipeline 干扰项 prompt 独立版本（与讲解 prompt 无关，不进服务端 ai_cache；
    供 scripts/gen-distractors.mjs 做结果缓存 key / 未来批处理复用）。 */
-export const DISTRACTOR_PROMPT_VERSION = 1;
+export const DISTRACTOR_PROMPT_VERSION = 2;
 
 export function buildExplainPrompt(it) {
   var L = [];
@@ -94,7 +94,8 @@ export function buildPrompt(cat, count, level, chunkRange) {
     `      "sentence": "I would like to check in, please.",`,
     `      "translation": "我想办理入住，谢谢。",`,
     `      "chunks": ["I would like", "to check in,", "please."],`,
-    `      "hints": ["我想要", "办理入住", "麻烦了"]`,
+    `      "hints": ["我想要", "办理入住", "麻烦了"],`,
+    `      "grammar": [{"role":"主句"}, {"role":"不定式补语"}, {"role":"礼貌用语"}]`,
     `    }`,
     `  ]`,
     `}`
@@ -112,7 +113,7 @@ export function buildPrompt(cat, count, level, chunkRange) {
     `A. chunks 数组用【单个空格】连接后，必须与 sentence 完全一致（忽略大小写和标点差异即算通过），标点请保留在所属 chunk 内。`,
     `B. chunks 数量必须在 2 到 5 之间。`,
     `C. hints 是每个 chunk 的中文提示，数量必须与 chunks 完全一致，只写该意群的意思，不要写整句翻译。`,
-    `D. translation 是整句中文翻译。`,
+    `D. translation 是整句中文翻译；grammar 是逐意群对应的句子成分/功能标签，数组长度必须与 chunks 一致，每项使用 {"role":"主语/谓语/宾语/表语/定语/状语/补语/介词短语/从句等"}。`,
     `E. 只输出 JSON 本体，不要任何解释文字，不要 markdown 代码块围栏。`,
     ``,
     `输出格式示例（items 里放 ` + count + ' 条）：',
@@ -128,12 +129,12 @@ export function buildSplitPrompt(rawLines) {
     '',
     '要求：',
     '1. 每句 chunks 用单个空格连接后与原句完全一致（忽略大小写和标点）',
-    '2. chunks 2-4 个；hints 是每个意群的中文提示',
-    '3. translation 是整句中文翻译',
+    '2. chunks 2-4 个；hints 是每个意群的中文提示；grammar 按相同顺序标注每个意群的句子成分/功能',
+    '3. translation 是整句中文翻译；hints 与 grammar 数组都必须与 chunks 等长且逐项非空',
     '',
     '输出格式：',
     '[',
-    '  { "sentence":"原句", "translation":"中文翻译", "chunks":["意群1","意群2"], "hints":["提示1","提示2"] }',
+    '  { "sentence":"原句", "translation":"中文翻译", "chunks":["意群1","意群2"], "hints":["提示1","提示2"], "grammar":[{"role":"主语"},{"role":"谓语"}] }',
     ']',
     '',
     '待拆分句子：', body
@@ -144,9 +145,9 @@ export function buildAppendPrompt(deckName) {
   return [
     '请为「' + deckName + '」题库追加 10 条新的英语口语练习句子（不要与已有句子重复），JSON 格式：',
     '[',
-    '  { "sentence":"...", "translation":"...", "chunks":["...","..."], "hints":["...","..."] }',
+    '  { "sentence":"...", "translation":"...", "chunks":["...","..."], "hints":["...","..."], "grammar":[{"role":"主语"},{"role":"谓语"}] }',
     ']',
-    'chunks 拼接必须与原句一致，2-4 个意群。'
+    'chunks 拼接必须与原句一致，2-4 个意群；translation 必须非空，hints 和 grammar 与 chunks 等长且逐项非空，grammar.role 标注各意群的句子成分/功能。若输入里包含已有原句，请为其补齐元数据，不要重复生成。'
   ].join('\n');
 }
 
@@ -173,6 +174,8 @@ export function buildDistractorPrompt(it) {
   L.push('   - 与目标意群「语法近失」：结构/词性/长度相近（例：意群 the bus is almost here → 干扰 the bus is already here / the buses are almost here），学习者必须判断语义与搭配才能排除；');
   L.push('   - 替换后整句读起来「似乎成立」——与该句整体语境相关，严禁与整句内容零关联的凑数项；');
   L.push('   - 语义必须偏离原意（不得是同义改写，否则判对歧义），也不得与句子其他意群相同或同义；');
+  L.push('   - 三个候选分别体现明确差异，避免全部只改同一个词尾，或拼接无意义尾词；');
+  L.push('   - 对照中文提示与整句，排除本句任一位置的正确 chunk 或合法替代表达；不能仅凭词形相似就判定等价；');
   L.push('   - 用常见词，避免生僻词；长度不超过目标意群词数 + 2 词。');
   L.push('3. 个别意群（如语气词、固定习语）确实难凑 3 个合理干扰时，允许 2 个甚至 1 个，宁缺毋滥；但该位置数组不得为空或 null。');
   L.push('4. 只输出 JSON 本体，不要 markdown 代码块标记，不要任何多余文字。');

@@ -39,7 +39,8 @@ check('要求 3 个/位', /3 个干扰项/.test(p));
 check('禁止同义改写（判对歧义）', /同义改写/.test(p));
 check('强调句内语境相关', /语境相关|似乎成立/.test(p));
 check('输出 JSON-only', p.indexOf('只输出 JSON 本体') >= 0);
-check('版本号已 export', DISTRACTOR_PROMPT_VERSION === 1);
+check('版本号已 export', DISTRACTOR_PROMPT_VERSION === 2);
+check('约束候选差异并排除本句合法答案', /只改同一个词尾/.test(p) && /合法替代表达/.test(p));
 
 /* ========== parseDistractorText ========== */
 console.log('== parseDistractorText ==');
@@ -98,21 +99,25 @@ check('3-chunk 句全收', c.distractors[0].length === 3 && c.distractors[1].len
 
 /* ========== presetSentenceCoverage（句级消费仿真） ========== */
 console.log('== presetSentenceCoverage ==');
-/* 2-chunk 句：need = max(4, 2×2) = 4。给满 2×2=4 条 → 零缺口 */
+/* 2-chunk 句：need = min(4, 2) = 2。每槽至多消费一条 → 零缺口 */
 let cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'], distractors: [['Come', 'Stay'], ['away now.', 'back now.']] });
-check('2×2 满额 → available=4 零缺口', cv.need === 4 && cv.available === 4 && cv.shortfall === 0, cv);
-/* 每槽只给 1 条 → 总 2 < 4 → 缺口 2 */
+check('2×2 可用候选受新预算限制', cv.need === 2 && cv.available === 2 && cv.shortfall === 0, cv);
+/* 每槽只给 1 条 → 正好满足预算 */
 cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'], distractors: [['Come'], ['away now.']] });
-check('2×1 不足 → shortfall=2', cv.need === 4 && cv.available === 2 && cv.shortfall === 2, cv);
+check('2×1 满足预算 → shortfall=0', cv.need === 2 && cv.available === 2 && cv.shortfall === 0, cv);
 /* 空位槽（宁缺毋滥）→ 缺口照报（运行时会兜底） */
 cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'], distractors: [[], ['away now.', 'back now.']] });
-check('含空位槽 → 缺口=2', cv.shortfall === 2, cv);
-/* 3-chunk 句：need = max(4, 2×3) = 6；norm 撞句内 chunk 的被引擎排除 → 缺口 */
+check('含空位槽 → 缺口=1', cv.shortfall === 1, cv);
+/* 3-chunk 句：need = min(4, 3) = 3；norm 撞句内 chunk 的被引擎排除 → 缺口 */
 cv = presetSentenceCoverage({ sentence: 'He left the party early.', chunks: ['He', 'left the party', 'early.'], distractors: [['She', 'It', 'We'], ['stayed all night'], ['late.']] });
-check('3-chunk 不足 → shortfall>0', cv.need === 6 && cv.shortfall > 0, cv);
+check('3-chunk 三槽已满足预算', cv.need === 3 && cv.available === 3 && cv.shortfall === 0, cv);
 /* 无 distractors 字段 → 0 可用、全缺口（引擎兜底路径） */
 cv = presetSentenceCoverage({ sentence: 'Go home now.', chunks: ['Go', 'home now.'] });
-check('无预置 → 全缺口', cv.need === 4 && cv.available === 0 && cv.shortfall === 4, cv);
+check('无预置 → 全缺口', cv.need === 2 && cv.available === 0 && cv.shortfall === 2, cv);
+
+const withAlt = { sentence: 'I would like tea.', chunks: ['I would like', 'tea.'], alts: [['I want'], []] };
+c = cleanDistractors(withAlt, [['I want', 'I would love'], ['coffee.']]);
+check('alts 中的合法替代表达被排除', c.distractors[0].length === 1 && c.distractors[0][0] === 'I would love', c);
 
 console.log('\n结果: ' + passed + ' 通过, ' + failed + ' 失败');
 process.exit(failed ? 1 : 0);

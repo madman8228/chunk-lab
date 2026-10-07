@@ -55,6 +55,7 @@ function check(name, cond, detail) {
   check('buildPrompt: 格式要求', p.indexOf('chunks 数组用【单个空格】连接后') >= 0 && p.indexOf('不要 markdown 代码块围栏') >= 0);
   check('buildPrompt: 示例 schema 含 name', p.indexOf('"name": "日常对话"') >= 0);
   check('buildPrompt: 示例要求 items 数量', p.indexOf('items 里放 15 条') >= 0);
+  check('buildPrompt: 生成逐意群句子成分', p.indexOf('"grammar"') >= 0 && p.indexOf('句子成分/功能标签') >= 0);
 })();
 
 /* ===== buildSplitPrompt ===== */
@@ -63,6 +64,7 @@ function check(name, cond, detail) {
   check('buildSplitPrompt: 去空白统计句数', p.indexOf('以下 2 句英语口语') >= 0, p.split('\n')[0]);
   check('buildSplitPrompt: 待拆分列表', p.indexOf('【1】 Hello world.') >= 0 && p.indexOf('【2】 How are you?') >= 0);
   check('buildSplitPrompt: JSON 格式要求', p.indexOf('chunks 用单个空格连接后与原句完全一致') >= 0);
+  check('buildSplitPrompt: 包含中文提示和句子成分', p.indexOf('"hints"') >= 0 && p.indexOf('"grammar"') >= 0);
   check('buildSplitPrompt: 全空输入', buildSplitPrompt([]).indexOf('以下 0 句') >= 0);
 })();
 
@@ -72,6 +74,7 @@ function check(name, cond, detail) {
   check('buildAppendPrompt: 含题库名', p.indexOf('「我的口语」题库追加 10 条') >= 0);
   check('buildAppendPrompt: 去重要求', p.indexOf('不要与已有句子重复') >= 0);
   check('buildAppendPrompt: chunks 约束', p.indexOf('chunks 拼接必须与原句一致，2-4 个意群') >= 0);
+  check('buildAppendPrompt: 支持补齐旧句元数据', p.indexOf('grammar') >= 0 && p.indexOf('补齐元数据') >= 0);
 })();
 
 console.log('\n[ai-prompts.test] passed=' + passed + ' failed=' + failed);

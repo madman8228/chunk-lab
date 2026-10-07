@@ -4,7 +4,7 @@
  * 从 LLM 输出到可落盘 it.distractors[i] 的中间层（无 DOM、无网络、无全局状态）：
  *   - parseDistractorText：从 LLM 返回文本提取 {"distractors": [...]}（复用 extractJSON）
  *   - cleanDistractors：逐位对齐 chunks + 逐条清洗（类型/长度护栏 + norm 去重 +
- *     与句内所有 chunk norm 撞车即丢 —— 撞车项会让用户看到"两个都对"或判对歧义）
+ *     与句内所有 chunk / alts norm 撞车即丢 —— 撞车项会造成答案歧义）
  *
  * 架构定位（ADR-007 纯逻辑模块）：读侧消费见 chunk-engine.mjs（buildChoices/buildDistractors
  * 的桶 0 / pass 0）；本模块是写侧（打包管线）的守门员。两者共享 norm 规约。
@@ -14,7 +14,7 @@
  */
 'use strict';
 
-import { norm, buildDistractors } from './chunk-engine.mjs';
+import { norm, buildDistractors, collectCorrectAnswerSet, isValidDistractor, getDistractorBudget } from './chunk-engine.mjs';
 import { extractJSON } from './ai-prompts.mjs';
 
 /* 单条干扰项护栏：类型/长度。返回清洗后的字符串，非法返回 null */
@@ -46,8 +46,8 @@ export function parseDistractorText(text) {
      后续数组会「前移错位」（chunk[i] 位吃到 chunk[i+1] 的干扰），比空位危害更大
      （空位运行时规则兜底；错位=把干扰灌进错误的填空位，静默劣质）。
      违反 → 返回 {ok:false}，由调用方决定整句重试/人工修正（杜绝错位入库）。
-   - 逐条规则：必须是字符串；长度护栏 1..120；norm 不得等于该句任何 chunk 的 norm
-     （含目标位自身 —— 撞车 = 该答案与正确答案归一化相同 → judgeChunk 判对歧义/白送）；
+   - 逐条规则：必须是字符串；长度护栏 1..120；norm 不得等于该句任何 chunk 或 alts 的 norm
+     （含目标位自身 —— 撞车 = 该答案与可接受答案归一化相同 → judgeChunk 判对歧义/白送）；
      同 chunk 位内 norm 去重；每 chunk 位至多收 3 条。
    - 返回 { ok, distractors, stats:{received, dropped, perChunk:number[]} }。
      合法空位（该 chunk 实在无合格项，宁缺毋滥）以空数组保留。 */
@@ -58,8 +58,7 @@ export function cleanDistractors(it, raw) {
   if (dists.length !== n) {
     return { ok: false, error: 'distractors 外层长度 ' + dists.length + ' ≠ chunks ' + n + '（会错位，拒绝）' };
   }
-  const correctSet = {};
-  chunks.forEach(function (c) { correctSet[norm(c)] = 1; });
+  const correctSet = collectCorrectAnswerSet(it);
 
   const perChunk = [];
   let received = 0;
@@ -76,7 +75,7 @@ export function cleanDistractors(it, raw) {
       const t = sanitizeOne(d);
       if (!t) { dropped++; return; }
       const nk = norm(t);
-      if (!nk || correctSet[nk] || seen[nk]) { dropped++; return; }
+      if (!nk || !isValidDistractor(t, correctSet) || seen[nk]) { dropped++; return; }
       seen[nk] = 1;
       slot.push(t);
     });
@@ -86,15 +85,14 @@ export function cleanDistractors(it, raw) {
   return { ok: true, distractors: out, stats: { received: received, dropped: dropped, perChunk: perChunk } };
 }
 
-/* 句级消费仿真：该句预置能否喂饱整句模式（buildDistractors distractorCount）。
-   直接调引擎 buildDistractors(it, [], [])：传空池 → pass1..4（同模式/句内关联/兜底）
-   均无可取，返回量 = 预置展平后（norm 去重 + 排除句内 chunk）的真实可用数。
-   整句模式每句需求 need = max(4, 2×chunks)；available < need → 运行时必混入生成干扰。
+/* 句级消费仿真：该句预置能否满足整句模式预算。
+   直接调引擎 buildDistractors(it, [], [])：传空池 → 只统计预置的真实可用数。
+   整句模式每句预算 need = min(4, chunks)；available < need → 运行时可能从题库补充合法干扰。
    ★ 零规约漂移：判据直接用引擎函数，不复制其去重/过滤逻辑。
    返回 { need, available, shortfall }。 */
 export function presetSentenceCoverage(it) {
   const n = (it.chunks || []).length;
-  const need = Math.max(4, n * 2);
+  const need = getDistractorBudget(n);
   const available = buildDistractors(it, [], []).length;
   return { need: need, available: available, shortfall: Math.max(0, need - available) };
 }
