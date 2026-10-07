@@ -1,5 +1,6 @@
 /* A real main.html assessment must start, save answers, and reveal the score only after server ACK. */
 'use strict';
+const { waitForAsync } = require('./lib/wait-async');
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -73,10 +74,10 @@ function waitForServer() {
     });
     await page.locator('#btnAssessmentSubmit').click();
     await page.waitForSelector('#btnAssessmentFinalize', { timeout: 10000 });
-    await page.waitForFunction(async () => (await IDBStore.listPendingOperations()).some(row => row.operation.type === 'assessment.answer'), null, { timeout: 5000 });
+    await waitForAsync(page, async () => (await IDBStore.listPendingOperations()).some(row => row.operation.type === 'assessment.answer'), null, { timeout: 5000 });
     await page.reload();
     await page.waitForSelector('#btnAssessmentFinalize', { timeout: 15000 });
-    await page.waitForFunction(async () => !(await IDBStore.listPendingOperations()).some(row => row.operation.type.indexOf('assessment.') === 0), null, { timeout: 15000 });
+    await waitForAsync(page, async () => !(await IDBStore.listPendingOperations()).some(row => row.operation.type.indexOf('assessment.') === 0), null, { timeout: 15000 });
     await page.evaluate(() => {
       const original = ChunkAPI.submitOperation;
       window.__releaseFinalizeAck = null;

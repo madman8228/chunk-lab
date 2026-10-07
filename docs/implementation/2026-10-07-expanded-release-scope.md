@@ -122,3 +122,4 @@
 - exit-performance 正确异步等待重验通过：20 条耐久入队、最终确认且队列清空，回执延迟 >=5000ms，退出 82ms，入队 P95 10.4ms/最大12.2ms。helper 增加返回已满足条件的对象以保留回执断言，单测通过。四项恢复/统计/认证队列用例已机械替换异步等待，正在逐项复验，未预先标绿。
 - server-store-queue、stats-protocol3、recovery-handover-gate 修正异步等待后隔离通过。认证恢复暴露原等待条件问题：401 后页面跳转导致执行上下文销毁，补 helper 仅重试这一明确跳转错误后，登录界面不提供 ServerStore，旧条件仍失败。不得忽略该错误或标认证恢复通过；须改为检查登录阶段原始耐久队列并再验证登录后真实回执。helper 业务异常仍失败，跨跳转重试单测通过。
 - 认证恢复改为先捕获隔离账号数据库名称，登录页只读现存 IndexedDB pendingOperations（禁止创建/升级），确认原 requestId 仍 pending；登录后真正异步等待回执和队列清空。重验通过 401→同账号登录→同请求体/ID恰好一次重试→SQLite 回执；诊断不输出 token。未修改产品逻辑或真实账号数据。
+- server-assessment-ui 修正异步等待后隔离通过，真正等待测评答题队列及服务器确认结果。main-startup 暴露旧断言把句子练习 mem.progress 当成故事课程 IDB progress；改为只读实际持久化 mem.progress 后完整重验通过。该测试阻断 API 模拟离线原件练习，不替代服务器续学保存。

@@ -1,5 +1,6 @@
 /* main-startup.test.js · 首页不应被云端初始化阻塞 */
 'use strict';
+const { waitForAsync } = require('./lib/wait-async');
 const http = require('http');
 const os = require('os');
 const fs = require('fs');
@@ -159,8 +160,11 @@ function stopServer() {
       throw new Error('练习轮次应有稳定会话编号并写入本地续学断点：' + JSON.stringify(afterOnboarding));
     }
     try {
-      await page.waitForFunction(async function () {
-        var progress = await IDBStore.getProgress();
+      await waitForAsync(page, async function () {
+        // Sentence-practice checkpoints belong to mem.progress; IDB progress
+        // stores story-course progress and must not be used as this oracle.
+        var stored = JSON.parse(businessStorage.getItem('chunklab.v1') || '{}');
+        var progress = stored.progress || {};
         return progress['slow-start'] && progress['slow-start'].sessionId === S.sessionId;
       }, undefined, { timeout: 5000 });
     } catch (error) {
