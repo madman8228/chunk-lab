@@ -54,6 +54,7 @@
       var c = cl.readCourses();
       return Array.isArray(c) ? c : [];
     }
+    if (protocol3Active()) return [];
     try {
       var arr = JSON.parse(businessStorage.getItem(COURSE_STORE_KEY) || '[]');
       return Array.isArray(arr) ? arr : [];
@@ -62,7 +63,23 @@
   async function writeCourses(courses) {
     var cl = window.CL;
     if (cl && cl.writeCourses) return cl.writeCourses(courses);
+    if (protocol3Active()) {
+      var error = new Error('课程保存服务尚未就绪；本次更改未保存，请稍后重试。');
+      error.code = 'PROTOCOL3_NARROW_WRITE_REQUIRED';
+      throw error;
+    }
     businessStorage.setItem(COURSE_STORE_KEY, JSON.stringify(courses));
+  }
+
+  function protocol3Active() {
+    var config = window.CL && window.CL.getCloudConfig ? window.CL.getCloudConfig() : null;
+    return !!(config && config.persistenceMode === 'server-authoritative' && Number(config.writeProtocol) === 3);
+  }
+
+  function operationId() {
+    var crypto = window.crypto;
+    if (crypto && typeof crypto.randomUUID === 'function') return 'library-course-' + crypto.randomUUID().replace(/-/g, '');
+    return 'library-course-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 14);
   }
 
   /* ===== 课程标题/信息 ===== */
@@ -81,16 +98,56 @@
 
   /* ===== 写入层级元数据 ===== */
   async function setLibMeta(courseId, meta) {
+    var libraryMeta = {
+      seriesId: meta.seriesId || null,
+      seriesName: meta.seriesName || null,
+      volumeIndex: (meta.volumeIndex == null ? null : meta.volumeIndex),
+      volumeName: meta.volumeName || null,
+      sortOrder: meta.sortOrder || 0
+    };
+    if (protocol3Active()) {
+      var account = window.AccountStorage;
+      if (!account || !window.ServerCache || !window.ServerStore || typeof window.ServerStore.submitCommitted !== 'function') {
+        throw new Error('课程保存服务尚未就绪；分类信息未更改。');
+      }
+      account.assertCurrent();
+      var cache = await window.ServerCache.read();
+      if (!cache || cache.owner !== account.owner || !cache.snapshot) {
+        throw new Error('课程数据尚未从服务器确认；分类信息未更改。');
+      }
+      var courses = Array.isArray(cache.snapshot.courses) ? cache.snapshot.courses : [];
+      var index = courses.findIndex(function (course) { return course.courseId === courseId; });
+      if (index < 0) return null;
+      var course = JSON.parse(JSON.stringify(courses[index]));
+      course.lib = libraryMeta;
+      var revisions = cache.snapshot.revs && cache.snapshot.revs.courses || {};
+      var requestId = operationId();
+      await window.ServerStore.submitCommitted('course.put', { course: course }, {
+        requestId: requestId,
+        expectedRev: Object.prototype.hasOwnProperty.call(revisions, courseId) ? revisions[courseId] : null
+      });
+      account.assertCurrent();
+      await window.ServerCache.refresh();
+      var confirmedCache = await window.ServerCache.read();
+      if (!confirmedCache || confirmedCache.owner !== account.owner || !confirmedCache.snapshot) {
+        throw new Error('分类信息已提交，但服务器确认数据暂不可用；请刷新查看结果。');
+      }
+      var confirmedCourses = confirmedCache.snapshot.courses || [];
+      var confirmed = confirmedCourses.find(function (item) { return item.courseId === courseId; });
+      if (!confirmed || JSON.stringify(confirmed.lib || null) !== JSON.stringify(libraryMeta)) {
+        throw new Error('分类信息尚未得到服务器确认；请刷新查看结果。');
+      }
+      if (!window.CL || typeof window.CL.adoptServerCoursesProjection !== 'function') {
+        throw new Error('课程已提交，但本地服务器确认视图暂不可用；请刷新查看结果。');
+      }
+      await window.CL.adoptServerCoursesProjection(confirmedCourses);
+      if (window.ChunkCourse && typeof window.ChunkCourse.refreshList === 'function') window.ChunkCourse.refreshList();
+      return confirmed;
+    }
     var courses = readCourses();
     for (var i = 0; i < courses.length; i++) {
       if (courses[i].courseId === courseId) {
-        courses[i].lib = {
-          seriesId: meta.seriesId || null,
-          seriesName: meta.seriesName || null,
-          volumeIndex: (meta.volumeIndex == null ? null : meta.volumeIndex),
-          volumeName: meta.volumeName || null,
-          sortOrder: meta.sortOrder || 0
-        };
+        courses[i].lib = libraryMeta;
         await writeCourses(courses);
         return courses[i];
       }

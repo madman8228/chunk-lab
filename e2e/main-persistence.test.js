@@ -1,5 +1,13 @@
 /* Real main.html answer → durable queue → protocol-3 SQLite persistence. */
 'use strict';
+
+async function clickCorrectChoice(page) {
+  const selector = await page.evaluate(() =>
+    '#stageChoices .choice[data-v="' + CSS.escape(cur().chunks[S.chunkIdx]) + '"]');
+  await page.locator(selector).click();
+}
+
+
 const { waitForAsync } = require('./lib/wait-for-async');
 
 const assert = require('node:assert/strict');
@@ -574,7 +582,7 @@ function waitForServer() {
     assert.deepEqual(legacyWrites, [], 'clearing a legacy private API key is a local-only cleanup, not an old snapshot write');
     await page.locator('[data-home-course="user-deck:server-answer"]').click();
     await page.waitForSelector('#stageChoices .choice', { timeout: 15000 });
-    const firstValue = await page.locator('#stageChoices .choice').first().getAttribute('data-v');
+    const firstValue = await page.evaluate(() => cur().sentence);
     await page.evaluate(() => {
       window.__practiceOperations = [];
       const send = ChunkAPI.submitOperation;
@@ -745,7 +753,7 @@ function waitForServer() {
     assert.deepEqual(settingsOperation && settingsOperation.payload.patch, {shuffle:true}, 'only changed allowlisted settings are sent');
     assert.equal(settingsWrite.settings.apiKey || undefined, undefined, 'private API keys are not written to the server');
     assert.equal(settingsWrite.localKey, 'local-only-secret-fixture', 'private API key remains local to the device');
-    await page.locator('#stageChoices .choice').first().click();
+    await clickCorrectChoice(page);
     await page.waitForFunction(() => window.__practiceOperations && window.__practiceOperations.filter(operation => operation.type === 'learning.answer').length === 1,
       null, { timeout: 10000 });
     await waitForAsync(page, async () => {
@@ -800,7 +808,9 @@ function waitForServer() {
 
     await page.locator('#btnNext').click();
     await page.waitForSelector('#stageChoices .choice', { timeout: 10000 });
-    const secondValue = await page.locator('#stageChoices .choice').first().getAttribute('data-v');
+    // Choice order is randomized and may start with a distractor from another deck.
+    // Resume must be compared against the active sentence, not the first option.
+    const secondValue = await page.evaluate(() => cur().sentence);
     assert.notEqual(secondValue, firstValue, 'the next question is the other sentence in the session');
     await waitForAsync(page, async () => {
       const operation = (window.__practiceOperations || []).find(item => item.type === 'learning.resume');
@@ -897,7 +907,7 @@ function waitForServer() {
       };
     });
 
-    await page.locator('#stageChoices .choice').first().click();
+    await clickCorrectChoice(page);
     await page.waitForFunction(() => window.__practiceOperations.filter(operation => operation.type === 'learning.answer').length === 1,
       null, { timeout: 10000 });
     await waitForAsync(page, async () => {
@@ -1203,7 +1213,7 @@ function waitForServer() {
     });
     await page.waitForFunction(() => S.deck && S.deck.id === 'server-answer' && S.generation === 1,
       null, { timeout:10000 });
-    await page.locator('#stageChoices .choice').first().click();
+    await clickCorrectChoice(page);
     await waitForAsync(page, async () => {
       const operation=window.__practiceOperations.find(item=>item.type==='learning.answer'&&item.payload.generation===1);
       if(!operation) return false;
@@ -1631,7 +1641,7 @@ function waitForServer() {
     });
     await freshPage.locator('[data-home-course="user-deck:server-answer"]').click();
     await freshPage.waitForSelector('#stageChoices .choice',{timeout:15000});
-    await freshPage.locator('#stageChoices .choice').first().click();
+    await clickCorrectChoice(freshPage);
     await waitForAsync(freshPage, async before=>(await ChunkAPI.getData()).mem.stats.totalAnswered===before+1,
       secondDeviceBeforeAnswer,{timeout:15000});
     const secondDeviceClientAnswers=await freshPage.evaluate(()=>window.__secondDeviceSubmittedAnswers||[]);
