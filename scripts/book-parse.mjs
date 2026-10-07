@@ -36,11 +36,30 @@ const hasCJK = (s) => /[\u4e00-\u9fff]/.test(s);
 const hasLatinWord = (s) => /[A-Za-z]{2,}/.test(s);
 const CJK = /[\u4e00-\u9fff]/;
 
-/* 残留补丁：解析规则覆盖不到的个别行（按行号→{en,cn,note}）
-   L819 原书 "The clock says 3∶15 (three fifteen)." —— 括号内是读音提示，不是译文，
-   句子保留为 3:15，读音移入讲解。 */
+/* 残留补丁：解析规则覆盖不到的个别行（按原书行号→{en,cn,note}）
+   这些行在前次人工校订的 book.json 中已有稳定值，必须让重新解析保持一致。
+   L142 发音注记 [美 /skrʌb/] 位于句中，显式提取注记并恢复完整英文；
+   L819 原书 "The clock says 3∶15 (three fifteen)." —— 读音提示保留在 note；
+   L2608 原书英文缺少 "the end"，对应中文明确是“在这条路的尽头”，按上下文补全。 */
 const PATCH = {
-  819: { en: 'The clock says 3:15.', cn: '指针正指到3点15分。', note: '3:15 读作 three fifteen' }
+  123: { en: 'Peekaboo!', cn: '孩子们在玩藏猫游戏时常用。大人有时也半带玩乐地使用。', note: '' },
+  142: { en: 'Please scrub the sink.', cn: '把厨房的池子洗干净。', note: '美 /skrʌb/' },
+  143: { en: 'I have to vacuum my room.', cn: '我得用吸尘器吸吸我房间了。', note: '', raw: 'I have to vacuum my room. (我得用吸尘器吸吸我房间了。 )' },
+  144: { en: 'Please dust the shelves.', cn: '掸掸柜子上的土。', note: '', raw: 'Please dust the shelves.(掸掸柜子上的土。 )' },
+  159: { en: 'I usually work out after work.', cn: '我经常下班以后运动。', note: '', raw: 'I usually work out after work.(我经常下班以后运动。 )' },
+  169: { en: 'I need to deposit five thousand yen in my savings account.', cn: '我要存5000日元(在我的账户上。)', note: '' },
+  170: { en: 'I need to withdraw ¥5,000 from my savings account.', cn: '我要取5000日元(从我的账户上)。', note: '' },
+  171: { en: 'I paid out of my own pocket.', cn: '我是自己掏的腰包。', note: '', raw: 'I paid out of my own pocket.( 我是自己掏的腰包。 )' },
+  178: { en: "He didn't pay the debt and disappeared.", cn: '他因为还不上债而躲了起来。', note: '', raw: "He didn't pay the debt and disappeared.(他因为还不上债而躲了起来。 )" },
+  247: { en: 'When do you have tickets?', cn: '有什么时候的票?', note: '' },
+  819: { en: 'The clock says 3:15.', cn: '指针正指到3点15分。', note: '3:15 读作 three fifteen' },
+  1210: { en: 'Would you repeat that, please?', cn: '您能再说一遍吗?', note: '' },
+  1291: { en: "Let's talk in English.", cn: '咱们说英语吧。', note: '' },
+  1379: { en: "Let's not jump the gun.", cn: '别操之过急。', note: '' },
+  2529: { en: 'Business.', cn: '工作。', note: '', raw: 'Business.（工作。 ）' },
+  2608: { en: "It's at the end of this street.", cn: '在这条路的尽头。', note: '' },
+  3061: { en: '..., and wish to thank you for your kindness.', cn: '还有对贵方的友好表示感谢。', note: '', raw: '..., and wish to thank you for your kindness.(还有对贵方的友好表示感谢。)' },
+  3173: { en: 'all along', cn: '始终/一直/一贯', note: '', raw: 'all along（ 始终/一直/一贯）', sourcePattern: /^all (?:long|along)[（(]/ }
 };
 
 let chapter = null, section = null, topic = null;
@@ -60,7 +79,9 @@ function push(en, cn, note, line, raw) {
     en: en,
     cn: cn,
     note: note || '',
-    raw: raw
+    raw: raw,
+    // Keep the exact input line separately from historical normalized/corrected raw.
+    sourceRaw: lines[line - 1]
   });
 }
 
@@ -213,7 +234,10 @@ for (let i = 0; i < lines.length; i++) {
   /* 补丁优先 */
   if (PATCH[ln]) {
     const p = PATCH[ln];
-    push(p.en, p.cn, p.note, ln, t);
+    if (p.sourcePattern && !p.sourcePattern.test(t)) {
+      throw new Error('原书行与获批修订不匹配，停止解析：L' + ln);
+    }
+    push(p.en, p.cn, p.note, ln, p.raw == null ? t : p.raw);
     continue;
   }
 
