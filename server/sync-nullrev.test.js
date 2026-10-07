@@ -149,7 +149,7 @@ async function request(method, url, body) {
 
 (async () => {
   try {
-    server = spawn(process.execPath, ['index.js'], {
+    server = spawn(process.execPath, ['testing/start-historical.js'], {
       cwd: __dirname,
       env: { ...process.env, PORT: String(PORT), CHUNKLAB_DATA_DIR: TMP, NODE_ENV: 'test' },
       stdio: 'ignore'

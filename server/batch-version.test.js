@@ -11,7 +11,7 @@ async function request(token,method,body){
   return {status:response.status,body:await response.json()};
 }
 (async()=>{try{
-  server=spawn(process.execPath,['index.js'],{cwd:__dirname,env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test'},stdio:'ignore'});
+  server=spawn(process.execPath,['testing/start-historical.js'],{cwd:__dirname,env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test'},stdio:'ignore'});
   let ready=false;
   for(let i=0;i<60;i++){try{ready=(await fetch(base+'/api/health')).ok;}catch(_){}if(ready)break;await new Promise(r=>setTimeout(r,100));}
   assert.ok(ready);

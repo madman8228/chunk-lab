@@ -87,7 +87,7 @@ const childEnv = Object.assign({}, process.env, {
 
 let child = null;
 function startServer() {
-  child = spawn(process.execPath, ['index.js'], { cwd: SERVER_DIR, env: childEnv, stdio: ['ignore', 'ignore', 'inherit'] });
+  child = spawn(process.execPath, ['testing/start-historical.js'], { cwd: SERVER_DIR, env: childEnv, stdio: ['ignore', 'ignore', 'inherit'] });
   return waitHealth(15000);
 }
 function stopServer() {
