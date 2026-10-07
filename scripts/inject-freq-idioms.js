@@ -7,7 +7,7 @@
  * 规则（与 validate_freq_idioms.js 一致，注入前在本脚本复刻一遍以早失败）：
  *  1) chunks 段数 1~5 个（单字句允许 1 段，其余 ≥2；判据见 js/chunk-shape.js）
  *  2) chunks.join('').replace(/\s+/g, '') 必须等于 sentence.replace(/\s+/g, '')
- *  3) chunk 不以 .?!,;: 开头；非末 chunk 不以句末标点 .?! 结尾
+ *  3) chunk 不以 .?!,;: 开头；句末标点仅在末段，或句界后紧接大写新句
  *  4) hints/grammar 长度等于 chunks；grammar 每块含 role/color/pos/meaning/phonetic[]
  *  5) explanations 至少 2 条
  *  6) 与源库 high_freq_600.json 对照：grammar.pos/role 标为习语/谚语/固定搭配 的 chunk
@@ -51,7 +51,8 @@ function validateItems(items, sourceList) {
       it.chunks.forEach((c, j) => {
         if (!c || !c.trim()) ms.push('chunk 空');
         if (/^[.?!,;:]/.test(c)) ms.push('前导标点: ' + JSON.stringify(c));
-        if (j < it.chunks.length - 1 && /[.?!]\s*$/.test(c)) ms.push('非末句末标点: ' + JSON.stringify(c));
+        const startsNewSentence = /^[\s"'“‘(]*[A-Z]/.test(String(it.chunks[j + 1] || ''));
+        if (j < it.chunks.length - 1 && /[.?!]\s*$/.test(c) && !startsNewSentence) ms.push('非末句末标点: ' + JSON.stringify(c));
       });
     }
     if ((it.hints || []).length !== (it.chunks || []).length) ms.push('hints 不等长 chunks');
@@ -243,4 +244,6 @@ function main() {
   }
 }
 
-main();
+// Importing validation helpers must never perform an injection.
+if (require.main === module) main();
+module.exports = { validateItems, fnv8 };
