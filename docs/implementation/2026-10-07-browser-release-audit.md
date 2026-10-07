@@ -26,6 +26,12 @@
 
 ## 学习档案统计验收
 
+### 课程目录新版夹具
+
+- course-catalog 原来直接 LogicalCourseStore.create/CL.writeCourses，不符合默认协议 3 的服务器确认合同。夹具改用页面 persistLogicalCourseCreate 和 ChunkCourse.importCourse，并等待目录服务器视图就绪。
+- 独立隔离复验退出 0，保留课程卡片、65 课节目录、URL 启动/返回及目录管理断言；不修改生产代码、不恢复旧协议。
+- 完整浏览器组仍在运行，其他已记录失败尚未关闭，不能宣称整组通过。真实课程、账号和当前服务未改动。
+
 ### 默认新版后的浏览器复验进行中
 
 - 暂存副本单元组本次 74/74 通过。发布清单移除剩余 legacy-snapshot-writes 文件，清单覆盖检查通过；历史源文件保留。

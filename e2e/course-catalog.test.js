@@ -157,8 +157,9 @@ function stopServer() {
 
     /* 空目录回归：创建目录只创建目录，不凭空生成课节或内部分类。 */
     await page.locator('#courseViewJoined').click();
-    await page.evaluate(function(){
-      LogicalCourseStore.create({ title:'空目录回归测试', coverImage:'data:image/png;base64,e2e-empty-cover' });
+    await page.waitForFunction(()=>CL.serverPersistenceReady() && protocol3CatalogEnabled());
+    await page.evaluate(async function(){
+      await persistLogicalCourseCreate({ title:'空目录回归测试', coverImage:'data:image/png;base64,e2e-empty-cover' });
     });
     await page.evaluate(function(){ showTab('all'); });
     await page.waitForFunction(function(){ return !document.querySelector('#tabCourses').classList.contains('hidden'); });
@@ -194,11 +195,11 @@ function stopServer() {
       sequence: ['u0'],
       capabilities: { text: true, audio: false, translation: true, chunkSelection: true, roleplay: false }
     };
-    const logicalId = await page.evaluate(function(){
-      return LogicalCourseStore.create({ title:'我的新概念英语第一册', coverImage:'data:image/png;base64,e2e-cover' }).id;
+    const logicalId = await page.evaluate(async function(){
+      return (await persistLogicalCourseCreate({ title:'我的新概念英语第一册', coverImage:'data:image/png;base64,e2e-cover' })).id;
     });
     storyFixture.logicalCourseId = logicalId;
-    await page.evaluate(async function(course){ await CL.preload(); await CL.writeCourses([course]); }, storyFixture);
+    await page.evaluate(async function(course){ await ChunkCourse.importCourse(course, {}, false); }, storyFixture);
     await page.goto(BASE + '/decks.html?e2e=course-catalog&courseView=joined', { waitUntil: 'networkidle' });
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
     if (await page.locator('.course-card').filter({ hasText: '图文回归课程' }).count() !== 0) {
@@ -379,7 +380,7 @@ function stopServer() {
     extraStoryFixture.courseId = 'story-catalog-delete-e2e';
     extraStoryFixture.metadata.title['zh-CN'] = '待删除课节';
     extraStoryFixture.logicalCourseId = logicalId;
-    await page.evaluate(async function(courses){ await CL.preload(); await CL.writeCourses(courses); }, [storyFixture, extraStoryFixture]);
+    await page.evaluate(async function(courses){ for (const course of courses) await ChunkCourse.importCourse(course, {}, false); }, [storyFixture, extraStoryFixture]);
     await page.goto(BASE + '/decks.html?e2e=course-catalog&courseView=joined', { waitUntil: 'networkidle' });
     await page.waitForSelector('#pageDecks:not(.hidden) .course-card');
     await page.locator('#tabCourses').click();
