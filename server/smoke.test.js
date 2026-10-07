@@ -178,7 +178,7 @@ async function main() {
   childEnv.PORT = String(PORT);
   console.log('[smoke] starting server (multi-user mode) on port ' + PORT);
   console.log('[smoke] temp DB: ' + TMP_DB);
-  child = spawn(process.execPath, ['index.js'], {
+  child = spawn(process.execPath, ['testing/start-historical.js'], {
     cwd: SERVER_DIR,
     env: childEnv,
     stdio: ['ignore', 'ignore', 'inherit']

@@ -10,7 +10,7 @@ const port = require('./lib/free-port').freePort(8942, 60), base = 'http://127.0
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-operation-delta-'));
 let server, browser;
 async function start(protocol) {
-  server = spawn(process.execPath, ['index.js'], { cwd: path.join(root, 'server'),
+  server = spawn(process.execPath, [Number(protocol) === 2 ? 'testing/start-historical.js' : 'index.js'], { cwd: path.join(root, 'server'),
     env: { ...process.env, CHUNKLAB_DATA_DIR: temp, PORT: String(port), NODE_ENV: 'test',
       REQUIRE_AUTH: 'false', CHUNKLAB_WRITE_PROTOCOL: String(protocol) }, stdio: 'ignore' });
   for (let i = 0; i < 300; i++) {
