@@ -123,3 +123,4 @@
 - server-store-queue、stats-protocol3、recovery-handover-gate 修正异步等待后隔离通过。认证恢复暴露原等待条件问题：401 后页面跳转导致执行上下文销毁，补 helper 仅重试这一明确跳转错误后，登录界面不提供 ServerStore，旧条件仍失败。不得忽略该错误或标认证恢复通过；须改为检查登录阶段原始耐久队列并再验证登录后真实回执。helper 业务异常仍失败，跨跳转重试单测通过。
 - 认证恢复改为先捕获隔离账号数据库名称，登录页只读现存 IndexedDB pendingOperations（禁止创建/升级），确认原 requestId 仍 pending；登录后真正异步等待回执和队列清空。重验通过 401→同账号登录→同请求体/ID恰好一次重试→SQLite 回执；诊断不输出 token。未修改产品逻辑或真实账号数据。
 - server-assessment-ui 修正异步等待后隔离通过，真正等待测评答题队列及服务器确认结果。main-startup 暴露旧断言把句子练习 mem.progress 当成故事课程 IDB progress；改为只读实际持久化 mem.progress 后完整重验通过。该测试阻断 API 模拟离线原件练习，不替代服务器续学保存。
+- 显式恢复辅助场景三处异步等待已修正，完整 explicit-recovery 隔离重验通过归档完整性、选择性恢复、分页和未确认操作隔离。剩余 upgrade-check、ai-course-authoring 两处已替换，尚待完整复验和相关工作区改动审计；当前文本扫描没有直接 waitForFunction(async，用扫描结果不替代测试运行证据。

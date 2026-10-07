@@ -1,4 +1,5 @@
 'use strict';
+const { waitForAsync } = require('./wait-async');
 // Historical recovery is tested explicitly, outside normal learning startup.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -128,7 +129,7 @@ module.exports = async function(page,dataDir){
     }
     await recoverDeckChoice.check();
     await selectableSource.getByRole('button', { name: /恢复所选内容（1）/ }).click();
-    await page.waitForFunction(async () => {
+    await waitForAsync(page, async () => {
       const snapshot = await ChunkAPI.getData();
       return snapshot.mem.decks.some(deck => deck.id === 'recovery-only-deck');
     }, null, { timeout: 15000 });
@@ -165,7 +166,7 @@ module.exports = async function(page,dataDir){
     await lastPagedRecoveryChoice.check();
     page.once('dialog', dialog => dialog.accept());
     await selectableSource.getByRole('button', { name: /恢复所选内容（1）/ }).click();
-    await page.waitForFunction(async () => {
+    await waitForAsync(page, async () => {
       const snapshot = await ChunkAPI.getData();
       return snapshot.mem.decks.some(deck => deck.id === 'recovery-page-205');
     }, null, { timeout: 15000 });
@@ -206,7 +207,7 @@ module.exports = async function(page,dataDir){
     });
     assert.match(await unknownSelectableSource.innerText(), /部分恢复/,
       'the recovery center refreshes its source card after confirming a scoped selective restore');
-    await page.waitForFunction(async () => (await ChunkAPI.getData()).mem.decks.some(
+    await waitForAsync(page, async () => (await ChunkAPI.getData()).mem.decks.some(
       deck => deck.id === 'recovery-safe-despite-unknown-op'), null, { timeout: 15000 });
     const unknownRecoveryDb = new Database(path.join(dataDir, 'chunklab.db'), { readonly: true });
     try {
