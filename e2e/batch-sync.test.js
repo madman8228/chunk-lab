@@ -6,7 +6,7 @@ const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cl-batch-client-'));
 let browser,server,count=0;
 function check(label,v){assert.ok(v,label);count++;console.log('  ✓ '+label);}
 (async()=>{try{
-  server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test',CHUNKLAB_WRITE_PROTOCOL:'2'},stdio:'ignore'});
+  server=spawn(process.execPath,['testing/start-historical.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test',CHUNKLAB_WRITE_PROTOCOL:'2'},stdio:'ignore'});
   let ready=false;
   /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：实测为临界窗口，宿主 node 冷启动 5.4s。
      本文件上轮靠重试才过、本轮直接过 ⇒ 落在临界带上，必须抬窗口。

@@ -350,7 +350,8 @@ registerDataRoutes({
 if (WRITE_PROTOCOL === 3) {
   require('./routes/retired-sync').registerRetiredSyncRoutes({ app, auth, db });
 } else {
-  require('./testing/legacy-protocol').registerHistoricalProtocol({
+  const historicalRegistrar = global.__chunklabHistoricalRouteRegistrar || require('./testing/legacy-protocol').registerHistoricalProtocol;
+  historicalRegistrar({
     app, auth, db, getLegacyDataWriter, rejectUnconditional, validate, upsertDeck, upsertCourse, upsertCourseProgress, upsertKv, allocSeq, buildMemSnapshot, updateDeckPublication, STRICT_CONDITIONAL_WRITES, WRITE_PROTOCOL
   });
 }
