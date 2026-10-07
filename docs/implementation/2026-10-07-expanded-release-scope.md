@@ -124,3 +124,4 @@
 - 认证恢复改为先捕获隔离账号数据库名称，登录页只读现存 IndexedDB pendingOperations（禁止创建/升级），确认原 requestId 仍 pending；登录后真正异步等待回执和队列清空。重验通过 401→同账号登录→同请求体/ID恰好一次重试→SQLite 回执；诊断不输出 token。未修改产品逻辑或真实账号数据。
 - server-assessment-ui 修正异步等待后隔离通过，真正等待测评答题队列及服务器确认结果。main-startup 暴露旧断言把句子练习 mem.progress 当成故事课程 IDB progress；改为只读实际持久化 mem.progress 后完整重验通过。该测试阻断 API 模拟离线原件练习，不替代服务器续学保存。
 - 显式恢复辅助场景三处异步等待已修正，完整 explicit-recovery 隔离重验通过归档完整性、选择性恢复、分页和未确认操作隔离。剩余 upgrade-check、ai-course-authoring 两处已替换，尚待完整复验和相关工作区改动审计；当前文本扫描没有直接 waitForFunction(async，用扫描结果不替代测试运行证据。
+- upgrade-check 完整隔离重验 36/36、退出码 0；日志保存在临时候选 output/playwright/upgrade-final-verification.log。旧本地数据由显式归档恢复夹具准备，普通启动不自动归属/导入；真正等待 SW 缓存更新，模拟旧客户端直接 HTTP PUT 验证 428，而非只验证新包装器提前拒绝。旧来源 gzip 回读、冲突 journal 保留且正常页面无冲突 UI、升级后实际答题 SQLite 恰好一次及刷新不重复均通过。此前进程句柄已不存在且末尾输出缺失，故重新运行留存终态证据；未改真实服务、真实课程或个人数据库。这仍不是全部发布范围验收完成。

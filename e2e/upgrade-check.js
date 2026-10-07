@@ -1,4 +1,5 @@
 'use strict';
+const { waitForAsync } = require('./lib/wait-async');
 /**
  * upgrade-check.js · 升级验收专项（G5：「老版本升级 + IDB 数据保留 + Service Worker 更新」）
  *
@@ -30,6 +31,8 @@ const path = require('path');
 const http = require('http');
 const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
+const Database = require('../server/node_modules/better-sqlite3');
+const { gunzipSync } = require('zlib');
 
 const ROOT = path.resolve(__dirname, '..');
 const PORT = require('./lib/free-port').freePort(8951, 100);
@@ -46,7 +49,9 @@ let server = null;
 
 function startServer() {
   return new Promise(function (resolve, reject) {
-    const env = Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT) });
+    const env = Object.assign({}, process.env, {
+      CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: '3'
+    });
     delete env.NODE_OPTIONS;
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(ROOT, 'server'), env: env, stdio: 'ignore'
@@ -79,9 +84,9 @@ function check(name, cond, detail) {
 /* 只读取样：迁移表 + manifest deck 清单 + 某个 deck 的真实句子（含 cidOf / fnv8 两个口径） */
 const PROBE = function (deckId) {
   if (!window.ContentRepo || !ContentRepo.ready) {
-    return { noRepo: true, map: window.BUILTIN_MIGRATION || null, decks: [], items: [] };
+    return { noRepo: true, map: window.BUILTIN_MIGRATION || null, aliases: window.BUILTIN_CID_ALIASES || {}, decks: [], items: [] };
   }
-  const out = { map: window.BUILTIN_MIGRATION || null, decks: [], items: [] };
+  const out = { map: window.BUILTIN_MIGRATION || null, aliases: window.BUILTIN_CID_ALIASES || {}, decks: [], items: [] };
   return ContentRepo.ready.then(function () {
     try { out.decks = (ContentRepo.getManifest().decks || []).map(function (d) { return d.id; }); }
     catch (e) { out.deckErr = String(e && e.message); }
@@ -95,7 +100,7 @@ const PROBE = function (deckId) {
 };
 
 /* 组装「老用户档案」：值刻意用可辨识的量，证明迁移是搬值而不是造空壳 */
-function buildOldMem(cidA, cidB, sample) {
+function buildOldMem(cidA, cidB, sample, aliasCid) {
   const mem = {
     version: 2,
     decks: [],
@@ -113,6 +118,10 @@ function buildOldMem(cidA, cidB, sample) {
   mem.mastered['builtin-daily#' + cidA] = 1712345678901;
   /* 场景拆分版 key：<老deck>#<cid> */
   mem.stats.bySentence['daily-home#' + cidB] = { times: 7, okTimes: 5, streak: 2 };
+  if (aliasCid) {
+    mem.mastered['daily-home#' + aliasCid] = 1712345678902;
+    mem.stats.events.push({ id: 'legacy-alias-event', kind: 'answer', key: 'daily-home#' + aliasCid, ok: true, at: 1712345678902 });
+  }
   if (sample) {
     /* 前 cid 代：后缀是整句原文，须先被 migrateCidKeys 转成 cid */
     mem.deletedItems['daily-chat#' + sample.sentence] = 1;
@@ -144,6 +153,7 @@ function buildOldMem(cidA, cidB, sample) {
     await ctxA.close();
 
     const MAP = (meta && meta.map) || {};
+    const ALIASES = (meta && meta.aliases) || {};
     const DECK_IDS = (meta && meta.decks) || [];
     const mapDecks = Object.keys(MAP);
     const cidToDeck = {};
@@ -157,6 +167,8 @@ function buildOldMem(cidA, cidB, sample) {
     check('0.3 取样 deck 在迁移表里有条目', pool.length >= 3, PICK_DECK + ' 条数=' + pool.length);
     const CID_A = pool[0] || '';
     const CID_B = pool[1] || '';
+    const aliasEntry = Object.keys(ALIASES).map(function (cid) { return { cid: cid, target: ALIASES[cid] }; })
+      .find(function (entry) { return entry.target.deckId === PICK_DECK && entry.target.cid; }) || null;
     /* 前 cid 代 / 错题本要用的真实句子：只取「cidOf === fnv8」的条目，
        排除「item 自带 cid 与原文哈希不一致」带来的歧义。 */
     const sample = ((meta && meta.items) || []).filter(function (s) {
@@ -166,9 +178,12 @@ function buildOldMem(cidA, cidB, sample) {
       !!sample, sample ? sample.sentence : JSON.stringify(((meta && meta.items) || []).slice(0, 3)));
     check('0.5 孤儿 cid 确实不在迁移表里（4.2 的前提）',
       !cidToDeck[ORPHAN_CID], 'ORPHAN_CID=' + ORPHAN_CID);
+    check('0.6 当前课程包含可验证的旧 CID 别名',
+      !!aliasEntry && cidToDeck[aliasEntry.target.cid] === PICK_DECK,
+      JSON.stringify(aliasEntry));
     console.log('');
 
-    const oldMem = buildOldMem(CID_A, CID_B, sample);
+    const oldMem = buildOldMem(CID_A, CID_B, sample, aliasEntry && aliasEntry.cid);
     const seedOwner = [BASE, 'local'];
     const seedMemJson = JSON.stringify(oldMem);
 
@@ -202,6 +217,7 @@ function buildOldMem(cidA, cidB, sample) {
         memMastered: mem.mastered || {},
         memDeleted: mem.deletedItems || {},
         memBySentence: (mem.stats && mem.stats.bySentence) || {},
+        memEvents: (mem.stats && mem.stats.events) || [],
         memReinforce: rb,
         rawMasteredKeys: keys((raw.mastered)),
         rawBySentenceKeys: keys(raw.stats && raw.stats.bySentence),
@@ -238,6 +254,16 @@ function buildOldMem(cidA, cidB, sample) {
       after.memReinforce[0].deckId === cidToDeck[sample.cid] &&
       after.memReinforce[0]._key === cidToDeck[sample.cid] + '::' + sample.sentence,
       JSON.stringify(after.memReinforce));
+    if (aliasEntry) {
+      const aliasKey = 'daily-home#' + aliasEntry.cid;
+      const canonicalKey = aliasEntry.target.deckId + '#' + aliasEntry.target.cid;
+      check('2.4 legacy CID 别名迁移到课程中真实存在的规范 key',
+        after.memMastered[canonicalKey] === 1712345678902 && !Object.prototype.hasOwnProperty.call(after.memMastered, aliasKey),
+        JSON.stringify({ canonicalKey, rawMasteredKeys: after.rawMasteredKeys }));
+      check('2.5 legacy 事件引用同步改写到规范 key',
+        after.memEvents.some(function (event) { return event.id === 'legacy-alias-event' && event.key === canonicalKey; }),
+        JSON.stringify(after.memEvents.filter(function (event) { return event.id === 'legacy-alias-event'; })));
+    }
     console.log('');
 
     console.log('== 3 幂等：二次 loadMem 不再变化 ==');
@@ -262,7 +288,7 @@ function buildOldMem(cidA, cidB, sample) {
       after.memMastered['oral-9-9-9#' + CID_A] === 1, JSON.stringify(after.rawMasteredKeys));
     check('4.2 查不到归属的老 key 原样保留（宁可留着也不删）',
       after.memMastered['builtin-daily#' + ORPHAN_CID] === 1, JSON.stringify(after.rawMasteredKeys));
-    /* 4.3 数据守恒：种下的 5 个「句子级」key 必须全部以「迁移后」或「原样」形态存活，一个都不能少。
+    /* 4.3 数据守恒：种下的 6 个「句子级」key 必须全部以「迁移后」或「原样」形态存活，一个都不能少。
        这是本次升级最核心的用户可见契约（进度不能丢），且完全由本地存储建模、不受云同步语义干扰。 */
     const survived = [
       ['mastered·初版 key', after.memMastered[deckA + '#' + CID_A] !== undefined],
@@ -271,8 +297,9 @@ function buildOldMem(cidA, cidB, sample) {
       ['mastered·非白名单 deck', after.memMastered['oral-9-9-9#' + CID_A] !== undefined],
       ['mastered·孤儿 cid', after.memMastered['builtin-daily#' + ORPHAN_CID] !== undefined]
     ];
+    if (aliasEntry) survived.push(['mastered·legacy CID 别名', after.memMastered[aliasEntry.target.deckId + '#' + aliasEntry.target.cid] !== undefined]);
     const lost = survived.filter(function (x) { return !x[1]; }).map(function (x) { return x[0]; });
-    check('4.3 句子级 key 数据守恒（5 个种子 key 全部存活，无一被删）',
+    check('4.3 句子级 key 数据守恒（6 个种子 key 全部存活，无一被删）',
       lost.length === 0, '丢失 ' + lost.join('、'));
     /* 4.4 deck 级 best / progress 不属于「句子级进度」。migrateToBookDecks 不处理它们
        （一个老 deck → 多个新 deck，无法一对一），契约只有一条：**不被本地迁移删除**。
@@ -306,7 +333,11 @@ function buildOldMem(cidA, cidB, sample) {
     /* /api/health 不是预缓存页，此刻尚未注册 SW → 可安全预置一个「升级前的老缓存」 */
     await pC.goto(BASE + '/api/health');
     const seeded = await pC.evaluate(function () {
-      return caches.open('chunklab-deadbeef')
+      return navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        return Promise.all(registrations.map(function (registration) { return registration.unregister(); }));
+      }).then(function () { return caches.keys(); }).then(function (keys) {
+        return Promise.all(keys.filter(function (key) { return /^chunklab-/.test(key); }).map(function (key) { return caches.delete(key); }));
+      }).then(function () { return caches.open('chunklab-deadbeef'); })
         .then(function (c) { return c.put('/', new Response('old-version')); })
         .then(function () { return true; })
         .catch(function (e) { return 'err:' + (e && e.message); });
@@ -319,7 +350,13 @@ function buildOldMem(cidA, cidB, sample) {
       cacheKeys = await pC.evaluate(function () { return caches.keys(); });
       if (CUR_CACHE && cacheKeys.indexOf(CUR_CACHE) >= 0 && cacheKeys.indexOf('chunklab-deadbeef') < 0) break;
     }
-    check('6.3 SW activate 后旧版本缓存被清除', cacheKeys.indexOf('chunklab-deadbeef') < 0, JSON.stringify(cacheKeys));
+    const swState = await pC.evaluate(async function () {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      return { controlled:!!navigator.serviceWorker.controller, registrations:registrations.map(function (r) {
+        return { scope:r.scope, active:r.active && { state:r.active.state, scriptURL:r.active.scriptURL }, installing:r.installing && r.installing.state, waiting:r.waiting && r.waiting.state };
+      }) };
+    });
+    check('6.3 SW activate 后旧版本缓存被清除', cacheKeys.indexOf('chunklab-deadbeef') < 0, JSON.stringify({ cacheKeys, swState }));
     check('6.4 当前版本缓存已建立且是预期名字', !!CUR_CACHE && cacheKeys.indexOf(CUR_CACHE) >= 0, JSON.stringify(cacheKeys));
     await ctxC.close();
     console.log('');
@@ -328,6 +365,194 @@ function buildOldMem(cidA, cidB, sample) {
     console.log('== 7 升级后立即可用 ==');
     check('7.1 升级后能进入练习并出题', after.items > 0, 'items=' + after.items);
     check('7.2 升级全过程零 pageerror', errsB.length === 0, errsB.slice(0, 2).join(' | '));
+    console.log('');
+
+    /* ================= 8. P3 升级纵向闭环 ================= */
+    console.log('== 8 P3 升级：旧来源保全、旧写拒绝、新学习确认 ==');
+    const ctxUpgrade = await browser.newContext({
+      viewport: { width: 1280, height: 800 }, serviceWorkers: 'allow'
+    });
+    const pUpgrade = await ctxUpgrade.newPage();
+    const upgradeLegacyWrites = [];
+    const upgradeAnswerOperations = [];
+    pUpgrade.on('request', function (request) {
+      const url = new URL(request.url());
+      if (request.method() !== 'GET' && ['/api/data', '/api/import'].indexOf(url.pathname) >= 0) {
+        upgradeLegacyWrites.push({ method: request.method(), path: url.pathname });
+      }
+      if (request.method() === 'POST' && url.pathname === '/api/operations') {
+        try {
+          const operation = JSON.parse(request.postData() || '{}');
+          if (operation.type === 'learning.answer') upgradeAnswerOperations.push(operation);
+        } catch (_) { /* The final assertions report malformed requests. */ }
+      }
+    });
+
+    /* Seed an upgrade-era cache and local recovery sources before the app/SW runs. */
+    await pUpgrade.goto(BASE + '/api/health');
+    const oldCacheSeeded = await pUpgrade.evaluate(async function () {
+      await caches.open('chunklab-deadbeef').then(function (cache) {
+        return cache.put('/', new Response('old-app-cache'));
+      });
+      return (await caches.keys()).indexOf('chunklab-deadbeef') >= 0;
+    });
+    check('8.1 升级夹具含旧版本缓存', oldCacheSeeded === true);
+    const legacyDeck = {
+      id: 'upgrade-legacy-deck', name: '升级前本地课程', items: [{
+        cid: 'upgrade-legacy-sentence', sentence: 'Say hello.', en: 'Say hello.', translation: '说你好。',
+        chunks: ['Say hello.'], alts: [[]], hints: ['说你好。']
+      }]
+    };
+    const legacyMem = {
+      version: 2, decks: [legacyDeck], best: {}, progress: {}, mastered: {}, deletedItems: {}, reinforceBook: [],
+      stats: { totalRounds: 0, totalAnswered: 0, bySentence: {}, daysLog: {}, events: [] },
+      settings: { mode: 'choose', shuffle: false, batchSize: 10, sound: false }
+    };
+    const legacyRaw = JSON.stringify(legacyMem);
+    const conflictJournalRaw = JSON.stringify({ conflicts: [{ entity: 'batch', id: 'pre-upgrade-conflict' }], deleted: {} });
+    await pUpgrade.addInitScript(function (seed) {
+      localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify(seed.owner));
+      localStorage.setItem('chunklab.v1', seed.mem);
+      localStorage.setItem('chunklab.sync-conflict.v1', seed.conflict);
+    }, { owner: [BASE, 'local'], mem: legacyRaw, conflict: conflictJournalRaw });
+    // Recovery is explicit fixture setup, never an ordinary-startup action.
+    await require('./lib/legacy-recovery-fixture').seedArchivedAccount(pUpgrade, BASE);
+    await pUpgrade.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
+    await pUpgrade.waitForLoadState('load', { timeout: 20000 });
+    await pUpgrade.waitForFunction(function () {
+      const config = window.CL && CL.getCloudConfig && CL.getCloudConfig();
+      return config && config.writeProtocol === 3 &&
+        CL.serverPersistenceReady && CL.serverPersistenceReady();
+    }, null, { timeout: 20000 });
+    await pUpgrade.evaluate(async function () {
+      if (!('serviceWorker' in navigator)) throw new Error('Service Worker is unavailable in the upgrade browser');
+      await navigator.serviceWorker.ready;
+    });
+    await pUpgrade.waitForFunction(function (id) {
+      return window.mem && Array.isArray(mem.decks) && mem.decks.some(function (deck) { return deck.id === id; });
+    }, legacyDeck.id, { timeout: 15000 });
+    await waitForAsync(pUpgrade, async function (cacheName) {
+      const keys = await caches.keys();
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      return registrations.some(function (registration) {
+        return registration.active && registration.active.state === 'activated';
+      }) && keys.indexOf(cacheName) >= 0 && keys.indexOf('chunklab-deadbeef') < 0;
+    }, CUR_CACHE, { timeout: 20000 });
+    await pUpgrade.reload({ waitUntil: 'domcontentloaded' });
+    await waitForAsync(pUpgrade, async function (cacheName) {
+      const config = window.CL && CL.getCloudConfig && CL.getCloudConfig();
+      const controller = navigator.serviceWorker && navigator.serviceWorker.controller;
+      return config && config.writeProtocol === 3 && CL.serverPersistenceReady && CL.serverPersistenceReady() &&
+        controller && controller.scriptURL.endsWith('/sw.js') &&
+        (await caches.keys()).includes(cacheName) && !(await caches.keys()).includes('chunklab-deadbeef');
+    }, CUR_CACHE, { timeout: 20000 });
+    const upgradeState = await pUpgrade.evaluate(async function (journal) {
+      const keys = await caches.keys();
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      return {
+        config: CL.getCloudConfig().writeProtocol,
+        ready: CL.serverPersistenceReady(),
+        conflictUiAbsent: !document.querySelector('#syncBadge,#syncResolveMask,#syncResolveDialog,[data-sync-conflict]'),
+        journalPreserved: localStorage.getItem('chunklab.sync-conflict.v1') === journal,
+        cacheKeys: keys,
+        controller: navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL,
+        registrations: registrations.map(function (registration) {
+          return { active: registration.active && registration.active.state,
+            waiting: registration.waiting && registration.waiting.state,
+            installing: registration.installing && registration.installing.state };
+        })
+      };
+    }, conflictJournalRaw);
+    check('8.2 更新后的 P3 页面由新 SW 控制且旧缓存已淘汰', upgradeState.config === 3 && upgradeState.ready &&
+      !!CUR_CACHE && upgradeState.controller && upgradeState.cacheKeys.indexOf(CUR_CACHE) >= 0 &&
+      upgradeState.cacheKeys.indexOf('chunklab-deadbeef') < 0,
+    JSON.stringify(upgradeState));
+    check('8.3 旧冲突 journal 保留且普通页面不显示冲突 UI', upgradeState.journalPreserved && upgradeState.conflictUiAbsent,
+      JSON.stringify(upgradeState));
+
+    const upgradeDb = new Database(path.join(TMP_DB, 'chunklab.db'));
+    let recoverySource = null;
+    try {
+      const user = upgradeDb.prepare("SELECT id FROM users WHERE username='__default__'").get();
+      if (user) {
+        const sources = upgradeDb.prepare('SELECT source_id,source_hash,codec,payload_blob,manifest_json FROM user_recovery_sources WHERE user_id=?').all(user.id);
+        recoverySource = sources.map(function (row) {
+          let payload = null;
+          try { payload = JSON.parse(gunzipSync(row.payload_blob).toString('utf8')); } catch (_) { /* Invalid source fails below. */ }
+          return { row, payload, manifest: JSON.parse(row.manifest_json) };
+        }).find(function (source) {
+          return source.payload && source.payload.localStorage &&
+            source.payload.localStorage['chunklab.v1'] === legacyRaw &&
+            source.payload.localStorage['chunklab.sync-conflict.v1'] === conflictJournalRaw;
+        }) || null;
+      }
+    } finally { upgradeDb.close(); }
+    check('8.4 旧课程与冲突来源已 gzip 保全并可回读校验', !!recoverySource &&
+      recoverySource.row.codec === 'gzip' && recoverySource.manifest.verified === true &&
+      recoverySource.row.source_hash === recoverySource.manifest.sourceHash &&
+      recoverySource.manifest.sourceId === recoverySource.row.source_id,
+    recoverySource ? JSON.stringify(recoverySource.manifest) : 'matching recovery source not found');
+
+    const oldWriteResult = await pUpgrade.evaluate(async function () {
+      const snapshot = JSON.parse(localStorage.getItem('chunklab.v1') || '{}');
+      let error = null;
+      try {
+        // Simulate the old client's HTTP write, not the new API wrapper that
+        // already rejects legacy writes before issuing a request.
+        const response = await fetch('/api/data', { method: 'PUT',
+          headers: { 'content-type': 'application/json' }, body: JSON.stringify(snapshot) });
+        const body = await response.json();
+        error = { status: response.status, code: body.code };
+      }
+      catch (caught) { error = { status: caught.status, code: caught.code }; }
+      return error;
+    });
+    check('8.5 旧整包写入被 protocol 3 以 428 拒绝', JSON.stringify(oldWriteResult) ===
+      JSON.stringify({ status: 428, code: 'CLIENT_UPDATE_REQUIRED' }), JSON.stringify(oldWriteResult));
+    check('8.5a 旧客户端兼容路径确实访问旧写端点', upgradeLegacyWrites.length === 1 &&
+      upgradeLegacyWrites[0].method === 'PUT' && upgradeLegacyWrites[0].path === '/api/data',
+    JSON.stringify(upgradeLegacyWrites));
+
+    await pUpgrade.evaluate(function (id) {
+      showPracticePage();
+      startDeck(findDeck(id), 0);
+    }, legacyDeck.id);
+    await pUpgrade.waitForSelector('#stageChoices .choice', { timeout: 15000 });
+    const answerResponse = pUpgrade.waitForResponse(function (response) {
+      return response.request().method() === 'POST' && new URL(response.url()).pathname === '/api/operations' &&
+        response.status() === 200 && response.request().postData().indexOf('learning.answer') >= 0;
+    }, { timeout: 15000 });
+    await pUpgrade.evaluate(function (answer) {
+      const choice = Array.from(document.querySelectorAll('#stageChoices .choice'))
+        .find(function (button) { return button.dataset.v === answer; });
+      if (!choice) throw new Error('缺少课程的正确答题选项');
+      choice.click();
+    }, 'Say hello.');
+    await pUpgrade.waitForSelector('#btnNext:not([disabled])', { timeout: 10000 });
+    await pUpgrade.locator('#btnNext').click();
+    await answerResponse;
+    if (upgradeAnswerOperations.length !== 1) throw new Error('预期恰好发出一条 learning.answer，实际=' + upgradeAnswerOperations.length);
+    const answerEventId = upgradeAnswerOperations[0].payload.eventId;
+    const answerDb = new Database(path.join(TMP_DB, 'chunklab.db'));
+    let answerCount;
+    try {
+      answerCount = answerDb.prepare('SELECT COUNT(*) AS n FROM user_operation_events WHERE event_id=?').get(answerEventId).n;
+    } finally { answerDb.close(); }
+    check('8.6 升级后的真实答题由 protocol 3 写入 SQLite 恰好一次', answerCount === 1,
+      'eventId=' + answerEventId + ', count=' + answerCount);
+    await pUpgrade.reload({ waitUntil: 'domcontentloaded' });
+    await pUpgrade.waitForFunction(function () {
+      const config = window.CL && CL.getCloudConfig && CL.getCloudConfig();
+      return config && config.writeProtocol === 3 && CL.serverPersistenceReady && CL.serverPersistenceReady();
+    }, null, { timeout: 20000 });
+    const answerCountAfterReloadDb = new Database(path.join(TMP_DB, 'chunklab.db'));
+    try {
+      const afterReloadCount = answerCountAfterReloadDb.prepare('SELECT COUNT(*) AS n FROM user_operation_events WHERE event_id=?').get(answerEventId).n;
+      check('8.7 刷新恢复不重复计数，升级流程没有旧整包写入', afterReloadCount === 1 && upgradeLegacyWrites.every(function (write) {
+        return write.method === 'PUT' && write.path === '/api/data';
+      }), JSON.stringify({ afterReloadCount, legacyWrites: upgradeLegacyWrites }));
+    } finally { answerCountAfterReloadDb.close(); }
+    await ctxUpgrade.close();
     console.log('');
 
     /* ================= E. 负向自证 ================= */
