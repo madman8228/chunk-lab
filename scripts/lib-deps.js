@@ -42,7 +42,7 @@ const JS_RE = /\.(m?js)$/i;
 const TEST_RE = /\.test\.mjs$/i;
 
 /* 前端入口 HTML（与 gen-sw.js / deploy 清单同源，改这里即三处生效） */
-const HTML_ENTRIES = ['main.html', 'courses.html', 'decks.html', 'course-create.html', 'stats.html', 'admin.html'];
+const HTML_ENTRIES = ['main.html', 'courses.html', 'decks.html', 'course-create.html', 'stats.html', 'admin.html', 'content-studio.html'];
 
 function abs(rel) { return path.join(ROOT, rel); }
 
