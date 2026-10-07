@@ -32,7 +32,7 @@
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else if (typeof window !== 'undefined') window.ChunkShape = factory();
-  else root.ChunkShape = factory();
+  else Object.assign(root, { ChunkShape: factory() });
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
