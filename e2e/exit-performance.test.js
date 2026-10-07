@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-async');
 
 const ROOT = path.resolve(__dirname, '..');
 const PORT = require('./lib/free-port').freePort(9970, 100);
@@ -162,7 +163,7 @@ function seedExitCourse() {
     if (elapsed >= 1000) throw new Error('退出耗时 ' + elapsed + 'ms，超过 1 秒；waitForSync 调用次数=' + waitCalls);
     if (waitCalls !== 0) throw new Error('退出操作调用了同步等待；次数=' + waitCalls);
     releaseAcknowledgement();
-    await page.waitForFunction(async ({id,baseline}) => {
+    await waitForAsync(page, async ({id,baseline}) => {
       const cache = await ServerCache.read();
       const snapshot = cache && cache.snapshot;
       const deck = snapshot && snapshot.mem.decks.find(item => item.id === id);

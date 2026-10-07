@@ -119,3 +119,4 @@
 - 新发现验收工具边界：安装版 Playwright waitForFunction 的 predicate 返回 Promise 时即作为 truthy 停止轮询，之后即使解析为 false 也不会再次轮询。旧 AI 转换测试所谓“缓存回退”实为提前读取，改 Node 侧 await/poll 后统计断言通过，随后遇到未升级的删除夹具整包写。不能据此认定产品缓存回退。
 - 新增 waitForAsync helper 和失败/超时/异步 false 单测通过。扫描至少 12 个浏览器测试/辅助场景有同类异步等待，须逐项修正并重验；此前相关专项通过不再足以证明等待条件成立，最终浏览器验收必须使用修正后的条件。转换测试仍未完整通过、未提交。
 - ai-image-course-protocol3 和 course-authoring-persistence 已改用真正 await/poll，隔离重验均通过，实际等待课程进入确认缓存与离线保存队列清空。exit-performance 同类等待已修改，重验运行中，不能预先标为通过。
+- exit-performance 正确异步等待重验通过：20 条耐久入队、最终确认且队列清空，回执延迟 >=5000ms，退出 82ms，入队 P95 10.4ms/最大12.2ms。helper 增加返回已满足条件的对象以保留回执断言，单测通过。四项恢复/统计/认证队列用例已机械替换异步等待，正在逐项复验，未预先标绿。

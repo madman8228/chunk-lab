@@ -5,7 +5,8 @@ async function waitForAsync(page, predicate, arg, options = {}) {
   const timeout = options.timeout || 15000;
   const started = Date.now();
   do {
-    if (await page.evaluate(predicate, arg)) return;
+    const result = await page.evaluate(predicate, arg);
+    if (result) return result;
     if (Date.now() - started >= timeout) break;
     await new Promise(resolve => setTimeout(resolve, options.interval || 50));
   } while (true);
