@@ -47,6 +47,9 @@ test('legacy launcher saves once after confirmation and reuses a matching target
   assert.equal(retry.kind, 'launched');
   assert.equal(f.writes, 1);
   assert.equal(f.saved.items[0].cid, 'l1');
+  assert.equal((await f.launcher.inspect('ai-legacy-launch')).kind, 'native-ready');
+  assert.equal((await f.launcher.launch('ai-legacy-launch')).kind, 'launched');
+  assert.equal(f.writes, 1, 'normal reentry does not reconvert or write');
 });
 
 test('legacy launcher blocks malformed chunk references and conflicting existing decks', async () => {

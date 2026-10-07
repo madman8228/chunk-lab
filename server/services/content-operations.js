@@ -114,7 +114,7 @@ function createContentOperations(options) {
       const id = payload[key];
       const table = isDeck ? 'user_decks' : 'user_courses';
       const idColumn = isDeck ? 'id' : 'course_id';
-      const current = db.prepare('SELECT rev,deleted_at FROM ' + table + ' WHERE user_id=? AND ' + idColumn + '=?')
+      const current = db.prepare('SELECT rev,deleted_at' + (isDeck ? ',authoring_json' : '') + ' FROM ' + table + ' WHERE user_id=? AND ' + idColumn + '=?')
         .get(userId, id);
       const currentRev = current && current.rev != null ? Number(current.rev) : null;
       if (!current || current.deleted_at || currentRev !== body.expectedRev) {
@@ -122,6 +122,14 @@ function createContentOperations(options) {
           [{ entity, id, expectedRev: body.expectedRev, currentRev, deleted: !!(current && current.deleted_at) }]);
       }
       const rev = currentRev + 1;
+      let legacySource = null;
+      if (isDeck && current.authoring_json) {
+        try { legacySource = JSON.parse(current.authoring_json).legacySource; } catch (_) { /* Preserve malformed historical metadata. */ }
+      }
+      if (legacySource && legacySource.courseId === id) {
+        if (!upsertEntityRow) throw operationError('课程删除标记暂不可用', 'OPERATION_NOT_SUPPORTED', 428);
+        upsertEntityRow(userId, 'deletedItem', 'ai-course-retired:' + id, true, seq);
+      }
       writer(userId, isDeck ? { id } : { courseId: id }, rev, true, seq, body.expectedRev);
       if (!deleteSentenceStat || !deleteEntityRow || !upsertCourseProgress) {
         throw operationError('内容学习记录清理暂不可用', 'OPERATION_NOT_SUPPORTED', 428);

@@ -20,8 +20,19 @@ export class LegacyCourseLearningLauncher {
     this.scopeGuard.assert(scope);
     if (!source) return { kind: 'not-applicable', courseId };
     const conversion = convertLegacyAiCourse(source.course, { validator: this.validator, chunkShape: this.validator.chunkShape });
-    const retired = this.retiredStore.has(courseId);
+    const retired = this.retiredStore.has(courseId, this.gateway.readLearningMem ? await this.gateway.readLearningMem(scope) : undefined);
     const report = conversion.report;
+    if (report.valid && conversion.draft && !retired) {
+      const current = await this.gateway.findNativeCourse(courseId, scope);
+      this.scopeGuard.assert(scope);
+      const compiled = this.compiler.compileDeck(conversion.draft, { deckId: courseId,
+        catalogCourseId: report.plan.catalogCourseId, legacySource: report.plan.legacySource, lineIds: report.plan.lineIds });
+      if (current && current.authoring && current.authoring.legacySource &&
+          current.authoring.legacySource.courseId === courseId && JSON.stringify(current.items) === JSON.stringify(compiled.items)) {
+        return { ...report, courseId, draft: conversion.draft, history: source.progress || report.history,
+          kind: 'native-ready', retired: false };
+      }
+    }
     return { ...report, courseId, draft: conversion.draft, history: source.progress || report.history,
       kind: !report.valid ? 'blocked' : retired || report.warnings.length ? 'confirmation-required' : 'native-ready',
       retired };
@@ -47,9 +58,9 @@ export class LegacyCourseLearningLauncher {
     if (!source) return { kind: 'not-applicable', courseId };
     const conversion = convertLegacyAiCourse(source.course, { validator: this.validator, chunkShape: this.validator.chunkShape });
     const report = conversion.report;
-    const retired = this.retiredStore.has(courseId);
+    const retired = this.retiredStore.has(courseId, this.gateway.readLearningMem ? await this.gateway.readLearningMem(scope) : undefined);
     if (!conversion.draft || !report.valid) return { ...report, kind: 'blocked', courseId, history: source.progress || report.history };
-    if ((report.warnings.length || retired) && !confirmed) return { ...report, kind: 'confirmation-required', courseId, retired, history: source.progress || report.history };
+    if (retired && !confirmed) return { ...report, kind: 'confirmation-required', courseId, retired, history: source.progress || report.history };
 
     const compiled = this.compiler.compileDeck(conversion.draft, { deckId: courseId,
       catalogCourseId: report.plan.catalogCourseId, legacySource: report.plan.legacySource, lineIds: report.plan.lineIds });
@@ -72,6 +83,7 @@ export class LegacyCourseLearningLauncher {
       return { kind: 'launched', courseId, receipt, warnings: report.warnings, history: source.progress || report.history };
     }
     let receipt;
+    if (report.warnings.length && !confirmed) return { ...report, kind: 'confirmation-required', courseId, retired, history: source.progress || report.history };
     receipt = await this.gateway.saveSentenceCourse(compiled, scope, {
       forceSave: retired,
       beforeSave: retired ? (mem) => this.retiredStore.clear(courseId, mem) ? () => this.retiredStore.mark(courseId, mem) : null : null

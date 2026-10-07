@@ -309,6 +309,16 @@ assert.equal(operations.execute(1, recreateAiCourse).operation.retiredMarkerClea
 assert.ok(db.prepare("SELECT deleted_at FROM user_entity_rows WHERE user_id=1 AND kind='deletedItem' AND item_key=?").get('ai-course-retired:managed-ai-course').deleted_at,
   'recreating a retired AI course tombstones its marker atomically with deck.put');
 
+operations.execute(1, { protocol: 3, requestId: 'operation_converted_deck_seed', type: 'deck.put', expectedRev: null,
+  payload: { deck: { id: 'converted-delete-test', name: 'Converted test', items: [{ sentence: 'Hello.' }],
+    authoring: { legacySource: { courseId: 'converted-delete-test' } } } } });
+operations.execute(1, { protocol: 3, requestId: 'operation_converted_deck_delete', type: 'deck.delete', expectedRev: 1,
+  payload: { deckId: 'converted-delete-test' } });
+const retiredConverted = db.prepare("SELECT data_json,deleted_at FROM user_entity_rows WHERE user_id=1 AND kind='deletedItem' AND item_key=?")
+  .get('ai-course-retired:converted-delete-test');
+assert.ok(retiredConverted && !retiredConverted.deleted_at && JSON.parse(retiredConverted.data_json) === true,
+  'deleting a converted deck atomically retains a marker to prevent automatic recreation from its original source');
+
 const logicalDirectory = { id: 'logical-course:travel-a1-test', title: 'Travel A1', coverImage: '',
   catalogKey: 'logical:logical-course:travel-a1-test', origin: 'user', contentType: 'story',
   createdAt: '2026-10-03T00:00:00.000Z', updatedAt: '2026-10-03T00:00:00.000Z' };

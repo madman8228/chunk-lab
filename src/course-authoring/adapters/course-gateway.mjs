@@ -10,6 +10,17 @@ export class ExistingCourseGateway {
     return win;
   }
 
+  async readLearningMem(scope) {
+    const win = this.#ready(scope);
+    const config = win.CL.getCloudConfig && win.CL.getCloudConfig();
+    if (!config || config.writeProtocol !== 3) return win.CL.loadMem();
+    if (!win.ServerCache) throw new Error('课程确认缓存尚未就绪。');
+    const row = await win.ServerCache.read();
+    this.scopeGuard.assert(scope);
+    if (!row || row.owner !== win.AccountStorage.owner) throw new Error('课程数据尚未从服务器确认。');
+    return copy(row.snapshot.mem);
+  }
+
   async loadExample(catalogCourseId, scope) {
     const win = this.#ready(scope);
     const manifest = win.ContentRepo && win.ContentRepo.getManifest ? win.ContentRepo.getManifest() : null;
@@ -59,7 +70,7 @@ export class ExistingCourseGateway {
     const win = this.#ready(scope); await win.CL.preload(); this.scopeGuard.assert(scope);
     const story = win.CL.readCourses().find((item) => item.courseId === deckId);
     if (story) return { storageKind: 'story-package', contentId: story.courseId, catalogCourseId: `package:${story.courseId}`, lessonId: `lesson:story-package:${story.courseId}` };
-    const deck = win.CL.findDeck(win.CL.loadMem(), deckId);
+    const deck = win.CL.findDeck(await this.readLearningMem(scope), deckId);
     if (!deck || !deck.authoring || deck.authoring.template !== 'sentence-practice') throw new Error('找不到已保存的 AI 句子课程。');
     const catalogCourseId = deck.authoring.catalogCourseId || `user-deck:${deck.id}`;
     return { storageKind: 'sentence-deck', contentId: deck.id, catalogCourseId, lessonId: `lesson:user-deck:${deck.id}` };
@@ -67,13 +78,13 @@ export class ExistingCourseGateway {
 
   async findNativeCourse(deckId, scope) {
     const win = this.#ready(scope); await win.CL.preload(); this.scopeGuard.assert(scope);
-    const deck = win.CL.findDeck(win.CL.loadMem(), deckId);
+    const deck = win.CL.findDeck(await this.readLearningMem(scope), deckId);
     return deck ? copy(deck) : null;
   }
 
   async saveSentenceCourse(deck, scope, { forceSave = false, adoptMetadata = false, beforeSave = null } = {}) {
     const win = this.#ready(scope); await win.CL.preload(); this.scopeGuard.assert(scope);
-    const mem = win.CL.loadMem();
+    const mem = await this.readLearningMem(scope);
     const cloudConfig = win.CL.getCloudConfig && win.CL.getCloudConfig();
     const protocol3 = !!(cloudConfig && cloudConfig.writeProtocol === 3);
     const originalDecks = (mem.decks || []).map(copy);
@@ -84,6 +95,8 @@ export class ExistingCourseGateway {
         const sameItems = JSON.stringify(current.items) === JSON.stringify(deck.items);
         const noLegacySource = !current.authoring || !current.authoring.legacySource;
         if (adoptMetadata && sameItems && noLegacySource) mem.decks[index] = { ...current, authoring: copy(deck.authoring) };
+        else if (forceSave && !adoptMetadata && sameItems &&
+            JSON.stringify(current.authoring) === JSON.stringify(deck.authoring)) mem.decks[index] = copy(deck);
         else throw new Error('该课程 ID 已有不同内容，已保留原课程。请另建制作会话。');
       }
     }
@@ -99,7 +112,10 @@ export class ExistingCourseGateway {
           const current = (row.snapshot.mem.decks || []).find((item) => item.id === deck.id);
           if (index >= 0 && !current) throw new Error('服务器课程已变化或删除；本次保存未覆盖服务器版本。');
           if (index < 0 && current) throw new Error('该课程编号已存在于服务器；本次保存未覆盖服务器版本。');
-          const expectedRev = current ? row.snapshot.revs.decks[deck.id] : null;
+          if (current && JSON.stringify(current) !== JSON.stringify(originalDecks[index])) {
+            throw new Error('服务器课程已在保存期间变化；本次保存未覆盖服务器版本。');
+          }
+          const expectedRev = row.snapshot.revs.decks[deck.id] ?? null;
           await win.ServerStore.submitCommitted('deck.put', { deck: copy(mem.decks.find((item) => item.id === deck.id)), ...(rollback ? { clearRetiredMarker: true } : {}) }, {
             requestId: `authoring-deck-put-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
             expectedRev

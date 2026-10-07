@@ -500,7 +500,10 @@
         var retired = global.CourseLearningLaunch && global.CourseLearningLaunch.isRetired
           ? global.CourseLearningLaunch.isRetired(course.courseId, nativeMem) : false;
         var nativeCopy = retired ? null : global.CL.findDeck(nativeMem, course.courseId);
-      if (nativeCopy && nativeCopy.authoring && nativeCopy.authoring.legacySource && nativeCopy.authoring.legacySource.courseId === course.courseId) {
+      var nativeConfig = global.CL.getCloudConfig && global.CL.getCloudConfig();
+      // Protocol 3 must inspect the confirmed server state through the launcher;
+      // a historical local copy cannot bypass a server-side retirement marker.
+      if (!(nativeConfig && nativeConfig.writeProtocol === 3) && nativeCopy && nativeCopy.authoring && nativeCopy.authoring.legacySource && nativeCopy.authoring.legacySource.courseId === course.courseId) {
         global.location.href = 'main.html?course=' + encodeURIComponent(nativeCopy.authoring.catalogCourseId || 'package:' + course.courseId) + '&lesson=' + encodeURIComponent('lesson:story-package:' + course.courseId);
         return;
       }
