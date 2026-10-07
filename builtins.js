@@ -54,3 +54,11 @@ window.BUILTIN_MIGRATION = {
   "oral-8-39": ["c556a208","f7458ab4"],
   "oral-basic": ["b95cd0f4","b6c66834","e24acc99","e70c8cf4","4436b78d","1bcdc1c7","2dc7b93b"]
 };
+
+/* legacy CID → 当前课程/规范 CID；避免旧别名迁移到课程中不存在的 key。 */
+window.BUILTIN_CID_ALIASES = {
+  "40240f6d": {"deckId":"oral-2-9-2","cid":"d13966c5"},
+  "71c23d48": {"deckId":"oral-1-1-2","cid":"70c23bb5"},
+  "9762270a": {"deckId":"oral-4-25","cid":"8a621293"},
+  "fa9f05e4": {"deckId":"oral-1-1-1","cid":"f19ef7b9"}
+};

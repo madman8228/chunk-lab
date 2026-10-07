@@ -35,6 +35,7 @@ var bookWindow = {};
 new Function('window', bookSrc)(bookWindow);
 
 var MIG = builtinsWindow.BUILTIN_MIGRATION;
+var CID_ALIASES = builtinsWindow.BUILTIN_CID_ALIASES || {};
 var ALL_ITEMS = [];
 (bookWindow.ORAL_BOOK.decks || []).forEach(function (d) {
   (d.items || []).forEach(function (it) { ALL_ITEMS.push({ deckId: d.id, it: it }); });
@@ -61,7 +62,10 @@ function makeEnv(withMigration) {
     navigator: { clipboard: null },
     addEventListener: function () {}
   };
-  if (withMigration) win.BUILTIN_MIGRATION = MIG;
+  if (withMigration) {
+    win.BUILTIN_MIGRATION = MIG;
+    win.BUILTIN_CID_ALIASES = CID_ALIASES;
+  }
   /* core.js loads these as real pages do; without them this isolated migration
      harness enters its deliberate fail-closed state and cannot exercise loadMem. */
   new Function('window', 'globalThis', coreStatsSignatureSrc)(win, win);
@@ -74,11 +78,42 @@ function makeEnv(withMigration) {
 /* 全集自检：buitins 迁移表必须覆盖口语库里全部「原属老 deck」的句子 */
 console.log('【迁移表（来自 builtins.js）】');
 assert(!!MIG && typeof MIG === 'object', 'window.BUILTIN_MIGRATION 存在');
+assert(!!CID_ALIASES && typeof CID_ALIASES === 'object', 'window.BUILTIN_CID_ALIASES 存在');
 var migIds = Object.keys(MIG || {});
 var migTotal = 0;
 migIds.forEach(function (id) { migTotal += (MIG[id] || []).length; });
 assertEq(migTotal, 496, '迁移表 cid 总数 == 现有库 496 句');
 assert(migIds.every(function (id) { return /^oral-/.test(id); }), '迁移表键全部是新 oral-* deck id（' + migIds.length + ' 个）');
+
+console.log('\n【旧 CID 别名：必须映射到当前课程中的规范 CID】');
+assertEq(Object.keys(CID_ALIASES).length, 4, '批准版本的历史别名数量保持完整');
+Object.keys(CID_ALIASES).forEach(function (aliasCid) {
+  var target = CID_ALIASES[aliasCid];
+  var env = makeEnv(true);
+  var item = ALL_ITEMS.filter(function (entry) {
+    return entry.deckId === target.deckId && entry.it.cid === target.cid;
+  })[0];
+  assert(!!item, 'legacy CID 有可验证的当前课程目标');
+  if (!item) return;
+  var legacyKey = 'daily-home#' + aliasCid;
+  var canonicalKey = target.deckId + '#' + target.cid;
+  var seed = { version: 2, decks: [], best: {}, mastered: {}, deletedItems: {},
+    stats: { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] }, settings: {}, reinforceBook: [] };
+  seed.mastered[legacyKey] = { t: 1 };
+  seed.deletedItems[legacyKey] = true;
+  seed.stats.bySentence[legacyKey] = { times: 2 };
+  seed.stats.bySentence[canonicalKey] = { times: 1 };
+  seed.stats.events = [{ id: 'legacy-cid-alias', kind: 'answer', key: legacyKey, ok: true, at: 1000 }];
+  seed.reinforceBook = [{ _key: 'daily-home::' + item.it.sentence, deckId: 'daily-home', sentence: item.it.sentence }];
+  env.storage['chunklab.v1'] = JSON.stringify(seed);
+  var migrated = env.CL.loadMem();
+  assert(!!migrated.mastered[canonicalKey], 'mastered alias 映射到规范 CID');
+  assert(!!migrated.deletedItems[canonicalKey], 'deletedItems alias 映射到规范 CID');
+  assertEq(migrated.stats.events[0].key, canonicalKey, '事件 key 映射到规范 CID');
+  assertEq(migrated.reinforceBook[0]._key, target.deckId + '::' + item.it.sentence, '错题本通过别名归属当前课程');
+  assertEq(migrated.stats.bySentence[legacyKey].times, 2, '规范行冲突时旧统计原样保留');
+  assertEq(migrated.stats.bySentence[canonicalKey].times, 1, '规范统计行不被旧别名覆盖');
+});
 
 /* 迁入的 cid 必须真的落在这个 deck 里（防止「表与内容脱节」） */
 (function () {

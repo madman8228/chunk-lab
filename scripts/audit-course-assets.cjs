@@ -7,7 +7,7 @@ const git=args=>execFileSync('git',['-c','core.safecrlf=false',...args],{cwd:roo
 const reference=process.argv[2]||'HEAD';
 const original=JSON.parse(git(['show',reference+':content/manifest.json']));
 const current=JSON.parse(fs.readFileSync(path.join(root,'content/manifest.json'),'utf8'));
-const problems=[],changes=[];
+const problems=[],changes=[],sentenceChanges=[],fieldChanges={},removedFields=[];
 const decks=new Map(current.decks.map(deck=>[deck.id,deck]));
 let oldItems=0,newItems=0,checkedFiles=0;
 function items(deck,baseline){
@@ -35,6 +35,15 @@ for(const before of original.decks){
   for(const item of now)counts.set(key(item),(counts.get(key(item))||0)+1);
   for(const item of old){const k=key(item),count=counts.get(k)||0;if(!count)problems.push('missing identity '+before.id+' '+k);else counts.set(k,count-1);}
   const changed=old.filter(item=>{const next=now.find(candidate=>key(candidate)===key(item));return next&&JSON.stringify(next)!==JSON.stringify(item);}).length;
+  for(const item of old){
+    const next=now.find(candidate=>candidate.cid===item.cid);
+    if(!next)continue;
+    if(next.sentence!==item.sentence)sentenceChanges.push({deck:before.id,cid:item.cid,before:item.sentence,after:next.sentence});
+    for(const field of new Set([...Object.keys(item),...Object.keys(next)])){
+      if(JSON.stringify(item[field])!==JSON.stringify(next[field]))fieldChanges[field]=(fieldChanges[field]||0)+1;
+      if(Object.prototype.hasOwnProperty.call(item,field)&&!Object.prototype.hasOwnProperty.call(next,field))removedFields.push({deck:before.id,cid:item.cid,field});
+    }
+  }
   if(changed||old.length!==now.length)changes.push({deck:before.id,before:old.length,after:now.length,modified:changed});
 }
 const deleted=git(['diff','--name-only','--diff-filter=D','--','content']).trim().split(/\r?\n/).filter(Boolean);
@@ -44,5 +53,5 @@ const unexplained=deleted.filter(file=>!oldPaths.has(file)||newPaths.has(file));
 problems.push(...unexplained.map(file=>'unexplained deletion '+file));
 console.log(JSON.stringify({reference,oldDecks:original.decks.length,currentDecks:current.decks.length,
   oldItems,newItems,checkedFiles,deletedManifestFiles:deleted.length,unexplainedDeletions:unexplained,
-  changedDecks:changes,problems},null,2));
+  changedDecks:changes,sentenceChanges,fieldChanges,removedFields,problems},null,2));
 if(problems.length)process.exitCode=1;

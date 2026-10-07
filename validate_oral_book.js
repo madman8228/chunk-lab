@@ -10,7 +10,7 @@
     3) 每句必有 sentence/translation/chunks；hints 数 == chunks 数
     4) chunks 去空格拼接 == sentence（防脱字/多字）
     4b) chunk 形态：段数 1~5（**单字句允许 1 段**，其余 ≥2）、
-        无纯标点段、不以标点开头、句末标点只在末段
+        无纯标点段、不以标点开头；句界处可结束非末段（下一段须以新句大写开头）
         （段数判据的唯一实现在 js/chunk-shape.js，含单字句例外的完整说明）
         （自 validate_oral8000.js 移植，删旧脚本不丢覆盖）
     4c) alts（同义答案，可选）契约：与 chunks 等长、每项 null 或字符串数组、
@@ -111,8 +111,9 @@ decks.forEach((d, di) => {
       it.chunks.forEach((chnk, j) => {
         if (PURE_PUNCT.test(chnk)) msgs.push(tag + ' chunk#' + j + ' 纯标点: "' + chnk + '"');
         else if (START_PUNCT.test(chnk)) msgs.push(tag + ' chunk#' + j + ' 以标点开头: "' + chnk + '"');
-        if (j < it.chunks.length - 1 && END_SENT_PUNCT.test(chnk)) {
-          msgs.push(tag + ' chunk#' + j + ' 非末尾却以句末标点结尾: "' + chnk + '"');
+        const startsNewSentence = /^[\s"'“‘(]*[A-Z]/.test(String(it.chunks[j + 1] || ''));
+        if (j < it.chunks.length - 1 && END_SENT_PUNCT.test(chnk) && !startsNewSentence) {
+          msgs.push(tag + ' chunk#' + j + ' 非末尾却以句末标点结尾（下一段未开始新句）: "' + chnk + '"');
         }
       });
     }

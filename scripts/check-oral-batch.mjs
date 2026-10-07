@@ -6,12 +6,12 @@
  *   C1 chunks 数 2~5
  *   C2 chunks.join('') 去空格 == sentence 去空格
  *   C3 无纯标点 chunk / chunk 不以标点开头
- *   C4 句末标点(. ? !)只在最后一个 chunk
+ *   C4 句末标点(. ? !)只在最终块，或句界处结束后下一块以新句大写开头
  *   C5 cid 与既有库冲突 / 与本批内重复
  *   C6 句 norm 与既有库重复
  *   D1-E6 干扰项：外层长度==chunks、每槽数组、string、1..120、norm 不撞句内任何 chunk、槽内 norm 不重复
- *   D7 每槽 ≥2 条（buildChoices pick(preset,2) 的最低要求）
- *   W3 句级可用量 >= max(4, 2×chunks)
+ *   D7 每槽至少一条预置候选（运行时每槽最多选一条）
+ *   W3 句级可用量达到 min(4, chunks)
  *   W4 固定搭配未拆分（黑名单扫描）
  *   F1 hints / grammar / explanations 长度 == chunks
  */
@@ -19,6 +19,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { norm } from '../js/chunk-engine.mjs';
+import { presetSentenceCoverage } from '../js/distractor-validate.mjs';
 /* 「最少切几段」的唯一判据（含单字句例外）—— 同目录 */
 import CS from '../js/chunk-shape.js';
 
@@ -107,8 +108,9 @@ for (const f of files) {
     chunks.forEach((c, j) => {
       if (PURE_PUNCT.test(c)) msgs.push('C3 chunk#' + j + ' 纯标点 "' + c + '"');
       else if (START_PUNCT.test(c)) msgs.push('C3 chunk#' + j + ' 以标点开头 "' + c + '"');
-      if (j < chunks.length - 1 && END_SENT_PUNCT.test(c))
-        msgs.push('C4 chunk#' + j + ' 非末尾却以句末标点结尾 "' + c + '"');
+      const startsNewSentence = /^[\s"'“‘(]*[A-Z]/.test(String(chunks[j + 1] || ''));
+      if (j < chunks.length - 1 && END_SENT_PUNCT.test(c) && !startsNewSentence)
+        msgs.push('C4 chunk#' + j + ' 非末尾却以句末标点结束且后续未开始新句 "' + c + '"');
     });
 
     /* ---- C5/C6 与既有库、批内去重 ---- */
@@ -137,14 +139,16 @@ for (const f of files) {
 
     /* ---- D 干扰项 ---- */
     const correctSet = new Set(chunks.map((c) => norm(c)));
+    (Array.isArray(it.alts) ? it.alts : []).forEach((slot) => {
+      (Array.isArray(slot) ? slot : (typeof slot === 'string' ? [slot] : [])).forEach((alt) => correctSet.add(norm(alt)));
+    });
     const d = it.distractors;
     if (!Array.isArray(d)) msgs.push('D1 缺 distractors');
     else if (d.length !== chunks.length) msgs.push('D2 干扰项外层 ' + d.length + ' ≠ chunks ' + chunks.length);
     else {
-      let available = 0;
       d.forEach((slot, i) => {
         if (!Array.isArray(slot)) { msgs.push('D3 槽[' + i + '] 非数组'); return; }
-        if (slot.length < 2) msgs.push('D7 槽[' + i + '] 仅 ' + slot.length + ' 条（buildChoices 每槽取 2）');
+        if (slot.length < 1) msgs.push('D7 槽[' + i + '] 没有预置候选');
         const seenSlot = new Set();
         slot.forEach((raw, j) => {
           if (typeof raw !== 'string') { msgs.push('D4 槽[' + i + ']#' + j + ' 非字符串'); return; }
@@ -156,10 +160,9 @@ for (const f of files) {
           if (correctSet.has(nk)) { msgs.push('E5 槽[' + i + ']#' + j + ' norm 撞句内 chunk：「' + t + '」'); return; }
           if (seenSlot.has(nk)) { msgs.push('E6 槽[' + i + ']#' + j + ' 槽内重复：「' + t + '」'); return; }
           seenSlot.add(nk);
-          available++;
         });
       });
-      const need = Math.max(4, 2 * chunks.length);
+      const { need, available } = presetSentenceCoverage(it);
       if (available < need) msgs.push('W3 可用 ' + available + ' < 需求 ' + need);
     }
 

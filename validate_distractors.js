@@ -17,17 +17,13 @@
          chunk[i+1] 的干扰，比空位危害更大 —— cleanDistractors 的硬拒绝）
      E3  每槽必须是数组
      E4  条目必须 string、trim 后非空、长度 1..120（sanitizeOne 护栏）
-     E5  条目 norm 不得等于句内任一 chunk 的 norm（含目标位自身 →
+     E5  条目 norm 不得等于句内任一 chunk 或 alts 的 norm（含目标位自身 →
          用户看到"两个都对" / judgeChunk 判对歧义）
      E6  槽内 norm 不得重复（norm 去重）
      W1  条目首尾带空白（入库未走 cleanDistractors trim 的证据）
      W2  槽位 0 条（空位）→ 该 chunk 逐槽填空时无预置质量，掉运行时生成
-     W3  句级消费仿真缺口（2026-09-08 升级）：直接调 chunk-engine 的
-         buildDistractors(it, [], [])（空池 = 仅预置可用量，pass0 不依赖池），
-         若可用量 < max(4, 2×chunks)（整句模式 distractorCount）→ 该句必混入
-         运行时生成干扰（兜底）。取代旧的「每槽目标 3 条」静态阈值——引擎
-         逐槽只吃 2 条（buildChoices pick(preset,2)），整句才展平 max(4,2n)，
-         旧 W3 的 311 处告警绝大多数永不触发兜底 = 假警报。
+     W3  句级消费仿真缺口：直接调 chunk-engine 的 presetSentenceCoverage，
+         预算为 min(4, chunks)；不足时运行时可能从题库补充合格干扰。
    另：无 distractors 字段的句子计入「未入库」统计（builtins.js 静态句
        属预期未覆盖，输出供 D-pipeline 下一批排期参考），不算违规。
 
@@ -90,9 +86,15 @@ function loadLibs() {
         return;
       }
 
-      /* 句内正确 norm 集（含目标位自身） */
+      /* 句内正确 norm 集：chunks 与 alts 中全部可接受答案。 */
       const correctSet = {};
       chunks.forEach(function (c) { correctSet[norm(c)] = 1; });
+      (Array.isArray(it.alts) ? it.alts : []).forEach(function (slot) {
+        (Array.isArray(slot) ? slot : (typeof slot === 'string' ? [slot] : [])).forEach(function (alt) {
+          const key = norm(alt);
+          if (key) correctSet[key] = 1;
+        });
+      });
 
       let slotEmpty = 0;   /* W2 计数 */
 
@@ -146,12 +148,12 @@ function loadLibs() {
       /* ---- W3：句级消费仿真缺口 ----
          presetSentenceCoverage 直接调引擎 buildDistractors(it, [], [])：
          空池 → pass1..4 无候选可取，返回量 = 预置展平后（norm 去重 + 排除句内
-         chunk）的真实可用数。整句模式 distractorCount = max(4, 2×chunks)；
-         可用 < 该值 → 该句运行时必混入生成干扰（质量降级信号）。
+         chunk/alts）的真实可用数。整句干扰预算 = min(4, chunks)；
+         可用 < 该值 → 运行时可能从题库补充合格干扰（质量降级信号）。
          0 缺口 = 该句纯预置即可出满整句池。 */
       const cov = presetSentenceCoverage(it);
       if (cov.shortfall > 0) {
-        stats.warns.push({ where: where, msg: 'W3 句级可用 ' + cov.available + ' < 整句需求 ' + cov.need + '（max(4,2×' + n + ')）→ 运行时必混入生成干扰' });
+        stats.warns.push({ where: where, msg: 'W3 句级可用 ' + cov.available + ' < 整句预算 ' + cov.need + '（min(4,' + n + ')）→ 运行时可能从题库补充干扰' });
       }
 
       /* ---- W4：句级槽位覆盖不足 ---- */

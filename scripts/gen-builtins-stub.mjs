@@ -59,20 +59,31 @@ const cid2deck = new Map();
 });
 if (!cid2deck.size) throw new Error('oral-book.js 里没有任何 cid —— 是不是还没跑 scripts/gen-oral-book.mjs？');
 const map = {};
+const aliases = {};
 const missing = [];
 for (let i = 0; i < 496; i++) {
   const it = exist[i];
   /* 两种形态都收：显式 cid 与 fnv8(sentence)（老数据可能是后者） */
   const cands = it.cid === fnv8(it.sentence) ? [it.cid] : [it.cid, fnv8(it.sentence)];
-  const deck = cands.map((c) => cid2deck.get(c)).find(Boolean);
-  if (!deck) { missing.push(it.cid + ' / ' + fnv8(it.sentence) + ' 「' + it.sentence + '」'); continue; }
+  const targets = cands.map((cid) => ({ cid, deck: cid2deck.get(cid) })).filter((entry) => entry.deck);
+  const targetDecks = [...new Set(targets.map((entry) => entry.deck))];
+  if (targetDecks.length > 1) throw new Error('同一句的 legacy CID 指向不同课程：' + it.cid + ' / ' + fnv8(it.sentence));
+  const target = targets[0];
+  if (!target) { missing.push(it.cid + ' / ' + fnv8(it.sentence) + ' 「' + it.sentence + '」'); continue; }
+  const deck = target.deck;
   if (!map[deck]) map[deck] = [];
-  cands.forEach((c) => map[deck].push(c));
+  map[deck].push(target.cid);
+  cands.filter((cid) => cid !== target.cid).forEach((cid) => {
+    const alias = { deckId: deck, cid: target.cid };
+    const previous = aliases[cid];
+    if (previous && (previous.deckId !== alias.deckId || previous.cid !== alias.cid)) throw new Error('legacy CID 别名映射冲突：' + cid);
+    aliases[cid] = alias;
+  });
 }
 if (missing.length) throw new Error('以下现有句在 oral-book.js 里找不到归属（fail-closed，拒绝生成脱节的迁移表）：\n  ' + missing.join('\n  '));
 Object.keys(map).forEach((k) => { map[k] = [...new Set(map[k])]; });
 const cidTotal = Object.values(map).reduce((a, x) => a + x.length, 0);
-console.log('迁移表：' + Object.keys(map).length + ' 个 deck / ' + cidTotal + ' 个 cid');
+console.log('迁移表：' + Object.keys(map).length + ' 个 deck / ' + cidTotal + ' 个规范 CID / ' + Object.keys(aliases).length + ' 个 legacy CID 别名');
 
 /* 自检：cid 唯一归属 */
 const seen = new Map();
@@ -98,6 +109,13 @@ const keys = Object.keys(map).sort();
 keys.forEach((k, i) => {
   const list = map[k].map((c) => JSON.stringify(c)).join(',');
   lines.push('  ' + JSON.stringify(k) + ': [' + list + ']' + (i === keys.length - 1 ? '' : ','));
+});
+lines.push('};');
+lines.push('');
+lines.push('/* legacy CID → 当前课程/规范 CID；避免旧别名迁移到课程中不存在的 key。 */');
+lines.push('window.BUILTIN_CID_ALIASES = {');
+Object.keys(aliases).sort().forEach((cid, index, list) => {
+  lines.push('  ' + JSON.stringify(cid) + ': ' + JSON.stringify(aliases[cid]) + (index === list.length - 1 ? '' : ','));
 });
 lines.push('};');
 const stub = lines.join('\n') + '\n';

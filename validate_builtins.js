@@ -5,14 +5,15 @@
 
    2026-09-15 起 builtins.js 不再持有句子：
      - window.BUILTIN = []                    （deck 清单由 content/manifest.json 提供）
-     - window.BUILTIN_MIGRATION = { 新deckId: [cid, ...] }  （老档案 key → 新 deck）
+     - window.BUILTIN_MIGRATION = { 新deckId: [cid, ...] }  （规范 CID → 新 deck）
+     - window.BUILTIN_CID_ALIASES = { legacyCid: { deckId, cid } }  （旧别名 → 规范 CID）
 
    规则：
     1) BUILTIN 必须是空数组（内容源已迁到 oral-book.js；非空说明有残留）
     2) 迁移表存在、非空；键全部是 oral-* 形态
-    3) 每个 cid 为 8-hex；**不得跨 deck 重复**（否则迁移结果不确定）
-    4) 与 oral-book.js 交叉核对：每个 cid 必须真的存在于目标 deck（防表与内容脱节）
-    5) cid 总数必须等于「现有库并入句数」的声明值（496）
+    3) 每个规范 cid 为 8-hex；**不得跨 deck 重复**（否则迁移结果不确定）
+    4) 与 oral-book.js 交叉核对：规范 cid 必须存在于目标 deck，别名目标必须解析到该 cid
+    5) 规范 cid 总数必须等于「现有库并入句数」的声明值（496）；历史别名单独计数
    ============================================================ */
 'use strict';
 const fs = require('fs');
@@ -24,6 +25,7 @@ const win = {};
 new Function('window', fs.readFileSync(path.join(__dirname, 'builtins.js'), 'utf8'))(win);
 const decks = win.BUILTIN;
 const MIG = win.BUILTIN_MIGRATION;
+const ALIASES = win.BUILTIN_CID_ALIASES || {};
 
 let issues = 0;
 function report(msgs) { issues++; msgs.forEach((m) => console.log('   - ' + m)); }
@@ -78,6 +80,19 @@ if (miss > 5) report(['…共 ' + miss + ' 个 cid 在目标 deck 里找不到']
 console.log('[4] 交叉核对完成，脱节 ' + miss + ' 个');
 
 if (total !== EXPECT_TOTAL) report(['迁移表 cid 总数 ' + total + ' ≠ 期望 ' + EXPECT_TOTAL]);
+
+const aliasIds = Object.keys(ALIASES);
+aliasIds.forEach((legacyCid) => {
+  const alias = ALIASES[legacyCid];
+  if (!/^[0-9a-f]{8}$/.test(legacyCid)) report(['legacy 别名不是 8-hex：' + legacyCid]);
+  if (owner[legacyCid]) report(['legacy 别名同时作为规范 CID 出现：' + legacyCid]);
+  if (!alias || !/^oral-/.test(alias.deckId || '') || !/^[0-9a-f]{8}$/.test(alias.cid || '')) {
+    report(['legacy 别名目标无效：' + legacyCid]);
+  } else if (owner[alias.cid] !== alias.deckId || !bookById[alias.deckId] || !bookById[alias.deckId][alias.cid]) {
+    report(['legacy 别名目标未落在规范映射/课程内容中：' + legacyCid + ' → ' + alias.deckId + '#' + alias.cid]);
+  }
+});
+console.log('[5] legacy CID 别名 ' + aliasIds.length + ' 个，目标均指向规范课程 CID');
 
 console.log('\n结果：' + (issues ? issues + ' 处问题  ❌' : '全部合规  ✅'));
 process.exit(issues ? 1 : 0);
