@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { LegacyCourseLearningLauncher } from './learning-launch.mjs';
+import chunkShape from '../../js/chunk-shape.js';
 
 function course(id = 'ai-legacy-launch') {
   return { schemaVersion: '2.0', courseId: id, version: '1.0.0',
@@ -20,7 +21,7 @@ function fixture(source = course()) {
     async getLaunchReceipt(id) { return { storageKind: 'sentence-deck', contentId: id, catalogCourseId: saved.authoring.catalogCourseId, lessonId: 'lesson:user-deck:' + id }; },
     async saveSentenceCourse(deck, _scope, options = {}) { const rollback = options.beforeSave && options.beforeSave({}); if (failSave) { failSave = false; if (rollback) rollback(); throw new Error('simulated save failure'); } writes++; saved = structuredClone(deck); return { storageKind: 'sentence-deck', contentId: deck.id, catalogCourseId: deck.authoring.catalogCourseId, lessonId: 'lesson:user-deck:' + deck.id }; }
   };
-  const validator = { chunkShape: { chunkCountOk: (_en, chunks) => chunks.length >= 2 && chunks.length <= 5 }, validate() { return { valid: true, issues: [] }; } };
+  const validator = { chunkShape, validate() { return { valid: true, issues: [] }; } };
   const compiler = { compileDeck(draft, options) { return { id: options.deckId, name: draft.title, items: draft.items.map((item, i) => ({ cid: options.lineIds[i], sentence: item.en, translation: item.zh, chunks: item.chunks })), authoring: { legacySource: options.legacySource, catalogCourseId: options.catalogCourseId } }; } };
   const launcher = new LegacyCourseLearningLauncher({ gateway, validator, compiler,
     scopeGuard: { capture: () => scope, assert(value) { assert.equal(value, scope); } },

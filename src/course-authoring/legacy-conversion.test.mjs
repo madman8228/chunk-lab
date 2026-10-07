@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { convertLegacyAiCourse, inspectLegacyAiCourse } from './legacy-conversion.mjs';
+import shape from '../../js/chunk-shape.js';
 
-const shape = { chunkCountOk: (_sentence, chunks) => chunks.length >= 2 && chunks.length <= 5 };
 function course() {
   return { schemaVersion: '2.0', courseId: 'ai-legacy-123', version: '1.0.0',
     metadata: { title: { 'zh-CN': '测试课程' }, description: { 'zh-CN': '' }, targetCefr: 'A2' },
