@@ -78,7 +78,22 @@ async function ready(){
     check('8000-句首页不请求详情或索引',details===0 && indexes===0);
     await heap();
     await page.evaluate(id=>{mem.settings.skipMastered=false;mem.settings.batchSize=10;startDeck(findDeck(id),0);},deckId);
-    await page.waitForFunction(()=>S.items.length===10 && S.items.some(it=>it.cid==='perf-0'));
+    try {
+      await page.waitForFunction(()=>S.items.length===10 && S.items.some(it=>it.cid==='perf-0'));
+    } catch (error) {
+      const state = await page.evaluate(()=>({
+        manifestReady: !!ContentRepo.getManifest(),
+        deckId: window.S && S.deck && S.deck.id,
+        itemCount: window.S && S.items && S.items.length,
+        firstCid: window.S && S.items && S.items[0] && S.items[0].cid,
+        homeVisible: !document.getElementById('pageHome').classList.contains('hidden'),
+        practiceVisible: !document.getElementById('pagePractice').classList.contains('hidden')
+      })).catch(()=>({pageUnreadable:true}));
+      throw new Error('[mobile-8000 first-batch] '+error.message+' '+JSON.stringify({
+        state, detailRequests:details, indexRequests:indexes, pageErrors:errors,
+        consoleErrors:consoleLogs.filter(line=>line.startsWith('error:')).slice(-8)
+      }));
+    }
     check('普通练习首批只请求一个 200 句分片',details===1);
     const reset = await page.evaluate(id=>ContentRepo.ensureDeckBatch(id,CL.loadMem(),{force:true,limit:2,skipMastered:false,cursor:{shardIndex:39,shardOffset:190,contentVersion:'old-release'}}),deckId);
     check('内容版本改变后重置旧偏移游标',reset.deck.items[0].cid==='perf-0' && reset.nextCursor.contentVersion===manifest.contentVersion);
