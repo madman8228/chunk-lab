@@ -76,12 +76,14 @@ function writeAttempt(runDirPath, runIdValue, entry, attempt, index) {
 function run(entry, options) {
   /* 单次调用可覆盖超时预算：测试「调度器超时行为」时需要一个远小于夹具运行时长的小预算，
      而测试「夹具能否跑完」时需要大于宿主冷启动的大预算 —— 二者不能共用一个常量。 */
-  const budgetMs = options && Number(options.timeoutMs) > 0 ? Number(options.timeoutMs) : timeoutMs;
+  const composite = entry.file.replace(/\\/g, '/') === 'e2e/transparent-save.test.js';
+  const budgetMs = options && Number(options.timeoutMs) > 0 ? Number(options.timeoutMs)
+    : composite && !process.env.TEST_TIMEOUT_MS ? timeoutMs * 6 + 30000 : timeoutMs;
   return new Promise((resolve) => {
     const started = Date.now();
     const child = spawn(process.execPath, [entry.file].concat(entry.args || []), {
       cwd: path.resolve(ROOT, entry.cwd),
-      env: process.env,
+      env: options && options.env || process.env,
       stdio: ['ignore', 'pipe', 'pipe'],
       detached: process.platform !== 'win32',
     });

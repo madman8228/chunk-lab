@@ -4,7 +4,7 @@
 'use strict';
 
 const path = require('node:path');
-const { spawnSync } = require('node:child_process');
+const { run } = require('../scripts/run-tests.cjs');
 
 const root = path.resolve(__dirname, '..');
 const suites = [
@@ -16,24 +16,23 @@ const suites = [
   { file: 'e2e/server-store-queue.test.js', label: 'durable queue, lost ACK, multi-tab order, and late account-switch response' },
 ];
 
+(async function(){
 for (const suite of suites) {
   process.stdout.write(`\n[transparent-save] ${suite.label}\n`);
   const env = Object.assign({}, process.env);
   if (suite.protocol3) env.COURSE_PACKAGE_PROTOCOL3 = '1';
   else delete env.COURSE_PACKAGE_PROTOCOL3;
-  const result = spawnSync(process.execPath, [path.join(root, suite.file)], {
-    cwd: root,
-    env,
-    stdio: 'inherit',
-  });
+  const result = await run({id:suite.file,file:suite.file,cwd:'.',group:'browser'}, {env,timeoutMs:180000});
+  process.stdout.write(result.output || '');
   if (result.error) {
     console.error(`[transparent-save] could not run ${suite.file}:`, result.error);
     process.exit(result.error.errno || 1);
   }
-  if (result.status !== 0) {
-    console.error(`[transparent-save] failed: ${suite.file} (exit=${result.status}, signal=${result.signal || 'none'})`);
-    process.exit(result.status || 1);
+  if (result.code !== 0) {
+    console.error(`[transparent-save] failed: ${suite.file} (exit=${result.code}, timedOut=${result.timedOut})`);
+    process.exit(result.code || 1);
   }
 }
 
 console.log('\n[transparent-save] all isolated user-visible save and recovery suites passed');
+})().catch(error=>{console.error(error);process.exitCode=1;});
