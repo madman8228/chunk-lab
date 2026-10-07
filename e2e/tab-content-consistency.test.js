@@ -44,7 +44,7 @@ function stopServer() {
     await startServer();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage();
-    await page.goto(BASE + '/decks.html?e2e=tab-content-consistency', { waitUntil: 'networkidle' });
+    await page.goto(BASE + '/decks.html?e2e=tab-content-consistency&courseView=joined', { waitUntil: 'networkidle' });
     await page.evaluate(function () {
       LogicalCourseStore.create({ title: '页签一致性回归目录', coverImage: 'data:image/png;base64,e2e-tab-cover' });
     });
@@ -54,8 +54,8 @@ function stopServer() {
     await page.waitForURL(/decks\.html\?.*course=logical-course%3A/);
     await page.locator('#decksBack').click();
     await page.waitForFunction(function () { return new URL(location.href).searchParams.get('course') === null; });
-    if (!await page.locator('#tabCourses').evaluate(function (el) { return el.classList.contains('on'); })) throw new Error('返回后图文课程页签未保持选中');
-    if ((await page.locator('#deckList .deck-section-title').innerText()) !== '图文课程（1 门）') throw new Error('返回后内容未恢复为图文课程');
+    if (!await page.locator('#tabCourses').evaluate(function (el) { return el.getAttribute('aria-current') === 'page'; })) throw new Error('返回后图文课程页签未保持选中');
+    if ((await page.locator('#deckList .deck-section-title').innerText()) !== '我的图文课程（1 门）') throw new Error('返回后内容未恢复为个人图文课程');
     if (await page.locator('#deckList .course-card').filter({ hasText: '口语3000句' }).count()) throw new Error('图文课程页签混入句子课程');
     console.log('tab-content-consistency.test.js passed');
   } finally {
