@@ -142,8 +142,10 @@ async function seedSixCompletedSentences(page) {
     await page.locator('#btnNext').click();
     await page.waitForSelector('#result:not(.hidden) #btnNextCourse', { timeout: 10000 });
     const finish = await page.locator('#result').innerText();
-    if (finish.indexOf('下一课') === -1 || finish.indexOf('口语3000句') === -1) {
-      throw new Error('完成课节后缺少下一课提示：' + finish);
+    const nextCourseButton = await page.locator('#btnNextCourse').innerText();
+    const nextCourseTitle = await page.evaluate(function () { return courseNavigationForDeck(S.deck).next.lesson.title; });
+    if (nextCourseButton !== '下一课' || finish.indexOf(nextCourseTitle) !== -1) {
+      throw new Error('下一课入口应使用简洁文案且不展示下一课名称：' + finish);
     }
     await page.locator('#btnNextCourse').click();
     await page.waitForSelector('#stageChoices .choice', { timeout: 15000 });

@@ -212,8 +212,8 @@ function PAGE_READ_STATE() {
   const refreshed = await pA.evaluate(async function () {
     var m = await window.CL.refreshExternal();
     var by = (m.stats && m.stats.bySentence) || {};
-    var hasB = Object.keys(by).some(function (k) { return by[k] && by[k].sentence === 'Sentence deckB'; });
-    return { mode: window.CL.statsStoreMode(), rows: Object.keys(by).length, hasB: hasB };
+    var row = by['deckB#bbbbbbbb'];
+    return { mode: window.CL.statsStoreMode(), rows: Object.keys(by).length, hasB: !!row && row.times === 3, bKey: row && row.deckId };
   });
   check('★ refreshExternal：A 能看到 B 刚写的句子档案（statsStoreMode=' + refreshed.mode + '）',
     refreshed.mode === 'idb' ? refreshed.hasB === true : true,
