@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { currentContentFiles } from './content-file-inventory.mjs';
 
 const root = process.cwd();
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'chunklab-content-check-'));
@@ -30,13 +31,16 @@ try {
       (result.error ? ' ' + result.error.code : '') + ')\n');
     process.exitCode = result.status || 1;
   } else {
-    const expected = files(path.join(root, 'content')).sort();
+    // Do not require deletion of old immutable versions to pass this gate.
+    // Every current manifest reference must still exist and match fresh output.
+    const expected = currentContentFiles(JSON.parse(fs.readFileSync(path.join(root, 'content/manifest.json'), 'utf8')));
     const generated = files(path.join(temp, 'content')).sort();
     const missing = expected.filter((file) => !generated.includes(file));
     const extra = generated.filter((file) => !expected.includes(file));
     const changed = expected.filter((file) => generated.includes(file) &&
-      !Buffer.from(fs.readFileSync(path.join(root, 'content', file))).equals(
-        fs.readFileSync(path.join(temp, 'content', file))));
+      (!fs.existsSync(path.join(root, 'content', file)) ||
+       !Buffer.from(fs.readFileSync(path.join(root, 'content', file))).equals(
+        fs.readFileSync(path.join(temp, 'content', file)))));
     if (missing.length || extra.length || changed.length) {
       console.error('[content:check-generated] 生成内容与仓库不一致');
       if (missing.length) console.error('  缺失: ' + missing.slice(0, 8).join(', '));
