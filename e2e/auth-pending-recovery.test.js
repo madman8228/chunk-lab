@@ -9,6 +9,7 @@ const path = require('node:path');
 const { randomBytes } = require('node:crypto');
 const Database = require('../server/node_modules/better-sqlite3');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-async');
 const { freePort } = require('./lib/free-port');
 
 const root = path.resolve(__dirname, '..');
@@ -73,22 +74,36 @@ async function waitHealthy() {
     await page.goto(base + '/main.html');
     await page.waitForFunction(() => window.CL && CL.serverPersistenceReady && CL.serverPersistenceReady(), null, { timeout: 20000 });
 
+    const databaseName = await page.evaluate(() => AccountStorage.databaseName);
     const accepted = await page.evaluate(id => ServerStore.submit('settings.patch', { patch: { sound: true } }, { requestId: id }), requestId);
     assert.equal(accepted.durable, true, 'operation is durably queued before sending');
     try { await page.waitForSelector('#chunkauth-mask', { timeout: 20000 }); }
     catch (error) {
       const diagnostic = await page.evaluate(async () => ({
-        url:location.href, token:ChunkAPI.getToken(), ready:CL.serverPersistenceReady(),
+        url:location.href, hasToken:!!ChunkAPI.getToken(), ready:CL.serverPersistenceReady(),
         status:ServerStore.state(), pending:await ServerStore.pending(),
         authMask:!!document.getElementById('chunkauth-mask'),
       })).catch(() => null);
       console.error('[auth-pending-recovery] diagnostic:', JSON.stringify({ injected401, sentOperations, diagnostic }));
       throw error;
     }
-    await page.waitForFunction(async id => {
-      const rows = await ServerStore.pending();
-      return rows.some(row => row.requestId === id && row.status === 'pending');
-    }, requestId, { timeout: 10000 });
+    await waitForAsync(page, async ({ id, name }) => {
+      if (!(await indexedDB.databases()).some(database => database.name === name)) return false;
+      return new Promise((resolve, reject) => {
+        const opening = indexedDB.open(name);
+        opening.onupgradeneeded = () => { opening.transaction.abort(); reject(new Error('Existing queue database unexpectedly missing')); };
+        opening.onerror = () => reject(opening.error);
+        opening.onsuccess = () => {
+          const db = opening.result;
+          const transaction = db.transaction('pendingOperations', 'readonly');
+          const request = transaction.objectStore('pendingOperations').get(id);
+          let found = false;
+          request.onsuccess = () => { found = !!request.result && request.result.status === 'pending'; };
+          transaction.oncomplete = () => { db.close(); resolve(found); };
+          transaction.onerror = () => { db.close(); reject(transaction.error); };
+        };
+      });
+    }, { id: requestId, name: databaseName }, { timeout: 10000 });
     assert.equal(injected401, true, 'the first real protocol request received the injected 401');
     await page.waitForFunction(function () {
       const message = document.querySelector('#chunkauth-mask [data-auth-message]');
@@ -103,7 +118,7 @@ async function waitHealthy() {
     ]);
     await page.waitForFunction(() => window.CL && CL.serverPersistenceReady && CL.serverPersistenceReady() &&
       !document.getElementById('chunkauth-mask'), null, { timeout: 20000 });
-    await page.waitForFunction(async id => {
+    await waitForAsync(page, async id => {
       const [receipt, rows] = await Promise.all([
         ChunkAPI.getOperationReceipt(id).catch(() => null), ServerStore.pending(),
       ]);
