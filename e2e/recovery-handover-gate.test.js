@@ -8,6 +8,7 @@ const path = require('node:path');
 const http = require('node:http');
 const { spawn } = require('node:child_process');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-async');
 
 const root = path.resolve(__dirname, '..');
 const port = require('./lib/free-port').freePort(9800, 100);
@@ -83,7 +84,7 @@ function waitForServer() {
     const queued = await page.evaluate(() => ServerStore.submit('settings.patch', {patch:{sound:false}}));
     assert.equal(queued.durable, true, 'the user can continue with a durable local queue while the server gate is closed');
     await page.waitForTimeout(200);
-    await page.waitForFunction(async requestId =>
+    await waitForAsync(page, async requestId =>
       !(await IDBStore.listPendingOperations()).some(row => row.requestId === requestId), queued.requestId);
     assert.ok(operationWrites > 0, 'independent current-account work is saved while legacy recovery is unavailable');
 
@@ -93,7 +94,7 @@ function waitForServer() {
     recoveryAvailable = true;
     await page.evaluate(() => window.dispatchEvent(new Event('online')));
     await page.waitForFunction(() => CL.serverPersistenceReady(), null, {timeout:10000});
-    await page.waitForFunction(async requestId => {
+    await waitForAsync(page, async requestId => {
       try {
         const receipt=await ChunkAPI.request('/api/operations/'+encodeURIComponent(requestId),{method:'GET'});
         return !!receipt&&receipt.ok===true;
@@ -101,7 +102,7 @@ function waitForServer() {
     }, queued.requestId, {timeout:10000});
     assert.equal(new URL(page.url()).pathname,'/main.html','recovery and retry do not require a page reload');
     assert.ok(snapshotReads>0,'the confirmed server snapshot loads after recovery becomes complete');
-    await page.waitForFunction(async requestId => {
+    await waitForAsync(page, async requestId => {
       const rows=await IDBStore.listPendingOperations();
       const receipt=await ChunkAPI.request('/api/operations/'+encodeURIComponent(requestId),{method:'GET'}).catch(()=>null);
       const cache=await ServerCache.read();

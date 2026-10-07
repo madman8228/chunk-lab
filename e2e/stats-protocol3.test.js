@@ -7,6 +7,7 @@ const path = require('node:path');
 const { spawn } = require('node:child_process');
 const http = require('node:http');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-async');
 
 const root = path.resolve(__dirname, '..');
 const port = require('./lib/free-port').freePort(10820, 100);
@@ -107,7 +108,7 @@ function waitForServer() {
     assert.equal(offlineState.deletePending, false, 'offline failure does not enqueue an unconfirmed deletion');
 
     await page.locator('#btnClearWrongBook').click();
-    await page.waitForFunction(async key => {
+    await waitForAsync(page, async key => {
       const data = await ChunkAPI.getData();
       return !(data.mem.reinforceBook || []).some(row => row && row._key === key);
     }, seeded.mistakeKey, { timeout: 10000 });

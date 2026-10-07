@@ -9,5 +9,11 @@ const { waitForAsync } = require('../e2e/lib/wait-async');
   assert.deepEqual(await waitForAsync(page, async () => ({ requestId: 'confirmed' })), { requestId: 'confirmed' });
   await assert.rejects(waitForAsync(page, async () => false, undefined, { timeout: 10, interval: 1 }), /timed out/);
   await assert.rejects(waitForAsync(page, async () => { throw new Error('condition failed'); }), /condition failed/);
+  let navigationCalls = 0;
+  assert.equal(await waitForAsync({ evaluate: async () => {
+    if (++navigationCalls === 1) throw new Error('Execution context was destroyed, most likely because of a navigation');
+    return true;
+  } }, () => true, undefined, { interval: 1 }), true);
+  assert.equal(navigationCalls, 2);
   console.log('async browser waits: false results retry; timeout and predicate errors fail');
 })().catch(error => { console.error(error); process.exitCode = 1; });

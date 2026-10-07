@@ -8,6 +8,7 @@ const path = require('node:path');
 const http = require('node:http');
 const { spawn } = require('node:child_process');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-async');
 const Database = require('../server/node_modules/better-sqlite3');
 
 const root = path.resolve(__dirname, '..');
@@ -119,7 +120,7 @@ async function loadClient(page) {
 
     await page.reload();
     await loadClient(page);
-    await page.waitForFunction(async () => (await IDBStore.listPendingOperations()).length === 0, null, { timeout: 10000 });
+    await waitForAsync(page, async () => (await IDBStore.listPendingOperations()).length === 0, null, { timeout: 10000 });
     await page.waitForFunction(() => ServerStore.state().pending === 0 && ServerStore.state().phase !== 'sending', null, { timeout: 10000 });
     const receipt = await page.evaluate(id => ChunkAPI.getOperationReceipt(id), requestId);
     assert.equal(receipt.requestId, requestId, 'startup recovery preserves the original idempotency key');
@@ -157,7 +158,7 @@ async function loadClient(page) {
     assert.ok(largeQueued.bytes > 20 * 1024 * 1024, 'the fixture exercises the large-import capacity allowance');
     await page.reload();
     await loadClient(page);
-    await page.waitForFunction(async id => {
+    await waitForAsync(page, async id => {
       const rows = await IDBStore.listPendingOperations();
       return rows.some(row => row.requestId === id && row.status === 'pending');
     }, largeRequestId, { timeout: 10000 });
@@ -201,7 +202,7 @@ async function loadClient(page) {
     assert.equal(receiptCount(), 1, 'SQLite committed the operation before its first ACK was dropped');
     assert.equal(eventCount(), 1, 'the original logical event is recorded once before retry');
     await page.evaluate(() => ServerStore.retryPending());
-    await page.waitForFunction(async id => !(await IDBStore.listPendingOperations()).some(row => row.requestId === id),
+    await waitForAsync(page, async id => !(await IDBStore.listPendingOperations()).some(row => row.requestId === id),
       lostAckRequestId, { timeout:10000 });
     assert.equal(lostAckRequests, 2, 'the original idempotency request is retried exactly once in this scenario');
     assert.equal(receiptCount(), 1, 'retry reuses the one durable server receipt');
@@ -261,7 +262,7 @@ async function loadClient(page) {
     assert.equal(fencedRow.row.status, 'pending', 'the unconfirmed local operation remains durably recoverable');
     await page.evaluate(owner => { AccountStorage.owner = owner; }, switchAccepted.owner);
     await page.evaluate(() => ServerStore.retryPending());
-    await page.waitForFunction(async requestId => !(await IDBStore.listPendingOperations()).some(row => row.requestId === requestId),
+    await waitForAsync(page, async requestId => !(await IDBStore.listPendingOperations()).some(row => row.requestId === requestId),
       switchRequestId, { timeout:10000 });
     assert.equal(switchReceiptCount(), 1, 'same-request recovery reuses the single SQLite receipt');
     assert.equal(switchEventCount(), 1, 'same-request recovery applies the learning event exactly once');
@@ -326,7 +327,7 @@ async function loadClient(page) {
       {maxCount:10000,maxBytes:20*1024*1024});
     }, {requestId:drainIds[index],eventId:drainEvents[index],index:index+1})));
     await Promise.all([page,secondTab].map(tab=>tab.evaluate(()=>ServerStore.retryPending())));
-    await page.waitForFunction(async ids => !(await IDBStore.listPendingOperations()).some(row=>ids.includes(row.requestId)),
+    await waitForAsync(page, async ids => !(await IDBStore.listPendingOperations()).some(row=>ids.includes(row.requestId)),
       drainIds,{timeout:10000});
     await Promise.all([page.unroute('**/api/operations',observeConcurrentDrain),
       secondTab.unroute('**/api/operations',observeConcurrentDrain)]);
@@ -392,15 +393,15 @@ async function loadClient(page) {
       };
       await ServerStore.submit('settings.patch', { patch: { sound: false } }, { requestId });
     }, recoveredRequestId);
-    await page.waitForFunction(async requestId => {
+    await waitForAsync(page, async requestId => {
       const row = (await IDBStore.listPendingOperations()).find(item => item.requestId === requestId);
       return !!row && row.status === 'acked-awaiting-apply';
     }, recoveredRequestId, { timeout: 10000 });
     await page.reload();
     await loadClient(page);
-    await page.waitForFunction(async requestId => !(await IDBStore.listPendingOperations()).some(item => item.requestId === requestId),
+    await waitForAsync(page, async requestId => !(await IDBStore.listPendingOperations()).some(item => item.requestId === requestId),
       recoveredRequestId, { timeout: 10000 });
-    const recoveredReceiptHandle = await page.waitForFunction(async id => {
+    const recoveredReceiptHandle = await waitForAsync(page, async id => {
       try {
         const receipt = await ChunkAPI.getOperationReceipt(id);
         return receipt && receipt.requestId === id ? receipt : false;
@@ -409,7 +410,7 @@ async function loadClient(page) {
         throw error;
       }
     }, recoveredRequestId, { timeout: 5000 });
-    const recoveredReceipt = await recoveredReceiptHandle.jsonValue();
+    const recoveredReceipt = recoveredReceiptHandle;
     assert.equal(recoveredReceipt.requestId, recoveredRequestId, 'the server receipt is recoverable after a page reload');
     assert.equal(recoveredRequestCount, 1, 'an ACKed operation is refreshed from the cache instead of being sent again');
 
