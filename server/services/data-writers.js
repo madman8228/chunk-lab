@@ -7,11 +7,13 @@ function createDataWriters(options) {
   const assertRevisionAccepted = options.assertRevisionAccepted;
 
   function upsertDeck(userId, d, rev, deleted, seq, baseRev) {
-    const row = db.prepare('SELECT name, items_json, builtin, rev, deleted_at FROM user_decks WHERE user_id=? AND id=?').get(userId, d.id);
+    const row = db.prepare('SELECT name, items_json, builtin, rev, deleted_at, authoring_json FROM user_decks WHERE user_id=? AND id=?').get(userId, d.id);
+    const authoring = Object.hasOwn(d, 'authoring') ? d.authoring : (row && row.authoring_json ? JSON.parse(row.authoring_json) : null);
     assertRevisionAccepted('decks', d.id, rev, deleted,
-      { name: d.name, items: d.items || [], builtin: !!d.builtin }, row && {
+      { name: d.name, items: d.items || [], builtin: !!d.builtin, authoring }, row && {
         rev: row.rev, deleted: !!row.deleted_at,
-        value: { name: row.name, items: JSON.parse(row.items_json), builtin: !!row.builtin }
+        value: { name: row.name, items: JSON.parse(row.items_json), builtin: !!row.builtin,
+          authoring: row.authoring_json ? JSON.parse(row.authoring_json) : null }
       }, baseRev);
     if (deleted) {
       db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,is_public,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,0,?,datetime('now'),datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET deleted_at=datetime('now'), is_public=0, rev=excluded.rev, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
@@ -19,6 +21,10 @@ function createDataWriters(options) {
     } else {
       db.prepare("INSERT INTO user_decks (user_id,id,name,items_json,builtin,rev,deleted_at,updated_at,seq) VALUES (?,?,?,?,?,?,?,datetime('now'),?) ON CONFLICT(user_id,id) DO UPDATE SET name=excluded.name, items_json=excluded.items_json, builtin=excluded.builtin, rev=excluded.rev, deleted_at=excluded.deleted_at, updated_at=datetime('now'), seq=excluded.seq WHERE excluded.rev IS NULL OR excluded.rev > COALESCE(user_decks.rev, 0)")
         .run(userId, d.id, d.name, JSON.stringify(d.items || []), d.builtin ? 1 : 0, rev == null ? null : rev, null, seq);
+      // Same transaction/revision as the content write. Older callers that omit
+      // metadata retain it rather than silently erasing the learning contract.
+      db.prepare('UPDATE user_decks SET authoring_json=? WHERE user_id=? AND id=? AND rev IS ?')
+        .run(authoring == null ? null : JSON.stringify(authoring), userId, d.id, rev == null ? null : rev);
     }
   }
   

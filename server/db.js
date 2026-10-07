@@ -455,6 +455,8 @@ addColumnIfMissing('user_events', 'deleted_at', 'TEXT');
 addColumnIfMissing('user_kv', 'updated_at', 'TEXT');
 // 公共题库市场（Phase D）：user_decks 补 is_public 列（0=私有，1=已发布到市场）
 addColumnIfMissing('user_decks', 'is_public', 'INTEGER DEFAULT 0');
+// Additive metadata storage: never rewrite existing course items or records.
+addColumnIfMissing('user_decks', 'authoring_json', 'TEXT');
 /* 行级增量下行：所有用户数据表补 seq 列。
    必须**先**补列再建索引 —— CREATE TABLE IF NOT EXISTS 对升级前的旧库是空操作，
    旧库此刻还没有 seq 列，在第一个 db.exec 里建索引会直接报 "no such column"。 */

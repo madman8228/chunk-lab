@@ -24,9 +24,11 @@ function createSnapshotReader(options) {
       return s.all(...A.concat(extra || []));
     };
   
-    const deckRows = rows('SELECT id,name,items_json,builtin,is_public,rev FROM user_decks WHERE {W}', true);
+    const deckRows = rows('SELECT id,name,items_json,builtin,is_public,rev,authoring_json FROM user_decks WHERE {W}', true);
     const decks = deckRows.map(function (r) {
-      return { id: r.id, name: r.name, items: JSON.parse(r.items_json), builtin: !!r.builtin, isPublic: !!r.is_public };
+      const deck = { id: r.id, name: r.name, items: JSON.parse(r.items_json), builtin: !!r.builtin, isPublic: !!r.is_public };
+      if (r.authoring_json) deck.authoring = JSON.parse(r.authoring_json);
+      return deck;
     });
     // revs 需含软删行：让其他设备能判断本地副本是否已过期（软删也是版本演进）
     const deckRevs = {};
