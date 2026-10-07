@@ -24,6 +24,13 @@
 
 ## 边界
 
+## 学习档案统计验收
+
+- stats-index 更新日历入口：首页已取消日历，学习档案使用 month-calendar-grid/day。保留索引加载、分页、搜索、按需详情、单句答题入今日统计及未结算不虚增轮次的检查；隔离副本通过。
+- stats-mastered 使用当前“已熟悉/已掌握”两类指标，验证手动自评只进入熟悉，不能伪造考试掌握；补充紧凑统计行的课程原句解析及到期复习，隔离副本通过。
+- main-startup 的入口缺少加入关系且选择器陈旧；更新后可进入练习并写入会话断点，但首次提示消退断言仍失败。工作区意群引擎与已提交引擎的提示行为也不一致，需要进一步核对，未将该测试暂存修正算作通过。
+- 首轮失败目前剩余：两个课程包样本依赖、home-today-entries、main-startup、sync-recovery、tab-content-consistency、transparent-save；另有 mobile-8000 首次加载偶发超时待查。未重跑完整组。
+
 ## 课程覆盖进度验收
 
 - deck-progress-diagnostic 和 progress-coverage 的测试样本补齐明确的加入课程关系。首页只展示已加入课程，未加入样本无法作为首页进度检查对象。

@@ -1,4 +1,4 @@
-/* stats-mastered.test.js · 手动标熟应计入学习档案概览 */
+/* stats-mastered.test.js · 熟悉自评应与考试掌握分开计数 */
 'use strict';
 const http = require('http');
 const os = require('os');
@@ -59,13 +59,18 @@ function check(name, ok, detail) {
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2,
-        decks: [],
+        decks: [{ id: 'compact-stat-deck', name: 'Compact stats deck', items: [{
+          cid: '6184c299', sentence: 'Compact record sentence.', translation: '紧凑统计句。', chunks: ['Compact', 'record sentence.']
+        }] }],
         best: {},
         mastered: { 'builtin-freq-idioms#7b9bfce3': {
           deckId: 'builtin-freq-idioms', sentence: 'The flood was an act of god.', markedAt: Date.now()
         }},
         deletedItems: {},
-        stats: { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] },
+        stats: { totalRounds: 0, totalAnswered: 1, bySentence: {
+          'compact-stat-deck#6184c299': { deckId: 'compact-stat-deck', times: 1, okTimes: 0, wrongTimes: 1,
+            streak: 0, maxStreak: 0, lastAt: Date.now() - 86400000, interval: 1, ease: 2.5, dueAt: Date.now() - 1000 }
+        }, events: [] },
         settings: {}
       }));
       sessionStorage.setItem('__stats_mastered_seeded', '1');
@@ -75,7 +80,7 @@ function check(name, ok, detail) {
     await page.waitForSelector('#todayAnswered');
     await page.waitForFunction(function () {
       return Array.from(document.querySelectorAll('.ov-stat')).some(function (cell) {
-        return cell.querySelector('.l') && cell.querySelector('.l').textContent.trim() === '已熟练';
+        return cell.querySelector('.l') && cell.querySelector('.l').textContent.trim() === '已熟悉';
       });
     });
     const result = await page.evaluate(function () {
@@ -86,7 +91,7 @@ function check(name, ok, detail) {
         return out;
       }, {});
     });
-    check('手动标熟计入学习档案概览', result['已熟练'] === '1', JSON.stringify(result));
+    check('自评只计入熟悉，不计作考试掌握', result['已熟悉'] === '1' && result['已掌握'] === '0', JSON.stringify(result));
     await page.locator('[data-tab="review"]').click();
     await page.waitForSelector('.review-row');
     const review = await page.evaluate(function () {
@@ -94,12 +99,14 @@ function check(name, ok, detail) {
         dueCount: document.getElementById('reviewTabCount').textContent.trim(),
         heading: document.querySelector('#statsBody b') && document.querySelector('#statsBody b').textContent.trim(),
         preview: document.querySelector('.review-preview') && document.querySelector('.review-preview').textContent.trim(),
-        rows: document.querySelectorAll('.review-row').length
+        rows: document.querySelectorAll('.review-row').length,
+        body: document.getElementById('statsBody').textContent
       };
     });
     check('复测区明确区别于到期复习并显示具体句子',
-      review.dueCount === '(0)' && review.heading.indexOf('不计入待复习') >= 0 &&
-      review.preview.indexOf('The flood was an act of god.') >= 0 && review.rows === 1,
+      review.dueCount === '(1)' && review.heading.indexOf('不计入待复习') >= 0 &&
+      review.preview.indexOf('The flood was an act of god.') >= 0 && review.rows === 1 &&
+      review.body.indexOf('Compact record sentence.') >= 0,
       JSON.stringify(review));
     await page.locator('[data-rev-deck="builtin-freq-idioms"]').click();
     await page.waitForURL(/\/main\.html\?autostart=1/);

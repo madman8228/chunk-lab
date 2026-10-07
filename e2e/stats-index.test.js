@@ -8,6 +8,7 @@ const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
 
 const ROOT = path.resolve(__dirname, '..');
+const OUT_DIR = process.env.STATS_INDEX_OUT_DIR || path.join(ROOT, 'output');
 const PORT = require('./lib/free-port').freePort(9610, 100);
 const BASE = 'http://127.0.0.1:' + PORT;
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-stats-index-'));
@@ -188,18 +189,21 @@ function check(name, ok, detail) {
     for(const width of [360,390,1171]){
       await p.setViewportSize({width,height:960});
       check('概览无横向溢出 '+width,await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-      await p.screenshot({path:path.join(ROOT,'output','stats-overview-'+width+'.png')});
+      await p.screenshot({path:path.join(OUT_DIR,'stats-overview-'+width+'.png')});
     }
     await p.goto(BASE+'/main.html');
-    await p.waitForSelector('.cal-cell.today');
+    await p.waitForSelector('#homeBody');
+    check('首页不再显示本月日历', await p.locator('#homeBody .cal-grid, #homeBody .month-calendar-grid').count() === 0);
+    await p.goto(BASE+'/stats.html');
+    await p.waitForSelector('.month-calendar-grid');
     /* 同理：data-answered 也要等内存桥水合后回填 —— 等「值」而不是等「元素」 */
     const calOk = await p.waitForFunction(function () {
-      var el = document.querySelector('.cal-cell.today');
+      var el = document.querySelector('.month-calendar-day.today');
       return !!el && el.getAttribute('data-answered') === '1';
     }, null, { timeout: 8000 }).then(function () { return true; }, function () { return false; });
-    check('首页日历显示同一次答题', calOk,
-      '实际 ' + await p.locator('.cal-cell.today').getAttribute('data-answered').catch(function () { return '(n/a)'; }));
-    check('未完成整轮也点亮学习日', !(await p.locator('.cal-cell.today').getAttribute('class')).split(' ').includes('l0'));
+    check('学习档案日历显示同一次答题', calOk,
+      '实际 ' + await p.locator('.month-calendar-day.today').getAttribute('data-answered').catch(function () { return '(n/a)'; }));
+    check('未完成整轮也点亮学习日', !(await p.locator('.month-calendar-day.today').getAttribute('class')).split(' ').includes('l0'));
     await ctx.close();
 
     await browser.close();
