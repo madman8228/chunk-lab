@@ -26,6 +26,12 @@
 
 ## 学习档案统计验收
 
+### 旧同步发布边界核对
+
+- 正常页面、core/API 与预缓存均不加载旧同步模块，server-runtime-boundary 在隔离副本通过。旧 sync-recovery 仍等待 BatchSync/SyncResolution，因此其失败是历史合同未整理，不能据此恢复旧模块。
+- 发布清单移除两个无正常运行依赖的前端文件 sync-resolution.js 和 sync-resolution-ui.js，源文件及课程资产均保留。服务器协议 2 分支和显式恢复写入尚未移除，后续需分别处理，不宣称彻底清理完成。
+- 工作区部署清单检查受未提交 content-studio.html 影响报缺项；以暂存发布副本复验，不把未提交页面随意纳入发布。
+
 ### 课程包导入复验
 
 - 通过环境变量只读使用现有 1.1 与 2.0 ZIP，在隔离副本、新建临时数据库与独立端口运行；未修改原始 ZIP 或真实账号。course-package-import 与 COURSE_PACKAGE_PROTOCOL3=1 的 course-package-v2-import 均退出 0。
