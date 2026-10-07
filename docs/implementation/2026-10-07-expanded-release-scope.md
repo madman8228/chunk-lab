@@ -109,3 +109,4 @@
 
 - 从 `ba079a2` 索引导出全新隔离副本，统一单元 79/79、服务端 36/36 通过，无重试；发布检查 16/17，生成一致性失败，不能据此宣布可发布。
 - 定位缺失输入 `extra/content-overrides/oral-basic.json`：七句/CID/全部原字段保留，课程描述/profile及两处讲解修订；当前清单已经引用其产物。该文件应随获批修订一起纳入，否则新 clone 不能重现内容。补入隔离副本后生成一致性恢复通过。旧分片和归档保持保留。副本由此发生版本变化，最终完整验收仍需冻结后重跑。
+- 导入元数据用例转换协议 3 时先修正旧本地目录断言，随后真实失败在默认学习模式：设置 authoring 后确认 deck.put，但 main 的 S.deck 没有 authoring，courseLearning.enabled=false。源头 data-writers.upsertDeck 仅写 name/items/builtin，未保存题库学习元数据。正文未删除；须补题库元数据持久化、下游读取及回归，不可弱化模式断言。该测试当前未通过、未提交。
