@@ -120,6 +120,8 @@ async function assertFallbackExplanationContract(page) {
       var holder = document.createElement('div');
       holder.innerHTML = window.explanationSectionsHtml(sections);
       return {
+        count: sections.length,
+        rawTags: sections.map(function (section) { return section.tag; }),
         text: holder.textContent || '',
         html: holder.innerHTML,
         tags: Array.prototype.map.call(holder.querySelectorAll('.exp-tag'), function (el) {
@@ -139,14 +141,20 @@ async function assertFallbackExplanationContract(page) {
           examples: [{ en: 'A fair example.', zh: '一个例句。' }]
         }
       }),
+      authoredBreakdown: collect({
+        sentence: 'Do you mind if I open the window?',
+        chunks: ['Do you mind', 'if I open', 'the window?'],
+        grammar: [{ role: '主句谓语' }, { role: '条件从句' }, { role: '宾语' }],
+        hints: ['你介意吗', '如果我打开', '窗户']
+      }),
       escaped: collect({ sentence: 'Safe.', explanation: { meaning: '<script>alert(1)</script>' } })
     };
   });
-  if (result.translationOnly.tags.indexOf('核心含义') !== -1) {
-    throw new Error('只有译文时不应伪装成核心含义：' + JSON.stringify(result.translationOnly));
-  }
-  if (result.translationOnly.text.indexOf('本句暂无补充讲解') === -1 || result.translationOnly.text.indexOf('惯用表达') !== -1) {
-    throw new Error('只有译文时兜底内容不符合约定：' + JSON.stringify(result.translationOnly));
+  /* 2026-09-23：无任何讲解字段时不再产出任何 section（旧实现产出「说明 / 本句暂无补充讲解。」占位）。
+     新契约 = 空 sections ⇒ 渲染为空 ⇒ 调用方 showExplanationPanel 判定「不渲染」，整卡不出现。 */
+  if (result.translationOnly.count !== 0 || result.translationOnly.tags.length !== 0 ||
+      result.translationOnly.text.trim() !== '' || result.translationOnly.html.trim() !== '') {
+    throw new Error('只有译文时不应产出任何讲解 section：' + JSON.stringify(result.translationOnly));
   }
   ['核心含义', '中文对应表达', '常见使用场景', '经典例句'].forEach(function (tag) {
     if (result.structured.tags.indexOf(tag) === -1) throw new Error('结构化讲解缺少 ' + tag + '：' + JSON.stringify(result.structured));
@@ -156,6 +164,10 @@ async function assertFallbackExplanationContract(page) {
   }
   if (result.escaped.html.indexOf('&lt;script&gt;') === -1 || result.escaped.html.indexOf('<script>') !== -1) {
     throw new Error('讲解字段未正确转义：' + JSON.stringify(result.escaped));
+  }
+  if (result.authoredBreakdown.count !== 1 || result.authoredBreakdown.rawTags.indexOf('句子拆解') === -1 ||
+      result.authoredBreakdown.tags.indexOf('句子拆解') !== -1 || result.authoredBreakdown.text.trim() !== '') {
+    throw new Error('课程原始拆解数据应保留，但讲解界面不应渲染句子拆解：' + JSON.stringify(result.authoredBreakdown));
   }
 }
 

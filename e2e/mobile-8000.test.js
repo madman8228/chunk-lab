@@ -33,7 +33,7 @@ for(let shard=0;shard<40;shard++){
 }
 const manifest = {schemaVersion:1,contentVersion:'capacity-fixture-v1',decks:[entry]};
 let server,browser,passed=0;
-function check(name,ok){ if(!ok) throw new Error(name); passed++; console.log('  ✓ '+name); }
+function check(name,ok,detail){ if(!ok) throw new Error(name+(detail?'：'+detail:'')); passed++; console.log('  ✓ '+name); }
 async function ready(){
   /* 就绪窗口 300×100ms=30s。原为 50×100ms=5s，小于宿主普通 node 冷启动实测 5.4s ⇒ 必然假红。
      health 一旦 200 立即 return，放大窗口在成功路径上不增加任何耗时。 */
@@ -159,6 +159,23 @@ async function ready(){
     check('慢IDB下统计写入最多保留当前提交和一个尾提交',slowQueue.calls<=2 && slowQueue.eventRows===200 && slowQueue.times===201,
       JSON.stringify(slowQueue));
     const reviewStart=Date.now();
+    const handoffFailure=await page.evaluate(async()=>{
+      const original=IDBStore.putNavigationHandoff;
+      const oldAlert=window.alert;
+      let message='';
+      IDBStore.putNavigationHandoff=()=>Promise.reject(new Error('QuotaExceededError'));
+      window.alert=text=>{message=String(text);};
+      try{
+        launchReviewDeck({id:'handoff-failure',items:[{}]});
+        await new Promise(resolve=>setTimeout(resolve,25));
+        return {message,href:location.href};
+      }finally{
+        IDBStore.putNavigationHandoff=original;
+        window.alert=oldAlert;
+      }
+    });
+    check('复习暂不可启动时不要求备份且留在当前页',handoffFailure.message.includes('复习暂时无法启动')&&
+      !/备份|导出|存储空间/.test(handoffFailure.message)&&handoffFailure.href.includes('/stats.html'));
     await page.evaluate(()=>{
       const b=document.createElement('button');
       b.id='testStartDue';
@@ -166,7 +183,7 @@ async function ready(){
       document.body.appendChild(b);
     });
     await Promise.all([
-      page.waitForURL('**/main.html?autostart=1', {waitUntil:'domcontentloaded'}),
+      page.waitForURL('**/main.html?autostart=1&reviewHandoff=*', {waitUntil:'domcontentloaded'}),
       page.locator('#testStartDue').click()
     ]);
     try{
@@ -184,6 +201,30 @@ async function ready(){
       }));
       throw new Error(error.message+'; state='+JSON.stringify(state));
     }
+    check('临时复习队列通过一次性 IDB handoff 传递且不写入 localStorage', await page.evaluate(async()=>{
+      if(localStorage.getItem('chunklab_pending_review_deck')!==null) return false;
+      const db=await IDBStore.open();
+      return await new Promise(resolve=>{
+        const tx=db.transaction('navigationHandoffs','readonly');
+        const request=tx.objectStore('navigationHandoffs').getAll();
+        request.onsuccess=()=>resolve((request.result||[]).length===0);
+        request.onerror=()=>resolve(false);
+      });
+    }));
+    check('服务或账号 scope 不匹配时不消费另一上下文的 handoff',await page.evaluate(async()=>{
+      const id='scope-handoff-test-'+Date.now(), validScope='owner-a|service-a';
+      await IDBStore.putNavigationHandoff(id,{items:[{id:'scoped'}]},validScope);
+      const wrong=await IDBStore.consumeNavigationHandoff(id,'owner-b|service-a');
+      const preserved=await new Promise(resolve=>{
+        IDBStore.open().then(db=>{
+          const tx=db.transaction('navigationHandoffs','readonly'),request=tx.objectStore('navigationHandoffs').get(id);
+          request.onsuccess=()=>resolve(!!request.result);
+          request.onerror=()=>resolve(false);
+        }).catch(()=>resolve(false));
+      });
+      const right=await IDBStore.consumeNavigationHandoff(id,validScope);
+      return wrong===null&&preserved&&right&&right.value.items[0].id==='scoped';
+    }));
     const reviewMs=Date.now()-reviewStart;
     check('开始复习不补齐整个队列详情',details===1 && await page.evaluate(()=>S.tempTotal===8000 && S.items.every(it=>Array.isArray(it.chunks))));
     check('复习来源ID保留',await page.evaluate(id=>S.items.every(it=>it._statsDeckId===id),deckId));
