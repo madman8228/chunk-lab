@@ -66,6 +66,7 @@
     gridCols: '<circle cx="5" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="19" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="5" cy="17" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="17" r="2" fill="currentColor" stroke="none"/><circle cx="19" cy="17" r="2" fill="currentColor" stroke="none"/>',
     user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
     grad: '<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 3.58 3 6 3s6-1.34 6-3v-5"/><path d="M22 10v6"/>',
+    plus: '<path d="M12 5v14"/><path d="M5 12h14"/>',
     chevR: '<path d="m9 18 6-6-6-6"/>'
   };
 
