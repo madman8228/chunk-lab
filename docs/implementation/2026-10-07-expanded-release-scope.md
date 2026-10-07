@@ -93,6 +93,7 @@
 ### 作者离线保存恢复
 
 - 隔离 `course-authoring-persistence` 通过：拦截 operation 网络模拟离线，IndexedDB 中保留有序保存操作并给出真实的设备保存状态；恢复网络刷新后草稿不丢，原 requestId 重试获得 applied 回执、队列清空，服务器对应课程实体恰好一份，无同步冲突入口或未捕获异常。
+- 隔离课程候选 `main-persistence` 完整运行退出 0：在线 answer/resume/round、离线 20 条答案收敛（每句 times=1、pending=0）、跨设备读取及服务器确认导出通过；挂起 HTTP 五秒时退出 37ms。候选副本为专项期间使用的副本，不是最终冻结完整工作区，需最终重跑。
 - 测试使用 Chromium 配置/安装路径，移除固定 Windows Chrome 路径。此回归只修改测试，不改动真实草稿或课程。
 
 ### 学习测评与复习筛选专项
