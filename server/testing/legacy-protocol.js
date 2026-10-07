@@ -1,7 +1,18 @@
 'use strict';
+const path = require('node:path');
+function assertHistoricalEnvironment(env, protocol) {
+  if (env.NODE_ENV !== 'test' || protocol !== 2) throw new Error('Historical protocol is test-only');
+  if (!env.CHUNKLAB_DATA_DIR || !path.isAbsolute(env.CHUNKLAB_DATA_DIR)) throw new Error('Historical protocol requires an explicit absolute isolated data directory');
+  const target = path.resolve(env.CHUNKLAB_DATA_DIR);
+  const live = path.resolve(__dirname, '..', 'data');
+  const relative = path.relative(live, target);
+  if (!relative || (!relative.startsWith('..' + path.sep) && relative !== '..' && !path.isAbsolute(relative))) {
+    throw new Error('Historical protocol cannot use the application data directory');
+  }
+}
 /* Historical fixture routes only; never register in a normal service. */
 function registerHistoricalProtocol({app, auth, db, getLegacyDataWriter, rejectUnconditional, validate, upsertDeck, upsertCourse, upsertCourseProgress, upsertKv, allocSeq, buildMemSnapshot, updateDeckPublication, STRICT_CONDITIONAL_WRITES, WRITE_PROTOCOL}) {
-  if (process.env.NODE_ENV !== 'test' || WRITE_PROTOCOL !== 2) throw new Error('Historical protocol is test-only');
+  assertHistoricalEnvironment(process.env, WRITE_PROTOCOL);
   const saveData = getLegacyDataWriter();
   // Only isolated historical test fixtures need these route constructors.
   require('../routes/legacy-snapshot-writes').registerLegacySnapshotWrites({app,auth,rejectUnconditional,validate,saveData});
@@ -29,4 +40,4 @@ function registerHistoricalProtocol({app, auth, db, getLegacyDataWriter, rejectU
     strictConditionalWrites: STRICT_CONDITIONAL_WRITES
   });
 }
-module.exports = { registerHistoricalProtocol };
+module.exports = { registerHistoricalProtocol, assertHistoricalEnvironment };
