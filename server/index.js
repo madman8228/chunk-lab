@@ -58,11 +58,10 @@ const ROW_KV_KINDS = { mastered: 'mastered', reinforceBook: 'reinforce', deleted
    Tests run in an isolated compatibility mode so old migration fixtures can
    still exercise their pre-upgrade behavior; no deploy-time switch reopens it. */
 const STRICT_CONDITIONAL_WRITES = process.env.NODE_ENV !== 'test';
-/* Production boots into the operation-based protocol by default. Tests keep
-   the legacy fixture mode unless they explicitly opt into protocol 3. */
-const requestedWriteProtocol = process.env.NODE_ENV === 'test'
-  ? (process.env.CHUNKLAB_WRITE_PROTOCOL === '3' ? 3 : 2)
-  : 3;
+/* Only the explicit isolated historical launcher can select protocol 2.
+   Normal startup uses protocol 3 even under NODE_ENV=test. */
+const requestedWriteProtocol = process.env.NODE_ENV === 'test' &&
+  typeof global.__chunklabHistoricalRouteRegistrar === 'function' ? 2 : 3;
 const storedWriteProtocolRow = db.prepare("SELECT setting_value FROM app_runtime_settings WHERE setting_key='write_protocol'").get();
 let WRITE_PROTOCOL = Number(storedWriteProtocolRow && storedWriteProtocolRow.setting_value) >= 3 ? 3 : requestedWriteProtocol;
 if (WRITE_PROTOCOL >= 3 && !(Number(storedWriteProtocolRow && storedWriteProtocolRow.setting_value) >= 3)) {
@@ -350,7 +349,8 @@ registerDataRoutes({
 if (WRITE_PROTOCOL === 3) {
   require('./routes/retired-sync').registerRetiredSyncRoutes({ app, auth, db });
 } else {
-  const historicalRegistrar = global.__chunklabHistoricalRouteRegistrar || require('./testing/legacy-protocol').registerHistoricalProtocol;
+  const historicalRegistrar = global.__chunklabHistoricalRouteRegistrar;
+  if (typeof historicalRegistrar !== 'function') throw new Error('Historical protocol requires the dedicated test launcher');
   historicalRegistrar({
     app, auth, db, getLegacyDataWriter, rejectUnconditional, validate, upsertDeck, upsertCourse, upsertCourseProgress, upsertKv, allocSeq, buildMemSnapshot, updateDeckPublication, STRICT_CONDITIONAL_WRITES, WRITE_PROTOCOL
   });

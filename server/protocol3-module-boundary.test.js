@@ -23,7 +23,7 @@ const code=`
 try {
   const result=spawnSync(process.execPath,['-e',code],{
     cwd:__dirname,env:{...process.env,CHUNKLAB_DATA_DIR:temp,PORT:'0',NODE_ENV:'test',
-      REQUIRE_AUTH:'false',CHUNKLAB_WRITE_PROTOCOL:'3'},encoding:'utf8',timeout:30000
+      REQUIRE_AUTH:'false',CHUNKLAB_WRITE_PROTOCOL:'2'},encoding:'utf8',timeout:30000
   });
   assert.equal(result.status,0,result.stderr||result.error?.message||result.stdout);
   assert.ok(result.stdout.includes('PROTOCOL3_MODULE_BOUNDARY_OK'),result.stdout);
