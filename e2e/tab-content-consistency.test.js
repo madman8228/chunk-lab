@@ -45,8 +45,9 @@ function stopServer() {
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const page = await browser.newPage();
     await page.goto(BASE + '/decks.html?e2e=tab-content-consistency&courseView=joined', { waitUntil: 'networkidle' });
-    await page.evaluate(function () {
-      LogicalCourseStore.create({ title: '页签一致性回归目录', coverImage: 'data:image/png;base64,e2e-tab-cover' });
+    await page.waitForFunction(()=>CL.serverPersistenceReady() && protocol3CatalogEnabled());
+    await page.evaluate(async function () {
+      await persistLogicalCourseCreate({ title: '页签一致性回归目录', coverImage: 'data:image/png;base64,e2e-tab-cover' });
     });
     await page.reload({ waitUntil: 'networkidle' });
     await page.locator('#tabCourses').click();

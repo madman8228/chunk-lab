@@ -38,11 +38,13 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     var context = await browser.newContext();
     var page = await context.newPage();
     await page.goto(BASE + '/decks.html?courseType=decks&courseView=joined&e2e=course-package', { waitUntil: 'networkidle' });
+    await page.waitForFunction(()=>CL.serverPersistenceReady() && protocol3CatalogEnabled());
     var logicalId = await page.evaluate(async function(){
-      var id = LogicalCourseStore.create({ title: '导入归属回归目录', coverImage: 'data:image/png;base64,e2e-import-cover' }).id;
-      var userMemory = CL.loadMem();
-      userMemory.decks.push({ id:'e2e-existing-sentence-course', name:'已有句子课程', items:[], builtin:false, authoring:{ template:'sentence-practice' } });
-      await CL.saveAndNotify(userMemory);
+      var id = (await persistLogicalCourseCreate({ title: '导入归属回归目录', coverImage: 'data:image/png;base64,e2e-import-cover' })).id;
+      await ServerStore.submitCommitted('deck.put', {deck:{
+        id:'e2e-existing-sentence-course', name:'已有句子课程', builtin:false,
+        items:[{sentence:'Existing fixture.',translation:'既有样本。',chunks:['Existing','fixture.'],hints:['','']}]
+      }}, {requestId:'existing-sentence-fixture-01',expectedRev:null});
       return id;
     });
     await page.reload({ waitUntil: 'networkidle' });
@@ -64,13 +66,13 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     if (importError) throw new Error(importError);
     var importedAssociation = await page.evaluate(async function(){
       await CL.preload();
-      var courses = CL.readCourses();
+      var courses = (await ServerCache.read()).snapshot.courses;
       var imported = courses.find(function(item){ return item.courseId === 'course_fde7e455'; });
       return imported && !imported.logicalCourseId;
     });
     if (!importedAssociation) throw new Error('导入课程未保持独立课节归属');
-    var storyTitle = await page.evaluate(function(){
-      var item = CL.readCourses().find(function(course){ return course.courseId === 'course_fde7e455'; });
+    var storyTitle = await page.evaluate(async function(){
+      var item = (await ServerCache.read()).snapshot.courses.find(function(course){ return course.courseId === 'course_fde7e455'; });
       return item && item.metadata && item.metadata.title && (item.metadata.title['zh-CN'] || item.metadata.title.en);
     });
     var importedCard = page.locator('#deckList .course-card').filter({ hasText: storyTitle });
@@ -94,8 +96,8 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     await page.locator('#moveStorySelect').selectOption(logicalId);
     await page.locator('#moveStoryConfirm').click();
     await page.waitForFunction(function(){ return !document.querySelector('#moveStoryMask') || document.querySelector('#moveStoryMask').hidden; });
-    var repairedAssociation = await page.evaluate(function(id){
-      var item = CL.readCourses().find(function(course){ return course.courseId === 'course_fde7e455'; });
+    var repairedAssociation = await page.evaluate(async function(id){
+      var item = (await ServerCache.read()).snapshot.courses.find(function(course){ return course.courseId === 'course_fde7e455'; });
       return item && item.logicalCourseId === id;
     }, logicalId);
     if (!repairedAssociation) throw new Error('历史平级课节未能移入所选目录');

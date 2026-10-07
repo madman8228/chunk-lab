@@ -26,6 +26,14 @@
 
 ## 学习档案统计验收
 
+### 默认新版夹具收尾
+
+- 本轮完整浏览器组 42/50，八项失败全部保留，未重试。单元与浏览器重叠导致的服务退出尚未定因，独立 content-batch 已通过；不可据此抹除失败。
+- tab-content-consistency 改用确认的目录创建；main-startup 明确模拟配置服务延迟后不可用；讲解刷新明确阻断 API 验证既有本地档案。三项独立通过，云端保存由其他专项覆盖。
+- migrate-open-to-user 属历史开放模式迁移，源/目标服务都移至专用历史测试入口，9/9 通过，不恢复正常入口旧协议。
+- 1.1 导入夹具改为服务器目录创建与 deck.put，归属检查读取确认缓存，独立完整导入/移入目录/播放器验收通过，证明课程格式兼容可以使用新版同步。
+- transparent-save 的六组串行运行被总运行器 180 秒预算中止；末组已打印通过但组合未退出 0，仍不算通过，需要独立组合预算及单组超时保护。最终版本完整组尚未重新完成。
+
 ### 课程目录新版夹具
 
 - course-catalog 原来直接 LogicalCourseStore.create/CL.writeCourses，不符合默认协议 3 的服务器确认合同。夹具改用页面 persistLogicalCourseCreate 和 ChunkCourse.importCourse，并等待目录服务器视图就绪。

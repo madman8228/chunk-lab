@@ -59,7 +59,7 @@ function request(base, method, route, body, token) {
 }
 
 function startServer(port, dataDir, requireAuth) {
-  const child = spawn(process.execPath, ['index.js'], {
+  const child = spawn(process.execPath, ['testing/start-historical.js'], {
     cwd: SERVER_DIR,
     env: Object.assign({}, process.env, {
       PORT: String(port), CHUNKLAB_DATA_DIR: dataDir,

@@ -178,6 +178,9 @@ async function assertFallbackExplanationContract(page) {
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
     const page = await context.newPage();
+    /* This checks preserved local content when the service is unavailable.
+       Protocol-3 cloud persistence is covered by main-persistence. */
+    await page.route('**/api/**', route => route.abort('failed'));
     const saved = oldLocalMem();
     await page.addInitScript(function (value) {
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));

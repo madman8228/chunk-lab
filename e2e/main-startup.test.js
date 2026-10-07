@@ -70,7 +70,7 @@ function stopServer() {
     /* 模拟 /api/config 卡住：本地首页应先完成首屏绘制，不等待云端。 */
     await page.route('**/api/config', async function (route) {
       await new Promise(function (resolve) { setTimeout(resolve, 1200); });
-      await route.continue();
+      await route.abort('failed');
     });
     await page.route('**/js/bridge.mjs', async function (route) {
       await new Promise(function (resolve) { setTimeout(resolve, 800); });
