@@ -77,8 +77,11 @@ function stopServer() {
       await route.continue();
     });
     var practiceModuleRequested = false;
+    var releasePractice;
+    var practiceGate = new Promise(function(resolve){ releasePractice = resolve; });
     await page.route('**/js/chunk-engine.mjs', async function (route) {
       practiceModuleRequested = true;
+      await practiceGate;
       await route.continue();
     });
     await page.goto(BASE + '/main.html', { waitUntil: 'commit' });
@@ -109,6 +112,13 @@ function stopServer() {
     if (practiceModuleRequested) throw new Error('首页启动不应请求练习引擎');
     await page.locator('[data-home-course="user-deck:slow-start"]').click();
     await page.waitForSelector('#pagePractice:not(.hidden)');
+    var earlyEntry = await page.evaluate(function(){ return {
+      claimed: _mainBootState().isEntryClaimed()
+    }; });
+    if (!earlyEntry.claimed) throw new Error('练习入口必须被认领：'+JSON.stringify(earlyEntry));
+    await page.evaluate(function(){ bootMain(); });
+    if (!await page.locator('#pagePractice:not(.hidden)').count()) throw new Error('延迟引擎加载时初始化重入不能返回首页');
+    releasePractice();
     await page.waitForFunction(function () {
       return document.querySelector('#deckName') && document.querySelector('#deckName').textContent === '慢启动课程';
     }, undefined, { timeout: 10000 });
