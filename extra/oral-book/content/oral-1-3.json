@@ -1,14 +1,14 @@
 [
  {
   "sentence": "Do you need a doctor?",
-  "translation": "用叫医生吗?",
+  "translation": "你需要看医生吗？",
   "chunks": [
    "Do you need",
    "a doctor?"
   ],
   "hints": [
    "你需要",
-   "叫医生吗？"
+   "看医生吗？"
   ]
  },
  {
@@ -25,26 +25,26 @@
  },
  {
   "sentence": "I'd like to see a doctor.",
-  "translation": "我要看病。",
+  "translation": "我想看医生。",
   "chunks": [
-   "I'd like to see",
-   "a doctor."
+   "I'd like",
+   "to see a doctor."
   ],
   "hints": [
-   "我要",
-   "看病。"
+   "我想",
+   "看医生。"
   ]
  },
  {
   "sentence": "I'm not feeling well.",
   "translation": "我觉得身体不舒服。",
   "chunks": [
-   "I'm not",
-   "feeling well."
+   "I'm",
+   "not feeling well."
   ],
   "hints": [
-   "我觉得",
-   "身体不舒服。"
+   "我",
+   "觉得身体不舒服。"
   ]
  },
  {
@@ -61,25 +61,23 @@
  },
  {
   "sentence": "What's wrong with you?",
-  "translation": "你怎么啦?",
+  "translation": "你怎么了？",
   "chunks": [
-   "What's wrong",
-   "with you?"
+   "What's wrong with you?"
   ],
   "hints": [
-   "你",
-   "怎么啦？"
+   "你怎么了？"
   ]
  },
  {
   "sentence": "What are your symptoms?",
-  "translation": "是什么症状?",
+  "translation": "你有什么症状？",
   "chunks": [
-   "What are",
-   "your symptoms?"
+   "What are your",
+   "symptoms?"
   ],
   "hints": [
-   "是什么",
+   "你有什么",
    "症状？"
   ]
  },
@@ -97,14 +95,14 @@
  },
  {
   "sentence": "Did you eat something unusual?",
-  "translation": "吃了什么不对劲的东西没有?",
+  "translation": "你吃了什么不对劲的东西吗？",
   "chunks": [
    "Did you eat",
    "something unusual?"
   ],
   "hints": [
-   "吃了什么",
-   "不对劲的东西没有？"
+   "你吃了",
+   "什么不对劲的东西？"
   ]
  },
  {
@@ -123,12 +121,10 @@
   "sentence": "Are you taking any medication regularly?",
   "translation": "你常服用什么药?",
   "chunks": [
-   "Are you taking",
-   "any medication regularly?"
+   "Are you taking any medication regularly?"
   ],
   "hints": [
-   "你常服用",
-   "什么药？"
+   "你平时服用什么药物吗？"
   ]
  },
  {
@@ -145,14 +141,12 @@
  },
  {
   "sentence": "What's wrong with me?",
-  "translation": "我哪儿不好?",
+  "translation": "我怎么了？",
   "chunks": [
-   "What's wrong",
-   "with me?"
+   "What's wrong with me?"
   ],
   "hints": [
-   "我",
-   "哪儿不好？"
+   "我怎么了？"
   ]
  },
  {
@@ -163,32 +157,30 @@
    "serious?"
   ],
   "hints": [
-   "严重",
-   "吗？"
+   "是",
+   "严重吗？"
   ]
  },
  {
   "sentence": "Are you feeling okay?",
-  "translation": "你不舒服吗?",
+  "translation": "你感觉还好吗？",
   "chunks": [
    "Are you",
    "feeling okay?"
   ],
   "hints": [
    "你",
-   "不舒服吗？"
+   "感觉还好吗？"
   ]
  },
  {
   "sentence": "What's wrong?",
   "translation": "你怎么了?",
   "chunks": [
-   "What's",
-   "wrong?"
+   "What's wrong?"
   ],
   "hints": [
-   "你",
-   "怎么了？"
+   "你怎么了？"
   ]
  },
  {
@@ -207,24 +199,22 @@
   "sentence": "I don't feel well.",
   "translation": "我觉得难受。",
   "chunks": [
-   "I don't",
-   "feel well."
+   "I don't feel well."
   ],
   "hints": [
-   "我觉得",
-   "难受。"
+   "我觉得不舒服。"
   ]
  },
  {
   "sentence": "You don't look well.",
   "translation": "你好像不太舒服。",
   "chunks": [
-   "You don't",
-   "look well."
+   "You don't look",
+   "well."
   ],
   "hints": [
-   "你好像",
-   "不太舒服。"
+   "你看起来不太",
+   "舒服"
   ]
  },
  {
@@ -265,26 +255,26 @@
  },
  {
   "sentence": "I have a dull pain.",
-  "translation": "隐隐作痛。",
+  "translation": "我有隐隐的疼痛。",
   "chunks": [
-   "I have",
-   "a dull pain."
+   "I have a",
+   "dull pain."
   ],
   "hints": [
-   "隐隐",
-   "作痛。"
+   "我有",
+   "隐隐的疼痛。"
   ]
  },
  {
   "sentence": "I have a sharp pain.",
-  "translation": "钻心地疼。",
+  "translation": "我感到剧烈疼痛。",
   "chunks": [
    "I have",
    "a sharp pain."
   ],
   "hints": [
-   "钻心地",
-   "疼。"
+   "我感到",
+   "剧烈疼痛。"
   ]
  },
  {
@@ -295,8 +285,8 @@
    "a throbbing pain."
   ],
   "hints": [
-   "一跳一跳",
-   "地疼。"
+   "我感到",
+   "一跳一跳地疼。"
   ]
  },
  {
@@ -308,7 +298,7 @@
   ],
   "hints": [
    "我感到",
-   "巨痛。"
+   "剧烈疼痛。"
   ]
  },
  {
@@ -319,8 +309,8 @@
    "a stabbing pain."
   ],
   "hints": [
-   "像针扎",
-   "似地疼。"
+   "我感到",
+   "像针扎一样的疼痛。"
   ]
  },
  {
@@ -355,8 +345,8 @@
    "high blood pressure."
   ],
   "hints": [
-   "血压",
-   "高。"
+   "我有",
+   "高血压。"
   ]
  },
  {
@@ -367,8 +357,8 @@
    "low blood pressure."
   ],
   "hints": [
-   "血压",
-   "低。"
+   "我有",
+   "低血压。"
   ]
  },
  {
@@ -435,8 +425,8 @@
   "sentence": "I have a slight cold.",
   "translation": "我有点儿感冒。",
   "chunks": [
-   "I have",
-   "a slight cold."
+   "I have a slight",
+   "cold."
   ],
   "hints": [
    "我有点儿",
@@ -475,8 +465,8 @@
    "a stuffy nose."
   ],
   "hints": [
-   "鼻子",
-   "堵了。"
+   "我",
+   "鼻子堵了。"
   ]
  },
  {
@@ -495,8 +485,8 @@
   "sentence": "I have a bit of a fever.",
   "translation": "我有点儿发烧。",
   "chunks": [
-   "I have",
-   "a bit of a fever."
+   "I have a bit of a",
+   "fever."
   ],
   "hints": [
    "我有点儿",
@@ -535,8 +525,8 @@
    "throwing up."
   ],
   "hints": [
-   "我",
-   "想吐。"
+   "我想",
+   "吐。"
   ]
  },
  {
@@ -551,14 +541,14 @@
  },
  {
   "sentence": "It's itchy.",
-  "translation": "痒痒。",
+  "translation": "这里发痒。",
   "chunks": [
    "It's",
    "itchy."
   ],
   "hints": [
-   "有点",
-   "痒。"
+   "这里",
+   "发痒。"
   ]
  },
  {
@@ -579,20 +569,18 @@
    "my leg."
   ],
   "hints": [
-   "我腿",
-   "骨折了。"
+   "我摔断了",
+   "我的腿。"
   ]
  },
  {
   "sentence": "How long will the cast be on?",
   "translation": "要打多长时间石膏?",
   "chunks": [
-   "How long will",
-   "the cast be on?"
+   "How long will the cast be on?"
   ],
   "hints": [
-   "要打多长时间",
-   "石膏？"
+   "石膏要打多久？"
   ]
  },
  {
@@ -603,8 +591,8 @@
    "my hand."
   ],
   "hints": [
-   "我把手",
-   "给烫了。"
+   "我烫伤了",
+   "我的手。"
   ]
  },
  {
@@ -615,8 +603,8 @@
    "my ankle."
   ],
   "hints": [
-   "我",
-   "崴脚了。"
+   "我扭伤了",
+   "我的脚踝。"
   ]
  },
  {
@@ -627,8 +615,8 @@
    "from you."
   ],
   "hints": [
-   "你把感冒",
-   "传染给我了。"
+   "我感冒了",
+   "是你传染的。"
   ]
  },
  {
@@ -651,8 +639,8 @@
    "stiff shoulders."
   ],
   "hints": [
-   "我肩膀",
-   "酸痛。"
+   "我",
+   "肩膀僵硬酸痛。"
   ]
  },
  {
@@ -683,24 +671,24 @@
   "sentence": "My fever has gone down.",
   "translation": "我退烧了。",
   "chunks": [
-   "My fever has",
-   "gone down."
+   "My fever",
+   "has gone down."
   ],
   "hints": [
-   "我",
-   "退烧了。"
+   "我的烧",
+   "退了。"
   ]
  },
  {
   "sentence": "I can't stop coughing.",
   "translation": "我咳嗽不止。",
   "chunks": [
-   "I can't",
-   "stop coughing."
+   "I can't stop",
+   "coughing."
   ],
   "hints": [
-   "我",
-   "咳嗽不止。"
+   "我止不住",
+   "咳嗽。"
   ]
  },
  {
@@ -729,38 +717,34 @@
  },
  {
   "sentence": "I've got a cut here.",
-  "translation": "我这儿割破了。",
+  "translation": "我这儿有道伤口。",
   "chunks": [
-   "I've got",
-   "a cut here."
+   "I've got a cut",
+   "here."
   ],
   "hints": [
-   "我这儿",
-   "割破了。"
+   "我有道伤口",
+   "在这儿。"
   ]
  },
  {
   "sentence": "It hurts.",
   "translation": "好疼。",
   "chunks": [
-   "It",
-   "hurts."
+   "It hurts."
   ],
   "hints": [
-   "好",
-   "疼。"
+   "好疼。"
   ]
  },
  {
   "sentence": "I got stung by a bee.",
   "translation": "我被蜜蜂蜇了。",
   "chunks": [
-   "I got stung",
-   "by a bee."
+   "I got stung by a bee."
   ],
   "hints": [
-   "我被",
-   "蜜蜂蜇了。"
+   "我被蜜蜂蜇了。"
   ]
  },
  {
@@ -779,8 +763,8 @@
   "sentence": "Will it take long?",
   "translation": "要花很长时间吗?",
   "chunks": [
-   "Will it",
-   "take long?"
+   "Will it take",
+   "long?"
   ],
   "hints": [
    "要花",
@@ -795,20 +779,20 @@
    "take a bath?"
   ],
   "hints": [
-   "我",
-   "可以洗澡吗？"
+   "我可以",
+   "洗个澡吗？"
   ]
  },
  {
   "sentence": "Is it okay to drink?",
-  "translation": "我可以喝酒吗?",
+  "translation": "可以喝酒吗？",
   "chunks": [
    "Is it okay",
    "to drink?"
   ],
   "hints": [
-   "我",
-   "可以喝酒吗？"
+   "可以",
+   "喝酒吗？"
   ]
  },
  {
@@ -851,12 +835,12 @@
   "sentence": "I don't feel any better.",
   "translation": "我觉得没什么好转。",
   "chunks": [
-   "I don't feel",
-   "any better."
+   "I",
+   "don't feel any better."
   ],
   "hints": [
-   "我觉得",
-   "没什么好转。"
+   "我",
+   "觉得没什么好转。"
   ]
  },
  {
@@ -867,8 +851,8 @@
    "alright again?"
   ],
   "hints": [
-   "你的病",
-   "好了吗？"
+   "你",
+   "病好了吗？"
   ]
  },
  {

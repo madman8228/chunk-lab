@@ -37,14 +37,14 @@
  },
  {
   "sentence": "Will that be for here or to go?",
-  "translation": "在这儿吃还是带走?",
+  "translation": "您是在这儿用餐还是打包带走？",
   "chunks": [
-   "Will that be",
-   "for here or to go?"
+   "Will that be for here",
+   "or to go?"
   ],
   "hints": [
-   "在这儿吃",
-   "还是带走？"
+   "您是在这儿用餐",
+   "还是打包带走？"
   ]
  },
  {
@@ -67,8 +67,8 @@
    "eating here?"
   ],
   "hints": [
-   "您是在这儿",
-   "吃吗？"
+   "您要",
+   "在这儿用餐吗？"
   ]
  },
  {
@@ -79,8 +79,8 @@
    "please."
   ],
   "hints": [
-   "请",
-   "带走。"
+   "打包带走",
+   "请。"
   ]
  },
  {
@@ -91,8 +91,8 @@
    "please."
   ],
   "hints": [
-   "请",
-   "在这儿吃。"
+   "在这儿吃",
+   "请"
   ]
  },
  {
@@ -103,8 +103,8 @@
    "a good restaurant near here?"
   ],
   "hints": [
-   "这附近您能推荐",
-   "家好吃的饭馆吗？"
+   "您能推荐",
+   "这附近一家好吃的饭馆吗？"
   ]
  },
  {
@@ -127,8 +127,8 @@
    "do you recommend?"
   ],
   "hints": [
-   "您推荐",
-   "哪家饭馆？"
+   "哪家饭馆",
+   "您推荐？"
   ]
  },
  {
@@ -151,9 +151,9 @@
    "Mexican restaurant?"
   ],
   "hints": [
-   "最近的墨西哥餐馆",
-   "在哪儿？"
-  ]
+     "最近的在哪儿？",
+     "墨西哥餐馆"
+    ]
  },
  {
   "sentence": "Are there any restaurants still open near here?",
@@ -163,8 +163,8 @@
    "still open near here?"
   ],
   "hints": [
-   "这附近有没有",
-   "还在营业的饭馆？"
+   "有没有餐馆",
+   "这附近还在营业的？"
   ]
  },
  {
@@ -193,14 +193,14 @@
  },
  {
   "sentence": "I'd like to make a reservation for eight people at six o'clock tonight.",
-  "translation": "我想订餐。今天晚上6点，8个人的位子。",
+  "translation": "我想订个座位，今晚六点、八位。",
   "chunks": [
    "I'd like to make a reservation",
    "for eight people at six o'clock tonight."
   ],
   "hints": [
-   "我想订餐。今天晚上6点，",
-   "8个人的位子。"
+   "我想订个座位",
+   "今晚六点、八位"
   ]
  },
  {
@@ -217,14 +217,14 @@
  },
  {
   "sentence": "I'd like to reserve a table for eight.",
-  "translation": "我想订餐8个人。",
+  "translation": "我想预订一张八人桌。",
   "chunks": [
    "I'd like to reserve",
    "a table for eight."
   ],
   "hints": [
-   "我想订餐",
-   "8个人。"
+   "我想预订",
+   "一张八人桌。"
   ]
  },
  {
@@ -241,14 +241,14 @@
  },
  {
   "sentence": "I'm sorry. We're all booked up tonight.",
-  "translation": "对不起，今天晚上都订满了。",
+  "translation": "抱歉，今晚已经订满了。",
   "chunks": [
-   "I'm sorry. We're all",
-   "booked up tonight."
+   "I'm sorry.",
+   "We're all booked up tonight."
   ],
   "hints": [
-   "对不起，今天晚上",
-   "都订满了。"
+   "抱歉。",
+   "今晚已经订满了。"
   ]
  },
  {
@@ -259,8 +259,8 @@
    "is the wait?"
   ],
   "hints": [
-   "要等",
-   "多长时间？"
+   "多长时间",
+   "要等？"
   ]
  },
  {
@@ -283,8 +283,8 @@
    "make a reservation?"
   ],
   "hints": [
-   "可以预订",
-   "几点的？"
+   "几点可以",
+   "预订？"
   ]
  },
  {
@@ -325,14 +325,12 @@
  },
  {
   "sentence": "What is the price of a dinner course?",
-  "translation": "一顿饭多少钱?",
+  "translation": "一份晚餐套餐多少钱？",
   "chunks": [
-   "What is the price",
-   "of a dinner course?"
+   "What is the price of a dinner course?"
   ],
   "hints": [
-   "一顿饭",
-   "多少钱？"
+   "一份晚餐套餐多少钱？"
   ]
  },
  {
@@ -343,32 +341,32 @@
    "your dress code?"
   ],
   "hints": [
-   "衣着上",
-   "有什么规定？"
-  ]
+     "是什么？",
+     "你们的着装规定？"
+    ]
  },
  {
   "sentence": "Should I wear a jacket and tie?",
-  "translation": "我必须得穿外衣打领带吗?",
+  "translation": "我必须穿夹克、打领带吗？",
   "chunks": [
    "Should I wear",
    "a jacket and tie?"
   ],
   "hints": [
    "我必须得穿",
-   "外衣打领带吗？"
+   "夹克和领带吗？"
   ]
  },
  {
   "sentence": "Should the ladies wear dresses?",
-  "translation": "女性必须穿礼服吗?",
+  "translation": "女士们需要穿连衣裙吗？",
   "chunks": [
    "Should the ladies",
    "wear dresses?"
   ],
   "hints": [
-   "女性必须",
-   "穿礼服吗？"
+   "女士们需要",
+   "穿连衣裙吗？"
   ]
  },
  {
@@ -379,8 +377,8 @@
    "in your group?"
   ],
   "hints": [
-   "请问",
-   "您几位？"
+   "几位？",
+   "你们组里"
   ]
  },
  {
@@ -395,14 +393,14 @@
  },
  {
   "sentence": "I'm sorry, but I have to cancel my reservation.",
-  "translation": "对不起，我想取消订餐。",
+  "translation": "抱歉，我得取消预订。",
   "chunks": [
    "I'm sorry, but I have to",
    "cancel my reservation."
   ],
   "hints": [
-   "对不起，我想",
-   "取消订餐。"
+   "抱歉，我必须",
+   "取消预订。"
   ]
  },
  {
@@ -449,20 +447,20 @@
    "do you have?"
   ],
   "hints": [
-   "你们都有些",
-   "什么葡萄酒？"
+   "什么葡萄酒",
+   "你们有"
   ]
  },
  {
   "sentence": "May I take your order?",
-  "translation": "点菜吗?/您来点点儿什么?",
+  "translation": "我可以为您点单了吗？",
   "chunks": [
-   "May I take",
-   "your order?"
+   "May I",
+   "take your order?"
   ],
   "hints": [
-   "您来点点儿",
-   "什么？"
+   "我可以",
+   "为您点单了吗？"
   ]
  },
  {
@@ -545,8 +543,8 @@
    "please."
   ],
   "hints": [
-   "我要",
-   "红葡萄酒。"
+   "我想要红葡萄酒",
+   "请。"
   ]
  },
  {
@@ -569,8 +567,8 @@
    "please."
   ],
   "hints": [
-   "请烤",
-   "熟点。"
+   "全熟",
+   "请。"
   ]
  },
  {
@@ -617,8 +615,8 @@
    "please."
   ],
   "hints": [
-   "请给我",
-   "来一杯咖啡。"
+   "我想要一杯咖啡",
+   "请。"
   ]
  },
  {
@@ -685,12 +683,10 @@
   "sentence": "I'm starving.",
   "translation": "我都快饿死了。",
   "chunks": [
-   "I'm",
-   "starving."
+   "I'm starving."
   ],
   "hints": [
-   "我都快",
-   "饿死了。"
+   "我都快饿死了。"
   ]
  },
  {
@@ -743,14 +739,14 @@
  },
  {
   "sentence": "They all look good.",
-  "translation": "看上去都好吃。",
+  "translation": "它们看起来都很好吃。",
   "chunks": [
-   "They all",
-   "look good."
+   "They",
+   "all look good."
   ],
   "hints": [
-   "看上去",
-   "都好吃。"
+   "它们",
+   "看起来都很好吃。"
   ]
  },
  {
@@ -767,14 +763,14 @@
  },
  {
   "sentence": "You can't eat that.",
-  "translation": "你不能吃这个。",
+  "translation": "你不能吃那个。",
   "chunks": [
    "You can't",
    "eat that."
   ],
   "hints": [
    "你不能",
-   "吃这个。"
+   "吃那个。"
   ]
  },
  {
@@ -805,8 +801,8 @@
   "sentence": "It's not good.",
   "translation": "不好吃。",
   "chunks": [
-   "It's not",
-   "good."
+   "It's",
+   "not good."
   ],
   "hints": [
    "味道",
@@ -865,36 +861,36 @@
   "sentence": "I don't feel like eating anything.",
   "translation": "我什么都不想吃。",
   "chunks": [
-   "I don't feel like",
-   "eating anything."
+   "I don't feel like eating",
+   "anything."
   ],
   "hints": [
-   "我什么都",
-   "不想吃。"
+   "我不想吃",
+   "任何东西。"
   ]
  },
  {
   "sentence": "I drink like a fish.",
-  "translation": "我是海量。",
+  "translation": "我喝起酒来特别多。",
   "chunks": [
    "I drink",
    "like a fish."
   ],
   "hints": [
-   "我是",
-   "海量。"
+   "我喝起酒来",
+   "像鱼一样（喝很多）。"
   ]
  },
  {
   "sentence": "I can hold my own.",
-  "translation": "我酒量还可以。",
+  "translation": "我应付得来。",
   "chunks": [
    "I can",
    "hold my own."
   ],
   "hints": [
-   "我酒量",
-   "还可以。"
+   "我能",
+   "应付得来。"
   ]
  },
  {
@@ -941,20 +937,20 @@
    "eat sushi?"
   ],
   "hints": [
-   "寿司",
-   "怎么吃呀？"
-  ]
+   "你怎么",
+   "吃寿司？"
+    ]
  },
  {
   "sentence": "You dip it in soy sauce.",
-  "translation": "你得蘸酱油。",
+  "translation": "把它蘸进酱油里。",
   "chunks": [
    "You dip it",
    "in soy sauce."
   ],
   "hints": [
-   "你得",
-   "蘸酱油。"
+   "把它蘸",
+   "酱油里。"
   ]
  },
  {
@@ -971,14 +967,14 @@
  },
  {
   "sentence": "What kind of fish is this?",
-  "translation": "这是什么鱼?",
+  "translation": "这是哪一种鱼？",
   "chunks": [
    "What kind of fish",
    "is this?"
   ],
   "hints": [
-   "这是什么",
-   "鱼？"
+   "哪一种鱼",
+   "这是？"
   ]
  },
  {
@@ -1055,14 +1051,14 @@
  },
  {
   "sentence": "This bread is soggy.",
-  "translation": "面包没烤透。",
+  "translation": "这面包泡软了。",
   "chunks": [
    "This bread",
    "is soggy."
   ],
   "hints": [
    "面包",
-   "没烤透。"
+   "泡软了。"
   ]
  },
  {
@@ -1115,14 +1111,14 @@
  },
  {
   "sentence": "This has a strong flavor.",
-  "translation": "味很重。",
+  "translation": "味道很浓。",
   "chunks": [
    "This has",
    "a strong flavor."
   ],
   "hints": [
-   "味",
-   "很重。"
+   "这有",
+   "很浓的味道。"
   ]
  },
  {
@@ -1163,14 +1159,14 @@
  },
  {
   "sentence": "My mouth is burning.",
-  "translation": "我的嘴都麻了。",
+  "translation": "我嘴里火辣辣的。",
   "chunks": [
    "My mouth",
    "is burning."
   ],
   "hints": [
    "我的嘴",
-   "都麻了。"
+   "火辣辣的。"
   ]
  },
  {
@@ -1205,8 +1201,8 @@
    "my fork."
   ],
   "hints": [
-   "我的叉子",
-   "掉了。"
+   "我弄掉了",
+   "我的叉子"
   ]
  },
  {
@@ -1235,14 +1231,14 @@
  },
  {
   "sentence": "I'm very full.",
-  "translation": "我吃饱了。",
+  "translation": "我很饱。",
   "chunks": [
    "I'm very",
    "full."
   ],
   "hints": [
-   "我",
-   "吃饱了。"
+   "我很",
+   "饱。"
   ]
  },
  {
@@ -1253,8 +1249,8 @@
    "enough food."
   ],
   "hints": [
-   "食物",
-   "不够了。"
+   "没有",
+   "足够的食物"
   ]
  },
  {
@@ -1271,14 +1267,14 @@
  },
  {
   "sentence": "How do you like your coffee?",
-  "translation": "您喝什么样的咖啡?",
+  "translation": "您喜欢喝什么样的咖啡？",
   "chunks": [
    "How do you like",
    "your coffee?"
   ],
   "hints": [
-   "您喝",
-   "什么样的咖啡？"
+   "您喜欢什么样的",
+   "咖啡？"
   ]
  },
  {
@@ -1289,8 +1285,8 @@
    "please."
   ],
   "hints": [
-   "请",
-   "结账。"
+   "账单",
+   "请。"
   ]
  },
  {
@@ -1313,32 +1309,32 @@
    "on me."
   ],
   "hints": [
-   "我",
-   "请客。"
+   "这次",
+   "我请客"
   ]
  },
  {
   "sentence": "What is this for?",
-  "translation": "这是什么的钱?",
+  "translation": "这是做什么用的？",
   "chunks": [
    "What is",
    "this for?"
   ],
   "hints": [
-   "这是",
-   "什么的钱？"
+   "是什么",
+   "这个的用途"
   ]
  },
  {
   "sentence": "I'm afraid there is a mistake here.",
-  "translation": "我觉得这儿算错了。",
+  "translation": "恐怕这里出了问题。",
   "chunks": [
-   "I'm afraid there is",
-   "a mistake here."
+   "I'm afraid",
+   "there is a mistake here."
   ],
   "hints": [
-   "我觉得这儿",
-   "算错了。"
+   "恐怕",
+   "这里出了问题。"
   ]
  },
  {
@@ -1369,24 +1365,22 @@
   "sentence": "Keep the change.",
   "translation": "不用找钱了。",
   "chunks": [
-   "Keep",
-   "the change."
+   "Keep the change."
   ],
   "hints": [
-   "不用",
-   "找钱了。"
+   "不用找钱了。"
   ]
  },
  {
   "sentence": "May I have a receipt, please?",
-  "translation": "请开张发票。",
+  "translation": "请给我一张收据。",
   "chunks": [
    "May I have",
    "a receipt, please?"
   ],
   "hints": [
-   "请开张",
-   "发票。"
+   "请给我",
+   "一张收据。"
   ]
  }
 ]

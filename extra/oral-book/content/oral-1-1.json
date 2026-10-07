@@ -7,8 +7,8 @@
    "morning."
   ],
   "hints": [
-   "早上",
-   "好。"
+   "好",
+   "早上。"
   ]
  },
  {
@@ -171,12 +171,12 @@
   "sentence": "You left the light on.",
   "translation": "你一直没关灯啊。",
   "chunks": [
-   "You left",
-   "the light on."
+   "You",
+   "left the light on."
   ],
   "hints": [
-   "你一直",
-   "没关灯啊。"
+   "你",
+   "让灯一直开着。"
   ]
  },
  {
@@ -199,8 +199,8 @@
    "eat breakfast."
   ],
   "hints": [
-   "该吃",
-   "早饭了。"
+   "该",
+   "吃早饭了。"
   ]
  },
  {
@@ -255,12 +255,12 @@
   "sentence": "Coffee wakes me up.",
   "translation": "我是用咖啡来提神的。",
   "chunks": [
-   "Coffee wakes",
-   "me up."
+   "Coffee",
+   "wakes me up."
   ],
   "hints": [
-   "我是用咖啡",
-   "来提神的。"
+   "咖啡",
+   "能让我提神。"
   ]
  },
  {
@@ -271,32 +271,32 @@
    "your teeth?"
   ],
   "hints": [
-   "刷牙",
-   "了吗？"
+   "你刷了",
+   "牙吗？"
   ]
  },
  {
   "sentence": "I have to comb my hair.",
   "translation": "我得梳梳头了。",
   "chunks": [
-   "I have to comb",
-   "my hair."
+   "I have to",
+   "comb my hair."
   ],
   "hints": [
    "我得",
-   "梳梳头了。"
+   "梳梳头"
   ]
  },
  {
   "sentence": "What should I wear?",
   "translation": "穿什么好呢?",
   "chunks": [
-   "What should",
-   "I wear?"
+   "What",
+   "should I wear?"
   ],
   "hints": [
-   "穿什么",
-   "好呢？"
+   "什么",
+   "我应该穿"
   ]
  },
  {
@@ -327,8 +327,8 @@
   "sentence": "I'm leaving. Bye mom!",
   "translation": "我走了。妈妈再见!",
   "chunks": [
-   "I'm leaving. Bye",
-   "mom!"
+   "I'm leaving.",
+   "Bye mom!"
   ],
   "hints": [
    "我走了。",
@@ -355,7 +355,7 @@
    "inside out."
   ],
   "hints": [
-   "你毛衣",
+   "你穿着毛衣",
    "穿反了。"
   ]
  },
@@ -367,8 +367,8 @@
    "upside down."
   ],
   "hints": [
-   "上下",
-   "颠倒了。"
+   "它是",
+   "上下颠倒的。"
   ]
  },
  {
@@ -399,12 +399,12 @@
   "sentence": "What are you doing today?",
   "translation": "今天你们干嘛?",
   "chunks": [
-   "What are you",
-   "doing today?"
+   "What",
+   "are you doing today?"
   ],
   "hints": [
-   "你们",
-   "今天干嘛？"
+   "什么",
+   "你今天在做什么？"
   ]
  },
  {
@@ -415,20 +415,20 @@
    "we'll be late."
   ],
   "hints": [
-   "你快点儿，",
-   "我们该迟到了！"
+   "如果你不快点，",
+   "我们就要迟到了！"
   ]
  },
  {
   "sentence": "Hurry or you'll be late for school.",
   "translation": "快点儿，上学该迟到了。",
   "chunks": [
-   "Hurry or you'll be late",
-   "for school."
+   "Hurry",
+   "or you'll be late for school."
   ],
   "hints": [
    "快点儿，",
-   "上学该迟到了。"
+   "不然上学就要迟到了。"
   ]
  },
  {
@@ -439,8 +439,8 @@
    "the door?"
   ],
   "hints": [
-   "你锁门",
-   "了吗？"
+   "你锁了",
+   "门吗？"
   ]
  },
  {
@@ -451,8 +451,8 @@
    "something?"
   ],
   "hints": [
-   "没忘了",
-   "什么东西吧？"
+   "你是不是忘了",
+   "什么东西？"
   ]
  },
  {
@@ -493,14 +493,14 @@
  },
  {
   "sentence": "Are you gonna be late today?",
-  "translation": "你今天会回来得晚吗?",
+  "translation": "你今天会迟到吗？",
   "chunks": [
    "Are you gonna be",
    "late today?"
   ],
   "hints": [
-   "你会",
-   "今天回来得晚吗？"
+   "你会不会",
+   "今天迟到？"
   ]
  },
  {
@@ -535,8 +535,8 @@
    "rain today."
   ],
   "hints": [
-   "好像",
-   "今天要下雨。"
+   "可能会",
+   "今天下雨。"
   ]
  },
  {
@@ -547,8 +547,8 @@
    "when you leave."
   ],
   "hints": [
-   "出门的时候，",
-   "可别忘了锁门。"
+   "可别忘了锁门",
+   "离开时"
   ]
  },
  {
@@ -565,38 +565,38 @@
  },
  {
   "sentence": "Welcome home!",
-  "translation": "你回来了。",
+  "translation": "欢迎回家！",
   "chunks": [
    "Welcome",
    "home!"
   ],
   "hints": [
-   "你",
-   "回来了。"
+   "欢迎",
+   "回家！"
   ]
  },
  {
   "sentence": "Did you have a good time?",
-  "translation": "今天过得愉快吗?",
+  "translation": "玩得愉快吗？",
   "chunks": [
    "Did you have",
    "a good time?"
   ],
   "hints": [
-   "今天过得",
+   "你玩得",
    "愉快吗？"
   ]
  },
  {
   "sentence": "How did it go today?",
-  "translation": "今天怎么样?",
+  "translation": "今天过得怎么样？",
   "chunks": [
-   "How did it",
-   "go today?"
+   "How did it go",
+   "today?"
   ],
   "hints": [
-   "怎么样",
-   "今天进行的？"
+   "过得怎么样",
+   "今天？"
   ]
  },
  {
@@ -631,20 +631,20 @@
    "the snacks?"
   ],
   "hints": [
-   "点心",
-   "在哪儿？"
+   "在哪儿？",
+   "点心"
   ]
  },
  {
   "sentence": "I'm going to cram school now.",
-  "translation": "我去补习学校了啊。",
+  "translation": "我现在要去补习学校。",
   "chunks": [
-   "I'm going to",
-   "cram school now."
+   "I'm going to cram school",
+   "now."
   ],
   "hints": [
-   "我去补习学校",
-   "了啊。"
+   "我要去补习学校",
+   "现在。"
   ]
  },
  {
@@ -679,8 +679,8 @@
    "for dinner?"
   ],
   "hints": [
-   "晚饭你想",
-   "吃什么？"
+   "你想吃什么？",
+   "晚饭"
   ]
  },
  {
@@ -703,32 +703,32 @@
    "for dinner?"
   ],
   "hints": [
-   "晚饭做",
-   "什么好呢？"
+   "我该做什么？",
+   "晚饭"
   ]
  },
  {
   "sentence": "It's good to be home.",
-  "translation": "还是家好哇。",
+  "translation": "到家真好。",
   "chunks": [
    "It's good",
    "to be home."
   ],
   "hints": [
-   "还是",
-   "家好哇。"
+   "真好",
+   "到家。"
   ]
  },
  {
   "sentence": "Would you run to the store?",
-  "translation": "你能不能快点儿去趟商店?",
+  "translation": "你能不能跑一趟商店？",
   "chunks": [
-   "Would you run",
-   "to the store?"
+   "Would you",
+   "run to the store?"
   ],
   "hints": [
-   "你能不能快点儿",
-   "去趟商店？"
+   "你能不能",
+   "跑一趟商店？"
   ]
  },
  {
@@ -807,24 +807,24 @@
   "sentence": "How soon can you get it ready?",
   "translation": "还要多久才能做好呀?",
   "chunks": [
-   "How soon can you",
-   "get it ready?"
+   "How soon",
+   "can you get it ready?"
   ],
   "hints": [
    "还要多久",
-   "才能做好呀？"
+   "你才能把它准备好？"
   ]
  },
  {
   "sentence": "Let's eat.",
-  "translation": "我吃了啊。",
+  "translation": "咱们开吃吧。",
   "chunks": [
    "Let's",
    "eat."
   ],
   "hints": [
-   "我",
-   "吃了啊。"
+   "咱们",
+   "开吃吧。"
   ]
  },
  {
@@ -867,12 +867,10 @@
   "sentence": "Come and get it!",
   "translation": "开饭啦!",
   "chunks": [
-   "Come and",
-   "get it!"
+   "Come and get it!"
   ],
   "hints": [
-   "开饭",
-   "啦！"
+   "过来吃饭啦！"
   ]
  },
  {
@@ -956,19 +954,19 @@
   ],
   "hints": [
    "我不喜欢",
-   "吃芦笋。"
+   "芦笋。"
   ]
  },
  {
   "sentence": "It was very delicious. Thank you.",
-  "translation": "谢谢您的款待。",
+  "translation": "味道非常好，谢谢您的款待。",
   "chunks": [
-   "It was very delicious. Thank",
-   "you."
+   "It was very delicious.",
+   "Thank you."
   ],
   "hints": [
-   "谢谢您的",
-   "款待。"
+   "味道非常好。",
+   "谢谢您的款待。"
   ]
  },
  {
@@ -987,24 +985,29 @@
   "sentence": "Do the dishes!",
   "translation": "把盘子洗了。",
   "chunks": [
-   "Do",
-   "the dishes!"
+   "Do the dishes!"
   ],
   "hints": [
-   "洗",
-   "盘子！"
+   "把盘子洗了。"
+  ],
+  "distractors": [
+   [
+    "Do the dish!",
+    "Make the dishes!",
+    "Wash a dishes!"
+   ]
   ]
  },
  {
   "sentence": "I'll dry the dishes.",
   "translation": "我擦盘子。",
   "chunks": [
-   "I'll dry",
-   "the dishes."
+   "I'll",
+   "dry the dishes."
   ],
   "hints": [
    "我",
-   "擦盘子。"
+   "把盘子擦干。"
   ]
  },
  {
@@ -1015,32 +1018,32 @@
    "doing?"
   ],
   "hints": [
-   "你",
-   "干什么呢？"
+   "你在",
+   "做什么？"
   ]
  },
  {
   "sentence": "I'm watching TV.",
   "translation": "我看电视呢。",
   "chunks": [
-   "I'm watching",
-   "TV."
+   "I'm",
+   "watching TV."
   ],
   "hints": [
    "我",
-   "看电视呢。"
+   "在看电视。"
   ]
  },
  {
   "sentence": "Are there any good programs on TV?",
   "translation": "有什么好看的节目吗?",
   "chunks": [
-   "Are there any good programs",
-   "on TV?"
+   "Are there any",
+   "good programs on TV?"
   ],
   "hints": [
-   "有什么好看的",
-   "节目吗？"
+   "有没有",
+   "好看的电视节目？"
   ]
  },
  {
@@ -1083,24 +1086,24 @@
   "sentence": "I want to watch more TV.",
   "translation": "我还想看电视。",
   "chunks": [
-   "I want to watch",
-   "more TV."
+   "I want",
+   "to watch more TV."
   ],
   "hints": [
-   "我还想",
-   "看电视。"
+   "我想",
+   "再看会儿电视。"
   ]
  },
  {
   "sentence": "Let's spread out the futon.",
   "translation": "铺床吧。",
   "chunks": [
-   "Let's spread out",
-   "the futon."
+   "Let's",
+   "spread out the futon."
   ],
   "hints": [
-   "铺床",
-   "吧。"
+   "我们",
+   "把被褥铺开。"
   ]
  },
  {
@@ -1219,20 +1222,20 @@
    "the TV on."
   ],
   "hints": [
-   "你一直",
-   "电视开着呢。"
+   "你让",
+   "电视一直开着。"
   ]
  },
  {
   "sentence": "Don't leave your stuff here.",
   "translation": "别把你的东西都摊在这儿。",
   "chunks": [
-   "Don't leave",
-   "your stuff here."
+   "Don't leave your stuff",
+   "here."
   ],
   "hints": [
-   "别把你的东西",
-   "都摊在这儿。"
+   "别把你的东西留在",
+   "这里"
   ]
  },
  {
@@ -1263,24 +1266,20 @@
   "sentence": "Good night.",
   "translation": "晚安。",
   "chunks": [
-   "Good",
-   "night."
+   "Good night."
   ],
   "hints": [
-   "晚",
-   "安。"
+   "晚安。"
   ]
  },
  {
   "sentence": "Sweet dreams.",
   "translation": "做个好梦。",
   "chunks": [
-   "Sweet",
-   "dreams."
+   "Sweet dreams."
   ],
   "hints": [
-   "做个",
-   "好梦。"
+   "做个好梦。"
   ]
  },
  {
@@ -1347,12 +1346,12 @@
   "sentence": "Will you change the baby's diaper?",
   "translation": "你能给孩子换块尿布吗?",
   "chunks": [
-   "Will you change",
-   "the baby's diaper?"
+   "Will you",
+   "change the baby's diaper?"
   ],
   "hints": [
-   "你能给孩子",
-   "换块尿布吗？"
+   "你能不能",
+   "给宝宝换尿布？"
   ]
  },
  {
@@ -1427,12 +1426,12 @@
   "sentence": "It's so dusty.",
   "translation": "全是灰呀。",
   "chunks": [
-   "It's so",
-   "dusty."
+   "It's",
+   "so dusty."
   ],
   "hints": [
-   "全是",
-   "灰呀。"
+   "这里",
+   "灰尘很多。"
   ]
  },
  {
@@ -1449,7 +1448,7 @@
  },
  {
   "sentence": "It's drafty in this room.",
-  "translation": "这个房间很通风。",
+  "translation": "这间房漏风。",
   "chunks": [
    "It's drafty",
    "in this room."
@@ -1463,24 +1462,24 @@
   "sentence": "Will you feed the dog?",
   "translation": "你能去喂喂狗吗?",
   "chunks": [
-   "Will you feed",
-   "the dog?"
+   "Will you",
+   "feed the dog?"
   ],
   "hints": [
-   "你能去",
-   "喂喂狗吗？"
+   "你能不能",
+   "喂一下狗？"
   ]
  },
  {
   "sentence": "Will you take the dog for a walk?",
   "translation": "你去遛遛狗吧?",
   "chunks": [
-   "Will you take the dog",
-   "for a walk?"
+   "Will you",
+   "take the dog for a walk?"
   ],
   "hints": [
-   "你去",
-   "遛遛狗吧？"
+   "你能不能",
+   "带狗出去遛遛？"
   ]
  },
  {
@@ -1491,32 +1490,30 @@
    "my brother and sister."
   ],
   "hints": [
-   "帮我照看一下",
-   "弟弟和妹妹。"
+   "照看一下",
+   "我的弟弟和妹妹。"
   ]
  },
  {
   "sentence": "Please water the plants.",
   "translation": "请(给植物)浇点水。",
   "chunks": [
-   "Please water",
-   "the plants."
+   "Please",
+   "water the plants."
   ],
   "hints": [
-   "请浇点水",
-   "给植物。"
+   "请",
+   "给植物浇水。"
   ]
  },
  {
   "sentence": "What a mess!",
   "translation": "啊!怎么这么乱呀!",
   "chunks": [
-   "What a",
-   "mess!"
+   "What a mess!"
   ],
   "hints": [
-   "怎么",
-   "这么乱呀！"
+   "真乱啊！"
   ]
  },
  {
@@ -1547,12 +1544,12 @@
   "sentence": "Help me clean up the house.",
   "translation": "帮我打扫打扫卫生。",
   "chunks": [
-   "Help me clean up",
-   "the house."
+   "Help me",
+   "clean up the house."
   ],
   "hints": [
    "帮我",
-   "打扫打扫卫生。"
+   "把屋子收拾干净。"
   ]
  },
  {
@@ -1571,12 +1568,12 @@
   "sentence": "Would you put up the clothes to dry?",
   "translation": "你能把衣服晾上吗?",
   "chunks": [
-   "Would you put up",
-   "the clothes to dry?"
+   "Would you",
+   "put up the clothes to dry?"
   ],
   "hints": [
-   "你能晾上",
-   "衣服吗？"
+   "你能不能",
+   "把衣服晾起来？"
   ]
  },
  {
@@ -1619,32 +1616,32 @@
   "sentence": "I have to vacuum my room.",
   "translation": "我得用吸尘器吸吸我房间了。",
   "chunks": [
-   "I have to vacuum",
-   "my room."
+   "I have to",
+   "vacuum my room."
   ],
   "hints": [
-   "我得用吸尘器",
-   "吸吸我房间了。"
+   "我得",
+   "把我的房间吸一遍。"
   ]
  },
  {
   "sentence": "Please dust the shelves.",
-  "translation": "掸掸柜子上的土。",
+  "translation": "请把架子上的灰掸掉。",
   "chunks": [
-   "Please dust",
-   "the shelves."
+   "Please",
+   "dust the shelves."
   ],
   "hints": [
-   "请掸掸",
-   "柜子上的土。"
+   "请",
+   "把架子上的灰掸掉。"
   ]
  },
  {
   "sentence": "Please mop the floor.",
   "translation": "请拖拖地。",
   "chunks": [
-   "Please mop",
-   "the floor."
+   "Please",
+   "mop the floor."
   ],
   "hints": [
    "请",
@@ -1737,14 +1734,14 @@
  },
  {
   "sentence": "What do you want for your birthday?",
-  "translation": "过生日想要什么礼物?",
+  "translation": "你生日想要什么礼物？",
   "chunks": [
    "What do you want",
    "for your birthday?"
   ],
   "hints": [
    "你想要什么",
-   "过生日？"
+   "作为生日礼物？"
   ]
  },
  {
@@ -1759,14 +1756,14 @@
  },
  {
   "sentence": "I usually work out after work.",
-  "translation": "我经常下班以后运动。",
+  "translation": "我通常下班后运动。",
   "chunks": [
    "I usually work out",
    "after work."
   ],
   "hints": [
-   "我经常",
-   "下班以后运动。"
+   "我通常运动",
+   "下班以后。"
   ]
  },
  {
@@ -1789,8 +1786,8 @@
    "dream often?"
   ],
   "hints": [
-   "你常",
-   "做梦吗？"
+   "你",
+   "常做梦吗？"
   ]
  },
  {
@@ -1833,12 +1830,12 @@
   "sentence": "Could you give me change?",
   "translation": "能帮我换一下零钱吗?",
   "chunks": [
-   "Could you give me",
-   "change?"
+   "Could you",
+   "give me change?"
   ],
   "hints": [
-   "能帮我换",
-   "一下零钱吗？"
+   "你能不能",
+   "给我换点零钱？"
   ]
  },
  {
@@ -1881,20 +1878,20 @@
   "sentence": "I paid out of my own pocket.",
   "translation": "我是自己掏的腰包。",
   "chunks": [
-   "I paid out of",
-   "my own pocket."
+   "I paid",
+   "out of my own pocket."
   ],
   "hints": [
-   "我是自己",
-   "掏的腰包。"
+   "我付了钱",
+   "从自己的口袋里"
   ]
  },
  {
   "sentence": "I'm out of cash.",
   "translation": "我没带现金。",
   "chunks": [
-   "I'm out of",
-   "cash."
+   "I'm",
+   "out of cash."
   ],
   "hints": [
    "我",
@@ -1917,12 +1914,10 @@
   "sentence": "I'm broke.",
   "translation": "身无分文。",
   "chunks": [
-   "I'm",
-   "broke."
+   "I'm broke."
   ],
   "hints": [
-   "身无",
-   "分文。"
+   "我身无分文。"
   ]
  },
  {
@@ -1945,20 +1940,18 @@
    "to be lazy."
   ],
   "hints": [
-   "我可没有",
-   "时间闲呆着。"
+   "我可不能",
+   "偷懒。"
   ]
  },
  {
   "sentence": "What a waste!",
   "translation": "多浪费呀!",
   "chunks": [
-   "What a",
-   "waste!"
+   "What a waste!"
   ],
   "hints": [
-   "多",
-   "浪费呀！"
+   "真浪费！"
   ]
  },
  {

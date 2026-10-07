@@ -1,14 +1,12 @@
 [
  {
   "sentence": "Every Tom, Dick and Harry.",
-  "translation": "不管张三李四。",
+  "translation": "张三李四；普通人。",
   "chunks": [
-   "Every Tom,",
-   "Dick and Harry."
+   "Every Tom, Dick and Harry."
   ],
   "hints": [
-   "不管",
-   "张三李四"
+   "张三李四；普通人。"
   ],
   "explanation": {
    "meaning": "Every Tom, Dick and Harry 是一个非常常见、略带随意或轻微贬义色彩的英语习语，指“随便什么人”“张三李四”“阿猫阿狗”等普通人。",
@@ -44,7 +42,7 @@
  },
  {
   "sentence": "I live to eat.",
-  "translation": "舍名求实。",
+  "translation": "我为吃而活。",
   "chunks": [
    "I live",
    "to eat."
@@ -56,13 +54,13 @@
  },
  {
   "sentence": "Every dog has his day.",
-  "translation": "瞎猫碰上了死耗子。",
+  "translation": "人人都有得意的一天。",
   "chunks": [
    "Every dog",
    "has his day."
   ],
   "hints": [
-   "每只狗",
+   "人人",
    "都有得意的一天"
   ]
  },
@@ -80,7 +78,7 @@
  },
  {
   "sentence": "Love is blind.",
-  "translation": "情人眼里出西施。",
+  "translation": "爱情是盲目的。",
   "chunks": [
    "Love",
    "is blind."
@@ -166,12 +164,10 @@
   "sentence": "There is no smoke without fire.",
   "translation": "无风不起浪。",
   "chunks": [
-   "There is no smoke",
-   "without fire."
+   "There is no smoke without fire."
   ],
   "hints": [
-   "没有烟",
-   "就不会有火"
+   "无风不起浪；事出有因。"
   ]
  },
  {
@@ -194,8 +190,8 @@
    "than never."
   ],
   "hints": [
-   "晚一点做",
-   "也总比不做好"
+   "晚做也好",
+   "总比不做强"
   ]
  },
  {
@@ -208,6 +204,21 @@
   "hints": [
    "男孩子",
    "终究是男孩子"
+  ],
+  "explanation": {
+   "meaning": "男孩淘气或幼稚是天性，常用来宽容地替男孩的行为开脱。",
+   "equivalents": [
+    "男孩嘛，本性难移。",
+    "男孩子就是男孩子。"
+   ],
+   "usage": "常用于男孩调皮、幼稚或惹了麻烦时，语气可以是宽容、无奈或打趣。",
+   "note": "也可能被批评为替不当行为找借口；是否合适要看具体语境。"
+  },
+  "examples": [
+   {
+    "en": "When they broke the window playing soccer, their dad just sighed and said, ‘Boys will be boys.’",
+    "zh": "他们踢球时打破了窗户，父亲只是叹了口气，说：“男孩子嘛，本性难移。”"
+   }
   ]
  },
  {
@@ -284,7 +295,7 @@
  },
  {
   "sentence": "When it rains, it always pours.",
-  "translation": "祸不单行，福无双至。",
+  "translation": "祸不单行。",
   "chunks": [
    "When it rains,",
    "it always pours."
@@ -302,20 +313,20 @@
    "there's a way."
   ],
   "hints": [
-   "哪里有意志",
-   "哪里就有办法"
+   "有志者",
+   "事竟成"
   ]
  },
  {
   "sentence": "Actions speak louder than words.",
-  "translation": "行动比语言更响亮。",
+  "translation": "行动胜过空谈。",
   "chunks": [
    "Actions speak",
    "louder than words."
   ],
   "hints": [
    "行动",
-   "比言语更响亮"
+   "胜过言语"
   ]
  },
  {
@@ -356,13 +367,13 @@
  },
  {
   "sentence": "All's fair in love and war.",
-  "translation": "恋爱和战争都是不择手段的。",
+  "translation": "在爱情和战争中，什么手段都可以用。",
   "chunks": [
    "All's fair",
    "in love and war."
   ],
   "hints": [
-   "都是公平的",
+   "什么手段都可以用",
    "在爱情和战争中"
   ],
   "explanation": {
@@ -387,6 +398,21 @@
   "hints": [
    "美貌",
    "不过一层皮"
+  ],
+  "explanation": {
+   "meaning": "外貌只停留在表面；一个人的价值不能只用长相衡量。",
+   "equivalents": [
+    "美貌不过一张皮。",
+    "人不可貌相。"
+   ],
+   "usage": "用来提醒人们别只看外表，也要看性格、品格和内在价值。",
+   "note": "skin-deep 单独作形容词时还可表示“浅薄、流于表面”，如 a skin-deep promise（一个不走心、只停留在表面的承诺）。"
+  },
+  "examples": [
+   {
+    "en": "Beauty is only skin deep; what matters is who you are inside.",
+    "zh": "美貌只是外表，重要的是你的内在。"
+   }
   ]
  },
  {
@@ -403,7 +429,7 @@
  },
  {
   "sentence": "You cannot make an omelet without breaking eggs.",
-  "translation": "不劳则不获。",
+  "translation": "不打破鸡蛋，就做不成煎蛋卷。",
   "chunks": [
    "You cannot make an omelet",
    "without breaking eggs."
@@ -451,7 +477,7 @@
  },
  {
   "sentence": "The proof of the pudding is in the eating.",
-  "translation": "事实胜于雄辩。",
+  "translation": "东西好不好，尝了才知道。",
   "chunks": [
    "The proof of the pudding",
    "is in the eating."
@@ -475,14 +501,12 @@
  },
  {
   "sentence": "On the nose.",
-  "translation": "正好。",
+  "translation": "正好；恰到好处。",
   "chunks": [
-   "On the",
-   "nose."
+   "On the nose."
   ],
   "hints": [
-   "正好",
-   "分毫不差"
+   "正好；恰到好处"
   ]
  },
  {
@@ -523,12 +547,10 @@
   "sentence": "As soon as possible.",
   "translation": "尽快。",
   "chunks": [
-   "As soon",
-   "as possible."
+   "As soon as possible."
   ],
   "hints": [
-   "尽可能快",
-   "越快越好"
+   "尽快；越快越好"
   ]
  },
  {
@@ -578,27 +600,26 @@
   ]
  },
  {
-  "sentence": "all long",
+  "sentence": "all along",
+  "cid": "a3c4ec4a",
   "translation": "始终/一直/一贯",
   "chunks": [
-   "all",
-   "long"
+   "all along"
   ],
   "hints": [
-   "始终",
-   "一贯"
+   "始终；从一开始就"
   ]
  },
  {
   "sentence": "As far as I can remember,...",
-  "translation": "就我的记忆来说……",
+  "translation": "据我所记得……",
   "chunks": [
-   "As far as",
-   "I can remember,..."
+   "As far as I",
+   "can remember,..."
   ],
   "hints": [
-   "就我所能",
-   "记起来的来说"
+   "据我",
+   "所能记得……"
   ]
  },
  {
@@ -615,14 +636,14 @@
  },
  {
   "sentence": "That's what I'm here for.",
-  "translation": "这是我为什么在这儿的原因。",
+  "translation": "这正是我来这儿的目的。",
   "chunks": [
    "That's",
    "what I'm here for."
   ],
   "hints": [
    "这正是",
-   "我在这儿的原因"
+   "我来这儿的目的"
   ]
  },
  {
@@ -635,6 +656,21 @@
   "hints": [
    "二加三",
    "等于五"
+  ],
+  "explanation": {
+   "meaning": "字面是“二加三等于五”；在特定语境中，也可借这个确定无疑的算式强调某件事显而易见、无可争辩。",
+   "equivalents": [
+    "显而易见。",
+    "这是明摆着的事。"
+   ],
+   "usage": "当别人质疑一个客观、简单的事实时，可以用类似表达强调结论再明确不过，没有争辩余地。",
+   "note": "作为算术表达，更自然、规范的说法是 Two plus three equals five.；原句适合按课程语境理解，不建议照搬作标准范句。"
+  },
+  "examples": [
+   {
+    "en": "It's as obvious as the fact that two plus three equals five.",
+    "zh": "这就像二加三等于五一样显而易见。"
+   }
   ]
  },
  {
@@ -651,14 +687,14 @@
  },
  {
   "sentence": "Monkey see, monkey do.",
-  "translation": "东施效颦。",
+  "translation": "有样学样。",
   "chunks": [
    "Monkey see,",
    "monkey do."
   ],
   "hints": [
-   "猴子看见什么",
-   "就学什么"
+   "猴子看见",
+   "猴子照着做"
   ]
  },
  {
@@ -711,7 +747,7 @@
  },
  {
   "sentence": "I've learned something.",
-  "translation": "我长了不少见识。",
+  "translation": "我学到了不少东西。",
   "chunks": [
    "I've learned",
    "something."
@@ -723,13 +759,13 @@
  },
  {
   "sentence": "It's a fire hazard.",
-  "translation": "那会引起火灾呀!",
+  "translation": "这是火灾隐患。",
   "chunks": [
    "It's a",
    "fire hazard."
   ],
   "hints": [
-   "那是",
+   "这是",
    "火灾隐患"
   ]
  },
@@ -759,50 +795,57 @@
  },
  {
   "sentence": "behind my back",
-  "translation": "在我背后。",
+  "translation": "背着我；瞒着我。",
   "chunks": [
-   "behind",
-   "my back"
+   "behind my back"
   ],
   "hints": [
-   "在",
-   "我背后"
+   "背着我；瞒着我"
+  ],
+  "explanation": {
+   "meaning": "字面是“在我背后”，惯用时通常指“背着我、暗地里”，尤其是别人趁你不在场议论或做事。",
+   "equivalents": [
+    "背着我",
+    "在我背后（说/做）"
+   ],
+   "usage": "常用于表达发现别人瞒着自己议论、批评或做了某事时的惊讶、受伤或不满。",
+   "note": "惯用义常带负面情绪，但并非每次都表示恶意；具体看上下文。"
+  },
+  "examples": [
+   {
+    "en": "I can't believe they were talking about me behind my back!",
+    "zh": "真不敢相信，他们竟然背着我议论我！"
+   }
   ]
  },
  {
   "sentence": "for a change",
-  "translation": "换换心情。",
+  "translation": "换个新花样；换换口味。",
   "chunks": [
-   "for a",
-   "change"
+   "for a change"
   ],
   "hints": [
-   "换个",
-   "花样"
+   "换个新花样；换换口味"
   ]
  },
  {
   "sentence": "Money talks.",
   "translation": "有钱能使鬼推磨。",
   "chunks": [
-   "Money",
-   "talks."
+   "Money talks."
   ],
   "hints": [
-   "钱",
-   "会说话"
+   "有钱能使鬼推磨；钱能办成事"
   ]
  },
  {
   "sentence": "Never say die.",
   "translation": "别说丧气话。",
   "chunks": [
-   "Never say",
-   "die."
+   "Never say die."
   ],
   "hints": [
-   "永远别说",
-   "死心"
+   "永不言弃；别说丧气话"
   ]
  },
  {

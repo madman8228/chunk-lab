@@ -3,24 +3,20 @@
   "sentence": "Yours very truly,",
   "translation": "谨致问候",
   "chunks": [
-   "Yours very",
-   "truly,"
+   "Yours very truly,"
   ],
   "hints": [
-   "您诚挚的",
-   "敬上，"
+   "谨致问候"
   ]
  },
  {
   "sentence": "Sincerely yours,",
   "translation": "谨致问候",
   "chunks": [
-   "Sincerely",
-   "yours,"
+   "Sincerely yours,"
   ],
   "hints": [
-   "诚挚地",
-   "敬上，"
+   "谨致问候"
   ]
  },
  {
@@ -37,48 +33,40 @@
   "sentence": "My best regards,",
   "translation": "谨致问候",
   "chunks": [
-   "My best",
-   "regards,"
+   "My best regards,"
   ],
   "hints": [
-   "我最好的",
-   "问候，"
+   "谨致问候"
   ]
  },
  {
   "sentence": "With best regards,",
   "translation": "谨致问候",
   "chunks": [
-   "With best",
-   "regards,"
+   "With best regards,"
   ],
   "hints": [
-   "致以最好的",
-   "问候，"
+   "谨致问候"
   ]
  },
  {
   "sentence": "The very best to you,",
   "translation": "谨致问候",
   "chunks": [
-   "The very best",
-   "to you,"
+   "The very best to you,"
   ],
   "hints": [
-   "最美好的祝愿",
-   "给您，"
+   "谨致问候"
   ]
  },
  {
   "sentence": "Best wishes,",
   "translation": "谨致问候",
   "chunks": [
-   "Best",
-   "wishes,"
+   "Best wishes,"
   ],
   "hints": [
-   "最好的",
-   "祝愿，"
+   "谨致问候"
   ]
  }
 ]

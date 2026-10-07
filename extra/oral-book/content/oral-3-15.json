@@ -13,39 +13,33 @@
  },
  {
   "sentence": "What's that noise?",
-  "translation": "什么声音?",
+  "translation": "那是什么声音？",
   "chunks": [
    "What's that",
    "noise?"
   ],
   "hints": [
-   "什么",
-   "声音"
+   "那是什么",
+   "声音？"
   ]
  },
  {
   "sentence": "What is this line for?",
-  "translation": "这是排什么的队?",
+  "translation": "这队伍是排什么的？",
   "chunks": [
    "What is this",
    "line for?"
   ],
   "hints": [
-   "这是排",
-   "什么的队"
-  ]
+   "这队伍是",
+   "排什么的？"
+    ]
  },
  {
   "sentence": "What are you up to?",
-  "translation": "打什么鬼主意呢?",
-  "chunks": [
-   "What are you",
-   "up to?"
-  ],
-  "hints": [
-   "打什么",
-   "鬼主意呢"
-  ]
+  "translation": "你在打什么鬼主意？",
+  "chunks": ["What are you up to?"],
+  "hints": ["你在打什么鬼主意？"]
  },
  {
   "sentence": "May I ask you a question?",
@@ -79,8 +73,8 @@
    "this?"
   ],
   "hints": [
-   "这",
-   "是什么"
+   "是什么",
+   "这个"
   ]
  },
  {
@@ -91,21 +85,15 @@
    "that?"
   ],
   "hints": [
-   "那",
-   "是什么"
+   "是什么",
+   "那个"
   ]
  },
  {
   "sentence": "Who does this belong to?",
   "translation": "这是谁的?",
-  "chunks": [
-   "Who does this",
-   "belong to?"
-  ],
-  "hints": [
-   "这是",
-   "谁的"
-  ]
+  "chunks": ["Who does this belong to?"],
+  "hints": ["这是谁的？"]
  },
  {
   "sentence": "Which one?",
@@ -133,39 +121,25 @@
  },
  {
   "sentence": "What did you get for me?",
-  "translation": "是什么礼物?",
+  "translation": "你给我买了什么？",
   "chunks": [
-   "What did you get",
-   "for me?"
+   "What did you get for me?"
   ],
   "hints": [
-   "是什么",
-   "礼物"
+   "你给我买了什么？"
   ]
  },
  {
   "sentence": "For example?",
   "translation": "比如说?",
-  "chunks": [
-   "For",
-   "example?"
-  ],
-  "hints": [
-   "比如",
-   "说"
-  ]
+  "chunks": ["For example?"],
+  "hints": ["比如说？"]
  },
  {
   "sentence": "How often?",
-  "translation": "隔多长时间?",
-  "chunks": [
-   "How",
-   "often?"
-  ],
-  "hints": [
-   "隔多",
-   "长时间"
-  ]
+  "translation": "多久一次？",
+  "chunks": ["How often?"],
+  "hints": ["多久一次？"]
  },
  {
   "sentence": "What does USA stand for?",
@@ -211,9 +185,9 @@
    "start?"
   ],
   "hints": [
-   "暑假",
-   "什么时候开始"
-  ]
+     "暑假什么时候",
+     "开始"
+    ]
  },
  {
   "sentence": "When was the opening ceremony?",
@@ -223,20 +197,20 @@
    "the opening ceremony?"
   ],
   "hints": [
-   "开学典礼",
-   "是哪天"
-  ]
+     "是哪天？",
+     "开学典礼"
+    ]
  },
  {
   "sentence": "Do you know the meaning of this word?",
-  "translation": "你知道这个生词的意思吗?",
+  "translation": "你知道这个词的意思吗?",
   "chunks": [
-   "Do you know the meaning",
-   "of this word?"
+   "Do you know",
+   "the meaning of this word?"
   ],
   "hints": [
-   "你知道这个生词",
-   "的意思吗"
+   "你知道",
+   "这个词的意思吗？"
   ]
  },
  {
@@ -247,9 +221,9 @@
    "this word?"
   ],
   "hints": [
-   "这个词",
-   "怎么发音"
-  ]
+     "怎么发音",
+     "这个词"
+    ]
  },
  {
   "sentence": "What's the difference between A and B?",
@@ -259,8 +233,8 @@
    "between A and B?"
   ],
   "hints": [
-   "A和B之间",
-   "有什么区别"
-  ]
+     "有什么区别",
+     "A和B之间"
+    ]
  }
 ]

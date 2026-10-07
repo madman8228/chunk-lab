@@ -1,39 +1,33 @@
 [
  {
   "sentence": "I don't care.",
-  "translation": "什么都行。",
+  "translation": "我不在乎。",
   "chunks": [
-   "I don't",
-   "care."
+   "I",
+   "don't care."
   ],
   "hints": [
    "我",
-   "无所谓"
+   "不在乎"
   ]
  },
  {
   "sentence": "Who cares?",
-  "translation": "管它呢!",
+  "translation": "谁在乎啊？",
   "chunks": [
    "Who",
    "cares?"
   ],
   "hints": [
    "谁",
-   "管它呢"
+   "在乎？"
   ]
  },
  {
   "sentence": "Whatever you want.",
   "translation": "随便你!",
-  "chunks": [
-   "Whatever",
-   "you want."
-  ],
-  "hints": [
-   "随你",
-   "想怎样"
-  ]
+    "chunks": ["Whatever you want."],
+    "hints": ["随你；你想要什么都行。"]
  },
  {
   "sentence": "Nobody knows.",
@@ -49,22 +43,22 @@
  },
  {
   "sentence": "It has nothing to do with me.",
-  "translation": "这跟我有什么关系。",
+  "translation": "这跟我没关系。",
   "chunks": [
-   "It has nothing",
-   "to do with me."
+   "It",
+   "has nothing to do with me."
   ],
   "hints": [
-   "这跟",
-   "我没关系"
+   "这件事",
+   "跟我没关系。"
   ]
  },
  {
   "sentence": "I couldn't care less.",
   "translation": "我才不在乎呢。",
   "chunks": [
-   "I couldn't",
-   "care less."
+   "I",
+   "couldn't care less."
   ],
   "hints": [
    "我",
@@ -73,7 +67,7 @@
  },
  {
   "sentence": "Nobody cares.",
-  "translation": "没人注意你。",
+  "translation": "没人关心。",
   "chunks": [
    "Nobody",
    "cares."
@@ -85,14 +79,12 @@
  },
  {
   "sentence": "Let it be.",
-  "translation": "随他们去呢!",
+  "translation": "顺其自然吧。",
   "chunks": [
-   "Let",
-   "it be."
+   "Let it be."
   ],
   "hints": [
-   "随",
-   "它去吧"
+   "顺其自然吧。/别管它。"
   ]
  },
  {
@@ -121,14 +113,14 @@
  },
  {
   "sentence": "We can do without him.",
-  "translation": "没他我们也可以。",
+  "translation": "没有他我们也能应付。",
   "chunks": [
-   "We can do",
-   "without him."
+   "We can",
+   "do without him."
   ],
   "hints": [
-   "没他",
-   "我们也行"
+   "我们可以",
+   "没有他也能应付。"
   ]
  },
  {
@@ -139,32 +131,26 @@
    "to talk about."
   ],
   "hints": [
-   "我没什么",
-   "特别要说的"
+   "我没什么特别的",
+   "要说的。"
   ]
  },
  {
   "sentence": "It doesn't matter.",
   "translation": "无所谓。",
-  "chunks": [
-   "It doesn't",
-   "matter."
-  ],
-  "hints": [
-   "那",
-   "没关系"
-  ]
+    "chunks": ["It doesn't matter."],
+    "hints": ["没关系；无所谓。"]
  },
  {
   "sentence": "It's the same old story.",
   "translation": "这又不是什么新鲜事。",
   "chunks": [
-   "It's the same",
-   "old story."
+   "It's",
+   "the same old story."
   ],
   "hints": [
-   "又是",
-   "老一套"
+   "这",
+   "还是老一套。"
   ]
  }
 ]

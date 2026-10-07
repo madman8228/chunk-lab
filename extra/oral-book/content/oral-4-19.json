@@ -26,14 +26,14 @@
  {
   "sentence": "Are you pleased with your new car?",
   "translation": "你满意你的新车吗?",
-  "chunks": [
-   "Are you pleased",
-   "with your new car?"
-  ],
-  "hints": [
-   "你满意",
-   "你的新车吗"
-  ]
+    "chunks": [
+      "Are you",
+      "pleased with your new car?"
+    ],
+    "hints": [
+      "你",
+      "对你的新车满意吗？"
+    ]
  },
  {
   "sentence": "I'm fond of this tea.",
@@ -49,52 +49,38 @@
  },
  {
   "sentence": "I prefer tea to coffee.",
-  "translation": "比起咖啡来我更喜欢红茶。",
+    "translation": "比起咖啡，我更喜欢茶。",
   "chunks": [
    "I prefer tea",
    "to coffee."
   ],
   "hints": [
-   "比起咖啡",
-   "我更爱红茶"
+      "我更喜欢茶",
+      "而不是咖啡"
   ]
  },
  {
   "sentence": "I'm hooked on...",
   "translation": "我对……上瘾。",
-  "chunks": [
-   "I'm hooked",
-   "on..."
-  ],
-  "hints": [
-   "我对",
-   "……上瘾。"
-  ]
+    "chunks": ["I'm hooked on..."],
+    "hints": ["我迷上……了。"]
  },
  {
   "sentence": "Tomato soup is my cup of tea.",
   "translation": "我喜欢喝西红柿汤。",
-  "chunks": [
-   "Tomato soup",
-   "is my cup of tea."
-  ],
-  "hints": [
-   "西红柿汤",
-   "是我的最爱"
-  ]
+    "chunks": ["Tomato soup is my cup of tea."],
+    "hints": ["我喜欢西红柿汤。"]
  },
  {
   "sentence": "I've developed a great liking for Japanese food.",
   "translation": "我非常喜欢吃日本食品。",
   "chunks": [
    "I've developed",
-   "a great liking for",
-   "Japanese food."
+   "a great liking for Japanese food."
   ],
   "hints": [
-   "我养成了",
-   "……的喜好",
-   "对日本料理"
+   "我渐渐",
+   "喜欢上日本料理。"
   ]
  },
  {
@@ -147,27 +133,27 @@
  },
  {
   "sentence": "This will be fun!",
-  "translation": "看上去挺好玩的。",
+  "translation": "这会很有趣！",
   "chunks": [
    "This",
    "will be fun!"
   ],
   "hints": [
    "这",
-   "看上去挺好玩"
+   "会很有趣！"
   ]
  },
  {
   "sentence": "This is exciting!",
   "translation": "真令人兴奋!",
-  "chunks": [
-   "This is",
-   "exciting!"
-  ],
-  "hints": [
-   "真",
-   "令人兴奋"
-  ]
+    "chunks": [
+      "This is",
+      "exciting!"
+    ],
+    "hints": [
+      "这真是",
+      "令人兴奋！"
+    ]
  },
  {
   "sentence": "I'm interested.",
@@ -183,26 +169,26 @@
  },
  {
   "sentence": "I'm satisfied.",
-  "translation": "我很满足。",
+  "translation": "我很满意。",
   "chunks": [
    "I'm",
    "satisfied."
   ],
   "hints": [
    "我很",
-   "满足"
+   "满意"
   ]
  },
  {
   "sentence": "I enjoyed it.",
-  "translation": "我很欣赏它。",
+  "translation": "我很享受。",
   "chunks": [
-   "I enjoyed",
-   "it."
+   "I",
+   "enjoyed it."
   ],
   "hints": [
-   "我很",
-   "欣赏它"
+   "我",
+   "很享受。"
   ]
  },
  {
@@ -276,37 +262,31 @@
  {
   "sentence": "It's your attitude I don't like.",
   "translation": "我不喜欢你的这种态度。",
-  "chunks": [
-   "It's your attitude",
-   "I don't like."
-  ],
-  "hints": [
-   "我不喜欢的",
-   "是你的态度"
-  ]
+  "chunks": ["It's your attitude I don't like."],
+  "hints": ["我不喜欢你的这种态度。"]
  },
  {
   "sentence": "I hate his guts.",
   "translation": "我对他恨之入骨。",
   "chunks": [
-   "I hate",
-   "his guts."
+   "I",
+   "hate his guts."
   ],
   "hints": [
-   "我对他",
-   "恨之入骨"
+   "我",
+   "恨他入骨"
   ]
  },
  {
   "sentence": "I don't care for it.",
   "translation": "我不喜欢。",
   "chunks": [
-   "I don't care for",
-   "it."
+   "I",
+   "don't care for it."
   ],
   "hints": [
    "我",
-   "不喜欢"
+   "不喜欢它"
   ]
  },
  {
@@ -317,32 +297,20 @@
    "him."
   ],
   "hints": [
-   "看见他",
-   "就心烦"
+   "我受不了",
+   "他。"
   ]
  },
  {
   "sentence": "Never again!",
-  "translation": "别再有第二次!",
-  "chunks": [
-   "Never",
-   "again!"
-  ],
-  "hints": [
-   "别再有",
-   "第二次"
-  ]
+  "translation": "再也不要有第二次！",
+    "chunks": ["Never again!"],
+    "hints": ["再也不要！"]
  },
  {
   "sentence": "I've had it.",
   "translation": "我已经受够了!",
-  "chunks": [
-   "I've had",
-   "it."
-  ],
-  "hints": [
-   "我已经",
-   "受够了"
-  ]
+  "chunks": ["I've had it."],
+  "hints": ["我已经受够了！"]
  }
 ]

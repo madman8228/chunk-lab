@@ -1,0 +1,1499 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Goodbye.",
+      "translation": "再见!",
+      "chunks": [
+        "Goodbye."
+      ],
+      "hints": [
+        "再见！"
+      ],
+      "cid": "fc911b7a"
+    },
+    {
+      "sentence": "Bye.",
+      "translation": "再见!",
+      "chunks": [
+        "Bye."
+      ],
+      "hints": [
+        "再见！"
+      ],
+      "cid": "966426d7"
+    },
+    {
+      "sentence": "See you.",
+      "translation": "回头见!",
+      "chunks": [
+        "See you."
+      ],
+      "hints": [
+        "回头见！"
+      ],
+      "cid": "75735f9f"
+    },
+    {
+      "sentence": "I'm off now.",
+      "translation": "我现在要走了。",
+      "chunks": [
+        "I'm",
+        "off now."
+      ],
+      "hints": [
+        "我",
+        "现在要走了。"
+      ],
+      "cid": "f25cbf41"
+    },
+    {
+      "sentence": "I have to go.",
+      "translation": "我得告辞了。",
+      "chunks": [
+        "I have",
+        "to go."
+      ],
+      "hints": [
+        "我得",
+        "走了。"
+      ],
+      "cid": "c602f9ab"
+    },
+    {
+      "sentence": "Good luck!",
+      "translation": "祝你好运!",
+      "chunks": [
+        "Good luck!"
+      ],
+      "hints": [
+        "祝你好运！"
+      ],
+      "cid": "d6475888"
+    },
+    {
+      "sentence": "Have a nice day!",
+      "translation": "祝你愉快!",
+      "chunks": [
+        "Have a",
+        "nice day!"
+      ],
+      "hints": [
+        "祝你",
+        "今天愉快！"
+      ],
+      "cid": "3e4584ca"
+    },
+    {
+      "sentence": "Have a nice weekend.",
+      "translation": "祝你周末愉快!",
+      "chunks": [
+        "Have a",
+        "nice weekend."
+      ],
+      "hints": [
+        "祝你",
+        "周末愉快！"
+      ],
+      "cid": "804165ba"
+    },
+    {
+      "sentence": "Have fun!",
+      "translation": "祝你玩得愉快。",
+      "chunks": [
+        "Have",
+        "fun!"
+      ],
+      "hints": [
+        "祝你",
+        "玩得愉快！"
+      ],
+      "cid": "521ad6e1"
+    },
+    {
+      "sentence": "Keep it up!",
+      "translation": "就这样，坚持下去。",
+      "chunks": [
+        "Keep it up!"
+      ],
+      "hints": [
+        "继续保持！"
+      ],
+      "cid": "4f7e3361"
+    },
+    {
+      "sentence": "Have a nice trip.",
+      "translation": "旅途愉快!",
+      "chunks": [
+        "Have a",
+        "nice trip."
+      ],
+      "hints": [
+        "祝你",
+        "旅途愉快！"
+      ],
+      "cid": "637c8456"
+    },
+    {
+      "sentence": "Have a good one!",
+      "translation": "祝你今天愉快！",
+      "chunks": [
+        "Have a",
+        "good one!"
+      ],
+      "hints": [
+        "祝你",
+        "今天愉快！"
+      ],
+      "cid": "cab4ea04"
+    },
+    {
+      "sentence": "I hate to run, but...",
+      "translation": "真舍不得走，但是……",
+      "chunks": [
+        "I hate to",
+        "run, but..."
+      ],
+      "hints": [
+        "真舍不得",
+        "走，但是……"
+      ],
+      "cid": "da839def"
+    },
+    {
+      "sentence": "It was nice meeting you.",
+      "translation": "认识你我非常高兴。",
+      "chunks": [
+        "It was nice",
+        "meeting you."
+      ],
+      "hints": [
+        "非常高兴",
+        "认识你"
+      ],
+      "cid": "0d3c646e"
+    },
+    {
+      "sentence": "Please say hello to John for me.",
+      "translation": "请代我向约翰问好。",
+      "chunks": [
+        "Please say hello",
+        "to John for me."
+      ],
+      "hints": [
+        "请问好",
+        "代我向约翰"
+      ],
+      "cid": "8fcd6e3d"
+    },
+    {
+      "sentence": "Come again.",
+      "translation": "再来啊!",
+      "chunks": [
+        "Come again."
+      ],
+      "hints": [
+        "再来一次！"
+      ],
+      "cid": "d9760065"
+    },
+    {
+      "sentence": "Don't forget to bring something back for me.",
+      "translation": "别忘了给我带点儿东西回来。",
+      "chunks": [
+        "Don't forget",
+        "to bring something back for me."
+      ],
+      "hints": [
+        "别忘了",
+        "给我带点儿什么回来。"
+      ],
+      "cid": "9beb2d8d"
+    },
+    {
+      "sentence": "Take it easy.",
+      "translation": "放松点儿!",
+      "chunks": [
+        "Take it easy."
+      ],
+      "hints": [
+        "放松点儿！"
+      ],
+      "cid": "3fe76807"
+    },
+    {
+      "sentence": "I hope to see you again soon.",
+      "translation": "希望不久能再见到你。",
+      "chunks": [
+        "I hope",
+        "to see you again soon."
+      ],
+      "hints": [
+        "我希望",
+        "很快能再见到你。"
+      ],
+      "cid": "e40d0ccc"
+    },
+    {
+      "sentence": "Call me later.",
+      "translation": "晚些时候给我打电话。",
+      "chunks": [
+        "Call me",
+        "later."
+      ],
+      "hints": [
+        "给我打电话",
+        "晚些时候。"
+      ],
+      "cid": "f6ffdbb7"
+    },
+    {
+      "sentence": "Take care.",
+      "translation": "多保重!",
+      "chunks": [
+        "Take care."
+      ],
+      "hints": [
+        "多保重！"
+      ],
+      "cid": "7c15313f"
+    },
+    {
+      "sentence": "Take care of yourself.",
+      "translation": "照顾好你自己。",
+      "chunks": [
+        "Take care of",
+        "yourself."
+      ],
+      "hints": [
+        "照顾好",
+        "你自己。"
+      ],
+      "cid": "1e10fbd5"
+    },
+    {
+      "sentence": "I'll be back.",
+      "translation": "我还会来的。",
+      "chunks": [
+        "I'll",
+        "be back."
+      ],
+      "hints": [
+        "我",
+        "还会来的。"
+      ],
+      "cid": "080a1039"
+    },
+    {
+      "sentence": "It's getting late.",
+      "translation": "天不早了。",
+      "chunks": [
+        "It's getting",
+        "late."
+      ],
+      "hints": [
+        "天",
+        "不早了。"
+      ],
+      "cid": "b7dfb7b8"
+    },
+    {
+      "sentence": "I've got to go.",
+      "translation": "我得走了。",
+      "chunks": [
+        "I've got to",
+        "go."
+      ],
+      "hints": [
+        "我得",
+        "走了。"
+      ],
+      "cid": "be7f3c2f"
+    },
+    {
+      "sentence": "I'll miss you.",
+      "translation": "我会想你的。",
+      "chunks": [
+        "I'll",
+        "miss you."
+      ],
+      "hints": [
+        "我会",
+        "想你的。"
+      ],
+      "cid": "5925b47e"
+    },
+    {
+      "sentence": "I wish I could go with you.",
+      "translation": "我真希望能和你一起去。",
+      "chunks": [
+        "I wish",
+        "I could go with you."
+      ],
+      "hints": [
+        "我真希望",
+        "能和你一起去。"
+      ],
+      "cid": "39f02a56"
+    },
+    {
+      "sentence": "Please give my regards to your family.",
+      "translation": "请代我向你的家人问好。",
+      "chunks": [
+        "Please give my regards",
+        "to your family."
+      ],
+      "hints": [
+        "请代我",
+        "向你的家人问好。"
+      ],
+      "cid": "e31068b4"
+    },
+    {
+      "sentence": "You must come back.",
+      "translation": "你一定要回来啊!",
+      "chunks": [
+        "You must",
+        "come back."
+      ],
+      "hints": [
+        "你一定",
+        "要回来啊！"
+      ],
+      "cid": "5c7bccc0"
+    },
+    {
+      "sentence": "Give me a call sometime.",
+      "translation": "有空给我打电话。",
+      "chunks": [
+        "Give me a call",
+        "sometime."
+      ],
+      "hints": [
+        "给我打电话",
+        "有空的时候。"
+      ],
+      "cid": "9735e0c2"
+    },
+    {
+      "sentence": "Let's get together again sometime.",
+      "translation": "我们改天再聚吧。",
+      "chunks": [
+        "Let's get together again sometime."
+      ],
+      "hints": [
+        "我们改天再聚吧。"
+      ],
+      "cid": "c8892737"
+    },
+    {
+      "sentence": "Please write me a letter.",
+      "translation": "请给我写信。",
+      "chunks": [
+        "Please write me",
+        "a letter."
+      ],
+      "hints": [
+        "请给我",
+        "写封信。"
+      ],
+      "cid": "4fd6bb43"
+    },
+    {
+      "sentence": "I'll write you a letter.",
+      "translation": "我会给你写信的。",
+      "chunks": [
+        "I'll write you",
+        "a letter."
+      ],
+      "hints": [
+        "我会给你",
+        "写信的。"
+      ],
+      "cid": "e3539bd4"
+    },
+    {
+      "sentence": "Let's keep in touch.",
+      "translation": "让我们保持联系。",
+      "chunks": [
+        "Let's keep",
+        "in touch."
+      ],
+      "hints": [
+        "我们",
+        "保持联系。"
+      ],
+      "cid": "b025d597"
+    },
+    {
+      "sentence": "Don't forget to write.",
+      "translation": "别忘了写信。",
+      "chunks": [
+        "Don't forget",
+        "to write."
+      ],
+      "hints": [
+        "别忘了",
+        "写信。"
+      ],
+      "cid": "3d3699ce"
+    },
+    {
+      "sentence": "Hello! Anyone home?",
+      "translation": "喂，有人吗?",
+      "chunks": [
+        "Hello! Anyone",
+        "home?"
+      ],
+      "hints": [
+        "喂，有人",
+        "在吗？"
+      ],
+      "cid": "4310cfc8"
+    },
+    {
+      "sentence": "Please come in!",
+      "translation": "欢迎，请进!",
+      "chunks": [
+        "Please",
+        "come in!"
+      ],
+      "hints": [
+        "请",
+        "进来！"
+      ],
+      "cid": "e89ca6c7"
+    },
+    {
+      "sentence": "How nice of you to come!",
+      "translation": "你能来，太好啦。",
+      "chunks": [
+        "How nice of you to come!"
+      ],
+      "hints": [
+        "你能来真是太好了！"
+      ],
+      "cid": "77d8de22"
+    },
+    {
+      "sentence": "What do you want?",
+      "translation": "你想要什么?",
+      "chunks": [
+        "What do you",
+        "want?"
+      ],
+      "hints": [
+        "你想要",
+        "什么？"
+      ],
+      "cid": "b1f6e350"
+    },
+    {
+      "sentence": "Please feel free to make yourself at home.",
+      "translation": "别客气，像在自己家一样。",
+      "chunks": [
+        "Please feel free",
+        "to make yourself at home."
+      ],
+      "hints": [
+        "请别客气，",
+        "就当在自己家一样。"
+      ],
+      "cid": "f19e6255"
+    },
+    {
+      "sentence": "Have a seat.",
+      "translation": "请坐吧。",
+      "chunks": [
+        "Have a seat."
+      ],
+      "hints": [
+        "请坐吧。"
+      ],
+      "cid": "224aff4d"
+    },
+    {
+      "sentence": "Enjoy yourself!",
+      "translation": "玩得尽兴！",
+      "chunks": [
+        "Enjoy",
+        "yourself!"
+      ],
+      "hints": [
+        "玩得",
+        "尽兴！"
+      ],
+      "cid": "398ebeb0"
+    },
+    {
+      "sentence": "Would you care for something to drink?",
+      "translation": "您喝点什么吗?",
+      "chunks": [
+        "Would you care for",
+        "something to drink?"
+      ],
+      "hints": [
+        "您想",
+        "喝点什么吗？"
+      ],
+      "cid": "dcacf251"
+    },
+    {
+      "sentence": "Don't mind me.",
+      "translation": "别管我，继续做你的事。",
+      "chunks": [
+        "Don't",
+        "mind me."
+      ],
+      "hints": [
+        "别",
+        "在意我。"
+      ],
+      "cid": "414f6393"
+    },
+    {
+      "sentence": "May I use your bathroom?",
+      "translation": "我可以用洗手间吗?",
+      "chunks": [
+        "May I use",
+        "your bathroom?"
+      ],
+      "hints": [
+        "我可以",
+        "用一下洗手间吗？"
+      ],
+      "cid": "4a566472"
+    },
+    {
+      "sentence": "Where's the bathroom?",
+      "translation": "洗手间在哪儿?",
+      "chunks": [
+        "Where's",
+        "the bathroom?"
+      ],
+      "hints": [
+        "在哪儿？",
+        "洗手间"
+      ],
+      "cid": "81bc76de"
+    },
+    {
+      "sentence": "May I use your phone?",
+      "translation": "可以借用一下您的电话吗?",
+      "chunks": [
+        "May I use",
+        "your phone?"
+      ],
+      "hints": [
+        "可以借用",
+        "您的电话吗？"
+      ],
+      "cid": "d7f590da"
+    },
+    {
+      "sentence": "I'd better get going now.",
+      "translation": "我最好还是现在就走。",
+      "chunks": [
+        "I'd better",
+        "get going now."
+      ],
+      "hints": [
+        "我最好还是",
+        "现在就走。"
+      ],
+      "cid": "6aa69dd5"
+    },
+    {
+      "sentence": "Thank you for inviting me.",
+      "translation": "谢谢你邀请我。",
+      "chunks": [
+        "Thank you",
+        "for inviting me."
+      ],
+      "hints": [
+        "谢谢你",
+        "邀请我。"
+      ],
+      "cid": "589831e7"
+    },
+    {
+      "sentence": "Drop by sometime.",
+      "translation": "有空顺道来串门。",
+      "chunks": [
+        "Drop by",
+        "sometime."
+      ],
+      "hints": [
+        "顺道来串门",
+        "有空时。"
+      ],
+      "cid": "8a26a180"
+    },
+    {
+      "sentence": "He came to see me himself.",
+      "translation": "他亲自来看我。",
+      "chunks": [
+        "He came",
+        "to see me himself."
+      ],
+      "hints": [
+        "他来了",
+        "亲自来看我。"
+      ],
+      "cid": "f464b30a"
+    },
+    {
+      "sentence": "Do you mind if I smoke?",
+      "translation": "您介意我抽烟吗?",
+      "chunks": [
+        "Do you mind",
+        "if I smoke?"
+      ],
+      "hints": [
+        "你介意",
+        "我抽烟吗？"
+      ],
+      "cid": "11052acf"
+    },
+    {
+      "sentence": "I like your house.",
+      "translation": "我很喜欢你的房子。",
+      "chunks": [
+        "I like",
+        "your house."
+      ],
+      "hints": [
+        "我很喜欢",
+        "你的房子。"
+      ],
+      "cid": "75b5fd98"
+    },
+    {
+      "sentence": "I really like your apartment.",
+      "translation": "我很喜欢你的公寓。",
+      "chunks": [
+        "I really like",
+        "your apartment."
+      ],
+      "hints": [
+        "我很喜欢",
+        "你的公寓。"
+      ],
+      "cid": "664d8773"
+    },
+    {
+      "sentence": "Watch your step.",
+      "cid": "89843067",
+      "translation": "小心脚下。",
+      "chunks": [
+        "Watch",
+        "your step."
+      ],
+      "hints": [
+        "小心",
+        "脚下。"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɑːtʃ/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "注意、当心"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/jʊr/",
+            "/step/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的脚下"
+        }
+      ],
+      "explanations": [
+        "`watch` 在此表「留意、当心」，比 look 更有警觉意味。常见错误：\n• \"Look your step\" → 固定说法是 watch your step\n• \"Watching your step\" → 祈使句用原形",
+        "`Watch your step` 既是「当心脚下」，也可引申为「小心行事」。同义：Mind the step."
+      ],
+      "distractors": [
+        [
+          "Watch out",
+          "Watching",
+          "Watches"
+        ],
+        [
+          "you step.",
+          "your steps.",
+          "your stepping."
+        ]
+      ]
+    },
+    {
+      "sentence": "The floor is slippery.",
+      "translation": "地上很滑。",
+      "chunks": [
+        "The floor",
+        "is slippery."
+      ],
+      "hints": [
+        "地上",
+        "很滑。"
+      ],
+      "cid": "74afd6b4"
+    },
+    {
+      "sentence": "Please turn on the TV.",
+      "translation": "请打开电视。",
+      "chunks": [
+        "Please",
+        "turn on the TV."
+      ],
+      "hints": [
+        "请",
+        "打开电视。"
+      ],
+      "cid": "688ae2f0"
+    },
+    {
+      "sentence": "Can I park my car here?",
+      "translation": "我可以把车停这儿吗?",
+      "chunks": [
+        "Can I",
+        "park my car here?"
+      ],
+      "hints": [
+        "我可以",
+        "把车停这儿吗？"
+      ],
+      "cid": "df001175"
+    },
+    {
+      "sentence": "I'll give you a call when I get home.",
+      "cid": "efb3c8ea",
+      "translation": "我到家后给你打电话。",
+      "chunks": [
+        "I'll give you a call",
+        "when I get home."
+      ],
+      "hints": [
+        "我会给你打电话",
+        "当我到家时"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/ɡɪv/",
+            "/juː/",
+            "/ə/",
+            "/kɔːl/"
+          ],
+          "pos": "一般将来时",
+          "meaning": "我会给你打电话"
+        },
+        {
+          "role": "时间状语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wen/",
+            "/aɪ/",
+            "/ɡet/",
+            "/həʊm/"
+          ],
+          "pos": "时间状语从句",
+          "meaning": "当我到家时"
+        }
+      ],
+      "explanations": [
+        "**'ll = will**，表示将来。常见错误：\n• \"I **give** you a call\" → 缺少将来时态标记\n• \"I **would** give\" → would 是虚拟语气，这里不需要",
+        "**时间状语从句用一般现在时表将来**（主将从现原则）。常见错误：\n• \"when I **will** get\" → when/if 引导的从句不用 will\n• \"when I **got** home\" → 过去时与主句将来时矛盾\n• **home** 在这里是副词，前面不加 to（get home = 到家）"
+      ],
+      "distractors": [
+        [
+          "I'll give you the call",
+          "I give you a call",
+          "I'll gives you a call"
+        ],
+        [
+          "when I will get home.",
+          "when I got home.",
+          "when I get to home."
+        ]
+      ]
+    },
+    {
+      "sentence": "It was really nice talking to you.",
+      "cid": "3edf0897",
+      "translation": "和你聊天真的很愉快。",
+      "chunks": [
+        "It was really nice",
+        "talking to you."
+      ],
+      "hints": [
+        "真的很愉快",
+        "和你聊天"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪt/",
+            "/wɒz/",
+            "/ˈrɪəli/",
+            "/naɪs/"
+          ],
+          "pos": "主系表",
+          "meaning": "真的很愉快"
+        },
+        {
+          "role": "真正主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈtɔːkɪŋ/",
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "动名词短语",
+          "meaning": "和你聊天"
+        }
+      ],
+      "explanations": [
+        "**It was nice talking to you.** 是道别时的客气话。句型：It is/was + adj + doing（真正主语后置）。常见错误：\n• \"It was nice **to talking**\" → 只能二选一：to talk 或 talking\n• \"Nice talking **with** you\" → 可以，但 to 更常见",
+        "见面时说 Nice to meet you；分别时说 It was nice talking to you. 更合适。"
+      ],
+      "distractors": [
+        [
+          "It is really nice",
+          "It was real nice",
+          "It was really nicer"
+        ],
+        [
+          "talk to you.",
+          "talking to your.",
+          "talking you."
+        ]
+      ]
+    },
+    {
+      "sentence": "Sorry, I have to go now.",
+      "cid": "f2d8d822",
+      "translation": "抱歉，我得走了。",
+      "chunks": [
+        "Sorry,",
+        "I have to go",
+        "now."
+      ],
+      "hints": [
+        "抱歉",
+        "我得走了",
+        "现在"
+      ],
+      "grammar": [
+        {
+          "role": "致歉插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈsɒri/"
+          ],
+          "pos": "感叹词",
+          "meaning": "抱歉"
+        },
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/",
+            "/tuː/",
+            "/ɡəʊ/"
+          ],
+          "pos": "have to 结构",
+          "meaning": "我得走"
+        },
+        {
+          "role": "时间状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/naʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "现在"
+        }
+      ],
+      "explanations": [
+        "**have to** = 不得不（客观原因）。与 **must** 区别：must 侧重主观义务，have to 侧重客观需要。常见错误：\n• \"I have **go**\" → have to 后接动词原形\n• \"I must to go\" → must 后直接接原形，不加 to",
+        "道别常用三步：Sorry, I have to go now. → It was nice talking to you. → See you later!"
+      ],
+      "distractors": [
+        [
+          "Sory,",
+          "Sorrys,"
+        ],
+        [
+          "I has to go",
+          "I have go",
+          "I had to go"
+        ],
+        [
+          "just now.",
+          "nows.",
+          "at now."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm on my way.",
+      "cid": "d1a382b8",
+      "translation": "我在路上了。",
+      "chunks": [
+        "I'm",
+        "on my way."
+      ],
+      "hints": [
+        "我",
+        "在路上。"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/"
+          ],
+          "pos": "主语",
+          "meaning": "我"
+        },
+        {
+          "role": "固定表达",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɒn/",
+            "/maɪ/",
+            "/weɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在路上"
+        }
+      ],
+      "explanations": [
+        "**on my way** = 在（赶往）途中，回复「你到哪了？」时最常用。",
+        "扩展：**on the way to + 地点** 强调途中顺路：On the way to work, I grab a coffee. **on the way** 则强调「在途中」。"
+      ],
+      "distractors": [
+        [
+          "I'm in",
+          "I'm at",
+          "I on my way"
+        ],
+        [
+          "on the way.",
+          "in my way."
+        ]
+      ]
+    },
+    {
+      "sentence": "See you later, take care.",
+      "cid": "6b70763b",
+      "translation": "回头见，保重。",
+      "chunks": [
+        "See you later,",
+        "take care."
+      ],
+      "hints": [
+        "回头见",
+        "保重"
+      ],
+      "grammar": [
+        {
+          "role": "告别语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/siː/",
+            "/juː/",
+            "/ˈleɪtər/"
+          ],
+          "pos": "固定表达",
+          "meaning": "回头见"
+        },
+        {
+          "role": "祈使句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/teɪk/",
+            "/ker/"
+          ],
+          "pos": "动词短语",
+          "meaning": "保重"
+        }
+      ],
+      "explanations": [
+        "`See you later` 是口语道别，等于 See you soon / Catch you later。常见错误：\n• \"See **your** later\" → 用 you 不是 your\n• \"See you **latter**\" → latter（后者）拼写错误，应为 later（稍后）",
+        "`take care` = 保重、注意身体。分开说时可加逗号：See you later, take care."
+      ],
+      "distractors": [
+        [
+          "See you late,",
+          "See you letter,",
+          "Seeing you later,"
+        ],
+        [
+          "take cares.",
+          "took care.",
+          "care take."
+        ]
+      ]
+    },
+    {
+      "sentence": "Let's stay in touch, okay?",
+      "cid": "4c95b52c",
+      "translation": "我们保持联系，好吗？",
+      "chunks": [
+        "Let's stay in touch,",
+        "okay?"
+      ],
+      "hints": [
+        "我们保持联系",
+        "好吗"
+      ],
+      "grammar": [
+        {
+          "role": "祈使建议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lets/",
+            "/steɪ/",
+            "/ɪn/",
+            "/tʌtʃ/"
+          ],
+          "pos": "固定搭配",
+          "meaning": "我们保持联系"
+        },
+        {
+          "role": "征询语气",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˌoʊˈkeɪ/"
+          ],
+          "pos": "附加问句",
+          "meaning": "好吗"
+        }
+      ],
+      "explanations": [
+        "`stay/keep in touch` = 保持联系，固定搭配。常见错误：\n• \"keep **the** touch\" → 不加 the\n• \"keep touch **with** each other\" → 可以说 keep in touch with sb，但单独用不加 with",
+        "道别收尾金句。答应别人可说 Sure / Definitely / I will! 更口语说法：Let's keep in touch!"
+      ],
+      "distractors": [
+        [
+          "Let's staying in touch,",
+          "Let's stay in the touch,",
+          "Let we stay in touch,"
+        ],
+        [
+          "okays?",
+          "okey?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Sorry I'm late, the traffic was terrible.",
+      "cid": "f22bd74d",
+      "translation": "抱歉我迟到了，路上堵得厉害。",
+      "chunks": [
+        "Sorry I'm late,",
+        "the traffic",
+        "was terrible."
+      ],
+      "hints": [
+        "抱歉我迟到了",
+        "交通",
+        "非常糟糕"
+      ],
+      "grammar": [
+        {
+          "role": "道歉",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈsɑːri/",
+            "/aɪm/",
+            "/leɪt/"
+          ],
+          "pos": "be late",
+          "meaning": "抱歉我迟到"
+        },
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈtræfɪk/"
+          ],
+          "pos": "名词(不可数)",
+          "meaning": "交通"
+        },
+        {
+          "role": "系表",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌz/",
+            "/ˈterəbl/"
+          ],
+          "pos": "过去时",
+          "meaning": "非常糟糕"
+        }
+      ],
+      "explanations": [
+        "迟到解释。`traffic` 不可数。常见错误：\n• \"the traffics\" → traffic 不可数\n• \"I late\" → 缺 be 动词，要说 I'm late",
+        "`was terrible` = 糟透了。同义：awful / a nightmare。"
+      ],
+      "distractors": [
+        [
+          "Sorry I late,",
+          "Sorry for I'm late,",
+          "Sorry I'm lately,"
+        ],
+        [
+          "traffics",
+          "a traffic",
+          "the traffics"
+        ],
+        [
+          "is terrible.",
+          "was terribly.",
+          "was a terrible."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'll be there in about ten minutes.",
+      "cid": "8eea26b2",
+      "translation": "我大约十分钟后到。",
+      "chunks": [
+        "I'll be there",
+        "in about",
+        "ten minutes."
+      ],
+      "hints": [
+        "我会到那里",
+        "在大约",
+        "十分钟后"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪl/",
+            "/biː/",
+            "/ðer/"
+          ],
+          "pos": "将来时",
+          "meaning": "我会到那儿"
+        },
+        {
+          "role": "介词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪn/",
+            "/əˈbaʊt/"
+          ],
+          "pos": "in + 时段",
+          "meaning": "在大约(之后)"
+        },
+        {
+          "role": "时间名词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ten/",
+            "/ˈmɪnɪts/"
+          ],
+          "pos": "名词短语",
+          "meaning": "十分钟"
+        }
+      ],
+      "explanations": [
+        "`in + 一段时间` = 多久之后（将来时）。常见错误：\n• \"after ten minutes\" → 将来时用 in，after 多接时间点/过去\n• \"in ten minute\" → 复数 minutes",
+        "`about` = 大约。同义 around / roughly。"
+      ],
+      "distractors": [
+        [
+          "I'll there be",
+          "I be there",
+          "I'm going there"
+        ],
+        [
+          "after about",
+          "in around of",
+          "about in"
+        ],
+        [
+          "ten minute.",
+          "a ten minutes.",
+          "the ten minutes."
+        ]
+      ]
+    },
+    {
+      "sentence": "I brought you apples.",
+      "cid": "f1405f3f",
+      "translation": "我给你带了苹果。",
+      "chunks": [
+        "I brought you",
+        "apples."
+      ],
+      "hints": [
+        "我给你带了",
+        "苹果。"
+      ],
+      "grammar": [
+        {
+          "role": "主谓+间接宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/brɔːt/",
+            "/juː/"
+          ],
+          "pos": "bring 的过去式 + 双宾语",
+          "meaning": "我给你带了"
+        },
+        {
+          "role": "直接宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈæplz/"
+          ],
+          "pos": "名词复数",
+          "meaning": "苹果"
+        }
+      ],
+      "explanations": [
+        "`bring` 的过去式是 brought（不规则）。常见错误：\n• \"I bringed\" → 错，应作 brought\n• \"I bought\" → bought 是「买」，读音接近但意思不同",
+        "`bring sb sth` 双宾语结构，等于 bring sth to sb（给你带了苹果）。常见错误：\n• \"bring you apple\" → 可数名词泛指要复数"
+      ],
+      "distractors": [
+        [
+          "I bring you",
+          "I bought you",
+          "I brought them"
+        ],
+        [
+          "an apple.",
+          "some apples.",
+          "an apples."
+        ]
+      ]
+    },
+    {
+      "sentence": "This is way too much.",
+      "cid": "13553af7",
+      "translation": "这太多了。",
+      "chunks": [
+        "This is",
+        "way too much."
+      ],
+      "hints": [
+        "这是",
+        "实在太多了"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðɪs/",
+            "/ɪz/"
+          ],
+          "pos": "this + is",
+          "meaning": "这是"
+        },
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/weɪ/",
+            "/tuː/",
+            "/mʌtʃ/"
+          ],
+          "pos": "way + too much",
+          "meaning": "实在太多了"
+        }
+      ],
+      "explanations": [
+        "`way` 在口语里作程度副词，等于 much / far，表「远远地」。常见错误：\n• \"very too much\" → 不能用 very 修饰 too\n• \"way to much\" → 是 too 不是 to",
+        "`too much` 修饰不可数；可数名词复数用 too many。常见错误：\n• \"too many\" 接 apples 才对"
+      ],
+      "distractors": [
+        [
+          "This are",
+          "These is",
+          "This be"
+        ],
+        [
+          "way to much.",
+          "way too many.",
+          "very too much."
+        ]
+      ]
+    },
+    {
+      "sentence": "It's partly rotten.",
+      "cid": "2af7c066",
+      "translation": "有点坏了。",
+      "chunks": [
+        "It's",
+        "partly rotten."
+      ],
+      "hints": [
+        "它",
+        "有些腐烂了。"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/"
+          ],
+          "pos": "it + is 缩写",
+          "meaning": "它"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈpɑːrtli/",
+            "/ˈrɑːtn/"
+          ],
+          "pos": "副词 + 形容词",
+          "meaning": "有些腐烂了"
+        }
+      ],
+      "explanations": [
+        "`partly` 表「部分地」，修饰形容词。常见错误：\n• \"part rotten\" → 少了 -ly 就变成名词修饰\n• \"partly rottened\" → rotten 已是形容词",
+        "`rotten` 是 rot 的过去分词作形容词，表「腐烂的」。常见错误：\n• \"rot\" → 那是动词原形\n• 水果「有点坏」也可说 It's going bad."
+      ],
+      "distractors": [
+        [
+          "It",
+          "It's part",
+          "It has"
+        ],
+        [
+          "part rotten.",
+          "partly rottened.",
+          "partly rot."
+        ]
+      ]
+    },
+    {
+      "sentence": "Bite that piece off.",
+      "cid": "2ca094db",
+      "translation": "把那块咬下来。",
+      "chunks": [
+        "Bite",
+        "that piece off."
+      ],
+      "hints": [
+        "咬",
+        "那一块下来"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/baɪt/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "咬"
+        },
+        {
+          "role": "宾语+副词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðæt/",
+            "/piːs/",
+            "/ɔːf/"
+          ],
+          "pos": "名词短语 + off",
+          "meaning": "把那块咬下来"
+        }
+      ],
+      "explanations": [
+        "`bite off` 是短语动词，表「咬下来」。常见错误：\n• \"Bite that piece\" → 少了 off，就没「咬掉」的意思\n• \"Bite off that piece\" → 也通，但名词较长时更常放中间",
+        "祈使句用动词原形开头。常见错误：\n• \"Biting that piece off\" → 祈使句不带动名词"
+      ],
+      "distractors": [
+        [
+          "Biting",
+          "Bites",
+          "Bite to"
+        ],
+        [
+          "that pieces off.",
+          "that piece of.",
+          "that piece on."
+        ]
+      ]
+    },
+    {
+      "sentence": "I'm coming to get you.",
+      "cid": "46bc4117",
+      "translation": "我来接你了。",
+      "chunks": [
+        "I'm coming",
+        "to get you."
+      ],
+      "hints": [
+        "我正过来",
+        "接你"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈkʌmɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "我正过来"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ɡet/",
+            "/juː/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "去接你"
+        }
+      ],
+      "explanations": [
+        "`come to get you` = 过来接你，进行时表马上就到。常见错误：\n• \"I'm coming to pick up you\" → 代词要夹中间：pick you up\n• \"I coming\" → 漏 be 动词",
+        "相关：I'll pick you up at seven.（我七点来接你）"
+      ],
+      "distractors": [
+        [
+          "I coming",
+          "I'm come",
+          "I've coming"
+        ],
+        [
+          "to get yours.",
+          "for get you.",
+          "to getting you."
+        ]
+      ]
+    }
+  ]
+}

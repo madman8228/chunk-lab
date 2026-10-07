@@ -14,14 +14,12 @@
  {
   "sentence": "What a pity.",
   "translation": "太遗憾了。",
-  "chunks": [
-   "What a",
-   "pity."
-  ],
-  "hints": [
-   "太",
-   "遗憾了。"
-  ]
+    "chunks": [
+      "What a pity."
+    ],
+    "hints": [
+      "真遗憾！"
+    ]
  },
  {
   "sentence": "It was a waste of effort.",
@@ -38,62 +36,50 @@
  {
   "sentence": "a wild-goose chase.",
   "translation": "白费劲。",
-  "chunks": [
-   "a wild-goose",
-   "chase."
-  ],
-  "hints": [
-   "白费",
-   "劲。"
-  ]
+    "chunks": [
+      "a wild-goose chase."
+    ],
+    "hints": [
+      "白费劲；徒劳无功。"
+    ]
  },
  {
   "sentence": "All that for nothing.",
-  "translation": "前功尽弃。",
+    "translation": "忙了半天，结果全白费。",
   "chunks": [
-   "All that",
-   "for nothing."
+      "All that for nothing."
   ],
   "hints": [
-   "前功",
-   "尽弃。"
+      "忙了半天，全都白费。"
   ]
  },
  {
   "sentence": "You let me down.",
   "translation": "你真让我失望。",
   "chunks": [
-   "You let",
-   "me down."
+   "You",
+   "let me down."
   ],
   "hints": [
    "你",
-   "真让我失望。"
+   "让我失望。"
   ]
  },
  {
   "sentence": "I blew it.",
   "translation": "我真失策。",
   "chunks": [
-   "I blew",
-   "it."
+      "I blew it."
   ],
   "hints": [
-   "我真",
-   "失策。"
+      "我搞砸了。"
   ]
  },
  {
   "sentence": "It can't be helped.",
   "translation": "毫无办法。",
-  "chunks": [
-   "It can't",
-   "be helped."
-  ],
-  "hints": [
-   "毫无",
-   "办法。"
-  ]
+  "chunks": ["It can't be helped."],
+  "hints": ["也没办法。"]
  },
  {
   "sentence": "It's a waste of time.",
@@ -121,26 +107,24 @@
  },
  {
   "sentence": "I feel really sad.",
-  "translation": "我感到非常痛苦。",
+  "translation": "我感到非常难过。",
   "chunks": [
-   "I feel really",
-   "sad."
+   "I feel",
+   "really sad."
   ],
   "hints": [
    "我感到",
-   "非常痛苦。"
+   "非常难过。"
   ]
  },
  {
   "sentence": "Oh, dear!",
   "translation": "哦!天哪!",
   "chunks": [
-   "Oh,",
-   "dear!"
+      "Oh, dear!"
   ],
   "hints": [
-   "哦！",
-   "天哪！"
+      "哎呀！天哪！"
   ]
  },
  {
@@ -203,7 +187,7 @@
  },
  {
   "sentence": "No one can understand how I really feel",
-  "translation": ".没人能知道我的感受。",
+    "translation": "没人能真正理解我的感受。",
   "chunks": [
    "No one can understand",
    "how I really feel"
@@ -253,8 +237,8 @@
   "sentence": "I miss you.",
   "translation": "我想念你。",
   "chunks": [
-   "I miss",
-   "you."
+   "I",
+   "miss you."
   ],
   "hints": [
    "我",
@@ -288,14 +272,8 @@
  {
   "sentence": "Alone at last.",
   "translation": "最终只剩下了我一个人。",
-  "chunks": [
-   "Alone",
-   "at last."
-  ],
-  "hints": [
-   "最终",
-   "只剩下了我一个人。"
-  ]
+  "chunks": ["Alone at last."],
+  "hints": ["终于只剩我一个人了。"]
  },
  {
   "sentence": "I'm depressed.",
@@ -317,8 +295,8 @@
    "today."
   ],
   "hints": [
-   "我今天",
-   "感到很忧郁。"
+      "我心情忧郁",
+      "今天。"
   ]
  },
  {
@@ -377,81 +355,49 @@
    "today."
   ],
   "hints": [
-   "今天，",
-   "他看上去很郁闷。"
+   "他看起来很郁闷",
+   "今天"
   ]
  },
  {
   "sentence": "I give up.",
   "translation": "放弃了。/投降了。",
-  "chunks": [
-   "I give",
-   "up."
-  ],
-  "hints": [
-   "放弃",
-   "了。"
-  ]
+  "chunks": ["I give up."],
+  "hints": ["我放弃了。/我认输了。"]
  },
  {
   "sentence": "I can't help it.",
   "translation": "没法子。",
-  "chunks": [
-   "I can't",
-   "help it."
-  ],
-  "hints": [
-   "没",
-   "法子。"
-  ]
+  "chunks": ["I can't help it."],
+  "hints": ["我也没办法。"]
  },
  {
   "sentence": "Not a chance!",
   "translation": "没戏。",
-  "chunks": [
-   "Not a",
-   "chance!"
-  ],
-  "hints": [
-   "没",
-   "戏。"
-  ]
+  "chunks": ["Not a chance!"],
+  "hints": ["没戏！/绝不可能！"]
  },
  {
   "sentence": "That's the way it goes.",
-  "translation": "毫无办法。",
-  "chunks": [
-   "That's the way",
-   "it goes."
-  ],
-  "hints": [
-   "毫无",
-   "办法。"
-  ]
+  "translation": "事情就是这样。",
+  "chunks": ["That's the way it goes."],
+  "hints": ["事情就是这样。"]
  },
  {
   "sentence": "I have no clue.",
-  "translation": "毫无线索。",
+  "translation": "我毫无头绪。",
   "chunks": [
-   "I have",
-   "no clue."
+      "I have no clue."
   ],
   "hints": [
-   "毫无",
-   "线索。"
+      "我完全不知道。"
   ]
  },
  {
   "sentence": "I'm throwing in the towel.",
   "translation": "我认输了。",
-  "chunks": [
-   "I'm throwing in",
-   "the towel."
-  ],
-  "hints": [
-   "我",
-   "认输了。"
-  ]
+  "chunks": ["I'm throwing in the towel."],
+  "hints": ["我认输了。"]
  },
  {
   "sentence": "It's hopeless.",
@@ -469,24 +415,20 @@
   "sentence": "Better than nothing.",
   "translation": "总比没有强。",
   "chunks": [
-   "Better than",
-   "nothing."
+      "Better than nothing."
   ],
   "hints": [
-   "总比",
-   "没有强。"
+      "总比没有强。"
   ]
  },
  {
   "sentence": "It was fate.",
   "translation": "这就是命运呀!",
   "chunks": [
-   "It was",
-   "fate."
+      "It was fate."
   ],
   "hints": [
-   "这就是",
-   "命运呀！"
+      "这就是命。"
   ]
  },
  {
@@ -503,26 +445,20 @@
  },
  {
   "sentence": "It beats me.",
-  "translation": "这可难倒了我。/不知道。",
-  "chunks": [
-   "It beats",
-   "me."
-  ],
-  "hints": [
-   "这可难倒了我。",
-   "不知道。"
-  ]
+  "translation": "我也不知道。/这可把我难住了。",
+  "chunks": ["It beats me."],
+  "hints": ["我也不知道。/这可把我难住了。"]
  },
  {
   "sentence": "I have no other choice but to do so.",
-  "translation": "除此之外我别无选择。",
+  "translation": "我别无选择，只能这么做。",
   "chunks": [
    "I have no other choice",
    "but to do so."
   ],
   "hints": [
-   "除此之外",
-   "我别无选择。"
+   "我别无选择",
+   "只能这么做"
   ]
  },
  {
@@ -541,24 +477,22 @@
   "sentence": "That figures.",
   "translation": "果不其然。",
   "chunks": [
-   "That",
-   "figures."
+      "That figures."
   ],
   "hints": [
-   "果不",
-   "其然。"
+      "果然如此；这倒不奇怪。"
   ]
  },
  {
   "sentence": "It is just as I imagined.",
-  "translation": "正如我所想像的那样。",
+  "translation": "这正如我所想象的那样。",
   "chunks": [
    "It is just",
    "as I imagined."
   ],
   "hints": [
-   "正如我",
-   "所想像的那样。"
+   "这正如",
+   "我所想象的那样。"
   ]
  },
  {
@@ -576,38 +510,20 @@
  {
   "sentence": "Serves you right.",
   "translation": "报应!/活该。",
-  "chunks": [
-   "Serves",
-   "you right."
-  ],
-  "hints": [
-   "报应！",
-   "活该。"
-  ]
+  "chunks": ["Serves you right."],
+  "hints": ["活该！/报应！"]
  },
  {
   "sentence": "You never know.",
   "translation": "很难说。/世事难料。",
-  "chunks": [
-   "You never",
-   "know."
-  ],
-  "hints": [
-   "很难说。",
-   "世事难料。"
-  ]
+  "chunks": ["You never know."],
+  "hints": ["很难说。/世事难料。"]
  },
  {
   "sentence": "No wonder.",
   "translation": "不足为奇。/没什么奇怪的。",
-  "chunks": [
-   "No",
-   "wonder."
-  ],
-  "hints": [
-   "不足为奇。",
-   "没什么奇怪的。"
-  ]
+  "chunks": ["No wonder."],
+  "hints": ["不足为奇。/没什么奇怪的。"]
  },
  {
   "sentence": "I shouldn't have done it.",
@@ -623,14 +539,14 @@
  },
  {
   "sentence": "I shouldn't have said that.",
-  "translation": "我要是不说那话就好了。",
+  "translation": "我不该说那话。",
   "chunks": [
    "I shouldn't have",
    "said that."
   ],
   "hints": [
-   "我要是不说那话",
-   "就好了。"
+   "我不该",
+   "说那话。"
   ]
  },
  {
@@ -647,15 +563,9 @@
  },
  {
   "sentence": "It was careless of me to do so.",
-  "translation": "做那种事，我也太不小心了。",
-  "chunks": [
-   "It was careless of me",
-   "to do so."
-  ],
-  "hints": [
-   "做那种事，",
-   "我也太不小心了。"
-  ]
+  "translation": "我那样做真是太不小心了。",
+  "chunks": ["It was careless of me to do so."],
+  "hints": ["我那样做真是太不小心了。"]
  },
  {
   "sentence": "I regret doing that.",
@@ -666,7 +576,7 @@
   ],
   "hints": [
    "我后悔",
-   "我做的事。"
+   "那样做。"
   ]
  },
  {
@@ -732,13 +642,7 @@
  {
   "sentence": "It slipped my mind.",
   "translation": "不留神给忘了。",
-  "chunks": [
-   "It slipped",
-   "my mind."
-  ],
-  "hints": [
-   "不留神",
-   "给忘了。"
-  ]
+  "chunks": ["It slipped my mind."],
+  "hints": ["我一时忘了。"]
  }
 ]

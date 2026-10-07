@@ -7,9 +7,9 @@
    "to drink?"
   ],
   "hints": [
-   "您想喝点儿",
-   "什么？"
-  ]
+     "您想要什么？",
+     "喝点儿"
+    ]
  },
  {
   "sentence": "Coffee, please.",
@@ -19,31 +19,31 @@
    "please."
   ],
   "hints": [
-   "请来",
-   "一杯咖啡。"
+     "咖啡",
+     "请。"
   ]
  },
  {
   "sentence": "With sugar and cream?",
-  "translation": "要加牛奶和糖吗?",
+  "translation": "要加糖和奶精吗？",
   "chunks": [
    "With sugar",
    "and cream?"
   ],
   "hints": [
-   "要加牛奶",
-   "和糖吗？"
+   "要加糖",
+   "和奶精吗？"
   ]
  },
  {
   "sentence": "What would you like for dinner, beef or fish?",
-  "translation": "午餐您要牛肉还是要鱼?",
+  "translation": "晚餐您要牛肉还是要鱼?",
   "chunks": [
    "What would you like for dinner,",
    "beef or fish?"
   ],
   "hints": [
-   "午餐您要",
+   "晚餐您要",
    "牛肉还是要鱼？"
   ]
  },
@@ -55,8 +55,8 @@
    "please."
   ],
   "hints": [
-   "请给我",
-   "牛肉。"
+   "牛肉",
+   "请。"
   ]
  },
  {
@@ -73,14 +73,14 @@
  },
  {
   "sentence": "May I clear the table?",
-  "translation": "我可以收走了吗?",
+  "translation": "我可以收拾桌子了吗？",
   "chunks": [
-   "May I clear",
-   "the table?"
+   "May I",
+   "clear the table?"
   ],
   "hints": [
    "我可以",
-   "收走了吗？"
+   "收拾桌子吗？"
   ]
  },
  {
@@ -91,20 +91,20 @@
    "please."
   ],
   "hints": [
-   "请您",
-   "收拾一下桌子吧。"
+   "收拾一下桌子",
+   "请。"
   ]
  },
  {
   "sentence": "Can I have some water?",
-  "translation": "您能给我杯水吗?",
+  "translation": "我可以要点水吗？",
   "chunks": [
    "Can I have",
    "some water?"
   ],
   "hints": [
-   "您能给我",
-   "杯水吗？"
+   "我可以要",
+   "点水吗？"
   ]
  },
  {
@@ -127,8 +127,8 @@
    "please."
   ],
   "hints": [
-   "请给我",
-   "一条毯子。"
+   "一条毯子",
+   "请。"
   ]
  },
  {
@@ -199,8 +199,8 @@
    "in the United States?"
   ],
   "hints": [
-   "您在美国",
-   "停留多长时间？"
+   "您会停留多久？",
+   "在美国"
   ]
  },
  {
@@ -238,14 +238,8 @@
  {
   "sentence": "Where are you staying?",
   "translation": "您住哪儿?",
-  "chunks": [
-   "Where are you",
-   "staying?"
-  ],
-  "hints": [
-   "您",
-   "住哪儿？"
-  ]
+  "chunks": ["Where are you staying?"],
+  "hints": ["您住在哪儿？"]
  },
  {
   "sentence": "Do you have anything to declare?",
@@ -263,48 +257,42 @@
   "sentence": "At the Washington Hotel.",
   "translation": "在华盛顿饭店。",
   "chunks": [
-   "At the Washington",
-   "Hotel."
+   "At",
+   "the Washington Hotel."
   ],
   "hints": [
-   "在华盛顿",
-   "饭店。"
+   "在",
+   "华盛顿饭店。"
   ]
  },
  {
   "sentence": "How much money do you have?",
   "translation": "您带了多少现金?",
-  "chunks": [
-   "How much money",
-   "do you have?"
-  ],
-  "hints": [
-   "您带了",
-   "多少现金？"
-  ]
+  "chunks": ["How much money do you have?"],
+  "hints": ["您带了多少现金？"]
  },
  {
   "sentence": "Four hundred dollars and one hundred thousand yen.",
-  "translation": "我有400美金和10万日元。",
+  "translation": "400美元和10万日元。",
   "chunks": [
    "Four hundred dollars",
    "and one hundred thousand yen."
   ],
   "hints": [
-   "我有400美金",
+   "400美元",
    "和10万日元。"
   ]
  },
  {
   "sentence": "Okay. Have a nice stay.",
-  "translation": "好了，祝您愉快!",
+  "translation": "好的，祝您住得愉快！",
   "chunks": [
-   "Okay. Have a",
-   "nice stay."
+   "Okay.",
+   "Have a nice stay."
   ],
   "hints": [
-   "好了，",
-   "祝您愉快！"
+   "好的，",
+   "祝您住得愉快！"
   ]
  },
  {
@@ -327,8 +315,8 @@
    "immediately."
   ],
   "hints": [
-   "请马上",
-   "查一查。"
+   "请检查一下",
+   "马上。"
   ]
  },
  {
@@ -339,45 +327,33 @@
    "as soon as you have located it."
   ],
   "hints": [
-   "找到后",
-   "请马上把我的行李送到饭店。"
+   "请把行李送到饭店",
+   "找到后"
   ]
  },
  {
   "sentence": "I'd like to reconfirm my flight.",
   "translation": "我想确认一下我的机票。",
   "chunks": [
-   "I'd like to",
-   "reconfirm my flight."
+   "I'd like",
+   "to reconfirm my flight."
   ],
   "hints": [
-   "我想确认",
-   "一下我的机票。"
+   "我想",
+   "重新确认我的航班。"
   ]
  },
  {
   "sentence": "Where is the Japan Airlines counter?",
   "translation": "日本航空公司的柜台在哪儿?",
-  "chunks": [
-   "Where is the",
-   "Japan Airlines counter?"
-  ],
-  "hints": [
-   "日本航空公司的",
-   "柜台在哪儿？"
-  ]
+  "chunks": ["Where is the Japan Airlines counter?"],
+  "hints": ["日本航空公司的柜台在哪儿？"]
  },
  {
   "sentence": "Where is the boarding gate?",
   "translation": "登机口在哪儿?",
-  "chunks": [
-   "Where is",
-   "the boarding gate?"
-  ],
-  "hints": [
-   "登机口",
-   "在哪儿？"
-  ]
+  "chunks": ["Where is the boarding gate?"],
+  "hints": ["登机口在哪儿？"]
  },
  {
   "sentence": "What time do you start boarding?",
@@ -423,20 +399,20 @@
    "available for tonight?"
   ],
   "hints": [
-   "今天晚上",
-   "有空房间吗？"
+   "有房间吗？",
+   "今晚有空"
   ]
  },
  {
   "sentence": "I reserved a room for tonight.",
-  "translation": "我预订了一个房间。",
+  "translation": "我预订了今晚的房间。",
   "chunks": [
-   "I reserved a room",
-   "for tonight."
+   "I reserved",
+   "a room for tonight."
   ],
   "hints": [
    "我预订了",
-   "一个房间。"
+   "今晚的一个房间。"
   ]
  },
  {
@@ -447,8 +423,8 @@
    "please."
   ],
   "hints": [
-   "请办",
-   "入住手续。"
+   "办理入住手续",
+   "请。"
   ]
  },
  {
@@ -459,20 +435,20 @@
    "please."
   ],
   "hints": [
-   "请帮我",
-   "拿一下行李。"
+   "帮我拿一下行李",
+   "请。"
   ]
  },
  {
   "sentence": "I'd like a key to room 809, please.",
   "translation": "请给我809房间的钥匙。",
   "chunks": [
-   "I'd like a key",
-   "to room 809, please."
+   "I'd like",
+   "a key to room 809, please."
   ],
   "hints": [
-   "请给我",
-   "809房间的钥匙。"
+   "我想要",
+   "一把809房间的钥匙。"
   ]
  },
  {
@@ -483,9 +459,9 @@
    "the dining room?"
   ],
   "hints": [
-   "餐厅",
-   "在哪儿？"
-  ]
+     "在哪儿？",
+     "餐厅"
+    ]
  },
  {
   "sentence": "What time does the dining room open?",
@@ -495,16 +471,16 @@
    "the dining room open?"
   ],
   "hints": [
-   "餐厅",
-   "几点开门？"
+   "几点",
+   "餐厅开门？"
   ]
  },
  {
   "sentence": "What time can I have breakfast?",
   "translation": "几点吃早饭?",
   "chunks": [
-   "What time can I",
-   "have breakfast?"
+   "What time",
+   "can I have breakfast?"
   ],
   "hints": [
    "几点",
@@ -515,36 +491,36 @@
   "sentence": "Where can I get some beer?",
   "translation": "我在哪儿可以买到啤酒?",
   "chunks": [
-   "Where can I get",
-   "some beer?"
+   "Where",
+   "can I get some beer?"
   ],
   "hints": [
-   "我在哪儿",
-   "可以买到啤酒？"
+   "在哪儿",
+   "我可以买到啤酒？"
   ]
  },
  {
   "sentence": "Can you keep my valuables?",
-  "translation": "我可以把贵重物品存这儿吗?",
+  "translation": "您能帮我保管贵重物品吗？",
   "chunks": [
    "Can you keep",
    "my valuables?"
   ],
   "hints": [
-   "我可以把",
-   "贵重物品存这儿吗？"
+   "您能保管吗",
+   "我的贵重物品"
   ]
  },
  {
   "sentence": "Yen to dollars, please.",
-  "translation": "我想把日元换成美金。",
+  "translation": "请把日元换成美元。",
   "chunks": [
    "Yen to dollars,",
    "please."
   ],
   "hints": [
-   "我想把",
-   "日元换成美金。"
+   "日元换成美元",
+   "请。"
   ]
  },
  {
@@ -555,8 +531,8 @@
    "please."
   ],
   "hints": [
-   "请换成",
-   "现金。"
+   "现金",
+   "请。"
   ]
  },
  {
@@ -564,25 +540,27 @@
   "translation": "您能帮我把旅行支票换成现金吗?",
   "chunks": [
    "Could you cash",
-   "this traveler's check for me?"
+   "this traveler's check",
+   "for me?"
   ],
   "hints": [
-   "您能帮我把",
-   "旅行支票换成现金吗？"
+   "您能兑现",
+   "这张旅行支票",
+   "帮我吗？"
   ]
  },
  {
   "sentence": "Would you exchange this one hundred dollar bill with five twenties?",
-  "translation": "请帮我把这100美元换成5张20美元的。",
+  "translation": "您能帮我把这张100美元的钞票换成5张20美元的吗？",
   "chunks": [
    "Would you exchange",
    "this one hundred dollar bill",
    "with five twenties?"
   ],
   "hints": [
-   "请帮我把这100美元",
-   "换成",
-   "5张20美元的。"
+   "您能帮我换吗？",
+   "这张100美元的钞票",
+   "换成5张20美元的？"
   ]
  },
  {
@@ -605,20 +583,20 @@
    "messages for me?"
   ],
   "hints": [
-   "有给我的",
-   "留言吗？"
+   "有吗？",
+   "给我的留言"
   ]
  },
  {
   "sentence": "Check out, please.",
-  "translation": "我办退房手续。",
+  "translation": "请帮我办理退房。",
   "chunks": [
    "Check out,",
    "please."
   ],
   "hints": [
-   "我办",
-   "退房手续。"
+   "办理退房",
+   "请。"
   ]
  },
  {
@@ -629,20 +607,20 @@
    "my room key."
   ],
   "hints": [
-   "这是我",
-   "房间的钥匙。"
+   "这是",
+   "我的房间钥匙"
   ]
  },
  {
   "sentence": "I didn't make any phone calls.",
-  "translation": "我没用电话。",
+  "translation": "我没有打电话。",
   "chunks": [
-   "I didn't make",
-   "any phone calls."
+   "I",
+   "didn't make any phone calls."
   ],
   "hints": [
    "我",
-   "没用电话。"
+   "没有打电话"
   ]
  },
  {
@@ -661,37 +639,25 @@
   "sentence": "Could you call a taxi for me?",
   "translation": "能帮我叫一辆出租车吗?",
   "chunks": [
-   "Could you call",
-   "a taxi for me?"
+   "Could you",
+   "call a taxi for me?"
   ],
   "hints": [
-   "能帮我",
-   "叫一辆出租车吗？"
+   "您能",
+   "帮我叫一辆出租车吗？"
   ]
  },
  {
   "sentence": "Room service, please.",
   "translation": "请提供客房服务。",
-  "chunks": [
-   "Room service,",
-   "please."
-  ],
-  "hints": [
-   "请提供",
-   "客房服务。"
-  ]
+  "chunks": ["Room service, please."],
+  "hints": ["请提供客房服务。"]
  },
  {
   "sentence": "A wake-up call, please.",
   "translation": "请提供叫早服务。",
-  "chunks": [
-   "A wake-up call,",
-   "please."
-  ],
-  "hints": [
-   "请提供",
-   "叫早服务。"
-  ]
+  "chunks": ["A wake-up call, please."],
+  "hints": ["请提供叫早服务。"]
  },
  {
   "sentence": "Can I borrow a hair dryer?",
@@ -720,14 +686,8 @@
  {
   "sentence": "Laundry service, please.",
   "translation": "请提供洗衣服务。",
-  "chunks": [
-   "Laundry service,",
-   "please."
-  ],
-  "hints": [
-   "请提供",
-   "洗衣服务。"
-  ]
+  "chunks": ["Laundry service, please."],
+  "hints": ["请提供洗衣服务。"]
  },
  {
   "sentence": "When will it be ready?",
@@ -744,45 +704,37 @@
  {
   "sentence": "Your room number, please.",
   "translation": "请告诉我您的房间号码。",
-  "chunks": [
-   "Your room number,",
-   "please."
-  ],
-  "hints": [
-   "请告诉我",
-   "您的房间号码。"
-  ]
+  "chunks": ["Your room number, please."],
+  "hints": ["请告诉我您的房间号。"]
  },
  {
   "sentence": "This is room 501.",
-  "translation": "501房间。",
+  "translation": "这是501房间。",
   "chunks": [
    "This is",
    "room 501."
   ],
   "hints": [
-   "501",
-   "房间。"
+   "这是",
+   "501房间。"
   ]
  },
  {
   "sentence": "Come in.",
   "translation": "请进。",
   "chunks": [
-   "Come",
-   "in."
+   "Come in."
   ],
   "hints": [
-   "请",
-   "进。"
+   "请进。"
   ]
  },
  {
   "sentence": "There is no hot water.",
   "translation": "没有热水。",
   "chunks": [
-   "There is",
-   "no hot water."
+   "There is no",
+   "hot water."
   ],
   "hints": [
    "没有",
@@ -815,14 +767,14 @@
  },
  {
   "sentence": "I locked myself out.",
-  "translation": "我把钥匙忘在房间里了。",
+  "translation": "我把自己锁在门外了。",
   "chunks": [
-   "I locked",
-   "myself out."
+   "I",
+   "locked myself out."
   ],
   "hints": [
-   "我把钥匙",
-   "忘在房间里了。"
+   "我",
+   "把自己锁在门外了。"
   ]
  },
  {
@@ -833,8 +785,8 @@
    "locked out."
   ],
   "hints": [
-   "我被锁",
-   "在外面了。"
+   "我",
+   "被锁在门外了。"
   ]
  },
  {
@@ -845,8 +797,8 @@
    "in my room."
   ],
   "hints": [
-   "我房间的",
-   "电视不能看。"
+   "电视不能用",
+   "在我房间里"
   ]
  },
  {
@@ -863,14 +815,14 @@
  },
  {
   "sentence": "Could you send someone up?",
-  "translation": "请叫位服务员来一下。",
+  "translation": "能请人上来一趟吗？",
   "chunks": [
-   "Could you send",
-   "someone up?"
+   "Could you",
+   "send someone up?"
   ],
   "hints": [
-   "请叫位",
-   "服务员来一下。"
+   "您能",
+   "请人上来一趟吗？"
   ]
  }
 ]

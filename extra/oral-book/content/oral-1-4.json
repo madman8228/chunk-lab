@@ -25,7 +25,7 @@
  },
  {
   "sentence": "Chris is really a heartbreaker.",
-  "translation": "克里斯长得真帅。",
+  "translation": "克里斯真是个让人心碎的人。",
   "chunks": [
    "Chris is really",
    "a heartbreaker."
@@ -85,7 +85,7 @@
  },
  {
   "sentence": "I can't handle a girl like her.",
-  "translation": "我不敢打像她那样的姑娘的主意。",
+  "translation": "我应付不了像她那样的姑娘。",
   "chunks": [
    "I can't handle",
    "a girl like her."
@@ -121,7 +121,7 @@
  },
  {
   "sentence": "You broke my heart.",
-  "translation": "你也太狠心了。",
+  "translation": "你伤了我的心。",
   "chunks": [
    "You broke",
    "my heart."
@@ -217,7 +217,7 @@
  },
  {
   "sentence": "Are you trying to pick me up?",
-  "translation": "你是想和我约会吗?",
+  "translation": "你想搭讪我吗？",
   "chunks": [
    "Are you trying",
    "to pick me up?"
@@ -265,22 +265,22 @@
  },
  {
   "sentence": "Are you seeing anyone now?",
-  "translation": "你现在有朋友吗?",
+  "translation": "你现在有交往对象吗？",
   "chunks": [
-   "Are you seeing",
-   "anyone now?"
+   "Are you seeing anyone",
+   "now?"
   ],
   "hints": [
-   "你现在",
-   "有交往对象吗"
+   "你有交往对象吗",
+   "现在"
   ]
  },
  {
   "sentence": "What do you think of me?",
   "translation": "你觉得我怎么样?",
   "chunks": [
-   "What do you",
-   "think of me?"
+   "What do you think",
+   "of me?"
   ],
   "hints": [
    "你觉得",
@@ -303,24 +303,24 @@
   "sentence": "You're the most beautiful woman I've ever seen.",
   "translation": "你是我见到过的最美的女人。",
   "chunks": [
-   "You're the most beautiful woman",
-   "I've ever seen."
+   "You're",
+   "the most beautiful woman I've ever seen."
   ],
   "hints": [
-   "你是我见过的",
-   "最美的女人"
+   "你是",
+   "我见过的最美的女人"
   ]
  },
  {
   "sentence": "I'm crazy for you.",
-  "translation": "你使我发疯。",
+  "translation": "我为你着迷。",
   "chunks": [
-   "I'm crazy",
-   "for you."
+   "I'm",
+   "crazy for you."
   ],
   "hints": [
-   "我为你",
-   "发疯"
+   "我",
+   "为你着迷"
   ]
  },
  {
@@ -349,7 +349,7 @@
  },
  {
   "sentence": "It was love at first sight.",
-  "translation": "我是一见钟情。",
+  "translation": "那是一见钟情。",
   "chunks": [
    "It was love",
    "at first sight."
@@ -517,14 +517,14 @@
  },
  {
   "sentence": "You're everything to me.",
-  "translation": "你是我的一切。",
+  "translation": "你对我来说就是一切。",
   "chunks": [
    "You're everything",
    "to me."
   ],
   "hints": [
-   "你对我",
-   "就是一切"
+   "你就是一切",
+   "对我而言"
   ]
  },
  {
@@ -577,26 +577,24 @@
  },
  {
   "sentence": "What's on your mind?",
-  "translation": "你想什么呢?",
+  "translation": "你在想什么呢？",
   "chunks": [
-   "What's",
-   "on your mind?"
+   "What's on your mind?"
   ],
   "hints": [
-   "你在",
-   "想什么呢"
+   "你在想什么呢？"
   ]
  },
  {
   "sentence": "I think of you night and day.",
-  "translation": "我时时刻刻都想着你。",
+  "translation": "我日夜都想着你。",
   "chunks": [
    "I think of you",
    "night and day."
   ],
   "hints": [
-   "我时时刻刻",
-   "都想着你"
+   "我想着你",
+   "日日夜夜"
   ]
  },
  {
@@ -613,7 +611,7 @@
  },
  {
   "sentence": "I like your dress.",
-  "translation": "你的连衣裙真漂亮。",
+  "translation": "我喜欢你的连衣裙。",
   "chunks": [
    "I like",
    "your dress."
@@ -627,12 +625,10 @@
   "sentence": "Nothing is too good for you.",
   "translation": "为你我在所不惜。",
   "chunks": [
-   "Nothing is",
-   "too good for you."
+   "Nothing is too good for you."
   ],
   "hints": [
-   "没有什么",
-   "对你是过分的"
+   "为你我在所不惜。"
   ]
  },
  {
@@ -655,8 +651,8 @@
    "tight."
   ],
   "hints": [
-   "抱紧",
-   "我"
+   "抱住我",
+   "紧紧地"
   ]
  },
  {
@@ -699,8 +695,8 @@
   "sentence": "You're the one for me.",
   "translation": "你是我的惟一。",
   "chunks": [
-   "You're the one",
-   "for me."
+   "You're",
+   "the one for me."
   ],
   "hints": [
    "你是",
@@ -723,12 +719,12 @@
   "sentence": "I always speak my mind.",
   "translation": "我一直都说的是真心话。",
   "chunks": [
-   "I always speak",
-   "my mind."
+   "I always",
+   "speak my mind."
   ],
   "hints": [
-   "我一直说的",
-   "都是真心话"
+   "我总是",
+   "说出真实想法"
   ]
  },
  {
@@ -763,8 +759,8 @@
    "more."
   ],
   "hints": [
-   "再",
-   "多爱我一些"
+   "爱我",
+   "多一些"
   ]
  },
  {
@@ -795,8 +791,8 @@
   "sentence": "I'm deeply in love with Rose.",
   "translation": "我深深地爱着罗丝。",
   "chunks": [
-   "I'm deeply in love",
-   "with Rose."
+   "I'm deeply",
+   "in love with Rose."
   ],
   "hints": [
    "我深深地",
@@ -857,8 +853,8 @@
    "about marriage yet."
   ],
   "hints": [
-   "结婚的事",
-   "我还没想过"
+   "我还没想过",
+   "结婚的事"
   ]
  },
  {
@@ -901,24 +897,22 @@
   "sentence": "How's your married life?",
   "translation": "婚后生活怎么样?",
   "chunks": [
-   "How's",
-   "your married life?"
+   "How's your married life?"
   ],
   "hints": [
-   "你的婚后生活",
-   "怎么样"
+   "你的婚后生活怎么样？"
   ]
  },
  {
   "sentence": "We're happy together now.",
-  "translation": "我们俩都感到很幸福。",
+  "translation": "我们现在在一起很幸福。",
   "chunks": [
-   "We're happy",
-   "together now."
+   "We're",
+   "happy together now."
   ],
   "hints": [
    "我们俩",
-   "现在很幸福"
+   "现在在一起很幸福"
   ]
  },
  {
@@ -995,38 +989,36 @@
  },
  {
   "sentence": "What did she have?",
-  "translation": "怀的是男孩还是女孩?",
+  "translation": "她生的是男孩还是女孩？",
   "chunks": [
-   "What",
-   "did she have?"
+   "What did she have?"
   ],
   "hints": [
-   "她生的",
-   "是男孩还是女孩"
+   "她生的是男孩还是女孩？"
   ]
  },
  {
   "sentence": "We can work it out.",
-  "translation": "问题总会解决的。",
+  "translation": "我们能把问题解决。",
   "chunks": [
    "We can",
    "work it out."
   ],
   "hints": [
-   "问题",
-   "总会解决的"
+   "我们能",
+   "把问题解决。"
   ]
  },
  {
   "sentence": "I think of my wife first.",
   "translation": "我首先想到的是我妻子。",
   "chunks": [
-   "I think of",
-   "my wife first."
+   "I think of my wife",
+   "first."
   ],
   "hints": [
-   "我首先想到的",
-   "是我妻子"
+   "我想到我妻子",
+   "排在第一位。"
   ]
  },
  {
@@ -1043,26 +1035,24 @@
  },
  {
   "sentence": "Family man.",
-  "translation": "拖家带口的人。",
+  "translation": "顾家的男人。",
   "chunks": [
-   "Family",
-   "man."
+   "Family man."
   ],
   "hints": [
-   "拖家带口的",
-   "人"
+   "顾家的男人。"
   ]
  },
  {
   "sentence": "We fight a lot.",
   "translation": "我们经常吵架。",
   "chunks": [
-   "We fight",
-   "a lot."
+   "We",
+   "fight a lot."
   ],
   "hints": [
-   "我们经常",
-   "吵架"
+   "我们",
+   "经常吵架。"
   ]
  },
  {
@@ -1109,8 +1099,8 @@
    "my mind."
   ],
   "hints": [
-   "我已经",
-   "改变心意了"
+   "我已经改变了",
+   "主意"
   ]
  },
  {
@@ -1127,26 +1117,24 @@
  },
  {
   "sentence": "Are you seeing someone now?",
-  "translation": "你现在是不是和谁交往呢?",
+  "translation": "你现在有交往对象吗？",
   "chunks": [
-   "Are you seeing",
-   "someone now?"
+   "Are you seeing someone now?"
   ],
   "hints": [
-   "你现在是不是",
-   "和谁在交往"
+   "你现在有交往对象吗？"
   ]
  },
  {
   "sentence": "I don't see eye to eye with my wife.",
-  "translation": "我和妻子没什么共同语言。",
+  "translation": "我和妻子意见不合。",
   "chunks": [
-   "I don't see eye to eye",
-   "with my wife."
+   "I",
+   "don't see eye to eye with my wife."
   ],
   "hints": [
-   "我和妻子",
-   "没什么共同语言"
+   "我",
+   "和我妻子意见不合"
   ]
  },
  {
@@ -1181,8 +1169,8 @@
    "with my secretary."
   ],
   "hints": [
-   "我和我的秘书",
-   "有了婚外情"
+   "我有了婚外情",
+   "和我的秘书"
   ]
  },
  {
@@ -1193,8 +1181,8 @@
    "being with you."
   ],
   "hints": [
-   "和你在一起",
-   "没意思"
+   "我不喜欢",
+   "和你在一起"
   ]
  },
  {
@@ -1217,13 +1205,13 @@
    "from my wife."
   ],
   "hints": [
-   "我和妻子",
-   "分居了"
+   "我现在分居了",
+   "和我妻子"
   ]
  },
  {
   "sentence": "I can't get over losing you.",
-  "translation": "我不能失去你。",
+  "translation": "我没法接受失去你。",
   "chunks": [
    "I can't get over",
    "losing you."
@@ -1235,7 +1223,7 @@
  },
  {
   "sentence": "Breaking up is hard to do.",
-  "translation": "和你分手是我最大的痛苦。",
+  "translation": "分手真的很难。",
   "chunks": [
    "Breaking up",
    "is hard to do."

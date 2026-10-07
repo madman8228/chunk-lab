@@ -13,7 +13,7 @@
  },
  {
   "sentence": "We thank you for your inquiry.",
-  "translation": "我们收到了您的咨询函，非常感谢。",
+  "translation": "感谢您的来信咨询。",
   "chunks": [
    "We thank you",
    "for your inquiry."
@@ -61,7 +61,7 @@
  },
  {
   "sentence": "We are pleased to respond to your inquiry of August 18, 1998.",
-  "translation": "我非常愉快地回复您1998年8月18日的来函查询。",
+  "translation": "我们很高兴回复您1998年8月18日的来函咨询。",
   "chunks": [
    "We are pleased to respond",
    "to your inquiry of August 18, 1998."
@@ -169,7 +169,7 @@
  },
  {
   "sentence": "We are pleased to inform you that...",
-  "translation": "我们非常愉快地通知您……",
+  "translation": "我们很高兴通知您……",
   "chunks": [
    "We are pleased to inform",
    "you that..."
@@ -229,7 +229,7 @@
  },
  {
   "sentence": "Please be advised that...",
-  "translation": "请允许我通知您……",
+  "translation": "敬请知悉：……",
   "chunks": [
    "Please be advised",
    "that..."
@@ -277,7 +277,7 @@
  },
  {
   "sentence": "Attached you will find...",
-  "translation": "附上了你要的……",
+  "translation": "随函附上……",
   "chunks": [
    "Attached",
    "you will find..."
@@ -313,7 +313,7 @@
  },
  {
   "sentence": "We are pleased to send you...",
-  "translation": "我们非常高兴地寄给你……",
+  "translation": "我们很高兴寄给您……",
   "chunks": [
    "We are pleased to",
    "send you..."
@@ -331,8 +331,8 @@
    "the contract separately."
   ],
   "hints": [
-   "我们将",
-   "另行寄出合同。"
+   "我们正在寄给您",
+   "合同会另行寄出。"
   ]
  },
  {
@@ -349,7 +349,7 @@
  },
  {
   "sentence": "We would appreciate it if you would send us...",
-  "translation": "如果你能将……寄给我的话，我们将非常感谢。",
+  "translation": "如果您能把……寄给我们，我们将不胜感激。",
   "chunks": [
    "We would appreciate it",
    "if you would send us..."
@@ -373,14 +373,14 @@
  },
  {
   "sentence": "So far, we do not seem to have received word from you...",
-  "translation": "就……事我们至今没有得到您的回音。",
+  "translation": "到目前为止，我们似乎还没有收到您的回音……",
   "chunks": [
-   "So far, we do not seem",
-   "to have received word from you..."
+   "So far,",
+   "we do not seem to have received word from you..."
   ],
   "hints": [
-   "到目前为止，我们似乎",
-   "还未收到您的回音……"
+   "到目前为止，",
+   "我们似乎还没有收到您的回音……"
   ]
  },
  {
@@ -391,8 +391,8 @@
    "by December 1, 1998..."
   ],
   "hints": [
-   "如果我们未能在",
-   "1998年12月1日前收到您的回音……"
+   "如果我们收不到您的回音",
+   "在1998年12月1日前……"
   ]
  },
  {
@@ -433,7 +433,7 @@
  },
  {
   "sentence": "Thank you for your patience.",
-  "translation": "久未回信，让您久等了。",
+  "translation": "感谢您的耐心等待。",
   "chunks": [
    "Thank you",
    "for your patience."

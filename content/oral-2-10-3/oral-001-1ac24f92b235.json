@@ -1,0 +1,881 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Hold it!",
+      "translation": "停!",
+      "chunks": [
+        "Hold it!"
+      ],
+      "hints": [
+        "停下！"
+      ],
+      "cid": "0fa1d0cc"
+    },
+    {
+      "sentence": "Wait!",
+      "translation": "等等!",
+      "chunks": [
+        "Wait!"
+      ],
+      "hints": [
+        "等等！"
+      ],
+      "cid": "8151f533"
+    },
+    {
+      "sentence": "Uh-uh-uh!",
+      "translation": "别动!别动!",
+      "chunks": [
+        "Uh-uh-uh!"
+      ],
+      "hints": [
+        "别动！别动！"
+      ],
+      "cid": "78fd9783"
+    },
+    {
+      "sentence": "Don't do that!",
+      "translation": "别干那事!",
+      "chunks": [
+        "Don't",
+        "do that!"
+      ],
+      "hints": [
+        "别",
+        "这么做！"
+      ],
+      "cid": "bfba081a"
+    },
+    {
+      "sentence": "Why are you doing that?",
+      "translation": "你干吗要干那种事?",
+      "chunks": [
+        "Why are you",
+        "doing that?"
+      ],
+      "hints": [
+        "你为什么要",
+        "干那种事？"
+      ],
+      "cid": "4dfb1ad1"
+    },
+    {
+      "sentence": "Please line up!",
+      "translation": "请排队!",
+      "chunks": [
+        "Please",
+        "line up!"
+      ],
+      "hints": [
+        "请",
+        "排队！"
+      ],
+      "cid": "2007dca7"
+    },
+    {
+      "sentence": "Don't cut in line!",
+      "translation": "别夹塞儿!",
+      "chunks": [
+        "Don't",
+        "cut in line!"
+      ],
+      "hints": [
+        "别",
+        "夹塞儿！"
+      ],
+      "cid": "0e068025"
+    },
+    {
+      "sentence": "Don't push!",
+      "translation": "别推呀!",
+      "chunks": [
+        "Don't",
+        "push!"
+      ],
+      "hints": [
+        "别",
+        "推呀！"
+      ],
+      "cid": "c59ff246"
+    },
+    {
+      "sentence": "Don't call me names!",
+      "translation": "别张口就骂人。",
+      "chunks": [
+        "Don't call me names!"
+      ],
+      "hints": [
+        "别骂我！"
+      ],
+      "cid": "fb8b0dea"
+    },
+    {
+      "sentence": "Don't be a blabber mouth!",
+      "translation": "别多嘴多舌的。",
+      "chunks": [
+        "Don't be a",
+        "blabber mouth!"
+      ],
+      "hints": [
+        "别",
+        "多嘴多舌的。"
+      ],
+      "cid": "4610d457"
+    },
+    {
+      "sentence": "Keep it out of sight.",
+      "translation": "让它别被人看见。",
+      "chunks": [
+        "Keep it",
+        "out of sight."
+      ],
+      "hints": [
+        "让它保持",
+        "不被看见"
+      ],
+      "cid": "3b5e18cb"
+    },
+    {
+      "sentence": "Stay away from me.",
+      "translation": "离我远点儿。",
+      "chunks": [
+        "Stay away",
+        "from me."
+      ],
+      "hints": [
+        "远离",
+        "我"
+      ],
+      "cid": "17df306e"
+    },
+    {
+      "sentence": "No funny stuff!",
+      "translation": "不许耍花样!",
+      "chunks": [
+        "No",
+        "funny stuff!"
+      ],
+      "hints": [
+        "不许",
+        "耍花样！"
+      ],
+      "cid": "89e05cbb"
+    },
+    {
+      "sentence": "Stay out of this!",
+      "translation": "别介入那件事!",
+      "chunks": [
+        "Stay out",
+        "of this!"
+      ],
+      "hints": [
+        "别",
+        "介入那件事！"
+      ],
+      "cid": "1609aa42"
+    },
+    {
+      "sentence": "Don't ruin it.",
+      "translation": "别给弄砸了。",
+      "chunks": [
+        "Don't",
+        "ruin it."
+      ],
+      "hints": [
+        "别",
+        "给弄砸了。"
+      ],
+      "cid": "6ff6ff00"
+    },
+    {
+      "sentence": "Stop fighting.",
+      "translation": "别打架!",
+      "chunks": [
+        "Stop",
+        "fighting."
+      ],
+      "hints": [
+        "别",
+        "打架！"
+      ],
+      "cid": "f1db4095"
+    },
+    {
+      "sentence": "Freeze!",
+      "translation": "别动!",
+      "chunks": [
+        "Freeze!"
+      ],
+      "hints": [
+        "别动！"
+      ],
+      "cid": "d2fbb559"
+    },
+    {
+      "sentence": "Duck!",
+      "translation": "蹲下!",
+      "chunks": [
+        "Duck!"
+      ],
+      "hints": [
+        "蹲下！"
+      ],
+      "cid": "41b56c3b"
+    },
+    {
+      "sentence": "Hands up!",
+      "translation": "举起手来!",
+      "chunks": [
+        "Hands up!"
+      ],
+      "hints": [
+        "举起手来！"
+      ],
+      "cid": "8d9738ed"
+    },
+    {
+      "sentence": "Don't move!",
+      "translation": "不许动!",
+      "chunks": [
+        "Don't",
+        "move!"
+      ],
+      "hints": [
+        "不许",
+        "动！"
+      ],
+      "cid": "cd59d43d"
+    },
+    {
+      "sentence": "You listen to me!",
+      "translation": "你给我听着！",
+      "chunks": [
+        "You",
+        "listen to me!"
+      ],
+      "hints": [
+        "你",
+        "给我听着！"
+      ],
+      "cid": "ede20571"
+    },
+    {
+      "sentence": "Get down!",
+      "translation": "趴下!",
+      "chunks": [
+        "Get down!"
+      ],
+      "hints": [
+        "趴下！"
+      ],
+      "cid": "e0287f8c"
+    },
+    {
+      "sentence": "Halt!",
+      "translation": "站住!",
+      "chunks": [
+        "Halt!"
+      ],
+      "hints": [
+        "站住！"
+      ],
+      "cid": "653e7fe1"
+    },
+    {
+      "sentence": "Stay where you are!",
+      "translation": "呆在那儿!",
+      "chunks": [
+        "Stay",
+        "where you are!"
+      ],
+      "hints": [
+        "待在",
+        "原地别动！"
+      ],
+      "cid": "b19b67e9"
+    },
+    {
+      "sentence": "Move on!",
+      "translation": "往前走!",
+      "chunks": [
+        "Move on!"
+      ],
+      "hints": [
+        "继续往前走！"
+      ],
+      "cid": "9127822c"
+    },
+    {
+      "sentence": "On your knees!",
+      "translation": "跪下!",
+      "chunks": [
+        "On your knees!"
+      ],
+      "hints": [
+        "跪下！"
+      ],
+      "cid": "44852e52"
+    },
+    {
+      "sentence": "Let go of me!",
+      "translation": "放手!",
+      "chunks": [
+        "Let go",
+        "of me!"
+      ],
+      "hints": [
+        "放开",
+        "我！"
+      ],
+      "cid": "af35f748"
+    },
+    {
+      "sentence": "Run for your lives!",
+      "translation": "快逃吧!",
+      "chunks": [
+        "Run for your lives!"
+      ],
+      "hints": [
+        "快逃命！"
+      ],
+      "cid": "b7dbe2d2"
+    },
+    {
+      "sentence": "Stop him!",
+      "translation": "截住他!",
+      "chunks": [
+        "Stop",
+        "him!"
+      ],
+      "hints": [
+        "截住",
+        "他！"
+      ],
+      "cid": "3731b02e"
+    },
+    {
+      "sentence": "Can it!",
+      "translation": "闭嘴!",
+      "chunks": [
+        "Can it!"
+      ],
+      "hints": [
+        "闭嘴！"
+      ],
+      "cid": "f9bd9239"
+    },
+    {
+      "sentence": "Stand back!",
+      "translation": "后退!",
+      "chunks": [
+        "Stand back!"
+      ],
+      "hints": [
+        "后退！"
+      ],
+      "cid": "b77296b5"
+    },
+    {
+      "sentence": "Cut it out!",
+      "translation": "别闹了！",
+      "chunks": [
+        "Cut it out!"
+      ],
+      "hints": [
+        "别闹了！"
+      ],
+      "cid": "11c70beb"
+    },
+    {
+      "sentence": "You're under arrest.",
+      "translation": "你被逮捕了。",
+      "chunks": [
+        "You're",
+        "under arrest."
+      ],
+      "hints": [
+        "你",
+        "被逮捕了。"
+      ],
+      "cid": "e30096c3"
+    },
+    {
+      "sentence": "Spread'em!",
+      "translation": "手脚分开。",
+      "chunks": [
+        "Spread'em!"
+      ],
+      "hints": [
+        "手脚分开！"
+      ],
+      "cid": "a66ee14c"
+    },
+    {
+      "sentence": "Heads up!",
+      "translation": "小心!",
+      "chunks": [
+        "Heads up!"
+      ],
+      "hints": [
+        "小心！"
+      ],
+      "cid": "fd0e3b94"
+    },
+    {
+      "sentence": "Drop it!",
+      "translation": "放下!",
+      "chunks": [
+        "Drop it!"
+      ],
+      "hints": [
+        "放下它！"
+      ],
+      "cid": "2a5f4748"
+    },
+    {
+      "sentence": "Get your hands off!",
+      "translation": "拿开你的手!",
+      "chunks": [
+        "Get your hands off!"
+      ],
+      "hints": [
+        "把你的手拿开！"
+      ],
+      "cid": "d7c0726c"
+    },
+    {
+      "sentence": "Stay down!",
+      "translation": "趴下!",
+      "chunks": [
+        "Stay down!"
+      ],
+      "hints": [
+        "趴下别动！"
+      ],
+      "cid": "adebee17"
+    },
+    {
+      "sentence": "Get lost!",
+      "translation": "快溜走吧!",
+      "chunks": [
+        "Get lost!"
+      ],
+      "hints": [
+        "走开！"
+      ],
+      "cid": "0497fabe"
+    },
+    {
+      "sentence": "Get out of here!",
+      "translation": "滚出去。",
+      "chunks": [
+        "Get out of here!"
+      ],
+      "hints": [
+        "滚出去！"
+      ],
+      "cid": "1c9e35dd"
+    },
+    {
+      "sentence": "Back off!",
+      "translation": "闪开!",
+      "chunks": [
+        "Back off!"
+      ],
+      "hints": [
+        "退后！"
+      ],
+      "cid": "275ecde6"
+    },
+    {
+      "sentence": "Could you keep the noise down?",
+      "cid": "0ab455be",
+      "translation": "你能小声一点吗？",
+      "chunks": [
+        "Could you keep",
+        "the noise",
+        "down?"
+      ],
+      "hints": [
+        "你能保持",
+        "噪音",
+        "低一些"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/kiːp/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "你能让……保持"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/nɔɪz/"
+          ],
+          "pos": "名词",
+          "meaning": "噪音"
+        },
+        {
+          "role": "补语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/"
+          ],
+          "pos": "副词",
+          "meaning": "低下来"
+        }
+      ],
+      "explanations": [
+        "邻里/室友提醒。`keep it down` = 小声点。常见错误：\n• \"keep **down** the noise\" → 也可，但 keep the noise down 常见\n• \"turn the noise down\" → 噪音不是音量旋钮，keep down 更贴切",
+        "更直接的祈使：Keep it down, please!"
+      ],
+      "distractors": [
+        [
+          "Can you keep",
+          "Could you keeps",
+          "Could you to keep"
+        ],
+        [
+          "a noise",
+          "noises",
+          "the noisy"
+        ],
+        [
+          "down? ok",
+          "to down?",
+          "downed?"
+        ]
+      ]
+    },
+    {
+      "sentence": "Could you turn the music down a bit?",
+      "cid": "5b616a39",
+      "translation": "你能把音乐声调小一点吗？",
+      "chunks": [
+        "Could you turn",
+        "the music",
+        "down a bit?"
+      ],
+      "hints": [
+        "你能调",
+        "音乐",
+        "小一点"
+      ],
+      "grammar": [
+        {
+          "role": "委婉请求",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/tɜːrn/"
+          ],
+          "pos": "could 请求句",
+          "meaning": "你能调"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmjuːzɪk/"
+          ],
+          "pos": "名词(不可数)",
+          "meaning": "音乐"
+        },
+        {
+          "role": "补语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/daʊn/",
+            "/ə/",
+            "/bɪt/"
+          ],
+          "pos": "短语",
+          "meaning": "调低一点"
+        }
+      ],
+      "explanations": [
+        "`turn down` = 调小（音量），`turn up` = 调大。常见错误：\n• \"turn **off**\" → 那是关掉\n• \"turn down the music\" 或 turn the music down 都行",
+        "`a bit` = 一点。"
+      ],
+      "distractors": [
+        [
+          "Can you turn",
+          "Could you turns",
+          "Could you to turn"
+        ],
+        [
+          "a music",
+          "musics",
+          "the musics"
+        ],
+        [
+          "down a bits?",
+          "up a bit?",
+          "a bit down?"
+        ]
+      ]
+    },
+    {
+      "sentence": "We're in a library.",
+      "cid": "d99feea8",
+      "translation": "我们在图书馆。",
+      "chunks": [
+        "We're in",
+        "a library."
+      ],
+      "hints": [
+        "我们在",
+        "一个图书馆"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wɪr/",
+            "/ɪn/"
+          ],
+          "pos": "we are 缩写 + 介词",
+          "meaning": "我们在"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈlaɪbreri/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个图书馆"
+        }
+      ],
+      "explanations": [
+        "`We're` = we are，注意与 Were（are 的过去式）区分。常见错误：\n• \"Were in a library\" → 少了撇号就成过去时陈述\n• \"We in a library\" → 缺 be 动词",
+        "`library` 注意拼写，中间是 -brar-。常见错误：\n• \"librery\" / \"libary\" → 常见拼错\n• \"a libraries\" → 前有 a 用单数"
+      ],
+      "distractors": [
+        [
+          "We in",
+          "We was in",
+          "We're at"
+        ],
+        [
+          "a libraries.",
+          "the library.",
+          "an library."
+        ]
+      ]
+    },
+    {
+      "sentence": "You're talking too loudly.",
+      "cid": "05cc4c9b",
+      "translation": "你说话太大声了。",
+      "chunks": [
+        "You're talking",
+        "too loudly."
+      ],
+      "hints": [
+        "你说话",
+        "太大声"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈtɔːkɪŋ/"
+          ],
+          "pos": "you are + 现在分词",
+          "meaning": "你正在说"
+        },
+        {
+          "role": "程度状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/ˈlaʊdli/"
+          ],
+          "pos": "副词",
+          "meaning": "太大声"
+        }
+      ],
+      "explanations": [
+        "`You're` = you are，注意区分 your（你的）。常见错误：\n• \"Your talking too loudly\" → Your 是形容词，不能构成进行时\n• \"You talking\" → 口语可省略，但书面要写 You are",
+        "`too` 表「过于」，修饰副词再 -ly。常见错误：\n• \"to loudly\" → 是 too 不是 to\n• \"too loud\" → 也可，但修饰 talking 用副词 loudly"
+      ],
+      "distractors": [
+        [
+          "You talking",
+          "Your talking",
+          "You're talk"
+        ],
+        [
+          "to loudly.",
+          "too loudness.",
+          "too louder."
+        ]
+      ]
+    },
+    {
+      "sentence": "Keep it down.",
+      "cid": "c3dee22f",
+      "translation": "小声点。",
+      "chunks": [
+        "Keep",
+        "it down."
+      ],
+      "hints": [
+        "保持",
+        "声音低"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "保持"
+        },
+        {
+          "role": "宾语+补语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/",
+            "/daʊn/"
+          ],
+          "pos": "keep + 宾语 + 副词",
+          "meaning": "把声音压低"
+        }
+      ],
+      "explanations": [
+        "`keep sth down` 表「把（音量）压低」。常见错误：\n• \"Keep down it\" → 代词要放 keep 和 down 中间\n• \"Keep it up\" → up 意思是「继续保持」，正好相反",
+        "祈使句用动词原形。同义：Lower your voice. / Quiet down."
+      ],
+      "distractors": [
+        [
+          "Keeping",
+          "Keeps",
+          "Keep to"
+        ],
+        [
+          "it up.",
+          "it low.",
+          "it downs."
+        ]
+      ]
+    },
+    {
+      "sentence": "Back away.",
+      "cid": "dfc5d91e",
+      "translation": "后退。",
+      "chunks": [
+        "Back",
+        "away."
+      ],
+      "hints": [
+        "向后退",
+        "离开"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/bæk/"
+          ],
+          "pos": "动词（后退）",
+          "meaning": "后退"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈweɪ/"
+          ],
+          "pos": "副词",
+          "meaning": "离开"
+        }
+      ],
+      "explanations": [
+        "`back away` 指「慢慢往后退」，常用来让人让出空间。常见错误：\n• back away **from** + 宾语 表「从……退开」（back away from the dog）\n• 与 `go back`（回去）不同，别混用",
+        "更急的说法：Get back!（退后！）"
+      ],
+      "distractors": [
+        [
+          "Backs",
+          "Backing",
+          "Back of"
+        ],
+        [
+          "away from.",
+          "out.",
+          "off."
+        ]
+      ]
+    },
+    {
+      "sentence": "Don't stare.",
+      "cid": "0718c5bc",
+      "translation": "别盯着看。",
+      "chunks": [
+        "Don't",
+        "stare."
+      ],
+      "hints": [
+        "别",
+        "盯着看"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "别"
+        },
+        {
+          "role": "谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ster/"
+          ],
+          "pos": "动词原形",
+          "meaning": "盯着看"
+        }
+      ],
+      "explanations": [
+        "`stare` 指长时间盯着看，带不礼貌的意味。常见错误：\n• \"Don't staring\" → 否定祈使后接动词原形\n• \"Don't stare me\" → 盯住某人要说 stare at me",
+        "提醒别人时可以说：Don't stare, it's rude."
+      ],
+      "distractors": [
+        [
+          "Doesn't",
+          "Not",
+          "No"
+        ],
+        [
+          "stares.",
+          "staring.",
+          "stare at."
+        ]
+      ]
+    }
+  ]
+}

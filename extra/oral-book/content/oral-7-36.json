@@ -49,7 +49,7 @@
  },
  {
   "sentence": "May we take this occasion to remind you that...",
-  "translation": "我们想利用这次的机会就……事提醒您。",
+  "translation": "我们想借此机会提醒您……",
   "chunks": [
    "May we take this occasion",
    "to remind you",
@@ -57,8 +57,8 @@
   ],
   "hints": [
    "我们想利用这次的机会",
-   "就……事",
-   "提醒您"
+   "提醒您",
+   "……"
   ]
  },
  {
@@ -87,7 +87,7 @@
  },
  {
   "sentence": "We are interested in...",
-  "translation": "我对……很感兴趣。",
+  "translation": "我们对……很感兴趣。",
   "chunks": [
    "We are",
    "interested in..."
@@ -135,25 +135,25 @@
  },
  {
   "sentence": "We thank you for your offer.",
-  "translation": "非常感谢您为我们提供的一切。",
+  "translation": "非常感谢您的提议。",
   "chunks": [
    "We thank you",
    "for your offer."
   ],
   "hints": [
    "非常感谢您",
-   "为我们提供的一切"
+   "提出的提议。"
   ]
  },
  {
   "sentence": "I appreciate very much that you...",
-  "translation": "您……，我们不胜感激。",
+  "translation": "您……，我非常感激。",
   "chunks": [
    "I appreciate very much",
    "that you..."
   ],
   "hints": [
-   "我们不胜感激",
+   "我非常感激",
    "您……"
   ]
  },
@@ -219,28 +219,28 @@
  },
  {
   "sentence": "We very much regret to have to remind you of...",
-  "translation": "我们不得不很遗憾地提醒您……",
+  "translation": "我们很遗憾，不得不提醒您……",
   "chunks": [
    "We very much regret",
    "to have to remind you",
    "of..."
   ],
   "hints": [
-   "我们不得不很遗憾地",
-   "提醒您",
+   "我们很遗憾",
+   "不得不提醒您",
    "……"
   ]
  },
  {
   "sentence": "We invite your attention to...",
-  "translation": "我们请求您对……给予注意。",
+  "translation": "请您注意……。",
   "chunks": [
    "We invite your attention",
    "to..."
   ],
   "hints": [
-   "我们请求您",
-   "对……给予注意"
+   "请您注意",
+   "……"
   ]
  },
  {
@@ -295,15 +295,15 @@
  },
  {
   "sentence": "We have just learned with profound sorrow of the passing away of...",
-  "translation": "刚刚惊悉××不幸逝世，我们深感悲痛。",
+  "translation": "我们刚刚惊悉××不幸逝世，对此深感悲痛。",
   "chunks": [
    "We have just learned",
    "with profound sorrow",
    "of the passing away of..."
   ],
   "hints": [
-   "刚刚惊悉",
-   "我们深感悲痛",
+   "我们刚刚惊悉",
+   "对此深感悲痛",
    "××不幸逝世"
   ]
  },
@@ -321,14 +321,14 @@
  },
  {
   "sentence": "Please accept my sincerest condolences.",
-  "translation": "请接受我们诚挚的哀悼。",
+  "translation": "请接受我最诚挚的哀悼。",
   "chunks": [
    "Please accept",
    "my sincerest condolences."
   ],
   "hints": [
    "请接受",
-   "我们诚挚的哀悼"
+   "我最诚挚的哀悼"
   ]
  },
  {
@@ -345,7 +345,7 @@
  },
  {
   "sentence": "We are in full agreement with the points raised in your letter.",
-  "translation": "我们完全同意您信上所提出的所有问题。",
+  "translation": "我们完全同意您信中提出的各项意见。",
   "chunks": [
    "We are in full agreement",
    "with the points",
@@ -353,8 +353,8 @@
   ],
   "hints": [
    "我们完全同意",
-   "您信上所提出的",
-   "所有问题"
+   "这些意见",
+   "您信中提出的"
   ]
  },
  {
@@ -421,14 +421,14 @@
  },
  {
   "sentence": "We do not anticipate any objections to...",
-  "translation": "我们对……完全没有异议。",
+  "translation": "我们预计不会有人反对……。",
   "chunks": [
    "We do not anticipate",
    "any objections to..."
   ],
   "hints": [
-   "我们完全没有异议",
-   "对……"
+   "我们预计不会",
+   "有人反对……"
   ]
  },
  {
@@ -464,9 +464,9 @@
    "was..."
   ],
   "hints": [
-   "使我们担心的一点",
-   "是",
-   "……"
+   "唯一的一点",
+   "让我们有些担心的",
+   "是……"
   ]
  },
  {
@@ -519,7 +519,7 @@
  },
  {
   "sentence": "Your suggestions are being followed up by...",
-  "translation": "您的建议将由……进行讨论。",
+  "translation": "您的建议将由……继续跟进。",
   "chunks": [
    "Your suggestions",
    "are being followed up",
@@ -527,8 +527,8 @@
   ],
   "hints": [
    "您的建议",
-   "将由",
-   "……进行讨论"
+   "正在跟进",
+   "由……负责"
   ]
  },
  {
@@ -551,8 +551,8 @@
    "for us to accept..."
   ],
   "hints": [
-   "我们很难",
-   "接受……"
+   "会很困难",
+   "让我们接受……"
   ]
  },
  {
@@ -569,50 +569,50 @@
  },
  {
   "sentence": "We have no alternative but to...",
-  "translation": "除……之外，没有选择的余地。",
+  "translation": "我们别无选择，只能……",
   "chunks": [
    "We have no alternative",
    "but to..."
   ],
   "hints": [
-   "没有选择的余地",
-   "除……之外"
+   "我们别无选择",
+   "只能……"
   ]
  },
  {
   "sentence": "Consequently we are in the position to...",
-  "translation": "因此，我们采取的立场是……",
+  "translation": "因此，我们可以……",
   "chunks": [
    "Consequently we are",
    "in the position to..."
   ],
   "hints": [
-   "因此",
-   "我们的立场是……"
+   "因此，我们",
+   "可以……"
   ]
  },
  {
   "sentence": "We are pleased to recommend...to you.",
-  "translation": "我非常高兴地向您推荐……",
+  "translation": "我们很高兴向您推荐……",
   "chunks": [
    "We are pleased",
    "to recommend...to you."
   ],
   "hints": [
-   "我非常高兴地",
+   "我们很高兴",
    "向您推荐……"
   ]
  },
  {
   "sentence": "We work closely together with...",
-  "translation": "我们与……有非常亲密的关系。",
+  "translation": "我们与……密切合作。",
   "chunks": [
    "We work closely",
    "together with..."
   ],
   "hints": [
-   "我们",
-   "与……有非常亲密的关系"
+   "我们密切合作",
+   "与……"
   ]
  },
  {
@@ -665,7 +665,7 @@
  },
  {
   "sentence": "We appreciate your business and...",
-  "translation": "我们非常感谢本次交易和……",
+  "translation": "感谢您的惠顾，并且……",
   "chunks": [
    "We appreciate",
    "your business",
@@ -673,32 +673,32 @@
   ],
   "hints": [
    "我们非常感谢",
-   "本次交易",
-   "和……"
+   "您的惠顾",
+   "并且……"
   ]
  },
  {
   "sentence": "We would appreciate receiving your comments.",
-  "translation": "我们非常感谢你们提供的意见。",
+  "translation": "如能收到您的意见，我们将不胜感激。",
   "chunks": [
    "We would appreciate",
    "receiving your comments."
   ],
   "hints": [
    "我们非常感谢",
-   "你们提供的意见"
+   "收到您的意见"
   ]
  },
  {
   "sentence": "We shall be interested in receiving your comments.",
-  "translation": "我们非常欢迎你们提出宝贵意见。",
+  "translation": "我们期待收到您的意见。",
   "chunks": [
    "We shall be interested",
    "in receiving your comments."
   ],
   "hints": [
-   "我们非常欢迎",
-   "你们提出宝贵意见"
+   "我们期待",
+   "收到您的意见"
   ]
  },
  {
@@ -727,21 +727,17 @@
  },
  {
   "sentence": "We welcome this development very much.",
-  "translation": "我们非常欢迎此事有所发展。",
+  "translation": "我们非常欢迎这一进展。",
   "chunks": [
-   "We welcome",
-   "this development",
-   "very much."
+   "We welcome this development very much."
   ],
   "hints": [
-   "我们非常欢迎",
-   "此事",
-   "有所发展"
+   "我们非常欢迎这一进展。"
   ]
  },
  {
   "sentence": "We will continue to do all we can to...",
-  "translation": "我们将继续做我们所能做的一切。",
+  "translation": "我们将继续尽一切努力去……",
   "chunks": [
    "We will continue",
    "to do all we can",
@@ -749,8 +745,8 @@
   ],
   "hints": [
    "我们将继续",
-   "做我们所能做的一切",
-   "……"
+   "尽一切努力",
+   "去……"
   ]
  },
  {
@@ -781,16 +777,16 @@
  },
  {
   "sentence": "We will always endeavor to offer you our most favorable rates.",
-  "translation": "我们将一直地努力提供给您我们最优惠价格。",
+  "translation": "我们将尽力为您提供最优惠的价格。",
   "chunks": [
    "We will always endeavor",
    "to offer you",
    "our most favorable rates."
   ],
   "hints": [
-   "我们将一直地努力",
+   "我们将尽力",
    "提供给您",
-   "我们最优惠价格"
+   "最优惠的价格"
   ]
  },
  {
@@ -807,28 +803,28 @@
  },
  {
   "sentence": "We wish to keep you fully informed on this matter.",
-  "translation": "我们希望就此事今后经常保持联系。",
+  "translation": "我们希望随时向您通报此事的进展。",
   "chunks": [
-   "We wish to keep you",
-   "fully informed",
+   "We wish",
+   "to keep you fully informed",
    "on this matter."
   ],
   "hints": [
    "我们希望",
-   "就此事今后经常",
-   "保持联系"
+   "让您随时了解",
+   "此事的进展。"
   ]
  },
  {
   "sentence": "Kindly inform us when this is put into effect.",
-  "translation": "在本项目实行之际，烦请通知我们一声。",
+  "translation": "这项措施生效时，烦请通知我们。",
   "chunks": [
    "Kindly inform us",
    "when this is put into effect."
   ],
   "hints": [
    "烦请通知我们一声",
-   "在本项目实行之际"
+   "在这项措施生效时"
   ]
  },
  {
@@ -875,7 +871,7 @@
  },
  {
   "sentence": "These have been placed into our files for future reference.",
-  "translation": "为作为今后的参考，我们已将此事存入了我们的文档。",
+  "translation": "我们已将这些资料存档，以备将来查阅。",
   "chunks": [
    "These have been placed",
    "into our files",

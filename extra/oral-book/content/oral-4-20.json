@@ -14,86 +14,62 @@
  {
   "sentence": "What's going on?",
   "translation": "到底怎么回事?",
-  "chunks": [
-   "What's",
-   "going on?"
-  ],
-  "hints": [
-   "到底",
-   "怎么回事？"
-  ]
+    "chunks": ["What's going on?"],
+    "hints": ["到底怎么回事？"]
  },
  {
   "sentence": "Is something on your mind?",
   "translation": "你有什么心事吗?",
-  "chunks": [
-   "Is something",
-   "on your mind?"
-  ],
-  "hints": [
-   "你",
-   "有什么心事吗？"
-  ]
+    "chunks": ["Is something on your mind?"],
+    "hints": ["你有什么心事吗？"]
  },
  {
   "sentence": "I was worried about you.",
   "translation": "我担心你。",
-  "chunks": [
-   "I was worried",
-   "about you."
-  ],
-  "hints": [
-   "我",
-   "担心你。"
-  ]
+    "chunks": [
+      "I was",
+      "worried about you."
+    ],
+    "hints": [
+      "我",
+      "很担心你。"
+    ]
  },
  {
   "sentence": "Please don't go out of your way.",
   "translation": "请不要特地为我(而麻烦您吧)。",
-  "chunks": [
-   "Please don't go out of",
-   "your way."
-  ],
-  "hints": [
-   "请不要",
-   "特地为我麻烦。"
-  ]
+    "chunks": ["Please don't go out of your way."],
+    "hints": ["请别特地为我费心。"]
  },
  {
   "sentence": "You look serious.",
-  "translation": "你怎么那么严肃。",
+    "translation": "你看起来很严肃。",
   "chunks": [
    "You look",
    "serious."
   ],
   "hints": [
-   "你怎么",
-   "那么严肃。"
+      "你看起来",
+      "很严肃。"
   ]
  },
  {
   "sentence": "You look sad today.",
   "translation": "你今天看上去很悲伤。",
-  "chunks": [
-   "You look sad",
-   "today."
-  ],
-  "hints": [
-   "你今天",
-   "看上去很悲伤。"
-  ]
+    "chunks": [
+      "You look",
+      "sad today."
+    ],
+    "hints": [
+      "你看起来",
+      "今天很难过。"
+    ]
  },
  {
   "sentence": "You don't look very happy today.",
   "translation": "你今天怎么满脸的不高兴。",
-  "chunks": [
-   "You don't look",
-   "very happy today."
-  ],
-  "hints": [
-   "你今天",
-   "怎么满脸的不高兴。"
-  ]
+    "chunks": ["You don't look very happy today."],
+    "hints": ["你今天看起来不太高兴。"]
  },
  {
   "sentence": "Why are you so glum?",
@@ -134,14 +110,8 @@
  {
   "sentence": "Something is wrong with you today.",
   "translation": "你今天有点儿不大对劲。",
-  "chunks": [
-   "Something is wrong",
-   "with you today."
-  ],
-  "hints": [
-   "你今天",
-   "有点儿不大对劲。"
-  ]
+    "chunks": ["Something is wrong with you today."],
+    "hints": ["你今天有点不对劲。"]
  },
  {
   "sentence": "Who are you irritated with?",
@@ -175,8 +145,8 @@
    "to hear that."
   ],
   "hints": [
-   "听到这事",
-   "我很难过。"
+   "我很难过",
+   "听到这件事"
   ]
  },
  {
@@ -194,14 +164,8 @@
  {
   "sentence": "It happens!",
   "translation": "常有的事。",
-  "chunks": [
-   "It",
-   "happens!"
-  ],
-  "hints": [
-   "常有",
-   "的事。"
-  ]
+    "chunks": ["It happens!"],
+    "hints": ["这种事难免；很常见。"]
  },
  {
   "sentence": "It's a common mistake.",
@@ -218,14 +182,14 @@
  {
   "sentence": "It must be tough for you.",
   "translation": "那你肯定很难受吧。",
-  "chunks": [
-   "It must be tough",
-   "for you."
-  ],
-  "hints": [
-   "那你肯定",
-   "很难受吧。"
-  ]
+    "chunks": [
+      "It must be",
+      "tough for you."
+    ],
+    "hints": [
+      "一定",
+      "对你来说很难熬。"
+    ]
  },
  {
   "sentence": "Oh, poor thing!",
@@ -254,38 +218,32 @@
  {
   "sentence": "Never mind.",
   "translation": "别在意。",
-  "chunks": [
-   "Never",
-   "mind."
-  ],
-  "hints": [
-   "别",
-   "在意。"
-  ]
+    "chunks": ["Never mind."],
+    "hints": ["别在意；没关系。"]
  },
  {
   "sentence": "What bad luck.",
-  "translation": "太遗憾了。",
+  "translation": "真不走运！",
   "chunks": [
    "What",
    "bad luck."
   ],
   "hints": [
-   "太",
-   "遗憾了。"
+   "真是",
+   "不走运！"
   ]
  },
  {
   "sentence": "Don't blame yourself.",
   "translation": "别责备自己了。",
-  "chunks": [
-   "Don't blame",
-   "yourself."
-  ],
-  "hints": [
-   "别",
-   "责备自己了。"
-  ]
+    "chunks": [
+      "Don't",
+      "blame yourself."
+    ],
+    "hints": [
+      "别",
+      "责怪自己。"
+    ]
  },
  {
   "sentence": "It's not your fault.",
@@ -325,15 +283,9 @@
  },
  {
   "sentence": "Don't give it another thought.",
-  "translation": "别想得太多。",
-  "chunks": [
-   "Don't give it",
-   "another thought."
-  ],
-  "hints": [
-   "别",
-   "想得太多。"
-  ]
+  "translation": "别再想这件事了。",
+  "chunks": ["Don't give it another thought."],
+  "hints": ["别再想这件事了。/别放在心上。"]
  },
  {
   "sentence": "I don't want to put you out.",
@@ -374,49 +326,43 @@
  {
   "sentence": "No big deal.",
   "translation": "别小题大作。",
-  "chunks": [
-   "No big",
-   "deal."
-  ],
-  "hints": [
-   "别",
-   "小题大作。"
-  ]
+  "chunks": ["No big deal."],
+  "hints": ["没什么大不了。/别小题大作。"]
  },
  {
   "sentence": "I've seen worse.",
-  "translation": "这还算好的呢。",
+  "translation": "我见过更糟的。",
   "chunks": [
    "I've seen",
    "worse."
   ],
   "hints": [
-   "这还算",
-   "好的呢。"
+   "我见过",
+   "更糟的。"
   ]
  },
  {
   "sentence": "Don't feel so bad about yourself.",
-  "translation": "别那么自暴自弃。",
+  "translation": "别因为自己而这么难过。",
   "chunks": [
    "Don't feel so bad",
    "about yourself."
   ],
   "hints": [
-   "别那么",
-   "自暴自弃。"
+   "别太难过",
+   "因为自己。"
   ]
  },
  {
   "sentence": "It'll work out.",
-  "translation": "总会有办法的。",
+  "translation": "一切会好起来的。",
   "chunks": [
    "It'll",
    "work out."
   ],
   "hints": [
-   "总会有",
-   "办法的。"
+   "一切会",
+   "好起来的。"
   ]
  },
  {
@@ -458,14 +404,8 @@
  {
   "sentence": "Cheer up!",
   "translation": "振作起来!",
-  "chunks": [
-   "Cheer",
-   "up!"
-  ],
-  "hints": [
-   "振作",
-   "起来！"
-  ]
+    "chunks": ["Cheer up!"],
+    "hints": ["振作起来！"]
  },
  {
   "sentence": "We'll cheer for your team.",
@@ -482,62 +422,32 @@
  {
   "sentence": "Try harder next time.",
   "translation": "下次再努力吧。",
-  "chunks": [
-   "Try harder",
-   "next time."
-  ],
-  "hints": [
-   "下次",
-   "再努力吧。"
-  ]
+    "chunks": ["Try harder next time."],
+    "hints": ["下次再努力吧。"]
  },
  {
   "sentence": "Hang in there!",
   "translation": "别松劲!",
-  "chunks": [
-   "Hang",
-   "in there!"
-  ],
-  "hints": [
-   "别",
-   "松劲！"
-  ]
+  "chunks": ["Hang in there!"],
+  "hints": ["坚持住！/别放弃！"]
  },
  {
   "sentence": "Don't give up!",
   "translation": "别认输!/别放弃!",
-  "chunks": [
-   "Don't give",
-   "up!"
-  ],
-  "hints": [
-   "别认输！",
-   "别放弃！"
-  ]
+  "chunks": ["Don't give up!"],
+  "hints": ["别放弃！/别认输！"]
  },
  {
   "sentence": "You can do it!",
   "translation": "你可以的!",
-  "chunks": [
-   "You can",
-   "do it!"
-  ],
-  "hints": [
-   "你可以",
-   "的！"
-  ]
+    "chunks": ["You can do it!"],
+    "hints": ["你一定做得到！"]
  },
  {
   "sentence": "Look on the bright side.",
   "translation": "你得看到事情好的一面。",
-  "chunks": [
-   "Look on",
-   "the bright side."
-  ],
-  "hints": [
-   "你得看到",
-   "事情好的一面。"
-  ]
+    "chunks": ["Look on the bright side."],
+    "hints": ["往好的一面想。"]
  },
  {
   "sentence": "Don't take it too seriously!",
@@ -554,25 +464,19 @@
  {
   "sentence": "Keep your chin up!",
   "translation": "别灰心!",
-  "chunks": [
-   "Keep your",
-   "chin up!"
-  ],
-  "hints": [
-   "别",
-   "灰心！"
-  ]
+  "chunks": ["Keep your chin up!"],
+  "hints": ["别灰心！/振作起来！"]
  },
  {
   "sentence": "You can do anything if you really want to.",
-  "translation": "只要你想做，你就一定能做得到。",
+  "translation": "只要你真的想做，什么都做得到。",
   "chunks": [
    "You can do anything",
    "if you really want to."
   ],
   "hints": [
-   "只要你想做，",
-   "你就一定能做得到。"
+   "你什么都做得到，",
+   "只要你真的想做。"
   ]
  },
  {
@@ -619,8 +523,8 @@
    "try it."
   ],
   "hints": [
-   "试试",
-   "看。"
+   "就",
+   "试试看。"
   ]
  },
  {
@@ -649,22 +553,16 @@
  },
  {
   "sentence": "Don't be a chicken.",
-  "translation": "别害怕。",
-  "chunks": [
-   "Don't be",
-   "a chicken."
-  ],
-  "hints": [
-   "别",
-   "害怕。"
-  ]
+  "translation": "别当胆小鬼！/别害怕。",
+  "chunks": ["Don't be a chicken."],
+  "hints": ["别当胆小鬼！/别害怕。"]
  },
  {
   "sentence": "Let's face facts.",
   "translation": "让我们面对现实。",
   "chunks": [
-   "Let's face",
-   "facts."
+   "Let's",
+   "face facts."
   ],
   "hints": [
    "让我们",
@@ -674,14 +572,14 @@
  {
   "sentence": "Let's cheer him up.",
   "translation": "我们得让他振作起来。",
-  "chunks": [
-   "Let's cheer",
-   "him up."
-  ],
-  "hints": [
-   "我们得让他",
-   "振作起来。"
-  ]
+    "chunks": [
+      "Let's",
+      "cheer him up."
+    ],
+    "hints": [
+      "我们来",
+      "让他振作起来。"
+    ]
  },
  {
   "sentence": "I wish you success!",
@@ -697,14 +595,14 @@
  },
  {
   "sentence": "Tell him to his face.",
-  "translation": "应当面对他说。",
+  "translation": "当着他的面告诉他。",
   "chunks": [
    "Tell him",
    "to his face."
   ],
   "hints": [
-   "应当",
-   "面对他说。"
+   "告诉他",
+   "当着他的面"
   ]
  },
  {
@@ -721,39 +619,27 @@
  },
  {
   "sentence": "Take my word for it.",
-  "translation": "这是真的呀!",
-  "chunks": [
-   "Take my word",
-   "for it."
-  ],
-  "hints": [
-   "这是",
-   "真的呀！"
-  ]
+  "translation": "相信我，准没错。",
+  "chunks": ["Take my word for it."],
+  "hints": ["相信我，准没错。/这是真的。"]
  },
  {
   "sentence": "You'd better believe it!",
-  "translation": "请相信!",
-  "chunks": [
-   "You'd better",
-   "believe it!"
-  ],
-  "hints": [
-   "请",
-   "相信！"
-  ]
+  "translation": "你最好相信这是真的！",
+  "chunks": ["You'd better believe it!"],
+  "hints": ["你最好相信这是真的！"]
  },
  {
   "sentence": "I'm sure of it.",
   "translation": "我敢肯定。",
-  "chunks": [
-   "I'm sure",
-   "of it."
-  ],
-  "hints": [
-   "我敢",
-   "肯定。"
-  ]
+    "chunks": [
+      "I'm",
+      "sure of it."
+    ],
+    "hints": [
+      "我",
+      "对此很肯定。"
+    ]
  },
  {
   "sentence": "It may sound strange, but it's true.",

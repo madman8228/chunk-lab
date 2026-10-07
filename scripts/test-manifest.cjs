@@ -40,7 +40,7 @@ const checks = [
   'scripts/check-sw.js', 'scripts/sw-hash.test.js', 'scripts/check-contrast.js',
   'scripts/deploy-safety.test.js', 'scripts/check-deploy-files.js', 'sw-policy.test.js',
   'validate_builtins.js', 'validate_oral_book.js', 'validate_distractors.js',
-  'scripts/check-cross-source-dup.mjs', 'scripts/validate-content.mjs',
+  'scripts/check-cross-source-dup.mjs', 'scripts/validate-content.mjs', 'scripts/chunk-hint-alignment.test.mjs',
   'scripts/book-content-check.mjs', 'scripts/check-content-generated.mjs', 'scripts/lib-deps.test.js', 'scripts/content-runtime-contract.test.js',
 ].map((file) => ({ id: file.replace(/[\\/]/g, ':').replace(/\.m?js$/, ''), file, cwd: '.', group: 'checks', args: [] }));
 for (const entry of checks) {
@@ -49,10 +49,19 @@ for (const entry of checks) {
   else base.push(entry);
 }
 const extras = [
+  ['admin-overview-diagnostics', 'services/admin-overview.test.js', 'server', 'server'],
+  ['client-save-health-route', 'routes/client-save-health.test.js', 'server', 'server'],
+  ['server-operations', 'operations.test.js', 'server', 'server'],
+  ['server-store-save-health', 'js/server-store-save-health.test.js', '.', 'unit'],
+  ['admin-sync-diagnostics-e2e', 'e2e/admin-sync-diagnostics.test.js', '.', 'browser'],
   ['account-storage', 'account-storage.test.js', '.', 'unit'],
   ['batch-sync-e2e', 'e2e/batch-sync.test.js', '.', 'browser'],
   ['course-package-import-e2e', 'e2e/course-package-import.test.js', '.', 'browser'],
   ['course-package-v2-import-e2e', 'e2e/course-package-v2-import.test.js', '.', 'browser'],
+  ['exit-performance-e2e', 'e2e/exit-performance.test.js', '.', 'browser'],
+  ['main-persistence-e2e', 'e2e/main-persistence.test.js', '.', 'browser'],
+  ['recovery-handover-gate-e2e', 'e2e/recovery-handover-gate.test.js', '.', 'browser'],
+  ['server-store-queue-e2e', 'e2e/server-store-queue.test.js', '.', 'browser'],
   ['stats-mastered-e2e', 'e2e/stats-mastered.test.js', '.', 'browser'],
   ['tab-content-consistency-e2e', 'e2e/tab-content-consistency.test.js', '.', 'browser'],
   ['sw-upgrade-e2e', 'e2e/upgrade-check.js', '.', 'browser'],

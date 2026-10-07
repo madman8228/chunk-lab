@@ -2,38 +2,20 @@
  {
   "sentence": "Here's to the New Year!",
   "translation": "祝贺新年!",
-  "chunks": [
-   "Here's to",
-   "the New Year!"
-  ],
-  "hints": [
-   "为",
-   "新年干杯"
-  ]
+    "chunks": ["Here's to the New Year!"],
+    "hints": ["为新年干杯！"]
  },
  {
   "sentence": "Happy New Year!",
   "translation": "新年快乐!",
-  "chunks": [
-   "Happy",
-   "New Year!"
-  ],
-  "hints": [
-   "新年",
-   "快乐"
-  ]
+    "chunks": ["Happy New Year!"],
+    "hints": ["新年快乐！"]
  },
  {
   "sentence": "Happy Valentine's Day!",
   "translation": "情人节快乐。",
-  "chunks": [
-   "Happy",
-   "Valentine's Day!"
-  ],
-  "hints": [
-   "情人节",
-   "快乐"
-  ]
+    "chunks": ["Happy Valentine's Day!"],
+    "hints": ["情人节快乐！"]
  },
  {
   "sentence": "Be my Valentine.",
@@ -50,26 +32,14 @@
  {
   "sentence": "Happy Easter!",
   "translation": "复活节快乐!",
-  "chunks": [
-   "Happy",
-   "Easter!"
-  ],
-  "hints": [
-   "复活节",
-   "快乐"
-  ]
+    "chunks": ["Happy Easter!"],
+    "hints": ["复活节快乐！"]
  },
  {
   "sentence": "Happy Mother's Day!",
   "translation": "母亲节快乐!",
-  "chunks": [
-   "Happy",
-   "Mother's Day!"
-  ],
-  "hints": [
-   "母亲节",
-   "快乐"
-  ]
+    "chunks": ["Happy Mother's Day!"],
+    "hints": ["母亲节快乐！"]
  },
  {
   "sentence": "Thanks for being such a good mom.",
@@ -86,26 +56,14 @@
  {
   "sentence": "Trick or treat!",
   "translation": "不请吃就捣蛋!",
-  "chunks": [
-   "Trick or",
-   "treat!"
-  ],
-  "hints": [
-   "不给糖",
-   "就捣蛋"
-  ]
+  "chunks": ["Trick or treat!"],
+  "hints": ["不给糖就捣蛋！"]
  },
  {
   "sentence": "Happy Thanksgiving!",
   "translation": "感恩节快乐!",
-  "chunks": [
-   "Happy",
-   "Thanksgiving!"
-  ],
-  "hints": [
-   "感恩节",
-   "快乐"
-  ]
+    "chunks": ["Happy Thanksgiving!"],
+    "hints": ["感恩节快乐！"]
  },
  {
   "sentence": "Let's have pumpkin pie.",
@@ -122,14 +80,8 @@
  {
   "sentence": "Merry Christmas!",
   "translation": "圣诞快乐!",
-  "chunks": [
-   "Merry",
-   "Christmas!"
-  ],
-  "hints": [
-   "圣诞",
-   "快乐"
-  ]
+    "chunks": ["Merry Christmas!"],
+    "hints": ["圣诞快乐！"]
  },
  {
   "sentence": "Have a Merry Christmas.",
@@ -157,7 +109,7 @@
  },
  {
   "sentence": "It's my birthday.",
-  "translation": "生日快乐!",
+  "translation": "今天是我的生日。",
   "chunks": [
    "It's my",
    "birthday."
@@ -169,15 +121,9 @@
  },
  {
   "sentence": "Happy anniversary!",
-  "translation": "结婚纪念日快乐。",
-  "chunks": [
-   "Happy",
-   "anniversary!"
-  ],
-  "hints": [
-   "结婚纪念日",
-   "快乐"
-  ]
+  "translation": "纪念日快乐！",
+    "chunks": ["Happy anniversary!"],
+    "hints": ["纪念日快乐！"]
  },
  {
   "sentence": "Thanks for being in my life.",

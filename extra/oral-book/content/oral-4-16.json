@@ -15,12 +15,12 @@
   "sentence": "I'm so happy.",
   "translation": "我高兴极了。",
   "chunks": [
-   "I'm so",
-   "happy."
+   "I'm",
+   "so happy."
   ],
   "hints": [
-   "我高兴",
-   "极了。"
+   "我",
+   "高兴极了。"
   ]
  },
  {
@@ -36,14 +36,8 @@
  {
   "sentence": "Oh, boy!",
   "translation": "哇!/太棒了!/好家伙!",
-  "chunks": [
-   "Oh,",
-   "boy!"
-  ],
-  "hints": [
-   "哇，",
-   "太棒了！"
-  ]
+  "chunks": ["Oh, boy!"],
+  "hints": ["哇！/好家伙！"]
  },
  {
   "sentence": "Wow!",
@@ -73,33 +67,27 @@
    "to hear it."
   ],
   "hints": [
-   "听到这消息",
-   "我很高兴。"
+   "我很高兴",
+   "听到这个消息"
   ]
  },
  {
   "sentence": "I'm glad that...",
-  "translation": "谢天谢地……",
+  "translation": "我很高兴……",
   "chunks": [
    "I'm glad",
    "that..."
   ],
   "hints": [
-   "谢天谢地",
+   "我很高兴",
    "……"
   ]
  },
  {
   "sentence": "I feel like a million dollars.",
   "translation": "感觉好极了。",
-  "chunks": [
-   "I feel like",
-   "a million dollars."
-  ],
-  "hints": [
-   "感觉",
-   "好极了。"
-  ]
+  "chunks": ["I feel like a million dollars."],
+  "hints": ["我感觉棒极了。"]
  },
  {
   "sentence": "I've never been this happy.",
@@ -127,14 +115,12 @@
  },
  {
   "sentence": "What fun!",
-  "translation": "那太棒了!/太好了!",
+  "translation": "太有意思了！",
   "chunks": [
-   "What",
-   "fun!"
+   "What fun!"
   ],
   "hints": [
-   "那太",
-   "棒了！"
+   "太有意思了！"
   ]
  },
  {
@@ -157,8 +143,8 @@
    "today."
   ],
   "hints": [
-   "我今天",
-   "心情很好。"
+   "我心情很好",
+   "今天"
   ]
  },
  {
@@ -181,44 +167,42 @@
    "today."
   ],
   "hints": [
-   "今天你看上去",
-   "很高兴啊！"
+   "你看上去很高兴",
+   "今天"
   ]
  },
  {
   "sentence": "I'm walking on air.",
   "translation": "高兴得飘飘欲仙。",
   "chunks": [
-   "I'm walking",
-   "on air."
+   "I'm walking on air."
   ],
   "hints": [
-   "高兴得",
-   "飘飘欲仙。"
+   "我高兴得飘飘然。"
   ]
  },
  {
   "sentence": "I jumped for joy.",
   "translation": "我高兴得跳了起来。",
   "chunks": [
-   "I jumped",
-   "for joy."
+   "I",
+   "jumped for joy."
   ],
   "hints": [
-   "我高兴得",
-   "跳了起来。"
+   "我",
+   "高兴得跳了起来。"
   ]
  },
  {
   "sentence": "This is too good to be true.",
-  "translation": "这简直让人不敢相信。",
+  "translation": "这好得令人难以置信。",
   "chunks": [
-   "This is too good",
-   "to be true."
+   "This is",
+   "too good to be true."
   ],
   "hints": [
-   "这简直让人",
-   "不敢相信。"
+   "这",
+   "好得令人难以置信。"
   ]
  },
  {
@@ -235,27 +219,21 @@
  },
  {
   "sentence": "You made me happy.",
-  "translation": "你使我感觉到了幸福。",
+  "translation": "你让我感到很幸福。",
   "chunks": [
    "You made me",
    "happy."
   ],
   "hints": [
-   "你使我",
-   "感觉到了幸福。"
+   "你让我",
+   "感到很幸福。"
   ]
  },
  {
   "sentence": "You did it!",
-  "translation": "干得不错!",
-  "chunks": [
-   "You",
-   "did it!"
-  ],
-  "hints": [
-   "干得",
-   "不错！"
-  ]
+  "translation": "你做到了！",
+  "chunks": ["You did it!"],
+  "hints": ["你做到了！"]
  },
  {
   "sentence": "Lucky!",
@@ -275,40 +253,28 @@
    "today."
   ],
   "hints": [
-   "今天的",
-   "运气真好。"
+   "我运气真好",
+   "今天"
   ]
  },
  {
   "sentence": "It's your lucky day.",
-  "translation": "你真走运。",
-  "chunks": [
-   "It's your",
-   "lucky day."
-  ],
-  "hints": [
-   "你",
-   "真走运。"
-  ]
+  "translation": "今天你真走运。",
+  "chunks": ["It's your lucky day."],
+  "hints": ["今天你真走运。"]
  },
  {
   "sentence": "Thank heavens!",
   "translation": "感谢上帝!/谢天谢地。",
-  "chunks": [
-   "Thank",
-   "heavens!"
-  ],
-  "hints": [
-   "感谢",
-   "上帝！"
-  ]
+  "chunks": ["Thank heavens!"],
+  "hints": ["谢天谢地！"]
  },
  {
   "sentence": "I hit the jackpot!",
   "translation": "我中头彩了!",
   "chunks": [
-   "I hit",
-   "the jackpot!"
+   "I",
+   "hit the jackpot!"
   ],
   "hints": [
    "我",
@@ -319,11 +285,11 @@
   "sentence": "I was just lucky.",
   "translation": "只是运气好。",
   "chunks": [
-   "I was",
-   "just lucky."
+   "I was just",
+   "lucky."
   ],
   "hints": [
-   "只是",
+   "我只是",
    "运气好。"
   ]
  },
@@ -341,26 +307,22 @@
  },
  {
   "sentence": "Talk about luck.",
-  "translation": "真幸运呀!",
+  "translation": "真走运！",
   "chunks": [
-   "Talk about",
-   "luck."
+   "Talk about luck."
   ],
   "hints": [
-   "真",
-   "幸运呀！"
+   "真走运！"
   ]
  },
  {
   "sentence": "This is it!",
-  "translation": "就这个吧!",
+  "translation": "就是这个！",
   "chunks": [
-   "This",
-   "is it!"
+   "This is it!"
   ],
   "hints": [
-   "就",
-   "这个吧！"
+   "就是这个！"
   ]
  },
  {
@@ -395,21 +357,15 @@
    "great!"
   ],
   "hints": [
-   "真",
-   "不错。"
+   "看起来",
+   "真不错！"
   ]
  },
  {
   "sentence": "What a relief!",
   "translation": "啊!可以松口气了!",
-  "chunks": [
-   "What a",
-   "relief!"
-  ],
-  "hints": [
-   "啊！可以",
-   "松口气了！"
-  ]
+  "chunks": ["What a relief!"],
+  "hints": ["真是松了一口气！"]
  },
  {
   "sentence": "I'm surprised!",
@@ -419,8 +375,8 @@
    "surprised!"
   ],
   "hints": [
-   "吓我",
-   "一跳！"
+   "我",
+   "吓了一跳！"
   ]
  },
  {
@@ -451,32 +407,20 @@
    "to hear that."
   ],
   "hints": [
-   "听这么一说，",
-   "我就放心了。"
+   "我就放心了，",
+   "听到这个消息。"
   ]
  },
  {
   "sentence": "Here we are at last.",
   "translation": "终于到了。",
-  "chunks": [
-   "Here we are",
-   "at last."
-  ],
-  "hints": [
-   "终于",
-   "到了。"
-  ]
+  "chunks": ["Here we are at last."],
+  "hints": ["终于到了。"]
  },
  {
   "sentence": "Good riddance.",
   "translation": "可算摆脱了。",
-  "chunks": [
-   "Good",
-   "riddance."
-  ],
-  "hints": [
-   "可算",
-   "摆脱了。"
-  ]
+  "chunks": ["Good riddance."],
+  "hints": ["可算摆脱了。"]
  }
 ]

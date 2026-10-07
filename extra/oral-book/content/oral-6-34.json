@@ -1,7 +1,7 @@
 [
  {
   "sentence": "I'd like to have a Japanese interpreter.",
-  "translation": "我想请一位日本人翻译。",
+  "translation": "我想请一位日语口译员。",
   "chunks": [
    "I'd like to have",
    "a Japanese interpreter."
@@ -39,12 +39,10 @@
   "sentence": "A Japanese-speaking person, please.",
   "translation": "请安排一位会说日语的人。",
   "chunks": [
-   "A Japanese-speaking person,",
-   "please."
+   "A Japanese-speaking person, please."
   ],
   "hints": [
-   "会说日语的人",
-   "请安排一位"
+   "请安排一位会说日语的人。"
   ]
  },
  {
@@ -73,7 +71,7 @@
  },
  {
   "sentence": "I'd like a Japanese-speaking guide, please.",
-  "translation": "我们想请一位会说日语的导游。",
+  "translation": "我想请一位会说日语的导游。",
   "chunks": [
    "I'd like",
    "a Japanese-speaking guide,",
@@ -87,14 +85,14 @@
  },
  {
   "sentence": "I can't make myself understood.",
-  "translation": "我们语言不通。",
+  "translation": "我没法让别人听懂我说的话。",
   "chunks": [
    "I can't make myself",
    "understood."
   ],
   "hints": [
-   "我没法让",
-   "别人听懂我"
+   "我没法让自己",
+   "被别人听懂。"
   ]
  },
  {
@@ -165,9 +163,9 @@
    "report it to?"
   ],
   "hints": [
-   "我该",
-   "向谁报告"
-  ]
+     "我该向谁",
+     "报告这件事"
+    ]
  },
  {
   "sentence": "Where is the Lost and Found?",
@@ -201,8 +199,8 @@
    "in it?"
   ],
   "hints": [
-   "里面",
-   "有什么"
+   "有什么",
+   "里面"
   ]
  },
  {
@@ -243,7 +241,7 @@
  },
  {
   "sentence": "Please give me a report on the theft.",
-  "translation": "请您写一下被盗经过。",
+  "translation": "请给我一份关于这起盗窃案的报告。",
   "chunks": [
    "Please give me a report",
    "on the theft."
@@ -327,7 +325,7 @@
  },
  {
   "sentence": "It's an emergency!",
-  "translation": "十万火急!",
+  "translation": "这是紧急情况！",
   "chunks": [
    "It's an",
    "emergency!"

@@ -7,9 +7,9 @@
    "the shoe store?"
   ],
   "hints": [
-   "鞋店",
-   "在哪儿？"
-  ]
+     "在哪儿？",
+     "鞋店"
+    ]
  },
  {
   "sentence": "Excuse me, but I'm lost.",
@@ -31,8 +31,8 @@
    "on this map?"
   ],
   "hints": [
-   "我在地图上的",
-   "什么地方？"
+   "我在哪儿",
+   "在这张地图上？"
   ]
  },
  {
@@ -43,8 +43,8 @@
    "of this street?"
   ],
   "hints": [
-   "这条街",
-   "叫什么名字？"
+   "叫什么名字",
+   "这条街的"
   ]
  },
  {
@@ -55,8 +55,8 @@
    "near here?"
   ],
   "hints": [
-   "这附近",
-   "有邮局吗？"
+   "有邮局吗？",
+   "这附近"
   ]
  },
  {
@@ -67,20 +67,20 @@
    "the Sakura Hotel?"
   ],
   "hints": [
-   "去樱花饭店",
-   "怎么走？"
-  ]
+     "怎么去？",
+     "樱花饭店"
+    ]
  },
  {
   "sentence": "Turn right at the first traffic light.",
-  "translation": "从第一个信号灯往右拐。",
+  "translation": "在第一个信号灯处往右拐。",
   "chunks": [
-   "Turn right at",
-   "the first traffic light."
+   "Turn right",
+   "at the first traffic light."
   ],
   "hints": [
-   "从第一个信号灯",
-   "往右拐。"
+   "往右拐",
+   "在第一个信号灯处。"
   ]
  },
  {
@@ -91,9 +91,9 @@
    "the rest room?"
   ],
   "hints": [
-   "洗手间",
-   "在哪儿？"
-  ]
+     "在哪儿？",
+     "洗手间"
+    ]
  },
  {
   "sentence": "It's on the right.",
@@ -109,14 +109,14 @@
  },
  {
   "sentence": "Go straight for two blocks.",
-  "translation": "一直走到第二个街区。",
+  "translation": "一直往前走两个街区。",
   "chunks": [
    "Go straight",
    "for two blocks."
   ],
   "hints": [
-   "一直走到",
-   "第二个街区。"
+   "一直往前走",
+   "两个街区。"
   ]
  },
  {
@@ -127,8 +127,8 @@
    "at the corner on your left."
   ],
   "hints": [
-   "在左侧拐角那儿",
-   "就能看见。"
+   "你会看到",
+   "在左侧拐角"
   ]
  },
  {
@@ -151,8 +151,8 @@
    "the coffee shop."
   ],
   "hints": [
-   "在那家咖啡馆",
-   "的旁边。"
+   "在……旁边",
+   "那家咖啡馆"
   ]
  },
  {
@@ -163,8 +163,8 @@
    "City Hall."
   ],
   "hints": [
-   "在市政厅",
-   "的对面。"
+   "在……对面",
+   "市政厅"
   ]
  },
  {
@@ -187,56 +187,57 @@
    "the bookstore and the drugstore."
   ],
   "hints": [
-   "在书店和药店",
-   "之间。"
+   "在……之间",
+   "书店和药店"
   ]
  },
  {
   "sentence": "It's on this side of the church.",
   "translation": "在教堂的这一边。",
   "chunks": [
-   "It's on this side",
-   "of the church."
+   "It's on",
+   "this side of the church."
   ],
   "hints": [
-   "在教堂的",
-   "这一边。"
+   "在",
+   "教堂这一边。"
   ]
  },
  {
-  "sentence": "It's at of this street.",
+  "cid": "2ec8b5a3",
+  "sentence": "It's at the end of this street.",
   "translation": "在这条路的尽头。",
   "chunks": [
-   "It's at",
-   "of this street."
+   "It's at the end of",
+   "this street."
   ],
   "hints": [
-   "就在这条",
-   "路的尽头。"
+   "在……尽头",
+   "这条路。"
   ]
  },
  {
   "sentence": "Am I near Shinjuku?",
-  "translation": "这儿离新宿近吗?",
+  "translation": "我这儿离新宿近吗？",
   "chunks": [
-   "Am I near",
-   "Shinjuku?"
+   "Am I",
+   "near Shinjuku?"
   ],
   "hints": [
-   "这儿离新宿",
-   "近吗？"
+   "我这儿",
+   "离新宿近吗？"
   ]
  },
  {
   "sentence": "How far is it to Shinjuku?",
   "translation": "这儿离新宿有多远?",
   "chunks": [
-   "How far is it",
-   "to Shinjuku?"
+   "How far",
+   "is it to Shinjuku?"
   ],
   "hints": [
-   "这儿离新宿",
-   "有多远？"
+   "有多远",
+   "这儿到新宿？"
   ]
  },
  {
@@ -247,8 +248,8 @@
    "will it take?"
   ],
   "hints": [
-   "要",
-   "多长时间？"
+   "多长时间",
+   "要花？"
   ]
  },
  {
@@ -259,8 +260,8 @@
    "five minutes."
   ],
   "hints": [
-   "5分钟",
-   "左右。"
+   "大约",
+   "5分钟。"
   ]
  },
  {
@@ -271,7 +272,7 @@
    "far?"
   ],
   "hints": [
-   "到那儿",
+   "那儿",
    "远吗？"
   ]
  },
@@ -295,20 +296,20 @@
    "to get to Shinjuku?"
   ],
   "hints": [
-   "到新宿",
-   "哪条路最好走？"
-  ]
+     "哪条路最好走？",
+     "到新宿"
+    ]
  },
  {
   "sentence": "The easiest way is to take a taxi.",
-  "translation": "坐出租车去最容易找到。",
+  "translation": "最简单的办法是坐出租车。",
   "chunks": [
    "The easiest way",
    "is to take a taxi."
   ],
   "hints": [
-   "坐出租车去",
-   "最容易找到。"
+   "最简单的办法",
+   "是坐出租车。"
   ]
  },
  {
@@ -319,32 +320,32 @@
    "to get to Shinjuku?"
   ],
   "hints": [
-   "到新宿",
-   "哪条道最快？"
-  ]
+     "哪条道最快？",
+     "到新宿"
+    ]
  },
  {
   "sentence": "Where can I mail this?",
-  "translation": "在哪儿可以发信?",
+  "translation": "我可以在哪儿寄这个？",
   "chunks": [
-   "Where can I",
-   "mail this?"
+   "Where",
+   "can I mail this?"
   ],
   "hints": [
    "在哪儿",
-   "可以发信？"
+   "我可以寄这个？"
   ]
  },
  {
   "sentence": "Where can I make a phone call?",
   "translation": "在哪儿可以打电话?",
   "chunks": [
-   "Where can I",
-   "make a phone call?"
+   "Where",
+   "can I make a phone call?"
   ],
   "hints": [
    "在哪儿",
-   "可以打电话？"
+   "我可以打电话？"
   ]
  },
  {
@@ -355,7 +356,7 @@
    "the shortcut?"
   ],
   "hints": [
-   "这是条",
+   "这是",
    "近路吗？"
   ]
  },
@@ -367,8 +368,8 @@
    "please."
   ],
   "hints": [
-   "请给我一张",
-   "地铁图。"
+   "一张地铁图",
+   "请。"
   ]
  },
  {
@@ -379,9 +380,9 @@
    "the ticket counter?"
   ],
   "hints": [
-   "售票处",
-   "在哪儿？"
-  ]
+     "在哪儿？",
+     "售票处"
+    ]
  },
  {
   "sentence": "How much is the fare to Shinjuku?",
@@ -391,20 +392,20 @@
    "to Shinjuku?"
   ],
   "hints": [
-   "到新宿",
-   "多少钱？"
-  ]
+     "车费多少钱",
+     "到新宿"
+    ]
  },
  {
   "sentence": "It's one hundred fifty yen.",
-  "translation": "150日元。",
+  "translation": "是150日元。",
   "chunks": [
-   "It's one hundred",
-   "fifty yen."
+   "It's",
+   "one hundred fifty yen."
   ],
   "hints": [
-   "150",
-   "日元。"
+   "是",
+   "150日元。"
   ]
  },
  {
@@ -415,20 +416,20 @@
    "to Shinjuku?"
   ],
   "hints": [
-   "到新宿，",
-   "我该坐哪趟车？"
+   "我该坐哪趟车",
+   "到新宿"
   ]
  },
  {
   "sentence": "Where am I supposed to change?",
   "translation": "我应该在哪站换车?",
   "chunks": [
-   "Where am I supposed",
-   "to change?"
+   "Where am I supposed to",
+   "change?"
   ],
   "hints": [
-   "我应该",
-   "在哪站换车？"
+   "我应该在哪站",
+   "换车？"
   ]
  },
  {
@@ -439,20 +440,20 @@
    "for Ogikubo?"
   ],
   "hints": [
-   "我要到荻洼",
-   "在哪儿下车？"
-  ]
+     "在哪儿下车？",
+     "到荻洼"
+    ]
  },
  {
   "sentence": "You can change to the JR Chuo Line at Shinjuku.",
-  "translation": "到新宿换乘JR的中央线。",
+  "translation": "你可以在新宿换乘JR中央线。",
   "chunks": [
-   "You can change to the JR Chuo Line",
-   "at Shinjuku."
+   "You can change",
+   "to the JR Chuo Line at Shinjuku."
   ],
   "hints": [
-   "到新宿换乘",
-   "JR的中央线。"
+   "你可以换乘",
+   "JR中央线（在新宿）"
   ]
  },
  {
@@ -493,14 +494,14 @@
  },
  {
   "sentence": "The trains come every ten minutes.",
-  "translation": "10分钟一趟。",
+  "translation": "电车每10分钟一趟。",
   "chunks": [
-   "The trains come",
-   "every ten minutes."
+   "The trains",
+   "come every ten minutes."
   ],
   "hints": [
-   "10分钟",
-   "一趟。"
+   "电车",
+   "每10分钟一趟。"
   ]
  },
  {
@@ -511,20 +512,20 @@
    "the next express?"
   ],
   "hints": [
-   "下趟快车",
-   "是几点？"
-  ]
+     "几点？",
+     "下趟快车"
+    ]
  },
  {
   "sentence": "What time is the last train to Chofu?",
   "translation": "到调布的末班车是几点?",
   "chunks": [
-   "What time is the last train",
-   "to Chofu?"
+   "What time is",
+   "the last train to Chofu?"
   ],
   "hints": [
-   "到调布的末班车",
-   "是几点？"
+   "是几点？",
+   "到调布的末班车"
   ]
  },
  {
@@ -543,8 +544,8 @@
   "sentence": "Does this train stop at Chofu?",
   "translation": "这趟车在调布停吗?",
   "chunks": [
-   "Does this train stop",
-   "at Chofu?"
+   "Does this train",
+   "stop at Chofu?"
   ],
   "hints": [
    "这趟车",
@@ -559,8 +560,8 @@
    "from here."
   ],
   "hints": [
-   "从这里数",
-   "第4站。"
+   "第四站",
+   "从这里数"
   ]
  },
  {
@@ -577,14 +578,14 @@
  },
  {
   "sentence": "How many stops are there to Shinjuku?",
-  "translation": "到新宿还有几站?",
+  "translation": "到新宿还有几站？",
   "chunks": [
    "How many stops",
    "are there to Shinjuku?"
   ],
   "hints": [
-   "到新宿",
-   "还有几站？"
+   "还有几站",
+   "到新宿？"
   ]
  },
  {
@@ -595,9 +596,9 @@
    "the next stop?"
   ],
   "hints": [
-   "下站",
-   "是哪儿？"
-  ]
+     "是哪里？",
+     "下一站"
+    ]
  },
  {
   "sentence": "The next stop is Chofu.",
@@ -612,15 +613,15 @@
   ]
  },
  {
-  "sentence": "Where can I get a taxi?",
+ "sentence": "Where can I get a taxi?",
   "translation": "我在哪儿可以打到车?",
   "chunks": [
    "Where can I",
    "get a taxi?"
   ],
   "hints": [
-   "我在哪儿",
-   "可以打到车？"
+   "我在哪儿可以",
+   "打到车？"
   ]
  },
  {
@@ -631,20 +632,20 @@
    "the taxi stand?"
   ],
   "hints": [
-   "出租车",
-   "站在哪儿？"
-  ]
+     "在哪儿？",
+     "出租车站"
+    ]
  },
  {
   "sentence": "Call me a taxi, please.",
   "translation": "请帮我叫辆出租车。",
   "chunks": [
-   "Call me",
-   "a taxi, please."
+   "Call me a taxi,",
+   "please."
   ],
   "hints": [
-   "请帮我",
-   "叫辆出租车。"
+   "帮我叫辆出租车",
+   "请。"
   ]
  },
  {
@@ -655,8 +656,8 @@
    "to get downtown?"
   ],
   "hints": [
-   "到市中心",
-   "得多长时间？"
+   "得多长时间",
+   "到市中心？"
   ]
  },
  {
@@ -667,21 +668,15 @@
    "does it cost?"
   ],
   "hints": [
-   "要花",
-   "多少钱？"
-  ]
+     "多少钱？",
+     "要花"
+    ]
  },
  {
   "sentence": "Where to?",
   "translation": "您去哪儿?",
-  "chunks": [
-   "Where",
-   "to?"
-  ],
-  "hints": [
-   "您",
-   "去哪儿？"
-  ]
+  "chunks": ["Where to?"],
+  "hints": ["您要去哪儿？"]
  },
  {
   "sentence": "To Wall Street, please.",
@@ -691,8 +686,8 @@
    "please."
   ],
   "hints": [
-   "请到",
-   "华尔街。"
+   "到华尔街",
+   "请。"
   ]
  },
  {
@@ -703,20 +698,20 @@
    "please."
   ],
   "hints": [
-   "请到",
-   "这个地址。"
+   "到这个地址",
+   "请。"
   ]
  },
  {
-  "sentence": "I'm in a hurry.",
+ "sentence": "I'm in a hurry.",
   "translation": "我有急事。",
   "chunks": [
-   "I'm in",
-   "a hurry."
+  "I'm",
+  "in a hurry."
   ],
   "hints": [
-   "我有",
-   "急事。"
+   "我",
+   "赶时间。"
   ]
  },
  {
@@ -727,20 +722,20 @@
    "please."
   ],
   "hints": [
-   "请走",
-   "最近的路。"
+   "走最近的路",
+   "请。"
   ]
  },
  {
   "sentence": "Could you wait for me, please?",
-  "translation": "请您在这儿稍等一下。",
+  "translation": "能请您等我一下吗？",
   "chunks": [
-   "Could you wait",
-   "for me, please?"
+   "Could you",
+   "wait for me, please?"
   ],
   "hints": [
-   "请您在这儿",
-   "稍等一下。"
+   "您能",
+   "请等我一下吗？"
   ]
  },
  {
@@ -751,8 +746,8 @@
    "please."
   ],
   "hints": [
-   "请在这儿",
-   "停吧。"
+   "在这儿停",
+   "请。"
   ]
  },
  {
@@ -775,8 +770,8 @@
    "to get there?"
   ],
   "hints": [
-   "到那儿的话",
-   "要花多少钱？"
+   "要花多少钱",
+   "到那儿"
   ]
  },
  {
@@ -787,32 +782,32 @@
    "the bus stop?"
   ],
   "hints": [
-   "公共汽车站",
-   "在哪儿？"
-  ]
+     "在哪儿？",
+     "公共汽车站"
+    ]
  },
  {
   "sentence": "Is there a bus to the airport?",
   "translation": "有去机场的汽车吗?",
   "chunks": [
-   "Is there a bus",
-   "to the airport?"
+   "Is there",
+   "a bus to the airport?"
   ],
   "hints": [
-   "有去机场",
-   "的汽车吗？"
+   "有吗？",
+   "去机场的公交车"
   ]
  },
  {
   "sentence": "How many stops to the museum?",
-  "translation": "美术馆是第几站?",
+  "translation": "到美术馆还有几站？",
   "chunks": [
    "How many stops",
    "to the museum?"
   ],
   "hints": [
-   "美术馆",
-   "是第几站？"
+   "还有几站",
+   "到美术馆？"
   ]
  },
  {
@@ -823,32 +818,32 @@
    "to Narita?"
   ],
   "hints": [
-   "下趟到成田机场",
-   "的车是几点？"
+   "下一班车是几点",
+   "到成田机场"
   ]
  },
  {
   "sentence": "Does this bus go to the airport?",
   "translation": "这辆车是去机场的吗?",
   "chunks": [
-   "Does this bus go",
-   "to the airport?"
+   "Does this bus",
+   "go to the airport?"
   ],
   "hints": [
-   "这辆车",
-   "是去机场的吗？"
+   "这辆公交车",
+   "去机场吗？"
   ]
  },
  {
-  "sentence": "Could you tell me when to get off?",
+ "sentence": "Could you tell me when to get off?",
   "translation": "麻烦您到站时告诉我一声。",
   "chunks": [
    "Could you tell me",
    "when to get off?"
   ],
   "hints": [
-   "麻烦您到站时",
-   "告诉我一声。"
+   "麻烦您告诉我",
+   "什么时候下车？"
   ]
  },
  {
@@ -865,14 +860,14 @@
  },
  {
   "sentence": "The buses don't come on time.",
-  "translation": "汽车没有准时来。",
+  "translation": "公交车不准时到。",
   "chunks": [
-   "The buses don't come",
-   "on time."
+   "The buses",
+   "don't come on time."
   ],
   "hints": [
-   "汽车没有",
-   "准时来。"
+   "公交车",
+   "不准时到。"
   ]
  },
  {
@@ -895,20 +890,20 @@
    "about car rentals?"
   ],
   "hints": [
-   "租车的事，",
-   "我该问谁？"
+   "我该问谁",
+   "租车的事"
   ]
  },
  {
   "sentence": "I'd like to rent a car, please.",
-  "translation": "我想借辆车。",
+  "translation": "我想租一辆车。",
   "chunks": [
-   "I'd like to rent",
-   "a car, please."
+   "I'd like",
+   "to rent a car, please."
   ],
   "hints": [
    "我想",
-   "借辆车。"
+   "租一辆车。"
   ]
  },
  {
@@ -919,20 +914,20 @@
    "do you have in mind?"
   ],
   "hints": [
-   "你喜欢",
-   "什么车型？"
+   "什么车型",
+   "你想要的"
   ]
  },
  {
   "sentence": "A compact, please.",
-  "translation": "小型车就可以。",
+  "translation": "请给我一辆紧凑型车。",
   "chunks": [
    "A compact,",
    "please."
   ],
   "hints": [
-   "小型车",
-   "就可以。"
+   "一辆紧凑型车",
+   "请。"
   ]
  },
  {
@@ -955,20 +950,20 @@
    "the rental fee?"
   ],
   "hints": [
-   "租金",
-   "是多少？"
+   "是多少？",
+   "租车费"
   ]
  },
  {
   "sentence": "Thirty dollars a day, plus twenty cents per mile.",
-  "translation": "一天30美金，每公里加20美分。",
+  "translation": "每天30美元，每英里另加20美分。",
   "chunks": [
    "Thirty dollars a day,",
    "plus twenty cents per mile."
   ],
   "hints": [
    "一天30美金，",
-   "每公里加20美分。"
+   "每英里另加20美分。"
   ]
  },
  {
@@ -997,27 +992,21 @@
  },
  {
   "sentence": "Can I drop off the car in...?",
-  "translation": "我能把车放在……?",
+  "translation": "我能把车还在……吗？",
   "chunks": [
-   "Can I drop off",
-   "the car in...?"
+   "Can I",
+   "drop off the car in...?"
   ],
   "hints": [
-   "我能把车",
-   "放在……？"
+   "我能",
+   "把车还在……？"
   ]
  },
  {
   "sentence": "No outlet!",
-  "translation": "禁行!",
-  "chunks": [
-   "No",
-   "outlet!"
-  ],
-  "hints": [
-   "禁",
-   "行！"
-  ]
+  "translation": "此路不通！",
+  "chunks": ["No outlet!"],
+  "hints": ["此路不通！"]
  },
  {
   "sentence": "No parking!",
@@ -1045,14 +1034,14 @@
  },
  {
   "sentence": "One-way street!",
-  "translation": "单行线。",
+  "translation": "单行道。",
   "chunks": [
    "One-way",
    "street!"
   ],
   "hints": [
-   "单",
-   "行线。"
+   "单向",
+   "道路。"
   ]
  },
  {
@@ -1063,8 +1052,8 @@
    "junction!"
   ],
   "hints": [
-   "十字",
-   "路口。"
+   "道路",
+   "交叉口。"
   ]
  }
 ]

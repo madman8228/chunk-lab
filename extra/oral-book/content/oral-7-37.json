@@ -7,8 +7,8 @@
    "an early reply."
   ],
   "hints": [
-   "如能尽早回复",
-   "我们不胜感激。"
+   "我们将不胜感激",
+   "尽早回复。"
   ]
  },
  {
@@ -37,19 +37,19 @@
  },
  {
   "sentence": "Your prompt attention to this matter will be appreciated.",
-  "translation": "如果就此事您能尽早回信的话，我们将衷心感谢。",
+  "translation": "如您能尽快处理此事，我们将不胜感激。",
   "chunks": [
-   "Your prompt attention",
-   "to this matter will be appreciated."
+   "Your prompt attention to this matter",
+   "will be appreciated."
   ],
   "hints": [
-   "您对此事的尽快关注",
+   "您尽快处理此事",
    "我们将不胜感激。"
   ]
  },
  {
   "sentence": "Please write us at the above address.",
-  "translation": "回信请寄到上述地址。",
+  "translation": "请按上述地址给我们写信。",
   "chunks": [
    "Please write us",
    "at the above address."
@@ -61,7 +61,7 @@
  },
  {
   "sentence": "Your kind cooperation in this respect is greatly appreciated.",
-  "translation": "在此方面如果能够得到您的合作我将非常感谢。",
+  "translation": "非常感谢您在这方面的配合。",
   "chunks": [
    "Your kind cooperation",
    "in this respect is greatly appreciated."
@@ -133,7 +133,7 @@
  },
  {
   "sentence": "We are always anxious to assist you in...",
-  "translation": "我们渴望在……方面给您以援助。",
+  "translation": "我们随时乐意在……方面为您提供帮助。",
   "chunks": [
    "We are always anxious",
    "to assist you in..."
@@ -159,12 +159,12 @@
   "sentence": "Thank you for calling this matter to our attention.",
   "translation": "谢谢您提醒我们注意此事。",
   "chunks": [
-   "Thank you for calling",
-   "this matter to our attention."
+   "Thank you for",
+   "calling this matter to our attention."
   ],
   "hints": [
-   "感谢您提醒",
-   "我们注意此事。"
+   "感谢您",
+   "提醒我们注意此事。"
   ]
  },
  {
@@ -181,14 +181,14 @@
  },
  {
   "sentence": "Thank you for the opportunity to be of service.",
-  "translation": "谢谢您提供给我们这样服务的机会。",
+  "translation": "感谢您给我们这个为您服务的机会。",
   "chunks": [
-   "Thank you for the opportunity",
-   "to be of service."
+   "Thank you for",
+   "the opportunity to be of service."
   ],
   "hints": [
-   "感谢您给我们",
-   "提供服务的机会。"
+   "感谢您",
+   "给我们这个为您服务的机会。"
   ]
  },
  {
@@ -205,7 +205,7 @@
  },
  {
   "sentence": "It is always a pleasure doing business with you.",
-  "translation": "很高兴和你们保持贸易关系。",
+  "translation": "与您合作一直很愉快。",
   "chunks": [
    "It is always a pleasure",
    "doing business with you."
@@ -253,14 +253,14 @@
  },
  {
   "sentence": "We trust that an increase in ... will continue in the future.",
-  "translation": "我们确信今后……将继续不断地增加。",
+  "translation": "我们相信……会继续增长。",
   "chunks": [
    "We trust that an increase",
    "in ... will continue in the future."
   ],
   "hints": [
-   "我们相信",
-   "……今后将继续增长。"
+   "我们相信……会增长",
+   "这种增长今后将持续。"
   ]
  }
 ]

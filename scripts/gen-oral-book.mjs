@@ -102,8 +102,8 @@ for (const bd of bookDecks) {
     if (!c) return;                       /* 尚无内容 → 待快档补 */
     const ex = existByNorm.get(norm(en));
     if (ex) {
-      /* 与现有句重复：保留现有 cid + 现有详解（用户进度不丢） */
-      items.push(Object.assign({}, ex));
+      /* 重复句以「书内容」更新正文，保留旧 cid 以兼容已有进度；书内容未提供的详解字段继续沿用旧记录。 */
+      items.push(Object.assign({}, ex, c, { sentence: ex.sentence, cid: ex.cid }));
       used.add(norm(en));
       dupUse++;
     } else {

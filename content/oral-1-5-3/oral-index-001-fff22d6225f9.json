@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "mode": "index",
+  "items": [
+    {
+      "cid": "02919b84",
+      "sentence": "He's selfish.",
+      "translation": "他很自私。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 0
+    },
+    {
+      "cid": "60fc7a3e",
+      "sentence": "He takes things too seriously.",
+      "translation": "他总把问题想得过于严重。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 1
+    },
+    {
+      "cid": "cf37cc83",
+      "sentence": "He's simpleminded.",
+      "translation": "他头脑简单。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 2
+    },
+    {
+      "cid": "8c961137",
+      "sentence": "He's on edge today.",
+      "translation": "他今天情绪很烦躁。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 3
+    },
+    {
+      "cid": "3ce3c2a3",
+      "sentence": "He's talkative.",
+      "translation": "他真是个多嘴多舌的人。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 4
+    },
+    {
+      "cid": "565b3b93",
+      "sentence": "He's quite well off.",
+      "translation": "他经济上相当宽裕。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 5
+    },
+    {
+      "cid": "c4d979ce",
+      "sentence": "He's fresh.",
+      "translation": "他很没礼貌。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 6
+    },
+    {
+      "cid": "caf3bc4a",
+      "sentence": "He's a smooth talker.",
+      "translation": "他很会说好听话。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 7
+    },
+    {
+      "cid": "305475ff",
+      "sentence": "He's nobody's fool.",
+      "translation": "他是个不可小看的人。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 8
+    },
+    {
+      "cid": "f385c806",
+      "sentence": "He often says absurd things.",
+      "translation": "他净说些傻话。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 9
+    },
+    {
+      "cid": "fa141e2c",
+      "sentence": "He has no sense of responsibility.",
+      "translation": "他一点儿责任心都没有。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 10
+    },
+    {
+      "cid": "354851bf",
+      "sentence": "He's very offensive.",
+      "translation": "他真是个让人讨厌的人。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 11
+    },
+    {
+      "cid": "47f158da",
+      "sentence": "He's a difficult man to deal with.",
+      "translation": "他这人很难对付。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 12
+    },
+    {
+      "cid": "9f55c3cf",
+      "sentence": "He's a stubborn old man.",
+      "translation": "他是个倔老头。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 13
+    },
+    {
+      "cid": "1ca41063",
+      "sentence": "He's aiming too high.",
+      "translation": "他总是好高骛远。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 14
+    },
+    {
+      "cid": "a48379bb",
+      "sentence": "That man never admits defeat.",
+      "translation": "他从不认输。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 15
+    },
+    {
+      "cid": "5d37e3d6",
+      "sentence": "He's very vague.",
+      "translation": "他是个难以捉摸的人。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 16
+    },
+    {
+      "cid": "8eaf0999",
+      "sentence": "He's crooked.",
+      "translation": "他为人不正直。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 17
+    },
+    {
+      "cid": "b09f9b4b",
+      "sentence": "He's good for nothing.",
+      "translation": "他一无是处。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 18
+    },
+    {
+      "cid": "52e1e3cd",
+      "sentence": "She's shy around strangers.",
+      "translation": "她在陌生人面前会害羞。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 19
+    },
+    {
+      "cid": "212ac0ed",
+      "sentence": "You're too timid.",
+      "translation": "你太胆小了。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 20
+    },
+    {
+      "cid": "86250d64",
+      "sentence": "He's acting big.",
+      "translation": "他在摆架子。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 21
+    },
+    {
+      "cid": "601d401e",
+      "sentence": "He has a short temper.",
+      "translation": "他动不动就生气。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 22
+    },
+    {
+      "cid": "74c4a2c4",
+      "sentence": "He eats like a horse.",
+      "translation": "他很能吃。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 23
+    },
+    {
+      "cid": "c2b91a0d",
+      "sentence": "Your perfume is strong.",
+      "translation": "你的香水味很浓。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 24
+    },
+    {
+      "cid": "ceb706ce",
+      "sentence": "I'm young in spirit.",
+      "translation": "我心态还很年轻。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 25
+    },
+    {
+      "cid": "ae396052",
+      "sentence": "I'm all thumbs.",
+      "translation": "我笨手笨脚的。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 26
+    },
+    {
+      "cid": "7f10618b",
+      "sentence": "I like being alone.",
+      "translation": "我喜欢独处。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 27
+    },
+    {
+      "cid": "663b4082",
+      "sentence": "I'm easygoing.",
+      "translation": "我这个人比较随和。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 28
+    },
+    {
+      "cid": "84e95760",
+      "sentence": "I get embarrassed easily.",
+      "translation": "我很容易感到难为情。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 29
+    },
+    {
+      "cid": "0fc3e307",
+      "sentence": "I'm practical about everything.",
+      "translation": "我做事一向很务实。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 30
+    },
+    {
+      "cid": "c99d7c25",
+      "sentence": "I have a one-track mind.",
+      "translation": "我是一根筋。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 31
+    },
+    {
+      "cid": "6553f10b",
+      "sentence": "I'm a good judge of character.",
+      "translation": "我看人很准。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 32
+    },
+    {
+      "cid": "935bd23f",
+      "sentence": "I have a sweet tooth.",
+      "translation": "我爱吃甜食。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 33
+    },
+    {
+      "cid": "fc4254c5",
+      "sentence": "I prefer wine to sweets.",
+      "translation": "比起甜食，我更喜欢葡萄酒。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 34
+    },
+    {
+      "cid": "37941864",
+      "sentence": "I have led a dog's life.",
+      "translation": "我过着悲惨的生活。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 35
+    },
+    {
+      "cid": "3e6f7722",
+      "sentence": "I have poor eyesight.",
+      "translation": "我的视力不好。",
+      "sourceUrl": "content/oral-1-5-3/oral-001-cff9bfec4bc4.json",
+      "sourceOffset": 36
+    }
+  ]
+}

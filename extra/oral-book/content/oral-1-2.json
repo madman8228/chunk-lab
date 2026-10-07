@@ -39,24 +39,24 @@
   "sentence": "Where shall we meet?",
   "translation": "我们在哪儿见面?",
   "chunks": [
-   "Where shall",
-   "we meet?"
+   "Where",
+   "shall we meet?"
   ],
   "hints": [
-   "我们在哪儿",
-   "见面？"
+   "在哪儿",
+   "我们见面？"
   ]
  },
  {
   "sentence": "Shall I come to pick you up?",
-  "translation": "要我开车去接你吗?",
+  "translation": "要我过来接你吗？",
   "chunks": [
-   "Shall I come",
-   "to pick you up?"
+   "Shall I",
+   "come to pick you up?"
   ],
   "hints": [
-   "要我开车",
-   "去接你吗？"
+   "要我",
+   "过来接你吗？"
   ]
  },
  {
@@ -75,12 +75,12 @@
   "sentence": "How about having dinner with me?",
   "translation": "和我一起吃晚饭，好吗?",
   "chunks": [
-   "How about having dinner",
-   "with me?"
+   "How about",
+   "having dinner with me?"
   ],
   "hints": [
-   "和我一起吃晚饭，",
-   "好吗？"
+   "怎么样",
+   "和我一起吃晚饭"
   ]
  },
  {
@@ -133,14 +133,14 @@
  },
  {
   "sentence": "How about a rain check?",
-  "translation": "另找时间可以吗?",
+  "translation": "改天再约怎么样？",
   "chunks": [
    "How about",
    "a rain check?"
   ],
   "hints": [
-   "另找时间",
-   "可以吗？"
+   "你觉得怎么样",
+   "改天再约"
   ]
  },
  {
@@ -175,8 +175,8 @@
    "what time?"
   ],
   "hints": [
-   "什么",
-   "时候？"
+   "大约",
+   "几点？"
   ]
  },
  {
@@ -323,38 +323,38 @@
  },
  {
   "sentence": "When can you come over?",
-  "translation": "你几点能来?",
+  "translation": "你什么时候能过来？",
   "chunks": [
-   "When can you",
-   "come over?"
+   "When",
+   "can you come over?"
   ],
   "hints": [
-   "你几点",
-   "能来？"
+   "什么时候",
+   "你能过来？"
   ]
  },
  {
   "sentence": "Is it too early?",
-  "translation": "太早了吗?",
+  "translation": "是不是太早了？",
   "chunks": [
    "Is it",
    "too early?"
   ],
   "hints": [
-   "太早",
-   "了吗？"
+   "是不是",
+   "太早了？"
   ]
  },
  {
   "sentence": "Is it too late?",
-  "translation": "太晚了吗?",
+  "translation": "是不是太晚了？",
   "chunks": [
    "Is it",
    "too late?"
   ],
   "hints": [
-   "太晚",
-   "了吗？"
+   "是不是",
+   "太晚了？"
   ]
  },
  {
@@ -389,8 +389,8 @@
    "ready?"
   ],
   "hints": [
-   "准备",
-   "好了吗？"
+   "你",
+   "准备好了吗？"
   ]
  },
  {
@@ -407,36 +407,36 @@
   "sentence": "I'm not ready.",
   "translation": "还没准备好呢。",
   "chunks": [
-   "I'm not",
-   "ready."
+   "I'm",
+   "not ready."
   ],
   "hints": [
-   "还没",
-   "准备好呢。"
+   "我",
+   "还没准备好呢。"
   ]
  },
  {
   "sentence": "What time shall we leave?",
-  "translation": "我们什么时候出发。",
+  "translation": "我们几点出发？",
   "chunks": [
-   "What time",
-   "shall we leave?"
+   "What time shall we",
+   "leave?"
   ],
   "hints": [
-   "我们什么时候",
-   "出发。"
+   "我们几点",
+   "出发？"
   ]
  },
  {
   "sentence": "What time do we arrive?",
   "translation": "我们几点能到?",
   "chunks": [
-   "What time",
-   "do we arrive?"
+   "What time do we",
+   "arrive?"
   ],
   "hints": [
    "我们几点",
-   "能到？"
+   "到？"
   ]
  },
  {
@@ -459,8 +459,8 @@
    "to go to a movie?"
   ],
   "hints": [
-   "你想去",
-   "看电影吗？"
+   "你想不想",
+   "去看电影？"
   ]
  },
  {
@@ -495,32 +495,30 @@
    "to see..."
   ],
   "hints": [
-   "我想看",
-   "《××》"
+   "我想",
+   "看《××》"
   ]
  },
  {
   "sentence": "Where is... playing?",
-  "translation": "哪儿演《××》?",
+  "translation": "《××》在哪儿上映？",
   "chunks": [
-   "Where",
-   "is... playing?"
+   "Where is... playing?"
   ],
   "hints": [
-   "哪儿演",
-   "《××》？"
+   "《××》在哪儿上映？"
   ]
  },
  {
   "sentence": "How long is... playing?",
-  "translation": "《××》演到什么时候?",
+  "translation": "《××》还会上映多久？",
   "chunks": [
    "How long",
    "is... playing?"
   ],
   "hints": [
-   "多长时间",
-   "演到什么时候？"
+   "多久",
+   "在上映？"
   ]
  },
  {
@@ -537,26 +535,26 @@
  },
  {
   "sentence": "How long does it last?",
-  "translation": "演多长时间?",
+  "translation": "会持续多长时间？",
   "chunks": [
    "How long",
    "does it last?"
   ],
   "hints": [
-   "演",
-   "多长时间？"
+   "多长时间",
+   "会持续？"
   ]
  },
  {
   "sentence": "What time is the next showing?",
   "translation": "下一场几点开演?",
   "chunks": [
-   "What time is",
-   "the next showing?"
+   "What time",
+   "is the next showing?"
   ],
   "hints": [
-   "几点开演",
-   "下一场？"
+   "几点",
+   "下一场放映？"
   ]
  },
  {
@@ -573,14 +571,14 @@
  },
  {
   "sentence": "Two, please.",
-  "translation": "我买两张成人票。",
+  "translation": "两张，麻烦了。",
   "chunks": [
    "Two,",
    "please."
   ],
   "hints": [
-   "我买两张",
-   "成人票。"
+   "两张",
+   "麻烦了。"
   ]
  },
  {
@@ -603,8 +601,8 @@
    "aren't we?"
   ],
   "hints": [
-   "我们怎么坐得",
-   "这么靠后呀？"
+   "我们坐得这么靠后",
+   "对吧？"
   ]
  },
  {
@@ -633,38 +631,38 @@
  },
  {
   "sentence": "That was boring, wasn't it?",
-  "translation": "这电影真没劲。",
+  "translation": "那部电影真无聊，不是吗？",
   "chunks": [
    "That was boring,",
    "wasn't it?"
   ],
   "hints": [
-   "这电影",
-   "真没劲。"
+   "那部电影真无聊，",
+   "不是吗？"
   ]
  },
  {
   "sentence": "I was moved.",
-  "translation": "太让人感动了。",
+  "translation": "我很感动。",
   "chunks": [
    "I was",
    "moved."
   ],
   "hints": [
-   "太让人",
-   "感动了。"
+   "我",
+   "很感动。"
   ]
  },
  {
   "sentence": "I'd like two tickets for October 3rd, please.",
-  "translation": "我买两张10月3号的票。",
+  "translation": "我想买两张10月3号的票，麻烦了。",
   "chunks": [
    "I'd like two tickets",
    "for October 3rd, please."
   ],
   "hints": [
-   "我买两张",
-   "10月3号的票。"
+   "我想买两张票",
+   "10月3号的，麻烦了。"
   ]
  },
  {
@@ -681,14 +679,14 @@
  },
  {
   "sentence": "When do you have tickets?",
-  "translation": "有什么时候的票?",
+  "translation": "你们什么时候有票？",
   "chunks": [
-   "When do you",
-   "have tickets?"
+   "When",
+   "do you have tickets?"
   ],
   "hints": [
-   "有什么时候的",
-   "票？"
+   "什么时候",
+   "你们有票？"
   ]
  },
  {
@@ -707,11 +705,11 @@
   "sentence": "Can I make a reservation?",
   "translation": "可以预订吗?",
   "chunks": [
-   "Can I make",
-   "a reservation?"
+   "Can I",
+   "make a reservation?"
   ],
   "hints": [
-   "可以",
+   "我可以",
    "预订吗？"
   ]
  },
@@ -741,14 +739,14 @@
  },
  {
   "sentence": "We have great seats, don't we?",
-  "translation": "我们这个位子真棒。",
+  "translation": "我们这个位子真棒，对吧？",
   "chunks": [
-   "We have great seats,",
-   "don't we?"
+   "We have",
+   "great seats, don't we?"
   ],
   "hints": [
-   "我们这个位子",
-   "真棒。"
+   "我们有",
+   "很棒的座位，对吧？"
   ]
  },
  {
@@ -763,14 +761,12 @@
  },
  {
   "sentence": "Go for it,...!",
-  "translation": "××加油!",
+  "translation": "××，加油！",
   "chunks": [
-   "Go for",
-   "it,...!"
+   "Go for it,...!"
   ],
   "hints": [
-   "××",
-   "加油！"
+   "××，加油！"
   ]
  },
  {
@@ -813,12 +809,12 @@
   "sentence": "Are there any golf courses around here?",
   "translation": "这附近有高尔夫球场地吗?",
   "chunks": [
-   "Are there any golf courses",
-   "around here?"
+   "Are there any",
+   "golf courses around here?"
   ],
   "hints": [
-   "这附近有",
-   "高尔夫球场地吗？"
+   "有没有",
+   "附近的高尔夫球场？"
   ]
  },
  {
@@ -829,8 +825,8 @@
    "per person?"
   ],
   "hints": [
-   "1个人",
-   "多少钱？"
+   "多少钱？",
+   "每人"
   ]
  },
  {
@@ -841,8 +837,8 @@
    "per day?"
   ],
   "hints": [
-   "1天",
-   "多少钱？"
+   "多少钱？",
+   "每天"
   ]
  },
  {
@@ -853,16 +849,16 @@
    "any extra charges?"
   ],
   "hints": [
-   "此外还有",
-   "其它的花费吗？"
+   "还有",
+   "额外费用吗？"
   ]
  },
  {
   "sentence": "Can I rent the equipment?",
   "translation": "我可以租用用具吗?",
   "chunks": [
-   "Can I rent",
-   "the equipment?"
+   "Can I",
+   "rent the equipment?"
   ],
   "hints": [
    "我可以",
@@ -895,26 +891,26 @@
  },
  {
   "sentence": "When would you like to play?",
-  "translation": "要什么时间的?",
+  "translation": "你想什么时候打球？",
   "chunks": [
    "When would you like",
    "to play?"
   ],
   "hints": [
-   "要什么",
-   "时间的？"
+   "你想什么时候",
+   "打球？"
   ]
  },
  {
   "sentence": "This Friday, if possible.",
-  "translation": "如果可以的话，(请订这个星期五的。)",
+  "translation": "如果方便的话，就安排在这个星期五。",
   "chunks": [
    "This Friday,",
    "if possible."
   ],
   "hints": [
-   "如果可以的话，",
-   "请订这个星期五的。"
+   "这个星期五，",
+   "如果方便的话。"
   ]
  },
  {
@@ -925,16 +921,16 @@
    "four of us."
   ],
   "hints": [
-   "我们一共",
-   "4个人。"
+   "一共有",
+   "我们四个"
   ]
  },
  {
   "sentence": "What time are we starting?",
   "translation": "我们几点开始?",
   "chunks": [
-   "What time",
-   "are we starting?"
+   "What time are we",
+   "starting?"
   ],
   "hints": [
    "我们几点",
@@ -949,8 +945,8 @@
    "a drink?"
   ],
   "hints": [
-   "去喝一杯",
-   "怎么样？"
+   "怎么样？",
+   "喝一杯"
   ]
  },
  {
@@ -961,20 +957,20 @@
    "a drink."
   ],
   "hints": [
-   "我想去",
+   "我需要",
    "喝一杯。"
   ]
  },
  {
   "sentence": "Would you like to have a drink after work?",
-  "translation": "下班以后去喝一杯怎么样?",
+  "translation": "下班后想不想去喝一杯？",
   "chunks": [
    "Would you like to have a drink",
    "after work?"
   ],
   "hints": [
-   "下班以后",
-   "去喝一杯怎么样？"
+   "想不想去喝一杯",
+   "下班后？"
   ]
  },
  {
@@ -997,8 +993,8 @@
    "please."
   ],
   "hints": [
-   "请来",
-   "两瓶啤酒。"
+   "两瓶啤酒",
+   "麻烦了。"
   ]
  },
  {
@@ -1009,19 +1005,19 @@
    "please."
   ],
   "hints": [
-   "请来杯",
-   "掺水的威士忌。"
+   "一杯掺水的威士忌",
+   "麻烦了。"
   ]
  },
  {
   "sentence": "What kind of snacks should we have?",
   "translation": "要什么下酒菜呢?",
   "chunks": [
-   "What kind of snacks",
-   "should we have?"
+   "What kind of",
+   "snacks should we have?"
   ],
   "hints": [
-   "要什么",
+   "什么样的",
    "下酒菜呢？"
   ]
  },
@@ -1051,13 +1047,11 @@
   "sentence": "What are you drinking?",
   "translation": "喝什么呢?",
   "chunks": [
-   "What are you",
-   "drinking?"
+   "What are you drinking?"
   ],
   "hints": [
-   "喝",
-   "什么呢？"
-  ]
+     "你在喝什么？"
+    ]
  },
  {
   "sentence": "I like to go barhopping.",
@@ -1085,14 +1079,14 @@
  },
  {
   "sentence": "Nothing beats this!",
-  "translation": "这个最好!",
+  "translation": "没有什么比这个更好了！",
   "chunks": [
-   "Nothing",
-   "beats this!"
+   "Nothing beats",
+   "this!"
   ],
   "hints": [
-   "这个",
-   "最好！"
+   "没有什么比得上",
+   "这个！"
   ]
  },
  {
@@ -1103,8 +1097,8 @@
    "a refill?"
   ],
   "hints": [
-   "再来一杯，",
-   "怎么样？"
+   "你想要",
+   "再添一杯吗？"
   ]
  },
  {
@@ -1115,8 +1109,8 @@
    "please."
   ],
   "hints": [
-   "再来",
-   "一瓶啤酒！"
+   "再来一瓶啤酒",
+   "麻烦了。"
   ]
  },
  {
@@ -1139,8 +1133,8 @@
    "sake?"
   ],
   "hints": [
-   "日本酒",
-   "怎么样？"
+   "觉得怎么样？",
+   "日本酒"
   ]
  },
  {
@@ -1183,12 +1177,10 @@
   "sentence": "I'm loaded.",
   "translation": "酩酊大醉。",
   "chunks": [
-   "I'm",
-   "loaded."
+   "I'm loaded."
   ],
   "hints": [
-   "酩酊",
-   "大醉。"
+   "酩酊大醉。"
   ]
  },
  {
@@ -1229,14 +1221,14 @@
  },
  {
   "sentence": "I should have drunk less.",
-  "translation": "我不该喝这么多的。",
+  "translation": "我早知道就少喝点了。",
   "chunks": [
    "I should have",
    "drunk less."
   ],
   "hints": [
-   "我不该",
-   "喝这么多的。"
+   "早知道就",
+   "少喝点。"
   ]
  },
  {
@@ -1265,26 +1257,26 @@
  },
  {
   "sentence": "Singing along with recorded music.",
-  "translation": "就是合着录音带的音乐一起唱歌。",
+  "translation": "跟着录音带的音乐一起唱。",
   "chunks": [
    "Singing along",
    "with recorded music."
   ],
   "hints": [
-   "就是合着录音带的音乐",
-   "一起唱歌。"
+   "跟着一起唱歌",
+   "伴着录音带的音乐。"
   ]
  },
  {
   "sentence": "Are you good at singing?",
-  "translation": "你唱歌拿手吗?",
+  "translation": "你擅长唱歌吗？",
   "chunks": [
-   "Are you good",
-   "at singing?"
+   "Are you",
+   "good at singing?"
   ],
   "hints": [
-   "你唱歌",
-   "拿手吗？"
+   "你",
+   "擅长唱歌吗？"
   ]
  },
  {
@@ -1315,12 +1307,12 @@
   "sentence": "Let's enjoy ourselves.",
   "translation": "大家高兴地玩吧!",
   "chunks": [
-   "Let's enjoy",
-   "ourselves."
+   "Let's",
+   "enjoy ourselves."
   ],
   "hints": [
-   "大家高兴地",
-   "玩吧！"
+   "我们",
+   "尽情享受吧！"
   ]
  },
  {
@@ -1331,21 +1323,19 @@
    "John?"
   ],
   "hints": [
-   "约翰，",
-   "你来唱一首吧。"
+   "来首歌怎么样？",
+   "约翰？"
   ]
  },
  {
   "sentence": "What are you going to sing?",
   "translation": "你打算唱什么歌?",
   "chunks": [
-   "What are you",
-   "going to sing?"
+   "What are you going to sing?"
   ],
   "hints": [
-   "你打算",
-   "唱什么歌？"
-  ]
+     "你打算唱什么歌？"
+    ]
  },
  {
   "sentence": "Let's sing a duet.",
@@ -1415,9 +1405,9 @@
    "karaoke specialty?"
   ],
   "hints": [
-   "你唱卡拉OK",
-   "有什么拿手的歌吗？"
-  ]
+     "你有什么",
+     "拿手的卡拉OK歌曲？"
+    ]
  },
  {
   "sentence": "I've never heard of that song.",

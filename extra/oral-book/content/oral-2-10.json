@@ -25,14 +25,14 @@
  },
  {
   "sentence": "Watch out! Don't play with that thing.",
-  "translation": "危险，别淘气。",
+  "translation": "当心！别玩那个东西。",
   "chunks": [
-   "Watch out! Don't play",
-   "with that thing."
+   "Watch out!",
+   "Don't play with that thing."
   ],
   "hints": [
-   "危险！别玩",
-   "那个东西。"
+   "当心！",
+   "别玩那个东西。"
   ]
  },
  {
@@ -43,32 +43,32 @@
    "yourself."
   ],
   "hints": [
-   "你自己的事",
-   "自己做。"
+   "做这件事，",
+   "你自己。"
   ]
  },
  {
   "sentence": "You should finish what you start.",
-  "translation": "你别半途而废。",
+  "translation": "做事要有始有终。",
   "chunks": [
-   "You should finish",
-   "what you start."
+   "You should",
+   "finish what you start."
   ],
   "hints": [
-   "你应该完成",
-   "你开始做的事。"
+   "你应该",
+   "有始有终。"
   ]
  },
  {
   "sentence": "I'm ready to throw in the towel.",
-  "translation": "我认输了。",
+  "translation": "我准备认输了。",
   "chunks": [
-   "I'm ready to throw",
-   "in the towel."
+   "I'm ready",
+   "to throw in the towel."
   ],
   "hints": [
-   "我准备",
-   "认输了。"
+   "我准备好",
+   "认输。"
   ]
  },
  {
@@ -97,14 +97,14 @@
  },
  {
   "sentence": "You can't be too careful.",
-  "translation": "你要再三小心。",
+  "translation": "你再小心也不为过。",
   "chunks": [
-   "You can't be",
-   "too careful."
+   "You",
+   "can't be too careful."
   ],
   "hints": [
-   "你再小心",
-   "也不为过。"
+   "你",
+   "再小心也不为过"
   ]
  },
  {
@@ -115,16 +115,16 @@
    "after thinking it over carefully."
   ],
   "hints": [
-   "仔细考虑之后",
-   "再下决心。"
+   "下定决心",
+   "仔细考虑之后"
   ]
  },
  {
   "sentence": "I'm counting on you.",
   "translation": "我全靠你了。",
   "chunks": [
-   "I'm counting",
-   "on you."
+   "I'm",
+   "counting on you."
   ],
   "hints": [
    "我",
@@ -133,14 +133,14 @@
  },
  {
   "sentence": "You'll see.",
-  "translation": "你终究会明白的。",
+  "translation": "你会明白的。",
   "chunks": [
    "You'll",
    "see."
   ],
   "hints": [
-   "你",
-   "终究会明白的。"
+   "你会",
+   "明白的。"
   ]
  },
  {
@@ -187,8 +187,8 @@
    "in doing so."
   ],
   "hints": [
-   "这么做",
-   "没多大价值。"
+   "没多大价值",
+   "这么做。"
   ]
  },
  {
@@ -205,14 +205,14 @@
  },
  {
   "sentence": "Respect yourself.",
-  "translation": "有点自尊心吧!",
+  "translation": "尊重你自己。",
   "chunks": [
    "Respect",
    "yourself."
   ],
   "hints": [
-   "有点",
-   "自尊心吧！"
+   "尊重",
+   "你自己。"
   ]
  },
  {
@@ -231,32 +231,30 @@
   "sentence": "That's easy for you to say.",
   "translation": "你说得容易。",
   "chunks": [
-   "That's easy",
-   "for you to say."
+   "That's easy for you to say."
   ],
   "hints": [
-   "你说得",
-   "倒容易。"
+   "你说得容易。"
   ]
  },
  {
   "sentence": "There's no reason for complaints.",
-  "translation": "你发什么牢骚?",
+  "translation": "没理由抱怨。",
   "chunks": [
    "There's no reason",
    "for complaints."
   ],
   "hints": [
-   "没什么",
-   "好抱怨的。"
+   "没理由",
+   "抱怨。"
   ]
  },
  {
   "sentence": "It's written all over your face.",
   "translation": "你脸上都写着呢呀!",
   "chunks": [
-   "It's written",
-   "all over your face."
+   "It's written all over",
+   "your face."
   ],
   "hints": [
    "全都写在",
@@ -265,34 +263,34 @@
  },
  {
   "sentence": "It's natural for me to get angry.",
-  "translation": "我当然会生气了。",
+  "translation": "我生气是理所当然的。",
   "chunks": [
-   "It's natural for me",
-   "to get angry."
+   "It's natural",
+   "for me to get angry."
   ],
   "hints": [
-   "我生气",
-   "是理所当然的。"
+   "这很正常",
+   "我生气。"
   ]
  },
  {
   "sentence": "I'm telling you this from my experience.",
-  "translation": "我是根据我的经验才这样说的。",
+  "translation": "我这是根据自己的经验告诉你的。",
   "chunks": [
    "I'm telling you this",
    "from my experience."
   ],
   "hints": [
-   "我是根据",
-   "我的经验说的。"
+   "我把这件事告诉你",
+   "根据自己的经验。"
   ]
  },
  {
   "sentence": "Can't you think of it differently?",
-  "translation": "没其他不同的看法吗?",
+  "translation": "你不能换个角度想吗?",
   "chunks": [
-   "Can't you think of it",
-   "differently?"
+   "Can't you",
+   "think of it differently?"
   ],
   "hints": [
    "你不能",
@@ -301,14 +299,14 @@
  },
  {
   "sentence": "Just think of it!",
-  "translation": "好好想想。",
+  "translation": "就想想这件事！",
   "chunks": [
-   "Just think",
-   "of it!"
+   "Just",
+   "think of it!"
   ],
   "hints": [
-   "你",
-   "好好想想！"
+   "就",
+   "想想这件事！"
   ]
  },
  {
@@ -349,26 +347,24 @@
  },
  {
   "sentence": "That's the name of the game.",
-  "translation": "那是最重要的呀!",
+  "translation": "这才是关键所在。",
   "chunks": [
-   "That's the name",
-   "of the game."
+   "That's the name of the game."
   ],
   "hints": [
-   "那才是",
-   "最重要的呀！"
+   "这才是关键所在。"
   ]
  },
  {
   "sentence": "I can't make any exceptions for you.",
-  "translation": "我不能对你特殊。",
+  "translation": "我不能为你破例。",
   "chunks": [
    "I can't make",
    "any exceptions for you."
   ],
   "hints": [
    "我不能",
-   "对你特殊。"
+   "为你破例。"
   ]
  },
  {
@@ -386,14 +382,8 @@
  {
   "sentence": "You asked for it!",
   "translation": "自作自受。",
-  "chunks": [
-   "You asked",
-   "for it!"
-  ],
-  "hints": [
-   "这是你",
-   "自作自受！"
-  ]
+  "chunks": ["You asked for it!"],
+  "hints": ["自作自受！"]
  },
  {
   "sentence": "If the shoe fits, wear it.",
@@ -409,50 +399,48 @@
  },
  {
   "sentence": "Let me give you a piece of advice.",
-  "translation": "我得提醒一句。",
+  "translation": "让我给你一点建议。",
   "chunks": [
    "Let me give you",
    "a piece of advice."
   ],
   "hints": [
-   "我得给你",
-   "提个醒。"
+   "让我给你",
+   "一点建议。"
   ]
  },
  {
   "sentence": "Watch out!",
   "translation": "小心!",
   "chunks": [
-   "Watch",
-   "out!"
+   "Watch out!"
   ],
   "hints": [
-   "小心",
-   "点儿！"
+   "小心！"
   ]
  },
  {
   "sentence": "Hold on to me tight.",
-  "translation": "抓紧我。",
+  "translation": "紧紧抓住我。",
   "chunks": [
    "Hold on to me",
    "tight."
   ],
   "hints": [
-   "抓紧我",
-   "别松手。"
+   "抓住我",
+   "紧紧地。"
   ]
  },
  {
   "sentence": "Watch out for him!",
-  "translation": "要提防着点儿他!",
+  "translation": "要提防他!",
   "chunks": [
    "Watch out",
    "for him!"
   ],
   "hints": [
    "要提防",
-   "着点儿他！"
+   "他！"
   ]
  },
  {
@@ -475,44 +463,40 @@
    "before you do it."
   ],
   "hints": [
-   "做之前",
-   "要三思。"
+   "要三思",
+   "做之前。"
   ]
  },
  {
   "sentence": "Easy does it.",
   "translation": "轻拿轻放。/动作轻点儿。",
   "chunks": [
-   "Easy",
-   "does it."
+   "Easy does it."
   ],
   "hints": [
-   "轻拿",
-   "轻放。"
+   "动作轻一点。"
   ]
  },
  {
   "sentence": "Please go easy on me.",
   "translation": "手下留情。",
   "chunks": [
-   "Please go",
-   "easy on me."
+   "Please",
+   "go easy on me."
   ],
   "hints": [
-   "请对我",
-   "手下留情。"
+   "请",
+   "对我手下留情。"
   ]
  },
  {
   "sentence": "Let's not jump the gun.",
   "translation": "别操之过急。",
   "chunks": [
-   "Let's not jump",
-   "the gun."
+   "Let's not jump the gun."
   ],
   "hints": [
-   "别",
-   "操之过急。"
+   "别操之过急。"
   ]
  },
  {
@@ -601,26 +585,24 @@
  },
  {
   "sentence": "Don't be so naughty.",
-  "translation": "别那么没有礼貌。",
+  "translation": "别这么调皮。",
   "chunks": [
    "Don't be",
    "so naughty."
   ],
   "hints": [
    "别",
-   "那么没有礼貌。"
+   "这么调皮。"
   ]
  },
  {
   "sentence": "Hold it down!",
-  "translation": "请安静!",
+  "translation": "把声音放低！",
   "chunks": [
-   "Hold it",
-   "down!"
+   "Hold it down!"
   ],
   "hints": [
-   "请",
-   "安静！"
+   "把声音放低！"
   ]
  },
  {
@@ -635,26 +617,26 @@
  },
  {
   "sentence": "It's too noisy.",
-  "translation": "太吵了。",
+  "translation": "这里太吵了。",
   "chunks": [
    "It's",
    "too noisy."
   ],
   "hints": [
-   "太",
-   "吵了。"
+   "这里",
+   "太吵了。"
   ]
  },
  {
   "sentence": "Don't make a fool of yourself.",
   "translation": "别丢人现眼了!",
   "chunks": [
-   "Don't make a fool",
-   "of yourself."
+   "Don't",
+   "make a fool of yourself."
   ],
   "hints": [
    "别",
-   "丢人现眼了！"
+   "丢人现眼！"
   ]
  },
  {
@@ -671,14 +653,14 @@
  },
  {
   "sentence": "Act your age.",
-  "translation": "你也不看看你多大了。",
+  "translation": "像个成年人一样举止得体。",
   "chunks": [
    "Act",
    "your age."
   ],
   "hints": [
-   "表现",
-   "得像个成年人。"
+   "表现得",
+   "符合你的年龄。"
   ]
  },
  {
@@ -707,14 +689,16 @@
  },
  {
   "sentence": "Don't make such stupid mistakes again!",
-  "translation": "不要重复这种愚蠢的错误。",
+  "translation": "别再犯这种愚蠢的错误！",
   "chunks": [
-   "Don't make such",
-   "stupid mistakes again!"
+   "Don't make",
+   "such stupid mistakes",
+   "again!"
   ],
   "hints": [
-   "别再犯",
-   "这么愚蠢的错误！"
+   "别犯",
+   "这种愚蠢的错误",
+   "再一次！"
   ]
  },
  {
@@ -743,14 +727,14 @@
  },
  {
   "sentence": "Watch your tongue.",
-  "translation": "说话要留神。",
+  "translation": "注意你的言辞。",
   "chunks": [
    "Watch",
    "your tongue."
   ],
   "hints": [
-   "说话",
-   "要留神。"
+   "注意",
+   "你的言辞。"
   ]
  },
  {
@@ -780,14 +764,8 @@
  {
   "sentence": "Do as I said!",
   "translation": "照我说的做!",
-  "chunks": [
-   "Do as",
-   "I said!"
-  ],
-  "hints": [
-   "照我说的",
-   "去做！"
-  ]
+  "chunks": ["Do as I said!"],
+  "hints": ["照我说的做！"]
  },
  {
   "sentence": "Don't say bad things about others.",
@@ -805,8 +783,8 @@
   "sentence": "Don't go back on your word!",
   "translation": "别食言。",
   "chunks": [
-   "Don't go back",
-   "on your word!"
+   "Don't",
+   "go back on your word!"
   ],
   "hints": [
    "别",
@@ -815,14 +793,14 @@
  },
  {
   "sentence": "Don't take on more than you can.",
-  "translation": "做你能做的。",
+  "translation": "别接超出自己能力范围的事。",
   "chunks": [
-   "Don't take on more",
-   "than you can."
+   "Don't take on",
+   "more than you can."
   ],
   "hints": [
-   "别揽",
-   "你干不了的活。"
+   "别接下，",
+   "超出自己能力范围的事。"
   ]
  },
  {
@@ -923,13 +901,13 @@
  },
  {
   "sentence": "Make it snappy!",
-  "translation": "干脆点!",
+  "translation": "动作麻利点，快点！",
   "chunks": [
    "Make it",
    "snappy!"
   ],
   "hints": [
-   "动作",
+   "动作麻利点",
    "快点！"
   ]
  },
@@ -937,12 +915,10 @@
   "sentence": "Step on it!",
   "translation": "麻利点!/利索点!",
   "chunks": [
-   "Step",
-   "on it!"
+   "Step on it!"
   ],
   "hints": [
-   "麻利",
-   "一点儿！"
+   "快点儿！"
   ]
  },
  {
@@ -953,8 +929,8 @@
    "me."
   ],
   "hints": [
-   "别把责任",
-   "推给我。"
+   "别怪罪",
+   "我。"
   ]
  },
  {
@@ -965,20 +941,18 @@
    "to blame."
   ],
   "hints": [
-   "这是",
-   "你的过错。"
+   "你",
+   "有责任。"
   ]
  },
  {
   "sentence": "Put yourself in my shoes.",
   "translation": "你站在我的立场上想想。",
   "chunks": [
-   "Put yourself",
-   "in my shoes."
+   "Put yourself in my shoes."
   ],
   "hints": [
-   "你站在",
-   "我的立场上想想。"
+   "站在我的立场上想想。"
   ]
  },
  {
@@ -1009,24 +983,22 @@
   "sentence": "Don't involve me!",
   "translation": "别把我卷进去。",
   "chunks": [
-   "Don't involve",
-   "me!"
+   "Don't",
+   "involve me!"
   ],
   "hints": [
-   "别把",
-   "我卷进去！"
+   "别",
+   "把我卷进去！"
   ]
  },
  {
   "sentence": "I told you so.",
-  "translation": "我早说过了吧。",
+  "translation": "我早就告诉过你吧。",
   "chunks": [
-   "I told you",
-   "so."
+   "I told you so."
   ],
   "hints": [
-   "我早",
-   "说过了吧。"
+   "我早就说过吧。"
   ]
  },
  {
@@ -1055,58 +1027,56 @@
  },
  {
   "sentence": "He chickened out at the last moment.",
-  "translation": "他在最后关头胆怯了。",
+  "translation": "他在最后一刻退缩了。",
   "chunks": [
    "He chickened out",
    "at the last moment."
   ],
   "hints": [
-   "他在最后关头",
-   "胆怯了。"
+   "他退缩了",
+   "在最后一刻。"
   ]
  },
  {
   "sentence": "Don't take it out on me.",
   "translation": "别冲我发火。",
   "chunks": [
-   "Don't take it",
-   "out on me."
+   "Don't take it out",
+   "on me."
   ],
   "hints": [
-   "别拿我",
-   "出气。"
+   "别把气撒出来",
+   "冲我。"
   ]
  },
  {
   "sentence": "Pay up!",
-  "translation": "还我钱!",
+  "translation": "把钱还了！",
   "chunks": [
-   "Pay",
-   "up!"
+   "Pay up!"
   ],
   "hints": [
-   "把钱",
-   "还我！"
+   "把钱还了！"
   ]
  },
  {
   "sentence": "You'll pay for this.",
-  "translation": "我会找你算帐的。",
+  "translation": "你会为此付出代价。",
   "chunks": [
    "You'll pay",
    "for this."
   ],
   "hints": [
-   "我会",
-   "找你算账的。"
+   "你会付出代价",
+   "为此"
   ]
  },
  {
   "sentence": "You're out of your mind!",
   "translation": "你疯了!",
   "chunks": [
-   "You're out",
-   "of your mind!"
+   "You're",
+   "out of your mind!"
   ],
   "hints": [
    "你",
@@ -1115,10 +1085,10 @@
  },
  {
   "sentence": "You shouldn't say things like that.",
-  "translation": "你怎么这么说?",
+  "translation": "你不该说那种话。",
   "chunks": [
-   "You shouldn't say",
-   "things like that."
+   "You shouldn't",
+   "say things like that."
   ],
   "hints": [
    "你不该",
@@ -1151,27 +1121,21 @@
  },
  {
   "sentence": "He always finds fault with my work.",
-  "translation": "他对我的工作总是鸡蛋里挑骨头。",
+  "translation": "他总是挑我的工作毛病。",
   "chunks": [
    "He always finds fault",
    "with my work."
   ],
   "hints": [
-   "他对我的工作",
-   "总是鸡蛋里挑骨头。"
+   "他总是挑毛病",
+   "对我的工作"
   ]
  },
  {
   "sentence": "Hold it!",
   "translation": "停!",
-  "chunks": [
-   "Hold",
-   "it!"
-  ],
-  "hints": [
-   "停",
-   "一下！"
-  ]
+  "chunks": ["Hold it!"],
+  "hints": ["停下！"]
  },
  {
   "sentence": "Wait!",
@@ -1197,12 +1161,12 @@
   "sentence": "Don't do that!",
   "translation": "别干那事!",
   "chunks": [
-   "Don't do",
-   "that!"
+   "Don't",
+   "do that!"
   ],
   "hints": [
    "别",
-   "干那事！"
+   "这么做！"
   ]
  },
  {
@@ -1233,8 +1197,8 @@
   "sentence": "Don't cut in line!",
   "translation": "别夹塞儿!",
   "chunks": [
-   "Don't cut",
-   "in line!"
+   "Don't",
+   "cut in line!"
   ],
   "hints": [
    "别",
@@ -1257,12 +1221,10 @@
   "sentence": "Don't call me names!",
   "translation": "别张口就骂人。",
   "chunks": [
-   "Don't call me",
-   "names!"
+   "Don't call me names!"
   ],
   "hints": [
-   "别",
-   "张口就骂人。"
+   "别骂我！"
   ]
  },
  {
@@ -1279,14 +1241,14 @@
  },
  {
   "sentence": "Keep it out of sight.",
-  "translation": "要做得不露痕迹。",
+  "translation": "让它别被人看见。",
   "chunks": [
    "Keep it",
    "out of sight."
   ],
   "hints": [
-   "要做得",
-   "不露痕迹。"
+   "让它保持",
+   "不被看见"
   ]
  },
  {
@@ -1297,8 +1259,8 @@
    "from me."
   ],
   "hints": [
-   "离我",
-   "远点儿。"
+   "远离",
+   "我"
   ]
  },
  {
@@ -1372,14 +1334,8 @@
  {
   "sentence": "Hands up!",
   "translation": "举起手来!",
-  "chunks": [
-   "Hands",
-   "up!"
-  ],
-  "hints": [
-   "举起",
-   "手来！"
-  ]
+  "chunks": ["Hands up!"],
+  "hints": ["举起手来！"]
  },
  {
   "sentence": "Don't move!",
@@ -1395,27 +1351,21 @@
  },
  {
   "sentence": "You listen to me!",
-  "translation": "照我说的去做!",
+  "translation": "你给我听着！",
   "chunks": [
-   "You listen",
-   "to me!"
+   "You",
+   "listen to me!"
   ],
   "hints": [
    "你",
-   "照我说的去做！"
+   "给我听着！"
   ]
  },
  {
   "sentence": "Get down!",
   "translation": "趴下!",
-  "chunks": [
-   "Get",
-   "down!"
-  ],
-  "hints": [
-   "趴",
-   "下！"
-  ]
+  "chunks": ["Get down!"],
+  "hints": ["趴下！"]
  },
  {
   "sentence": "Halt!",
@@ -1443,25 +1393,17 @@
   "sentence": "Move on!",
   "translation": "往前走!",
   "chunks": [
-   "Move",
-   "on!"
+   "Move on!"
   ],
   "hints": [
-   "往前",
-   "走！"
+   "继续往前走！"
   ]
  },
  {
   "sentence": "On your knees!",
   "translation": "跪下!",
-  "chunks": [
-   "On your",
-   "knees!"
-  ],
-  "hints": [
-   "跪",
-   "下！"
-  ]
+  "chunks": ["On your knees!"],
+  "hints": ["跪下！"]
  },
  {
   "sentence": "Let go of me!",
@@ -1479,12 +1421,10 @@
   "sentence": "Run for your lives!",
   "translation": "快逃吧!",
   "chunks": [
-   "Run for",
-   "your lives!"
+   "Run for your lives!"
   ],
   "hints": [
-   "快",
-   "逃命吧！"
+   "快逃命！"
   ]
  },
  {
@@ -1502,38 +1442,24 @@
  {
   "sentence": "Can it!",
   "translation": "闭嘴!",
-  "chunks": [
-   "Can",
-   "it!"
-  ],
-  "hints": [
-   "闭",
-   "嘴！"
-  ]
+  "chunks": ["Can it!"],
+  "hints": ["闭嘴！"]
  },
  {
   "sentence": "Stand back!",
   "translation": "后退!",
   "chunks": [
-   "Stand",
-   "back!"
+   "Stand back!"
   ],
   "hints": [
-   "往",
    "后退！"
   ]
  },
  {
   "sentence": "Cut it out!",
-  "translation": "算了吧!",
-  "chunks": [
-   "Cut it",
-   "out!"
-  ],
-  "hints": [
-   "算了",
-   "吧！"
-  ]
+  "translation": "别闹了！",
+  "chunks": ["Cut it out!"],
+  "hints": ["别闹了！"]
  },
  {
   "sentence": "You're under arrest.",
@@ -1560,85 +1486,67 @@
  {
   "sentence": "Heads up!",
   "translation": "小心!",
-  "chunks": [
-   "Heads",
-   "up!"
-  ],
-  "hints": [
-   "当心",
-   "！有情况！"
-  ]
+  "chunks": ["Heads up!"],
+  "hints": ["小心！"]
  },
  {
   "sentence": "Drop it!",
   "translation": "放下!",
   "chunks": [
-   "Drop",
-   "it!"
+   "Drop it!"
   ],
   "hints": [
-   "放",
-   "下！"
+   "放下它！"
   ]
  },
  {
   "sentence": "Get your hands off!",
   "translation": "拿开你的手!",
   "chunks": [
-   "Get your hands",
-   "off!"
+   "Get your hands off!"
   ],
   "hints": [
-   "把你的手",
-   "拿开！"
+   "把你的手拿开！"
   ]
  },
  {
   "sentence": "Stay down!",
   "translation": "趴下!",
   "chunks": [
-   "Stay",
-   "down!"
+   "Stay down!"
   ],
   "hints": [
-   "趴",
-   "下别动！"
+   "趴下别动！"
   ]
  },
  {
   "sentence": "Get lost!",
   "translation": "快溜走吧!",
   "chunks": [
-   "Get",
-   "lost!"
+   "Get lost!"
   ],
   "hints": [
-   "快",
-   "溜走吧！"
+   "走开！"
   ]
  },
  {
   "sentence": "Get out of here!",
   "translation": "滚出去。",
   "chunks": [
-   "Get out",
-   "of here!"
+   "Get out of here!"
   ],
   "hints": [
-   "滚",
-   "出去！"
+   "滚出去！"
   ]
  },
  {
   "sentence": "Back off!",
   "translation": "闪开!",
   "chunks": [
-   "Back",
-   "off!"
+   "Back off!"
   ],
   "hints": [
-   "闪",
-   "开！"
+   "退后！"
   ]
  }
 ]

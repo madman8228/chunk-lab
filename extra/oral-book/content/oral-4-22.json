@@ -1,7 +1,7 @@
 [
  {
   "sentence": "I don't know what to do.",
-  "translation": "该怎么办呢?",
+  "translation": "我不知道该怎么办。",
   "chunks": [
    "I don't know",
    "what to do."
@@ -74,14 +74,8 @@
  {
   "sentence": "You got me.",
   "translation": "这下可难住我了。",
-  "chunks": [
-   "You",
-   "got me."
-  ],
-  "hints": [
-   "你",
-   "可难住我了"
-  ]
+  "chunks": ["You got me."],
+  "hints": ["这下可难住我了。"]
  },
  {
   "sentence": "He's a nuisance.",
@@ -125,8 +119,8 @@
    "the hard part."
   ],
   "hints": [
-   "难就难在",
-   "这一点"
+   "这",
+   "才是难点"
   ]
  },
  {

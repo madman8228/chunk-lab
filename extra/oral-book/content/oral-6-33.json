@@ -7,7 +7,7 @@
    "tourist information center?"
   ],
   "hints": [
-   "哪儿有",
+   "在哪儿？",
    "旅游信息问讯处"
   ]
  },
@@ -31,13 +31,13 @@
    "the museum close?"
   ],
   "hints": [
-   "博物馆",
-   "几点闭馆"
-  ]
+     "什么时候",
+     "博物馆闭馆？"
+    ]
  },
  {
   "sentence": "Please tell me about some interesting places in this town.",
-  "translation": "能告诉我这座城市有哪些好玩的地方吗?",
+  "translation": "能告诉我这座城市有哪些有意思的地方吗？",
   "chunks": [
    "Please tell me about",
    "some interesting places",
@@ -46,7 +46,7 @@
   "hints": [
    "请跟我讲讲",
    "一些好玩的地方",
-   "就在这座城市"
+   "在这座城市里"
   ]
  },
  {
@@ -63,38 +63,36 @@
  },
  {
   "sentence": "What kind of tours do you have?",
-  "translation": "都有哪些路线的旅行呢?",
+  "translation": "你们有哪些旅游路线？",
   "chunks": [
    "What kind of tours",
    "do you have?"
   ],
   "hints": [
-   "都有哪些路线",
-   "的旅行呢"
+   "什么类型的旅游路线",
+   "有？"
   ]
  },
  {
   "sentence": "Please show me the way.",
-  "translation": "请告诉我去的路线。",
+  "translation": "请给我指一下路。",
   "chunks": [
    "Please show me",
    "the way."
   ],
   "hints": [
-   "请告诉我",
-   "去的路线"
+   "请给我指一下",
+   "路。"
   ]
  },
  {
   "sentence": "Are they open on Saturdays?",
-  "translation": "他们星期六开门吗?",
+  "translation": "这些地方周六营业吗？",
   "chunks": [
-   "Are they open",
-   "on Saturdays?"
+   "Are they open on Saturdays?"
   ],
   "hints": [
-   "他们",
-   "星期六开门吗"
+   "这些地方周六营业吗？"
   ]
  },
  {
@@ -147,26 +145,26 @@
  },
  {
   "sentence": "How much is admission?",
-  "translation": "入场券多少钱?",
+  "translation": "门票多少钱?",
   "chunks": [
    "How much",
    "is admission?"
   ],
   "hints": [
-   "入场券",
-   "多少钱"
-  ]
+   "多少钱",
+   "门票？"
+    ]
  },
  {
   "sentence": "Two tickets, please.",
-  "translation": "买两张票。",
+  "translation": "请给我两张票。",
   "chunks": [
    "Two tickets,",
    "please."
   ],
   "hints": [
-   "买两张票",
-   "麻烦你"
+   "两张票",
+   "请。"
   ]
  },
  {
@@ -177,20 +175,18 @@
    "that building?"
   ],
   "hints": [
-   "那栋",
-   "是什么建筑"
+   "是什么",
+   "那栋建筑"
   ]
  },
  {
   "sentence": "How old is it?",
-  "translation": "它的历史有多久?",
+  "translation": "它有多古老?",
   "chunks": [
-   "How old",
-   "is it?"
+   "How old is it?"
   ],
   "hints": [
-   "它有多",
-   "久的历史"
+   "它有多古老？"
   ]
  },
  {
@@ -267,26 +263,26 @@
  },
  {
   "sentence": "May I take a picture here?",
-  "translation": "这儿可以照相吗?",
+  "translation": "我可以在这儿照相吗？",
   "chunks": [
-   "May I take",
-   "a picture here?"
+   "May I",
+   "take a picture here?"
   ],
   "hints": [
-   "这儿",
-   "可以照相吗"
+   "我可以",
+   "在这儿照相吗？"
   ]
  },
  {
   "sentence": "Would you take a picture for us?",
   "translation": "您能给我们照张相吗?",
   "chunks": [
-   "Would you take",
-   "a picture for us?"
+   "Would you",
+   "take a picture for us?"
   ],
   "hints": [
    "您能",
-   "给我们照张相吗"
+   "帮我们拍张照吗？"
   ]
  },
  {
@@ -297,20 +293,20 @@
    "posing with me?"
   ],
   "hints": [
-   "能和我",
-   "一起照张相吗"
+   "你介意吗",
+   "和我合影"
   ]
  },
  {
   "sentence": "I'll send the pictures.",
-  "translation": "我会把照片寄给你的。",
+  "translation": "我会把照片寄出去。",
   "chunks": [
    "I'll send",
    "the pictures."
   ],
   "hints": [
-   "我会把照片",
-   "寄给你"
+   "我会寄出",
+   "这些照片。"
   ]
  },
  {
@@ -327,14 +323,14 @@
  },
  {
   "sentence": "It's outside, to the left.",
-  "translation": "出去然后往左拐。",
+  "translation": "在外面，左边。",
   "chunks": [
    "It's outside,",
    "to the left."
   ],
   "hints": [
-   "出去以后",
-   "往左拐"
+   "在外面",
+   "在左边。"
   ]
  },
  {

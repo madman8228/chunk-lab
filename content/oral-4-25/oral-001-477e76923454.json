@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm shocked!",
+      "cid": "8a621293",
+      "translation": "我很震惊。",
+      "chunks": [
+        "I'm",
+        "shocked!"
+      ],
+      "hints": [
+        "我",
+        "很震惊"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/"
+          ],
+          "pos": "I am 缩写",
+          "meaning": "我"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ʃɑːkt/"
+          ],
+          "pos": "过去分词作形容词",
+          "meaning": "震惊的"
+        }
+      ],
+      "explanations": [
+        "`shocked` 表「感到震惊的」，是过去分词作形容词。常见错误：\n• \"I'm shocking\" → shocking 是「令人震惊的」，形容事物\n• \"I shock\" → 要加 be 动词",
+        "同类：I'm surprised.（惊讶）/ I'm stunned.（惊呆了）"
+      ],
+      "distractors": [
+        [
+          "I",
+          "I've",
+          "Me"
+        ],
+        [
+          "shocking.",
+          "shock.",
+          "shocks."
+        ]
+      ]
+    },
+    {
+      "sentence": "That's amazing!",
+      "translation": "太让人吃惊了!",
+      "chunks": [
+        "That's",
+        "amazing!"
+      ],
+      "hints": [
+        "太",
+        "让人吃惊了"
+      ],
+      "cid": "c25a6b00"
+    },
+    {
+      "sentence": "You're kidding!",
+      "translation": "你在开玩笑吧!",
+      "chunks": [
+        "You're",
+        "kidding!"
+      ],
+      "hints": [
+        "你在",
+        "开玩笑吧"
+      ],
+      "cid": "eb1cbd37"
+    },
+    {
+      "sentence": "It can't be!",
+      "translation": "怎么可能!",
+      "chunks": [
+        "It",
+        "can't be!"
+      ],
+      "hints": [
+        "这",
+        "不可能吧"
+      ],
+      "cid": "f4385699"
+    },
+    {
+      "sentence": "That's really something!",
+      "translation": "真了不起！",
+      "chunks": [
+        "That's really",
+        "something!"
+      ],
+      "hints": [
+        "真是",
+        "了不起"
+      ],
+      "cid": "a1d75fec"
+    },
+    {
+      "sentence": "Oh, my!",
+      "translation": "天哪！",
+      "chunks": [
+        "Oh, my!"
+      ],
+      "hints": [
+        "天哪！/哎呀！"
+      ],
+      "cid": "3905b6a3"
+    },
+    {
+      "sentence": "Well, well.",
+      "translation": "哎呀呀!",
+      "chunks": [
+        "Well,",
+        "well."
+      ],
+      "hints": [
+        "哎呀",
+        "哎呀呀"
+      ],
+      "cid": "53fbe90d"
+    },
+    {
+      "sentence": "You surprised me!",
+      "translation": "你吓死我了。",
+      "chunks": [
+        "You",
+        "surprised me!"
+      ],
+      "hints": [
+        "你",
+        "吓我一跳"
+      ],
+      "cid": "88bde0cc"
+    },
+    {
+      "sentence": "You don't say!",
+      "translation": "真的吗？/不会吧！",
+      "chunks": [
+        "You don't say!"
+      ],
+      "hints": [
+        "真的吗？/不会吧！"
+      ],
+      "cid": "6a0ddec0"
+    },
+    {
+      "sentence": "That'll be the day!",
+      "translation": "永远不可能有那样的事!",
+      "chunks": [
+        "That'll be the day!"
+      ],
+      "hints": [
+        "永远不会有这种事！"
+      ],
+      "cid": "486779b6"
+    },
+    {
+      "sentence": "A great shock.",
+      "translation": "震惊。",
+      "chunks": [
+        "A great",
+        "shock."
+      ],
+      "hints": [
+        "巨大的",
+        "震惊"
+      ],
+      "cid": "d7266af7"
+    },
+    {
+      "sentence": "That's news to me.",
+      "translation": "第一次听说。",
+      "chunks": [
+        "That's news to me."
+      ],
+      "hints": [
+        "这是我第一次听说。"
+      ],
+      "cid": "a24f89a6"
+    },
+    {
+      "sentence": "It's mind-boggling!",
+      "translation": "太不可思议了！",
+      "chunks": [
+        "It's",
+        "mind-boggling!"
+      ],
+      "hints": [
+        "这真是",
+        "不可思议！"
+      ],
+      "cid": "767f534b"
+    },
+    {
+      "sentence": "Gosh!",
+      "translation": "天哪！",
+      "chunks": [
+        "Gosh!"
+      ],
+      "hints": [
+        "天哪！"
+      ],
+      "cid": "162634d3"
+    },
+    {
+      "sentence": "We were surprised by the news.",
+      "translation": "我们听到这条消息都很吃惊。",
+      "chunks": [
+        "We were surprised by the news."
+      ],
+      "hints": [
+        "我们听到这条消息都很吃惊。"
+      ],
+      "cid": "a7d62da8"
+    },
+    {
+      "sentence": "Boo!",
+      "translation": "哇!",
+      "chunks": [
+        "Boo!"
+      ],
+      "hints": [
+        "哇"
+      ],
+      "cid": "e273b326"
+    }
+  ]
+}

@@ -93,8 +93,8 @@ window.BUILTIN = [
           "last night."
         ],
         "hints": [
-          "我没得到",
-          "多少睡眠",
+          "我没睡",
+          "多少觉",
           "昨晚"
         ],
         "grammar": [
@@ -366,7 +366,7 @@ window.BUILTIN = [
           "this evening?"
         ],
         "hints": [
-          "你在做什么事情吗",
+          "你有什么安排吗",
           "今晚"
         ],
         "grammar": [
@@ -652,8 +652,8 @@ window.BUILTIN = [
           "sorry."
         ],
         "hints": [
-          "我（变得）",
-          "稍微晚了",
+          "我可能会",
+          "晚一点到，",
           "抱歉"
         ],
         "grammar": [
@@ -788,7 +788,7 @@ window.BUILTIN = [
           "at seven."
         ],
         "hints": [
-          "我会见到你",
+          "我们见面",
           "在入口",
           "七点"
         ],
@@ -964,7 +964,7 @@ window.BUILTIN = [
         ],
         "hints": [
           "多少",
-          "这个卖"
+          "这个要花"
         ],
         "grammar": [
           {
@@ -986,7 +986,7 @@ window.BUILTIN = [
               "/kɒst/"
             ],
             "pos": "一般现在时疑问",
-            "meaning": "这个卖（多少钱）"
+            "meaning": "这个要花（多少钱）"
           }
         ],
         "explanations": [
@@ -1081,8 +1081,8 @@ window.BUILTIN = [
           "on sale?"
         ],
         "hints": [
-          "这件商品是吗",
-          "在打折"
+          "这件商品",
+          "在打折吗"
         ],
         "grammar": [
           {
@@ -1365,7 +1365,7 @@ window.BUILTIN = [
           "for me."
         ],
         "hints": [
-          "这件衬衫是",
+          "这件衬衫",
           "有点太大",
           "对我来说"
         ],
@@ -1379,7 +1379,7 @@ window.BUILTIN = [
               "/ɪz/"
             ],
             "pos": "主系结构",
-            "meaning": "这件衬衫是"
+            "meaning": "这件衬衫"
           },
           {
             "role": "表语",
@@ -1695,13 +1695,13 @@ window.BUILTIN = [
       {
         "sentence": "Do you have a membership card?",
         "cid": "44614ab3",
-        "translation": "请问需要会员卡吗？",
+        "translation": "请问您有会员卡吗？",
         "chunks": [
           "Do you have",
           "a membership card?"
         ],
         "hints": [
-          "你有",
+          "您有",
           "会员卡吗"
         ],
         "grammar": [
@@ -2413,33 +2413,23 @@ window.BUILTIN = [
         "cid": "77588aab",
         "translation": "你周末过得怎么样？",
         "chunks": [
-          "How was",
-          "your weekend?"
+          "How was your weekend?"
         ],
         "hints": [
-          "……怎么样",
-          "你的周末"
+          "你周末过得怎么样？"
         ],
         "grammar": [
           {
-            "role": "状语",
+            "role": "完整问句",
             "color": "#7c5cbf",
             "phonetic": [
               "/haʊ/",
-              "/wɒz/"
-            ],
-            "pos": "疑问词组",
-            "meaning": "怎么样"
-          },
-          {
-            "role": "主语",
-            "color": "#c87033",
-            "phonetic": [
+              "/wɒz/",
               "/jɔːr/",
               "/ˈwiːkend/"
             ],
-            "pos": "名词短语",
-            "meaning": "你的周末"
+            "pos": "过去时问句",
+            "meaning": "你周末过得怎么样？"
           }
         ],
         "explanations": [
@@ -2448,14 +2438,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "How is",
-            "How were",
-            "How has"
-          ],
-          [
-            "you weekend?",
-            "your weekends?",
-            "the weekend?"
+            "How was your day?",
+            "How was your trip?",
+            "What did you do this weekend?"
           ]
         ]
       },
@@ -2464,35 +2449,25 @@ window.BUILTIN = [
         "cid": "78b2ed9c",
         "translation": "好久不见了。",
         "chunks": [
-          "I haven't seen you",
-          "for ages."
+          "I haven't seen you for ages."
         ],
         "hints": [
-          "我没见到你",
-          "有很久了"
+          "好久不见了。"
         ],
         "grammar": [
           {
-            "role": "谓语",
-            "color": "#e74c7a",
+            "role": "寒暄表达",
+            "color": "#7c5cbf",
             "phonetic": [
               "/aɪ/",
               "/ˈhævnt/",
               "/siːn/",
-              "/juː/"
-            ],
-            "pos": "现在完成时",
-            "meaning": "我没见到你"
-          },
-          {
-            "role": "时间状语",
-            "color": "#7c5cbf",
-            "phonetic": [
+              "/juː/",
               "/fɔːr/",
               "/ˈeɪdʒɪz/"
             ],
-            "pos": "介词短语",
-            "meaning": "很久"
+            "pos": "现在完成时+持续时长",
+            "meaning": "好久不见了。"
           }
         ],
         "explanations": [
@@ -2501,14 +2476,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "I haven't saw you",
-            "I haven't see you",
-            "I hasn't seen you"
-          ],
-          [
-            "for age.",
-            "since ages.",
-            "for the ages."
+            "I didn't see you yesterday.",
+            "I see you all the time.",
+            "I'll see you soon."
           ]
         ]
       },
@@ -2630,7 +2600,7 @@ window.BUILTIN = [
           "get to work?"
         ],
         "hints": [
-          "你怎么通常",
+          "你平时怎么",
           "去上班"
         ],
         "grammar": [
@@ -3034,8 +3004,8 @@ window.BUILTIN = [
           "of something."
         ],
         "hints": [
-          "那提醒我",
-          "关于某事"
+          "那让我想起",
+          "一件事。"
         ],
         "grammar": [
           {
@@ -3047,7 +3017,7 @@ window.BUILTIN = [
               "/miː/"
             ],
             "pos": "一般现在时",
-            "meaning": "那提醒我"
+            "meaning": "那让我想起"
           },
           {
             "role": "介词短语",
@@ -3057,7 +3027,7 @@ window.BUILTIN = [
               "/ˈsʌmθɪŋ/"
             ],
             "pos": "remind of 搭配",
-            "meaning": "关于某事"
+            "meaning": "一件事"
           }
         ],
         "explanations": [
@@ -3282,46 +3252,28 @@ window.BUILTIN = [
         "sentence": "What's up?",
         "cid": "243188cb",
         "translation": "怎么了？/最近怎么样？",
-        "chunks": [
-          "What's",
-          "up?"
-        ],
-        "hints": [
-          "什么",
-          "情况"
-        ],
+        "chunks": ["What's up?"],
+        "hints": ["怎么了？/最近怎么样？"],
         "grammar": [
           {
-            "role": "主语",
+            "role": "固定问候语",
             "color": "#c87033",
             "phonetic": [
-              "/wɒts/"
-            ],
-            "pos": "缩略形式",
-            "meaning": "What is"
-          },
-          {
-            "role": "副词",
-            "color": "#7c5cbf",
-            "phonetic": [
+              "/wɒts/",
               "/ʌp/"
             ],
-            "pos": "副词",
-            "meaning": "发生/进行中"
+            "pos": "口语固定问句",
+            "meaning": "怎么了？/最近怎么样？"
           }
         ],
         "explanations": [
-          "**What's up?** 是\"怎么了？\"或\"最近怎么样？\"的万能问候。比 \"How are you?\" 更随意、更口语化。",
-          "回答可以说 \"Not much.\"（没什么）、\"Just hanging out.\"（随便逛逛）或者反问 \"Not much, what's up with you?\""
+          "**What's up?** 是口语固定问候，可以问「怎么了？」或「最近怎么样？」，比 `How are you?` 更随意。常见回答有 `Not much.`（没什么）和 `Just hanging out.`（随便逛逛）。"
         ],
         "distractors": [
           [
-            "What",
-            "What are"
-          ],
-          [
-            "on?",
-            "wrong?"
+            "What up?",
+            "What's down?",
+            "What's the up?"
           ]
         ]
       },
@@ -3382,8 +3334,8 @@ window.BUILTIN = [
           "take it."
         ],
         "hints": [
-          "我将",
-          "拿它"
+          "我就",
+          "要这个"
         ],
         "grammar": [
           {
@@ -3393,7 +3345,7 @@ window.BUILTIN = [
               "/aɪl/"
             ],
             "pos": "将来时",
-            "meaning": "我将"
+            "meaning": "我就"
           },
           {
             "role": "谓语+宾语",
@@ -3403,7 +3355,7 @@ window.BUILTIN = [
               "/ɪt/"
             ],
             "pos": "动词短语",
-            "meaning": "买下它"
+            "meaning": "要这个（决定购买）"
           }
         ],
         "explanations": [
@@ -3479,32 +3431,22 @@ window.BUILTIN = [
         "cid": "c427a713",
         "translation": "没关系/不要紧。",
         "chunks": [
-          "It doesn't",
-          "matter."
+          "It doesn't matter."
         ],
         "hints": [
-          "这并不",
-          "重要"
+          "没关系；无所谓。"
         ],
         "grammar": [
           {
-            "role": "主语+否定",
+            "role": "固定表达",
             "color": "#c87033",
             "phonetic": [
               "/ɪt/",
-              "/ˈdʌznt/"
-            ],
-            "pos": "主语+助动词",
-            "meaning": "它不"
-          },
-          {
-            "role": "谓语",
-            "color": "#e74c7a",
-            "phonetic": [
+              "/ˈdʌznt/",
               "/ˈmætər/"
             ],
-            "pos": "动词",
-            "meaning": "重要"
+            "pos": "固定回应",
+            "meaning": "没关系；无所谓"
           }
         ],
         "explanations": [
@@ -3513,14 +3455,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "It don't",
-            "It isn't",
-            "It is doesn't"
-          ],
-          [
-            "matters.",
-            "the matter.",
-            "no matter."
+            "It doesn't make a difference.",
+            "It is important.",
+            "No problem."
           ]
         ]
       },
@@ -3682,35 +3619,35 @@ window.BUILTIN = [
         "cid": "a71c1752",
         "translation": "能帮我一下吗？",
         "chunks": [
-          "Can you give me",
-          "a hand?"
+          "Can you",
+          "give me a hand?"
         ],
         "hints": [
-          "你能给我",
-          "一个手吗"
+          "你能",
+          "帮我一把吗？"
         ],
         "grammar": [
           {
-            "role": "情态+宾语",
+            "role": "情态+主语",
             "color": "#c87033",
             "phonetic": [
               "/kæn/",
-              "/juː/",
-              "/ɡɪv/",
-              "/miː/"
+              "/juː/"
             ],
-            "pos": "情态动词+双宾语",
-            "meaning": "你能给我"
+            "pos": "情态动词+主语",
+            "meaning": "你能"
           },
           {
-            "role": "名词短语",
+            "role": "动词短语",
             "color": "#3358e0",
             "phonetic": [
+              "/ɡɪv/",
+              "/miː/",
               "/ə/",
               "/hænd/"
             ],
-            "pos": "习语",
-            "meaning": "帮忙（习语）"
+            "pos": "固定搭配（习语）",
+            "meaning": "帮我一把"
           }
         ],
         "explanations": [
@@ -3719,14 +3656,14 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "Can you give I",
-            "Can you gives me",
-            "Can you to give me"
+            "Could you",
+            "Can I",
+            "Do you"
           ],
           [
-            "the hand?",
-            "a hands?",
-            "hand?"
+            "give me a help?",
+            "give a hand me?",
+            "to give me a hand?"
           ]
         ]
       },
@@ -3837,32 +3774,20 @@ window.BUILTIN = [
         "cid": "11e9ed12",
         "translation": "不客气。",
         "chunks": [
-          "You're",
-          "welcome."
+          "You're welcome."
         ],
         "hints": [
-          "你是",
-          "受欢迎的"
+          "不客气！"
         ],
         "grammar": [
           {
-            "role": "主语+be",
-            "color": "#c87033",
-            "phonetic": [
-              "/jʊr/",
-              "/ˈwelkəm/"
-            ],
-            "pos": "主系表结构",
-            "meaning": "你（被欢迎）"
-          },
-          {
-            "role": "表语",
+            "role": "固定表达",
             "color": "#3358e0",
             "phonetic": [
-              "/ˈwelkəm/"
+              "/jʊr ˈwelkəm/"
             ],
-            "pos": "形容词",
-            "meaning": "受欢迎的"
+            "pos": "回应感谢的习语",
+            "meaning": "不客气"
           }
         ],
         "explanations": [
@@ -3871,13 +3796,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "Your",
-            "You"
-          ],
-          [
-            "welcomes.",
-            "welcome to.",
-            "welcome here."
+            "Thank you.",
+            "My pleasure.",
+            "No problem."
           ]
         ]
       },
@@ -3987,33 +3908,23 @@ window.BUILTIN = [
         "cid": "fb54ce6f",
         "translation": "由你决定。",
         "chunks": [
-          "It's up",
-          "to you."
+          "It's up to you."
         ],
         "hints": [
-          "取决于",
-          "由你"
+          "一切由你决定。"
         ],
         "grammar": [
           {
-            "role": "主系结构",
+            "role": "固定表达",
             "color": "#c87033",
             "phonetic": [
               "/ɪts/",
-              "/ʌp/"
-            ],
-            "pos": "主系+副词",
-            "meaning": "取决于"
-          },
-          {
-            "role": "介词短语",
-            "color": "#7c5cbf",
-            "phonetic": [
+              "/ʌp/",
               "/tuː/",
               "/juː/"
             ],
-            "pos": "介词短语",
-            "meaning": "由你"
+            "pos": "固定结构",
+            "meaning": "一切由你决定"
           }
         ],
         "explanations": [
@@ -4022,13 +3933,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "It up",
-            "It's upon"
-          ],
-          [
-            "for you.",
-            "to your.",
-            "on you."
+            "It's up for you.",
+            "It's upon you.",
+            "It up to you."
           ]
         ]
       },
@@ -4037,33 +3944,33 @@ window.BUILTIN = [
         "cid": "d1a382b8",
         "translation": "我在路上了。",
         "chunks": [
-          "I'm on",
-          "my way."
+          "I'm",
+          "on my way."
         ],
         "hints": [
-          "我正在",
-          "路上"
+          "我",
+          "在路上。"
         ],
         "grammar": [
           {
-            "role": "主系+介词",
+            "role": "主语",
             "color": "#c87033",
             "phonetic": [
-              "/aɪm/",
-              "/ɒn/"
+              "/aɪm/"
             ],
-            "pos": "主系结构",
-            "meaning": "我正在"
+            "pos": "主语",
+            "meaning": "我"
           },
           {
-            "role": "名词短语",
-            "color": "#3358e0",
+            "role": "固定表达",
+            "color": "#e74c7a",
             "phonetic": [
+              "/ɒn/",
               "/maɪ/",
               "/weɪ/"
             ],
-            "pos": "名词短语",
-            "meaning": "路上"
+            "pos": "介词短语",
+            "meaning": "在路上"
           }
         ],
         "explanations": [
@@ -4077,8 +3984,8 @@ window.BUILTIN = [
             "I on my way"
           ],
           [
-            "my ways.",
-            "the road."
+            "on the way.",
+            "in my way."
           ]
         ]
       },
@@ -4147,24 +4054,16 @@ window.BUILTIN = [
         ],
         "grammar": [
           {
-            "role": "名词短语",
-            "color": "#3358e0",
-            "phonetic": [
-              "/lɔːŋ/",
-              "/taɪm/"
-            ],
-            "pos": "名词短语",
-            "meaning": "很长时间"
-          },
-          {
-            "role": "省略句（习语）",
+            "role": "寒暄习语",
             "color": "#e74c7a",
             "phonetic": [
+              "/lɔːŋ/",
+              "/taɪm/",
               "/noʊ/",
               "/siː/"
             ],
-            "pos": "口语习语",
-            "meaning": "没见"
+            "pos": "固定问候语",
+            "meaning": "好久不见"
           }
         ],
         "explanations": [
@@ -4173,14 +4072,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "A long time",
-            "Long times",
-            "So long time"
-          ],
-          [
-            "no saw.",
-            "not see.",
-            "no seen."
+            "It's been a long time.",
+            "Good to see you again.",
+            "We haven't met before."
           ]
         ]
       },
@@ -4189,32 +4083,20 @@ window.BUILTIN = [
         "cid": "22a86a18",
         "translation": "慢慢来/别着急。",
         "chunks": [
-          "Take your",
-          "time."
+          "Take your time."
         ],
         "hints": [
-          "慢慢用你的",
-          "时间"
+          "慢慢来，不着急。"
         ],
         "grammar": [
           {
-            "role": "祈使+限定",
+            "role": "固定表达",
             "color": "#e74c7a",
             "phonetic": [
-              "/teɪk/",
-              "/jɔːr/"
+              "/teɪk jɔːr taɪm/"
             ],
-            "pos": "祈使句",
-            "meaning": "慢慢（用）你的"
-          },
-          {
-            "role": "宾语",
-            "color": "#3358e0",
-            "phonetic": [
-              "/taɪm/"
-            ],
-            "pos": "名词",
-            "meaning": "时间"
+            "pos": "劝人不用着急的习语",
+            "meaning": "慢慢来，不用着急"
           }
         ],
         "explanations": [
@@ -4223,13 +4105,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "Take you",
-            "Takes your",
-            "To take your"
-          ],
-          [
-            "times.",
-            "your times."
+            "Don't rush.",
+            "Take your time off.",
+            "Use your time wisely."
           ]
         ]
       },
@@ -4391,33 +4269,21 @@ window.BUILTIN = [
         "cid": "d2d4552d",
         "translation": "我一时忘了。",
         "chunks": [
-          "It slipped",
-          "my mind."
+          "It slipped my mind."
         ],
         "hints": [
-          "它溜出了",
-          "我的脑海"
+          "我一时忘了。"
         ],
         "grammar": [
           {
-            "role": "主谓",
+            "role": "固定表达",
             "color": "#e74c7a",
             "phonetic": [
               "/ɪt/",
               "/slɪpt/"
             ],
-            "pos": "一般过去时",
-            "meaning": "它（溜出）"
-          },
-          {
-            "role": "宾语（习语）",
-            "color": "#3358e0",
-            "phonetic": [
-              "/maɪ/",
-              "/maɪnd/"
-            ],
-            "pos": "名词短语",
-            "meaning": "我的脑海"
+            "pos": "习语",
+            "meaning": "一时忘了"
           }
         ],
         "explanations": [
@@ -4426,14 +4292,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "It slip",
-            "It slips",
-            "It was slipped"
-          ],
-          [
-            "me mind.",
-            "my minds.",
-            "my memory."
+            "It escaped my memory.",
+            "I forgot about it.",
+            "It slipped my brain."
           ]
         ]
       },
@@ -4442,33 +4303,23 @@ window.BUILTIN = [
         "cid": "890b2dc4",
         "translation": "试试看吧。",
         "chunks": [
-          "Give it",
-          "a shot."
+          "Give it a shot."
         ],
         "hints": [
-          "给它（试试）",
-          "一次机会"
+          "试试看吧。"
         ],
         "grammar": [
           {
-            "role": "祈使+宾语",
+            "role": "固定祈使表达",
             "color": "#e74c7a",
             "phonetic": [
               "/ɡɪv/",
-              "/ɪt/"
-            ],
-            "pos": "祈使句",
-            "meaning": "给它（一次）"
-          },
-          {
-            "role": "宾语（习语）",
-            "color": "#3358e0",
-            "phonetic": [
+              "/ɪt/",
               "/ə/",
               "/ʃɒt/"
             ],
-            "pos": "名词短语",
-            "meaning": "尝试"
+            "pos": "固定习语",
+            "meaning": "试试看"
           }
         ],
         "explanations": [
@@ -4477,14 +4328,9 @@ window.BUILTIN = [
         ],
         "distractors": [
           [
-            "Gives it",
-            "To give it",
-            "Gave it"
-          ],
-          [
-            "shot.",
-            "the shot.",
-            "a shoots."
+            "Give it a try.",
+            "Take a chance.",
+            "Give it shots."
           ]
         ]
       },
@@ -4591,11 +4437,11 @@ window.BUILTIN = [
         ]
       },
       {
-        "sentence": "So far so good.",
+        "sentence": "So far, so good.",
         "cid": "d13966c5",
         "translation": "到目前为止都挺好。",
         "chunks": [
-          "So far",
+          "So far,",
           "so good."
         ],
         "hints": [
@@ -4698,49 +4544,24 @@ window.BUILTIN = [
         "cid": "b6c66834",
         "translation": "我是认真的。",
         "chunks": [
-          "I mean",
-          "it."
+          "I mean it."
         ],
         "hints": [
-          "我说的是",
-          "认真的"
+          "我是认真的。"
         ],
         "grammar": [
           {
-            "role": "主谓",
+            "role": "固定表达",
             "color": "#e74c7a",
-            "phonetic": [
-              "/aɪ/",
-              "/miːn/"
-            ],
-            "pos": "一般现在时",
-            "meaning": "我（说）的"
-          },
-          {
-            "role": "宾语",
-            "color": "#3358e0",
-            "phonetic": [
-              "/ɪt/"
-            ],
-            "pos": "代词",
-            "meaning": "它是认真的"
+            "phonetic": ["/aɪ/", "/miːn/", "/ɪt/"],
+            "pos": "口语表达",
+            "meaning": "我是认真的"
           }
         ],
         "explanations": [
-          "**I mean it.** = 我说的是真的/不是在开玩笑，用来强调上一句话的严肃性。",
-          "语境：— I'll quit if this continues! — Are you serious? — **I mean it!** 近义：**I'm serious.**"
+          "**I mean it.** = 我说的是真的/不是在开玩笑，用来强调上一句话的严肃性。语境：— I'll quit if this continues! — Are you serious? — **I mean it!** 近义：**I'm serious.**"
         ],
-        "distractors": [
-          [
-            "I means",
-            "I'm mean",
-            "I mean to"
-          ],
-          [
-            "them.",
-            "its."
-          ]
-        ]
+        "distractors": [["I means it.", "I'm mean it.", "I mean to it."]]
       }
     ]
   },

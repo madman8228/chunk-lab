@@ -35,14 +35,12 @@
  },
  {
   "sentence": "Get the picture?",
-  "translation": "你了解情况吗?",
+  "translation": "明白了吗?",
   "chunks": [
-   "Get the",
-   "picture?"
+   "Get the picture?"
   ],
   "hints": [
-   "了解",
-   "情况了吗？"
+   "明白了吗？"
   ]
  },
  {
@@ -167,14 +165,14 @@
  },
  {
   "sentence": "I understand.",
-  "translation": "知道了。",
+  "translation": "我明白了。",
   "chunks": [
    "I",
    "understand."
   ],
   "hints": [
    "我",
-   "知道了。"
+   "明白了。"
   ]
  },
  {
@@ -189,10 +187,10 @@
  },
  {
   "sentence": "I understand very well.",
-  "translation": "完全明白。",
+  "translation": "我完全明白。",
   "chunks": [
-   "I understand",
-   "very well."
+   "I",
+   "understand very well."
   ],
   "hints": [
    "我",
@@ -227,12 +225,12 @@
   "sentence": "I know that too well.",
   "translation": "我太清楚那种事了。",
   "chunks": [
-   "I know that",
-   "too well."
+   "I know",
+   "that too well."
   ],
   "hints": [
-   "那种事",
-   "我太清楚了。"
+   "我知道",
+   "那种事太清楚了。"
   ]
  },
  {
@@ -249,7 +247,7 @@
  },
  {
   "sentence": "I get it.",
-  "translation": "噢，我终于明白了。",
+  "translation": "我明白了。",
   "chunks": [
    "I",
    "get it."
@@ -261,7 +259,7 @@
  },
  {
   "sentence": "I got it.",
-  "translation": "这样啊，原来是这么回事。",
+  "translation": "我懂了。",
   "chunks": [
    "I",
    "got it."
@@ -273,26 +271,24 @@
  },
  {
   "sentence": "I know that much!",
-  "translation": "这点事儿我还是知道的。",
+  "translation": "这点事儿我还是知道的！",
   "chunks": [
-   "I know",
-   "that much!"
+   "I know that much!"
   ],
   "hints": [
-   "这点事",
-   "我还是知道的！"
+   "这点事儿我还是知道的！"
   ]
  },
  {
   "sentence": "That solves it.",
-  "translation": "原来是这样啊!",
+  "translation": "那就解决了。",
   "chunks": [
    "That",
    "solves it."
   ],
   "hints": [
-   "原来",
-   "是这么回事。"
+   "那",
+   "就解决了。"
   ]
  },
  {
@@ -357,37 +353,31 @@
  },
  {
   "sentence": "I hear you.",
-  "translation": "我听着呢。/我知道了。",
+  "translation": "我明白你的意思。",
   "chunks": [
-   "I",
-   "hear you."
+   "I hear you."
   ],
   "hints": [
-   "我",
-   "听着呢。"
+   "我明白你的意思。"
   ]
  },
  {
   "sentence": "I'm following you.",
-  "translation": "我理解了。",
+  "translation": "我跟得上你的思路。",
   "chunks": [
-   "I'm",
-   "following you."
+   "I'm following you."
   ],
   "hints": [
-   "我",
-   "在跟着你的思路。"
+   "我跟得上你的思路。"
   ]
  },
  {
   "sentence": "Makes sense.",
-  "translation": "言之有理。",
+  "translation": "有道理。",
   "chunks": [
-   "Makes",
-   "sense."
+   "Makes sense."
   ],
   "hints": [
-   "说得",
    "有道理。"
   ]
  },
@@ -395,8 +385,8 @@
   "sentence": "I don't understand.",
   "translation": "我不明白。",
   "chunks": [
-   "I don't",
-   "understand."
+   "I",
+   "don't understand."
   ],
   "hints": [
    "我",
@@ -407,8 +397,8 @@
   "sentence": "I don't really understand.",
   "translation": "我不太明白。",
   "chunks": [
-   "I don't really",
-   "understand."
+   "I don't",
+   "really understand."
   ],
   "hints": [
    "我不",
@@ -417,14 +407,14 @@
  },
  {
   "sentence": "That's not clear.",
-  "translation": "我不清楚。",
+  "translation": "这不清楚。",
   "chunks": [
    "That's",
    "not clear."
   ],
   "hints": [
    "这",
-   "不太清楚。"
+   "不清楚。"
   ]
  },
  {
@@ -477,14 +467,14 @@
  },
  {
   "sentence": "It's over my head.",
-  "translation": "太难了，我弄不懂。",
+  "translation": "这超出我的理解范围。",
   "chunks": [
-   "It's over",
-   "my head."
+   "It's",
+   "over my head."
   ],
   "hints": [
    "这",
-   "超出了我的理解。"
+   "超出我的理解范围。"
   ]
  },
  {
@@ -513,14 +503,14 @@
  },
  {
   "sentence": "I don't know what he is driving at.",
-  "translation": "我不知道他要干什么。",
+  "translation": "我不知道他到底想表达什么。",
   "chunks": [
    "I don't know",
    "what he is driving at."
   ],
   "hints": [
    "我不知道",
-   "他到底想说什么。"
+   "他到底想表达什么。"
   ]
  },
  {
@@ -539,8 +529,8 @@
   "sentence": "I have no idea.",
   "translation": "我一点儿都不知道。",
   "chunks": [
-   "I have",
-   "no idea."
+   "I",
+   "have no idea."
   ],
   "hints": [
    "我",
@@ -549,22 +539,22 @@
  },
  {
   "sentence": "I didn't know that.",
-  "translation": "我怎么不知道。",
+  "translation": "我之前不知道这件事。",
   "chunks": [
-   "I didn't",
-   "know that."
+   "I",
+   "didn't know that."
   ],
   "hints": [
    "我",
-   "不知道有这回事。"
+   "之前不知道这件事。"
   ]
  },
  {
   "sentence": "I don't know.",
   "translation": "不知道。/不太清楚。",
   "chunks": [
-   "I don't",
-   "know."
+   "I",
+   "don't know."
   ],
   "hints": [
    "我",
@@ -575,8 +565,8 @@
   "sentence": "I don't know for sure.",
   "translation": "我不太清楚。",
   "chunks": [
-   "I don't know",
-   "for sure."
+   "I",
+   "don't know for sure."
   ],
   "hints": [
    "我",
@@ -591,8 +581,8 @@
    "for sure."
   ],
   "hints": [
-   "谁也",
-   "说不准。"
+   "没有人知道",
+   "确切情况"
   ]
  },
  {
@@ -603,8 +593,8 @@
    "I know?"
   ],
   "hints": [
-   "我",
-   "怎么会知道？"
+   "怎么会",
+   "我知道？"
   ]
  },
  {
@@ -631,25 +621,21 @@
  },
  {
   "sentence": "What for?",
-  "translation": "为何?",
+  "translation": "为了什么?",
   "chunks": [
-   "What",
-   "for?"
+   "What for?"
   ],
   "hints": [
-   "为了",
-   "什么呢？"
+   "为了什么？"
   ]
  },
  {
   "sentence": "Pardon me?",
   "translation": "您说什么?",
   "chunks": [
-   "Pardon",
-   "me?"
+   "Pardon me?"
   ],
   "hints": [
-   "抱歉，",
    "您说什么？"
   ]
  },
@@ -661,20 +647,18 @@
    "now?"
   ],
   "hints": [
-   "现在",
-   "怎么样？"
+   "怎么样？",
+   "现在"
   ]
  },
  {
   "sentence": "Excuse me?",
-  "translation": "对不起，你说什么?",
+  "translation": "不好意思，您刚才说什么?",
   "chunks": [
-   "Excuse",
-   "me?"
+   "Excuse me?"
   ],
   "hints": [
-   "对不起，",
-   "你说什么？"
+   "不好意思，您刚才说什么？"
   ]
  },
  {
@@ -731,8 +715,8 @@
    "it mean?"
   ],
   "hints": [
-   "它",
-   "是什么意思？"
+   "什么？",
+   "它的意思"
   ]
  },
  {
@@ -761,7 +745,7 @@
  },
  {
   "sentence": "What's he driving at?",
-  "translation": "他到底想干吗?",
+  "translation": "他到底想说什么?",
   "chunks": [
    "What's he",
    "driving at?"
@@ -811,8 +795,8 @@
   "sentence": "I can't keep up.",
   "translation": "我跟不上您说的。",
   "chunks": [
-   "I can't",
-   "keep up."
+   "I",
+   "can't keep up."
   ],
   "hints": [
    "我",
@@ -835,8 +819,8 @@
   "sentence": "I can't hear you.",
   "translation": "我听不见。",
   "chunks": [
-   "I can't",
-   "hear you."
+   "I",
+   "can't hear you."
   ],
   "hints": [
    "我",
@@ -883,11 +867,9 @@
   "sentence": "Was it good?",
   "translation": "好吃吗?",
   "chunks": [
-   "Was",
-   "it good?"
+   "Was it good?"
   ],
   "hints": [
-   "它",
    "好吃吗？"
   ]
  },
@@ -911,21 +893,19 @@
    "this suit?"
   ],
   "hints": [
-   "你觉得",
-   "这套衣服怎么样？"
-  ]
+     "觉得怎么样？",
+     "这套衣服"
+    ]
  },
  {
   "sentence": "How did you like it?",
   "translation": "你觉得怎么样?",
   "chunks": [
-   "How did you",
-   "like it?"
+   "How did you like it?"
   ],
   "hints": [
-   "你觉得",
-   "它怎么样？"
-  ]
+   "你觉得怎么样？"
+    ]
  },
  {
   "sentence": "Did you like it?",
@@ -941,14 +921,14 @@
  },
  {
   "sentence": "What do you think of it?",
-  "translation": "你觉得那个怎么样?",
+  "translation": "你觉得它怎么样?",
   "chunks": [
    "What do you think",
    "of it?"
   ],
   "hints": [
    "你觉得",
-   "那个怎么样？"
+   "它怎么样？"
   ]
  },
  {
@@ -959,32 +939,30 @@
    "turn out?"
   ],
   "hints": [
-   "事情",
-   "结果怎么样？"
+   "事情怎么样？",
+   "结果"
   ]
  },
  {
   "sentence": "To make a long story short,...",
   "translation": "长话短说……",
   "chunks": [
-   "To make",
-   "a long story short,..."
+   "To make a long story short,..."
   ],
   "hints": [
-   "长话",
-   "短说……"
+   "长话短说……"
   ]
  },
  {
   "sentence": "Just tell me the story in a nutshell.",
-  "translation": "你就简明扼要地说吧。",
+  "translation": "请把故事简明扼要地告诉我。",
   "chunks": [
    "Just tell me the story",
    "in a nutshell."
   ],
   "hints": [
-   "你就",
-   "简明扼要地说吧。"
+   "就把故事告诉我",
+   "简明扼要地说。"
   ]
  },
  {
@@ -1003,12 +981,10 @@
   "sentence": "A piece of cake.",
   "translation": "轻而易举。",
   "chunks": [
-   "A piece",
-   "of cake."
+   "A piece of cake."
   ],
   "hints": [
-   "小菜",
-   "一碟。"
+   "轻而易举。"
   ]
  },
  {
@@ -1059,38 +1035,36 @@
  },
  {
   "sentence": "There's nothing to it.",
-  "translation": "这很简单。",
+  "translation": "这没什么难的。",
   "chunks": [
    "There's nothing",
    "to it."
   ],
   "hints": [
-   "这",
-   "没什么难的。"
+   "这没什么",
+   "难的。"
   ]
  },
  {
   "sentence": "It worked!",
   "translation": "啊，真灵!",
   "chunks": [
-   "It",
-   "worked!"
+   "It worked!"
   ],
   "hints": [
-   "真的",
-   "管用了！"
+   "啊，真灵！"
   ]
  },
  {
   "sentence": "It needs work.",
-  "translation": "还需再加把劲。",
+  "translation": "它还需要改进。",
   "chunks": [
    "It needs",
    "work."
   ],
   "hints": [
-   "还",
-   "需要改进。"
+   "它还需要",
+   "改进。"
   ]
  },
  {
@@ -1105,43 +1079,39 @@
  },
  {
   "sentence": "Going from bad to worse.",
-  "translation": "越来越不好。",
+  "translation": "越来越糟。",
   "chunks": [
-   "Going from",
-   "bad to worse."
+   "Going from bad to worse."
   ],
   "hints": [
-   "越来越",
-   "糟。"
+   "越来越糟。"
   ]
  },
  {
   "sentence": "He made it big.",
   "translation": "他一举成名。",
   "chunks": [
-   "He made",
-   "it big."
+   "He made it big."
   ],
   "hints": [
-   "他",
-   "一举成名。"
+   "他一举成名。"
   ]
  },
  {
   "sentence": "We're set.",
-  "translation": "问题解决了。",
+  "translation": "我们准备好了。",
   "chunks": [
    "We're",
    "set."
   ],
   "hints": [
    "我们",
-   "搞定了。"
+   "准备好了。"
   ]
  },
  {
   "sentence": "I see.",
-  "translation": "我知道了。",
+  "translation": "我明白了。",
   "chunks": [
    "I",
    "see."
@@ -1165,20 +1135,18 @@
   "sentence": "You have?",
   "translation": "是吗?",
   "chunks": [
-   "You",
-   "have?"
+   "You have?"
   ],
   "hints": [
-   "是",
-   "吗？"
+   "是吗？"
   ]
  },
  {
   "sentence": "Is that right?",
   "translation": "是那样吗?",
   "chunks": [
-   "Is that",
-   "right?"
+   "Is",
+   "that right?"
   ],
   "hints": [
    "是",
@@ -1223,8 +1191,8 @@
   "sentence": "Is that so?",
   "translation": "是吗?",
   "chunks": [
-   "Is that",
-   "so?"
+   "Is",
+   "that so?"
   ],
   "hints": [
    "是",
@@ -1257,36 +1225,32 @@
   "sentence": "Neither do I.",
   "translation": "我也不……",
   "chunks": [
-   "Neither",
-   "do I."
+   "Neither do I."
   ],
   "hints": [
-   "我",
-   "也不。"
+   "我也不……"
   ]
  },
  {
   "sentence": "Don't be silly.",
   "translation": "别说傻话。",
   "chunks": [
-   "Don't be",
-   "silly."
+   "Don't be silly."
   ],
   "hints": [
-   "别",
-   "说傻话。"
+   "别说傻话。"
   ]
  },
  {
   "sentence": "That's too bad.",
-  "translation": "真是太倒霉了。",
+  "translation": "真是太遗憾了。",
   "chunks": [
    "That's",
    "too bad."
   ],
   "hints": [
-   "太",
-   "倒霉了。"
+   "真是",
+   "太遗憾了。"
   ]
  },
  {
@@ -1381,26 +1345,22 @@
  },
  {
   "sentence": "No kidding!",
-  "translation": "开玩笑吧!",
+  "translation": "不会吧!",
   "chunks": [
-   "No",
-   "kidding!"
+   "No kidding!"
   ],
   "hints": [
-   "别",
-   "开玩笑吧！"
+   "不会吧！"
   ]
  },
  {
   "sentence": "You bet.",
   "translation": "行!没问题!",
   "chunks": [
-   "You",
-   "bet."
+   "You bet."
   ],
   "hints": [
-   "行，",
-   "没问题！"
+   "当然！没问题！"
   ]
  },
  {
@@ -1427,39 +1387,35 @@
  },
  {
   "sentence": "I mean...",
-  "translation": "我的意思是……",
+  "translation": "我是说……",
   "chunks": [
    "I",
    "mean..."
   ],
   "hints": [
-   "我的",
-   "意思是……"
+   "我",
+   "是说……"
   ]
  },
  {
   "sentence": "It's on the tip of my tongue.",
   "translation": "话就在嘴边上。",
   "chunks": [
-   "It's on the tip",
-   "of my tongue."
+   "It's on the tip of my tongue."
   ],
   "hints": [
-   "话就在",
-   "我的嘴边上。"
+   "话到嘴边了，我一时想不起来。"
   ]
  },
  {
   "sentence": "What should I say...",
   "translation": "说什么好呢?",
   "chunks": [
-   "What should",
-   "I say..."
+   "What should I say..."
   ],
   "hints": [
-   "我该",
-   "说什么好呢……"
-  ]
+   "说什么好呢？"
+    ]
  },
  {
   "sentence": "I don't know quite how to put this.",
@@ -1477,36 +1433,32 @@
   "sentence": "Beats me.",
   "translation": "这可让你问着了。",
   "chunks": [
-   "Beats",
-   "me."
+   "Beats me."
   ],
   "hints": [
-   "这可问倒",
-   "我了。"
+   "这可难住我了，我也不知道。"
   ]
  },
  {
   "sentence": "What do you call it?",
   "translation": "叫什么来着?",
   "chunks": [
-   "What do you",
-   "call it?"
+   "What do you call it?"
   ],
   "hints": [
-   "你管它",
-   "叫什么来着？"
+   "这叫什么来着？"
   ]
  },
  {
   "sentence": "You've got me.",
-  "translation": "让你问住了。",
+  "translation": "你把我问住了。",
   "chunks": [
    "You've",
    "got me."
   ],
   "hints": [
-   "让你",
-   "问住了。"
+   "你",
+   "把我问住了。"
   ]
  },
  {
@@ -1517,8 +1469,8 @@
    "something."
   ],
   "hints": [
-   "你",
-   "说点什么吧！"
+   "说",
+   "点什么吧！"
   ]
  },
  {
@@ -1537,41 +1489,35 @@
   "sentence": "How was your trip?",
   "translation": "你的旅行怎么样?",
   "chunks": [
-   "How was",
-   "your trip?"
+   "How was your trip?"
   ],
   "hints": [
-   "你的旅行",
-   "怎么样？"
-  ]
+   "你的旅行怎么样？"
+    ]
  },
  {
   "sentence": "I'm all ears.",
   "translation": "我在认真地听呢。",
   "chunks": [
-   "I'm",
-   "all ears."
+   "I'm all ears."
   ],
   "hints": [
-   "我",
-   "洗耳恭听。"
+   "我洗耳恭听。"
   ]
  },
  {
   "sentence": "How was the meeting?",
   "translation": "会开得怎么样?",
   "chunks": [
-   "How was",
-   "the meeting?"
+   "How was the meeting?"
   ],
   "hints": [
-   "会",
-   "开得怎么样？"
-  ]
+   "会议开得怎么样？"
+    ]
  },
  {
   "sentence": "I'm listening.",
-  "translation": "继续说呀。",
+  "translation": "我在听。",
   "chunks": [
    "I'm",
    "listening."
@@ -1609,13 +1555,11 @@
   "sentence": "How was the movie?",
   "translation": "电影怎么样?",
   "chunks": [
-   "How was",
-   "the movie?"
+   "How was the movie?"
   ],
   "hints": [
-   "电影",
-   "怎么样？"
-  ]
+   "那部电影怎么样？"
+    ]
  },
  {
   "sentence": "Did you enjoy the play?",
@@ -1633,12 +1577,12 @@
   "sentence": "I want to talk about it now.",
   "translation": "我想现在就谈谈那件事。",
   "chunks": [
-   "I want to talk",
-   "about it now."
+   "I want to talk about it",
+   "now."
   ],
   "hints": [
-   "我想现在",
-   "就谈谈那件事。"
+   "我想谈谈那件事",
+   "现在"
   ]
  },
  {
@@ -1677,27 +1621,25 @@
  },
  {
   "sentence": "To the point, please.",
-  "translation": "抓重点的说。",
+  "translation": "请说重点。",
   "chunks": [
    "To the point,",
    "please."
   ],
   "hints": [
-   "请",
-   "抓重点说。"
+   "说重点，",
+   "请。"
   ]
  },
  {
   "sentence": "How was your day?",
   "translation": "今天过得怎么样?",
   "chunks": [
-   "How was",
-   "your day?"
+   "How was your day?"
   ],
   "hints": [
-   "你今天",
-   "过得怎么样？"
-  ]
+   "你今天过得怎么样？"
+    ]
  },
  {
   "sentence": "Let's change the subject.",
@@ -1727,12 +1669,12 @@
   "sentence": "I don't want to talk about it now.",
   "translation": "我现在不想谈那件事。",
   "chunks": [
-   "I don't want",
-   "to talk about it now."
+   "I don't want to talk about it",
+   "now."
   ],
   "hints": [
-   "我现在不想",
-   "谈那件事。"
+   "我不想谈那件事",
+   "现在"
   ]
  },
  {
@@ -1751,12 +1693,10 @@
   "sentence": "To change the subject...",
   "translation": "另外我们说说……",
   "chunks": [
-   "To change",
-   "the subject..."
+   "To change the subject..."
   ],
   "hints": [
-   "另外",
-   "我们说说……"
+   "换个话题说说……"
   ]
  },
  {
@@ -1775,12 +1715,10 @@
   "sentence": "By the way,...",
   "translation": "顺便提一下……",
   "chunks": [
-   "By the",
-   "way,..."
+   "By the way,..."
   ],
   "hints": [
-   "顺便",
-   "提一下……"
+   "顺便提一下……"
   ]
  },
  {
@@ -1797,7 +1735,7 @@
  },
  {
   "sentence": "That reminds me.",
-  "translation": "啊，我想起来了。",
+  "translation": "这让我想起来了。",
   "chunks": [
    "That",
    "reminds me."
@@ -1827,20 +1765,20 @@
    "the story before."
   ],
   "hints": [
-   "那件事我",
-   "听过了。"
+   "我听过",
+   "那个故事。"
   ]
  },
  {
   "sentence": "Let's drop the subject.",
-  "translation": "这件事别再说了。",
+  "translation": "我们别再谈这个话题了。",
   "chunks": [
-   "Let's drop",
-   "the subject."
+   "Let's",
+   "drop the subject."
   ],
   "hints": [
-   "这件事",
-   "别再说了。"
+   "我们",
+   "别再谈这个话题。"
   ]
  },
  {
@@ -1871,12 +1809,10 @@
   "sentence": "It's up to you.",
   "translation": "一切都看你的了。",
   "chunks": [
-   "It's up",
-   "to you."
+   "It's up to you."
   ],
   "hints": [
-   "一切",
-   "看你的了。"
+   "一切由你决定。"
   ]
  },
  {
@@ -1935,8 +1871,8 @@
    "to go or stay."
   ],
   "hints": [
-   "是去是留",
-   "随你的便。"
+   "你可以自由选择",
+   "是去是留"
   ]
  },
  {
@@ -1947,16 +1883,16 @@
    "turning back."
   ],
   "hints": [
-   "已经",
-   "无可挽回了。"
+   "已经没有",
+   "回头路了"
   ]
  },
  {
   "sentence": "Let's play it by ear.",
   "translation": "走一步看一步吧!",
   "chunks": [
-   "Let's play it",
-   "by ear."
+   "Let's",
+   "play it by ear."
   ],
   "hints": [
    "我们",
@@ -2013,14 +1949,14 @@
  },
  {
   "sentence": "I have to do it anyhow.",
-  "translation": "反正，也得干。",
+  "translation": "我反正也得做。",
   "chunks": [
-   "I have to",
-   "do it anyhow."
+   "I have to do it",
+   "anyhow."
   ],
   "hints": [
-   "反正",
-   "也得干。"
+   "我也得做",
+   "反正。"
   ]
  },
  {
@@ -2051,8 +1987,8 @@
   "sentence": "I'll take a chance.",
   "translation": "碰碰运气看。",
   "chunks": [
-   "I'll take",
-   "a chance."
+   "I'll",
+   "take a chance."
   ],
   "hints": [
    "我",
@@ -2073,13 +2009,13 @@
  },
  {
   "sentence": "Let's finish it somehow.",
-  "translation": "我们总得想办法完成。",
+  "translation": "我们想办法完成。",
   "chunks": [
-   "Let's finish it",
-   "somehow."
+   "Let's",
+   "finish it somehow."
   ],
   "hints": [
-   "我们总得",
+   "我们",
    "想办法完成。"
   ]
  },
@@ -2123,12 +2059,10 @@
   "sentence": "It's all or nothing.",
   "translation": "豁出去了。",
   "chunks": [
-   "It's all",
-   "or nothing."
+   "It's all or nothing."
   ],
   "hints": [
-   "豁出去",
-   "了。"
+   "豁出去了。"
   ]
  }
 ]

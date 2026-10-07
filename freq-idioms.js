@@ -107,11 +107,11 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("He repeated the joke ad nauseam."),
     translation: "他一遍又一遍地讲那个笑话，说得让人烦死了。",
     chunks: ["He repeated","the joke","ad nauseam."],
-    hints: ["他重复","那个笑话","令人作呕地"],
+    hints: ["他重复","那个笑话","没完没了地（令人厌烦地）"],
     grammar: [
       {role:"主谓", color:"#c87033", phonetic:["/hiː/","/rɪˈpiːtɪd/"], pos:"一般过去时", meaning:"他重复"},
       {role:"宾语", color:"#3358e0", phonetic:["/ðə/","/dʒoʊk/"], pos:"名词短语", meaning:"那个笑话"},
-      {role:"状语", color:"#7c5cbf", phonetic:["/æd/","/ˈnɔːziæm/"], pos:"拉丁语习语", meaning:"让人作呕地"}
+      {role:"状语", color:"#7c5cbf", phonetic:["/æd/","/ˈnɔːziæm/"], pos:"拉丁语习语", meaning:"没完没了地、令人厌烦地"}
     ],
     explanations: [
       "**ad nauseam** 拉丁语（= to nausea「到令人作呕」），表示重复到让人厌烦。常用来吐槽某人反复说同一件事。",
@@ -140,9 +140,9 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Something seems amiss here."),
     translation: "这里好像有点不对劲。",
     chunks: ["Something seems","amiss here."],
-    hints: ["有什么似乎","不对劲"],
+    hints: ["好像有什么","这里不对劲"],
     grammar: [
-      {role:"主系表", color:"#c87033", phonetic:["/ˈsʌmθɪŋ/","/siːmz/"], pos:"主系表", meaning:"有什么似乎"},
+      {role:"主系表", color:"#c87033", phonetic:["/ˈsʌmθɪŋ/","/siːmz/"], pos:"主系表", meaning:"好像有什么"},
       {role:"表语短语", color:"#7c5cbf", phonetic:["/əˈmɪs/","/hɪr/"], pos:"形容词短语", meaning:"不太对"}
     ],
     explanations: [
@@ -154,9 +154,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "I want peace and all that.",
     cid: fnv8("I want peace and all that."),
-    translation: "我就想要平静，就这些。",
+    translation: "我就想要平静之类的。",
     chunks: ["I want","peace","and all that."],
-    hints: ["我想要","平静","就这样"],
+    hints: ["我想要","平静","之类的、什么的"],
     grammar: [
       {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/wɒnt/"], pos:"一般现在时", meaning:"我想要"},
       {role:"宾语", color:"#3358e0", phonetic:["/piːs/"], pos:"名词", meaning:"平静"},
@@ -172,18 +172,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "She's a teacher at heart.",
     cid: fnv8("She's a teacher at heart."),
     translation: "她骨子里是个老师。",
-    chunks: ["She's","a teacher","at heart."],
-    hints: ["她是","一个老师","骨子里"],
+    chunks: ["She's","a teacher at heart."],
+    hints: ["她","骨子里是个老师"],
     grammar: [
-      {role:"主系", color:"#c87033", phonetic:["/ʃiːz/"], pos:"She is 缩写", meaning:"她是"},
-      {role:"表语", color:"#3358e0", phonetic:["/ə/","/ˈtiːtʃər/"], pos:"名词短语", meaning:"一名老师"},
-      {role:"方式状语", color:"#7c5cbf", phonetic:["/æt/","/hɑːrt/"], pos:"固定短语", meaning:"骨子里；本质上"}
+      {role:"主系", color:"#c87033", phonetic:["/ʃiːz/"], pos:"She is 缩写", meaning:"她"},
+      {role:"表语+固定短语", color:"#3358e0", phonetic:["/ə/","/ˈtiːtʃər/","/æt/","/hɑːrt/"], pos:"名词短语+习语", meaning:"骨子里是个老师"}
     ],
     explanations: [
       "**at heart** 强调人的真实本性或核心身份，不管外在表现如何。常用来评价人或自我评价。",
       "近义：at the core / deep down / essentially。例句：He's a banker at heart, even now that he's retired."
     ],
-    distractors: [["He's","She was","She'll be"],["a mother","a student","a born teacher"],["by heart.","from the heart.","after all."]]
+    distractors: [["He's","She was","She'll be"],["a student by profession.","an artist at heart.","a teacher by training."]]
   },
   {
     sentence: "Sorry I'm late — better late than never!",
@@ -206,10 +205,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Birds of a feather flock together."),
     translation: "物以类聚，人以群分。",
     chunks: ["Birds of a feather","flock together."],
-    hints: ["同一种羽毛的鸟","群聚在一起"],
+    hints: ["同类的人","总会聚在一起"],
     grammar: [
-      {role:"谚语主语", color:"#c87033", phonetic:["/bɜːrdz/","/əv/","/ə/","/ˈfeðər/"], pos:"名词短语", meaning:"同一种羽色的鸟"},
-      {role:"谚语谓语", color:"#e74c7a", phonetic:["/flɒk/","/təˈɡeðər/"], pos:"动词短语", meaning:"群聚在一起"}
+      {role:"谚语主语", color:"#c87033", phonetic:["/bɜːrdz/","/əv/","/ə/","/ˈfeðər/"], pos:"名词短语", meaning:"同类的人"},
+      {role:"谚语谓语", color:"#e74c7a", phonetic:["/flɒk/","/təˈɡeðər/"], pos:"动词短语", meaning:"总会聚在一起"}
     ],
     explanations: [
       "**Birds of a feather (flock together)** 谚语「物以类聚，人以群分」。常用来评价一群朋友/同事/伴侣的相似性，可褒可贬。",
@@ -221,34 +220,32 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Bring your A game tomorrow.",
     cid: fnv8("Bring your A game tomorrow."),
     translation: "明天拿出你最好的表现。",
-    chunks: ["Bring","your A game","tomorrow."],
-    hints: ["拿出","你的 A 级状态","明天"],
+    chunks: ["Bring your A game","tomorrow."],
+    hints: ["拿出最佳状态","明天"],
     grammar: [
-      {role:"祈使动词", color:"#e74c7a", phonetic:["/brɪŋ/"], pos:"动词", meaning:"带来"},
-      {role:"宾语", color:"#3358e0", phonetic:["/jʊr/","/eɪ/","/ɡeɪm/"], pos:"固定短语", meaning:"你的最佳水平"},
+      {role:"祈使谓语+宾语", color:"#e74c7a", phonetic:["/brɪŋ/","/jʊr/","/eɪ/","/ɡeɪm/"], pos:"固定表达+宾语", meaning:"拿出最佳状态"},
       {role:"时间状语", color:"#7c5cbf", phonetic:["/təˈmɒroʊ/"], pos:"副词", meaning:"明天"}
     ],
     explanations: [
       "**A game** 源自美国体育（A 级表现即最佳水平），现泛指任何领域的最佳状态。常用 bring/show A game。",
       "近义：bring your best / step up your game / be on your A game（处于 A 状态）。例句：You've got to bring your A game to this interview."
     ],
-    distractors: [["Save","Pack","Play"],["your B game","your game","your A-list"],["tonight.","this morning.","next week."]]
+    distractors: [["Save your B game","Pack your game","Play your A-list"],["tonight.","this morning.","next week."]]
   },
   {
     sentence: "I passed by the skin of my teeth.",
     cid: fnv8("I passed by the skin of my teeth."),
-    translation: "我险险地通过了考试。",
-    chunks: ["I passed","by the skin of my teeth."],
-    hints: ["我通过了","差一点点"],
+    translation: "我侥幸通过了，差一点就没过。",
+    chunks: ["I passed by the skin of my teeth."],
+    hints: ["我侥幸通过了，差一点就没过。"],
     grammar: [
-      {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/pæst/"], pos:"一般过去时", meaning:"我通过了"},
-      {role:"方式状语", color:"#7c5cbf", phonetic:["/baɪ/","/ðə/","/skɪn/","/əv/","/maɪ/","/tiːθ/"], pos:"圣经习语", meaning:"仅差一点；险些不"}
+      {role:"整句习语表达", color:"#7c5cbf", phonetic:["/aɪ/","/pæst/","/baɪ/","/ðə/","/skɪn/","/əv/","/maɪ/","/tiːθ/"], pos:"含习语的完整句", meaning:"我侥幸通过了，差一点就没过"}
     ],
     explanations: [
       "**by the skin of one's teeth** 源自《圣经·约伯记》19:20，字面「只剩牙齿的皮」，意为险些失败、堪堪躲过。",
       "近义：narrowly / barely / by a hair's breadth（差一根头发）。注意 teeth 是复数，\"skin of my teeth\" 不能换成 tooth。例句：We caught the flight by the skin of our teeth."
     ],
-    distractors: [["I failed","I almost passed"],["by the seat of my pants.","against all odds.","in the nick of time."]]
+    distractors: [["I failed.","I passed easily.","I nearly passed but failed."]]
   },
   {
     sentence: "You're joking — come off it!",
@@ -319,9 +316,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Fake it until you make it.",
     cid: fnv8("Fake it until you make it."),
-    translation: "假装自信，直到你真的自信。",
+    translation: "先装作能行，直到真的做到。",
     chunks: ["Fake it","until you make it."],
-    hints: ["假装到","你真的做到了"],
+    hints: ["先假装自己能行","直到你真的做到"],
     grammar: [
       {role:"祈使宾语", color:"#e74c7a", phonetic:["/feɪk/","/ɪt/"], pos:"代词短语", meaning:"假装这件事"},
       {role:"时间状语从句", color:"#7c5cbf", phonetic:["/ənˈtɪl/","/juː/","/meɪk/","/ɪt/"], pos:"从属连词引导", meaning:"直到你做到"}
@@ -402,7 +399,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("He holds a grudge like nobody's business."),
     translation: "他记仇记得没完没了。",
     chunks: ["He holds","a grudge","like nobody's business."],
-    hints: ["他怀有","怨恨","不要命地"],
+    hints: ["他怀有","怨恨","记仇记得特别厉害"],
     grammar: [
       {role:"主谓", color:"#c87033", phonetic:["/hiː/","/hoʊldz/"], pos:"一般现在时（第三人称单数）", meaning:"他怀有"},
       {role:"宾语", color:"#3358e0", phonetic:["/ə/","/ɡrʌdʒ/"], pos:"名词", meaning:"怨恨"},
@@ -435,7 +432,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Make yourself at home."),
     translation: "别客气，像在自己家一样。",
     chunks: ["Make","yourself at home."],
-    hints: ["让","你感觉在家"],
+    hints: ["请","别拘束，像在自己家一样自在"],
     grammar: [
       {role:"祈使动词", color:"#e74c7a", phonetic:["/meɪk/"], pos:"动词", meaning:"使"},
       {role:"宾语+宾补", color:"#3358e0", phonetic:["/jərˈself/","/æt/","/hoʊm/"], pos:"固定短语", meaning:"像在家一样自处"}
@@ -467,7 +464,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Once in a blue moon, I eat fast food."),
     translation: "我难得吃一次快餐。",
     chunks: ["Once in a blue moon,","I eat fast food."],
-    hints: ["千载难逢，","我吃快餐"],
+    hints: ["难得一次，","我吃快餐"],
     grammar: [
       {role:"频率状语", color:"#7c5cbf", phonetic:["/wʌns/","/ɪn/","/ə/","/bluː/","/muːn/"], pos:"固定短语", meaning:"极为罕见地"},
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/iːt/","/fæst/","/fuːd/"], pos:"一般现在时", meaning:"我吃快餐"}
@@ -482,24 +479,23 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Pull yourself together.",
     cid: fnv8("Pull yourself together."),
     translation: "振作起来。",
-    chunks: ["Pull","yourself together."],
-    hints: ["把","你自己整合起来"],
+    chunks: ["Pull yourself together."],
+    hints: ["振作起来；冷静下来"],
     grammar: [
-      {role:"祈使动词", color:"#e74c7a", phonetic:["/pʊl/"], pos:"动词", meaning:"拉；使镇定"},
-      {role:"宾语+副词", color:"#3358e0", phonetic:["/jərˈself/","/təˈɡeðər/"], pos:"反身代词+副词", meaning:"（让自己）镇定下来"}
+      {role:"固定短语动词", color:"#7c5cbf", phonetic:["/pʊl/","/jərˈself/","/təˈɡeðər/"], pos:"固定表达", meaning:"让自己振作或冷静下来"}
     ],
     explanations: [
       "**pull yourself together** 短语动词，意为控制情绪、振作、冷静下来。常对崩溃/慌乱/情绪失控的人说。",
       "近义：get a grip（自己）/ compose yourself / settle down。更柔和的版本：take a deep breath。注意是对受话人说，you 永远是 yourself。"
     ],
-    distractors: [["Calm","Put","Gather"],["your act together.","your socks up."]]
+    distractors: [["Get a grip.","Pull it together.","Settle down."]]
   },
   {
     sentence: "She has a sweet tooth.",
     cid: fnv8("She has a sweet tooth."),
     translation: "她爱吃甜食。",
     chunks: ["She has","a sweet tooth."],
-    hints: ["她有","一颗甜牙"],
+    hints: ["她有","爱吃甜食的习惯"],
     grammar: [
       {role:"主谓", color:"#c87033", phonetic:["/ʃiː/","/hæz/"], pos:"一般现在时", meaning:"她有"},
       {role:"宾语", color:"#3358e0", phonetic:["/ə/","/swiːt/","/tuːθ/"], pos:"固定短语", meaning:"嗜甜的习惯"}
@@ -515,7 +511,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Take it with a grain of salt."),
     translation: "半信半疑地听。",
     chunks: ["Take it","with a grain of salt."],
-    hints: ["接受它","伴着一粒盐"],
+    hints: ["听听这个说法","但别全信"],
     grammar: [
       {role:"祈使宾语", color:"#e74c7a", phonetic:["/teɪk/","/ɪt/"], pos:"代词短语", meaning:"听它；接受这个说法"},
       {role:"方式状语", color:"#7c5cbf", phonetic:["/wɪð/","/ə/","/ɡreɪn/","/əv/","/sɔːlt/"], pos:"固定短语", meaning:"持保留态度"}
@@ -531,7 +527,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("We're on the same page."),
     translation: "我们意见一致。",
     chunks: ["We're","on the same page."],
-    hints: ["我们在","同一页纸上"],
+    hints: ["我们","意见一致"],
     grammar: [
       {role:"主系", color:"#c87033", phonetic:["/wɪr/"], pos:"We are 缩写", meaning:"我们在"},
       {role:"表语", color:"#3358e0", phonetic:["/ɒn/","/ðə/","/seɪm/","/peɪdʒ/"], pos:"固定短语", meaning:"同一页（意见一致）"}
@@ -545,18 +541,17 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "You are what you eat.",
     cid: fnv8("You are what you eat."),
-    translation: "吃什么像什么。",
-    chunks: ["You are","what you eat."],
-    hints: ["你是","你吃的"],
+    translation: "人如其食：饮食会影响人的健康与状态。",
+    chunks: ["You are what you eat."],
+    hints: ["人如其食：饮食会影响人的健康与状态。"],
     grammar: [
-      {role:"主系", color:"#c87033", phonetic:["/juː/","/ɑːr/"], pos:"主系", meaning:"你是"},
-      {role:"表语从句", color:"#3358e0", phonetic:["/wɒt/","/juː/","/iːt/"], pos:"宾语从句作表语", meaning:"你吃的东西"}
+      {role:"谚语", color:"#7c5cbf", phonetic:["/juː/","/ɑːr/","/wɒt/","/juː/","/iːt/"], pos:"完整谚语", meaning:"人如其食：饮食会影响人的健康与状态"}
     ],
     explanations: [
       "**You are what you eat.** 谚语，强调饮食对健康/状态/性格的影响。常用于健康饮食倡导场合。",
       "也可比喻思想/习惯塑造人：You are what you read. 你读什么就是什么人。字面对比：You are what you drink（Drake 歌曲名）。"
     ],
-    distractors: [["We are","You become","You're not"],["what you drink.","what you ate.","where you eat."]]
+    distractors: [["You are what you drink.","You are what you read.","You are what you wear."]]
   },
   {
     sentence: "They keep up with the Joneses by buying a new car every year.",
@@ -665,18 +660,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "His loud voice rubbed me the wrong way.",
     cid: fnv8("His loud voice rubbed me the wrong way."),
     translation: "他大嗓门让我心里很不舒服。",
-    chunks: ["His loud voice","rubbed me","the wrong way."],
-    hints: ["他的大嗓门","惹得我","很反感、不舒服"],
+    chunks: ["His loud voice","rubbed me the wrong way."],
+    hints: ["他的大嗓门","让我很不舒服"],
     grammar: [
       {role:"主语", color:"#c87033", phonetic:["/hɪz/","/laʊd/","/vɔɪs/"], pos:"名词短语", meaning:"他的大嗓门"},
-      {role:"谓语+宾语", color:"#7c5cbf", phonetic:["/rʌbd/","/miː/"], pos:"动词习语", meaning:"惹恼我（rub…the wrong way）"},
-      {role:"补足成分", color:"#3358e0", phonetic:["/ðə/","/rɔːŋ/","/weɪ/"], pos:"习语尾部", meaning:"以错误的方式（令人不快）"}
+      {role:"谓语+宾语+习语", color:"#7c5cbf", phonetic:["/rʌbd/","/miː/","/ðə/","/rɔːŋ/","/weɪ/"], pos:"固定习语", meaning:"让我很不舒服"}
     ],
     explanations: [
       "**rub sb the wrong way**：无意间「惹恼、使不快」。意象：顺着毛摸（rub the right way）让人舒服，逆着毛（the wrong way）就难受。",
       "第三人称注意人称：His attitude rubs ME the wrong way / rubs HER the wrong way。近义：get on sb's nerves（让人烦躁）。"
     ],
-    distractors: [["His soft voice","His deep voice","Her loud voice"],["treated me","rub me"],["the right way.","a wrong way."]]
+    distractors: [["His soft voice","His deep voice","Her loud voice"],["rubbed me the right way.","got on my nerves.","made me feel proud."]]
   },
   {
     sentence: "Sorry I'm late — that's on me.",
@@ -913,7 +907,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Where we eat tonight is up to you."),
     translation: "今晚去哪吃，由你决定。",
     chunks: ["Where we eat tonight","is up to you."],
-    hints: ["今晚我们吃什么","由你决定"],
+    hints: ["今晚我们在哪儿吃","由你决定"],
     grammar: [
       {role:"主语从句", color:"#c87033", phonetic:["/wer/","/wiː/","/iːt/","/təˈnaɪt/"], pos:"where 主语从句", meaning:"今晚我们去哪吃"},
       {role:"主系表", color:"#7c5cbf", phonetic:["/ɪz/","/ʌp/","/tə/","/juː/"], pos:"习语·主系表", meaning:"取决于你、由你定"}
@@ -977,7 +971,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Come on, the bus is almost here!"),
     translation: "快点，公交车快到了！",
     chunks: ["Come on,","the bus is almost here!"],
-    hints: ["催人催促","公交车快到了"],
+    hints: ["快点！","公交车快到了"],
     grammar: [
       {role:"催促习语", color:"#7c5cbf", phonetic:["/kʌm/","/ɑːn/"], pos:"习语·催促鼓励", meaning:"快点！加把劲！"},
       {role:"主系表", color:"#c87033", phonetic:["/ðə/","/bʌs/","/ɪz/","/ˈɔːlmoʊst/","/hɪr/"], pos:"现在时表将来", meaning:"公交车即将到站"}
@@ -1010,7 +1004,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Hold it — I need to check this first."),
     translation: "暂停一下——我得先核实这件事。",
     chunks: ["Hold it —","I need to check this first."],
-    hints: ["叫停对方","我先核实一下"],
+    hints: ["停一下！","我先核实一下"],
     grammar: [
       {role:"叫停习语", color:"#7c5cbf", phonetic:["/hoʊld/","/ɪt/"], pos:"习语·祈使", meaning:"暂停一下"},
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/niːd/","/tʃek/","/ðɪs/","/fɜːrst/"], pos:"need to 不定式", meaning:"我需要先核实"}
@@ -1042,7 +1036,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Cheer up — things will get better."),
     translation: "振作起来——事情会好起来的。",
     chunks: ["Cheer up —","things will get better."],
-    hints: ["让人开心起来","事情会好起来"],
+    hints: ["振作起来","事情会好起来"],
     grammar: [
       {role:"鼓励习语", color:"#7c5cbf", phonetic:["/tʃɪr/","/ʌp/"], pos:"习语·祈使", meaning:"振作起来"},
       {role:"主谓", color:"#c87033", phonetic:["/θɪŋz/","/wɪl/","/ɡet/","/ˈbetər/"], pos:"一般将来时", meaning:"事情会变好"}
@@ -1073,24 +1067,24 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Go ahead and start without me.",
     cid: fnv8("Go ahead and start without me."),
     translation: "你们先开始吧，不用等我。",
-    chunks: ["Go ahead","and start without me."],
-    hints: ["让对方先做","不用等我开始"],
+    chunks: ["Go ahead and start","without me."],
+    hints: ["你们先开始","不用等我"],
     grammar: [
-      {role:"允许习语", color:"#7c5cbf", phonetic:["/ɡoʊ/","/əˈhed/"], pos:"习语·允许", meaning:"开始吧、请便"},
-      {role:"并列谓宾", color:"#c87033", phonetic:["/stɑːrt/","/wɪˈðaʊt/","/miː/"], pos:"祈使句+介宾", meaning:"不等地开始"}
+      {role:"允许习语", color:"#7c5cbf", phonetic:["/ɡoʊ/","/əˈhed/","/ænd/","/stɑːrt/"], pos:"习语·允许+祈使", meaning:"你们先开始"},
+      {role:"介宾短语", color:"#c87033", phonetic:["/wɪˈðaʊt/","/miː/"], pos:"介词短语", meaning:"不用等我"}
     ],
     explanations: [
       "**Go ahead** 请便、动手吧：允许他人开始做某事。也用于：— May I open it? — Go ahead.",
       "近义：Please do / Be my guest. 反义：Hold on（等一下）。"
     ],
-    distractors: [["Go first","Hurry up"],["and leave without me.","and eat without me.","and go without me."]]
+    distractors: [["Go ahead and wait","Go ahead and leave"],["with me.","before I arrive.","until I return."]]
   },
   {
     sentence: "Have fun at the party tonight!",
     cid: fnv8("Have fun at the party tonight!"),
     translation: "今晚派对玩得开心！",
     chunks: ["Have fun","at the party tonight!"],
-    hints: ["祝玩得开心","今晚派对"],
+    hints: ["祝玩得开心","在今晚的派对上"],
     grammar: [
       {role:"祝福习语", color:"#7c5cbf", phonetic:["/hæv/","/fʌn/"], pos:"习语·告别祝福", meaning:"玩得开心"},
       {role:"介宾短语", color:"#c87033", phonetic:["/ət/","/ðə/","/ˈpɑːrti/","/tʊˈnaɪt/"], pos:"介词短语", meaning:"今晚的派对"}
@@ -1138,7 +1132,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I'll stand by you no matter what."),
     translation: "无论如何我都会支持你。",
     chunks: ["I'll stand by","you no matter what."],
-    hints: ["无论发生什么都支持","我会站在你这边的"],
+    hints: ["我会支持","你，无论如何"],
     grammar: [
       {role:"支持习语", color:"#7c5cbf", phonetic:["/stænd/","/baɪ/"], pos:"习语·短语动词", meaning:"支持、站在一边"},
       {role:"宾语状语", color:"#c87033", phonetic:["/juː/","/noʊ/","/ˈmætər/","/wɑːt/"], pos:"让步从句缩写", meaning:"无论发生什么"}
@@ -1170,7 +1164,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("After you — please, go in first."),
     translation: "您先请——请先进。",
     chunks: ["After you —","please, go in first."],
-    hints: ["礼貌让对方先","请先进去"],
+    hints: ["您先请","请先进去"],
     grammar: [
       {role:"礼让习语", color:"#7c5cbf", phonetic:["/ˈæftər/","/juː/"], pos:"习语·礼貌让先", meaning:"您先请"},
       {role:"祈使句", color:"#c87033", phonetic:["/pliːz/","/ɡoʊ/","/ɪn/","/fɜːrst/"], pos:"祈使句", meaning:"请先进"}
@@ -1250,7 +1244,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("That's it — I'm done with this job."),
     translation: "就这样了——我对这工作受够了。",
     chunks: ["That's it —","I'm done with this job."],
-    hints: ["表示结束","我与这份工作绝交了"],
+    hints: ["够了！","我受够这份工作了"],
     grammar: [
       {role:"终结习语", color:"#7c5cbf", phonetic:["/ðæts/","/ɪt/"], pos:"习语·终结", meaning:"就这样、够了"},
       {role:"主系表", color:"#c87033", phonetic:["/aɪm/","/dʌn/","/wɪð/","/ðɪs/","/dʒɑːb/"], pos:"完成式", meaning:"我对这份工作做完了"}
@@ -1266,7 +1260,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I haven't seen you for ages — what's up?"),
     translation: "好久没见到你了——最近怎么样？",
     chunks: ["I haven't seen you for ages —","what's up?"],
-    hints: ["我很久没见你了","问候语：最近怎么样"],
+    hints: ["我很久没见你了","最近怎么样？"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/ˈhævənt/","/siːn/","/juː/","/fɔːr/","/ˈeɪdʒɪz/"], pos:"现在完成时", meaning:"我很久没见你"},
       {role:"问候习语", color:"#7c5cbf", phonetic:["/wʌts/","/ʌp/"], pos:"习语·招呼", meaning:"怎么了？最近怎样？"}
@@ -1330,7 +1324,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Be my guest — help yourself to coffee."),
     translation: "请便——随意喝咖啡吧。",
     chunks: ["Be my guest —","help yourself to coffee."],
-    hints: ["请对方随意","咖啡自便"],
+    hints: ["请自便","咖啡请随意取用"],
     grammar: [
       {role:"允许习语", color:"#7c5cbf", phonetic:["/biː/","/maɪ/","/ɡest/"], pos:"习语·允许", meaning:"请便、随意"},
       {role:"祈使句宾", color:"#c87033", phonetic:["/help/","/jɔːrˈself/","/tʊ/","/ˈkɔːfi/"], pos:"反身代词+介宾", meaning:"自己取咖啡"}
@@ -1345,17 +1339,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "By no means should you open that door.",
     cid: fnv8("By no means should you open that door."),
     translation: "你绝对不应该打开那扇门。",
-    chunks: ["By no means","should you open that door."],
-    hints: ["绝对不","应该打开吗"],
+    chunks: ["By no means should you","open that door."],
+    hints: ["你绝对不应该","打开那扇门"],
     grammar: [
-      {role:"否定习语", color:"#7c5cbf", phonetic:["/baɪ/","/noʊ/","/miːnz/"], pos:"习语·强调否定", meaning:"绝不、绝不"},
-      {role:"倒装句", color:"#c87033", phonetic:["/ʃʊd/","/juː/","/ˈoʊpən/","/ðæt/","/dɔːr/"], pos:"半倒装情态", meaning:"你绝不要开门"}
+      {role:"否定倒装结构", color:"#7c5cbf", phonetic:["/baɪ/","/noʊ/","/miːnz/","/ʃʊd/","/juː/"], pos:"否定状语引起部分倒装", meaning:"你绝对不应该"},
+      {role:"动词短语", color:"#c87033", phonetic:["/ˈoʊpən/","/ðæt/","/dɔːr/"], pos:"动词短语", meaning:"打开那扇门"}
     ],
     explanations: [
       "**by no means** 绝不（加强否定）。句中位=部分倒装：By no means should you ... = You should never ...",
       "近义：Not at all / Never / Absolutely not. 例：By no means am I going to apologize."
     ],
-    distractors: [["By all means","In no circumstances"],["should you touch that door.","should you open that window.","should you knock on that door."]]
+    distractors: [["By all means should you","In no circumstances should you"],["touch that door.","open that window.","knock on that door."]]
   },
   {
     sentence: "He runs the office by the book.",
@@ -1377,11 +1371,11 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Go easy on the salt — I'm on a diet.",
     cid: fnv8("Go easy on the salt — I'm on a diet."),
     translation: "盐少放点——我在减肥。",
-    chunks: ["Go easy on","the salt — I'm on a diet."],
-    hints: ["对……温和点","我在节食"],
+    chunks: ["Go easy on the salt —","I'm on a diet."],
+    hints: ["盐少放点","我在节食"],
     grammar: [
-      {role:"温和习语", color:"#7c5cbf", phonetic:["/ɡoʊ/","/ˈiːzi/","/ɑːn/"], pos:"习语·动词短语", meaning:"对...温和/手下留情"},
-      {role:"宾语从句", color:"#c87033", phonetic:["/ðə/","/sɔːlt/","/aɪm/","/ɑːn/","/ə/","/ˈdaɪət/"], pos:"主系表", meaning:"盐...我在节食"}
+      {role:"习语+宾语", color:"#7c5cbf", phonetic:["/ɡoʊ/","/ˈiːzi/","/ɑːn/","/ðə/","/sɔːlt/"], pos:"动词习语+宾语", meaning:"盐少放点"},
+      {role:"原因说明", color:"#c87033", phonetic:["/aɪm/","/ɑːn/","/ə/","/ˈdaɪət/"], pos:"主系表", meaning:"我在节食"}
     ],
     explanations: [
       "**Go easy on** 对...温和/手下留情/少放。可接人：Go easy on him (he's new). 也可接物：Go easy on the criticism.",
@@ -1394,7 +1388,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I can't get used to waking up early."),
     translation: "我还没习惯早起。",
     chunks: ["I can't get used to","waking up early."],
-    hints: ["习惯于","早起"],
+    hints: ["还没习惯","早起"],
     grammar: [
       {role:"习惯习语", color:"#7c5cbf", phonetic:["/ɡet/","/juːst/","/tuː/"], pos:"习语·短语动词", meaning:"习惯于"},
       {role:"动宾状语", color:"#c87033", phonetic:["/ˈweɪkɪŋ/","/ʌp/","/ˈɜːrli/"], pos:"动名词短语", meaning:"在早间醒来"}
@@ -1410,7 +1404,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Keep it up — you're doing great."),
     translation: "保持下去——你做得很好。",
     chunks: ["Keep it up —","you're doing great."],
-    hints: ["保持现状","你很棒"],
+    hints: ["继续保持","你做得很好"],
     grammar: [
       {role:"鼓励习语", color:"#7c5cbf", phonetic:["/kiːp/","/ɪt/","/ʌp/"], pos:"习语·短语动词", meaning:"保持、不要停"},
       {role:"主系状", color:"#c87033", phonetic:["/jʊr/","/ˈduːɪŋ/","/ɡreɪt/"], pos:"现在进行+表语", meaning:"你做得真棒"}
@@ -1570,7 +1564,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I said no, so there!"),
     translation: "我说不就不，就这么定了！",
     chunks: ["I said no,","so there!"],
-    hints: ["我不愿意","就这样啦"],
+    hints: ["我说了不","就这么定了！"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/sed/","/noʊ/"], pos:"一般过去时", meaning:"我说了不"},
       {role:"坚持习语", color:"#7c5cbf", phonetic:["/soʊ/","/ðɛr/"], pos:"习语·坚持", meaning:"就这么着！就这样！"}
@@ -1602,7 +1596,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I'm good — I don't need help."),
     translation: "我没事——不需要帮忙。",
     chunks: ["I'm good —","I don't need help."],
-    hints: ["我很好","不需要帮忙"],
+    hints: ["我没事／不用了","不需要帮忙"],
     grammar: [
       {role:"自足习语", color:"#7c5cbf", phonetic:["/aɪm/","/ɡʊd/"], pos:"习语·状态形容", meaning:"我很好、不需要"},
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/doʊnt/","/niːd/","/help/"], pos:"否定陈述句", meaning:"我不需要帮忙"}
@@ -1680,9 +1674,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "As I say, please pay attention.",
     cid: fnv8("As I say, please pay attention."),
-    translation: "依我说的话，请注意听。",
+    translation: "正如我说的，请注意听。",
     chunks: ["As I say,","please pay attention."],
-    hints: ["按我说的话","请注意"],
+    hints: ["正如我所说","请注意"],
     grammar: [
       {role:"援引习语", color:"#7c5cbf", phonetic:["/æz/","/aɪ/","/seɪ/"], pos:"习语·方式状从", meaning:"照我说的、依我"},
       {role:"祈使句", color:"#c87033", phonetic:["/pliːz/","/peɪ/","/əˈtenʃən/"], pos:"祈使句", meaning:"请注意"}
@@ -1794,18 +1788,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "We sat by the lake and soaked up the sunshine.",
     cid: fnv8("We sat by the lake and soaked up the sunshine."),
     translation: "我们坐在湖边尽情享受阳光。",
-    chunks: ["We sat by the lake and","soaked up","the sunshine."],
-    hints: ["我们坐在湖边","尽情享受","阳光"],
+    chunks: ["We sat by the lake","and soaked up the sunshine."],
+    hints: ["我们坐在湖边","并尽情享受阳光"],
     grammar: [
-      {role:"主谓", color:"#c87033", phonetic:["/wiː/","/sæt/","/baɪ/","/ðə/","/leɪk/","/ænd/"], pos:"过去时陈述", meaning:"我们坐在湖边"},
-      {role:"短语动词", color:"#7c5cbf", phonetic:["/soʊkt/","/ʌp/"], pos:"短语动词·吸收", meaning:"尽情享受（阳光）"},
-      {role:"宾语", color:"#3358e0", phonetic:["/ðə/","/ˈsʌnʃaɪn/"], pos:"名词短语", meaning:"阳光"}
+      {role:"主谓", color:"#c87033", phonetic:["/wiː/","/sæt/","/baɪ/","/ðə/","/leɪk/"], pos:"过去时陈述", meaning:"我们坐在湖边"},
+      {role:"并列谓语+宾语", color:"#7c5cbf", phonetic:["/ænd/","/soʊkt/","/ʌp/","/ðə/","/ˈsʌnʃaɪn/"], pos:"soak up 短语动词", meaning:"并尽情享受阳光"}
     ],
     explanations: [
       "**soak up** 本义「吸收（液体）」，引申为尽情享受（阳光/氛围/知识）：soak up the atmosphere / soak up knowledge。",
       "近义：take in / bask in。例句：I love soaking up the café vibe on weekend mornings."
     ],
-    distractors: [["We stood by the lake and","We sat by the sea and","We walked by the lake and"],["avoided","faced"],["the moonlight.","the fresh air.","the view."]]
+    distractors: [["We stood by the lake","We sat by the sea","We walked by the lake"],["and soaked up the fresh air.","and watched the sunset.","and enjoyed the view."]]
   },
   {
     sentence: "Don't pass up this chance to study abroad.",
@@ -1957,18 +1950,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "That's enough TV for tonight — go to bed.",
     cid: fnv8("That's enough TV for tonight — go to bed."),
     translation: "今晚电视看到这就够了，去睡觉。",
-    chunks: ["That's enough","TV for tonight —","go to bed."],
-    hints: ["这就够了","今晚的电视","去睡觉"],
+    chunks: ["That's enough TV for tonight —","go to bed."],
+    hints: ["今晚电视看到这就够了，","去睡觉。"],
     grammar: [
-      {role:"口语习语", color:"#7c5cbf", phonetic:["/ðæts/","/ɪˈnʌf/"], pos:"习语·制止", meaning:"够了，到此为止"},
-      {role:"名词短语", color:"#3358e0", phonetic:["/ˌtiːˈviː/","/fər/","/təˈnaɪt/"], pos:"名词短语", meaning:"今晚的电视"},
+      {role:"口语制止", color:"#7c5cbf", phonetic:["/ðæts/","/ɪˈnʌf/","/ˌtiːˈviː/","/fər/","/təˈnaɪt/"], pos:"口语句块", meaning:"今晚电视看到这就够了"},
       {role:"祈使句", color:"#c87033", phonetic:["/ɡoʊ/","/tə/","/bed/"], pos:"祈使句", meaning:"去睡觉"}
     ],
     explanations: [
       "**that's enough** 是制止语「够了/到此为止」，父母制止孩子、或人忍无可忍时都用，语气随重音可柔可硬。",
       "近义：enough is enough（受够了）/ cut it out（别闹了）。例句：That's enough complaining for one day!"
     ],
-    distractors: [["That's too much","That's so much"],["homework for tonight —","TV for today —"],["go home.","go to your room."]]
+    distractors: [["That's too much TV for tonight —","That's enough homework for tonight —"],["go home.","go to your room."]]
   },
   {
     sentence: "I almost agreed, but on second thought I declined.",
@@ -1991,18 +1983,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "She's been seeing someone from work for months.",
     cid: fnv8("She's been seeing someone from work for months."),
     translation: "她跟一个同事交往好几个月了。",
-    chunks: ["She's been","seeing someone","from work for months."],
-    hints: ["她一直","在和某人交往","来自同事、好几个月了"],
+    chunks: ["She's been seeing someone from work","for months."],
+    hints: ["她一直在和一位同事交往","已经好几个月了"],
     grammar: [
-      {role:"现在完成进行时", color:"#c87033", phonetic:["/ʃiːz/","/bɪn/"], pos:"现在完成进行时助动", meaning:"她一直在"},
-      {role:"习语·动词短语", color:"#7c5cbf", phonetic:["/ˈsiːɪŋ/","/ˈsʌmwʌn/"], pos:"习语·约会交往", meaning:"和某人约会/交往"},
-      {role:"状语", color:"#3358e0", phonetic:["/frəm/","/wɜːrk/","/fər/","/mʌnθs/"], pos:"介词短语", meaning:"与同事、持续数月"}
+      {role:"现在完成进行时+交往表达", color:"#7c5cbf", phonetic:["/ʃiːz/","/bɪn/","/ˈsiːɪŋ/","/ˈsʌmwʌn/","/frəm/","/wɜːrk/"], pos:"持续交往状态", meaning:"她一直在和一位同事交往"},
+      {role:"时间状语", color:"#3358e0", phonetic:["/fər/","/mʌnθs/"], pos:"持续时长", meaning:"已经好几个月了"}
     ],
     explanations: [
       "**seeing someone** 是「与某人交往中」的委婉说法，比 dating 更口语低调。问别人感情状态常说：Are you seeing anyone?",
       "近义：dating / going out with。例句：I heard she's seeing a guy from the marketing team."
     ],
-    distractors: [["She was","She kept"],["watching someone","meeting someone"],["from school for months.","from work for weeks."]]
+    distractors: [["She was seeing someone from school","She kept meeting someone from work"],["for weeks.","for years."]]
   },
   {
     sentence: "Stop fooling around and finish your homework.",
@@ -2168,19 +2159,18 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "The concert was sold out — we got in by the skin of our teeth.",
     cid: fnv8("The concert was sold out — we got in by the skin of our teeth."),
-    translation: "演唱会票卖光了，我们险险挤了进去。",
-    chunks: ["The concert was sold out —","we got in","by the skin of our teeth."],
-    hints: ["演唱会已售罄","我们进去了","侥幸万分/千钧一发"],
+    translation: "演唱会门票卖光了，我们好不容易才挤进去，差点没进去。",
+    chunks: ["The concert was sold out —","we got in by the skin of our teeth."],
+    hints: ["演唱会门票已售罄","我们侥幸挤了进去，差一点就没进去"],
     grammar: [
-      {role:"被动语态", color:"#c87033", phonetic:["/ðə/","/ˈkɑːnsərt/","/wʌz/","/soʊld/","/aʊt/"], pos:"过去时被动", meaning:"演唱会票卖光了"},
-      {role:"主谓", color:"#3358e0", phonetic:["/wiː/","/ɡɑːt/","/ɪn/"], pos:"过去时短语动词", meaning:"我们进去了"},
-      {role:"习语·状语", color:"#7c5cbf", phonetic:["/baɪ/","/ðə/","/skɪn/","/əv/","/aʊər/","/tiːθ/"], pos:"习语·侥幸万分", meaning:"千钧一发、差一点就错过"}
+      {role:"被动语态", color:"#c87033", phonetic:["/ðə/","/ˈkɑːnsərt/","/wʌz/","/soʊld/","/aʊt/"], pos:"过去时被动", meaning:"演唱会门票已售罄"},
+      {role:"短语动词+习语", color:"#7c5cbf", phonetic:["/wiː/","/ɡɑːt/","/ɪn/","/baɪ/","/ðə/","/skɪn/","/əv/","/aʊər/","/tiːθ/"], pos:"got in by the skin of one's teeth", meaning:"我们侥幸挤了进去，差一点就没进去"}
     ],
     explanations: [
       "**by the skin of one's teeth** 形象表达「侥幸脱险/勉强赶上」，像只剩牙皮那点距离。考试低空飞过、赶车最后一秒都适用。",
       "例句：I caught my flight by the skin of my teeth — the gate was already closing."
     ],
-    distractors: [["The concert was starting —","The concert was almost sold out —"],["we showed up","we got tickets"],["without any trouble.","after a long wait."]]
+    distractors: [["The concert was starting —","The concert was almost sold out —"],["we got in without any trouble.","we failed to get in at all."]]
   }
 ,
   {
@@ -2204,25 +2194,24 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Whenever I'm in trouble, I turn to my best friend.",
     cid: fnv8("Whenever I'm in trouble, I turn to my best friend."),
     translation: "一有麻烦，我就会向最好的朋友求助。",
-    chunks: ["Whenever I'm in trouble,","I turn to","my best friend."],
-    hints: ["每当我有麻烦时","我求助","我最好的朋友"],
+    chunks: ["Whenever I'm in trouble,","I turn to my best friend."],
+    hints: ["每当我遇到麻烦时","我就向最好的朋友求助"],
     grammar: [
       {role:"时间状语从句", color:"#c87033", phonetic:["/wenˈevər/","/aɪm/","/ɪn/","/ˈtrʌbl/"], pos:"时间状语从句", meaning:"每当我遇到麻烦"},
-      {role:"短语动词", color:"#7c5cbf", phonetic:["/aɪ/","/tɜːrn/","/tə/"], pos:"短语动词·求助", meaning:"我求助于/转向"},
-      {role:"宾语", color:"#3358e0", phonetic:["/maɪ/","/best/","/frend/"], pos:"名词短语", meaning:"我最好的朋友"}
+      {role:"谓语+宾语", color:"#7c5cbf", phonetic:["/aɪ/","/tɜːrn/","/tə/","/maɪ/","/best/","/frend/"], pos:"turn to sb 求助", meaning:"我就向最好的朋友求助"}
     ],
     explanations: [
       "**turn to** 字面「转向某人」，引申「求助、依靠」。turn to sb for help / advice 是固定搭配。",
       "近义：rely on / count on。例句：When the project failed, he turned to his mentor for guidance."
     ],
-    distractors: [["Whenever I'm in danger,","Whenever I'm in a hurry,"],["I listen to","I write to"],["my old friend.","my parents."]]
+    distractors: [["Whenever I'm in danger,","Whenever I'm in a hurry,"],["I turn to my old friend.","I turn to my parents."]]
   },
   {
     sentence: "That joke is killing me — I can't stop laughing.",
     cid: fnv8("That joke is killing me — I can't stop laughing."),
     translation: "这笑话要笑死我了，根本停不下来。",
     chunks: ["That joke is killing me —","I can't stop laughing."],
-    hints: ["那笑话笑死我了","我停不下来笑"],
+    hints: ["那笑话笑死我了","我笑得停不下来"],
     grammar: [
       {role:"习语·谓语", color:"#7c5cbf", phonetic:["/ðæt/","/dʒoʊk/","/ɪz/","/ˈkɪlɪŋ/","/miː/"], pos:"习语·笑到不行", meaning:"这笑话快把我笑死了"},
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/kænt/","/stɑːp/","/ˈlæfɪŋ/"], pos:"现在时陈述", meaning:"我忍不住一直笑"}
@@ -2236,9 +2225,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Cut the jokes — let's get serious for a minute.",
     cid: fnv8("Cut the jokes — let's get serious for a minute."),
-    translation: "别开玩笑了，我们说一分钟正经的。",
+    translation: "别开玩笑了，我们认真一会儿。",
     chunks: ["Cut the jokes —","let's get serious","for a minute."],
-    hints: ["别开玩笑","我们说正经的","就一分钟"],
+    hints: ["别开玩笑","我们认真起来","一会儿"],
     grammar: [
       {role:"祈使句", color:"#c87033", phonetic:["/kʌt/","/ðə/","/dʒoʊks/"], pos:"祈使句·口语", meaning:"别开玩笑（打住）"},
       {role:"习语·谓语", color:"#7c5cbf", phonetic:["/lets/","/ɡet/","/ˈsɪriəs/"], pos:"习语·认真起来", meaning:"我们认真谈"},
@@ -2287,7 +2276,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Stop second-guessing yourself and just send the email."),
     translation: "别反复纠结了，把邮件发出去就行。",
     chunks: ["Stop second-guessing yourself","and just send the email."],
-    hints: ["别再事后怀疑自己","直接发邮件就行"],
+    hints: ["别再反复怀疑自己","直接发邮件就行"],
     grammar: [
       {role:"祈使句+习语", color:"#7c5cbf", phonetic:["/stɑːp/","/ˈsekəndˈɡesɪŋ/","/jɔːrˈself/"], pos:"习语·反复怀疑", meaning:"别再自我怀疑/反复纠结"},
       {role:"祈使句", color:"#c87033", phonetic:["/ænd/","/dʒʌst/","/send/","/ðiː/","/ˈiːmeɪl/"], pos:"祈使句", meaning:"直接把邮件发出去"}
@@ -2320,7 +2309,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Fill me in — I need to get up to speed on this project."),
     translation: "给我讲讲，我得尽快跟上这个项目的进度。",
     chunks: ["Fill me in —","I need to get up to speed","on this project."],
-    hints: ["给我补补课","我需要尽快跟上进度","关于这个项目"],
+    hints: ["把情况告诉我","我需要尽快跟上进度","关于这个项目"],
     grammar: [
       {role:"祈使句·短语", color:"#c87033", phonetic:["/fɪl/","/miː/","/ɪn/"], pos:"短语动词·告知详情", meaning:"给我讲讲详情"},
       {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/niːd/","/tə/","/ɡet/","/ʌp/","/tə/","/spiːd/"], pos:"习语·赶上进度", meaning:"我需要尽快熟悉情况"},
@@ -2353,7 +2342,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("He didn't respect me, so I told him to take a hike."),
     translation: "他不尊重我，我就叫他滚一边去。",
     chunks: ["He didn't respect me,","so I told him to take a hike."],
-    hints: ["他不尊重我","所以我要他滚蛋"],
+    hints: ["他不尊重我","所以我叫他滚一边去"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/hiː/","/ˈdɪdnt/","/rɪˈspekt/","/miː/"], pos:"过去时否定", meaning:"他不尊重我"},
       {role:"习语·不定式", color:"#7c5cbf", phonetic:["/soʊ/","/aɪ/","/toʊld/","/hɪm/","/tə/","/teɪk/","/ə/","/haɪk/"], pos:"习语·叫人走开", meaning:"所以我叫他走开/滚蛋"}
@@ -2499,10 +2488,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Apply anyway — you never know what might happen."),
     translation: "先投了再说，结果谁知道呢。",
     chunks: ["Apply anyway —","you never know","what might happen."],
-    hints: ["不管怎样先申请","你永远说不准","会发生什么"],
+    hints: ["不管怎样先申请","谁知道呢","会发生什么"],
     grammar: [
       {role:"祈使句", color:"#c87033", phonetic:["/əˈplaɪ/","/ˈeniweɪ/"], pos:"祈使句", meaning:"无论如何先申请"},
-      {role:"习语·主句", color:"#7c5cbf", phonetic:["/juː/","/ˈnevər/","/noʊ/"], pos:"习语·世事难料", meaning:"你永远说不准"},
+      {role:"习语·主句", color:"#7c5cbf", phonetic:["/juː/","/ˈnevər/","/noʊ/"], pos:"习语·世事难料", meaning:"谁知道呢"},
       {role:"宾语从句", color:"#3358e0", phonetic:["/wʌt/","/maɪt/","/ˈhæpən/"], pos:"宾语从句", meaning:"会发生什么"}
     ],
     explanations: [
@@ -2627,18 +2616,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "She's had a crush on her classmate since middle school.",
     cid: fnv8("She's had a crush on her classmate since middle school."),
     translation: "她从中学起就一直暗恋那个同学。",
-    chunks: ["She's had a crush on","her classmate","since middle school."],
-    hints: ["她一直暗恋","她的同学","从中学起"],
+    chunks: ["She's had a crush on her classmate","since middle school."],
+    hints: ["她一直暗恋她的同学","从中学起"],
     grammar: [
-      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/ʃiːz/","/hæd/","/ə/","/krʌʃ/","/ɑːn/"], pos:"习语·暗恋", meaning:"她对…暗恋"},
-      {role:"宾语", color:"#3358e0", phonetic:["/hɜːr/","/ˈklæsmeɪt/"], pos:"名词短语", meaning:"她的同学"},
+      {role:"习语·谓语+宾语", color:"#7c5cbf", phonetic:["/ʃiːz/","/hæd/","/ə/","/krʌʃ/","/ɑːn/","/hɜːr/","/ˈklæsmeɪt/"], pos:"have a crush on sb 暗恋", meaning:"她一直暗恋她的同学"},
       {role:"时间状语", color:"#c87033", phonetic:["/sɪns/","/ˈmɪdl/","/skuːl/"], pos:"时间状语", meaning:"从中学时代起"}
     ],
     explanations: [
       "**have a crush on someone** 指「暗恋某人」，是青涩单向的喜欢，区别于认真的恋爱关系。",
       "例句：I had a huge crush on my English teacher in high school."
     ],
-    distractors: [["She's kept an eye on","She's taken care of"],["her teacher.","her neighbor."],["since high school.","during middle school."]]
+    distractors: [["She's kept an eye on her teacher","She's taken care of her neighbor"],["since high school.","during middle school."]]
   },
   {
     sentence: "Give me a break — I've been working nonstop for eight hours.",
@@ -2659,11 +2647,11 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "You paid for dinner last time, so drinks are on me.",
     cid: fnv8("You paid for dinner last time, so drinks are on me."),
-    translation: "上次晚饭你付的钱，这次饮料我请。",
+    translation: "上次晚饭是你付的钱，这次饮料我请。",
     chunks: ["You paid for dinner last time, so","drinks are on me."],
-    hints: ["上次晚饭你付的钱","这次饮料我请"],
+    hints: ["上次晚饭是你付的钱，所以","这次饮料我请"],
     grammar: [
-      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/peɪd/","/fər/","/ˈdɪnər/","/læst/","/taɪm/","/soʊ/"], pos:"过去时·请客", meaning:"上次你付了晚饭钱"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/peɪd/","/fər/","/ˈdɪnər/","/læst/","/taɪm/","/soʊ/"], pos:"过去时·请客", meaning:"上次晚饭是你付的钱，所以"},
       {role:"习语·表语", color:"#7c5cbf", phonetic:["/drɪŋks/","/ɑːr/","/ɑːn/","/miː/"], pos:"习语·费用承担", meaning:"这次饮料我请"}
     ],
     explanations: [
@@ -2693,7 +2681,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I have nothing to lose by telling you the truth."),
     translation: "跟你说实话，我没什么可失去的。",
     chunks: ["I have nothing to lose","by telling you the truth."],
-    hints: ["我没什么可输的","通过告诉你真相"],
+    hints: ["我没什么可失去的","把真相告诉你"],
     grammar: [
       {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/hæv/","/ˈnʌθɪŋ/","/tə/","/luːz/"], pos:"习语·无所顾忌", meaning:"我没什么可失去的"},
       {role:"方式状语", color:"#c87033", phonetic:["/baɪ/","/ˈtelɪŋ/","/juː/","/ðə/","/truːθ/"], pos:"介词+动名词", meaning:"把真相告诉你"}
@@ -2709,18 +2697,17 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "You've been working all day — take it easy tonight.",
     cid: fnv8("You've been working all day — take it easy tonight."),
     translation: "你今天忙了一整天，今晚好好歇歇。",
-    chunks: ["You've been working all day —","take it easy","tonight."],
-    hints: ["你今天一直忙","放轻松","今晚"],
+    chunks: ["You've been working all day —","take it easy tonight."],
+    hints: ["你今天一直忙","今晚好好歇歇"],
     grammar: [
       {role:"现在完成进行时", color:"#c87033", phonetic:["/juːv/","/bɪn/","/ˈwɜːrkɪŋ/","/ɔːl/","/deɪ/"], pos:"现在完成进行时", meaning:"你已经忙了一整天"},
-      {role:"习语·劝告", color:"#7c5cbf", phonetic:["/teɪk/","/ɪt/","/ˈiːzi/"], pos:"习语·放轻松", meaning:"放松点、悠着点"},
-      {role:"时间状语", color:"#3358e0", phonetic:["/təˈnaɪt/"], pos:"时间状语", meaning:"今晚"}
+      {role:"习语·劝告", color:"#7c5cbf", phonetic:["/teɪk/","/ɪt/","/ˈiːzi/","/təˈnaɪt/"], pos:"take it easy + 时间", meaning:"今晚好好歇歇"}
     ],
     explanations: [
       "**take it easy** 意为「放轻松/悠着点」，既是日常安慰也是建议。比 relax 更主动。",
       "近义：chill out / don't push yourself。例句：Take it easy — there's no rush."
     ],
-    distractors: [["You've been resting all day —","You've been working all night —"],["take it slow","take it back"],["this evening.","tomorrow."]]
+    distractors: [["You've been resting all day —","You've been working all night —"],["take it slow this evening.","take it back tomorrow."]]
   },
   {
     sentence: "\"Work fewer hours?\" — \"Easy for you to say!\"",
@@ -2808,10 +2795,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Show some respect — that's your father you're talking to."),
     translation: "放尊重点，你在跟你爸说话呢。",
     chunks: ["Show some respect —","that's your father you're talking to."],
-    hints: ["有点尊重（命令）","那是你爸在跟你说话"],
+    hints: ["放尊重点","你现在说话的可是你父亲"],
     grammar: [
       {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ʃoʊ/","/sʌm/","/rɪˈspekt/"], pos:"习语·命令尊重", meaning:"放尊重点"},
-      {role:"主系表+定语", color:"#c87033", phonetic:["/ðæts/","/jʊr/","/ˈfɑːðər/","/jʊr/","/ˈtɔːkɪŋ/","/tə/"], pos:"定语从句", meaning:"那是你的父亲在跟你说话"}
+      {role:"主系表+定语", color:"#c87033", phonetic:["/ðæts/","/jʊr/","/ˈfɑːðər/","/jʊr/","/ˈtɔːkɪŋ/","/tə/"], pos:"定语从句", meaning:"你现在说话的可是你父亲"}
     ],
     explanations: [
       "**show some respect** 是长辈/上级对不敬者的警告：「放尊重点」，语气直接。",
@@ -2919,11 +2906,11 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Give me a minute — I'll be right back.",
     cid: fnv8("Give me a minute — I'll be right back."),
-    translation: "给我一分钟，我马上回来。",
+    translation: "等我一下，我马上回来。",
     chunks: ["Give me a minute —","I'll be right back."],
-    hints: ["给我一分钟","我马上回来"],
+    hints: ["等我一下","我马上回来"],
     grammar: [
-      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡɪv/","/miː/","/ə/","/ˈmɪnɪt/"], pos:"习语·稍候", meaning:"给我一分钟"},
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡɪv/","/miː/","/ə/","/ˈmɪnɪt/"], pos:"习语·稍候", meaning:"等我一下"},
       {role:"主系表", color:"#c87033", phonetic:["/aɪl/","/biː/","/raɪt/","/bæk/"], pos:"将来时·短语", meaning:"我马上回来"}
     ],
     explanations: [
@@ -2953,7 +2940,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Have a good time at the concert — say hi to the band!"),
     translation: "演唱会玩得开心，替我跟乐队问好！",
     chunks: ["Have a good time","at the concert —","say hi to the band!"],
-    hints: ["祝你玩得开心","演唱会","替我跟乐队问好"],
+    hints: ["祝你玩得开心","在演唱会上","替我跟乐队问好"],
     grammar: [
       {role:"习语·祈使", color:"#7c5cbf", phonetic:["/hæv/","/ə/","/ɡʊd/","/taɪm/"], pos:"习语·告别祝福", meaning:"玩得开心"},
       {role:"介词短语", color:"#3358e0", phonetic:["/æt/","/ðə/","/ˈkɑːnsərt/"], pos:"介词短语", meaning:"演唱会上"},
@@ -3000,19 +2987,18 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Could I have a word with you in private?",
     cid: fnv8("Could I have a word with you in private?"),
-    translation: "能跟你单独说两句吗？",
-    chunks: ["Could I","have a word with you","in private?"],
-    hints: ["我能","跟你单独说几句","私下里"],
+    translation: "能私下跟你说几句话吗？",
+    chunks: ["Could I","have a word with you in private?"],
+    hints: ["我能否","私下跟你说几句？"],
     grammar: [
-      {role:"情态动词", color:"#3358e0", phonetic:["/kʊd/","/aɪ/"], pos:"情态动词", meaning:"我能"},
-      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/hæv/","/ə/","/wɜːrd/","/wɪð/","/juː/"], pos:"习语·私下谈", meaning:"私下跟你谈几句"},
-      {role:"状语", color:"#c87033", phonetic:["/ɪn/","/ˈpraɪvət/"], pos:"介词短语", meaning:"私下地"}
+      {role:"情态动词", color:"#3358e0", phonetic:["/kʊd/","/aɪ/"], pos:"情态动词", meaning:"我能否"},
+      {role:"习语·谓语+方式", color:"#7c5cbf", phonetic:["/hæv/","/ə/","/wɜːrd/","/wɪð/","/juː/","/ɪn/","/ˈpraɪvət/"], pos:"have a word with sb privately", meaning:"私下跟你说几句"}
     ],
     explanations: [
       "**have a word with** 是「私下谈几句」，比 talk to 更含蓄有礼，常用于请人离开公众场合。",
       "近义：speak privately / have a quick chat。例句：Do you have a minute? I'd like to have a word with you."
     ],
-    distractors: [["May I","Could you"],["have a talk with you","have a word with me"],["in public?","in a minute?"]]
+    distractors: [["May I","Could you"],["have a talk with you in public?","have a word with me in a minute?"]]
   },
   {
     sentence: "I'll cover the tip — it's a deal!",
@@ -3051,10 +3037,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("We have pasta, salad, soup — you name it, we've got it."),
     translation: "我们有意大利面、沙拉、汤——你要什么有什么。",
     chunks: ["We have pasta, salad, soup —","you name it,","we've got it."],
-    hints: ["我们有面、沙拉、汤","随你点名","我们都有"],
+    hints: ["我们有面、沙拉、汤","你能想到的","我们都有"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/wiː/","/hæv/","/ˈpæstə/","/ˈsæləd/","/suːp/"], pos:"一般现在时", meaning:"我们有面、沙拉、汤"},
-      {role:"习语·从句", color:"#7c5cbf", phonetic:["/juː/","/neɪm/","/ɪt/"], pos:"习语·列举", meaning:"随便你点（能想到的都有）"},
+      {role:"习语·从句", color:"#7c5cbf", phonetic:["/juː/","/neɪm/","/ɪt/"], pos:"习语·列举", meaning:"你能想到的"},
       {role:"主谓宾", color:"#3358e0", phonetic:["/wiːv/","/ɡɑːt/","/ɪt/"], pos:"完成时·短语", meaning:"我们都有"}
     ],
     explanations: [
@@ -3116,10 +3102,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I need to know your decision — just say the word."),
     translation: "我需要知道你的决定，你开口就行。",
     chunks: ["I need to know your decision —","just say the word."],
-    hints: ["我需要知道你的决定","你一句话的事（随时告诉我）"],
+    hints: ["我需要知道你的决定","你开口就行"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/niːd/","/tə/","/noʊ/","/jʊr/","/dɪˈsɪʒən/"], pos:"need to+动词", meaning:"我需要知道你的决定"},
-      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/dʒʌst/","/seɪ/","/ðə/","/wɜːrd/"], pos:"习语·随时开口", meaning:"一句话就行，随时开口"}
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/dʒʌst/","/seɪ/","/ðə/","/wɜːrd/"], pos:"习语·随时开口", meaning:"你开口就行"}
     ],
     explanations: [
       "**say the word** = just let me know「随时说一声就行」，表示只要你开口我就行动。",
@@ -3226,15 +3212,15 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Not really — I just ate before I came over.",
     cid: fnv8("Not really — I just ate before I came over."),
-    translation: "不客气了，我出门前刚吃过。",
+    translation: "不怎么饿——我来之前刚吃过。",
     chunks: ["Not really —","I just ate before I came over."],
-    hints: ["不用了/真的不用","我过来之前刚吃过"],
+    hints: ["不怎么饿","我来之前刚吃过"],
     grammar: [
-      {role:"习语·婉拒", color:"#7c5cbf", phonetic:["/nɑːt/","/ˈriːəli/"], pos:"习语·婉转拒绝", meaning:"真不用/没有（礼貌推辞）"},
+      {role:"回应·程度否定", color:"#7c5cbf", phonetic:["/nɑːt/","/ˈriːəli/"], pos:"回应", meaning:"不怎么饿（结合下文）"},
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/dʒʌst/","/eɪt/","/bɪˈfɔːr/","/aɪ/","/keɪm/","/ˈoʊvər/"], pos:"过去时", meaning:"我过来之前刚吃过"}
     ],
     explanations: [
-      "**not really** 礼貌婉拒：「不必了/没有吧」，比 no 更温和，不会让对方下不来台。",
+      "**not really** 表示「也不算/不太」，具体要看前文；这里结合刚吃过，意思是「不怎么饿」。",
       "近义：I'm good / no thanks。例句：— Want more coffee? — Not really, but thanks."
     ],
     distractors: [["Not at all —","No problem —"],["I just ate before I came in.","I just ate before I went out."]]
@@ -3242,12 +3228,12 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "We're leaving tomorrow — not yet tonight.",
     cid: fnv8("We're leaving tomorrow — not yet tonight."),
-    translation: "我们明天走，今晚还没走。",
+    translation: "我们明天出发——今晚还不走。",
     chunks: ["We're leaving tomorrow —","not yet tonight."],
-    hints: ["我们明天出发","今晚还没呢"],
+    hints: ["我们明天出发","今晚还不走"],
     grammar: [
       {role:"主谓+时间", color:"#c87033", phonetic:["/wɪr/","/ˈliːvɪŋ/","/təˈmɑːroʊ/"], pos:"现在进行时表将来", meaning:"我们明天走"},
-      {role:"习语·状语", color:"#7c5cbf", phonetic:["/nɑːt/","/jet/","/təˈnaɪt/"], pos:"习语·否定现在", meaning:"现在还没呢"}
+      {role:"习语·状语", color:"#7c5cbf", phonetic:["/nɑːt/","/jet/","/təˈnaɪt/"], pos:"习语·否定现在", meaning:"今晚还不走"}
     ],
     explanations: [
       "**not yet** 表示「还没」，对 now? / ready? 这类当下问题的回答。",
@@ -3258,12 +3244,12 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Not much, just catching up on some emails.",
     cid: fnv8("Not much, just catching up on some emails."),
-    translation: "没什么，就是赶赶邮件。",
+    translation: "没什么，就是处理一下积压的邮件。",
     chunks: ["Not much,","just catching up on some emails."],
-    hints: ["没什么","就是赶赶邮件"],
+    hints: ["没什么","就是处理一下积压的邮件"],
     grammar: [
       {role:"习语·回应", color:"#7c5cbf", phonetic:["/nɑːt/","/mʌtʃ/"], pos:"习语·寒暄回应", meaning:"没什么特别的"},
-      {role:"动名词短语", color:"#c87033", phonetic:["/dʒʌst/","/ˈkætʃɪŋ/","/ʌp/","/ɑːn/","/sʌm/","/ˈiːmeɪlz/"], pos:"现在分词短语", meaning:"只是补补邮件"}
+      {role:"动名词短语", color:"#c87033", phonetic:["/dʒʌst/","/ˈkætʃɪŋ/","/ʌp/","/ɑːn/","/sʌm/","/ˈiːmeɪlz/"], pos:"现在分词短语", meaning:"处理一下积压的邮件"}
     ],
     explanations: [
       "**not much** 是 What's up / What's new 的标准回应：「没啥特别的」。**catch up on** = 补上落下的工作。",
@@ -3276,9 +3262,9 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("It's now or never — grab the chance!"),
     translation: "机不可失时不再来，抓住机会！",
     chunks: ["It's now or never —","grab the chance!"],
-    hints: ["要么现在要么永远没了","抓住机会"],
+    hints: ["现在不做就没机会了","抓住机会"],
     grammar: [
-      {role:"习语·主系表", color:"#7c5cbf", phonetic:["/ɪts/","/naʊ/","/ɔːr/","/ˈnevər/"], pos:"习语·关键时机", meaning:"这是要么现在要么永远没有"},
+      {role:"习语·主系表", color:"#7c5cbf", phonetic:["/ɪts/","/naʊ/","/ɔːr/","/ˈnevər/"], pos:"习语·关键时机", meaning:"现在不做就没机会了"},
       {role:"祈使句", color:"#c87033", phonetic:["/ɡræb/","/ðə/","/tʃæns/"], pos:"祈使句·短语动词", meaning:"抓住机会"}
     ],
     explanations: [
@@ -3479,10 +3465,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Don't count your chickens before they hatch."),
     translation: "别高兴太早，蛋还没孵出来呢。",
     chunks: ["Don't count your chickens","before they hatch."],
-    hints: ["别急着数小鸡","在它们孵出来之前"],
+    hints: ["别过早认定事情会成","在结果出来之前"],
     grammar: [
-      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/kaʊnt/","/jɔːr/","/ˈtʃɪkɪnz/"], pos:"谚语（前半）", meaning:"别急着数小鸡"},
-      {role:"时间状语从句", color:"#c87033", phonetic:["/bɪˈfɔː/","/ðeɪ/","/hætʃ/"], pos:"时间状语从句", meaning:"在它们孵出来之前"}
+      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/doʊnt/","/kaʊnt/","/jɔːr/","/ˈtʃɪkɪnz/"], pos:"谚语（前半）", meaning:"别过早认定事情会成"},
+      {role:"时间状语从句", color:"#c87033", phonetic:["/bɪˈfɔː/","/ðeɪ/","/hætʃ/"], pos:"时间状语从句", meaning:"在结果出来之前"}
     ],
     explanations: [
       "**Don't count your chickens before they hatch** 谚语：别高兴太早，别指望还没到手的东西。",
@@ -4064,7 +4050,7 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "I'm still learning English, so could you speak slower?",
     cid: fnv8("I'm still learning English, so could you speak slower?"),
-    translation: "你能说慢一点吗？我还在学英语。",
+    translation: "我还在学英语，所以您能说慢一点吗？",
     chunks: ["I'm still learning English,","so could you speak slower?"],
     hints: ["我还在学英语","所以能说慢点吗"],
     grammar: [
@@ -4079,12 +4065,12 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "I need your advice, so do you have a second?",
     cid: fnv8("I need your advice, so do you have a second?"),
-    translation: "你有空吗？我需要你的建议。",
+    translation: "我需要你的建议，所以你有空吗？",
     chunks: ["I need your advice,","so do you have a second?"],
-    hints: ["我需要你的建议","所以你有一分钟吗"],
+    hints: ["我需要你的建议","所以你有空吗？"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/niːd/","/jɔːr/","/ədˈvaɪs/"], pos:"一般现在时", meaning:"我需要你的建议"},
-      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/duː/","/juː/","/hæv/","/ə/","/ˈsekənd/"], pos:"习语疑问句", meaning:"你有一小会儿时间吗"}
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/duː/","/juː/","/hæv/","/ə/","/ˈsekənd/"], pos:"习语疑问句", meaning:"所以你有空吗"}
     ],
     explanations: [
       "**have a second** = 有一小会儿空。second 这里指「片刻」，比 have time 更轻量，暗示「很快就好」。",
@@ -4366,11 +4352,11 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Your help is greatly appreciated.",
     cid: fnv8("Your help is greatly appreciated."),
     translation: "十分感谢你的帮助。",
-    chunks: ["Your help is","greatly appreciated."],
-    hints: ["你的帮助","被非常感激"],
+    chunks: ["Your help","is greatly appreciated."],
+    hints: ["你的帮助","我们非常感激"],
     grammar: [
-      {role:"主系", color:"#c87033", phonetic:["/jʊr/","/help/","/ɪz/"], pos:"主语+系动词", meaning:"你的帮助"},
-      {role:"被动表语", color:"#3358e0", phonetic:["/ˈɡreɪtli/","/əˈpriːʃieɪtɪd/"], pos:"被动语态表语", meaning:"被深深地感激"}
+      {role:"主语", color:"#c87033", phonetic:["/jʊr/","/help/"], pos:"名词短语", meaning:"你的帮助"},
+      {role:"被动谓语", color:"#3358e0", phonetic:["/ɪz/","/ˈɡreɪtli/","/əˈpriːʃieɪtɪd/"], pos:"被动语态", meaning:"我们非常感激"}
     ],
     explanations: [
       "**(much/greatly) appreciated** = 不胜感激。被动式致谢，邮件、正式场合高频；口语缩略成 Much appreciated.",
@@ -4395,9 +4381,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "You fixed my bike so fast — I really appreciate it.",
     cid: fnv8("You fixed my bike so fast — I really appreciate it."),
-    translation: "你这么快修好我的车，太感谢了。",
+    translation: "你这么快就修好了我的自行车，我真的很感激。",
     chunks: ["You fixed my bike so fast —","I really appreciate it."],
-    hints: ["你很快就修好了车","我真的很感激"],
+    hints: ["你这么快就修好了我的自行车","我真的很感激"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/fɪkst/","/maɪ/","/baɪk/","/soʊ/","/fæst/"], pos:"一般过去时", meaning:"你很快修好了我的车"},
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/ˈriːəli/","/əˈpriːʃieɪt/","/ɪt/"], pos:"一般现在时", meaning:"我真的很感激"}
@@ -4412,10 +4398,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("You covered my shift yesterday — I owe you bigtime!"),
     translation: "你昨天替我值班，我欠你个大人情！",
     chunks: ["You covered my shift yesterday —","I owe you bigtime!"],
-    hints: ["你替我值班了","我大大欠你人情"],
+    hints: ["你替我值班了","我欠你一个大人情"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/ˈkʌvərd/","/maɪ/","/ʃɪft/","/ˈjestərdeɪ/"], pos:"一般过去时", meaning:"你替我值班了"},
-      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/oʊ/","/juː/","/ˈbɪɡtaɪm/"], pos:"习语+口语副词", meaning:"我大大欠你一份情"}
+      {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/oʊ/","/juː/","/ˈbɪɡtaɪm/"], pos:"习语+口语副词", meaning:"我欠你一个大人情"}
     ],
     explanations: [
       "**owe you bigtime** = 大大欠你个人情。bigtime 是口语副词「大大地、非常」，比 I owe you one 的分量重得多。",
@@ -4427,7 +4413,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("The manager praised our report — keep up the good work."),
     translation: "经理表扬了我们的报告，再接再厉啊。",
     chunks: ["The manager praised our report —","keep up the good work."],
-    hints: ["经理表扬了报告","保持好表现"],
+    hints: ["经理表扬了我们的报告","保持好表现"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/ðə/","/ˈmænɪdʒər/","/preɪzd/","/aʊər/","/rɪˈpɔːrt/"], pos:"一般过去时", meaning:"经理表扬了我们的报告"},
       {role:"习语·祈使", color:"#7c5cbf", phonetic:["/kiːp/","/ʌp/","/ðə/","/ɡʊd/","/wɜːrk/"], pos:"短语动词祈使句", meaning:"继续保持好表现"}
@@ -4741,15 +4727,15 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "You made me breakfast in bed — you are so sweet.",
     cid: fnv8("You made me breakfast in bed — you are so sweet."),
-    translation: "你把早餐端到床边，你太贴心了。",
+    translation: "你给我做了早餐，还送到床上，你太贴心了。",
     chunks: ["You made me breakfast in bed —","you are so sweet."],
-    hints: ["你做了床边早餐","你太贴心了"],
+    hints: ["你给我做了早餐，还送到床上","你太贴心了"],
     grammar: [
-      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/meɪd/","/miː/","/ˈbrekfəst/","/ɪn/","/bed/"], pos:"一般过去时+双宾", meaning:"你把早餐送到我床边"},
+      {role:"主谓宾", color:"#c87033", phonetic:["/juː/","/meɪd/","/miː/","/ˈbrekfəst/","/ɪn/","/bed/"], pos:"一般过去时+双宾", meaning:"你给我做了早餐，还送到床上"},
       {role:"主系表", color:"#c87033", phonetic:["/juː/","/ɑːr/","/soʊ/","/swiːt/"], pos:"系动词+表语", meaning:"你太贴心了"}
     ],
     explanations: [
-      "**breakfast in bed** = 送到床边的早餐。情侣、家人之间的甜蜜仪式感表达，固定搭配不加冠词。",
+      "**breakfast in bed** = 送到床上享用的早餐。情侣、家人之间的甜蜜仪式感表达，固定搭配不加冠词。",
       "**you are so sweet** = 你太贴心了。sweet 形容人「温柔体贴」，注意不是「甜」。例句：Thanks for the surprise — you are so sweet."
     ]
   },
@@ -4846,9 +4832,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "You lied to my face — you have a lot of nerve!",
     cid: fnv8("You lied to my face — you have a lot of nerve!"),
-    translation: "你当面骗我，胆子真大！",
+    translation: "你当面骗我，你居然还有脸！",
     chunks: ["You lied to my face —","you have a lot of nerve!"],
-    hints: ["你当面撒谎","你胆子真大"],
+    hints: ["你当面撒谎","你居然还有脸！"],
     grammar: [
       {role:"主谓", color:"#c87033", phonetic:["/juː/","/laɪd/","/tuː/","/maɪ/","/feɪs/"], pos:"一般过去时", meaning:"你当面对我撒谎"},
       {role:"习语·谓语", color:"#7c5cbf", phonetic:["/juː/","/hæv/","/ə/","/lɑːt/","/əv/","/nɜːrv/"], pos:"名词习语", meaning:"你居然有这种脸皮"}
@@ -4879,7 +4865,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Stop that right now!"),
     translation: "马上给我停下！",
     chunks: ["Stop that","right now!"],
-    hints: ["停下那个","马上"],
+    hints: ["停下！","马上！"],
     grammar: [
       {role:"祈使句", color:"#c87033", phonetic:["/stɒp/","/ðæt/"], pos:"祈使句", meaning:"停下那个"},
       {role:"时间状语", color:"#3358e0", phonetic:["/raɪt/","/naʊ/"], pos:"时间状语", meaning:"立刻、马上"}
@@ -5088,11 +5074,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Get out of here!",
     cid: fnv8("Get out of here!"),
     translation: "滚出去！",
-    chunks: ["Get out","of here!"],
-    hints: ["出去","从这儿"],
+    chunks: ["Get out of here!"],
+    hints: ["滚出去！"],
     grammar: [
-      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/ɡet/","/aʊt/"], pos:"祈使句", meaning:"get out 出去"},
-      {role:"介词短语", color:"#3358e0", phonetic:["/əv/","/hɪr/"], pos:"介词短语", meaning:"从这里"}
+      {role:"固定表达", color:"#7c5cbf", phonetic:["/ɡet/","/aʊt/","/əv/","/hɪr/"], pos:"驱赶对方离开的口语表达", meaning:"离开这里；滚出去"}
     ],
     explanations: [
       "**get out of here** = 出去、滚出去。字面是「离开这里」；口语里也能表惊讶，相当于「别逗了」。",
@@ -5148,11 +5133,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Don't call me names!",
     cid: fnv8("Don't call me names!"),
     translation: "别骂我！",
-    chunks: ["Don't call me","names!"],
-    hints: ["别这么叫我","侮辱性称呼"],
+    chunks: ["Don't call me names!"],
+    hints: ["别骂我！"],
     grammar: [
-      {role:"祈使句·否定", color:"#c87033", phonetic:["/doʊnt/","/kɔːl/","/miː/"], pos:"祈使句否定", meaning:"别这么叫我"},
-      {role:"宾语", color:"#3358e0", phonetic:["/neɪmz/"], pos:"名词复数", meaning:"侮辱性称呼"}
+      {role:"固定表达", color:"#c87033", phonetic:["/doʊnt/","/kɔːl/","/miː/","/neɪmz/"], pos:"call someone names 的否定祈使句", meaning:"别辱骂我；别给我起侮辱性绰号"}
     ],
     explanations: [
       "**call sb names** = 骂人、给人起侮辱性绰号。注意必须用复数 names，单数没有这个意思。",
@@ -5194,7 +5178,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("No more excuses."),
     translation: "别再找借口了。",
     chunks: ["No more","excuses."],
-    hints: ["不再有","借口"],
+    hints: ["别再找","借口"],
     grammar: [
       {role:"习语·禁止", color:"#7c5cbf", phonetic:["/noʊ/","/mɔːr/"], pos:"限定词短语", meaning:"no more 不再"},
       {role:"名词", color:"#3358e0", phonetic:["/ɪkˈskjuːzɪz/"], pos:"名词复数", meaning:"借口"}
@@ -5269,10 +5253,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "What were you thinking?",
     cid: fnv8("What were you thinking?"),
     translation: "你当时在想什么？",
-    chunks: ["What were","you thinking?"],
-    hints: ["当时是什么","你在想什么"],
+    chunks: ["What were you","thinking?"],
+    hints: ["你当时在","想什么？"],
     grammar: [
-      {role:"疑问·过去进行", color:"#c87033", phonetic:["/wɒt/","/wɜːr/"], pos:"过去进行时疑问", meaning:"当时是什么"},
+      {role:"疑问·过去进行", color:"#c87033", phonetic:["/wɒt/","/wɜːr/","/juː/"], pos:"过去进行时疑问", meaning:"你当时在"},
       {role:"主语·谓语", color:"#3358e0", phonetic:["/juː/","/ˈθɪŋkɪŋ/"], pos:"现在分词", meaning:"你在想什么"}
     ],
     explanations: [
@@ -5285,7 +5269,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("That's going too far."),
     translation: "这太过分了。",
     chunks: ["That's going","too far."],
-    hints: ["这正在","走得太远"],
+    hints: ["这就","太过分了"],
     grammar: [
       {role:"主谓·进行", color:"#c87033", phonetic:["/ðæts/","/ˈɡoʊɪŋ/"], pos:"现在进行时", meaning:"这走过头了"},
       {role:"程度状语", color:"#3358e0", phonetic:["/tuː/","/fɑːr/"], pos:"程度状语", meaning:"太远、过分"}
@@ -5314,11 +5298,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "You're nothing to me.",
     cid: fnv8("You're nothing to me."),
     translation: "你对我来说什么都不是。",
-    chunks: ["You're nothing","to me."],
-    hints: ["你什么都不是","对我来说"],
+    chunks: ["You're nothing to me."],
+    hints: ["你对我来说什么都不是。"],
     grammar: [
-      {role:"主系表", color:"#c87033", phonetic:["/jʊr/","/ˈnʌθɪŋ/"], pos:"主系表结构", meaning:"你什么都不是"},
-      {role:"介词短语", color:"#3358e0", phonetic:["/tuː/","/miː/"], pos:"介词短语", meaning:"对我来说"}
+      {role:"固定表达", color:"#c87033", phonetic:["/jʊr/","/ˈnʌθɪŋ/","/tuː/","/miː/"], pos:"固定表达", meaning:"对我来说无足轻重"}
     ],
     explanations: [
       "**be nothing to sb** = 对某人来说无足轻重。关系彻底了断时的狠话。",
@@ -5330,7 +5313,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("You set me up — it was a trap!"),
     translation: "你陷害我，那是个圈套！",
     chunks: ["You set me up —","it was a trap!"],
-    hints: ["你设计我","那是个圈套"],
+    hints: ["你陷害我","那是个圈套"],
     grammar: [
       {role:"习语·主谓宾", color:"#7c5cbf", phonetic:["/juː/","/set/","/miː/","/ʌp/"], pos:"一般过去时习语", meaning:"set sb up 陷害某人"},
       {role:"主系表", color:"#3358e0", phonetic:["/ɪt/","/wɒz/","/ə/","/træp/"], pos:"主系表结构", meaning:"那是个陷阱"}
@@ -5359,11 +5342,11 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Stop giving me a hard time.",
     cid: fnv8("Stop giving me a hard time."),
     translation: "别再为难我了。",
-    chunks: ["Stop giving me","a hard time."],
-    hints: ["别再给我","难处"],
+    chunks: ["Stop","giving me a hard time."],
+    hints: ["别再","为难我"],
     grammar: [
-      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/stɒp/","/ˈɡɪvɪŋ/","/miː/"], pos:"祈使句", meaning:"give sb a hard time 为难某人"},
-      {role:"宾语", color:"#3358e0", phonetic:["/ə/","/hɑːrd/","/taɪm/"], pos:"名词短语", meaning:"难熬的处境"}
+      {role:"否定祈使", color:"#7c5cbf", phonetic:["/stɒp/"], pos:"stop + 动名词", meaning:"别再"},
+      {role:"动词习语", color:"#3358e0", phonetic:["/ˈɡɪvɪŋ/","/miː/","/ə/","/hɑːrd/","/taɪm/"], pos:"give sb a hard time", meaning:"为难我"}
     ],
     explanations: [
       "**give sb a hard time** = 为难某人、找某人麻烦；也可指「让某人日子不好过」。",
@@ -5404,11 +5387,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "What's the fuss about?",
     cid: fnv8("What's the fuss about?"),
     translation: "闹什么呢？",
-    chunks: ["What's the fuss","about?"],
-    hints: ["吵什么呢","为了什么"],
+    chunks: ["What's the fuss about?"],
+    hints: ["至于这么大动静吗？"],
     grammar: [
-      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/wʌts/","/ðə/","/fʌs/"], pos:"名词习语", meaning:"the fuss 大惊小怪"},
-      {role:"疑问·介词", color:"#3358e0", phonetic:["/əˈbaʊt/"], pos:"介词", meaning:"关于"}
+      {role:"固定疑问表达", color:"#7c5cbf", phonetic:["/wʌts/","/ðə/","/fʌs/","/əˈbaʊt/"], pos:"固定疑问表达", meaning:"至于这么大动静吗"}
     ],
     explanations: [
       "**fuss** = 大惊小怪、无谓的吵闹。What's the fuss about? 就是「至于这么大动静吗」。",
@@ -5419,11 +5401,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "I'm not in a good mood.",
     cid: fnv8("I'm not in a good mood."),
     translation: "我心情不太好。",
-    chunks: ["I'm not","in a good mood."],
-    hints: ["我并不","心情好"],
+    chunks: ["I'm not in a good mood."],
+    hints: ["我心情不太好。"],
     grammar: [
-      {role:"主系·否定", color:"#c87033", phonetic:["/aɪm/","/nɒt/"], pos:"主系表否定", meaning:"我并不"},
-      {role:"介词短语", color:"#3358e0", phonetic:["/ɪn/","/ə/","/ɡʊd/","/muːd/"], pos:"介词短语", meaning:"心情好"}
+      {role:"固定表达·否定", color:"#c87033", phonetic:["/aɪm/","/nɒt/","/ɪn/","/ə/","/ɡʊd/","/muːd/"], pos:"固定表达", meaning:"心情不太好"}
     ],
     explanations: [
       "**in a good mood** = 心情好。加 not 就是「心情不好」，是英语里最常用的状态自述。",
@@ -5434,11 +5415,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "I'm cranky today.",
     cid: fnv8("I'm cranky today."),
     translation: "我今天脾气不好。",
-    chunks: ["I'm cranky","today."],
-    hints: ["我脾气不好","今天"],
+    chunks: ["I'm cranky today."],
+    hints: ["我今天脾气不好。"],
     grammar: [
-      {role:"主系表", color:"#c87033", phonetic:["/aɪm/","/ˈkræŋki/"], pos:"主系表结构", meaning:"我烦躁"},
-      {role:"时间状语", color:"#3358e0", phonetic:["/təˈdeɪ/"], pos:"时间状语", meaning:"今天"}
+      {role:"主系表·时间", color:"#c87033", phonetic:["/aɪm/","/ˈkræŋki/","/təˈdeɪ/"], pos:"状态表达", meaning:"我烦躁"}
     ],
     explanations: [
       "**cranky** = 烦躁、爱发脾气的，多因没睡好或饿了。比 angry 轻，是美式口语常用词。",
@@ -5463,9 +5443,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Why the long face?",
     cid: fnv8("Why the long face?"),
-    translation: "怎么拉着脸？",
+    translation: "怎么愁眉苦脸的？",
     chunks: ["Why","the long face?"],
-    hints: ["为什么","板着脸"],
+    hints: ["怎么啦","愁眉苦脸"],
     grammar: [
       {role:"疑问·省略", color:"#c87033", phonetic:["/waɪ/"], pos:"省略疑问句", meaning:"怎么啦"},
       {role:"习语·宾语", color:"#7c5cbf", phonetic:["/ðə/","/lɒŋ/","/feɪs/"], pos:"名词习语", meaning:"long face 拉长的脸、不高兴"}
@@ -5508,12 +5488,12 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "I hope your idea takes wings.",
     cid: fnv8("I hope your idea takes wings."),
-    translation: "希望你的想法能起飞。",
+    translation: "希望你的想法能顺利实现。",
     chunks: ["I hope your idea","takes wings."],
-    hints: ["我希望你的想法","能展翅高飞"],
+    hints: ["我希望你的想法","能顺利实现"],
     grammar: [
       {role:"主谓", color:"#c87033", phonetic:["/aɪ/","/hoʊp/","/jʊr/","/aɪˈdɪə/"], pos:"一般现在时", meaning:"我希望你的想法"},
-      {role:"习语·宾语从句", color:"#7c5cbf", phonetic:["/teɪks/","/wɪŋz/"], pos:"动词习语", meaning:"take wings 腾飞"}
+      {role:"习语·宾语从句", color:"#7c5cbf", phonetic:["/teɪks/","/wɪŋz/"], pos:"动词习语", meaning:"take wings 腾飞、取得进展"}
     ],
     explanations: [
       "**take wings** = 展翅高飞，比喻想法、计划腾飞起来。祝福或期待时用。",
@@ -5524,11 +5504,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Don't rob Peter to pay Paul.",
     cid: fnv8("Don't rob Peter to pay Paul."),
     translation: "别拆东墙补西墙。",
-    chunks: ["Don't rob Peter","to pay Paul."],
-    hints: ["别抢彼得的","去还给保罗"],
+    chunks: ["Don't rob Peter to pay Paul."],
+    hints: ["别拆东墙补西墙。"],
     grammar: [
-      {role:"习语·祈使否定", color:"#7c5cbf", phonetic:["/doʊnt/","/rɒb/","/ˈpiːtər/"], pos:"祈使句否定", meaning:"rob Peter to pay Paul 拆东墙补西墙"},
-      {role:"目的状语", color:"#3358e0", phonetic:["/tuː/","/peɪ/","/pɔːl/"], pos:"不定式作目的状语", meaning:"为了还给保罗"}
+      {role:"固定谚语·祈使否定", color:"#7c5cbf", phonetic:["/doʊnt/","/rɒb/","/ˈpiːtər/","/tuː/","/peɪ/","/pɔːl/"], pos:"固定谚语", meaning:"rob Peter to pay Paul 拆东墙补西墙"}
     ],
     explanations: [
       "**rob Peter to pay Paul** = 拆东墙补西墙，借新债还旧债。Peter 和 Paul 在英语里泛指「张三李四」。",
@@ -5569,11 +5548,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "I can't bear to watch.",
     cid: fnv8("I can't bear to watch."),
     translation: "我不忍心看下去。",
-    chunks: ["I can't bear","to watch."],
-    hints: ["我受不了","去看"],
+    chunks: ["I can't bear to watch."],
+    hints: ["我不忍心看下去。"],
     grammar: [
-      {role:"主谓·否定", color:"#c87033", phonetic:["/aɪ/","/kænt/","/ber/"], pos:"情态动词否定", meaning:"我无法忍受"},
-      {role:"不定式", color:"#3358e0", phonetic:["/tuː/","/wɒtʃ/"], pos:"不定式作宾语", meaning:"去看"}
+      {role:"固定表达", color:"#c87033", phonetic:["/aɪ/","/kænt/","/ber/","/tuː/","/wɒtʃ/"], pos:"固定搭配", meaning:"我不忍心看下去"}
     ],
     explanations: [
       "**can't bear to do sth** = 不忍心做某事、受不了做某事。bear 在这里是「忍受」。",
@@ -5690,11 +5668,11 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Do you have a problem with the new plan?",
     cid: fnv8("Do you have a problem with the new plan?"),
     translation: "你对新方案有意见吗？",
-    chunks: ["Do you have a problem","with the new plan?"],
-    hints: ["你有意见吗","对新方案"],
+    chunks: ["Do you have","a problem with the new plan?"],
+    hints: ["你对","新方案有意见吗？"],
     grammar: [
-      {role:"疑问句", color:"#c87033", phonetic:["/duː/","/juː/","/hæv/","/ə/","/ˈprɑːbləm/"], pos:"疑问句", meaning:"你有意见吗"},
-      {role:"介词短语", color:"#3358e0", phonetic:["/wɪð/","/ðə/","/nuː/","/plæn/"], pos:"介宾短语", meaning:"对这个新方案"}
+      {role:"疑问句开头", color:"#c87033", phonetic:["/duː/","/juː/","/hæv/"], pos:"疑问句", meaning:"你对"},
+      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/ə/","/ˈprɑːbləm/","/wɪð/","/ðə/","/nuː/","/plæn/"], pos:"have a problem with sth", meaning:"对新方案有意见吗"}
     ],
     explanations: [
       "**Have a problem with sth** = 对某事有意见、有不满。可直接询问，也可反击别人。",
@@ -5811,10 +5789,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("How's everything at your new job?"),
     translation: "你的新工作一切都好吗？",
     chunks: ["How's everything","at your new job?"],
-    hints: ["一切都好吗","在你的新工作"],
+    hints: ["一切都好吗","你新工作那边"],
     grammar: [
       {role:"疑问句", color:"#c87033", phonetic:["/haʊz/","/ˈevriθɪŋ/"], pos:"疑问句", meaning:"一切都好吗"},
-      {role:"介词短语", color:"#3358e0", phonetic:["/æt/","/jʊr/","/nuː/","/dʒɑːb/"], pos:"介宾短语", meaning:"在你的新工作"}
+      {role:"介词短语", color:"#3358e0", phonetic:["/æt/","/jʊr/","/nuː/","/dʒɑːb/"], pos:"介宾短语", meaning:"你新工作那边"}
     ],
     explanations: [
       "**How's everything?** = 一切都好吗？泛问近况的问候，比 How are you 更关心具体生活状态。",
@@ -5899,9 +5877,9 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "Go big or go home — this is your only chance.",
     cid: fnv8("Go big or go home — this is your only chance."),
-    translation: "要么全力以赴，要么别干。",
+    translation: "要么全力以赴，要么别干——这可是你唯一的机会。",
     chunks: ["Go big or go home —","this is your only chance."],
-    hints: ["要么全力以赴","要么干脆别做"],
+    hints: ["要么全力以赴，要么别干","这是你唯一的机会"],
     grammar: [
       {role:"习语", color:"#7c5cbf", phonetic:["/ɡoʊ/","/bɪɡ/","/ɔːr/","/ɡoʊ/","/hoʊm/"], pos:"习语", meaning:"要么全力以赴，要么别做"},
       {role:"主系表", color:"#c87033", phonetic:["/ðɪs/","/ɪz/","/jʊr/","/ˈoʊnli/","/tʃæns/"], pos:"主系表", meaning:"这是你唯一的机会"}
@@ -6219,12 +6197,11 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Count me in — I am on board with the plan.",
     cid: fnv8("Count me in — I am on board with the plan."),
     translation: "算我一个——我同意这个计划。",
-    chunks: ["Count me in —","I am on board","with the plan."],
-    hints: ["算我一个","我赞成","这个计划"],
+    chunks: ["Count me in —","I am on board with the plan."],
+    hints: ["算我一个","我赞成这个计划"],
     grammar: [
       {role:"习语·祈使", color:"#7c5cbf", phonetic:["/kaʊnt/","/mi/","/ɪn/"], pos:"习语", meaning:"算我一个"},
-      {role:"习语·表语", color:"#7c5cbf", phonetic:["/aɪ/","/æm/","/ɑːn/","/bɔːrd/"], pos:"习语", meaning:"我加入"},
-      {role:"介词短语", color:"#3358e0", phonetic:["/wɪð/","/ðə/","/plæn/"], pos:"介词短语", meaning:"这个计划"}
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/aɪ/","/æm/","/ɑːn/","/bɔːrd/","/wɪð/","/ðə/","/plæn/"], pos:"习语", meaning:"我赞成这个计划"}
     ],
     explanations: [
       "**On board** 字面「在船上」，引申为「同意、加入、支持某个计划」。I am on board = 我加入、我赞成。",
@@ -6250,11 +6227,10 @@ window.DATA_FREQ_IDIOMS = [
     sentence: "Play nice with your little brother.",
     cid: fnv8("Play nice with your little brother."),
     translation: "跟你弟弟好好相处。",
-    chunks: ["Play nice","with your little brother."],
-    hints: ["友好一点","和你弟弟"],
+    chunks: ["Play nice with your little brother."],
+    hints: ["跟你弟弟好好相处。"],
     grammar: [
-      {role:"习语·祈使", color:"#7c5cbf", phonetic:["/pleɪ/","/naɪs/"], pos:"习语祈使", meaning:"友好一点"},
-      {role:"介词短语", color:"#3358e0", phonetic:["/wɪð/","/jʊr/","/ˈlɪtl/","/ˈbrʌðər/"], pos:"介词短语", meaning:"和你弟弟"}
+      {role:"固定祈使表达", color:"#7c5cbf", phonetic:["/pleɪ/","/naɪs/","/wɪð/","/jʊr/","/ˈlɪtl/","/ˈbrʌðər/"], pos:"固定祈使表达", meaning:"跟弟弟好好相处"}
     ],
     explanations: [
       "**Play nice** = 友好相处、别闹。多对孩子说，也可以调侃成年人之间「别斗了」。",
@@ -6294,11 +6270,11 @@ window.DATA_FREQ_IDIOMS = [
   {
     sentence: "The movie was sweet, if a little cheesy.",
     cid: fnv8("The movie was sweet, if a little cheesy."),
-    translation: "那部电影挺甜，就是有点俗气。",
+    translation: "那部电影挺温馨，就是有点俗套。",
     chunks: ["The movie was sweet,","if a little cheesy."],
-    hints: ["那部电影挺甜","就是有点俗"],
+    hints: ["那部电影挺温馨","就是有点俗套"],
     grammar: [
-      {role:"主系表", color:"#c87033", phonetic:["/ðə/","/ˈmuːvi/","/wʌz/","/swiːt/"], pos:"主系表", meaning:"那部电影很甜"},
+      {role:"主系表", color:"#c87033", phonetic:["/ðə/","/ˈmuːvi/","/wʌz/","/swiːt/"], pos:"主系表", meaning:"那部电影挺温馨"},
       {role:"习语·表语", color:"#7c5cbf", phonetic:["/ɪf/","/ə/","/ˈlɪtl/","/ˈtʃiːzi/"], pos:"习语", meaning:"就是有点俗套"}
     ],
     explanations: [
@@ -6431,7 +6407,7 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("I forgot my notes — I will just wing it."),
     translation: "我忘带讲稿了——只好即兴发挥。",
     chunks: ["I forgot my notes —","I will just wing it."],
-    hints: ["我忘带讲稿了","只好即兴来"],
+    hints: ["我忘带讲稿了","只好临场发挥"],
     grammar: [
       {role:"主谓宾", color:"#c87033", phonetic:["/aɪ/","/fərˈɡɑːt/","/maɪ/","/noʊts/"], pos:"主谓宾", meaning:"我忘带讲稿了"},
       {role:"习语·谓语", color:"#7c5cbf", phonetic:["/aɪ/","/wɪl/","/dʒʌst/","/wɪŋ/","/ɪt/"], pos:"动词习语", meaning:"临场即兴发挥"}
@@ -6491,10 +6467,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Give me a minute — it is a lot to take in."),
     translation: "让我缓一下——一时接受不了。",
     chunks: ["Give me a minute —","it is a lot to take in."],
-    hints: ["给我点时间","这事信息量太大"],
+    hints: ["给我点时间","这事一时难以消化"],
     grammar: [
       {role:"祈使句", color:"#c87033", phonetic:["/ɡɪv/","/mi/","/ə/","/ˈmɪnɪt/"], pos:"祈使句", meaning:"让我缓一下"},
-      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ɪt/","/ɪz/","/ə/","/lɑːt/","/tu/","/teɪk/","/ɪn/"], pos:"习语", meaning:"信息量太大"}
+      {role:"习语·表语", color:"#7c5cbf", phonetic:["/ɪt/","/ɪz/","/ə/","/lɑːt/","/tu/","/teɪk/","/ɪn/"], pos:"习语", meaning:"一时难以消化"}
     ],
     explanations: [
       "**Take sth in** = 理解、消化（信息或打击）。It is a lot to take in = 一时接受不了。",

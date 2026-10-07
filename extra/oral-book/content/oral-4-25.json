@@ -49,7 +49,7 @@
  },
  {
   "sentence": "That's really something!",
-  "translation": "那真的很重要!",
+  "translation": "真了不起！",
   "chunks": [
    "That's really",
    "something!"
@@ -61,15 +61,9 @@
  },
  {
   "sentence": "Oh, my!",
-  "translation": "哎呀!/吓死人了。",
-  "chunks": [
-   "Oh,",
-   "my!"
-  ],
-  "hints": [
-   "哎呀",
-   "天哪"
-  ]
+  "translation": "天哪！",
+  "chunks": ["Oh, my!"],
+  "hints": ["天哪！/哎呀！"]
  },
  {
   "sentence": "Well, well.",
@@ -97,27 +91,15 @@
  },
  {
   "sentence": "You don't say!",
-  "translation": "这怎么可能呢?",
-  "chunks": [
-   "You don't",
-   "say!"
-  ],
-  "hints": [
-   "这",
-   "怎么可能呢"
-  ]
+  "translation": "真的吗？/不会吧！",
+  "chunks": ["You don't say!"],
+  "hints": ["真的吗？/不会吧！"]
  },
  {
   "sentence": "That'll be the day!",
   "translation": "永远不可能有那样的事!",
-  "chunks": [
-   "That'll be",
-   "the day!"
-  ],
-  "hints": [
-   "哪有",
-   "那种好事"
-  ]
+  "chunks": ["That'll be the day!"],
+  "hints": ["永远不会有这种事！"]
  },
  {
   "sentence": "A great shock.",
@@ -134,48 +116,30 @@
  {
   "sentence": "That's news to me.",
   "translation": "第一次听说。",
-  "chunks": [
-   "That's news",
-   "to me."
-  ],
-  "hints": [
-   "我还是",
-   "头一回听说"
-  ]
+    "chunks": ["That's news to me."],
+    "hints": ["这是我第一次听说。"]
  },
  {
   "sentence": "It's mind-boggling!",
-  "translation": "令人难以想像!",
-  "chunks": [
-   "It's",
-   "mind-boggling!"
-  ],
-  "hints": [
-   "令人",
-   "难以想象"
-  ]
+  "translation": "太不可思议了！",
+  "chunks": ["It's", "mind-boggling!"],
+  "hints": ["这真是", "不可思议！"]
  },
  {
   "sentence": "Gosh!",
-  "translation": "糟了!",
+    "translation": "天哪！",
   "chunks": [
    "Gosh!"
   ],
-  "hints": [
-   "糟了"
-  ]
+    "hints": [
+      "天哪！"
+    ]
  },
  {
   "sentence": "We were surprised by the news.",
-  "translation": "那条消息真让人吃惊。",
-  "chunks": [
-   "We were surprised",
-   "by the news."
-  ],
-  "hints": [
-   "我们听到这消息",
-   "都很吃惊"
-  ]
+  "translation": "我们听到这条消息都很吃惊。",
+  "chunks": ["We were surprised by the news."],
+  "hints": ["我们听到这条消息都很吃惊。"]
  },
  {
   "sentence": "Boo!",

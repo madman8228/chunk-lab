@@ -3,12 +3,10 @@
   "sentence": "As a matter of fact, ...",
   "translation": "说实话……",
   "chunks": [
-   "As a matter",
-   "of fact, ..."
+   "As a matter of fact, ..."
   ],
   "hints": [
-   "说句",
-   "实话……"
+   "事实上……"
   ]
  },
  {
@@ -51,24 +49,24 @@
   "sentence": "I'll fill you in.",
   "translation": "我把一切告诉你。",
   "chunks": [
-   "I'll fill",
-   "you in."
+   "I'll",
+   "fill you in."
   ],
   "hints": [
-   "我把一切",
-   "告诉你"
+   "我会",
+   "把详情告诉你。"
   ]
  },
  {
   "sentence": "I'll level with you.",
   "translation": "我就直说吧。",
   "chunks": [
-   "I'll level",
-   "with you."
+   "I'll",
+   "level with you."
   ],
   "hints": [
-   "我就",
-   "直说吧"
+   "我",
+   "跟你说实话。"
   ]
  },
  {
@@ -79,20 +77,20 @@
    "all I know."
   ],
   "hints": [
-   "我知道的",
-   "大概就这些"
+   "大概就是",
+   "我知道的全部"
   ]
  },
  {
   "sentence": "This is just between you and me.",
-  "translation": "我们关起门来在这儿说。/咱们俩私下里说。",
+  "translation": "这只是咱们俩之间的事。",
   "chunks": [
-   "This is just between",
-   "you and me."
+   "This is just",
+   "between you and me."
   ],
   "hints": [
-   "咱们俩",
-   "私下里说"
+   "这只是",
+   "咱们俩之间的事。"
   ]
  },
  {
@@ -133,15 +131,9 @@
  },
  {
   "sentence": "You've got a big mouth!",
-  "translation": "你的嘴不严。",
-  "chunks": [
-   "You've got",
-   "a big mouth!"
-  ],
-  "hints": [
-   "你的嘴",
-   "不严"
-  ]
+  "translation": "你嘴不严。",
+  "chunks": ["You've got a big mouth!"],
+  "hints": ["你嘴不严。"]
  },
  {
   "sentence": "I don't have the guts to say that to my boss.",
@@ -157,22 +149,16 @@
  },
  {
   "sentence": "A little bird told me.",
-  "translation": "听小道消息说。",
-  "chunks": [
-   "A little bird",
-   "told me."
-  ],
-  "hints": [
-   "听小道消息",
-   "说的"
-  ]
+  "translation": "我听小道消息说的。",
+  "chunks": ["A little bird told me."],
+  "hints": ["我听小道消息说的。"]
  },
  {
   "sentence": "I didn't say anything.",
   "translation": "我什么都没说。",
   "chunks": [
-   "I didn't",
-   "say anything."
+   "I",
+   "didn't say anything."
   ],
   "hints": [
    "我",
@@ -181,26 +167,26 @@
  },
  {
   "sentence": "It was a slip of the tongue.",
-  "translation": "无意中说漏了嘴。",
+  "translation": "刚才是口误。",
   "chunks": [
-   "It was a slip",
-   "of the tongue."
+   "It was",
+   "a slip of the tongue."
   ],
   "hints": [
-   "无意中",
-   "说漏了嘴"
+   "刚才是",
+   "口误。"
   ]
  },
  {
   "sentence": "I won't say a word.",
   "translation": "我一个字都不说出去。",
   "chunks": [
-   "I won't say",
-   "a word."
+   "I won't",
+   "say a word."
   ],
   "hints": [
-   "我一个字",
-   "都不说出去"
+   "我不",
+   "说一个字"
   ]
  },
  {
@@ -229,15 +215,9 @@
  },
  {
   "sentence": "Will do.",
-  "translation": "一定。",
-  "chunks": [
-   "Will",
-   "do."
-  ],
-  "hints": [
-   "一定",
-   "做到"
-  ]
+  "translation": "一定做到。",
+  "chunks": ["Will do."],
+  "hints": ["一定做到。"]
  },
  {
   "sentence": "I swear.",
@@ -259,20 +239,20 @@
    "me."
   ],
   "hints": [
-   "请",
-   "相信我"
+   "请相信",
+   "我。"
   ]
  },
  {
   "sentence": "A promise is a promise!",
-  "translation": "说到就得做到。",
+  "translation": "承诺就是承诺。",
   "chunks": [
    "A promise",
    "is a promise!"
   ],
   "hints": [
-   "说到",
-   "就得做到"
+   "承诺",
+   "就是承诺。"
   ]
  }
 ]

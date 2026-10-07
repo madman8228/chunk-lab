@@ -13,12 +13,12 @@
  },
  {
   "sentence": "Shucks!",
-  "translation": "什么!",
+  "translation": "哎呀，真可惜！",
   "chunks": [
    "Shucks!"
   ],
   "hints": [
-   "什么！"
+   "哎呀，真可惜！"
   ]
  },
  {
@@ -43,27 +43,21 @@
  },
  {
   "sentence": "Not everything is logical.",
-  "translation": "有的事是行不通的。",
+  "translation": "不是所有事情都讲得通。",
   "chunks": [
    "Not everything",
    "is logical."
   ],
   "hints": [
    "不是所有事",
-   "都合乎逻辑。"
+   "都讲得通。"
   ]
  },
  {
   "sentence": "It went down the drain.",
   "translation": "(金钱)全都浪费了。",
-  "chunks": [
-   "It went",
-   "down the drain."
-  ],
-  "hints": [
-   "它",
-   "全都打水漂了。"
-  ]
+  "chunks": ["It went down the drain."],
+  "hints": ["全都打了水漂。"]
  },
  {
   "sentence": "I almost made it.",
@@ -117,12 +111,14 @@
   "sentence": "I can't make ends meet on my small salary.",
   "translation": "这么点儿薪水我怎么够活呀!",
   "chunks": [
-   "I can't make",
-   "ends meet on my small salary."
+   "I can't",
+   "make ends meet",
+   "on my small salary."
   ],
   "hints": [
    "我没法",
-   "靠这点工资过活。"
+   "收支相抵",
+   "靠这点微薄薪水过日子。"
   ]
  },
  {
@@ -165,25 +161,19 @@
   "sentence": "He's got a chip on his shoulder today.",
   "translation": "他今天一副挑衅的样子。",
   "chunks": [
-   "He's got a chip",
-   "on his shoulder today."
+   "He's got a chip on his shoulder",
+   "today."
   ],
   "hints": [
-   "他今天",
-   "一副挑衅的样子。"
+   "他一副挑衅的样子",
+   "今天"
   ]
  },
  {
   "sentence": "Play fair!",
   "translation": "公平点儿!",
-  "chunks": [
-   "Play",
-   "fair!"
-  ],
-  "hints": [
-   "公平",
-   "点儿！"
-  ]
+  "chunks": ["Play fair!"],
+  "hints": ["公平点儿！"]
  },
  {
   "sentence": "What a waste of time and money!",
@@ -217,8 +207,8 @@
    "all about it."
   ],
   "hints": [
-   "他把一切",
-   "都告诉我了。"
+   "他告诉我了",
+   "关于这件事的一切"
   ]
  },
  {
@@ -241,8 +231,8 @@
    "in ten minutes."
   ],
   "hints": [
-   "我十分钟",
-   "怎么也来不及。"
+   "我赶不及",
+   "十分钟内"
   ]
  },
  {
@@ -259,27 +249,15 @@
  },
  {
   "sentence": "You're good for nothing.",
-  "translation": "你什么忙也帮不了。",
-  "chunks": [
-   "You're good",
-   "for nothing."
-  ],
-  "hints": [
-   "你",
-   "什么忙也帮不了。"
-  ]
+  "translation": "你一无是处。",
+  "chunks": ["You're good for nothing."],
+  "hints": ["你一无是处。"]
  },
  {
   "sentence": "It drives me crazy.",
-  "translation": "简直快让我疯了。",
-  "chunks": [
-   "It drives me",
-   "crazy."
-  ],
-  "hints": [
-   "简直快让",
-   "我疯了。"
-  ]
+  "translation": "这简直要把我逼疯了。",
+  "chunks": ["It drives me crazy."],
+  "hints": ["这简直要把我逼疯了。"]
  },
  {
   "sentence": "Is that all?",
@@ -309,12 +287,12 @@
   "sentence": "He's unfair to me.",
   "translation": "他对我不公平。",
   "chunks": [
-   "He's unfair",
-   "to me."
+   "He's",
+   "unfair to me."
   ],
   "hints": [
-   "他对我",
-   "不公平。"
+   "他",
+   "对我不公平。"
   ]
  },
  {
@@ -355,26 +333,24 @@
  },
  {
   "sentence": "That's not a good excuse.",
-  "translation": "这样也解释不通呀。",
+  "translation": "这不是个好借口。",
   "chunks": [
-   "That's not",
-   "a good excuse."
+   "That's",
+   "not a good excuse."
   ],
   "hints": [
-   "这样也",
-   "解释不通呀。"
+   "这",
+   "不是个好借口"
   ]
  },
  {
   "sentence": "What's the big idea?",
-  "translation": "你到底在想什么呢?",
+  "translation": "你到底想干什么？",
   "chunks": [
-   "What's",
-   "the big idea?"
+   "What's the big idea?"
   ],
   "hints": [
-   "你到底",
-   "在想什么呢？"
+   "你到底想干什么？"
   ]
  },
  {
@@ -392,25 +368,19 @@
  {
   "sentence": "Don't tell me what to do!",
   "translation": "你少命令我!",
-  "chunks": [
-   "Don't tell me",
-   "what to do!"
-  ],
-  "hints": [
-   "你少",
-   "命令我！"
-  ]
+  "chunks": ["Don't tell me what to do!"],
+  "hints": ["别命令我！"]
  },
  {
   "sentence": "I'm mad!",
-  "translation": "气疯了我了!",
+  "translation": "我气坏了！",
   "chunks": [
    "I'm",
    "mad!"
   ],
   "hints": [
-   "气死",
-   "我了！"
+   "我",
+   "气坏了！"
   ]
  },
  {
@@ -440,50 +410,32 @@
  {
   "sentence": "Don't make fun of me.",
   "translation": "别取笑我!",
-  "chunks": [
-   "Don't make fun",
-   "of me."
-  ],
-  "hints": [
-   "别",
-   "取笑我！"
-  ]
+  "chunks": ["Don't make fun of me."],
+  "hints": ["别取笑我！"]
  },
  {
   "sentence": "Don't be upset.",
   "translation": "请别上火。",
   "chunks": [
-   "Don't",
-   "be upset."
+   "Don't be",
+   "upset."
   ],
   "hints": [
-   "请",
-   "别上火。"
+   "请别",
+   "上火"
   ]
  },
  {
   "sentence": "I've run out of patience.",
   "translation": "我再也没耐心了。",
-  "chunks": [
-   "I've run",
-   "out of patience."
-  ],
-  "hints": [
-   "我再也没",
-   "耐心了。"
-  ]
+  "chunks": ["I've run out of patience."],
+  "hints": ["我已经没有耐心了。"]
  },
  {
   "sentence": "What nerve!",
   "translation": "你放肆!",
-  "chunks": [
-   "What",
-   "nerve!"
-  ],
-  "hints": [
-   "你",
-   "放肆！"
-  ]
+  "chunks": ["What nerve!"],
+  "hints": ["真放肆！"]
  },
  {
   "sentence": "How impudent you are to say such a thing!",
@@ -523,14 +475,12 @@
  },
  {
   "sentence": "I wasn't born yesterday.",
-  "translation": "我又不是不懂。",
+  "translation": "我又不是三岁小孩。",
   "chunks": [
-   "I wasn't",
-   "born yesterday."
+   "I wasn't born yesterday."
   ],
   "hints": [
-   "我又不是",
-   "不懂。"
+   "我又不是三岁小孩。"
   ]
  },
  {
@@ -541,32 +491,32 @@
    "a fool out of me!"
   ],
   "hints": [
-   "别把我",
-   "当傻瓜。"
+   "别以为你能",
+   "把我当傻瓜！"
   ]
  },
  {
   "sentence": "You're making fun of me.",
   "translation": "你拿我开涮呢。",
   "chunks": [
-   "You're making fun",
-   "of me."
+   "You're",
+   "making fun of me."
   ],
   "hints": [
-   "你拿我",
-   "开涮呢。"
+   "你",
+   "拿我开涮呢。"
   ]
  },
  {
   "sentence": "That's asking too much.",
-  "translation": "真是狮子大开口。",
+  "translation": "这要求太过分了。",
   "chunks": [
-   "That's asking",
-   "too much."
+   "That's",
+   "asking too much."
   ],
   "hints": [
-   "真是",
-   "狮子大开口。"
+   "这",
+   "要求太过分了。"
   ]
  },
  {
@@ -589,9 +539,9 @@
    "you're talking to?"
   ],
   "hints": [
-   "你知道你是在",
-   "对谁说话吗？"
-  ]
+     "你以为你在",
+     "跟谁说话？"
+    ]
  },
  {
   "sentence": "Do you have anything to say?",
@@ -619,14 +569,14 @@
  },
  {
   "sentence": "That's blackmail!",
-  "translation": "这是恐吓。",
+  "translation": "这是敲诈！",
   "chunks": [
    "That's",
    "blackmail!"
   ],
   "hints": [
    "这是",
-   "恐吓。"
+   "敲诈！"
   ]
  },
  {
@@ -638,7 +588,7 @@
   ],
   "hints": [
    "你别",
-   "侮辱人。"
+   "侮辱我。"
   ]
  },
  {
@@ -685,16 +635,16 @@
    "like that!"
   ],
   "hints": [
-   "别用那种眼神",
-   "看着我！"
+   "别看着我",
+   "用那种眼神！"
   ]
  },
  {
   "sentence": "I want to get even with him.",
-  "translation": "我要报复。",
+  "translation": "我要报复他。",
   "chunks": [
-   "I want to get even",
-   "with him."
+   "I want",
+   "to get even with him."
   ],
   "hints": [
    "我要",
@@ -717,25 +667,19 @@
   "sentence": "Is not!? Is too!",
   "translation": "(根本)不是!?是的!",
   "chunks": [
-   "Is not!? Is",
-   "too!"
+   "Is not!?",
+   "Is too!"
   ],
   "hints": [
-   "（根本）不是！？",
-   "是的！"
+   "才不是呢！",
+   "就是！"
   ]
  },
  {
   "sentence": "Have it your way!",
   "translation": "随便吧!",
-  "chunks": [
-   "Have it",
-   "your way!"
-  ],
-  "hints": [
-   "随",
-   "你便吧！"
-  ]
+  "chunks": ["Have it your way!"],
+  "hints": ["随你的便吧！"]
  },
  {
   "sentence": "It's boring.",
@@ -761,15 +705,9 @@
  },
  {
   "sentence": "It's for the birds.",
-  "translation": "毫无价值!/不值一提!",
-  "chunks": [
-   "It's for",
-   "the birds."
-  ],
-  "hints": [
-   "简直是",
-   "毫无价值！"
-  ]
+  "translation": "毫无价值！/不值一提！",
+  "chunks": ["It's for the birds."],
+  "hints": ["毫无价值！/不值一提！"]
  },
  {
   "sentence": "I'm not interested.",
@@ -809,22 +747,22 @@
  },
  {
   "sentence": "It was just another meeting.",
-  "translation": "就是常见的那种会议。",
+  "translation": "不过只是又一场会议。",
   "chunks": [
    "It was just",
    "another meeting."
   ],
   "hints": [
-   "就是常见的",
-   "那种会议。"
+   "不过只是",
+   "又一场会议。"
   ]
  },
  {
   "sentence": "I can't get into my work.",
   "translation": "我不能专心工作。",
   "chunks": [
-   "I can't get into",
-   "my work."
+   "I can't",
+   "get into my work."
   ],
   "hints": [
    "我不能",
@@ -833,34 +771,22 @@
  },
  {
   "sentence": "It's outdated.",
-  "translation": "那早过时了。",
-  "chunks": [
-   "It's",
-   "outdated."
-  ],
-  "hints": [
-   "那早",
-   "过时了。"
-  ]
+  "translation": "过时了。",
+  "chunks": ["It's outdated."],
+  "hints": ["过时了。"]
  },
  {
   "sentence": "Give me a break",
-  "translation": ".拜托!",
-  "chunks": [
-   "Give me",
-   "a break"
-  ],
-  "hints": [
-   "饶了我吧，",
-   "拜托！"
-  ]
+  "translation": "拜托！/饶了我吧！",
+  "chunks": ["Give me a break"],
+  "hints": ["拜托！/饶了我吧！"]
  },
  {
   "sentence": "I can't stand it.",
   "translation": "我忍受不了。",
   "chunks": [
-   "I can't",
-   "stand it."
+   "I",
+   "can't stand it."
   ],
   "hints": [
    "我",
@@ -882,37 +808,31 @@
  {
   "sentence": "Have a heart!",
   "translation": "饶了我吧!",
-  "chunks": [
-   "Have",
-   "a heart!"
-  ],
-  "hints": [
-   "饶了",
-   "我吧！"
-  ]
+  "chunks": ["Have a heart!"],
+  "hints": ["饶了我吧！"]
  },
  {
   "sentence": "The more I hear about it, the more disgusted I get.",
-  "translation": "越听越烦。",
+  "translation": "越听越反感。",
   "chunks": [
    "The more I hear about it,",
    "the more disgusted I get."
   ],
   "hints": [
    "越听",
-   "越烦。"
+   "越反感。"
   ]
  },
  {
   "sentence": "There she goes again.",
   "translation": "她又来了。",
   "chunks": [
-   "There she goes",
-   "again."
+   "There she",
+   "goes again."
   ],
   "hints": [
-   "她又",
-   "来了。"
+   "她",
+   "又来了。"
   ]
  },
  {
@@ -931,8 +851,8 @@
   "sentence": "I don't want to hear it.",
   "translation": "我不想听。",
   "chunks": [
-   "I don't want",
-   "to hear it."
+   "I",
+   "don't want to hear it."
   ],
   "hints": [
    "我",
@@ -955,12 +875,10 @@
   "sentence": "Shut up!",
   "translation": "闭嘴!",
   "chunks": [
-   "Shut",
-   "up!"
+   "Shut up!"
   ],
   "hints": [
-   "闭",
-   "嘴！"
+   "闭嘴！"
   ]
  },
  {
@@ -1013,50 +931,44 @@
  },
  {
   "sentence": "Stop nagging!",
-  "translation": "唠叨什么呀!",
+  "translation": "别唠叨了！",
   "chunks": [
    "Stop",
    "nagging!"
   ],
   "hints": [
-   "唠叨",
-   "什么呀！"
+   "别",
+   "唠叨了！"
   ]
  },
  {
   "sentence": "Get off my back.",
-  "translation": "别再啰嗦了!",
+  "translation": "别再烦我了！",
   "chunks": [
-   "Get off",
-   "my back."
+   "Get off my back."
   ],
   "hints": [
-   "别再",
-   "啰嗦了！"
+   "别再烦我了！"
   ]
  },
  {
   "sentence": "Don't talk back to me!",
   "translation": "别跟我顶嘴!",
   "chunks": [
-   "Don't talk back",
-   "to me!"
+   "Don't talk back to me!"
   ],
   "hints": [
-   "别跟我",
-   "顶嘴！"
+   "别跟我顶嘴！"
   ]
  },
  {
   "sentence": "Big mouth!",
   "translation": "多嘴!",
   "chunks": [
-   "Big",
-   "mouth!"
+   "Big mouth!"
   ],
   "hints": [
-   "多",
-   "嘴！"
+   "多嘴！"
   ]
  },
  {
@@ -1099,12 +1011,12 @@
   "sentence": "I can't talk to you now.",
   "translation": "现在不能跟你说。",
   "chunks": [
-   "I can't talk",
-   "to you now."
+   "I can't talk to you",
+   "now."
   ],
   "hints": [
-   "现在不能",
-   "跟你说。"
+   "我不能跟你说话",
+   "现在"
   ]
  },
  {
@@ -1121,14 +1033,12 @@
  },
  {
   "sentence": "Get out of my face!",
-  "translation": "别让我看见你!",
+  "translation": "离我远点！",
   "chunks": [
-   "Get out of",
-   "my face!"
+   "Get out of my face!"
   ],
   "hints": [
-   "别让我",
-   "看见你！"
+   "离我远点！"
   ]
  },
  {
@@ -1151,8 +1061,8 @@
    "to get rid of me?"
   ],
   "hints": [
-   "你想把我",
-   "轰走吗？"
+   "你想",
+   "把我轰走吗？"
   ]
  },
  {
@@ -1181,8 +1091,8 @@
   "sentence": "Don't lie to me.",
   "translation": "别骗我。",
   "chunks": [
-   "Don't lie",
-   "to me."
+   "Don't",
+   "lie to me."
   ],
   "hints": [
    "别",
@@ -1203,38 +1113,32 @@
  },
  {
   "sentence": "I've had enough of your nonsense.",
-  "translation": "你开玩笑也该适可而止!",
+  "translation": "我受够了你这些胡说八道！",
   "chunks": [
    "I've had enough",
    "of your nonsense."
   ],
   "hints": [
-   "你开玩笑",
-   "也该适可而止！"
+   "我受够了",
+   "你这些胡说八道"
   ]
  },
  {
   "sentence": "Stop putting us on.",
-  "translation": "别捉弄人。",
-  "chunks": [
-   "Stop putting",
-   "us on."
-  ],
-  "hints": [
-   "别",
-   "捉弄人。"
-  ]
+  "translation": "别捉弄我们。",
+  "chunks": ["Stop putting us on."],
+  "hints": ["别捉弄我们。"]
  },
  {
   "sentence": "Don't act stupid!",
-  "translation": "别干那种傻事!",
+  "translation": "别装傻！",
   "chunks": [
-   "Don't act",
-   "stupid!"
+   "Don't",
+   "act stupid!"
   ],
   "hints": [
-   "别干那种",
-   "傻事！"
+   "别",
+   "装傻！"
   ]
  },
  {
@@ -1251,27 +1155,15 @@
  },
  {
   "sentence": "Don't pull my leg!",
-  "translation": "别逗了!",
-  "chunks": [
-   "Don't pull",
-   "my leg!"
-  ],
-  "hints": [
-   "别",
-   "逗了！"
-  ]
+  "translation": "别逗我！",
+  "chunks": ["Don't pull my leg!"],
+  "hints": ["别逗我！"]
  },
  {
   "sentence": "Take it back!",
-  "translation": "收回你说过的话。",
-  "chunks": [
-   "Take it",
-   "back!"
-  ],
-  "hints": [
-   "收回",
-   "你说过的话。"
-  ]
+  "translation": "收回你说过的话！",
+  "chunks": ["Take it back!"],
+  "hints": ["收回你说过的话！"]
  },
  {
   "sentence": "I don't want to hear any more of your lies.",
@@ -1287,24 +1179,24 @@
  },
  {
   "sentence": "Did you make up a story?",
-  "translation": "你在编故事吗?",
+  "translation": "你编了个故事吗？",
   "chunks": [
-   "Did you make up",
-   "a story?"
+   "Did you",
+   "make up a story?"
   ],
   "hints": [
-   "你在",
-   "编故事吗？"
+   "你",
+   "编了个故事吗？"
   ]
  },
  {
   "sentence": "Phony!",
-  "translation": "搞什么鬼!",
+  "translation": "冒牌货！",
   "chunks": [
    "Phony!"
   ],
   "hints": [
-   "搞什么鬼！"
+   "冒牌货！"
   ]
  },
  {
@@ -1321,14 +1213,14 @@
  },
  {
   "sentence": "You tricked me.",
-  "translation": "你在骗我呢吧!",
+  "translation": "你骗了我。",
   "chunks": [
    "You",
    "tricked me."
   ],
   "hints": [
-   "你在",
-   "骗我呢吧！"
+   "你",
+   "骗了我。"
   ]
  },
  {
@@ -1346,14 +1238,8 @@
  {
   "sentence": "You coward!",
   "translation": "胆小鬼!",
-  "chunks": [
-   "You",
-   "coward!"
-  ],
-  "hints": [
-   "胆",
-   "小鬼！"
-  ]
+  "chunks": ["You coward!"],
+  "hints": ["胆小鬼！"]
  },
  {
   "sentence": "Nobody's perfect!",
@@ -1380,35 +1266,23 @@
  {
   "sentence": "Fuck you!",
   "translation": "你这混蛋!",
-  "chunks": [
-   "Fuck",
-   "you!"
-  ],
-  "hints": [
-   "你这",
-   "混蛋！"
-  ]
+  "chunks": ["Fuck you!"],
+  "hints": ["你这混蛋！"]
  },
  {
   "sentence": "You asshole!",
-  "translation": "饭桶!",
-  "chunks": [
-   "You",
-   "asshole!"
-  ],
-  "hints": [
-   "饭",
-   "桶！"
-  ]
+  "translation": "混蛋！",
+  "chunks": ["You asshole!"],
+  "hints": ["混蛋！"]
  },
  {
   "sentence": "Christ!",
-  "translation": "混帐!/天哪!",
+  "translation": "天哪！",
   "chunks": [
    "Christ!"
   ],
   "hints": [
-   "混帐！"
+   "天哪！"
   ]
  },
  {
@@ -1425,14 +1299,14 @@
  },
  {
   "sentence": "You tomboy!",
-  "translation": "野丫头!",
+  "translation": "你这个假小子！",
   "chunks": [
    "You",
    "tomboy!"
   ],
   "hints": [
-   "野",
-   "丫头！"
+   "你这",
+   "假小子！"
   ]
  },
  {
@@ -1460,14 +1334,8 @@
  {
   "sentence": "Hey, ugly!",
   "translation": "丑八怪!",
-  "chunks": [
-   "Hey,",
-   "ugly!"
-  ],
-  "hints": [
-   "丑",
-   "八怪！"
-  ]
+  "chunks": ["Hey, ugly!"],
+  "hints": ["丑八怪！"]
  },
  {
   "sentence": "Fatso!",
@@ -1527,74 +1395,52 @@
  },
  {
   "sentence": "Calm down.",
-  "translation": "镇静些。",
+  "translation": "冷静下来！",
   "chunks": [
-   "Calm",
-   "down."
+   "Calm down."
   ],
   "hints": [
-   "镇静",
-   "些。"
+   "冷静下来！"
   ]
  },
  {
   "sentence": "Don't get so uptight.",
   "translation": "何必当真了呢。",
-  "chunks": [
-   "Don't get",
-   "so uptight."
-  ],
-  "hints": [
-   "何必",
-   "当真了呢。"
-  ]
+  "chunks": ["Don't get so uptight."],
+  "hints": ["别这么紧张。/何必当真呢？"]
  },
  {
   "sentence": "Don't be so stiff.",
   "translation": "放松点儿。",
-  "chunks": [
-   "Don't be",
-   "so stiff."
-  ],
-  "hints": [
-   "放松",
-   "点儿。"
-  ]
+  "chunks": ["Don't be so stiff."],
+  "hints": ["别这么僵硬。/放松点儿。"]
  },
  {
   "sentence": "Kick back!",
   "translation": "放松点儿。",
-  "chunks": [
-   "Kick",
-   "back!"
-  ],
-  "hints": [
-   "放松",
-   "点儿。"
-  ]
+  "chunks": ["Kick back!"],
+  "hints": ["放松一下！"]
  },
  {
   "sentence": "Take your time.",
-  "translation": "不用着急。",
+  "translation": "慢慢来，不着急。",
   "chunks": [
-   "Take your",
-   "time."
+   "Take your time."
   ],
   "hints": [
-   "不用",
-   "着急。"
+   "慢慢来，不着急。"
   ]
  },
  {
   "sentence": "There's no need to rush.",
-  "translation": "别急。",
+  "translation": "没必要着急。",
   "chunks": [
    "There's no need",
    "to rush."
   ],
   "hints": [
-   "别",
-   "急。"
+   "没必要",
+   "着急。"
   ]
  },
  {
@@ -1611,14 +1457,14 @@
  },
  {
   "sentence": "Did you make up?",
-  "translation": "和好了吗?",
+  "translation": "你们和好了吗？",
   "chunks": [
    "Did you",
    "make up?"
   ],
   "hints": [
-   "和好",
-   "了吗？"
+   "你们",
+   "和好了吗？"
   ]
  },
  {
@@ -1648,25 +1494,19 @@
  {
   "sentence": "Let's forgive and forget!",
   "translation": "过去的事就让它过去吧。",
-  "chunks": [
-   "Let's forgive",
-   "and forget!"
-  ],
-  "hints": [
-   "过去的事",
-   "就让它过去吧。"
-  ]
+  "chunks": ["Let's forgive and forget!"],
+  "hints": ["过去的事就让它过去吧。"]
  },
  {
   "sentence": "I've beaten you.",
-  "translation": "你输了。",
+  "translation": "我打败了你。",
   "chunks": [
-   "I've",
-   "beaten you."
+   "I've beaten",
+   "you."
   ],
   "hints": [
-   "你",
-   "输了。"
+   "我打败了",
+   "你。"
   ]
  },
  {
@@ -1695,14 +1535,14 @@
  },
  {
   "sentence": "I get lonely easily.",
-  "translation": "我是个容易感到寂寞的人。",
+  "translation": "我很容易感到寂寞。",
   "chunks": [
-   "I get lonely",
-   "easily."
+   "I",
+   "get lonely easily."
   ],
   "hints": [
-   "我是个容易",
-   "感到寂寞的人。"
+   "我",
+   "很容易感到寂寞。"
   ]
  },
  {

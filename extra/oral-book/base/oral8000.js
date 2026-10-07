@@ -29,17 +29,16 @@ window.DATA_ORAL8000 = [
     sentence: "How are you doing these days?",
     cid: "129c08c0",
     translation: "你最近过得怎么样？",
-    chunks: ["How are you doing", "these days?"],
-    hints: ["你最近怎么样", "这些天"],
+    chunks: ["How are you doing these days?"],
+    hints: ["你最近过得怎么样？"],
     grammar: [
-      {role:'谓语',color:'#e74c7a',phonetic:['/haʊ/','/ɑːr/','/juː/','/ˈduːɪŋ/'],pos:'现在进行时问句',meaning:'你最近过得'},
-      {role:'时间状语',color:'#7c5cbf',phonetic:['/ðiːz/','/deɪz/'],pos:'名词短语',meaning:'这些天'}
+      {role:'完整问句',color:'#7c5cbf',phonetic:['/haʊ/','/ɑːr/','/juː/','/ˈduːɪŋ/','/ðiːz/','/deɪz/'],pos:'询问近况',meaning:'你最近过得怎么样？'}
     ],
     explanations: [
       "`How are you doing?` 比 `How are you?` 更口语、更关心近况。常见错误：\n• \"How **is** you doing\" → you 是第二人称，要用 are\n• \"How are you **do**\" → 助动词重复，doing 已含进行含义",
       "`these days` 表「最近、这些天」，常与现在时连用。常见错误：\n• \"this **day**\" → 单数不对，days 用复数表一段时期\n• \"in these days\" → 通常不加 in"
     ],
-    distractors: [["How do you doing","How are you feel","How are you does"],["this days?","these day?","those days?"]]
+    distractors: [["How have you been lately?","What are you doing today?","How are you feeling these days?"]]
   },
   {
     sentence: "Nice to meet you.",
@@ -260,7 +259,7 @@ window.DATA_ORAL8000 = [
     cid: "966b3754",
     translation: "我们随便吃点东西怎么样？",
     chunks: ["Why don't we", "grab a bite to eat?"],
-    hints: ["我们为什么不", "随便吃点东西"],
+    hints: ["我们要不要", "随便吃点东西"],
     grammar: [
       {role:'建议句型',color:'#e74c7a',phonetic:['/waɪ/','/doʊnt/','/wiː/'],pos:'建议疑问句',meaning:'我们为什么不'},
       {role:'谓语（固定习语）',color:'#c87033',phonetic:['/ɡræb/','/ə/','/baɪt/','/tuː/','/iːt/'],pos:'动词短语',meaning:'随便吃点东西'}
@@ -293,11 +292,11 @@ window.DATA_ORAL8000 = [
     cid: "9d02a202",
     translation: "我要一杯中杯拿铁，谢谢。",
     chunks: ["I'd like", "a medium latte,", "please."],
-    hints: ["我想要", "一杯中杯拿铁", "谢谢"],
+    hints: ["我想要", "一杯中杯拿铁", "请"],
     grammar: [
       {role:'主谓宾',color:'#e74c7a',phonetic:['/aɪd/','/laɪk/'],pos:'委婉点单',meaning:'我想要'},
       {role:'宾语',color:'#3358e0',phonetic:['/ə/','/ˈmiːdiəm/','/ˈlɑːteɪ/'],pos:'名词短语',meaning:'中杯拿铁'},
-      {role:'礼貌词',color:'#7c5cbf',phonetic:['/pliːz/'],pos:'语气词',meaning:'谢谢'}
+      {role:'礼貌词',color:'#7c5cbf',phonetic:['/pliːz/'],pos:'语气词',meaning:'请'}
     ],
     explanations: [
       "`I'd like = I would like`，点单比 I want 更礼貌。常见错误：\n• \"I **like** a latte\" → like 表喜好，点单要用 would like\n• \"I'd like **to** a latte\" → 接名词不要 to",
@@ -309,8 +308,8 @@ window.DATA_ORAL8000 = [
     sentence: "What time should we meet up?",
     cid: "09096d4a",
     translation: "我们几点碰面好？",
-    chunks: ["What time", "should we meet up?"],
-    hints: ["几点", "我们该碰面"],
+    chunks: ["What time should we", "meet up?"],
+    hints: ["我们几点", "碰面好？"],
     grammar: [
       {role:'疑问词',color:'#e74c7a',phonetic:['/wɒt/','/taɪm/'],pos:'特殊疑问词',meaning:'几点'},
       {role:'情态+主语+谓语',color:'#c87033',phonetic:['/ʃʊd/','/wiː/','/miːt/','ʌp/'],pos:'建议疑问句',meaning:'我们该碰面'}
@@ -326,10 +325,10 @@ window.DATA_ORAL8000 = [
     cid: "f09dfd8b",
     translation: "这个多少钱？",
     chunks: ["How much", "does this one cost?"],
-    hints: ["多少钱", "这个要"],
+    hints: ["多少钱", "这个要花"],
     grammar: [
       {role:'疑问词',color:'#e74c7a',phonetic:['/haʊ/','/mʌtʃ/'],pos:'价格疑问',meaning:'多少钱'},
-      {role:'主谓',color:'#c87033',phonetic:['/dʌz/','/ðɪs/','/wʌn/','/kɒst/'],pos:'第三人称单数',meaning:'这个要'}
+      {role:'主谓',color:'#c87033',phonetic:['/dʌz/','/ðɪs/','/wʌn/','/kɒst/'],pos:'第三人称单数',meaning:'这个要花'}
     ],
     explanations: [
       "`How much does ... cost?` 问价格。常见错误：\n• \"How much **is cost** this\" → cost 是动词，不用 is\n• \"How many **money**\" → money 不可数，用 much 不是 many",
@@ -342,7 +341,7 @@ window.DATA_ORAL8000 = [
     cid: "edcf60c8",
     translation: "我今天状态不太好（身体不适）。",
     chunks: ["I'm not feeling myself", "today."],
-    hints: ["我今天状态不好", "今天"],
+    hints: ["我状态不太好", "今天"],
     grammar: [
       {role:'主谓表（习语）',color:'#c87033',phonetic:['/aɪm/','/nɒt/','/ˈfiːlɪŋ/','/maɪˈself/'],pos:'习语（≠字面义）',meaning:'状态不佳'},
       {role:'时间状语',color:'#7c5cbf',phonetic:['/təˈdeɪ/'],pos:'副词',meaning:'今天'}
@@ -571,11 +570,11 @@ window.DATA_ORAL8000 = [
     cid: "ef48bd78",
     translation: "我要牛排，五分熟，谢谢。",
     chunks: ["I'd like the steak,", "medium rare,", "please."],
-    hints: ["我要牛排", "五分熟", "谢谢"],
+    hints: ["我要牛排", "五分熟", "请"],
     grammar: [
       {role:'主谓宾',color:'#e74c7a',phonetic:['/aɪd/','/laɪk/','/ðə/','/steɪk/'],pos:'委婉点餐',meaning:'我要牛排'},
       {role:'补充说明',color:'#7c5cbf',phonetic:['/ˈmiːdiəm/','/rer/'],pos:'形容词短语',meaning:'五分熟'},
-      {role:'礼貌词',color:'#3358e0',phonetic:['/pliːz/'],pos:'语气词',meaning:'谢谢'}
+      {role:'礼貌词',color:'#3358e0',phonetic:['/pliːz/'],pos:'语气词',meaning:'请'}
     ],
     explanations: [
       "`medium rare` 是牛排熟度：rare 三分熟 / medium rare 五分熟 / medium 七分熟 / well done 全熟。常见错误：\n• \"**medium-rarely**\" → 熟度用形容词，不加 -ly\n• 把 medium rare 误当副词放句首",
@@ -769,18 +768,16 @@ window.DATA_ORAL8000 = [
     sentence: "What size do you take in shoes?",
     cid: "28fc81b5",
     translation: "你穿多大码的鞋？",
-    chunks: ["What size", "do you take", "in shoes?"],
-    hints: ["什么尺码", "你穿", "鞋"],
+    chunks: ["What size do you take in shoes?"],
+    hints: ["你穿多大码的鞋？"],
     grammar: [
-      {role:'疑问词+名词',color:'#e74c7a',phonetic:['/wɒt/','/saɪz/'],pos:'尺码疑问',meaning:'什么尺码'},
-      {role:'谓语疑问',color:'#c87033',phonetic:['/duː/','/juː/','/teɪk/'],pos:'疑问句',meaning:'你穿'},
-      {role:'范围状语',color:'#7c5cbf',phonetic:['/ɪn/','/ʃuːz/'],pos:'介词短语',meaning:'在鞋子上'}
+      {role:'尺码问句',color:'#e74c7a',phonetic:['/wɒt/','/saɪz/','/duː/','/juː/','/teɪk/','/ɪn/','/ʃuːz/'],pos:'询问鞋码',meaning:'你穿多大码的鞋'},
     ],
     explanations: [
       "问尺码：`What size do you take?`。常见错误：\n• \"How big **are** your shoes\" → 问鞋子大小不问人\n• \"What size **are** you take\" → 实义动词 take 要借助助动词 do",
       "`in shoes` = 在鞋子的品类里。类似：What size are you in?（你穿什么码？）。答：I take a size 8."
     ],
-    distractors: [["What sizes","How size","What a size"],["are you take","do you takes","you take"],["of shoes?","on shoes?","for shoes?"]]
+    distractors: [["What size you take in shoes?","How big are your shoes?","What sizes do you take?"]]
   },
   {
     sentence: "I should have called you earlier.",
@@ -804,7 +801,7 @@ window.DATA_ORAL8000 = [
     cid: "5dea8d2a",
     translation: "介意我跟你们一起吃午饭吗？",
     chunks: ["Mind if I", "join you", "for lunch?"],
-    hints: ["介意如果我", "加入你们", "吃午饭"],
+    hints: ["我能不能", "跟你们一起", "吃午饭？"],
     grammar: [
       {role:'省略问句',color:'#e74c7a',phonetic:['/maɪnd/','/ɪf/','/aɪ/'],pos:'口语省略 Do you',meaning:'介意如果我'},
       {role:'谓语',color:'#3358e0',phonetic:['/dʒɔɪn/','/juː/'],pos:'动词短语',meaning:'加入你们'},
@@ -855,7 +852,7 @@ window.DATA_ORAL8000 = [
     cid: "e138468c",
     translation: "请问是陈先生在说话吗？",
     chunks: ["Is that", "Mr. Chen", "speaking?"],
-    hints: ["那是", "陈先生", "在讲话"],
+    hints: ["请问是", "陈先生", "本人吗？"],
     grammar: [
       {role:'系动词+指示代词',color:'#c87033',phonetic:['/ɪz/','/ðæt/'],pos:'确认疑问',meaning:'那是'},
       {role:'称呼',color:'#3358e0',phonetic:['/ˈmɪstər/','/tʃen/'],pos:'称谓短语',meaning:'陈先生'},
@@ -959,7 +956,7 @@ window.DATA_ORAL8000 = [
     cid: "2f17c3e6",
     translation: "你吃过什么药吗？",
     chunks: ["Have you taken", "anything for it?"],
-    hints: ["你吃过", "针对它的任何药"],
+    hints: ["你吃过", "什么药？"],
     grammar: [
       {role:'现在完成疑问',color:'#e74c7a',phonetic:['/hæv/','/juː/','/ˈteɪkən/'],pos:'完成时疑问',meaning:'你吃过'},
       {role:'不定代词短语',color:'#3358e0',phonetic:['/ˈeniθɪŋ/','/fɔːr/','/ɪt/'],pos:'宾语',meaning:'针对它的药'}
@@ -1010,7 +1007,7 @@ window.DATA_ORAL8000 = [
     cid: "3e523059",
     translation: "我按这里会疼吗？",
     chunks: ["Does it hurt", "when I press here?"],
-    hints: ["它会疼吗", "当我按这里"],
+    hints: ["会疼吗", "我按这里时"],
     grammar: [
       {role:'助动词疑问',color:'#e74c7a',phonetic:['/dʌz/','/ɪt/','/hɜːt/'],pos:'一般疑问',meaning:'它会疼吗'},
       {role:'时间状语从句',color:'#7c5cbf',phonetic:['/wen/','/aɪ/','/pres/','/hɪər/'],pos:'when 从句',meaning:'当我按这里'}
@@ -1042,9 +1039,9 @@ window.DATA_ORAL8000 = [
     cid: "32facf35",
     translation: "明天早上几点退房？",
     chunks: ["What time is", "check-out", "tomorrow morning?"],
-    hints: ["几点是", "退房", "明天早上"],
+    hints: ["几点", "退房", "明天早上"],
     grammar: [
-      {role:'疑问结构',color:'#e74c7a',phonetic:['/wɒt/','/taɪm/','/ɪz/'],pos:'特殊疑问句',meaning:'几点是'},
+      {role:'疑问结构',color:'#e74c7a',phonetic:['/wɒt/','/taɪm/','/ɪz/'],pos:'特殊疑问句',meaning:'几点'},
       {role:'名词',color:'#3358e0',phonetic:['/ˈtʃekaʊt/'],pos:'复合名词',meaning:'退房'},
       {role:'时间状语',color:'#7c5cbf',phonetic:['/təˈmɒrəʊ/','/ˈmɔːnɪŋ/'],pos:'名词短语',meaning:'明天早上'}
     ],
@@ -1059,10 +1056,10 @@ window.DATA_ORAL8000 = [
     cid: "c0724b3e",
     translation: "我能要一间看得见风景的房间吗？",
     chunks: ["Could I have", "a room with a view?"],
-    hints: ["我能要", "一间带风景的房间"],
+    hints: ["我能要", "一间能看到风景的房间"],
     grammar: [
       {role:'情态疑问',color:'#e74c7a',phonetic:['/kʊd/','/aɪ/','/hæv/'],pos:'委婉请求',meaning:'我能要'},
-      {role:'名词短语',color:'#3358e0',phonetic:['/ə/','/ruːm/','/wɪð/','/ə/','/vjuː/'],pos:'宾语',meaning:'带风景的房间'}
+      {role:'名词短语',color:'#3358e0',phonetic:['/ə/','/ruːm/','/wɪð/','/ə/','/vjuː/'],pos:'宾语',meaning:'能看到风景的房间'}
     ],
     explanations: [
       "`Could I have...` 酒店委婉索取句式（同 Could we have / May I have）。",
@@ -1424,17 +1421,17 @@ window.DATA_ORAL8000 = [
     sentence: "Guess what happened to me today!",
     cid: "f40f7098",
     translation: "你猜我今天发生了什么！",
-    chunks: ["Guess what", "happened to me today!"],
-    hints: ["猜猜什么", "发生在我身上今天"],
+    chunks: ["Guess what happened", "to me today!"],
+    hints: ["猜猜发生了什么", "我今天遇到的事！"],
     grammar: [
-      {role:'祈使句',color:'#e74c7a',phonetic:['/ɡes/','/wɒt/'],pos:'祈使+疑问词',meaning:'猜猜什么'},
-      {role:'谓语+状语',color:'#7c5cbf',phonetic:['/ˈhæpənd/','/tuː/','/miː/','/təˈdeɪ/'],pos:'过去时',meaning:'发生在我身上今天'}
+      {role:'祈使句+宾语从句',color:'#e74c7a',phonetic:['/ɡes/','/wɒt/','/ˈhæpənd/'],pos:'Guess what happened',meaning:'猜猜发生了什么'},
+      {role:'介词短语+时间状语',color:'#7c5cbf',phonetic:['/tuː/','/miː/','/təˈdeɪ/'],pos:'happen to me + today',meaning:'我今天遇到的事'}
     ],
     explanations: [
       "分享新闻的开场白。`Guess what` = 你猜怎么着。常见错误：\n• \"Guess **that** what\" → what 引导从句，不加 that\n• \"Guessing what\" → 祈使用动词原形 Guess",
       "`happened to me` = 发生在我身上。happen 是不及物动词，接人用 happen to sb。"
     ],
-    distractors: [["Guess that","Guessing what","Guess who"],["happened to you today!","happens to me today!","happened to me yesterday!"]]
+    distractors: [["Guess that happened","Guessing what happened","Guess who happened"],["to you today!","to me yesterday!","for me today!"]]
   },
   {
     sentence: "I used to play the piano when I was little.",
@@ -1476,37 +1473,35 @@ window.DATA_ORAL8000 = [
     sentence: "As long as you're happy, that's all that matters.",
     cid: "f138b191",
     translation: "只要你开心，其他都不重要。",
-    chunks: ["As long as you're happy,", "that's all", "that matters."],
-    hints: ["只要你开心", "那就全部", "重要的"],
+    chunks: ["As long as you're happy,", "that's all that matters."],
+    hints: ["只要你开心", "其他都不重要。"],
     grammar: [
       {role:'条件从句',color:'#7c5cbf',phonetic:['/æz/','/lɒŋ/','/æz/','/jɔːr/','/ˈhæpi/'],pos:'as long as 从句',meaning:'只要你开心'},
-      {role:'主句',color:'#c87033',phonetic:['/ðæts/','/ɔːl/'],pos:'主系表',meaning:'那就是全部'},
-      {role:'定语从句',color:'#3358e0',phonetic:['/ðæt/','/ˈmætərz/'],pos:'that 从句',meaning:'重要的'}
+      {role:'主句 + 定语从句',color:'#c87033',phonetic:['/ðæts/','/ɔːl/','/ðæt/','/ˈmætərz/'],pos:"that's all that matters",meaning:'其他都不重要'}
     ],
     explanations: [
       "`As long as` = 只要（条件连词）。常见错误：\n• \"As **long** you're happy\" → 漏第二个 as\n• \"So long as\" → 也可，但 as long as 更口语",
-      "`that's all` = 那就是全部（就够了）。",
-      "`that matters` 定语从句修饰 all。matter = 重要。常见错误：\n• \"that **is** matters\" → matter 是动词，不加 is\n• \"what matters\" → 可换 but 后者语气不同"
+      "`that's all that matters` = 其他都不重要。`that matters` 是定语从句，修饰 all；matter 在这里作动词，表示‘重要’。常见错误：\n• \"that **is** matters\" → matter 是动词，不加 is\n• \"what matters\" → 可以替换，但句式不同。"
     ],
-    distractors: [["As long you're happy,","As far as you're happy,","As long as your happy,"],["that all","that's every","it's all"],["that matter.","that is matters.","what matters."]]
+    distractors: [["As long you're happy,","As far as you're happy,","As long as your happy,"],["that's everything that matters.","that's all what matters.","that's all that important."]]
   },
   {
     sentence: "By the way, do you know where the bank is?",
     cid: "9a4f0134",
     translation: "顺便问一下，你知道银行在哪吗？",
-    chunks: ["By the way,", "do you know where", "the bank is?"],
-    hints: ["顺便说一下", "你知道哪里", "银行是"],
+    chunks: ["By the way,", "do you know", "where the bank is?"],
+    hints: ["顺便说一下", "你知道吗", "银行在哪儿"],
     grammar: [
       {role:'插入语',color:'#7c5cbf',phonetic:['/baɪ/','/ðə/','/weɪ/'],pos:'固定短语',meaning:'顺便说一下'},
-      {role:'疑问主句',color:'#e74c7a',phonetic:['/duː/','/juː/','/nəʊ/','/wer/'],pos:'一般疑问',meaning:'你知道哪里'},
-      {role:'宾语从句',color:'#3358e0',phonetic:['/ðə/','/bæŋk/','/ɪz/'],pos:'名词短语',meaning:'银行在'}
+      {role:'疑问主句',color:'#e74c7a',phonetic:['/duː/','/juː/','/nəʊ/'],pos:'一般疑问',meaning:'你知道吗'},
+      {role:'宾语从句',color:'#3358e0',phonetic:['/wer/','/ðə/','/bæŋk/','/ɪz/'],pos:'名词性从句',meaning:'银行在哪儿'}
     ],
     explanations: [
       "`By the way` = 顺便说一下（转换话题）。常见错误：\n• \"By the **ways**\" → 固定短语不加 s\n• \"By a way\" → 是 the way",
       "`do you know where...` 后接宾语从句，用陈述语序：where **the bank is**（不是 where is the bank）。",
       "`the bank is` = 银行在（某处）。注意从句语序 be 动词后置。"
     ],
-    distractors: [["By a way,","By the ways,","Anyway, is"],["do you know where is","did you know where","you know where"],["the bank?","is the bank?","a bank is?"]]
+    distractors: [["By a way,","By the ways,","Anyway, is"],["do you knows","did you know","you knows"],["where the bank?","where is the bank?","the bank is where?"]]
   },
   {
     sentence: "To be honest, I didn't expect it to be so good.",
@@ -1583,9 +1578,9 @@ window.DATA_ORAL8000 = [
     cid: "9d0c16ea",
     translation: "你不会相信这个的。",
     chunks: ["You're not going to", "believe this."],
-    hints: ["你不会要", "相信这个"],
+    hints: ["你不会", "相信这个。"],
     grammar: [
-      {role:'将来时否定',color:'#e74c7a',phonetic:['/jʊər/','/nɒt/','/ˈɡəʊɪŋ/','/tuː/'],pos:'be going to',meaning:'你不会要'},
+      {role:'将来时否定',color:'#e74c7a',phonetic:['/jʊər/','/nɒt/','/ˈɡəʊɪŋ/','/tuː/'],pos:'be going to',meaning:'你不会'},
       {role:'动词短语',color:'#3358e0',phonetic:['/bɪˈliːv/','/ðɪs/'],pos:'谓语',meaning:'相信这个'}
     ],
     explanations: [
@@ -1597,11 +1592,11 @@ window.DATA_ORAL8000 = [
   {
     sentence: "It depends on the weather, I guess.",
     cid: "09a7c3c3",
-    translation: "这取决于天气，我想。",
+    translation: "这要看天气，我想。",
     chunks: ["It depends on", "the weather,", "I guess."],
-    hints: ["它取决于", "天气", "我猜"],
+    hints: ["这要看", "天气", "我想"],
     grammar: [
-      {role:'主谓结构',color:'#e74c7a',phonetic:['/ɪt/','/dɪˈpendz/','/ɒn/'],pos:'短语动词',meaning:'它取决于'},
+      {role:'主谓结构',color:'#e74c7a',phonetic:['/ɪt/','/dɪˈpendz/','/ɒn/'],pos:'短语动词',meaning:'这要看'},
       {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/ˈweðər/'],pos:'名词',meaning:'天气'},
       {role:'插入语',color:'#7c5cbf',phonetic:['/aɪ/','/ɡes/'],pos:'口语表达',meaning:'我猜'}
     ],
@@ -1649,7 +1644,7 @@ window.DATA_ORAL8000 = [
     cid: "62ff1252",
     translation: "我能试穿一下这个吗？",
     chunks: ["Could I try", "this on?"],
-    hints: ["我能试试", "这个穿"],
+    hints: ["我能试试", "把这个穿上"],
     grammar: [
       {role:'情态疑问',color:'#e74c7a',phonetic:['/kʊd/','/aɪ/','/traɪ/'],pos:'委婉请求',meaning:'我能试试'},
       {role:'代词+副词',color:'#3358e0',phonetic:['/ðɪs/','/ɒn/'],pos:'短语动词宾语',meaning:'试穿这个'}
@@ -1717,9 +1712,9 @@ window.DATA_ORAL8000 = [
     cid: "26516f50",
     translation: "这套公寓的租金是多少？",
     chunks: ["How much is", "the rent for", "this apartment?"],
-    hints: ["多少钱是", "……的租金", "这套公寓"],
+    hints: ["多少钱", "……的租金", "这套公寓"],
     grammar: [
-      {role:'疑问句',color:'#e74c7a',phonetic:['/haʊ/','/mʌtʃ/','/ɪz/'],pos:'how much 句型',meaning:'多少钱是'},
+      {role:'疑问句',color:'#e74c7a',phonetic:['/haʊ/','/mʌtʃ/','/ɪz/'],pos:'how much 句型',meaning:'租金是多少'},
       {role:'主语',color:'#3358e0',phonetic:['/ðə/','/rent/','/fɔːr/'],pos:'名词短语',meaning:'……的租金'},
       {role:'介词宾语',color:'#7c5cbf',phonetic:['/ðɪs/','/əˈpɑːrtmənt/'],pos:'指示代词+名词',meaning:'这套公寓'}
     ],
@@ -1843,10 +1838,10 @@ window.DATA_ORAL8000 = [
     cid: "66658ed3",
     translation: "把这个寄到中国要多少钱？",
     chunks: ["How much would", "it cost", "to send this to China?"],
-    hints: ["多少钱会", "它花费", "寄这个到中国"],
+    hints: ["多少钱", "需要花费", "寄这个到中国"],
     grammar: [
-      {role:'疑问句',color:'#e74c7a',phonetic:['/haʊ/','/mʌtʃ/','/wʊd/'],pos:'how much would',meaning:'多少钱会'},
-      {role:'主谓',color:'#3358e0',phonetic:['/ɪt/','/kɔːst/'],pos:'情态动词+原形',meaning:'它花费'},
+      {role:'疑问句',color:'#e74c7a',phonetic:['/haʊ/','/mʌtʃ/','/wʊd/'],pos:'how much would',meaning:'多少钱'},
+      {role:'主谓',color:'#3358e0',phonetic:['/ɪt/','/kɔːst/'],pos:'情态动词+原形',meaning:'需要花费'},
       {role:'目的状语',color:'#7c5cbf',phonetic:['/tə/','/send/','/ðɪs/','/tə/','/ˈtʃaɪnə/'],pos:'to do 不定式',meaning:'寄这个到中国'}
     ],
     explanations: [
@@ -1859,13 +1854,13 @@ window.DATA_ORAL8000 = [
   {
     sentence: "I'd like to get a haircut, please.",
     cid: "8094f354",
-    translation: "我想理发。",
+    translation: "我想理个发，麻烦你了。",
     chunks: ["I'd like to get", "a haircut,", "please."],
-    hints: ["我想", "理个发", "谢谢"],
+    hints: ["我想", "理个发", "麻烦你了。"],
     grammar: [
       {role:'主谓宾',color:'#e74c7a',phonetic:['/aɪd/','/laɪk/','/tə/','/ɡet/'],pos:'would like to',meaning:'我想做'},
       {role:'宾语',color:'#3358e0',phonetic:['/ə/','/ˈherkʌt/'],pos:'名词',meaning:'理发'},
-      {role:'礼貌词',color:'#7c5cbf',phonetic:['/pliːz/'],pos:'语气词',meaning:'谢谢'}
+      {role:'礼貌词',color:'#7c5cbf',phonetic:['/pliːz/'],pos:'语气词',meaning:'麻烦了'}
     ],
     explanations: [
       "理发店进门第一句。`get a haircut` = 理发。常见错误：\n• \"get **haircut**\" → 漏 a\n• \"I'd like **cutting**\" → would like to + 原形\n• \"cut my hair\" → 也可以，但 get a haircut 是地道说法",
@@ -1963,7 +1958,7 @@ window.DATA_ORAL8000 = [
     cid: "742e248f",
     translation: "寄一封信到日本的邮费是多少？",
     chunks: ["What's", "the postage for", "a letter to Japan?"],
-    hints: ["什么是", "……的邮费", "一封寄到日本的信"],
+    hints: ["是多少", "……的邮费", "一封寄到日本的信"],
     grammar: [
       {role:'疑问词',color:'#e74c7a',phonetic:['/wʌts/'],pos:'what is 缩写',meaning:'是多少'},
       {role:'主语',color:'#3358e0',phonetic:['/ðə/','/ˈpoʊstɪdʒ/','/fɔːr/'],pos:'名词短语',meaning:'……的邮费'},
@@ -1997,7 +1992,7 @@ window.DATA_ORAL8000 = [
     cid: "69d57e53",
     translation: "你能帮我检查一下轮胎气压吗？",
     chunks: ["Could you check", "the tire pressure", "for me?"],
-    hints: ["你能检查", "轮胎气压", "为我"],
+    hints: ["你能检查", "轮胎气压", "帮我"],
     grammar: [
       {role:'委婉请求',color:'#e74c7a',phonetic:['/kʊd/','/juː/','/tʃek/'],pos:'could 请求句',meaning:'你能检查'},
       {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/ˈtaɪər/','/ˈpreʃər/'],pos:'名词短语',meaning:'轮胎气压'},
@@ -2098,18 +2093,17 @@ window.DATA_ORAL8000 = [
     sentence: "I can't put this novel down.",
     cid: "574f6eb0",
     translation: "这本小说让我爱不释手。",
-    chunks: ["I can't put", "this novel", "down."],
-    hints: ["我无法放下", "这本小说", "下来"],
+    chunks: ["I can't", "put this novel down."],
+    hints: ["我没法", "放下这本小说"],
     grammar: [
-      {role:'主谓',color:'#e74c7a',phonetic:['/aɪ/','/kænt/','/pʊt/'],pos:"can't + 动词",meaning:'我不能放下'},
-      {role:'宾语',color:'#3358e0',phonetic:['/ðɪs/','/ˈnɑːvl/'],pos:'名词',meaning:'这本小说'},
-      {role:'副词',color:'#7c5cbf',phonetic:['/daʊn/'],pos:'小品词',meaning:'下(来)'}
+      {role:'主句主语和情态',color:'#e74c7a',phonetic:['/aɪ/','/kænt/'],pos:"can't",meaning:'我没法'},
+      {role:'固定短语动词及宾语',color:'#3358e0',phonetic:['/pʊt/','/ðɪs/','/ˈnɑːvl/','/daʊn/'],pos:'put ... down',meaning:'放下这本小说'}
     ],
     explanations: [
       "`can't put sth down` = 放不下手/爱不释手（书太好看了）。常见错误：\n• \"can't put down this novel\" → 也可以，但 put + 宾语 + down 是常见语序\n• \"can't put it down\" 更口语",
       "`novel` = 长篇小说；`story` = 故事。"
     ],
-    distractors: [["I can't putting","I don't put","I can't to put"],["this novels","these novel","a novel"],["up.","down now.","to down."]]
+    distractors: [["I can't putting","I don't put","I can't to put"],["put this novel off","put up with this novel","put this novel over"]]
   },
   {
     sentence: "Could you keep the noise down?",
@@ -2235,7 +2229,7 @@ window.DATA_ORAL8000 = [
     cid: "141237b8",
     translation: "我六点应该和他见面。",
     chunks: ["I'm supposed to", "meet him", "at six."],
-    hints: ["我按约定要", "见他", "在六点"],
+    hints: ["我按计划要", "见他", "六点"],
     grammar: [
       {role:'主系表',color:'#e74c7a',phonetic:['/aɪm/','/səˈpoʊzd/','/tə/'],pos:'be supposed to',meaning:'按约定应该'},
       {role:'谓语',color:'#3358e0',phonetic:['/miːt/','/hɪm/'],pos:'动词+宾语',meaning:'见他'},
@@ -2250,9 +2244,9 @@ window.DATA_ORAL8000 = [
   {
     sentence: "What if it rains on the wedding day?",
     cid: "96308679",
-    translation: "万一下雨那天结婚怎么办？",
+    translation: "婚礼那天下雨怎么办？",
     chunks: ["What if", "it rains", "on the wedding day?"],
-    hints: ["万一", "天下雨", "在婚礼那天"],
+    hints: ["万一……怎么办？", "下雨", "婚礼那天"],
     grammar: [
       {role:'疑问短语',color:'#e74c7a',phonetic:['/wʌt/','/ɪf/'],pos:'what if',meaning:'万一……怎么办'},
       {role:'从句主谓',color:'#3358e0',phonetic:['/ɪt/','/reɪnz/'],pos:'一般现在时(表将来)',meaning:'天下雨'},
@@ -2319,18 +2313,16 @@ window.DATA_ORAL8000 = [
     sentence: "It's worth trying one more time.",
     cid: "59f78fc3",
     translation: "值得再试一次。",
-    chunks: ["It's worth", "trying", "one more time."],
-    hints: ["这是值得的", "尝试", "再一次"],
+    chunks: ["It's worth trying one more time."],
+    hints: ["值得再试一次。"],
     grammar: [
-      {role:'主系表',color:'#e74c7a',phonetic:['/ɪts/','/wɜːrθ/'],pos:'be worth doing',meaning:'值得'},
-      {role:'动名词',color:'#3358e0',phonetic:['/ˈtraɪɪŋ/'],pos:'动名词(主语为it)',meaning:'尝试'},
-      {role:'状语',color:'#7c5cbf',phonetic:['/wʌn/','/mɔːr/','/taɪm/'],pos:'短语',meaning:'再一次'}
+      {role:'完整谓语结构',color:'#7c5cbf',phonetic:['/ɪts/','/wɜːrθ/','/ˈtraɪɪŋ/','/wʌn/','/mɔːr/','/taɪm/'],pos:'be worth doing + one more time',meaning:'值得再试一次'}
     ],
     explanations: [
       "`be worth doing` = 值得做，主动形式表被动。常见错误：\n• \"worth to try\" → worth 后接动名词\n• \"worth **of** trying\" → 多 of\n• \"It's worthy trying\" → worth/worthy 不同搭配",
       "`one more time` = 再一次。"
     ],
-    distractors: [["It's worth to","It's worthy","It worth"],["to try","tried","try"],["one time more.","one more times.","more one time."]]
+    distractors: [["It's worth to try one more time.","It's worthy trying one more time.","It worth trying once again."]]
   },
   {
     sentence: "Sorry I'm late, the traffic was terrible.",
@@ -2506,7 +2498,7 @@ window.DATA_ORAL8000 = [
     cid: "ea7d8a4b",
     translation: "今晚你过来一起吃晚饭吧？",
     chunks: ["Why don't you", "come over", "for dinner tonight?"],
-    hints: ["你何不", "过来", "今晚吃晚饭"],
+    hints: ["你要不要", "来我家", "今晚一起吃晚饭"],
     grammar: [
       {role:'建议句型',color:'#e74c7a',phonetic:['/waɪ/','/doʊnt/','/juː/'],pos:"why don't you",meaning:'你何不'},
       {role:'谓语',color:'#3358e0',phonetic:['/kʌm/','/ˈoʊvər/'],pos:'短语动词',meaning:'过来'},
@@ -2571,7 +2563,7 @@ window.DATA_ORAL8000 = [
   {
     sentence: "I got it here.",
     cid: "61133093",
-    translation: "我这儿有。",
+    translation: "我是在这儿拿到的。",
     chunks: ["I got it","here."],
     hints: ["我拿到了","在这儿"],
     grammar: [
@@ -2620,17 +2612,17 @@ window.DATA_ORAL8000 = [
     sentence: "What did you eat?",
     cid: "3fcc4d24",
     translation: "你吃了什么？",
-    chunks: ["What did","you eat?"],
-    hints: ["什么（过去）","你吃了"],
+    chunks: ["What","did you eat?"],
+    hints: ["什么","你吃了？"],
     grammar: [
-      {role:'疑问词+助动词',color:'#c87033',phonetic:['/wʌt/','/dɪd/'],pos:'疑问词+did',meaning:'什么'},
-      {role:'主语+谓语',color:'#e74c7a',phonetic:['/juː/','/iːt/'],pos:'you + 动词原形',meaning:'你吃'}
+      {role:'疑问词',color:'#c87033',phonetic:['/wʌt/'],pos:'疑问代词',meaning:'什么'},
+      {role:'疑问句',color:'#e74c7a',phonetic:['/dɪd/','/juː/','/iːt/'],pos:'did + 主语 + 动词原形',meaning:'你吃了'}
     ],
     explanations: [
       "疑问句里 did 之后动词必须用原形，时态已经由 did 承担。常见错误：\n• \"What did you ate?\" → did 后不能用过去式\n• \"What you ate?\" → 缺助动词 did",
       "`eat` 用原形与 did 搭配；对应的陈述句是 You ate ..."
     ],
-    distractors: [["What do","What does","What were"],["you ate?","you eats?","you eating?"]]
+    distractors: [["When","Where","Who"],["did you ate?","did you eats?","do you ate?"]]
   },
   {
     sentence: "Leftover pizza.",
@@ -2686,11 +2678,11 @@ window.DATA_ORAL8000 = [
     cid: "959fa9a7",
     translation: "你睡得怎么样？",
     chunks: ["How'd you","sleep?"],
-    hints: ["你（怎么）","睡"],
+    hints: ["你怎么","睡得怎么样？"],
     alts: [["How did you"], null],
     grammar: [
-      {role:'疑问词+助动词',color:'#c87033',phonetic:['/haʊd/','/juː/'],pos:'How did 的口语缩写',meaning:'你（怎么）'},
-      {role:'谓语',color:'#e74c7a',phonetic:['/sliːp/'],pos:'动词原形',meaning:'睡'}
+      {role:'疑问词+助动词',color:'#c87033',phonetic:['/haʊd/','/juː/'],pos:'How did 的口语缩写',meaning:'你怎么'},
+      {role:'谓语',color:'#e74c7a',phonetic:['/sliːp/'],pos:'动词原形',meaning:'睡得怎么样'}
     ],
     explanations: [
       "`How'd` = How did 的口语缩写，问的是过去的状况。常见错误：\n• \"How'd you slept?\" → did 之后要用原形\n• 完整形式 How did you sleep? 同样正确，只是没那么口语",
@@ -2783,7 +2775,7 @@ window.DATA_ORAL8000 = [
     cid: "6c4276f8",
     translation: "想去跑步吗？",
     chunks: ["Wanna","go for a run?"],
-    hints: ["想要","去跑步"],
+    hints: ["想不想","去跑步"],
     grammar: [
       {role:'情态+主语',color:'#c87033',phonetic:['/ˈwɑːnə/'],pos:'want to 的口语缩写',meaning:'想要'},
       {role:'固定表达',color:'#7c5cbf',phonetic:['/ɡoʊ/','/fɔːr/','/ə/','/rʌn/'],pos:'go for a run 惯用短语',meaning:'去跑步'}
@@ -2846,17 +2838,16 @@ window.DATA_ORAL8000 = [
     sentence: "How old are you?",
     cid: "4d62bdfa",
     translation: "你多大了？",
-    chunks: ["How old","are you?"],
-    hints: ["多大","你呢"],
+    chunks: ["How old are you?"],
+    hints: ["你多大了？"],
     grammar: [
-      {role:'疑问词+形容词',color:'#c87033',phonetic:['/haʊ/','/oʊld/'],pos:'询问年龄',meaning:'多大'},
-      {role:'系动词+主语',color:'#c87033',phonetic:['/ɑːr/','/juː/'],pos:'倒装问句',meaning:'你呢'}
+      {role:'固定年龄问句',color:'#c87033',phonetic:['/haʊ/','/oʊld/','/ɑːr/','/juː/'],pos:'How old are you?',meaning:'你多大了？'}
     ],
     explanations: [
       "问年龄固定用 `How old`。常见错误：\n• \"How age are you?\" → 错，age 是名词不能这样问\n• \"What old are you?\" → 疑问词用 How",
       "`are you` 是主谓倒装。常见错误：\n• \"How old you are?\" → 语序没倒装，这种语序只用在宾语从句里（I know how old you are.）"
     ],
-    distractors: [["How age","What old","How older"],["you are?","are your?","do you?"]]
+    distractors: [["How age are you?","What old are you?","How old you are?"]]
   },
   {
     sentence: "Twenty something.",
@@ -2993,10 +2984,10 @@ window.DATA_ORAL8000 = [
     cid: "db783c1d",
     translation: "妈妈同意了。",
     chunks: ["It's okay","with Mom."],
-    hints: ["（这件事）可以","对妈妈来说"],
+    hints: ["（这件事）可以","妈妈同意"],
     grammar: [
       {role:'主系表',color:'#c87033',phonetic:['/ɪts/','/ˌoʊˈkeɪ/'],pos:'it + is + 形容词',meaning:'可以'},
-      {role:'对象状语',color:'#7c5cbf',phonetic:['/wɪð/','/mɑːm/'],pos:'介词短语',meaning:'对妈妈而言'}
+      {role:'对象状语',color:'#7c5cbf',phonetic:['/wɪð/','/mɑːm/'],pos:'固定搭配',meaning:'妈妈同意'}
     ],
     explanations: [
       "`It's okay with sb` 表「某人没意见、某人同意」。常见错误：\n• \"It's okay for Mom\" → for 表「对……有好处」，表「同意」要用 with\n• 家庭称呼 Mom 首字母大写，作专有名词",
@@ -3055,18 +3046,16 @@ window.DATA_ORAL8000 = [
   {
     sentence: "I'm all right.",
     cid: "e24acc99",
-    translation: "不用了。",
-    chunks: ["I'm","all right."],
-    hints: ["我","还好、不用"],
+    translation: "我没事；不用了。",
+    chunks: ["I'm all right."],
+    hints: ["我没事；不用了。"],
     grammar: [
-      {role:'主语+系动词',color:'#c87033',phonetic:['/aɪm/'],pos:'I + am 缩写',meaning:'我'},
-      {role:'表语',color:'#3358e0',phonetic:['/ɔːl/','/raɪt/'],pos:'形容词短语',meaning:'还好'}
+      {role:'固定表达',color:'#c87033',phonetic:['/aɪm/','/ɔːl/','/raɪt/'],pos:'语境表达',meaning:'我没事；不用了'}
     ],
     explanations: [
-      "`I'm all right` 有两层意思：身体「我没事」，回答提议时是「不用了」。常见错误：\n• \"I'm alright\" → 也可接受，但规范写法是 all right\n• \"I'm right\" → 意思变成「我是对的」",
-      "同义（拒绝提议）：I'm good. / No thanks."
+      "`I'm all right` 有两层意思：身体「我没事」，回答提议时是「不用了」。常见错误：\n• \"I'm alright\" → 也可接受，但规范写法是 all right\n• \"I'm right\" → 意思变成「我是对的」。同义（拒绝提议）：I'm good. / No thanks."
     ],
-    distractors: [["I am","I'm not","I'm in"],["alright.","all write.","all rights."]]
+    distractors: [["I'm alright.","I'm right.","I'm all write."]]
   },
   {
     sentence: "You tired?",
@@ -3088,17 +3077,16 @@ window.DATA_ORAL8000 = [
     sentence: "A little.",
     cid: "8e16eb62",
     translation: "有一点。",
-    chunks: ["A","little."],
-    hints: ["一","点儿"],
+    chunks: ["A little."],
+    hints: ["一点儿。"],
     grammar: [
-      {role:'冠词',color:'#c87033',phonetic:['/ə/'],pos:'不定冠词',meaning:'一（个）'},
-      {role:'名词',color:'#3358e0',phonetic:['/ˈlɪtl/'],pos:'不可数名词用法',meaning:'一点儿'}
+      {role:'固定数量短语',color:'#7c5cbf',phonetic:['/ə/','/ˈlɪtl/'],pos:'a little 整体短语',meaning:'一点儿'}
     ],
     explanations: [
       "`a little` 是整体短语，表「一点点」，回答 Are you tired? 时常省略主句。常见错误：\n• \"a few\" → few 接可数名词，回答程度要用 a little\n• \"little\" 单用 → 表「几乎没有」，否定意味，跟 a little 相反",
       "同义：A bit. / Kind of. / Somewhat."
     ],
-    distractors: [["An","The","Some"],["few.","bit.","lot."]]
+    distractors: [["A bit.","Some.","A few."]]
   },
   {
     sentence: "I have a bump.",
@@ -3216,17 +3204,17 @@ window.DATA_ORAL8000 = [
     sentence: "I'll do it soon.",
     cid: "54010f3c",
     translation: "我很快做。",
-    chunks: ["I'll do","it soon."],
-    hints: ["我会做","很快"],
+    chunks: ["I'll","do it soon."],
+    hints: ["我会","很快把它做完。"],
     grammar: [
-      {role:'主语+助动词',color:'#e74c7a',phonetic:['/aɪl/','/duː/'],pos:'I will 缩写 + 动词',meaning:'我会做'},
-      {role:'宾语+时间状语',color:'#7c5cbf',phonetic:['/ɪt/','/suːn/'],pos:'代词 + 副词',meaning:'很快（做）它'}
+      {role:'主语+助动词',color:'#e74c7a',phonetic:['/aɪl/'],pos:'I will 缩写',meaning:'我会'},
+      {role:'谓语+宾语+时间状语',color:'#7c5cbf',phonetic:['/duː/','/ɪt/','/suːn/'],pos:'动词短语',meaning:'很快把它做完'}
     ],
     explanations: [
       "`I'll` = I will，表将来的承诺，后接动词原形。常见错误：\n• \"I'll doing\" → will 后接原形\n• \"I'll did\" → 不能接过去式",
       "`soon` 表「不久之后」，多与将来时连用。常见错误：\n• \"soonly\" → 不存在这个副词\n• \"quick\" → 那是形容词，时间上要用 soon"
     ],
-    distractors: [["I'll doing","I do","I'll did"],["it soonly.","it quick.","its soon."]]
+    distractors: [["I will","I may","I can"],["do it soonly.","do it quick.","do them soon."]]
   },
   {
     sentence: "I like those pants.",
@@ -3392,34 +3380,32 @@ window.DATA_ORAL8000 = [
     sentence: "How ya doin'?",
     cid: "c530aed7",
     translation: "最近怎么样？",
-    chunks: ["How ya","doin'?"],
-    hints: ["你（怎么）","过得"],
-    alts: [null, ["doing?"]],
+    chunks: ["How ya doin'?"],
+    hints: ["最近怎么样？"],
+    alts: [["How are you doing?"]],
     grammar: [
-      {role:'疑问词+主语',color:'#c87033',phonetic:['/haʊ/','/jə/'],pos:'How are you 的口语连读',meaning:'你（怎么）'},
-      {role:'谓语',color:'#e74c7a',phonetic:['/ˈduːɪn/'],pos:'doing 的口语拼写',meaning:'过得'}
+      {role:'口语问候',color:'#c87033',phonetic:['/haʊ/','/jə/','/ˈduːɪn/'],pos:'How are you doing 的口语形式',meaning:'最近怎么样？'}
     ],
     explanations: [
       "`ya` 是 you 的口语弱读，整句源自 How are you doing?。常见错误：\n• \"How ya doing?\" → 写成 doing 更规范，doin' 是口语拼写\n• \"How you doin'?\" → 也常见，但省略了 are 的读音",
       "这是非常随意的问候，正式场合要说 How are you?"
     ],
-    distractors: [["How you","How are","How's ya"],["do?","done?","doin's?"]]
+    distractors: [["How you doing?","How are you do?","How's you doing?"]]
   },
   {
     sentence: "Not too bad.",
     cid: "c869e3f3",
     translation: "还不错。",
-    chunks: ["Not too","bad."],
-    hints: ["不算","太差"],
+    chunks: ["Not too bad."],
+    hints: ["还不错。"],
     grammar: [
-      {role:'程度状语',color:'#7c5cbf',phonetic:['/nɑːt/','/tuː/'],pos:'否定 + 程度副词',meaning:'不算太'},
-      {role:'表语',color:'#3358e0',phonetic:['/bæd/'],pos:'形容词',meaning:'差'}
+      {role:'固定应答',color:'#7c5cbf',phonetic:['/nɑːt/','/tuː/','/bæd/'],pos:'保守式回答',meaning:'还不错。'}
     ],
     explanations: [
       "`not too bad` 是英语里典型的「保守式回答」，实际意思接近「挺好的」。常见错误：\n• \"not to bad\" → 程度副词是 too，不是 to\n• \"no too bad\" → 否定词用 not",
       "同义：Pretty good. / Can't complain. / Not bad at all."
     ],
-    distractors: [["No too","Not to","Not to much"],["badly.","worse.","bads."]]
+    distractors: [["No too bad.","Not to bad.","Not too badly."]]
   },
   {
     sentence: "You moved?",
@@ -3553,17 +3539,17 @@ window.DATA_ORAL8000 = [
     sentence: "I brought you apples.",
     cid: "f1405f3f",
     translation: "我给你带了苹果。",
-    chunks: ["I brought","you apples."],
-    hints: ["我带了","给你苹果"],
+    chunks: ["I brought you","apples."],
+    hints: ["我给你带了","苹果。"],
     grammar: [
-      {role:'主谓',color:'#e74c7a',phonetic:['/aɪ/','/brɔːt/'],pos:'bring 的过去式',meaning:'我带了'},
-      {role:'双宾语',color:'#3358e0',phonetic:['/juː/','/ˈæplz/'],pos:'间接宾语+直接宾语',meaning:'给你苹果'}
+      {role:'主谓+间接宾语',color:'#e74c7a',phonetic:['/aɪ/','/brɔːt/','/juː/'],pos:'bring 的过去式 + 双宾语',meaning:'我给你带了'},
+      {role:'直接宾语',color:'#3358e0',phonetic:['/ˈæplz/'],pos:'名词复数',meaning:'苹果'}
     ],
     explanations: [
       "`bring` 的过去式是 brought（不规则）。常见错误：\n• \"I bringed\" → 错，应作 brought\n• \"I bought\" → bought 是「买」，读音接近但意思不同",
       "`bring sb sth` 双宾语结构，等于 bring sth to sb（给你带了苹果）。常见错误：\n• \"bring you apple\" → 可数名词泛指要复数"
     ],
-    distractors: [["I bring","I bought","I bringed"],["you apple.","your apples.","you an apples."]]
+    distractors: [["I bring you","I bought you","I brought them"],["an apple.","some apples.","an apples."]]
   },
   {
     sentence: "This is way too much.",
@@ -3586,10 +3572,10 @@ window.DATA_ORAL8000 = [
     cid: "2af7c066",
     translation: "有点坏了。",
     chunks: ["It's","partly rotten."],
-    hints: ["它是","部分烂了"],
+    hints: ["它","有些腐烂了。"],
     grammar: [
-      {role:'主语+系动词',color:'#c87033',phonetic:['/ɪts/'],pos:'it + is 缩写',meaning:'它是'},
-      {role:'表语',color:'#3358e0',phonetic:['/ˈpɑːrtli/','/ˈrɑːtn/'],pos:'副词 + 形容词',meaning:'部分腐烂的'}
+      {role:'主语+系动词',color:'#c87033',phonetic:['/ɪts/'],pos:'it + is 缩写',meaning:'它'},
+      {role:'表语',color:'#3358e0',phonetic:['/ˈpɑːrtli/','/ˈrɑːtn/'],pos:'副词 + 形容词',meaning:'有些腐烂了'}
     ],
     explanations: [
       "`partly` 表「部分地」，修饰形容词。常见错误：\n• \"part rotten\" → 少了 -ly 就变成名词修饰\n• \"partly rottened\" → rotten 已是形容词",
@@ -3633,33 +3619,30 @@ window.DATA_ORAL8000 = [
     sentence: "Good for you.",
     cid: "d43245c6",
     translation: "真不错（为你高兴）。",
-    chunks: ["Good","for you."],
-    hints: ["好","对你来说"],
+    chunks: ["Good for you."],
+    hints: ["真替你高兴！"],
     grammar: [
-      {role:'表语',color:'#c87033',phonetic:['/ɡʊd/'],pos:'形容词（省略主语）',meaning:'好'},
-      {role:'对象状语',color:'#7c5cbf',phonetic:['/fɔːr/','/juː/'],pos:'介词短语',meaning:'对你来说'}
+      {role:'固定表达',color:'#c87033',phonetic:['/ɡʊd fər juː/'],pos:'回应好消息的惯用语',meaning:'真替你高兴'}
     ],
     explanations: [
       "`Good for you` 是回应别人好消息的固定说法，表「为你高兴」。常见错误：\n• 理解成「对你有好处」→ 那是 Good for your health 之类的含义，语境不同\n• \"Good to you\" → 固定搭配用 for",
       "同义：Nice! / That's great! / I'm happy for you."
     ],
-    distractors: [["Good at","Good to","Better"],["for your.","to you.","for yours."]]
+    distractors: [["That's great!","I'm happy for you.","Nice work!"]]
   },
   {
     sentence: "It's close to me.",
     cid: "b45ed857",
     translation: "离我很近。",
-    chunks: ["It's close","to me."],
-    hints: ["它是近的","对我来说"],
+    chunks: ["It's close to me."],
+    hints: ["离我很近。"],
     grammar: [
-      {role:'主系表',color:'#c87033',phonetic:['/ɪts/','/kloʊs/'],pos:'it + is + 形容词',meaning:'它是近的'},
-      {role:'对象状语',color:'#7c5cbf',phonetic:['/tə/','/miː/'],pos:'介词短语',meaning:'离我'}
+      {role:'固定搭配',color:'#c87033',phonetic:['/ɪts/','/kloʊs/','/tə/','/miː/'],pos:'it + be + close to + 人/地点',meaning:'离我很近'}
     ],
     explanations: [
-      "`close` 作形容词读 /kloʊs/，表「近的」。常见错误：\n• \"It's closed\" → closed 读 /kloʊzd/，是「关门的」，意思完全不同\n• \"near to me\" → near 作形容词时不加 to，或直接用 close to me",
-      "`close to sb/sth` 表「离……近」。常见错误：\n• \"close me\" → 缺介词 to"
+      "`close to me` 表示「离我近」，整句 `It's close to me` 就是「离我很近」。常见错误：\n• \"It's closed\" → closed 读 /kloʊzd/，是「关门的」，意思完全不同\n• \"close me\" → 缺少介词 to"
     ],
-    distractors: [["It's closed","It's closest","It's close by"],["to my.","for me.","to mine."]]
+    distractors: [["It's near me.","It's far from me.","It's closed."]]
   },
   {
     sentence: "The pay is good.",
@@ -3715,7 +3698,7 @@ window.DATA_ORAL8000 = [
     cid: "a732da43",
     translation: "我今天不上班。",
     chunks: ["I'm not on","today."],
-    hints: ["我今天不上（班）","今天"],
+    hints: ["我不上班","今天"],
     grammar: [
       {role:'主系表',color:'#c87033',phonetic:['/aɪm/','/nɑːt/','/ɑːn/'],pos:'be + not + on',meaning:'我不在班'},
       {role:'时间状语',color:'#7c5cbf',phonetic:['/təˈdeɪ/'],pos:'时间副词',meaning:'今天'}
@@ -3961,7 +3944,7 @@ window.DATA_ORAL8000 = [
       {role:'宾语',color:'#3358e0',phonetic:['/ðɪs/'],pos:'指示代词',meaning:'这件事'}
     ],
     explanations: [
-      "`I've got this` 是口语鼓励自己的固定说法，表「我能应付」。常见错误：\n• \"I got this\" → 也可以，语气更随意\n• \"I've got this to\" → 加 to 意思就变「我不得不处理这个」",
+      "`I've got this` 是口语里表示「我能搞定／我来处理」的说法。易混表达：\n• `I got this.` 也很常用，尤其在美式口语里，同样表示「我能搞定」，语气更直接；这不是错误。\n• `I've got to do this.` =「我得做这件事」。`got to` 后接动词原形，别和 `I've got this`（我能搞定）混淆。",
       "同义：I got it. / I can handle it. / I'm on it."
     ],
     distractors: [["I got","I've get","I've got to"],["that.","these.","this's."]]
@@ -4082,17 +4065,16 @@ window.DATA_ORAL8000 = [
     sentence: "You got it.",
     cid: "86ff7ccf",
     translation: "应该的。",
-    chunks: ["You got","it."],
-    hints: ["你拿到了","它"],
+    chunks: ["You got it."],
+    hints: ["你说对了！"],
     grammar: [
-      {role:'主谓宾',color:'#e74c7a',phonetic:['/juː/','/ɡɑːt/'],pos:'口语省略 did',meaning:'你（做）到了'},
-      {role:'宾语',color:'#3358e0',phonetic:['/ɪt/'],pos:'代词',meaning:'它'}
+      {role:'固定表达',color:'#c87033',phonetic:['/juː ɡɑːt ɪt/'],pos:'口语惯用语',meaning:'你说对了；也可表示“明白了/没问题”'}
     ],
     explanations: [
-      "`You got it` 回应感谢时表「应该的、小意思」。常见错误：\n• 用降调读 → 才表「没问题/包在我身上」，两种含义靠语境区分\n• \"You get it\" → 那是「你明白了」",
-      "同义：No problem. / Anytime. / My pleasure."
+      "`You got it` 要按语境理解：在赞同对方判断时是「你说对了」；回应请求时是「没问题/包在我身上」；表示理解时是「明白了」。这里是赞同语境。",
+      "常见搭配：You got it right.（你答对了。）回应感谢时也可说 No problem. / My pleasure."
     ],
-    distractors: [["You get","You got to","You've got"],["that.","them.","it's."]]
+    distractors: [["You got that.","You get it.","You have it."]]
   },
   {
     sentence: "I'm here for you.",
@@ -4162,19 +4144,18 @@ window.DATA_ORAL8000 = [
     sentence: "Did you eat something bad?",
     cid: "1d4b7d2d",
     translation: "你是不是吃坏东西了？",
-    chunks: ["Did you","eat something","bad?"],
-    hints: ["你是否","吃了什么","不好的"],
+    chunks: ["Did you eat", "something bad?"],
+    hints: ["你是不是吃了", "坏东西？"],
     grammar: [
-      {role:'助动词+主语',color:'#c87033',phonetic:['/dɪd/','/juː/'],pos:'一般过去时疑问',meaning:'你是否'},
-      {role:'谓语+宾语',color:'#e74c7a',phonetic:['/iːt/','/ˈsʌmθɪŋ/'],pos:'动词原形 + 不定代词',meaning:'吃了什么'},
-      {role:'定语',color:'#3358e0',phonetic:['/bæd/'],pos:'形容词后置',meaning:'不好的'}
+      {role:'一般过去时疑问',color:'#e74c7a',phonetic:['/dɪd/','/juː/','/iːt/'],pos:'did + 主语 + 动词原形',meaning:'你是不是吃了'},
+      {role:'宾语短语',color:'#3358e0',phonetic:['/ˈsʌmθɪŋ/','/bæd/'],pos:'形容词后置修饰 something',meaning:'坏东西'}
     ],
     explanations: [
       "有 did 时动词用原形。常见错误：\n• \"Did you ate\" → 用 eat\n• \"Did your eat\" → 主语用 you",
       "`something bad` 是形容词后置修饰不定代词。常见错误：\n• \"bad something\" → 修饰 something 时形容词必须放后面",
       "`bad` 修饰 something 作定语。同义：Did you eat anything bad? / Was it something you ate?"
     ],
-    distractors: [["Do you","Did your","Does you"],["eat somethings","eating something","eats something"],["badly?","badder?","a bad?"]]
+    distractors: [["Do you eat","Did your eat","Does you eat"],["something badly?","something badder?","a bad thing?"]]
   },
   {
     sentence: "Hope you're feeling better.",
@@ -4662,49 +4643,46 @@ window.DATA_ORAL8000 = [
     sentence: "Take a walk.",
     cid: "d1fa43d8",
     translation: "去走走。",
-    chunks: ["Take a","walk."],
-    hints: ["去散个","步"],
+    chunks: ["Take a walk."],
+    hints: ["去散散步。"],
     grammar: [
-      {role:'谓语',color:'#e74c7a',phonetic:['/teɪk/','/ə/'],pos:'动词短语 take a walk',meaning:'去散步'},
-      {role:'宾语',color:'#3358e0',phonetic:['/wɔːk/'],pos:'名词',meaning:'走路'}
+      {role:'谓语',color:'#e74c7a',phonetic:['/teɪk/','/ə/','/wɔːk/'],pos:'固定短语 take a walk',meaning:'去散步'}
     ],
     explanations: [
       "`take a walk` 是「去走走、散步」的固定搭配。常见错误：\n• \"Take walk\" → 缺少 a\n• \"Go a walk\" → 动词用 take 或 have，不用 go",
       "同义：go for a walk / take a stroll（更悠闲）。"
     ],
-    distractors: [["Take the","Make a","Go a"],["walks.","walking.","a walk."]]
+    distractors: [["take a walking.","take walk.","make a walk."]]
   },
   {
     sentence: "It's raining.",
     cid: "c9dfafd6",
     translation: "下雨了。",
-    chunks: ["It's","raining."],
-    hints: ["天（它）","在下雨"],
+    chunks: ["It's raining."],
+    hints: ["正在下雨。"],
     grammar: [
-      {role:'形式主语',color:'#c87033',phonetic:['/ɪts/'],pos:'it 指天气',meaning:'天'},
-      {role:'谓语（进行时）',color:'#e74c7a',phonetic:['/ˈreɪnɪŋ/'],pos:'现在进行时',meaning:'正在下雨'}
+      {role:'天气表达',color:'#7c5cbf',phonetic:['/ɪts/','/ˈreɪnɪŋ/'],pos:'it 作天气句形式主语 + 现在进行时',meaning:'正在下雨'}
     ],
     explanations: [
       "谈天气时用 it 作形式主语，不能用 he/she。常见错误：\n• \"It rains now\" → 眼下正在下要用进行时\n• \"Rain is happening\" → 不地道，直接说 It's raining",
       "相关：It's pouring.（下大雨）/ It's drizzling.（下毛毛雨）"
     ],
-    distractors: [["It","It is raining","There's"],["rains.","rained.","rainy."]]
+    distractors: [["It's snowing.","It's pouring.","It's sunny."]]
   },
   {
     sentence: "It's getting windy.",
     cid: "6db16bc7",
-    translation: "起风了。",
-    chunks: ["It's getting","windy."],
-    hints: ["正在变得","有风"],
+    translation: "正在起风。",
+    chunks: ["It's getting windy."],
+    hints: ["正在起风。"],
     grammar: [
-      {role:'主系表',color:'#c87033',phonetic:['/ɪts/','/ˈɡetɪŋ/'],pos:'get + 形容词（进行时）',meaning:'正在变得'},
-      {role:'表语',color:'#3358e0',phonetic:['/ˈwɪndi/'],pos:'形容词',meaning:'有风的'}
+      {role:'天气变化表达',color:'#7c5cbf',phonetic:['/ɪts/','/ˈɡetɪŋ/','/ˈwɪndi/'],pos:'get + 形容词（进行时）',meaning:'正在起风'}
     ],
     explanations: [
       "`windy` = wind + y，表「起风的」。常见错误：\n• \"It's getting wind\" → 形容词形式是 windy\n• \"It's getting a wind\" → 不需要冠词",
       "同类天气变化：It's getting cloudy / foggy / chilly."
     ],
-    distractors: [["It getting","It's got","It's get"],["wind.","windily.","winds."]]
+    distractors: [["It's getting cloudy.","It's getting warmer.","It's getting dark."]]
   },
   {
     sentence: "Order some food.",
@@ -4807,7 +4785,7 @@ window.DATA_ORAL8000 = [
     cid: "867d1dff",
     translation: "上车吧。",
     chunks: ["Get in","the car."],
-    hints: ["进","车"],
+    hints: ["上","车"],
     grammar: [
       {role:'谓语',color:'#e74c7a',phonetic:['/ɡet/','/ɪn/'],pos:'短语动词 get in',meaning:'进入'},
       {role:'宾语',color:'#3358e0',phonetic:['/ðə/','/kɑːr/'],pos:'名词短语',meaning:'汽车'}
@@ -4869,34 +4847,31 @@ window.DATA_ORAL8000 = [
   {
     sentence: "Hold on.",
     cid: "4436b78d",
-    translation: "抓紧（也可以表示等一下）。",
-    chunks: ["Hold","on."],
-    hints: ["抓","住"],
+    translation: "抓紧；稍等。",
+    chunks: ["Hold on."],
+    hints: ["抓紧；稍等。"],
     grammar: [
-      {role:'谓语',color:'#e74c7a',phonetic:['/hoʊld/'],pos:'祈使句动词',meaning:'抓住'},
-      {role:'副词',color:'#7c5cbf',phonetic:['/ɑːn/'],pos:'副词（固定搭配）',meaning:'持住、继续'}
+      {role:'短语动词',color:'#e74c7a',phonetic:['/hoʊld/','/ɑːn/'],pos:'固定表达',meaning:'抓紧；稍等'}
     ],
     explanations: [
-      "`hold on` 有两义：① 抓紧 ② 等一下（打电话时最常听）。常见错误：\n• \"Hold on to\" 后面要接宾语（hold on to the rail）\n• \"Hold up\" 也可表等等，但「抓紧」只用 hold on",
-      "电话里听到 Hold on, please. 就是「请稍等」。"
+      "`hold on` 有两义：① 抓紧 ② 等一下（打电话时最常听）。常见错误：\n• \"Hold on to\" 后面要接宾语（hold on to the rail）\n• \"Hold up\" 也可表等等，但「抓紧」只用 hold on。电话里听到 Hold on, please. 就是「请稍等」。"
     ],
-    distractors: [["Holds","Holding","Hold of"],["on to.","off.","out."]]
+    distractors: [["Hold off.","Holds on.","Hold up."]]
   },
   {
     sentence: "Let go.",
     cid: "2d1e7fe6",
     translation: "松手。",
-    chunks: ["Let","go."],
-    hints: ["让","走"],
+    chunks: ["Let go."],
+    hints: ["松手。"],
     grammar: [
-      {role:'谓语',color:'#e74c7a',phonetic:['/let/'],pos:'祈使句动词',meaning:'让'},
-      {role:'宾语补足语',color:'#7c5cbf',phonetic:['/ɡoʊ/'],pos:'动词原形（固定搭配）',meaning:'松开'}
+      {role:'谓语',color:'#e74c7a',phonetic:['/let/','/ɡoʊ/'],pos:'固定短语',meaning:'松手、放手'}
     ],
+    distractors: [["Let it go.","Let me go.","Let go of it."]],
     explanations: [
       "`let go` = 松手、放手，是固定搭配，中间不加 to。常见错误：\n• \"Let to go\" → let 后接动词原形\n• \"Let go it\" → 要说 let it go，代词夹在中间",
       "引申义：Let it go.（放下吧、别纠结了）"
     ],
-    distractors: [["Lets","Letting","Let to"],["goes.","going.","gone."]]
   },
   {
     sentence: "Turn around.",
@@ -5063,7 +5038,7 @@ window.DATA_ORAL8000 = [
     cid: "9dd8fc89",
     translation: "是肚子吗？",
     chunks: ["Is it","your stomach?"],
-    hints: ["是它","你的肚子"],
+    hints: ["是","你的肚子吗？"],
     grammar: [
       {role:'系动词 + 主语',color:'#c87033',phonetic:['/ɪz/','/ɪt/'],pos:'一般疑问句',meaning:'（它）是'},
       {role:'表语',color:'#3358e0',phonetic:['/jʊr/','/ˈstʌmək/'],pos:'名词短语',meaning:'你的胃、肚子'}
@@ -5078,17 +5053,16 @@ window.DATA_ORAL8000 = [
     sentence: "Take a rest.",
     cid: "0d637f69",
     translation: "休息一下。",
-    chunks: ["Take a","rest."],
-    hints: ["休息","一下"],
+    chunks: ["Take a rest."],
+    hints: ["休息一下。"],
     grammar: [
-      {role:'谓语',color:'#e74c7a',phonetic:['/teɪk/','/ə/'],pos:'动词短语 take a rest',meaning:'休息'},
-      {role:'宾语',color:'#3358e0',phonetic:['/rest/'],pos:'名词',meaning:'休息'}
+      {role:'固定动词短语',color:'#e74c7a',phonetic:['/teɪk/','/ə/','/rest/'],pos:'take a rest',meaning:'休息一下'}
     ],
     explanations: [
       "`take a rest` 与 `take a break` 都能表休息，rest 更偏身体恢复。常见错误：\n• \"Take rest\" → 缺少 a\n• \"Do a rest\" → 动词用 take 或 have",
       "相关：get some rest（好好休息）/ rest up（充分休息）"
     ],
-    distractors: [["Take the","Make a","Do a"],["rests.","resting.","a rest."]]
+    distractors: [["Take rest.","Do a rest.","Make a rest."]]
   },
   {
     sentence: "Have some water.",
@@ -5110,17 +5084,16 @@ window.DATA_ORAL8000 = [
     sentence: "Lie down.",
     cid: "6c5b5c7b",
     translation: "躺下。",
-    chunks: ["Lie","down."],
-    hints: ["躺","下"],
+    chunks: ["Lie down."],
+    hints: ["躺下。"],
     grammar: [
-      {role:'谓语',color:'#e74c7a',phonetic:['/laɪ/'],pos:'祈使句动词（不及物）',meaning:'躺'},
-      {role:'副词',color:'#7c5cbf',phonetic:['/daʊn/'],pos:'副词（表方向）',meaning:'下'}
+      {role:'短语动词',color:'#e74c7a',phonetic:['/laɪ/','/daʊn/'],pos:'lie down',meaning:'躺下'}
     ],
     explanations: [
       "`lie down` 的 lie 是不及物动词，过去式是 lay。常见错误：\n• \"Lay down\" → lay 需要宾语（lay the book down），自己躺要用 lie\n• \"Lie down you\" → 祈使句不加主语",
       "相关：lie on the bed（躺在床上）/ lie still（躺着别动）"
     ],
-    distractors: [["Lay","Lies","Lying"],["downstairs.","up.","over."]]
+    distractors: [["Lay down you.","Lies down.","Lying down."]]
   },
   {
     sentence: "Just relax.",
@@ -5143,9 +5116,9 @@ window.DATA_ORAL8000 = [
     cid: "978cb905",
     translation: "你的烧退了。",
     chunks: ["Your fever","broke."],
-    hints: ["你的发烧","退了"],
+    hints: ["你的烧","退了"],
     grammar: [
-      {role:'主语',color:'#c87033',phonetic:['/jʊr/','/ˈfiːvər/'],pos:'名词短语',meaning:'你的发烧'},
+      {role:'主语',color:'#c87033',phonetic:['/jʊr/','/ˈfiːvər/'],pos:'名词短语',meaning:'你的烧'},
       {role:'谓语',color:'#e74c7a',phonetic:['/broʊk/'],pos:'break 的过去式（此处指退烧）',meaning:'退了'}
     ],
     explanations: [
@@ -5174,17 +5147,16 @@ window.DATA_ORAL8000 = [
     sentence: "What size are you?",
     cid: "0d6e7a1e",
     translation: "你穿多大码？",
-    chunks: ["What size","are you?"],
-    hints: ["什么尺码","你是"],
+    chunks: ["What size are you?"],
+    hints: ["你穿多大码？"],
     grammar: [
-      {role:'疑问词 + 名词',color:'#7c5cbf',phonetic:['/wʌt/','/saɪz/'],pos:'疑问短语',meaning:'什么尺码'},
-      {role:'系动词 + 主语',color:'#c87033',phonetic:['/ɑːr/','/juː/'],pos:'疑问句语序',meaning:'你是'}
+      {role:'尺码问句',color:'#7c5cbf',phonetic:['/wʌt/','/saɪz/','/ɑːr/','/juː/'],pos:'固定问法',meaning:'你穿多大码'}
     ],
     explanations: [
       "买衣服问尺码最常用这句。常见错误：\n• \"What size you are?\" → 疑问句要用 are you 的语序\n• \"What's your size?\" 也对，但店员更常说 What size are you?",
       "回答：I'm a medium. / I wear a size 8."
     ],
-    distractors: [["What sizes","How size","Which size of"],["you are?","are your?","is you?"]]
+    distractors: [["What size you are?","How size are you?","What sizes are you?"]]
   },
   {
     sentence: "Just pick out anything.",
@@ -5269,18 +5241,16 @@ window.DATA_ORAL8000 = [
   {
     sentence: "What's your number?",
     cid: "cd3e07aa",
-    translation: "你号码多少？",
-    chunks: ["What's","your number?"],
-    hints: ["什么是","你的号码"],
+    translation: "你的电话号码是多少？",
+    chunks: ["What's your number?"],
+    hints: ["你的电话号码是多少？"],
     grammar: [
-      {role:'疑问词 + be',color:'#7c5cbf',phonetic:['/wʌts/'],pos:'what is 缩写',meaning:'什么是'},
-      {role:'表语',color:'#3358e0',phonetic:['/jʊr/','/ˈnʌmbər/'],pos:'名词短语',meaning:'你的号码'}
+      {role:'疑问句',color:'#7c5cbf',phonetic:['/wʌts/','/jʊr/','/ˈnʌmbər/'],pos:'询问电话号码',meaning:'你的电话号码是多少'}
     ],
     explanations: [
-      "问电话号码、房号都用这句。常见错误：\n• \"What your number?\" → 漏了 's\n• 口语里 What's 的 /ts/ 与后面的 your 连读",
-      "更礼貌：Could I get your number?"
+      "问电话号码、房号都用这句。常见错误：\n• \"What your number?\" → 漏了 's\n• 口语里 What's 的 /ts/ 与后面的 your 连读\n更礼貌：Could I get your number?"
     ],
-    distractors: [["What","What are","How's"],["your numbers?","you number?","your number is?"]]
+    distractors: [["What are your number?","What your number?","How's your number?"]]
   },
   {
     sentence: "Pick up the phone.",
@@ -5301,9 +5271,9 @@ window.DATA_ORAL8000 = [
   {
     sentence: "Stop calling me.",
     cid: "2a729d81",
-    translation: "别给我打电话了。",
+    translation: "别再给我打电话。",
     chunks: ["Stop","calling me."],
-    hints: ["停止","给我打电话"],
+    hints: ["别再","给我打电话"],
     grammar: [
       {role:'谓语',color:'#e74c7a',phonetic:['/stɑːp/'],pos:'祈使句动词',meaning:'停止'},
       {role:'宾语',color:'#3358e0',phonetic:['/ˈkɔːlɪŋ/','/miː/'],pos:'动名词短语',meaning:'给我打电话'}
@@ -5445,7 +5415,7 @@ window.DATA_ORAL8000 = [
   {
     sentence: "I want my money.",
     cid: "fc023e5e",
-    translation: "还我钱。",
+    translation: "我要我的钱。",
     chunks: ["I want","my money."],
     hints: ["我要","我的钱"],
     grammar: [
@@ -5491,10 +5461,10 @@ window.DATA_ORAL8000 = [
     distractors: [["Of the course","On course","Of cause"],["no.","none.","not to."]]
   },
   {
-    sentence: "I'm shocked.",
+    sentence: "I'm shocked!",
     cid: "8a621293",
     translation: "我很震惊。",
-    chunks: ["I'm","shocked."],
+    chunks: ["I'm","shocked!"],
     hints: ["我","感到震惊的"],
     grammar: [
       {role:'主语',color:'#c87033',phonetic:['/aɪm/'],pos:'I am 缩写',meaning:'我'},
@@ -5607,9 +5577,9 @@ window.DATA_ORAL8000 = [
     cid: "4aeb9a71",
     translation: "我睡够了。",
     chunks: ["I got","enough sleep."],
-    hints: ["我得到","足够的睡眠"],
+    hints: ["我睡了","足够的睡眠"],
     grammar: [
-      {role:'主谓',color:'#c87033',phonetic:['/aɪ/','/ɡɑːt/'],pos:'一般过去时',meaning:'我得到'},
+      {role:'主谓',color:'#c87033',phonetic:['/aɪ/','/ɡɑːt/'],pos:'一般过去时',meaning:'我睡了'},
       {role:'宾语',color:'#3358e0',phonetic:['/ɪˈnʌf/','/sliːp/'],pos:'名词短语（不可数）',meaning:'足够的睡眠'}
     ],
     explanations: [
@@ -5734,7 +5704,7 @@ window.DATA_ORAL8000 = [
     sentence: "Smell some flowers.",
     cid: "60c46056",
     translation: "闻闻花香。",
-    chunks: ["Smell some","flowers."],
+    chunks: ["Smell","some flowers."],
     hints: ["闻闻","一些花"],
     grammar: [
       {role:'谓语 + 限定词',color:'#e74c7a',phonetic:['/smel/','/sʌm/'],pos:'祈使 + 限定词',meaning:'闻闻'},
@@ -5814,18 +5784,16 @@ window.DATA_ORAL8000 = [
     sentence: "Come in.",
     cid: "6de68bea",
     translation: "进来。",
-    chunks: ["Come","in."],
-    hints: ["来","进来"],
+    chunks: ["Come in."],
+    hints: ["请进。"],
     grammar: [
-      {role:'谓语',color:'#e74c7a',phonetic:['/kʌm/'],pos:'祈使句动词',meaning:'来'},
-      {role:'副词',color:'#7c5cbf',phonetic:['/ɪn/'],pos:'副词（表方向）',meaning:'进来'}
+      {role:'固定表达',color:'#e74c7a',phonetic:['/kʌm/','/ɪn/'],pos:'邀请语',meaning:'请进'}
     ],
     explanations: [
-      "`Come in.` 是让人进屋最常用的说法，也用来回应敲门。常见错误：\n• \"Come into\" → into 后面必须接宾语（come into the room）\n• \"Enter in\" → enter 本身不接 in",
-      "相关：Come on in.（快进来，更热情）/ After you.（您先请）"
+      "`Come in.` 是让人进屋最常用的说法，也用来回应敲门。常见错误：\n• \"Come into\" → into 后面必须接宾语（come into the room）\n• \"Enter in\" → enter 本身不接 in\n相关：Come on in.（快进来，更热情）/ After you.（您先请）"
     ],
-    distractors: [["Comes","Coming","Come to"],["into.","on.","out."]]
-  },
+    distractors: [["Come into.","Enter in.","Come out."]]
+  },
   {
     sentence: "Lock the door.",
     cid: "d403abf3",
@@ -5955,10 +5923,10 @@ window.DATA_ORAL8000 = [
     distractors: [["Mops","Mopping","Map"],["the floors.","a floor.","the floor of."]]
   },
   {
-    sentence: "Do the dishes.",
+    sentence: "Do the dishes!",
     cid: "70c23bb5",
     translation: "洗碗。",
-    chunks: ["Do","the dishes."],
+    chunks: ["Do","the dishes!"],
     hints: ["做（这件事）","碗碟"],
     grammar: [
       {role:'谓语',color:'#e74c7a',phonetic:['/duː/'],pos:'祈使句动词',meaning:'做（某事）'},
@@ -6211,10 +6179,10 @@ window.DATA_ORAL8000 = [
     distractors: [["I want stay in bed","I want to staying in bed","I want to stay on bed"],["for other half an hour.","for another half a hour.","of another half an hour."]]
   },
   {
-    sentence: "It's time to get up.",
+    sentence: "It's time to get up!",
     cid: "f19ef7b9",
     translation: "该起床了。",
-    chunks: ["It's time","to get up."],
+    chunks: ["It's time","to get up!"],
     hints: ["是时候","起来了"],
     grammar: [
       {role:'主系表',color:'#c87033',phonetic:['/ɪts/','/taɪm/'],pos:'固定句型',meaning:'是时候了'},
@@ -6360,8 +6328,8 @@ window.DATA_ORAL8000 = [
     sentence: "Why didn't the alarm go off?",
     cid: "3cfec5e3",
     translation: "闹钟为什么没响呢？",
-    chunks: ["Why didn't the alarm","go off?"],
-    hints: ["为什么闹钟","没响"],
+    chunks: ["Why didn't","the alarm go off?"],
+    hints: ["为什么没","闹钟响？"],
     grammar: [
       {role:'疑问词+助动词',color:'#c87033',phonetic:['/waɪ/','/ˈdɪdnt/','/ði/','/əˈlɑːrm/'],pos:'过去时否定疑问',meaning:'为什么闹钟没有'},
       {role:'动词短语',color:'#7c5cbf',phonetic:['/ɡoʊ/','/ɔːf/'],pos:'短语动词',meaning:'（闹钟）响起来'}

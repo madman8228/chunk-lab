@@ -71,14 +71,14 @@
  },
  {
   "sentence": "I don't take him too seriously.",
-  "translation": "我不把他的话太当真。",
+  "translation": "我没太把他当回事。",
   "chunks": [
-   "I don't take him",
-   "too seriously."
+   "I don't",
+   "take him too seriously."
   ],
   "hints": [
-   "我没把他的话",
-   "太当真"
+   "我没",
+   "太把他当回事"
   ]
  },
  {
@@ -95,14 +95,8 @@
  },
  {
   "sentence": "It's too good to be true.",
-  "translation": "有这么好的事!",
-  "chunks": [
-   "It's too good",
-   "to be true."
-  ],
-  "hints": [
-   "好得",
-   "不像是真的"
-  ]
+    "translation": "好得让人不敢相信。",
+    "chunks": ["It's too good to be true."],
+    "hints": ["好得让人不敢相信。"]
  }
 ]

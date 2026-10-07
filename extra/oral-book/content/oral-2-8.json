@@ -11,38 +11,32 @@
  },
  {
   "sentence": "Good afternoon.",
-  "translation": "你好!/下午好!",
+  "translation": "下午好！",
   "chunks": [
-   "Good",
-   "afternoon."
+   "Good afternoon."
   ],
   "hints": [
-   "下午",
-   "好！"
+   "下午好！"
   ]
  },
  {
   "sentence": "Good evening.",
   "translation": "晚上好!",
   "chunks": [
-   "Good",
-   "evening."
+   "Good evening."
   ],
   "hints": [
-   "晚上",
-   "好！"
+   "晚上好！"
   ]
  },
  {
   "sentence": "How are you?",
   "translation": "你好吗?",
   "chunks": [
-   "How are",
-   "you?"
+   "How are you?"
   ],
   "hints": [
-   "怎么样",
-   "你？"
+   "你好吗？"
   ]
  },
  {
@@ -71,7 +65,7 @@
  },
  {
   "sentence": "Nothing much.",
-  "translation": "老样子。",
+  "translation": "没什么特别的。",
   "chunks": [
    "Nothing",
    "much."
@@ -95,62 +89,52 @@
  },
  {
   "sentence": "What's up?",
-  "translation": "出什么事啦?",
+  "translation": "最近怎么样？",
   "chunks": [
-   "What's",
-   "up?"
+   "What's up?"
   ],
   "hints": [
-   "什么",
-   "事？"
+   "最近怎么样？"
   ]
  },
  {
   "sentence": "How's your family?",
   "translation": "你的家人怎么样?",
   "chunks": [
-   "How's",
-   "your family?"
+   "How's your family?"
   ],
   "hints": [
-   "怎么样",
-   "你的家人？"
+   "你的家人怎么样？"
   ]
  },
  {
   "sentence": "How's everything?",
-  "translation": "还好吧?",
+  "translation": "一切都还好吗？",
   "chunks": [
-   "How's",
-   "everything?"
+   "How's everything?"
   ],
   "hints": [
-   "怎么样",
-   "一切都好吗？"
+   "一切都还好吗？"
   ]
  },
  {
   "sentence": "How's business?",
-  "translation": "工作怎么样?",
+  "translation": "生意怎么样？",
   "chunks": [
-   "How's",
-   "business?"
+   "How's business?"
   ],
   "hints": [
-   "怎么样",
-   "生意？"
+   "生意怎么样？"
   ]
  },
  {
   "sentence": "Not bad.",
   "translation": "还可以。",
   "chunks": [
-   "Not",
-   "bad."
+   "Not bad."
   ],
   "hints": [
-   "不",
-   "错。"
+   "还不错。"
   ]
  },
  {
@@ -167,49 +151,45 @@
  },
  {
   "sentence": "What's the hurry?",
-  "translation": "急着干什么去呀?",
+  "translation": "急什么呀？",
   "chunks": [
-   "What's",
-   "the hurry?"
+   "What's the hurry?"
   ],
   "hints": [
-   "什么",
-   "事这么急？"
+   "急什么呀？"
   ]
  },
  {
   "sentence": "Where are you headed?",
   "translation": "你去哪儿?",
   "chunks": [
-   "Where are you",
-   "headed?"
+   "Where are you headed?"
   ],
   "hints": [
-   "你去",
-   "哪儿？"
-  ]
+   "你要去哪儿？"
+    ]
  },
  {
   "sentence": "I was just thinking.",
-  "translation": "我在想点事儿。",
+  "translation": "我只是在想点事。",
   "chunks": [
    "I was just",
    "thinking."
   ],
   "hints": [
-   "我刚才在",
+   "我只是在",
    "想事情。"
   ]
  },
  {
   "sentence": "I was just daydreaming.",
-  "translation": "我只是发了会儿呆。",
+  "translation": "我只是在发呆。",
   "chunks": [
    "I was just",
    "daydreaming."
   ],
   "hints": [
-   "我刚才在",
+   "我只是在",
    "发呆。"
   ]
  },
@@ -237,14 +217,12 @@
  },
  {
   "sentence": "Another day, another dollar.",
-  "translation": "和往常一样。",
+  "translation": "又是辛苦挣钱的一天。",
   "chunks": [
-   "Another day,",
-   "another dollar."
+   "Another day, another dollar."
   ],
   "hints": [
-   "又是一天，",
-   "又是一块钱。"
+   "又是辛苦挣钱的一天。"
   ]
  },
  {
@@ -263,48 +241,42 @@
   "sentence": "There you are!",
   "translation": "原来你在这儿啊!",
   "chunks": [
-   "There",
-   "you are!"
+   "There you are!"
   ],
   "hints": [
-   "原来",
-   "你在这儿！"
+   "原来你在这儿啊！"
   ]
  },
  {
   "sentence": "Is Jeff around?",
   "translation": "杰夫在吗?",
   "chunks": [
-   "Is Jeff",
-   "around?"
+   "Is Jeff around?"
   ],
   "hints": [
-   "杰夫",
-   "在吗？"
+   "杰夫在吗？"
   ]
  },
  {
   "sentence": "Have you seen Scott?",
-  "translation": "你见到斯科特吗?",
+  "translation": "你见到斯科特了吗？",
   "chunks": [
-   "Have you seen",
-   "Scott?"
+   "Have you seen Scott?"
   ],
   "hints": [
-   "你见到",
-   "斯科特了吗？"
+   "你见到斯科特了吗？"
   ]
  },
  {
   "sentence": "I ran into him.",
   "translation": "我偶然碰到了他。",
   "chunks": [
-   "I ran",
-   "into him."
+   "I",
+   "ran into him."
   ],
   "hints": [
-   "我偶然",
-   "碰到了他。"
+   "我",
+   "偶然碰到了他。"
   ]
  },
  {
@@ -323,96 +295,80 @@
   "sentence": "He's a stranger to me.",
   "translation": "我跟他素不相识。",
   "chunks": [
-   "He's",
-   "a stranger to me."
+   "He's a stranger to me."
   ],
   "hints": [
-   "他对我来说",
-   "是完全陌生的人。"
+   "我跟他素不相识。"
   ]
  },
  {
   "sentence": "It's been a long time.",
   "translation": "好久不见。",
   "chunks": [
-   "It's been",
-   "a long time."
+   "It's been a long time."
   ],
   "hints": [
-   "已经",
-   "很久了。"
+   "好久不见。"
   ]
  },
  {
   "sentence": "It's been so long.",
   "translation": "好久不见。",
   "chunks": [
-   "It's been",
-   "so long."
+   "It's been so long."
   ],
   "hints": [
-   "已经",
-   "这么久没见了。"
+   "好久不见。"
   ]
  },
  {
   "sentence": "Long time no see.",
-  "translation": "好久没见了。",
+  "translation": "好久不见。",
   "chunks": [
-   "Long time",
-   "no see."
+   "Long time no see."
   ],
   "hints": [
-   "好久",
-   "不见。"
+   "好久不见。"
   ]
  },
  {
   "sentence": "How have you been?",
-  "translation": "还好吧?",
+  "translation": "你最近过得怎么样？",
   "chunks": [
-   "How have",
-   "you been?"
+   "How have you been?"
   ],
   "hints": [
-   "你最近",
-   "怎么样？"
+   "你最近过得怎么样？"
   ]
  },
  {
   "sentence": "How have you been doing?",
   "translation": "最近怎么样?",
   "chunks": [
-   "How have you",
-   "been doing?"
+   "How have you been doing?"
   ],
   "hints": [
-   "你最近",
-   "过得怎么样？"
+   "你最近过得怎么样？"
   ]
  },
  {
   "sentence": "What have you been doing?",
-  "translation": "忙什么呢?",
+  "translation": "你最近在忙什么？",
   "chunks": [
-   "What have you",
-   "been doing?"
+   "What have you been doing?"
   ],
   "hints": [
-   "你最近在",
-   "忙什么呢？"
-  ]
+   "你最近在忙什么？"
+    ]
  },
  {
   "sentence": "Where have you been?",
-  "translation": "你去哪儿了?",
+  "translation": "你去哪儿了？",
   "chunks": [
-   "Where have",
-   "you been?"
+   "Where have you been?"
   ],
   "hints": [
-   "你去",
-   "哪儿了？"
+   "你去哪儿了？"
   ]
  },
  {
@@ -431,24 +387,24 @@
   "sentence": "You haven't changed at all.",
   "translation": "你一点儿都没变。",
   "chunks": [
-   "You haven't",
-   "changed at all."
+   "You",
+   "haven't changed at all."
   ],
   "hints": [
-   "你一点",
-   "都没变。"
+   "你",
+   "一点都没变。"
   ]
  },
  {
   "sentence": "You haven't changed much.",
   "translation": "你没怎么变。",
   "chunks": [
-   "You haven't",
-   "changed much."
+   "You",
+   "haven't changed much."
   ],
   "hints": [
-   "你没",
-   "怎么变。"
+   "你",
+   "没怎么变。"
   ]
  },
  {
@@ -477,26 +433,24 @@
  },
  {
   "sentence": "You've become so beautiful.",
-  "translation": "你越来越漂亮了。",
+  "translation": "你变得这么漂亮了。",
   "chunks": [
    "You've become",
    "so beautiful."
   ],
   "hints": [
    "你变得",
-   "越来越漂亮了。"
+   "这么漂亮了。"
   ]
  },
  {
   "sentence": "Is John okay?",
-  "translation": "约翰他好吗?",
+  "translation": "约翰还好吗？",
   "chunks": [
-   "Is John",
-   "okay?"
+   "Is John okay?"
   ],
   "hints": [
-   "约翰",
-   "他好吗？"
+   "约翰还好吗？"
   ]
  },
  {
@@ -515,24 +469,20 @@
   "sentence": "How are you feeling?",
   "translation": "你感觉怎么样?",
   "chunks": [
-   "How are you",
-   "feeling?"
+   "How are you feeling?"
   ],
   "hints": [
-   "你感觉",
-   "怎么样？"
+   "你感觉怎么样？"
   ]
  },
  {
   "sentence": "How's he getting along these days?",
   "translation": "他这些日子过得怎么样?",
   "chunks": [
-   "How's he getting along",
-   "these days?"
+   "How's he getting along these days?"
   ],
   "hints": [
-   "他这些日子",
-   "过得怎么样？"
+   "他这些日子过得怎么样？"
   ]
  },
  {
@@ -571,24 +521,22 @@
   "sentence": "See you.",
   "translation": "回头见!",
   "chunks": [
-   "See",
-   "you."
+   "See you."
   ],
   "hints": [
-   "回头",
-   "见！"
+   "回头见！"
   ]
  },
  {
   "sentence": "I'm off now.",
-  "translation": "我去了啊。",
+  "translation": "我现在要走了。",
   "chunks": [
-   "I'm off",
-   "now."
+   "I'm",
+   "off now."
   ],
   "hints": [
    "我",
-   "去了啊。"
+   "现在要走了。"
   ]
  },
  {
@@ -607,12 +555,10 @@
   "sentence": "Good luck!",
   "translation": "祝你好运!",
   "chunks": [
-   "Good",
-   "luck!"
+   "Good luck!"
   ],
   "hints": [
-   "祝",
-   "你好运！"
+   "祝你好运！"
   ]
  },
  {
@@ -647,20 +593,18 @@
    "fun!"
   ],
   "hints": [
-   "玩得",
-   "开心！"
+   "祝你",
+   "玩得愉快！"
   ]
  },
  {
   "sentence": "Keep it up!",
   "translation": "就这样，坚持下去。",
   "chunks": [
-   "Keep",
-   "it up!"
+   "Keep it up!"
   ],
   "hints": [
-   "继续",
-   "保持！"
+   "继续保持！"
   ]
  },
  {
@@ -677,14 +621,14 @@
  },
  {
   "sentence": "Have a good one!",
-  "translation": "那多保重!",
+  "translation": "祝你今天愉快！",
   "chunks": [
    "Have a",
    "good one!"
   ],
   "hints": [
-   "那",
-   "多保重！"
+   "祝你",
+   "今天愉快！"
   ]
  },
  {
@@ -707,8 +651,8 @@
    "meeting you."
   ],
   "hints": [
-   "认识你",
-   "非常高兴。"
+   "非常高兴",
+   "认识你"
   ]
  },
  {
@@ -719,28 +663,26 @@
    "to John for me."
   ],
   "hints": [
-   "请代我",
-   "向约翰问好。"
+   "请问好",
+   "代我向约翰"
   ]
  },
  {
   "sentence": "Come again.",
   "translation": "再来啊!",
   "chunks": [
-   "Come",
-   "again."
+   "Come again."
   ],
   "hints": [
-   "再",
-   "来啊！"
+   "再来一次！"
   ]
  },
  {
   "sentence": "Don't forget to bring something back for me.",
-  "translation": "别忘了给我带点儿什么。",
+  "translation": "别忘了给我带点儿东西回来。",
   "chunks": [
-   "Don't forget to bring",
-   "something back for me."
+   "Don't forget",
+   "to bring something back for me."
   ],
   "hints": [
    "别忘了",
@@ -751,60 +693,56 @@
   "sentence": "Take it easy.",
   "translation": "放松点儿!",
   "chunks": [
-   "Take it",
-   "easy."
+   "Take it easy."
   ],
   "hints": [
-   "放松",
-   "点儿！"
+   "放松点儿！"
   ]
  },
  {
   "sentence": "I hope to see you again soon.",
   "translation": "希望不久能再见到你。",
   "chunks": [
-   "I hope to see you",
-   "again soon."
+   "I hope",
+   "to see you again soon."
   ],
   "hints": [
-   "希望不久",
-   "能再见到你。"
+   "我希望",
+   "很快能再见到你。"
   ]
  },
  {
   "sentence": "Call me later.",
-  "translation": "给我打电话。",
+  "translation": "晚些时候给我打电话。",
   "chunks": [
    "Call me",
    "later."
   ],
   "hints": [
-   "给我",
-   "打电话。"
+   "给我打电话",
+   "晚些时候。"
   ]
  },
  {
   "sentence": "Take care.",
   "translation": "多保重!",
   "chunks": [
-   "Take",
-   "care."
+   "Take care."
   ],
   "hints": [
-   "多",
-   "保重！"
+   "多保重！"
   ]
  },
  {
   "sentence": "Take care of yourself.",
-  "translation": "你自己多保重!",
+  "translation": "照顾好你自己。",
   "chunks": [
-   "Take care",
-   "of yourself."
+   "Take care of",
+   "yourself."
   ],
   "hints": [
-   "你自己",
-   "多保重！"
+   "照顾好",
+   "你自己。"
   ]
  },
  {
@@ -835,12 +773,12 @@
   "sentence": "I've got to go.",
   "translation": "我得走了。",
   "chunks": [
-   "I've got",
-   "to go."
+   "I've got to",
+   "go."
   ],
   "hints": [
-   "我",
-   "得走了。"
+   "我得",
+   "走了。"
   ]
  },
  {
@@ -857,14 +795,14 @@
  },
  {
   "sentence": "I wish I could go with you.",
-  "translation": "我真希望能和你在一起。",
+  "translation": "我真希望能和你一起去。",
   "chunks": [
-   "I wish I could",
-   "go with you."
+   "I wish",
+   "I could go with you."
   ],
   "hints": [
    "我真希望",
-   "能和你一起走。"
+   "能和你一起去。"
   ]
  },
  {
@@ -881,7 +819,7 @@
  },
  {
   "sentence": "You must come back.",
-  "translation": "你一定回来啊!",
+  "translation": "你一定要回来啊!",
   "chunks": [
    "You must",
    "come back."
@@ -899,20 +837,18 @@
    "sometime."
   ],
   "hints": [
-   "有空",
-   "给我打电话。"
+   "给我打电话",
+   "有空的时候。"
   ]
  },
  {
   "sentence": "Let's get together again sometime.",
-  "translation": "我们什么时候再聚吧。",
+  "translation": "我们改天再聚吧。",
   "chunks": [
-   "Let's get together",
-   "again sometime."
+   "Let's get together again sometime."
   ],
   "hints": [
-   "我们",
-   "什么时候再聚吧。"
+   "我们改天再聚吧。"
   ]
  },
  {
@@ -947,7 +883,7 @@
    "in touch."
   ],
   "hints": [
-   "让我们",
+   "我们",
    "保持联系。"
   ]
  },
@@ -991,25 +927,23 @@
   "sentence": "How nice of you to come!",
   "translation": "你能来，太好啦。",
   "chunks": [
-   "How nice of you",
-   "to come!"
+   "How nice of you to come!"
   ],
   "hints": [
-   "你能来",
-   "真是太好了！"
+   "你能来真是太好了！"
   ]
  },
  {
   "sentence": "What do you want?",
-  "translation": "你有事吗?",
+  "translation": "你想要什么?",
   "chunks": [
    "What do you",
    "want?"
   ],
   "hints": [
-   "你有",
-   "什么事？"
-  ]
+   "你想要",
+   "什么？"
+    ]
  },
  {
   "sentence": "Please feel free to make yourself at home.",
@@ -1027,17 +961,15 @@
   "sentence": "Have a seat.",
   "translation": "请坐吧。",
   "chunks": [
-   "Have a",
-   "seat."
+   "Have a seat."
   ],
   "hints": [
-   "请",
-   "坐吧。"
+   "请坐吧。"
   ]
  },
  {
   "sentence": "Enjoy yourself!",
-  "translation": "您尽兴。",
+  "translation": "玩得尽兴！",
   "chunks": [
    "Enjoy",
    "yourself!"
@@ -1061,14 +993,14 @@
  },
  {
   "sentence": "Don't mind me.",
-  "translation": "没关系。",
+  "translation": "别管我，继续做你的事。",
   "chunks": [
    "Don't",
    "mind me."
   ],
   "hints": [
    "别",
-   "管我。"
+   "在意我。"
   ]
  },
  {
@@ -1091,8 +1023,8 @@
    "the bathroom?"
   ],
   "hints": [
-   "洗手间",
-   "在哪儿？"
+   "在哪儿？",
+   "洗手间"
   ]
  },
  {
@@ -1109,19 +1041,19 @@
  },
  {
   "sentence": "I'd better get going now.",
-  "translation": "我得告辞了。",
+  "translation": "我最好还是现在就走。",
   "chunks": [
    "I'd better",
    "get going now."
   ],
   "hints": [
-   "我最好",
+   "我最好还是",
    "现在就走。"
   ]
  },
  {
   "sentence": "Thank you for inviting me.",
-  "translation": "非常感谢您的盛情款待。",
+  "translation": "谢谢你邀请我。",
   "chunks": [
    "Thank you",
    "for inviting me."
@@ -1133,26 +1065,26 @@
  },
  {
   "sentence": "Drop by sometime.",
-  "translation": "有空再来串门吧。",
+  "translation": "有空顺道来串门。",
   "chunks": [
    "Drop by",
    "sometime."
   ],
   "hints": [
-   "有空",
-   "再来串门吧。"
+   "顺道来串门",
+   "有空时。"
   ]
  },
  {
   "sentence": "He came to see me himself.",
   "translation": "他亲自来看我。",
   "chunks": [
-   "He came to see me",
-   "himself."
+   "He came",
+   "to see me himself."
   ],
   "hints": [
-   "他亲自",
-   "来看我。"
+   "他来了",
+   "亲自来看我。"
   ]
  },
  {
@@ -1169,7 +1101,7 @@
  },
  {
   "sentence": "I like your house.",
-  "translation": "您的房子真好。",
+  "translation": "我很喜欢你的房子。",
   "chunks": [
    "I like",
    "your house."
@@ -1219,8 +1151,8 @@
   "sentence": "Please turn on the TV.",
   "translation": "请打开电视。",
   "chunks": [
-   "Please turn on",
-   "the TV."
+   "Please",
+   "turn on the TV."
   ],
   "hints": [
    "请",
@@ -1231,8 +1163,8 @@
   "sentence": "Can I park my car here?",
   "translation": "我可以把车停这儿吗?",
   "chunks": [
-   "Can I park",
-   "my car here?"
+   "Can I",
+   "park my car here?"
   ],
   "hints": [
    "我可以",
@@ -1267,14 +1199,12 @@
  },
  {
   "sentence": "Nice to meet you, too.",
-  "translation": "彼此彼此。",
+  "translation": "我也很高兴认识您。",
   "chunks": [
-   "Nice to meet you,",
-   "too."
+   "Nice to meet you, too."
   ],
   "hints": [
-   "我也很高兴",
-   "认识您。"
+   "我也很高兴认识您。"
   ]
  },
  {
@@ -1293,12 +1223,12 @@
   "sentence": "I'd like you to meet a friend of mine.",
   "translation": "我给你介绍一下我的朋友。",
   "chunks": [
-   "I'd like you",
-   "to meet a friend of mine."
+   "I'd like you to meet",
+   "a friend of mine."
   ],
   "hints": [
-   "我想",
-   "给你介绍个朋友。"
+   "我想让你认识",
+   "我的一位朋友。"
   ]
  },
  {
@@ -1321,7 +1251,7 @@
    "to meet you."
   ],
   "hints": [
-   "很高兴",
+   "我很高兴",
    "见到您。"
   ]
  },
@@ -1333,8 +1263,8 @@
    "to meet you."
   ],
   "hints": [
-   "能认识您",
-   "我感到非常荣幸。"
+   "我感到非常荣幸",
+   "能认识您"
   ]
  },
  {
@@ -1385,14 +1315,14 @@
  },
  {
   "sentence": "I'm not sure. Maybe.",
-  "translation": "我不敢肯定，也许在哪儿见过。",
+  "translation": "我不太确定。也许吧。",
   "chunks": [
-   "I'm not",
-   "sure. Maybe."
+   "I'm",
+   "not sure. Maybe."
   ],
   "hints": [
    "我",
-   "不太确定，也许吧。"
+   "不太确定。也许吧。"
   ]
  },
  {
@@ -1415,8 +1345,8 @@
    "we have met."
   ],
   "hints": [
-   "这是我们",
-   "第一次见面。"
+   "这是第一次",
+   "我们见面。"
   ]
  },
  {
@@ -1445,14 +1375,14 @@
  },
  {
   "sentence": "I leave it entirely to your kind consideration.",
-  "translation": "这事全拜托你了。",
+  "translation": "我将此事全权交由您酌情处理。",
   "chunks": [
    "I leave it entirely",
    "to your kind consideration."
   ],
   "hints": [
-   "这事",
-   "全拜托您了。"
+   "我将此事全权交由",
+   "您酌情处理。"
   ]
  },
  {
@@ -1471,12 +1401,10 @@
   "sentence": "Where are you from?",
   "translation": "您是哪里人?",
   "chunks": [
-   "Where are",
-   "you from?"
+   "Where are you from?"
   ],
   "hints": [
-   "你是",
-   "哪里人？"
+   "您是哪里人？"
   ]
  },
  {
@@ -1493,14 +1421,14 @@
  },
  {
   "sentence": "I come from Canada.",
-  "translation": "我从加拿大来。",
+  "translation": "我来自加拿大。",
   "chunks": [
-   "I come",
-   "from Canada."
+   "I come from",
+   "Canada."
   ],
   "hints": [
-   "我从",
-   "加拿大来。"
+   "我来自",
+   "加拿大。"
   ]
  },
  {
@@ -1511,20 +1439,20 @@
    "Japan?"
   ],
   "hints": [
-   "你觉得",
-   "日本怎么样？"
+   "觉得怎么样？",
+   "日本"
   ]
  },
  {
   "sentence": "I like it.",
   "translation": "我很喜欢。",
   "chunks": [
-   "I like",
-   "it."
+   "I",
+   "like it."
   ],
   "hints": [
-   "我很",
-   "喜欢。"
+   "我",
+   "很喜欢。"
   ]
  },
  {
@@ -1541,14 +1469,14 @@
  },
  {
   "sentence": "Where have you been in Japan?",
-  "translation": "你都去过日本的哪些地方?",
+  "translation": "你在日本都去过哪些地方？",
   "chunks": [
    "Where have you been",
    "in Japan?"
   ],
   "hints": [
-   "你都去过",
-   "日本的哪些地方？"
+   "你都去过哪些地方",
+   "在日本？"
   ]
  },
  {
@@ -1559,9 +1487,9 @@
    "live now?"
   ],
   "hints": [
-   "你现在",
-   "住在哪儿？"
-  ]
+     "你在哪儿",
+     "现在居住"
+    ]
  },
  {
   "sentence": "I live in Tokyo.",
@@ -1607,8 +1535,8 @@
    "in Japan?"
   ],
   "hints": [
-   "你来日本",
-   "多长时间了？"
+   "您来了多长时间？",
+   "在日本"
   ]
  },
  {
@@ -1637,26 +1565,26 @@
  },
  {
   "sentence": "How long will you be in Japan?",
-  "translation": "你在日本呆到什么时候?",
+  "translation": "你会在日本待多久？",
   "chunks": [
    "How long will you be",
    "in Japan?"
   ],
   "hints": [
-   "你在日本",
-   "要待多久？"
+   "你会待多久？",
+   "在日本"
   ]
  },
  {
   "sentence": "Until December.",
-  "translation": "呆到12月。",
+  "translation": "待到12月。",
   "chunks": [
    "Until",
    "December."
   ],
   "hints": [
-   "待",
-   "到十二月。"
+   "待到",
+   "12月。"
   ]
  },
  {
@@ -1673,13 +1601,11 @@
  },
  {
   "sentence": "A little.",
-  "translation": "只会一点儿。",
+  "translation": "一点儿。",
   "chunks": [
-   "A",
-   "little."
+   "A little."
   ],
   "hints": [
-   "会",
    "一点儿。"
   ]
  },
@@ -1687,8 +1613,8 @@
   "sentence": "I can't speak Japanese at all.",
   "translation": "我一点儿都不会说。",
   "chunks": [
-   "I can't speak Japanese",
-   "at all."
+   "I",
+   "can't speak Japanese at all."
   ],
   "hints": [
    "我",
@@ -1697,14 +1623,14 @@
  },
  {
   "sentence": "I know everyday conversational Japanese.",
-  "translation": "我会一点儿日常会话。",
+  "translation": "我懂日常会话日语。",
   "chunks": [
    "I know everyday",
    "conversational Japanese."
   ],
   "hints": [
-   "我会一点儿",
-   "日常会话。"
+   "我懂日常",
+   "会话日语。"
   ]
  },
  {
@@ -1733,14 +1659,14 @@
  },
  {
   "sentence": "I learned it on my own.",
-  "translation": "我自学的。",
+  "translation": "我靠自己学会的。",
   "chunks": [
    "I learned it",
    "on my own."
   ],
   "hints": [
-   "我是",
-   "自学的。"
+   "我学会了",
+   "靠自己。"
   ]
  },
  {
@@ -1751,8 +1677,8 @@
    "your birthday?"
   ],
   "hints": [
-   "你的生日",
-   "是什么时候？"
+   "什么时候",
+   "你的生日"
   ]
  },
  {
@@ -1771,12 +1697,12 @@
   "sentence": "I work for a computer company.",
   "translation": "我在一家电脑公司工作。",
   "chunks": [
-   "I work for",
-   "a computer company."
+   "I work",
+   "for a computer company."
   ],
   "hints": [
-   "我在一家",
-   "电脑公司工作。"
+   "我在",
+   "一家电脑公司工作。"
   ]
  },
  {
@@ -1827,14 +1753,14 @@
  },
  {
   "sentence": "How long have you been doing that job?",
-  "translation": "这个工作你做了多长时间了?",
+  "translation": "你做这份工作多久了？",
   "chunks": [
    "How long have you been",
    "doing that job?"
   ],
   "hints": [
-   "这个工作",
-   "你做了多久了？"
+   "你做了多久了？",
+   "这份工作"
   ]
  },
  {
@@ -1857,8 +1783,8 @@
    "your company?"
   ],
   "hints": [
-   "你的公司",
-   "在哪儿？"
+   "在哪里",
+   "你的公司"
   ]
  },
  {
@@ -1881,8 +1807,8 @@
    "to commute?"
   ],
   "hints": [
-   "上下班路上",
-   "要花多长时间？"
+   "你要花多长时间",
+   "上下班通勤？"
   ]
  },
  {
@@ -1953,8 +1879,8 @@
    "next year."
   ],
   "hints": [
-   "我明年",
-   "退休。"
+   "我将退休",
+   "明年"
   ]
  },
  {
@@ -1965,8 +1891,8 @@
    "out of work now."
   ],
   "hints": [
-   "我现在",
-   "失业了。"
+   "我",
+   "现在失业了。"
   ]
  },
  {
@@ -1989,44 +1915,44 @@
    "a college student."
   ],
   "hints": [
-   "我是个",
-   "大学生。"
+   "我是",
+   "一个大学生。"
   ]
  },
  {
   "sentence": "I'm studying English.",
-  "translation": "我正在学习英文。",
+  "translation": "我正在学英语。",
   "chunks": [
    "I'm studying",
    "English."
   ],
   "hints": [
-   "我正在",
-   "学英语。"
+   "我正在学",
+   "英语。"
   ]
  },
  {
   "sentence": "I went to Meiji University.",
-  "translation": "我毕业于明治大学。",
+  "translation": "我上的是明治大学。",
   "chunks": [
    "I went to",
    "Meiji University."
   ],
   "hints": [
-   "我毕业于",
+   "我上的是",
    "明治大学。"
   ]
  },
  {
   "sentence": "Where did you go to college?",
-  "translation": "你上的哪所大学?",
+  "translation": "你在哪儿上的大学？",
   "chunks": [
    "Where did you",
    "go to college?"
   ],
   "hints": [
-   "你上的",
-   "哪所大学？"
+   "你在哪儿",
+   "上的大学？"
   ]
  },
  {
@@ -2037,8 +1963,8 @@
    "do you go to?"
   ],
   "hints": [
-   "你上的是",
-   "什么学校？"
+   "什么学校",
+   "你上的"
   ]
  },
  {
@@ -2057,12 +1983,10 @@
   "sentence": "What year are you in?",
   "translation": "你上几年级了?",
   "chunks": [
-   "What year",
-   "are you in?"
+   "What year are you in?"
   ],
   "hints": [
-   "你上",
-   "几年级了？"
+   "你上几年级了？"
   ]
  },
  {
@@ -2085,32 +2009,30 @@
    "next year."
   ],
   "hints": [
-   "我明年",
-   "毕业。"
+   "我将毕业",
+   "明年"
   ]
  },
  {
   "sentence": "What's your major?",
   "translation": "你的专业是什么?",
   "chunks": [
-   "What's",
-   "your major?"
+   "What's your major?"
   ],
   "hints": [
-   "你的专业",
-   "是什么？"
+   "你的专业是什么？"
   ]
  },
  {
   "sentence": "I'm an English major.",
-  "translation": "我的专业是英语。",
+  "translation": "我是英语专业的。",
   "chunks": [
    "I'm",
    "an English major."
   ],
   "hints": [
-   "我的专业",
-   "是英语。"
+   "我是",
+   "英语专业的。"
   ]
  },
  {
@@ -2121,8 +2043,8 @@
    "are you in?"
   ],
   "hints": [
-   "你参加",
-   "哪个俱乐部？"
+   "哪个俱乐部？",
+   "你参加"
   ]
  },
  {
@@ -2139,14 +2061,14 @@
  },
  {
   "sentence": "Do you have a part-time job?",
-  "translation": "你在打工吗?",
+  "translation": "你有兼职工作吗?",
   "chunks": [
    "Do you have",
    "a part-time job?"
   ],
   "hints": [
-   "你在",
-   "打工吗？"
+   "你有",
+   "兼职工作吗？"
   ]
  },
  {
@@ -2171,8 +2093,8 @@
    "after graduation?"
   ],
   "hints": [
-   "毕业以后",
-   "你打算做什么？"
+   "你打算做什么",
+   "毕业以后"
   ]
  },
  {
@@ -2183,8 +2105,8 @@
    "are in your family?"
   ],
   "hints": [
-   "你家",
-   "有几口人？"
+   "有多少人",
+   "在你家里"
   ]
  },
  {
@@ -2215,12 +2137,10 @@
   "sentence": "Any brothers or sisters?",
   "translation": "你有兄弟姐妹吗?",
   "chunks": [
-   "Any brothers",
-   "or sisters?"
+   "Any brothers or sisters?"
   ],
   "hints": [
-   "有",
-   "兄弟姐妹吗？"
+   "你有兄弟姐妹吗？"
   ]
  },
  {
@@ -2239,24 +2159,24 @@
   "sentence": "Do you live with your parents?",
   "translation": "你和父母住在一起吗?",
   "chunks": [
-   "Do you live",
-   "with your parents?"
+   "Do you",
+   "live with your parents?"
   ],
   "hints": [
-   "你和父母",
-   "住在一起吗？"
+   "你",
+   "和父母住在一起吗？"
   ]
  },
  {
   "sentence": "I live alone.",
   "translation": "我一个人住。",
   "chunks": [
-   "I live",
-   "alone."
+   "I",
+   "live alone."
   ],
   "hints": [
-   "我一个人",
-   "住。"
+   "我",
+   "一个人住。"
   ]
  },
  {
@@ -2297,14 +2217,14 @@
  },
  {
   "sentence": "I have a fiancé.",
-  "translation": "我有对象了。",
+  "translation": "我有未婚夫/未婚妻了。",
   "chunks": [
    "I have",
    "a fiancé."
   ],
   "hints": [
    "我有",
-   "对象了。"
+   "未婚夫/未婚妻了。"
   ]
  },
  {
@@ -2383,8 +2303,8 @@
   "sentence": "I don't have any children.",
   "translation": "我没有孩子。",
   "chunks": [
-   "I don't have",
-   "any children."
+   "I",
+   "don't have any children."
   ],
   "hints": [
    "我",
@@ -2395,8 +2315,8 @@
   "sentence": "What are your hobbies?",
   "translation": "你有什么爱好?",
   "chunks": [
-   "What are",
-   "your hobbies?"
+   "What are your",
+   "hobbies?"
   ],
   "hints": [
    "你有什么",
@@ -2405,14 +2325,14 @@
  },
  {
   "sentence": "Do you have any hobbies?",
-  "translation": "你有点什么爱好吗?",
+  "translation": "你有什么爱好吗?",
   "chunks": [
    "Do you have",
    "any hobbies?"
   ],
   "hints": [
-   "你有点",
-   "什么爱好吗？"
+   "你有",
+   "什么爱好？"
   ]
  },
  {
@@ -2423,8 +2343,8 @@
    "when you have free time?"
   ],
   "hints": [
-   "业余时间",
-   "你都干什么？"
+   "你都干什么？",
+   "业余时间"
   ]
  },
  {
@@ -2447,20 +2367,20 @@
    "do you like?"
   ],
   "hints": [
-   "你喜欢看",
-   "什么样的电影？"
+   "什么样的电影",
+   "你喜欢看"
   ]
  },
  {
   "sentence": "You're a good pianist.",
   "translation": "你的钢琴弹得真好。",
   "chunks": [
-   "You're a good",
-   "pianist."
+   "You're",
+   "a good pianist."
   ],
   "hints": [
-   "你的钢琴",
-   "弹得真好。"
+   "你",
+   "钢琴弹得真好。"
   ]
  },
  {
@@ -2471,20 +2391,18 @@
    "do you like?"
   ],
   "hints": [
-   "你喜欢",
-   "哪种运动？"
+   "哪种运动？",
+   "你喜欢"
   ]
  },
  {
   "sentence": "How long have you been skiing?",
   "translation": "你滑了多长时间雪了?",
   "chunks": [
-   "How long have you",
-   "been skiing?"
+   "How long have you been skiing?"
   ],
   "hints": [
-   "你滑雪",
-   "滑了多久了？"
+   "你滑雪多久了？"
   ]
  },
  {
@@ -2495,8 +2413,8 @@
    "to watch."
   ],
   "hints": [
-   "我只是",
-   "喜欢看。"
+   "我只是喜欢",
+   "看。"
   ]
  },
  {
@@ -2539,8 +2457,8 @@
   "sentence": "What are your interests?",
   "translation": "你对什么感兴趣?",
   "chunks": [
-   "What are",
-   "your interests?"
+   "What are your",
+   "interests?"
   ],
   "hints": [
    "你对什么",
@@ -2567,8 +2485,8 @@
    "traveled abroad?"
   ],
   "hints": [
-   "你去国外",
-   "旅行过吗？"
+   "你曾经",
+   "去国外旅行过吗？"
   ]
  },
  {
@@ -2587,24 +2505,22 @@
   "sentence": "Where do you want to go next?",
   "translation": "下次你想去哪儿?",
   "chunks": [
-   "Where do you",
-   "want to go next?"
+   "Where do you want to go",
+   "next?"
   ],
   "hints": [
-   "下次你想",
-   "去哪儿？"
+   "你想去哪儿",
+   "下次？"
   ]
  },
  {
   "sentence": "How old are you?",
   "translation": "你多大了?",
   "chunks": [
-   "How old",
-   "are you?"
+   "How old are you?"
   ],
   "hints": [
-   "你",
-   "多大了？"
+   "你多大了？"
   ]
  },
  {
@@ -2623,13 +2539,11 @@
   "sentence": "How much do you weigh?",
   "translation": "你的体重是多少?",
   "chunks": [
-   "How much",
-   "do you weigh?"
+   "How much do you weigh?"
   ],
   "hints": [
-   "你的体重",
-   "是多少？"
-  ]
+   "你的体重是多少？"
+    ]
  },
  {
   "sentence": "About seventy-five kilograms.",
@@ -2659,12 +2573,10 @@
   "sentence": "How tall are you?",
   "translation": "你有多高?",
   "chunks": [
-   "How tall",
-   "are you?"
+   "How tall are you?"
   ],
   "hints": [
-   "你",
-   "有多高？"
+   "你有多高？"
   ]
  },
  {
@@ -2707,12 +2619,10 @@
   "sentence": "It's blistering hot.",
   "translation": "天气炎热。",
   "chunks": [
-   "It's",
-   "blistering hot."
+   "It's blistering hot."
   ],
   "hints": [
-   "天气",
-   "炎热。"
+   "天气热得厉害。"
   ]
  },
  {
@@ -2723,20 +2633,20 @@
    "today."
   ],
   "hints": [
-   "今天的天气",
-   "真好！"
+   "天气真好",
+   "今天"
   ]
  },
  {
   "sentence": "What's the forecast for tomorrow?",
-  "translation": "明天的天气怎么样?",
+  "translation": "明天的天气预报怎么样？",
   "chunks": [
    "What's the forecast",
    "for tomorrow?"
   ],
   "hints": [
-   "明天的",
-   "天气怎么样？"
+   "天气预报怎么样？",
+   "明天"
   ]
  },
  {
@@ -2747,56 +2657,54 @@
    "today?"
   ],
   "hints": [
-   "今天的",
-   "天气怎么样？"
+   "天气怎么样？",
+   "今天"
   ]
  },
  {
   "sentence": "Is it going to rain today?",
   "translation": "今天会下雨吗?",
   "chunks": [
-   "Is it going to",
-   "rain today?"
+   "Is it going to rain",
+   "today?"
   ],
   "hints": [
-   "今天",
-   "会下雨吗？"
+   "会下雨吗？",
+   "今天"
   ]
  },
  {
   "sentence": "We're expecting some rain.",
-  "translation": "好像要下雨。",
+  "translation": "预计会有雨。",
   "chunks": [
    "We're expecting",
    "some rain."
   ],
   "hints": [
-   "好像",
-   "要下雨。"
+   "预计",
+   "会有雨。"
   ]
  },
  {
   "sentence": "It's raining.",
-  "translation": "下雨了。",
+  "translation": "正在下雨。",
   "chunks": [
-   "It's",
-   "raining."
+   "It's raining."
   ],
   "hints": [
-   "下",
-   "雨了。"
+   "正在下雨。"
   ]
  },
  {
   "sentence": "It's going to rain today.",
   "translation": "今天会下雨吧!",
   "chunks": [
-   "It's going to",
-   "rain today."
+   "It's going to rain",
+   "today."
   ],
   "hints": [
-   "今天",
-   "会下雨吧！"
+   "快要下雨了",
+   "今天"
   ]
  },
  {
@@ -2807,8 +2715,8 @@
    "today."
   ],
   "hints": [
-   "今天",
-   "很热。"
+   "很热",
+   "今天"
   ]
  },
  {
@@ -2819,8 +2727,8 @@
    "today."
   ],
   "hints": [
-   "今天",
-   "很暖和。"
+   "很暖和",
+   "今天"
   ]
  },
  {
@@ -2831,8 +2739,8 @@
    "today."
   ],
   "hints": [
-   "今天",
-   "很冷。"
+   "很冷",
+   "今天"
   ]
  },
  {
@@ -2843,8 +2751,8 @@
    "today."
   ],
   "hints": [
-   "今天",
-   "冷嗖嗖的。"
+   "冷嗖嗖的",
+   "今天"
   ]
  },
  {
@@ -2855,68 +2763,58 @@
    "today."
   ],
   "hints": [
-   "今天",
-   "风很大。"
+   "风很大",
+   "今天"
   ]
  },
  {
   "sentence": "It's humid.",
-  "translation": "今天很闷热。",
+  "translation": "天气又潮又闷。",
   "chunks": [
-   "It's",
-   "humid."
+   "It's humid."
   ],
   "hints": [
-   "今天",
-   "很闷热。"
+   "天气又潮又闷。"
   ]
  },
  {
   "sentence": "It's dry.",
   "translation": "气候干燥。",
   "chunks": [
-   "It's",
-   "dry."
+   "It's dry."
   ],
   "hints": [
-   "气候",
-   "干燥。"
+   "天气干燥。"
   ]
  },
  {
   "sentence": "It's stormy.",
-  "translation": "暴风雨天气。",
+  "translation": "天气风雨交加。",
   "chunks": [
-   "It's",
-   "stormy."
+   "It's stormy."
   ],
   "hints": [
-   "暴风雨",
-   "天气。"
+   "天气风雨交加。"
   ]
  },
  {
   "sentence": "It's snowing.",
-  "translation": "下雪了。",
+  "translation": "正在下雪。",
   "chunks": [
-   "It's",
-   "snowing."
+   "It's snowing."
   ],
   "hints": [
-   "下",
-   "雪了。"
+   "正在下雪。"
   ]
  },
  {
   "sentence": "It's gloomy.",
   "translation": "天阴沉沉的。",
   "chunks": [
-   "It's",
-   "gloomy."
+   "It's gloomy."
   ],
   "hints": [
-   "天",
-   "阴沉沉的。"
+   "天阴沉沉的。"
   ]
  },
  {
@@ -2947,74 +2845,66 @@
  },
  {
   "sentence": "It's foggy.",
-  "translation": "起雾了。",
+  "translation": "雾蒙蒙的。",
   "chunks": [
-   "It's",
-   "foggy."
+   "It's foggy."
   ],
   "hints": [
-   "起",
-   "雾了。"
+   "雾蒙蒙的。"
   ]
  },
  {
   "sentence": "It's freezing.",
   "translation": "冷得像要结冰了。",
   "chunks": [
-   "It's",
-   "freezing."
+   "It's freezing."
   ],
   "hints": [
-   "冷得",
-   "像要结冰了。"
+   "冷得像要结冰了。"
   ]
  },
  {
   "sentence": "We're going to have a blizzard.",
-  "translation": "快要下暴风雨了。",
+  "translation": "快要有暴风雪了。",
   "chunks": [
    "We're going to have",
    "a blizzard."
   ],
   "hints": [
-   "快要",
-   "下暴风雪了。"
+   "快要有",
+   "暴风雪了。"
   ]
  },
  {
   "sentence": "It's pleasant.",
   "translation": "这天真舒服。",
   "chunks": [
-   "It's",
-   "pleasant."
+   "It's pleasant."
   ],
   "hints": [
-   "这天",
-   "真舒服。"
+   "这天气真舒服。"
   ]
  },
  {
   "sentence": "It's mild today.",
-  "translation": "今天风和日丽。",
+  "translation": "今天天气温和。",
   "chunks": [
    "It's mild",
    "today."
   ],
   "hints": [
-   "今天",
-   "风和日丽。"
+   "天气温和",
+   "今天"
   ]
  },
  {
   "sentence": "It's misty.",
   "translation": "雾蒙蒙的。",
   "chunks": [
-   "It's",
-   "misty."
+   "It's misty."
   ],
   "hints": [
-   "雾",
-   "蒙蒙的。"
+   "雾蒙蒙的。"
   ]
  },
  {
@@ -3025,28 +2915,26 @@
    "today."
   ],
   "hints": [
-   "今天",
-   "阴天。"
+   "阴天",
+   "今天"
   ]
  },
  {
   "sentence": "It's miserable.",
-  "translation": "糟糕的天气。",
+  "translation": "天气糟透了。",
   "chunks": [
-   "It's",
-   "miserable."
+   "It's miserable."
   ],
   "hints": [
-   "糟糕的",
-   "天气。"
+   "天气糟透了。"
   ]
  },
  {
   "sentence": "I'm sensitive to heat.",
   "translation": "我怕热。",
   "chunks": [
-   "I'm sensitive",
-   "to heat."
+   "I'm",
+   "sensitive to heat."
   ],
   "hints": [
    "我",
@@ -3055,14 +2943,14 @@
  },
  {
   "sentence": "It's breezy today.",
-  "translation": "今天风和日丽。",
+  "translation": "今天微风习习。",
   "chunks": [
    "It's breezy",
    "today."
   ],
   "hints": [
-   "今天",
-   "微风习习。"
+   "微风习习",
+   "今天"
   ]
  },
  {
@@ -3073,8 +2961,8 @@
    "today."
   ],
   "hints": [
-   "今天的天气",
-   "让人不舒服。"
+   "让人不舒服",
+   "今天"
   ]
  },
  {
@@ -3093,24 +2981,22 @@
   "sentence": "It's raining cats and dogs!",
   "translation": "下了瓢泼大雨。",
   "chunks": [
-   "It's raining",
-   "cats and dogs!"
+   "It's raining cats and dogs!"
   ],
   "hints": [
-   "下了",
-   "瓢泼大雨！"
+   "下了瓢泼大雨。"
   ]
  },
  {
   "sentence": "It's frosty today.",
-  "translation": "下霜了。",
+  "translation": "今天有霜。",
   "chunks": [
    "It's frosty",
    "today."
   ],
   "hints": [
-   "今天",
-   "下霜了。"
+   "有霜",
+   "今天"
   ]
  }
 ]

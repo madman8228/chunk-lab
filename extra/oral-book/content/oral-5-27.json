@@ -3,12 +3,12 @@
   "sentence": "I sympathize with you.",
   "translation": "我对您深表同情!",
   "chunks": [
-   "I sympathize",
-   "with you."
+   "I",
+   "sympathize with you."
   ],
   "hints": [
    "我",
-   "对你深表同情"
+   "对您深表同情"
   ]
  },
  {
@@ -65,14 +65,8 @@
  },
  {
   "sentence": "I'm so sorry.",
-  "translation": "我太难过了!",
-  "chunks": [
-   "I'm so",
-   "sorry."
-  ],
-  "hints": [
-   "我",
-   "太难过了"
-  ]
+  "translation": "听到这个消息，我很难过。",
+  "chunks": ["I'm so sorry."],
+  "hints": ["听到这个消息，我很难过。/请节哀。"]
  }
 ]
