@@ -118,3 +118,4 @@
 - 更新隔离副本复验：服务端 37/37、发布检查 17/17、build:check 通过，无重试。typecheck 初报 ChunkShape 全局挂载类型错误，改用等价 Object.assign 挂载后通过；缓存隔离生成新指纹 chunklab-de3d24a4。此修改仍需最终冻结组合验收，真实服务未更新。
 - 新发现验收工具边界：安装版 Playwright waitForFunction 的 predicate 返回 Promise 时即作为 truthy 停止轮询，之后即使解析为 false 也不会再次轮询。旧 AI 转换测试所谓“缓存回退”实为提前读取，改 Node 侧 await/poll 后统计断言通过，随后遇到未升级的删除夹具整包写。不能据此认定产品缓存回退。
 - 新增 waitForAsync helper 和失败/超时/异步 false 单测通过。扫描至少 12 个浏览器测试/辅助场景有同类异步等待，须逐项修正并重验；此前相关专项通过不再足以证明等待条件成立，最终浏览器验收必须使用修正后的条件。转换测试仍未完整通过、未提交。
+- ai-image-course-protocol3 和 course-authoring-persistence 已改用真正 await/poll，隔离重验均通过，实际等待课程进入确认缓存与离线保存队列清空。exit-performance 同类等待已修改，重验运行中，不能预先标为通过。

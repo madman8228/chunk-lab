@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-async');
 
 const ROOT = path.resolve(__dirname, '..');
 const PORT = require('./lib/free-port').freePort(10540, 100);
@@ -88,7 +89,7 @@ function stopServer() {
 
     await page.route('**/api/operations', function (route) { return route.abort('failed'); });
     await page.locator('[data-action=save]').click();
-    await page.waitForFunction(async function () {
+    await waitForAsync(page, async function () {
       const rows = await ServerStore.pending();
       return rows.some(function (row) { return row.operation.type === 'deck.put'; });
     }, null, { timeout: 10000 });
@@ -118,7 +119,7 @@ function stopServer() {
     if (!restoredDraft.includes(COURSE.items[0].en) || !restoredDraft.includes(COURSE.items[1].en)) {
       throw new Error('refresh did not restore the same locally persisted authoring draft: ' + restoredDraft);
     }
-    await page.waitForFunction(async function (title) {
+    await waitForAsync(page, async function (title) {
       const snapshot = await ServerCache.read();
       return snapshot && snapshot.snapshot.mem.decks.some(function (deck) { return deck.name === title; }) &&
         (await ServerStore.pending()).length === 0;

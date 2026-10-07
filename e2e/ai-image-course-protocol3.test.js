@@ -6,6 +6,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-async');
 const Database = require('../server/node_modules/better-sqlite3');
 const { freePort } = require('./lib/free-port');
 
@@ -89,7 +90,7 @@ async function waitHealthy() {
 
     await page.locator('[data-action=save]').click();
     await page.waitForSelector('[data-action=join]', { timeout: 30000 });
-    await page.waitForFunction(async () => {
+    await waitForAsync(page, async () => {
       const cache = await ServerCache.read();
       return cache?.snapshot.courses.some((course) => course.metadata?.title?.['zh-CN'] === '图文点单持久化验证');
     }, null, { timeout: 30000 });
