@@ -62,7 +62,7 @@ async function main() {
     INSERT INTO user_operation_receipts(user_id,request_id,payload_hash,result_json) VALUES(1,'old_operation_request_01','legacy-hash','{"ok":true,"seq":23}');
     CREATE TABLE user_operation_events(user_id INTEGER,event_id TEXT,payload_hash TEXT,operation_id TEXT,result_json TEXT,PRIMARY KEY(user_id,event_id));
     CREATE TABLE user_change_seq(user_id INTEGER PRIMARY KEY,seq INTEGER NOT NULL);
-    CREATE TABLE user_decks(user_id INTEGER,id TEXT,name TEXT,items_json TEXT,builtin INTEGER,is_public INTEGER DEFAULT 0,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,PRIMARY KEY(user_id,id));
+    CREATE TABLE user_decks(user_id INTEGER,id TEXT,name TEXT,items_json TEXT,builtin INTEGER,is_public INTEGER DEFAULT 0,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,authoring_json TEXT,PRIMARY KEY(user_id,id));
     CREATE TABLE user_courses(user_id INTEGER,course_id TEXT,data_json TEXT,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,PRIMARY KEY(user_id,course_id));
     CREATE TABLE user_course_progress(user_id INTEGER,course_id TEXT,data_json TEXT,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,PRIMARY KEY(user_id,course_id));
     CREATE TABLE user_kv(user_id INTEGER,k TEXT,v_json TEXT,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,PRIMARY KEY(user_id,k));

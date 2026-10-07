@@ -18,7 +18,7 @@ assert.equal(reducePracticeEvents, learningEngine.reducePracticeEvents,
 
 const db = new Database(':memory:');
 db.exec(`
-  CREATE TABLE user_decks(user_id INTEGER,id TEXT,name TEXT,items_json TEXT,builtin INTEGER,is_public INTEGER DEFAULT 0,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,PRIMARY KEY(user_id,id));
+  CREATE TABLE user_decks(user_id INTEGER,id TEXT,name TEXT,items_json TEXT,builtin INTEGER,is_public INTEGER DEFAULT 0,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,authoring_json TEXT,PRIMARY KEY(user_id,id));
   CREATE TABLE user_courses(user_id INTEGER,course_id TEXT,data_json TEXT,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,PRIMARY KEY(user_id,course_id));
   CREATE TABLE user_course_progress(user_id INTEGER,course_id TEXT,data_json TEXT,rev INTEGER,deleted_at TEXT,updated_at TEXT,seq INTEGER,PRIMARY KEY(user_id,course_id));
   CREATE TABLE user_kv(user_id INTEGER,k TEXT,v_json TEXT,rev INTEGER,deleted_at TEXT,PRIMARY KEY(user_id,k));
