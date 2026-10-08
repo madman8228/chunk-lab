@@ -34,6 +34,7 @@ fs.mkdirSync(SHOTS, { recursive: true });
 const PORT = require('./lib/free-port').freePort(8902, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-e2e-'));
 let server = null;
+let serverStartupLog = '';
 
 function startServer() {
   return new Promise(function (resolve, reject) {
@@ -41,12 +42,14 @@ function startServer() {
     server = spawn(node, ['index.js'], {
       cwd: path.join(ROOT, 'server'),
       env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT) }),
-      stdio: 'ignore'
+      stdio: ['ignore', 'pipe', 'pipe']
     });
+    server.stdout.on('data', function (chunk) { serverStartupLog = (serverStartupLog + chunk.toString()).slice(-6000); });
+    server.stderr.on('data', function (chunk) { serverStartupLog = (serverStartupLog + chunk.toString()).slice(-6000); });
     let tries = 0;
     const iv = setInterval(function () {
       tries++;
-      if (server.exitCode !== null) { clearInterval(iv); reject(new Error('server exit ' + server.exitCode)); return; }
+      if (server.exitCode !== null) { clearInterval(iv); reject(new Error('server exit ' + server.exitCode + '\n' + serverStartupLog)); return; }
       const http = require('http');
       const req = http.get({ host: '127.0.0.1', port: PORT, path: '/api/health' }, function (r) {
         if (r.statusCode === 200) { clearInterval(iv); resolve(); }
@@ -234,7 +237,7 @@ function check(name, cond, detail) {
     var b = document.getElementById('syncBadge');
     return b ? getComputedStyle(b).display : 'missing';
   });
-  check('main: 切换音效不显示未同步提示', soundSyncBadge === 'none', 'display=' + soundSyncBadge);
+  check('main: 切换音效不显示未同步提示', soundSyncBadge === 'none' || soundSyncBadge === 'missing', 'display=' + soundSyncBadge);
   check('main: #zh 渲染真实句子（非占位）', ok.zh.length > 0 && ok.zh.indexOf('加载中') < 0, JSON.stringify(ok.zh));
   /* 契约：顶栏经 displayDeckName() 处理后**只留中文**（纯英文别名段被剔除）。
      不写死具体 deck 名 —— 场景拆分后 deck 名已从「日常对话 · Daily Talk」变为
@@ -354,7 +357,10 @@ function check(name, cond, detail) {
   let btnDecksNav = false;
   try {
     await Promise.all([
-      pBtnDecks.waitForURL('**/decks.html', { timeout: 6000 }),
+      pBtnDecks.waitForURL(function (url) {
+        return url.pathname === '/decks.html' && url.searchParams.get('courseView') === 'joined' &&
+          url.searchParams.get('courseType') === 'all';
+      }, { timeout: 6000 }),
       pBtnDecks.locator('#btnDecks').click()
     ]);
     btnDecksNav = true;
@@ -483,14 +489,36 @@ function check(name, cond, detail) {
   check('home: 源码已删"今日无到期"（防回潮）', mainHtmlSrc.indexOf('今日无到期') < 0, 'still in main.html');
   check('home: 源码已删"练点新的或休息"（防回潮）', mainHtmlSrc.indexOf('练点新的或休息') < 0, 'still in main.html');
   check('home: 源码已删重复的"去题库学新句"入口（防回潮）', mainHtmlSrc.indexOf('去题库学新句</button>') < 0, 'still in main.html');
-  check('home: 月度统计已从首页移入学习档案（防回潮）', mainHtmlSrc.indexOf('cal-foot') < 0 && mainHtmlSrc.indexOf('CL.answerStatsAudit(mem)') < 0, 'home still owns archive summary');
+  check('home: 月历与月度统计已移入学习档案（防回潮）', mainHtmlSrc.indexOf('cal-foot') < 0 && mainHtmlSrc.indexOf('CL.answerStatsAudit(mem)') < 0 && mainHtmlSrc.indexOf('homeCalPanel') < 0 && mainHtmlSrc.indexOf('homeCalToggle') < 0, 'home still owns archive summary/calendar');
   check('main: 源码已删练习卡返回分流（防回潮）', mainHtmlSrc.indexOf('id="btnBack"') < 0 && mainHtmlSrc.indexOf('_fromDecks') < 0, 'still in main.html');
   check('main: 查看讲解与答后讲解复用同一内容源',
     mainHtmlSrc.indexOf("showExplanationPanel('本句讲解', buildAnalysisSections(it))") >= 0 &&
     mainHtmlSrc.indexOf('list.innerHTML = explanationSectionsHtml(buildAnalysisSections(it))') >= 0,
     '讲解入口未复用 buildAnalysisSections');
 
-  /* ===== 1h. 查看讲解直接复用练习页卡片（2026-09-13：去掉重复弹窗） ===== */
+  /* ===== 1h. 查看讲解直接复用练习页卡片（2026-09-13：去掉重复弹窗） =====
+   * ⚠ 输入必须确定化（2026-09-23）：?direct=1 进入 oral-1-1-1 时**每次随机抽一句**，
+   *   该 deck 94 句中只有 53 句带 explanations（实测）。旧实现靠「说明 / 本句暂无补充讲解。」
+   *   占位把卡片撑出来，所以随机也能过；占位删除后，随机抽到无讲解句会让下面的断言假红。
+   *   这里只把输入切到「当前批中确实带 explanations 的句子」，不碰被测逻辑；
+   *   切不到即失败（不静默跳过），保证断言不会因为跳过而假绿。 */
+  const expSetup = await p.evaluate(function () {
+    /* 判据直接用被测的组装函数：只有它能回答「这一句会不会产出可展示的 section」。
+       （不要试图自己判 explanations 的字段形状 —— 实测 S.items 中约半数句子带该字段，
+         且元素形态与 content JSON 不同，自造判据会一个都匹配不上。） */
+    function producesSections(x) {
+      return !!(x && typeof buildAnalysisSections === 'function' && buildAnalysisSections(x).length > 0);
+    }
+    if (producesSections(typeof cur === 'function' ? cur() : null)) return { ok: true, how: 'already' };
+    var items = (window.S && S.items) || [];
+    for (var i = 0; i < items.length; i++) {
+      if (producesSections(items[i])) { S.idx = i; renderQ(); return { ok: true, how: 'idx', idx: i, sentence: items[i].sentence }; }
+    }
+    return { ok: false, how: 'none', total: items.length };
+  });
+  if (expSetup.how === 'idx') { await p.waitForTimeout(300); }
+  check('main: 讲解用例输入已确定化（当前句带 explanations）', expSetup.ok === true, JSON.stringify(expSetup));
+
   await p.locator('#btnExplain').click();
   await p.waitForTimeout(100);
   const explainInline = await p.evaluate(function () {
@@ -511,6 +539,24 @@ function check(name, cond, detail) {
     };
   });
   check('main: 关闭后再次点击查看讲解可在原位置恢复', explainReopen.panels === 1 && explainReopen.maskHidden, JSON.stringify(explainReopen));
+
+  /* ===== 1h2. 空讲解整卡不显示（2026-09-23：删掉「本句暂无补充讲解」占位话术） =====
+   * 老板反馈「没有内容不应该显示出来」：无任何讲解字段时，不该出现一张只有标题的空卡片。 */
+  const explanationSrc = fs.readFileSync(path.join(__dirname, '..', 'js', 'main-explanation.js'), 'utf8');
+  check('main: 讲解产物已删空讲解占位话术（防回潮）',
+    explanationSrc.indexOf('本句暂无补充讲解') < 0, 'still in js/main-explanation.js');
+  const emptyExplain = await p.evaluate(function () {
+    Array.prototype.forEach.call(document.querySelectorAll('#pagePractice .explain-panel.current'), function (el) { el.remove(); });
+    var sections = window.buildAnalysisSections({ sentence: 'No explanation.', translation: '无讲解。' });
+    var ret = window.showExplanationPanel('本句讲解', sections);
+    return {
+      sections: sections.length,
+      ret: ret === null ? 'null' : typeof ret,
+      panels: document.querySelectorAll('#pagePractice .explain-panel.current').length
+    };
+  });
+  check('main: 无讲解内容时不渲染空卡片（防占位回潮）',
+    emptyExplain.sections === 0 && emptyExplain.ret === 'null' && emptyExplain.panels === 0, JSON.stringify(emptyExplain));
 
   const ctxNoDue = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const pNoDue = await ctxNoDue.newPage();
@@ -549,24 +595,36 @@ function check(name, cond, detail) {
         var card = body && body.querySelector('.home-today-card');
         var counts = body && body.querySelector('.home-today-counts');
         var hero = body && body.querySelector('.home-hero');
-        var htcs = counts ? counts.querySelectorAll('.htc') : [];
-        var cr = card ? card.getBoundingClientRect() : null;
-        var nr = counts ? counts.getBoundingClientRect() : null;
-        var ws = Array.prototype.map.call(htcs, function(el){ return Math.round(el.getBoundingClientRect().width); });
+        /* Bento 格子：首页计数使用不等尺寸信息格，标签位于数值上方。 */
+        var pills = counts ? counts.querySelectorAll('.home-pill') : [];
+        var pillInfo = Array.prototype.map.call(pills, function(el){
+          var k = el.querySelector('.pill-k'), n = el.querySelector('.pill-n');
+          var kr = k ? k.getBoundingClientRect() : null, nr = n ? n.getBoundingClientRect() : null;
+          var card = el.getBoundingClientRect();
+          return {
+            cls: el.className,
+            tag: el.tagName,
+            labelAboveValue: !!(kr && nr &&
+              (kr.bottom <= nr.top || nr.bottom <= kr.top || kr.right <= nr.left || nr.right <= kr.left) &&
+              kr.left >= card.left && kr.right <= card.right && nr.left >= card.left && nr.right <= card.right &&
+              kr.top >= card.top && kr.bottom <= card.bottom && nr.top >= card.top && nr.bottom <= card.bottom)
+          };
+        });
+        var due = counts ? counts.querySelector('.home-pill.due') : null;
+        var book = counts ? counts.querySelector('.home-pill.book') : null;
+        var mastered = counts ? counts.querySelector('.home-pill.mastered') : null;
+        var goal = counts ? counts.querySelector('.home-pill.goal') : null;
         return {
           exists: !!card,
           hasHero: !!hero,
-          /* 2026-09-14 顶部改版：旧版是 display:flex 的「横向行动栏」，
-             实测可用 952px 里内容只占 551px、右侧 401px 空着（占 42%）。
-             新契约 = 计数区必须占满今日卡宽 + 两张卡等宽 + 数字与标签上下堆叠。 */
-          fillPct: (cr && nr && cr.width > 0) ? Math.round(nr.width / cr.width * 100) : 0,
-          equalWidth: ws.length === 2 && Math.abs(ws[0] - ws[1]) <= 2,
-          stacked: (function(){
-            if (!htcs[0]) return false;
-            var n = htcs[0].querySelector('.n'), l = htcs[0].querySelector('.l');
-            if (!n || !l) return false;
-            return l.getBoundingClientRect().top >= n.getBoundingClientRect().bottom - 1;
-          })()
+          /* Bento grid；可点入口为 BUTTON，状态格为 DIV，标签在数值上方。 */
+          pillCount: pills.length,
+          grid: counts ? getComputedStyle(counts).display === 'grid' : false,
+          dueIsButton: !!due && due.tagName === 'BUTTON',
+          bookIsButton: !!book && book.tagName === 'BUTTON',
+          masteredIsDiv: !!mastered && mastered.tagName === 'DIV',
+          goalIsDiv: !goal || goal.tagName === 'DIV',
+          allLabelsAboveValues: pillInfo.length > 0 && pillInfo.every(function(x){ return x.labelAboveValue; })
         };
       })(),
       hasNoDueText: body && (body.innerText || '').indexOf('今日无到期') >= 0,
@@ -583,16 +641,30 @@ function check(name, cond, detail) {
     !noDueState.hasRestText, JSON.stringify(noDueState));
   check('home: 已有学习记录时不渲染重复的"去题库学新句"按钮',
     !noDueState.hasNewDeckBtn, JSON.stringify(noDueState));
-  check('home: 顶部三层 · 标题行独立 + 行动卡均分占满整行且数字在上标签在下（2026-09-14 改版）',
-    noDueState.todayCard.exists && noDueState.todayCard.hasHero && noDueState.todayCard.fillPct >= 95
-      && noDueState.todayCard.equalWidth && noDueState.todayCard.stacked,
+  check('home: 计数入口语义正确，标签和数值完整且不重叠',
+    noDueState.todayCard.exists && noDueState.todayCard.hasHero && noDueState.todayCard.pillCount >= 3
+      && noDueState.todayCard.grid
+      && noDueState.todayCard.dueIsButton && noDueState.todayCard.bookIsButton
+      && noDueState.todayCard.masteredIsDiv && noDueState.todayCard.goalIsDiv
+      && noDueState.todayCard.allLabelsAboveValues,
     JSON.stringify(noDueState.todayCard));
-  check('cal: today cell 不再有 box-shadow 外框（防"hover 残留"视觉混淆，2026-09-10）',
-    noDueState.todayBoxShadow === 'none' || noDueState.todayBoxShadow === '',
+  check('home: 首页不重复显示已移入档案的月历',
+    !noDueState.todayExists,
     JSON.stringify(noDueState));
-  check('cal: today cell 改用加粗字体标识（font-weight ≥ 700）',
-    noDueState.todayFontWeight === '800' || noDueState.todayFontWeight === 'bold' || parseInt(noDueState.todayFontWeight) >= 700,
-    JSON.stringify(noDueState));
+  await pNoDue.setViewportSize({ width: 375, height: 812 });
+  const mobileCounts = await pNoDue.evaluate(function () {
+    return Array.from(document.querySelectorAll('#homeBody .home-pill')).map(function (card) {
+      var label = card.querySelector('.pill-k'), number = card.querySelector('.pill-n');
+      if (!label || !number) return { valid: false };
+      var a = label.getBoundingClientRect(), b = number.getBoundingClientRect(), c = card.getBoundingClientRect();
+      return { valid: (a.bottom <= b.top || b.bottom <= a.top || a.right <= b.left || b.right <= a.left) &&
+        a.left >= c.left && a.right <= c.right && b.left >= c.left && b.right <= c.right &&
+        a.top >= c.top && a.bottom <= c.bottom && b.top >= c.top && b.bottom <= c.bottom,
+        label: label.textContent, number: number.textContent };
+    });
+  });
+  check('home mobile: 375px 计数标签和数字完整且不重叠',
+    mobileCounts.length === 3 && mobileCounts.every(function (row) { return row.valid; }), JSON.stringify(mobileCounts));
   await pNoDue.close();
   await ctxNoDue.close();
 
@@ -619,11 +691,20 @@ function check(name, cond, detail) {
     settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: true, celebrate: 'confetti', autoSpeak: false, darkMode: false }
   });
   await pRecentAccuracy.goto(BASE + '/main.html?preview=recent-accuracy', { waitUntil: 'domcontentloaded' });
+  await pRecentAccuracy.waitForFunction(function () { return !!window.CourseEnrollment && !!window.CL; });
+  await pRecentAccuracy.evaluate(async function () { await CourseEnrollment.join('user-deck:recent-d1'); await renderHome(); });
   await pRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
   const recentAccuracySummary = await pRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
+  /* 2026-09-25 首页精修②：首页课程行可见文本只留「已学 N 句」，
+     `覆盖 100%` / `上次 40%` 移入 aria-label。故这里同时取 aria 参与断言。 */
+  const recentAccuracyAria = await pRecentAccuracy.locator('#homeBody .home-decks .hc-course-progress').first().getAttribute('aria-label');
   check('home: 最近练习不显示「续练这张」废话', recentAccuracySummary.indexOf('续练这张') < 0, recentAccuracySummary);
-  check('home: 最近练习显示课程覆盖进度', recentAccuracySummary.indexOf('已覆盖 1 / 1 句') >= 0 && recentAccuracySummary.indexOf('覆盖 100%') >= 0, recentAccuracySummary);
-  check('home: 最近练习显示最近一次正确率而非最佳正确率', recentAccuracySummary.indexOf('上次 40%') >= 0 && recentAccuracySummary.indexOf('100%') >= 0, recentAccuracySummary);
+  check('home: 最近练习显示课程覆盖进度（可见「已学 1 句」+ aria 保留覆盖率）',
+    recentAccuracySummary.indexOf('已学 1 / 1 句') >= 0 && (recentAccuracyAria || '').indexOf('覆盖 100%') >= 0,
+    JSON.stringify({ text: recentAccuracySummary, aria: recentAccuracyAria }));
+  check('home: 最近练习显示最近一次正确率而非最佳正确率（上次 40% 移入 aria）',
+    (recentAccuracyAria || '').indexOf('上次 40%') >= 0 && recentAccuracySummary.indexOf('100%') < 0,
+    JSON.stringify({ text: recentAccuracySummary, aria: recentAccuracyAria }));
   await pRecentAccuracy.close();
   await ctxRecentAccuracy.close();
 
@@ -646,10 +727,15 @@ function check(name, cond, detail) {
     settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: true, celebrate: 'confetti', autoSpeak: false, darkMode: false }
   });
   await pNoRecentAccuracy.goto(BASE + '/main.html?preview=no-recent-accuracy', { waitUntil: 'domcontentloaded' });
+  await pNoRecentAccuracy.waitForFunction(function () { return !!window.CourseEnrollment && !!window.CL; });
+  await pNoRecentAccuracy.evaluate(async function () { await CourseEnrollment.join('user-deck:started-d1'); await renderHome(); });
   await pNoRecentAccuracy.waitForSelector('#homeBody .home-decks', { timeout: 10000 });
   const noCompletedSummary = await pNoRecentAccuracy.locator('#homeBody .home-decks .sub').first().textContent();
+  const noCompletedAria = await pNoRecentAccuracy.locator('#homeBody .home-decks .hc-course-progress').first().getAttribute('aria-label');
   check('home: 未完成过练习不显示伪造的正确率', noCompletedSummary.indexOf('上次') < 0 && noCompletedSummary.indexOf('正确率') < 0, noCompletedSummary);
-  check('home: 未完成过练习仍显示覆盖进度', noCompletedSummary.indexOf('已覆盖 1 / 1 句') >= 0 && noCompletedSummary.indexOf('覆盖 100%') >= 0, noCompletedSummary);
+  check('home: 未完成过练习仍显示覆盖进度（可见「已学 1 句」+ aria 保留覆盖率）',
+    noCompletedSummary.indexOf('已学 1 / 1 句') >= 0 && (noCompletedAria || '').indexOf('覆盖 100%') >= 0,
+    JSON.stringify({ text: noCompletedSummary, aria: noCompletedAria }));
   await pNoRecentAccuracy.close();
   await ctxNoRecentAccuracy.close();
 
@@ -699,21 +785,28 @@ function check(name, cond, detail) {
   });
   await pStatsRoot.goto(BASE + '/main.html?direct=1&preview=stats-root-cause', { waitUntil: 'domcontentloaded' });
   await pStatsRoot.waitForTimeout(1200);
-  const statIdentity = await pStatsRoot.evaluate(function () {
+  const statIdentity = await pStatsRoot.evaluate(async function () {
+    await CL.preload();
     var item = { sentence: 'I would like to check in, please.', chunks: ['I would like to', 'check in,', 'please.'], hints: ['', '', ''] };
-    S.deck = { id: 'daily-talk', name: '日常对话' };
+    // Register a real synthetic source, not a legacy alias without any content.
+    var source = { id: 'stats-source-fixture', name: '日常对话', items: [item] };
+    mem.decks.push(source);
+    S.deck = source;
     recordSentenceResult(item, true);
-    saveStore();
+    if (await saveStore() === false) throw new Error('来源题库第一次统计保存失败');
     S.deck = { id: 'srs-m123', name: '到期复习 · 1 句' };
-    var reviewItem = Object.assign({}, item, { _statsDeckId: 'daily-talk' });
+    var reviewItem = Object.assign({}, item, { _statsDeckId: source.id });
     recordSentenceResult(reviewItem, true);
-    saveStore();
+    if (await saveStore() === false) throw new Error('复习队列第二次统计保存失败');
     /* ★ 2026-09-10：stats 大对象已迁 IndexedDB（localStorage 只留小字段），
        故断言必须走应用自己的读入口 CL.loadMem()，而不是直接解析 localStorage ——
        后者把测试绑死在存储实现上，改一次存储层就误报。 */
     var saved = window.CL.loadMem();
     var keys = Object.keys(saved.stats.bySentence);
-    return { keys: keys, total: saved.stats.totalAnswered, times: keys.map(function (k) { return saved.stats.bySentence[k].times; }) };
+    var durable = await IDBStore.loadAll();
+    return { keys: keys, total: saved.stats.totalAnswered, times: keys.map(function (k) { return saved.stats.bySentence[k].times; }),
+      durableStats: durable.sentenceStats, inMemoryKeys: Object.keys(mem.stats.bySentence),
+      config: CL.getCloudConfig && CL.getCloudConfig() ? CL.getCloudConfig().writeProtocol : null };
   });
   check('stats: 同一句跨普通/临时复习队列合并为一条历史',
     statIdentity.keys.length === 1 && statIdentity.total === 2 && statIdentity.times[0] === 2,
@@ -871,7 +964,7 @@ function check(name, cond, detail) {
   check('mobile: 标熟/详解统一触控高度',
     mobileLayout.masterHeight === mobileLayout.explainHeight && mobileLayout.masterHeight >= 32,
     JSON.stringify(mobileLayout));
-  check('mobile: 标熟按钮显示为“熟”', mobileLayout.masterText === '熟', JSON.stringify(mobileLayout));
+  check('mobile: 自评按钮明确显示“熟悉”，不冒充测评掌握', mobileLayout.masterText === '熟悉', JSON.stringify(mobileLayout));
   check('mobile: 查看讲解按钮使用明确文字', mobileLayout.explainText === '详解' && mobileLayout.explainIconCount === 0, JSON.stringify(mobileLayout));
   /* 用受控内容探针判「布局允不允许并排两个」——不受随机句子影响（根因见 evaluate 内注释）。
      真实行数仍在 detail 里带着，便于诊断时区分「内容本来放不下」与「布局被压成一列」。 */
@@ -946,6 +1039,7 @@ function check(name, cond, detail) {
       importText: importButton ? importButton.textContent : '',
       importAria: importButton ? importButton.getAttribute('aria-label') : '',
       importTitle: importButton ? importButton.getAttribute('title') : '',
+      importHidden: importButton ? importButton.classList.contains('hidden') : true,
       builtinImportCount: Array.from(document.querySelectorAll('#deckList .deck-item')).filter(function(el){
         return el.querySelector('.pill:not(.mine)') && Array.from(el.querySelectorAll('.deck-actions button')).some(function(btn){ return btn.textContent.trim() === '导入'; });
       }).length,
@@ -961,10 +1055,13 @@ function check(name, cond, detail) {
   const dsvg = decksLayout.svg;
   check('decks: SVG 图标渲染', dsvg >= 10, 'svg=' + dsvg);
   check('decks: 返回按钮文案简洁', decksLayout.back.trim() === '返回', JSON.stringify(decksLayout));
-  check('decks: 添加课程入口保留且内置课程不复制副本', decksLayout.importText.trim() === '＋' && decksLayout.importAria === '添加课程' && decksLayout.importTitle === '添加课程' && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
+  check('decks: 发现页不显示导入入口且内置课程不复制副本', decksLayout.importHidden && decksLayout.builtinImportCount === 0, JSON.stringify(decksLayout));
   check('decks: 课程卡片正文紧凑且封面比例稳定', decksLayout.maxCardBodyHeight <= 60 && decksLayout.coverAspectOk, JSON.stringify(decksLayout));
   check('decks: 零 pageerror', errsd.length === 0, errsd.join('|'));
+  await pd.click('#courseViewJoined');
   await pd.click('#btnImportDecks');
+  await pd.waitForSelector('#courseImportTypeMask:not([hidden])', { timeout: 5000 });
+  await pd.click('#btnChooseSentenceImport');
   await pd.waitForSelector('#impMask:not([hidden])', { timeout: 5000 });
   await pd.fill('#deckName', '我的通勤句子');
   await pd.selectOption('#optCat', '2');
@@ -1030,8 +1127,8 @@ function check(name, cond, detail) {
       var r=el.getBoundingClientRect(); return Math.round(r.top+r.height/2);
     });
     var stats = tops('.overview-status > .ov-stat');
-    var pair = tops('.activity-day');
-    var labels = tops('.activity-week-labels > span');
+    var weeklyChart = document.querySelector('.activity-week, .activity-week-labels');
+    var calendarDay = document.querySelector('.month-calendar-day[title]');
     var rounds = document.querySelector('.overview-note');
     var reconcileNote = document.querySelector('.stats-reconcile-note');
     var firstRow = document.querySelector('.stats-detail-row');
@@ -1042,22 +1139,23 @@ function check(name, cond, detail) {
     return {
       headRows: head.length ? (Math.max.apply(Math, head) - Math.min.apply(Math, head) <= 2 ? 1 : new Set(head).size) : 0,
       overviewActionsPresent: document.querySelectorAll('.overview-actions, .ov-act').length > 0,
-      statsTwoPerRow: stats.length === 4 && stats[0] === stats[1] && stats[2] === stats[3] && stats[0] !== stats[2],
+      statsTwoPerRow: stats.length === 5 && stats[0] === stats[1] && stats[2] === stats[3] &&
+        stats[0] !== stats[2] && stats[4] > stats[3],
       statsCount: stats.length,
       roundsDisplay: rounds ? getComputedStyle(rounds).display : '',
       reconcileNotePresent: !!reconcileNote,
-      pairSameRow: pair.length < 2 || pair[0] === pair[1],
-      labelsSameRow: labels.length === 7 && labels[0] === labels[6],
+      weeklyChartPresent: !!weeklyChart,
+      calendarHasDailyCounts: !!(calendarDay && /答题 \d+ 句/.test(calendarDay.getAttribute('title'))),
       rowNumberAligned: !firstRow || Math.abs(numTop - enTop) <= 3,
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth
     };
   });
   check('stats mobile: 顶部操作保持一行', statsMobileLayout.headRows === 1, JSON.stringify(statsMobileLayout));
   check('stats mobile: 概览不显示待复习和错题本可点击卡片', !statsMobileLayout.overviewActionsPresent, JSON.stringify(statsMobileLayout));
-  check('stats mobile: 4 项状态指标两两成行', statsMobileLayout.statsTwoPerRow && statsMobileLayout.statsCount === 4, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 5 项状态指标两列排列，熟悉自评单独计数', statsMobileLayout.statsTwoPerRow && statsMobileLayout.statsCount === 5, JSON.stringify(statsMobileLayout));
   check('stats mobile: 轮次口径可见', statsMobileLayout.roundsDisplay !== 'none', JSON.stringify(statsMobileLayout));
-  check('stats mobile: 近7天柱形保持一行', statsMobileLayout.pairSameRow, JSON.stringify(statsMobileLayout));
-  check('stats mobile: 近7天日期标签保持一行', statsMobileLayout.labelsSameRow, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 不重复显示近7天柱形图', !statsMobileLayout.weeklyChartPresent, JSON.stringify(statsMobileLayout));
+  check('stats mobile: 月历日期仍可查看每日答题数', statsMobileLayout.calendarHasDailyCounts, JSON.stringify(statsMobileLayout));
   check('stats mobile: 概览不显示技术性日期对账提示', !statsMobileLayout.reconcileNotePresent, JSON.stringify(statsMobileLayout));
   check('stats mobile: 记录序号与首行内容对齐', statsMobileLayout.rowNumberAligned, JSON.stringify(statsMobileLayout));
   check('stats mobile: 无横向溢出', !statsMobileLayout.overflowX, JSON.stringify(statsMobileLayout));
@@ -1243,7 +1341,8 @@ function check(name, cond, detail) {
       localStorage.clear();
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       const item = { sentence: 'Could you help me today?', translation: '今天能帮我吗？',
-        chunks: ['Could you', 'help me today?'], hints: ['', ''], cid: 'wrong-once' };
+        chunks: ['Could you', 'help me today?'], hints: ['', ''], cid: 'wrong-once',
+        distractors: [['Could they'], ['help me tomorrow?']] };
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2, reinforceBook: [], decks: [{ id: 'wrong-once-deck', name: '答错一次测试', items: [item] }],
         best: {}, mastered: {}, deletedItems: {},
@@ -1269,7 +1368,9 @@ function check(name, cond, detail) {
       if (!state.target) { await p4d.waitForTimeout(100); continue; }
       if (guard === 0) {
         const wrong = await p4d.evaluate(function (target) {
-          var b = Array.from(document.querySelectorAll('#stageChoices .choice')).find(function (x) { return !x.disabled && x.dataset.v !== target; });
+          var b = Array.from(document.querySelectorAll('#stageChoices .choice.distractor')).find(function (x) {
+            return !x.disabled && x.dataset.v === 'Could they' && x.dataset.v !== target;
+          });
           if (!b) return false; b.click(); return true;
         }, state.target);
         check('reinforce 4d: 真实点击一次错误选项', wrong, JSON.stringify(state));
@@ -1283,7 +1384,9 @@ function check(name, cond, detail) {
     }
     const w4d = await p4d.evaluate(function () {
       var b = (mem.reinforceBook || [])[0];
-      return { bookLen: (mem.reinforceBook || []).length, mistakes: b && b.mistakes || [] };
+      return { bookLen: (mem.reinforceBook || []).length, mistakes: b && b.mistakes || [],
+        sessionMistakes: S.mistakes || S.wrongDetails || null,
+        persistedBook: CL.loadMem().reinforceBook || [] };
     });
     check('reinforce 4d: 答错一次后错题本保留句子', w4d.bookLen === 1, JSON.stringify(w4d));
     check('reinforce 4d: 答错一次后保留错点详情', w4d.mistakes.length === 1 && w4d.mistakes[0].chunkIdx === 0 && !!w4d.mistakes[0].userAnswer && w4d.mistakes[0].userAnswer !== 'Could you', JSON.stringify(w4d));
@@ -1379,17 +1482,10 @@ function check(name, cond, detail) {
     await p5.waitForSelector('#homeBody', { timeout: 10000 });
     await p5.waitForTimeout(700);
     const afterPracticeHome = await p5.evaluate(function () {
-      var today = document.querySelector('.cal-cell.today');
-      var footer = document.querySelector('.cal-foot');
-      return {
-        todayRounds: today ? today.getAttribute('data-rounds') : null,
-        hasArchiveFooter: !!footer,
-        hasZeroOnlyCalendar: !!(document.querySelector('.cal-grid') && footer && /完成练习\s*0\s*轮/.test(footer.textContent))
-      };
+      var body = document.getElementById('homeBody');
+      return !!(body && body.querySelector('.cal-grid, .month-calendar-grid, #homeCalToggle, #homeCalPanel'));
     });
-    check('home: 返回首页后日历显示真实完成轮次', afterPracticeHome.todayRounds === '1' &&
-      !afterPracticeHome.hasArchiveFooter &&
-      !afterPracticeHome.hasZeroOnlyCalendar, JSON.stringify(afterPracticeHome));
+    check('home: 完成练习后首页仍不显示月历', !afterPracticeHome, String(afterPracticeHome));
     /* 点「换个题库」应整页跳 decks.html（原 openDecks 内嵌列表已删）。
        ⚠ 竞速陷阱：不能先注册 waitForURL 再 click —— click 默认 30s actionability，
        结算后庆祝层短暂遮挡按钮会拖过 waitForURL 的 8s 超时。先点击（短超时，失败降级 DOM click），再等导航。 */
@@ -1449,14 +1545,16 @@ function check(name, cond, detail) {
       return {
         n: btns.length,
         found: found,
-        allPreset: found.length === preset.length,
+        allPreset: found.length === 2 && texts.length === 4 &&
+          texts.includes("It's now or later —") && texts.includes('miss the chance!'),
         hasIronclad: texts.indexOf('grab the change!') >= 0,
         texts: texts.slice(0, 10)
       };
     });
     check('preset 6: 候选区已渲染（含干扰按钮）', presetShown.n >= 3, JSON.stringify(presetShown));
-    check('preset 6: 预置干扰项真实上屏（含全部 4 条）', presetShown.allPreset, JSON.stringify(presetShown));
-    check('preset 6: 形近改造项 grab the change! 上屏（铁证，非运行时兜底假阳）', presetShown.hasIronclad, JSON.stringify(presetShown));
+    check('preset 6: 两段句各槽一条预置干扰项真实上屏，正确项与干扰项共四条', presetShown.allPreset, JSON.stringify(presetShown));
+    check('preset 6: 不将同槽备用项重复塞进池子', !presetShown.hasIronclad &&
+      !presetShown.texts.includes("It's tonight or never —"), JSON.stringify(presetShown));
     check('preset 6: 零 pageerror', errs6.length === 0, errs6.join('|'));
     await p6.screenshot({ path: path.join(SHOTS, 'e2e-preset-on-screen.png') });
     await p6.close(); await c6.close();

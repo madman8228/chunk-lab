@@ -1,0 +1,27 @@
+# https://jqka.top/robots.txt
+# jqka.top · 英语学习站（Chunk Lab 意群练习）
+#
+# 口径说明（2026-10-07）：练习内容目前仍是 JS 动态渲染，尚未产出可索引的静态内容页，
+# 因此这里只放行抓取 + 声明 sitemap，不把 JS 空壳页塞进 sitemap（避免「已索引但 0 曝光」的假收录）。
+# 内容页就绪后，在 sitemap.xml 里扩 URL 即可，无需改动本文件。
+#
+# ⚠ 不要再单独加 User-agent: Baiduspider / Googlebot 分组：robots.txt 的分组匹配是
+#   「命中最具体的组后即忽略 * 组」，那样会让下面这些 Disallow 对百度/谷歌全部失效。
+
+User-agent: *
+Allow: /
+
+# 内部与工具页：不参与收录
+Disallow: /admin.html
+Disallow: /content-studio.html
+
+# 源码与运维目录（服务端另有一道 static-guard 兜底）
+Disallow: /server/
+Disallow: /scripts/
+Disallow: /deploy/
+Disallow: /deliverables/
+
+# 原始题库 JSON：只给应用按需请求，不占用爬虫额度
+Disallow: /content/
+
+Sitemap: https://jqka.top/sitemap.xml

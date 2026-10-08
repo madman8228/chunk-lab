@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Chunk Lab · 生产部署（幂等，可重复执行）
 # 用法：bash scripts/deploy-prod.sh <目标机>
+#       DEPLOY_ACCEPTED_SHA=<已验收 commit sha> bash scripts/deploy-prod.sh <目标机>
+#         → 复用已验收的同一份发布包（跳过 [0/9] 回归）；需 HEAD 与该 sha 一致、
+#           且待部署文件无未提交改动，否则拒绝并转跑完整回归。
 #
 # 做九件事：① 本地全套回归 ② 远端生产配置预检 ③ 校验部署清单 ④ 迁移前全库快照
 #            ⑤ 重算 SW cache hash ⑥ 传改动文件 ⑦ 服务端校验内容 ⑧ 重启 ⑨ 冒烟
@@ -15,6 +18,12 @@ if [ "$#" -ne 1 ] || [ -z "$1" ]; then
   exit 2
 fi
 HOST="$1"
+if [ "${DEPLOY_SKIP_TESTS:-0}" != "0" ]; then
+  echo "拒绝盲跳过发布回归（DEPLOY_SKIP_TESTS 已废弃：不提供无校验的跳过）。" >&2
+  echo "如需复用已验收的同一份发布包，请改用 DEPLOY_ACCEPTED_SHA=<已验收 commit sha>：" >&2
+  echo "脚本会校验 HEAD 与该 commit 一致、且待部署文件无未提交改动，才允许跳过 [0/9]。" >&2
+  exit 2
+fi
 APP=/opt/chunklab
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
@@ -31,6 +40,7 @@ trap cleanup_remote_stage EXIT
 #   与本清单比对，缺了就中止部署。
 #   本脚本第 [2/9] 步自动跑它；`npm test` 也会跑。（2026-09-10：本清单曾漏掉整个 js/ 目录）
 FILES=(
+  index.html landing robots.txt sitemap.xml
   main.html decks.html stats.html courses.html course-create.html admin.html content-studio.html content-studio.js ai-course-kit.json
   core.js api.js auth-ui.js sw.js manifest.json content
   js/account-storage.js
@@ -46,13 +56,55 @@ FILES=(
   server/index.js server/admin.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js server/canonical-hash.js server/sync-conflict.js server/middleware/auth-rate.js server/middleware/static-guard.js server/services/change-seq.js server/services/admin-overview.js server/services/data-snapshot.js server/services/data-writers.js server/services/data-rows.js server/services/data-migrations.js server/services/data-save.js server/services/operations.js server/services/logical-course-operations.js server/services/course-learning-operations.js server/services/settings-operations.js server/services/learning-maintenance-operations.js server/services/course-enrollment-operations.js server/services/learning-mark-operations.js server/services/content-operations.js server/services/stat-key-migration-operations.js server/services/assessment-operations.js server/services/learning-exposure-operations.js server/services/learning-event-operations.js server/services/learning-replay.js server/services/assessment-content.js server/services/content-studio.js server/services/recovery-ingest.js server/routes/operations.js server/routes/protocol-guard.js server/routes/content-import.js server/routes/client-save-health.js server/routes/content-studio.js server/routes/recovery.js server/routes/decks.js server/routes/backup.js server/routes/feedback.js server/routes/ai.js server/routes/admin.js server/routes/auth.js server/routes/system.js server/routes/data.js server/package.json server/package-lock.json
   package.json
   server/routes/retired-sync.js server/services/recovery-baseline.js
+  scripts/sw-hash.js
 )
 
-echo "[0/9] 本地候选全套回归"
-npm test
-npm run test:accounts
-npm run test:batch-sync
-node e2e/mobile-8000.test.js
+# [0/9] 本地回归 —— 允许「复用已验收的同一份发布包」，但必须能证明没变。
+#
+# 背景：全套回归（npm test 含全部浏览器 e2e）实测 ≈50 分钟，超过工具单次前台上限；
+#       而一轮内往往已跑过，重复跑收益为零。
+# 纪律：复用 ≠ 盲跳过。只有同时满足下面两条才放行跳过，否则 fail-closed 强制完整回归：
+#         (a) 当前 HEAD == DEPLOY_ACCEPTED_SHA（该版本就是被验收过的那份）；
+#         (b) 本次要部署的文件（FILES）相对 HEAD 无任何改动（含未跟踪文件）。
+# 用法：DEPLOY_ACCEPTED_SHA=<已验收 commit sha> bash scripts/deploy-prod.sh <目标机>
+#       不带该变量 = 默认跑完整回归（与旧行为完全一致）。
+#
+# 只校验「要部署的文件」而非整棵工作区：未部署的临时产物（deliverables/、output/ 截图等）
+# 不影响发布包一致性，不该阻塞复用；反之 content/ 里未提交的新分片属部署范围，必须一并校验。
+DEPLOY_ACCEPTED_SHA="${DEPLOY_ACCEPTED_SHA:-}"
+RUN_REGRESSION=1
+if [ -n "$DEPLOY_ACCEPTED_SHA" ]; then
+  HEAD_SHA="$(git rev-parse HEAD 2>/dev/null || true)"
+  if [ -z "$HEAD_SHA" ]; then
+    echo "[0/9] ✗ 读不到 git HEAD，拒绝复用（fail-closed）" >&2
+    exit 2
+  fi
+  if [ "$HEAD_SHA" != "$DEPLOY_ACCEPTED_SHA" ]; then
+    echo "[0/9] ✗ 拒绝复用：HEAD=$HEAD_SHA ≠ 已验收 DEPLOY_ACCEPTED_SHA=$DEPLOY_ACCEPTED_SHA" >&2
+    echo "      → 该版本未经本轮验收；请跑完整回归，或提交验收后的版本再复用。" >&2
+    exit 2
+  fi
+  if ! DIRTY_FILES="$(git status --porcelain --untracked-files=all -- "${FILES[@]}" 2>/dev/null)"; then
+    echo "[0/9] ✗ 无法校验部署文件状态（git status 失败），拒绝复用（fail-closed）" >&2
+    exit 2
+  fi
+  if [ -n "$DIRTY_FILES" ]; then
+    echo "[0/9] ✗ 拒绝复用：以下待部署文件相对 $HEAD_SHA 有未提交改动，发布包已偏离已验收版本：" >&2
+    printf '%s\n' "$DIRTY_FILES" | sed 's/^/        /' >&2
+    echo "      → 先提交或还原这些文件；否则请跑完整回归（勿在有未提交改动时复用验收结果）。" >&2
+    exit 2
+  fi
+  RUN_REGRESSION=0
+  echo "[0/9] 复用已验收发布包：HEAD=$HEAD_SHA，${#FILES[@]} 个部署项相对该版本无改动 → 跳过本地回归"
+fi
+
+if [ "$RUN_REGRESSION" = "1" ]; then
+  echo "[0/9] 本地候选全套回归"
+  npm test
+  npm run test:accounts
+  npm run test:batch-sync
+  node e2e/mobile-8000.test.js
+fi
 
 echo "[1/9] 远端生产配置预检"
 # 不能让缺失 env 文件时的 backup-db 静默回落到开发默认值；
@@ -126,9 +178,10 @@ echo "[6/9] 服务端校验内容特征"
 ssh "$HOST" "cd '$REMOTE_DIR' && \
   test -f main.html && test -f server/index.js && test -f sw.js && \
   test -f js/bridge.mjs && test -f js/chunk-engine.mjs && test -f js/distractor-cause.mjs && \
+  test -f index.html && test -f landing/store.js && test -f robots.txt && test -f sitemap.xml && \
   grep -q '$CACHE' sw.js && \
-  grep -q \"redirect('/main.html')\" server/index.js && \
-  echo '      OK: 文件齐（含 js/ 模块）+ sw cache 一致 + 根路由存在'"
+  grep -q 'express.static' server/index.js && \
+  echo '      OK: 文件齐（含 js/ 模块 + 落地页 + SEO 文件）+ sw cache 一致 + 静态根存在'"
 
 echo "[7/9] 落盘 + 重启服务"
 ssh "$HOST" "bash -s -- '$APP' '$REMOTE_DIR'" <<'REMOTE_DEPLOY'
@@ -148,8 +201,20 @@ ssh "$HOST" "bash -s -- '$CACHE'" <<'REMOTE_SMOKE'
 set -euo pipefail
 CACHE="$1"
 curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8787/api/health
+# 根路径 = 品牌落地页（2026-10-05 合并落地页后由 express.static 托管 index.html）。
+# 原先这里断言 302（根路径重定向 /main.html），而那行已从 server/index.js 删除，
+# 断言必须跟着改成 200 + 正文特征，否则部署会在自己这一步假失败。
 ROOT_CODE="$(curl --silent --show-error --max-time 5 -o /dev/null -w '%{http_code}' http://127.0.0.1:8787/)"
-test "$ROOT_CODE" = 302
+test "$ROOT_CODE" = 200
+# 正文特征用 case 判定，不用 `curl | grep -q`：本段是 set -o pipefail，
+# 而 grep -q 一旦命中就退出，curl 会吃到 SIGPIPE 而非零退出 → 管道整体判失败（假红）。
+ROOT_BODY="$(curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8787/)"
+case "$ROOT_BODY" in
+  *jqka.top*) ;;
+  *) echo '      ✗ 根路径 200 但正文不含品牌标识（落地页没上去？）' >&2; exit 1 ;;
+esac
+curl --fail --silent --show-error --max-time 5 -o /dev/null http://127.0.0.1:8787/robots.txt
+curl --fail --silent --show-error --max-time 5 -o /dev/null http://127.0.0.1:8787/sitemap.xml
 curl --fail --silent --show-error --max-time 5 -o /dev/null http://127.0.0.1:8787/sw.js
 curl --fail --silent --show-error --max-time 5 -o /dev/null http://127.0.0.1:8787/js/bridge.mjs
 REMOTE_CACHE="$(curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8787/sw.js | grep -o 'chunklab-[0-9a-f]*' | head -1)"

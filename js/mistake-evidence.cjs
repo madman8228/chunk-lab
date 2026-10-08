@@ -85,7 +85,8 @@ function normalizeEvidenceRow(row = {}) {
   const ordered = [...unique.values()].sort(compareEvents);
   const historyTruncated = row.historyTruncated === true || ordered.length > MAX_EVENTS || ordered.some((event) => event.truncated);
   const retained = ordered.slice(-MAX_EVENTS);
-  const latest = retained[retained.length - 1];
+  const meaningful = retained.filter((event) => !(event.eventId.startsWith("legacy-") && event.mode === "unknown" && !event.mistakes.length && event.hinted === null && event.revealed === null && !event.needsReview));
+  const latest = meaningful[meaningful.length - 1] || retained[retained.length - 1];
   return {
     ...copy,
     addedAt: row.addedAt,

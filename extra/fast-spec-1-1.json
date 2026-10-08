@@ -6,8 +6,8 @@
    "morning."
   ],
   "hints": [
-   "早上",
-   "好。"
+   "好",
+   "早上。"
   ]
  },
  {
@@ -156,12 +156,12 @@
  {
   "sentence": "You left the light on.",
   "chunks": [
-   "You left",
-   "the light on."
+   "You",
+   "left the light on."
   ],
   "hints": [
-   "你一直",
-   "没关灯啊。"
+   "你",
+   "让灯一直开着。"
   ]
  },
  {
@@ -182,8 +182,8 @@
    "eat breakfast."
   ],
   "hints": [
-   "该吃",
-   "早饭了。"
+   "该",
+   "吃早饭了。"
   ]
  },
  {
@@ -233,12 +233,12 @@
  {
   "sentence": "Coffee wakes me up.",
   "chunks": [
-   "Coffee wakes",
-   "me up."
+   "Coffee",
+   "wakes me up."
   ],
   "hints": [
-   "我是用咖啡",
-   "来提神的。"
+   "咖啡",
+   "能让我提神。"
   ]
  },
  {
@@ -248,30 +248,30 @@
    "your teeth?"
   ],
   "hints": [
-   "刷牙",
-   "了吗？"
+   "你刷了",
+   "牙吗？"
   ]
  },
  {
   "sentence": "I have to comb my hair.",
   "chunks": [
-   "I have to comb",
-   "my hair."
+   "I have to",
+   "comb my hair."
   ],
   "hints": [
    "我得",
-   "梳梳头了。"
+   "梳梳头"
   ]
  },
  {
   "sentence": "What should I wear?",
   "chunks": [
-   "What should",
-   "I wear?"
+   "What",
+   "should I wear?"
   ],
   "hints": [
-   "穿什么",
-   "好呢？"
+   "什么",
+   "我应该穿"
   ]
  },
  {
@@ -299,8 +299,8 @@
  {
   "sentence": "I'm leaving. Bye mom!",
   "chunks": [
-   "I'm leaving. Bye",
-   "mom!"
+   "I'm leaving.",
+   "Bye mom!"
   ],
   "hints": [
    "我走了。",
@@ -325,7 +325,7 @@
    "inside out."
   ],
   "hints": [
-   "你毛衣",
+   "你穿着毛衣",
    "穿反了。"
   ]
  },
@@ -336,8 +336,8 @@
    "upside down."
   ],
   "hints": [
-   "上下",
-   "颠倒了。"
+   "它是",
+   "上下颠倒的。"
   ]
  },
  {
@@ -365,12 +365,12 @@
  {
   "sentence": "What are you doing today?",
   "chunks": [
-   "What are you",
-   "doing today?"
+   "What",
+   "are you doing today?"
   ],
   "hints": [
-   "你们",
-   "今天干嘛？"
+   "什么",
+   "你今天在做什么？"
   ]
  },
  {
@@ -380,19 +380,19 @@
    "we'll be late."
   ],
   "hints": [
-   "你快点儿，",
-   "我们该迟到了！"
+   "如果你不快点，",
+   "我们就要迟到了！"
   ]
  },
  {
   "sentence": "Hurry or you'll be late for school.",
   "chunks": [
-   "Hurry or you'll be late",
-   "for school."
+   "Hurry",
+   "or you'll be late for school."
   ],
   "hints": [
    "快点儿，",
-   "上学该迟到了。"
+   "不然上学就要迟到了。"
   ]
  },
  {
@@ -402,8 +402,8 @@
    "the door?"
   ],
   "hints": [
-   "你锁门",
-   "了吗？"
+   "你锁了",
+   "门吗？"
   ]
  },
  {
@@ -413,8 +413,8 @@
    "something?"
   ],
   "hints": [
-   "没忘了",
-   "什么东西吧？"
+   "你是不是忘了",
+   "什么东西？"
   ]
  },
  {
@@ -457,8 +457,8 @@
    "late today?"
   ],
   "hints": [
-   "你会",
-   "今天回来得晚吗？"
+   "你会不会",
+   "今天迟到？"
   ]
  },
  {
@@ -490,8 +490,8 @@
    "rain today."
   ],
   "hints": [
-   "好像",
-   "今天要下雨。"
+   "可能会",
+   "今天下雨。"
   ]
  },
  {
@@ -501,8 +501,8 @@
    "when you leave."
   ],
   "hints": [
-   "出门的时候，",
-   "可别忘了锁门。"
+   "可别忘了锁门",
+   "离开时"
   ]
  },
  {
@@ -523,8 +523,8 @@
    "home!"
   ],
   "hints": [
-   "你",
-   "回来了。"
+   "欢迎",
+   "回家！"
   ]
  },
  {
@@ -534,19 +534,19 @@
    "a good time?"
   ],
   "hints": [
-   "今天过得",
+   "你玩得",
    "愉快吗？"
   ]
  },
  {
   "sentence": "How did it go today?",
   "chunks": [
-   "How did it",
-   "go today?"
+   "How did it go",
+   "today?"
   ],
   "hints": [
-   "怎么样",
-   "今天进行的？"
+   "过得怎么样",
+   "今天？"
   ]
  },
  {
@@ -578,19 +578,19 @@
    "the snacks?"
   ],
   "hints": [
-   "点心",
-   "在哪儿？"
+   "在哪儿？",
+   "点心"
   ]
  },
  {
   "sentence": "I'm going to cram school now.",
   "chunks": [
-   "I'm going to",
-   "cram school now."
+   "I'm going to cram school",
+   "now."
   ],
   "hints": [
-   "我去补习学校",
-   "了啊。"
+   "我要去补习学校",
+   "现在。"
   ]
  },
  {
@@ -622,8 +622,8 @@
    "for dinner?"
   ],
   "hints": [
-   "晚饭你想",
-   "吃什么？"
+   "你想吃什么？",
+   "晚饭"
   ]
  },
  {
@@ -644,8 +644,8 @@
    "for dinner?"
   ],
   "hints": [
-   "晚饭做",
-   "什么好呢？"
+   "我该做什么？",
+   "晚饭"
   ]
  },
  {
@@ -655,19 +655,19 @@
    "to be home."
   ],
   "hints": [
-   "还是",
-   "家好哇。"
+   "真好",
+   "到家。"
   ]
  },
  {
   "sentence": "Would you run to the store?",
   "chunks": [
-   "Would you run",
-   "to the store?"
+   "Would you",
+   "run to the store?"
   ],
   "hints": [
-   "你能不能快点儿",
-   "去趟商店？"
+   "你能不能",
+   "跑一趟商店？"
   ]
  },
  {
@@ -739,12 +739,12 @@
  {
   "sentence": "How soon can you get it ready?",
   "chunks": [
-   "How soon can you",
-   "get it ready?"
+   "How soon",
+   "can you get it ready?"
   ],
   "hints": [
    "还要多久",
-   "才能做好呀？"
+   "你才能把它准备好？"
   ]
  },
  {
@@ -754,8 +754,8 @@
    "eat."
   ],
   "hints": [
-   "我",
-   "吃了啊。"
+   "咱们",
+   "吃饭吧。"
   ]
  },
  {
@@ -794,12 +794,10 @@
  {
   "sentence": "Come and get it!",
   "chunks": [
-   "Come and",
-   "get it!"
+   "Come and get it!"
   ],
   "hints": [
-   "开饭",
-   "啦！"
+   "过来吃饭啦！"
   ]
  },
  {
@@ -882,12 +880,12 @@
  {
   "sentence": "It was very delicious. Thank you.",
   "chunks": [
-   "It was very delicious. Thank",
-   "you."
+   "It was very delicious.",
+   "Thank you."
   ],
   "hints": [
-   "谢谢您的",
-   "款待。"
+   "味道非常好。",
+   "谢谢您的款待。"
   ]
  },
  {
@@ -926,12 +924,12 @@
  {
   "sentence": "What are you doing?",
   "chunks": [
-   "What are you",
-   "doing?"
+   "What",
+   "are you doing?"
   ],
   "hints": [
-   "你",
-   "干什么呢？"
+   "什么",
+   "你在做什么？"
   ]
  },
  {
@@ -1124,12 +1122,12 @@
  {
   "sentence": "Don't leave your stuff here.",
   "chunks": [
-   "Don't leave",
-   "your stuff here."
+   "Don't leave your stuff",
+   "here."
   ],
   "hints": [
-   "别把你的东西",
-   "都摊在这儿。"
+   "别把你的东西留在",
+   "这里"
   ]
  },
  {
@@ -1366,8 +1364,8 @@
    "my brother and sister."
   ],
   "hints": [
-   "帮我照看一下",
-   "弟弟和妹妹。"
+   "照看一下",
+   "我的弟弟和妹妹。"
   ]
  },
  {
@@ -1598,7 +1596,7 @@
   ],
   "hints": [
    "你想要什么",
-   "过生日？"
+   "作为生日礼物？"
   ]
  },
  {
@@ -1617,8 +1615,8 @@
    "after work."
   ],
   "hints": [
-   "我经常",
-   "下班以后运动。"
+   "我通常运动",
+   "下班以后。"
   ]
  },
  {
@@ -1723,12 +1721,12 @@
  {
   "sentence": "I paid out of my own pocket.",
   "chunks": [
-   "I paid out of",
-   "my own pocket."
+   "I paid",
+   "out of my own pocket."
   ],
   "hints": [
-   "我是自己",
-   "掏的腰包。"
+   "我付了钱",
+   "从自己的口袋里"
   ]
  },
  {

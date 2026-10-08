@@ -53,6 +53,10 @@ async function ready(){
     await ready();
     browser = await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH || chromium.executablePath()});
     const context = await browser.newContext({viewport:{width:393,height:852},deviceScaleFactor:1,isMobile:true,hasTouch:true,serviceWorkers:'block'});
+    // This isolated fixture uses the server's local account, not an unowned cache.
+    await context.addInitScript(()=>{
+      localStorage.setItem('chunklab.storage-owner.v1',JSON.stringify([location.origin,'local']));
+    });
     let details=0,indexes=0,detailBytes=0;
     await context.route('**/content/**',route=>{
       const url = new URL(route.request().url()).pathname;
@@ -74,6 +78,7 @@ async function ready(){
     const start=Date.now();
     await page.goto(BASE+'/main.html');
     await page.waitForFunction(()=>window.S && ContentRepo.getManifest() && !document.getElementById('pageHome').classList.contains('hidden'));
+    await page.waitForFunction(()=>CL.serverPersistenceReady() && CL.getCloudConfig().writeProtocol===3);
     const homeMs=Date.now()-start;
     check('8000-句首页不请求详情或索引',details===0 && indexes===0);
     await heap();

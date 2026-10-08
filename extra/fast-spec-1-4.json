@@ -244,12 +244,12 @@
  {
   "sentence": "Are you seeing anyone now?",
   "chunks": [
-   "Are you seeing",
-   "anyone now?"
+   "Are you seeing anyone",
+   "now?"
   ],
   "hints": [
-   "你现在",
-   "有交往对象吗"
+   "你有交往对象吗",
+   "现在"
   ]
  },
  {
@@ -277,12 +277,12 @@
  {
   "sentence": "You're the most beautiful woman I've ever seen.",
   "chunks": [
-   "You're the most beautiful woman",
-   "I've ever seen."
+   "You're",
+   "the most beautiful woman I've ever seen."
   ],
   "hints": [
-   "你是我见过的",
-   "最美的女人"
+   "你是",
+   "我见过的最美的女人"
   ]
  },
  {
@@ -292,8 +292,8 @@
    "for you."
   ],
   "hints": [
-   "我为你",
-   "发疯"
+   "我很着迷",
+   "为你"
   ]
  },
  {
@@ -479,8 +479,8 @@
    "to me."
   ],
   "hints": [
-   "你对我",
-   "就是一切"
+   "你就是一切",
+   "对我而言"
   ]
  },
  {
@@ -545,8 +545,8 @@
    "night and day."
   ],
   "hints": [
-   "我时时刻刻",
-   "都想着你"
+   "我想着你",
+   "日日夜夜"
   ]
  },
  {
@@ -600,8 +600,8 @@
    "tight."
   ],
   "hints": [
-   "抱紧",
-   "我"
+   "抱住我",
+   "紧紧地"
   ]
  },
  {
@@ -699,8 +699,8 @@
    "more."
   ],
   "hints": [
-   "再",
-   "多爱我一些"
+   "爱我",
+   "多一些"
   ]
  },
  {
@@ -785,8 +785,8 @@
    "about marriage yet."
   ],
   "hints": [
-   "结婚的事",
-   "我还没想过"
+   "我还没想过",
+   "结婚的事"
   ]
  },
  {
@@ -917,7 +917,7 @@
    "did she have?"
   ],
   "hints": [
-   "她生的",
+   "什么",
    "是男孩还是女孩"
   ]
  },
@@ -1016,8 +1016,8 @@
    "my mind."
   ],
   "hints": [
-   "我已经",
-   "改变心意了"
+   "我已经改变了",
+   "主意"
   ]
  },
  {
@@ -1034,23 +1034,25 @@
  {
   "sentence": "Are you seeing someone now?",
   "chunks": [
-   "Are you seeing",
-   "someone now?"
+   "Are you seeing someone",
+   "now?"
   ],
   "hints": [
-   "你现在是不是",
-   "和谁在交往"
+   "你在和谁交往",
+   "现在"
   ]
  },
  {
   "sentence": "I don't see eye to eye with my wife.",
   "chunks": [
-   "I don't see eye to eye",
+   "I",
+   "don't see eye to eye",
    "with my wife."
   ],
   "hints": [
-   "我和妻子",
-   "没什么共同语言"
+   "我",
+   "意见不合",
+   "和我妻子"
   ]
  },
  {
@@ -1082,8 +1084,8 @@
    "with my secretary."
   ],
   "hints": [
-   "我和我的秘书",
-   "有了婚外情"
+   "我有了婚外情",
+   "和我的秘书"
   ]
  },
  {
@@ -1115,8 +1117,8 @@
    "from my wife."
   ],
   "hints": [
-   "我和妻子",
-   "分居了"
+   "我现在分居了",
+   "和我妻子"
   ]
  },
  {

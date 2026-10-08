@@ -105,13 +105,11 @@
     "translation": "算我一个——我同意这个计划。",
     "chunks": [
       "Count me in —",
-      "I am on board",
-      "with the plan."
+      "I am on board with the plan."
     ],
     "hints": [
       "算我一个",
-      "我赞成",
-      "这个计划"
+      "我赞成这个计划"
     ],
     "grammar": [
       {
@@ -132,21 +130,10 @@
           "/aɪ/",
           "/æm/",
           "/ɑːn/",
-          "/bɔːrd/"
+          "/bɔːrd/", "/wɪð/", "/ðə/", "/plæn/"
         ],
         "pos": "习语",
-        "meaning": "我加入"
-      },
-      {
-        "role": "介词短语",
-        "color": "#3358e0",
-        "phonetic": [
-          "/wɪð/",
-          "/ðə/",
-          "/plæn/"
-        ],
-        "pos": "介词短语",
-        "meaning": "这个计划"
+        "meaning": "我赞成这个计划"
       }
     ],
     "explanations": [
@@ -200,36 +187,18 @@
     "sentence": "Play nice with your little brother.",
     "cid": "d6dd3437",
     "translation": "跟你弟弟好好相处。",
-    "chunks": [
-      "Play nice",
-      "with your little brother."
-    ],
-    "hints": [
-      "友好一点",
-      "和你弟弟"
-    ],
+    "chunks": ["Play nice with your little brother."],
+    "hints": ["跟你弟弟好好相处。"],
     "grammar": [
       {
         "role": "习语·祈使",
         "color": "#7c5cbf",
         "phonetic": [
           "/pleɪ/",
-          "/naɪs/"
+          "/naɪs/", "/wɪð/", "/jʊr/", "/ˈlɪtl/", "/ˈbrʌðər/"
         ],
-        "pos": "习语祈使",
-        "meaning": "友好一点"
-      },
-      {
-        "role": "介词短语",
-        "color": "#3358e0",
-        "phonetic": [
-          "/wɪð/",
-          "/jʊr/",
-          "/ˈlɪtl/",
-          "/ˈbrʌðər/"
-        ],
-        "pos": "介词短语",
-        "meaning": "和你弟弟"
+        "pos": "固定祈使表达",
+        "meaning": "跟弟弟好好相处"
       }
     ],
     "explanations": [
@@ -714,7 +683,7 @@
     ],
     "hints": [
       "我忘带讲稿了",
-      "只好即兴来"
+      "只好临场发挥"
     ],
     "grammar": [
       {
@@ -887,7 +856,7 @@
     ],
     "hints": [
       "给我点时间",
-      "这事信息量太大"
+      "这事一时难以消化"
     ],
     "grammar": [
       {
@@ -915,7 +884,7 @@
           "/ɪn/"
         ],
         "pos": "习语",
-        "meaning": "信息量太大"
+        "meaning": "一时难以消化"
       }
     ],
     "explanations": [

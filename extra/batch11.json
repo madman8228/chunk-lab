@@ -612,33 +612,23 @@
     "cid": "1c9e35dd",
     "translation": "滚出去！",
     "chunks": [
-      "Get out",
-      "of here!"
+      "Get out of here!"
     ],
     "hints": [
-      "出去",
-      "从这儿"
+      "滚出去！"
     ],
     "grammar": [
       {
-        "role": "习语·祈使",
+        "role": "固定表达",
         "color": "#7c5cbf",
         "phonetic": [
           "/ɡet/",
-          "/aʊt/"
-        ],
-        "pos": "祈使句",
-        "meaning": "get out 出去"
-      },
-      {
-        "role": "介词短语",
-        "color": "#3358e0",
-        "phonetic": [
+          "/aʊt/",
           "/əv/",
           "/hɪr/"
         ],
-        "pos": "介词短语",
-        "meaning": "从这里"
+        "pos": "驱赶对方离开的口语表达",
+        "meaning": "离开这里；滚出去"
       }
     ],
     "explanations": [
@@ -773,33 +763,23 @@
     "cid": "fb8b0dea",
     "translation": "别骂我！",
     "chunks": [
-      "Don't call me",
-      "names!"
+      "Don't call me names!"
     ],
     "hints": [
-      "别这么叫我",
-      "侮辱性称呼"
+      "别骂我！"
     ],
     "grammar": [
       {
-        "role": "祈使句·否定",
+        "role": "固定表达",
         "color": "#c87033",
         "phonetic": [
           "/doʊnt/",
           "/kɔːl/",
-          "/miː/"
-        ],
-        "pos": "祈使句否定",
-        "meaning": "别这么叫我"
-      },
-      {
-        "role": "宾语",
-        "color": "#3358e0",
-        "phonetic": [
+          "/miː/",
           "/neɪmz/"
         ],
-        "pos": "名词复数",
-        "meaning": "侮辱性称呼"
+        "pos": "call someone names 的否定祈使句",
+        "meaning": "别辱骂我；别给我起侮辱性绰号"
       }
     ],
     "explanations": [

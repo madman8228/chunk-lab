@@ -306,12 +306,12 @@
     "cid": "4dc57208",
     "translation": "你对新方案有意见吗？",
     "chunks": [
-      "Do you have a problem",
-      "with the new plan?"
+      "Do you have",
+      "a problem with the new plan?"
     ],
     "hints": [
-      "你有意见吗",
-      "对新方案"
+      "你有没有",
+      "对新方案的异议？"
     ],
     "grammar": [
       {
@@ -320,24 +320,19 @@
         "phonetic": [
           "/duː/",
           "/juː/",
-          "/hæv/",
-          "/ə/",
-          "/ˈprɑːbləm/"
+          "/hæv/"
         ],
-        "pos": "疑问句",
-        "meaning": "你有意见吗"
+        "pos": "助动词 + 主语 + 动词",
+        "meaning": "你有没有"
       },
       {
-        "role": "介词短语",
+        "role": "宾语",
         "color": "#3358e0",
         "phonetic": [
-          "/wɪð/",
-          "/ðə/",
-          "/nuː/",
-          "/plæn/"
+          "/ə/", "/ˈprɑːbləm/", "/wɪð/", "/ðə/", "/nuː/", "/plæn/"
         ],
-        "pos": "介宾短语",
-        "meaning": "对这个新方案"
+        "pos": "名词短语",
+        "meaning": "对新方案的异议"
       }
     ],
     "explanations": [

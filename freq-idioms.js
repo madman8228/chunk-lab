@@ -5669,10 +5669,10 @@ window.DATA_FREQ_IDIOMS = [
     cid: fnv8("Do you have a problem with the new plan?"),
     translation: "你对新方案有意见吗？",
     chunks: ["Do you have","a problem with the new plan?"],
-    hints: ["你对","新方案有意见吗？"],
+    hints: ["你有没有","对新方案的异议？"],
     grammar: [
-      {role:"疑问句开头", color:"#c87033", phonetic:["/duː/","/juː/","/hæv/"], pos:"疑问句", meaning:"你对"},
-      {role:"习语·疑问", color:"#7c5cbf", phonetic:["/ə/","/ˈprɑːbləm/","/wɪð/","/ðə/","/nuː/","/plæn/"], pos:"have a problem with sth", meaning:"对新方案有意见吗"}
+      {role:"疑问句开头", color:"#c87033", phonetic:["/duː/","/juː/","/hæv/"], pos:"助动词 + 主语 + 动词", meaning:"你有没有"},
+      {role:"宾语", color:"#7c5cbf", phonetic:["/ə/","/ˈprɑːbləm/","/wɪð/","/ðə/","/nuː/","/plæn/"], pos:"名词短语", meaning:"对新方案的异议"}
     ],
     explanations: [
       "**Have a problem with sth** = 对某事有意见、有不满。可直接询问，也可反击别人。",

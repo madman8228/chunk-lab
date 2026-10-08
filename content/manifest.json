@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "v1-fcb2ce922d0f7603f74e58d494a53a4ee0756aec5c8c74ebf231bb4522a5c459",
+  "contentVersion": "v1-1aad15733411accc55a7c54e77233771c0ec2e2c708ea7af0d8acfd9599b04f1",
   "series": "口语3000句",
   "chapters": [
     {
@@ -2142,11 +2142,11 @@
           "mode": "replace"
         },
         {
-          "id": "idioms-002-edab16b88642",
-          "url": "content/builtin-freq-idioms/idioms-002-edab16b88642.json",
+          "id": "idioms-002-9275d0ab8189",
+          "url": "content/builtin-freq-idioms/idioms-002-9275d0ab8189.json",
           "count": 200,
-          "bytes": 238887,
-          "sha256": "edab16b886427516ee2939878647848fa4416182abcf0200e5ca72e13c8f075f",
+          "bytes": 238895,
+          "sha256": "9275d0ab81898997d7d41740c1142a668daf56849a4a2b0e03f0800046ad7037",
           "mode": "replace"
         },
         {
@@ -2168,11 +2168,11 @@
           "mode": "index"
         },
         {
-          "id": "idioms-index-002-c58cdb8c8ef5",
-          "url": "content/builtin-freq-idioms/idioms-index-002-c58cdb8c8ef5.json",
+          "id": "idioms-index-002-9f25ebde5c63",
+          "url": "content/builtin-freq-idioms/idioms-index-002-9f25ebde5c63.json",
           "count": 200,
           "bytes": 53010,
-          "sha256": "c58cdb8c8ef506a24cbf25da7909654c239077354927f1d55b0102b8dd0818a7",
+          "sha256": "9f25ebde5c63cea9359fc86ac5d966ce009b6b16609734703160ac26fce12b58",
           "mode": "index"
         },
         {

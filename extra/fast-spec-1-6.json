@@ -90,12 +90,12 @@
  {
   "sentence": "I'm sorry for calling you this late.",
   "chunks": [
-   "I'm sorry for calling you",
-   "this late."
+   "I'm sorry",
+   "for calling you this late."
   ],
   "hints": [
-   "真对不起，",
-   "这么晚了还给您打电话。"
+   "很抱歉",
+   "这么晚还给您打电话。"
   ]
  },
  {
@@ -138,8 +138,8 @@
    "tomorrow's meeting."
   ],
   "hints": [
-   "有关明天开会的事",
-   "给您打电话。"
+   "我打电话是想谈",
+   "明天的会议"
   ]
  },
  {
@@ -149,8 +149,8 @@
    "your call."
   ],
   "hints": [
-   "我给您",
-   "回电话。"
+   "我回拨",
+   "您的电话"
   ]
  },
  {
@@ -207,12 +207,12 @@
  {
   "sentence": "Who in particular would you like to talk to?",
   "chunks": [
-   "Who in particular",
-   "would you like to talk to?"
+   "Who in particular would you like",
+   "to talk to?"
   ],
   "hints": [
-   "您想找",
-   "哪位接电话？"
+   "您想找哪位",
+   "接电话？"
   ]
  },
  {
@@ -295,12 +295,12 @@
  {
   "sentence": "I'll put him on.",
   "chunks": [
-   "I'll put",
-   "him on."
+   "I'll",
+   "put him on."
   ],
   "hints": [
-   "我让他",
-   "接电话。"
+   "我",
+   "让他接电话。"
   ]
  },
  {
@@ -416,23 +416,25 @@
  {
   "sentence": "He's away from his desk now.",
   "chunks": [
-   "He's away",
-   "from his desk now."
+   "He's away from his desk",
+   "now."
   ],
   "hints": [
-   "他现在",
-   "不在座位上。"
+   "他不在座位上",
+   "现在"
   ]
  },
  {
   "sentence": "He's in but he's not at his desk right now.",
   "chunks": [
-   "He's in but he's not",
-   "at his desk right now."
+   "He's in but",
+   "he's not at his desk",
+   "right now."
   ],
   "hints": [
    "他在公司，但",
-   "现在不在座位上。"
+   "他不在办公桌旁",
+   "现在"
   ]
  },
  {
@@ -508,8 +510,8 @@
    "now."
   ],
   "hints": [
-   "他现在",
-   "出差去了。"
+   "他不在城里",
+   "现在"
   ]
  },
  {
@@ -519,8 +521,8 @@
    "now."
   ],
   "hints": [
-   "他现在",
-   "吃午饭去了。"
+   "他出去吃午饭了",
+   "现在"
   ]
  },
  {
@@ -530,8 +532,8 @@
    "right now."
   ],
   "hints": [
-   "他现在",
-   "正在开会。"
+   "他正在开会",
+   "现在"
   ]
  },
  {
@@ -541,8 +543,8 @@
    "today."
   ],
   "hints": [
-   "他今天",
-   "休息。"
+   "他在休息",
+   "今天"
   ]
  },
  {
@@ -603,12 +605,12 @@
  {
   "sentence": "I called but your line was busy.",
   "chunks": [
-   "I called but",
-   "your line was busy."
+   "I called",
+   "but your line was busy."
   ],
   "hints": [
-   "我给你打电话了，",
-   "可是占线。"
+   "我给你打电话了",
+   "可是你的电话占线。"
   ]
  },
  {
@@ -673,8 +675,8 @@
    "until six o'clock."
   ],
   "hints": [
-   "请6点以前打1234-1234",
-   "跟我联系。"
+   "请拨打1234-1234联系我",
+   "直到6点"
   ]
  },
  {
@@ -801,12 +803,12 @@
  {
   "sentence": "Nice talking to you. Bye.",
   "chunks": [
-   "Nice talking",
-   "to you. Bye."
+   "Nice talking to you.",
+   "Bye."
   ],
   "hints": [
-   "能跟您通上话，",
-   "我非常高兴，再见。"
+   "很高兴和您通话。",
+   "再见。"
   ]
  },
  {
@@ -838,8 +840,8 @@
    "on me."
   ],
   "hints": [
-   "我还没说完呢，",
-   "她就把电话挂上了。"
+   "她挂了电话",
+   "没等我说完。"
   ]
  },
  {
@@ -882,8 +884,8 @@
    "are you calling?"
   ],
   "hints": [
-   "您拨的电话号码",
-   "是多少？"
+   "什么号码",
+   "您正在拨打"
   ]
  },
  {
@@ -915,19 +917,19 @@
    "in this office."
   ],
   "hints": [
-   "我们公司",
-   "没有叫鲍勃·霍普的。"
+   "没有叫鲍勃·霍普的人",
+   "在这间办公室里"
   ]
  },
  {
   "sentence": "I'm sorry. I must have misdialed.",
   "chunks": [
-   "I'm sorry. I must",
-   "have misdialed."
+   "I'm sorry.",
+   "I must have misdialed."
   ],
   "hints": [
-   "对不起，",
-   "我好像打错了。"
+   "对不起。",
+   "我一定是打错电话了。"
   ]
  },
  {
@@ -984,7 +986,7 @@
   ],
   "hints": [
    "我",
-   "听不清楚。"
+   "听不太清楚"
   ]
  },
  {
@@ -1027,7 +1029,7 @@
    "waiting."
   ],
   "hints": [
-   "对不起，",
+   "对不起",
    "让您久等了。"
   ]
  },

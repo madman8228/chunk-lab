@@ -32,6 +32,10 @@ assert.equal(legacyIdsChecked, 496, 'all 496 legacy sentence IDs must remain sta
 const freqWindow = loadWindow('freq-idioms.js', { BUILTIN: [] });
 const freq = freqWindow.BUILTIN.find((deck) => deck.id === 'builtin-freq-idioms').items;
 const freqBySentence = new Map(freq.map((item) => [item.sentence, item]));
+const reviewedPlanQuestion = freqBySentence.get('Do you have a problem with the new plan?');
+assert.equal(reviewedPlanQuestion.cid, '4dc57208', 'metadata correction preserves the learning identity');
+assert.equal(reviewedPlanQuestion.grammar[1].role, '宾语');
+assert.equal(reviewedPlanQuestion.grammar[1].pos, '名词短语', 'a problem with the new plan is a noun phrase, not a prepositional phrase');
 const allItems = [...oral, ...freq];
 
 for (const [index, item] of allItems.entries()) {
@@ -64,7 +68,7 @@ const reviewedFreqChunkHintMappings = new Map([
   ["I'm cranky today.", [["I'm cranky today.", '我今天脾气不好。']]],
   ["Don't rob Peter to pay Paul.", [["Don't rob Peter to pay Paul.", '别拆东墙补西墙。']]],
   ["I can't bear to watch.", [["I can't bear to watch.", '我不忍心看下去。']]],
-  ['Do you have a problem with the new plan?', [['Do you have', '你对'], ['a problem with the new plan?', '新方案有意见吗？']]],
+  ['Do you have a problem with the new plan?', [['Do you have', '你有没有'], ['a problem with the new plan?', '对新方案的异议？']]],
   ['Count me in — I am on board with the plan.', [['Count me in —', '算我一个'], ['I am on board with the plan.', '我赞成这个计划']]],
   ['Play nice with your little brother.', [['Play nice with your little brother.', '跟你弟弟好好相处。']]],
   ['I forgot my notes — I will just wing it.', [['I forgot my notes —', '我忘带讲稿了'], ['I will just wing it.', '只好临场发挥']]],

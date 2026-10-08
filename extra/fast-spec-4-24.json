@@ -7,7 +7,7 @@
  {
   "sentence": "I'm ashamed of myself.",
   "chunks": ["I'm ashamed", "of myself."],
-  "hints": ["我为自己", "感到惭愧"]
+  "hints": ["我感到惭愧", "为我自己"]
  },
  {
   "sentence": "How shameful!",

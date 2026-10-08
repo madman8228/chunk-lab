@@ -57,7 +57,7 @@
  {
   "sentence": "That's news to me.",
   "chunks": ["That's news", "to me."],
-  "hints": ["我还是", "头一回听说"]
+  "hints": ["这是新消息", "对我来说"]
  },
  {
   "sentence": "It's mind-boggling!",

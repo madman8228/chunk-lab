@@ -1439,6 +1439,16 @@ ${JSON.stringify(data)}
       this.scopeGuard.assert(scope);
       return win;
     }
+    async readLearningMem(scope) {
+      const win = this.#ready(scope);
+      const config = win.CL.getCloudConfig && win.CL.getCloudConfig();
+      if (!config || config.writeProtocol !== 3) return win.CL.loadMem();
+      if (!win.ServerCache) throw new Error("\u8BFE\u7A0B\u786E\u8BA4\u7F13\u5B58\u5C1A\u672A\u5C31\u7EEA\u3002");
+      const row = await win.ServerCache.read();
+      this.scopeGuard.assert(scope);
+      if (!row || row.owner !== win.AccountStorage.owner) throw new Error("\u8BFE\u7A0B\u6570\u636E\u5C1A\u672A\u4ECE\u670D\u52A1\u5668\u786E\u8BA4\u3002");
+      return copy(row.snapshot.mem);
+    }
     async loadExample(catalogCourseId, scope) {
       const win = this.#ready(scope);
       const manifest = win.ContentRepo && win.ContentRepo.getManifest ? win.ContentRepo.getManifest() : null;
@@ -1491,7 +1501,7 @@ ${JSON.stringify(data)}
       this.scopeGuard.assert(scope);
       const story = win.CL.readCourses().find((item) => item.courseId === deckId);
       if (story) return { storageKind: "story-package", contentId: story.courseId, catalogCourseId: `package:${story.courseId}`, lessonId: `lesson:story-package:${story.courseId}` };
-      const deck = win.CL.findDeck(win.CL.loadMem(), deckId);
+      const deck = win.CL.findDeck(await this.readLearningMem(scope), deckId);
       if (!deck || !deck.authoring || deck.authoring.template !== "sentence-practice") throw new Error("\u627E\u4E0D\u5230\u5DF2\u4FDD\u5B58\u7684 AI \u53E5\u5B50\u8BFE\u7A0B\u3002");
       const catalogCourseId = deck.authoring.catalogCourseId || `user-deck:${deck.id}`;
       return { storageKind: "sentence-deck", contentId: deck.id, catalogCourseId, lessonId: `lesson:user-deck:${deck.id}` };
@@ -1500,14 +1510,14 @@ ${JSON.stringify(data)}
       const win = this.#ready(scope);
       await win.CL.preload();
       this.scopeGuard.assert(scope);
-      const deck = win.CL.findDeck(win.CL.loadMem(), deckId);
+      const deck = win.CL.findDeck(await this.readLearningMem(scope), deckId);
       return deck ? copy(deck) : null;
     }
     async saveSentenceCourse(deck, scope, { forceSave = false, adoptMetadata = false, beforeSave = null } = {}) {
       const win = this.#ready(scope);
       await win.CL.preload();
       this.scopeGuard.assert(scope);
-      const mem = win.CL.loadMem();
+      const mem = await this.readLearningMem(scope);
       const cloudConfig = win.CL.getCloudConfig && win.CL.getCloudConfig();
       const protocol3 = !!(cloudConfig && cloudConfig.writeProtocol === 3);
       const originalDecks = (mem.decks || []).map(copy);
@@ -1518,6 +1528,7 @@ ${JSON.stringify(data)}
           const sameItems = JSON.stringify(current.items) === JSON.stringify(deck.items);
           const noLegacySource = !current.authoring || !current.authoring.legacySource;
           if (adoptMetadata && sameItems && noLegacySource) mem.decks[index] = { ...current, authoring: copy(deck.authoring) };
+          else if (forceSave && !adoptMetadata && sameItems && JSON.stringify(current.authoring) === JSON.stringify(deck.authoring)) mem.decks[index] = copy(deck);
           else throw new Error("\u8BE5\u8BFE\u7A0B ID \u5DF2\u6709\u4E0D\u540C\u5185\u5BB9\uFF0C\u5DF2\u4FDD\u7559\u539F\u8BFE\u7A0B\u3002\u8BF7\u53E6\u5EFA\u5236\u4F5C\u4F1A\u8BDD\u3002");
         }
       }
@@ -1533,7 +1544,10 @@ ${JSON.stringify(data)}
             const current = (row.snapshot.mem.decks || []).find((item) => item.id === deck.id);
             if (index >= 0 && !current) throw new Error("\u670D\u52A1\u5668\u8BFE\u7A0B\u5DF2\u53D8\u5316\u6216\u5220\u9664\uFF1B\u672C\u6B21\u4FDD\u5B58\u672A\u8986\u76D6\u670D\u52A1\u5668\u7248\u672C\u3002");
             if (index < 0 && current) throw new Error("\u8BE5\u8BFE\u7A0B\u7F16\u53F7\u5DF2\u5B58\u5728\u4E8E\u670D\u52A1\u5668\uFF1B\u672C\u6B21\u4FDD\u5B58\u672A\u8986\u76D6\u670D\u52A1\u5668\u7248\u672C\u3002");
-            const expectedRev = current ? row.snapshot.revs.decks[deck.id] : null;
+            if (current && JSON.stringify(current) !== JSON.stringify(originalDecks[index])) {
+              throw new Error("\u670D\u52A1\u5668\u8BFE\u7A0B\u5DF2\u5728\u4FDD\u5B58\u671F\u95F4\u53D8\u5316\uFF1B\u672C\u6B21\u4FDD\u5B58\u672A\u8986\u76D6\u670D\u52A1\u5668\u7248\u672C\u3002");
+            }
+            const expectedRev = row.snapshot.revs.decks[deck.id] ?? null;
             await win.ServerStore.submitCommitted("deck.put", { deck: copy(mem.decks.find((item) => item.id === deck.id)), ...rollback ? { clearRetiredMarker: true } : {} }, {
               requestId: `authoring-deck-put-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
               expectedRev

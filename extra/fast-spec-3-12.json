@@ -61,8 +61,8 @@
    "with me."
   ],
   "hints": [
-   "我觉得那样",
-   "很好。"
+   "那样很好",
+   "对我来说也可以。"
   ]
  },
  {
@@ -1027,12 +1027,12 @@
  {
   "sentence": "How about you?",
   "chunks": [
-   "How",
-   "about you?"
+   "How about",
+   "you?"
   ],
   "hints": [
-   "你",
-   "呢？"
+   "那么",
+   "你呢？"
   ]
  },
  {

@@ -121,11 +121,28 @@ else {
    不能只依赖人工阅读远端 SSH 命令。 */
 if (base.code === 0) {
   const contracts = [
+    ['拒绝跳过发布回归且在远端清理 trap 前退出',
+      /if \[ "\$\{DEPLOY_SKIP_TESTS:-0\}" != "0" \]; then[\s\S]*?exit 2\s*fi/.test(ORIG) &&
+      ORIG.indexOf('DEPLOY_SKIP_TESTS') < ORIG.indexOf('trap cleanup_remote_stage EXIT') &&
+      !/DEPLOY_SKIP_TESTS[\s\S]*?else\s*npm test/.test(ORIG)],
     ['使用唯一临时目录并在退出时清理', /DEPLOY_TOKEN=.*chunklab-deploy-/.test(ORIG) && /REMOTE_DIR="\/tmp\/\$DEPLOY_TOKEN"/.test(ORIG) && /trap cleanup_remote_stage EXIT/.test(ORIG)],
     ['远端落盘命令启用 fail-closed shell', /bash -s -- '\$APP' '\$REMOTE_DIR'/.test(ORIG) && /set -euo pipefail/.test(ORIG)],
     ['健康检查拒绝 HTTP 错误', /curl --fail --silent --show-error/.test(ORIG)],
-    ['根路径严格校验重定向', /test "\$ROOT_CODE" = 302/.test(ORIG)],
+    /* 2026-10-07：根路径语义变了 —— 合并落地页后 server/index.js 里那行
+       「重定向 /main.html」已删除，根路径由 express.static 托管 index.html。
+       契约随之从「校验 302 重定向」改为「校验 200 且正文含品牌标识」，
+       并要求冒烟真的覆盖 robots.txt / sitemap.xml（它们是百度收录的前置文件）。 */
+    ['根路径严格校验落地页（200 + 品牌正文）', /test "\$ROOT_CODE" = 200/.test(ORIG) && /jqka\.top/.test(ORIG) && /ROOT_BODY=/.test(ORIG)],
+    ['冒烟覆盖 robots.txt / sitemap.xml', /127\.0\.0\.1:8787\/robots\.txt/.test(ORIG) && /127\.0\.0\.1:8787\/sitemap\.xml/.test(ORIG)],
     ['部署前锁定服务端依赖版本', /server\/package-lock\.json/.test(ORIG) && /SERVER_LOCK_SHA=/.test(ORIG)],
+    /* 复用已验收发布包必须是「有校验的」：盲跳过（DEPLOY_SKIP_TESTS）仍被拒绝，
+       改由 DEPLOY_ACCEPTED_SHA 承载，且必须校验 HEAD 一致 + 待部署文件无未提交改动。 */
+    ['复用已验收发布包需校验 HEAD 与部署文件未变',
+      /DEPLOY_ACCEPTED_SHA/.test(ORIG) &&
+      /git rev-parse HEAD/.test(ORIG) &&
+      /git status --porcelain[^\n]*\$\{FILES\[@\]\}/.test(ORIG) &&
+      /RUN_REGRESSION=1/.test(ORIG) &&
+      /if \[ "\$RUN_REGRESSION" = "1" \]; then/.test(ORIG)],
   ];
   contracts.forEach(function (entry) {
     total++;

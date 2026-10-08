@@ -50,8 +50,8 @@
    "near here?"
   ],
   "hints": [
-   "这附近",
-   "有邮局吗？"
+   "有邮局吗？",
+   "这附近"
   ]
  },
  {
@@ -138,8 +138,8 @@
    "the coffee shop."
   ],
   "hints": [
-   "在那家咖啡馆",
-   "的旁边。"
+   "在……旁边",
+   "那家咖啡馆"
   ]
  },
  {
@@ -149,8 +149,8 @@
    "City Hall."
   ],
   "hints": [
-   "在市政厅",
-   "的对面。"
+   "在……对面",
+   "市政厅"
   ]
  },
  {
@@ -171,8 +171,8 @@
    "the bookstore and the drugstore."
   ],
   "hints": [
-   "在书店和药店",
-   "之间。"
+   "在……之间",
+   "书店和药店"
   ]
  },
  {
@@ -211,12 +211,12 @@
  {
   "sentence": "How far is it to Shinjuku?",
   "chunks": [
-   "How far is it",
-   "to Shinjuku?"
+   "How far",
+   "is it to Shinjuku?"
   ],
   "hints": [
-   "这儿离新宿",
-   "有多远？"
+   "有多远",
+   "这儿到新宿？"
   ]
  },
  {

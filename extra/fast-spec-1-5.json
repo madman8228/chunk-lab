@@ -28,8 +28,8 @@
    "again."
   ],
   "hints": [
-   "你又",
-   "迟到了"
+   "你",
+   "又迟到了"
   ]
  },
  {
@@ -127,8 +127,8 @@
    "your duties!"
   ],
   "hints": [
-   "干活",
-   "别偷懒"
+   "别疏忽",
+   "你的职责"
   ]
  },
  {
@@ -138,8 +138,8 @@
    "the west side."
   ],
   "hints": [
-   "西区",
-   "由我负责"
+   "由我负责",
+   "西区"
   ]
  },
  {
@@ -322,13 +322,11 @@
   "sentence": "I'm so busy, I'd really appreciate any help I could get.",
   "chunks": [
    "I'm so busy,",
-   "I'd really appreciate",
-   "any help I could get."
+   "I'd really appreciate any help I could get."
   ],
   "hints": [
-   "我忙得",
-   "四脚朝天，",
-   "谁来帮帮我"
+   "我忙得不可开交，",
+   "如果有人能帮帮我，我会非常感激。"
   ]
  },
  {
@@ -360,8 +358,8 @@
    "too hard."
   ],
   "hints": [
-   "别太",
-   "拼命"
+   "别工作",
+   "太拼命"
   ]
  },
  {
@@ -371,8 +369,8 @@
    "together."
   ],
   "hints": [
-   "打起",
-   "精神来"
+   "振作",
+   "起来（恢复精神）"
   ]
  },
  {
@@ -393,8 +391,8 @@
    "to catch my breath."
   ],
   "hints": [
-   "我连喘口气的",
-   "工夫都没有"
+   "我连时间都没有",
+   "喘口气的工夫"
   ]
  },
  {
@@ -459,8 +457,8 @@
    "fill out this form?"
   ],
   "hints": [
-   "这张表",
-   "怎么填"
+   "我该怎么",
+   "填这张表"
   ]
  },
  {
@@ -585,12 +583,12 @@
  {
   "sentence": "This is a piece of work I can be proud of.",
   "chunks": [
-   "This is a piece of work",
-   "I can be proud of."
+   "This is",
+   "a piece of work I can be proud of."
   ],
   "hints": [
-   "这是我的",
-   "得意之作"
+   "这是",
+   "我引以为傲的作品"
   ]
  },
  {
@@ -611,8 +609,8 @@
    "overtime tonight?"
   ],
   "hints": [
-   "今晚你",
-   "加班吗"
+   "你在工作吗？",
+   "今晚加班？"
   ]
  },
  {
@@ -783,11 +781,11 @@
  {
   "sentence": "Thanks for your hard work.",
   "chunks": [
-   "Thanks for",
-   "your hard work."
+   "Thanks for your",
+   "hard work."
   ],
   "hints": [
-   "你",
+   "谢谢你",
    "辛苦了"
   ]
  },
@@ -842,8 +840,8 @@
    "with Mr. Aoki."
   ],
   "hints": [
-   "我已经和青木先生",
-   "约好了"
+   "我约好了",
+   "跟青木先生"
   ]
  },
  {
@@ -875,8 +873,8 @@
    "with him."
   ],
   "hints": [
-   "我和他",
-   "很合得来"
+   "我合得来",
+   "和他"
   ]
  },
  {
@@ -886,8 +884,8 @@
    "with her."
   ],
   "hints": [
-   "我跟她",
-   "合不来"
+   "我合不来",
+   "和她"
   ]
  },
  {
@@ -930,8 +928,8 @@
    "with her?"
   ],
   "hints": [
-   "你跟她",
-   "合得来吗"
+   "你合得来吗",
+   "和她"
   ]
  },
  {
@@ -952,8 +950,8 @@
    "what he's really thinking."
   ],
   "hints": [
-   "我不知道他",
-   "在想什么"
+   "我不知道",
+   "他到底在想什么"
   ]
  },
  {
@@ -985,8 +983,8 @@
    "my family."
   ],
   "hints": [
-   "我是个",
-   "不顾家的人"
+   "我忽视了",
+   "自己的家人"
   ]
  },
  {
@@ -1018,8 +1016,8 @@
    "hard on me."
   ],
   "hints": [
-   "他对我",
-   "很不客气"
+   "他非常",
+   "对我很不客气"
   ]
  },
  {
@@ -1117,8 +1115,8 @@
    "for his age."
   ],
   "hints": [
-   "他",
-   "显老"
+   "他看起来显老",
+   "就他的年龄而言"
   ]
  },
  {
@@ -1139,8 +1137,8 @@
    "he is."
   ],
   "hints": [
-   "他",
-   "就是那种人"
+   "就是那种人",
+   "他"
   ]
  },
  {
@@ -1172,8 +1170,8 @@
    "for his age."
   ],
   "hints": [
-   "他虽年轻",
-   "却很博学"
+   "他很有智慧",
+   "就他的年龄而言"
   ]
  },
  {
@@ -1304,19 +1302,19 @@
    "about her."
   ],
   "hints": [
-   "她不知哪儿",
-   "有点怪"
+   "有些奇怪",
+   "在她身上"
   ]
  },
  {
   "sentence": "She's not herself.",
   "chunks": [
-   "She's not",
-   "herself."
+   "She's",
+   "not herself."
   ],
   "hints": [
-   "她有点",
-   "不太对劲儿"
+   "她",
+   "有点不太对劲儿"
   ]
  },
  {
@@ -1447,8 +1445,8 @@
    "today."
   ],
   "hints": [
-   "今天他",
-   "情绪烦躁"
+   "他情绪很烦躁",
+   "今天"
   ]
  },
  {
@@ -1520,12 +1518,12 @@
  {
   "sentence": "He has no sense of responsibility.",
   "chunks": [
-   "He has no sense",
-   "of responsibility."
+   "He",
+   "has no sense of responsibility."
   ],
   "hints": [
-   "他一点儿",
-   "责任心都没有"
+   "他",
+   "一点儿责任心都没有"
   ]
  },
  {
@@ -1788,8 +1786,8 @@
    "to sweets."
   ],
   "hints": [
-   "比起甜食",
-   "我更爱喝酒"
+   "我更喜欢葡萄酒",
+   "比起甜食"
   ]
  },
  {

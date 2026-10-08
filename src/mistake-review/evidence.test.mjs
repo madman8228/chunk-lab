@@ -2,6 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { MistakeEvidence } from './evidence.mjs';
 
+test('empty synthetic legacy evidence cannot hide a recorded mistake', () => {
+  const result = MistakeEvidence.normalizeEvidenceRow({ history: [
+    { eventId: 'real-attempt', at: 1001, mode: 'chunkSelection', mistakes: [{ chunkIdx: 0, chunk: 'Could you', wrongAnswers: ['Could they'] }] },
+    { eventId: 'legacy-empty', at: 2000, mode: 'unknown', mistakes: [], hinted: null, revealed: null }
+  ] });
+  assert.equal(result.history.length, 2, 'original history remains intact');
+  assert.equal(result.mistakes[0]?.userAnswer, 'Could they');
+  const corrected = MistakeEvidence.recordEvidence(result, {
+    eventId: 'new-correct-attempt', at: 3000, mode: 'chunkSelection',
+    hinted: false, revealed: false, needsReview: false, mistakes: []
+  });
+  assert.equal(corrected.history.length, 3);
+  assert.deepEqual(corrected.mistakes, [], 'a genuine later answer remains authoritative');
+  const imported = MistakeEvidence.recordEvidence(result, {
+    eventId: 'imported-attempt', at: 3000, mode: 'unknown', mistakes: []
+  });
+  assert.deepEqual(imported.mistakes, [], 'unknown mode alone does not classify a real event as synthetic');
+});
+
 const row = { _key: 'd::sentence', deckId: 'd', sentence: 'Where is it?', addedAt: '2026-01-01 00:00:00', mistakes: [{ chunkIdx: 0, chunk: 'Where', userAnswer: 'When / What' }], needsReview: true };
 const event = (eventId, at, wrong = 'When') => ({ eventId, at, mode: 'chunkSelection', hinted: false, revealed: false, needsReview: true, mistakes: [{ chunkIdx: 0, chunk: 'Where', wrongAnswers: [wrong], wrongAttemptCount: 2, hintUsed: false }] });
 

@@ -39,8 +39,8 @@
    "feeling well."
   ],
   "hints": [
-   "我觉得",
-   "身体不舒服。"
+   "我",
+   "觉得身体不舒服。"
   ]
  },
  {
@@ -61,8 +61,8 @@
    "with you?"
   ],
   "hints": [
-   "你",
-   "怎么啦？"
+   "怎么啦",
+   "你"
   ]
  },
  {
@@ -200,12 +200,12 @@
  {
   "sentence": "You don't look well.",
   "chunks": [
-   "You don't",
-   "look well."
+   "You don't look",
+   "well."
   ],
   "hints": [
-   "你好像",
-   "不太舒服。"
+   "你看起来不太",
+   "舒服"
   ]
  },
  {
@@ -530,8 +530,8 @@
    "my leg."
   ],
   "hints": [
-   "我腿",
-   "骨折了。"
+   "我摔断了",
+   "我的腿。"
   ]
  },
  {
@@ -552,8 +552,8 @@
    "my hand."
   ],
   "hints": [
-   "我把手",
-   "给烫了。"
+   "我烫伤了",
+   "我的手。"
   ]
  },
  {
@@ -563,8 +563,8 @@
    "my ankle."
   ],
   "hints": [
-   "我",
-   "崴脚了。"
+   "我扭伤了",
+   "我的脚踝。"
   ]
  },
  {
@@ -636,12 +636,12 @@
  {
   "sentence": "I can't stop coughing.",
   "chunks": [
-   "I can't",
-   "stop coughing."
+   "I can't stop",
+   "coughing."
   ],
   "hints": [
-   "我",
-   "咳嗽不止。"
+   "我止不住",
+   "咳嗽。"
   ]
  },
  {
@@ -779,12 +779,12 @@
  {
   "sentence": "I don't feel any better.",
   "chunks": [
-   "I don't feel",
-   "any better."
+   "I",
+   "don't feel any better."
   ],
   "hints": [
-   "我觉得",
-   "没什么好转。"
+   "我",
+   "觉得没什么好转。"
   ]
  },
  {

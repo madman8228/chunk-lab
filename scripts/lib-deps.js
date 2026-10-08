@@ -42,7 +42,10 @@ const JS_RE = /\.(m?js)$/i;
 const TEST_RE = /\.test\.mjs$/i;
 
 /* 前端入口 HTML（与 gen-sw.js / deploy 清单同源，改这里即三处生效） */
-const HTML_ENTRIES = ['main.html', 'courses.html', 'decks.html', 'course-create.html', 'stats.html', 'admin.html', 'content-studio.html'];
+/* index.html 是 jqka.top 的根路径落地页（2026-10-05 合并进本仓库）—— 必须在这里登记，
+   否则它和它引用的 landing/*.js 会被 check-deploy-files 判为「非必需项」、
+   部署清单漏项时无人报警（同 2026-09-10 FILES 漏整个 js/ 目录的根因）。 */
+const HTML_ENTRIES = ['index.html', 'main.html', 'courses.html', 'decks.html', 'course-create.html', 'stats.html', 'admin.html', 'content-studio.html'];
 
 function abs(rel) { return path.join(ROOT, rel); }
 

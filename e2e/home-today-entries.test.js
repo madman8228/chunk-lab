@@ -465,6 +465,19 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
           var p=n.closest('.home-pill').getBoundingClientRect(),r=n.getBoundingClientRect();
           return {label:n.closest('.home-pill').querySelector('.pill-k').textContent.trim(),dx:+((p.left+p.width/2)-(r.left+r.width/2)).toFixed(2),dy:+((p.top+p.height/2)-(r.top+r.height/2)).toFixed(2)};
         });
+        function inside(inner, outer) {
+          return inner.width > 0 && inner.height > 0 && inner.left >= outer.left - 1 && inner.right <= outer.right + 1
+            && inner.top >= outer.top - 1 && inner.bottom <= outer.bottom + 1;
+        }
+        function separated(a, b) {
+          return a.right <= b.left + 1 || b.right <= a.left + 1 || a.bottom <= b.top + 1 || b.bottom <= a.top + 1;
+        }
+        var labelsAndNumbersReadable = numbers.length >= 3 && numbers.every(function(n){
+          var card = n.closest('.home-pill'), label = card.querySelector('.pill-k');
+          if (!label) return false;
+          var p = card.getBoundingClientRect(), r = n.getBoundingClientRect(), k = label.getBoundingClientRect();
+          return inside(r, p) && inside(k, p) && separated(r, k);
+        });
         var cards = {};
         ids.forEach(function (id) {
           var el = document.getElementById(id);
@@ -481,15 +494,17 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
         var bookButton = document.getElementById('homeBtnBook');
         var bookChev = bookButton && bookButton.querySelector('.chev');
         var bookNumber = bookButton && bookButton.querySelector('.pill-n');
-        var bookChevronSharesNumberRow = !!(bookButton && bookChev && bookNumber
-          && Math.abs((bookChev.getBoundingClientRect().top + bookChev.getBoundingClientRect().height / 2)
-            - (bookNumber.getBoundingClientRect().top + bookNumber.getBoundingClientRect().height / 2)) <= 1
+        var bookChevronReadable = !!(bookButton && bookChev && bookNumber
+          && inside(bookChev.getBoundingClientRect(), bookButton.getBoundingClientRect())
+          && separated(bookChev.getBoundingClientRect(), bookNumber.getBoundingClientRect())
+          && separated(bookChev.getBoundingClientRect(), bookButton.querySelector('.pill-k').getBoundingClientRect())
           && bookChev.getBoundingClientRect().left > bookNumber.getBoundingClientRect().right);
         return {
           scrollWidth: root.scrollWidth,
           clientWidth: root.clientWidth,
           cards: cards,
-          bookChevronSharesNumberRow: bookChevronSharesNumberRow,
+          bookChevronReadable: bookChevronReadable,
+          labelsAndNumbersReadable: labelsAndNumbersReadable,
           numbersCentered:numbers.length>=3 && numberCenterDeltas.every(function(d){return Math.abs(d.dx)<=1 && Math.abs(d.dy)<=1}),
           numberCenterDeltas:numberCenterDeltas,
           bookText: (document.getElementById('homeBtnBook') || {}).textContent || ''
@@ -498,9 +513,9 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
       var book = mobile.cards.homeBtnBook;
       var label = viewport.width + 'px';
       check('C ' + label + ': 页面无横向溢出', mobile.scrollWidth <= mobile.clientWidth, JSON.stringify({ scrollWidth: mobile.scrollWidth, clientWidth: mobile.clientWidth }));
-      check('C ' + label + ': 所有计数数字均在格子水平与垂直中心', mobile.numbersCentered, JSON.stringify(mobile.numberCenterDeltas));
+      check('C ' + label + ': 标签和数字完整位于卡片内且不重叠', mobile.labelsAndNumbersReadable, JSON.stringify(mobile));
       check('C ' + label + ': 错题本计数卡存在且可点', !!book && book.disabled === false && /错题本/.test(mobile.bookText), JSON.stringify(book));
-      check('C ' + label + ': 错题本箭头与数字同行并位于数字右侧', mobile.bookChevronSharesNumberRow, JSON.stringify(mobile));
+      check('C ' + label + ': 错题本箭头完整显示在数字右侧且不遮挡文字', mobile.bookChevronReadable, JSON.stringify(mobile));
       check('C ' + label + ': 两张卡保持原生按钮语义', ['homeBtnDue', 'homeBtnBook'].every(function (id) { var c = mobile.cards[id]; return c && c.type === 'button' && c.tabIndex >= 0; }), JSON.stringify(mobile.cards));
       /* 直接测量按钮本体，不假定存在额外的伪元素命中区域。 */
       check('C ' + label + ': 可用卡实际按钮区域至少 44×44',

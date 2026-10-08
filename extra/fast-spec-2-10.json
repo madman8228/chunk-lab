@@ -90,12 +90,12 @@
  {
   "sentence": "You can't be too careful.",
   "chunks": [
-   "You can't be",
-   "too careful."
+   "You",
+   "can't be too careful."
   ],
   "hints": [
-   "你再小心",
-   "也不为过。"
+   "你",
+   "再小心也不为过"
   ]
  },
  {
@@ -105,8 +105,8 @@
    "after thinking it over carefully."
   ],
   "hints": [
-   "仔细考虑之后",
-   "再下决心。"
+   "下定决心",
+   "仔细考虑之后"
   ]
  },
  {
@@ -171,8 +171,8 @@
    "in doing so."
   ],
   "hints": [
-   "这么做",
-   "没多大价值。"
+   "没多大价值",
+   "这么做。"
   ]
  },
  {
@@ -215,8 +215,8 @@
    "for you to say."
   ],
   "hints": [
-   "你说得",
-   "倒容易。"
+   "这倒容易",
+   "你说得"
   ]
  },
  {
@@ -435,8 +435,8 @@
    "before you do it."
   ],
   "hints": [
-   "做之前",
-   "要三思。"
+   "要三思",
+   "做之前。"
   ]
  },
  {
@@ -453,12 +453,12 @@
  {
   "sentence": "Please go easy on me.",
   "chunks": [
-   "Please go",
-   "easy on me."
+   "Please",
+   "go easy on me."
   ],
   "hints": [
-   "请对我",
-   "手下留情。"
+   "请",
+   "对我手下留情。"
   ]
  },
  {
@@ -587,8 +587,8 @@
    "too noisy."
   ],
   "hints": [
-   "太",
-   "吵了。"
+   "这里",
+   "太吵了。"
   ]
  },
  {
@@ -649,12 +649,14 @@
  {
   "sentence": "Don't make such stupid mistakes again!",
   "chunks": [
-   "Don't make such",
-   "stupid mistakes again!"
+   "Don't make",
+   "such stupid mistakes",
+   "again!"
   ],
   "hints": [
-   "别再犯",
-   "这么愚蠢的错误！"
+   "别犯",
+   "这种愚蠢的错误",
+   "再一次！"
   ]
  },
  {
@@ -715,12 +717,12 @@
  {
   "sentence": "Do as I said!",
   "chunks": [
-   "Do as",
-   "I said!"
+   "Do",
+   "as I said!"
   ],
   "hints": [
-   "照我说的",
-   "去做！"
+   "去做！",
+   "照我说的"
   ]
  },
  {
@@ -884,8 +886,8 @@
    "to blame."
   ],
   "hints": [
-   "这是",
-   "你的过错。"
+   "你",
+   "有责任。"
   ]
  },
  {
@@ -979,12 +981,12 @@
  {
   "sentence": "Don't take it out on me.",
   "chunks": [
-   "Don't take it",
-   "out on me."
+   "Don't take it out",
+   "on me."
   ],
   "hints": [
-   "别拿我",
-   "出气。"
+   "别把气撒出来",
+   "冲我。"
   ]
  },
  {
@@ -1005,8 +1007,8 @@
    "for this."
   ],
   "hints": [
-   "我会",
-   "找你算账的。"
+   "你会付出代价",
+   "为此"
   ]
  },
  {
@@ -1060,8 +1062,8 @@
    "with my work."
   ],
   "hints": [
-   "他对我的工作",
-   "总是鸡蛋里挑骨头。"
+   "他总是挑毛病",
+   "对我的工作"
   ]
  },
  {
@@ -1155,8 +1157,8 @@
    "names!"
   ],
   "hints": [
-   "别",
-   "张口就骂人。"
+   "别这么叫我",
+   "侮辱性称呼"
   ]
  },
  {
@@ -1177,8 +1179,8 @@
    "out of sight."
   ],
   "hints": [
-   "要做得",
-   "不露痕迹。"
+   "让它保持",
+   "不被看见"
   ]
  },
  {

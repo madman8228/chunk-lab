@@ -248,34 +248,18 @@
     "sentence": "You're nothing to me.",
     "cid": "fc13aad2",
     "translation": "你对我来说什么都不是。",
-    "chunks": [
-      "You're nothing",
-      "to me."
-    ],
-    "hints": [
-      "你什么都不是",
-      "对我来说"
-    ],
+    "chunks": ["You're nothing to me."],
+    "hints": ["你对我来说什么都不是。"],
     "grammar": [
       {
-        "role": "主系表",
+        "role": "固定表达",
         "color": "#c87033",
         "phonetic": [
           "/jʊr/",
-          "/ˈnʌθɪŋ/"
+          "/ˈnʌθɪŋ/", "/tuː/", "/miː/"
         ],
-        "pos": "主系表结构",
-        "meaning": "你什么都不是"
-      },
-      {
-        "role": "介词短语",
-        "color": "#3358e0",
-        "phonetic": [
-          "/tuː/",
-          "/miː/"
-        ],
-        "pos": "介词短语",
-        "meaning": "对我来说"
+        "pos": "固定表达",
+        "meaning": "对我来说无足轻重"
       }
     ],
     "explanations": [
@@ -499,34 +483,19 @@
     "sentence": "What's the fuss about?",
     "cid": "e595ca8d",
     "translation": "闹什么呢？",
-    "chunks": [
-      "What's the fuss",
-      "about?"
-    ],
-    "hints": [
-      "吵什么呢",
-      "为了什么"
-    ],
+    "chunks": ["What's the fuss about?"],
+    "hints": ["至于这么大动静吗？"],
     "grammar": [
       {
-        "role": "习语·疑问",
+        "role": "固定疑问表达",
         "color": "#7c5cbf",
         "phonetic": [
           "/wʌts/",
           "/ðə/",
-          "/fʌs/"
+          "/fʌs/", "/əˈbaʊt/"
         ],
-        "pos": "名词习语",
-        "meaning": "the fuss 大惊小怪"
-      },
-      {
-        "role": "疑问·介词",
-        "color": "#3358e0",
-        "phonetic": [
-          "/əˈbaʊt/"
-        ],
-        "pos": "介词",
-        "meaning": "关于"
+        "pos": "固定疑问表达",
+        "meaning": "至于这么大动静吗"
       }
     ],
     "explanations": [
@@ -538,36 +507,18 @@
     "sentence": "I'm not in a good mood.",
     "cid": "944285af",
     "translation": "我心情不太好。",
-    "chunks": [
-      "I'm not",
-      "in a good mood."
-    ],
-    "hints": [
-      "我并不",
-      "心情好"
-    ],
+    "chunks": ["I'm not in a good mood."],
+    "hints": ["我心情不太好。"],
     "grammar": [
       {
-        "role": "主系·否定",
+        "role": "固定表达·否定",
         "color": "#c87033",
         "phonetic": [
           "/aɪm/",
-          "/nɒt/"
+          "/nɒt/", "/ɪn/", "/ə/", "/ɡʊd/", "/muːd/"
         ],
-        "pos": "主系表否定",
-        "meaning": "我并不"
-      },
-      {
-        "role": "介词短语",
-        "color": "#3358e0",
-        "phonetic": [
-          "/ɪn/",
-          "/ə/",
-          "/ɡʊd/",
-          "/muːd/"
-        ],
-        "pos": "介词短语",
-        "meaning": "心情好"
+        "pos": "固定表达",
+        "meaning": "心情不太好"
       }
     ],
     "explanations": [
@@ -579,33 +530,18 @@
     "sentence": "I'm cranky today.",
     "cid": "a61cdf13",
     "translation": "我今天脾气不好。",
-    "chunks": [
-      "I'm cranky",
-      "today."
-    ],
-    "hints": [
-      "我脾气不好",
-      "今天"
-    ],
+    "chunks": ["I'm cranky today."],
+    "hints": ["我今天脾气不好。"],
     "grammar": [
       {
         "role": "主系表",
         "color": "#c87033",
         "phonetic": [
           "/aɪm/",
-          "/ˈkræŋki/"
+          "/ˈkræŋki/", "/təˈdeɪ/"
         ],
-        "pos": "主系表结构",
+        "pos": "状态表达",
         "meaning": "我烦躁"
-      },
-      {
-        "role": "时间状语",
-        "color": "#3358e0",
-        "phonetic": [
-          "/təˈdeɪ/"
-        ],
-        "pos": "时间状语",
-        "meaning": "今天"
       }
     ],
     "explanations": [
@@ -769,14 +705,14 @@
   {
     "sentence": "I hope your idea takes wings.",
     "cid": "88acbcfa",
-    "translation": "希望你的想法能起飞。",
+    "translation": "希望你的想法能顺利实现。",
     "chunks": [
       "I hope your idea",
       "takes wings."
     ],
     "hints": [
       "我希望你的想法",
-      "能展翅高飞"
+      "能顺利实现"
     ],
     "grammar": [
       {
@@ -799,7 +735,7 @@
           "/wɪŋz/"
         ],
         "pos": "动词习语",
-        "meaning": "take wings 腾飞"
+        "meaning": "take wings 腾飞、取得进展"
       }
     ],
     "explanations": [
@@ -811,36 +747,19 @@
     "sentence": "Don't rob Peter to pay Paul.",
     "cid": "200e195f",
     "translation": "别拆东墙补西墙。",
-    "chunks": [
-      "Don't rob Peter",
-      "to pay Paul."
-    ],
-    "hints": [
-      "别抢彼得的",
-      "去还给保罗"
-    ],
+    "chunks": ["Don't rob Peter to pay Paul."],
+    "hints": ["别拆东墙补西墙。"],
     "grammar": [
       {
-        "role": "习语·祈使否定",
+        "role": "固定谚语·祈使否定",
         "color": "#7c5cbf",
         "phonetic": [
           "/doʊnt/",
           "/rɒb/",
-          "/ˈpiːtər/"
+          "/ˈpiːtər/", "/tuː/", "/peɪ/", "/pɔːl/"
         ],
-        "pos": "祈使句否定",
+        "pos": "固定谚语",
         "meaning": "rob Peter to pay Paul 拆东墙补西墙"
-      },
-      {
-        "role": "目的状语",
-        "color": "#3358e0",
-        "phonetic": [
-          "/tuː/",
-          "/peɪ/",
-          "/pɔːl/"
-        ],
-        "pos": "不定式作目的状语",
-        "meaning": "为了还给保罗"
       }
     ],
     "explanations": [
@@ -934,35 +853,19 @@
     "sentence": "I can't bear to watch.",
     "cid": "a6e2de31",
     "translation": "我不忍心看下去。",
-    "chunks": [
-      "I can't bear",
-      "to watch."
-    ],
-    "hints": [
-      "我受不了",
-      "去看"
-    ],
+    "chunks": ["I can't bear to watch."],
+    "hints": ["我不忍心看下去。"],
     "grammar": [
       {
-        "role": "主谓·否定",
+        "role": "固定表达",
         "color": "#c87033",
         "phonetic": [
           "/aɪ/",
           "/kænt/",
-          "/ber/"
+          "/ber/", "/tuː/", "/wɒtʃ/"
         ],
-        "pos": "情态动词否定",
-        "meaning": "我无法忍受"
-      },
-      {
-        "role": "不定式",
-        "color": "#3358e0",
-        "phonetic": [
-          "/tuː/",
-          "/wɒtʃ/"
-        ],
-        "pos": "不定式作宾语",
-        "meaning": "去看"
+        "pos": "固定搭配",
+        "meaning": "我不忍心看下去"
       }
     ],
     "explanations": [

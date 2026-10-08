@@ -778,6 +778,12 @@
     }
     var str = JSON.stringify(out);
     businessStorage.setItem(STORE_KEY, str);
+    // A normal save can replace the statistics objects without a cross-tab merge.
+    // Rebind only after the local write succeeds; loadMem must not keep old refs.
+    if(_statsStore === 'idb' && m.stats){
+      _bySentenceCache = m.stats.bySentence || {};
+      _eventsCache = m.stats.events || [];
+    }
     adoptMemBase(str);   /* 提交成功：本页内存与磁盘就此一致 */
     if(_memSnapshotBases && m && typeof m === 'object'){
       try{ _memSnapshotBases.set(m, { raw: str, mem: parseLocalMem(str) }); }catch(_snapshotWriteError){}

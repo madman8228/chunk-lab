@@ -429,12 +429,12 @@
  {
   "sentence": "Better than nothing.",
   "chunks": [
-   "Better than",
-   "nothing."
+   "Better",
+   "than nothing."
   ],
   "hints": [
-   "总比",
-   "没有强。"
+   "更好",
+   "总比什么都没有强"
   ]
  },
  {
@@ -594,12 +594,12 @@
  {
   "sentence": "It was careless of me to do so.",
   "chunks": [
-   "It was careless of me",
-   "to do so."
+   "It was careless",
+   "of me to do so."
   ],
   "hints": [
-   "做那种事，",
-   "我也太不小心了。"
+   "真是太不谨慎了",
+   "是我这么做"
   ]
  },
  {

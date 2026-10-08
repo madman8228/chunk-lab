@@ -516,11 +516,13 @@
   "sentence": "Could you cash this traveler's check for me?",
   "chunks": [
    "Could you cash",
-   "this traveler's check for me?"
+   "this traveler's check",
+   "for me?"
   ],
   "hints": [
-   "您能帮我把",
-   "旅行支票换成现金吗？"
+   "您能兑现",
+   "这张旅行支票",
+   "帮我吗？"
   ]
  },
  {

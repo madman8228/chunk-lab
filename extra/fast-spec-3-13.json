@@ -686,12 +686,12 @@
  {
   "sentence": "Sure. What is it?",
   "chunks": [
-   "Sure. What",
-   "is it?"
+   "Sure.",
+   "What is it?"
   ],
   "hints": [
-   "当然，那",
-   "是什么事"
+   "可以。",
+   "什么事？"
   ]
  },
  {
@@ -811,8 +811,8 @@
    "will."
   ],
   "hints": [
-   "我会",
-   "的"
+   "我",
+   "会的"
   ]
  },
  {

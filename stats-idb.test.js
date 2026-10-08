@@ -139,6 +139,8 @@ async function main() {
   assertEq(Object.keys(m.stats.bySentence).length, 2, 'loadMem 从内存桥还原 bySentence');
   assertEq(m.stats.events.length, 2, 'loadMem 从内存桥还原 events');
   assertEq(m.stats.bySentence['d1#aaaaaaaa'].times, 5, '还原的档案内容正确');
+  m.stats.bySentence = JSON.parse(JSON.stringify(m.stats.bySentence));
+  m.stats.events = m.stats.events.slice();
 
   /* ---------- 2. 热路径增量：改 1 条 + 追加 1 条 → IDB 只写这几行 ---------- */
   console.log('\n【2. 热路径增量写（只写变更行）】');
@@ -154,6 +156,7 @@ async function main() {
   assert(calls.every(function (c) { return c.op.indexOf('.replace') < 0; }), '无需任何全量替换');
   assert(storedMem().stats.bySentence === undefined, '热路径下 localStorage 仍不含大对象');
   assertEq(idb.sentenceStats['d1#aaaaaaaa'].data.times, 6, 'IDB 中该行已更新为 times=6');
+  assertEq(CL.loadMem().stats.bySentence['d1#aaaaaaaa'].times, 6, '替换统计对象后 loadMem 必须与已落盘记录一致');
   assertEq(idb.sentenceStats['d1#bbbbbbbb'].data.times, 6, '未变更行内容保持不变');
 
   /* ---------- 3. 删除传播 ---------- */
