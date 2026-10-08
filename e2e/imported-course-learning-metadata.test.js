@@ -125,6 +125,11 @@ function stopServer() {
     }
     await page.goto(BASE + '/decks.html?courseView=joined&courseType=decks', { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#tabDecks');
+    /* serverCatalogView 由 CL.ensureCloud().then(loadServerCatalogView) 异步填充；而 #tabDecks 是静态元素，
+       冷启动尚未水合时立刻读它会得到 null（更慢的 CI 上稳定命中 null.decks）。等课程目录真正就绪再读取。 */
+    await page.waitForFunction(function () {
+      return typeof serverCatalogView !== 'undefined' && !!serverCatalogView && Array.isArray(serverCatalogView.decks);
+    }, null, { timeout: 20000 });
     await page.evaluate(async function (id) {
       const deck = JSON.parse(JSON.stringify(serverCatalogView.decks.find(function (entry) { return entry.id === id; })));
       deck.items = Array.from({ length: 20 }, function (_, index) {

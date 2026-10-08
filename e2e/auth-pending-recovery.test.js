@@ -105,10 +105,13 @@ async function waitHealthy() {
       });
     }, { id: requestId, name: databaseName }, { timeout: 10000 });
     assert.equal(injected401, true, 'the first real protocol request received the injected 401');
+    /* 401 会因账号代次变化触发一次整页重载：登录遮罩先以默认文案出现，随后 ServerStore 的 401
+       才把文案刷成「登录已过期…」（本机实测约 1.2s）。原 5s 预算在更慢的 CI 上偶发超时——放宽到与
+       相邻等待一致的 20s。只放宽时限、不放松断言：文案最终不出现仍会判红。 */
     await page.waitForFunction(function () {
       const message = document.querySelector('#chunkauth-mask [data-auth-message]');
       return message && message.textContent.includes('登录已过期，请重新登录；未提交记录会保留');
-    }, null, { timeout: 5000 });
+    }, null, { timeout: 20000 });
 
     await page.locator('#chunkauth-mask input[placeholder="用户名"]').fill(username);
     await page.locator('#chunkauth-mask input[type="password"]').fill(password);

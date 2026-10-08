@@ -2,7 +2,7 @@
 # Chunk Lab · 部署安全自检（30 秒定性）
 #
 # 用法：
-#   bash scripts/deploy-security-smoke.sh                                  # 默认 https://chunklab.jqka.top
+#   bash scripts/deploy-security-smoke.sh                                  # 默认 https://jqka.top
 #   bash scripts/deploy-security-smoke.sh https://your-domain.example
 #
 # 判读：
@@ -25,7 +25,7 @@
 
 set -u
 
-BASE="${1:-https://chunklab.jqka.top}"
+BASE="${1:-https://jqka.top}"
 BASE="${BASE%/}"
 
 PASS=0; FAIL=0; WARN=0

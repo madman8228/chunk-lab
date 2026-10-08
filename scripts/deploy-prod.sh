@@ -237,7 +237,7 @@ for f in js/bridge.mjs js/chunk-engine.mjs js/distractor-cause.mjs js/icons.js; 
     exit 1
   fi
 done
-echo "[done] 生产已更新。跑 bash scripts/deploy-security-smoke.sh https://chunklab.jqka.top 复检"
+echo "[done] 生产已更新。跑 bash scripts/deploy-security-smoke.sh https://jqka.top 复检"
 # 回滚提示：本次部署前快照已打好，行级实体迁移不可只回代码。
 echo "[rollback] 若需回滚：git revert 代码 + 用本次快照替换主库"
 echo "           $SNAP"

@@ -74,6 +74,15 @@ async function enterPreview(page) {
   if ((await page.locator('.persistence-note').innerText()).includes('课程方案已记录')) throw new Error('普通保存状态不应显示冗余提示');
   await page.getByRole('button', { name: /复制.*制作指令/ }).click();
   if (await page.locator('[data-action=manual-copied]').count()) await page.locator('[data-action=manual-copied]').click();
+  /* 复制是异步的（先落草稿、再写剪贴板）；click() 在点击处理器完成前就返回，紧接着 readText 会读到
+     空/旧值（更慢的 CI 上稳定命中）。轮询等待剪贴板真正写入指令后再断言内容——等待而非跳过：
+     指令始终写不进去仍会超时判红。 */
+  await waitForAsync(page, async function () {
+    try {
+      const text = await navigator.clipboard.readText();
+      return typeof text === 'string' && text.indexOf('先问用户想制作什么课程') >= 0;
+    } catch (error) { return false; }
+  }, undefined, { timeout: 15000 });
   const prompt = await page.evaluate(function () { return navigator.clipboard.readText(); });
   if (!/"acceptableCefrLevels":\s*\[\s*"B1",\s*"B2"\s*\]/.test(prompt) || !prompt.includes('先问用户想制作什么课程') || !prompt.includes('课程长度没有预设值')) throw new Error('AI 指令未保留难度多选或没有改为交互确认需求');
   await page.waitForSelector('#rawResult');
