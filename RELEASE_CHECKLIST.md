@@ -1,6 +1,17 @@
 # 首版上线收口清单
 
-日期：2026-09-12 建立；**2026-09-16 更新为「架构换血 + 内容 21.7×」候选版本**。范围：小批量内容、小范围试用；不承诺 8000 句全量首发。不部署、不清除用户数据、不引入框架重写。
+## 当前候选状态（2026-10-08，优先于下方历史记录）
+
+当前扩展发布范围包含全部待审计未提交功能与获批的新课程版本，不仅限于旧 HEAD。**当前尚未放行，也未由本次任务部署。** 下方 2026-09-23 的线上结果仅是旧版本历史证据，不能替代当前候选的验收。
+
+- 当前通过的专项：服务端37/37；单元82/82；构建一致性/类型检查；发布静态检查17/17；首页专项69/69；8000句合成容量22/22；课程包v2导入单次通过；课程制作专项单次通过。制作专项在整套诊断回归中仍有首次失败、重试通过的记录，尚未关闭偶发恢复问题。
+- 服务端学习持久化浏览器专项通过：隔离协议3 SQLite验证在线答题/进度/结课提交、20次离线操作最终收敛、跨设备读取与服务端确认导出。该证据是测试实例，不是生产数据或真实设备验收。
+- 完整浏览器诊断回归仍运行，期间候选有修订，不作为固定版本发布证明。最终需要固定代码/资产指纹、零重试完整验收，不能用这些专项替代。
+- 当前课程修订保持66门课程和3677条句子身份/正文/释义；272个既有不可变内容文件逐一校验未变，原源码和原清单保留。个人数据库不参与测试，旧课程、备份和原浏览器数据不得清理。
+- 尚待核验：全部扩展改动审计收口、偶发恢复问题、当前版本服务端/单元/构建及完整浏览器回归、最终候选提交与指纹、生产环境和真机门禁、明确发布授权。旧生产配置或旧真机结果不自动继承为当前通过。
+- 最新详细执行记录见 `docs/implementation/2026-10-07-expanded-release-scope.md`；课程修订证据见 `output/playwright/course-revision-20261008-audit.md`。证据目录不是运行时部署内容。
+
+日期：2026-09-12 建立；**2026-09-16 更新为「架构换血 + 内容 21.7×」候选版本；2026-09-23 更新执行状态（`41cff00` 已上线）**。范围：小批量内容、小范围试用；不承诺 8000 句全量首发。不部署、不清除用户数据、不引入框架重写。
 
 此文件是发布判定入口。architecture-plan.md / PROJECT_PROGRESS.md 是设计和历史记录，不再从中无限追加发布任务。
 
@@ -8,30 +19,32 @@
 
 下面5道门全部通过才发布。自动测试通过不替代生产配置、真机和恢复演练。新增问题只有可复现的数据丢失/串号、安全暴露、核心流程阻断才进入本轮；其他问题入后续迭代。每个修复必须附回归证据，不以重构完成度作为门槛。
 
-## 最新执行状态（2026-09-22）
+## 最新执行状态（2026-09-23）
 
-以下状态优先于本文后面的一切记录（含 2026-09-16 段）。
+以下为2026-09-23历史状态，仅用于追溯，不覆盖本文顶部当前候选状态。
 
-**候选版本已生产部署**（2026-09-22 11:29，`DEPLOY_EXIT=0`，九步全绿）
+**候选版本已生产部署**（2026-09-23 12:40，`DEPLOY_EXIT=0`，九步全绿）
 
-- 候选 = `master@f5219ef`（本地 = 远端 = 线上）。**线上实测 == 本地 HEAD**：
-  线上 `sw.js` 的 `CACHE = chunklab-5b6fbce9`、`core.js` = 206,608 B（只读探测，2026-09-22）。
+- 候选 = `master@41cff00`。**本地 = 远端 = 线上**（`git ls-remote` 核实远端 `41cff00197d0…`）；工作树无已跟踪文件的未提交修改。
+- 线上实测 == 本地 HEAD：线上 `sw.js` 的 `CACHE = chunklab-036175d2`（与本地 `gen-sw` 产物一致），`/api/health` 200。
 - ⚠️ **本节更正下面 2026-09-16 表格里的「线上（2026-09-07 版）」「新内容从未上线」** —— 已失效。
   实测：`/content/manifest.json` **200 / 101,998 B**、`main.html` **308,909 B**、`/js/batch-sync.js` 200。
 
-| 项 | 状态（2026-09-22 实测） | 证据 |
+| 项 | 状态（2026-09-23 实测） | 证据 |
 | --- | --- | --- |
-| **F-001 静态路径绕过** | ✅ **已关闭** | 变体族 `//server/…`、`/%73erver/…`、`/%2Fserver/…`、`…%2Edb`、`…-wal` **全 403**（归属 nginx）；Express 侧 `server/index.js:353 app.use(createStaticGuard())` 已上线 |
+| **F-001 静态路径绕过** | ✅ **已关闭**（⚠️ 但守卫仍是黑名单制，见下方延后项） | 变体族 `//server/…`、`/%73erver/…`、`/%2Fserver/…`、`…%2Edb`、`…-wal` **全 403**（归属 nginx）；Express 侧 `server/index.js:353 app.use(createStaticGuard())` 已上线 |
 | **新内容架构（66 deck）** | ✅ **已上线** | `/content/manifest.json` 200；`main.html` 308,909 B |
 | **封面破图 / SW 装不上** | ✅ **已关闭** | 66/66 图 200 + `image/webp`；`lesson-placeholder.svg` 200；SW `registrations=1 / activated / 缓存 140 条`；封面破图 0 |
 | **A1 统计提交竞态** | ✅ **已关闭**（非本轮新增） | 已在 `92e810d` 修好；`git log -S` 语句变迁 + 对照复现（OLD 丢 `[e3]` / HEAD 丢 `[]`）；护栏见 `e2e/stats-idb.test.js` §3b |
-| **D-1/D-2 重复实现清理** | ✅ **已提交 + 已部署** | 提交 `32b251f`；`352e131`（best LWW 修复）；推送 `f5219ef..9e98353`；部署 `DEPLOY_EXIT=0` ⇒ **线上 = 本地 = 远端 = `9e98353`**，线上 `CACHE=chunklab-b0c12217` |
-| **线上安全复检（生产机执行）** | ✅ | **48 通过 / 0 失败 / 1 待人工（`Server: nginx`）/ 变体族 165 条全被拒**；HSTS 有；证书有效至 2026-12-08 |
-| **G3 备份恢复演练** | 🟡 **已演练（换库路径通过，账号级路径查出 `F-002`）** | 快照 `integrity_check=ok`、16/16 表齐全、**15 张内容表与生产逐表一致**、独立实例启动不吃内容数据；账号级恢复在 `rev=NULL` 时失败 ⇒ `F-002`。详见 `deliverables/gstack/g3-restore-drill-chunklab-2026-09-22.md` |
+| **D-1/D-2 重复实现清理** | ✅ **已提交 + 已部署** | 提交 `32b251f`；`352e131`（best LWW 修复）；`f3b5c11`（§1c 迁移回归）；`f3f2ed5`（F-002）；`41cff00`（同类 500 归零）；推送 + 部署 `DEPLOY_EXIT=0` ⇒ **线上 = 本地 = 远端 = `41cff00`**，线上 `CACHE=chunklab-036175d2` |
+| **线上安全复检（生产机执行）** | ✅ | **48 通过 / 0 失败 / 1 待人工（`Server: nginx`）/ 变体族 165 条全被拒**；HSTS 有；证书有效至 2026-12-08（2026-09-23 复跑） |
+| **G3 备份恢复演练** | 🟡 **已演练（换库路径通过，账号级路径查出 `F-002`）** | 快照 `integrity_check=ok`、16/16 表齐全、**15 张内容表与生产逐表一致**、独立实例启动不吃内容数据；账号级恢复在 `rev=NULL` 时失败 ⇒ `F-002`（**已由 `f3f2ed5` 修复**）。详见 `deliverables/gstack/g3-restore-drill-chunklab-2026-09-22.md` |
 
-**剩余阻塞降为 3 条**（原 4 条，G3 已演练降级；全部是生产环境 / 用户侧动作，无代码缺口）：
+**剩余阻塞 3 条**（G3 已演练降级；**全部是生产环境 / 用户侧动作，无代码缺口**，2026-09-23 复核）：
 
-① **G2 残余** —— 生产环境「两个真实账号互不可读写」（需真实凭据；现有 25 项跑的是测试 token + 临时服务）
+① **G2 残余** —— 生产环境「两个真实账号互不可读写」（需真实凭据；现有 25 项跑的是测试 token + 临时服务）。
+   **已达标部分（2026-09-23 部署预检实测）**：`NODE_ENV=production`、`REQUIRE_AUTH=true`、`JWT_SECRET≥32`、
+   `ADMIN_JWT_SECRET≥32`、`ADMIN_PASSWORD≥8`、`TRUST_PROXY=true` 六项全过 ⇒ 生产配置/鉴权/反代拓扑已确认。
 ② **G4** —— Android/iOS 真机验收
 ③ **G5** —— 发布授权（用户参与）+ 首发内容人工抽检 + **老用户 SW 升级实测**
 
@@ -43,10 +56,10 @@
 - ✅ **`best` 的 LWW 缺陷已修**（2026-09-22，提交 `352e131`）：两侧都存在时**一律 `mergeBest`**，仅结果变化才升 rev。
   唯一来源 `src/core/sync-kv-merge.mjs`；`core.js` 内联镜像同步改；`js/core-sync-kv.js` 重建；
   `scripts/core-sync-kv.test.mjs` 新增 3 条 + **负向自证通过**。验收 **123/123**。
-- ✅ **`F-002` 已修**（2026-09-22，提交 `f3f2ed5`）：账号级恢复 / 客户端「使用本机」在 `user_kv.rev = NULL` 且值不同时**整批被拒**（`SYNC_CONFLICT`）。
-  根因（已核到行号）：读侧 `server/services/data-snapshot.js:39` 把 `null` 原样暴露，写侧 `server/sync-conflict.js:9` 却归一为 `0`；
+- ✅ **`F-002` 已修 + 已部署**（2026-09-22 修 `f3f2ed5`，2026-09-23 12:40 上线）：账号级恢复 / 客户端「使用本机」在 `user_kv.rev = NULL` 且值不同时**整批被拒**（`SYNC_CONFLICT`）。
+  根因（已核到行号）：读侧 `server/services/data-snapshot.js:39` 把 `null` 原样暴露，写侧 `server/sync-conflict.js:22` 却归一为 `0`；
   `server/services/batch-replacement.js:16` 据此推出 `baseRev = null`，而 `baseRev === null` 的旧语义是**「实体必须不存在」** ⇒ `BASE_REV_MISMATCH`。
-  `rev = NULL` 由 `server/services/data-save.js:95`（载荷不带 `revs`）写入。
+  `rev = NULL` 由 `server/services/data-save.js:101`（载荷不带 `revs`）写入。
   **生产命中面：`user_kv.rev` NULL=7 / 非 NULL=17；8 个有 kv 数据的账号中 7 个的 `settings` 是 `rev=NULL`。**
   不受影响：全库换库回滚；无静默损坏（fail-closed 拒绝）。
   **为何 123/123 没抓到**：e2e 的 `route.fetch()` 确实打到真实服务端，但全部由**版本化客户端路径**写入（`rev` 为整数）
@@ -58,11 +71,29 @@
 - ✅ **新增回归（F-002 护栏 + 同类 500 归零）**：`server/sync-nullrev.test.js`（四 group + 负向自证 + `SYNC_CONFLICT` / `REQUEST_ID_REUSED` → 409）
   与 `e2e/sync-resolution-nullrev.test.js`（真实浏览器点「使用本机」、四个 group 恢复后仍为整数 rev、冲突仍 409），
   均由 `scripts/test-manifest.cjs` 的 `walk()` 自动纳入门禁。
-- 🛠 **`rev = NULL` 历史数据校正脚本**（`scripts/normalize-null-revs.js`；默认 dry-run，`--confirm` 才写库）**已备好并本机演练，未在生产执行**。
-  建议执行时机：**新版前端 + 本次服务端修复都上线、用户刷新到新版之后**（旧前端在冲突处理成功后会把 rev 重写回 NULL）。
+- ⛔ **`rev = NULL` 历史数据校正：已裁定「不执行」**（2026-09-23 老板决策）。`scripts/normalize-null-revs.js` **保留但不上线、不执行**。
+  依据（逐处读码核实）：NULL 在**所有**消费点都已被当 `0` 处理 —— 写侧 `services/data-writers.js` 8 条 SQL 全用
+  `COALESCE(user_*.rev, 0)` + `:33` `(row.rev == null ? 0 : row.rev) + 1`；客户端 `core.js:2395/3271/3300`、
+  `js/core-sync-entity-merge.js:5`、`js/core-sync-batch-merge.js:22` 全用 `Number.isSafeInteger(v) ? v : 0`；
+  冲突读 `server/sync-resolution.js:53` `(row && row.rev) || 0`；判据 `sync-conflict.js:22/25` 已修。
+  写侧那个「NULL 特权」（`excluded.rev IS NULL` 无条件覆盖）挂在**传入值**上，与存量值无关 ⇒ **归一 NULL→0 对读写行为零影响**，收益≈0。
+  且存量 NULL 会在该实体下次变更时被 `(revs.kv[k] || 0) + 1` 自然顶成整数（`core.js:218-220`）。
+  **若将来要治本**：改**读侧出口**单点归一（`data-snapshot.js:33/39` 的 `r.rev` → `(r.rev || 0)`，2 行，
+  顺带消掉「两份快照实现不一致」这一 `F-002` 真病灶），搭下次同步类改动顺带做，**不单独发版**。
+  ⛔ **禁止**改 DB 约束为 `NOT NULL DEFAULT 0`：协议明确允许 `baseRev = null`（`server/validate.js:120`），
+  写侧 `rev == null ? null : rev` 会落 NULL，加约束会让旧客户端写入**直接 500**，自相矛盾。
 - **TOPO-1**（`server/data` 仍在静态根内）仍未消，现由 static-guard + nginx 双层挡着。
-- **生产数据画像（本轮实测）**：`users=43`（**42 个是 `guest_*` 游客账号**）、`user_decks=1`、`user_courses=0`、`user_course_progress=0`
-  ⇒ **线上实质没有真实学习数据**，这一点既限制了 G3 的取证方式，也是「`F-002` 现在修成本最低」的依据。
+- ⚠️ **Static-guard 是黑名单制（2026-09-23 读码核实，非阻塞但登记）**：`server/middleware/static-guard.js` 的修法
+  （2026-09-21）只做了「**先规范化再判定**」—— 挡住 `%73erver` / `//` / `%2E` 等编码绕过是**真修**，
+  但判定本身仍是**正则 deny list**（`server|node_modules|output|scripts|extra|e2e|deliverables|deploy|ref` 前缀、
+  任意层级 dotfile、`md/db/sh/yml/py/conf` 等扩展名、`*.test.js`、根 `package*.json`、根 `validate_*.js`、`diagnose.html`）。
+  ⇒ **根目录的 `.png` / `.jpg` / `.html` / `.json` 不在 deny 集合内**。本轮未成灾，只因**部署走 `FILES` 显式白名单**
+  （未跟踪文件根本没上线）—— 即「部署白名单 + 服务黑名单」两层，**任意一层缺失即暴露**。
+  现存未跟踪文件盘点（2026-09-23）：`PRODUCT.md`（`.md` → 被拒）、`deliverables/**`（前缀 → 被拒）、
+  `.impeccable/`（dotfile → 被拒）、`mobile-before.png` / `mobile-after.png`（**不在 deny 集合**，仅因未进 `FILES` 才安全）。
+  归类**明确延后**（上线前既有设计，本轮未修也未加剧，且变体族 165 条实测全拒）；根治 = **改静态白名单** + 数据移出静态根。
+- **生产数据画像（2026-09-23 复核）**：`users=43`（**42 个是 `guest_*` 游客账号**）、`user_decks=1`、`user_courses=0`、`user_course_progress=0`
+  ⇒ **线上实质没有真实学习数据**，这一点既限制了 G3 的取证方式，也是「`F-002` 现在修成本最低」的依据、以及「先小范围试用风险最低」的依据。
 
 ---
 
@@ -229,7 +260,11 @@ npm run test:batch-sync通过：服务端26项、前端真实浏览器12项，�
 ## G5 固定版本发布：待G1—G4完成
 
 - 整理当前改动形成可识别的候选版本；重新运行测试。
-  → 2026-09-16：候选 = `master@4ed4498`；`npm test` 在 `07d76e6` 上 EXIT=0（见上表进度与未复跑说明）。
+  → **2026-09-23：候选 = `master@41cff00`，已部署上线（`DEPLOY_EXIT=0`，九步全绿）。**
+  本地全套回归：`npm test`（unit+server+checks）**125/125**、`e2e/e2e.js` **148/148**、`test:accounts` 通过、
+  `test:batch-sync` 26 通过、`e2e/mobile-8000.test.js` 19 通过（热保存 p95=21ms）。
+  ⚠️ 部署脚本 `[0/9]` 的本地回归**不含** `e2e/release-check.js` / `e2e/upgrade-check.js`，这两个需单独跑。
+  → 2026-09-16 旧记录（已被上文取代）：候选 = `master@4ed4498`；`npm test` 在 `07d76e6` 上 EXIT=0。
 - 验证老版本升级、IDB数据保留与Service Worker更新。
   → 2026-09-16 **代码侧已补专项** `node e2e/upgrade-check.js`（**24/0**），覆盖：三代旧档案 key
   （`builtin-daily#cid` / `daily-*#cid` / `daily-*#整句原文`）迁移到**真实存在**的新 `oral-*` deck、值保留、幂等、
@@ -250,5 +285,7 @@ npm run test:batch-sync通过：服务端26项、前端真实浏览器12项，�
 ## 明确延后
 
 完整8000句内容生产、框架迁移、微服务、全面拆文件、智能冲突自动合并、完整冲突历史UI、增量下行全面接入、AI恢复、非阻断视觉打磨。
+
+两项与安全纵深有关、已登记但**不阻塞本轮**：**服务端静态托管由黑名单改白名单**（现为 deny list，现状由「部署白名单 + 服务黑名单」两层兜住）、**TOPO-1 把 `server/data` 移出静态根**。
 
 用户参与：首发内容确认、部署条件提供、真机体验反馈及最终发布授权。代码和自动验收由本任务推进。

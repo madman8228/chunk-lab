@@ -1,0 +1,31 @@
+sequenceDiagram
+  participant U as User
+  participant H as renderHome()
+  participant CL as CoreCL
+  participant DP as deckLearningProgress
+  participant Home as #homeBody DOM
+
+  U->>H: 打开首页
+  H->>CL: streakDays(mem) / dailyActivity(mem)
+  CL-->>H: streakN / activity
+  H->>H: doc
+  H->>DP: deckLearningProgress(deck)  (每次课程行)
+  DP-->>H: {done,total,pct,ready}
+  Note over H: homeCourseProgressMarkup 用 done 拼「已学 N 句」<br/>（结构 class 与 deckProgressMarkup 一致，仅换文案）
+  H->>CL: masteredSentenceCount(mem)
+  CL-->>H: masteredN
+  H->>Home: innerHTML = hero + 续学条 + 我的课程 + 添加课程 + 药丸行 + 打卡行
+  H->>Home: 绑定 [data-start] / #homeBtnDue / #homeBtnBook / #homeCalToggle
+  H->>H: ensureHomeProgressIndexes([...decks])
+
+  U->>Home: 点续学条 (#homeResumeRow, data-start)
+  Home->>H: startDeck(deck, idx) -> showPracticePage()
+
+  U->>Home: 点 #homeBtnDue
+  Home->>H: showPracticePage(); startTodayDue()
+
+  U->>Home: 点 #homeBtnBook
+  Home->>H: showPracticePage(); startBookNow()
+
+  U->>Home: 点 #homeCalToggle
+  Home->>Home: 切 _homeCalOpen / panel.hidden / aria-expanded  (文案仍「本月打卡 M 天」)

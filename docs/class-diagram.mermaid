@@ -1,0 +1,38 @@
+classDiagram
+  class renderHome {
+    +renderHome() void
+    -resume: {deck, idx, mode}
+    -recent: Array~{deck, context}~
+    -_courseRows: string[]
+    -_masteredN: number
+    -_streakN: number
+    -_goal: number
+    -_todayAnswered: number
+    +_resumeRow(resume, context) string
+    +_courseRow(entry, resumeIdx) string
+    +homeCourseProgressMarkup(deck, resumeIdx, best) string
+    +_pillRow(t, masteredN, goal) string
+  }
+  class DeckProgress {
+    +deckProgressMarkup(deck, resumeIdx, best) string
+    +deckLearningProgress(deck) {done,total,pct,ready}
+  }
+  class CoreCL {
+    +masteredSentenceCount(mem) number
+    +streakDays(mem) number
+    +dailyActivity(mem) object
+  }
+  class Icons {
+    +svg(name) string
+  }
+  class TodayCounts {
+    +homeBtnDue: button
+    +homeBtnBook: button
+    +homeMastered: div
+    +homeGoalPill: div
+  }
+  renderHome --> DeckProgress : deckLearningProgress 取口径
+  renderHome ..> DeckProgress : 不入本体的兄弟渲染 homeCourseProgressMarkup
+  renderHome --> CoreCL : 复用口径
+  renderHome --> Icons : 复用图标
+  renderHome --> TodayCounts : 渲染
