@@ -31,3 +31,11 @@ output/e2e/**/*.log
 
 # 本地参考素材（外部导入，不入版本库）
 ref/
+
+# 视觉对照 / 演示产物（截图与演示视频，运行产物，不入库）
+/shot-*.png
+/mobile-*.png
+*.mp4
+
+# UI 评审工具工作区（工具生成，同 .workbuddy/ 不入库）
+.impeccable/

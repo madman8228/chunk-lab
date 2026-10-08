@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>本机恢复状态检查</title>
+  <style>
+    :root { color-scheme: light; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; color: #172033; background: #f5f4f1; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; padding: 28px 16px; }
+    main { max-width: 640px; margin: 0 auto; padding: 24px; border: 1px solid #dedbd4; border-radius: 16px; background: #fffdfa; box-shadow: 0 10px 30px #26334b12; }
+    h1 { margin: 0; font-size: 21px; }
+    .intro { margin: 10px 0 20px; color: #626b7b; font-size: 14px; line-height: 1.6; }
+    dl { margin: 0; border-top: 1px solid #e8e5de; }
+    .row { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid #e8e5de; }
+    dt { color: #4f5969; }
+    dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .note { margin: 18px 0 0; color: #727b89; font-size: 12px; line-height: 1.6; }
+    .status { min-height: 22px; margin-top: 16px; color: #176b4b; font-size: 13px; }
+    .status.error { color: #a74336; }
+    @media (max-width: 480px) { body { padding: 12px; } main { padding: 18px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>本机恢复状态检查</h1>
+    <p class="intro">此页仅在本机读取恢复相关记录的数量，不读取记录内容、不修改或上传数据。</p>
+    <dl aria-live="polite">
+      <div class="row"><dt>旧版同步日志</dt><dd id="journalCount">检查中</dd></div>
+      <div class="row"><dt>待保存操作</dt><dd id="operationCount">检查中</dd></div>
+      <div class="row"><dt>本机恢复副本</dt><dd id="archiveCount">检查中</dd></div>
+      <div class="row"><dt>旧版本机数据项</dt><dd id="legacyKeyCount">检查中</dd></div>
+    </dl>
+    <p id="status" class="status" role="status">正在检查本机存储……</p>
+    <p class="note">只统计本浏览器当前站点可访问的数据。此结果不代表服务端历史备份数量，也不会自动处理任何记录。</p>
+  </main>
+  <script src="js/local-recovery-health.js"></script>
+  <script>
+    (async function () {
+      var status = document.getElementById('status');
+      var localHost = ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+      if (!localHost) {
+        status.textContent = '为保护本机数据，此诊断页仅允许在本机地址使用。';
+        status.classList.add('error');
+        return;
+      }
+      try {
+        var result = await LocalRecoveryHealth.inspectLocalRecovery({ indexedDB: indexedDB, localStorage: localStorage });
+        if (!result.supported) {
+          status.textContent = '当前浏览器不支持安全枚举本机数据库，未打开任何数据库。';
+          status.classList.add('error');
+          return;
+        }
+        document.getElementById('journalCount').textContent = result.legacyJournalRows;
+        document.getElementById('operationCount').textContent = result.pendingOperations;
+        document.getElementById('archiveCount').textContent = result.localArchiveRows;
+        document.getElementById('legacyKeyCount').textContent = result.legacyLocalKeysPresent;
+        status.textContent = result.readError ? '部分存储无法读取；未修改任何数据。' : '检查完成；未修改任何数据。';
+        if (result.readError) status.classList.add('error');
+      } catch (_) {
+        status.textContent = '检查未能完成；未修改任何数据。';
+        status.classList.add('error');
+      }
+    })();
+  </script>
+</body>
+</html>
