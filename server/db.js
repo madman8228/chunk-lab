@@ -497,3 +497,4 @@ function initChangeSeq() {
 module.exports = db;
 /* 附在 db 上导出（本模块的默认导出是连接对象）——由 index.js 在 listen 之前调用。 */
 module.exports.initChangeSeq = initChangeSeq;
+require('./services/usage-analytics').initializeUsageSchema(db);

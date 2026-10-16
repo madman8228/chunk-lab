@@ -76,18 +76,27 @@
         changed.code = 'SESSION_CHANGED'; throw changed;
       }
     }
-    var authenticating = path === '/api/auth/login' || path === '/api/auth/register';
+    var authenticating = path === '/api/auth/login' || path === '/api/auth/register' ||
+      (path.indexOf('/api/auth/phone/') === 0 && opts.authEntry === true);
     if (token && !authenticating) headers['Authorization'] = 'Bearer ' + token;
     if (opts.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
+    var controller = opts.timeoutMs && typeof global.AbortController === 'function' ? new global.AbortController() : null;
+    var timeout = controller ? global.setTimeout(function() { controller.abort(); }, opts.timeoutMs) : null;
     return fetch((authenticating && opts.base !== undefined ? opts.base : base) + path, {
       method: opts.method || 'GET',
       headers: headers,
-      body: opts.body
+      body: opts.body,
+      signal: controller ? controller.signal : undefined
     }).then(function (res) {
       checkSession();
       if (res.status === 401 && !authenticating) {
-        try { global.dispatchEvent(new CustomEvent('chunklab-auth-expired')); } catch (_) {}
-        clearToken(); var e = new Error('NOT_AUTH'); e.code = 'NOT_AUTH'; e.status = 401; throw e;
+        // A signed-out request needs login, not a new session epoch. Rotating
+        // an already-empty session makes AccountStorage reload on every boot.
+        if (token) {
+          try { global.dispatchEvent(new CustomEvent('chunklab-auth-expired')); } catch (_) {}
+          clearToken();
+        }
+        var e = new Error('NOT_AUTH'); e.code = 'NOT_AUTH'; e.status = 401; throw e;
       }
       return res.text().then(function (text) {
         checkSession();
@@ -124,7 +133,14 @@
         }
         return data;
       });
-    });
+    }).catch(function(error) {
+      if(error.name === 'AbortError') {
+        var authTimeout = path.indexOf('/api/auth/') === 0;
+        var delayed = new Error(authTimeout ? '请求超时，请稍后重新获取验证码' : '请求超时，请重试');
+        delayed.code = authTimeout ? 'AUTH_TIMEOUT' : 'REQUEST_TIMEOUT'; throw delayed;
+      }
+      throw error;
+    }).finally(function() { if(timeout) global.clearTimeout(timeout); });
   }
 
   var api = {
@@ -135,6 +151,9 @@
     request: request,
     register: function (u, p, base) { return request('/api/auth/register', { base: base, method: 'POST', body: JSON.stringify({ username: u, password: p }) }); },
     login: function (u, p, base) { return request('/api/auth/login', { base: base, method: 'POST', body: JSON.stringify({ username: u, password: p }) }); },
+    phoneCode: function (phone, purpose) { return request('/api/auth/phone/code', { timeoutMs: 20000, authEntry: purpose !== 'bind', method: 'POST', body: JSON.stringify({ phone: phone, purpose: purpose || 'login' }) }); },
+    phoneLogin: function (phone, code, challengeId, purpose, password) { return request('/api/auth/phone/login', { timeoutMs: 20000, authEntry: purpose !== 'bind', method: 'POST', body: JSON.stringify({ phone: phone, code: code, challengeId: challengeId, purpose: purpose || 'login', password: password || undefined }) }); },
+    phonePasswordLogin: function (phone, password) { return request('/api/auth/phone/password', { timeoutMs: 20000, authEntry: true, method: 'POST', body: JSON.stringify({phone:phone,password:password}) }); },
     me: function () { return request('/api/auth/me'); },
     heartbeat: function () { return request('/api/usage/heartbeat', { method: 'POST', body: '{}' }); },
     /* 设置自己账号的用户名 / 密码（可只传其一）。路径以 /api/auth/ 开头但**不是**登录或注册，

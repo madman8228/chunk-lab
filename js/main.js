@@ -116,6 +116,8 @@ var MainLifecycle = (() => {
       }
       return { kind: "invalid", reason: "review-expired", explicit: true };
     }
+    var view = params.get("view");
+    if (["home", "my-learning", "discover"].includes(view)) return { kind: "workspace", view, explicit: true };
     if (isFreshNavigation(type)) {
       if (opts.intent && opts.intent.kind === "unit" && opts.intent.unitId) {
         return { kind: "unit", unitId: opts.intent.unitId };

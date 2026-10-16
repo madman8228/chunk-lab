@@ -30,6 +30,16 @@ const { createDataWriters } = require('./services/data-writers');
 const { createDataRows } = require('./services/data-rows');
 const { createDataMigrations } = require('./services/data-migrations');
 const { createAdminOverview } = require('./services/admin-overview');
+const usageAnalytics = require('./services/usage-analytics').createUsageAnalytics({ db,
+  resourceName(userId, kind, resourceId) {
+    try {
+      if (kind === 'vocabulary') return '入门单词练习';
+      const deck = db.prepare('SELECT name FROM user_decks WHERE user_id=? AND id=?').get(userId, resourceId);
+      if (deck) return deck.name;
+    } catch (_) { /* Historical resources can be unavailable without losing their usage. */ }
+    return kind === 'wordbook' ? '单词本练习（历史内容）' : '句子练习（历史内容）';
+  }
+});
 const { registerDeckRoutes } = require('./routes/decks');
 const { registerBackupRoutes } = require('./routes/backup');
 const { registerFeedbackRoutes } = require('./routes/feedback');
@@ -88,6 +98,7 @@ app.disable('x-powered-by');
    全局上限与协议 3 单实体 content-import 的 80 MiB 服务端合同保持一致。
    body-parser 会在首个解析后置 req._body，后续 parser 自动跳过，故按路径前置是安全的最小改法。 */
 app.use('/api/auth', express.json({ limit: '64kb' }));
+app.use('/api/usage', express.json({ limit: '4kb' }));
 app.use(express.json({ limit: MAX_CONTENT_IMPORT_BYTES })); // 数值字节，避免 80mb 被解释成十进制 80,000,000
 
 const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
@@ -182,6 +193,7 @@ registerAdminRoutes({
   adminSyncQuarantines,
   adminSaveFailures,
   adminSaveHealth,
+  usageAnalytics,
   parseRangeDays,
   rateBlocked,
   rateClear,
@@ -200,6 +212,7 @@ registerContentStudioRoutes({
 registerAuthRoutes({
   app,
   auth,
+  db,
   rateBlocked,
   rateHit,
   rateClear,
@@ -404,7 +417,8 @@ registerSystemRoutes({
   metrics,
   aiEnabled: AI_EXPLAIN_ENABLED,
   writeProtocol: WRITE_PROTOCOL,
-  touchUserActivity
+  touchUserActivity,
+  usageAnalytics
 });
 /* ===================== 静态托管前端（本地调试零配置） =====================
    开发期直接 node index.js 后打开 http://<host>:<PORT>/main.html 即可，

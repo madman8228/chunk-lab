@@ -142,6 +142,16 @@
   api.MAX_JOINED_COURSES = MAX_JOINED_COURSES;
   api.create = create;
   api.keyFor = keyFor;
+  // One read-only view shared by practice, due queues and historical mistake labels.
+  api.deckMemberships = function (catalog, progress) {
+    var memberships = api.readMemberships(progress, global.CourseCatalog.getEnrollmentAliases(catalog));
+    return function (deckId) {
+      var course = global.CourseCatalog.getCourseForContent(catalog, 'sentence-deck', deckId);
+      var membership = course && memberships[course.id];
+      return { course:course, joined:!!(membership && membership.joined),
+        status:membership && membership.joined ? '已加入' : membership ? '已退出' : '未加入学习' };
+    };
+  };
   global.CourseEnrollment = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

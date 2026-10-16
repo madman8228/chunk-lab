@@ -85,6 +85,9 @@ function resolveEntry(options) {
     return { kind: 'invalid', reason: 'review-expired', explicit: true };
   }
 
+  // Explicit workspace URLs cannot be hijacked by an older study handoff.
+  var view = params.get('view');
+  if (['home', 'my-learning', 'discover'].includes(view)) return { kind: 'workspace', view: view, explicit: true };
   /* One-shot storage handoffs are valid only on a fresh navigation. */
   if (isFreshNavigation(type)) {
     if (opts.intent && opts.intent.kind === 'unit' && opts.intent.unitId) {

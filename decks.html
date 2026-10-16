@@ -382,6 +382,7 @@ textarea{outline:none;resize:vertical}
 </style>
 </head>
 <body>
+<script src="js/course-covers.js"></script>
 
 <div class="wrap">
   <section id="contentConflictDrafts" class="content-conflict-drafts" hidden role="status" aria-live="polite">
@@ -1715,7 +1716,7 @@ function refreshCourseCardProgress(course, row){
 function catalogImageSrc(lesson){
   /* 目录封面只代表目录，不向内部课节继承；课节没有独立图片时使用统一占位图。 */
   var src = lesson && (lesson.image || lesson.imageUrl);
-  if(!src || !/^(?:data:image\/|https?:\/\/|\/|\.\/|\.\.\/|[A-Za-z0-9_-]+\/)/i.test(String(src))) return 'assets/catalog/lesson-placeholder.svg';
+  if(!src || !/^(?:data:image\/|https?:\/\/|\/|\.\/|\.\.\/|[A-Za-z0-9_-]+\/)/i.test(String(src))) return CourseCovers.fallback(lesson);
   return String(src);
 }
 function catalogViewSvg(name){

@@ -1,0 +1,21 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const covers=require('../js/course-covers.js');
+assert.equal(covers.variants.length,3);
+assert.equal(covers.fallback({courseId:'same-course'}),covers.fallback({courseId:'same-course',title:'Updated title'}),'identity keeps the cover stable');
+assert.equal(new Set(Array.from({length:30},(_,i)=>covers.fallback({courseId:'course-'+i}))).size,3,'course identities distribute across all variants');
+for(const item of [{kind:'wordbook'},{contentRef:{type:'story-package'}},{activities:['vocabulary']}])assert.ok(covers.variants.includes(covers.fallback(item)));
+const source=fs.readFileSync('decks.html','utf8'),fn=source.slice(source.indexOf('function catalogImageSrc('),source.indexOf('function catalogViewSvg('));
+const context={CourseCovers:covers};vm.createContext(context);vm.runInContext(fn,context);
+assert.equal(context.catalogImageSrc({image:'assets/custom-original.webp'}),'assets/custom-original.webp');
+assert.equal(context.catalogImageSrc({imageUrl:'https://example.com/original.png'}),'https://example.com/original.png');
+assert.equal(context.catalogImageSrc({contentRef:{type:'story-package'}}),covers.fallback({contentRef:{type:'story-package'}}));
+for(const asset of covers.variants){const size=fs.statSync(asset).size;assert.ok(size<35000);console.log(asset+': '+size+' bytes');}
+console.log('Default cover mapping and custom cover preservation passed.');
+const main=fs.readFileSync('main.html','utf8'),homeFunction=main.slice(main.indexOf('  function courseCover('),main.indexOf('  joinedCourseRows.forEach(function(entry){',main.indexOf('  function courseCover(')));
+const homeContext={window:{CourseCovers:covers},CourseCovers:covers,ic:()=>'',escX:value=>value};vm.createContext(homeContext);vm.runInContext(homeFunction,homeContext);
+assert.ok(homeContext.courseCover({coverImage:'assets/custom-original.webp'},[]).includes('assets/custom-original.webp'));
+assert.ok(homeContext.courseCover({title:'No custom cover'},[{contentRef:{type:'story-package'}}]).includes(covers.fallback({title:'No custom cover'})));
+assert.ok(homeContext.courseCover({title:'Sentence course'},[{contentRef:{type:'sentence-deck'}}]).includes(covers.fallback({title:'Sentence course'})));
+assert.ok(!homeContext.courseCover(null,[]).includes('<img'),'unavailable course retains neutral icon');
+console.log('Home active-course covers share defaults; custom covers and unavailable-course icon preserved.');
