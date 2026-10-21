@@ -16,7 +16,7 @@ const vm = require('node:vm');
     assert.ok(!hard.includes(url) && soft.includes(url), 'legacy icons remain available without eager installation: ' + url);
   }
   for (const url of ['/assets/brand/icon-180-v1.png', '/assets/brand/icon-192-v1.png', '/assets/brand/icon-512-v1.png',
-    '/vocabulary.html', '/vocabulary-practice.html', '/wordbook.html', '/landing/action-game-view.js', '/landing/wordbook-study.js']) {
+    '/vocabulary.html', '/wordbook.html', '/landing/action-game-view.js', '/landing/wordbook-study.js']) {
     assert.ok(!hard.includes(url) && soft.includes(url), 'independent vocabulary pages and large install icons load on demand: ' + url);
   }
   const homepage = require('./lib-deps').runtimeAssets(['main.html']).files.map(file => '/' + file.replace(/\\/g, '/'));

@@ -49,13 +49,11 @@
   },
   "images": {
     "wide": [
-      "assets/vocabulary-advice-wide-v2.avif",
-      "assets/vocabulary-advice-wide-v2.webp"
+      "assets/vocabulary-advice-wide-v3.webp"
     ],
     "mobile": [
-      "assets/vocabulary-advice-mobile-v2.avif",
-      "assets/vocabulary-advice-mobile-v2.webp"
+      "assets/vocabulary-advice-wide-v3.webp"
     ]
   },
-  "contentRevision": "7624baf751c7da96cf5e4f00f917360ef8b6bd6d60140f4477d2a03b0496aed9"
+  "contentRevision": "e65688c1babac5b60be1e66f70c3a67a64e4c634d97149c169dd44539eb51098"
 }

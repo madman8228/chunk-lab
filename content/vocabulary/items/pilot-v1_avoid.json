@@ -25,13 +25,11 @@
   },
   "images": {
     "wide": [
-      "assets/vocabulary-avoid-wide-v2.avif",
-      "assets/vocabulary-avoid-wide-v2.webp"
+      "assets/vocabulary-avoid-wide-v3.webp"
     ],
     "mobile": [
-      "assets/vocabulary-avoid-mobile-v2.avif",
-      "assets/vocabulary-avoid-mobile-v2.webp"
+      "assets/vocabulary-avoid-wide-v3.webp"
     ]
   },
-  "contentRevision": "3c6d9eed8475cf66d0d37599bd7ca6422757eca339c74f371f02308c23acf3b7"
+  "contentRevision": "5e6e7ea5a8333fd52cbe1fd62b9b5886d5142d9ad9eeedd935cd93798ef9be63"
 }

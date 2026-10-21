@@ -5294,7 +5294,7 @@ function openWorkspaceResource(resource,options){
   var catalog=createHomeCourseLookup().getCatalog();
   var course=resource.courseId&&CourseCatalog.getCourse(catalog,resource.courseId);
   if(!course){var ref=resource.sourceRefs[0];course=ref&&CourseCatalog.getCourseForContent(catalog,ref.type,ref.id);}
-  if(!course){if(resource.sourceRefs.some(function(ref){return ref.type==='vocabulary-pilot';}))location.href='vocabulary-practice.html';else showSysToast('内容暂不可用，请稍后重试。',4000);return;}
+  if(!course){if(resource.sourceRefs.some(function(ref){return ref.type==='vocabulary-pilot';}))location.href='wordbook.html?book=pilot-six-v1';else showSysToast('内容暂不可用，请稍后重试。',4000);return;}
   var launch=function(){
     var lessons=CourseCatalog.listLessons(course),lesson=lessons.find(function(row){return row.available!==false;});
     var ref=lesson&&lesson.contentRef;

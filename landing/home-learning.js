@@ -1,8 +1,7 @@
 (function(){
   'use strict';
   const root=document.getElementById('homeLearning');if(!root)return;
-  const artwork=root.querySelector('.home-word-art'),source=artwork.parentElement.querySelector('source');
-  source.srcset=source.dataset.avif;artwork.src=artwork.dataset.webp;
+  const artwork=root.querySelector('.home-word-art');if(artwork&&artwork.dataset.webp)artwork.src=artwork.dataset.webp;
   const wordFeedback=root.querySelector('[data-word-feedback]');
   root.querySelectorAll('[data-meaning]').forEach(button=>button.addEventListener('click',()=>{
     root.querySelectorAll('[data-meaning]').forEach(option=>option.setAttribute('aria-pressed',String(option===button)));

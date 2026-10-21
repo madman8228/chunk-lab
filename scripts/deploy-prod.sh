@@ -99,8 +99,7 @@ FILES=(
   package.json
   server/routes/retired-sync.js server/services/recovery-baseline.js
   server/services/phone-auth.js server/services/sms-verification.js
-  server/routes/vocabulary-practice.js
-  vocabulary.html vocabulary-practice.html
+  vocabulary.html
   server/middleware/seo-pages.js server/routes/content-shards.js
   scripts/sw-hash.js
   scripts/verify-server-dependencies.cjs
