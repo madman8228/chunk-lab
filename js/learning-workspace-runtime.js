@@ -80,7 +80,9 @@
           }
           if(ticket!==generation||identity()!==captured)return;
           initialPending=false;readyViews.add(requestedView);
-          if(host.visible()&&currentView===requestedView)draw();
+          /* A confirmed cached directory may paint immediately while remote
+             requests are pending; with no cache, stay on the stable loading view. */
+          if(host.visible()&&currentView===requestedView&&(publicResources||personalResources.length))draw();
         }catch(_){/* Keep the existing confirmation gate when local account state is unavailable. */}
       }
       await Promise.all([

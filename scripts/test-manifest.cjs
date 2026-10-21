@@ -1,11 +1,25 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
+
+/* Tests that launch a real browser must not run in the unit job: the unit CI
+ * job does not install Chromium, and a browser test that waits on a page can
+ * consume the whole job timeout. Classify by dependency, not only by filename. */
+function usesBrowser(file) {
+  try {
+    const source = fs.readFileSync(path.join(ROOT, file), 'utf8');
+    return /(?:require\(['"](?:playwright|playwright-core|puppeteer)['"]\)|from ['"](?:playwright|playwright-core|puppeteer)['"]|chromium\.launch)/.test(source);
+  } catch (_) {
+    return false;
+  }
+}
 
 function inferGroup(file, cwd) {
   if (cwd === 'server') return 'server';
   if (/^e2e[\\/]/i.test(file)) return 'browser';
+  if (usesBrowser(file)) return 'browser';
   if (/vocabulary-material-(?:library-browser|course-draft)|sentence-layout-preview/i.test(file)) return 'browser';
   if (/playwright|scene-wordbook-ui|wordbook-materials-ui|word-dictation-ui|word-choice-ui|chunk-order-ui|mobile|sw-cache|action-game-ui|initials-ui|wordbook-ai-authoring-ui|wordbook-ai-bundle|course-create-ui|workspace-entry-ui|settings-groups-ui|personal-wordbook-recovery-ui/i.test(file)) return 'browser';
   if (/check-|validate|deploy-safety|sw-policy|sw-hash/i.test(file)) return 'checks';

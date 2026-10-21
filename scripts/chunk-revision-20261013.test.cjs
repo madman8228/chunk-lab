@@ -24,7 +24,9 @@ for (const deck of originalMap.decks) {
   const next = nextMap.decks.find(d => d.id === deck.id);
   const load = (base, d) => d.shards.flatMap(sh => JSON.parse(fs.readFileSync(path.join(base, sh.url))).items);
   const before = deck.id === 'oral-2-8-4'
-    ? JSON.parse(fs.readFileSync(path.join(root, 'content/oral-2-8-4/oral-001-233c0f02aa32.json'))).items
+    /* Pre-decision baseline: the 2026-10-21 owner decision keeps these three
+       fixed questions as one chunk, so compare against the old two-chunk shard. */
+    ? JSON.parse(fs.readFileSync(path.join(root, 'content/oral-2-8-4/oral-001-3fbfa6f152eb.json'))).items
     : load(root, deck);
   const after = load(temp, next);
   assert.deepEqual(after.map(i => i.cid), before.map(i => i.cid));
@@ -36,9 +38,9 @@ for (const deck of originalMap.decks) {
     assert.equal(revised.sentence, item.sentence);
     assert.equal(revised.translation, item.translation);
     assert.equal(revised.chunks.join(' '), item.sentence);
-    assert.equal(revised.chunks.length, 2);
-    assert.equal(revised.hints.length, 2);
-    for (const key of ['grammar', 'distractors', 'alts']) if (revised[key]) assert.equal(revised[key].length, 2);
+    assert.equal(revised.chunks.length, 1);
+    assert.equal(revised.hints.length, 1);
+    for (const key of ['grammar', 'distractors', 'alts']) if (revised[key]) assert.equal(revised[key].length, 1);
     assert.deepEqual(revised.explanations, item.explanations);
     changed.push(item.cid);
   });

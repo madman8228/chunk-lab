@@ -40,7 +40,7 @@ async function main() {
   values.set('chunklab_token',token(27));
   vm.runInContext(fs.readFileSync('js/account-storage.js','utf8'),context);
   assert.equal(JSON.parse(context.AccountStorage.owner)[1],'27');
-  context.fetch=async()=>({status:200,ok:true,text:async()=>'{"seq":30}'});
+  context.fetch=async()=>({status:200,ok:true,text:async()=>'{"seq":30}',headers:{get:name=>name==='X-ChunkLab-Account-Id'?'27':null}});
   assert.equal((await context.ChunkAPI.getData()).seq,30);
   assert.equal(values.get('irreplaceable-course-marker'),'original');
   // A base mirror conflict is rejected just like a token conflict.

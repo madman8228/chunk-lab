@@ -93,6 +93,10 @@ const markup=html.slice(html.indexOf('<div class="mask pc-drawer" id="settingsMa
    await page.locator('[data-pc-view="backup"]').click();assert.equal(await page.locator('#btnImportAll').isVisible(),true);
    await page.keyboard.press('Escape');assert.ok(await page.locator('#btnSettingsTop').evaluate(node=>node===document.activeElement));
    assert.deepEqual(errors,[]);console.log('PASS complete page: isolated static server, mocked API, deferred drawer loading, save, backup entry and close; no live service or account access');
-  }finally{if(liveContext)await liveContext.close();await new Promise(resolve=>server.close(resolve));}
+  }finally{
+    if(liveContext)await liveContext.close();
+    if(typeof server.closeAllConnections==='function')server.closeAllConnections();
+    await new Promise(resolve=>server.close(resolve));
+  }
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

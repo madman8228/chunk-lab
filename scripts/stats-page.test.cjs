@@ -27,10 +27,10 @@ test('overview unifies domains while other tabs retain their selected category',
  const document={visibilityState:'hidden',getElementById(id){return id==='statsDomains'?domains:null;},addEventListener(){}};
  const window={document,addEventListener(){}};
  vm.runInNewContext(fs.readFileSync(path.join(root,'js/stats-vocabulary.js'),'utf8'),{window,document});
- window.StatsVocabulary.render('overview');assert.equal(domains.hidden,true);assert.equal(buttons[0]['aria-pressed'],'true');
+ window.StatsVocabulary.render('overview');assert.equal(domains.hidden,true);assert.equal(buttons[0]['aria-selected'],'true');
  window.StatsVocabulary.render('sent');assert.equal(domains.hidden,false);
  domains.click({target:{closest(){return buttons[2];}}});
- window.StatsVocabulary.render('sent');assert.equal(buttons[2]['aria-pressed'],'true');
- window.StatsVocabulary.render('overview');assert.equal(domains.hidden,true);assert.equal(buttons[0]['aria-pressed'],'true');
- window.StatsVocabulary.render('review');assert.equal(domains.hidden,false);assert.equal(buttons[2]['aria-pressed'],'true');
+ window.StatsVocabulary.render('sent');assert.equal(buttons[2]['aria-selected'],'true');
+ window.StatsVocabulary.render('overview');assert.equal(domains.hidden,true);assert.equal(buttons[0]['aria-selected'],'true');
+ window.StatsVocabulary.render('review');assert.equal(domains.hidden,false);assert.equal(buttons[2]['aria-selected'],'true');
 });

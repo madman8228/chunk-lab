@@ -4,8 +4,13 @@ function fixture() {
   let visible = true, owner = 'synthetic-a', tab = 'overview';
   const handlers = {}, requests = [], deferred = [];
   function node() { return { dataset:{}, children:[], hidden:false, tagName:'DIV', append(){}, replaceChildren(){}, contains(){return false;},
-    querySelector(){return null;},querySelectorAll(){return [];},setAttribute(){},addEventListener(){},focus(){} }; }
+    querySelector(){return null;},querySelectorAll(){return [];},setAttribute(){},addEventListener(name,fn){this['on'+name]=fn;},focus(){} }; }
   const nodes = new Map();
+  const domainsNode = node();
+  domainsNode.children = ['all','sentence','vocabulary'].map(domain => {
+    const el = node(); el.dataset.domain = domain; el.closest = () => el; return el;
+  });
+  nodes.set('statsDomains', domainsNode);
   const document = { visibilityState:'visible', getElementById(id){ if(!nodes.has(id))nodes.set(id,node());return nodes.get(id); },createElement:node };
   const window = { document, AccountStorage:{get owner(){return owner;}}, statsSurfaceVisible:()=>visible,
     ChunkAPI:{isLoggedIn:()=>true,getBase:()=>'',request:path=>{
@@ -17,16 +22,18 @@ function fixture() {
   vm.runInNewContext(fs.readFileSync(require.resolve('./stats-vocabulary'), 'utf8'), {window, document, console,
     statsSurfaceVisible:()=>visible, Promise,Set,Date});
   return {window,requests,handlers,deferred,setVisible:v=>{visible=v;},setOwner:v=>{owner=v;},
+    setDomain:v=>{const target=domainsNode.children.find(el=>el.dataset.domain===v);domainsNode.onclick({target:{closest:()=>target}});},
     setTab:v=>{tab=v;window.StatsVocabulary.render(v);}, settle:async()=>{for(let i=0;i<8;i++)await new Promise(r=>setImmediate(r));}};
 }
 (async()=>{
-  const f=fixture(); await f.settle();
+  const f=fixture(); f.window.StatsVocabulary.render('overview'); await f.settle();
   assert.equal(f.requests.length,1,'overview loads summary only');
   f.setVisible(false);
   for(let i=0;i<3;i++){f.handlers['server-cache-applied']({detail:{owner:'synthetic-a'}});await f.settle();}
   assert.equal(f.requests.length,1,'hidden saves issue no vocabulary reads');
   f.setVisible(true); f.handlers['stats-surface-visibility'](); await f.settle();
   assert.equal(f.requests.length,2,'reopening coalesces hidden invalidations into one summary read');
+  f.setDomain('vocabulary'); await f.settle();
   f.setTab('sent'); await f.settle();
   assert.equal(f.requests.filter(p=>p.includes('/events')).length,1,'details load on first detail view');
   f.setTab('overview');f.setTab('sent'); await f.settle();
@@ -35,11 +42,11 @@ function fixture() {
   f.setOwner('synthetic-b');f.handlers['cloud-config-changed']();await f.settle();assert.equal(f.requests.length,3);
   f.setVisible(true);f.handlers['stats-surface-visibility']();await f.settle();
   assert.equal(f.requests.length,5,'new account gets its own summary and visible details');
-  const pending=fixture();await pending.settle();
+  const pending=fixture(); pending.window.StatsVocabulary.render('overview'); await pending.settle();
   let finish;
   pending.deferred.push(resolve=>{finish=resolve;});
   pending.handlers['server-cache-applied']({detail:{owner:'synthetic-a'}});
-  pending.setVisible(false);pending.setTab('sent');
+  pending.setVisible(false);pending.setDomain('vocabulary');pending.setTab('sent');
   finish({confirmed:true,domains:[]});await pending.settle();
   assert.equal(pending.requests.length,2,'a request finishing while hidden cannot start details');
   pending.setVisible(true);pending.handlers['stats-surface-visibility']();await pending.settle();
