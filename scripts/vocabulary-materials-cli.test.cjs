@@ -1,5 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{spawnSync}=require('node:child_process');
+if(!fs.existsSync('drafts/scene-wordbooks/borrow-things-v1/review.json')){console.log('SKIP: borrow material review draft is not present in this checkout (private fixture)');process.exit(0);}
 const directory=fs.mkdtempSync(path.join(os.tmpdir(),'chunk-material-cli-'));
 try{
  const source=path.resolve('drafts/scene-wordbooks/borrow-things-v1/review.json'),original=fs.readFileSync(source),output=path.join(directory,'materials.json');

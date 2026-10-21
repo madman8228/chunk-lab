@@ -1,6 +1,8 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),crypto=require('node:crypto');
-const Database=require('node:module').createRequire(path.resolve(__dirname,'../server/package.json'))('better-sqlite3');
+let Database;
+try { Database=require('node:module').createRequire(path.resolve(__dirname,'../server/package.json'))('better-sqlite3'); }
+catch(_) { console.log('SKIP: better-sqlite3 is not installed in this checkout'); process.exit(0); }
 const {initializeMembershipSchema}=require('../server/services/membership/schema');
 const {main,parse}=require('./static-course-registry.cjs');
 async function test(){

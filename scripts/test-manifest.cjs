@@ -18,6 +18,8 @@ function usesBrowser(file) {
 
 function inferGroup(file, cwd) {
   if (cwd === 'server') return 'server';
+  /* Needs server/node_modules (better-sqlite3); run it in the job that installs them. */
+  if (/static-course-registry/i.test(file)) return 'server';
   if (/^e2e[\\/]/i.test(file)) return 'browser';
   if (usesBrowser(file)) return 'browser';
   if (/vocabulary-material-(?:library-browser|course-draft)|sentence-layout-preview/i.test(file)) return 'browser';

@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),crypto=require('node:crypto');
 const order=require('../js/vocabulary-chunk-order'),draftModel=require('../js/wordbook-draft'),engine=require('../landing/sentence-cloze-engine'),contract=require('../js/vocabulary-course-contract'),materials=require('./lib/vocabulary-materials.cjs');
+if(!fs.existsSync('drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4/wordbook.json')){console.log('SKIP: borrow pilot draft is not present in this checkout (private fixture)');process.exit(0);}
 const input='drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4/',originals=['wordbook.json','library.json','approval.json'].map(name=>({name,bytes:fs.readFileSync(input+name)})),hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const body={chunks:[{id:'verb',text:'borrow'},{id:'object',text:'your charger?'},{id:'request',text:'Can I'}],correctOrder:['request','verb','object']},activity={schemaVersion:1,...body,revision:hash(body)};
 (async()=>{

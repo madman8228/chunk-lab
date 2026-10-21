@@ -4,6 +4,7 @@ const model=require('./lib/vocabulary-illustrations.cjs');
 const {createVocabularyImageDelivery,configuredVocabularyImageDelivery}=require('../server/middleware/vocabulary-image-delivery');
 test('service worker leaves vocabulary HTTP cache sharing alone, without precaching the library',()=>{
  const vm=require('node:vm'),handlers={};
+if(!fs.existsSync('assets/vocab-u1-name-wide-v1.webp')){console.log('SKIP: vocabulary illustration fixtures is not present in this checkout (private fixture)');process.exit(0);}
  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8'),{URL,self:{location:{origin:'https://example.com'},addEventListener(name,fn){handlers[name]=fn;}},console});
  for(const image of ['/assets/vocab-u1-apple-wide-v1.webp','/_vocab-images/'+'a'.repeat(64)+'.webp','https://images.example.com/vocabulary/'+'a'.repeat(64)+'.webp']){
   let intercepted=false;handlers.fetch({request:{url:new URL(image,'https://example.com').href,method:'GET'},respondWith(){intercepted=true;}});assert.equal(intercepted,false);

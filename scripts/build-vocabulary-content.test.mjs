@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {buildVocabularyContent} from './build-vocabulary-content.mjs';
+if(!fs.existsSync('assets/vocabulary-decide-wide-v2.avif')){console.log('SKIP: vocabulary pilot assets is not present in this checkout (private fixture)');process.exit(0);}
 
 const root=fileURLToPath(new URL('..',import.meta.url));
 const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'vocabulary-content-test-'));

@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const model=require('./lib/vocabulary-materials.cjs'),{build}=require('./prepare-borrow-material-library.cjs'),draftModel=require('../js/wordbook-draft'),engine=require('../landing/sentence-cloze-engine'),contract=require('../js/vocabulary-course-contract');
+if(!fs.existsSync('drafts/scene-wordbooks/borrow-things-v1/review.json')){console.log('SKIP: borrow material review draft is not present in this checkout (private fixture)');process.exit(0);}
 (async()=>{
  const source=fs.readFileSync('drafts/scene-wordbooks/borrow-things-v1/review.json'),review=JSON.parse(source),input=JSON.stringify(review),library=build(review),before=JSON.stringify(library);
  assert.equal(JSON.stringify(review),input);const indexes=model.validate(library);

@@ -6,6 +6,9 @@ const path = require('node:path');
 const os = require('node:os');
 const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
+let hasFfmpeg = true;
+try { execFileSync('ffmpeg', ['-version'], { stdio: 'ignore' }); } catch (_) { hasFfmpeg = false; }
+if (!hasFfmpeg) { console.log('SKIP: ffmpeg is not available in this environment'); process.exit(0); }
 const draftModel = require('../js/wordbook-draft');
 const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-single-webp-'));
 const run = (command, args) => execFileSync(command, args, { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });

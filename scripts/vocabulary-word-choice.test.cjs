@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),crypto=require('node:crypto');
 const choice=require('../js/vocabulary-word-choice'),draftModel=require('../js/wordbook-draft'),engine=require('../landing/sentence-cloze-engine'),contract=require('../js/vocabulary-course-contract'),materials=require('./lib/vocabulary-materials.cjs');
+if(!fs.existsSync('drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4/wordbook.json')){console.log('SKIP: borrow pilot draft is not present in this checkout (private fixture)');process.exit(0);}
 const input='drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4/',originals=['wordbook.json','library.json','approval.json'].map(name=>({name,bytes:fs.readFileSync(input+name)}));
 const body={field:'blank1',options:[{id:'a',text:'lend',feedback:'lend表示借出；这里是向对方借入。'},{id:'b',text:'borrow',feedback:'borrow表示借入；Can I borrow…? 用来请求借用。'},{id:'c',text:'return',feedback:'return表示归还；此处正在请求借用，不是归还。'}],correctOptionId:'b'};
 const activity={schemaVersion:1,...body,revision:crypto.createHash('sha256').update(JSON.stringify(body)).digest('hex')};

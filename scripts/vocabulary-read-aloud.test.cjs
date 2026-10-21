@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),crypto=require('node:crypto');
 const model=require('../js/vocabulary-read-aloud'),draftModel=require('../js/wordbook-draft'),engine=require('../landing/sentence-cloze-engine'),contract=require('../js/vocabulary-course-contract'),materials=require('./lib/vocabulary-materials.cjs');
+if(!fs.existsSync('drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4/wordbook.json')){console.log('SKIP: borrow pilot draft is not present in this checkout (private fixture)');process.exit(0);}
 const directory='drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4/',originals=['wordbook.json','library.json','approval.json'].map(name=>({name,bytes:fs.readFileSync(directory+name)})),hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 (async()=>{
  const draft=JSON.parse(originals[0].bytes),item=draft.items[0],body={target:'word',text:item.word,audio:structuredClone(item.dictation.audio)},activity={schemaVersion:1,...body,revision:hash(body)};delete item.dictation;delete item.sentenceAudio;item.readAloud=structuredClone(body);const before=JSON.stringify(item);model.validate(item,activity,engine);
