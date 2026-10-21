@@ -27,7 +27,7 @@ function learningEventsSql(db) {
   return parts.join(' UNION ALL ');
 }
 
-function createUsageAnalytics({ db, now = Date.now, resourceName = (_userId, kind) => ({ sentence: '句子练习', wordbook: '单词本练习', vocabulary: '入门单词练习' }[kind]) }) {
+function createUsageAnalytics({ db, now = Date.now, resourceName = (_userId, kind, _resourceId) => ({ sentence: '句子练习', wordbook: '单词本练习', vocabulary: '入门单词练习' }[kind]) }) {
   // Reuse compiled SQL, never cached account data. Each execution remains
   // inside the original immediate transaction and sees current database rows.
   const readPulse = db.prepare('SELECT sequence,last_at FROM user_study_pulses WHERE user_id=? AND session_id=?');
