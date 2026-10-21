@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),Database=require('./node_modules/better-sqlite3'),model=require('../scripts/lib/vocabulary-materials.cjs'),{createPersonalWordbooks}=require('./services/personal-wordbooks');
 (async()=>{const temp=fs.mkdtempSync(path.join(os.tmpdir(),'personal-materials-')),db=new Database(':memory:'),restored=new Database(':memory:');try{
  const schema="CREATE TABLE personal_wordbook_versions(user_id INTEGER,book_id TEXT,version INTEGER,revision TEXT,package_json TEXT,created_at TEXT DEFAULT (datetime('now')),PRIMARY KEY(user_id,book_id,version));";db.exec(schema);restored.exec(schema);fs.mkdirSync(path.join(temp,'assets'));

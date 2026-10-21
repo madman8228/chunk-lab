@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('assets/vocabulary-decide-wide-v3.webp','vocabulary image fixture');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),model=require('./services/vocabulary-practice-summary'),compiler=require('../js/wordbook-draft');
 const root=path.resolve(__dirname,'..'),temp=fs.mkdtempSync(path.join(os.tmpdir(),'practice-summary-')),hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 (async()=>{try{

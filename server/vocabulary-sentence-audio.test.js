@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),input=path.join(root,'drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4'),read=name=>JSON.parse(fs.readFileSync(path.join(input,name),'utf8'));
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'sentence-audio-test-'));let service;

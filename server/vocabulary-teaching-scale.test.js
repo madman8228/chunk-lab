@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('assets/scene-borrow-adult-pen-word-af-heart-v3.ogg','scene audio fixture');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{canonicalHash}=require('./canonical-hash'),model=require('./services/vocabulary-browse-model'),{createVocabularyTeachingContent}=require('./services/vocabulary-teaching-content'),{createVocabularyBrowseOperations}=require('./services/vocabulary-browse-operations'),Database=require('better-sqlite3');
 const root=path.resolve(__dirname,'..'),temp=fs.mkdtempSync(path.join(os.tmpdir(),'vocabulary-teaching-scale-')),originalRead=fs.readFileSync;let db;
 try{
