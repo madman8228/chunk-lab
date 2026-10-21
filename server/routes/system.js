@@ -24,7 +24,10 @@ function registerSystemRoutes(options) {
   app.get('/api/health', function (req, res) { res.json({ ok: true, ts: Date.now() }); });
 
   app.get('/api/config', function (req, res) {
-    res.json({ requireAuth: auth.REQUIRE_AUTH, serverVersion: 1, authAvailable: true,
+    res.set('Cache-Control', 'no-store');
+    res.json({ requireAuth: auth.REQUIRE_AUTH, responseIdentityVersion: 1, testMode: process.env.NODE_ENV === 'test', serverVersion: 1, authAvailable: true,
+      authMode: process.env.PHONE_AUTH_ENABLED === 'true' ? 'phone' : 'password',
+      legacyPasswordLoginAllowed: process.env.PHONE_AUTH_ENABLED === 'true' && process.env.ALLOW_LEGACY_PASSWORD_LOGIN === 'true',
       aiEnabled: aiEnabled, writeProtocol: writeProtocol,
       persistenceMode: writeProtocol === 3 ? 'server-authoritative' : 'legacy' });
   });
@@ -32,6 +35,11 @@ function registerSystemRoutes(options) {
   app.post('/api/usage/heartbeat', auth.authenticate, function (req, res) {
     try { touchUserActivity(req.userId); res.json({ ok: true }); }
     catch (e) { res.status(500).json({ error: '活跃记录失败' }); }
+  });
+
+  app.post('/api/usage/study', auth.authenticate, function (req, res) {
+    try { res.json(options.usageAnalytics.pulse(req.userId, req.body)); }
+    catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : '学习计时暂不可用' }); }
   });
 }
 

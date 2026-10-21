@@ -1,0 +1,35 @@
+{
+  "itemId": "pilot-v1:avoid",
+  "word": "avoid",
+  "meaning": "避开",
+  "scene": "前方堵车，你选择安静的小路，避开繁忙的道路。",
+  "example": "I avoid the busy road.",
+  "translation": "我避开这条繁忙的道路。",
+  "exercise": {
+    "version": 1,
+    "parts": [
+      {
+        "text": "I "
+      },
+      {
+        "id": "verb",
+        "label": "避开",
+        "answers": [
+          "avoid"
+        ]
+      },
+      {
+        "text": " the busy road."
+      }
+    ]
+  },
+  "images": {
+    "wide": [
+      "assets/vocabulary-avoid-wide-v3.webp"
+    ],
+    "mobile": [
+      "assets/vocabulary-avoid-wide-v3.webp"
+    ]
+  },
+  "contentRevision": "5e6e7ea5a8333fd52cbe1fd62b9b5886d5142d9ad9eeedd935cd93798ef9be63"
+}

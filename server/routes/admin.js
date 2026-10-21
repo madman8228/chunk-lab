@@ -1,10 +1,13 @@
 'use strict';
+const { learningEventsSql, createUsageAnalytics, dayOf } = require('../services/usage-analytics');
+const { adminAccountTypeSql } = require('../services/admin-account-type');
 
 function registerAdminRoutes(options) {
   const app = options.app;
   const admin = options.admin;
   const auth = options.auth;
   const db = options.db;
+  const usageAnalytics = options.usageAnalytics || createUsageAnalytics({ db });
   const adminOnly = options.adminOnly;
   const adminOverview = options.adminOverview;
   const adminSyncQuarantines = options.adminSyncQuarantines;
@@ -82,11 +85,12 @@ function registerAdminRoutes(options) {
       const search = String((req.query && req.query.search) || '').trim();
       const limit = Math.min(Math.max(Number(req.query && req.query.limit) || 50, 1), 200);
       const like = '%' + search.replace(/[\\%_]/g, '\\$&') + '%';
+      const events = learningEventsSql(db);
       const users = db.prepare(
-        "SELECT u.id, u.username, u.created_at, " +
+        "SELECT u.id, u.username, u.created_at, " + adminAccountTypeSql(db) + " AS account_type, " +
         "(SELECT MAX(last_seen_at) FROM user_activity a WHERE a.user_id=u.id) AS last_seen_at, " +
-        "(SELECT COUNT(*) FROM user_events e WHERE e.user_id=u.id AND e.deleted_at IS NULL AND json_extract(e.data_json, '$.kind')='answer') AS answer_count, " +
-        "(SELECT COUNT(DISTINCT date(e.at/1000, 'unixepoch', '+8 hours')) FROM user_events e WHERE e.user_id=u.id AND e.deleted_at IS NULL AND json_extract(e.data_json, '$.kind')='answer') AS learning_days, " +
+        "(SELECT COUNT(*) FROM (" + events + ") e WHERE e.user_id=u.id) AS answer_count, " +
+        "(SELECT COUNT(DISTINCT day) FROM (SELECT date(e.at/1000, 'unixepoch', '+8 hours') AS day FROM (" + events + ") e WHERE e.user_id=u.id UNION SELECT day FROM user_study_daily WHERE user_id=u.id AND active_ms>0)) AS learning_days, " +
         "(SELECT COUNT(*) FROM user_entity_rows e WHERE e.user_id=u.id AND e.kind='mastered' AND e.deleted_at IS NULL) AS mastered_count " +
         "FROM users u WHERE (?='' OR u.username LIKE ? ESCAPE '\\') " +
         "ORDER BY CASE WHEN last_seen_at IS NULL THEN 1 ELSE 0 END, last_seen_at DESC, u.id DESC LIMIT ?"
@@ -94,12 +98,13 @@ function registerAdminRoutes(options) {
         return {
           id: row.id,
           username: row.username,
-          type: row.username === '__default__' ? 'default' : (/^guest_/.test(row.username) ? 'guest' : 'registered'),
+          type: row.account_type,
           createdAt: row.created_at,
           lastSeenAt: row.last_seen_at,
           answers: row.answer_count,
           learningDays: row.learning_days,
-          mastered: row.mastered_count
+          mastered: row.mastered_count,
+          studyTime: usageAnalytics.userTime(row.id, false)
         };
       });
       res.json({ users: users });
@@ -115,9 +120,8 @@ function registerAdminRoutes(options) {
       if (!Number.isSafeInteger(id) || id <= 0) return res.status(400).json({ error: '用户编号无效' });
       const user = db.prepare('SELECT id, username, created_at FROM users WHERE id=?').get(id);
       if (!user) return res.status(404).json({ error: '用户不存在' });
-      const answers = db.prepare(
-        "SELECT COUNT(*) AS count FROM user_events WHERE user_id=? AND deleted_at IS NULL AND json_extract(data_json, '$.kind')='answer'"
-      ).get(id).count;
+      const events = learningEventsSql(db);
+      const answers = db.prepare('SELECT COUNT(*) AS count FROM (' + events + ') WHERE user_id=?').get(id).count;
       const mastered = db.prepare("SELECT COUNT(*) AS count FROM user_entity_rows WHERE user_id=? AND kind='mastered' AND deleted_at IS NULL").get(id).count;
       const progress = db.prepare("SELECT COUNT(*) AS count FROM user_course_progress WHERE user_id=? AND deleted_at IS NULL").get(id).count;
       const recent = db.prepare(
@@ -127,7 +131,10 @@ function registerAdminRoutes(options) {
         try { event = JSON.parse(row.data_json); } catch (e) {}
         return { at: row.at, kind: event.kind || 'unknown', key: event.key || null, ok: event.ok == null ? null : !!event.ok };
       });
-      res.json({ user: user, summary: { answers: answers, mastered: mastered, courses: progress }, recent: recent });
+      const vocabulary = db.prepare("SELECT at,kind,resource_id AS key FROM (" + events + ") WHERE user_id=? AND kind<>'sentence' ORDER BY at DESC LIMIT 20").all(id);
+      const studyTime = usageAnalytics.userTime(id);
+      res.json({ user: user, summary: { answers: answers, mastered: mastered, courses: progress },
+        studyTime, today: dayOf(Date.now()), recent: recent.concat(vocabulary).sort((a,b) => b.at-a.at).slice(0,20) });
     } catch (e) {
       console.error('[admin] user detail failed:', e.message);
       res.status(500).json({ error: '用户详情读取失败' });

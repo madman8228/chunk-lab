@@ -1,0 +1,90 @@
+:root{--round:ui-rounded,'Arial Rounded MT Bold',system-ui,sans-serif}
+*{box-sizing:border-box}body.learning-page{margin:0;font-family:system-ui,'Microsoft YaHei',sans-serif;line-height:1.5;background:#f5efdf;color:#523019;min-height:100vh;isolation:isolate}
+/* Keep the garden behind the task, without filtering illustrations or controls. */
+body.learning-page::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('../assets/jqka-learning-garden-body-v1.webp') center top/100% auto repeat-y;opacity:.42}
+.learning-nav{position:relative;z-index:10;max-width:1040px;margin:20px auto 0;display:flex;align-items:center;gap:24px;padding:18px 26px;background:#fff0bc;border:3px solid #714922;border-radius:16px;box-shadow:inset 0 2px 0 #fff9d9,0 7px 18px #62422125;font-size:14px;font-weight:700}
+.learning-nav a{color:#674929;text-decoration:none}.learning-nav>a:last-child{margin-left:auto}.learning-brand{font-size:24px;font-weight:900;color:#523019!important}.learning-brand span{color:#ad3827}
+.learning-shell{max-width:1120px;width:calc(100% - 24px);margin:24px auto 64px;padding:0}.learning-shell.practice-active>.wrap{display:none}
+.learning-shell .practice-panel{max-width:none;width:100%;margin:0}
+.learning-shell .practice-panel{overflow:clip}
+.practice-controls{position:sticky;bottom:12px;z-index:12;display:flex;justify-content:flex-end;gap:12px;margin:12px 24px 18px;padding:10px;background:#fff0bc;border:2px solid #714922;border-radius:14px;box-shadow:0 6px 16px #62422125}
+.practice-controls .btn{font-size:14px;min-height:44px;padding:8px 16px;background:#fff9e9;border:2px solid #714922;border-radius:10px;white-space:nowrap}
+.practice-controls .btn:hover:not(:disabled){background:#f4dfab}
+.practice-controls .btn:disabled{opacity:.5;cursor:default}
+@media(max-width:680px){.practice-controls{margin:12px 10px 14px;gap:6px;padding:8px;bottom:8px}.practice-controls .btn{flex:1;min-width:0;font-size:12px;padding:8px 3px}}
+.learning-intro{display:grid;grid-template-columns:1fr 1fr;background:#fff9e9;border:3px solid #70451e;border-radius:22px;overflow:hidden;box-shadow:0 12px 28px #62422130;padding:0}
+.intro-art{background:url('../assets/vocabulary-decide-10k-v1.webp') center/cover;min-height:440px;background-image:image-set(url('../assets/vocabulary-decide-10k-v1.avif') type('image/avif'),url('../assets/vocabulary-decide-10k-v1.webp') type('image/webp'))}
+/* Above 320px displayed width, the introduction uses its approved 20 KB variant.
+   All vocabulary encodings must remain below 20 KB; never preload both. */
+@media(min-width:351px){.intro-art{background-image:url('../assets/vocabulary-decide-20k-v1.webp');background-image:image-set(url('../assets/vocabulary-decide-20k-v1.avif') type('image/avif'),url('../assets/vocabulary-decide-20k-v1.webp') type('image/webp'))}}
+.intro-copy{padding:38px 34px}.intro-copy h1{font-size:34px;line-height:1.4;margin:0 0 20px}.intro-copy p{font-size:16px;line-height:1.8;color:#674929}.intro-copy .intro-scope,.intro-copy .intro-note{font-size:13px}.intro-steps{padding:0;list-style:none;display:flex;gap:10px;font-size:13px;color:#86321f;font-weight:700;margin:24px 0}.intro-steps li+li:before{content:'→';margin-right:10px;color:#9b621c}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border:3px solid #70451e;font:inherit;color:#523019;cursor:pointer}.login-link{padding:8px 0;border:0;background:none;color:#674929;text-decoration:underline;text-underline-offset:4px;cursor:pointer;font:inherit;font-size:13px}
+.practice-content.has-scene{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;padding:28px}.practice-visual{margin:0;align-self:start}.practice-illustration{width:100%;aspect-ratio:1;background-size:cover;background-position:center;border-radius:12px}.practice-visual figcaption{font-size:14px;line-height:1.8;color:#674929;margin-top:14px}.practice-teaching{min-width:0}.practice-teaching .practice-word{margin:8px 0 22px}.practice-teaching .practice-word h4{font-size:48px}.practice-teaching .practice-example p:first-child{font-size:17px}.practice-teaching .practice-actions{flex-direction:column;gap:12px;align-items:stretch}.practice-teaching .practice-actions .btn{width:100%}
+.learning-nav a:focus-visible,.login-link:focus-visible{outline:3px solid #9b621c;outline-offset:4px}
+@media(max-width:680px){.learning-nav{margin:12px;gap:12px;padding:14px;font-size:12px;flex-wrap:wrap}.learning-nav>span{display:none}.learning-brand{font-size:21px}.learning-shell{margin:24px auto 40px;padding:0 12px}.learning-intro{grid-template-columns:1fr}.intro-art{min-height:0;aspect-ratio:1.3}.intro-copy{padding:26px 24px}.intro-copy h1{font-size:28px}.learning-shell .practice-panel{margin:0;scroll-margin-top:16px}.practice-content.has-scene{display:block;padding:22px}.practice-visual{max-width:270px;margin:0 auto 26px}.practice-teaching .practice-word h4{font-size:42px}}
+.learning-nav{position:sticky;top:12px;max-width:1120px;width:calc(100% - 24px);margin:20px auto 0;gap:18px}
+.learning-shell .practice-content.has-scene{grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:44px;padding:32px}
+.composer-progress{font-size:13px;color:#674929;margin:0 0 12px;font-variant-numeric:tabular-nums}
+.practice-word-inline{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 22px}
+.practice-word-inline strong{font-size:28px;line-height:1.2}
+.practice-word-inline .practice-phonetic{font-size:14px;color:#674929}
+.practice-word-inline .practice-audio{margin:0;min-height:40px;padding:0 12px}
+.sentence-translation{font-size:17px;color:#674929;margin:0 0 16px}
+.practice-teaching .practice-question{font-size:24px;margin:10px 0 22px;max-width:28em}
+.sentence-draft{font-size:28px;line-height:1.6;min-height:76px;padding:14px 0;margin:0 0 16px;border-block:1px solid #dfc79b;overflow-wrap:anywhere}
+.draft-active{color:#ad3827}.sentence-form{margin:20px 0 0}.practice-teaching .practice-feedback{font-size:14px;min-height:28px;margin:14px 0 0}
+.practice-teaching .practice-help{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px}.completion-help{font-size:13px;color:#674929}
+.built-sentence{font-size:32px;font-weight:800;margin:20px 0;overflow-wrap:anywhere}
+@media(max-width:680px){.learning-shell{width:calc(100% - 24px);padding:0;margin:24px auto 40px}.learning-shell .practice-content.has-scene{display:block;padding:22px}.practice-teaching .practice-question{font-size:21px}.sentence-draft{font-size:24px}.built-sentence{font-size:26px}}
+.practice-illustration{background-image:none;background-size:cover;background-position:center}
+.learning-links{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.learning-links>a{padding:10px 12px;border-radius:8px;white-space:nowrap}
+.learning-links>a:hover{background:#f4dfab;color:#523019}
+.learning-shell .practice-panel{scroll-margin-top:112px}
+.site-account{position:relative}
+#jqkaLogin{font:inherit;cursor:pointer;background:#fff9e9;color:#523019;border:2px solid #714922;border-radius:24px;padding:10px 16px;white-space:nowrap}
+#jqkaLogin:hover{background:#f4dfab}#jqkaLogin:disabled{opacity:.7;cursor:wait}
+.account-panel{position:absolute;right:0;top:calc(100% + 14px);width:320px;max-width:calc(100vw - 32px);padding:22px;background:#fff9e9;color:#523019;border:3px solid #714922;border-radius:18px;box-shadow:0 10px 24px #62422130;font-size:14px;font-weight:400;z-index:100}
+.account-panel[hidden],.account-panel [hidden]{display:none!important}
+.account-panel header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.account-panel h2{font-size:20px;line-height:1.3;margin:0}.account-panel button{font:inherit;cursor:pointer}
+.account-close{border:0;background:transparent;color:#523019;padding:8px;border-radius:8px;font-size:24px!important;line-height:1}
+.account-name{font-weight:800;font-size:19px;overflow-wrap:anywhere;margin:0 0 3px}.account-note{font-size:13px;color:#674929;line-height:1.6;margin:0 0 18px}
+.account-panel dl{margin:0 0 18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px 16px;padding:16px 0;border-block:1px solid #d8cbb5}.account-panel dt{color:#674929}.account-panel dd{margin:0;text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.account-panel .account-bind{width:100%;padding:10px 14px;margin-bottom:12px;border:2px solid #714922;border-radius:10px;color:#523019;background:#ffdc57;font-weight:700}.account-logout{border:0;padding:8px 0;background:transparent;color:#674929}
+.account-message{position:absolute;top:100%;right:0;width:280px;max-width:calc(100vw - 32px);padding:10px 12px;border-radius:10px;background:#fff9e9;border:1px solid #714922;font-size:13px;color:#523019}.account-message:empty{display:none}
+.learning-nav button:focus-visible{outline:3px solid #9b621c;outline-offset:4px}
+@media(max-width:900px){.learning-nav{margin:12px;flex-wrap:wrap}.learning-links{width:100%;margin-left:0;gap:4px}.site-account{margin-left:auto}.learning-shell .practice-panel{scroll-margin-top:176px}}
+@media(max-width:480px){.learning-links>a{padding:8px 6px}.learning-links{font-size:12px}.account-panel{right:0;max-height:calc(100dvh - 180px);overflow-y:auto}#jqkaLogin{padding:8px 12px}.learning-links .site-account{position:absolute;top:14px;right:14px;margin-left:0}.account-message{right:0}}
+.learning-shell .practice-content.has-scene{display:flex;flex-direction:column;gap:14px;padding:18px 28px;min-height:0}
+.practice-content .practice-visual{display:block;width:100%;max-width:660px;align-self:center;margin:0;text-align:center}
+.practice-content .practice-illustration{width:100%;aspect-ratio:16/9;margin:0 auto;background-image:var(--scene-wide);background-size:contain;background-repeat:no-repeat}
+.practice-content .practice-visual figcaption{margin:8px 0 0;font-size:14px}
+.practice-content .practice-teaching{width:100%;max-width:660px;align-self:center}
+.practice-teaching .practice-word-inline{margin-bottom:8px}
+.practice-teaching .practice-question{max-width:none;margin:8px 0 10px}
+.practice-help[hidden]{display:none}
+.learning-shell .practice-header{padding:12px 24px;flex-wrap:wrap}
+.practice-header .practice-progress{padding:0;margin-left:auto;font-size:12px;gap:12px}
+.practice-teaching .composer-progress{margin:0 0 6px}
+.practice-teaching .sentence-translation{margin:0 0 6px;font-size:15px}
+.practice-teaching .sentence-form{margin:8px 0 0;display:flex;gap:10px;align-items:flex-end}
+.practice-teaching .sentence-form input{margin-top:4px;padding:10px;font-size:18px}
+.practice-teaching .sentence-form>input{flex:1;width:0;min-width:0;margin-top:0}
+.practice-teaching .cloze-translation{font-size:18px;margin:12px 0;color:#523019}
+.cloze-context{font-size:13px;margin-inline-start:8px;color:#674929}
+.practice-panel .cloze-form{display:block;margin:0}
+.cloze-sentence{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:24px;line-height:1.8;color:#523019}
+.cloze-text{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0}
+.practice-panel .cloze-blank{display:inline-block;flex:0 1 auto;width:var(--blank-width);max-width:100%;min-width:0;margin:0;padding:7px 10px;font:inherit;line-height:1.3;min-height:48px;border-radius:8px;background:#fffdf4}
+.cloze-blank[aria-invalid=true]{border-color:#ad3827;background:#fff0e7}
+.cloze-blank[data-state=correct]{border-color:#63874e}
+.cloze-actions{display:flex;justify-content:flex-end;margin-top:14px}
+.practice-panel .cloze-form .btn{min-height:48px;margin:0;width:auto}
+@media(max-width:680px){.cloze-sentence{font-size:20px;gap:6px}.practice-teaching .cloze-translation{font-size:16px}.cloze-context{display:block;margin-inline-start:0}.cloze-actions .practice-primary{min-width:100px}.cloze-actions{margin-top:12px}}
+.practice-teaching .sentence-form .btn{min-height:50px;margin-top:0}
+.practice-teaching .sentence-draft{min-height:0;padding:8px 0;margin:0 0 8px;font-size:24px}
+.practice-teaching .practice-feedback:empty{display:none}
+.practice-teaching .practice-help{margin-top:8px}
+.learning-shell .practice-session-note{padding:6px 16px}
+.learning-shell .practice-controls{margin:8px 12px 10px;padding:6px;gap:8px}
+@media(max-width:680px){.learning-shell .practice-content.has-scene{padding:12px 16px;gap:12px}.practice-content .practice-illustration{width:100%;aspect-ratio:4/3;background-image:var(--scene-mobile)}.practice-content .practice-visual figcaption{font-size:13px}.practice-word-inline{gap:8px}.practice-teaching .practice-question{font-size:18px}.practice-teaching .sentence-form input{font-size:16px}.practice-teaching .sentence-form .btn{min-width:74px;width:auto;padding:10px 12px}.learning-shell .practice-header{padding:10px 16px;gap:8px}.practice-header .practice-dots{display:none}.learning-shell .practice-controls{gap:6px}}

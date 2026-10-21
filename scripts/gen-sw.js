@@ -37,7 +37,7 @@ if (!cacheMatch || !listMatch) {
 
 const base = (listMatch[0].match(/'([^']+)'/g) || []).map(function (s) { return s.slice(1, -1); });
 
-/* PRECACHE_SOFT（2026-09-10）：体积随内容增长的数据资产 —— 参与版本哈希，但不进原子 addAll。
+/* PRECACHE_SOFT：可选资源参与版本哈希，但不在安装时下载，也不进原子 addAll。
    见 sw.js 该常量上方的根因说明。这里是「不再自动补回 PRECACHE」的关键：
    否则依赖闭包（HTML 的 <script src="oral8000.js">）会把它当必需项、每次都塞回原子清单，
    而原子清单一旦装不上，SW 整体作废、离线能力全丢。 */
@@ -108,7 +108,7 @@ sw = sw.replace(cacheMatch[0], "const CACHE = '" + version + "'; // 由 scripts/
 fs.writeFileSync(SW, sw);
 
 console.log('[gen-sw] CACHE = ' + version + '  (' + files.length + ' 个原子预缓存 + ' +
-  softList.filter(function (u) { return !missingSoft.includes(u); }).length + ' 个软预缓存，均计入哈希)');
+  softList.filter(function (u) { return !missingSoft.includes(u); }).length + ' 个按需资源，均计入哈希)');
 if (added.length) console.log('[gen-sw] 自动补全: ' + added.join(', '));
 if (missing.length) console.log('[gen-sw] 剔除缺失基准: ' + missing.join(', '));
 if (skip.size) console.warn('[gen-sw] HTML 引用但文件缺失: ' + Array.from(skip).join(', '));

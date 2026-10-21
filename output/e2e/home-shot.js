@@ -78,24 +78,48 @@ const server = spawn(process.execPath, ['index.js'], {
   }
   const browser = await chromium.launch({ executablePath: CHROME });
   const out = [];
-  for (const vp of [{ w: 1280, h: 900, tag: '1280' }, { w: 390, h: 844, tag: '390' }]) {
+  for (const vp of [{ w: 1280, h: 900, tag: '1280' }, { w: 390, h: 844, tag: '390' }, { w: 360, h: 800, tag: '360' }]) {
     const c = await browser.newContext({ viewport: { width: vp.w, height: vp.h } });
     const p = await c.newPage();
     const errs = [];
     p.on('pageerror', e => errs.push(e.message));
+    /* 种子必须不被服务端空状态覆盖：abort 掉 API / content 请求（照 e2e/daily-goal.test.js:141-142）。
+       否则首页会用服务端真实（空）数据重渲染，注入的 dailyGoal=20 / 学习记录种子全部失效，
+       截出来的就是空档案态 —— 那是这个脚本此前最大的坑。 */
+    await p.route('**/api/**', r => r.abort('failed'));
+    await p.route('**/content/**', r => r.abort('failed'));
     await p.addInitScript(seed, null);
     await p.goto('http://127.0.0.1:' + PORT + '/main.html', { waitUntil: 'domcontentloaded' });
     await p.waitForSelector('#homeBody .home-today-counts', { timeout: 20000 });
     await p.waitForTimeout(1800);
     const file = path.join(ROOT, 'output', PREFIX + '-' + vp.tag + '.png');
     await p.screenshot({ path: file, fullPage: true });
-    /* 顺带量一下关键盒模型，纯文本落盘便于对比 */
+    /* 顺带量一下关键盒模型/颜色，纯文本落盘便于对比 */
     const geo = await p.evaluate(() => {
-      const g = s => { const e = document.querySelector(s); if (!e) return null; const r = e.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height) }; };
+      const g = s => { const e = document.querySelector(s); if (!e) return null; const r = e.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height), top: Math.round(r.top), left: Math.round(r.left) }; };
+      const rect = el => { if (!el) return null; const r = el.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height), top: Math.round(r.top), left: Math.round(r.left), bottom: Math.round(r.bottom) }; };
+      const rgb = el => el ? getComputedStyle(el).backgroundColor : null;
+      const border = el => el ? (getComputedStyle(el).borderTopWidth + ' ' + getComputedStyle(el).borderTopColor) : null;
       const row = document.querySelector('.home-today-counts');
       const kids = row ? Array.prototype.map.call(row.children, el => ({ cls: el.className, tag: el.tagName, w: Math.round(el.getBoundingClientRect().width) })) : [];
-      return { bodyW: document.getElementById('homeBody').getBoundingClientRect().width,
-        counts: g('.home-today-counts'), kids: kids, scrollW: document.documentElement.scrollWidth };
+      const goal = document.getElementById('homeGoalPill');
+      const mastered = document.getElementById('homeMastered');
+      const due = document.getElementById('homeBtnDue');
+      const book = document.getElementById('homeBtnBook');
+      const gK = goal && goal.querySelector('.pill-k');
+      const gN = goal && goal.querySelector('.pill-n');
+      const card = document.querySelector('.home-card');
+      return { bodyW: Math.round(document.getElementById('homeBody').getBoundingClientRect().width),
+        counts: g('.home-today-counts'), kids: kids,
+        scrollW: document.documentElement.scrollWidth, clientW: document.documentElement.clientWidth,
+        cardBorder: border(card), cardBg: rgb(card),
+        dueBg: rgb(due), dueBorder: border(due), dueNum: due && due.querySelector('.pill-n') ? getComputedStyle(due.querySelector('.pill-n')).color : null,
+        bookBg: rgb(book), masteredBg: rgb(mastered),
+        goalRect: rect(goal), masteredRect: rect(mastered), goalK: rect(gK), goalN: rect(gN),
+        goalLabelAboveNumber: !!(gK && gN && gK.getBoundingClientRect().bottom <= gN.getBoundingClientRect().top + 0.5),
+        goalSameRowAsMastered: !!(goal && mastered && Math.abs(goal.getBoundingClientRect().top - mastered.getBoundingClientRect().top) <= 1 && Math.abs(goal.getBoundingClientRect().height - mastered.getBoundingClientRect().height) <= 1),
+        goalRightOfMastered: !!(goal && mastered && goal.getBoundingClientRect().left > mastered.getBoundingClientRect().left)
+      };
     });
     out.push({ vp: vp.tag, file: file.replace(/\\/g, '/'), errs: errs, geo: geo });
     await c.close();

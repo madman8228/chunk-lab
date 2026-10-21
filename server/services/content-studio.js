@@ -17,6 +17,8 @@ function createContentStudio(options) {
   const appRoot = path.resolve(options.appRoot);
   const manifestPath = path.join(appRoot, 'content', 'manifest.json');
   const overridesDir = path.join(appRoot, 'extra', 'content-overrides');
+  /* T5（2026-10-07）：分片路径表落在 server/ 下（被 static-guard 保护），公开 manifest 仅元数据。 */
+  const shardMapPath = path.join(appRoot, 'server', 'content', 'shards.json');
 
   function writeAtomic(file, value) {
     fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -66,12 +68,56 @@ function createContentStudio(options) {
     return { shardBody, shardUrl, indexBody, indexUrl, nextManifest };
   }
 
+  function readShardMap() {
+    if (!fs.existsSync(shardMapPath)) return null;
+    const map = JSON.parse(fs.readFileSync(shardMapPath, 'utf8'));
+    if (!map || map.schemaVersion !== 1 || !Array.isArray(map.decks)) return null;
+    return map;
+  }
+
+  /* 把 server/content/shards.json 的分片路径合并回内存 manifest（供读取源课程/计算版本）。 */
+  function mergeShards(manifest) {
+    const map = readShardMap();
+    if (!map) return manifest;
+    const byId = new Map(map.decks.map((deck) => [deck.id, deck]));
+    const decks = (manifest.decks || []).map((deck) => {
+      const info = byId.get(deck.id);
+      return info ? Object.assign({}, deck, { shards: info.shards || [], indexShards: info.indexShards || [] }) : deck;
+    });
+    return Object.assign({}, manifest, { decks });
+  }
+
+  /* 写盘用的公开 manifest：剥掉 shards / indexShards（仅元数据）。 */
+  function slimManifest(manifest) {
+    return Object.assign({}, manifest, {
+      decks: (manifest.decks || []).map((deck) => {
+        const out = Object.assign({}, deck);
+        delete out.shards;
+        delete out.indexShards;
+        return out;
+      }),
+    });
+  }
+
+  /* 由（含分片的）manifest 派生 write 用的分片表。 */
+  function shardMapFromManifest(manifest) {
+    return {
+      schemaVersion: 1,
+      contentVersion: manifest.contentVersion,
+      decks: (manifest.decks || []).map((deck) => ({
+        id: deck.id,
+        shards: deck.shards || [],
+        indexShards: deck.indexShards || [],
+      })),
+    };
+  }
+
   function readManifest() {
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     if (!manifest || manifest.schemaVersion !== 1 || !Array.isArray(manifest.decks)) {
       throw new Error('课程清单格式无效');
     }
-    return manifest;
+    return mergeShards(manifest);
   }
 
   function sourceCourse(courseId) {
@@ -225,6 +271,7 @@ function createContentStudio(options) {
     const overridePath = path.join(overridesDir, courseId + '.json');
     const oldOverride = fs.existsSync(overridePath) ? fs.readFileSync(overridePath) : null;
     const oldManifest = fs.readFileSync(manifestPath);
+    const oldShardMap = fs.existsSync(shardMapPath) ? fs.readFileSync(shardMapPath) : null;
     const swPath = path.join(appRoot, 'sw.js');
     const oldSw = fs.existsSync(swPath) ? fs.readFileSync(swPath) : null;
     const nextRevision = latest.revision + 1;
@@ -233,7 +280,9 @@ function createContentStudio(options) {
       writeAtomic(overridePath, JSON.stringify({ schemaVersion: 1, profile: 'sentence-deck/1', course }, null, 2) + '\n');
       writeAtomic(path.join(appRoot, artifacts.shardUrl), artifacts.shardBody);
       writeAtomic(path.join(appRoot, artifacts.indexUrl), artifacts.indexBody);
-      writeAtomic(manifestPath, JSON.stringify(artifacts.nextManifest, null, 2) + '\n');
+      /* T5：公开 manifest 只写元数据；分片路径写进 server/content/shards.json。 */
+      writeAtomic(manifestPath, JSON.stringify(slimManifest(artifacts.nextManifest), null, 2) + '\n');
+      writeAtomic(shardMapPath, JSON.stringify(shardMapFromManifest(artifacts.nextManifest), null, 2) + '\n');
       const cacheVersion = updateServiceWorkerCache();
       db.prepare("INSERT INTO admin_content_revisions (project_id,course_id,revision,status,content_json,content_hash) VALUES (?,?,?,'published',?,?)")
         .run(PROJECT_ID, courseId, nextRevision, contentJson, hash(contentJson));
@@ -242,6 +291,8 @@ function createContentStudio(options) {
       if (oldOverride) writeAtomic(overridePath, oldOverride);
       else if (fs.existsSync(overridePath)) fs.unlinkSync(overridePath);
       writeAtomic(manifestPath, oldManifest);
+      if (oldShardMap) writeAtomic(shardMapPath, oldShardMap);
+      else if (fs.existsSync(shardMapPath)) fs.unlinkSync(shardMapPath);
       if (oldSw) writeAtomic(swPath, oldSw);
       throw error;
     }

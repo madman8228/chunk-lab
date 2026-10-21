@@ -134,6 +134,7 @@ CREATE TABLE IF NOT EXISTS user_client_save_health (
   client_id TEXT NOT NULL,
   pending INTEGER NOT NULL,
   blocked INTEGER NOT NULL,
+  deferred_version INTEGER NOT NULL DEFAULT 0,
   retry_attempts INTEGER NOT NULL,
   oldest_pending_at INTEGER,
   error_code TEXT,
@@ -390,6 +391,20 @@ CREATE TABLE IF NOT EXISTS user_entity_rows (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+/* Historical vocabulary-pilot attempts. The old /api/vocabulary-practice route
+   was retired, but existing rows still feed the learning archive and usage
+   analytics. Keep the table so those reads remain valid on fresh databases. */
+CREATE TABLE IF NOT EXISTS vocabulary_attempts (
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  event_id TEXT NOT NULL,
+  word TEXT NOT NULL,
+  independent INTEGER NOT NULL,
+  occurred_at INTEGER NOT NULL,
+  PRIMARY KEY(user_id,event_id)
+);
+CREATE INDEX IF NOT EXISTS vocabulary_attempts_owner
+  ON vocabulary_attempts(user_id,word,occurred_at);
+
 /* ----- 行级增量下行（2026-09-10 第三轮）：每张用户数据表带单调变更序号 seq -----
    目标：让客户端能 GET /api/data?since=N 只取「自己还没见过的变更」，
    而不是每次开页都把 8007KB 全量拉一遍（8000 句实测 7191KB → 648KB brotli，
@@ -457,6 +472,7 @@ addColumnIfMissing('user_kv', 'updated_at', 'TEXT');
 addColumnIfMissing('user_decks', 'is_public', 'INTEGER DEFAULT 0');
 // Additive metadata storage: never rewrite existing course items or records.
 addColumnIfMissing('user_decks', 'authoring_json', 'TEXT');
+addColumnIfMissing('user_client_save_health', 'deferred_version', 'INTEGER NOT NULL DEFAULT 0');
 /* 行级增量下行：所有用户数据表补 seq 列。
    必须**先**补列再建索引 —— CREATE TABLE IF NOT EXISTS 对升级前的旧库是空操作，
    旧库此刻还没有 seq 列，在第一个 db.exec 里建索引会直接报 "no such column"。 */
@@ -494,6 +510,38 @@ function initChangeSeq() {
   return backfilled;
 }
 
-module.exports = db;
+db.exec(`CREATE TABLE IF NOT EXISTS library_resource_revisions (
+  resource_id TEXT NOT NULL, revision INTEGER NOT NULL, status TEXT NOT NULL CHECK(status IN ('draft','published')),
+  metadata_json TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY(resource_id,revision));`);
+
+  db.exec(`CREATE TABLE IF NOT EXISTS vocabulary_study_events (
+    user_id INTEGER NOT NULL REFERENCES users(id),event_id TEXT NOT NULL,item_id TEXT NOT NULL,resource_id TEXT NOT NULL,
+    content_revision TEXT NOT NULL,data_json TEXT NOT NULL,occurred_at INTEGER NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,event_id));
+    CREATE INDEX IF NOT EXISTS vocabulary_study_resource ON vocabulary_study_events(user_id,resource_id,item_id);
+    CREATE TABLE IF NOT EXISTS vocabulary_item_progress (
+    user_id INTEGER NOT NULL REFERENCES users(id),item_id TEXT NOT NULL,data_json TEXT NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,item_id));`);
+  db.exec(`CREATE TABLE IF NOT EXISTS vocabulary_practice_reports (
+    user_id INTEGER NOT NULL REFERENCES users(id),report_id TEXT NOT NULL,scope_key TEXT NOT NULL,
+    session_id TEXT NOT NULL,item_id TEXT NOT NULL,resource_id TEXT NOT NULL,content_revision TEXT NOT NULL,
+    data_json TEXT NOT NULL,occurred_at INTEGER NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,report_id),UNIQUE(user_id,scope_key,session_id,item_id));
+    CREATE INDEX IF NOT EXISTS vocabulary_report_scope ON vocabulary_practice_reports(user_id,scope_key,item_id);`);
+  db.exec(`CREATE TABLE IF NOT EXISTS personal_wordbook_versions (
+    user_id INTEGER NOT NULL REFERENCES users(id),book_id TEXT NOT NULL,version INTEGER NOT NULL,
+    revision TEXT NOT NULL,package_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    PRIMARY KEY(user_id,book_id,version));`);
+  db.exec(`CREATE TABLE IF NOT EXISTS vocabulary_attempt_events (
+    user_id INTEGER NOT NULL REFERENCES users(id),attempt_id TEXT NOT NULL,scope_key TEXT NOT NULL,
+    session_id TEXT NOT NULL,item_id TEXT NOT NULL,resource_id TEXT NOT NULL,content_revision TEXT NOT NULL,
+    data_json TEXT NOT NULL,occurred_at INTEGER NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,attempt_id));
+    CREATE INDEX IF NOT EXISTS vocabulary_attempt_scope ON vocabulary_attempt_events(user_id,scope_key,item_id);`);
+  module.exports = db;
 /* 附在 db 上导出（本模块的默认导出是连接对象）——由 index.js 在 listen 之前调用。 */
 module.exports.initChangeSeq = initChangeSeq;
+/* Membership adds isolated tables only; existing courses and learning rows are untouched. */
+require('./services/membership/schema').initializeMembershipSchema(db);
+require('./services/usage-analytics').initializeUsageSchema(db);

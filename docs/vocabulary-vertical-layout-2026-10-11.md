@@ -1,0 +1,11 @@
+# Vertical vocabulary practice
+
+The exercise uses the same vertical reading order on desktop and mobile: complete scene image, situation caption, word cue, sentence prompt, input. Updated landscape masters expand each original scene's environment rather than stretching figures. Desktop uses 16:9 across the 660px learning column; mobile uses a centrally framed 4:3 version across the available content width. Important people and teaching objects remain in the central safe area. Desktop delivery stays below 20,000 bytes and mobile below 10,000 bytes, for both AVIF and WebP. CSS selects one device profile and one supported format on demand. Original square assets are retained, not overwritten. Title and round progress share a row. Compact spacing, an inline submit action, and no empty feedback reserve reduce scrolling.
+
+The reveal-step button is removed. Critical expressions still require typing; noncritical endings retain Tab/button completion. Wrong answers do not advance and continue to count as assisted practice. Exit, skip, pause/resume and restart retain their previous semantics; no course or saved learning records are removed.
+
+The scene caption, visible input label and internal sentence-step counter are removed. Image descriptions remain available to assistive technology. Only the current actionable prompt is visible while typing. Whole-sentence translation is not shown during isolated word/structure scaffolding; it accompanies completed English, or forms the actual task prompt in reduced-scaffolding review. The input retains an accessible name and descriptions linked to the current prompt and feedback.
+
+Practice-only background treatment: reuse the existing garden as a noninteractive fixed layer at 42% opacity over warm paper, with original color and no desaturation filter. The previous 18% opacity / 35% saturation treatment was rejected as gray and washed out. The layer is isolated behind the page; illustrations, controls and text are not filtered. Homepage styling and original images remain untouched. No additional image downloads are introduced.
+
+Verified on isolated Chromium instances at desktop widths and 390px mobile width, including vertical image/text ordering, image containment, no reveal control, full rounds and persistence isolation. Physical phone keyboards and Safari were not tested.

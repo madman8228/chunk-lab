@@ -92,7 +92,30 @@ function checkDeploySafety() {
     problems.push('部署脚本缺少远端生产配置预检（NODE_ENV=production、REQUIRE_AUTH=true、TRUST_PROXY=true、JWT_SECRET≥32）');
   }
   const snapIdx = SH.indexOf('backup-db.js backup');
+  const phoneChecks = [
+    "grep -Eq '^PHONE_AUTH_ENABLED=true",
+    "grep -Eq '^SMS_PROVIDER=aliyun_pnvs",
+    '/^(ALIBABA_CLOUD_ACCESS_KEY_ID|ALIYUN_ACCESS_KEY_ID)=/',
+    '/^(ALIBABA_CLOUD_ACCESS_KEY_SECRET|ALIYUN_ACCESS_KEY_SECRET)=/',
+    '/^SMS_SIGN_NAME=/', '/^SMS_TEMPLATE_CODE=/'
+  ];
+  if (phoneChecks.some(function (check) {
+    const index = SH.indexOf(check);
+    return index < 0 || index > snapIdx;
+  })) {
+    problems.push('部署脚本缺少快照前的手机号及短信配置预检');
+  }
   const restartIdx = SH.indexOf('systemctl restart chunklab');
+  const dependencyCheck = SH.indexOf("node '$REMOTE_DIR/scripts/verify-server-dependencies.cjs' '$APP/server'");
+  if(dependencyCheck<0 || dependencyCheck>SH.indexOf('sudo cp -r')){
+    problems.push('缺少覆盖应用前的实际依赖加载验证');
+  }
+  const configSmoke = SH.indexOf('config.requireAuth !== true');
+  if (configSmoke < restartIdx || configSmoke < 0 ||
+      SH.indexOf('config.authMode !== "phone"', configSmoke) < 0 ||
+      SH.indexOf('config.writeProtocol !== 3', configSmoke) < 0) {
+    problems.push('部署脚本缺少重启后的实际登录模式及保存协议检查');
+  }
 
   if (snapIdx < 0) {
     problems.push('deploy-prod.sh 里找不到迁移前快照（server/backup-db.js backup）。' +
@@ -181,8 +204,18 @@ function manifestContentFiles() {
   const file = path.join(ROOT, 'content', 'manifest.json');
   try {
     const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    /* T5：公开 manifest 仅元数据，分片路径存于 server/content/shards.json，需合并后再纳入闭包。 */
+    const byId = new Map();
+    const shardMapFile = path.join(ROOT, 'server', 'content', 'shards.json');
+    if (fs.existsSync(shardMapFile)) {
+      const map = JSON.parse(fs.readFileSync(shardMapFile, 'utf8'));
+      if (map && Array.isArray(map.decks)) {
+        map.decks.forEach(function (deck) { byId.set(deck.id, deck); });
+      }
+    }
     return (data.decks || []).reduce(function (all, deck) {
-      return all.concat((deck.shards || []).concat(deck.indexShards || []).map(function (shard) {
+      const info = byId.get(deck.id) || deck;
+      return all.concat((info.shards || []).concat(info.indexShards || []).map(function (shard) {
         return String(shard.url || '').replace(/^\//, '');
       }));
     }, []).filter(Boolean);

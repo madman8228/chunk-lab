@@ -10,7 +10,7 @@ const { registerClientSaveHealthRoutes } = require('./client-save-health');
   const db = new Database(':memory:');
   db.exec(`CREATE TABLE user_client_save_health (
     user_id INTEGER NOT NULL, client_id TEXT NOT NULL, pending INTEGER NOT NULL,
-    blocked INTEGER NOT NULL, retry_attempts INTEGER NOT NULL, oldest_pending_at INTEGER,
+    blocked INTEGER NOT NULL, deferred_version INTEGER NOT NULL DEFAULT 0, retry_attempts INTEGER NOT NULL, oldest_pending_at INTEGER,
     error_code TEXT, trace_id TEXT, updated_at INTEGER NOT NULL,
     PRIMARY KEY(user_id, client_id)
   )`);
@@ -28,13 +28,14 @@ const { registerClientSaveHealthRoutes } = require('./client-save-health');
     return { status: response.status, body: await response.json() };
   }
   try {
-    const report = { version: 1, clientId: 'client-id-0123456789', pending: 4, blocked: 1,
+    const report = { version: 1, clientId: 'client-id-0123456789', pending: 4, blocked: 1, deferredVersion: 2,
       retryAttempts: 7, oldestPendingAt: Date.now() - 60000,
       errorCode: 'ENTITY_CHANGED', traceId: '12345678-1234-4234-8234-123456789abc' };
     const accepted = await send(4, report);
     assert.equal(accepted.status, 200);
     assert.equal(accepted.body.ok, true);
     assert.equal(db.prepare('SELECT COUNT(*) AS count FROM user_client_save_health').get().count, 1);
+    assert.equal(db.prepare('SELECT deferred_version FROM user_client_save_health WHERE user_id=4').get().deferred_version, 2);
     await send(4, { ...report, pending: 0, blocked: 0, retryAttempts: 0, oldestPendingAt: null, errorCode: null, traceId: null });
     assert.equal(db.prepare('SELECT pending FROM user_client_save_health WHERE user_id=4').get().pending, 0,
       'a drained queue replaces the old client snapshot');

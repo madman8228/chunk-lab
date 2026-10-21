@@ -362,6 +362,9 @@ function stopServer() {
       throw new Error('主题分组展开失败');
     }
     if (await page.locator('.catalog-lesson button').count() !== 0) throw new Error('课节卡片仍显示开始按钮');
+    // Earlier assertions deliberately leave this course. Rejoin before
+    // testing the learning entry, without changing the leave assertions.
+    await page.evaluate(() => CourseEnrollment.join('builtin:oral'));
     await page.locator('.catalog-lesson').first().click();
     await page.waitForURL(/main\.html\?.*course=builtin%3Aoral.*lesson=/);
     await page.waitForSelector('#pagePractice:not(.hidden)');

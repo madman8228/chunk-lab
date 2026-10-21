@@ -1,0 +1,36 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict');
+const express=require('../server/node_modules/express'),{chromium}=require('playwright-core');
+const {createVocabularyMaterialLibrary}=require('../server/services/vocabulary-material-library'),{createVocabularyMaterialRelease}=require('../server/services/vocabulary-material-release');
+const {createVocabularyContent}=require('../server/services/vocabulary-content'),{createWordbookPublisher}=require('../server/services/wordbook-publisher');
+const {registerWordbookRoutes}=require('../server/routes/wordbooks'),{createStaticGuard}=require('../server/middleware/static-guard');
+const root=path.resolve(__dirname,'..'),temp=fs.mkdtempSync(path.join(os.tmpdir(),'material-reader-e2e-'));
+let server,browser,service;
+(async()=>{try{
+ fs.mkdirSync(path.join(temp,'content/vocabulary'),{recursive:true});fs.mkdirSync(path.join(temp,'assets'));
+ fs.writeFileSync(path.join(temp,'content/vocabulary/index.json'),JSON.stringify({schemaVersion:1,books:[]}));
+ fs.writeFileSync(path.join(temp,'assets/fixture.webp'),fs.readFileSync(path.join(root,'assets/vocab-g7-lower-u1-blind-wide-v1.webp')));
+ const library=JSON.parse(fs.readFileSync(path.join(root,'drafts/scene-wordbooks/borrow-things-v1/material-library-v1.json'),'utf8'));
+ service=createVocabularyMaterialLibrary({storePath:path.join(temp,'drafts.sqlite')});const saved=service.save('isolated',library,null);
+ const content=createVocabularyContent({appRoot:temp}),publisher=createWordbookPublisher({appRoot:temp,content}),releases=createVocabularyMaterialRelease({service,publisher,appRoot:temp});
+ const preparation={revision:saved.revision,courseId:library.courses[0].courseId,review:{revision:saved.revision,content:'approved',level:'approved',assets:'approved',rights:'approved',reviewer:'isolated browser fixture',note:'Synthetic test, no actual content approval'},images:library.courses[0].units.flatMap(unit=>unit.activityRefs.map(ref=>({itemId:ref.itemId,url:'assets/fixture.webp'})))};
+ const checked=await releases.validate('isolated',preparation);await releases.publish('isolated',preparation,checked.fingerprint,true);
+ const app=express(),requests=[];app.use((req,res,next)=>{requests.push({method:req.method,path:req.path});next();});
+ registerWordbookRoutes({app,content,auth:{authenticate:(req,res)=>res.status(401).json({error:'isolated login required'})},study:{}});
+ app.use(createStaticGuard());app.use(express.static(temp));app.use(express.static(root));
+ server=await new Promise(resolve=>{const s=app.listen(0,'127.0.0.1',()=>resolve(s));});const base='http://127.0.0.1:'+server.address().port;
+ browser=await chromium.launch({headless:true});const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage(),errors=[];
+ page.on('pageerror',error=>errors.push(error.message));await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
+ await page.goto(base+'/wordbook-details.html?book='+encodeURIComponent(preparation.courseId));await page.getByRole('heading',{name:'单元目录',exact:true}).waitFor();
+ await page.getByText('目标水平 '+library.courses[0].levelProposal+'（已审核）',{exact:true}).waitFor();
+ assert.equal(requests.filter(request=>request.path.endsWith('/materials')).length,0,'details does not download material bodies');
+ await page.getByRole('button',{name:'对话',exact:true}).click();await page.getByRole('heading',{name:'对话',exact:true}).waitFor();assert.equal(await page.locator('.book-material').count(),2);assert.ok(await page.locator('mark').count()>0);
+ const first=page.locator('.book-material summary').first();await first.focus();await page.keyboard.press('Enter');assert.equal(await page.locator('.book-material details[open]').count(),1);
+ await page.getByRole('button',{name:'短文',exact:true}).click();await page.getByRole('heading',{name:'短文',exact:true}).waitFor();assert.equal(await page.locator('.book-material').count(),1);assert.equal(requests.filter(request=>request.path.endsWith('/materials')).length,1,'confirmed materials are reused');
+ for(const width of [1440,390]){await page.setViewportSize({width,height:932});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);}
+ await page.getByRole('button',{name:'单元目录',exact:true}).click();await page.getByRole('button',{name:'查看内容',exact:true}).click();await page.getByText(library.senses[0].word+' · '+library.senses[0].meaning,{exact:true}).waitFor();
+ assert.equal(await page.locator('.book-list li').count(),6,'actual unit/item API returns compiled targets');
+ assert.equal(await page.getByRole('link',{name:'开始 / 继续练习'}).getAttribute('href'),'wordbook.html?book='+encodeURIComponent(preparation.courseId));
+ assert.ok(requests.every(request=>request.method==='GET'),'browser reading and unit preview never write learning records');assert.equal(requests.filter(request=>request.path==='/assets/fixture.webp').length,0,'word illustrations are not prefetched by reading');
+ assert.deepEqual(errors,[]);await context.close();console.log('Material reader E2E: real isolated publication -> real API/client -> bilingual reading -> real unit/items, shared cached materials, keyboard, two widths, no writes or illustration prefetch passed.');
+}finally{if(browser)await browser.close();if(server)await new Promise(resolve=>server.close(resolve));service?.close();assert.equal(path.dirname(fs.realpathSync(temp)),fs.realpathSync(os.tmpdir()));assert.ok(path.basename(temp).startsWith('material-reader-e2e-'));fs.rmSync(temp,{recursive:true,force:true});}})().catch(error=>{console.error(error);process.exitCode=1;});

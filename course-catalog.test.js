@@ -109,4 +109,29 @@ assert.equal(groupedPackages.courses.length, 2);
 assert.deepEqual(groupedPackages.courses.map(c => c.id), ['package:nce-1', 'package:nce-2']);
 assert.equal(groupedPackages.courses[0].lessonCount, 1);
 
-console.log('course-catalog.test: 28 passed / 0 failed');
+const protectedCatalog = Catalog.buildCatalog({ manifest: { decks: [] }, protectedCourses: [{
+  courseId: 'protected-fixture', title: '私有正文平台课', contentType: 'image-text', accessLevel: 'member',
+  units: [{ unitId: 'unit-1', itemCount: 3 }]
+}] });
+assert.equal(protectedCatalog.courses[0].isProtected, true);
+assert.equal(protectedCatalog.courses[0].accessLevel, 'member');
+assert.equal(Catalog.resolveLesson(protectedCatalog.courses[0], 'unit-1').contentRef.type, 'protected-course');
+assert.doesNotMatch(JSON.stringify(protectedCatalog), /sentence|translation|assetId/);
+const collisionCatalog = Catalog.buildCatalog({ manifest, protectedCourses: [{ courseId: 'builtin:oral', title: '不可替换原课程', units: [] }] });
+assert.notEqual(collisionCatalog.byCourseId['builtin:oral'].title, '不可替换原课程');
+const platformBinding = { courseId: 'builtin:oral', title: '服务端展示名', contentType: 'sentence', accessLevel: 'member', units: [
+  { unitId: 'lesson:oral-1', itemCount: 2, contentVersion: 'v1', recordIdentity: { deckId: 'oral-1', generationScope: 'course:oral-1', resumeIdentity: 'oral-1' } },
+  { unitId: 'lesson:oral-2', itemCount: 3, contentVersion: 'v1', recordIdentity: { deckId: 'oral-2', generationScope: 'course:oral-2', resumeIdentity: 'oral-2' } }
+] };
+const boundCatalog = Catalog.buildCatalog({ manifest, protectedCourses: [platformBinding] });
+assert.equal(boundCatalog.courses.filter(c => c.id === 'builtin:oral').length, 1);
+assert.equal(boundCatalog.byCourseId['builtin:oral'].isProtected, true);
+assert.equal(boundCatalog.byCourseId['builtin:oral'].title, catalog.byCourseId['builtin:oral'].title);
+assert.equal(Catalog.resolveLesson(boundCatalog.byCourseId['builtin:oral'], 'lesson:oral-1').platformContent.recordIdentity.deckId, 'oral-1');
+assert.equal(Catalog.resolveLesson(boundCatalog.byCourseId['builtin:oral'], 'lesson:oral-1').contentRef.type, 'protected-course');
+assert.equal(Catalog.getCourseForContent(boundCatalog, 'sentence-deck', 'oral-1').id, 'builtin:oral');
+const ownerCollision = Catalog.buildCatalog({ manifest: { decks: [] }, userDecks: [{ id: 'mine', name: '我的原件', items: [{ cid: 'a' }] }],
+  protectedCourses: [{ ...platformBinding, courseId: 'user-deck:mine' }] });
+assert.equal(ownerCollision.byCourseId['user-deck:mine'].origin, 'user');
+assert.equal(ownerCollision.byCourseId['user-deck:mine'].isProtected, undefined);
+console.log('course-catalog: legacy identities and protected metadata passed');

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>学单词 · jqka.top</title>
+<link rel="stylesheet" href="landing/site.css">
+<link rel="stylesheet" href="landing/theme.css">
+<link rel="stylesheet" href="landing/vocabulary-page.css">
+<link rel="stylesheet" href="landing/action-game.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32-v1.png">
+</head>
+<body class="vocabulary-page">
+<nav data-page-node-id="3MOBa0geqTdV6M3Iawoltj">
+  <div class="nav-in" data-page-node-id="f0IqV3OEjEmomRqdzytQRG">
+    <a class="logo" href="index.html" aria-label="jqka.top 首页" data-page-node-id="kOOgajgRjCVDZgFvlCpEsG">
+      <span class="chip" data-page-node-id="7PT34a4KSmHE7gG1KqL2q4">A</span>jqka<span class="tld" data-page-node-id="T7igzOqLXNFgt73kdnMG6N">.top</span>
+    </a>
+    <div class="nav-links" data-page-node-id="Z7Ddo042OygIletaEcolhP">
+      
+      <a class="nav-chunk" href="/main.html?view=home">首页</a>
+      <a href="vocabulary.html" class="nav-vocabulary" aria-current="page" data-page-node-id="NYhPE28D8gHrpHZDyFyxK7">学单词</a>
+      <a href="main.html?view=my-learning" data-page-node-id="KxWNUMG7SVDi4AZKdhTsXH">我的内容</a>
+      <a href="main.html?view=discover" data-page-node-id="kB88QKS9oe0HBflwH1vLA4">发现</a>
+      <div class="site-account" id="jqkaAccount">
+        <button id="jqkaLogin" type="button" aria-expanded="false" aria-controls="jqkaAccountPanel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>
+          <span id="jqkaAccountLabel">登录 / 注册</span>
+        </button>
+        <section class="account-panel" id="jqkaAccountPanel" aria-labelledby="jqkaAccountTitle" tabindex="-1" hidden>
+          <header><h2 id="jqkaAccountTitle">个人信息</h2><button class="account-close" id="jqkaAccountClose" type="button" aria-label="关闭个人信息"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+          <p class="account-name" id="jqkaAccountName"></p>
+          <p class="account-note" id="jqkaAccountNote"></p>
+          <dl><dt>账号编号</dt><dd id="jqkaAccountId"></dd><dt>手机号</dt><dd id="jqkaAccountPhone"></dd></dl>
+          <button class="account-bind" id="jqkaAccountBind" type="button" hidden>绑定手机号</button>
+          <div class="account-actions"><button class="account-logout" id="jqkaAccountLogout" type="button" hidden>退出登录</button></div>
+        </section>
+        <p class="account-message" id="jqkaAccountMessage" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</nav>
+<main class="vocabulary-shell" id="deck">
+  <header class="vocabulary-heading"><h1>学单词</h1><button class="btn btn-white" id="toggleLibrary" type="button">打开词库</button></header>
+  <section id="wordAdventure" class="adventure" aria-label="语言行动任务"></section>
+  <section id="wordLibrary" aria-label="词卡浏览" hidden>
+    <div class="vocabulary-filters">
+      <label for="vocabularyLevel">难度 <select id="vocabularyLevel"></select></label>
+      <label class="vocabulary-search" for="vocabularySearch">查词 <input type="search" id="vocabularySearch" placeholder="单词、释义或搭配" autocomplete="off"></label>
+    </div>
+    <div class="ftabs" id="ftabs" role="group" aria-label="内容类型筛选"></div>
+    <div class="grid" id="cards"></div>
+    <div class="deck-actions"><button class="btn btn-white" id="btnShuffle" type="button">换一组</button><button class="btn btn-white" id="btnFlipAll" type="button">全部翻面</button><span class="deck-note" id="deckNote" role="status" aria-live="polite"></span></div>
+  </section>
+</main>
+<script src="landing/deck.js"></script><script src="landing/phrases.js"></script><script src="landing/store.js"></script>
+<script src="landing/vocabulary-browser.js"></script>
+<script src="landing/sentence-cloze-engine.js"></script><script src="landing/sentence-cloze-view.js"></script>
+<script src="landing/initials-engine.js"></script><script src="landing/initials-view.js"></script>
+<script src="landing/action-game-engine.js"></script><script src="landing/charger-quest.js"></script><script src="landing/action-game-view.js"></script>
+<script src="api.js"></script><script src="auth-ui.js"></script><script src="landing/account.js"></script>
+<script id="homepage-bundle-update">
+(function () {
+  if (!('serviceWorker' in navigator)) return;
+  var wasControlled = !!navigator.serviceWorker.controller;
+  var pending = false, reloaded = false, observer;
+  function applyUpdate() {
+    if (!pending || reloaded || document.visibilityState !== 'visible') return;
+    // Never discard a phone/code/password being entered in an account dialog.
+    if (document.querySelector('[role="dialog"], .account-panel:not([hidden]), .practice-panel:not([hidden]), .adventure[data-session-active="true"]')) return;
+    reloaded = true;
+    if (observer) observer.disconnect();
+    location.reload();
+  }
+  navigator.serviceWorker.addEventListener('controllerchange', function () {
+    if (!wasControlled || reloaded) return;
+    pending = true;
+    observer = new MutationObserver(applyUpdate);
+    observer.observe(document.documentElement, {childList:true, subtree:true, attributes:true, attributeFilter:['hidden','data-session-active']});
+    applyUpdate();
+  });
+  document.addEventListener('visibilitychange', applyUpdate);
+  navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(registration) {
+    return registration.update();
+  }).catch(function () { /* Offline keeps the complete installed bundle. */ });
+})();
+</script>
+</body>
+</html>

@@ -614,6 +614,7 @@ async function main() {
     const offPort = PORT + 1;
     const offBase = 'http://127.0.0.1:' + offPort;
     const offEnv = Object.assign({}, process.env, {
+      NODE_ENV: 'test',
       REQUIRE_AUTH: 'false',
       PORT: String(offPort),
       CHUNKLAB_DATA_DIR: TMP_DB + '-off'

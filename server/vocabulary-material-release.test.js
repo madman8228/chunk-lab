@@ -1,0 +1,65 @@
+'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+const express=require('./node_modules/express');
+const {createVocabularyMaterialLibrary}=require('./services/vocabulary-material-library');
+const {createVocabularyMaterialRelease}=require('./services/vocabulary-material-release');
+const {createVocabularyContent}=require('./services/vocabulary-content');
+const {createWordbookPublisher}=require('./services/wordbook-publisher');
+const {registerVocabularyMaterialLibraryRoutes}=require('./routes/vocabulary-material-library');
+const {registerWordbookRoutes}=require('./routes/wordbooks');
+const {createStaticGuard}=require('./middleware/static-guard');
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'vocabulary-material-release-'));
+let server,service;
+(async()=>{try{
+ fs.mkdirSync(path.join(temp,'content/vocabulary'),{recursive:true});fs.mkdirSync(path.join(temp,'assets'));
+ const indexFile=path.join(temp,'content/vocabulary/index.json'),original=JSON.stringify({schemaVersion:1,books:[]});fs.writeFileSync(indexFile,original);
+ // This is only an encoding fixture, not an approved illustration for the pilot.
+ const image=fs.readFileSync(path.resolve(__dirname,'../assets/vocab-g7-lower-u1-blind-wide-v1.webp'));fs.writeFileSync(path.join(temp,'assets/fixture.webp'),image);
+ const library=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../drafts/scene-wordbooks/borrow-things-v1/material-library-v1.json'),'utf8'));
+ service=createVocabularyMaterialLibrary({storePath:path.join(temp,'drafts.sqlite')});const saved=service.save('isolated',library,null);
+ let content=createVocabularyContent({appRoot:temp});const publisher=createWordbookPublisher({appRoot:temp,content}),releases=createVocabularyMaterialRelease({service,publisher,appRoot:temp});
+ const preparation={revision:saved.revision,courseId:library.courses[0].courseId,
+  review:{revision:saved.revision,content:'approved',level:'approved',assets:'approved',rights:'approved',reviewer:'isolated test only',note:'Synthetic acceptance fixture; not a real content approval'},
+  images:library.courses[0].units.flatMap(unit=>unit.activityRefs.map(ref=>({itemId:ref.itemId,url:'assets/fixture.webp'})))};
+ const pending=structuredClone(preparation);pending.review.content='pending';await assert.rejects(releases.validate('isolated',pending),/人工审核/);
+ const stale=structuredClone(preparation);stale.review.revision='a'.repeat(64);await assert.rejects(releases.validate('isolated',stale),/人工审核/);
+ const invalidMap=structuredClone(preparation);invalidMap.images[0].itemId='wrong';await assert.rejects(releases.validate('isolated',invalidMap),/映射/);
+ fs.writeFileSync(path.join(temp,'assets/fixture.webp'),Buffer.alloc(20000));await assert.rejects(releases.validate('isolated',preparation),/20000/);
+ fs.writeFileSync(path.join(temp,'assets/fixture.webp'),Buffer.alloc(100));await assert.rejects(releases.validate('isolated',preparation),/16:9/);
+ fs.writeFileSync(path.join(temp,'assets/fixture.webp'),image);
+ const checked=await releases.validate('isolated',preparation);assert.equal(checked.ready,true);assert.equal(content.index().books.length,0);
+ await assert.rejects(releases.publish('isolated',preparation,checked.fingerprint,false),/明确确认/);
+ const changed=structuredClone(preparation);changed.review.note+=' changed';await assert.rejects(releases.publish('isolated',changed,checked.fingerprint,true),/内容已改变/);
+ const changedImage=Buffer.from(image);changedImage[changedImage.length-1]^=1;fs.writeFileSync(path.join(temp,'assets/fixture.webp'),changedImage);
+ await assert.rejects(releases.publish('isolated',preparation,checked.fingerprint,true),/内容已改变/);fs.writeFileSync(path.join(temp,'assets/fixture.webp'),image);
+ const app=express();app.use(express.json({limit:10000000}));
+ const adminOnly=(req,res,next)=>req.headers.authorization==='Bearer isolated-admin'?next():res.status(401).json({error:'unauthorized'});
+ registerVocabularyMaterialLibraryRoutes({app,adminOnly,service,releases});
+ registerWordbookRoutes({app,content,auth:{authenticate:(req,res)=>res.status(401).json({error:'unauthorized'})},study:{}});
+ app.use(createStaticGuard());app.use(express.static(temp));
+ server=await new Promise(resolve=>{const s=app.listen(0,'127.0.0.1',()=>resolve(s));});const base='http://127.0.0.1:'+server.address().port;
+ const post=(action,body,authorized=true)=>fetch(base+'/api/admin/vocabulary-material-libraries/isolated/release/'+action,{method:'POST',headers:{'Content-Type':'application/json',...(authorized?{Authorization:'Bearer isolated-admin'}:{})},body:JSON.stringify(body)});
+ assert.equal((await post('validate',preparation,false)).status,401);assert.equal((await post('publish',{preparation,fingerprint:checked.fingerprint,confirmed:true},false)).status,401);
+ const nativeWrite=fs.writeFileSync;
+ try{fs.writeFileSync=function(file,...args){if(String(file).includes('.pending-')&&String(file).endsWith('materials.json'))throw Error('isolated metadata failure');return nativeWrite(file,...args);};await assert.rejects(releases.publish('isolated',preparation,checked.fingerprint,true),/metadata failure/);}finally{fs.writeFileSync=nativeWrite;}
+ assert.equal(content.index().books.length,0,'metadata failure cannot expose a partial course');
+ const response=await post('publish',{preparation,fingerprint:checked.fingerprint,confirmed:true});assert.equal(response.status,200);const result=await response.json();assert.equal(result.published,true);
+ assert.equal(fs.readFileSync(indexFile,'utf8'),original,'original course index unchanged');
+ const folders=fs.readdirSync(path.join(temp,'content/vocabulary/published'));assert.equal(folders.length,1);
+ const archiveFile=path.join(temp,'content/vocabulary/published',folders[0],'materials.json'),archive=JSON.parse(fs.readFileSync(archiveFile,'utf8'));
+ assert.deepEqual(archive.release.library,library,'all original sources and pinned references are archived atomically');
+ const bypass=await service.preview('isolated',saved.revision,preparation.courseId);bypass.wordbookPackage.materialRelease=archive.release;bypass.wordbookPackage.materialRelease.review.rights='pending';
+ assert.throws(()=>publisher.validate(bypass.wordbookPackage),/编号已存在/,'existing course still cannot be overwritten even with source metadata');
+ for(const prefix of ['/content/vocabulary/published/','//content/vocabulary/published/','/%63ontent/vocabulary/published/'])assert.equal((await fetch(base+prefix+folders[0]+'/materials.json')).status,403,'raw source archive cannot be downloaded statically');
+ content=createVocabularyContent({appRoot:temp});const materials=content.materials(result.bookId);assert.equal(materials.units[0].materials.length,3);assert.equal(materials.levelStatus,'reviewed');assert.equal(JSON.stringify(materials).includes('originNote'),false);assert.equal(JSON.stringify(materials).includes('reviewer'),false);
+ const publicResponse=await fetch(base+'/api/wordbooks/'+encodeURIComponent(result.bookId)+'/materials');assert.equal(publicResponse.status,200);assert.deepEqual(await publicResponse.json(),materials);
+ assert.equal((await fetch(base+'/api/wordbooks/personal-book:unknown/materials')).status,401);
+ const starter=structuredClone(preparation);starter.courseId=library.courses[1].courseId;starter.images=library.courses[1].units.flatMap(unit=>unit.activityRefs.map(ref=>({itemId:ref.itemId,url:'assets/fixture.webp'})));
+ const checkStarter=await releases.validate('isolated',starter);await releases.publish('isolated',starter,checkStarter.fingerprint,true);
+ assert.equal(content.index().books.length,2,'two arrangements reuse fixed task identities');assert.equal(content.materials(starter.courseId).units[0].materials.length,0);
+ fs.writeFileSync(archiveFile,JSON.stringify({...archive,releaseRevision:'0'.repeat(64)}));assert.throws(()=>content.materials(result.bookId),/版本检查失败/);
+ assert.equal(service.history('isolated').length,1,'publishing does not alter the source snapshot or review status');
+ console.log('Material release: isolated auth/review/asset gates, fingerprints, metadata rollback, immutable provenance, reuse, public projection and static protection passed.');
+}finally{if(server)await new Promise(resolve=>server.close(resolve));service?.close();assert.equal(path.dirname(fs.realpathSync(temp)),fs.realpathSync(os.tmpdir()));assert.ok(path.basename(temp).startsWith('vocabulary-material-release-'));fs.rmSync(temp,{recursive:true,force:true});}})().catch(error=>{console.error(error);process.exitCode=1;});

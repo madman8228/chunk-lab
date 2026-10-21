@@ -11,7 +11,9 @@ const ROOT = path.resolve(__dirname,'..');
 const PORT = require('./lib/free-port').freePort(9600,100);
 const BASE = 'http://127.0.0.1:'+PORT;
 const temp = fs.mkdtempSync(path.join(os.tmpdir(),'cl-mobile-8000-'));
-const deckId = 'builtin-perf-8000', assets = new Map();
+// Use the shared oral catalog namespace so the synthetic deck has a real
+// course membership, without copying its 8000 sentences into account data.
+const deckId = 'oral-perf-8000', assets = new Map();
 const entry = {id:deckId,name:'容量测试',baseCount:0,totalCount:8000,shards:[],indexShards:[]};
 function asset(url,data,mode){
   const body = JSON.stringify(data); assets.set('/'+url,body);
@@ -82,7 +84,12 @@ async function ready(){
     const homeMs=Date.now()-start;
     check('8000-句首页不请求详情或索引',details===0 && indexes===0);
     await heap();
-    await page.evaluate(id=>{mem.settings.skipMastered=false;mem.settings.batchSize=10;showPracticePage();startDeck(findDeck(id),0);},deckId);
+    await page.evaluate(async id=>{
+      const membership = practiceMemberships()(id);
+      if (!membership.course) throw new Error('8000-item fixture course missing');
+      await CourseEnrollment.join(membership.course.id);
+      mem.settings.skipMastered=false;mem.settings.batchSize=10;showPracticePage();startDeck(findDeck(id),0);
+    },deckId);
     try {
       await page.waitForFunction(()=>S.items.length===10 && S.items.some(it=>it.cid==='perf-0'));
     } catch (error) {

@@ -79,8 +79,23 @@
     function change(courseId, joined, aliases) {
       var id = String(courseId == null ? '' : courseId).trim();
       var key = keyFor(id);
-      var operation = tail.then(function () {
+      var operation = tail.then(async function () {
         if (typeof read !== 'function' || typeof write !== 'function') throw new Error('课程保存模块未就绪');
+        if(serverAuthoritative()){
+          var config=global.CL.getCloudConfig();
+          if(config.requireAuth && global.ChunkAPI && !global.ChunkAPI.isLoggedIn()){
+            var loginError=new Error('请先登录后再加入学习。');loginError.code='NOT_AUTH';throw loginError;
+          }
+          var owner=global.AccountStorage && global.AccountStorage.owner;
+          if(!global.CL.serverPersistenceReady || !global.CL.serverPersistenceReady()){
+            if(typeof global.CL.ensureCloud==='function') await global.CL.ensureCloud();
+          }
+          if(global.AccountStorage && global.AccountStorage.assertCurrent) global.AccountStorage.assertCurrent();
+          if(owner !== (global.AccountStorage && global.AccountStorage.owner)) throw new Error('账号已切换，请在当前账号重新加入学习。');
+          if(!global.CL.serverPersistenceReady || !global.CL.serverPersistenceReady()){
+            throw new Error('课程服务暂不可用；加入状态未更改，请稍后重试。');
+          }
+        }
         var progress = read() || {};
         var existing = progress[key];
         if (existing && (existing.kind !== 'course-enrollment' || existing.schemaVersion !== 1 ||
@@ -142,6 +157,16 @@
   api.MAX_JOINED_COURSES = MAX_JOINED_COURSES;
   api.create = create;
   api.keyFor = keyFor;
+  // One read-only view shared by practice, due queues and historical mistake labels.
+  api.deckMemberships = function (catalog, progress) {
+    var memberships = api.readMemberships(progress, global.CourseCatalog.getEnrollmentAliases(catalog));
+    return function (deckId) {
+      var course = global.CourseCatalog.getCourseForContent(catalog, 'sentence-deck', deckId);
+      var membership = course && memberships[course.id];
+      return { course:course, joined:!!(membership && membership.joined),
+        status:membership && membership.joined ? '已加入' : membership ? '已退出' : '未加入学习' };
+    };
+  };
   global.CourseEnrollment = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

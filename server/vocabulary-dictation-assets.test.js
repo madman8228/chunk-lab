@@ -1,0 +1,22 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const draft=require('../js/wordbook-draft'),contract=require('../js/vocabulary-course-contract'),engine=require('../landing/sentence-cloze-engine'),{validateDictationAssets}=require('./services/vocabulary-dictation-assets');
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'dictation-assets-')),hash=value=>crypto.createHash('sha256').update(value).digest('hex');
+(async()=>{try{
+ fs.mkdirSync(path.join(temp,'assets'));const bytes=Buffer.alloc(44+1600);bytes.write('RIFF');bytes.writeUInt32LE(bytes.length-8,4);bytes.write('WAVEfmt ',8);bytes.writeUInt32LE(16,16);bytes.writeUInt16LE(1,20);bytes.writeUInt16LE(1,22);bytes.writeUInt32LE(8000,24);bytes.writeUInt32LE(16000,28);bytes.writeUInt16LE(2,32);bytes.writeUInt16LE(16,34);bytes.write('data',36);bytes.writeUInt32LE(1600,40);fs.writeFileSync(path.join(temp,'assets/test.wav'),bytes);
+ const source={schemaVersion:1,book:{bookId:'audio-fixture',title:'隔离音频配置夹具',units:[{unitId:'u1',title:'单元'}]},items:[{itemId:'audio:borrow',unitId:'u1',word:'borrow',meaning:'借入',scene:'隔离夹具',translation:'我借你的笔。',exercise:draft.exercise('I [borrow] your pen.'),images:{wide:[],mobile:[]},dictation:{audio:{url:'assets/test.wav',sha256:hash(bytes),bytes:bytes.length,mimeType:'audio/wav'},answers:['borrow']}}]};
+ const before=JSON.stringify(source),prepared=await draft.compile(source,{requireImages:false}),item=prepared.items[0],activity=item.learning.wordDictation;
+ assert.equal(activity.revision,hash(JSON.stringify(source.items[0].dictation)));contract.validateLearning(item,engine);assert.equal(validateDictationAssets(item,temp),activity);assert.equal(contract.capabilities(item,engine).find(mode=>mode.practiceType==='word-dictation').available,true,'content capability requires valid authored audio; server rollout is a separate gate');assert.equal(JSON.stringify(source),before);
+ const Database=require('./node_modules/better-sqlite3'),privateDb=new Database(path.join(temp,'private.sqlite'));
+ try{
+  privateDb.exec('CREATE TABLE personal_wordbook_versions(user_id INTEGER,book_id TEXT,version INTEGER,revision TEXT,package_json TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(user_id,book_id,version))');
+  const personal=require('./services/personal-wordbooks').createPersonalWordbooks({db:privateDb,appRoot:temp}),saved=await personal.save(1,source),privateRef=personal.book(saved.bookId,1).items[0],privateItem=personal.item(privateRef.itemId,privateRef.contentRevision,1);
+  assert.equal(personal.item(privateItem.itemId,privateItem.contentRevision,1).learning.wordDictation.audio.sha256,hash(bytes));
+  assert.throws(()=>personal.item(privateItem.itemId,privateItem.contentRevision,2),/无权访问/);
+  const corrupt=Buffer.from(bytes);corrupt[50]^=1;fs.writeFileSync(path.join(temp,'assets/test.wav'),corrupt);assert.throws(()=>personal.item(privateItem.itemId,privateItem.contentRevision,1),/内容或大小已变化/);fs.writeFileSync(path.join(temp,'assets/test.wav'),bytes);
+ }finally{privateDb.close();}
+ const invalid=structuredClone(item);invalid.learning.wordDictation.revision='f'.repeat(64);assert.throws(()=>validateDictationAssets(invalid,temp),/任务版本/);
+ const corrupted=Buffer.from(bytes);corrupted[50]^=1;fs.writeFileSync(path.join(temp,'assets/test.wav'),corrupted);assert.throws(()=>validateDictationAssets(item,temp),/内容或大小已变化/);fs.writeFileSync(path.join(temp,'assets/test.wav'),bytes.subarray(0,20));assert.throws(()=>validateDictationAssets(item,temp),/大小不匹配/);
+ const wrong=Buffer.alloc(bytes.length);fs.writeFileSync(path.join(temp,'assets/test.wav'),wrong);const fake=structuredClone(item);fake.learning.wordDictation.audio.sha256=hash(wrong);fake.learning.wordDictation.revision=hash(JSON.stringify({audio:fake.learning.wordDictation.audio,answers:fake.learning.wordDictation.answers}));assert.throws(()=>validateDictationAssets(fake,temp),/MIME/);
+ console.log('Dictation assets: draft compilation, fixed content/audio revisions, actual file digest/size/signature, immutable source and material-dependent capability passed in isolated storage.');
+}finally{assert.equal(path.dirname(fs.realpathSync(temp)),fs.realpathSync(os.tmpdir()));assert.ok(path.basename(temp).startsWith('dictation-assets-'));fs.rmSync(temp,{recursive:true,force:true});}})().catch(error=>{console.error(error);process.exitCode=1;});

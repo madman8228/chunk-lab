@@ -1,0 +1,27 @@
+'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),input=path.join(root,'drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4'),read=name=>JSON.parse(fs.readFileSync(path.join(input,name),'utf8'));
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'sentence-audio-test-'));let service;
+(async()=>{try{
+ const appRoot=path.join(temp,'app'),dataDir=path.join(temp,'data');fs.mkdirSync(dataDir);fs.mkdirSync(path.join(appRoot,'assets'),{recursive:true});fs.mkdirSync(path.join(appRoot,'content/vocabulary'),{recursive:true});fs.writeFileSync(path.join(appRoot,'content/vocabulary/index.json'),JSON.stringify({schemaVersion:1,books:[]}));
+ const draft=read('wordbook.json'),library=read('library.json');
+ for(const url of new Set(draft.items.flatMap(item=>[...item.images.wide,item.dictation.audio.url,item.sentenceAudio.audio.url])))fs.copyFileSync(path.join(root,url),path.join(appRoot,url));
+ const compiler=require('../js/wordbook-draft'),candidate=await compiler.compile(draft),check=require('./services/vocabulary-dictation-assets').validateDictationAssets;
+ for(const item of candidate.items)check(item,appRoot);
+ const bad=structuredClone(draft);bad.items[0].sentenceAudio.text='A different sentence.';await assert.rejects(compiler.compile(bad),/例句/);
+ const changed=structuredClone(candidate.items[0]);changed.learning.sentenceAudio.revision='0'.repeat(64);assert.throws(()=>check(changed,appRoot),/版本/);
+ const file=path.join(appRoot,candidate.items[0].learning.sentenceAudio.audio.url),before=fs.readFileSync(file);fs.writeFileSync(file,Buffer.alloc(before.length));assert.throws(()=>check(candidate.items[0],appRoot),/变化/);fs.writeFileSync(file,before);
+ service=require('./services/vocabulary-material-library').createVocabularyMaterialLibrary({storePath:path.join(dataDir,'vocabulary-material-library.sqlite')});const saved=service.save('fixture',library,null);
+ const content=require('./services/vocabulary-content').createVocabularyContent({appRoot,publishedRoot:path.join(dataDir,'wordbook-publications')}),publisher=require('./services/wordbook-publisher').createWordbookPublisher({appRoot,content}),release=require('./services/vocabulary-material-release').createVocabularyMaterialRelease({service,publisher,appRoot});
+ const preparation={revision:saved.revision,courseId:library.courses[0].courseId,images:library.courses[0].units.flatMap(u=>u.activityRefs.map(ref=>({itemId:ref.itemId,url:draft.items.find(i=>i.itemId===ref.itemId).images.wide[0]}))),review:{revision:saved.revision,content:'pending',level:'pending',assets:'pending',rights:'pending',reviewer:'synthetic isolated acceptance',note:'Only a temporary fixture; not actual approval'}};
+ await assert.rejects(release.validate('fixture',preparation),/人工审核/);
+ for(const key of ['content','level','assets','rights'])preparation.review[key]='approved';const validated=await release.validate('fixture',preparation);await release.publish('fixture',preparation,validated.fingerprint,true);
+ assert.equal(content.item(candidate.items[0].itemId).learning.sentenceAudio.text,draft.items[0].sentenceAudio.text);
+ const backup=await require('./services/vocabulary-material-backup').backupVocabularyMaterials({dataDir,appRoot,backupDir:path.join(temp,'backup')}),manifest=JSON.parse(fs.readFileSync(path.join(backup.path,'manifest.json'),'utf8'));
+ assert.equal(manifest.files.filter(f=>f.path.endsWith('.ogg')).length,12,'Both word and sentence audio survive backup');
+ const recovery=path.join(temp,'recovery');fs.cpSync(backup.path,recovery,{recursive:true});fs.mkdirSync(path.join(recovery,'content/vocabulary'),{recursive:true});fs.writeFileSync(path.join(recovery,'content/vocabulary/index.json'),JSON.stringify({schemaVersion:1,books:[]}));
+ const restored=require('./services/vocabulary-content').createVocabularyContent({appRoot:recovery,publishedRoot:path.join(recovery,'wordbook-publications')});assert.deepEqual(restored.item(candidate.items[0].itemId).learning.sentenceAudio,candidate.items[0].learning.sentenceAudio);
+ console.log('Sentence audio: exact authored text, strict revision/asset checks, pending review rejection, isolated publication, all 12 clips backed up and readable from fresh recovery passed.');
+ }finally{service?.close();assert.equal(path.dirname(fs.realpathSync(temp)),fs.realpathSync(os.tmpdir()));assert.ok(path.basename(temp).startsWith('sentence-audio-test-'));fs.rmSync(temp,{recursive:true,force:true});}})().catch(error=>{console.error(error);process.exitCode=1;});

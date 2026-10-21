@@ -1,0 +1,42 @@
+{
+  "tool": "built-in image_gen",
+  "previewOnly": true,
+  "variants": [
+    {
+      "number": 1,
+      "file": "logo-01.png",
+      "original": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0dbb0-7fd1-7731-8bc5-713ec7ac5d48\\exec-f4b42b82-8578-47c3-9a6e-fad8b225e6fa.png",
+      "prompt": "Use case: logo-brand. Produce ONE polished horizontal logo concept for English learning website. Exact wordmark \"jqka.top\", lowercase and perfectly spelled, dark warm brown, confident rounded custom sans letters, restrained handdrawn personality. Icon left, wordmark right. Concept 1: Two fanned playing cards, front card is also a speech bubble with a small red heart; very simple iconic silhouette. Match a sunny hand-drawn garden learning app: dark brown outlines #523019, cream #fffbed, restrained brick red #b64431 and optional honey #ffcf4e. Flat vector-friendly clean shapes, no texture or gradients. Icon must read at 28px. Keep text comparable in size across variants, same horizontal lockup. Genuine transparent background. ONLY the logo icon and jqka.top, no variant numbers, no tagline, no flowers, no scenery, no presentation board, no shadows. Generous transparent margins."
+    },
+    {
+      "number": 2,
+      "file": "logo-02.png",
+      "original": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0dbb0-7fd1-7731-8bc5-713ec7ac5d48\\exec-feadafb6-498c-42c7-9d3d-86a07c86fa87.png",
+      "prompt": "Use case: logo-brand. Produce ONE polished horizontal logo concept for English learning website. Exact wordmark \"jqka.top\", lowercase and perfectly spelled, dark warm brown, confident rounded custom sans letters, restrained handdrawn personality. Icon left, wordmark right. Concept 2: A single cream playing card tilted gently, its lower corner curves into a speech-bubble tail, one red diamond centered; compact and confident. Match a sunny hand-drawn garden learning app: dark brown outlines #523019, cream #fffbed, restrained brick red #b64431 and optional honey #ffcf4e. Flat vector-friendly clean shapes, no texture or gradients. Icon must read at 28px. Keep text comparable in size across variants, same horizontal lockup. Genuine transparent background. ONLY the logo icon and jqka.top, no variant numbers, no tagline, no flowers, no scenery, no presentation board, no shadows. Generous transparent margins."
+    },
+    {
+      "number": 3,
+      "file": "logo-03.png",
+      "original": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0dbb0-7fd1-7731-8bc5-713ec7ac5d48\\exec-e8d5fd8e-9a5f-494b-9a9b-285682d4ec85.png",
+      "prompt": "Use case: logo-brand. Produce ONE polished horizontal logo concept for English learning website. Exact wordmark \"jqka.top\", lowercase and perfectly spelled, dark warm brown, confident rounded custom sans letters, restrained handdrawn personality. Icon left, wordmark right. Concept 3: Two overlapping speech bubbles shaped like rounded playing cards, one cream and one honey yellow, tiny red heart in front; visually balanced. Match a sunny hand-drawn garden learning app: dark brown outlines #523019, cream #fffbed, restrained brick red #b64431 and optional honey #ffcf4e. Flat vector-friendly clean shapes, no texture or gradients. Icon must read at 28px. Keep text comparable in size across variants, same horizontal lockup. Genuine transparent background. ONLY the logo icon and jqka.top, no variant numbers, no tagline, no flowers, no scenery, no presentation board, no shadows. Generous transparent margins."
+    },
+    {
+      "number": 4,
+      "file": "logo-04.png",
+      "original": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0dbb0-7fd1-7731-8bc5-713ec7ac5d48\\exec-7234da09-b064-4c89-ba37-0364c025f3c2.png",
+      "prompt": "Use case: logo-brand. Produce ONE polished horizontal logo concept for English learning website. Exact wordmark \"jqka.top\", lowercase and perfectly spelled, dark warm brown, confident rounded custom sans letters, restrained handdrawn personality. Icon left, wordmark right. Concept 4: One open book formed by two cream playing-card pages, a small speech bubble cut into the lower outline, small red heart at the center fold; minimal and readable. Match a sunny hand-drawn garden learning app: dark brown outlines #523019, cream #fffbed, restrained brick red #b64431 and optional honey #ffcf4e. Flat vector-friendly clean shapes, no texture or gradients. Icon must read at 28px. Keep text comparable in size across variants, same horizontal lockup. Genuine transparent background. ONLY the logo icon and jqka.top, no variant numbers, no tagline, no flowers, no scenery, no presentation board, no shadows. Generous transparent margins."
+    },
+    {
+      "number": 5,
+      "file": "logo-05.png",
+      "original": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0dbb0-7fd1-7731-8bc5-713ec7ac5d48\\exec-1c044231-033d-4070-b36a-8f3ed4b16f72.png",
+      "prompt": "Use case: logo-brand. Produce ONE polished horizontal logo concept for English learning website. Exact wordmark \"jqka.top\", lowercase and perfectly spelled, dark warm brown, confident rounded custom sans letters, restrained handdrawn personality. Icon left, wordmark right. Concept 5: A cream speech bubble containing one bold stylized red spade made with friendly rounded curves; a second card peeks subtly behind; simple distinctive mark. Match a sunny hand-drawn garden learning app: dark brown outlines #523019, cream #fffbed, restrained brick red #b64431 and optional honey #ffcf4e. Flat vector-friendly clean shapes, no texture or gradients. Icon must read at 28px. Keep text comparable in size across variants, same horizontal lockup. Genuine transparent background. ONLY the logo icon and jqka.top, no variant numbers, no tagline, no flowers, no scenery, no presentation board, no shadows. Generous transparent margins."
+    },
+    {
+      "number": 6,
+      "file": "logo-06.png",
+      "original": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0dbb0-7fd1-7731-8bc5-713ec7ac5d48\\exec-251617e4-5d96-4d3e-8edb-2bdcd8185f7c.png",
+      "prompt": "Use case: logo-brand. Produce ONE polished horizontal logo concept for English learning website. Exact wordmark \"jqka.top\", lowercase and perfectly spelled, dark warm brown, confident rounded custom sans letters, restrained handdrawn personality. Icon left, wordmark right. Concept 6: Two offset cream cards forming a compact capital A silhouette through negative space, a small dialogue tail at lower left and single red heart above the opening; restrained and legible. Match a sunny hand-drawn garden learning app: dark brown outlines #523019, cream #fffbed, restrained brick red #b64431 and optional honey #ffcf4e. Flat vector-friendly clean shapes, no texture or gradients. Icon must read at 28px. Keep text comparable in size across variants, same horizontal lockup. Genuine transparent background. ONLY the logo icon and jqka.top, no variant numbers, no tagline, no flowers, no scenery, no presentation board, no shadows. Generous transparent margins."
+    }
+  ]
+}

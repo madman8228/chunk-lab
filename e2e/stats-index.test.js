@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 const { chromium } = require('playwright-core');
+const { waitForAsync } = require('./lib/wait-for-async');
 
 const ROOT = path.resolve(__dirname, '..');
 const OUT_DIR = process.env.STATS_INDEX_OUT_DIR || path.join(ROOT, 'output');
@@ -56,7 +57,7 @@ function check(name, ok, detail) {
     page.on('request', function (req) {
       var url = req.url();
       var name = url.split('/').pop();
-      if (url.indexOf('/content/') >= 0 && name !== 'manifest.json') contentRequests.push(name);
+      if (new URL(url).pathname.startsWith('/content/') && name !== 'manifest.json') contentRequests.push(name);
     });
     page.on('pageerror', function (e) { errors.push(e.message); });
     await page.goto(BASE + '/stats.html', { waitUntil: 'load' });
@@ -165,10 +166,26 @@ function check(name, ok, detail) {
     // Real answer -> save -> reload -> overview and calendar agree without a round.
     const ctx = await browser.newContext({timezoneId:'Asia/Shanghai'});
     const p = await ctx.newPage();
-    await p.route('**/api/**', r => r.abort());
-    await p.goto(BASE+'/main.html?direct=1');
+    await p.goto(BASE+'/main.html');
+    await p.waitForFunction(() => window.CL && CL.serverPersistenceReady && CL.serverPersistenceReady());
+    await p.evaluate(async () => {
+      await ContentRepo.ready;
+      await CourseEnrollment.join('builtin:oral');
+      const deck = await ContentRepo.ensureDeck('oral-6-31', mem);
+      startDeck(deck, 0);
+    });
     await p.waitForFunction(() => window.S && S.items && S.items.length > 1 && typeof showFullSentence === 'function');
-    const answerPersist = await p.evaluate(async () => { showFullSentence(); const saved = await saveStore(); const current = CL.loadMem(); return { saved, events: current.stats.events.length, answered: current.stats.totalAnswered }; });
+    await p.evaluate(() => showFullSentence());
+    await waitForAsync(p, async () => {
+      const confirmed = await ServerCache.read();
+      const stats = confirmed && confirmed.snapshot && confirmed.snapshot.mem.stats;
+      return stats && stats.totalAnswered === 1 && stats.events.length === 1;
+    });
+    const answerPersist = await p.evaluate(async () => {
+      const confirmed = await ServerCache.read();
+      const current = confirmed.snapshot.mem;
+      return { saved:true, events:current.stats.events.length, answered:current.stats.totalAnswered };
+    });
     if (!answerPersist.saved || answerPersist.events < 1 || answerPersist.answered < 1) throw new Error('答题记录未完成持久化：' + JSON.stringify(answerPersist));
     await p.goto(BASE+'/stats.html');
     /* ⚠️ 只等「元素出现」不够：stats.html 是两段式渲染 ——
@@ -186,6 +203,27 @@ function check(name, ok, detail) {
     check('答完一句未结算也计入今日', todayOk,
       '实际 ' + await p.locator('#todayAnswered').innerText().catch(function () { return '(n/a)'; }));
     check('未结算不会虚增轮次', await p.evaluate(() => mem.stats.totalRounds) === 0);
+    const weekly = await p.evaluate(() => {
+      const rows=Array.from(document.querySelectorAll('.weekly-activity-list li'));
+      const activity=CL.dailyActivity(mem);
+      const now=new Date();
+      return rows.map((row,index)=>{
+        const date=new Date(now.getFullYear(),now.getMonth(),now.getDate()-6+index,12);
+        const key=CL.ymd(date);
+        return {day:row.dataset.day,expectedDay:key,count:Number(row.dataset.answered),
+          expectedCount:Number(activity[key] && activity[key].answered)||0,
+          visibleCount:Number(row.querySelector('strong').textContent),
+          accessible:row.getAttribute('aria-label')};
+      });
+    });
+    check('七日图按本地日历连续排列并显示真实每日答题数',
+      weekly.length===7 && weekly.every(row=>row.day===row.expectedDay && row.count===row.expectedCount &&
+        row.visibleCount===row.count && row.accessible.includes('答题 '+row.count+' 句')) &&
+      weekly.reduce((sum,row)=>sum+row.count,0)===1,JSON.stringify(weekly));
+    const emptyWeekly=await p.evaluate(()=>weeklyActivityMarkup({},new Date(2026,0,2,12)));
+    check('七日图跨年及零记录仍显示七个日期，没有伪造活动',
+      (emptyWeekly.match(/data-answered="0"/g)||[]).length===7 &&
+      emptyWeekly.includes('data-day="2025-12-27"') && emptyWeekly.includes('data-day="2026-01-02"'));
     for(const width of [360,390,1171]){
       await p.setViewportSize({width,height:960});
       check('概览无横向溢出 '+width,await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

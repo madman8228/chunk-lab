@@ -72,14 +72,53 @@
     ]
   };
   var manifest = null;
+  var protectedCatalog = [];
+  var protectedCatalogBase = null;
+  function protectedBase() { try { return global.ChunkAPI ? global.ChunkAPI.getBase() : global.localStorage.getItem('chunklab_api_base') || ''; } catch (_) { return null; } }
+  function platformIndex(deckOrId) {
+    if(protectedCatalogBase!==protectedBase())return null;
+    if(typeof deckOrId==='object'&&!deckOrId.builtin&&!deckOrId._content)return null;
+    var id=typeof deckOrId==='string'?deckOrId:deckOrId&&deckOrId.id;
+    for(var course of protectedCatalog){for(var unit of course.units||[]){
+      if(!unit.recordIdentity||unit.recordIdentity.deckId!==id)continue;
+      return {id:id,name:course.title,builtin:true,itemCount:unit.itemCount,_protectedHistory:true,_protectedCourseId:course.courseId,
+        items:(unit.itemIds||[]).map(function(cid,index){var href='main.html?protectedCourse='+encodeURIComponent(course.courseId)+'&unit='+encodeURIComponent(unit.unitId);
+          return {cid:cid,sentence:course.title+' · 内容 '+(index+1),translation:'打开课程后检查当前学习权限。',_protectedHistory:true,
+            _platformRef:{courseId:course.courseId,unitId:unit.unitId,cursor:index},_protectedReviewUrl:href+'&reviewItem='+encodeURIComponent(cid),_protectedAssessmentUrl:href+'&assessmentItem='+encodeURIComponent(cid)};
+        })};
+    }}
+    return null;
+  }
+  function loadProtectedCatalog() {
+    var base = protectedBase();
+    if (base === null) return Promise.resolve([]);
+    var read = global.ChunkAPI && typeof global.ChunkAPI.getCourseCatalog === 'function'
+      ? global.ChunkAPI.getCourseCatalog()
+      : fetch(base + '/api/course-content/catalog', { cache: 'no-store' }).then(function(response){
+      if (!response.ok) throw new Error('课程目录暂不可用');
+      return response.json();
+    });
+    return read.then(function(data){
+      if (!Array.isArray(data.courses)) throw new Error('课程目录格式无效');
+      if (base !== protectedBase()) return [];
+      protectedCatalog = data.courses; protectedCatalogBase = base;
+      return protectedCatalog;
+    }).catch(function(){return protectedCatalogBase === base ? protectedCatalog : [];});
+  }
   var readyPromise = null;
   var loading = {};
   var loaded = {};
   var memoryShards = {};
+  var shardLoading = {};
   var memoryIndexShards = {};
   var indexLoading = {};
   var contentDb = null;
   var contentDbOpening = null;
+  /* T5（2026-10-07）：分片路径不再随 manifest 一起下发（manifest 收敛为仅元数据），
+     改由鉴权接口 /api/content/shards 提供。下两变量缓存该请求（失败可重试）。 */
+  var shardMapPromise = null;
+  var shardMapLoaded = false;
+  var shardMapScopeKey = null;
 
   function byId(id) {
     var decks = (global.BUILTIN || []);
@@ -212,6 +251,9 @@
         var req = store.getAll();
         req.onsuccess = function () {
           (req.result || []).forEach(function (row) {
+            // Account/version-bound metadata is not a lesson shard. Preserve
+            // other accounts' offline metadata when pruning this manifest.
+            if (row.kind === 'authenticated-shard-map') return;
             /* URL 带 hash，本身已包含版本；manifest 只保留当前仍可访问的版本。 */
             if (!allowed[row.url] || row.contentVersion !== currentManifest.contentVersion) store.delete(row.url);
           });
@@ -244,6 +286,86 @@
 
   function getManifest() { return manifest; }
 
+  /* ---------- T5：从鉴权接口取「分片路径表」并合并进 manifest ----------
+     公开 manifest 只含元数据；分片路径（shards / indexShards）改由
+     GET /api/content/shards（需 token）返回。合并后保持原有
+     「manifest + 分片」加载范式不变（core.js 的不可改写边界）。 */
+  function shardMapUrl() {
+    var base = (global.ChunkAPI && global.ChunkAPI.getBase) ? (global.ChunkAPI.getBase() || '') : '';
+    return String(base).replace(/\/+$/, '') + '/api/content/shards';
+  }
+
+  function authHeaders() {
+    var token = (global.ChunkAPI && global.ChunkAPI.getToken) ? global.ChunkAPI.getToken() : null;
+    return token ? { Authorization: 'Bearer ' + token } : {};
+  }
+
+  function mergeShardMap(map) {
+    var byId = {};
+    (map.decks || []).forEach(function (entry) { byId[entry.id] = entry; });
+    ((manifest && manifest.decks) || []).forEach(function (entry) {
+      var info = byId[entry.id];
+      if (info) {
+        entry.shards = info.shards || [];
+        entry.indexShards = info.indexShards || [];
+      }
+    });
+    shardMapLoaded = true;
+  }
+
+  /* 取分片表并合并。失败时**显式抛错**（不静默空库）；失败后允许下次重试。 */
+  function loadShardMap() {
+    var scope = global.AccountStorage;
+    if (scope && scope.assertCurrent) scope.assertCurrent();
+    var owner = scope && scope.owner;
+    var version = manifest && manifest.contentVersion;
+    var endpoint = new URL(shardMapUrl(), global.location.href).href;
+    var metadataKey = owner && version ? 'shard-map:v1:' + JSON.stringify([owner, endpoint, version]) : null;
+    function assertScope(){
+      if (scope && scope.assertCurrent) scope.assertCurrent();
+      if (scope !== global.AccountStorage || owner !== (global.AccountStorage && global.AccountStorage.owner)) {
+        throw new Error('分片表账号已切换');
+      }
+    }
+    if (shardMapLoaded) {
+      if (shardMapScopeKey !== metadataKey) throw new Error('分片表账号或版本已切换');
+      return Promise.resolve(manifest);
+    }
+    if (shardMapPromise) return shardMapPromise;
+    shardMapPromise = fetch(shardMapUrl(), { cache: 'no-store', headers: authHeaders() })
+      .catch(function (networkError) {
+        // Only transport failure permits offline recovery. HTTP 401/403 and
+        // malformed responses must fail closed, never fall back to old access.
+        if (!metadataKey) throw networkError;
+        return cacheGet(metadataKey).then(function (record) {
+          assertScope();
+          if (!record || record.kind !== 'authenticated-shard-map' ||
+              record.owner !== owner || record.contentVersion !== version ||
+              !record.data || !Array.isArray(record.data.decks)) throw networkError;
+          return {ok:true,json:function(){return Promise.resolve(record.data);}};
+        });
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          var hint = res.status === 401 ? '（需要登录后重试）' : '';
+          throw new Error('分片表 HTTP ' + res.status + hint);
+        }
+        return res.json();
+      })
+      .then(function (map) {
+        assertScope();
+        if (!map || !Array.isArray(map.decks)) throw new Error('分片表格式不受支持');
+        var stored = metadataKey ? cachePut({url:metadataKey,kind:'authenticated-shard-map',
+          owner:owner,contentVersion:version,data:map}) : Promise.resolve(false);
+        return stored.then(function(){assertScope();shardMapScopeKey=metadataKey;mergeShardMap(map);return manifest;});
+      })
+      .catch(function (err) {
+        shardMapPromise = null; /* 允许后续重试（例如登录后） */
+        throw err;
+      });
+    return shardMapPromise;
+  }
+
   function loadManifest() {
     if (readyPromise) return readyPromise;
     readyPromise = fetch(MANIFEST_URL, { cache: 'no-cache' })
@@ -255,7 +377,14 @@
         if (!data || data.schemaVersion !== 1 || !Array.isArray(data.decks)) throw new Error('manifest 格式不受支持');
         manifest = ensureCatalog(data);
         installSummaries();
-        return pruneCache(manifest).then(function () { return manifest; });
+        /* T5：拉取并合并分片表后再清理缓存。分片表暂不可用时**不阻塞目录**，
+           练习时会重试并显式报错（不静默给空库）。 */
+        return loadShardMap()
+          .then(function () { return pruneCache(manifest).then(function () { return manifest; }); })
+          .catch(function (err) {
+            console.warn('[content] 分片表暂不可用（练习时将重试）：', err && err.message);
+            return manifest;
+          });
       })
       .catch(function (err) {
         /* manifest 缺失时不阻塞旧版本启动；真正练习时仍可加载旧版源文件。 */
@@ -281,9 +410,26 @@
     options = options || {};
     var useMemory = options.memory !== false;
     if (useMemory && memoryShards[shard.url]) return Promise.resolve(memoryShards[shard.url]);
+    var key = JSON.stringify([shard.url, shard.sha256 || '', shard.count, shard.mode || '', manifest && manifest.contentVersion]);
+    if (!shardLoading[key]) {
+      shardLoading[key] = readShard(shard).then(function (data) {
+        delete shardLoading[key];
+        return data;
+      }, function (error) {
+        delete shardLoading[key];
+        throw error;
+      });
+    }
+    return shardLoading[key].then(function (data) {
+      // Sharing an in-flight download must not force memory retention on batch callers.
+      if (useMemory) memoryShards[shard.url] = data;
+      return data;
+    });
+  }
+
+  function readShard(shard) {
     return cacheGet(shard.url).then(function (record) {
       if (record && validShardData(record.data, shard, record)) {
-        if (useMemory) memoryShards[shard.url] = record.data;
         return record.data;
       }
       return fetch(shard.url, { cache: 'force-cache' })
@@ -293,7 +439,6 @@
         })
         .then(function (data) {
           if (!validShardData(data, shard)) throw new Error('分片格式/数量不匹配：' + shard.url);
-          if (useMemory) memoryShards[shard.url] = data;
           /* 不阻塞题目渲染；缓存失败不影响本次练习。 */
           cachePut({
             url: shard.url,
@@ -364,36 +509,39 @@
     var id = entry.id;
     if (loaded[id]) return loaded[id];
     if (loading[id]) return loading[id];
-    var shards = entry.shards || [];
-    if (!shards.length) {
-      loading[id] = loadLegacyContent(entry);
-      return loading[id];
-    }
-    loading[id] = Promise.all(shards.map(loadShard))
-      .then(function (parts) {
-        var deck = byId(id);
-        if (!deck) throw new Error('找不到题库：' + id);
-        var items = [];
-        parts.forEach(function (part) { items = items.concat(part.items); });
-        if (shards[0].mode === 'append') {
-          deck.items = (deck.items || []).concat(items);
-        } else if (items.length || !(deck.items || []).length) {
-          deck.items = items;
-        }
-        deck.itemCount = deck.items.length;
-        deck._contentReady = true;
-        loaded[id] = true;
-        return deck;
-      })
-      .catch(function (err) {
-        /* 旧源只在分片取不到时使用一次，避免网络恢复后重复 concat。 */
-        if (!entry.legacyFallback) throw err;
+    loading[id] = loadShardMap().then(function () {
+      var shards = entry.shards || [];
+      if (!shards.length) {
+        if (!entry.legacyFallback) throw new Error('内容分片不可用（' + id + '）：未取得分片表，请登录后重试');
         return loadLegacyContent(entry);
-      });
+      }
+      return Promise.all(shards.map(loadShard))
+        .then(function (parts) {
+          var deck = byId(id);
+          if (!deck) throw new Error('找不到题库：' + id);
+          var items = [];
+          parts.forEach(function (part) { items = items.concat(part.items); });
+          if (shards[0].mode === 'append') {
+            deck.items = (deck.items || []).concat(items);
+          } else if (items.length || !(deck.items || []).length) {
+            deck.items = items;
+          }
+          deck.itemCount = deck.items.length;
+          deck._contentReady = true;
+          loaded[id] = true;
+          return deck;
+        })
+        .catch(function (err) {
+          /* 旧源只在分片取不到时使用一次，避免网络恢复后重复 concat。 */
+          if (!entry.legacyFallback) throw err;
+          return loadLegacyContent(entry);
+        });
+    });
     return loading[id];
   }
 
   function ensureDeck(deckOrId, mem) {
+    var controlled=platformIndex(deckOrId);if(controlled)return Promise.resolve(controlled);
     return loadManifest().then(function () {
       var id = typeof deckOrId === 'string' ? deckOrId : (deckOrId && deckOrId.id);
       var entry = entryById(id);
@@ -420,40 +568,43 @@
   }
 
   function ensureDeckIndex(deckOrId, mem) {
+    var controlled=platformIndex(deckOrId);if(controlled)return Promise.resolve(controlled);
     return loadManifest().then(function () {
       var id = typeof deckOrId === 'string' ? deckOrId : (deckOrId && deckOrId.id);
       var entry = entryById(id);
       var current = byId(id);
       if (!entry || !current) return copyDeck(deckOrId, mem);
       if (current._contentReady) return copyDeck(current, mem);
-      var indexShards = entry.indexShards || [];
-      if (!indexShards.length) return ensureDeck(id, mem);
-      var append = entry.shards.length && entry.shards[0].mode === 'append';
-      var baseItems = append ? (current.items || []).slice() : [];
-      return Promise.all(indexShards.map(loadIndexShard)).then(function (parts) {
-        var items = baseItems;
-        parts.forEach(function (part) {
-          (part.items || []).forEach(function (item) {
-            var summary = {
-              cid: item.cid,
-              sentence: item.sentence,
-              translation: item.translation,
-              _contentRef: { url: item.sourceUrl, offset: item.sourceOffset }
-            };
-            items.push(summary);
+      return loadShardMap().then(function () {
+        var indexShards = entry.indexShards || [];
+        if (!indexShards.length) return ensureDeck(id, mem);
+        var append = entry.shards.length && entry.shards[0].mode === 'append';
+        var baseItems = append ? (current.items || []).slice() : [];
+        return Promise.all(indexShards.map(loadIndexShard)).then(function (parts) {
+          var items = baseItems;
+          parts.forEach(function (part) {
+            (part.items || []).forEach(function (item) {
+              var summary = {
+                cid: item.cid,
+                sentence: item.sentence,
+                translation: item.translation,
+                _contentRef: { url: item.sourceUrl, offset: item.sourceOffset }
+              };
+              items.push(summary);
+            });
           });
+          var out = {};
+          Object.keys(current).forEach(function (k) { out[k] = current[k]; });
+          out.items = items;
+          out.itemCount = Number(entry.totalCount) || items.length;
+          out._contentIndexReady = true;
+          out._contentReady = false;
+          return copyDeck(out, mem);
+        }).catch(function (err) {
+          /* 旧 manifest 或 index 发布不完整时保持旧版可用。 */
+          if (!entry.legacyFallback) throw err;
+          return ensureDeck(id, mem);
         });
-        var out = {};
-        Object.keys(current).forEach(function (k) { out[k] = current[k]; });
-        out.items = items;
-        out.itemCount = Number(entry.totalCount) || items.length;
-        out._contentIndexReady = true;
-        out._contentReady = false;
-        return copyDeck(out, mem);
-      }).catch(function (err) {
-        /* 旧 manifest 或 index 发布不完整时保持旧版可用。 */
-        if (!entry.legacyFallback) throw err;
-        return ensureDeck(id, mem);
       });
     });
   }
@@ -461,6 +612,7 @@
   function hydrateItems(items, options) {
     items = Array.isArray(items) ? items : [];
     return loadManifest().then(function () {
+      return loadShardMap().then(function () {
       var groups = {};
       items.forEach(function (item) {
         var ref = item && item._contentRef;
@@ -491,6 +643,7 @@
           Object.keys(item).forEach(function (k) { if (k.indexOf('_') === 0) out[k] = item[k]; });
           return out;
         });
+      });
       });
     });
   }
@@ -561,6 +714,7 @@
      cursor 是内容游标，不是学习统计游标：它只表示“已经扫描到分片哪里”。
      这样掌握/删除过滤不会改变 cid，也不会把题目复制到 localStorage。 */
   function ensureDeckBatch(deckOrId, mem, options) {
+    if(platformIndex(deckOrId))return Promise.reject(Object.assign(new Error('请从统一课程入口开始学习'),{code:'PLATFORM_ENTRY_REQUIRED'}));
     options = options || {};
     return loadManifest().then(function () {
       var id = typeof deckOrId === 'string' ? deckOrId : (deckOrId && deckOrId.id);
@@ -570,6 +724,7 @@
         return { deck: copyDeck(deckOrId, mem), done: true, loadedCount: 0, totalCount: 0, remainingCount: 0 };
       }
       if (current._contentReady && !options.force) return legacyBatchResult(entry, current, mem, null);
+      return loadShardMap().then(function () {
       if (!options.force && !shouldBatch(id)) {
         return ensureDeck(id, mem).then(function (full) { return legacyBatchResult(entry, full, mem, null); });
       }
@@ -641,6 +796,7 @@
         if (!entry.legacyFallback) throw err;
         return loadLegacyContent(entry).then(function (full) { return legacyBatchResult(entry, full, mem, startCursor); });
       });
+      });
     });
   }
 
@@ -664,8 +820,11 @@
   global.ContentRepo = {
     MANIFEST_URL: MANIFEST_URL,
     PRACTICE_BATCH_THRESHOLD: PRACTICE_BATCH_THRESHOLD,
-    ready: loadManifest(),
+    ready: Promise.all([loadManifest(), loadProtectedCatalog()]).then(function(values){return values[0];}),
+    getProtectedCatalog: function(){return protectedCatalogBase === protectedBase() ? protectedCatalog : [];},
+    loadProtectedCatalog: loadProtectedCatalog,
     getManifest: getManifest,
+    loadShardMap: loadShardMap,
     ensureDeck: ensureDeck,
     ensureDeckBatch: ensureDeckBatch,
     ensureDeckIndex: ensureDeckIndex,

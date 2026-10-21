@@ -12,6 +12,9 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@alicloud/dypnsapi20170525": "^2.0.0",
+    "@alicloud/openapi-client": "^0.4.15",
+    "@alicloud/tea-util": "^1.4.11",
     "bcryptjs": "^2.4.3",
     "better-sqlite3": "^11.3.0",
     "cors": "^2.8.5",

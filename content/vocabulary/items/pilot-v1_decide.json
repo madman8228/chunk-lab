@@ -1,0 +1,53 @@
+{
+  "itemId": "pilot-v1:decide",
+  "word": "decide",
+  "meaning": "决定",
+  "scene": "周末出游，你在徒步和野餐之间选择了野餐。",
+  "example": "I decided to have a picnic.",
+  "translation": "我决定去野餐。",
+  "exercise": {
+    "version": 1,
+    "parts": [
+      {
+        "text": "I "
+      },
+      {
+        "id": "verb",
+        "label": "决定（过去式）",
+        "answers": [
+          "decided"
+        ],
+        "feedback": [
+          {
+            "values": [
+              "decide"
+            ],
+            "message": "这里说已经发生的决定，用过去式 decided。"
+          }
+        ]
+      },
+      {
+        "text": " "
+      },
+      {
+        "id": "link",
+        "label": "决定做某事的连接词",
+        "answers": [
+          "to"
+        ]
+      },
+      {
+        "text": " have a picnic."
+      }
+    ]
+  },
+  "images": {
+    "wide": [
+      "assets/vocabulary-decide-wide-v3.webp"
+    ],
+    "mobile": [
+      "assets/vocabulary-decide-wide-v3.webp"
+    ]
+  },
+  "contentRevision": "ff51d4ba33b54e0c7759c1a61469f0438b98c93a7c25bca38f650eb9addc05b3"
+}

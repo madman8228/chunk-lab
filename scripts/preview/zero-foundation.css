@@ -1,0 +1,19 @@
+.wordbook-study #stages{margin:12px 0}
+.wordbook-study #stages button[aria-current=step]{background:#ffe08a;border-color:#ccad62;font-weight:700}
+.wordbook-study #stages button:not([aria-current=step]),.wordbook-study .intro-practice .wordbook-controls button[aria-pressed=false],.wordbook-study #controls button{background:var(--v4-card);border-color:#d8c7a9}
+.wordbook-study #controls button.intro-primary:not(:disabled){background:#ffe08a;border-color:#ccad62;font-weight:700}
+.wordbook-study #lessonMenu{margin:12px 0}
+.wordbook-study #lessonMenu summary{cursor:pointer;width:fit-content;padding:10px 0}
+.wordbook-study #lessonMenu summary:focus-visible{outline:2px solid #85501e;outline-offset:3px}
+.wordbook-study #controls{margin-top:12px}
+.wordbook-study>header+p{position:relative;background:#d3eaf1;width:fit-content;max-width:100%}
+.wordbook-study .intro-target{font-size:26px;line-height:1.5;margin:0 0 8px;overflow-wrap:anywhere}
+.wordbook-study .intro-explanation{line-height:1.6;margin:12px 0;max-width:65ch}
+.wordbook-study .intro-practice{margin-top:18px}
+.wordbook-study .intro-practice h3{font-size:18px;margin:0 0 8px}
+.wordbook-study .intro-practice .wordbook-controls{margin-bottom:12px}
+.wordbook-study .intro-practice button[aria-pressed=true]{font-weight:700;text-decoration:underline;text-underline-offset:5px}
+.wordbook-study #loadStatus:empty{display:none}
+.wordbook-study #lesson h2:focus{outline:none}
+.wordbook-study #lesson [hidden]{display:none}
+.wordbook-study ::selection{background:#ffe08a;color:#523019}

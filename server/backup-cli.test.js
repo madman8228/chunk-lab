@@ -119,11 +119,13 @@ server.listen(0, '127.0.0.1', async function () {
     content && content.__app === 'chunklab' && content.mem && content.mem.decks && content.mem.decks.length === 1,
     JSON.stringify(content && content.mem && content.mem.decks));
 
-  /* ===== 2. 保留策略：KEEP=2 时连续 3 次只留 2 份 ===== */
+  /* ===== 2. 旧保留参数不能再触发删除 ===== */
+  const originalBytes = fs.readFileSync(path.join(BACKUP_DIR, b1[0]));
   await run(['backup'], { KEEP: '2' });
   r = await run(['backup'], { KEEP: '2' });
-  check('backup: KEEP=2 连续 3 次后只保留 2 份', backups().length === 2, JSON.stringify(backups()));
-  check('backup: 清理提示输出', r.stdout.indexOf('清理旧备份') >= 0, r.stdout);
+  check('backup: KEEP=2 连续 3 次仍保留全部 3 份', backups().length === 3, JSON.stringify(backups()));
+  check('backup: 原备份逐字节不变', fs.readFileSync(path.join(BACKUP_DIR, b1[0])).equals(originalBytes));
+  check('backup: 不执行旧清理行为', r.stdout.indexOf('清理旧备份') < 0, r.stdout);
 
   /* ===== 3. 固定来源预览 → 明确确认 → server-authoritative apply ===== */
   const latest = backups()[backups().length - 1];

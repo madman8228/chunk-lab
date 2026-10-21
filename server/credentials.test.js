@@ -140,11 +140,11 @@ const kvAfterRename = db.prepare('SELECT v_json FROM user_kv WHERE user_id=? AND
 check('改名后同一 user_id 仍能取回数据（零迁移）', !!kvAfterRename && JSON.parse(kvAfterRename.v_json).answered === 42);
 check('改名后登录仍拿到同一个 user_id', auth.login('alice-final', 'alice-new-pass').id === alice.id);
 
-/* ===== 9. token 里的 uname 是签发时的副本，不随改名更新（提醒别拿它当账号名展示） ===== */
+/* ===== 9. verifyToken 回查 users 表，不把 token 里的 uname 当作当前账号名 ===== */
 const staleToken = auth.signToken(alice.id, 'alice-renamed');
 const decoded = auth.verifyToken(staleToken);
 check('旧 token 仍然有效且 uid 正确', !!decoded && decoded.userId === alice.id);
-check('token 内 uname 保持签发时的旧值（故服务端必须回查 users 表）', decoded.username === 'alice-renamed');
+check('verifyToken 返回当前账号名，而不是签发时的旧 uname', decoded.username === 'alice-final');
 
 console.log('\n[credentials] ' + passed + ' 通过 / ' + failed + ' 失败');
 if (failed === 0) {

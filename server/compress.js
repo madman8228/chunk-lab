@@ -83,7 +83,10 @@ function etagFor(stat, enc) {
 
 function touch(key, entry) {
   /* LRU：删了再塞 = 移到队尾 */
-  if (cache.has(key)) cache.delete(key);
+  if (cache.has(key)) {
+    cacheBytes -= cache.get(key).bytes;
+    cache.delete(key);
+  }
   cache.set(key, entry);
   cacheBytes += entry.bytes;
   while (cacheBytes > CACHE_BUDGET && cache.size > 1) {
@@ -102,7 +105,7 @@ function encode(file, stat, enc) {
   const jobKey = key + '|' + enc;
   if (inflight.has(jobKey)) {
     return inflight.get(jobKey).then(function (buf) {
-      const e = cache.get(key) || { size: stat.size, bytes: 0, etag: {} };
+      const e = { ...(cache.get(key) || { size: stat.size, bytes: 0, etag: {} }) };
       if (!e[enc]) { e[enc] = buf; e.bytes += buf.length; touch(key, e); }
       return e;
     });
@@ -125,7 +128,8 @@ function encode(file, stat, enc) {
 
   inflight.set(jobKey, job);
   return job.then(function (buf) {
-    const e = cache.get(key) || { size: stat.size, bytes: 0, etag: {} };
+    // Copy before adding an encoding so touch can subtract the previous size.
+    const e = { ...(cache.get(key) || { size: stat.size, bytes: 0, etag: {} }) };
     if (!e[enc]) { e[enc] = buf; e.bytes += buf.length; }
     touch(key, e);
     return e;
@@ -163,21 +167,24 @@ function compression(root) {
     } catch (e) { return next(); }
     if (stat.size < MIN_BYTES) return next();
 
-    encode(file, stat, enc).then(function (entry) {
-      const etag = etagFor(stat, enc);
+    const etag = etagFor(stat, enc);
+    function setHeaders() {
       res.setHeader('Content-Type', TYPES[extOf(file)] || 'application/octet-stream');
       res.setHeader('Content-Encoding', enc);
       res.setHeader('Vary', 'Accept-Encoding');
       res.setHeader('ETag', etag);
       res.setHeader('Last-Modified', new Date(stat.mtimeMs).toUTCString());
       res.setHeader('Cache-Control', 'public, max-age=0');
+    }
+    // The validator depends only on stat and encoding, not the compressed body.
+    if (String(req.headers['if-none-match'] || '').split(',').map(function (s) { return s.trim(); }).indexOf(etag) >= 0) {
+      setHeaders();
+      res.removeHeader('Content-Length');
+      return res.status(304).end();
+    }
+    encode(file, stat, enc).then(function (entry) {
+      setHeaders();
       res.setHeader('Content-Length', String(entry[enc].length));
-
-      /* 304 必须带同一套 Vary/ETag/Cache-Control，否则缓存语义会错乱 */
-      if (String(req.headers['if-none-match'] || '').split(',').map(function (s) { return s.trim(); }).indexOf(etag) >= 0) {
-        res.removeHeader('Content-Length');
-        return res.status(304).end();
-      }
       if (req.method === 'HEAD') return res.status(200).end();
       res.status(200).end(entry[enc]);
     }).catch(function () {

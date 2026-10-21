@@ -3,7 +3,7 @@
  * backup-cli.js · Chunk Lab 自动备份 CLI（零依赖，上线准备 #2）
  *
  * 用法：
- *   node backup-cli.js backup              # 备份：GET /api/export → 落盘 + 保留 N 份自动清理
+ *   node backup-cli.js backup              # 备份：GET /api/export → 新建文件，保留已有备份
  *   node backup-cli.js preview <file>      # 固定恢复预览（只读，生成 .preview.json）
  *   node backup-cli.js apply <preview> --confirm [--selection <file>]  # 完整恢复或按明确选择恢复
  *   node backup-cli.js list                # 列出已有备份
@@ -12,7 +12,7 @@
  *   BASE_URL     后端地址（默认 http://127.0.0.1:8787）
  *   TOKEN        鉴权 token（REQUIRE_AUTH=true 时需要；开放模式无需）
  *   BACKUP_DIR   备份目录（默认 server/backups，可指向持久盘）
- *   BACKUP_KEEP  保留份数（默认 14，超出自动删除最旧）
+ *   不自动删除已有备份；清理必须另行明确授权。
  *
  * 调度（示例）：
  *   Linux  cron:  0 3 * * *  cd /path/to/chunk-practice && BASE_URL=http://localhost:8787 TOKEN=xxx node server/backup-cli.js backup
@@ -39,7 +39,6 @@ const { gzipSync } = require('zlib');
 const BASE = (process.env.BASE_URL || 'http://127.0.0.1:8787').replace(/\/+$/, '');
 const TOKEN = process.env.TOKEN || '';
 const DIR = path.resolve(process.env.BACKUP_DIR || path.join(__dirname, 'backups'));
-const KEEP = parseInt(process.env.BACKUP_KEEP || '14', 10) || 14;
 const PREFIX = 'chunklab_backup_';
 const SUFFIX = '.json';
 const PREVIEW_SUFFIX = '.preview.json';
@@ -88,24 +87,14 @@ function listBackups() {
   }).sort();
 }
 
-/* 保留策略：超出 KEEP 份则删除最旧的，返回删除数 */
-function prune() {
-  const all = listBackups();
-  const excess = all.length - KEEP;
-  if (excess <= 0) return 0;
-  all.slice(0, excess).forEach(function (f) { fs.unlinkSync(path.join(DIR, f)); });
-  return excess;
-}
 
 function backup() {
   return request('GET', '/api/export').then(function (data) {
     fs.mkdirSync(DIR, { recursive: true });
     const file = PREFIX + stamp() + SUFFIX;
-    fs.writeFileSync(path.join(DIR, file), JSON.stringify(data, null, 2));
-    const removed = prune();
+    fs.writeFileSync(path.join(DIR, file), JSON.stringify(data, null, 2), { flag: 'wx' });
     const sizeKB = Math.round(fs.statSync(path.join(DIR, file)).size / 1024);
     console.log('[backup] OK ' + file + ' (' + sizeKB + ' KB)');
-    if (removed) console.log('[backup] 保留策略：清理旧备份 ' + removed + ' 份（最多 ' + KEEP + ' 份）');
     return file;
   });
 }
@@ -323,4 +312,4 @@ if (cmd) {
 }
 
 module.exports = { backup: backup, preview: preview, applyPreview: applyPreview, listBackups: listBackups,
-  prune: prune, request: request, uploadRecoverySource: uploadRecoverySource, DIR: DIR, KEEP: KEEP };
+  request: request, uploadRecoverySource: uploadRecoverySource, DIR: DIR };

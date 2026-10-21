@@ -93,13 +93,13 @@ assert.equal(health.migrationRetainedItems, 3);
 assert.equal(health.windowMinutes, 30);
 const actualDb = new Database(':memory:');
 actualDb.exec(`CREATE TABLE user_client_save_health(
-  user_id INTEGER, client_id TEXT, pending INTEGER, blocked INTEGER, retry_attempts INTEGER,
+  user_id INTEGER, client_id TEXT, pending INTEGER, blocked INTEGER, deferred_version INTEGER DEFAULT 0, retry_attempts INTEGER,
   oldest_pending_at INTEGER, error_code TEXT, trace_id TEXT, updated_at INTEGER);
 CREATE TABLE user_operation_receipts(created_at TEXT);
 CREATE TABLE user_recovery_sources(manifest_json TEXT);`);
 const now = Date.now();
-actualDb.prepare('INSERT INTO user_client_save_health VALUES(1,?,?,?,?,?,?,?,?)')
-  .run('client-a', 2, 1, 5, now - 60000, 'ENTITY_CHANGED', 'trace-a', now);
+actualDb.prepare('INSERT INTO user_client_save_health VALUES(1,?,?,?,?,?,?,?,?,?)')
+  .run('client-a', 2, 1, 3, 5, now - 60000, 'ENTITY_CHANGED', 'trace-a', now);
 actualDb.prepare('INSERT INTO user_operation_receipts(created_at) VALUES(datetime(\'now\'))').run();
 actualDb.prepare('INSERT INTO user_recovery_sources(manifest_json) VALUES(?)').run(JSON.stringify({ verified: true, migration: { items: {
   decks: [{ id: 'private-deck', status: 'retained-with-reason', reason: 'private reason' }, { id: 'safe-deck', status: 'applied' }]

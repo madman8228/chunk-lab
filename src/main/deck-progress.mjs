@@ -29,7 +29,7 @@ export function calculateDeckLearningProgress(options = {}) {
   });
 
   const done = Math.min(total, seen.size);
-  return { done, total, pct: total ? Math.round(done / total * 100) : 0, ready: true };
+  return { done, total, pct: total ? (done === total ? 100 : Math.min(99, Math.round(done / total * 100))) : 0, ready: true };
 }
 
 export function buildDeckProgressMarkup(options = {}) {

@@ -1,0 +1,35 @@
+{
+  "itemId": "pilot-v1:enough",
+  "word": "enough",
+  "meaning": "足够的",
+  "scene": "野餐前，你准备了足够大家喝的水。",
+  "example": "We have enough water for everyone.",
+  "translation": "我们有足够的水给大家喝。",
+  "exercise": {
+    "version": 1,
+    "parts": [
+      {
+        "text": "We have "
+      },
+      {
+        "id": "quantity",
+        "label": "足够的",
+        "answers": [
+          "enough"
+        ]
+      },
+      {
+        "text": " water for everyone."
+      }
+    ]
+  },
+  "images": {
+    "wide": [
+      "assets/vocabulary-enough-wide-v3.webp"
+    ],
+    "mobile": [
+      "assets/vocabulary-enough-wide-v3.webp"
+    ]
+  },
+  "contentRevision": "211558f39f6e06ca4638594e270cfa50ef9a7c4dfcafa7e3a82366ead0d8a8f6"
+}

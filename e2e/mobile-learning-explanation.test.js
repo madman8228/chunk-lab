@@ -90,10 +90,22 @@ async function assertNoHorizontalOverflow(page, label) {
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
     const page = await context.newPage();
-    await page.route('**/api/**', function (route) { route.abort('failed'); });
+    // Keep authored content metadata reachable; this isolates local learning
+    // UI, not a cold offline-content bootstrap (covered by sw-cache).
+    await page.route('**/api/**', function (route) {
+      if (new URL(route.request().url()).pathname === '/api/content/shards') return route.continue();
+      return route.abort('failed');
+    });
     await page.addInitScript(function (value) {
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify(value));
+      const courseId = 'builtin:oral';
+      localStorage.setItem('chunklab.course-progress.v1', JSON.stringify({
+        ['enrollment:v1:' + encodeURIComponent(courseId)]: {
+          kind:'course-enrollment', schemaVersion:1, courseId, joined:true,
+          joinedAt:Date.now(), changedAt:Date.now()
+        }
+      }));
     }, localMem());
     await page.goto(BASE + '/main.html?direct=1&mobile-learning-evidence=1', { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#stageChoices .choice', { timeout: 15000 });

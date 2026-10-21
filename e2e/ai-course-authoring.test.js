@@ -428,9 +428,13 @@ async function captureDownload(page) {
     await manualPage.locator('[data-action=back-setup]').click();
     await manualPage.locator('#brief').fill('这是旧账号的私有需求');
     await manualPage.waitForTimeout(450);
-    await manualPage.evaluate(function () { localStorage.setItem('chunklab_api_base', location.origin + '/other-account-scope'); });
-    await manualPage.locator('#brief').fill('这段内容不得写入旧账号');
-    await manualPage.waitForFunction(function (owner) { return AccountStorage.owner !== owner; }, priorOwner, { timeout: 10000 });
+    await manualPage.evaluate(function () {
+      ChunkAPI.setSession(location.origin + '/other-account-scope', null);
+      const field = document.querySelector('#brief');
+      field.value = '这段内容不得写入旧账号';
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await manualPage.waitForFunction(function (owner) { return window.AccountStorage && AccountStorage.owner && AccountStorage.owner !== owner; }, priorOwner, { timeout: 10000 });
     await manualPage.waitForFunction(function () { const field = document.querySelector('#brief'); return field && field.value === ''; }, undefined, { timeout: 10000 });
     await manualContext.close();
     const volatileContext = await browser.newContext();

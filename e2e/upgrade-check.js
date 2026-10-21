@@ -194,12 +194,22 @@ function buildOldMem(cidA, cidB, sample, aliasCid) {
        the fixture so a previously migrated server snapshot cannot replace the
        seeded legacy keys while the page is booting. Sync behavior is covered by
        the dedicated sync suites. */
-    await ctxB.route('**/api/**', function (route) { route.abort('failed'); });
+    await ctxB.route('**/api/**', function (route) {
+      if (new URL(route.request().url()).pathname === '/api/content/shards') return route.continue();
+      return route.abort('failed');
+    });
     await ctxB.addInitScript(function (payload) {
       /* addInitScript 在页面任何脚本之前执行 —— 这是「模拟升级前的老用户」唯一不产生
          写盘竞态的方式（事后 evaluate 写入会与首屏 ensureCloud/saveMem 抢同一个键）。 */
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify(payload.owner));
       localStorage.setItem('chunklab.v1', payload.mem);
+      const courseId = 'builtin:oral';
+      localStorage.setItem('chunklab.course-progress.v1', JSON.stringify({
+        ['enrollment:v1:' + encodeURIComponent(courseId)]: {
+          kind:'course-enrollment', schemaVersion:1, courseId, joined:true,
+          joinedAt:Date.now(), changedAt:Date.now()
+        }
+      }));
     }, { owner: seedOwner, mem: seedMemJson });
     const pB = await ctxB.newPage();
     const errsB = [];
@@ -223,8 +233,7 @@ function buildOldMem(cidA, cidB, sample, aliasCid) {
         rawBySentenceKeys: keys(raw.stats && raw.stats.bySentence),
         rawReinforce: (raw.reinforceBook || []).map(function (it) { return { deckId: it.deckId, _key: it._key }; }),
         bestKeys: keys(mem.best),
-        progressKeys: keys(mem.progress),
-        items: (window.S && S.items) ? S.items.length : 0
+        progressKeys: keys(mem.progress)
       };
     }, { a: CID_A, b: CID_B, orphan: ORPHAN_CID });
 
@@ -363,8 +372,7 @@ function buildOldMem(cidA, cidB, sample, aliasCid) {
 
     /* ================= 7. 升级后立即可用 ================= */
     console.log('== 7 升级后立即可用 ==');
-    check('7.1 升级后能进入练习并出题', after.items > 0, 'items=' + after.items);
-    check('7.2 升级全过程零 pageerror', errsB.length === 0, errsB.slice(0, 2).join(' | '));
+    console.log('出题与运行时错误检查在下方真实 P3 恢复/学习页面执行，不使用屏蔽服务器的迁移页面。');
     console.log('');
 
     /* ================= 8. P3 升级纵向闭环 ================= */
@@ -373,6 +381,8 @@ function buildOldMem(cidA, cidB, sample, aliasCid) {
       viewport: { width: 1280, height: 800 }, serviceWorkers: 'allow'
     });
     const pUpgrade = await ctxUpgrade.newPage();
+    const errsUpgrade = [];
+    pUpgrade.on('pageerror', function (error) { errsUpgrade.push(error.message); });
     const upgradeLegacyWrites = [];
     const upgradeAnswerOperations = [];
     pUpgrade.on('request', function (request) {
@@ -513,11 +523,26 @@ function buildOldMem(cidA, cidB, sample, aliasCid) {
       upgradeLegacyWrites[0].method === 'PUT' && upgradeLegacyWrites[0].path === '/api/data',
     JSON.stringify(upgradeLegacyWrites));
 
-    await pUpgrade.evaluate(function (id) {
+    await pUpgrade.evaluate(async function (id) {
+      await CourseEnrollment.join('user-deck:' + id);
       showPracticePage();
       startDeck(findDeck(id), 0);
     }, legacyDeck.id);
     await pUpgrade.waitForSelector('#stageChoices .choice', { timeout: 15000 });
+    const playable = await pUpgrade.evaluate(async function () {
+      return {
+        items: S.items.length, deckId: S.deck && S.deck.id,
+        sentence: cur() && cur().sentence,
+        stageVisible: !document.getElementById('stage').classList.contains('hidden'),
+        choices: Array.from(document.querySelectorAll('#stageChoices .choice')).map(function (button) { return button.dataset.v; }),
+        controlled: !!navigator.serviceWorker.controller,
+        cacheKeys: await caches.keys()
+      };
+    });
+    check('7.1 升级后能进入练习并出题', playable.items > 0 && playable.deckId === legacyDeck.id &&
+      playable.sentence === 'Say hello.' && playable.stageVisible && playable.choices.includes('Say hello.') &&
+      playable.controlled && playable.cacheKeys.includes(CUR_CACHE) && !playable.cacheKeys.includes('chunklab-deadbeef'),
+    JSON.stringify(playable));
     const answerResponse = pUpgrade.waitForResponse(function (response) {
       return response.request().method() === 'POST' && new URL(response.url()).pathname === '/api/operations' &&
         response.status() === 200 && response.request().postData().indexOf('learning.answer') >= 0;
@@ -553,6 +578,8 @@ function buildOldMem(cidA, cidB, sample, aliasCid) {
       }), JSON.stringify({ afterReloadCount, legacyWrites: upgradeLegacyWrites }));
     } finally { answerCountAfterReloadDb.close(); }
     await ctxUpgrade.close();
+    check('7.2 升级全过程零 pageerror', errsB.length === 0 && errsUpgrade.length === 0,
+      errsB.concat(errsUpgrade).slice(0, 2).join(' | '));
     console.log('');
 
     /* ================= E. 负向自证 ================= */

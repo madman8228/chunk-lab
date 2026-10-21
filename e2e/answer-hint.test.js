@@ -38,7 +38,10 @@ function stop(){if(server){try{server.kill('SIGKILL');}catch(_){}server=null;}tr
   });
   await page.goto(BASE+'/main.html?answer-hint-test=1',{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window._mainBooted&&window.mem&&typeof window.startDeck==='function');
-  await page.evaluate(()=>startDeck(window.mem.decks[0],0));
+  await page.evaluate(async()=>{
+    await CourseEnrollment.join('user-deck:'+window.mem.decks[0].id);
+    startDeck(window.mem.decks[0],0);
+  });
   await page.waitForSelector('#stageChoices .choice');
   const initial=await page.evaluate(()=>({status:S.status.slice(),answers:S.answers.slice(),idx:S.idx,chunkIdx:S.chunkIdx,chunkTotal:S.chunkTotal}));
   await page.keyboard.press('Control+f');

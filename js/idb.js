@@ -184,6 +184,71 @@
     });
   }
 
+  function archiveVocabularyBrowseConflict(selection, replacement) {
+    if(!selection||selection.confirmed!==true||typeof selection.owner!=='string'||!selection.owner||typeof selection.scope!=='string'||!selection.scope||typeof selection.bookId!=='string'||!selection.bookId||!/^[a-f0-9]{64}$/.test(selection.planRevision||'')||!Array.isArray(selection.requestIds)||!selection.requestIds.length||selection.requestIds.some(function(id){return typeof id!=='string'||!id;})||new Set(selection.requestIds).size!==selection.requestIds.length||!['cloud','local'].includes(selection.choice))return Promise.reject(new Error('需要明确确认浏览冲突归档范围和选择'));
+    if(replacement){
+      var operation=replacement.operation,p=operation&&operation.payload;
+      if(selection.choice!=='local'||replacement.owner!==selection.owner||replacement.scope!==selection.scope||replacement.status!=='pending'||replacement.receipt||!operation||operation.protocol!==3||operation.type!=='vocabulary.browse'||operation.requestId!==replacement.requestId||selection.requestIds.includes(replacement.requestId)||!p||p.action!=='jump'||p.bookId!==selection.bookId||p.planRevision!==selection.planRevision||(p.unitId||null)!==(selection.unitId||null)||!Number.isSafeInteger(p.expectedResumeRev)||p.expectedResumeRev<0||p.afterRequestId!==undefined||typeof p.stepId!=='string'||typeof p.targetStepId!=='string'||!Number.isFinite(replacement.bytes)||replacement.bytes<0)return Promise.reject(new Error('冲突恢复的新请求无效，原记录保留'));
+    }
+    return open().then(function(db){return new Promise(function(resolve,reject){
+      var transaction=db.transaction(['pendingOperations','syncMeta'],'readwrite'),pending=transaction.objectStore('pendingOperations'),meta=transaction.objectStore('syncMeta'),failure,result;
+      transaction.oncomplete=function(){resolve(result);};transaction.onerror=transaction.onabort=function(){reject(failure||transaction.error||new Error('冲突归档未完成；原记录保留'));};
+      var request=pending.getAll();request.onsuccess=function(){try{
+        if(global.AccountStorage){global.AccountStorage.assertCurrent();if(global.AccountStorage.owner!==selection.owner)throw new Error('账号已变化，原记录保留');}
+        var rows=(request.result||[]).filter(function(row){var p=row.operation&&row.operation.payload;return p&&row.owner===selection.owner&&row.scope===selection.scope&&row.operation.type==='vocabulary.browse'&&p.bookId===selection.bookId&&p.planRevision===selection.planRevision&&(p.unitId||null)===(selection.unitId||null);});
+        if(replacement){
+          var all=request.result||[],scoped=all.filter(function(row){return row.scope===selection.scope&&!selection.requestIds.includes(row.requestId);});
+          if(all.some(function(row){return row.requestId===replacement.requestId;})||scoped.length+1>10000||scoped.reduce(function(bytes,row){return bytes+(Number(row.bytes)||0);},0)+replacement.bytes>20*1024*1024)throw new Error('恢复请求编号重复或待保存空间不足，原记录保留');
+          replacement.ordinal=all.filter(function(row){return row.scope===selection.scope;}).reduce(function(max,row){return Math.max(max,Number(row.ordinal)||0);},0)+1;
+        }
+        rows.sort(function(a,b){return a.ordinal-b.ordinal||a.createdAt-b.createdAt;});
+        if(rows.length!==selection.requestIds.length||rows.some(function(row,index){return row.requestId!==selection.requestIds[index]||row.receipt||row.status==='acked-awaiting-apply';})||!rows.some(function(row){return row.status==='blocked'&&row.lastError==='RESUME_CONFLICT';}))throw new Error('冲突链已变化，请重新核对；原记录保留');
+        var first=rows[0];if(first.status!=='blocked'||first.lastError!=='RESUME_CONFLICT')throw new Error('只能归档已确认拒绝的浏览冲突链');
+        for(var i=1;i<rows.length;i++)if(rows[i].operation.payload.afterRequestId!==rows[i-1].requestId)throw new Error('浏览冲突链不连续，原记录保留');
+        var key='vocabulary-browse-conflict:'+selection.owner+':'+first.requestId;
+        var existing=meta.get(key);existing.onsuccess=function(){try{
+          if(existing.result)throw new Error('此冲突已有归档，原记录保留');
+          if(global.AccountStorage)global.AccountStorage.assertCurrent();
+          result={key:key,format:'vocabulary-browse-conflict-archive',schemaVersion:1,owner:selection.owner,scope:selection.scope,bookId:selection.bookId,planRevision:selection.planRevision,unitId:selection.unitId||null,choice:selection.choice,createdAt:Date.now(),rows:rows};
+          if(replacement)result.replacementRequestId=replacement.requestId;
+          meta.add(result);rows.forEach(function(row){pending.delete(row.requestId);});
+          if(replacement)pending.add(replacement);
+        }catch(error){failure=error;transaction.abort();}};
+      }catch(error){failure=error;transaction.abort();}};
+    });});
+  }
+
+  function readVocabularyBrowseConflictArchive(selection) {
+    if(!selection||typeof selection.owner!=='string'||!selection.owner||typeof selection.scope!=='string'||!selection.scope||typeof selection.key!=='string'||!selection.key.startsWith('vocabulary-browse-conflict:'+selection.owner+':'))return Promise.reject(new Error('冲突归档读取范围无效'));
+    var owner=selection.owner,scope=selection.scope,key=selection.key;
+    function assertOwner(){if(global.AccountStorage){global.AccountStorage.assertCurrent();if(global.AccountStorage.owner!==owner)throw new Error('账号已变化，不能读取原账号归档');}}
+    return Promise.resolve().then(function(){assertOwner();return readSyncMeta(key);}).then(function(row){
+      assertOwner();
+      if(!row||row.owner!==owner||row.scope!==scope||row.format!=='vocabulary-browse-conflict-archive'||row.schemaVersion!==1)return null;
+      return row;
+    });
+  }
+
+  function listVocabularyBrowseConflictArchives(selection) {
+    if(!selection||typeof selection.owner!=='string'||!selection.owner||typeof selection.scope!=='string'||!selection.scope||typeof selection.bookId!=='string'||!selection.bookId||!Number.isInteger(selection.limit)||selection.limit<1||selection.limit>50)return Promise.reject(new Error('冲突归档列表范围无效'));
+    var owner=selection.owner,scope=selection.scope,bookId=selection.bookId,unitId=selection.unitId||null,limit=selection.limit,prefix='vocabulary-browse-conflict:'+owner+':',after=selection.after===undefined||selection.after===null?null:selection.after;
+    if(after!==null&&(typeof after!=='string'||!after.startsWith(prefix)||after>=prefix+'\uffff'))return Promise.reject(new Error('冲突归档分页位置无效'));
+    function guard(){if(global.AccountStorage){global.AccountStorage.assertCurrent();if(global.AccountStorage.owner!==owner)throw new Error('账号已变化，不能读取原账号归档');}}
+    return Promise.resolve().then(function(){guard();return open();}).then(function(db){return new Promise(function(resolve,reject){
+      var transaction=db.transaction('syncMeta','readonly'),entries=[],scanned=0,nextAfter=null,failure;
+      transaction.oncomplete=function(){try{guard();resolve({entries:entries,nextAfter:nextAfter});}catch(error){reject(error);}};
+      transaction.onerror=transaction.onabort=function(){reject(failure||transaction.error||new Error('读取归档列表失败，原记录保留'));};
+      var range=global.IDBKeyRange.bound(after||prefix,prefix+'\uffff',!!after,false),request=transaction.objectStore('syncMeta').openCursor(range);
+      request.onsuccess=function(){try{
+        guard();var cursor=request.result;if(!cursor)return;
+        scanned++;var row=cursor.value;
+        if(row.owner===owner&&row.scope===scope&&row.bookId===bookId&&(row.unitId||null)===unitId&&row.format==='vocabulary-browse-conflict-archive'&&row.schemaVersion===1&&/^[a-f0-9]{64}$/.test(row.planRevision||'')&&Array.isArray(row.rows))entries.push({key:row.key,createdAt:row.createdAt,choice:row.choice,bookId:row.bookId,unitId:row.unitId||null,planRevision:row.planRevision,rowCount:row.rows.length,replacementRequestId:row.replacementRequestId||null});
+        if(entries.length>=limit||scanned>=200){nextAfter=cursor.key;return;}
+        cursor.continue();
+      }catch(error){failure=error;transaction.abort();}};
+    });});
+  }
+
   function updatePendingOperation(requestId, patch) {
     return open().then(function (db) {
       return new Promise(function (resolve, reject) {
@@ -757,6 +822,9 @@
     putPendingOperation: putPendingOperation,
     listPendingOperations: function () { return getAllRows('pendingOperations'); },
     updatePendingOperation: updatePendingOperation,
+    archiveVocabularyBrowseConflict: archiveVocabularyBrowseConflict,
+    readVocabularyBrowseConflictArchive: readVocabularyBrowseConflictArchive,
+    listVocabularyBrowseConflictArchives: listVocabularyBrowseConflictArchives,
     removePendingOperation: removePendingOperation,
     markPendingAcknowledged: markPendingAcknowledged,
     readServerCache: readServerCache,

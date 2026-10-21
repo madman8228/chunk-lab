@@ -29,7 +29,7 @@
     {
       "@type": "WebApplication",
       "@id": "https://jqka.top/#app",
-      "name": "Chunk Lab 意群练习",
+      "name": "jqka.top 英语学习站",
       "url": "https://jqka.top/main.html",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
@@ -39,370 +39,38 @@
   ]
 }
 </script>
-<style>
-:root{
-  /* 天空 */
-  --sky-1:#4FB6E8; --sky-2:#7ED0F0; --sky-3:#C6ECF9; --sky-4:#EAF7FE;
-  /* 绿地 */
-  --hill-1:#8CD35C; --hill-2:#6EC24B; --hill-3:#4FA32F; --hill-4:#3C8523;
-  /* 木牌 */
-  --wood-1:#FFDD7A; --wood-2:#F6C544; --wood-3:#DFA72C; --wood-4:#C98C1E;
-  /* 描边（统一深棕） */
-  --line:#4A2A12; --line-2:#6B3E1E; --line-3:#8A5A2E;
-  /* 纸 */
-  --cream:#FFF7E6; --paper:#FFFDF7; --paper-2:#FFF3D6;
-  /* 强调 */
-  --yellow:#FFD93B; --yellow-d:#F0B71C;
-  --red:#E8503F; --red-d:#C93A2A;
-  --green:#4CAF50; --leaf:#58B843; --leaf-d:#3E9A2E;
-  --blue:#3B7DD8; --water:#63CBE0; --pink:#F47C8C;
-  /* 文字 */
-  --ink:#3A2412; --ink-2:#7C6349; --ink-3:#A08A70;
-  --sans:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --round:"Comic Sans MS","Segoe UI Rounded","Segoe UI",sans-serif;
-  --sh:0 6px 0 rgba(74,42,18,.22);
-  --sh-lg:0 12px 0 rgba(74,42,18,.18);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:96px}
-body{
-  font-family:var(--sans); color:var(--ink); line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-  background:linear-gradient(#C6ECF9 0,#EAF7FE 26%,#FFFDF7 46%,#FFFDF7 100%);
-}
-a{color:inherit;text-decoration:none}
-/* SEO（2026-10-07）：页面唯一 H1 用 sr-only 承载——视觉零改动，仅供搜索引擎与读屏。
-   页面大标题是 SVG <text>，无法直接语义化，故用隐藏 H1 补齐文档大纲。 */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-img,svg{display:block;max-width:100%}
-.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-.deco{position:absolute;pointer-events:none;z-index:0}
-
-/* ---------- 通用“卡通风”组件 ---------- */
-.panel{
-  background:var(--paper); border:4px solid var(--line); border-radius:22px;
-  box-shadow:0 7px 0 rgba(74,42,18,.18);
-}
-.btn{
-  display:inline-flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:800;
-  padding:13px 24px;border-radius:999px;border:4px solid var(--line);cursor:pointer;
-  background:var(--yellow);color:var(--line);box-shadow:0 5px 0 var(--line);
-  transition:transform .12s,box-shadow .12s,background .16s;white-space:nowrap;
-}
-.btn:hover{background:#FFE470}
-.btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--line)}
-.btn svg{width:18px;height:18px;flex:0 0 18px}
-.btn-white{background:var(--paper)}
-.btn-white:hover{background:#FFF4DE}
-.btn-red{background:var(--red);color:#fff}
-.btn-red:hover{background:#F06552}
-
-.sec{padding:56px 0;position:relative;overflow:hidden}
-.eyebrow{
-  display:inline-block;font-family:var(--round);font-size:13px;font-weight:700;letter-spacing:.08em;
-  background:var(--yellow);border:3px solid var(--line);border-radius:999px;padding:5px 14px;
-  color:var(--line);box-shadow:0 3px 0 rgba(74,42,18,.25);
-}
-h2.sec-t{
-  font-size:clamp(27px,4vw,42px);font-weight:900;letter-spacing:-.01em;margin:16px 0 10px;
-  color:var(--line);line-height:1.2;
-}
-h2.sec-t .hl{
-  background:linear-gradient(transparent 58%,var(--yellow) 58%,var(--yellow) 92%,transparent 92%);
-  padding:0 4px;
-}
-.sec-d{color:var(--ink-2);max-width:640px;font-size:15.5px;font-weight:500}
-
-/* ================= NAV ================= */
-nav{position:sticky;top:0;z-index:90;padding:12px 0;
-  background:linear-gradient(#8FD8F2,rgba(143,216,242,0));}
-.nav-in{
-  max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:16px;
-  background:var(--paper);border:4px solid var(--line);border-radius:18px;
-  box-shadow:0 5px 0 rgba(74,42,18,.22);
-}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--round);font-size:20px;
-  font-weight:900;letter-spacing:.01em;color:var(--line)}
-.logo .chip{
-  width:30px;height:30px;flex:0 0 30px;border-radius:9px;background:var(--red);
-  border:3px solid var(--line);display:flex;align-items:center;justify-content:center;
-  font-size:15px;color:#fff;font-weight:900;box-shadow:0 2px 0 rgba(74,42,18,.35);
-}
-.logo .tld{color:var(--red)}
-.nav-links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
-.nav-links a{
-  font-size:14px;font-weight:700;color:var(--ink-2);padding:8px 14px;border-radius:999px;
-  border:3px solid transparent;transition:.16s;
-}
-.nav-links a:hover{color:var(--line);background:var(--paper-2);border-color:var(--line)}
-.nav-links a.go{background:var(--red);color:#fff;border-color:var(--line)}
-.nav-links a.go:hover{background:#F06552;color:#fff}
-
-/* ================= HERO ================= */
-.hero{position:relative;padding:26px 0 0;overflow:hidden}
-.scene{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.hero-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 22px;text-align:center}
-
-.hand{display:flex;justify-content:center;gap:16px;margin:56px 0 0;perspective:1400px}
-.card{
-  width:108px;height:156px;position:relative;cursor:pointer;transform-style:preserve-3d;
-  transition:transform .5s cubic-bezier(.2,.7,.2,1);
-  animation:deal .7s cubic-bezier(.2,.8,.2,1) backwards;
-}
-@keyframes deal{from{transform:translate3d(340px,-180px,-460px) rotateY(150deg) rotateZ(30deg);opacity:0}}
-.card:nth-child(1){animation-delay:.05s}
-.card:nth-child(2){animation-delay:.18s}
-.card:nth-child(3){animation-delay:.31s}
-.card:nth-child(4){animation-delay:.44s}
-.face{
-  position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;
-  border:4px solid var(--line);box-shadow:0 5px 0 rgba(74,42,18,.3);
-}
-/* 牌面：标准扑克布局 —— 左上 / 右下双角标（右下旋转 180°）+ 中央大花色 */
-.front{background:linear-gradient(158deg,#FFFFFF,#F2F5F9)}
-.corner{position:absolute;display:flex;flex-direction:column;align-items:center;line-height:1}
-.corner .cr{font-family:var(--round);font-size:27px;font-weight:900;line-height:.88}
-.corner .cs{display:block;width:15px;height:15px;margin-top:2px}
-.corner.tl{left:8px;top:6px}
-.corner.br{right:8px;bottom:6px;transform:rotate(180deg)}
-.front .pip{position:absolute;left:50%;top:50%;width:52px;height:52px;
-  transform:translate(-50%,-53%)}
-.card.r .front .cr{color:var(--red)}
-.card.k .front .cr{color:#232B3A}
-.card.r .front .cs,.card.r .front .pip{fill:var(--red)}
-.card.k .front .cs,.card.k .front .pip{fill:#232B3A}
-.back{
-  transform:rotateY(180deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
-  background:
-    repeating-linear-gradient(48deg,rgba(255,255,255,.16) 0 5px,transparent 5px 11px),
-    linear-gradient(158deg,var(--red),#A3201A);
-}
-.back .mark{font-family:var(--round);font-size:13px;font-weight:900;letter-spacing:.1em;color:#fff}
-.back .zh{font-size:11px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.88)}
-.card:hover{transform:translateY(-13px) rotateZ(-2deg)}
-.card.flipped{transform:rotateY(180deg)}
-.card.flipped:hover{transform:rotateY(180deg) translateY(-13px)}
-.card.hot{transform:translateY(-17px) scale(1.06)}
-.card.hot.flipped{transform:rotateY(180deg) translateY(-17px) scale(1.06)}
-.card.hot .face{box-shadow:0 0 0 4px var(--yellow),0 8px 0 rgba(74,42,18,.3)}
-
-.hero-copy{position:relative;display:inline-block;margin-top:26px}
-.tagline{
-  font-size:clamp(16px,2.2vw,20px);font-weight:800;color:var(--line);
-  background:var(--paper);border:4px solid var(--line);border-radius:999px;padding:10px 24px;
-  box-shadow:0 5px 0 rgba(74,42,18,.2);display:inline-block;
-}
-.tagline em{font-style:normal;color:var(--red)}
-.sub{margin:16px auto 0;color:var(--ink);font-size:15.5px;max-width:740px;font-weight:600;
-  background:var(--paper);border:4px solid var(--line);border-radius:18px;padding:14px 22px;
-  box-shadow:0 5px 0 rgba(74,42,18,.18)}
-.sub b{color:var(--red)}
-.hero-cta{margin:24px 0 0;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.hero-bottom{height:132px}
-
-/* ================= 双关释义 ================= */
-.pun{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px;position:relative;z-index:2}
-.pun-item{
-  background:var(--paper);border:4px solid var(--line);border-radius:20px;padding:22px 18px;
-  box-shadow:0 7px 0 rgba(74,42,18,.18);transition:.18s;position:relative;
-}
-.pun-item:hover{transform:translateY(-6px);box-shadow:0 13px 0 rgba(74,42,18,.18)}
-.pun-item .badge{
-  width:52px;height:52px;border-radius:14px;border:4px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--round);font-size:28px;font-weight:900;color:#fff;
-  box-shadow:0 4px 0 rgba(74,42,18,.3);
-}
-.pun-item:nth-child(1) .badge{background:var(--red)}
-.pun-item:nth-child(2) .badge{background:#F06552}
-.pun-item:nth-child(3) .badge{background:var(--yellow-d)}
-.pun-item:nth-child(4) .badge{background:var(--leaf)}
-.pun-item .card-name{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
-  font-weight:800;margin-top:14px}
-.pun-item .verb{font-family:var(--round);font-size:21px;font-weight:900;color:var(--line);line-height:1.25}
-.pun-item .verb em{font-style:normal;color:var(--red)}
-.pun-item .phon{font-size:12.5px;color:var(--ink-3);font-style:italic}
-.pun-item p{font-size:13.5px;color:var(--ink-2);margin-top:8px;font-weight:500}
-
-.anchors{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;position:relative;z-index:2}
-.anchor{background:var(--paper-2);border:4px solid var(--line);border-radius:20px;padding:22px;
-  box-shadow:0 7px 0 rgba(74,42,18,.16)}
-.anchor .ic{width:46px;height:46px;border-radius:13px;background:#fff;border:4px solid var(--line);
-  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
-  box-shadow:0 4px 0 rgba(74,42,18,.22)}
-.anchor .ic svg{width:22px;height:22px;stroke:var(--red);fill:none;stroke-width:2.4;
-  stroke-linecap:round;stroke-linejoin:round}
-.anchor h3{font-size:17px;font-weight:900;color:var(--line)}
-.anchor p{font-size:13.5px;color:var(--ink-2);margin-top:6px;font-weight:500}
-
-/* ================= 词卡 ================= */
-.deck-head{position:relative;z-index:2}
-.tabs{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;position:relative;z-index:2}
-.tab{
-  font:inherit;font-size:14.5px;font-weight:800;padding:10px 18px;border-radius:999px;cursor:pointer;
-  background:var(--paper);color:var(--ink-2);border:4px solid var(--line);
-  box-shadow:0 4px 0 rgba(74,42,18,.2);transition:.14s;display:inline-flex;align-items:center;gap:9px;
-}
-.tab:hover{transform:translateY(-3px);box-shadow:0 7px 0 rgba(74,42,18,.2)}
-.tab .sw{width:11px;height:11px;border-radius:50%;background:var(--ink-3);border:2px solid var(--line)}
-.tab[aria-selected="true"]{background:var(--yellow);color:var(--line)}
-.tab[aria-selected="true"] .sw{background:var(--red)}
-.ftabs{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;position:relative;z-index:2}
-.ftab{
-  font:inherit;font-size:13px;font-weight:800;padding:6px 14px;border-radius:999px;cursor:pointer;
-  background:transparent;color:var(--ink-3);border:3px solid var(--line);transition:.14s;
-}
-.ftab:hover{color:var(--ink-2);border-color:var(--ink-3)}
-.ftab[aria-pressed="true"]{background:var(--red);color:#fff;border-color:var(--line)}
-.empty-hint{grid-column:1/-1;text-align:center;padding:36px 0;font-weight:800;color:var(--ink-3)}
-/* ---------- 我的词库 ---------- */
-.lib-sum{margin-top:10px;font-weight:800;color:var(--ink-2);font-size:14.5px}
-.lib-group{margin-top:26px}
-.lib-rt{font-family:var(--round);font-weight:900;font-size:17px;letter-spacing:.02em}
-.lib-rt span{opacity:.6;font-weight:700;font-size:13px;margin-left:8px}
-.lib-item{display:flex;align-items:center;gap:14px;padding:11px 4px;border-bottom:2px solid rgba(74,42,18,.08);cursor:pointer}
-.lib-item:hover .li-w{color:var(--red)}
-.li-w{font-family:var(--round);font-weight:900;font-size:16.5px;min-width:32%}
-.li-cn{flex:1;color:var(--ink-2);font-weight:600;font-size:13.5px}
-.li-st{font:inherit;font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px;border:3px solid var(--line);cursor:pointer;flex-shrink:0;transition:.14s}
-.li-st.s1{background:var(--yellow);color:var(--line)}
-.li-st.s2{background:#3E9A2E;color:#fff}
-.lib-empty{margin-top:30px;padding:34px 26px;border:3px dashed var(--line);border-radius:18px;font-weight:800;color:var(--ink-3);text-align:center}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;position:relative;z-index:2}
-.fc{height:210px;perspective:1200px;cursor:pointer}
-.fc-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;
-  transition:transform .55s cubic-bezier(.2,.7,.2,1)}
-.fc.flip .fc-in{transform:rotateY(180deg)}
-.fc-f{
-  position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:14px;
-  display:flex;flex-direction:column;border:4px solid var(--line);
-  background:var(--paper);box-shadow:0 6px 0 rgba(74,42,18,.2);transition:box-shadow .16s;
-}
-.fc:hover .fc-f{box-shadow:0 11px 0 rgba(74,42,18,.2)}
-.fc-front{justify-content:center;align-items:center;text-align:center}
-.fc-front .tags{position:absolute;right:15px;top:12px;display:flex;align-items:center;gap:7px}
-.fc-front .lv{font-family:var(--round);font-size:11.5px;
-  font-weight:900;color:#fff;border:3px solid var(--line);border-radius:999px;
-  padding:2px 10px;letter-spacing:.05em;box-shadow:0 2px 0 rgba(74,42,18,.28);white-space:nowrap}
-.fc-front .w{font-family:var(--round);font-size:35px;font-weight:900;letter-spacing:-.01em;
-  color:var(--line);line-height:1.15}
-.fc-front .ph{font-size:14px;color:var(--red);font-weight:700;margin-top:3px}
-.fc-front .w.is-phrase{font-size:23px;line-height:1.25;padding:0 6px}
-.fc-front .hint{font-size:12px;color:var(--ink-3);position:absolute;left:18px;bottom:15px;
-  display:flex;align-items:center;gap:7px;font-weight:700}
-.fc-front .hint svg{width:13px;height:13px;stroke:var(--ink-3);fill:none;stroke-width:2.6}
-.fc-front .master{font:inherit;font-size:11px;font-weight:800;
-  letter-spacing:.04em;color:var(--ink-2);background:var(--paper-2);border:2.5px solid var(--line-3);
-  border-radius:999px;padding:2px 9px;cursor:pointer;box-shadow:0 2px 0 rgba(74,42,18,.22);
-  transition:background .15s,color .15s,transform .1s}
-.fc-front .master:hover{background:var(--yellow)}
-.fc-front .master:active{transform:translateY(2px);box-shadow:0 0 0 rgba(74,42,18,.22)}
-.fc-front .master.on{background:var(--leaf);border-color:var(--leaf-d);color:#fff}
-.fc-back{transform:rotateY(180deg);background:var(--paper-2)}
-.fc-back .meta{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--red)}
-.fc-back .cn{font-size:18px;font-weight:900;color:var(--line);line-height:1.22}
-.fc-back .col{font-size:12.5px;font-weight:800;color:var(--line);margin-top:7px;
-  background:#fff;border:3px solid var(--line);border-radius:9px;padding:2px 10px;
-  display:inline-block;box-shadow:0 2px 0 rgba(74,42,18,.16);line-height:1.3}
-.fc-back .eg{font-size:12.5px;color:var(--ink);margin-top:7px;font-weight:600;line-height:1.38}
-.fc-back .eg-zh{font-size:12px;color:var(--ink-2);margin-top:2px;font-weight:500}
-.fc-back .tip{font-size:11.5px;color:var(--red-d);font-weight:700;margin-top:4px}
-.spk{
-  margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font:inherit;
-  font-size:12.5px;font-weight:800;padding:6px 14px;border-radius:999px;cursor:pointer;
-  background:var(--red);color:#fff;border:3px solid var(--line);
-  box-shadow:0 3px 0 var(--line);transition:.12s;
-}
-.spk:hover{background:#F06552}
-.spk:active{transform:translateY(3px);box-shadow:0 0 0 var(--line)}
-.spk svg{width:15px;height:15px;fill:#fff}
-.deck-foot{margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:relative;z-index:2}
-.deck-note{font-size:13px;color:var(--ink-2);font-weight:700;background:var(--paper-2);
-  border:3px solid var(--line);border-radius:999px;padding:7px 15px}
-
-/* ================= 路径 ================= */
-.path{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:2}
-.step{
-  background:var(--paper);border:4px solid var(--line);border-radius:20px;padding:22px 18px;
-  box-shadow:0 7px 0 rgba(74,42,18,.18);transition:.18s;
-}
-.step:hover{transform:translateY(-6px)}
-.step:nth-child(1){margin-top:54px}
-.step:nth-child(2){margin-top:36px}
-.step:nth-child(3){margin-top:18px}
-.step .n{font-family:var(--round);font-size:12px;font-weight:900;letter-spacing:.1em;color:#fff;
-  background:var(--line-2);display:inline-block;padding:3px 11px;border-radius:999px}
-.step .t{font-family:var(--round);font-size:27px;font-weight:900;margin-top:10px;color:var(--line)}
-.step:nth-child(1) .t{color:var(--red)}
-.step:nth-child(4) .t{color:var(--leaf-d)}
-.step .lv{font-size:13px;color:var(--ink-2);font-weight:800;margin-top:2px}
-.step p{font-size:13.5px;color:var(--ink-2);margin-top:9px;font-weight:500}
-.step .goal{margin-top:13px;font-size:12px;font-weight:800;color:var(--line);
-  background:var(--yellow);border:3px solid var(--line);display:inline-block;padding:4px 11px;
-  border-radius:999px;box-shadow:0 3px 0 rgba(74,42,18,.22)}
-
-/* ================= 学科 ================= */
-#subjects{padding:30px 0}
-.subj{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px;position:relative;z-index:2}
-.sb{background:var(--paper);border:4px solid var(--line);border-radius:20px;padding:20px;
-  box-shadow:0 7px 0 rgba(74,42,18,.18);transition:.18s}
-.sb:hover{transform:translateY(-6px)}
-.sb.on{background:linear-gradient(160deg,#EAF9DC,var(--paper))}
-.sb .row{display:flex;align-items:center;gap:10px}
-.sb .row svg{width:20px;height:20px;stroke:var(--ink-2);fill:none;stroke-width:2.4;
-  stroke-linecap:round;stroke-linejoin:round}
-.sb.on .row svg{stroke:var(--leaf-d)}
-.sb h4{font-size:16px;font-weight:900;color:var(--line)}
-.sb p{font-size:13px;color:var(--ink-2);margin-top:7px;font-weight:500}
-.sb .st{display:inline-block;margin-top:12px;font-size:11.5px;font-weight:800;padding:4px 12px;
-  border-radius:999px;background:var(--paper-2);color:var(--ink-2);border:3px solid var(--line)}
-.sb.on .st{background:var(--green);color:#fff}
-.sb.soon{display:flex;align-items:center;justify-content:center}
-.sb.soon .wait{font-size:15px;font-weight:800;color:var(--ink-3);letter-spacing:.18em}
-
-/* ================= FOOTER ================= */
-footer{position:relative;padding:0 0 34px;overflow:hidden}
-.foot-grass{display:block;width:100%;height:auto;margin-bottom:-6px}
-.foot-in{position:relative;z-index:2;text-align:center;padding-top:8px}
-.chant{font-size:clamp(24px,4.4vw,42px);font-weight:900;color:var(--line);letter-spacing:-.01em}
-.chant .a{color:var(--red)}
-.dom{margin-top:14px;display:inline-flex;align-items:center;gap:12px;
-  font-family:var(--round);font-size:26px;font-weight:900;color:var(--line);
-  background:var(--wood-2);border:4px solid var(--line);border-radius:999px;padding:8px 26px;
-  box-shadow:0 6px 0 rgba(74,42,18,.3)}
-.dom .tld{color:var(--red)}
-.fine{margin-top:16px;font-size:13.5px;color:var(--ink-2);font-weight:600}
-
-/* ================= 响应式 ================= */
-@media(max-width:1440px){.deco{transform:scale(.82)}}
-@media(max-width:1180px){.deco{display:none}}
-@media(max-width:900px){
-  .pun,.anchors,.path,.subj{grid-template-columns:1fr 1fr}
-  .grid{grid-template-columns:1fr 1fr}
-  .step:nth-child(n){margin-top:0}
-  .sec{padding:44px 0}
-}
-@media(max-width:620px){
-  .pun,.anchors,.subj{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
-  .hand{gap:9px}
-  .card{width:76px;height:112px}
-  .corner .cr{font-size:19px}
-  .corner .cs{width:11px;height:11px;margin-top:1px}
-  .corner.tl{left:5px;top:4px}
-  .corner.br{right:5px;bottom:4px}
-  .front .pip{width:36px;height:36px}
-  .nav-links{display:none}
-  .hero-inner{padding:0 16px}
-  .tagline{font-size:15px;padding:9px 16px}
-  .sub{font-size:14px;padding:12px 14px}
-  .hero-bottom{height:70px}
-}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
-<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
-<body data-page-node-id="hxcOjzA2HoE41Xa9m51Whq" style="position: relative;">
+<link rel="stylesheet" href="landing/site.css">
+<link rel="stylesheet" href="landing/theme.css">
+<link rel="stylesheet" href="landing/home-learning.css">
+<script id="homepage-bundle-update">
+(function () {
+  if (!('serviceWorker' in navigator)) return;
+  var wasControlled = !!navigator.serviceWorker.controller;
+  var pending = false, reloaded = false, observer;
+  function applyUpdate() {
+    if (!pending || reloaded || document.visibilityState !== 'visible') return;
+    // Never discard a phone/code/password being entered in an account dialog.
+    if (document.querySelector('[role="dialog"], .account-panel:not([hidden]), .practice-panel:not([hidden])')) return;
+    reloaded = true;
+    if (observer) observer.disconnect();
+    location.reload();
+  }
+  navigator.serviceWorker.addEventListener('controllerchange', function () {
+    if (!wasControlled || reloaded) return;
+    pending = true;
+    observer = new MutationObserver(applyUpdate);
+    observer.observe(document.documentElement, {childList:true, subtree:true, attributes:true, attributeFilter:['hidden']});
+    applyUpdate();
+  });
+  document.addEventListener('visibilitychange', applyUpdate);
+  navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(registration) {
+    return registration.update();
+  }).catch(function () { /* Offline keeps the complete installed bundle. */ });
+})();
+</script>
+<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style><link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32-v1.png">
+</head>
+<body class="home-page" data-page-node-id="hxcOjzA2HoE41Xa9m51Whq" style="position: relative;">
 
 <!-- ===== 可复用插画素材 ===== -->
 <svg width="0" height="0" style="position: absolute;" aria-hidden="true" data-page-node-id="Jk19CChQ8f1b3x6vhRmged">
@@ -490,15 +158,28 @@ footer{position:relative;padding:0 0 34px;overflow:hidden}
 <!-- ================= NAV ================= -->
 <nav data-page-node-id="3MOBa0geqTdV6M3Iawoltj">
   <div class="nav-in" data-page-node-id="f0IqV3OEjEmomRqdzytQRG">
-    <a class="logo" href="#top" aria-label="jqka.top 首页" data-page-node-id="kOOgajgRjCVDZgFvlCpEsG">
-      <span class="chip" data-page-node-id="7PT34a4KSmHE7gG1KqL2q4">A</span>jqka<span class="tld" data-page-node-id="T7igzOqLXNFgt73kdnMG6N">.top</span>
-    </a>
+    <a class="logo" href="#top" aria-label="jqka.top 首页" data-page-node-id="kOOgajgRjCVDZgFvlCpEsG"><img src="assets/brand/jqka-logo-v1.webp" alt="jqka.top" width="137" height="40" style="display:block;width:137px;height:40px;object-fit:contain"></a>
     <div class="nav-links" data-page-node-id="Z7Ddo042OygIletaEcolhP">
       
-      <a href="#deck" data-page-node-id="NYhPE28D8gHrpHZDyFyxK7">词卡练习</a>
-      <a href="#path" data-page-node-id="KxWNUMG7SVDi4AZKdhTsXH">段位路径</a>
-      <a href="#subjects" data-page-node-id="kB88QKS9oe0HBflwH1vLA4">学科</a>
-      <a class="go" href="/main.html">开始练习 →</a>
+      <a class="nav-chunk" href="/main.html?view=home">首页</a>
+      <a href="vocabulary.html" class="nav-vocabulary" data-page-node-id="NYhPE28D8gHrpHZDyFyxK7">学单词</a>
+      <a href="main.html?view=my-learning" data-page-node-id="KxWNUMG7SVDi4AZKdhTsXH">我的学习</a>
+      <a href="main.html?view=discover" data-page-node-id="kB88QKS9oe0HBflwH1vLA4">发现</a>
+      <div class="site-account" id="jqkaAccount">
+        <button id="jqkaLogin" type="button" aria-expanded="false" aria-controls="jqkaAccountPanel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>
+          <span id="jqkaAccountLabel">登录</span>
+        </button>
+        <section class="account-panel" id="jqkaAccountPanel" aria-labelledby="jqkaAccountTitle" tabindex="-1" hidden>
+          <header><h2 id="jqkaAccountTitle">个人信息</h2><button class="account-close" id="jqkaAccountClose" type="button" aria-label="关闭个人信息"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+          <p class="account-name" id="jqkaAccountName"></p>
+          <p class="account-note" id="jqkaAccountNote"></p>
+          <dl><dt>账号编号</dt><dd id="jqkaAccountId"></dd><dt>手机号</dt><dd id="jqkaAccountPhone"></dd></dl>
+          <button class="account-bind" id="jqkaAccountBind" type="button" hidden>绑定手机号</button>
+          <div class="account-actions"><button class="account-logout" id="jqkaAccountLogout" type="button" hidden>退出登录</button></div>
+        </section>
+        <p class="account-message" id="jqkaAccountMessage" role="status" aria-live="polite"></p>
+      </div>
     </div>
   </div>
 </nav>
@@ -598,13 +279,6 @@ footer{position:relative;padding:0 0 34px;overflow:hidden}
     </div>
     
 
-    <div class="hero-cta" data-page-node-id="xVqH9Rx76VLxdbWBlAsqvh">
-      <a class="btn btn-red" href="/main.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"></path></svg>
-        进入 Chunk Lab 开始练习
-      </a>
-      <a class="btn btn-white" href="#deck">先翻几张卡试试</a>
-    </div>
     
   </div>
 </header>
@@ -613,30 +287,33 @@ footer{position:relative;padding:0 0 34px;overflow:hidden}
 
 
 <!-- ================= 词卡 ================= -->
-<section class="sec" id="deck" style="background: linear-gradient(rgb(255, 246, 228), rgb(234, 249, 220));" data-page-node-id="4jQxPcvuppHXA9MaxZ5SDQ">
-  <svg class="deco" style="left: 1%; top: 44px; width: 140px;" viewBox="0 0 130 120" data-page-node-id="HBAx5D2zKKnEq6ZPbzVO3A"><use href="#d-books" data-page-node-id="SxgIlVdMINK2AQeGK3LEoW"></use></svg>
-  <svg class="deco" style="right: 2%; top: 60px; width: 58px;" viewBox="0 0 100 120" data-page-node-id="REFSlfKhUi8TIbikOmthse"><use href="#d-pencil" data-page-node-id="DvON9XY3BRvxyfG7QYYRoN"></use></svg>
-  <div class="wrap" data-page-node-id="2UKRtUl21ieBiombs2o3Ne">
-    <div class="deck-head" data-page-node-id="xSTKAnVJqLuMjNJ5xGABMQ">
-      <span class="eyebrow" data-page-node-id="J7CETky6A2w2qtn6FOodCd">FLASHCARDS</span>
-      
-    </div>
-
-    <div class="tabs" role="tablist" id="tabs" data-page-node-id="kQye1QBYfGdZvniwXFSIuQ"><button class="tab" role="tab" data-r="J" aria-selected="true"><span class="sw" style="background:#E8503F"></span>J · Jack<span style="opacity:.65;font-weight:600">A1-A2</span></button><button class="tab" role="tab" data-r="Q" aria-selected="false"><span class="sw" style="background:"></span>Q · Queen<span style="opacity:.65;font-weight:600">B1</span></button><button class="tab" role="tab" data-r="K" aria-selected="false"><span class="sw" style="background:"></span>K · King<span style="opacity:.65;font-weight:600">B2</span></button><button class="tab" role="tab" data-r="A" aria-selected="false"><span class="sw" style="background:"></span>A · Ace<span style="opacity:.65;font-weight:600">C1-C2</span></button></div>
-    <div class="ftabs" id="ftabs" role="group" aria-label="内容类型筛选"></div>
-    <div class="grid" id="cards" data-page-node-id="jTNHEf3WFJhJh27YJtEYSs"><article class="fc" tabindex="0" role="button" aria-label="单词卡 decide，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="decide" aria-label="标熟 decide">标熟</button></div><div><div class="w">decide</div><div class="ph">/dɪˈsaɪd/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">决定</div><div class="col">decide to do sth</div><div class="eg">I decided to practise English every morning.</div><div class="eg-zh">我决定每天早上练英语。</div><button class="spk" data-w="decide"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 borrow，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="borrow" aria-label="标熟 borrow">标熟</button></div><div><div class="w">borrow</div><div class="ph">/ˈbɒrəʊ/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">借入</div><div class="col">borrow sth from sb</div><div class="eg">May I borrow your dictionary for a minute?</div><div class="eg-zh">能借你的字典用一下吗？</div><div class="tip">易混：lend 才是借出</div><button class="spk" data-w="borrow"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 advice，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="advice" aria-label="标熟 advice">标熟</button></div><div><div class="w">advice</div><div class="ph">/ədˈvaɪs/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">n.</div><div class="cn">建议（不可数）</div><div class="col">a piece of advice</div><div class="eg">She gave me a piece of useful advice.</div><div class="eg-zh">她给了我一条有用的建议。</div><div class="tip">易错：没有 advices 这种写法</div><button class="spk" data-w="advice"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 avoid，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="avoid" aria-label="标熟 avoid">标熟</button></div><div><div class="w">avoid</div><div class="ph">/əˈvɔɪd/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">避免</div><div class="col">avoid doing sth</div><div class="eg">Avoid translating every word in your head.</div><div class="eg-zh">别在心里逐字翻译。</div><div class="tip">易错：不说 avoid to do</div><button class="spk" data-w="avoid"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 explain，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="explain" aria-label="标熟 explain">标熟</button></div><div><div class="w">explain</div><div class="ph">/ɪkˈspleɪn/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">v.</div><div class="cn">解释</div><div class="col">explain sth to sb</div><div class="eg">Can you explain this rule to me?</div><div class="eg-zh">能给我讲讲这条规则吗？</div><div class="tip">易错：不说 explain me</div><button class="spk" data-w="explain"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article><article class="fc" tabindex="0" role="button" aria-label="单词卡 enough，点击翻面"><div class="fc-in"><div class="fc-f fc-front"><div class="tags"><span class="lv" style="background:#E8503F">A2</span><button class="master" data-w="enough" aria-label="标熟 enough">标熟</button></div><div><div class="w">enough</div><div class="ph">/ɪˈnʌf/</div></div><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"></path></svg> 点击翻面看释义</div></div><div class="fc-f fc-back"><div class="meta">adj./adv.</div><div class="cn">足够的</div><div class="col">修饰名词在前，修饰形容词在后</div><div class="eg">Ten minutes is enough for a quick review.</div><div class="eg-zh">十分钟够快速复习一遍。</div><button class="spk" data-w="enough"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg> 朗读</button></div></div></article></div>
-
-    <div class="deck-foot" data-page-node-id="WaUjpc4pqUQpUJ5r97aMw3">
-      <button class="btn btn-white" id="btnShuffle" data-page-node-id="WNbv5Q0t8BPAOvgvrWMDO1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="aRzuOdtIrtYBLWW5XfriD5" style=""><path d="M16 3h5v5" data-page-node-id="JjxIIWSYUOMx8ACTj0xJzO"></path><path d="M21 3l-7 7" data-page-node-id="p7Q3PGlNz4G4BmQUrNm91p"></path><path d="M8 21H3v-5" data-page-node-id="jHEYT4bAEqhp5aoOxl0kT3"></path><path d="M3 21l7-7" data-page-node-id="bOTo95c7fHstpYJAZlJsHE"></path><path d="M21 16v5h-5" data-page-node-id="kTdzAY298q2aX4kCBAWOK2"></path><path d="M21 21l-7-7" data-page-node-id="trdSaiogdrnEuTDew1bBxO"></path><path d="M3 8V3h5" data-page-node-id="6Ti42t3sfLmCCnz3XnLnjd"></path><path d="M3 3l7 7" data-page-node-id="fxB65ZUAW292zCbo1iDCy7"></path></svg>
-        洗牌换一组
-      </button>
-      <button class="btn btn-white" id="btnFlipAll" data-page-node-id="2dnsseFqkvmTSBAVmYbPAK">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="emewM0RUvoA8vvm0mgvDrx" style=""><path d="M3 12a9 9 0 0115.5-6.2L21 8" data-page-node-id="tEXlH3HGzSQhNHGRZZGPFP"></path><path d="M21 4v4h-4" data-page-node-id="Rw18dMFfWFWQoTq5n1pdM2"></path><path d="M21 12a9 9 0 01-15.5 6.2L3 16" data-page-node-id="gEDIdUE2y9dejbIVAKOOVV"></path><path d="M3 20v-4h4" data-page-node-id="GGOBGAwnKYICQBOHmwbSXo"></path></svg>
-        全部翻面
-      </button>
-      <span class="deck-note" id="deckNote" data-page-node-id="DE2mrxxXQJxLXVNCUPDmLC">Jack 段 · A1-A2 基础高频 · 当前 6 张 · 已熟 0</span>
-    </div>
+<main class="garden-body" id="deck">
+<section id="workspaceEntry" class="wrap" aria-labelledby="workspaceEntryTitle" style="padding:48px 20px">
+  <h1 id="workspaceEntryTitle">从今天的学习继续</h1>
+  <p id="workspaceEntryStatus" role="status">正在确认学习入口…</p>
+  <p><a class="btn" href="main.html?view=home">开始学习</a> <a class="btn" href="main.html?view=discover">发现内容</a></p>
+  <button id="workspaceEntryRetry" class="btn" type="button" hidden>重试连接</button>
+</section>
+<section class="home-learning" id="homeLearning" aria-label="学习体验">
+  <div class="home-learning-grid">
+    <article class="home-tool">
+      <header><h2>学单词</h2><span>词义 · 场景 · 用法</span></header>
+      <img class="home-word-art" src="assets/vocabulary-borrow-wide-v3.webp" width="320" height="180" alt="女孩手机没电，向朋友借充电器" decoding="async">
+      <div class="home-word-row"><strong lang="en">borrow</strong><span>/ˈbɒrəʊ/</span></div>
+      <p class="home-question">图里的 borrow 是什么意思？</p>
+      <div class="home-options"><button class="home-choice" type="button" data-meaning="borrow" aria-pressed="false">向别人借</button><button class="home-choice" type="button" data-meaning="lend" aria-pressed="false">借给别人</button></div>
+      <p class="home-feedback" data-word-feedback role="status" aria-live="polite"></p>
+      <p class="home-example"><span lang="en" style="font-size:18px;color:inherit">Can I borrow your charger?</span><span>我能借用你的充电器吗？</span></p>
+      <div class="home-tool-footer"><a class="btn" href="vocabulary.html">继续学单词</a></div>
+    </article>
+    <article class="home-tool">
+      <header><h2>练句子</h2><span>意群 · 组合 · 表达</span></header>
+      <p class="home-sentence-target">我决定去野餐。</p>
+      <div class="home-chunk-answer" data-chunk-answer lang="en"></div>
+      <div class="home-chunk-bank" data-chunk-bank lang="en"></div>
+      <p class="home-feedback" data-chunk-feedback role="status" aria-live="polite">点击意群，组成这句话。</p>
+      <div class="home-tool-footer"><a class="btn" href="main.html">进入练句子</a><button class="home-reset" type="button" data-chunk-reset>重来</button></div>
+    </article>
   </div>
 </section>
 
@@ -719,153 +396,13 @@ footer{position:relative;padding:0 0 34px;overflow:hidden}
     
   </div>
 </footer>
+</main>
 
-<script src="landing/deck.js"></script>
-<script src="landing/phrases.js"></script>
-<script src="landing/store.js"></script>
-<script>
-/* DECK / RANKS / 存储层 / ITEM_INDEX 均由 landing/store.js 提供 */
-
-function pool(rank){
-  const all = DECK[rank].words;
-  return typeFilter === 'all' ? all : all.filter(d => d.t === typeFilter);
-}
-let cur = 'J', shown = {};
-
-function masteredCount(){ return pool(cur).filter(d => stateOf(d.t, d.w) >= 1).length; }
-function updateNote(){
-  // 张数按实际渲染数算：某段某类型可能不足 6 条，写死会撒谎
-  const n = Math.min(6, pool(cur).length);
-  noteEl.textContent = DECK[cur].name + ' 段 · ' + DECK[cur].cefr + ' · 当前 ' + n + ' 张 · 已熟 ' + masteredCount();
-}
-
-const tabsEl = document.getElementById('tabs');
-const ftabsEl = document.getElementById('ftabs');
-const cardsEl = document.getElementById('cards');
-const noteEl = document.getElementById('deckNote');
-
-const SPK = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>';
-const FLIPIC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4v16h16"/></svg>';
-
-function pick(rank, seed){
-  const list = pool(rank).slice();
-  if(seed){ for(let i=list.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [list[i],list[j]]=[list[j],list[i]]; } }
-  return list.slice(0,6);
-}
-
-function renderTabs(){
-  tabsEl.innerHTML = RANKS.map(r=>{
-    const on = r===cur;
-    return '<button class="tab" role="tab" data-r="'+r+'" aria-selected="'+on+'">'
-      + '<span class="sw" style="background:'+(on ? DECK[r].color : '')+'"></span>'
-      + r + ' · ' + DECK[r].name
-      + '<span style="opacity:.65;font-weight:600">' + DECK[r].cefr.split(' ')[0] + '</span></button>';
-  }).join('');
-}
-
-/* 类型筛选条：只有数据里真实存在的类型才生成按钮。
-   只有一种内容时整行不渲染 —— 一排「全部 / 单词」没有意义，也是空占位。 */
-function renderTypeTabs(){
-  const types = availableTypes();
-  if(types.length < 2){ ftabsEl.innerHTML = ''; return; }
-  const opts = [['all','全部']].concat(types.map(t => [t, TYPE_NAME[t]]));
-  ftabsEl.innerHTML = opts.map(o =>
-    '<button class="ftab" data-t="'+o[0]+'" aria-pressed="'+(typeFilter===o[0])+'">'+o[1]+'</button>'
-  ).join('');
-}
-
-function renderCards(){
-  const words = pick(cur, shown[cur]||0);
-  if(!words.length){
-    cardsEl.innerHTML = '<p class="empty-hint">这一段暂无该类内容</p>';
-    updateNote();
-    return;
-  }
-  cardsEl.innerHTML = words.map(d=>
-    '<article class="fc" tabindex="0" role="button" aria-label="词条 '+d.w+'，点击翻面">'
-    + '<div class="fc-in">'
-    +   '<div class="fc-f fc-front">'
-    +     '<div class="tags">'
-    +       '<span class="lv" style="background:'+DECK[cur].color+'">'+d.lv+'</span>'
-    +       '<button class="master'+(stateOf(d.t,d.w)>=1?' on':'')+'" data-t="'+d.t+'" data-w="'+d.w+'" aria-label="标熟 '+d.w+'">'+(stateOf(d.t,d.w)>=1?'已熟':'标熟')+'</button>'
-    +     '</div>'
-    +     '<div><div class="w'+(d.t==='phrase'?' is-phrase':'')+'">'+d.w+'</div>'+(d.ph?'<div class="ph">'+d.ph+'</div>':'')+'</div>'
-    +     '<div class="hint">'+FLIPIC+' 点击翻面看释义</div>'
-    +   '</div>'
-    +   '<div class="fc-f fc-back">'
-    +     '<div class="meta">'+(d.pos || TYPE_NAME[d.t] || '')+'</div>'
-    +     '<div class="cn">'+d.cn+'</div>'
-    +     (d.col ? '<div class="col">'+d.col+'</div>' : '')
-    +     '<div class="eg">'+d.eg+'</div>'
-    +     '<div class="eg-zh">'+d.zh+'</div>'
-    +     (d.tip ? '<div class="tip">'+d.tip+'</div>' : '')
-    +     '<button class="spk" data-w="'+d.w+'">'+SPK+' 朗读</button>'
-    +   '</div>'
-    + '</div></article>').join('');
-  updateNote();
-}
-
-cardsEl.addEventListener('click', e=>{
-  const spk = e.target.closest('.spk');
-  if(spk){ e.stopPropagation(); speak(spk.dataset.w); return; }
-  const mb = e.target.closest('.master');
-  if(mb){
-    e.stopPropagation();
-    const w = mb.dataset.w, t = mb.dataset.t;
-    const next = stateOf(t, w) >= 1 ? 0 : 1;   // 目前 UI 是熟悉/未熟悉二态；存储已支持 s=2 掌握态
-    setState(t, w, next);
-    const on = stateOf(t, w) >= 1;
-    mb.classList.toggle('on', on);
-    mb.textContent = on ? '已熟' : '标熟';
-    updateNote();
-    return;
-  }
-  const fc = e.target.closest('.fc');
-  if(fc) fc.classList.toggle('flip');
-});
-cardsEl.addEventListener('keydown', e=>{
-  if(e.key!=='Enter' && e.key!==' ') return;
-  const fc = e.target.closest('.fc');
-  if(fc){ e.preventDefault(); fc.classList.toggle('flip'); }
-});
-tabsEl.addEventListener('click', e=>{
-  const t = e.target.closest('.tab');
-  if(!t) return;
-  cur = t.dataset.r; renderTabs(); renderCards();
-});
-ftabsEl.addEventListener('click', e=>{
-  const b = e.target.closest('.ftab');
-  if(!b) return;
-  typeFilter = b.dataset.t; renderTypeTabs(); renderCards();
-});
-
-function speak(text){
-  if(!('speechSynthesis' in window)) return;
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang='en-US'; u.rate=.85;
-  speechSynthesis.cancel(); speechSynthesis.speak(u);
-}
-
-document.getElementById('btnShuffle').addEventListener('click', ()=>{
-  shown[cur] = (shown[cur]||0) + 13; renderCards();
-});
-document.getElementById('btnFlipAll').addEventListener('click', ()=>{
-  const list = [...cardsEl.querySelectorAll('.fc')];
-  const anyClosed = list.some(c=>!c.classList.contains('flip'));
-  list.forEach(c=>c.classList.toggle('flip', anyClosed));
-});
-
-const heroCards = [...document.querySelectorAll('#hand .card')];
-heroCards.forEach(c=>{
-  const go = ()=>c.classList.toggle('flipped');
-  c.addEventListener('click', go);
-  c.addEventListener('mouseenter', ()=>c.classList.add('hot'));
-  c.addEventListener('mouseleave', ()=>c.classList.remove('hot'));
-  c.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); }});
-});
-
-renderTabs(); renderTypeTabs(); renderCards();
-</script>
+<script src="landing/home.js"></script>
+<style>
+body .hero,body #homeLearning,body #path,body #subjects,body .garden-body>footer{display:none}
+#workspaceEntry{min-height:45vh;max-width:760px}#workspaceEntry h1{font-size:30px}
+</style>
 
 
 
@@ -878,4 +415,9 @@ renderTabs(); renderTypeTabs(); renderCards();
 
 
 
+<script src="api.js"></script>
+<script src="landing/workspace-entry.js"></script>
+<script src="auth-ui.js"></script>
+<script src="js/study-usage.js"></script>
+<script src="landing/account.js"></script>
 </body></html>

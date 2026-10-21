@@ -1,0 +1,23 @@
+'use strict';
+const assert=require('node:assert/strict');
+const engine=require('./action-game-engine.js'),task=require('./charger-quest.js');
+const branchingTask={...task,start:'arrival'};
+let state=engine.start(branchingTask);
+const original=JSON.stringify(state);
+assert.throws(()=>engine.choose(task,state,'unknown'),/unavailable/);
+state=engine.choose(task,state,'borrow');
+const wrong=engine.submit(task,state,{word:'lend'});assert.equal(wrong.result.correct,false);assert.strictEqual(wrong.state,state);assert.match(wrong.result.fields[0].message,/朋友/);
+state=engine.submit(task,state,{word:'BORROW'}).state;assert.equal(state.world.battery,24);assert.equal(state.world.holder,'你（借用）');assert.deepEqual(state.earned,['borrow']);
+state=engine.submit(task,state,{word:'enough'}).state;assert.equal(state.world.connection,'电话已接通');
+assert.equal(state.node,'lend');assert.equal(task.nodes[state.node].actions,undefined);
+state=engine.submit(task,state,{word:'lend'}).state;assert.equal(state.world.holder,'小林（借用）');assert.equal(state.node,'helped');assert.deepEqual(state.earned,['borrow','enough','lend']);
+let alternate=engine.choose(task,engine.start(branchingTask),'buy');alternate=engine.submit(task,alternate,{word:'buy'}).state;alternate=engine.submit(task,alternate,{word:'enough'}).state;alternate=engine.submit(task,alternate,{word:'lend'}).state;assert.equal(alternate.node,'helped');assert.deepEqual(alternate.earned,['buy','enough','lend']);assert.equal(JSON.stringify(engine.start(branchingTask)),original);assert.equal(engine.start(task).node,'borrow');
+// A non-language task proves that graph transitions have no charger/word-specific branches.
+const other={version:1,start:'door',initial:{open:false},expressions:{},nodes:{door:{actions:[{id:'push',to:'inside',set:{open:true}}]},inside:{terminal:true}}};
+assert.equal(engine.choose(other,engine.start(other),'push').world.open,true);
+const cloze=require('./sentence-cloze-engine.js');
+assert.equal(cloze.sentence(task.nodes.lend.exercise),'I can lend you the charger.');
+assert.throws(()=>cloze.validate({...task.nodes.borrow.exercise,annotations:['我能']}),/every sentence group/);
+assert.throws(()=>engine.start({...other,nodes:{door:{actions:[{id:'x',to:'missing'}]}}}),/destination/);
+assert.throws(()=>engine.start({...other,nodes:{door:{actions:[{id:'x',to:'door',set:{unknown:true}}]}}}),/state field/);
+console.log('action-game engine: branches, feedback, immutable state and independent task PASS');

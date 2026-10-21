@@ -5,6 +5,13 @@
 function createSnapshotReader(options) {
   const db = options.db;
   const currentSeq = options.currentSeq;
+  // SQL comes only from the fixed templates below (full/delta variants).
+  // Bindings and result rows remain per read and per account.
+  const statements = new Map();
+  function statement(sql) {
+    if (!statements.has(sql)) statements.set(sql, db.prepare(sql));
+    return statements.get(sql);
+  }
 
   function buildMemSnapshot(userId, since) {
     const seqNow = currentSeq(userId);
@@ -20,7 +27,7 @@ function createSnapshotReader(options) {
     /* ⚠️ 必须用展开调用（stmt.all(...args)）：写成 stmt.all.apply(null, args) 会丢掉 this，
        better-sqlite3 的语句方法绑在语句对象上，丢 this 直接抛错。 */
     const rows = function (sql, aliveOnly, extra) {
-      const s = db.prepare(sql.replace('{W}', W(aliveOnly)));
+      const s = statement(sql.replace('{W}', W(aliveOnly)));
       return s.all(...A.concat(extra || []));
     };
   
@@ -71,7 +78,7 @@ function createSnapshotReader(options) {
        `总数 - 事件侧计数` 反推历史基线）彻底算错。走增量的只有 bySentence / events 这两个大对象。 */
     const statsBase = isDelta
       ? (function () {
-          const r = db.prepare("SELECT v_json FROM user_kv WHERE user_id=? AND k='stats' AND deleted_at IS NULL").get(userId);
+          const r = statement("SELECT v_json FROM user_kv WHERE user_id=? AND k='stats' AND deleted_at IS NULL").get(userId);
           return r ? JSON.parse(r.v_json) : { totalRounds: 0, totalAnswered: 0 };
         })()
       : (kv.stats || { totalRounds: 0, totalAnswered: 0 });
@@ -99,20 +106,38 @@ function createSnapshotReader(options) {
     rows('SELECT item_key,seq FROM user_entity_rows WHERE {W} AND kind=?', false, ['logicalCourse'])
       .forEach(function (r) { logicalCourseRevs[r.item_key] = r.seq == null ? null : Number(r.seq); });
     const entityGone = {};
-    ['mastered', 'reinforce', 'deletedItem', 'logicalCourse'].forEach(function (kind) {
+    const learningWorkspace = {};
+    rows('SELECT item_key,data_json FROM user_entity_rows WHERE {W} AND kind=?', true, ['learningWorkspace'])
+      .forEach(function(r) { learningWorkspace[r.item_key] = JSON.parse(r.data_json); });
+    const workspaceRevs = {};
+    rows('SELECT item_key,seq FROM user_entity_rows WHERE {W} AND kind=?', false, ['learningWorkspace'])
+      .forEach(function(r) { workspaceRevs[r.item_key] = Number(r.seq); });
+    const vocabularyMaps={},vocabularyRevs={};
+    ['vocabularyStudySummary','vocabularyResume','vocabularyBrowseResume'].forEach(function(kind){
+      vocabularyMaps[kind]={};vocabularyRevs[kind]={};
+      rows('SELECT item_key,data_json FROM user_entity_rows WHERE {W} AND kind=?',true,[kind]).forEach(function(row){vocabularyMaps[kind][row.item_key]=JSON.parse(row.data_json);});
+      rows('SELECT item_key,seq FROM user_entity_rows WHERE {W} AND kind=?',false,[kind]).forEach(function(row){vocabularyRevs[kind][row.item_key]=Number(row.seq);});
+    });
+    ['mastered', 'reinforce', 'deletedItem', 'logicalCourse', 'learningWorkspace','vocabularyStudySummary','vocabularyResume','vocabularyBrowseResume'].forEach(function (kind) {
       entityGone[kind] = rows('SELECT item_key FROM user_entity_rows WHERE {W} AND kind=? AND deleted_at IS NOT NULL ORDER BY item_key', false, [kind])
         .map(function (r) { return r.item_key; });
     });
   
     const mem = {
       decks: decks,
-      best: kv.best || {},
+      // These maps are replacement-style fields on the client. An unchanged
+      // delta must omit them, not send an empty map that erases confirmed state.
+      ...(!isDelta || Object.hasOwn(kv, 'best') ? { best: kv.best || {} } : {}),
       mastered: entityMastered,
       stats: Object.assign({}, statsBase, { bySentence: bySentence, events: events }),
-      settings: kv.settings || {},
+      ...(!isDelta || Object.hasOwn(kv, 'settings') ? { settings: kv.settings || {} } : {}),
       reinforceBook: entityReinforce,
       deletedItems: entityDeletedItems,
-      logicalCourses: logicalCourses
+      logicalCourses: logicalCourses,
+      learningWorkspace: learningWorkspace,
+      vocabularyStudySummary:vocabularyMaps.vocabularyStudySummary,
+      vocabularyResume:vocabularyMaps.vocabularyResume,
+      vocabularyBrowseResume:vocabularyMaps.vocabularyBrowseResume
     };
   
     const courseRows = rows('SELECT data_json FROM user_courses WHERE {W}', true);
@@ -139,7 +164,7 @@ function createSnapshotReader(options) {
        Return the complete per-scope map even on incremental reads so a client
        can safely adopt resets it did not initiate before accepting new work. */
     const learningGenerations = {};
-    db.prepare('SELECT scope_key,generation FROM user_learning_generations WHERE user_id=? ORDER BY scope_key')
+    statement('SELECT scope_key,generation FROM user_learning_generations WHERE user_id=? ORDER BY scope_key')
       .all(userId).forEach(function (r) { learningGenerations[r.scope_key] = Number(r.generation) || 0; });
   
     /* ★ 增量模式必须**显式**给出删除清单。
@@ -172,7 +197,7 @@ function createSnapshotReader(options) {
     return {
       mem: mem, courses: courses, courseProgress: courseProgress, learningResumes: learningResumes,
       learningGenerations: learningGenerations,
-      revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs, logicalCourses: logicalCourseRevs },
+      revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs, logicalCourses: logicalCourseRevs, learningWorkspace: workspaceRevs,...vocabularyRevs },
       entityGone: entityGone,
       /* 客户端据此记录下行水位：「seq 及之前的变更我都已收到」。
          必须与数据同层存储（清数据就得清水位），否则「数据被清、水位残留」会永久少数据。 */
@@ -193,9 +218,7 @@ function createSnapshotReader(options) {
    * transaction (for example conflict resolution) do not attempt a nested
    * transaction; HTTP/export reads use this wrapper.
    */
-  function readMemSnapshot(userId, since) {
-    return db.transaction(function () { return buildMemSnapshot(userId, since); })();
-  }
+  const readMemSnapshot = db.transaction(function (userId, since) { return buildMemSnapshot(userId, since); });
   
 
   return { buildMemSnapshot, readMemSnapshot };

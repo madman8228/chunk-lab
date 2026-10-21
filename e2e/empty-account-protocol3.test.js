@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const http = require('node:http');
+const crypto = require('node:crypto');
 const { spawn } = require('node:child_process');
 const Database = require('../server/node_modules/better-sqlite3');
 const { chromium } = require('playwright-core');
@@ -31,13 +32,12 @@ function waitForServer() {
   });
 }
 
-async function answerFirstSentence(page, deckId) {
-  await page.evaluate(async id => {
-    showPracticePage();
-    const deck = await ContentRepo.ensureDeckIndex(id, CL.loadMem());
-    startDeck(deck, 0);
-  }, deckId);
+async function answerFirstSentence(page, courseId, expectedSentence) {
+  await page.goto(base + '/main.html?protectedCourse=' + encodeURIComponent(courseId), { waitUntil: 'domcontentloaded' });
+  await page.locator('.course-access-panel').getByRole('button', { name: '开始学习', exact: true }).click();
   await page.waitForSelector('#stageChoices .choice', { timeout: 15000 });
+  assert.equal(await page.evaluate(() => !!S.deck._platformSession), true, 'shared content uses the real native learning session');
+  assert.equal(await page.evaluate(() => cur().sentence), expectedSentence, 'the published question and confirmed resume are actually rendered');
   const expectedChunks = await page.evaluate(() => cur().chunks.slice());
   const answerResponse = page.waitForResponse(response => {
     const request = response.request();
@@ -65,10 +65,31 @@ async function answerFirstSentence(page, deckId) {
       cwd: path.join(root, 'server'),
       env: Object.assign({}, process.env, {
         PORT: String(port), CHUNKLAB_DATA_DIR: dataDir, NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: '3',
+        ADMIN_PASSWORD: 'empty-account-fixture-admin', ADMIN_JWT_SECRET: crypto.randomBytes(32).toString('hex'),
+        MEMBERSHIP_CONTENT_GRANT_KEY: crypto.randomBytes(32).toString('base64'),
       }),
       stdio: 'ignore',
     });
     await waitForServer();
+    const adminResponse = await fetch(base + '/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: 'empty-account-fixture-admin' }) });
+    assert.equal(adminResponse.status, 200);
+    const adminHeaders = { 'Content-Type': 'application/json', Authorization: 'Bearer ' + (await adminResponse.json()).token };
+    const draft = { format: 'chunklab-ai-course', formatVersion: '1.1', title: 'Empty account synthetic course',
+      description: 'Synthetic content in an isolated empty-account acceptance server',
+      targetCefr: 'A1', contentForm: 'article', roles: [],
+      learning: { template: 'sentence-practice', version: 1, modes: ['chunkSelection'], defaultMode: 'chunkSelection' },
+      items: [{ en: 'We are ready.', zh: '我们准备好了。', chunks: ['We are ready.'], hints: ['我们准备好了。'] },
+        { en: 'Let us begin.', zh: '我们开始吧。', chunks: ['Let us begin.'], hints: ['我们开始吧。'] }] };
+    const preparedResponse = await fetch(base + '/api/admin/membership/course-publications/prepare', {
+      method: 'POST', headers: adminHeaders, body: JSON.stringify({ draft, images: [], requestId: 'empty_fixture_prepare_001' }) });
+    const prepared = await preparedResponse.json();
+    assert.equal(preparedResponse.status, 200, JSON.stringify(prepared));
+    const publishedResponse = await fetch(base + '/api/admin/membership/course-publications/publish', {
+      method: 'POST', headers: adminHeaders, body: JSON.stringify({ publicationId: prepared.publicationId,
+        contentHash: prepared.contentHash, registryVersion: prepared.registryVersion, accessLevel: 'free',
+        acceptWarnings: true, requestId: 'empty_fixture_publish_001' }) });
+    assert.equal(publishedResponse.status, 200, await publishedResponse.text());
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const context = await browser.newContext({ serviceWorkers: 'block' });
     const page = await context.newPage();
@@ -121,7 +142,7 @@ async function answerFirstSentence(page, deckId) {
     assert.ok(blank.deckId, 'the account can still use shared built-in learning content');
     assert.equal(blank.conflictUiVisible, false, 'an empty account does not show legacy conflict UI');
 
-    const answerOperation = await answerFirstSentence(page, blank.deckId);
+    const answerOperation = await answerFirstSentence(page, prepared.publicationId, 'We are ready.');
     assert.equal(answerOperations.length, 1, 'one answer operation was emitted by the UI');
     const eventId = answerOperation.payload.eventId;
     const db = new Database(path.join(dataDir, 'chunklab.db'));
@@ -179,7 +200,10 @@ async function answerFirstSentence(page, deckId) {
     }));
     assert.deepEqual(conflictStartup, { ready: true, conflictUiVisible: false },
       'normal startup remains ready without invoking the routed legacy handover fixture or exposing conflict UI');
-    const conflictAnswer = await answerFirstSentence(conflictPage, blank.deckId);
+    const conflictAnswer = await answerFirstSentence(conflictPage, prepared.publicationId, 'Let us begin.');
+    assert.equal(await conflictPage.evaluate(() => sessionStorage.getItem('__handoverConflictFixture')), null,
+      'entering the current native learning route never invokes legacy handover');
+    assert.notEqual(conflictAnswer.payload.eventId, eventId, 'a new learning attempt receives an independent event identity');
     const conflictDb = new Database(path.join(dataDir, 'chunklab.db'), { readonly: true });
     try {
       const accepted = conflictDb.prepare('SELECT COUNT(*) AS count FROM user_operation_events WHERE event_id=?')

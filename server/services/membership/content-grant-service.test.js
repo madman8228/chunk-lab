@@ -1,0 +1,35 @@
+'use strict';
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+const { ContentGrantService } = require('./content-grant-service');
+let now = 100000, checks = 0, decision = { allowed: true, mode: 'member', endsAt: 120000, policyRevision: 1, membershipRevision: 1 };
+let version = 'v1'; const key = crypto.randomBytes(32);
+const service = new ContentGrantService({ keyProvider: () => key, now: () => now,
+  resolveScope: (courseId, unitId, cursor) => ({ courseId, unitId, contentVersion: version, fragments: [{ fragmentId: 'f1', cursor: 0, itemIds: ['a'], assetIds: ['picture'] }] }),
+  authorize: () => { checks++; return decision; } });
+const input = { courseId: 'course', unitId: 'unit', purpose: 'practice', sessionId: 'session' };
+const target = { userId: 'user', courseId: 'course', unitId: 'unit', purpose: 'practice', resourceType: 'fragment', resourceId: 'f1' };
+const issued = service.issue(input, 'user'); assert.equal(issued.expiresAt, 120000);
+service.verify(issued.grant, target); service.verify(issued.grant, target); assert.equal(checks, 3);
+assert.throws(() => service.verify(issued.grant, { ...target, userId: 'other' }), /MISMATCH/);
+assert.throws(() => service.verify(issued.grant, { ...target, courseId: 'free-course' }), /MISMATCH/);
+assert.throws(() => service.verify(issued.grant, { ...target, purpose: 'assessment' }), /MISMATCH/);
+assert.throws(() => service.verify(issued.grant, { ...target, resourceId: 'f2' }), /SCOPE_MISMATCH/);
+service.verify(issued.grant, { ...target, resourceType: 'asset', resourceId: 'picture' });
+assert.throws(() => service.verify(issued.grant.slice(0, -1) + (issued.grant.endsWith('A') ? 'B' : 'A'), target), /INVALID_CONTENT_GRANT/);
+decision = { ...decision, membershipRevision: 2 }; assert.throws(() => service.verify(issued.grant, target), /REVOKED/);
+decision = { ...decision, membershipRevision: 1 }; version = 'v2'; assert.throws(() => service.verify(issued.grant, target), /VERSION_CHANGED/); version = 'v1';
+now = 120000; assert.throws(() => service.verify(issued.grant, target), /EXPIRED/);
+decision = { ...decision, mode: 'trial', leaseEndsAt: now + 10000, remainingSeconds: 3, nextResetAt: now + 20000 };
+const trial = service.issue(input, 'user'); assert.equal(trial.expiresAt, now + 3000);
+decision = { allowed: false, reasonCode: 'SESSION_REQUIRED' }; assert.throws(() => service.verify(trial.grant, target), /SESSION_REQUIRED/);
+decision = { allowed: true, mode: 'free', policyRevision: 0, membershipRevision: 0 };
+assert.equal(service.issue(input, 'user').expiresAt, now + 30000);
+assert.throws(() => service.issue(input, null), /AUTH_REQUIRED/);
+const numeric = service.issue(input, 27); service.verify(numeric.grant, { ...target, userId: 27 });
+const rollback = service.issue(input, 'user'); now--;
+assert.throws(() => service.verify(rollback.grant, target), /MISMATCH/); now++;
+const rotated = new ContentGrantService({ keyProvider: () => crypto.randomBytes(32) });
+assert.throws(() => rotated.verify(rollback.grant, target), /INVALID_CONTENT_GRANT/);
+assert.throws(() => new ContentGrantService({ keyProvider: () => null }).key(), /KEY_UNAVAILABLE/);
+console.log('content-grant-service: expiry, account, purpose, file scope, revisions and live session checks passed');

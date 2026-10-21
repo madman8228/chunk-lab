@@ -211,8 +211,45 @@ manifest.catalog.version = 'v1-' + crypto.createHash('sha256')
 // invalidates saved offsets.
 manifest.contentVersion = 'v1-' + crypto.createHash('sha256')
   .update(JSON.stringify({ decks: manifest.decks })).digest('hex');
+
+/* T5（manifest 收紧，2026-10-07）：
+   公开 manifest 收敛为「仅元数据」的精简版（不含 shards / indexShards），匿名不可枚举分片内部路径；
+   完整分片路径表改写入 `server/content/shards.json`（位于 server/ ⇒ 被 static-guard 403 保护），
+   由鉴权接口 GET /api/content/shards 返回。contentVersion 仍按带分片的完整 decks 计算，保持稳定。 */
+const publicManifest = {
+  schemaVersion: manifest.schemaVersion,
+  contentVersion: manifest.contentVersion,
+  series: manifest.series,
+  chapters: manifest.chapters,
+  catalog: manifest.catalog,
+  decks: manifest.decks.map((deck) => ({
+    id: deck.id,
+    name: deck.name,
+    short: deck.short,
+    desc: deck.desc,
+    chapter: deck.chapter,
+    section: deck.section,
+    sectionTitle: deck.sectionTitle,
+    topic: deck.topic,
+    baseCount: deck.baseCount,
+    totalCount: deck.totalCount,
+  })),
+};
+const shardMap = {
+  schemaVersion: 1,
+  contentVersion: manifest.contentVersion,
+  decks: manifest.decks.map((deck) => ({
+    id: deck.id,
+    shards: deck.shards || [],
+    indexShards: deck.indexShards || [],
+  })),
+};
+
 fs.mkdirSync(path.join(OUTPUT_ROOT, 'content'), { recursive: true });
-fs.writeFileSync(path.join(OUTPUT_ROOT, 'content/manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+fs.writeFileSync(path.join(OUTPUT_ROOT, 'content/manifest.json'), JSON.stringify(publicManifest, null, 2) + '\n', 'utf8');
+fs.mkdirSync(path.join(OUTPUT_ROOT, 'server/content'), { recursive: true });
+fs.writeFileSync(path.join(OUTPUT_ROOT, 'server/content/shards.json'), JSON.stringify(shardMap, null, 2) + '\n', 'utf8');
 
 const total = decks.reduce((sum, d) => sum + d.items.length, 0);
 console.log(`[content] 共 ${manifest.decks.length} 个 deck（口语 8000：${decks.length} 个 / ${total} 句 + 高频短语 ${freqDeck.items.length} 句）`);
+console.log(`[content] public manifest（仅元数据）→ content/manifest.json ；完整分片表 → server/content/shards.json`);

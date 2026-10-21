@@ -6,12 +6,14 @@
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="assets/brand/favicon-v1.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32-v1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/brand/icon-192-v1.png">
+<link rel="apple-touch-icon" href="assets/brand/icon-180-v1.png">
 <title>课程管理 · Chunk Lab</title>
 <link rel="canonical" href="https://jqka.top/decks.html">
+<link rel="stylesheet" href="assets/lesson-card.css">
+<script src="js/lesson-card.js"></script>
 <style>
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
@@ -46,6 +48,9 @@ html,body{height:100%;overflow:hidden}
 .btn.sm{padding:3px 10px;font-size:12.5px}
 .btn.ghost{border-color:transparent;background:transparent}
 .btn.ghost:hover{background:var(--surface-2)}
+.catalog-back-button{min-height:44px;padding:3px 0;border:0;border-radius:0;background:none;box-shadow:none;color:var(--muted);font:inherit;font-size:12.5px;text-decoration:none;cursor:pointer}
+.catalog-back-button:hover,.catalog-back-button:active{background:none;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.catalog-back-button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .hidden{display:none !important}
 .pill{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:#eef1f6;color:var(--muted)}
 .pill.mine{background:#e8efff;color:#2c62c9}
@@ -137,20 +142,8 @@ html,body{height:100%;overflow:hidden}
 .catalog-group-title small{font-size:11.5px;font-weight:400;color:var(--faint)}
 .catalog-lessons{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,280px));justify-content:start;gap:10px}
 .catalog-lessons[hidden]{display:none !important}
-.catalog-lesson{display:flex;flex-direction:column;min-width:0;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--surface);overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(46,43,37,.04);transition:border-color .15s,box-shadow .15s,transform .15s}
-.catalog-lesson:hover{border-color:var(--border-strong);box-shadow:0 4px 14px rgba(46,43,37,.1);transform:translateY(-1px)}
 .catalog-lesson.is-unavailable{cursor:default;opacity:.72}
 .catalog-lesson.is-unavailable:hover{border-color:var(--border);box-shadow:0 1px 2px rgba(46,43,37,.04);transform:none}
-.catalog-lesson:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.catalog-lesson-media{width:100%;aspect-ratio:16 / 9;height:auto;overflow:hidden;background:#eef2f7;position:relative}
-.catalog-lesson-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,54,120,.08),transparent 52%,rgba(255,255,255,.22))}
-.catalog-lesson-media img{display:block;width:100%;height:100%;object-fit:fill;opacity:.9}
-.catalog-lesson-media.is-custom img{opacity:1}
-.catalog-lesson-caption{position:absolute;z-index:1;right:0;bottom:0;left:0;display:flex;align-items:flex-end;gap:7px;padding:24px 10px 9px;background:linear-gradient(transparent,rgba(16,35,62,.72));color:#fff}
-.catalog-lesson .lesson-index{flex-shrink:0;font-size:11px;font-weight:700;opacity:.9}
-.catalog-lesson .lesson-name{min-width:0;font-size:13px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.22)}
-.catalog-lesson-footer{display:flex;align-items:center;justify-content:flex-start;min-height:30px;padding:5px 10px 7px}
-.catalog-lesson .lesson-meta{font-size:12px;color:var(--faint);white-space:nowrap}
 .catalog-lesson.is-unavailable .lesson-meta{color:var(--warn)}
 .catalog-view-toggle{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-left:auto;padding:0;border:0;border-radius:0;background:transparent;color:var(--muted);cursor:pointer}
 .catalog-view-toggle:hover{background:transparent;color:var(--accent)}
@@ -380,10 +373,20 @@ textarea{outline:none;resize:vertical}
   .catalog-directory.catalog-flat-view .catalog-flat-lessons{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 </style>
+<link rel="stylesheet" href="assets/learning-sky.css">
+<link rel="stylesheet" href="assets/decks-theme.css?v=0eb3cbf46baa">
 </head>
-<body>
+<body class="learning-page decks-page">
+<script src="js/learning-sky.js"></script>
+<script src="js/course-covers.js"></script>
 
 <div class="wrap">
+  <nav class="decks-global-nav" aria-label="主导航">
+    <a href="main.html?view=home">首页</a>
+    <a href="main.html?view=my-learning">我的内容</a>
+    <a href="main.html?view=discover">发现</a>
+    <a href="stats.html">学习记录</a>
+  </nav>
   <section id="contentConflictDrafts" class="content-conflict-drafts" hidden role="status" aria-live="polite">
     <h3>有修改未覆盖当前课程</h3>
     <p>课程已在其他位置更新。你的修改已在此设备耐久保留；可另存为一份新草稿，再对照现行版本整理。</p>
@@ -393,7 +396,7 @@ textarea{outline:none;resize:vertical}
   <!-- 课程列表 -->
   <div id="pageDecks">
     <div class="page-head">
-      <button class="btn sm" id="decksBack">返回</button>
+      <button class="catalog-back-button" id="decksBack">返回</button>
       <h2 id="deckPageTitle" class="hidden"></h2>
       <button type="button" class="catalog-view-toggle hidden" id="catalogViewSwitch" aria-label="切换为不分类视图" title="切换为不分类视图"></button>
       <span class="spacer"></span>
@@ -763,7 +766,7 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/course-capabilities.js"></script>
 <script src="js/vendor/course-schema-validator.js"></script>
 <script src="course-package.js"></script>
-<script src="js/course-learning-launch.js"></script>
+<script src="js/course-learning-launch.js"></script><script src="js/course-return.js"></script>
 <script>
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
 if(window.Icons) Icons.install();
@@ -1147,8 +1150,10 @@ function setCourseRouteUI(inDirectory){
   var back = $('decksBack'), pageTitle = $('deckPageTitle'), viewSwitch = $('catalogViewSwitch'), scopeNav = $('courseMembershipNav'), typeNav = $('courseTypeNav'), add = $('btnImportDecks');
   if(inDirectory){
     back.textContent = '返回';
-    back.title = '返回课程总览';
-    back.onclick = function(){ routeCourse(''); };
+    var returnWorkspace=new URLSearchParams(location.search).get('returnView');
+    var fromWorkspace=['my-learning','discover'].includes(returnWorkspace);
+    back.title = fromWorkspace?(returnWorkspace==='discover'?'返回发现':'返回我的内容'):'返回课程总览';
+    back.onclick = function(){ if(new URLSearchParams(location.search).has('returnTo')||fromWorkspace)window.location.href=CourseReturn.destination();else routeCourse(''); };
     if(scopeNav) scopeNav.classList.add('hidden');
     if(typeNav) typeNav.classList.add('hidden');
     if(add) add.classList.add('hidden');
@@ -1159,7 +1164,7 @@ function setCourseRouteUI(inDirectory){
     back.title = '返回主页';
     if(pageTitle) pageTitle.classList.add('hidden');
     if(viewSwitch) viewSwitch.classList.add('hidden');
-    back.onclick = function(){ window.location.href = './main.html'; };
+    back.onclick = function(){ window.location.href=CourseReturn.destination(location.search,'main.html?view=home'); };
     if(scopeNav) scopeNav.classList.remove('hidden');
     if(typeNav) typeNav.classList.remove('hidden');
     updateCourseViewControls();
@@ -1243,13 +1248,29 @@ function renderCourseBrowse(){
 }
 function startCatalogLesson(course, lesson){
   if(!course || !lesson || !lesson.contentRef || lesson.available === false) return;
+  /* “开始”是加入并学习的明确操作；先完成现有加入协议，再跳转。
+     不绕过课程上限或账号保存确认，也不在失败时进入空练习壳。 */
+  var navigate = function(){
+  if(lesson.contentRef.type === 'protected-course'){
+    window.location.href=CourseReturn.forward('./main.html?protectedCourse='+encodeURIComponent(course.id)+'&unit='+encodeURIComponent(lesson.id),CourseReturn.source());return;
+  }
   if(lesson.contentRef.type === 'sentence-deck'){
     var url = './main.html?course='+encodeURIComponent(course.id)+'&lesson='+encodeURIComponent(lesson.id);
-    window.location.href = url;
+    window.location.href = CourseReturn.forward(url,CourseReturn.source());
   }else if(lesson.contentRef.type === 'story-package'){
     var url = './courses.html?id='+encodeURIComponent(lesson.contentRef.id)+'&catalogCourse='+encodeURIComponent(course.id)+'&catalogLesson='+encodeURIComponent(lesson.id);
-    window.location.href = url;
+    window.location.href = CourseReturn.forward(url,CourseReturn.source());
   }
+  };
+  if(!window.CourseEnrollment){ alert('课程加入功能尚未就绪，请稍后重试。'); return; }
+  var membership = CourseEnrollment.readMemberships(CL.readProgress(), _catalogAliases)[course.id];
+  if(membership && membership.joined){ navigate(); return; }
+  if(startCatalogLesson.pending) return;
+  startCatalogLesson.pending = true;
+  CourseEnrollment.join(course.id, _catalogAliases).then(navigate).catch(function(error){
+    if(error && error.code==='NOT_AUTH' && window.ChunkAuthUI){ ChunkAuthUI.showLogin(null,{dismissible:true}); return; }
+    alert(error && error.message || '课程未能加入学习，请重试。');
+  }).finally(function(){ startCatalogLesson.pending = false; });
 }
 function closeCourseManageMenus(except){
   document.querySelectorAll('.course-manage-wrap.is-open').forEach(function(wrap){
@@ -1713,9 +1734,9 @@ function refreshCourseCardProgress(course, row){
   });
 }
 function catalogImageSrc(lesson){
-  /* 目录封面只代表目录，不向内部课节继承；课节没有独立图片时使用统一占位图。 */
+  /* 保留独立课节封面；无封面时按稳定标识分配装饰图，不写回课程数据。 */
   var src = lesson && (lesson.image || lesson.imageUrl);
-  if(!src || !/^(?:data:image\/|https?:\/\/|\/|\.\/|\.\.\/|[A-Za-z0-9_-]+\/)/i.test(String(src))) return 'assets/catalog/lesson-placeholder.svg';
+  if(!src || !/^(?:data:image\/|https?:\/\/|\/|\.\/|\.\.\/|[A-Za-z0-9_-]+\/)/i.test(String(src))) return CourseCovers.fallback(lesson);
   return String(src);
 }
 function catalogViewSvg(name){
@@ -1765,23 +1786,13 @@ function renderCourseDirectory(course){
   function renderLesson(node){
     counter++;
     var lessonAvailable = node.available !== false;
-    var lesson = document.createElement('div'); lesson.className='catalog-lesson'+(lessonAvailable ? '' : ' is-unavailable');
     var src = catalogImageSrc(node);
     var customImage = !!(node.image || node.imageUrl);
+    var sharedCard = LessonCard.create({title:node.title,index:counter,image:src,imageAlt:node.imageAlt || node.title || '课节封面',customImage:customImage,meta:!lessonAvailable?'待导入内容':node.contentRef && node.contentRef.type === 'story-package'?'图文课节':(node.itemCount || 0)+' 句'});
+    var lesson=sharedCard.card,footer=sharedCard.footer,meta=sharedCard.meta;
+    if(!lessonAvailable)lesson.classList.add('is-unavailable');
     lesson.setAttribute('role','button'); lesson.setAttribute('tabindex', lessonAvailable ? '0' : '-1'); lesson.setAttribute('aria-label', lessonAvailable ? '开始 '+node.title : node.title+'，待导入内容');
     if(!lessonAvailable) lesson.setAttribute('aria-disabled','true');
-    var media = document.createElement('div'); media.className='catalog-lesson-media'+(customImage ? ' is-custom' : '');
-    var image = document.createElement('img'); image.src=src; image.alt=node.imageAlt || node.title || '课节封面'; image.loading='lazy';
-    var caption = document.createElement('div'); caption.className='catalog-lesson-caption';
-    var index = document.createElement('span'); index.className='lesson-index'; index.textContent=counter;
-    var name = document.createElement('span'); name.className='lesson-name'; name.title=node.title; name.textContent=node.title;
-    caption.appendChild(index); caption.appendChild(name); media.appendChild(image); media.appendChild(caption); lesson.appendChild(media);
-    var footer = document.createElement('div'); footer.className='catalog-lesson-footer';
-    var meta = document.createElement('span'); meta.className='lesson-meta';
-    if(!lessonAvailable) meta.textContent = '待导入内容';
-    else if(node.contentRef && node.contentRef.type === 'story-package') meta.textContent = '图文课节';
-    else meta.textContent = (node.itemCount || 0)+' 句';
-    footer.appendChild(meta); lesson.appendChild(footer);
     var editableCategory = course.origin === 'user' && String(course.id).indexOf('logical-course:') === 0;
     if(editableCategory && lessonAvailable && node.contentRef && node.contentRef.type === 'story-package'){
       addCourseManageMenu(footer, [{
@@ -3047,7 +3058,7 @@ function lessonRow(c){
   var row = document.createElement('div');
   row.className = 'lesson';
   row.innerHTML = '<span class="nm">'+Library.esc(c.title)+'</span><span class="meta">'+c.nodeCount+' 节点</span><button class="lesson-del" data-id="'+Library.esc(c.courseId)+'" title="删除此课程">'+(window.Icons?Icons.svg('close'):'')+'</button>';
-  row.onclick = function(e){ if(e.target.closest('.lesson-del')) return; window.location.href = 'courses.html?id='+encodeURIComponent(c.courseId); };
+  row.onclick = function(e){ if(e.target.closest('.lesson-del')) return; window.location.href = CourseReturn.forward('courses.html?id='+encodeURIComponent(c.courseId),CourseReturn.source()); };
   var delBtn = row.querySelector('.lesson-del');
   delBtn.onclick = function(e){ e.stopPropagation(); deleteCourse(c.courseId, c.title); };
   return row;
@@ -3337,7 +3348,7 @@ function bindCommon(){
   /* 编辑单句 */
   $('btnSaveEditSentence').onclick = saveEditSentence;
   /* 返回：同 tab 导航回主页（保持独立 URL 体验） */
-  $('decksBack').onclick = function(){ window.location.href = './main.html'; };
+  $('decksBack').onclick = function(){ window.location.href=CourseReturn.destination(location.search,'main.html?view=home'); };
   /* 公共题库市场：刷新 + 首次打开加载 */
   var mktBtn = $('btnRefreshMarket');
   if(mktBtn) mktBtn.onclick = function(){ openMarket(); };

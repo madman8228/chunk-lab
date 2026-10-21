@@ -53,7 +53,7 @@ function stopServer() {
         settings: { mode: 'choose', shuffle: false, skipMastered: false, batchSize: 10, sound: false }, progress: {}
       }));
     });
-    await page.goto(BASE + '/main.html?direct=1&chunk-choice-diversity=1', { waitUntil: 'domcontentloaded' });
+    await page.goto(BASE + '/main.html?chunk-choice-diversity=1', { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(function () { return window._mainBooted && window.mem && window.CL; });
     const before = await page.evaluate(async function () {
       await window.ensurePracticeReady();
@@ -64,6 +64,10 @@ function stopServer() {
         distractors: [['My alarms', "My alarm's", 'My alarm is'], ['It is set.', 'The alarm is']]
       };
       const deck = { id: 'choice-diversity-deck', name: '选项多样性测试', items: [item] };
+      await ServerStore.submitCommitted('deck.put',{deck},{requestId:'choice-diversity-fixture',expectedRev:null});
+      await ServerCache.refresh();
+      mem=(await ChunkAPI.getData()).mem;
+      await CourseEnrollment.join('user-deck:'+deck.id);
       /* Synthetic choice rendering only; not a cloud persistence fixture. */
       showPracticePage();
       startDeck(deck, 0, undefined, false, 0);

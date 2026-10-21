@@ -1,0 +1,101 @@
+classDiagram
+    class SeoPageBuilder {
+        +main(argv)
+        +run(opts) BuildReport
+        -assertFailClosed(index)
+        -writeVersionStamp(report)
+    }
+    class ContentIndex {
+        +load(manifestPath, shardRoot) ContentIndex
+        +contentVersion: string
+        +decks: DeckMeta[]
+        +resolve(deckId, cid) SentenceItem
+        +iterSentences(deckId) SentenceRef[]
+        +assertGlobalUniqueness() Report
+    }
+    class DeckMeta {
+        +id: string
+        +name: string
+        +short: string
+        +chapter: int
+        +sectionTitle: string
+        +shardUrls: string[]
+        +indexShardUrls: string[]
+        +totalCount: int
+    }
+    class SentenceRef {
+        +deckId: string
+        +cid: string
+        +shardUrl: string
+        +offset: int
+    }
+    class SentenceItem {
+        +sentence: string
+        +translation: string
+        +chunks: string[]
+        +hints: string[]
+        +grammar: object[]
+        +explanations: string[]
+        +cid: string
+    }
+    class TemplateRenderer {
+        +render(page: PageModel) string
+        +escape(s) string
+        +rootRelative(path) string
+    }
+    class PageModel {
+        +type: string
+        +title: string
+        +h1: string
+        +description: string
+        +breadcrumb: Crumb[]
+        +body: string
+        +cta: string
+        +jsonld: object
+        +selfPath: string
+        +contentVersion: string
+    }
+    class SentencePageModel
+    class DeckPageModel
+    class SymptomPageModel
+    class BrandPageModel
+    class JsonLdBuilder {
+        +course(meta) object
+        +faq(entries) object
+        +howTo(steps) object
+    }
+    class ManifestSlimBuilder {
+        +build(fullManifest) object
+        +buildShardMap(fullManifest) object
+    }
+    class ContentShardsRoute {
+        +register(app, auth)
+        +handler(req, res)
+    }
+    class SeoPagesMiddleware {
+        +create() Middleware
+        +freshnessCheck() void
+    }
+    class ContentRepository {
+        +MANIFEST_URL
+        +loadManifest()
+        +loadShardMap()
+        +ensureDeckBatch()
+    }
+
+    ContentIndex "1" o-- "*" DeckMeta : decks
+    ContentIndex ..> SentenceRef : iterSentences
+    ContentIndex ..> SentenceItem : resolve
+    DeckMeta "1" o-- "*" SentenceRef : shardUrls
+    PageModel <|-- SentencePageModel
+    PageModel <|-- DeckPageModel
+    PageModel <|-- SymptomPageModel
+    PageModel <|-- BrandPageModel
+    SeoPageBuilder ..> ContentIndex : uses
+    SeoPageBuilder ..> TemplateRenderer : uses
+    SeoPageBuilder ..> JsonLdBuilder : uses
+    TemplateRenderer ..> PageModel : renders
+    ManifestSlimBuilder ..> DeckMeta : reads
+    ContentShardsRoute ..> ManifestSlimBuilder : serves shard map
+    SeoPagesMiddleware ..> ContentIndex : freshness
+    ContentRepository ..> ContentShardsRoute : fetch /api/content/shards

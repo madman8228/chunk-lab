@@ -1,4 +1,6 @@
 'use strict';
+const { learningEventsSql, dayOf, dayStart, DAY } = require('./usage-analytics');
+const { adminAccountTypeSql } = require('./admin-account-type');
 
 function createAdminOverview(options) {
   const db = options.db;
@@ -20,8 +22,8 @@ function createAdminOverview(options) {
   }
 
   function adminRange(days) {
-    const now = Date.now();
-    const start = now - days * 24 * 60 * 60 * 1000;
+    const now = (options.now || Date.now)();
+    const start = dayStart(dayOf(now)) - (days - 1) * DAY;
     return { start, end: now, startDay: shanghaiDay(start), endDay: shanghaiDay(now) };
   }
 
@@ -30,32 +32,31 @@ function createAdminOverview(options) {
     const account = db.prepare(
       "SELECT " +
       "COUNT(*) FILTER (WHERE username <> '__default__') AS total, " +
-      "COUNT(*) FILTER (WHERE username LIKE 'guest_%') AS guests, " +
-      "COUNT(*) FILTER (WHERE username <> '__default__' AND username NOT LIKE 'guest_%') AS registered, " +
+      "COUNT(*) FILTER (WHERE account_type='guest') AS guests, " +
+      "COUNT(*) FILTER (WHERE account_type='registered') AS registered, " +
       "COUNT(*) FILTER (WHERE username <> '__default__' AND datetime(created_at) >= datetime(?, 'unixepoch')) AS new_accounts " +
-      "FROM users"
+      "FROM (SELECT u.username, u.created_at, " + adminAccountTypeSql(db) + " AS account_type FROM users u)"
     ).get(Math.floor(range.start / 1000));
     const activeVisitors = db.prepare(
       "SELECT COUNT(DISTINCT a.user_id) AS count FROM user_activity a " +
       "JOIN users u ON u.id=a.user_id " +
       "WHERE a.day BETWEEN ? AND ? AND u.username <> '__default__'"
     ).get(range.startDay, range.endDay).count;
-    const activeLearners = db.prepare(
-      "SELECT COUNT(DISTINCT e.user_id) AS count FROM user_events e " +
-      "JOIN users u ON u.id=e.user_id " +
-      "WHERE e.deleted_at IS NULL AND e.at >= ? AND e.at < ? AND " +
-      "json_extract(e.data_json, '$.kind')='answer' AND u.username <> '__default__'"
-    ).get(range.start, range.end).count;
+    const events = learningEventsSql(db);
+    const learners = (start, startDay) => db.prepare(`SELECT COUNT(DISTINCT user_id) AS count FROM (
+      SELECT user_id FROM (${events}) WHERE at>=? AND at<=?
+      UNION SELECT user_id FROM user_study_daily WHERE day BETWEEN ? AND ? AND active_ms>0
+      ) WHERE user_id IN (SELECT id FROM users WHERE username<>'__default__')`).get(start, range.end, startDay, range.endDay).count;
+    const activeLearners = learners(range.start, range.startDay);
     const answers = db.prepare(
-      "SELECT COUNT(*) AS count FROM user_events e JOIN users u ON u.id=e.user_id " +
-      "WHERE e.deleted_at IS NULL AND e.at >= ? AND e.at < ? AND " +
-      "json_extract(e.data_json, '$.kind')='answer' AND u.username <> '__default__'"
+      "SELECT COUNT(*) AS count FROM (" + events + ") e JOIN users u ON u.id=e.user_id " +
+      "WHERE e.at >= ? AND e.at <= ? AND u.username <> '__default__'"
     ).get(range.start, range.end).count;
     const mastered = db.prepare(
       "SELECT COUNT(*) AS count FROM user_entity_rows e JOIN users u ON u.id=e.user_id " +
       "WHERE e.kind='mastered' AND e.deleted_at IS NULL AND u.username <> '__default__'"
     ).get().count;
-    const daily = db.prepare(
+    const visits = db.prepare(
       "SELECT a.day, COUNT(DISTINCT a.user_id) AS active_users, " +
       "COALESCE(SUM(a.page_views), 0) AS page_views " +
       "FROM user_activity a JOIN users u ON u.id=a.user_id " +
@@ -63,16 +64,12 @@ function createAdminOverview(options) {
       "GROUP BY a.day ORDER BY a.day"
     ).all(range.startDay, range.endDay);
     const courseRows = db.prepare(
-      "SELECT e.user_id, e.data_json FROM user_events e JOIN users u ON u.id=e.user_id " +
-      "WHERE e.deleted_at IS NULL AND e.at >= ? AND e.at < ? AND " +
-      "json_extract(e.data_json, '$.kind')='answer' AND u.username <> '__default__'"
+      "SELECT e.user_id, e.kind, e.resource_id FROM (" + events + ") e JOIN users u ON u.id=e.user_id " +
+      "WHERE e.at >= ? AND e.at <= ? AND u.username <> '__default__'"
     ).all(range.start, range.end);
-    const courses = {};
+    const courses = Object.create(null);
     courseRows.forEach(function (row) {
-      let event;
-      try { event = JSON.parse(row.data_json); } catch (e) { return; }
-      const key = typeof event.key === 'string' ? event.key : '';
-      const deckId = key.split('#')[0] || 'unknown';
+      const deckId = row.kind === 'sentence' ? row.resource_id.split('#')[0] : row.resource_id;
       if (!courses[deckId]) courses[deckId] = { deckId: deckId, answers: 0, users: {} };
       courses[deckId].answers += 1;
       courses[deckId].users[row.user_id] = true;
@@ -81,10 +78,23 @@ function createAdminOverview(options) {
       const item = courses[id];
       return { deckId: item.deckId, answers: item.answers, users: Object.keys(item.users).length };
     }).sort(function (a, b) { return b.answers - a.answers; }).slice(0, 8);
+    const times = db.prepare(`SELECT day,SUM(active_ms) AS active_ms FROM user_study_daily
+      WHERE day BETWEEN ? AND ? AND user_id IN (SELECT id FROM users WHERE username<>'__default__') GROUP BY day`).all(range.startDay, range.endDay);
+    const daily = [];
+    for (let at = range.start; at <= dayStart(range.endDay); at += DAY) {
+      const day = dayOf(at), visit = visits.find(row => row.day === day), time = times.find(row => row.day === day);
+      daily.push({ day, active_users: visit ? visit.active_users : 0, page_views: visit ? visit.page_views : 0, active_ms: time ? time.active_ms : 0 });
+    }
+    const todayVisits = visits.find(row => row.day === range.endDay);
+    const today = { day: range.endDay, activeVisitors: todayVisits ? todayVisits.active_users : 0,
+      activeLearners: learners(dayStart(range.endDay), range.endDay),
+      activeMs: (times.find(row => row.day === range.endDay) || {}).active_ms || 0 };
     return {
       range: { days: days, start: range.start, end: range.end, startDay: range.startDay, endDay: range.endDay },
       accounts: { total: account.total, guests: account.guests, registered: account.registered, newAccounts: account.new_accounts },
-      usage: { activeVisitors: activeVisitors, activeLearners: activeLearners, answers: answers, mastered: mastered },
+      usage: { activeVisitors: activeVisitors, activeLearners: activeLearners, answers: answers, mastered: mastered,
+        activeMs: times.reduce((sum, row) => sum + row.active_ms, 0) },
+      today,
       daily: daily,
       topCourses: topCourses
     };
@@ -141,7 +151,7 @@ function createAdminOverview(options) {
     const now = Date.now();
     const row = db.prepare(
       'SELECT COUNT(*) AS clients, COUNT(DISTINCT user_id) AS accounts, ' +
-      'COALESCE(SUM(pending),0) AS pending, COALESCE(SUM(blocked),0) AS blocked, ' +
+      'COALESCE(SUM(pending),0) AS pending, COALESCE(SUM(blocked),0) AS blocked, COALESCE(SUM(deferred_version),0) AS deferred_version, ' +
       'COALESCE(SUM(retry_attempts),0) AS retry_attempts, MIN(oldest_pending_at) AS oldest_pending_at, ' +
       'MAX(updated_at) AS latest_at FROM user_client_save_health WHERE updated_at >= ?'
     ).get(now - 30 * 60 * 1000);
@@ -159,6 +169,7 @@ function createAdminOverview(options) {
       activeAccounts: Number(row.accounts),
       pending: Number(row.pending),
       blocked: Number(row.blocked),
+      deferredVersion: Number(row.deferred_version||0),
       retryAttempts: Number(row.retry_attempts),
       successfulOperations,
       migrationRetainedItems,

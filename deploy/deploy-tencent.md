@@ -151,6 +151,8 @@ sudo crontab -e    # 追加：
 
 ## 8. 常见问题
 
+静态课程分片交付需要服务端配置 `MEMBERSHIP_CONTENT_GRANT_KEY`：使用独立的至少 32 字节随机值并以 Base64 保存，不复用兑换码或 JWT 密钥。缺失时分片课程拒绝启动，体验额度不会因此开始。密钥不进入课程文件、浏览器或日志。统一入口改造尚未完成前，不启用真实课程转换；课程原件及现有学习记录必须保留。
+
 | 现象 | 处理 |
 |------|------|
 | 启动即 `[security] FATAL ... 开放模式` | env 里 REQUIRE_AUTH 非 true / NODE_ENV 未设 production |

@@ -6,7 +6,7 @@ const root=path.resolve(__dirname,'..'),port=require('./lib/free-port').freePort
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cl-login-')),base='http://127.0.0.1:'+port;
 let browser,server;
 (async()=>{try{
-  server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test',CHUNKLAB_WRITE_PROTOCOL:'3'},stdio:'ignore'});
+  server=spawn(process.execPath,['index.js'],{cwd:path.join(root,'server'),env:{...process.env,PORT:String(port),CHUNKLAB_DATA_DIR:temp,REQUIRE_AUTH:'true',PHONE_AUTH_ENABLED:'false',JWT_SECRET:require('crypto').randomBytes(32).toString('hex'),NODE_ENV:'test',CHUNKLAB_WRITE_PROTOCOL:'3'},stdio:'ignore'});
   let ready=false;
   /* 就绪窗口 300×100ms=30s（原 60×100ms=6s）：实测为临界窗口，宿主 node 冷启动 5.4s。
      health 一旦 200 立即 break ⇒ 成功路径不增加耗时。 */
@@ -21,6 +21,7 @@ let browser,server;
   await page.goto(base+'/api/health');await page.evaluate(()=>localStorage.setItem('chunklab_manual','1'));
   await page.goto(base+'/main.html');
   async function login(name){
+    if(!await page.locator('#chunkauth-mask').count())await page.locator('#btnSettingsTop').click();
     await page.locator('#chunkauth-mask input[placeholder="用户名"]').fill(name);
     await page.locator('#chunkauth-mask input[type="password"]').fill('test-only-password');
     /* 登录成功后 setSession 会触发 AccountStorage 的受控 reload。
@@ -38,13 +39,14 @@ let browser,server;
   const aliceEpoch=await page.evaluate(()=>AccountStorage.sessionEpoch);
   assert.ok(aliceEpoch,'登录后存在持久会话代次');
   await page.evaluate(()=>ServerStore.submitCommitted('deck.put',{deck:{id:'alice-only',name:'Alice private',items:[{cid:'one',en:'Hello.',zh:'你好。'}]}},{expectedRev:null}));
-  await page.evaluate(()=>ChunkAuthUI.logout());
-  await page.locator('#chunkauth-mask').waitFor();
+  await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.evaluate(()=>ChunkAuthUI.logout())]);
+  await page.locator('#btnSettingsTop').filter({hasText:/^登录$/}).waitFor();
   assert.equal(await page.evaluate(()=>ChunkAPI.getToken()),null,'explicit logout remains logged out');
   await login('bob-test');
   assert.equal(await page.evaluate(async()=>(await ServerCache.read()).snapshot.mem.decks.some(c=>c.id==='alice-only')),false,'B confirmed view cannot read A');
   assert.equal(await page.evaluate(async()=>JSON.stringify(await ChunkAPI.getData()).includes('alice-only')),false,'B cloud has no A data');
-  await page.evaluate(()=>ChunkAuthUI.logout());await page.locator('#chunkauth-mask').waitFor();
+  await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.evaluate(()=>ChunkAuthUI.logout())]);
+  await page.locator('#btnSettingsTop').filter({hasText:/^登录$/}).waitFor();
   await login('alice-test');
   assert.notEqual(await page.evaluate(()=>AccountStorage.sessionEpoch),aliceEpoch,'A退出后再次登录即使uid相同也使用新会话代次');
   assert.equal(await page.evaluate(async()=>(await ServerCache.read()).snapshot.mem.decks.some(c=>c.id==='alice-only')),true,'A confirmed course preserved');

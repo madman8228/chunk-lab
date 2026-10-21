@@ -4,6 +4,9 @@ const { canonicalHash } = require('../canonical-hash');
 const { createLogicalCourseOperations } = require('./logical-course-operations');
 const { createCourseLearningOperations } = require('./course-learning-operations');
 const { createSettingsOperations } = require('./settings-operations');
+const { createWorkspaceOperations } = require('./workspace-operations');
+const { createVocabularyStudyOperations } = require('./vocabulary-study-operations');
+const { createVocabularyBrowseOperations } = require('./vocabulary-browse-operations');
 const { createLearningMaintenanceOperations } = require('./learning-maintenance-operations');
 const { createCourseEnrollmentOperations } = require('./course-enrollment-operations');
 const { createLearningMarkOperations } = require('./learning-mark-operations');
@@ -12,6 +15,7 @@ const { createStatKeyMigrationOperations } = require('./stat-key-migration-opera
 const { createAssessmentOperations } = require('./assessment-operations');
 const { createLearningExposureOperations } = require('./learning-exposure-operations');
 const { createLearningEventOperations } = require('./learning-event-operations');
+const { encodeReceipt, decodeReceipt, corrupt } = require('./operation-receipt-storage');
 const MAX_OPERATION_BYTES = 256 * 1024;
 const MAX_CONTENT_IMPORT_BYTES = 80 * 1024 * 1024;
 
@@ -54,6 +58,9 @@ function createOperations(options) {
   const courseLearningOperations = createCourseLearningOperations({ db, upsertCourseProgress, upsertEvent,
     replaceSentenceStat, currentGeneration, operationError });
   const settingsOperations = createSettingsOperations({ db, upsertKv, operationError });
+  const workspaceOperations = createWorkspaceOperations({ db, library: options.library, upsertEntityRow, operationError });
+  const vocabularyStudyOperations = createVocabularyStudyOperations({db,content:options.vocabularyContent,upsertEntityRow,operationError,enableWordDictation:options.enableWordDictation===true,enableWordChoice:options.enableWordChoice===true,enableChunkOrder:options.enableChunkOrder===true,enableReadAloud:options.enableReadAloud===true});
+  const vocabularyBrowseOperations = createVocabularyBrowseOperations({db,resolvePlan:options.vocabularyTeachingContent?.resolvePlan,upsertEntityRow,operationError,enabled:options.enableVocabularyBrowse===true});
   const learningMaintenanceOperations = createLearningMaintenanceOperations({ db, upsertEntityRow, deleteEntityRow,
     upsertEvent, operationError });
   const courseEnrollmentOperations = createCourseEnrollmentOperations({ db, upsertCourseProgress, operationError });
@@ -64,11 +71,27 @@ function createOperations(options) {
   const statKeyMigrationOperations = createStatKeyMigrationOperations({ db, upsertSentenceStat, replaceSentenceStat,
     deleteSentenceStat, resolveAssessmentItem, operationError });
   const assessmentOperations = createAssessmentOperations({ db, currentGeneration, assessmentSession,
-    resolveAssessmentItem, replaceSentenceStat, reducePracticeEvents, upsertEvent, srs, operationError });
+    resolveAssessmentItem, assessmentScopeKey: options.assessmentScopeKey, replaceSentenceStat, reducePracticeEvents, upsertEvent, srs, operationError });
   const learningExposureOperations = createLearningExposureOperations({ db, currentGeneration,
     replaceSentenceStat, reducePracticeEvents, upsertEvent, srs, operationError });
   const learningEventOperations = createLearningEventOperations({ db, currentGeneration, srs,
     upsertSentenceStat, replaceSentenceStat, reducePracticeEvents, upsertEntityRow, upsertEvent, upsertKv, operationError });
+  const selectReceipt = db.prepare('SELECT payload_hash,result_json FROM user_operation_receipts WHERE user_id=? AND request_id=?');
+  const selectEventReceipt = db.prepare('SELECT payload_hash,operation_id,result_json FROM user_operation_events WHERE user_id=? AND event_id=?');
+  const insertReceipt = db.prepare('INSERT INTO user_operation_receipts(user_id,request_id,payload_hash,result_json) VALUES(?,?,?,?)');
+  const insertEventReceipt = db.prepare('INSERT INTO user_operation_events(user_id,event_id,payload_hash,operation_id,result_json) VALUES(?,?,?,?,?)');
+
+  function eventReceipt(userId, row) {
+    let marker;
+    try { marker = JSON.parse(row.result_json); } catch (_) { throw corrupt(); }
+    if (!marker || !Object.hasOwn(marker, 'receiptReference')) return decodeReceipt(row.result_json);
+    if (marker.receiptReference !== 1 || marker.requestId !== row.operation_id || !Number.isSafeInteger(marker.seq)) throw corrupt();
+    const source = selectReceipt.get(userId, row.operation_id);
+    if (!source) throw corrupt();
+    const result = decodeReceipt(source.result_json);
+    if (result.ok !== true || result.requestId !== row.operation_id || result.seq !== marker.seq) throw corrupt();
+    return result;
+  }
 
   function validateRequest(body, maxBytes) {
     if (!object(body) || ![2, 3].includes(body.protocol) || !/^[A-Za-z0-9_-]{16,100}$/.test(body.requestId || '') ||
@@ -102,6 +125,12 @@ function createOperations(options) {
     if (courseLearningChange) return courseLearningChange;
     const settingsChange = settingsOperations.apply(userId, body, seq);
     if (settingsChange) return settingsChange;
+    const workspaceChange = workspaceOperations.apply(userId, body, seq);
+    if (workspaceChange) return workspaceChange;
+    const vocabularyChange=vocabularyStudyOperations.apply(userId,body,seq);
+    if(vocabularyChange)return vocabularyChange;
+    const browseChange=vocabularyBrowseOperations.apply(userId,body,seq);
+    if(browseChange)return browseChange;
     const learningMaintenanceChange = learningMaintenanceOperations.apply(userId, body, seq);
     if (learningMaintenanceChange) return learningMaintenanceChange;
     const courseEnrollmentChange = courseEnrollmentOperations.apply(userId, body, seq);
@@ -124,12 +153,12 @@ function createOperations(options) {
   const save = db.transaction(function (userId, body, maxBytes) {
     validateRequest(body, maxBytes);
     const payloadHash = hash(body);
-    const prior = db.prepare('SELECT payload_hash,result_json FROM user_operation_receipts WHERE user_id=? AND request_id=?').get(userId, body.requestId);
+    const prior = selectReceipt.get(userId, body.requestId);
     if (prior) {
       if (prior.payload_hash !== payloadHash) {
         throw operationError('同一请求编号不能用于不同内容', 'REQUEST_ID_REUSED', 409);
       }
-      return Object.assign(JSON.parse(prior.result_json), { duplicate: true });
+      return Object.assign(decodeReceipt(prior.result_json), { duplicate: true });
     }
     const eventId = body.payload && typeof body.payload.eventId === 'string' &&
       ['learning.answer', 'learning.roundComplete', 'learning.mark', 'learning.statKeyMigrate', 'mistake.remove', 'deck.itemsVisibility', 'learning.exposure',
@@ -137,16 +166,15 @@ function createOperations(options) {
       ? body.payload.eventId : null;
     const eventHash = eventId ? hash({ type: body.type, payload: body.payload }) : null;
     if (eventId) {
-      const priorEvent = db.prepare('SELECT payload_hash,result_json FROM user_operation_events WHERE user_id=? AND event_id=?').get(userId, eventId);
+      const priorEvent = selectEventReceipt.get(userId, eventId);
       if (priorEvent) {
         if (priorEvent.payload_hash !== eventHash) {
           throw operationError('学习记录编号已用于其他内容', 'EVENT_ID_REUSED', 409);
         }
-        const eventResult = JSON.parse(priorEvent.result_json);
+        const eventResult = eventReceipt(userId, priorEvent);
         const result = { ok: true, requestId: body.requestId, seq: eventResult.seq,
           outcome: 'already-applied', operation: eventResult.operation, changes: eventResult.changes };
-        db.prepare('INSERT INTO user_operation_receipts(user_id,request_id,payload_hash,result_json) VALUES(?,?,?,?)')
-          .run(userId, body.requestId, payloadHash, JSON.stringify(result));
+        insertReceipt.run(userId, body.requestId, payloadHash, encodeReceipt(result));
         return result;
       }
     }
@@ -154,11 +182,10 @@ function createOperations(options) {
     const change = apply(userId, body, seq);
     const result = { ok: true, requestId: body.requestId, seq, outcome: change.outcome || 'applied',
       operation: change, changes: readChanges(userId, seq) };
-    db.prepare('INSERT INTO user_operation_receipts(user_id,request_id,payload_hash,result_json) VALUES(?,?,?,?)')
-      .run(userId, body.requestId, payloadHash, JSON.stringify(result));
+    insertReceipt.run(userId, body.requestId, payloadHash, encodeReceipt(result));
     if (eventId) {
-      db.prepare('INSERT INTO user_operation_events(user_id,event_id,payload_hash,operation_id,result_json) VALUES(?,?,?,?,?)')
-        .run(userId, eventId, eventHash, body.requestId, JSON.stringify(result));
+      insertEventReceipt.run(userId, eventId, eventHash, body.requestId,
+        JSON.stringify({ receiptReference: 1, requestId: body.requestId, seq: result.seq }));
     }
     return result;
   });
@@ -167,9 +194,9 @@ function createOperations(options) {
     if (typeof requestId !== 'string' || !/^[A-Za-z0-9_-]{16,100}$/.test(requestId)) {
       throw operationError('操作编号无效', 'INVALID_OPERATION_ID', 400);
     }
-    const row = db.prepare('SELECT result_json FROM user_operation_receipts WHERE user_id=? AND request_id=?').get(userId, requestId);
+    const row = selectReceipt.get(userId, requestId);
     if (!row) throw operationError('未找到操作记录', 'OPERATION_NOT_FOUND', 404);
-    return JSON.parse(row.result_json);
+    return decodeReceipt(row.result_json);
   }
 
   function getAssessmentSession(userId, sessionId) {

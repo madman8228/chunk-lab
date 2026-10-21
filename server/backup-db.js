@@ -7,13 +7,13 @@
  * 部署的完整备份。恢复 = 停服务 → 用备份文件替换 chunklab.db → 启服务。
  *
  * 用法：
- *   node server/backup-db.js backup            # 快照到 BACKUP_DIR + 保留 N 份
+ *   node server/backup-db.js backup            # 新建快照，保留全部已有备份
  *   node server/backup-db.js list              # 列出已有备份
  *
  * 环境变量：
  *   CHUNKLAB_DATA_DIR   数据库目录（必须与服务端一致；默认 server/data）
  *   BACKUP_DIR          备份目录（默认 server/backups）
- *   BACKUP_KEEP         保留份数（默认 14，超出自动删最旧）
+ *   不自动删除已有备份；清理必须另行明确授权。
  *
  * 调度（systemd timer 或 cron，注意 CHUNKLAB_DATA_DIR 要和服务端一致）：
  *   Linux cron:  0 3 * * *  cd /opt/chunklab && /usr/bin/node server/backup-db.js backup
@@ -24,7 +24,6 @@ const path = require('path');
 
 const DATA_DIR = path.resolve(process.env.CHUNKLAB_DATA_DIR || path.join(__dirname, 'data'));
 const DIR = path.resolve(process.env.BACKUP_DIR || path.join(__dirname, 'backups'));
-const KEEP = parseInt(process.env.BACKUP_KEEP || '14', 10) || 14;
 const DB = path.join(DATA_DIR, 'chunklab.db');
 const PREFIX = 'chunklab_db_';
 const SUFFIX = '.db';
@@ -40,13 +39,6 @@ function list() {
     .filter(function (f) { return f.indexOf(PREFIX) === 0 && f.endsWith(SUFFIX); })
     .sort();
 }
-function prune() {
-  const all = list();
-  while (all.length > KEEP) {
-    const old = all.shift();
-    try { fs.unlinkSync(path.join(DIR, old)); console.log('[backup-db] 清理旧备份: ' + old); } catch (e) { console.error('[backup-db] 清理失败:', old, e.message); }
-  }
-}
 
 async function backup() {
   if (!fs.existsSync(DB)) { console.error('[backup-db] 数据库不存在: ' + DB + '（检查 CHUNKLAB_DATA_DIR）'); process.exit(1); }
@@ -61,8 +53,9 @@ async function backup() {
     db.close();
   }
   const kb = Math.round(fs.statSync(out).size / 1024);
+  const materials=await require('./services/vocabulary-material-backup').backupVocabularyMaterials({dataDir:DATA_DIR,appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),backupDir:DIR});
+  if(materials)console.log('[backup-db] Materials: '+materials.path+' ('+materials.fileCount+' verified files)');
   console.log('[backup-db] OK: ' + out + ' (' + kb + ' KB)');
-  prune();
 }
 
 async function main() {

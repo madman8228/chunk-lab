@@ -1,0 +1,98 @@
+{
+  "format":"textbook-vocabulary-transcription","version":1,"status":"review-only",
+  "textbook":{"title":"义务教育教科书 英语（PEP）","publisher":"人民教育出版社","schoolStage":"小学","grade":"四年级","volume":"下册","series":"PEP","seriesEvidence":"用户明确确认本批为 PEP 四年级下册","edition":null,"coverApprovalYear":2024,"curriculumStandardYearFromVocabularyNote":2022,"identityNote":"封面为四年级下册；2024标记只记录为审定年份，具体版次/印次待版权页核实。","printedUsageNotice":null},
+  "legend":{"starred":"加*的词为《义务教育英语课程标准（2022年版）》中的二级词","bold":"黑体词要求理解、运用；白体词只要求在语境中理解","rowFormat":["term","meaning","sourceTextPage","starred","bold","type","sourceNote"],"types":["word","contraction","phrase","expression"],"normalization":"合并跨行排印，保留原词头、释义、页码、星号和字体。条目类型为整理标注，不是教材印刷标签。"},
+  "images":[
+    {"id":1,"role":"cover","path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-65964294-f491-4365-a696-8105184b246f.png"},
+    {"id":2,"role":"contents","path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-cbfa0ce3-e4eb-4731-80ca-a6048d3e7c13.png"},
+    {"id":3,"role":"unit-list","printedPage":80,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-539087bb-2421-49a4-9915-0f8d66b9ef1f.png"},
+    {"id":4,"role":"unit-list","printedPage":81,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-4d22f25d-4f17-49eb-a8fe-0a9947913612.png"},
+    {"id":5,"role":"unit-list","printedPage":82,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-0721c72c-edee-4d37-800e-194babf732ad.png"},
+    {"id":6,"role":"alphabetical-index","printedPage":83,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-767e67be-9974-44b8-836e-01d3c88df7e2.png"},
+    {"id":7,"role":"alphabetical-index","printedPage":84,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-90555016-08bb-49c0-94e6-23f2e431bd90.png"},
+    {"id":8,"role":"alphabetical-index","printedPage":85,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-e8f88119-f3ee-4263-a309-49c103d4c2a3.png"},
+    {"id":9,"role":"useful-expressions","printedPage":86,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-567563ee-970c-4ed4-8253-11f4c8e89d1f.png"},
+    {"id":10,"role":"useful-expressions","printedPage":87,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-214788e8-99bd-4ae1-af47-f40c97c20209.png"}
+  ],
+  "contents":[{"title":"Unit 1 Class rules","startPage":2},{"title":"Unit 2 Family rules","startPage":14},{"title":"Unit 3 Time for school","startPage":26},{"title":"Unit 4 Going shopping","startPage":38},{"title":"Unit 5 Farms and us","startPage":50},{"title":"Unit 6 From farm to table","startPage":62},{"title":"Revision A great weekend plan","startPage":74},{"title":"Appendix 1 Songs","startPage":78},{"title":"Appendix 2 Words in each unit","startPage":80},{"title":"Appendix 3 Vocabulary","startPage":83},{"title":"Appendix 4 Useful expressions","startPage":86},{"title":"Appendix 5 Pronunciation","startPage":88}],
+  "units":[
+    {"unitId":"unit-1","title":"Unit 1 Class rules","contentsStartPage":2,"sourceImages":[3],"entries":[
+      ["sorry","对不起",4,true,true,"word",""],["hurry up","快点；赶快",4,false,false,"phrase","原表分开标注 hurry 与 up 的音标。"],["late","迟到；迟到；迟发生",4,true,true,"word","释义按原图字面整理。"],["class","课；课程；班；班级",4,true,true,"word",""],
+      ["ready","准备好",4,false,false,"word",""],["rule","规则；规章",5,false,false,"word",""],["classroom","教室",5,true,true,"word",""],["turn off","关掉",5,false,true,"phrase","单元词表无星号；A–Z 索引有星号，保留差异。"],
+      ["light","灯；光",5,true,true,"word",""],["blackboard","黑板",7,true,true,"word",""],["desk","书桌；办公桌",7,true,true,"word",""],["chair","椅子",7,true,true,"word",""],
+      ["tidy","整洁的；整齐的；使整洁；整理",7,true,true,"word",""],["music","音乐",8,true,true,"word",""],["door","门",8,true,true,"word",""],["window","窗",8,true,true,"word",""],
+      ["fan","风扇",8,true,true,"word",""],["when","当……时；什么时候",9,true,true,"word",""],["understand","懂；理解",9,false,false,"word",""],["wall","墙；壁",9,true,true,"word",""],
+      ["newspaper","报纸",9,false,false,"word",""],["hand out","分发",9,false,false,"phrase","原表只为 out 标注音标。"],["workbook","练习册；作业本",9,false,false,"word",""]
+    ]},
+    {"unitId":"unit-2","title":"Unit 2 Family rules","contentsStartPage":14,"sourceImages":[3,4],"entries":[
+      ["watch","看",16,true,true,"word",""],["TV","电视",16,true,true,"word",""],["homework","家庭作业",16,false,false,"word",""],["first","首先；首次；第一",16,false,false,"word",""],
+      ["wet","湿的；未干的",16,false,false,"word",""],["run","跑；奔跑",16,true,true,"word",""],["living room","客厅；起居室",16,true,true,"phrase","原表只给 living 标注音标。"],["safe","安全的",16,true,true,"word",""],
+      ["word","言语；单词；字",17,true,true,"word",""],["wash","洗",17,true,true,"word",""],["helpful","有帮助的；有用的",17,true,true,"word",""],["loud","说话太大声的；吵闹的",19,false,false,"word",""],
+      ["sleep","睡觉",19,true,true,"word",""],["bedroom","卧室",19,true,true,"word","单元词表有星号；A–Z 索引无星号，保留差异。"],["kitchen","厨房",19,true,true,"word",""],["study","书房",20,true,true,"word",""],
+      ["bathroom","浴室；洗手间",20,false,false,"word",""],["think","想；思考",21,true,true,"word",""],["work","（花费时间和精力）做（某事）；工作",21,true,true,"word",""],
+      ["hard","努力地；费力地",21,true,true,"word",""],["follow","遵循，听从（忠告、指示等）",21,false,false,"word",""],["feel","觉得；感到",21,true,true,"word",""]
+    ]},
+    {"unitId":"unit-3","title":"Unit 3 Time for school","contentsStartPage":26,"sourceImages":[4],"entries":[
+      ["over","结束（的）",28,true,true,"word",""],["kid","小孩",28,true,true,"word",""],["dinner","（中午或晚上吃的）正餐",28,true,true,"word",""],["art","美术；艺术",29,true,true,"word",""],
+      ["lunch","午餐",29,true,true,"word",""],["maths","数学",29,true,true,"word","保留英式拼写。"],["get up","起床",31,false,false,"phrase",""],["go to school","上学",31,false,false,"phrase",""],
+      ["go home","回家",32,false,false,"phrase",""],["go to bed","上床睡觉",32,false,false,"phrase",""],["want","想要",33,true,true,"word",""],["clock","时钟",33,true,true,"word",""],
+      ["just","只是；仅仅；正要",33,false,false,"word",""],["minute","分钟",33,true,true,"word",""]
+    ]},
+    {"unitId":"unit-4","title":"Unit 4 Going shopping","contentsStartPage":38,"sourceImages":[4],"entries":[
+      ["trousers","裤子",40,true,true,"word",""],["pair","（由连在一起的相似两部分构成的）一条、一副",40,true,true,"word",""],["clothes","衣服；服装",40,true,true,"word",""],
+      ["those","（指较远的人或事物）那些",40,true,true,"word",""],["shorts","短裤",40,true,true,"word",""],["jacket","夹克衫；短上衣",41,false,false,"word",""],
+      ["skirt","裙子",41,true,true,"word",""],["dear","亲爱的",43,true,true,"word",""],["expensive","昂贵的；价格高的",43,false,true,"word",""],["take","买下",43,true,true,"word",""],
+      ["cheap","便宜的",44,false,true,"word",""],["shoe","鞋",44,true,true,"word",""],["beautiful","美丽的",44,true,true,"word",""],["hat","帽子",44,false,true,"word",""],
+      ["sunglasses","太阳镜；墨镜",44,false,false,"word",""],["free","免费的",45,true,true,"word",""],["large","（服装、食物、日用品等）大型号的",45,false,false,"word",""],
+      ["size","尺码；号",45,false,false,"word",""],["list","清单；目录",45,false,false,"word",""],["try on","试穿",45,false,false,"phrase",""],["any","任何的；任一的",45,true,true,"word",""]
+    ]},
+    {"unitId":"unit-5","title":"Unit 5 Farms and us","contentsStartPage":50,"sourceImages":[4,5],"entries":[
+      ["cow","奶牛",52,true,true,"word",""],["horse","马",52,true,true,"word",""],["sheep","羊；绵羊",52,true,true,"word",""],["pig","猪",52,true,true,"word",""],
+      ["chicken","鸡；鸡肉",52,true,true,"word",""],["tomato","西红柿",55,true,true,"word",""],["bee","蜜蜂",55,true,true,"word",""],["mouse","老鼠",56,true,true,"word","复数 mice。"],
+      ["carrot","胡萝卜",56,false,false,"word",""],["potato","土豆",56,true,true,"word",""],["green bean","青刀豆；四季豆",57,false,false,"phrase","原表只为 bean 标注音标。"],
+      ["can","（盛食品或饮料的）金属罐",57,true,true,"word",""],["a box of","一盒、一箱（东西）",57,false,false,"phrase",""]
+    ]},
+    {"unitId":"unit-6","title":"Unit 6 From farm to table","contentsStartPage":62,"sourceImages":[5],"entries":[
+      ["feed","给（人或动物）食物；饲养",64,false,false,"word",""],["pass","给；递",64,false,false,"word",""],["pick","采；摘",65,false,false,"word",""],["milk","挤奶",65,true,true,"word",""],
+      ["knife","刀",67,false,true,"word",""],["fork","餐叉",67,false,true,"word",""],["chopstick","（常用复数）筷子",67,false,true,"word",""],["waste","浪费；废品",67,false,false,"word",""],
+      ["food","菜肴；食物",67,true,true,"word",""],["delicious","美味的；可口的",67,false,false,"word",""],["clear the table","收拾餐桌",67,false,false,"phrase",""],["set the table","摆放餐具",68,false,false,"phrase",""],
+      ["bowl","碗",68,false,false,"word",""],["spoon","勺；匙；调羹",68,false,false,"word",""],["supermarket","超市",69,true,true,"word",""],
+      ["herself","（用作女性的反身代词）她自己，自己",69,false,false,"word",""],["week","周；星期",69,true,true,"word",""],["salad","蔬菜沙拉",69,false,false,"word",""]
+    ]}
+  ],
+  "alphabeticalIndex":{"sourceImages":[6,7,8],"entries":[
+    "a box of@57","*any@45","*art@29",
+    "bathroom@20","*beautiful@44","bedroom@19","*bee@55","*blackboard@7","bowl@68",
+    "*can@57","carrot@56","*chair@7","cheap@44","*chicken@52","chopstick@67","*class@4","*classroom@5","clear the table@67","*clock@33","*clothes@40","*cow@52",
+    "*dear@43","delicious@67","*desk@7","*dinner@28","*door@8",
+    "expensive@43",
+    "*fan@8","feed@64","*feel@21","first@16","follow@21","*food@67","fork@67","*free@45",
+    "get up@31","go home@32","go to bed@32","go to school@31","green bean@57",
+    "hand out@9","*hard@21","hat@44","*helpful@17","herself@69","homework@16","*horse@52","hurry up@4",
+    "jacket@41","just@33",
+    "*kid@28","*kitchen@19","knife@67",
+    "large@45","*late@4","*light@5","list@45","living room@16","loud@19","*lunch@29",
+    "*maths@29","*milk@65","*minute@33","*mouse@56","*music@8",
+    "newspaper@9",
+    "*over@28",
+    "*pair@40","pass@64","*pig@52","*potato@56","pick@65",
+    "ready@4","rule@5","*run@16",
+    "*safe@16","salad@69","set the table@68","*sheep@52","*shoe@44","*shorts@40","size@45","*skirt@41","*sleep@19","*sorry@4","spoon@68","*study@20","sunglasses@44","*supermarket@69",
+    "*take@43","*think@21","*those@40","*tidy@7","*tomato@55","*trousers@40","try on@45","*turn off@5","*TV@16",
+    "understand@9",
+    "*wall@9","*want@33","*wash@17","waste@67","*watch@16","*week@69","wet@16","*when@9","*window@8","*word@17","*work@21","workbook@9"
+  ]},
+  "phonetics":{"unit-1":{"sorry":"/ˈsɒri/","hurry up":"hurry /ˈhʌri/; up /ʌp/","late":"/leɪt/","class":"/klɑːs/","ready":"/ˈredi/","rule":"/ruːl/","classroom":"/ˈklɑːsruːm/","turn off":"turn /tɜːn/; off /ɒf/","light":"/laɪt/","blackboard":"/ˈblækbɔːd/","desk":"/desk/","chair":"/tʃeə(r)/","tidy":"/ˈtaɪdi/","music":"/ˈmjuːzɪk/","door":"/dɔː(r)/","window":"/ˈwɪndəʊ/","fan":"/fæn/","when":"/wen/","understand":"/ˌʌndəˈstænd/","wall":"/wɔːl/","newspaper":"/ˈnjuːzpeɪpə(r)/","hand out":"out /aʊt/","workbook":"/ˈwɜːkbʊk/"},"unit-2":{"watch":"/wɒtʃ/","TV":"/ˌtiːˈviː/","homework":"/ˈhəʊmwɜːk/","first":"/fɜːst/","wet":"/wet/","run":"/rʌn/","living room":"living /ˈlɪvɪŋ/","safe":"/seɪf/","word":"/wɜːd/","wash":"/wɒʃ/","helpful":"/ˈhelpfl/","loud":"/laʊd/","sleep":"/sliːp/","bedroom":"/ˈbedruːm/","kitchen":"/ˈkɪtʃɪn/","study":"/ˈstʌdi/","bathroom":"/ˈbɑːθruːm/","think":"/θɪŋk/","work":"/wɜːk/","hard":"/hɑːd/","follow":"/ˈfɒləʊ/","feel":"/fiːl/"},"unit-3":{"over":"/ˈəʊvə(r)/","kid":"/kɪd/","dinner":"/ˈdɪnə(r)/","art":"/ɑːt/","lunch":"/lʌntʃ/","maths":"/mæθs/","want":"/wɒnt/","clock":"/klɒk/","just":"/dʒʌst/","minute":"/ˈmɪnɪt/"},"unit-4":{"trousers":"/ˈtraʊzəz/","pair":"/peə(r)/","clothes":"/kləʊðz/","those":"/ðəʊz/","shorts":"/ʃɔːts/","jacket":"/ˈdʒækɪt/","skirt":"/skɜːt/","dear":"/dɪə(r)/","expensive":"/ɪkˈspensɪv/","take":"/teɪk/","cheap":"/tʃiːp/","shoe":"/ʃuː/","beautiful":"/ˈbjuːtɪfl/","hat":"/hæt/","sunglasses":"/ˈsʌŋɡlɑːsɪz/","free":"/friː/","large":"/lɑːdʒ/","size":"/saɪz/","list":"/lɪst/","try on":"/traɪ ɒn/","any":"/ˈeni/"},"unit-5":{"cow":"/kaʊ/","horse":"/hɔːs/","sheep":"/ʃiːp/","pig":"/pɪɡ/","chicken":"/ˈtʃɪkɪn/","tomato":"/təˈmɑːtəʊ/","bee":"/biː/","mouse":"/maʊs/; mice /maɪs/","carrot":"/ˈkærət/","potato":"/pəˈteɪtəʊ/","green bean":"bean /biːn/","can":"/kæn/"},"unit-6":{"feed":"/fiːd/","pass":"/pɑːs/","pick":"/pɪk/","milk":"/mɪlk/","knife":"/naɪf/","fork":"/fɔːk/","chopstick":"/ˈtʃɒpstɪk/","waste":"/weɪst/","food":"/fuːd/","delicious":"/dɪˈlɪʃəs/","set the table":"set /set/","bowl":"/bəʊl/","spoon":"/spuːn/","supermarket":"/ˈsuːpəmɑːkɪt/","herself":"/hɜːˈself/","week":"/wiːk/","salad":"/ˈsæləd/"}},
+  "numberWords":{"sourceImage":5,"printedPage":82,"entries":[["one","/wʌn/","一"],["two","/tuː/","二"],["three","/θriː/","三"],["four","/fɔː(r)/","四"],["five","/faɪv/","五"],["six","/sɪks/","六"],["seven","/ˈsevn/","七"],["eight","/eɪt/","八"],["nine","/naɪn/","九"],["ten","/ten/","十"],["eleven","/ɪˈlevn/","十一"],["twelve","/twelv/","十二"],["thirteen","/ˌθɜːˈtiːn/","十三"],["fourteen","/ˌfɔːˈtiːn/","十四"],["fifteen","/ˌfɪfˈtiːn/","十五"],["sixteen","/ˌsɪksˈtiːn/","十六"],["seventeen","/ˌsevnˈtiːn/","十七"],["eighteen","/ˌeɪˈtiːn/","十八"],["nineteen","/ˌnaɪnˈtiːn/","十九"],["twenty","/ˈtwenti/","二十"],["thirty","/ˈθɜːti/","三十"],["forty","/ˈfɔːti/","四十"],["fifty","/ˈfɪfti/","五十"],["sixty","/ˈsɪksti/","六十"],["seventy","/ˈsevnti/","七十"],["eighty","/ˈeɪti/","八十"],["ninety","/ˈnaɪnti/","九十"],["hundred","/ˈhʌndrəd/","百"]]},
+  "usefulExpressions":{"sourceImages":[9,10],"units":[
+    {"unitId":"unit-1","printedPage":86,"entries":[["Hurry up! Don't be late for class!","快点！上课别迟到！",""],["I'm ready. Let's go!","我准备好了。我们出发吧！",""],["Who's on duty today?","今天谁值日？",""],["I can put back the desks and chairs.","我可以把桌椅放回原位。",""],["Excuse me?","对不起，请再说一次可以吗？",""],["It's 5 o'clock.","现在五点了。",""],["Time to go home, kids.","孩子们，该回家了。",""],["It's time for dinner.","该吃晚饭了。",""],["It's time to get up.","该起床了。",""],["Have a nice day!","祝你一天愉快！",""]] },
+    {"unitId":"unit-2","printedPage":86,"entries":[["Mum, can I watch TV?","妈妈，我能看电视吗？",""],["No. You have to do your homework first.","不行。你得先做作业。",""],["Shh. Don't be so loud!","嘘。别这么大声！",""],["Be careful, Jack. Don't touch hot things.","杰克，要小心。别碰烫的东西。",""]] },
+    {"unitId":"unit-3","printedPage":86,"entries":[["What time is it?","几点了？",""]] },
+    {"unitId":"unit-4","printedPage":86,"entries":[["Can I buy a new pair?","我能买条新的（裤子）吗？",""],["Sure. Let's go to the clothes shop.","当然。我们去服装店吧。",""],["You already have too many shorts. Let's buy trousers.","你已经有很多短裤了。我们买长裤吧。",""],["Can I help you?","要帮忙吗？",""],["Yes. I like this pink dress.","嗯。我喜欢这件粉色的长裙。",""],["Let's take it.","我们买下它吧。",""]] },
+    {"unitId":"unit-5","printedPage":86,"entries":[["What animals do you have on the farm?","您的农场上都养了哪些动物？","该句英文在 p.86，中文译文续于 p.87。"],["I have a lot of animals.","我养了很多动物。",""],["What are these?","这些是什么？",""],["They're tomatoes.","这些是西红柿。",""],["How fresh!","真新鲜啊！",""]] },
+    {"unitId":"unit-6","printedPage":87,"entries":[["Let's feed the chickens.","我们喂鸡吧。",""],["Can you please pass me the vegetables?","能否请你把蔬菜递给我？",""],["Mike, Amy, would you like a knife and fork?","迈克、埃米，你们需要餐刀和餐叉吗？",""],["No, thank you, Mr Wang. I can use chopsticks.","不用，谢谢您，王先生。我会用筷子。",""],["Don't waste food, please.","请不要浪费食物。",""]] }
+  ]},
+  "otherContents":[{"title":"Revision A great weekend plan","page":74},{"title":"Appendix 1 Songs","page":78},{"title":"Appendix 5 Pronunciation","page":88}],
+  "reviewIssues":[{"note":"封面 2024 审定标记不是出版版次；版权页未提供，版次/印次待确认。"},{"note":"数词在 Appendix 2 单列，收录于 numberWords，不属于 Appendix 3 A–Z 索引，也不计入六单元记录数。"},{"note":"Appendix 4 第五单元首句跨页，英文位于 p.86，中文译文续于 p.87；已合并并标注。"},{"note":"词表音标与黑白体为图片人工识读；未提供的音标不补造。"}],
+  "limitations":["这是图片转录审看稿，不等同于已导入或公开发布的课程。","Revision、歌曲正文和 Appendix 5 Pronunciation 正文未提供，不根据目录补造。","来源图原样归档，不作为词汇学习插图发布。"]
+}

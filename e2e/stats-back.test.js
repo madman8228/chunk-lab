@@ -52,11 +52,11 @@ function stopServer() {
       await route.continue();
     });
     await page.goto(BASE + '/stats.html', { waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('#statsBack', { timeout: 300 });
+    await page.waitForSelector('.stats-global-nav a[href="main.html?view=home"]', { timeout: 300 });
     await page.waitForSelector('.stats-loading', { timeout: 300 });
-    await page.locator('#statsBack').click();
-    await page.waitForURL(/\/main\.html(?:\?|$)/, { timeout: 300 });
-    console.log('[stats-back] 返回按钮在初始化阻塞时仍可用');
+    await page.locator('.stats-global-nav a[href="main.html?view=home"]').click();
+    await page.waitForURL(/\/main\.html(?:\?|$)/, { timeout: 5000, waitUntil: 'domcontentloaded' });
+    console.log('[stats-back] 首页导航在初始化阻塞时仍可用');
   } catch (error) {
     console.error('[stats-back] failed:', error && error.message || error);
     process.exitCode = 1;

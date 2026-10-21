@@ -11,7 +11,8 @@ function registerBackupRoutes(options) {
       res.json({
         __app: 'chunklab', __version: 2, exportedAt: new Date().toISOString(),
         seq: data.seq, mem: data.mem, courses: data.courses, courseProgress: data.courseProgress,
-        reinforceBook: data.mem.reinforceBook
+        reinforceBook: data.mem.reinforceBook,
+        ...(options.personalWordbooks?{personalWordbooks:options.personalWordbooks.archive(req.userId)}:{})
       });
     } catch (e) { res.status(500).json({ error: e.message }); }
   });

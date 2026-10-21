@@ -87,6 +87,13 @@ export class ExistingCourseGateway {
     const mem = await this.readLearningMem(scope);
     const cloudConfig = win.CL.getCloudConfig && win.CL.getCloudConfig();
     const protocol3 = !!(cloudConfig && cloudConfig.writeProtocol === 3);
+    if (protocol3 && win.ServerStore && typeof win.ServerStore.pending === 'function') {
+      const pending = await win.ServerStore.pending();
+      this.scopeGuard.assert(scope);
+      if (pending.some((row) => row.status === 'acked-awaiting-apply' && row.lastError === 'SERVER_SEQ_ROLLBACK')) {
+        throw Object.assign(new Error('保存受阻：本机与服务端数据版本不一致，需要先恢复同步。本次未提交新保存请求；制作草稿仍保留，请勿重复导入或清除缓存。'), { code:'SERVER_SEQ_ROLLBACK' });
+      }
+    }
     const originalDecks = (mem.decks || []).map(copy);
     const index = (mem.decks || []).findIndex((item) => item.id === deck.id);
     if (index >= 0) {

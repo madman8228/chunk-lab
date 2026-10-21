@@ -385,11 +385,10 @@ async function loadClient(page) {
       await route.continue();
     });
     await page.evaluate(async requestId => {
-      const original = IDBStore.commitServerCache.bind(IDBStore);
-      let failed = false;
       IDBStore.commitServerCache = function () {
-        if (!failed) { failed = true; return Promise.reject(Object.assign(new Error('simulated cache write failure before reload'), { code: 'SIMULATED_CACHE_FAILURE' })); }
-        return original.apply(null, arguments);
+        // Both receipt application and the GET fallback must fail until reload,
+        // otherwise a one-shot failure is correctly healed without leaving ACKs.
+        return Promise.reject(Object.assign(new Error('simulated cache write failure before reload'), { code: 'SIMULATED_CACHE_FAILURE' }));
       };
       await ServerStore.submit('settings.patch', { patch: { sound: false } }, { requestId });
     }, recoveredRequestId);
@@ -413,6 +412,56 @@ async function loadClient(page) {
     const recoveredReceipt = recoveredReceiptHandle;
     assert.equal(recoveredReceipt.requestId, recoveredRequestId, 'the server receipt is recoverable after a page reload');
     assert.equal(recoveredRequestCount, 1, 'an ACKed operation is refreshed from the cache instead of being sent again');
+
+    // A separate browser context has no shared localStorage/IndexedDB. Settings
+    // must come from the server, and disjoint patches must not replace a snapshot.
+    const settingsContext = await browser.newContext({ serviceWorkers: 'block' });
+    try {
+      const settingsPage = await settingsContext.newPage();
+      await settingsPage.goto('http://127.0.0.1:' + port + '/api/health');
+      await loadClient(settingsPage);
+      assert.equal(await settingsPage.evaluate(() => AccountStorage.owner), await page.evaluate(() => AccountStorage.owner),
+        'the isolated guest fixture resolves to the same server account on both devices');
+      const readSettings = async tab => tab.evaluate(async () => {
+        const refreshed = await ServerCache.refresh();
+        return refreshed.cache.snapshot.mem.settings;
+      });
+      assert.equal((await readSettings(settingsPage)).sound, false,
+        'a clean device reads the confirmed setting without copying any local storage');
+      const settingsId = 'e2e_cross_device_settings_0001';
+      const settingsReceipt = await settingsPage.evaluate(async requestId =>
+        ServerStore.submitCommitted('settings.patch', { patch: { dailyGoal: 17 } }, { requestId }), settingsId);
+      assert.equal(settingsReceipt.requestId, settingsId, 'setting success waits for a server receipt');
+      await page.evaluate(async () => ServerStore.submitCommitted('settings.patch', { patch: { shuffle: false } }));
+      const inspectSettingsDb = new Database(path.join(dataDir, 'chunklab.db'), { readonly: true });
+      try {
+        const stored = inspectSettingsDb.prepare("SELECT user_id,v_json,seq FROM user_kv WHERE k='settings'").all();
+        assert.equal(JSON.parse(stored.find(row => row.user_id === 1).v_json).dailyGoal, 17,
+          'server must retain the disjoint patch: ' + JSON.stringify(stored));
+      } finally { inspectSettingsDb.close(); }
+      for (const tab of [page, settingsPage]) {
+        const settings = await readSettings(tab);
+        assert.equal(settings.dailyGoal, 17, 'a field saved on device two survives a disjoint device-one patch');
+        assert.equal(settings.shuffle, false, 'device-one changes are visible on device two');
+        assert.equal(settings.sound, false, 'unrelated confirmed settings are preserved');
+      }
+      const unchanged = await settingsPage.evaluate(async () => {
+        const refreshed = await ServerCache.refresh();
+        return ChunkAPI.getData(refreshed.cache.appliedSeq);
+      });
+      assert.equal(unchanged.delta, true);
+      for (const key of ['settings', 'best']) assert.equal(Object.hasOwn(unchanged.mem, key), false,
+        'unchanged replacement-style fields must be absent from an incremental response: ' + key);
+      const settingsDb = new Database(path.join(dataDir, 'chunklab.db'), { readonly: true });
+      try {
+        assert.equal(settingsDb.prepare('SELECT COUNT(*) AS count FROM user_operation_receipts WHERE user_id=1 AND request_id=?')
+          .get(settingsId).count, 1, 'the settings operation has one durable SQLite receipt');
+        const persistedSettings = JSON.parse(settingsDb.prepare("SELECT v_json FROM user_kv WHERE user_id=1 AND k='settings'").get().v_json);
+        assert.equal(persistedSettings.dailyGoal, 17, 'the cross-device value is persisted in SQLite, not just cached');
+        assert.equal(persistedSettings.sound, false);
+        assert.equal(persistedSettings.shuffle, false);
+      } finally { settingsDb.close(); }
+    } finally { await settingsContext.close(); }
 
     const assessment = await page.evaluate(async () => {
       const key = 'oral-1-1-1#575b1d3a';

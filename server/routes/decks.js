@@ -3,12 +3,13 @@
 function registerDeckRoutes(options) {
   const app = options.app;
   const db = options.db;
+  const contentRegistry = options.contentRegistry;
   app.get('/api/deck/public', function (req, res) {
     try {
       const rows = db.prepare(
         "SELECT d.id,d.name,d.items_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.is_public=1 AND d.deleted_at IS NULL ORDER BY d.updated_at DESC"
       ).all();
-      const decks = rows.map(function (r) {
+      const decks = rows.filter(row => !contentRegistry || !contentRegistry.blockedDeck(row.id)).map(function (r) {
         let items = [];
         try { items = JSON.parse(r.items_json); } catch (e) { /* invalid items count as zero */ }
         return { id: r.id, name: r.name, itemCount: items.length, author: r.author, publishedAt: r.created_at };
@@ -19,6 +20,9 @@ function registerDeckRoutes(options) {
 
   app.get('/api/deck/public/:id', function (req, res) {
     try {
+      if (contentRegistry && contentRegistry.blockedDeck(req.params.id)) {
+        return res.set('Cache-Control', 'private, no-store').status(403).json({ code: 'PROTECTED_COURSE_CONTENT' });
+      }
       const r = db.prepare(
         "SELECT d.id,d.name,d.items_json,d.authoring_json,d.created_at,u.username AS author FROM user_decks d JOIN users u ON u.id=d.user_id WHERE d.id=? AND d.is_public=1 AND d.deleted_at IS NULL"
       ).get(req.params.id);
@@ -26,7 +30,7 @@ function registerDeckRoutes(options) {
       const deck = { id: r.id, name: r.name, author: r.username, publishedAt: r.created_at, items: JSON.parse(r.items_json) };
       if (r.authoring_json) deck.authoring = JSON.parse(r.authoring_json);
       res.json({ ok: true, deck });
-    } catch (e) { res.status(500).json({ error: e.message }); }
+    } catch (_) { res.set('Cache-Control', 'private, no-store').status(503).json({ code: 'SERVICE_UNAVAILABLE' }); }
   });
 }
 

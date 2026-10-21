@@ -48,6 +48,7 @@ const TEST_FILE = /\.test\.js$/i;
 const DEP_MANIFEST = /^\/(package|package-lock)\.json$/i; /* 依赖清单：泄露版本→可直接查已知 CVE */
 const ROOT_VALIDATOR = /^\/validate_[a-z0-9_]+\.js$/i;    /* 根目录数据校验脚本（构建期工具） */
 const DEBUG_PAGE = /^\/diagnose\.html$/i;                 /* 调试页，不对公网开放 */
+const MATERIAL_PROVENANCE = /^\/content\/vocabulary\/published\/[^/]+\/materials\.json$/i;
 
 /**
  * 把请求路径规范化到唯一形态。
@@ -95,6 +96,7 @@ function isSensitivePath(normalized) {
   if (DEP_MANIFEST.test(normalized)) return true;
   if (ROOT_VALIDATOR.test(normalized)) return true;
   if (DEBUG_PAGE.test(normalized)) return true;
+  if (MATERIAL_PROVENANCE.test(normalized)) return true;
   return false;
 }
 

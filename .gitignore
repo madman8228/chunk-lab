@@ -9,6 +9,7 @@ node_modules/
 *.db
 *.db-shm
 *.db-wal
+/server/backups/
 
 # 环境变量（含密钥）
 .env
@@ -39,3 +40,27 @@ ref/
 
 # UI 评审工具工作区（工具生成，同 .workbuddy/ 不入库）
 .impeccable/
+
+# 本地运行日志（可能含请求元数据；服务端 stdout/stderr 与调试日志都不入库）
+*.log
+
+# OCR 工具数据（可重新下载，不属于课程资产）
+/*.traineddata
+
+# 一次性审阅预览与本地图片压缩实验（运行/审阅产物，不入库）
+/unit1-wordbook-preview.html
+/unit2-atlas-preview.html
+/tmp/
+
+# 旧版本地 UI 数据目录（保留本机，不随仓库分发）
+/.tmp-v2-ui-data/
+
+# 课程内容二进制资产：镜像在私有 chunk-lab-assets 仓库（Git LFS），
+# 不进入本公开仓库。清单与恢复说明见 docs/content-assets-repository.md。
+/assets/vocab-*
+/assets/highschool-*/
+/assets/scene-*
+/assets/vocabulary-*
+/assets/*.mp3
+/assets/*.ogg
+/drafts/

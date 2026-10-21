@@ -1,0 +1,24 @@
+{
+  "format":"textbook-public-import-request",
+  "version":1,
+  "requestedAtLocalDate":"2026-10-14",
+  "userApprovedTarget":"所有用户可见的公共教材库",
+  "importExecuted":false,
+  "published":false,
+  "books":[
+    {"requestKey":"primary-jingtong-grade3-upper-user-source-20261014","title":"人教精通英语 · 三年级上册","series":"精通","seriesEvidence":"用户明确确认第一批为精通","source":"docs/source-materials/primary-grade3-upper-20261014.json","records":136,"units":6,"edition":null,"unitTitlesVerified":false},
+    {"requestKey":"primary-pep-grade3-upper-user-source-20261014","title":"人教 PEP 英语 · 三年级上册","series":"PEP","seriesEvidence":"本批内封及用户明确确认","source":"docs/source-materials/primary-pep-grade3-upper-20261014.json","records":108,"units":6,"expressions":51,"edition":null,"unitTitlesVerified":true},
+    {"requestKey":"primary-jingtong-grade3-lower-user-source-20261014","title":"人教精通英语 · 三年级下册","series":"精通","seriesEvidence":"本批封面及用户明确确认","source":"docs/source-materials/primary-jingtong-grade3-lower-20261014.json","records":113,"units":6,"edition":null,"unitTitlesVerified":true},
+    {"requestKey":"primary-jingtong-grade4-upper-user-source-20261014","title":"人教精通英语 · 四年级上册","series":"精通","seriesEvidence":"用户确认本批为精通四年级上册","source":"docs/source-materials/primary-jingtong-grade4-upper-20261014.json","records":117,"units":6,"edition":null,"unitTitlesVerified":true,"publicRightsReviewRequired":true},
+    {"requestKey":"primary-pep-grade4-upper-user-source-20261014","title":"人教 PEP 英语 · 四年级上册","series":"PEP","seriesEvidence":"用户明确确认本批为 PEP 四年级上册","source":"docs/source-materials/primary-pep-grade4-upper-20261014.json","extraction":"output/textbook-extractions/primary-pep-grade4-upper-20261014-r2","records":107,"uniqueTerms":106,"indexOnlyEntries":4,"units":6,"expressions":41,"edition":null,"unitTitlesVerified":true,"publicRightsReviewRequired":true},
+    {"requestKey":"primary-pep-grade4-lower-user-source-20261014","title":"人教 PEP 英语 · 四年级下册","series":"PEP","seriesEvidence":"用户明确确认本批为 PEP 四年级下册","source":"docs/source-materials/primary-pep-grade4-lower-20261014.json","extraction":"output/textbook-extractions/primary-pep-grade4-lower-20261014","records":111,"units":6,"numberWords":28,"expressions":31,"phoneticRows":105,"edition":null,"unitTitlesVerified":true,"publicRightsReviewRequired":true}
+  ],
+  "publicationPolicy":{"appendOnly":true,"replaceExistingCourses":false,"changeLearningRecords":false,"publishScannedTextbookPagesAsVocabularyIllustrations":false,"preserveSourceImages":true},
+  "blockingState":[
+    "本地公共单词本发布接口存在，但当前浏览器管理员未登录；未绕过管理员验证",
+    "部分已提供的教材图片印有仅供个人学习的使用声明；公共发布前需核实相应授权",
+    "现有文件是词表提取材料，不是含练习及已验证素材的可发布课程包；需要转换和校验",
+    "当前公开单词本发布路径要求插画；未使用空图片、错配素材或大图回退绕过验证"
+  ],
+  "nextMaterial":"等待后续册次资料；按精通/PEP分别归档，不与其他册次混合；公共导入仍需授权核验、课程包转换和管理员审核"
+}

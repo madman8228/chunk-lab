@@ -54,15 +54,20 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-c990809a'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-c7d7342e'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 /* 硬预缓存清单：小体积、离线必需。install 用 addAll 一次性装好，任一失败即安装失败
    （老 SW 继续服务 —— 这是正确的失败语义，不做"部分成功"的兜底）。 */
+const COVER_CACHE = 'course-covers-v1';
+function isCourseCover(path) {
+  return /^\/assets\/(?:covers|catalog)\/[A-Za-z0-9/_.-]+\.(?:webp|svg|png|jpg|jpeg|avif)$/.test(path);
+}
 const PRECACHE = [
+  '/assets/catalog/default-cloud-v1.svg',
+  '/assets/catalog/default-balloon-v1.svg',
+  '/assets/catalog/default-balloon-far-v1.svg',
   '/main.html',
   '/content/manifest.json',
   '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
   '/core.js',
   '/js/core-identity.js',
   '/js/core-merge.js',
@@ -71,7 +76,6 @@ const PRECACHE = [
   '/api.js',
   '/auth-ui.js',
   '/srs.js',
-  '/library.js',
   '/assets/catalog/lesson-placeholder.svg',
   '/js/idb.js',
   '/js/icons.js',
@@ -80,9 +84,6 @@ const PRECACHE = [
   '/js/ai-prompts.mjs',
   '/js/backup.mjs',
   '/js/bridge.mjs',
-  '/icon-180.png',
-  '/favicon.ico',
-  '/icon-32.png',
   '/js/distractor-cause.mjs',
   '/js/content-repository.js',
   '/js/account-storage.js',
@@ -122,20 +123,132 @@ const PRECACHE = [
   '/js/learning-engine.js',
   '/js/save-status.js',
   '/js/server-stat-key-migration.js',
-  '/content-studio.html',
-  '/content-studio.js',
-  '/index.html',
+  '/assets/learning-workspace.css',
+  '/js/learning-workspace-runtime.js',
+  '/js/learning-workspace-store.js',
+  '/js/learning-workspace-view.js',
+  '/js/learning-workspace.js',
+  '/js/learning-session-bootstrap.js',
+  '/js/vocabulary-study.js',
+  '/js/course-covers.js',
+  '/js/personal-wordbook-recovery.js',
+  '/assets/learning-navigation.css',
+  '/js/learning-navigation.js',
+  '/js/study-usage.js',
+  '/assets/learning-background.css',
+  '/js/learning-background.js',
+  '/assets/content-card.css',
+  '/js/content-card.js',
+  '/assets/brand/favicon-v1.ico',
+  '/assets/brand/icon-32-v1.png',
+  '/assets/brand/jqka-logo-v1.webp',
+  '/js/notice-banner.js',
+  '/assets/admin-wordbooks.css',
+  '/js/admin-wordbooks.js',
+  '/assets/lesson-card.css',
+  '/js/lesson-card.js',
+  '/assets/course-learning-header.css',
+  '/js/course-learning-header.js',
+  '/assets/listen-word.css',
+  '/landing/listen-word-view.js',
+  '/assets/personal-center.css',
+  '/js/course-return.js',
+  '/landing/practice-page.css',
+];
+
+/* 可选资源清单（保留 PRECACHE_SOFT 名称供生成器和版本校验使用）：
+   只参与版本哈希，不在安装时下载，也不从旧版本搬运。
+   首次访问由 fetch handler 下载并缓存；同一版本再次访问可复用。
+   课程目录、统计、作者页及图片不再消耗每位学习用户的安装流量。
+   学习必需资源仍在原子清单；未访问过的可选页面不保证离线可用。 */
+const PRECACHE_SOFT = [
+  '/js/stats-page.js',
+  '/assets/wordbook-intro.css',
+  '/js/vocabulary-browse-store.js',
+  '/landing/wordbook-intro.js',
+  '/wordbook-intro.html',
+  '/library.js',
+  '/js/stats-growth.js',
+  '/js/stats-insights.js',
+  '/js/vocabulary-word-dictation.js',
+  '/landing/word-dictation-view.js',
+  '/js/vocabulary-sentence-audio.js',
+  '/landing/vocabulary-course-audio.js',
+  '/js/vocabulary-word-choice.js',
+  '/landing/word-choice-view.js',
+  '/js/vocabulary-chunk-order.js',
+  '/landing/chunk-order-view.js',
+  '/js/vocabulary-read-aloud.js',
+  '/landing/read-aloud-recorder.js',
+  '/landing/read-aloud-view.js',
+  '/js/personal-center-dialogs.js',
   '/landing/deck.js',
   '/landing/phrases.js',
   '/landing/store.js',
-];
-
-/* 软预缓存清单：次要页面/管理及课程作者工具尽力缓存；
-   同时保留旧版源文件作为兼容回退。
-   新题库内容改由 content/manifest.json + 带 hash 的 JSON 分片按需加载，
-   不再把会增长到 8000 句的整库作为页面 script 或安装资产。小而必要的主页/练习引擎仍在
-   原子清单；课程目录、统计和作者页在线可加载、离线则尽力提供。所有软资源同样计入版本哈希。 */
-const PRECACHE_SOFT = [
+  '/landing/account.js',
+  '/landing/theme.css',
+  '/landing/sentence-cloze-engine.js',
+  '/landing/sentence-cloze-view.js',
+  '/landing/vocabulary-browser.js',
+  '/landing/vocabulary-page.css',
+  '/vocabulary.html',
+  '/landing/action-game-engine.js',
+  '/landing/action-game-view.js',
+  '/landing/action-game.css',
+  '/landing/charger-quest.js',
+  '/landing/initials-engine.js',
+  '/landing/initials-view.js',
+  '/landing/workspace-entry.js',
+  '/assets/wordbook-study.css',
+  '/js/vocabulary-study-store.js',
+  '/landing/wordbook-study.js',
+  '/wordbook.html',
+  '/assets/learning-sky.css',
+  '/js/learning-sky.js',
+  '/landing/guided-sentence-content.js',
+  '/landing/guided-sentence-view.js',
+  '/js/vocabulary-course-contract.js',
+  '/assets/story-course-theme.css',
+  '/assets/decks-theme.css',
+  '/assets/brand/icon-180-v1.png',
+  '/assets/brand/icon-192-v1.png',
+  '/assets/brand/icon-512-v1.png',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/icon-180.png',
+  '/favicon.ico',
+  '/icon-32.png',
+  '/js/library-metadata-editor.js',
+  '/assets/content-studio.css',
+  '/assets/textbook-drafts.css',
+  '/js/textbook-drafts.js',
+  '/js/wordbook-workbench.js',
+  '/assets/illustration-review.css',
+  '/js/illustration-review.js',
+  '/content-studio.html',
+  '/content-studio.js',
+  '/index.html',
+  '/landing/home.js',
+  '/landing/site.css',
+  '/landing/home-learning.css',
+  '/landing/home-learning.js',
+  '/assets/learning-archive.css',
+  '/js/stats-vocabulary.js',
+  '/assets/wordbook-details.css',
+  '/landing/wordbook-details.js',
+  '/wordbook-details.html',
+  '/assets/wordbook-create.css',
+  '/js/wordbook-draft.js',
+  '/landing/wordbook-create.js',
+  '/wordbook-create.html',
+  '/landing/wordbook-publish.js',
+  '/js/wordbook-authoring.js',
+  '/assets/stats-navigation.css',
+  '/assets/membership-study.css',
+  '/js/membership.js',
+  '/admin-membership.html',
+  '/assets/jqka-learning-garden-body-v1.webp',
+  '/assets/jqka-learning-garden-v1.webp',
   '/course-package.js',
   '/courses.html',
   '/decks.html',
@@ -217,57 +330,11 @@ const PRECACHE_SOFT = [
   '/assets/catalog/oral-3000/64.webp',
 ];
 
-/* 把 PRECACHE_SOFT 资产从既有 chunklab-* 缓存搬进新 CACHE。
-   只读旧缓存、不发起网络请求 —— 因此即使升级时处于离线，已有资产也不会丢。
-   只在 chunklab-* 之间搬（跨版本遗留缓存不管，避免重蹈 2026-09-09「跨 cache 命中旧 core.js」事故）。 */
-function carryOver(target) {
-  if (!PRECACHE_SOFT.length) return Promise.resolve();
-  return caches.keys().then(function (names) {
-    var olds = names.filter(function (n) { return n.indexOf('chunklab-') === 0 && n !== CACHE; });
-    if (!olds.length) return;
-    return Promise.all(olds.map(function (n) {
-      return caches.open(n).then(function (oc) {
-        return Promise.all(PRECACHE_SOFT.map(function (u) {
-          return oc.match(u).then(function (hit) {
-            if (!hit) return;
-            return target.match(u).then(function (already) {
-              if (!already) return target.put(u, hit);
-            });
-          });
-        }));
-      });
-    }));
-  });
-}
-
-/* 补全仍缺失的软预缓存资产（首次安装 / 结转没拿到时）。
-   逐条 add + 容错：单条失败只告警。**这不是掩盖问题**——软清单的语义就是「有更好，没有也能用」
-   （fetch handler 是 cache-first + cache.put，缺的下次访问自动补上）；
-   而安装不能因为一个数据资产失败而整体作废，那是把可选资源当必需资源。 */
-function fillSoft(target) {
-  if (!PRECACHE_SOFT.length) return Promise.resolve();
-  return PRECACHE_SOFT.reduce(function (chain, u) {
-    return chain.then(function () {
-      /* 先尝试网络刷新，避免 carryOver 把旧版本当成新版本；网络失败时才保留旧副本。 */
-      return fetch(u, { cache: 'reload' }).then(function (res) {
-        if (!res || !res.ok) throw new Error('HTTP ' + (res && res.status));
-        return target.put(u, res.clone());
-      }).catch(function () {
-        return target.match(u).then(function (hit) {
-          if (!hit) console.warn('[sw] 软预缓存未取到（不影响安装，下次访问按需补）: ' + u);
-        });
-      });
-    });
-  }, Promise.resolve());
-}
-
 self.addEventListener('install', function (e) {
   e.waitUntil(
     caches.open(CACHE).then(function (c) {
-      /* 硬清单原子装（失败即整体失败）→ 软清单结转 → 软清单补齐 */
-      return c.addAll(PRECACHE)
-        .then(function () { return carryOver(c); })
-        .then(function () { return fillSoft(c); });
+      /* Only the atomic learning bundle is required for installation. */
+      return c.addAll(PRECACHE);
     })
       .then(function () { return self.skipWaiting(); })
   );
@@ -276,7 +343,20 @@ self.addEventListener('install', function (e) {
 self.addEventListener('activate', function (e) {
   e.waitUntil(
     caches.keys().then(function (keys) {
-      return Promise.all(keys.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); }));
+      return caches.open(COVER_CACHE).then(async function(covers) {
+        // Transfer only public cover bytes, never scripts or account responses.
+        for (var name of keys.filter(function(k) { return k !== CACHE && /^chunklab-/.test(k); })) {
+          var old = await caches.open(name);
+          for (var request of await old.keys()) {
+            var url = new URL(request.url);
+            if (url.origin !== self.location.origin || !isCourseCover(url.pathname)) continue;
+            if (await covers.match(request)) continue;
+            var response = await old.match(request);
+            if (response && response.status === 200 && /^image\//.test(response.headers.get('Content-Type') || '')) await covers.put(request, response);
+          }
+          await caches.delete(name);
+        }
+      });
     }).then(function () { return self.clients.claim(); })
   );
 });
@@ -287,9 +367,37 @@ self.addEventListener('fetch', function (e) {
   var url = new URL(req.url);
   if (url.origin !== self.location.origin) return;    /* 跨域（如 DeepSeek）放行 */
   if (url.pathname.indexOf('/api/') === 0) return;   /* API 不缓存 */
+  if (isCourseCover(url.pathname) && PRECACHE.indexOf(url.pathname) === -1) {
+    e.respondWith(caches.open(COVER_CACHE).then(async function(covers) {
+      var hit = await covers.match(req);
+      if (hit) return hit;
+      try {
+        var response = await fetch(req);
+        if (response.status === 200 && /^image\//.test(response.headers.get('Content-Type') || '')) {
+          try { await covers.put(req, response.clone()); } catch (_) { /* Storage quota must not hide a downloaded cover. */ }
+        }
+        return response;
+      } catch (_) { return Response.error(); }
+    }));
+    return;
+  }
+  // Vocabulary illustrations use shared HTTP/content-hash caching, not one
+  // application Cache API entry per course alias. Do not precache the library.
+  if (/^\/assets\/vocab-[A-Za-z0-9._-]+\.webp$/.test(url.pathname) || /^\/_vocab-images\/[a-f0-9]{64}\.webp$/.test(url.pathname)) return;
 
-  /* 导航请求：在线优先，网络不可用时再回退缓存，避免更新后的页面被旧缓存冻结。 */
+  /* Application HTML and scripts are one atomic installed bundle. Network-first
+     HTML with cache-first JS mixes releases during return navigation. Serve the
+     current bundle until the next complete installation activates. Query strings
+     are client state and must not bypass the bundle's HTML. */
   if (req.mode === 'navigate') {
+    if (PRECACHE.indexOf(url.pathname) !== -1 && /\.html$/.test(url.pathname)) {
+      e.respondWith(caches.open(CACHE).then(function(c) {
+        return c.match(url.origin + url.pathname).then(function(hit) {
+          return hit || fetch(req);
+        });
+      }));
+      return;
+    }
     e.respondWith(
       fetch(req).then(function (res) {
         var copy = res.clone();
@@ -324,7 +432,11 @@ self.addEventListener('fetch', function (e) {
            让首次安装后立即离线也能用。
            安全说明：只查同一 CACHE、同一 URL（不跨 cache，不跨版本），
            且本服务对同一 URL 不按请求头返回不同内容 —— 不存在取到"另一种变体"的风险。 */
-        return c.match(url.href).then(function (loose) {
+        // Versioned HTML references still use the canonical asset of this atomic
+        // bundle, including offline. An older worker lacks this branch, so the
+        // version suffix also bypasses its stale unversioned enrollment module.
+        var bundleAsset = url.searchParams.has('v') && PRECACHE.indexOf(url.pathname) !== -1;
+        return c.match(bundleAsset ? url.origin + url.pathname : url.href).then(function (loose) {
           if (loose) return loose;
           return fetch(req).then(function (res) {
             if (!res || res.status !== 200 || res.type === 'opaque') return res;

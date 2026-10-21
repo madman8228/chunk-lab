@@ -47,7 +47,7 @@ test('semantic validation rejects broken chunks and missing dialogue roles', () 
 
 test('authoring offers only supported text modes while runtime retains audio gates', () => {
   const prompt = new AiCoursePromptComposer({ spec: DRAFT_SPEC, capabilities: CourseCapabilityCatalog }).composeCreation();
-  assert.match(prompt, /每轮只问一个/);
+  assert.match(prompt, /每轮只问一道选择题/);
   assert.match(prompt, /3 到 5 个清楚编号的建议/);
   assert.match(prompt, /课程长度没有预设值/);
   assert.match(prompt, /先问用户想制作什么课程/);

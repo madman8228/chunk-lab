@@ -7,7 +7,7 @@
      一旦拆开会把中文硬分配给不对应的英文词（包括需要整体理解的固定短语和句型模板），
      也应保留为一个完整意群。
      解决：词数 = 1 或命中精确固定表达白名单时允许 1 段；其余仍强制 ≥2
-     （`I'm late!` / `Good morning.` 仍必须切 2 段）。这里只验证结构，不证明语言质量。
+     （`I'm late!` 仍必须切 2 段）。这里只验证结构，不证明语言质量。
 
    为什么是「唯一实现」：
      同一个判据曾散落在 7 个校验器里，改一处必漏一处（已在本项目反复踩过）。
@@ -40,6 +40,13 @@
   var MAX_CHUNKS = 5;
   /** 完整短语本身就是最小语义单位；拆分会制造错误的逐词对应。 */
   var SINGLE_CHUNK_EXPRESSIONS = new Set([
+    'good morning',
+    'nice to meet you',
+    'see you later',
+    "what's this",
+    'who is that',
+    'what time is it',
+    'what day is it today',
     'do the dishes',
     'have a seat',
     'how nice of you to come',
@@ -51,8 +58,9 @@
     "what's your major",
     'any brothers or sisters',
     'how long have you been skiing',
-    'how old are you',
     'how much do you weigh',
+    'how old are you',
+    'how tall are you',
     'what is the price of a dinner course',
     "i'm starving",
     'keep the change',
@@ -70,7 +78,6 @@
     'i mean it',
     "i'm all right",
     'hold on',
-    'how tall are you',
     "it's blistering hot",
     "it's raining",
     "it's humid",

@@ -2,6 +2,19 @@
 (function (global) {
   'use strict';
   function refKey(ref) { return JSON.stringify([ref && ref.type || '', ref && ref.id || '']); }
+  function isComplete(progress) {
+    return !!(progress && progress.ready && progress.total > 0 && progress.done === progress.total);
+  }
+  function completionState(lessons) {
+    if (!lessons.length || lessons.some(function (lesson) { return !lesson.ready; })) return 'unknown';
+    if (lessons.every(isComplete)) return 'completed';
+    return lessons.some(function (lesson) { return lesson.done > 0 || lesson.started; }) ? 'in-progress' : 'not-started';
+  }
+  function storyProgress(record, available) {
+    record = record || {};
+    return { ready: available !== false, total: 1, done: record.completed === true || Number(record.completedAt) > 0 ? 1 : 0,
+      started: Array.isArray(record.seen) && record.seen.length > 0 };
+  }
   function lessonsOf(course) {
     if (course && Array.isArray(course.lessons)) return course.lessons;
     var out = [];
@@ -72,7 +85,7 @@
       coverage: coverage, courseRef: refKey({ type: 'course', id: course && course.id })
     };
   }
-  var api = { prepareProgressInputs: prepareProgressInputs, summarizeCourse: summarizeCourse, refKey: refKey };
+  var api = { prepareProgressInputs: prepareProgressInputs, summarizeCourse: summarizeCourse, refKey: refKey, isComplete: isComplete, completionState: completionState, storyProgress: storyProgress };
   global.CourseProgress = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

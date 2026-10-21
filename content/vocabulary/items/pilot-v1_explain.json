@@ -1,0 +1,45 @@
+{
+  "itemId": "pilot-v1:explain",
+  "word": "explain",
+  "meaning": "解释",
+  "scene": "第一次玩桌游，你请朋友给你解释规则。",
+  "example": "Can you explain the rules to me?",
+  "translation": "你能给我解释一下规则吗？",
+  "exercise": {
+    "version": 1,
+    "parts": [
+      {
+        "text": "Can you "
+      },
+      {
+        "id": "verb",
+        "label": "解释",
+        "answers": [
+          "explain"
+        ]
+      },
+      {
+        "text": " the rules "
+      },
+      {
+        "id": "link",
+        "label": "向某人解释的介词",
+        "answers": [
+          "to"
+        ]
+      },
+      {
+        "text": " me?"
+      }
+    ]
+  },
+  "images": {
+    "wide": [
+      "assets/vocabulary-explain-wide-v3.webp"
+    ],
+    "mobile": [
+      "assets/vocabulary-explain-wide-v3.webp"
+    ]
+  },
+  "contentRevision": "1eb0f2ee85982c5cd362c43ed81a39cac28d6b367b691b149345ac4bb275e238"
+}

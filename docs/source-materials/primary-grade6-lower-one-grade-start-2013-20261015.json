@@ -1,0 +1,41 @@
+{
+  "edition": {
+    "title": "PEP English Grade 6, Book 2 — one-grade starting point",
+    "titleZh": "人教版义务教育教科书英语六年级下册（一年级起点）",
+    "publisher": "人民教育出版社",
+    "approval": "教育部审定 2013",
+    "contents": [
+      ["Unit 1 Visiting Canada", 2],
+      ["Unit 2 All Around Me", 12],
+      ["Unit 3 Daily Life", 22],
+      ["Unit 4 Free Time", 32],
+      ["Unit 5 Nature and Culture", 42],
+      ["Unit 6 Summer Vacation", 52],
+      ["Appendix 1: 单元词汇表", 62],
+      ["Appendix 2: 总词汇表", 64]
+    ]
+  },
+  "units": [
+    {"unit":1,"title":"Visiting Canada","words":[["live","居住；生活",3],["quite","很；相当",3],["scarf","围巾",3],["airport","机场",4],["pupil","小学生",6],["arrive","到达",7],["meet","迎接；遇见；会面",7],["wardrobe","衣柜",7]]},
+    {"unit":2,"title":"All Around Me","words":[["show ... around","带领……参观",12],["Queen's Park","女王公园",12],["art gallery","画廊；艺术馆",12],["public library","公共图书馆",12],["downtown","闹市区；市中心",13],["Lake Ontario","安大略湖",13],["stadium","（露天）体育场",13]]},
+    {"unit":3,"title":"Daily Life","words":[["volunteer","志愿者",23],["sandwich","三明治",25],["top","上边；上面",25],["habit","习惯",27],["idea","主意；想法；意见",27],["less","更少",27],["at least","至少",27]]},
+    {"unit":4,"title":"Free Time","words":[["talk about","谈论",32],["hockey","曲棍球；冰上曲棍球",33],["together","一起",35],["special","特殊；特别",36],["beaver","海（河）狸",37],["raccoon","浣熊",37],["moose","北美麋；驼鹿",37]]},
+    {"unit":5,"title":"Nature and Culture","words":[["countryside","农村；乡下",43],["Thanksgiving","感恩节",45],["roast turkey","烤火鸡",45],["squirrel","松鼠",47],["swan","天鹅",47],["wild goose","大雁",47],["frog","青蛙",47]]},
+    {"unit":6,"title":"Summer Vacation","words":[["English-Chinese dictionary","英汉词典",55],["shopping centre","购物中心",55],["shopping mall","大型综合商业中心",55],["amazing","惊人的；神奇的",56],["hot pot","火锅",57]]}
+  ],
+  "sourceImages": [
+    ["cover","codex-clipboard-b8995f63-bde1-4e38-bc3c-9305bf50f318.png"],
+    ["contents","codex-clipboard-4f34c6f2-013d-4d49-8124-421ead943290.png"],
+    ["unit-words-p62","codex-clipboard-28921f90-cf76-48c3-a47e-94b4df7ffc98.png"],
+    ["unit-words-p63-map","codex-clipboard-8486f55f-0df3-44a5-bfef-adc78ce55596.png"],
+    ["vocabulary-p64","codex-clipboard-bfe2cbf9-9e60-4f01-95d0-0487a509bfcb.png"],
+    ["vocabulary-p65","codex-clipboard-513844ee-553a-423e-8430-3eefc45dd214.png"]
+  ],
+  "notes": [
+    "The cover explicitly identifies this as a one-grade starting point edition, unlike the three-grade starting point book.",
+    "Appendix 1 unit word list contains 41 entries; Appendix 2 is the alphabetical index of the same terms.",
+    "The page 63 map and its blank Word Box exercise are retained in the original screenshot and are not transcribed as vocabulary entries.",
+    "Original screenshots are copied unchanged and individually checksummed.",
+    "Review the Chinese glosses and page references against the source images."
+  ]
+}

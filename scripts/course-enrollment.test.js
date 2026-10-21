@@ -105,6 +105,27 @@ async function run() {
     'protocol 3 adopts the confirmed narrow membership projection');
   assert.deepEqual(cloudResult,serverMembership,'the returned membership is server-confirmed');
   assert.equal(serverWrites,0,'protocol 3 never writes the full progress map after enrollment ACK');
+  let ready=false, retries=0;
+  global.CL.serverPersistenceReady=()=>ready;
+  global.CL.ensureCloud=async()=>{retries++;ready=true;};
+  await cloud.join('cloud:course');
+  assert.equal(retries,1,'a failed initial confirmation is retried before enrollment');
+  let blockedWrites=0;
+  const submit=global.ServerStore.submitCommitted;
+  global.ServerStore.submitCommitted=async()=>{blockedWrites++;};
+  ready=false;global.CL.ensureCloud=async()=>false;
+  await assert.rejects(cloud.join('cloud:course'),/课程服务暂不可用/);
+  assert.equal(blockedWrites,0,'unconfirmed service never submits enrollment');
+  global.CL.getCloudConfig=()=>({persistenceMode:'server-authoritative',writeProtocol:3,requireAuth:true});
+  global.ChunkAPI={isLoggedIn:()=>false};
+  await assert.rejects(cloud.join('cloud:course'),error=>error.code==='NOT_AUTH');
+  assert.equal(blockedWrites,0,'signed-out enrollment requires login rather than bypassing auth');
+  delete global.ChunkAPI;
+  global.CL.getCloudConfig=()=>({persistenceMode:'server-authoritative',writeProtocol:3});
+  global.CL.ensureCloud=async()=>{ready=true;global.AccountStorage.owner='owner-2';};
+  await assert.rejects(cloud.join('cloud:course'),/账号已切换/);
+  assert.equal(blockedWrites,0,'confirmation across an owner switch never writes');
+  global.ServerStore.submitCommitted=submit;
   delete global.CL; delete global.AccountStorage; delete global.ServerStore; delete global.ServerCache;
   console.log('✓ course enrollment storage contract');
 }

@@ -9,6 +9,11 @@
  *     由持久事件派生）→ 不新增 stats 字段，因此不需要动 mergeStats。
  *   - 未设目标（dailyGoal 缺省或 0）→ 首页**完全不渲染**该节点，对老用户零打扰。
  *
+ * ★ 2026-10-08 补 A6/A7（目标药丸几何）：设了目标时首页「今日已练」药丸不渲染，
+ *   目标药丸必须补上第 5 列、与已掌握同排同高且在其右侧（老板 2026-09-25「四枚并列」裁决）。
+ *   加这两条是因为线上缺陷：goal 药丸曾 `grid-column:2 / -1;grid-row:2` 独占 auto 高的第 2 行，
+ *   绝对居中的 .pill-n 压到 .pill-k 上（渲染成 `0分日0`）。断言先在旧 CSS 上跑红、改后转绿。
+ *
  * 运行：node e2e/daily-goal.test.js
  */
 'use strict';
@@ -115,7 +120,10 @@ function readFinishGoal(page) {
    再触发 nextQuestion() → 队列已空 → finishSession() 渲染结算屏。
    不点 #btnNext 而直接调入口函数，是因为该按钮带自动倒计时，直接调用更确定。 */
 async function playToResult(page) {
-  await page.evaluate(function () { startDeck(findDeck('d1'), 0); });
+  await page.evaluate(async function () {
+    await CourseEnrollment.join('user-deck:d1');
+    startDeck(findDeck('d1'), 0);
+  });
   await page.waitForSelector('#stageChoices .choice', { timeout: 12000 });
   var answers = ['Goal probe', 'sentence.'];
   for (var i = 0; i < answers.length; i++) {
@@ -157,6 +165,34 @@ async function openHome(seed) {
       check('A3 未达标 → 不显示完成态', g.done === false);
       check('A4 进度条宽度 = 60%', g.barWidth === '60%', '实际 "' + g.barWidth + '"');
       check('A5 无 JS 运行时错误', s.errs.length === 0, s.errs.join(' | '));
+
+      /* A6/A7：目标药丸的桌面端几何契约（2026-10-08 补）。
+         线上缺陷：goal 药丸曾 `grid-column:2 / -1;grid-row:2` 独占第 2 行，
+         而第 2 行是 auto 高 → 绝对居中的 .pill-n 直接压到 .pill-k 标签上（渲染成 `0分日0`）。
+         这两条断言先在旧 CSS 上跑红，再在修好（goal 回到第 1 行第 5 列）后转绿。 */
+      const gpill = await s.page.evaluate(function () {
+        function r(el) { if (!el) return null; var b = el.getBoundingClientRect(); return { left: b.left, top: b.top, right: b.right, bottom: b.bottom, width: b.width, height: b.height }; }
+        var goal = document.getElementById('homeGoalPill');
+        var mastered = document.getElementById('homeMastered');
+        var k = goal && goal.querySelector('.pill-k');
+        var n = goal && goal.querySelector('.pill-n');
+        var gb = r(goal), kb = r(k), nb = r(n), mb = r(mastered);
+        return {
+          goalExists: !!goal,
+          labelAboveNumber: !!(kb && nb && kb.bottom <= nb.top + 0.5),
+          numberCenterDelta: (gb && nb) ? Math.abs((gb.left + gb.width / 2) - (nb.left + nb.width / 2)) : null,
+          sameRowAsMastered: !!(gb && mb && Math.abs(gb.top - mb.top) <= 1 && Math.abs(gb.height - mb.height) <= 1),
+          goalRightOfMastered: !!(gb && mb && gb.left > mb.left),
+          goalTop: gb ? gb.top : null, goalHeight: gb ? gb.height : null, goalLeft: gb ? gb.left : null,
+          masteredTop: mb ? mb.top : null, masteredHeight: mb ? mb.height : null, masteredLeft: mb ? mb.left : null
+        };
+      });
+      check('A6 目标药丸：标签在上、数字在下且水平居中（不被绝对定位数字压印）',
+        gpill.goalExists && gpill.labelAboveNumber && gpill.numberCenterDelta !== null && gpill.numberCenterDelta <= 1,
+        JSON.stringify(gpill));
+      check('A7 目标药丸与已掌握同排同高，且在其右侧（四枚并列）',
+        gpill.sameRowAsMastered && gpill.goalRightOfMastered,
+        JSON.stringify(gpill));
       await s.ctx.close();
     }
 

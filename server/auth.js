@@ -1,10 +1,9 @@
 /**
  * auth.js · 注册 / 登录 / 鉴权
  *
- * v1 默认关闭注册鉴权（REQUIRE_AUTH=false）：
- *   - 所有请求自动落到单一「默认用户」，无需登录即可学习
- *   - 前端不弹登录框，直接云端同步
- * 部署时设 REQUIRE_AUTH=true 即切换为完整多用户：
+ * 正常运行默认启用登录鉴权；仅 NODE_ENV=test 且显式 REQUIRE_AUTH=false 时：
+ *   - 隔离测试请求可落到单一默认用户
+ * 正常服务使用完整多用户：
  *   - 密码 bcrypt 哈希，登录签发 JWT，请求带 Authorization: Bearer <token>
  *   - schema 已按 user_id 隔离，无需改表
  */
@@ -12,8 +11,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('./db');
 
-// v1 默认关闭注册鉴权（REQUIRE_AUTH=true 才启用多用户）
-const REQUIRE_AUTH = process.env.REQUIRE_AUTH === 'true';
+// 正常运行始终鉴权；免登录仅供隔离测试显式开启。
+const OPEN_TEST_MODE = process.env.NODE_ENV === 'test' && process.env.REQUIRE_AUTH === 'false';
+const REQUIRE_AUTH = !OPEN_TEST_MODE;
 /** 占位密钥：仅开放模式下的兜底值。多用户模式（REQUIRE_AUTH=true）下禁止落到该值——
  *  任何签发/验签路径都会先过 assertSecure()，配置不安全直接抛错，杜绝用公开占位密钥签 JWT。 */
 const DEV_FALLBACK_SECRET = 'chunklab-dev-secret-change-me';
@@ -140,16 +140,18 @@ function verifyToken(token) {
   if (!isSecure()) return null; // 配置不安全一律视为未登录（401），绝不用占位密钥验签
   try {
     const payload = jwt.verify(token, JWT_SECRET);
-    return { userId: payload.uid, username: payload.uname };
+    if (!Number.isSafeInteger(payload.uid) || payload.uid <= 0) return null;
+    const user = readUser(payload.uid);
+    if (!user) return null;
+    return { userId: user.id, username: user.username };
   } catch (e) {
     return null;
   }
 }
 
 /**
- * 通用鉴权中间件：
- *   - REQUIRE_AUTH=true  → 校验 JWT，挂 req.userId / req.username
- *   - REQUIRE_AUTH=false → 落到默认用户（免登录）
+ * 通用鉴权中间件：校验 JWT 并挂 req.userId / req.username。
+ * 仅显式隔离测试模式会落到默认用户。
  */
 function authenticate(req, res, next) {
   if (REQUIRE_AUTH) {
@@ -160,9 +162,14 @@ function authenticate(req, res, next) {
     req.userId = auth.userId;
     req.username = auth.username;
   } else {
+    if (process.env.NODE_ENV !== 'test' || process.env.REQUIRE_AUTH !== 'false') {
+      return res.status(401).json({ error: '当前服务未启用登录，个人数据访问已拒绝', code: 'AUTH_CONFIGURATION_REQUIRED' });
+    }
     req.userId = ensureDefaultUser();
     req.username = 'default';
   }
+  res.set('X-ChunkLab-Account-Id', REQUIRE_AUTH ? String(req.userId) : 'local');
+  res.set('Cache-Control', 'private, no-store');
   next();
 }
 

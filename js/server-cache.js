@@ -76,11 +76,15 @@
       nextMem.mastered = mergeMap(oldMem.mastered, newMem.mastered, false);
       nextMem.deletedItems = mergeMap(oldMem.deletedItems, newMem.deletedItems, false);
       nextMem.logicalCourses = mergeMap(oldMem.logicalCourses, newMem.logicalCourses, false);
+      nextMem.learningWorkspace = mergeMap(oldMem.learningWorkspace, newMem.learningWorkspace, false);
+      ['vocabularyStudySummary','vocabularyResume','vocabularyBrowseResume'].forEach(function(kind){nextMem[kind]=mergeMap(oldMem[kind],newMem[kind],false);});
       nextMem.reinforceBook = mergeUnique(oldMem.reinforceBook, newMem.reinforceBook, '_key', false);
       var gone = object(incoming.entityGone);
       removeKeys(nextMem.mastered, gone.mastered);
       removeKeys(nextMem.deletedItems, gone.deletedItem);
       removeKeys(nextMem.logicalCourses, gone.logicalCourse);
+      removeKeys(nextMem.learningWorkspace, gone.learningWorkspace);
+      ['vocabularyStudySummary','vocabularyResume','vocabularyBrowseResume'].forEach(function(kind){removeKeys(nextMem[kind],gone[kind]);});
       var goneReinforce = new Set(array(gone.reinforce));
       nextMem.reinforceBook = nextMem.reinforceBook.filter(function (row) { return !row || !goneReinforce.has(row._key); });
     }
@@ -106,7 +110,7 @@
 
     var oldRevs = object(old.revs), newRevs = object(incoming.revs);
     var revs = full ? clone(newRevs) : clone(oldRevs);
-    ['decks', 'kv', 'courses', 'courseProgress', 'logicalCourses'].forEach(function (group) {
+    ['decks', 'kv', 'courses', 'courseProgress', 'logicalCourses', 'learningWorkspace','vocabularyStudySummary','vocabularyResume','vocabularyBrowseResume'].forEach(function (group) {
       revs[group] = full ? Object.assign({}, object(newRevs[group])) : mergeObject(oldRevs[group], newRevs[group]);
     });
     var deletedCourses = object(old.deleted), nextDeleted = full ? {} : clone(deletedCourses);
@@ -130,10 +134,13 @@
       var liveMastered = new Set(Object.keys(object(newMem.mastered)));
       var liveDeletedItems = new Set(Object.keys(object(newMem.deletedItems)));
       var liveLogicalCourses = new Set(Object.keys(object(newMem.logicalCourses)));
+      var liveWorkspace = new Set(Object.keys(object(newMem.learningWorkspace)));
+      ['vocabularyStudySummary','vocabularyResume','vocabularyBrowseResume'].forEach(function(kind){var live=new Set(Object.keys(object(newMem[kind])));entityGone[kind]=array(entityGone[kind]).filter(function(id){return !live.has(id);});});
       var liveReinforce = new Set(array(newMem.reinforceBook).map(function (row) { return row && row._key; }).filter(Boolean));
       entityGone.mastered = array(entityGone.mastered).filter(function (id) { return !liveMastered.has(id); });
       entityGone.deletedItem = array(entityGone.deletedItem).filter(function (id) { return !liveDeletedItems.has(id); });
       entityGone.logicalCourse = array(entityGone.logicalCourse).filter(function (id) { return !liveLogicalCourses.has(id); });
+      entityGone.learningWorkspace = array(entityGone.learningWorkspace).filter(function (id) { return !liveWorkspace.has(id); });
       entityGone.reinforce = array(entityGone.reinforce).filter(function (id) { return !liveReinforce.has(id); });
     }
 
@@ -209,6 +216,73 @@
       });
     }).finally(function () { inFlight = null; });
     return inFlight;
+  }
+
+  async function expandReceiptEvidence(current, changes) {
+    var rows = object(changes.mem && changes.mem.stats && changes.mem.stats.bySentence), expanded = changes;
+    async function hash(events) {
+      var bytes = new global.TextEncoder().encode(JSON.stringify(events));
+      var digest = await global.crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest), function (byte) { return byte.toString(16).padStart(2, '0'); }).join('');
+    }
+    for (var key of Object.keys(rows)) {
+      var learning = rows[key] && rows[key].learningV1;
+      if (!learning || !Object.prototype.hasOwnProperty.call(learning, 'evidenceDelta')) continue;
+      var patch = learning.evidenceDelta;
+      if (!patch || typeof patch !== 'object') return null;
+      if (!global.crypto || !global.crypto.subtle || !global.TextEncoder || Object.prototype.hasOwnProperty.call(learning, 'evidence') ||
+          patch.version !== 1 || patch.hash !== 'sha256-json-v1' || patch.baseSeq !== current.appliedSeq ||
+          !Number.isSafeInteger(patch.previousCount) || patch.previousCount < 0 || patch.previousCount > 5000 ||
+          !Number.isSafeInteger(patch.nextCount) || patch.nextCount > 5000 ||
+          !/^[a-f0-9]{64}$/.test(patch.previousHash) || !/^[a-f0-9]{64}$/.test(patch.nextHash) ||
+          !Array.isArray(patch.append) || !patch.append.length || patch.append.length > 10) return null;
+      var prior = object(object(object(current.snapshot.mem).stats).bySentence)[key];
+      var before = prior && prior.learningV1 && prior.learningV1.evidence || [];
+      if (!Array.isArray(before) || before.length !== patch.previousCount || await hash(before) !== patch.previousHash) return null;
+      var ids = new Set(before.map(function (event) { return event.id; })), next = before.slice();
+      for (var event of patch.append) {
+        if (!event || typeof event.id !== 'string' || !Number.isFinite(event.at) || ids.has(event.id)) return null;
+        ids.add(event.id); next.push(event);
+      }
+      next.sort(function (a, b) { return a.at - b.at || String(a.id).localeCompare(String(b.id)); });
+      if (next.length !== patch.nextCount || await hash(next) !== patch.nextHash) return null;
+      if (expanded === changes) expanded = clone(changes);
+      var target = expanded.mem.stats.bySentence[key].learningV1;
+      delete target.evidenceDelta; target.evidence = next;
+    }
+    return expanded;
+  }
+
+  // A write receipt already contains the canonical delta produced inside its
+  // transaction. Use it only at the exact preceding watermark; a missing base
+  // or any sequence gap must use the normal downlink instead of skipping data.
+  function applyReceipt(receipt) {
+    var changes = receipt && receipt.changes, seq = receipt && receipt.seq;
+    if (!receipt || receipt.ok !== true || !Number.isSafeInteger(seq) || seq < 1 ||
+        !changes || changes.delta !== true || changes.seq !== seq || !changes.mem || Array.isArray(changes.mem) ||
+        !Array.isArray(changes.courses) || !changes.learningGenerations || !changes.revs || !changes.deleted || !changes.entityGone)
+      return Promise.resolve(null);
+    var captured = identity();
+    return global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (current) {
+      if (!identityMatches(captured)) throw sessionChanged();
+      if (!current || !Number.isSafeInteger(current.appliedSeq) || current.appliedSeq < seq - 1) return null;
+      var commit = current.appliedSeq >= seq
+        // Another tab may have applied the data before this ACK was persisted.
+        // Still retire ACKs atomically; never overwrite a newer snapshot.
+        ? global.IDBStore.commitServerCache(current, current.appliedSeq, false)
+        : expandReceiptEvidence(current, changes).then(function (expanded) {
+          if (!identityMatches(captured)) throw sessionChanged();
+          return expanded ? apply(expanded, captured, seq - 1) : null;
+        });
+      return commit.then(function (result) {
+        if (!identityMatches(captured)) throw sessionChanged();
+        if (!result || !result.applied || result.stale) return null;
+        return global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (row) {
+          if (!identityMatches(captured)) throw sessionChanged();
+          return { cache: row, retired: result.retired || [] };
+        });
+      });
+    });
   }
 
   function refreshAfterStale(captured) {
@@ -352,7 +426,7 @@
           operation.type === 'course.progress' || operation.type === 'course.enrollment' || operation.type === 'course.restart' ||
           operation.type === 'course.delete' || operation.type === 'deck.delete' ||
           operation.type === 'deck.itemsVisibility' || operation.type === 'logicalCourse.put' || operation.type === 'logicalCourse.delete' ||
-          operation.type === 'deck.put' || operation.type === 'deck.publish');
+          operation.type === 'deck.put' || operation.type === 'deck.publish' || operation.type === 'workspace.select'||operation.type==='vocabulary.session'||operation.type==='vocabulary.complete');
     });
     if (!canProjectPending) return { ready:false, reason:'pending-operations' };
     if (!validatePendingCourseAndVisibilityOperations(row,relevantPending)) return { ready:false, reason:'pending-course-projection' };
@@ -1065,11 +1139,14 @@
   }
 
   global.ServerCache = {
+    supportsEvidenceDelta: !!(global.crypto && global.crypto.subtle && global.TextEncoder),
+    evidenceDeltaMinEvents: 32,
     projectCourseProgress: projectCourseProgress,
     projectCatalog: projectCatalog,
     projectMainMem: projectMainMem,
     mergeSnapshot: mergeSnapshot,
     refresh: refresh,
+    applyReceipt: applyReceipt,
     read: function () { var id = identity(); return global.IDBStore.readServerCache(id.scope, id.owner); },
     apply: apply
   };

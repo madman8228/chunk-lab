@@ -6,15 +6,18 @@
 <meta name="theme-color" content="#2c62c9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Chunk Lab">
+<meta name="apple-mobile-web-app-title" content="jqka.top">
 <link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/learning-workspace.css?v=notice-overlay-20261020">
+<link rel="stylesheet" href="assets/content-card.css">
+<link rel="stylesheet" href="assets/personal-center.css">
 <!-- favicon（2026-09-10）：修「浏览器 tab 退化成显示完整 URL」——此前只声明 512×512，
      tab 默认请求 /favicon.ico 与 32×32 均 404，浏览器回退成 URL 字符串当 tab 标识 -->
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-180.png">
-<title>Chunk Lab · 英语句型意群练习</title>
+<link rel="icon" href="assets/brand/favicon-v1.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32-v1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/brand/icon-192-v1.png">
+<link rel="apple-touch-icon" href="assets/brand/icon-180-v1.png">
+<title>jqka.top · 我的学习首页</title>
 <link rel="canonical" href="https://jqka.top/main.html">
 <style>
 :root{
@@ -39,6 +42,31 @@
   --warn:#965a06;
   --shadow:0 1px 2px rgba(46,43,37,.06), 0 8px 24px -12px rgba(46,43,37,.18);
   --radius:12px;
+  /* ==== V4 首页皮肤/背景 tokens（2026-10-10，取值来自 output/design/home-style-v4.html 视觉稿）====
+     深色对应值集中在 .dark{}，任何 V4 规则内禁止写死浅色值。 */
+  --v4-ink:#33302b;            /* 墨线 */
+  --v4-card:#fffdf5;           /* 暖白卡底 */
+  --v4-pill-bg:#ffffff;        /* 药丸底 */
+  --v4-sky:#4fb3e8;            /* 天蓝主卡 */
+  --v4-sky-deep:#1f6fa8;       /* 深天蓝（待复习数字） */
+  --v4-hero-text:#ffffff;      /* 主卡文字 */
+  --v4-yellow:#f5c518;         /* 阳光黄标题条 */
+  --v4-yellow-2:#ffd66b;       /* 浅黄（进度/目标条） */
+  --v4-band-text:#33302b;      /* 黄条上的文字 */
+  --v4-green:#6fbf4a;          /* 草绿 */
+  --v4-green-deep:#4f9e2f;
+  --v4-coral:#e0705c;          /* 珊瑚红 */
+  --v4-track:#f2e8c9;          /* 奶黄轨道 */
+  --v4-dash:#d9cfae;           /* 行间虚线 */
+  --v4-goal-num:#8a6a1f;
+  --v4-lab:#6b675c;
+  --v4-sky1:#cde6f6;--v4-sky2:#e2f0ed;--v4-sky3:#f0efe2;--v4-sky4:#f7f1e4; /* V1 晨读天空 4 段 */
+  --v4-sun:#ffd66b;
+  --v4-sun-ring:rgba(255,214,107,.3);
+  --v4-sun-ring-2:rgba(255,214,107,.13);
+  --v4-cloud:rgba(255,255,255,.92);
+  --v4-hard-shadow:8px 8px 0 var(--v4-ink);   /* 硬投影：零模糊偏移量 */
+  --v4-pill-shadow:4px 4px 0 var(--v4-ink);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} /* 触摸高亮关默认（方角色块），按压反馈统一由 :active 提供 */
 html,body{height:100%}
@@ -81,11 +109,6 @@ a.brand{
 a.brand:hover{background:var(--surface-2)}
 a.brand:active{background:#efebe4}
 a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.deck-name{
-  font-size:12.5px;color:var(--muted);padding:3px 9px;border:1px solid var(--border);
-  border-radius:7px;background:var(--surface);max-width:230px;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap;
-}
 .spacer{flex:1}
 .metrics{display:flex;align-items:center;gap:8px}
 .metric{
@@ -331,7 +354,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
   min-width:140px;height:30px;
 }
 .chunk.ok .chunk-answer,.chunk.revealed .chunk-answer{
-  background:transparent;color:var(--ok);
+  background:transparent;color:#111;font-size:20px;
   border-radius:0; /* 已答块保持直线下划线 */
 }
 .chunk.bad .chunk-answer{
@@ -492,7 +515,14 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
    元素 ID 不变（deckName / mProgress / mCombo / progFill），JS 零改。
    进度条与课程名、退出按钮、统计信息保持同一行，避免单独占用一行。*/
 .practice-context{margin:2px 0 5px}
-.practice-context .pc-row{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0}
+.practice-batch-size{display:flex;align-items:center;gap:6px;justify-content:flex-end;font-size:12px;color:var(--muted);margin-top:6px}
+.practice-batch-size[hidden]{display:none}
+.practice-options{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;font-size:12px;margin:6px 0}
+.practice-options[hidden],.practice-options label[hidden]{display:none}
+.practice-options label{display:flex;align-items:center;gap:6px;min-height:36px}
+.practice-options select{font:inherit;min-height:36px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:7px}
+.practice-batch-size select{min-height:36px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:7px;font:inherit;padding:4px 6px}
+.practice-batch-size select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .practice-context .pc-progress{flex:1 1 auto;min-width:32px;margin:0}
 .practice-context .metrics{flex:0 0 auto}
 .course-mode-picker{position:relative;flex:0 0 auto}
@@ -532,11 +562,6 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .course-mode-option[aria-checked="true"] .course-mode-check{opacity:1}
 @media(prefers-reduced-motion:reduce){.course-mode-trigger,.course-mode-option{transition:none}}
 /* 退出当前课程：放在课程名旁，作为低强调的页面级动作，不与答题按钮抢层级 */
-.practice-exit{
-  flex:0 0 auto;min-height:30px;padding:4px 6px;border:0;border-radius:6px;
-  background:transparent;color:var(--muted);font-size:12px;line-height:1;
-  cursor:pointer;touch-action:manipulation;
-}
 .practice-exit:active{transform:translateY(1px)}
 .practice-exit:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .practice-exit:disabled{color:var(--faint);cursor:wait}
@@ -569,6 +594,9 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 
 .stage-tip-bar{display:flex;align-items:center;justify-content:center;min-height:18px;padding:0;margin:-1px 0 1px}
 .stage-tip-bar .foot-tip{display:inline-flex;align-items:center;gap:3px;line-height:1.2}
+.stage-tip-bar .keyboard-only{align-items:center;gap:3px}
+.stage-tip-bar .sp-enter,.stage-tip-bar .sp-tip{display:inline-flex}
+.stage-tip-bar .kbd-action:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .stage-foot{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;min-height:32px}
 .stage-foot > button{white-space:nowrap}
 /* 底部操作按钮共享同一触控尺寸；自动标熟圆环保留独立的圆形状态样式 */
@@ -592,6 +620,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .stage-head-right > #btnMaster:focus-visible,
 .stage-head-right > #btnExplain.explain-text-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .kbd{
+  display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;box-sizing:border-box;height:18px;
   font:11px/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);
   border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:5px;padding:2px 5px;background:#fff;
 }
@@ -814,7 +843,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 
 /* ===== 今日首页 ===== */
 .home-page{margin:0}
-.home-body{display:flex;flex-direction:column;gap:14px}
+/* 首页主体单栏，宽屏与窄屏保持相同阅读顺序；gap 沿用 14px */
+.home-body{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
+.home-hero{grid-column:1 / -1}
 .home-card{border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:16px 18px}
 .home-card .hc-title{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em;margin-bottom:12px}
 .home-card .hc-title svg{width:15px;height:15px;stroke-width:1.8}
@@ -848,35 +879,32 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 /* 今日学习 Bento：近7日趋势占主位，待复习与错题入口收在右侧；状态数沿底部排列。 */
 .home-today-counts{display:flex;flex-wrap:wrap;gap:8px;margin:0;align-items:center}
 .home-today-counts-pills{
-  display:grid;grid-template-columns:minmax(0,2fr) repeat(4,minmax(0,1fr));grid-template-rows:minmax(112px,auto);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(112px,auto);
   gap:6px;width:100%;margin:0;padding:0;align-items:stretch;
   border:0;border-radius:0;background:transparent
 }
-.home-today-counts-pills:not(:has(.home-pill.today-done)){grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr))}
+/* V4（2026-10-10）：近7天答题整体挪入右栏后，药丸行只剩 4 枚（无趋势格），
+   列数由「趋势 2fr + N」改为纯 N 列；行高下限 112px 保留 —— 绝对居中的 .pill-n
+   依赖该高度落在标签下方（daily-goal A6 契约）。 */
+.home-today-counts-pills:not(:has(.home-pill.today-done)):not(:has(.home-pill.goal)){grid-template-columns:repeat(3,minmax(0,1fr))}
+/* 设了目标时「今日已练」药丸不渲染，目标药丸补上末列，与「有今日已练」同一套网格。
+   ★ 禁止让它独占第 2 行：第 2 行是 auto 高，绝对居中的 .pill-n 会直接压到 .pill-k 标签上
+   （线上缺陷，源自 0acb662；2026-10-08 修复并加 e2e/daily-goal.test.js A6/A7 护栏）。
+   V4 变更：趋势格移出网格 → 5 列变 4 列，goal 从第 5 列改到第 4 列（仍是「与已掌握
+   同排同高、且在其右侧、绝不下沉第 2 行」的同一契约，A6/A7 已复跑验证）。 */
+.home-today-counts-pills:has(.home-pill.goal){grid-template-columns:repeat(4,minmax(0,1fr))}
 .home-pill{
   appearance:none;-webkit-appearance:none;font-family:inherit;color:inherit;line-height:1;
   position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:5px;
   width:100%;min-width:0;min-height:0;height:100%;padding:10px 12px;border-radius:10px;
   border:1px solid var(--border);background:var(--surface-2);
   font-size:13px;font-weight:600;line-height:1.2;text-align:center;white-space:normal;cursor:default}
-.home-trend{grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:space-between;gap:4px;min-width:0;padding:7px 9px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
-.home-pill.due{grid-column:2;grid-row:1}
-.home-pill.book{grid-column:3;grid-row:1}
+.home-pill.due{grid-column:1;grid-row:1}
+.home-pill.book{grid-column:2;grid-row:1}
 .home-pill.due,.home-pill.book{min-height:60px}
-.home-pill.mastered{grid-column:4;grid-row:1}
-.home-pill.today-done{grid-column:5;grid-row:1}
-.home-pill.goal{grid-column:2 / -1;grid-row:2}
-.home-trend-head{display:flex;align-items:baseline;justify-content:space-between;gap:6px;line-height:1.2}
-.home-trend-title{font-size:12px;font-weight:700;color:var(--text)}
-.home-trend-total{font-size:11px;font-weight:650;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
-.home-trend-chart{display:block;flex:1 1 auto;min-height:88px;width:100%;height:100px;overflow:visible}
-.home-trend-grid{stroke:var(--border);stroke-width:1;stroke-dasharray:2 3}
-.home-trend-axis{fill:var(--faint);font-size:10px;font-variant-numeric:tabular-nums}
-.home-trend-date{fill:var(--muted);font-size:10px;font-variant-numeric:tabular-nums}
-.home-trend-value{fill:var(--accent);font-size:10px;font-weight:700;font-variant-numeric:tabular-nums}
-.home-trend-line{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.home-trend-dot{fill:var(--surface);stroke:var(--accent);stroke-width:2}
-.home-trend-dot.today{fill:var(--accent)}
+.home-pill.mastered{grid-column:3;grid-row:1}
+.home-pill.today-done{grid-column:4;grid-row:1}
+.home-pill.goal{grid-column:4;grid-row:1}
 .home-pill .pill-n{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:21px;font-weight:800;font-variant-numeric:tabular-nums}
 .home-pill .pill-k{width:100%;font-size:12px;font-weight:650;color:var(--muted);text-align:center}
 .home-pill.due .pill-n{font-size:22px;line-height:1}
@@ -971,6 +999,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   width:82px;height:62px;overflow:hidden;border:1px solid var(--border);border-radius:8px;
   color:var(--accent);background:linear-gradient(145deg,var(--accent-soft),var(--surface-2))}
 .hd-row .hc-course-cover svg{width:19px;height:19px;stroke-width:1.7}
+.hd-row .hc-course-cover:has(img:not([hidden])) svg{display:none}
 .hd-row .hc-course-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
 .hd-row .hc-course-cover img[hidden]{display:none}
 .hd-row .grow{flex:1;min-width:0;text-align:left;display:block}
@@ -1014,18 +1043,19 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 @media (max-width:640px){
   .home-today-counts{gap:6px}
   .home-today-counts-pills{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto}
-  .home-trend{grid-column:1 / -1;grid-row:1}
-  .home-pill.due{grid-column:1;grid-row:2}
-  .home-pill.book{grid-column:2;grid-row:2}
-  .home-pill.mastered{grid-column:3;grid-row:2}
-  .home-pill.today-done{grid-column:4;grid-row:2}
-  .home-pill.goal{grid-column:1 / -1;grid-row:3}
+  /* 窄屏卡片不再有桌面 112px 行高：标签和数字必须走正常文档流。 */
+  .home-pill{justify-content:center;gap:4px;min-height:60px}
+  .home-pill .pill-k{line-height:1.3}
+  .home-pill .pill-n{position:static;transform:none;line-height:1.2}
+  .home-pill.due{grid-column:1;grid-row:1}
+  .home-pill.book{grid-column:2;grid-row:1}
+  .home-pill.mastered{grid-column:3;grid-row:1}
+  .home-pill.today-done{grid-column:4;grid-row:1}
+  .home-pill.goal{grid-column:1 / -1;grid-row:2}
   .home-today-counts-pills:not(:has(.home-pill.today-done)){grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:420px){
   .home-today-counts-pills{gap:5px;padding:0}
-  .home-trend{padding:6px 7px}
-  .home-trend-chart{height:92px;min-height:82px}
   .home-pill{padding:7px 8px;gap:3px}
   .home-pill .pill-k{font-size:11px}
   .home-pill .pill-n{position:static;transform:none;font-size:19px;line-height:1.2}
@@ -1177,7 +1207,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   /* 顶栏次要元素：标签+同步状态文字隐藏，仅留按钮 */
   .topbar-reveal,.topbar-status-text{display:none}
   /* 手机没有 Ctrl 键，隐藏整条键盘操作提示，避免占用练习区高度 */
-  .stage-tip-bar{display:none !important}
+  .stage-tip-bar .keyboard-only{display:none !important}
   /* iframe 容器顶栏隐藏说明文字 */
   /* AI 解读弹窗内滚动更顺 */
   #aiBody{font-size:14.5px}
@@ -1191,12 +1221,13 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   .wrap{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
   .stage{padding-bottom:24px}
 }
-/* 窄视口（含平板/应用窄面板）以及触控设备不显示键盘快捷键提示 */
+/* 只隐藏键盘说明，不能连同提示功能入口一起隐藏。 */
 @media (max-width:840px){
-  .stage-tip-bar{display:none !important}
+  .stage-tip-bar .keyboard-only{display:none !important}
+  .stage-tip-bar .foot-tip{gap:6px;flex-wrap:wrap;justify-content:center}
 }
 @media (hover:none) and (pointer:coarse){
-  .stage-tip-bar{display:none !important}
+  .stage-tip-bar .keyboard-only{display:none !important}
 }
 /* 极窄屏（手机竖屏 ≤420px）：弹窗边到边、按钮加大触区、输入字号微调 */
 @media (max-width:420px){
@@ -1245,7 +1276,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   /* 空答案块也保留最小列宽，避免待作答/已完成状态切换时列位跳动；长文本仍受 max-width 约束。 */
   .chunk-answer{display:inline-block;width:fit-content;box-sizing:border-box;text-align:center;font-size:clamp(13px,4vw,14px);line-height:1.1;min-width:40px;max-width:100%;margin:0 0 1px;padding:2px 4px;overflow-wrap:anywhere}
   .chunk.active .chunk-answer,.chunk.wait .chunk-answer{width:clamp(48px,calc(var(--answer-chars,12) * 7px + 16px),100%);min-width:0;height:30px}
-  .chunk.ok .chunk-answer,.chunk.bad .chunk-answer,.chunk.revealed .chunk-answer{width:fit-content;height:auto}
+  .chunk.ok .chunk-answer,.chunk.revealed .chunk-answer{width:fit-content;height:auto;font-size:16px}
+  .chunk.bad .chunk-answer{width:fit-content;height:auto}
   .chunk-hint{font-size:12px;line-height:1.35;min-height:16px;height:auto;padding-left:0;max-width:100%;overflow:visible;overflow-wrap:anywhere}
   .chunk-role{font-size:11px;padding:1px 5px;margin-bottom:0}
   .stage-foot{gap:6px;margin-top:7px;min-height:34px}
@@ -1277,7 +1309,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
    ⚠️ flex 子项的 width 会被 min-width:auto(min-content) 顶掉 → 必须同时 min-width:0 + flex-shrink:0 才生效。
    62px = 原 78px 的约 80%，同时保留足够空间显示两位数和下拉箭头。 */
 .set-ctl{width:62px;min-width:0;flex-shrink:0}
-/* 设置面板「动作行」（意群是什么 / 反馈问题）：与上方设置项同构 —— 左标签、右 chevron。
+/* 设置面板「动作行」（反馈问题）：与上方设置项同构 —— 左标签、右 chevron。
    2026-09-15 老板要求：原先用居中的整行 .btn.ghost，与面板其他行的「左标签右控件」风格割裂。
    hover 色沿用面板既有的 .btn.ghost:hover 值，静止态与下方 label 行完全一致。 */
 /* 行距/字号与上方设置项同源：label 行被 #settingsMask 规则压成 6px 2px / 13px / 1.2，
@@ -1318,11 +1350,48 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 #settingsMask .modal-head h3{font-size:15px;line-height:1.25}
 #settingsMask .modal-head .btn.sm{padding:0;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center}
 #settingsMask .modal-head .btn.sm .icon{width:15px;height:15px}
+#settingsMask{--settings-row-height:32px}
 #settingsMask .modal-body{padding:8px 16px 10px}
 #settingsMask .modal-body > div:first-child > label{padding:6px 2px !important;line-height:1.2}
 #settingsMask .modal-body > div:first-child > label strong{font-size:13px !important}
 #settingsMask .modal-body > div[style*="margin-top"]{margin-top:10px !important;padding-top:10px !important}
 #settingsMask .modal-foot{padding:8px 16px}
+#settingsMask .settings-group{border-bottom:0;margin:0;padding:0}
+#settingsMask .settings-group:last-child{border-bottom:0}
+#settingsMask .modal-foot{border-top:0}
+#settingsMask .settings-group>summary{min-height:var(--settings-row-height);padding:4px 2px;box-sizing:border-box;cursor:pointer;font-size:13px;font-weight:700;line-height:24px;color:var(--text)}
+#settingsMask .settings-group>summary::marker{color:var(--muted)}
+#settingsMask summary{display:flex;align-items:center;gap:6px;list-style:none}
+#settingsMask summary::-webkit-details-marker{display:none}
+#settingsMask summary::marker{content:''}
+#settingsMask summary::before{content:'';display:block;flex:0 0 12px;width:12px;height:12px;background:currentColor;opacity:.7;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m9 6 6 6-6 6' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .2s}
+#settingsMask details[open]>summary::before{transform:rotate(90deg)}
+#settingsMask :is(#backupCaret,#aiCfgCaret){display:flex!important;align-items:center;justify-content:center;flex:0 0 12px;width:12px;height:12px;color:var(--muted);opacity:.7}
+#settingsMask :is(#backupCaret,#aiCfgCaret) .icon{display:block;width:12px;height:12px}
+@media(prefers-reduced-motion:reduce){#settingsMask summary::before,#settingsMask #backupCaret,#settingsMask #aiCfgCaret{transition:none!important}}
+#settingsMask .settings-group>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+#settingsMask .settings-group-body{display:flex;flex-direction:column;gap:2px;padding:0 2px 8px}
+#settingsMask .settings-group-body>label,#settingsMask .settings-group-body>div[data-hint]{padding:4px 2px!important;min-height:var(--settings-row-height);box-sizing:border-box;line-height:1.2}
+#settingsMask #settingsAppearanceGroup .settings-group-body{gap:0;padding-bottom:4px}
+#settingsMask .settings-group-body strong{font-size:13px!important}
+#settingsMask .settings-account-row,#settingsMask #backupHead,#settingsMask #membershipPanel summary{min-height:var(--settings-row-height)}
+#settingsMask .membership-redeem{display:grid;grid-template-columns:auto minmax(0,210px) auto;justify-content:start;align-items:center;gap:8px;margin-top:8px}
+#settingsMask .membership-redeem label{font-size:13px;font-weight:700;white-space:nowrap}
+#settingsMask #membershipCode{box-sizing:border-box;width:100%;min-width:0;padding:7px 9px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font:inherit;font-size:13px}
+#settingsMask #membershipSalesLink{grid-column:2/-1;overflow-wrap:anywhere}
+#settingsMask #membershipStatus:empty{display:none}
+#settingsMask #membershipMessage:empty{display:none}
+#settingsMask #membershipHistory{margin:4px 0 0;padding-left:18px;line-height:1.4;overflow-wrap:anywhere}
+#settingsMask .image-cache-hint{min-height:var(--settings-row-height);padding:0;border:0;background:transparent;color:inherit;font:inherit;font-size:13px;font-weight:700;cursor:help}
+#settingsMask .image-cache-hint:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+#settingsMask #accountSection{margin-top:8px!important;padding-top:0!important;border-top:0!important}
+#settingsMask #settingsBackupSection{border-top:0!important;border-bottom:0!important}
+@media(max-width:540px){
+  #settingsMask{--settings-row-height:44px}
+  #settingsMask .membership-redeem{grid-template-columns:auto minmax(0,1fr) auto;justify-content:stretch}
+  #settingsMask #membershipCode{font-size:16px;min-height:44px}
+  #settingsMask #btnRedeemMembership{min-height:44px}
+}
 /* 移动端（≤840px）标题栏再收一档：视口本就不高，纵向每像素都要省。
    ⚠️ 必须写在这批 #settingsMask 规则**之后**：媒体查询不加特异性，
    同特异性的后写者胜 → 写在前面的 @media 块里会被上面的基础规则反压。 */
@@ -1349,12 +1418,111 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .icon-spin{animation:iconSpin 1.2s linear infinite}
 @keyframes iconSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 /* 深色模式 */
-.dark{--bg:#1d1b18;--surface:#272420;--surface-2:#201e1b;--border:#3a362f;--border-strong:#4c473e;--text:#e8e4dd;--muted:#a89f92;--faint:#918c82;--accent:#5b8def;--accent-soft:#1c2542;--course-progress:#fbbf24;--ok:#34d399;--ok-soft:#0d2c1f;--today-done:#fbbf24;--today-done-soft:#3a2a0e;--today-done-border:#76551a;--bad:#f87171;--bad-soft:#2e1515;--warn:#fbbf24;--shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5)}
+.dark{--bg:#1d1b18;--surface:#272420;--surface-2:#201e1b;--border:#3a362f;--border-strong:#4c473e;--text:#e8e4dd;--muted:#a89f92;--faint:#918c82;--accent:#5b8def;--accent-soft:#1c2542;--course-progress:#fbbf24;--ok:#34d399;--ok-soft:#0d2c1f;--today-done:#fbbf24;--today-done-soft:#3a2a0e;--today-done-border:#76551a;--bad:#f87171;--bad-soft:#2e1515;--warn:#fbbf24;--shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  /* ==== V4 深色取值（2026-10-10）==== 墨线换浅暖描边、天空换夜色渐变、硬投影换深色下沉；
+    卡底/药丸/轨道均压暗，黄条仍用深字（#241f15 on #d9a614 ≈ 6.5:1）。 */
+  --v4-ink:#e8e2d4;--v4-card:#2a2620;--v4-pill-bg:#332e26;--v4-sky:#2d6f9d;--v4-sky-deep:#8ec8ec;--v4-hero-text:#f2f9ff;
+  --v4-yellow:#d9a614;--v4-yellow-2:#e8c34d;--v4-band-text:#241f15;--v4-green:#4f9e2f;--v4-green-deep:#8cd05e;
+  --v4-coral:#e0836f;--v4-track:#3c362a;--v4-dash:#4a4436;--v4-goal-num:#e8c34d;--v4-lab:#b3aa9b;
+  --v4-sky1:#14202c;--v4-sky2:#1a2a2c;--v4-sky3:#211f1a;--v4-sky4:#262019;
+  --v4-sun:#ffd66b;--v4-sun-ring:rgba(255,214,107,.16);--v4-sun-ring-2:rgba(255,214,107,.07);
+  --v4-cloud:rgba(214,224,232,.14);
+  --v4-hard-shadow:8px 8px 0 #12100d;--v4-pill-shadow:4px 4px 0 #12100d}
 .dark .kbd{background:var(--surface);color:var(--muted);border-color:var(--border-strong)}
-</style>
-</head>
-<body>
+.dark .chunk.ok .chunk-answer,.dark .chunk.revealed .chunk-answer{color:var(--text)}
 
+/* ============================================================
+   V4 首页改版（2026-10-10）：V1 天空背景 + V2 墨线贴纸皮肤 + V3 双栏布局
+   视觉稿：output/design/home-style-v4.html（老板已确认）。
+   取值全部走 :root/.dark 的 --v4-* tokens，规则内不写死浅色。
+   作用域：皮肤规则一律 #pageHome 前缀，不外溢练习/档案/结算页。
+============================================================ */
+/* 工作区与句子练习共享天空和花园；练习保留自身内容宽度与答题状态色。 */
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) body{
+  background:linear-gradient(180deg,var(--v4-sky1) 0%,var(--v4-sky2) 34%,var(--v4-sky3) 62%,var(--v4-sky4) 100%);
+}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover):not(.hidden)) .wrap{max-width:960px}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover):not(.hidden)) body{height:auto;min-height:100%;background-attachment:fixed;background-repeat:no-repeat;background-color:var(--v4-sky4)}
+.home-sky-deco{display:none}
+/* z-index:-1：压在画布背景之上、.wrap 内容之下，且不需要给 .wrap 建独立堆叠上下文 */
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) .home-sky-deco{
+  display:block;position:absolute;top:0;left:0;right:0;height:240px;pointer-events:none;z-index:-1;
+}
+.sky-sun{position:absolute;right:max(200px,calc((100vw - 960px)/2 + 240px));top:8px;width:90px;height:90px;color:var(--v4-ink);overflow:visible}
+.sky-sun .sun-rays{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round}
+.sky-sun .sun-disc{fill:var(--v4-sun);stroke:currentColor;stroke-width:3}
+.sky-sun .sun-shine{fill:none;stroke:#fff7d6;stroke-width:4;stroke-linecap:round}
+@media(max-width:640px){.sky-sun{right:clamp(168px,28vw,210px);top:4px;width:72px;height:72px}}
+@media(max-width:420px){.sky-sun{right:120px;top:38px;width:54px;height:54px}}
+/* 所有页面共享上面的窗口定位；切页不再改变太阳的位置或尺寸。 */
+.sky-cloud{position:absolute;color:var(--v4-cloud)}
+.sky-cloud.c1{left:4%;top:56px}
+.sky-cloud.c2{left:40%;top:20px}
+.sky-cloud.c3{right:26%;top:118px}
+.home-garden{display:none;pointer-events:none}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) .home-garden{display:block;position:fixed;inset:auto 0 0;height:105px;z-index:-1;overflow:visible}
+.home-garden svg{position:absolute;bottom:0;width:clamp(165px,24vw,250px);height:auto;color:var(--v4-ink)}
+.home-garden .garden-left{left:0}
+.home-garden .garden-right{right:-5px;width:clamp(190px,27vw,290px)}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) .wrap{padding-bottom:110px}
+#pagePractice .card{background:var(--v4-card)}
+/* 首页保持单栏阅读顺序：今天要做 → 我的课程 → 错题本。
+   太阳按 960px 内容区定位，并给右侧操作区留出空隙。 */
+.home-rail{display:flex;flex-direction:column;gap:14px;min-width:0}
+/* —— V2 皮肤：墨线 + 硬投影 —— */
+#pageHome .home-card{background:var(--v4-card);border:3px solid var(--v4-ink);border-radius:20px;box-shadow:var(--v4-hard-shadow)}
+/* 「今天要做」天蓝主卡（覆盖 .home-card 的暖白底；padding 对齐视觉稿 hero） */
+#pageHome .home-today-card{background:var(--v4-sky);color:var(--v4-hero-text);padding:14px 16px 16px}
+.home-today-band{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;margin:0 0 12px}
+.home-today-band .ht-streak{margin-left:auto;font-weight:600;font-size:12px;opacity:.95}
+/* 药丸：硬投影 + 2.5px 描边；底色/描边色相仍由既有类型变量给出（e2e E4a 契约：
+   today-done 与 mastered 的底色/描边/数字色必须两两不同，故不统一成墨线色） */
+#pageHome .home-pill{border-width:2.5px;border-radius:14px;box-shadow:var(--v4-pill-shadow)}
+#pageHome .home-empty{border:2.5px dashed var(--v4-ink);background:var(--v4-card)}
+/* 主卡内的每日目标进度条（原 .home-goal 配色在蓝底上不可读，整体翻成 hero 色） */
+#pageHome .home-goal .hg-row,#pageHome .home-goal .hg-row b{color:var(--v4-hero-text)}
+#pageHome .home-goal .hg-bar{background:rgba(255,255,255,.4);border:2px solid var(--v4-ink)}
+#pageHome .home-goal .hg-bar i{background:var(--v4-yellow-2)}
+#pageHome .home-goal.done .hg-row,#pageHome .home-goal.done .hg-row b{color:var(--v4-hero-text)}
+#pageHome .home-goal.done .hg-bar i{background:var(--v4-green)}
+#pageHome .home-month-checkins{color:var(--v4-ink)}
+#pageHome .hh-date{font-size:17px}
+/* 我的课程：阳光黄标题条 + 课程行左侧色签（色签绝对定位，不动封面流 →
+   「添加课程按钮与封面左对齐」契约不受影响） */
+#pageHome .home-courses .hc-title{background:var(--v4-yellow);color:var(--v4-band-text);border-bottom:3px solid var(--v4-ink);margin:-16px -18px 14px;padding:11px 18px;border-radius:16px 16px 0 0;font-size:14.5px;letter-spacing:0}
+#pageHome .home-courses .hc-manage{color:var(--v4-band-text)}
+#pageHome .home-courses .hc-membership-count{color:var(--v4-band-text);opacity:.72}
+#pageHome .home-decks .hd-row{position:relative}
+#pageHome .hd-row .hc-course-cover{border:2px solid var(--v4-ink);border-radius:10px}
+#pageHome .hd-row:hover{background:var(--v4-track)}
+#pageHome .hc-progress-track{background:var(--v4-track)}
+#pageHome .home-deck-progress-track{background:var(--v4-track)}
+#pageHome .home-add-course{border:2.5px dashed var(--v4-ink);border-radius:14px;background:var(--v4-pill-bg);color:var(--v4-ink)}
+#pageHome .home-add-course:hover{border-color:var(--v4-ink);background:var(--accent-soft)}
+/* —— 右栏卡片头 / 目标环 / 点阵月历 / 错题本 TOP —— */
+.rail-head{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:750;margin:0 0 10px;color:var(--text)}
+.rail-head .grow{flex:1}
+.rail-head .meta{font-size:12px;font-weight:600;color:var(--v4-lab)}
+.rail-head.band{background:var(--v4-yellow-2);border-bottom:3px solid var(--v4-ink);margin:-16px -18px 12px;padding:10px 18px;border-radius:16px 16px 0 0;color:var(--v4-band-text)}
+.rail-head.band.green{background:var(--v4-green)}
+.rail-link{font-size:12.5px;font-weight:650;color:var(--v4-band-text);text-decoration:none;display:inline-flex;align-items:center;gap:2px}
+.rail-link:hover{text-decoration:underline}
+.rail-link svg{width:12px;height:12px}
+.wlist{display:flex;flex-direction:column;gap:9px;font-size:13px}
+.wlist .wrow{display:flex;gap:9px;align-items:center}
+.wlist .wcnt{flex:0 0 auto;min-width:14px;text-align:center;color:var(--v4-coral);font-weight:800;font-variant-numeric:tabular-nums}
+.wlist .wsen{font-style:normal;flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.wrail-empty{font-size:12.5px;color:var(--v4-lab);line-height:1.6}
+</style>
+<link rel="stylesheet" href="assets/learning-navigation.css?v=brand-padding-20261016">
+<link rel="stylesheet" href="assets/learning-background.css?v=shared-sky-20261015">
+<link rel="stylesheet" href="assets/course-learning-header.css">
+</head>
+<body data-auth-entry="explicit">
+
+<!-- V1 天空装饰层（2026-10-10）：太阳 + 云，纯 CSS/SVG，无图片文件。
+     仅当 #pageHome 可见时由 CSS（html:has）显示，切页即隐。 -->
+<script src="js/learning-background.js"></script>
 <canvas id="fx"></canvas>
 <div id="perfectToast"><div class="big">PERFECT</div><div class="sub"></div></div>
 <div id="sysToast"></div>
@@ -1367,15 +1535,18 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 
 <div class="wrap">
 
+  <div id="noticeBannerRail"></div>
+
   <div class="topbar">
     <div class="topbar-row">
-    <a class="brand" href="./main.html" title="返回课程首页" aria-label="返回课程首页"><span class="logo">C</span>Chunk Lab</a>
+    <a class="brand" data-learning-brand href="./main.html?view=home" title="返回学习首页" aria-label="jqka.top 学习首页"><img src="assets/brand/jqka-logo-v1.webp" alt="jqka.top" width="123" height="36" style="display:block;width:123px;height:36px;object-fit:contain"></a>
+      <div id="workspaceNavHost"></div>
       <span class="spacer"></span>
       <button class="icon-action practice-only hidden" id="btnSound" title="音效开关" aria-label="音效开关" data-icon="sound"></button>
       <button class="icon-action" id="btnStats" title="学习档案" aria-label="学习档案" data-icon="stats"></button>
       <button class="btn sm icon-action flat-action" id="btnDecks" title="课程" aria-label="课程" data-icon="book"></button>
-      <a class="icon-action" id="btnHomeTop" href="https://jqka.top/" title="回到 jqka.top 主页" aria-label="回到 jqka.top 主页" style="text-decoration:none" data-icon="home"></a>
-      <button class="icon-action" id="btnSettingsTop" title="系统设置" aria-label="系统设置" data-icon="settings"></button>
+      <a class="icon-action" id="btnHomeTop" href="/index.html" title="回到 jqka.top 主页" aria-label="回到 jqka.top 主页" style="text-decoration:none" data-icon="home"></a>
+      <button class="btn sm account-entry" id="btnSettingsTop" type="button" title="登录" aria-label="登录">登录</button>
     </div>
     <div class="topbar-reveal hidden" id="topbarReveal"></div>
     <div id="updateToast" style="display:none;position:fixed;top:52px;left:50%;transform:translateX(-50%);z-index:1000;align-items:center;gap:6px;background:#fef3c7;border:1px solid #fcd34d;color:#b45309;font-size:12.5px;font-weight:600;border-radius:10px;padding:4px 4px 4px 12px;box-shadow:0 1px 4px rgba(0,0,0,.08);white-space:nowrap" role="status">
@@ -1388,6 +1559,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
   <div class="page home-page hidden" id="pageHome">
     <div class="home-body" id="homeBody"></div>
   </div>
+  <div class="page home-page hidden" id="pageMyLearning"><div id="myLearningBody"></div></div>
+  <div class="page home-page hidden" id="pageDiscover"><div id="discoverBody"></div></div>
+  <div class="page home-page hidden" id="pageStats"><div id="statsPageHost"></div></div>
 
   <div class="card boot-screen" id="bootScreen" hidden role="status" aria-live="polite">
     <div class="boot-message"><span class="icon-spin" data-icon="refresh"></span><span id="bootMessage">正在打开首页…</span></div>
@@ -1399,8 +1573,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
        物理位置在 pagePractice 内部首层，元素 ID 不变，JS 零改。 -->
   <div class="page hidden" id="pagePractice">
   <div class="practice-context">
-    <div class="pc-row">
-      <span class="deck-name" id="deckName"></span>
+    <div class="pc-row course-learning-header">
+      <span class="deck-name course-header-title" id="deckName" data-course-title></span>
       <select id="courseMode" aria-label="本课程练习方式" hidden></select>
       <div class="course-mode-picker" id="courseModePicker" hidden>
         <button type="button" class="course-mode-trigger" id="courseModeTrigger" aria-haspopup="menu" aria-expanded="false" aria-controls="courseModeMenu">
@@ -1409,7 +1583,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </button>
         <div class="course-mode-menu" id="courseModeMenu" role="menu" aria-label="本课程练习方式" hidden></div>
       </div>
-      <button type="button" class="practice-exit" id="btnExitPractice" title="退出当前学习课程" aria-label="退出当前学习课程">退出</button>
+      <button type="button" class="practice-exit course-header-exit" id="btnExitPractice" title="退出当前学习课程" aria-label="退出当前学习课程">退出</button>
       <div class="progress pc-progress"><i id="progFill"></i></div>
       <div class="metrics">
         <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">--/--</span></div>
@@ -1417,12 +1591,23 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       </div>
     </div>
   </div>
+  <div class="practice-options" id="practiceOptions" hidden>
+    <label id="practiceModeRow"><span>答题模式</span><select id="practiceMode" aria-label="答题模式"><option value="choose">选择</option><option value="type">手拼</option></select></label>
+    <label id="practiceShuffleRow" title="下次开始练习时生效，不打乱当前题组"><input type="checkbox" id="practiceShuffle">乱序出题（下次开始生效）</label>
+  </div>
+  <label class="practice-batch-size" id="practiceBatchSizeRow" hidden>
+    <select id="practiceBatchSize" aria-label="每组练习句数" aria-describedby="practiceBatchSizeHint">
+      <option value="10">每组 10 句</option><option value="15">每组 15 句</option><option value="20">每组 20 句</option><option value="30">每组 30 句</option>
+    </select>
+    <span id="practiceBatchSizeHint">下组生效</span>
+  </label>
   <div class="stage-tip-bar" id="stageTipBar">
     <span class="foot-tip">
-      <span class="sp-enter" id="spEnterTip"><span class="kbd">Enter</span> 确认</span>
-      <span class="sp-tip" id="spTipBar" style="display:none"> · <span class="kbd">空格</span> 下一词</span>
-      <span class="sp-tip-sep" id="spTipBarSep" style="display:none"> ·</span>
-      <button class="kbd kbd-action" data-action="hint" title="点击：提示当前 chunk 首词">Ctrl+M</button> 提示 · <button class="kbd kbd-action" data-action="reveal" title="轻提示显示完整句子，不自动填写">Ctrl+F</button> 句子提示 · <button class="kbd kbd-action" data-action="full" title="点击：显示并填写全句答案">Ctrl+P</button> 全句
+      <span class="sp-enter keyboard-only" id="spEnterTip"><span class="kbd">Enter</span> 确认</span>
+      <span class="sp-tip keyboard-only" id="spTipBar" style="display:none"> · <span class="kbd">空格</span> 下一词</span>
+      <span class="sp-tip-sep keyboard-only" id="spTipBarSep" style="display:none"> ·</span>
+      <button type="button" class="kbd kbd-action" data-action="spelling" title="单独按 Shift：循环切换意群选择与拼写输入">Shift</button> 切换输入 ·
+      <button type="button" class="kbd kbd-action" data-action="hint" title="点击：提示当前意群首词">Ctrl+M</button> 提示 · <button type="button" class="kbd kbd-action" data-action="reveal" title="显示完整句子，不自动填写">Ctrl+F</button> 句子提示 · <button type="button" class="kbd kbd-action" data-action="full" title="显示并填写全句答案">Ctrl+P</button> 全句
     </span>
   </div>
   <div class="card stage" id="stage">
@@ -1439,6 +1624,7 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
       </div>
       <div class="zh-wrap">
         <div class="course-context" id="courseContext" hidden></div>
+        <img id="courseLearningImage" alt="课程情境配图" hidden style="max-width:100%;max-height:36vh;object-fit:contain;border-radius:12px;margin:12px 0">
         <div class="zh" id="zh"><span class="icon-spin" data-icon="refresh"></span> 加载中…</div>
       </div>
       <div class="stage-head-right">
@@ -1688,58 +1874,35 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 </div>
 
 <!-- 系统设置弹窗 -->
-<div class="mask" id="settingsMask" hidden>
-  <div class="modal" style="max-width:460px">
+<div class="mask pc-drawer" id="settingsMask" hidden>
+  <div class="modal pc-drawer-panel">
     <div class="modal-head">
-      <h3><span data-icon="settings"></span> 系统设置</h3>
+      <button class="btn sm ghost" id="personalCenterBack" type="button" data-icon="arrowL" aria-label="返回个人中心" hidden></button>
+      <h3 id="personalCenterTitle">个人中心</h3>
       <span class="spacer"></span>
       <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
     <div class="modal-body">
-      <div style="display:flex;flex-direction:column;gap:2px">
-        <!-- 每行 = 标题（.set-hit，说明触发器）+ 行尾控件。说明文本存行级 data-hint，
-             PC hover / 触屏点击标题时由 #setHintPop 浮层显示，不再行内常显。 -->
+      <div id="personalCenterProfile" class="pc-profile">
+        <span class="pc-avatar" data-icon="user" aria-hidden="true"></span>
+      </div>
+      <nav id="personalCenterMenu" class="pc-menu" aria-label="个人中心菜单">
+        <button type="button" data-pc-view="settings"><span data-icon="settings" aria-hidden="true"></span><span>学习设置</span><span data-icon="chevR" aria-hidden="true"></span></button>
+        <button type="button" data-pc-view="membership"><span data-icon="sparkle" aria-hidden="true"></span><span>会员与体验</span><span data-icon="chevR" aria-hidden="true"></span></button>
+        <button type="button" data-pc-view="backup"><span data-icon="box" aria-hidden="true"></span><span>备份与恢复</span><span data-icon="chevR" aria-hidden="true"></span></button>
+        <button type="button" data-pc-view="cache"><span data-icon="image" aria-hidden="true"></span><span>图片缓存</span><span data-icon="chevR" aria-hidden="true"></span></button>
+        <button type="button" data-pc-feedback><span data-icon="chat" aria-hidden="true"></span><span>反馈问题</span><span data-icon="chevR" aria-hidden="true"></span></button>
+      </nav>
+      <section id="personalCenterMembership" class="pc-pane" data-pc-pane="membership" aria-label="会员与体验" hidden></section>
+      <section id="personalCenterBackup" class="pc-pane" data-pc-pane="backup" aria-label="备份与恢复" hidden></section>
+      <section id="personalCenterCache" class="pc-pane" data-pc-pane="cache" aria-label="图片缓存" hidden></section>
+      <div id="personalCenterSignOut" class="pc-sign-out"></div>
+      <details class="settings-group" id="settingsAppearanceGroup" data-default-open="true" open>
+        <summary>声音与显示</summary>
+        <div class="settings-group-body">
         <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="答题反馈">
           <span class="set-hit"><strong style="font-size:14px">音效</strong></span>
           <input type="checkbox" id="setSound" checked>
-        </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="随机打乱顺序">
-          <span class="set-hit"><strong style="font-size:14px">乱序出题</strong></span>
-          <input type="checkbox" id="setShuffle">
-        </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="选择 chunk 或手动拼写">
-          <span class="set-hit"><strong style="font-size:14px">答题模式</strong></span>
-          <select id="setMode" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
-            <option value="choose">选择</option>
-            <option value="type">手拼</option>
-          </select>
-        </label>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px" data-hint="熟悉是个人自评，不会替代考试掌握">
-          <span class="set-hit"><strong style="font-size:14px">熟悉内容仍按期复习</strong></span>
-          <span class="muted" style="font-size:12px">按复习周期</span>
-        </div>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px" data-hint="每批练习句子数；课程内容较多时可继续下一批">
-          <span class="set-hit"><strong style="font-size:14px">每批数量</strong></span>
-          <select id="setBatchSize" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-          </select>
-        </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px" data-hint="每天想练几句；设好后首页「今日」显示进度，选「关闭」则完全不显示">
-          <span class="set-hit"><strong style="font-size:14px">每日目标</strong></span>
-          <select id="setDailyGoal" class="set-sel set-ctl" style="font-size:12.5px;padding:4px 8px">
-            <option value="0">关闭</option>
-            <option value="10">10 句</option>
-            <option value="20">20 句</option>
-            <option value="30">30 句</option>
-            <option value="50">50 句</option>
-          </select>
-        </label>
-        <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="连对多题时烟花慢速累积绽放">
-          <span class="set-hit"><strong style="font-size:14px">烟花叠加</strong></span>
-          <input type="checkbox" id="setFxStack">
         </label>
         <label style="display:flex;align-items:center;justify-content:space-between;padding:9px 4px;cursor:pointer" data-hint="答对时的屏幕特效">
           <span class="set-hit"><strong style="font-size:14px">庆祝效果</strong></span>
@@ -1759,13 +1922,10 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </label>
       </div>
 
-      <!-- 动作行：与上方设置项同构（左标签 + 右 chevron）。保留 button 语义与 id —— 二者都被
-           e2e/chunk-intro.test.js 与 e2e/e2e.js 直接 click。 -->
-      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
-        <button class="set-row" id="btnChunkIntro" type="button"><span class="set-hit"><strong style="font-size:13px"><span data-icon="help"></span>意群是什么</strong></span><span class="chev" data-icon="chevR"></span></button>
-        <button class="set-row" id="btnFeedback" type="button"><span class="set-hit"><strong style="font-size:13px"><span data-icon="chat"></span>反馈问题</strong></span><span class="chev" data-icon="chevR"></span></button>
-        <a class="set-row" id="btnHomeSite" href="https://jqka.top/" target="_blank" rel="noopener" style="text-decoration:none"><span class="set-hit"><strong style="font-size:13px"><span data-icon="home"></span>回到 jqka.top 主页</strong></span><span class="chev" data-icon="chevR"></span></a>
-      </div>
+      </details>
+      <details class="settings-group" id="settingsAccountGroup">
+        <summary>账号与数据</summary>
+        <div class="settings-group-body">
 
       <!-- 大模型 API 配置已停用（2026-09-06：先禁联网 AI 生成）。后续开放 = 移除本行 display:none。 -->
       <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:none">
@@ -1789,28 +1949,32 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
         </div>
       </div>
 
-      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
-        <div id="backupHead" style="display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none">
+      <div id="settingsBackupSection" style="margin-top:16px;padding:8px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+        <button type="button" id="backupHead" aria-expanded="false" aria-controls="backupBody" style="display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;border:0;background:transparent;color:inherit;font:inherit;padding:0;text-align:left">
           <span id="backupCaret" style="font-size:11px;color:var(--faint);transition:transform .2s;display:inline-block"><span data-icon="chevR"></span></span>
-          <div style="font-size:13px;font-weight:700">数据备份</div>
-          <span style="font-size:11.5px;color:var(--faint);font-weight:400">数据备份与恢复</span>
-        </div>
+          <span style="font-size:13px;font-weight:700">备份与恢复</span>
+        </button>
         <div id="backupBody" class="hidden" style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
-          <div style="font-size:12px;color:var(--muted);line-height:1.55">
-            导出包含课程、设置和学习档案。新版备份会把已确认数据与待确认操作分开保存；导入前可预览，待确认操作不会自动重放。
-          </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn sm" id="btnExportAll"><span data-icon="export"></span>导出全部</button>
-            <button class="btn sm" id="btnImportAll"><span data-icon="import"></span>导入备份</button>
+            <button class="btn sm" id="btnExportAll" type="button"><span data-icon="export"></span>导出备份</button>
+            <button class="btn sm" id="btnImportAll" type="button"><span data-icon="import"></span>从备份恢复</button>
             <input type="file" id="fileBackup" accept=".json" class="hidden">
           </div>
+        </div>
+      </div>
+
+      <div id="settingsImageCacheSection" style="margin-top:0;padding-top:12px">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <button type="button" class="set-hit image-cache-hint" data-hint="仅清除此账号在本机的图片缓存，不影响课程和记录。" aria-describedby="setHintPop">图片缓存</button>
+          <span id="imageCacheUsage" class="muted" role="status" style="font-size:12px">尚未读取</span>
+          <button class="btn sm" id="btnClearImageCache" type="button">清除图片缓存</button>
         </div>
       </div>
 
       <!-- 账号区块：仅多用户模式（REQUIRE_AUTH=true）显示；开放模式隐藏 -->
       <div id="accountSection" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)" hidden>
         <!-- 「账号」标题与账号名同行：值直接跟在标题后（账号名本身无边框，点击即复制） -->
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <div class="settings-account-row" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <span id="acctLabel" style="font-size:13px;font-weight:700;flex:0 0 auto">账号</span>
           <button type="button" class="acct-name" id="acctNameBtn" hidden aria-label="点击复制账号名">
             <span class="acct-name-text" id="acctNameText">…</span>
@@ -1822,8 +1986,27 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
           <button class="btn sm" id="btnAccountLogin" hidden>登录</button>
           <button class="btn sm ghost" id="btnAccountLogout" hidden>退出登录</button>
         </div>
-        <div id="acctHint" style="font-size:11.5px;color:var(--faint);margin-top:8px;line-height:1.55">点击账号名复制到剪贴板；退出后可切换账号。学习数据在云服务器上，退出前请确认已同步（顶栏无「待同步」徽标）。</div>
+        <div id="acctHint" style="font-size:11.5px;color:var(--faint);margin-top:8px;line-height:1.55">点击账号名复制到剪贴板；退出后可切换账号。学习记录自动保存；未上传记录保留在本机，登录原账号并联网后会继续上传。请勿清除浏览器数据。</div>
+        <div id="membershipPanel" style="margin-top:12px" hidden>
+          <div id="membershipStatus" role="status" aria-live="polite" style="font-size:12px;color:var(--muted);margin:6px 0">正在读取会员状态…</div>
+          <div class="membership-redeem">
+            <label for="membershipCode">会员与体验</label>
+            <input id="membershipCode" type="text" autocomplete="off" maxlength="48" placeholder="输入兑换码" aria-label="会员兑换码">
+            <button id="btnRedeemMembership" class="btn sm" type="button">兑换</button>
+            <a id="membershipSalesLink" target="_blank" rel="noopener noreferrer" hidden>购买兑换码</a>
+          </div>
+          <div id="membershipMessage" role="status" aria-live="polite" style="font-size:12px;margin-top:6px"></div>
+          <details><summary>会员兑换与调整记录</summary><ul id="membershipHistory"></ul></details>
+        </div>
       </div>
+        </div>
+      </details>
+      <details class="settings-group" id="settingsHelpGroup">
+        <summary>帮助与反馈</summary>
+        <div class="settings-group-body">
+          <button class="set-row" id="btnFeedback" type="button"><span class="set-hit"><strong style="font-size:13px"><span data-icon="chat"></span>反馈问题</strong></span><span class="chev" data-icon="chevR"></span></button>
+        </div>
+      </details>
     </div>
     <div class="modal-foot">
       <button class="btn primary" id="btnSaveSettings">保存设置</button>
@@ -1865,8 +2048,8 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
 <script src="js/course-catalog.js"></script>
-<script src="js/course-progress.js"></script>
-<script src="js/course-enrollment.js"></script>
+<script src="js/course-progress.js"></script><script src="js/course-return.js"></script>
+<script src="js/course-enrollment.js?v=membership-view-20261011"></script>
 <script src="js/logical-course-store.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
@@ -1884,11 +2067,25 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 <script src="js/learning-engine.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
+<script src="js/study-usage.js"></script>
+<script src="js/personal-wordbook-recovery.js"></script>
 <script src="js/server-cache.js"></script>
 <script src="js/server-store.js"></script>
+<script src="js/learning-session-bootstrap.js"></script>
+<link rel="stylesheet" href="assets/membership-study.css">
+<script src="js/membership.js"></script>
+<script src="js/vocabulary-study.js"></script>
+<script src="js/learning-workspace.js"></script>
+<script src="js/learning-workspace-store.js"></script>
+<script src="js/learning-navigation.js?v=integrated-stats-20261016"></script>
+<script src="js/course-covers.js?v=balloon-depth-20261016"></script>
+<script src="js/content-card.js"></script>
+<script src="js/notice-banner.js"></script>
+<script src="js/learning-workspace-view.js?v=inline-add-wordbook-20261016"></script>
+<script src="js/learning-workspace-runtime.js"></script>
 <script src="js/server-stat-key-migration.js"></script>
 <script src="js/save-status.js"></script>
-<script src="auth-ui.js"></script>
+<script src="auth-ui.js?v=phone-entry-20261020"></script>
 <script src="js/icons.js"></script>
 <script src="js/main.js"></script>
 <script src="js/main-explanation.js"></script>
@@ -1951,7 +2148,11 @@ var _feedbackEffects = MainLifecycle.createFeedbackEffects({
 });
 var SFX = _feedbackEffects.sfx;
 var FX = _feedbackEffects.fx;
-function speakSentence(){ _feedbackEffects.speakSentence(); }
+function speakSentence(){
+  var audioUrl=typeof cur==='function'&&cur()&&cur()._courseAudioUrl;
+  if(audioUrl){if(window.__courseAudio)window.__courseAudio.pause();window.__courseAudio=new Audio(audioUrl);window.__courseAudio.play().catch(function(){_feedbackEffects.speakSentence();});return;}
+  _feedbackEffects.speakSentence();
+}
 /* 纯工具函数单源化：实现只在 js/format.mjs（ADR-007 Step 2），此处仅转发。
    2026-09-08：bootApp 守卫已纳入 FormatTools 就绪检查（与 ChunkEngine 同出于
    bridge.mjs 单次 module 加载），内联双实现兜底分支为死代码 → 已删，不再有
@@ -2460,7 +2661,7 @@ function chooseCourseMode(mode){
   if(serverPersistenceEnabled() && !S.assessment){
     var sessionId=S.sessionId;
     var savedProgress=mem.progress&&mem.progress[S.deck.id];
-    var payload={deckId:S.deck.id,courseId:S.deck.id,sessionId:sessionId,generation:S.generation,
+    var payload={deckId:S.deck.id,courseId:practiceCourseId(),sessionId:sessionId,generation:S.generation,
       idx:S.reviewSourceIndices&&Number.isInteger(S.reviewSourceIndices[S.idx])?S.reviewSourceIndices[S.idx]:S.idx,
       practiceMode:mode};
     if(S.contentBatch) payload.contentCursor=S.contentBatch.startCursor;
@@ -2496,8 +2697,68 @@ function chooseCourseMode(mode){
   closeCourseModeMenu(true);
   renderQ();
 }
+var _nativeCourseLaunchEpoch=0;
+function platformReferenceForDeck(deckId){
+  var catalog=window.ContentRepo&&ContentRepo.getProtectedCatalog?ContentRepo.getProtectedCatalog():[];
+  for(var course of catalog){for(var unit of course.units||[]){if(unit.recordIdentity&&unit.recordIdentity.deckId===deckId)return {courseId:course.courseId,unitId:unit.unitId};}}
+  return null;
+}
+function practiceCourseId(){return S.deck&&S.deck._recordIdentity?S.deck._recordIdentity.generationScope.slice(7):S.deck.id;}
+function launchNativeCourse(courseId,unitId){
+  if(!window.ChunkAPI || !ChunkAPI.isLoggedIn()){showAccountRequiredPage();return;}
+  $('practiceOptions').hidden=true;
+  $('practiceBatchSizeRow').hidden=true;
+  var assessmentParams=new URLSearchParams(location.search);
+  if(assessmentParams.get('assessmentItem')){launchNativeAssessment(courseId,unitId,assessmentParams.get('assessmentItem'));return;}
+  if(window.__nativeCourseSession){window.__nativeCourseSession.dispose();window.__nativeCourseSession=null;}
+  var launchEpoch=++_nativeCourseLaunchEpoch;
+  if(window.ensurePracticeReady)window.ensurePracticeReady().catch(function(error){console.warn('[practice] module preparation failed',error&&error.message);});
+  showPracticePage();$('stage').classList.add('hidden');$('result').classList.add('hidden');clearStageChoices();
+  ChunkMembership.mountNativeCourse({host:$('pagePractice'),courseId:courseId,unitId:unitId,getMem:function(){return mem;},
+    onBatch:function(deck,fromIdx,generation){if(launchEpoch!==_nativeCourseLaunchEpoch)return;startDeck(deck,fromIdx,undefined,!!deck._reviewOnly,generation);}
+  }).then(function(session){if(launchEpoch!==_nativeCourseLaunchEpoch)session.dispose();else window.__nativeCourseSession=session;});
+}
+function launchNativeAssessment(courseId,unitId,itemId){
+  $('practiceOptions').hidden=true;
+  $('practiceBatchSizeRow').hidden=true;
+  if(window.__nativeCourseSession){window.__nativeCourseSession.dispose();window.__nativeCourseSession=null;}
+  var launchEpoch=++_nativeCourseLaunchEpoch;
+  showPracticePage();$('stage').classList.add('hidden');$('result').classList.add('hidden');clearStageChoices();
+  var catalog=ContentRepo.getProtectedCatalog(),course=catalog.find(function(course){return course.courseId===courseId;});
+  unitId=unitId||(course&&course.units[0]&&course.units[0].unitId);
+  ChunkMembership.mountNativeAssessment({host:$('pagePractice'),courseId:courseId,unitId:unitId,itemId:itemId,
+    onSession:async function(session,result,metadata){
+      if(window.ensurePracticeReady)await window.ensurePracticeReady();
+      if(launchEpoch!==_nativeCourseLaunchEpoch)return;
+      if(session.status==='completed')renderServerAssessmentResult(session,result);
+      else{await persistAssessmentSession(session,metadata);renderAssessmentSession(session);}
+    }
+  }).then(function(session){if(launchEpoch!==_nativeCourseLaunchEpoch)session.dispose();else window.__nativeCourseSession=session;});
+}
 function startDeck(deck, fromIdx, tempStart, forceFullReview, serverGeneration){
+  if(deck && !deck._platformSession && !isTempQueueDeck(deck.id)){
+    var platform=deck.builtin&&platformReferenceForDeck(deck.id);
+    if(platform){launchNativeCourse(platform.courseId,platform.unitId);return;}
+    if(deck.builtin){
+      var pendingCourse=practiceMemberships()(deck.id).course;
+      var pendingLesson=pendingCourse&&CourseCatalog.listLessons(pendingCourse).find(function(lesson){return lesson.contentRef&&lesson.contentRef.id===deck.id;});
+      launchNativeCourse(pendingCourse?pendingCourse.id:deck.id,pendingLesson&&pendingLesson.id);return;
+    }
+    var membership = practiceMemberships()(deck.id);
+    if(!membership.joined){
+      location.href = 'decks.html?courseView=all' + (membership.course ? '&course='+encodeURIComponent(membership.course.id) : '');
+      return;
+    }
+  }
+  /* 在读取进度、练习模块和内容分片之前显示已知课程名。 */
+  if(deck){
+    var loadingDeckLabel = (String(deck.id || '').indexOf('rev-') === 0 ? '『手动』 ' : '') + (deck.short || displayDeckName(deck.name));
+    $('deckName').textContent = loadingDeckLabel;
+    $('deckName').title = loadingDeckLabel;
+  }
   S.assessment = null;
+  updatePracticeBatchSize(deck);
+  S.spellingOverride = false;
   $('stageTipBar').classList.remove('hidden');
   if(serverPersistenceEnabled() && serverGeneration === undefined){
     var generationLoad=++_deckLoadGeneration;
@@ -2506,7 +2767,7 @@ function startDeck(deck, fromIdx, tempStart, forceFullReview, serverGeneration){
       if(generationLoad!==_deckLoadGeneration) return;
       if(!row||row.owner!==AccountStorage.owner) throw new Error('课程进度尚未从服务器确认');
       var generations=row.snapshot.learningGenerations||{};
-      startDeck(deck,fromIdx,tempStart,forceFullReview,Number(generations['course:'+deck.id])||0);
+      startDeck(deck,fromIdx,tempStart,forceFullReview,Number(generations[deck._recordIdentity?deck._recordIdentity.generationScope:'course:'+deck.id])||0);
     }).catch(function(error){
       if(generationLoad!==_deckLoadGeneration) return;
       console.warn('[practice] confirmed learning generation unavailable',error&&error.message||error);
@@ -2588,7 +2849,7 @@ function startDeck(deck, fromIdx, tempStart, forceFullReview, serverGeneration){
     delete mem.progress[deck.id];
     savedLearningProgress=null;
   }
-  S.sessionId = savedLearningProgress && savedLearningProgress.sessionId || newPracticeSessionId();
+  S.sessionId = savedLearningProgress && savedLearningProgress.sessionId || (deck._recordIdentity && deck.id.indexOf('protected_')===0 ? deck._recordIdentity.resumeIdentity : newPracticeSessionId());
   S.generation = serverGeneration === undefined
     ? Number((savedLearningProgress && savedLearningProgress.generation) || 0)
     : serverGeneration;
@@ -2598,6 +2859,7 @@ function startDeck(deck, fromIdx, tempStart, forceFullReview, serverGeneration){
     S.courseLearning.mode = savedCourseState.practiceMode;
   }
   var preserveCourseOrder = !!(S.courseLearning && S.courseLearning.enabled && S.courseLearning.preserveOrder);
+  updatePracticeOptions();
   var courseMode = $('courseMode');
   if(courseMode){
     courseMode.innerHTML = S.courseLearning && S.courseLearning.modes.map(function(mode){ return '<option value="'+esc(mode)+'">'+(mode === 'typing' ? '输入' : '意群选择')+'</option>'; }).join('') || '';
@@ -2647,7 +2909,7 @@ function startDeck(deck, fromIdx, tempStart, forceFullReview, serverGeneration){
   }
   S.contentBatch = deck._contentBatch || null;
   S.items = deck.items.slice();
-  S.reviewSourceIndices = deck.items.map(function(_, index){ return index; });
+  S.reviewSourceIndices = deck._sourceIndices ? deck._sourceIndices.slice() : deck.items.map(function(_, index){ return index; });
   var isLongTermDeck = !isTempQueueDeck(deck.id);
   /* 临时队列分页游标：tempStart=本组起点 / tempEnd=本组终点（练完后剩 tempTotal-tempEnd） */
   S.tempTotal = isLongTermDeck ? 0 : deck.items.length;
@@ -2760,7 +3022,7 @@ if(fromIdx === 0 && isLongTermDeck && !preserveCourseOrder){
     if(!mem.progress) mem.progress = {};
     /* 从批次首题开始记录游标；中途关闭页面时仍回到当前批次，而不是跳到下一批。 */
     mem.progress[deck.id] = {
-      idx: typeof fromIdx === 'number' ? fromIdx : 0,
+      idx: S.reviewSourceIndices && Number.isInteger(S.reviewSourceIndices[S.idx]) ? S.reviewSourceIndices[S.idx] : (typeof fromIdx === 'number' ? fromIdx : 0),
       time: Date.now(),
       contentCursor: S.contentBatch.startCursor
     };
@@ -2798,6 +3060,7 @@ function newPracticeSessionId(){
 var S = MainPracticeState.createPracticeState();
 S.courseLearning = null;
 function effectivePracticeMode(){
+  if(['type','choose'].indexOf(S.spellingOverride)>=0 && !S.assessment)return S.spellingOverride;
   return window.MainCourseLearningPolicy
     ? MainCourseLearningPolicy.resolvePracticeMode(S.courseLearning, mem.settings.mode)
     : (mem.settings.mode === 'type' ? 'type' : 'choose');
@@ -2857,7 +3120,11 @@ function migrateLegacyStatKeys(){
   return true;
 }
 
-function renderQ(){
+function renderQ(preserveAttempt){
+  if($('practiceOptions')) updatePracticeOptions();
+  if(S.deck&&S.deck._platformSession&&!S.deck._platformSession.gateway.checkAdvance()){
+    S.deck._platformSession.showError({code:'AUTHORIZATION_EXPIRED'});return;
+  }
   clearAnswerHint();
   stopAutoNext();  /* 渲染新题时清理上一句的自动倒计时 */
   /* ★ 自动朗读衔接：切新题时停掉上一句还在播的 TTS（避免和新题 chunk 语音重叠） */
@@ -2871,7 +3138,14 @@ function renderQ(){
     return;
   }
   var it = cur();
+  var courseImage=$('courseLearningImage');
+  if(courseImage){courseImage.hidden=!(it&&it._courseImageUrl);if(it&&it._courseImageUrl)courseImage.src=it._courseImageUrl;else courseImage.removeAttribute('src');}
   if(!it){
+    if(S.deck&&S.deck._platformSession&&S.contentBatch&&S.contentBatch.nextCursor!==null){
+      $('stageChoices').innerHTML='';$('track').innerHTML='';$('zh').textContent='本组暂无待学或到期内容，可以继续下一组。';
+      var nextAvailableBatch=document.createElement('button');nextAvailableBatch.className='btn primary';nextAvailableBatch.textContent='继续下一组';
+      nextAvailableBatch.onclick=function(){S.deck._platformSession.nextBatch();};$('zh').appendChild(nextAvailableBatch);return;
+    }
     $('stageChoices').innerHTML = '';
     $('track').innerHTML = '';
     ['btnMaster','btnExplain','btnSpeak','ringWrap','schedLine','revealTagWrap'].forEach(function(id){ $(id).classList.add('hidden'); });
@@ -2893,6 +3167,8 @@ function renderQ(){
     }
     return;
   }
+  if(!preserveAttempt){
+  S.spellingDraft = null;
   S.chunkIdx = 0;
   S.status = it.chunks.map(function(){ return 'pending'; });
   S.answers = it.chunks.map(function(){ return ''; });
@@ -2910,6 +3186,7 @@ function renderQ(){
   S._saveRetry = false;
   S.attemptId = newPracticeSessionId() || ('attempt-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2));
   S.attemptStartedAt = Date.now();
+  }
 
   $('qno').textContent = 'Q'+(S.idx+1);
   /* ★ 主卡片顶部显示整句中文翻译，用户组装意群时参考 */
@@ -3050,7 +3327,19 @@ function renderQ(){
   $('btnNext').classList.add('hidden');
   var h = $('btnHint'); if(h) h.disabled = false;
   var s = $('btnSkip'); if(s) s.disabled = false;
-  activate(0);
+  if(preserveAttempt){
+    S.answers.forEach(function(value,index){
+      if(!isChoose && S.spellingDraft && S.spellingDraft[index]){
+        inputsAt(index).forEach(function(input,word){input.value=S.spellingDraft[index][word]||'';});
+      }
+      if(value)setChunkValueAt(index,value);
+      if(['ok','bad','revealed'].indexOf(S.status[index])>=0){
+        var box=boxAt(index);box.classList.remove('wait');box.classList.add(S.status[index]);
+        inputsAt(index).forEach(function(input){input.disabled=true;});
+      }
+    });
+  }
+  activate(preserveAttempt ? S.chunkIdx : 0);
 }
 
 function boxAt(i){ return $('track').children[i]; }
@@ -3643,7 +3932,7 @@ function showSentenceHint(){
       var progress=mem.progress&&mem.progress[S.deck.id];
       var occurredAt=Number(progress&&progress.time)||now;
       var eventId='exposure_'+CL.fnv8(sessionId+'|'+S.idx+'|'+key)+'_'+CL.fnv8(key);
-      var payload={eventId:eventId,key:key,deckId:statDeckId(it),courseId:S.deck.id,sessionId:sessionId,
+      var payload={eventId:eventId,key:key,deckId:statDeckId(it),courseId:practiceCourseId(),sessionId:sessionId,
         generation:Number(S.generation)||0,occurredAt:occurredAt,contentFingerprint:LearningEngine.fingerprintAssessmentItem(it),
         policyVersion:1,mode:effectivePracticeMode()==='type'?'typing':'chunkSelection'};
       S._pendingExposureOperation={eventId:eventId,payload:payload};
@@ -3703,7 +3992,7 @@ function toggleMastered(){
   var active = !(mem.mastered && mem.mastered[key2]);
   var markedAt = Date.now();
   var eventId = newPracticeSessionId() || ('mark-'+markedAt.toString(36)+'-'+Math.random().toString(36).slice(2));
-  var payload = {eventId:eventId,key:key2,deckId:statDeckId(it),courseId:S.deck.id,
+  var payload = {eventId:eventId,key:key2,deckId:statDeckId(it),courseId:practiceCourseId(),
     generation:Number(S.generation)||0,active:active,markedAt:markedAt,sentence:it.sentence||it.en||''};
   function applyMark(){
     if(!mem.mastered) mem.mastered = {};
@@ -3780,7 +4069,7 @@ function practiceAnswerOperation(it){
   try{ timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(_){ }
   if(!timezone) timezone='UTC';
   var payload = {
-    eventId:S.attemptId,key:statKey(it),deckId:statDeckId(it),courseId:S.deck.id,
+    eventId:S.attemptId,key:statKey(it),deckId:statDeckId(it),courseId:practiceCourseId(),
     sessionId:S.sessionId,generation:S.generation,occurredAt:eventAt,timeZone:timezone,
     mode:effectivePracticeMode()==='type'?'typing':'chunkSelection',
     contentFingerprint:LearningEngine.fingerprintAssessmentItem(it),policyVersion:1,
@@ -3923,6 +4212,8 @@ function finishSentence(){
 }
 
 function nextQuestion(){
+  var nativeSession=S.deck&&S.deck._platformSession;
+  if(nativeSession&&!nativeSession.advancing){nativeSession.advance(function(){nativeSession.advancing=true;try{nextQuestion();if(S.idx+3>=S.items.length)nativeSession.prefetchNext();}finally{nativeSession.advancing=false;}});return;}
   if(S._saveRetry){ finishSentence(); return; }
   stopAutoNext();        /* 清理自动倒计时（用户主动触发下一题） */
   if(S.idx+1 >= S.items.length){ finishSession(); }
@@ -3930,7 +4221,7 @@ function nextQuestion(){
     if(S._resumeSubmitting) return;
     var targetIdx = S.idx + 1, sessionId = S.sessionId;
     if(!S._pendingResumeOperation){
-      var resumePayload = { deckId:S.deck.id, courseId:S.deck.id, sessionId:S.sessionId,
+      var resumePayload = { deckId:S.deck.id, courseId:practiceCourseId(), sessionId:S.sessionId,
         generation:S.generation, idx:S.reviewSourceIndices && Number.isInteger(S.reviewSourceIndices[targetIdx])
           ? S.reviewSourceIndices[targetIdx] : targetIdx };
       if(S.contentBatch) resumePayload.contentCursor = S.contentBatch.startCursor;
@@ -3959,6 +4250,9 @@ function nextQuestion(){
 }
 
 function advancePracticeQuestion(targetIdx){
+    if(S.deck&&S.deck._platformSession&&!S.deck._platformSession.gateway.checkAdvance()){
+      S.deck._platformSession.showError({code:'AUTHORIZATION_EXPIRED'});return;
+    }
     S._finishing = false;
     S.idx = targetIdx;
     /* 旧协议使用快照断点；协议 3 已先耐久提交 learning.resume。 */
@@ -4361,7 +4655,7 @@ function finishSession(){
       if(S.sessionId !== finishingSessionId) return;
       S._roundSubmitting = false;
       if(finishButton) { finishButton.disabled = false; finishButton.textContent = '重试保存本轮'; }
-      console.warn('[practice] round completion was not durably queued',error);
+      console.warn('[practice] round completion was not durably queued',error&&error.stack||error);
       showSysToast('本轮暂未保存，请重试完成。',5000);
     });
     return;
@@ -4435,9 +4729,8 @@ function finishSession(){
        - 提示行直接暴露，让用户看见根因而不是默默被跳过 */
     (function(){
       var hidden = CL.hiddenCount(S.deck, mem);
-      var origTotal = S.deck.builtin
-        ? ((window.BUILTIN || []).filter(function(b){return b.id===S.deck.id;})[0]||{}).items.length || S.deck.items.length
-        : S.deck.items.length;
+      var originalBuiltin=(window.BUILTIN||[]).find(function(b){return b.id===S.deck.id;});
+      var origTotal = originalBuiltin&&originalBuiltin.items&&originalBuiltin.items.length || S.deck.itemCount || S.deck.items.length;
       if(!S.deck.builtin || hidden <= 0 || S.contentBatch) return '';
       return '<div class="review" style="margin-top:12px;padding:12px 14px;border-radius:10px;background:#fff8ee;border:1px solid #f6e0bf">'+
                '<div style="color:#b45309;font-weight:700;display:flex;align-items:center;gap:5px">'+ (window.Icons?Icons.svg('warn'):'') +'还有 '+hidden+' 句被你标记隐藏（原 '+origTotal+' 题）</div>'+
@@ -4517,6 +4810,7 @@ function finishSession(){
   var _bnx = $('btnNextBatch');
   if(_bnx){
     _bnx.onclick = function(){
+      if(S.deck&&S.deck._platformSession){S.deck._platformSession.nextBatch();return;}
       if(S.contentBatch){
         showPracticePage();
         beginContentBatch(S.deck, 0, S.contentBatch.nextCursor);
@@ -4640,6 +4934,10 @@ function clearStageChoices(){
    pageHome 从未渲染过 → 空白页（nav-exit-verify 实证 homeBody.htmlLen=0）。
    现渲染职责收归此处；renderHome 末尾不再反向调本函数（否则两者互相调用无限递归）。 */
  function showHomePage(){
+  if(!window.ChunkAPI || !ChunkAPI.isLoggedIn()){showAccountRequiredPage();return;}
+  if(new URLSearchParams(location.search).get('view')==='stats'){showStatsPage();return;}
+  _nativeCourseLaunchEpoch++;
+  if(window.__nativeCourseSession){window.__nativeCourseSession.dispose();window.__nativeCourseSession=null;}
   setPracticeOnlyUi(false);
   clearStageChoices();
   if(window._mainPracticeLifecycle) window._mainPracticeLifecycle.cancel('home');
@@ -4651,7 +4949,7 @@ function clearStageChoices(){
      走 CL.refreshExternal 一并重载 IDB 大对象内存桥（bySentence/courses），再渲染首页，
      避免只读小字段却沿用旧内存桥导致的过期显示。 */
    if(window.__chunklabExternalPending){ window.__chunklabExternalPending = false; try{ loadStore(); }catch(e){} }
-   renderHome();
+   workspace().show();
    if(window.__chunklabServerHomeProjectionPending) bindServerHomeProjectionRefresh();
    if(window.__chunklabServerHomeProjectionPending && serverPersistenceEnabled() && CL.serverPersistenceReady()){
      refreshServerHomeProjection().then(function(applied){if(applied) renderHome();})
@@ -4659,12 +4957,31 @@ function clearStageChoices(){
    }
    window.scrollTo(0, 0);
  }
+function showAccountRequiredPage(){
+  document.querySelectorAll('.page').forEach(function(page){page.classList.add('hidden');});
+  var home=$('pageHome');if(!home)return;
+  home.classList.remove('hidden');
+  ['homeBody','myLearningBody','discoverBody'].forEach(function(id){var node=$(id);if(node)node.replaceChildren();});
+  var panel=$('accountEntryPanel');
+  if(!panel){
+    panel=document.createElement('section');panel.id='accountEntryPanel';panel.className='course-access-panel';
+    var title=document.createElement('h2');title.textContent='登录后开始学习';panel.appendChild(title);
+    var description=document.createElement('p');description.textContent='登录后可查看你的课程和学习记录。';panel.appendChild(description);
+    var button=document.createElement('button');button.type='button';button.className='primary';button.textContent='登录账号';
+    button.addEventListener('click',function(){if(window.ChunkAuthUI)ChunkAuthUI.showLogin(function(){location.reload();},{dismissible:false});});
+    panel.appendChild(button);home.insertBefore(panel,home.firstChild);
+  }
+  panel.hidden=false;
+}
 function showPracticePage(){
+  if(!window.ChunkAPI || !ChunkAPI.isLoggedIn()){showAccountRequiredPage();return false;}
   /* 用户已经明确进入练习：后续 bootMain 只能补充初始化，不能再次执行默认入口决策。 */
   _mainBootState().claimEntry();
   _mainEntryClaimed = true;
   setPracticeOnlyUi(true);
   var h = $('pageHome'); if(h) h.classList.add('hidden');
+  $('pageMyLearning').classList.add('hidden');
+  $('pageDiscover').classList.add('hidden');
   var p = $('pagePractice'); if(p) p.classList.remove('hidden');
   var b = $('bootScreen'); if(b) b.hidden = true;
 }
@@ -4684,7 +5001,8 @@ function exitPractice(){
     return true;
   }).then(function(){
     if(btn){ btn.disabled = false; btn.textContent = '退出'; }
-    showHomePage();
+    var returnHref=_workspacePracticeReturn;_workspacePracticeReturn='';
+    if(new URLSearchParams(location.search).has('returnTo'))location.href=CourseReturn.destination(location.search,'main.html?view=home');else if(returnHref)location.href=returnHref;else showHomePage();
   }).catch(function(error){
     console.warn('[practice] 退出前保存失败，暂不离开练习页', error);
     if(btn){
@@ -4696,11 +5014,12 @@ function exitPractice(){
 }
 
 /* ===== 今日首页（吸收 ref「今日行动中枢」：到期收口 + 上次进度 + 最近牌组 + 入口） ===== */
-function computeToday(){
+function computeToday(membershipFor){
+  membershipFor = membershipFor || practiceMemberships();
   var by = (mem.stats && mem.stats.bySentence) || {};
   var now = Date.now(), due = 0, known = {};
   /* 统计档案本身已经带 deckId/cid；首页只需计算数字，不应为了显示到期数加载全部题库内容。 */
-  allDecks().forEach(function(d){ known[d.id] = true; });
+  allDecks().forEach(function(d){ if(membershipFor(d.id).joined) known[d.id] = true; });
   if(window.MainHomeSummary && MainHomeSummary.computeTodaySummary){
     return MainHomeSummary.computeTodaySummary({
       stats: mem.stats,
@@ -4754,10 +5073,10 @@ function ensureHomeProgressIndexes(decks){
        这里直接拒绝这种入参并留痕，不让编程错误退化成一次主线程死锁。 */
     if(!deck || !deck.id){ if(deck) console.warn('[home] 跳过无 id 的课节索引预取，疑似传入了非 deck 对象'); return; }
     if(homeProgressItems(deck) || _homeProgressIndexLoading[deck.id]) return;
-    _homeProgressIndexLoading[deck.id] = true;
-    pending.push(Promise.resolve(ContentRepo.ensureDeckIndex(deck.id, mem)).then(function(indexed){
+    _homeProgressIndexLoading[deck.id] = Promise.resolve(ContentRepo.ensureDeckIndex(deck.id, mem)).then(function(indexed){
       if(indexed && Array.isArray(indexed.items)){ _homeProgressIndexes[deck.id] = indexed.items; loadedAny = true; }
-    }).catch(function(){}).then(function(){ delete _homeProgressIndexLoading[deck.id]; }));
+    }).catch(function(){}).then(function(){ delete _homeProgressIndexLoading[deck.id]; });
+    pending.push(_homeProgressIndexLoading[deck.id]);
   });
   /* 一批已加入课程的课节索引统一回绘一次，避免每个请求完成都整页重渲染。 */
   if(pending.length) Promise.all(pending).then(function(){ if(loadedAny) try{ renderHome(); }catch(e){} });
@@ -4793,7 +5112,7 @@ function deckLearningProgress(deck){
     seen[cid] = true;
   });
   var done = Math.min(total, Object.keys(seen).length);
-  return {done:done, total:total, pct:total ? Math.round(done / total * 100) : 0, ready:true};
+  return {done:done, total:total, pct:total ? (done === total ? 100 : Math.min(99, Math.round(done / total * 100))) : 0, ready:true};
 }
 function deckProgressMarkup(deck, resumeIdx, best){
   var p = deckLearningProgress(deck);
@@ -4818,9 +5137,11 @@ function deckProgressMarkup(deck, resumeIdx, best){
 /* 到期复习队列（全库 srs- 临时队列：batchSize 分批、不写 best，与 stats.practiceDue 同构） */
 function startTodayDue(){
   function run(){
+    var membershipFor = practiceMemberships();
     var by = (mem.stats && mem.stats.bySentence) || {};
     var now = Date.now(), items = [];
     allDecks().forEach(function(d){
+      if(!membershipFor(d.id).joined) return;
       var arr = d.items || [];
       for(var i=0;i<arr.length;i++){
         var st = by[CL.cidKey(d.id, arr[i])];
@@ -4879,6 +5200,9 @@ function createHomeCourseLookup(){
   };
   return lookup;
 }
+function practiceMemberships(){
+  return CourseEnrollment.deckMemberships(createHomeCourseLookup().getCatalog(), CL.readProgress());
+}
 function courseContextForDeck(deck, lookup){
   if(!deck || !window.CourseCatalog) return { id:'deck:'+deck.id, title:displayDeckName(deck.name), lessonTitle:displayDeckName(deck.name) };
   try{
@@ -4906,7 +5230,7 @@ function courseNavigationForDeck(deck, lookup){
     if(lesson.contentRef && lesson.contentRef.id === deck.id) currentIndex = index;
     var lessonDeck = lesson.contentRef && lesson.contentRef.type === 'sentence-deck' ? findDeck(lesson.contentRef.id) : null;
     var progress = lessonDeck ? deckLearningProgress(lessonDeck) : { done:0, total:Number(lesson.itemCount) || 0, pct:0 };
-    states.push({ lesson:lesson, deck:lessonDeck, progress:progress, complete:progress.total > 0 && progress.pct >= 100 });
+    states.push({ lesson:lesson, deck:lessonDeck, progress:progress, complete:CourseProgress.isComplete(progress) });
   });
   if(window.MainCourseNavigation && MainCourseNavigation.chooseCourseNavigation){
     var pureDecision = MainCourseNavigation.chooseCourseNavigation(states, deck.id);
@@ -4938,8 +5262,55 @@ function ensureHomeMasteryIndex(){
     if(_curPage==='pageHome') renderHome();
   }).catch(function(error){_masteryIndexPromise=null;_masteryIndexFailed=true;console.warn('[learning] current content index unavailable; showing locally verified history only',error);});
 }
-function renderHome(){
-  var t = computeToday();
+
+var _workspaceRuntime=null, _workspaceData=null, _workspacePracticeReturn='';
+var _resolveWorkspaceInitialReady;
+var _workspaceInitialReady=new Promise(function(resolve){_resolveWorkspaceInitialReady=resolve;});
+function workspace(){
+  if(!_workspaceRuntime) _workspaceRuntime=LearningWorkspaceRuntime.create({
+    prepare:async function(){
+      await _workspaceInitialReady;
+      // Resolve the joined-course progress indexes before publishing the first model.
+      renderHome(true);
+      await Promise.all(Object.values(_homeProgressIndexLoading));
+    },
+    read:function(){renderHome(true);return _workspaceData;},
+    container:function(view){return $(view==='discover'?'discoverBody':view==='my-learning'?'myLearningBody':'homeBody');},
+    show:function(view){showPage(view==='discover'?'pageDiscover':view==='my-learning'?'pageMyLearning':'pageHome');},
+    visible:function(){return ['pageHome','pageMyLearning','pageDiscover'].some(function(id){return !$(id).classList.contains('hidden');});},
+    open:openWorkspaceResource,
+    resume:function(target){var resume=target||_workspaceData&&_workspaceData.resume;if(resume){if(resume.toolId==='vocabulary'){location.href=VocabularyStudy.resumeHref(resume);return;}showPracticePage();startDeck(resume.deck,resume.idx||0);}},
+    review:function(){showPracticePage();startTodayDue();},
+    leave:function(id){return CourseEnrollment.leave(id).then(function(){workspace().refresh();});}
+  });
+  return _workspaceRuntime;
+}
+function openWorkspaceResource(resource,options){
+  options=options||{};
+  var protectedCourse=(resource.sourceRefs||[]).find(function(ref){return ref.type==='protected-course';});
+  if(protectedCourse){location.href=CourseReturn.forward('main.html?protectedCourse='+encodeURIComponent(protectedCourse.id),CourseReturn.source());return;}
+  var wordbook=(resource.sourceRefs||[]).find(function(ref){return ref.type==='vocabulary-book';});
+  if(wordbook){location.href=CourseReturn.forward('wordbook.html?book='+encodeURIComponent(wordbook.id),CourseReturn.source());return;}
+  var catalog=createHomeCourseLookup().getCatalog();
+  var course=resource.courseId&&CourseCatalog.getCourse(catalog,resource.courseId);
+  if(!course){var ref=resource.sourceRefs[0];course=ref&&CourseCatalog.getCourseForContent(catalog,ref.type,ref.id);}
+  if(!course){if(resource.sourceRefs.some(function(ref){return ref.type==='vocabulary-pilot';}))location.href='wordbook.html?book=pilot-six-v1';else showSysToast('内容暂不可用，请稍后重试。',4000);return;}
+  var launch=function(){
+    var lessons=CourseCatalog.listLessons(course),lesson=lessons.find(function(row){return row.available!==false;});
+    var ref=lesson&&lesson.contentRef;
+    if(ref&&ref.type==='story-package'){location.href=CourseReturn.forward('courses.html?id='+encodeURIComponent(ref.id)+'&catalogCourse='+encodeURIComponent(course.id)+'&catalogLesson='+encodeURIComponent(lesson.id),CourseReturn.source());return;}
+    var deck=ref&&findDeck(ref.id);if(!deck){showSysToast('课程内容暂不可用。',4000);return;}
+    var next=preferredCourseResume(deck,createHomeCourseLookup()),target=next.deck||deck;
+    var position=mem.progress&&mem.progress[target.id];_workspacePracticeReturn=CourseReturn.source();showPracticePage();startDeck(target,options.restart?0:Number(position&&position.idx)||0);
+  };
+  if(CourseEnrollment.isJoined(course.id)){launch();return;}
+  CourseEnrollment.join(course.id,CourseCatalog.getEnrollmentAliases(catalog)).then(launch).catch(function(error){showSysToast(error.message||'加入失败，原有课程保留。',5000);});
+}
+function renderHome(modelOnly){
+  // Share one render-local catalogue; the next render must read fresh content.
+  var homeCourseLookup = createHomeCourseLookup();
+  var homeMembershipFor = CourseEnrollment.deckMemberships(homeCourseLookup.getCatalog(), CL.readProgress());
+  var t = computeToday(homeMembershipFor);
   var ic = function(n){ return window.Icons ? Icons.svg(n) : ''; };
   var escX = esc;
   /* 是否曾有真实练习痕迹（决定空档案引导 vs 今日聚合）。
@@ -4949,7 +5320,6 @@ function renderHome(){
   var byKeys = (mem.stats && mem.stats.bySentence) ? Object.keys(mem.stats.bySentence).length : 0;
   var hasEver = !!((mem.stats && mem.stats.totalAnswered) || byKeys);
   var decks = allDecks();
-  var homeCourseLookup = createHomeCourseLookup();
   var contextByDeckId = {};
   decks.forEach(function(d){ contextByDeckId[d.id] = courseContextForDeck(d, homeCourseLookup); });
   var homeProgressSnapshot = CL.readProgress ? CL.readProgress() : {};
@@ -4995,31 +5365,48 @@ function renderHome(){
     }); });
     if(bd) resume = Object.assign(preferredCourseResume(bd, homeCourseLookup), { idx:0 });
   }
+  // Confirmed resume rows are authoritative even on a new device with no lastPlayed hint.
+  var workspaceResumeCandidates=Object.keys(mem.progress||{}).map(function(id){var position=mem.progress[id],deck=findDeck(id),context=deck&&contextByDeckId[id];
+    return deck&&context&&memberships[context.id]&&memberships[context.id].joined&&position.sessionId
+      ?{deck:deck,idx:Number(position.idx)||0,time:Number(position.time)||0,mode:position.practiceMode}:null;
+  }).filter(Boolean).sort(function(a,b){return b.time-a.time;});
+  if(workspaceResumeCandidates.length)resume=workspaceResumeCandidates[0];
+  _workspaceData={catalog:homeCatalog,memberships:memberships,aliases:CourseCatalog.getEnrollmentAliases(homeCatalog),
+    joinedCourseIds:joinedCourses.map(function(course){return course.id;}),due:t.due,
+    resume:resume?Object.assign({},resume,{title:resume.deck.name,serverTime:Number(resume.time)||0}):null};
   var joinedSentenceDecks = [];
-  var joinedCourseRows = joinedCourses.map(function(course){
+  var progressCourses = (homeCatalog.courses || []).filter(function(course){ return memberships[course.id] || course.origin === 'user'; });
+  var courseCompletion = {};
+  var allCourseRows = progressCourses.map(function(course){
     var lessons = CourseCatalog.listLessons(course), sentenceLessons = lessons.filter(function(l){ return l.contentRef && l.contentRef.type === 'sentence-deck'; });
     var completed = 0, sentenceCompleted = 0, latestLesson = null, latestPlayed = 0, sentenceDone = 0, sentenceTotal = 0, sentenceReady = true;
-    var lessonProgressByDeck = Object.create(null);
+    var lessonProgressByDeck = Object.create(null), completionLessons = [];
     lessons.forEach(function(lesson){
       var ref = lesson.contentRef || {};
       if(ref.type === 'sentence-deck'){
-        var d = findDeck(ref.id); if(!d) return;
+        var d = findDeck(ref.id); if(!d) { completionLessons.push({ready:false}); return; }
         joinedSentenceDecks.push(d);
         var p = deckLearningProgress(d);
+        completionLessons.push(p);
         lessonProgressByDeck[d.id] = { lesson:lesson, progress:p, deck:d };
         sentenceDone += p.done || 0; sentenceTotal += p.total || 0; sentenceReady = sentenceReady && !!p.ready;
-        if(p.ready && p.total > 0 && p.pct >= 100){ completed++; sentenceCompleted++; }
+        if(CourseProgress.isComplete(p)){ completed++; sentenceCompleted++; }
         var played = mem.best && mem.best[d.id] && mem.best[d.id].lastPlayed || 0;
         if(played > latestPlayed){ latestPlayed = played; latestLesson = lesson; }
       } else if(ref.type === 'story-package'){
         var story = homeProgressSnapshot[ref.id] || {};
-        if(story.completed || story.completedAt || (Array.isArray(story.seen) && story.seen.length > 0)) completed++;
+        var storyMetric = CourseProgress.storyProgress(story,lesson.available), storyDone = CourseProgress.isComplete(storyMetric);
+        completionLessons.push(storyMetric);
+        if(storyDone) completed++;
+      } else {
+        completionLessons.push({ready:false});
       }
     });
     var title = course.title + (latestLesson && latestLesson.title !== course.title ? ' · ' + latestLesson.title : '');
     var progressText = course.contentType === 'story'
       ? (lessons.length ? '已学 ' + completed + ' / ' + lessons.length + ' 课节' : '已加入学习')
       : (sentenceLessons.length > 1 ? '已学 ' + completed + ' / ' + sentenceLessons.length + ' 课节' : (sentenceReady ? '已学 ' + sentenceDone + ' / ' + sentenceTotal + ' 句' : '已加入学习'));
+    if(course.isProtected) progressText='已加入学习 · 打开后读取最新位置';
     var resumeContext = resume && contextByDeckId[resume.deck.id];
     var focusDeckId = resumeContext && resumeContext.id === course.id ? resume.deck.id : '';
     if(!focusDeckId && latestLesson && latestLesson.contentRef) focusDeckId = latestLesson.contentRef.id;
@@ -5030,7 +5417,7 @@ function renderHome(){
     var coursePercent = courseDenominator ? Math.min(100, Math.round(courseDone / courseDenominator * 100)) : 0;
     var lessonPercent = focusProgress && focusProgress.progress.ready ? focusProgress.progress.pct : null;
     var focusTitle = focusProgress && focusProgress.lesson.title ? String(focusProgress.lesson.title) : '';
-    var focusTitleAlreadyInCourseTitle = !!focusTitle && title.slice(-focusTitle.length) === focusTitle;
+    var focusTitleAlreadyInCourseTitle = !!focusTitle && course.title.slice(-focusTitle.length) === focusTitle;
     var hasCourseMetric = coursePercent > 0;
     var progressAria = hasCourseMetric ? '课程进度 ' + courseDone + ' / ' + courseDenominator + ' 课节' : '';
     if(focusProgress && lessonPercent != null){
@@ -5064,11 +5451,19 @@ function renderHome(){
         + (hasLessonMetric ? '<span class="lesson-key" title="' + escX(focusTitle) + '">当前课节 ' + (focusTitleAlreadyInCourseTitle ? '' : '<em>' + escX(focusTitle) + '</em>') + '<b>' + lessonPercent + '%</b></span>' : '')
         + '</div></div>';
     }
-    return { course:course, lessons:lessons, title:title, progress:progressText, progressAria:progressAria, progressMarkup:progressMarkup };
+    var state = course.isProtected ? 'unknown' : CourseProgress.completionState(completionLessons);
+    courseCompletion[course.id] = {state:state};
+    return { course:course, lessons:lessons, title:title, completionState:state, coverMarkup:courseCover(course,lessons), progress:progressText, progressAria:progressAria, progressMarkup:progressMarkup };
   });
+  var joinedCourseRows = joinedCourses.map(function(course){ return allCourseRows.find(function(row){ return row.course.id === course.id; }); }).filter(Boolean);
+  _workspaceData.courseCompletion = courseCompletion;
   unavailableMemberships.forEach(function(item){ joinedCourseRows.push({ unavailable:true, course:{id:item.id}, title:'课程暂不可用', progress:'课程内容可能已移除或课程标识已更新' }); });
   failedMemberships.forEach(function(item){ joinedCourseRows.push({ loadFailed:true, course:{id:item.id}, title:'课程信息暂不可用', progress:'课程目录加载失败，请稍后重试' }); });
   ensureHomeProgressIndexes(joinedSentenceDecks);
+  _workspaceData.courseRows=joinedCourseRows;
+  _workspaceData.courseLimit=CourseEnrollment.MAX_JOINED_COURSES || 3;
+  if(modelOnly)return;
+  if(window.LearningWorkspaceRuntime){workspace().render();ensureHomeMasteryIndex();return;}
 
   var h = [];
   /* —— 顶部标题行：日期 + 连续天数（2026-09-14 顶部拆三层）——
@@ -5092,9 +5487,10 @@ function renderHome(){
   /* 我的课程只按显式加入关系显示；每行代表一门完整课程。 */
   var _courseRows = [];
   var _homeJoinedCourseCount = joinedCourses.length + unavailableMemberships.length + failedMemberships.length;
-  function courseCover(course){
+  function courseCover(course,lessons){
     var src = course && typeof course.coverImage === 'string' ? course.coverImage.trim() : '';
     var safe = src.length <= 600000 && /^(?:assets\/|\.\/|\.\.\/|\/(?!\/)|data:image\/(?:png|jpeg|webp|gif);base64,)/i.test(src);
+    if(!safe && course && window.CourseCovers){src=CourseCovers.fallback(course);safe=true;}
     return '<span class="hc-course-cover" aria-hidden="true">' + ic('book')
       + (safe ? '<img src="' + escX(src) + '" alt="" loading="lazy" decoding="async">' : '') + '</span>';
   }
@@ -5114,7 +5510,7 @@ function renderHome(){
       ? '<button type="button" class="hd-select-lessons" data-home-select-course="' + courseId + '" aria-label="选择 ' + escX(entry.course.title) + ' 的课节" title="选择课节">' + ic('list') + '<span>选课节</span></button>'
       : '';
     _courseRows.push('<div class="hd-row"><button type="button" class="hd-main-action" data-home-course="' + courseId + '" aria-label="' + action + '学习 ' + escX(entry.title) + '；' + escX(entry.progress) + progressAriaSuffix + '" title="' + action + '学习">'
-      + courseCover(entry.course)
+      + courseCover(entry.course,entry.lessons)
       + '<span class="grow"><span class="nm">' + escX(entry.title) + '</span><span class="sub home-deck-progress"><span class="learned">' + escX(entry.progress) + '</span></span>' + entry.progressMarkup + '</span>'
       + '</button>' + lessonChoices + '<span class="hd-action" aria-hidden="true">' + ic('chevR') + '</span></div>');
   });
@@ -5178,39 +5574,12 @@ function renderHome(){
      var _masteredN = CL.masteredSentenceCount(mem,_masteryIndexDecks||undefined);
      var _goalN = _goal;   /* 复用上面已算的 normDailyGoal，避免重复取数 */
      var _goalCount = _todayAnswered;   /* 同上，复用已算的今日已练 */
-     var _trendDays = [];
-     for(var _trendOffset=6; _trendOffset>=0; _trendOffset--){
-       var _trendDate = new Date(_nowD.getFullYear(), _nowD.getMonth(), _nowD.getDate() - _trendOffset);
-       var _trendKey = CL.ymd(_trendDate), _trendRecord = _activity[_trendKey] || {};
-       _trendDays.push({ key:_trendKey, date:_trendDate, answered:Number(_trendRecord.answered)||0 });
-     }
-     var _trendMax = Math.max.apply(null, _trendDays.map(function(day){ return day.answered; }));
-     var _trendScale = Math.max(4, Math.ceil(_trendMax / 4) * 4);
-     var _trendTotal = _trendDays.reduce(function(total,day){ return total + day.answered; },0);
-     var _trendCompact = window.innerWidth <= 420;
-     var _trendViewWidth = _trendCompact ? 230 : 310;
-     var _trendPoints = _trendDays.map(function(day,index){
-       var x = (_trendCompact ? 22 : 28) + index * (_trendCompact ? 30 : 42);
-       var y = 78 - day.answered / _trendScale * 58;
-       return { x:x, y:y, day:day };
-     });
-     var _trendPath = _trendPoints.map(function(point,index){ return (index ? 'L' : 'M') + point.x + ' ' + point.y.toFixed(1); }).join(' ');
-     var _trendSvg = '<svg class="home-trend-chart" viewBox="0 0 '+_trendViewWidth+' 112" role="img" aria-label="近7天每日答题句数：' + _trendDays.map(function(day){ return day.key + ' ' + day.answered + '句'; }).join('，') + '">'
-       + [20,49,78].map(function(y,index){
-           var tick = index===0 ? _trendScale : (index===1 ? Math.round(_trendScale/2) : 0);
-           return '<line class="home-trend-grid" x1="'+(_trendCompact?16:20)+'" y1="'+y+'" x2="'+(_trendViewWidth-8)+'" y2="'+y+'"></line><text class="home-trend-axis" x="'+(_trendCompact?12:16)+'" y="'+(y+3)+'" text-anchor="end">'+tick+'</text>';
-         }).join('')
-       + '<path class="home-trend-line" d="'+_trendPath+'"></path>'
-       + _trendPoints.map(function(point,index){
-           var date = point.day.date, dateLabel = index===6 ? (_trendCompact?'今':'今天') : (_trendCompact?String(date.getDate()):(date.getMonth()+1)+'/'+date.getDate());
-           var valueY = Math.max(15,point.y-6);
-           return '<circle class="home-trend-dot'+(index===6?' today':'')+'" cx="'+point.x+'" cy="'+point.y.toFixed(1)+'" r="3.2"><title>'+point.day.key+'：'+point.day.answered+'句</title></circle>'
-             + '<text class="home-trend-value" x="'+point.x+'" y="'+valueY.toFixed(1)+'" text-anchor="middle">'+point.day.answered+'</text>'
-             + '<text class="home-trend-date" x="'+point.x+'" y="107" text-anchor="middle">'+dateLabel+'</text>';
-         }).join('')
-       + '</svg>';
+     /* 「今天要做」主卡标题带（视觉稿 hero .hband）；连续天数在这里与标题行各出现一次，
+        与视觉稿一致。注意 streak 用独立类 ht-streak —— .cal-streak 被 e2e 契约限定在标题行。 */
+     h.push('<div class="home-today-band">今天要做'
+       + (_streakN > 0 ? '<span class="ht-streak">连续 ' + _streakN + ' 天</span>' : '')
+       + '</div>');
      h.push('<div class="home-today-counts home-today-counts-pills">'
-       + '<section class="home-trend" aria-label="近7天练习趋势"><div class="home-trend-head"><span class="home-trend-title">近7天答题</span><span class="home-trend-total">共 '+_trendTotal+' 句</span></div>'+_trendSvg+'</section>'
        + '<button class="home-pill due" type="button" id="homeBtnDue"' + (t.due ? '' : ' disabled') + ' aria-label="开始到期复习，' + t.due + ' 句">'
        +   '<span class="pill-k">待复习</span><span class="pill-n">' + t.due + '</span>' + _chev(t.due) + '</button>'
        + '<button class="home-pill book" type="button" id="homeBtnBook"' + (t.book ? '' : ' disabled') + ' aria-label="复习错题本，' + t.book + ' 句">'
@@ -5228,11 +5597,32 @@ function renderHome(){
   }
   h.push('</div>');
   if(_courseCardHtml) h.push(_courseCardHtml);
+  /* 错题本 TOP：唯一数据源 = mem.reinforceBook（与 stats.html 错题本同一份），按证据条数排序取前 3。 */
+  var _mistakeMembershipFor = homeMembershipFor;
+  var _bookTop = (Array.isArray(mem.reinforceBook) ? mem.reinforceBook : [])
+    .map(function(entry){
+      var n = (entry && Array.isArray(entry.history) && entry.history.length)
+        || (entry && Array.isArray(entry.mistakes) && entry.mistakes.length) || 1;
+      var membership = _mistakeMembershipFor(entry && entry.deckId);
+      return { sentence:(entry && entry.sentence) || '', count:n,
+        source:(membership.course ? membership.course.title : '历史课程') + (membership.joined ? '' : ' · '+membership.status) };
+    })
+    .sort(function(a,b){ return b.count - a.count; })
+    .slice(0, 3);
+  var _railWrongRows = _bookTop.length
+    ? _bookTop.map(function(row){
+        return '<div class="wrow"><span class="wcnt">' + row.count + '</span><em class="wsen">' + escX(row.sentence) + '<small style="display:block;font-style:normal">'+escX(row.source)+'</small></em></div>';
+      }).join('')
+    : '<div class="wrail-empty">错题本还是空的，练习时答错的句子会自动收进来。</div>';
+  var _railWrong = '<div class="home-card home-rail-card"><div class="rail-head band green"><b>错题本 TOP</b><span class="grow"></span>'
+    + '<a class="rail-link" href="stats.html">全部 ' + ic('chevR') + '</a></div>'
+    + '<div class="wlist">' + _railWrongRows + '</div></div>';
+  h.push('<div class="home-rail">' + _railWrong + '</div>');
   var body = $('homeBody');
   body.innerHTML = h.join('');
   var goDecks = body.querySelector('#homeGoDecks'); if(goDecks) goDecks.onclick = function(){ location.href = 'decks.html'; };
   var addCourse = body.querySelector('#homeAddCourse'); if(addCourse) addCourse.onclick = function(){ location.href = 'decks.html?courseView=discover'; };
-  body.querySelectorAll('.hc-course-cover img').forEach(function(img){ img.onerror = function(){ img.hidden = true; }; });
+  body.querySelectorAll('.hc-course-cover img').forEach(function(img){ img.onerror = function(){ img.hidden = true; }; if(img.complete && !img.naturalWidth) img.hidden = true; });
   Array.prototype.forEach.call(body.querySelectorAll('[data-home-course]'), function(btn){
     btn.onclick = function(){
       var course = CourseCatalog.getCourse(homeCatalog, btn.getAttribute('data-home-course'));
@@ -5848,6 +6238,8 @@ function renderAppendCats(deck){
 ============================================================ */
 var _curPage = 'pagePractice';
 function showPage(id){
+  if(!window.ChunkAPI||!ChunkAPI.isLoggedIn()){showAccountRequiredPage();return;}
+  if(id!==_curPage&&id!=='pageHome'&&id!=='pageMyLearning'&&id!=='pageDiscover'&&id!=='pageStats'){var noticeRail=$('noticeBannerRail');if(noticeRail)noticeRail.replaceChildren();}
   /* 隐藏所有页面 */
   var pages = document.querySelectorAll('.page');
   for(var i=0;i<pages.length;i++) pages[i].classList.add('hidden');
@@ -5855,6 +6247,7 @@ function showPage(id){
   var target = $(id);
   if(target) target.classList.remove('hidden');
   _curPage = id;
+  window.dispatchEvent(new CustomEvent('stats-surface-visibility'));
   setPracticeOnlyUi(id === 'pagePractice');
   /* stageChoices 是 fixed 浮层（不属任何 .page），切到非练习页时清空，
      避免 chips 残留在屏幕上与新页面冲突（详解已改为弹窗模式不走 showPage） */
@@ -5865,20 +6258,53 @@ function showPage(id){
   $('impMask').hidden = true;
   $('appendMask').hidden = true;
 }
+var statsReadyTask=null,statsLoadFailed=false;
+function showStatsPage(){
+  document.title='学习记录 · jqka.top';
+  if(window._mainPracticeLifecycle)window._mainPracticeLifecycle.cancel('stats');
+  showPage('pageStats');
+  var noticeRail=$('noticeBannerRail');if(noticeRail)noticeRail.replaceChildren();
+  var boot=$('bootScreen');if(boot)boot.hidden=true;
+  var nav=$('workspaceNavHost');if(nav&&window.LearningNavigation)nav.replaceChildren(LearningNavigation.create('stats',function(view){workspace().navigate(view);}));
+  var host=$('statsPageHost');
+  if(window.StatsPage&&window.StatsGrowth&&window.StatsInsights&&window.MistakeReview){StatsPage.mount($('statsPageHost'));return;}
+  if(statsLoadFailed)return;
+  host.innerHTML='<p role="status">正在加载学习记录…</p>';
+  if(!statsReadyTask)statsReadyTask=Promise.allSettled([
+    ['StatsGrowth','js/stats-growth.js'],['StatsInsights','js/stats-insights.js'],
+    ['MistakeReview','js/mistake-review.js'],['StatsPage','js/stats-page.js?v=archive-domain-tabs-20261020']
+  ].map(function(entry){return window[entry[0]]?Promise.resolve():loadBackupScript(entry[1]);})).then(function(results){
+    var failure=results.find(function(result){return result.status==='rejected';});if(failure)throw failure.reason;
+  }).catch(function(error){statsReadyTask=null;throw error;});
+  statsReadyTask.then(function(){
+    if(_curPage!=='pageStats')return;
+    host.replaceChildren();StatsPage.mount($('statsPageHost'));
+  }).catch(function(){
+    if(_curPage!=='pageStats')return;
+    statsLoadFailed=true;
+      document.getElementById('noticeBannerRail').replaceChildren(NoticeBanner.create({message:'学习记录未能加载，请联网后重试。',actionLabel:'重试',
+      onAction:function(){statsLoadFailed=false;showStatsPage();}
+    }));
+  });
+}
+window.openStatsPage=function(){
+  var url=new URL(location.href);url.search='?view=stats';history.pushState({},'',url);
+  showStatsPage();
+};
+window.addEventListener('popstate',function(){if(new URLSearchParams(location.search).get('view')==='stats')setTimeout(showStatsPage,0);});
 /* 回到练习页 */
 function goPractice(){ showPage('pagePractice'); }
 
-/* 意群自解释弹窗（2026-09-14，产品评审缺口②）：入口有两处 —— 首页空档案里的
-   「意群是什么？」与设置面板的同名按钮。打开前先收起设置面板，避免两层 mask 叠加；
-   关闭复用全局的 [data-close] / Esc / 点背景委托（见下方 document 级监听），无需另写。 */
+/* 个人中心内打开帮助时保留表单；首页帮助保留独立入口。 */
 function openChunkIntro(){
+  if(window.PersonalCenterDialogs){PersonalCenterDialogs.open('chunkIntroMask');return;}
   var s = $('settingsMask'); if(s) s.hidden = true;
   if(window.hideSetHint) window.hideSetHint();
   $('chunkIntroMask').hidden = false;
 }
 function closeMasks(){
-  /* 关闭弹窗后保留当前练习上下文（详解/设置/导入均从练习页打开） */
-  var fromExplain = $('explainMask') && !$('explainMask').hidden;
+  if(window.PersonalCenterDialogs && PersonalCenterDialogs.close())return;
+  /* 弹窗不拥有页面导航；关闭时保留打开前的页面与练习上下文。 */
   $('impMask').hidden = true;
   $('appendMask').hidden = true;
   $('settingsMask').hidden = true;
@@ -5886,8 +6312,6 @@ function closeMasks(){
   if(window.hideSetHint) window.hideSetHint(); /* 说明浮层挂在 body 上，不随弹窗一起隐藏，需显式收起 */
   $('explainMask').hidden = true;
   $('feedbackMask').hidden = true;
-  /* 如果在题库/管理页，按 Esc 回到练习页 */
-  if(_curPage !== 'pagePractice' && !fromExplain) goPractice();
 }
 document.addEventListener('click', function(e){
   var t = e.target;
@@ -5971,11 +6395,33 @@ $('btnDecks').onclick = function(){ window.location.href = 'decks.html?courseVie
 
 
 /* 快捷键标签可点击：委托 stage-tip-bar 上的 [data-action] */
+function switchToSpelling(){
+  if(_curPage!=='pagePractice'||!cur()||S.assessment||S.finished)return;
+  if(document.querySelector('.mask:not([hidden])'))return;
+  var nextMode=effectivePracticeMode()==='type'?'choose':'type';
+  var courseMode=nextMode==='type'?'typing':'chunkSelection';
+  if(S.courseLearning&&S.courseLearning.enabled&&S.courseLearning.modes.indexOf(courseMode)<0)return;
+  if(effectivePracticeMode()==='type')S.spellingDraft=S.answers.map(function(_,index){return Array.from(inputsAt(index),function(input){return input.value;});});
+  S.spellingOverride=nextMode;
+  renderQ(true);
+}
+var _soloShift=false;
+document.addEventListener('keydown',function(e){
+  if(e.key==='Shift'&&!e.repeat&&!e.ctrlKey&&!e.altKey&&!e.metaKey&&!e.isComposing)_soloShift=true;
+  else _soloShift=false;
+},true);
+document.addEventListener('keyup',function(e){
+  if(e.key!=='Shift')return;
+  var solo=_soloShift;_soloShift=false;
+  if(solo&&!e.ctrlKey&&!e.altKey&&!e.metaKey&&!e.isComposing)switchToSpelling();
+},true);
+window.addEventListener('blur',function(){_soloShift=false;});
 $('stageTipBar').addEventListener('click', function(e){
   var btn = e.target.closest && e.target.closest('[data-action]');
   if(!btn) return;
   var act = btn.dataset.action;
-  if(act==='hint') hintFirst();
+  if(act==='spelling') switchToSpelling();
+  else if(act==='hint') hintFirst();
   else if(act==='reveal') showSentenceHint();
   else if(act==='full') showFullSentence();
 });
@@ -6026,7 +6472,7 @@ var BATCH_OPTIONS = [10, 15, 20, 30];
    处理：取最接近的一档（平局取小）。
    ⚠️ 故意**不在 loadStore 里**归一化：① e2e 会注入 batchSize=5/3 构造分批场景，落地即改写会
    破坏这些用例；② 用户只是打开一次设置就被改数据（还触发云同步）不该发生。
-   归一化只发生在「渲染设置面板」与「保存设置」两处，是唯一能把旧值带进新 UI 的两个入口。 */
+   仅在显示练习选项和明确保存新选择时归一化，不改写已有学习队列。 */
 function normBatchSize(v){
   var n = parseInt(v, 10);
   if(isNaN(n)) return 10;
@@ -6037,6 +6483,53 @@ function normBatchSize(v){
   }
   return best;
 }
+function updatePracticeOptions(){
+  var policy=S.courseLearning, restricted=policy&&policy.enabled;
+  $('practiceOptions').hidden=!S.deck || !!S.deck._platformSession || !!S.assessment;
+  $('practiceModeRow').hidden=!!restricted;
+  $('practiceShuffleRow').hidden=!!(restricted&&policy.preserveOrder);
+  if($('practiceModeRow').hidden && $('practiceShuffleRow').hidden)$('practiceOptions').hidden=true;
+  $('practiceMode').value=effectivePracticeMode();
+  $('practiceShuffle').checked=!!mem.settings.shuffle;
+}
+async function savePracticePreference(input,key,value){
+  var state=mem,owner=AccountStorage.owner,protocol3=serverPersistenceEnabled();
+  input.disabled=true;
+  try{
+    var patch={};patch[key]=value;
+    if(protocol3)await ServerStore.submit('settings.patch',{patch:patch},{requestId:newPracticeSessionId()});
+    if(mem!==state || owner!==AccountStorage.owner)return;
+    if(key==='mode' && effectivePracticeMode()!==value)switchToSpelling();
+    mem.settings[key]=value;
+    if(await saveStore(protocol3?'local':undefined)===false)throw new Error('本地保存失败');
+  }catch(error){showSysToast('练习设置未能保存，请重试。',4000);}
+  finally{input.disabled=false;if(mem===state && owner===AccountStorage.owner)updatePracticeOptions();}
+}
+$('practiceMode').onchange=function(){savePracticePreference(this,'mode',this.value);};
+$('practiceShuffle').onchange=function(){savePracticePreference(this,'shuffle',this.checked);};
+function updatePracticeBatchSize(deck){
+  $('practiceBatchSizeRow').hidden=!deck || !!deck._platformSession || !!S.assessment ||
+    !(isTempQueueDeck(deck.id) || deck._contentBatch ||
+      (deck.builtin && window.ContentRepo && ContentRepo.shouldBatch && ContentRepo.shouldBatch(deck)));
+  $('practiceBatchSize').value=String(normBatchSize(mem.settings.batchSize));
+}
+$('practiceBatchSize').onchange=async function(){
+  var input=this, value=normBatchSize(input.value), previous=mem.settings.batchSize;
+  if(value===previous)return;
+  var state=mem, owner=AccountStorage.owner, protocol3=serverPersistenceEnabled();
+  input.disabled=true;
+  try{
+    if(protocol3) await ServerStore.submit('settings.patch',{patch:{batchSize:value}},{requestId:newPracticeSessionId()});
+    if(mem!==state || AccountStorage.owner!==owner)return;
+    mem.settings.batchSize=value;
+    if(await saveStore(protocol3?'local':undefined)===false)throw new Error('本地保存失败');
+  }catch(error){
+    if(mem===state && AccountStorage.owner===owner){
+      input.value=String(normBatchSize(mem.settings.batchSize));
+      showSysToast('每组句数未能保存，请重试。',4000);
+    }
+  }finally{input.disabled=false;}
+};
 /* 每日目标（产品层设置，2026-09-13）：0 = 关闭 → 首页今日卡完全不显示进度。
    与 batchSize 不同，这里**不做就近吸附**：非法值一律回落 0（关闭），
    避免用户手改存储后凭空多出一个自己没设过的目标。 */
@@ -6063,6 +6556,7 @@ function normDailyGoal(v){
   pop.setAttribute('role', 'tooltip');
   document.body.appendChild(pop);
   var owner = null;
+  var dismissTimer = null;
   /* pointer:fine 一起判，避免「触屏+鼠标」二合一设备被误判成纯触屏 */
   var hasHover = !!(window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches);
   window.__setHintHover = hasHover; /* 供 e2e 判定走哪条分支（只读标记，不改行为） */
@@ -6079,18 +6573,23 @@ function normDailyGoal(v){
     pop.style.top = Math.round(top) + 'px';
     pop.style.left = Math.round(Math.min(Math.max(8, r.left), Math.max(8, window.innerWidth - pw - 8))) + 'px';
     owner = row;
+    clearTimeout(dismissTimer);
+    dismissTimer = setTimeout(hide, 4000);
   }
-  function hide(){ pop.classList.remove('open'); owner = null; }
+  function hide(){clearTimeout(dismissTimer);dismissTimer=null;pop.classList.remove('open');owner=null;}
   /* 事件目标是否落在某行的标题触发器上（返回该行 + 触发器） */
   function hitIn(target){
-    var row = (target && target.closest) ? target.closest('label[data-hint]') : null;
+    var row = (target && target.closest) ? target.closest('label[data-hint],button[data-hint]') : null;
     if(!row || !mask.contains(row)) return null;
-    var hit = row.querySelector('.set-hit');
+    var hit = row.matches('button') ? row : row.querySelector('.set-hit');
     return (hit && hit.contains(target)) ? { row: row, hit: hit } : null;
   }
-  Array.prototype.forEach.call(mask.querySelectorAll('label[data-hint]'), function(row){
-    var hit = row.querySelector('.set-hit');
+  Array.prototype.forEach.call(mask.querySelectorAll('label[data-hint],button[data-hint]'), function(row){
+    var hit = row.matches('button') ? row : row.querySelector('.set-hit');
     if(!hit) return;
+    if(row.matches('button')){
+      hit.addEventListener('blur', hide);
+    }
     if(hasHover){
       hit.addEventListener('mouseenter', function(){ show(row, hit); });
       hit.addEventListener('mouseleave', hide);
@@ -6102,29 +6601,55 @@ function normDailyGoal(v){
       });
     }
   });
-  if(!hasHover){
-    /* 点别处收起；点在任意标题上交给上面的 toggle 逻辑 */
-    document.addEventListener('pointerdown', function(e){
-      if(!owner) return;
-      if(hitIn(e.target)) return;
-      hide();
-    }, true);
-  }
+  /* Native selects can interrupt mouseleave; dismiss before opening any control. */
+  document.addEventListener('pointerdown', function(e){
+    if(!owner)return;
+    if(!hasHover&&hitIn(e.target))return;
+    hide();
+  },true);
+  mask.addEventListener('change',hide,true);
+  mask.addEventListener('focusin',function(e){
+    var target=hitIn(e.target);
+    if(target && target.hit.matches('button:focus-visible')) show(target.row,target.hit);
+    else hide();
+  },true);
+  mask.addEventListener('toggle',hide,true);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();},true);
+  window.addEventListener('blur',hide);
+  document.addEventListener('visibilitychange',function(){if(document.hidden)hide();});
   /* 浮层是 fixed，弹窗内滚动 / 视口变化会让它错位 —— 直接收起，不做跟随（说明文字不值得那套复杂度） */
-  var body = mask.querySelector('.modal-body');
-  if(body) body.addEventListener('scroll', hide, { passive: true });
+  mask.addEventListener('scroll',hide,{passive:true,capture:true});
   window.addEventListener('resize', hide);
   window.hideSetHint = hide; /* 设置弹窗关闭时由外部收起 */
 })();
 
 /* ===== 设置面板 ===== */
 $('btnSettingsTop').onclick = function(){
+  var currentConfig = CL.getCloudConfig && CL.getCloudConfig();
+  if(currentConfig && !currentConfig.requireAuth){openPersonalCenter();return;}
+  refreshAccountEntry().then(function(state){
+    if(state.config && state.config.requireAuth && !state.formal){
+      if(!window.ChunkAuthUI)return;
+      if(state.user){
+        ChunkAuthUI.showSetAccount(state.user.username,function(){location.reload();},{loginEntry:true});
+      }else ChunkAuthUI.showLogin(function(){location.reload();},{dismissible:true});
+      return;
+    }
+    openPersonalCenter();
+  }).catch(function(){showSysToast('暂时无法确认登录状态，请稍后重试。',4000);});
+};
+var personalCenterDialogPromise=null;
+async function openPersonalCenter(){
+  try{
+    if(!personalCenterDialogPromise)personalCenterDialogPromise=loadBackupScript('js/personal-center-dialogs.js');
+    await personalCenterDialogPromise;
+  }catch(error){personalCenterDialogPromise=null;showSysToast('个人中心暂未加载，请重试。');return;}
+  var cfg = CL.getCloudConfig && CL.getCloudConfig();
+  if((!cfg || cfg.requireAuth) && !ChunkAPI.isLoggedIn()){
+    if(window.ChunkAuthUI) ChunkAuthUI.showLogin(function(){ location.reload(); },{dismissible:true});
+    return;
+  }
   $('setSound').checked = !!mem.settings.sound;
-  $('setShuffle').checked = !!mem.settings.shuffle;
-  $('setMode').value = mem.settings.mode || 'choose';
-  $('setBatchSize').value = String(normBatchSize(mem.settings.batchSize));
-  $('setDailyGoal').value = String(normDailyGoal(mem.settings.dailyGoal));
-  $('setFxStack').checked = mem.settings.fxStack !== false;
   $('setCelebrate').value = mem.settings.celebrate || 'confetti';
   $('setAutoSpeak').checked = !!mem.settings.autoSpeak;
   $('setDarkMode').checked = !!mem.settings.darkMode;
@@ -6136,14 +6661,85 @@ $('btnSettingsTop').onclick = function(){
   $('aiCfgCaret').style.transform = 'rotate(0deg)';
   $('aiCfgStatus').textContent = mem.settings.apiKey ? '· 本地 Key（仅服务端未配置时使用）' : '· 服务端代理模式';
   refreshAccountUi();
-  $('settingsMask').hidden = false;
+  PersonalCenterDialogs.open('settingsMask');
+  refreshImageCacheUsage();
+}
+function currentImageCache(){
+  return {cache:new ChunkMembership.CourseImageCache(window),scope:ChunkMembership.imageCacheScope(window)};
+}
+async function refreshImageCacheUsage(){
+  var label=$('imageCacheUsage'),button=$('btnClearImageCache');
+  label.textContent='读取中…';button.disabled=true;
+  try{
+    var state=currentImageCache(),usage=await state.cache.usage(state.scope);
+    if(state.scope!==ChunkMembership.imageCacheScope(window))return;
+    label.textContent=usage ? usage.count+' 张 · '+(usage.bytes/1048576).toFixed(2)+' MB' : '此浏览器无法保存图片缓存';
+    button.disabled=!usage||usage.count===0;
+  }catch(error){label.textContent='缓存读取失败，请重新打开设置';}
+}
+$('btnClearImageCache').onclick=async function(){
+  var state=currentImageCache();
+  if(!confirm('清除当前账号的图片缓存？下次用到图片时会重新下载，课程和学习记录不会删除。'))return;
+  this.disabled=true;
+  try{
+    if(state.scope!==ChunkMembership.imageCacheScope(window))throw new Error('SESSION_CHANGED');
+    await state.cache.clear(state.scope);
+    showSysToast('图片缓存已清除，课程和学习记录保留。',3500);
+  }catch(error){showSysToast('清除失败，请稍后重试。',3500);}
+  finally{refreshImageCacheUsage();}
 };
+var _accountEntryRevision = 0;
+var _accountEntryConfirmedKey = null, _accountEntryUpdateTask = null;
+function accountEntryKey(config){
+  return JSON.stringify([ChunkAPI.getBase(),ChunkAPI.getToken(),config.authMode,!!config.requireAuth]);
+}
+async function refreshAccountEntry(){
+  var revision = ++_accountEntryRevision;
+  var entry = $('btnSettingsTop');
+  var token = ChunkAPI.getToken(), base = ChunkAPI.getBase();
+  var state = {config:null,user:null,formal:false};
+  try{
+    state.config = await ChunkAPI.getConfig();
+    if(token){
+      var response = await ChunkAPI.me();
+      state.user = response && response.user;
+      state.formal = !!(state.user && (state.config.authMode === 'phone' ? state.user.phone :
+        state.user.username && !/^guest_/.test(state.user.username) && state.user.username !== '__default__'));
+    }
+  }catch(error){
+    if(revision === _accountEntryRevision){_accountEntryConfirmedKey=null;entry.textContent='登录';entry.title='登录';entry.setAttribute('aria-label','登录');}
+    throw error;
+  }
+  if(token !== ChunkAPI.getToken() || base !== ChunkAPI.getBase())throw new Error('账号状态已变化');
+  if(revision === _accountEntryRevision){
+    var label = state.formal ? '个人中心' : '登录';
+    entry.textContent = label; entry.title = label; entry.setAttribute('aria-label',label);
+    _accountEntryConfirmedKey=accountEntryKey(state.config);
+  }
+  return state;
+}
+async function updateAccountEntry(){
+  try{
+    var scope=JSON.stringify([ChunkAPI.getBase(),ChunkAPI.getToken()]);
+    var config=CL.getCloudConfig&&CL.getCloudConfig();
+    // Saving readiness changes do not invalidate an already confirmed account label.
+    if(config&&_accountEntryConfirmedKey===accountEntryKey(config))return;
+    if(_accountEntryUpdateTask&&_accountEntryUpdateTask.scope===scope)return await _accountEntryUpdateTask.promise;
+    var task={scope:scope};
+    task.promise=refreshAccountEntry().finally(function(){if(_accountEntryUpdateTask===task)_accountEntryUpdateTask=null;});
+    _accountEntryUpdateTask=task;await task.promise;
+  }catch(error){/* Explicitly opening the account entry always confirms it again. */}
+}
+updateAccountEntry();
+window.addEventListener('cloud-config-changed',updateAccountEntry);
+window.addEventListener('chunklab-auth-expired',function(){setTimeout(updateAccountEntry,0);});
 /* 账号区块：仅多用户模式显示；登录/退出按钮与状态同步 */
 function refreshAccountUi(){
   var sec = $('accountSection');
   if(!sec || !window.ChunkAPI){ if(sec) sec.hidden = true; return; }
   window.ChunkAPI.getConfig().then(function(cfg){
     if(!cfg || !cfg.requireAuth){ sec.hidden = true; return; } /* 开放模式无需账号概念 */
+    if(window.ChunkAuthUI) window.ChunkAuthUI.phoneMode = cfg.authMode === 'phone';
     sec.hidden = false;
     var btnName = $('acctNameBtn'), nameText = $('acctNameText'),
         btnLogin = $('btnAccountLogin'), btnLogout = $('btnAccountLogout'), btnSet = $('btnAccountSet'),
@@ -6151,21 +6747,27 @@ function refreshAccountUi(){
     if(window.ChunkAPI.isLoggedIn()){
       btnLogin.hidden = true; btnLogout.hidden = false; btnSet.hidden = false;
       btnName.hidden = false;
+      loadMembershipPanel();
       nameText.textContent = '…';
       nameText.title = '';
       window.ChunkAPI.me().then(function(u){
         var username = (u && u.user && u.user.username) ? u.user.username : '';
+        hint.hidden = false;
+        if(cfg.authMode === 'phone') {
+          var phone = u && u.user && u.user.phone;
+          nameText.textContent = phone || '尚未绑定手机号';
+          nameText.title = phone || '';
+          btnName.dataset.username = ''; btnName.disabled = true;
+          btnSet.hidden = !!phone; btnSet.textContent = '绑定手机号';
+          hint.hidden = !!phone;
+          hint.textContent = phone ? '' : '绑定手机号后，可在其他设备登录原账号；课程和学习记录保持不变。';
+          return;
+        }
         if(!username){ btnName.hidden = true; tip.textContent = '已登录'; return; }
-        nameText.textContent = username;
+        nameText.textContent = /^guest_/.test(username) ? '我的账号' : username;
         nameText.title = username;
         btnName.dataset.username = username;
-        /* 游客账号（guest_<随机>）只存在于本设备：密码随机且用户不知晓，换个设备登不回来。
-           引导用户就地设置自己的账号名与密码。 */
-        if(/^guest_/.test(username)){
-          hint.textContent = '当前是自动生成的临时账号，只存在于这台设备。点「设置账号」起一个自己记得住的账号，就能在别的设备登回同一份数据。';
-        } else {
-          hint.textContent = '点击账号名复制到剪贴板；退出后可切换账号。学习数据在云服务器上，退出前请确认已同步（顶栏无「待同步」徽标）。';
-        }
+        hint.textContent = '点击账号名复制到剪贴板；退出后可切换账号。学习记录自动保存；未上传记录保留在本机，登录原账号并联网后会继续上传。请勿清除浏览器数据。';
       }).catch(function(e){
         if(e && e.code === 'NOT_AUTH'){ tip.textContent = '登录已过期，请重新登录'; refreshAccountUi(); return; }
         btnName.hidden = true; tip.textContent = '已登录（获取账号失败）';
@@ -6173,10 +6775,57 @@ function refreshAccountUi(){
     } else {
       btnLogin.hidden = false; btnLogout.hidden = true; btnSet.hidden = true;
       btnName.hidden = true;
+      var membershipPanel = $('membershipPanel'); if(membershipPanel) membershipPanel.hidden = true;
       nameText.textContent = ''; nameText.title = '';
     }
   }).catch(function(){ sec.hidden = true; });
 }
+function membershipTime(value){
+  if(!value)return '';
+  var date=new Date(value);
+  return isNaN(date.getTime())?'':date.toLocaleString('zh-CN',{hour12:false});
+}
+function loadMembershipPanel(){
+  var panel=$('membershipPanel');
+  if(!panel||!window.ChunkAPI)return;
+  panel.hidden=false;
+  $('membershipStatus').textContent='正在读取会员状态…';
+  window.ChunkAPI.getMembership().then(function(data){
+    var entitlement=data.entitlement||{},trial=data.trial||{},text='';
+    if(entitlement.active) text='会员有效期至 '+membershipTime(entitlement.endsAt)+'。';
+    else if(trial.status==='available') text='体验中：本 24 小时周期还可学习 '+Math.floor(Number(trial.remainingSeconds||0)/60)+' 分钟；体验结束时间 '+membershipTime(trial.endsAt)+'。';
+    else if(trial.status==='daily_limit') text='本周期体验时长已用完，将于 '+membershipTime(trial.nextResetAt)+' 恢复。';
+    else if(trial.status==='expired'||trial.status==='closed_by_redemption') text='免费体验已结束，会员课程需要兑换会员码后继续。';
+    else if(trial.status==='disabled') text='免费体验当前未开放；免费课程仍可继续学习。';
+    else text='';
+    $('membershipStatus').textContent=text;
+    var membershipHistory=$('membershipHistory');membershipHistory.replaceChildren();
+    (data.history||[]).forEach(function(grant){var row=document.createElement('li');row.textContent=(grant.displayName||'会员')+' · '+membershipTime(grant.redeemedAt)+' · '+grant.termMonths+' 个月'+(grant.revokedAt!=null?' · 已于 '+membershipTime(grant.revokedAt)+' 撤销'+(grant.revokeReason?'：'+grant.revokeReason:''):' · 已兑换');membershipHistory.appendChild(row);});
+    if(!(data.history||[]).length){var membershipEmpty=document.createElement('li');membershipEmpty.textContent='暂无兑换记录';membershipHistory.appendChild(membershipEmpty);}
+    var link=$('membershipSalesLink');
+    if(data.salesUrl){link.href=data.salesUrl;link.hidden=false;}else link.hidden=true;
+  }).catch(function(error){
+    $('membershipStatus').textContent=error&&error.status===401?'登录后查看会员状态':'会员状态暂时无法读取，请稍后重试。';
+  });
+}
+var redeemMembershipButton=$('btnRedeemMembership');
+if(redeemMembershipButton) redeemMembershipButton.addEventListener('click',function(){
+  var code=$('membershipCode').value.trim();
+  var message=$('membershipMessage');
+  if(!code){message.textContent='请先输入兑换码';return;}
+  redeemMembershipButton.disabled=true;message.textContent='正在核销…';
+  var requestId=(window.crypto&&window.crypto.randomUUID)?window.crypto.randomUUID():('redeem_'+Date.now()+'_'+Math.random().toString(36).slice(2));
+  window.ChunkAPI.redeemMembership(code,requestId).then(function(){
+    $('membershipCode').value='';message.textContent='兑换成功，会员权益已更新。';loadMembershipPanel();
+  }).catch(function(error){
+    var codeName=error&&error.code;
+    message.textContent=codeName==='ACCOUNT_BINDING_REQUIRED'?'请先设置可重新登录的账号，再兑换会员码。':
+      (codeName==='CODE_UNAVAILABLE'?'兑换码不可用，请检查输入或联系购买平台。':
+        (codeName==='RATE_LIMITED'?'尝试次数较多，请稍后再试。':
+          (codeName==='CODE_KEYS_UNAVAILABLE'||codeName==='SERVICE_UNAVAILABLE'?'兑换服务暂时不可用，请稍后重试。':
+            (error&&error.message==='NOT_AUTH'?'登录状态已过期，请重新登录。':'核销暂时失败，请检查网络后重试。'))));
+  }).finally(function(){redeemMembershipButton.disabled=false;});
+});
 /* 复制账号名到剪贴板（无依赖 copyText（3764）已带 execCommand 降级） */
 var _acctCopyTimer = null;
 $('acctNameBtn').onclick = function(){
@@ -6223,6 +6872,7 @@ $('btnAccountLogout').onclick = function(){
 $('aiCfgHead').onclick = function(){
   var body = $('aiCfgBody');
   var collapsed = body.classList.toggle('hidden');
+  this.setAttribute('aria-expanded',String(!collapsed));
   $('aiCfgCaret').style.transform = collapsed ? 'rotate(0deg)' : 'rotate(90deg)';
 };
 $('btnSaveSettings').onclick = function(){
@@ -6231,11 +6881,6 @@ $('btnSaveSettings').onclick = function(){
   var previous = Object.assign({}, mem.settings || {});
   var next = Object.assign({}, previous, {
     sound:$('setSound').checked,
-    shuffle:$('setShuffle').checked,
-    mode:$('setMode').value,
-    batchSize:normBatchSize($('setBatchSize').value),
-    dailyGoal:normDailyGoal($('setDailyGoal').value),
-    fxStack:$('setFxStack').checked,
     celebrate:$('setCelebrate').value,
     autoSpeak:$('setAutoSpeak').checked,
     darkMode:$('setDarkMode').checked,
@@ -6244,11 +6889,11 @@ $('btnSaveSettings').onclick = function(){
     apiKey:$('setApiKey').value.trim()
   });
   /* API Key 是设备私密设置，不进入服务端 settings.patch。 */
-  var fields = ['sound','shuffle','mode','batchSize','dailyGoal','fxStack','celebrate','autoSpeak','darkMode','provider','model'];
+  var fields = ['sound','dailyGoal','celebrate','autoSpeak','darkMode','provider','model'];
   var comparable = Object.assign({},previous,{
     sound:!!previous.sound, shuffle:!!previous.shuffle, mode:previous.mode||'choose',
-    batchSize:normBatchSize(previous.batchSize), dailyGoal:normDailyGoal(previous.dailyGoal),
-    fxStack:previous.fxStack!==false, celebrate:previous.celebrate||'confetti',
+    dailyGoal:normDailyGoal(previous.dailyGoal),
+    celebrate:previous.celebrate||'confetti',
     autoSpeak:!!previous.autoSpeak, darkMode:!!previous.darkMode,
     provider:previous.provider||'deepseek', model:previous.model||'deepseek-v4-flash'
   });
@@ -6291,7 +6936,8 @@ $('btnToggleKey').onclick = function(){
    data 为 data URL（含 base64 前缀），后端统一剥离前缀。 */
 var _feedbackImages = [];
 var FEEDBACK_MAX_IMAGES = 3;
-var FEEDBACK_MAX_SINGLE = 8 * 1024 * 1024; /* 单张前端护栏：只挡明显超限，后端仍按 5MB 硬校验 */
+var FEEDBACK_MAX_SINGLE = 5 * 1024 * 1024;
+var FEEDBACK_MAX_TOTAL = 12 * 1024 * 1024;
 
 /* 版本号：优先取 SW cache 名（chunklab-<hash>）中的 hash；取不到用占位 unknown */
 function getFeedbackVersion(){
@@ -6327,13 +6973,12 @@ function openFeedback(){
   renderFeedbackImages();
   $('feedbackMsg').className = 'msg';
   $('feedbackMsg').textContent = '';
-  $('settingsMask').hidden = true;
-  if(window.hideSetHint) window.hideSetHint(); /* 说明浮层需显式收起（见 closeMasks） */
-  $('feedbackMask').hidden = false;
+  if(window.PersonalCenterDialogs)PersonalCenterDialogs.open('feedbackMask');
+  else{$('settingsMask').hidden=true;$('feedbackMask').hidden=false;}
+  if(window.hideSetHint) window.hideSetHint();
   $('feedbackText').focus();
 }
 $('btnFeedback').onclick = openFeedback;
-$('btnChunkIntro').onclick = openChunkIntro;
 $('btnFeedbackPick').onclick = function(){ $('feedbackFile').click(); };
 /* 渲染已选截图列表：缩略图 + 文件名 + 右侧删除按钮；满额时禁用上传按钮 */
 function renderFeedbackImages(){
@@ -6372,7 +7017,7 @@ function renderFeedbackImages(){
   var btn = $('btnFeedbackPick');
   if(btn) btn.disabled = _feedbackImages.length >= FEEDBACK_MAX_IMAGES;
   var cnt = $('feedbackCount');
-  if(cnt) cnt.textContent = _feedbackImages.length ? ('已选 ' + _feedbackImages.length + '/' + FEEDBACK_MAX_IMAGES + ' 张') : '';
+  if(cnt) cnt.textContent = (_feedbackImages.length ? '已选 ' + _feedbackImages.length + '/' + FEEDBACK_MAX_IMAGES + ' 张 · ' : '最多 3 张 · ')+'单张 ≤5MB，合计 ≤12MB';
 }
 $('feedbackFile').onchange = function(){
   var input = this;
@@ -6387,7 +7032,7 @@ $('feedbackFile').onchange = function(){
   }
   var dropped = 0;
   if(picked.length > room){ dropped = picked.length - room; picked = picked.slice(0, room); }
-  /* 前端轻量护栏（>8MB 直接跳过，避免超长 base64 拖垮浏览器）；后端仍按 5MB 硬校验 */
+  /* 与服务端保持单张 5MB、合计 12MB；不上传已知会被拒绝的截图。 */
   var oversize = [];
   var ok = [];
   picked.forEach(function(f){
@@ -6397,18 +7042,25 @@ $('feedbackFile').onchange = function(){
   function readOne(f){
     return new Promise(function(resolve){
       var fr = new FileReader();
-      fr.onload = function(){ resolve({ data: String(fr.result || ''), type: f.type || 'image/png', name: f.name || '' }); };
+      fr.onload = function(){ resolve({ data: String(fr.result || ''), type: f.type || 'image/png', name: f.name || '', bytes:f.size }); };
       fr.onerror = function(){ resolve(null); };
       fr.readAsDataURL(f);
     });
   }
   Promise.all(ok.map(readOne)).then(function(list){
-    var failed = 0;
-    list.forEach(function(it){ if(it && it.data) _feedbackImages.push(it); else failed++; });
+    var failed = 0, totalExceeded = false;
+    var total = _feedbackImages.reduce(function(sum,it){return sum+it.bytes;},0);
+    list.forEach(function(it){
+      if(!it || !it.data){failed++;return;}
+      if(_feedbackImages.length>=FEEDBACK_MAX_IMAGES){dropped++;return;}
+      if(total+it.bytes>FEEDBACK_MAX_TOTAL){totalExceeded=true;return;}
+      _feedbackImages.push(it);total+=it.bytes;
+    });
     renderFeedbackImages();
-    if(oversize.length || dropped || failed){
+    if(oversize.length || dropped || failed || totalExceeded){
       var tips = [];
-      if(oversize.length) tips.push('「' + oversize.join('、') + '」超过 8MB，已跳过');
+      if(oversize.length) tips.push('「' + oversize.join('、') + '」超过 5MB，已跳过');
+      if(totalExceeded) tips.push('截图合计不能超过 12MB，已忽略超出的截图');
       if(dropped) tips.push('最多 ' + FEEDBACK_MAX_IMAGES + ' 张，已忽略多出的 ' + dropped + ' 张');
       if(failed) tips.push(failed + ' 张读取失败，请重试');
       $('feedbackMsg').className = 'msg show err';
@@ -6446,7 +7098,7 @@ $('btnFeedbackSubmit').onclick = function(){
       });
     });
   }).then(function(){
-    $('feedbackMask').hidden = true;
+    if(!$('feedbackMask').hidden)closeMasks();
     showSysToast('已收到反馈，感谢！');
   }).catch(function(){
     $('feedbackMsg').className = 'msg show err';
@@ -6459,6 +7111,7 @@ $('btnFeedbackSubmit').onclick = function(){
 $('backupHead').onclick = function(){
   var body = $('backupBody');
   var collapsed = body.classList.toggle('hidden');
+  $('backupHead').setAttribute('aria-expanded', String(!collapsed));
   $('backupCaret').style.transform = collapsed ? 'rotate(0deg)' : 'rotate(90deg)';
 };
 
@@ -6608,11 +7261,7 @@ $('fileBackup').onchange = function(){
       alert(msg);
       this.value = '';
       if(ok){
-        setTimeout(function(){
-          if(_curPage !== 'pagePractice'){ showPage('pagePractice'); }
-          var last = mem.activeDeckId ? findDeck(mem.activeDeckId) : null;
-          startDeck(last || allDecks()[0] || BUILTIN[0]);
-        }, 100);
+        location.reload();
       }
     }.bind(this));
   };
@@ -6787,7 +7436,7 @@ var _mainServerHomeBootstrapStarted = false;
 var _mainServerHomeHydrated = false;
 function _mainBootState(){
   return _mainBootCoordinator || {
-    shouldPaintLocal:function(){ return !_mainEntryRequested; },
+    shouldPaintLocal:function(){ return !_mainEntryRequested || _mainEntryPlan.kind === 'workspace'; },
     markLocalPainted:function(){ return true; },
     markBooted:function(){ return true; },
     claimEntry:function(){ return true; },
@@ -6814,6 +7463,10 @@ var _mainQuery = new URLSearchParams(location.search || '');
 var _mainNavigation = _mainNavigationType();
 var _mainEntryPlan = window.MainLifecycle && MainLifecycle.resolveEntry
   ? MainLifecycle.resolveEntry({ search:_mainQuery, navigationType:_mainNavigation }) : { kind:'home' };
+if(window.ChunkAPI && !ChunkAPI.isLoggedIn()){
+  document.body.dataset.authEntry='explicit';
+  showAccountRequiredPage();
+}
 var _mainExplicitEntry = _mainEntryPlan.kind !== 'home';
 var _mainFreshNavigation = _mainNavigation === 'navigate';
 var _mainHasHandoff = false;
@@ -6830,7 +7483,7 @@ if(!_mainFreshNavigation && !_mainExplicitEntry){
 }
 var _mainEntryRequested = _mainExplicitEntry || (_mainFreshNavigation && _mainHasHandoff);
 _mainBootCoordinator = window.MainLifecycle && MainLifecycle.createBootCoordinator
-  ? MainLifecycle.createBootCoordinator({entryRequested:_mainEntryRequested})
+  ? MainLifecycle.createBootCoordinator({entryRequested:_mainEntryRequested && _mainEntryPlan.kind !== 'workspace'})
   : null;
 function showBootError(message, retry){
   var b = $('bootScreen');
@@ -6868,6 +7521,7 @@ function paintLocalHome(){
   var state = _mainBootState();
   if(!state.shouldPaintLocal()) return;
   try{
+    if(!window.ChunkAPI || !ChunkAPI.isLoggedIn()){showHomePage();state.markLocalPainted();_mainLocalPainted=true;return;}
     loadStore();
     showHomePage();
     state.markLocalPainted();
@@ -6878,7 +7532,7 @@ function paintLocalHome(){
 }
 var _mainLocalTimer = setTimeout(paintLocalHome, 180);
 if(CL && typeof CL.preload === 'function'){
-  Promise.resolve(CL.preload()).then(function(){
+  LearningSessionBootstrap.preload().then(function(){
     clearTimeout(_mainLocalTimer);
     paintLocalHome();
   }, function(){
@@ -6892,6 +7546,8 @@ Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.
     /* ContentRepo 失败不应让首页空白；练习入口仍会在后续重新加载时重试。 */
     console.warn('[boot] 云端/内容初始化失败，使用本地首页：', e);
     clearTimeout(_mainLocalTimer);
+    _resolveWorkspaceInitialReady();
+    if(!window.ChunkAPI || !ChunkAPI.isLoggedIn()){showAccountRequiredPage();return;}
     paintLocalHome();
   });
 
@@ -6982,6 +7638,8 @@ function renderServerAssessmentResult(session,result){
   r.classList.remove('hidden');$('stage').classList.add('hidden');$('btnAssessmentHome').onclick=function(){showHomePage();};
 }
 function renderAssessmentSession(session){
+  $('practiceOptions').hidden=true;
+  $('practiceBatchSizeRow').hidden=true;
   S.assessment = session;
   S.finished = false;
   $('stageChoices').innerHTML = '';
@@ -7000,9 +7658,26 @@ function renderAssessmentSession(session){
   }
   r.innerHTML='<h2>'+title+'</h2><div class="lead">'+(session.items[0]&&session.items[0].stage==='initial'?'初测':'延迟复测')+' · 通过线 '+Math.round(session.threshold*100)+'%</div><section class="assessment-card">'+form+'</section><div class="stage-foot"><button class="btn" id="btnAssessmentExit">退出测评</button></div>';
   r.classList.remove('hidden');
+  var inputSaveTail=Promise.resolve(),inputScope=JSON.stringify([AccountStorage.owner,AccountStorage.sessionEpoch]);
+  Array.prototype.forEach.call(r.querySelectorAll('[data-assessment-answer]'),function(input,index){
+    input.value=session.inputDrafts&&session.inputDrafts[session.currentIndex]&&session.inputDrafts[session.currentIndex][index]||'';
+    input.oninput=function(){
+      session.inputDrafts=session.inputDrafts||{};
+      session.inputDrafts[session.currentIndex]=Array.prototype.map.call(r.querySelectorAll('[data-assessment-answer]'),function(field){return field.value;});
+      var snapshot=JSON.parse(JSON.stringify(session));
+      inputSaveTail=inputSaveTail.catch(function(){}).then(async function(){
+        if(inputScope!==JSON.stringify([AccountStorage.owner,AccountStorage.sessionEpoch]))return;
+        var rows=await IDBStore.listAssessmentDrafts(),draft=rows.find(function(row){return row.sessionId===session.id;});
+        if(inputScope!==JSON.stringify([AccountStorage.owner,AccountStorage.sessionEpoch]))return;
+        await persistAssessmentSession(snapshot,draft&&draft.metadata);
+      });
+      inputSaveTail.catch(function(error){console.warn('[assessment] input draft was not saved',error);});
+    };
+  });
   var submit=$('btnAssessmentSubmit');
   if(submit) submit.onclick=async function(){
     var answers=Array.prototype.map.call(r.querySelectorAll('[data-assessment-answer]'),function(input){return input.value;});
+    try{await inputSaveTail;}catch(error){S.assessmentSaveWarning='当前输入尚未保存，请稍后重试。';return;}
     session=LearningEngine.submitAssessmentAnswer(session,session.currentIndex,answers,{judge:assessmentInputJudge});
     S.assessment=session; S.assessmentSaveWarning=''; submit.disabled=true; submit.textContent='正在保存…';
     try{
@@ -7143,6 +7818,8 @@ async function finalizeAssessmentSession(session){
   $('btnAssessmentHome').onclick=function(){showHomePage();};
 }
 function openAssessmentByKey(key){
+  var canonicalParts=CL.splitItemKey(key),canonicalReference=platformReferenceForDeck(canonicalParts.deckId);
+  if(canonicalReference){launchNativeAssessment(canonicalReference.courseId,canonicalReference.unitId,canonicalParts.cid);return;}
   var parts=CL.splitItemKey(key), deck=findDeck(parts.deckId);
   if(!deck){showHomePage();showSysToast('找不到对应课程');return;}
   showPracticePage(); $('deckName').textContent='独立测评 · '+displayDeckName(deck.name);
@@ -7177,8 +7854,25 @@ function openAssessmentByKey(key){
   }else useDeck(deck);
 }
 function decideEntry(){
+  if(!window.ChunkAPI || !ChunkAPI.isLoggedIn()){showAccountRequiredPage();return;}
+  if(_mainEntryPlan.kind === 'protected-course'){
+    _mainEntryRequested = false; showPracticePage();
+    launchNativeCourse(_mainEntryPlan.courseId,_mainEntryPlan.unitId);
+    return;
+  }
+  if(_mainEntryPlan.kind === 'workspace'){ _mainEntryRequested = false; showHomePage(); return; }
   /* 首屏已经按普通主页启动，异步初始化完成后不得再次消费入口状态。 */
   if(!_mainEntryRequested){ showHomePage(); return; }
+  if(new URLSearchParams(location.search).get('membership')==='1'){
+    showHomePage(); openPersonalCenter().then(function(){if(window.PersonalCenterDialogs)PersonalCenterDialogs.showView('membership');});
+    var membershipReturn=new URLSearchParams(location.search).get('returnTo');
+    try{var membershipReturnUrl=membershipReturn&&new URL(membershipReturn,location.href);
+      if(membershipReturnUrl&&membershipReturnUrl.origin===location.origin&&/\/(?:main|courses)\.html$/.test(membershipReturnUrl.pathname)){
+        var membershipBack=document.createElement('a');membershipBack.textContent='返回课程继续学习';membershipBack.href=membershipReturnUrl.href;$('membershipPanel').appendChild(membershipBack);
+      }
+    }catch(_){}
+    return;
+  }
   _mainEntryRequested = false;
   /* 新目录入口只传课程/课节引用，实际内容仍由当前账号的原 deck 身份解析。 */
   var _catalogCourse = new URLSearchParams(location.search).get('course');
@@ -7194,6 +7888,7 @@ function decideEntry(){
     });
     var _course = CourseCatalog.getCourse(_catalog, _catalogCourse);
     var _lesson = _course && CourseCatalog.resolveLesson(_course, _catalogLesson);
+    if(_lesson&&_lesson.contentRef&&_lesson.contentRef.type==='protected-course'){launchNativeCourse(_course.id,_lesson.platformContent?_lesson.platformContent.unitId:_lesson.id);return;}
     if(_lesson && _lesson.contentRef && _lesson.contentRef.type === 'sentence-deck'){
       var _urlDeck = findDeck(_lesson.contentRef.id);
       if(_urlDeck){
@@ -7246,7 +7941,7 @@ function bootMain(){
    frame, so this wait does not block the visible UI. */
  if(CL && typeof CL.preload === 'function' && !window.__chunklabBootPreloaded){
     window.__chunklabBootPreloaded = true;
-    Promise.resolve(CL.preload()).then(bootMain, bootMain);
+    LearningSessionBootstrap.preload().then(bootMain, bootMain);
     return;
    }
    if(!_mainServerHomeBootstrapStarted && !_mainBootState().isEntryClaimed() &&
@@ -7268,6 +7963,7 @@ function bootMain(){
  _mainBooted = true;
  try {
  if(_mainBootState().isEntryClaimed()){
+  _resolveWorkspaceInitialReady();
   /* 提前首屏后用户可能已经开始练习；此时保留当前 mem、S 和页面，不重跑入口。
      云端同步完成后的最新态由既有 memExternal/安全退出路径采纳。 */
   setSoundIcon();
@@ -7288,12 +7984,14 @@ function bootMain(){
   setSoundIcon();
   renderCats();
   $('cats').firstChild && $('cats').firstChild.click();
+  _resolveWorkspaceInitialReady();
 
   /* 入口决策：decks/stats 外部跳转协议 > ?direct=1 直练 > 默认今日首页
      见 decideEntry()/resumeOrStart()（bootMain 上方定义） */
     decideEntry();
 }
 } catch (e) {
+  _resolveWorkspaceInitialReady();
   /* 启动段任何异常都写到 #zh（替代"永远卡在加载中"），并打 console 便于 F12 排查 */
   showBootError('启动失败：' + (e && e.message || e));
   console.error('[boot] failed:', e);

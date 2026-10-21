@@ -1,0 +1,25 @@
+:root{--shared-sky1:#cde6f6;--shared-sky2:#e2f0ed;--shared-sky3:#f0efe2;--shared-sky4:#f7f1e4}
+.dark{--shared-sky1:#14202c;--shared-sky2:#1a2a2c;--shared-sky3:#211f1a;--shared-sky4:#262019}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) body,body.learning-archive-background{background:linear-gradient(180deg,var(--shared-sky1) 0%,var(--shared-sky2) 34%,var(--shared-sky3) 62%,var(--shared-sky4) 100%);background-attachment:fixed;background-repeat:no-repeat;background-color:var(--shared-sky4)}
+body.learning-archive-background{position:relative;isolation:isolate;min-height:100vh;--v4-ink:#38382e;--v4-sun:#ffd66b;--v4-cloud:rgba(255,255,255,.92)}
+body.learning-archive-background .home-sky-deco{display:block;position:absolute;inset:0 0 auto;height:240px;pointer-events:none;z-index:-1}
+.sky-sun{position:absolute;right:max(200px,calc((100vw - 960px)/2 + 240px));top:8px;width:90px;height:90px;color:var(--v4-ink);overflow:visible}
+.sky-sun .sun-rays{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round}
+.sky-sun .sun-disc{fill:var(--v4-sun);stroke:currentColor;stroke-width:3}
+.sky-sun .sun-shine{fill:none;stroke:#fff7d6;stroke-width:4;stroke-linecap:round}
+@media(max-width:640px){.sky-sun{right:clamp(168px,28vw,210px);top:4px;width:72px;height:72px}}
+@media(max-width:420px){.sky-sun{right:120px;top:38px;width:54px;height:54px}}
+/* 所有页面共享上面的窗口定位；切页不再改变太阳的位置或尺寸。 */
+.sky-cloud{position:absolute;color:var(--v4-cloud)}
+.sky-cloud.c1{left:4%;top:56px}
+.sky-cloud.c2{left:40%;top:20px}
+.sky-cloud.c3{right:26%;top:118px}
+.home-garden{display:none;pointer-events:none}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) .home-garden{display:block;position:fixed;inset:auto 0 0;height:105px;z-index:-1;overflow:visible}
+.home-garden svg{position:absolute;bottom:0;width:clamp(165px,24vw,250px);height:auto;color:var(--v4-ink)}
+.home-garden .garden-left{left:0}
+.home-garden .garden-right{right:-5px;width:clamp(190px,27vw,290px)}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) .wrap{padding-bottom:110px}
+body.learning-archive-background .home-garden{display:block;position:fixed;inset:auto 0 0;height:105px;z-index:-1;overflow:visible}
+body.learning-archive-background .wrap{padding-bottom:110px}
+@media(prefers-color-scheme:dark){body.learning-archive-background{--shared-sky1:#14202c;--shared-sky2:#1a2a2c;--shared-sky3:#211f1a;--shared-sky4:#262019;--v4-ink:#e8e2d4;--v4-cloud:rgba(214,224,232,.14)}}

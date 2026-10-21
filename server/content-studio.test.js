@@ -15,8 +15,22 @@ const TMP_OUTPUT = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-content-build-'));
 const BASE = 'http://127.0.0.1:' + PORT;
 let child;
 
+/* T5：公开 manifest 仅元数据，分片路径在 server/content/shards.json；合并后使用。 */
+function readFullManifest(root) {
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'content', 'manifest.json'), 'utf8'));
+  const shardMapPath = path.join(root, 'server', 'content', 'shards.json');
+  if (!fs.existsSync(shardMapPath)) return manifest;
+  const map = JSON.parse(fs.readFileSync(shardMapPath, 'utf8'));
+  const byId = new Map((map.decks || []).map((deck) => [deck.id, deck]));
+  manifest.decks = (manifest.decks || []).map((deck) => {
+    const info = byId.get(deck.id);
+    return info ? Object.assign({}, deck, { shards: info.shards || [], indexShards: info.indexShards || [] }) : deck;
+  });
+  return manifest;
+}
+
 function makeIsolatedContentRoot() {
-  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'manifest.json'), 'utf8'));
+  const manifest = readFullManifest(path.join(__dirname, '..'));
   const entry = manifest.decks.find((course) => course.id === 'oral-basic');
   manifest.decks = [entry];
   fs.mkdirSync(path.join(TMP_APP, 'content'), { recursive: true });
@@ -167,10 +181,11 @@ async function main() {
     assert.ok(published.json.contentVersion.startsWith('v1-'));
     assert.ok(published.json.cacheVersion.startsWith('chunklab-'));
     const manifest = JSON.parse(fs.readFileSync(path.join(TMP_APP, 'content', 'manifest.json'), 'utf8'));
-    const publishedEntry = manifest.decks[0];
     assert.equal(manifest.contentVersion, published.json.contentVersion);
-    assert.ok(fs.existsSync(path.join(TMP_APP, publishedEntry.shards[0].url)));
-    assert.ok(fs.existsSync(path.join(TMP_APP, publishedEntry.indexShards[0].url)));
+    const publishedFull = readFullManifest(TMP_APP);
+    const publishedFullEntry = publishedFull.decks[0];
+    assert.ok(fs.existsSync(path.join(TMP_APP, publishedFullEntry.shards[0].url)));
+    assert.ok(fs.existsSync(path.join(TMP_APP, publishedFullEntry.indexShards[0].url)));
     assert.ok(fs.existsSync(path.join(TMP_APP, 'extra', 'content-overrides', 'oral-basic.json')));
     assert.match(fs.readFileSync(path.join(TMP_APP, 'sw.js'), 'utf8'), new RegExp("const CACHE = '" + published.json.cacheVersion + "';"));
     const { execFileSync } = require('node:child_process');
@@ -183,7 +198,7 @@ async function main() {
       env: Object.assign({}, process.env, { CONTENT_SOURCE_ROOT: TMP_APP, CONTENT_OUTPUT_ROOT: TMP_OUTPUT, CONTENT_OVERRIDE_ROOT: path.join(TMP_APP, 'extra', 'content-overrides') }),
       stdio: 'pipe',
     });
-    const rebuiltManifest = JSON.parse(fs.readFileSync(path.join(TMP_OUTPUT, 'content', 'manifest.json'), 'utf8'));
+    const rebuiltManifest = readFullManifest(TMP_OUTPUT);
     assert.equal(fs.readFileSync(retainedShard, 'utf8'), retainedBytes, 'rebuilding never deletes an earlier immutable course asset');
     const rebuiltCourse = rebuiltManifest.decks.find((item) => item.id === 'oral-basic');
     const rebuiltShard = JSON.parse(fs.readFileSync(path.join(TMP_OUTPUT, rebuiltCourse.shards[0].url), 'utf8'));

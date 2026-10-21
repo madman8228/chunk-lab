@@ -1,0 +1,9 @@
+'use strict';
+const assert=require('node:assert/strict'),model=require('../js/vocabulary-attempt'),engine=require('../landing/sentence-cloze-engine'),guidedContent=require('../landing/guided-sentence-content');
+const item={word:'borrow',exercise:{version:1,parts:[{text:'Can I '},{id:'verb',answers:['borrow'],label:'借入'},{text:' your pen?'}]},learning:{wordChoice:{options:[{id:'in',text:'borrow'},{id:'out',text:'lend'}],correctOptionId:'in'},wordDictation:{answers:['borrow']},chunkOrder:{chunks:[{id:'a',text:'Can I'},{id:'b',text:'borrow'},{id:'c',text:'your pen?'}],correctOrder:['a','b','c']}}};
+const evaluate=payload=>model.evaluate(item,payload,{engine,guidedContent});
+for(const [practiceType,inputMode,right,wrong] of [['word-choice','choice',{optionId:'in'},{optionId:'out'}],['word-dictation','typing',{word:'BORROW'},{word:'lend'}],['chunk-order','chunks',{chunkIds:['a','b','c']},{chunkIds:['b','a','c']}],['sentence-cloze','typing',{verb:'borrow'},{verb:'lend'}]]){
+ for(const [answers,correct] of [[right,true],[wrong,false]]){const result=evaluate({practiceType,inputMode,answers});assert.equal(result.correct,correct);assert.equal(result.completion,false);assert.equal(result.assessment,false);}
+}
+for(const payload of [{practiceType:'word-choice',inputMode:'choice',answers:{optionId:'missing'}},{practiceType:'word-choice',inputMode:'typing',answers:{optionId:'in'}},{practiceType:'chunk-order',inputMode:'chunks',answers:{chunkIds:['a','a','c']}},{practiceType:'chunk-order',inputMode:'chunks',answers:{chunkIds:['a']}},{practiceType:'word-dictation',inputMode:'typing',answers:{word:''}},{practiceType:'sentence-cloze',inputMode:'typing',answers:{other:'borrow'}},{practiceType:'read-aloud',inputMode:'speech',answers:{word:'borrow'}}])assert.throws(()=>evaluate(payload));
+console.log('Attempt evaluator: four answer modes, correct/incorrect server judgement, no completion/mastery, invalid choice/order/text/input-mode rejection passed.');

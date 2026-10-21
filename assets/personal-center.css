@@ -1,0 +1,58 @@
+/* Personal center: account menu first, one task per drawer view. */
+#settingsMask.pc-drawer{z-index:100;padding:0;align-items:stretch;justify-content:flex-end;backdrop-filter:none;background:rgba(31,28,24,.32)}
+#settingsMask.pc-drawer .pc-drawer-panel{width:304px;max-width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;margin:0;border:0;border-radius:0;background:var(--surface);box-shadow:-12px 0 48px rgba(30,25,20,.12);animation:pc-enter .2s ease-out}
+#settingsMask.pc-drawer .modal-head{min-height:72px;padding:16px 24px;gap:8px;border:0;border-radius:0}
+#settingsMask.pc-drawer .modal-head h3{font-size:17px;font-weight:700;line-height:24px}
+#settingsMask.pc-drawer .modal-head .btn.sm{width:36px;height:36px;border-radius:8px;padding:0;color:var(--text)}
+#settingsMask.pc-drawer .modal-head .btn.sm[hidden]{display:none}
+#settingsMask.pc-drawer .modal-body{padding:0 24px 24px;overscroll-behavior:contain}
+#settingsMask.pc-drawer [hidden]{display:none!important}
+#settingsMask.pc-drawer .pc-profile{display:flex;align-items:flex-start;gap:12px;padding:12px 0 28px}
+#settingsMask.pc-drawer .pc-avatar{display:flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;border-radius:14px;background:var(--surface-2);color:var(--muted)}
+#settingsMask.pc-drawer .pc-avatar .icon{width:23px;height:23px}
+#settingsMask.pc-drawer #accountSection{flex:1;min-width:0;margin:0!important;padding:0!important;border:0!important}
+#settingsMask.pc-drawer .settings-account-row{gap:4px 8px!important;min-height:44px}
+#settingsMask.pc-drawer #acctLabel{flex-basis:100%!important;font-size:11px!important;font-weight:400!important;color:var(--muted)}
+#settingsMask.pc-drawer .acct-name{min-width:0;max-width:100%;font-size:15px;font-weight:700;color:var(--text);padding:0}
+#settingsMask.pc-drawer #acctHint{font-size:12px!important;line-height:1.6!important;overflow-wrap:anywhere}
+#settingsMask.pc-drawer .pc-menu{display:flex;flex-direction:column;gap:2px}
+#settingsMask.pc-drawer .pc-menu :is(a,button){display:flex;align-items:center;gap:12px;min-height:46px;width:100%;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--text);font:inherit;font-size:14px;text-align:left;text-decoration:none;cursor:pointer;box-sizing:border-box}
+#settingsMask.pc-drawer .pc-menu :is(a,button):hover{background:var(--surface-2)}
+#settingsMask.pc-drawer .pc-menu :is(a,button):focus-visible,#settingsMask.pc-drawer .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#settingsMask.pc-drawer .pc-menu .icon{width:19px;height:19px;flex-shrink:0;color:var(--muted)}
+#settingsMask.pc-drawer .pc-menu :is(a,button)>span:first-child,#settingsMask.pc-drawer .pc-menu :is(a,button)>span:last-child{display:flex;align-items:center}
+#settingsMask.pc-drawer .pc-menu :is(a,button)>span:last-child{margin-left:auto;opacity:.5}
+#settingsMask.pc-drawer .pc-sign-out{margin-top:24px;padding:0 12px}
+#settingsMask.pc-drawer .pc-profile:has(#accountSection[hidden]),#settingsMask.pc-drawer:has(#accountSection[hidden]) [data-pc-view="membership"]{display:none}
+#settingsMask.pc-drawer #btnAccountLogout{border:0;padding:10px 0;background:transparent;font-size:13px;color:var(--muted)}
+#settingsMask.pc-drawer #settingsAccountGroup,#settingsMask.pc-drawer #settingsHelpGroup{display:none}
+#settingsMask.pc-drawer #settingsAppearanceGroup>summary{display:none}
+#settingsMask.pc-drawer #settingsAppearanceGroup .settings-group-body{padding:8px 0;gap:8px}
+#settingsMask.pc-drawer #settingsAppearanceGroup .settings-group-body>label{min-height:48px;padding:8px 0!important}
+#settingsMask.pc-drawer .settings-group-body strong{font-size:14px!important;font-weight:500}
+#settingsMask.pc-drawer #settingsAppearanceGroup input[type="checkbox"]{appearance:none;position:relative;box-sizing:border-box;flex-shrink:0;width:36px;height:22px;margin:0;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface-2);cursor:pointer;transition:background .15s}
+#settingsMask.pc-drawer #settingsAppearanceGroup input[type="checkbox"]::before{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--muted);transition:transform .15s}
+#settingsMask.pc-drawer #settingsAppearanceGroup input[type="checkbox"]:checked{border-color:var(--accent);background:var(--accent)}
+#settingsMask.pc-drawer #settingsAppearanceGroup input[type="checkbox"]:checked::before{background:#fff;transform:translateX(14px)}
+#settingsMask.pc-drawer #settingsAppearanceGroup input[type="checkbox"]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#settingsMask.pc-drawer .modal-foot{gap:12px;padding:16px 24px calc(16px + env(safe-area-inset-bottom));border:0;border-radius:0;background:var(--surface)}
+#settingsMask.pc-drawer .modal-foot .btn.primary{flex:1;min-height:42px;border-radius:8px;font-size:14px}
+#settingsMask.pc-drawer .pc-pane{padding-top:8px}
+#settingsMask.pc-drawer #membershipPanel,#settingsMask.pc-drawer #settingsBackupSection,#settingsMask.pc-drawer #settingsImageCacheSection{margin:0!important;padding:0!important;border:0!important}
+#settingsMask.pc-drawer .membership-redeem{grid-template-columns:minmax(0,1fr) auto;gap:10px;margin:16px 0}
+#settingsMask.pc-drawer .membership-redeem label{grid-column:1/-1;font-size:13px;font-weight:500}
+#settingsMask.pc-drawer #membershipCode{font-size:16px;min-height:44px;background:var(--bg)}
+#settingsMask.pc-drawer #btnRedeemMembership{min-height:44px;padding:0 16px}
+#settingsMask.pc-drawer #membershipSalesLink{grid-column:1/-1}
+#settingsMask.pc-drawer #membershipPanel summary{font-size:13px;color:var(--muted);min-height:44px}
+#settingsMask.pc-drawer #membershipHistory{font-size:12px;color:var(--muted);line-height:1.8}
+#settingsMask.pc-drawer #backupHead{display:none!important}
+#settingsMask.pc-drawer #backupBody{margin:0!important}
+#settingsMask.pc-drawer #backupBody .btn{min-height:44px}
+#settingsMask.pc-drawer #settingsImageCacheSection>div{gap:12px!important}
+#settingsMask.pc-drawer .image-cache-hint{font-size:14px}
+#settingsMask.pc-drawer #btnClearImageCache{min-height:44px}
+@keyframes pc-enter{from{transform:translateX(24px);opacity:.5}to{transform:translateX(0);opacity:1}}
+@media(max-width:540px){#settingsMask.pc-drawer .pc-drawer-panel{width:100%}}
+@media(max-width:420px){#settingsMask.pc-drawer .modal-head{padding:12px 20px;min-height:64px}#settingsMask.pc-drawer .modal-body{padding:0 20px 20px}#settingsMask.pc-drawer .modal-foot{padding-left:20px;padding-right:20px}}
+@media(prefers-reduced-motion:reduce){#settingsMask.pc-drawer .pc-drawer-panel{animation:none}#settingsMask.pc-drawer #settingsAppearanceGroup input[type="checkbox"],#settingsMask.pc-drawer #settingsAppearanceGroup input[type="checkbox"]::before{transition:none}}

@@ -63,7 +63,7 @@ function createDataRows(options) {
      上行 payload / 服务端整块回写）。mastered 8000 条约 227KB、错题本上限 200 条约 176KB。
   
      kind 白名单：写入口拒绝未知 kind，否则脏 kind 会让这张通用表无界增长。 */
-  const ENTITY_KINDS = { mastered: 1, reinforce: 1, deletedItem: 1, logicalCourse: 1 };
+  const ENTITY_KINDS = { mastered: 1, reinforce: 1, deletedItem: 1, logicalCourse: 1, learningWorkspace: 1, vocabularyStudySummary:1, vocabularyResume:1, vocabularyBrowseResume:1 };
   
   const ENTITY_UPSERT_SQL = "INSERT INTO user_entity_rows (user_id,kind,item_key,data_json,deleted_at,updated_at,seq) VALUES (?,?,?,?,NULL,datetime('now'),?) ON CONFLICT(user_id,kind,item_key) DO UPDATE SET data_json=excluded.data_json, deleted_at=NULL, updated_at=datetime('now'), seq=excluded.seq";
   const ENTITY_DELETE_SQL = "UPDATE user_entity_rows SET deleted_at=datetime('now'), updated_at=datetime('now'), seq=? WHERE user_id=? AND kind=? AND item_key=?";

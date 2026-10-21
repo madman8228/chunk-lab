@@ -1,0 +1,23 @@
+'use strict';
+const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
+(async()=>{
+ const row=(practiceType,owner='account-a',unitId)=>({owner,operation:{type:'vocabulary.complete',payload:{bookId:'test-book',practiceType,unitId}}});
+ const rows=[row(undefined),row('guided-expression'),row('word-dictation'),row('word-dictation','account-b'),row('word-dictation','account-a','u1'),row('word-choice'),row('word-choice','account-b'),row('word-choice','account-a','u1'),row('chunk-order'),row('chunk-order','account-b'),row('chunk-order','account-a','u1')];
+ let identity='a',change=false;const requests=[],context={crypto:require('node:crypto').webcrypto,LearningSessionBootstrap:{identity:()=>identity},AccountStorage:{owner:'account-a',assertCurrent(){}},ServerStore:{pending:async()=>rows},ChunkAPI:{request:async url=>{requests.push(url);if(change)identity='b';return {confirmed:true};}}};context.window=context;
+ for(const [owner,unitId] of [['account-a',undefined],['account-a','u1'],['account-b',undefined]])rows.push({owner,operation:{type:'vocabulary.rehearse',payload:{bookId:'test-book',practiceType:'read-aloud',unitId}}});
+ context.VocabularyCourseContract=require('../js/vocabulary-course-contract');vm.runInNewContext(fs.readFileSync('js/vocabulary-study-store.js','utf8'),context);
+ const store=context.VocabularyStudyStore;
+ assert.deepEqual(Array.from(await store.pending('test-book')).map(row=>row.operation.payload.practiceType),[undefined,'guided-expression']);
+ assert.equal((await store.pending('test-book',undefined,'word-dictation')).length,1);assert.equal((await store.pending('test-book','u1','word-dictation')).length,1);
+ assert.equal((await store.pending('test-book',undefined,'word-choice')).length,1);assert.equal((await store.pending('test-book','u1','word-choice')).length,1);
+ assert.equal((await store.pending('test-book',undefined,'chunk-order')).length,1);assert.equal((await store.pending('test-book','u1','chunk-order')).length,1);
+ assert.equal((await store.pending('test-book',undefined,'read-aloud')).length,1);assert.equal((await store.pending('test-book','u1','read-aloud')).length,1);
+ await store.state('test-book',0,{practiceType:'read-aloud'});assert.equal(requests.at(-1),'/api/wordbooks/test-book/state?offset=0&limit=20&practiceType=read-aloud');
+ await store.state('test-book',0,{practiceType:'chunk-order'});assert.equal(requests.at(-1),'/api/wordbooks/test-book/state?offset=0&limit=20&practiceType=chunk-order');
+ await store.state('test-book',0,{practiceType:'word-choice'});assert.equal(requests.at(-1),'/api/wordbooks/test-book/state?offset=0&limit=20&practiceType=word-choice');
+ await store.state('test-book',0,{unitId:'u1',structureRevision:'r1',practiceType:'word-choice'});assert.match(requests.at(-1),/unitId=u1&structureRevision=r1&practiceType=word-choice/);
+ await store.state('test-book',0,{practiceType:'word-dictation'});assert.equal(requests.at(-1),'/api/wordbooks/test-book/state?offset=0&limit=20&practiceType=word-dictation');
+ await store.state('test-book',0,{unitId:'u1',structureRevision:'r1',practiceType:'word-dictation'});assert.match(requests.at(-1),/unitId=u1&structureRevision=r1&practiceType=word-dictation/);
+ await store.state('test-book');assert.equal(requests.at(-1),'/api/wordbooks/test-book/state?offset=0&limit=20');change=true;await assert.rejects(store.state('test-book',0,{practiceType:'word-dictation'}),/账号已变化/);
+ console.log('Vocabulary store: independent dictation pending queues/state query, legacy scopes and account-change rejection passed.');
+})().catch(error=>{console.error(error);process.exitCode=1;});

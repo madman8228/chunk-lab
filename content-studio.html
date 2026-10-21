@@ -3,31 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chunk Lab · 课程内容工作台</title>
+<title>课程工作台 · jqka.top</title>
 <meta name="robots" content="noindex, nofollow">
-<style>
-:root{color-scheme:light;--bg:#f4f5f8;--paper:#fff;--line:#e0e3e9;--ink:#202635;--muted:#737b89;--blue:#2d62c9;--blue-lite:#edf3ff;--green:#178052;--red:#b33e37;--amber:#a65c16}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
-.login{width:min(380px,calc(100% - 32px));margin:14vh auto;padding:24px;background:#fff;border:1px solid var(--line);border-radius:14px}.login h1{font-size:20px;margin:0 0 16px}.field{border:1px solid var(--line);border-radius:8px;background:#fff;padding:9px 10px;color:var(--ink);width:100%;outline:none}.field:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2d62c91a}textarea.field{resize:vertical;min-height:74px}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:7px 11px}.btn:hover{border-color:#aab9d9}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn:disabled{opacity:.5;cursor:not-allowed}
-.top{height:58px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 20px}.brand{font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px}.brand-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#456ff0;color:#fff}.top-actions{display:flex;align-items:center;gap:8px}.state{font-size:12px;color:var(--muted);margin-right:8px}.state.ok{color:var(--green)}.state.error{color:var(--red)}
-.layout{height:calc(100vh - 58px);min-height:520px;display:grid;grid-template-columns:250px minmax(260px,330px) minmax(400px,1fr);gap:1px;background:var(--line);overflow:hidden}.pane{background:var(--paper);min-width:0;min-height:0;display:flex;flex-direction:column}.pane-head{padding:13px 14px;border-bottom:1px solid var(--line);font-weight:650;display:flex;align-items:center;justify-content:space-between;gap:8px}.pane-head input{font-weight:400}.course-list,.item-list{overflow:auto;min-height:0;flex:1}.course-option,.item-option{width:100%;text-align:left;border:0;border-bottom:1px solid #f0f1f4;background:#fff;padding:11px 13px;color:var(--ink)}.course-option:hover,.item-option:hover{background:#f8f9fb}.course-option.active,.item-option.active{background:var(--blue-lite);box-shadow:inset 3px 0 var(--blue)}.course-name{font-weight:600}.sub{font-size:12px;color:var(--muted);margin-top:3px}.item-en{font-weight:550}.content{overflow:auto;min-height:0;padding:20px clamp(16px,2.5vw,34px) 28px}.course-title{font-size:20px;font-weight:700;margin-bottom:4px}.course-meta{color:var(--muted);font-size:12px;margin-bottom:18px}.toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}.toolbar .spacer{flex:1}.badge{border-radius:999px;background:#f0f1f5;padding:3px 9px;color:var(--muted);font-size:12px}.badge.good{background:#e7f5ee;color:var(--green)}.badge.warn{background:#fff3e3;color:var(--amber)}.editor{display:grid;grid-template-columns:minmax(260px,1fr) minmax(280px,1fr);gap:18px}.section{min-width:0}.section h2{font-size:14px;margin:0 0 11px}.label{display:block;font-size:12px;color:var(--muted);margin:12px 0 5px}.sentence{font:600 20px/1.4 Georgia,serif}.chunks{display:grid;grid-template-columns:minmax(110px,1fr) minmax(110px,1fr);gap:8px}.chunk{padding:8px;background:#f6f7fa;border:1px solid #eceef2;border-radius:9px}.chunk .label{margin:0 0 5px}.chunk input{padding:7px 8px;font-size:13px}.explanation{padding:10px 0;border-bottom:1px solid #eff0f3}.explanation:last-child{border:0}.preview{margin-top:24px;padding:15px;border:1px solid var(--line);border-radius:12px;background:#fafbfc}.preview h2{font-size:13px;color:var(--muted);margin:0 0 9px}.preview-sentence{font:600 18px/1.45 Georgia,serif}.preview-translation{color:#475368;margin-top:6px}.preview-chunks{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.preview-chunks span{background:#fff;border-bottom:2px solid var(--blue);padding:5px 8px}.validation{margin-top:15px;padding:11px 13px;border-radius:9px;background:#f6f7fa;font-size:13px}.validation ul{padding-left:20px;margin:6px 0}.validation .pass{color:var(--green)}.validation .fail{color:var(--red)}.empty{padding:20px;color:var(--muted);text-align:center}.toast{position:fixed;right:20px;bottom:20px;padding:10px 14px;background:#202635;color:white;border-radius:9px;box-shadow:0 8px 24px #151a2730}
-@media(max-width:900px){.layout{grid-template-columns:210px minmax(220px,280px) minmax(340px,1fr)}.editor{grid-template-columns:1fr}}@media(max-width:680px){.top{height:auto;min-height:58px;align-items:flex-start;flex-direction:column;gap:8px;padding:8px 12px}.brand{font-size:15px}.top-actions{width:100%;justify-content:flex-start;flex-wrap:wrap}.top-actions .btn{white-space:nowrap}.layout{height:auto;min-height:calc(100vh - 58px);display:flex;flex-direction:column}.pane:first-child{max-height:190px}.pane:nth-child(2){max-height:230px}.content{overflow:visible}.editor{grid-template-columns:1fr}.state{display:none}}
-</style>
+<link rel="stylesheet" href="assets/content-studio.css?v=studio-20261016">
+<link rel="stylesheet" href="assets/illustration-review.css?v=9-compact-detail">
+<link rel="stylesheet" href="assets/textbook-drafts.css?v=1">
+<link rel="stylesheet" href="assets/admin-wordbooks.css?v=3-textbook">
+<link rel="stylesheet" href="assets/wordbook-study.css?v=admin-preview-1">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32-v1.png">
 </head>
 <body>
-<section id="login" class="login hidden"><h1>管理员登录 · 课程内容</h1><form id="loginForm"><input id="password" class="field" type="password" autocomplete="current-password" placeholder="管理员密码"><p id="loginError" style="color:var(--red);min-height:20px"></p><button class="btn primary" style="width:100%">进入工作台</button></form></section>
+<section id="login" class="login hidden"><h1>登录课程工作台</h1><form id="loginForm"><label class="label" for="password">管理员密码</label><input id="password" class="field" type="password" autocomplete="current-password" required><p id="loginError" class="login-error" role="alert"></p><button class="btn primary">登录</button></form></section>
 <div id="app" class="hidden">
-  <header class="top"><div class="brand"><span class="brand-mark">C</span>课程内容工作台</div><div class="top-actions"><span id="state" class="state">加载中…</span><button id="validate" class="btn">校验</button><button id="save" class="btn">保存草稿</button><button id="publish" class="btn primary">发布</button><a class="btn" href="/admin.html">返回后台</a></div></header>
-  <main class="layout">
-    <aside class="pane"><div class="pane-head">课程 <span id="courseCount" class="badge"></span></div><div style="padding:10px"><input id="courseSearch" class="field" placeholder="搜索课程"></div><div id="courses" class="course-list"></div></aside>
-    <aside class="pane"><div class="pane-head">句子 <span id="itemCount" class="badge"></span></div><div style="padding:10px"><input id="itemSearch" class="field" placeholder="搜索英文或中文"></div><div id="items" class="item-list"></div></aside>
-    <section id="editorPane" class="pane"><div class="content"><div id="editorEmpty" class="empty">选择一门课程开始编辑。</div><div id="editor" class="hidden">
-      <div class="course-title" id="activeCourse"></div><div class="course-meta" id="courseMeta"></div><div class="toolbar"><span id="revision" class="badge"></span><span id="validationBadge" class="badge">尚未校验</span><span class="spacer"></span><button id="previous" class="btn">上一句</button><button id="next" class="btn">下一句</button></div>
-      <div class="editor"><section class="section"><h2>句子内容</h2><label class="label" for="sentence">英文原句</label><textarea id="sentence" class="field sentence" rows="2"></textarea><label class="label" for="translation">中文翻译</label><textarea id="translation" class="field" rows="2"></textarea><h2 style="margin-top:18px">意群与提示</h2><div id="chunks" class="chunks"></div></section><section class="section"><h2>本句讲解</h2><div id="explanations"></div><div class="preview"><h2>学习页面预览</h2><div id="previewSentence" class="preview-sentence"></div><div id="previewTranslation" class="preview-translation"></div><div id="previewChunks" class="preview-chunks"></div></div></section></div>
-      <div id="validation" class="validation">编辑后点击“校验”。稳定句子 ID 与课程条目数量在首版中不可更改。</div>
-    </div></div></section>
+  <header class="top">
+    <div class="brand"><a href="/admin.html">jqka.top</a><span>课程工作台</span></div>
+    <nav class="studio-nav" aria-label="工作台功能">
+      <button type="button" id="editorOpen" class="btn" aria-pressed="true" aria-controls="studioLayout">编辑正文</button>
+      <button type="button" id="libraryMetadataOpen" class="btn" aria-pressed="false" aria-controls="libraryMetadataPanel">目录分类</button>
+      <button type="button" id="protectedPublicationOpen" class="btn" aria-pressed="false" aria-controls="protectedPublicationPanel">新建发布</button>
+      <button type="button" id="illustrationReviewOpen" class="btn" aria-pressed="false" aria-controls="illustrationReviewPanel">配图审核</button>
+      <button type="button" id="textbookDraftsOpen" class="btn" aria-pressed="false" aria-controls="textbookDraftsPanel">教材草稿</button>
+      <button type="button" id="systemWordbooksOpen" class="btn" aria-pressed="false" aria-controls="systemWordbooksPanel">系统单词课程</button>
+    </nav>
+    <a class="admin-link" href="/admin.html">返回后台</a>
+  </header>
+  <section id="protectedPublicationPanel" class="utility-panel" hidden aria-label="新建发布"></section>
+  <section id="illustrationReviewPanel" class="utility-panel" hidden aria-label="配图审核"></section>
+  <section id="textbookDraftsPanel" class="utility-panel" hidden aria-label="教材草稿"></section>
+  <section id="systemWordbooksPanel" class="utility-panel" hidden aria-label="系统单词课程"></section>
+  <section id="libraryMetadataPanel" class="utility-panel" hidden aria-labelledby="libraryMetadataTitle"></section>
+  <main class="layout" id="studioLayout">
+    <aside class="pane course-pane" aria-label="课程列表">
+      <div class="pane-head"><h2>课程 <span id="courseCount" class="badge"></span></h2><button class="btn" id="hideCourses" type="button" aria-label="收起课程列表">收起</button></div>
+      <div class="pane-search"><input id="courseSearch" class="field" type="search" aria-label="搜索课程" placeholder="搜索课程"></div><div id="courses" class="course-list"></div>
+    </aside>
+    <aside class="pane item-pane" aria-label="句子列表">
+      <div class="pane-head"><h2>句子 <span id="itemCount" class="badge"></span></h2><button class="btn rail-toggle" id="showCourses" type="button">选课程</button></div>
+      <div class="pane-search"><input id="itemSearch" class="field" type="search" aria-label="搜索句子" placeholder="搜索英文或中文"></div><div id="items" class="item-list"></div>
+    </aside>
+    <section id="editorPane" class="pane" aria-label="正文编辑"><div class="content">
+      <div id="editorEmpty" class="empty" role="status">选择课程后开始编辑。</div>
+      <div id="editor" class="hidden">
+        <div class="editor-header"><div><h1 class="course-title" id="activeCourse"></h1><div class="course-meta" id="courseMeta"></div></div><div class="editor-actions"><button id="validate" class="btn">校验</button><button id="save" class="btn">保存草稿</button><button id="publish" class="btn primary">发布</button></div></div>
+        <div class="toolbar"><span id="revision" class="badge"></span><span id="validationBadge" class="badge">待校验</span><span id="state" class="state" role="status" aria-live="polite">加载中…</span><span class="spacer"></span><span id="itemPosition" class="item-position"></span><button id="previous" class="btn">上一句</button><button id="next" class="btn">下一句</button></div>
+        <div class="editor">
+          <div class="sentence-fields"><label><span class="label">英文原句</span><textarea id="sentence" class="field sentence" rows="1"></textarea></label><label><span class="label">中文翻译</span><textarea id="translation" class="field" rows="1"></textarea></label></div>
+          <section aria-label="意群编辑"><h2 class="section-title">意群与讲解</h2><div class="chunk-head" aria-hidden="true"><span></span><span>意群</span><span>中文提示</span><span>讲解</span></div><div id="chunks" class="chunks"></div></section>
+        </div>
+        <div id="validation" class="validation" role="status" aria-live="polite"></div>
+        <details class="preview"><summary>学习预览</summary><div class="preview-body"><div id="previewSentence" class="preview-sentence"></div><div id="previewTranslation" class="preview-translation"></div><div id="previewChunks" class="preview-chunks"></div></div></details>
+      </div>
+    </div></section>
   </main>
 </div>
 <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
-<script src="content-studio.js"></script>
-</body></html>
+<script src="js/membership.js"></script>
+<script src="content-studio.js?v=studio-20261017-drafts-1"></script>
+  <script src="js/illustration-review.js?v=11-compact-detail"></script>
+<script src="js/textbook-drafts.js?v=1"></script>
+<script src="js/learning-workspace.js"></script>
+<script src="js/library-metadata-editor.js?v=studio-20261016-2"></script>
+<script src="landing/sentence-cloze-engine.js"></script>
+<script src="js/vocabulary-course-contract.js"></script>
+<script src="js/vocabulary-word-dictation.js"></script>
+<script src="js/vocabulary-word-choice.js"></script>
+<script src="js/vocabulary-chunk-order.js"></script>
+<script src="landing/sentence-cloze-view.js"></script>
+<script src="landing/guided-sentence-view.js"></script>
+<script src="landing/word-choice-view.js"></script>
+<script src="landing/chunk-order-view.js"></script>
+<script src="landing/word-dictation-view.js"></script>
+<script src="js/admin-wordbooks.js?v=3-textbook"></script>
+<script>
+// 管理页也检查已注册的应用资源版本；不在编辑过程中自动刷新页面。
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistration().then(function (registration) {
+    if (registration) return registration.update();
+  }).catch(function () { /* 离线时继续使用当前页面，保留编辑内容。 */ });
+}
+</script>
+</body>
+</html>

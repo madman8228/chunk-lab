@@ -557,7 +557,7 @@ function waitForServer() {
     assert.equal(briefPendingVisible, false, 'a transient pending request stays quiet for the five-second grace period');
     await page.waitForFunction(() => {
       const status=document.getElementById('chunklabSaveStatus');
-      return status && status.getAttribute('data-visible') === 'true' && /已安全保存在此设备/.test(status.textContent);
+      return status && status.getAttribute('data-visible') === 'true' && /已保存在本机，尚未上传/.test(status.textContent);
     }, null, { timeout: 1500 });
     await page.evaluate(() => window.dispatchEvent(new CustomEvent('server-store-state', {
       detail:{phase:'idle',pending:0,blocked:0,error:null},
@@ -580,7 +580,7 @@ function waitForServer() {
       throw error;
     });
     assert.deepEqual(legacyWrites, [], 'clearing a legacy private API key is a local-only cleanup, not an old snapshot write');
-    await page.locator('[data-home-course="user-deck:server-answer"]').click();
+    await page.getByRole('button',{name:/^继续学习 服务端答题验收(?:；|$)/}).click();
     await page.waitForSelector('#stageChoices .choice', { timeout: 15000 });
     const firstValue = await page.evaluate(() => cur().sentence);
     await page.evaluate(() => {
@@ -1021,7 +1021,21 @@ function waitForServer() {
     assert.deepEqual(legacyWrites, [], 'protocol-3 local projection saves do not invoke full-snapshot or import writes');
 
     const statsPage = await context.newPage();
+    // This section inspects private functions of the standalone source used by
+    // build-stats-page.cjs. Keep that white-box seam test-only; the actual legacy
+    // redirect and embedded readiness are covered by stats-initialization.test.js.
+    await statsPage.route('**/stats.html?protocol3-mistake-remove=1',async route=>{
+      const response=await route.fetch(),source=await response.text();
+      assert.equal(response.status(),200);
+      const redirect="<script>location.replace('main.html?view=stats');</script>";
+      assert.equal(source.split(redirect).length,2,'source fixture must remove exactly the navigation shim, not application logic');
+      await route.fulfill({response,body:source.replace(redirect,'<!-- Test-only standalone source fixture; production still redirects. -->')});
+    });
     const statsOperations = [];
+    const statsWarnings = [];
+    statsPage.on('console', message => {
+      if (['warning','error'].includes(message.type()) && message.text().includes('[stats]')) statsWarnings.push(message.text());
+    });
     statsPage.on('request', request => {
       const url = new URL(request.url());
       if (request.method() !== 'GET' && ['/api/data', '/api/import'].includes(url.pathname)) {
@@ -1045,6 +1059,7 @@ function waitForServer() {
     await statsPage.goto(base + '/stats.html?protocol3-mistake-remove=1', { waitUntil: 'domcontentloaded' });
     await statsPage.waitForFunction(() => window.CL && CL.serverPersistenceReady && CL.serverPersistenceReady(),
       null, { timeout: 15000 });
+    await statsPage.waitForFunction(() => window._statsInitialSync === false, null, { timeout: 15000 });
     const statsSnapshotGuard = await statsPage.evaluate(async () => {
       const before = JSON.stringify(mem);
       const pendingBefore = (await ServerStore.pending()).length;
@@ -1067,7 +1082,23 @@ function waitForServer() {
         return receipt && receipt.outcome === 'retained' && receipt.changes && receipt.changes.delta === true &&
           receipt.operation && receipt.operation.reason === 'modern-learning-evidence';
       } catch (_) { return false; }
-    }, statsMigrationId, { timeout: 15000 });
+    }, statsMigrationId, { timeout: 15000 }).catch(async error => {
+      console.error('[stats-migration-warnings]', JSON.stringify(statsWarnings));
+      console.error('[stats-migration-evidence]', JSON.stringify(await statsPage.evaluate(async id => ({
+        ready: CL.serverPersistenceReady(),
+        migration: MainLegacyStats.migrateLegacyStatKeys(mem.stats.bySentence, allDecks(), {normalizeSentence:normSent,hash:CL.fnv8}).migrations,
+        receipt: await ChunkAPI.getOperationReceipt(id).catch(e => ({code:e.code,status:e.status})),
+        queue: (await ServerStore.pending()).map(row => ({type:row.operation.type,status:row.status,error:row.lastError})),
+        legacyPresent: !!mem.stats.bySentence['rev-server-answer-stats#server-answer-1'],
+        cacheLegacy: !!(await ServerCache.read()).snapshot.mem.stats.bySentence['rev-server-answer-stats#server-answer-1'],
+        serverLegacy: !!(await ChunkAPI.getData()).mem.stats.bySentence['rev-server-answer-stats#server-answer-1']
+        ,confirmedMigration: MainLegacyStats.migrateLegacyStatKeys((await ServerCache.read()).snapshot.mem.stats.bySentence,allDecks(),{normalizeSentence:normSent,hash:CL.fnv8}).migrations,
+        decks: allDecks().filter(d=>d.id==='server-answer').map(d=>({id:d.id,cids:d.items.map(i=>i.cid)})),
+        migrationLoaded:typeof window.ServerStatKeyMigration,
+        initialSync:_statsInitialSync
+      }), statsMigrationId)));
+      throw error;
+    });
     assert.match(statsMigrationId, /^legacy_stat_key_[a-f0-9]+$/,
       'the stats migration has a stable, queryable operation identity');
     const statsRetainedDb = new Database(path.join(dataDir, 'chunklab.db'), { readonly: true });
@@ -1275,6 +1306,9 @@ function waitForServer() {
       await commitImport(items, name);
       const deck = mem.decks.find(item => item.name === name);
       if (!deck || deck.items.length !== 20) throw new Error('离线答题夹具未写入服务器确认题库');
+      // Imported content is not automatically enrolled. Confirm membership
+      // before exercising offline answer persistence through the real entry.
+      await CourseEnrollment.join('user-deck:' + deck.id);
       mem.settings.shuffle = false;
       mem.settings.mode = 'choose';
       mem.settings.batchSize = 20;
@@ -1317,7 +1351,7 @@ function waitForServer() {
     assert.equal(offlineQueueBeforeReload.uniqueEvents, 20, 'each offline answer has its own idempotency event');
     await page.waitForFunction(() => {
       const status = document.getElementById('chunklabSaveStatus');
-      return status && status.dataset.visible === 'true' && /已安全保存在此设备，联网后会自动同步/.test(status.textContent);
+      return status && status.dataset.visible === 'true' && /已保存在本机，尚未上传；系统会自动重试/.test(status.textContent);
     }, null, { timeout:8000 });
     await page.reload({ waitUntil:'networkidle' });
     await page.waitForFunction(() => window.CL && CL.getCloudConfig && CL.getCloudConfig().writeProtocol === 3,
@@ -1413,6 +1447,10 @@ function waitForServer() {
     }, stagedExportId);
     await page.locator('#btnSettingsTop').click();
     await page.locator('#settingsMask').waitFor({state:'visible'});
+    const exportAccountGroup = page.locator('#settingsAccountGroup');
+    if (!await exportAccountGroup.evaluate(element => element.open)) {
+      await exportAccountGroup.locator(':scope > summary').click();
+    }
     await page.locator('#backupHead').click();
     const exportDownloadPromise = page.waitForEvent('download',{timeout:8000}).catch(() => null);
     await page.locator('#btnExportAll').click();
@@ -1528,7 +1566,7 @@ function waitForServer() {
         projectedMembership:CL.readProgress()['enrollment:v1:user-deck%3Aserver-answer']||null,
         cacheCourse:cache.snapshot.courses.find(course=>course.courseId==='e2e-second-device-course')||null,
         projectedCourse:CL.readCourses().find(course=>course.courseId==='e2e-second-device-course')||null,
-        joinedCard:!!document.querySelector('[data-home-course="user-deck:server-answer"]'),
+        joinedCard:!!Array.from(document.querySelectorAll('#homeBody .hd-main-action')).find(button=>/^继续学习 服务端答题验收(?:；|$)/.test(button.getAttribute('aria-label')||'')),
         projectedDeck:mem.decks.some(deck=>deck.id==='server-answer'),
         cacheAnswers:cache.snapshot.mem.stats.totalAnswered,
         projectedAnswers:mem.stats.totalAnswered,
@@ -1572,6 +1610,12 @@ function waitForServer() {
       const deck=JSON.parse(JSON.stringify(snapshot.mem.decks.find(item=>item.id==='server-answer')));
       if(!deck) throw new Error('server-confirmed deck is missing from the simulated remote writer');
       deck.name=name;
+      // Earlier scenarios schedule the original two sentences and explicitly
+      // seed source index 1. Supply an unseen sentence after that checkpoint:
+      // this section tests cross-device writes/exit, not forcing an early review.
+      deck.items.push({cid:'server-answer-remote-new',sentence:'A new sentence from another device.',
+        en:'A new sentence from another device.',translation:'来自另一设备的新句子。',
+        chunks:['A new sentence from another device.'],alts:[[]],hints:['来自另一设备的新句子。']});
       const response=await fetch('/api/operations',{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({protocol:3,requestId:'e2e_remote_deck_change_01',type:'deck.put',payload:{deck},
           expectedRev:snapshot.revs.decks[deck.id]})});
@@ -1580,7 +1624,9 @@ function waitForServer() {
     assert.equal(remoteDeckWrite.status,200,'a separate browser client commits the cross-device deck change to SQLite');
     await freshPage.evaluate(()=>window.dispatchEvent(new Event('focus')));
     await freshPage.waitForFunction(name=>mem.decks.some(deck=>deck.id==='server-answer'&&deck.name===name),remoteDeckName,{timeout:10000});
-    assert.equal(await freshPage.locator('[data-home-course="user-deck:server-answer"]').textContent().then(text=>text.includes(remoteDeckName)),true,
+    const remoteCourseButton=freshPage.locator('#homeBody .hd-main-action').filter({hasText:remoteDeckName});
+    assert.equal(await remoteCourseButton.count(),1,'the updated synthetic course has exactly one continue action');
+    assert.equal(await remoteCourseButton.textContent().then(text=>text.includes(remoteDeckName)),true,
       'returning to the home tab refreshes the server cache and renders the other device content change');
     let releaseHeldOperation;
     const heldOperationStarted = new Promise(resolve => { releaseHeldOperation = resolve; });
@@ -1596,8 +1642,10 @@ function waitForServer() {
       }
       await route.continue();
     });
-    await freshPage.locator('[data-home-course="user-deck:server-answer"]').click();
+    await remoteCourseButton.click();
     await freshPage.waitForSelector('#stageChoices .choice', { timeout: 15000 });
+    assert.equal(await freshPage.evaluate(()=>cur().cid),'server-answer-remote-new',
+      'ordinary continuation reaches unseen remote content rather than forcing a not-yet-due sentence');
     const durableBeforeExit = await freshPage.evaluate(async requestId => {
       const accepted = await ServerStore.submit('settings.patch', { patch: { sound: true } }, { requestId });
       return { durable: accepted.durable, queued: (await ServerStore.pending()).some(row => row.requestId === requestId) };
@@ -1639,7 +1687,7 @@ function waitForServer() {
       };
       return (await ChunkAPI.getData()).mem.stats.totalAnswered;
     });
-    await freshPage.locator('[data-home-course="user-deck:server-answer"]').click();
+    await remoteCourseButton.click();
     await freshPage.waitForSelector('#stageChoices .choice',{timeout:15000});
     await clickCorrectChoice(freshPage);
     await waitForAsync(freshPage, async before=>(await ChunkAPI.getData()).mem.stats.totalAnswered===before+1,
