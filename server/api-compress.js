@@ -64,15 +64,21 @@ function apiCompress() {
     const origJson = res.json;
     res.json = function (body) {
       if (res.writableEnded) return res;
+      // Preserve Express' legacy two-argument overload without interpreting it here.
+      if (arguments.length !== 1) return origJson.apply(res, arguments);
 
-      let buf;
-      try {
-        buf = Buffer.from(JSON.stringify(body), 'utf8');
-      } catch (e) {
-        /* 循环引用等序列化失败：交回 Express（它内部同样会抛，错误处理链一致） */
-        return origJson.call(res, body);
+      const replacer = res.app.get('json replacer'), spaces = res.app.get('json spaces');
+      let json = replacer || spaces ? JSON.stringify(body, replacer, spaces) : JSON.stringify(body);
+      if (res.app.get('json escape') && typeof json === 'string') {
+        const escaped = { '<': '\\u003c', '>': '\\u003e', '&': '\\u0026' };
+        json = json.replace(/[<>&]/g, character => escaped[character]);
       }
-      if (buf.length < MIN_BYTES) return origJson.call(res, body);
+      function sendJson() {
+        if (!res.get('Content-Type')) res.set('Content-Type', 'application/json');
+        return res.send(json);
+      }
+      if (json === undefined || Buffer.byteLength(json, 'utf8') < MIN_BYTES) return sendJson();
+      const buf = Buffer.from(json, 'utf8');
 
       encode(buf, enc).then(function (out) {
         /* 异步期间响应可能已被结束（客户端断开/超时中间件），此时不能再写 */
@@ -87,7 +93,7 @@ function apiCompress() {
         /* 协议级降级（HTTP 允许服务端自行决定不压缩），**不是静默兜底**：
            失败必须留痕，且降级结果对客户端仍是语义正确的完整响应。 */
         console.warn('[api-compress] ' + enc + ' 压缩失败，降级为未压缩响应：' + (e && e.message));
-        if (!res.writableEnded && !res.headersSent) origJson.call(res, body);
+        if (!res.writableEnded && !res.headersSent) sendJson();
       });
 
       return res;   /* 保持 Express 链式语义 */

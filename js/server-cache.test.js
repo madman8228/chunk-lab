@@ -495,4 +495,12 @@ const incompleteRoundCache=JSON.parse(JSON.stringify(roundResumeCache));
 incompleteRoundCache.snapshot.mem.stats.events=incompleteRoundCache.snapshot.mem.stats.events.filter(event=>event.answerOrder!==0);
 assert.equal(cache.projectMainMem(incompleteRoundCache,[]).progress['resume-deck'].answerOrder,undefined,
   'an incomplete historical round does not manufacture a confirmed score');
+const browseFull=cache.mergeSnapshot(null,{seq:1,delta:false,mem:{vocabularyBrowseResume:{'browse:one':{stepId:'pen:recognition',assessment:false}},vocabularyResume:{old:{itemId:'unchanged'}}},revs:{vocabularyBrowseResume:{'browse:one':1}},entityGone:{}});
+const browseDelta=cache.mergeSnapshot(browseFull,{seq:2,delta:true,mem:{vocabularyBrowseResume:{'browse:one':{stepId:'pen:phrase',assessment:false}}},revs:{vocabularyBrowseResume:{'browse:one':2}},entityGone:{}});
+assert.equal(browseDelta.snapshot.mem.vocabularyBrowseResume['browse:one'].stepId,'pen:phrase');
+assert.equal(browseDelta.snapshot.mem.vocabularyResume.old.itemId,'unchanged');
+const browseUnchanged=cache.mergeSnapshot(browseDelta,{seq:3,delta:true,mem:{},revs:{},entityGone:{}});
+assert.equal(browseUnchanged.snapshot.mem.vocabularyBrowseResume['browse:one'].stepId,'pen:phrase');
+const browseGone=cache.mergeSnapshot(browseUnchanged,{seq:4,delta:true,mem:{},revs:{vocabularyBrowseResume:{'browse:one':4}},entityGone:{vocabularyBrowseResume:['browse:one']}});
+assert.equal(browseGone.snapshot.mem.vocabularyBrowseResume['browse:one'],undefined);
 console.log('server cache snapshot merge tests passed');

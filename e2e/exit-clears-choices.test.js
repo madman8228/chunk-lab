@@ -65,6 +65,13 @@ function seedExitCourse() {
     cid: 'exit-cleanup-test'
   };
   const deck = { id: 'exit-cleanup-d1', name: '退出清理测试', items: [item] };
+  const courseId = 'user-deck:' + deck.id;
+  localStorage.setItem('chunklab.course-progress.v1', JSON.stringify({
+    ['enrollment:v1:' + encodeURIComponent(courseId)]: {
+      kind:'course-enrollment', schemaVersion:1, courseId, joined:true,
+      joinedAt:Date.now(), changedAt:Date.now()
+    }
+  }));
   localStorage.setItem('chunklab.v1', JSON.stringify({
     version: 2,
     decks: [deck],

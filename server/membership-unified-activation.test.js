@@ -1,0 +1,41 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),crypto=require('node:crypto');
+const Database=require('better-sqlite3');
+const {initializeMembershipSchema}=require('./services/membership/schema');
+const {ContentRegistry}=require('./services/membership/content-registry');
+const {prepareStaticCourseRegistry}=require('./services/membership/prepare-static-course-registry');
+const {createStaticRegistryActivation}=require('./services/membership/static-registry-activation');
+const root=fs.mkdtempSync(path.join(os.tmpdir(),'chunklab-activation-')),appRoot=path.join(root,'app'),protectedRoot=path.join(root,'private');
+fs.mkdirSync(appRoot);fs.mkdirSync(protectedRoot);
+const items=[{cid:'original-item',sentence:'Keep original.',chunks:['Keep','original.']}];
+const identity={deckId:'original-deck',generationScope:'course:original-deck',resumeIdentity:'original-session'};
+fs.writeFileSync(path.join(protectedRoot,'original.json'),JSON.stringify({items}));
+fs.writeFileSync(path.join(protectedRoot,'registry.json'),JSON.stringify({schemaVersion:1,courses:[{courseId:'original-course',title:'Original',contentType:'sentence',defaultAccess:'free',sourcePaths:['/raw.js'],legacyDeckIds:['original-deck'],
+  units:[{unitId:'lesson',file:'original.json',itemIds:['original-item'],assets:[],contentRef:{type:'sentence-deck',id:'original-deck'},recordIdentity:identity}]}]}));
+const db=new Database(path.join(root,'isolated.db'));initializeMembershipSchema(db);
+db.exec('CREATE TABLE fixture_learning(key TEXT,value TEXT)');db.prepare('INSERT INTO fixture_learning VALUES(?,?)').run('original-deck#original-item','original progress');
+const registry=new ContentRegistry({appRoot,protectedRoot,activeManifest:()=>db.prepare('SELECT manifest_json AS body FROM membership_static_activations ORDER BY rowid DESC LIMIT 1').get()||null});
+const originalBytes=fs.readFileSync(path.join(protectedRoot,'registry.json'));
+const output=path.join(root,'candidate');prepareStaticCourseRegistry({registry,output});
+const candidateHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(output,'candidate.json'))).digest('hex');
+const service=createStaticRegistryActivation({db,registry});
+const input={candidateRoot:output,expectedRegistryVersion:registry.snapshot().version,requestId:crypto.randomUUID(),review:{candidateHash,publicSourcesVerified:true,runtimeVerified:true,evidence:'Synthetic fixture only; original aliases and native identity independently checked.'}};
+try{
+  assert.throws(()=>service.activate({...input,review:null},1),/REVIEW_REQUIRED/);
+  assert.throws(()=>service.activate({...input,expectedRegistryVersion:'stale'},1),/REGISTRY_CHANGED/);
+  db.exec("CREATE TRIGGER fixture_failure BEFORE INSERT ON membership_static_activations BEGIN SELECT RAISE(FAIL,'synthetic failure'); END");
+  assert.throws(()=>service.activate(input,1),/synthetic failure/);
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM membership_static_activations').get().n,0);
+  assert.equal(registry.snapshot().version,input.expectedRegistryVersion);
+  assert.ok(fs.readdirSync(protectedRoot).some(name=>name.startsWith('activation-')),'failed transaction preserves recoverable private files');
+  db.exec('DROP TRIGGER fixture_failure');
+  assert.equal(service.activate(input,1).activated,true);assert.equal(service.activate(input,1).replay,true);
+  assert.throws(()=>service.activate({...input,review:{...input.review,evidence:'different'}},1),/IDEMPOTENCY_CONFLICT/);
+  assert.deepEqual(registry.load('original-course','lesson',0).payload.recordIdentity,identity);
+  assert.deepEqual(registry.load('original-course','lesson',0).payload.items,items);
+  assert.equal(registry.blockedPath('/raw.js.gz'),true);
+  assert.deepEqual(fs.readFileSync(path.join(protectedRoot,'registry.json')),originalBytes);
+  assert.equal(db.prepare('SELECT value FROM fixture_learning').get().value,'original progress');
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM membership_static_activations').get().n,1);
+  console.log('isolated activation: explicit review, optimistic conflict, transaction rollback, preserved files/identity/records and idempotent pointer passed');
+}finally{db.close();}

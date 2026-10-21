@@ -151,7 +151,7 @@ function createAdminOverview(options) {
     const now = Date.now();
     const row = db.prepare(
       'SELECT COUNT(*) AS clients, COUNT(DISTINCT user_id) AS accounts, ' +
-      'COALESCE(SUM(pending),0) AS pending, COALESCE(SUM(blocked),0) AS blocked, ' +
+      'COALESCE(SUM(pending),0) AS pending, COALESCE(SUM(blocked),0) AS blocked, COALESCE(SUM(deferred_version),0) AS deferred_version, ' +
       'COALESCE(SUM(retry_attempts),0) AS retry_attempts, MIN(oldest_pending_at) AS oldest_pending_at, ' +
       'MAX(updated_at) AS latest_at FROM user_client_save_health WHERE updated_at >= ?'
     ).get(now - 30 * 60 * 1000);
@@ -169,6 +169,7 @@ function createAdminOverview(options) {
       activeAccounts: Number(row.accounts),
       pending: Number(row.pending),
       blocked: Number(row.blocked),
+      deferredVersion: Number(row.deferred_version||0),
       retryAttempts: Number(row.retry_attempts),
       successfulOperations,
       migrationRetainedItems,

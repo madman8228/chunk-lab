@@ -6,7 +6,7 @@ const {chromium}=require('playwright-core'),assert=require('node:assert/strict')
  await page.addStyleTag({path:path.resolve('assets/learning-workspace.css')});await page.addStyleTag({path:path.resolve('assets/content-card.css')});
  await page.addScriptTag({path:path.resolve('js/learning-workspace.js')});
  await page.evaluate(()=>window.LearningNavigation={create:()=>document.createElement('nav')});
- await page.addScriptTag({path:path.resolve('js/content-card.js')});await page.addScriptTag({path:path.resolve('js/learning-workspace-view.js')});
+ await page.addScriptTag({path:path.resolve('js/content-card.js')});await page.addScriptTag({path:path.resolve('js/course-return.js')});await page.addScriptTag({path:path.resolve('js/learning-workspace-view.js')});
  await page.evaluate(()=>{
   const resources=['one','two'].map(id=>LearningWorkspace.normalizeResource({resourceId:'course:'+id,courseId:id,kind:'course',title:'课程 '+id,visibility:'private',available:true,sourceRefs:[{type:'sentence-deck',id}],activities:['chunks']}));
   LearningWorkspaceView.render(document.getElementById('test'),{view:'my-learning',resources,publicResources:[],preferences:{},memberships:{},status:''},{filter(){},navigate(){},open(){},select(){}});

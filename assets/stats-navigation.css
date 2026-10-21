@@ -1,0 +1,7 @@
+/* Navigation only: no changes to statistics, filters or persisted records. */
+.stats-global-nav{display:flex;align-items:center;flex-wrap:wrap;gap:12px;min-height:44px;margin-bottom:4px}
+.stats-global-nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;color:#745333;text-decoration:none;font-size:14px}
+.stats-global-nav a[aria-current=page]{color:#523019;font-weight:700}
+.stats-global-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.stats-global-nav a:focus-visible{outline:2px solid #3768b4;outline-offset:2px}
+@media(max-width:420px){.stats-global-nav{gap:4px}.stats-global-nav a{padding:8px;font-size:13px}}

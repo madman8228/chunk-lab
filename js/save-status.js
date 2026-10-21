@@ -8,6 +8,7 @@
   var lastState = null;
   var pendingSince = null;
   var upgradeRequired = false;
+  var conflictNotified = false;
 
   function protocol3() {
     var config = global.CL && global.CL.getCloudConfig ? global.CL.getCloudConfig() : null;
@@ -91,6 +92,15 @@
     if (upgradeRequired) return;
     if (!protocol3()) return;
     var phase = lastState.phase;
+    if ((phase === 'saved' || phase === 'idle') && !Number(lastState.pending) && !Number(lastState.blocked)) conflictNotified = false;
+    if (lastState.error === 'SERVER_SEQ_ROLLBACK') {
+      pendingSince = null;
+      if (!conflictNotified) {
+        conflictNotified = true;
+        show('进度已保存在此设备，暂未上传。', 'normal', 6000);
+      }
+      return;
+    }
     if (phase === 'pending' || phase === 'sending') {
       if (pendingSince == null) pendingSince = Date.now();
       cancelTimers();
@@ -98,7 +108,7 @@
       showTimer = global.setTimeout(function () {
         showTimer = null;
         if (!lastState || !['pending', 'sending'].includes(lastState.phase)) return;
-        show('已安全保存在此设备，联网后会自动同步。', 'normal');
+        show('已保存在本机，尚未上传；系统会自动重试。', 'normal');
       }, remaining);
       return;
     }
@@ -115,7 +125,13 @@
       return;
     }
     if (phase === 'blocked') {
-      show('有一项内容暂未完成保存；其他学习仍可继续。请刷新后重试。', 'error');
+      // Historical rejected operations remain in the durable recovery queue.
+      // They are not a new foreground save failure on every state refresh.
+      hide();
+      return;
+    }
+    if (phase === 'deferred-version') {
+      show('有旧版学习记录尚未上传，已保留在此设备；新版练习可继续。', 'normal');
       return;
     }
     if (phase === 'paused' && lastState.error === 'CLIENT_UPDATE_REQUIRED') {
@@ -127,7 +143,7 @@
       return;
     }
     if (phase === 'saved') {
-      show('已保存。', 'normal', 1400);
+      show('已保存到云端。', 'normal', 1400);
       return;
     }
     if (phase === 'idle' && !(Number(lastState.pending) > 0) && !(Number(lastState.blocked) > 0)) hide();

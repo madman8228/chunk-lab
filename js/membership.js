@@ -20,11 +20,13 @@ var ChunkMembership = (() => {
   // scripts/membership-browser-entry.mjs
   var membership_browser_entry_exports = {};
   __export(membership_browser_entry_exports, {
+    CourseImageCache: () => CourseImageCache,
     CoursePolicyView: () => CoursePolicyView,
     CoursePublicationView: () => CoursePublicationView,
     LearningSessionController: () => LearningSessionController,
     MembershipClient: () => MembershipClient,
     buildProtectedHistoryDecks: () => buildProtectedHistoryDecks,
+    imageCacheScope: () => imageCacheScope,
     mountNativeAssessment: () => mountNativeAssessment,
     mountNativeCourse: () => mountNativeCourse
   });
@@ -185,10 +187,10 @@ var ChunkMembership = (() => {
     }
     async publish() {
       if (!this.pending || this.busy) return;
-      const pending = this.pending;
+      const pending2 = this.pending;
       this.setBusy(true);
       try {
-        await this.request("/api/admin/membership/course-access", { method: "PUT", body: JSON.stringify(pending) });
+        await this.request("/api/admin/membership/course-access", { method: "PUT", body: JSON.stringify(pending2) });
         this.pending = null;
         this.setBusy(false);
         const loaded = await this.load();
@@ -203,11 +205,12 @@ var ChunkMembership = (() => {
 
   // src/membership/client.mjs
   var MembershipClient = class {
-    constructor({ request }) {
+    constructor({ request, readCatalog }) {
       this.request = request;
+      this.readCatalog = readCatalog;
     }
     catalog() {
-      return this.request("/api/course-content/catalog", { timeoutMs: 8e3 });
+      return this.readCatalog ? this.readCatalog() : this.request("/api/course-content/catalog", { timeoutMs: 8e3 });
     }
     start(input) {
       return this.request("/api/learning-sessions/start", { method: "POST", body: JSON.stringify(input), timeoutMs: 8e3 });
@@ -375,16 +378,16 @@ var ChunkMembership = (() => {
     async sendAction() {
       this.assertScope();
       if (this.busy) throw failure("REQUEST_IN_PROGRESS");
-      const pending = this.pendingAction;
-      if (!pending) return;
+      const pending2 = this.pendingAction;
+      if (!pending2) return;
       const epoch = this.epoch, sentAt = this.now();
       this.busy = true;
       try {
-        const result = await this.client.action(pending.sessionId, pending.sequence, pending.action);
+        const result = await this.client.action(pending2.sessionId, pending2.sequence, pending2.action);
         this.assertScope();
         if (epoch !== this.epoch) throw failure("SESSION_CHANGED");
         this.pendingAction = null;
-        if (pending.action === "heartbeat") this.apply(result, sentAt);
+        if (pending2.action === "heartbeat") this.apply(result, sentAt);
         else {
           this.phase = "paused";
           this.current = null;
@@ -395,7 +398,7 @@ var ChunkMembership = (() => {
       } catch (error) {
         if (epoch === this.epoch) {
           if (error.status) this.pendingAction = null;
-          if (pending.action !== "heartbeat" || !this.canAdvance()) this.phase = "blocked";
+          if (pending2.action !== "heartbeat" || !this.canAdvance()) this.phase = "blocked";
           this.emit(error.code || "CONNECTION_FAILED");
         }
         throw error;
@@ -885,7 +888,7 @@ var ChunkMembership = (() => {
   // src/learning/platform-course-source.mjs
   var failure3 = (code) => Object.assign(new Error(code), { code });
   var PlatformCourseSource = class {
-    constructor({ client, controller, fetchResource, newRequestId, monotonicNow = () => performance.now() }) {
+    constructor({ client, controller, fetchResource, newRequestId, imageCache, captureImageScope, monotonicNow = () => performance.now() }) {
       this.client = client;
       this.controller = controller;
       this.fetchResource = fetchResource;
@@ -893,6 +896,8 @@ var ChunkMembership = (() => {
       this.now = monotonicNow;
       this.grants = /* @__PURE__ */ new Map();
       this.epoch = 0;
+      this.imageCache = imageCache;
+      this.captureImageScope = captureImageScope;
     }
     remember(result, sentAt, cursor = result.fragments?.[0]?.cursor) {
       if (!result.grant || result.headerName !== "X-Course-Grant" || !Number.isFinite(result.expiresAt) || !Number.isFinite(result.serverNow) || result.fragments?.length !== 1) throw failure3("CONTENT_GRANT_INVALID");
@@ -951,8 +956,19 @@ var ChunkMembership = (() => {
     async loadAssets(assetId, cursor) {
       const epoch = this.epoch, grant = await this.grantFor(cursor);
       if (!grant.fragment.assetIds.includes(assetId)) throw failure3("ASSET_NOT_AUTHORIZED");
-      const result = await this.fetchResource("/api/course-assets/" + encodeURIComponent(assetId), this.headers(grant), "blob");
-      if (epoch !== this.epoch || !this.checkAdvance(cursor)) throw failure3("AUTHORIZATION_EXPIRED");
+      const guard = () => {
+        if (epoch !== this.epoch || !this.checkAdvance(cursor)) throw failure3("AUTHORIZATION_EXPIRED");
+      };
+      const download = () => this.fetchResource("/api/course-assets/" + encodeURIComponent(assetId), this.headers(grant), "blob");
+      const result = this.imageCache ? await this.imageCache.load({
+        scope: this.captureImageScope(),
+        courseId: this.reference.courseId,
+        contentVersion: grant.contentVersion,
+        assetId,
+        download,
+        guard
+      }) : await download();
+      guard();
       return result;
     }
     async pause() {
@@ -969,10 +985,100 @@ var ChunkMembership = (() => {
     }
   };
 
+  // src/learning/course-image-cache.mjs
+  var IMAGE_CACHE_PREFIX = "course-images-v1-";
+  var pending = /* @__PURE__ */ new Map();
+  var revisions = /* @__PURE__ */ new Map();
+  function imageCacheScope(win) {
+    return JSON.stringify([win.ChunkAPI.getBase(), win.AccountStorage.owner]);
+  }
+  var CourseImageCache = class {
+    constructor(win = globalThis) {
+      this.win = win;
+    }
+    async name(scope) {
+      const bytes = new TextEncoder().encode(scope);
+      const digest = await this.win.crypto.subtle.digest("SHA-256", bytes);
+      return IMAGE_CACHE_PREFIX + Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
+    }
+    async load({ scope, courseId, contentVersion, assetId, download, guard }) {
+      guard();
+      if (!this.win.caches || !this.win.crypto?.subtle) {
+        const blob = await download();
+        guard();
+        return blob;
+      }
+      let name, cache;
+      try {
+        name = await this.name(scope);
+        cache = await this.win.caches.open(name);
+      } catch (_) {
+        const blob = await download();
+        guard();
+        return blob;
+      }
+      guard();
+      const key = new URL("/__course_image_cache__/" + encodeURIComponent(JSON.stringify([courseId, contentVersion, assetId])), this.win.location.origin).href;
+      const revision = revisions.get(name) || 0, flightKey = name + ":" + revision + ":" + key;
+      if (!pending.has(flightKey)) {
+        const task2 = (async () => {
+          let response;
+          try {
+            response = await cache.match(key);
+          } catch (_) {
+          }
+          guard();
+          if (response) {
+            try {
+              const blob2 = await response.blob();
+              if (blob2.size && /^image\//.test(blob2.type) && Number(response.headers.get("X-Image-Bytes")) === blob2.size) return blob2;
+            } catch (_) {
+            }
+          }
+          const blob = await download();
+          guard();
+          if (blob.size && /^image\//.test(blob.type) && revision === (revisions.get(name) || 0)) {
+            try {
+              await cache.put(key, new Response(blob, { headers: { "Content-Type": blob.type, "X-Image-Bytes": String(blob.size) } }));
+            } catch (_) {
+            }
+          }
+          return blob;
+        })();
+        pending.set(flightKey, task2);
+      }
+      const task = pending.get(flightKey);
+      try {
+        const blob = await task;
+        guard();
+        return blob;
+      } finally {
+        if (pending.get(flightKey) === task) pending.delete(flightKey);
+      }
+    }
+    async usage(scope) {
+      if (!this.win.caches || !this.win.crypto?.subtle) return null;
+      const name = await this.name(scope);
+      if (!(await this.win.caches.keys()).includes(name)) return { count: 0, bytes: 0 };
+      const cache = await this.win.caches.open(name), entries = await cache.matchAll();
+      return { count: entries.length, bytes: entries.reduce((total, entry) => total + (Number(entry.headers.get("X-Image-Bytes")) || 0), 0) };
+    }
+    async clear(scope) {
+      if (!this.win.caches || !this.win.crypto?.subtle) throw new Error("IMAGE_CACHE_UNAVAILABLE");
+      const name = await this.name(scope);
+      revisions.set(name, (revisions.get(name) || 0) + 1);
+      await this.win.caches.delete(name);
+    }
+  };
+
   // src/learning/native-course-session.mjs
   var messages = {
-    AUTH_REQUIRED: "\u8BF7\u5148\u767B\u5F55\uFF0C\u518D\u5F00\u59CB\u5B66\u4E60\u3002",
-    NOT_AUTH: "\u8BF7\u5148\u767B\u5F55\uFF0C\u518D\u5F00\u59CB\u5B66\u4E60\u3002",
+    AUTH_REQUIRED: "\u8BF7\u5148\u767B\u5F55\uFF0C\u518D\u67E5\u770B\u4E2A\u4EBA\u5B66\u4E60\u5185\u5BB9\u3002",
+    NOT_AUTH: "\u767B\u5F55\u5DF2\u8FC7\u671F\uFF0C\u8BF7\u91CD\u65B0\u767B\u5F55\u540E\u7EE7\u7EED\u3002",
+    SERVER_SEQ_ROLLBACK: "\u5B66\u4E60\u6570\u636E\u7248\u672C\u9700\u8981\u6838\u67E5\uFF0C\u539F\u8BB0\u5F55\u5DF2\u4FDD\u7559\u3002\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u534F\u52A9\u68C0\u67E5\u3002",
+    SERVER_IDENTITY_REQUIRED: "\u670D\u52A1\u7AEF\u672A\u786E\u8BA4\u8D26\u53F7\uFF0C\u5DF2\u6682\u505C\u540C\u6B65\uFF1B\u672C\u5730\u8BB0\u5F55\u4FDD\u7559\u3002\u8BF7\u66F4\u65B0\u670D\u52A1\u540E\u91CD\u8BD5\u3002",
+    SERVER_IDENTITY_MISMATCH: "\u670D\u52A1\u7AEF\u54CD\u5E94\u8D26\u53F7\u4E0D\u4E00\u81F4\uFF0C\u5DF2\u6682\u505C\u540C\u6B65\uFF1B\u672C\u5730\u8BB0\u5F55\u4FDD\u7559\u3002",
+    SERVER_UPDATE_REQUIRED: "\u670D\u52A1\u7AEF\u7248\u672C\u6216\u767B\u5F55\u914D\u7F6E\u9700\u8981\u66F4\u65B0\uFF0C\u539F\u6709\u8BB0\u5F55\u5DF2\u4FDD\u7559\u3002",
     CONTENT_PREPARATION_REQUIRED: "\u8BFE\u7A0B\u6682\u65F6\u65E0\u6CD5\u5F00\u59CB\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5\u3002\u539F\u8BFE\u7A0B\u548C\u8BB0\u5F55\u4ECD\u7136\u4FDD\u7559\u3002",
     TRIAL_DAILY_LIMIT: "\u672C\u5468\u671F\u4F53\u9A8C\u65F6\u957F\u5DF2\u7528\u5B8C\u3002\u53EF\u7B49\u5F85\u989D\u5EA6\u6062\u590D\uFF0C\u6216\u5151\u6362\u4F1A\u5458\u7EE7\u7EED\u3002",
     TRIAL_EXPIRED: "\u514D\u8D39\u4F53\u9A8C\u5DF2\u7ED3\u675F\uFF0C\u53EF\u5151\u6362\u4F1A\u5458\u7EE7\u7EED\u5B66\u4E60\u3002",
@@ -990,6 +1096,11 @@ var ChunkMembership = (() => {
     if (text) node.textContent = text;
     if (className) node.className = className;
     return node;
+  }
+  function placeAccessPanel(host, panel) {
+    const context = host.querySelector(".stage-tip-bar");
+    if (context) context.after(panel);
+    else host.prepend(panel);
   }
   function projectNativeBatch(batch, title, unitCount) {
     const identity = batch.recordIdentity;
@@ -1060,10 +1171,13 @@ var ChunkMembership = (() => {
       const account = element(doc, "a", "\u8D26\u53F7\u4E0E\u5151\u6362\u4F1A\u5458", "btn");
       account.href = "main.html?membership=1&returnTo=" + encodeURIComponent(win.location.pathname + win.location.search);
       this.panel.append(this.status, this.button, account);
-      host.prepend(this.panel);
+      placeAccessPanel(host, this.panel);
       this.captureScope = () => JSON.stringify([win.AccountStorage.owner, win.AccountStorage.sessionEpoch, win.ChunkAPI.getBase(), win.ChunkAPI.getToken()]);
       this.scope = this.captureScope();
-      this.client = new MembershipClient({ request: (url, options) => win.ChunkAPI.request(url, options) });
+      this.client = new MembershipClient({
+        request: (url, options) => win.ChunkAPI.request(url, options),
+        readCatalog: () => win.ChunkAPI.getCourseCatalog()
+      });
       this.controller = new LearningSessionController({
         client: this.client,
         newRequestId: () => win.crypto.randomUUID(),
@@ -1076,6 +1190,8 @@ var ChunkMembership = (() => {
         client: this.client,
         controller: this.controller,
         newRequestId: () => win.crypto.randomUUID(),
+        imageCache: new CourseImageCache(win),
+        captureImageScope: () => imageCacheScope(win),
         fetchResource: async (url, headers, type) => {
           this.guard();
           const response = await win.fetch(win.ChunkAPI.getBase() + url, { headers: { ...headers, Authorization: "Bearer " + win.ChunkAPI.getToken() }, cache: "no-store" });
@@ -1131,9 +1247,10 @@ var ChunkMembership = (() => {
     showError(error) {
       this.lastError = error;
       if (this.disposed) return;
+      const paused = ["AUTH_REQUIRED", "NOT_AUTH", "SERVER_SEQ_ROLLBACK", "SERVER_IDENTITY_REQUIRED", "SERVER_IDENTITY_MISMATCH", "SERVER_UPDATE_REQUIRED"].includes(error?.code);
       this.panel.hidden = false;
       this.status.textContent = errorText(error);
-      this.button.hidden = false;
+      this.button.hidden = paused;
       this.button.textContent = this.started ? "\u7EE7\u7EED\u5B66\u4E60" : "\u91CD\u8BD5";
       this.button.disabled = false;
     }
@@ -1198,16 +1315,21 @@ var ChunkMembership = (() => {
           deck._sourceIndices.splice(index, 1);
         }
       }
-      const urls = /* @__PURE__ */ new Set();
+      const urls = /* @__PURE__ */ new Set(), assetUrls = /* @__PURE__ */ new Map();
       try {
         for (const item of deck.items) {
           for (const [field, target] of [["imageAssetId", "_courseImageUrl"], ["audioAssetId", "_courseAudioUrl"]]) {
             if (!item[field]) continue;
+            if (assetUrls.has(item[field])) {
+              item[target] = assetUrls.get(item[field]);
+              continue;
+            }
             const blob = await this.gateway.loadAssets(item[field]);
             this.guard();
             const url = this.win.URL.createObjectURL(blob);
             urls.add(url);
             item[target] = url;
+            assetUrls.set(item[field], url);
           }
         }
         this.releaseUrls();
@@ -1288,7 +1410,7 @@ var ChunkMembership = (() => {
     const panel = element(doc, "section", "", "course-access-panel"), status = element(doc, "p", "\u72EC\u7ACB\u6D4B\u8BC4 \xB7 \u8D44\u683C\u548C\u6743\u9650\u5C06\u5728\u5F00\u59CB\u65F6\u68C0\u67E5\u3002");
     const button = element(doc, "button", "\u5F00\u59CB\u6D4B\u8BC4\u8FD9\u4E00\u9879", "btn primary");
     panel.append(status, button);
-    host.prepend(panel);
+    placeAccessPanel(host, panel);
     const url = new URL(win.location.href);
     const id = url.searchParams.get("assessmentId") || win.crypto.randomUUID();
     url.searchParams.set("assessmentId", id);

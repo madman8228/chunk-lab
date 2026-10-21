@@ -2,15 +2,16 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
+<script>location.replace('main.html?view=stats');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-180.png">
-<title>学习档案 · Chunk Lab</title>
+<link rel="icon" href="assets/brand/favicon-v1.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32-v1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/brand/icon-192-v1.png">
+<link rel="apple-touch-icon" href="assets/brand/icon-180-v1.png">
+<title>学习记录 · jqka.top</title>
 <link rel="canonical" href="https://jqka.top/stats.html">
 <style>
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--surface-stat:#f7f4ef;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--warn-soft:#f3e8c9;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
@@ -176,6 +177,10 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .activity-section{padding:14px 0 2px}
 .activity-section h3{display:flex;align-items:baseline;gap:8px;font-size:13px;margin:0 0 12px}
 .overview-note{font-size:12px;color:var(--muted);margin:10px 0 0}
+.weekly-activity-list{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;list-style:none;margin:0;padding:0;font-variant-numeric:tabular-nums}
+.weekly-activity-list li{min-width:0;text-align:center;font-size:12px}
+.weekly-activity-bar{height:80px;display:flex;align-items:flex-end;justify-content:center;margin:6px 0;border-bottom:1px solid var(--border)}
+.weekly-activity-bar i{display:block;width:60%;height:var(--activity-height);background:var(--accent);border-radius:3px 3px 0 0}
 .stats-loading{min-height:72px;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:13px}
 .stats-sync-status{margin:0 0 10px;padding:5px 9px;border-radius:7px;background:var(--warn-soft);color:var(--warn);font-size:12px;text-align:center}
 .overview-month-summary{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:0 0 12px;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted)}
@@ -243,25 +248,44 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
   .stats-detail-row{grid-template-columns:24px minmax(0,1fr) 56px 44px}
 }
 </style>
+<link rel="stylesheet" href="assets/learning-archive.css?v=compact-records-20261016">
+<link rel="stylesheet" href="assets/learning-navigation.css?v=archive-compact-nav-gap-20261015">
+<script defer src="js/learning-navigation.js?v=shared-navigation-20261015"></script>
+<link rel="stylesheet" href="assets/learning-background.css?v=shared-sky-20261015">
 </head>
-<body>
+<body class="learning-archive-background">
+<script src="js/learning-background.js"></script>
 
 <div class="wrap">
-  <div class="page-head">
-    <button class="btn sm ghost" id="statsBack" title="返回主页"><span data-icon="arrowL"></span>返回</button>
-    <h2><span data-icon="stats"></span> 学习档案</h2>
-  </div>
-
-  <div class="stats-tabs" id="statsTabs">
+  <header class="archive-global-header">
+  <a data-learning-brand href="main.html?view=home" aria-label="jqka.top 学习首页"><img src="assets/brand/jqka-logo-v1.webp" alt="jqka.top" width="144" height="42" style="display:block;width:144px;height:42px;object-fit:contain"></a>
+  <nav class="learning-global-nav" data-learning-navigation="stats" aria-label="学习导航">
+    <a href="main.html?view=home">首页</a>
+    <a href="main.html?view=my-learning">我的内容</a>
+    <a href="main.html?view=discover">发现</a>
+    <a href="stats.html" aria-current="page">学习记录</a>
+  </nav>
+  </header>
+  <div class="archive-controls">
+  <div class="stats-tabs" id="statsTabs" role="group" aria-label="记录视图">
     <button class="tab on" data-tab="overview">概览</button>
-    <button class="tab" data-tab="review">待复习<span class="tab-count" id="reviewTabCount"></span></button>
-    <button class="tab" data-tab="wrong">错题本<span class="tab-count" id="wrongTabCount"></span></button>
-    <button class="tab" data-tab="sent">学习记录</button>
+    <button class="tab" data-tab="review">待复习<span class="tab-count" id="reviewTabCount" hidden></span></button>
+    <button class="tab" data-tab="wrong">错题本<span class="tab-count" id="wrongTabCount" hidden></span></button>
+    <button class="tab" data-tab="sent">明细</button>
   </div>
 
+  <div class="archive-domains" id="statsDomains" role="tablist" aria-label="记录类型" hidden>
+    <button type="button" role="tab" data-domain="sentence" aria-selected="true">句子</button>
+    <button type="button" role="tab" data-domain="vocabulary" aria-selected="false">单词</button>
+  </div>
+  </div>
   <div class="stats-sync-status" id="statsSyncStatus" role="status" aria-live="polite" hidden></div>
-
+  <main id="statsContent" class="archive-content" data-view="overview" data-domain="all">
+  <section class="archive-trend" id="statsTrend" hidden aria-label="复习状态"></section>
   <div class="stats-cards" id="statsCards"></div>
+  <section id="statsVocabulary" class="archive-vocabulary" aria-live="polite" hidden></section>
+  <section id="statsGrowth" class="archive-growth" hidden></section>
+  <div id="statsInsights" class="archive-insights" hidden></div>
   <div class="stats-record-toolbar" id="statsRecordToolbar" aria-label="学习记录筛选" hidden>
     <div class="stats-search">
       <label for="statsSentenceSearch">查找</label>
@@ -272,14 +296,22 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
       <button class="f on" data-f="all">全部</button>
       <button class="f" data-f="familiar">已熟悉</button>
       <button class="f" data-f="initialPassed">初测通过</button>
-      <button class="f" data-f="mastered">已掌握</button>
+      <button class="f" data-f="mastered">原测评通过</button>
       <button class="f" data-f="reinforce">需再验证</button>
       <button class="f" data-f="weak">需巩固</button>
       <button class="f" data-f="unseen">未练过</button>
     </div>
   </div>
 
+  <header class="stats-sentence-header" id="statsSentenceHeader" hidden>
+    <h3 class="archive-section-title" id="statsSentenceHeading" hidden></h3>
+    <div class="stats-filter review-state-filter" id="statsReviewFilters" hidden>
+      <button type="button" data-review-list="all" class="f" aria-pressed="true">全部待复习</button>
+      <button type="button" data-review-list="overdue" class="f" aria-pressed="false">已逾期</button>
+    </div>
+  </header>
   <div class="stats-body" id="statsBody"></div>
+  </main>
 
 </div>
 
@@ -287,6 +319,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
 <script src="js/course-catalog.js"></script>
+<script src="js/course-enrollment.js?v=membership-view-20261011"></script>
+<script src="js/logical-course-store.js"></script>
 <script src="js/course-progress.js"></script>
 <script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
@@ -321,6 +355,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <script src="js/vendor/course-schema-validator.js"></script>
 <script src="course-package.js"></script>
 <script src="js/mistake-review.js"></script>
+<script src="js/membership.js"></script>
 <script>
 /* 宪法：UI 禁用字符 icon —— 初始 data-icon 元素替换为内联 SVG（icons.js） */
 if(window.Icons) Icons.install();
@@ -330,6 +365,30 @@ if(window.Icons) Icons.install();
 
 var mem = { decks:[], best:{}, mastered:{}, stats:{ totalRounds:0, totalAnswered:0, bySentence:{}, events:[] }, settings:{} };
 var _statsDecks = null; /* 内置题库使用轻量 index；完整详情只在开始练习时取 */
+function statsSurfaceVisible(){
+  var shell=window.document.getElementById('pageStats');
+  return document.visibilityState!=='hidden'&&(!shell||!shell.classList.contains('hidden'));
+}
+var _statsProjectionDirty=false;
+async function loadStatsIndexes(){
+  if(!statsSurfaceVisible()){_statsProjectionDirty=true;return _statsDecks||CL.allDecksView(mem);}
+  var account=window.AccountStorage;
+  var scope=JSON.stringify([account&&account.owner,account&&account.sessionEpoch,ChunkAPI.getBase()]);
+  var facts=(mem.stats&&mem.stats.bySentence)||{};
+  var decks;
+  try{decks=await ContentRepo.ensureIndexAll(mem);}
+  catch(error){console.warn('[stats] 课程索引暂不可用，保留已有学习记录',error&&error.message);decks=CL.allDecksView(mem);}
+  if(!window.ChunkMembership||!Object.keys(facts).length)return decks;
+  var courses=await ContentRepo.loadProtectedCatalog();
+  var history=await ChunkMembership.buildProtectedHistoryDecks({courses:courses,stats:facts,digest:async function(value){
+    var bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));
+    return Array.from(new Uint8Array(bytes),function(byte){return byte.toString(16).padStart(2,'0');}).join('');
+  }});
+  if(scope!==JSON.stringify([account&&account.owner,account&&account.sessionEpoch,ChunkAPI.getBase()]))throw new Error('账号已变化，请刷新学习档案。');
+  var ids=new Set(decks.map(function(deck){return deck.id;}));
+  var histories=new Map(history.map(function(deck){return [deck.id,deck];}));
+  return decks.map(function(deck){return histories.get(deck.id)||deck;}).concat(history.filter(function(deck){return !ids.has(deck.id);}));
+}
 /* CL 桥接：页面内沿用局部函数名（实现收敛到 core.js，调用点零改动） */
 function loadMem(){ mem = CL.loadMem(); _statsDecks = null; }
 function refreshConfirmedStatsProjection(){
@@ -395,7 +454,8 @@ function migrateLegacyStatKeys(){
     var owner=window.AccountStorage&&window.AccountStorage.owner;
     return ServerCache.read().then(function(row){
       if(!row||row.owner!==owner||!row.snapshot||!row.snapshot.mem) return false;
-      var migration=MainLegacyStats.migrateLegacyStatKeys(mem.stats.bySentence,allDecks(),{
+      var confirmedStats=row.snapshot.mem.stats&&row.snapshot.mem.stats.bySentence||{};
+      var migration=MainLegacyStats.migrateLegacyStatKeys(confirmedStats,allDecks(),{
         normalizeSentence:normSent,hash:CL.fnv8
       });
       return ServerStatKeyMigration.run(migration.migrations,function(){return mem;});
@@ -418,6 +478,7 @@ function migrateLegacyStatKeys(){
 /* ===== 渲染 ===== */
 var _statsTab = 'overview';
 var _statsFilter = 'all';
+var _statsReviewFilter = 'all';
 var _statsSearch = '';
 var _wrongBookFilter = 'all';
 var _mistakeExport = { open:false, snapshot:null, sourceRows:null, accountScope:'', batchIndex:0, lastCopiedIndex:-1, prompt:'', manualFallback:false, message:'', generating:false, stale:false };
@@ -472,6 +533,22 @@ function monthActivitySummary(mem){
   return { days: days, rounds: rounds, answered: monthAnswered, totalAnswered: audit.totalAnswered };
 }
 
+function weeklyActivityMarkup(activity, now){
+  var rows=[];
+  for(var offset=6;offset>=0;offset--){
+    var date=new Date(now.getFullYear(),now.getMonth(),now.getDate()-offset,12);
+    var key=CL.ymd(date), count=Number(activity[key] && activity[key].answered)||0;
+    rows.push({key:key,date:date,count:Math.max(0,count)});
+  }
+  var peak=Math.max.apply(null,[1].concat(rows.map(function(row){return row.count;})));
+  var total=rows.reduce(function(sum,row){return sum+row.count;},0);
+  return '<section class="activity-section weekly-activity" aria-label="句子近7天答题次数"><h3>近7天答题<span class="chart-scope">句子</span></h3><p class="weekly-activity-total"><strong>'+total+'</strong><span>次</span></p><ol class="weekly-activity-list">'+
+    rows.map(function(row){
+      return '<li data-day="'+row.key+'" data-answered="'+row.count+'" aria-label="'+row.key+'：答题 '+row.count+' 次">'+
+        '<strong>'+row.count+'</strong><span class="weekly-activity-bar" aria-hidden="true"><i style="--activity-height:'+Math.round(row.count/peak*100)+'%"></i></span>'+
+        '<time datetime="'+row.key+'">'+(row.date.getMonth()+1)+'/'+row.date.getDate()+'</time></li>';
+    }).join('')+'</ol></section>';
+}
 function monthCalendarMarkup(activity, now){
   var year = now.getFullYear(), month = now.getMonth();
   var daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -487,7 +564,7 @@ function monthCalendarMarkup(activity, now){
     var answered = Number(record.answered) || 0, rounds = Number(record.rounds) || 0;
     var level = answered >= 40 ? 4 : answered >= 20 ? 3 : answered >= 10 ? 2 : (answered || rounds) ? 1 : 0;
     var future = day > today;
-    var label = key+'：答题 '+answered+' 句，完成练习 '+rounds+' 轮';
+    var label = key+'：答题 '+answered+' 次，完成练习 '+rounds+' 轮';
     cells += '<time class="month-calendar-day '+(future?'future':'l'+level)+(day===today?' today':'')+'" datetime="'+key+'" data-day="'+key+'" data-answered="'+answered+'" data-rounds="'+rounds+'" aria-label="'+label+'" title="'+label+'">'+day+'</time>';
   }
   var monthLabel = year+'年'+(month+1)+'月';
@@ -514,12 +591,41 @@ function showLocalStatsFallback(){
   loadMem();
   renderStats();
 }
+var _statsComposing=false, _statsRenderPending=false;
+document.addEventListener('compositionstart',function(event){if($('statsContent').contains(event.target))_statsComposing=true;},true);
+document.addEventListener('compositionend',function(){_statsComposing=false;if(_statsRenderPending){_statsRenderPending=false;Promise.resolve().then(renderStats);}},true);
 function renderStats(){
+  if(_statsComposing){_statsRenderPending=true;return;}
+  var container=$('statsContent'), active=document.activeElement;
+  var expanded=Array.from(container.querySelectorAll('.stats-detail-row.is-expanded[data-record-key]')).map(function(row){return row.dataset.recordKey;});
+  var focusKey=container.contains(active)&&active.closest('[data-record-key]');
+  var focusRecord=focusKey&&focusKey.dataset.recordKey;
+  var selection=active&&typeof active.selectionStart==='number'?{start:active.selectionStart,end:active.selectionEnd}:null;
+  try{renderStatsContent();}finally{
+    container.querySelectorAll('.stats-detail-row[data-record-key]').forEach(function(row){if(expanded.includes(row.dataset.recordKey)&&!row.classList.contains('is-expanded'))toggleSentenceDetail(row);});
+    if(active&&!active.isConnected&&focusRecord){var row=Array.from(container.querySelectorAll('[data-record-key]')).find(function(node){return node.dataset.recordKey===focusRecord;});var next=row&&row.querySelector('.row-detail-toggle');if(next)next.focus({preventScroll:true});}
+    if(active&&active.isConnected&&document.activeElement===active&&selection){active.setSelectionRange(selection.start,selection.end);}
+  }
+}
+function renderStatsContent(){
+  $('statsContent').setAttribute('aria-busy',String(_statsInitialSync));
+  $('statsContent').dataset.view = _statsTab;
+  $('statsSentenceHeader').hidden=_statsTab==='overview'||_statsTab==='sent'||_statsTab==='wrong';
+  $('statsReviewFilters').hidden=_statsTab!=='review';
+  Array.from($('statsReviewFilters').children).forEach(function(button){
+    var selected=button.dataset.reviewList===_statsReviewFilter;
+    button.classList.toggle('on',selected);button.setAttribute('aria-pressed',String(selected));
+  });
   var cards = $('statsCards'), body = $('statsBody');
   if(_statsInitialSync){
-    cards.innerHTML = _statsTab === 'overview' ? '<div class="stats-loading" role="status" aria-live="polite">正在同步学习档案…</div>' : '';
+    $('statsVocabulary').hidden=true;
+    $('statsTrend').hidden=true;
+    $('statsGrowth').hidden=true;
+    $('statsInsights').hidden=true;
+    var loadingMarkup='<div class="stats-loading archive-initial-loading" role="status" aria-live="polite"><p>正在读取学习记录…</p><div aria-hidden="true"><span></span><span></span><span></span></div></div>';
+    cards.innerHTML = _statsTab === 'overview' ? loadingMarkup : '';
     cards.hidden = _statsTab !== 'overview';
-    body.innerHTML = _statsTab === 'overview' ? '' : '<div class="stats-loading" role="status" aria-live="polite">正在同步学习档案…</div>';
+    body.innerHTML = _statsTab === 'overview' ? '' : loadingMarkup;
     Array.prototype.forEach.call($('statsTabs').children,function(b){
       b.classList.toggle('on',b.dataset.tab===_statsTab);
       b.setAttribute('aria-pressed',String(b.dataset.tab===_statsTab));
@@ -538,32 +644,43 @@ function renderStats(){
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'weak'; }).length;
   var wrongCnt = getReinforceBook().length;
   var days = CL.dailyActivity(mem), now = new Date(), today = days[CL.ymd(now)] || {answered:0};
+  if(window.StatsGrowth&&window.LearningEngine){
+    var growthItems=new Map();
+    allDecks().forEach(function(deck){(deck.items||[]).forEach(function(item){growthItems.set(CL.cidKey(deck.id,item),item);});});
+    var growthRecords=keys.filter(function(key){return growthItems.has(key);}).map(function(key){return {key:key,stat:by[key],fingerprint:LearningEngine.fingerprintAssessmentItem(growthItems.get(key))};});
+    StatsGrowth.render($('statsGrowth'),StatsGrowth.series(growthRecords,mem.stats.events||[],now.getTime(),LearningEngine.resolveLearningState));
+    $('statsGrowth').hidden=_statsTab!=='overview';
+    if(window.StatsInsights) $('statsInsights').hidden=true;
+  }
   var audit = CL.answerStatsAudit(mem);
-  var month = monthActivitySummary(mem);
-  var dueCnt = dueSentences().length;
+  var dues = dueSentences(), dueCnt = dues.length;
+  var todayStart = new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
+  var overdueCnt = dues.filter(function(row){return row.st.dueAt<todayStart;}).length;
+  var sentenceHeading=$('statsSentenceHeading');
+  sentenceHeading.textContent=_statsTab==='review'?(_statsReviewFilter==='overdue'?'句子 · '+overdueCnt+' 句已逾期':'句子 · '+dueCnt+' 句待复习'):_statsTab==='wrong'?'句子 · '+wrongCnt+' 条错题':'句子';
+  sentenceHeading.hidden=_statsTab==='overview'||_statsTab==='sent'||_statsTab==='wrong';
   var statCell = function(label,value,opt){
     opt = opt || {};
     return '<div class="ov-stat'+(opt.warn?' is-warn':'')+'">'+
       '<span class="l">'+label+'</span>'+
       '<strong class="n"'+(opt.id?' id="'+opt.id+'"':'')+'>'+value+'</strong></div>';
   };
-  var html = '<div class="overview-status">'+
-    statCell('今日答题',today.answered,{id:'todayAnswered'})+
-    statCell('已掌握',masteredCnt,{id:'masteredCount'})+
+  var html = '<h3 class="archive-section-title">句子</h3><div class="overview-status">'+
+    statCell('今日答题（次）',today.answered,{id:'todayAnswered'})+
+    statCell('原测评通过',masteredCnt,{id:'masteredCount'})+
     statCell('已熟悉',familiarCnt,{id:'familiarCount'})+
-    statCell('需巩固',weakCnt,{warn:true})+
-    statCell('累计答题',audit.totalAnswered)+'</div>';
-  html += '<div class="overview-time">';
-  html += '<div class="overview-month-summary"><span class="period-label">本月</span>'+
-    '<span>学习 <b>'+month.days+'</b> 天</span><span>完成 <b>'+month.rounds+'</b> 轮</span><span>答题 <b id="monthAnswered">'+month.answered+'</b> 句</span></div>';
-  if(month.totalAnswered || Number(mem.stats.totalRounds)) html += monthCalendarMarkup(days, now);
-  html += '<p class="overview-note">每完整练完一批计 1 轮</p>';
-  html += '</div>'; /* /overview-time */
+    statCell('累计答题（次）',audit.totalAnswered)+'</div>';
+  var reviewArrow='<svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true"><path d="m7 5 5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  $('statsTrend').innerHTML='<div class="review-domain-grid"><section class="review-sentence-group" aria-label="句子复习"><h4>句子复习</h4><div class="review-state-list">'+
+    '<button type="button" data-review-state="due"><span>待复习</span><strong>'+dueCnt+'</strong>'+reviewArrow+'</button>'+
+    '<button type="button" data-review-state="overdue" aria-label="逾期 '+overdueCnt+'，不含今日到期"><span>逾期</span><strong>'+overdueCnt+'</strong>'+reviewArrow+'</button>'+
+    '<button type="button" data-review-state="weak"><span>需巩固</span><strong>'+weakCnt+'</strong>'+reviewArrow+'</button></div></section></div>';
+  $('statsTrend').hidden=_statsTab!=='overview';
   if(!keys.length && !mem.stats.totalAnswered){
     html += '<div class="empty-tip">还没有学习记录。<a href="./main.html">开始练习</a></div>';
   }
   $('statsCards').innerHTML=html;
-  $('statsCards').hidden=_statsTab!=='overview';
+  $('statsCards').hidden=true;
   Array.prototype.forEach.call($('statsTabs').children,function(b){
     b.classList.toggle('on',b.dataset.tab===_statsTab);
     b.setAttribute('aria-pressed',String(b.dataset.tab===_statsTab));
@@ -584,6 +701,15 @@ function renderStats(){
   else if(_statsTab==='review') renderReviewList(body);
   else if(_statsTab==='sent') renderSentenceList(body);
   else body.innerHTML='';
+  if(window.StatsVocabulary) StatsVocabulary.render(_statsTab);
+  var insights=$('statsInsights');
+  if(insights){
+    insights.replaceChildren();
+    insights.hidden=true;
+  }
+  if(_statsTab==='wrong'&&$('statsContent').dataset.domain==='sentence'&&window.StatsInsights&&window.LearningEngine){
+    StatsInsights.render(body,StatsInsights.model([],[],0,now.getTime(),LearningEngine.resolveLearningState,getReinforceBook()));
+  }
 }
 
 
@@ -647,7 +773,7 @@ function renderSentenceList(body){
   /* 给每个 row 算 _practiceState（master/learn/weak/unseen），filter 统一判断 */
   rows.forEach(function(r){ r._practiceState = classifyStat(r); });
   rows.forEach(function(r){
-    if(r._item && window.LearningEngine){
+    if(r._item && !r._item._protectedHistory && window.LearningEngine){
       var status = LearningEngine.resolveLearningState({stat:r, familiarity:r._familiar?mem.mastered[r._key]:null,
         contentFingerprint:LearningEngine.fingerprintAssessmentItem(r._item),now:Date.now()});
       r._learningPrimary = status.primary;
@@ -695,7 +821,7 @@ function renderSentenceList(body){
     (out.length > LIST_PAGE_SIZE ? '<span>· 显示 '+pageStart+'–'+pageEnd+'</span>' : '')+'</div>';
   var html = summary + '<div class="stats-list">';
   pageRows.forEach(function(s, idx){
-    var assessment = s._item && window.LearningEngine
+    var assessment = s._item && !s._item._protectedHistory && window.LearningEngine
       ? LearningEngine.getAssessmentEligibility({key:s._key,zh:s.translation,chunks:s._item.chunks,alts:s._item.alts,stat:s,familiarity:s._familiar?mem.mastered[s._key]:null},{now:Date.now()})
       : {eligible:false,eligibleAt:0};
     var assessmentAction = s._item && (s.times || s._familiar)
@@ -703,8 +829,11 @@ function renderSentenceList(body){
         ? '<a class="btn sm primary assessment-launch" href="./main.html?direct=1&amp;assessmentKey='+encodeURIComponent(s._key)+'">测这一句</a>'
         : '<span class="assessment-wait" title="达到复测周期后开放">'+(assessment.eligibleAt?('可测 '+new Date(assessment.eligibleAt).toLocaleDateString()):'暂不可测')+'</span>')
       : '';
+    if(s._item&&s._item._protectedHistory)assessmentAction=s._item._protectedReviewUrl
+      ? '<a class="btn sm primary" href="'+esc(s._item._protectedReviewUrl)+'">打开课程复习</a> <a class="btn sm" href="'+esc(s._item._protectedAssessmentUrl)+'">测评这一项</a><span class="assessment-wait">'+esc(s._item._protectedAssessmentHistory||'')+' 打开后检查当前权限与复测时间</span>'
+      : '<span class="assessment-wait">课程暂不可用，学习记录保留</span>';
     var badgeHtml =
-      s._learningPrimary==='mastered' ? '<span class="badge master">已掌握</span>' :
+      s._learningPrimary==='mastered' ? '<span class="badge master" title="句子回忆测评通过；尚未验证新语境应用">原测评通过</span>' :
       s._learningPrimary==='initialPassed' ? '<span class="badge learn">初测通过</span>' :
       s._learningPrimary==='reinforce' || s._learningPrimary==='needsRevalidation' ? '<span class="badge weak">需再验证</span>' :
       s._familiar ? '<span class="badge learn">已熟悉</span>' :
@@ -712,7 +841,7 @@ function renderSentenceList(body){
       s._practiceState==='learn'  ? '<span class="badge learn">学习中</span>' :
                                     '<span class="badge new">未练过</span>';
     var tStr = s.lastAt ? timeAgo(s.lastAt) : '—';
-    html += '<div class="srow stats-detail-row"><span class="row-num">#'+(_listPages[pageKey]*LIST_PAGE_SIZE+idx+1)+'</span><div class="sen">'+
+    html += '<div class="srow stats-detail-row" data-record-key="'+esc(s._key)+'"><span class="row-num">#'+(_listPages[pageKey]*LIST_PAGE_SIZE+idx+1)+'</span><div class="sen">'+
       '<div class="en">'+esc(s.sentence)+'</div>'+
       '<div class="cn">'+esc(s.translation||'')+'</div></div>'+
       '<span class="stats-state-cell">'+badgeHtml+'</span>'+
@@ -725,22 +854,27 @@ function renderSentenceList(body){
 }
 
 function renderWrongBook(body){
+  var membershipFor = statsMemberships();
   var book = getReinforceBook();
+  var title = '<h3 class="wrong-book-heading">句子错题记录</h3>';
   if(!book.length){
-    body.innerHTML = '<div class="empty-tip">错题本是空的。练习时答错的句子会自动加入这里，跨会话保留。</div>';
+    body.innerHTML = title+'<div class="empty-tip">错题本是空的。练习时答错的句子会自动加入这里，跨会话保留。</div>';
     return;
   }
   var focusBook = book.filter(function(b){ return reinforceNeedsReview(b); });
   var shownBook = _wrongBookFilter === 'focus' ? focusBook : book;
-  var html = '<div class="stats-filter wrong-filter">'+
+  var html = title+'<div class="stats-filter wrong-filter">'+
     '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+book.length+'</button>'+
     '<button class="f '+(_wrongBookFilter==='focus'?'on':'')+'" data-wrong-filter="focus">需巩固 '+focusBook.length+'</button>'+
-    '<button class="btn sm primary" data-mistake-export-open>复制错题分析提示词</button>'+
+    '<button class="btn sm ghost" data-mistake-export-open>复制错题分析提示词</button>'+
     '<button class="btn sm ghost" id="btnClearWrongBook">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
   html += _mistakeExport.open ? renderMistakeExportPanel(book) : '';
   if(!shownBook.length){
     html += '<div class="empty-tip" style="padding:18px">当前没有需巩固的错题。切换到“全部”可查看所有记录。</div>';
   } else {
+    if(shownBook.some(function(item){return !Array.isArray(item.history)||!item.history.length;})){
+      html += '<p class="muted wrong-history-notice">部分错题暂无逐次答题记录。</p>';
+    }
     html += '<div class="stats-list">';
   listPage(shownBook.slice().reverse(), 'wrong').forEach(function(b){
     var mine = '';
@@ -751,13 +885,16 @@ function renderWrongBook(body){
     }
     var history = Array.isArray(b.history) ? b.history : [];
     var historyCount = history.length;
-    var historyNote = historyCount ? '<details class="wrong-history"><summary>答题证据 '+historyCount+' 次'+(b.historyTruncated?' · 仅保留最近记录':'')+'</summary>'+history.slice().reverse().slice(0,5).map(function(event){
+    var historyNote = historyCount ? '<details class="wrong-history"><summary>答题记录 '+historyCount+' 次'+(b.historyTruncated?' · 仅保留最近记录':'')+'</summary>'+history.slice().reverse().slice(0,5).map(function(event){
       var when=event.at?timeAgo(event.at):'时间未知';
       var mode=event.mode==='typing'?'输入':(event.mode==='chunkSelection'?'意群选择':'方式未知');
       var issues=(event.mistakes||[]).map(function(m){var wrong=(m.wrongAnswers||[]).length?(m.wrongAnswers||[]).map(esc).join(' / '):'（未记录答案）';return '意群 '+(Number(m.chunkIdx)+1)+'：'+wrong+' → <b>'+esc(m.chunk||'')+'</b>'+(m.wrongAttemptCount==null?'':' · 错答 '+m.wrongAttemptCount+' 次');}).join('<br>');
       return '<div class="wrong-history-event"><span>'+esc(when)+' · '+esc(mode)+(event.hinted===true?' · 用过提示':'')+(event.revealed===true?' · 看过答案':'')+'</span><div>'+issues+'</div></div>';
-    }).join('')+'</details>' : '<div class="wrong-history">仅有旧版错题快照，历史记录不完整</div>';
+    }).join('')+'</details>' : '';
+    var membership = membershipFor(b.deckId);
+    var sourceLabel = (membership.course ? membership.course.title : '历史课程') + (membership.joined ? '' : ' · '+membership.status);
     html += '<div class="wrong-row"><div class="sen">'+
+      '<div class="cn">'+esc(sourceLabel)+'</div>'+
       '<div class="en">'+esc(b.sentence)+'</div>'+
       '<div class="cn">'+esc(b.translation||'')+'</div>'+
       '<div class="wrong-detail">错点：'+mine+'</div>'+historyNote+
@@ -916,12 +1053,22 @@ function reinforceNeedsReview(b){
 }
 
 /* ===== SRS 复习 ===== */
+function statsMemberships(){
+  var catalog = CourseCatalog.buildCatalog({
+    manifest:window.ContentRepo && ContentRepo.getManifest ? ContentRepo.getManifest() : {decks:[]},
+    userDecks:mem.decks || [], storyPackages:CL.readCourses(),
+    logicalCourses:window.LogicalCourseStore ? LogicalCourseStore.read() : []
+  });
+  return CourseEnrollment.deckMemberships(catalog, CL.readProgress());
+}
 function dueSentences(){
+  var membershipFor = statsMemberships();
   if(!mem.stats || !mem.stats.bySentence) return [];
   var out = [];
   var seen = {};
   var sources = new Map();
   allDecks().forEach(function(deck){
+    if(deck._protectedHistory ? !CourseEnrollment.isJoined(deck._protectedCourseId) : !membershipFor(deck.id).joined) return;
     var cids = new Map(), sentences = new Map();
     (deck.items || []).forEach(function(it){
       var cid = it.cid || CL.fnv8(it.sentence || '');
@@ -940,7 +1087,7 @@ function dueSentences(){
     var cid = sep > 0 ? k.substring(sep + 1) : '';
     var it = source.cids.get(cid) || source.sentences.get(st.sentence);
     if(!it) return;
-    var key = st.deckId + '#' + normSent(it.sentence);
+    var key = st.deckId + '#' + (it._protectedHistory ? cid : normSent(it.sentence));
     if(seen[key]) return;
     seen[key] = true;
     out.push({ it:withStatsSource(it, st.deckId), st:st, deck:deck });
@@ -949,6 +1096,8 @@ function dueSentences(){
 }
 function renderReviewList(body){
   var dues = dueSentences();
+  var startOfToday=new Date();startOfToday.setHours(0,0,0,0);
+  if(_statsReviewFilter==='overdue')dues=dues.filter(function(row){return row.st.dueAt<startOfToday.getTime();});
   var html = '';
   if(dues.length){
     html += '<div class="stats-list">';
@@ -956,11 +1105,12 @@ function renderReviewList(body){
       html += '<div class="srow"><div class="sen">'+
         '<div class="en">'+esc(d.it.sentence)+'</div>'+
         '<div class="cn">'+esc(d.it.translation||'')+'</div></div>'+
-        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' '+CL.srs.dueLabel(d.st)+' · '+esc(displayDeckName(d.deck.name))+'</div></div>';
+        '<div class="meta" style="color:var(--warn)">'+(window.Icons?Icons.svg('refresh'):'')+' '+CL.srs.dueLabel(d.st)+' · '+esc(displayDeckName(d.deck.name))+
+        (d.it._protectedReviewUrl?' · <a href="'+esc(d.it._protectedReviewUrl)+'">打开课程复习</a>':'')+'</div></div>';
     });
     html += '</div>';
   } else {
-    html += '<div class="empty-tip" style="padding:14px">没有到期复习的句子。新学的句子会按间隔重复（1→3→7→14→30 天）自动排入复习队列。</div>';
+    html += '<div class="empty-tip" style="padding:14px">'+(_statsReviewFilter==='overdue'?'没有已逾期的句子。':'没有到期复习的句子。新学的句子会按间隔重复（1→3→7→14→30 天）自动排入复习队列。')+'</div>';
   }
 
   html += listPager(dues.length,'due');
@@ -970,6 +1120,7 @@ function renderReviewList(body){
     '</div>';
   var decksWithMarked = [];
   allDecks().forEach(function(d){
+    if(d._protectedHistory)return;
     var items = (d.items||[]).filter(function(it){
       return isMarkedForDeck(d.id, it) || isFluencyByDeck(d.id, it);
     });
@@ -1035,6 +1186,12 @@ function practiceWrongBook(){
 }
 
 function launchReviewItems(deck){
+  var protectedItems=deck.items.filter(function(item){return item._protectedHistory;});
+  if(protectedItems.length){
+    alert('平台课程请使用列表中的“打开课程复习”，逐项检查权限。其余课程可继续批量复习。');
+    deck=Object.assign({},deck,{items:deck.items.filter(function(item){return !item._protectedHistory;})});
+    if(!deck.items.length)return;
+  }
   // Keep lightweight references; the practice page fetches only its current batch.
   launchReviewDeck(deck);
 }
@@ -1071,9 +1228,20 @@ function toggleSentenceDetail(row){
 /* ===== 事件绑定 =====
    页面首屏不能依赖云端/题库初始化：网络卡顿时也必须能返回主页，
    并先用本地已有数据渲染概览。异步数据到达后再刷新内容。 */
+$('statsTrend').addEventListener('click',function(event){
+  var target=event.target.closest('[data-review-state]');if(!target)return;
+  var state=target.dataset.reviewState;
+  _statsTab=state==='weak'?'sent':'review';
+  _statsReviewFilter=state==='overdue'?'overdue':'all';
+  _statsFilter=state==='weak'?'weak':'all';
+  _statsSearch='';_listPages.due=0;_listPages['sent-weak']=0;
+  $('statsDomains').querySelector('[data-domain="sentence"]').click();
+  $('statsSentenceHeading').scrollIntoView({block:'start',behavior:'auto'});
+});
 Array.prototype.forEach.call($('statsTabs').children, function(b){
   b.onclick = function(){
     _statsTab = b.dataset.tab;
+    _statsReviewFilter = 'all';
     renderStats();
   };
 });
@@ -1097,6 +1265,10 @@ if(searchClear) searchClear.onclick = function(){
   renderStats();
   if(sentenceSearch) sentenceSearch.focus();
 };
+$('statsReviewFilters').addEventListener('click', function(ev){
+  var reviewList=ev.target.closest('[data-review-list]');
+  if(reviewList){_statsReviewFilter=reviewList.dataset.reviewList;_listPages.due=0;renderStats();return;}
+});
 $('statsBody').addEventListener('click', function(ev){
   var pager = ev.target.closest('[data-list-page]');
   if(pager && !pager.disabled){
@@ -1111,15 +1283,12 @@ function discardMistakeExportSnapshot(){
   _mistakeExportGeneration++;
   _mistakeExport.stale=!!_mistakeExport.snapshot;_mistakeExport.generating=false;_mistakeExport.message='学习数据已刷新；当前快照仍保留原始范围，重新生成可纳入最新错题。';
 }
-/* ★ 返回主页（独立窗口场景通用） */
-$('statsBack').onclick = function(){ window.location.href = './main.html'; };
-
 /* 接收主页面消息：刷新数据 */
 window.addEventListener('message', function(ev){
   if(ev.data && ev.data.type === 'memUpdated'){
     discardMistakeExportSnapshot();
     loadMem();
-    var p = window.ContentRepo && ContentRepo.ensureIndexAll ? ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; }) : Promise.resolve();
+    var p = window.ContentRepo && ContentRepo.ensureIndexAll ? loadStatsIndexes().then(function(decks){ _statsDecks = decks; }) : Promise.resolve();
     p.then(renderStats);
   }
 });
@@ -1130,13 +1299,16 @@ window.addEventListener('message', function(ev){
    触发源由 core.js 统一处理（BroadcastChannel 主通道 + beacon/storage 降级通道），
    故这里只订阅 CL 事件，不再自行监听 storage（避免重复渲染）。 */
 function reloadFromOtherTab(){
+  if(!statsSurfaceVisible()){_statsProjectionDirty=true;return;}
   discardMistakeExportSnapshot();
   var p = (CL.refreshExternal ? CL.refreshExternal() : Promise.resolve(CL.loadMem()));
   p.catch(function(){}).then(function(m){
     if(m) mem = m; else loadMem();
+    return refreshConfirmedStatsProjection();
+  }).then(function(){
     _statsDecks = null;
     var q = (window.ContentRepo && ContentRepo.ensureIndexAll)
-      ? ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; })
+      ? loadStatsIndexes().then(function(decks){ _statsDecks = decks; })
       : Promise.resolve();
     return q;
   }).then(function(){ renderStats(); });
@@ -1146,8 +1318,9 @@ if(CL && CL.on){
 } else {
   window.addEventListener('storage', function(e){
     if(e.key === 'chunklab.v1'){
+      if(!statsSurfaceVisible()){_statsProjectionDirty=true;return;}
       loadMem();
-      var p = window.ContentRepo && ContentRepo.ensureIndexAll ? ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; }) : Promise.resolve();
+      var p = window.ContentRepo && ContentRepo.ensureIndexAll ? loadStatsIndexes().then(function(decks){ _statsDecks = decks; }) : Promise.resolve();
       p.then(renderStats);
     }
   });
@@ -1156,16 +1329,29 @@ window.addEventListener('server-cache-applied', function(event){
   var detail=event&&event.detail;
   var account=window.AccountStorage;
   if(detail&&account&&detail.owner!==account.owner) return;
+  if(!statsSurfaceVisible()){_statsProjectionDirty=true;return;}
   refreshConfirmedStatsProjection().then(function(applied){
     if(!applied) return;
     var ready=window.ContentRepo&&ContentRepo.ensureIndexAll
-      ? ContentRepo.ensureIndexAll(mem).then(function(decks){_statsDecks=decks;})
+      ? loadStatsIndexes().then(function(decks){_statsDecks=decks;})
       : Promise.resolve();
     ready.then(renderStats);
   });
 });
+window.addEventListener('cloud-config-changed', function(){
+  if(!statsSurfaceVisible()){_statsProjectionDirty=true;return;}
+  if(!CL.serverPersistenceReady || !CL.serverPersistenceReady()) return;
+  refreshConfirmedStatsProjection().then(function(applied){
+    if(!applied) return;
+    // Confirmed user records do not depend on optional builtin shard loading.
+    return Promise.resolve(migrateLegacyStatKeys()).then(renderStats);
+  }).catch(function(error){
+    console.warn('[stats] confirmed startup refresh deferred:',error&&error.message||error);
+  });
+});
 var _statsLastFocusRefreshAt = Date.now();
 window.addEventListener('focus', function(){
+  if(!statsSurfaceVisible()){_statsProjectionDirty=true;return;}
   if(!statsProtocol3Active() || !CL.serverPersistenceReady || !CL.serverPersistenceReady() ||
      !window.ServerCache || !window.AccountStorage || !window.AccountStorage.owner) return;
   var now=Date.now();
@@ -1180,6 +1366,12 @@ window.addEventListener('focus', function(){
    若统计已迁到 IndexedDB，先等本地预载完成，避免把 localStorage 的旧投影短暂显示成最新值；
    IDB 异常时最多等 180ms，仍以可用的本地投影开屏。 */
 var _localPainted = false;
+function resumeStatsProjection(){
+  if(!statsSurfaceVisible()||!_statsProjectionDirty)return;
+  _statsProjectionDirty=false;reloadFromOtherTab();
+}
+window.addEventListener('stats-surface-visibility',resumeStatsProjection);
+window.document.addEventListener('visibilitychange',resumeStatsProjection);
 function paintLocalStats(){
   if(_localPainted) return;
   _localPainted = true;
@@ -1198,10 +1390,12 @@ Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.
   return refreshConfirmedStatsProjection().then(function(applied){
     if(!applied) loadMem();
     if(window.ContentRepo && ContentRepo.ensureIndexAll){
-      return ContentRepo.ensureIndexAll(mem).then(function(decks){ _statsDecks = decks; });
+      return loadStatsIndexes().then(function(decks){ _statsDecks = decks; });
     }
     return window.ContentRepo ? ContentRepo.ensureAll(mem).then(function(){ _statsDecks = CL.allDecksView(mem); }) : Promise.resolve();
   });
+}).then(function(){
+  return window.StatsVocabulary ? StatsVocabulary.whenReady() : Promise.resolve();
 }).then(function(){
   clearTimeout(_statsSyncTimer);
   _statsSyncTimer = null;
@@ -1216,10 +1410,15 @@ Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.
   _statsInitialSync = false;
   setStatsSyncState('local');
   console.warn('[stats] 异步初始化失败，继续使用本地统计：', error && error.message || error);
-  loadMem();
-  renderStats();
+  return refreshConfirmedStatsProjection().then(function(applied){
+    if(!applied) loadMem();
+    return Promise.resolve(migrateLegacyStatKeys()).then(renderStats);
+  });
 });
 </script>
 
+<script src="js/stats-growth.js?v=distilled-overview-20261016"></script>
+<script src="js/stats-insights.js?v=distilled-overview-20261016"></script>
+<script src="js/stats-vocabulary.js?v=distilled-overview-20261016"></script>
 </body>
 </html>

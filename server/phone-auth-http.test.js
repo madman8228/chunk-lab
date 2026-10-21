@@ -70,6 +70,30 @@ app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.
     assert.equal((await post('/api/auth/phone/login', { phone:'13800138000', code:'123456', challengeId:sent.data.challengeId })).status, 400);
     const me = await fetch(base+'/api/auth/me', { headers: { Authorization: 'Bearer '+logged.data.token } });
     assert.equal((await me.json()).user.phone, '138****8000');
+    const registerCode=await post('/api/auth/phone/code',{phone:'13200132000',purpose:'register'});
+    assert.equal(registerCode.status,200);
+    assert.equal((await post('/api/auth/phone/login',{phone:'13200132000',purpose:'register',code:'123456',challengeId:registerCode.data.challengeId})).status,400,'registration password is required by the server');
+    const registered=await post('/api/auth/phone/login',{phone:'13200132000',purpose:'register',code:'123456',challengeId:registerCode.data.challengeId,password:'registered-pass'});assert.equal(registered.status,200);
+    assert.equal((await post('/api/auth/phone/code',{phone:'13200132000',purpose:'register'})).status,409,'registering an existing phone cannot change its password');
+    assert.equal((await post('/api/auth/phone/password',{phone:'13200132000',password:'registered-pass'})).data.user.id,registered.data.user.id);
+    if(process.env.PHONE_FLOW_UI_TEST==='true'){
+      const {chromium}=require('../node_modules/playwright-core');browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||chromium.executablePath()});
+      const context=await browser.newContext(),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+      const out=path.resolve(__dirname,'../output/playwright/phone-entry-'+Date.now());fs.mkdirSync(out,{recursive:true});
+      for(const [index,width] of [1440,390].entries()){
+        await page.setViewportSize({width,height:932});await page.goto(base+'/phone-test');await page.getByRole('heading',{name:'登录',exact:true}).waitFor();
+        assert.equal(await page.getByLabel('短信验证码').isVisible(),false);assert.equal(await page.getByRole('button',{name:'获取验证码',exact:true}).isVisible(),false);assert.equal(await page.getByLabel('密码',{exact:true}).getAttribute('autocomplete'),'current-password');
+        let smsRequests=0;const track=request=>{if(request.url().endsWith('/api/auth/phone/code'))smsRequests++;};page.on('request',track);
+        await page.getByLabel('手机号',{exact:true}).fill('13800138000');await page.getByLabel('密码',{exact:true}).fill('test-pass');await page.screenshot({path:path.join(out,'login-'+width+'.png')});await page.getByRole('button',{name:'登录',exact:true}).click();await page.waitForFunction(()=>document.body.dataset.loggedIn==='yes');assert.equal(smsRequests,0,'password login never requests a code');page.off('request',track);
+        await page.goto(base+'/phone-test');await page.getByRole('button',{name:'注册账号',exact:true}).click();await page.getByRole('heading',{name:'注册',exact:true}).waitFor();assert.equal(await page.getByLabel('密码',{exact:true}).getAttribute('required'),'');assert.equal(await page.getByLabel('密码',{exact:true}).getAttribute('autocomplete'),'new-password');
+        await page.getByLabel('手机号',{exact:true}).fill('1300013000'+index);await page.getByRole('button',{name:'注册并登录',exact:true}).click();await page.getByRole('status').filter({hasText:'密码至少6位'}).waitFor();
+        await page.getByRole('button',{name:'获取验证码',exact:true}).click();await page.getByRole('status').filter({hasText:'验证码已发送'}).waitFor();await page.getByLabel('短信验证码').fill('123456');await page.getByLabel('密码',{exact:true}).fill('ui-required-pass');await page.screenshot({path:path.join(out,'register-'+width+'.png')});await page.getByRole('button',{name:'注册并登录',exact:true}).click();await page.waitForFunction(()=>document.body.dataset.loggedIn==='yes');
+        const legacyPhone='1310013100'+index,legacy=auth.register('old-sms-only-'+index,'synthetic-password');db.prepare('UPDATE users SET password_hash=? WHERE id=?').run('!phone-only:synthetic',legacy.id);db.prepare('INSERT INTO user_phone_identities VALUES(?,?,?)').run(legacyPhone,legacy.id,Date.now());
+        await page.goto(base+'/phone-test');await page.getByRole('button',{name:'设置／找回密码',exact:true}).click();await page.getByLabel('手机号',{exact:true}).fill(legacyPhone);await page.getByRole('button',{name:'获取验证码',exact:true}).click();await page.getByRole('status').filter({hasText:'验证码已发送'}).waitFor();await page.getByLabel('短信验证码').fill('123456');await page.getByLabel('密码',{exact:true}).fill('recovered-ui-pass');await page.getByRole('button',{name:'设置密码并登录',exact:true}).click();await page.waitForFunction(()=>document.body.dataset.loggedIn==='yes');assert.equal(auth.verifyToken(await page.evaluate(()=>ChunkAPI.getToken())).userId,legacy.id,'SMS-only account keeps its identity after setting a password');
+        assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      }
+      assert.deepEqual(errors,[]);await context.close();console.log('Phone entry UI: password login without SMS, mandatory-password registration, original-account recovery at 1440/390 passed. Screenshots: '+out);
+    }
     if(process.env.PHONE_UI_TEST === 'true') {
       const { chromium } = require('../node_modules/playwright-core');
       browser = await chromium.launch({ headless:true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
@@ -79,9 +103,8 @@ app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.
       for(const width of [1440,390]) {
         await page.setViewportSize({ width, height:900 }); await page.goto(base+'/phone-test');
         await page.getByLabel('手机号', { exact:true }).fill('13700137000');
-        const pbox = await page.getByLabel('手机号',{exact:true}).boundingBox();
-        const sbox = await page.getByRole('button',{name:'获取验证码',exact:true}).boundingBox();
-        assert.ok(sbox.x > pbox.x && Math.abs(sbox.y-pbox.y)<3);
+        assert.equal(await page.getByRole('button',{name:'获取验证码',exact:true}).isVisible(),false);
+        assert.equal(await page.getByLabel('短信验证码').isVisible(),false);
         await page.screenshot({ path:path.join(out, 'login-'+width+'.png'), fullPage:true });
         assert.ok(await page.getByRole('dialog').isVisible());
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
@@ -143,6 +166,7 @@ app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.
       assert.equal(auth.verifyToken(await page.evaluate(()=>ChunkAPI.getToken())).userId,old.id);
       process.env.ALLOW_LEGACY_PASSWORD_LOGIN='false';
       await page.goto(base+'/phone-test');
+      await page.getByRole('button',{name:'注册账号',exact:true}).click();
       await page.getByLabel('手机号',{exact:true}).fill('13700137000');
       await page.getByRole('button', {name:'获取验证码', exact:true}).click();
       await page.getByRole('status').filter({hasText:'验证码已发送'}).waitFor();
@@ -151,8 +175,8 @@ app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.
       let releaseLogin;
       const loginGate = new Promise(resolve => { releaseLogin = resolve; });
       await page.route('**/api/auth/phone/login', async route => { await loginGate; await route.continue(); });
-      await page.getByRole('button', {name:'登录', exact:true}).click();
-      await page.getByRole('button', {name:'登录中…', exact:true}).waitFor();
+      await page.getByRole('button', {name:'注册并登录', exact:true}).click();
+      await page.getByRole('button', {name:'注册中…', exact:true}).waitFor();
       await page.keyboard.press('Tab');
       assert.ok(await page.evaluate(() => !!document.activeElement.closest('[role=dialog]')));
       await page.screenshot({path:path.join(out,'login-busy.png'),fullPage:true});
@@ -167,7 +191,6 @@ app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.
       assert.equal(await secondPage.evaluate(async () => (await (await fetch('/api/auth/me',{headers:{Authorization:'Bearer '+localStorage.getItem('chunklab_token')}})).json()).user.phone), '137****7000');
       await secondPage.close();
       await page.evaluate(() => { ChunkAuthUI.logout(); ChunkAuthUI.showLogin(function(){document.body.dataset.passwordLogin='yes';}); });
-      await page.getByRole('button',{name:'使用密码登录',exact:true}).click();
       assert.equal(await page.getByLabel('短信验证码').isVisible(),false);
       await page.getByLabel('手机号',{exact:true}).fill('13700137000');
       await page.getByLabel('密码',{exact:true}).fill('123');
@@ -187,7 +210,7 @@ app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.
       // Account already bound to another number: must not switch/merge it.
       await page.getByRole('status').filter({hasText:'不能自动合并'}).waitFor();
       assert.deepEqual(await page.evaluate(() => ({ epoch:JSON.parse(localStorage.getItem('chunklab.session.v1')).epoch, token:localStorage.getItem('chunklab_token') })), reboundSaved);
-      await page.getByRole('button',{name:'取消',exact:true}).click();
+      await page.getByRole('button',{name:'关闭登录窗口',exact:true}).click();
       // Existing legacy authenticated account can bind without changing cache scope.
       const legacy = auth.register('another-isolated-legacy', 'password123');
       const legacyToken = auth.signToken(legacy.id, legacy.username);
@@ -248,14 +271,16 @@ app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.
       await home.locator('#jqkaLogin').click();
       await home.getByRole('dialog').waitFor();
       await home.screenshot({path:path.join(out,'homepage-garden-login.png'),fullPage:false});
-      await home.getByRole('button',{name:'取消',exact:true}).click();
+      await home.getByRole('button',{name:'关闭登录窗口',exact:true}).click();
       assert.equal(await home.getByRole('dialog').count(),0);
       await home.locator('#jqkaLogin').click();
+      await home.getByRole('button',{name:'注册账号',exact:true}).click();
       await home.getByLabel('手机号',{exact:true}).fill('13400134000');
       await home.getByRole('button',{name:'获取验证码',exact:true}).click();
       await home.getByRole('status').filter({hasText:'验证码已发送'}).waitFor();
       await home.getByLabel('短信验证码').fill('123456');
-      await home.getByRole('button',{name:'登录',exact:true}).click();
+      await home.getByLabel('密码',{exact:true}).fill('homepage-fixture-pass');
+      await home.getByRole('button',{name:'注册并登录',exact:true}).click();
       await home.locator('#jqkaAccountPanel:not([hidden])').waitFor();
       assert.equal(new URL(home.url()).pathname,'/');
       assert.equal(await home.locator('#jqkaAccountPhone').textContent(),'134****4000');

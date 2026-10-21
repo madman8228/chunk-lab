@@ -1,0 +1,20 @@
+/* Shared homepage scenery; course covers and list behavior remain unchanged. */
+body.decks-page{--bg:#f7f1e4;--surface:var(--v4-card);--surface-2:#f7edd9;--border:#d8c7a9;--border-strong:#b89a70;--text:#523019;--muted:#745333;--faint:#745333;--accent:#765126;--accent-soft:#f7edd9;--shadow:0 4px 16px rgba(82,48,25,.07)}
+.decks-page .wrap{padding-top:8px;padding-bottom:110px}
+.decks-page .decks-global-nav{display:flex;align-items:center;flex:0 0 auto;gap:12px;min-height:44px;margin-bottom:4px}
+.decks-page .decks-global-nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;color:var(--text);text-decoration:none}
+.decks-page .decks-global-nav a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.decks-page .page-head{flex-wrap:wrap}
+.decks-page .page-head h2{min-width:0;overflow-wrap:anywhere}
+.decks-page .btn{display:inline-flex;align-items:center;justify-content:center;min-height:36px;background:var(--surface);border-color:var(--border);color:var(--text)}
+.decks-page .btn:hover{background:var(--surface-2);border-color:var(--border-strong);color:var(--text)}
+.decks-page .btn.primary{background:#ffe08a;border-color:#ccad62;color:var(--text)}
+.decks-page .btn.primary:hover{background:#ffd66b;color:var(--text)}
+.decks-page .btn.ghost{background:transparent}
+.decks-page .catalog-lesson,.decks-page .deck-item{background:var(--surface);border-color:var(--border);box-shadow:0 1px 3px rgba(82,48,25,.05)}
+.decks-page .catalog-lesson:hover{box-shadow:var(--shadow)}
+.decks-page .catalog-lesson-media{background:#f2ead9}
+.decks-page .catalog-lesson-media:not(.is-custom) img{opacity:1;object-fit:cover}
+.decks-page .catalog-lesson-media:not(.is-custom)::after{content:none}
+.decks-page button:focus-visible,.decks-page a:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
+@media(max-width:640px){.decks-page .btn{min-height:44px}.decks-page .wrap{padding-right:16px;padding-left:16px}.decks-page .page-head{display:flex;align-items:center;gap:8px;background:var(--surface);border-radius:8px}.decks-page .page-head h2{flex:1 1 200px;white-space:normal}.decks-page .course-header-actions{margin-left:auto}}

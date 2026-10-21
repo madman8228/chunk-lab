@@ -3,12 +3,26 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import esbuild from 'esbuild';
 import fs from 'node:fs';
+import { buildWorkspace } from './build-learning-workspace.mjs';
+import { buildMembership } from './build-membership.mjs';
+import { buildVocabularyStudy } from './build-vocabulary-study.mjs';
+import { buildWordbookAuthoring } from './build-wordbook-authoring.mjs';
+import {buildVocabularyMaterialLibrary} from './build-vocabulary-material-library.mjs';
+import { buildVocabularyContent } from './build-vocabulary-content.mjs';
 import { DRAFT_SPEC } from '../src/course-authoring/draft-spec.mjs';
 import { CourseCapabilityCatalog } from '../src/course-authoring/capabilities.mjs';
 import { IMAGE_TEXT_DRAFT_SPEC } from '../src/course-authoring/image-text-draft-spec.mjs';
 import { COURSE_TYPES } from '../src/course-authoring/course-types.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
+
+await buildWorkspace();
+const statsBuild = spawnSync(process.execPath, ['scripts/build-stats-page.cjs'], { cwd: root, stdio: 'inherit' });
+if (statsBuild.status !== 0) process.exit(statsBuild.status || 1);
+await buildVocabularyStudy();
+await buildWordbookAuthoring();
+await buildVocabularyMaterialLibrary();
+buildVocabularyContent();
 
 await esbuild.build({
   entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')],
@@ -21,6 +35,9 @@ await esbuild.build({
   bundle: true, format: 'cjs', platform: 'node', minify: false, legalComments: 'none',
 });
 console.log('[build] mistake evidence module generated for browser and server');
+
+await buildMembership();
+console.log('[build] membership domain policies generated for Node 18');
 
 const result = spawnSync(process.execPath, ['scripts/build-course-schema-validator.js'], { stdio: 'inherit' });
 if (result.status !== 0) process.exit(result.status || 1);

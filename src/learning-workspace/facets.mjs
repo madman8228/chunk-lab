@@ -6,10 +6,28 @@ function values(resource, dimension) {
   return Array.isArray(value) ? value : value ? [value] : [];
 }
 
+export const PRACTICAL_TOPICS = Object.freeze({daily:'日常口语',travel:'旅游英语',business:'商务职场',classics:'经典教材',stories:'电影与故事'});
+const practicalPatterns = {daily:/日常|口语|高频短语/,travel:/旅游|旅行|出国|travel/i,business:/商务|职场|business/i,classics:/经典教材/,stories:/电影|故事|影视|movie|story/i};
+
+function matchesPracticalTopic(resource, topic) {
+  const tags = values(resource, 'topics');
+  const tagged = Object.keys(PRACTICAL_TOPICS).filter(key => tags.includes(PRACTICAL_TOPICS[key]));
+  if (tagged.length) return tagged.includes(topic);
+  const title = [resource.title, resource.facets?.seriesId].filter(Boolean).join(' ');
+  return practicalPatterns[topic].test(title) || topic === 'stories' && (resource.sourceRefs || []).some(ref => ref.type === 'story-package');
+}
+
 export function filterResources(resources, selection = {}, omitDimension = '') {
   const query = String(selection.query || '').trim().toLocaleLowerCase();
   return resources.filter(resource => {
     if (selection.kind && resource.kind !== selection.kind) return false;
+    const newConcept = /新概念|new[\s_-]*concept|\bnce\b/i.test([resource.facets?.seriesId, resource.title].filter(Boolean).join(' '));
+    const school = !newConcept && values(resource, 'schoolStages').some(stage => ['小学', '初中', '高中'].includes(stage)) &&
+      (resource.kind === 'textbook' || !!resource.facets?.seriesId);
+    if (selection.category === 'new-concept' && !newConcept) return false;
+    if (selection.category === 'school' && !school) return false;
+    if (selection.category === 'practical' && (resource.kind !== 'course' || newConcept || school)) return false;
+    if (selection.category === 'practical' && Object.hasOwn(PRACTICAL_TOPICS, selection.practicalTopic) && !matchesPracticalTopic(resource, selection.practicalTopic)) return false;
     if (query && ![resource.title, resource.description, ...Object.values(resource.facets || {}).flat()]
       .filter(Boolean).join(' ').toLocaleLowerCase().includes(query)) return false;
     return Object.keys(FACET_LABELS).every(dimension => {
@@ -33,6 +51,9 @@ export function facetOptions(resources, selection = {}) {
 export function selectionFromUrl(search) {
   const params = new URLSearchParams(search);
   const selection = { kind: ['course', 'wordbook', 'textbook'].includes(params.get('kind')) ? params.get('kind') : '', query: params.get('q') || '' };
+  selection.category = ['practical', 'new-concept', 'school'].includes(params.get('category')) ? params.get('category') : '';
+  selection.practicalTopic = selection.category === 'practical' && Object.hasOwn(PRACTICAL_TOPICS, params.get('practicalTopic')) ? params.get('practicalTopic') : '';
+  if (!selection.category && selection.kind === 'textbook') { selection.kind = ''; selection.category = 'school'; }
   for (const key of Object.keys(FACET_LABELS)) selection[key] = params.getAll(key);
   return selection;
 }

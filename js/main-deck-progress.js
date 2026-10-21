@@ -49,7 +49,7 @@ var MainDeckProgress = (() => {
       seen.add(cid);
     });
     const done = Math.min(total, seen.size);
-    return { done, total, pct: total ? Math.round(done / total * 100) : 0, ready: true };
+    return { done, total, pct: total ? done === total ? 100 : Math.min(99, Math.round(done / total * 100)) : 0, ready: true };
   }
   function buildDeckProgressMarkup(options = {}) {
     const progress = options.progress || { done: null, total: 0, pct: null, ready: false };

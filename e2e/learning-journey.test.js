@@ -74,6 +74,7 @@ async function seedSixCompletedSentences(page) {
     await window.ContentRepo.ready;
     var deck = await window.ContentRepo.ensureDeck('oral-7-38', window.mem);
     if (!deck || !deck.items || deck.items.length !== 7) throw new Error('结语课节未加载完整：' + (deck && deck.items && deck.items.length));
+    await CourseEnrollment.join('builtin:oral');
     var now = Date.now();
     var by = {};
     deck.items.slice(0, 6).forEach(function (item) {
@@ -101,7 +102,12 @@ async function seedSixCompletedSentences(page) {
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     const page = await context.newPage();
-    await page.route('**/api/**', function (route) { route.abort('failed'); });
+    // Isolate learning-state fixtures while retaining the current authored
+    // content address API. Full offline recovery is tested by sw-cache.
+    await page.route('**/api/**', function (route) {
+      if (new URL(route.request().url()).pathname === '/api/content/shards') return route.continue();
+      return route.abort('failed');
+    });
     await page.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
     await seedSixCompletedSentences(page);
 

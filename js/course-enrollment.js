@@ -79,8 +79,23 @@
     function change(courseId, joined, aliases) {
       var id = String(courseId == null ? '' : courseId).trim();
       var key = keyFor(id);
-      var operation = tail.then(function () {
+      var operation = tail.then(async function () {
         if (typeof read !== 'function' || typeof write !== 'function') throw new Error('课程保存模块未就绪');
+        if(serverAuthoritative()){
+          var config=global.CL.getCloudConfig();
+          if(config.requireAuth && global.ChunkAPI && !global.ChunkAPI.isLoggedIn()){
+            var loginError=new Error('请先登录后再加入学习。');loginError.code='NOT_AUTH';throw loginError;
+          }
+          var owner=global.AccountStorage && global.AccountStorage.owner;
+          if(!global.CL.serverPersistenceReady || !global.CL.serverPersistenceReady()){
+            if(typeof global.CL.ensureCloud==='function') await global.CL.ensureCloud();
+          }
+          if(global.AccountStorage && global.AccountStorage.assertCurrent) global.AccountStorage.assertCurrent();
+          if(owner !== (global.AccountStorage && global.AccountStorage.owner)) throw new Error('账号已切换，请在当前账号重新加入学习。');
+          if(!global.CL.serverPersistenceReady || !global.CL.serverPersistenceReady()){
+            throw new Error('课程服务暂不可用；加入状态未更改，请稍后重试。');
+          }
+        }
         var progress = read() || {};
         var existing = progress[key];
         if (existing && (existing.kind !== 'course-enrollment' || existing.schemaVersion !== 1 ||

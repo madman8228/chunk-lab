@@ -56,7 +56,7 @@ function stopServer() {
         settings: { mode: 'choose', sound: false, skipMastered: true, batchSize: 10 }, progress: {}
       }));
     });
-    await page.goto(BASE + '/main.html?direct=1&srs-course-reentry=1', { waitUntil: 'domcontentloaded' });
+    await page.goto(BASE + '/main.html?srs-course-reentry=1', { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(function () { return window._mainBooted && window.mem && window.CL; });
     const result = await page.evaluate(async function () {
       await window.ensurePracticeReady();
@@ -68,6 +68,8 @@ function stopServer() {
         template: 'sentence-practice', templateVersion: 1, contentForm: 'sentences',
         learning: { modes: ['chunkSelection'], defaultMode: 'chunkSelection' }
       }, items: items };
+      mem.decks.push(deck);
+      await CourseEnrollment.join('user-deck:' + deck.id);
       startDeck(deck, 0);
       const firstSchedule = recordSentenceResult(items[0], true);
       const now = Date.now();
@@ -88,6 +90,8 @@ function stopServer() {
         template: 'sentence-practice', templateVersion: 1, contentForm: 'dialogue',
         learning: { modes: ['chunkSelection'], defaultMode: 'chunkSelection' }
       }, items: items.slice(0, 3) };
+      mem.decks.push(preserveDeck);
+      await CourseEnrollment.join('user-deck:' + preserveDeck.id);
       mem.stats.bySentence[CL.cidKey(preserveDeck.id, items[0])] = { deckId: preserveDeck.id, cid: items[0].cid, times: 1, okTimes: 1, dueAt: Date.now() + 86400000 };
       mem.stats.bySentence[CL.cidKey(preserveDeck.id, items[1])] = { deckId: preserveDeck.id, cid: items[1].cid, times: 1, okTimes: 0, dueAt: Date.now() - 1 };
       startDeck(preserveDeck, 0);
@@ -95,6 +99,8 @@ function stopServer() {
       startDeck(deck, 0, undefined, true);
       const forced = S.items.map(function (item) { return item.cid; }).sort();
       const emptyDeck = { id: 'empty-review-test', name: '暂未到期', items: items.slice(0, 3) };
+      mem.decks.push(emptyDeck);
+      await CourseEnrollment.join('user-deck:' + emptyDeck.id);
       emptyDeck.items.forEach(function(item, index){
         mem.stats.bySentence[CL.cidKey(emptyDeck.id, item)] = { deckId: emptyDeck.id, cid: item.cid, times: 1, okTimes: 1, dueAt: Date.now() + 86400000 + index * 3600000 };
       });

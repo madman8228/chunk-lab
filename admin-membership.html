@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Chunk Lab · 会员管理</title>
+<style>
+:root{--bg:#f6f5f1;--panel:#fffdfa;--line:#dfdcd5;--text:#202326;--muted:#77736c;--accent:#2d62c9;--soft:#edf3ff;--good:#19764d;--warn:#a65c16;--shadow:0 12px 32px rgba(32,35,38,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
+button,input,select{font:inherit}.shell{width:min(100% - 28px,960px);margin:0 auto;padding:24px 0 48px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.top h1{font-size:20px;margin:0}.top a{color:var(--accent);text-decoration:none}.panel{padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:14px}.panel h2{font-size:16px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--text)}label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.check{display:flex;align-items:center;gap:8px}.btn{padding:8px 13px;background:var(--accent);color:#fff;border:0;border-radius:8px;cursor:pointer}.btn.secondary{color:var(--text);background:transparent;border:1px solid var(--line)}.btn.danger{background:#9b3832}.btn:disabled{opacity:.55;cursor:wait}.note{font-size:12px;color:var(--muted);margin:8px 0 0}.status{min-height:20px;color:var(--muted);margin-top:8px}.table-wrap{overflow:auto}.table{width:100%;min-width:700px;border-collapse:collapse}.table th,.table td{text-align:left;padding:9px 7px;border-bottom:1px solid #eeeae3}.table th{font-size:12px;color:var(--muted)}.tag{display:inline-block;padding:2px 8px;border-radius:999px;background:#eeeae3;font-size:12px}.tag.active{background:#e5f4ec;color:var(--good)}.actions{display:flex;gap:6px;flex-wrap:wrap}.empty{padding:20px;text-align:center;color:var(--muted)}@media(max-width:620px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.panel{padding:14px}}
+</style>
+<style>
+[data-policy-source-review]{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);overflow-wrap:anywhere}
+[data-policy-source-review] h3{font-size:16px;margin:0 0 12px}
+[data-policy-source-review] summary{cursor:pointer;padding:10px 0}
+[data-policy-source]{min-height:44px}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32-v1.png">
+</head>
+<body>
+<main class="shell">
+  <header class="top"><h1>会员管理</h1><div><a href="/admin.html">返回管理后台</a>　<button id="logout" class="btn secondary">退出</button></div></header>
+  <section class="panel"><h2>免费体验设置</h2>
+    <div class="grid">
+      <div><label class="check"><input id="trialEnabled" type="checkbox">开放会员课程体验</label></div>
+      <div><label for="trialDays">体验总天数</label><input class="field" id="trialDays" type="number" min="1" max="365"></div>
+      <div><label for="dailyMinutes">每 24 小时可学习（分钟）</label><input class="field" id="dailyMinutes" type="number" min="1" max="1440"></div>
+      <div><label for="salesUrl">外部兑换码购买链接（可选）</label><input class="field" id="salesUrl" type="url" maxlength="500" placeholder="https://…"></div>
+    </div>
+    <p class="note">规则修改只作用于尚未开始体验的账号；已开始体验的规则和时长快照保持不变。</p>
+    <div style="margin-top:12px"><button class="btn" id="saveSettings">保存设置</button><span class="status" id="settingsStatus" role="status" aria-live="polite"></span></div>
+  </section>
+  <section class="panel"><h2>生成兑换码并下载 CSV</h2>
+    <div class="grid">
+      <div><label for="plan">会员套餐</label><select class="field" id="plan"></select></div>
+      <div><label for="quantity">生成数量（1–10000）</label><input class="field" id="quantity" type="number" min="1" max="10000" value="100"></div>
+      <div><label for="redeemBy">兑换截止时间（可选）</label><input class="field" id="redeemBy" type="datetime-local"></div>
+      <div><label for="channel">渠道备注（可选）</label><input class="field" id="channel" maxlength="100" class="field" placeholder="仅供后台识别"></div>
+    </div>
+    <p class="note">生成后立即下载一次。批次先暂停；确认已导入外部发码平台后，再在下方激活。若 CSV 丢失，请撤销未激活批次并重新生成。</p>
+    <div style="margin-top:12px"><button class="btn" id="issue">生成并下载 CSV</button><span class="status" id="issueStatus" role="status" aria-live="polite"></span></div>
+  </section>
+  <section class="panel"><h2>兑换码批次</h2><div class="table-wrap"><table class="table"><thead><tr><th>批次</th><th>套餐</th><th>数量</th><th>已兑换</th><th>截止</th><th>状态</th><th>操作</th></tr></thead><tbody id="batches"></tbody></table></div></section>
+  <section class="panel"><h2>查询用户会员记录</h2>
+    <div style="display:flex;gap:8px;max-width:460px"><input id="grantUserId" class="field" type="number" min="1" placeholder="用户编号"><button id="loadGrants" class="btn secondary">查询</button></div>
+    <div id="grantStatus" class="status" role="status" aria-live="polite"></div>
+    <div class="table-wrap"><table class="table"><thead><tr><th>套餐</th><th>核销时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="grants"></tbody></table></div>
+  </section>
+  <section class="panel" id="courseAccessPanel"><h2>平台课程访问级别</h2>
+    <p class="note">课程完成内容保护后，才能设置为会员课程。共享内容的影响会在发布前显示。</p>
+    <div class="table-wrap"><table class="table"><thead><tr><th>课程</th><th>内容保护</th><th>访问级别</th></tr></thead><tbody data-policy-rows></tbody></table></div>
+    <div class="actions" style="margin-top:12px"><button class="btn secondary" data-policy-refresh>刷新</button><button class="btn secondary" data-policy-preview>检查修改影响</button><button class="btn" data-policy-publish disabled>发布访问级别</button></div>
+    <div class="status" data-policy-status role="status" aria-live="polite"></div>
+    <section data-policy-source-review hidden aria-label="课程来源检查报告"></section>
+  </section>
+</main>
+<script src="js/membership.js"></script>
+<script>
+(function(){
+  'use strict';
+  var TOKEN_KEY='chunklab_admin_token',base='';try{base=localStorage.getItem('chunklab_api_base')||''}catch(e){}
+  if(!base&&location.protocol==='file:')base='http://localhost:8787';base=base.replace(/\/+$/,'');
+  var token='';try{token=localStorage.getItem(TOKEN_KEY)||''}catch(e){}
+  function $(id){return document.getElementById(id)}
+  function request(path,options){options=options||{};var headers=Object.assign({'Content-Type':'application/json','Authorization':'Bearer '+token},options.headers||{});return fetch(base+path,Object.assign({},options,{headers:headers})).then(function(res){return res.text().then(function(text){var data=null;try{data=text?JSON.parse(text):null}catch(e){}if(res.status===401){token='';localStorage.removeItem(TOKEN_KEY);location.href='/admin.html';throw new Error('管理员登录已过期')}if(!res.ok)throw new Error(data&&data.error||('请求失败 '+res.status));return data})})}
+  function rid(){return window.crypto&&crypto.randomUUID?crypto.randomUUID():'membership_'+Date.now()+'_'+Math.random().toString(36).slice(2)}
+  function time(value){if(!value)return '—';return new Date(value).toLocaleString('zh-CN',{hour12:false})}
+  function loadSettings(){return request('/api/admin/membership/settings').then(function(data){var s=data.settings;$('trialEnabled').checked=s.enabled;$('trialDays').value=s.trialDays;$('dailyMinutes').value=Math.round(s.dailyLimitSeconds/60);$('salesUrl').value=s.salesUrl||'';$('trialEnabled').dataset.revision=s.revision})}
+  function loadPlans(){return request('/api/admin/membership/plans').then(function(data){$('plan').innerHTML=(data.plans||[]).map(function(p){return '<option value="'+p.key+'">'+p.displayName+'（'+p.termMonths+' 个月）</option>'}).join('')})}
+  function loadBatches(){return request('/api/admin/membership/code-batches').then(function(data){var rows=data.batches||[];$('batches').innerHTML=rows.length?rows.map(function(b){var status=b.status==='active'?'已激活':b.status==='paused'?'已暂停':'已撤销';var action=b.status==='paused'?'<button class="btn small" data-action="activate">激活</button>':b.status==='active'?'<button class="btn secondary small" data-action="pause">暂停</button>':'';if(b.status!=='revoked')action+='<button class="btn danger small" data-action="revoke">撤销未兑换码</button>';return '<tr data-id="'+b.batchId+'" data-revision="'+b.revision+'"><td><code>'+b.batchId+'</code></td><td>'+b.planKey+'</td><td>'+b.quantity+'</td><td>'+b.redeemedCount+'</td><td>'+time(b.redeemBy)+'</td><td><span class="tag '+(b.status==='active'?'active':'')+'">'+status+'</span></td><td><div class="actions">'+action+'</div></td></tr>'}).join(''):'<tr><td colspan="7" class="empty">暂无兑换码批次</td></tr>'})}
+  function loadGrants(){var userId=Number($('grantUserId').value);if(!Number.isSafeInteger(userId)||userId<1){$('grantStatus').textContent='请输入有效用户编号';return Promise.resolve()}return request('/api/admin/membership/users/'+userId+'/grants').then(function(data){$('grantStatus').textContent='用户 '+userId+' · 会员版本 '+data.revision;$('grants').innerHTML=(data.grants||[]).length?data.grants.map(function(g){return '<tr data-grant-id="'+g.grantId+'" data-revision="'+data.revision+'"><td>'+g.displayName+'（'+g.termMonths+' 个月）</td><td>'+time(g.redeemedAt)+'</td><td>'+(g.revokedAt?'已撤销':'有效账本')+'</td><td>'+(g.revokedAt?'—':'<button class="btn danger small" data-revoke-grant>预览撤销</button>')+'</td></tr>'}).join(''):'<tr><td colspan="4" class="empty">该用户没有兑换记录</td></tr>'})}
+  $('saveSettings').addEventListener('click',function(){var button=this;button.disabled=true;$('settingsStatus').textContent='保存中…';var baseRevision=Number($('trialEnabled').dataset.revision);request('/api/admin/membership/settings',{method:'PUT',body:JSON.stringify({baseRevision:baseRevision,enabled:$('trialEnabled').checked,trialDays:Number($('trialDays').value),dailyLimitSeconds:Number($('dailyMinutes').value)*60,salesUrl:$('salesUrl').value.trim()})}).then(function(data){$('trialEnabled').dataset.revision=data.settings.revision;$('settingsStatus').textContent='已保存'}).catch(function(error){$('settingsStatus').textContent=error.message}).finally(function(){button.disabled=false})});
+  $('issue').addEventListener('click',function(){var button=this,quantity=Number($('quantity').value);if(!Number.isInteger(quantity)||quantity<1||quantity>10000){$('issueStatus').textContent='数量需在 1 到 10000 之间';return}button.disabled=true;$('issueStatus').textContent='正在生成并准备下载…';var body={planKey:$('plan').value,quantity:quantity,channelRef:$('channel').value.trim(),requestId:rid()};if($('redeemBy').value){var date=new Date($('redeemBy').value);if(isNaN(date.getTime())){$('issueStatus').textContent='兑换截止时间无效';button.disabled=false;return}body.redeemBy=date.getTime()}fetch(base+'/api/admin/membership/code-batches/issue-export',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify(body)}).then(function(res){if(!res.ok)return res.json().then(function(data){throw new Error(data.error||'生成失败')});var batchId=res.headers.get('X-Membership-Batch-Id');return res.blob().then(function(blob){var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='membership-codes-'+batchId+'.csv';a.click();setTimeout(function(){URL.revokeObjectURL(url)},1000);$('issueStatus').textContent='批次 '+batchId+' 已生成并下载，当前暂停中';loadBatches()})}).catch(function(error){$('issueStatus').textContent=error.message}).finally(function(){button.disabled=false})});
+  $('batches').addEventListener('click',function(event){var button=event.target.closest('[data-action]');if(!button)return;var row=button.closest('tr'),action=button.dataset.action,label=action==='activate'?'激活':action==='pause'?'暂停':'撤销未兑换码';if(!confirm(action==='activate'?'请确认此批次已导入外部发码平台，再激活兑换码。':'确定'+label+'？'))return;button.disabled=true;request('/api/admin/membership/code-batches/'+encodeURIComponent(row.dataset.id)+'/action',{method:'POST',body:JSON.stringify({action:action,baseRevision:Number(row.dataset.revision),requestId:rid(),reason:'管理员后台操作'})}).then(function(){loadBatches()}).catch(function(error){alert(error.message);button.disabled=false})});
+  $('loadGrants').addEventListener('click',function(){loadGrants().catch(function(error){$('grantStatus').textContent=error.message})});
+  $('grants').addEventListener('click',function(event){var button=event.target.closest('[data-revoke-grant]');if(!button)return;var row=button.closest('tr'),grantId=row.dataset.grantId;button.disabled=true;request('/api/admin/membership/grants/'+encodeURIComponent(grantId)+'/revoke-preview',{method:'POST',body:'{}'}).then(function(preview){var old=preview.current.endsAt?time(preview.current.endsAt):'当前无有效期',next=preview.proposedPeriods.length?time(preview.proposedPeriods[preview.proposedPeriods.length-1].endsAt):'无剩余会员期';if(!confirm('撤销此笔核销后，当前到期：'+old+'；重新计算后：'+next+'。继续？'))return null;var reason=prompt('请输入撤销原因（必填）');if(!reason||!reason.trim())return null;return request('/api/admin/membership/grants/'+encodeURIComponent(grantId)+'/revoke',{method:'POST',body:JSON.stringify({baseRevision:preview.revision,requestId:rid(),reason:reason.trim()})})}).then(function(result){if(result)loadGrants()}).catch(function(error){$('grantStatus').textContent=error.message}).finally(function(){button.disabled=false})});
+  $('logout').addEventListener('click',function(){try{localStorage.removeItem(TOKEN_KEY)}catch(e){}token='';location.href='/admin.html'});
+  if(!token){location.href='/admin.html';return}
+  var coursePolicies = new ChunkMembership.CoursePolicyView({root:$('courseAccessPanel'),request:request,newRequestId:rid});
+  Promise.all([loadSettings(),loadPlans(),loadBatches(),coursePolicies.load()]).catch(function(error){$('settingsStatus').textContent=error.message});
+})();
+</script>
+</body>
+</html>

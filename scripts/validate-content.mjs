@@ -14,6 +14,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
+import { readFullManifest } from './content-file-inventory.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifestPath = path.join(ROOT, 'content', 'manifest.json');
@@ -123,7 +124,8 @@ function validateIndexDeck(manifestDeck, expected) {
   return itemCount;
 }
 
-const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+/* T5：公开 manifest 仅元数据，分片路径来自 server/content/shards.json，合并后校验。 */
+const manifest = readFullManifest(ROOT);
 if (!manifest || manifest.schemaVersion !== 1 || !Array.isArray(manifest.decks)) {
   fail('content/manifest.json schema 不受支持');
 }

@@ -2,6 +2,7 @@
   'use strict';
   // Presentation only: callers supply links/actions; this component never reads or writes account data.
   var activeMenu=null;
+  var menuOpeners=new WeakMap();
   function node(tag,text,className){var result=document.createElement(tag);if(text!==undefined)result.textContent=text;if(className)result.className=className;return result;}
   function closeMenu(restore){if(!activeMenu)return;var previous=activeMenu;activeMenu=null;previous.menu.open=false;previous.trigger.setAttribute('aria-expanded','false');if(restore&&previous.trigger.isConnected)previous.trigger.focus({preventScroll:true});}
   document.addEventListener('pointerdown',function(event){if(activeMenu&&!activeMenu.menu.contains(event.target))closeMenu(false);});
@@ -19,6 +20,7 @@
       var shift=rect.left<12?12-rect.left:rect.right>innerWidth-12?innerWidth-12-rect.right:0;
       if(shift)panel.style.transform='translateX('+shift+'px)';
     }
+    menuOpeners.set(menu,open);
     trigger.addEventListener('click',function(event){event.preventDefault();if(menu.open)closeMenu(false);else open();});
     menu.addEventListener('keydown',function(event){
       if(event.key==='Escape'&&menu.open){event.preventDefault();event.stopPropagation();closeMenu(true);return;}
@@ -60,5 +62,12 @@
     }
     article.append(copy);return article;
   }
-  global.ContentCard={create:create};
+  function captureMenu(container){return activeMenu&&activeMenu.menu.open&&container.contains(activeMenu.menu)?activeMenu.menu.dataset.resource:null;}
+  function restoreMenu(container,resourceId){
+    if(activeMenu&&!activeMenu.menu.isConnected)closeMenu(false);
+    if(!resourceId)return;
+    var menu=Array.from(container.querySelectorAll('.content-card-menu')).find(function(node){return node.dataset.resource===resourceId;});
+    if(menu&&menuOpeners.has(menu))menuOpeners.get(menu)();
+  }
+  global.ContentCard={create:create,captureMenu:captureMenu,restoreMenu:restoreMenu};
 })(window);

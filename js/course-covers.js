@@ -1,6 +1,6 @@
 (function(root){
   'use strict';
-  var covers=['assets/catalog/default-bubble-v2.webp','assets/catalog/default-dragonfly-v2.webp','assets/catalog/default-butterfly-v2.webp'];
+  var covers=['assets/catalog/default-cloud-v1.svg','assets/catalog/default-balloon-v1.svg','assets/catalog/default-balloon-far-v1.svg'];
   function fallback(item){
     item=item||{};
     // Stable pseudo-random assignment: do not shuffle covers on redraw or store changes in course data.

@@ -28,27 +28,32 @@ function learningEventsSql(db) {
 }
 
 function createUsageAnalytics({ db, now = Date.now, resourceName = (_userId, kind) => ({ sentence: '句子练习', wordbook: '单词本练习', vocabulary: '入门单词练习' }[kind]) }) {
+  // Reuse compiled SQL, never cached account data. Each execution remains
+  // inside the original immediate transaction and sees current database rows.
+  const readPulse = db.prepare('SELECT sequence,last_at FROM user_study_pulses WHERE user_id=? AND session_id=?');
+  const readClock = db.prepare('SELECT covered_until FROM user_study_clock WHERE user_id=?');
+  const putDaily = db.prepare(`INSERT INTO user_study_daily(user_id,day,kind,resource_id,active_ms) VALUES(?,?,?,?,?)
+    ON CONFLICT(user_id,day,kind,resource_id) DO UPDATE SET active_ms=active_ms+excluded.active_ms`);
+  const putPulse = db.prepare(`INSERT INTO user_study_pulses VALUES(?,?,?,?) ON CONFLICT(user_id,session_id)
+    DO UPDATE SET sequence=excluded.sequence,last_at=MAX(last_at,excluded.last_at)`);
+  const putClock = db.prepare(`INSERT INTO user_study_clock VALUES(?,?) ON CONFLICT(user_id)
+    DO UPDATE SET covered_until=MAX(covered_until,excluded.covered_until)`);
   const pulseTx = db.transaction((userId, body) => {
     const time = now();
-    const previous = db.prepare('SELECT sequence,last_at FROM user_study_pulses WHERE user_id=? AND session_id=?').get(userId, body.sessionId);
+    const previous = readPulse.get(userId, body.sessionId);
     if (previous && body.sequence <= previous.sequence) return { ok: true, creditedMs: 0, replay: true };
-    const clock = db.prepare('SELECT covered_until FROM user_study_clock WHERE user_id=?').get(userId);
+    const clock = readClock.get(userId);
     // Both elapsed wall time and the client foreground sample bound each pulse.
     // A global account clock takes the union across tabs and devices.
     let start = Math.max(time - body.elapsedMs, previous ? previous.last_at : time, clock ? clock.covered_until : 0);
     const creditedMs = Math.max(0, time - start);
-    const put = db.prepare(`INSERT INTO user_study_daily(user_id,day,kind,resource_id,active_ms) VALUES(?,?,?,?,?)
-      ON CONFLICT(user_id,day,kind,resource_id) DO UPDATE SET active_ms=active_ms+excluded.active_ms`);
     while (start < time) {
       const day = dayOf(start), end = Math.min(time, dayStart(day) + DAY);
-      put.run(userId, day, body.kind, body.resourceId, end - start);
+      putDaily.run(userId, day, body.kind, body.resourceId, end - start);
       start = end;
     }
-    db.prepare(`INSERT INTO user_study_pulses VALUES(?,?,?,?) ON CONFLICT(user_id,session_id)
-      DO UPDATE SET sequence=excluded.sequence,last_at=MAX(last_at,excluded.last_at)`)
-      .run(userId, body.sessionId, body.sequence, time);
-    if (creditedMs) db.prepare(`INSERT INTO user_study_clock VALUES(?,?) ON CONFLICT(user_id)
-      DO UPDATE SET covered_until=MAX(covered_until,excluded.covered_until)`).run(userId, time);
+    putPulse.run(userId, body.sessionId, body.sequence, time);
+    if (creditedMs) putClock.run(userId, time);
     return { ok: true, creditedMs };
   });
   function pulse(userId, body) {
@@ -61,13 +66,17 @@ function createUsageAnalytics({ db, now = Date.now, resourceName = (_userId, kin
     }
     return pulseTx.immediate(userId, body);
   }
+  let summaryStatement, dailyStatement, courseStatement;
   function userTime(userId, details = true) {
     const today = dayOf(now());
-    const summary = db.prepare(`SELECT COALESCE(SUM(active_ms),0) AS totalMs,
-      COALESCE(SUM(CASE WHEN day=? THEN active_ms ELSE 0 END),0) AS todayMs FROM user_study_daily WHERE user_id=?`).get(today, userId);
+    if (!summaryStatement) summaryStatement = db.prepare(`SELECT COALESCE(SUM(active_ms),0) AS totalMs,
+      COALESCE(SUM(CASE WHEN day=? THEN active_ms ELSE 0 END),0) AS todayMs FROM user_study_daily WHERE user_id=?`);
+    const summary = summaryStatement.get(today, userId);
     if (!details) return summary;
-    const daily = db.prepare('SELECT day,SUM(active_ms) AS activeMs FROM user_study_daily WHERE user_id=? GROUP BY day ORDER BY day DESC LIMIT 30').all(userId);
-    const courses = db.prepare('SELECT kind,resource_id AS resourceId,SUM(active_ms) AS activeMs FROM user_study_daily WHERE user_id=? GROUP BY kind,resource_id ORDER BY activeMs DESC LIMIT 50').all(userId);
+    if (!dailyStatement) dailyStatement = db.prepare('SELECT day,SUM(active_ms) AS activeMs FROM user_study_daily WHERE user_id=? GROUP BY day ORDER BY day DESC LIMIT 30');
+    if (!courseStatement) courseStatement = db.prepare('SELECT kind,resource_id AS resourceId,SUM(active_ms) AS activeMs FROM user_study_daily WHERE user_id=? GROUP BY kind,resource_id ORDER BY activeMs DESC LIMIT 50');
+    const daily = dailyStatement.all(userId);
+    const courses = courseStatement.all(userId);
     return { ...summary, daily, courses: courses.map(row => ({ ...row, name: resourceName(userId, row.kind, row.resourceId) })) };
   }
   return { pulse, userTime };

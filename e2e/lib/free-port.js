@@ -38,12 +38,12 @@ function usedPorts() {
     catch (e2) { raw = ''; }
   }
   String(raw).split(/\r?\n/).forEach(function (line) {
-    /* 只收 LISTENING（tcp）与 UDP 行；ESTABLISHED/TIME_WAIT 的对端端口不阻塞 bind，不必避开。
-       多收几个空闲端口无副作用——只是少几个候选。 */
-    if (!/LISTEN|UDP/i.test(line)) return;
-    const m = line.match(/:(\d{2,5})\b/g);
-    if (!m) return;
-    m.forEach(function (s) { set.add(parseInt(s.slice(1), 10)); });
+    /* Windows 出站 TCP 的本地端口也可能拒绝新的 listen（EACCES）。
+       只收本地端点，不把远端的 443 等端口误当成本机占用。 */
+    if (!/^\s*(TCP|UDP)\s/i.test(line)) return;
+    const local = line.trim().split(/\s+/)[1];
+    const m = local && local.match(/:(\d{1,5})$/);
+    if (m) set.add(parseInt(m[1], 10));
   });
   _used = set;
   return set;

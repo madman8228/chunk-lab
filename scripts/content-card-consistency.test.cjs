@@ -3,12 +3,12 @@ const {chromium}=require('playwright-core'),assert=require('node:assert/strict')
 const covers=require('../js/course-covers.js');
 (async()=>{const browser=await chromium.launch({headless:true});try{
  const page=await browser.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
- await page.route('http://card-fixture.invalid/**',route=>{const file=new URL(route.request().url()).pathname.slice(1);return covers.variants.includes(file)||file==='assets/covers/oral-3000.webp'?route.fulfill({contentType:'image/webp',body:fs.readFileSync(file)}):route.abort();});
+ await page.route('http://card-fixture.invalid/**',route=>{const file=new URL(route.request().url()).pathname.slice(1);return covers.variants.includes(file)||file==='assets/covers/oral-3000.webp'?route.fulfill({contentType:file.endsWith('.svg')?'image/svg+xml':'image/webp',body:fs.readFileSync(file)}):route.abort();});
  await page.setContent('<html lang="zh-CN"><base href="http://card-fixture.invalid/"><style>body{margin:0;padding:24px;font-family:system-ui;background:linear-gradient(#cde6f6,#f0efe2);min-height:100vh}*{box-sizing:border-box}h2{font-size:16px}</style><h2>我的内容</h2><main id="personal"></main><h2>发现</h2><main id="discovery"></main><button id="outside">测试外部点击</button></html>');
  for(const file of ['assets/learning-workspace.css','assets/content-card.css'])await page.addStyleTag({path:path.resolve(file)});
  for(const file of ['js/learning-workspace.js','js/course-covers.js','js/content-card.js'])await page.addScriptTag({path:path.resolve(file)});
  await page.evaluate(()=>window.LearningNavigation={create:()=>document.createElement('nav')});
- await page.addScriptTag({path:path.resolve('js/learning-workspace-view.js')});
+ await page.addScriptTag({path:path.resolve('js/course-return.js')});await page.addScriptTag({path:path.resolve('js/learning-workspace-view.js')});
  await page.evaluate(()=>{
   window.calls=[];
   const specifications=[

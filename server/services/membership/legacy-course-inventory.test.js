@@ -1,0 +1,58 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const os=require('node:os');
+const path=require('node:path');
+const {spawnSync}=require('node:child_process');
+const createFixture=require('../../../e2e/lib/legacy-course-fixture');
+const {LegacyCourseInventory,prepareLegacyCourseBundle}=require('./legacy-course-inventory');
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'chunklab-source-review-'));
+try{
+  const root=path.join(temp,'app');fs.mkdirSync(root);
+  const fixture=createFixture(root);
+  const originals=new Map();
+  const visit=dir=>{for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())visit(file);else originals.set(file,fs.readFileSync(file));}};visit(root);
+  const inventory=new LegacyCourseInventory({appRoot:root,publicDecks:()=>[{id:'shared-public',items:[fixture.items[0]]}]});
+  const report=inventory.inspect(['legacy-course']);
+  assert.equal(report.itemCount,2);assert.equal(report.activationReady,false);
+  assert.ok(report.sourcePaths.includes('/legacy-source.js'));
+  assert.ok(report.sourcePaths.includes('/content/legacy/old.json'));
+  assert.ok(report.evidence.some(file=>file.path.endsWith('.gz')));
+  assert.deepEqual(report.publicShareConflicts,[{deckId:'shared-public'}]);
+  assert.ok(!JSON.stringify(report).includes(fixture.items[0].sentence),'report contains evidence hashes, not lesson bodies');
+  const candidate=path.join(temp,'candidate');prepareLegacyCourseBundle({inventory,courseIds:['legacy-course'],output:candidate});
+  assert.throws(()=>prepareLegacyCourseBundle({inventory,courseIds:['legacy-course'],output:candidate}),{code:'OUTPUT_ALREADY_EXISTS'});
+  assert.throws(()=>prepareLegacyCourseBundle({inventory,courseIds:['legacy-course'],output:path.join(root,'public-copy')}),{code:'PUBLIC_OUTPUT_FORBIDDEN'});
+  const manifest=JSON.parse(fs.readFileSync(path.join(candidate,'candidate.json')));
+  assert.equal(manifest.courses[0].courseId,'legacy-course');assert.equal(manifest.courses[0].units[0].unitId,'legacy-lesson');
+  assert.equal(manifest.courses[0].units[0].legacyLearningIdentity.deckId,'legacy-deck');
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(candidate,manifest.courses[0].units[0].file))).items,fixture.items);
+  for(const [file,bytes] of originals)assert.deepEqual(fs.readFileSync(file),bytes,'original bytes remain unchanged: '+file);
+  const cli=spawnSync(process.execPath,[path.resolve(__dirname,'../../../scripts/prepare-protected-courses.cjs'),'--app-root',root,'--course','legacy-course'],{encoding:'utf8',windowsHide:true});
+  assert.equal(cli.status,0,cli.stderr);assert.equal(JSON.parse(cli.stdout).activationReady,false);
+  const allCli=spawnSync(process.execPath,[path.resolve(__dirname,'../../../scripts/prepare-protected-courses.cjs'),'--app-root',root,'--all','true'],{encoding:'utf8',windowsHide:true});
+  assert.equal(allCli.status,0,allCli.stderr);assert.deepEqual(JSON.parse(allCli.stdout).courseIds,['legacy-course']);
+  fs.appendFileSync(path.join(root,'content/legacy/current.json'),' ');
+  assert.throws(()=>inventory.inspect(['legacy-course']),{code:'SOURCE_HASH_MISMATCH'});
+  assert.throws(()=>inventory.read('../escape.json'),{code:'INVALID_SOURCE_PATH'});
+  fs.writeFileSync(path.join(root,'content/legacy/current.json'),originals.get(path.join(root,'content/legacy/current.json')));
+  const shared=JSON.parse(JSON.stringify(fixture.manifest.catalog.courses[0]));shared.id='shared-course';shared.title='共享课程';
+  fixture.manifest.catalog.courses.push(shared);fs.writeFileSync(path.join(root,'content/manifest.json'),JSON.stringify(fixture.manifest));
+  fs.writeFileSync(path.join(root,'public-course.zip'),'uninspected archive');
+  const sharedReport=inventory.inspect(['legacy-course']);
+  assert.deepEqual(sharedReport.sharedCourses,[{courseId:'shared-course',title:'共享课程'}]);
+  assert.deepEqual(sharedReport.uninspectedArtifacts,[{path:'/public-course.zip',bytes:19}]);
+  assert.equal(sharedReport.activationReady,false);
+  const specialRoot=path.join(temp,'special');fs.mkdirSync(specialRoot);
+  const specialSentence='What (now)? [Try] a+b, c*d, $5 and ^symbols|end.';
+  createFixture(specialRoot,{items:[{cid:'special-item',sentence:specialSentence}]});
+  // Copies may contain only the sentence, without its stable item ID.
+  fs.writeFileSync(path.join(specialRoot,'sentence-only.json'),JSON.stringify({text:specialSentence}));
+  fs.writeFileSync(path.join(specialRoot,'unrelated.json'),JSON.stringify({text:'What nowX Z aab, cccccd, $5 and symbols end.'}));
+  const specialReport=new LegacyCourseInventory({appRoot:specialRoot}).inspect(['legacy-course']);
+  assert.ok(specialReport.sourcePaths.includes('/sentence-only.json'),'regex punctuation is matched literally');
+  assert.ok(!specialReport.sourcePaths.includes('/unrelated.json'),'regex punctuation cannot broaden source matches');
+  console.log('legacy source inventory: immutable originals, historical/compressed aliases, hashes, public sharing, candidate identities, exclusive output and CLI passed');
+}finally{
+  assert.ok(path.resolve(temp).startsWith(path.resolve(os.tmpdir())+path.sep));fs.rmSync(temp,{recursive:true,force:true});
+}

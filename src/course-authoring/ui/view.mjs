@@ -8,6 +8,7 @@ function stepper(active) { return `<ol class="stepper" aria-label="课程制作�
 export class AuthoringView {
   constructor({ root, document = globalThis.document }) { this.root = root; this.document = document; }
   render(snapshot, options = {}) {
+    if (options.saving && snapshot.stage === 'preview') snapshot = { ...snapshot, stage: 'saving' };
     const active = step[snapshot.stage] || 1;
     const persistence = options.persistence || '';
     const title = snapshot.validatedDraft && snapshot.validatedDraft.title || '用自己的 AI 制作课程';
@@ -15,7 +16,7 @@ export class AuthoringView {
     if (snapshot.stage === 'setup') content = this.#setup(snapshot, options);
     else if (snapshot.stage === 'waiting-result' || snapshot.stage === 'needs-fix') content = this.#receive(snapshot, options);
     else content = this.#preview(snapshot, options);
-    this.root.innerHTML = `<main class="create-shell${active === 1 ? ' create-setup-shell' : ''}">${stepper(active)}<header class="create-heading${active === 1 ? ' create-setup-heading' : ''}"><div><span class="eyebrow">CHUNK LAB · AI 课程工作台</span><h1>${esc(title)}</h1>${active === 3 ? '<p>检查课程内容，确认后保存到课程库。</p>' : ''}</div><a class="text-link" href="decks.html">返回课程库</a></header>${options.error ? `<div class="global-error" role="alert">${esc(options.error)}</div>` : ''}<div class="persistence-note" role="status"${persistence ? '' : ' hidden'}>${esc(persistence)}</div>${content}<div class="recent-drafts"><button type="button" class="link-button" data-action="recent">查看本机未完成的制作草稿</button><div data-recent-list></div></div></main>`;
+    this.root.innerHTML = `<main class="create-shell${active === 1 ? ' create-setup-shell' : ''}"><nav class="create-navigation" aria-label="返回导航"><a class="text-link" href="main.html?view=my-learning">返回我的内容</a><a class="text-link" href="main.html?view=home">首页</a></nav>${stepper(active)}<header class="create-heading${active === 1 ? ' create-setup-heading' : ''}"><div><h1>${esc(title)}</h1>${active === 3 ? '<p>检查课程内容，确认后保存到课程库。</p>' : ''}</div></header>${options.error ? `<div class="global-error" role="alert">${esc(options.error)}</div>` : ''}<div class="persistence-note" role="status"${persistence ? '' : ' hidden'}>${esc(persistence)}</div>${content}<div class="recent-drafts"><button type="button" class="link-button" data-action="recent">查看本机未完成的制作草稿</button><div data-recent-list></div></div></main>`;
     this.root.dataset.sessionId = snapshot.sessionId;
   }
 
@@ -29,11 +30,7 @@ export class AuthoringView {
     const checkGroup = (name, legend, items, selected, gridClass = '') => `<fieldset class="choice-group"><legend>${legend}</legend><div class="choice-grid ${gridClass}">${items.map((item) => `<label class="choice-card"><input type="checkbox" name="${name}" data-pref="${name}" value="${esc(item.id)}"${selected.includes(item.id) ? ' checked' : ''}><span>${esc(item.label)}</span></label>`).join('')}</div></fieldset>`;
     const forms = snapshot.reviewContext ? '<div class="example-note"><b>错题针对性练习</b><p>已选 '+snapshot.reviewContext.publicPack.records.length+' 道错题。生成内容会通过现有课程校验；练习成绩与原句分开记录。</p></div>' : radioGroup('courseType', '1. 课程形式', preferenceOptions.forms, preferences.courseType);
     const levels = checkGroup('targetCefrs', '2. 可接受的难度 <small>可多选；留空让 AI 询问</small>', preferenceOptions.levels.map((level) => ({ id: level, label: level })), preferences.targetCefrs, 'cefr-choice-grid');
-    const exercises = `<fieldset class="choice-group"><legend>3. 练习方式 <small>可多选</small></legend><div class="choice-grid">${preferenceOptions.exercises.map((mode) => {
-      const disabled = !mode.selectable;
-      const note = !mode.selectable ? '当前暂不可用' : mode.description;
-      return `<label class="choice-card ${disabled ? 'is-disabled' : ''}"><input type="checkbox" name="exerciseModes" data-pref="exerciseModes" value="${esc(mode.id)}"${preferences.exerciseModes.includes(mode.id) ? ' checked' : ''}${disabled ? ' disabled' : ''}><span>${esc(mode.label)}<small>${esc(note)}</small></span></label>`;
-    }).join('')}</div></fieldset>`;
+    const exercises = '';
     return `<section class="create-card create-setup-card"><div class="preference-form">${forms}${levels}${exercises}</div><label for="brief">告诉 AI 你想制作什么 <span>可写主题、场景或学习目标，也可留空让 AI 先问</span></label><textarea id="brief" maxlength="1200" placeholder="例如：想练习出差时和同事沟通。也可以留空，让 AI 先问我几个问题。">${esc(snapshot.brief)}</textarea>${example}<div class="create-actions"><button class="primary-button" type="button" data-action="copy-prompt">复制 AI 制作指令</button><button type="button" class="secondary-button" data-action="download-prompt">下载制作指令</button></div>${manualCopy}<details class="quick-import"><summary>已有课程文件？直接导入</summary><label for="courseFile">选择课程文件</label><input id="courseFile" type="file" accept=".json,.txt,application/json,text/plain"><label for="rawResult">或粘贴课程内容</label><textarea id="rawResult" maxlength="280000" placeholder="请粘贴完整课程 JSON，或只包含一个 JSON 代码块。"></textarea>${snapshot.reviewContext ? '' : `<label for="imageFiles">图文课程图片 <span>文件名不同时，可在下方手动配对</span></label><input id="imageFiles" type="file" accept="image/png,image/jpeg,image/webp" multiple>${imagePairing}`}<div class="create-actions"><button class="secondary-button" type="button" data-action="validate-result">检查课程</button></div></details><a href="ai-course-kit.json" download>查看完整 AI 制作规范</a></section>`;
   }
 
@@ -56,6 +53,7 @@ export class AuthoringView {
   }
 
   #preview(snapshot, options) {
+    if (options.error && !snapshot.lastError) snapshot = { ...snapshot, lastError: options.error };
     const draft = snapshot.validatedDraft || {}, report = snapshot.validationReport || {}, lines = draft.items || [];
     const modes = report.supportedModes || [];
     const issues = (report.issues || []).filter((item) => item.severity === 'warning');
@@ -68,10 +66,18 @@ export class AuthoringView {
     }).join('');
     const mismatch = issues.some((item) => item.code === 'PREFERENCE_MISMATCH');
     const issuesBlock = issues.length ? `<div class="issue-panel"><h3>学习能力提醒</h3><ul>${issues.map((item) => `<li>${esc(item.message)}<span>${esc(item.suggestion)}</span></li>`).join('')}</ul>${mismatch && !report.mismatchAccepted ? '<button class="secondary-button" type="button" data-action="accept-mode-mismatch">接受 AI 返回的练习方式</button>' : ''}</div>` : '';
-    const status = snapshot.stage === 'saving' ? '正在保存课程…' : snapshot.stage === 'joining' ? '正在加入学习…' : snapshot.stage === 'saved' ? '课程已保存到当前账号的课程库。' : snapshot.stage === 'complete' ? '已加入学习，可以开始练习。' : '';
+    const saveBlocked = snapshot.stage === 'saving' && !!options.synchronizationError;
+    const saveWaiting = snapshot.stage === 'saving' && (options.saveDelayed || !options.saving);
+    const status = snapshot.stage === 'saving'
+      ? saveBlocked
+        ? options.synchronizationError === 'SERVER_SEQ_ROLLBACK'
+          ? '保存受阻：本机与服务端数据版本不一致，尚未确认课程保存成功。请勿重复提交或清除缓存；可先下载课程文件保留副本。'
+          : '保存受阻：同步出现异常，尚未确认课程保存成功。请勿重复提交；可先下载课程文件保留副本。'
+        : saveWaiting ? '等待保存确认：尚未收到保存成功的确认。请勿重复提交；可先下载课程文件保留副本。' : '正在保存课程…'
+      : snapshot.stage === 'joining' ? '正在加入学习…' : snapshot.stage === 'saved' ? '课程已保存到当前账号的课程库。' : snapshot.stage === 'complete' ? '已加入学习，可以开始练习。' : '';
     const needsModeAcceptance = (report.issues || []).some((item) => item.code === 'PREFERENCE_MISMATCH') && !report.mismatchAccepted;
     const buttons = snapshot.stage === 'preview' ? `<button class="primary-button" type="button" data-action="save"${needsModeAcceptance ? ' disabled' : ''}>保存到课程库</button><button class="secondary-button" type="button" data-action="save-and-join"${needsModeAcceptance ? ' disabled' : ''}>保存并加入学习</button>`
-      : snapshot.stage === 'saving' || snapshot.stage === 'joining' ? '<button class="primary-button" type="button" disabled>正在处理…</button>'
+      : snapshot.stage === 'saving' || snapshot.stage === 'joining' ? `<button class="primary-button" type="button" disabled>${snapshot.stage === 'saving' ? saveBlocked ? '保存受阻' : saveWaiting ? '等待保存确认' : '正在保存…' : '正在加入学习…'}</button>`
         : snapshot.stage === 'saved' ? '<button class="primary-button" type="button" data-action="join">加入并开始学习</button>'
       : `<a class="primary-button as-link" href="${esc(options.launchUrl || `main.html?course=${encodeURIComponent(snapshot.saveReceipt?.catalogCourseId || `user-deck:${snapshot.courseId}`)}&lesson=${encodeURIComponent(snapshot.saveReceipt?.lessonId || `lesson:user-deck:${snapshot.courseId}`)}`)}">开始练习</a>`;
     const legacyNote = snapshot.conversionReport ? '<p class="hint">旧版课程和学习记录仍保留；新复习记录从实际答题开始，不会伪造历史成绩。</p>' : '';

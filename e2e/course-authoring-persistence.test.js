@@ -95,7 +95,7 @@ function stopServer() {
     }, null, { timeout: 10000 });
     await page.waitForFunction(function () {
       const status = document.getElementById('chunklabSaveStatus');
-      return status && status.dataset.visible === 'true' && status.textContent.includes('已安全保存在此设备');
+      return status && status.dataset.visible === 'true' && status.textContent.includes('已保存在本机，尚未上传');
     }, null, { timeout: 8000 });
     const queued = await page.evaluate(async function () {
       const rows = await ServerStore.pending();

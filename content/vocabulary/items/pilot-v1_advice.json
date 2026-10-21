@@ -1,0 +1,61 @@
+{
+  "itemId": "pilot-v1:advice",
+  "word": "advice",
+  "meaning": "建议",
+  "scene": "你正在准备面试，朋友给你建议，你向她道谢。",
+  "example": "Thanks for your advice about the interview.",
+  "translation": "谢谢你关于面试的建议。",
+  "exercise": {
+    "version": 1,
+    "parts": [
+      {
+        "text": "Thanks "
+      },
+      {
+        "id": "link",
+        "label": "感谢某事的介词",
+        "answers": [
+          "for"
+        ]
+      },
+      {
+        "text": " your "
+      },
+      {
+        "id": "noun",
+        "label": "建议",
+        "answers": [
+          "advice"
+        ],
+        "feedback": [
+          {
+            "values": [
+              "advices"
+            ],
+            "message": "advice 是不可数名词，不加 s。"
+          },
+          {
+            "values": [
+              "advise"
+            ],
+            "message": "这里需要名词 advice；advise 是动词。"
+          }
+        ]
+      },
+      {
+        "text": " about the interview."
+      }
+    ]
+  },
+  "images": {
+    "wide": [
+      "assets/vocabulary-advice-wide-v2.avif",
+      "assets/vocabulary-advice-wide-v2.webp"
+    ],
+    "mobile": [
+      "assets/vocabulary-advice-mobile-v2.avif",
+      "assets/vocabulary-advice-mobile-v2.webp"
+    ]
+  },
+  "contentRevision": "7624baf751c7da96cf5e4f00f917360ef8b6bd6d60140f4477d2a03b0496aed9"
+}

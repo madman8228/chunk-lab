@@ -134,6 +134,7 @@ CREATE TABLE IF NOT EXISTS user_client_save_health (
   client_id TEXT NOT NULL,
   pending INTEGER NOT NULL,
   blocked INTEGER NOT NULL,
+  deferred_version INTEGER NOT NULL DEFAULT 0,
   retry_attempts INTEGER NOT NULL,
   oldest_pending_at INTEGER,
   error_code TEXT,
@@ -457,6 +458,7 @@ addColumnIfMissing('user_kv', 'updated_at', 'TEXT');
 addColumnIfMissing('user_decks', 'is_public', 'INTEGER DEFAULT 0');
 // Additive metadata storage: never rewrite existing course items or records.
 addColumnIfMissing('user_decks', 'authoring_json', 'TEXT');
+addColumnIfMissing('user_client_save_health', 'deferred_version', 'INTEGER NOT NULL DEFAULT 0');
 /* 行级增量下行：所有用户数据表补 seq 列。
    必须**先**补列再建索引 —— CREATE TABLE IF NOT EXISTS 对升级前的旧库是空操作，
    旧库此刻还没有 seq 列，在第一个 db.exec 里建索引会直接报 "no such column"。 */
@@ -494,7 +496,38 @@ function initChangeSeq() {
   return backfilled;
 }
 
-module.exports = db;
+db.exec(`CREATE TABLE IF NOT EXISTS library_resource_revisions (
+  resource_id TEXT NOT NULL, revision INTEGER NOT NULL, status TEXT NOT NULL CHECK(status IN ('draft','published')),
+  metadata_json TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY(resource_id,revision));`);
+
+  db.exec(`CREATE TABLE IF NOT EXISTS vocabulary_study_events (
+    user_id INTEGER NOT NULL REFERENCES users(id),event_id TEXT NOT NULL,item_id TEXT NOT NULL,resource_id TEXT NOT NULL,
+    content_revision TEXT NOT NULL,data_json TEXT NOT NULL,occurred_at INTEGER NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,event_id));
+    CREATE INDEX IF NOT EXISTS vocabulary_study_resource ON vocabulary_study_events(user_id,resource_id,item_id);
+    CREATE TABLE IF NOT EXISTS vocabulary_item_progress (
+    user_id INTEGER NOT NULL REFERENCES users(id),item_id TEXT NOT NULL,data_json TEXT NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,item_id));`);
+  db.exec(`CREATE TABLE IF NOT EXISTS vocabulary_practice_reports (
+    user_id INTEGER NOT NULL REFERENCES users(id),report_id TEXT NOT NULL,scope_key TEXT NOT NULL,
+    session_id TEXT NOT NULL,item_id TEXT NOT NULL,resource_id TEXT NOT NULL,content_revision TEXT NOT NULL,
+    data_json TEXT NOT NULL,occurred_at INTEGER NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,report_id),UNIQUE(user_id,scope_key,session_id,item_id));
+    CREATE INDEX IF NOT EXISTS vocabulary_report_scope ON vocabulary_practice_reports(user_id,scope_key,item_id);`);
+  db.exec(`CREATE TABLE IF NOT EXISTS personal_wordbook_versions (
+    user_id INTEGER NOT NULL REFERENCES users(id),book_id TEXT NOT NULL,version INTEGER NOT NULL,
+    revision TEXT NOT NULL,package_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    PRIMARY KEY(user_id,book_id,version));`);
+  db.exec(`CREATE TABLE IF NOT EXISTS vocabulary_attempt_events (
+    user_id INTEGER NOT NULL REFERENCES users(id),attempt_id TEXT NOT NULL,scope_key TEXT NOT NULL,
+    session_id TEXT NOT NULL,item_id TEXT NOT NULL,resource_id TEXT NOT NULL,content_revision TEXT NOT NULL,
+    data_json TEXT NOT NULL,occurred_at INTEGER NOT NULL,seq INTEGER NOT NULL,
+    PRIMARY KEY(user_id,attempt_id));
+    CREATE INDEX IF NOT EXISTS vocabulary_attempt_scope ON vocabulary_attempt_events(user_id,scope_key,item_id);`);
+  module.exports = db;
 /* 附在 db 上导出（本模块的默认导出是连接对象）——由 index.js 在 listen 之前调用。 */
 module.exports.initChangeSeq = initChangeSeq;
+/* Membership adds isolated tables only; existing courses and learning rows are untouched. */
+require('./services/membership/schema').initializeMembershipSchema(db);
 require('./services/usage-analytics').initializeUsageSchema(db);

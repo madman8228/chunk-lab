@@ -56,7 +56,8 @@ function seedExitCourse() {
     stats: { totalRounds: 0, totalAnswered: 0, bySentence: {}, events: [] },
     settings: { mode: 'choose', skipMastered: false, batchSize: 10, sound: false, fxStack: false }
   }));
-  sessionStorage.setItem('_startDeck', JSON.stringify(deck));
+  // The protocol-3 fixture below is imported and enrolled after startup.
+  // Do not auto-enter an unconfirmed legacy deck before that setup.
 }
 
 (async function () {
@@ -67,8 +68,7 @@ function seedExitCourse() {
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
     await page.addInitScript(seedExitCourse);
     await page.goto(BASE + '/main.html', { waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('#stageChoices .choice', { timeout: 10000 });
-    await page.waitForFunction(() => CL.getCloudConfig().writeProtocol === 3 && CL.serverPersistenceReady(), null,
+    await page.waitForFunction(() => window.CL && CL.getCloudConfig() && CL.getCloudConfig().writeProtocol === 3 && CL.serverPersistenceReady(), null,
       { timeout: 15000 });
     const deck = await page.evaluate(async () => {
       const items = Array.from({ length:20 }, (_, index) => {
@@ -79,6 +79,7 @@ function seedExitCourse() {
       await commitImport(items, '退出性能 protocol 3');
       const imported = mem.decks.find(item => item.name === '退出性能 protocol 3');
       if (!imported || imported.items.length !== 20) throw new Error('20 题退出性能夹具未确认写入');
+      await CourseEnrollment.join('user-deck:' + imported.id);
       mem.settings.shuffle = false;
       mem.settings.mode = 'choose';
       mem.settings.batchSize = 20;

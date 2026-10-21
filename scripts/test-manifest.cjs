@@ -6,7 +6,8 @@ const ROOT = path.resolve(__dirname, '..');
 function inferGroup(file, cwd) {
   if (cwd === 'server') return 'server';
   if (/^e2e[\\/]/i.test(file)) return 'browser';
-  if (/playwright|mobile|sw-cache/i.test(file)) return 'browser';
+  if (/vocabulary-material-(?:library-browser|course-draft)|sentence-layout-preview/i.test(file)) return 'browser';
+  if (/playwright|scene-wordbook-ui|wordbook-materials-ui|word-dictation-ui|word-choice-ui|chunk-order-ui|mobile|sw-cache|action-game-ui|initials-ui|wordbook-ai-authoring-ui|wordbook-ai-bundle|course-create-ui|workspace-entry-ui|settings-groups-ui|personal-wordbook-recovery-ui/i.test(file)) return 'browser';
   if (/check-|validate|deploy-safety|sw-policy|sw-hash/i.test(file)) return 'checks';
   return 'unit';
 }
@@ -17,7 +18,7 @@ function walk(dir, out) {
     const file = path.join(dir, name);
     const stat = require('fs').statSync(file);
     if (stat.isDirectory()) walk(file, out);
-    else if (/\.test\.m?js$/i.test(file)) out.push(path.relative(ROOT, file).replace(/\\/g, '/'));
+    else if (/\.test\.(?:[mc]?js)$/i.test(file)) out.push(path.relative(ROOT, file).replace(/\\/g, '/'));
   }
   return out;
 }
@@ -31,7 +32,7 @@ function parseTestFiles() {
   ]);
   return walk(ROOT, []).filter((file) => !excluded.has(file)).map((file) => {
     const cwd = file.startsWith('server/') ? 'server' : '.';
-    return { id: file.replace(/[\\/]/g, ':').replace(/\.m?js$/, ''), file: cwd === 'server' ? file.slice('server/'.length) : file, cwd, group: inferGroup(file, cwd), args: [] };
+    return { id: file.replace(/[\\/]/g, ':').replace(/\.[mc]?js$/, ''), file: cwd === 'server' ? file.slice('server/'.length) : file, cwd, group: inferGroup(file, cwd), args: [] };
   });
 }
 
@@ -49,7 +50,9 @@ for (const entry of checks) {
   else base.push(entry);
 }
 const extras = [
+  ['sentence-cloze-engine', 'landing/sentence-cloze-engine.test.cjs', '.', 'unit'],
   ['admin-overview-diagnostics', 'services/admin-overview.test.js', 'server', 'server'],
+  ['admin-account-types', 'services/admin-account-type.test.js', 'server', 'server'],
   ['client-save-health-route', 'routes/client-save-health.test.js', 'server', 'server'],
   ['server-operations', 'operations.test.js', 'server', 'server'],
   ['server-store-save-health', 'js/server-store-save-health.test.js', '.', 'unit'],
@@ -71,4 +74,5 @@ for (const [id, file, cwd, group] of extras) {
   if (!base.some((entry) => entry.file === file && entry.cwd === cwd)) base.push({ id, file, cwd, group, args: [] });
 }
 
-module.exports = Object.freeze(base.map((entry) => Object.freeze(entry)));
+const __qaOnly = process.env.QA_ONLY_FILES ? new Set(process.env.QA_ONLY_FILES.split(',')) : null;
+module.exports = Object.freeze(base.filter((entry) => !__qaOnly || __qaOnly.has(entry.id)).map((entry) => Object.freeze(entry)));

@@ -716,7 +716,7 @@
       if (item.type === 'choice') html += '<div class="choice-list">' + item.choices.map(function (choice) { return '<button class="choice-option ' + (state.moduleAnswer === choice.id ? 'selected' : '') + '" data-assess-choice="' + esc(choice.id) + '"><span>' + esc(english(choice.text) || localized(choice.text)) + '</span><small>' + esc(localized(choice.text)) + '</small></button>'; }).join('') + '</div>';
       else html += '<div class="typing-box"><input id="moduleTyping" type="text" autocomplete="off" placeholder="输入你的英语答案…" value="' + esc(state.moduleAnswer) + '"></div>';
       if (state.moduleFeedback) html += '<div class="node-feedback ' + (state.moduleFeedback.kind || '') + '">' + esc(state.moduleFeedback.text) + '</div>';
-      return html + '<div class="node-actions"><button class="action-button primary" data-action="submit-assessment">检查答案</button></div></div>';
+      return html + '<div class="node-actions"><button class="action-button primary" data-action="submit-assessment">确认</button></div></div>';
     }
     return '<div class="module-screen"><div class="end-mark">' + (global.Icons ? global.Icons.svg('check') : '') + '</div><div class="node-label">课程完成</div><h2>学习完成</h2><p class="node-copy">你已完成主课程和课后测试。</p><div class="node-actions"><button class="action-button primary" data-action="back-library">返回课程库</button><button class="action-button" data-action="restart">再学一次</button></div></div>';
   }
@@ -768,7 +768,7 @@
     var audioUrl = node.audioAssetId ? assetUrl({ course: course, assets: state.active.assets || {} }, node.audioAssetId) : '';
     html += '<div class="v2-chat-turn left"><div class="v2-speaker-row"><div class="v2-speaker-label">' + esc(label || '说话人') + '</div>' + renderAudioIconButton(audioUrl) + '</div><div class="v2-chat-message-row"><span class="v2-chat-avatar" aria-hidden="true">' + getAvatar(label) + '</span><div class="v2-chat-bubble"><div class="v2-chat-line">听音频，在你的气泡中输入听到的句子。</div>';
     html += '</div></div></div>';
-    html += '<div class="v2-chat-turn right legacy-answer-turn"><div class="v2-speaker-label">你</div><div class="v2-chat-message-row"><span class="v2-chat-avatar" aria-hidden="true">' + getAvatar('你') + '</span><div class="v2-chat-bubble"><div class="v2-answer-form"><input id="courseTyping" type="text" autocomplete="off" placeholder="输入听到的英文句子…"><button class="action-button primary" data-action="submit-typing" data-answers="' + esc(JSON.stringify(node.acceptedAnswers && node.acceptedAnswers.en || [])) + '">检查答案</button></div></div></div></div>';
+    html += '<div class="v2-chat-turn right legacy-answer-turn"><div class="v2-speaker-label">你</div><div class="v2-chat-message-row"><span class="v2-chat-avatar" aria-hidden="true">' + getAvatar('你') + '</span><div class="v2-chat-bubble"><div class="v2-answer-form"><input id="courseTyping" type="text" autocomplete="off" placeholder="输入听到的英文句子…"><button class="action-button primary" data-action="submit-typing" data-answers="' + esc(JSON.stringify(node.acceptedAnswers && node.acceptedAnswers.en || [])) + '">确认</button></div></div></div></div>';
     if (state.feedback) html += '<div class="node-feedback ' + (state.feedback.kind || '') + '">' + esc(state.feedback.text) + '</div>';
     return html;
   }
@@ -990,9 +990,9 @@
       (translation ? '<div class="v2-chat-translation">' + esc(translation) + '</div>' : '') +
       '</div></div></div>';
     if (typing) {
-      if (!typingComplete) html += '<div class="v2-typing-exercise">' + (state.v2TypingAttempts >= 3 ? '' : renderV2Feedback()) + (state.v2TypingAttempts >= 3 ? renderV2TypingHint(item) : '') + '<div class="typing-box"><input id="v2Answer" type="text" autocomplete="off" placeholder="输入英文答案…" value="' + esc(state.v2TypingValue) + '"><button class="action-button primary" data-action="submit-v2">检查答案</button></div></div>';
+      if (!typingComplete) html += '<div class="v2-typing-exercise">' + (state.v2TypingAttempts >= 3 ? '' : renderV2Feedback()) + (state.v2TypingAttempts >= 3 ? renderV2TypingHint(item) : '') + '<div class="typing-box"><input id="v2Answer" type="text" autocomplete="off" placeholder="输入英文答案…" value="' + esc(state.v2TypingValue) + '"><button class="action-button primary" data-action="submit-v2">确认</button></div></div>';
     } else if (dictation) {
-      html += '<div class="v2-typing-exercise">' + renderV2Feedback() + '<div class="exercise-label">听写</div><div class="typing-box"><input id="v2Answer" type="text" autocomplete="off" placeholder="输入英文答案…" value=""><button class="action-button primary" data-action="submit-v2">检查答案</button></div></div>';
+      html += '<div class="v2-typing-exercise">' + renderV2Feedback() + '<div class="exercise-label">听写</div><div class="typing-box"><input id="v2Answer" type="text" autocomplete="off" placeholder="输入英文答案…" value=""><button class="action-button primary" data-action="submit-v2">确认</button></div></div>';
     } else if (state.practiceMode === 'chunkSelection') {
       var chunks = v2ChunkChoices(item);
       html += '<div class="v2-chunk-exercise"><div class="gap-choices v2-word-bank">' + chunks.filter(function (c) { return state.v2SelectedChunks.indexOf(c.id) < 0; }).map(function (c) { return '<button class="choice-chip word-chip" type="button" data-action="choose-v2-chunk" data-chunk-id="' + esc(c.id) + '">' + esc(c.text) + '</button>'; }).join('') + '</div></div>';
@@ -1158,7 +1158,7 @@
   function renderTyping(node, course) {
     var accepted = node.acceptedAnswers && Array.isArray(node.acceptedAnswers.en) ? node.acceptedAnswers.en : [];
     if (!accepted.length) return '<div class="node-feedback bad">当前课程节点缺少 acceptedAnswers.en。</div>';
-    return '<div class="typing-box"><input id="courseTyping" type="text" autocomplete="off" placeholder="输入你听到的句子…"><button class="action-button primary" data-action="submit-typing" data-answers="' + esc(JSON.stringify(accepted)) + '">检查答案</button></div>';
+    return '<div class="typing-box"><input id="courseTyping" type="text" autocomplete="off" placeholder="输入你听到的句子…"><button class="action-button primary" data-action="submit-typing" data-answers="' + esc(JSON.stringify(accepted)) + '">确认</button></div>';
   }
 
   function bindNodeActions(node, course) {
@@ -1411,6 +1411,7 @@
   }
 
   function catalogReturnHref() {
+    if(global.CourseReturn&&new URLSearchParams(global.location.search).has('returnTo'))return global.CourseReturn.destination();
     var courseId = new URLSearchParams(global.location.search).get('catalogCourse');
     return courseId ? 'decks.html?course=' + encodeURIComponent(courseId) : 'decks.html';
   }
@@ -1421,6 +1422,12 @@
        course page with no usable back button. */
     dom.importMessage = $('importMessage');
     dom.player = $('coursePlayer');
+    var protectedParams = new URLSearchParams(global.location.search);
+    if(protectedParams.get('protectedCourse') && dom.player){
+      // Both public and member platform lessons use the same native learning entry.
+      var nativeUrl=new URL('main.html',global.location.href);nativeUrl.search=protectedParams.toString();global.location.replace(nativeUrl.href);
+      return;
+    }
     var _cloud = (global.CL && global.CL.ensureCloud) ? global.CL.ensureCloud() : Promise.resolve();
     _cloud.then(loadServerProgress).then(function(){
     dom.library = $('courseLibrary'); dom.player = $('coursePlayer'); dom.courseList = $('courseList'); dom.importMessage = $('importMessage'); dom.playerTitle = $('playerTitle'); dom.playerTitleTranslation = $('playerTitleTranslation'); dom.playerGuide = $('playerGuide'); dom.playerProgress = $('playerProgress'); dom.playerImage = $('playerImage'); dom.playerScene = $('playerScene'); dom.playerContent = $('playerContent');

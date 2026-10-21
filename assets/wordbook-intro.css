@@ -1,0 +1,31 @@
+.wordbook-study .intro-directory{margin:8px 0 16px}
+.wordbook-study summary{cursor:pointer;padding:10px 0;min-height:44px;box-sizing:border-box;width:fit-content}
+.wordbook-study summary:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
+.wordbook-study .intro-target{font-size:26px;line-height:1.5;margin:0 0 8px;overflow-wrap:anywhere}
+.wordbook-study .intro-explanation{max-width:65ch;line-height:1.6;margin:12px 0}
+.wordbook-study .intro-practice{margin-top:16px}
+.wordbook-study .intro-practice button[aria-pressed=true]{font-weight:700;text-decoration:underline;text-underline-offset:5px}
+.wordbook-study .wordbook-controls.browse-controls button:not(.intro-primary){background:var(--v4-card);border-color:#d8c7a9}
+.wordbook-study .browse-controls button.intro-primary{background:#ffe08a;border-color:#ccad62;font-weight:700}
+.wordbook-study .browse-note{font-size:14px;line-height:1.5;margin:8px 0}
+.wordbook-study #studyRoot h2:focus{outline:none}
+.wordbook-study ::selection{background:#ffe08a;color:#523019}
+.wordbook-study [hidden]{display:none}
+.wordbook-study .intro-conflict{margin:16px 0 24px;padding-block:16px;border-block:1px solid #d8c7a9;line-height:1.6}
+.wordbook-study .intro-conflict h2{font-size:20px;margin:0 0 8px}
+.wordbook-study .intro-conflict p{max-width:70ch}
+.wordbook-study .intro-conflict fieldset{border:0;padding:0;margin:16px 0;min-width:0}
+.wordbook-study .intro-conflict legend{font-weight:700;margin-bottom:8px}
+.wordbook-study .intro-conflict label{display:flex;align-items:flex-start;gap:12px;padding-block:12px;cursor:pointer;overflow-wrap:anywhere}
+.wordbook-study .intro-conflict input{accent-color:#785019;flex:none;width:20px;height:20px;margin:3px 0 0}
+.wordbook-study .intro-conflict label span{display:block;min-width:0}
+.wordbook-study .intro-conflict small{display:block;font-size:14px;color:#704c2f}
+.wordbook-study .intro-conflict input:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
+.wordbook-study .intro-conflict button{min-height:44px}
+.wordbook-study .intro-history{margin-block:12px 20px;line-height:1.6}
+.wordbook-study .intro-history[open]{background:var(--v4-card);padding:12px}
+.wordbook-study .intro-history>p{max-width:70ch;font-size:14px;color:#704c2f}
+.wordbook-study .intro-history ul{list-style:none;padding:0;margin:12px 0}
+.wordbook-study .intro-history li{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding-block:10px;border-bottom:1px solid #d8c7a9}
+.wordbook-study .intro-history li span{flex:1 1 260px;min-width:0;overflow-wrap:anywhere}
+.wordbook-study .intro-history button{min-height:44px}

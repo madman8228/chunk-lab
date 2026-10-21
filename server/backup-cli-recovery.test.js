@@ -47,6 +47,14 @@ function runCli(args, token) {
   });
 }
 
+async function stopServer() {
+  if (!server || server.exitCode !== null) return;
+  const exited = new Promise(resolve => server.once('exit', resolve));
+  server.kill();
+  await exited;
+  server = null;
+}
+
 (async function main() {
   try {
     await startServer();
@@ -156,7 +164,13 @@ function runCli(args, token) {
     assert.equal(unknownManifest.status, 200);
     assert.equal(unknownManifest.body.manifest.legacyReceipts[0].receipt, 'unknown',
       'selective CLI recovery does not resolve, replay, or discard the original unknown operation');
-    console.log('backup-cli-recovery: isolated protocol-3 export, immutable archive, account-bound preview, confirmed apply, and lost-response retry passed');
+    await stopServer();
+    await startServer();
+    const afterRestart = await request('GET', '/api/export', source.body.token);
+    assert.equal(afterRestart.status, 200);
+    assert.equal(afterRestart.body.mem.decks.some(deck => deck.id === 'cli-restore-deck'), true,
+      'account data survives an isolated server process restart against the same temporary database');
+    console.log('backup-cli-recovery: isolated export, restore, process restart persistence, and lost-response retry passed');
   } catch (error) {
     console.error('[backup-cli-recovery] failed:', error && error.stack || error);
     process.exitCode = 1;

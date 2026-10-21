@@ -1,0 +1,40 @@
+/* Only the story-course shell is restyled. Course media and scoring stay untouched. */
+body.story-course-page{--bg:#f7f1e4;--paper:var(--v4-card);--ink:#523019;--muted:#745333;--line:#d8c7a9;--accent:#765126;--accent-soft:#f7edd9;--shadow:0 4px 16px rgba(82,48,25,.07)}
+.story-course-page .shell{max-width:1180px;padding:8px 18px 110px}
+.story-course-page .shell>nav{display:flex;gap:12px;align-items:center;min-height:44px;margin-bottom:0}
+.story-course-page .shell>nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;color:var(--ink);text-decoration:none}
+.story-course-page .player-head,.story-course-page .course-stage{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
+.story-course-page .player-head{border-radius:12px;margin-top:4px;min-height:0;padding:8px 12px;gap:6px 10px;margin-bottom:10px}
+.story-course-page .player-head h1{font-size:17px;line-height:1.3}
+.story-course-page .player-head-title{gap:4px 8px}
+.story-course-page .player-head-progress{gap:8px}
+.story-course-page .stage-content{background:var(--paper)}
+.story-course-page .stage-image,.story-course-page .stage-image img{background:#f2ead9}
+.story-course-page .progress-track{background:var(--v4-track)}
+.story-course-page .primary,.story-course-page .action-button.primary{background:#ffe08a;border-color:#ccad62;color:var(--ink);box-shadow:none}
+.story-course-page .primary:hover,.story-course-page .action-button.primary:hover{background:#ffd66b;color:var(--ink)}
+.story-course-page .quiet,.story-course-page .btn-restart,.story-course-page .choice-chip,.story-course-page .choice-option,.story-course-page .typing-box input,.story-course-page .v2-answer-form input{background:var(--paper);border-color:var(--line)}
+.story-course-page .btn-restart,.story-course-page .action-button,.story-course-page .primary,.story-course-page .quiet{min-height:44px}
+.story-course-page .btn-restart{min-height:32px;padding:4px 9px}
+.story-course-page .v2-chat-turn.right.legacy-answer-turn .v2-chat-bubble{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+.story-course-page .v2-answer-form input{min-height:44px;padding:8px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;caret-color:var(--ink)}
+.story-course-page .v2-answer-form input:focus{border-color:#3768b4;outline:0;box-shadow:none}
+.story-course-page .v2-answer-form input::placeholder{color:var(--muted);opacity:1}
+.story-course-page .v2-answer-form .action-button{padding:8px 16px}
+.story-course-page .v2-chat-bubble{background:var(--paper);border-color:var(--line);box-shadow:none}
+.story-course-page .v2-chat-turn.right .v2-chat-bubble,.story-course-page .chat-bubble.learner{background:#faf0dc;border-color:#d8c7a9}
+.story-course-page .v2-chat-turn .v2-chat-bubble.v2-chat-error{background:#fdf2f0;border-color:var(--bad);box-shadow:none}
+.story-course-page .v2-chat-avatar,.story-course-page .v2-chat-turn.right .v2-chat-avatar{background:#f7edd9;border-color:var(--line);color:var(--ink)}
+.story-course-page .v2-speaker-label,.story-course-page .v2-chat-translation,.story-course-page .v2-word-bank-head span,.story-course-page .bubble-name{color:var(--muted)}
+.story-course-page .v2-word-bank-head,.story-course-page .v2-gap-slot{color:var(--ink)}
+.story-course-page .word-bank,.story-course-page .v2-completion-card{background:var(--paper)}
+.story-course-page .word-chip{background:var(--paper);border-color:var(--line)}
+.story-course-page .word-chip.selected{background:var(--accent-soft);color:var(--ink);border-color:var(--accent);box-shadow:none}
+.story-course-page .v2-chat-history{scrollbar-color:#bca078 var(--paper)}
+.story-course-page .v2-chat-history::-webkit-scrollbar-track{background:var(--paper)}
+.story-course-page .v2-chat-history::-webkit-scrollbar-thumb{background:#bca078;border-color:var(--paper)}
+.story-course-page .typing-box input:focus,.story-course-page .v2-answer-form input:focus{border-color:#3768b4;box-shadow:none;outline:none}
+.story-course-page button:focus-visible,.story-course-page a:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
+.story-course-page ::selection{background:#ffe08a;color:var(--ink)}
+@media(max-width:420px){.story-course-page .shell{padding:8px 12px 110px}.story-course-page .shell>nav{gap:8px}.story-course-page .shell>nav a{padding:8px 10px}}
+@media(max-width:640px){.story-course-page .btn-restart{min-height:44px}.story-course-page .player-head h1{font-size:16px}}

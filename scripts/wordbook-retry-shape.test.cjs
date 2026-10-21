@@ -1,0 +1,19 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=require('playwright-core');
+(async()=>{const browser=await chromium.launch({headless:true});try{
+ const page=await browser.newPage({viewport:{width:799,height:932}}),html=fs.readFileSync('wordbook.html','utf8').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<link[^>]+>/g,'');
+ await page.route('**/wordbook.html*',route=>route.fulfill({body:html,contentType:'text/html'}));await page.goto('http://127.0.0.1:9979/wordbook.html?book=pilot-six-v1');
+ for(const file of ['landing/theme.css','landing/practice-page.css','assets/learning-workspace.css','assets/learning-sky.css','assets/wordbook-study.css'])await page.addStyleTag({path:file});
+ await page.evaluate(()=>{window.readAttempts=0;window.ChunkAPI={request:async()=>{readAttempts++;throw Error('Failed to fetch');}};window.LearningSessionBootstrap={identity:()=> 'isolated-shape-fixture'};});
+ for(const file of ['js/notice-banner.js','landing/word-dictation-view.js','landing/word-choice-view.js','landing/chunk-order-view.js','landing/read-aloud-view.js','landing/wordbook-study.js'])await page.addScriptTag({path:file});await page.locator('#bookRetry').waitFor();
+ assert.equal(await page.locator('#noticeBannerRail').evaluate(el=>getComputedStyle(el).position),'fixed','existing notice floats above the page');
+ assert.equal(await page.locator('#studyRoot #bookRetry').count(),0,'retry belongs to the floating banner, not course content');
+ await page.locator('#bookRetry').focus();fs.mkdirSync('output/playwright/wordbook-retry',{recursive:true});await page.screenshot({path:'output/playwright/wordbook-retry/retry-799.png'});
+ assert.equal(await page.evaluate(()=>readAttempts),3,'network startup retries twice before offering manual retry');
+ await page.evaluate(()=>{ChunkAPI.request=async()=>{throw Object.assign(Error('server sequence rollback'),{code:'SERVER_SEQ_ROLLBACK'});};});
+ await page.getByRole('button',{name:'重试',exact:true}).click();
+ await page.getByText('学习记录需要核对，暂时无法开始练习。原记录已保留。',{exact:true}).waitFor();
+ assert.equal(await page.locator('#bookRetry').count(),0,'cache conflict has no misleading retry action');
+ await page.getByRole('button',{name:'关闭提示',exact:true}).click();assert.equal(await page.locator('.notice-banner').count(),0,'system notice can be dismissed');
+ console.log('Retry UI: bounded retries, shared floating notice, dismissal and no retry for cache conflicts passed.');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

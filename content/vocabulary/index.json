@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "books": [
+    {
+      "bookId": "pilot-six-v1",
+      "revision": "3bc6e29bb2fc8b059d0e4bdc4b2c8793d866c9afc9deab1843fadd27c895d32e",
+      "title": "六词练习",
+      "itemCount": 6,
+      "items": [
+        {
+          "itemId": "pilot-v1:decide",
+          "contentRevision": "c5480a17ceb9223900a4dae926a0da0c53cfd902eee8e0f33d88a065f9fc8ca9"
+        },
+        {
+          "itemId": "pilot-v1:borrow",
+          "contentRevision": "6cfa49cd2dcd50eead9ccc11d25a3fda90b0e007eafe724eb5cb25f75ccdc3e5"
+        },
+        {
+          "itemId": "pilot-v1:advice",
+          "contentRevision": "7624baf751c7da96cf5e4f00f917360ef8b6bd6d60140f4477d2a03b0496aed9"
+        },
+        {
+          "itemId": "pilot-v1:avoid",
+          "contentRevision": "3c6d9eed8475cf66d0d37599bd7ca6422757eca339c74f371f02308c23acf3b7"
+        },
+        {
+          "itemId": "pilot-v1:explain",
+          "contentRevision": "478b661908411c429840676d44cbe5498c21ee543a8081098c32d339f946e67e"
+        },
+        {
+          "itemId": "pilot-v1:enough",
+          "contentRevision": "2954b0b4dc11d432f0b5d1aa75d459e6e7708292ef52eb8de1f0e396e7bab6ab"
+        }
+      ]
+    }
+  ]
+}

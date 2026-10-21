@@ -178,13 +178,18 @@ async function assertFallbackExplanationContract(page) {
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
     const page = await context.newPage();
-    /* This checks preserved local content when the service is unavailable.
-       Protocol-3 cloud persistence is covered by main-persistence. */
-    await page.route('**/api/**', route => route.abort('failed'));
+    /* Learning persistence is unavailable, but current content metadata remains
+       available. Fully offline restoration is covered by sw-cache. */
+    await page.route('**/api/**', route => new URL(route.request().url()).pathname === '/api/content/shards' ? route.continue() : route.abort('failed'));
     const saved = oldLocalMem();
+    saved.progress['enrollment:v1:'+encodeURIComponent('builtin:oral')]={
+      kind:'course-enrollment',schemaVersion:1,courseId:'builtin:oral',joined:true,
+      joinedAt:Date.now(),changedAt:Date.now()
+    };
     await page.addInitScript(function (value) {
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
       localStorage.setItem('chunklab.v1', JSON.stringify(value));
+      localStorage.setItem('chunklab.course-progress.v1', JSON.stringify(value.progress));
     }, saved);
     await page.goto(BASE + '/main.html?direct=1&content-explanation-refresh=1', { waitUntil: 'domcontentloaded' });
     await assertCurrentExplanation(page, '首次启动');

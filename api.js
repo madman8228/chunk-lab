@@ -18,12 +18,14 @@
     try {
       var raw=localStorage.getItem(SESSION_KEY), value=raw ? JSON.parse(raw) : null;
       if(!value || value.version!==1 || typeof value.epoch!=='string' || !value.epoch) return null;
-      /* 兼容旧页面仍直接写镜像键：一旦镜像与记录不一致，暂不信任旧记录，
-         让本页的会话检查先看到变化并失效旧请求。 */
+      /* 完整记录与兼容镜像必须一致，不能选择另一账号的镜像凭据。 */
       if((localStorage.getItem(BASE_KEY)||'')!==(value.base||'') ||
-         (localStorage.getItem(TOKEN_KEY)||null)!==(value.token||null)) return null;
+         (localStorage.getItem(TOKEN_KEY)||null)!==(value.token||null)) {
+        var conflict=new Error('登录记录不一致，请重新登录；本地数据未修改');
+        conflict.code='SESSION_INCONSISTENT'; throw conflict;
+      }
       return value;
-    } catch (e) { return null; }
+    } catch (e) { if(e.code==='SESSION_INCONSISTENT') throw e; return null; }
   }
   function newEpoch() {
     try { if(global.crypto && typeof global.crypto.randomUUID==='function') return global.crypto.randomUUID(); } catch (e) {}
@@ -35,8 +37,8 @@
     } catch (e2) {}
     return Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+'-'+Math.random().toString(36).slice(2);
   }
-  function getBase() { try { var s=readSession(); return s ? (s.base || '') : (localStorage.getItem(BASE_KEY) || ''); } catch (e) { return ''; } }
-  function getToken() { try { var s=readSession(); return s ? (s.token || null) : localStorage.getItem(TOKEN_KEY); } catch (e) { return null; } }
+  function getBase() { try { var s=readSession(); return s ? (s.base || '') : (localStorage.getItem(BASE_KEY) || ''); } catch (e) { if(e.code==='SESSION_INCONSISTENT') throw e; return ''; } }
+  function getToken() { try { var s=readSession(); return s ? (s.token || null) : localStorage.getItem(TOKEN_KEY); } catch (e) { if(e.code==='SESSION_INCONSISTENT') throw e; return null; } }
   function commitSession(base, token) {
     var record={version:1,base:base || '',token:token || null,epoch:newEpoch()};
     /* 新端以完整记录为准；旧端仍可读取下面两个兼容镜像。 */
@@ -51,6 +53,18 @@
   function setToken(t) { commitSession(getBase(),t); }
   function clearToken() { commitSession(getBase(),null); }
   function isLoggedIn() { return !!getToken(); }
+
+  function tokenAccountId(token) {
+    if (!token) return 'local';
+    try {
+      var part=token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+      var claims=JSON.parse(global.atob(part));
+      if (!Number.isSafeInteger(claims.uid) || claims.uid <= 0) throw new Error('uid');
+      return String(claims.uid);
+    } catch (_) {
+      var invalid=new Error('登录凭据无法识别，已暂停同步'); invalid.code='SERVER_IDENTITY_REQUIRED'; throw invalid;
+    }
+  }
 
   function recoveryPathAllowed(path) {
     return path.indexOf('/api/sync/batch/resolutions/') === 0 ||
@@ -67,11 +81,14 @@
     }
     opts = opts || {};
     var headers = Object.assign({}, opts.headers || {});
-    var token = getToken();
-    var base = getBase(), generation = sessionGeneration;
+    var token, base, generation = sessionGeneration;
+    try { token=getToken(); base=getBase(); } catch(error) { return Promise.reject(error); }
     function checkSession(){
       if(global.AccountStorage && path.indexOf('/api/auth/')!==0 && path!=='/api/config') global.AccountStorage.assertCurrent();
-      if(generation !== sessionGeneration || token !== getToken() || base !== getBase()){
+      var currentToken,currentBase;
+      try { currentToken=getToken(); currentBase=getBase(); }
+      catch(error) { if(error.code!=='SESSION_INCONSISTENT') throw error; currentToken=undefined; currentBase=undefined; }
+      if(generation !== sessionGeneration || token !== currentToken || base !== currentBase){
         var changed = new Error('登录状态或服务地址已切换，已忽略原会话响应');
         changed.code = 'SESSION_CHANGED'; throw changed;
       }
@@ -105,7 +122,10 @@
         if (!res.ok) {
           var error = new Error((data && data.error) || ('HTTP ' + res.status));
           error.status = res.status;
-          error.code = data && data.code;
+          error.code = data && (data.code || data.reasonCode);
+          error.reasonCode = data && data.reasonCode;
+          error.nextResetAt = data && data.nextResetAt;
+          error.leaseEndsAt = data && data.leaseEndsAt;
           error.traceId = data && data.traceId;
           error.conflicts = data && data.conflicts;
           var retryAfter = res.headers && typeof res.headers.get === 'function'
@@ -131,6 +151,12 @@
           }
           throw error;
         }
+        if (opts.requireResponseIdentity) {
+          var responseHeaders=res.headers, actual=responseHeaders && typeof responseHeaders.get==='function' ? responseHeaders.get('X-ChunkLab-Account-Id') : null;
+          var expected=tokenAccountId(token);
+          if (!actual) { var missing=new Error('服务端未提供账号确认，已暂停同步；本地记录保留'); missing.code='SERVER_IDENTITY_REQUIRED'; throw missing; }
+          if (String(actual)!==expected) { var mismatch=new Error('服务端响应账号不一致，已暂停同步；本地记录保留'); mismatch.code='SERVER_IDENTITY_MISMATCH'; throw mismatch; }
+        }
         return data;
       });
     }).catch(function(error) {
@@ -141,6 +167,35 @@
       }
       throw error;
     }).finally(function() { if(timeout) global.clearTimeout(timeout); });
+  }
+
+  // Only these explicit read wrappers share in-flight work. Nothing is retained
+  // after settlement, and generic requests/writes keep their original behavior.
+  var pendingReads = Object.create(null);
+  function readScope() {
+    var session = readSession(), account = global.AccountStorage;
+    return JSON.stringify([sessionGeneration, getBase(), getToken(), session && session.epoch,
+      account && account.owner, account && account.sessionEpoch]);
+  }
+  function sharedRead(path, options) {
+    var scope;
+    try { scope = readScope(); } catch (error) { return Promise.reject(error); }
+    var pending = pendingReads[path];
+    if (!pending || pending.scope !== scope) {
+      pending = { scope: scope };
+      pendingReads[path] = pending;
+      function clear() { if (pendingReads[path] === pending) delete pendingReads[path]; }
+      pending.promise = request(path, options).then(function (data) { clear(); return data; }, function (error) { clear(); throw error; });
+    }
+    return pending.promise.then(function (data) {
+      if (readScope() !== scope) {
+        var changed = new Error('登录状态或服务地址已切换，已忽略原会话响应');
+        changed.code = 'SESSION_CHANGED'; throw changed;
+      }
+      // Previously each HTTP response was parsed separately. Preserve that
+      // independence so a consumer cannot mutate another consumer's account data.
+      return data == null ? data : JSON.parse(JSON.stringify(data));
+    });
   }
 
   var api = {
@@ -154,21 +209,28 @@
     phoneCode: function (phone, purpose) { return request('/api/auth/phone/code', { timeoutMs: 20000, authEntry: purpose !== 'bind', method: 'POST', body: JSON.stringify({ phone: phone, purpose: purpose || 'login' }) }); },
     phoneLogin: function (phone, code, challengeId, purpose, password) { return request('/api/auth/phone/login', { timeoutMs: 20000, authEntry: purpose !== 'bind', method: 'POST', body: JSON.stringify({ phone: phone, code: code, challengeId: challengeId, purpose: purpose || 'login', password: password || undefined }) }); },
     phonePasswordLogin: function (phone, password) { return request('/api/auth/phone/password', { timeoutMs: 20000, authEntry: true, method: 'POST', body: JSON.stringify({phone:phone,password:password}) }); },
-    me: function () { return request('/api/auth/me'); },
-    heartbeat: function () { return request('/api/usage/heartbeat', { method: 'POST', body: '{}' }); },
+    me: function () { return sharedRead('/api/auth/me'); },
+    getMembership: function () { return request('/api/membership'); },
+    redeemMembership: function (code, requestId) { return request('/api/membership/redeem', { method: 'POST', body: JSON.stringify({ code: code, requestId: requestId }) }); },
+    heartbeat: function () { return request('/api/usage/heartbeat', { method: 'POST', timeoutMs: 8000, body: '{}' }); },
     /* 设置自己账号的用户名 / 密码（可只传其一）。路径以 /api/auth/ 开头但**不是**登录或注册，
        故 request() 会照常带上既有 token —— 服务端据 token 判定改的是哪个账号。 */
     setCredentials: function (payload) { return request('/api/auth/credentials', { method: 'POST', body: JSON.stringify(payload) }); },
-    getConfig: function () { return request('/api/config'); },
+    getConfig: function () { return sharedRead('/api/config'); },
+    getCourseCatalog: function () { return sharedRead('/api/course-content/catalog', { timeoutMs: 8000 }); },
     getData: function (since) {
       var path = '/api/data';
       if (since != null) path += '?since=' + encodeURIComponent(String(since));
-      return request(path);
+      return request(path, { requireResponseIdentity: true });
     },
-    submitOperation: function (operation) { return request('/api/operations', { method: 'POST', body: JSON.stringify(operation) }); },
+    submitOperation: function (operation, confirmedSeq) { return request('/api/operations', { method: 'POST',
+      requireResponseIdentity: true,
+      headers: { Accept: Number.isSafeInteger(confirmedSeq) && confirmedSeq >= 0
+        ? 'application/vnd.chunklab.evidence-delta+json; base-seq=' + confirmedSeq
+        : 'application/vnd.chunklab.delta-receipt+json' }, body: JSON.stringify(operation) }); },
     reportSaveHealth: function (summary) { return request('/api/client-save-health', { method: 'POST', body: JSON.stringify(summary) }); },
-    getOperationReceipt: function (id) { return request('/api/operations/' + encodeURIComponent(id)); },
-    importCourseContent: function (operation) { return request('/api/content-import', { method: 'POST', body: JSON.stringify(operation) }); },
+    getOperationReceipt: function (id) { return request('/api/operations/' + encodeURIComponent(id), { requireResponseIdentity: true }); },
+    importCourseContent: function (operation) { return request('/api/content-import', { method: 'POST', requireResponseIdentity: true, body: JSON.stringify(operation) }); },
     getAssessmentSession: function (id) { return request('/api/assessment-sessions/' + encodeURIComponent(id)); },
     /* Historical receipts are read-only and remain available for explicit backups. */
     getSyncBatchResolution: function (id) { return request('/api/sync/batch/resolutions/' + encodeURIComponent(id)); },

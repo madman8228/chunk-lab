@@ -108,6 +108,8 @@ module.exports = async function(page,dataDir){
     await page.locator('#btnSettingsTop').click();
     assert.equal(await page.locator('#legacyLocalRestoreControls').isHidden(), true,
       'protocol 3 does not expose the legacy local-version switch that can lead to account conflict handling');
+    const accountGroup=page.locator('#settingsAccountGroup');
+    if(!await accountGroup.evaluate(node=>node.open))await accountGroup.locator(':scope > summary').click();
     await page.locator('#backupHead').click();
     assert.equal(await page.locator('#recoveryCenter').isVisible(), true,
       'server-authoritative accounts receive the server recovery center instead');

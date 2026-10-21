@@ -1,0 +1,7 @@
+# Homepage garden background
+
+Generated with the built-in image generation tool on 2026-10-11, using the owner's course-cover contact sheet as a style reference. Original output: exec-1bb2651e-4f3c-4a89-b9d8-646b6ef7e7fa.png. The course-cover files were not modified.
+
+Prompt:
+
+Create a new web homepage illustrated background, very wide landscape 3:1 aspect ratio, for a Chinese English-learning website. Reference image is a contact sheet of the user's course covers: use ONLY their visual style, never copy their text or montage. Match its polished hand-painted cartoon game illustration: rich emerald layered foliage, rounded dark-brown ink outlines with variable thickness, buttery yellow wooden objects, cyan sunny sky, warm light highlights, painterly volumetric shadows, crisp lively leaves and flowers, inviting outdoor learning garden with distant blue hills and small city skyline. Composition designed as background behind LIVE HTML: open unobstructed central 60% with pale blue sky and a simple distant lake so four live playing cards can be overlaid; detailed plants and tree canopy concentrated in left/right margins; low flowers, wood bench and a few closed books at bottom side edges. Natural asymmetric arrangement, not mirror symmetry. No giant objects in center. No lettering, no signage with words, no people, no playing cards, no UI, no watermark. Finished high-quality illustration with cohesive scene perspective, NOT flat SVG geometry. Provide a single background image.

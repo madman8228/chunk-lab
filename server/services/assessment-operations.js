@@ -20,7 +20,8 @@ function createAssessmentOperations(options) {
   function apply(userId, body, seq) {
     const p = body.payload;
     if (body.type === 'assessment.start') {
-      if (!hasOnlyKeys(p, ['eventId', 'sessionId', 'keys', 'generation']) ||
+      if (!hasOnlyKeys(p, ['eventId', 'sessionId', 'keys', 'generation', 'learningSessionId']) ||
+          (p.learningSessionId !== undefined && (typeof p.learningSessionId !== 'string' || !/^[A-Za-z0-9_-]{12,160}$/.test(p.learningSessionId))) ||
           typeof p.eventId !== 'string' || !/^[A-Za-z0-9_-]{12,100}$/.test(p.eventId) ||
           typeof p.sessionId !== 'string' || !/^[A-Za-z0-9_-]{12,100}$/.test(p.sessionId) ||
           !Array.isArray(p.keys) || p.keys.length < 1 || p.keys.length > 100 ||
@@ -31,7 +32,9 @@ function createAssessmentOperations(options) {
       }
       const deckIds = new Set(p.keys.map(key => key.slice(0, key.indexOf('#'))));
       if (deckIds.size !== 1 || deckIds.has('')) throw operationError('一次测评只能包含同一题库的句子', 'INVALID_OPERATION', 400);
-      const scopeKey = 'course:' + deckIds.values().next().value;
+      const deckId = deckIds.values().next().value;
+      if (deckId.startsWith('protected_') && p.keys.length !== 1) throw operationError('平台课程每次测评一项', 'INVALID_OPERATION', 400);
+      const scopeKey = options.assessmentScopeKey ? options.assessmentScopeKey(deckId) : 'course:' + deckId;
       const generation = p.generation === undefined ? 0 : p.generation;
       if (generation !== currentGeneration(userId, scopeKey)) {
         return { entity: 'assessmentSession', id: p.sessionId, outcome: 'retained', generation: currentGeneration(userId, scopeKey) };
@@ -39,7 +42,7 @@ function createAssessmentOperations(options) {
       if (assessmentSession(userId, p.sessionId)) throw operationError('测评会话编号已存在', 'ASSESSMENT_SESSION_EXISTS', 409);
       const now = Date.now();
       const items = p.keys.map(key => {
-        const content = resolveAssessmentItem(userId, key);
+        const content = resolveAssessmentItem(userId, key, p.learningSessionId);
         if (!content || !Array.isArray(content.chunks) || !content.chunks.length) {
           throw operationError('测评题目已不存在或内容不完整', 'ASSESSMENT_CONTENT_CHANGED', 409);
         }

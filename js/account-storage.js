@@ -12,8 +12,14 @@
   function sessionRecord(){
     try{
       var value=JSON.parse(native.getItem(SESSION)||'null');
-      return value && value.version===1 && typeof value.epoch==='string' && value.epoch ? value : null;
-    }catch(error){ return null; }
+      if(!value || value.version!==1 || typeof value.epoch!=='string' || !value.epoch) return null;
+      if((native.getItem('chunklab_api_base')||'')!==(value.base||'') ||
+         (native.getItem('chunklab_token')||null)!==(value.token||null)) {
+        var conflict=new Error('登录记录不一致，请重新登录；本地数据未修改');
+        conflict.code='SESSION_INCONSISTENT'; throw conflict;
+      }
+      return value;
+    }catch(error){ if(error.code==='SESSION_INCONSISTENT') throw error; return null; }
   }
   function identity(){
     var session=sessionRecord();
@@ -59,7 +65,6 @@
   global.AccountStorage={
     owner:owner,
     sessionEpoch:epoch,
-    sessionEpoch:epoch,
     databaseName:originalDatabase+(revision ? '-restore-'+revision : ''),
     recovery:{pointerKey:pointerKey,lockKey:lockKey,prefix:prefix,originalPrefix:originalPrefix,originalDatabase:originalDatabase,revision:revision},
     assertCurrent:assertCurrent,
@@ -78,6 +83,9 @@
   } catch(error) {
     initializationError=error;
     initializationError.code='ACCOUNT_STORAGE_UNAVAILABLE';
+    // A successful explicit login may replace credentials, then reload into
+    // their storage scope. Business storage stays unavailable until that reload.
+    global.AccountStorage.credentialsChanged=function(){global.location.reload();};
     global.setTimeout(function(){
       var notice=global.document.createElement('div');
       notice.setAttribute('role','alert');
@@ -86,7 +94,7 @@
       var retry=global.document.createElement('button');
       retry.textContent='重新登录';
       retry.onclick=function(){
-        try{global.localStorage.removeItem('chunklab_token');global.localStorage.removeItem('chunklab_guest');global.localStorage.setItem('chunklab_manual','1');global.location.reload();}
+        try{if(!global.ChunkAPI || !global.ChunkAPI.setSession)throw new Error('登录模块未就绪');global.ChunkAPI.setSession(global.localStorage.getItem('chunklab_api_base')||'',null);global.localStorage.removeItem('chunklab_guest');global.localStorage.setItem('chunklab_manual','1');global.location.reload();}
         catch(ignore){retry.textContent='请先允许浏览器存储，再刷新';}
       };
       notice.appendChild(retry);

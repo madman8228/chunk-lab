@@ -3,15 +3,17 @@ const DB_SUFFIX = '-authoring-v1';
 function scopeKey(scope) { return String(scope && scope.databaseName || ''); }
 
 export class BrowserAuthoringSessionRepository {
-  constructor({ indexedDB = globalThis.indexedDB, scopeGuard }) {
+  constructor({ indexedDB = globalThis.indexedDB, scopeGuard, databaseSuffix = DB_SUFFIX }) {
     if (!scopeGuard) throw new Error('会话草稿需要账号作用域保护');
-    this.indexedDB = indexedDB; this.scopeGuard = scopeGuard;
+    if (!/^-[a-z0-9-]{1,60}$/.test(databaseSuffix)) throw new Error('草稿库名称无效');
+    this.indexedDB = indexedDB; this.scopeGuard = scopeGuard; this.databaseSuffix = databaseSuffix;
   }
 
   #open(scope) {
     this.scopeGuard.assert(scope);
     if (!this.indexedDB) return Promise.reject(new Error('浏览器未提供本机草稿存储。'));
-    const name = scopeKey(scope) + DB_SUFFIX;
+    if (!scopeKey(scope)) throw new Error('账号草稿库名称为空。');
+    const name = scopeKey(scope) + this.databaseSuffix;
     if (!name) return Promise.reject(new Error('账号草稿库名称为空。'));
     if (connections.has(name)) return connections.get(name);
     const pending = new Promise((resolve, reject) => {

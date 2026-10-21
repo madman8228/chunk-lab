@@ -1,0 +1,54 @@
+#illustrationReviewPanel{overflow:auto;padding:24px;flex:1;min-height:0}.ir-heading,.ir-toolbar,.ir-dialog-head,.ir-pager{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.ir-heading{justify-content:space-between;margin-bottom:24px}.ir-heading h1{margin:0;font-size:24px}.ir-heading p{color:var(--muted);margin:6px 0}.ir-filters{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:16px;margin-bottom:18px}.ir-filters label{display:grid;gap:6px}.ir-toolbar{margin-block:12px}.ir-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.ir-card{min-width:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper)}.ir-image{display:block;width:100%;padding:0;border:0;background:var(--bg);cursor:zoom-in;aspect-ratio:16/9}.ir-image img{width:100%;height:100%;object-fit:contain}.ir-card-body{padding:16px}.ir-card p{margin:8px 0;overflow-wrap:anywhere}.ir-pick{display:flex;gap:10px;align-items:center;font-size:18px}.ir-select{width:20px;height:20px}.ir-warning{color:var(--red)}.ir-pager{justify-content:center;margin:24px 0}#irMessage{min-height:24px}#irDialog{width:min(1000px,94vw);max-height:92dvh;overflow:auto;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);box-shadow:0 12px 40px #202b3d33}#irDialog::backdrop{background:#202b3d99}.ir-dialog-head{justify-content:space-between}.ir-dialog-head h2{margin:0 0 16px}.ir-detail-images{display:flex;gap:16px}.ir-detail-images figure{flex:1;min-width:0;margin:16px 0}.ir-detail-images img{width:100%;max-height:52dvh;object-fit:contain}.ir-detail-images figcaption{color:var(--muted);margin-top:8px}#irDetail>.label{margin:16px 0}#irDetail textarea{height:80px}#irDetail details{margin-block:20px}#irDetail details p{overflow-wrap:anywhere}.ir-card .btn,#irDialog .btn{min-height:44px}.ir-card button:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}@media(max-width:1000px){.ir-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ir-filters{grid-template-columns:1fr 1fr}}@media(max-width:600px){#illustrationReviewPanel{padding:16px}.ir-grid,.ir-filters{grid-template-columns:1fr}.ir-detail-images{flex-direction:column}#irDialog{padding:16px}.top{flex-wrap:wrap}.studio-nav{flex-wrap:wrap}.ir-toolbar{gap:8px}}
+#illustrationReviewPanel .ir-card-body{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 10px;padding:10px 12px}
+#illustrationReviewPanel .ir-card-body .ir-pick{grid-column:1;grid-row:1;gap:8px;font-size:17px;min-width:0;overflow-wrap:anywhere}
+#illustrationReviewPanel .ir-card-body p{margin:0;line-height:1.4}
+#illustrationReviewPanel .ir-card-body>p:not(.sub):not(.ir-warning){grid-column:1;grid-row:2;font-size:13px}
+#illustrationReviewPanel .ir-card-body>.sub{grid-column:2;grid-row:1;text-align:right;font-size:11px}
+#illustrationReviewPanel .ir-card-body>.ir-toolbar{grid-column:2;grid-row:2;gap:6px;margin:0;flex-wrap:nowrap}
+#illustrationReviewPanel .ir-card-body>.ir-warning{grid-column:1/-1}
+#illustrationReviewPanel .ir-card .btn{margin:0;min-height:32px;padding:4px 8px}
+#illustrationReviewPanel .ir-grid{gap:16px;align-items:start}
+@media(pointer:coarse){#illustrationReviewPanel .ir-card .btn{min-height:44px}}
+#irReviewActions{position:sticky;top:var(--ir-sticky-offset,0px);z-index:2;background:var(--paper);border-bottom:1px solid var(--line);padding:6px 0;margin:0 0 12px;gap:6px 10px}
+#irReviewActions .btn{margin:0}
+#irReviewActions #irMessage{min-height:0;margin:0;font-size:12px;color:var(--muted);line-height:1.4;overflow-wrap:anywhere;flex:0 1 auto}
+#irReviewActions #irMessage:empty{display:none}
+#irReviewActions .ir-summary{display:inline-flex;align-items:baseline;gap:8px;flex-wrap:wrap;max-width:100%}
+#irReviewActions #irCounts{white-space:nowrap}
+#irDialog{padding:8px 12px}
+#irDialog .ir-dialog-head{flex-wrap:nowrap;gap:8px;min-height:28px}
+#irDialog .ir-dialog-head h2{min-width:0;margin:0;font-size:17px;line-height:1.25;overflow-wrap:anywhere}
+#irDialog .ir-dialog-head .btn{flex-shrink:0;min-height:28px;margin:0;padding:2px 8px}
+#irDialog .ir-detail-images figure{margin:4px 0 10px}
+#irDialog .ir-detail-images img{display:block}
+#irDialog .ir-detail-fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px;margin:8px 0}
+#irDialog .ir-detail-fields .label{display:grid;gap:4px;margin:0;min-width:0}
+#irDialog .ir-note-label{display:grid;gap:4px;margin:8px 0}
+#irDetail #irNote{height:36px;min-height:36px;line-height:20px;padding:7px 10px;box-sizing:border-box;resize:vertical}
+#irDetail details{margin-block:10px}
+@media(max-width:600px){#irDialog{padding:8px 10px}}
+@media(pointer:coarse){#irDialog .ir-dialog-head .btn{min-height:44px}}
+@media(max-width:760px){#illustrationReviewPanel{overflow:visible}}
+#illustrationReviewPanel .ir-meaning{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+#illustrationReviewPanel .ir-card-body{display:block;padding:8px 10px}
+.ir-card-top,.ir-card-bottom{display:flex;align-items:center;gap:8px;min-width:0}
+.ir-card-top{justify-content:space-between}
+.ir-card-bottom{margin-top:4px}
+#illustrationReviewPanel .ir-card-top .ir-pick{flex:1;line-height:1.3}
+.ir-card-meta{flex-shrink:0;color:var(--muted);font-size:11px;line-height:1.3;white-space:nowrap}
+.ir-state-badge{font-weight:400}
+.ir-card[data-status="changes"]{border-color:var(--red)}
+.ir-image{position:relative}
+.ir-image-issue{position:absolute;top:8px;left:8px;padding:5px 9px;border-radius:4px;background:var(--red);color:#fff;font-size:13px;font-weight:700;line-height:1.4;pointer-events:none}
+.ir-card[data-status="changes"]{outline:1px solid var(--red);outline-offset:-1px}
+#irProblemCount{border:1px solid var(--red);border-radius:4px;background:#fff5f4;color:var(--red);padding:2px 6px;font-weight:650;line-height:1.4;cursor:pointer}
+#irProblemCount:hover{background:var(--red);color:#fff}
+.ir-card[data-status="changes"] .ir-card-body{background:#fff5f4}
+.ir-card[data-status="changes"] .ir-state-badge{display:inline-block;padding:2px 6px;border-radius:4px;background:var(--red);color:#fff;font-weight:650}
+.ir-card[data-status="approved"] .ir-state-badge{color:var(--green);font-weight:650}
+#illustrationReviewPanel .ir-card-body>.ir-issue-summary{margin:5px 0 0;color:var(--red);font-size:12px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#illustrationReviewPanel .ir-card-bottom .ir-meaning{flex:1;min-width:0;font-size:13px;line-height:1.4;margin:0}
+#illustrationReviewPanel .ir-card-bottom .ir-toolbar{flex-shrink:0;display:flex;flex-wrap:nowrap;gap:4px;margin:0}
+#illustrationReviewPanel .ir-card .btn{min-height:30px;padding:3px 7px}
+#illustrationReviewPanel .ir-card-body>.ir-warning{margin-top:4px;font-size:12px}
+@media(pointer:coarse){#illustrationReviewPanel .ir-card .btn{min-height:44px}}

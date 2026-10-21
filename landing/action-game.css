@@ -1,0 +1,43 @@
+.adventure[hidden],#wordLibrary[hidden],.adventure [hidden]{display:none!important}
+.adventure{max-width:760px;margin:auto;color:#523019}
+.adventure-heading{text-align:center;margin-bottom:16px}
+.quest-audio{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:10px;border:0;background:transparent;color:#745333;box-shadow:none;cursor:pointer;border-radius:8px;flex-shrink:0}.quest-audio svg{width:24px;height:24px}.quest-audio:hover{color:#523019;background:#fff0ce}.quest-audio:active{color:#ad3827}
+.quest-word-row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:nowrap}.adventure-heading .quest-word{font-size:38px;margin:0;min-width:0;overflow-wrap:anywhere}.quest-meaning{margin:8px 0 10px;font-size:16px}.quest-translation{margin:4px 0 10px;font-size:14px}.adventure-heading .btn{min-height:44px;padding:8px 16px;font-size:14px;flex-shrink:0}.quest-audio-status:empty{display:none}
+.quest-label{font-size:12px;color:#745333}.adventure-heading h2{font-size:28px;margin:4px 0}.quest-goal{margin:6px 0;font-size:15px}
+.quest-scene{display:block;line-height:0}
+.quest-scene img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:10px}
+.quest-world{font-size:13px;margin:10px 0 18px;color:#745333;text-align:center}
+.quest-dialogue{padding:4px 14px;background:#fff0ce}.quest-speaker{font-size:12px;font-weight:700}.quest-dialogue p{font-size:17px;line-height:1.5;margin:6px 0}
+.quest-prompt{font-size:18px;line-height:1.5;margin:18px 0 12px}
+.quest-actions{display:flex;gap:12px;flex-wrap:wrap}.quest-action{flex:1;min-width:200px;min-height:76px;text-align:left;padding:14px 18px;color:#523019;background:#ffdc79;border:2px solid #714922;border-radius:12px;box-shadow:0 4px 0 #bd893b;cursor:pointer;font:inherit}
+.quest-action strong,.quest-action span{display:block}.quest-action strong{font-size:17px}.quest-action span{font-size:13px;margin-top:4px}.quest-action:hover{background:#ffcf4e}.quest-action:active{transform:translateY(2px);box-shadow:0 2px 0 #bd893b}
+.adventure .cloze-sentence{display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:12px;font-size:clamp(19px,3vw,27px);padding:0;background:transparent;border:0;border-radius:0;line-height:1.7;margin-top:22px}
+.adventure .cloze-token{display:inline-flex;flex-direction:column;align-items:center;min-width:0;max-width:100%}.adventure .cloze-text{min-height:48px;display:flex;align-items:center}.adventure .cloze-gloss{font-size:14px;line-height:1.5;color:#745333;margin-top:6px}
+.adventure .cloze-blank{font:inherit;min-width:0;width:var(--blank-width);max-width:100%;height:48px;text-align:center;color:#523019;background:transparent;border:0;border-bottom:2px solid #916937;border-radius:0;padding:0 4px}
+.adventure .cloze-blank[aria-invalid="true"]{border-color:#ad3827}
+.vocabulary-page .adventure .cloze-blank:focus,.vocabulary-page .adventure .cloze-blank:focus-visible{outline:none;box-shadow:none;caret-color:#523019}
+.adventure .initials-words{display:flex;align-items:center;gap:5px;flex-wrap:nowrap}.adventure .initials-word{border-bottom:0;padding:0;width:var(--blank-width);font-size:inherit}.adventure .initials-word::placeholder{color:#745333;opacity:1;letter-spacing:.08em}.adventure .initials-word[data-active="true"]{caret-color:#523019}.initials-help{font-size:12px;color:#745333;line-height:1.6;margin:8px 0}.initials-candidates{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}.initials-option{font:inherit;font-size:14px;min-height:44px;padding:6px 12px;border:1px solid #916937;border-radius:8px;background:#fffbed;color:#523019;cursor:pointer}.initials-option[aria-pressed="true"]{background:#ffcf4e}.adventure .initials-group{flex-shrink:1}.adventure .initials-group .initials-words{max-width:100%;flex-wrap:wrap;justify-content:center}
+.adventure .cloze-token .cloze-text{white-space:nowrap}.adventure .cloze-token{flex-shrink:0}.adventure .cloze-gloss{white-space:nowrap}
+.adventure .cloze-actions{display:flex;justify-content:flex-end;margin-top:12px}.adventure .practice-feedback{font-size:14px;line-height:1.6;color:#ad3827}.adventure .practice-feedback:empty{display:none}
+.adventure .quest-primary,.adventure .practice-primary{background:#ffcf4e;min-height:46px;padding:10px 20px;font-size:15px}
+.quest-controls{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;border-top:1px solid #dbc599;margin-top:22px;padding-top:14px}.quest-controls .btn{min-height:44px;font-size:13px;padding:8px 12px}
+.quest-home{display:inline-block;padding:12px;margin-left:12px}.quest-session-note{font-size:12px;color:#745333;text-align:center;margin:16px 0 0}
+.quest-earned{list-style:none;padding:0;margin:12px 0 20px}.quest-earned li{border-bottom:1px solid #dbc599;padding:8px 0}.quest-earned li>span{font-weight:800;color:#356c3d}.quest-earned p{margin:4px 0;font-size:16px}
+.initials-candidates{padding:10px 0;gap:10px}.initials-option{min-width:58px;border-width:2px;font-weight:700}.initials-option:disabled{opacity:.45;cursor:default;background:transparent}.initials-option:not(:disabled):hover{background:#fff0ce}
+.initials-selection-row{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}.initials-selection-row .initials-candidates{margin:0;padding:0}.initials-selection-row>.practice-primary{flex-shrink:0;min-height:44px;padding:8px 16px}
+.vocabulary-page .vocabulary-heading{position:sticky;top:0;z-index:4;background:#fff9e9;padding:8px 0}
+.quest-controls{position:sticky;bottom:0;z-index:3;background:#fff9e9;padding:12px 0;box-shadow:0 -5px 12px #fff9e9}
+.adventure{padding-bottom:12px}
+@media(max-width:620px){.adventure-heading h2{font-size:23px}.quest-phone{gap:8px;font-size:11px}.phone-connection{font-size:11px}.quest-prompt{font-size:16px;margin-top:14px}.quest-dialogue p{font-size:16px}.quest-actions{gap:10px}.quest-action{min-width:100%;min-height:66px;padding:10px 14px}.quest-world{margin-bottom:12px}.quest-controls{gap:8px;justify-content:flex-start}.quest-controls .btn{flex:1;white-space:nowrap;padding:8px;font-size:12px}.adventure .cloze-sentence{justify-content:flex-start;font-size:21px;padding:12px 8px}.quest-session-note{line-height:1.5}}
+@media(max-width:620px){.adventure .cloze-sentence{gap:8px;padding:0;font-size:20px}}
+.adventure .initials-word,.adventure .initials-word[aria-invalid="true"]{border-bottom:1px solid #916937}
+.initials-translation{text-align:center;font-size:18px;font-weight:700;line-height:1.5;margin:20px 0 0;color:#523019}
+.adventure .initials-translation+.cloze-sentence{margin-top:8px}
+.adventure .initials-selection-row>.practice-primary{width:auto;min-width:0;flex:0 0 auto;padding-inline:14px}
+.quest-result-title{font-size:18px;line-height:1.5;margin:8px 0 10px}
+.quest-result-title:focus{outline:none}
+.adventure[data-complete="true"] .quest-earned{margin:0 0 14px}
+.adventure[data-complete="true"] .quest-earned li{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap;padding:8px 0}
+.adventure[data-complete="true"] .quest-earned li>span{min-width:4.5em}
+.adventure[data-complete="true"] .quest-earned p{margin:0;line-height:1.5}
+.adventure[data-complete="true"] .quest-primary{min-width:0;padding:8px 14px;min-height:44px}

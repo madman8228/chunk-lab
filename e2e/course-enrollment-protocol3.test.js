@@ -54,7 +54,7 @@ function waitForServer() {
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
     });
     await page.goto(base + '/decks.html?courseView=joined&courseType=decks', { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => window.CL && CL.getCloudConfig && CL.getCloudConfig().writeProtocol === 3 &&
+    await page.waitForFunction(() => window.CL && CL.getCloudConfig && CL.getCloudConfig() && CL.getCloudConfig().writeProtocol === 3 &&
       CL.serverPersistenceReady() && window.CourseEnrollment, null, { timeout: 15000 });
 
     const legacyCourseWriteFence = await page.evaluate(async () => {

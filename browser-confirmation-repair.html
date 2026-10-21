@@ -1,0 +1,15 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>修复浏览器确认分区 · jqka.top</title>
+<style>body{margin:24px;max-width:800px;font:15px/1.7 system-ui;color:#263d39;background:#f7f3e8}h1{font-size:22px}p{overflow-wrap:anywhere}a{color:#22694f;padding:10px 0;display:inline-block}a[hidden]{display:none}a:focus-visible{outline:2px solid #22694f;outline-offset:3px}</style>
+<h1>修复浏览器确认分区</h1><p>仅处理已确认的账号 27、本机水位 261 冲突。原分区保留，不复制或重放未同步操作，不改动服务器课程与记录。</p>
+<p id="status" role="status">等待执行。</p><a id="home" href="main.html?view=home" hidden>进入学习首页</a>
+<script src="js/server-cache.js"></script><script src="js/browser-confirmation-repair.js"></script>
+<script>
+if(new URLSearchParams(location.search).get('apply')==='1'){
+ document.getElementById('status').textContent='正在核对账号，并建立新的确认分区…';
+ BrowserConfirmationRepair.repair({expectedUid:'27',expectedCachedSeq:261}).then(result=>{
+  document.getElementById('status').textContent='已切换到新的确认分区，服务水位 '+result.confirmedSeq+'。原分区及未同步数据原样保留，未自动重放。';
+  document.getElementById('home').hidden=false;
+ }).catch(error=>{document.getElementById('status').textContent='未完成修复：'+error.message;});
+}
+</script></html>

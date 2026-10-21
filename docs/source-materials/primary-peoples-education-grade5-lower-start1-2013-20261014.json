@@ -1,0 +1,57 @@
+{
+  "format":"textbook-vocabulary-transcription",
+  "version":1,
+  "status":"review-only",
+  "textbook":{
+    "title":"义务教育教科书 英语（一年级起点）",
+    "publisher":"人民教育出版社",
+    "schoolStage":"小学",
+    "grade":"五年级",
+    "volume":"下册",
+    "series":null,
+    "edition":null,
+    "coverApprovalYear":2013,
+    "startingGrade":1,
+    "identityNote":"用户指出本书封面没有PEP字样，可能为其他地区版本，要求各版本均保留。封面显示人民教育出版社、五年级下册、一年级起点、教育部审定2013；系列/地区版别未确认，不标作PEP。",
+    "printedUsageNotice":null
+  },
+  "legend":{"bold":"粗体词为本册重点词汇","rowFormat":["term","meaning","sourceTextPage","bold","type","sourceNote"],"types":["word","phrase"],"normalization":"按附录二单元词汇表转录；页码为括号内正文页码。附录三总词汇表仅作为图片来源保留，不声称已独立逐项转录。"},
+  "images":[
+    {"id":1,"role":"cover","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-9d5602d9-1c45-49cb-b9f9-48383b8ef08d.png"},
+    {"id":2,"role":"contents","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-068107a4-b638-4124-b865-db3abcc540f3.png"},
+    {"id":3,"role":"unit-vocabulary","printedPage":88,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-716c48c1-0d85-45bf-b38e-15ff71418650.png"},
+    {"id":4,"role":"unit-vocabulary","printedPage":89,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-d03cb201-b4bf-48e5-be88-bcf76a49bcbd.png"},
+    {"id":5,"role":"unit-vocabulary","printedPage":90,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-a23b1e06-1d18-4fb6-b81c-24ad1acc4269.png"},
+    {"id":6,"role":"alphabetical-vocabulary","printedPage":91,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-0dc2a683-86d1-43a7-83fe-5d6648b5c503.png"},
+    {"id":7,"role":"alphabetical-vocabulary","printedPage":92,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-6a241c5f-2948-4513-a641-3f6b967dd6d7.png"},
+    {"id":8,"role":"alphabetical-vocabulary","printedPage":93,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-59a798c3-e3c1-452b-a562-12b5cd9afd49.png"},
+    {"id":9,"role":"alphabetical-vocabulary","printedPage":94,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-c67910e9-4c28-4315-b07a-03d6c527b02b.png"}
+  ],
+  "contents":[
+    {"title":"Unit 1 Keeping Healthy","startPage":2},{"title":"Unit 2 Special Days","startPage":14},
+    {"title":"Unit 3 Making Contact","startPage":26},{"title":"Revision 1","startPage":38},
+    {"title":"Unit 4 Last Weekend","startPage":44},{"title":"Unit 5 Have a Great Trip","startPage":56},
+    {"title":"Unit 6 Growing Up","startPage":68},{"title":"Revision 2","startPage":80},
+    {"title":"附录一 歌曲","startPage":86},{"title":"附录二 单元词汇表","startPage":88},{"title":"附录三 总词汇表","startPage":91}
+  ],
+  "units":[
+    {"unitId":"unit-1","title":"Unit 1 Keeping Healthy","contentsStartPage":2,"sourceImages":[3],"entries":[
+      ["too much","太多",2,true,"phrase",""],["candy","糖果",2,true,"word",""],["go to bed","去睡；就寝",2,true,"phrase",""],["early","早",2,true,"word",""],["exercise","锻炼",2,true,"word",""],["tired","困倦的；疲倦的",2,true,"word",""],["drink","喝；饮",2,true,"word",""],["before","在……之前",2,true,"word",""],["dirty","肮脏的",2,true,"word",""],["always","总是",2,true,"word",""],["stomachache","胃疼",4,true,"word",""],["headache","头疼",4,true,"word",""],["toothache","牙疼",4,true,"word",""],["a lot of","大量；许多",4,true,"phrase",""],["sleepy","困的；欲睡的",6,true,"word",""],["subject","学科",6,true,"word",""],["mark","分数",6,false,"word",""],["advice","建议",6,false,"word",""],["more","更多的",6,false,"word",""]]},
+    {"unitId":"unit-2","title":"Unit 2 Special Days","contentsStartPage":14,"sourceImages":[3],"entries":[
+      ["New Year's Day","新年",14,true,"phrase",""],["Tree Planting Day","植树节",14,true,"phrase",""],["Mother's Day","母亲节",14,true,"phrase",""],["Children's Day","儿童节",14,true,"phrase",""],["Father's Day","父亲节",14,true,"phrase",""],["Teachers' Day","教师节",14,true,"phrase",""],["National Day","国庆节",14,true,"phrase",""],["Christmas Day","圣诞节",14,true,"phrase",""],["birthday","生日",14,true,"word",""],["fifth (5th)","第五",14,true,"word",""],["tenth (10th)","第十",14,true,"word",""],["twelfth (12th)","第十二",14,true,"word",""],["twenty-fifth (25th)","第二十五",14,true,"word",""],["plant","种植",14,true,"word",""],["make a poster","制作海报",16,true,"phrase",""],["celebrate","庆祝",16,true,"word",""],["have a picnic","野餐",16,true,"phrase",""],["office","办公室",18,false,"word",""],["together","在一起；共同",18,false,"word",""],["special","特殊的；特别的",18,false,"word",""]]},
+    {"unitId":"unit-3","title":"Unit 3 Making Contact","contentsStartPage":26,"sourceImages":[4],"entries":[
+      ["send an email","发送电子邮件",26,true,"phrase",""],["write a letter","写信",26,true,"phrase",""],["make a phone call","打电话",26,true,"phrase",""],["send a short message","发送短消息",26,true,"phrase",""],["mail a present","邮寄礼物",26,true,"phrase",""],["make a video call","打视频电话",26,true,"phrase",""],["say","说；讲",28,true,"word",""],["make a card","制作卡片",28,true,"phrase",""],["everywhere","各处；到处",30,false,"word",""],["flower show","花展",30,false,"phrase",""]]},
+    {"unitId":"unit-4","title":"Unit 4 Last Weekend","contentsStartPage":44,"sourceImages":[4],"entries":[
+      ["cleaned the window","（过去式）擦窗子",44,true,"phrase",""],["watched TV","（过去式）看电视",44,true,"phrase",""],["climbed a hill","（过去式）爬山",44,true,"phrase",""],["visited grandparents","（过去式）看望祖父母",44,true,"phrase",""],["danced","（dance的过去式）跳舞",44,true,"word",""],["jumped rope","（过去式）跳绳",44,true,"phrase",""],["listened to music","（过去式）听音乐",44,true,"phrase",""],["rowed a boat","（过去式）划船",44,true,"phrase",""],["played computer games","（过去式）玩电子游戏",44,true,"phrase",""],["stayed at home","（过去式）呆在家里",44,true,"phrase",""],["played the piano","（过去式）弹钢琴",44,true,"phrase",""],["played chess","（过去式）下棋",44,true,"phrase",""],["washed clothes","（过去式）洗衣服",45,true,"phrase",""],["boring","单调的；乏味的",45,false,"word",""],["badminton","羽毛球",46,false,"word",""],["won","（win的过去式）赢；获胜",48,true,"word",""]]},
+    {"unitId":"unit-5","title":"Unit 5 Have a Great Trip","contentsStartPage":56,"sourceImages":[4,5],"entries":[
+      ["went to the beach","（过去式）去海边",56,true,"phrase",""],["drank cold drinks","（过去式）喝冷饮",56,true,"phrase",""],["swam","（swim的过去式）游泳",56,true,"word",""],["ate ice cream","（过去式）吃冰激凌",56,true,"phrase",""],["the Stone Forest","石林",56,true,"phrase",""],["bought some gifts","（过去式）买些礼物",56,true,"phrase",""],["took photos","（过去式）拍照片",56,true,"phrase",""],["saw flowers","（过去式）赏花",56,true,"phrase",""],["slept","（sleep的过去式）睡觉",57,true,"word",""],["delicious","美味的；可口的",58,true,"word",""],["felt happy","（过去式）觉得高兴",58,true,"phrase",""],["sad","悲哀的；难过的",60,false,"word",""],["left","（leave的过去式）离开",60,false,"word",""],["French fries","法式炸薯条",60,false,"phrase",""],["were","（are的过去式）是",60,false,"word",""]]},
+    {"unitId":"unit-6","title":"Unit 6 Growing Up","contentsStartPage":68,"sourceImages":[5],"entries":[
+      ["was born","（过去式）出生",68,true,"phrase",""],["started to speak","（过去式）开始说话",68,true,"phrase",""],["learned to walk","（过去式）学走路",68,true,"phrase",""],["learned to ride a bike","（过去式）学骑自行车",68,true,"phrase",""],["went to kindergarten","（过去式）上幼儿园",68,true,"phrase",""],["went to school","（过去式）上学",68,true,"phrase",""],["learned to swim","（过去式）学游泳",68,true,"phrase",""],["fifteenth (15th)","第十五",68,true,"word",""],["started to buy things","（过去式）开始学买东西",70,true,"phrase",""],["started to study English","（过去式）开始学英语",70,true,"phrase",""],["started to use a computer","（过去式）开始使用电脑",70,true,"phrase",""],["all over","到处；各处",72,false,"phrase",""],["out of","离开（某处）",72,false,"phrase",""],["into","进入；到……里",72,false,"word",""],["chopsticks","筷子",72,false,"word",""],["wet","湿的，潮湿的",72,false,"word",""]]}
+  ],
+  "reviewIssues":[
+    {"term":"系列/地区版别","note":"封面未见PEP标识；按用户要求独立保留，系列与地区归属留待版权页或其他出版信息确认。"},
+    {"term":"总词汇表","note":"总词汇表原图已保存，当前未逐词独立重录；结构化记录以单元词汇表为准。"},
+    {"term":"黑体重点词","note":"依照附录二字形记录，少数字号/粗细仍建议人工对照原图复核。"}
+  ],
+  "limitations":["封面审定年份为2013；版次、印次、地区归属未确认。","目录所列歌曲、Revision 1和Revision 2正文未提供。","总词汇表图片随包保存，但未独立逐词核对。"]
+}

@@ -68,6 +68,10 @@ function resolveEntry(options) {
   var now = typeof opts.now === 'number' ? opts.now : Date.now();
   var type = opts.navigationType || 'navigate';
   var explicitCatalog = !!(params.get('course') && params.get('lesson'));
+  if (params.get('protectedCourse')) return { kind: 'protected-course', courseId: params.get('protectedCourse'), unitId: params.get('unit'), explicit: true };
+  if (params.get('membership') === '1') return { kind: 'membership', explicit: true };
+
+  if (params.get('assessmentKey')) return { kind: 'assessment', key: params.get('assessmentKey'), explicit: true };
 
   if (explicitCatalog) {
     return { kind: 'catalog', course: params.get('course'), lesson: params.get('lesson'), explicit: true };

@@ -1,0 +1,75 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>浏览器只读诊断 · jqka.top</title>
+<style>body{margin:24px;max-width:800px;font:15px/1.7 system-ui;color:#263d39;background:#f7f3e8}h1{font-size:22px}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;background:#fffdf5;border:1px solid #d4d9cc;border-radius:12px}button{font:inherit;padding:10px 16px;border-radius:8px;border:1px solid #648076;background:#fffdf5;cursor:pointer}button:focus-visible{outline:2px solid #22694f;outline-offset:3px}</style>
+<h1>浏览器只读诊断</h1><p>仅检查服务响应与存储可读性。不修改登录、课程、记录或缓存；结果不含登录凭据及课程正文。</p>
+<button id="run">重新检查</button><pre id="result" aria-live="polite"></pre>
+<script>
+'use strict';
+const output=document.getElementById('result');
+async function run(){
+ document.getElementById('run').disabled=true;output.textContent='';
+ const line=(label,value)=>{output.textContent+=label+'：'+value+'\n';};
+ try{
+  let session,token,base,cacheRow=null,owner,scope;
+  try{
+   session=JSON.parse(localStorage.getItem('chunklab.session.v1')||'null');
+   token=localStorage.getItem('chunklab_token');base=localStorage.getItem('chunklab_api_base')||'';
+   const consistent=!session||((session.token||null)===(token||null)&&(session.base||'')===base);
+   line('登录记录一致',consistent?'是':'否（SESSION_INCONSISTENT）');line('存在登录凭据',token?'是':'否');
+   if(!consistent)return;
+  }catch(error){line('登录存储读取','失败：'+error.name);return;}
+  try{
+   const apiBase=new URL(base||'/',location.origin).href.replace(/\/+$/,'');
+   const claims=token?JSON.parse(atob(token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))):null;
+   owner=JSON.stringify([apiBase,claims?String(claims.uid):'local']);scope=JSON.stringify([apiBase,owner,3]);
+   const revision=localStorage.getItem('chunklab.restore.active.'+encodeURIComponent(owner))||'';
+   const database=(localStorage.getItem('chunklab.storage-owner.v1')===owner?'chunklab-idb':'chunklab-idb-'+encodeURIComponent(owner))+(revision?'-restore-'+revision:'');
+   line('恢复锁',localStorage.getItem('chunklab.restore.pending.'+encodeURIComponent(owner))?'存在（RESTORE_PENDING）':'无');
+   const known=indexedDB.databases?await indexedDB.databases():[];
+   if(known.some(d=>d.name===database)){
+    await new Promise((resolve)=>{
+     let ended=false;const req=indexedDB.open(database);
+     const finish=()=>{if(!ended){ended=true;clearTimeout(timer);resolve();}};
+     const timer=setTimeout(()=>{line('账号数据库读取','超过 8 秒未完成');finish();},8000);
+     req.onupgradeneeded=()=>{req.transaction.abort();};
+     req.onerror=()=>{line('账号数据库读取',req.error&&req.error.name||'失败');finish();};
+     req.onblocked=()=>{line('账号数据库读取','被其他页面阻塞');finish();};
+     req.onsuccess=()=>{
+      const db=req.result;if(ended){db.close();return;}
+      line('账号数据库版本',db.version);line('确认缓存仓库',db.objectStoreNames.contains('syncMeta')?'存在':'缺失');line('待提交仓库',db.objectStoreNames.contains('pendingOperations')?'存在':'缺失');
+      if(!db.objectStoreNames.contains('syncMeta')){db.close();finish();return;}
+      const tx=db.transaction('syncMeta','readonly'),get=tx.objectStore('syncMeta').get('server-cache-v3');
+      get.onsuccess=()=>{cacheRow=get.result||null;line('本机确认水位',cacheRow?cacheRow.appliedSeq:'尚无确认缓存');if(cacheRow)line('缓存账号与服务一致',cacheRow.owner===owner&&cacheRow.scope===scope?'是':'否');};
+      tx.oncomplete=()=>{db.close();finish();};tx.onerror=tx.onabort=()=>{line('缓存读取失败',tx.error&&tx.error.name||'失败');db.close();finish();};
+     };
+    });
+   }else line('当前账号数据库','尚不存在（未创建或修改）');
+  }catch(error){line('确认缓存诊断',error.name+': '+error.message);}
+  if('serviceWorker' in navigator){
+   const regs=await navigator.serviceWorker.getRegistrations();
+   line('离线版本',regs.length+' 个注册；当前页面受控：'+(navigator.serviceWorker.controller?'是':'否'));
+  }
+  if(indexedDB.databases){const dbs=await indexedDB.databases();line('本地数据库',dbs.filter(d=>d.name&&d.name.startsWith('chunklab')).map(d=>'版本 '+d.version).join('、')||'尚无数据库');}
+  for(const endpoint of ['/api/config','/api/data']){
+   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),8000);
+   try{
+    const response=await fetch(new URL(endpoint,new URL(base||'/',location.origin)),{method:'GET',cache:'no-store',headers:token?{Authorization:'Bearer '+token}:{},signal:controller.signal});
+    const data=await response.json();
+    line(endpoint,'HTTP '+response.status+(response.ok?'':'; '+String(data.code||data.error||'响应失败').slice(0,200)));
+    if(response.ok&&endpoint==='/api/data'){
+     line('账号确认水位',Number.isFinite(data.seq)?data.seq:'缺失');line('服务响应结构',data.mem&&typeof data.mem==='object'?'存在 mem':'缺少 mem');
+     if(cacheRow&&cacheRow.owner===owner&&cacheRow.scope===scope)line('服务水位是否倒退',Number(data.seq)<Number(cacheRow.appliedSeq)?'是（SERVER_SEQ_ROLLBACK，原缓存保持不变）':'否');
+    }
+   }catch(error){line(endpoint,error.name==='AbortError'?'超过 8 秒未响应':error.name+': '+error.message);}
+   finally{clearTimeout(timer);}
+  }
+  try{
+   const names=(await caches.keys()).filter(n=>n.startsWith('chunklab-'));line('离线缓存版本',names.join('、')||'无');
+   for(const name of names){const hit=await (await caches.open(name)).match('/main.html');if(hit){const html=await hit.text();line(name+' 的主页','课程加载名修复：'+(html.includes('var loadingDeckLabel')?'有':'无')+'；太阳左移修复：'+(html.includes('calc((100vw - 1020px)/2 - 114px)')?'有':'无'));}}
+  }catch(error){line('离线缓存读取',error.name);}
+  line('检查完成','请将本页结果截图提供给我，不需要截取其他页面的登录数据。');
+ }catch(error){line('诊断中断',error.name+': '+error.message);}
+ finally{document.getElementById('run').disabled=false;}
+}
+document.getElementById('run').onclick=run;run();
+</script></html>

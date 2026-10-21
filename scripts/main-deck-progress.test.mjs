@@ -31,3 +31,8 @@ assert.match(buildDeckProgressMarkup({
 }), /当前第 2 句/);
 assert.match(buildDeckProgressMarkup({ progress: { ready: false } }), /正在核对进度/);
 console.log('main-deck-progress.test.mjs passed');
+const manyItems = Array.from({length:200}, (_, i) => ({cid:String(i)}));
+const almostDone = calculateDeckLearningProgress({deckId:'large',total:200,items:manyItems,
+  stats:{bySentence:Object.fromEntries(manyItems.slice(0,199).map(item => ['large#'+item.cid,{times:1}]))}});
+assert.equal(almostDone.done,199);
+assert.equal(almostDone.pct,99,'unpracticed final item must not round up to completion');

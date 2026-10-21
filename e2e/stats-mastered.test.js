@@ -52,11 +52,22 @@ function check(name, ok, detail) {
     await startServer();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const context = await browser.newContext();
-    await context.route('**/api/**', function (route) { route.abort('failed'); });
+    await context.route('**/api/**', function (route) {
+      if (new URL(route.request().url()).pathname === '/api/content/shards') return route.continue();
+      return route.abort('failed');
+    });
     await context.addInitScript(function () {
       if (sessionStorage.getItem('__stats_mastered_seeded')) return;
       localStorage.clear();
       localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
+      const progress = {};
+      for (const courseId of ['user-deck:compact-stat-deck', 'builtin:idioms']) {
+        progress['enrollment:v1:' + encodeURIComponent(courseId)] = {
+          kind:'course-enrollment', schemaVersion:1, courseId, joined:true,
+          joinedAt:Date.now(), changedAt:Date.now()
+        };
+      }
+      localStorage.setItem('chunklab.course-progress.v1', JSON.stringify(progress));
       localStorage.setItem('chunklab.v1', JSON.stringify({
         version: 2,
         decks: [{ id: 'compact-stat-deck', name: 'Compact stats deck', items: [{
@@ -91,7 +102,7 @@ function check(name, ok, detail) {
         return out;
       }, {});
     });
-    check('自评只计入熟悉，不计作考试掌握', result['已熟悉'] === '1' && result['已掌握'] === '0', JSON.stringify(result));
+    check('自评只计入熟悉，不计作原测评通过', result['已熟悉'] === '1' && result['原测评通过'] === '0', JSON.stringify(result));
     await page.locator('[data-tab="review"]').click();
     await page.waitForSelector('.review-row');
     const review = await page.evaluate(function () {

@@ -1,0 +1,53 @@
+{
+  "format":"textbook-vocabulary-transcription",
+  "version":1,
+  "status":"review-only",
+  "textbook":{"title":"义务教育教科书 英语","publisher":"人民教育出版社","schoolStage":"小学","grade":"四年级","volume":"上册","series":"精通","seriesEvidence":"用户明确说明本批为精通四年级上册，封面对应四年级上册","edition":null,"coverApprovalYear":2024,"curriculumStandardYearFromVocabularyNote":2022,"printedUsageNotice":"仅供个人学习使用，未经授权不得另做他用","identityNote":"人教精通小学英语四年级上册；与三年级上册、下册和 PEP 系列分别保存。2024 是封面审定年份，具体版次/印次待版权页确认。图片页脚注明仅供个人学习，公共发布前须核实授权。"},
+  "legend":{"starred":"加*的词为《义务教育英语课程标准（2022年版）》中的二级词","bold":"黑体词要求理解、运用；白体词只要求在语境中理解","rowFormat":["term","meaning","sourceTextPage","starred","bold","type","sourceNote"],"types":["word","contraction","phrase","expression"],"normalization":"合并跨行释义，保留不同单元、不同义项及原表页码；类型为整理标注，不是教材印刷标签。"},
+  "images":[
+    {"id":1,"role":"cover","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-cb85a9f5-b27e-4d62-b4d9-f8bfc61357a1.png"},
+    {"id":2,"role":"contents","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-eb0f3e98-12e4-4318-82e4-3b79c8e78051.png"},
+    {"id":3,"role":"unit-list","printedPage":87,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-f9e36dd7-8e55-498c-8062-9921f265fc01.png"},
+    {"id":4,"role":"unit-list","printedPage":88,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-faf786fc-63a6-49df-b433-585aa5070477.png"},
+    {"id":5,"role":"unit-list","printedPage":89,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-44d6f64e-ee68-43e0-a4c4-97d9badb7024.png"},
+    {"id":6,"role":"alphabetical-index","printedPage":90,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-feb1a104-6db2-4b9b-8dfd-31067a534c00.png"},
+    {"id":7,"role":"alphabetical-index","printedPage":91,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-cdbd53b1-714d-43b2-9907-e17370fb7bda.png"},
+    {"id":8,"role":"alphabetical-index","printedPage":92,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-fa03c352-78fb-48c2-8612-ca87094f49e3.png"},
+    {"id":9,"role":"alphabetical-index","printedPage":93,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-2719f5af-43dc-4e16-ba03-c20f98ef6f29.png"}
+  ],
+  "contents":[
+    {"title":"Unit 1 Sports","startPage":2},{"title":"Unit 2 Hobbies","startPage":14},{"title":"Unit 3 Weather","startPage":26},{"title":"Revision 1","startPage":38},{"title":"Unit 4 Fun activities","startPage":42},{"title":"Unit 5 Animals","startPage":54},{"title":"Unit 6 My day","startPage":66},{"title":"Revision 2","startPage":78},{"title":"Appendix 1 Chants and songs in each unit","startPage":82},{"title":"Appendix 2 Vocabulary in each unit","startPage":87},{"title":"Appendix 3 Vocabulary A-Z","startPage":90}
+  ],
+  "units":[
+    {"unitId":"unit-1","title":"Unit 1 Sports","contentsStartPage":2,"sourceImages":[3],"entries":[
+      ["jump","跳",4,true,true,"word",""],["rope","绳",4,false,false,"word",""],["swim","游泳",4,true,true,"word",""],["run","跑；跑步",4,true,true,"word",""],["play","参加（体育运动、游戏、比赛等）",4,true,true,"word","与 Unit 2 的 play（演奏）分单元保留"],["ping-pong","乒乓球",4,true,true,"word",""],["basketball","篮球",4,true,true,"word",""],["football","足球",4,true,true,"word",""],["once","一次",6,false,false,"word",""],["week","一周",6,true,true,"word",""],["twice","两次",6,false,false,"word",""],["time","次",6,true,true,"word","Unit 6 另有“时间”义"],["every","每",6,true,true,"word",""],["day","一天",6,true,true,"word",""],["sport","体育运动",2,true,true,"word",""],["make","使变得；结成（朋友）",4,true,true,"word",""],["be good at","擅长",4,false,false,"phrase",""],["from","来自",8,true,true,"word",""],["the USA","美国",8,false,false,"phrase",""],["China","中国",8,true,true,"word",""]
+    ]},
+    {"unitId":"unit-2","title":"Unit 2 Hobbies","contentsStartPage":14,"sourceImages":[3],"entries":[
+      ["dance","跳舞",16,true,true,"word",""],["play","演奏（乐器）",16,true,true,"word","与 Unit 1 的 play（参加运动/游戏）分单元保留"],["guitar","吉他",16,false,false,"word",""],["paint","（用颜料）画",16,false,false,"word",""],["listen","听",16,true,true,"word",""],["music","音乐；乐曲",16,true,true,"word",""],["collect","收集",16,false,false,"word",""],["stamp","邮票",16,false,false,"word",""],["weiqi","围棋",18,false,false,"word","原图斜体"],["read","读；阅读",18,true,true,"word",""],["story","故事",18,true,true,"word",""],["practise","练习",18,false,false,"word","英式拼写"],["kung fu","功夫",18,false,false,"phrase",""],["drum","鼓",18,false,false,"word",""],["hobby","业余爱好",14,false,false,"word",""],["these","这些",16,true,true,"word",""],["any","任何的；任一的",16,true,true,"word",""],["fishing","钓鱼",20,false,false,"word",""],["eat","吃；吃饭",20,true,true,"word",""]
+    ]},
+    {"unitId":"unit-3","title":"Unit 3 Weather","contentsStartPage":26,"sourceImages":[3,4],"entries":[
+      ["hot","温度高的；热的",28,true,true,"word",""],["warm","温暖的",28,true,true,"word",""],["cool","凉的；凉爽的",28,true,true,"word",""],["cold","寒冷的",28,true,true,"word",""],["sunny","阳光充足的；阳光灿烂的",30,true,true,"word",""],["rainy","多雨的",30,false,false,"word",""],["cloudy","多云的；阴的",30,true,true,"word",""],["snowy","下雪多的",30,false,false,"word",""],["windy","多风的",30,true,true,"word",""],["weather","天气",26,true,true,"word",""],["how","怎么样",28,true,true,"word",""],["there","在那里",28,true,true,"word",""],["should","（提出建议）应该",28,true,true,"word",""],["sometimes","有时候",30,true,true,"word",""],["also","也；还",30,true,true,"word",""],["umbrella","伞",30,true,true,"word",""],["will","将；会",32,true,true,"word",""],["put on","穿上；戴上",32,false,false,"phrase",""]
+    ]},
+    {"unitId":"unit-4","title":"Unit 4 Fun activities","contentsStartPage":42,"sourceImages":[4],"entries":[
+      ["go","去",44,true,true,"word",""],["boating","划船",44,false,false,"word",""],["fly","放飞；飞",44,true,true,"word",""],["snowman","雪人",44,false,false,"word",""],["bookshop","书店",46,false,false,"word",""],["library","图书馆",46,true,true,"word",""],["cinema","电影院",46,true,true,"word",""],["museum","博物馆",46,false,false,"word",""],["sports centre","体育馆",46,false,false,"phrase","英式拼写"],["fine","（天气）晴朗的",44,true,true,"word",""],["too","太；过于",46,true,true,"word",""],["now","现在",46,true,true,"word",""],["after","（时间）在……后",46,true,true,"word",""],["all kinds of","各种各样的",48,false,false,"phrase",""],["when","当……的时候",48,true,true,"word",""],["park","公园",48,true,true,"word",""]
+    ]},
+    {"unitId":"unit-5","title":"Unit 5 Animals","contentsStartPage":54,"sourceImages":[4,5],"entries":[
+      ["bear","熊",56,true,true,"word",""],["panda","大熊猫",56,true,true,"word",""],["tiger","老虎",56,true,true,"word",""],["elephant","大象",56,true,true,"word",""],["monkey","猴子",56,true,true,"word",""],["lion","狮子",56,true,true,"word",""],["arm","手臂",58,true,true,"word",""],["foot","脚",58,true,true,"word",""],["leg","腿",58,true,true,"word",""],["body","身体",58,true,true,"word",""],["tail","尾巴",58,true,true,"word",""],["head","头",58,true,true,"word",""],["favourite","最喜欢的",56,true,true,"word","英式拼写"],["fast","快的；迅速的",56,true,true,"word",""],["clever","聪明的",56,true,true,"word",""],["its","它的",58,true,true,"word",""],["pet","宠物",60,true,true,"word",""],["meat","（食用）肉",60,true,true,"word",""],["slow","缓慢的；迟缓的",60,true,true,"word",""]
+    ]},
+    {"unitId":"unit-6","title":"Unit 6 My day","contentsStartPage":66,"sourceImages":[5],"entries":[
+      ["thirteen","十三",68,false,true,"word",""],["fourteen","十四",68,false,true,"word",""],["fifteen","十五",68,false,true,"word",""],["sixteen","十六",68,false,true,"word",""],["seventeen","十七",68,false,true,"word",""],["eighteen","十八",68,false,true,"word",""],["nineteen","十九",68,false,true,"word",""],["twenty","二十",70,false,true,"word",""],["thirty","三十",70,false,true,"word",""],["forty","四十",70,false,true,"word",""],["fifty","五十",70,false,true,"word",""],["get up","起床",70,false,false,"phrase",""],["time","时间",70,true,true,"word","Unit 1 另有“次”义"],["clock","时钟",70,true,true,"word",""],["have to","必须；不得不",70,false,false,"phrase",""],["get to","到达",70,false,false,"phrase",""],["before","在……之前",70,true,true,"word",""],["hurry up","（用于催促）赶紧",70,false,false,"phrase",""],["at","在（某时刻）",72,true,true,"word",""],["o'clock","……点钟",72,true,true,"word","排版归一为 straight apostrophe；原词头在教材中为 o’clock"],["breakfast","早餐；早饭",72,true,true,"word",""],["over","结束",72,true,true,"word",""],["half","半；一半",72,true,true,"word",""],["hour","小时",72,true,true,"word",""],["go to bed","上床睡觉",72,false,false,"phrase",""]
+    ]}
+  ],
+  "alphabeticalIndex":{"entries":[
+    "*after@46","all kinds of@48","*also@30","*any@16","*arm@58","*at@72","*basketball@4","be good at@4","*bear@56","*before@70","boating@44","*body@58","bookshop@46","*breakfast@72","*China@8","*cinema@46","*clever@56","*clock@70","*cloudy@30","*cold@28","collect@16","*cool@28","*dance@16","*day@6","drum@18","*eat@20","eighteen@68","*elephant@56","*every@6","*fast@56","*favourite@56","fifteen@68","fifty@70","*fine@44","fishing@20","*fly@44","*foot@58","*football@4","forty@70","fourteen@68","*from@8","get to@70","get up@70","*go@44","go to bed@72","guitar@16","*half@72","have to@70","*head@58","hobby@14","*hot@28","*hour@72","*how@28","hurry up@70","*its@58","*jump@4","kung fu@18","*leg@58","*library@46","*lion@56","*listen@16","*make@4","*meat@60","*monkey@56","museum@46","*music@16","nineteen@68","*now@46","*o'clock@72","once@6","*over@72","paint@16","*panda@56","*park@48","*pet@60","*ping-pong@4","*play@4,16","practise@18","put on@32","rainy@30","*read@18","rope@4","*run@4","*should@28","seventeen@68","sixteen@68","*slow@60","snowman@44","snowy@30","*sometimes@30","*sport@2","sports centre@46","stamp@16","*story@18","*sunny@30","*swim@4","*tail@58","the USA@8","*there@28","*these@16","thirteen@68","thirty@70","*tiger@56","*time@6,70","*too@46","twenty@70","twice@6","*umbrella@30","*warm@28","*weather@26","*week@6","weiqi@18","*when@48","*will@32","*windy@30"
+  ]},
+  "reviewIssues":[
+    {"note":"封面显示2024审定标志；版权页未提供，具体版次/印次未知。"},
+    {"note":"本批提供目录、单元词表和A–Z词汇表；未提供Appendix 1正文及Revision正文，未按标题补造词条。"},
+    {"term":"play","note":"Unit 1“参加体育运动/游戏”和 Unit 2“演奏乐器”是不同义项，分别保留；A–Z页码为4、16。"},
+    {"term":"time","note":"Unit 1“次”和 Unit 6“时间”分别保留；A–Z页码为6、70。"},
+    {"note":"词汇字体粗细和跨行释义由图片人工转录，需审稿人对照原图复核。"},
+    {"note":"图片页脚印有“仅供个人学习使用，未经授权不得另做他用”；本提取稿只作审阅，公共发布须先核实另行授权。"}
+  ],
+  "limitations":["本稿只转录可见词表；未补造音标、例句、课程练习、音频或插画。","来源图片仅作审校证据保留，不作为词汇学习插图发布。","提取稿不等同于已导入或公开发布的课程。"]
+}

@@ -7,7 +7,8 @@ async function main() {
   const storage = new Map();
   const context = {
     localStorage: { getItem: k => storage.get(k) || null, setItem: (k,v) => storage.set(k,String(v)), removeItem: k => storage.delete(k) },
-    fetch: async () => response
+    fetch: async () => response,
+    atob
   };
   context.window = context;
   vm.runInNewContext(fs.readFileSync(require.resolve('./api.js'), 'utf8'), context);
@@ -16,13 +17,25 @@ async function main() {
   }) };
   await assert.rejects(context.ChunkAPI.submitOperation({ protocol:3, type:'deck.put', payload:{} }), error =>
     error.status === 409 && error.code === 'SYNC_CONFLICT' && error.traceId === '12345678-1234-4234-8234-123456789abc' && error.conflicts[0].id === 'd1');
-  response = { status: 200, ok: true, text: async () => '{"ok":true}' };
+  response = { status: 200, ok: true, headers:{get:name=>name==='X-ChunkLab-Account-Id'?'local':null}, text: async () => '{"ok":true}' };
   assert.equal((await context.ChunkAPI.submitOperation({ protocol:3, type:'deck.put', payload:{} })).ok, true);
   const api=context.ChunkAPI;
   let snapshotUrl;
-  context.fetch=async(url)=>{ snapshotUrl=url; return {status:200,ok:true,text:async()=>'{"seq":17,"delta":true}'}; };
+  context.fetch=async(url)=>{ snapshotUrl=url; return {status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'local':null},text:async()=>'{"seq":17,"delta":true}'}; };
   await api.getData(12);
   assert.ok(snapshotUrl.endsWith('/api/data?since=12'), 'confirmed cache pulls must request a delta from the applied watermark');
+  const jwtFor=uid=>'e30.'+Buffer.from(JSON.stringify({uid})).toString('base64url')+'.sig';
+  api.setToken(jwtFor(41));
+  context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'41':null},text:async()=>'{"seq":18,"mem":{}}'});
+  assert.equal((await api.getData()).seq,18,'confirmed sync accepts only the account echoed by the service');
+  context.fetch=async()=>({status:200,ok:true,headers:{get:()=>null},text:async()=>'{"seq":19,"mem":{"foreign":true}}'});
+  await assert.rejects(api.getData(),e=>e.code==='SERVER_IDENTITY_REQUIRED');
+  context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'42':null},text:async()=>'{"ok":true}'});
+  await assert.rejects(api.submitOperation({protocol:3,type:'learning.answer',requestId:'identity-mismatch',payload:{}}),e=>e.code==='SERVER_IDENTITY_MISMATCH');
+  context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'41':null},text:async()=>'{"ok":true}'});
+  assert.equal((await api.getOperationReceipt('identity-receipt')).ok,true);
+  assert.equal((await api.importCourseContent({protocol:3,type:'course.put'})).ok,true);
+  api.clearToken();
   let release;
   context.fetch=()=>new Promise(resolve=>{release=resolve;});
   api.setToken('account-a');
@@ -37,6 +50,8 @@ async function main() {
   release({status:200,ok:true,text:async()=>'{"mem":{"private":"B"}}'});
   await assert.rejects(pending,e=>e.code==='SESSION_CHANGED');
 
+  await assert.rejects(api.getData(),e=>e.code==='SESSION_INCONSISTENT');
+  api.setSession('', 'account-c'); // Explicitly re-establish a consistent session.
   pending=api.getData();
   api.setBase('https://other.invalid');
   release({status:200,ok:true,text:async()=>'{"ok":true}'});
@@ -129,6 +144,11 @@ async function main() {
   assert.ok(healthUrl.endsWith('/api/client-save-health'));
   assert.equal(healthOptions.headers.Authorization, 'Bearer guest-account-token');
   assert.equal(JSON.parse(healthOptions.body).pending, 2);
+  context.fetch = async () => ({ status: 403, ok: false, text: async () =>
+    '{"allowed":false,"reasonCode":"TRIAL_DAILY_LIMIT","nextResetAt":123456}' });
+  await assert.rejects(api.request('/api/course-content/test/units/unit'), error =>
+    error.code === 'TRIAL_DAILY_LIMIT' && error.reasonCode === 'TRIAL_DAILY_LIMIT' && error.nextResetAt === 123456);
+  assert.equal(api.getToken(), 'guest-account-token', 'quota rejection preserves login');
   console.log('[api] stale token/base/body responses rejected; late 401 preserves new login');
   console.log('[api] error receipts preserved; success unaffected');
 }

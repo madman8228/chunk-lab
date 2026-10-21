@@ -6,7 +6,7 @@
 
   var queue = Promise.resolve();
   var listeners = [];
-  var state = { phase: 'idle', pending: 0, error: null, blocked: 0, traceId: null };
+  var state = { phase: 'idle', pending: 0, error: null, blocked: 0, deferred: 0, traceId: null };
   var activity = 0;
   var retryTimer = null;
   var saveHealthTimer = null;
@@ -38,7 +38,7 @@
   }
 
   function emit() {
-    var snapshot = { phase: state.phase, pending: state.pending, error: state.error, blocked: state.blocked, traceId: state.traceId };
+    var snapshot = { phase: state.phase, pending: state.pending, error: state.error, blocked: state.blocked, deferred: state.deferred, traceId: state.traceId };
     listeners.slice().forEach(function (listener) { try { listener(snapshot); } catch (_) {} });
     if (typeof global.dispatchEvent === 'function' && typeof global.CustomEvent === 'function') {
       global.dispatchEvent(new global.CustomEvent('server-store-state', { detail: snapshot }));
@@ -74,7 +74,7 @@
       saveHealthTimer = null;
       readQueue().then(function (rows) {
         if (!current(captured)) return;
-        var active = rows.filter(function (row) { return row.status !== 'blocked'; });
+        var active = rows.filter(function (row) { return row.status !== 'blocked' && row.status !== 'deferred-version'; });
         var oldest = active.reduce(function (value, row) {
           var created = Number(row.createdAt);
           return Number.isFinite(created) && created > 0 ? Math.min(value, created) : value;
@@ -87,7 +87,7 @@
         var traceId = latestFailure && latestFailure.lastTraceId || state.traceId || null;
         if (typeof traceId !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(traceId)) traceId = null;
         var retryAttempts = rows.reduce(function (sum, row) { return sum + Math.max(0, Number(row.attempts) || 0); }, 0);
-        var report = { version: 1, clientId: getSaveHealthClientId(), pending: active.length, blocked: rows.length - active.length,
+        var report = { version: 1, clientId: getSaveHealthClientId(), pending: active.length, blocked: rows.filter(function(row){return row.status==='blocked';}).length, deferredVersion: rows.filter(function(row){return row.status==='deferred-version';}).length,
           retryAttempts: Math.min(retryAttempts, 1000000), oldestPendingAt: Number.isFinite(oldest) ? oldest : null,
           errorCode: errorCode, traceId: traceId };
         var signature = JSON.stringify(report);
@@ -97,7 +97,7 @@
           if (!current(captured)) return;
           lastSaveHealthSignature = signature;
           lastSaveHealthAt = now;
-          if ((report.pending || report.blocked) && saveHealthHeartbeat == null) {
+          if ((report.pending || report.blocked || report.deferredVersion) && saveHealthHeartbeat == null) {
             saveHealthHeartbeat = global.setTimeout(function () {
               saveHealthHeartbeat = null;
               scheduleSaveHealthReport();
@@ -214,9 +214,20 @@
         throw changedError;
       }
       state.phase = 'sending'; state.error = null; state.traceId = null; emit();
-      return row.operation && (row.operation.type === 'course.put' || row.operation.type === 'deck.put') && row.bytes > 256 * 1024
-        ? global.ChunkAPI.importCourseContent(row.operation)
-        : global.ChunkAPI.submitOperation(row.operation);
+      if (row.operation && (row.operation.type === 'course.put' || row.operation.type === 'deck.put') && row.bytes > 256 * 1024)
+        return global.ChunkAPI.importCourseContent(row.operation);
+      if (row.operation.type !== 'learning.answer' || !global.ServerCache || global.ServerCache.supportsEvidenceDelta !== true)
+        return global.ChunkAPI.submitOperation(row.operation);
+      var baseline = global.ServerCache && typeof global.ServerCache.read === 'function'
+        ? global.ServerCache.read().catch(function () { return null; }) : Promise.resolve(null);
+      return baseline.then(function (cache) {
+        if (!current(captured)) { var changed = new Error('账号已变化，操作保留'); changed.code = 'SESSION_CHANGED'; throw changed; }
+        var stat = cache && cache.snapshot && cache.snapshot.mem && cache.snapshot.mem.stats &&
+          cache.snapshot.mem.stats.bySentence && cache.snapshot.mem.stats.bySentence[row.operation.payload.key];
+        var evidence = stat && stat.learningV1 && stat.learningV1.evidence;
+        var longHistory = Array.isArray(evidence) && evidence.length >= (global.ServerCache.evidenceDeltaMinEvents || 32) - 1;
+        return global.ChunkAPI.submitOperation(row.operation, longHistory ? cache.appliedSeq : undefined);
+      });
     }).then(function (result) {
       if (!current(captured)) {
         var changedError = new Error('账号或服务地址已切换，操作保留待恢复');
@@ -238,7 +249,21 @@
           settleCommit(row.requestId, null, result);
           return result;
         }
-        return refreshThrough(result.seq).then(function () {
+        var confirmation = typeof global.ServerCache.applyReceipt === 'function'
+          ? global.ServerCache.applyReceipt(result).catch(function (error) {
+            if (error && error.code === 'SESSION_CHANGED') throw error;
+            return null; // Durable ACK remains queued; use the proven downlink fallback.
+          }) : Promise.resolve(null);
+        return confirmation.then(function (applied) {
+          if (!current(captured)) {
+            var changed = new Error('账号或服务地址已切换，操作保留待恢复'); changed.code = 'SESSION_CHANGED'; throw changed;
+          }
+          if (!applied || Number(applied.cache && applied.cache.appliedSeq) < Number(result.seq)) return refreshThrough(result.seq);
+          (applied.retired || []).forEach(function (retired) {
+            if (retired && retired.receipt) settleCommit(retired.requestId, null, retired.receipt);
+          });
+          return applied;
+        }).then(function () {
           return result;
         }).catch(function (error) {
           error = error || new Error('确认数据暂未下载');
@@ -304,6 +329,20 @@
         Object.keys(payload.patch && typeof payload.patch === 'object' ? payload.patch : {})
           .forEach(function (key) { add('setting', key); });
         break;
+      case 'workspace.select':
+        add('workspace', payload.itemType + ':' + payload.targetId);
+        break;
+      case 'vocabulary.session':
+      case 'vocabulary.complete':
+      case 'vocabulary.rehearse':
+        add('wordbook',payload.unitId?JSON.stringify([payload.bookId,payload.unitId]):payload.bookId);
+        break;
+      case 'vocabulary.browse':
+        add('vocabulary-browse',JSON.stringify([payload.bookId,payload.unitId||null,payload.planRevision]));
+        break;
+      case 'vocabulary.attempt':
+        add('vocabulary-attempt',JSON.stringify([payload.bookId,payload.unitId||null,payload.practiceType||'sentence-cloze',payload.sessionId,payload.itemId]));
+        break;
     }
     return targets.length ? targets : ['operation:' + String(operation && operation.type || 'unknown')];
   }
@@ -315,23 +354,38 @@
   function hasBlockedTarget(row, blockedTargets) {
     return operationTargets(row).some(function (target) { return blockedTargets[target] === true; });
   }
+  function updateQueueState(rows, fallback) {
+    state.pending = rows.filter(function (row) { return row.status !== 'blocked' && row.status !== 'deferred-version'; }).length;
+    state.blocked = rows.filter(function (row) { return row.status === 'blocked'; }).length;
+    state.deferred = rows.filter(function (row) { return row.status === 'deferred-version'; }).length;
+    state.phase = state.pending ? (fallback || 'pending') : state.blocked ? 'blocked' : state.deferred ? 'deferred-version' : (fallback || 'saved');
+  }
+
+  function roundAwaitingAnswers(row, errorCode) {
+    return row && row.operation && row.operation.type === 'learning.roundComplete' && errorCode === 'ROUND_INCOMPLETE';
+  }
 
   function drain() {
     if (!protocolReady()) {
       return readQueue().then(function (rows) {
-        state.pending = rows.filter(function (row) { return row.status !== 'blocked'; }).length;
-        state.blocked = rows.filter(function (row) { return row.status === 'blocked'; }).length;
-        state.phase = state.pending ? 'paused' : state.blocked ? 'blocked' : 'idle';
-        state.error = null; emit();
+        updateQueueState(rows, 'paused');
+        state.error = durableCacheConflict(rows); emit();
         return [];
       });
     }
     var upgradeRequired = false;
     return readQueue().then(refreshAcknowledged).then(function () { return readQueue(); }).then(function (rows) {
+      // Older clients classified missing answer evidence as a permanent failure.
+      // Retry the original idempotent request without replacing its payload.
+      return Promise.all(rows.filter(function(row){return row.status === 'blocked' && !row.receipt && roundAwaitingAnswers(row,row.lastError);}).map(function(row){
+        return global.IDBStore.updatePendingOperation(row.requestId,{status:'pending'});
+      })).then(function(){return readQueue();});
+    }).then(function (rows) {
       var results = [], index = 0, blockedTargets = Object.create(null);
       function next() {
         if (upgradeRequired || index >= rows.length) return Promise.resolve(results);
         var row = rows[index++];
+        if (row.status === 'deferred-version') return next();
         if (row.status === 'blocked') { addBlockedTargets(row, blockedTargets); return next(); }
         if (row.status === 'acked-awaiting-apply') return next();
         if (hasBlockedTarget(row, blockedTargets)) { addBlockedTargets(row, blockedTargets); return next(); }
@@ -342,7 +396,7 @@
             state.phase = 'paused'; state.error = 'CLIENT_UPDATE_REQUIRED'; emit();
             return next();
           }
-          var permanent = status >= 400 && status < 500 && status !== 408 && status !== 429 && status !== 401;
+          var permanent = status >= 400 && status < 500 && status !== 408 && status !== 429 && status !== 401 && !roundAwaitingAnswers(row,error && error.code);
           var patch = { attempts: (Number(row.attempts) || 0) + 1,
             lastAttemptAt: Date.now(), lastError: String(error && (error.code || error.message) || 'NETWORK_ERROR').slice(0, 160) };
           if (error && typeof error.traceId === 'string') patch.lastTraceId = error.traceId;
@@ -362,22 +416,22 @@
       return next();
     }).then(function (results) {
       return readQueue().then(function (rows) {
-        state.pending = rows.filter(function (row) { return row.status !== 'blocked'; }).length;
-        state.blocked = rows.filter(function (row) { return row.status === 'blocked'; }).length;
-        state.phase = upgradeRequired ? 'paused' : state.pending ? 'pending' : state.blocked ? 'blocked' : 'saved';
+        updateQueueState(rows, upgradeRequired ? 'paused' : undefined);
         state.error = upgradeRequired ? 'CLIENT_UPDATE_REQUIRED' : null; state.traceId = null; retryDelay = 1000; emit();
         return results;
       });
     }).catch(function (error) {
       return readQueue().then(function (rows) {
-        state.pending = rows.filter(function (row) { return row.status !== 'blocked'; }).length;
-        state.blocked = rows.filter(function (row) { return row.status === 'blocked'; }).length;
+        updateQueueState(rows, 'pending');
         var authenticationExpired = Number(error && error.status) === 401 || error && error.code === 'NOT_AUTH';
-        state.phase = authenticationExpired || error && error.code === 'SESSION_CHANGED' ? 'paused' : 'pending';
+        var identityConflict = error && ['SERVER_IDENTITY_REQUIRED','SERVER_IDENTITY_MISMATCH','SERVER_SEQ_ROLLBACK','SERVER_UPDATE_REQUIRED'].includes(error.code);
+        state.phase = authenticationExpired || identityConflict || error && error.code === 'SESSION_CHANGED' ? 'paused' : 'pending';
         state.error = error && (error.code || error.message) || 'NETWORK_ERROR';
         state.traceId = error && error.traceId || null;
         emit();
-        scheduleRetry(error);
+        if(identityConflict) rows.filter(function(row){return row.status==='pending'||row.status==='acked-awaiting-apply';})
+          .forEach(function(row){settleCommit(row.requestId,error);});
+        else scheduleRetry(error);
         return [];
       });
     });
@@ -456,14 +510,20 @@
       (commitWaiters[id] || (commitWaiters[id] = [])).push({ resolve: resolve, reject: reject });
     });
     var enqueueOptions = Object.assign({}, options, { requestId: id });
-    submit(type, payload, enqueueOptions).catch(function (error) { settleCommit(id, error); });
+    committed.durable = submit(type, payload, enqueueOptions);
+    committed.durable.catch(function (error) { settleCommit(id, error); });
     return committed;
   }
 
   function scheduleRetry(error) {
-    if (retryTimer != null || (error && (Number(error.status) === 401 || error.code === 'NOT_AUTH' || error.code === 'SESSION_CHANGED'))) return;
-    var delay = Number(error && error.retryAfterMs);
-    if (!Number.isFinite(delay) || delay < 0) delay = Math.min(retryDelay, 30000) * (0.8 + Math.random() * 0.4);
+    if (retryTimer != null || (error && (Number(error.status) === 401 || error.code === 'NOT_AUTH' || error.code === 'SESSION_CHANGED' ||
+        ['SERVER_IDENTITY_REQUIRED','SERVER_IDENTITY_MISMATCH','SERVER_SEQ_ROLLBACK','SERVER_UPDATE_REQUIRED'].includes(error.code)))) return;
+    var requestedDelay = error && error.retryAfterMs;
+    // Missing/malformed hints must not coerce to zero and hammer the service.
+    // Clamp valid hints to browser timer bounds; keep normal Retry-After intact.
+    var delay = typeof requestedDelay === 'number' && Number.isFinite(requestedDelay) && requestedDelay > 0
+      ? Math.min(Math.max(requestedDelay, 1000), 2147483647)
+      : Math.min(retryDelay, 30000) * (0.8 + Math.random() * 0.4);
     retryDelay = Math.min(retryDelay * 2, 30000);
     retryTimer = global.setTimeout(function () { retryTimer = null; retryPending().catch(function () {}); }, delay);
   }
@@ -483,14 +543,18 @@
     return run();
   }
 
+  function durableCacheConflict(rows) {
+    return (rows || []).some(function(row) {
+      return row.status === 'acked-awaiting-apply' && row.lastError === 'SERVER_SEQ_ROLLBACK';
+    }) ? 'SERVER_SEQ_ROLLBACK' : null;
+  }
+
   function refreshState() {
     var observedActivity = activity;
     return readQueue().then(function (rows) {
       if (observedActivity === activity) {
-        state.pending = rows.filter(function (row) { return row.status !== 'blocked'; }).length;
-        state.blocked = rows.filter(function (row) { return row.status === 'blocked'; }).length;
-        state.phase = state.pending ? 'pending' : state.blocked ? 'blocked' : 'idle';
-        state.error = null; state.traceId = null; emit();
+        updateQueueState(rows, 'idle');
+        state.error = durableCacheConflict(rows); state.traceId = null; emit();
       }
       return api.state();
     }).catch(function (error) {
@@ -503,6 +567,69 @@
     submit: submit,
     submitCommitted: submitCommitted,
     retryPending: retryPending,
+    listVocabularyBrowseConflictArchives: function(options){
+      var captured={owner:global.AccountStorage.owner,scope:scope(),base:requestBase(),sessionEpoch:global.AccountStorage.sessionEpoch||''};
+      var selection={owner:captured.owner,scope:captured.scope,bookId:options&&options.bookId,unitId:options&&options.unitId||null,limit:options&&options.limit!==undefined?options.limit:20,after:options&&options.after!==undefined?options.after:null};
+      return Promise.resolve().then(function(){assertReady();if(!current(captured))throw new Error('账号或服务已变化');return global.IDBStore.listVocabularyBrowseConflictArchives(selection);}).then(function(page){if(!current(captured))throw new Error('账号或服务已变化');return page;});
+    },
+    readVocabularyBrowseConflictArchive: function(key){
+      var captured={owner:global.AccountStorage.owner,scope:scope(),base:requestBase(),sessionEpoch:global.AccountStorage.sessionEpoch||''};
+      return Promise.resolve().then(function(){
+        assertReady();if(!current(captured))throw new Error('账号或服务已变化');
+        return global.IDBStore.readVocabularyBrowseConflictArchive({key:key,owner:captured.owner,scope:captured.scope});
+      }).then(function(archive){if(!current(captured))throw new Error('账号或服务已变化');return archive;});
+    },
+    resolveVocabularyBrowseConflict: async function(selection, reviewed){
+      var captured={owner:global.AccountStorage.owner,scope:scope(),base:requestBase(),sessionEpoch:global.AccountStorage.sessionEpoch||''};
+      assertReady();
+      if(!selection||selection.confirmed!==true||!['cloud','local'].includes(selection.choice)||!reviewed||!Number.isSafeInteger(reviewed.resumeRev)||reviewed.resumeRev<0)throw new Error('请先明确核对和确认浏览位置');
+      var frozen=JSON.parse(JSON.stringify(selection)),expected=JSON.parse(JSON.stringify(reviewed));
+      if(frozen.owner!==captured.owner||frozen.scope!==captured.scope)throw new Error('冲突记录不属于当前账号或服务');
+      var query='?planRevision='+encodeURIComponent(frozen.planRevision)+(frozen.unitId?'&unitId='+encodeURIComponent(frozen.unitId):''),base='/api/wordbooks/'+encodeURIComponent(frozen.bookId);
+      var cloud=await global.ChunkAPI.request(base+'/browse-state'+query,{timeoutMs:12000});
+      if(!current(captured))throw new Error('账号或服务已变化，原记录保留');
+      var stepId=cloud.resume&&cloud.resume.stepId||cloud.plan&&cloud.plan.firstStepId;
+      if(!cloud.canPersist||cloud.resumeRev!==expected.resumeRev||stepId!==expected.stepId||cloud.plan.bookId!==frozen.bookId||cloud.plan.revision!==frozen.planRevision||cloud.plan.bookRevision!==expected.bookRevision||(cloud.plan.unitId||null)!==(frozen.unitId||null))throw new Error('云端浏览位置已变化，请重新核对；原记录保留');
+      var payload;
+      if(frozen.choice==='local'){
+        var target=await global.ChunkAPI.request(base+'/teaching-step'+query+'&stepId='+encodeURIComponent(expected.targetStepId),{timeoutMs:12000});
+        if(!current(captured))throw new Error('账号或服务已变化，原记录保留');
+        if(!target.plan||target.plan.revision!==frozen.planRevision||!target.step||target.step.stepId!==expected.targetStepId)throw new Error('本机目标不属于当前编排，原记录保留');
+        payload={bookId:frozen.bookId,bookRevision:cloud.plan.bookRevision,planRevision:frozen.planRevision,stepId:stepId,action:'jump',targetStepId:expected.targetStepId,expectedResumeRev:cloud.resumeRev};
+        if(frozen.unitId)payload.unitId=frozen.unitId;
+      }
+      var archive=await api.archiveVocabularyBrowseConflict(frozen,payload);
+      if(!current(captured))throw new Error('账号或服务已变化，归档和恢复请求已保留在原账号');
+      if(payload)kick(0,true);
+      return {archive:archive,cloud:cloud};
+    },
+    archiveVocabularyBrowseConflict: function(selection, replacementPayload){
+      var captured={owner:global.AccountStorage.owner,scope:scope(),base:requestBase(),sessionEpoch:global.AccountStorage.sessionEpoch||''};
+      if(!selection||selection.confirmed!==true)return Promise.reject(new Error('请先明确确认浏览冲突处理选择'));
+      var frozen=JSON.parse(JSON.stringify(selection));
+      var payload=replacementPayload&&JSON.parse(JSON.stringify(replacementPayload));
+      function run(){return serialized(function(){
+        assertReady();if(!current(captured))throw new Error('账号或服务已变化，原冲突记录保留');
+        if(frozen.owner!==captured.owner||frozen.scope!==captured.scope)throw new Error('冲突记录不属于当前账号或服务');
+        var replacement;
+        if(payload){var id=requestId(),operation={protocol:3,requestId:id,type:'vocabulary.browse',payload:payload};replacement={requestId:id,operation:operation,owner:captured.owner,sessionEpoch:captured.sessionEpoch,base:captured.base,scope:captured.scope,createdAt:Date.now(),attempts:0,lastError:null,status:'pending',bytes:byteLength(operation),attemptEvidenceVersion:1};}
+        return global.IDBStore.archiveVocabularyBrowseConflict(frozen,replacement).then(function(archive){
+          if(!current(captured))throw new Error('账号或服务已变化，归档已保留在原账号');
+          activity++;return refreshState().then(function(){return archive;});
+        });
+      });}
+      if(global.navigator&&global.navigator.locks&&typeof global.navigator.locks.request==='function')return global.navigator.locks.request('chunklab-operations:'+captured.scope,{mode:'exclusive'},run);
+      return run();
+    },
+    discardRejectedVocabularySession: function(requestId){
+      var owner=global.AccountStorage.owner;
+      return readQueue().then(function(rows){
+        global.AccountStorage.assertCurrent();if(owner!==global.AccountStorage.owner)return false;
+        var row=rows.find(function(item){return item.requestId===requestId;});
+        if(!row||row.receipt||row.status!=='blocked'||row.lastError!=='RESUME_CONFLICT'||row.operation?.type!=='vocabulary.session')return false;
+        return global.IDBStore.removePendingOperation(requestId).then(function(){return refreshState().then(function(){return true;});});
+      });
+    },
     discardBlockedContentConflict: function (requestId) {
       return readQueue().then(function (rows) {
         var row = rows.find(function (item) { return item.requestId === requestId; });
@@ -515,8 +642,14 @@
       });
     },
     refreshState: refreshState,
+    deferVocabularyVersionOperations: function(bookId,currentRevision){
+      var captured={owner:global.AccountStorage.owner,scope:scope(),sessionEpoch:global.AccountStorage.sessionEpoch||'',base:requestBase()};
+      if(typeof bookId!=='string'||typeof currentRevision!=='string')return Promise.reject(new Error('课程版本参数无效'));
+      return readQueue().then(function(rows){if(!current(captured))throw new Error('账号或服务已变化，旧版待保存记录未改变');return Promise.all(rows.filter(function(row){var op=row.operation,p=op&&op.payload;return row.owner===captured.owner&&row.scope===captured.scope&&['pending','blocked'].indexOf(row.status)>=0&&['vocabulary.session','vocabulary.complete','vocabulary.rehearse','vocabulary.attempt'].indexOf(op.type)>=0&&p&&p.bookId===bookId&&p.bookRevision!==currentRevision;}).map(function(row){if(!current(captured))throw new Error('账号或服务已变化，旧版待保存记录未改变');return global.IDBStore.updatePendingOperation(row.requestId,{status:'deferred-version',deferredVersion:{previousStatus:row.status,lastError:row.lastError||null,markedAt:Date.now(),currentRevision:currentRevision}});}));}).then(function(){if(!current(captured))throw new Error('账号或服务已变化；记录仍保留');return refreshState();});
+    },
+    exportDeferredVocabularyVersionOperations: function(bookId){var captured={owner:global.AccountStorage.owner,scope:scope(),sessionEpoch:global.AccountStorage.sessionEpoch||'',base:requestBase()};return readQueue().then(function(rows){if(!current(captured))throw new Error('账号或服务已变化');return rows.filter(function(row){return row.owner===captured.owner&&row.scope===captured.scope&&row.status==='deferred-version'&&row.operation?.payload?.bookId===bookId;}).map(function(row){return JSON.parse(JSON.stringify(row));});});},
     pending: function () { return readQueue(); },
-    state: function () { return { phase: state.phase, pending: state.pending, blocked: state.blocked, error: state.error, traceId: state.traceId }; },
+    state: function () { return { phase: state.phase, pending: state.pending, blocked: state.blocked, deferred: state.deferred, error: state.error, traceId: state.traceId }; },
     onState: function (listener) {
       if (typeof listener !== 'function') return function () {};
       listeners.push(listener);

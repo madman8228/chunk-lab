@@ -63,6 +63,7 @@ function stopServer() {
       deck.authoring = { template:'sentence-practice', templateVersion:1, contentForm:'sentences', learning:{ template:'sentence-practice', version:1, modes:['typing','chunkSelection'], defaultMode:'chunkSelection' } };
       const cache = await ServerCache.read();
       await ServerStore.submitCommitted('deck.put', { deck }, { requestId: 'metadata-authoring-update-001', expectedRev: cache.snapshot.revs.decks[id] });
+      await CourseEnrollment.join('user-deck:' + id);
     }, completeDeckId);
     await page.goto(BASE + '/main.html?course=' + encodeURIComponent('user-deck:' + completeDeckId) + '&lesson=' + encodeURIComponent('lesson:user-deck:' + completeDeckId), { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#stage:not(.hidden)');

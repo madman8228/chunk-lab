@@ -9,6 +9,7 @@ async function main() {
   const pending = new Map();
   let failNext = true;
   let failStatus = 0;
+  let roundIncomplete = false;
   const permanentFailureIds = new Set();
   let retryAfterMs = null;
   let rejectUpgrade = false;
@@ -68,6 +69,7 @@ async function main() {
       getBase: () => apiBase,
       submitOperation: async (operation) => {
         sent.push(operation);
+        if (roundIncomplete && operation.type === 'learning.roundComplete') throw Object.assign(new Error('answers not yet received'), { status:409, code:'ROUND_INCOMPLETE' });
         if (holdNetwork) await new Promise((resolve) => { releaseNetwork = resolve; });
         if (rejectUpgrade) throw Object.assign(new Error('client update required'), { status: 428, code: 'CLIENT_UPDATE_REQUIRED' });
         if (rejectAuth) throw Object.assign(new Error('NOT_AUTH'), { status: 401, code: 'NOT_AUTH' });
@@ -255,8 +257,10 @@ async function main() {
   failNext = true;
   const sentBeforeCommit = sent.length;
   let committedReceipt = null;
-  const committed = window.ServerStore.submitCommitted('course.progress', { courseId: 'course-committed' })
-    .then((receipt) => { committedReceipt = receipt; return receipt; });
+  const pendingCommit = window.ServerStore.submitCommitted('course.progress', { courseId: 'course-committed' });
+  assert.ok(pendingCommit.durable instanceof Promise, 'local durability is exposed separately from confirmation');
+  const committed = pendingCommit.then((receipt) => { committedReceipt = receipt; return receipt; });
+  await pendingCommit.durable;
   await flushUntil(() => Array.from(pending.values()).some((row) => row.operation.type === 'course.progress' && row.operation.payload.courseId === 'course-committed'));
   const committedRow = Array.from(pending.values()).find((row) => row.operation.payload && row.operation.payload.courseId === 'course-committed');
   assert.ok(committedRow, 'submitCommitted first durably queues its operation');
@@ -354,6 +358,16 @@ async function main() {
   });
   assert.equal(Array.from(timers.values()).some((timer) => timer.delay === 7000), true,
     'HTTP 429 honors the server-provided Retry-After delay rather than using local backoff');
+  for (const invalidDelay of [null, '', false, NaN, Infinity, -1, 0]) {
+    retryAfterMs = invalidDelay;
+    const attemptsBefore = pending.get(rateLimited.requestId).attempts;
+    fireNextTimer();
+    await flushUntil(() => pending.get(rateLimited.requestId).attempts > attemptsBefore && timers.size > 0);
+    assert.ok(Array.from(timers.values()).every(timer => timer.delay >= 800 && timer.delay <= 2147483647),
+      'invalid or zero retry delay must not create a hot loop: ' + String(invalidDelay));
+    assert.equal(pending.get(rateLimited.requestId).status, 'pending', 'rate limiting never drops durable work');
+    assert.equal(sent[sent.length - 1].requestId, rateLimited.requestId, 'retry keeps the idempotency key');
+  }
   failStatus = 0;
   retryAfterMs = null;
   const newOperationDuringBackoff = await window.ServerStore.submit('learning.answer', { eventId: 'event-new-work-during-backoff' });
@@ -420,6 +434,18 @@ async function main() {
       attemptEvidenceVersion: 1, bytes: JSON.stringify(operation).length };
   }
   const blockedCourseId = 'blocked_course_put_0001';
+  const waitingRoundId = 'historical_incomplete_round_01';
+  const waitingRound = queueRow(waitingRoundId,'learning.roundComplete',{sessionId:'session-waiting',answerCount:2},1000);
+  waitingRound.status='blocked';waitingRound.lastError='ROUND_INCOMPLETE';
+  pending.set(waitingRoundId,waitingRound);
+  roundIncomplete=true;
+  await window.ServerStore.retryPending();
+  assert.equal(pending.get(waitingRoundId).status,'pending','missing answers are retryable, including previously blocked rounds');
+  assert.equal(pending.get(waitingRoundId).operation.payload.answerCount,2,'recovery preserves original evidence requirements');
+  roundIncomplete=false;
+  await window.ServerStore.retryPending();
+  assert.equal(pending.has(waitingRoundId),false,'original request retires only after server confirmation');
+  assert.ok(sent.filter(row=>row.requestId===waitingRoundId).length>=2,'retry keeps the original idempotency key');
   const dependentProgressId = 'blocked_course_progress_01';
   const independentProgressId = 'independent_course_progress_1';
   pending.set(blockedCourseId, queueRow(blockedCourseId, 'course.put', { course: { courseId: 'course-blocked' } }, 1001));
@@ -435,6 +461,61 @@ async function main() {
   assert.equal(window.ServerStore.state().pending, 1, 'dependent work remains pending and is not reported as saved');
   assert.equal(window.ServerStore.state().blocked, 1, 'only the permanently rejected request is counted as blocked');
 
+  const browseBlocked=queueRow('browse_blocked_request_01','vocabulary.browse',{bookId:'same-book',planRevision:'a'.repeat(64)},2000);
+  browseBlocked.status='blocked';browseBlocked.lastError='RESUME_CONFLICT';pending.set(browseBlocked.requestId,browseBlocked);
+  const browseDependent=queueRow('browse_dependent_request','vocabulary.browse',{bookId:'same-book',planRevision:'a'.repeat(64)},2001);
+  const browseOtherVersion=queueRow('browse_other_revision_01','vocabulary.browse',{bookId:'same-book',planRevision:'b'.repeat(64)},2002);
+  const browseOtherUnit=queueRow('browse_other_unit_0001','vocabulary.browse',{bookId:'same-book',unitId:'unit-two',planRevision:'a'.repeat(64)},2003);
+  const originalPractice=queueRow('browse_original_practice','vocabulary.session',{bookId:'same-book',action:'pause'},2004);
+  for(const row of [browseDependent,browseOtherVersion,browseOtherUnit,originalPractice])pending.set(row.requestId,row);
+  const beforeBrowseIsolation=sent.length;await window.ServerStore.retryPending();
+  assert.ok(pending.has(browseBlocked.requestId));assert.ok(pending.has(browseDependent.requestId));
+  for(const row of [browseOtherVersion,browseOtherUnit,originalPractice])assert.equal(pending.has(row.requestId),false,'a browse conflict must not block another version, unit or assessment mode');
+  assert.deepEqual(sent.slice(beforeBrowseIsolation).map(row=>row.requestId),[browseOtherVersion.requestId,browseOtherUnit.requestId,originalPractice.requestId]);
+  let archiveStarted=false;const lockNames=[];
+  window.IDBStore.archiveVocabularyBrowseConflict=async selection=>{archiveStarted=true;return {key:'test-archive',rows:[pending.get(browseBlocked.requestId)],choice:selection.choice};};
+  window.navigator.locks={request:async(name,options,run)=>{lockNames.push(name);assert.equal(options.mode,'exclusive');return run();}};
+  const racingRow=queueRow('browse_archive_network_race','vocabulary.session',{bookId:'unrelated-book',action:'pause'},3000);pending.set(racingRow.requestId,racingRow);holdNetwork=true;
+  const inFlight=window.ServerStore.retryPending();await flushUntil(()=>typeof releaseNetwork==='function');
+  const archiveSelection={confirmed:true,owner:'owner-a',scope:legacyScope,bookId:'same-book',planRevision:'a'.repeat(64),requestIds:[browseBlocked.requestId,browseDependent.requestId],choice:'cloud'};
+  const archiving=window.ServerStore.archiveVocabularyBrowseConflict(archiveSelection);await Promise.resolve();await Promise.resolve();assert.equal(archiveStarted,false,'archive waits for the in-flight network drain');
+  holdNetwork=false;releaseNetwork();await inFlight;const archived=await archiving;assert.equal(archiveStarted,true);assert.equal(archived.key,'test-archive');assert.ok(lockNames.length>=2);assert.ok(lockNames.every(name=>name==='chunklab-operations:'+legacyScope),'drain and recovery use the same cross-tab lock');
+  archiveStarted=false;await assert.rejects(window.ServerStore.archiveVocabularyBrowseConflict({...archiveSelection,scope:'other-server'}),/不属于/);assert.equal(archiveStarted,false);
+  await assert.rejects(window.ServerStore.archiveVocabularyBrowseConflict({...archiveSelection,confirmed:false}),/确认/);
+  let replacementRow,archiveCalls=0;
+  window.IDBStore.archiveVocabularyBrowseConflict=async(selection,replacement)=>{archiveCalls++;replacementRow=replacement;return {key:'recovery-archive'};};
+  const plan={bookId:'same-book',bookRevision:'c'.repeat(64),revision:'a'.repeat(64),firstStepId:'one',unitId:null};
+  let cloudRev=9,networkFailure=false;
+  window.ChunkAPI.request=async url=>{if(networkFailure)throw Error('offline');return url.includes('browse-state')?{canPersist:true,plan,resumeRev:cloudRev,resume:{stepId:'cloud-step'}}:{plan,step:{stepId:'local-step'}};};
+  const reviewed={resumeRev:9,stepId:'cloud-step',bookRevision:plan.bookRevision,targetStepId:'local-step'};
+  cloudRev=10;await assert.rejects(window.ServerStore.resolveVocabularyBrowseConflict(archiveSelection,reviewed),/云端浏览位置已变化/);assert.equal(archiveCalls,0);
+  cloudRev=9;networkFailure=true;await assert.rejects(window.ServerStore.resolveVocabularyBrowseConflict(archiveSelection,reviewed),/offline/);assert.equal(archiveCalls,0);networkFailure=false;
+  await window.ServerStore.resolveVocabularyBrowseConflict(archiveSelection,reviewed);assert.equal(archiveCalls,1);assert.equal(replacementRow,undefined,'cloud choice must not enqueue a write');
+  await window.ServerStore.resolveVocabularyBrowseConflict({...archiveSelection,choice:'local'},reviewed);assert.equal(archiveCalls,2);
+  assert.equal(replacementRow.operation.type,'vocabulary.browse');assert.equal(replacementRow.operation.payload.action,'jump');assert.equal(replacementRow.operation.payload.expectedResumeRev,9);assert.equal(replacementRow.operation.payload.stepId,'cloud-step');assert.equal(replacementRow.operation.payload.targetStepId,'local-step');assert.equal(replacementRow.operation.payload.afterRequestId,undefined);assert.ok(!archiveSelection.requestIds.includes(replacementRow.requestId));
+  let readSelection;
+  window.IDBStore.readVocabularyBrowseConflictArchive=async selection=>{readSelection=selection;return archived;};
+  assert.equal((await window.ServerStore.readVocabularyBrowseConflictArchive('test-archive')).key,'test-archive');
+  assert.equal(readSelection.owner,'owner-a');assert.equal(readSelection.scope,legacyScope);
+  let listSelection;
+  window.IDBStore.listVocabularyBrowseConflictArchives=async selection=>{listSelection=selection;return {entries:[],nextAfter:null};};
+  await window.ServerStore.listVocabularyBrowseConflictArchives({bookId:'same-book',owner:'other-owner',scope:'other-server'});assert.equal(listSelection.owner,'owner-a');assert.equal(listSelection.scope,legacyScope);assert.equal(listSelection.limit,20);
+  window.IDBStore.listVocabularyBrowseConflictArchives=async()=>{window.AccountStorage.sessionEpoch='changed-during-list';return {entries:[]};};
+  await assert.rejects(window.ServerStore.listVocabularyBrowseConflictArchives({bookId:'same-book'}),/已变化/);window.AccountStorage.sessionEpoch='';
+  window.IDBStore.readVocabularyBrowseConflictArchive=async()=>{window.AccountStorage.sessionEpoch='changed-during-read';return archived;};
+  await assert.rejects(window.ServerStore.readVocabularyBrowseConflictArchive('test-archive'),/已变化/);
+  const attemptBase={bookId:'attempt-isolation',sessionId:'same-session',itemId:'same-item',practiceType:'word-choice'};
+  const blockedAttempt=queueRow('attempt_blocked_scope_01','vocabulary.attempt',attemptBase,4000);blockedAttempt.status='blocked';blockedAttempt.lastError='INVALID_ATTEMPT';pending.set(blockedAttempt.requestId,blockedAttempt);
+  const dependentAttempt=queueRow('attempt_dependent_scope','vocabulary.attempt',attemptBase,4001),otherModeAttempt=queueRow('attempt_other_mode_scope','vocabulary.attempt',{...attemptBase,practiceType:'word-dictation'},4002),otherUnitAttempt=queueRow('attempt_other_unit_scope','vocabulary.attempt',{...attemptBase,unitId:'u2'},4003);
+  for(const row of [dependentAttempt,otherModeAttempt,otherUnitAttempt])pending.set(row.requestId,row);await window.ServerStore.retryPending();assert.ok(pending.has(dependentAttempt.requestId));assert.equal(pending.has(otherModeAttempt.requestId),false);assert.equal(pending.has(otherUnitAttempt.requestId),false);
+  const oldRevisionRow=queueRow('old_version_queue_item','vocabulary.complete',{bookId:'versioned-book',bookRevision:'a'.repeat(64),itemId:'stable-item',contentRevision:'b'.repeat(64),sessionId:'old-session',answers:{blank:'borrow'}},5000);pending.set(oldRevisionRow.requestId,oldRevisionRow);
+  const originalOperation=JSON.stringify(oldRevisionRow.operation),sentBeforeDeferred=sent.length;
+  await window.ServerStore.deferVocabularyVersionOperations('versioned-book','c'.repeat(64));
+  assert.equal(pending.get(oldRevisionRow.requestId).status,'deferred-version');assert.equal(JSON.stringify(pending.get(oldRevisionRow.requestId).operation),originalOperation,'the original request body and id remain untouched');
+  assert.equal(window.ServerStore.state().deferred,1);assert.equal(window.ServerStore.state().pending,Array.from(pending.values()).filter(row=>row.status==='pending').length);
+  assert.equal((await window.ServerStore.exportDeferredVocabularyVersionOperations('versioned-book'))[0].requestId,oldRevisionRow.requestId);
+  await window.ServerStore.retryPending();assert.equal(sent.length,sentBeforeDeferred,'deferred old-version requests are never replayed automatically');assert.equal(pending.has(oldRevisionRow.requestId),true);
+  pending.delete(oldRevisionRow.requestId);
   console.log('server-store durable queue tests passed');
 }
 

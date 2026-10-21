@@ -316,7 +316,7 @@
     card.noValidate = true; card.tabIndex = -1;
     card.setAttribute('role', 'dialog'); card.setAttribute('aria-modal', 'true'); card.setAttribute('aria-labelledby', id + '-title');
     card.style.cssText = 'width:100%;max-width:420px;max-height:calc(100dvh - 32px);overflow:auto;background:#fff9e9;border:3px solid #70451e;border-radius:20px;padding:26px 28px;box-sizing:border-box;box-shadow:inset 0 0 0 5px #f0d49a,0 5px 0 #aa722e,0 18px 42px #24180d55;color:#523019';
-    var title = el('h2'); title.id = id + '-title'; title.textContent = binding && !(options && options.loginEntry) ? '绑定手机号' : '登录 / 注册';
+    var title = el('h2'); title.id = id + '-title'; title.textContent = binding ? '绑定手机号' : '登录';
     title.style.cssText = 'position:relative;display:table;margin:0 auto 18px;padding:8px 24px;border:3px solid #70451e;border-radius:10px;background:linear-gradient(#ffe18b,#f4be4d);box-shadow:inset 0 2px 0 #fff2c6,0 3px 0 #aa722e;font-size:24px;color:#523019;font-weight:900';
     function input(labelText, type, autocomplete) {
       var label = el('label'); label.style.cssText = 'display:block;margin-bottom:16px;color:#523019;font-size:14px';
@@ -334,8 +334,8 @@
     phone.parentNode.appendChild(phoneRow); phoneRow.appendChild(phone); phone.style.flex = '1'; phone.style.marginTop = '0'; phone.style.height = '50px';
     var code = input('短信验证码（六位）', 'text', 'one-time-code'); code.maxLength = 6; code.pattern = '[0-9]{6}';
     code.placeholder = '请输入验证码';
-    var password = input('密码', 'password', 'new-password'); password.required = false; password.maxLength = 72; password.placeholder = '设置密码（选填）';
-    var passwordHint = el('small'); passwordHint.id = id + '-password-hint'; passwordHint.textContent = '密码至少6位；设置后可用手机号＋密码登录。';
+    var password = input('密码', 'password', binding ? 'new-password' : 'current-password'); password.required = !binding; password.maxLength = 72; password.placeholder = binding ? '设置密码（选填）' : '请输入密码';
+    var passwordHint = el('small'); passwordHint.id = id + '-password-hint'; passwordHint.textContent = '密码至少6位；设置后可用手机号＋密码登录。';passwordHint.hidden=!binding;
     passwordHint.style.cssText = 'display:block;margin-top:7px;font-size:12px;line-height:1.5;color:#745333';
     password.setAttribute('aria-describedby',passwordHint.id); password.parentNode.appendChild(passwordHint);
     var send = el('button'); send.type = 'button'; send.textContent = '获取验证码';
@@ -347,22 +347,30 @@
     var submit = el('button'); submit.type = 'submit'; submit.textContent = binding ? '确认绑定' : '登录';
     submit.style.cssText = 'width:100%;min-height:48px;padding:12px;border:2px solid #70451e;background:linear-gradient(#ffdc77,#f4be4d);color:#523019;border-radius:12px;font:inherit;font-weight:800;cursor:pointer;box-shadow:inset 0 2px 0 #fff2c6,0 3px 0 #aa722e';
     card.appendChild(status); card.appendChild(submit);
-    var challenge = null, sentPhone = '', busy = false, timer = null, retryAt = 0, passwordMode = false;
+    var challenge = null, sentPhone = '', sentPurpose = '', busy = false, timer = null, retryAt = 0, passwordMode = !binding, mode = binding ? 'bind' : 'password', purpose = binding ? 'bind' : 'login';
+    function submitLabel(){return binding?'确认绑定':mode==='register'?'注册并登录':mode==='reset'?'设置密码并登录':'登录';}
+    function setMode(next){
+      if(busy)return;mode=next;passwordMode=mode==='password';purpose=binding?'bind':mode==='register'?'register':mode==='reset'?'reset':'login';
+      code.parentNode.hidden=passwordMode;code.parentNode.style.display=passwordMode?'none':'block';code.disabled=passwordMode;code.required=!passwordMode;send.hidden=passwordMode;
+      password.required=!binding;password.autocomplete=passwordMode?'current-password':'new-password';
+      password.placeholder=passwordMode?'请输入密码':binding?'设置密码（选填）':mode==='reset'?'设置新密码（至少6位）':'设置密码（至少6位）';
+      passwordHint.hidden=passwordMode;passwordHint.style.display=passwordMode?'none':'block';passwordHint.textContent=mode==='reset'?'设置新密码后，继续使用原账号和学习记录。':'密码至少6位，注册后使用手机号和密码登录。';
+      if(binding)passwordHint.textContent='密码至少6位；不填写则保留当前账号密码。';
+      title.textContent=binding?'绑定手机号':passwordMode?'登录':mode==='register'?'注册':'设置／找回密码';
+      submit.textContent=submitLabel();if(switchMode)switchMode.textContent=passwordMode?'注册账号':'返回登录';
+      if(recoveryEntry){recoveryEntry.hidden=!passwordMode;recoveryEntry.style.display=passwordMode?'inline-flex':'none';}if(legacyEntry){legacyEntry.hidden=!passwordMode;legacyEntry.style.display=passwordMode?'block':'none';}status.textContent='';
+    }
     if (!binding) {
-      var switchMode = el('button'); switchMode.type = 'button'; switchMode.textContent = '使用密码登录';
-      switchMode.style.cssText = 'display:block;margin:18px auto 0;padding:6px;border:0;background:none;color:#67431f;font:inherit;font-size:13px;text-decoration:underline;text-underline-offset:4px;cursor:pointer';
+      var switchMode = el('button'); switchMode.type = 'button'; switchMode.textContent = '注册账号';
+      var accountActions=el('div');accountActions.style.cssText='display:flex;align-items:center;justify-content:center;gap:18px;margin-top:12px';
+      switchMode.style.cssText = 'display:inline-flex;margin:0;padding:6px;border:0;background:none;color:#67431f;font:inherit;font-size:13px;text-decoration:underline;text-underline-offset:4px;cursor:pointer';
       switchMode.onclick = function() {
         if(busy) return;
-        passwordMode = !passwordMode;
-        code.parentNode.style.display = passwordMode ? 'none' : 'block'; send.hidden = passwordMode;
-        password.required = passwordMode; password.autocomplete = passwordMode ? 'current-password' : 'new-password';
-        password.placeholder = passwordMode ? '请输入密码' : '设置密码（选填）';
-        passwordHint.textContent = passwordMode ? '密码至少6位；忘记密码可切换验证码登录并重设。' : '密码至少6位；设置后可用手机号＋密码登录。';
-        title.textContent = passwordMode ? '密码登录' : '登录 / 注册';
-        switchMode.textContent = passwordMode ? '使用验证码登录 / 注册' : '使用密码登录';
-        status.textContent = ''; password.focus();
+        setMode(passwordMode?'register':'password');phone.focus();
       };
-      card.appendChild(switchMode);
+      accountActions.appendChild(switchMode);
+      var recoveryEntry=el('button');recoveryEntry.type='button';recoveryEntry.textContent='设置／找回密码';recoveryEntry.style.cssText=switchMode.style.cssText;
+      recoveryEntry.onclick=function(){if(!busy){setMode('reset');phone.focus();}};accountActions.appendChild(recoveryEntry);card.appendChild(accountActions);
       if(global.ChunkAuthUI.legacyPasswordLoginAllowed === true){
         var legacyEntry=el('button');legacyEntry.type='button';legacyEntry.textContent='使用旧账号登录';
         legacyEntry.style.cssText=switchMode.style.cssText;
@@ -374,7 +382,7 @@
         card.appendChild(legacyEntry);
       }
     }
-    var purpose = binding ? 'bind' : 'login';
+    setMode(mode);
     function close() {
       if(timer) clearInterval(timer);
       if(mask.parentNode) mask.parentNode.removeChild(mask);
@@ -382,7 +390,7 @@
     }
     function countdown() {
       var remaining = Math.max(0, Math.ceil((retryAt - Date.now()) / 1000));
-      send.disabled = remaining > 0;
+      send.disabled = busy || remaining > 0;
       send.textContent = remaining ? remaining + '秒后重发' : '获取验证码';
       if(!remaining && timer) { clearInterval(timer); timer = null; }
     }
@@ -392,12 +400,13 @@
       var value = phone.value.trim();
       if(!/^1[3-9]\d{9}$/.test(value)) { status.textContent = '请输入正确的中国大陆手机号'; phone.focus(); return; }
       send.disabled = true; send.textContent = '发送中…'; challenge = null;
-      global.ChunkAPI.phoneCode(value, purpose).then(function(r) {
+      var requestedPurpose=purpose;
+      global.ChunkAPI.phoneCode(value, requestedPurpose).then(function(r) {
         if(!mask.isConnected) return;
-        challenge = r.challengeId; sentPhone = value;
+        challenge = r.challengeId; sentPhone = value;sentPurpose=requestedPurpose;
         retryAt = Date.now() + r.retryAfter * 1000;
-        status.textContent = '验证码已发送，5 分钟内有效。';
-        countdown(); timer = setInterval(countdown, 1000); code.focus();
+        countdown();if(timer)clearInterval(timer);timer = setInterval(countdown, 1000);
+        if(purpose===requestedPurpose&&!passwordMode){status.textContent = '验证码已发送，5 分钟内有效。';code.focus();}
       }).catch(function(e) {
         if(!mask.isConnected) return;
         status.textContent = e.message || '暂时无法发送，请稍后再试';
@@ -408,14 +417,14 @@
     card.onsubmit = function(e) {
       e.preventDefault(); if(busy) return;
       if(!/^1[3-9]\d{9}$/.test(phone.value.trim())) { status.textContent = '请输入正确的中国大陆手机号'; phone.focus(); return; }
-      if((passwordMode || password.value) && password.value.length < 6) { status.textContent = '密码至少6位'; password.focus(); return; }
+      if((password.required || password.value) && password.value.length < 6) { status.textContent = '密码至少6位'; password.focus(); return; }
       if(new TextEncoder().encode(password.value).length > 72) { status.textContent = '密码最长72字节，请缩短后重试'; password.focus(); return; }
-      if(!passwordMode && (!challenge || sentPhone !== phone.value.trim())) { status.textContent = '请先获取此手机号的验证码'; return; }
+      if(!passwordMode && (!challenge || sentPhone !== phone.value.trim() || sentPurpose !== purpose)) { status.textContent = '请先获取此手机号的验证码'; return; }
       if(!passwordMode && !/^\d{6}$/.test(code.value)) { status.textContent = '请输入六位短信验证码'; code.focus(); return; }
       card.focus();
       busy = true; submit.disabled = true; send.disabled = true; phone.disabled = true; code.disabled = true; password.disabled = true;
-      if(switchMode) switchMode.disabled = true;
-      submit.textContent = binding ? '绑定中…' : '登录中…';
+      if(switchMode) switchMode.disabled = true;if(recoveryEntry)recoveryEntry.disabled=true;if(legacyEntry)legacyEntry.disabled=true;
+      submit.textContent = binding ? '绑定中…' : mode==='register'?'注册中…':mode==='reset'?'设置中…':'登录中…';
       var request = passwordMode ? global.ChunkAPI.phonePasswordLogin(phone.value.trim(), password.value) : global.ChunkAPI.phoneLogin(sentPhone, code.value, challenge, purpose, password.value);
       request.then(function(r) {
         if(!mask.isConnected) return;
@@ -428,9 +437,9 @@
       }).catch(function(error) {
         if(!mask.isConnected) return;
         status.textContent = error.message || '暂时无法登录，请稍后再试';
-        busy = false; submit.disabled = false; phone.disabled = false; code.disabled = false; password.disabled = false;
-        if(switchMode) switchMode.disabled = false;
-        submit.textContent = binding ? '确认绑定' : '登录'; countdown();
+        busy = false; submit.disabled = false; phone.disabled = false; code.disabled = passwordMode; password.disabled = false;
+        if(switchMode) switchMode.disabled = false;if(recoveryEntry)recoveryEntry.disabled=false;if(legacyEntry)legacyEntry.disabled=false;
+        submit.textContent = submitLabel(); countdown();
       });
     };
     var dismissible = binding || (options && options.dismissible);
@@ -438,6 +447,9 @@
       if(busy) return;
       if(!binding) { _loginShown = false; _loginWaiters = []; }
       close();
+      if(options && typeof options.onCancel==='function'){
+        try{options.onCancel();}catch(ignoreCancelError){}
+      }
     }
     if(dismissible) {
       card.style.position = 'relative';

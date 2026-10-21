@@ -1,4 +1,9 @@
 .learning-workspace{width:100%;box-sizing:border-box;max-width:1080px;margin:auto;padding:24px;color:var(--ink,#55351f)}
+/* Float the compact notice over the header edge without changing navigation or page layout. */
+#noticeBannerRail{display:none}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pageStats):not(.hidden)) #noticeBannerRail{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;box-sizing:border-box;align-items:flex-start;justify-content:center;padding-inline:12px;pointer-events:none}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pageStats):not(.hidden)) #noticeBannerRail .notice-banner{width:min(560px,calc(100vw - 24px));max-width:100%;min-width:0;height:auto;min-height:26.4px;flex:0 1 560px}
+html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pageStats):not(.hidden)) #noticeBannerRail .notice-banner-message{min-width:0}
 /* One shared shell supplies the gutters for all three workbench pages. */
 :is(#pageHome,#pageMyLearning,#pageDiscover) .learning-workspace{max-width:none;padding-inline:0}
 /* Home already provides navigation and a linked brand; avoid duplicate entry and spacer. */
@@ -41,7 +46,6 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 .workspace-filter-drawer::backdrop{background:rgb(55 35 20 / .35)}
 @media(max-width:700px){.workspace-filter-trigger,.workspace-filter-close{display:block}.workspace-filter-drawer .workspace-filter{display:block}.workspace-filter-drawer .workspace-facet,.workspace-filter-drawer details,.workspace-filter-drawer input[type=search]{margin:16px 0}.workspace-filter-drawer input[type=search]{width:100%}.workspace-filter-drawer .workspace-filter-close{margin-left:auto}}
 .workspace-filter input,.workspace-filter select{max-width:100%;font:inherit;padding:8px;border:1px solid #c9b28e;border-radius:6px;background:#fffdf8}
-.workspace-status{font-size:14px;line-height:1.7;padding:14px 0}
 .workspace-section{margin:28px 0}
 .workspace-section h2{font-size:18px;margin-bottom:14px}
 .learning-workspace :focus-visible{outline:2px solid #3768b4;outline-offset:3px}
@@ -61,6 +65,10 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 
 /* Personal home: learning first, management disclosed only on request. */
 .workspace-library .library-categories{display:flex;gap:8px;flex-wrap:wrap;margin-top:0}
+.library-completion-label{display:block;margin-top:4px;color:var(--workspace-muted);font-size:12px;line-height:1.5}
+.home-completed-courses{margin-top:18px}
+.home-completed-courses>summary{cursor:pointer;min-height:44px;display:list-item;padding:10px 0;font-weight:600;color:var(--workspace-ink)}
+.home-completed-courses>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .workspace-library .library-categories button{border:0;background:transparent;border-radius:20px;padding:8px 16px}
 .workspace-library .library-categories button[aria-pressed=true]{background:#ffdf88;font-weight:700}
 .workspace-library .workspace-heading{justify-content:flex-start}
@@ -73,6 +81,8 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 .library-progress-detail{max-width:480px}
 .library-progress-detail .hc-progress-labels{flex-wrap:wrap}
 .library-empty{padding:24px 0;color:#765537}
+.workspace-library .library-empty-discover{color:#9a5f14;text-decoration:none}
+.workspace-library .library-empty-discover:hover{color:#70400d}
 .library-create{display:inline-flex;align-items:center;min-height:44px;margin-top:12px}
 .workspace-home{--workspace-paper:#fffaf0;--workspace-line:#d8c7a9;--workspace-ink:#55351f;--workspace-honey:#ffdf88;max-width:960px;color:var(--workspace-ink)}
 .workspace-home .workspace-nav{margin-bottom:12px}
@@ -85,10 +95,6 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 .workspace-home button.workspace-review-action{display:inline-flex;align-items:center;gap:10px;background:#ffdf88;border-color:#c9a65b;border-radius:24px;min-height:44px;padding:8px 16px;font-weight:700}
 .workspace-due-count{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 6px;border-radius:12px;background:#fffaf0;font-size:13px;font-variant-numeric:tabular-nums}
 .workspace-home .workspace-heading>a,.workspace-section-heading>a{display:inline-flex;align-items:center;min-height:44px}
-.workspace-notice{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.workspace-notice .workspace-status{padding:0;margin:0;font-size:13px;max-width:70ch}
-.learning-workspace .workspace-notice button{padding:4px 0;min-height:44px;border:0;border-radius:0;background:transparent;box-shadow:none;font-size:13px;color:var(--workspace-ink);text-decoration:underline;text-underline-offset:4px}
-.learning-workspace .workspace-notice button:hover:not(:disabled){background:transparent;color:var(--workspace-muted)}
 .workspace-home h2{font-size:18px;line-height:1.5;margin:0;overflow-wrap:anywhere}
 .workspace-review{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
 .workspace-review h2{font-size:16px}
@@ -121,8 +127,8 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 @media(max-width:540px){.workspace-home .workspace-active{margin-top:12px}.workspace-home .workspace-heading-actions{gap:12px}.workspace-home .workspace-heading-actions>a{font-size:13px}.workspace-home .workspace-heading{gap:12px}.workspace-home .workspace-heading h1{font-size:24px}.workspace-review{flex-wrap:wrap}.workspace-start{margin-top:24px}.workspace-active{padding:0 12px 12px}.workspace-active .workspace-section-heading>a{min-height:44px}.workspace-active .hd-row{gap:4px;padding:6px}.workspace-active .hd-row .hc-course-cover{width:64px;flex-basis:64px;height:48px}.workspace-active .hd-row .hd-select-lessons{padding:4px;font-size:11px}.workspace-active .hc-progress-labels{font-size:10px}}
 
 /* Shared workspace contract: one theme and accessible actions across all views. */
-.learning-workspace{--workspace-paper:#fffaf0;--workspace-row:#f5eedf;--workspace-line:#d8c7a9;--workspace-ink:#55351f;--workspace-muted:#765537;--workspace-honey:#ffdf88;--workspace-hover:#ede1c8;color:var(--workspace-ink);max-width:960px}
-.dark .learning-workspace{--workspace-paper:#2a2620;--workspace-row:#332e26;--workspace-line:#665b49;--workspace-ink:#e8e2d4;--workspace-muted:#c3b7a1;--workspace-honey:#e8c34d;--workspace-hover:#433b2f}
+.learning-workspace{--workspace-paper:#fffaf0;--workspace-row:#f5eedf;--workspace-line:#d8c7a9;--workspace-ink:#55351f;--workspace-muted:#765537;--workspace-honey:#ffdf88;--workspace-hover:#ede1c8;--workspace-start-surface:#deedf1;--workspace-start-line:#667f86;--workspace-start-hover:#d2e7eb;color:var(--workspace-ink);max-width:960px}
+.dark .learning-workspace{--workspace-paper:#2a2620;--workspace-row:#332e26;--workspace-line:#665b49;--workspace-ink:#e8e2d4;--workspace-muted:#c3b7a1;--workspace-honey:#e8c34d;--workspace-hover:#433b2f;--workspace-start-surface:#26363a;--workspace-start-line:#71888b;--workspace-start-hover:#304448}
 .learning-workspace a{color:var(--workspace-ink);text-decoration:none;min-height:44px;min-width:44px;display:inline-flex;align-items:center;box-sizing:border-box}
 .learning-workspace .workspace-nav{border-color:var(--workspace-line)}
 .learning-workspace .workspace-nav a{color:var(--workspace-muted);background:transparent}
@@ -149,7 +155,7 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 .learning-workspace .workspace-tabs button[aria-pressed=true]{background:transparent;color:var(--workspace-ink);font-weight:700}
 .learning-workspace .workspace-tabs button:hover:not(:disabled){background:transparent;color:var(--workspace-ink)}
 .workspace-library .workspace-heading{column-gap:8px}
-.workspace-library .library-search-input{flex:0 0 78.4px;min-width:0;max-width:78.4px;margin-left:0}
+.workspace-library .library-search-input{flex:0 0 64px;min-width:0;max-width:64px;margin-left:0}
 .workspace-library .library-type-filter{flex:0 0 70px;width:70px;min-width:70px}
 .learning-workspace.workspace-library .library-type-filter{appearance:none;padding-right:20px;background-image:linear-gradient(45deg,transparent 48%,var(--workspace-ink) 49%,var(--workspace-ink) 62%,transparent 63%),linear-gradient(135deg,transparent 38%,var(--workspace-ink) 39%,var(--workspace-ink) 52%,transparent 53%);background-position:calc(100% - 13px) 50%,calc(100% - 8px) 50%;background-repeat:no-repeat;background-size:5px 5px}
 .learning-workspace.workspace-library .library-panel .library-title-link{display:inline;min-width:0;min-height:0;color:inherit;text-decoration:none}
@@ -165,8 +171,8 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 .learning-workspace input{caret-color:var(--workspace-ink)}
 .learning-workspace .workspace-facet label{min-height:44px}
 .learning-workspace .workspace-facet input[type=checkbox]{width:18px;height:18px;min-height:18px;padding:0;accent-color:var(--workspace-ink)}
-.learning-workspace button.workspace-start-link{width:100%;display:flex;align-items:center;gap:20px;padding:24px;border:0;border-radius:20px;background:var(--workspace-honey);color:#412c17;text-align:left}
-.learning-workspace button.workspace-start-link:hover{background:var(--workspace-honey);box-shadow:inset 0 0 0 1px #aa895c}
+.learning-workspace button.workspace-start-link{width:100%;display:flex;align-items:center;gap:20px;padding:24px;border:1px solid var(--workspace-start-line);border-radius:20px;background:var(--workspace-start-surface);color:var(--workspace-ink);text-align:left}
+.learning-workspace button.workspace-start-link:hover{background:var(--workspace-start-hover);box-shadow:none}
 .workspace-start-book{display:flex;flex:0 0 48px;color:#704a26}
 .workspace-start-book svg{width:48px;height:48px}
 .workspace-start-copy{display:flex;flex:1;flex-direction:column;gap:6px;min-width:0}
@@ -183,7 +189,7 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 .workspace-discover .workspace-heading .discover-searchbar{flex:0 1 auto;min-width:0;width:auto}
 .workspace-discover .workspace-tabs{gap:8px;margin-bottom:0}
 .workspace-discover .workspace-tabs button{padding:8px 12px;border:0;border-radius:8px;min-height:44px;font-variant-numeric:tabular-nums}
-@media(max-width:700px){.workspace-discover .workspace-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}.workspace-discover .workspace-tabs button{min-width:0;padding:8px 0;font-size:13px;overflow-wrap:anywhere}}
+@media(max-width:700px){.workspace-discover .workspace-tabs{display:flex;flex-wrap:wrap;gap:0}.workspace-discover .workspace-tabs button{min-width:0;padding:8px 0;font-size:13px;white-space:nowrap}}
 .workspace-discover .discover-filter{display:flex;flex-direction:column;gap:8px;padding:0;margin:0}
 .discover-searchbar{display:flex;align-items:center;gap:8px;width:100%}
 .workspace-discover .discover-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;min-width:0}
@@ -197,9 +203,19 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 @media(max-width:540px){.learning-workspace.workspace-discover .discover-searchbar input{height:44px;min-height:44px}}
 .discover-facets{display:flex;flex-wrap:wrap;gap:8px 24px}
 .workspace-discover .workspace-facet{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
-.workspace-discover .workspace-facet legend{float:left;display:flex;align-items:center;min-height:44px;margin:0;font-weight:700}
-.workspace-discover .workspace-facet label{padding:0;font-size:13px}
-.discover-more>summary{font-size:13px;padding:0 8px}
+.workspace-discover .workspace-facet legend{float:left;display:flex;align-items:center;min-height:36px;margin:0;font-weight:700}
+.workspace-discover .workspace-facet label{position:relative;display:inline-flex;align-items:center;box-sizing:border-box;min-height:44px;padding:0 4px;border:0;border-radius:0;background:transparent;color:var(--workspace-muted);font-size:13px;line-height:1.3;cursor:pointer}
+.workspace-discover .workspace-facet label:has(input:checked){background:transparent;color:var(--workspace-ink);font-weight:700}
+.workspace-discover .workspace-facet input[type=checkbox]{position:absolute;width:1px;height:1px;min-height:0;margin:0;opacity:0}
+.workspace-discover .workspace-facet label:has(input:focus-visible){outline:2px solid var(--workspace-ink);outline-offset:2px}
+.workspace-discover .discover-facets{align-items:center;gap:8px 20px}
+.workspace-discover .discover-filter{gap:4px}
+.discover-text-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px}
+.workspace-discover .discover-text-tabs button{min-height:36px;padding:6px 12px;border:0;border-radius:0;box-shadow:none;background:transparent;color:var(--workspace-muted);font-size:13px;cursor:pointer}
+.workspace-discover .discover-text-tabs button[aria-pressed=true]{color:var(--workspace-ink);font-weight:700;text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:1px}
+.workspace-discover .discover-text-tabs button:hover{color:var(--workspace-ink);background:transparent}
+.workspace-discover .discover-text-tabs button:focus-visible{outline:2px solid var(--workspace-ink);outline-offset:-2px}
+@media(max-width:700px){.workspace-discover .discover-text-tabs{gap:0 4px}.workspace-discover .discover-text-tabs button{min-height:44px;padding-inline:8px}.workspace-discover .discover-toolbar{align-items:flex-start}}
 .workspace-discover .workspace-section{margin:16px 0 0}
 .workspace-discover .workspace-section h2{margin:0 0 12px;font-size:14px;font-weight:500;color:var(--workspace-muted)}
 .learning-workspace.workspace-discover a.discover-preview{display:inline;min-height:0;min-width:0;color:inherit;text-decoration:none}
@@ -208,15 +224,15 @@ html:has(#pageDiscover:not(.hidden)) .topbar{margin-bottom:0;padding-bottom:0}
 .workspace-discover .workspace-actions button:hover:not(:disabled){background:transparent;color:#9a5f14}
 .workspace-discover .workspace-actions button:active:not(:disabled){color:#70400d}
 .workspace-discover button.discover-save{color:var(--workspace-muted)}
-@media(max-width:700px){.workspace-discover .workspace-heading{align-items:flex-start}.workspace-discover .workspace-heading h1{flex:0 0 100%}.workspace-discover .workspace-heading .discover-searchbar{flex:1 1 100%;min-width:0}.workspace-discover .workspace-filter-drawer .discover-filter{display:flex}.workspace-discover .workspace-filter-drawer .workspace-filter-close{align-self:flex-end;margin:0}.workspace-discover .discover-searchbar{flex-wrap:wrap}.workspace-discover .discover-searchbar input{flex-basis:100%}.workspace-discover .discover-facets{flex-direction:column;gap:8px}.workspace-discover .workspace-filter-trigger{margin-bottom:8px}}
+@media(max-width:700px){.workspace-discover .workspace-heading{align-items:flex-start}.workspace-discover .workspace-heading h1{flex:0 0 100%}.workspace-discover .workspace-heading .discover-searchbar{flex:1 1 100%;min-width:0}.workspace-discover .workspace-filter-drawer .discover-filter{display:flex}.workspace-discover .workspace-filter-drawer .workspace-filter-close{align-self:flex-end;margin:0}.workspace-discover .discover-searchbar{flex-wrap:wrap}.workspace-discover .discover-searchbar input{flex-basis:100%}.workspace-discover .discover-facets{flex-direction:row;gap:8px 12px}.workspace-discover .workspace-facet{gap:6px}.workspace-discover .workspace-facet legend{min-height:40px}.workspace-discover .workspace-facet label{min-height:44px}.workspace-discover .workspace-filter-trigger{margin-bottom:8px}}
 @media(max-width:540px){.workspace-library .workspace-heading{gap:8px;flex-wrap:wrap}.workspace-library .workspace-heading h1{flex-basis:100%}.workspace-library .workspace-heading .library-search-input{flex:1 1 150px;max-width:none;margin-left:0}.workspace-library .workspace-heading .library-type-filter{flex:0 0 70px;width:70px;min-width:70px}.workspace-library .workspace-heading-actions{margin-left:auto}.learning-workspace .workspace-active .hd-action{min-width:44px}}
 
 /* Compact library tools: an input line and a quiet selector, not oversized buttons. */
 #pageMyLearning .learning-workspace{padding-top:0}
 html:has(#pageMyLearning:not(.hidden)) .topbar{margin-bottom:3.6px}
 .learning-workspace.workspace-library .workspace-heading :is(.library-search-input,.library-type-filter){height:32px;min-height:32px;padding-top:4px;padding-bottom:4px;padding-left:8px;border:0;border-bottom:1px solid var(--workspace-line);border-radius:0;background-color:transparent;box-shadow:none;font-size:13px;line-height:1.4;color:var(--workspace-ink)}
-.learning-workspace.workspace-library .library-search-input::placeholder{color:var(--workspace-muted);opacity:1}
-.learning-workspace.workspace-library .workspace-heading .library-search-input{appearance:none;flex:0 0 78.4px;width:78.4px;max-width:78.4px}
+.learning-workspace.workspace-library .library-search-input::placeholder{color:var(--workspace-muted);opacity:1;text-align:center}
+.learning-workspace.workspace-library .workspace-heading .library-search-input{appearance:none;flex:0 0 64px;width:64px;max-width:64px;padding-inline:0}
 .workspace-library .workspace-heading .workspace-heading-actions{flex-wrap:nowrap}
 .learning-workspace.workspace-library .workspace-heading .library-search-input:focus{border:0;border-bottom:2px solid var(--workspace-ink);border-radius:0;box-shadow:none;outline:none}
 @media(max-width:700px){#pageMyLearning .learning-workspace{padding-top:0}}
@@ -226,3 +242,10 @@ html:has(#pageMyLearning:not(.hidden)) .topbar{margin-bottom:3.6px}
 
 /* Content shelf mirrors discovery: edge-to-edge covers and one title/menu row. */
 .learning-workspace.workspace-library .library-panel .library-title-link:hover{text-decoration:none;color:#9a5f14}
+/* Library and discovery share one toolbar rhythm at every breakpoint. */
+html:has(:is(#pageMyLearning,#pageDiscover):not(.hidden)) .topbar{margin-bottom:4px;padding-bottom:0}
+.learning-workspace.workspace-library .workspace-heading,.workspace-discover .discover-toolbar{box-sizing:border-box;min-height:44px;margin:0 0 8px;padding:0;align-items:center;gap:8px 12px}
+.workspace-library .library-categories,.workspace-discover .workspace-tabs{margin:0;gap:4px;align-items:center}
+.workspace-library .library-categories button,.workspace-discover .workspace-tabs button{box-sizing:border-box;min-height:44px;padding:8px 12px;font-size:14px;line-height:1.5}
+.workspace-library .workspace-heading-actions{align-items:center;min-height:44px}
+@media(max-width:700px){.workspace-discover .workspace-tabs button{padding-inline:6px;font-size:13px}.workspace-library .library-categories button{padding-inline:8px;font-size:13px}}

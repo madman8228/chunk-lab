@@ -13,7 +13,12 @@ for (const entry of manifest) {
   seen.add(absolute);
 }
 for (const file of ['scripts/content-file-inventory.test.mjs', 'js/logical-course-store.test.mjs',
-  'server/services/admin-overview.test.js']) {
+  'js/vocabulary-browse-store.test.js', 'e2e/vocabulary-browse-archive-read.test.cjs',
+  'js/learning-session-bootstrap.test.js',
+  'server/services/admin-overview.test.js',
+  'scripts/homepage-update.test.cjs', 'scripts/practice-page-update.test.cjs',
+  'scripts/session-identity-consistency.test.cjs', 'scripts/stats-auto-confirmation.test.cjs',
+  'scripts/stats-confirmed-cross-tab.test.cjs', 'scripts/sw-navigation-coherence.test.cjs']) {
   assert.ok(seen.has(path.resolve(root, file)), 'required release regression omitted: ' + file);
 }
 console.log('test manifest: ' + seen.size + ' existing, unique targets; asset/store/admin regressions included');

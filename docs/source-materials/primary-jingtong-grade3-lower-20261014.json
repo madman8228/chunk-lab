@@ -1,0 +1,150 @@
+{
+  "format": "textbook-vocabulary-transcription",
+  "version": 1,
+  "status": "review-only",
+  "textbook": {
+    "title": "义务教育教科书 英语",
+    "publisher": "人民教育出版社",
+    "schoolStage": "小学",
+    "grade": "三年级",
+    "volume": "下册",
+    "coverApprovalYear": 2024,
+    "curriculumStandardYearFromVocabularyNote": 2022,
+    "series": "精通",
+    "seriesEvidence": "封面图及用户于 2026-10-14 明确确认本批为精通版本",
+    "edition": null,
+    "unitTitles": ["My classroom", "My class", "My family", "Clothes", "Animals", "Colours"],
+    "identityNote": "封面确认为人民教育出版社精通版小学英语三年级下册。2024 为封面审定年份，不据此推断版次。"
+  },
+  "legend": {
+    "starred": "加 * 的词为《义务教育英语课程标准（2022年版）》中的二级词",
+    "bold": "黑体词要求理解、运用；白体词只要求在语境中理解",
+    "rowFormat": ["term", "meaning", "sourceTextPage", "starred", "bold", "type", "sourceNote"],
+    "types": ["word", "contraction", "phrase", "expression"],
+    "normalization": "合并跨行释义，用英文原词形；保留同词不同页的分义记录。页码为教材正文页码，不是上传图片序号。条目类型为整理标注，不是教材印刷标签。"
+  },
+  "images": [
+    {"id":1,"role":"cover","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-9a056711-dc17-4031-8201-aa819d128df9.png"},
+    {"id":2,"role":"contents","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-dba94e62-bc26-427b-98e7-d9bef11976a4.png"},
+    {"id":3,"role":"unit-list","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-45f6ab65-b8b2-4817-b833-87f896109b93.png"},
+    {"id":4,"role":"unit-list","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-8c67ae7f-b2a1-4dbf-a30b-fc7168df49b4.png"},
+    {"id":5,"role":"unit-list","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-5d37f88e-5f94-466e-89fd-6ce329c128f7.png"},
+    {"id":6,"role":"alphabetical-index","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-282a97cf-c8db-4c3d-8e18-7073d5a8b08c.png"},
+    {"id":7,"role":"alphabetical-index","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-c1619b71-600a-4506-80b1-ed9e9c7ae1ca.png"},
+    {"id":8,"role":"alphabetical-index","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-728336b9-1810-4d08-a6d7-17b813d25d94.png"},
+    {"id":9,"role":"alphabetical-index","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-329f9328-e495-494c-be91-bf6fbc58174b.png"}
+  ],
+  "contents": [
+    {"title":"Unit 1 My classroom","startPage":2},
+    {"title":"Unit 2 My class","startPage":14},
+    {"title":"Unit 3 My family","startPage":26},
+    {"title":"Revision 1","startPage":38},
+    {"title":"Unit 4 Clothes","startPage":42},
+    {"title":"Unit 5 Animals","startPage":54},
+    {"title":"Unit 6 Colours","startPage":66},
+    {"title":"Revision 2","startPage":78},
+    {"title":"Appendix 1 Chants and songs in each unit","startPage":82},
+    {"title":"Appendix 2 Vocabulary in each unit","startPage":87},
+    {"title":"Appendix 3 Vocabulary A-Z","startPage":90}
+  ],
+  "units": [
+    {"unitId":"unit-1","title":"Unit 1 My classroom","sourceImages":[3],"entries":[
+      ["in","在……内；在……中",4,true,true,"word",""],
+      ["on","（覆盖、附着）在……上",4,true,true,"word",""],
+      ["under","在（或到、通过）……下面",4,true,true,"word",""],
+      ["box","盒；箱",4,true,true,"word",""],
+      ["chair","椅子",4,true,true,"word",""],
+      ["computer","计算机；电脑",4,true,true,"word",""],
+      ["desk","书桌",4,true,true,"word",""],
+      ["blackboard","黑板",6,true,true,"word",""],
+      ["classroom","教室；课堂",6,true,true,"word",""],
+      ["door","门",6,true,true,"word",""],
+      ["floor","地板；地面",6,true,true,"word",""],
+      ["wall","墙；壁；墙壁",6,true,true,"word",""],
+      ["window","窗；窗户",6,true,true,"word",""],
+      ["guess","猜测",4,false,false,"word",""],
+      ["many","许多",4,true,true,"word",""],
+      ["book","书；书籍",4,true,true,"word",""],
+      ["love","爱；热爱",4,true,true,"word",""],
+      ["dirty","脏的",6,true,true,"word",""],
+      ["clean","打扫",6,true,true,"word",""],
+      ["help","帮助",6,true,true,"word",""],
+      ["great","优秀的；杰出的",6,true,true,"word",""],
+      ["today","今天",8,true,true,"word",""],
+      ["turn","（依次轮到的）机会",8,true,true,"word",""]
+    ]},
+    {"unitId":"unit-2","title":"Unit 2 My class","sourceImages":[3],"entries":[
+      ["one","一",16,false,true,"word",""],["two","二",16,false,true,"word",""],["three","三",16,false,true,"word",""],["four","四",16,false,true,"word",""],["five","五",16,false,true,"word",""],["six","六",16,false,true,"word",""],
+      ["seven","七",18,false,true,"word",""],["eight","八",18,false,true,"word",""],["nine","九",18,false,true,"word",""],["ten","十",18,false,true,"word",""],["eleven","十一",18,false,true,"word",""],["twelve","十二",18,false,true,"word",""],
+      ["class","班；班级",14,true,true,"word",""],
+      ["which","哪一个",16,true,true,"word",""],
+      ["grade","年级",16,false,false,"word",""],
+      ["student","学生",20,true,true,"word",""],
+      ["school","（中、小）学校",20,true,true,"word",""],
+      ["Well done!","做得好！",16,false,false,"expression","" ]
+    ]},
+    {"unitId":"unit-3","title":"Unit 3 My family","sourceImages":[4],"entries":[
+      ["father (dad)","父亲；爸爸",28,true,true,"word",""],
+      ["mother (mum)","母亲；妈妈",28,true,true,"word",""],
+      ["baby","婴儿",28,true,true,"word",""],
+      ["brother","哥哥；弟弟",28,true,true,"word",""],
+      ["baby brother","弟弟",28,false,false,"phrase",""],
+      ["sister","姐姐；妹妹",28,true,true,"word",""],
+      ["me","我",28,true,true,"word",""],
+      ["aunt","姑母；姨母；伯母；婶母；舅母；姨妈；舅妈",30,true,true,"word",""],
+      ["uncle","舅父；叔父；伯父；姑父；姨父",30,true,true,"word",""],
+      ["grandfather (grandpa)","（外）祖父；爷爷；姥爷；外公",30,true,true,"word",""],
+      ["grandmother (grandma)","（外）祖母；奶奶；姥姥；外婆",30,true,true,"word",""],
+      ["family","家，家庭",26,true,true,"word",""],
+      ["son","儿子",28,false,false,"word",""],
+      ["meet","相遇；遇见",28,true,true,"word",""],
+      ["that","（指较远的人或事物）那个，那，那个",28,true,true,"word",""],
+      ["daughter","女儿",28,false,false,"word",""],
+      ["who","谁",30,true,true,"word",""],
+      ["beautiful","美丽的",30,true,true,"word",""],
+      ["very much","非常",32,false,false,"phrase",""]
+    ]},
+    {"unitId":"unit-4","title":"Unit 4 Clothes","sourceImages":[4],"entries":[
+      ["cap","（尤指男用有帽舌的）便帽，制服帽",44,true,true,"word",""],
+      ["coat","外套；外衣；大衣",44,true,true,"word",""],
+      ["shirt","（尤指男式的）衬衫",44,true,true,"word",""],
+      ["sweater","套头衫；套头毛衣",44,true,true,"word",""],
+      ["T-shirt","T恤衫",44,false,false,"word",""],
+      ["dress","连衣裙",46,true,true,"word",""],
+      ["shorts","短裤",46,true,true,"word",""],
+      ["skirt","女裙",46,true,true,"word",""],
+      ["sock","短袜",46,true,true,"word",""],
+      ["trousers","裤子",46,true,true,"word",""],
+      ["clothes","衣服；服装",42,true,true,"word",""],
+      ["take","携带；拿走；取走",44,true,true,"word",""],
+      ["wash","洗",46,true,true,"word",""],
+      ["by myself","（我）独立地",46,false,false,"phrase",""],
+      ["shoe","鞋",48,true,true,"word",""],
+      ["by hand","用手",48,false,false,"phrase",""],
+      ["helpful","有用的；有帮助的",48,true,true,"word",""],
+      ["home","家；住所",48,true,true,"word",""]
+    ]},
+    {"unitId":"unit-5","title":"Unit 5 Animals","sourceImages":[5],"entries":[
+      ["chicken","鸡",56,true,true,"word",""],["cow","母牛；奶牛",56,true,true,"word",""],["duck","鸭",56,true,true,"word",""],["horse","马",56,true,true,"word",""],["sheep","绵羊",56,true,true,"word",""],
+      ["bee","蜜蜂",58,true,true,"word",""],["bird","鸟",58,true,true,"word",""],["fish","鱼",58,true,true,"word",""],["mouse","老鼠",58,true,true,"word",""],["pig","猪",58,true,true,"word",""],["rabbit","兔子",58,true,true,"word",""],
+      ["animal","动物",54,true,true,"word",""],["kid","小孩",56,true,true,"word",""],["here","在这里；向这里",56,true,true,"word",""],["right","正确的",56,true,true,"word",""],["where","哪里",58,true,true,"word",""],["tree","树；树木",58,true,true,"word",""],["heavy","重的；沉的",60,true,true,"word",""],["grass","草",60,true,true,"word",""],["give","给；交给",60,true,true,"word",""],["us","我们",60,true,true,"word",""],
+      ["colour","（1）颜色",66,true,true,"word","同一单元另一义项见第70页"],
+      ["colour","（2）（用颜料、彩色笔等）为……着色",70,true,true,"word","同一单元另一义项见第66页"],
+      ["orange","橙色的",70,true,true,"word",""],["white","白色的",70,true,true,"word",""],["yellow","黄色的",70,true,true,"word",""],
+      ["draw","（用铅笔、钢笔或粉笔）画",70,true,true,"word",""],["dream","梦想；理想",72,false,false,"word",""],["garden","花园；果园；菜园",72,true,true,"word",""]
+    ]},
+    {"unitId":"unit-6","title":"Unit 6 Colours","sourceImages":[5],"entries":[
+      ["blue","蓝色的",68,true,true,"word",""],["brown","棕色的；褐色的",68,true,true,"word",""],["green","绿色的",68,true,true,"word",""],["pink","粉色的",68,true,true,"word",""],["red","红色的",68,true,true,"word",""],["black","黑色的",70,true,true,"word",""]
+    ]}
+  ],
+  "alphabeticalIndex": {"entries": [
+    "*animal@54","*aunt@30","*baby@28","baby brother@28","*beautiful@30","*bee@58","*bird@58","*black@70","*blackboard@6","*blue@68","*book@4","*box@4","*brother@28","*brown@68","by hand@48","by myself@46","*cap@44","*chair@4","*chicken@56","*class@14","*classroom@6","*clean@6","*clothes@42","*coat@44","*colour@66,70","*computer@4","*cow@56","daughter@28","*desk@4","*dirty@6","*door@6","*draw@70","dream@72","*dress@46","*duck@56","eight@18","eleven@18","*family@26","*father (dad)@28","*fish@58","five@16","*floor@6","four@16","*garden@72","*give@60","grade@16","*grandfather (grandpa)@30","*grandmother (grandma)@30","guess@4","*grass@60","*great@6","*green@68","*help@6","*helpful@48","*heavy@60","*here@56","*home@48","*horse@56","*in@4","*kid@56","*love@4","*many@4","*me@28","*meet@28","*mother (mum)@28","*mouse@58","nine@18","*on@4","one@16","*orange@70","*pig@58","*pink@68","*rabbit@58","*red@68","*right@56","*school@20","seven@18","*sheep@56","*shirt@44","*shoe@48","*shorts@46","*sister@28","six@16","*skirt@46","*sock@46","son@28","*student@20","*sweater@44","T-shirt@44","*take@44","*that@28","ten@18","three@16","*today@8","*tree@58","*trousers@46","twelve@18","*turn@8","two@16","*uncle@30","*under@4","*us@60","very much@32","*wall@6","*wash@46","Well done!@16","*where@58","*which@16","*white@70","*who@30","*window@6","*yellow@70"
+  ]},
+  "reviewIssues": [
+    {"note":"具体出版版次与印次未提供版权页，保持未知；封面圆标的2024是审定年份。"},
+    {"note":"封面与目录图用于识别系列、册次和单元标题；Revision 1、Revision 2 和 Chants and songs in each unit 未提供词表，未编造条目。"},
+    {"term":"colour","note":"Unit 5词表分别列出第66页“颜色”和第70页“为……着色”；作为同词两条义项记录保留。"},
+    {"note":"教材仅有词汇释义与页码截图；未补造音标、例句、练习、音频或插图。"}
+  ],
+  "limitations": ["图片人工转录仍需逐条校对。", "本文件是复核稿，不是可直接导入的课程包。", "原图仅作来源证据保存，不作为词汇学习插图或公开图片资源。"]
+}

@@ -2,6 +2,7 @@
 
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
+const { aliyunProvider } = require('./sms-verification');
 
 function fail(code, message, status = 400) {
   return Object.assign(new Error(message), { code, status });
@@ -11,49 +12,6 @@ function phoneNumber(value) {
     throw fail('INVALID_PHONE', '请输入正确的中国大陆手机号');
   }
   return value.trim();
-}
-
-// No mock provider in application code. Tests inject a provider into the service.
-function aliyunProvider(env = process.env) {
-  const key = env.ALIBABA_CLOUD_ACCESS_KEY_ID || env.ALIYUN_ACCESS_KEY_ID;
-  const secret = env.ALIBABA_CLOUD_ACCESS_KEY_SECRET || env.ALIYUN_ACCESS_KEY_SECRET;
-  if (!key || !secret || !env.SMS_SIGN_NAME || !env.SMS_TEMPLATE_CODE) {
-    throw fail('SMS_UNAVAILABLE', '验证码服务暂时不可用，请稍后再试', 503);
-  }
-  const SDK = require('@alicloud/dypnsapi20170525');
-  const { Config } = require('@alicloud/openapi-client');
-  const { RuntimeOptions } = require('@alicloud/tea-util');
-  const client = new SDK.default(new Config({
-    accessKeyId: key, accessKeySecret: secret,
-    regionId: env.SMS_ALIYUN_PNVS_REGION_ID || 'cn-hangzhou',
-    endpoint: 'dypnsapi.aliyuncs.com'
-  }));
-  const runtime = new RuntimeOptions({ connectTimeout: 5000, readTimeout: 10000, autoretry: false });
-  const common = { countryCode: '86', schemeName: env.SMS_PNVS_SCHEME_NAME || undefined };
-  function body(response) {
-    const value = response && response.body;
-    if (!value || value.success !== true || value.code !== 'OK') {
-      throw fail('SMS_UNAVAILABLE', '验证码服务暂时不可用，请稍后再试', 503);
-    }
-    return value;
-  }
-  return {
-    async send(phone, id) {
-      body(await client.sendSmsVerifyCodeWithOptions(new SDK.SendSmsVerifyCodeRequest({
-        ...common, phoneNumber: phone, outId: id,
-        signName: env.SMS_SIGN_NAME, templateCode: env.SMS_TEMPLATE_CODE,
-        templateParam: JSON.stringify({ code: '##code##', min: '5' }),
-        codeLength: 6, validTime: 300, interval: 60,
-        duplicatePolicy: 1, autoRetry: 0, returnVerifyCode: false
-      }), runtime));
-    },
-    async verify(phone, code, id) {
-      const result = body(await client.checkSmsVerifyCodeWithOptions(new SDK.CheckSmsVerifyCodeRequest({
-        ...common, phoneNumber: phone, verifyCode: code, outId: id
-      }), runtime));
-      return result.model && result.model.verifyResult === 'PASS';
-    }
-  };
 }
 
 function createPhoneAuth({ db, provider = undefined, now = Date.now, env = process.env }) {
@@ -78,9 +36,12 @@ function createPhoneAuth({ db, provider = undefined, now = Date.now, env = proce
   }
   async function send({ phone: raw, ip, purpose = 'login', ownerId = null }) {
     const phone = phoneNumber(raw);
-    if (!['login', 'bind'].includes(purpose) || (purpose === 'bind' && !ownerId)) {
+    if (!['login', 'bind', 'register', 'reset'].includes(purpose) || (purpose === 'bind' && !ownerId)) {
       throw fail('INVALID_PURPOSE', '请重新登录后绑定手机号', 401);
     }
+    const registered = db.prepare('SELECT user_id FROM user_phone_identities WHERE phone=?').get(phone);
+    if (purpose === 'register' && registered) throw fail('PHONE_REGISTERED', '手机号已注册，请直接登录', 409);
+    if (purpose === 'reset' && !registered) throw fail('PHONE_NOT_FOUND', '手机号尚未注册，请先注册');
     const providerInstance = sms(); // Misconfiguration must not reserve a challenge.
     const time = now();
     const hash = crypto.createHash('sha256').update(String(ip)).digest('hex');
@@ -127,6 +88,10 @@ function createPhoneAuth({ db, provider = undefined, now = Date.now, env = proce
         row.state !== 'ready' || row.expires_at <= now() || row.attempts >= 5) {
       throw fail('INVALID_CODE', '验证码已失效，请重新获取');
     }
+    const registered = db.prepare('SELECT user_id FROM user_phone_identities WHERE phone=?').get(phone);
+    if ((purpose === 'register' || purpose === 'reset' || purpose === 'login' && !registered) && !passwordHash) {
+      throw fail('INVALID_PASSWORD', '请设置密码：至少6位，最长72字节');
+    }
     const claimed = db.prepare("UPDATE phone_auth_challenges SET state='checking', attempts=attempts+1 WHERE id=? AND state='ready' AND attempts<5").run(challengeId);
     if (!claimed.changes) throw fail('INVALID_CODE', '验证码正在核验或已失效');
     let passed;
@@ -154,11 +119,14 @@ function createPhoneAuth({ db, provider = undefined, now = Date.now, env = proce
         return { id: ownerId };
       }
       if (existing) {
+        if (purpose === 'register') return { error: fail('PHONE_REGISTERED', '手机号已注册，请直接登录', 409) };
         if (passwordHash) db.prepare('UPDATE users SET password_hash=? WHERE id=?').run(passwordHash, existing.user_id);
         return { id: existing.user_id };
       }
+      if (purpose === 'reset') return { error: fail('PHONE_NOT_FOUND', '手机号尚未注册，请先注册') };
+      if (!passwordHash) return { error: fail('INVALID_PASSWORD', '注册必须设置密码') };
       const id = Number(db.prepare('INSERT INTO users(username,password_hash) VALUES(?,?)')
-        .run('phone_' + crypto.randomUUID().replace(/-/g, '').slice(0, 24), passwordHash || '!phone-only:' + crypto.randomBytes(32).toString('hex')).lastInsertRowid);
+        .run('phone_' + crypto.randomUUID().replace(/-/g, '').slice(0, 24), passwordHash).lastInsertRowid);
       db.prepare('INSERT INTO user_phone_identities VALUES(?,?,?)').run(phone, id, now());
       return { id };
     }).immediate();

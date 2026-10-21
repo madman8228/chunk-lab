@@ -1,0 +1,45 @@
+{
+  "itemId": "pilot-v1:borrow",
+  "word": "borrow",
+  "meaning": "借入",
+  "scene": "手机没电了，你向朋友借充电器，用完归还。",
+  "example": "Can I borrow your charger?",
+  "translation": "我可以借你的充电器吗？",
+  "exercise": {
+    "version": 1,
+    "parts": [
+      {
+        "text": "Can I "
+      },
+      {
+        "id": "verb",
+        "label": "借入",
+        "answers": [
+          "borrow"
+        ],
+        "feedback": [
+          {
+            "values": [
+              "lend"
+            ],
+            "message": "向别人借入用 borrow；lend 是借出。"
+          }
+        ]
+      },
+      {
+        "text": " your charger?"
+      }
+    ]
+  },
+  "images": {
+    "wide": [
+      "assets/vocabulary-borrow-wide-v2.avif",
+      "assets/vocabulary-borrow-wide-v2.webp"
+    ],
+    "mobile": [
+      "assets/vocabulary-borrow-mobile-v2.avif",
+      "assets/vocabulary-borrow-mobile-v2.webp"
+    ]
+  },
+  "contentRevision": "6cfa49cd2dcd50eead9ccc11d25a3fda90b0e007eafe724eb5cb25f75ccdc3e5"
+}

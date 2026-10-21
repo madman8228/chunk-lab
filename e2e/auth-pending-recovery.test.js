@@ -37,6 +37,7 @@ async function waitHealthy() {
       env: Object.assign({}, process.env, {
         PORT: String(port), CHUNKLAB_DATA_DIR: dataDir, NODE_ENV: 'test',
         CHUNKLAB_WRITE_PROTOCOL: '3', REQUIRE_AUTH: 'true',
+        PHONE_AUTH_ENABLED: 'false',
         JWT_SECRET: randomBytes(32).toString('hex'),
       }),
       stdio: 'ignore',
@@ -77,16 +78,10 @@ async function waitHealthy() {
     const databaseName = await page.evaluate(() => AccountStorage.databaseName);
     const accepted = await page.evaluate(id => ServerStore.submit('settings.patch', { patch: { sound: true } }, { requestId: id }), requestId);
     assert.equal(accepted.durable, true, 'operation is durably queued before sending');
-    try { await page.waitForSelector('#chunkauth-mask', { timeout: 20000 }); }
-    catch (error) {
-      const diagnostic = await page.evaluate(async () => ({
-        url:location.href, hasToken:!!ChunkAPI.getToken(), ready:CL.serverPersistenceReady(),
-        status:ServerStore.state(), pending:await ServerStore.pending(),
-        authMask:!!document.getElementById('chunkauth-mask'),
-      })).catch(() => null);
-      console.error('[auth-pending-recovery] diagnostic:', JSON.stringify({ injected401, sentOperations, diagnostic }));
-      throw error;
-    }
+    await page.waitForFunction(() => window.ChunkAPI && !ChunkAPI.getToken() &&
+      document.getElementById('btnSettingsTop').textContent === '登录', null, { timeout: 20000 });
+    assert.equal(await page.locator('#chunkauth-mask').count(), 0, 'expired login returns to the signed-out homepage without a forced dialog');
+    assert.equal(await page.evaluate(() => CL.serverPersistenceReady()), false, 'signed-out state is not a confirmed account projection');
     await waitForAsync(page, async ({ id, name }) => {
       if (!(await indexedDB.databases()).some(database => database.name === name)) return false;
       return new Promise((resolve, reject) => {
@@ -105,22 +100,16 @@ async function waitHealthy() {
       });
     }, { id: requestId, name: databaseName }, { timeout: 10000 });
     assert.equal(injected401, true, 'the first real protocol request received the injected 401');
-    /* 401 会因账号代次变化触发一次整页重载：登录遮罩先以默认文案出现，随后 ServerStore 的 401
-       才把文案刷成「登录已过期…」（本机实测约 1.2s）。原 5s 预算在更慢的 CI 上偶发超时——放宽到与
-       相邻等待一致的 20s。只放宽时限、不放松断言：文案最终不出现仍会判红。 */
-    await page.waitForFunction(function () {
-      const message = document.querySelector('#chunkauth-mask [data-auth-message]');
-      return message && message.textContent.includes('登录已过期，请重新登录；未提交记录会保留');
-    }, null, { timeout: 20000 });
+    await page.locator('#btnSettingsTop').click();
+    await page.locator('#chunkauth-mask').waitFor();
 
     await page.locator('#chunkauth-mask input[placeholder="用户名"]').fill(username);
     await page.locator('#chunkauth-mask input[type="password"]').fill(password);
-    await Promise.all([
-      page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
-      page.locator('#chunkauth-mask button').click(),
-    ]);
+    await page.locator('#chunkauth-mask button').click();
     await page.waitForFunction(() => window.CL && CL.serverPersistenceReady && CL.serverPersistenceReady() &&
       !document.getElementById('chunkauth-mask'), null, { timeout: 20000 });
+    assert.equal(await page.evaluate(() => AccountStorage.databaseName), databaseName,
+      'same-account login restores the original durable storage scope');
     await waitForAsync(page, async id => {
       const [receipt, rows] = await Promise.all([
         ChunkAPI.getOperationReceipt(id).catch(() => null), ServerStore.pending(),
@@ -130,6 +119,11 @@ async function waitHealthy() {
 
     assert.equal(sentOperations.length, 2, 'login resumes the durable operation exactly once after the injected 401');
     assert.deepEqual(sentOperations[0], sentOperations[1], 'retry reuses the exact request id and body');
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => window.CL && CL.serverPersistenceReady && CL.serverPersistenceReady(), null, { timeout: 20000 });
+    assert.equal(await page.evaluate(async id => (await ServerStore.pending()).some(row => row.requestId === id), requestId), false,
+      'confirmed operation does not return to the queue after reload');
+    assert.equal(sentOperations.length, 2, 'reload does not resubmit the confirmed operation');
     const db = new Database(path.join(dataDir, 'chunklab.db'), { readonly: true });
     try {
       const receipt = db.prepare('SELECT result_json FROM user_operation_receipts WHERE user_id=? AND request_id=?')

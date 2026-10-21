@@ -12,11 +12,17 @@
     $('studioLayout').hidden = view !== 'editor';
     $('libraryMetadataPanel').hidden = view !== 'catalog';
     $('protectedPublicationPanel').hidden = view !== 'publication';
+    $('illustrationReviewPanel').hidden = view !== 'illustrations';
+    $('textbookDraftsPanel').hidden = view !== 'textbooks';
+    $('systemWordbooksPanel').hidden = view !== 'system-wordbooks';
+    $('textbookDraftsOpen').setAttribute('aria-pressed',String(view === 'textbooks'));
+    $('illustrationReviewOpen').setAttribute('aria-pressed',String(view === 'illustrations'));
+    $('systemWordbooksOpen').setAttribute('aria-pressed',String(view === 'system-wordbooks'));
     [['editorOpen','editor'],['libraryMetadataOpen','catalog'],['protectedPublicationOpen','publication']].forEach(function (entry) {
       $(entry[0]).setAttribute('aria-pressed', String(entry[1] === view));
     });
   }
-  window.ContentStudio = { showView: showView };
+  window.ContentStudio = { showView: showView, request: request, requestAsset: requestAsset };
   $('editorOpen').onclick = function () { showView('editor'); };
   $('hideCourses').onclick = function () { $('app').classList.add('courses-collapsed'); $('app').classList.remove('courses-expanded'); $('showCourses').focus(); };
   $('showCourses').onclick = function () { $('app').classList.remove('courses-collapsed'); $('app').classList.add('courses-expanded'); $('courseSearch').focus(); };
@@ -46,7 +52,7 @@
     options = options || {};
     var headers = Object.assign({}, options.headers || {});
     if (token) headers.Authorization = 'Bearer ' + token;
-    if (options.body) headers['Content-Type'] = 'application/json';
+    if (options.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
     return fetch(base + path, Object.assign({}, options, { headers: headers })).then(function (response) {
       return response.text().then(function (text) {
         var data = {}; try { data = text ? JSON.parse(text) : {}; } catch (_) { data = { error: '服务器响应格式无效' }; }
@@ -55,6 +61,10 @@
         return data;
       });
     });
+  }
+  function requestAsset(path) {
+    var headers={};if(token)headers.Authorization='Bearer '+token;
+    return fetch(base+path,{headers:headers,cache:'no-store'}).then(function(response){if(response.status===401){token='';try{localStorage.removeItem(TOKEN_KEY);}catch(_){}showLogin();}if(!response.ok)return response.text().then(function(text){var data={};try{data=JSON.parse(text);}catch(_){}throw Error(data.error||'素材读取失败');});return response.blob();});
   }
   function showLogin() { $('login').classList.remove('hidden'); $('app').classList.add('hidden'); }
   function showApp() { $('login').classList.add('hidden'); $('app').classList.remove('hidden'); }

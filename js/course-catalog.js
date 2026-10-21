@@ -528,6 +528,34 @@
       byCourseId[course.id] = course;
     }
 
+    var protectedCourses = options.protectedCourses || (global.ContentRepo && global.ContentRepo.getProtectedCatalog ? global.ContentRepo.getProtectedCatalog() : []);
+    protectedCourses.forEach(function(source){
+      if(!source || !source.courseId || !Array.isArray(source.units) || !source.units.length) return;
+      var existing=byCourseId[source.courseId];
+      if(existing){
+        // Bind authoritative platform metadata to the existing entity; never adopt a personal ID collision.
+        if(existing.origin!=='builtin') return;
+        var matches=existing.lessons.map(function(lesson){return source.units.find(function(unit){return unit.unitId===lesson.id &&
+          unit.recordIdentity && unit.recordIdentity.deckId===lesson.contentRef.id;});});
+        if(matches.length!==source.units.length || matches.some(function(unit){return !unit;})){
+          diagnostics.push({level:'error',path:'protectedCourses.'+source.courseId,message:'平台课程身份映射不完整，未替换原课程。'});return;
+        }
+        existing.lessons.forEach(function(lesson,index){
+          var unit=matches[index];lesson.legacyContentRef=lesson.contentRef;
+          lesson.contentRef={type:'protected-course',id:source.courseId};
+          lesson.platformContent={courseId:source.courseId,unitId:unit.unitId,recordIdentity:unit.recordIdentity,contentVersion:unit.contentVersion};
+          lesson.itemCount=unit.itemCount;
+        });
+        existing.isProtected=true;existing.accessLevel=source.accessLevel;
+        ownerByContentRef[refKey({type:'protected-course',id:existing.id})]=existing.id;return;
+      }
+      var lessons=source.units.map(function(unit,index){return {id:unit.unitId,kind:'lesson',title:'第 '+(index+1)+' 节',sequence:index+1,itemCount:unit.itemCount,
+        contentRef:{type:'protected-course',id:source.courseId},available:true};});
+      var course={id:source.courseId,kind:'course',title:source.title,origin:'builtin',contentType:source.contentType==='image-text'?'story':'sentence',
+        isProtected:true,accessLevel:source.accessLevel,outline:lessons,lessons:lessons,lessonCount:lessons.length,
+        itemCount:lessons.reduce(function(sum,lesson){return sum+lesson.itemCount;},0),available:true};
+      courses.push(course);byCourseId[course.id]=course;ownerByContentRef[refKey({type:'protected-course',id:course.id})]=course.id;
+    });
     return { schemaVersion: 1, version: raw.version || '', courses: courses, byCourseId: byCourseId,
       ownerByContentRef: ownerByContentRef, diagnostics: diagnostics };
   }

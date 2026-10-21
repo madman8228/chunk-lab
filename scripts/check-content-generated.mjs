@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { currentContentFiles } from './content-file-inventory.mjs';
+import { currentContentFiles, readFullManifest } from './content-file-inventory.mjs';
 
 const root = process.cwd();
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'chunklab-content-check-'));
@@ -33,7 +33,9 @@ try {
   } else {
     // Do not require deletion of old immutable versions to pass this gate.
     // Every current manifest reference must still exist and match fresh output.
-    const expected = currentContentFiles(JSON.parse(fs.readFileSync(path.join(root, 'content/manifest.json'), 'utf8')));
+    // T5：公开 manifest 已收敛为元数据，分片路径来自 server/content/shards.json，
+    // 故用 readFullManifest 合并后再算「应存在的当前分片集合」。
+    const expected = currentContentFiles(readFullManifest(root));
     const generated = files(path.join(temp, 'content')).sort();
     const missing = expected.filter((file) => !generated.includes(file));
     const extra = generated.filter((file) => !expected.includes(file));
@@ -41,6 +43,14 @@ try {
       (!fs.existsSync(path.join(root, 'content', file)) ||
        !Buffer.from(fs.readFileSync(path.join(root, 'content', file))).equals(
         fs.readFileSync(path.join(temp, 'content', file)))));
+    // T5 生成物：server/content/shards.json 也逐字节比对（缺失/漂移即失败）。
+    const committedShardMap = path.join(root, 'server', 'content', 'shards.json');
+    const generatedShardMap = path.join(temp, 'server', 'content', 'shards.json');
+    if (fs.existsSync(generatedShardMap) &&
+        (!fs.existsSync(committedShardMap) ||
+         !Buffer.from(fs.readFileSync(committedShardMap)).equals(fs.readFileSync(generatedShardMap)))) {
+      changed.push('server/content/shards.json');
+    }
     if (missing.length || extra.length || changed.length) {
       console.error('[content:check-generated] 生成内容与仓库不一致');
       if (missing.length) console.error('  缺失: ' + missing.slice(0, 8).join(', '));

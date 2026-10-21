@@ -101,6 +101,9 @@ var MainLifecycle = (() => {
     var now = typeof opts.now === "number" ? opts.now : Date.now();
     var type = opts.navigationType || "navigate";
     var explicitCatalog = !!(params.get("course") && params.get("lesson"));
+    if (params.get("protectedCourse")) return { kind: "protected-course", courseId: params.get("protectedCourse"), unitId: params.get("unit"), explicit: true };
+    if (params.get("membership") === "1") return { kind: "membership", explicit: true };
+    if (params.get("assessmentKey")) return { kind: "assessment", key: params.get("assessmentKey"), explicit: true };
     if (explicitCatalog) {
       return { kind: "catalog", course: params.get("course"), lesson: params.get("lesson"), explicit: true };
     }
@@ -116,6 +119,8 @@ var MainLifecycle = (() => {
       }
       return { kind: "invalid", reason: "review-expired", explicit: true };
     }
+    var view = params.get("view");
+    if (["home", "my-learning", "discover"].includes(view)) return { kind: "workspace", view, explicit: true };
     if (isFreshNavigation(type)) {
       if (opts.intent && opts.intent.kind === "unit" && opts.intent.unitId) {
         return { kind: "unit", unitId: opts.intent.unitId };

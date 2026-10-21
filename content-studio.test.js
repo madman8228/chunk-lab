@@ -7,7 +7,7 @@ async function main() {
   const nodes = new Map(), calls = [];
   function node(id) {
     if (!nodes.has(id)) nodes.set(id, { value:'', textContent:'', innerHTML:'', className:'',
-      classList:{add(){},remove(){}}, listeners:{}, addEventListener(event, handler){this.listeners[event]=handler;} });
+      classList:{add(){},remove(){}}, querySelector(){return null;}, listeners:{}, addEventListener(event, handler){this.listeners[event]=handler;} });
     return nodes.get(id);
   }
   const context = { console, setTimeout:()=>0, clearTimeout(){}, confirm:()=>false, addEventListener(){},
@@ -39,7 +39,7 @@ async function main() {
   node('save').listeners.click();
   assert.equal(calls.length,0,'save in flight must block course switching and duplicate submits');
   await reply(saving,{revision:1});
-  assert.equal(node('revision').textContent,'草稿版本 1');
+  assert.match(node('revision').textContent,/^草稿(?:版本 | v)1$/,'confirmed revision remains visible despite compact label');
   console.log('[content-studio] stale course response ignored');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,0 +1,70 @@
+%% Chunk Lab SEO M1 · 关键时序
+%% ① 构建期产出（离线）
+
+sequenceDiagram
+    autonumber
+    participant CLI as build-seo-pages.mjs
+    participant CI as ContentIndex
+    participant FS as 文件系统(content/ + /s,/c,/g,/about.html)
+    participant TR as TemplateRenderer
+    participant JL as JsonLdBuilder
+
+    CLI->>CI: load(manifest.json, content/)
+    CI->>FS: 读 manifest（信任 decks[].shards[].url，不 glob 目录）
+    CI->>FS: 逐个读取分片 JSON
+    CI->>CI: 建 (deckId,cid) -> SentenceItem
+    CI->>CI: assertFailClosed（缺分片/空 chunks/重复 -> exitCode=1 + 明确原因）
+    CI-->>CLI: ContentIndex（含 9 处跨 deck cid 重复的显式报告）
+    loop 每个 deck
+        CLI->>TR: render(DeckPageModel)
+        TR->>JL: jsonld(Course)
+        JL-->>TR: object（根相对）
+        TR-->>CLI: HTML
+        CLI->>FS: 写 /c/{deckId}.html
+    end
+    loop 每个 (deckId,cid)（受 SEO_LIMIT 截断）
+        CLI->>TR: render(SentencePageModel)
+        TR->>JL: jsonld(FAQPage/HowTo)
+        JL-->>TR: object（根相对）
+        TR-->>CLI: HTML
+        CLI->>FS: 写 /s/{deckId}/{cid}.html
+    end
+    CLI->>FS: 写 /about.html 与 /g/{slug}.html
+    CLI->>FS: 写 version.json {contentVersion, generatedAt, pageCount}
+
+%% ② 爬虫/匿名请求（不执行 JS）
+    participant CURL as curl(爬虫)
+    participant SG as staticGuard
+    participant SC as staticCompress
+    participant ST as express.static(仓库根)
+    CURL->>SG: GET /s/oral-1-1-1/575b1d3a.html
+    SG->>SG: normalize -> 非敏感前缀/扩展 -> next()
+    SG->>SC: pass
+    SC->>ST: 命中磁盘 .html -> brotli/gzip
+    ST-->>CURL: 200 完整正文（无「加载中…」；CTA 内链 /main.html?deck=… 不遮挡正文）
+
+%% ③ 客户端练习加载（T5 后仍保留 manifest+分片范式）
+    participant CR as ContentRepository(浏览器)
+    participant SRV as /content/manifest.json(静态精简)
+    participant API as /api/content/shards(鉴权)
+    CR->>SRV: fetch manifest（仅元数据）
+    SRV-->>CR: 200 精简 manifest
+    CR->>CR: installSummaries() 目录可用
+    CR->>API: fetch shards (Authorization: Bearer token)
+    alt 无/无效 token
+        API-->>CR: 401 -> 客户端显式报错（不静默空库）
+    else 有效 token
+        API-->>CR: 200 完整 shard map
+        CR->>CR: 按 shard.url 取分片 -> 渲染题目
+    end
+
+%% ④ 服务启动新鲜度可见校验
+    participant S as server start
+    participant MV as SeoPagesMiddleware
+    S->>MV: freshnessCheck()
+    MV->>FS: 读 version.json.contentVersion 与 manifest.contentVersion
+    alt 不一致或缺失
+        MV-->>S: console.warn（两个版本号，可见）
+    else 一致
+        MV-->>S: 静默通过
+    end

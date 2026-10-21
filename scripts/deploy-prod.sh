@@ -40,23 +40,70 @@ trap cleanup_remote_stage EXIT
 #   与本清单比对，缺了就中止部署。
 #   本脚本第 [2/9] 步自动跑它；`npm test` 也会跑。（2026-09-10：本清单曾漏掉整个 js/ 目录）
 FILES=(
+  js/content-card.js js/illustration-review.js js/textbook-drafts.js js/learning-background.js
+  js/admin-wordbooks.js assets/admin-wordbooks.css server/routes/admin-wordbook-imports.js server/services/admin-wordbook-imports.js server/services/textbook-wordbook-package.js server/services/vocabulary-publication-assets.js
+  js/stats-growth.js js/stats-insights.js js/stats-page.js js/wordbook-workbench.js
+  server/routes/illustration-review.js server/services/admin-account-type.js server/services/illustration-review.js
+  server/services/operation-receipt-storage.js server/services/receipt-evidence-delta.js
+  server/services/membership/image-dimensions.js
+  server/services/membership/assessment-content.js server/services/membership/assessment-service.js
+  server/routes/protected-assessments.js
+  server/routes/course-source-review.js server/services/membership/legacy-course-inventory.js
+  server/services/membership/course-publisher.js server/services/membership/publication-compiler.cjs server/routes/course-publishing.js
+  assets/membership-study.css
+  js/membership.js server/services/membership/content-registry.js server/services/membership/course-access-service.js server/middleware/course-content-guard.js server/routes/protected-course-content.js
+  server/services/membership/static-fragment-builder.js server/services/membership/static-content-store.js server/services/membership/content-grant-service.js server/routes/course-fragments.js
   index.html landing robots.txt sitemap.xml
-  main.html decks.html stats.html courses.html course-create.html admin.html content-studio.html content-studio.js ai-course-kit.json
+  main.html decks.html stats.html courses.html course-create.html admin.html admin-membership.html content-studio.html content-studio.js ai-course-kit.json
+  assets/story-course-theme.css
+  assets/decks-theme.css
+  assets/stats-navigation.css
+  assets/catalog/sentence-garden-v1.webp assets/catalog/story-garden-v1.webp assets/catalog/wordbook-garden-v1.webp
+  js/course-covers.js js/lesson-card.js js/course-learning-header.js
   core.js api.js auth-ui.js sw.js manifest.json content
+  js/study-usage.js js/learning-navigation.js server/services/usage-analytics.js
   js/account-storage.js
   js/legacy-backup.js
   js/legacy-restore.js
   js/legacy-recovery.js
   favicon.ico icon-16.png icon-32.png icon-180.png icon-192.png icon-512.png
-  builtins.js oral8000.js freq-idioms.js library.js srs.js course-package.js server/backup-cli.js
+  builtins.js oral8000.js freq-idioms.js library.js srs.js course-package.js
   js/idb.js js/server-cache.js js/server-store.js js/save-status.js js/legacy-recovery.js js/icons.js js/chunk-shape.js js/course-catalog.js js/course-progress.js js/course-enrollment.js js/content-repository.js js/course-cloze.js js/course-package-contract.js js/course-capabilities.js js/course-authoring.js js/course-learning-launch.js js/core-identity.js js/core-merge.js js/core-activity.js js/core-event-bus.js js/core-migrations.js js/core-stats-signature.js js/core-storage-state.js js/core-entity-delta.js js/core-sync-stats-normalize.js js/core-revision-delta.js js/core-runtime.js js/main.js js/main-lifecycle.js js/main-explanation.js js/main-practice-policy.js js/main-practice-classification.js js/main-course-navigation.js js/main-deck-progress.js js/main-home-summary.js js/main-practice-state.js js/main-practice-markup.js js/main-course-learning-policy.js js/main-legacy-stats.js js/vendor/course-schema-validator.js js/logical-course-store.js js/bridge.mjs js/chunk-engine.mjs js/format.mjs js/ai-prompts.mjs js/backup.mjs js/distractor-cause.mjs
   js/learning-engine.js js/learning-engine.cjs js/mistake-evidence.js js/mistake-evidence.cjs js/mistake-review.js
   js/server-stat-key-migration.js
+  js/personal-center-dialogs.js
+  js/learning-workspace.js js/learning-workspace.cjs js/learning-workspace-store.js js/notice-banner.js js/learning-workspace-view.js js/learning-workspace-runtime.js js/library-metadata-editor.js landing/workspace-entry.js
+  wordbook.html wordbook-details.html wordbook-create.html assets/wordbook-details.css assets/wordbook-create.css landing/wordbook-details.js landing/wordbook-create.js js/wordbook-draft.js js/vocabulary-course-contract.js js/learning-session-bootstrap.js js/vocabulary-study.js js/vocabulary-study.cjs js/vocabulary-study-store.js
+  js/wordbook-authoring.js
+  js/learning-sky.js js/stats-vocabulary.js server/routes/learning-archive.js server/services/vocabulary-archive.js server/services/vocabulary-course-progress.js
+  server/services/vocabulary-content.js server/services/vocabulary-study-operations.js server/services/public-wordbook-versions.js server/routes/wordbooks.js server/services/wordbook-publisher.js server/services/personal-wordbooks.js server/routes/wordbook-publishing.js landing/wordbook-publish.js js/personal-wordbook-recovery.js
+  scripts/lib/vocabulary-materials.cjs src/vocabulary-material-library/core.cjs js/vocabulary-application-material.js js/vocabulary-attempt.js server/routes/vocabulary-material-library.js server/services/vocabulary-material-library.js server/services/vocabulary-material-release.js
+  server/services/vocabulary-material-backup.js
+  server/services/vocabulary-browse-model.js server/services/vocabulary-browse-operations.js server/services/vocabulary-teaching-content.js
+  wordbook-intro.html assets/wordbook-intro.css landing/wordbook-intro.js js/vocabulary-browse-store.js
+  server/services/vocabulary-practice-summary.js
+  js/vocabulary-word-dictation.js server/services/vocabulary-dictation-assets.js
+  landing/word-dictation-view.js
+  js/vocabulary-sentence-audio.js landing/vocabulary-course-audio.js
+  js/vocabulary-word-choice.js
+  js/vocabulary-chunk-order.js
+  js/vocabulary-read-aloud.js
+  landing/word-choice-view.js landing/listen-word-view.js
+  landing/chunk-order-view.js
+  landing/read-aloud-recorder.js
+  landing/read-aloud-view.js
+  scripts/lib/vocabulary-illustrations.cjs server/middleware/vocabulary-image-delivery.js
+  server/services/library-catalog.js server/services/workspace-operations.js server/routes/library.js
   assets
-  server/index.js server/admin.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js server/canonical-hash.js server/sync-conflict.js server/middleware/auth-rate.js server/middleware/static-guard.js server/services/change-seq.js server/services/admin-overview.js server/services/data-snapshot.js server/services/data-writers.js server/services/data-rows.js server/services/data-migrations.js server/services/data-save.js server/services/operations.js server/services/logical-course-operations.js server/services/course-learning-operations.js server/services/settings-operations.js server/services/learning-maintenance-operations.js server/services/course-enrollment-operations.js server/services/learning-mark-operations.js server/services/content-operations.js server/services/stat-key-migration-operations.js server/services/assessment-operations.js server/services/learning-exposure-operations.js server/services/learning-event-operations.js server/services/learning-replay.js server/services/assessment-content.js server/services/content-studio.js server/services/recovery-ingest.js server/routes/operations.js server/routes/protocol-guard.js server/routes/content-import.js server/routes/client-save-health.js server/routes/content-studio.js server/routes/recovery.js server/routes/decks.js server/routes/backup.js server/routes/feedback.js server/routes/ai.js server/routes/admin.js server/routes/auth.js server/routes/system.js server/routes/data.js server/package.json server/package-lock.json
+  server/index.js server/admin.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js server/canonical-hash.js server/sync-conflict.js server/middleware/auth-rate.js server/middleware/static-guard.js server/services/change-seq.js server/services/admin-overview.js server/services/data-snapshot.js server/services/data-writers.js server/services/data-rows.js server/services/data-migrations.js server/services/data-save.js server/services/operations.js server/services/logical-course-operations.js server/services/course-learning-operations.js server/services/settings-operations.js server/services/learning-maintenance-operations.js server/services/course-enrollment-operations.js server/services/learning-mark-operations.js server/services/content-operations.js server/services/stat-key-migration-operations.js server/services/assessment-operations.js server/services/learning-exposure-operations.js server/services/learning-event-operations.js server/services/learning-replay.js server/services/assessment-content.js server/services/content-studio.js server/services/recovery-ingest.js server/services/membership/schema.js server/services/membership/repository.js server/services/membership/code-keyring.js server/services/membership/code-issuer.js server/services/membership/csv-code-delivery.js server/services/membership/entitlement-service.js server/services/membership/redemption-service.js server/services/membership/admin-service.js server/services/membership/membership-service.js server/services/membership/trial-usage-meter.js server/services/membership/policies.cjs server/routes/operations.js server/routes/protocol-guard.js server/routes/content-import.js server/routes/client-save-health.js server/routes/content-studio.js server/routes/membership.js server/routes/admin-membership.js server/routes/recovery.js server/routes/decks.js server/routes/backup.js server/routes/feedback.js server/routes/ai.js server/routes/admin.js server/routes/auth.js server/routes/system.js server/routes/data.js server/package.json server/package-lock.json
   package.json
   server/routes/retired-sync.js server/services/recovery-baseline.js
+  server/services/phone-auth.js server/services/sms-verification.js
+  server/routes/vocabulary-practice.js
+  vocabulary.html vocabulary-practice.html
+  server/middleware/seo-pages.js server/routes/content-shards.js
   scripts/sw-hash.js
+  scripts/verify-server-dependencies.cjs
 )
 
 # [0/9] 本地回归 —— 允许「复用已验收的同一份发布包」，但必须能证明没变。
@@ -112,6 +159,12 @@ echo "[1/9] 远端生产配置预检"
 ssh "$HOST" "sudo test -r /etc/chunklab/env && \
   sudo grep -Eq '^NODE_ENV=production([[:space:]]|$)' /etc/chunklab/env && \
   sudo grep -Eq '^REQUIRE_AUTH=true([[:space:]]|$)' /etc/chunklab/env && \
+  sudo grep -Eq '^PHONE_AUTH_ENABLED=true([[:space:]]|$)' /etc/chunklab/env && \
+  sudo grep -Eq '^SMS_PROVIDER=aliyun_pnvs([[:space:]]|$)' /etc/chunklab/env && \
+  sudo awk -F= '/^(ALIBABA_CLOUD_ACCESS_KEY_ID|ALIYUN_ACCESS_KEY_ID)=/{if(length(\$2)>0) ok=1} END{exit !ok}' /etc/chunklab/env && \
+  sudo awk -F= '/^(ALIBABA_CLOUD_ACCESS_KEY_SECRET|ALIYUN_ACCESS_KEY_SECRET)=/{if(length(\$2)>0) ok=1} END{exit !ok}' /etc/chunklab/env && \
+  sudo awk -F= '/^SMS_SIGN_NAME=/{if(length(\$2)>0) ok=1} END{exit !ok}' /etc/chunklab/env && \
+  sudo awk -F= '/^SMS_TEMPLATE_CODE=/{if(length(\$2)>0) ok=1} END{exit !ok}' /etc/chunklab/env && \
   sudo awk -F= '/^JWT_SECRET=/{if(length(\$2)>=32) ok=1} END{exit !ok}' /etc/chunklab/env && \
   sudo awk -F= '/^ADMIN_JWT_SECRET=/{if(length(\$2)>=32) ok=1} END{exit !ok}' /etc/chunklab/env && \
   sudo awk -F= '/^ADMIN_PASSWORD=/{if(length(\$2)>=8) ok=1} END{exit !ok}' /etc/chunklab/env && \
@@ -171,7 +224,11 @@ echo "      CACHE=$CACHE"
 
 echo "[5/9] 上传 $((${#FILES[@]})) 个文件 → $HOST:$REMOTE_DIR"
 ssh "$HOST" "mkdir -p '$REMOTE_DIR'"
-tar czf - "${FILES[@]}" | ssh "$HOST" "tar xzf - -C '$REMOTE_DIR'"
+tar czf - \
+  --exclude='assets/vocabulary-*-landscape-master-v2.png' \
+  --exclude='assets/vocabulary-scenes-v1.png' \
+  --exclude='assets/vocabulary-landscapes-v2.sources.json' \
+  "${FILES[@]}" | ssh "$HOST" "tar xzf - -C '$REMOTE_DIR'"
 echo "      OK"
 
 echo "[6/9] 服务端校验内容特征"
@@ -184,6 +241,10 @@ ssh "$HOST" "cd '$REMOTE_DIR' && \
   echo '      OK: 文件齐（含 js/ 模块 + 落地页 + SEO 文件）+ sw cache 一致 + 静态根存在'"
 
 echo "[7/9] 落盘 + 重启服务"
+# Recheck actual installed packages using the staged verifier before any live
+# application file is copied. A matching lock alone does not prove installation.
+ssh "$HOST" "test \"\$(sha256sum '$APP/server/package-lock.json' | awk '{print \$1}')\" = '$SERVER_LOCK_SHA' && \
+  node '$REMOTE_DIR/scripts/verify-server-dependencies.cjs' '$APP/server'"
 ssh "$HOST" "bash -s -- '$APP' '$REMOTE_DIR'" <<'REMOTE_DEPLOY'
 set -euo pipefail
 APP="$1"
@@ -201,6 +262,16 @@ ssh "$HOST" "bash -s -- '$CACHE'" <<'REMOTE_SMOKE'
 set -euo pipefail
 CACHE="$1"
 curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8787/api/health
+curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8787/api/config | node -e '
+let text="";
+process.stdin.on("data", chunk => { text += chunk; });
+process.stdin.on("end", () => {
+  try {
+    const config=JSON.parse(text);
+    if(config.requireAuth !== true || config.authMode !== "phone" || config.writeProtocol !== 3) throw new Error("release configuration mismatch");
+    console.log("      OK: authentication required + phone login + protocol 3");
+  } catch (_) { console.error("      release configuration mismatch"); process.exitCode=1; }
+});'
 # 根路径 = 品牌落地页（2026-10-05 合并落地页后由 express.static 托管 index.html）。
 # 原先这里断言 302（根路径重定向 /main.html），而那行已从 server/index.js 删除，
 # 断言必须跟着改成 200 + 正文特征，否则部署会在自己这一步假失败。

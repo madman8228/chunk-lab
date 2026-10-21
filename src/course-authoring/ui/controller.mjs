@@ -42,10 +42,21 @@ export class AuthoringController {
     if (params.get('convert') && this.snapshot.stage === 'setup') this.snapshot = await this.service.prepareLegacyConversion(this.snapshot.sessionId, params.get('convert'));
     if (!params.has('session')) { params.set('session', this.snapshot.sessionId); globalThis.history.replaceState({}, '', `${location.pathname}?${params.toString()}`); }
     await this.#render();
+    if (globalThis.ServerStore?.onState) {
+      this.unsubscribeSaveState = globalThis.ServerStore.onState(() => {
+        if (this.saving || this.snapshot?.stage === 'saving') this.#render();
+      });
+      globalThis.addEventListener('pagehide', () => this.unsubscribeSaveState?.(), { once:true });
+    }
   }
   async #click(event) {
-    const button = event.target.closest('[data-action]'); if (!button || this.busy) return;
+    const button = event.target.closest('[data-action]'); if (!button || (this.busy && button.dataset.action !== 'export')) return;
     const action = button.dataset.action;
+    if (action === 'export') {
+      try { await this.service.exportCourse(this.snapshot.sessionId); }
+      catch(error) { this.#render({ error:error.message }); }
+      return;
+    }
     try {
       if (action === 'copy-prompt') {
         await this.#flushBrief();
@@ -60,7 +71,11 @@ export class AuthoringController {
       else if (action === 'accept-mode-mismatch') { this.snapshot = await this.service.acceptModeMismatch(this.snapshot.sessionId); }
       else if (action === 'back-setup') { this.snapshot = await this.service.backToSetup(this.snapshot.sessionId); }
       else if (action === 'save' || action === 'save-and-join') {
-        this.busy = true; this.#render(); this.snapshot = await this.service.save(this.snapshot.sessionId); this.busy = false;
+        this.busy = true; this.saving = true; this.saveDelayed = false;
+        await this.#render();
+        const waitTimer = setTimeout(() => { this.saveDelayed = true; this.#render(); }, 10000);
+        try { this.snapshot = await this.service.save(this.snapshot.sessionId); }
+        finally { clearTimeout(waitTimer); this.saving = false; this.saveDelayed = false; this.busy = false; }
         if (action === 'save-and-join') await this.#join();
       } else if (action === 'join') await this.#join();
       else if (action === 'export') await this.service.exportCourse(this.snapshot.sessionId);
@@ -113,7 +128,7 @@ export class AuthoringController {
     return CourseCreationPreferences.normalize({
       courseType: selected('courseType'),
       targetCefrs: [...this.root.querySelectorAll('[data-pref="targetCefrs"]:checked')].map((input) => input.value),
-      exerciseModes: [...this.root.querySelectorAll('[data-pref="exerciseModes"]:checked')].map((input) => input.value)
+      exerciseModes: [...CourseCreationPreferences.defaults().exerciseModes]
     });
   }
   #queuePreferences() {
@@ -214,7 +229,8 @@ export class AuthoringController {
     const parsed = this.service.codec.parseText(this.snapshot.rawResult || '');
     const pairingDraft = parsed.ok && parsed.value && parsed.value.format === 'chunklab-ai-image-text' ? parsed.value : null;
     const imagePairing = pairingDraft ? { images: pairingDraft.images, files: this.uploadedImages.map((file) => file.name), bindings: this.imageBindings } : null;
-    this.view.render(this.snapshot, { modes: this.service.capabilityCatalog.describeCreationOptions(), preferenceOptions: CourseCreationPreferences.describeOptions(), manualPrompt: this.manualPrompt, persistence, previewImageUrls, launchUrl, imagePairing, ...extra });
+    extra = { saveDelayed:this.saveDelayed, synchronizationError:globalThis.ServerStore?.state?.().error || '', ...extra };
+    this.view.render(this.snapshot, { saving: this.saving, modes: this.service.capabilityCatalog.describeCreationOptions(), preferenceOptions: CourseCreationPreferences.describeOptions(), manualPrompt: this.manualPrompt, persistence, previewImageUrls, launchUrl, imagePairing, ...extra });
   }
   #status(message) { const node = this.root.querySelector('[role="status"]'); if (node) { node.textContent = [message, this.sessionRepository.persistenceWarning].filter(Boolean).join(' '); node.hidden = !node.textContent; } }
 }

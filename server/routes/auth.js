@@ -65,7 +65,7 @@ function registerAuthRoutes(options) {
   }
 
   app.post('/api/auth/register', function (req, res) {
-    if (phoneEnabled) return res.status(403).json({ error: '请使用手机号验证码登录，首次登录会自动注册' });
+    if (phoneEnabled) return res.status(403).json({ error: '请使用手机号注册并设置密码' });
     if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无需注册' });
     if (!rateHit(req.ip, 'register', limits.register)) return send429(res);
     try {
@@ -77,7 +77,7 @@ function registerAuthRoutes(options) {
 
   app.post('/api/auth/login', function (req, res) {
     if (phoneEnabled && process.env.ALLOW_LEGACY_PASSWORD_LOGIN !== 'true') {
-      return res.status(403).json({ error: '请使用手机号验证码登录' });
+      return res.status(403).json({ error: '请使用手机号和密码登录' });
     }
     if (!auth.REQUIRE_AUTH) return res.status(403).json({ error: '开放模式无需登录' });
     const ip = req.ip;

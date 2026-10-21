@@ -1,0 +1,43 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),{spawnSync}=require('node:child_process');
+const Database=require('./node_modules/better-sqlite3'),{backupVocabularyMaterials}=require('./services/vocabulary-material-backup');
+const {createVocabularyMaterialLibrary}=require('./services/vocabulary-material-library'),{createVocabularyMaterialRelease}=require('./services/vocabulary-material-release');
+const {createVocabularyContent}=require('./services/vocabulary-content'),{createWordbookPublisher}=require('./services/wordbook-publisher');
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'vocabulary-backup-')),dataDir=path.join(temp,'data'),appRoot=path.join(temp,'app'),backupDir=path.join(temp,'backups');
+let service,wal;
+(async()=>{try{
+ fs.mkdirSync(dataDir);fs.mkdirSync(path.join(appRoot,'assets'),{recursive:true});fs.mkdirSync(path.join(appRoot,'content/vocabulary'),{recursive:true});
+ fs.writeFileSync(path.join(appRoot,'content/vocabulary/index.json'),JSON.stringify({schemaVersion:1,books:[]}));
+ fs.writeFileSync(path.join(appRoot,'assets/fixture.webp'),fs.readFileSync(path.resolve(__dirname,'../assets/vocab-g7-lower-u1-blind-wide-v1.webp')));
+ assert.equal(await backupVocabularyMaterials({dataDir,appRoot,backupDir}),null);assert.equal(fs.existsSync(backupDir),false);
+ const library=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../drafts/scene-wordbooks/borrow-things-v1/material-library-v1.json'),'utf8'));
+ const model=require('../scripts/lib/vocabulary-materials.cjs'),crypto=require('node:crypto'),audio=Buffer.alloc(44+1600);audio.write('RIFF');audio.writeUInt32LE(audio.length-8,4);audio.write('WAVEfmt ',8);audio.writeUInt32LE(16,16);audio.writeUInt16LE(1,20);audio.writeUInt16LE(1,22);audio.writeUInt32LE(8000,24);audio.writeUInt32LE(16000,28);audio.writeUInt16LE(2,32);audio.writeUInt16LE(16,34);audio.write('data',36);audio.writeUInt32LE(1600,40);fs.writeFileSync(path.join(appRoot,'assets/audio-fixture.wav'),audio);
+ library.activities[0].dictation={audio:{url:'assets/audio-fixture.wav',mimeType:'audio/wav',bytes:audio.length,sha256:crypto.createHash('sha256').update(audio).digest('hex')},answers:[library.senses[0].word]};library.activities[0]=model.versioned(library.activities[0]);
+ for(const course of library.courses){for(const unit of course.units)for(const ref of unit.activityRefs)if(ref.itemId===library.activities[0].itemId)ref.revision=library.activities[0].revision;Object.assign(course,model.versioned(course));}
+ const storePath=path.join(dataDir,'vocabulary-material-library.sqlite');service=createVocabularyMaterialLibrary({storePath});const first=service.save('fixture',library,null);
+ wal=new Database(storePath);wal.pragma('journal_mode=WAL');
+ const next=structuredClone(library);next.courses[0].title+=' v2';next.courses[0]=model.versioned(next.courses[0]);service.save('fixture',next,first.revision);
+ const content=createVocabularyContent({appRoot,publishedRoot:path.join(dataDir,'wordbook-publications')}),publisher=createWordbookPublisher({appRoot,content}),releases=createVocabularyMaterialRelease({service,publisher,appRoot});
+ const preparation={revision:first.revision,courseId:library.courses[0].courseId,review:{revision:first.revision,content:'approved',level:'approved',assets:'approved',rights:'approved',reviewer:'isolated backup fixture',note:'Not real content approval'},images:library.courses[0].units.flatMap(unit=>unit.activityRefs.map(ref=>({itemId:ref.itemId,url:'assets/fixture.webp'})))};
+ const checked=await releases.validate('fixture',preparation);await releases.publish('fixture',preparation,checked.fingerprint,true);
+ assert.ok(fs.existsSync(storePath+'-wal'),'test includes an open WAL writer');
+ const result=await backupVocabularyMaterials({dataDir,appRoot,backupDir}),manifestFile=path.join(result.path,'manifest.json'),manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8'));
+ assert.ok(manifest.files.some(file=>file.path==='assets/fixture.webp'));assert.ok(manifest.files.some(file=>file.path.endsWith('/materials.json')));
+ assert.ok(manifest.files.some(file=>file.path==='assets/audio-fixture.wav'),'optional authored audio is included before the learning mode is enabled');
+ assert.equal(manifest.files.filter(file=>file.path==='assets/fixture.webp').length,1,'shared delivery asset backed up once');
+ const restored=createVocabularyMaterialLibrary({storePath:path.join(result.path,'vocabulary-material-library.sqlite')});
+ try{assert.equal(restored.history('fixture').length,2);assert.deepEqual(restored.read('fixture',first.revision).library,library);}finally{restored.close();}
+ const recovery=path.join(temp,'fresh-recovery');fs.cpSync(result.path,recovery,{recursive:true,errorOnExist:true,force:false});fs.mkdirSync(path.join(recovery,'content/vocabulary'),{recursive:true});fs.writeFileSync(path.join(recovery,'content/vocabulary/index.json'),JSON.stringify({schemaVersion:1,books:[]}));
+ const archived=createVocabularyContent({appRoot:recovery,publishedRoot:path.join(recovery,'wordbook-publications')});assert.equal(archived.materials(preparation.courseId).units[0].materials.length,3);assert.equal(archived.item(library.activities[0].itemId).word,library.senses[0].word);
+ const before=fs.readFileSync(manifestFile);fs.renameSync(path.join(appRoot,'assets/fixture.webp'),path.join(appRoot,'assets/fixture-preserved.webp'));
+ await assert.rejects(backupVocabularyMaterials({dataDir,appRoot,backupDir}),/ENOENT/);assert.deepEqual(fs.readFileSync(manifestFile),before);assert.equal(fs.readdirSync(backupDir).length,1,'failed backup exposes no partial folder and preserves existing backup');
+ fs.renameSync(path.join(appRoot,'assets/fixture-preserved.webp'),path.join(appRoot,'assets/fixture.webp'));
+ const originalImage=fs.readFileSync(path.join(appRoot,'assets/fixture.webp')),changedImage=Buffer.from(originalImage);changedImage[changedImage.length-1]^=1;fs.writeFileSync(path.join(appRoot,'assets/fixture.webp'),changedImage);
+ await assert.rejects(backupVocabularyMaterials({dataDir,appRoot,backupDir}),/审核摘要/);fs.writeFileSync(path.join(appRoot,'assets/fixture.webp'),originalImage);
+ await assert.rejects(backupVocabularyMaterials({dataDir,appRoot,backupDir:path.join(dataDir,'bad-target')}),/源数据目录/);
+ const main=new Database(path.join(dataDir,'chunklab.db'));main.exec("CREATE TABLE fixture(value TEXT); INSERT INTO fixture VALUES('irreplaceable isolated account');");main.close();
+ const cli=spawnSync(process.execPath,[path.resolve(__dirname,'backup-db.js'),'backup'],{encoding:'utf8',env:{...process.env,CHUNKLAB_DATA_DIR:dataDir,CHUNKLAB_APP_ROOT:appRoot,BACKUP_DIR:backupDir}});
+ assert.equal(cli.status,0,cli.stderr);assert.match(cli.stdout,/Materials:/);assert.match(cli.stdout,/backup-db\] OK:/);assert.equal(service.history('fixture').length,2);
+ assert.deepEqual(fs.readFileSync(manifestFile),before,'CLI never modifies an earlier backup');
+ console.log('Material backup: isolated WAL snapshot, full provenance/delivery archive, reopened recovery, deduplication, failure cleanup, preserved backups and main CLI integration passed.');
+}finally{service?.close();wal?.close();assert.equal(path.dirname(fs.realpathSync(temp)),fs.realpathSync(os.tmpdir()));assert.ok(path.basename(temp).startsWith('vocabulary-backup-'));fs.rmSync(temp,{recursive:true,force:true});}})().catch(error=>{console.error(error);process.exitCode=1;});

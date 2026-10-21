@@ -1,6 +1,17 @@
 'use strict';
 const assert = require('node:assert/strict');
 const Progress = require('./js/course-progress.js');
+assert.equal(Progress.isComplete({ready:true,done:199,total:200,pct:100}),false);
+assert.equal(Progress.isComplete({ready:true,done:200,total:200}),true);
+assert.equal(Progress.isComplete({ready:true,done:0,total:0}),false);
+assert.equal(Progress.isComplete({ready:false,done:200,total:200}),false);
+assert.equal(Progress.completionState([]),'unknown');
+assert.equal(Progress.completionState([{ready:false}]),'unknown');
+assert.equal(Progress.completionState([{ready:true,done:1,total:2}]),'in-progress');
+assert.equal(Progress.completionState([{ready:true,done:2,total:2}]),'completed');
+assert.equal(Progress.completionState([Progress.storyProgress({seen:['first']})]),'in-progress');
+assert.equal(Progress.completionState([Progress.storyProgress({completed:true})]),'completed');
+assert.equal(Progress.completionState([Progress.storyProgress({completed:true},false)]),'unknown');
 
 const course = {
   id: 'builtin:oral',

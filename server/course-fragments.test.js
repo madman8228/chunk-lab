@@ -1,0 +1,70 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const express = require('express');
+const { StaticFragmentBuilder } = require('./services/membership/static-fragment-builder');
+const { ContentRegistry } = require('./services/membership/content-registry');
+const { ContentGrantService } = require('./services/membership/content-grant-service');
+const { registerCourseFragmentRoutes } = require('./routes/course-fragments');
+async function main() {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'chunklab-fragment-http-'));
+  const appRoot = path.join(temp, 'app'), protectedRoot = path.join(temp, 'private');
+  fs.mkdirSync(appRoot); fs.mkdirSync(protectedRoot);
+  const items = Array.from({ length: 12 }, (_, i) => ({ cid: 'c' + i, sentence: 'Hello ' + i, acceptedAnswers: ['Hi ' + i], chunks: ['Hello', String(i)] }));
+  const built = new StaticFragmentBuilder().build({ courseId: 'course', unitId: 'unit', contentType: 'sentence', content: { items }, itemIds: items.map(i => i.cid), recordIdentity: { deckId: 'original', generationScope: 'course:original', resumeIdentity: 'original' } });
+  for (const file of built.files) fs.writeFileSync(path.join(protectedRoot, file.name), file.bytes, { flag: 'wx' });
+  fs.writeFileSync(path.join(protectedRoot, 'registry.json'), JSON.stringify({ schemaVersion: 2, courses: [{ courseId: 'course', title: 'Synthetic', contentType: 'sentence', defaultAccess: 'free', sourcePaths: ['/old.json'], legacyDeckIds: ['original'], units: [{ unitId: 'unit', contentRef: { type: 'sentence-deck', id: 'original' }, itemIds: items.map(i => i.cid), assets: [], fragments: built.fragments, contentVersion: built.contentVersion, recordIdentity: built.recordIdentity }] }] }));
+  const registry = new ContentRegistry({ appRoot, protectedRoot });
+  let now = 100000, checks = 0, decision = { allowed: true, mode: 'member', endsAt: 999999, policyRevision: 1, membershipRevision: 1 };
+  const grants = new ContentGrantService({ keyProvider: () => Buffer.alloc(32, 123), now: () => now, resolveScope: (...args) => registry.fragmentScope(...args), authorize: () => { checks++; return decision; } });
+  const app = express(); app.use(express.json());
+  const auth = { authenticate(req, res, next) { const match = /^Bearer fixture-owner-(\d+)$/.exec(req.get('Authorization') || ''); if (!match) return res.status(401).end(); req.userId = Number(match[1]); next(); } };
+  registerCourseFragmentRoutes({ app, auth, registry, grants });
+  const server = await new Promise(resolve => { const server = app.listen(0, '127.0.0.1', () => resolve(server)); });
+  const base = 'http://127.0.0.1:' + server.address().port;
+  const issue = async (cursor = 0) => {
+    const response = await fetch(base + '/api/learning-sessions/content-grant', { method: 'POST', headers: { Authorization: 'Bearer fixture-owner-1', 'Content-Type': 'application/json' }, body: JSON.stringify({ courseId: 'course', unitId: 'unit', cursor, purpose: 'practice', requestId: crypto.randomUUID() }) });
+    assert.equal(response.status, 200); assert.match(response.headers.get('cache-control'), /no-store/); return response.json();
+  };
+  try {
+    const issued = await issue(), id = built.fragments[0].fragmentId;
+    const invalidAssessment = await fetch(base + '/api/learning-sessions/content-grant', { method: 'POST', headers: { Authorization: 'Bearer fixture-owner-1', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ courseId: 'course', unitId: 'unit', cursor: 0, purpose: 'assessment', requestId: crypto.randomUUID() }) });
+    assert.equal(invalidAssessment.status, 403, 'formal assessment cannot use a multi-item lesson grant');
+    assert.equal(issued.grant.includes(protectedRoot), false); assert.equal(issued.items, undefined);
+    const headers = { Authorization: 'Bearer fixture-owner-1', 'X-Course-Grant': issued.grant, 'X-Course-Id': 'course', 'X-Course-Unit': 'unit', 'X-Course-Purpose': 'practice' };
+    const read = (resource = id, extra = {}, method = 'GET') => fetch(base + '/api/course-fragments/' + resource, { method, headers: { ...headers, ...extra } });
+    const first = await read(); assert.equal(first.status, 200); assert.match(first.headers.get('cache-control'), /no-store/);
+    assert.deepEqual(Buffer.from(await first.arrayBuffer()), built.files[0].bytes);
+    assert.equal(registry.staticStore.metrics.reads, 1);
+    assert.equal((await read()).status, 200); assert.equal(registry.staticStore.metrics.hits, 1);
+    const reads = registry.staticStore.metrics.reads, hits = registry.staticStore.metrics.hits;
+    assert.equal((await read(built.fragments[1].fragmentId)).status, 403);
+    assert.equal((await read(id, { 'X-Course-Grant': '' })).status, 403);
+    assert.equal((await read(id, { Authorization: 'Bearer fixture-owner-2' })).status, 403);
+    assert.equal((await read(id, { 'X-Course-Id': 'free' })).status, 403);
+    assert.equal((await read(id, { 'X-Course-Purpose': 'assessment' })).status, 403);
+    assert.equal((await read(id, { Range: 'bytes=0-9' })).status, 416);
+    assert.equal((await read(id + '.gz')).status, 400); assert.equal((await read(id + '.br')).status, 400);
+    assert.equal(registry.staticStore.metrics.reads, reads); assert.equal(registry.staticStore.metrics.hits, hits);
+    assert.equal((await read(id, {}, 'HEAD')).status, 200);
+    const etag = first.headers.get('etag'); assert.ok(etag);
+    decision = { ...decision, policyRevision: 2 };
+    assert.equal((await read(id, { 'If-None-Match': etag })).status, 403, 'no unauthorized 304');
+    assert.equal((await read(id, {}, 'HEAD')).status, 403);
+    decision = { ...decision, policyRevision: 1, allowed: false, reasonCode: 'SESSION_REQUIRED' };
+    assert.equal((await read()).status, 403, 'pause/takeover denied despite hot byte cache');
+    decision = { ...decision, allowed: true }; now += 30000;
+    assert.equal((await read()).status, 403, 'expiry checked with cached bytes');
+    const second = await issue(10);
+    assert.equal(second.fragments[0].fragmentId, built.fragments[1].fragmentId);
+    assert.equal(registry.load('course', 'unit', 11).payload.items[0].cid, 'c11');
+    assert.deepEqual(registry.load('course', 'unit', 0).payload.recordIdentity, built.recordIdentity);
+    assert.ok(checks >= 6); assert.equal(fs.readdirSync(appRoot).length, 0);
+    console.log('fragment HTTP: v2 bytes, numeric account, scope, HEAD/Range/compressed aliases, cache auth, expiry/revocation and stable identity passed');
+  } finally { await new Promise(resolve => server.close(resolve)); }
+}
+main().catch(error => { console.error(error); process.exitCode = 1; });

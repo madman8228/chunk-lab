@@ -21,6 +21,7 @@ var LearningWorkspace = (() => {
   var learning_workspace_entry_exports = {};
   __export(learning_workspace_entry_exports, {
     FACET_LABELS: () => FACET_LABELS,
+    PRACTICAL_TOPICS: () => PRACTICAL_TOPICS,
     TOOLS: () => TOOLS,
     buildHomeModel: () => buildHomeModel,
     canonicalResourceId: () => canonicalResourceId,
@@ -118,10 +119,25 @@ var LearningWorkspace = (() => {
     const value = resource.facets?.[dimension];
     return Array.isArray(value) ? value : value ? [value] : [];
   }
+  var PRACTICAL_TOPICS = Object.freeze({ daily: "\u65E5\u5E38\u53E3\u8BED", travel: "\u65C5\u6E38\u82F1\u8BED", business: "\u5546\u52A1\u804C\u573A", classics: "\u7ECF\u5178\u6559\u6750", stories: "\u7535\u5F71\u4E0E\u6545\u4E8B" });
+  var practicalPatterns = { daily: /日常|口语|高频短语/, travel: /旅游|旅行|出国|travel/i, business: /商务|职场|business/i, classics: /经典教材/, stories: /电影|故事|影视|movie|story/i };
+  function matchesPracticalTopic(resource, topic) {
+    const tags = values(resource, "topics");
+    const tagged = Object.keys(PRACTICAL_TOPICS).filter((key) => tags.includes(PRACTICAL_TOPICS[key]));
+    if (tagged.length) return tagged.includes(topic);
+    const title = [resource.title, resource.facets?.seriesId].filter(Boolean).join(" ");
+    return practicalPatterns[topic].test(title) || topic === "stories" && (resource.sourceRefs || []).some((ref) => ref.type === "story-package");
+  }
   function filterResources(resources, selection = {}, omitDimension = "") {
     const query = String(selection.query || "").trim().toLocaleLowerCase();
     return resources.filter((resource) => {
       if (selection.kind && resource.kind !== selection.kind) return false;
+      const newConcept = /新概念|new[\s_-]*concept|\bnce\b/i.test([resource.facets?.seriesId, resource.title].filter(Boolean).join(" "));
+      const school = !newConcept && values(resource, "schoolStages").some((stage) => ["\u5C0F\u5B66", "\u521D\u4E2D", "\u9AD8\u4E2D"].includes(stage)) && (resource.kind === "textbook" || !!resource.facets?.seriesId);
+      if (selection.category === "new-concept" && !newConcept) return false;
+      if (selection.category === "school" && !school) return false;
+      if (selection.category === "practical" && (resource.kind !== "course" || newConcept || school)) return false;
+      if (selection.category === "practical" && Object.hasOwn(PRACTICAL_TOPICS, selection.practicalTopic) && !matchesPracticalTopic(resource, selection.practicalTopic)) return false;
       if (query && ![resource.title, resource.description, ...Object.values(resource.facets || {}).flat()].filter(Boolean).join(" ").toLocaleLowerCase().includes(query)) return false;
       return Object.keys(FACET_LABELS).every((dimension) => {
         if (dimension === omitDimension) return true;
@@ -142,6 +158,12 @@ var LearningWorkspace = (() => {
   function selectionFromUrl(search) {
     const params = new URLSearchParams(search);
     const selection = { kind: ["course", "wordbook", "textbook"].includes(params.get("kind")) ? params.get("kind") : "", query: params.get("q") || "" };
+    selection.category = ["practical", "new-concept", "school"].includes(params.get("category")) ? params.get("category") : "";
+    selection.practicalTopic = selection.category === "practical" && Object.hasOwn(PRACTICAL_TOPICS, params.get("practicalTopic")) ? params.get("practicalTopic") : "";
+    if (!selection.category && selection.kind === "textbook") {
+      selection.kind = "";
+      selection.category = "school";
+    }
     for (const key of Object.keys(FACET_LABELS)) selection[key] = params.getAll(key);
     return selection;
   }

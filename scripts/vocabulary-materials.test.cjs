@@ -1,0 +1,57 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const model=require('./lib/vocabulary-materials.cjs'),{build}=require('./prepare-borrow-material-library.cjs'),draftModel=require('../js/wordbook-draft'),engine=require('../landing/sentence-cloze-engine'),contract=require('../js/vocabulary-course-contract');
+(async()=>{
+ const source=fs.readFileSync('drafts/scene-wordbooks/borrow-things-v1/review.json'),review=JSON.parse(source),input=JSON.stringify(review),library=build(review),before=JSON.stringify(library);
+ assert.equal(JSON.stringify(review),input);const indexes=model.validate(library);
+ assert.deepEqual([indexes.sources.size,indexes.senses.size,indexes.activities.size,indexes.applications.size,indexes.courses.size],[1,6,6,3,2]);
+ const [adult,starter]=await Promise.all(library.courses.map(course=>model.previewCourse(library,course.courseId)));
+ assert.equal(adult.wordbookPackage.items.length,6);assert.equal(starter.wordbookPackage.items.length,3);
+ const adultBorrow=adult.wordbookPackage.items.find(item=>item.word==='borrow'),starterBorrow=starter.wordbookPackage.items.find(item=>item.word==='borrow');
+ assert.deepEqual(adultBorrow,starterBorrow,'same target/task is reused, not duplicated by course');
+ assert.notEqual(adult.wordbookPackage.index.books[0].bookId,starter.wordbookPackage.index.books[0].bookId);
+ assert.deepEqual(starter.wordbookPackage.items.map(item=>item.word),['pen','borrow','umbrella']);
+ assert.equal(adult.bindings.find(row=>row.itemId===adultBorrow.itemId).senseRef.senseId,'sense:'+adultBorrow.itemId);
+ for(const preview of [adult,starter]){assert.equal(preview.publishable,false);assert.equal(preview.wordbookPackage.published,false);for(const item of preview.wordbookPackage.items){contract.validateLearning(item,engine);assert.ok(item.learning.guidedExpression);assert.equal(engine.evaluate(item.exercise,Object.fromEntries(engine.blanks(item.exercise).map(blank=>[blank.id,blank.answers[0]]))).correct,true);}}
+ await assert.rejects(()=>draftModel.compile({schemaVersion:1,book:{bookId:'draft:material-test',title:'未完成素材',units:[{unitId:'u1',title:'u1'}]},items:adult.wordbookPackage.items.map(item=>({itemId:item.itemId,unitId:'u1',word:item.word,meaning:item.meaning,scene:item.scene,translation:item.translation,exercise:item.exercise,images:item.images,guidedSteps:item.learning.guidedExpression.steps}))}),/插画/);
+ const reject=(change,pattern)=>{const bad=structuredClone(library);change(bad);assert.throws(()=>model.validate(bad),pattern);};
+ reject(b=>b.sources[0].entries[0].rawText='silently changed',/版本/);
+ reject(b=>b.senses[0].meaning='偷偷更换',/版本/);
+ reject(b=>b.activities[0].translation='偷偷更换',/版本/);
+ reject(b=>b.stage='published',/草稿/);
+ reject(b=>b.learningRecords=[],/未知字段/);
+ reject(b=>b.sources.push(b.sources[0]),/重复/);
+ reject(b=>b.senses.push(b.senses[0]),/重复/);
+ reject(b=>{const orphan=model.versioned({...b.activities[0],itemId:'task:unused-invalid',translation:''});b.activities.push(orphan);},/场景或翻译/);
+ reject(b=>{const orphan=structuredClone(b.activities[0]);orphan.itemId='task:unused-invalid';orphan.guidedSteps[1].answer='lend';b.activities.push(model.versioned(orphan));},/不匹配/);
+ reject(b=>{b.activities[0].senseRef.revision='a'.repeat(64);b.activities[0]=model.versioned(b.activities[0]);},/词义引用/);
+ reject(b=>{b.senses[0].sourceRefs[0].entryId='foreign:entry';b.senses[0]=model.versioned(b.senses[0]);},/原始词条/);
+ reject(b=>{b.courses[0].units[0].activityRefs[0].revision='a'.repeat(64);b.courses[0]=model.versioned(b.courses[0]);},/教学任务引用/);
+ reject(b=>{b.courses[1].units[0].materialRefs=b.courses[0].units[0].materialRefs;b.courses[1]=model.versioned(b.courses[1]);},/材料目标/);
+ reject(b=>{b.activities[0].authorship='textbook-quotation';b.activities[0]=model.versioned(b.activities[0]);},/冒充/);
+ reject(b=>{b.activities[0].images={wide:['assets/large.avif'],mobile:['assets/mobile.webp']};b.activities[0]=model.versioned(b.activities[0]);},/共享 WebP/);
+ reject(b=>{b.activities[0].images={wide:['assets/shared.webp'],mobile:['assets/crop.webp']};b.activities[0]=model.versioned(b.activities[0]);},/共享 WebP/);
+ reject(b=>{b.activities[0].images={wide:['assets/shared.webp'],mobile:['assets/shared.webp']};b.activities[0]=model.versioned(b.activities[0]);},/真实文件大小/);
+ reject(b=>{b.sources[0].kind='textbook';b.sources[0].metadata={publisher:'fixture',title:'fixture',edition:'fixture',unit:'Unit 1',requestedPages:['1']};b.sources[0]=model.versioned(b.sources[0]);},/册次/);
+ // Same spelling is allowed as a different sense. No spelling-based auto-merge.
+ const distinct=structuredClone(library),other=model.versioned({...distinct.senses.find(s=>s.word==='return'),senseId:'sense:return-to-place',meaning:'返回',definition:'go back to a place'});distinct.senses.push(other);assert.equal(model.validate(distinct).senses.size,7);
+ const changed=structuredClone(library);changed.sources[0]=model.versioned({...changed.sources[0],entries:changed.sources[0].entries.map((entry,index)=>index?entry:{...entry,rawText:'revised original'})});assert.throws(()=>model.validate(changed),/来源.*版本/,'changed source never silently upgrades dependent senses');
+ const reordered=structuredClone(library);reordered.courses[1].units[0].activityRefs.reverse();reordered.courses[1]=model.versioned(reordered.courses[1]);
+ const orderPreview=await model.previewCourse(reordered,reordered.courses[1].courseId);assert.equal(orderPreview.wordbookPackage.items.find(item=>item.word==='borrow').contentRevision,adultBorrow.contentRevision,'course reorder does not change shared task');
+ const contextual=structuredClone(library),original=contextual.activities.find(item=>item.itemId.endsWith(':borrow'));
+ const exercise=draftModel.exercise('May I [borrow] your umbrella?');
+ const alternate=model.versioned({...original,itemId:'scene:borrow-umbrella-variant',scene:'正式一些地借用雨伞',translation:'我可以借用你的雨伞吗？',exercise,guidedSteps:draftModel.guidedSteps('我可以……吗 | May I | I may\n借用 | borrow | lend\n你的雨伞 | your umbrella? | my umbrella?',exercise)});
+ contextual.activities.push(alternate);contextual.courses[0].units[0].activityRefs[0]={itemId:alternate.itemId,revision:alternate.revision};contextual.courses[0]=model.versioned(contextual.courses[0]);
+ const alternatePreview=await model.previewCourse(contextual,contextual.courses[0].courseId);
+ assert.deepEqual(alternate.senseRef,original.senseRef,'different contexts share a sense by explicit reference');
+ assert.notEqual(alternatePreview.wordbookPackage.items[0].itemId,starterBorrow.itemId,'different tasks never reuse a progress identity');
+ assert.notEqual(alternatePreview.wordbookPackage.items[0].contentRevision,starterBorrow.contentRevision);
+ // Synthetic metadata only: no real textbook, archive or account is read.
+ const textbook=structuredClone(library),fixture=model.versioned({...textbook.sources[0],sourceId:'source:synthetic-textbook',kind:'textbook',metadata:{publisher:'测试出版社',title:'合成夹具',edition:'测试版',volume:'全一册',unit:'Unit 1',requestedPages:['教材词汇页 1']},entries:textbook.sources[0].entries.map(entry=>({...entry,location:{unit:'Unit 1',textbookPage:'1',scanPage:'7'}}))});
+ textbook.sources.push(fixture);model.validate(textbook);assert.equal(textbook.sources[1].metadata.volume,'全一册');assert.equal(textbook.sources[1].entries[0].location.textbookPage,'1');assert.equal(textbook.sources[1].entries[0].location.scanPage,'7');
+ const noPage=structuredClone(textbook);delete noPage.sources[1].entries[0].location.textbookPage;noPage.sources[1]=model.versioned(noPage.sources[1]);assert.throws(()=>model.validate(noPage),/扫描页代替/);
+ assert.equal(JSON.stringify(library),before,'pure validation and projection');assert.deepEqual(fs.readFileSync('drafts/scene-wordbooks/borrow-things-v1/review.json'),source,'previous draft preserved');
+ assert.equal(model.revisionOf({b:2,a:1}),model.revisionOf({a:1,b:2}),'version independent of object key order');
+ assert.throws(()=>model.validate({}),/草稿/);
+ console.log('Vocabulary materials: source/sense/task/course separation, pinned revisions, two course projections, no auto-merge, provenance and legacy engine compatibility passed.');
+})().catch(error=>{console.error(error);process.exitCode=1;});

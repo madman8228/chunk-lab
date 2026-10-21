@@ -1,0 +1,86 @@
+{
+  "format": "textbook-vocabulary-transcription",
+  "version": 1,
+  "status": "review-only",
+  "textbook": {
+    "title": "义务教育教科书 英语（三年级起点）",
+    "publisher": "人民教育出版社",
+    "schoolStage": "小学",
+    "grade": "五年级",
+    "volume": "下册",
+    "series": "PEP",
+    "edition": null,
+    "coverApprovalYear": 2013,
+    "identityNote": "用户确认 PEP 五年级下册；封面可见教育部审定2013。具体版次、印次未见版权页。与2024封面版分开建档。",
+    "printedUsageNotice": null
+  },
+  "legend": {
+    "bold": "黑体单词要求学生能听、说、读、写；白体词只要求听、说、认读",
+    "rowFormat": ["term", "meaning", "bold", "type", "printedAppendixPage", "phonetic", "sourceNote"],
+    "types": ["word", "phrase", "expression"],
+    "normalization": "按单元词表转录词头与释义；A–Z页中的音标未结构化转录，原页随包保留。"
+  },
+  "images": [
+    {"id":1,"role":"cover","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-8682e3c6-220b-46f9-a15c-b808087f371e.png"},
+    {"id":2,"role":"contents","path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-df1b85e6-5691-44f4-bd69-ff8e50311e27.png"},
+    {"id":3,"role":"songs","printedPage":70,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-78942d9c-c792-4f90-8832-923c8b9bffa0.png"},
+    {"id":4,"role":"songs","printedPage":71,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-9aafca9d-1a33-4e69-8c04-9fcfe6fc706c.png"},
+    {"id":5,"role":"unit-vocabulary","printedPage":72,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-a9b1c3b2-520b-4b48-90c3-942375d8ea80.png"},
+    {"id":6,"role":"unit-vocabulary","printedPage":73,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-118e5f9b-b6ec-4124-a028-73c5f1313992.png"},
+    {"id":7,"role":"unit-vocabulary","printedPage":74,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-397664f8-796f-4320-894c-259bf579ecf9.png"},
+    {"id":8,"role":"alphabetical-vocabulary","printedPage":75,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-18af1b78-a5a8-4f9e-81fa-d1c9de4de976.png"},
+    {"id":9,"role":"alphabetical-vocabulary","printedPage":76,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-ef944f98-56c1-4505-b058-03a8381ced4e.png"},
+    {"id":10,"role":"alphabetical-vocabulary","printedPage":77,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-6332a0af-e07e-49fd-abf0-410890911b4d.png"},
+    {"id":11,"role":"alphabetical-vocabulary","printedPage":78,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-70eb5b67-755d-47e2-be6e-ff376304e134.png"},
+    {"id":12,"role":"useful-expressions","printedPage":79,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-85903a0c-8a3b-4073-96f1-c80b74d51892.png"},
+    {"id":13,"role":"useful-expressions-and-proverbs","printedPage":80,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-528a951f-ccf2-4a17-ac57-c81b7fdc732c.png"}
+  ],
+  "contents": [
+    {"title":"Unit 1 My day","startPage":2},{"title":"Unit 2 My favourite season","startPage":12},
+    {"title":"Unit 3 My school calendar","startPage":22},{"title":"Recycle 1","startPage":32},
+    {"title":"Unit 4 When is the art show?","startPage":36},{"title":"Unit 5 Whose dog is it?","startPage":46},
+    {"title":"Unit 6 Work quietly!","startPage":56},{"title":"Recycle 2","startPage":66},
+    {"title":"Appendix 1: Songs in each unit","startPage":70},{"title":"Appendix 2: Words in each unit","startPage":72},
+    {"title":"Appendix 3: Vocabulary","startPage":75},{"title":"Appendix 4: Useful expressions","startPage":79},
+    {"title":"Appendix 5: Proverbs","startPage":80}
+  ],
+  "units": [
+    {"unitId":"unit-1","title":"Unit 1 My day","contentsStartPage":2,"sourceImages":[5],"entries":[
+      ["eat breakfast","吃早饭",true,"phrase",72,"",""],["have ... class","上……课",true,"phrase",72,"",""],["play sports","进行体育运动",true,"phrase",72,"",""],["exercise","活动；运动",true,"word",72,"",""],["do morning exercises","做早操",true,"phrase",72,"",""],["eat dinner","吃晚饭",true,"phrase",72,"",""],["clean my room","打扫我的房间",true,"phrase",72,"",""],["go for a walk","散步",true,"phrase",72,"",""],["go shopping","去买东西；购物",true,"phrase",72,"",""],["take","学习；上（课）",true,"word",72,"",""],["dancing","跳舞；舞蹈",true,"word",72,"",""],["take a dancing class","上舞蹈课",true,"phrase",72,"",""],["when","什么时候；何时",false,"word",72,"",""],["after","在（时间）后",false,"word",72,"",""],["start","开始",true,"word",72,"",""],["usually","通常地；惯常地",false,"word",72,"",""],["Spain","西班牙",false,"word",72,"",""],["late","晚；迟",false,"word",72,"",""],["a.m.","午前；上午",false,"word",72,"",""],["p.m.","午后；下午",false,"word",72,"",""],["why","为什么",true,"word",72,"",""],["shop","去买东西；购物",true,"word",72,"",""],["work","工作",false,"word",72,"",""],["last","上一个的；刚过去的",true,"word",72,"",""],["sound","听起来好像",false,"word",72,"",""],["also","还；也",false,"word",72,"",""],["busy","忙的",true,"word",72,"",""],["need","需要",true,"word",72,"",""],["play","戏剧；剧本",true,"word",72,"",""],["letter","信",true,"word",72,"",""],["live","居住",true,"word",72,"",""],["island","岛",false,"word",72,"",""],["always","总是；一直",true,"word",72,"",""],["cave","山洞；洞穴",false,"word",72,"",""],["go swimming","去游泳",false,"phrase",72,"",""],["win","获胜",false,"word",72,"",""]]},
+    {"unitId":"unit-2","title":"Unit 2 My favourite season","contentsStartPage":12,"sourceImages":[5,6],"entries":[
+      ["spring","春天",true,"word",72,"",""],["summer","夏天",true,"word",72,"",""],["autumn","秋天",true,"word",72,"",""],["winter","冬天",true,"word",72,"",""],["season","季节",true,"word",72,"",""],["picnic","野餐",true,"word",72,"",""],["go on a picnic","去野餐",true,"phrase",72,"",""],["pick","摘；采集",true,"word",72,"",""],["pick apples","摘苹果",true,"phrase",72,"",""],["snowman","雪人",true,"word",72,"",""],["make a snowman","堆雪人",true,"phrase",72,"",""],["go swimming","去游泳",true,"phrase",72,"",""],["which","哪一个",true,"word",72,"",""],["best","最；最高程度地",true,"word",72,"",""],["snow","雪",true,"word",72,"",""],["good job","做得好",true,"phrase",72,"",""],["because","因为",true,"word",72,"",""],["vacation","假期",false,"word",73,"",""],["all","全；完全",false,"word",73,"",""],["pink","粉色；粉色的",true,"word",73,"",""],["lovely","可爱的；美丽的",true,"word",73,"",""],["leaf","叶子（复数 leaves）",true,"word",73,"",""],["fall","落下；【美】秋天",true,"word",73,"",""],["paint","用颜料绘画",true,"word",73,"",""]]},
+    {"unitId":"unit-3","title":"Unit 3 My school calendar","contentsStartPage":22,"sourceImages":[6],"entries":[
+      ["January","一月",true,"word",73,"",""],["February","二月",true,"word",73,"",""],["March","三月",true,"word",73,"",""],["April","四月",true,"word",73,"",""],["May","五月",true,"word",73,"",""],["June","六月",true,"word",73,"",""],["July","七月",true,"word",73,"",""],["August","八月",true,"word",73,"",""],["September","九月",true,"word",73,"",""],["October","十月",true,"word",73,"",""],["November","十一月",true,"word",73,"",""],["December","十二月",true,"word",73,"",""],["few","不多；很少",true,"word",73,"",""],["a few","一些",false,"phrase",73,"",""],["thing","事情",false,"word",73,"",""],["meet","集会；开会",false,"word",73,"",""],["sports meet","运动会",false,"phrase",73,"",""],["trip","旅行",false,"word",73,"",""],["year","年",false,"word",73,"",""],["plant","种植",false,"word",73,"",""],["contest","比赛；竞赛",false,"word",73,"",""],["labour","劳动",false,"word",73,"",""],["Labour Day","劳动节",false,"phrase",73,"",""],["the Great Wall","长城",false,"phrase",73,"",""],["national","国家的",false,"word",73,"",""],["National Day","国庆日",false,"phrase",73,"",""],["American","美国的",false,"word",73,"",""],["Thanksgiving","感恩节",false,"word",73,"",""],["Christmas","圣诞节",false,"word",73,"",""],["game","游戏",false,"word",73,"",""],["riddle","谜；谜语",false,"word",73,"",""],["act","扮演",false,"word",73,"",""],["act out","把……表演出来",false,"phrase",73,"",""],["RSVP","（尤用于请柬）请赐复",false,"word",73,"",""],["by","在……之前",false,"word",73,"",""]]},
+    {"unitId":"unit-4","title":"Unit 4 When is the art show?","contentsStartPage":36,"sourceImages":[6,7],"entries":[
+      ["first (1st)","第一（的）",true,"word",73,"",""],["second (2nd)","第二（的）",true,"word",73,"",""],["third (3rd)","第三（的）",true,"word",73,"",""],["fourth (4th)","第四（的）",true,"word",73,"",""],["fifth (5th)","第五（的）",true,"word",73,"",""],["twelfth (12th)","第十二（的）",true,"word",73,"",""],["twentieth (20th)","第二十（的）",true,"word",73,"",""],["twenty-first (21st)","第二十一（的）",true,"word",73,"",""],["twenty-third (23rd)","第二十三（的）",true,"word",73,"",""],["thirtieth (30th)","第三十（的）",true,"word",73,"",""],["other","其他",false,"word",73,"",""],["special","特殊的；特别的",false,"word",73,"",""],["show","展览",false,"word",73,"",""],["festival","节日",false,"word",74,"",""],["kitten","小猫",false,"word",74,"",""],["diary","日记",false,"word",74,"",""],["still","仍然；依旧；还是",false,"word",74,"",""],["noise","声音；响声；噪音",false,"word",74,"",""],["fur","（某些动物的）浓密的软毛",false,"word",74,"",""],["open","开着的",false,"word",74,"",""],["walk","行走",false,"word",74,"",""],["travel","旅行；长途行走；从一处到另一处",false,"word",74,"",""],["feel like","感觉像是……",false,"phrase",74,"",""],["middle","中间；中央",true,"word",74,"",""],["painting","油画；绘画",false,"word",74,"",""],["pyramid","（古埃及的）金字塔",false,"word",74,"",""],["ride","骑；驾驶",false,"word",74,"",""],["camel","骆驼",false,"word",74,"",""],["even","（强调出乎意料）甚至，连，即使",false,"word",74,"",""],["Confucius","孔子",false,"word",74,"",""],["Beijing opera","京剧",false,"phrase",74,"",""],["Mount Taishan","泰山",false,"phrase",74,"",""],["India","印度",false,"word",74,"",""],["Italy","意大利",false,"word",74,"",""],["Britain","不列颠（包括英格兰、苏格兰及威尔士）",false,"word",74,"",""],["Cairo","开罗（埃及首都）",false,"word",74,"",""],["Hawaii","夏威夷",false,"word",74,"",""]]},
+    {"unitId":"unit-5","title":"Unit 5 Whose dog is it?","contentsStartPage":46,"sourceImages":[7],"entries":[
+      ["early","早到的；提前的",true,"word",74,"",""],["underground","地铁",false,"word",74,"",""],["bike","自行车；脚踏车",true,"word",74,"",""],["foot (feet)","脚（复数）",true,"word",74,"",""],["on foot","步行",false,"phrase",74,"",""],["plane","飞机",true,"word",74,"",""],["ship","（大）船；舰",true,"word",74,"",""],["hurt","对……有不良影响；（使）疼痛，受伤",false,"word",74,"",""],["environment","自然环境",false,"word",74,"",""],["tip","实用的提示；指点",false,"word",74,"",""],["health","健康",false,"word",74,"",""],["carry","运送；承载",false,"word",74,"",""],["finally","（用于列举）最后；终于",false,"word",74,"",""],["suggest","建议；提议",false,"word",74,"",""],["everyday","每天的；日常的",false,"word",74,"",""],["excited","兴奋的；激动的",false,"word",74,"",""],["like","像……那样",false,"word",74,"",""],["mine","我的",true,"word",74,"",""],["yours","你（们）的",true,"word",74,"",""],["his","他的",true,"word",74,"",""],["hers","她的",true,"word",74,"",""],["theirs","他们的；她们的；它们的",true,"word",74,"",""],["ours","我们的",true,"word",74,"",""],["climbing","（climb的-ing形式）（正在）攀登；攀爬",true,"word",74,"",""],["eating","（eat的-ing形式）（正在）吃",true,"word",74,"",""],["playing","（play的-ing形式）（正在）玩耍",true,"word",74,"",""],["jumping","（jump的-ing形式）（正在）跳",true,"word",74,"",""],["drinking","（drink的-ing形式）（正在）喝（水）",true,"word",74,"",""],["sleeping","（sleep的-ing形式）（正在）睡觉",true,"word",74,"",""],["each","每一；各个",true,"word",74,"",""],["each other","相互",false,"phrase",74,"",""]]},
+    {"unitId":"unit-6","title":"Unit 6 Work quietly!","contentsStartPage":56,"sourceImages":[7],"entries":[
+      ["doing morning exercises","（正在）做早操",true,"phrase",74,"",""],["having ... class","（正在）上……课",true,"phrase",74,"",""],["eating lunch","（正在）吃午饭",true,"phrase",74,"",""],["reading a book","（正在）看书",true,"phrase",74,"",""],["listening to music","（正在）听音乐",true,"phrase",74,"",""],["keep","保持某种状态",true,"word",74,"",""],["keep to the right","靠右",true,"phrase",74,"",""],["keep your desk clean","保持你的课桌干净",true,"phrase",74,"",""],["talk quietly","小声讲话",true,"phrase",74,"",""],["turn","顺序",true,"word",74,"",""],["take turns","按顺序来",true,"phrase",74,"",""],["bamboo","竹子",false,"word",74,"",""],["its","（指事物、动物或幼儿）它的；他的；她的",false,"word",74,"",""],["show","给人看",false,"word",74,"",""],["anything","任何事物",false,"word",74,"",""],["else","另外；其他",false,"word",74,"",""],["exhibition","展览",false,"word",74,"",""],["say","说；讲",false,"word",74,"",""],["have a look","看一看",false,"phrase",74,"",""],["sushi","寿司",false,"word",74,"",""],["teach","教",false,"word",74,"",""],["sure","（表示同意）当然",false,"word",74,"",""],["Canadian","加拿大的",false,"word",74,"",""],["Spanish","西班牙的",false,"word",74,"",""]]}],
+  "usefulExpressions": {"units": [
+    {"unitId":"unit-1","printedPage":79,"entries":[["When do you finish class in the morning?","你们上午的课几点结束？","p.4"],["We finish class at 1 o'clock.","我们一点钟结束上午的课。","p.4"],["What do you do on the weekend?","你周末做什么？","p.7"],["I often watch TV and play ping-pong with my father.","我经常看电视，也常和我爸爸一起打乒乓球。","p.7"]]},
+    {"unitId":"unit-2","printedPage":79,"entries":[["Which season do you like best, Miss White?","怀特小姐，你最喜欢哪个季节？","p.17"],["Summer.","夏天。","p.17"],["Why?","为什么？","p.17"],["Because I like summer vacation!","因为我喜欢暑假！","p.17"]]},
+    {"unitId":"unit-3","printedPage":79,"entries":[["When is the party?","聚会什么时候举行？","p.24"],["It's in April.","在4月。","p.24"],["When is the trip this year?","今年的（秋）游在什么时候？","p.27"],["It's in October. We'll go to the Great Wall.","在10月。我们将去长城。","p.27"]]},
+    {"unitId":"unit-4","printedPage":79,"entries":[["When is the art show?","艺术节是哪天？","p.38"],["It's on May 1st.","它在5月1日。","p.38"],["When is your birthday?","你的生日是哪天？","p.41"],["My birthday is on April 4th.","我的生日是4月4日。","p.41"]]},
+    {"unitId":"unit-5","printedPage":80,"entries":[["The yellow picture is mine.","那幅黄色的画是我的。","p.48"],["Are these all ours?","这些都是我们的画吗？","p.48"],["Whose is it?","这是谁的？","p.48"],["It's Zhang Peng's.","是张鹏的。","p.48"],["Is he drinking water?","他在喝水吗？","p.51"],["No, he isn't. He's eating.","不是。他在吃东西。","p.51"]]},
+    {"unitId":"unit-6","printedPage":80,"entries":[["What are they doing?","它们在干什么？","p.58"],["They're eating lunch!","它们在吃午饭！","p.58"],["What's the little monkey doing?","那只小猴子在干什么？","p.58"],["It's playing with its mother!","它在和妈妈玩耍！","p.58"],["Shh. Talk quietly.","嘘，小声讲话。","p.61"],["Keep your desk clean.","保持桌面整洁。","p.61"]]}
+  ]},
+  "songs": [
+    {"unitId":"unit-1","title":"My weekend","lines":["I like to do things on the weekend.","I clean my room and go shopping at the mall.","I have a music class and do exercises.","I play football and play basketball."]},
+    {"unitId":"unit-2","title":"What's your favourite season?","lines":["Summer, winter,","Spring and fall,","Spring and fall,","Spring and fall.","Summer, winter,","Spring and fall,","What's your favourite season?"]},
+    {"unitId":"unit-3","title":"The twelve months","lines":["Apples, peaches, pears and plums,","Tell me when your birthday comes.","January, February, March, April,","May, June, July, August,","September, October, November, December.","Please tell me when it's your birthday."]},
+    {"unitId":"unit-4","title":"When is your birthday?","lines":["My birthday is in January. My birthday is in January.","My birthday is in January. It's on January 1st.","My birthday is in August. My birthday is in August.","My birthday is in August. It's on August 5th."]},
+    {"unitId":"unit-5","title":"Animals, animals are everywhere","lines":["Rabbits and monkeys and elephants,","Pandas and tigers, too.","Some are climbing, some are jumping,","Animals in the zoo.","Cats and monkeys and elephants,","A dog, a rabbit, a bear.","Some are eating, some are sleeping,","Animals everywhere!"]},
+    {"unitId":"unit-6","title":"School days","lines":["School days! School days!","We come to work and play.","We need to work and talk quietly.","And listen every day.","We need to keep our desks clean.","We need to take turns to talk.","Keep to the left,","And keep to the right.","And you will be a good student at school."]}
+  ],
+  "proverbs": [
+    ["The early bird catches the worm.","早起的鸟有虫吃。"],["Every season brings its joy.","春有百花秋有月，夏有凉风冬有雪。"],["Life has seasons.","人生有四季。"],
+    ["Yesterday, today and tomorrow—these are the three days of man.","人生有三天：昨天、今天和明天。"],["Let sleeping dogs lie.","别惹是生非。"],["It's the empty can that makes the most noise.","半瓶水响叮当。"]
+  ],
+  "reviewIssues": [
+    {"term":"A–Z Vocabulary","note":"词汇页作为原图保留；当前结构化词表以单元词表为准，尚未对A–Z词头、音标及星号逐项独立复核。"},
+    {"term":"Recycle 1 / Recycle 2","note":"目录页可见，但未提供正文页；未据目录补造复习课内容。"},
+    {"term":"黑体/白体","note":"按词表截图字形录入；请人工审看时重点核对跨行和小字号项目。"}
+  ],
+  "limitations": ["封面仅能确认教育部审定2013，版次/印次未知。","词表音标未转录；原始A–Z词汇页已随审看包保存。","用户所给页脚版权/使用声明不可完整辨认，公开或再发布前需核实授权。"]
+}

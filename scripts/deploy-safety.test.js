@@ -35,6 +35,16 @@ let pass = 0, total = 0;
 
 const CASES = [
   {
+    name: '教材草稿页面依赖不可漏部署',
+    mutate: function (s) { return s.replace(/\bjs\/textbook-drafts\.js\b/g, ''); },
+    expect: 'js/textbook-drafts.js'
+  },
+  {
+    name:'实际依赖验证不可省略',
+    mutate:function(s){return s.replace("node '$REMOTE_DIR/scripts/verify-server-dependencies.cjs' '$APP/server'",'true');},
+    expect:'缺少覆盖应用前的实际依赖加载验证'
+  },
+  {
     name: 'A 快照失败分支去掉 exit 1（fail-open）',
     mutate: function (s) {
       const i = s.indexOf('backup-db.js backup');
@@ -98,6 +108,22 @@ const CASES = [
     expect: '必须显式传入唯一目标主机',
   },
 ];
+for (const key of ['PHONE_AUTH_ENABLED', 'SMS_PROVIDER',
+  'ALIBABA_CLOUD_ACCESS_KEY_ID', 'ALIBABA_CLOUD_ACCESS_KEY_SECRET',
+  'SMS_SIGN_NAME', 'SMS_TEMPLATE_CODE']) {
+  CASES.push({
+    name:'手机号发布预检不可省略：' + key,
+    mutate:function(s){ return s.replace(key, 'REMOVED_' + key); },
+    expect:'缺少快照前的手机号及短信配置预检'
+  });
+}
+for (const check of ['config.requireAuth !== true', 'config.authMode !== "phone"', 'config.writeProtocol !== 3']) {
+  CASES.push({
+    name:'上线实际配置检查不可省略：' + check,
+    mutate:function(s){return s.replace(check,'false');},
+    expect:'缺少重启后的实际登录模式及保存协议检查'
+  });
+}
 
 function runChecker(scriptPath) {
   try {
@@ -126,6 +152,10 @@ if (base.code === 0) {
       ORIG.indexOf('DEPLOY_SKIP_TESTS') < ORIG.indexOf('trap cleanup_remote_stage EXIT') &&
       !/DEPLOY_SKIP_TESTS[\s\S]*?else\s*npm test/.test(ORIG)],
     ['使用唯一临时目录并在退出时清理', /DEPLOY_TOKEN=.*chunklab-deploy-/.test(ORIG) && /REMOTE_DIR="\/tmp\/\$DEPLOY_TOKEN"/.test(ORIG) && /trap cleanup_remote_stage EXIT/.test(ORIG)],
+    ['公开部署包排除词汇原图与拼图源文件',
+      ORIG.includes("--exclude='assets/vocabulary-*-landscape-master-v2.png'") &&
+      ORIG.includes("--exclude='assets/vocabulary-scenes-v1.png'") &&
+      ORIG.includes("--exclude='assets/vocabulary-landscapes-v2.sources.json'")],
     ['远端落盘命令启用 fail-closed shell', /bash -s -- '\$APP' '\$REMOTE_DIR'/.test(ORIG) && /set -euo pipefail/.test(ORIG)],
     ['健康检查拒绝 HTTP 错误', /curl --fail --silent --show-error/.test(ORIG)],
     /* 2026-10-07：根路径语义变了 —— 合并落地页后 server/index.js 里那行
@@ -167,6 +197,21 @@ if (base.code === 0) {
   try { fs.unlinkSync(TMP); } catch (e) { /* 临时文件，清不掉不影响结论 */ }
 }
 
+// Execute the exact deployed stdin validator, not a duplicated implementation.
+const smokeSource = ORIG.match(/\/api\/config \| node -e '([\s\S]*?)';?\r?\n/);
+for (const [label,input,expected] of [
+  ['正确生产配置',JSON.stringify({requireAuth:true,authMode:'phone',writeProtocol:3}),0],
+  ['无登录保护',JSON.stringify({requireAuth:false,authMode:'phone',writeProtocol:3}),1],
+  ['旧密码模式',JSON.stringify({requireAuth:true,authMode:'password',writeProtocol:3}),1],
+  ['旧保存协议',JSON.stringify({requireAuth:true,authMode:'phone',writeProtocol:2}),1],
+  ['缺少字段','{}',1], ['非JSON响应','<html>error</html>',1]
+]) {
+  total++;
+  const result=smokeSource && cp.spawnSync(process.execPath,['-e',smokeSource[1]],{input,encoding:'utf8'});
+  if(result && result.status===expected){pass++;console.log('  ✓ 实际配置校验执行：'+label);}
+  else console.log('  ✗ 实际配置校验执行：'+label);
+}
+
 /* ============ [2] 运行时：真实 backup-db.js 的输出契约 ============ */
 
 console.log('[2] 运行时：实证不能取原始输出最后一行');
@@ -205,18 +250,19 @@ console.log('[2] 运行时：实证不能取原始输出最后一行');
     const viaTail = out.trim().split('\n').pop() || '';
     const viaGrep = out.split('\n').filter(function (l) {
       return l.indexOf('backup-db] OK:') >= 0; }).pop() || '';
-    const pruned = out.indexOf('清理旧备份') >= 0;
+    const originalsPreserved = Array.from({length:KEEP},(_,i)=>'chunklab_db_2020010'+(i+1)+'_030000.db')
+      .every(file=>fs.existsSync(path.join(BK,file)) && fs.readFileSync(path.join(BK,file),'utf8')==='old');
 
     total += 2;
-    if (pruned) {
+    if (r.status === 0 && originalsPreserved && fs.readdirSync(BK).length === KEEP+1) {
       pass++;
-      console.log('  ✓ 备份超限时确实追加了「清理旧备份」行（用例前提成立）');
+      console.log('  ✓ 创建新快照不删除或修改任何旧备份');
     } else {
-      console.log('  ✗ 未触发 prune，用例没造出超限场景，本段结论无效');
+      console.log('  ✗ 新快照失败或旧备份未完整保留');
     }
-    if (pruned && viaTail.indexOf('backup-db] OK:') < 0 && viaGrep.indexOf('backup-db] OK:') >= 0) {
+    if (viaGrep.indexOf('backup-db] OK:') >= 0 && out.indexOf('清理旧备份') < 0) {
       pass++;
-      console.log('  ✓ tail -1 取到的是「清理旧备份」→ 会误判失败；按标记 grep 取到成功行');
+      console.log('  ✓ 快照输出包含成功标记且没有旧清理行为');
     } else {
       console.log('  ✗ 取法区别未复现：tail=' + viaTail.slice(0, 50));
     }

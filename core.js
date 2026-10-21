@@ -1459,6 +1459,7 @@
 
   var _cloudOn = false; /* 云端是否启用：服务器可达（开放模式）或已登录（鉴权模式）时为 true */
   var _serverPersistenceReady = false; /* protocol 3 drain waits only for the current account's confirmed cache */
+  var _cloudStartupError = null;
   function serverAuthoritativeProtocolActive(){
     var config = global.CL && typeof global.CL.getCloudConfig === 'function' ? global.CL.getCloudConfig() : null;
     return !!(config && config.persistenceMode === 'server-authoritative' && Number(config.writeProtocol) === 3);
@@ -1529,57 +1530,10 @@
     return global.ServerCache.refresh();
   }
 
-  /* ---------- 静默游客账号 ----------
-     鉴权模式下让用户免登录直接用：首次访问自动注册 guest_xxx（凭据存本地供静默续期），
-     token 过期后凭据可透明重登。手动登录的账号不存此凭据 → 到期仍走登录框，防止自动换成新游客导致数据错挂。 */
-  var GUEST_KEY = 'chunklab_guest';
-  function _randId(n){
-    var chars = 'abcdefghjkmnpqrstuvwxyz23456789', s = '';
-    for (var i = 0; i < n; i++) s += chars[Math.floor(Math.random() * chars.length)];
-    return s;
-  }
-  function _loadGuest(){
-    try {
-      var saved = JSON.parse(localStorage.getItem(GUEST_KEY) || 'null');
-      return saved && (saved.base || '') === global.ChunkAPI.getBase() ? saved : null;
-    } catch (e) { return null; }
-  }
-  function _createGuest(tries){
-    var api = global.ChunkAPI;
-    tries = tries || 0;
-    var u = 'guest_' + _randId(10), p = _randId(24);
-    return api.register(u, p).then(function(r){
-      if (r && r.token) {
-        api.setToken(r.token);
-        try { localStorage.setItem(GUEST_KEY, JSON.stringify({ u: u, p: p, base: api.getBase() })); } catch (e) {}
-        return true;
-      }
-      return false;
-    }).catch(function(){
-      /* 用户名撞车（极小概率）→ 重试；网络/服务异常 → 放弃静默，走登录框 */
-      if (tries < 2) return _createGuest(tries + 1);
-      return false;
-    });
-  }
-  function guestBootstrap(){
-    var api = global.ChunkAPI;
-    var saved = _loadGuest();
-    if (saved && saved.u && saved.p) {
-      /* 有游客凭据：静默重登（顺带解决 JWT 过期），账号被删则重建游客 */
-      return api.login(saved.u, saved.p).then(function(r){
-        if (r && r.token) { api.setToken(r.token); return true; }
-        return _createGuest();
-      }).catch(function(){ return _createGuest(); });
-    }
-    if (api.isLoggedIn()) return Promise.resolve(true); /* 手动登录会话：不自动换账号 */
-    /* 无凭据无 token：真新访客 → 建游客；但带手动会话标记（登录过自己账号、token 已过期）→ 弹登录框，
-       绝不静默换成新游客（用户会以为数据丢了） */
-    try {
-      if (localStorage.getItem('chunklab_manual')) return Promise.resolve(false);
-    } catch (e) {}
-    return _createGuest();
-  }
+  /* Signed-out visitors stay signed out. Existing account tokens and archived
+     browser records remain untouched; startup never creates another account. */
   function finishCloudStartup(resolve){
+    _cloudStartupError = null;
     _cloudOn = true;
     _serverPersistenceReady = false;
     // Learning starts from the current account's confirmed server cache.
@@ -1593,20 +1547,27 @@
     Promise.resolve(startupSync).then(function(result){
       _serverPersistenceReady = true; notifyCloudConfigChanged();
       if(global.ChunkAPI && global.ChunkAPI.heartbeat){
-        global.ChunkAPI.heartbeat().catch(function(error){
+        // Pages with visit tracking share its cadence, in-flight guard and retry policy.
+        var heartbeat = global.StudyUsage ? global.StudyUsage.visit() : global.ChunkAPI.heartbeat();
+        Promise.resolve(heartbeat).catch(function(error){
           console.warn('[cloud] 活跃记录失败：', error && error.message || error);
         });
       }
       resolve(result);
     }, function(error){
+      _cloudStartupError = { code:error && error.code, message:error && error.message, status:error && error.status };
       _serverPersistenceReady = false; notifyCloudConfigChanged();
       resolve(false);
+      if (error && ['SERVER_IDENTITY_REQUIRED','SERVER_IDENTITY_MISMATCH','SERVER_SEQ_ROLLBACK','SERVER_UPDATE_REQUIRED'].includes(error.code)) return;
       console.warn('[cloud] 服务端缓存暂不可用，待保存操作将在恢复连接后重试：',
         error && error.message || error);
     });
   }
+  function permanentCloudStartupError(){
+    return !!(_cloudStartupError && ['SERVER_IDENTITY_REQUIRED','SERVER_IDENTITY_MISMATCH','SERVER_SEQ_ROLLBACK','SERVER_UPDATE_REQUIRED'].includes(_cloudStartupError.code));
+  }
   function scheduleCloudStartupRetry(){
-    if(_cloudStartupRetryTimer || !global.ChunkAPI || (global.navigator && global.navigator.onLine === false)) return;
+    if(_cloudStartupRetryTimer || !global.ChunkAPI || permanentCloudStartupError() || (global.navigator && global.navigator.onLine === false)) return;
     var baseDelay = _cloudStartupRetryDelay;
     _cloudStartupRetryDelay = Math.min(30000, baseDelay * 2);
     var delay = Math.round(baseDelay * (0.8 + Math.random() * 0.4));
@@ -1616,7 +1577,7 @@
     }, delay);
   }
   function retryCloudStartupSoon(){
-    if(!global.ChunkAPI || _serverPersistenceReady) return;
+    if(!global.ChunkAPI || _serverPersistenceReady || permanentCloudStartupError()) return;
     if(_cloudStartupRetryTimer){ global.clearTimeout(_cloudStartupRetryTimer); _cloudStartupRetryTimer = null; }
     _cloudStartupRetryDelay = 1000;
     ensureCloud();
@@ -1628,11 +1589,14 @@
     if(_cloudStartupPromise) return _cloudStartupPromise;
     if(!global.ChunkAPI){ _cloudConfigState = 'unknown'; notifyCloudConfigChanged(); return Promise.resolve(); }
     _cloudConfigState = 'checking';
+    _cloudStartupError = null;
     notifyCloudConfigChanged();
     var startupPromise = new Promise(function(resolve){
       preload().then(function(){
         global.ChunkAPI.getConfig().then(function(cfg){
           _cloudConfig = cfg || null;
+          if(global.ChunkAuthUI) global.ChunkAuthUI.phoneMode = cfg && cfg.authMode === 'phone';
+          if(global.ChunkAuthUI) global.ChunkAuthUI.legacyPasswordLoginAllowed = !!(cfg && cfg.legacyPasswordLoginAllowed === true);
           _cloudConfigState = 'known';
           // Keep the saving protocol for this account when the next page opens offline.
           // Cached configuration never opens the network write gate.
@@ -1640,54 +1604,62 @@
             try{
               if(serverAuthoritativeProtocolActive()){
                 global.AccountStorage.storage.setItem('chunklab.server-config.v3', JSON.stringify({
-                  persistenceMode:cfg.persistenceMode, writeProtocol:3, requireAuth:!!cfg.requireAuth
+                  persistenceMode:cfg.persistenceMode, writeProtocol:3, requireAuth:!!cfg.requireAuth,
+                  responseIdentityVersion:Number(cfg.responseIdentityVersion)||0, testMode:cfg.testMode===true
                 }));
               }else global.AccountStorage.storage.removeItem('chunklab.server-config.v3');
             }catch(ignoreConfigCache){}
           }
           if(serverAuthoritativeProtocolActive()) _serverPersistenceReady = false;
           notifyCloudConfigChanged();
-          var needAuth = cfg && cfg.requireAuth;
-          if(!serverAuthoritativeProtocolActive()){
+          var localTest = !!(cfg && cfg.testMode === true && global.location && /^(localhost|127\.0\.0\.1)$/.test(global.location.hostname));
+          var identityContract = cfg && Number(cfg.responseIdentityVersion) === 1;
+          if(!identityContract || (!cfg.requireAuth && !localTest) || !serverAuthoritativeProtocolActive()){
             _cloudOn = false;
             _serverPersistenceReady = false;
             _cloudConfigState = 'config-invalid';
+            _cloudStartupError = { code:'SERVER_UPDATE_REQUIRED', message:'服务端版本或登录配置不符合要求' };
             notifyCloudConfigChanged();
-            console.error('[saving] 服务配置不支持当前保存协议，未启用旧版上传');
+            console.error('[saving] 服务端登录/响应身份协议不匹配，已暂停同步');
             resolve(false);
             return;
           }
-          /* 只在「确实没有可用令牌」时才走静默游客引导。
-             根因（2026-09-17 探针实测）：此处曾有 `|| _loadGuest()`，即只要本地存着游客凭据就每次启动
-             都静默重登 → api.setToken 写回令牌 → AccountStorage 代次变化 → 触发整页重载 → 再重登…
-             新访客陷入无限重载（实测 6 秒 33 次导航，首屏永远定不下来）。
-             续期能力不受影响：令牌过期时 api.js 遇 401 会 clearToken，下次启动 isLoggedIn() 为假，
-             仍会进入本分支用保存的凭据静默重登。 */
+          /* A valid existing session keeps its account; a visitor must choose
+             login explicitly on the main workspace. No silent registration. */
+          var needAuth = !localTest || cfg.requireAuth === true;
           if(needAuth && !global.ChunkAPI.isLoggedIn()){
-            /* 鉴权模式：无 token 或有游客凭据（过期续期）→ 先试静默游客引导，失败再弹登录框 */
-            guestBootstrap().then(function(ok){
-              if(ok){ finishCloudStartup(resolve); }
-              else if(global.ChunkAuthUI && global.ChunkAuthUI.showLogin){
-                global.ChunkAuthUI.showLogin(function(){ finishCloudStartup(resolve); });
-              } else { resolve(); }
-            });
+            if(global.document && global.document.body && global.document.body.dataset.authEntry === 'explicit'){
+              _cloudOn = false; _cloudConfigState = 'signed-out';
+              notifyCloudConfigChanged(); resolve(false); return;
+            }
+            if(global.ChunkAuthUI && global.ChunkAuthUI.showLogin){
+              global.ChunkAuthUI.showLogin(function(){ finishCloudStartup(resolve); },{
+                dismissible:true,
+                onCancel:function(){
+                  _cloudOn = false; _serverPersistenceReady = false; _cloudConfigState = 'signed-out';
+                  notifyCloudConfigChanged(); resolve(false);
+                }
+              });
+            } else { resolve(false); }
           } else {
             /* 开放模式，或鉴权模式下的手动登录会话：直接同步 */
             finishCloudStartup(resolve);
           }
-        }).catch(function(){
+        }).catch(function(error){
+          _cloudStartupError = { code:error && error.code, message:error && error.message, status:error && error.status };
           /* An offline page keeps using the same durable operation queue.
              Never turn known server-owned data into legacy local-only writes. */
           _cloudConfig = null;
           if(global.AccountStorage && global.AccountStorage.storage){
             try{
               var cachedConfig = JSON.parse(global.AccountStorage.storage.getItem('chunklab.server-config.v3'));
-              if(cachedConfig && cachedConfig.persistenceMode === 'server-authoritative' && cachedConfig.writeProtocol === 3)
+              if(cachedConfig && cachedConfig.persistenceMode === 'server-authoritative' && cachedConfig.writeProtocol === 3 &&
+                 cachedConfig.responseIdentityVersion === 1 && (cachedConfig.requireAuth === true || cachedConfig.testMode === true))
                 _cloudConfig = cachedConfig;
             }catch(ignoreCachedConfig){}
           }
           _serverPersistenceReady = false;
-          _cloudConfigState = 'offline';
+          _cloudConfigState = error && error.status ? 'config-invalid' : 'offline';
           notifyCloudConfigChanged();
           console.warn('[cloud] 连接暂不可用，待保存操作保留在此设备');
           resolve(false);
@@ -1697,7 +1669,7 @@
     var trackedPromise = startupPromise.then(function(result){
       if(result === false || _cloudConfig === null){
         if(_cloudStartupPromise === trackedPromise) _cloudStartupPromise = null;
-        scheduleCloudStartupRetry();
+        if(_cloudConfigState !== 'signed-out') scheduleCloudStartupRetry();
       }else{
         _cloudStartupRetryDelay = 1000;
         if(_cloudStartupRetryTimer){ global.clearTimeout(_cloudStartupRetryTimer); _cloudStartupRetryTimer = null; }
@@ -2570,6 +2542,7 @@
     /* stats 大对象的持久化托管模式：'idb' = 已分层（localStorage 只留小字段）；'local' = 旧行为 */
     statsStoreMode: function(){ return _statsStore; },
     getCloudConfig: function(){ return _cloudConfig; },
+    getCloudStartupError: function(){ return _cloudStartupError && Object.assign({}, _cloudStartupError); },
     getPersistenceState: getPersistenceState,
     serverPersistenceReady: function(){ return _serverPersistenceReady; },
     preload: preload,

@@ -48,6 +48,7 @@ async function putRemote(mem) {
     if(!response.ok)throw Error('isolated seed failed: '+response.status+' '+await response.text());
   }
   await operation('stability-deck-create','deck.put',{deck:mem.decks[0]},null);
+  await operation('stability-course-enrollment','course.enrollment',{courseId:'user-deck:stability',joined:true});
   for(const key of Object.keys(mem.stats.bySentence)) {
     await operation('stability-answer-'+key.split('#')[1],'learning.answer',{
       eventId:'stability-event-'+key.split('#')[1],deckId:'stability',key,ok:true,mode:'chunkSelection',

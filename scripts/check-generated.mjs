@@ -4,6 +4,12 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import esbuild from 'esbuild';
+import { buildWorkspace } from './build-learning-workspace.mjs';
+import { buildMembership } from './build-membership.mjs';
+import {buildVocabularyStudy} from './build-vocabulary-study.mjs';
+import {buildWordbookAuthoring} from './build-wordbook-authoring.mjs';
+import {buildVocabularyMaterialLibrary} from './build-vocabulary-material-library.mjs';
+import {buildVocabularyContent} from './build-vocabulary-content.mjs';
 import { DRAFT_SPEC } from '../src/course-authoring/draft-spec.mjs';
 import { CourseCapabilityCatalog } from '../src/course-authoring/capabilities.mjs';
 import { IMAGE_TEXT_DRAFT_SPEC } from '../src/course-authoring/image-text-draft-spec.mjs';
@@ -93,7 +99,28 @@ const expectedMistakeEvidenceBrowser = path.join(root, 'js', 'mistake-evidence.j
 const actualMistakeEvidenceBrowser = path.join(temp, 'mistake-evidence.js');
 const expectedMistakeEvidenceServer = path.join(root, 'js', 'mistake-evidence.cjs');
 const actualMistakeEvidenceServer = path.join(temp, 'mistake-evidence.cjs');
+const expectedMembershipPolicies = path.join(root, 'server', 'services', 'membership', 'policies.cjs');
+const actualMembershipPolicies = path.join(temp, 'membership-policies.cjs');
+const actualMembershipBrowser = path.join(temp, 'membership.js');
 try {
+  await buildWorkspace(temp);
+  await buildVocabularyStudy(temp);
+  await buildWordbookAuthoring(temp);
+  await buildVocabularyMaterialLibrary(temp);
+  if(!fs.readFileSync(path.join(root,'js/vocabulary-material-library.js')).equals(fs.readFileSync(path.join(temp,'vocabulary-material-library.js'))))throw new Error('材料库浏览器模块过期');
+  if(!fs.readFileSync(path.join(root,'js/wordbook-authoring.js')).equals(fs.readFileSync(path.join(temp,'wordbook-authoring.js'))))throw new Error('单词本制作模块过期');
+  buildVocabularyContent(path.join(temp,'vocabulary'));
+  for(const name of ['vocabulary-study.js','vocabulary-study.cjs']){
+    if(!fs.readFileSync(path.join(root,'js',name)).equals(fs.readFileSync(path.join(temp,name))))throw new Error('单词本生成模块过期：'+name);
+  }
+  const vocabularyFiles=['index.json',...fs.readdirSync(path.join(temp,'vocabulary/items')).map(name=>'items/'+name)];
+  for(const name of vocabularyFiles){if(!fs.readFileSync(path.join(root,'content/vocabulary',name)).equals(fs.readFileSync(path.join(temp,'vocabulary',name))))throw new Error('单词本内容索引过期：'+name);}
+  for (const name of ['learning-workspace.js', 'learning-workspace.cjs']) {
+    if (crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'js', name))).digest('hex') !== crypto.createHash('sha256').update(fs.readFileSync(path.join(temp, name))).digest('hex')) {
+      console.error('[build:check] workspace output differs; run npm run build');
+      process.exitCode = 1;
+    }
+  }
   await Promise.all([
     esbuild.build({
       entryPoints: [path.join(root, 'scripts', 'course-schema-validator-entry.js')],
@@ -406,6 +433,7 @@ try {
     esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-review-entry.mjs')], outfile: actualMistakeReview, bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' }),
     esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')], outfile: actualMistakeEvidenceBrowser, bundle: true, format: 'iife', platform: 'browser', minify: false, legalComments: 'none' }),
     esbuild.build({ entryPoints: [path.join(root, 'scripts', 'mistake-evidence-entry.mjs')], outfile: actualMistakeEvidenceServer, bundle: true, format: 'cjs', platform: 'node', minify: false, legalComments: 'none' }),
+    buildMembership({ serverOut: actualMembershipPolicies, browserOut: actualMembershipBrowser }),
   ]);
   // Git may check text out as CRLF on Windows; esbuild always emits LF.
   // Normalize only line endings so actual source/output changes still fail.
@@ -463,6 +491,18 @@ try {
   if (!fs.existsSync(expectedMistakeEvidenceBrowser) || hash(expectedMistakeEvidenceBrowser) !== hash(actualMistakeEvidenceBrowser)
     || !fs.existsSync(expectedMistakeEvidenceServer) || hash(expectedMistakeEvidenceServer) !== hash(actualMistakeEvidenceServer)) {
     console.error('[build:check] mistake evidence bundles differ; run npm run build');
+    process.exitCode = 1;
+  }
+  if (!fs.existsSync(expectedMembershipPolicies) || hash(expectedMembershipPolicies) !== hash(actualMembershipPolicies)) {
+    console.error('[build:check] membership policy server bundle differs; run npm run build');
+    process.exitCode = 1;
+  }
+  const publicationCompiler = path.join(root, 'server/services/membership/publication-compiler.cjs');
+  if (!fs.existsSync(publicationCompiler) || hash(publicationCompiler) !== hash(path.join(temp, 'publication-compiler.cjs'))) {
+    console.error('[build:check] membership publication compiler differs'); process.exitCode = 1;
+  }
+  if (!fs.existsSync(path.join(root, 'js/membership.js')) || hash(path.join(root, 'js/membership.js')) !== hash(actualMembershipBrowser)) {
+    console.error('[build:check] membership browser bundle differs; run node scripts/build-membership.mjs');
     process.exitCode = 1;
   }
   const expectedKit = { kitVersion: '1.1', courseTypes: COURSE_TYPES, draftSchema: DRAFT_SPEC.schema, examples: DRAFT_SPEC.examples, imageTextDraftSchema: IMAGE_TEXT_DRAFT_SPEC.schema, imageTextExample: IMAGE_TEXT_DRAFT_SPEC.example, imageMediaLimits: IMAGE_TEXT_DRAFT_SPEC.mediaLimits, interactionRules: DRAFT_SPEC.interactionRules, capabilities: CourseCapabilityCatalog.describeCreationOptions() };

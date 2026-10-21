@@ -5,7 +5,7 @@
  *   2026-09-10 扩容到 8000 句暴露出一个真 P0 —— sw.js install 用 caches.addAll(PRECACHE)，
  *   而 PRECACHE 里含三个题库文件（8000 句时 oral8000.js 8.25MB）。addAll 是「全有全无」的：
  *   移动网络下极易整体失败 → SW 一个都装不上、离线能力全丢（PWA 的核心卖点）。
- *   修法 = 拆成硬清单（小、原子）+ 软清单（兼容资源、尽力而为、失败不拖垮安装），
+ *   修法 = 拆成硬清单（小、原子）+ 软清单（兼容资源、按需加载、参与版本校验），
  *   扩展题库改由 manifest + hash 分片按需加载。
  *
  * 本测试锁的就是这套划分不被后续改动悄悄破坏，尤其是两类高发回归：
@@ -48,8 +48,8 @@ const hard = listOf('PRECACHE');
 const soft = listOf('PRECACHE_SOFT');
 check('sw.js 同时定义 PRECACHE 与 PRECACHE_SOFT', Array.isArray(hard) && Array.isArray(soft),
   'hard=' + (hard && hard.length) + ' soft=' + (soft && soft.length));
-check('软清单非空（保留兼容资源的尽力缓存）', soft && soft.length > 0);
-check('两清单无交集（同一文件不能既原子又尽力）',
+check('软清单非空（可选资源按需缓存并参与版本校验）', soft && soft.length > 0);
+check('两清单无交集（同一文件不能既原子又按需）',
   hard && soft && hard.filter(function (u) { return soft.indexOf(u) >= 0; }).length === 0,
   hard && soft ? hard.filter(function (u) { return soft.indexOf(u) >= 0; }).join(',') : '');
 check('软清单保留基础兼容题库',
@@ -79,29 +79,36 @@ check('硬清单总体积 < 1.5MB（install 的首屏代价）', hardTotal < 1.5
   Math.round(hardTotal / 1024) + 'KB');
 
 console.log('');
-console.log('【3. install 语义：硬清单原子 + 软清单尽力 且 顺序正确】');
+console.log('【3. install 语义：只下载硬清单，可选资源按需缓存】');
 const installBody = (sw.match(/addEventListener\('install'[\s\S]*?\n\}\);/) || [''])[0];
 check('install 对硬清单用 addAll（原子语义）', /c\.addAll\(PRECACHE\)/.test(installBody));
-check('install 先结转旧缓存再补软清单',
-  installBody.indexOf('carryOver(') >= 0 && installBody.indexOf('fillSoft(') >= 0 &&
-  installBody.indexOf('carryOver(') < installBody.indexOf('fillSoft('));
+check('install 不下载可选资源，也不跨版本结转',
+  !/carryOver\(|fillSoft\(|fetch\(/.test(stripComments(installBody)));
 check('install 不再把软清单交给 addAll（回归 A 的直接检测）',
   !/addAll\([^)]*PRECACHE_SOFT/.test(installBody));
-const fillBody = (sw.match(/function fillSoft[\s\S]*?\n\}/) || [''])[0];
-check('fillSoft 逐条容错（单条失败不抛，不影响安装）', /\.catch\(/.test(fillBody));
-check('carryOver 只读旧缓存、不发网络请求',
-  /function carryOver/.test(sw) &&
-  !/fetch\(|\.add\(/.test((sw.match(/function carryOver[\s\S]*?\n\}/) || [''])[0]));
+check('不保留全量下载或旧版本结转可选资源的路径',
+  !/function (fillSoft|carryOver)\b/.test(stripComments(sw)));
 /* 静态资源分支 = navigate 分支之后的部分。先剥注释再定位（见 stripComments 说明）。 */
 const fetchBody = (stripComments(sw).match(/addEventListener\('fetch'[\s\S]*?\n\}\);/) || [''])[0];
 const _cut = fetchBody.indexOf("if (req.mode === 'navigate')");
-const _navEnd = _cut >= 0 ? fetchBody.indexOf('return;', _cut) : -1;
+// Navigation now contains a nested atomic-bundle branch. Its first return is
+// not the end of navigation; find the matching outer brace instead.
+const _navOpen = _cut >= 0 ? fetchBody.indexOf('{', _cut) : -1;
+let _navEnd = -1;
+if (_navOpen >= 0) {
+  let depth = 0;
+  for (let i = _navOpen; i < fetchBody.length; i++) {
+    if (fetchBody[i] === '{') depth++;
+    if (fetchBody[i] === '}' && --depth === 0) { _navEnd = i + 1; break; }
+  }
+}
 const staticBranch = _navEnd >= 0 ? fetchBody.slice(_navEnd) : '';
 check('静态资源分支可定位（sw.js 结构未变）', staticBranch.length > 0 && /c\.match\(req\)/.test(staticBranch));
 check('静态资源分支仍限定当前 CACHE（不得退回跨 cache 匹配，防 2026-09-09 旧 core.js 事故）',
   /c\.match\(req\)/.test(staticBranch) && !/caches\.match\(/.test(staticBranch));
 check('静态资源分支含"同 CACHE 同 URL"的宽松匹配（修复 .mjs 因请求形状差异全 miss）',
-  /c\.match\(url\.href\)/.test(staticBranch));
+  /c\.match\(url\.href\)/.test(staticBranch) ||
+  /c\.match\(bundleAsset \? url\.origin \+ url\.pathname : url\.href\)/.test(staticBranch));
 check('非导航请求网络失败不再回退 HTML（否则报误导性 MIME 错误，把离线缺资源带偏）',
   /return Response\.error\(\);/.test(staticBranch) && !/caches\.match\('\/main\.html'\)/.test(staticBranch));
 check('导航请求的 HTML 兜底保留（语义正确）',

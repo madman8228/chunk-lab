@@ -1,0 +1,184 @@
+{
+  "format": "textbook-vocabulary-transcription",
+  "version": 1,
+  "status": "review-only",
+  "textbook": {
+    "title": "义务教育教科书 英语（PEP）",
+    "publisher": "人民教育出版社",
+    "schoolStage": "小学",
+    "grade": "四年级",
+    "volume": "上册",
+    "series": "PEP",
+    "edition": null,
+    "coverApprovalYear": 2024,
+    "curriculumStandardYearFromVocabularyNote": 2022,
+    "identityNote": "系列由用户明确确认为 PEP；封面为四年级上册。版次与印次待版权页确认。",
+    "printedUsageNotice": "仅供个人学习使用，未经授权不得另做他用"
+  },
+  "legend": {
+    "starred": "加 * 的词为《义务教育英语课程标准（2022年版）》中的二级词",
+    "bold": "黑体词要求理解、运用；白体词只要求在语境中理解",
+    "rowFormat": ["term", "meaning", "sourceTextPage", "starred", "bold", "type", "sourceNote", "phonetic"],
+    "types": ["word", "contraction", "phrase", "expression"],
+    "normalization": "合并跨行文字；保留原图音标、星号和字体标记。条目类型是整理标注，不是教材印刷标签。音标为人工识读，未另行查词典补全。"
+  },
+  "images": [
+    {"id":1,"role":"cover","path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-18d66716-7a8a-4852-820f-9f68a91df2eb.png"},
+    {"id":2,"role":"contents","path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-a667072a-de55-47c0-85e6-1b2614077675.png"},
+    {"id":3,"role":"unit-list","printedPage":80,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-37e1061f-5e13-4162-a7ca-1ac895fbd79b.png"},
+    {"id":4,"role":"unit-list","printedPage":81,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-7a0a8b68-5872-45cd-b892-c0a2bb17e54c.png"},
+    {"id":5,"role":"unit-list","printedPage":82,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-9e1905e7-4c6f-44dc-8de4-c4df8dc14f16.png"},
+    {"id":6,"role":"alphabetical-index","printedPage":83,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-0c78a842-2bcc-4af8-a7c0-15c5e2bd40f6.png"},
+    {"id":7,"role":"alphabetical-index","printedPage":84,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-31ddb6f1-8af4-4037-8c61-3903140a8a46.png"},
+    {"id":8,"role":"alphabetical-index","printedPage":85,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-20fb3abe-546b-4e91-b328-994715890049.png"},
+    {"id":9,"role":"useful-expressions","printedPage":86,"path":"C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-cc46f3a6-d26d-49df-9c9c-ba746f2227cb.png"},
+    {"id":10,"role":"useful-expressions","printedPage":87,"path":"C:/Users/Administrator/AppData/Local/Temp/codex-clipboard-424655df-d2eb-470c-8034-79d6c376fe0d.png"}
+  ],
+  "units": [
+    {"unitId":"unit-1","title":"Unit 1 Helping at home","contentsStartPage":2,"sourceImages":[3],"entries":[
+      ["PE","体育（课）",4,true,true,"word","","/piː/"],
+      ["job","工作；职业",4,true,true,"word","","/dʒɒb/"],
+      ["doctor","医生",4,true,true,"word","","/ˈdɒktə(r)/"],
+      ["farmer","农场主；农民",5,true,true,"word","","/ˈfɑːmə(r)/"],
+      ["nurse","护士",5,true,true,"word","","/nɜːs/"],
+      ["office worker","公司职员",5,false,false,"phrase","原表分别给 office、worker 标音。","office /ˈɒfɪs/; worker /ˈwɜːkə(r)/"],
+      ["factory worker","工厂工人",5,false,false,"phrase","原表给 factory 标音，worker 未重复标音。","factory /ˈfæktri/"],
+      ["busy","忙碌的",7,true,true,"word","","/ˈbɪzi/"],
+      ["tired","疲倦的",7,true,true,"word","","/ˈtaɪəd/"],
+      ["chore","家庭杂务",7,true,true,"word","","/tʃɔː(r)/"],
+      ["cook","烹饪；煮",7,true,true,"word","","/kʊk/"],
+      ["clean","打扫；干净的",7,true,true,"word","","/kliːn/"],
+      ["room","房间",7,true,true,"word","","/ruːm/"],
+      ["look after","照顾",8,false,false,"phrase","","/lʊk ˈɑːftə(r)/"],
+      ["sweep","扫",8,true,true,"word","","/swiːp/"],
+      ["floor","地板；地面",8,true,true,"word","","/flɔː(r)/"],
+      ["together","在一起；共同",8,false,false,"word","","/təˈɡeðə(r)/"],
+      ["people","人；人们",9,true,true,"word","","/ˈpiːpl/"],
+      ["child","儿童；小孩",9,true,true,"word","复数 children。","/tʃaɪld/; children /ˈtʃɪldrən/"]
+    ]},
+    {"unitId":"unit-2","title":"Unit 2 My friends","contentsStartPage":14,"sourceImages":[3],"entries":[
+      ["his","他的",16,true,true,"word","","/hɪz/"],["strong","强壮的",16,true,true,"word","","/strɒŋ/"],
+      ["hair","头发",16,true,true,"word","","/heə(r)/"],["kind","友好的",16,true,true,"word","","/kaɪnd/"],
+      ["quiet","文静的",17,true,true,"word","","/ˈkwaɪət/"],["best","最好的",19,true,true,"word","","/best/"],
+      ["read","阅读",20,true,true,"word","","/riːd/"],["Chinese","中文；中国人；中国的",20,true,true,"word","","/ˌtʃaɪˈniːz/"],
+      ["play","玩",20,true,true,"word","","/pleɪ/"],["game","游戏",20,true,true,"word","","/ɡeɪm/"],
+      ["football","足球；足球运动",20,true,true,"word","","/ˈfʊtbɔːl/"],
+      ["basketball","篮球运动",21,true,true,"word","","/ˈbɑːskɪtbɔːl/"],["always","总是",21,true,true,"word","","/ˈɔːlweɪz/"]
+    ]},
+    {"unitId":"unit-3","title":"Unit 3 Places we live in","contentsStartPage":26,"sourceImages":[3,4],"entries":[
+      ["afternoon","下午",28,true,true,"word","","/ˌɑːftəˈnuːn/"],["there","（表示存在或发生）；在那里",28,true,true,"word","","/ðeə(r)/"],
+      ["playground","游乐场；操场",28,true,true,"word","","/ˈpleɪɡraʊnd/"],["park","公园",28,true,true,"word","","/pɑːk/"],
+      ["over","在……的远端（或对面）",28,true,true,"word","","/ˈəʊvə(r)/"],["hospital","医院",29,true,true,"word","","/ˈhɒspɪtl/"],
+      ["shop","商店",29,true,true,"word","","/ʃɒp/"],["toilet","厕所；卫生间",29,true,true,"word","","/ˈtɔɪlət/"],
+      ["bus stop","公共汽车站",29,false,false,"phrase","原表分别给 bus、stop 标音。","bus /bʌs/; stop /stɒp/"],
+      ["library","图书馆",31,true,true,"word","","/ˈlaɪbrəri/"],["sport","体育运动",31,true,true,"word","","/spɔːt/"],
+      ["walk","散步；行走",32,true,true,"word","","/wɔːk/"],["community","社区",32,false,false,"word","","/kəˈmjuːnəti/"],
+      ["favourite","最喜欢的",33,true,true,"word","保留英式拼写。","/ˈfeɪvərɪt/"],["place","地方；场所",33,true,true,"word","","/pleɪs/"],
+      ["photo","照片",33,true,true,"word","","/ˈfəʊtəʊ/"],["story","故事",33,true,true,"word","","/ˈstɔːri/"],["buy","购买",33,true,true,"word","","/baɪ/"]
+    ]},
+    {"unitId":"unit-4","title":"Unit 4 Helping in the community","contentsStartPage":38,"sourceImages":[4],"entries":[
+      ["firefighter","消防队员",40,false,false,"word","","/ˈfaɪəfaɪtə(r)/"],["why","为什么",40,true,true,"word","","/waɪ/"],
+      ["driver","司机",40,true,true,"word","","/ˈdraɪvə(r)/"],["important","重要的",40,false,false,"word","","/ɪmˈpɔːtnt/"],
+      ["cleaner","清洁工",41,false,false,"word","","/ˈkliːnə(r)/"],["cook","厨师",41,true,true,"word","与 Unit 1 的烹饪义分开保留。","/kʊk/"],
+      ["delivery worker","快递员",41,false,false,"phrase","原表给 delivery 标音。","delivery /dɪˈlɪvəri/"],
+      ["police officer","警察；警员",41,false,false,"phrase","原表分别给 police、officer 标音。","police /pəˈliːs/; officer /ˈɒfɪsə(r)/"],
+      ["a lot of","大量；许多",41,false,false,"phrase","","/ə ˈlɒt əv/"],["now","现在",43,true,true,"word","","/naʊ/"],
+      ["make the bed","铺床",43,false,false,"phrase","原表仅给 bed 标音。","bed /bed/"],["old","过去的；年纪大的；老的",43,true,true,"word","","/əʊld/"],
+      ["tell","讲述；告诉",43,true,true,"word","","/tel/"]
+    ]},
+    {"unitId":"unit-5","title":"Unit 5 The weather and us","contentsStartPage":50,"sourceImages":[4],"entries":[
+      ["speak","说话；发言",52,true,true,"word","","/spiːk/"],["weather","天气",52,true,true,"word","","/ˈweðə(r)/"],
+      ["sunny","阳光充足的",52,true,true,"word","","/ˈsʌni/"],["hot","热的",52,true,true,"word","","/hɒt/"],
+      ["bad","令人不快的；坏的",52,true,true,"word","","/bæd/"],["cold","冷的",52,true,true,"word","","/kəʊld/"],
+      ["windy","多风的",53,true,true,"word","","/ˈwɪndi/"],["cloudy","多云的",53,true,true,"word","","/ˈklaʊdi/"],
+      ["rainy","阴雨的",53,false,false,"word","","/ˈreɪni/"],["snowy","多雪的",53,false,false,"word","","/ˈsnəʊi/"],
+      ["cool","凉爽的",53,true,true,"word","","/kuːl/"],["warm","温暖的",53,true,true,"word","","/wɔːm/"],
+      ["tomorrow","在明天",53,true,true,"word","","/təˈmɒrəʊ/"],["rain","下雨；雨",55,true,true,"word","","/reɪn/"],
+      ["closed","关闭的",55,false,false,"word","","/kləʊzd/"],["film","电影",55,true,true,"word","","/fɪlm/"],
+      ["idea","想法；主意",55,true,true,"word","","/aɪˈdɪə/"],["fly","操纵（飞行器等）；飞",56,true,true,"word","","/flaɪ/"],
+      ["kite","风筝",56,true,true,"word","","/kaɪt/"],["snowman","雪人",56,false,false,"word","","/ˈsnəʊmən/"],
+      ["fun","乐事；乐趣",57,false,false,"word","","/fʌn/"],["their","他们的；她们的；它们的",57,true,true,"word","","/ðeə(r)/"],
+      ["swim","游泳",57,true,true,"word","","/swɪm/"],["Sydney","悉尼",52,false,false,"word","","/ˈsɪdni/"]
+    ]},
+    {"unitId":"unit-6","title":"Unit 6 Changing for the seasons","contentsStartPage":62,"sourceImages":[5],"entries":[
+      ["whose","谁的",64,true,true,"word","","/huːz/"],["sweater","毛衣",64,true,true,"word","","/ˈswetə(r)/"],
+      ["mine","我的",64,false,false,"word","","/maɪn/"],["wear","穿；戴",64,true,true,"word","","/weə(r)/"],
+      ["shirt","衬衫",64,true,true,"word","","/ʃɜːt/"],["coat","大衣；外套",64,true,true,"word","","/kəʊt/"],
+      ["dress","连衣裙",65,true,true,"word","","/dres/"],["which","哪一个；哪一些",67,true,true,"word","","/wɪtʃ/"],
+      ["season","季节",67,true,true,"word","","/ˈsiːzn/"],["winter","冬天",67,true,true,"word","","/ˈwɪntə(r)/"],
+      ["snow","下雪；雪",67,true,true,"word","","/snəʊ/"],["get together","聚会",67,false,false,"phrase","","/ɡet təˈɡeðə(r)/"],
+      ["spring","春天",68,true,true,"word","","/sprɪŋ/"],["summer","夏天",68,true,true,"word","","/ˈsʌmə(r)/"],
+      ["autumn","秋天",68,true,true,"word","","/ˈɔːtəm/"],["T-shirt","T恤衫",69,false,false,"word","","/ˈtiːʃɜːt/"],
+      ["fall","落下",69,false,false,"word","","/fɔːl/"],["leaf","叶",69,false,false,"word","复数 leaves。","/liːf/; leaves /liːvz/"],
+      ["glove","手套",69,false,false,"word","","/ɡlʌv/"],["then","然后；那时",69,true,true,"word","","/ðen/"]
+    ]}
+  ],
+  "alphabeticalIndex": {"formatNote":"独立转录所给 A–Z 词表的词头、页码和星号。复数形式 children 保留在 child 的原表括注中，不另作索引词头。","sourceImages":[6,7,8],"entries":[
+    "a lot of@41","*afternoon@28","*always@21","*autumn@68",
+    "*bad@52","*basketball@21","*best@19","bus stop@29","*busy@7","*buy@33",
+    "*child@9","*Chinese@20","*chore@7","*clean@7","cleaner@41","closed@55","*cloudy@53","*coat@64","*cold@52","community@32","*cook@7,41","*cool@53",
+    "delivery worker@41","*doctor@4","*dress@65","*driver@40",
+    "factory worker@5","fall@69","*farmer@5","*favourite@33","*film@55","firefighter@40","*floor@8","*fly@56","*football@20","fun@57",
+    "*game@20","get together@67","*glove@69",
+    "*hair@16","*his@16","*hospital@29","*hot@52",
+    "*idea@55","important@40",
+    "*job@4",
+    "*kind@16","*kite@56",
+    "leaf@69","*library@31","look after@8",
+    "make the bed@43","mine@64",
+    "*now@43","*nurse@5",
+    "office worker@5","*old@43","*over@28",
+    "*park@28","*PE@4","*people@9","*photo@33","*place@33","*play@20","*playground@28","police officer@41","*quiet@17",
+    "*rain@55","rainy@53","*read@20","*room@7",
+    "*season@67","*shirt@64","*shop@29","*snow@67","snowman@56","snowy@53","*speak@52","*sport@31","*spring@68","*story@33","*strong@16","*summer@68","*sunny@52","*sweater@64","*sweep@8","*swim@57","Sydney@52",
+    "*tell@43","*their@57","*then@69","*there@28","*tired@7","together@8","*toilet@29","*tomorrow@53","T-shirt@69",
+    "*walk@32","*warm@53","*wear@64","*weather@52","*which@67","*whose@64","*why@40","*windy@53","*winter@67"
+  ],"supplementalEntries":["everyone@43","*go@44","*Ms@45","*sock@64"],"supplementalNote":"以上词头出现在 A–Z 表中，但未见于本次提供的单元词表截图；保留索引，不推测单元归属或释义。"},
+  "usefulExpressions": {"sourceImages":[9,10],"units":[
+    {"unitId":"unit-1","printedPage":86,"entries":[
+      ["What's your mother's job?","你妈妈做什么工作？",""],["She's a doctor.","她是医生。",""],
+      ["Mum and Dad are busy and tired.","爸爸妈妈又忙又累。",""],["What can we do for them?","我们能为他们做些什么？",""],
+      ["We can do some chores.","我们可以做一些家务活。",""]
+    ]},
+    {"unitId":"unit-2","printedPage":86,"entries":[
+      ["What's your friend's name?","你的朋友叫什么名字？",""],["His name is Zhang Peng.","他叫张鹏。",""],
+      ["He's tall and strong.","他又高又壮。",""],["He's also kind. He often helps me.","他也很友善。他经常帮助我。",""],
+      ["Who's your best friend?","谁是你最好的朋友？",""],["Chen Jie. She's funny. She often makes me smile.","陈杰。她很有趣。她经常让我开心。",""]
+    ]},
+    {"unitId":"unit-3","printedPage":86,"entries":[
+      ["There is a playground. We often play there.","那里有个游乐场。我们经常在那里玩儿。",""],
+      ["There is a taijiquan club.","这里有一个太极拳俱乐部。",""],["There are many people.","这里有好多人。",""],
+      ["There is a gym too.","这里还有一个体育馆。",""],["Great! Let's do some sports.","太棒了！我们一起做运动吧。",""],
+      ["My favourite place is the museum.","我最喜欢的地方是博物馆。",""]
+    ]},
+    {"unitId":"unit-4","printedPage":86,"entries":[
+      ["Our neighbour is a firefighter. He often helps people.","我们的邻居是消防员。他经常帮助别人。",""],
+      ["He's a school bus driver. He takes us to school every day.","他是校车司机。他每天送我们去学校。",""],
+      ["That's an important job too!","那个工作也很重要！",""],["Chen Jie is making the bed.","陈杰正在铺床。",""],
+      ["In the kindergarten, John and Class One are singing songs together.","在幼儿园，约翰和一班（的小朋友们）在一起唱歌。","原图跨页排版，归属 Unit 4。"]
+    ]},
+    {"unitId":"unit-5","printedPage":87,"entries":[
+      ["Hello! Mark speaking.","你好！我是马克。",""],["Hi, Mark! This is John. What's the weather like in Sydney?","嗨，马克！我是约翰。悉尼的天气怎么样？",""],
+      ["Well, it's sunny today.","哦，今天天晴。",""],["It's only two degrees in Beijing.","北京只有两度。",""],
+      ["It's raining now.","现在下雨了。",""],["We can't play basketball in the park.","我们不能在公园打篮球。",""],
+      ["It's OK. We can go to the library.","没关系。我们可以去图书馆。",""],["It's hot and sunny here.","这里很热，是个大晴天。",""],
+      ["Their children swim in the pool.","他们的孩子在泳池里游泳。",""]
+    ]},
+    {"unitId":"unit-6","printedPage":87,"entries":[
+      ["Whose sweater is this, Mum?","这是谁的毛衣，妈妈？",""],["It's your dad's.","是你爸爸的。",""],
+      ["Can I wear this new shirt today?","我今天可以穿这件新衬衫吗？",""],
+      ["Yes, but wear a coat too. It's cold and windy outside.","可以，但是再穿一件外套吧。外面有风，很冷。",""],
+      ["Which season do you like?","你喜欢哪个季节？",""],["Winter. It snows a lot.","冬天。冬天经常下雪。",""],
+      ["I like winter too. There are many festivals.","我也喜欢冬天。（在冬天）有很多节日。",""],
+      ["It's full of life.","（春天）充满生机。",""],["And enjoy mooncakes.","还品尝月饼。",""],
+      ["Then spring comes again.","接着春天又来了。",""]
+    ]}
+  ]},
+  "otherContents":[{"title":"Revision Let's help!","page":74},{"title":"Appendix 1 Songs","page":78},{"title":"Appendix 2 Words in each unit","page":80},{"title":"Appendix 3 Vocabulary","page":83},{"title":"Appendix 4 Useful expressions","page":86}],
+  "reviewIssues":[
+    {"id":"edition","note":"封面为四年级上册，用户确认为 PEP；版权页未提供，具体版次与印次待确认。"},
+    {"id":"index-only-entries","note":"A–Z 表另列 everyone、go、Ms、sock 等词头，但本批单元词表截图未覆盖这些条目或其归属；只保留索引条目，不猜单元归属或释义。"},
+    {"id":"human-review","note":"音标、字体和部分复合词音标范围由图片人工识读；程序交叉核对词头与页码不替代人工校对。"}
+  ],
+  "limitations":["仅为提取审看稿，不是已发布教材同步课程。","封面与内文页脚注明仅供个人学习使用，未经授权不得另做他用；公共发布须先核实授权。","没有写入真实账号、课程索引或学习记录；尚未生成练习、音频或插图。","10张来源图原样归档；不将扫描页作为词汇插图发布。"]
+}

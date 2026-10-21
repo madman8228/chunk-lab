@@ -7,6 +7,9 @@ import { createAudioFeedback, createSpeechFeedback, createVisualFeedback, create
 import { evaluateChunkAnswer } from '../src/main/answer-evaluation.mjs';
 
 const intent = { version: 1, kind: 'unit', unitId: 'lesson-1' };
+for (const view of ['home','my-learning','discover']) {
+  assert.deepEqual(resolveEntry({search:'?view='+view,navigationType:'navigate',intent,deck:{id:'old'}}),{kind:'workspace',view,explicit:true},'explicit workspace beats stale study handoff');
+}
 
 assert.deepEqual(resolveEntry({ search: '?course=c1&lesson=l1', navigationType: 'reload' }), {
   kind: 'catalog', course: 'c1', lesson: 'l1', explicit: true,

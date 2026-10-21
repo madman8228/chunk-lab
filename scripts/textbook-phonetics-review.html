@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>教材音标审查</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#403426;background:#f6f3ec}*{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:28px 20px}h1{font-size:28px;margin:0 0 8px}p{color:#716755;line-height:1.6}.notice{padding:12px 14px;background:#fff9e8;border:1px solid #e5d5aa;border-radius:10px;color:#6c5325}.controls{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0;align-items:end}label{display:grid;gap:6px;font-size:14px;min-width:180px}label.search{flex:1}select,input{min-height:42px;padding:8px 10px;border:1px solid #cfc4b2;border-radius:8px;background:#fffdf7;color:inherit;font:inherit}.summary{padding:14px 16px;margin:16px 0;background:#fffdf8;border:1px solid #dfd5c5;border-radius:12px}.summary strong{color:#543d25}.units{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:10px}.unit-stat{padding:8px 10px;border-radius:8px;background:#f5f0e6;font-size:13px}.table-wrap{overflow:auto;background:#fffdf8;border:1px solid #dfd5c5;border-radius:12px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:11px 12px;border-bottom:1px solid #eee7dc;text-align:left;vertical-align:top}th{position:sticky;top:0;background:#f5f0e6;font-size:13px;color:#67563e}td.word{font-weight:650;min-width:175px}td.meaning{min-width:180px;color:#695e4e}td.ipa{font-size:17px;min-width:190px}td.state{white-space:nowrap}tr:last-child td{border-bottom:0}.badge{display:inline-block;padding:3px 8px;border-radius:999px;background:#e8eee4;color:#456044;font-size:12px}.badge.composed{background:#fff1d7;color:#795a22}.badge.pending{background:#f7e4df;color:#914b3b}.source a{color:#35634c}.source small,.note{display:block;margin-top:5px;color:#766c5d;font-size:12px;overflow-wrap:anywhere}.empty,#error{padding:20px;color:#8a4c36}footer{margin:16px 0;font-size:13px;color:#786d5b}@media(max-width:600px){main{padding:18px 10px}h1{font-size:24px}.controls label{min-width:calc(50% - 8px)}label.search{min-width:100%}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>教材音标审查</h1>
+    <p id="book-title">正在读取独立音标草稿…</p>
+    <div class="notice">只读审查页：显示音标、来源和待核状态。此页不会保存修改，也不会写回正式课程。</div>
+    <div class="controls">
+      <label>单元<select id="unit"><option value="all">全部单元</option></select></label>
+      <label>状态<select id="status"><option value="all">全部状态</option><option value="transcribed">索引/词典核实</option><option value="composed">组合拟写</option><option value="needs-source-check">待确认</option></select></label>
+      <label class="search">查找词条<input id="search" type="search" placeholder="输入单词或中文释义"></label>
+    </div>
+    <section class="summary" aria-live="polite">
+      <div id="totals"></div>
+      <div id="unit-stats" class="units"></div>
+    </section>
+    <div id="error" role="status" hidden></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>单元</th><th>词条</th><th>释义</th><th>音标</th><th>状态</th><th>来源/备注</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <footer>教材：人教版英语·九年级全一册（2013）。共 628 条；当前只展示独立审查稿，不代表正式课程已更新。</footer>
+  </main>
+  <script>
+    'use strict';
+    const byId = id => document.getElementById(id);
+    const labels = { transcribed: '索引/词典核实', composed: '组合拟写', 'needs-source-check': '待确认' };
+    let units = [];
+    const escapeText = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+    function filtered() {
+      const unitId = byId('unit').value;
+      const status = byId('status').value;
+      const query = byId('search').value.trim().toLocaleLowerCase();
+      return units.filter(unit => unitId === 'all' || unit.id === unitId).flatMap(unit => unit.items
+        .filter(item => (status === 'all' || item.status === status) && (!query || `${item.word} ${item.meaning}`.toLocaleLowerCase().includes(query)))
+        .map(item => ({ ...item, unitTitle: unit.title })));
+    }
+    function render() {
+      const items = units.flatMap(unit => unit.items);
+      const tally = key => items.filter(item => item.status === key).length;
+      byId('totals').innerHTML = `<strong>全册 ${items.length} 条</strong>　词典/索引核实 ${tally('transcribed')}　·　组合拟写 ${tally('composed')}　·　待确认 ${tally('needs-source-check')}`;
+      byId('unit-stats').replaceChildren(...units.map(unit => {
+        const count = key => unit.items.filter(item => item.status === key).length;
+        const tile = document.createElement('div');
+        tile.className = 'unit-stat';
+        tile.textContent = `${unit.title}　${count('transcribed')}核实 / ${count('composed')}拟写 / ${count('needs-source-check')}待确认`;
+        return tile;
+      }));
+      const rows = filtered().map(item => {
+        const tr = document.createElement('tr');
+        const statusClass = item.status === 'composed' ? 'composed' : item.status === 'needs-source-check' ? 'pending' : '';
+        const source = item.sourceUrl ? `<a href="${escapeText(item.sourceUrl)}" target="_blank" rel="noreferrer">查看词典来源</a>` : item.sourcePage ? `词汇索引第 ${item.sourcePage} 页` : '暂无外部来源';
+        const note = item.note ? `<span class="note">${escapeText(item.note)}</span>` : '';
+        tr.innerHTML = `<td>${escapeText(item.unitTitle)}</td><td class="word">${escapeText(item.word)}<small class="note">${escapeText(item.itemId)}</small></td><td class="meaning">${escapeText(item.meaning)}</td><td class="ipa">${escapeText(item.phonetic || '—')}</td><td class="state"><span class="badge ${statusClass}">${escapeText(labels[item.status] || item.status)}</span></td><td class="source">${source}${note}</td>`;
+        return tr;
+      });
+      byId('rows').replaceChildren(...rows);
+      if (!rows.length) {
+        const row = document.createElement('tr'), cell = document.createElement('td');
+        cell.colSpan = 6; cell.className = 'empty'; cell.textContent = '没有符合筛选条件的词条。'; row.append(cell); byId('rows').append(row);
+      }
+    }
+    byId('unit').addEventListener('change', render);
+    byId('status').addEventListener('change', render);
+    byId('search').addEventListener('input', render);
+    if (location.protocol === 'file:') {
+      const error = byId('error'), link = document.createElement('a');
+      error.hidden = false;
+      error.textContent = '这是直接打开的磁盘文件，浏览器会阻止它读取审查数据。请通过本地审查服务打开：';
+      link.href = 'http://127.0.0.1:4189/textbook-phonetics-review.html';
+      link.textContent = '打开音标审查页';
+      error.append(document.createElement('br'), link);
+    } else {
+      fetch('/phonetics-data.json').then(response => { if (!response.ok) throw new Error(response.status); return response.json(); })
+        .then(data => {
+          units = data.units;
+          byId('book-title').textContent = data.bookTitle;
+          for (const unit of units) { const option = document.createElement('option'); option.value = unit.id; option.textContent = unit.title + ` · ${unit.items.length} 条`; byId('unit').append(option); }
+          render();
+        })
+        .catch(error => { byId('error').hidden = false; byId('error').textContent = `草稿读取失败：${error.message}。请从本地服务地址打开，或确认审查服务正在运行。`; });
+    }
+  </script>
+</body>
+</html>

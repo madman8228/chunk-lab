@@ -39,7 +39,11 @@ console.log('\n== 2. minChunks：单字句例外只此一条路径 ==');
 assertEq(CS.minChunks('Help!'), 1, "minChunks('Help!')");
 assertEq(CS.minChunks("Don't."), 1, "minChunks(\"Don't.\")");
 assertEq(CS.minChunks("I'm late!"), 2, "minChunks(\"I'm late!\")");
-assertEq(CS.minChunks('Good morning.'), 2, "minChunks('Good morning.')");
+assertEq(CS.minChunks('Good morning.'), 1, "minChunks('Good morning.') 固定问候");
+['Good morning!', 'Nice to meet you.', 'See you later!', "What's this?", 'Who is that?', 'What time is it?', 'What day is it today?'].forEach(function (sentence) {
+  assert(CS.chunkCountOk(sentence, [sentence]), '入门固定表达允许整体呈现：' + sentence);
+});
+assertEq(CS.minChunks('Nice to meet your teacher.'), 2, '精确清单不放宽相似句子');
 assertEq(CS.minChunks('Do the dishes!'), 1, "minChunks('Do the dishes!') 固定表达");
 assertEq(CS.minChunks('Have a seat.'), 1, '固定待客表达按整体语义呈现');
 assertEq(CS.minChunks('How nice of you to come!'), 1, '固定欢迎表达按整体语义呈现');
@@ -48,12 +52,22 @@ assertEq(CS.minChunks('Nice to meet you, too.'), 1, '固定寒暄回应按整体
 assertEq(CS.minChunks('Where are you from?'), 1, '固定身份问句按整体语义呈现');
 assertEq(CS.minChunks('A little.'), 1, '数量短语按整体语义呈现');
 assertEq(CS.minChunks('What year are you in?'), 1, '固定年级问句按整体语义呈现');
-assertEq(CS.minChunks("What's your major?"), 1, '固定专业问句按整体语义呈现');
+assertEq(CS.minChunks("What's your major?"), 2, '专业问句有可组合结构，不按常用表达免切');
 assertEq(CS.minChunks('Any brothers or sisters?'), 1, '固定家庭情况问句按整体语义呈现');
 assertEq(CS.minChunks('How long have you been skiing?'), 1, '固定经历问句按整体语义呈现');
-assertEq(CS.minChunks('How old are you?'), 1, '固定年龄问句按整体语义呈现');
+assertEq(CS.minChunks('How old are you?'), 2, '年龄问句应保留问句结构与主语的边界');
 assertEq(CS.minChunks('How much do you weigh?'), 1, '固定体重问句按整体语义呈现');
-assertEq(CS.minChunks('How tall are you?'), 1, '固定身高问句按整体语义呈现');
+assertEq(CS.minChunks('How tall are you?'), 2, '身高问句应保留问句结构与主语的边界');
+[
+  ["What's your name?", ["What's", 'your name?']],
+  ["What’s your name?", ["What’s", 'your name?']],
+  ["What's your major?", ["What's", 'your major?']],
+  ['How old are you?', ['How old', 'are you?']],
+  ['How tall are you?', ['How tall', 'are you?']]
+].forEach(function (example) {
+  assert(!CS.chunkCountOk(example[0], [example[0]]), '可组合问句不允许整句免切：' + example[0]);
+  assert(CS.chunkCountOk(example[0], example[1]), '保留自然意群，而非强制逐词切分：' + example[0]);
+});
 [
   "It's blistering hot.", "It's raining.", "It's humid.", "It's dry.", "It's stormy.",
   "It's snowing.", "It's gloomy.", "It's foggy.", "It's freezing.", "It's pleasant.",
@@ -508,7 +522,7 @@ assert(CS.chunkCountOk('Your number, please?', ['Your number, please?']), '省�
 
 console.log('\n== 4. chunkCountOk：负向自证（必须能判红）==');
 assert(CS.chunkCountOk("I'm late!", ["I'm late!"]) === false, '双词句切 1 段 → 判红（例外不可滥用）');
-assert(CS.chunkCountOk('Good morning.', ['Good morning.']) === false, '双词句切 1 段（另一形态）→ 判红');
+assert(CS.chunkCountOk('Good idea.', ['Good idea.']) === false, '未在清单中的双词句切 1 段 → 判红');
 assert(CS.chunkCountOk('Can you swim?', ['Can']) === false, '三词句只切 1 段 → 判红');
 assert(CS.chunkCountOk('Help!', []) === false, '空 chunks → 判红');
 assert(CS.chunkCountOk('Help!', null) === false, 'chunks 非数组 → 判红');

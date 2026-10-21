@@ -11,6 +11,7 @@
  * 所有数据接口需 Authorization: Bearer <token>（JWT）。
  * 前后端分离：前端与 API 同源部署无需 CORS；跨域须显式配 CORS_ORIGINS（留空 = 拒绝跨域，fail-closed）。
  */
+require('./loadenv');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -24,6 +25,7 @@ const apiCompress = require('./api-compress');
 const feedback = require('./feedback');
 const { createAuthRateLimiter } = require('./middleware/auth-rate');
 const { createStaticGuard } = require('./middleware/static-guard');
+const { createSeoPagesMiddleware, freshnessCheck } = require('./middleware/seo-pages');
 const { createChangeSequence } = require('./services/change-seq');
 const { createSnapshotReader } = require('./services/data-snapshot');
 const { createDataWriters } = require('./services/data-writers');
@@ -34,22 +36,35 @@ const usageAnalytics = require('./services/usage-analytics').createUsageAnalytic
   resourceName(userId, kind, resourceId) {
     try {
       if (kind === 'vocabulary') return '入门单词练习';
+      if (kind === 'wordbook') return vocabularyContent.book(resourceId.replace(/^wordbook:/, ''), userId).title;
       const deck = db.prepare('SELECT name FROM user_decks WHERE user_id=? AND id=?').get(userId, resourceId);
       if (deck) return deck.name;
+      const course = membershipContentRegistry.course(resourceId);
+      if (course) return course.title;
     } catch (_) { /* Historical resources can be unavailable without losing their usage. */ }
     return kind === 'wordbook' ? '单词本练习（历史内容）' : '句子练习（历史内容）';
   }
 });
 const { registerDeckRoutes } = require('./routes/decks');
+const { registerContentShardsRoutes } = require('./routes/content-shards');
 const { registerBackupRoutes } = require('./routes/backup');
 const { registerFeedbackRoutes } = require('./routes/feedback');
 const { registerAiRoutes } = require('./routes/ai');
 const { registerAdminRoutes } = require('./routes/admin');
 const { registerContentStudioRoutes } = require('./routes/content-studio');
+const { registerLibraryRoutes } = require('./routes/library');
+const { createLibraryCatalog } = require('./services/library-catalog');
+const {createVocabularyContent}=require('./services/vocabulary-content');
+const {createVocabularyStudyOperations}=require('./services/vocabulary-study-operations');
+const {registerWordbookRoutes}=require('./routes/wordbooks');
 const { createContentStudio } = require('./services/content-studio');
 const { registerAuthRoutes } = require('./routes/auth');
+const { registerMembershipRoutes } = require('./routes/membership');
+const { registerAdminMembershipRoutes } = require('./routes/admin-membership');
 const { registerSystemRoutes } = require('./routes/system');
 const { registerDataRoutes } = require('./routes/data');
+const { registerVocabularyPracticeRoutes } = require('./routes/vocabulary-practice');
+const { registerLearningArchiveRoutes } = require('./routes/learning-archive');
 const { registerOperationRoutes } = require('./routes/operations');
 const { createOperations, MAX_CONTENT_IMPORT_BYTES } = require('./services/operations');
 const { registerContentImportRoutes } = require('./routes/content-import');
@@ -112,7 +127,8 @@ app.use(cors({
     if (allowedOrigins.indexOf(origin) >= 0) return cb(null, true);
     cb(new Error('CORS 不允许的来源: ' + origin));
   },
-  credentials: true
+  credentials: true,
+  exposedHeaders: ['X-ChunkLab-Account-Id']
 }));
 
 /* ===== 可观测性（上线前）：请求日志 + 全局指标 =====
@@ -120,22 +136,24 @@ app.use(cors({
    指标：ai_cache 命中/未命中计数 + /api/stats 查询接口（匿名只读，无用户数据） */
 const metrics = { aiCacheHits: 0, aiCacheMisses: 0, startedAt: new Date().toISOString() };
 
+const shanghaiDayFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit'
+});
 function shanghaiDay(ms) {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit'
-  }).formatToParts(new Date(ms));
+  const parts = shanghaiDayFormatter.formatToParts(new Date(ms));
   const values = {};
   parts.forEach(function (part) { values[part.type] = part.value; });
   return values.year + '-' + values.month + '-' + values.day;
 }
 
+const touchUserActivityStatement = db.prepare(
+  "INSERT INTO user_activity (user_id,day,first_seen_at,last_seen_at,page_views) VALUES (?,?,?,?,1) " +
+  "ON CONFLICT(user_id,day) DO UPDATE SET last_seen_at=excluded.last_seen_at, page_views=user_activity.page_views+1"
+);
 function touchUserActivity(userId) {
   const now = Date.now();
   const day = shanghaiDay(now);
-  db.prepare(
-    "INSERT INTO user_activity (user_id,day,first_seen_at,last_seen_at,page_views) VALUES (?,?,?,?,1) " +
-    "ON CONFLICT(user_id,day) DO UPDATE SET last_seen_at=excluded.last_seen_at, page_views=user_activity.page_views+1"
-  ).run(userId, day, now, now);
+  touchUserActivityStatement.run(userId, day, now, now);
 }
 
 const { adminOnly, parseRangeDays, adminOverview, adminSyncQuarantines, adminSaveFailures, adminSaveHealth } = createAdminOverview({ db, admin, shanghaiDay });
@@ -147,6 +165,10 @@ function recordSaveFailure(userId, code, status, traceId) {
     '(SELECT id FROM user_operation_failures WHERE user_id=? ORDER BY id DESC LIMIT 500)').run(userId, userId);
 }
 function userIdFromReq(req) {
+  // The authentication middleware already verified this request. Reuse its
+  // result only for logging; this does not grant access or cache credentials.
+  if (auth.REQUIRE_AUTH && Number.isSafeInteger(req.userId) && req.userId > 0 &&
+      (req.headers.authorization || '').startsWith('Bearer ')) return String(req.userId);
   try {
     const h = req.headers.authorization || '';
     const t = h.startsWith('Bearer ') ? h.slice(7) : null;
@@ -202,6 +224,81 @@ registerAdminRoutes({
   authRate: AUTH_RATE
 });
 
+const membershipRepository = require('./services/membership/repository').createMembershipRepository(db);
+const membershipKeyring = require('./services/membership/code-keyring').createEnvironmentCodeKeyring();
+const membershipIssuer = require('./services/membership/code-issuer').createMembershipCodeIssuer({
+  repository: membershipRepository, keyProvider: membershipKeyring
+});
+const membershipEntitlements = require('./services/membership/entitlement-service').createEntitlementService({ db });
+const membershipTrialMeter = require('./services/membership/trial-usage-meter').createTrialUsageMeter({
+  db, repository: membershipRepository, entitlements: membershipEntitlements
+});
+const membershipAdmin = require('./services/membership/admin-service').createMembershipAdminService({
+  db, repository: membershipRepository, issuer: membershipIssuer
+});
+const membership = require('./services/membership/membership-service').createMembershipService({
+  db, repository: membershipRepository, entitlements: membershipEntitlements, usageMeter: membershipTrialMeter
+});
+const membershipRedemption = require('./services/membership/redemption-service').createRedemptionService({
+  db, repository: membershipRepository, issuer: membershipIssuer, entitlements: membershipEntitlements, trialMeter: membershipTrialMeter
+});
+registerAdminMembershipRoutes({ app, adminOnly, membershipAdmin, repository: membershipRepository, entitlements: membershipEntitlements });
+registerMembershipRoutes({ app, auth, membership, redemption: membershipRedemption });
+
+const wordbookPublicationRoot=path.join(path.dirname(path.resolve(db.name)),'wordbook-publications');
+const publicWordbookVersions=require('./services/public-wordbook-versions').createPublicWordbookVersions({publishedRoot:wordbookPublicationRoot});
+const vocabularyContent=createVocabularyContent({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),publishedRoot:wordbookPublicationRoot,versions:publicWordbookVersions,personal:require('./services/personal-wordbooks').createPersonalWordbooks({db,appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..')})});
+const wordDictationEnabled=process.env.CHUNKLAB_WORD_DICTATION==='true';
+const wordChoiceEnabled=process.env.CHUNKLAB_WORD_CHOICE==='true';
+const chunkOrderEnabled=process.env.CHUNKLAB_CHUNK_ORDER==='true';
+const readAloudEnabled=process.env.CHUNKLAB_READ_ALOUD==='true';
+const vocabularyBrowseEnabled=process.env.CHUNKLAB_VOCABULARY_BROWSE==='true';
+const vocabularyImageDelivery=require('./middleware/vocabulary-image-delivery').configuredVocabularyImageDelivery(process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),process.env,{publishedRoot:vocabularyContent.publicationDirectory});
+const vocabularyTeachingContent=require('./services/vocabulary-teaching-content').createVocabularyTeachingContent({content:vocabularyContent,appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),resolveImage:vocabularyImageDelivery.resolveImage});
+const library = createLibraryCatalog({ db, vocabularyContent, appRoot: process.env.CHUNKLAB_APP_ROOT || path.resolve(__dirname, '..') });
+const membershipContentRegistry = new (require('./services/membership/content-registry').ContentRegistry)({
+  activeManifest:()=>{const row=db.prepare('SELECT manifest_json AS body FROM membership_static_activations ORDER BY rowid DESC LIMIT 1').get();return row||null;},
+  appRoot: process.env.CHUNKLAB_APP_ROOT || path.resolve(__dirname, '..'),
+  protectedRoot: path.join(path.dirname(path.resolve(db.name)), 'membership-content'),
+  requireManifest: () => !!db.prepare("SELECT 1 FROM course_access_revisions WHERE access_level='member' UNION ALL SELECT 1 FROM membership_course_publications WHERE status='published' LIMIT 1").get(),
+  publishedCourses: () => db.prepare("SELECT registry_entry_json FROM membership_course_publications WHERE status='published' ORDER BY publication_id").all().map(row => JSON.parse(row.registry_entry_json)),
+  legacyCourses: () => library.legacyResources().filter(resource => resource.kind === 'course' && resource.courseId).map(resource => ({
+    courseId: resource.courseId, title: resource.title, contentType: 'sentence',
+    units: resource.sourceRefs.map((contentRef, index) => ({ unitId: 'legacy-' + index, contentRef, itemIds: ['*'] }))
+  }))
+});
+const membershipCourseAccess = require('./services/membership/course-access-service').createCourseAccessService({
+  db, registry: membershipContentRegistry, entitlements: membershipEntitlements,
+  usageMeter: membershipTrialMeter, membership,
+  isAuthenticatedAccount: userId => auth.REQUIRE_AUTH && !!userId && !!auth.readUser(userId) && auth.readUser(userId).username !== '__default__',
+  hasPublicDeck: id => !!db.prepare('SELECT 1 FROM user_decks WHERE id=? AND is_public=1 AND deleted_at IS NULL LIMIT 1').get(id)
+});
+const membershipContentGrants = new (require('./services/membership/content-grant-service').ContentGrantService)({
+  keyProvider: () => {
+    const key = process.env.MEMBERSHIP_CONTENT_GRANT_KEY || '';
+    return /^[A-Za-z0-9+/]+={0,2}$/.test(key) ? Buffer.from(key, 'base64') : null;
+  },
+  resolveScope: (...args) => membershipContentRegistry.fragmentScope(...args),
+  authorize: (...args) => membershipCourseAccess.authorize(...args)
+});
+require('./routes/course-fragments').registerCourseFragmentRoutes({ app, auth, registry: membershipContentRegistry, grants: membershipContentGrants });
+require('./routes/protected-course-content').registerProtectedCourseContentRoutes({
+  app, auth, courseAccess: membershipCourseAccess, registry: membershipContentRegistry, grants: membershipContentGrants, usageMeter: membershipTrialMeter, adminOnly
+});
+library.setPlatformResources(() => membershipCourseAccess.catalogResources());
+require('./routes/course-publishing').registerCoursePublishingRoutes({ app, adminOnly,
+  publisher: require('./services/membership/course-publisher').createCoursePublisher({ db, registry: membershipContentRegistry, courseAccess: membershipCourseAccess }) });
+require('./routes/course-source-review').registerCourseSourceReviewRoutes({app,adminOnly,
+  inventory:new (require('./services/membership/legacy-course-inventory').LegacyCourseInventory)({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),
+    publicDecks:()=>db.prepare('SELECT id,items_json FROM user_decks WHERE is_public=1 AND deleted_at IS NULL').all().map(row=>({id:row.id,items:JSON.parse(row.items_json)}))})});
+registerLibraryRoutes({ app, adminOnly, library });
+require('./routes/illustration-review').registerIllustrationReviewRoutes({app,adminOnly,service:require('./services/illustration-review').createIllustrationReview({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),storePath:path.join(path.dirname(path.resolve(db.name)),'illustration-review.sqlite')})});
+const wordbookPublisher=require('./services/wordbook-publisher').createWordbookPublisher({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),content:vocabularyContent,versions:publicWordbookVersions,checkImageAliases:vocabularyImageDelivery.checkAliases});
+require('./routes/wordbook-publishing').registerWordbookPublishingRoutes({app,adminOnly,publisher:wordbookPublisher});
+const adminWordbookImports=require('./services/admin-wordbook-imports').createAdminWordbookImports({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),dataDirectory:path.join(path.dirname(path.resolve(db.name)),'system-wordbook-imports'),publisher:wordbookPublisher,checkAliases:vocabularyImageDelivery.checkAliases});
+require('./routes/admin-wordbook-imports').registerAdminWordbookImportRoutes({app,adminOnly,service:adminWordbookImports});
+const materialLibrary=require('./services/vocabulary-material-library').createVocabularyMaterialLibrary({storePath:path.join(path.dirname(path.resolve(db.name)),'vocabulary-material-library.sqlite')});
+require('./routes/vocabulary-material-library').registerVocabularyMaterialLibraryRoutes({app,adminOnly,service:materialLibrary,releases:require('./services/vocabulary-material-release').createVocabularyMaterialRelease({service:materialLibrary,publisher:wordbookPublisher,appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..')})});
 registerContentStudioRoutes({
   app,
   adminOnly,
@@ -313,8 +410,17 @@ function isAccountPersistenceEmpty(userId, sourceId) {
   return hasAccountPersistenceState.get(...params).has_state === 0;
 }
 
+const protectedAssessmentContent = require('./services/membership/assessment-content').createProtectedAssessmentContent({registry: membershipContentRegistry, courseAccess: membershipCourseAccess});
 const operations = createOperations({
   db,
+  library,
+  vocabularyContent,
+  enableWordDictation:wordDictationEnabled,
+  enableWordChoice:wordChoiceEnabled,
+  enableChunkOrder:chunkOrderEnabled,
+  enableReadAloud:readAloudEnabled,
+  enableVocabularyBrowse:vocabularyBrowseEnabled,
+  vocabularyTeachingContent,
   allocSeq,
   readChanges: (userId, seq) => buildMemSnapshot(userId, Math.max(0, seq - 1)),
   upsertDeck,
@@ -329,10 +435,24 @@ const operations = createOperations({
   deleteEntityRow,
   srs: serverSrs,
   reducePracticeEvents,
-  resolveAssessmentItem: createAssessmentContent({ db }).resolve,
+  assessmentScopeKey: protectedAssessmentContent.scopeKey,
+  resolveAssessmentItem: createAssessmentContent({ db,
+    resolveProtectedItem: protectedAssessmentContent.resolve,
+    assertPublicDeck: deckId => {
+      if (deckId.startsWith('protected_') || membershipContentRegistry.snapshot().courses.some(course => course.legacyDeckIds.includes(deckId) ||
+          course.units.some(unit => unit.contentRef.type === 'sentence-deck' && unit.contentRef.id === deckId))) {
+        throw Object.assign(new Error('请从课程入口复习，重新检查当前学习权限；学习记录仍然保留。'), { code: 'PROTECTED_COURSE_ENTRY_REQUIRED', status: 403 });
+      }
+    },
+    assertPublicPath: url => {
+      if (membershipContentRegistry.blockedPath(url)) throw Object.assign(new Error('请从课程入口读取受保护的测评题目。'), { code: 'PROTECTED_COURSE_ENTRY_REQUIRED', status: 403 });
+    }
+  }).resolve,
   hash: batchHash
 });
 registerOperationRoutes({ app, auth, operations, writeProtocol: WRITE_PROTOCOL, recordSaveFailure });
+const protectedAssessments = require('./services/membership/assessment-service').createProtectedAssessmentService({ db, courseAccess: membershipCourseAccess, operations });
+require('./routes/protected-assessments').registerProtectedAssessmentRoutes({app,auth,assessments:protectedAssessments,writeProtocol:WRITE_PROTOCOL});
 registerContentImportRoutes({ app, auth, operations, validate, writeProtocol: WRITE_PROTOCOL, recordSaveFailure });
 registerClientSaveHealthRoutes({ app, auth, db, writeProtocol: WRITE_PROTOCOL });
 registerRecoveryRoutes({
@@ -353,6 +473,10 @@ registerRecoveryRoutes({
   })
 });
 
+registerVocabularyPracticeRoutes({app,auth,db});
+registerLearningArchiveRoutes({app,auth,db,content:vocabularyContent});
+const vocabularyBrowse=require('./services/vocabulary-browse-operations').createVocabularyBrowseOperations({db,resolvePlan:vocabularyTeachingContent.resolvePlan,upsertEntityRow,enabled:vocabularyBrowseEnabled,operationError:(message,code,status)=>Object.assign(Error(message),{code,status})});
+registerWordbookRoutes({app,auth,content:vocabularyContent,browse:vocabularyBrowse,teaching:vocabularyTeachingContent,study:createVocabularyStudyOperations({db,content:vocabularyContent,upsertEntityRow,enableWordDictation:wordDictationEnabled,enableWordChoice:wordChoiceEnabled,enableChunkOrder:chunkOrderEnabled,enableReadAloud:readAloudEnabled,operationError:(message,code,status)=>Object.assign(new Error(message),{code,status})})});
 registerDataRoutes({
   app,
   auth,
@@ -368,7 +492,10 @@ if (WRITE_PROTOCOL === 3) {
     app, auth, db, getLegacyDataWriter, rejectUnconditional, validate, upsertDeck, upsertCourse, upsertCourseProgress, upsertKv, allocSeq, buildMemSnapshot, updateDeckPublication, STRICT_CONDITIONAL_WRITES, WRITE_PROTOCOL
   });
 }
-registerDeckRoutes({ app, db });
+registerDeckRoutes({ app, db, contentRegistry: membershipContentRegistry });
+/* T5：鉴权分片表（GET /api/content/shards）。公开 manifest 收敛为元数据后，
+   客户端分片路径改由本接口提供；源文件在 server/content/（static-guard 已 403 保护）。 */
+registerContentShardsRoutes({ app, auth, contentRegistry: membershipContentRegistry });
 // Compatibility marker for the legacy static contract: app.post('/api/feedback' is registered in routes/feedback.js without auth.
 registerFeedbackRoutes({ app, feedback });
 
@@ -409,7 +536,8 @@ registerAiRoutes({
 registerBackupRoutes({
   app,
   auth,
-  readMemSnapshot
+  readMemSnapshot,
+  personalWordbooks:vocabularyContent.personal
 });
 registerSystemRoutes({
   app,
@@ -428,7 +556,11 @@ registerSystemRoutes({
    2026-09-21 P0：原先的正则直接打在未解码的 req.path 上，被 //server/…、/%73erver/… 绕过
    （线上实测 200，可下载整库）。修法不是补黑名单条目，而是**先规范化再判定**；
    规则已全部搬进该模块，这里不再保留副本，避免两份实现漂移。 */
+const staticAppRoot = process.env.CHUNKLAB_APP_ROOT || path.join(__dirname, '..');
+app.use(createSeoPagesMiddleware({ rootDir: staticAppRoot }));
 app.use(createStaticGuard());
+app.use(require('./middleware/course-content-guard').createCourseContentGuard({ registry: membershipContentRegistry }));
+app.use(vocabularyImageDelivery);
 /* 根路径 → 落地页 index.html。2026-10-05 合并落地页进本仓库后，
    仓库已有 index.html，由下方 express.static 自动托管（默认 index: 'index.html'）。
    原先「仓库无 index.html → 重定向 /main.html」的那一行已删除 —— 保留它会让落地页永远看不到。 */
@@ -436,24 +568,36 @@ app.use(createStaticGuard());
    8000 句题库 7.80MB → brotli ~1.8MB，是扩容后唯一真正卡前端的瓶颈。
    必须放在 express.static 之前：命中则直接返回压缩体，未命中（客户端不要压缩 / 含 Range / 非文本）
    自行 next() 放行，不改变原有行为。 */
-const staticCompress = compress(path.join(__dirname, '..'));
+const staticCompress = compress(staticAppRoot);
 app.use(staticCompress);
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(staticAppRoot));
 
 const PORT = process.env.PORT || 8787;
 const HOST = process.env.HOST || '127.0.0.1';
-auth.ensureDefaultUser(); // 开放模式：确保默认用户存在
+if (!auth.REQUIRE_AUTH) auth.ensureDefaultUser(); // 仅隔离开放测试夹具使用
 const adminState = admin.ensureAdminUser();
 if (!adminState.configured) {
   console.warn('[admin] 未初始化管理员账号：请配置 ADMIN_PASSWORD 与 ADMIN_JWT_SECRET 后重启服务');
 }
 
-/* P0 上线断言（2026-09-09）：生产环境禁止开放模式裸奔。
-   开放模式 = 所有人共享 __default__ 单用户、免 token 可读写/导入导出，公网多人使用绝不允许。
-   NODE_ENV=production 时必须 REQUIRE_AUTH=true，否则拒绝启动（fail-fast，不静默降级）。
-   本地开发（未设 NODE_ENV）不受影响，仍默认开放模式免登录。 */
-if (process.env.NODE_ENV === 'production' && !auth.REQUIRE_AUTH) {
-  console.error('[security] FATAL: NODE_ENV=production 禁止开放模式 —— 多人使用必须 REQUIRE_AUTH=true（并配强 JWT_SECRET），已拒绝启动');
+/* 个人数据始终要求账号验证；仅显式隔离测试配置可以开放默认账号。 */
+if (!auth.REQUIRE_AUTH) {
+  const configuredData = process.env.CHUNKLAB_DATA_DIR && path.resolve(process.env.CHUNKLAB_DATA_DIR);
+  const liveData = path.resolve(__dirname, 'data');
+  const tempRoot = path.resolve(require('os').tmpdir());
+  const relativeData = configuredData && path.relative(liveData, configuredData);
+  const relativeTemp = configuredData && path.relative(tempRoot, configuredData);
+  const outsideLiveData = !!relativeData && (relativeData === '..' || relativeData.startsWith('..' + path.sep) || path.isAbsolute(relativeData));
+  const insideTemp = !!relativeTemp && relativeTemp !== '..' && !relativeTemp.startsWith('..' + path.sep) && !path.isAbsolute(relativeTemp);
+  const isolatedData = !!configuredData && path.isAbsolute(process.env.CHUNKLAB_DATA_DIR) &&
+    outsideLiveData && insideTemp;
+  if (process.env.NODE_ENV !== 'test' || process.env.REQUIRE_AUTH !== 'false' || !isolatedData || !process.env.PORT) {
+    console.error('[security] FATAL: 免登录仅可用于显式配置独立数据目录和端口的隔离测试；正式服务必须登录');
+    process.exit(1);
+  }
+}
+if (process.env.REQUIRE_AUTH === 'false' && process.env.NODE_ENV !== 'test') {
+  console.error('[security] FATAL: 正常服务不能关闭登录鉴权');
   process.exit(1);
 }
 

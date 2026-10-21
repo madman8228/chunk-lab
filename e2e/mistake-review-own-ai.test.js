@@ -71,7 +71,10 @@ function stopServer() {
     const originalSource = await page.evaluate(() => JSON.stringify(CL.loadMem().decks.find(deck => deck.id === 'review-source-deck')));
     const capCheck = await page.evaluate(() => typeof trimReinforceBook);
     if (capCheck !== 'undefined') throw new Error('错题本仍存在静默 200 条裁剪函数');
-    await page.evaluate(() => startDeck(CL.loadMem().decks.find((deck) => deck.id === 'review-source-deck')));
+    await page.evaluate(async () => {
+      await CourseEnrollment.join('user-deck:review-source-deck');
+      startDeck(CL.loadMem().decks.find((deck) => deck.id === 'review-source-deck'));
+    });
     await page.waitForFunction(() => window.S && S.deck && S.deck.id === 'review-source-deck' && !document.getElementById('stage').classList.contains('hidden'), undefined, { timeout: 15000 });
 
     const answers = await page.evaluate(() => {

@@ -24,7 +24,8 @@ function registerSystemRoutes(options) {
   app.get('/api/health', function (req, res) { res.json({ ok: true, ts: Date.now() }); });
 
   app.get('/api/config', function (req, res) {
-    res.json({ requireAuth: auth.REQUIRE_AUTH, serverVersion: 1, authAvailable: true,
+    res.set('Cache-Control', 'no-store');
+    res.json({ requireAuth: auth.REQUIRE_AUTH, responseIdentityVersion: 1, testMode: process.env.NODE_ENV === 'test', serverVersion: 1, authAvailable: true,
       authMode: process.env.PHONE_AUTH_ENABLED === 'true' ? 'phone' : 'password',
       legacyPasswordLoginAllowed: process.env.PHONE_AUTH_ENABLED === 'true' && process.env.ALLOW_LEGACY_PASSWORD_LOGIN === 'true',
       aiEnabled: aiEnabled, writeProtocol: writeProtocol,
