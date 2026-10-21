@@ -6,6 +6,12 @@ const crypto = require('crypto');
 const { spawn, spawnSync } = require('child_process');
 const manifest = require('./test-manifest.cjs');
 
+/* Test children frequently spawn server/index.js. Give the suite a secure,
+ * per-run JWT secret so those children start in multi-user mode without
+ * inheriting a developer .env or failing the production-secret guard. */
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'test';
+if (!process.env.JWT_SECRET) process.env.JWT_SECRET = 'chunklab-test-runner-' + crypto.randomBytes(32).toString('hex');
+
 const ROOT = path.resolve(__dirname, '..');
 const groups = new Set(process.argv.slice(2));
 const selected = groups.size && !groups.has('all')

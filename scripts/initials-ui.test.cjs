@@ -1,5 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),express=require('../server/node_modules/express'),{chromium}=require('playwright-core');
+require('../server/testing/private-fixtures').skipUnless('assets/vocabulary-borrow-wide-v3.webp','six-word demo image');
 const root=path.resolve(__dirname,'..'),app=express();app.get('/api/config',(_,res)=>res.json({requireAuth:true,authMode:'phone'}));app.use(express.static(root));
 (async()=>{const server=app.listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));let browser;
 try{
