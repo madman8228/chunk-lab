@@ -1,10 +1,10 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),express=require('../server/node_modules/express'),{chromium}=require('playwright-core');
-require('../server/testing/private-fixtures').skipUnless('assets/vocabulary-borrow-wide-v3.webp','six-word demo image');
 const root=path.resolve(__dirname,'..'),app=express();app.get('/api/config',(_,res)=>res.json({requireAuth:true,authMode:'phone'}));app.use(express.static(root));
 (async()=>{const server=app.listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));let browser;
 try{
   browser=await chromium.launch({headless:true});const page=await browser.newPage(),errors=[],posts=[];page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>{if(request.method()==='POST')posts.push(request.url());});
+  await page.route('**/assets/vocabulary-*',route=>route.fulfill({path:path.join(root,'test/fixtures/synthetic-vocabulary-16x9.webp'),contentType:'image/webp'}));
   const out=path.join(root,'output/playwright/action-game');fs.mkdirSync(out,{recursive:true});await page.goto('http://127.0.0.1:'+server.address().port+'/vocabulary.html');await page.locator('.quest-scene img').evaluate(img=>img.decode());
   assert.ok(await page.locator('.initials-word').evaluateAll(inputs=>inputs.every(input=>!input.placeholder&&getComputedStyle(input).borderBottomStyle==='solid'&&parseFloat(getComputedStyle(input).borderBottomWidth)>0)),'Every chunk uses one solid underline, not letter-count placeholders');
   assert.deepEqual(await page.locator('.cloze-gloss').allTextContents(),['我能','借入','你的充电器']);

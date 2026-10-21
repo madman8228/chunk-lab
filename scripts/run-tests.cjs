@@ -6,12 +6,6 @@ const crypto = require('crypto');
 const { spawn, spawnSync } = require('child_process');
 const manifest = require('./test-manifest.cjs');
 
-/* Test children frequently spawn server/index.js. Give the suite a secure,
- * per-run JWT secret so those children start in multi-user mode without
- * inheriting a developer .env or failing the production-secret guard. */
-if (!process.env.NODE_ENV) process.env.NODE_ENV = 'test';
-if (!process.env.JWT_SECRET) process.env.JWT_SECRET = 'chunklab-test-runner-' + crypto.randomBytes(32).toString('hex');
-
 const ROOT = path.resolve(__dirname, '..');
 const groups = new Set(process.argv.slice(2));
 const selected = groups.size && !groups.has('all')
@@ -160,10 +154,14 @@ async function main() {
        否则 CI 会把「因缺 fixture 没跑」误读成「跑过且通过」—— 安全网就不可信了。
        注意：skip 只对「显式打印 [SKIP] 且退出 0」成立，真正的失败（含找不到必须判红的场景）不受影响。 */
     const skipped = result.code === 0 && /\[SKIP\]/.test(result.output || '');
-    const label = result.code === 0 ? (skipped ? 'SKIP' : 'PASS') : 'FAIL(' + result.code + ')';
+    const notRun = result.code === 0 && /\[NOT-RUN\]/.test(result.output || '');
+    const label = result.code === 0 ? (notRun ? 'NOT-RUN' : skipped ? 'SKIP' : 'PASS') : 'FAIL(' + result.code + ')';
     console.log(label + ' ' + (result.ms / 1000).toFixed(1) + 's');
     if (result.flaky) console.log('  [tests] flaky: 首次失败后重跑通过');
-    if (skipped) {
+    if (notRun) {
+      result.output.split(/\r?\n/).filter((line) => line.indexOf('[NOT-RUN]') >= 0)
+        .forEach((line) => console.log('  ' + line.trim()));
+    } else if (skipped) {
       result.output.split(/\r?\n/).filter((line) => line.indexOf('[SKIP]') >= 0)
         .forEach((line) => console.log('  ' + line.trim()));
     } else if (result.code !== 0) {
@@ -175,8 +173,9 @@ async function main() {
   const worktreeAfter = worktreeFingerprint();
   const failed = results.filter((result) => result.code !== 0);
   const skipped = results.filter((result) => result.code === 0 && /\[SKIP\]/.test(result.output || ''));
-  const skippedSet = new Set(skipped.map((result) => result.id));
-  const passed = results.filter((result) => result.code === 0 && !skippedSet.has(result.id));
+  const notRun = results.filter((result) => result.code === 0 && /\[NOT-RUN\]/.test(result.output || ''));
+  const nonPassingSet = new Set(skipped.concat(notRun).map((result) => result.id));
+  const passed = results.filter((result) => result.code === 0 && !nonPassingSet.has(result.id));
   const summary = {
     runId,
     startedAt: startedAt.toISOString(),
@@ -187,7 +186,7 @@ async function main() {
     worktreeAfter,
     worktreeChanged: worktreeBefore.contentSha256 !== worktreeAfter.contentSha256 || worktreeBefore.status !== worktreeAfter.status,
     selected: selected.map((entry) => entry.id),
-    counts: { total: results.length, passed: passed.length, failed: failed.length, skipped: skipped.length, flaky: results.filter((result) => result.flaky).length },
+    counts: { total: results.length, passed: passed.length, failed: failed.length, skipped: skipped.length, notRun: notRun.length, flaky: results.filter((result) => result.flaky).length },
     results,
   };
   for (const group of new Set(selected.map((entry) => entry.group))) {
@@ -196,7 +195,8 @@ async function main() {
   }
   fs.writeFileSync(path.join(runDir, 'summary.json'), JSON.stringify(summary, null, 2) + '\n');
   console.log('[tests] passed ' + passed.length + '/' + results.length +
-    (skipped.length ? '（skipped ' + skipped.length + '：' + skipped.map((result) => result.id).join(', ') + '）' : ''));
+    (skipped.length ? '（skipped ' + skipped.length + '：' + skipped.map((result) => result.id).join(', ') + '）' : '') +
+    (notRun.length ? '（not-run ' + notRun.length + '：' + notRun.map((result) => result.id).join(', ') + '）' : ''));
   if (failed.length) console.log('[tests] failed: ' + failed.map((result) => result.id).join(', '));
   process.exitCode = failed.length ? 1 : 0;
 }
