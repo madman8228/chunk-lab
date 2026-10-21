@@ -16,6 +16,7 @@
     "test": "node scripts/run-tests.cjs all",
     "test:checks": "node scripts/run-tests.cjs checks",
     "test:unit": "node scripts/run-tests.cjs unit",
+    "pretest:server": "node scripts/ensure-server-deps.cjs",
     "test:server": "node scripts/run-tests.cjs server",
     "test:browser": "node scripts/run-tests.cjs browser",
     "test:main-lifecycle": "node scripts/main-lifecycle.test.mjs",
