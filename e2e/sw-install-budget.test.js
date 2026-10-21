@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
     await page.waitForFunction(() => !!navigator.serviceWorker.controller);
     assert.equal(hits.filter(url => soft.includes(url)).length, 0, 'install must not fetch optional resources');
     assert.ok(hard.every(url => hits.includes(url)), 'all atomic resources installed');
-    const optional = ['/assets/jqka-learning-garden-v1.png', '/assets/textbook-drafts.css?v=1', '/js/textbook-drafts.js?v=1'];
+    const optional = ['/assets/jqka-learning-garden-v1.webp', '/assets/textbook-drafts.css?v=1', '/js/textbook-drafts.js?v=1'];
     for (const url of optional) {
       assert.ok(soft.includes(url.split('?')[0]), 'visited optional asset remains versioned: ' + url);
       assert.equal(await page.evaluate(async url => (await fetch(url)).status, url), 200);

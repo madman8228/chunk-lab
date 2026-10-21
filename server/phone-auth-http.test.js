@@ -25,8 +25,8 @@ app.get('/auth-ui.js', (req,res) => res.sendFile(path.resolve(__dirname, '../aut
 app.get('/api/config', (req,res) => res.json({ requireAuth:true, authMode:'phone' }));
 app.get('/', (req,res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 app.use('/landing', express.static(path.resolve(__dirname, '../landing')));
-app.get('/assets/jqka-learning-garden-v1.png',(req,res)=>res.sendFile(path.resolve(__dirname,'../assets/jqka-learning-garden-v1.png')));
-app.get('/assets/jqka-learning-garden-body-v1.png',(req,res)=>res.sendFile(path.resolve(__dirname,'../assets/jqka-learning-garden-body-v1.png')));
+app.get('/assets/jqka-learning-garden-v1.webp',(req,res)=>res.sendFile(path.resolve(__dirname,'../assets/jqka-learning-garden-v1.webp')));
+app.get('/assets/jqka-learning-garden-body-v1.webp',(req,res)=>res.sendFile(path.resolve(__dirname,'../assets/jqka-learning-garden-body-v1.webp')));
 (async () => {
   const server = app.listen(0, '127.0.0.1');
   await new Promise(resolve => server.once('listening', resolve));

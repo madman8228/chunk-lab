@@ -206,8 +206,8 @@ function cacheUrls(page) {
     urls.indexOf('/oral-book.js') < 0 && urls.indexOf('/freq-idioms.js') < 0,
     urls.filter(function (u) { return /oral-book|freq-idioms/.test(u); }).join(','));
   check('后台和大 PNG 不再无条件进入安装缓存',
-    ['/admin.html', '/content-studio.html', '/assets/jqka-learning-garden-v1.png',
-      '/assets/jqka-learning-garden-body-v1.png'].every(function (url) { return !urls.includes(url); }));
+    ['/admin.html', '/content-studio.html', '/assets/jqka-learning-garden-v1.webp',
+      '/assets/jqka-learning-garden-body-v1.webp'].every(function (url) { return !urls.includes(url); }));
   check('页面无 JS 错误', errs.length === 0, errs.slice(0, 3).join(' | '));
   const optionalAssets = ['/landing/action-game-view.js', '/landing/wordbook-study.js', '/assets/brand/icon-512-v1.png'];
   check('独立练习资源未随首页安装下载', optionalAssets.every(url => !urls.includes(url)));
