@@ -154,6 +154,10 @@ function collectClosure(seeds) {
 function runtimeAssets(htmlFiles, extraSeeds) {
   const direct = new Set();
   const missingRefs = new Set();
+  /* Course binaries live in the private chunk-lab-assets repository. They are
+     fetched on demand at runtime and must not enter the public SW/deploy
+     dependency closure (a clean CI checkout does not contain them). */
+  const PRIVATE_ASSET_RE = /^assets\/(?:vocab-|vocabulary-|highschool-|scene-)/i;
   (htmlFiles || []).forEach(function (f) {
     const src = readIfExists(f);
     if (src == null) { missingRefs.add(f); return; }
@@ -162,7 +166,7 @@ function runtimeAssets(htmlFiles, extraSeeds) {
     HTML_ATTR_RE.lastIndex = 0;
     while ((m = HTML_ATTR_RE.exec(src)) !== null) {
       const r = normalizeRef(m[1], f);
-      if (r) direct.add(r);
+      if (r && !PRIVATE_ASSET_RE.test(r)) direct.add(r);
     }
   });
 
