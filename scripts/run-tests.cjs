@@ -7,10 +7,17 @@ const { spawn, spawnSync } = require('child_process');
 const manifest = require('./test-manifest.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
-const groups = new Set(process.argv.slice(2));
-const selected = groups.size && !groups.has('all')
+const args = process.argv.slice(2);
+const privateContent = args.includes('--private') || process.env.TEST_PRIVATE_CONTENT === '1';
+if (privateContent) process.env.TEST_REQUIRE_PRIVATE = '1';
+const groups = new Set(args.filter((arg) => arg !== '--private'));
+const requested = groups.size && !groups.has('all')
   ? manifest.filter((entry) => groups.has(entry.group))
   : manifest;
+const privateNotRun = privateContent
+  ? []
+  : requested.filter((entry) => entry.requires === 'private-content');
+const selected = requested.filter((entry) => privateContent || entry.requires !== 'private-content');
 const timeoutMs = Number(process.env.TEST_TIMEOUT_MS || 180000);
 const resultDir = path.join(ROOT, 'output', 'test-results');
 const startedAt = new Date();
@@ -136,6 +143,9 @@ async function main() {
   fs.mkdirSync(resultDir, { recursive: true });
   if (fs.existsSync(runDir)) throw new Error('test result runId already exists: ' + runId);
   fs.mkdirSync(runDir, { recursive: true });
+  if (privateNotRun.length) {
+    console.log('[tests] not-run private-content (' + privateNotRun.length + '): ' + privateNotRun.map((entry) => entry.id).join(', '));
+  }
   const worktreeBefore = worktreeFingerprint();
   const config = {
     testRetries: process.env.TEST_RETRIES === undefined ? null : process.env.TEST_RETRIES,
@@ -174,8 +184,10 @@ async function main() {
   const failed = results.filter((result) => result.code !== 0);
   const skipped = results.filter((result) => result.code === 0 && /\[SKIP\]/.test(result.output || ''));
   const notRun = results.filter((result) => result.code === 0 && /\[NOT-RUN\]/.test(result.output || ''));
+  const notRunIds = notRun.map((result) => result.id).concat(privateNotRun.map((entry) => entry.id));
   const nonPassingSet = new Set(skipped.concat(notRun).map((result) => result.id));
   const passed = results.filter((result) => result.code === 0 && !nonPassingSet.has(result.id));
+  const total = results.length + privateNotRun.length;
   const summary = {
     runId,
     startedAt: startedAt.toISOString(),
@@ -186,7 +198,8 @@ async function main() {
     worktreeAfter,
     worktreeChanged: worktreeBefore.contentSha256 !== worktreeAfter.contentSha256 || worktreeBefore.status !== worktreeAfter.status,
     selected: selected.map((entry) => entry.id),
-    counts: { total: results.length, passed: passed.length, failed: failed.length, skipped: skipped.length, notRun: notRun.length, flaky: results.filter((result) => result.flaky).length },
+    notRun: notRunIds,
+    counts: { total, passed: passed.length, failed: failed.length, skipped: skipped.length, notRun: notRunIds.length, flaky: results.filter((result) => result.flaky).length },
     results,
   };
   for (const group of new Set(selected.map((entry) => entry.group))) {
@@ -194,9 +207,9 @@ async function main() {
     fs.writeFileSync(path.join(resultDir, group + '.json'), JSON.stringify({ runId, startedAt: summary.startedAt, finishedAt: summary.finishedAt, config, group, results: groupResults }, null, 2) + '\n');
   }
   fs.writeFileSync(path.join(runDir, 'summary.json'), JSON.stringify(summary, null, 2) + '\n');
-  console.log('[tests] passed ' + passed.length + '/' + results.length +
+  console.log('[tests] passed ' + passed.length + '/' + total +
     (skipped.length ? '（skipped ' + skipped.length + '：' + skipped.map((result) => result.id).join(', ') + '）' : '') +
-    (notRun.length ? '（not-run ' + notRun.length + '：' + notRun.map((result) => result.id).join(', ') + '）' : ''));
+    (notRunIds.length ? '（not-run ' + notRunIds.length + '：' + notRunIds.join(', ') + '）' : ''));
   if (failed.length) console.log('[tests] failed: ' + failed.map((result) => result.id).join(', '));
   process.exitCode = failed.length ? 1 : 0;
 }
