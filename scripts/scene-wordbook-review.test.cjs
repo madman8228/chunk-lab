@@ -2,6 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const reviewModel=require('./lib/scene-wordbook-review.cjs'),draftModel=require('../js/wordbook-draft'),contract=require('../js/vocabulary-course-contract'),engine=require('../landing/sentence-cloze-engine'),contentModel=require('../js/vocabulary-study.cjs');
 const file='drafts/scene-wordbooks/borrow-things-v1/review.json';
+if(!fs.existsSync(file)){console.log('SKIP: scene wordbook review draft is not present in this checkout (local drafts/ artifact)');process.exit(0);}
 (async()=>{
  const bytes=fs.readFileSync(file),review=JSON.parse(bytes),before=JSON.stringify(review);
  const {summary,wordbookPackage}=await reviewModel.prepare(review);
