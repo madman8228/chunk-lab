@@ -205,7 +205,7 @@ var ChunkMembership = (() => {
 
   // src/membership/client.mjs
   var MembershipClient = class {
-    constructor({ request, readCatalog }) {
+    constructor({ request, readCatalog = null }) {
       this.request = request;
       this.readCatalog = readCatalog;
     }
