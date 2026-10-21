@@ -54,3 +54,13 @@ ref/
 
 # 旧版本地 UI 数据目录（保留本机，不随仓库分发）
 /.tmp-v2-ui-data/
+
+# 课程内容二进制资产：镜像在私有 chunk-lab-assets 仓库（Git LFS），
+# 不进入本公开仓库。清单与恢复说明见 docs/content-assets-repository.md。
+/assets/vocab-*
+/assets/highschool-*/
+/assets/scene-*
+/assets/vocabulary-*
+/assets/*.mp3
+/assets/*.ogg
+/drafts/
