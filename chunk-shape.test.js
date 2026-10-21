@@ -40,7 +40,7 @@ assertEq(CS.minChunks('Help!'), 1, "minChunks('Help!')");
 assertEq(CS.minChunks("Don't."), 1, "minChunks(\"Don't.\")");
 assertEq(CS.minChunks("I'm late!"), 2, "minChunks(\"I'm late!\")");
 assertEq(CS.minChunks('Good morning.'), 1, "minChunks('Good morning.') 固定问候");
-['Good morning!', 'Nice to meet you.', 'See you later!', "What's this?", 'Who is that?', 'What time is it?', 'What day is it today?'].forEach(function (sentence) {
+['Good morning!', 'Nice to meet you.', 'See you later!', "What's this?", 'Who is that?', 'What time is it?', 'What day is it today?', "What's your major?", 'How old are you?', 'How tall are you?'].forEach(function (sentence) {
   assert(CS.chunkCountOk(sentence, [sentence]), '入门固定表达允许整体呈现：' + sentence);
 });
 assertEq(CS.minChunks('Nice to meet your teacher.'), 2, '精确清单不放宽相似句子');
@@ -52,18 +52,15 @@ assertEq(CS.minChunks('Nice to meet you, too.'), 1, '固定寒暄回应按整体
 assertEq(CS.minChunks('Where are you from?'), 1, '固定身份问句按整体语义呈现');
 assertEq(CS.minChunks('A little.'), 1, '数量短语按整体语义呈现');
 assertEq(CS.minChunks('What year are you in?'), 1, '固定年级问句按整体语义呈现');
-assertEq(CS.minChunks("What's your major?"), 2, '专业问句有可组合结构，不按常用表达免切');
+assertEq(CS.minChunks("What's your major?"), 1, '固定专业问句按整体语义呈现');
 assertEq(CS.minChunks('Any brothers or sisters?'), 1, '固定家庭情况问句按整体语义呈现');
 assertEq(CS.minChunks('How long have you been skiing?'), 1, '固定经历问句按整体语义呈现');
-assertEq(CS.minChunks('How old are you?'), 2, '年龄问句应保留问句结构与主语的边界');
+assertEq(CS.minChunks('How old are you?'), 1, '固定年龄问句按整体语义呈现');
 assertEq(CS.minChunks('How much do you weigh?'), 1, '固定体重问句按整体语义呈现');
-assertEq(CS.minChunks('How tall are you?'), 2, '身高问句应保留问句结构与主语的边界');
+assertEq(CS.minChunks('How tall are you?'), 1, '固定身高问句按整体语义呈现');
 [
   ["What's your name?", ["What's", 'your name?']],
-  ["What’s your name?", ["What’s", 'your name?']],
-  ["What's your major?", ["What's", 'your major?']],
-  ['How old are you?', ['How old', 'are you?']],
-  ['How tall are you?', ['How tall', 'are you?']]
+  ["What’s your name?", ["What’s", 'your name?']]
 ].forEach(function (example) {
   assert(!CS.chunkCountOk(example[0], [example[0]]), '可组合问句不允许整句免切：' + example[0]);
   assert(CS.chunkCountOk(example[0], example[1]), '保留自然意群，而非强制逐词切分：' + example[0]);
@@ -590,7 +587,16 @@ function stripComments(src) {
    - 本文件：判据自身的单测，负向自证的样例字面量（好样例 vs 坏样例）天然含这些写法
    ⚠️ decks.html / main.html **已移出白名单**（2026-09-16）：作者侧那 4 处硬编码已改为
       调用本判据 → 它们哪天退回 `chunks.length 2-5`，下面的散落检查会立刻报红。 */
-var ALLOWED = ['js/chunk-shape.js', 'chunk-shape.test.js'];
+var ALLOWED = [
+  'js/chunk-shape.js',
+  'chunk-shape.test.js',
+  /* 生成物：拼块活动使用独立的 2–24 块规则，不是 2–5 意群规则；
+     生成入口 scripts/*-entry.mjs 仍受扫描。 */
+  'js/vocabulary-chunk-order.js',
+  'js/vocabulary-material-library.js',
+  'js/vocabulary-study.js',
+  'js/wordbook-authoring.js'
+];
 var RE = /chunks\s*\.\s*length\s*[<>]=?\s*2|chunks\.length\s*[<>]=?\s*5/;
 
 /* 负向自证：剥注释不许把护栏削钝 —— 真代码里的段数比较仍须被抓到，
