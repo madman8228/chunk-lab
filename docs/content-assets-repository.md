@@ -16,11 +16,13 @@
 
 | 目录 | 文件数 | 大小 | 说明 |
 |---|---:|---:|---|
-| `assets/` | 6,315 | 102.7 MB | 词书插图、教材图包、场景音频、站点视觉 |
+| `assets/` | 5,912 | 75.2 MB | 词书插图、教材图包、场景音频、站点视觉 |
 | `drafts/` | 154 | 14.0 MB | 词书草稿与审阅版本 |
-| `content/` | 285 | 6.3 MB | 已发布/草稿内容分片、词汇 pilot 数据 |
+| `content/` | 285 | 6.2 MB | 已发布/草稿内容分片、词汇 pilot 数据 |
 | `extra/` | 122 | 13.9 MB | 口语书输入源与批次输入 |
-| **合计** | **6,876** | **130.5 MB** | |
+| **合计** | **6,473** | **104.3 MB** | |
+
+当前 LFS 对象：5,850 个 WebP、60 个 WAV、36 个 OGG、20 个 MP3、5 个品牌 icon PNG、1 个 ICO；**0 个 AVIF**。六张六词 `wide-v3.webp` 是 wordbook 示范的共享交付图；原始 PNG master 只保留在本机归档，不再进 LFS。
 
 二进制媒体由 Git LFS 跟踪：`*.webp *.avif *.png *.jpg *.jpeg *.ico *.mp3 *.ogg *.wav *.mp4 *.woff2 *.ttf`。JSON、HTML、CSS、Markdown 和清单仍为普通 Git 对象。
 
@@ -31,7 +33,7 @@ git clone https://github.com/madman8228/chunk-lab-assets.git
 cd chunk-lab-assets
 git lfs pull
 node verify-manifest.cjs
-# 期望：OK 6876 files
+# 期望：OK 6473 files
 ```
 
 ## 主仓库的边界
@@ -67,6 +69,7 @@ node verify-manifest.cjs
 ## 不可忽略的限制
 
 - **不要把这个仓库改成 public**，除非完成版权审查。
-- GitHub LFS 免费额度为 1 GB 存储 / 1 GB 月流量；当前约 130 MB，新增批次前先看用量。
+- GitHub LFS 免费额度为 1 GB 存储 / 1 GB 月流量；当前约 104 MB，新增批次前先看用量。
 - 私有仓库是第二份副本，不是完整灾备：`ref/`（约 7 GB 外部书源）仍不在其中，需要独立的离线/对象存储备份。
 - 主仓库的 CI 不访问私有仓库；内容校验依赖本地 `verify-manifest.cjs` 和发布前检查，不会在公开 CI 中拉取课程素材。
+- 2026-10-21 清理：删除 373 张 AVIF、六词旧练习素材和原始 PNG master 的 LFS 当前副本；`pilot-six-v1` 仅保留六张 `wide-v3.webp`。LFS 历史仍保留旧对象，回收配额需重写历史。

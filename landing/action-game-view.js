@@ -13,9 +13,9 @@
     utterance.onerror=()=>{speechStatus.textContent='暂时无法朗读，请稍后再试。';};root.speechSynthesis.speak(utterance);
   }
   const scene=el('picture','quest-scene');
-  const source=el('source'),image=el('img');source.type='image/avif';image.alt=task.image.alt;image.width=320;image.height=180;image.decoding='async';scene.append(source,image);
+  const image=el('img');image.alt=task.image.alt;image.width=320;image.height=180;image.decoding='async';scene.append(image);
   // The current task's artwork is requested only when the game is actually opened.
-  function loadImage(){if(image.hasAttribute('src'))return;source.srcset=task.image.avif;image.src=task.image.webp;}
+  function loadImage(){if(image.hasAttribute('src'))return;image.src=task.image.webp;}
   const stage=el('div','quest-stage');
   const controls=el('footer','quest-controls');
   const pauseButton=button('暂停 / 退出',()=>{paused=true;render(true);});

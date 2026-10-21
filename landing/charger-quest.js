@@ -2,7 +2,7 @@
   'use strict';
   function gap(before,after,word,label,feedback=[]){return {version:1,parts:[{text:before},{id:'word',label,answers:[word],feedback},{text:after}]};}
   const task={version:1,id:'charger',title:'借充电器',goal:'',start:'borrow',
-    image:{avif:'assets/vocabulary-borrow-wide-v3.avif',webp:'assets/vocabulary-borrow-wide-v3.webp',alt:'手机没电的女孩向朋友借充电线'},
+    image:{webp:'assets/vocabulary-borrow-wide-v3.webp',alt:'手机没电的女孩向朋友借充电线'},
     initial:{battery:2,holder:'朋友',connection:'尚未接通',route:'未选择'},
     expressions:{borrow:'Can I borrow your charger?',buy:'Can I buy a charger?',enough:'I have enough battery to call.',lend:'I can lend you the charger.'},
     nodes:{

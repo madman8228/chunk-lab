@@ -33,13 +33,11 @@
   },
   "images": {
     "wide": [
-      "assets/vocabulary-borrow-wide-v2.avif",
-      "assets/vocabulary-borrow-wide-v2.webp"
+      "assets/vocabulary-borrow-wide-v3.webp"
     ],
     "mobile": [
-      "assets/vocabulary-borrow-mobile-v2.avif",
-      "assets/vocabulary-borrow-mobile-v2.webp"
+      "assets/vocabulary-borrow-wide-v3.webp"
     ]
   },
-  "contentRevision": "6cfa49cd2dcd50eead9ccc11d25a3fda90b0e007eafe724eb5cb25f75ccdc3e5"
+  "contentRevision": "7b455db1a52ac87bd3b6c876e220ff7211784e6399179365d3b179b3bd785c04"
 }

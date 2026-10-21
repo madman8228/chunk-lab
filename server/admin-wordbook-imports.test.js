@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('assets/vocab-g7-lower-u1-blind-wide-v1.webp','textbook image fixture');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),express=require('./node_modules/express');
 const draft=require('../js/wordbook-draft'),{createVocabularyContent}=require('./services/vocabulary-content'),{createWordbookPublisher}=require('./services/wordbook-publisher'),{createAdminWordbookImports}=require('./services/admin-wordbook-imports'),{registerAdminWordbookImportRoutes}=require('./routes/admin-wordbook-imports'),{configuredVocabularyImageDelivery}=require('./middleware/vocabulary-image-delivery'),{createPublicWordbookVersions}=require('./services/public-wordbook-versions');
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'admin-wordbook-')),appRoot=path.join(temp,'app'),data=path.join(temp,'data');let server;

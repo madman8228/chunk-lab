@@ -54,7 +54,7 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-d124cc62'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-c7d7342e'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 /* 硬预缓存清单：小体积、离线必需。install 用 addAll 一次性装好，任一失败即安装失败
    （老 SW 继续服务 —— 这是正确的失败语义，不做"部分成功"的兜底）。 */
 const COVER_CACHE = 'course-covers-v1';
@@ -153,6 +153,7 @@ const PRECACHE = [
   '/landing/listen-word-view.js',
   '/assets/personal-center.css',
   '/js/course-return.js',
+  '/landing/practice-page.css',
 ];
 
 /* 可选资源清单（保留 PRECACHE_SOFT 名称供生成器和版本校验使用）：
@@ -186,10 +187,6 @@ const PRECACHE_SOFT = [
   '/landing/store.js',
   '/landing/account.js',
   '/landing/theme.css',
-  '/landing/practice-content.js',
-  '/landing/practice.js',
-  '/landing/practice-page.css',
-  '/vocabulary-practice.html',
   '/landing/sentence-cloze-engine.js',
   '/landing/sentence-cloze-view.js',
   '/landing/vocabulary-browser.js',
@@ -251,8 +248,7 @@ const PRECACHE_SOFT = [
   '/js/membership.js',
   '/admin-membership.html',
   '/assets/jqka-learning-garden-body-v1.webp',
-  '/assets/jqka-learning-garden-v1.png',
-  '/assets/jqka-learning-garden-body-v1.png',
+  '/assets/jqka-learning-garden-v1.webp',
   '/course-package.js',
   '/courses.html',
   '/decks.html',

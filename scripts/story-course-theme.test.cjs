@@ -4,7 +4,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=requ
  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  const source=fs.readFileSync('courses.html','utf8'),html=source.replace(/<script[\s\S]*?<\/script>/g,'').replace(/<link[^>]+>/g,'');
  const main=fs.readFileSync('main.html','utf8'),homeStyles=[...main.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map(m=>m[1]).join('\n');
- const scene=fs.readFileSync('assets/vocabulary-borrow-wide-v2.webp').toString('base64');fs.mkdirSync('output/playwright/story-course-theme',{recursive:true});
+ const scene=fs.readFileSync('test/fixtures/synthetic-vocabulary-16x9.webp').toString('base64');fs.mkdirSync('output/playwright/story-course-theme',{recursive:true});
  for(const width of [1440,774,390]){
   await page.setViewportSize({width,height:932});await page.setContent('<style>'+homeStyles+'</style><div id="pageHome"></div><div class="home-sky-deco"><svg class="sky-sun"></svg></div>');
   const expected=await page.evaluate(()=>({background:getComputedStyle(document.body).backgroundImage,sun:document.querySelector('.sky-sun').getBoundingClientRect().toJSON()}));

@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const express=require('./node_modules/express'),Database=require('./node_modules/better-sqlite3');
 const {createVocabularyMaterialLibrary}=require('./services/vocabulary-material-library');

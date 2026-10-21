@@ -16,7 +16,7 @@ const vm = require('node:vm');
     assert.ok(!hard.includes(url) && soft.includes(url), 'legacy icons remain available without eager installation: ' + url);
   }
   for (const url of ['/assets/brand/icon-180-v1.png', '/assets/brand/icon-192-v1.png', '/assets/brand/icon-512-v1.png',
-    '/vocabulary.html', '/vocabulary-practice.html', '/wordbook.html', '/landing/action-game-view.js', '/landing/wordbook-study.js']) {
+    '/vocabulary.html', '/wordbook.html', '/landing/action-game-view.js', '/landing/wordbook-study.js']) {
     assert.ok(!hard.includes(url) && soft.includes(url), 'independent vocabulary pages and large install icons load on demand: ' + url);
   }
   const homepage = require('./lib-deps').runtimeAssets(['main.html']).files.map(file => '/' + file.replace(/\\/g, '/'));
@@ -58,9 +58,9 @@ const vm = require('node:vm');
   await installation;
   assert.deepEqual(downloads, hard, 'installation downloads only the atomic learning bundle, not optional pages or pictures');
   assert.ok(activated);
-  assert.ok(soft.includes('/admin.html') && soft.includes('/assets/jqka-learning-garden-v1.png'));
+  assert.ok(soft.includes('/admin.html') && soft.includes('/assets/jqka-learning-garden-v1.webp'));
   downloads.length = 0;
-  const request = { method: 'GET', mode: 'cors', url: 'https://example.test/assets/jqka-learning-garden-v1.png' };
+  const request = { method: 'GET', mode: 'cors', url: 'https://example.test/assets/jqka-learning-garden-v1.webp' };
   async function load() {
     let response;
     handlers.fetch({ request, respondWith: task => { response = task; } });

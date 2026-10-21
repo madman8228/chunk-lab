@@ -43,13 +43,11 @@
   },
   "images": {
     "wide": [
-      "assets/vocabulary-decide-wide-v2.avif",
-      "assets/vocabulary-decide-wide-v2.webp"
+      "assets/vocabulary-decide-wide-v3.webp"
     ],
     "mobile": [
-      "assets/vocabulary-decide-mobile-v2.avif",
-      "assets/vocabulary-decide-mobile-v2.webp"
+      "assets/vocabulary-decide-wide-v3.webp"
     ]
   },
-  "contentRevision": "c5480a17ceb9223900a4dae926a0da0c53cfd902eee8e0f33d88a065f9fc8ca9"
+  "contentRevision": "ff51d4ba33b54e0c7759c1a61469f0438b98c93a7c25bca38f650eb9addc05b3"
 }

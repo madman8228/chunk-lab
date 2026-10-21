@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('assets/vocab-g7-lower-u1-blind-wide-v1.webp','textbook image fixture');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto');
 const draft=require('../js/wordbook-draft'),{createVocabularyContent}=require('./services/vocabulary-content'),{createWordbookPublisher}=require('./services/wordbook-publisher');
 const {registerWordbookPublishingRoutes}=require('./routes/wordbook-publishing'),express=require('./node_modules/express');

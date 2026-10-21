@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('assets/vocabulary-decide-wide-v3.webp','vocabulary image fixture');
 const assert=require('node:assert/strict'),path=require('node:path');
 const Database=require('./node_modules/better-sqlite3');
 const {createVocabularyContent}=require('./services/vocabulary-content');

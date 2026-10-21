@@ -63,7 +63,6 @@ const { registerMembershipRoutes } = require('./routes/membership');
 const { registerAdminMembershipRoutes } = require('./routes/admin-membership');
 const { registerSystemRoutes } = require('./routes/system');
 const { registerDataRoutes } = require('./routes/data');
-const { registerVocabularyPracticeRoutes } = require('./routes/vocabulary-practice');
 const { registerLearningArchiveRoutes } = require('./routes/learning-archive');
 const { registerOperationRoutes } = require('./routes/operations');
 const { createOperations, MAX_CONTENT_IMPORT_BYTES } = require('./services/operations');
@@ -473,7 +472,6 @@ registerRecoveryRoutes({
   })
 });
 
-registerVocabularyPracticeRoutes({app,auth,db});
 registerLearningArchiveRoutes({app,auth,db,content:vocabularyContent});
 const vocabularyBrowse=require('./services/vocabulary-browse-operations').createVocabularyBrowseOperations({db,resolvePlan:vocabularyTeachingContent.resolvePlan,upsertEntityRow,enabled:vocabularyBrowseEnabled,operationError:(message,code,status)=>Object.assign(Error(message),{code,status})});
 registerWordbookRoutes({app,auth,content:vocabularyContent,browse:vocabularyBrowse,teaching:vocabularyTeachingContent,study:createVocabularyStudyOperations({db,content:vocabularyContent,upsertEntityRow,enableWordDictation:wordDictationEnabled,enableWordChoice:wordChoiceEnabled,enableChunkOrder:chunkOrderEnabled,enableReadAloud:readAloudEnabled,operationError:(message,code,status)=>Object.assign(new Error(message),{code,status})})});

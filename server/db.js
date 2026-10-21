@@ -391,6 +391,20 @@ CREATE TABLE IF NOT EXISTS user_entity_rows (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+/* Historical vocabulary-pilot attempts. The old /api/vocabulary-practice route
+   was retired, but existing rows still feed the learning archive and usage
+   analytics. Keep the table so those reads remain valid on fresh databases. */
+CREATE TABLE IF NOT EXISTS vocabulary_attempts (
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  event_id TEXT NOT NULL,
+  word TEXT NOT NULL,
+  independent INTEGER NOT NULL,
+  occurred_at INTEGER NOT NULL,
+  PRIMARY KEY(user_id,event_id)
+);
+CREATE INDEX IF NOT EXISTS vocabulary_attempts_owner
+  ON vocabulary_attempts(user_id,word,occurred_at);
+
 /* ----- 行级增量下行（2026-09-10 第三轮）：每张用户数据表带单调变更序号 seq -----
    目标：让客户端能 GET /api/data?since=N 只取「自己还没见过的变更」，
    而不是每次开页都把 8007KB 全量拉一遍（8000 句实测 7191KB → 648KB brotli，

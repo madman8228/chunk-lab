@@ -45,7 +45,7 @@ const TEST_RE = /\.test\.mjs$/i;
 /* index.html 是 jqka.top 的根路径落地页（2026-10-05 合并进本仓库）—— 必须在这里登记，
    否则它和它引用的 landing/*.js 会被 check-deploy-files 判为「非必需项」、
    部署清单漏项时无人报警（同 2026-09-10 FILES 漏整个 js/ 目录的根因）。 */
-const HTML_ENTRIES = ['index.html', 'main.html', 'courses.html', 'decks.html', 'course-create.html', 'stats.html', 'admin.html', 'content-studio.html', 'vocabulary.html', 'vocabulary-practice.html', 'wordbook.html', 'wordbook-details.html', 'wordbook-create.html', 'wordbook-intro.html'];
+const HTML_ENTRIES = ['index.html', 'main.html', 'courses.html', 'decks.html', 'course-create.html', 'stats.html', 'admin.html', 'content-studio.html', 'vocabulary.html', 'wordbook.html', 'wordbook-details.html', 'wordbook-create.html', 'wordbook-intro.html'];
 
 function abs(rel) { return path.join(ROOT, rel); }
 
@@ -154,6 +154,10 @@ function collectClosure(seeds) {
 function runtimeAssets(htmlFiles, extraSeeds) {
   const direct = new Set();
   const missingRefs = new Set();
+  /* Course binaries live in the private chunk-lab-assets repository. They are
+     fetched on demand at runtime and must not enter the public SW/deploy
+     dependency closure (a clean CI checkout does not contain them). */
+  const PRIVATE_ASSET_RE = /^assets\/(?:vocab-|vocabulary-|highschool-|scene-)/i;
   (htmlFiles || []).forEach(function (f) {
     const src = readIfExists(f);
     if (src == null) { missingRefs.add(f); return; }
@@ -162,7 +166,7 @@ function runtimeAssets(htmlFiles, extraSeeds) {
     HTML_ATTR_RE.lastIndex = 0;
     while ((m = HTML_ATTR_RE.exec(src)) !== null) {
       const r = normalizeRef(m[1], f);
-      if (r) direct.add(r);
+      if (r && !PRIVATE_ASSET_RE.test(r)) direct.add(r);
     }
   });
 

@@ -25,13 +25,11 @@
   },
   "images": {
     "wide": [
-      "assets/vocabulary-enough-wide-v2.avif",
-      "assets/vocabulary-enough-wide-v2.webp"
+      "assets/vocabulary-enough-wide-v3.webp"
     ],
     "mobile": [
-      "assets/vocabulary-enough-mobile-v2.avif",
-      "assets/vocabulary-enough-mobile-v2.webp"
+      "assets/vocabulary-enough-wide-v3.webp"
     ]
   },
-  "contentRevision": "2954b0b4dc11d432f0b5d1aa75d459e6e7708292ef52eb8de1f0e396e7bab6ab"
+  "contentRevision": "211558f39f6e06ca4638594e270cfa50ef9a7c4dfcafa7e3a82366ead0d8a8f6"
 }

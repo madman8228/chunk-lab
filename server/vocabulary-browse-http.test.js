@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{spawn}=require('node:child_process'),Database=require('better-sqlite3'),{canonicalHash}=require('./canonical-hash');
 const root=path.resolve(__dirname,'..'),temp=fs.mkdtempSync(path.join(os.tmpdir(),'vocabulary-browse-http-')),appRoot=path.join(temp,'app'),children=[];let db,preview,logs='';
 const source=path.join(root,'drafts/scene-wordbooks/zero-foundation-objects-v1'),protectedFiles=['wordbook.json','approval.json','audio-v1/manifest.json','images-batch-v1.report.json'],fingerprints=()=>protectedFiles.map(file=>crypto.createHash('sha256').update(fs.readFileSync(path.join(source,file))).digest('hex'));

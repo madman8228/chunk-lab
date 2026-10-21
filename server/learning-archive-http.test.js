@@ -12,11 +12,9 @@ process.env.JWT_SECRET = crypto.randomBytes(32).toString('hex');
 const db = require('./db');
 const auth = require('./auth');
 const express = require('express');
-const { registerVocabularyPracticeRoutes } = require('./routes/vocabulary-practice');
 const { registerLearningArchiveRoutes } = require('./routes/learning-archive');
 const app = express();
 app.use(express.json());
-registerVocabularyPracticeRoutes({ app, auth, db });
 (async () => {
   const server = app.listen(0, '127.0.0.1');
   await new Promise(resolve => server.once('listening', resolve));
@@ -32,8 +30,7 @@ registerVocabularyPracticeRoutes({ app, auth, db });
     for (const route of ['/summary', '/events', '/courses']) {
       assert.equal((await request('/api/learning-archive/vocabulary' + route)).status, 401);
     }
-    assert.equal((await request('/api/vocabulary-practice', one, { method: 'POST',
-      body: JSON.stringify({ eventId: 'archive-event-001', word: 'borrow', independent: true }) })).status, 200);
+    db.prepare('INSERT INTO vocabulary_attempts VALUES(?,?,?,?,?)').run(one.id,'archive-event-001','borrow',1,Date.now());
     for(const user of [one,two])db.prepare(`INSERT INTO vocabulary_study_events(user_id,event_id,item_id,resource_id,content_revision,data_json,occurred_at,seq)
       VALUES(?,?,?,?,?,?,?,?)`).run(user.id,'archive-course-event','borrow-sense-1','wordbook:http-course','v1','{}',Date.now(),1);
     const before = db.prepare('SELECT total_changes() AS count').get().count;

@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),input=path.join(root,'drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4'),read=name=>JSON.parse(fs.readFileSync(path.join(input,name),'utf8')),model=require('../scripts/lib/vocabulary-materials.cjs');
 const hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex'),temp=fs.mkdtempSync(path.join(os.tmpdir(),'word-choice-content-'));let service;

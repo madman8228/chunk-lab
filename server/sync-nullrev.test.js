@@ -151,7 +151,7 @@ async function request(method, url, body) {
   try {
     server = spawn(process.execPath, ['testing/start-historical.js'], {
       cwd: __dirname,
-      env: { ...process.env, PORT: String(PORT), CHUNKLAB_DATA_DIR: TMP, NODE_ENV: 'test' },
+      env: { ...process.env, PORT: String(PORT), CHUNKLAB_DATA_DIR: TMP, NODE_ENV: 'test', REQUIRE_AUTH: 'false', PHONE_AUTH_ENABLED: 'false' },
       stdio: 'ignore'
     });
     let ready = false;

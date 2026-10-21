@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
 const assert=require('node:assert/strict'),crypto=require('node:crypto'),path=require('node:path'),fs=require('node:fs'),{spawn,spawnSync}=require('node:child_process'),Database=require('./node_modules/better-sqlite3');
 (async()=>{const instance=await require('../scripts/serve-wordbook-acceptance.cjs').createAcceptance(0);let db,recoveredChild;try{
  const login=await fetch(instance.base+'/review-api/login',{method:'POST',headers:{'content-type':'application/json'},body:'{}'}),token=(await login.json()).token;

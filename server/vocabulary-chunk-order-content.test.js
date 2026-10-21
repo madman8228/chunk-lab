@@ -1,4 +1,6 @@
 'use strict';
+const __privateFixtures=require('./testing/private-fixtures');
+__privateFixtures.skipUnless('drafts','private course drafts');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),input=path.join(root,'drafts/scene-wordbooks/borrow-things-v1/audio-a-v3/integrated-v4'),originals=['wordbook.json','library.json','approval.json'].map(name=>({name,bytes:fs.readFileSync(path.join(input,name))})),read=name=>JSON.parse(fs.readFileSync(path.join(input,name),'utf8')),model=require('../scripts/lib/vocabulary-materials.cjs'),hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'chunk-order-content-'));let service;
