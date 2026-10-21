@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),model=require('./lib/vocabulary-materials.cjs'),engine=require('../landing/sentence-cloze-engine.js');
-const library=require('./prepare-borrow-material-library.cjs').build(JSON.parse(fs.readFileSync('drafts/scene-wordbooks/borrow-things-v1/review.json','utf8'))),course=library.courses[0],unit=course.units[0],activity=library.activities.find(row=>row.itemId===unit.activityRefs[0].itemId),sense=library.senses.find(row=>row.senseId===activity.senseRef.senseId);
 if(!fs.existsSync('drafts/scene-wordbooks/borrow-things-v1/review.json')){console.log('SKIP: borrow teaching draft is not present in this checkout (private fixture)');process.exit(0);}
+const library=require('./prepare-borrow-material-library.cjs').build(JSON.parse(fs.readFileSync('drafts/scene-wordbooks/borrow-things-v1/review.json','utf8'))),course=library.courses[0],unit=course.units[0],activity=library.activities.find(row=>row.itemId===unit.activityRefs[0].itemId),sense=library.senses.find(row=>row.senseId===activity.senseRef.senseId);
 const step={stepId:'step:recognition',itemId:activity.itemId,activityRevision:activity.revision,stage:'recognition',presentation:{title:'认识词',text:sense.word,meaning:sense.meaning,explanation:'先看物品，再听示范。',audio:{url:'assets/teaching-test.ogg',sha256:'a'.repeat(64),bytes:100,mimeType:'audio/ogg'}}};
 const plan=model.versioned({unitId:unit.unitId,steps:[step]}),before=JSON.stringify([library,plan]);
 assert.deepEqual(model.validateTeachingPlans(library,course.courseId,[plan]),[plan]);
