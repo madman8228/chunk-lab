@@ -25,19 +25,25 @@ const markup=html.slice(html.indexOf('<div class="mask pc-drawer" id="settingsMa
    });
    await page.locator('#fixtureOpen').click();
    assert.equal(await page.locator('#personalCenterMenu').isVisible(),true);
+   assert.equal(await page.locator('#personalCenterTitle').isVisible(),false,'home drawer hides its redundant visible title');
    assert.equal(await page.locator('#setSound').isVisible(),false);
    assert.equal(await page.locator('#membershipCode').isVisible(),false);
    assert.equal(await page.locator('#btnSaveSettings').isVisible(),false);
    assert.equal(await page.locator('#btnAccountLogout').isVisible(),true);
-   assert.equal(await page.locator('#personalCenterMenu a').count(),0,'course and study navigation remains outside the account menu');
    const frame=await page.locator('#settingsMask .modal').boundingBox();
    assert.ok(Math.abs(frame.x+frame.width-width)<1);assert.ok(frame.y>=0&&frame.height<=height+1);
    assert.equal(frame.width,width<=540?width:304);
+   const logout=await page.locator('#btnAccountLogout').boundingBox();
+   assert.ok(logout.y>frame.y+frame.height-100&&logout.y+logout.height<frame.y+frame.height,'logout stays in a separate bottom footer');
+   const logoutStyle=await page.locator('#btnAccountLogout').evaluate(button=>({height:button.getBoundingClientRect().height,border:getComputedStyle(button).borderTopColor,color:getComputedStyle(button).color}));
+   assert.deepEqual(logoutStyle,{height:44,border:'rgb(254, 202, 202)',color:'rgb(220, 38, 38)'},'logout uses the red outline treatment and accessible target height');
+   assert.equal(await page.locator('#personalCenterMenu a').count(),0,'course and study navigation remains outside the account menu');
    const menuAlignment=await page.locator('#personalCenterMenu>button').evaluateAll(rows=>rows.map(row=>row.getBoundingClientRect().right-row.lastElementChild.getBoundingClientRect().right));
    assert.ok(menuAlignment.every(gap=>gap>=10&&gap<=14),'menu arrows align at the right edge');
    await page.screenshot({path:path.join(output,'menu-'+width+'x'+height+'.png'),animations:'disabled'});
    await page.locator('[data-pc-view="settings"]').click();
    assert.equal(await page.locator('#personalCenterTitle').innerText(),'学习设置');
+   assert.equal(await page.locator('#personalCenterTitle').isVisible(),true,'subpage titles remain visible');
    assert.equal(await page.locator('#setSound').isVisible(),true);
    assert.equal(await page.locator('#btnSaveSettings').isVisible(),true);
    await page.locator('#setSound').setChecked(false);
@@ -81,6 +87,7 @@ const markup=html.slice(html.indexOf('<div class="mask pc-drawer" id="settingsMa
   try{
    await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
    liveContext=await browser.newContext({viewport:{width:1024,height:932},serviceWorkers:'block',reducedMotion:'reduce'});
+   await liveContext.addInitScript(()=>localStorage.setItem('chunklab_token','e30.eyJ1aWQiOjF9.drawer-fixture'));
    const page=await liveContext.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
    await page.goto('http://127.0.0.1:'+server.address().port+'/main.html?view=discover');
    await page.locator('#pageDiscover').waitFor({state:'visible'});
