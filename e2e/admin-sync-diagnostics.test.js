@@ -78,7 +78,7 @@ const safeSaveFailure = {
     assert.match(failureRendered, /2 次/);
     assert.equal(failureRendered.includes('private sentence'), false, 'the diagnostic panel cannot render learning content');
     await page.waitForFunction(function () {
-      return document.querySelector('#saveHealthSummary').innerText.includes('待处理 4');
+      return document.querySelector('#saveHealthSummary').innerText.includes('待保存 4');
     });
     const healthRendered = await page.locator('#saveHealthSummary').innerText();
     assert.match(healthRendered, /2 个活跃设备/);

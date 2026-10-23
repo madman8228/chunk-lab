@@ -12,7 +12,7 @@
   'chunk-order':Object.freeze({label:'词序拼块',implemented:true,inputs:['chunks'],independent:true,learningKey:'chunkOrder'}),
   'word-dictation':Object.freeze({label:'单词听写',implemented:true,inputs:['typing'],independent:true,learningKey:'wordDictation'})
  });
- const dimensions=['audiences','schoolStages','grades','levels','goals','topics','exams'],scalars=['seriesId','publisherId','edition','volume'];
+ const dimensions=['audiences','schoolStages','grades','levels','goals','topics','exams'],scalars=['seriesId','publisherId','textbookVersion','edition','volume'];
  function check(value,message){if(!value)throw Error(message);}
  function validateBookStructure(book){
   if(book.catalog!==undefined){

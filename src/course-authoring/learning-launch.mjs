@@ -42,6 +42,12 @@ export class LegacyCourseLearningLauncher {
   allowRecreate(courseId, mem) { this.retiredStore.clear(String(courseId), mem); }
   isRetired(courseId, mem) { return this.retiredStore.has(String(courseId), mem); }
 
+  async #joinIndependent(receipt, scope) {
+    if (receipt.storageKind !== 'personal-course') return;
+    await this.gateway.joinCourse(receipt.catalogCourseId, scope);
+    this.scopeGuard.assert(scope);
+  }
+
   /** @returns {Promise<any>} */
   async launch(courseId, { confirmed = false } = {}) {
     const key = String(courseId);
@@ -79,6 +85,7 @@ export class LegacyCourseLearningLauncher {
           beforeSave: retired ? (mem) => this.retiredStore.clear(courseId, mem) ? () => this.retiredStore.mark(courseId, mem) : null : null
         });
       } else receipt = await this.gateway.getLaunchReceipt(courseId, scope);
+      await this.#joinIndependent(receipt, scope);
       this.scopeGuard.assert(scope);
       return { kind: 'launched', courseId, receipt, warnings: report.warnings, history: source.progress || report.history };
     }
@@ -88,6 +95,7 @@ export class LegacyCourseLearningLauncher {
       forceSave: retired,
       beforeSave: retired ? (mem) => this.retiredStore.clear(courseId, mem) ? () => this.retiredStore.mark(courseId, mem) : null : null
     });
+    await this.#joinIndependent(receipt, scope);
     this.scopeGuard.assert(scope);
     return { kind: 'launched', courseId, receipt, warnings: report.warnings, history: source.progress || report.history };
   }

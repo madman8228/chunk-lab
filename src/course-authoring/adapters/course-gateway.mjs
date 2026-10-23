@@ -68,6 +68,10 @@ export class ExistingCourseGateway {
 
   async getLaunchReceipt(deckId, scope) {
     const win = this.#ready(scope); await win.CL.preload(); this.scopeGuard.assert(scope);
+    const independent = await this.#findIndependentLegacyCourse(deckId, scope);
+    if (independent) return { storageKind: 'personal-course', contentId: independent.courseId,
+      catalogCourseId: `personal-course:${independent.courseId}`, lessonId: `lesson:personal-course:${independent.courseId}`,
+      releaseId: independent.releaseId };
     const story = win.CL.readCourses().find((item) => item.courseId === deckId);
     if (story) return { storageKind: 'story-package', contentId: story.courseId, catalogCourseId: `package:${story.courseId}`, lessonId: `lesson:story-package:${story.courseId}` };
     const deck = win.CL.findDeck(await this.readLearningMem(scope), deckId);
@@ -79,13 +83,56 @@ export class ExistingCourseGateway {
   async findNativeCourse(deckId, scope) {
     const win = this.#ready(scope); await win.CL.preload(); this.scopeGuard.assert(scope);
     const deck = win.CL.findDeck(await this.readLearningMem(scope), deckId);
-    return deck ? copy(deck) : null;
+    if (deck) return copy(deck);
+    const independent = await this.#findIndependentLegacyCourse(deckId, scope);
+    return independent && independent.kind === 'deck' ? { id: deckId, name: independent.content.name,
+      items: copy(independent.content.items), authoring: copy(independent.content.authoring || {}) } : null;
+  }
+
+  async #findIndependentLegacyCourse(sourceId, scope) {
+    const win = this.#ready(scope), config = win.CL.getCloudConfig && win.CL.getCloudConfig();
+    if (!config || config.writeProtocol !== 3 || !win.ChunkAPI || typeof win.ChunkAPI.request !== 'function') return null;
+    const catalog = await win.ChunkAPI.request('/api/course-library'); this.scopeGuard.assert(scope);
+    const match = (catalog.courses || []).find(course => (course.legacyResourceIds || []).includes(`course:${sourceId}`));
+    if (!match) return null;
+    const result = await win.ChunkAPI.request('/api/course-library/' + encodeURIComponent(match.courseId));
+    this.scopeGuard.assert(scope);
+    return { ...result, content: result.content };
   }
 
   async saveSentenceCourse(deck, scope, { forceSave = false, adoptMetadata = false, beforeSave = null } = {}) {
     const win = this.#ready(scope); await win.CL.preload(); this.scopeGuard.assert(scope);
-    const mem = await this.readLearningMem(scope);
     const cloudConfig = win.CL.getCloudConfig && win.CL.getCloudConfig();
+    const hasMedia = (deck.items || []).some(item => item && (item.imageAssetId || item.audioAssetId));
+    if (cloudConfig && cloudConfig.writeProtocol === 3) {
+      if (!win.ChunkAPI || typeof win.ChunkAPI.request !== 'function') throw new Error('独立课程服务尚未就绪；制作草稿已保留，本次未写入个人学习数据。');
+      if (hasMedia) throw Object.assign(new Error('课程含图片或音频，独立素材存储尚未接通；草稿已保留，本次未写入账号学习数据。'), { code: 'COURSE_MEDIA_LIBRARY_UNAVAILABLE' });
+      const prior = deck.authoring && deck.authoring.courseLibrary;
+      const requestId = 'authoring-import-' + String(deck.id || '').replace(/[^A-Za-z0-9_-]/g, '-');
+      let result;
+      if (prior && prior.courseId && prior.releaseId) {
+        const bytes = new win.TextEncoder().encode(JSON.stringify([prior.releaseId, deck]));
+        const digest = await win.crypto.subtle.digest('SHA-256', bytes);
+        const contentKey = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+        result = await win.ChunkAPI.request('/api/course-library/' + encodeURIComponent(prior.courseId) + '/release', {
+          method: 'PUT', body: JSON.stringify({ requestId: 'authoring-release-' + contentKey,
+            expectedRelease: prior.releaseId, kind: 'deck', content: copy(deck) })
+        });
+      } else {
+        const legacyCourseId = deck.authoring && deck.authoring.legacySource && deck.authoring.legacySource.courseId;
+        result = await win.ChunkAPI.request('/api/course-library/import', {
+          method: 'POST', body: JSON.stringify({ requestId, kind: 'deck', content: copy(deck),
+            ...(typeof legacyCourseId === 'string' && legacyCourseId ? { sourceMapping: { kind: 'course', sourceId: legacyCourseId } } : {}) })
+        });
+      }
+      this.scopeGuard.assert(scope);
+      deck.id = result.courseId;
+      deck.authoring = { ...(deck.authoring || {}), courseLibrary: { courseId: result.courseId, releaseId: result.releaseId } };
+      return { storageKind: 'personal-course', contentId: result.courseId,
+        catalogCourseId: 'personal-course:' + result.courseId, lessonId: 'lesson:personal-course:' + result.courseId,
+        releaseId: result.releaseId };
+    }
+    const mem = await this.readLearningMem(scope);
     const protocol3 = !!(cloudConfig && cloudConfig.writeProtocol === 3);
     if (protocol3 && win.ServerStore && typeof win.ServerStore.pending === 'function') {
       const pending = await win.ServerStore.pending();
@@ -169,14 +216,36 @@ export class ExistingCourseGateway {
 
   async saveCompiledCourse(course, assets, scope) {
     const win = this.#ready(scope); await win.CL.preload(); this.scopeGuard.assert(scope);
-    const result = await win.ChunkCourse.importCourse(copy(course), copy(assets || {}), false);
+    const sourceCourseId = course.courseId;
+    const content = copy(course), supplied = [];
+    for (const descriptor of content.assets || []) {
+      const dataUri = assets && assets[descriptor.path] || descriptor._dataUri;
+      const match = typeof dataUri === 'string' && /^data:([\w.+-]+\/[\w.+-]+);base64,([A-Za-z0-9+/]+={0,2})$/.exec(dataUri);
+      if (!match || match[1] !== descriptor.mimeType) throw Object.assign(new Error(`课程素材“${descriptor.fileName || descriptor.id}”缺失或格式无效；草稿已保留。`), { code: 'COURSE_ASSET_MISSING' });
+      const binary = win.atob(match[2]), bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+      const digest = await win.crypto.subtle.digest('SHA-256', bytes);
+      supplied.push({ assetId: descriptor.id, mimeType: descriptor.mimeType, base64: match[2], bytes: bytes.length,
+        sha256: Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('') });
+      delete descriptor._dataUri;
+    }
+    const payload = { kind: 'course', content, assets: supplied };
+    const payloadHash = await win.crypto.subtle.digest('SHA-256', new win.TextEncoder().encode(JSON.stringify(payload)));
+    const requestId = 'image-import-' + Array.from(new Uint8Array(payloadHash), byte => byte.toString(16).padStart(2, '0')).join('');
+    const result = await win.ChunkAPI.request('/api/course-library/import', { method: 'POST', body: JSON.stringify({ requestId, ...payload }) });
     this.scopeGuard.assert(scope);
-    if (!result || !result.course || result.course.courseId !== course.courseId) throw new Error('课程保存结果无法确认。请返回重试。');
-    return { storageKind: 'story-package', contentId: course.courseId, catalogCourseId: `package:${course.courseId}`, lessonId: `lesson:story-package:${course.courseId}` };
+    if (!result || !result.courseId || !result.releaseId) throw new Error('课程保存结果无法确认。请返回重试。');
+    return { storageKind: 'personal-course', contentId: result.courseId, sourceCourseId,
+      catalogCourseId: `personal-course:${result.courseId}`, lessonId: `lesson:personal-course:${result.courseId}`, releaseId: result.releaseId };
   }
 
   async joinCourse(catalogCourseId, scope) {
     const win = this.#ready(scope);
+    if (catalogCourseId.startsWith('personal-course:')) {
+      if (!win.CourseEnrollment || typeof win.CourseEnrollment.join !== 'function') throw new Error('课程加入状态服务尚未就绪。');
+      await win.CourseEnrollment.join(catalogCourseId);
+      this.scopeGuard.assert(scope);
+      return { courseId: catalogCourseId.slice('personal-course:'.length) };
+    }
     const storyPackages = win.ChunkCourse.readCourses ? win.ChunkCourse.readCourses() : win.CL.readCourses();
     const catalog = win.CourseCatalog.buildCatalog({ manifest: win.ContentRepo.getManifest(), userDecks: win.CL.allDecks(win.CL.loadMem()), storyPackages, logicalCourses: win.LogicalCourseStore.read() });
     const course = win.CourseCatalog.getCourse(catalog, catalogCourseId);

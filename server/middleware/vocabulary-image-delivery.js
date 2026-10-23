@@ -5,13 +5,23 @@ function createVocabularyImageDelivery({root,catalog,publishedRoot,baseUrl=''}){
  catalog=catalog||{format:'vocabulary-illustration-catalog',schemaVersion:1,assets:[],aliases:{},bindings:[]};model.validateCatalog(catalog);
  if(baseUrl){const url=new URL(baseUrl);if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash)throw Error('Vocabulary image base must be a stable HTTPS URL without credentials/query/fragment');baseUrl=url.href.replace(/\/$/,'');}
  const baseAssets=new Map(catalog.assets.map(a=>[a.sha256,a]));
+ function approvedCatalogOverride(alias,receiptAssetId,catalogAssetId,assets){
+  const bindings=catalog.bindings.filter(binding=>binding.path===alias);
+  if(!bindings.length||!catalog.reuseResolution||catalog.reuseResolution.format!=='vocabulary-reuse-resolution'||catalog.reuseResolution.schemaVersion!==1)return false;
+  const approvedGroups=new Map((catalog.reuseResolution.appliedGroups||[]).map(group=>[group.groupId,group]));
+  if(!assets.has(catalogAssetId.slice(7)))return false;
+  return bindings.every(binding=>{
+   const decision=binding.reuseDecision;
+   return binding.sourceAssetId===receiptAssetId&&binding.assetId===catalogAssetId&&decision?.sceneReviewed===true&&decision.catalogSha256===catalog.reuseResolution.sourceCatalogSha256&&approvedGroups.has(decision.groupId);
+  });
+ }
  function merged(){
   const assets=new Map(baseAssets),aliases={...catalog.aliases};if(!publishedRoot||!fs.existsSync(publishedRoot))return {assets,aliases};
   const folders=fs.readdirSync(publishedRoot,{withFileTypes:true}).filter(entry=>entry.isDirectory()&&/^[a-f0-9]{64}$/.test(entry.name)).sort((a,b)=>a.name.localeCompare(b.name));
   function addReceipt(receipt){if(!fs.existsSync(receipt))return;const publication=JSON.parse(fs.readFileSync(receipt,'utf8'));
    for(const asset of publication.assets||[]){if(asset.kind!=='illustration'||!asset.sha256||!asset.url)continue;
-    const prior=aliases[asset.url];if(prior&&prior!=='sha256:'+asset.sha256)throw Error('Published image alias conflicts with an existing catalog: '+asset.url);
-    aliases[asset.url]='sha256:'+asset.sha256;if(!assets.has(asset.sha256))assets.set(asset.sha256,{assetId:'sha256:'+asset.sha256,path:asset.url,sha256:asset.sha256,bytes:asset.bytes,width:asset.width,height:asset.height,objectKey:'vocabulary/'+asset.sha256+'.webp',local:true});
+    const receiptAssetId='sha256:'+asset.sha256,prior=aliases[asset.url];if(prior&&prior!==receiptAssetId){if(!approvedCatalogOverride(asset.url,receiptAssetId,prior,assets))throw Error('Published image alias conflicts with an existing catalog: '+asset.url);continue;}
+    aliases[asset.url]=receiptAssetId;if(!assets.has(asset.sha256))assets.set(asset.sha256,{assetId:receiptAssetId,path:asset.url,sha256:asset.sha256,bytes:asset.bytes,width:asset.width,height:asset.height,objectKey:'vocabulary/'+asset.sha256+'.webp',local:true});
    }
   }
   for(const folder of folders){const courseDir=path.join(publishedRoot,folder.name);addReceipt(path.join(courseDir,'publication.json'));

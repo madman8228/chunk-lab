@@ -18,19 +18,33 @@ export class PlatformCourseSource {
   async open(reference, options = {}) {
     this.grants.clear(); this.contentVersion = null; this.reference = reference; this.purpose = options.purpose || 'practice';
     const epoch = ++this.epoch, sentAt = this.now();
+    if (this.purpose === 'preview') {
+      this.previewMode = true;
+      const result = await this.client.previewGrant({ ...reference, cursor: options.cursor || 0, requestId: this.newRequestId() });
+      if (epoch !== this.epoch) throw failure('SESSION_CHANGED');
+      this.remember(result, sentAt, options.cursor || 0); this.contentVersion = result.contentVersion;
+      const grant = this.grants.get(options.cursor || 0);
+      const batch = await this.fetchResource('/api/course-fragments/' + encodeURIComponent(grant.fragment.fragmentId), this.headers(grant), 'json');
+      if (epoch !== this.epoch || !this.checkAdvance(options.cursor || 0)) throw failure('AUTHORIZATION_EXPIRED');
+      batch.items = batch.items.slice((options.cursor || 0) - batch.cursor); batch.cursor = options.cursor || 0;
+      return { batch, contentVersion: result.contentVersion, recordIdentity: batch.recordIdentity };
+    }
+    this.previewMode = false;
     const result = await this.controller.start({ courseId: reference.courseId, unitId: reference.unitId, cursor: options.cursor || 0, purpose: this.purpose });
     if (epoch !== this.epoch) throw failure('SESSION_CHANGED');
     this.remember(result, sentAt, result.unit?.cursor); this.contentVersion = result.contentVersion;
     return { batch: result.unit, contentVersion: result.contentVersion, recordIdentity: result.unit.recordIdentity };
   }
-  checkAdvance(cursor) { return this.controller.canAdvance() && this.now() < (this.grants.get(cursor)?.deadline || 0); }
-  canPrefetch() { return this.controller.canAdvance() && Math.max(0, ...[...this.grants.values()].map(grant => grant.deadline - this.now())) >= 5000; }
+  checkAdvance(cursor) { return (this.previewMode || this.controller.canAdvance()) && this.now() < (this.grants.get(cursor)?.deadline || 0); }
+  canPrefetch() { return !this.previewMode && this.controller.canAdvance() && Math.max(0, ...[...this.grants.values()].map(grant => grant.deadline - this.now())) >= 5000; }
   async grantFor(cursor) {
-    if (!this.controller.canAdvance()) throw failure('AUTHORIZATION_EXPIRED');
+    if (!this.previewMode && !this.controller.canAdvance()) throw failure('AUTHORIZATION_EXPIRED');
     let grant = this.grants.get(cursor);
     if (grant && this.now() < grant.deadline) return grant;
     const epoch = this.epoch, sentAt = this.now();
-    const result = await this.client.contentGrant({ ...this.reference, cursor, purpose: this.purpose, sessionId: this.controller.current?.sessionId, requestId: this.newRequestId() });
+    const result = this.previewMode
+      ? await this.client.previewGrant({ ...this.reference, cursor, requestId: this.newRequestId() })
+      : await this.client.contentGrant({ ...this.reference, cursor, purpose: this.purpose, sessionId: this.controller.current?.sessionId, requestId: this.newRequestId() });
     if (epoch !== this.epoch) throw failure('SESSION_CHANGED');
     this.remember(result, sentAt, cursor); grant = this.grants.get(cursor);
     if (!grant || !this.checkAdvance(cursor)) throw failure('AUTHORIZATION_EXPIRED');
@@ -57,9 +71,9 @@ export class PlatformCourseSource {
     guard();
     return result;
   }
-  async pause() { this.grants.clear(); await this.controller.pause(); }
+  async pause() { this.grants.clear(); if (!this.previewMode) await this.controller.pause(); }
   dispose() {
     const epoch = ++this.epoch; this.grants.clear();
-    this.controller.pause().catch(() => {}).finally(() => { if (epoch === this.epoch) this.controller.reset(); });
+    if (!this.previewMode) this.controller.pause().catch(() => {}).finally(() => { if (epoch === this.epoch) this.controller.reset(); });
   }
 }

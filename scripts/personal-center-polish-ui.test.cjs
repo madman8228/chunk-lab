@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {chromium}=require('playwright-core');
 const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'main.html'),'utf8');
 const styles=Array.from(html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g),match=>match[1]).join('\n');
-const markup=html.slice(html.indexOf('<div class="mask" id="settingsMask"'),html.indexOf('<!-- 反馈问题弹窗'));
+const markup=html.slice(html.indexOf('<div class="mask pc-drawer" id="settingsMask"'),html.indexOf('<!-- 反馈问题弹窗'));
 const hint=html.slice(html.indexOf('(function(){\n  var mask = $(\'settingsMask\');'),html.indexOf('/* ===== 设置面板 ===== */'));
 const membership=html.slice(html.indexOf('function loadMembershipPanel(){'),html.indexOf('var redeemMembershipButton='));
 const backup=html.match(/\$\('backupHead'\)\.onclick = function\(\)\{[\s\S]*?\n\};/)[0];
@@ -49,7 +49,7 @@ assert.ok(hint.startsWith('(function(){')&&markup.includes('settingsImageCacheSe
    });assert.ok(alignment<1,'collapsed backup header is centered between its own borders');
    await page.locator('#backupHead').click();assert.equal(await page.locator('#backupHead').getAttribute('aria-expanded'),'true');
    assert.equal(await page.locator('#btnExportAll').isVisible(),true);await page.locator('#backupHead').click();
-   const trigger=page.getByRole('button',{name:'图片缓存',exact:true}),tooltip=page.locator('#setHintPop');
+   const trigger=page.locator('#settingsImageCacheSection').getByRole('button',{name:'图片缓存',exact:true}),tooltip=page.locator('#setHintPop');
    if(touch)await trigger.tap();else await trigger.hover();
    await page.waitForFunction(()=>document.getElementById('setHintPop').classList.contains('open'));
    assert.equal(await tooltip.innerText(),'仅清除此账号在本机的图片缓存，不影响课程和记录。');

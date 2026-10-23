@@ -44,16 +44,15 @@ function readInstalled(appRoot,relative){
  return fs.readFileSync(target);
 }
 function validatePackage(candidate,{appRoot,readPrivate,allowMissing=false,checkAlias}={}){
- const assets=[];let totalBytes=0;
+ const assets=[],buffers=new Map();let totalBytes=0;
+ const readAsset=url=>{if(buffers.has(url))return buffers.get(url);let bytes=null;try{bytes=readPrivate?.(url)||null;}catch(error){if(error.code!=='ENOENT')throw error;}if(!bytes){try{bytes=readInstalled(appRoot,url);}catch(error){if(error.code!=='ENOENT')throw error;}}buffers.set(url,bytes);return bytes;};
  for(const ref of assetReferences(candidate)){
-  let bytes=null;try{bytes=readPrivate?.(ref.url)||null;}catch(error){if(error.code!=='ENOENT')throw error;}
-  if(!bytes){try{bytes=readInstalled(appRoot,ref.url);}catch(error){if(error.code!=='ENOENT')throw error;}}
+  const bytes=readAsset(ref.url);
   if(!bytes){if(!allowMissing)throw fail('缺少课程素材：'+ref.url,409);assets.push({url:ref.url,kind:ref.kind,missing:true});continue;}
   const record=inspectBytes(ref,bytes);assets.push(record);totalBytes+=record.bytes;
  }
  if(totalBytes>250000000)throw fail('课程交付素材不能超过 250000000 bytes');
  const itemById=new Map((candidate.items||[]).map(item=>[item.itemId,item]));
- const readAsset=url=>readPrivate?.(url)||(()=>{try{return readInstalled(appRoot,url);}catch(error){if(error.code==='ENOENT')return null;throw error;}})();
  const missing=new Set(assets.filter(a=>a.missing).map(a=>a.url));
  for(const item of itemById.values()){
   const audioUrls=[item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean).map(a=>a.audio?.url);

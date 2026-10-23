@@ -1,0 +1,37 @@
+{
+  "status": "content-review-draft",
+  "recording": false,
+  "lessons": [
+    {
+      "id": "U01-L01",
+      "title": "听懂基本操作",
+      "goal": "听到 Listen、Look、Start，知道现在该做什么。",
+      "steps": [
+        {"kind":"intro","prompt":"Listen：听一听","english":"Listen.","explanation":"看到耳朵提示，听示范。这里的 Listen 是请你听一听。"},
+        {"kind":"intro","prompt":"Look：看一看","english":"Look.","explanation":"这里的 Look 是请你看一看。"},
+        {"kind":"intro","prompt":"Start：开始","english":"Start.","explanation":"准备好后开始。先听声音，不必先学会拼写。"},
+        {"kind":"listen","prompt":"只听声音，选择要做的动作","english":"Look.","options":["听一听","看一看","开始"],"answer":1},
+        {"kind":"listen","prompt":"只听声音，选择要做的动作","english":"Start.","options":["开始","听一听","看一看"],"answer":0},
+        {"kind":"listen","prompt":"只听声音，选择要做的动作","english":"Listen.","options":["看一看","开始","听一听"],"answer":2},
+        {"kind":"listen","prompt":"新画面：工作人员请你留意广播。听声音再选动作。","english":"Listen.","options":["听广播","看画面","开始任务"],"answer":0},
+        {"kind":"listen","prompt":"新画面：显示屏出现路线图。听声音再选动作。","english":"Look.","options":["开始任务","查看路线图","听广播"],"answer":1},
+        {"kind":"listen","prompt":"新画面：你已经准备好做练习。听声音再选动作。","english":"Start.","options":["听广播","查看说明","开始练习"],"answer":2}
+      ]
+    },
+    {
+      "id":"U01-L03",
+      "title":"没听清时请求重复",
+      "goal":"没听清时使用 Again, please.，请对方再说一次。",
+      "steps":[
+        {"kind":"intro","prompt":"刚才没听清，可以这样说","english":"Again, please.","explanation":"意思是“请再说一遍”。把它当作一个完整表达，please 让请求更礼貌。"},
+        {"kind":"intro","prompt":"听一段简短对话","english":"Hello, I'm Ben. Again, please. Ben. Hi, Ben.","explanation":"甲：你好，我叫 Ben。乙：请再说一遍。甲：Ben。乙：你好，Ben。这里只需要掌握请求重复，不考自我介绍规则。"},
+        {"kind":"listen","prompt":"听声音：说话人想做什么？","english":"Again, please.","options":["向对方告别","请对方重复","介绍自己的名字"],"answer":1},
+        {"kind":"choice","prompt":"对方报了姓名，你没听清。此时你的沟通目标是什么？","options":["请对方重复姓名","结束对话","假装已经听懂"],"answer":0},
+        {"kind":"intro","prompt":"听示范，自己跟说一次","english":"Again, please.","explanation":"可以反复听，再自己说。不录音、不识别、不评分；点击继续只表示做完跟说练习。"},
+        {"kind":"output","prompt":"隐藏英文：你没听清对方的姓名。输入一句话，请对方重复。","answers":["Again, please","Please say that again","Could you say that again","Can you say that again"],"explanation":"参考表达：Again, please.。其他自然的请求重复表达也可能成立；未匹配时先对照，不直接判英语错误。"},
+        {"kind":"output","prompt":"新情境：柜台工作人员说了一个价格，你没听清。请对方再说一次。","answers":["Again, please","Please say that again","Could you say that again","Can you say that again"],"explanation":"请求重复可以用在姓名、价格等不同情境。参考：Again, please.。"},
+        {"kind":"listen","prompt":"你请求重复后，对方再次说出姓名。听音选择。","english":"May.","options":["Ben","May","Lin"],"answer":1}
+      ]
+    }
+  ]
+}

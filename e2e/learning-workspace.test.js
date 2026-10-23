@@ -50,13 +50,24 @@ async function main(){try{
   const context=await browser.newContext({serviceWorkers:'block',viewport:{width:1440,height:1000}}),page=await context.newPage();
   const registered=await fetch(base+'/api/auth/register',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:'workspace-owner-a',password:'test-workspace-pass'})});
   assert.equal(registered.status,200);const session=await registered.json();
+  const publicCourseResponse=await fetch(base+'/api/course-library/import',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+session.token},
+    body:JSON.stringify({requestId:'workspace_public_course_001',kind:'course',content:{courseId:'workspace-public-source',title:'独立公开课程',items:[{id:'public-line-1',sentence:'A public course stays independent.'}]}})});
+  const independentPublicCourse=await publicCourseResponse.json();assert.equal(publicCourseResponse.status,201,JSON.stringify(independentPublicCourse));
+  const Database=require(require.resolve('better-sqlite3',{paths:[path.join(root,'server')]})),courseDb=new Database(path.join(temp,'data','chunklab.db'));
+  try{courseDb.prepare("UPDATE course_contents SET visibility='public' WHERE course_id=?").run(independentPublicCourse.courseId);}finally{courseDb.close();}
+  const independentlyListed=await (await fetch(base+'/api/course-library',{headers:{authorization:'Bearer '+session.token}})).json();
+  assert.equal(independentlyListed.courses.find(course=>course.courseId===independentPublicCourse.courseId)?.visibility,'public',JSON.stringify(independentlyListed));
   await context.addInitScript(token=>localStorage.setItem('chunklab_token',token),session.token);
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto(base+'/main.html?view=discover');await ready(page);
-  await page.getByRole('button',{name:/^单词本（\d+）$/}).click();
+  const publicCourseCard=page.locator('#discoverBody .workspace-card[data-resource="course:'+independentPublicCourse.courseId+'"]');
+  await publicCourseCard.waitFor({state:'attached'});
+  assert.equal(await publicCourseCard.count(),1,
+    'public independent courses are available in discovery');
+  await page.getByRole('button',{name:'单词本',exact:true}).click();
   await page.getByText('没有找到相关内容，试试更短的关键词。',{exact:true}).waitFor();
   assert.equal(await page.locator('#discoverBody .workspace-card').count(),0,'the isolated catalog has no vocabulary books');
-  await page.locator('#discoverBody').getByRole('button',{name:/^课程（\d+）$/}).click();
+  await page.getByRole('group',{name:'内容分类'}).getByRole('button',{name:'全部',exact:true}).click();
   const cards=page.locator('#discoverBody .workspace-card');assert.ok(await cards.count()>0);
   await page.getByRole('link',{name:'首页',exact:true}).click();
   assert.equal(await page.locator('.workspace-shortcuts').count(),0,'homepage no longer exposes abstract tool shortcuts');
@@ -72,9 +83,13 @@ async function main(){try{
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'discovery overflow at '+width);
     if(width===946){
       assert.equal(await page.locator('.discover-more').count(),0,'empty advanced filters are not displayed');
-      const layout=await cards.first().evaluate(node=>({cover:getComputedStyle(node.querySelector('img')).aspectRatio,
-        title:getComputedStyle(node.querySelector('h3')).whiteSpace}));
-      assert.deepEqual(layout,{cover:'4 / 3',title:'nowrap'},'discovery follows the shared cover-card layout');
+      const coverCard=page.locator('#discoverBody .workspace-card.content-card[data-resource="course:builtin:oral"]');
+      await page.waitForFunction(()=>{const node=document.querySelector('#discoverBody .workspace-card.content-card[data-resource="course:builtin:oral"]');if(!node)return false;const image=node.querySelector('img.content-card-cover'),title=node.querySelector('.content-card-copy h3');const box=image&&image.getBoundingClientRect();return !!(box&&box.width>0&&box.height>0&&title&&getComputedStyle(title).whiteSpace==='nowrap');});
+      const layout=await coverCard.evaluate(node=>{
+        const cover=node.querySelector('img').getBoundingClientRect();
+        return {coverRatio:Math.round(cover.width/cover.height*100)/100,title:getComputedStyle(node.querySelector('.content-card-copy h3')).whiteSpace};
+      });
+      assert.deepEqual(layout,{coverRatio:1.33,title:'nowrap'},'discovery follows the shared cover-card layout');
     }
     await page.screenshot({path:path.join(discoveryOutput,'discover-'+width+'.png'),fullPage:true});
   }
@@ -92,27 +107,29 @@ async function main(){try{
   await adminPage.getByRole('button',{name:'保存目录草稿',exact:true}).click();await adminPage.getByText(/目录草稿已保存/).waitFor();
   assert.equal((await (await fetch(base+'/api/library')).json()).resources.some(row=>row.resourceId==='collection:workspace-test-one'),false);
   await adminPage.getByRole('button',{name:'发布目录分类',exact:true}).click();await adminPage.getByText(/目录分类已发布/).waitFor();
-  for(let i=2;i<=4;i++){const id='collection:workspace-test-'+i,metadata={resourceId:id,kind:'course',title:'隔离目录测试 '+i,sourceRefs:[publicRef],facets:{levels:[i===4?'A2':'A1'],schoolStages:['小学']}};
+  for(let i=2;i<=4;i++){const id='collection:workspace-test-'+i,metadata={resourceId:id,kind:'textbook',title:'隔离目录测试 '+i,sourceRefs:[publicRef],facets:{seriesId:'workspace-fixture-series',publisherId:'workspace-fixture',edition:'2026',schoolStages:['小学'],grades:['六年级']}};
     assert.equal((await fetch(base+'/api/admin/library/resources/'+id+'/draft',{method:'PUT',headers:adminHeaders,body:JSON.stringify({baseRevision:0,resource:metadata})})).status,200);
     assert.equal((await fetch(base+'/api/admin/library/resources/'+id+'/publish',{method:'POST',headers:adminHeaders,body:'{"revision":1}'})).status,200);
   }
   await page.evaluate(()=>workspace().refresh());
-  await page.locator('#discoverBody input[name=levels][value=A1]').check();
-  await page.waitForFunction(()=>new URLSearchParams(location.search).getAll('levels').includes('A1'));
-  assert.equal(await page.locator('#discoverBody .workspace-card').count(),3);
-  await page.setViewportSize({width:390,height:900});await page.reload();await ready(page);
-  await page.getByRole('button',{name:'筛选内容',exact:true}).click();assert.equal(await page.getByRole('dialog',{name:'筛选内容'}).isVisible(),true);
-  await page.keyboard.press('Escape');assert.equal(await page.getByRole('button',{name:'筛选内容',exact:true}).evaluate(node=>node===document.activeElement),true);
-  await page.getByRole('button',{name:'筛选内容',exact:true}).click();await page.getByRole('dialog').locator('input[name=levels][value=A2]').click();
-  await page.waitForFunction(()=>new URLSearchParams(location.search).getAll('levels').includes('A2'));
-  if(await page.getByRole('dialog').isVisible())await page.getByRole('dialog').getByRole('button',{name:'关闭筛选',exact:true}).click();
-  assert.equal(await page.locator('#discoverBody input[name=levels][value=A2]').isChecked(),true,'the rerendered immediate filter keeps A2 selected');
-  assert.deepEqual(new URL(page.url()).searchParams.getAll('levels'),['A1','A2']);assert.equal(await page.locator('#discoverBody .workspace-card').count(),4);
-  await page.getByRole('button',{name:'水平：A1 · 移除',exact:true}).click();assert.deepEqual(new URL(page.url()).searchParams.getAll('levels'),['A2']);assert.equal(await page.locator('#discoverBody .workspace-card').count(),1);
-  await page.goBack();assert.equal(await page.locator('#discoverBody .workspace-card').count(),4);await page.reload();await ready(page);assert.deepEqual(new URL(page.url()).searchParams.getAll('levels'),['A1','A2']);
+  await page.locator('#discoverBody').getByRole('button',{name:'中小学同步',exact:true}).click();
+  await page.getByRole('group',{name:'学段'}).getByRole('button',{name:'小学',exact:true}).click();
+  await page.getByRole('group',{name:'年级'}).getByRole('button',{name:'六年级',exact:true}).click();
+  await page.waitForFunction(()=>new URLSearchParams(location.search).getAll('schoolStages').includes('小学')&&new URLSearchParams(location.search).getAll('grades').includes('六年级'));
+  await page.locator('#discoverBody input[aria-label="搜索内容"]').fill('隔离目录测试');
+  await page.waitForFunction(()=>new URLSearchParams(location.search).get('q')==='隔离目录测试');
+  assert.equal(await page.locator('#discoverBody .workspace-card').count(),3,'stage, grade and search filters select the three synthetic textbook resources');
+  await page.goBack();await page.waitForFunction(()=>!new URLSearchParams(location.search).getAll('grades').includes('六年级'));
+  assert.deepEqual(new URL(page.url()).searchParams.getAll('schoolStages'),['小学']);
+  await page.goForward();await page.waitForFunction(()=>new URLSearchParams(location.search).getAll('grades').includes('六年级'));
+  await page.reload();await ready(page);
+  assert.deepEqual(new URL(page.url()).searchParams.getAll('schoolStages'),['小学']);
+  assert.deepEqual(new URL(page.url()).searchParams.getAll('grades'),['六年级']);
+  assert.equal(await page.locator('#discoverBody .workspace-card').count(),3,'reloading preserves the selected school stage and grade');
   await page.setViewportSize({width:1440,height:1000});await page.reload();await ready(page);
-  for(const level of ['A1','A2'])await page.getByRole('button',{name:'水平：'+level+' · 移除',exact:true}).click();
-  assert.deepEqual(new URL(page.url()).searchParams.getAll('levels'),[]);
+  await page.locator('#discoverBody input[aria-label="搜索内容"]').fill('');
+  await page.waitForFunction(()=>!new URLSearchParams(location.search).get('q'));
+  await page.getByRole('group',{name:'内容分类'}).getByRole('button',{name:'全部',exact:true}).click();
   for(let i=1;i<=4;i++){
     const id=i===1?'collection:workspace-test-one':'collection:workspace-test-'+i;
     const card=page.locator('#discoverBody .workspace-card[data-resource="'+id+'"]');
@@ -120,7 +137,7 @@ async function main(){try{
     await cardAction(card,'收藏');await savedCard(page,card);
   }
   assert.equal(await page.evaluate(async()=>Object.values((await ChunkAPI.getData()).mem.learningWorkspace).filter(row=>row.itemType==='resource'&&row.selected).length),4);
-  const target=page.locator('#discoverBody .workspace-card').filter({has:page.locator('h3').filter({hasText:resource.title})}).first();
+  const target=page.locator('#discoverBody .workspace-card[data-resource="'+resource.resourceId+'"]');
   await cardAction(target,'收藏');await savedCard(page,target);
   const saved=await page.evaluate(async id=>{const data=await ChunkAPI.getData();return data.mem.learningWorkspace['resource:'+id];},resource.resourceId);assert.equal(saved.selected,true);
   const replay=await page.evaluate(async id=>{const operation={protocol:3,requestId:'workspace-idempotence-test-001',type:'workspace.select',payload:{itemType:'resource',targetId:id,selected:true}};
@@ -155,7 +172,7 @@ async function main(){try{
   await second.addInitScript(token=>{localStorage.setItem('chunklab_token',token);},token);
   const other=await second.newPage();await other.goto(base+'/main.html?view=my-learning');await ready(other);
   await other.locator('#myLearningBody h3').filter({hasText:resource.title}).waitFor({timeout:15000});
-  assert.equal(await other.locator('.library-categories button').count(),3);
+  assert.equal(await other.locator('.library-categories button').count(),4);
   assert.equal(await other.locator('.library-categories button[aria-pressed=true]').innerText().then(text=>text.startsWith('全部')),true);
   assert.equal(await other.locator('#myLearningBody .library-progress-detail').count(),0,'management does not duplicate homepage progress cards');
   await other.getByRole('searchbox',{name:'搜索我的内容'}).fill('不存在的隔离课程');
@@ -228,20 +245,20 @@ async function main(){try{
   await page.route('**/api/library',route=>route.abort());
   await page.evaluate(()=>workspace().refresh());await page.getByText(/内容目录读取失败/).waitFor();
   assert.ok(await cards.count()>0,'last readable directory remains visible');await page.unroute('**/api/library');
-  await page.route('**/api/library',route=>route.abort());await page.route('**/api/personal-wordbooks',route=>route.abort());
+  await page.route('**/api/library',route=>route.abort());await page.route('**/api/personal-wordbooks',route=>route.abort());await page.route('**/api/course-library',route=>route.abort());
   await page.evaluate(()=>workspace().refresh());await page.getByText('部分内容未能读取，已保留现有内容。',{exact:true}).waitFor();
-  assert.ok(await cards.count()>0,'combined read failure keeps the last readable directory');await page.unroute('**/api/library');await page.unroute('**/api/personal-wordbooks');
+  assert.ok(await cards.count()>0,'combined read failure keeps the last readable directory');await page.unroute('**/api/library');await page.unroute('**/api/personal-wordbooks');await page.unroute('**/api/course-library');
   await page.getByRole('button',{name:'重试',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('#discoverBody .workspace-status')?.textContent.includes('读取失败'));
-  await page.route('**/api/library',route=>route.abort());await page.route('**/api/personal-wordbooks',route=>route.abort());
+  await page.route('**/api/library',route=>route.abort());await page.route('**/api/personal-wordbooks',route=>route.abort());await page.route('**/api/course-library',route=>route.abort());
   await page.getByRole('link',{name:'我的内容',exact:true}).click();
   await page.evaluate(()=>workspace().refresh());
   const libraryNotice=page.locator('#noticeBannerRail .notice-banner-message [role="status"]');
-  await libraryNotice.getByText('内容暂时无法加载。',{exact:true}).waitFor();
-  assert.equal(await libraryNotice.innerText(),'内容暂时无法加载。','my content hides internal resource names and cache details');
+  await libraryNotice.getByText('正在显示已缓存内容，连接恢复后自动更新。',{exact:true}).waitFor();
+  assert.equal(await libraryNotice.innerText(),'正在显示已缓存内容，连接恢复后自动更新。','my content clearly identifies a retained cache while remote directories are unavailable');
   assert.equal(await page.getByRole('searchbox',{name:'搜索我的内容'}).count(),0,'search is hidden while the content directory is unavailable');
   assert.equal(await page.getByRole('link',{name:'创建/导入',exact:true}).count(),0,'create/import is hidden while the content directory is unavailable');
   assert.ok(await page.locator('#myLearningBody .workspace-card').count()>0,'my content keeps the last readable cards');
-  await page.unroute('**/api/library');await page.unroute('**/api/personal-wordbooks');
+  await page.unroute('**/api/library');await page.unroute('**/api/personal-wordbooks');await page.unroute('**/api/course-library');
   await page.getByRole('button',{name:'重试',exact:true}).click();
   await libraryNotice.waitFor({state:'detached'});
   await page.getByRole('searchbox',{name:'搜索我的内容'}).waitFor();
@@ -251,7 +268,12 @@ async function main(){try{
   const bResponse=await fetch(base+'/api/auth/register',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:'workspace-owner-b',password:'test-workspace-pass'})});assert.equal(bResponse.status,200);
   const bSession=await bResponse.json(),bContext=await browser.newContext({serviceWorkers:'block'});await bContext.addInitScript(token=>localStorage.setItem('chunklab_token',token),bSession.token);
   const bPage=await bContext.newPage();await bPage.goto(base+'/main.html?view=my-learning');await ready(bPage);assert.equal(await bPage.locator('#myLearningBody .workspace-card').count(),0);
-  const emptyDiscover=bPage.locator('#myLearningBody .library-empty-discover');await emptyDiscover.waitFor();
+  assert.equal(await bPage.locator('#myLearningBody .workspace-card[data-resource="course:'+independentPublicCourse.courseId+'"]').count(),0,
+    'a public course is not mislabeled as personally owned or enrolled');
+  await bPage.getByLabel('学习导航').getByRole('link',{name:'发现',exact:true}).click();await ready(bPage);
+  assert.equal(await bPage.locator('#discoverBody .workspace-card[data-resource="course:'+independentPublicCourse.courseId+'"]').count(),1,
+    'the same public course remains discoverable to a separate account');
+  const emptyDiscover=bPage.locator('#myLearningBody .library-empty-discover');await emptyDiscover.waitFor({state:'attached'});
   assert.equal(await emptyDiscover.evaluate(node=>node.parentElement.textContent),'你还没有个人内容，去发现选一份开始','empty-state copy has no spaces around the discovery link');
   assert.equal(await emptyDiscover.evaluate(node=>getComputedStyle(node).textDecorationLine),'none','discovery link has no underline');
   assert.equal(await bPage.evaluate(async()=>Object.values((await ChunkAPI.getData()).mem.learningWorkspace||{}).filter(row=>row.selected).length),0,'account B must not inherit A favorites or pinned tools');

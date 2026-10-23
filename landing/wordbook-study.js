@@ -8,14 +8,17 @@
   },onError:error=>showStatus(error.message)});
   const views={'word-dictation':VocabularyWordDictationView,'word-choice':VocabularyWordChoiceView,'chunk-order':VocabularyChunkOrderView,'read-aloud':VocabularyReadAloudView};
   const requestedPractice=params.get('practice'),dictation=requestedPractice==='word-dictation',choice=requestedPractice==='word-choice',readAloud=requestedPractice==='read-aloud',separate=Object.hasOwn(views,requestedPractice),learningKey=separate?VocabularyCourseContract.modes[requestedPractice].learningKey:null;
-  const recognition=bookId.startsWith('textbook-wordbook:')&&!requestedPractice;let listeningAutoplay=true;
+  const recognition=bookId.startsWith('textbook-wordbook:')&&!requestedPractice;let listeningAutoplay=true,listeningRate=1;
   const scope={...(unitId?{unitId,structureRevision}:{}),...(separate?{practiceType:requestedPractice}:{})};let practiceType=separate?requestedPractice:'sentence-cloze';
   const pageUrl=offset=>'/api/wordbooks/'+encodeURIComponent(bookId)+(unitId?'/units/'+encodeURIComponent(unitId):'')+'/items?offset='+offset+'&limit=20';
+  let unitContent=null;
+  const contentPage=async offset=>unitContent?unitContent.page(offset):ChunkAPI.request(pageUrl(offset));
   const practiceFields=()=>state?.features?.practiceTypes?{practiceType}:{};
   let page=null,state=null,item=null,position=0,sessionId=crypto.randomUUID(),owner='',generation=0,busy=false,form=null,complete=false,courseAudio=null,retryTimer=null,loadFailed=false,noticeMessage='',previewOnly=false,temporaryPractice=false;
   window.studyUsageContext=()=>!recognition&&item&&form&&!complete&&!loadFailed?
     {kind:'wordbook',resourceId:'wordbook:'+bookId}:null;
   const node=(tag,text)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;return el;};
+  const cacheStatus=node('p');cacheStatus.id='unitOfflineStatus';cacheStatus.className='book-meta';cacheStatus.setAttribute('role','status');root.before(cacheStatus);
   const button=(text,action)=>{const el=node('button',text);el.type='button';el.onclick=action;return el;};
   const setTitle=text=>CourseLearningHeader.setTitle(document.getElementById('bookHeader'),text);
   function showStatus(message,quiet=false,onAction){
@@ -44,7 +47,7 @@
   function writePayload(action){return {bookId,bookRevision:page.revision,itemId:state.resume?.itemId||item?.itemId||page.items[0].itemId,sessionId,action,expectedResumeRev:state.resumeRev,...scope,...practiceFields()};}
   async function readState(){if(state?.canPersist){const ticket=generation,next=await VocabularyStudyStore.state(bookId,Math.floor(position/20)*20,scope);if(!current(ticket))return;
     if(next.resumeRev>=state.resumeRev){state=next;if(unitId&&next.structureRevision)scope.structureRevision=next.structureRevision;
-      if(next.bookRevision!==page.revision){const offset=Math.floor(Math.max(0,next.resumePosition)/20)*20,updated=await ChunkAPI.request(pageUrl(offset));if(!current(ticket))return;page={...updated,offset};setTitle(page.title);}}
+      if(next.bookRevision!==page.revision){if(unitContent)throw Error('课程已更新，请完成当前待保存记录后重新进入。');const offset=Math.floor(Math.max(0,next.resumePosition)/20)*20,updated=await contentPage(offset);if(!current(ticket))return;page={...updated,offset};setTitle(page.title);}}
   }}
   async function loadCurrent(){
     courseAudio?.stop();
@@ -53,9 +56,9 @@
     if(position>=page.itemCount||state?.resume?.status==='completed'){complete=true;form?.destroy?.();courseAudio?.destroy();document.getElementById('studyTools')?.replaceChildren();root.replaceChildren(node('h2',recognition?'本单元浏览完成':unitId?'本单元完成':'本轮完成'),node('p',recognition?'听读浏览不计为答题正确或练习完成。':readAloud?'已记录本轮跟读自报，不代表发音正确或已经掌握。':'这些记录是辅助练习，不代表已经掌握。'));return;}
     if(!Number.isSafeInteger(position)||position<0)position=0;
     const offset=Math.floor(position/20)*20;
-    if(page.offset!==offset)page={...await ChunkAPI.request(pageUrl(offset)),offset};
+    if(page.offset!==offset)page={...await contentPage(offset),offset};
     const ref=page.items[position-offset];if(!ref)throw Error('当前项目暂不可用，请重新读取单词本');
-    const data=await ChunkAPI.request('/api/vocabulary-items/'+encodeURIComponent(ref.itemId)+'?revision='+ref.contentRevision);
+    const data=unitContent?unitContent.item(ref.itemId,ref.contentRevision):await ChunkAPI.request('/api/vocabulary-items/'+encodeURIComponent(ref.itemId)+'?revision='+ref.contentRevision);
     if(!current(ticket))return;item=data;practiceType=separate?requestedPractice:GuidedSentenceContent.forItem(item)?'guided-expression':'sentence-cloze';
     if(state?.canPersist&&(state.resume?.sessionId!==sessionId||state.features?.practiceTypes&&state.resume?.practiceType!==practiceType)){
       if(state.features?.practiceTypes&&state.resume&&state.resume.practiceType!==practiceType)sessionId=crypto.randomUUID();
@@ -67,9 +70,12 @@
     form?.destroy?.();courseAudio?.destroy();
     root.replaceChildren();document.getElementById('bookPosition').textContent=(position+1)+' / '+page.itemCount;
     if(recognition){
-      document.getElementById('bookPosition').hidden=true;
-      form=VocabularyListenWordView.create(item,{autoplay:listeningAutoplay,positionLabel:(position+1)+' / '+page.itemCount,onAutoplayChange:value=>{listeningAutoplay=value;},onNext:()=>{if(busy)return;busy=true;position++;loadCurrent().catch(showError).finally(()=>{busy=false;});}});
-      root.append(form.element);document.getElementById('studyTools')?.replaceChildren(form.settings);return;
+      document.getElementById('bookPosition').hidden=false;
+      document.body.classList.add('recognition-page');
+      const back=document.getElementById('bookBack');back.setAttribute('aria-label','返回课程目录');back.title='返回课程目录';
+      back.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>';
+      form=VocabularyListenWordView.create(item,{autoplay:listeningAutoplay,rate:listeningRate,onRateChange:value=>{listeningRate=value;},getFavorite:()=>LearningWorkspaceStore.word(bookId,item.itemId),onFavorite:()=>LearningWorkspaceStore.word(bookId,item.itemId,true),positionLabel:(position+1)+' / '+page.itemCount,hasPrevious:position>0,onPrevious:()=>{if(busy||position<=0)return;busy=true;position--;loadCurrent().catch(showError).finally(()=>{busy=false;});},onAutoplayChange:value=>{listeningAutoplay=value;},onNext:()=>{if(busy)return;busy=true;position++;loadCurrent().catch(showError).finally(()=>{busy=false;});}});
+      root.append(form.element);document.getElementById('studyTools')?.replaceChildren(cacheStatus,form.settings);return;
     }
     const area=node('section'),figure=node('figure'),picture=node('picture'),copy=node('div');
     area.className='wordbook-exercise';if(choice)area.classList.add('wordbook-choice-exercise');if(!separate)area.classList.add('wordbook-sentence-exercise');copy.className='wordbook-answer';
@@ -78,6 +84,7 @@
     const shared=wide.length===1&&mobile.length===1&&wide[0]===mobile[0]&&wide[0].endsWith('.webp');
     if(hasImage){
       const image=node('img');image.src=wide.find(url=>url.endsWith('.webp'))||wide[0];image.alt=item.scene;image.loading='lazy';image.decoding='async';
+      image.onerror=()=>{image.hidden=true;figure.append(node('p',navigator.onLine===false?'图片尚未缓存，联网后可加载。':'图片暂时无法加载，可继续文字学习。'));};
       // New content uses one WebP for every viewport. Keep <picture> sources only
       // for already-published legacy books that still have distinct variants.
       if(!shared)for(const profile of ['mobile','wide'])for(const url of item.images?.[profile]||[]){const source=node('source');source.srcset=url;source.type='image/'+(url.endsWith('.avif')?'avif':'webp');if(profile==='mobile')source.media='(max-width:700px)';picture.append(source);}
@@ -108,7 +115,7 @@
       const timer=setTimeout(()=>{if(current(ticket)&&busy)showStatus('待保存，连接恢复后会自动重试。');},250);
       try{await Promise.all(attemptTasks);if(!current(ticket))return;const receipt=await VocabularyStudyStore.submit(readAloud?'vocabulary.rehearse':'vocabulary.complete',{bookId,bookRevision:page.revision,itemId:item.itemId,contentRevision:item.contentRevision,sessionId,...(readAloud?{report:result.values}:{answers:result.values}),...scope,...practiceFields(),...(state.features?.practiceTypes?{inputMode:result.inputMode||'typing'}:{})});
         if(!current(ticket))return;await readState();if(!current(ticket))return;
-        showStatus(receipt.operation?.outcome==='resume-stale'?(readAloud?'练习自报已保存；其他设备更新了位置，将继续当前确认位置。':'练习已保存；其他设备更新了位置，将继续当前确认位置。'):(readAloud?'练习自报与下一词位置已保存（未验证发音）。':'辅助练习与下一词位置已保存。'),receipt.operation?.outcome!=='resume-stale');next.disabled=false;
+        showStatus(receipt.durable?'练习已保存在本机，联网后自动同步。':receipt.operation?.outcome==='resume-stale'?(readAloud?'练习自报已保存；其他设备更新了位置，将继续当前确认位置。':'练习已保存；其他设备更新了位置，将继续当前确认位置。'):(readAloud?'练习自报与下一词位置已保存（未验证发音）。':'辅助练习与下一词位置已保存。'),!receipt.durable&&receipt.operation?.outcome!=='resume-stale');next.disabled=false;
       }catch(error){if(current(ticket))showError(error);}finally{clearTimeout(timer);if(current(ticket))busy=false;}
     }};
     form=separate?(item.learning?.[learningKey]?views[requestedPractice].create(item,options):null):steps?GuidedSentenceView.create(item,steps,options):JQKAClozeView.create(item.exercise,options);
@@ -117,6 +124,7 @@
     if(!separate){const listen=button('听单词',()=>item.learning?.wordDictation?courseAudio.play(item.learning.wordDictation.audio):speak(item.word));listen.className='study-listen';target.append(listen);}
     const methods=node('details'),methodSummary=node('summary',dictation?'单词听写':choice?'选词填空':requestedPractice==='chunk-order'?'词序拼块':readAloud?'跟读练习':'句子练习'),methodLinks=node('div');methods.className='study-methods';methods.setAttribute('aria-label','学习方式');methodLinks.className='study-menu';methods.append(methodSummary,methodLinks);
     const skip=button('跳过',async()=>{if(busy||complete)return;const ticket=generation;let timer;
+      if(unitContent&&VocabularyStudyStore.offline()){showStatus('离线时请完成当前练习；跳过位置需联网确认。');return;}
       try{busy=true;form?.stop?.();courseAudio?.stop();if(state?.canPersist){showStatus('正在保存跳过位置…');timer=setTimeout(()=>{if(current(ticket)&&busy)showStatus('位置待保存，连接恢复后会自动重试。');},250);await VocabularyStudyStore.submit('vocabulary.session',writePayload('skip'));await readState();}else position++;
         if(!current(ticket))return;showStatus(state?.canPersist?'已跳过，未记为成功练习。':'已跳过；本轮体验不保存。',!!state?.canPersist);await loadCurrent();
       }catch(error){if(current(ticket))showError(error);}finally{clearTimeout(timer);if(current(ticket))busy=false;}});
@@ -143,11 +151,14 @@
   async function boot(retries=0){clearTimeout(retryTimer);loadFailed=false;previewOnly=false;temporaryPractice=false;const ticket=++generation;form?.destroy?.();courseAudio?.destroy();form=null;root.replaceChildren();document.getElementById('studyTools')?.replaceChildren();owner=LearningSessionBootstrap.identity();busy=false;
     if(!ChunkAPI.getToken()){showLoginRequired();return;}
     showStatus('正在读取单词本…');
-    try{if(requestedPractice&&!separate)throw Error('当前练习方式不可用');page={...await ChunkAPI.request(pageUrl(0)),offset:0};if(!current(ticket))return;
+    try{if(requestedPractice&&!separate)throw Error('当前练习方式不可用');
+      unitContent=await VocabularyUnitCache.create({bookId,unitId,structureRevision,onStatus:message=>{if(current(ticket)){cacheStatus.title=message;cacheStatus.textContent=recognition?message.includes('失败')?'离线保存失败':message.includes('更新')?'更新未完成':message.includes('已保存')?'离线已保存':'本机内容':message;}}});if(!current(ticket))return;VocabularyStudyStore.useUnit(unitContent);
+      page={...await contentPage(0),offset:0};if(!current(ticket))return;
       setTitle(page.title);
-      if(recognition){if(unitId&&structureRevision&&page.structureRevision!==structureRevision)throw Error('单元目录已更新，请返回课程重新进入');state={canPersist:false,resume:null,resumeRev:0};position=0;showStatus('');await loadCurrent();return;}
+      if(unitId&&unitContent?.priorStructureRevision===structureRevision)scope.structureRevision=page.structureRevision;
+      if(recognition){if(unitId&&structureRevision&&page.structureRevision!==structureRevision&&unitContent?.priorStructureRevision!==structureRevision)throw Error('单元目录已更新，请返回课程重新进入');state={canPersist:false,resume:null,resumeRev:0};position=0;showStatus('');await loadCurrent();return;}
       let auth;
-      try{auth=await LearningSessionBootstrap.ready();}catch(error){
+      try{auth=await LearningSessionBootstrap.ready({allowConfirmedOffline:!!unitContent});}catch(error){
         if(!['SERVER_SEQ_ROLLBACK','LEARNING_STATE_UNCONFIRMED'].includes(error.code))throw error;
         if(!current(ticket))return;
         const details=await ChunkAPI.request('/api/wordbooks/'+encodeURIComponent(bookId)+'/details');if(!current(ticket))return;
@@ -168,11 +179,11 @@
         const conflicts=actionable.filter(row=>row.status==='blocked'&&row.lastError==='RESUME_CONFLICT'&&row.operation.type==='vocabulary.session');
         if(conflicts.length){root.replaceChildren(node('p','其他设备已更新学习位置。选择后会继续当前已保存的位置，已保存练习保留。'),button('使用已保存位置',async()=>{
           try{for(const row of conflicts)await ServerStore.discardRejectedVocabularySession(row.requestId);if(current(ticket))boot();}catch(error){if(current(ticket))showError(error);}}));showStatus('学习位置冲突，请选择当前已保存位置。');return;}
-        if(actionable.length){showStatus('有待保存的练习，正在恢复确认…');await ServerStore.retryPending();state=await VocabularyStudyStore.state(bookId,0,scope);}
-        if((await VocabularyStudyStore.pending(bookId,unitId,scope.practiceType)).some(row=>row.status!=='deferred-version'))throw Error('练习仍在待保存队列中');
+        if(actionable.length&&!state.offline){showStatus('有待保存的练习，正在恢复确认…');await ServerStore.retryPending();state=await VocabularyStudyStore.state(bookId,0,scope);}
+        if(!state.offline&&(await VocabularyStudyStore.pending(bookId,unitId,scope.practiceType)).some(row=>row.status!=='deferred-version'))throw Error('练习仍在待保存队列中');
         if(state.resume&&state.resume.bookRevision!==page.revision)throw Error('单词本版本已变化，旧位置已保留');
         if(state.resume?.status!=='completed'){
-          sessionId=crypto.randomUUID();
+          sessionId=state.offline&&state.resume?.sessionId?state.resume.sessionId:crypto.randomUUID();
         }
         showStatus('学习位置已保存。',true);
       }else showStatus('体验模式：绑定手机号后可保存单词本练习与续学位置。');

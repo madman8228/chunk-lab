@@ -8,7 +8,12 @@
   var token = '';
   try { token = localStorage.getItem(TOKEN_KEY) || ''; } catch (_) {}
   var $ = function (id) { return document.getElementById(id); };
+  var currentView = new URLSearchParams(location.search).get('view') === 'system-wordbooks' ? 'system-wordbooks' : 'editor';
+  var authenticated = false, editorCatalogRequested = false;
+  if ($('textbookProductionLink') && ['localhost','127.0.0.1','[::1]'].includes(location.hostname)) $('textbookProductionLink').hidden = false;
   function showView(view) {
+    currentView = view;
+    var url = new URL(location.href);if(view==='system-wordbooks')url.searchParams.set('view',view);else url.searchParams.delete('view');history.replaceState(history.state,'',url);
     $('studioLayout').hidden = view !== 'editor';
     $('libraryMetadataPanel').hidden = view !== 'catalog';
     $('protectedPublicationPanel').hidden = view !== 'publication';
@@ -21,6 +26,7 @@
     [['editorOpen','editor'],['libraryMetadataOpen','catalog'],['protectedPublicationOpen','publication']].forEach(function (entry) {
       $(entry[0]).setAttribute('aria-pressed', String(entry[1] === view));
     });
+    if(view==='editor'&&authenticated)loadCatalog();
   }
   window.ContentStudio = { showView: showView, request: request, requestAsset: requestAsset };
   $('editorOpen').onclick = function () { showView('editor'); };
@@ -66,7 +72,7 @@
     var headers={};if(token)headers.Authorization='Bearer '+token;
     return fetch(base+path,{headers:headers,cache:'no-store'}).then(function(response){if(response.status===401){token='';try{localStorage.removeItem(TOKEN_KEY);}catch(_){}showLogin();}if(!response.ok)return response.text().then(function(text){var data={};try{data=JSON.parse(text);}catch(_){}throw Error(data.error||'素材读取失败');});return response.blob();});
   }
-  function showLogin() { $('login').classList.remove('hidden'); $('app').classList.add('hidden'); }
+  function showLogin() { authenticated=false;editorCatalogRequested=false;$('login').classList.remove('hidden'); $('app').classList.add('hidden'); }
   function showApp() { $('login').classList.add('hidden'); $('app').classList.remove('hidden'); }
   function renderCourses() {
     var q = $('courseSearch').value.trim().toLowerCase();
@@ -138,8 +144,9 @@
     }).catch(function (error) { if (loadGeneration === courseLoadGeneration) { loadingCourse=false; $('editor').inert=false; setState(error.message, 'error'); } });
   }
   function loadCatalog() {
+    if(editorCatalogRequested)return;editorCatalogRequested=true;
     request('/api/admin/content/courses').then(function (data) { courses = data.courses || []; renderCourses(); if (courses.length) chooseCourse(courses.some(function (course) { return course.id === selectedCourseId; }) ? selectedCourseId : courses[0].id); })
-      .catch(function (error) { setState(error.message, 'error'); });
+      .catch(function (error) { editorCatalogRequested=false;setState(error.message, 'error'); });
   }
   function currentItem() { return activeCourse && activeCourse.items[activeItemIndex]; }
   function takeFields() {
@@ -183,7 +190,7 @@
         .catch(function (error) { setState(error.message, 'error'); toast(error.message); if (revision === savedRevision) validationPassed = false; });
     }).catch(function (error) { setState(error.message, 'error'); });});
   }
-  $('loginForm').addEventListener('submit', function (event) { event.preventDefault(); $('loginError').textContent = ''; request('/api/admin/login', { method: 'POST', body: JSON.stringify({ password: $('password').value }) }).then(function (data) { token = data.token; try { localStorage.setItem(TOKEN_KEY, token); } catch (_) {} showApp(); loadCatalog(); }).catch(function (error) { $('loginError').textContent = error.message; }); });
+  $('loginForm').addEventListener('submit', function (event) { event.preventDefault(); $('loginError').textContent = ''; request('/api/admin/login', { method: 'POST', body: JSON.stringify({ password: $('password').value }) }).then(function (data) { token = data.token; try { localStorage.setItem(TOKEN_KEY, token); } catch (_) {} authenticated=true;showApp();if(currentView==='editor')loadCatalog();else if(currentView==='system-wordbooks')$('systemWordbooksOpen').click(); }).catch(function (error) { $('loginError').textContent = error.message; }); });
   $('courses').addEventListener('click', function (event) { var button = event.target.closest('[data-course]'); if (button) chooseCourse(button.dataset.course); });
   $('items').addEventListener('click', function (event) { if(busy || loadingCourse) return; var button = event.target.closest('[data-index]'); if (!button) return; takeFields(); activeItemIndex = Number(button.dataset.index); drawEditor(); });
   $('courseSearch').addEventListener('input', renderCourses); $('itemSearch').addEventListener('input', renderItems);
@@ -193,5 +200,5 @@
   $('previous').addEventListener('click', function () { if(!activeCourse || busy || loadingCourse) return; takeFields(); activeItemIndex = (activeItemIndex + activeCourse.items.length - 1) % activeCourse.items.length; drawEditor(); });
   $('next').addEventListener('click', function () { if(!activeCourse || busy || loadingCourse) return; takeFields(); activeItemIndex = (activeItemIndex + 1) % activeCourse.items.length; drawEditor(); });
   window.addEventListener('beforeunload',function(event){if(dirty || busy){event.preventDefault();event.returnValue='';}});
-  if (token) { showApp(); request('/api/admin/me').then(loadCatalog).catch(showLogin); } else showLogin();
+  if (token) { showApp(); request('/api/admin/me').then(function(){authenticated=true;if(currentView==='editor')loadCatalog();}).catch(showLogin); } else showLogin();
 })();

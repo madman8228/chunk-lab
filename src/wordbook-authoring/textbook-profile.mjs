@@ -11,7 +11,8 @@ const clean = value => typeof value === 'string' && value === value.trim() && va
 // Explicit verified metadata only: never guess a textbook from a title or word list.
 // Series distinguishes PEP/精通/entry year/schooling system within one publisher.
 export function textbookFacets(profile) {
-  if (!profile || Object.keys(profile).some(key => !['schoolStage','publisherId','seriesId','edition','grade','volume'].includes(key))) throw new Error('教材分类字段无效');
+  if (!profile || Object.keys(profile).some(key => !['schoolStage','publisherId','seriesId','textbookVersion','edition','grade','volume'].includes(key))) throw new Error('教材分类字段无效');
+  if (profile.textbookVersion !== undefined && !clean(profile.textbookVersion)) throw new Error('教材版本简称无效');
   if (!Object.hasOwn(stageGrades,profile.schoolStage)) throw new Error('教材学段需为小学、初中或高中');
   for (const key of ['publisherId','seriesId','edition','volume']) if (!clean(profile[key])) throw new Error('请先核实教材的版本、系列、版次与册次');
   if (/待核|未知|未确认|最新版/.test(profile.edition)) throw new Error('教材版次必须是已经核实的明确版次，不能使用待核或最新版');
@@ -23,11 +24,13 @@ export function textbookFacets(profile) {
   return {
     schoolStages: [profile.schoolStage], grades: profile.grade ? [profile.grade] : [],
     publisherId: profile.publisherId, seriesId: profile.seriesId,
-    edition: profile.edition, volume: profile.volume
+    edition: profile.edition, volume: profile.volume,
+    ...(profile.textbookVersion === undefined ? {} : { textbookVersion: profile.textbookVersion })
   };
 }
 
 export async function textbookBookId(profile) {
   const facets = textbookFacets(profile);
-  return 'textbook-wordbook:' + (await fingerprint(facets)).slice(0, 32);
+  const { textbookVersion, ...identity } = facets;
+  return 'textbook-wordbook:' + (await fingerprint(identity)).slice(0, 32);
 }

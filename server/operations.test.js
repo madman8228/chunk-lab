@@ -13,6 +13,8 @@ const { batchHash } = require('./sync-conflict');
 const { assertRevisionAccepted } = require('./sync-conflict');
 const { createDataWriters } = require('./services/data-writers');
 const { reducePracticeEvents } = require('./services/learning-replay');
+const activeLearningFormats = new Map();
+const learningDataFormat = { forUser: userId => activeLearningFormats.get(userId) || 'legacy-v1' };
 assert.equal(reducePracticeEvents, learningEngine.reducePracticeEvents,
   'the server imports the same generated practice reducer as the browser');
 
@@ -81,7 +83,7 @@ const operations = createOperations({ db, allocSeq, readChanges, upsertDeck: wri
   upsertCourseProgress: upsertProgress, upsertKv, upsertSentenceStat,
   replaceSentenceStat, deleteSentenceStat, reducePracticeEvents, resolveAssessmentItem: (_userId, key) => key.indexOf('lesson-x#sentence-exposed') === 0 || key === 'lesson-x#legacy-stat-target'
     ? { cid: key.slice(key.indexOf('#') + 1), sentence: 'Hello.', translation: '你好。', chunks: ['Hello.'], alts: [[]] } : null,
-  upsertEvent, upsertEntityRow, deleteEntityRow, srs, hash: batchHash });
+  upsertEvent, upsertEntityRow, deleteEntityRow, srs, hash: batchHash, learningDataFormat });
 const id = 'operation_request_0001';
 const progress = { protocol: 3, requestId: id, type: 'course.progress', payload: {
   courseId: 'lesson-x', nodeId: 'node-1', passed: true, completed: false, currentNodeId: 'node-2'
@@ -725,6 +727,31 @@ assert.equal(JSON.parse(db.prepare("SELECT v_json FROM user_kv WHERE user_id=1 A
     assert.deepEqual(recordedFailure, { user_id: 2, code: 'INVALID_OPERATION', status: 400, trace_id: unsupported.body.traceId },
       'a failed operation records only its account, fixed error category, status, and trace identifier');
     assert.equal(Object.hasOwn(recordedFailure, 'request_body'), false);
+
+    activeLearningFormats.set(77, 'references-v1');
+    const blockedCourseWrite = { protocol: 3, requestId: 'format_block_course_put_01', type: 'course.put', expectedRev: null,
+      payload: { course: { courseId: 'must-stay-independent', version: 'v1', title: 'Must not be account data', nodes: [] } } };
+    assert.throws(() => operations.execute(77, blockedCourseWrite), error => error.code === 'COURSE_CONTENT_MOVED' && error.status === 428);
+    assert.throws(() => operations.executeContentImport(77, { ...blockedCourseWrite, requestId: 'format_block_import_01' }),
+      error => error.code === 'COURSE_CONTENT_MOVED' && error.status === 428,
+      'large legacy imports cannot bypass the account-level content boundary');
+    assert.throws(() => operations.execute(77, { protocol: 3, requestId: 'format_block_delete_01', type: 'course.delete',
+      expectedRev: 0, payload: { courseId: 'old-course' } }), error => error.code === 'COURSE_CONTENT_MOVED');
+    assert.equal(db.prepare('SELECT COUNT(*) AS n FROM user_courses WHERE user_id=77').get().n, 0);
+    assert.equal(db.prepare('SELECT seq FROM user_change_seq WHERE user_id=77').get(), undefined,
+      'rejected legacy course writes do not allocate the personal learning sequence');
+    assert.equal(operations.execute(77, { protocol: 3, requestId: 'format_learning_patch_01', type: 'settings.patch',
+      payload: { patch: { sound: true } } }).ok, true, 'learning writes remain enabled for references-v1 accounts');
+
+    const ackedBeforeSwitch = { protocol: 3, requestId: 'format_prior_receipt_01', type: 'course.put', expectedRev: null,
+      payload: { course: { courseId: 'already-written', version: 'v1', title: 'Prior receipt', nodes: [] } } };
+    const priorReceipt = operations.execute(78, ackedBeforeSwitch);
+    assert.equal(priorReceipt.ok, true);
+    activeLearningFormats.set(78, 'references-v1');
+    assert.equal(operations.execute(78, ackedBeforeSwitch).duplicate, true,
+      'idempotent retries of already-applied legacy content return their existing receipt after activation');
+    assert.throws(() => operations.execute(78, { ...ackedBeforeSwitch, requestId: 'format_new_course_write_01' }),
+      error => error.code === 'COURSE_CONTENT_MOVED' && error.status === 428);
   } finally {
     await new Promise(resolve => server.close(resolve));
     await new Promise(resolve => gateServer.close(resolve));

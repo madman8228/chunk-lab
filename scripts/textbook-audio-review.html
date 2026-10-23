@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>教材单词与句子音频抽查</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#51341f;background:#e7f3f4;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,#cfe9f6 0,#e7f2ef 42%,#f8f1de 100%)}header,main{width:min(100% - 32px,1000px);margin:auto}header{padding:22px 0 14px}h1{font-size:clamp(22px,4vw,30px);margin:0}header p{margin:6px 0 0;color:#76583b;font-size:14px}.note{margin:8px 0 16px;padding:12px 16px;border:1px solid #dfc99f;border-radius:12px;background:#fff9eb;font-size:14px;line-height:1.6}.toolbar{display:grid;grid-template-columns:1fr 1fr 1.4fr auto;gap:10px;align-items:end;margin-bottom:12px}.field{display:grid;gap:5px;font-size:13px}.field select,.field input,.button{height:42px;border:1px solid #d3b98d;border-radius:10px;background:#fffdf7;color:inherit;font:inherit;padding:0 12px}.button{background:#ffdf83;font-weight:650;cursor:pointer;white-space:nowrap}.button.secondary{background:#fffaf0}.button:disabled{opacity:.5;cursor:not-allowed}.summary{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0;color:#76583b;font-size:14px}.items{display:grid;gap:10px;padding-bottom:32px}.item{background:#fffaf0e8;border:1px solid #dfc99f;border-radius:14px;padding:16px 18px;box-shadow:0 4px 12px #68471a0a}.item-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}.word{font-size:22px;font-weight:750}.meaning{color:#76583b;margin-left:8px}.id{font-size:11px;color:#9a866a}.sentence{font-size:18px;margin:13px 0 4px;line-height:1.5}.chinese{font-size:16px;margin:0;color:#76583b}.players{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.players audio{display:none}.status{min-height:1.4em;margin:12px 0;color:#76583b;font-size:13px}.empty,.error{padding:18px;border:1px solid #dfc99f;border-radius:12px;background:#fffaf0;color:#76583b}.error{border-color:#cb8b73;background:#fff0e8;color:#713c2e}.small{font-size:12px;color:#806444}@media(max-width:650px){.toolbar{grid-template-columns:1fr 1fr}.field.search{grid-column:1/-1}.button.random{grid-column:1/-1}.item{padding:14px}.item-head{align-items:flex-start;flex-direction:column}.id{order:2}}
+</style>
+</head>
+<body>
+<header><h1>教材单词与句子音频抽查</h1><p>七上、七下 · 本机只读试听</p></header>
+<main>
+<div class="note">选择教材、单元或词条，再分别播放单词和原创例句。页面不会记录审核结论；发现问题时，把词条编号和问题发回 Codex 即可。</div>
+<div id="error" class="error" hidden></div>
+<section id="review" hidden>
+<div class="toolbar">
+<label class="field">教材<select id="book"></select></label>
+<label class="field">单元<select id="unit"></select></label>
+<label class="field search">查找词条<input id="search" type="search" placeholder="输入单词、英文句子或中文释义"></label>
+<button id="random" class="button random" type="button">随机抽查5条</button>
+</div>
+<div class="summary"><span id="counts"></span><span id="shown"></span></div>
+<div id="items" class="items"></div><p id="status" class="status" role="status"></p>
+</section>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);let books=[],course=null,sampleIds=null;
+function visibleItems(){const unitId=$('unit').value,query=$('search').value.trim().toLowerCase();let rows=course.units.filter(unit=>unitId==='all'||unit.id===unitId).flatMap(unit=>unit.items.map(item=>({...item,unitTitle:unit.title})));if(query)rows=rows.filter(item=>[item.word,item.meaning,item.sentence,item.chinese,item.itemId].some(value=>String(value||'').toLowerCase().includes(query)));if(sampleIds)rows=rows.filter(item=>sampleIds.has(item.itemId));return rows}
+function stopPlayers(){document.querySelectorAll('audio').forEach(audio=>{audio.pause();audio.currentTime=0})}
+function render(){stopPlayers();const rows=visibleItems();$('counts').textContent=`${course.totalItems} 条词目 · 单词音频 ${course.wordAudioCount} 条 · 句子音频 ${course.sentenceAudioCount} 条`;$('shown').textContent=`当前显示 ${rows.length} 条${sampleIds?' · 随机抽查':''}`;const shown=rows.slice(0,50);$('items').replaceChildren();for(const item of shown){const article=document.createElement('article');article.className='item';const head=document.createElement('div');head.className='item-head';const title=document.createElement('div');const word=document.createElement('span');word.className='word';word.textContent=item.word;const meaning=document.createElement('span');meaning.className='meaning';meaning.textContent=item.meaning;title.append(word,meaning);const id=document.createElement('span');id.className='id';id.textContent=`${item.unitTitle} · ${item.itemId}`;head.append(title,id);const sentence=document.createElement('p');sentence.className='sentence';sentence.textContent=item.sentence;const chinese=document.createElement('p');chinese.className='chinese';chinese.textContent=item.chinese;const players=document.createElement('div');players.className='players';for(const [label,url] of [['▶ 播放单词',item.wordAudioUrl],['▶ 播放句子',item.sentenceAudioUrl]]){const button=document.createElement('button');button.type='button';button.className='button secondary';button.textContent=label;const audio=document.createElement('audio');audio.preload='none';audio.src=url;button.onclick=async()=>{stopPlayers();try{await audio.play();$('status').textContent=`正在播放：${item.word} · ${label.includes('句子')?'句子':'单词'}`}catch{$('status').textContent='播放失败，请确认浏览器允许播放本地音频'}};audio.onended=()=>{$('status').textContent=''};players.append(button,audio)}article.append(head,sentence,chinese,players);$('items').append(article)}if(rows.length>shown.length){const more=document.createElement('p');more.className='small';more.textContent=`当前仅显示前 ${shown.length} 条；缩小搜索范围或使用随机抽查。`;$('items').append(more)}if(!rows.length){const empty=document.createElement('div');empty.className='empty';empty.textContent='没有匹配词条。';$('items').append(empty)}}
+async function loadCourse(){sampleIds=null;$('unit').replaceChildren();const all=document.createElement('option');all.value='all';all.textContent='全部单元';$('unit').append(all);const response=await fetch(`/api/course/${encodeURIComponent($('book').value)}`);if(!response.ok)throw Error('读取课程词条失败');course=await response.json();for(const unit of course.units){const option=document.createElement('option');option.value=unit.id;option.textContent=unit.title;$('unit').append(option)}$('search').value='';render()}
+async function start(){try{const response=await fetch('/api/books');if(!response.ok)throw Error('读取教材清单失败');books=await response.json();for(const book of books){const option=document.createElement('option');option.value=book.slug;option.textContent=book.title;$('book').append(option)}$('book').onchange=()=>loadCourse().catch(showError);$('unit').onchange=()=>{sampleIds=null;render()};$('search').oninput=()=>{sampleIds=null;render()};$('random').onclick=()=>{const rows=visibleItems();const pool=[...rows].sort(()=>Math.random()-.5).slice(0,5);sampleIds=new Set(pool.map(item=>item.itemId));render()};await loadCourse();$('review').hidden=false}catch(error){showError(error)}}
+function showError(error){$('error').textContent=error.message;$('error').hidden=false}
+start();
+</script>
+</body>
+</html>

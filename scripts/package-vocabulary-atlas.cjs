@@ -6,9 +6,10 @@ const path = require('node:path');
 const os = require('node:os');
 const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
-const root = path.resolve(__dirname, '..');
+const library = require('./lib/vocabulary-illustrations.cjs');
 const args = process.argv.slice(2);
 const option = name => args[args.indexOf(name) + 1];
+const root = path.resolve(option('--root') || path.resolve(__dirname, '..'));
 const fail = message => { throw new Error(message); };
 const inside = relative => {
   if (typeof relative !== 'string' || path.isAbsolute(relative)) fail('Expected a repository-relative path');
@@ -29,10 +30,11 @@ const manifestFile = path.resolve(manifestArg);
 const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
 const { batchId, unit, version, cells } = manifest;
 if (args.includes('--preflight')) {
-  const library = require('./lib/vocabulary-illustrations.cjs');
   for (const key of ['--catalog', '--stage', '--out']) if (!args.includes(key) || !option(key)) fail('Preflight requires ' + key);
-  const catalog = JSON.parse(fs.readFileSync(option('--catalog'), 'utf8'));
+  const catalogFile = path.resolve(option('--catalog'));
+  const catalog = JSON.parse(fs.readFileSync(catalogFile, 'utf8'));
   const result = library.plan(catalog, manifest, { stage: option('--stage') });
+  result.preflight = { catalogSha256: hash(catalogFile), manifestSha256: hash(manifestFile), stage: option('--stage') };
   fs.writeFileSync(option('--out'), JSON.stringify(result, null, 2) + '\n', { flag: 'wx' });
   console.log(JSON.stringify({ plan: option('--out'), items: result.items.map(i => ({ word: i.word, action: i.action, approvedCandidates: i.candidates.length })) }));
   process.exit(0);
@@ -53,6 +55,23 @@ if (draft) for (const cell of cells) {
 const atlasRelative = `ref/words-pic/atlases/${batchId}.png`;
 const reportFile = manifestFile.replace(/\.json$/, '.report.json');
 if (reportFile === manifestFile) fail('Manifest filename must end in .json');
+const currentPreflight = () => {
+  for (const key of ['--catalog', '--plan']) if (!args.includes(key) || !option(key)) fail('New atlas packaging requires a current ' + key);
+  const catalogFile = path.resolve(option('--catalog'));
+  const planFile = path.resolve(option('--plan'));
+  const catalog = JSON.parse(fs.readFileSync(catalogFile, 'utf8'));
+  const plan = JSON.parse(fs.readFileSync(planFile, 'utf8'));
+  const stage = plan.preflight?.stage;
+  if (plan.format !== 'vocabulary-illustration-plan' || plan.schemaVersion !== 1 || plan.batchId !== batchId || !['primary', 'junior', 'adult'].includes(stage)) fail('Invalid or mismatched preflight plan');
+  if (plan.preflight.catalogSha256 !== hash(catalogFile) || plan.preflight.manifestSha256 !== hash(manifestFile)) fail('Preflight plan is stale; rerun preflight');
+  const expectedPlan = library.plan(catalog, manifest, { stage });
+  if (JSON.stringify(plan.items) !== JSON.stringify(expectedPlan.items)) fail('Preflight plan content does not match the current catalog and manifest');
+  if (plan.items.length !== cells.length || plan.items.some(item => item.action !== 'generate')) {
+    const blocked = plan.items.filter(item => item.action !== 'generate').map(item => item.word);
+    fail('Refusing duplicate generation; reuse/review existing candidates first: ' + blocked.join(', '));
+  }
+  return { planFile, plan, planSha256: hash(planFile), catalogSha256: hash(catalogFile), manifestSha256: hash(manifestFile), stage };
+};
 const singlePolicy = 'single-wide-webp-v1';
 const legacyPolicy = 'legacy-responsive-v1';
 const expected = (cell, policy = singlePolicy) => ({
@@ -68,6 +87,10 @@ if (args.includes('--apply-draft')) {
   // Reports written before the single-file policy retain their original four-file mapping.
   const policy = report.deliveryPolicy === undefined ? legacyPolicy : report.deliveryPolicy;
   if (![singlePolicy, legacyPolicy].includes(policy)) fail('Unknown delivery policy: ' + policy);
+  if (report.preflight) {
+    const preflight = currentPreflight();
+    if (report.preflight.planSha256 !== preflight.planSha256 || report.preflight.catalogSha256 !== preflight.catalogSha256 || report.preflight.manifestSha256 !== preflight.manifestSha256) fail('Preflight inputs changed after packaging');
+  }
   if (report.batchId !== batchId || report.atlas !== atlasRelative || hash(inside(atlasRelative)) !== report.atlasSha256) fail('Atlas report mismatch');
   for (const cell of cells) {
     const entry = report.cells.find(x => x.itemId === cell.itemId && x.word === cell.word && x.slug === cell.slug && x.position === cell.position);
@@ -92,6 +115,7 @@ if (args.includes('--apply-draft')) {
   process.exit(0);
 }
 if (!args.includes('--source') || !option('--source')) fail('--source is required for packaging');
+const preflight = currentPreflight();
 const source = path.resolve(option('--source'));
 const start = Date.now();
 const dim = dimensions(source);
@@ -110,7 +134,7 @@ const rectangles = cells.map(cell => {
 });
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'vocabulary-atlas-'));
 exclusiveCopy(source, inside(atlasRelative));
-  const report = { batchId, assetPrefix: assetStemPrefix, deliveryPolicy: singlePolicy, atlas: atlasRelative, atlasSha256: hash(source), atlasDimensions: dim, styleReference: manifest.styleReference, generationSeconds: args.includes('--generation-seconds') ? Number(option('--generation-seconds')) : null, cells: [] };
+  const report = { batchId, assetPrefix: assetStemPrefix, deliveryPolicy: singlePolicy, preflight: { catalogSha256: preflight.catalogSha256, manifestSha256: preflight.manifestSha256, planSha256: preflight.planSha256, stage: preflight.stage }, atlas: atlasRelative, atlasSha256: hash(source), atlasDimensions: dim, styleReference: manifest.styleReference, generationSeconds: args.includes('--generation-seconds') ? Number(option('--generation-seconds')) : null, cells: [] };
 for (const [index, cell] of cells.entries()) {
   const names = expected(cell);
   const rect = rectangles[index];

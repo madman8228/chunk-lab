@@ -7,7 +7,7 @@ function inferGroup(file, cwd) {
   if (cwd === 'server') return 'server';
   if (/^e2e[\\/]/i.test(file)) return 'browser';
   if (/vocabulary-material-(?:library-browser|course-draft)|sentence-layout-preview/i.test(file)) return 'browser';
-  if (/playwright|scene-wordbook-ui|wordbook-materials-ui|word-dictation-ui|word-choice-ui|chunk-order-ui|mobile|sw-cache|action-game-ui|initials-ui|wordbook-ai-authoring-ui|wordbook-ai-bundle|course-create-ui|workspace-entry-ui|settings-groups-ui|personal-wordbook-recovery-ui/i.test(file)) return 'browser';
+  if (/playwright|browser-confirmation-repair|scene-wordbook-ui|wordbook-materials-ui|word-dictation-ui|word-choice-ui|chunk-order-ui|mobile|sw-cache|action-game-ui|initials-ui|wordbook-ai-authoring-ui|wordbook-ai-bundle|course-create-ui|workspace-entry-ui|settings-groups-ui|personal-wordbook-recovery-ui/i.test(file)) return 'browser';
   if (/check-|validate|deploy-safety|sw-policy|sw-hash/i.test(file)) return 'checks';
   return 'unit';
 }
@@ -57,6 +57,7 @@ const extras = [
   ['server-operations', 'operations.test.js', 'server', 'server'],
   ['server-store-save-health', 'js/server-store-save-health.test.js', '.', 'unit'],
   ['admin-sync-diagnostics-e2e', 'e2e/admin-sync-diagnostics.test.js', '.', 'browser'],
+  ['browser-confirmation-repair-e2e', 'scripts/browser-confirmation-repair.test.cjs', '.', 'browser'],
   ['account-storage', 'account-storage.test.js', '.', 'unit'],
   ['batch-sync-e2e', 'e2e/batch-sync.test.js', '.', 'browser'],
   ['course-package-import-e2e', 'e2e/course-package-import.test.js', '.', 'browser'],

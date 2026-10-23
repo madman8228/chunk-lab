@@ -503,4 +503,53 @@ const browseUnchanged=cache.mergeSnapshot(browseDelta,{seq:3,delta:true,mem:{},r
 assert.equal(browseUnchanged.snapshot.mem.vocabularyBrowseResume['browse:one'].stepId,'pen:phrase');
 const browseGone=cache.mergeSnapshot(browseUnchanged,{seq:4,delta:true,mem:{},revs:{vocabularyBrowseResume:{'browse:one':4}},entityGone:{vocabularyBrowseResume:['browse:one']}});
 assert.equal(browseGone.snapshot.mem.vocabularyBrowseResume['browse:one'],undefined);
-console.log('server cache snapshot merge tests passed');
+async function verifyFormatScopedCaches() {
+  const rows = new Map(), meta = new Map(), reads = { legacy: 0, learning: 0 };
+  let format = 'legacy-v1', offline = false;
+  window.location = { origin: 'https://app.invalid' };
+  window.AccountStorage = { owner: '41', assertCurrent() {} };
+  window.ChunkAPI = {
+    getBase: () => 'https://api.invalid',
+    getLearningDataFormat: async () => { if (offline) { const error = new Error('offline'); error.code = 'REQUEST_FAILED'; throw error; } return format; },
+    getData: async () => { reads.legacy++; return Object.assign({}, full, { seq: 4, delta: false }); },
+    getLearningData: async () => {
+      reads.learning++;
+      return { seq: 9 + reads.learning, delta: false, format: 'references-v1', mem: { decks: [], stats: { bySentence: {}, events: [] } },
+        courses: [], courseProgress: {}, learningResumes: {}, learningGenerations: {}, revs: {}, entityGone: {}, deleted: {} };
+    }
+  };
+  window.IDBStore = {
+    readSyncMeta: async key => meta.get(key) || null,
+    updateSyncMeta: async (key, reduce) => { const row = reduce(meta.get(key) || { key }); meta.set(key, row); return row; },
+    readServerCache: async (scope, owner, key) => {
+      const row = rows.get(key || 'server-cache-v3');
+      return row && row.scope === scope && row.owner === owner ? row : null;
+    },
+    commitServerCache: async (row, expected, fullSnapshot) => {
+      const current = rows.get(row.key);
+      if (!fullSnapshot && (!current || current.appliedSeq !== expected)) return { applied: false, stale: true, retired: [] };
+      rows.set(row.key, row); return { applied: true, stale: false, retired: [] };
+    }
+  };
+
+  await cache.refresh();
+  assert.equal(reads.legacy, 1, 'legacy accounts keep using the legacy endpoint');
+  const legacy = rows.get('server-cache-v3');
+  assert.ok(legacy && legacy.snapshot.courses.length, 'the legacy confirmed cache remains unchanged');
+
+  format = 'references-v1';
+  await cache.refresh();
+  const learning = rows.get('learning-cache-v1');
+  assert.ok(learning, 'references-v1 data has a separate cache key');
+  assert.equal(learning.snapshot.courses.length, 0, 'references cache contains no account-owned course bodies');
+  assert.equal(reads.learning, 1, 'migrated accounts read the references-only endpoint');
+  assert.equal((await cache.read()).key, 'learning-cache-v1', 'cache reads follow the confirmed account format');
+
+  offline = true;
+  await cache.refresh();
+  assert.equal(reads.learning, 2, 'offline format discovery reuses the last account-bound format');
+  assert.ok(rows.get('server-cache-v3'), 'format switching never deletes the previous cache');
+}
+
+verifyFormatScopedCaches().then(() => console.log('server cache snapshot merge and format isolation tests passed'))
+  .catch(error => { console.error(error); process.exitCode = 1; });

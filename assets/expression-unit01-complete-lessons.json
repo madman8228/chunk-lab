@@ -1,0 +1,107 @@
+{
+  "status": "candidate-content-review",
+  "recording": false,
+  "scopeNote": "L102/L104/L105 为新编教学内容；固定姓名 Lin、Ben。无配图、语音录音、识别或评分。",
+  "lessons": [
+    {
+      "lessonId": "L102",
+      "contentVersion": 1,
+      "title": "打招呼与告别",
+      "goal": "在刚见面和准备离开时，听懂并选择合适的简单问候或告别。",
+      "prerequisiteSkillIds": ["understand_basic_instructions"],
+      "skillId": "greet_and_say_goodbye",
+      "vocabulary": [
+        { "id": "hello", "en": "Hello", "zh": "你好；问候", "introducedHere": true },
+        { "id": "hi", "en": "Hi", "zh": "嗨；你好", "introducedHere": true },
+        { "id": "bye", "en": "Bye", "zh": "再见", "introducedHere": true }
+      ],
+      "audio": [
+        { "assetId": "unit01_L102_0", "file": "expression-unit01-L102-v2-hello.wav", "text": "Hello!", "rate": -1 },
+        { "assetId": "unit01_L102_1", "file": "expression-unit01-L102-v2-hi.wav", "text": "Hi!", "rate": -1 },
+        { "assetId": "unit01_L102_2", "file": "expression-unit01-L102-v2-greeting-dialogue.wav", "text": "Hello! Hi!", "rate": -1 },
+        { "assetId": "unit01_L102_3", "file": "expression-unit01-L102-v2-bye-dialogue.wav", "text": "Bye! Bye!", "rate": -1 },
+        { "assetId": "unit01_L102_4", "file": "expression-unit01-L102-v2-hello-transfer.wav", "text": "Hello!", "rate": -1 },
+        { "assetId": "unit01_L102_5", "file": "expression-unit01-L102-v2-bye-transfer.wav", "text": "Bye!", "rate": -1 }
+      ],
+      "activities": [
+        { "type": "meaning_intro", "stage": "guided", "prompt": "刚见面时，可以这样问候", "english": "Hello!", "meaning": "你好。见面时用来打招呼。", "audioAssetId": "unit01_L102_0", "countsTowardMastery": false },
+        { "type": "meaning_intro", "stage": "guided", "prompt": "Hi 也是常见的问候", "english": "Hi!", "meaning": "嗨、你好。语气更轻松；初学时先把它和 Hello 都当作见面问候。", "audioAssetId": "unit01_L102_1", "countsTowardMastery": false },
+        { "type": "listening_choice", "stage": "independent", "prompt": "听一小段对话：两个人刚见面，还是准备离开？", "audioAssetId": "unit01_L102_2", "options": ["刚见面", "准备离开"], "correctOptionId": "option_0" },
+        { "type": "meaning_intro", "stage": "guided", "prompt": "准备离开时，可以这样告别", "english": "Bye!", "meaning": "再见。通常在结束交谈、准备离开时使用。", "audioAssetId": "unit01_L102_3", "countsTowardMastery": false },
+        { "type": "listening_choice", "stage": "independent", "prompt": "新情境：你刚到学习小组，听听组员是在问候还是告别。", "audioAssetId": "unit01_L102_4", "options": ["刚见面，问候", "准备离开，告别"], "correctOptionId": "option_0" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "新情境：活动结束了，听听对方是在问候还是告别。", "audioAssetId": "unit01_L102_5", "options": ["刚见面，问候", "准备离开，告别"], "correctOptionId": "option_1" },
+        { "type": "independent_output", "stage": "independent", "prompt": "你刚到一个新学习小组，组员主动向你打招呼。用一句简单英语回应。", "scenario": "刚见面，对方主动打招呼。", "targetMeaning": "用简单英语回应问候。", "responseModes": ["text"], "acceptedAnswers": ["Hello", "Hi"] },
+        { "type": "independent_output", "stage": "independent", "prompt": "活动结束，你准备离开。用刚学过的简单表达向大家告别。", "scenario": "交谈结束，准备离开。", "targetMeaning": "用简单英语告别。", "responseModes": ["text"], "acceptedAnswers": ["Bye"] }
+      ],
+      "reviewActivityIds": ["L102_A07", "L102_A08"]
+    },
+    {
+      "lessonId": "L104",
+      "contentVersion": 1,
+      "title": "请说慢一点",
+      "goal": "当对方说得太快时，请对方放慢语速，并与请求重复区分。",
+      "prerequisiteSkillIds": ["request_repetition"],
+      "skillId": "request_slower_speech",
+      "vocabulary": [
+        { "id": "please-speak-slowly", "en": "Please speak slowly.", "zh": "请说慢一点。", "introducedHere": true },
+        { "id": "speak", "en": "speak", "zh": "说话", "introducedHere": true },
+        { "id": "slowly", "en": "slowly", "zh": "慢慢地；慢一点", "introducedHere": true }
+      ],
+      "audio": [
+        { "assetId": "unit01_L104_0", "file": "expression-unit01-L104-v2-speak-slowly.wav", "text": "Please speak slowly.", "rate": -1 },
+        { "assetId": "unit01_L104_1", "file": "expression-unit01-L104-v2-speak-slowly-clear.wav", "text": "Please speak slowly.", "rate": -3 },
+        { "assetId": "unit01_L104_2", "file": "expression-unit01-L104-v2-again-please.wav", "text": "Again, please.", "rate": -1 },
+        { "assetId": "unit01_L104_3", "file": "expression-unit01-L104-v2-listening-slowly.wav", "text": "Please speak slowly.", "rate": -1 },
+        { "assetId": "unit01_L104_4", "file": "expression-unit01-L104-v2-listening-again.wav", "text": "Again, please.", "rate": -1 },
+        { "assetId": "unit01_L104_5", "file": "expression-unit01-L104-v2-transfer.wav", "text": "Please speak slowly.", "rate": -1 }
+      ],
+      "activities": [
+        { "type": "meaning_intro", "stage": "guided", "prompt": "对方说得太快，可以这样礼貌请求", "english": "Please speak slowly.", "meaning": "请说慢一点。重点是请对方放慢说话速度。", "audioAssetId": "unit01_L104_0", "countsTowardMastery": false },
+        { "type": "meaning_intro", "stage": "guided", "prompt": "听一个清晰、稍慢的示范", "english": "Please speak slowly.", "meaning": "慢速只是帮助听清的示范，不代表真实对话一定这么慢。", "audioAssetId": "unit01_L104_1", "countsTowardMastery": false },
+        { "type": "meaning_intro", "stage": "guided", "prompt": "对比：Again, please.", "english": "Again, please.", "meaning": "请再说一遍。它请求重复；Please speak slowly. 请求放慢。一个是再说一次，一个是改变语速。", "audioAssetId": "unit01_L104_2", "countsTowardMastery": false },
+        { "type": "listening_choice", "stage": "independent", "prompt": "听声音：说话人想请对方做什么？", "audioAssetId": "unit01_L104_3", "options": ["请说慢一点", "请再说一遍"], "correctOptionId": "option_0" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "听声音：这是请求放慢，还是请求重复？", "audioAssetId": "unit01_L104_4", "options": ["请求放慢", "请求重复"], "correctOptionId": "option_1" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "新情境：你听得见对方，但语速太快。听音选择合适的意思。", "audioAssetId": "unit01_L104_5", "options": ["请说慢一点", "请再说一遍"], "correctOptionId": "option_0" },
+        { "type": "independent_output", "stage": "independent", "prompt": "工作人员正在快速说明路线。你能听见，但需要对方放慢。输入一句礼貌请求。", "scenario": "能听见内容，但对方语速太快。", "targetMeaning": "请对方放慢说话速度。", "responseModes": ["text"], "acceptedAnswers": ["Please speak slowly", "Could you speak more slowly, please", "Could you speak slowly, please"] },
+        { "type": "independent_output", "stage": "independent", "prompt": "新情境：电话里的对方说得太快。请对方放慢，不是重复刚才的话。", "scenario": "电话交流时，对方语速太快。", "targetMeaning": "请求放慢语速。", "responseModes": ["text"], "acceptedAnswers": ["Please speak slowly", "Could you speak more slowly, please", "Could you speak slowly, please"] }
+      ],
+      "reviewActivityIds": ["L104_A07", "L104_A08"]
+    },
+    {
+      "lessonId": "L105",
+      "contentVersion": 1,
+      "title": "听辨姓名拼写",
+      "goal": "听辨固定姓名 Lin、Ben 及其逐字母拼写，理解字母名与单词中的发音不同。",
+      "prerequisiteSkillIds": ["greet_and_say_goodbye", "request_slower_speech"],
+      "skillId": "recognize_name_spelling",
+      "vocabulary": [
+        { "id": "letter-name", "en": "letter name", "zh": "字母名称", "introducedHere": true },
+        { "id": "lin", "en": "Lin", "zh": "姓名 Lin", "introducedHere": true },
+        { "id": "ben", "en": "Ben", "zh": "姓名 Ben", "introducedHere": true }
+      ],
+      "audio": [
+        { "assetId": "unit01_L105_0", "file": "expression-unit01-L105-v2-letter-l.wav", "text": "L.", "rate": -1 },
+        { "assetId": "unit01_L105_1", "file": "expression-unit01-L105-v2-letter-e.wav", "text": "E.", "rate": -1 },
+        { "assetId": "unit01_L105_2", "file": "expression-unit01-L105-v2-letter-i.wav", "text": "I.", "rate": -1 },
+        { "assetId": "unit01_L105_3", "file": "expression-unit01-L105-v2-letter-n.wav", "text": "N.", "rate": -1 },
+        { "assetId": "unit01_L105_4", "file": "expression-unit01-L105-v2-letter-b.wav", "text": "B.", "rate": -1 },
+        { "assetId": "unit01_L105_5", "file": "expression-unit01-L105-v2-spell-lin.wav", "text": "L, I, N.", "rate": -2 },
+        { "assetId": "unit01_L105_6", "file": "expression-unit01-L105-v2-spell-ben.wav", "text": "B, E, N.", "rate": -2 },
+        { "assetId": "unit01_L105_7", "file": "expression-unit01-L105-v2-name-order.wav", "text": "Lin. Ben.", "rate": -1 }
+      ],
+      "activities": [
+        { "type": "meaning_intro", "stage": "guided", "prompt": "先听字母名称，不要求先会字母表", "english": "L, I, N.", "meaning": "这是姓名 Lin 的三个字母名称。字母名称和它在单词里的发音不是一回事；本课只听固定姓名所需的字母。", "audioAssetId": "unit01_L105_5", "countsTowardMastery": false },
+        { "type": "listening_choice", "stage": "independent", "prompt": "听字母名称，选出对应字母。", "audioAssetId": "unit01_L105_0", "options": ["字母 L", "字母 B"], "correctOptionId": "option_0" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "再听一个字母名称，选出对应字母。", "audioAssetId": "unit01_L105_2", "options": ["字母 I", "字母 E"], "correctOptionId": "option_0" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "再听一个字母名称，选出对应字母。", "audioAssetId": "unit01_L105_3", "options": ["字母 N", "字母 I"], "correctOptionId": "option_0" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "再听一个字母名称，选出对应字母。", "audioAssetId": "unit01_L105_4", "options": ["字母 L", "字母 B"], "correctOptionId": "option_1" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "再听一个字母名称，选出对应字母。", "audioAssetId": "unit01_L105_1", "options": ["字母 E", "字母 B"], "correctOptionId": "option_0" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "听两个姓名，按先后顺序选择。", "audioAssetId": "unit01_L105_7", "options": ["Lin → Ben", "Ben → Lin"], "correctOptionId": "option_0" },
+        { "type": "listening_choice", "stage": "independent", "prompt": "听逐个读出的字母，选择姓名拼写。", "audioAssetId": "unit01_L105_6", "options": ["B-E-N", "L-I-N"], "correctOptionId": "option_0" },
+        { "type": "independent_output", "stage": "independent", "prompt": "照着示范，把姓名 Lin 按顺序写成英文字母。可以用短横线分开。", "scenario": "固定姓名 Lin 的文字拼写练习。", "targetMeaning": "按顺序写出 L、I、N。", "responseModes": ["text"], "acceptedAnswers": ["LIN", "L-I-N", "L I N"] },
+        { "type": "independent_output", "stage": "independent", "prompt": "照着示范，把姓名 Ben 按顺序写成英文字母。可以用短横线分开。", "scenario": "固定姓名 Ben 的文字拼写练习。", "targetMeaning": "按顺序写出 B、E、N。", "responseModes": ["text"], "acceptedAnswers": ["BEN", "B-E-N", "B E N"] }
+      ],
+      "reviewActivityIds": ["L105_A09", "L105_A10"]
+    }
+  ]
+}

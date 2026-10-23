@@ -1,0 +1,36 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto');
+const {createIllustrationReview}=require('./services/illustration-review');
+const shared=require('./services/illustration-review-catalog');
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'illustration-catalog-'));
+const write=(relative,value)=>{const file=path.join(temp,relative);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,Buffer.isBuffer(value)?value:JSON.stringify(value));return file;};
+const bytes=Buffer.from('RIFF0000WEBPfixture'),sha=crypto.createHash('sha256').update(bytes).digest('hex');
+const asset={assetId:'sha256:'+sha,path:'assets/fixture.webp',sha256:sha,bytes:bytes.length,width:512,height:288,objectKey:'vocabulary/'+sha+'.webp'};
+const courses=['primary-pep-grade3-upper-fixture','people-grade7-upper-fixture'];
+const catalog={format:'vocabulary-illustration-catalog',schemaVersion:1,assets:[asset],aliases:{[asset.path]:asset.assetId},bindings:courses.map((course,index)=>({sourceKey:course+'/unit1/one',course,unit:'unit1',itemId:'one',word:'book',meaning:'书',assetId:asset.assetId,path:asset.path,stage:index?'junior':'primary',styleReference:'fixture',report:'fixture',review:'pass'}))};
+const catalogFile=write('output/vocabulary-illustrations/catalog-20261022-reviewed-v1.json',catalog),storePath=path.join(temp,'reviews.sqlite');
+write(asset.path,bytes);
+write('output/textbook-extractions/'+courses[0]+'/extracted-vocabulary.json',{textbook:{grade:'三年级',volume:'上册',series:'PEP',coverApprovalYear:2024}});
+write('output/textbook-extractions/'+courses[1]+'/extracted-vocabulary.json',{edition:{titleZh:'英语 七年级上册'}});
+write('output/textbook-extractions/highschool-pep-required1-2019-20261016/unit1-illustrations/batch-01-atlas.json',{unit:'Unit 1',items:[{itemId:'one',headword:'book',meaning:'书',delivery:asset.path}]});
+let service=createIllustrationReview({appRoot:temp,storePath});
+try{
+ assert.equal(service.courses().length,3);assert.deepEqual(new Set(service.courses().map(c=>c.stage)),new Set(['primary','junior','senior']));
+ assert.equal(service.book(courses[0]).title,'三年级 上册 PEP 2024');
+ let item=service.book(courses[0]).items[0];assert.equal(item.review.status,'approved');assert.equal(item.review.revision,0);
+ assert.equal(service.book('highschool-pep-required1-2019-20261016').items[0].review.status,'pending');
+ const change=(status,row=item)=>({itemId:row.itemId,version:row.version,baseRevision:row.review.revision,status});
+ service.save(courses[0],{changes:[{...change('changes'),reason:'图片场景需修改'}]});
+ assert.equal(service.book(courses[0]).items[0].review.status,'changes');assert.equal(service.book(courses[1]).items[0].review.status,'approved','sharing an image does not spread a course-specific issue');
+ assert.equal(shared.applyReviewOverrides(catalog,storePath).bindings[0].review,'issue','production reads the same review conclusion');
+ assert.equal(catalog.bindings[0].review,'pass','source catalog remains unchanged');
+ assert.throws(()=>service.save(courses[0],{changes:[change('approved')]}),e=>e.status===409);
+ service.close();service=createIllustrationReview({appRoot:temp,storePath});item=service.book(courses[0]).items[0];
+ assert.equal(item.history.length,1);service.save(courses[0],{changes:[change('pending')]});assert.equal(shared.applyReviewOverrides(catalog,storePath).bindings[0].review,'pending','explicit reset overrides an inherited approval');
+ item=service.book(courses[0]).items[0];service.save(courses[0],{changes:[change('approved')]});
+ const oldVersion=item.version;catalog.bindings[0].meaning='图书';write(path.relative(temp,catalogFile),catalog);
+ const changedMeaning=service.book(courses[0]).items[0];assert.notEqual(changedMeaning.version,oldVersion);assert.equal(changedMeaning.review.revision,0);assert.equal(changedMeaning.history.length,3);
+ write(asset.path,Buffer.from('RIFF0000WEBPchanged'));const stale=service.book(courses[0]).items[0];assert.equal(stale.review.status,'pending');assert.ok(stale.checks.some(c=>c.includes('摘要')));assert.throws(()=>service.save(courses[0],{changes:[change('approved',stale)]}),/文件问题/);
+ assert.throws(()=>service.book('../'),e=>e.status===404);
+ console.log('Unified course stages, inherited approvals, persistent overrides, production gates, version invalidation and legacy coexistence passed.');
+}finally{service.close();assert.equal(path.dirname(temp),os.tmpdir());assert.ok(path.basename(temp).startsWith('illustration-catalog-'));fs.rmSync(temp,{recursive:true,force:true});}

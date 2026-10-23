@@ -3,7 +3,8 @@ const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypt
 const Database=require('better-sqlite3');
 const fail=(message,status=422)=>Object.assign(new Error(message),{status});
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
-function createIllustrationReview({appRoot,storePath}){
+const shared=require('./illustration-review-catalog');
+function createIllustrationReview({appRoot,storePath,catalogFile=shared.defaultCatalog(appRoot)}){
  let db;
  function store(){
   if(db)return db;
@@ -13,8 +14,9 @@ function createIllustrationReview({appRoot,storePath}){
    CREATE TABLE IF NOT EXISTS cursor(course TEXT PRIMARY KEY,item TEXT NOT NULL);`);return db;
  }
  function courses(){
-  const root=path.join(appRoot,'output/textbook-extractions');if(!fs.existsSync(root))return [];
-  return fs.readdirSync(root,{withFileTypes:true}).filter(d=>d.isDirectory()&&/^highschool-pep-required[123]-2019-20261016$/.test(d.name)).map(d=>({id:d.name,title:'人教版高中英语 · 必修第'+({'1':'一','2':'二','3':'三'}[d.name.match(/required(\d)/)[1]])+'册（2019）'}));
+  const root=path.join(appRoot,'output/textbook-extractions'),catalog=shared.readCatalog(catalogFile),catalogRows=shared.catalogCourses(appRoot,catalog);
+  const highschool=fs.existsSync(root)?fs.readdirSync(root,{withFileTypes:true}).filter(d=>d.isDirectory()&&/^highschool-pep-required[123]-2019-20261016$/.test(d.name)).map(d=>({id:d.name,title:'人教版高中英语 · 必修第'+({'1':'一','2':'二','3':'三'}[d.name.match(/required(\d)/)[1]])+'册（2019）',stage:'senior',source:'legacy-highschool'})):[];
+  return [...catalogRows,...highschool.filter(c=>!catalogRows.some(row=>row.id===c.id))];
  }
  function contained(relative){
   if(typeof relative!=='string'||!relative.startsWith('assets/')||!relative.endsWith('.webp')||relative.includes('..'))return null;
@@ -22,6 +24,7 @@ function createIllustrationReview({appRoot,storePath}){
  }
  function load(course){
   const info=courses().find(c=>c.id===course);if(!info)throw fail('找不到这本教材',404);
+  if(info.source==='shared-catalog')return shared.catalogBook(appRoot,shared.readCatalog(catalogFile),course);
   const root=path.join(appRoot,'output/textbook-extractions',course),rows=new Map();
   const glossPath=path.join(root,'source-glosses-v3.json');
   const glosses=fs.existsSync(glossPath)?JSON.parse(fs.readFileSync(glossPath,'utf8')):null;
@@ -62,7 +65,7 @@ function createIllustrationReview({appRoot,storePath}){
  }
  function book(course){
   const result=load(course),database=store();
-  result.items=result.items.map(item=>{const review=database.prepare('SELECT * FROM reviews WHERE course=? AND item=? AND version=?').get(course,item.itemId,item.version);const history=database.prepare('SELECT version,payload FROM history WHERE course=? AND item=? ORDER BY id DESC LIMIT 20').all(course,item.itemId).map(r=>JSON.parse(r.payload));return {...item,review:review||{revision:0,status:'pending',note:'',reason:'',meaning:''},history};});
+  result.items=result.items.map(item=>{const review=database.prepare('SELECT * FROM reviews WHERE course=? AND item=? AND version=?').get(course,item.itemId,item.version);const history=database.prepare('SELECT version,payload FROM history WHERE course=? AND item=? ORDER BY id DESC LIMIT 20').all(course,item.itemId).map(r=>JSON.parse(r.payload));return {...item,review:review||item.inheritedReview||{revision:0,status:'pending',note:'',reason:'',meaning:''},history};});
   result.cursor=database.prepare('SELECT item FROM cursor WHERE course=?').get(course)?.item||null;return result;
  }
  function save(course,input){

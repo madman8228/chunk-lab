@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#d8edf6"><title>表达课程学习</title><link rel="stylesheet" href="assets/expression-course.css"><link rel="stylesheet" href="assets/chunk-selection.css"></head>
+<body><header class="topbar"><a class="brand" href="/main.html?view=home">jqka.top</a><nav aria-label="主导航"><a href="/main.html?view=home">首页</a><a href="/main.html?view=my-learning">我的内容</a><a href="/main.html?view=discover">发现</a><a href="/stats.html">学习记录</a></nav></header>
+<main class="workspace" id="expressionLearning">
+  <a class="back-link" href="/main.html?view=my-learning"><span aria-hidden="true">←</span> 返回课程</a>
+  <section class="course-opening" aria-labelledby="courseTitle">
+    <div class="opening-copy"><div id="courseLabels" hidden><span>零基础入门</span><span>系统听力与口语表达</span><small id="courseDuration"></small></div><h1 id="courseTitle">表达课程</h1><p id="courseIntro" class="muted">正在读取课程…</p><div id="overviewProgress" hidden><div class="overview-progress-label"><span>总学习进度</span><strong id="overviewProgressText"></strong></div><progress id="overviewProgressBar" max="100" value="0" aria-label="课程总学习进度"></progress></div></div>
+    <div class="overview-actions"><button id="startButton" class="button button-primary" hidden>开始学习</button><button id="reviewWrongUnits" class="button button-secondary" hidden>复习错题</button><p id="wrongReviewHelp" hidden>按单元重新练习，历史答题记录保留。</p></div>
+  </section>
+  <section id="courseDirectory" class="expression-directory" hidden aria-labelledby="directoryTitle"><h2 id="directoryTitle">课程单元</h2><p id="directorySummary" class="muted"></p><div class="unit-controls"><input id="unitSearch" type="search" placeholder="搜索单元名称或学习目标" aria-label="搜索课程单元"><div id="unitFilters" role="group" aria-label="单元完成状态"><button type="button" data-filter="all" aria-pressed="true">全部</button><button type="button" data-filter="unfinished" aria-pressed="false">未完成</button><button type="button" data-filter="completed" aria-pressed="false">已完成</button></div></div><div id="lessonCards" class="expression-lesson-grid"></div><p id="unitEmpty" hidden>没有符合条件的单元，请调整搜索或筛选。</p></section>
+  <section id="dueReviews" class="due-reviews" hidden aria-label="到期复习"><h2>到期复习</h2><div id="dueReviewList"></div></section>
+  <section id="activityCard" class="activity-card" hidden aria-live="polite">
+    <div class="progress-head"><span id="progressLabel"></span><progress id="progressBar" max="1" value="0"></progress></div>
+    <div id="activityBody"></div><div id="activityActions" class="actions"></div>
+  </section>
+  <p id="courseStatus" class="status" role="status" aria-live="polite"></p>
+  <button id="retryCourse" class="button button-secondary" hidden>重新加载课程</button>
+</main><link rel="stylesheet" href="assets/lesson-card.css"><script src="js/lesson-card.js"></script><script src="js/course-covers.js"></script><script src="js/account-storage.js"></script><script src="api.js"></script><script src="js/course-return.js"></script><script src="js/page-update.js"></script><script type="module" src="js/expression-course-player.js"></script></body></html>

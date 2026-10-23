@@ -25,7 +25,7 @@ const os = require('os');
 const path = require('path');
 
 const SERVER_DIR = __dirname;
-const PORT = 8813;
+const PORT = require('../e2e/lib/free-port').freePort(11800, 100);
 const BASE = 'http://127.0.0.1:' + PORT;
 const TMP_DB = path.join(os.tmpdir(), 'chunklab-syncdelta-' + Date.now());
 const DB_FILE = path.join(TMP_DB, 'chunklab.db');

@@ -9,7 +9,7 @@ async function main(){
  const sandbox={URL,URLSearchParams,Map,Object,Promise,location:{href:'http://test.invalid/main.html?view=home',search:'?view=home'},
   history:{pushState(){}},navigator:{onLine:true},setTimeout:()=>1,clearTimeout(){},
   addEventListener:(name,fn)=>{events[name]=fn;},AccountStorage:{owner:'synthetic',assertCurrent(){}},
-  ChunkAPI:{getToken:()=> 'synthetic',getBase:()=>'',request:()=>personal},
+  ChunkAPI:{getToken:()=> 'synthetic',getBase:()=>'',request:url=>url==='/api/course-library'?Promise.resolve({courses:[]}):personal},
   LearningWorkspace:{resourcesFromCatalog:()=>[],normalizeResource:r=>r},
   LearningWorkspaceView:{render:(_,data)=>renders.push(data)},
   LearningWorkspaceStore:{read:async()=>({projected:{}})},ServerCache:{read:async()=>({snapshot:{mem:{}}})}};

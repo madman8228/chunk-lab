@@ -4,6 +4,7 @@ export class MembershipClient {
   start(input) { return this.request('/api/learning-sessions/start', { method: 'POST', body: JSON.stringify(input), timeoutMs: 8000 }); }
   startAssessment(input) { return this.request('/api/protected-assessments/start', { method: 'POST', body: JSON.stringify(input), timeoutMs: 8000 }); }
   contentGrant(input) { return this.request('/api/learning-sessions/content-grant', { method: 'POST', body: JSON.stringify(input), timeoutMs: 8000 }); }
+  previewGrant(input) { return this.request('/api/course-content/preview-grant', { method: 'POST', body: JSON.stringify(input), timeoutMs: 8000 }); }
   action(sessionId, sequence, action) {
     return this.request('/api/learning-sessions/' + encodeURIComponent(sessionId) + '/' + action,
       { method: 'POST', body: JSON.stringify({ sequence }), timeoutMs: 8000 });

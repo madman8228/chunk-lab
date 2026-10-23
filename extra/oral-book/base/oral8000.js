@@ -2838,16 +2838,17 @@ window.DATA_ORAL8000 = [
     sentence: "How old are you?",
     cid: "4d62bdfa",
     translation: "你多大了？",
-    chunks: ["How old are you?"],
-    hints: ["你多大了？"],
+    chunks: ["How old","are you?"],
+    hints: ["多大","你呢？"],
     grammar: [
-      {role:'固定年龄问句',color:'#c87033',phonetic:['/haʊ/','/oʊld/','/ɑːr/','/juː/'],pos:'How old are you?',meaning:'你多大了？'}
+      {role:'疑问词+形容词',color:'#c87033',phonetic:['/haʊ/','/oʊld/'],pos:'询问年龄',meaning:'多大'},
+      {role:'系动词+主语',color:'#c87033',phonetic:['/ɑːr/','/juː/'],pos:'倒装问句',meaning:'你呢'}
     ],
     explanations: [
       "问年龄固定用 `How old`。常见错误：\n• \"How age are you?\" → 错，age 是名词不能这样问\n• \"What old are you?\" → 疑问词用 How",
       "`are you` 是主谓倒装。常见错误：\n• \"How old you are?\" → 语序没倒装，这种语序只用在宾语从句里（I know how old you are.）"
     ],
-    distractors: [["How age are you?","What old are you?","How old you are?"]]
+    distractors: [["How age","What old","How older"],["you are?","are your?","do you?"]]
   },
   {
     sentence: "Twenty something.",
@@ -4286,7 +4287,7 @@ window.DATA_ORAL8000 = [
       "祈使句用动词原形，主语 you 不出现。对比 `wash up`：warm water 洗手洗脸，clean up 更泛。"
     ],
     distractors: [["Come","Get","Come on"],["cleans up.","clean on.","clean out."]]
-  },
+  },
   {
     sentence: "Go wash up.",
     cid: "2684aa5f",
@@ -4302,7 +4303,7 @@ window.DATA_ORAL8000 = [
       "与 `clean up` 的区别：wash up 专指用水洗，clean up 泛指收拾弄干净。"
     ],
     distractors: [["Come","Get","Come in"],["washes up.","wash it up.","wash out."]]
-  },
+  },
   {
     sentence: "Rinse your mouth.",
     cid: "c0af9f50",
@@ -4318,7 +4319,7 @@ window.DATA_ORAL8000 = [
       "用漱口水则是 `rinse with mouthwash`，漱口水这个词本身是 mouthwash。"
     ],
     distractors: [["Rinse out","Wash","Clean out"],["your mouths.","you mouth.","your mouthing."]]
-  },
+  },
   {
     sentence: "Rinse out your mouth.",
     cid: "5d687bf0",
@@ -4334,7 +4335,7 @@ window.DATA_ORAL8000 = [
       "对比 `rinse`：加 out 有「冲干净」的结果意味；宾语是代词时要说 rinse it out。"
     ],
     distractors: [["Rinse of","Rinsing out","Rinse from"],["your mouths.","you mouth.","your mouth out."]]
-  },
+  },
   {
     sentence: "Gargle with water.",
     cid: "3c1a2036",
@@ -4350,7 +4351,7 @@ window.DATA_ORAL8000 = [
       "常见搭配：gargle with salt water（用盐水漱口），嗓子疼时常说。"
     ],
     distractors: [["Gargles","Swallow","Gargle out"],["with a water.","with waters.","by water."]]
-  },
+  },
   {
     sentence: "Rinse it.",
     cid: "af665333",
@@ -4366,7 +4367,7 @@ window.DATA_ORAL8000 = [
       "代词作宾语放动词后：rinse it / rinse them，不能先说 it。"
     ],
     distractors: [["Rinses","Rinsing","Rinse from"],["them.","its.","it is."]]
-  },
+  },
   {
     sentence: "Take a shower.",
     cid: "b9c23335",
@@ -4382,7 +4383,7 @@ window.DATA_ORAL8000 = [
       "同义：have a shower（英式更常用）。"
     ],
     distractors: [["Make a","Take the","Have the"],["show.","showers.","showering."]]
-  },
+  },
   {
     sentence: "Dry your hands.",
     cid: "73504ae3",
@@ -4398,7 +4399,7 @@ window.DATA_ORAL8000 = [
       "同类：dry your hair（擦干头发）/ dry the clothes（晾干衣服）。"
     ],
     distractors: [["Dries","Drying","Dry up"],["your hand.","you hands.","your hands of."]]
-  },
+  },
   {
     sentence: "Go to the bathroom.",
     cid: "54764003",
@@ -4414,7 +4415,7 @@ window.DATA_ORAL8000 = [
       "委婉说法：use the restroom / go to the loo / excuse me for a moment。"
     ],
     distractors: [["Go in","Go at","Go for"],["the bath.","a bathroom.","the bathrooms."]]
-  },
+  },
   {
     sentence: "Have some tea.",
     cid: "edb7eb4b",
@@ -4430,7 +4431,7 @@ window.DATA_ORAL8000 = [
       "同类：have some coffee / have some juice；「来杯茶」也可说 have a cup of tea。"
     ],
     distractors: [["Have any","Eat some","Having some"],["teas.","tea is.","the tea of."]]
-  },
+  },
   {
     sentence: "Get out of bed.",
     cid: "e0bd95bb",
@@ -4446,7 +4447,7 @@ window.DATA_ORAL8000 = [
       "同义：get up。区别：get up 还可表站起来，get out of bed 只指离开床。"
     ],
     distractors: [["Get out from","Get off of","Get up of"],["the bed.","a bed.","beds."]]
-  },
+  },
   {
     sentence: "Get dressed.",
     cid: "e082afdd",
@@ -4462,7 +4463,7 @@ window.DATA_ORAL8000 = [
       "反义：get undressed（脱衣服）；换衣服说 get changed。"
     ],
     distractors: [["Get in","Be","Get on"],["dress.","dressing.","dresses."]]
-  },
+  },
   {
     sentence: "Let's go downstairs.",
     cid: "e31c936a",
@@ -4478,7 +4479,7 @@ window.DATA_ORAL8000 = [
       "`downstairs` 是副词，前面不加介词：go downstairs（不说 go to downstairs）。反义 upstairs。"
     ],
     distractors: [["Let's going","Let us to go","Let go"],["to downstairs.","downstair.","the downstairs."]]
-  },
+  },
   {
     sentence: "Eat something.",
     cid: "e01f814d",
@@ -4494,7 +4495,7 @@ window.DATA_ORAL8000 = [
       "同类：have something to eat、grab a bite（随便吃点）。"
     ],
     distractors: [["Eats","Eating","Have eat"],["anything.","somethings.","some thing."]]
-  },
+  },
   {
     sentence: "Come to dinner.",
     cid: "8c2306cc",
@@ -4510,7 +4511,7 @@ window.DATA_ORAL8000 = [
       "同类：come to lunch / come to breakfast；请客说 come for dinner 也常见。"
     ],
     distractors: [["Come in","Come at","Come for to"],["the dinner.","a dinner.","dinners."]]
-  },
+  },
   {
     sentence: "Get off your phone.",
     cid: "0f6c6eb5",
@@ -4526,7 +4527,7 @@ window.DATA_ORAL8000 = [
       "同类说法：Put your phone down. / Get off the screen."
     ],
     distractors: [["Get out","Get on","Get from"],["you phone.","your phones.","your phone of."]]
-  },
+  },
   {
     sentence: "It's getting cold.",
     cid: "9425b8e6",
@@ -4542,7 +4543,7 @@ window.DATA_ORAL8000 = [
       "指饭菜或天气都用 it：It's getting cold. Let's eat.（要凉了，吃吧）"
     ],
     distractors: [["It's get","It getting","It's got"],["colder of.","coldly.","the cold."]]
-  },
+  },
   {
     sentence: "Warm it up first.",
     cid: "39241d16",
@@ -4558,7 +4559,7 @@ window.DATA_ORAL8000 = [
       "同类：heat it up / pop it in the microwave。"
     ],
     distractors: [["Warm up it","Warmer it up","Warm it from"],["the first.","firstly.","at first."]]
-  },
+  },
   {
     sentence: "Get some fresh air.",
     cid: "a78144bd",
@@ -4574,7 +4575,7 @@ window.DATA_ORAL8000 = [
       "同类：take a walk / get some sun，都属「出门活动」这一族。"
     ],
     distractors: [["Get a","Get any","Got some"],["fresh airs.","fresh the air.","freshly air."]]
-  },
+  },
   {
     sentence: "Get some sun.",
     cid: "8c273747",
@@ -4590,7 +4591,7 @@ window.DATA_ORAL8000 = [
       "相关：get some sunshine（更强调暖阳）、get a tan（晒黑）。"
     ],
     distractors: [["Get a","Got some","Get any"],["suns.","the sun of.","son."]]
-  },
+  },
   {
     sentence: "I'm heading out the door.",
     cid: "a80cfc73",
@@ -4606,7 +4607,7 @@ window.DATA_ORAL8000 = [
       "家人告别常说：I'm heading out! 对方回 Have a good one!（路上顺利）"
     ],
     distractors: [["I heading out","I'm heading of","I'm head out"],["a door.","the doors.","the door out."]]
-  },
+  },
   {
     sentence: "Get some groceries.",
     cid: "1381b0a8",
@@ -4622,7 +4623,7 @@ window.DATA_ORAL8000 = [
       "美式也说 get some food / pick up some stuff；英式常说 do the shopping。"
     ],
     distractors: [["Get a","Get any","Got some"],["grocery.","grocerys.","the groceries of."]]
-  },
+  },
   {
     sentence: "The sun's out.",
     cid: "d463d7c2",
@@ -4638,7 +4639,7 @@ window.DATA_ORAL8000 = [
       "同类：The moon's out. / The stars are out."
     ],
     distractors: [["The sun","The sunny","The sun is of"],["out of.","outs.","outing."]]
-  },
+  },
   {
     sentence: "Take a walk.",
     cid: "d1fa43d8",
@@ -4653,7 +4654,7 @@ window.DATA_ORAL8000 = [
       "同义：go for a walk / take a stroll（更悠闲）。"
     ],
     distractors: [["take a walking.","take walk.","make a walk."]]
-  },
+  },
   {
     sentence: "It's raining.",
     cid: "c9dfafd6",
@@ -4668,7 +4669,7 @@ window.DATA_ORAL8000 = [
       "相关：It's pouring.（下大雨）/ It's drizzling.（下毛毛雨）"
     ],
     distractors: [["It's snowing.","It's pouring.","It's sunny."]]
-  },
+  },
   {
     sentence: "It's getting windy.",
     cid: "6db16bc7",
@@ -4683,7 +4684,7 @@ window.DATA_ORAL8000 = [
       "同类天气变化：It's getting cloudy / foggy / chilly."
     ],
     distractors: [["It's getting cloudy.","It's getting warmer.","It's getting dark."]]
-  },
+  },
   {
     sentence: "Order some food.",
     cid: "f82f8fcf",
@@ -4699,7 +4700,7 @@ window.DATA_ORAL8000 = [
       "外卖：order in / order takeout；堂食点餐：order from the menu。"
     ],
     distractors: [["Order a","Order any","Buy for some"],["foods.","the food of.","feed."]]
-  },
+  },
   {
     sentence: "Set the table.",
     cid: "14713e06",
@@ -4715,7 +4716,7 @@ window.DATA_ORAL8000 = [
       "相关：clear the table（收拾桌子）/ do the dishes（洗碗）。"
     ],
     distractors: [["Sets","Sit","Setting"],["the tables.","a table.","the table up."]]
-  },
+  },
   {
     sentence: "Stand up.",
     cid: "de31c7f6",
@@ -4731,7 +4732,7 @@ window.DATA_ORAL8000 = [
       "对比 `get up`：get up 还能表起床，stand up 只指站起来。"
     ],
     distractors: [["Stands","Sit","Standing"],["upstairs.","down.","over."]]
-  },
+  },
   {
     sentence: "Sit down.",
     cid: "25f410a9",
@@ -4747,7 +4748,7 @@ window.DATA_ORAL8000 = [
       "更客气：Have a seat. / Please, take a seat."
     ],
     distractors: [["Sits","Stand","Sitting"],["upstairs.","up.","over."]]
-  },
+  },
   {
     sentence: "I'll have a burger.",
     cid: "a08f34b7",
@@ -4763,7 +4764,7 @@ window.DATA_ORAL8000 = [
       "同类：I'll take the soup. / I'll go with the salad."
     ],
     distractors: [["I have","I'll having","I would had"],["the burger.","burger.","a burgers."]]
-  },
+  },
   {
     sentence: "That's everything.",
     cid: "81e9a11f",
@@ -4779,7 +4780,7 @@ window.DATA_ORAL8000 = [
       "同类收尾语：That's it. / That's all for now."
     ],
     distractors: [["That","These","That is of"],["anything.","everythings.","all thing."]]
-  },
+  },
   {
     sentence: "Get in the car.",
     cid: "867d1dff",
@@ -4795,7 +4796,7 @@ window.DATA_ORAL8000 = [
       "对比：get in the car / get on the bus / get on the plane。"
     ],
     distractors: [["Get on","Get at","Get of"],["the cars.","a car.","the car of."]]
-  },
+  },
   {
     sentence: "Get on the plane.",
     cid: "284f75cd",
@@ -4811,7 +4812,7 @@ window.DATA_ORAL8000 = [
       "下机：get off the plane。"
     ],
     distractors: [["Get in","Get at","Get of"],["the planes.","a plane.","the plane of."]]
-  },
+  },
   {
     sentence: "Be careful.",
     cid: "14d3f87e",
@@ -4827,7 +4828,7 @@ window.DATA_ORAL8000 = [
       "加限定：Be careful with the knife.（用刀当心）/ Be careful out there."
     ],
     distractors: [["Are","Being","Was"],["carefully.","care.","cares."]]
-  },
+  },
   {
     sentence: "Don't fall down.",
     cid: "5b99a19c",
@@ -4843,7 +4844,7 @@ window.DATA_ORAL8000 = [
       "`fall down` 指摔倒、跌落；从某物上掉下来用 fall off（fall off the bike）。"
     ],
     distractors: [["Doesn't","No","Not"],["falls down.","fell down.","fall on."]]
-  },
+  },
   {
     sentence: "Hold on.",
     cid: "4436b78d",
@@ -4857,7 +4858,7 @@ window.DATA_ORAL8000 = [
       "`hold on` 有两义：① 抓紧 ② 等一下（打电话时最常听）。常见错误：\n• \"Hold on to\" 后面要接宾语（hold on to the rail）\n• \"Hold up\" 也可表等等，但「抓紧」只用 hold on。电话里听到 Hold on, please. 就是「请稍等」。"
     ],
     distractors: [["Hold off.","Holds on.","Hold up."]]
-  },
+  },
   {
     sentence: "Let go.",
     cid: "2d1e7fe6",
@@ -4872,7 +4873,7 @@ window.DATA_ORAL8000 = [
       "`let go` = 松手、放手，是固定搭配，中间不加 to。常见错误：\n• \"Let to go\" → let 后接动词原形\n• \"Let go it\" → 要说 let it go，代词夹在中间",
       "引申义：Let it go.（放下吧、别纠结了）"
     ],
-  },
+  },
   {
     sentence: "Turn around.",
     cid: "f090a897",
@@ -4888,7 +4889,7 @@ window.DATA_ORAL8000 = [
       "相关：turn left / turn right（转弯）；turn back（往回走）。"
     ],
     distractors: [["Turns","Turning","Turn to"],["around of.","round of.","arounds."]]
-  },
+  },
   {
     sentence: "Back away.",
     cid: "dfc5d91e",
@@ -4904,7 +4905,7 @@ window.DATA_ORAL8000 = [
       "更急的说法：Get back!（退后！）"
     ],
     distractors: [["Backs","Backing","Back of"],["away from.","out.","off."]]
-  },
+  },
   {
     sentence: "Don't stare.",
     cid: "0718c5bc",
@@ -4920,7 +4921,7 @@ window.DATA_ORAL8000 = [
       "提醒别人时可以说：Don't stare, it's rude."
     ],
     distractors: [["Doesn't","Not","No"],["stares.","staring.","stare at."]]
-  },
+  },
   {
     sentence: "Close your eyes.",
     cid: "a11e56c2",
@@ -4936,7 +4937,7 @@ window.DATA_ORAL8000 = [
       "相关：open your eyes（睁开眼）/ cover your eyes（捂住眼睛）"
     ],
     distractors: [["Closes","Closing","Open"],["your eye.","you eyes.","your eyes of."]]
-  },
+  },
   {
     sentence: "Blow your nose.",
     cid: "40fa1f77",
@@ -4952,7 +4953,7 @@ window.DATA_ORAL8000 = [
       "相关：a runny nose（流鼻涕）/ a stuffy nose（鼻塞）"
     ],
     distractors: [["Blows","Blowing","Blow out"],["your nose's.","you nose.","your nose is."]]
-  },
+  },
   {
     sentence: "I sneezed.",
     cid: "ad88d5dc",
@@ -4968,7 +4969,7 @@ window.DATA_ORAL8000 = [
       "别人打喷嚏后说 Bless you!，回一句 Thank you. 就行。"
     ],
     distractors: [["Me","My","I've"],["sneezes.","sneezing.","sneeze."]]
-  },
+  },
   {
     sentence: "I need help.",
     cid: "1792dc97",
@@ -4984,7 +4985,7 @@ window.DATA_ORAL8000 = [
       "更礼貌：Could you help me? / I need some assistance."
     ],
     distractors: [["I wants","I am need","I needs"],["helps.","a help.","helper."]]
-  },
+  },
   {
     sentence: "Are you sick?",
     cid: "45ae00d9",
@@ -5000,7 +5001,7 @@ window.DATA_ORAL8000 = [
       "关心两句：Are you feeling okay? / You look pale."
     ],
     distractors: [["Is you","Are your","Do you"],["sickly?","tired?","sad?"]]
-  },
+  },
   {
     sentence: "Take some medicine.",
     cid: "dc756c88",
@@ -5016,7 +5017,7 @@ window.DATA_ORAL8000 = [
       "相关：take a pill（吃一片药）/ take it twice a day（一天吃两次）"
     ],
     distractors: [["Eat some","Take a","Takes some"],["medicines.","a medicine.","medical."]]
-  },
+  },
   {
     sentence: "Where does it hurt?",
     cid: "7fdbc9e4",
@@ -5032,7 +5033,7 @@ window.DATA_ORAL8000 = [
       "医生还会问：Does it hurt here?（这里疼吗）"
     ],
     distractors: [["What","When","Which"],["do it hurt?","does it hurts?","is it hurt?"]]
-  },
+  },
   {
     sentence: "Is it your stomach?",
     cid: "9dd8fc89",
@@ -5048,7 +5049,7 @@ window.DATA_ORAL8000 = [
       "相关部位：chest（胸口）/ throat（喉咙）/ back（背）"
     ],
     distractors: [["Are it","Is your","Does it"],["your stomachs?","you stomach?","your stomach ache?"]]
-  },
+  },
   {
     sentence: "Take a rest.",
     cid: "0d637f69",
@@ -5063,7 +5064,7 @@ window.DATA_ORAL8000 = [
       "相关：get some rest（好好休息）/ rest up（充分休息）"
     ],
     distractors: [["Take rest.","Do a rest.","Make a rest."]]
-  },
+  },
   {
     sentence: "Have some water.",
     cid: "f863d500",
@@ -5079,7 +5080,7 @@ window.DATA_ORAL8000 = [
       "相关：drink plenty of water（多喝水）/ stay hydrated"
     ],
     distractors: [["Have any","Eat some","Having some"],["waters.","a water.","water is."]]
-  },
+  },
   {
     sentence: "Lie down.",
     cid: "6c5b5c7b",
@@ -5094,7 +5095,7 @@ window.DATA_ORAL8000 = [
       "相关：lie on the bed（躺在床上）/ lie still（躺着别动）"
     ],
     distractors: [["Lay down you.","Lies down.","Lying down."]]
-  },
+  },
   {
     sentence: "Just relax.",
     cid: "45b93a39",
@@ -5110,7 +5111,7 @@ window.DATA_ORAL8000 = [
       "安慰别人：Take it easy. / Relax, it's fine. / Just breathe."
     ],
     distractors: [["Only","Just be","Very"],["relaxing.","relaxes.","relaxed."]]
-  },
+  },
   {
     sentence: "Your fever broke.",
     cid: "978cb905",
@@ -5126,7 +5127,7 @@ window.DATA_ORAL8000 = [
       "退烧药是 a fever reducer；量体温是 take your temperature。"
     ],
     distractors: [["You fever","Your fevers","Your fever is"],["breaks.","breaked.","broken."]]
-  },
+  },
   {
     sentence: "I still have a little cough.",
     cid: "381f72db",
@@ -5142,7 +5143,7 @@ window.DATA_ORAL8000 = [
       "相关：have a cold（感冒）/ have a runny nose（流鼻涕）/ have a sore throat（嗓子疼）"
     ],
     distractors: [["I still has","I have still","I'm still have"],["a little coughs.","little cough.","a cough little."]]
-  },
+  },
   {
     sentence: "What size are you?",
     cid: "0d6e7a1e",
@@ -5157,7 +5158,7 @@ window.DATA_ORAL8000 = [
       "回答：I'm a medium. / I wear a size 8."
     ],
     distractors: [["What size you are?","How size are you?","What sizes are you?"]]
-  },
+  },
   {
     sentence: "Just pick out anything.",
     cid: "ce389d98",
@@ -5173,7 +5174,7 @@ window.DATA_ORAL8000 = [
       "同类：Choose whichever you like. / Take your pick."
     ],
     distractors: [["Pick up out","Just pick of","Just picks out"],["something.","anythings.","anything is."]]
-  },
+  },
   {
     sentence: "Put it on.",
     cid: "6a78132a",
@@ -5189,7 +5190,7 @@ window.DATA_ORAL8000 = [
       "反义：take it off（脱下来）。"
     ],
     distractors: [["Put on it","Putting it on","Put it of"],["off.","in.","up."]]
-  },
+  },
   {
     sentence: "Take it off.",
     cid: "2b8d1614",
@@ -5205,7 +5206,7 @@ window.DATA_ORAL8000 = [
       "反义：put it on（穿上）。"
     ],
     distractors: [["Take off it","Taking it off","Take it of"],["on.","in.","out."]]
-  },
+  },
   {
     sentence: "It doesn't fit.",
     cid: "2bfa5969",
@@ -5221,7 +5222,7 @@ window.DATA_ORAL8000 = [
       "相关：It fits perfectly.（正合适）/ It fits like a glove."
     ],
     distractors: [["It don't","It isn't","They doesn't"],["fits.","fitting.","fit on."]]
-  },
+  },
   {
     sentence: "Can I return it?",
     cid: "433047e6",
@@ -5237,7 +5238,7 @@ window.DATA_ORAL8000 = [
       "相关：exchange it（换货）/ get a refund（退款）"
     ],
     distractors: [["Can I do","Could I to","Can me"],["returning it?","return it back?","return of it?"]]
-  },
+  },
   {
     sentence: "What's your number?",
     cid: "cd3e07aa",
@@ -5251,7 +5252,7 @@ window.DATA_ORAL8000 = [
       "问电话号码、房号都用这句。常见错误：\n• \"What your number?\" → 漏了 's\n• 口语里 What's 的 /ts/ 与后面的 your 连读\n更礼貌：Could I get your number?"
     ],
     distractors: [["What are your number?","What your number?","How's your number?"]]
-  },
+  },
   {
     sentence: "Pick up the phone.",
     cid: "31d5d360",
@@ -5267,7 +5268,7 @@ window.DATA_ORAL8000 = [
       "相关：hang up（挂电话）/ put the phone down（放下电话）"
     ],
     distractors: [["Pick on","Picking up","Pick of"],["the phones.","a phone.","the phone up."]]
-  },
+  },
   {
     sentence: "Stop calling me.",
     cid: "2a729d81",
@@ -5283,7 +5284,7 @@ window.DATA_ORAL8000 = [
       "想更坚决：Don't call me again."
     ],
     distractors: [["Stops","Stopping","Stop to"],["call me.","to call me.","calling my."]]
-  },
+  },
   {
     sentence: "Ma'am, you called us.",
     cid: "6592bb2c",
@@ -5299,7 +5300,7 @@ window.DATA_ORAL8000 = [
       "男性对应 Sir；服务场景常见：Sir, you dropped your card."
     ],
     distractors: [["Mam,","Maams,","Mister,"],["you call us.","you called we.","you called ours."]]
-  },
+  },
   {
     sentence: "Why didn't you wake me?",
     cid: "319a8e05",
@@ -5315,7 +5316,7 @@ window.DATA_ORAL8000 = [
       "相关：wake me up（把我叫醒，代词夹中间）/ wake up（自己醒来）"
     ],
     distractors: [["Why you didn't","Why don't you","Why didn't not"],["woke me?","waking me?","wake up me?"]]
-  },
+  },
   {
     sentence: "I overslept.",
     cid: "85c69d3a",
@@ -5331,7 +5332,7 @@ window.DATA_ORAL8000 = [
       "相关：I slept in.（我睡了个懒觉）/ I didn't hear my alarm."
     ],
     distractors: [["Me","My","I've"],["oversleeps.","oversleep.","oversleeping."]]
-  },
+  },
   {
     sentence: "What time will you finish?",
     cid: "b4cd5f6b",
@@ -5347,7 +5348,7 @@ window.DATA_ORAL8000 = [
       "回答模板：I'll finish at two.（我两点结束）"
     ],
     distractors: [["What times","Which time","How time"],["you will finish?","will you finishes?","do you will finish?"]]
-  },
+  },
   {
     sentence: "I'll finish at two.",
     cid: "9a127097",
@@ -5363,7 +5364,7 @@ window.DATA_ORAL8000 = [
       "相关：at noon（中午）/ at half past two（两点半）"
     ],
     distractors: [["I finish","I'll finishing","I will finished"],["in two.","on two.","at the two."]]
-  },
+  },
   {
     sentence: "Let's hang out.",
     cid: "01b8d6e2",
@@ -5379,7 +5380,7 @@ window.DATA_ORAL8000 = [
       "更随意：Wanna hang out? / Hang out sometime?"
     ],
     distractors: [["Let is","Let us to","Let's to"],["hangs out.","hanging out.","hang on."]]
-  },
+  },
   {
     sentence: "I'm coming to get you.",
     cid: "46bc4117",
@@ -5395,7 +5396,7 @@ window.DATA_ORAL8000 = [
       "相关：I'll pick you up at seven.（我七点来接你）"
     ],
     distractors: [["I coming","I'm come","I've coming"],["to get yours.","for get you.","to getting you."]]
-  },
+  },
   {
     sentence: "Lend me 10 bucks.",
     cid: "9187c8c7",
@@ -5411,7 +5412,7 @@ window.DATA_ORAL8000 = [
       "还钱时说：I'll pay you back."
     ],
     distractors: [["Borrow me","Lends me","Lend to me"],["10 buck.","ten bucks of.","10 bucks to."]]
-  },
+  },
   {
     sentence: "I want my money.",
     cid: "fc023e5e",
@@ -5427,7 +5428,7 @@ window.DATA_ORAL8000 = [
       "相关：I need it back.（我得把钱要回来）"
     ],
     distractors: [["I wants","I wanting","Me want"],["my moneys.","mine money.","my monies."]]
-  },
+  },
   {
     sentence: "Are you angry?",
     cid: "db59a3b8",
@@ -5443,7 +5444,7 @@ window.DATA_ORAL8000 = [
       "程度递进：annoyed（有点烦）< angry < furious（暴怒）"
     ],
     distractors: [["Is you","Are your","Do you"],["anger?","angrily?","angry with?"]]
-  },
+  },
   {
     sentence: "Of course not.",
     cid: "85acd6c2",
@@ -5459,7 +5460,7 @@ window.DATA_ORAL8000 = [
       "相关：Not at all. / Absolutely not.（语气更强）"
     ],
     distractors: [["Of the course","On course","Of cause"],["no.","none.","not to."]]
-  },
+  },
   {
     sentence: "I'm shocked!",
     cid: "8a621293",
@@ -5475,7 +5476,7 @@ window.DATA_ORAL8000 = [
       "同类：I'm surprised.（惊讶）/ I'm stunned.（惊呆了）"
     ],
     distractors: [["I","I've","Me"],["shocking.","shock.","shocks."]]
-  },
+  },
   {
     sentence: "I'm offended.",
     cid: "6ba05043",
@@ -5491,7 +5492,7 @@ window.DATA_ORAL8000 = [
       "相关：That's offensive.（那话很冒犯）/ No offense.（无意冒犯）"
     ],
     distractors: [["I","I've","Me"],["offending.","offense.","offend."]]
-  },
+  },
   {
     sentence: "Don't be sad.",
     cid: "6010cb80",
@@ -5507,7 +5508,7 @@ window.DATA_ORAL8000 = [
       "相关安慰语：Cheer up. / It's okay. / I'm here for you."
     ],
     distractors: [["Doesn't","Not be","No"],["sadly.","sadness.","sading."]]
-  },
+  },
   {
     sentence: "Get yourself together.",
     cid: "ac89bfd8",
@@ -5523,7 +5524,7 @@ window.DATA_ORAL8000 = [
       "更常用：Pull yourself together. / Get a grip."
     ],
     distractors: [["Get you","Getting yourself","Get your"],["togetherness.","togather.","to gather."]]
-  },
+  },
   {
     sentence: "Great job.",
     cid: "8ec45499",
@@ -5539,7 +5540,7 @@ window.DATA_ORAL8000 = [
       "同类：Nice work. / Well done. / Good for you."
     ],
     distractors: [["Greatly","Greater","Greeting"],["jop.","job's.","jobb."]]
-  },
+  },
   {
     sentence: "You're right.",
     cid: "0f9b4d48",
@@ -5555,7 +5556,7 @@ window.DATA_ORAL8000 = [
       "相关：That's right.（没错）/ You've got a point."
     ],
     distractors: [["Your","You","Yours"],["wright.","rite.","rights."]]
-  },
+  },
   {
     sentence: "You look great today.",
     cid: "734357e7",
@@ -5571,7 +5572,7 @@ window.DATA_ORAL8000 = [
       "相关：You look tired.（你看起来很累）/ You look nice today."
     ],
     distractors: [["You looks","You looking","You are look"],["greatly today.","great to day.","great todays."]]
-  },
+  },
   {
     sentence: "I got enough sleep.",
     cid: "4aeb9a71",
@@ -5587,7 +5588,7 @@ window.DATA_ORAL8000 = [
       "相关：I didn't get much sleep.（我没睡够）/ I'm well rested."
     ],
     distractors: [["I get","I'm got","I gotten"],["enough sleeps.","enough sleeping.","sleep enough."]]
-  },
+  },
   {
     sentence: "Make your bed.",
     cid: "830c8e09",
@@ -5603,7 +5604,7 @@ window.DATA_ORAL8000 = [
       "相关：make the bed（铺床）/ change the sheets（换床单）"
     ],
     distractors: [["Makes","Making","Make of"],["your beds.","you bed.","your bed is."]]
-  },
+  },
   {
     sentence: "My alarm's set.",
     cid: "f830f35a",
@@ -5619,7 +5620,7 @@ window.DATA_ORAL8000 = [
       "相关：set an alarm（定个闹钟）/ My alarm went off.（闹钟响了）"
     ],
     distractors: [["My alarm","My alarms is","My alarm is of"],["sets.","setting.","sit."]]
-  },
+  },
   {
     sentence: "Sleep in.",
     cid: "31bd739b",
@@ -5635,7 +5636,7 @@ window.DATA_ORAL8000 = [
       "相关：stay in bed（赖床不起）/ oversleep（睡过头，带责备意味）"
     ],
     distractors: [["Sleeps","Sleeping","Slept"],["out.","on.","over."]]
-  },
+  },
   {
     sentence: "Read a book.",
     cid: "623c5d57",
@@ -5651,7 +5652,7 @@ window.DATA_ORAL8000 = [
       "相关：read to me（读给我听）/ read aloud（朗读）"
     ],
     distractors: [["Reads","Reading","Reader"],["a books.","book.","a book of."]]
-  },
+  },
   {
     sentence: "Your room's messy.",
     cid: "0e10399e",
@@ -5667,7 +5668,7 @@ window.DATA_ORAL8000 = [
       "相关：tidy up your room（把房间收拾整齐）/ a mess（一团乱）"
     ],
     distractors: [["Your rooming","You room's","Your room is of"],["mess.","messily.","messes."]]
-  },
+  },
   {
     sentence: "Clean your room.",
     cid: "e808c2e2",
@@ -5683,7 +5684,7 @@ window.DATA_ORAL8000 = [
       "相关：tidy up（收拾整齐）/ do the cleaning（打扫卫生）"
     ],
     distractors: [["Cleans","Cleaning","Cleaner"],["your rooms.","you room.","your room is."]]
-  },
+  },
   {
     sentence: "Put on some music.",
     cid: "f256951c",
@@ -5699,7 +5700,7 @@ window.DATA_ORAL8000 = [
       "相关：play some music / turn up the music（把音乐调大）"
     ],
     distractors: [["Put in","Putting on","Put of"],["some musics.","the music.","some musician."]]
-  },
+  },
   {
     sentence: "Smell some flowers.",
     cid: "60c46056",
@@ -5715,7 +5716,7 @@ window.DATA_ORAL8000 = [
       "相关：take a deep breath（深呼吸）/ stop and smell the roses（享受生活）"
     ],
     distractors: [["Smells some","Smelling some","Smell of"],["flower.","flowers's.","flour."]]
-  },
+  },
   {
     sentence: "Have a glass of wine.",
     cid: "e5ed7518",
@@ -5731,7 +5732,7 @@ window.DATA_ORAL8000 = [
       "相关：a cup of tea（一杯茶）/ a bottle of beer（一瓶啤酒）"
     ],
     distractors: [["Have a glass","Have the glass of","Having a glass of"],["wines.","wine is.","win."]]
-  },
+  },
   {
     sentence: "Have some nice food.",
     cid: "264a3504",
@@ -5747,7 +5748,7 @@ window.DATA_ORAL8000 = [
       "相关：treat yourself（犒劳一下自己）/ have a nice meal"
     ],
     distractors: [["Have a","Have any","Had some"],["foods.","the food of.","nice foods."]]
-  },
+  },
   {
     sentence: "Let me hug you.",
     cid: "77eefd93",
@@ -5763,7 +5764,7 @@ window.DATA_ORAL8000 = [
       "相关：Give me a hug.（抱一下）/ Can I hug you?"
     ],
     distractors: [["Let I","Letting me","Let me to"],["hug yours.","hugging you.","to hug you."]]
-  },
+  },
   {
     sentence: "Get off of me.",
     cid: "2d1602f3",
@@ -5779,7 +5780,7 @@ window.DATA_ORAL8000 = [
       "相关：Let go of me.（放开我）/ Hands off!（别碰）"
     ],
     distractors: [["Get out of","Get of","Getting off of"],["us.","him.","them."]]
-  },
+  },
   {
     sentence: "Come in.",
     cid: "6de68bea",
@@ -5809,7 +5810,7 @@ window.DATA_ORAL8000 = [
       "相关：lock up（把门窗锁好再走）/ unlock the door（开锁）"
     ],
     distractors: [["Locks","Locking","Locker"],["the doors.","a door.","the door of."]]
-  },
+  },
   {
     sentence: "Don't mix them up.",
     cid: "34b89c56",
@@ -5825,7 +5826,7 @@ window.DATA_ORAL8000 = [
       "相关：I always mix them up.（我总分不清）/ tell them apart（把它们区分开）"
     ],
     distractors: [["Doesn't mix","Don't mix up","No mix"],["they up.","them on.","ups them."]]
-  },
+  },
   {
     sentence: "Sort them out.",
     cid: "f15b18c1",
@@ -5841,7 +5842,7 @@ window.DATA_ORAL8000 = [
       "相关：figure it out（弄明白）/ work it out（解决）"
     ],
     distractors: [["Sorts","Sorting","Sorted"],["they out.","them off.","out them."]]
-  },
+  },
   {
     sentence: "Keep it.",
     cid: "bbb7bec1",
@@ -5857,7 +5858,7 @@ window.DATA_ORAL8000 = [
       "相关：It's yours.（给你了）/ Keep the change.（零钱不用找了）"
     ],
     distractors: [["Keeps","Keeping","Keep of"],["them.","its.","it is."]]
-  },
+  },
   {
     sentence: "Throw it out.",
     cid: "b2294826",
@@ -5873,7 +5874,7 @@ window.DATA_ORAL8000 = [
       "相关：take out the trash（倒垃圾）/ get rid of it（处理掉它）"
     ],
     distractors: [["Throw out it","Throwing it out","Throw it of"],["of.","out to.","out off."]]
-  },
+  },
   {
     sentence: "Turn on the lights.",
     cid: "c7ea95cd",
@@ -5889,7 +5890,7 @@ window.DATA_ORAL8000 = [
       "相关：turn off the lights（关灯）/ switch on（偏英式）"
     ],
     distractors: [["Turn in","Turning on","Turn of"],["the lights of.","a lights.","the lights on."]]
-  },
+  },
   {
     sentence: "The power's out.",
     cid: "78e4af03",
@@ -5905,7 +5906,7 @@ window.DATA_ORAL8000 = [
       "相关：a power outage（停电）/ The lights went out.（灯灭了）"
     ],
     distractors: [["The power","The powers is","The power is of"],["off.","down.","over."]]
-  },
+  },
   {
     sentence: "Mop the floor.",
     cid: "fb98228c",
@@ -5921,7 +5922,7 @@ window.DATA_ORAL8000 = [
       "相关：sweep the floor（扫地）/ vacuum the carpet（吸地毯）"
     ],
     distractors: [["Mops","Mopping","Map"],["the floors.","a floor.","the floor of."]]
-  },
+  },
   {
     sentence: "Do the dishes!",
     cid: "70c23bb5",
@@ -5937,7 +5938,7 @@ window.DATA_ORAL8000 = [
       "相关：do the laundry（洗衣服）/ do the cooking（做饭）"
     ],
     distractors: [["Does","Doing","Done"],["the dish.","a dishes.","the dishes of."]]
-  },
+  },
   {
     sentence: "Put it up.",
     cid: "fab59b9a",
@@ -5953,7 +5954,7 @@ window.DATA_ORAL8000 = [
       "反义：take it down（拿下来）。"
     ],
     distractors: [["Put up it","Putting it up","Put it of"],["in.","on.","over."]]
-  },
+  },
   {
     sentence: "Take it down.",
     cid: "7389fce9",
@@ -5969,7 +5970,7 @@ window.DATA_ORAL8000 = [
       "反义：put it up（挂上去）。"
     ],
     distractors: [["Take down it","Taking it down","Take it of"],["up.","over.","aside."]]
-  },
+  },
   {
     sentence: "Climb up.",
     cid: "b070daa7",
@@ -5985,7 +5986,7 @@ window.DATA_ORAL8000 = [
       "相关：climb over（爬过去）/ climb in（爬进来）"
     ],
     distractors: [["Climbs","Climbing","Climbed"],["upstairs.","over.","down the."]]
-  },
+  },
   {
     sentence: "Climb down.",
     cid: "b0bc4558",
@@ -6001,7 +6002,7 @@ window.DATA_ORAL8000 = [
       "相关：get down（下来）/ come down（下来）"
     ],
     distractors: [["Climbs","Climbing","Climbed"],["upstairs.","over.","up the."]]
-  },
+  },
   {
     sentence: "Do the laundry.",
     cid: "83eb9b90",
@@ -6017,7 +6018,7 @@ window.DATA_ORAL8000 = [
       "相关：do the dishes（洗碗）/ hang the laundry（晾衣服）"
     ],
     distractors: [["Does","Doing","Done"],["the laundrys.","a laundry.","the laundry of."]]
-  },
+  },
   {
     sentence: "Water the plants.",
     cid: "f1c0fcfb",
@@ -6033,7 +6034,7 @@ window.DATA_ORAL8000 = [
       "相关：feed the dog（喂狗）/ walk the dog（遛狗）"
     ],
     distractors: [["Waters","Watering","Watered"],["the plants of.","a plants.","plans."]]
-  },
+  },
   {
     sentence: "Take it out.",
     cid: "a36e08cb",
@@ -6049,7 +6050,7 @@ window.DATA_ORAL8000 = [
       "反义：put it back（放回去）。"
     ],
     distractors: [["Take out it","Taking it out","Take it of"],["in.","up.","off."]]
-  },
+  },
   {
     sentence: "Put it back.",
     cid: "a73bf6b4",
@@ -6065,7 +6066,7 @@ window.DATA_ORAL8000 = [
       "相关：put it away（收起来）/ return it（归还）"
     ],
     distractors: [["Put back it","Putting it back","Put it of"],["front.","down.","of."]]
-  },
+  },
   {
     sentence: "Don't fall asleep.",
     cid: "97500516",
@@ -6081,7 +6082,7 @@ window.DATA_ORAL8000 = [
       "相关：stay awake（保持清醒）/ I nodded off.（我打瞌睡了）"
     ],
     distractors: [["Doesn't fall","Don't fall to","No fall"],["sleep.","sleeping.","sleepy."]]
-  },
+  },
   {
     sentence: "Don't stay up.",
     cid: "0da18463",
@@ -6097,7 +6098,7 @@ window.DATA_ORAL8000 = [
       "相关：pull an all-nighter（通宵）/ get an early night（早点睡）"
     ],
     distractors: [["Doesn't stay","Don't stay to","No stay"],["out.","in.","down."]]
-  },
+  },
   {
     sentence: "I had a nightmare.",
     cid: "bb4458df",
@@ -6113,7 +6114,7 @@ window.DATA_ORAL8000 = [
       "相关：a bad dream（也行）/ a sweet dream（好梦）"
     ],
     distractors: [["I have","I'm had","I had got"],["a nightmares.","nightmare.","a night mare."]]
-  },
+  },
   {
     sentence: "Go to bed early.",
     cid: "95169b06",
@@ -6129,7 +6130,7 @@ window.DATA_ORAL8000 = [
       "相关：get an early night（早点睡）/ stay up late（熬夜）"
     ],
     distractors: [["Go to the bed","Go to bed to","Going to bed"],["late.","earlier.","earliest."]]
-  },
+  },
   {
     sentence: "Give me a thumbs up.",
     cid: "1bcdc1c7",
@@ -6145,7 +6146,7 @@ window.DATA_ORAL8000 = [
       "反义：a thumbs down（表示反对）"
     ],
     distractors: [["Give me to","Giving me","Give I"],["a thumb up.","a thumbs-ups.","thumb ups."]]
-  },
+  },
   {
     sentence: "We have more like this.",
     cid: "2dc7b93b",
@@ -6177,7 +6178,7 @@ window.DATA_ORAL8000 = [
       "`another half an hour` = 再半个小时，口语常缩成 another half hour（美式）。"
     ],
     distractors: [["I want stay in bed","I want to staying in bed","I want to stay on bed"],["for other half an hour.","for another half a hour.","of another half an hour."]]
-  },
+  },
   {
     sentence: "It's time to get up!",
     cid: "f19ef7b9",
@@ -6193,7 +6194,7 @@ window.DATA_ORAL8000 = [
       "对比 `It's time for bed.`（该睡了）：for + 名词 / to + 动词原形。"
     ],
     distractors: [["It's time for","It time","It's the time"],["to got up.","to get on.","to getting up."]]
-  },
+  },
   {
     sentence: "Let me sleep for ten minutes.",
     cid: "3db64270",
@@ -6209,7 +6210,7 @@ window.DATA_ORAL8000 = [
       "`for ten minutes` 用 for 表示持续时长，ten 后面 minutes 要用复数。"
     ],
     distractors: [["Let me sleeping","Let me to sleep","Let I sleep"],["for ten minute.","in ten minutes.","for ten minites."]]
-  },
+  },
   {
     sentence: "When do you get up on Saturday?",
     cid: "4bc148af",
@@ -6227,7 +6228,7 @@ window.DATA_ORAL8000 = [
       "`on Saturday` 指（这个）星期六；泛指每个周六用 on Saturdays，星期前一律用 on，不用 in/at。"
     ],
     distractors: [["When does you","When are you","When you"],["gets up","getting up","get on"],["in Saturday?","at Saturday?","on the Saturday?"]]
-  },
+  },
   {
     sentence: "Get up soon.",
     cid: "d8351b8f",
@@ -6243,7 +6244,7 @@ window.DATA_ORAL8000 = [
       "`soon` 表「尽早、快点」，语气比 immediately 缓和，妈妈叫孩子起床常用。"
     ],
     distractors: [["Get on","Got up","Get up to"],["later.","soonest.","more soon."]]
-  },
+  },
   {
     sentence: "I usually sleep late on Saturday.",
     cid: "615604c4",
@@ -6259,7 +6260,7 @@ window.DATA_ORAL8000 = [
       "频度副词 usually 放在实义动词 sleep 之前。"
     ],
     distractors: [["I usual sleep late","I usually sleeps late","I usually sleep lately"],["in Saturday.","at Saturday.","on the Saturday."]]
-  },
+  },
   {
     sentence: "I don't want to get up.",
     cid: "ad376550",
@@ -6275,7 +6276,7 @@ window.DATA_ORAL8000 = [
       "口语里常弱读成 I don' wanna get up。"
     ],
     distractors: [["I doesn't want","I don't wants","I not want"],["to get on.","to got up.","for get up."]]
-  },
+  },
   {
     sentence: "Are you awake?",
     cid: "83b90662",
@@ -6291,7 +6292,7 @@ window.DATA_ORAL8000 = [
       "对比 `Are you up?`（你起来了吗）：awake 指醒着，up 指已下床。"
     ],
     distractors: [["Do you","Is you","Are your"],["wake?","awaked?","waking?"]]
-  },
+  },
   {
     sentence: "It's too early for getting up.",
     cid: "2601c5bd",
@@ -6307,7 +6308,7 @@ window.DATA_ORAL8000 = [
       "口语里更常说 It's too early to get up，用不定式更简练。"
     ],
     distractors: [["It's too earlier","It's so much early","It's very too early"],["to getting up.","for get up.","for getting on."]]
-  },
+  },
   {
     sentence: "It's still early.",
     cid: "a155ee83",
@@ -6323,7 +6324,7 @@ window.DATA_ORAL8000 = [
       "对比 `It's already late.`（已经很晚了）：still 强调延续，already 强调完成。"
     ],
     distractors: [["It's still yet","It's yet","It's ever"],["earlier.","late.","so early."]]
-  },
+  },
   {
     sentence: "Why didn't the alarm go off?",
     cid: "3cfec5e3",
@@ -6339,7 +6340,7 @@ window.DATA_ORAL8000 = [
       "对比 `set the alarm`（设闹钟）/ `the alarm went off`（闹钟响了）。"
     ],
     distractors: [["Why the alarm didn't","Why didn't the alarms","Why does the alarm didn't"],["go on?","go out?","went off?"]]
-  },
+  },
   {
     sentence: "Did you hear the alarm?",
     cid: "27b1176e",
@@ -6355,7 +6356,7 @@ window.DATA_ORAL8000 = [
       "`hear` 强调「听见」（结果），`listen to` 强调「听」（动作）。"
     ],
     distractors: [["Did you heard","Did you hearing","Does you hear"],["the alarms?","the alarming?","a alarming?"]]
-  },
+  },
   {
     sentence: "I've been dreaming all night.",
     cid: "7d234a10",
@@ -6371,7 +6372,7 @@ window.DATA_ORAL8000 = [
       "`all night` 指整晚；想说「熬夜」是 stay up all night。"
     ],
     distractors: [["I've been dreamed","I've dreaming","I was been dreaming"],["all the night.","all nights.","whole night."]]
-  },
+  },
   {
     sentence: "I feel dizzy.",
     cid: "0307af34",
@@ -6387,7 +6388,7 @@ window.DATA_ORAL8000 = [
       "同类表达：I feel light-headed.（我觉得头晕）"
     ],
     distractors: [["I feeling","I'm feel","I feels"],["dizzily.","dizziness.","dizzying."]]
-  },
+  },
   {
     sentence: "Is David up yet?",
     cid: "a5e554a7",
@@ -6403,7 +6404,7 @@ window.DATA_ORAL8000 = [
       "`yet` 在疑问句里表示「（到目前）已经」，回答用 Not yet.（还没）。"
     ],
     distractors: [["Does David up","Has David up","Is David up to"],["already?","even?","soon?"]]
-  },
+  },
   {
     sentence: "He is still in bed.",
     cid: "4778de8a",
@@ -6419,7 +6420,7 @@ window.DATA_ORAL8000 = [
       "`still` 放在 be 动词后，表示状态延续：He is still in bed = 他还没起来。"
     ],
     distractors: [["He still is","He is yet","He is till"],["on bed.","at bed.","into bed."]]
-  },
+  },
   {
     sentence: "When did you go to bed last night?",
     cid: "2bb9dcf0",
@@ -6435,7 +6436,7 @@ window.DATA_ORAL8000 = [
       "对比 `go to sleep`（入睡）：go to bed 是上床，go to sleep 是睡着。"
     ],
     distractors: [["When you did go to bed","When did you went to bed","When did you go to the bed"],["in last night?","on last night?","at last night?"]]
-  },
+  },
   {
     sentence: "When did you fall asleep?",
     cid: "5c36ca37",
@@ -6451,7 +6452,7 @@ window.DATA_ORAL8000 = [
       "对比 `fall asleep`（睡着）/ `be asleep`（处于睡眠状态）。"
     ],
     distractors: [["When you did","When does you","When did your"],["fell asleep?","fall sleep?","fall a sleep?"]]
-  },
+  },
   {
     sentence: "I never get up early.",
     cid: "fe96fbbe",
@@ -6467,7 +6468,7 @@ window.DATA_ORAL8000 = [
       "never 是频度副词，位置在实义动词之前、be 动词之后。"
     ],
     distractors: [["I never gets up","I don't never get up","I never getting up"],["earlier.","late.","soon."]]
-  },
+  },
   {
     sentence: "I have trouble waking up in the morning.",
     cid: "9fa6d5b3",
@@ -6485,7 +6486,7 @@ window.DATA_ORAL8000 = [
       "`in the morning` 是「在早上」的固定说法，泛指时段用 in the + 名词，不用 on/at。"
     ],
     distractors: [["I have troubles","I have a trouble","I am trouble"],["to wake up","wake up","woke up"],["on the morning.","in morning.","at the morning."]]
-  },
+  },
   {
     sentence: "What should I wear?",
     cid: "7533e2a5",
@@ -6501,7 +6502,7 @@ window.DATA_ORAL8000 = [
       "`wear` 强调「穿着」的状态；`put on` 强调「穿上」的动作。"
     ],
     distractors: [["What should I wearing","What I should","What do I should"],["to wear?","wear on?","wear it?"]]
-  },
+  },
   {
     sentence: "Fold up your bedding.",
     cid: "4af03e2d",
@@ -6517,7 +6518,7 @@ window.DATA_ORAL8000 = [
       "`bedding` 是不可数名词，指「被褥床品」，不加 -s。"
     ],
     distractors: [["Fold on","Folding up","Folded up"],["you bedding.","your beddings.","your beding."]]
-  },
+  },
   {
     sentence: "Who's that woman you were talking to?",
     cid: "46893aac",
@@ -6533,7 +6534,7 @@ window.DATA_ORAL8000 = [
       "定语从句里介词 to 留在句尾：the woman (that) you were talking to。"
     ],
     distractors: [["Who that woman","Who's that women","Whose that woman"],["you was talking to?","you were talked to?","you talking to?"]]
-  },
+  },
   {
     sentence: "Why would I need that?",
     cid: "18e9ee1b",
@@ -6549,7 +6550,7 @@ window.DATA_ORAL8000 = [
       "这类 would 用于表达「假设/反问」，不是将来时。"
     ],
     distractors: [["Why will","Why are","Why would me"],["I needed that?","I need this?","me need that?"]]
-  },
+  },
   {
     sentence: "I'm not gonna talk about Judy.",
     cid: "7bec57ab",
@@ -6565,7 +6566,7 @@ window.DATA_ORAL8000 = [
       "`talk about sth` 谈某事；`talk to sb` 跟某人说话。"
     ],
     distractors: [["I not gonna","I'm not going talk","I'm no gonna"],["talking about Judy.","talk about Judys.","talked about Judy."]]
-  },
+  },
   {
     sentence: "I think you do.",
     cid: "efcd6d0e",
@@ -6581,7 +6582,7 @@ window.DATA_ORAL8000 = [
       "这种 `do` 叫代动词（pro-verb），避免重复上文动词：I think you do = I think you do have it."
     ],
     distractors: [["I thinking","I thinks","I am think"],["you does.","you doing.","you will."]]
-  },
+  },
   {
     sentence: "I don't give a shit.",
     cid: "96d9409c",
@@ -6597,7 +6598,7 @@ window.DATA_ORAL8000 = [
       "语域警告：这是粗话，正式场合与陌生人勿用；礼貌说法是 I don't care. / It doesn't bother me."
     ],
     distractors: [["I doesn't","I not","I don't gives"],["care a shit.","give the shit.","giving a shit."]]
-  },
+  },
   {
     sentence: "I was sitting next to her on the plane.",
     cid: "3aa31e0a",
@@ -6613,7 +6614,7 @@ window.DATA_ORAL8000 = [
       "`on the plane` 指在飞机上；注意 train/bus 也用 on。"
     ],
     distractors: [["I was sitting next her","I was sat next to her","I were sitting next to her"],["in the plane.","on plane.","at the plane."]]
-  },
+  },
   {
     sentence: "I thought she said something to me.",
     cid: "307d29b1",
@@ -6631,7 +6632,7 @@ window.DATA_ORAL8000 = [
       "`I thought ...` 用过去时表示「我（原）以为」，常暗含事实上并非如此。"
     ],
     distractors: [["I think","I was thought","I thought that"],["she says something","she say something","she said anything"],["for me.","on me.","in me."]]
-  },
+  },
   {
     sentence: "You would be the last person I'd want to see.",
     cid: "de8bc536",
@@ -6647,7 +6648,7 @@ window.DATA_ORAL8000 = [
       "这种 last 表「最不可能的」，语气很强：you'd be the last person = 最不想见的就是你。"
     ],
     distractors: [["You will be the last person","You would be the last people","You would the last person"],["I want to see.","I'd want to saw.","I'd wanted to see."]]
-  },
+  },
   {
     sentence: "Yeah, maybe run into her at the gym.",
     cid: "c1caeb1d",

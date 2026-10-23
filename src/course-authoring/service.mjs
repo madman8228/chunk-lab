@@ -6,6 +6,13 @@ import { convertLegacyAiCourse } from './legacy-conversion.mjs';
 import { CourseTypeCatalog } from './course-types.mjs';
 import { composeMistakePrompt } from '../mistake-review/prompt-composer.mjs';
 
+function rebaseCourseIds(value, sourceId, targetId) {
+  if (typeof value === 'string') return sourceId && (value === sourceId || value.startsWith(sourceId + ':')) ? targetId + value.slice(sourceId.length) : value;
+  if (Array.isArray(value)) return value.map(item => rebaseCourseIds(item, sourceId, targetId));
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, rebaseCourseIds(item, sourceId, targetId)]));
+}
+
 export class CourseAuthoringService {
   constructor({ sessionRepository, courseGateway, schemaValidator, promptComposer, draftValidator, compiler, imageDraftValidator = null, imageCompiler = null, imageFileReader = null, imageBundleCodec = null, imagePackageAdapter = null, io, scopeGuard, now = Date.now }) {
     this.sessionRepository = sessionRepository;
@@ -203,7 +210,15 @@ export class CourseAuthoringService {
         : await this.courseGateway.saveSentenceCourse(courseToSave, snapshot.identity);
       this.scopeGuard.assert(snapshot.identity);
       const latest = await this.#load(sessionId);
-      return this.#save(new AuthoringSession(latest).transition('saveSucceeded', { saveReceipt: { ...receipt, savedAt: this.now() }, lastError: null }));
+      const savedCourse = receipt.storageKind === 'personal-course'
+        ? { ...rebaseCourseIds(courseToSave, receipt.sourceCourseId, receipt.contentId), id: receipt.contentId,
+          ...(courseToSave.courseId ? { courseId: receipt.contentId } : {}),
+          authoring: { ...(courseToSave.authoring || {}), courseLibrary: { courseId: receipt.contentId, releaseId: receipt.releaseId } } }
+        : courseToSave;
+      return this.#save(new AuthoringSession(latest).transition('saveSucceeded', {
+        ...(receipt.storageKind === 'personal-course' ? { courseId: receipt.contentId, compiledCourse: savedCourse } : {}),
+        saveReceipt: { ...receipt, savedAt: this.now() }, lastError: null
+      }));
     }).catch(async (error) => {
       const latest = await this.#load(sessionId);
       if (latest.stage === 'saving') await this.#save(new AuthoringSession(latest).transition('saveFailed', { lastError: error.message }));
@@ -242,7 +257,9 @@ export class CourseAuthoringService {
   async getLaunchUrl(sessionId) {
     const snapshot = await this.#load(sessionId);
     const receipt = snapshot.saveReceipt || await this.courseGateway.getLaunchReceipt(snapshot.courseId, snapshot.identity);
-    return receipt.storageKind === 'story-package'
+    return receipt.storageKind === 'personal-course'
+      ? `main.html?personalCourse=${encodeURIComponent(receipt.contentId)}`
+      : receipt.storageKind === 'story-package'
       ? `courses.html?id=${encodeURIComponent(receipt.contentId)}&catalogCourse=${encodeURIComponent(receipt.catalogCourseId)}&catalogLesson=${encodeURIComponent(receipt.lessonId)}`
       : `main.html?course=${encodeURIComponent(receipt.catalogCourseId)}&lesson=${encodeURIComponent(receipt.lessonId)}`;
   }

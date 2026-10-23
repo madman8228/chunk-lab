@@ -19,7 +19,8 @@ async function main() {
     document:{documentElement:{style:{}}},setTimeout(){},addEventListener(){},
     fetch:async(_url,options)=>{
       sent = options.headers.Authorization === 'Bearer '+token(1);
-      return {status:200,ok:true,text:async()=>JSON.stringify({seq:239,delta:false,mem:{decks:[{id:'account1-course'}]}})};
+      const uid=JSON.parse(Buffer.from(options.headers.Authorization.slice('Bearer '.length).split('.')[1],'base64url').toString()).uid;
+      return {status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?String(uid):null},text:async()=>JSON.stringify({seq:239,delta:false,mem:{decks:[{id:'account1-course'}]}})};
     }
   };
   context.window=context;
@@ -40,7 +41,7 @@ async function main() {
   values.set('chunklab_token',token(27));
   vm.runInContext(fs.readFileSync('js/account-storage.js','utf8'),context);
   assert.equal(JSON.parse(context.AccountStorage.owner)[1],'27');
-  context.fetch=async()=>({status:200,ok:true,text:async()=>'{"seq":30}'});
+  context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'27':null},text:async()=>'{"seq":30}'});
   assert.equal((await context.ChunkAPI.getData()).seq,30);
   assert.equal(values.get('irreplaceable-course-marker'),'original');
   // A base mirror conflict is rejected just like a token conflict.

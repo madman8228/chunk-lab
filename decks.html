@@ -13,6 +13,9 @@
 <title>课程管理 · Chunk Lab</title>
 <link rel="canonical" href="https://jqka.top/decks.html">
 <link rel="stylesheet" href="assets/lesson-card.css">
+<link rel="stylesheet" href="assets/course-directory.css?v=ai-pill-20261023">
+<script src="js/page-update.js" defer></script>
+<script src="js/course-directory.js"></script>
 <script src="js/lesson-card.js"></script>
 <style>
 :root{--bg:#f4f2ee;--surface:#fffdfa;--surface-2:#f9f7f3;--border:#dedbd4;--border-strong:#c8c2b8;--text:#202326;--muted:#5f5c55;--faint:#6b6861;--accent:#2c62c9;--accent-soft:#e8efff;--ok:#1c7050;--ok-soft:#e8f5ee;--bad:#b6483e;--bad-soft:#f7eae8;--warn:#965a06;--shadow:0 1px 2px rgba(46,43,37,.06),0 6px 24px -12px rgba(46,43,37,.18)}
@@ -48,8 +51,11 @@ html,body{height:100%;overflow:hidden}
 .btn.sm{padding:3px 10px;font-size:12.5px}
 .btn.ghost{border-color:transparent;background:transparent}
 .btn.ghost:hover{background:var(--surface-2)}
-.catalog-back-button{min-height:44px;padding:3px 0;border:0;border-radius:0;background:none;box-shadow:none;color:var(--muted);font:inherit;font-size:12.5px;text-decoration:none;cursor:pointer}
-.catalog-back-button:hover,.catalog-back-button:active{background:none;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.catalog-back-button{min-height:32px;padding:5px 12px;border:1px solid rgba(255,255,255,.65);border-radius:20px;background:rgba(255,253,247,.85);box-shadow:none;color:var(--muted);font:inherit;font-size:12px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.catalog-back-button::before{content:'←';margin-right:5px}
+.catalog-back-button:hover,.catalog-back-button:active{background:#fffdf7;color:var(--accent);text-decoration:none}
+#deckPageTitle:not(.hidden){display:flex;align-items:center;gap:12px;font-size:13px;line-height:1.5;font-weight:600;margin:0}
+#deckPageTitle:not(.hidden)::before{content:'/';color:var(--muted);font-size:15px;font-weight:400}
 .catalog-back-button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .hidden{display:none !important}
 .pill{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:#eef1f6;color:var(--muted)}
@@ -406,7 +412,7 @@ textarea{outline:none;resize:vertical}
       </nav>
       <span class="spacer"></span>
       <div class="course-header-actions">
-        <a class="btn sm secondary" href="course-create.html" aria-label="用 AI 制作课程" title="用 AI 制作课程">AI 制作</a>
+        <a class="btn sm secondary catalog-ai-create" href="course-create.html" aria-label="用 AI 制作课程" title="用 AI 制作课程"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 3 1.9 5.1L17 10l-5.1 1.9L10 17l-1.9-5.1L3 10l5.1-1.9L10 3Z"/><path d="m19 14 1.1 2.9L23 18l-2.9 1.1L19 22l-1.1-2.9L15 18l2.9-1.1L19 14Z"/></svg><span>AI 制作</span></a>
         <button type="button" class="btn sm primary hidden" id="btnImportDecks" aria-label="导入课程" title="导入课程">＋</button>
       </div>
     </div>
@@ -739,7 +745,6 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/course-progress.js"></script>
 <script src="js/main-deck-progress.js"></script>
 <script src="js/course-enrollment.js"></script>
-<script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/core-identity.js"></script>
 <script src="js/core-merge.js"></script>
@@ -754,6 +759,7 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 <script src="js/core-runtime.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
+<script src="js/content-repository.js"></script>
 <script src="js/server-cache.js"></script>
 <script src="js/server-store.js"></script>
 <script src="js/save-status.js"></script>
@@ -1845,6 +1851,13 @@ function renderCourseDirectory(course){
   }else{
     renderNodes(course.outline);
   }
+  CourseDirectory.mount({root:list,course:course,streak:CL.streakDays(mem),lessons:CourseCatalog.listLessons(course),open:function(lesson){startCatalogLesson(course,lesson);},progress:async function(lesson){
+    var ref=lesson.contentRef||{};
+    if(ref.type==='story-package')return CourseProgress.storyProgress(CL.readProgress()[ref.id],lesson.available);
+    if(ref.type!=='sentence-deck')return {ready:false,total:lesson.itemCount||0,done:0};
+    var deck=await ContentRepo.ensureDeckIndex(ref.id,mem);
+    return MainDeckProgress.calculateDeckLearningProgress({deckId:ref.id,total:lesson.itemCount||deck.items.length,items:deck.items,stats:mem.stats,cidOf:function(item){return CL.cidOf(item);},isDeleted:function(id,cid){return CL.isItemDeleted(mem,id,{cid:cid});}});
+  }});
   showPage('pageDecks');
 }
 

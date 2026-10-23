@@ -52,14 +52,17 @@ async function main(){
       await page.screenshot({path:path.join(output,'home-'+width+'.png'),fullPage:true});
     }
     await page.evaluate(()=>draw({resume:{toolId:'chunks',deck:{id:'lesson-1'},idx:4},courseRows:[{course:{id:'demo',title:'日常英语表达'},lessons:[{contentRef:{type:'sentence-deck',id:'lesson-1'}}],resource:{available:true},progress:''}]}));
-    await page.locator('.hd-main-action').click();assert.equal((await page.evaluate(()=>calls.pop()))[1].idx,4);
+    await page.locator('.hd-main-action').click();await page.waitForFunction(()=>calls.length>0);assert.equal((await page.evaluate(()=>calls.pop()))[1].idx,4);
     await page.evaluate(()=>draw({due:12,activeResources:[{title:'日常英语表达',available:true,resourceId:'course:demo'}]}));
-    await page.getByRole('button',{name:'开始复习'}).click();assert.deepEqual(await page.evaluate(()=>calls.pop()),['review']);
-    assert.equal(await page.getByRole('link',{name:'管理在学',exact:true}).getAttribute('href'),'main.html?view=my-learning');
+    await page.evaluate(()=>{window.openStatsPage=tab=>calls.push(['stats',tab]);});
+    await page.getByRole('link',{name:'去复习（12）',exact:true}).click();assert.deepEqual(await page.evaluate(()=>calls.pop()),['stats','review']);
+    assert.equal(await page.getByRole('link',{name:'查看所有课程与词库',exact:true}).getAttribute('href'),'main.html?view=my-learning');
+    await page.evaluate(()=>draw({courseRows:[{course:{id:'completed-demo',title:'已完成课程'},lessons:[],resource:{available:true},progress:'已完成',completionState:'completed'}]}));
+    assert.equal(await page.locator('.home-completed-courses').count(),0,'completed course records are not rendered on home');
     await page.evaluate(()=>draw({resume:{toolId:'chunks',title:'一个非常长的课程标题'.repeat(20)},due:1}));
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     for(const width of [946,390]){await page.setViewportSize({width,height:900});await page.evaluate(()=>draw());assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:path.join(output,'empty-'+width+'.png'),fullPage:true});}
-    await page.getByRole('button',{name:'选择学习内容'}).focus();await page.keyboard.press('Enter');assert.deepEqual(await page.evaluate(()=>calls.pop()),['navigate','discover']);
+    await page.getByRole('button',{name:'选择课程或词库，开始学习'}).focus();await page.keyboard.press('Enter');assert.deepEqual(await page.evaluate(()=>calls.pop()),['navigate','discover']);
     await page.evaluate(()=>draw({status:'内容目录连接失败，保留最近可读内容。'}));
     assert.equal(await page.locator('.workspace-notice').count(),0,'directory transport error never occupies home');
     await page.evaluate(()=>draw({status:'保存未确认：服务暂不可用'}));

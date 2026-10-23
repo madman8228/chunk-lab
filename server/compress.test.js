@@ -73,7 +73,8 @@ async function startServer() {
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, ['index.js'], {
       cwd: __dirname,
-      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT) }),
+      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test',
+        REQUIRE_AUTH: 'true', PHONE_AUTH_ENABLED: 'false', JWT_SECRET: 'compress-isolated-test-secret-at-least-32-characters' }),
       stdio: 'ignore'
     });
     let tries = 0;

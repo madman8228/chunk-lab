@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import {createRequire} from 'node:module';
+import {verifyOfflineLicense} from './offline-license.mjs';
+const {createOfflineLicense,WEEK}=createRequire(import.meta.url)('../../server/services/membership/offline-license.js');
+const keys=crypto.generateKeyPairSync('ec',{namedCurve:'prime256v1',publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});
+const now=1792700000000,body=new TextEncoder().encode('synthetic course unit');
+const scope={accountId:'fixture',service:'https://fixture.test',courseId:'course',unitId:'unit',contentVersion:'v1'};
+const signer=createOfflineLicense({...keys,now:()=>now});
+const license=signer.issue({...scope,sha256:crypto.createHash('sha256').update(body).digest('hex')},{allowed:true,mode:'member',endsAt:now+WEEK});
+const input={license,publicKey:signer.publicJwk(),scope,body,now,subtle:crypto.webcrypto.subtle};
+assert.equal((await verifyOfflineLicense(input)).mode,'member');
+for(const patch of [{now:now+WEEK},{now:now-1},{lastConfirmedTime:now+1},{body:new Uint8Array([1])},...Object.keys(scope).map(field=>({scope:{...scope,[field]:'other'}}))])await assert.rejects(verifyOfflineLicense({...input,...patch}),{code:'INVALID_OFFLINE_LICENSE'});
+console.log('Browser offline license: signature, account/server/unit/version isolation, expiry, rollback and content hash passed');

@@ -20,10 +20,13 @@ const api=fs.readFileSync(path.join(root,'api.js'),'utf8');
 assert.ok(!/putData:|importData:|getSyncBatch:|resolveSyncBatch:|getSyncEntity:|resolveSync:|postCourse:|deleteCourse:|publishDeck:|global\.BatchSync/.test(api),
   'normal API exposes no retired conflict, course or publication writer');
 for(const module of retired)assert.ok(!sw.includes("'/js/"+module+".js'"),'cache includes '+module);
-for(const file of ['server/routes/data.js','server/routes/backup.js','server/routes/decks.js']) {
+for(const file of ['server/routes/backup.js','server/routes/decks.js']) {
   const source=fs.readFileSync(path.join(root,file),'utf8');
   assert.ok(!/saveData|validatePutPayload|app\.(put|post)\(/.test(source),file+' must remain read-only');
 }
+const dataRoutes=fs.readFileSync(path.join(root,'server/routes/data.js'),'utf8');
+assert.ok(dataRoutes.includes("app.put('/api/data'"), 'legacy whole-snapshot writes remain reachable only for an explicit upgrade rejection');
+assert.ok(dataRoutes.includes("res.status(428).json({ error: '整份学习数据写入已停用"), 'legacy whole-snapshot writes fail closed without overwriting learning records');
 console.log('[server-runtime-boundary] normal pages, shared core and precache exclude retired sync engines');
 const server=fs.readFileSync(path.join(root,'server/index.js'),'utf8');
 assert.ok(!/const saveData = createDataSave/.test(server),'normal startup must not eagerly construct legacy writer');

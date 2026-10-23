@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {imageDimensions}=require('../../server/services/membership/image-dimensions');
+const textbookPackages=require('./textbook-asset-package.cjs');
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const normalize=value=>String(value||'').normalize('NFKC').trim().toLowerCase().replace(/\s+/g,' ');
 const sourceKey=(course,unit,itemId)=>course+'/'+unit+'/'+itemId;
@@ -40,6 +41,45 @@ function buildCatalog(root,{courses=currentCourses(root),reviews=[]}={}){
  }
  return {format:'vocabulary-illustration-catalog',schemaVersion:1,assets:[...assets.values()],aliases:Object.fromEntries(aliases),bindings};
 }
+function mergeVerifiedPackage(root,catalog,packageRoot,{stage,styleReference}={}){
+ validateCatalog(catalog);
+ if(!['primary','junior','adult'].includes(stage)||typeof styleReference!=='string'||!styleReference.trim())throw Error('Package merge requires an explicit stage and approved style reference');
+ const verified=textbookPackages.verifyPackage(packageRoot),manifest=verified.manifest;
+ const snapshotPath=textbookPackages.inside(packageRoot,manifest.content.courseSnapshot),snapshot=JSON.parse(fs.readFileSync(snapshotPath,'utf8'));
+ const items=new Map(snapshot.drafts.flatMap(draft=>draft.items||[]).map(item=>[item.itemId,item]));
+ const approvalFile=manifest.files.find(file=>file.path.startsWith('reviews/')&&file.path.endsWith('.json')&&(()=>{try{return JSON.parse(fs.readFileSync(textbookPackages.inside(packageRoot,file.path),'utf8')).format==='textbook-review-approval';}catch{return false;}})());
+ if(!approvalFile)throw Error('Package has no checksum-bound image review approval');
+ const approval=JSON.parse(fs.readFileSync(textbookPackages.inside(packageRoot,approvalFile.path),'utf8'));
+ if(approval.imageRepairs?.status!=='approved')throw Error('Package image review is not approved');
+ const next=structuredClone(catalog),assetById=new Map(next.assets.map(asset=>[asset.assetId,asset])),bindingKeys=new Set(next.bindings.map(binding=>binding.sourceKey));
+ const aliasesByHash=new Map();
+ for(const name of fs.readdirSync(path.join(root,'assets')).filter(name=>name.endsWith('.webp')).sort()){
+  const relative='assets/'+name,digest=hash(fs.readFileSync(path.join(root,relative))),id='sha256:'+digest;
+  const aliases=aliasesByHash.get(id)||[];aliases.push(relative);aliasesByHash.set(id,aliases);
+ }
+ const course=path.posix.basename(manifest.provenance?.sourceRoot||manifest.book?.bookId||'');
+ if(!/^[a-z0-9-]+$/.test(course))throw Error('Package has no stable course key');
+ const repairs=new Map((manifest.repairs||[]).map(repair=>[repair.itemId,repair]));
+ for(const binding of manifest.bindings){
+  if(binding.imageAssetIds?.length!==1)throw Error('Expected exactly one shared illustration for '+binding.itemId);
+  const item=items.get(binding.itemId),imageId=binding.imageAssetIds[0],image=manifest.assets.find(asset=>asset.assetId===imageId);
+  if(!item||item.unitId!==binding.unitId||item.word!==binding.word||!image)throw Error('Package binding/source mismatch '+binding.itemId);
+  const repair=repairs.get(binding.itemId);
+  if(repair&&repair.replacementAssetId!==imageId)throw Error('Repaired image does not match package binding '+binding.itemId);
+  const paths=aliasesByHash.get(imageId)||[];
+  if(!paths.length)throw Error('Package image is not staged in the shared assets directory: '+binding.itemId);
+  const sharedPath=paths[0],actual=inspect(root,sharedPath);
+  if(actual.assetId!==imageId)throw Error('Shared image hash mismatch '+binding.itemId);
+  if(!assetById.has(imageId)){assetById.set(imageId,actual);next.assets.push(actual);}
+  next.aliases[sharedPath]=imageId;
+  const sourceKey=sourceKeyForPackage(course,binding.unitId,binding.itemId);
+  if(bindingKeys.has(sourceKey))throw Error('Duplicate package binding '+sourceKey);
+  bindingKeys.add(sourceKey);
+  next.bindings.push({sourceKey,course,unit:binding.unitId,itemId:binding.itemId,word:item.word,meaning:item.meaning||'',assetId:imageId,path:sharedPath,stage,styleReference,report:manifest.packageVersion,review:'pass',reviewEvidence:{packageVersion:manifest.packageVersion,packageManifestSha256:textbookPackages.hashFile(path.join(packageRoot,'manifest.json')),approvalPath:approvalFile.path,approvalSha256:approvalFile.sha256,reviewedAt:approval.reviewedAt}});
+ }
+ return validateCatalog(next);
+}
+const sourceKeyForPackage=(course,unit,itemId)=>course+'/'+unit+'/'+itemId;
 function validateCatalog(catalog){
  if(catalog?.format!=='vocabulary-illustration-catalog'||catalog.schemaVersion!==1||!Array.isArray(catalog.assets)||!Array.isArray(catalog.bindings))throw Error('Invalid illustration catalog');
  const ids=new Set();for(const a of catalog.assets){if(!/^[a-f0-9]{64}$/.test(a.sha256)||a.assetId!=='sha256:'+a.sha256||ids.has(a.assetId)||!/^assets\/[A-Za-z0-9._-]+\.webp$/.test(a.path)||a.objectKey!=='vocabulary/'+a.sha256+'.webp'||!Number.isInteger(a.bytes)||a.bytes<=0||a.bytes>=20000||!Number.isInteger(a.width)||!Number.isInteger(a.height)||a.width<=0||a.height<=0||a.width*9!==a.height*16)throw Error('Invalid delivery record');ids.add(a.assetId);}
@@ -71,4 +111,38 @@ function applyReuse(root,{catalog,manifest,draft,selections,stage}){
  }
  return next;
 }
-module.exports={hash,normalize,currentCourses,sourceKey,inspect,buildCatalog,validateCatalog,plan,applyReuse};
+function applyReviewedReuse(root,{catalog,catalogSha256,state}){
+ validateCatalog(catalog);
+ if(typeof catalogSha256!=='string'||!/^([a-f0-9]{64})$/.test(catalogSha256))throw Error('A source catalog hash is required');
+ if(state?.format!=='vocabulary-reuse-review-decisions'||state.schemaVersion!==1||!Number.isSafeInteger(state.revision)||!Array.isArray(state.events))throw Error('Unsupported or damaged reuse-review state');
+ const groups=require('./vocabulary-reuse-review.cjs').makeGroups(catalog),byPath=new Map();
+ const assertCurrentAsset=(assetId,message)=>{const asset=catalog.assets.find(row=>row.assetId===assetId);try{if(asset&&inspect(root,asset.path).assetId===assetId)return;}catch{}throw Error(message);};
+ for(const binding of catalog.bindings){const rows=byPath.get(binding.path)||[];rows.push(binding);byPath.set(binding.path,rows);}
+ const next=structuredClone(catalog),selected=new Map(),groupDecisions=[];
+ for(const group of groups){
+  const events=state.events.filter(event=>event.groupId===group.groupId&&event.catalogSha256===catalogSha256&&event.groupFingerprint===group.fingerprint);
+  const event=events.at(-1);if(!event||event.decision!=='reuse')continue;
+  if(event.sceneReviewed!==true)throw Error('Reuse decision has no explicit target-scene review: '+group.word);
+  const candidate=group.candidates.find(row=>row.assetId===event.assetId);
+  if(!candidate||candidate.bindings.some(binding=>!group.entries.some(entry=>entry.sourceKey===binding.sourceKey)))throw Error('Reuse candidate is not bound to the reviewed group: '+group.word);
+  assertCurrentAsset(candidate.assetId,'Selected illustration hash changed: '+group.word);
+  for(const entry of group.entries)assertCurrentAsset(entry.assetId,'Source illustration hash changed after review: '+entry.sourceKey);
+  for(const entry of group.entries){
+   const prior=selected.get(entry.path);
+   if(prior&&prior.assetId!==event.assetId)throw Error('Conflicting reuse decisions share alias '+entry.path);
+   const pathBindings=byPath.get(entry.path)||[];
+   if(pathBindings.some(binding=>!group.entries.some(member=>member.sourceKey===binding.sourceKey)))throw Error('Selected alias is also used outside its reviewed group: '+entry.path);
+   selected.set(entry.path,{assetId:event.assetId,group,event});
+  }
+  groupDecisions.push({groupId:group.groupId,word:group.word,meaning:group.meaning,assetId:event.assetId,revision:event.revision,entryCount:group.entries.length,crossStage:group.crossStage,crossStyle:group.crossStyle});
+ }
+ if(!groupDecisions.length)throw Error('No current, approved reuse decisions for this catalog');
+ const entryBySource=new Map(next.bindings.map(binding=>[binding.sourceKey,binding])),updatedSources=new Set();
+ for(const [alias,resolution] of selected){next.aliases[alias]=resolution.assetId;for(const entry of resolution.group.entries){if(entry.path!==alias||updatedSources.has(entry.sourceKey))continue;const binding=entryBySource.get(entry.sourceKey);binding.sourceAssetId=binding.assetId;binding.assetId=resolution.assetId;binding.reuseDecision={groupId:resolution.group.groupId,revision:resolution.event.revision,catalogSha256,sceneReviewed:true};updatedSources.add(entry.sourceKey);}}
+ const reachable=new Set(Object.values(next.aliases));
+ next.assets=next.assets.filter(asset=>reachable.has(asset.assetId));
+ next.reuseResolution={format:'vocabulary-reuse-resolution',schemaVersion:1,sourceCatalogSha256:catalogSha256,decisionRevision:state.revision,appliedGroups:groupDecisions};
+ validateCatalog(next);
+ return {catalog:next,summary:{appliedGroups:groupDecisions.length,reusedBindings:groupDecisions.reduce((sum,row)=>sum+row.entryCount,0),assetsBefore:catalog.assets.length,assetsAfter:next.assets.length,groups:groupDecisions}};
+}
+module.exports={hash,normalize,currentCourses,sourceKey,inspect,buildCatalog,mergeVerifiedPackage,validateCatalog,plan,applyReuse,applyReviewedReuse};

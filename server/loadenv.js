@@ -12,7 +12,11 @@ const fs = require('fs');
 const path = require('path');
 
 const envPath = path.join(__dirname, '.env');
-if (!fs.existsSync(envPath)) {
+if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'production') {
+  // Tests must be isolated from developer machine settings; production must
+  // use explicitly injected service configuration and fail fast otherwise.
+  module.exports = {};
+} else if (!fs.existsSync(envPath)) {
   // 没有 .env 也能跑（全部走默认值或外部注入）
   module.exports = {};
 } else {

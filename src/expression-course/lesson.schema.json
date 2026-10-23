@@ -1,0 +1,628 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/zero-english/lesson.schema.json",
+  "title": "Zero English Lesson Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "lessonId",
+    "contentVersion",
+    "status",
+    "locale",
+    "title",
+    "communicationGoal",
+    "prerequisiteSkillIds",
+    "taughtSkillIds",
+    "vocabulary",
+    "audioAssets",
+    "activities",
+    "reviewPlan"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "lessonId": {
+      "type": "string",
+      "pattern": "^L[0-9]{3,}$"
+    },
+    "contentVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "published"
+      ]
+    },
+    "locale": {
+      "const": "zh-CN"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 2
+    },
+    "communicationGoal": {
+      "type": "string",
+      "minLength": 5
+    },
+    "prerequisiteSkillIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "taughtSkillIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "vocabulary": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/vocab"
+      }
+    },
+    "audioAssets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/audio"
+      }
+    },
+    "activities": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "$ref": "#/$defs/activity"
+      }
+    },
+    "reviewPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intervalDays"
+      ],
+      "properties": {
+        "intervalDays": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "vocab": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "en",
+        "zh",
+        "introducedHere"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "introducedHere": {
+          "type": "boolean"
+        }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assetId",
+        "text",
+        "locale",
+        "status"
+      ],
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locale": {
+          "const": "en-US"
+        },
+        "status": {
+          "enum": [
+            "needs_generation",
+            "ready"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "stage",
+        "prompt",
+        "skillIds",
+        "payload",
+        "evaluation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "type": {
+          "enum": [
+            "meaning_intro",
+            "micro_explanation",
+            "sentence_build",
+            "substitution",
+            "listening_choice",
+            "independent_output",
+            "transfer_test"
+          ]
+        },
+        "stage": {
+          "enum": [
+            "guided",
+            "reduced_help",
+            "independent",
+            "retention"
+          ]
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 2
+        },
+        "skillIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "payload": {
+          "type": "object"
+        },
+        "evaluation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "countsTowardMastery"
+          ],
+          "properties": {
+            "countsTowardMastery": {
+              "type": "boolean"
+            },
+            "acceptedAnswers": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "correctOptionId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "caseSensitive": {
+              "type": "boolean"
+            },
+            "punctuationSensitive": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "meaning_intro"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "stage": {
+                "const": "guided"
+              },
+              "evaluation": {
+                "properties": {
+                  "countsTowardMastery": {
+                    "const": false
+                  }
+                }
+              },
+              "payload": {
+                "$ref": "#/$defs/introPayload"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "micro_explanation"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "stage": {
+                "const": "guided"
+              },
+              "evaluation": {
+                "properties": {
+                  "countsTowardMastery": {
+                    "const": false
+                  }
+                }
+              },
+              "payload": {
+                "$ref": "#/$defs/explanationPayload"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "sentence_build"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/buildPayload"
+              },
+              "evaluation": {
+                "required": [
+                  "countsTowardMastery",
+                  "acceptedAnswers"
+                ],
+                "properties": {
+                  "countsTowardMastery": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "substitution"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/situationPayload"
+              },
+              "evaluation": {
+                "required": [
+                  "countsTowardMastery",
+                  "acceptedAnswers"
+                ],
+                "properties": {
+                  "countsTowardMastery": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "listening_choice"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/listeningPayload"
+              },
+              "evaluation": {
+                "required": [
+                  "countsTowardMastery",
+                  "correctOptionId"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "independent_output"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "stage": {
+                "const": "independent"
+              },
+              "payload": {
+                "$ref": "#/$defs/situationPayload"
+              },
+              "evaluation": {
+                "required": [
+                  "countsTowardMastery",
+                  "acceptedAnswers"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "transfer_test"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "stage": {
+                "enum": [
+                  "independent",
+                  "retention"
+                ]
+              },
+              "payload": {
+                "$ref": "#/$defs/transferPayload"
+              },
+              "evaluation": {
+                "required": [
+                  "countsTowardMastery",
+                  "acceptedAnswers"
+                ],
+                "properties": {
+                  "countsTowardMastery": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "introPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exampleEnglish",
+        "exampleZh",
+        "audioAssetId"
+      ],
+      "properties": {
+        "exampleEnglish": {
+          "type": "string"
+        },
+        "exampleZh": {
+          "type": "string"
+        },
+        "audioAssetId": {
+          "type": "string"
+        },
+        "vocabularyPreviewIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "explanationPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ruleText",
+        "contrasts"
+      ],
+      "properties": {
+        "ruleText": {
+          "type": "string",
+          "minLength": 5
+        },
+        "contrasts": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "en",
+              "zh"
+            ],
+            "properties": {
+              "en": {
+                "type": "string"
+              },
+              "zh": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "buildPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "targetMeaning",
+        "availableTokens",
+        "correctTokens"
+      ],
+      "properties": {
+        "targetMeaning": {
+          "type": "string"
+        },
+        "availableTokens": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string"
+          }
+        },
+        "correctTokens": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "situationPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario",
+        "targetMeaning"
+      ],
+      "properties": {
+        "scenario": {
+          "type": "string",
+          "minLength": 3
+        },
+        "targetMeaning": {
+          "type": "string",
+          "minLength": 3
+        },
+        "responseModes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "text",
+              "record_self_check"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "transferPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario",
+        "targetMeaning",
+        "withheldExample"
+      ],
+      "properties": {
+        "scenario": {
+          "type": "string",
+          "minLength": 3
+        },
+        "targetMeaning": {
+          "type": "string",
+          "minLength": 3
+        },
+        "withheldExample": {
+          "const": true
+        },
+        "responseModes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "text",
+              "record_self_check"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "listeningPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "audioAssetId",
+        "options"
+      ],
+      "properties": {
+        "audioAssetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "textZh"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "textZh": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -135,3 +135,6 @@ const ownerCollision = Catalog.buildCatalog({ manifest: { decks: [] }, userDecks
 assert.equal(ownerCollision.byCourseId['user-deck:mine'].origin, 'user');
 assert.equal(ownerCollision.byCourseId['user-deck:mine'].isProtected, undefined);
 console.log('course-catalog: legacy identities and protected metadata passed');
+const expressions = Catalog.buildCatalog({manifest:{decks:[]},protectedCourses:[{courseId:'expression-test',title:'表达测试',contentType:'expression',units:[{unitId:'lesson-1',itemCount:9}]}]});
+assert.equal(expressions.byCourseId['expression-test'].contentType,'expression');
+assert.equal(expressions.byCourseId['expression-test'].lessons[0].contentRef.type,'expression-course');

@@ -50,7 +50,9 @@ let server = null;
 function startServer() {
   return new Promise(function (resolve, reject) {
     const env = Object.assign({}, process.env, {
-      CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: '3'
+      CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: '3',
+      REQUIRE_AUTH: 'false', JWT_SECRET: require('crypto').randomBytes(32).toString('hex'),
+      ADMIN_PASSWORD: 'isolated-upgrade-admin-pass', ADMIN_JWT_SECRET: require('crypto').randomBytes(32).toString('hex')
     });
     delete env.NODE_OPTIONS;
     server = spawn(process.execPath, ['index.js'], {
@@ -553,9 +555,11 @@ function buildOldMem(cidA, cidB, sample, aliasCid) {
       if (!choice) throw new Error('缺少课程的正确答题选项');
       choice.click();
     }, 'Say hello.');
-    await pUpgrade.waitForSelector('#btnNext:not([disabled])', { timeout: 10000 });
-    await pUpgrade.locator('#btnNext').click();
+    /* 持久化模式在服务端确认 learning.answer 后才完成该题；先等待网络确认，
+       避免把正常保存等待误判为界面卡死。 */
     await answerResponse;
+    /* 迁移夹具可能只有一道题；末题进入结果倒计时后不会再开放“下一题”。
+       此验收关注答题写入是否恰好一次，不要求额外推进到不存在的题目。 */
     if (upgradeAnswerOperations.length !== 1) throw new Error('预期恰好发出一条 learning.answer，实际=' + upgradeAnswerOperations.length);
     const answerEventId = upgradeAnswerOperations[0].payload.eventId;
     const answerDb = new Database(path.join(TMP_DB, 'chunklab.db'));

@@ -102,6 +102,7 @@ var MainLifecycle = (() => {
     var type = opts.navigationType || "navigate";
     var explicitCatalog = !!(params.get("course") && params.get("lesson"));
     if (params.get("protectedCourse")) return { kind: "protected-course", courseId: params.get("protectedCourse"), unitId: params.get("unit"), explicit: true };
+    if (params.get("personalCourse")) return { kind: "personal-course", courseId: params.get("personalCourse"), explicit: true };
     if (params.get("membership") === "1") return { kind: "membership", explicit: true };
     if (params.get("assessmentKey")) return { kind: "assessment", key: params.get("assessmentKey"), explicit: true };
     if (explicitCatalog) {
@@ -332,19 +333,27 @@ var MainLifecycle = (() => {
   function createSpeechFeedback(options = {}) {
     const hostWindow = options.window || getDefaultWindow();
     const getCurrentItem = options.getCurrentItem || (() => null);
-    return function speakSentence() {
+    return function speakSentence(onState = () => {
+    }) {
       try {
         const item = getCurrentItem();
-        if (!item || !item.sentence) return;
+        if (!item || !item.sentence) return false;
         const Utterance = hostWindow.SpeechSynthesisUtterance;
         const speech = hostWindow.speechSynthesis;
-        if (!Utterance || !speech) return;
+        if (!Utterance || !speech) return false;
         const utterance = new Utterance(item.sentence);
         utterance.lang = "en-US";
         utterance.rate = 0.92;
+        utterance.onstart = () => onState(true);
+        utterance.onend = utterance.onerror = () => onState(false);
+        utterance.onpause = () => onState(false);
+        utterance.onresume = () => onState(true);
         speech.cancel();
         speech.speak(utterance);
+        return true;
       } catch (_) {
+        onState(false);
+        return false;
       }
     };
   }

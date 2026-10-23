@@ -33,6 +33,7 @@ const ROOT = path.resolve(__dirname, '..');
 const PORT = require('./lib/free-port').freePort(9500, 100);
 const TMP_DB = fs.mkdtempSync(path.join(os.tmpdir(), 'cl-swcache-'));
 const BASE = 'http://127.0.0.1:' + PORT;
+const offlineKeys = crypto.generateKeyPairSync('ec',{namedCurve:'prime256v1',privateKeyEncoding:{type:'pkcs8',format:'pem'},publicKeyEncoding:{type:'spki',format:'pem'}});
 let server = null;
 let browser = null;
 const FIXTURE_COURSE = 'fixture-sw', FIXTURE_DECK = 'fixture-sw-deck';
@@ -66,7 +67,8 @@ function startServer() {
       env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, CHUNKLAB_APP_ROOT: ROOT, PORT: String(PORT), HOST: '127.0.0.1',
         NODE_ENV: 'test', REQUIRE_AUTH: 'true', PHONE_AUTH_ENABLED: 'false', CHUNKLAB_WRITE_PROTOCOL: '3',
         JWT_SECRET: crypto.randomBytes(40).toString('hex'), ADMIN_JWT_SECRET: crypto.randomBytes(40).toString('hex'),
-        MEMBERSHIP_CONTENT_GRANT_KEY: crypto.randomBytes(32).toString('base64') }),
+        MEMBERSHIP_CONTENT_GRANT_KEY: crypto.randomBytes(32).toString('base64'),
+        ...(process.env.SENTENCE_OFFLINE_ACCEPTANCE==='1'?{OFFLINE_LICENSE_PRIVATE_KEY:offlineKeys.privateKey,OFFLINE_LICENSE_SERVICE:BASE}:{}) }),
       windowsHide: true,
       stdio: 'ignore'
     });
@@ -138,8 +140,20 @@ function cacheUrls(page) {
     body: JSON.stringify({ username: 'sw-synthetic', password: 'SyntheticSw2026!' }) });
   if (!registration.ok) throw Error('Synthetic signup failed: ' + registration.status);
   const account = await registration.json();
+  if(process.env.SENTENCE_OFFLINE_MEMBER==='1'){
+    const Database=require('../server/node_modules/better-sqlite3');const fixtureDb=new Database(path.join(TMP_DB,'chunklab.db'));
+    try{
+      const user=fixtureDb.prepare('SELECT id FROM users WHERE username=?').get('sw-synthetic');const stamp=Date.now();
+      fixtureDb.transaction(()=>{
+        fixtureDb.prepare("INSERT INTO redemption_batches(batch_id,plan_snapshot_json,quantity,status,created_by,created_at) VALUES('offline-fixture-batch','{}',1,'active',1,?)").run(stamp);
+        fixtureDb.prepare("INSERT INTO redemption_codes(code_id,batch_id,code_digest,key_version,status,created_at) VALUES('offline-fixture-code','offline-fixture-batch','synthetic-digest','test','redeemed',?)").run(stamp);
+        fixtureDb.prepare("INSERT INTO user_entitlement_grants(grant_id,user_id,sequence,source_code_id,plan_key,term_months,display_name,redeemed_at) VALUES('offline-fixture-grant',?,1,'offline-fixture-code','monthly',1,'Synthetic membership',?)").run(user.id,stamp);
+        fixtureDb.prepare("INSERT INTO course_access_revisions(course_id,revision,access_level,registry_version,changed_by,created_at) VALUES(?,1,'member','test',1,?)").run(FIXTURE_COURSE,stamp);
+      })();
+    }finally{fixtureDb.close();}
+  }
   await ctx.addInitScript(token => localStorage.setItem('chunklab_token', token), account.token);
-  const page = await ctx.newPage();
+  let page = await ctx.newPage();
   const errs = [];
   const requests = [];
   const requestRows = new WeakMap(), responseReads = [];
@@ -206,8 +220,8 @@ function cacheUrls(page) {
     urls.indexOf('/oral-book.js') < 0 && urls.indexOf('/freq-idioms.js') < 0,
     urls.filter(function (u) { return /oral-book|freq-idioms/.test(u); }).join(','));
   check('后台和大 PNG 不再无条件进入安装缓存',
-    ['/admin.html', '/content-studio.html', '/assets/jqka-learning-garden-v1.png',
-      '/assets/jqka-learning-garden-body-v1.png'].every(function (url) { return !urls.includes(url); }));
+    ['/admin.html', '/content-studio.html', '/assets/jqka-learning-garden-v1.webp',
+      '/assets/jqka-learning-garden-body-v1.webp'].every(function (url) { return !urls.includes(url); }));
   check('页面无 JS 错误', errs.length === 0, errs.slice(0, 3).join(' | '));
   const optionalAssets = ['/landing/action-game-view.js', '/landing/wordbook-study.js', '/assets/brand/icon-512-v1.png'];
   check('独立练习资源未随首页安装下载', optionalAssets.every(url => !urls.includes(url)));
@@ -271,6 +285,36 @@ function cacheUrls(page) {
   check('课程仓库与学习入口四次并发读取只请求一次目录',
     requests.slice(catalogStart).filter(row => row.path === '/api/course-content/catalog').length === 1);
   const answersStart = requests.length;
+  if(process.env.SENTENCE_OFFLINE_ACCEPTANCE==='1'){
+    await page.waitForFunction(()=>document.body.textContent.includes('本课节文字已保存，可离线继续学习。'),{},{timeout:20000});
+    if(process.env.SENTENCE_OFFLINE_MEMBER==='1'){
+      const response=await fetch(BASE+'/api/offline-courses/'+FIXTURE_COURSE+'/units/unit',{headers:{Authorization:'Bearer '+account.token}});
+      const envelope=await response.json();const claims=JSON.parse(Buffer.from(envelope.license.payload,'base64url'));
+      check('会员课实际接口签发七天许可',claims.mode==='member'&&claims.expiresAt-claims.issuedAt===7*86400000);
+    }
+    await ctx.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>window.__nativeCourseSession?.offline);
+    await page.evaluate(()=>window.__nativeCourseSession.button.click());
+    await page.waitForFunction(()=>window.__nativeCourseSession?.offline&&window.S?.items?.length>0,{},{timeout:20000}).catch(async error=>{console.log(await page.evaluate(()=>({body:document.body.innerText,error:window.__nativeCourseSession?.lastError&&{code:window.__nativeCourseSession.lastError.code,message:window.__nativeCourseSession.lastError.message},phase:window.CL?.getPersistenceState?.()})));throw error;});
+    const chunks=await page.evaluate(()=>cur().chunks.slice());
+    for(let i=0;i<chunks.length;i++){const input=page.locator('#track .chunk-input').nth(i);await input.fill(chunks[i]);await input.press('Enter');await page.waitForFunction(index=>S.status[index]==='ok',i);}
+    await page.waitForFunction(async()=>(await ServerStore.pending()).length>0);
+    const ids=await page.evaluate(async()=>(await ServerStore.pending()).map(row=>row.requestId));
+    const reopenUrl=page.url();await page.close();
+    // A reachable network does not imply that the API server is reachable.
+    await ctx.addInitScript(()=>Object.defineProperty(navigator,'onLine',{get:()=>true}));
+    page=await ctx.newPage();await page.goto(reopenUrl,{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>window.__nativeCourseSession?.offline);
+    await page.evaluate(()=>window.__nativeCourseSession.button.click());
+    await page.waitForFunction(()=>window.__nativeCourseSession?.offline&&window.S?.items?.length>0,{},{timeout:20000});
+    const retained=await page.evaluate(async()=>(await ServerStore.pending()).map(row=>row.requestId));
+    check('离线刷新保留原答题请求',ids.every(id=>retained.includes(id)));
+    check('浏览器误报在线时仍可使用已确认课节',await page.evaluate(()=>navigator.onLine&&window.__nativeCourseSession.offline));
+    await ctx.setOffline(false);await page.waitForFunction(async()=>(await ServerStore.pending()).length===0,{},{timeout:30000});
+    await page.waitForFunction(async()=>(await ServerCache.read())?.snapshot.mem.stats.bySentence['fixture-sw-deck#sw-item-0']?.times===1);
+    check('离线答题重连精确保存一次',true);
+    await browser.close();stopServer();if(failed)throw Error('offline acceptance failed');console.log('Sentence offline full page and reconnect passed');return;
+  }
   for (let question = 0; question < 3; question++) {
     const chunks = await page.evaluate(() => cur().chunks.slice());
     for (let i = 0; i < chunks.length; i++) {

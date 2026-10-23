@@ -14,7 +14,8 @@
  *   3. CACHE 版本 = 全部清单文件内容 sha1 前 8 位 → 资源一变版本自动变，
  *      activate 清理旧缓存，无需任何手改。
  *
- * 用法：node scripts/gen-sw.js   （资源变更后跑一次即可，无 watch、无构建器）
+ * 用法：node scripts/gen-sw.js   （资源变更后生成）
+ *       node scripts/gen-sw.js --check   （只读检查生成结果，不写 sw.js）
  */
 'use strict';
 const fs = require('fs');
@@ -24,6 +25,7 @@ const { hashFiles } = require('./sw-hash.js');
 
 const ROOT = deps.ROOT;
 const SW = path.join(ROOT, 'sw.js');
+const CHECK_ONLY = process.argv.includes('--check');
 
 /* ---------- 解析 sw.js 现有基准 ---------- */
 let sw = fs.readFileSync(SW, 'utf8');
@@ -105,7 +107,17 @@ if (fat.length) {
 
 /* ---------- 重写 sw.js ---------- */
 sw = sw.replace(cacheMatch[0], "const CACHE = '" + version + "'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改");
-fs.writeFileSync(SW, sw);
+if (CHECK_ONLY) {
+  const current = fs.readFileSync(SW, 'utf8');
+  if (current !== sw) {
+    console.error('[gen-sw] --check 失败：sw.js 与当前清单/资源生成结果不一致；未写入文件');
+    process.exitCode = 1;
+  } else {
+    console.log('[gen-sw] --check 通过：sw.js 已与当前清单/资源保持一致；未写入文件');
+  }
+} else {
+  fs.writeFileSync(SW, sw);
+}
 
 console.log('[gen-sw] CACHE = ' + version + '  (' + files.length + ' 个原子预缓存 + ' +
   softList.filter(function (u) { return !missingSoft.includes(u); }).length + ' 个按需资源，均计入哈希)');

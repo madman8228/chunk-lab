@@ -50,9 +50,14 @@ async function main() {
     const fragments = new (require('./services/membership/static-fragment-builder').StaticFragmentBuilder)().build({ courseId: 'fragmented', unitId: 'unit-1', contentType: 'sentence',
       content: { items: fragmentItems }, itemIds: fragmentItems.map(item => item.cid), recordIdentity: { deckId: 'original-fragment-deck', generationScope: 'course:original-fragment-deck', resumeIdentity: 'original-fragment-deck' } });
     for (const file of fragments.files) fs.writeFileSync(path.join(privateRoot, file.name), file.bytes, { flag: 'wx' });
+    const freeFragments = new (require('./services/membership/static-fragment-builder').StaticFragmentBuilder)().build({ courseId: 'free-fragmented', unitId: 'unit-1', contentType: 'sentence',
+      content: { items: freeItems }, itemIds: freeItems.map(item => item.cid), recordIdentity: { deckId: 'free-fragmented', generationScope: 'course:free-fragmented', resumeIdentity: 'free-fragmented' } });
+    for (const file of freeFragments.files) fs.writeFileSync(path.join(privateRoot, file.name), file.bytes, { flag: 'wx' });
     const fragmented = { ...course('fragmented', fragmentItems.map(item => item.cid)), units: [{ unitId: 'unit-1', contentRef: { type: 'sentence-deck', id: 'fragment-source' }, itemIds: fragmentItems.map(item => item.cid),
       fragments: fragments.fragments, contentVersion: fragments.contentVersion, recordIdentity: fragments.recordIdentity, assets: [] }] };
-    const manifest = { schemaVersion: 1, courses: [sentence, image, fragmented, course('free-sentence', ['free-0']), course('overlap', ['secret-0']), physicalOverlap] };
+    const freeFragmented = { ...course('free-fragmented', ['free-0']), units: [{ unitId: 'unit-1', contentRef: { type: 'sentence-deck', id: 'free-fragment-source' }, itemIds: ['free-0'],
+      fragments: freeFragments.fragments, contentVersion: freeFragments.contentVersion, recordIdentity: freeFragments.recordIdentity, assets: [] }] };
+    const manifest = { schemaVersion: 1, courses: [sentence, image, fragmented, freeFragmented, course('free-sentence', ['free-0']), course('overlap', ['secret-0']), physicalOverlap] };
     fs.writeFileSync(path.join(privateRoot, 'registry.json'), JSON.stringify(manifest));
     for (const alias of sentence.sourcePaths.concat(image.sourcePaths)) {
       const target = path.join(appRoot, alias);
@@ -106,7 +111,30 @@ async function main() {
     const publish = await json('/api/admin/membership/course-access', admin, { changes, registryVersion: policies.version, requestId: 'fixture_publish_000001', reason: 'synthetic fixture' }, 'PUT');
     assert.equal(publish.status, 200);
     const fragmentUser = (await json('/api/auth/register', null, { username: 'synthetic-fragments', password: 'SyntheticLearner2026!' })).data;
+    const freePreview = await json('/api/course-content/preview-grant', fragmentUser.token,
+      { courseId: 'free-fragmented', unitId: 'unit-1', cursor: 0, requestId: crypto.randomUUID() });
+    assert.equal(freePreview.status, 200, 'authorized free content can be read without starting a learning session');
+    const freePreviewFragment = await fetch(base + '/api/course-fragments/' + freeFragments.fragments[0].fragmentId, { headers: {
+      Authorization: 'Bearer ' + fragmentUser.token, 'X-Course-Grant': freePreview.data.grant,
+      'X-Course-Id': 'free-fragmented', 'X-Course-Unit': 'unit-1', 'X-Course-Purpose': 'preview'
+    } });
+    assert.equal(freePreviewFragment.status, 200);
+    assert.match(await freePreviewFragment.text(), /FREE SENTENCE/);
+    assert.equal(db.prepare('SELECT COUNT(*) AS count FROM user_trial_sessions WHERE user_id=?').get(fragmentUser.user.id).count, 0,
+      'the no-session grant does not create a trial-learning session');
     const fragmentStartInput = { courseId: 'fragmented', unitId: 'unit-1', cursor: 0, purpose: 'practice', requestId: crypto.randomUUID() };
+    const trialPreview = await json('/api/course-content/preview-grant', fragmentUser.token,
+      { courseId: 'fragmented', unitId: 'unit-1', cursor: 0, requestId: crypto.randomUUID() });
+    assert.equal(trialPreview.status, 403);
+    assert.equal(trialPreview.data.reasonCode, 'SESSION_REQUIRED', 'trial-protected content cannot use the no-session preview grant');
+    assert.equal(db.prepare('SELECT COUNT(*) AS count FROM user_trial_state WHERE user_id=?').get(fragmentUser.user.id).count, 0,
+      'preview authorization does not start trial state');
+    assert.equal(db.prepare('SELECT COUNT(*) AS count FROM user_trial_sessions WHERE user_id=?').get(fragmentUser.user.id).count, 0,
+      'preview authorization does not create or reserve a trial session');
+    assert.equal(db.prepare('SELECT COUNT(*) AS count FROM user_trial_windows WHERE user_id=?').get(fragmentUser.user.id).count, 0,
+      'preview authorization does not reserve trial quota');
+    assert.equal(db.prepare('SELECT COUNT(*) AS count FROM course_learning_start_receipts WHERE user_id=?').get(fragmentUser.user.id).count, 0,
+      'preview authorization does not create a learning-session receipt');
     const rejectedGrant = await json('/api/learning-sessions/start', fragmentUser.token, { ...fragmentStartInput, purpose: 'invalid' });
     assert.equal(rejectedGrant.status, 400);
     assert.equal(db.prepare('SELECT COUNT(*) AS count FROM user_trial_state WHERE user_id=?').get(fragmentUser.user.id).count, 0, 'grant failure rolls back trial');

@@ -40,7 +40,7 @@ trap cleanup_remote_stage EXIT
 #   与本清单比对，缺了就中止部署。
 #   本脚本第 [2/9] 步自动跑它；`npm test` 也会跑。（2026-09-10：本清单曾漏掉整个 js/ 目录）
 FILES=(
-  js/content-card.js js/illustration-review.js js/textbook-drafts.js js/learning-background.js
+  js/content-card.js js/illustration-review.js js/textbook-drafts.js js/learning-background.js js/practice-layout.js
   js/admin-wordbooks.js assets/admin-wordbooks.css server/routes/admin-wordbook-imports.js server/services/admin-wordbook-imports.js server/services/textbook-wordbook-package.js server/services/vocabulary-publication-assets.js
   js/stats-growth.js js/stats-insights.js js/stats-page.js js/wordbook-workbench.js
   server/routes/illustration-review.js server/services/admin-account-type.js server/services/illustration-review.js
@@ -54,12 +54,12 @@ FILES=(
   js/membership.js server/services/membership/content-registry.js server/services/membership/course-access-service.js server/middleware/course-content-guard.js server/routes/protected-course-content.js
   server/services/membership/static-fragment-builder.js server/services/membership/static-content-store.js server/services/membership/content-grant-service.js server/routes/course-fragments.js
   index.html landing robots.txt sitemap.xml
-  main.html decks.html stats.html courses.html course-create.html admin.html admin-membership.html content-studio.html content-studio.js ai-course-kit.json
+  main.html decks.html stats.html courses.html course-create.html admin.html admin-membership.html content-studio.html content-studio.js ai-course-kit.json browser-confirmation-repair.html
   assets/story-course-theme.css
   assets/decks-theme.css
   assets/stats-navigation.css
   assets/catalog/sentence-garden-v1.webp assets/catalog/story-garden-v1.webp assets/catalog/wordbook-garden-v1.webp
-  js/course-covers.js js/lesson-card.js js/course-learning-header.js
+  js/course-covers.js js/lesson-card.js js/course-learning-header.js js/course-return.js
   core.js api.js auth-ui.js sw.js manifest.json content
   js/study-usage.js js/learning-navigation.js server/services/usage-analytics.js
   js/account-storage.js
@@ -77,14 +77,18 @@ FILES=(
   js/wordbook-authoring.js
   js/learning-sky.js js/stats-vocabulary.js server/routes/learning-archive.js server/services/vocabulary-archive.js server/services/vocabulary-course-progress.js
   server/services/vocabulary-content.js server/services/vocabulary-study-operations.js server/services/public-wordbook-versions.js server/routes/wordbooks.js server/services/wordbook-publisher.js server/services/personal-wordbooks.js server/routes/wordbook-publishing.js landing/wordbook-publish.js js/personal-wordbook-recovery.js
+  server/services/wordbook-unit-titles.js
+  server/services/illustration-review-catalog.js
   scripts/lib/vocabulary-materials.cjs src/vocabulary-material-library/core.cjs js/vocabulary-application-material.js js/vocabulary-attempt.js server/routes/vocabulary-material-library.js server/services/vocabulary-material-library.js server/services/vocabulary-material-release.js
   server/services/vocabulary-material-backup.js
   server/services/vocabulary-browse-model.js server/services/vocabulary-browse-operations.js server/services/vocabulary-teaching-content.js
   wordbook-intro.html assets/wordbook-intro.css landing/wordbook-intro.js js/vocabulary-browse-store.js
+  expression-learn.html expression-create.html assets/expression-course.css js/expression-course-runtime.js js/expression-course-player.js js/expression-course-authoring.js
   server/services/vocabulary-practice-summary.js
   js/vocabulary-word-dictation.js server/services/vocabulary-dictation-assets.js
   landing/word-dictation-view.js
   js/vocabulary-sentence-audio.js landing/vocabulary-course-audio.js
+  js/vocabulary-unit-cache.js
   js/vocabulary-word-choice.js
   js/vocabulary-chunk-order.js
   js/vocabulary-read-aloud.js
@@ -94,12 +98,14 @@ FILES=(
   landing/read-aloud-view.js
   scripts/lib/vocabulary-illustrations.cjs server/middleware/vocabulary-image-delivery.js
   server/services/library-catalog.js server/services/workspace-operations.js server/routes/library.js
+  server/routes/course-library.js server/services/course-library-schema.js server/services/course-library.js server/services/course-library-migration.js server/services/wordbook-image-delivery.js server/services/learning-data-format.js scripts/migrate-independent-course-library.cjs
   assets
   server/index.js server/admin.js server/validate.js server/auth.js server/ai.js server/db.js server/loadenv.js server/backup-db.js server/compress.js server/api-compress.js server/feedback.js server/canonical-hash.js server/sync-conflict.js server/middleware/auth-rate.js server/middleware/static-guard.js server/services/change-seq.js server/services/admin-overview.js server/services/data-snapshot.js server/services/data-writers.js server/services/data-rows.js server/services/data-migrations.js server/services/data-save.js server/services/operations.js server/services/logical-course-operations.js server/services/course-learning-operations.js server/services/settings-operations.js server/services/learning-maintenance-operations.js server/services/course-enrollment-operations.js server/services/learning-mark-operations.js server/services/content-operations.js server/services/stat-key-migration-operations.js server/services/assessment-operations.js server/services/learning-exposure-operations.js server/services/learning-event-operations.js server/services/learning-replay.js server/services/assessment-content.js server/services/content-studio.js server/services/recovery-ingest.js server/services/membership/schema.js server/services/membership/repository.js server/services/membership/code-keyring.js server/services/membership/code-issuer.js server/services/membership/csv-code-delivery.js server/services/membership/entitlement-service.js server/services/membership/redemption-service.js server/services/membership/admin-service.js server/services/membership/membership-service.js server/services/membership/trial-usage-meter.js server/services/membership/policies.cjs server/routes/operations.js server/routes/protocol-guard.js server/routes/content-import.js server/routes/client-save-health.js server/routes/content-studio.js server/routes/membership.js server/routes/admin-membership.js server/routes/recovery.js server/routes/decks.js server/routes/backup.js server/routes/feedback.js server/routes/ai.js server/routes/admin.js server/routes/auth.js server/routes/system.js server/routes/data.js server/package.json server/package-lock.json
   package.json
   server/routes/retired-sync.js server/services/recovery-baseline.js
   server/services/phone-auth.js server/services/sms-verification.js
   server/routes/vocabulary-practice.js
+  server/routes/expression-courses.js server/services/expression-course/schema.js server/services/expression-course/repository.js server/services/expression-course/session-service.js server/services/expression-course/registry-adapter.js server/services/expression-course/runtime.cjs server/services/expression-course/validate.cjs
   vocabulary.html vocabulary-practice.html
   server/middleware/seo-pages.js server/routes/content-shards.js
   scripts/sw-hash.js

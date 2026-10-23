@@ -11,6 +11,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=requ
   for(const file of ['landing/theme.css','assets/learning-workspace.css','assets/learning-sky.css','assets/wordbook-details.css'])await page.addStyleTag({path:file});
   await page.addStyleTag({path:'assets/lesson-card.css'});
   await page.addScriptTag({path:'js/course-covers.js'});
+  await page.addScriptTag({path:'js/course-return.js'});
   await page.addScriptTag({path:'js/lesson-card.js'});
   await page.addScriptTag({path:'js/learning-sky.js'});
   await page.evaluate(()=>{

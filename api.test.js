@@ -26,8 +26,18 @@ async function main() {
   assert.ok(snapshotUrl.endsWith('/api/data?since=12'), 'confirmed cache pulls must request a delta from the applied watermark');
   const jwtFor=uid=>'e30.'+Buffer.from(JSON.stringify({uid})).toString('base64url')+'.sig';
   api.setToken(jwtFor(41));
+  context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'41':null},text:async()=>' {"format":"legacy-v1"}'});
+  assert.equal(await api.getLearningDataFormat(),'legacy-v1','format discovery is account-bound and accepts legacy accounts');
+  context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'41':null},text:async()=>' {"format":"unknown-v9"}'});
+  await assert.rejects(api.getLearningDataFormat(),error=>error.code==='LEARNING_DATA_FORMAT_UNSUPPORTED');
   context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'41':null},text:async()=>'{"seq":18,"mem":{}}'});
   assert.equal((await api.getData()).seq,18,'confirmed sync accepts only the account echoed by the service');
+  context.fetch=async(url)=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'41':name==='X-Learning-Data-Format'?'references-v1':null},text:async()=>{snapshotUrl=url;return '{"format":"references-v1","seq":19,"mem":{"decks":[]},"courses":[]}';}});
+  assert.equal((await api.getLearningData(18)).format,'references-v1');
+  assert.ok(snapshotUrl.endsWith('/api/learning-data?since=18'));
+  context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'41':name==='X-Learning-Data-Format'?'references-v1':null},text:async()=>' {"seq":20,"mem":{},"courses":[]}'});
+  await assert.rejects(api.getLearningData(),error=>error.code==='LEARNING_DATA_FORMAT_UNSUPPORTED',
+    'references-v1 must be confirmed by both header and body before a caller can cache it');
   context.fetch=async()=>({status:200,ok:true,headers:{get:()=>null},text:async()=>'{"seq":19,"mem":{"foreign":true}}'});
   await assert.rejects(api.getData(),e=>e.code==='SERVER_IDENTITY_REQUIRED');
   context.fetch=async()=>({status:200,ok:true,headers:{get:name=>name==='X-ChunkLab-Account-Id'?'42':null},text:async()=>'{"ok":true}'});

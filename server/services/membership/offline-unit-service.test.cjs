@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {createOfflineUnitService}=require('./offline-unit-service');
+let mode='free',broken=false;const issued=[];
+const unit={unitId:'unit',contentVersion:'v1',recordIdentity:{deckId:'fixture'},itemIds:['a','b']};
+const service=createOfflineUnitService({service:'fixture',access:{authorize:()=>({allowed:true,mode})},licenses:{issue:(scope,decision)=>{issued.push({scope,decision});return {fixture:true};}},registry:{course:()=>({contentType:'sentence',units:[unit]}),load:(_,__,cursor)=>({payload:{courseId:'course',unitId:'unit',contentVersion:'v1',cursor,items:[{cid:cursor?'b':'a'}],nextCursor:broken?0:cursor?null:1}})}});
+const result=service.read({courseId:'course',unitId:'unit'},'owner');assert.equal(JSON.parse(result.body).batches.length,2);assert.equal(issued[0].scope.accountId,'owner');assert.match(issued[0].scope.sha256,/^[a-f0-9]{64}$/);
+mode='trial';assert.throws(()=>service.read({courseId:'course',unitId:'unit'},'owner'),/OFFLINE_ACCESS_DENIED/);
+mode='member';assert.ok(service.read({courseId:'course',unitId:'unit'},'owner').license);
+broken=true;assert.throws(()=>service.read({courseId:'course',unitId:'unit'},'owner'),/OFFLINE_UNIT_INVALID/);
+assert.throws(()=>service.read({courseId:'course',unitId:'unit'},null),/AUTH_REQUIRED/);
+console.log('Offline unit service: complete ordered batches, signed digest, free/member, trial and malformed pagination boundaries passed');

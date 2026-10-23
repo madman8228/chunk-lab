@@ -96,13 +96,13 @@ async function postJson(route, body, token) {
     await page.waitForFunction(function (traceId) {
       const health = document.querySelector('#saveHealthSummary').innerText;
       const failures = document.querySelector('#saveFailureList').innerText;
-      return health.includes('待处理 4') && health.includes('阻塞 1') &&
+      return health.includes('待保存 4') && health.includes('阻塞 1') &&
         failures.includes('ENTITY_CHANGED') && failures.includes(traceId);
     }, clientResults.conflict.body.traceId);
 
     const healthText = await page.locator('#saveHealthSummary').innerText();
     assert.match(healthText, /1 个活跃设备/);
-    assert.match(healthText, /待处理 4/);
+    assert.match(healthText, /待保存 4/);
     assert.match(healthText, /阻塞 1/);
     assert.match(healthText, /累计重试 7/);
 

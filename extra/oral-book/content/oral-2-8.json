@@ -2017,10 +2017,12 @@
   "sentence": "What's your major?",
   "translation": "你的专业是什么?",
   "chunks": [
-   "What's your major?"
+   "What's",
+   "your major?"
   ],
   "hints": [
-   "你的专业是什么？"
+   "你的专业",
+   "是什么？"
   ]
  },
  {
@@ -2517,10 +2519,12 @@
   "sentence": "How old are you?",
   "translation": "你多大了?",
   "chunks": [
-   "How old are you?"
+   "How old",
+   "are you?"
   ],
   "hints": [
-   "你多大了？"
+   "多大",
+   "你呢？"
   ]
  },
  {
@@ -2573,10 +2577,12 @@
   "sentence": "How tall are you?",
   "translation": "你有多高?",
   "chunks": [
-   "How tall are you?"
+   "How tall",
+   "are you?"
   ],
   "hints": [
-   "你有多高？"
+   "多高",
+   "你呢？"
   ]
  },
  {

@@ -38,6 +38,16 @@ CREATE TABLE IF NOT EXISTS users (
   created_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+/* Per-account learning snapshot format. Missing rows mean legacy-v1; only a
+   verified migration may create a references-v1 row. This is deliberately not
+   a process-wide feature flag, so mixed-version accounts can coexist safely. */
+CREATE TABLE IF NOT EXISTS user_learning_data_formats (
+  user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  format TEXT NOT NULL CHECK (format = 'references-v1'),
+  migration_id TEXT NOT NULL,
+  activated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 /* A protocol activation is a database fact, not a process flag. Once a
    database has accepted operation-protocol writes, an environment rollback
    must never silently reopen whole-snapshot writes against the same data. */
@@ -436,6 +446,7 @@ CREATE INDEX IF NOT EXISTS idx_events_user_at ON user_events(user_id, at);
 CREATE INDEX IF NOT EXISTS idx_feedback_created ON feedback(created_at);
 CREATE INDEX IF NOT EXISTS idx_activity_day ON user_activity(day);
 `);
+require('./services/course-library-schema').ensureCourseLibrarySchema(db);
 
 /* ----- ADR-005 迁移：给已存在的表补 rev / deleted_at 列 -----
    CREATE TABLE IF NOT EXISTS 不会改已有表，故对升级前的库做 ALTER ADD COLUMN。 */

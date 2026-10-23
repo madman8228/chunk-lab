@@ -14,6 +14,9 @@ for (const view of ['home','my-learning','discover']) {
 assert.deepEqual(resolveEntry({ search: '?course=c1&lesson=l1', navigationType: 'reload' }), {
   kind: 'catalog', course: 'c1', lesson: 'l1', explicit: true,
 });
+assert.deepEqual(resolveEntry({ search: '?personalCourse=private-course-1', navigationType: 'reload' }), {
+  kind: 'personal-course', courseId: 'private-course-1', explicit: true,
+});
 assert.deepEqual(resolveEntry({ search: '', navigationType: 'reload', intent, deck: { id: 'd1' } }), { kind: 'home' });
 assert.deepEqual(resolveEntry({ search: '', navigationType: 'navigate', intent }), { kind: 'unit', unitId: 'lesson-1' });
 assert.deepEqual(resolveEntry({ search: '?autostart=1', review: { ts: 100, deck: { id: 'review' } }, now: 101 }), { kind: 'review', deck: { id: 'review' }, explicit: true });

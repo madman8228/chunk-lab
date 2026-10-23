@@ -15,8 +15,9 @@ const root=path.resolve(__dirname,'..'),modules=['stats-growth.js','stats-insigh
   browser=await chromium.launch({headless:true});
   for(const width of [946,390]){
    const context=await browser.newContext({viewport:{width,height:932},serviceWorkers:'block'}),page=await context.newPage(),requests=[];
+   await context.addInitScript(()=>{const payload=btoa(JSON.stringify({uid:1})).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');const token='test.'+payload+'.test';localStorage.setItem('chunklab_api_base','');localStorage.setItem('chunklab_token',token);localStorage.setItem('chunklab.session.v1',JSON.stringify({version:1,epoch:'isolated',base:'',token}));});
    async function navigate(name){
-    await page.locator('#pageHome .workspace-loading').waitFor({state:'hidden'});
+    await page.locator('#workspaceNavHost .learning-global-nav').waitFor({state:'visible'});
     const close=page.getByRole('button',{name:'关闭提示',exact:true});if(await close.isVisible())await close.click();
     await page.getByRole('link',{name:name,exact:true}).click();
    }
@@ -32,19 +33,22 @@ const root=path.resolve(__dirname,'..'),modules=['stats-growth.js','stats-insigh
    assert.equal(await page.locator('#pageHome').isVisible(),true,'late module loading does not navigate back');
    await page.evaluate(()=>{const original=ChunkAPI.request;ChunkAPI.isLoggedIn=()=>true;ChunkAPI.request=(url,options)=>url.includes('/api/learning-archive/')?Promise.resolve({confirmed:true,domains:[],identityNote:'隔离统计说明',items:[],nextOffset:null}):original(url,options);});
    await navigate('学习记录');await page.locator('#statsPageHost #statsTabs').waitFor();
-   const note=page.locator('#statsPageHost .word-growth-availability details');await note.locator('summary').click();
    await page.evaluate(()=>dispatchEvent(new CustomEvent('server-cache-applied')));
-   assert.equal(await note.evaluate(node=>node.open),true,'generated embedded archive contains the disclosure-state fix');
+    assert.equal(await page.locator('#statsPageHost #statsTabs .tab.on').innerText(),'概览','confirmed-cache refresh keeps the current archive tab active');
    await navigate('首页');await navigate('学习记录');
    for(const name of modules)assert.equal(requests.filter(value=>value===name).length,1,'one script request per archive module');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
    const output=path.join(root,'output/playwright/stats-lazy');fs.mkdirSync(output,{recursive:true});
    await page.screenshot({path:path.join(output,'archive-'+width+'.png'),animations:'disabled'});await context.close();
   }
-  const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage();let fail=true;
+  const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage(),failedRequests=[];page.on('requestfailed',request=>failedRequests.push({url:request.url(),error:request.failure()?.errorText}));let fail=true;
+  await context.addInitScript(()=>{const payload=btoa(JSON.stringify({uid:1})).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');const token='test.'+payload+'.test';localStorage.setItem('chunklab_api_base','');localStorage.setItem('chunklab_token',token);localStorage.setItem('chunklab.session.v1',JSON.stringify({version:1,epoch:'isolated',base:'',token}));});
+  await page.goto(base+'/main.html?view=home');await page.locator('#workspaceNavHost .learning-global-nav').waitFor({state:'visible'});
   await page.route('**/js/stats-insights.js',route=>{if(fail){fail=false;return route.abort();}return route.continue();});
-  await page.goto(base+'/main.html?view=stats');await page.getByRole('button',{name:'重试',exact:true}).waitFor();
-  await page.getByRole('button',{name:'重试',exact:true}).click();await page.locator('#statsPageHost #statsTabs').waitFor();
-  await context.close();console.log('PASS: archive modules absent on home, loaded once on demand, direct entry, failure retry, navigation races and embedded disclosure fix; desktop/mobile isolated HTTP fixture.');
+  await page.getByRole('link',{name:'学习记录',exact:true}).click();await page.getByText('学习记录未能加载，请联网后重试。',{exact:true}).waitFor({timeout:5000}).catch(async error=>{
+   throw new Error(error.message+' direct-stats-state='+JSON.stringify({url:page.url(),body:(await page.locator('body').innerText()).slice(0,900),failedRequests}));
+  });
+  await page.getByRole('button',{name:'重试',exact:true}).click({noWaitAfter:true});await page.locator('#statsPageHost #statsTabs').waitFor();
+  await context.close();console.log('PASS: archive modules absent on home, loaded once on demand, entry retry, navigation races and current-tab retention; desktop/mobile isolated HTTP fixture.');
  }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
 })().catch(error=>{console.error(error);process.exitCode=1;});

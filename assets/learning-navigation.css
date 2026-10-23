@@ -16,7 +16,9 @@ html:has(#pageStats:not(.hidden)) .home-garden{display:block;position:fixed;inse
 #btnSettingsTop.account-entry:hover{color:#9a5f14;background:transparent;box-shadow:none;transform:none}
 #btnSettingsTop.account-entry:focus-visible{outline:2px solid #3768b4;outline-offset:2px}
 .learning-global-nav{display:flex;align-items:center;flex-wrap:nowrap;gap:8px;margin:0;padding:0;border:0;font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif}
-.learning-global-nav a{display:inline-flex;align-items:center;box-sizing:border-box;min-height:44px;padding:8px 12px;color:#765537;background:transparent;text-decoration:none;white-space:nowrap;border-radius:0;transition:color 120ms ease}
+.learning-global-nav a{display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;min-height:44px;padding:8px 12px;color:#765537;background:transparent;text-decoration:none;white-space:nowrap;border-radius:0;transition:color 120ms ease}
+.learning-nav-icon{display:inline-flex;flex:none;width:14px;height:14px}
+.learning-nav-icon svg{display:block;width:100%;height:100%}
 .learning-global-nav a[aria-current=page]{color:#55351f;font-weight:700}
 .learning-global-nav a:hover{color:#9a5f14;background:transparent;text-decoration:none;box-shadow:none}
 .learning-global-nav a:focus-visible{outline:2px solid #3768b4;outline-offset:2px}

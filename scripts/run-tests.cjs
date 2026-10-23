@@ -79,11 +79,20 @@ function run(entry, options) {
   const composite = entry.file.replace(/\\/g, '/') === 'e2e/transparent-save.test.js';
   const budgetMs = options && Number(options.timeoutMs) > 0 ? Number(options.timeoutMs)
     : composite && !process.env.TEST_TIMEOUT_MS ? timeoutMs * 6 + 30000 : timeoutMs;
+  const childEnv = { ...(options && options.env || process.env) };
+  if (childEnv.NODE_ENV === undefined) childEnv.NODE_ENV = 'test';
+  // Browser fixtures that start ordinary test servers run as guests by default.
+  // Auth-specific fixtures opt in with their own isolated test credentials.
+  // Keep unit/server groups' secure-default contract unchanged.
+  if (entry.group === 'browser') childEnv.REQUIRE_AUTH = 'false';
+  // A developer's server/.env must not silently choose the auth contract for
+  // isolated test services. Tests that exercise phone auth set this explicitly.
+  if (childEnv.PHONE_AUTH_ENABLED === undefined) childEnv.PHONE_AUTH_ENABLED = 'false';
   return new Promise((resolve) => {
     const started = Date.now();
     const child = spawn(process.execPath, [entry.file].concat(entry.args || []), {
       cwd: path.resolve(ROOT, entry.cwd),
-      env: options && options.env || process.env,
+      env: childEnv,
       stdio: ['ignore', 'pipe', 'pipe'],
       detached: process.platform !== 'win32',
     });

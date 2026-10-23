@@ -168,7 +168,8 @@ function createCourseAccessService({ db, registry, entitlements, usageMeter, mem
   }); }
   function catalogResources() { return catalog().map(course => ({ resourceId: 'course:' + course.courseId,
     courseId: course.courseId, kind: 'course', title: course.title, description: '', origin: 'builtin', visibility: 'public',
-    available: true, sourceRefs: [{ type: 'protected-course', id: course.courseId }], facets: {}, activities: ['chunks'],
+    available: true, sourceRefs: [{ type: course.contentType === 'expression' ? 'expression-course' : 'protected-course', id: course.courseId }], facets: {},
+    activities: [course.contentType === 'expression' ? 'expression' : 'chunks'],
     accessLevel: course.accessLevel, metadataRevision: course.policyRevision })); }
   return Object.freeze({ authorize, read, start, asset, list, preview, publish, catalog, catalogResources, identity });
 }

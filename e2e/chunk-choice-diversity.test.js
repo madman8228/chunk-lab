@@ -17,7 +17,9 @@ function startServer() {
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(ROOT, 'server'),
-      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test' }),
+      env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', REQUIRE_AUTH: 'false',
+        JWT_SECRET: 'chunk-choice-diversity-isolated-jwt-secret-32-bytes', ADMIN_PASSWORD: 'isolated-choice-admin-pass',
+        ADMIN_JWT_SECRET: 'chunk-choice-diversity-isolated-admin-secret-32-bytes' }),
       stdio: 'ignore'
     });
     let tries = 0;

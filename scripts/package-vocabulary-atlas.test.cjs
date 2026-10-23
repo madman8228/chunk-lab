@@ -13,26 +13,37 @@ const sha = file => crypto.createHash('sha256').update(fs.readFileSync(file)).di
 const writeJson = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
 const dimensions = file => JSON.parse(run('ffprobe', ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height', '-of', 'json', file])).streams[0];
 try {
-  const scripts = path.join(fixture, 'scripts');
-  fs.mkdirSync(scripts);
-  const script = path.join(scripts, 'package-vocabulary-atlas.cjs');
-  fs.copyFileSync(path.join(__dirname, 'package-vocabulary-atlas.cjs'), script);
+  const script = path.join(__dirname, 'package-vocabulary-atlas.cjs');
   const source = path.join(fixture, 'source.png');
   run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-f', 'lavfi', '-i', 'color=c=red:s=1280x800', '-vf', 'drawbox=x=640:y=0:w=640:h=400:color=green:t=fill,drawbox=x=0:y=400:w=640:h=400:color=blue:t=fill,drawbox=x=640:y=400:w=640:h=400:color=yellow:t=fill', '-frames:v', '1', source]);
   const sourceHash = sha(source);
-  const cells = ['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((position, i) => ({ position, word: ['red', 'green', 'blue', 'yellow'][i], slug: 'fixture-' + i, itemId: 'fixture:' + i }));
+  const cells = ['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((position, i) => ({ position, word: ['red', 'green', 'blue', 'yellow'][i], meaning: '颜色', slug: 'fixture-' + i, itemId: 'fixture:' + i }));
   const draft = { schemaVersion: 1, book: { bookId: 'fixture-book', title: 'Synthetic atlas fixture', units: [{ unitId: 'fixture-unit', title: 'Colors' }], catalog: { facets: { schoolStages: ['小学'], grades: ['三年级'] } } }, items: cells.map(c => ({ itemId: c.itemId, unitId: 'fixture-unit', word: c.word, meaning: '颜色', scene: '颜色卡片', translation: '它是这种颜色。', exercise: draftModel.exercise('It is [' + c.word + '].'), images: { wide: [], mobile: [] } })) };
   const draftFile = path.join(fixture, 'draft.json');
   writeJson(draftFile, draft);
-  const manifest = { batchId: 'fixture-single', unit: 99, version: 1, assetPrefix: 'fixture-course-u99-', draft: 'draft.json', cells };
+  const manifest = { batchId: 'fixture-single', unit: 99, version: 1, assetPrefix: 'fixture-course-u99-', styleReference: 'fixture-style', draft: 'draft.json', cells };
   const manifestFile = path.join(fixture, 'batch.json');
   writeJson(manifestFile, manifest);
-  const invoke = (...args) => run(process.execPath, [script, '--manifest', manifestFile, ...args]);
-  invoke('--source', source);
+  const catalogFile = path.join(fixture, 'catalog.json');
+  writeJson(catalogFile, { format: 'vocabulary-illustration-catalog', schemaVersion: 1, assets: [], aliases: {}, bindings: [] });
+  const planFile = path.join(fixture, 'plan.json');
+  const invoke = (...args) => run(process.execPath, [script, '--root', fixture, '--manifest', manifestFile, ...args]);
+  const preflight = () => invoke('--preflight', '--catalog', catalogFile, '--stage', 'primary', '--out', planFile);
+  assert.throws(() => invoke('--source', source), /New atlas packaging requires a current --catalog/);
+  assert.equal(fs.existsSync(path.join(fixture, 'ref/words-pic/atlases/fixture-single.png')), false, 'generation cannot package before shared-catalog preflight');
+  preflight();
+  const plan = JSON.parse(fs.readFileSync(planFile));
+  assert.deepEqual(plan.items.map(item => item.action), ['generate', 'generate', 'generate', 'generate']);
+  const productionArgs = ['--catalog', catalogFile, '--plan', planFile];
+  invoke('--source', source, ...productionArgs);
   const reportFile = path.join(fixture, 'batch.report.json');
   const report = JSON.parse(fs.readFileSync(reportFile));
   assert.equal(report.deliveryPolicy, 'single-wide-webp-v1');
   assert.equal(report.cells.length, 4);
+  const originalCatalog = fs.readFileSync(catalogFile);
+  fs.writeFileSync(catalogFile, Buffer.concat([originalCatalog, Buffer.from(' ')]));
+  assert.throws(() => invoke('--apply-draft', ...productionArgs), /Preflight plan is stale/);
+  fs.writeFileSync(catalogFile, originalCatalog);
   assert.equal(fs.readdirSync(path.join(fixture, 'assets')).length, 4, 'four words produce exactly four delivery files');
   for (const cell of report.cells) {
     assert.equal(cell.files.length, 1);
@@ -50,13 +61,13 @@ try {
   const unchangedDraft = fs.readFileSync(draftFile, 'utf8');
   const firstFile = path.join(fixture, report.cells[0].files[0].path), original = fs.readFileSync(firstFile);
   fs.writeFileSync(firstFile, Buffer.alloc(20000));
-  assert.throws(() => invoke('--apply-draft'), /Delivery validation failed/);
+  assert.throws(() => invoke('--apply-draft', ...productionArgs), /Delivery validation failed/);
   assert.equal(fs.readFileSync(draftFile, 'utf8'), unchangedDraft, 'invalid delivery cannot update the draft');
   fs.writeFileSync(firstFile, original);
   writeJson(reportFile, { ...report, deliveryPolicy: 'unknown' });
-  assert.throws(() => invoke('--apply-draft'), /Unknown delivery policy/);
+  assert.throws(() => invoke('--apply-draft', ...productionArgs), /Unknown delivery policy/);
   writeJson(reportFile, report);
-  invoke('--apply-draft');
+  invoke('--apply-draft', ...productionArgs);
   const applied = JSON.parse(fs.readFileSync(draftFile));
   assert.deepEqual(draftModel.validate(applied), []);
   for (const item of applied.items) {
@@ -68,6 +79,24 @@ try {
   assert.equal(sha(draftFile), appliedHash);
   assert.equal(sha(source), sourceHash);
   assert.equal(sha(path.join(fixture, report.atlas)), sourceHash);
+
+  // An exact approved match in the shared catalog is routed to reuse, never regeneration.
+  const matchedImage = path.join(fixture, 'assets/matched.webp');
+  run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-i', source, '-vf', 'scale=512:288', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '30', matchedImage]);
+  const matchedHash = sha(matchedImage), matchedAssetId = 'sha256:' + matchedHash;
+  const matchedAsset = { assetId: matchedAssetId, path: 'assets/matched.webp', sha256: matchedHash, bytes: fs.statSync(matchedImage).size, width: 512, height: 288, objectKey: 'vocabulary/' + matchedHash + '.webp' };
+  const matchedCatalogFile = path.join(fixture, 'matched-catalog.json');
+  writeJson(matchedCatalogFile, { format: 'vocabulary-illustration-catalog', schemaVersion: 1, assets: [matchedAsset], aliases: { [matchedAsset.path]: matchedAssetId }, bindings: [{ sourceKey: 'fixture-source/unit1/red', course: 'fixture-source', unit: 'unit1', itemId: 'fixture-source:red', word: 'red', meaning: '颜色', assetId: matchedAssetId, path: matchedAsset.path, stage: 'primary', styleReference: 'fixture-style', report: 'fixture.report.json', review: 'pass' }] });
+  const reuseManifestFile = path.join(fixture, 'reuse-batch.json');
+  const reuseDraftFile = path.join(fixture, 'reuse-draft.json');
+  writeJson(reuseDraftFile, { ...draft, items: [{ ...draft.items[0], images: { wide: [], mobile: [] } }] });
+  writeJson(reuseManifestFile, { ...manifest, batchId: 'fixture-reuse', draft: 'reuse-draft.json', cells: [cells[0]] });
+  const reusePlanFile = path.join(fixture, 'reuse-plan.json');
+  const invokeReuse = (...args) => run(process.execPath, [script, '--root', fixture, '--manifest', reuseManifestFile, ...args]);
+  invokeReuse('--preflight', '--catalog', matchedCatalogFile, '--stage', 'primary', '--out', reusePlanFile);
+  assert.equal(JSON.parse(fs.readFileSync(reusePlanFile)).items[0].action, 'select-approved-image');
+  assert.throws(() => invokeReuse('--source', source, '--catalog', matchedCatalogFile, '--plan', reusePlanFile), /Refusing duplicate generation/);
+  assert.equal(fs.existsSync(path.join(fixture, 'ref/words-pic/atlases/fixture-reuse.png')), false, 'an approved matching image is not regenerated');
 
   // Old reports remain applicable with their original four filenames and dimensions.
   const legacyCell = { ...cells[0], slug: 'fixture-legacy' };

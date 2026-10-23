@@ -8,8 +8,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="jqka.top">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="assets/learning-workspace.css?v=notice-overlay-20261020">
-<link rel="stylesheet" href="assets/content-card.css">
+<link rel="stylesheet" href="assets/learning-workspace.css?v=discover-amber-compact-selected-20261023">
+<link rel="stylesheet" href="assets/content-card.css?v=semantic-kind-tags-20261023">
 <link rel="stylesheet" href="assets/personal-center.css?v=personal-center-compact-title-20261023">
 <!-- favicon（2026-09-10）：修「浏览器 tab 退化成显示完整 URL」——此前只声明 512×512，
      tab 默认请求 /favicon.ico 与 32×32 均 404，浏览器回退成 URL 字符串当 tab 标识 -->
@@ -366,6 +366,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 #stageChoices{display:none;position:fixed;left:50%;bottom:32px;transform:translateX(-50%);
   z-index:55;width:min(92vw,760px);flex-wrap:wrap;justify-content:center;gap:10px;max-width:92vw}
 #stageChoices:has(.choice){display:flex}
+.main-chunk-selection{display:contents}
 .choice{
   position:relative;min-height:42px;border:1px solid rgba(145,135,121,.48);border-radius:999px;
   padding:9px 19px 10px;font-size:15px;font-weight:600;text-align:left;cursor:pointer;letter-spacing:.005em;
@@ -1093,13 +1094,9 @@ textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(51,88,224,.1
 .page{display:none}
 .page:not(.hidden){display:block}
 .boot-screen{
-  min-height:112px;display:grid;place-items:center;gap:10px;padding:24px 18px;
-  color:var(--muted);font-size:14px;text-align:center;
+  position:fixed;top:52px;left:0;right:0;z-index:1000;display:flex;justify-content:center;padding:0 12px;pointer-events:none;
 }
-.boot-screen .boot-message{display:inline-flex;align-items:center;gap:7px}
-.boot-screen .icon-spin{display:inline-flex;width:16px;height:16px}
-.boot-screen .boot-actions{display:flex;justify-content:center;gap:8px}
-.boot-screen.error{color:var(--bad);background:var(--bad-soft);border:1px solid #efc3bd;border-radius:12px}
+html:has(#updateToast[style*="display: flex"]) .boot-screen{top:100px}
 .boot-screen[hidden]{display:none !important}
 .page-head{
   display:flex;align-items:center;gap:12px;padding:16px 4px 12px;
@@ -1464,7 +1461,7 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
 .home-garden svg{position:absolute;bottom:0;width:clamp(165px,24vw,250px);height:auto;color:var(--v4-ink)}
 .home-garden .garden-left{left:0}
 .home-garden .garden-right{right:-5px;width:clamp(190px,27vw,290px)}
-html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)) .wrap{padding-bottom:110px}
+html:has(:is(#pageHome,#pageMyLearning,#pagePractice):not(.hidden)) .wrap{padding-bottom:110px}
 #pagePractice .card{background:var(--v4-card)}
 /* 首页保持单栏阅读顺序：今天要做 → 我的课程 → 错题本。
    太阳按 960px 内容区定位，并给右侧操作区留出空隙。 */
@@ -1517,6 +1514,9 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
 <link rel="stylesheet" href="assets/learning-navigation.css?v=brand-padding-20261016">
 <link rel="stylesheet" href="assets/learning-background.css?v=shared-sky-20261015">
 <link rel="stylesheet" href="assets/course-learning-header.css">
+<link rel="stylesheet" href="assets/practice-reference-layout.css">
+<link rel="stylesheet" href="assets/home-dashboard.css?v=stats-summary-icons-20261023">
+<link rel="stylesheet" href="assets/chunk-selection.css">
 </head>
 <body data-auth-entry="explicit">
 
@@ -1542,6 +1542,7 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
     <a class="brand" data-learning-brand href="./main.html?view=home" title="返回学习首页" aria-label="jqka.top 学习首页"><img src="assets/brand/jqka-logo-v1.webp" alt="jqka.top" width="123" height="36" style="display:block;width:123px;height:36px;object-fit:contain"></a>
       <div id="workspaceNavHost"></div>
       <span class="spacer"></span>
+      <button class="home-header-review" id="homeHeaderReview" type="button" hidden>开始复习</button>
       <button class="icon-action practice-only hidden" id="btnSound" title="音效开关" aria-label="音效开关" data-icon="sound"></button>
       <button class="icon-action" id="btnStats" title="学习档案" aria-label="学习档案" data-icon="stats"></button>
       <button class="btn sm icon-action flat-action" id="btnDecks" title="课程" aria-label="课程" data-icon="book"></button>
@@ -1563,10 +1564,7 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
   <div class="page home-page hidden" id="pageDiscover"><div id="discoverBody"></div></div>
   <div class="page home-page hidden" id="pageStats"><div id="statsPageHost"></div></div>
 
-  <div class="card boot-screen" id="bootScreen" hidden role="status" aria-live="polite">
-    <div class="boot-message"><span class="icon-spin" data-icon="refresh"></span><span id="bootMessage">正在打开首页…</span></div>
-    <div class="boot-actions"><button class="btn sm hidden" id="bootRetry" type="button">重试</button><button class="btn sm hidden" id="bootHome" type="button">回首页</button></div>
-  </div>
+  <div class="boot-screen" id="bootScreen" hidden></div>
 
   <!-- 练习页专属上下文（deckName / 进度 / 连击 / 进度条）：仅在 pagePractice 内可见，
        拆自旧 topbar，避免首页误显「日常对话 1/10」的语义错位。
@@ -1583,14 +1581,17 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
         </button>
         <div class="course-mode-menu" id="courseModeMenu" role="menu" aria-label="本课程练习方式" hidden></div>
       </div>
-      <button type="button" class="practice-exit course-header-exit" id="btnExitPractice" title="退出当前学习课程" aria-label="退出当前学习课程">退出</button>
-      <div class="progress pc-progress"><i id="progFill"></i></div>
+      <button type="button" class="practice-exit course-header-exit" id="btnExitPractice" title="退出当前学习课程" aria-label="退出当前学习课程"><span class="practice-exit-icon" data-icon="exit" aria-hidden="true"></span>退出</button>
+      <div class="practice-progress">
+        <div class="practice-progress-labels"><span>学习进度</span><div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">--/--</span></div></div>
+        <div class="progress pc-progress"><i id="progFill"></i></div>
+      </div>
       <div class="metrics">
-        <div class="metric"><span class="lbl">进度</span><span class="val" id="mProgress">--/--</span></div>
-        <div class="metric combo" id="mComboBox"><span class="lbl">连击</span><span class="val" id="mCombo">0</span></div>
+        <div class="metric combo" id="mComboBox"><span class="practice-combo-icon" data-icon="fire" aria-hidden="true"></span><span class="lbl">连击</span><span class="val" id="mCombo">0</span></div>
       </div>
     </div>
   </div>
+  <div class="practice-toolbar">
   <div class="practice-options" id="practiceOptions" hidden>
     <label id="practiceModeRow"><span>答题模式</span><select id="practiceMode" aria-label="答题模式"><option value="choose">选择</option><option value="type">手拼</option></select></label>
     <label id="practiceShuffleRow" title="下次开始练习时生效，不打乱当前题组"><input type="checkbox" id="practiceShuffle">乱序出题（下次开始生效）</label>
@@ -1610,8 +1611,10 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
       <button type="button" class="kbd kbd-action" data-action="hint" title="点击：提示当前意群首词">Ctrl+M</button> 提示 · <button type="button" class="kbd kbd-action" data-action="reveal" title="显示完整句子，不自动填写">Ctrl+F</button> 句子提示 · <button type="button" class="kbd kbd-action" data-action="full" title="显示并填写全句答案">Ctrl+P</button> 全句
     </span>
   </div>
+  </div><!-- /practice-toolbar -->
   <div class="card stage" id="stage">
     <div class="stage-head">
+      <span class="practice-task-label">意群表达</span>
       <span class="qno hidden" id="qno">Q1</span>
       <!-- 练习进度圆环：次数 + 正确率（未练过时隐藏）；桌面 hover / 移动 click 弹 popover -->
       <div class="ring-wrap hidden" id="ringWrap" role="button" tabindex="0" aria-label="本句练习进度详情" aria-describedby="ringPop">
@@ -1639,10 +1642,11 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
     <!-- 标熟：直接是按钮自身的圆环动画徽章（无单独提示条） -->
     <div class="track-line">
       <div class="track" id="track"></div>
-      <button class="icon-action sentence-speak hidden" id="btnSpeak" title="朗读当前句子" aria-label="朗读当前句子"><span data-icon="speak"></span></button>
     </div>
     <div class="stage-foot">
+      <button class="icon-action sentence-speak hidden" id="btnSpeak" title="听全句朗读" aria-label="听全句朗读" aria-pressed="false"><span class="sentence-waves" aria-hidden="true"><i></i><i></i><i></i></span><span data-icon="speak"></span><span>听全句朗读</span></button>
       <span class="spacer"></span>
+      <button class="practice-reset" id="btnResetSelection" type="button" title="重新选择当前题；保留错误、提示及历史学习记录" hidden><span data-icon="rotateCcw" aria-hidden="true"></span>重置选择</button>
       <button class="btn sm primary hidden" id="btnNext">下一题</button>
     </div>
   </div>
@@ -1877,15 +1881,17 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
 <div class="mask pc-drawer" id="settingsMask" hidden>
   <div class="modal pc-drawer-panel">
     <div class="modal-head">
+      <div id="personalCenterProfile" class="pc-profile">
+        <span class="pc-avatar" data-icon="user" aria-hidden="true"></span>
+        <div class="pc-profile-account"></div>
+        <button type="button" class="pc-upgrade" data-pc-upgrade>升级会员</button>
+      </div>
       <button class="btn sm ghost" id="personalCenterBack" type="button" data-icon="arrowL" aria-label="返回个人中心" hidden></button>
       <h3 id="personalCenterTitle">个人中心</h3>
       <span class="spacer"></span>
       <button class="btn sm ghost" data-close data-icon="close" aria-label="关闭弹窗"></button>
     </div>
     <div class="modal-body">
-      <div id="personalCenterProfile" class="pc-profile">
-        <span class="pc-avatar" data-icon="user" aria-hidden="true"></span>
-      </div>
       <nav id="personalCenterMenu" class="pc-menu" aria-label="个人中心菜单">
         <button type="button" data-pc-view="settings"><span data-icon="settings" aria-hidden="true"></span><span>学习设置</span><span data-icon="chevR" aria-hidden="true"></span></button>
         <button type="button" data-pc-view="membership"><span data-icon="sparkle" aria-hidden="true"></span><span>会员与体验</span><span data-icon="chevR" aria-hidden="true"></span></button>
@@ -1896,7 +1902,6 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
       <section id="personalCenterMembership" class="pc-pane" data-pc-pane="membership" aria-label="会员与体验" hidden></section>
       <section id="personalCenterBackup" class="pc-pane" data-pc-pane="backup" aria-label="备份与恢复" hidden></section>
       <section id="personalCenterCache" class="pc-pane" data-pc-pane="cache" aria-label="图片缓存" hidden></section>
-      <div id="personalCenterSignOut" class="pc-sign-out"></div>
       <details class="settings-group" id="settingsAppearanceGroup" data-default-open="true" open>
         <summary>声音与显示</summary>
         <div class="settings-group-body">
@@ -1960,6 +1965,10 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
             <button class="btn sm" id="btnImportAll" type="button"><span data-icon="import"></span>从备份恢复</button>
             <input type="file" id="fileBackup" accept=".json" class="hidden">
           </div>
+          <div id="settingsLearningCacheReview">
+            <p class="muted" style="font-size:12px;margin:0 0 8px">学习数据需要核查时，可先查看当前账号与本机缓存；旧分区会保留，不会自动合并或删除。</p>
+            <a class="btn sm" id="btnReviewLearningCache" href="browser-confirmation-repair.html" style="text-decoration:none">核查学习缓存</a>
+          </div>
         </div>
       </div>
 
@@ -2008,6 +2017,7 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
         </div>
       </details>
     </div>
+    <div id="personalCenterSignOut" class="pc-sign-out"></div>
     <div class="modal-foot">
       <button class="btn primary" id="btnSaveSettings">保存设置</button>
       <span class="spacer"></span>
@@ -2045,13 +2055,14 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
 </div>
 
 <script src="js/account-storage.js"></script>
+<script src="js/chunk-selection.js"></script>
+<script src="js/practice-layout.js"></script>
 <script>var businessStorage=window.AccountStorage.storage;</script>
 <script src="builtins.js"></script>
 <script src="js/course-catalog.js"></script>
 <script src="js/course-progress.js"></script><script src="js/course-return.js"></script>
 <script src="js/course-enrollment.js?v=membership-view-20261011"></script>
 <script src="js/logical-course-store.js"></script>
-<script src="js/content-repository.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/core-identity.js"></script>
 <script src="js/core-merge.js"></script>
@@ -2067,6 +2078,7 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
 <script src="js/learning-engine.js"></script>
 <script src="core.js"></script>
 <script src="api.js"></script>
+<script src="js/content-repository.js"></script>
 <script src="js/study-usage.js"></script>
 <script src="js/personal-wordbook-recovery.js"></script>
 <script src="js/server-cache.js"></script>
@@ -2079,14 +2091,15 @@ html:has(:is(#pageHome,#pageMyLearning,#pageDiscover,#pagePractice):not(.hidden)
 <script src="js/learning-workspace-store.js"></script>
 <script src="js/learning-navigation.js?v=integrated-stats-20261016"></script>
 <script src="js/course-covers.js?v=balloon-depth-20261016"></script>
-<script src="js/content-card.js"></script>
+<script src="js/content-card.js?v=semantic-kind-tags-20261023"></script>
 <script src="js/notice-banner.js"></script>
-<script src="js/learning-workspace-view.js?v=inline-add-wordbook-20261016"></script>
+<script src="js/operation-toast.js"></script>
+<script src="js/learning-workspace-view.js?v=semantic-kind-tags-20261023"></script>
 <script src="js/learning-workspace-runtime.js"></script>
 <script src="js/server-stat-key-migration.js"></script>
 <script src="js/save-status.js"></script>
 <script src="auth-ui.js?v=phone-entry-20261020"></script>
-<script src="js/icons.js"></script>
+<script src="js/icons.js?v=stats-summary-icons-20261023"></script>
 <script src="js/main.js"></script>
 <script src="js/main-explanation.js"></script>
 <script src="js/main-practice-policy.js"></script>
@@ -2148,10 +2161,23 @@ var _feedbackEffects = MainLifecycle.createFeedbackEffects({
 });
 var SFX = _feedbackEffects.sfx;
 var FX = _feedbackEffects.fx;
+var _sentencePlaybackId=0;
+function setSentencePlayback(playing){
+  var button=$('btnSpeak');if(!button)return;
+  button.classList.toggle('is-speaking',playing);button.setAttribute('aria-pressed',String(playing));
+}
+function stopSentencePlayback(){
+  _sentencePlaybackId++;setSentencePlayback(false);
+  if(window.__courseAudio){window.__courseAudio.pause();window.__courseAudio=null;}
+  try{speechSynthesis.cancel();}catch(_){}
+}
 function speakSentence(){
+  stopSentencePlayback();var ticket=_sentencePlaybackId;
+  function state(playing){if(ticket===_sentencePlaybackId)setSentencePlayback(playing);}
+  function synthesized(){if(ticket===_sentencePlaybackId&&_feedbackEffects.speakSentence(state)===false)showSysToast('当前浏览器暂时无法朗读。',3000);}
   var audioUrl=typeof cur==='function'&&cur()&&cur()._courseAudioUrl;
-  if(audioUrl){if(window.__courseAudio)window.__courseAudio.pause();window.__courseAudio=new Audio(audioUrl);window.__courseAudio.play().catch(function(){_feedbackEffects.speakSentence();});return;}
-  _feedbackEffects.speakSentence();
+  if(audioUrl){var audio=new Audio(audioUrl);window.__courseAudio=audio;audio.onplaying=function(){state(true);};audio.onpause=audio.onended=function(){state(false);};audio.onerror=function(){state(false);synthesized();};audio.play().catch(function(){if(ticket===_sentencePlaybackId&&!audio.error)synthesized();});return;}
+  synthesized();
 }
 /* 纯工具函数单源化：实现只在 js/format.mjs（ADR-007 Step 2），此处仅转发。
    2026-09-08：bootApp 守卫已纳入 FormatTools 就绪检查（与 ChunkEngine 同出于
@@ -2338,6 +2364,7 @@ function migrateLegacyFamiliarityScheduleToServer(){
   });
 }
 function saveStore(syncMode){
+  if(S.readOnlyPreview)return Promise.resolve(false);
   try{
     /* 统一等待统计/事件等 IndexedDB 提交完成，再广播更新并调度云同步。
        protocol 3 下只有明确的本地预测/确认投影可以传 local；普通业务快照必须先切到窄操作。
@@ -2704,7 +2731,7 @@ function platformReferenceForDeck(deckId){
   return null;
 }
 function practiceCourseId(){return S.deck&&S.deck._recordIdentity?S.deck._recordIdentity.generationScope.slice(7):S.deck.id;}
-function launchNativeCourse(courseId,unitId){
+function launchNativeCourse(courseId,unitId,origin){
   if(!window.ChunkAPI || !ChunkAPI.isLoggedIn()){showAccountRequiredPage();return;}
   $('practiceOptions').hidden=true;
   $('practiceBatchSizeRow').hidden=true;
@@ -2714,8 +2741,8 @@ function launchNativeCourse(courseId,unitId){
   var launchEpoch=++_nativeCourseLaunchEpoch;
   if(window.ensurePracticeReady)window.ensurePracticeReady().catch(function(error){console.warn('[practice] module preparation failed',error&&error.message);});
   showPracticePage();$('stage').classList.add('hidden');$('result').classList.add('hidden');clearStageChoices();
-  ChunkMembership.mountNativeCourse({host:$('pagePractice'),courseId:courseId,unitId:unitId,getMem:function(){return mem;},
-    onBatch:function(deck,fromIdx,generation){if(launchEpoch!==_nativeCourseLaunchEpoch)return;startDeck(deck,fromIdx,undefined,!!deck._reviewOnly,generation);}
+  ChunkMembership.mountNativeCourse({host:$('pagePractice'),courseId:courseId,unitId:unitId,origin:origin||'platform',getMem:function(){return mem;},
+    onBatch:function(deck,fromIdx,generation){if(launchEpoch!==_nativeCourseLaunchEpoch)return;startDeck(deck,fromIdx,undefined,!!deck._reviewOnly||!!deck._learningReadOnly,generation);}
   }).then(function(session){if(launchEpoch!==_nativeCourseLaunchEpoch)session.dispose();else window.__nativeCourseSession=session;});
 }
 function launchNativeAssessment(courseId,unitId,itemId){
@@ -2739,11 +2766,6 @@ function startDeck(deck, fromIdx, tempStart, forceFullReview, serverGeneration){
   if(deck && !deck._platformSession && !isTempQueueDeck(deck.id)){
     var platform=deck.builtin&&platformReferenceForDeck(deck.id);
     if(platform){launchNativeCourse(platform.courseId,platform.unitId);return;}
-    if(deck.builtin){
-      var pendingCourse=practiceMemberships()(deck.id).course;
-      var pendingLesson=pendingCourse&&CourseCatalog.listLessons(pendingCourse).find(function(lesson){return lesson.contentRef&&lesson.contentRef.id===deck.id;});
-      launchNativeCourse(pendingCourse?pendingCourse.id:deck.id,pendingLesson&&pendingLesson.id);return;
-    }
     var membership = practiceMemberships()(deck.id);
     if(!membership.joined){
       location.href = 'decks.html?courseView=all' + (membership.course ? '&course='+encodeURIComponent(membership.course.id) : '');
@@ -2757,6 +2779,9 @@ function startDeck(deck, fromIdx, tempStart, forceFullReview, serverGeneration){
     $('deckName').title = loadingDeckLabel;
   }
   S.assessment = null;
+  S.readOnlyPreview = !!deck._learningReadOnly;
+  $('stage').inert = S.readOnlyPreview;
+  if($('stageTipBar')) $('stageTipBar').inert = S.readOnlyPreview;
   updatePracticeBatchSize(deck);
   S.spellingOverride = false;
   $('stageTipBar').classList.remove('hidden');
@@ -2951,8 +2976,10 @@ if(fromIdx === 0 && isLongTermDeck && !preserveCourseOrder){
         if(ca !== cb) return ca - cb;
         return Math.random() - 0.5;
       });
-      S.items = _rankedItems.map(function(entry){ return entry.item; });
-      S.reviewSourceIndices = _rankedItems.map(function(entry){ return entry.sourceIndex; });
+      if(!S.readOnlyPreview){
+        S.items = _rankedItems.map(function(entry){ return entry.item; });
+        S.reviewSourceIndices = _rankedItems.map(function(entry){ return entry.sourceIndex; });
+      }
     }
     /* batchSize 作用于临时题库与超大内置题库；普通长期 deck（builtin-* / 用户导入 deck）
        仍一次练完整 deck：「通关」= 练完所有题，
@@ -2971,7 +2998,7 @@ if(fromIdx === 0 && isLongTermDeck && !preserveCourseOrder){
       }
       S.tempEnd = S.tempStart + S.items.length;
     }
-  if(mem.settings.shuffle && fromIdx === 0 && !preserveCourseOrder){
+  if(mem.settings.shuffle && fromIdx === 0 && !preserveCourseOrder && !S.readOnlyPreview){
     for(var i=S.items.length-1;i>0;i--){
       var j = Math.floor(Math.random()*(i+1)), t=S.items[i], ti=S.reviewSourceIndices[i];
       S.items[i]=S.items[j]; S.items[j]=t;
@@ -3015,10 +3042,10 @@ if(fromIdx === 0 && isLongTermDeck && !preserveCourseOrder){
   /* 记录 lastPlayed + 活跃题库（走统一访问层，防 {lastPlayed} 残壳）。
      长期 deck 才写 best；临时队列（book-/weak-/srs-/rev-/#）不落 best——
      否则每个临时 id 时间戳不同、每次练习都新增一条垃圾纪录（best 无限膨胀）。 */
-  if(!isTempQueueDeck(deck.id)){
+  if(!S.readOnlyPreview && !isTempQueueDeck(deck.id)){
     touchDeckBest(deck.id).lastPlayed = Date.now();
   }
-  if(S.contentBatch){
+  if(!S.readOnlyPreview && S.contentBatch){
     if(!mem.progress) mem.progress = {};
     /* 从批次首题开始记录游标；中途关闭页面时仍回到当前批次，而不是跳到下一批。 */
     mem.progress[deck.id] = {
@@ -3027,22 +3054,24 @@ if(fromIdx === 0 && isLongTermDeck && !preserveCourseOrder){
       contentCursor: S.contentBatch.startCursor
     };
   }
-  if(!mem.progress) mem.progress = {};
-  if(!mem.progress[deck.id]){
+  if(!S.readOnlyPreview && !mem.progress) mem.progress = {};
+  if(!S.readOnlyPreview && !mem.progress[deck.id]){
     mem.progress[deck.id] = {
       idx: S.reviewSourceIndices && Number.isInteger(S.reviewSourceIndices[S.idx]) ? S.reviewSourceIndices[S.idx] : S.idx,
       time: Date.now(), sessionId: S.sessionId, generation: S.generation,
       ...(S.courseLearning && S.courseLearning.enabled ? { practiceMode:S.courseLearning.mode } : {})
     };
     if(S.contentBatch) mem.progress[deck.id].contentCursor = S.contentBatch.startCursor;
-  } else {
+  } else if(!S.readOnlyPreview) {
     mem.progress[deck.id].sessionId = S.sessionId;
     mem.progress[deck.id].generation = S.generation;
   }
-  Object.assign(mem.progress[deck.id], { answerOrder:S.answerOrder, chunkRight:S.chunkRight,
-    chunkTotal:S.chunkTotal, perfectCount:S.perfectCount, maxCombo:S.maxCombo, combo:S.combo });
-  mem.activeDeckId = deck.id;
-  saveStore(serverPersistenceEnabled()&&!S.assessment?'local':undefined);
+  if(!S.readOnlyPreview){
+    Object.assign(mem.progress[deck.id], { answerOrder:S.answerOrder, chunkRight:S.chunkRight,
+      chunkTotal:S.chunkTotal, perfectCount:S.perfectCount, maxCombo:S.maxCombo, combo:S.combo });
+    mem.activeDeckId = deck.id;
+    saveStore(serverPersistenceEnabled()&&!S.assessment?'local':undefined);
+  }
 }
 
 function newPracticeSessionId(){
@@ -3058,7 +3087,19 @@ function newPracticeSessionId(){
 /* ★ 会话状态对象 S —— 之前与 BUILTIN 同区域被误删，重建
    所有 S.* 字段必须先初始化，否则 startDeck / renderQ 抛 undefined 错误 */
 var S = MainPracticeState.createPracticeState();
+var _mainChunkSelection = null;
+function destroyMainChunkSelection(){if(_mainChunkSelection){_mainChunkSelection.destroy();_mainChunkSelection=null;}}
 S.courseLearning = null;
+S.readOnlyPreview = false;
+document.addEventListener('keydown',function(event){
+  if(!S.readOnlyPreview||event.key==='Escape'||event.key==='Tab')return;
+  event.preventDefault();event.stopImmediatePropagation();
+},true);
+document.addEventListener('click',function(event){
+  if(!S.readOnlyPreview)return;
+  var target=event.target, allowed=target.closest&&target.closest('#btnExitPractice, .course-access-panel button, .course-access-panel a');
+  if(target.closest&&target.closest('#pagePractice')&&!allowed){event.preventDefault();event.stopImmediatePropagation();}
+},true);
 function effectivePracticeMode(){
   if(['type','choose'].indexOf(S.spellingOverride)>=0 && !S.assessment)return S.spellingOverride;
   return window.MainCourseLearningPolicy
@@ -3121,6 +3162,7 @@ function migrateLegacyStatKeys(){
 }
 
 function renderQ(preserveAttempt){
+  stopSentencePlayback();
   if($('practiceOptions')) updatePracticeOptions();
   if(S.deck&&S.deck._platformSession&&!S.deck._platformSession.gateway.checkAdvance()){
     S.deck._platformSession.showError({code:'AUTHORIZATION_EXPIRED'});return;
@@ -3142,13 +3184,14 @@ function renderQ(preserveAttempt){
   if(courseImage){courseImage.hidden=!(it&&it._courseImageUrl);if(it&&it._courseImageUrl)courseImage.src=it._courseImageUrl;else courseImage.removeAttribute('src');}
   if(!it){
     if(S.deck&&S.deck._platformSession&&S.contentBatch&&S.contentBatch.nextCursor!==null){
-      $('stageChoices').innerHTML='';$('track').innerHTML='';$('zh').textContent='本组暂无待学或到期内容，可以继续下一组。';
+      destroyMainChunkSelection();$('stageChoices').innerHTML='';$('track').innerHTML='';$('zh').textContent='本组暂无待学或到期内容，可以继续下一组。';
       var nextAvailableBatch=document.createElement('button');nextAvailableBatch.className='btn primary';nextAvailableBatch.textContent='继续下一组';
       nextAvailableBatch.onclick=function(){S.deck._platformSession.nextBatch();};$('zh').appendChild(nextAvailableBatch);return;
     }
-    $('stageChoices').innerHTML = '';
+    destroyMainChunkSelection();$('stageChoices').innerHTML = '';
     $('track').innerHTML = '';
     ['btnMaster','btnExplain','btnSpeak','ringWrap','schedLine','revealTagWrap'].forEach(function(id){ $(id).classList.add('hidden'); });
+    $('btnResetSelection').hidden=true;
     $('courseContext').hidden = true;
     $('stageTipBar').classList.add('hidden');
     var _emptyDeckItems = S.deck && Array.isArray(S.deck.items) ? S.deck.items : [];
@@ -3224,6 +3267,7 @@ function renderQ(preserveAttempt){
     var roleHtml = gmRole ? '<span class="chunk-role"'+(gmColor ? ' style="background:'+esc(gmColor)+'22"' : '')+'>'+esc(gmRole)+'</span>' : '';
     var box = document.createElement('div');
     box.className = 'chunk wait';
+    if(gmColor)box.style.setProperty('--chunk-color',gmColor);
 
     if(window.MainPracticeMarkup && typeof MainPracticeMarkup.buildChunkMarkup === 'function'){
       box.innerHTML = MainPracticeMarkup.buildChunkMarkup({
@@ -3308,7 +3352,9 @@ function renderQ(preserveAttempt){
   $('revealTagWrap').classList.add('hidden');
   /* SRS 排期行：新一句开始时先隐藏，答完由 renderSchedLine 决定是否显示 */
   var _sl = $('schedLine'); if(_sl){ _sl.classList.add('hidden'); _sl.innerHTML = ''; }
-  $('btnSpeak').classList.add('hidden');
+  $('btnSpeak').classList.toggle('hidden',!!S.assessment);
+  $('btnResetSelection').hidden=!!S.assessment;
+  $('btnResetSelection').disabled=false;
   /* 详解按钮：总是显示（查看已打包的静态讲解；AI 解读已停用，见 switchExplainTab） */
   var _expB = $('btnExplain');
   if(_expB){
@@ -3687,6 +3733,7 @@ function buildDistractors(it){
 /* 渲染整池：正确项与干扰项初始统一样式，避免提前泄露答案 */
 function renderActiveChoices(){
   var box = $('stageChoices'); if(!box) return;
+  destroyMainChunkSelection();
   if(effectivePracticeMode() !== 'choose'){ box.innerHTML = ''; return; }
   var it = cur(); if(!it){ box.innerHTML = ''; return; }
   /* 懒建池：进入新句子时一次性建立**固定展示顺序**（干扰项 + 正确项 合并混洗一次）
@@ -3717,16 +3764,16 @@ function renderActiveChoices(){
      + 已 ok 的 correct 在渲染循环里跳过（不重复显示）；视觉通过 :has([data-done]) 控制半透明 */
   var markupBuilder = window.ChunkEngine && typeof window.ChunkEngine.buildChoiceMarkup === 'function'
     ? window.ChunkEngine.buildChoiceMarkup : null;
-  var html = markupBuilder
-    ? markupBuilder(pool, S.status, esc)
-    : '';
-  if(!markupBuilder){
-    pool.order.forEach(function(e){
-      if(e.ci >= 0 && S.status[e.ci] === 'ok') return;
-      html += '<button class="choice'+(e.ci<0?' distractor':'')+'" type="button" data-v="'+esc(e.v)+'">'+esc(e.v)+'</button>';
-    });
-  }
-  box.innerHTML = html;
+  var tokens = pool.order.map(function(e, index){ return { id:index, text:e.v, value:e.v,
+    className:'choice'+(e.ci<0?' distractor':''), hidden:e.ci >= 0 && S.status[e.ci] === 'ok' }; })
+    .filter(function(token){ return !token.hidden; });
+  _mainChunkSelection = window.ChunkSelection.createChunkSelection({ mode:'immediate', className:'main-chunk-selection',
+    buttonClass:'chunk-selection-button', tokens:tokens, onSelect:function(token){
+      var st=S.status[S.chunkIdx];
+      if(st==='ok' || st==='bad' || st==='revealed'){ next(); return; }
+      chooseSubmit(token.value);
+    } });
+  box.replaceChildren(_mainChunkSelection);
   /* revealTagWrap 只在"已掌握/需巩固"两条 actionable 复习建议分支里显示（见 finishSentence）。
      「已答完」outcome tag 已于 2026-09-10 移除——错 1 自纠态的"沉默"本来就是正确反馈
      （错处红字 + track 补全 + 下一题按钮 3 重信号已足够），补绿 tag 属兜底式过度反馈，
@@ -3754,15 +3801,6 @@ function markChoices(i, pick){
     if(!pick || btn.dataset.v === pick){ btn.disabled = true; }
   });
 }
-
-/* 在 #stageChoices 上委托点击） */
-$('stageChoices').addEventListener('click', function(e){
-  var btn = e.target.closest && e.target.closest('.choice'); if(!btn) return;
-  if(btn.disabled) return;
-  var st = S.status[S.chunkIdx];
-  if(st==='ok' || st==='bad' || st==='revealed'){ next(); return; }
-  chooseSubmit(btn.dataset.v);
-});
 
 /* 选择模式提交：点候选即作答 */
 function chooseSubmit(choice){
@@ -3908,10 +3946,10 @@ function clearAnswerHint(){
   var hint=$('answerHint');
   if(hint){ hint.classList.remove('show'); hint.textContent=''; }
 }
-function showSentenceHint(){
+function recordSentenceExposure(){
   if($('stage').classList.contains('hidden') || S.finished || S.assessment) return;
-  var it=cur(), hint=$('answerHint');
-  if(!it || !hint || !it.sentence) return;
+  var it=cur();
+  if(!it || !it.sentence) return;
   S.hinted=true;
   S.perfectThis=false;
   if(!S.hintedChunks) S.hintedChunks={};
@@ -3949,7 +3987,12 @@ function showSentenceHint(){
       });
     }
   }else applyExposureProjection();
-  hint.textContent=it.sentence;
+  return true;
+}
+function showSentenceHint(){
+  if(!recordSentenceExposure())return;
+  var hint=$('answerHint');if(!hint)return;
+  hint.textContent=cur().sentence;
   hint.classList.add('show');
   clearTimeout(_answerHintTimer);
   _answerHintTimer=setTimeout(clearAnswerHint,3200);
@@ -3984,6 +4027,7 @@ var RING_SVG = '<svg viewBox="0 0 22 22">'+
   '<circle id="masterRingFg" cx="11" cy="11" r="9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" transform="rotate(-90 11 11)" style="stroke-dasharray:56.5;stroke-dashoffset:56.5"/>'+
   '<text x="11" y="13.5" text-anchor="middle" font-size="8" font-weight="800" fill="currentColor">熟</text></svg>';
 function toggleMastered(){
+  if(S.readOnlyPreview)return;
   if(S.finished || !S.deck) return;
   var b = $('btnMaster'); if(!b) return;
   var it = cur();
@@ -4086,6 +4130,7 @@ function practiceAnswerOperation(it){
 }
 
 function queuePracticeAnswer(it){
+  $('btnResetSelection').disabled=true;
   var h=$('btnHint'), skip=$('btnSkip');
   S._finishing=true;
   if(h) h.disabled=true;
@@ -4116,6 +4161,7 @@ function queuePracticeAnswer(it){
 }
 
 function finishSentence(){
+  if(S.readOnlyPreview)return;
   var it = cur();
   /* 防重入：同一句只处理一次（toast关闭+Enter 等双路径可能触发两次） */
   if(S._finishing) return;
@@ -4123,10 +4169,11 @@ function finishSentence(){
     return queuePracticeAnswer(it);
   }
   S._finishing = true;
+  $('btnResetSelection').disabled=true;
   var h = $('btnHint'); if(h) h.disabled = true;
   var s = $('btnSkip'); if(s) s.disabled = true;
   /* 清空 stage 底部候选按钮（不进入下一 chunk 答题） */
-  $('stageChoices').innerHTML = '';
+  destroyMainChunkSelection();$('stageChoices').innerHTML = '';
   /* 学习统计：按句累计练习次数 / 答对答错 / 最近时间 */
   var _st = recordSentenceResult(it, S.perfectThis,{assisted:S.hinted || S.status.some(function(value){return value==='revealed';}),earlyPractice:S.forceFullReview && Number(mem.stats.bySentence[statKey(it)] && mem.stats.bySentence[statKey(it)].dueAt)>Date.now()});
   /* SRS 白盒化：把本次排期结果立刻回给用户（纯展示，调度仍走 CL.srs） */
@@ -4212,6 +4259,7 @@ function finishSentence(){
 }
 
 function nextQuestion(){
+  if(S.readOnlyPreview)return;
   var nativeSession=S.deck&&S.deck._platformSession;
   if(nativeSession&&!nativeSession.advancing){nativeSession.advance(function(){nativeSession.advancing=true;try{nextQuestion();if(S.idx+3>=S.items.length)nativeSession.prefetchNext();}finally{nativeSession.advancing=false;}});return;}
   if(S._saveRetry){ finishSentence(); return; }
@@ -4284,9 +4332,20 @@ function showToast(combo){
   t.classList.remove('show'); void t.offsetWidth; t.classList.add('show');
 }
 
-/* 系统级 Toast（屏幕中央）：非连击类提示（导入成功等） */
+/* 系统级提示：工作区使用统一吸顶提示栏，练习页保留即时浮层。 */
 var _sysToastTimer = null;
 function showSysToast(text, ms){
+  var rail = $('noticeBannerRail');
+  var workspaceVisible = ['pageHome','pageMyLearning','pageDiscover','pageStats'].some(function(id){
+    var page = $(id);return page && !page.classList.contains('hidden');
+  });
+  if(rail && workspaceVisible && window.NoticeBanner){
+    var notice = NoticeBanner.create({message:text});
+    rail.replaceChildren(notice);
+    clearTimeout(_sysToastTimer);
+    _sysToastTimer = setTimeout(function(){notice.remove();}, ms || 2200);
+    return;
+  }
   var t = $('sysToast');
   if(!t) return;
   t.textContent = text;
@@ -4489,6 +4548,7 @@ function showCurrentExplanation(){
 }
 
 function skipQuestion(){
+  if(S.readOnlyPreview)return;
   var it = cur();
   for(var i=S.chunkIdx;i<it.chunks.length;i++){
     S.chunkTotal++;
@@ -4505,6 +4565,7 @@ function skipQuestion(){
 }
 
 function hintFirst(){
+  if(S.readOnlyPreview)return;
   var it = cur(), i = S.chunkIdx;
   if(i >= it.chunks.length) return;
   if(S.status[i]==='ok' || S.status[i]==='bad') return;
@@ -4540,6 +4601,7 @@ function hintFirst(){
 
 /* 学习统计：记录一次句子练习结果（防重入已由调用方保证） */
 function recordSentenceResult(it, ok, outcome){
+  if(S.readOnlyPreview)return null;
   outcome = outcome || {};
   if(!mem.stats) mem.stats = { totalRounds:0, totalAnswered:0, bySentence:{}, events:[] };
   mem.stats.totalAnswered++;
@@ -4633,6 +4695,7 @@ async function restoreHiddenBuiltinItems(deck){
 }
 
 function finishSession(){
+  if(S.readOnlyPreview)return;
   if(serverPersistenceEnabled() && !S.assessment && !S._roundQueued){
     if(S._roundSubmitting) return;
     if(!S._pendingRoundOperation){
@@ -4920,6 +4983,7 @@ function dueRank(it){ return isDue(it) ? 0 : 1; }
 
 /* ===== 页面切换：今日首页 ↔ 练习页 ===== */
 function setPracticeOnlyUi(isPractice){
+  if(!isPractice)stopSentencePlayback();
   var sound = $('btnSound');
   if(sound) sound.classList.toggle('hidden', !isPractice);
 }
@@ -4992,6 +5056,11 @@ function exitPractice(){
   var btn = $('btnExitPractice');
   if(btn && btn.disabled) return;
   stopAutoNext();
+  if(S.readOnlyPreview){
+    var previewReturn=_workspacePracticeReturn;_workspacePracticeReturn='';
+    if(new URLSearchParams(location.search).has('returnTo'))location.href=CourseReturn.destination(location.search,'main.html?view=home');else if(previewReturn)location.href=previewReturn;else showHomePage();
+    return;
+  }
   if(btn){ btn.disabled = true; btn.textContent = '保存中…'; }
   var localSave;
   try{ localSave = saveStore('local'); }
@@ -5281,14 +5350,27 @@ function workspace(){
     open:openWorkspaceResource,
     resume:function(target){var resume=target||_workspaceData&&_workspaceData.resume;if(resume){if(resume.toolId==='vocabulary'){location.href=VocabularyStudy.resumeHref(resume);return;}showPracticePage();startDeck(resume.deck,resume.idx||0);}},
     review:function(){showPracticePage();startTodayDue();},
+    join:function(resource){var catalog=createHomeCourseLookup().getCatalog();return CourseEnrollment.join(resource.courseId,CourseCatalog.getEnrollmentAliases(catalog)).then(function(){workspace().refresh();});},
     leave:function(id){return CourseEnrollment.leave(id).then(function(){workspace().refresh();});}
   });
   return _workspaceRuntime;
 }
 function openWorkspaceResource(resource,options){
   options=options||{};
+  var expressionCourse=(resource.sourceRefs||[]).find(function(ref){return ref.type==='expression-course';});
+  if(expressionCourse){var enterExpressionCourse=function(){location.href=CourseReturn.forward('expression-learn.html?course='+encodeURIComponent(expressionCourse.id),CourseReturn.source());};if(options.join){CourseEnrollment.join(resource.courseId||expressionCourse.id).then(enterExpressionCourse).catch(function(error){showSysToast(error.message||'加入课程未确认，请重试。',5000);});}else enterExpressionCourse();return;}
+  var personalCourse=(resource.sourceRefs||[]).find(function(ref){return ref.type==='personal-course';});
+  if(personalCourse){location.href=CourseReturn.forward('main.html?personalCourse='+encodeURIComponent(personalCourse.id),CourseReturn.source());return;}
   var protectedCourse=(resource.sourceRefs||[]).find(function(ref){return ref.type==='protected-course';});
-  if(protectedCourse){location.href=CourseReturn.forward('main.html?protectedCourse='+encodeURIComponent(protectedCourse.id),CourseReturn.source());return;}
+  if(protectedCourse){
+    var enterProtectedCourse=function(){location.href=CourseReturn.forward('main.html?protectedCourse='+encodeURIComponent(protectedCourse.id),CourseReturn.source());};
+    if(!window.CourseEnrollment){showSysToast('课程保存模块未就绪，暂未加入学习。',4000);return;}
+    if(CourseEnrollment.isJoined(protectedCourse.id)){enterProtectedCourse();return;}
+    CourseEnrollment.join(protectedCourse.id).then(enterProtectedCourse).catch(function(error){
+      showSysToast(error.message||'加入学习未确认，请重试。',5000);
+    });
+    return;
+  }
   var wordbook=(resource.sourceRefs||[]).find(function(ref){return ref.type==='vocabulary-book';});
   if(wordbook){location.href=CourseReturn.forward('wordbook.html?book='+encodeURIComponent(wordbook.id),CourseReturn.source());return;}
   var catalog=createHomeCourseLookup().getCatalog();
@@ -5372,7 +5454,8 @@ function renderHome(modelOnly){
   }).filter(Boolean).sort(function(a,b){return b.time-a.time;});
   if(workspaceResumeCandidates.length)resume=workspaceResumeCandidates[0];
   _workspaceData={catalog:homeCatalog,memberships:memberships,aliases:CourseCatalog.getEnrollmentAliases(homeCatalog),
-    joinedCourseIds:joinedCourses.map(function(course){return course.id;}),due:t.due,
+    joinedCourseIds:joinedCourses.map(function(course){return course.id;}),due:t.due,wrong:t.book,
+    homeActivity:{days:CL.dailyActivity(mem),streak:CL.streakDays(mem)},
     resume:resume?Object.assign({},resume,{title:resume.deck.name,serverTime:Number(resume.time)||0}):null};
   var joinedSentenceDecks = [];
   var progressCourses = (homeCatalog.courses || []).filter(function(course){ return memberships[course.id] || course.origin === 'user'; });
@@ -5453,7 +5536,11 @@ function renderHome(modelOnly){
     }
     var state = course.isProtected ? 'unknown' : CourseProgress.completionState(completionLessons);
     courseCompletion[course.id] = {state:state};
-    return { course:course, lessons:lessons, title:title, completionState:state, coverMarkup:courseCover(course,lessons), progress:progressText, progressAria:progressAria, progressMarkup:progressMarkup };
+    var homeProgressMarkup = '<span class="home-progress-metric"><span class="home-progress-label"><span>课程总进度</span><b>' + coursePercent + '%</b></span>'
+      + '<span class="home-progress-track"><span style="width:' + coursePercent + '%"></span></span></span>';
+    if(hasLessonMetric)homeProgressMarkup += '<span class="home-progress-metric is-current"><span class="home-progress-label"><span title="' + escX(focusTitle) + '">当前课节：' + escX(focusTitle) + '</span><b>' + lessonPercent + '%</b></span>'
+      + '<span class="home-progress-track"><span style="width:' + lessonPercent + '%"></span></span></span>';
+    return { course:course, lessons:lessons, title:title, completionState:state, coverMarkup:courseCover(course,lessons), progress:progressText, progressAria:progressAria, progressMarkup:progressMarkup,homeProgressMarkup:homeProgressMarkup };
   });
   var joinedCourseRows = joinedCourses.map(function(course){ return allCourseRows.find(function(row){ return row.course.id === course.id; }); }).filter(Boolean);
   _workspaceData.courseCompletion = courseCompletion;
@@ -6246,6 +6333,7 @@ function showPage(id){
   /* 显示目标页 */
   var target = $(id);
   if(target) target.classList.remove('hidden');
+  var bootNotice=$('bootScreen');if(bootNotice)bootNotice.hidden=true;
   _curPage = id;
   window.dispatchEvent(new CustomEvent('stats-surface-visibility'));
   setPracticeOnlyUi(id === 'pagePractice');
@@ -6259,15 +6347,67 @@ function showPage(id){
   $('appendMask').hidden = true;
 }
 var statsReadyTask=null,statsLoadFailed=false;
+function selectStudyArchive(){
+  var tab=new URLSearchParams(location.search).get('tab');if(!['review','wrong','sent'].includes(tab))tab='sent';
+  var params=new URLSearchParams(location.search),domain=params.get('domain');if(!['course','word','sentence'].includes(domain))domain='course';
+  var host=$('statsPageHost');host.dataset.studyView=tab;
+  var navigation=$('studyArchiveNav');if(!navigation){navigation=document.createElement('div');navigation.id='studyArchiveNav';host.before(navigation);}
+  navigation.replaceChildren();[['review','待复习'],['wrong','错题本']].forEach(function(entry){var link=document.createElement('a');link.dataset.studyTab=entry[0];link.href='main.html?view=stats&tab='+entry[0];link.textContent=entry[1];if(tab===entry[0])link.setAttribute('aria-current','page');link.onclick=function(event){if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();if(window.openStatsPage)window.openStatsPage(entry[0]);};navigation.append(link);});
+  var intro=$('studyArchiveIntro');if(!intro){intro=document.createElement('header');intro.id='studyArchiveIntro';intro.className='study-archive-intro';intro.innerHTML='<h1></h1><p></p>';}
+  var summary=$('studyArchiveSummary');
+  if(!summary){summary=document.createElement('section');summary.id='studyArchiveSummary';summary.className='study-summary';summary.setAttribute('aria-label','学习统计摘要');
+    [['连续练句子','天','streak','fire'],['今日句子答题','次','today','clock'],['句子练习轮次','轮','rounds','calendar'],['句子累计答题','次','answers','target']].forEach(function(metric){var card=document.createElement('div'),icon=document.createElement('span'),copy=document.createElement('div'),label=document.createElement('span'),value=document.createElement('strong'),unit=document.createElement('small');card.className='study-summary-item study-summary-'+metric[2];icon.className='study-summary-icon';icon.setAttribute('aria-hidden','true');icon.innerHTML=window.Icons?Icons.svg(metric[3]):'';copy.className='study-summary-copy';label.textContent=metric[0];value.textContent='0';unit.textContent=metric[1];value.append(unit);copy.append(label,value);card.append(icon,copy);summary.append(card);});}
+  var activity=$('studyArchiveActivity');if(!activity){activity=document.createElement('section');activity.id='studyArchiveActivity';activity.className='study-archive-activity';activity.setAttribute('aria-label','句子练习活动');activity.innerHTML='<section class="study-week-panel"><h2>近 7 天句子答题</h2><ol class="study-week-bars"></ol></section><section class="study-heat-panel"><h2>近 17 周句子学习记录</h2><div class="study-heatmap" role="img" aria-label="近 17 周每日句子学习活动"></div><div class="study-heat-legend" aria-hidden="true"><span>少</span><i></i><i></i><i></i><i></i><span>多</span></div></section>';}
+  var content=$('studyArchiveContent');if(!content){content=document.createElement('section');content.id='studyArchiveContent';content.className='study-archive-content';content.innerHTML='<nav class="study-content-tabs" aria-label="学习内容类型"></nav><div class="study-content-panel"></div>';}
+  var days=CL.dailyActivity(mem)||{},todayKey=CL.ymd(new Date()),today=days[todayKey]||{answered:0,rounds:0},streak=CL.streakDays(mem),audit=CL.answerStatsAudit(mem);
+  intro.querySelector('h1').textContent=streak?'连续练句子 '+streak+' 天，今天继续保持':'句子学习记录，从今天开始';
+  intro.querySelector('p').textContent='今日句子答题 '+(Number(today.answered)||0)+' 次 · 累计句子答题 '+audit.totalAnswered+' 次';
+  var values=[streak,Number(today.answered)||0,Number(mem.stats&&mem.stats.totalRounds)||0,audit.totalAnswered];
+  Array.prototype.forEach.call(summary.children,function(card,index){card.querySelector('strong').firstChild.textContent=values[index].toLocaleString('zh-CN');});
+  var week=activity.querySelector('.study-week-bars'),peak=1,rows=[];
+  for(var offset=6;offset>=0;offset--){var date=new Date();date.setHours(12,0,0,0);date.setDate(date.getDate()-offset);var key=CL.ymd(date),entry=days[key]||{answered:0};var count=Number(entry.answered)||0;rows.push({date:date,key:key,count:count});peak=Math.max(peak,count);}
+  week.replaceChildren();rows.forEach(function(row){var item=document.createElement('li'),count=document.createElement('strong'),bar=document.createElement('span'),label=document.createElement('time');item.setAttribute('aria-label',row.key+'：答题 '+row.count+' 次');count.textContent=String(row.count);bar.className='study-week-bar';bar.style.setProperty('--study-bar-height',Math.max(row.count?4:0,Math.round(row.count/peak*100))+'%');label.dateTime=row.key;label.textContent=['日','一','二','三','四','五','六'][row.date.getDay()];item.append(count,bar,label);week.append(item);});
+  var heatmap=activity.querySelector('.study-heatmap'),cells=[],activeDays=0;heatmap.replaceChildren();var start=new Date();start.setHours(12,0,0,0);start.setDate(start.getDate()-118);
+  for(var dayIndex=0;dayIndex<119;dayIndex++){var date=new Date(start);date.setDate(start.getDate()+dayIndex);var key=CL.ymd(date),entry=days[key]||{answered:0,rounds:0},answered=Number(entry.answered)||0,rounds=Number(entry.rounds)||0,total=answered+rounds,cell=document.createElement('time');if(total)activeDays++;cell.dateTime=key;cell.className='study-heat-cell l'+(total>=40?4:total>=20?3:total>=10?2:total?1:0);cell.title=key+' · 答题 '+answered+' 次 · 练习 '+rounds+' 轮';cell.setAttribute('aria-label',cell.title);cells.push(cell);}
+  heatmap.setAttribute('aria-label','近 17 周共有 '+activeDays+' 天有学习记录');heatmap.append.apply(heatmap,cells);
+  summary.hidden=tab!=='sent';activity.hidden=tab!=='sent';intro.hidden=tab!=='sent';
+  var contentTabs=content.querySelector('.study-content-tabs'),contentPanel=content.querySelector('.study-content-panel');
+  if(domain==='course'&&typeof renderHome==='function')try{renderHome(true);}catch(_){/* Keep the last confirmed workspace rows if refresh is unavailable. */}
+  var joinedRows=_workspaceData&&Array.isArray(_workspaceData.courseRows)?_workspaceData.courseRows:[];
+  var wordCount=Object.keys(mem.vocabularyResume||{}).filter(function(key){return mem.vocabularyResume[key]&&mem.vocabularyResume[key].status==='active';}).length;
+  var sentenceCount=Object.keys(mem.stats&&mem.stats.bySentence||{}).length;
+  contentTabs.replaceChildren();[['course','课程',joinedRows.length],['word','单词',wordCount],['sentence','句子',sentenceCount]].forEach(function(item){var button=document.createElement('button');button.type='button';button.className='study-content-tab';button.setAttribute('aria-pressed',String(domain===item[0]));button.append(document.createTextNode(item[1]+' '));var count=document.createElement('b');count.textContent=String(item[2]);button.append(count);button.onclick=function(){var next=new URL(location.href);next.searchParams.set('domain',item[0]);history.pushState({},'',next);selectStudyArchive();};contentTabs.append(button);});
+  contentPanel.replaceChildren();
+  if(domain==='course'){
+    var completedCourses=joinedRows.filter(function(entry){return entry.completionState==='completed';}).length,activeCourses=joinedRows.filter(function(entry){return entry.completionState==='in-progress';}).length,notStartedCourses=joinedRows.filter(function(entry){return entry.completionState==='not-started';}).length,unknownCourses=joinedRows.filter(function(entry){return !['completed','in-progress','not-started'].includes(entry.completionState);}).length;
+    var courseSummary=document.createElement('p');courseSummary.className='study-content-summary';courseSummary.textContent=completedCourses+' 门已完成 · '+activeCourses+' 门学习中'+(notStartedCourses?' · '+notStartedCourses+' 门待开始':'')+(unknownCourses?' · '+unknownCourses+' 门进度待确认':'')+' · 点击课程可继续学习';contentPanel.append(courseSummary);
+    if(!joinedRows.length){var empty=document.createElement('p');empty.className='study-content-empty';empty.textContent='暂无已加入课程的进度记录。';contentPanel.append(empty);}
+    joinedRows.forEach(function(entry){var row=document.createElement('article');row.className='study-progress-row';var cover=document.createElement('span');cover.className='study-progress-cover';if(entry.coverMarkup)cover.innerHTML=entry.coverMarkup;var copy=document.createElement('span');copy.className='study-progress-copy';var title=document.createElement('strong');title.textContent=entry.title||entry.course&&entry.course.title||'课程进度';var meta=document.createElement('span');meta.textContent=entry.progress||'进度暂不可用';copy.append(title,meta);if(entry.homeProgressMarkup){var progress=document.createElement('span');progress.className='study-progress-metric';progress.innerHTML=entry.homeProgressMarkup;copy.append(progress);}var action=document.createElement('button');action.type='button';action.className='study-progress-action';action.textContent=entry.unavailable||entry.loadFailed?'课程暂不可用':'继续学习';action.disabled=!!(entry.unavailable||entry.loadFailed);action.onclick=function(){if(entry.course&&entry.course.id&&window.LearningWorkspace&&LearningWorkspace.resourcesFromCatalog){var resource=LearningWorkspace.resourcesFromCatalog({courses:[entry.course]})[0];if(resource)openWorkspaceResource(resource);}};row.append(cover,copy,action);contentPanel.append(row);});
+  }else{
+    var statsTabs=host.shadowRoot&&host.shadowRoot.querySelector('#statsTabs [data-tab="sent"]');if(statsTabs)statsTabs.click();
+    var statsDomain=host.shadowRoot&&host.shadowRoot.querySelector('#statsDomains [data-domain="'+(domain==='word'?'vocabulary':'sentence')+'"]');if(statsDomain)statsDomain.click();
+  }
+  content.hidden=tab==='review'||tab==='wrong';host.hidden=domain==='course'||tab==='review'||tab==='wrong';
+  host.before(intro,summary,activity,content,navigation);
+  var quick=$('homeHeaderReview');quick.hidden=false;quick.disabled=false;
+  var quickIcon=document.createElement('span');quickIcon.className='home-inline-icon';quickIcon.setAttribute('aria-hidden','true');quickIcon.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></svg>';
+  var quickLabel=document.createElement('span');quickLabel.textContent='开始复习';quick.replaceChildren(quickIcon,quickLabel);quick.onclick=function(){window.openStatsPage('review');};
+  if(host.shadowRoot){if(!host.shadowRoot.getElementById('statsWorkspaceTheme')){var theme=document.createElement('style');theme.id='statsWorkspaceTheme';theme.textContent=':host([data-study-view]){--bg:#f5f0e4;--surface:#fffaf0;--surface-2:#f4eedf;--surface-stat:#fffaf0;--text:#55351f;--muted:#70533b;--faint:#70533b;--accent:#9a5f14;--accent-soft:#f4e6be;--border:#ddc7a3;--border-strong:#b78c50;--shadow:0 2px 4px #55351f12,0 8px 20px -14px #55351f55}:host([data-study-view]) #statsBody{border:0;padding:0;background:transparent}:host([data-study-view]) .stats-list{padding:0;border:0;background:transparent}:host([data-study-view]) .stats-list>.srow{margin:0 0 10px;padding:12px 18px;border:1px solid #eadfc9;border-radius:15px;background:#fffdf7;box-shadow:0 6px 16px -13px #55351f66}:host([data-study-view]) .stats-list>.srow:last-child{border-bottom:1px solid #eadfc9}:host([data-study-view]) .wrong-row{padding:12px 18px;border:1px solid #eadfc9;border-radius:15px;background:#fffdf7}:host([data-study-view]) .archive-domains{margin-bottom:16px}';host.shadowRoot.append(theme);}
+    var tabButton=host.shadowRoot.querySelector('#statsTabs [data-tab="'+tab+'"]');if(tabButton)tabButton.click();
+    function syncStudyCounts(){['review','wrong'].forEach(function(key){var source=host.shadowRoot.getElementById(key==='review'?'reviewTabCount':'wrongTabCount'),link=navigation.querySelector('[data-study-tab="'+key+'"]');if(!link)return;var badge=link.querySelector('.study-tab-count');if(!badge){badge=document.createElement('b');badge.className='study-tab-count';link.append(badge);}badge.textContent=source?source.textContent.replace(/[()]/g,''):'';badge.hidden=!badge.textContent.trim();});}
+    if(host.studyCountObserver)host.studyCountObserver.disconnect();host.studyCountObserver=new MutationObserver(syncStudyCounts);
+    ['reviewTabCount','wrongTabCount'].forEach(function(id){var counter=host.shadowRoot.getElementById(id);if(counter)host.studyCountObserver.observe(counter,{childList:true,characterData:true,subtree:true});});syncStudyCounts();
+  }
+}
 function showStatsPage(){
-  document.title='学习记录 · jqka.top';
+  document.title='我的学习 · jqka.top';
   if(window._mainPracticeLifecycle)window._mainPracticeLifecycle.cancel('stats');
   showPage('pageStats');
   var noticeRail=$('noticeBannerRail');if(noticeRail)noticeRail.replaceChildren();
   var boot=$('bootScreen');if(boot)boot.hidden=true;
   var nav=$('workspaceNavHost');if(nav&&window.LearningNavigation)nav.replaceChildren(LearningNavigation.create('stats',function(view){workspace().navigate(view);}));
   var host=$('statsPageHost');
-  if(window.StatsPage&&window.StatsGrowth&&window.StatsInsights&&window.MistakeReview){StatsPage.mount($('statsPageHost'));return;}
+  if(window.StatsPage&&window.StatsGrowth&&window.StatsInsights&&window.MistakeReview){StatsPage.mount($('statsPageHost'));selectStudyArchive();return;}
   if(statsLoadFailed)return;
   host.innerHTML='<p role="status">正在加载学习记录…</p>';
   if(!statsReadyTask)statsReadyTask=Promise.allSettled([
@@ -6278,7 +6418,7 @@ function showStatsPage(){
   }).catch(function(error){statsReadyTask=null;throw error;});
   statsReadyTask.then(function(){
     if(_curPage!=='pageStats')return;
-    host.replaceChildren();StatsPage.mount($('statsPageHost'));
+    host.replaceChildren();StatsPage.mount($('statsPageHost'));selectStudyArchive();
   }).catch(function(){
     if(_curPage!=='pageStats')return;
     statsLoadFailed=true;
@@ -6287,8 +6427,8 @@ function showStatsPage(){
     }));
   });
 }
-window.openStatsPage=function(){
-  var url=new URL(location.href);url.search='?view=stats';history.pushState({},'',url);
+window.openStatsPage=function(tab){
+  var url=new URL(location.href);url.search='?view=stats&tab='+(['review','wrong','sent'].includes(tab)?tab:'sent');history.pushState({},'',url);
   showStatsPage();
 };
 window.addEventListener('popstate',function(){if(new URLSearchParams(location.search).get('view')==='stats')setTimeout(showStatsPage,0);});
@@ -6425,7 +6565,23 @@ $('stageTipBar').addEventListener('click', function(e){
   else if(act==='reveal') showSentenceHint();
   else if(act==='full') showFullSentence();
 });
-$('btnSpeak').onclick = function(){ speakSentence(); };
+$('btnSpeak').onclick = function(){
+  if(this.classList.contains('is-speaking')){stopSentencePlayback();return;}
+  if((S.assessment&&!S._finishing)||S.finished||!cur())return;
+  if(!S._finishing&&!S._answerQueued&&!recordSentenceExposure())return;
+  speakSentence();
+};
+function resetPracticeSelection(){
+  destroyMainChunkSelection();
+  var it=cur();
+  if(!it||S.finished||S.assessment||S._finishing||S._answerQueued||S._pendingAnswerOperation||S._saveRetry)return;
+  // Re-selection is the same assisted attempt: retain counters, mistakes and durable operation IDs.
+  S.hinted=true;S.perfectThis=false;
+  S.status=it.chunks.map(function(){return 'pending';});
+  S.answers=it.chunks.map(function(){return '';});S.spellingDraft=null;S.chunkIdx=0;
+  renderQ(true);
+}
+$('btnResetSelection').onclick=resetPracticeSelection;
 /* 练习卡片不放重复返回箭头；退出当前课程统一使用练习上下文左侧的轻量入口。 */
 /* 详解入口：复用练习页中的「本句讲解」卡片 */
 $('btnExplain').onclick = function(){
@@ -7504,31 +7660,22 @@ _mainBootCoordinator = window.MainLifecycle && MainLifecycle.createBootCoordinat
 function showBootError(message, retry){
   var b = $('bootScreen');
   if(!b) return;
+  var banner=NoticeBanner.create({message:message,actionLabel:'重试',onAction:typeof retry==='function'?retry:function(){location.reload();}});
+  banner.querySelector('[role="status"]').id='bootMessage';
+  banner.querySelector('.notice-banner-action').id='bootRetry';
+  var home=document.createElement('button');home.type='button';home.id='bootHome';home.className='notice-banner-action';home.textContent='回首页';home.onclick=showHomePage;
+  banner.querySelector('.notice-banner-message').append(home);b.replaceChildren(banner);
   b.hidden = false;
-  b.classList.add('error');
-  var m = $('bootMessage');
-  if(m) m.textContent = message;
-  var retryBtn = $('bootRetry');
-  var homeBtn = $('bootHome');
-  if(retryBtn){
-    retryBtn.classList.toggle('hidden', typeof retry !== 'function');
-    retryBtn.onclick = typeof retry === 'function' ? retry : function(){ location.reload(); };
-  }
-  if(homeBtn){
-    homeBtn.classList.remove('hidden');
-    homeBtn.onclick = showHomePage;
-  }
 }
 function showBootScreen(message){
   var b = $('bootScreen');
   if(!b) return;
+  var banner=NoticeBanner.create({message:message||'正在加载…'});
+  banner.querySelector('[role="status"]').id='bootMessage';b.replaceChildren(banner);
   b.hidden = false;
-  b.classList.remove('error');
-  var m = $('bootMessage');
-  if(m) m.textContent = message || '正在打开首页…';
 }
 /* 普通刷新直接走本地首页，不展示启动占位；只有明确课程入口且启动较慢时才提示。 */
-var _mainBootRevealTimer = _mainEntryRequested ? setTimeout(function(){
+var _mainBootRevealTimer = _mainEntryRequested && _mainEntryPlan.kind !== 'workspace' ? setTimeout(function(){
   var state = _mainBootState();
   if(!state.isBooted() && !state.isEntryClaimed() && _mainEntryRequested) showBootScreen();
 }, 350) : null;
@@ -7658,7 +7805,7 @@ function renderAssessmentSession(session){
   $('practiceBatchSizeRow').hidden=true;
   S.assessment = session;
   S.finished = false;
-  $('stageChoices').innerHTML = '';
+  destroyMainChunkSelection();$('stageChoices').innerHTML = '';
   $('stageTipBar').classList.add('hidden');
   $('stage').classList.add('hidden');
   var r=$('result'), item=session.items[session.currentIndex];
@@ -7874,6 +8021,11 @@ function decideEntry(){
   if(_mainEntryPlan.kind === 'protected-course'){
     _mainEntryRequested = false; showPracticePage();
     launchNativeCourse(_mainEntryPlan.courseId,_mainEntryPlan.unitId);
+    return;
+  }
+  if(_mainEntryPlan.kind === 'personal-course'){
+    _mainEntryRequested = false; showPracticePage();
+    launchNativeCourse(_mainEntryPlan.courseId,'default','personal');
     return;
   }
   if(_mainEntryPlan.kind === 'workspace'){ _mainEntryRequested = false; showHomePage(); return; }

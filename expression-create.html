@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#d8edf6"><title>表达课程制作</title><link rel="stylesheet" href="assets/expression-course.css"><link rel="stylesheet" href="assets/chunk-selection.css"></head>
+<body><header class="topbar"><a class="brand" href="/main.html?view=home">jqka.top</a><nav aria-label="主导航"><a href="/main.html?view=home">首页</a><a href="/main.html?view=my-learning">我的内容</a><a href="/main.html?view=discover">发现</a><a href="/stats.html">学习记录</a></nav></header>
+<main class="workspace authoring">
+  <a class="back-link" href="/admin.html">← 返回后台</a><h1>制作表达课程</h1>
+  <form id="adminLogin" class="login-inline" hidden><label for="adminPassword">管理员密码</label><input id="adminPassword" type="password" autocomplete="current-password" required><button class="button button-primary">管理员登录</button></form>
+  <p class="muted">选一种方式准备课程内容，之后按步骤检查、确认并发布到系统课程目录。发布不会替任何账号报名。</p>
+  <section class="author-flow" aria-label="课程制作流程">
+    <ol id="workflowSteps" class="workflow-steps" aria-label="制作进度">
+      <li data-step="choose" aria-current="step"><span>1</span>选择方式</li>
+      <li data-step="content"><span>2</span>准备课程内容</li>
+      <li data-step="audio"><span>3</span>上传音频</li>
+      <li data-step="check"><span>4</span>检查与试听</li>
+      <li data-step="publish"><span>5</span>确认并发布</li>
+    </ol>
+    <div id="workflowGuide" class="workflow-guide" role="status" aria-live="polite">
+      <strong id="workflowTitle">当前步骤：选择一种开始方式</strong>
+      <p id="workflowDescription">已有完整课程 JSON 就直接导入；还没有课程包，就先用外部 AI 制作。</p>
+    </div>
+    <section id="workflowChoice" class="workflow-choice" aria-label="选择制作方式">
+      <button type="button" class="workflow-option" data-mode="ai" aria-pressed="false">
+        <strong>我还没有课程 JSON</strong><span>复制制作指令，到常用的外部 AI 生成课程。</span>
+      </button>
+      <button type="button" class="workflow-option" data-mode="import" aria-pressed="false">
+        <strong>我已经有课程 JSON</strong><span>直接导入现成课程包，跳过制作指令。</span>
+      </button>
+    </section>
+    <button id="changeWorkflow" type="button" class="workflow-change" hidden>返回选择制作方式</button>
+    <section id="aiPath" class="workflow-panel" hidden>
+      <h2>先到外部 AI 制作</h2>
+      <p>复制指令后，把教材或资料发给你选择的 AI；确认生成的课程 JSON 后，再回到这里导入。发送资料前，请确认你愿意将它提供给该 AI 服务。</p>
+      <button id="copyPrompt" type="button" class="button button-primary">复制制作指令</button>
+      <div id="aiImportNext" class="workflow-next" hidden>
+        <p>拿到 AI 返回的完整课程 JSON 后，回到这里继续导入。</p>
+        <button id="continueAIImport" type="button" class="button button-secondary">我已拿到 JSON，继续导入</button>
+      </div>
+    </section>
+    <section id="directImportPath" class="workflow-panel" hidden>
+      <h2>导入现成课程</h2>
+      <p>选择完整的课程 JSON 文件。无需复制制作指令。</p>
+      <label class="button button-primary file-label">选择课程 JSON<input id="importPackage" type="file" accept="application/json,.json"></label>
+    </section>
+    <section id="aiImportPath" class="workflow-panel" hidden>
+      <h2>导入 AI 生成的课程</h2>
+      <p>选择外部 AI 返回的完整课程 JSON 文件。</p>
+      <label class="button button-primary file-label">选择课程 JSON<input id="importPackageAfterAI" type="file" accept="application/json,.json"></label>
+    </section>
+    <section id="packageWorkspace" class="workflow-panel package-workspace" hidden>
+      <h2 id="packageHeading">课程已载入</h2>
+      <p id="packageSummary" class="package-summary"></p>
+      <div id="audioStage" class="audio-stage" hidden>
+        <h3>下一步：上传配套音频</h3>
+        <p id="audioInstruction"></p>
+        <label class="button button-secondary file-label">选择音频文件<input id="uploadAudio" type="file" accept="audio/mpeg,audio/ogg,audio/wav" multiple></label>
+      </div>
+      <details id="packageEditor" class="package-editor">
+        <summary>高级：查看或修改课程 JSON</summary>
+        <textarea id="packageInput" class="package-input" spellcheck="false" aria-label="课程 JSON" placeholder="课程 JSON 内容"></textarea>
+      </details>
+      <div class="actions workflow-actions">
+        <button id="saveDraft" type="button" class="button button-secondary">只保存草稿，稍后继续</button>
+        <button id="checkPackage" type="button" class="button button-primary">检查课程并保存</button>
+        <button id="previewPackage" type="button" class="button button-secondary" disabled hidden>试听第一步</button>
+        <button id="approvePackage" type="button" class="button button-secondary" disabled hidden>确认内容无误</button>
+        <button id="publishPackage" type="button" class="button button-primary" disabled hidden>发布到系统课程目录</button>
+      </div>
+      <p id="validationResult" class="validation" aria-live="polite"></p>
+      <p id="authorMessage" class="status" role="status" aria-live="polite"></p>
+      <details class="draft-danger"><summary>更多：删除当前草稿</summary><p>只会删除当前未发布草稿，不会删除已上架课程。</p><button id="deleteDraft" type="button" class="button button-danger">删除当前草稿</button></details>
+    </section>
+  </section>
+  <section id="preview" class="activity-card preview" hidden><h2 id="previewTitle"></h2><div id="previewBody"></div></section>
+  <section class="drafts"><h2>未完成的草稿</h2><p class="muted">草稿只有管理员可见，不会出现在课程目录。</p><div id="draftList"></div></section>
+  <section class="drafts"><h2>已上架的系统课程</h2><p class="muted">这里的课程对用户可见；复制后修改会生成新版本，旧版本仍保留。</p><div id="publishedList"></div></section>
+</main><script src="api.js"></script><script type="module" src="js/expression-course-authoring.js"></script></body></html>

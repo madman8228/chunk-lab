@@ -146,7 +146,7 @@ class ContentRegistry {
   blockedDeck(deckId) { return this.snapshot().courses.some(course => course.legacyDeckIds.includes(deckId)); }
   fragmentScope(courseId, unitId, position, purpose = 'practice') {
     // Formal assessments continue through their eligibility/operation boundary, never raw lesson grants.
-    if (!['practice', 'review'].includes(purpose)) throw failure('ASSESSMENT_ENTRY_REQUIRED', 403);
+    if (!['practice', 'review', 'preview'].includes(purpose)) throw failure('ASSESSMENT_ENTRY_REQUIRED', 403);
     const course = this.snapshot().courses.find(course => course.courseId === courseId);
     if (!course) throw failure('COURSE_NOT_FOUND', 404);
     const unit = course.units.find(unit => unit.unitId === unitId);

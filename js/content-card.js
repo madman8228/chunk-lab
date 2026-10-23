@@ -34,6 +34,8 @@
   }
   function create(options){
     var resource=options.resource,library=options.variant==='library';
+    var facets=resource.facets||{},version=facets.textbookVersion;
+    var shortTitle=version&&facets.grades?.length===1&&facets.volume&&facets.edition?facets.grades[0]+facets.volume+'（'+facets.edition+'）':resource.title;
     // Legacy class aliases preserve existing entry-point/test selectors, not separate visual templates.
     var article=node('article',undefined,'workspace-card content-card'+(library?'':' discover-card'));
     article.dataset.resource=resource.resourceId;
@@ -44,22 +46,36 @@
       image.onerror=function(){if(fallback&&image.getAttribute('src')!==fallback){image.src=fallback;article.classList.add('has-default-cover');}else image.style.visibility='hidden';};
       article.append(image);
     }
-    article.append(node('span',options.kindLabel,'content-card-kind '+(library?'library-kind-tag':'discover-kind-tag')));
+    var kindTag=node('span',options.kindLabel,'content-card-kind '+(library?'library-kind-tag':'discover-kind-tag'));
+    if(options.kindKey)kindTag.dataset.kind=options.kindKey;
+    article.append(kindTag);
+    if(version){var versionTag=node('span',version,'content-card-version');versionTag.title=[facets.publisherId,version,facets.edition].filter(Boolean).join(' · ');article.append(versionTag);}
     var copy=node('div',undefined,'content-card-copy '+(library?'library-copy':'discover-copy'));
     var heading=node('h3');
     if(options.href){
-      var link=node('a',resource.title,'content-card-title '+(library?'library-title-link':'discover-preview'));link.href=options.href;link.setAttribute('aria-label',options.linkLabel||resource.title);heading.append(link);
+      var link=node('a',shortTitle,'content-card-title '+(library?'library-title-link':'discover-preview'));link.href=options.href;link.title=resource.title;link.setAttribute('aria-label',options.linkLabel||resource.title);heading.append(link);
       article.classList.add(library?'is-clickable':'has-preview');
-      article.addEventListener('click',function(event){if(event.target.closest('a,button,input,select,summary,details')||global.getSelection&&String(global.getSelection()))return;link.click();});
-    }else heading.textContent=resource.title;
+      if(options.onActivate){link.addEventListener('click',function(event){event.preventDefault();options.onActivate();});}
+      article.addEventListener('click',function(event){if(event.target.closest('a,button,input,select,summary,details')||global.getSelection&&String(global.getSelection()))return;if(options.onActivate)options.onActivate();else link.click();});
+    }else{heading.textContent=shortTitle;heading.title=resource.title;}
     copy.append(heading);
-    if(options.items.length){
+    var shelf=options.variant==='discover';
+    if(shelf){
+      article.classList.add('has-learning-footer');
+      if(options.metadata)copy.append(node('p',options.metadata,'content-card-metadata'));
+    }
+    var footer=shelf?node('div',undefined,'content-card-learning-footer'):copy;
+    if(shelf&&options.primaryAction){var primary=options.primaryAction;primary.classList.add('content-card-learn');primary.textContent=(['加入学习','加入练习'].includes(primary.textContent)?'+ ':'')+primary.textContent;footer.append(primary);}
+    if(shelf&&options.saveAction){var save=options.saveAction;save.classList.add('content-card-save');save.setAttribute('aria-label',save.textContent+'：'+resource.title);save.title=save.textContent;save.setAttribute('aria-pressed',String(!!options.saved));save.innerHTML='<svg viewBox="0 0 24 24" width="17" height="17" fill="'+(options.saved?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>';footer.append(save);}
+    var menuItems=(options.additionalMenuItems||[]).concat(options.items.filter(function(item){return !shelf||item!==options.primaryAction&&item!==options.saveAction;}));
+    if(menuItems.length){
       var menu=node('details',undefined,'content-card-menu '+(library?'library-more':'discover-card-menu'));menu.dataset.resource=resource.resourceId;
       var trigger=node('summary');trigger.setAttribute('aria-label',resource.title+' 的更多操作');trigger.setAttribute('data-focus-key',resource.resourceId+':more');
       trigger.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>';
       var panel=node('div',undefined,'content-card-actions workspace-action-menu-panel '+(library?'library-more-actions':'workspace-actions'));
-      options.items.forEach(function(item){panel.append(item);});menu.append(trigger,panel);copy.append(menu);bindMenu(menu,trigger,panel);
+      menuItems.forEach(function(item){panel.append(item);});menu.append(trigger,panel);footer.append(menu);bindMenu(menu,trigger,panel);
     }
+    if(shelf)copy.append(footer);
     article.append(copy);return article;
   }
   function captureMenu(container){return activeMenu&&activeMenu.menu.open&&container.contains(activeMenu.menu)?activeMenu.menu.dataset.resource:null;}

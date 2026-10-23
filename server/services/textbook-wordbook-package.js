@@ -17,7 +17,7 @@ function assemble(source){
  for(const draft of source.drafts){
   const errors=draftModel.validate(draft,{requireImages:false});if(errors.length)throw fail(errors.join('；'));
   const actual=draft.book.catalog?.facets;
-  for(const key of ['publisherId','seriesId','edition','volume','grades','schoolStages']){
+  for(const key of ['publisherId','seriesId','textbookVersion','edition','volume','grades','schoolStages']){
    if(JSON.stringify(actual?.[key])!==JSON.stringify(facets[key]))throw fail('混入了其他教材的单元：'+draft.book.title);
   }
   for(const unit of draft.book.units){

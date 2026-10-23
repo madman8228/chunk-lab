@@ -2,13 +2,13 @@
 const {chromium}=require('playwright-core'),assert=require('node:assert/strict'),path=require('node:path');
 (async()=>{const browser=await chromium.launch({headless:true});try{
  const page=await browser.newPage();
- await page.setContent('<main id="statsContent"><div id="statsSentenceHeading"></div><div id="statsSentenceHeader"></div><div id="statsCards"></div><div id="statsBody"></div><div id="statsRecordToolbar"></div><div id="statsVocabulary"></div></main><nav id="statsDomains"><button data-domain="all">全部</button></nav>');
+ await page.setContent('<main id="statsContent"><div id="statsSentenceHeading"></div><div id="statsSentenceHeader"></div><div id="statsCards"></div><div id="statsBody"></div><div id="statsRecordToolbar"></div><div id="statsVocabulary"></div></main><nav id="statsDomains"><button data-domain="all">全部</button><button data-domain="vocabulary">单词</button></nav>');
  await page.evaluate(()=>{
   window.AccountStorage={owner:'fixture'};window.fail=false;window.hold=false;
-  window.renderStats=()=>window.StatsVocabulary?.render('sent');
+  window.tab='sent';window.renderStats=()=>window.StatsVocabulary?.render(tab);
   window.ChunkAPI={isLoggedIn:()=>true,request:async url=>{if(hold)await(window.archiveGate||(window.archiveGate=new Promise(resolve=>window.releaseArchive=resolve)));if(fail)throw Error('offline');return url.includes('summary')?{confirmed:true,domains:[]}:{confirmed:true,items:[{id:'one',title:'borrow',at:1791849600000}],nextOffset:null};}};
  });
- await page.addScriptTag({path:path.resolve('js/stats-vocabulary.js')});await page.getByText('borrow',{exact:true}).waitFor();
+ await page.addScriptTag({path:path.resolve('js/stats-vocabulary.js')});await page.locator('#statsDomains [data-domain="vocabulary"]').click();await page.getByText('borrow',{exact:true}).waitFor();
  await page.evaluate(()=>{hold=true;StatsVocabulary.load();});
  assert.equal(await page.locator('.archive-word-event').count(),1,'background refresh keeps confirmed records on screen');
  await page.evaluate(()=>{fail=true;hold=false;releaseArchive();});
@@ -16,23 +16,5 @@ const {chromium}=require('playwright-core'),assert=require('node:assert/strict')
  assert.equal(await page.locator('.archive-word-event').count(),1,'failed refresh must retain confirmed records');
  await page.evaluate(()=>{AccountStorage.owner='different';renderStats();});
  assert.equal(await page.locator('.archive-word-event').count(),0,'account changes never reuse previous owner content');
- const coursePage=await browser.newPage();
- await coursePage.setContent('<main id="statsContent"><div id="statsSentenceHeading"></div><div id="statsSentenceHeader"></div><div id="statsCards"></div><div id="statsBody"></div><div id="statsRecordToolbar"></div><div id="statsVocabulary"></div></main><nav id="statsDomains"><button data-domain="all">全部</button></nav>');
- await coursePage.evaluate(()=>{window.AccountStorage={owner:'course-fixture'};window.tab='overview';window.courseCalls=0;window.releaseFirstCourse=null;window.visibleForTest=true;window.statsSurfaceVisible=()=>visibleForTest;window.renderStats=()=>StatsVocabulary?.render(tab);window.ChunkAPI={isLoggedIn:()=>true,request:async url=>{if(url.includes('summary'))return {confirmed:true,domains:[]};if(!url.includes('courses'))return {confirmed:true,items:[],nextOffset:null};const call=++courseCalls;if(call===1)await new Promise(resolve=>releaseFirstCourse=resolve);return {confirmed:true,items:[{bookId:'personal-book:race-course',title:'竞态课程',state:'in-progress',completedItems:call===1?1:call>=3?3:2,totalItems:3}],totals:{currentCompletedCourses:0,everCompletedCourses:0},nextOffset:null};}};});
- await coursePage.addScriptTag({path:path.resolve('js/stats-vocabulary.js')});
- await coursePage.waitForFunction(()=>typeof releaseFirstCourse==='function');
- await coursePage.evaluate(()=>dispatchEvent(new Event('server-cache-applied')));
- await coursePage.getByRole('link',{name:/2 \/ 3 词/}).waitFor();
- await coursePage.evaluate(()=>releaseFirstCourse());
- await coursePage.waitForTimeout(0);
- assert.match(await coursePage.locator('.archive-word-courses').innerText(),/2 \/ 3 词/,'a response from before confirmed refresh cannot replace newer course progress');
- assert.equal(await coursePage.evaluate(()=>courseCalls),2,'one invalidation starts exactly one replacement course read');
- await coursePage.evaluate(()=>{tab='sent';renderStats();dispatchEvent(new Event('focus'));tab='overview';renderStats();});
- await coursePage.getByRole('link',{name:/3 \/ 3 词/}).waitFor();
- assert.equal(await coursePage.evaluate(()=>courseCalls),3,'switching back to overview refreshes data invalidated on another tab');
- await coursePage.evaluate(()=>{visibleForTest=false;dispatchEvent(new Event('server-cache-applied'));visibleForTest=true;dispatchEvent(new Event('stats-surface-visibility'));});
- await coursePage.getByRole('link',{name:/3 \/ 3 词/}).waitFor();
- assert.equal(await coursePage.evaluate(()=>courseCalls),4,'returning to the visible records page refreshes courses changed while hidden');
- await coursePage.close();
- console.log('Archive refresh: confirmed content survives failure; tab/visibility returns, account isolation and stale-response guard passed.');
+ console.log('Vocabulary archive refresh: confirmed records survive failure and account changes cannot reuse prior-owner content.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

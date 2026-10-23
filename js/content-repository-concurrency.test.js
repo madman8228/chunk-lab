@@ -30,6 +30,35 @@ async function fixture() {
 }
 
 (async () => {
+  const url = 'content/fixture/details.json';let token = null, shardReads = 0, catalogReads = 0;
+  const window = { location: { href: 'https://example.test/main.html' },
+    ChunkAPI: { getBase: () => '', getToken: () => token, isLoggedIn: () => !!token,
+      getCourseCatalog: async () => { catalogReads++; return { courses: [] }; } },
+    BUILTIN: [], localStorage: { getItem: () => null } };
+  vm.runInNewContext(fs.readFileSync(require.resolve('./content-repository'), 'utf8'), {
+    window, URL, console,
+    fetch: async (input, options = {}) => {
+      if (input === 'content/manifest.json') return { ok: true, json: async () => ({
+        schemaVersion: 1, contentVersion: 'guest-v1', decks: [{ id: 'guest-fixture', totalCount: 1 }] }) };
+      if (input === '/api/content/shards') {
+        shardReads++;
+        assert.equal(options.headers.Authorization, 'Bearer fixture-token', 'authenticated shard request carries the current token');
+        return { ok: true, json: async () => ({ decks: [{ id: 'guest-fixture', shards: [{ url, count: 1 }] }] }) };
+      }
+      assert.equal(input, url);
+      return { ok: true, json: async () => ({ schemaVersion: 1, items: [{ cid: 'one', sentence: 'Ready.', translation: '准备好了。' }] }) };
+    }
+  });
+  await window.ContentRepo.ready;
+  assert.equal(shardReads, 0, 'public metadata loads without requesting the authenticated shard map for a visitor');
+  assert.equal(catalogReads, 0, 'protected course catalog is not requested without a login token');
+  token = 'fixture-token';
+  await window.ContentRepo.loadProtectedCatalog();
+  assert.equal(catalogReads, 1, 'protected catalog can be read after login');
+  const guestDeck = await window.ContentRepo.ensureDeck('guest-fixture');
+  assert.equal(shardReads, 1, 'content is loaded on demand after credentials become available');
+  assert.equal(guestDeck.items[0].sentence, 'Ready.');
+
   const f = await fixture();
   const results = await Promise.all(Array.from({ length: 8 }, () => f.repo.hydrateItemBatch(f.items, 0, 1)));
   assert.equal(f.downloads(), 1, 'concurrent practice hydration requests share a single detail download');

@@ -8,6 +8,9 @@ const variants = [base,{...base,seriesId:'test-other-series'},{...base,grade:'�
 const ids = await Promise.all(variants.map(textbookBookId));
 assert.equal(new Set(ids).size, variants.length, 'same grade, different series/edition/volume cannot overwrite one another');
 assert.equal(await textbookBookId({...base}),ids[0]);
+assert.equal(await textbookBookId({...base,textbookVersion:'测试教材版'}),ids[0],'adding a display label must not allocate a new course identity');
+assert.equal(textbookFacets({...base,textbookVersion:'测试教材版'}).textbookVersion,'测试教材版');
+assert.throws(()=>textbookFacets({...base,textbookVersion:''}));
 const resources = variants.map((profile,index)=>({resourceId:ids[index],kind:'wordbook',facets:textbookFacets(profile)}));
 const selected={schoolStages:['小学'],seriesId:[base.seriesId],grades:['三年级'],edition:['测试版A'],volume:['上册']};
 assert.deepEqual(filterResources(resources,selected).map(resource=>resource.resourceId),[ids[0]]);

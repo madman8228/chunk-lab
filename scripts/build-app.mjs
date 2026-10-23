@@ -9,6 +9,8 @@ import { buildVocabularyStudy } from './build-vocabulary-study.mjs';
 import { buildWordbookAuthoring } from './build-wordbook-authoring.mjs';
 import {buildVocabularyMaterialLibrary} from './build-vocabulary-material-library.mjs';
 import { buildVocabularyContent } from './build-vocabulary-content.mjs';
+import { buildExpressionCourse } from './build-expression-course.mjs';
+import { buildChunkSelection } from './build-chunk-selection.mjs';
 import { DRAFT_SPEC } from '../src/course-authoring/draft-spec.mjs';
 import { CourseCapabilityCatalog } from '../src/course-authoring/capabilities.mjs';
 import { IMAGE_TEXT_DRAFT_SPEC } from '../src/course-authoring/image-text-draft-spec.mjs';
@@ -22,6 +24,8 @@ if (statsBuild.status !== 0) process.exit(statsBuild.status || 1);
 await buildVocabularyStudy();
 await buildWordbookAuthoring();
 await buildVocabularyMaterialLibrary();
+await buildExpressionCourse();
+await buildChunkSelection();
 buildVocabularyContent();
 
 await esbuild.build({

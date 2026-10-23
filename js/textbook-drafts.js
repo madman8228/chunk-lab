@@ -15,7 +15,7 @@
   $('tdList').innerHTML=books.map(book=>{const count=summary(book);return `<article class="td-row"><div><h2>${esc(book.title)}</h2><p>${book.items.length} 词 · ${new Set(book.items.map(i=>i.unit)).size} 单元 · 系统草稿</p></div><div><p>配图通过 ${count.images} · 待修改 ${count.changes} · 未审 ${count.pending} · 缺图 ${count.missing}</p><p class="td-blocker">待补齐例句练习及发布包校验</p></div><div class="td-actions"><button class="btn" data-preview="${esc(book.id)}">内容预览</button><button class="btn" data-report="${esc(book.id)}">导出制作清单</button></div></article>`;}).join('')||'<p>尚无教材草稿。</p>';
  }
  async function load(){const requestId=++generation;$('tdRefresh').disabled=true;$('tdStatus').textContent='读取教材和审核结果…';
-  try{const directory=await request('');const results=await Promise.all(directory.courses.map(c=>request('/'+encodeURIComponent(c.id))));if(requestId!==generation)return;books=results;list();$('tdStatus').textContent='已读取 '+books.length+' 册，共 '+books.reduce((n,b)=>n+b.items.length,0)+' 词。';if(active){active=books.find(b=>b.id===active.id)||null;if(active)detail();else $('tdDetail').hidden=true;}}
+  try{const directory=await request('');const results=await Promise.all(directory.courses.filter(c=>c.stage==='senior').map(c=>request('/'+encodeURIComponent(c.id))));if(requestId!==generation)return;books=results;list();$('tdStatus').textContent='已读取 '+books.length+' 册，共 '+books.reduce((n,b)=>n+b.items.length,0)+' 词。';if(active){active=books.find(b=>b.id===active.id)||null;if(active)detail();else $('tdDetail').hidden=true;}}
   catch(error){$('tdStatus').textContent='读取失败：'+error.message+'。请重试；原草稿和审核记录保持不变。';}
   finally{if(requestId===generation)$('tdRefresh').disabled=false;}
  }

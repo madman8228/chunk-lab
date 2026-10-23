@@ -5,7 +5,7 @@ const jsonHash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).
 const fail=(message,status=503)=>Object.assign(Error(message),{status});
 
 function createPublicWordbookVersions({publishedRoot}){
- const root=path.resolve(publishedRoot);
+ const root=path.resolve(publishedRoot),legacySummaryIds=new Map();
  function directory(bookId){
   if(!model.validId(bookId))throw fail('单词本编号无效',400);
   const dir=path.join(root,crypto.createHash('sha256').update(JSON.stringify(bookId)).digest('hex'));
@@ -41,7 +41,7 @@ function createPublicWordbookVersions({publishedRoot}){
   for(const ref of candidate.index.books[0].items){const item=items.get(ref.itemId),itemFile=path.join(releaseDir,'items',ref.itemId.replace(/:/g,'_')+'.json');if(!item||!fs.existsSync(itemFile)||fs.lstatSync(itemFile).isSymbolicLink())throw fail('教材历史版本词条文件缺失');const stored=JSON.parse(fs.readFileSync(itemFile,'utf8'));if(jsonHash(stored)!==jsonHash(item))throw fail('教材历史版本词条文件不一致');const {contentRevision,...body}=stored;if(contentRevision!==ref.contentRevision||jsonHash(body)!==contentRevision)throw fail('教材历史版本词条摘要校验失败');}
   return {releaseId,candidate,legacy:false,book:candidate.index.books[0]};
  }
- function activations(bookId,dir){
+ function activations(bookId,dir,validateReleases=true){
   const folder=path.join(dir,'activations');if(!fs.existsSync(folder))return [];
   if(fs.lstatSync(folder).isSymbolicLink())throw fail('教材激活目录不能是符号链接');
   const names=fs.readdirSync(folder).filter(name=>/^\d{12}-[a-f0-9]{64}\.json$/.test(name)).sort();
@@ -50,7 +50,8 @@ function createPublicWordbookVersions({publishedRoot}){
    const name=names[i],sequence=i+1;if(name.slice(0,12)!==String(sequence).padStart(12,'0'))throw fail('教材版本激活序号不连续');
    const record=JSON.parse(fs.readFileSync(path.join(folder,name),'utf8')),{recordHash,...body}=record;
    if(record.sequence!==sequence||record.bookId!==bookId||record.previousActivation!==prior||recordHash!==jsonHash(body)||name!==String(sequence).padStart(12,'0')+'-'+recordHash+'.json'||!['update','rollback'].includes(record.action))throw fail('教材版本激活链校验失败');
-   readAny(bookId,dir,record.releaseId);prior=recordHash;records.push(record);
+   if(!/^[a-f0-9]{64}$/.test(record.releaseId)||!/^[a-f0-9]{64}$/.test(record.baseReleaseId))throw fail('教材版本激活身份无效');
+   if(validateReleases)readAny(bookId,dir,record.releaseId);prior=recordHash;records.push(record);
   }
   return records;
  }
@@ -66,7 +67,21 @@ function createPublicWordbookVersions({publishedRoot}){
   for(const record of records)all.push(readAny(bookId,dir,record.releaseId));
   const seen=new Set();return all.filter(row=>{if(seen.has(row.releaseId))return false;seen.add(row.releaseId);return true;}).map(row=>({...row,activeReleaseId:records.at(-1)?.releaseId||legacy.releaseId}));
  }
- function publishedBooks(){
+ function summaryManifest(bookId,dir){
+  const file=path.join(dir,'manifest.json');if(!fs.existsSync(file))throw fail('教材目录清单缺失');
+  if(fs.lstatSync(dir).isSymbolicLink()||fs.lstatSync(file).isSymbolicLink())throw fail('教材目录不能通过符号链接读取');
+  const index=model.validateIndex(JSON.parse(fs.readFileSync(file,'utf8')));if(index.books.length!==1||index.books[0].bookId!==bookId)throw fail('教材目录身份不匹配');return index;
+ }
+ // Listing metadata is not a content-validation result. Mutations and learning reads still use current()/history().
+ function summary(bookId){
+  const dir=directory(bookId),index=summaryManifest(bookId,dir),records=activations(bookId,dir,false);
+  let legacyId=records[0]?.baseReleaseId;
+  if(!legacyId){const fingerprint=jsonHash(index),cached=legacySummaryIds.get(bookId);if(cached?.fingerprint===fingerprint)legacyId=cached.releaseId;else{legacyId=readLegacy(bookId,dir).releaseId;legacySummaryIds.set(bookId,{fingerprint,releaseId:legacyId});}}
+  const releaseId=records.at(-1)?.releaseId||legacyId,activeIndex=releaseId===legacyId?index:summaryManifest(bookId,path.join(dir,'releases',releaseId));
+  return {book:activeIndex.books[0],releaseId};
+ }
+ function hasPublished(bookId){const dir=directory(bookId);if(!fs.existsSync(path.join(dir,'manifest.json')))return false;summaryManifest(bookId,dir);return true;}
+ function publishedBooks(metadataOnly=false){
   if(!fs.existsSync(root))return [];
   return fs.readdirSync(root,{withFileTypes:true}).filter(entry=>entry.isDirectory()&&/^[a-f0-9]{64}$/.test(entry.name)).map(entry=>{
    const dir=path.join(root,entry.name),manifestFile=path.join(dir,'manifest.json');
@@ -75,7 +90,7 @@ function createPublicWordbookVersions({publishedRoot}){
    if(index.books.length!==1)throw fail('教材首版身份不匹配');
    const bookId=index.books[0].bookId;
    if(path.basename(directory(bookId))!==entry.name)throw fail('教材首版身份不匹配');
-   const active=current(bookId);
+   const active=metadataOnly?summary(bookId):current(bookId);
    return {book:active.book,releaseId:active.releaseId};
   });
  }
@@ -127,6 +142,6 @@ function createPublicWordbookVersions({publishedRoot}){
    fs.renameSync(staging,target);return readRelease(bookId,dir,releaseId);
   }catch(error){if(fs.existsSync(staging)&&path.dirname(staging)===releases&&path.basename(staging).startsWith('.pending-'))fs.rmSync(staging,{recursive:true,force:true});throw error;}
  }
- return {current,history,publishedBooks,install,activate,readRelease,readLegacy,readAny,findActivatedImport,directory};
+ return {current,history,publishedBooks,publishedSummaries:()=>publishedBooks(true),hasPublished,install,activate,readRelease,readLegacy,readAny,findActivatedImport,directory};
 }
 module.exports={createPublicWordbookVersions};

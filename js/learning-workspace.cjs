@@ -22,6 +22,7 @@ __export(learning_workspace_entry_exports, {
   FACET_LABELS: () => FACET_LABELS,
   PRACTICAL_TOPICS: () => PRACTICAL_TOPICS,
   TOOLS: () => TOOLS,
+  WORDBOOK_CATEGORIES: () => WORDBOOK_CATEGORIES,
   buildHomeModel: () => buildHomeModel,
   canonicalResourceId: () => canonicalResourceId,
   collectPersonalResources: () => collectPersonalResources,
@@ -39,9 +40,9 @@ module.exports = __toCommonJS(learning_workspace_entry_exports);
 
 // src/learning-workspace/resource-model.mjs
 var dimensions = ["audiences", "schoolStages", "grades", "levels", "goals", "topics", "exams"];
-var scalarFacets = ["seriesId", "publisherId", "edition", "volume"];
+var scalarFacets = ["seriesId", "publisherId", "textbookVersion", "edition", "volume"];
 var kinds = /* @__PURE__ */ new Set(["course", "wordbook", "textbook"]);
-var referenceTypes = /* @__PURE__ */ new Set(["sentence-deck", "story-package", "vocabulary-pilot", "vocabulary-book", "protected-course"]);
+var referenceTypes = /* @__PURE__ */ new Set(["sentence-deck", "story-package", "vocabulary-pilot", "vocabulary-book", "protected-course", "personal-course", "expression-course"]);
 var text = (value, max = 200) => typeof value === "string" ? value.trim().slice(0, max) : "";
 function safeCover(value) {
   const url = text(value, 1e3);
@@ -54,7 +55,7 @@ function normalizeResource(source = {}) {
   for (const key of scalarFacets) facets[key] = text(source.facets?.[key], 100) || null;
   const sourceRefs = (Array.isArray(source.sourceRefs) ? source.sourceRefs : []).filter((ref) => referenceTypes.has(ref?.type) && text(ref.id)).map((ref) => ({ type: ref.type, id: text(ref.id) }));
   const available = source.available !== false && sourceRefs.length > 0;
-  const activities = available ? [...new Set(sourceRefs.map((ref) => ref.type === "vocabulary-pilot" || ref.type === "vocabulary-book" ? "vocabulary" : "chunks"))] : [];
+  const activities = available ? [...new Set(sourceRefs.map((ref) => ref.type === "vocabulary-pilot" || ref.type === "vocabulary-book" ? "vocabulary" : ref.type === "expression-course" ? "expression" : "chunks"))] : [];
   return {
     resourceId: text(source.resourceId),
     kind: kinds.has(source.kind) ? source.kind : "course",
@@ -70,6 +71,8 @@ function normalizeResource(source = {}) {
     unavailableReason: available ? "" : text(source.unavailableReason) || "\u5185\u5BB9\u6682\u4E0D\u53EF\u7528",
     metadataRevision: Number.isSafeInteger(source.metadataRevision) ? source.metadataRevision : 0,
     courseId: text(source.courseId),
+    unitCount: Number.isSafeInteger(source.unitCount) && source.unitCount >= 0 ? source.unitCount : null,
+    itemCount: Number.isSafeInteger(source.itemCount) && source.itemCount >= 0 ? source.itemCount : null,
     accessLevel: source.accessLevel === "member" ? "member" : "free",
     relatedCourseIds: [...new Set((Array.isArray(source.relatedCourseIds) ? source.relatedCourseIds : []).map((value) => text(value, 200)).filter((value) => /^course:[a-zA-Z0-9:._-]{1,193}$/.test(value)))].slice(0, 20)
   };
@@ -111,7 +114,8 @@ var FACET_LABELS = Object.freeze({
   topics: "\u9898\u6750",
   exams: "\u8003\u8BD5",
   seriesId: "\u7CFB\u5217",
-  publisherId: "\u7248\u672C",
+  publisherId: "\u51FA\u7248\u793E",
+  textbookVersion: "\u6559\u6750\u7248\u672C",
   edition: "\u7248\u6B21",
   volume: "\u518C\u6B21"
 });
@@ -120,6 +124,8 @@ function values(resource, dimension) {
   return Array.isArray(value) ? value : value ? [value] : [];
 }
 var PRACTICAL_TOPICS = Object.freeze({ daily: "\u65E5\u5E38\u53E3\u8BED", travel: "\u65C5\u6E38\u82F1\u8BED", business: "\u5546\u52A1\u804C\u573A", classics: "\u7ECF\u5178\u6559\u6750", stories: "\u7535\u5F71\u4E0E\u6545\u4E8B" });
+var WORDBOOK_CATEGORIES = Object.freeze({ basic: "\u57FA\u7840\u5FC5\u5907", zhongkao: "\u4E2D\u8003", gaokao: "\u9AD8\u8003", college: "\u5927\u5B66\u82F1\u8BED", postgraduate: "\u8003\u7814", overseas: "\u51FA\u56FD\u5546\u52A1" });
+var wordbookTags = { basic: ["\u57FA\u7840\u5FC5\u5907"], zhongkao: ["\u4E2D\u8003"], gaokao: ["\u9AD8\u8003"], college: ["\u5927\u5B66\u82F1\u8BED", "\u56DB\u7EA7", "\u516D\u7EA7", "CET-4", "CET-6"], postgraduate: ["\u8003\u7814"], overseas: ["\u51FA\u56FD\u5546\u52A1", "\u51FA\u56FD", "\u5546\u52A1\u82F1\u8BED", "\u96C5\u601D", "\u6258\u798F", "IELTS", "TOEFL"] };
 var practicalPatterns = { daily: /日常|口语|高频短语/, travel: /旅游|旅行|出国|travel/i, business: /商务|职场|business/i, classics: /经典教材/, stories: /电影|故事|影视|movie|story/i };
 function matchesPracticalTopic(resource, topic) {
   const tags = values(resource, "topics");
@@ -132,6 +138,10 @@ function filterResources(resources, selection = {}, omitDimension = "") {
   const query = String(selection.query || "").trim().toLocaleLowerCase();
   return resources.filter((resource) => {
     if (selection.kind && resource.kind !== selection.kind) return false;
+    if (selection.kind === "wordbook" && Object.hasOwn(WORDBOOK_CATEGORIES, selection.wordbookCategory)) {
+      const tags = ["topics", "goals", "exams", "levels"].flatMap((key) => values(resource, key));
+      if (!wordbookTags[selection.wordbookCategory].some((tag) => tags.includes(tag))) return false;
+    }
     const newConcept = /新概念|new[\s_-]*concept|\bnce\b/i.test([resource.facets?.seriesId, resource.title].filter(Boolean).join(" "));
     const school = !newConcept && values(resource, "schoolStages").some((stage) => ["\u5C0F\u5B66", "\u521D\u4E2D", "\u9AD8\u4E2D"].includes(stage)) && (resource.kind === "textbook" || !!resource.facets?.seriesId);
     if (selection.category === "new-concept" && !newConcept) return false;
@@ -159,12 +169,14 @@ function selectionFromUrl(search) {
   const params = new URLSearchParams(search);
   const selection = { kind: ["course", "wordbook", "textbook"].includes(params.get("kind")) ? params.get("kind") : "", query: params.get("q") || "" };
   selection.category = ["practical", "new-concept", "school"].includes(params.get("category")) ? params.get("category") : "";
+  selection.wordbookCategory = selection.kind === "wordbook" && !selection.category && Object.hasOwn(WORDBOOK_CATEGORIES, params.get("wordbookCategory")) ? params.get("wordbookCategory") : "";
   selection.practicalTopic = selection.category === "practical" && Object.hasOwn(PRACTICAL_TOPICS, params.get("practicalTopic")) ? params.get("practicalTopic") : "";
   if (!selection.category && selection.kind === "textbook") {
     selection.kind = "";
     selection.category = "school";
   }
   for (const key of Object.keys(FACET_LABELS)) selection[key] = params.getAll(key);
+  if (selection.category === "school" && !selection.schoolStages.length) selection.schoolStages = ["\u5C0F\u5B66"];
   return selection;
 }
 function resourceKindCounts(resources, selection = {}) {
@@ -181,7 +193,7 @@ function resourceKindCounts(resources, selection = {}) {
 function groupTextbooks(resources) {
   const groups = /* @__PURE__ */ new Map();
   for (const resource of resources) {
-    const key = resource.facets.seriesId ? JSON.stringify([resource.facets.seriesId, resource.facets.publisherId, resource.facets.edition]) : resource.resourceId;
+    const key = resource.facets.seriesId ? JSON.stringify([resource.facets.seriesId, resource.facets.publisherId, resource.facets.textbookVersion, resource.facets.edition]) : resource.resourceId;
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(resource);
   }
@@ -210,6 +222,7 @@ function buildHomeModel({ resources = [], memberships = {}, preferences = {}, re
   FACET_LABELS,
   PRACTICAL_TOPICS,
   TOOLS,
+  WORDBOOK_CATEGORIES,
   buildHomeModel,
   canonicalResourceId,
   collectPersonalResources,

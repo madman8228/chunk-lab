@@ -85,7 +85,7 @@
       }
       var stage = document.getElementById('stage'), nativeSession = state.deck && state.deck._platformSession;
       if (!state.deck || !state.items || !state.items.length || !stage || stage.classList.contains('hidden')) return null;
-      if (nativeSession && (nativeSession.disposed || !nativeSession.button.hidden || nativeSession.controller.phase !== 'active')) return null;
+      if (nativeSession && (nativeSession.disposed || !nativeSession.button.hidden || nativeSession.phase !== 'active')) return null;
       return { kind: 'sentence', resourceId: nativeSession ? nativeSession.courseId : state.deck.id || 'sentence-practice' };
     }
     return null;

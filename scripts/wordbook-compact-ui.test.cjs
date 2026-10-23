@@ -12,7 +12,7 @@ const {chromium}=require('playwright-core');
   await page.route('**/wordbook.html*',route=>route.fulfill({body:html,contentType:'text/html; charset=utf-8'}));
   await page.goto('http://127.0.0.1:9979/wordbook.html?book=pilot-six-v1');
   for(const file of ['landing/theme.css','landing/practice-page.css','assets/learning-workspace.css','assets/learning-sky.css','assets/wordbook-study.css'])await page.addStyleTag({path:file});
-  await page.addScriptTag({path:'js/learning-sky.js'});
+  await page.addScriptTag({path:'js/learning-sky.js'});await page.addScriptTag({path:'js/course-return.js'});
   await page.addScriptTag({path:'js/notice-banner.js'});
   await page.addStyleTag({path:'assets/learning-navigation.css'});await page.addStyleTag({path:'assets/course-learning-header.css'});
   await page.addScriptTag({path:'js/course-learning-header.js'});await page.addScriptTag({path:'js/learning-navigation.js'});
@@ -20,7 +20,7 @@ const {chromium}=require('playwright-core');
   await page.evaluate(item=>{
    window.wordbookImageFixture=item;
    window.LearningSessionBootstrap={identity:()=> 'fixture',ready:async()=>({loggedIn:false})};
-   window.ChunkAPI={request:async url=>url.includes('/items')?{title:'人教版英语 九年级全一册（2013） · Unit 1 How can we become good learners?',revision:'fixture',itemCount:6,items:Array.from({length:6},()=>({itemId:item.itemId,contentRevision:item.revision}))}:window.wordbookImageFixture};
+   window.ChunkAPI={getToken:()=> 'fixture-token',request:async url=>url.includes('/items')?{title:'人教版英语 九年级全一册（2013） · Unit 1 How can we become good learners?',revision:'fixture',itemCount:6,items:Array.from({length:6},()=>({itemId:item.itemId,contentRevision:item.revision}))}:window.wordbookImageFixture};
   },item);
   for(const file of ['landing/word-dictation-view.js','landing/word-choice-view.js','landing/chunk-order-view.js','landing/read-aloud-view.js','landing/vocabulary-course-audio.js','landing/sentence-cloze-engine.js','landing/sentence-cloze-view.js','landing/guided-sentence-content.js','landing/guided-sentence-view.js','landing/wordbook-study.js'])await page.addScriptTag({path:file});
   await page.locator('#studyRoot input').first().waitFor();
@@ -34,7 +34,7 @@ const {chromium}=require('playwright-core');
    await page.screenshot({path:path.join(out,'wordbook-'+width+'.png'),fullPage:true});
    assert.ok(check.y+check.height<=932,'confirm visible within first viewport '+width+' '+JSON.stringify(await page.evaluate(()=>({main:getComputedStyle(document.querySelector('main')).cssText,top:document.querySelector('main').getBoundingClientRect().top,bodyMargin:getComputedStyle(document.body).margin,panel:document.querySelector('#studyRoot').getBoundingClientRect().toJSON()}))));
    const image=await page.locator('.wordbook-study img').boundingBox();assert.ok(image.width<=560+1&&image.height<=316,'complete responsive illustration '+width);
-   const header=await page.locator('#bookHeader').boundingBox();assert.ok(Math.abs(header.x-image.x)<1,'header and image share a left edge at '+width);
+   const header=await page.locator('#bookHeader').boundingBox(),back=await page.locator('#bookBack').boundingBox(),title=await page.locator('#bookHeader .course-header-copy').boundingBox();assert.ok(header.x<=back.x&&back.x<title.x,'return link stays to the left of the left-aligned title at '+width);
    assert.equal(await page.locator('.wordbook-exercise').evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)','exercise has no outer card surface');
    await page.screenshot({path:path.join(out,'wordbook-'+width+'.png'),fullPage:true});
   }

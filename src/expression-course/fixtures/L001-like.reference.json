@@ -1,0 +1,293 @@
+{
+  "schemaVersion": "1.0",
+  "lessonId": "L001",
+  "contentVersion": 1,
+  "status": "draft",
+  "locale": "zh-CN",
+  "title": "表达喜欢",
+  "communicationGoal": "能够用英语独立表达自己喜欢某种饮品",
+  "prerequisiteSkillIds": [],
+  "taughtSkillIds": [
+    "express_like"
+  ],
+  "vocabulary": [
+    {
+      "id": "pronoun_i",
+      "en": "I",
+      "zh": "我",
+      "introducedHere": true
+    },
+    {
+      "id": "verb_like",
+      "en": "like",
+      "zh": "喜欢",
+      "introducedHere": true
+    },
+    {
+      "id": "noun_tea",
+      "en": "tea",
+      "zh": "茶",
+      "introducedHere": true
+    },
+    {
+      "id": "noun_coffee",
+      "en": "coffee",
+      "zh": "咖啡",
+      "introducedHere": true
+    },
+    {
+      "id": "noun_milk",
+      "en": "milk",
+      "zh": "牛奶",
+      "introducedHere": true
+    },
+    {
+      "id": "noun_water",
+      "en": "water",
+      "zh": "水",
+      "introducedHere": true
+    }
+  ],
+  "audioAssets": [
+    {
+      "assetId": "l001_tea",
+      "text": "I like tea.",
+      "locale": "en-US",
+      "status": "needs_generation"
+    },
+    {
+      "assetId": "l001_coffee",
+      "text": "I like coffee.",
+      "locale": "en-US",
+      "status": "needs_generation"
+    }
+  ],
+  "activities": [
+    {
+      "id": "L001_A01",
+      "type": "meaning_intro",
+      "stage": "guided",
+      "prompt": "先听一听：表达喜欢喝茶",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "exampleEnglish": "I like tea.",
+        "exampleZh": "我喜欢茶。",
+        "audioAssetId": "l001_tea",
+        "vocabularyPreviewIds": [
+          "pronoun_i",
+          "verb_like",
+          "noun_tea",
+          "noun_coffee",
+          "noun_milk",
+          "noun_water"
+        ]
+      },
+      "evaluation": {
+        "countsTowardMastery": false
+      }
+    },
+    {
+      "id": "L001_A02",
+      "type": "sentence_build",
+      "stage": "guided",
+      "prompt": "把词块排列成‘我喜欢茶’",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "targetMeaning": "我喜欢茶。",
+        "availableTokens": [
+          "tea",
+          "like",
+          "I"
+        ],
+        "correctTokens": [
+          "I",
+          "like",
+          "tea"
+        ]
+      },
+      "evaluation": {
+        "countsTowardMastery": false,
+        "acceptedAnswers": [
+          "I like tea."
+        ]
+      }
+    },
+    {
+      "id": "L001_A03",
+      "type": "sentence_build",
+      "stage": "reduced_help",
+      "prompt": "再次组成‘我喜欢咖啡’",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "targetMeaning": "我喜欢咖啡。",
+        "availableTokens": [
+          "coffee",
+          "I",
+          "like"
+        ],
+        "correctTokens": [
+          "I",
+          "like",
+          "coffee"
+        ]
+      },
+      "evaluation": {
+        "countsTowardMastery": false,
+        "acceptedAnswers": [
+          "I like coffee."
+        ]
+      }
+    },
+    {
+      "id": "L001_A04",
+      "type": "substitution",
+      "stage": "reduced_help",
+      "prompt": "换成‘茶’，自己输入一句话",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "scenario": "你向朋友说自己喜欢茶。",
+        "targetMeaning": "我喜欢茶。"
+      },
+      "evaluation": {
+        "countsTowardMastery": false,
+        "acceptedAnswers": [
+          "I like tea."
+        ]
+      }
+    },
+    {
+      "id": "L001_A05",
+      "type": "substitution",
+      "stage": "reduced_help",
+      "prompt": "换成‘咖啡’，自己输入",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "scenario": "你和朋友聊起喜欢的饮品。",
+        "targetMeaning": "我喜欢咖啡。"
+      },
+      "evaluation": {
+        "countsTowardMastery": false,
+        "acceptedAnswers": [
+          "I like coffee."
+        ]
+      }
+    },
+    {
+      "id": "L001_A06",
+      "type": "listening_choice",
+      "stage": "independent",
+      "prompt": "只听声音，判断对方喜欢什么",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "audioAssetId": "l001_coffee",
+        "options": [
+          {
+            "id": "tea",
+            "textZh": "我喜欢茶。"
+          },
+          {
+            "id": "coffee",
+            "textZh": "我喜欢咖啡。"
+          }
+        ]
+      },
+      "evaluation": {
+        "countsTowardMastery": true,
+        "correctOptionId": "coffee"
+      }
+    },
+    {
+      "id": "L001_A07",
+      "type": "listening_choice",
+      "stage": "independent",
+      "prompt": "再听另一句话，选出含义",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "audioAssetId": "l001_tea",
+        "options": [
+          {
+            "id": "milk",
+            "textZh": "我喜欢牛奶。"
+          },
+          {
+            "id": "tea",
+            "textZh": "我喜欢茶。"
+          }
+        ]
+      },
+      "evaluation": {
+        "countsTowardMastery": true,
+        "correctOptionId": "tea"
+      }
+    },
+    {
+      "id": "L001_A08",
+      "type": "independent_output",
+      "stage": "independent",
+      "prompt": "不看英文，自己表达",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "scenario": "朋友问你喜欢什么饮品，你喜欢茶。",
+        "targetMeaning": "我喜欢茶。",
+        "responseModes": [
+          "text",
+          "record_self_check"
+        ]
+      },
+      "evaluation": {
+        "countsTowardMastery": true,
+        "acceptedAnswers": [
+          "I like tea."
+        ]
+      }
+    },
+    {
+      "id": "L001_A09",
+      "type": "transfer_test",
+      "stage": "independent",
+      "prompt": "新场景：独立表达，不显示英文答案",
+      "skillIds": [
+        "express_like"
+      ],
+      "payload": {
+        "scenario": "你第一次在饮品柜台看到牛奶，向朋友表达你喜欢牛奶。",
+        "targetMeaning": "我喜欢牛奶。",
+        "withheldExample": true,
+        "responseModes": [
+          "text"
+        ]
+      },
+      "evaluation": {
+        "countsTowardMastery": true,
+        "acceptedAnswers": [
+          "I like milk."
+        ]
+      }
+    }
+  ],
+  "reviewPlan": {
+    "intervalDays": [
+      1,
+      3,
+      7,
+      14,
+      30
+    ]
+  }
+}

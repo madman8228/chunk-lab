@@ -1,6 +1,20 @@
 /* Canonical shelf/card presentation shared by discovery and personal content.
    Context-specific legacy classes are compatibility hooks, never visual variants. */
+#discoverBody .workspace-card.content-card.has-learning-footer>.content-card-copy{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:2.4px 12px 1.2px;min-height:0;background:#fffdf7;border-radius:0 0 14px 14px}
+#discoverBody .workspace-card.content-card.has-learning-footer .content-card-copy h3{flex:none;min-width:0;min-height:18px;overflow:hidden;font-size:12px;line-height:18px;white-space:nowrap;text-overflow:ellipsis}
+.content-card-metadata{font-size:10px;color:#9b8260;line-height:1.5;margin:8px 0 0}
+#discoverBody .content-card-metadata{display:block;min-width:0;min-height:0;height:15px;overflow:hidden;margin:4px 0 0;padding:0;border:0;line-height:15px;text-overflow:ellipsis;white-space:nowrap}
+#discoverBody .content-card-learning-footer{display:flex;align-items:center;gap:6px;justify-content:space-between;border-top:1px dashed #e8decb;margin-top:7px;padding-top:4px}
+#discoverBody .workspace-discover:not(.discover-list-mode) .content-card.has-learning-footer>.content-card-copy{height:84px;flex:0 0 84px}
+#discoverBody .workspace-discover:not(.discover-list-mode) .content-card-learning-footer{flex:none;margin-top:auto}
+@media(pointer:coarse){#discoverBody .workspace-discover:not(.discover-list-mode) .content-card.has-learning-footer>.content-card-copy{height:98px;flex-basis:98px}}
+#discoverBody .content-card-learning-footer button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:6px;min-width:0;min-height:30px;padding:3px 0;background:transparent;box-shadow:none;font:inherit;font-size:11px;cursor:pointer}
+#discoverBody .content-card-learning-footer .content-card-learn{color:#d87300;font-weight:700;margin-right:auto;text-align:left}
+#discoverBody .content-card-learning-footer .content-card-save{width:28px;color:#a68b65;flex:none}
+#discoverBody .content-card-learning-footer .content-card-save[aria-pressed=true]{color:#ef6b83}
+#discoverBody .content-card-learning-footer button:hover:not(:disabled){background:#fff3dc}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;align-items:start}
+.learning-workspace.workspace-discover .workspace-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:0;min-height:0;margin:0;padding:0;box-sizing:border-box;border:1px solid var(--workspace-line);border-radius:14px;background:var(--workspace-paper);color:var(--workspace-ink);box-shadow:none;overflow:visible}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card.has-default-cover{background:transparent}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>img{display:block;align-self:stretch;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;margin:0;border-radius:13px 13px 0 0;background:transparent}
@@ -9,8 +23,14 @@
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card a.content-card-title{display:inline;min-height:0;min-width:0;margin:0;padding:0;border:0;background:none;color:inherit;text-decoration:none}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card a.content-card-title:hover{color:var(--workspace-muted)}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card:is(.is-clickable,.has-preview){cursor:pointer}
-.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-kind{position:absolute;z-index:1;top:7px;right:7px;max-width:calc(100% - 14px);margin:0;padding:3px 7px;border:1px solid var(--workspace-line);border-radius:999px;background:var(--workspace-paper);color:var(--workspace-ink);font-size:11px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-kind{position:absolute;z-index:1;top:7px;right:7px;max-width:calc(100% - 14px);margin:0;padding:3px 6px;border:0;border-radius:4px;background:#fef3c7;color:#92400e;font-size:11px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-kind[data-kind=word]{background:#e0f2fe;color:#075985}
+.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-kind[data-kind=oral]{background:#d1fae5;color:#047857}
+.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-kind[data-kind=sentence],.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-kind[data-kind=sentence-pattern]{background:#fef3c7;color:#92400e}
+.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-kind[data-kind=unavailable]{background:#f1f5f9;color:#475569}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card:not(:has(>img))>.content-card-kind{position:static;align-self:flex-end;margin:7px 7px 0}
+.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-version{position:absolute;z-index:1;top:7px;left:7px;max-width:calc(100% - 76px);padding:3px 7px;border:1px solid var(--workspace-line);border-radius:999px;background:var(--workspace-paper);color:var(--workspace-ink);font-size:11px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card:not(:has(>img))>.content-card-version{position:static;align-self:flex-start;margin:0 7px 7px}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card:has(.content-card-menu[open]){z-index:5}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card .content-card-menu{position:relative;flex:0 0 auto}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card .content-card-menu>summary{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:24px;height:24px;min-width:24px;min-height:24px;padding:0;list-style:none;cursor:pointer;color:var(--workspace-muted)}
@@ -20,6 +40,11 @@
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card .content-card-actions>:is(a,button){display:flex;align-items:center;box-sizing:border-box;width:100%;min-height:32px;min-width:0;margin:0;padding:6px 10px;border:0;border-radius:4px;background:transparent;color:var(--workspace-ink);box-shadow:none;font:inherit;font-size:13px;font-weight:400;line-height:20px;text-align:left;text-decoration:none;white-space:nowrap;cursor:pointer}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card .content-card-actions>:is(a,button):hover:not(:disabled){background:var(--workspace-hover)}
 .learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card .content-card-actions>:is(a,button):focus-visible{outline:2px solid var(--workspace-ink);outline-offset:-2px}
+.learning-workspace.workspace-discover .content-card-actions .content-card-menu-item{gap:8px}
+.learning-workspace.workspace-discover .content-card-menu-icon{display:inline-flex;flex:0 0 16px;align-items:center;justify-content:center;color:#b77920}
+.learning-workspace.workspace-discover .content-card-menu-icon svg{width:15px;height:15px}
+.learning-workspace.workspace-discover .content-card-menu-status{margin-left:auto;color:var(--workspace-muted);font-size:10px}
+.learning-workspace.workspace-discover .content-card-actions .content-card-menu-item:disabled{cursor:not-allowed;opacity:.65}
 .content-card-actions>[role=status]{padding:6px 10px;font-size:12px;white-space:nowrap}
 @media(pointer:coarse){.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card>.content-card-copy{min-height:50px}.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card .content-card-menu>summary{width:44px;height:44px;min-width:44px;min-height:44px}.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-card.content-card .content-card-actions>:is(a,button){min-height:44px}}
 @media(max-width:899px){.learning-workspace:is(.workspace-library,.workspace-discover) .workspace-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}

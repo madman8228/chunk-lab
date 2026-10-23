@@ -1,5 +1,5 @@
 'use strict';
-const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=require('playwright-core');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{chromium}=require('playwright-core');
 (async()=>{const browser=await chromium.launch({headless:true});try{
  const page=await browser.newPage();
  for(const file of ['decks.html','courses.html','wordbook.html','wordbook-details.html','wordbook-create.html','stats.html']){
@@ -7,7 +7,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=requ
   for(const width of [1440,847,390,360]){
    await page.setViewportSize({width,height:932});await page.setContent(html);
    for(const match of source.matchAll(/<link[^>]+href="([^"]+\.css(?:\?[^"]*)?)"/g))await page.addStyleTag({path:match[1].split('?')[0]});
-   if(file==='wordbook.html'){assert.equal(await page.locator('nav').count(),0,'focused study uses the approved course-return header');assert.equal(await page.locator('#bookBack').textContent(),'返回课程');const header=await page.locator('.workspace-heading').boundingBox();assert.ok(header.x>=0&&header.x+header.width<=width);continue;}
+   if(file==='wordbook.html'){assert.equal(await page.locator('nav').count(),0,'focused study uses the approved course-return header');assert.equal(await page.locator('#bookBack').textContent(),'返回课程');const header=await page.locator('#bookHeader').boundingBox();assert.ok(header.x>=0&&header.x+header.width<=width);continue;}
    const nav=page.locator('nav').first();assert.deepEqual(await nav.locator('a').allTextContents(),['首页','我的内容','发现','学习记录'],file);
    assert.equal(await nav.locator('a').last().getAttribute('href'),'stats.html');
    if(file.startsWith('wordbook'))assert.ok((await nav.locator('a').nth(2).getAttribute('href')).includes('kind=wordbook'),'wordbook discover filter retained');
@@ -15,5 +15,9 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=requ
    assert.ok(bounds.every(b=>b.left>=0 && b.right<=width),'navigation fits '+file+' '+width);
   }
  }
+ await page.setContent('<!doctype html><nav id="studyTabs"></nav>');
+ await page.addScriptTag({path:path.resolve('js/learning-navigation.js')});
+ const archiveTabs=await page.evaluate(()=>{const nav=LearningNavigation.studyTabs('sent');return {links:Array.from(nav.querySelectorAll('a'),link=>link.textContent.trim()),createCount:nav.querySelectorAll('.study-create').length};});
+ assert.deepEqual(archiveTabs,{links:['在学课程与词库','待复习','错题本','学习明细'],createCount:0},'learning records contain no create/import action');
  console.log('Six course/wordbook/record pages: consistent labels, record links, vocabulary filter and four widths passed.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

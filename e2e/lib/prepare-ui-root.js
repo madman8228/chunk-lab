@@ -11,6 +11,7 @@ module.exports=function prepareUiRoot(destination){
   fs.mkdirSync(target,{recursive:true});
   assert.ok(fs.realpathSync(target).startsWith(temporary+path.sep),'UI fixture cannot point outside temporary storage');
   const files=Array.from(new Set(deps.runtimeAssets(deps.HTML_ENTRIES).files.concat([
+    'js/personal-center-dialogs.js',
     'assets/catalog/default-cloud-v1.svg','assets/catalog/default-balloon-v1.svg','assets/catalog/default-balloon-far-v1.svg',
     'assets/covers/oral-3000.webp','assets/covers/idioms.webp'
   ]))).filter(file=>!file.replace(/\\/g,'/').startsWith('content/'));

@@ -221,6 +221,9 @@ var ChunkMembership = (() => {
     contentGrant(input) {
       return this.request("/api/learning-sessions/content-grant", { method: "POST", body: JSON.stringify(input), timeoutMs: 8e3 });
     }
+    previewGrant(input) {
+      return this.request("/api/course-content/preview-grant", { method: "POST", body: JSON.stringify(input), timeoutMs: 8e3 });
+    }
     action(sessionId, sequence, action) {
       return this.request(
         "/api/learning-sessions/" + encodeURIComponent(sessionId) + "/" + action,
@@ -884,6 +887,52 @@ var ChunkMembership = (() => {
       source?.dispose();
     }
   };
+  var PersonalCourseSource = class {
+    constructor({ repository, captureScope }) {
+      this.repository = repository;
+      this.captureScope = captureScope;
+      this.active = false;
+    }
+    guard() {
+      if (!this.active || this.scope !== this.captureScope()) throw failure2("SESSION_CHANGED");
+    }
+    async open(reference, options) {
+      this.scope = this.captureScope();
+      this.active = true;
+      this.reference = reference;
+      const result = await this.repository.open(reference, options);
+      this.guard();
+      return result;
+    }
+    checkAdvance() {
+      return this.active && this.scope === this.captureScope();
+    }
+    canPrefetch() {
+      return this.checkAdvance();
+    }
+    async authorizeCached() {
+      this.guard();
+    }
+    async loadBatch(cursor) {
+      this.guard();
+      const result = await this.repository.loadBatch(this.reference, cursor);
+      this.guard();
+      return result;
+    }
+    async loadAssets(id) {
+      this.guard();
+      const result = await this.repository.loadAssets(this.reference, id);
+      this.guard();
+      return result;
+    }
+    async pause() {
+      this.active = false;
+    }
+    dispose() {
+      this.active = false;
+      this.reference = null;
+    }
+  };
 
   // src/learning/platform-course-source.mjs
   var failure3 = (code) => Object.assign(new Error(code), { code });
@@ -915,6 +964,20 @@ var ChunkMembership = (() => {
       this.reference = reference;
       this.purpose = options.purpose || "practice";
       const epoch = ++this.epoch, sentAt = this.now();
+      if (this.purpose === "preview") {
+        this.previewMode = true;
+        const result2 = await this.client.previewGrant({ ...reference, cursor: options.cursor || 0, requestId: this.newRequestId() });
+        if (epoch !== this.epoch) throw failure3("SESSION_CHANGED");
+        this.remember(result2, sentAt, options.cursor || 0);
+        this.contentVersion = result2.contentVersion;
+        const grant = this.grants.get(options.cursor || 0);
+        const batch = await this.fetchResource("/api/course-fragments/" + encodeURIComponent(grant.fragment.fragmentId), this.headers(grant), "json");
+        if (epoch !== this.epoch || !this.checkAdvance(options.cursor || 0)) throw failure3("AUTHORIZATION_EXPIRED");
+        batch.items = batch.items.slice((options.cursor || 0) - batch.cursor);
+        batch.cursor = options.cursor || 0;
+        return { batch, contentVersion: result2.contentVersion, recordIdentity: batch.recordIdentity };
+      }
+      this.previewMode = false;
       const result = await this.controller.start({ courseId: reference.courseId, unitId: reference.unitId, cursor: options.cursor || 0, purpose: this.purpose });
       if (epoch !== this.epoch) throw failure3("SESSION_CHANGED");
       this.remember(result, sentAt, result.unit?.cursor);
@@ -922,17 +985,17 @@ var ChunkMembership = (() => {
       return { batch: result.unit, contentVersion: result.contentVersion, recordIdentity: result.unit.recordIdentity };
     }
     checkAdvance(cursor) {
-      return this.controller.canAdvance() && this.now() < (this.grants.get(cursor)?.deadline || 0);
+      return (this.previewMode || this.controller.canAdvance()) && this.now() < (this.grants.get(cursor)?.deadline || 0);
     }
     canPrefetch() {
-      return this.controller.canAdvance() && Math.max(0, ...[...this.grants.values()].map((grant) => grant.deadline - this.now())) >= 5e3;
+      return !this.previewMode && this.controller.canAdvance() && Math.max(0, ...[...this.grants.values()].map((grant) => grant.deadline - this.now())) >= 5e3;
     }
     async grantFor(cursor) {
-      if (!this.controller.canAdvance()) throw failure3("AUTHORIZATION_EXPIRED");
+      if (!this.previewMode && !this.controller.canAdvance()) throw failure3("AUTHORIZATION_EXPIRED");
       let grant = this.grants.get(cursor);
       if (grant && this.now() < grant.deadline) return grant;
       const epoch = this.epoch, sentAt = this.now();
-      const result = await this.client.contentGrant({ ...this.reference, cursor, purpose: this.purpose, sessionId: this.controller.current?.sessionId, requestId: this.newRequestId() });
+      const result = this.previewMode ? await this.client.previewGrant({ ...this.reference, cursor, requestId: this.newRequestId() }) : await this.client.contentGrant({ ...this.reference, cursor, purpose: this.purpose, sessionId: this.controller.current?.sessionId, requestId: this.newRequestId() });
       if (epoch !== this.epoch) throw failure3("SESSION_CHANGED");
       this.remember(result, sentAt, cursor);
       grant = this.grants.get(cursor);
@@ -973,12 +1036,12 @@ var ChunkMembership = (() => {
     }
     async pause() {
       this.grants.clear();
-      await this.controller.pause();
+      if (!this.previewMode) await this.controller.pause();
     }
     dispose() {
       const epoch = ++this.epoch;
       this.grants.clear();
-      this.controller.pause().catch(() => {
+      if (!this.previewMode) this.controller.pause().catch(() => {
       }).finally(() => {
         if (epoch === this.epoch) this.controller.reset();
       });
@@ -1071,6 +1134,220 @@ var ChunkMembership = (() => {
     }
   };
 
+  // src/learning/offline-license.mjs
+  var WEEK = 7 * 24 * 60 * 60 * 1e3;
+  var reject = () => {
+    throw Object.assign(new Error("\u79BB\u7EBF\u8BB8\u53EF\u65E0\u6CD5\u786E\u8BA4\uFF0C\u8BF7\u8054\u7F51\u540E\u91CD\u8BD5\uFF1B\u539F\u5B66\u4E60\u8BB0\u5F55\u4FDD\u7559\u3002"), { code: "INVALID_OFFLINE_LICENSE" });
+  };
+  function decode(value) {
+    if (typeof value !== "string" || !value || value.length > 16384 || !/^[A-Za-z0-9_-]+$/.test(value)) return reject();
+    return Uint8Array.from(atob(value.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0));
+  }
+  async function verifyOfflineLicense({ license, publicKey, scope, body, now = Date.now(), lastConfirmedTime = 0, subtle = crypto.subtle }) {
+    try {
+      if (!Number.isSafeInteger(now) || !Number.isSafeInteger(lastConfirmedTime) || now < lastConfirmedTime) return reject();
+      const key = await subtle.importKey("jwk", publicKey, { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"]);
+      if (!await subtle.verify({ name: "ECDSA", hash: "SHA-256" }, key, decode(license.signature), new TextEncoder().encode(license.payload))) return reject();
+      const claims = JSON.parse(new TextDecoder().decode(decode(license.payload)));
+      if (claims.version !== 1 || !Number.isSafeInteger(claims.issuedAt) || claims.issuedAt > now) return reject();
+      for (const field of ["accountId", "service", "courseId", "unitId", "contentVersion"]) if (typeof scope[field] !== "string" || !scope[field] || claims[field] !== scope[field]) return reject();
+      if (claims.mode === "member") {
+        if (!Number.isSafeInteger(claims.expiresAt) || claims.expiresAt <= now || claims.expiresAt <= claims.issuedAt || claims.expiresAt - claims.issuedAt > WEEK) return reject();
+      } else if (claims.mode !== "free" || claims.expiresAt !== null) return reject();
+      if (!(body instanceof Uint8Array)) return reject();
+      const digest = Array.from(new Uint8Array(await subtle.digest("SHA-256", body)), (b) => b.toString(16).padStart(2, "0")).join("");
+      if (digest !== claims.sha256) return reject();
+      return claims;
+    } catch (_) {
+      return reject();
+    }
+  }
+
+  // src/learning/offline-unit-store.mjs
+  function createOfflineUnitStore({ indexedDB, verify = verifyOfflineLicense }) {
+    let pending2;
+    function open() {
+      if (!pending2) {
+        pending2 = new Promise((resolve, reject2) => {
+          const request = indexedDB.open("chunklab-sentence-offline-v1", 1);
+          request.onupgradeneeded = () => request.result.createObjectStore("units");
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject2(request.error);
+          request.onblocked = () => reject2(Error("\u79BB\u7EBF\u5185\u5BB9\u5E93\u6B63\u5728\u5176\u4ED6\u9875\u9762\u5347\u7EA7\uFF0C\u8BF7\u5173\u95ED\u65E7\u9875\u9762\u540E\u91CD\u8BD5\u3002"));
+        });
+        pending2.catch(() => {
+          pending2 = null;
+        });
+      }
+      return pending2;
+    }
+    function key(scope) {
+      return JSON.stringify(["accountId", "service", "courseId", "unitId", "contentVersion"].map((field) => {
+        if (typeof scope[field] !== "string" || !scope[field]) throw Error("INVALID_OFFLINE_SCOPE");
+        return scope[field];
+      }));
+    }
+    async function access(scope, value) {
+      const id = key(scope), db = await open();
+      return new Promise((resolve, reject2) => {
+        const transaction = db.transaction("units", value === void 0 ? "readonly" : "readwrite");
+        const request = value === void 0 ? transaction.objectStore("units").get(id) : transaction.objectStore("units").put(value, id);
+        transaction.oncomplete = () => resolve(request.result);
+        transaction.onerror = transaction.onabort = () => reject2(transaction.error || Error("\u79BB\u7EBF\u5185\u5BB9\u4FDD\u5B58\u5931\u8D25\uFF0C\u539F\u5185\u5BB9\u4FDD\u7559\u3002"));
+      });
+    }
+    return {
+      async save({ scope, license, body, publicKey, now, lastConfirmedTime }) {
+        const value = structuredClone({ license, body });
+        const claims = await verify({ scope, publicKey, ...value, now, lastConfirmedTime });
+        await access(scope, value);
+        return claims;
+      },
+      async read({ scope, publicKey, now, lastConfirmedTime }) {
+        const value = await access(scope);
+        if (!value) throw Object.assign(Error("\u672C\u8BFE\u8282\u5C1A\u672A\u79BB\u7EBF\u4FDD\u5B58\uFF0C\u8BF7\u8054\u7F51\u6253\u5F00\u4E00\u6B21\u3002"), { code: "UNIT_NOT_CACHED" });
+        const claims = await verify({ scope, publicKey, ...value, now, lastConfirmedTime });
+        return { ...value, claims };
+      }
+    };
+  }
+
+  // src/learning/offline-course-source.mjs
+  var fail = (code) => Object.assign(new Error(code), { code });
+  var OfflineCourseSource = class {
+    constructor({ readPackage, captureScope, now = Date.now }) {
+      this.readPackage = readPackage;
+      this.captureScope = captureScope;
+      this.now = now;
+      this.active = false;
+    }
+    guard() {
+      if (!this.active || this.scope !== this.captureScope()) throw fail("SESSION_CHANGED");
+    }
+    async validate() {
+      this.guard();
+      const time = this.now();
+      this.claims = await verifyOfflineLicense({ ...this.input, now: time, lastConfirmedTime: this.lastObservedTime });
+      this.guard();
+      this.confirmTime(time);
+    }
+    async open(reference, options = {}) {
+      if (options.purpose && options.purpose !== "practice") throw fail("OFFLINE_PURPOSE_UNAVAILABLE");
+      this.scope = this.captureScope();
+      this.active = true;
+      try {
+        this.input = await this.readPackage(reference);
+        this.lastObservedTime = this.input.lastConfirmedTime || 0;
+        await this.validate();
+        this.unit = JSON.parse(new TextDecoder().decode(this.input.body));
+        if (this.unit.version !== 1 || this.unit.courseId !== reference.courseId || this.unit.unitId !== reference.unitId || this.unit.contentVersion !== this.input.scope.contentVersion || !this.unit.recordIdentity || !Array.isArray(this.unit.batches) || !this.unit.batches.length) throw fail("OFFLINE_UNIT_INVALID");
+        const batch = this.batch(options.cursor || 0);
+        return { batch, contentVersion: this.unit.contentVersion, recordIdentity: this.unit.recordIdentity };
+      } catch (error) {
+        this.dispose();
+        throw error;
+      }
+    }
+    batch(cursor) {
+      const source = this.unit.batches.find((batch2) => cursor >= batch2.cursor && cursor < batch2.cursor + batch2.items.length);
+      if (!source) throw fail("INVALID_CURSOR");
+      const batch = structuredClone(source);
+      batch.items = batch.items.slice(cursor - source.cursor);
+      batch.cursor = cursor;
+      return batch;
+    }
+    confirmTime(time) {
+      this.input.recordTime?.(time);
+      this.lastObservedTime = Math.max(this.lastObservedTime, time);
+    }
+    checkAdvance() {
+      const time = this.now();
+      if (!(this.active && this.scope === this.captureScope() && this.claims && time >= this.lastObservedTime && time >= this.claims.issuedAt && (this.claims.expiresAt === null || time < this.claims.expiresAt))) return false;
+      try {
+        this.confirmTime(time);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+    canPrefetch() {
+      return this.checkAdvance();
+    }
+    async authorizeCached() {
+      await this.validate();
+    }
+    async loadBatch(cursor) {
+      await this.validate();
+      return { batch: this.batch(cursor), contentVersion: this.unit.contentVersion };
+    }
+    async loadAssets() {
+      throw fail("OFFLINE_MEDIA_UNAVAILABLE");
+    }
+    async pause() {
+      this.guard();
+    }
+    dispose() {
+      this.active = false;
+      this.input = null;
+      this.unit = null;
+      this.claims = null;
+    }
+  };
+
+  // src/learning/offline-course-cache.mjs
+  function createOfflineCourseCache(win) {
+    const store = createOfflineUnitStore({ indexedDB: win.indexedDB });
+    const identity = () => JSON.stringify([win.AccountStorage.owner, win.AccountStorage.sessionEpoch, win.ChunkAPI.getBase(), win.ChunkAPI.getToken()]);
+    const owner = () => String(JSON.parse(win.AccountStorage.owner)[1]);
+    const service = () => new URL(win.ChunkAPI.getBase() || "/", win.location.href).origin;
+    const key = (courseId, unitId) => "sentence-offline:" + JSON.stringify([service(), courseId, unitId]);
+    function metadata(courseId, unitId) {
+      return JSON.parse(win.AccountStorage.storage.getItem(key(courseId, unitId)) || "null");
+    }
+    function guard(captured) {
+      win.AccountStorage.assertCurrent();
+      if (identity() !== captured) throw Object.assign(Error("SESSION_CHANGED"), { code: "SESSION_CHANGED" });
+    }
+    async function read(reference) {
+      const captured = identity(), entry = metadata(reference.courseId, reference.unitId);
+      guard(captured);
+      if (!entry) throw Object.assign(Error("\u672C\u8BFE\u8282\u5C1A\u672A\u79BB\u7EBF\u4FDD\u5B58\uFF0C\u8BF7\u8054\u7F51\u6253\u5F00\u4E00\u6B21\u3002"), { code: "UNIT_NOT_CACHED" });
+      const scope = { accountId: owner(), service: service(), courseId: reference.courseId, unitId: reference.unitId, contentVersion: entry.contentVersion };
+      const value = await store.read({ scope, publicKey: entry.publicKey, lastConfirmedTime: entry.lastConfirmedTime });
+      guard(captured);
+      const recordTime = (time) => {
+        guard(captured);
+        const current = metadata(reference.courseId, reference.unitId);
+        if (time < current.lastConfirmedTime) throw Error("OFFLINE_CLOCK_ROLLBACK");
+        if (time > current.lastConfirmedTime) {
+          current.lastConfirmedTime = time;
+          win.AccountStorage.storage.setItem(key(reference.courseId, reference.unitId), JSON.stringify(current));
+        }
+      };
+      return { ...value, scope, publicKey: entry.publicKey, lastConfirmedTime: entry.lastConfirmedTime, recordTime };
+    }
+    return {
+      source: new OfflineCourseSource({ readPackage: read, captureScope: identity }),
+      async catalog(courseId, unitId) {
+        if (!unitId) throw Object.assign(Error("UNIT_NOT_CACHED"), { code: "UNIT_NOT_CACHED" });
+        await read({ courseId, unitId });
+        return { courses: [metadata(courseId, unitId).course] };
+      },
+      async prepare(course, unit) {
+        const captured = identity(), route = "/api/offline-courses/" + encodeURIComponent(course.courseId) + "/units/" + encodeURIComponent(unit.unitId);
+        const { publicKey } = await win.ChunkAPI.request("/api/offline-courses/public-key", { timeoutMs: 8e3 });
+        guard(captured);
+        const { body, license } = await win.ChunkAPI.request(route, { timeoutMs: 15e3 });
+        guard(captured);
+        if (typeof body !== "string") throw Error("INVALID_OFFLINE_BODY");
+        const scope = { accountId: owner(), service: service(), courseId: course.courseId, unitId: unit.unitId, contentVersion: unit.contentVersion };
+        const claims = await store.save({ scope, publicKey, license, body: new TextEncoder().encode(body) });
+        guard(captured);
+        win.AccountStorage.storage.setItem(key(course.courseId, unit.unitId), JSON.stringify({ course, contentVersion: unit.contentVersion, publicKey, lastConfirmedTime: claims.issuedAt }));
+      }
+    };
+  }
+
   // src/learning/native-course-session.mjs
   var messages = {
     AUTH_REQUIRED: "\u8BF7\u5148\u767B\u5F55\uFF0C\u518D\u67E5\u770B\u4E2A\u4EBA\u5B66\u4E60\u5185\u5BB9\u3002",
@@ -1080,6 +1357,7 @@ var ChunkMembership = (() => {
     SERVER_IDENTITY_MISMATCH: "\u670D\u52A1\u7AEF\u54CD\u5E94\u8D26\u53F7\u4E0D\u4E00\u81F4\uFF0C\u5DF2\u6682\u505C\u540C\u6B65\uFF1B\u672C\u5730\u8BB0\u5F55\u4FDD\u7559\u3002",
     SERVER_UPDATE_REQUIRED: "\u670D\u52A1\u7AEF\u7248\u672C\u6216\u767B\u5F55\u914D\u7F6E\u9700\u8981\u66F4\u65B0\uFF0C\u539F\u6709\u8BB0\u5F55\u5DF2\u4FDD\u7559\u3002",
     CONTENT_PREPARATION_REQUIRED: "\u8BFE\u7A0B\u6682\u65F6\u65E0\u6CD5\u5F00\u59CB\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5\u3002\u539F\u8BFE\u7A0B\u548C\u8BB0\u5F55\u4ECD\u7136\u4FDD\u7559\u3002",
+    SESSION_REQUIRED: "\u5B66\u4E60\u8BB0\u5F55\u5C1A\u672A\u786E\u8BA4\uFF0C\u8BD5\u5B66\u6682\u672A\u542F\u52A8\uFF1B\u8BF7\u786E\u8BA4\u8BB0\u5F55\u540E\u91CD\u8BD5\uFF0C\u4E0D\u4F1A\u6D88\u8017\u8BD5\u5B66\u989D\u5EA6\u3002",
     TRIAL_DAILY_LIMIT: "\u672C\u5468\u671F\u4F53\u9A8C\u65F6\u957F\u5DF2\u7528\u5B8C\u3002\u53EF\u7B49\u5F85\u989D\u5EA6\u6062\u590D\uFF0C\u6216\u5151\u6362\u4F1A\u5458\u7EE7\u7EED\u3002",
     TRIAL_EXPIRED: "\u514D\u8D39\u4F53\u9A8C\u5DF2\u7ED3\u675F\uFF0C\u53EF\u5151\u6362\u4F1A\u5458\u7EE7\u7EED\u5B66\u4E60\u3002",
     MEMBERSHIP_REQUIRED: "\u5F53\u524D\u6CA1\u6709\u6709\u6548\u4F1A\u5458\uFF0C\u53EF\u5151\u6362\u4F1A\u5458\u7EE7\u7EED\u5B66\u4E60\u3002",
@@ -1088,6 +1366,9 @@ var ChunkMembership = (() => {
     AUTHORIZATION_EXPIRED: "\u5B66\u4E60\u5DF2\u6682\u505C\uFF0C\u8BF7\u70B9\u201C\u7EE7\u7EED\u5B66\u4E60\u201D\u3002\u5F53\u524D\u4F4D\u7F6E\u548C\u5DF2\u5B8C\u6210\u7B54\u6848\u4FDD\u7559\u3002",
     SESSION_CHANGED: "\u767B\u5F55\u8D26\u53F7\u5DF2\u53D8\u5316\uFF0C\u8BF7\u5237\u65B0\u540E\u7EE7\u7EED\u3002",
     CONTENT_VERSION_CHANGED: "\u8BFE\u7A0B\u7248\u672C\u5DF2\u53D8\u5316\uFF0C\u8BF7\u8FD4\u56DE\u8BFE\u7A0B\u5E93\u91CD\u65B0\u8FDB\u5165\u3002",
+    INVALID_OFFLINE_LICENSE: "\u79BB\u7EBF\u8BB8\u53EF\u5DF2\u8FC7\u671F\u6216\u65E0\u6CD5\u786E\u8BA4\uFF0C\u8BF7\u8054\u7F51\u540E\u7EE7\u7EED\u3002\u539F\u5185\u5BB9\u548C\u7B54\u9898\u8BB0\u5F55\u4FDD\u7559\u3002",
+    UNIT_NOT_CACHED: "\u672C\u8BFE\u8282\u5C1A\u672A\u79BB\u7EBF\u4FDD\u5B58\uFF0C\u8BF7\u5148\u8054\u7F51\u6253\u5F00\u5E76\u5F00\u59CB\u5B66\u4E60\u3002",
+    OFFLINE_ENROLLMENT_REQUIRED: "\u8BF7\u5148\u8054\u7F51\u5C06\u672C\u8BFE\u7A0B\u52A0\u5165\u5B66\u4E60\uFF0C\u518D\u79BB\u7EBF\u7EE7\u7EED\u3002",
     ASSESSMENT_NOT_ELIGIBLE: "\u8FD9\u9879\u5185\u5BB9\u5C1A\u672A\u5230\u590D\u6D4B\u65F6\u95F4\uFF0C\u8BF7\u6309\u539F\u590D\u6D4B\u5468\u671F\u7A0D\u540E\u518D\u8BD5\u3002"
   };
   var errorText = (error) => messages[error?.code] || (error?.message?.includes("\u6700\u591A\u52A0\u5165") ? error.message : "\u8BFE\u7A0B\u6682\u65F6\u65E0\u6CD5\u8BFB\u53D6\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002\u5B66\u4E60\u8BB0\u5F55\u4ECD\u7136\u4FDD\u7559\u3002");
@@ -1098,8 +1379,8 @@ var ChunkMembership = (() => {
     return node;
   }
   function placeAccessPanel(host, panel) {
-    const context = host.querySelector(".stage-tip-bar");
-    if (context) context.after(panel);
+    const toolbar = host.querySelector(".practice-toolbar");
+    if (toolbar) toolbar.after(panel);
     else host.prepend(panel);
   }
   function projectNativeBatch(batch, title, unitCount) {
@@ -1150,11 +1431,12 @@ var ChunkMembership = (() => {
   }
   var NativeCourseSession = class {
     /** @param {{host:HTMLElement,courseId:string,unitId?:string,getMem:()=>any,onBatch:(deck:any,fromIdx:number,generation:number)=>void,win?:any}} options */
-    constructor({ host, courseId, unitId, getMem, onBatch, win = window }) {
+    constructor({ host, courseId, unitId, origin = "platform", getMem, onBatch, win = window }) {
       this.win = win;
       this.host = host;
       this.courseId = courseId;
       this.unitId = unitId;
+      this.origin = origin;
       this.getMem = getMem;
       this.onBatch = onBatch;
       this.disposed = false;
@@ -1172,49 +1454,144 @@ var ChunkMembership = (() => {
       account.href = "main.html?membership=1&returnTo=" + encodeURIComponent(win.location.pathname + win.location.search);
       this.panel.append(this.status, this.button, account);
       placeAccessPanel(host, this.panel);
+      host.classList.add("course-awaiting-content");
       this.captureScope = () => JSON.stringify([win.AccountStorage.owner, win.AccountStorage.sessionEpoch, win.ChunkAPI.getBase(), win.ChunkAPI.getToken()]);
       this.scope = this.captureScope();
-      this.client = new MembershipClient({
-        request: (url, options) => win.ChunkAPI.request(url, options),
-        readCatalog: () => win.ChunkAPI.getCourseCatalog()
-      });
-      this.controller = new LearningSessionController({
-        client: this.client,
-        newRequestId: () => win.crypto.randomUUID(),
-        captureScope: this.captureScope,
-        onState: (state) => {
-          if (!this.disposed && ["blocked", "paused"].includes(state.phase) && this.started) this.showError({ code: "AUTHORIZATION_EXPIRED" });
-        }
-      });
-      const source = new PlatformCourseSource({
-        client: this.client,
-        controller: this.controller,
-        newRequestId: () => win.crypto.randomUUID(),
-        imageCache: new CourseImageCache(win),
-        captureImageScope: () => imageCacheScope(win),
-        fetchResource: async (url, headers, type) => {
+      if (origin === "personal") {
+        const readBatch = async (reference, cursor, releaseId) => {
           this.guard();
-          const response = await win.fetch(win.ChunkAPI.getBase() + url, { headers: { ...headers, Authorization: "Bearer " + win.ChunkAPI.getToken() }, cache: "no-store" });
-          this.guard();
-          if (!response.ok) {
-            const result = await response.json().catch(() => ({}));
-            throw Object.assign(new Error(result.reasonCode || "CONTENT_UNAVAILABLE"), { code: result.reasonCode, status: response.status });
+          const query = new URLSearchParams({ cursor: String(cursor) });
+          if (releaseId) query.set("releaseId", releaseId);
+          try {
+            const result = await win.ChunkAPI.request(
+              "/api/course-library/" + encodeURIComponent(reference.courseId) + "/batch?" + query,
+              { timeoutMs: 15e3 }
+            );
+            this.guard();
+            return result;
+          } catch (error) {
+            this.guard();
+            throw Object.assign(error, { code: error.code || "CONTENT_UNAVAILABLE" });
           }
-          return type === "blob" ? response.blob() : response.json();
-        }
-      });
-      this.gateway = new CourseContentGateway({ sources: { platform: source }, captureScope: this.captureScope });
-      this.unbind = this.controller.bindVisibility(doc, win);
+        };
+        this.personalRepository = {
+          open: (reference, options = {}) => readBatch(reference, options.cursor || 0),
+          loadBatch: (reference, cursor) => readBatch(reference, cursor, this.contentVersion),
+          loadAssets: async (reference, assetId) => {
+            this.guard();
+            const owner = JSON.parse(win.AccountStorage.owner), expectedAccount = String(owner[1]);
+            const query = new URLSearchParams({ releaseId: this.contentVersion });
+            const url = win.ChunkAPI.getBase() + "/api/course-library/" + encodeURIComponent(reference.courseId) + "/assets/" + encodeURIComponent(assetId) + "?" + query;
+            const download = async () => {
+              const response = await win.fetch(url, { method: "GET", cache: "no-store", headers: { Authorization: "Bearer " + win.ChunkAPI.getToken() } });
+              this.guard();
+              if (response.headers.get("X-ChunkLab-Account-Id") !== expectedAccount) throw Object.assign(new Error("\u670D\u52A1\u7AEF\u7D20\u6750\u54CD\u5E94\u8D26\u53F7\u4E0D\u4E00\u81F4\uFF1B\u672C\u5730\u5B66\u4E60\u8BB0\u5F55\u672A\u6539\u53D8\u3002"), { code: "SERVER_IDENTITY_MISMATCH" });
+              if (!response.ok) {
+                const detail = await response.json().catch(() => ({}));
+                throw Object.assign(new Error(detail.error || "\u8BFE\u7A0B\u7D20\u6750\u6682\u65F6\u65E0\u6CD5\u8BFB\u53D6\u3002"), { code: detail.code || "CONTENT_UNAVAILABLE", status: response.status });
+              }
+              const blob = await response.blob();
+              this.guard();
+              if (!blob.size || !/^(image\/(png|jpeg|webp)|audio\/(mpeg|ogg|wav))$/.test(blob.type)) throw Object.assign(new Error("\u8BFE\u7A0B\u7D20\u6750\u683C\u5F0F\u65E0\u6CD5\u786E\u8BA4\u3002"), { code: "INVALID_COURSE_ASSET" });
+              return blob;
+            };
+            return new CourseImageCache(win).load({
+              scope: imageCacheScope(win),
+              courseId: reference.courseId,
+              contentVersion: this.contentVersion,
+              assetId,
+              download,
+              guard: () => this.guard()
+            });
+          }
+        };
+        this.personalSource = new PersonalCourseSource({ repository: this.personalRepository, captureScope: this.captureScope });
+        this.gateway = new CourseContentGateway({ sources: { personal: this.personalSource }, captureScope: this.captureScope });
+        this.unbind = null;
+        this.controller = null;
+        this.client = null;
+      } else {
+        this.client = new MembershipClient({
+          request: (url, options) => win.ChunkAPI.request(url, options),
+          readCatalog: () => win.ChunkAPI.getCourseCatalog()
+        });
+        this.controller = new LearningSessionController({
+          client: this.client,
+          newRequestId: () => win.crypto.randomUUID(),
+          captureScope: this.captureScope,
+          onState: (state) => {
+            if (!this.disposed && ["blocked", "paused"].includes(state.phase) && this.started) this.showError({ code: "AUTHORIZATION_EXPIRED" });
+          }
+        });
+        const source = new PlatformCourseSource({
+          client: this.client,
+          controller: this.controller,
+          newRequestId: () => win.crypto.randomUUID(),
+          imageCache: new CourseImageCache(win),
+          captureImageScope: () => imageCacheScope(win),
+          fetchResource: async (url, headers, type) => {
+            this.guard();
+            const response = await win.fetch(win.ChunkAPI.getBase() + url, { headers: { ...headers, Authorization: "Bearer " + win.ChunkAPI.getToken() }, cache: "no-store" });
+            this.guard();
+            if (!response.ok) {
+              const result = await response.json().catch(() => ({}));
+              throw Object.assign(new Error(result.reasonCode || "CONTENT_UNAVAILABLE"), { code: result.reasonCode, status: response.status });
+            }
+            return type === "blob" ? response.blob() : response.json();
+          }
+        });
+        this.offlineCache = createOfflineCourseCache(win);
+        this.gateway = new CourseContentGateway({ sources: { platform: source, offline: this.offlineCache.source }, captureScope: this.captureScope });
+        this.unbind = this.controller.bindVisibility(doc, win);
+      }
+    }
+    get phase() {
+      if (this.disposed) return "disposed";
+      if (this.lastError) return "blocked";
+      return this.started ? this.controller?.phase || "active" : "idle";
     }
     guard() {
       if (this.disposed || this.scope !== this.captureScope()) throw Object.assign(new Error("SESSION_CHANGED"), { code: "SESSION_CHANGED" });
     }
     async open() {
-      await this.win.LearningSessionBootstrap.ready();
-      this.guard();
-      const catalog = await this.client.catalog();
+      if (this.origin === "personal") {
+        if (!this.win.ChunkAPI.isLoggedIn()) throw Object.assign(new Error("AUTH_REQUIRED"), { code: "AUTH_REQUIRED" });
+        const first = await this.personalRepository.open({ courseId: this.courseId, unitId: "default" }, { cursor: 0 });
+        this.guard();
+        this.unitId = first.unitId;
+        this.course = { courseId: this.courseId, title: first.title, accessLevel: "free", units: [{
+          unitId: first.unitId,
+          itemCount: first.itemCount,
+          recordIdentity: first.recordIdentity
+        }] };
+        this.unit = this.course.units[0];
+        const requested2 = new URL(this.win.location.href).searchParams.get("reviewItem");
+        this.reviewOnly = !!requested2;
+        this.cursor = 0;
+        this.status.textContent = this.course.title + " \xB7 \u4E2A\u4EBA\u8BFE\u7A0B";
+        this.button.textContent = "\u5F00\u59CB\u5B66\u4E60";
+        this.button.hidden = false;
+        return this;
+      }
+      let catalog;
+      try {
+        if (this.win.navigator?.onLine === false) throw new TypeError("offline");
+        catalog = await this.client.catalog();
+      } catch (error) {
+        if (error.status || !(error instanceof TypeError || error.name === "AbortError" || error.code === "REQUEST_TIMEOUT")) throw error;
+        catalog = await this.offlineCache.catalog(this.courseId, this.unitId);
+        this.offline = true;
+      }
       this.guard();
       this.course = catalog.courses.find((course) => course.courseId === this.courseId);
+      if (this.course?.contentType === "expression") {
+        const target = new URL("expression-learn.html", this.win.location.href);
+        target.searchParams.set("course", this.courseId);
+        const source = new URL(this.win.location.href).searchParams.get("returnTo");
+        if (source) target.searchParams.set("returnTo", source);
+        this.win.location.replace(target.href);
+        return this;
+      }
       this.unit = this.course?.units.find((unit) => unit.unitId === this.unitId) || !this.unitId && this.course?.units[0];
       if (!this.unit?.recordIdentity) throw Object.assign(new Error("CONTENT_PREPARATION_REQUIRED"), { code: "CONTENT_PREPARATION_REQUIRED" });
       this.unitId = this.unit.unitId;
@@ -1247,6 +1624,7 @@ var ChunkMembership = (() => {
     showError(error) {
       this.lastError = error;
       if (this.disposed) return;
+      this.host.classList.add("course-awaiting-content");
       const paused = ["AUTH_REQUIRED", "NOT_AUTH", "SERVER_SEQ_ROLLBACK", "SERVER_IDENTITY_REQUIRED", "SERVER_IDENTITY_MISMATCH", "SERVER_UPDATE_REQUIRED"].includes(error?.code);
       this.panel.hidden = false;
       this.status.textContent = errorText(error);
@@ -1255,7 +1633,17 @@ var ChunkMembership = (() => {
       this.button.disabled = false;
     }
     updateClock() {
-      if (this.disposed || !this.started || !this.button.hidden || !this.controller.current) return;
+      if (this.disposed || !this.started || !this.button.hidden) return;
+      if (this.origin === "personal") {
+        this.status.textContent = "\u4E2A\u4EBA\u8BFE\u7A0B \xB7 \u5B66\u4E60\u8BB0\u5F55\u7531\u5F53\u524D\u8D26\u53F7\u4FDD\u5B58";
+        return;
+      }
+      if (this.offline) {
+        const claims = this.offlineCache.source.claims;
+        this.status.textContent = claims?.expiresAt ? "\u79BB\u7EBF\u5B66\u4E60 \xB7 \u8BB8\u53EF\u6709\u6548\u81F3 " + new Date(claims.expiresAt).toLocaleString() : "\u79BB\u7EBF\u5B66\u4E60 \xB7 \u5DF2\u4FDD\u5B58\u7684\u514D\u8D39\u8BFE\u8282";
+        return;
+      }
+      if (!this.controller?.current) return;
       const current = this.controller.current;
       if (current.mode === "free") this.status.textContent = "\u514D\u8D39\u8BFE\u7A0B \xB7 \u4E0D\u9650\u65F6";
       else if (current.mode === "member") this.status.textContent = "\u4F1A\u5458\u6709\u6548\u81F3 " + new Date(current.endsAt).toLocaleString();
@@ -1271,25 +1659,66 @@ var ChunkMembership = (() => {
       this.button.disabled = true;
       try {
         if (!this.course) await this.open();
-        if (!this.win.CourseEnrollment.isJoined(this.courseId)) await this.win.CourseEnrollment.join(this.courseId);
+        let result = null, learningError = null, snapshot = null;
+        if (this.origin === "personal") result = await this.gateway.open(
+          { origin: this.origin, courseId: this.courseId, unitId: this.unitId },
+          { cursor: 0 }
+        );
+        try {
+          await this.win.LearningSessionBootstrap.ready({ allowConfirmedOffline: !!this.offline });
+          this.guard();
+          snapshot = await this.win.ServerCache.read();
+          this.guard();
+          if (!snapshot || snapshot.owner !== this.win.AccountStorage.owner) learningError = Object.assign(
+            new Error("\u5B66\u4E60\u8BB0\u5F55\u5C1A\u672A\u786E\u8BA4"),
+            { code: "LEARNING_STATE_UNCONFIRMED" }
+          );
+        } catch (error) {
+          learningError = error;
+        }
+        if (learningError) {
+          if (this.offline) throw learningError;
+          this.cursor = 0;
+          if (this.origin !== "personal") result = await this.gateway.open(
+            { origin: this.origin, courseId: this.courseId, unitId: this.unitId },
+            { cursor: this.cursor, purpose: "preview" }
+          );
+          this.guard();
+          await this.showReadOnlyPreview(result.batch, learningError);
+          return;
+        }
+        if (this.origin !== "personal" && !this.win.CourseEnrollment.isJoined(this.courseId)) {
+          if (this.offline) throw Object.assign(new Error("\u8BF7\u5148\u8054\u7F51\u5C06\u672C\u8BFE\u7A0B\u52A0\u5165\u5B66\u4E60\uFF0C\u518D\u79BB\u7EBF\u7EE7\u7EED\u3002"), { code: "OFFLINE_ENROLLMENT_REQUIRED" });
+          await this.win.CourseEnrollment.join(this.courseId);
+        }
         this.guard();
-        const snapshot = await this.win.ServerCache.read();
-        this.guard();
-        if (!snapshot || snapshot.owner !== this.win.AccountStorage.owner) throw new Error("UNCONFIRMED_LEARNING_STATE");
         this.generation = Number(snapshot.snapshot.learningGenerations?.[this.unit.recordIdentity.generationScope]) || 0;
-        if (this.started) await this.gateway.pause().catch((error) => {
-          if (!error.status) throw error;
-          this.controller.reset();
-        });
-        const result = await this.gateway.open({ origin: "platform", courseId: this.courseId, unitId: this.unitId }, { cursor: this.cursor });
+        if (this.origin === "personal") {
+          const saved = this.getMem().progress?.[this.unit.recordIdentity.deckId];
+          this.cursor = Math.min(this.unit.itemCount - 1, Math.max(0, Number(saved?.idx) || 0));
+          result = this.cursor === 0 ? result : await this.gateway.open(
+            { origin: this.origin, courseId: this.courseId, unitId: this.unitId },
+            { cursor: this.cursor }
+          );
+        } else result = await this.gateway.open(
+          { origin: this.offline ? "offline" : this.origin, courseId: this.courseId, unitId: this.unitId },
+          { cursor: this.cursor }
+        );
         this.guard();
         if (preserve && this.contentVersion !== result.contentVersion) throw Object.assign(new Error("CONTENT_VERSION_CHANGED"), { code: "CONTENT_VERSION_CHANGED" });
         this.contentVersion = result.contentVersion;
+        this.lastError = null;
+        this.readOnlyPreview = false;
         this.started = true;
         this.button.hidden = true;
         this.updateClock();
         if (!this.clockTimer) this.clockTimer = this.win.setInterval(() => this.updateClock(), 1e3);
         if (!preserve) await this.deliver(result.batch);
+        if (this.origin !== "personal" && !this.offline && ["free", "member"].includes(this.controller?.current?.mode)) this.offlineCache.prepare(this.course, this.unit).then(() => {
+          if (!this.disposed) this.status.textContent = "\u672C\u8BFE\u8282\u6587\u5B57\u5DF2\u4FDD\u5B58\uFF0C\u53EF\u79BB\u7EBF\u7EE7\u7EED\u5B66\u4E60\u3002";
+        }).catch((error) => {
+          if (!this.disposed) this.status.textContent = "\u5F53\u524D\u53EF\u5B66\u4E60\uFF1B\u672C\u8BFE\u8282\u79BB\u7EBF\u4FDD\u5B58\u672A\u5B8C\u6210\u3002";
+        });
       } catch (error) {
         this.showError(error);
         throw error;
@@ -1298,9 +1727,23 @@ var ChunkMembership = (() => {
         this.button.disabled = false;
       }
     }
-    async deliver(batch) {
+    async showReadOnlyPreview(batch, error) {
+      this.guard();
+      this.contentVersion = this.gateway.contentVersion;
+      this.readOnlyPreview = true;
+      this.lastError = error;
+      this.status.textContent = "\u8BFE\u7A0B\u5185\u5BB9\u5DF2\u52A0\u8F7D\uFF1B\u5B66\u4E60\u8BB0\u5F55\u5C1A\u672A\u786E\u8BA4\uFF0C\u5F53\u524D\u4E3A\u53EA\u8BFB\u9884\u89C8\u3002";
+      this.button.textContent = "\u91CD\u8BD5\u786E\u8BA4\u5B66\u4E60\u8BB0\u5F55";
+      this.button.hidden = false;
+      await this.deliver(batch, true);
+      this.guard();
+      if (this.origin !== "personal") await this.controller.pause().catch(() => {
+      });
+    }
+    async deliver(batch, readOnly = false) {
       this.guard();
       const deck = projectNativeBatch(batch, this.course.title, this.unit.itemCount);
+      if (readOnly) deck._learningReadOnly = true;
       if (this.reviewOnly) {
         deck.id = "rev-native-" + this.win.crypto.randomUUID();
         deck.statsDeckId = batch.recordIdentity.deckId;
@@ -1320,6 +1763,7 @@ var ChunkMembership = (() => {
         for (const item of deck.items) {
           for (const [field, target] of [["imageAssetId", "_courseImageUrl"], ["audioAssetId", "_courseAudioUrl"]]) {
             if (!item[field]) continue;
+            if (this.offline) continue;
             if (assetUrls.has(item[field])) {
               item[target] = assetUrls.get(item[field]);
               continue;
@@ -1335,8 +1779,10 @@ var ChunkMembership = (() => {
         this.releaseUrls();
         this.urls = urls;
         Object.defineProperty(deck, "_platformSession", { value: this, enumerable: false });
+        this.host.classList.remove("course-awaiting-content");
         this.cursor = batch.cursor;
         this.onBatch(deck, 0, this.generation);
+        this.prefetchNext();
       } catch (error) {
         for (const url of urls) this.win.URL.revokeObjectURL(url);
         throw error;

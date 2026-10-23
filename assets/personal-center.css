@@ -6,7 +6,7 @@
 #settingsMask.pc-drawer[data-pc-view="home"] .modal-head h3{display:none}
 #settingsMask.pc-drawer .modal-head .btn.sm{box-sizing:border-box;width:28px;height:28px;min-height:28px;border-radius:8px;padding:0;color:var(--text)}
 #settingsMask.pc-drawer .modal-head .btn.sm[hidden]{display:none}
-#settingsMask.pc-drawer .modal-body{padding:0 24px 24px;overscroll-behavior:contain}
+#settingsMask.pc-drawer .modal-body{padding:0 12px 24px;overscroll-behavior:contain}
 #settingsMask.pc-drawer [hidden]{display:none!important}
 #settingsMask.pc-drawer .modal-head .pc-profile{display:flex;align-items:center;gap:6px;margin-right:auto;padding:0;min-width:0}
 #settingsMask.pc-drawer .pc-profile-account{min-width:0;max-width:100px}
@@ -26,7 +26,7 @@
 #settingsMask.pc-drawer .acct-name{min-width:0;max-width:100%;font-size:15px;font-weight:700;color:var(--text);padding:0}
 #settingsMask.pc-drawer #acctHint{font-size:12px!important;line-height:1.6!important;overflow-wrap:anywhere}
 #settingsMask.pc-drawer .pc-menu{display:flex;flex-direction:column;gap:2px}
-#settingsMask.pc-drawer .pc-menu :is(a,button){display:flex;align-items:center;gap:12px;min-height:32px;width:100%;padding:6px 12px;border:0;border-radius:8px;background:transparent;color:var(--text);font:inherit;font-size:14px;text-align:left;text-decoration:none;cursor:pointer;box-sizing:border-box}
+#settingsMask.pc-drawer .pc-menu :is(a,button){display:flex;align-items:center;gap:12px;min-height:32px;width:100%;padding:6px 6px;border:0;border-radius:8px;background:transparent;color:var(--text);font:inherit;font-size:14px;text-align:left;text-decoration:none;cursor:pointer;box-sizing:border-box}
 #settingsMask.pc-drawer .pc-menu :is(a,button):hover{background:var(--surface-2)}
 #settingsMask.pc-drawer .pc-menu :is(a,button):focus-visible,#settingsMask.pc-drawer .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #settingsMask.pc-drawer .pc-menu .icon{width:19px;height:19px;flex-shrink:0;color:var(--muted)}

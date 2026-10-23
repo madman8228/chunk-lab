@@ -585,12 +585,15 @@ function stripComments(src) {
   return out;
 }
 
-/* 白名单：这些文件里的段数比较是**已知豁免**，且都不是「判据的调用方」：
+/* 白名单：这些文件里的段数比较是**已知豁免**，且都不是「句子意群判据的调用方」：
    - js/chunk-shape.js：判据的**唯一实现**，本来就该写段数比较
    - 本文件：判据自身的单测，负向自证的样例字面量（好样例 vs 坏样例）天然含这些写法
+   - 词块排序/教材材料校验：校验独立活动 schema 的“至少 2 个、最多 24 个排序选项”，
+     不是将完整句子切为多少个意群的教育判据；它们仍须保留该数据格式约束
    ⚠️ decks.html / main.html **已移出白名单**（2026-09-16）：作者侧那 4 处硬编码已改为
       调用本判据 → 它们哪天退回 `chunks.length 2-5`，下面的散落检查会立刻报红。 */
-var ALLOWED = ['js/chunk-shape.js', 'chunk-shape.test.js'];
+var ALLOWED = ['js/chunk-shape.js', 'chunk-shape.test.js', 'js/vocabulary-chunk-order.js',
+  'js/vocabulary-material-library.js', 'js/vocabulary-study.js', 'js/wordbook-authoring.js'];
 var RE = /chunks\s*\.\s*length\s*[<>]=?\s*2|chunks\.length\s*[<>]=?\s*5/;
 
 /* 负向自证：剥注释不许把护栏削钝 —— 真代码里的段数比较仍须被抓到，

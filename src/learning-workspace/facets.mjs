@@ -1,5 +1,5 @@
 export const FACET_LABELS = Object.freeze({ audiences: '适用人群', schoolStages: '学段', grades: '年级', levels: '水平',
-  goals: '学习目标', topics: '题材', exams: '考试', seriesId: '系列', publisherId: '版本', edition: '版次', volume: '册次' });
+  goals: '学习目标', topics: '题材', exams: '考试', seriesId: '系列', publisherId: '出版社', textbookVersion: '教材版本', edition: '版次', volume: '册次' });
 
 function values(resource, dimension) {
   const value = resource.facets?.[dimension];
@@ -7,6 +7,8 @@ function values(resource, dimension) {
 }
 
 export const PRACTICAL_TOPICS = Object.freeze({daily:'日常口语',travel:'旅游英语',business:'商务职场',classics:'经典教材',stories:'电影与故事'});
+export const WORDBOOK_CATEGORIES = Object.freeze({basic:'基础必备',zhongkao:'中考',gaokao:'高考',college:'大学英语',postgraduate:'考研',overseas:'出国商务'});
+const wordbookTags = {basic:['基础必备'],zhongkao:['中考'],gaokao:['高考'],college:['大学英语','四级','六级','CET-4','CET-6'],postgraduate:['考研'],overseas:['出国商务','出国','商务英语','雅思','托福','IELTS','TOEFL']};
 const practicalPatterns = {daily:/日常|口语|高频短语/,travel:/旅游|旅行|出国|travel/i,business:/商务|职场|business/i,classics:/经典教材/,stories:/电影|故事|影视|movie|story/i};
 
 function matchesPracticalTopic(resource, topic) {
@@ -21,6 +23,10 @@ export function filterResources(resources, selection = {}, omitDimension = '') {
   const query = String(selection.query || '').trim().toLocaleLowerCase();
   return resources.filter(resource => {
     if (selection.kind && resource.kind !== selection.kind) return false;
+    if (selection.kind === 'wordbook' && Object.hasOwn(WORDBOOK_CATEGORIES, selection.wordbookCategory)) {
+      const tags = ['topics','goals','exams','levels'].flatMap(key => values(resource, key));
+      if (!wordbookTags[selection.wordbookCategory].some(tag => tags.includes(tag))) return false;
+    }
     const newConcept = /新概念|new[\s_-]*concept|\bnce\b/i.test([resource.facets?.seriesId, resource.title].filter(Boolean).join(' '));
     const school = !newConcept && values(resource, 'schoolStages').some(stage => ['小学', '初中', '高中'].includes(stage)) &&
       (resource.kind === 'textbook' || !!resource.facets?.seriesId);
@@ -52,9 +58,11 @@ export function selectionFromUrl(search) {
   const params = new URLSearchParams(search);
   const selection = { kind: ['course', 'wordbook', 'textbook'].includes(params.get('kind')) ? params.get('kind') : '', query: params.get('q') || '' };
   selection.category = ['practical', 'new-concept', 'school'].includes(params.get('category')) ? params.get('category') : '';
+  selection.wordbookCategory = selection.kind === 'wordbook' && !selection.category && Object.hasOwn(WORDBOOK_CATEGORIES, params.get('wordbookCategory')) ? params.get('wordbookCategory') : '';
   selection.practicalTopic = selection.category === 'practical' && Object.hasOwn(PRACTICAL_TOPICS, params.get('practicalTopic')) ? params.get('practicalTopic') : '';
   if (!selection.category && selection.kind === 'textbook') { selection.kind = ''; selection.category = 'school'; }
   for (const key of Object.keys(FACET_LABELS)) selection[key] = params.getAll(key);
+  if (selection.category === 'school' && !selection.schoolStages.length) selection.schoolStages = ['小学'];
   return selection;
 }
 
@@ -73,7 +81,7 @@ export function resourceKindCounts(resources, selection = {}) {
 export function groupTextbooks(resources) {
   const groups = new Map();
   for (const resource of resources) {
-    const key = resource.facets.seriesId ? JSON.stringify([resource.facets.seriesId, resource.facets.publisherId, resource.facets.edition]) : resource.resourceId;
+    const key = resource.facets.seriesId ? JSON.stringify([resource.facets.seriesId, resource.facets.publisherId, resource.facets.textbookVersion, resource.facets.edition]) : resource.resourceId;
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(resource);
   }

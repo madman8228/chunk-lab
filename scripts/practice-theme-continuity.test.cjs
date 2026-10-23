@@ -25,6 +25,7 @@ const {chromium}=require('playwright-core');
   for(const dark of [false,true])for(const width of [1853,946,390]){
    await page.setViewportSize({width,height:932});
    await page.setContent('<html class="'+(dark?'dark':'')+'"><style>'+styles+'</style><body>'+decorations+'<div class="wrap">'+topbar+practiceMarkup+'</div></body></html>');
+   await page.addScriptTag({path:'js/learning-sky.js'});
    await page.evaluate(()=>{pagePractice.classList.remove('hidden');deckName.textContent='零基础开口 · 1 第一次见面';zh.textContent='早上好！';mProgress.textContent='1/10';});
    const answerStyle=await page.evaluate(()=>{
     const chunk=document.createElement('div');chunk.className='chunk ok';

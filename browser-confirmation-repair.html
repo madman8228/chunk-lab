@@ -1,15 +1,24 @@
 <!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>修复浏览器确认分区 · jqka.top</title>
-<style>body{margin:24px;max-width:800px;font:15px/1.7 system-ui;color:#263d39;background:#f7f3e8}h1{font-size:22px}p{overflow-wrap:anywhere}a{color:#22694f;padding:10px 0;display:inline-block}a[hidden]{display:none}a:focus-visible{outline:2px solid #22694f;outline-offset:3px}</style>
-<h1>修复浏览器确认分区</h1><p>仅处理已确认的账号 27、本机水位 261 冲突。原分区保留，不复制或重放未同步操作，不改动服务器课程与记录。</p>
-<p id="status" role="status">等待执行。</p><a id="home" href="main.html?view=home" hidden>进入学习首页</a>
-<script src="js/server-cache.js"></script><script src="js/browser-confirmation-repair.js"></script>
+<title>核查浏览器学习缓存 · jqka.top</title>
+<style>
+ :root{color-scheme:light;--ink:#493421;--line:#ddc9a7;--paper:#fffdf6;--accent:#a96e25}*{box-sizing:border-box}body{margin:0;padding:32px 20px;min-height:100vh;background:linear-gradient(#d5edf5,#f5f0df);font:15px/1.65 system-ui,"Microsoft YaHei",sans-serif;color:var(--ink)}main{max-width:760px;margin:auto}h1{font-size:24px;margin:0 0 10px}p{margin:8px 0}.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 8px 24px #59452912}.muted{color:#765f48}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}button{border:1px solid #caa875;border-radius:10px;background:#fffaf0;color:var(--ink);padding:10px 16px;font:inherit;cursor:pointer}button.primary{background:#f2c75c;border-color:#bc8931;font-weight:650}button:disabled{opacity:.5;cursor:not-allowed}#status{min-height:1.7em}dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:16px 0 0}dt{color:#765f48}dd{margin:0;overflow-wrap:anywhere}.warning{color:#8b461e}a{color:inherit;text-decoration:none}
+</style>
+<main><section class="panel">
+ <h1>学习缓存核查</h1>
+ <button id="resetDevelopment" hidden>重置当前开发账号本地学习状态</button>
+ <p class="muted">此工具只处理登录账号当前的本地确认缓存与服务端快照。先预览，再保存并回读验证完整本地分区备份；只有身份、数据和备份全部复核后，才可由你明确确认切换。原分区始终保留。</p>
+ <p class="warning">切换只建立服务端已确认数据的新分区，不会把旧分区里的课程、学习进度、统计、事件或草稿合并到当前学习区。旧分区与完整备份会保留，但旧数据不会自动出现在当前页面；若其中有需要继续使用的本地数据或来源不明内容，请停止，不要确认切换。</p>
+ <p id="status" role="status">尚未核查。</p>
+ <dl id="details" hidden></dl>
+ <div class="actions"><button id="preview" class="primary">开始核查</button><button id="backup" hidden>保存并验证完整备份</button><button id="apply" class="primary" hidden>确认切换到服务端已确认数据</button><a href="main.html?view=home">返回首页</a></div>
+ <p id="caution" class="muted">有待提交学习操作时会停止，不会自动丢弃、搬运或重放。</p>
+</section></main>
+<script src="js/server-cache.js"></script><script src="js/browser-confirmation-repair.js?v=dev-reset-20261023"></script>
 <script>
-if(new URLSearchParams(location.search).get('apply')==='1'){
- document.getElementById('status').textContent='正在核对账号，并建立新的确认分区…';
- BrowserConfirmationRepair.repair({expectedUid:'27',expectedCachedSeq:261}).then(result=>{
-  document.getElementById('status').textContent='已切换到新的确认分区，服务水位 '+result.confirmedSeq+'。原分区及未同步数据原样保留，未自动重放。';
-  document.getElementById('home').hidden=false;
- }).catch(error=>{document.getElementById('status').textContent='未完成修复：'+error.message;});
-}
+const status=document.getElementById('status'),details=document.getElementById('details'),backup=document.getElementById('backup'),apply=document.getElementById('apply');let report=null;
+function showDetails(value){details.replaceChildren();[['账号',value.uid],['服务地址',value.apiBase],['原分区',value.database],['学习数据格式',value.format],['本地确认水位',value.localSeq],['服务端确认水位',value.serverSeq],['旧课程行',value.storeCounts.courses||0],['旧学习进度',value.storeCounts.progress||0],['旧统计行',value.storeCounts.sentenceStats||0],['旧练习事件',value.storeCounts.events||0],['待提交操作',value.pendingOperations+' 条（传输队列 '+value.pendingTransportOperations+'，学习变更 '+value.pendingLearningIntents+'）']].forEach(([k,v])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=String(v);details.append(dt,dd);});details.hidden=false;}
+document.getElementById('preview').onclick=async()=>{backup.hidden=true;apply.hidden=true;report=null;status.textContent='正在核对登录身份、本地分区和服务端确认数据…';try{report=await BrowserConfirmationRepair.preview();showDetails(report);status.textContent=report.pendingOperations?'发现待提交操作。为避免丢失或重复提交，本工具不会切换；请先使用原学习页面处理队列。':'核查完成。请先保存并验证完整备份。';backup.hidden=false;backup.disabled=!!report.pendingOperations;}catch(error){status.textContent='核查未通过：'+error.message;}};
+backup.onclick=async()=>{if(!report)return;backup.disabled=true;status.textContent='请选择备份位置；保存后会立即回读校验。';try{const saved=await BrowserConfirmationRepair.exportAndVerify(report.id);status.textContent='备份已保存并验证：'+saved.name+'。请检查预览信息后，再明确确认切换。';apply.hidden=!!report.pendingOperations;}catch(error){status.textContent='备份未验证：'+error.message;}finally{backup.disabled=false;}};
+apply.onclick=async()=>{if(!report)return;apply.disabled=true;status.textContent='正在最后复核账号、本地分区与服务端数据…';try{const result=await BrowserConfirmationRepair.apply(report.id);status.textContent='已切换到已核验的 '+result.format+' 学习分区（服务端水位 '+result.confirmedSeq+'）。旧分区与备份均保留；请返回首页重新加载。';apply.hidden=true;}catch(error){status.textContent='未切换：'+error.message;apply.disabled=false;}};
+const resetDevelopment=document.getElementById('resetDevelopment');resetDevelopment.hidden=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname);resetDevelopment.onclick=async()=>{resetDevelopment.disabled=true;try{await BrowserConfirmationRepair.resetDevelopment();location.href='main.html?view=discover';}catch(error){status.textContent='重置未完成：'+error.message;resetDevelopment.disabled=false;}};
 </script></html>

@@ -47,7 +47,9 @@ const request=async(route,token,body)=>{const r=await fetch(base+route,{method:b
   const invalid=structuredClone(draft);invalid.book.bookId='invalid-association';invalid.book.relatedCourseIds=[target];
   assert.equal((await request('/api/personal-wordbooks',a.token,{draft:invalid})).status,404,'association cannot reference missing or another account course');
  }
- assert.equal(db.prepare('SELECT COUNT(*) n FROM personal_wordbook_versions').get().n,1,'invalid links never add a partial book after the confirmed UI save');
+ const independentVersions=()=>db.prepare("SELECT COUNT(*) n FROM course_content_releases WHERE json_extract(content_json,'$.contentFamily')='vocabulary-book'").get().n;
+ assert.equal(db.prepare('SELECT COUNT(*) n FROM personal_wordbook_versions').get().n,0,'account tables contain no new course bodies');
+ assert.equal(independentVersions(),1,'invalid links never add a partial book after the confirmed UI save');
  const href=await page.locator('#studyPersonalWordbook').getAttribute('href'),id=new URL(href,base).searchParams.get('book');assert.match(id,/^personal-book:/);
  assert.equal(await page.locator('#bookCourseAssociation').isHidden(),true,'saving does not expose unfinished association controls');
  assert.equal((await request('/api/personal-wordbooks',b.token)).data.resources.length,0);
@@ -66,12 +68,12 @@ const request=async(route,token,body)=>{const r=await fetch(base+route,{method:b
  for(const width of [799,390]){await page.setViewportSize({width,height:932});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:path.join(temp,'study-'+width+'.png'),fullPage:true});}
  await page.locator('#studyRoot input').fill('book');await page.locator('#studyRoot input').press('Enter');await page.getByText('辅助练习与下一词位置已保存。',{exact:true}).waitFor({timeout:15000});
  assert.equal((await request('/api/wordbooks/'+encodeURIComponent(id)+'/state',a.token)).data.progress[ref.itemId].mastered,false);
- assert.equal((await request('/api/personal-wordbooks',a.token,{draft})).status,200,'same save is idempotent');assert.equal(db.prepare('SELECT COUNT(*) n FROM personal_wordbook_versions').get().n,1);
+ assert.equal((await request('/api/personal-wordbooks',a.token,{draft})).status,200,'same save is idempotent');assert.equal(independentVersions(),1);
  const relinked=structuredClone(draft);relinked.book.relatedCourseIds=['course:user-deck:association-fixture'];
  assert.equal((await request('/api/personal-wordbooks',a.token,{draft:relinked,baseRevision:saved.revision})).status,409,'same content revision cannot silently overwrite an existing association');
  const appended=structuredClone(draft);appended.book.units.push({unitId:'next-unit',title:'工具'});appended.items.push({...structuredClone(draft.items[0]),itemId:'next-item',unitId:'next-unit',word:'pen',meaning:'笔',translation:'这是一支笔。',exercise:{version:1,parts:[{text:'This is a '},{id:'blank1',label:'pen',answers:['pen']},{text:'.'}]}});
  assert.equal((await request('/api/personal-wordbooks',a.token,{draft:appended,baseRevision:'wrong'})).status,409);
- const second=await request('/api/personal-wordbooks',a.token,{draft:appended,baseRevision:saved.revision});assert.equal(second.status,200);assert.equal(second.data.bookId,id);assert.equal(db.prepare('SELECT COUNT(*) n FROM personal_wordbook_versions').get().n,2);
+ const second=await request('/api/personal-wordbooks',a.token,{draft:appended,baseRevision:saved.revision});assert.equal(second.status,200);assert.equal(second.data.bookId,id);assert.equal(independentVersions(),2);
  const storedResume=db.prepare("SELECT data_json FROM user_entity_rows WHERE user_id=? AND kind='vocabularyResume' AND item_key=?").get(a.user.id,id).data_json;
  const afterAppend=(await request('/api/wordbooks/'+encodeURIComponent(id)+'/state',a.token)).data;
  assert.equal(afterAppend.resumeProjected,true);assert.equal(afterAppend.resume.status,'active');assert.equal(afterAppend.resumePosition,1);
@@ -90,14 +92,12 @@ const request=async(route,token,body)=>{const r=await fetch(base+route,{method:b
  assert.equal((await request('/api/personal-wordbooks/restore/preview',a.token,{archive:corrupted})).status,400);
  await page.goto(base+'/main.html?view=my-learning');await page.waitForFunction(()=>window.CL&&CL.serverPersistenceReady());
  await page.locator('#btnSettingsTop').click();await page.locator('#settingsMask').waitFor({state:'visible'});
- const accountGroup=page.locator('#settingsAccountGroup');
- if(!await accountGroup.evaluate(node=>node.open))await accountGroup.locator(':scope > summary').click();
- await page.locator('#backupHead').click();
+ await page.locator('#personalCenterMenu [data-pc-view="backup"]').click();
  await page.locator('#backupBody').waitFor({state:'visible'});
  assert.equal(await page.locator('#btnExportAll').isVisible(),true,'current backup controls remain available');
  assert.equal(await page.locator('#btnImportAll').isVisible(),true,'the supported recovery entry remains available');
  assert.equal(await page.locator('#filePersonalBooks').count(),0,'retired whole-library import is not reintroduced for this test');
- assert.equal(db.prepare('SELECT COUNT(*) n FROM personal_wordbook_versions').get().n,2,'opening recovery leaves immutable personal versions unchanged');
+ assert.equal(independentVersions(),2,'opening recovery leaves immutable independent versions unchanged');
  const activeDraft=structuredClone(appended);activeDraft.book.bookId='active-fixture';const activeSaved=(await request('/api/personal-wordbooks',a.token,{draft:activeDraft})).data;
  const activePage=(await request('/api/wordbooks/'+encodeURIComponent(activeSaved.bookId)+'/items',a.token)).data;
  const start={protocol:3,requestId:'isolated-active-start',type:'vocabulary.session',payload:{bookId:activeSaved.bookId,bookRevision:activeSaved.revision,itemId:activePage.items[0].itemId,sessionId:'active-fixture-session',action:'start',expectedResumeRev:0}};
@@ -155,7 +155,10 @@ const request=async(route,token,body)=>{const r=await fetch(base+route,{method:b
  await offlinePage.waitForFunction(()=>document.querySelector('#studyRoot h2')?.textContent.includes('pen'),null,{timeout:15000});
  const synced=(await request('/api/wordbooks/'+encodeURIComponent(offlineSaved.bookId)+'/state',a.token)).data;
  assert.equal(synced.resume.itemId,offlineRefs.items[1].itemId,'offline completion does not rewind another device');assert.equal(synced.progress[offlineRefs.items[0].itemId].assistedCompletions,2,'both genuine practices survive synchronization');
- assert.equal(db.prepare('SELECT COUNT(*) n FROM vocabulary_study_events WHERE user_id=? AND event_id=?').get(a.user.id,pendingId).n,1,'browser retry writes the queued answer once');
+ const savedCompletion=db.prepare('SELECT COUNT(*) n FROM vocabulary_study_events WHERE user_id=? AND event_id=?').get(a.user.id,pendingId).n;
+ const savedPractice=db.prepare('SELECT COUNT(*) n FROM vocabulary_practice_reports WHERE user_id=? AND report_id=?').get(a.user.id,pendingId).n;
+ const savedAttempt=db.prepare('SELECT COUNT(*) n FROM vocabulary_attempt_events WHERE user_id=? AND attempt_id=?').get(a.user.id,pendingId).n;
+ assert.equal(savedCompletion+savedPractice+savedAttempt,1,'browser retry writes the original queued learning event once: '+queued[0].operation.type);
  const scopedAnswer={protocol:3,requestId:'isolated-unit-offline-answer',type:'vocabulary.complete',payload:{...scopedStart.payload,contentRevision:offlineRefs.items[0].contentRevision,answers:{blank1:'book'}}};delete scopedAnswer.payload.action;delete scopedAnswer.payload.expectedResumeRev;
  const scopedReceipt=await request('/api/operations',a.token,scopedAnswer);assert.equal(scopedReceipt.status,200,'unchanged old unit accepts its offline completion: '+JSON.stringify(scopedReceipt.data));
  const scopedState=await request('/api/wordbooks/'+encodeURIComponent(offlineSaved.bookId)+'/state?unitId='+encodeURIComponent(oldUnit)+'&structureRevision='+oldDetails.structureRevision,a.token);assert.equal(scopedState.status,200);assert.equal(scopedState.data.resume.status,'completed');assert.notEqual(scopedState.data.structureRevision,oldDetails.structureRevision);
@@ -179,8 +182,9 @@ const request=async(route,token,body)=>{const r=await fetch(base+route,{method:b
  assert.equal(linkedDetails.data.relatedCourses[0].title,'零基础关联夹具');
  assert.deepEqual((await request('/api/personal-wordbooks',a.token)).data.resources.find(row=>row.bookId===linked.data.bookId||row.resourceId==='wordbook:'+linked.data.bookId).relatedCourseIds,linkedDraft.book.relatedCourseIds);
  await page.goto(base+'/wordbook-details.html?book='+encodeURIComponent(linked.data.bookId));
- const linkedCourse=page.getByRole('link',{name:'零基础关联夹具',exact:true});await linkedCourse.waitFor();
- assert.match(await linkedCourse.getAttribute('href'),/^decks.html\?courseView=joined&course=user-deck%3Aassociation-fixture/);
+ await page.locator('.book-info > summary').click();
+ await page.getByRole('link',{name:'零基础关联夹具',exact:true}).waitFor();
+ assert.equal(linkedDetails.data.relatedCourses[0].available,true,'existing association remains available');
  assert.deepEqual(db.prepare('SELECT * FROM user_courses').all(),old);assert.deepEqual(fs.readFileSync(path.join(appRoot,'content/vocabulary/index.json')),publicOriginal);assert.deepEqual(errors,[]);
  assert.deepEqual(db.prepare('SELECT * FROM user_decks').all(),originalDecks,'course associations never modify source course rows');
  console.log('Personal wordbooks: actual browser creation/save/library/study, API owner isolation, idempotency, append-only versions, backup, existing course preservation and mobile layout passed.');

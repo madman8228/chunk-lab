@@ -24,7 +24,7 @@ let server;
 
 function startServer() {
   return new Promise(function (resolve, reject) {
-    server = spawn(process.execPath, ['index.js'], { cwd: path.join(ROOT, 'server'), env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test' }), stdio: 'ignore' });
+    server = spawn(process.execPath, ['index.js'], { cwd: path.join(ROOT, 'server'), env: Object.assign({}, process.env, { CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', REQUIRE_AUTH: 'true', JWT_SECRET: require('crypto').randomBytes(32).toString('hex'), PHONE_AUTH_ENABLED: 'false', CHUNKLAB_WRITE_PROTOCOL: '3' }), stdio: 'ignore' });
     let tries = 0;
     const timer = setInterval(function () {
       if (server.exitCode !== null) { clearInterval(timer); reject(new Error('server exit ' + server.exitCode)); return; }
@@ -62,7 +62,7 @@ async function enterPreview(page) {
   if (await page.locator('.create-setup-card h2').count()) throw new Error('准备页卡片标题应移除');
   if (await page.locator('[name="courseType"]').count() !== 2 || await page.locator('[name="courseType"][value="sentence"]').count() !== 1 || await page.locator('[name="courseType"][value="imageText"]').count() !== 1) throw new Error('课程形式必须只包含句子课程和图文课程');
   const palette = await page.evaluate(function () { return { background: getComputedStyle(document.body).backgroundColor, card: getComputedStyle(document.querySelector('.create-card')).backgroundColor }; });
-  if (palette.background !== 'rgb(244, 242, 238)' || palette.card !== 'rgb(255, 253, 250)') throw new Error('课程制作页未使用课程库主题色');
+  if (palette.background !== 'rgba(0, 0, 0, 0)' || palette.card !== 'rgb(255, 251, 237)') throw new Error('课程制作页未使用透明天空背景和课程卡片色：' + JSON.stringify(palette));
   if (await page.locator('[name="topicId"], [name="itemCount"]').count()) throw new Error('主题和课程长度仍被固定选项限制');
   if (await page.getByRole('checkbox', { name: /跟读|听写/ }).count()) throw new Error('不支持的跟读或听写仍出现在课程制作选项中');
   await page.locator('[name="targetCefrs"][value="B1"]').check();
@@ -141,11 +141,32 @@ async function captureDownload(page) {
   let browser;
   try {
     await startServer();
+    async function register(username) {
+      const response = await fetch(BASE + '/api/auth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password: 'authoring-test-pass' }) });
+      if (!response.ok) throw new Error('isolated authoring account registration failed: ' + await response.text());
+      return (await response.json()).token;
+    }
+    const ownerToken = await register('ai-authoring-owner');
+    const secondToken = await register('ai-authoring-reader');
+    const thirdToken = await register('ai-authoring-share-reader');
+    const Database = require(require.resolve('better-sqlite3', { paths: [path.join(ROOT, 'server')] }));
+    const formatDb = new Database(path.join(TMP_DB, 'chunklab.db'));
+    for (const token of [ownerToken, secondToken, thirdToken]) {
+      const userId = Number(JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString()).uid);
+      formatDb.prepare("INSERT INTO user_learning_data_formats(user_id,format,migration_id) VALUES(?,'references-v1','ai-course-authoring-e2e')").run(userId);
+    }
+    formatDb.close();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
     const context = await browser.newContext({ permissions: ['clipboard-read', 'clipboard-write'], acceptDownloads: true });
+    await context.addInitScript(function (token) {
+      localStorage.setItem('chunklab_token', token);
+      localStorage.setItem('chunklab.session.v1', JSON.stringify({ version: 1, base: '', token: token, epoch: 'ai-course-authoring-fixture' }));
+    }, ownerToken);
     const page = await context.newPage();
     const pageErrors = [];
     page.on('pageerror', function (error) { pageErrors.push(error.message); });
+    await page.goto(BASE + '/main.html?e2e=ai-course-authoring', { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(function () { return CL.serverPersistenceReady() && CL.getCloudConfig()?.writeProtocol === 3; }, null, { timeout: 15000 });
     await page.route('**/api/**', function (route) { route.abort('failed'); });
 
     await page.goto(BASE + '/decks.html?e2e=ai-course-authoring', { waitUntil: 'domcontentloaded' });
@@ -157,24 +178,31 @@ async function captureDownload(page) {
     if (preview.courses !== 0) throw new Error('仅预览课程时不应写入课程库');
     if (!preview.modes.some(function (mode) { return mode.indexOf('typing · 可用') === 0; }) || !preview.modes.some(function (mode) { return mode.indexOf('chunkSelection · 可用') === 0; })) throw new Error('预览没有准确显示原生句子练习能力');
 
-    await page.evaluate(function () {
-      window.__originalSaveAndNotify = CL.saveAndNotify;
-      window.__failCourseSave = true;
-      CL.saveAndNotify = function () {
-        if (window.__failCourseSave) { window.__failCourseSave = false; return Promise.resolve(false); }
-        return window.__originalSaveAndNotify.apply(this, arguments);
-      };
+    await page.unroute('**/api/**');
+    let failIndependentImport = true;
+    await page.route('**/api/course-library/import', function (route) {
+      if (failIndependentImport) { failIndependentImport = false; return route.abort('failed'); }
+      return route.continue();
     });
     await page.locator('[data-action=save]').click();
     await page.waitForSelector('.global-error');
     if (await page.evaluate(function () { return CL.loadMem().decks.length; }) !== 0) throw new Error('保存失败仍写入了课程');
-    await page.evaluate(function () { CL.saveAndNotify = window.__originalSaveAndNotify; });
+    await page.unroute('**/api/course-library/import');
     await page.locator('[data-action=save]').click();
-    try { await page.waitForFunction(function () { return document.body.innerText.includes('课程已保存到当前账号'); }, { timeout: 15000 }); }
+    try { await page.getByText('课程已保存到当前账号的课程库。', { exact: true }).waitFor({ timeout: 15000 }); }
     catch (error) { throw new Error('再次保存后未显示成功状态：' + (await page.locator('body').innerText()).slice(-1200)); }
-    const saved = await page.evaluate(function () { return { decks: CL.loadMem().decks, sessionId: document.querySelector('#course-create-root').dataset.sessionId }; });
-    if (saved.decks.length !== 1 || saved.decks[0].id.indexOf('ai-') !== 0 || saved.decks[0].authoring.template !== 'sentence-practice') throw new Error('制作课程没有保存为原生句子课程');
-    if (await page.evaluate(function (id) { return CourseEnrollment.isJoined('user-deck:' + id); }, saved.decks[0].id)) throw new Error('保存课程不应自动加入学习');
+    const saved = await page.evaluate(async function () {
+      const sessionId = document.querySelector('#course-create-root').dataset.sessionId;
+      const info = (await indexedDB.databases()).find(function (item) { return item.name && item.name.endsWith('-authoring-v1'); });
+      const db = await new Promise(function (resolve, reject) { const request = indexedDB.open(info.name); request.onsuccess = function () { resolve(request.result); }; request.onerror = function () { reject(request.error); }; });
+      const session = await new Promise(function (resolve, reject) { const request = db.transaction('sessions', 'readonly').objectStore('sessions').get(sessionId); request.onsuccess = function () { resolve(request.result); }; request.onerror = function () { reject(request.error); }; });
+      db.close();
+      return { sessionId, courseId: session.courseId, receipt: session.saveReceipt, compiledCourse: session.compiledCourse };
+    });
+    if (saved.receipt.storageKind !== 'personal-course' || !saved.courseId || saved.courseId !== saved.receipt.contentId || saved.compiledCourse.authoring.template !== 'sentence-practice') throw new Error('制作课程没有保存为独立原生句子课程');
+    if (await page.evaluate(function (id) { return CourseEnrollment.isJoined('personal-course:' + id); }, saved.courseId)) throw new Error('保存课程不应自动加入学习');
+    const preJoinLearning = await page.evaluate(async function () { return ChunkAPI.request('/api/learning-data'); });
+    if (JSON.stringify(preJoinLearning).includes(COURSE.items[0].en) || JSON.stringify(preJoinLearning).includes(saved.courseId)) throw new Error('保存课程时个人学习数据不应包含课程正文或加入引用');
 
     const sentenceExport=await captureDownload(page);
     const sharedDraft=JSON.parse(sentenceExport.text);
@@ -195,11 +223,16 @@ async function captureDownload(page) {
     await page.locator('[data-action=join]').click();
     try { await page.waitForSelector('.issue-panel.has-error', { timeout: 5000 }); }
     catch (error) { throw new Error('加入失败后没有显示可恢复状态：' + (await page.locator('body').innerText()).slice(0, 500)); }
-    if (await page.evaluate(function () { return CL.loadMem().decks.length; }) !== 1 || !(await page.locator('[data-action=join]').count())) throw new Error('加入失败时课程没有保留供单独重试');
+    if (await page.evaluate(function () { return CL.loadMem().decks.length; }) !== 0 || !(await page.locator('[data-action=join]').count())) throw new Error('加入失败时课程正文进入个人学习数据或没有保留重试入口');
     await page.evaluate(function () { CourseEnrollment.join = window.__originalJoin; });
     await page.locator('[data-action=join]').click();
-    await page.waitForURL(new RegExp('/main\\.html\\?course=user-deck%3A' + encodeURIComponent(saved.decks[0].id)), { timeout: 15000 });
-    await page.waitForSelector('#stage:not(.hidden)');
+    await page.waitForURL(new RegExp('/main\\.html\\?personalCourse=' + encodeURIComponent(saved.courseId)), { timeout: 15000 });
+    await page.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).waitFor({ state: 'visible', timeout: 15000 });
+    await page.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).click();
+    await page.waitForSelector('#stage:not(.hidden)').catch(async function (error) {
+      const state = await page.evaluate(function () { return { url: location.href, body: document.body.innerText.slice(0, 1000), config: CL.getCloudConfig(), token: !!ChunkAPI.getToken(), mem: CL.loadMem().decks.map(function (item) { return item.id; }) }; });
+      throw new Error(error.message + ' native-learning-state=' + JSON.stringify(state));
+    });
     await page.waitForFunction((title) => document.getElementById('deckName')?.textContent.includes(title), COURSE.title, { timeout: 15000 });
     if (!(await page.locator('#deckName').innerText()).includes(COURSE.title)) throw new Error('课程没有进入现有原生学习页：' + page.url() + ' / ' + (await page.locator('body').innerText()).slice(0, 300));
     if (await page.locator('#courseContext').innerText() !== '角色：客人') throw new Error('原生学习页没有呈现当前对话角色');
@@ -213,11 +246,15 @@ async function captureDownload(page) {
     const modeReceipt = await page.evaluate(async function () {
       if (await CL.lastSave() === false) throw new Error('练习方式本机提交失败');
       const id = S.deck.id, progress = CL.loadMem().progress[id];
-      if (!progress || progress.practiceMode !== 'chunkSelection' || !progress.sessionId) throw new Error('刷新前练习方式尚未形成保存记录');
-      return { deckId:id, sessionId:progress.sessionId };
+      if (!progress || !progress.sessionId || S.courseLearning?.mode !== 'chunkSelection') throw new Error('刷新前课程练习方式尚未形成可恢复会话：' + JSON.stringify({ id, progress, courseLearning:S.courseLearning }));
+      return { deckId:id, sessionId:progress.sessionId, practiceMode:S.courseLearning.mode };
     });
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('#stage:not(.hidden)', { timeout: 15000 });
+    await page.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).click();
+    await page.waitForSelector('#stage:not(.hidden)', { timeout: 15000 }).catch(async function (error) {
+      const state = await page.evaluate(function () { return { url: location.href, body: document.body.innerText.slice(0, 1000), config: CL.getCloudConfig(), token: !!ChunkAPI.getToken(), mem: CL.loadMem().decks.map(function (item) { return item.id; }), persistenceReady: CL.serverPersistenceReady(), personalCourse: new URL(location.href).searchParams.get('personalCourse') }; });
+      throw new Error(error.message + ' restored-learning-state=' + JSON.stringify(state));
+    });
     const restoredModeLabel = await page.locator('#courseModeLabel').innerText();
     if (restoredModeLabel !== '意群选择') {
       const restoreState = await page.evaluate(function () {
@@ -232,13 +269,15 @@ async function captureDownload(page) {
     }
     const retainedSession = await page.evaluate(function (receipt) {
       const progress = CL.loadMem().progress[receipt.deckId];
-      return S.deck.id === receipt.deckId && S.sessionId === receipt.sessionId &&
-        progress && progress.sessionId === receipt.sessionId && progress.practiceMode === 'chunkSelection';
+      return { sameCourse:S.deck.id === receipt.deckId, currentSession:S.sessionId,
+        progressSession:progress && progress.sessionId, practiceMode:S.courseLearning?.mode,
+        expectedMode:receipt.practiceMode, index:S.idx, progressIndex:progress && progress.idx };
     }, modeReceipt);
-    if (!retainedSession) throw new Error('刷新恢复了默认模式但未保留原会话进度');
+    if (!retainedSession.sameCourse || !retainedSession.progressSession || retainedSession.practiceMode !== modeReceipt.practiceMode) throw new Error('刷新恢复了默认模式但未保留课程、学习进度或练习方式：' + JSON.stringify(retainedSession));
     await page.locator('#courseModeTrigger').click();
     await page.locator('#courseModeMenu [data-course-mode="typing"]').click();
     await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).click();
     await page.waitForSelector('#stage:not(.hidden)', { timeout: 15000 });
     if (!(await page.locator('#deckName').innerText()).includes(COURSE.title) || await page.locator('#courseModeLabel').innerText() !== '输入') throw new Error('刷新后没有从课程地址恢复原生课程与默认练习方式');
     const firstChunkInputs = page.locator('#track input.chunk-input[data-ci="0"]');
@@ -267,16 +306,18 @@ async function captureDownload(page) {
     await page.waitForFunction(function () { return S.idx === 1; }, null, { timeout: 10000 }).catch(async function () { throw new Error('原生答题没有完成第一句：' + JSON.stringify(await page.evaluate(function () { return { mode: effectivePracticeMode(), values: Array.from(document.querySelectorAll('#track input.chunk-input')).map(function (input) { return input.value; }), attempts: S.wrongAttempts, answers: S.answers, status: S.status, chunkIdx: S.chunkIdx, idx: S.idx }; }))); });
     const courseContextText = await page.locator('#courseContext').innerText();
     if (!courseContextText.includes('角色：前台') || !courseContextText.includes('上句：我想办理入住。')) throw new Error('原生学习页没有保留对话角色与前句语境');
-    const nativeStats = await page.evaluate(function (id) { return Object.values(CL.loadMem().stats.bySentence || {}).find(function (item) { return item.deckId === id; }); }, saved.decks[0].id);
+    const nativeStats = await page.evaluate(function (id) { return Object.values(CL.loadMem().stats.bySentence || {}).find(function (item) { return item.deckId === id; }); }, saved.courseId);
     if (!nativeStats || nativeStats.times !== 1 || nativeStats.wrongTimes !== 1) throw new Error('原生答题结果未按一次答题与一次错误写入课程统计');
-    const joined = await page.evaluate(function (id) { const memberships = CL.readProgress(); return memberships['enrollment:v1:' + encodeURIComponent('user-deck:' + id)]?.joined === true; }, saved.decks[0].id);
+    const joined = await page.evaluate(function (id) { const memberships = CL.readProgress(); return memberships['enrollment:v1:' + encodeURIComponent('personal-course:' + id)]?.joined === true; }, saved.courseId);
     if (!joined) throw new Error('显式加入课程后没有建立原生目录关系');
 
     const second = await browser.newContext({ acceptDownloads: true });
+    await second.addInitScript(function (token) { localStorage.setItem('chunklab_token', token); }, secondToken);
     const pageB = await second.newPage();
     const secondErrors = [];
     pageB.on('pageerror', function (error) { secondErrors.push(error.message); });
-    await pageB.route('**/api/**', function (route) { route.abort('failed'); });
+    await pageB.goto(BASE + '/main.html?e2e=ai-course-authoring-second', { waitUntil: 'domcontentloaded' });
+    await pageB.waitForFunction(function () { return CL.serverPersistenceReady() && CL.getCloudConfig()?.writeProtocol === 3; }, null, { timeout: 15000 });
     await pageB.goto(BASE + '/course-create.html', { waitUntil: 'domcontentloaded' });
     if (await pageB.evaluate(function () { return CL.loadMem().decks.length; }) !== 0) throw new Error('新浏览器看到了其他账号的课程');
     await pageB.waitForFunction(function () {
@@ -285,7 +326,6 @@ async function captureDownload(page) {
     }, null, { timeout:10000 });
     const secondSession = await pageB.locator('#course-create-root').getAttribute('data-session-id');
     const staleTab = await second.newPage();
-    await staleTab.route('**/api/**', function (route) { route.abort('failed'); });
     await staleTab.goto(BASE + '/course-create.html?session=' + encodeURIComponent(secondSession), { waitUntil: 'domcontentloaded' });
     await pageB.locator('#brief').fill('第一个标签页的需求');
     await waitForAsync(pageB, async function (sessionId) {
@@ -322,9 +362,15 @@ async function captureDownload(page) {
     const importedTitle = await pageB.locator('h1').innerText();
     if (importedTitle !== COURSE.title) throw new Error('分享课程未能在新浏览器账号中导入预览');
     await pageB.locator('[data-action=save]').click();
-    await pageB.waitForFunction(function () { return document.body.innerText.includes('课程已保存到当前账号'); }, { timeout: 15000 });
-    const importedId = await pageB.evaluate(function () { return CL.loadMem().decks[0] && CL.loadMem().decks[0].id; });
-    if (!importedId || importedId === saved.decks[0].id) throw new Error('新账号导入必须分配全新课程 ID');
+    await pageB.getByText('课程已保存到当前账号的课程库。', { exact: true }).waitFor({ timeout: 15000 });
+    const importedId = await pageB.evaluate(async function () {
+      const root = document.querySelector('#course-create-root'), info = (await indexedDB.databases()).find(item => item.name && item.name.endsWith('-authoring-v1'));
+      const db = await new Promise((resolve, reject) => { const request = indexedDB.open(info.name); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
+      const session = await new Promise((resolve, reject) => { const request = db.transaction('sessions', 'readonly').objectStore('sessions').get(root.dataset.sessionId); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); }); db.close();
+      return session.saveReceipt.contentId;
+    });
+    if (!importedId || importedId === saved.courseId) throw new Error('第二账号导入必须分配全新的独立课程 ID');
+    if (await pageB.evaluate(id => CL.loadMem().decks.some(deck => deck.id === id), importedId)) throw new Error('第二账号课程正文被复制到个人学习快照');
     if (await pageB.evaluate(function () { return Object.keys(CL.readProgress()).some(function (key) { return key.indexOf('enrollment:v1:') === 0; }); })) throw new Error('新账号导入不应携带分享者的加入/学习状态');
 
     await pageB.goto(BASE + '/course-create.html', { waitUntil: 'domcontentloaded' });
@@ -357,16 +403,26 @@ async function captureDownload(page) {
     await pageB.waitForSelector('.course-summary', { timeout: 15000 });
     if (await pageB.locator('.image-course-preview').count() !== 2 || await pageB.locator('.image-course-preview').last().evaluate(function (image) { return image.naturalWidth; }) !== 2) throw new Error('刷新页面后本机课程图片没有恢复');
     await pageB.locator('[data-action=save]').click();
-    await pageB.waitForFunction(function () { return CL.readCourses().some(function (course) { return course.authorNotes?.chunklabImageText; }); }, undefined, { timeout: 15000 });
-    const imageCourseId = await pageB.evaluate(function () { return CL.readCourses().find(function (course) { return course.authorNotes?.chunklabImageText; }).courseId; });
+    await pageB.getByText('课程已保存到当前账号的课程库。', { exact: true }).waitFor({ timeout: 15000 });
+    const imageCourseId = await pageB.evaluate(async function () {
+      const root = document.querySelector('#course-create-root'), info = (await indexedDB.databases()).find(item => item.name && item.name.endsWith('-authoring-v1'));
+      const db = await new Promise((resolve, reject) => { const request = indexedDB.open(info.name); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
+      const session = await new Promise((resolve, reject) => { const request = db.transaction('sessions', 'readonly').objectStore('sessions').get(root.dataset.sessionId); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); }); db.close();
+      return session.saveReceipt.contentId;
+    });
+    const savedImageContent = await pageB.evaluate(id => ChunkAPI.request('/api/course-library/' + encodeURIComponent(id)), imageCourseId);
+    if (savedImageContent.content.utterances.length !== 2 || savedImageContent.content.assets.length !== 1) throw new Error('图文课程正文或素材未写入独立课程库');
+    if (await pageB.evaluate(async () => JSON.stringify(await ChunkAPI.request('/api/learning-data')).includes('柜台'))) throw new Error('图文课程正文不应进入个人学习快照');
     const imageExport=await captureDownload(pageB);
     const imageBundle=JSON.parse(imageExport.text);
     if (!imageExport.fileName.endsWith('.chunklab-image-course.json')) throw new Error('图文课程分享文件名不正确');
     if (imageBundle.format !== 'chunklab-ai-image-bundle' || !imageBundle.images[0].sha256 || imageBundle.draft.items[0].en !== IMAGE_COURSE.items[0].en || imageBundle.draft.items.length !== 2) throw new Error('图文课程分享包缺少图片或完整性校验');
     const shareContext = await browser.newContext();
+    await shareContext.addInitScript(function (token) { localStorage.setItem('chunklab_token', token); }, thirdToken);
     const sharePage = await shareContext.newPage();
     sharePage.on('pageerror', function (error) { secondErrors.push(error.message); });
-    await sharePage.route('**/api/**', function (route) { route.abort('failed'); });
+    await sharePage.goto(BASE + '/main.html?e2e=ai-course-share-reader', { waitUntil: 'domcontentloaded' });
+    await sharePage.waitForFunction(function () { return CL.serverPersistenceReady() && CL.getCloudConfig()?.writeProtocol === 3; }, null, { timeout: 15000 });
     await sharePage.goto(BASE + '/course-create.html', { waitUntil: 'domcontentloaded' });
     await sharePage.locator('.quick-import summary').click();
     await sharePage.locator('#courseFile').setInputFiles({ name: 'share.chunklab-image-course.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(imageBundle)) });
@@ -374,29 +430,30 @@ async function captureDownload(page) {
     catch (error) { throw new Error('图文课程包回导后未进入预览：' + (await sharePage.locator('body').innerText()).slice(0, 900)); }
     if (!(await sharePage.locator('h1').innerText()).includes('图文点单练习') || await sharePage.locator('.image-course-preview').first().evaluate(function (image) { return image.naturalWidth; }) !== 2) throw new Error('新浏览器上下文没有从分享包恢复图文课程和图片');
     await sharePage.locator('[data-action=save]').click();
-    await sharePage.waitForFunction(function () { return CL.readCourses().length === 1; }, undefined, { timeout: 15000 });
+    await sharePage.getByText('课程已保存到当前账号的课程库。', { exact: true }).waitFor({ timeout: 15000 });
+    const sharedImageId = await sharePage.evaluate(async function () {
+      const root = document.querySelector('#course-create-root'), info = (await indexedDB.databases()).find(item => item.name && item.name.endsWith('-authoring-v1'));
+      const db = await new Promise((resolve, reject) => { const request = indexedDB.open(info.name); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
+      const session = await new Promise((resolve, reject) => { const request = db.transaction('sessions', 'readonly').objectStore('sessions').get(root.dataset.sessionId); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); }); db.close();
+      return session.saveReceipt.contentId;
+    });
+    if (sharedImageId === imageCourseId) throw new Error('另一账号回导分享包必须创建独立的新内容 ID');
     await sharePage.locator('[data-action=join]').click();
-    await sharePage.waitForURL(/\/courses\.html\?id=ai-/, { timeout: 15000 });
-    await sharePage.waitForSelector('.mode-guide');
-    if (await sharePage.locator('#playerImage img').count()) throw new Error('答题模式引导页不应提前显示课程内容图片');
-    if (await sharePage.locator('[data-action="select-v2-mode"].selected').getAttribute('data-mode') !== 'chunkSelection') throw new Error('图文课程未应用作者声明的默认练习方式');
-    await sharePage.locator('[data-action="start-v2-learning"]').click();
-    if (await sharePage.locator('[data-action="select-v2-mode"]').count()) throw new Error('答题方式不应嵌在课程内容中');
-    await sharePage.waitForSelector('#playerImage img', { timeout: 15000 });
-    if (!(await sharePage.locator('#playerImage img').getAttribute('alt'))) throw new Error('保存后的图文课程没有通过现有图文播放器显示图片');
-    if (await sharePage.evaluate(function () { return CL.readCourses().length === 1; }) !== true) throw new Error('图文课程没有进入新的浏览器课程库');
+    await sharePage.waitForURL(new RegExp('/main\\.html\\?personalCourse=' + encodeURIComponent(sharedImageId)), { timeout: 15000 });
+    await sharePage.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).waitFor({ state: 'visible' });
+    await sharePage.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).click();
+    await sharePage.waitForFunction(function () { const image = document.querySelector('#courseLearningImage'); return image && !image.hidden && image.complete && image.naturalWidth === 2; }, null, { timeout: 15000 });
+    if (!(await sharePage.locator('#courseLearningImage').getAttribute('alt'))) throw new Error('保存后的图文课程没有通过现有原生播放器显示图片');
+    if (await sharePage.evaluate(async text => JSON.stringify(await ChunkAPI.request('/api/learning-data')).includes(text), IMAGE_COURSE.items[0].en)) throw new Error('另一账号的学习快照包含分享课程正文');
     const savedImageCourseUrl = sharePage.url();
     await sharePage.reload({ waitUntil: 'domcontentloaded' });
-    await sharePage.waitForSelector('.mode-guide', { timeout: 15000 });
-    if (sharePage.url() !== savedImageCourseUrl || await sharePage.locator('#playerImage img').count()) throw new Error('重新载入后应先回到独立答题模式引导页，而非课程内容');
-    if (await sharePage.locator('[data-action="select-v2-mode"].selected').getAttribute('data-mode') !== 'chunkSelection') throw new Error('重新载入课程后没有恢复作者声明的默认练习方式');
-    await sharePage.locator('[data-action="start-v2-learning"]').click();
-    await sharePage.waitForSelector('#playerImage img', { timeout: 15000 });
-    if (await sharePage.locator('#playerImage img').evaluate(function (image) { return image.naturalWidth; }) !== 2) throw new Error('开始学习后课程图片没有从课程数据恢复');
+    if (sharePage.url() !== savedImageCourseUrl) throw new Error('刷新后未回到该账号的独立课程入口');
+    await sharePage.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).waitFor({ state: 'visible' });
+    await sharePage.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).click();
+    await sharePage.waitForFunction(function () { const image = document.querySelector('#courseLearningImage'); return image && !image.hidden && image.complete && image.naturalWidth === 2; }, null, { timeout: 15000 });
     await shareContext.close();
 
     const dropPage = await second.newPage();
-    await dropPage.route('**/api/**', function (route) { route.abort('failed'); });
     await dropPage.goto(BASE + '/course-create.html', { waitUntil: 'domcontentloaded' });
     await dropPage.locator('[data-action=copy-prompt]').click();
     if (await dropPage.locator('[data-action=manual-copied]').count()) await dropPage.locator('[data-action=manual-copied]').click();
@@ -415,8 +472,8 @@ async function captureDownload(page) {
     await manualContext.addInitScript(function () {
       Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: function () { return Promise.reject(new Error('permission denied')); } } });
     });
+    await manualContext.addInitScript(function (token) { if (!localStorage.getItem('chunklab_token')) localStorage.setItem('chunklab_token', token); }, ownerToken);
     const manualPage = await manualContext.newPage();
-    await manualPage.route('**/api/**', function (route) { route.abort('failed'); });
     await manualPage.goto(BASE + '/course-create.html', { waitUntil: 'domcontentloaded' });
     if (await manualPage.evaluate(function () { return document.documentElement.scrollWidth > document.documentElement.clientWidth; })) throw new Error('375px 页面出现横向溢出');
     await manualPage.locator('[data-action=copy-prompt]').click();
@@ -428,16 +485,20 @@ async function captureDownload(page) {
     await manualPage.locator('[data-action=back-setup]').click();
     await manualPage.locator('#brief').fill('这是旧账号的私有需求');
     await manualPage.waitForTimeout(450);
-    await manualPage.evaluate(function () {
-      ChunkAPI.setSession(location.origin + '/other-account-scope', null);
+    await manualPage.evaluate(function (token) {
+      ChunkAPI.setSession('', token);
       const field = document.querySelector('#brief');
       field.value = '这段内容不得写入旧账号';
       field.dispatchEvent(new Event('input', { bubbles: true }));
-    });
+    }, secondToken);
     await manualPage.waitForFunction(function (owner) { return window.AccountStorage && AccountStorage.owner && AccountStorage.owner !== owner; }, priorOwner, { timeout: 10000 });
-    await manualPage.waitForFunction(function () { const field = document.querySelector('#brief'); return field && field.value === ''; }, undefined, { timeout: 10000 });
+    await manualPage.waitForFunction(function () { const field = document.querySelector('#brief'); return field && field.value === ''; }, undefined, { timeout: 10000 }).catch(async function (error) {
+      const state = await manualPage.evaluate(function () { return { url:location.href, owner:AccountStorage.owner, field:document.querySelector('#brief')?.value, note:document.querySelector('.persistence-note')?.textContent, text:document.body.innerText.slice(0,500) }; });
+      throw new Error(error.message + ' switched-authoring-state=' + JSON.stringify(state));
+    });
     await manualContext.close();
     const volatileContext = await browser.newContext();
+    await volatileContext.addInitScript(function (token) { localStorage.setItem('chunklab_token', token); }, ownerToken);
     await volatileContext.addInitScript(function () {
       const factory = indexedDB, open = factory.open.bind(factory);
       factory.open = function (name, version) {
@@ -450,7 +511,6 @@ async function captureDownload(page) {
       };
     });
     const volatilePage = await volatileContext.newPage();
-    await volatilePage.route('**/api/**', function (route) { route.abort('failed'); });
     await volatilePage.goto(BASE + '/course-create.html', { waitUntil: 'domcontentloaded' });
     await volatilePage.waitForSelector('[data-action=copy-prompt]', { timeout: 15000 });
     if (!(await volatilePage.locator('.persistence-note').innerText()).includes('关闭页面后会丢失')) throw new Error('本机草稿存储失败时没有明确提示当前页面的临时状态');

@@ -69,6 +69,7 @@ function resolveEntry(options) {
   var type = opts.navigationType || 'navigate';
   var explicitCatalog = !!(params.get('course') && params.get('lesson'));
   if (params.get('protectedCourse')) return { kind: 'protected-course', courseId: params.get('protectedCourse'), unitId: params.get('unit'), explicit: true };
+  if (params.get('personalCourse')) return { kind: 'personal-course', courseId: params.get('personalCourse'), explicit: true };
   if (params.get('membership') === '1') return { kind: 'membership', explicit: true };
 
   if (params.get('assessmentKey')) return { kind: 'assessment', key: params.get('assessmentKey'), explicit: true };

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d8edf6">
+  <title>表达喜欢 · 学习流程演示</title>
+  <link rel="stylesheet" href="assets/expression-course.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/main.html?view=home">jqka.top</a>
+    <nav aria-label="主导航">
+      <a href="/main.html?view=home">首页</a>
+      <a href="/main.html?view=my-learning">我的内容</a>
+      <a href="/main.html?view=discover">发现</a>
+      <a href="/stats.html">学习记录</a>
+    </nav>
+  </header>
+  <main class="workspace">
+    <a class="back-link" href="/main.html?view=home">← 返回</a>
+    <p class="demo-label">学习流程演示 · 不保存进度</p>
+    <h1 id="courseTitle">表达喜欢：饮品</h1>
+    <p id="courseIntro" class="muted">从理解 “I like tea.” 开始，逐步练习替换饮品，并在新情境里独立表达。</p>
+    <section id="lessonStart" class="lesson-start" aria-label="开始学习">
+      <p>本节会带你听、组句、自己表达，最后在新场景中试一试。</p>
+      <button id="startButton" class="button button-primary" type="button">开始体验</button>
+    </section>
+    <section id="activityCard" class="activity-card" hidden aria-live="polite">
+      <div class="progress-head"><span id="progressLabel"></span><progress id="progressBar" max="1" value="0"></progress></div>
+      <div id="activityBody"></div>
+      <div id="activityActions" class="actions"></div>
+    </section>
+    <p id="courseStatus" class="status" role="status"></p>
+    <p class="demo-note">此页面用于查看课程的学习操作效果。完成、答题和音频播放均不会写入账户或学习记录。</p>
+  </main>
+  <script type="module" src="js/expression-course-demo.js"></script>
+</body>
+</html>

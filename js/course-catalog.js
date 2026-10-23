@@ -531,6 +531,12 @@
     var protectedCourses = options.protectedCourses || (global.ContentRepo && global.ContentRepo.getProtectedCatalog ? global.ContentRepo.getProtectedCatalog() : []);
     protectedCourses.forEach(function(source){
       if(!source || !source.courseId || !Array.isArray(source.units) || !source.units.length) return;
+      if(source.contentType==='expression'){
+        var expressionLessons=source.units.map(function(unit,index){return {id:unit.unitId,kind:'lesson',title:unit.title||'第 '+(index+1)+' 节',sequence:index+1,itemCount:unit.itemCount,contentRef:{type:'expression-course',id:source.courseId},available:true};});
+        if(byCourseId[source.courseId])return;
+        var expression={id:source.courseId,kind:'course',title:source.title,origin:'builtin',contentType:'expression',isProtected:true,accessLevel:source.accessLevel,outline:expressionLessons,lessons:expressionLessons,lessonCount:expressionLessons.length,available:true};
+        courses.push(expression);byCourseId[expression.id]=expression;ownerByContentRef[refKey({type:'expression-course',id:expression.id})]=expression.id;return;
+      }
       var existing=byCourseId[source.courseId];
       if(existing){
         // Bind authoritative platform metadata to the existing entity; never adopt a personal ID collision.

@@ -28,7 +28,10 @@ function createLibraryCatalog({ db, appRoot, vocabularyContent }) {
       const metadata = JSON.parse(row.metadata_json);
       const available = metadata.sourceRefs.every(ref => allowed.has(refKey(ref)) || ref.type === 'vocabulary-pilot' && ref.id === 'six-words');
       const prior = map.get(row.resource_id);
+      const bookRef=metadata.sourceRefs.length===1&&metadata.sourceRefs[0].type==='vocabulary-book'?metadata.sourceRefs[0]:null;
+      const bookResource=bookRef?base.find(resource=>resource.sourceRefs.some(ref=>refKey(ref)===refKey(bookRef))):null;
       map.set(row.resource_id, Model.normalizeResource({ ...metadata, courseId: prior?.courseId,
+        unitCount:bookResource?.unitCount,itemCount:bookResource?.itemCount,
         metadataRevision: row.revision, available }));
     }
     return [...map.values()];
@@ -63,7 +66,7 @@ function createLibraryCatalog({ db, appRoot, vocabularyContent }) {
     const facets = metadata.facets || {};
     if (typeof facets !== 'object' || Array.isArray(facets) || Object.keys(facets).some(key => !Object.hasOwn(Model.FACET_LABELS, key))) errors.push('分类字段无效');
     for (const [key, value] of Object.entries(facets)) {
-      if (['seriesId', 'publisherId', 'edition', 'volume'].includes(key)) {
+      if (['seriesId', 'publisherId', 'textbookVersion', 'edition', 'volume'].includes(key)) {
         if (value != null && (typeof value !== 'string' || value.length > 100 || /[<>\u0000-\u001f]/.test(value))) errors.push('版本信息无效');
       } else if (!Array.isArray(value) || value.length > 20 || value.some(item => typeof item !== 'string' || !item.trim() || item.length > 60 || /[<>\u0000-\u001f]/.test(item))) errors.push('分类值无效');
     }

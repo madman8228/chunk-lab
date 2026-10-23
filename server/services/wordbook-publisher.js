@@ -24,10 +24,13 @@ function createWordbookPublisher({appRoot,content,versions,checkImageAliases=()=
    if(!versions)throw fail('教材版本服务尚未就绪',503);
    const base=versions.current(book.bookId),prior=base.book;
    if(base.releaseId!==updateBaseReleaseId)throw fail('教材已更新，请基于最新版本重新导入',409);
-   if(book.title!==prior.title||JSON.stringify(book.catalog||null)!==JSON.stringify(prior.catalog||null))throw fail('教材名称与版本信息必须保持不变；本次只处理词条内容纠错',422);
+   if(book.title!==prior.title)throw fail('教材名称必须保持不变',422);
+   if(JSON.stringify(book.catalog||null)!==JSON.stringify(prior.catalog||null)&&!require('./wordbook-unit-titles').sameContentExceptCatalog(prior,book))throw fail('目录元数据修订不能同时修改教学内容或单元目录',422);
    if(candidate.materialRelease!==undefined||candidate.teachingRelease!==undefined||base.candidate?.materialRelease!==undefined)throw fail('当前仅支持不含教学编排或材料版本的教材修订',422);
-   const shape=row=>JSON.stringify({units:(row.units||[]).map(unit=>({unitId:unit.unitId,title:unit.title,itemIds:unit.itemIds})),items:row.items.map(ref=>ref.itemId)});
+   const shape=require('./wordbook-unit-titles').directoryIdentity;
    if(shape(prior)!==shape(book))throw fail('教材目录或词条身份发生变化；本次修订仅支持固定目录内容纠错',422);
+   const renamed=(book.units||[]).some((unit,index)=>unit.title!==prior.units[index].title);
+   if(renamed&&!require('./wordbook-unit-titles').sameContentExceptUnitTitles(prior,book))throw fail('单元名称修订不能同时修改其他课程内容',422);
   }else if(existing.books.some(b=>b.bookId===book.bookId))throw fail('单词本编号已存在；不会覆盖旧课程，请核查是否已发布',409);
   if(book.revision!==hash(book.items)||book.units&&book.structureRevision!==hash(book.units))throw fail('课程或单元版本校验失败');
   if(candidate.items.length!==book.items.length)throw fail('教学项目与索引数量不一致');
@@ -59,7 +62,7 @@ function createWordbookPublisher({appRoot,content,versions,checkImageAliases=()=
   checkImageAliases(candidate.items.flatMap(item=>item.images.wide.map(url=>({url,sha256:crypto.createHash('sha256').update(readAsset?readAsset(url):fs.readFileSync(path.join(appRoot,url))).digest('hex')}))));
   if(candidate.materialRelease!==undefined)require('./vocabulary-material-release').validateMaterialRelease(candidate,appRoot,readAsset);
   if(candidate.teachingRelease!==undefined)require('./vocabulary-teaching-content').validateRelease(candidate.teachingRelease,book,candidate.items,appRoot,{readAsset});
-  model.validateIndex({schemaVersion:1,books:isUpdate?existing.books.map(row=>row.bookId===book.bookId?book:row).concat(existing.books.some(row=>row.bookId===book.bookId)?[]:[book]):[...existing.books,book]},{allowItemVersions:isUpdate});
+  model.validateIndex({schemaVersion:1,books:isUpdate?existing.books.map(row=>row.bookId===book.bookId?book:row).concat(existing.books.some(row=>row.bookId===book.bookId)?[]:[book]):[...existing.books,book]},{allowItemVersions:true});
   return {bookId:book.bookId,title:book.title,itemCount:book.itemCount,unitCount:book.units?.length||0,fingerprint:hash(candidate),ready:true};
  }
  function publish(candidate,fingerprint,confirmed,publication){
@@ -105,7 +108,7 @@ function createWordbookPublisher({appRoot,content,versions,checkImageAliases=()=
   return {...result,published:true,releaseId:active.releaseId,previousReleaseId:expectedBaseReleaseId,href:'wordbook-details.html?book='+encodeURIComponent(result.bookId)};
  }
  function publishedBooks(){
-  const books=versions?versions.publishedBooks().map(row=>({book:row.book,releaseId:row.releaseId})):content.index().books.map(book=>({book,releaseId:book.revision}));
+  const books=versions?versions.publishedSummaries().map(row=>({book:row.book,releaseId:row.releaseId})):content.index().books.map(book=>({book,releaseId:book.revision}));
   return books.map(({book,releaseId})=>({bookId:book.bookId,title:book.title,itemCount:book.itemCount,releaseId,revision:book.revision}));
  }
  function releaseHistory(bookId){if(!versions)throw fail('教材版本服务尚未就绪',503);return versions.history(bookId).map(({releaseId,book,legacy,activeReleaseId})=>({releaseId,bookRevision:book.revision,title:book.title,itemCount:book.itemCount,legacy,active:releaseId===activeReleaseId}));}
@@ -125,6 +128,6 @@ function createWordbookPublisher({appRoot,content,versions,checkImageAliases=()=
   }
   return null;
  }
- return {validate,publish,publishRevision,findImport,publishedBooks,releaseHistory,releaseCandidate,rollback,currentRelease:bookId=>versions?.current(bookId)||null};
+ return {validate,publish,publishRevision,findImport,publishedBooks,releaseHistory,releaseCandidate,rollback,hasPublished:bookId=>versions?versions.hasPublished(bookId):content.index().books.some(book=>book.bookId===bookId),currentRelease:bookId=>versions?.current(bookId)||null};
 }
 module.exports={createWordbookPublisher};

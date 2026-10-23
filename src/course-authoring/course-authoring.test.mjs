@@ -161,7 +161,7 @@ test('mistake-review session reuses the validated workflow and injects trusted s
     }
   };
   let savedCourse = null, sequence = 0;
-  const courseGateway = { async saveSentenceCourse(course) { savedCourse = structuredClone(course); return { storageKind: 'sentence-deck', contentId: course.id }; } };
+  const courseGateway = { async saveSentenceCourse(course) { savedCourse = structuredClone(course); return { storageKind: 'personal-course', contentId: 'private-saved-course', releaseId: 'a'.repeat(64), catalogCourseId: 'personal-course:private-saved-course', lessonId: 'lesson:personal-course:private-saved-course' }; } };
   const scopeGuard = { capture() { return identity; }, assert(scope) { assert.equal(scope.owner, identity.owner); } };
   const io = { newId() { sequence += 1; return `review-${sequence}-abcdefgh`; }, clipboard: { async write() {} } };
   const service = new CourseAuthoringService({
@@ -177,6 +177,10 @@ test('mistake-review session reuses the validated workflow and injects trusted s
   await service.acceptText(snapshot.sessionId, JSON.stringify(DRAFT_SPEC.examples[0]));
   const saved = await service.save(snapshot.sessionId);
   assert.equal(saved.stage, 'saved');
+  assert.equal(saved.courseId, 'private-saved-course');
+  assert.equal(saved.compiledCourse.id, 'private-saved-course');
+  assert.equal(saved.compiledCourse.authoring.courseLibrary.releaseId, 'a'.repeat(64));
+  assert.equal(await service.getLaunchUrl(snapshot.sessionId), 'main.html?personalCourse=private-saved-course');
   const persistedCourse = /** @type {any} */ (savedCourse);
   assert.ok(persistedCourse);
   assert.equal(persistedCourse.authoring.reviewSource.packId, 'pack-test');

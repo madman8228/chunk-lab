@@ -34,12 +34,35 @@ function createAssessmentContent(options) {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
   }
 
+  function resolveIndependentItem(userId, deckId, cid) {
+    const library = options.courseLibrary;
+    if (!library) return undefined;
+    const alias = db.prepare(`SELECT course_id AS courseId FROM course_content_legacy_mappings
+      WHERE source_user_id=? AND source_kind='deck' AND source_id=?`).get(userId, deckId);
+    const courseId = alias?.courseId || (library.canRead(userId, deckId) ? deckId : null);
+    if (!courseId) return undefined;
+    let course;
+    try { course = library.read(userId, courseId); }
+    catch (_) { return null; }
+    const content = course.content || {};
+    const items = Array.isArray(content.items) ? content.items
+      : Array.isArray(content.utterances) ? content.utterances : [];
+    const item = items.find(value => String(value.cid || value.id || value.itemId || '') === cid);
+    if (!item) return null;
+    const text = item.text && typeof item.text === 'object' ? item.text : {};
+    return { ...item, cid: item.cid || item.id || item.itemId,
+      ...(typeof item.sentence === 'string' ? {} : { sentence: item.sent || item.en || text.en }),
+      ...(typeof item.translation === 'string' ? {} : { translation: item.zh || text['zh-CN'] || '' }) };
+  }
+
   function resolve(userId, key, learningSessionId) {
     const separator = key.indexOf('#');
     if (separator < 1) return null;
     const deckId = key.slice(0, separator);
     const cid = key.slice(separator + 1);
     if (deckId.startsWith('protected_') && options.resolveProtectedItem) return options.resolveProtectedItem(userId, key, learningSessionId);
+    const independentItem = resolveIndependentItem(userId, deckId, cid);
+    if (independentItem !== undefined) return independentItem;
     const userDeck = db.prepare('SELECT items_json FROM user_decks WHERE user_id=? AND id=? AND deleted_at IS NULL').get(userId, deckId);
     if (userDeck) {
       const items = JSON.parse(userDeck.items_json);

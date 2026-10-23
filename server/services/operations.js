@@ -18,6 +18,7 @@ const { createLearningEventOperations } = require('./learning-event-operations')
 const { encodeReceipt, decodeReceipt, corrupt } = require('./operation-receipt-storage');
 const MAX_OPERATION_BYTES = 256 * 1024;
 const MAX_CONTENT_IMPORT_BYTES = 80 * 1024 * 1024;
+const LEGACY_COURSE_CONTENT_MUTATIONS = new Set(['deck.put', 'course.put', 'deck.delete', 'course.delete', 'deck.publish']);
 
 function operationError(message, code, status, conflicts) {
   const error = new Error(message);
@@ -53,12 +54,13 @@ function createOperations(options) {
   const readChanges = options.readChanges;
   const srs = options.srs;
   const hash = options.hash || canonicalHash;
+  const learningDataFormat = options.learningDataFormat || { forUser: () => 'legacy-v1' };
   if (typeof readChanges !== 'function') throw new TypeError('operations require a canonical entity-delta reader');
   const logicalCourseOperations = createLogicalCourseOperations({ db, upsertEntityRow, deleteEntityRow, operationError });
   const courseLearningOperations = createCourseLearningOperations({ db, upsertCourseProgress, upsertEvent,
     replaceSentenceStat, currentGeneration, operationError });
   const settingsOperations = createSettingsOperations({ db, upsertKv, operationError });
-  const workspaceOperations = createWorkspaceOperations({ db, library: options.library, upsertEntityRow, operationError });
+  const workspaceOperations = createWorkspaceOperations({ db, library: options.library, courseLibrary: options.courseLibrary,vocabularyContent:options.vocabularyContent, upsertEntityRow, operationError });
   const vocabularyStudyOperations = createVocabularyStudyOperations({db,content:options.vocabularyContent,upsertEntityRow,operationError,enableWordDictation:options.enableWordDictation===true,enableWordChoice:options.enableWordChoice===true,enableChunkOrder:options.enableChunkOrder===true,enableReadAloud:options.enableReadAloud===true});
   const vocabularyBrowseOperations = createVocabularyBrowseOperations({db,resolvePlan:options.vocabularyTeachingContent?.resolvePlan,upsertEntityRow,operationError,enabled:options.enableVocabularyBrowse===true});
   const learningMaintenanceOperations = createLearningMaintenanceOperations({ db, upsertEntityRow, deleteEntityRow,
@@ -159,6 +161,9 @@ function createOperations(options) {
         throw operationError('同一请求编号不能用于不同内容', 'REQUEST_ID_REUSED', 409);
       }
       return Object.assign(decodeReceipt(prior.result_json), { duplicate: true });
+    }
+    if (LEGACY_COURSE_CONTENT_MUTATIONS.has(body.type) && learningDataFormat.forUser(userId) === 'references-v1') {
+      throw operationError('课程内容已迁至独立课程库，请更新客户端；学习记录未修改', 'COURSE_CONTENT_MOVED', 428);
     }
     const eventId = body.payload && typeof body.payload.eventId === 'string' &&
       ['learning.answer', 'learning.roundComplete', 'learning.mark', 'learning.statKeyMigrate', 'mistake.remove', 'deck.itemsVisibility', 'learning.exposure',

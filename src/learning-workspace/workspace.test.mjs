@@ -43,6 +43,9 @@ test('unknown saved references are retained and aliases do not rewrite records',
   assert.equal(canonicalResourceId('course:old', { old: 'new' }), 'course:new');
   const result = collectPersonalResources([], { a: { itemType: 'resource', selected: true, targetId: 'course:missing' } });
   assert.equal(result.length, 1); assert.equal(result[0].available, false);
+  const migrated=collectPersonalResources([normalizeResource({resourceId:'course:new',courseId:'new',title:'Migrated',visibility:'private',sourceRefs:[{type:'personal-course',id:'new'}]})],
+    { old:{itemType:'resource',selected:true,targetId:'course:old'} },{old:'new'});
+  assert.equal(migrated[0].resourceId,'course:new');assert.equal(migrated[0].savedTargetId,'course:old');
 });
 test('textbook editions are separate; empty home does not fake due tasks or personalized tools', () => {
   const books = ['2024', '2025'].map(edition => normalizeResource({ resourceId: edition, kind: 'textbook', facets: { seriesId: 's', edition } }));

@@ -106,6 +106,8 @@
 .wordbook-study .chunk-order-selected .sentence-audio-icon{border:0;background:transparent;padding:8px;align-self:center}
 .wordbook-study .sentence-audio-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .wordbook-study .chunk-order-selected,.wordbook-study .chunk-order-pool{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.wordbook-study .chunk-order-practice .chunk-selection{display:contents}
+.wordbook-study .chunk-order-practice .chunk-selection-feedback{display:block;width:100%}
 .wordbook-study .chunk-order-selected{min-height:54px;padding-bottom:10px;margin-bottom:14px;border-bottom:1.5px solid #aa895c}
 .wordbook-study .chunk-order-selected[aria-invalid=true]{border-bottom-color:#ad3827}
 .wordbook-study .chunk-order-empty{align-self:center;font-size:16px;color:var(--workspace-muted,#745333)}
@@ -138,7 +140,7 @@
 .wordbook-study summary:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
 .wordbook-study .study-tools .study-menu{left:auto;right:0;max-width:min(250px,100%)}
 .wordbook-study .wordbook-controls:has(>button[hidden]:only-child){display:none}
-.learning-page:has(.wordbook-study) #noticeBannerRail{position:fixed;inset:0 0 auto;z-index:80;display:flex;align-items:flex-start;justify-content:center;pointer-events:none}
+.learning-page:has(.wordbook-study) #noticeBannerRail{position:fixed;inset:52px 0 auto;z-index:1000;display:flex;align-items:flex-start;justify-content:center;pointer-events:none}
 .wordbook-study #bookStatus{position:absolute;width:1px;height:1px;min-height:0;padding:0;margin:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .wordbook-study #bookHeader{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:8px 12px;max-width:none;margin:20px 0 16px;text-align:left;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
 .wordbook-study #bookHeader .course-header-copy{grid-column:2;grid-row:1}

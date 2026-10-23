@@ -34,7 +34,7 @@ function waitForServer() {
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(root, 'server'),
       env: Object.assign({}, process.env, {
-        PORT: String(port), CHUNKLAB_DATA_DIR: dataDir, NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: '3',
+        PORT: String(port), CHUNKLAB_DATA_DIR: dataDir, NODE_ENV: 'test', REQUIRE_AUTH: 'false', CHUNKLAB_WRITE_PROTOCOL: '3',
       }),
       stdio: 'ignore',
     });

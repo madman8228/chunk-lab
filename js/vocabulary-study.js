@@ -231,7 +231,7 @@ var VocabularyStudy = (() => {
           "chunk-order": Object.freeze({ label: "\u8BCD\u5E8F\u62FC\u5757", implemented: true, inputs: ["chunks"], independent: true, learningKey: "chunkOrder" }),
           "word-dictation": Object.freeze({ label: "\u5355\u8BCD\u542C\u5199", implemented: true, inputs: ["typing"], independent: true, learningKey: "wordDictation" })
         });
-        const dimensions = ["audiences", "schoolStages", "grades", "levels", "goals", "topics", "exams"], scalars = ["seriesId", "publisherId", "edition", "volume"];
+        const dimensions = ["audiences", "schoolStages", "grades", "levels", "goals", "topics", "exams"], scalars = ["seriesId", "publisherId", "textbookVersion", "edition", "volume"];
         function check(value, message) {
           if (!value) throw Error(message);
         }

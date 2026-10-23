@@ -9,6 +9,14 @@ function registerCourseFragmentRoutes({ app, auth, registry, grants }) {
       res.json(grants.issue({ courseId: input.courseId, unitId: input.unitId, cursor: input.cursor, purpose: input.purpose, sessionId: input.sessionId }, req.userId));
     } catch (error) { fail(res, error); }
   });
+  app.post('/api/course-content/preview-grant', auth.authenticate, (req, res) => {
+    res.set('Cache-Control', 'private, no-store');
+    try {
+      const input = req.body || {};
+      if (!/^[A-Za-z0-9_-]{12,100}$/.test(input.requestId || '')) throw Object.assign(new Error('INVALID_REQUEST'), { code: 'INVALID_REQUEST', status: 400 });
+      res.json(grants.issue({ courseId: input.courseId, unitId: input.unitId, cursor: input.cursor, purpose: 'preview' }, req.userId));
+    } catch (error) { fail(res, error); }
+  });
   function deliver(type) {
     return (req, res) => {
       res.set('Cache-Control', 'private, no-store').set('X-Content-Type-Options', 'nosniff');

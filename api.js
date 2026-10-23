@@ -157,6 +157,13 @@
           if (!actual) { var missing=new Error('服务端未提供账号确认，已暂停同步；本地记录保留'); missing.code='SERVER_IDENTITY_REQUIRED'; throw missing; }
           if (String(actual)!==expected) { var mismatch=new Error('服务端响应账号不一致，已暂停同步；本地记录保留'); mismatch.code='SERVER_IDENTITY_MISMATCH'; throw mismatch; }
         }
+        if (opts.requireLearningFormat) {
+          var learningFormat=res.headers && typeof res.headers.get==='function' ? res.headers.get('X-Learning-Data-Format') : null;
+          if (learningFormat !== opts.requireLearningFormat || !data || data.format !== opts.requireLearningFormat) {
+            var unsupported=new Error('服务端学习数据格式未确认，已暂停应用；原缓存保持不变');
+            unsupported.code='LEARNING_DATA_FORMAT_UNSUPPORTED'; throw unsupported;
+          }
+        }
         return data;
       });
     }).catch(function(error) {
@@ -222,6 +229,19 @@
       var path = '/api/data';
       if (since != null) path += '?since=' + encodeURIComponent(String(since));
       return request(path, { requireResponseIdentity: true });
+    },
+    getLearningData: function (since) {
+      var path = '/api/learning-data';
+      if (since != null) path += '?since=' + encodeURIComponent(String(since));
+      return request(path, { requireResponseIdentity: true, requireLearningFormat: 'references-v1' });
+    },
+    getLearningDataFormat: function () {
+      return sharedRead('/api/learning-data/format', { requireResponseIdentity: true }).then(function (data) {
+        if (!data || (data.format !== 'legacy-v1' && data.format !== 'references-v1')) {
+          var invalid = new Error('服务端账号学习数据格式无效'); invalid.code = 'LEARNING_DATA_FORMAT_UNSUPPORTED'; throw invalid;
+        }
+        return data.format;
+      });
     },
     submitOperation: function (operation, confirmedSeq) { return request('/api/operations', { method: 'POST',
       requireResponseIdentity: true,

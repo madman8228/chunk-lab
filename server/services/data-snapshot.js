@@ -13,7 +13,8 @@ function createSnapshotReader(options) {
     return statements.get(sql);
   }
 
-  function buildMemSnapshot(userId, since) {
+  function buildMemSnapshot(userId, since, options) {
+    const referencesOnly = !!(options && options.referencesOnly);
     const seqNow = currentSeq(userId);
     /* 水位超前于服务端（库被回滚/重置/换过库）→ 本地水位与这份数据不同源，增量无从算起，
        退回全量。这是协议规则而非兜底：不退的话客户端会永远只拉增量、静默少数据。 */
@@ -31,7 +32,7 @@ function createSnapshotReader(options) {
       return s.all(...A.concat(extra || []));
     };
   
-    const deckRows = rows('SELECT id,name,items_json,builtin,is_public,rev,authoring_json FROM user_decks WHERE {W}', true);
+    const deckRows = referencesOnly ? [] : rows('SELECT id,name,items_json,builtin,is_public,rev,authoring_json FROM user_decks WHERE {W}', true);
     const decks = deckRows.map(function (r) {
       const deck = { id: r.id, name: r.name, items: JSON.parse(r.items_json), builtin: !!r.builtin, isPublic: !!r.is_public };
       if (r.authoring_json) deck.authoring = JSON.parse(r.authoring_json);
@@ -39,7 +40,7 @@ function createSnapshotReader(options) {
     });
     // revs 需含软删行：让其他设备能判断本地副本是否已过期（软删也是版本演进）
     const deckRevs = {};
-    rows('SELECT id,rev FROM user_decks WHERE {W}', false).forEach(function (r) { deckRevs[r.id] = r.rev; });
+    if (!referencesOnly) rows('SELECT id,rev FROM user_decks WHERE {W}', false).forEach(function (r) { deckRevs[r.id] = r.rev; });
   
     const kvRows = rows('SELECT k,v_json,rev FROM user_kv WHERE {W}', true);
     const kv = {};
@@ -140,11 +141,11 @@ function createSnapshotReader(options) {
       vocabularyBrowseResume:vocabularyMaps.vocabularyBrowseResume
     };
   
-    const courseRows = rows('SELECT data_json FROM user_courses WHERE {W}', true);
+    const courseRows = referencesOnly ? [] : rows('SELECT data_json FROM user_courses WHERE {W}', true);
     const courses = courseRows.map(function (r) { return JSON.parse(r.data_json); });
     // revs 需含软删行：让其他设备能判断本地副本是否已过期
     const courseRevs = {};
-    rows('SELECT course_id,rev FROM user_courses WHERE {W}', false).forEach(function (r) { courseRevs[r.course_id] = r.rev; });
+    if (!referencesOnly) rows('SELECT course_id,rev FROM user_courses WHERE {W}', false).forEach(function (r) { courseRevs[r.course_id] = r.rev; });
   
     const progRows = rows('SELECT course_id,data_json FROM user_course_progress WHERE {W}', true);
     const courseProgress = {};
@@ -195,6 +196,7 @@ function createSnapshotReader(options) {
     }
   
     return {
+      ...(referencesOnly ? { format: 'references-v1' } : {}),
       mem: mem, courses: courses, courseProgress: courseProgress, learningResumes: learningResumes,
       learningGenerations: learningGenerations,
       revs: { decks: deckRevs, kv: kvRevs, courses: courseRevs, courseProgress: progRevs, logicalCourses: logicalCourseRevs, learningWorkspace: workspaceRevs,...vocabularyRevs },
@@ -218,10 +220,13 @@ function createSnapshotReader(options) {
    * transaction (for example conflict resolution) do not attempt a nested
    * transaction; HTTP/export reads use this wrapper.
    */
-  const readMemSnapshot = db.transaction(function (userId, since) { return buildMemSnapshot(userId, since); });
+  const readMemSnapshot = db.transaction(function (userId, since, options) { return buildMemSnapshot(userId, since, options); });
+  function readLearningSnapshot(userId, since) {
+    return readMemSnapshot(userId, since, { referencesOnly: true });
+  }
   
 
-  return { buildMemSnapshot, readMemSnapshot };
+  return { buildMemSnapshot, readMemSnapshot, readLearningSnapshot };
 }
 
 module.exports = { createSnapshotReader };

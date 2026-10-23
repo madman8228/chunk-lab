@@ -40,7 +40,9 @@ const vm = require('node:vm');
   const cache = {
     addAll: async urls => { downloads.push(...urls); },
     match: async key => cached.get(typeof key === 'string' ? key : key.url),
-    put: async (key, response) => { cached.set(typeof key === 'string' ? key : key.url, response); }
+    put: async (key, response) => { cached.set(typeof key === 'string' ? key : key.url, response); },
+    keys: async () => Array.from(cached.keys()),
+    delete: async key => cached.delete(typeof key === 'string' ? key : key.url)
   };
   let activated = false;
   vm.runInNewContext(source, {
@@ -50,7 +52,7 @@ const vm = require('node:vm');
     caches: { open: async () => cache, keys: async () => [] },
     fetch: async request => {
       downloads.push(typeof request === 'string' ? request : request.url);
-      return { status: 200, ok: true, clone() { return this; } };
+      return { status: 200, ok: true, headers:{get:()=> 'image/webp'},arrayBuffer:async()=>new ArrayBuffer(1),clone() { return this; } };
     }, URL, Response, console
   });
   let installation;
@@ -58,9 +60,9 @@ const vm = require('node:vm');
   await installation;
   assert.deepEqual(downloads, hard, 'installation downloads only the atomic learning bundle, not optional pages or pictures');
   assert.equal(activated, false, 'a ready update waits for a safe switch');
-  assert.ok(soft.includes('/admin.html') && soft.includes('/assets/jqka-learning-garden-v1.png'));
+  assert.ok(soft.includes('/admin.html') && soft.includes('/assets/jqka-learning-garden-v1.webp'));
   downloads.length = 0;
-  const request = { method: 'GET', mode: 'cors', url: 'https://example.test/assets/jqka-learning-garden-v1.png' };
+  const request = { method: 'GET', mode: 'cors', url: 'https://example.test/assets/jqka-learning-garden-v1.webp' };
   async function load() {
     let response;
     handlers.fetch({ request, respondWith: task => { response = task; } });

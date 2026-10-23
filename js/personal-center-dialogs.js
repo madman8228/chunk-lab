@@ -8,7 +8,7 @@
   var menu=document.getElementById('personalCenterMenu');
   var profile=document.getElementById('personalCenterProfile');
   var back=document.getElementById('personalCenterBack');
-  profile.appendChild(document.getElementById('accountSection'));
+  profile.querySelector('.pc-profile-account').appendChild(document.getElementById('accountSection'));
   document.getElementById('personalCenterMembership').appendChild(document.getElementById('membershipPanel'));
   document.getElementById('personalCenterBackup').appendChild(document.getElementById('settingsBackupSection'));
   document.getElementById('personalCenterCache').appendChild(document.getElementById('settingsImageCacheSection'));
@@ -32,6 +32,7 @@
     if(moveFocus!==false)focus(view==='home'?(menu.querySelector('[data-pc-view="'+previousView+'"]')||menu.querySelector('button')):back);
   }
   back.onclick=function(){showView('home');};
+  profile.querySelector('[data-pc-upgrade]').onclick=function(){showView('membership');};
   menu.addEventListener('click',function(event){
     var entry=event.target.closest('[data-pc-view],[data-pc-feedback]');
     if(!entry)return;

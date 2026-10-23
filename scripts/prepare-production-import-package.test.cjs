@@ -1,0 +1,39 @@
+'use strict';
+const assert = require('node:assert/strict'), fs = require('node:fs'), os = require('node:os'), path = require('node:path'), crypto = require('node:crypto');
+const { targetSpan, prepare } = require('./prepare-production-import-package.cjs');
+const { readImportPackage } = require('./lib/system-wordbook-package.cjs');
+const hash = data => crypto.createHash('sha256').update(data).digest('hex');
+assert.throws(() => targetSpan({ term: 'remind', english: 'It reminds me.' }, {}), /目标词形/);
+assert.deepEqual(targetSpan({ term: 'remind', english: 'It reminds me.' }, { remind: 'reminds' }), { start: 3, length: 7, text: 'reminds' });
+assert.throws(() => targetSpan({ term: 'detail', english: 'Include the meeting time.' }, {}), /目标词形/);
+assert.deepEqual(targetSpan({term:'is',english:'This is my book.'},{}),{start:5,length:2,text:'is'});
+assert.deepEqual(targetSpan({term:'run',english:'Solar power can run this machine.'},{run:'runs'}),{start:16,length:3,text:'run'});
+assert.throws(()=>targetSpan({term:'bag',english:'My schoolbag is here.'},{}),/目标词形/);
+const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'production-import-package-'));
+const write = (name, data) => { const file = path.join(temp, name); fs.writeFileSync(file, Buffer.isBuffer(data) ? data : JSON.stringify(data)); return file; };
+try {
+  const image = Buffer.from('RIFF fixture WEBP'), audio = Buffer.from('OggS fixture OpusHead'), imageHash = hash(image), audioHash = hash(audio);
+  const imageFile = write('image.webp', image), audioFile = write('audio.ogg', audio);
+  const catalogFile = write('catalog.json', { assets: [{ sha256: imageHash, path: path.basename(imageFile), bytes: image.length, width: 512, height: 288 }] });
+  const queuePath = write('queue.json', { book: { bookId:'textbook-wordbook:pep-junior-grade8-lower-2024',publisher:'人民教育出版社',title: '八年级下册' }, source: { path: 'fixture.json' } });
+  const bookId = 'textbook-wordbook:pep-junior-grade8-lower-2024';
+  const item = { itemId: 'unit-1:entry:001', unitId: 'unit-1', unit: 'Unit 1', term: 'borrow', meaning: '借入', english: 'Can I borrow it?', chinese: '我能借用它吗？', reviewStatus: 'approved', imageHashes: [imageHash], wordAudio: audioHash, sentenceAudio: audioHash, sentenceFingerprint: 'a'.repeat(64) };
+  const book = { id: bookId, taskCount: 1, queuePath, sourceSha256: 'b'.repeat(64), items: [item] };
+  const snapshot = { books: [book], errors: [], audioFiles: new Map([[audioHash, { file: audioFile, bytes: audio.length }]]), reviewRevision: 1 };
+  const output = path.join(temp, 'package');
+  assert.equal(prepare(snapshot, bookId, output, {}, temp, catalogFile).words, 1);
+  const result = readImportPackage(output);
+  assert.equal(result.draft.items[0].sentenceAudio.text, item.english);
+  assert.equal(result.draft.items[0].images.mobile[0], result.draft.items[0].images.wide[0]);
+  assert.equal(result.manifest.publishable, false);
+  assert.throws(() => prepare(snapshot, bookId, output, {}, temp, catalogFile), /新的版本/);
+  item.reviewStatus = 'pending';
+  const blocked = path.join(temp, 'blocked');
+  assert.equal(prepare(snapshot, bookId, blocked, {}, temp, catalogFile).blockers.length, 1);
+  assert.equal(fs.existsSync(path.join(blocked, 'import-source.json')), false);
+  console.log('Package source/asset bindings, target boundaries, approval blocking and immutable outputs passed.');
+} finally {
+  assert.equal(path.dirname(temp), os.tmpdir());
+  assert.ok(path.basename(temp).startsWith('production-import-package-'));
+  fs.rmSync(temp, { recursive: true, force: true });
+}

@@ -41,18 +41,26 @@ async function waitHealthy() {
     server = spawn(process.execPath, ['index.js'], {
       cwd: path.join(root, 'server'),
       env: Object.assign({}, process.env, {
-        PORT: String(port), CHUNKLAB_DATA_DIR: dataDir, NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: '3',
+        PORT: String(port), CHUNKLAB_DATA_DIR: dataDir, NODE_ENV: 'test', REQUIRE_AUTH: 'true',
+        JWT_SECRET: require('crypto').randomBytes(32).toString('hex'), PHONE_AUTH_ENABLED: 'false', CHUNKLAB_WRITE_PROTOCOL: '3',
       }),
       stdio: 'ignore',
     });
     await waitHealthy();
+    const registration = await fetch(`${base}/api/auth/register`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: 'image-author-test', password: 'image-author-test-pass' }) });
+    assert.equal(registration.status, 200, 'isolated browser owner is explicitly registered');
+    const { token } = await registration.json();
+    const formatDb = new Database(path.join(dataDir, 'chunklab.db'));
+    formatDb.prepare("INSERT INTO user_learning_data_formats(user_id,format,migration_id) VALUES(?,'references-v1','ai-image-course-e2e')")
+      .run(Number(JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString()).uid));
+    formatDb.close();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
-    const context = await browser.newContext();
-    await context.addInitScript(() => {
-      if (!localStorage.getItem('chunklab.storage-owner.v1')) {
-        localStorage.setItem('chunklab.storage-owner.v1', JSON.stringify([location.origin, 'local']));
-      }
-    });
+    const context = await browser.newContext({ serviceWorkers: 'block' });
+    await context.addInitScript((authToken) => {
+      localStorage.setItem('chunklab_token', authToken);
+      localStorage.setItem('chunklab.session.v1', JSON.stringify({ version: 1, base: '', token: authToken, epoch: 'image-author-fixture' }));
+    }, token);
     const page = await context.newPage();
     const pageErrors = [];
     const operations = [];
@@ -88,72 +96,74 @@ async function waitHealthy() {
     assert.equal(await page.locator('.image-course-preview').first().evaluate((node) => node.naturalWidth), 2,
       'the uploaded image bytes remain available to the recovered authoring preview');
 
-    await page.locator('[data-action=save]').click();
-    await page.waitForSelector('[data-action=join]', { timeout: 30000 });
-    await waitForAsync(page, async () => {
-      const cache = await ServerCache.read();
-      return cache?.snapshot.courses.some((course) => course.metadata?.title?.['zh-CN'] === '图文点单持久化验证');
-    }, null, { timeout: 30000 });
-    const savedCourse = await page.evaluate(async () => {
-      const confirmed = await ServerCache.read();
-      const course = confirmed.snapshot.courses.find((item) => item.authorNotes?.chunklabImageText);
-      return {
-        course,
-        serverCourse: confirmed.snapshot.courses.find((item) => item.courseId === course?.courseId) || null,
-        noConflictUi: !document.querySelector('#syncBadge, #syncResolveMask, [data-sync-conflict]'),
+    await page.evaluate(() => {
+      window.__originalCourseRequest = ChunkAPI.request;
+      window.__failCourseImport = true;
+      ChunkAPI.request = function (path, options) {
+        if (path === '/api/course-library/import' && window.__failCourseImport) {
+          window.__failCourseImport = false;
+          return Promise.reject(new Error('测试导入失败'));
+        }
+        return window.__originalCourseRequest.apply(this, arguments);
       };
     });
-    assert.ok(savedCourse.course?.courseId, `image course was confirmed in the owner-scoped server projection: ${JSON.stringify({ state: await page.evaluate(async () => ({ body: document.body.innerText.slice(-500), store: ServerStore.state(), cache: await ServerCache.read(), pending: await ServerStore.pending() })), operations }).slice(0, 3000)}`);
-    assert.equal(savedCourse.course.courseId, savedCourse.serverCourse?.courseId,
-      'the course.put confirmation updated the owner-scoped protocol-3 cache');
-    assert.equal(savedCourse.course.assets?.some((asset) => asset.type === 'story_image'), true,
-      'the course stores an image asset reference');
-    assert.equal(savedCourse.noConflictUi, true, 'the image-authoring screen exposes no sync-conflict UI');
-    const coursePut = operations.filter((operation) => operation.type === 'course.put' && operation.payload.course.courseId === savedCourse.course.courseId);
-    assert.equal(coursePut.length, 1, 'the authoring save is a single narrow course.put operation');
-    const receipt = await page.evaluate((id) => ChunkAPI.getOperationReceipt(id), coursePut[0].requestId);
-    assert.equal(receipt?.outcome, 'applied', 'the story course has a server receipt');
+    await page.locator('[data-action=save]').click();
+    await page.waitForSelector('.issue-panel.has-error', { timeout: 15000 });
+    assert.equal(await page.locator('.image-course-preview').count(), 2, 'failed independent import preserves the editable course draft');
+    await page.evaluate(() => { ChunkAPI.request = window.__originalCourseRequest; });
+    await page.locator('[data-action=save-and-join]').click();
+    await page.waitForURL(/main\.html\?personalCourse=/, { timeout: 30000 });
+    const courseId = new URL(page.url()).searchParams.get('personalCourse');
+    assert.ok(courseId, 'the server assigns an independent course ID');
+    const savedCourse = await page.evaluate(async (id) => ChunkAPI.request('/api/course-library/' + encodeURIComponent(id)), courseId);
+    assert.equal(savedCourse.content.utterances.length, 2, 'both image-text items are in the independent course library');
+    assert.equal(savedCourse.content.assets.length, 1, 'the independent course stores a separate asset reference');
+    assert.equal(JSON.stringify(savedCourse).includes('base64'), false, 'course metadata contains no inline media bytes');
+    assert.equal(operations.filter((operation) => /^(course|deck)\.put$/.test(operation.type)).length, 0,
+      'course bodies never enter the personal learning operation stream');
+    const learningData = await page.evaluate(async () => ChunkAPI.request('/api/learning-data'));
+    assert.equal(JSON.stringify(learningData).includes('I would like a tea.'), false, 'learning data contains references, not course text');
 
     const database = new Database(path.join(dataDir, 'chunklab.db'), { readonly: true });
     try {
-      const owner = database.prepare("SELECT id FROM users WHERE username='__default__'").get();
-      const row = database.prepare('SELECT data_json FROM user_courses WHERE user_id=? AND course_id=? AND deleted_at IS NULL')
-        .get(owner.id, savedCourse.course.courseId);
-      assert.ok(row, 'the story course is persisted in the isolated SQLite entity table');
-      const persisted = JSON.parse(row.data_json);
-      assert.equal(persisted.courseId, savedCourse.course.courseId);
-      assert.equal(persisted.assets.some((asset) => asset.type === 'story_image'), true);
-      assert.equal(database.prepare('SELECT COUNT(*) AS count FROM user_operation_receipts WHERE user_id=? AND request_id=?')
-        .get(owner.id, coursePut[0].requestId).count, 1, 'SQLite commits exactly one course.put receipt');
+      const row = database.prepare('SELECT kind,visibility FROM course_contents WHERE course_id=?').get(courseId);
+      assert.deepEqual(row, { kind: 'course', visibility: 'private' }, 'course content is stored independently from user learning rows');
+      assert.equal(database.prepare('SELECT COUNT(*) AS count FROM course_content_releases WHERE course_id=?').get(courseId).count, 1);
+      assert.equal(database.prepare('SELECT COUNT(*) AS count FROM course_content_release_assets WHERE course_id=?').get(courseId).count, 1);
     } finally { database.close(); }
 
-    await page.locator('[data-action=join]').click();
-    await page.waitForURL(new RegExp('/courses\\.html\\?id=' + encodeURIComponent(savedCourse.course.courseId)), { timeout: 15000 });
-    await page.locator('[data-action="start-v2-learning"]').click();
-    await page.waitForSelector('#playerImage img', { timeout: 15000 });
-    assert.equal(await page.locator('#playerImage img').first().evaluate((node) => node.naturalWidth), 2,
-      'the saved image asset is available in the real course player');
+    const start = page.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' });
+    await start.waitFor({ timeout: 15000 });
+    await start.click();
+    await page.waitForFunction(() => document.querySelector('#courseLearningImage')?.naturalWidth === 2, null, { timeout: 15000 });
     const courseUrl = page.url();
+    const imageAssetId = savedCourse.content.assets[0].id;
+    let assetRequests = 0;
+    page.on('request', (request) => { if (request.url().includes('/assets/' + encodeURIComponent(imageAssetId))) assetRequests++; });
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('.mode-guide', { timeout: 15000 });
-    assert.equal(page.url(), courseUrl, 'refresh returns to the same course');
-    await page.locator('[data-action="start-v2-learning"]').click();
-    await page.waitForSelector('#playerImage img', { timeout: 15000 });
-    assert.equal(await page.locator('#playerImage img').first().evaluate((node) => node.naturalWidth), 2,
-      'the same local image and server course remain usable after refresh');
+    await page.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).waitFor({ timeout: 15000 });
+    await page.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' }).click();
+    await page.waitForFunction(() => document.querySelector('#courseLearningImage')?.naturalWidth === 2, null, { timeout: 15000 });
+    assert.equal(page.url(), courseUrl, 'refresh returns to the same independent personal course');
+    assert.equal(assetRequests, 0, 'refresh reuses the account-scoped image cache');
     assert.deepEqual(pageErrors, [], 'image course creation and reload produce no uncaught browser errors');
     const freshContext = await browser.newContext({ serviceWorkers: 'block' });
+    await freshContext.addInitScript((authToken) => {
+      localStorage.setItem('chunklab_token', authToken);
+      localStorage.setItem('chunklab.session.v1', JSON.stringify({ version: 1, base: '', token: authToken, epoch: 'image-author-fresh-fixture' }));
+    }, token);
     const freshPage = await freshContext.newPage();
     const freshErrors = [];
     freshPage.on('pageerror', error => freshErrors.push(error.message));
     await freshPage.goto(courseUrl, { waitUntil: 'domcontentloaded' });
-    await freshPage.waitForSelector('[data-action="start-v2-learning"]', { timeout: 20000 });
-    await freshPage.locator('[data-action="start-v2-learning"]').click();
-    await freshPage.waitForFunction(() => document.querySelector('#playerImage img')?.naturalWidth === 2,
+    const freshStart = freshPage.locator('#pagePractice .course-access-panel button').filter({ hasText: '开始学习' });
+    await freshStart.waitFor({ timeout: 20000 });
+    await freshStart.click();
+    await freshPage.waitForFunction(() => document.querySelector('#courseLearningImage')?.naturalWidth === 2,
       null, { timeout: 15000 });
     assert.deepEqual(freshErrors, [], 'a fresh browser can recover the confirmed course and image without original draft storage');
     await freshContext.close();
-    console.log('[ai-image-course-protocol3] authoring → receipt/SQLite → playback/reload and fresh-browser image recovery passed');
+    console.log('[ai-image-course-protocol3] independent authoring import/retry, separate learning reference, playback/reload and fresh-browser recovery passed');
     await context.close();
   } catch (error) {
     console.error('[ai-image-course-protocol3] failed:', error.stack || error.message);

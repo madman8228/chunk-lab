@@ -603,7 +603,10 @@
       root.innerHTML = '<div class="node-label">句子课程</div><h2>正在准备练习…</h2><p class="source-line" role="status">课程内容和旧学习记录会保留。</p>';
       launcher.launch(courseId, { confirmed: confirmed }).then(function (result) {
         if (result.kind === 'launched') {
-          global.location.replace('main.html?course=' + encodeURIComponent(result.receipt.catalogCourseId) + '&lesson=' + encodeURIComponent(result.receipt.lessonId));
+          var launchUrl = result.receipt.storageKind === 'personal-course'
+            ? 'main.html?personalCourse=' + encodeURIComponent(result.receipt.contentId)
+            : 'main.html?course=' + encodeURIComponent(result.receipt.catalogCourseId) + '&lesson=' + encodeURIComponent(result.receipt.lessonId);
+          global.location.replace(launchUrl);
           return;
         }
         if (result.kind === 'confirmation-required') { renderConfirmation(result); return; }

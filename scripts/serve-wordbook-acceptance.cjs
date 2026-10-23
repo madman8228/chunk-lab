@@ -46,7 +46,12 @@ async function createAcceptance(port=14600){
     reports:db.prepare('SELECT * FROM vocabulary_practice_reports WHERE user_id=? ORDER BY seq DESC LIMIT 200').all(id).map(decode),
     progress:db.prepare('SELECT * FROM vocabulary_item_progress WHERE user_id=? ORDER BY seq DESC LIMIT 200').all(id).map(decode),
     positions:db.prepare("SELECT kind,item_key,data_json,seq FROM user_entity_rows WHERE user_id=? AND deleted_at IS NULL AND kind IN ('vocabularyResume','vocabularyStudySummary','vocabularyBrowseResume') ORDER BY seq DESC LIMIT 200").all(id).map(decode),
-    personalBooks:db.prepare('SELECT book_id,version,revision,created_at FROM personal_wordbook_versions WHERE user_id=? ORDER BY created_at DESC LIMIT 200').all(id)});
+    personalBooks:db.prepare('SELECT book_id,version,revision,created_at FROM personal_wordbook_versions WHERE user_id=? ORDER BY created_at DESC LIMIT 200').all(id),
+    independentBooks:db.prepare(`SELECT c.course_id,c.title,m.source_id AS legacy_source_id,json_extract(r.content_json,'$.contentFamily') AS content_family
+     FROM course_content_legacy_mappings m JOIN course_contents c ON c.course_id=m.course_id
+     JOIN course_content_access a ON a.course_id=c.course_id AND a.subject_user_id=?
+     JOIN course_content_releases r ON r.course_id=c.course_id AND r.release_id=c.active_release
+     WHERE m.source_kind='course' AND m.source_id LIKE 'wordbook:%' ORDER BY c.created_at DESC LIMIT 200`).all(id)});
   });
   // Transparent same-origin forwarding: product pages and save requests use the real server.
   app.use((req,res)=>{const outgoing=http.request(backend+req.originalUrl,{method:req.method,headers:{...req.headers,host:'127.0.0.1:'+backendPort}},incoming=>{res.writeHead(incoming.statusCode,incoming.headers);incoming.pipe(res);});outgoing.on('error',()=>{if(!res.headersSent)res.status(502).json({error:'隔离服务连接失败'});else res.destroy();});req.pipe(outgoing);});

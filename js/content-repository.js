@@ -74,6 +74,13 @@
   var manifest = null;
   var protectedCatalog = [];
   var protectedCatalogBase = null;
+  function hasAuthToken() {
+    try {
+      if (!global.ChunkAPI) return false;
+      if (typeof global.ChunkAPI.isLoggedIn === 'function') return global.ChunkAPI.isLoggedIn();
+      return typeof global.ChunkAPI.getToken === 'function' && !!global.ChunkAPI.getToken();
+    } catch (_) { return false; }
+  }
   function protectedBase() { try { return global.ChunkAPI ? global.ChunkAPI.getBase() : global.localStorage.getItem('chunklab_api_base') || ''; } catch (_) { return null; } }
   function platformIndex(deckOrId) {
     if(protectedCatalogBase!==protectedBase())return null;
@@ -90,6 +97,10 @@
     return null;
   }
   function loadProtectedCatalog() {
+    if (!hasAuthToken()) {
+      protectedCatalog = []; protectedCatalogBase = null;
+      return Promise.resolve([]);
+    }
     var base = protectedBase();
     if (base === null) return Promise.resolve([]);
     var read = global.ChunkAPI && typeof global.ChunkAPI.getCourseCatalog === 'function'
@@ -378,7 +389,9 @@
         manifest = ensureCatalog(data);
         installSummaries();
         /* T5：拉取并合并分片表后再清理缓存。分片表暂不可用时**不阻塞目录**，
-           练习时会重试并显式报错（不静默给空库）。 */
+           练习时会重试并显式报错（不静默给空库）。访客只读取公开元数据，
+           不在尚无登录凭据时请求鉴权清单。 */
+        if (!hasAuthToken()) return manifest;
         return loadShardMap()
           .then(function () { return pruneCache(manifest).then(function () { return manifest; }); })
           .catch(function (err) {

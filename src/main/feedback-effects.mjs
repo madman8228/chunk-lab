@@ -69,19 +69,26 @@ export function createSpeechFeedback(options = {}) {
   const hostWindow = options.window || getDefaultWindow();
   const getCurrentItem = options.getCurrentItem || (() => null);
 
-  return function speakSentence() {
+  return function speakSentence(onState = () => {}) {
     try {
       const item = getCurrentItem();
-      if (!item || !item.sentence) return;
+      if (!item || !item.sentence) return false;
       const Utterance = hostWindow.SpeechSynthesisUtterance;
       const speech = hostWindow.speechSynthesis;
-      if (!Utterance || !speech) return;
+      if (!Utterance || !speech) return false;
       const utterance = new Utterance(item.sentence);
       utterance.lang = 'en-US';
       utterance.rate = 0.92;
+      utterance.onstart = () => onState(true);
+      utterance.onend = utterance.onerror = () => onState(false);
+      utterance.onpause = () => onState(false);
+      utterance.onresume = () => onState(true);
       speech.cancel();
       speech.speak(utterance);
+      return true;
     } catch (_) {
+      onState(false);
+      return false;
       /* Speech is an optional enhancement; a browser without it must still work. */
     }
   };

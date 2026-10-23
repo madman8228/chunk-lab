@@ -2,7 +2,7 @@
  'use strict';
  const root=document.getElementById('illustrationReviewPanel');if(!root)return;
  const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const api='/api/admin/illustration-review';let book=null,visible=[],index=0,page=0,busy=false,undo=null,requestId=0;
+ const api='/api/admin/illustration-review';let courseList=[],book=null,visible=[],index=0,page=0,busy=false,undo=null,requestId=0;
  let saveChain=Promise.resolve(),saveCount=0,activeSavingIds=new Set();
  const pendingItems=new Set();
  const selectionKey='chunklab_illustration_review_selection_v1';
@@ -13,7 +13,7 @@
  let base='';try{base=(localStorage.getItem('chunklab_api_base')||'').replace(/\/+$/,'');}catch{}
  async function request(url,options={}){let token='';try{token=localStorage.getItem('chunklab_admin_token')||'';}catch{}const response=await fetch(base+url,{...options,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'}});const data=await response.json();if(!response.ok)throw Error(data.error||'请求失败');return data;}
  root.innerHTML=`<div class="ir-heading"><h1>配图审核</h1><button class="btn" id="irReload">刷新清单</button></div>
- <div class="ir-filters"><label>教材<select class="field" id="irCourse"></select></label><label>单元<select class="field" id="irUnit"><option value="">全部单元</option></select></label><label>审核状态<select class="field" id="irFilter"><option value="all">全部</option><option value="pending">未审核</option><option value="changes">需要修改</option><option value="approved">已通过</option></select></label><label>查找单词<input class="field" id="irSearch" type="search" placeholder="输入单词或释义"></label></div>
+ <div class="ir-filters"><label>学段<select class="field" id="irStage"><option value="">全部学段</option><option value="primary">小学</option><option value="junior">初中</option><option value="senior">高中</option></select></label><label>教材<select class="field" id="irCourse"></select></label><label>单元<select class="field" id="irUnit"><option value="">全部单元</option></select></label><label>审核状态<select class="field" id="irFilter"><option value="all">全部</option><option value="pending">未审核</option><option value="changes">需要修改</option><option value="approved">已通过</option></select></label><label>查找单词<input class="field" id="irSearch" type="search" placeholder="输入单词或释义"></label></div>
  <div class="ir-toolbar" id="irReviewActions" role="group" aria-label="审核操作"><div class="ir-summary"><span id="irCounts"></span><span id="irMessage" role="status" aria-live="polite"></span></div><button class="btn" id="irContinue">继续上次审核</button><button class="btn" id="irBatch">通过选中项</button><button class="btn" id="irExport">导出待修改清单</button><button class="btn" id="irUndo" disabled>撤销上次操作</button></div>
  <div id="irGrid" class="ir-grid"></div><div class="ir-pager"><button class="btn" id="irPrevPage">上一页</button><span id="irPage"></span><button class="btn" id="irNextPage">下一页</button></div>
  <dialog id="irDialog" aria-labelledby="irWord"><div class="ir-dialog-head"><h2 id="irWord"></h2><button class="btn" id="irClose">关闭</button></div><div id="irDetail"></div><p id="irDetailMessage" role="status"></p><div class="ir-toolbar"><button class="btn" id="irPrevious">上一词</button><button class="btn" id="irNext">下一词</button><button class="btn primary" id="irApprove">通过</button><button class="btn" id="irChanges">需要修改</button><button class="btn" id="irSaveNote">保存意见</button></div></dialog>`;
@@ -24,7 +24,7 @@
  const statusText={pending:'待你确认',approved:'已通过',changes:'需要修改'};
  function syncSavingUI(){
   if(busy)return;
-  ['irCourse','irReload','irUnit','irFilter','irSearch','irContinue'].forEach(id=>$(id).disabled=saveCount>0);
+  ['irStage','irCourse','irReload','irUnit','irFilter','irSearch','irContinue'].forEach(id=>$(id).disabled=saveCount>0);
   $('irUndo').disabled=!undo||saveCount>0;updateSelectionButton();
   $('irGrid').querySelectorAll('.ir-card').forEach(card=>{
    const pending=pendingItems.has(card.dataset.item);
@@ -70,6 +70,13 @@
   syncSavingUI();
  }
  async function load(){if(busy||saveCount)return;const id=++requestId,course=$('irCourse').value;if(!course)return;setBusy(true);message('正在读取教材清单…');try{const result=await request(api+'/'+encodeURIComponent(course));if(id!==requestId)return;book=result;page=0;undo=null;$('irUnit').innerHTML='<option value="">全部单元</option>'+[...new Set(book.items.map(i=>i.unit))].map(u=>`<option>${escape(u)}</option>`).join('');draw();message('清单已加载');}catch(e){message(e.message);}finally{setBusy(false);}}
+ async function selectCourses(preferred=$('irCourse').value){
+  const rows=courseList.filter(c=>!$('irStage').value||c.stage===$('irStage').value);
+  $('irCourse').innerHTML=rows.map(c=>`<option value="${escape(c.id)}">${escape(c.title)}</option>`).join('');
+  if(rows.some(c=>c.id===preferred))$('irCourse').value=preferred;
+  if(rows.length)await load();else{book=null;visible=[];undo=null;$('irUnit').innerHTML='<option value="">全部单元</option>';$('irGrid').innerHTML='<p>当前学段暂无配图清单。</p>';$('irCounts').textContent='共 0 词';message('暂无可审核的教材草稿');}
+ }
+ async function refreshCourses(){if(busy||saveCount)return;const preferred=$('irCourse').value;setBusy(true);message('正在读取教材目录…');try{const data=await request(api);courseList=data.courses;setBusy(false);await selectCourses(preferred);}catch(e){message(e.message);}finally{setBusy(false);}}
  function open(itemId){index=visible.findIndex(i=>i.itemId===itemId);if(index<0||pendingItems.has(itemId))return;detail();if(!$('irDialog').open)$('irDialog').showModal();syncSavingUI();}
  function refreshAfterReview(updatedIds=null){
   const activeId=$('irDialog').open?visible[index]?.itemId:null;
@@ -87,7 +94,7 @@
    <div class="ir-detail-fields"><label class="label">补充释义<input id="irMeaning" class="field" title="审核补充释义，不作为教材原文" maxlength="1000" value="${escape(i.review.meaning)}"></label>
    <label class="label">问题类型<select class="field" id="irReason">${['','图义不符','动作不清','画面裁切','人物或物体异常','风格不一致','其他'].map(r=>`<option${r===i.review.reason?' selected':''}>${escape(r)}</option>`).join('')}</select></label>
    </div><label class="label ir-note-label">审核意见<textarea id="irNote" class="field" rows="1" maxlength="2000">${escape(i.review.note)}</textarea></label>
-   <details><summary>来源与审核历史</summary><p>${escape(i.unit)} · ${escape(i.sourcePages.join('、')||'教材页码待核定')} ${escape(i.sourceRegion||'')}</p><p>${sourceLink}</p>${i.originalWord&&i.originalWord!==i.word?`<p>原清单词头：${escape(i.originalWord)}</p>`:''}<p>${escape(i.scene)}</p>${i.history.map(h=>`<p>${escape(h.updated)} · ${statusText[h.status]} · ${escape(h.note||h.reason)}</p>`).join('')}</details>`;
+   <details><summary>来源与审核历史</summary>${i.approvalSource?`<p>审核来源：${escape(i.review.revision?'本页审核（原结论保留）':i.approvalSource)}</p>`:''}<p>${escape(i.unit)} · ${escape(i.sourcePages.join('、')||'教材页码待核定')} ${escape(i.sourceRegion||'')}</p><p>${sourceLink}</p>${i.originalWord&&i.originalWord!==i.word?`<p>原清单词头：${escape(i.originalWord)}</p>`:''}<p>${escape(i.scene)}</p>${i.history.map(h=>`<p>${escape(h.updated)} · ${statusText[h.status]} · ${escape(h.note||h.reason)}</p>`).join('')}</details>`;
   $('irPrevious').disabled=index===0;$('irNext').disabled=index===visible.length-1;
  }
  function save(items,status,fields={},isUndo=false){
@@ -130,9 +137,9 @@
  $('irApprove').onclick=()=>save([visible[index]],'approved',fields());$('irChanges').onclick=()=>save([visible[index]],'changes',fields());$('irSaveNote').onclick=()=>save([visible[index]],null,fields());
  $('irBatch').onclick=()=>save(selectedItems(),'approved');
  $('irUndo').onclick=async()=>{if(!undo||busy||saveCount)return;const previous=undo;setBusy(true);try{book=await request(api+'/'+encodeURIComponent(book.id),{method:'PUT',body:JSON.stringify({changes:previous.map(r=>({...r,baseRevision:book.items.find(i=>i.itemId===r.itemId).review.revision}))})});undo=null;refreshAfterReview();message('已撤销并保存');}catch(e){message(e.message);}finally{setBusy(false);}};
- ['irUnit','irFilter','irSearch'].forEach(id=>$(id).addEventListener(id==='irSearch'?'input':'change',()=>{page=0;draw();}));$('irCourse').onchange=load;$('irReload').onclick=load;
+ ['irUnit','irFilter','irSearch'].forEach(id=>$(id).addEventListener(id==='irSearch'?'input':'change',()=>{page=0;draw();}));$('irStage').onchange=()=>selectCourses();$('irCourse').onchange=load;$('irReload').onclick=refreshCourses;
  $('irPrevPage').onclick=()=>{page--;draw(false);};$('irNextPage').onclick=()=>{page++;draw(false);};
  $('irContinue').onclick=()=>{if(!book)return;const item=book.items.find(i=>i.itemId===book.cursor)||book.items.find(i=>i.review.status==='pending');if(!item){message('还没有审核记录');return;}$('irUnit').value='';$('irFilter').value='all';$('irSearch').value='';draw();open(item.itemId);};
  $('irExport').onclick=()=>{if(!book)return;const blob=new Blob([JSON.stringify({courseId:book.id,title:book.title,exportedAt:new Date().toISOString(),items:book.items.filter(i=>i.review.status==='changes').map(i=>({itemId:i.itemId,word:i.word,unit:i.unit,delivery:i.delivery,version:i.version,...i.review}))},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=book.id+'-待修改.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
- document.getElementById('illustrationReviewOpen').onclick=async()=>{window.ContentStudio.showView('illustrations');if(book)return;message('正在读取教材目录…');try{const data=await request(api);$('irCourse').innerHTML=data.courses.map(c=>`<option value="${escape(c.id)}">${escape(c.title)}</option>`).join('');if(data.courses.length)await load();else message('暂无可审核的教材草稿');}catch(e){message(e.message);}};
+ document.getElementById('illustrationReviewOpen').onclick=async()=>{window.ContentStudio.showView('illustrations');if(book)return;await refreshCourses();};
 })();

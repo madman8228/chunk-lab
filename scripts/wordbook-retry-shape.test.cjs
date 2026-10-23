@@ -1,11 +1,12 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=require('playwright-core');
 (async()=>{const browser=await chromium.launch({headless:true});try{
- const page=await browser.newPage({viewport:{width:799,height:932}}),html=fs.readFileSync('wordbook.html','utf8').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<link[^>]+>/g,'');
+ const page=await browser.newPage({viewport:{width:799,height:932}}),errors=[];page.on('pageerror',error=>errors.push(error.message));const html=fs.readFileSync('wordbook.html','utf8').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<link[^>]+>/g,'');
  await page.route('**/wordbook.html*',route=>route.fulfill({body:html,contentType:'text/html'}));await page.goto('http://127.0.0.1:9979/wordbook.html?book=pilot-six-v1');
  for(const file of ['landing/theme.css','landing/practice-page.css','assets/learning-workspace.css','assets/learning-sky.css','assets/wordbook-study.css'])await page.addStyleTag({path:file});
- await page.evaluate(()=>{window.readAttempts=0;window.ChunkAPI={request:async()=>{readAttempts++;throw Error('Failed to fetch');}};window.LearningSessionBootstrap={identity:()=> 'isolated-shape-fixture'};});
- for(const file of ['js/notice-banner.js','landing/word-dictation-view.js','landing/word-choice-view.js','landing/chunk-order-view.js','landing/read-aloud-view.js','landing/wordbook-study.js'])await page.addScriptTag({path:file});await page.locator('#bookRetry').waitFor();
+ await page.evaluate(()=>{window.VocabularyUnitCache={create:async()=>null};window.VocabularyStudyStore={useUnit:()=>{}};window.readAttempts=0;window.ChunkAPI={getToken:()=> 'synthetic-token',request:async()=>{readAttempts++;throw Error('Failed to fetch');}};window.LearningSessionBootstrap={identity:()=> 'isolated-shape-fixture'};});
+ for(const file of ['js/notice-banner.js','js/course-return.js','landing/word-dictation-view.js','landing/word-choice-view.js','landing/chunk-order-view.js','landing/read-aloud-view.js','landing/wordbook-study.js'])await page.addScriptTag({path:file});
+ await page.locator('#bookRetry').waitFor({timeout:10000});
  assert.equal(await page.locator('#noticeBannerRail').evaluate(el=>getComputedStyle(el).position),'fixed','existing notice floats above the page');
  assert.equal(await page.locator('#studyRoot #bookRetry').count(),0,'retry belongs to the floating banner, not course content');
  await page.locator('#bookRetry').focus();fs.mkdirSync('output/playwright/wordbook-retry',{recursive:true});await page.screenshot({path:'output/playwright/wordbook-retry/retry-799.png'});

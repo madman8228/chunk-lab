@@ -30,16 +30,16 @@ function createVocabularyStudyOperations({db,content,upsertEntityRow,operationEr
   function project(userId,id,value,unitId){return id.startsWith('personal-book:')&&content.personal?content.personal.projectResume(id,userId,value,unitId):value;}
   function projectPublicResume(userId,id,value,book,targetBook){
     if(!value||id.startsWith('personal-book:')||value.bookRevision===book.revision)return value;
-    const refs=new Map(book.items.map(ref=>[ref.itemId,ref])),history=content.versions?.(id,userId).map(row=>row.book)||[book],booksByRevision=new Map(history.map(row=>[row.revision,row])),byRevision=new Map(history.map(row=>[row.revision,new Map(row.items.map(ref=>[ref.itemId,ref]))])),covered=new Set();
+    const refs=new Map(book.items.map(ref=>[ref.itemId,ref])),history=content.versions?.(id,userId).map(row=>row.book)||[book],byRevision=new Map(history.map(row=>[row.revision,new Map(row.items.map(ref=>[ref.itemId,ref]))])),covered=new Set();
     const rows=db.prepare('SELECT item_id,content_revision,data_json FROM vocabulary_study_events WHERE user_id=? AND resource_id=?').all(userId,'wordbook:'+id);
-    for(const row of rows){let event;try{event=JSON.parse(row.data_json);}catch{continue;}const source=byRevision.get(event.bookRevision)?.get(row.item_id),sourceBook=booksByRevision.get(event.bookRevision),current=refs.get(row.item_id);
+    for(const row of rows){let event;try{event=JSON.parse(row.data_json);}catch{continue;}const source=byRevision.get(event.bookRevision)?.get(row.item_id),sourceBook=history.find(value=>value.revision===event.bookRevision&&(value.structureRevision||null)===event.structureRevision),current=refs.get(row.item_id);
       if(event.evidenceVersion===2&&source?.contentRevision===row.content_revision&&current?.contentRevision===row.content_revision&&event.sessionId!=null&&COVERAGE_PRACTICES.has(event.practiceType)&&event.practiceRevision!=null&&event.structureRevision===(sourceBook?.structureRevision||null)&&(event.unitId==null||sourceBook?.units?.some(unit=>unit.unitId===event.unitId&&unit.itemIds.includes(row.item_id))))covered.add(row.item_id);
     }
     const position=value.status==='completed'?targetBook.items.findIndex(ref=>!covered.has(ref.itemId)):targetBook.items.findIndex(ref=>ref.itemId===value.itemId);
     const next=position<0?targetBook.items.length:position;
     return {...value,bookRevision:book.revision,title:book.title,itemId:targetBook.items[next]?.itemId||null,status:next>=targetBook.items.length?'completed':'in-progress'};
   }
-  function currentStructure(userId,id,unitId,revision){return unitId!==undefined&&id.startsWith('personal-book:')&&content.personal?content.personal.resolveStructure(id,userId,unitId,revision):revision;}
+  function currentStructure(userId,id,unitId,revision){return unitId===undefined?revision:content.resolveStructure?content.resolveStructure(id,userId,unitId,revision):id.startsWith('personal-book:')&&content.personal?content.personal.resolveStructure(id,userId,unitId,revision):revision;}
   function state(userId,id,offset=0,limit=20,unitId,structureRevision,practiceType){const target=scope(content.book(id,userId),unitId,currentStructure(userId,id,unitId,structureRevision),practiceType),page=model.pageBook(target.book,offset,limit),saved=resume(userId,target.key),progress={};
     const stored=saved.value;saved.value=project(userId,id,saved.value,unitId);saved.value=projectPublicResume(userId,id,saved.value,content.book(id,userId),target.book);
     let rehearsal;
@@ -65,7 +65,7 @@ function createVocabularyStudyOperations({db,content,upsertEntityRow,operationEr
     const practiceType=p.practiceType||'sentence-cloze',mode=contract.modes[practiceType],practice=practices[practiceType];
     if(!mode?.implemented&&!practice?.enabled)error('练习类型尚未实现',422,'PRACTICE_UNAVAILABLE');
     if(finishing&&reporting!==(practiceType==='read-aloud'))error('跟读须使用未验证练习自报，不能作为答题正确保存',422,'INVALID_OPERATION_TYPE');
-    const submitted=scope(submittedBook,p.unitId,p.structureRevision,practiceType);
+    const submitted=scope(submittedBook,p.unitId,oldVersion?p.structureRevision:currentStructure(userId,p.bookId,p.unitId,p.structureRevision),practiceType);
     const target=scope(latest,p.unitId,currentStructure(userId,p.bookId,p.unitId,p.structureRevision),practiceType),book=target.book;
     if(finishing&&p.inputMode!==undefined&&!mode.inputs.includes(p.inputMode))error('输入方式不属于当前练习',422,'INVALID_INPUT_MODE');
     if(finishing&&practice?.input&&p.inputMode!==practice.input)error('当前练习须明确记录对应输入方式',422,'INVALID_INPUT_MODE');
@@ -80,7 +80,7 @@ function createVocabularyStudyOperations({db,content,upsertEntityRow,operationEr
     }
     const saved=resume(userId,target.key),time=now();let cursor=project(userId,p.bookId,saved.value,p.unitId),stale=false;
     if(cursor&&cursor.bookRevision!==book.revision&&!(body.type==='vocabulary.session'&&p.action==='start'))error('旧单词本位置属于不同版本，请保留旧记录并重新选择',409,'CONTENT_VERSION_CHANGED');
-    if(target.unitId&&cursor&&cursor.structureRevision!==target.structureRevision)error('单元结构已变化，旧位置保留',409,'CONTENT_VERSION_CHANGED');
+    if(target.unitId&&cursor&&currentStructure(userId,p.bookId,target.unitId,cursor.structureRevision)!==target.structureRevision)error('单元结构已变化，旧位置保留',409,'CONTENT_VERSION_CHANGED');
     if(attempting){
       const ref=submitted.book.items.find(ref=>ref.itemId===p.itemId);if(p.contentRevision!==ref.contentRevision)error('教学内容版本已变化',409,'CONTENT_VERSION_CHANGED');
       if(!cursor)error('请先开始当前单词本',409,'RESUME_CONFLICT');

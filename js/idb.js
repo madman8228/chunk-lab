@@ -271,8 +271,11 @@
   }
 
   var SERVER_CACHE_KEY = 'server-cache-v3';
-  function readServerCache(scope, owner) {
-    return readSyncMeta(SERVER_CACHE_KEY).then(function (row) {
+  var LEARNING_CACHE_KEY = 'learning-cache-v1';
+  function readServerCache(scope, owner, cacheKey) {
+    cacheKey = cacheKey || SERVER_CACHE_KEY;
+    if (cacheKey !== SERVER_CACHE_KEY && cacheKey !== LEARNING_CACHE_KEY) return Promise.reject(new Error('确认缓存键无效'));
+    return readSyncMeta(cacheKey).then(function (row) {
       if (!row) return null;
       if (row.scope !== scope || row.owner !== owner) return null;
       return row;
@@ -316,7 +319,7 @@
      seq in one transaction. expectedAppliedSeq is a compare-and-swap guard for
      deltas: two tabs cannot apply the same delta to different cache versions. */
   function commitServerCache(cacheRow, expectedAppliedSeq, isFullSnapshot) {
-    if (!cacheRow || cacheRow.key !== SERVER_CACHE_KEY || !cacheRow.owner || !cacheRow.scope ||
+    if (!cacheRow || (cacheRow.key !== SERVER_CACHE_KEY && cacheRow.key !== LEARNING_CACHE_KEY) || !cacheRow.owner || !cacheRow.scope ||
         !cacheRow.snapshot || !Number.isSafeInteger(cacheRow.appliedSeq) || cacheRow.appliedSeq < 0) {
       return Promise.reject(new Error('确认缓存格式无效'));
     }
@@ -330,7 +333,7 @@
         var result = null, failure = null;
         t.oncomplete = function () { resolve(result || { applied: false, retired: [] }); };
         t.onerror = t.onabort = function () { reject(failure || t.error || new Error('确认缓存事务失败')); };
-        meta.get(SERVER_CACHE_KEY).onsuccess = function (event) {
+        meta.get(cacheRow.key).onsuccess = function (event) {
           try {
             if (global.AccountStorage) global.AccountStorage.assertCurrent();
             var current = event.target.result || null;

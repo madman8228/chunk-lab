@@ -8,7 +8,7 @@ const fixture={bookId:'fixture',revision:'v1',units:[{unitId:course.units[0].uni
  const html=fs.readFileSync('wordbook-details.html','utf8').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<link[^>]+>/g,'');
  await page.route('**/*',route=>route.request().isNavigationRequest()?route.fulfill({body:html,contentType:'text/html'}):route.abort());
  await page.goto('http://127.0.0.1:9979/wordbook-details.html?book=fixture');
- for(const file of ['landing/theme.css','assets/learning-workspace.css','assets/learning-sky.css','assets/wordbook-details.css'])await page.addStyleTag({path:file});await page.addScriptTag({path:'js/learning-sky.js'});
+ for(const file of ['landing/theme.css','assets/learning-workspace.css','assets/learning-sky.css','assets/wordbook-details.css','assets/lesson-card.css'])await page.addStyleTag({path:file});for(const file of ['js/course-covers.js','js/course-return.js','js/lesson-card.js','js/learning-sky.js'])await page.addScriptTag({path:file});
  await page.evaluate(fixture=>{
   window.fixture=fixture;window.requests=[];window.failMaterials=true;window.stale=false;window.currentRevision='v1';
   window.ChunkAPI={request:async(url,options)=>{requests.push({url,options});if(url.endsWith('/details'))return {bookId:'fixture',revision:currentRevision,title:'借东西 · 隔离阅读夹具',itemCount:6,materialKinds:['dialogue','reading'],units:[{unitId:fixture.units[0].unitId,title:'借用日常物品',itemCount:6}]};if(failMaterials)throw Error('隔离读取失败');return {...fixture,revision:stale?'old':currentRevision};}};

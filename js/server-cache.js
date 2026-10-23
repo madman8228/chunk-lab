@@ -4,7 +4,10 @@
   'use strict';
 
   var CACHE_KEY = 'server-cache-v3';
+  var LEARNING_CACHE_KEY = 'learning-cache-v1';
   var inFlight = null;
+  var activeFormat = 'legacy-v1';
+  var activeFormatScope = null;
 
   function clone(value) { return JSON.parse(JSON.stringify(value)); }
   function object(value) { return value && typeof value === 'object' && !Array.isArray(value) ? value : {}; }
@@ -168,7 +171,66 @@
     global.AccountStorage.assertCurrent();
     var base = new URL(global.ChunkAPI.getBase() || global.location.origin, global.location.origin);
     base.hash = ''; base.search = '';
-    return { owner: global.AccountStorage.owner, scope: JSON.stringify([base.href.replace(/\/+$/, ''), global.AccountStorage.owner, 3]) };
+    var endpoint = base.href.replace(/\/+$/, ''), owner = global.AccountStorage.owner;
+    var formatScope = JSON.stringify([endpoint, owner, 3]);
+    var format = activeFormatScope === formatScope ? activeFormat : 'legacy-v1';
+    return { owner: owner, format: format,
+      // Pending operation rows remain scoped to the account/service identity,
+      // not the snapshot representation; cache keys provide representation isolation.
+      scope: formatScope,
+      formatScope: formatScope, cacheKey: format === 'references-v1' ? LEARNING_CACHE_KEY : CACHE_KEY };
+  }
+
+  function formatMetaKey(base) { return 'learning-format-v1:' + encodeURIComponent(base.formatScope); }
+  function validFormat(value) { return value === 'legacy-v1' || value === 'references-v1'; }
+  function rememberFormat(base, format) {
+    if (!validFormat(format)) return Promise.reject(new Error('服务端账号学习数据格式无效'));
+    var metaKey = formatMetaKey(base);
+    return global.IDBStore.updateSyncMeta(metaKey, function () {
+      return { key: metaKey, owner: base.owner, formatScope: base.formatScope, format: format, updatedAt: Date.now() };
+    }).then(function () {
+      var current = identity();
+      if (current.owner !== base.owner || current.formatScope !== base.formatScope) throw sessionChanged();
+      activeFormat = format; activeFormatScope = base.formatScope;
+      return identity();
+    });
+  }
+  function loadRememberedFormat(base) {
+    var metaKey = formatMetaKey(base);
+    return global.IDBStore.readSyncMeta(metaKey).then(function (row) {
+      if (row && row.key === metaKey && row.owner === base.owner && row.formatScope === base.formatScope && validFormat(row.format)) {
+        activeFormat = row.format; activeFormatScope = base.formatScope;
+      } else {
+        activeFormat = 'legacy-v1'; activeFormatScope = base.formatScope;
+      }
+      return identity();
+    });
+  }
+  function prepareFormat() {
+    var base = identity();
+    return loadRememberedFormat(base).catch(function () {
+      activeFormat = 'legacy-v1'; activeFormatScope = base.formatScope;
+      return identity();
+    }).then(function () {
+      if (!global.ChunkAPI.getLearningDataFormat) return identity();
+      return global.ChunkAPI.getLearningDataFormat().then(function (format) {
+        return rememberFormat(base, format);
+      }).catch(function (error) {
+        if (error && (error.code === 'SESSION_CHANGED' || error.code === 'SESSION_INCONSISTENT' ||
+            error.code === 'SERVER_IDENTITY_REQUIRED' || error.code === 'SERVER_IDENTITY_MISMATCH' ||
+            error.code === 'LEARNING_DATA_FORMAT_UNSUPPORTED')) throw error;
+        // An older server or an offline startup must keep the last confirmed
+        // account format; without one, legacy-v1 preserves existing behavior.
+        return identity();
+      });
+    });
+  }
+  function readCache(requestIdentity) {
+    return global.IDBStore.readServerCache(requestIdentity.scope, requestIdentity.owner, requestIdentity.cacheKey);
+  }
+  function getSnapshot(requestIdentity, since) {
+    return requestIdentity.format === 'references-v1'
+      ? global.ChunkAPI.getLearningData(since) : global.ChunkAPI.getData(since);
   }
 
   function apply(incoming, requestIdentity, expectedSeq) {
@@ -177,12 +239,12 @@
       var invalidRange = new Error('服务端增量水位倒退'); invalidRange.code = 'INVALID_CACHE_DELTA';
       return Promise.reject(invalidRange);
     }
-    return global.IDBStore.readServerCache(requestIdentity.scope, requestIdentity.owner).then(function (current) {
+    return readCache(requestIdentity).then(function (current) {
       if (!full && (!current || current.appliedSeq !== expectedSeq)) {
         return { applied: false, stale: true, retired: [] };
       }
       var row = mergeSnapshot(current, incoming);
-      row.owner = requestIdentity.owner; row.scope = requestIdentity.scope;
+      row.owner = requestIdentity.owner; row.scope = requestIdentity.scope; row.key = requestIdentity.cacheKey;
       global.AccountStorage.assertCurrent();
       return global.IDBStore.commitServerCache(row, current ? current.appliedSeq : null, full).then(function (result) {
         if (result && result.applied && global.LogicalCourseStore && global.LogicalCourseStore.setConfirmed) {
@@ -201,20 +263,19 @@
 
   function refresh() {
     if (inFlight) return inFlight;
-    var captured = identity();
-    inFlight = global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (current) {
+    inFlight = prepareFormat().then(function (captured) { return readCache(captured).then(function (current) {
       if (!identityMatches(captured)) throw sessionChanged();
       var since = current ? current.appliedSeq : null;
-      return global.ChunkAPI.getData(since).then(function (snapshot) {
+      return getSnapshot(captured, since).then(function (snapshot) {
         if (!identityMatches(captured)) throw sessionChanged();
         return apply(snapshot, captured, since).then(function (result) {
           if (result.stale) return refreshAfterStale(captured);
-          return global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (row) {
+          return readCache(captured).then(function (row) {
             return { cache: row, retired: result.retired || [] };
           });
         });
       });
-    }).finally(function () { inFlight = null; });
+    }); }).finally(function () { inFlight = null; });
     return inFlight;
   }
 
@@ -263,7 +324,7 @@
         !Array.isArray(changes.courses) || !changes.learningGenerations || !changes.revs || !changes.deleted || !changes.entityGone)
       return Promise.resolve(null);
     var captured = identity();
-    return global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (current) {
+    return readCache(captured).then(function (current) {
       if (!identityMatches(captured)) throw sessionChanged();
       if (!current || !Number.isSafeInteger(current.appliedSeq) || current.appliedSeq < seq - 1) return null;
       var commit = current.appliedSeq >= seq
@@ -277,7 +338,7 @@
       return commit.then(function (result) {
         if (!identityMatches(captured)) throw sessionChanged();
         if (!result || !result.applied || result.stale) return null;
-        return global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (row) {
+        return readCache(captured).then(function (row) {
           if (!identityMatches(captured)) throw sessionChanged();
           return { cache: row, retired: result.retired || [] };
         });
@@ -287,13 +348,13 @@
 
   function refreshAfterStale(captured) {
     if (!identityMatches(captured)) return Promise.reject(sessionChanged());
-    return global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (current) {
+    return readCache(captured).then(function (current) {
       if (!identityMatches(captured)) throw sessionChanged();
-      return global.ChunkAPI.getData(current ? current.appliedSeq : null).then(function (snapshot) {
+      return getSnapshot(captured, current ? current.appliedSeq : null).then(function (snapshot) {
         if (!identityMatches(captured)) throw sessionChanged();
         return apply(snapshot, captured, current ? current.appliedSeq : null).then(function (result) {
           if (result.stale) return refreshAfterStale(captured);
-          return global.IDBStore.readServerCache(captured.scope, captured.owner).then(function (row) {
+          return readCache(captured).then(function (row) {
             return { cache: row, retired: result.retired || [] };
           });
         });
@@ -302,7 +363,7 @@
   }
 
   function identityMatches(captured) {
-    try { var now = identity(); return now.owner === captured.owner && now.scope === captured.scope; }
+    try { var now = identity(); return now.owner === captured.owner && now.scope === captured.scope && now.cacheKey === captured.cacheKey; }
     catch (_) { return false; }
   }
   function sessionChanged() { var error = new Error('账号或服务已切换，确认缓存未应用'); error.code = 'SESSION_CHANGED'; return error; }
@@ -1147,7 +1208,14 @@
     mergeSnapshot: mergeSnapshot,
     refresh: refresh,
     applyReceipt: applyReceipt,
-    read: function () { var id = identity(); return global.IDBStore.readServerCache(id.scope, id.owner); },
+    read: function () {
+      var id = identity(), base = { owner: id.owner, formatScope: id.formatScope };
+      if (activeFormatScope === id.formatScope) return readCache(id);
+      return loadRememberedFormat(base).then(readCache).catch(function () {
+        activeFormat = 'legacy-v1'; activeFormatScope = base.formatScope;
+        return readCache(identity());
+      });
+    },
     apply: apply
   };
 })(window);

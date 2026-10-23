@@ -1,0 +1,692 @@
+{
+  "format": "chunklab-expression-course",
+  "formatVersion": "1.0",
+  "courseId": "expression-unit01-tools",
+  "title": "零基础入门：听懂指令与请求重复",
+  "description": "待审核课程包；不含配图、录音、识别或口语评分。",
+  "audience": "adult_beginner",
+  "lessons": [
+    {
+      "schemaVersion": "1.0",
+      "lessonId": "L101",
+      "contentVersion": 1,
+      "status": "draft",
+      "locale": "zh-CN",
+      "title": "听懂基本操作",
+      "communicationGoal": "听到 Listen、Look、Start，知道现在该做什么。",
+      "prerequisiteSkillIds": [],
+      "taughtSkillIds": [
+        "understand_basic_instructions"
+      ],
+      "vocabulary": [
+        {
+          "id": "listen",
+          "en": "Listen",
+          "zh": "听一听",
+          "introducedHere": true
+        },
+        {
+          "id": "look",
+          "en": "Look",
+          "zh": "看一看",
+          "introducedHere": true
+        },
+        {
+          "id": "start",
+          "en": "Start",
+          "zh": "开始",
+          "introducedHere": true
+        }
+      ],
+      "audioAssets": [
+        {
+          "assetId": "unit01_L101_0",
+          "text": "Listen.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_1",
+          "text": "Look.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_2",
+          "text": "Start.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_3",
+          "text": "Look.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_4",
+          "text": "Start.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_5",
+          "text": "Listen.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_6",
+          "text": "Listen.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_7",
+          "text": "Look.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L101_8",
+          "text": "Start.",
+          "locale": "en-US",
+          "status": "ready"
+        }
+      ],
+      "activities": [
+        {
+          "id": "L101_A01",
+          "type": "meaning_intro",
+          "stage": "guided",
+          "prompt": "Listen：听一听",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "exampleEnglish": "Listen.",
+            "exampleZh": "看到耳朵提示，听示范。这里的 Listen 是请你听一听。",
+            "audioAssetId": "unit01_L101_0"
+          },
+          "evaluation": {
+            "countsTowardMastery": false
+          }
+        },
+        {
+          "id": "L101_A02",
+          "type": "meaning_intro",
+          "stage": "guided",
+          "prompt": "Look：看一看",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "exampleEnglish": "Look.",
+            "exampleZh": "这里的 Look 是请你看一看。",
+            "audioAssetId": "unit01_L101_1"
+          },
+          "evaluation": {
+            "countsTowardMastery": false
+          }
+        },
+        {
+          "id": "L101_A03",
+          "type": "meaning_intro",
+          "stage": "guided",
+          "prompt": "Start：开始",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "exampleEnglish": "Start.",
+            "exampleZh": "准备好后开始。先听声音，不必先学会拼写。",
+            "audioAssetId": "unit01_L101_2"
+          },
+          "evaluation": {
+            "countsTowardMastery": false
+          }
+        },
+        {
+          "id": "L101_A04",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "只听声音，选择要做的动作",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L101_3",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "听一听"
+              },
+              {
+                "id": "option_1",
+                "textZh": "看一看"
+              },
+              {
+                "id": "option_2",
+                "textZh": "开始"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_1"
+          }
+        },
+        {
+          "id": "L101_A05",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "只听声音，选择要做的动作",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L101_4",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "开始"
+              },
+              {
+                "id": "option_1",
+                "textZh": "听一听"
+              },
+              {
+                "id": "option_2",
+                "textZh": "看一看"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_0"
+          }
+        },
+        {
+          "id": "L101_A06",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "只听声音，选择要做的动作",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L101_5",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "看一看"
+              },
+              {
+                "id": "option_1",
+                "textZh": "开始"
+              },
+              {
+                "id": "option_2",
+                "textZh": "听一听"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_2"
+          }
+        },
+        {
+          "id": "L101_A07",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "新画面：工作人员请你留意广播。听声音再选动作。",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L101_6",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "听广播"
+              },
+              {
+                "id": "option_1",
+                "textZh": "看画面"
+              },
+              {
+                "id": "option_2",
+                "textZh": "开始任务"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_0"
+          }
+        },
+        {
+          "id": "L101_A08",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "新画面：显示屏出现路线图。听声音再选动作。",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L101_7",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "开始任务"
+              },
+              {
+                "id": "option_1",
+                "textZh": "查看路线图"
+              },
+              {
+                "id": "option_2",
+                "textZh": "听广播"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_1"
+          }
+        },
+        {
+          "id": "L101_A09",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "新画面：你已经准备好做练习。听声音再选动作。",
+          "skillIds": [
+            "understand_basic_instructions"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L101_8",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "听广播"
+              },
+              {
+                "id": "option_1",
+                "textZh": "查看说明"
+              },
+              {
+                "id": "option_2",
+                "textZh": "开始练习"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_2"
+          }
+        }
+      ],
+      "reviewPlan": {
+        "intervalDays": [
+          1,
+          3,
+          7,
+          14
+        ]
+      }
+    },
+    {
+      "schemaVersion": "1.0",
+      "lessonId": "L103",
+      "contentVersion": 1,
+      "status": "draft",
+      "locale": "zh-CN",
+      "title": "没听清时请求重复",
+      "communicationGoal": "没听清时使用 Again, please.，请对方再说一次。",
+      "prerequisiteSkillIds": [],
+      "taughtSkillIds": [
+        "request_repetition"
+      ],
+      "vocabulary": [
+        {
+          "id": "again",
+          "en": "again",
+          "zh": "再一次",
+          "introducedHere": true
+        },
+        {
+          "id": "please",
+          "en": "please",
+          "zh": "请",
+          "introducedHere": true
+        }
+      ],
+      "audioAssets": [
+        {
+          "assetId": "unit01_L103_0",
+          "text": "Again, please.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L103_1",
+          "text": "Hello, I'm Ben. Again, please. Ben. Hi, Ben.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L103_2",
+          "text": "Again, please.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L103_4",
+          "text": "Again, please.",
+          "locale": "en-US",
+          "status": "ready"
+        },
+        {
+          "assetId": "unit01_L103_7",
+          "text": "May.",
+          "locale": "en-US",
+          "status": "ready"
+        }
+      ],
+      "activities": [
+        {
+          "id": "L103_A01",
+          "type": "meaning_intro",
+          "stage": "guided",
+          "prompt": "刚才没听清，可以这样说",
+          "skillIds": [
+            "request_repetition"
+          ],
+          "payload": {
+            "exampleEnglish": "Again, please.",
+            "exampleZh": "意思是“请再说一遍”。把它当作一个完整表达，please 让请求更礼貌。",
+            "audioAssetId": "unit01_L103_0"
+          },
+          "evaluation": {
+            "countsTowardMastery": false
+          }
+        },
+        {
+          "id": "L103_A02",
+          "type": "meaning_intro",
+          "stage": "guided",
+          "prompt": "听一段简短对话",
+          "skillIds": [
+            "request_repetition"
+          ],
+          "payload": {
+            "exampleEnglish": "Hello, I'm Ben. Again, please. Ben. Hi, Ben.",
+            "exampleZh": "甲：你好，我叫 Ben。乙：请再说一遍。甲：Ben。乙：你好，Ben。这里只需要掌握请求重复，不考自我介绍规则。",
+            "audioAssetId": "unit01_L103_1"
+          },
+          "evaluation": {
+            "countsTowardMastery": false
+          }
+        },
+        {
+          "id": "L103_A03",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "听声音：说话人想做什么？",
+          "skillIds": [
+            "request_repetition"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L103_2",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "向对方告别"
+              },
+              {
+                "id": "option_1",
+                "textZh": "请对方重复"
+              },
+              {
+                "id": "option_2",
+                "textZh": "介绍自己的名字"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_1"
+          }
+        },
+        {
+          "id": "L103_A05",
+          "type": "meaning_intro",
+          "stage": "guided",
+          "prompt": "听示范，自己跟说一次",
+          "skillIds": [
+            "request_repetition"
+          ],
+          "payload": {
+            "exampleEnglish": "Again, please.",
+            "exampleZh": "可以反复听，再自己说。不录音、不识别、不评分；点击继续只表示做完跟说练习。",
+            "audioAssetId": "unit01_L103_4"
+          },
+          "evaluation": {
+            "countsTowardMastery": false
+          }
+        },
+        {
+          "id": "L103_A06",
+          "type": "independent_output",
+          "stage": "independent",
+          "prompt": "隐藏英文：你没听清对方的姓名。输入一句话，请对方重复。",
+          "skillIds": [
+            "request_repetition"
+          ],
+          "payload": {
+            "scenario": "隐藏英文：你没听清对方的姓名。输入一句话，请对方重复。",
+            "targetMeaning": "请再说一遍。",
+            "responseModes": [
+              "text"
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "acceptedAnswers": [
+              "Again, please",
+              "Please say that again",
+              "Could you say that again",
+              "Can you say that again"
+            ]
+          }
+        },
+        {
+          "id": "L103_A07",
+          "type": "independent_output",
+          "stage": "independent",
+          "prompt": "新情境：柜台工作人员说了一个价格，你没听清。请对方再说一次。",
+          "skillIds": [
+            "request_repetition"
+          ],
+          "payload": {
+            "scenario": "新情境：柜台工作人员说了一个价格，你没听清。请对方再说一次。",
+            "targetMeaning": "请再说一遍。",
+            "responseModes": [
+              "text"
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "acceptedAnswers": [
+              "Again, please",
+              "Please say that again",
+              "Could you say that again",
+              "Can you say that again"
+            ]
+          }
+        },
+        {
+          "id": "L103_A08",
+          "type": "listening_choice",
+          "stage": "independent",
+          "prompt": "你请求重复后，对方再次说出姓名。听音选择。",
+          "skillIds": [
+            "request_repetition"
+          ],
+          "payload": {
+            "audioAssetId": "unit01_L103_7",
+            "options": [
+              {
+                "id": "option_0",
+                "textZh": "Ben"
+              },
+              {
+                "id": "option_1",
+                "textZh": "May"
+              },
+              {
+                "id": "option_2",
+                "textZh": "Lin"
+              }
+            ]
+          },
+          "evaluation": {
+            "countsTowardMastery": true,
+            "correctOptionId": "option_1"
+          }
+        }
+      ],
+      "reviewPlan": {
+        "intervalDays": [
+          1,
+          3,
+          7,
+          14
+        ]
+      }
+    }
+  ],
+  "assets": [
+    {
+      "assetId": "unit01_L101_0",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-0.wav",
+      "size": 81382,
+      "sha256": "4655900ddb378c291c1745bafe53e03eaa183a116e0805917ce291732a97c510"
+    },
+    {
+      "assetId": "unit01_L101_1",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-1.wav",
+      "size": 69036,
+      "sha256": "3e77e9728928aca599f896f4579051ace3b018ad3b5fb3105f448ff3538536f5"
+    },
+    {
+      "assetId": "unit01_L101_2",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-2.wav",
+      "size": 79838,
+      "sha256": "b5b4475aca217ff17bcc9d17e277db694cca60bc889f174088a611493d835701"
+    },
+    {
+      "assetId": "unit01_L101_3",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-3.wav",
+      "size": 69036,
+      "sha256": "3e77e9728928aca599f896f4579051ace3b018ad3b5fb3105f448ff3538536f5"
+    },
+    {
+      "assetId": "unit01_L101_4",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-4.wav",
+      "size": 79838,
+      "sha256": "b5b4475aca217ff17bcc9d17e277db694cca60bc889f174088a611493d835701"
+    },
+    {
+      "assetId": "unit01_L101_5",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-5.wav",
+      "size": 81382,
+      "sha256": "4655900ddb378c291c1745bafe53e03eaa183a116e0805917ce291732a97c510"
+    },
+    {
+      "assetId": "unit01_L101_6",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-6.wav",
+      "size": 81382,
+      "sha256": "4655900ddb378c291c1745bafe53e03eaa183a116e0805917ce291732a97c510"
+    },
+    {
+      "assetId": "unit01_L101_7",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-7.wav",
+      "size": 69036,
+      "sha256": "3e77e9728928aca599f896f4579051ace3b018ad3b5fb3105f448ff3538536f5"
+    },
+    {
+      "assetId": "unit01_L101_8",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L01-8.wav",
+      "size": 79838,
+      "sha256": "b5b4475aca217ff17bcc9d17e277db694cca60bc889f174088a611493d835701"
+    },
+    {
+      "assetId": "unit01_L103_0",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L03-0.wav",
+      "size": 120848,
+      "sha256": "a656e72b8ba50f52166b9d4960714ccc7c0289a3634c99b19f3365de8ee56986"
+    },
+    {
+      "assetId": "unit01_L103_1",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L03-1.wav",
+      "size": 411232,
+      "sha256": "22dff6896fc14d94a20635f6a4c3c422d52902b780e69f5f549cfc4bf7a32ed0"
+    },
+    {
+      "assetId": "unit01_L103_2",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L03-2.wav",
+      "size": 120848,
+      "sha256": "a656e72b8ba50f52166b9d4960714ccc7c0289a3634c99b19f3365de8ee56986"
+    },
+    {
+      "assetId": "unit01_L103_4",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L03-4.wav",
+      "size": 120848,
+      "sha256": "a656e72b8ba50f52166b9d4960714ccc7c0289a3634c99b19f3365de8ee56986"
+    },
+    {
+      "assetId": "unit01_L103_7",
+      "mimeType": "audio/wav",
+      "localFile": "expression-draft-U01-L03-7.wav",
+      "size": 61980,
+      "sha256": "477bb1060a53173dd379bba4870e32d2bac0f67495d82d5be1bcb2aa6dee86ac"
+    }
+  ],
+  "reviewActivities": [
+    {
+      "lessonId": "L101",
+      "skillId": "understand_basic_instructions",
+      "activityId": "L101_A08"
+    },
+    {
+      "lessonId": "L101",
+      "skillId": "understand_basic_instructions",
+      "activityId": "L101_A09"
+    },
+    {
+      "lessonId": "L103",
+      "skillId": "request_repetition",
+      "activityId": "L103_A07"
+    },
+    {
+      "lessonId": "L103",
+      "skillId": "request_repetition",
+      "activityId": "L103_A08"
+    }
+  ]
+}

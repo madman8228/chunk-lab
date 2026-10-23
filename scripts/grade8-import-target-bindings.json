@@ -1,0 +1,43 @@
+[
+  {
+    "bookId": "textbook-wordbook:pep-junior-grade8-upper-2024",
+    "output": "E:/chunk-practice-assets/textbooks/pep-junior-grade8-upper-2024/revisions/20261022-admin-import-v3",
+    "forms": {
+      "take sb's breath away": "took our breath away", "ready to do sth": "ready to enter", "fight against sb/sth": "fight against the fire",
+      "get together": "gets together", "look for": "looked for", "pack up": "packed up", "add sth to sth": "added some flowers to",
+      "go shopping": "went shopping", "give sb a lift": "gave us a lift", "clean up": "cleaned up", "share sth with sb": "shared my travel photos with",
+      "Congratulations (on ...)!": "Congratulations on", "as ... as": "as tall as", "have sth in common": "have a love of books in common",
+      "make a mistake": "made a mistake", "reach for": "reached for", "lend (sb) a hand": "lend me a hand", "feel free (to do sth)": "Feel free to ask",
+      "be connected with/to": "is connected with", "play a part (in sth)": "plays a part in", "be home to sb/sth": "is home to", "play a role (in)": "play a role in",
+      "pour sth into sth": "Pour the milk into", "cut sth in/into sth": "Cut the cucumber into", "put sth back": "Put the butter back",
+      "mix ... with ...": "Mix the chopped tomatoes with", "go boating": "went boating", "along with sb/sth": "Along with the soup",
+      "fill ... with ...": "Fill the glass with", "keep on doing sth": "Keep on practising", "try one's best": "try my best",
+      "draw to a close": "drew to a close", "search for": "searched for", "to sb's surprise": "To our surprise", "make a promise": "made a promise",
+      "set ... free": "set the young bird free", "succeed in doing sth": "succeeded in playing", "run low (on sth)": "running low on",
+      "depend on/upon": "depend on", "come true": "came true", "show sb around": "show the new student around", "make up (with sb)": "made up with",
+      "drop sb a line": "Drop me a line", "keep (...) away from ...": "Keep your phone away from", "reply": "replied",
+      "detail": "details", "remind": "reminds", "invite": "invited", "hunt": "hunted", "nod": "nodded", "decorate": "decorated", "attend": "attended",
+      "strength": "strengths", "metre": "metres", "exchange": "exchanged", "touch": "touched", "weigh": "weighs", "connect": "connects",
+      "ton": "tons", "pea": "peas", "instruction": "instructions", "search": "searched", "accept": "accepted", "argue": "argued", "cost": "costs", "benefit": "benefits"
+    }
+  },
+  {
+    "bookId": "textbook-wordbook:pep-junior-grade8-lower-2024",
+    "output": "E:/chunk-practice-assets/textbooks/pep-junior-grade8-lower-2024/revisions/20261022-admin-import-v2",
+    "forms": {
+      "suffer from": "suffers from", "take sb's temperature": "took the child's temperature", "stop ... from doing": "stops people from walking",
+      "fry": "fried", "throw": "threw", "be about to": "was about to", "stop short": "stopped short", "look on the bright side": "looked on the bright side",
+      "get across": "get her idea across", "cut ... in half": "Cut the sandwich in half", "put oneself in sb's shoes": "put yourself in your classmate's shoes",
+      "shut ... away": "shut his worries away", "let down": "let my teammates down", "be hard on": "be too hard on", "take back": "took back",
+      "pull together": "pulled together", "pass away": "passed away", "not only ... but also ...": "not only fun but also useful",
+      "come off": "came off", "make preparations": "made preparations", "hide": "hid", "go off": "went off", "shake": "shook",
+      "keep ... off": "Keep your elbows off", "be used to": "am used to", "get along": "got along", "hear of": "heard of", "steal": "stolen",
+      "get lost": "got lost", "base sth on sth": "is based on", "get to one's feet": "got to their feet", "hand out": "handed out",
+      "manage": "managed", "chat": "chatted", "allow": "allows", "stamp": "stamps", "burn": "burned", "roll": "rolled", "check": "checked",
+      "advise": "advised", "bully": "bullying", "behave": "behaved", "remain": "remained", "square kilometre": "square kilometres",
+      "condition": "conditions", "degree": "degrees", "risk": "risks", "warn": "warned", "interview": "interviewed", "report": "reported",
+      "refuse": "refused", "bow": "bowed", "rub": "rubbed", "serving": "servings", "congratulate": "congratulated", "recommend": "recommended",
+      "state": "stated", "prove": "proved", "inspire": "inspired", "destroy": "destroyed", "provide": "provides", "donate": "donated"
+    }
+  }
+]

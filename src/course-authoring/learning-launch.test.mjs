@@ -52,6 +52,16 @@ test('legacy launcher saves once after confirmation and reuses a matching target
   assert.equal(f.writes, 1, 'normal reentry does not reconvert or write');
 });
 
+test('legacy launcher joins the independent course after conversion without duplicating imports on retry', async () => {
+  const f = fixture(), joins = [];
+  f.gateway.saveSentenceCourse = async (deck) => ({ storageKind: 'personal-course', contentId: 'private-converted',
+    catalogCourseId: 'personal-course:private-converted', lessonId: 'lesson:personal-course:private-converted', releaseId: 'a'.repeat(64) });
+  f.gateway.joinCourse = async (id) => { joins.push(id); return { courseId: 'private-converted' }; };
+  const result = await f.launcher.launch('ai-legacy-launch', { confirmed: true });
+  assert.equal(result.kind, 'launched');
+  assert.deepEqual(joins, ['personal-course:private-converted'], 'conversion must create the learning reference before launch');
+});
+
 test('legacy launcher blocks malformed chunk references and conflicting existing decks', async () => {
   const bad = course(); bad.utterances[0].chunks.correctOrder = ['missing'];
   const invalid = fixture(bad);

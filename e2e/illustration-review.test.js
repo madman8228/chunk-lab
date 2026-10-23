@@ -2,17 +2,21 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),crypto=require('node:crypto');
 const {spawn}=require('node:child_process');const {chromium}=require('playwright');const {freePort}=require('./lib/free-port');
 const root=path.resolve(__dirname,'..'),temp=fs.mkdtempSync(path.join(os.tmpdir(),'review-browser-')),port=freePort(9680,100),base='http://127.0.0.1:'+port;
-const child=spawn(process.execPath,['server/index.js'],{cwd:root,env:{...process.env,PORT:String(port),HOST:'127.0.0.1',CHUNKLAB_DATA_DIR:temp,ADMIN_PASSWORD:'ReviewTest-password-2026',ADMIN_JWT_SECRET:crypto.randomBytes(32).toString('hex'),CHUNKLAB_APP_ROOT:root},stdio:['ignore','pipe','pipe']});let logs='';child.stdout.on('data',x=>logs+=x);child.stderr.on('data',x=>logs+=x);
+const child=spawn(process.execPath,['server/index.js'],{cwd:root,env:{...process.env,NODE_ENV:'test',REQUIRE_AUTH:'true',JWT_SECRET:crypto.randomBytes(32).toString('hex'),PORT:String(port),HOST:'127.0.0.1',CHUNKLAB_DATA_DIR:temp,ADMIN_PASSWORD:'ReviewTest-password-2026',ADMIN_JWT_SECRET:crypto.randomBytes(32).toString('hex'),CHUNKLAB_APP_ROOT:root},stdio:['ignore','pipe','pipe']});let logs='';child.stdout.on('data',x=>logs+=x);child.stderr.on('data',x=>logs+=x);
 (async()=>{let browser;try{
  for(let n=0;n<100;n++){try{const r=await fetch(base+'/api/health');if(r.ok)break;}catch{}await new Promise(r=>setTimeout(r,150));}
  assert.equal((await fetch(base+'/api/admin/illustration-review')).status,401);
  browser=await chromium.launch({headless:true});const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'/content-studio.html');await page.locator('#password').fill('ReviewTest-password-2026');await page.locator('#loginForm button').click();await page.locator('#app').waitFor({state:'visible'});
- await page.locator('#illustrationReviewOpen').click();await page.locator('.ir-card').first().waitFor();assert.equal(await page.locator('.ir-card').count(),24);
+ async function openHighschoolReview(){await page.locator('#illustrationReviewOpen').click();await page.locator('#irCourse option').first().waitFor({state:'attached'});await page.locator('#irStage').selectOption('senior');await page.waitForFunction(()=>document.getElementById('irCounts').textContent.includes('332'));}
+ await page.locator('#illustrationReviewOpen').click();await page.locator('.ir-card').first().waitFor();assert.equal(await page.locator('#irCourse option').count(),24,'all 21 shared-catalog courses and three highschool books are available');
+ await page.locator('#irStage').selectOption('primary');await page.waitForFunction(()=>document.querySelectorAll('#irCourse option').length===16);assert.equal(await page.locator('#irCourse option').count(),16);assert.match(await page.locator('.ir-card').first().textContent(),/已通过/,'prior primary image approval is retained');
+ await page.locator('#irStage').selectOption('junior');await page.waitForFunction(()=>document.querySelectorAll('#irCourse option').length===5);await page.locator('#irCourse').selectOption('people-grade8-upper-2024-20261015');await page.waitForFunction(()=>document.getElementById('irCounts').textContent.includes('507'));assert.match(await page.locator('.ir-card').first().textContent(),/已通过/);
+ await page.locator('#irStage').selectOption('senior');await page.waitForFunction(()=>document.getElementById('irCounts').textContent.includes('332'));assert.equal(await page.locator('.ir-card').count(),24);
  assert.match(await page.locator('#irCounts').textContent(),/332/);
  assert.match(await page.locator('.ir-card').first().textContent(),/交换；交流/);
  await page.locator('[data-open]').first().click();await page.locator('#irMeaning').fill('审核测试释义');await page.locator('#irNote').fill('仅在隔离测试中保存');await page.locator('#irApprove').click();await page.waitForFunction(()=>document.getElementById('irMessage').textContent==='审核已保存');
- await page.locator('#irClose').click();await page.reload();await page.locator('#illustrationReviewOpen').click();await page.locator('.ir-card').first().waitFor();assert.match(await page.locator('.ir-card').first().textContent(),/已通过/);
+ await page.locator('#irClose').click();await page.reload();await openHighschoolReview();await page.locator('.ir-card').first().waitFor();assert.match(await page.locator('.ir-card').first().textContent(),/已通过/);
  await page.locator('[data-open]').first().click();await page.locator('#irReason').selectOption('图义不符');await page.locator('#irChanges').click();await page.waitForFunction(()=>document.getElementById('irMessage').textContent==='审核已保存');await page.locator('#irClose').click();
  const downloadPromise=page.waitForEvent('download');await page.locator('#irExport').click();const download=await downloadPromise;assert.match(download.suggestedFilename(),/待修改/);
  await page.locator('#irUndo').click();await page.waitForFunction(()=>document.getElementById('irMessage').textContent==='已撤销并保存');assert.match(await page.locator('.ir-card').first().textContent(),/已通过/);
@@ -38,7 +42,7 @@ const child=spawn(process.execPath,['server/index.js'],{cwd:root,env:{...process
  await page.locator('#irPrevPage').click();assert.equal(await page.locator('.ir-select:checked').count(),3);
  await page.locator('#irSearch').fill('exchange');assert.equal(await page.locator('.ir-select:checked').count(),1);assert.match(await page.locator('#irBatch').textContent(),/（1）/);
  await page.locator('#irSearch').fill('');assert.equal(await page.locator('.ir-select:checked').count(),3);assert.match(await page.locator('#irBatch').textContent(),/（4）/);
- await page.reload();await page.locator('#illustrationReviewOpen').click();await page.locator('.ir-card').first().waitFor();assert.equal(await page.locator('.ir-select:checked').count(),3);
+ await page.reload();await openHighschoolReview();await page.locator('.ir-card').first().waitFor();assert.equal(await page.locator('.ir-select:checked').count(),3);
  await page.locator('#irCourse').selectOption('highschool-pep-required2-2019-20261016');await page.waitForFunction(()=>document.getElementById('irCounts').textContent.includes('350'));assert.equal(await page.locator('.ir-select:checked').count(),0);
  await page.locator('#irCourse').selectOption('highschool-pep-required1-2019-20261016');await page.waitForFunction(()=>document.getElementById('irCounts').textContent.includes('332'));assert.equal(await page.locator('.ir-select:checked').count(),3);
  // 未审核筛选下单项/批量通过立即移出，撤销恢复，其他勾选保留。
@@ -108,7 +112,9 @@ const child=spawn(process.execPath,['server/index.js'],{cwd:root,env:{...process
  await page.locator('#irCourse').selectOption('highschool-pep-required3-2019-20261016');
  await page.waitForFunction(()=>document.getElementById('irCounts').textContent.includes('395'));
  await page.locator('#irFilter').selectOption('pending');
- for(const word of ['in spite of','earn','china']){
+ const blockedWords=await page.evaluate(async()=>{const response=await fetch('/api/admin/illustration-review/highschool-pep-required3-2019-20261016',{headers:{Authorization:'Bearer '+localStorage.getItem('chunklab_admin_token')}});const book=await response.json();return book.items.filter(i=>i.checks.length).map(i=>i.word);});
+ assert.ok(blockedWords.length>0,'current source contains check failures to exercise rejection');
+ for(const word of blockedWords){
   await page.locator('#irSearch').fill(word);
   const card=page.locator('.ir-card').filter({has:page.locator('strong').filter({hasText:new RegExp('^'+word+'$')})});
   await card.locator('[data-approve]').click();
@@ -117,11 +123,11 @@ const child=spawn(process.execPath,['server/index.js'],{cwd:root,env:{...process
   await card.waitFor({state:'detached'});
  }
  await page.locator('#irSearch').fill('');await page.locator('#irFilter').selectOption('changes');
- assert.equal(await page.locator('.ir-card').count(),3);
- await page.reload();await page.locator('#illustrationReviewOpen').click();await page.locator('.ir-card').first().waitFor();
+ assert.equal(await page.locator('.ir-card').count(),blockedWords.length);
+ await page.reload();await openHighschoolReview();await page.locator('.ir-card').first().waitFor();
  await page.locator('#irCourse').selectOption('highschool-pep-required3-2019-20261016');
  await page.waitForFunction(()=>document.getElementById('irCounts').textContent.includes('395'));
- await page.locator('#irFilter').selectOption('changes');assert.equal(await page.locator('.ir-card').count(),3);
+ await page.locator('#irFilter').selectOption('changes');assert.equal(await page.locator('.ir-card').count(),blockedWords.length);
  await page.setViewportSize({width:925,height:932});await page.screenshot({path:path.join(shots,'blocked-items-marked.png'),fullPage:false});
  let draftWrites=0;const countDraftWrites=req=>{if(['POST','PUT','DELETE','PATCH'].includes(req.method()))draftWrites++;};page.on('request',countDraftWrites);
  await page.locator('#textbookDraftsOpen').click();await page.waitForFunction(()=>document.getElementById('tdStatus').textContent.includes('1077'));

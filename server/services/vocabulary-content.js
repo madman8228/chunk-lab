@@ -30,11 +30,18 @@ function createVocabularyContent({appRoot,publishedRoot,personal,versions}) {
   }
   function itemPath(id){if(!model.validId(id))throw fail('教学项目编号无效',400);return path.join(directory,'items',id.replace(/:/g,'_')+'.json');}
   function book(id,owner){if(id.startsWith('personal-book:')){if(!personal)throw fail('个人内容服务尚未就绪',503);return personal.book(id,owner);}const row=index().books.find(row=>row.bookId===id);if(!row)throw fail('单词本暂不可用');return row;}
+  function resolveStructure(id,owner,unitId,revision){
+    if(id.startsWith('personal-book:'))return personal.resolveStructure(id,owner,unitId,revision);
+    const current=book(id,owner);
+    if(revision===current.structureRevision)return revision;
+    const historical=versions?.history(id).find(row=>row.book.structureRevision===revision)?.book;
+    return historical&&historical.units?.some(unit=>unit.unitId===unitId)&&require('./wordbook-unit-titles').sameLearningStructure(historical,current)?current.structureRevision:revision;
+  }
   function item(id,revision,owner){
     if(id.startsWith('personal-item:')){if(!personal)throw fail('个人内容服务尚未就绪',503);return personal.item(id,revision,owner);}
     const refs=[];for(const row of index().books)for(const ref of row.items)if(ref.itemId===id)refs.push(ref);
     for(const active of publicBooks.values())for(const ref of active.book.items)if(ref.itemId===id)refs.push(ref);
-    if(versions)for(const active of publicBooks.values())for(const historic of versions.history(active.book.bookId))for(const ref of historic.book.items)if(ref.itemId===id)refs.push(ref);
+    if(versions&&(!revision||!refs.some(ref=>ref.contentRevision===revision)))for(const active of publicBooks.values())for(const historic of versions.history(active.book.bookId))for(const ref of historic.book.items)if(ref.itemId===id)refs.push(ref);
     const matching=[...new Map(refs.map(ref=>[ref.contentRevision,ref])).values()].filter(ref=>!revision||ref.contentRevision===revision);
     if(!matching.length)throw fail(revision?'教学内容版本已变化或暂不可用':'教学项目暂不可用',revision?409:404);
     if(!revision&&matching.length>1)throw fail('教学内容版本存在歧义，请提供课程版本',409);
@@ -61,8 +68,11 @@ function createVocabularyContent({appRoot,publishedRoot,personal,versions}) {
     }
     return result;
   }
-  function resources(){return index().books.map(row=>({resourceId:'wordbook:'+row.bookId,kind:'wordbook',title:row.title,
+  function resources(){const retiredFile=path.join(directory,'retired-books.json');let retired=[];
+    if(fs.existsSync(retiredFile)){const value=JSON.parse(fs.readFileSync(retiredFile,'utf8'));if(value.schemaVersion!==1||!Array.isArray(value.bookIds)||value.bookIds.some(id=>!model.validId(id)))throw fail('单词本下架配置无效',503);retired=value.bookIds;}
+    return index().books.filter(row=>!retired.includes(row.bookId)).map(row=>({resourceId:'wordbook:'+row.bookId,kind:'wordbook',title:row.title,
     description:row.catalog?.description||row.itemCount+' 个教学项目 · 辅助练习',coverUrl:row.catalog?.coverUrl,facets:row.catalog?.facets,
+    unitCount:Array.isArray(row.units)?row.units.length:null,itemCount:row.itemCount,
     sourceRefs:[{type:'vocabulary-book',id:row.bookId}],available:true}));}
   function unitPage(id,unitId,offset,limit,owner){
     const row=book(id,owner),unit=row.units?.find(unit=>unit.unitId===unitId);if(!unit)throw fail('单元暂不可用');
@@ -72,11 +82,12 @@ function createVocabularyContent({appRoot,publishedRoot,personal,versions}) {
   function materials(id,owner){
     const row=book(id,owner);if(id.startsWith('personal-book:'))return personal.materials(id,owner);
     const active=publicBooks.get(id),folder=path.join(publicationDirectory,crypto.createHash('sha256').update(JSON.stringify(id)).digest('hex')),file=active?.legacy===false?null:path.join(folder,'materials.json');
-    if(active?.candidate?.materialRelease)return active.candidate.materialRelease;
-    if(!file||!fs.existsSync(file))return {bookId:id,revision:row.revision,units:[]};
-    const stored=JSON.parse(fs.readFileSync(file,'utf8')),hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
-    if(stored.bookRevision!==row.revision||stored.releaseRevision!==hash(stored.release))throw fail('课程材料版本检查失败；原记录保留',503);
-    const release=stored.release,library=release.library,course=library.courses.find(course=>course.courseId===id);
+    let release=active?.candidate?.materialRelease;
+    if(!release){if(!file||!fs.existsSync(file))return {bookId:id,revision:row.revision,units:[]};
+      const stored=JSON.parse(fs.readFileSync(file,'utf8')),hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
+      if(stored.bookRevision!==row.revision||stored.releaseRevision!==hash(stored.release))throw fail('课程材料版本检查失败；原记录保留',503);release=stored.release;
+    }
+    const library=release.library,course=library.courses.find(course=>course.courseId===id);
     if(!course||course.revision!==release.courseRef.revision)throw fail('课程材料引用不一致',503);
     const applications=new Map(library.applications.map(material=>[material.materialId,material])),senses=new Map(library.senses.map(sense=>[sense.senseId,sense]));
     // Never expose raw sources, other arrangements or the private review receipt.
@@ -101,6 +112,6 @@ function createVocabularyContent({appRoot,publishedRoot,personal,versions}) {
     else{const items=row.items.map(ref=>{const source=publishedItems.get(ref.itemId+'\n'+ref.contentRevision)||publishedPaths.get(ref.itemId+'\n'+ref.contentRevision)||itemPath(ref.itemId),value=typeof source==='string'?JSON.parse(fs.readFileSync(source,'utf8')):structuredClone(source),{contentRevision,...body}=value;if(value.itemId!==ref.itemId||contentRevision!==ref.contentRevision||crypto.createHash('sha256').update(JSON.stringify(body)).digest('hex')!==contentRevision)throw fail('教学内容版本校验失败',409);return value;});summary=summaryModel.build(row,items).summary;}
     practiceCache.set(key,summary);return summary;
   }
-  return {index,book,item,resources,personal,publicationDirectory,materials,details,versions:(id,owner)=>id.startsWith('personal-book:')?personal.versions(id,owner):versions?versions.history(id):[{book:book(id),releaseId:book(id).revision}],invalidate:()=>{cached=null;signature='';practiceCache.clear();},unitPage,page:(id,offset,limit,owner)=>model.pageBook(book(id,owner),offset,limit)};
+  return {index,book,item,resources,personal,publicationDirectory,materials,details,resolveStructure,versions:(id,owner)=>id.startsWith('personal-book:')?personal.versions(id,owner):versions?versions.history(id):[{book:book(id),releaseId:book(id).revision}],invalidate:()=>{cached=null;signature='';practiceCache.clear();},unitPage,page:(id,offset,limit,owner)=>model.pageBook(book(id,owner),offset,limit)};
 }
 module.exports={createVocabularyContent};

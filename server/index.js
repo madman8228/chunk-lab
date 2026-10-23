@@ -28,6 +28,8 @@ const { createStaticGuard } = require('./middleware/static-guard');
 const { createSeoPagesMiddleware, freshnessCheck } = require('./middleware/seo-pages');
 const { createChangeSequence } = require('./services/change-seq');
 const { createSnapshotReader } = require('./services/data-snapshot');
+const learningDataFormat = require('./services/learning-data-format').createLearningDataFormat(db);
+const { createCourseLibrary } = require('./services/course-library');
 const { createDataWriters } = require('./services/data-writers');
 const { createDataRows } = require('./services/data-rows');
 const { createDataMigrations } = require('./services/data-migrations');
@@ -63,6 +65,7 @@ const { registerMembershipRoutes } = require('./routes/membership');
 const { registerAdminMembershipRoutes } = require('./routes/admin-membership');
 const { registerSystemRoutes } = require('./routes/system');
 const { registerDataRoutes } = require('./routes/data');
+const { registerCourseLibraryRoutes } = require('./routes/course-library');
 const { registerVocabularyPracticeRoutes } = require('./routes/vocabulary-practice');
 const { registerLearningArchiveRoutes } = require('./routes/learning-archive');
 const { registerOperationRoutes } = require('./routes/operations');
@@ -117,9 +120,9 @@ app.use('/api/usage', express.json({ limit: '4kb' }));
 app.use(express.json({ limit: MAX_CONTENT_IMPORT_BYTES })); // 数值字节，避免 80mb 被解释成十进制 80,000,000
 
 const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
-app.use(cors({
+const corsMiddleware = cors({
   origin: function (origin, cb) {
-    if (!origin) return cb(null, true); // 同源/无 Origin 的请求（curl、同页 fetch、file://）不受 CORS 约束
+    if (!origin) return cb(null, true); // 无 Origin 的请求（curl、file://）不受 CORS 约束
     /* P0 fail-closed（2026-09-09）：未显式配置 CORS_ORIGINS 白名单 → 一律不授予跨域。
        浏览器读不到 Access-Control-Allow-Origin 即拦截，杜绝"回显任意 Origin + credentials"被恶意网页驱动。
        前端与 API 同源部署（本服务静态托管或 Nginx 反代 /api）无需 CORS，配置了白名单才放行对应域名。 */
@@ -129,7 +132,17 @@ app.use(cors({
   },
   credentials: true,
   exposedHeaders: ['X-ChunkLab-Account-Id']
-}));
+});
+app.use(function (req, res, next) {
+  const origin = req.get('Origin');
+  if (origin) {
+    try {
+      const requestOrigin = new URL(req.protocol + '://' + req.get('host')).origin;
+      if (new URL(origin).origin === requestOrigin) return next();
+    } catch (_) { /* malformed origins continue through the allowlist rejection */ }
+  }
+  return corsMiddleware(req, res, next);
+});
 
 /* ===== 可观测性（上线前）：请求日志 + 全局指标 =====
    日志：方法 路径 状态码 耗时(ms) 用户id（轻量解析 token，不阻塞鉴权）
@@ -256,7 +269,7 @@ const vocabularyBrowseEnabled=process.env.CHUNKLAB_VOCABULARY_BROWSE==='true';
 const vocabularyImageDelivery=require('./middleware/vocabulary-image-delivery').configuredVocabularyImageDelivery(process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),process.env,{publishedRoot:vocabularyContent.publicationDirectory});
 const vocabularyTeachingContent=require('./services/vocabulary-teaching-content').createVocabularyTeachingContent({content:vocabularyContent,appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),resolveImage:vocabularyImageDelivery.resolveImage});
 const library = createLibraryCatalog({ db, vocabularyContent, appRoot: process.env.CHUNKLAB_APP_ROOT || path.resolve(__dirname, '..') });
-const membershipContentRegistry = new (require('./services/membership/content-registry').ContentRegistry)({
+const baseMembershipContentRegistry = new (require('./services/membership/content-registry').ContentRegistry)({
   activeManifest:()=>{const row=db.prepare('SELECT manifest_json AS body FROM membership_static_activations ORDER BY rowid DESC LIMIT 1').get();return row||null;},
   appRoot: process.env.CHUNKLAB_APP_ROOT || path.resolve(__dirname, '..'),
   protectedRoot: path.join(path.dirname(path.resolve(db.name)), 'membership-content'),
@@ -267,6 +280,18 @@ const membershipContentRegistry = new (require('./services/membership/content-re
     units: resource.sourceRefs.map((contentRef, index) => ({ unitId: 'legacy-' + index, contentRef, itemIds: ['*'] }))
   }))
 });
+const expressionCoursesEnabled = process.env.EXPRESSION_COURSES_ENABLED === 'true';
+let expressionCourseRepository = null;
+let membershipContentRegistry = baseMembershipContentRegistry;
+if (expressionCoursesEnabled) {
+  require('./services/expression-course/schema').ensureExpressionCourseSchema(db);
+  expressionCourseRepository = require('./services/expression-course/repository').createExpressionCourseRepository({
+    db, validatePackage: require('./services/expression-course/validate.cjs').validateExpressionPackage
+  });
+  membershipContentRegistry = require('./services/expression-course/registry-adapter').createExpressionRegistryAdapter({
+    base: baseMembershipContentRegistry, repository: expressionCourseRepository
+  });
+}
 const membershipCourseAccess = require('./services/membership/course-access-service').createCourseAccessService({
   db, registry: membershipContentRegistry, entitlements: membershipEntitlements,
   usageMeter: membershipTrialMeter, membership,
@@ -282,21 +307,43 @@ const membershipContentGrants = new (require('./services/membership/content-gran
   authorize: (...args) => membershipCourseAccess.authorize(...args)
 });
 require('./routes/course-fragments').registerCourseFragmentRoutes({ app, auth, registry: membershipContentRegistry, grants: membershipContentGrants });
+// A stable deployment key preserves licenses across restarts. Missing configuration
+// disables only offline package issuance, never existing online learning.
+let offlineLicenses=null,offlineUnits=null;
+if(process.env.OFFLINE_LICENSE_PRIVATE_KEY&&process.env.OFFLINE_LICENSE_SERVICE){
+  const privateKey=process.env.OFFLINE_LICENSE_PRIVATE_KEY.replace(/\\n/g,'\n');
+  const publicKey=require('node:crypto').createPublicKey(privateKey).export({type:'spki',format:'pem'});
+  offlineLicenses=require('./services/membership/offline-license').createOfflineLicense({privateKey,publicKey});
+  offlineUnits=require('./services/membership/offline-unit-service').createOfflineUnitService({registry:membershipContentRegistry,
+    access:membershipCourseAccess,licenses:offlineLicenses,service:process.env.OFFLINE_LICENSE_SERVICE});
+}
+require('./routes/offline-course').registerOfflineCourseRoutes({app,auth,units:offlineUnits,licenses:offlineLicenses});
 require('./routes/protected-course-content').registerProtectedCourseContentRoutes({
   app, auth, courseAccess: membershipCourseAccess, registry: membershipContentRegistry, grants: membershipContentGrants, usageMeter: membershipTrialMeter, adminOnly
 });
+if (expressionCourseRepository) {
+  const expressionSessions = require('./services/expression-course/session-service').createExpressionSessionService({
+    db, repository: expressionCourseRepository, runtime: require('./services/expression-course/runtime.cjs'),
+    authorize: (...args) => membershipCourseAccess.authorize(...args)
+  });
+  require('./routes/expression-courses').registerExpressionCourseRoutes({ app, auth, adminOnly,
+    repository: expressionCourseRepository, sessions: expressionSessions, access: membershipCourseAccess });
+}
 library.setPlatformResources(() => membershipCourseAccess.catalogResources());
 require('./routes/course-publishing').registerCoursePublishingRoutes({ app, adminOnly,
-  publisher: require('./services/membership/course-publisher').createCoursePublisher({ db, registry: membershipContentRegistry, courseAccess: membershipCourseAccess }) });
+  publisher: require('./services/membership/course-publisher').createCoursePublisher({ db, registry: baseMembershipContentRegistry, courseAccess: membershipCourseAccess }) });
 require('./routes/course-source-review').registerCourseSourceReviewRoutes({app,adminOnly,
   inventory:new (require('./services/membership/legacy-course-inventory').LegacyCourseInventory)({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),
     publicDecks:()=>db.prepare('SELECT id,items_json FROM user_decks WHERE is_public=1 AND deleted_at IS NULL').all().map(row=>({id:row.id,items:JSON.parse(row.items_json)}))})});
 registerLibraryRoutes({ app, adminOnly, library });
-require('./routes/illustration-review').registerIllustrationReviewRoutes({app,adminOnly,service:require('./services/illustration-review').createIllustrationReview({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),storePath:path.join(path.dirname(path.resolve(db.name)),'illustration-review.sqlite')})});
+require('./routes/illustration-review').registerIllustrationReviewRoutes({app,adminOnly,service:require('./services/illustration-review').createIllustrationReview({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),storePath:path.join(path.dirname(path.resolve(db.name)),'illustration-review.sqlite'),catalogFile:process.env.VOCAB_IMAGE_CATALOG||undefined})});
 const wordbookPublisher=require('./services/wordbook-publisher').createWordbookPublisher({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),content:vocabularyContent,versions:publicWordbookVersions,checkImageAliases:vocabularyImageDelivery.checkAliases});
 require('./routes/wordbook-publishing').registerWordbookPublishingRoutes({app,adminOnly,publisher:wordbookPublisher});
 const adminWordbookImports=require('./services/admin-wordbook-imports').createAdminWordbookImports({appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..'),dataDirectory:path.join(path.dirname(path.resolve(db.name)),'system-wordbook-imports'),publisher:wordbookPublisher,checkAliases:vocabularyImageDelivery.checkAliases});
 require('./routes/admin-wordbook-imports').registerAdminWordbookImportRoutes({app,adminOnly,service:adminWordbookImports});
+const textbookAppRoot=process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..');
+const textbookProductionConfig=require('../scripts/serve-textbook-production.cjs').configuration({appRoot:textbookAppRoot,dataRoot:path.dirname(path.resolve(db.name)),sourceRoot:process.env.TEXTBOOK_SOURCE_ROOT||'E:/chunk-practice-asset-sources/textbooks',packageRoot:process.env.TEXTBOOK_PACKAGE_ROOT||'E:/chunk-practice-assets/textbooks',catalogFile:process.env.VOCAB_IMAGE_CATALOG||path.join(textbookAppRoot,'output/vocabulary-illustrations/catalog-20261022-reviewed-v1.json'),reviewFile:path.join(textbookAppRoot,'output/textbook-sentence-review/review-decisions.json')});
+require('./routes/textbook-production').registerTextbookProductionRoutes({app,adminOnly,appRoot:textbookAppRoot,service:require('./services/textbook-production').createTextbookProduction({config:textbookProductionConfig})});
 const materialLibrary=require('./services/vocabulary-material-library').createVocabularyMaterialLibrary({storePath:path.join(path.dirname(path.resolve(db.name)),'vocabulary-material-library.sqlite')});
 require('./routes/vocabulary-material-library').registerVocabularyMaterialLibraryRoutes({app,adminOnly,service:materialLibrary,releases:require('./services/vocabulary-material-release').createVocabularyMaterialRelease({service:materialLibrary,publisher:wordbookPublisher,appRoot:process.env.CHUNKLAB_APP_ROOT||path.resolve(__dirname,'..')})});
 registerContentStudioRoutes({
@@ -360,7 +407,9 @@ const {
      反过来（先读行、后读计数器）会把「请求期间新写入的行」也读进来，
      却把水位报到更新的值 → 客户端以为收到了、下次不再拉（静默少数据）。 */
 const { currentSeq, allocSeq } = createChangeSequence({ stmt });
-const { buildMemSnapshot, readMemSnapshot } = createSnapshotReader({ db, currentSeq });
+const { buildMemSnapshot, readMemSnapshot, readLearningSnapshot } = createSnapshotReader({ db, currentSeq });
+const courseLibrary = createCourseLibrary({ db });
+vocabularyContent.personal?.setLibrary(courseLibrary);
 const { migrateStatsToRows, migrateEntityRows } = createDataMigrations({
   db,
   allocSeq,
@@ -414,6 +463,8 @@ const protectedAssessmentContent = require('./services/membership/assessment-con
 const operations = createOperations({
   db,
   library,
+  courseLibrary,
+  learningDataFormat,
   vocabularyContent,
   enableWordDictation:wordDictationEnabled,
   enableWordChoice:wordChoiceEnabled,
@@ -436,7 +487,7 @@ const operations = createOperations({
   srs: serverSrs,
   reducePracticeEvents,
   assessmentScopeKey: protectedAssessmentContent.scopeKey,
-  resolveAssessmentItem: createAssessmentContent({ db,
+  resolveAssessmentItem: createAssessmentContent({ db, courseLibrary,
     resolveProtectedItem: protectedAssessmentContent.resolve,
     assertPublicDeck: deckId => {
       if (deckId.startsWith('protected_') || membershipContentRegistry.snapshot().courses.some(course => course.legacyDeckIds.includes(deckId) ||
@@ -480,8 +531,12 @@ registerWordbookRoutes({app,auth,content:vocabularyContent,browse:vocabularyBrow
 registerDataRoutes({
   app,
   auth,
-  readMemSnapshot
+  writeProtocol: WRITE_PROTOCOL,
+  readMemSnapshot,
+  readLearningSnapshot,
+  learningDataFormat
 });
+registerCourseLibraryRoutes({ app, auth, library: courseLibrary, validate });
 
 if (WRITE_PROTOCOL === 3) {
   require('./routes/retired-sync').registerRetiredSyncRoutes({ app, auth, db });
@@ -537,6 +592,8 @@ registerBackupRoutes({
   app,
   auth,
   readMemSnapshot,
+  readLearningSnapshot,
+  learningDataFormat,
   personalWordbooks:vocabularyContent.personal
 });
 registerSystemRoutes({

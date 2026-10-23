@@ -1,7 +1,7 @@
 const dimensions = ['audiences', 'schoolStages', 'grades', 'levels', 'goals', 'topics', 'exams'];
-const scalarFacets = ['seriesId', 'publisherId', 'edition', 'volume'];
+const scalarFacets = ['seriesId', 'publisherId', 'textbookVersion', 'edition', 'volume'];
 const kinds = new Set(['course', 'wordbook', 'textbook']);
-const referenceTypes = new Set(['sentence-deck', 'story-package', 'vocabulary-pilot', 'vocabulary-book', 'protected-course']);
+const referenceTypes = new Set(['sentence-deck', 'story-package', 'vocabulary-pilot', 'vocabulary-book', 'protected-course', 'personal-course', 'expression-course']);
 const text = (value, max = 200) => typeof value === 'string' ? value.trim().slice(0, max) : '';
 
 export function safeCover(value) {
@@ -18,7 +18,7 @@ export function normalizeResource(source = {}) {
   const sourceRefs = (Array.isArray(source.sourceRefs) ? source.sourceRefs : [])
     .filter(ref => referenceTypes.has(ref?.type) && text(ref.id)).map(ref => ({ type: ref.type, id: text(ref.id) }));
   const available = source.available !== false && sourceRefs.length > 0;
-  const activities = available ? [...new Set(sourceRefs.map(ref => ref.type === 'vocabulary-pilot'||ref.type==='vocabulary-book' ? 'vocabulary' : 'chunks'))] : [];
+  const activities = available ? [...new Set(sourceRefs.map(ref => ref.type === 'vocabulary-pilot'||ref.type==='vocabulary-book' ? 'vocabulary' : ref.type === 'expression-course' ? 'expression' : 'chunks'))] : [];
   return {
     resourceId: text(source.resourceId), kind: kinds.has(source.kind) ? source.kind : 'course',
     title: text(source.title), description: text(source.description, 1000), coverUrl: safeCover(source.coverUrl),
@@ -27,6 +27,8 @@ export function normalizeResource(source = {}) {
     available, unavailableReason: available ? '' : text(source.unavailableReason) || '内容暂不可用',
     metadataRevision: Number.isSafeInteger(source.metadataRevision) ? source.metadataRevision : 0,
     courseId: text(source.courseId),
+    unitCount: Number.isSafeInteger(source.unitCount) && source.unitCount >= 0 ? source.unitCount : null,
+    itemCount: Number.isSafeInteger(source.itemCount) && source.itemCount >= 0 ? source.itemCount : null,
     accessLevel: source.accessLevel === 'member' ? 'member' : 'free',
     relatedCourseIds: [...new Set((Array.isArray(source.relatedCourseIds) ? source.relatedCourseIds : [])
       .map(value => text(value, 200)).filter(value => /^course:[a-zA-Z0-9:._-]{1,193}$/.test(value)))].slice(0, 20),

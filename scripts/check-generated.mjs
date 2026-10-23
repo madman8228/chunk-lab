@@ -9,6 +9,8 @@ import { buildMembership } from './build-membership.mjs';
 import {buildVocabularyStudy} from './build-vocabulary-study.mjs';
 import {buildWordbookAuthoring} from './build-wordbook-authoring.mjs';
 import {buildVocabularyMaterialLibrary} from './build-vocabulary-material-library.mjs';
+import { buildExpressionCourse } from './build-expression-course.mjs';
+import { buildChunkSelection } from './build-chunk-selection.mjs';
 import {buildVocabularyContent} from './build-vocabulary-content.mjs';
 import { DRAFT_SPEC } from '../src/course-authoring/draft-spec.mjs';
 import { CourseCapabilityCatalog } from '../src/course-authoring/capabilities.mjs';
@@ -17,6 +19,7 @@ import { COURSE_TYPES } from '../src/course-authoring/course-types.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'chunklab-generated-'));
+await buildChunkSelection(temp);
 const expected = path.join(root, 'js', 'vendor', 'course-schema-validator.js');
 const actual = path.join(temp, 'course-schema-validator.js');
 const expectedIdentity = path.join(root, 'js', 'core-identity.js');
@@ -107,6 +110,14 @@ try {
   await buildVocabularyStudy(temp);
   await buildWordbookAuthoring(temp);
   await buildVocabularyMaterialLibrary(temp);
+  await buildExpressionCourse(path.join(temp, 'expression-js'), path.join(temp, 'expression-server'));
+  for (const [expected, actual] of [
+    [path.join(root, 'js/expression-course-runtime.js'), path.join(temp, 'expression-js/expression-course-runtime.js')],
+    [path.join(root, 'js/expression-course-player.js'), path.join(temp, 'expression-js/expression-course-player.js')],
+    [path.join(root, 'js/expression-course-authoring.js'), path.join(temp, 'expression-js/expression-course-authoring.js')],
+    [path.join(root, 'server/services/expression-course/runtime.cjs'), path.join(temp, 'expression-server/runtime.cjs')],
+    [path.join(root, 'server/services/expression-course/validate.cjs'), path.join(temp, 'expression-server/validate.cjs')],
+  ]) if (!fs.readFileSync(expected).equals(fs.readFileSync(actual))) throw new Error('表达课程生成文件过期：' + path.basename(expected));
   if(!fs.readFileSync(path.join(root,'js/vocabulary-material-library.js')).equals(fs.readFileSync(path.join(temp,'vocabulary-material-library.js'))))throw new Error('材料库浏览器模块过期');
   if(!fs.readFileSync(path.join(root,'js/wordbook-authoring.js')).equals(fs.readFileSync(path.join(temp,'wordbook-authoring.js'))))throw new Error('单词本制作模块过期');
   buildVocabularyContent(path.join(temp,'vocabulary'));
@@ -510,7 +521,7 @@ try {
     console.error('[build:check] AI course kit differs; run npm run build');
     process.exitCode = 1;
   }
-  if (!fs.existsSync(expected) || hash(expected) !== hash(actual) || !fs.existsSync(expectedIdentity) || hash(expectedIdentity) !== hash(actualIdentity) || !fs.existsSync(expectedMerge) || hash(expectedMerge) !== hash(actualMerge) || !fs.existsSync(expectedActivity) || hash(expectedActivity) !== hash(actualActivity) || !fs.existsSync(expectedEventBus) || hash(expectedEventBus) !== hash(actualEventBus) || !fs.existsSync(expectedMigrations) || hash(expectedMigrations) !== hash(actualMigrations) || !fs.existsSync(expectedStatsSignature) || hash(expectedStatsSignature) !== hash(actualStatsSignature) || !fs.existsSync(expectedStorageState) || hash(expectedStorageState) !== hash(actualStorageState) || !fs.existsSync(expectedEntityDelta) || hash(expectedEntityDelta) !== hash(actualEntityDelta) || !fs.existsSync(expectedSyncDelta) || hash(expectedSyncDelta) !== hash(actualSyncDelta) || !fs.existsSync(expectedSyncIntents) || hash(expectedSyncIntents) !== hash(actualSyncIntents) || !fs.existsSync(expectedSyncPayload) || hash(expectedSyncPayload) !== hash(actualSyncPayload) || !fs.existsSync(expectedSyncTransport) || hash(expectedSyncTransport) !== hash(actualSyncTransport) || !fs.existsSync(expectedSyncReplay) || hash(expectedSyncReplay) !== hash(actualSyncReplay) || !fs.existsSync(expectedSyncBatchMerge) || hash(expectedSyncBatchMerge) !== hash(actualSyncBatchMerge) || !fs.existsSync(expectedSyncStatsNormalize) || hash(expectedSyncStatsNormalize) !== hash(actualSyncStatsNormalize) || !fs.existsSync(expectedSyncLearningMarks) || hash(expectedSyncLearningMarks) !== hash(actualSyncLearningMarks) || !fs.existsSync(expectedSyncEntityMerge) || hash(expectedSyncEntityMerge) !== hash(actualSyncEntityMerge) || !fs.existsSync(expectedSyncKv) || hash(expectedSyncKv) !== hash(actualSyncKv) || !fs.existsSync(expectedRuntime) || hash(expectedRuntime) !== hash(actualRuntime) || !fs.existsSync(expectedMainLifecycle) || hash(expectedMainLifecycle) !== hash(actualMainLifecycle) || !fs.existsSync(expectedMain) || hash(expectedMain) !== hash(actualMain) || !fs.existsSync(expectedMainExplanation) || hash(expectedMainExplanation) !== hash(actualMainExplanation) || !fs.existsSync(expectedMainPracticePolicy) || hash(expectedMainPracticePolicy) !== hash(actualMainPracticePolicy) || !fs.existsSync(expectedMainPracticeState) || hash(expectedMainPracticeState) !== hash(actualMainPracticeState) || !fs.existsSync(expectedMainLegacyStats) || hash(expectedMainLegacyStats) !== hash(actualMainLegacyStats)) {
+  if (!fs.existsSync(path.join(root, 'js/chunk-selection.js')) || hash(path.join(root, 'js/chunk-selection.js')) !== hash(path.join(temp, 'chunk-selection.js')) || !fs.existsSync(expected) || hash(expected) !== hash(actual) || !fs.existsSync(expectedIdentity) || hash(expectedIdentity) !== hash(actualIdentity) || !fs.existsSync(expectedMerge) || hash(expectedMerge) !== hash(actualMerge) || !fs.existsSync(expectedActivity) || hash(expectedActivity) !== hash(actualActivity) || !fs.existsSync(expectedEventBus) || hash(expectedEventBus) !== hash(actualEventBus) || !fs.existsSync(expectedMigrations) || hash(expectedMigrations) !== hash(actualMigrations) || !fs.existsSync(expectedStatsSignature) || hash(expectedStatsSignature) !== hash(actualStatsSignature) || !fs.existsSync(expectedStorageState) || hash(expectedStorageState) !== hash(actualStorageState) || !fs.existsSync(expectedEntityDelta) || hash(expectedEntityDelta) !== hash(actualEntityDelta) || !fs.existsSync(expectedSyncDelta) || hash(expectedSyncDelta) !== hash(actualSyncDelta) || !fs.existsSync(expectedSyncIntents) || hash(expectedSyncIntents) !== hash(actualSyncIntents) || !fs.existsSync(expectedSyncPayload) || hash(expectedSyncPayload) !== hash(actualSyncPayload) || !fs.existsSync(expectedSyncTransport) || hash(expectedSyncTransport) !== hash(actualSyncTransport) || !fs.existsSync(expectedSyncReplay) || hash(expectedSyncReplay) !== hash(actualSyncReplay) || !fs.existsSync(expectedSyncBatchMerge) || hash(expectedSyncBatchMerge) !== hash(actualSyncBatchMerge) || !fs.existsSync(expectedSyncStatsNormalize) || hash(expectedSyncStatsNormalize) !== hash(actualSyncStatsNormalize) || !fs.existsSync(expectedSyncLearningMarks) || hash(expectedSyncLearningMarks) !== hash(actualSyncLearningMarks) || !fs.existsSync(expectedSyncEntityMerge) || hash(expectedSyncEntityMerge) !== hash(actualSyncEntityMerge) || !fs.existsSync(expectedSyncKv) || hash(expectedSyncKv) !== hash(actualSyncKv) || !fs.existsSync(expectedRuntime) || hash(expectedRuntime) !== hash(actualRuntime) || !fs.existsSync(expectedMainLifecycle) || hash(expectedMainLifecycle) !== hash(actualMainLifecycle) || !fs.existsSync(expectedMain) || hash(expectedMain) !== hash(actualMain) || !fs.existsSync(expectedMainExplanation) || hash(expectedMainExplanation) !== hash(actualMainExplanation) || !fs.existsSync(expectedMainPracticePolicy) || hash(expectedMainPracticePolicy) !== hash(actualMainPracticePolicy) || !fs.existsSync(expectedMainPracticeState) || hash(expectedMainPracticeState) !== hash(actualMainPracticeState) || !fs.existsSync(expectedMainLegacyStats) || hash(expectedMainLegacyStats) !== hash(actualMainLegacyStats)) {
     console.error('[build:check] generated output differs; run npm run build');
     process.exitCode = 1;
   } else {

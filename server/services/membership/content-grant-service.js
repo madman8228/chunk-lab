@@ -1,7 +1,7 @@
 'use strict';
 const crypto = require('node:crypto');
 const fail = (code, status = 403) => Object.assign(new Error(code), { code, status });
-const PURPOSES = new Set(['practice', 'review', 'assessment']);
+const PURPOSES = new Set(['practice', 'review', 'assessment', 'preview']);
 
 class ContentGrantService {
   constructor({ keyProvider, resolveScope, authorize, now = Date.now }) {

@@ -25,6 +25,8 @@ fs.writeFileSync(path.join(fixtureDir, 'fail.js'), "console.error('fail fixture'
 fs.writeFileSync(path.join(fixtureDir, 'hang.js'), "setInterval(function () {}, 1000);\n");
 fs.writeFileSync(path.join(fixtureDir, 'flaky.js'), "const fs = require('fs'); const p = " + JSON.stringify(fixtureFile('flaky.marker')) + "; if (!fs.existsSync(p)) { fs.writeFileSync(p, 'seen'); console.error('flaky first attempt'); process.exit(9); } console.log('flaky retry passed');\n");
 fs.writeFileSync(path.join(fixtureDir, 'secret.js'), "console.log(JSON.stringify({password:'password-secret', token:'token-secret', authorization:'Bearer auth-secret'}));\n");
+fs.writeFileSync(path.join(fixtureDir, 'phone-auth-env.js'), "console.log(process.env.NODE_ENV + ':' + process.env.PHONE_AUTH_ENABLED);\n");
+fs.writeFileSync(path.join(fixtureDir, 'course-auth-env.js'), "console.log(process.env.NODE_ENV + ':' + process.env.REQUIRE_AUTH);\n");
 fs.writeFileSync(path.join(fixtureDir, 'child-tree.js'), "const fs = require('fs'); const {spawn} = require('child_process'); const child = spawn(process.execPath, ['-e', 'setInterval(function(){}, 1000)'], {stdio:'ignore'}); fs.writeFileSync(" + JSON.stringify(fixtureFile('child-pids.json')) + ", JSON.stringify({parent:process.pid, child:child.pid})); setInterval(function(){}, 1000);\n");
 
 function withRetries(value, callback) {
@@ -55,6 +57,29 @@ async function waitUntilDead(pids) {
     const ok = await run({ id: 'fixture:pass', file: fixtureFile('pass.js'), cwd: '.', group: 'unit', args: [] });
     assert.strictEqual(ok.code, 0);
     assert.match(ok.output, /pass fixture/);
+
+    const previousPhoneAuth = process.env.PHONE_AUTH_ENABLED;
+    delete process.env.PHONE_AUTH_ENABLED;
+    try {
+      const isolatedAuth = await run({ id: 'fixture:auth-default', file: fixtureFile('phone-auth-env.js'), cwd: '.', group: 'unit', args: [] });
+      assert.strictEqual(isolatedAuth.output.trim(), 'test:false');
+      const explicitAuth = await run({ id: 'fixture:auth-explicit', file: fixtureFile('phone-auth-env.js'), cwd: '.', group: 'unit', args: [] },
+        { env: { ...process.env, NODE_ENV: 'production', PHONE_AUTH_ENABLED: 'true' } });
+      assert.strictEqual(explicitAuth.output.trim(), 'production:true');
+    } finally {
+      if (previousPhoneAuth === undefined) delete process.env.PHONE_AUTH_ENABLED;
+      else process.env.PHONE_AUTH_ENABLED = previousPhoneAuth;
+    }
+
+    const previousRequireAuth = process.env.REQUIRE_AUTH;
+    process.env.REQUIRE_AUTH = 'true';
+    try {
+      const isolatedCourseAuth = await run({ id: 'fixture:course-auth-default', file: fixtureFile('course-auth-env.js'), cwd: '.', group: 'browser', args: [] });
+      assert.strictEqual(isolatedCourseAuth.output.trim(), 'test:false', 'browser fixtures must not inherit the service secure default without test credentials');
+    } finally {
+      if (previousRequireAuth === undefined) delete process.env.REQUIRE_AUTH;
+      else process.env.REQUIRE_AUTH = previousRequireAuth;
+    }
 
     const failed = await run({ id: 'fixture:fail', file: fixtureFile('fail.js'), cwd: '.', group: 'unit', args: [] });
     assert.strictEqual(failed.code, 7);

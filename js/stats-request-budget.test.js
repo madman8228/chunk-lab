@@ -5,7 +5,8 @@ function fixture() {
   const handlers = {}, requests = [], deferred = [];
   function node() { return { dataset:{}, children:[], hidden:false, tagName:'DIV', append(){}, replaceChildren(){}, contains(){return false;},
     querySelector(){return null;},querySelectorAll(){return [];},setAttribute(){},addEventListener(){},focus(){} }; }
-  const nodes = new Map();
+  const nodes = new Map(),domainButton={dataset:{domain:'vocabulary'},setAttribute(){}};
+  const domains=node();domains.children=[domainButton];domains.addEventListener=(name,fn)=>{domains['on'+name]=fn;};nodes.set('statsDomains',domains);
   const document = { visibilityState:'visible', getElementById(id){ if(!nodes.has(id))nodes.set(id,node());return nodes.get(id); },createElement:node };
   const window = { document, AccountStorage:{get owner(){return owner;}}, statsSurfaceVisible:()=>visible,
     ChunkAPI:{isLoggedIn:()=>true,getBase:()=>'',request:path=>{
@@ -16,6 +17,7 @@ function fixture() {
     renderStats:()=>window.StatsVocabulary&&window.StatsVocabulary.render(tab) };
   vm.runInNewContext(fs.readFileSync(require.resolve('./stats-vocabulary'), 'utf8'), {window, document, console,
     statsSurfaceVisible:()=>visible, Promise,Set,Date});
+  domains.onclick({target:{closest:()=>domainButton}});
   return {window,requests,handlers,deferred,setVisible:v=>{visible=v;},setOwner:v=>{owner=v;},
     setTab:v=>{tab=v;window.StatsVocabulary.render(v);}, settle:async()=>{for(let i=0;i<8;i++)await new Promise(r=>setImmediate(r));}};
 }
@@ -28,7 +30,7 @@ function fixture() {
   f.setVisible(true); f.handlers['stats-surface-visibility'](); await f.settle();
   assert.equal(f.requests.length,2,'reopening coalesces hidden invalidations into one summary read');
   f.setTab('sent'); await f.settle();
-  assert.equal(f.requests.filter(p=>p.includes('/events')).length,1,'details load on first detail view');
+  assert.equal(f.requests.filter(p=>p.includes('/events')).length,1,'details load on first detail view: '+JSON.stringify(f.requests));
   f.setTab('overview');f.setTab('sent'); await f.settle();
   assert.equal(f.requests.filter(p=>p.includes('/events')).length,1,'unchanged details are reused');
   f.setVisible(false); f.handlers['focus']();await f.settle();assert.equal(f.requests.length,3);

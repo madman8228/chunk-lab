@@ -1,6 +1,6 @@
 (function(global){
   'use strict';
-  var pages=['main.html','decks.html','wordbook-details.html','stats.html'];
+  var pages=['main.html','decks.html','wordbook-details.html','stats.html','expression-learn.html'];
   function origin(){return global.location&&global.location.origin&&global.location.origin!=='null'?global.location.origin:'http://localhost';}
   function safe(value,depth){
     if(typeof value!=='string'||!value||value.length>4000)return '';
@@ -31,7 +31,7 @@
   function bookParent(bookId){return forward('wordbook-details.html?book='+encodeURIComponent(bookId),destination());}
   function label(href){
     var url=new URL(href,'http://localhost/');
-    if(url.pathname==='/wordbook-details.html'||url.pathname==='/decks.html')return '返回课程目录';
+    if(url.pathname==='/wordbook-details.html'||url.pathname==='/decks.html'||url.pathname==='/expression-learn.html')return '返回课程目录';
     if(url.pathname==='/stats.html'||url.searchParams.get('view')==='stats')return '返回学习记录';
     return url.searchParams.get('view')==='discover'?'返回发现':url.searchParams.get('view')==='home'?'返回首页':'返回我的内容';
   }

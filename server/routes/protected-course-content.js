@@ -20,6 +20,7 @@ function registerProtectedCourseContentRoutes({ app, auth, courseAccess, usageMe
   };
   function requireFragmentEntry(req) {
     const course=registry?.snapshot().courses.find(course=>course.courseId===req.params.courseId);
+    if(course?.contentType==='expression')throw Object.assign(new Error('EXPRESSION_RUNTIME_REQUIRED'),{code:'EXPRESSION_RUNTIME_REQUIRED',status:410});
     if(course?.units.find(unit=>unit.unitId===req.params.unitId)?.fragments)throw Object.assign(new Error('UNIFIED_COURSE_ENTRY_REQUIRED'),{code:'UNIFIED_COURSE_ENTRY_REQUIRED',status:410});
   }
   app.get('/api/course-content/catalog', json(() => ({ courses: courseAccess.catalog() })));

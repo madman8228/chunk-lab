@@ -54,10 +54,11 @@
    v40(2026-09-06)：main.html 修「本句讲解」与「满分通关」两卡之间 0 gap（.result 加 margin-top:14px）。
    v39(2026-09-06)：freq-idioms.js 修 2 条翻译（#29「吃什么像什么」、#88「两个工作机会之间举棋不定」）。
    v38(2026-09-06)：freq-idioms.js 重建至 103 条（修复 3 段声明叠加损坏 + 9 条句末标点数据）。 */
-const CACHE = 'chunklab-c4531141'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
+const CACHE = 'chunklab-888388b6'; // 由 scripts/gen-sw.js 按资源内容 hash 自动生成，勿手改
 /* 硬预缓存清单：小体积、离线必需。install 用 addAll 一次性装好，任一失败即安装失败
    （老 SW 继续服务 —— 这是正确的失败语义，不做"部分成功"的兜底）。 */
 const COVER_CACHE = 'course-covers-v1';
+const COURSE_MEDIA_CACHE = 'course-media-v1';
 function isCourseCover(path) {
   return /^\/assets\/(?:covers|catalog)\/[A-Za-z0-9/_.-]+\.(?:webp|svg|png|jpg|jpeg|avif)$/.test(path);
 }
@@ -143,8 +144,6 @@ const PRECACHE = [
   '/assets/brand/icon-32-v1.png',
   '/assets/brand/jqka-logo-v1.webp',
   '/js/notice-banner.js',
-  '/assets/admin-wordbooks.css',
-  '/js/admin-wordbooks.js',
   '/assets/lesson-card.css',
   '/js/lesson-card.js',
   '/assets/course-learning-header.css',
@@ -153,6 +152,22 @@ const PRECACHE = [
   '/landing/listen-word-view.js',
   '/assets/personal-center.css',
   '/js/course-return.js',
+  '/browser-confirmation-repair.html',
+  '/js/vocabulary-unit-cache.js',
+  '/assets/practice-reference-layout.css',
+  '/js/practice-layout.js',
+  '/assets/expression-course.css',
+  '/assets/home-dashboard.css',
+  '/expression-create.html',
+  '/expression-learn.html',
+  '/js/expression-course-authoring.js',
+  '/js/expression-course-player.js',
+  '/assets/chunk-selection.css',
+  '/js/chunk-selection.js',
+  '/js/operation-toast.js',
+  '/js/page-update.js',
+  '/assets/course-directory.css',
+  '/js/course-directory.js',
 ];
 
 /* 可选资源清单（保留 PRECACHE_SOFT 名称供生成器和版本校验使用）：
@@ -161,6 +176,8 @@ const PRECACHE = [
    课程目录、统计、作者页及图片不再消耗每位学习用户的安装流量。
    学习必需资源仍在原子清单；未访问过的可选页面不保证离线可用。 */
 const PRECACHE_SOFT = [
+  '/assets/admin-wordbooks.css',
+  '/js/admin-wordbooks.js',
   '/js/stats-page.js',
   '/assets/wordbook-intro.css',
   '/js/vocabulary-browse-store.js',
@@ -251,8 +268,8 @@ const PRECACHE_SOFT = [
   '/js/membership.js',
   '/admin-membership.html',
   '/assets/jqka-learning-garden-body-v1.webp',
-  '/assets/jqka-learning-garden-v1.png',
-  '/assets/jqka-learning-garden-body-v1.png',
+  '/assets/jqka-learning-garden-v1.webp',
+  '/assets/jqka-learning-garden-body-v1.webp',
   '/course-package.js',
   '/courses.html',
   '/decks.html',
@@ -388,9 +405,27 @@ self.addEventListener('fetch', function (e) {
     }));
     return;
   }
-  // Vocabulary illustrations use shared HTTP/content-hash caching, not one
-  // application Cache API entry per course alias. Do not precache the library.
-  if (/^\/assets\/vocab-[A-Za-z0-9._-]+\.webp$/.test(url.pathname) || /^\/_vocab-images\/[a-f0-9]{64}\.webp$/.test(url.pathname)) return;
+  // Only actual media requests populate this bounded cache. It survives shell updates.
+  if (/^\/_vocab-images\/[a-f0-9]{64}\.webp$/.test(url.pathname) ||
+      /^\/assets\/[A-Za-z0-9._-]+\.(webp|avif|ogg|mp3|wav)$/.test(url.pathname) && PRECACHE.indexOf(url.pathname) === -1) {
+    e.respondWith(caches.open(COURSE_MEDIA_CACHE).then(async function(media) {
+      var hit = await media.match(req);
+      if (hit) return hit;
+      var response = await fetch(req);
+      if (response.status === 200 && /^(image\/|audio\/)/.test(response.headers.get('Content-Type') || '')) {
+        try {
+          var bytes = await response.clone().arrayBuffer();
+          if (bytes.byteLength <= 1000000) {
+            await media.put(req, response.clone());
+            var entries = await media.keys();
+            while (entries.length > 64) await media.delete(entries.shift());
+          }
+        } catch (_) { /* A cache failure must not prevent current media use. */ }
+      }
+      return response;
+    }));
+    return;
+  }
 
   /* Application HTML and scripts are one atomic installed bundle. Network-first
      HTML with cache-first JS mixes releases during return navigation. Serve the

@@ -25,7 +25,17 @@ const trial = service.issue(input, 'user'); assert.equal(trial.expiresAt, now + 
 decision = { allowed: false, reasonCode: 'SESSION_REQUIRED' }; assert.throws(() => service.verify(trial.grant, target), /SESSION_REQUIRED/);
 decision = { allowed: true, mode: 'free', policyRevision: 0, membershipRevision: 0 };
 assert.equal(service.issue(input, 'user').expiresAt, now + 30000);
+const preview = service.issue({ ...input, purpose: 'preview', sessionId: undefined }, 'user');
+assert.equal(preview.expiresAt, now + 30000, 'a content preview grant works for free content without a learning session');
+service.verify(preview.grant, { ...target, purpose: 'preview' });
+decision = { allowed: true, mode: 'member', endsAt: now + 60000, policyRevision: 1, membershipRevision: 2 };
+const memberPreview = service.issue({ ...input, purpose: 'preview', sessionId: undefined }, 'user');
+service.verify(memberPreview.grant, { ...target, purpose: 'preview' });
+decision = { allowed: false, reasonCode: 'SESSION_REQUIRED' };
+assert.throws(() => service.issue({ ...input, purpose: 'preview', sessionId: undefined }, 'user'), /SESSION_REQUIRED/,
+  'preview cannot create a trial session or bypass trial entitlement');
 assert.throws(() => service.issue(input, null), /AUTH_REQUIRED/);
+decision = { allowed: true, mode: 'member', endsAt: now + 60000, policyRevision: 1, membershipRevision: 2 };
 const numeric = service.issue(input, 27); service.verify(numeric.grant, { ...target, userId: 27 });
 const rollback = service.issue(input, 'user'); now--;
 assert.throws(() => service.verify(rollback.grant, target), /MISMATCH/); now++;

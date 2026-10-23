@@ -20,7 +20,7 @@ let server;
 function startServer(protocol) {
   return new Promise(function (resolve, reject) {
     server = spawn(process.execPath, [Number(protocol || 2) === 2 ? 'testing/start-historical.js' : 'index.js'], { cwd: path.join(ROOT, 'server'), env: Object.assign({}, process.env, {
-      CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', CHUNKLAB_WRITE_PROTOCOL: String(protocol || 2)
+      CHUNKLAB_DATA_DIR: TMP_DB, PORT: String(PORT), NODE_ENV: 'test', REQUIRE_AUTH: 'false', CHUNKLAB_WRITE_PROTOCOL: String(protocol || 2)
     }), stdio: 'ignore' });
     var tries = 0;
     var timer = setInterval(function () {
@@ -151,7 +151,7 @@ function stopServer() { if (server) try { server.kill('SIGKILL'); } catch (e) {}
     await page.goto(BASE + '/courses.html?id=' + encodeURIComponent(COURSE_ID) + '&e2e=course-package-v2', { waitUntil: 'networkidle' });
     var courseScriptUrl = await page.locator('script[src^="course-package.js"]').getAttribute('src');
     var expectedCourseScriptHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, 'course-package.js'), 'utf8').replace(/\r\n/g, '\n')).digest('hex').slice(0, 12);
-    if (new URL(courseScriptUrl, BASE).searchParams.get('v') !== expectedCourseScriptHash) throw new Error('课程页面脚本缓存版本未随 course-package.js 内容更新');
+    if (new URL(courseScriptUrl, BASE).searchParams.get('v') !== expectedCourseScriptHash) throw new Error('课程页面脚本缓存版本未随 course-package.js 内容更新：' + JSON.stringify({ courseScriptUrl, expectedCourseScriptHash }));
     await page.waitForSelector('.mode-guide');
     await page.waitForFunction(function(){ return !!CL.getCloudConfig(); }, null, { timeout:15000 });
     var legacyBatchModuleLoaded = await page.evaluate(function(){ return !!window.BatchSync; });
