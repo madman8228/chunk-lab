@@ -14,6 +14,8 @@ The old 91-line context-branching card renderer is replaced by a 34-line page ad
 
 ## Verification
 
+2026-10-22 metadata refinement: both shelves display the explicit `facets.textbookVersion` in an upper-left badge. With one grade, volume and edition, the visible title is derived from those fields; the full name remains authoritative for accessible links, search and details. Missing metadata and ordinary courses retain original titles. See `docs/architecture/course-card-metadata-2026-10-22.md` for production and safe revision rules.
+
 - `node scripts/content-card-consistency.test.cjs`: same resources in both contexts, 902/390px and light/dark; equal computed visual properties, default/custom covers, long titles, unavailable content, route links, supplied action callbacks, cross-context menu exclusivity, wordbook resume, real coarse-pointer 44px targets.
 - `node scripts/default-cover-preview.test.cjs`
 - `node scripts/workspace-menu.test.cjs`

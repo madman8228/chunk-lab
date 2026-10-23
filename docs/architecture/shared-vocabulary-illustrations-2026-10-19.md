@@ -5,9 +5,9 @@ Course items keep their existing `images.wide` / `images.mobile` local reference
 ## Identity, review and reuse
 
 - Asset identity is SHA-256 of the actual delivery bytes. Original artwork is not served as fallback. Each actual delivery must be a recognized 16:9 WebP, nonempty and strictly below 20,000 bytes.
-- The catalog holds separate source course/unit/item bindings, headword, gloss, audience stage, style authority and review state. It checks report hashes/sizes against actual files and retains historical files. Identical byte files share an asset ID; semantically similar but different images stay separate.
+- The catalog holds separate source course/unit/item bindings, headword, gloss, audience stage, style authority and review state. It checks report hashes/sizes against actual files and retains historical files. Identical byte files share an asset ID. Exact word-and-gloss duplicates across stage/style may be considered in the manual reuse review; selecting one image requires a hash-bound pass review and explicit suitability confirmation for every target course.
 - Review snapshots include unit directory ID, item ID, exact delivery path and hash. Only a matching source review with `status: pass` is eligible. Matching gloss/stage/style is conservative; target-scene compatibility still needs an explicit reviewed selection. Catalogs are build artifacts from trusted local reports/reviews, not untrusted upload input.
-- `build`, `plan`, `apply`, and `export-oss` commands are in `scripts/vocabulary-illustrations.cjs`; each writes new output exclusively. `package-vocabulary-atlas.cjs --preflight` is the production entry before generation. Actual atlas packaging retains its existing standalone behavior for historical workflows; it does not magically prevent a user from bypassing preflight. The skill and AGENTS require preflight for future authoring.
+- `build`, `plan`, `apply`, `resolve-reviewed`, and `export-oss` commands are in `scripts/vocabulary-illustrations.cjs`; each writes new output exclusively. `resolve-reviewed` consumes hash-bound manual reuse decisions to create a new catalog: course-local image paths remain unchanged, aliases resolve to the selected shared image hash, and unused delivery records are omitted from that catalog. It never deletes the original files or updates a published course.
 - `apply` creates a new draft and never updates a published course. Existing curriculum revisions and learning records are unaffected. Previously generated alternate illustrations are preserved.
 
 ## Server configuration
@@ -29,6 +29,14 @@ Request resolution:
 3. In OSS mode, the canonical path redirects to `<base>/vocabulary/<sha256>.webp`. Set the object metadata from the upload manifest; the app cannot impose cache headers on OSS responses. Do not overwrite an existing hash key. A new image gets a new URL.
 
 Different course aliases resolving to one hash therefore share the final browser cache entry within the same website/cache context. Different pictures with the same word do not share cache unless a reviewed new course actually references the same image. No precache, entire-library download, per-account cache or per-course query parameter is added. Private authenticated course-image caching in `src/learning/course-image-cache.mjs` has a different access model and remains unchanged.
+
+After manual reuse decisions exist, create a new shared catalog without overwriting the source:
+
+```powershell
+node scripts/vocabulary-illustrations.cjs resolve-reviewed --catalog <source-catalog.json> --decisions <decisions.json> --out <new-resolved-catalog.json>
+```
+
+The resolver rejects stale decisions, missing scene-review confirmations, changed candidate hashes, and conflicting uses of one course-local path. The new catalog can then be independently validated and exported for OSS. Selecting a catalog for the live service remains a separate deployment action.
 
 The service worker lets vocabulary WebP aliases and canonical hash URLs use the browser HTTP cache directly, avoiding duplicate Cache API bodies per course alias and retention tied to application releases. Existing stored data is not explicitly cleared. This takes effect after the updated worker is installed; the local review service does not install that worker.
 

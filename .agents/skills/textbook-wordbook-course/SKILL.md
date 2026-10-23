@@ -23,7 +23,7 @@ Follow the repository root `AGENTS.md` first. This skill governs the repeatable 
 
 ## Generate and package illustrations
 
-Before generating new artwork, read [references/shared-images.md](references/shared-images.md) and run the shared-catalog preflight. Search across textbooks by sense, audience and style. Only reuse a hash-bound reviewed image after checking the target teaching scene. Apply selections into a new draft file; preserve originals, prior references and review records. Unreviewed matches go to review rather than automatic regeneration.
+Before generating new artwork, read [references/shared-images.md](references/shared-images.md) and run the shared-catalog preflight. Search across textbooks by sense, audience and style. Exact word-and-gloss matches across stages/styles may be shown as global-reuse candidates, but reuse is allowed only after a hash-bound reviewed image and explicit confirmation that the target scene suits every listed course. Never auto-merge cross-stage/style matches. Apply selections into a new draft file; preserve originals, prior references and review records. Unreviewed matches go to review rather than automatic regeneration.
 
 1. Use the built-in image-generation tool by default. For ordinary scenes, prefer a four-panel 2×2 atlas followed by local cropping, as authorized by the owner. Use individual calls for difficult actions, targeted repairs, or a failed panel. Read [references/batch-images.md](references/batch-images.md) for panel mapping, naming, and the local packaging command. Do not claim a fixed speed or token saving before measuring actual results.
 2. Make the target action/object immediately recognizable, age-appropriate, and faithful to the reviewed scene. Anchor this course's style to the approved Unit 1 campus original `ref/words-pic/split/masters/connect-with-v2.png`: natural proportions, detailed semi-realistic illustrated materials and restrained colors. Do not substitute a later generated image as the style reference. Scenes may change with the vocabulary; the visual treatment stays consistent. Avoid text, lettering, logos, and watermarks unless a particular lesson explicitly requires them.
@@ -31,6 +31,11 @@ Before generating new artwork, read [references/shared-images.md](references/sha
 4. Copy original generated artwork into the established master-art directory without deleting the generated source. Create browser delivery encodings separately. Never use a large master as an automatic browser fallback.
 5. Use additive, versioned filenames following repository conventions (for example `vocab-u<unit>-<slug>-wide-v1.webp`). Keep the existing schema: `images.wide` and `images.mobile` both contain the same single WebP path. Never overwrite existing assets; update draft references only after each referenced file exists. Preserve legacy multi-file courses and reports; the new production policy does not authorize their migration or deletion.
 6. Before accepting a batch, check each actual delivery file's byte size: strictly below 20,000 bytes. If one fails, adjust encoding/quality or simplify the illustration, preserve the original outside browser delivery, and re-check every output. Report unique delivery paths, not the sum of both profile arrays; four words normally produce four delivery files.
+
+## Organize textbook source assets
+
+- For a textbook-wide archive, follow [references/asset-packages.md](references/asset-packages.md). Keep source scans, course snapshots, illustrations, phonetics, audio and review evidence in a private, immutable, versioned package per exact textbook identity.
+- Confirm the inventory adapter supports the requested textbook before packaging. Preserve approval distinctions, hash-bind assets to item IDs, and verify the package independently. Large original PNGs may live in a local-only companion archive if the course package remains independently verifiable and the companion has its own hash manifest. Packaging does not publish, migrate course data, or upload to OSS.
 
 ## Preview, validate, and hand off
 
