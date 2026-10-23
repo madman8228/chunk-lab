@@ -53,7 +53,7 @@
 
 ## 验证入口
 
-- `node scripts/sw-install-budget.test.cjs`：首次缓存总量小于 1.5 MiB，统计程序按需加载。
+- `node scripts/sw-install-budget.test.cjs`：首次缓存总量小于 2 MiB（项目预算，并非浏览器限制），统计程序按需加载。
 - `node sw-policy.test.js`：版本完整性、按需资源划分和缓存策略。
 - `node scripts/offline-covers.test.cjs`：封面跨版本保留、不迁移旧程序、不移除账号图片缓存。
 - `node scripts/workspace-offline-directory.test.cjs`：离线重开、后台更新及账号／服务器隔离。

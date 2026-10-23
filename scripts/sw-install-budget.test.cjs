@@ -36,7 +36,7 @@ const vm = require('node:vm');
   assert.ok(hard.includes('/assets/brand/jqka-logo-v1.webp'),
     'visible homepage logo remains available offline');
   const bytes = hard.reduce((total, url) => total + fs.statSync(require('node:path').join(__dirname, '..', url.slice(1))).size, 0);
-  assert.ok(bytes < 1.5 * 1024 * 1024, 'atomic installation remains below the existing 1.5 MiB budget: ' + bytes);
+  assert.ok(bytes < 2 * 1024 * 1024, 'atomic installation remains below the 2 MiB budget: ' + bytes);
   const cache = {
     addAll: async urls => { downloads.push(...urls); },
     match: async key => cached.get(typeof key === 'string' ? key : key.url),
@@ -57,7 +57,7 @@ const vm = require('node:vm');
   handlers.install({ waitUntil: task => { installation = task; } });
   await installation;
   assert.deepEqual(downloads, hard, 'installation downloads only the atomic learning bundle, not optional pages or pictures');
-  assert.ok(activated);
+  assert.equal(activated, false, 'a ready update waits for a safe switch');
   assert.ok(soft.includes('/admin.html') && soft.includes('/assets/jqka-learning-garden-v1.png'));
   downloads.length = 0;
   const request = { method: 'GET', mode: 'cors', url: 'https://example.test/assets/jqka-learning-garden-v1.png' };

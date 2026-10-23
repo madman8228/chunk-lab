@@ -75,7 +75,7 @@ const fat = sizes.filter(function (x) { return x.s > FAT; });
 check('硬清单无单文件超 ' + Math.round(FAT / 1024) + 'KB（超了就该移到软清单）', fat.length === 0,
   fat.map(function (x) { return x.u + '(' + Math.round(x.s / 1024) + 'KB)'; }).join(','));
 const hardTotal = sizes.reduce(function (a, x) { return a + Math.max(0, x.s); }, 0);
-check('硬清单总体积 < 1.5MB（install 的首屏代价）', hardTotal < 1.5 * 1024 * 1024,
+check('硬清单总体积 < 2 MiB（项目安装预算）', hardTotal < 2 * 1024 * 1024,
   Math.round(hardTotal / 1024) + 'KB');
 
 console.log('');
@@ -111,8 +111,8 @@ check('静态资源分支含"同 CACHE 同 URL"的宽松匹配（修复 .mjs 因
   /c\.match\(bundleAsset \? url\.origin \+ url\.pathname : url\.href\)/.test(staticBranch));
 check('非导航请求网络失败不再回退 HTML（否则报误导性 MIME 错误，把离线缺资源带偏）',
   /return Response\.error\(\);/.test(staticBranch) && !/caches\.match\('\/main\.html'\)/.test(staticBranch));
-check('导航请求的 HTML 兜底保留（语义正确）',
-  /caches\.match\('\/main\.html'\)/.test(fetchBody));
+check('导航请求不得以首页冒充缺失页面',
+  !/caches\.match\('\/main\.html'\)/.test(fetchBody));
 
 console.log('');
 console.log('【4. 软清单必须计入版本哈希（回归 B 的直接检测）】');

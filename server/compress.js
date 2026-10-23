@@ -174,7 +174,7 @@ function compression(root) {
       res.setHeader('Vary', 'Accept-Encoding');
       res.setHeader('ETag', etag);
       res.setHeader('Last-Modified', new Date(stat.mtimeMs).toUTCString());
-      res.setHeader('Cache-Control', 'public, max-age=0');
+      res.setHeader('Cache-Control', path.basename(file) === 'sw.js' ? 'no-cache' : 'public, max-age=0');
     }
     // The validator depends only on stat and encoding, not the compressed body.
     if (String(req.headers['if-none-match'] || '').split(',').map(function (s) { return s.trim(); }).indexOf(etag) >= 0) {

@@ -570,7 +570,9 @@ app.use(vocabularyImageDelivery);
    自行 next() 放行，不改变原有行为。 */
 const staticCompress = compress(staticAppRoot);
 app.use(staticCompress);
-app.use(express.static(staticAppRoot));
+app.use(express.static(staticAppRoot, {setHeaders:function(res,file){
+  if(path.basename(file)==='sw.js') res.setHeader('Cache-Control','no-cache');
+}}));
 
 const PORT = process.env.PORT || 8787;
 const HOST = process.env.HOST || '127.0.0.1';

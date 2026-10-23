@@ -7384,7 +7384,17 @@ function hideUpdateToast(){ var t = $('updateToast'); if(t) t.style.display = 'n
 window.addEventListener('chunklab-upgrade-required', function(){ showUpdateToast(true); });
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('sw.js').then(function(reg){
+    navigator.serviceWorker.register('sw.js', {updateViaCache:'none'}).then(function(reg){
+      window._appWorkerRegistration = reg;
+      if(reg.waiting) showUpdateToast();
+      var lastCheck = 0;
+      function checkUpdate(){
+        if(navigator.onLine === false || Date.now()-lastCheck < 60000) return;
+        lastCheck = Date.now();
+        if(reg.update) reg.update().catch(function(){});
+      }
+      window.addEventListener('online',checkUpdate);
+      document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')checkUpdate();});
       reg.addEventListener('updatefound', function(){
         var newSW = reg.installing;
         if(!newSW) return;
@@ -7407,7 +7417,13 @@ if('serviceWorker' in navigator){
   });
 }
 /* 新版本 toast 按钮：点击强制刷新（跳过 HTTP 缓存，SW 版本已换） */
-$('btnApplyUpdate').onclick = function(){ window.location.reload(); };
+$('btnApplyUpdate').onclick = function(){
+  var reg = window._appWorkerRegistration;
+  if(reg && reg.waiting){
+    navigator.serviceWorker.addEventListener('controllerchange',function(){window.location.reload();},{once:true});
+    reg.waiting.postMessage({type:'ACTIVATE_UPDATE'});
+  }else window.location.reload();
+};
 if(window.__chunklabUpgradeRequired) showUpdateToast(true);
 if(CL && CL.on){
   /* ★ 多标签页旧快照防护（P0）：其他标签页有新写入。

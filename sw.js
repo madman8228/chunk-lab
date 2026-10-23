@@ -340,8 +340,11 @@ self.addEventListener('install', function (e) {
       /* Only the atomic learning bundle is required for installation. */
       return c.addAll(PRECACHE);
     })
-      .then(function () { return self.skipWaiting(); })
   );
+});
+
+self.addEventListener('message', function(e) {
+  if(e.data && e.data.type === 'ACTIVATE_UPDATE') e.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', function (e) {
@@ -405,11 +408,15 @@ self.addEventListener('fetch', function (e) {
     e.respondWith(
       fetch(req).then(function (res) {
         var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+        e.waitUntil(caches.open(CACHE).then(function (c) {
+          return c.put(/\.html$/.test(url.pathname) ? url.origin + url.pathname : req, copy);
+        }));
         return res;
       }).catch(function () {
-        return caches.match(req).then(function (hit) {
-          return hit || caches.match('/main.html');
+        return caches.open(CACHE).then(async function (c) {
+          var hit = await c.match(req);
+          if (!hit && /\.html$/.test(url.pathname)) hit = await c.match(url.origin + url.pathname);
+          return hit || Response.error();
         });
       })
     );
