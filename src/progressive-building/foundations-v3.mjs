@@ -1,0 +1,95 @@
+const span = (start, end, label) => ({ start, end, label, level: 0 });
+
+export const foundations = [
+  {
+    id: 'foundation-sv-preview', label: 'PB01 · 主谓（已打磨）', knowledgeNode: 'PB01',
+    sentenceStepIndexes: [2, 4, 6],
+    objectives: ['识别主语与谓语', '独立用人物和动作组成句子'], prerequisites: [],
+    words: {
+      i: { en: 'I', zh: '我', part: '人称代词' }, work: { en: 'work', zh: '工作', part: '动词' },
+      you: { en: 'You', zh: '你', part: '代词' }, rest: { en: 'rest', zh: '休息', part: '动词' },
+    },
+    sentence: { wordIds: ['you', 'rest'], zh: '你休息。' },
+    sequence: [
+      { meaning: '我', trailGroup: 'sv-introduction', wordIds: ['i'], dependsOn: [], annotations: [span(0, 1, '主语')], learningNote: { term: '主语', question: 'I 表示这句话说的谁？', answer: '我（说话的人）', explanation: '主语是句子陈述的对象，回答“说谁/什么”。在这一步，I 表示“我”，是本课句子要说的人。' } },
+      { meaning: '工作', trailGroup: 'sv-introduction', wordIds: ['work'], dependsOn: [], annotations: [span(0, 1, '谓语')], learningNote: { term: '谓语', question: '“我”做什么？', answer: '工作（work）', explanation: '谓语是句子里对主语作出陈述的部分，可以说明主语做什么、是什么或怎么样。这里 work 表示动作；接上主语 I 后，它说明“我做什么”，所以在 I work 中作谓语。' } },
+      { meaning: '我工作', wordIds: ['i', 'work'], dependsOn: [0, 1], annotations: [span(0, 1, '主语'), span(1, 2, '谓语')], learningNote: { term: '主语接上谓语', question: '谁在做什么？', answer: 'I（我）work（工作）', explanation: 'I 提供这句话说的人，work 说明这个人做什么。两部分连起来，表达完整的“我工作”。' } },
+      { meaning: '你', wordIds: ['you'], dependsOn: [], annotations: [span(0, 1, '人称代词')] },
+      { type: 'replace', meaning: '你工作', prompt: '只换主语，改成“你工作”。先选要换的词。', wordIds: ['you', 'work'], sourceWordIds: ['i', 'work'], replaceIndex: 0, replacement: 'you', dependsOn: [2, 3], annotations: [span(0, 1, '主语'), span(1, 2, '谓语')],
+        wrongFeedback: 'work 说明做什么，是谓语。这里要换的是句子说的对象。', successFeedback: '主语从 I 换成 You，谓语 work 不变：换了说谁，没换做什么。' },
+      { meaning: '休息', wordIds: ['rest'], dependsOn: [], annotations: [span(0, 1, '动作动词')] },
+      { type: 'replace', meaning: '你休息', prompt: '只换谓语，改成“你休息”。先选要换的词。', wordIds: ['you', 'rest'], sourceWordIds: ['you', 'work'], replaceIndex: 1, replacement: 'rest', dependsOn: [4, 5], annotations: [span(0, 1, '主语'), span(1, 2, '谓语')],
+        wrongFeedback: 'You 是这句话说的对象，是主语。这里要改变的是做什么。', successFeedback: '谓语从 work 换成 rest，主语 You 不变：换了做什么，没换说谁。' },
+      { type: 'identify', meaning: '我休息', wordIds: ['i', 'rest'], dependsOn: [6], annotations: [span(0, 1, '主语'), span(1, 2, '谓语')],
+        checks: [
+          { prompt: '找出这句话的谓语。', wordId: 'rest', feedback: 'rest 说明“我做什么”，所以是谓语。', wrongFeedback: 'I 说明这句话说谁。请找说明做什么的部分。' },
+          { prompt: '找出这句话的主语。', wordId: 'i', feedback: 'I 是这句话陈述的对象，所以是主语。', wrongFeedback: 'rest 说明做什么。请找这句话说的对象。' },
+        ] },
+    ],
+  },
+  {
+    id: 'foundation-svo-preview', label: 'PB02 · 主谓宾', knowledgeNode: 'PB02',
+    objectives: ['区分动作与动作的对象', '用已学人物和对象表达不同喜好'], prerequisites: ['PB01'],
+    words: {
+      i: { en: 'I', zh: '我', part: '代词' }, like: { en: 'like', zh: '喜欢', part: '动词' },
+      tea: { en: 'tea', zh: '茶', part: '名词' }, coffee: { en: 'coffee', zh: '咖啡', part: '名词' },
+      you: { en: 'You', zh: '你', part: '代词' },
+    },
+    sentence: { wordIds: ['you', 'like', 'coffee'], zh: '你喜欢咖啡。' },
+    sequence: [
+      { meaning: '我喜欢', wordIds: ['i', 'like'], dependsOn: [], annotations: [span(0, 1, '主语'), span(1, 2, '谓语')] },
+      { meaning: '茶', wordIds: ['tea'], dependsOn: [], annotations: [span(0, 1, '名词')] },
+      { meaning: '我喜欢茶', wordIds: ['i', 'like', 'tea'], dependsOn: [0, 1], annotations: [span(0, 1, '主语'), span(1, 2, '谓语'), span(2, 3, '宾语')] },
+      { type: 'teach', meaning: '我喜欢茶', wordIds: ['i', 'like', 'tea'], dependsOn: [2], annotations: [span(0, 1, '主语'), span(1, 2, '谓语'), span(2, 3, '宾语')],
+        notes: [
+          { wordId: 'i', term: '主语', question: '这句话说的是谁的喜好？', answer: 'I（我）', text: 'I like tea 是“我喜欢茶”。句子陈述的是“我”的喜好，所以 I 是主语。' },
+          { wordId: 'like', term: '谓语', question: '这句话对 I 作了什么陈述？', answer: 'like（喜欢）', text: 'like 是动词，在这里说明“我喜欢”，表达主语的态度，因此充当谓语。谓语不一定表示看得见的身体动作。' },
+          { wordId: 'tea', term: '宾语', question: '我喜欢什么？', answer: 'tea（茶）', text: '宾语是动词所涉及的对象。在 I like tea 中，喜欢的是 tea，所以 tea 是 like 的宾语。I 是产生喜好的人，tea 是喜欢的对象，两者作用不同。' },
+        ] },
+      { meaning: '咖啡', wordIds: ['coffee'], dependsOn: [], annotations: [span(0, 1, '名词')] },
+      { type: 'replace', meaning: '我喜欢咖啡', prompt: '只换宾语，改成“我喜欢咖啡”。先选要换的词。', wordIds: ['i', 'like', 'coffee'], sourceWordIds: ['i', 'like', 'tea'], replaceIndex: 2, replacement: 'coffee', dependsOn: [3, 4], annotations: [span(0, 1, '主语'), span(1, 2, '谓语'), span(2, 3, '宾语')],
+        wrongFeedback: 'I 说明谁喜欢，like 说明喜欢。这里要换的是“喜欢什么”的对象。', successFeedback: '宾语从 tea 换成 coffee：喜欢的人仍是 I，态度仍是 like，喜欢的对象变了。' },
+      { meaning: '你喜欢咖啡', wordIds: ['you', 'like', 'coffee'], dependsOn: [5], annotations: [span(0, 1, '主语'), span(1, 2, '谓语'), span(2, 3, '宾语')] },
+      { type: 'identify', meaning: '我喜欢咖啡', wordIds: ['i', 'like', 'coffee'], dependsOn: [6], annotations: [span(0, 1, '主语'), span(1, 2, '谓语'), span(2, 3, '宾语')], successFeedback: 'I 是说谁，like 陈述喜好，coffee 是喜欢的对象：主语、谓语、宾语都找对了。',
+        checks: [
+          { prompt: '找出这句话的宾语。', wordId: 'coffee', feedback: '喜欢的对象是 coffee，所以 coffee 是宾语。', wrongFeedback: '这里要找“喜欢什么”，而不是谁喜欢或表示喜欢的动词。' },
+          { prompt: '找出这句话的主语。', wordId: 'i', feedback: '这句话陈述 I 的喜好，所以 I 是主语。', wrongFeedback: '这里要找句子陈述的是谁。coffee 是喜欢的对象，不是喜欢它的人。' },
+          { prompt: '找出这句话的谓语。', wordId: 'like', feedback: 'like 陈述 I 的态度，所以是谓语。', wrongFeedback: '请找陈述“喜欢”的动词，而不是人物或喜欢的对象。' },
+        ] },
+      { type: 'transfer', meaning: '你喜欢茶', wordIds: ['you', 'like', 'tea'], dependsOn: [7], annotations: [span(0, 1, '主语'), span(1, 2, '谓语'), span(2, 3, '宾语')], answers: ['You like tea.'] },
+    ],
+  },
+  {
+    id: 'foundation-svc-preview', label: 'PB03 · 主系表', knowledgeNode: 'PB03',
+    objectives: ['理解表语描述主语的状态', '区分状态与动作的对象'], prerequisites: ['PB01'],
+    words: {
+      i: { en: 'I', zh: '我', part: '代词' }, am: { en: 'am', zh: '是', part: '动词' },
+      ready: { en: 'ready', zh: '准备好的', part: '形容词' }, happy: { en: 'happy', zh: '高兴的', part: '形容词' },
+      you: { en: 'You', zh: '你', part: '代词' }, are: { en: 'are', zh: '是', part: '动词' },
+    },
+    sentence: { wordIds: ['you', 'are', 'happy'], zh: '你很高兴。' },
+    sequence: [
+      { meaning: '我是', wordIds: ['i', 'am'], dependsOn: [], annotations: [span(0, 1, '主语'), span(1, 2, '系动词')] },
+      { meaning: '准备好的', wordIds: ['ready'], dependsOn: [], annotations: [span(0, 1, '形容词')] },
+      { meaning: '我准备好了', wordIds: ['i', 'am', 'ready'], dependsOn: [0, 1], annotations: [span(0, 1, '主语'), span(1, 2, '系动词'), span(2, 3, '表语')] },
+      { type: 'teach', meaning: '我准备好了', wordIds: ['i', 'am', 'ready'], dependsOn: [2], annotations: [span(0, 1, '主语'), span(1, 2, '系动词'), span(2, 3, '表语')],
+        notes: [
+          { wordId: 'i', term: '主语', question: '准备好的是谁？', answer: 'I（我）', text: 'I am ready 是“我准备好了”。这句话描述的是 I 的状态，所以 I 是主语。' },
+          { wordId: 'am', term: '系动词', question: '哪个词把 I 和 ready 的状态连接起来？', answer: 'am', text: 'am 是 be 与 I 搭配的形式，在这里连接主语 I 和描述状态的 ready，充当系动词。中文不一定说“我是准备好的”，英语这里仍需要 am。am 和表语 ready 一起构成对主语状态的陈述。' },
+          { wordId: 'ready', term: '表语', question: 'I 处于什么状态？', answer: 'ready（准备好的）', text: '表语说明主语的身份、性质或状态。在 I am ready 中，ready 描述的就是 I 的状态，所以是表语。它不是 am 所涉及的另一个对象，不能像 I like tea 中的 tea 那样标作宾语。' },
+        ] },
+      { meaning: '高兴的', wordIds: ['happy'], dependsOn: [], annotations: [span(0, 1, '形容词')] },
+      { type: 'replace', meaning: '我很高兴', prompt: '只换表语，改成“我很高兴”。先选要换的词。', wordIds: ['i', 'am', 'happy'], sourceWordIds: ['i', 'am', 'ready'], replaceIndex: 2, replacement: 'happy', dependsOn: [3, 4], annotations: [span(0, 1, '主语'), span(1, 2, '系动词'), span(2, 3, '表语')],
+        wrongFeedback: 'I 是被描述的人，am 负责连接。这里要换的是描述 I 状态的部分。', successFeedback: '表语从 ready 换成 happy：主语 I 和系动词 am 不变，描述的状态变了。' },
+      { meaning: '你是', wordIds: ['you', 'are'], dependsOn: [], annotations: [span(0, 1, '主语'), span(1, 2, '系动词')] },
+      { meaning: '你很高兴', wordIds: ['you', 'are', 'happy'], dependsOn: [5, 6], annotations: [span(0, 1, '主语'), span(1, 2, '系动词'), span(2, 3, '表语')] },
+      { type: 'identify', meaning: '我准备好了', wordIds: ['i', 'am', 'ready'], dependsOn: [7], annotations: [span(0, 1, '主语'), span(1, 2, '系动词'), span(2, 3, '表语')], successFeedback: 'I 是被描述的人，am 连接状态，ready 描述 I：主语、系动词、表语都找对了。',
+        checks: [
+          { prompt: '找出这句话的表语。', wordId: 'ready', feedback: 'ready 描述 I 的状态，所以是表语。', wrongFeedback: '请找描述 I 状态的部分，而不是被描述的人或连接词。' },
+          { prompt: '找出这句话的系动词。', wordId: 'am', feedback: 'am 把 I 与 ready 连接起来，所以是系动词。', wrongFeedback: '请找连接主语与状态的动词；ready 是状态本身。' },
+          { prompt: '找出这句话的主语。', wordId: 'i', feedback: '准备好的是 I，所以 I 是主语。', wrongFeedback: '请找处于这个状态的人，而不是状态或连接词。' },
+        ] },
+      { type: 'transfer', meaning: '你准备好了', wordIds: ['you', 'are', 'ready'], dependsOn: [8], annotations: [span(0, 1, '主语'), span(1, 2, '系动词'), span(2, 3, '表语')], answers: ['You are ready.', "You're ready."] },
+    ],
+  },
+];

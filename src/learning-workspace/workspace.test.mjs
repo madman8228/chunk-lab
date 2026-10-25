@@ -31,6 +31,17 @@ test('content capabilities are derived from real references; unsafe covers are r
   assert.equal(safeCover('javascript:alert(1)'), ''); assert.equal(safeCover('assets/../private'), '');
   assert.equal(normalizeResource({ title: 'empty' }).available, false);
 });
+test('beginner discovery filters only explicit curriculum metadata and ignores unknown URL values', () => {
+  const courses = [
+    normalizeResource({ resourceId: 'new', title: '音标课', curriculum: { track: 'pronunciation', stage: 'S0' }, sourceRefs: [{ type: 'expression-course', id: 'new' }] }),
+    normalizeResource({ resourceId: 'legacy', title: '旧课', curriculum: { track: 'scenario', stage: 'S0', status: 'candidate' }, sourceRefs: [{ type: 'expression-course', id: 'legacy' }] }),
+    normalizeResource({ resourceId: 'unmapped', title: '未映射课程', sourceRefs: [{ type: 'expression-course', id: 'unmapped' }] })
+  ];
+  assert.deepEqual(filterResources(courses, selectionFromUrl('?category=beginner')).map(row => row.resourceId), ['new', 'legacy']);
+  assert.deepEqual(filterResources(courses, selectionFromUrl('?category=beginner&track=pronunciation&stage=S0')).map(row => row.resourceId), ['new']);
+  const invalid = selectionFromUrl('?category=beginner&track=bogus&stage=S9');
+  assert.equal(invalid.track, ''); assert.equal(invalid.stage, '');
+});
 test('facet dimensions use AND while values use OR; no implicit personal filters', () => {
   const resources = ['primary', 'secondary'].map((stage, index) => normalizeResource({ resourceId: String(index), title: stage,
     sourceRefs: [{ type: 'sentence-deck', id: String(index) }], facets: { schoolStages: [stage], topics: ['travel'] } }));

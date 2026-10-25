@@ -1,0 +1,9 @@
+/* Shared UI geometry. Loaded before page styles; inherited by shadow-root UI. */
+:root {
+  --ui-radius-sm: 4px;
+  --ui-radius-control: 8px;
+  --ui-radius-card: 10px;
+  --ui-radius-panel: 12px;
+  --ui-radius-circle: 50%;
+  --ui-radius-pill: 999px;
+}

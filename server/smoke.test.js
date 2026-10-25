@@ -451,26 +451,26 @@ async function main() {
       return { kind:'course-enrollment', schemaVersion:1, courseId:courseId, joined:joined, joinedAt:1, changedAt:1 };
     }
     var limitProgress = {};
-    ['limit-one','limit-two','limit-three'].forEach(function(id){ limitProgress['enrollment:v1:'+id] = membership(id, true); });
+    ['limit-one','limit-two','limit-three','limit-four'].forEach(function(id){ limitProgress['enrollment:v1:'+id] = membership(id, true); });
     r = await request('PUT', '/api/data', token, {
       mem: {}, courses: [], courseProgress: limitProgress,
       revs: { decks:{}, kv:{}, courses:{}, courseProgress:{
-        'enrollment:v1:limit-one':1, 'enrollment:v1:limit-two':1, 'enrollment:v1:limit-three':1
+        'enrollment:v1:limit-one':1, 'enrollment:v1:limit-two':1, 'enrollment:v1:limit-three':1, 'enrollment:v1:limit-four':1
       } }, deleted: { decks:[], kv:[], courses:[], courseProgress:[] }
     });
-    check('课程加入上限允许达到 3 门', r.status === 200, 'status=' + r.status + ' ' + JSON.stringify(r.json));
+    check('课程加入上限允许达到 4 门', r.status === 200, 'status=' + r.status + ' ' + JSON.stringify(r.json));
     r = await request('PUT', '/api/data', token, {
-      mem: {}, courses: [], courseProgress: { 'enrollment:v1:limit-four': membership('limit-four', true) },
-      revs: { decks:{}, kv:{}, courses:{}, courseProgress:{ 'enrollment:v1:limit-four':1 } },
+      mem: {}, courses: [], courseProgress: { 'enrollment:v1:limit-five': membership('limit-five', true) },
+      revs: { decks:{}, kv:{}, courses:{}, courseProgress:{ 'enrollment:v1:limit-five':1 } },
       deleted: { decks:[], kv:[], courses:[], courseProgress:[] }
     });
-    check('课程加入上限拒绝第 4 门并返回 409', r.status === 409 && r.json && r.json.code === 'COURSE_LIMIT_REACHED', 'status=' + r.status + ' ' + JSON.stringify(r.json));
+    check('课程加入上限拒绝第 5 门并返回 409', r.status === 409 && r.json && r.json.code === 'COURSE_LIMIT_REACHED', 'status=' + r.status + ' ' + JSON.stringify(r.json));
     r = await request('PUT', '/api/data', token, {
       mem: {}, courses: [], courseProgress: {
         'enrollment:v1:limit-one': membership('limit-one', false),
-        'enrollment:v1:limit-four': membership('limit-four', true)
+        'enrollment:v1:limit-five': membership('limit-five', true)
       },
-      revs: { decks:{}, kv:{}, courses:{}, courseProgress:{ 'enrollment:v1:limit-one':2, 'enrollment:v1:limit-four':1 } },
+      revs: { decks:{}, kv:{}, courses:{}, courseProgress:{ 'enrollment:v1:limit-one':2, 'enrollment:v1:limit-five':1 } },
       deleted: { decks:[], kv:[], courses:[], courseProgress:[] }
     });
     check('移出一门后可加入另一门', r.status === 200, 'status=' + r.status + ' ' + JSON.stringify(r.json));

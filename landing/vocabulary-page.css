@@ -1,13 +1,13 @@
 /* The catalog shares the homepage's paper/wood system, not its hero composition. */
 body.vocabulary-page{background:#f5efdf;isolation:isolate;min-height:100vh}
 body.vocabulary-page::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('../assets/jqka-learning-garden-body-v1.webp') center top/100% auto repeat-y;opacity:.3}
-.vocabulary-shell{max-width:1120px;width:calc(100% - 32px);margin:24px auto 48px;padding:24px;background:#fff9e9;border:3px solid #714922;border-radius:18px;box-shadow:0 8px 24px #62422120}
+.vocabulary-shell{max-width:1120px;width:calc(100% - 32px);margin:24px auto 48px;padding:24px;background:#fff9e9;border:3px solid #714922;border-radius:var(--ui-radius-card);box-shadow:0 8px 24px #62422120}
 .vocabulary-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
 .vocabulary-heading h1{font-size:28px;margin:0;color:#523019}
 .vocabulary-heading .btn{font-size:14px;padding:10px 16px;min-height:44px}
 .vocabulary-filters{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
 .vocabulary-filters label{display:flex;align-items:center;gap:8px;color:#674929;font-weight:700;white-space:nowrap}
-.vocabulary-filters input,.vocabulary-filters select{font:inherit;color:#523019;background:#fffdf4;border:2px solid #916937;border-radius:9px;min-height:44px;padding:8px 12px;max-width:100%}
+.vocabulary-filters input,.vocabulary-filters select{font:inherit;color:#523019;background:#fffdf4;border:2px solid #916937;border-radius:var(--ui-radius-control);min-height:44px;padding:8px 12px;max-width:100%}
 .vocabulary-search{flex:1}.vocabulary-search input{width:100%;min-width:0}
 .vocabulary-search input::placeholder{color:#745333;opacity:1}
 .vocabulary-page .ftabs{margin-top:16px}

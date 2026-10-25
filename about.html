@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<link rel="stylesheet" href="assets/ui-tokens.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Chunk Lab · 把长句拆成意群，跟读练到听懂</title>
@@ -54,16 +55,16 @@ h2{font-size:1.15rem;margin:1.4em 0 .4em;border-left:4px solid var(--accent);pad
 .en{font-size:1.15rem;font-weight:600;margin:.2em 0}
 .zh{color:var(--muted);margin:.1em 0 0}
 .chunks{display:flex;flex-wrap:wrap;gap:8px;margin:.5em 0;padding:0;list-style:none}
-.chunks li{background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 12px}
+.chunks li{background:#fff;border:1px solid var(--line);border-radius:var(--ui-radius-sm);padding:4px 12px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:.5em 0}
-.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--ui-radius-control);padding:10px 12px}
 .card .w{font-weight:700}
 .card .hint{color:var(--muted);font-size:.92em}
 .card .pos{color:var(--accent);font-size:.82em;font-weight:700;text-transform:uppercase}
 .muted{color:var(--muted)}
 .aside-cta{margin:28px auto;max-width:760px;padding:0 18px}
-.cta{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
-.cta a.primary{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:10px 20px;border-radius:999px;font-weight:700;margin-top:8px}
+.cta{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--ui-radius-control);padding:16px 18px}
+.cta a.primary{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:10px 20px;border-radius:var(--ui-radius-pill);font-weight:700;margin-top:8px}
 .list{list-style:none;padding:0;margin:.5em 0}
 .list li{padding:6px 0;border-bottom:1px solid var(--line)}
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:18px 0}

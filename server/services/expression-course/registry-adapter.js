@@ -27,18 +27,18 @@ function createExpressionRegistryAdapter({ base, repository }) {
     if (!lesson || !Number.isSafeInteger(cursor) || cursor < 0 || cursor >= lesson.activities.length) throw Object.assign(new Error('INVALID_CURSOR'), { code: 'INVALID_CURSOR', status: 400 });
     const activities = lesson.activities.map(activity => {
       const { evaluation, ...safe } = structuredClone(activity); void evaluation;
-      const { correctTokens, ...payload } = safe.payload || {}; void correctTokens;
+      const { correctTokens, referenceText, ...payload } = safe.payload || {}; void correctTokens; void referenceText;
       return { ...safe, payload };
     });
     return { payload: { courseId, unitId, contentType: 'expression', cursor, items: activities, nextCursor: null,
-      assetIds: [...new Set(activities.flatMap(item => [item.payload.audioAssetId].filter(Boolean)))], recordIdentity: { deckId: `expression:${courseId}:${unitId}`, generationScope: `expression:${courseId}`, resumeIdentity: `expression:${courseId}:${unitId}` } }, unit, course };
+      assetIds: [...new Set(activities.flatMap(item => [item.payload.audioAssetId, ...(item.payload.segments || []).map(segment => segment.audioAssetId)].filter(Boolean)))], recordIdentity: { deckId: `expression:${courseId}:${unitId}`, generationScope: `expression:${courseId}`, resumeIdentity: `expression:${courseId}:${unitId}` } }, unit, course };
   }
   function list() {
     const baseList = base.list();
     const baseIds = new Set(baseList.courses.map(course => course.courseId));
     return { ...baseList, courses: baseList.courses.concat(expressionCourses().filter(course => !baseIds.has(course.courseId)).map(course => ({ ...course, protectionReady: true }))) };
   }
-  function publicCourses() { return [...base.snapshot().courses, ...expressionCourses()].map(course => ({ courseId: course.courseId, title: course.title, contentType: course.contentType,
+  function publicCourses() { return [...base.snapshot().courses, ...expressionCourses()].map(course => ({ courseId: course.courseId, title: course.title, contentType: course.contentType, curriculum: course.curriculum || null,
     units: course.units.map(unit => ({ unitId: unit.unitId, itemCount: unit.itemIds.length, ...(unit.fragments ? { contentVersion: unit.contentVersion, recordIdentity: unit.recordIdentity, itemIds: unit.itemIds } : {}) })) })); }
   return Object.freeze({
     protectedRoot: base.protectedRoot,

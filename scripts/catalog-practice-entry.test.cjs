@@ -76,11 +76,11 @@ const root = path.resolve(__dirname, '..');
     await blocked.addInitScript(token=>localStorage.setItem('chunklab_token',token),testToken);
     await blocked.goto(base+'/decks.html?courseView=all&course=builtin%3Aidioms&courseType=decks');
     await blocked.locator('.catalog-lesson').first().waitFor();
-    await blocked.evaluate(()=>{CourseEnrollment.readMemberships=()=>({});CourseEnrollment.join=()=>Promise.reject(new Error('最多加入 3 门课程'));});
+    await blocked.evaluate(()=>{CourseEnrollment.readMemberships=()=>({});CourseEnrollment.join=()=>Promise.reject(new Error('最多加入 4 门课程'));});
     let dialogMessage='';blocked.once('dialog',async dialog=>{dialogMessage=dialog.message();await dialog.dismiss();});
     await blocked.locator('.catalog-lesson').first().click();
     await blocked.waitForFunction(()=>!startCatalogLesson.pending);
-    assert.match(dialogMessage,/3 门/);
+    assert.match(dialogMessage,/4 门/);
     assert.ok(blocked.url().includes('decks.html'),'failed enrollment never navigates to an empty practice');
     await blocked.close();
   } finally {

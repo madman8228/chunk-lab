@@ -44,7 +44,7 @@ test('overview unifies domains while other tabs retain their selected category',
  const domains={children:buttons,hidden:false,addEventListener(type,handler){this.click=handler;}};
  const document={visibilityState:'hidden',getElementById(id){return id==='statsDomains'?domains:null;},addEventListener(){}};
  const window={document,addEventListener(){}};
- vm.runInNewContext(fs.readFileSync(path.join(root,'js/stats-vocabulary.js'),'utf8'),{window,document});
+ vm.runInNewContext(fs.readFileSync(path.join(root,'js/stats-vocabulary.js'),'utf8'),{window,document,URLSearchParams,location:{search:''}});
  window.StatsVocabulary.render('overview');assert.equal(domains.hidden,true);assert.equal(buttons[0]['aria-selected'],'true');
  window.StatsVocabulary.render('sent');assert.equal(domains.hidden,false);
  domains.click({target:{closest(){return buttons[2];}}});

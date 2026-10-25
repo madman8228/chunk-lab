@@ -100,7 +100,7 @@ var MainExplanation = (() => {
           }
         });
         if (Array.isArray(raw.words) && raw.words.length) {
-          body += '<div style="padding:2px 0">' + raw.words.map((word) => '<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border:1px solid var(--border-strong);border-radius:5px;font-size:11.5px;color:var(--accent)"><b>' + escapeHtml(word.w || word.word || "") + "</b>" + (word.p ? ' <span style="color:var(--faint)">(' + escapeHtml(word.p) + ")</span>" : "") + (word.m ? " " + escapeHtml(word.m) : "") + "</span>").join("") + "</div>";
+          body += '<div style="padding:2px 0">' + raw.words.map((word) => '<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border:1px solid var(--border-strong);border-radius:var(--ui-radius-sm);font-size:11.5px;color:var(--accent)"><b>' + escapeHtml(word.w || word.word || "") + "</b>" + (word.p ? ' <span style="color:var(--faint)">(' + escapeHtml(word.p) + ")</span>" : "") + (word.m ? " " + escapeHtml(word.m) : "") + "</span>").join("") + "</div>";
         }
         if (body) sections.push({ tag, html: body, variant: "info" });
       } else {

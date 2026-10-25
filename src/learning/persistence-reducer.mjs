@@ -36,6 +36,7 @@ export function reducePracticeEvents(baseline = {}, events = [], options = {}) {
       ok: source.ok === true,
       assisted: source.assisted === true,
       firstAttempt: source.firstAttempt === true,
+      timeZone: source.timeZone,
       eligibleAt: source.eligibleAt,
       stage: source.stage
     });

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<link rel="stylesheet" href="assets/ui-tokens.css">
 <meta charset="utf-8">
 <script>location.replace('main.html?view=stats');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -28,7 +29,7 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
 .page-head h2{margin:0;font-size:18px;font-weight:700}
 .spacer{flex:1}
-.btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:8px;padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
+.btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:var(--ui-radius-sm);padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
 .btn:hover{background:var(--surface-2)}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn.primary:hover{background:#1e4fa3}
@@ -40,14 +41,14 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .stats-cards{display:block;margin-bottom:14px}
 
 .stats-tabs{display:flex;gap:6px;margin-bottom:10px}
-.stats-tabs .tab{border:1px solid var(--border);background:var(--surface);border-radius:8px;padding:5px 14px;font-size:13px;color:var(--text);cursor:pointer}
+.stats-tabs .tab{border:1px solid var(--border);background:var(--surface);border-radius:var(--ui-radius-sm);padding:5px 14px;font-size:13px;color:var(--text);cursor:pointer}
 .stats-tabs .tab.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
 .stats-filter{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
-.stats-filter .f{border:1px solid var(--border);background:var(--surface);border-radius:6px;padding:2px 10px;font-size:12px;color:var(--muted);cursor:pointer}
+.stats-filter .f{border:1px solid var(--border);background:var(--surface);border-radius:var(--ui-radius-sm);padding:2px 10px;font-size:12px;color:var(--muted);cursor:pointer}
 .stats-filter .f.on{border-color:var(--accent);background:var(--accent);color:#fff}
 
 .stats-list{display:flex;flex-direction:column;gap:6px}
-.srow{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.srow{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface)}
 .srow .row-num{align-self:flex-start;flex-shrink:0;width:32px;margin-top:2px;font-size:12px;font-weight:700;color:var(--accent);text-align:right;font-variant-numeric:tabular-nums}
 .srow .sen{flex:1;min-width:0}
 .srow .en{font-size:13.5px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -57,10 +58,10 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .stats-detail-row .meta-wrong{color:var(--bad)}
 .stats-detail-row .meta-time{display:inline-block;width:4.4em;text-align:right;white-space:nowrap}
 .stats-state-cell{display:flex;align-items:center;flex:0 0 56px}
-.row-detail-toggle{display:none;flex-shrink:0;width:24px;height:24px;border:0;border-radius:50%;background:transparent;position:relative;cursor:pointer}
+.row-detail-toggle{display:none;flex-shrink:0;width:24px;height:24px;border:0;border-radius:var(--ui-radius-circle);background:transparent;position:relative;cursor:pointer}
 .row-detail-toggle::before{content:"";position:absolute;left:8px;top:7px;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .15s ease}
 .stats-detail-row.is-expanded .row-detail-toggle::before{transform:rotate(225deg);top:10px}
-.badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0}
+.badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:var(--ui-radius-pill);flex-shrink:0}
 .badge.master{background:var(--ok-soft);color:var(--ok)}
 .badge.weak{background:var(--bad-soft);color:var(--bad)}
 .badge.new{background:#eef1f6;color:var(--muted)}
@@ -72,31 +73,31 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .wrong-row .cn{font-size:11.5px;color:var(--faint);margin-top:1px}
 .wrong-row .wrong-detail{font-size:11.5px;margin-top:4px;color:var(--bad)}
 .wrong-row .wrong-detail b{color:var(--ok);font-weight:600}
-.wrong-del{flex-shrink:0;border:none;background:transparent;color:var(--faint);width:24px;height:24px;border-radius:50%;cursor:pointer;line-height:1;padding:0;display:grid;place-items:center}
+.wrong-del{flex-shrink:0;border:none;background:transparent;color:var(--faint);width:24px;height:24px;border-radius:var(--ui-radius-circle);cursor:pointer;line-height:1;padding:0;display:grid;place-items:center}
 .wrong-del .icon{width:14px;height:14px}
 .wrong-del:hover{background:var(--bad-soft);color:var(--bad)}
 .wrong-filter #btnClearWrongBook{margin-left:auto;color:var(--bad)}
 .wrong-row .wrong-actions{display:flex;align-items:center;gap:4px;flex-shrink:0}
 .muted{color:var(--muted);font-size:12px}
-.mistake-export-panel{min-width:0;margin:0 0 4px;padding:5px 10px;border:1px solid #bfd0f7;border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}
+.mistake-export-panel{min-width:0;margin:0 0 4px;padding:5px 10px;border:1px solid #bfd0f7;border-radius:var(--ui-radius-control);background:var(--surface);box-shadow:var(--shadow)}
 .export-progress{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}.export-progress .export-close{margin-left:auto}
-.mistake-export-panel textarea{display:block;width:100%;min-height:180px;max-height:55vh;resize:vertical;margin-top:8px;border:1px solid var(--border-strong);border-radius:8px;padding:9px;background:var(--surface-2);color:var(--text);font:12px/1.5 ui-monospace,Consolas,monospace;overflow:auto}
-.export-warning{color:var(--warn);background:var(--warn-soft);border-radius:7px;padding:7px 9px;font-size:12px;margin:0 0 8px}.export-message{color:var(--ok);font-size:12px;line-height:1.3;margin:0;flex:1;min-width:160px}
+.mistake-export-panel textarea{display:block;width:100%;min-height:180px;max-height:55vh;resize:vertical;margin-top:8px;border:1px solid var(--border-strong);border-radius:var(--ui-radius-sm);padding:9px;background:var(--surface-2);color:var(--text);font:12px/1.5 ui-monospace,Consolas,monospace;overflow:auto}
+.export-warning{color:var(--warn);background:var(--warn-soft);border-radius:var(--ui-radius-sm);padding:7px 9px;font-size:12px;margin:0 0 8px}.export-message{color:var(--ok);font-size:12px;line-height:1.3;margin:0;flex:1;min-width:160px}
 /* 触摸按压反馈（2026-09-10）：tap-highlight 已全局关闭，按压态由 :active 提供 */
 .btn:active{transform:translateY(1px)}
 .wrong-del:active{background:var(--bad-soft);color:var(--bad)}
 .stat-card .start-btn:active{opacity:.6}
 
-.empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:12px}
+.empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:var(--ui-radius-control)}
 
 /* 练习临时题库按钮（在 stats 内可触发进入复习队列） */
-.review-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.review-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface)}
 .review-row .review-info{flex:1;min-width:0}
 .review-row .nm{font-size:13.5px;font-weight:600}
 .review-preview{margin-top:3px;color:var(--muted);font-size:12px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* 跨页跳转消息 */
-.cross-page-hint{font-size:12px;color:var(--faint);text-align:center;padding:8px 12px;background:var(--surface-2);border-radius:8px;margin-top:14px}
+.cross-page-hint{font-size:12px;color:var(--faint);text-align:center;padding:8px 12px;background:var(--surface-2);border-radius:var(--ui-radius-sm);margin-top:14px}
 /* 宪法 SVG icon 尺寸（main.html 已定义，stats.html 缺失导致 SVG 占满父容器） */
 .icon{width:1em;height:1em;vertical-align:-0.15em;display:inline-block;flex-shrink:0}
 .icon-spin{animation:iconSpin 1.2s linear infinite}
@@ -111,7 +112,7 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
   .stats-cards{margin-bottom:8px}
   .stats-cards .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:6px}
   .stats-cards .kpi-rounds{display:none}
-  .stat-card{padding:7px 9px;border-radius:10px}
+  .stat-card{padding:7px 9px;border-radius:var(--ui-radius-control)}
   .stat-card .k{font-size:10.5px}
   .stat-card .v{font-size:20px;margin-top:1px}
   .stat-card .start-btn{margin-top:3px;font-size:11px}
@@ -136,7 +137,7 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
   .stats-filter{gap:4px;margin-bottom:8px}
   .stats-filter .f{padding:2px 10px;font-size:11px}
   .stats-list{gap:4px}
-  .srow{gap:6px;padding:6px;border-radius:9px}
+  .srow{gap:6px;padding:6px;border-radius:var(--ui-radius-control)}
   .srow .row-num{width:24px;font-size:11px}
   .srow .en{font-size:12px}
   .srow .cn{font-size:10.5px}
@@ -169,29 +170,29 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
    待复习与错题本保留在顶部页签中作为清单入口，概览不再重复显示可点击卡片。 */
 [hidden]{display:none!important}
 .overview-status{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:16px}
-.ov-stat{min-width:0;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface-stat)}
+.ov-stat{min-width:0;padding:10px 12px;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface-stat)}
 .ov-stat .l{display:block;font-size:11.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ov-stat .n{display:block;margin-top:2px;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
 .ov-stat.is-warn .n{color:var(--warn)}
-.overview-time{padding:14px 16px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.overview-time{padding:14px 16px 12px;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface)}
 .activity-section{padding:14px 0 2px}
 .activity-section h3{display:flex;align-items:baseline;gap:8px;font-size:13px;margin:0 0 12px}
 .overview-note{font-size:12px;color:var(--muted);margin:10px 0 0}
 .weekly-activity-list{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;list-style:none;margin:0;padding:0;font-variant-numeric:tabular-nums}
 .weekly-activity-list li{min-width:0;text-align:center;font-size:12px}
 .weekly-activity-bar{height:80px;display:flex;align-items:flex-end;justify-content:center;margin:6px 0;border-bottom:1px solid var(--border)}
-.weekly-activity-bar i{display:block;width:60%;height:var(--activity-height);background:var(--accent);border-radius:3px 3px 0 0}
+.weekly-activity-bar i{display:block;width:60%;height:var(--activity-height);background:var(--accent);border-radius:var(--ui-radius-sm) var(--ui-radius-sm) 0 0}
 .stats-loading{min-height:72px;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:13px}
-.stats-sync-status{margin:0 0 10px;padding:5px 9px;border-radius:7px;background:var(--warn-soft);color:var(--warn);font-size:12px;text-align:center}
+.stats-sync-status{margin:0 0 10px;padding:5px 9px;border-radius:var(--ui-radius-sm);background:var(--warn-soft);color:var(--warn);font-size:12px;text-align:center}
 .overview-month-summary{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:0 0 12px;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted)}
 .overview-month-summary .period-label{font-weight:700;color:var(--text)}
 .overview-month-summary b{color:var(--text);font-variant-numeric:tabular-nums}
 /* 异常项（没带日期的答题）从句子流里独立出来：只靠文字变色区分度太弱。 */
-.overview-month-summary .undated{padding:1px 9px;border-radius:999px;background:var(--warn-soft);color:var(--warn)}
+.overview-month-summary .undated{padding:1px 9px;border-radius:var(--ui-radius-pill);background:var(--warn-soft);color:var(--warn)}
 .overview-month-summary .undated b{color:var(--warn)}
 .month-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;max-width:378px;margin:0 auto}
 .month-calendar-weekday{text-align:center;padding:2px 0;font-size:10.5px;color:var(--faint)}
-.month-calendar-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;min-width:0;border-radius:7px;
+.month-calendar-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;min-width:0;border-radius:var(--ui-radius-sm);
   color:var(--text);font-size:11px;font-variant-numeric:tabular-nums}
 .month-calendar-day.l0{background:var(--surface-2);color:var(--faint)}
 .month-calendar-day.l1{background:rgba(200,90,30,.22)}
@@ -210,7 +211,7 @@ body{background:radial-gradient(900px 420px at 12% -8%,#e8efff 0%,rgba(232,239,2
 .stats-record-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 8px}
 .stats-search{display:flex;align-items:center;gap:8px;flex:1 1 240px;min-width:220px}
 .stats-search label{font-size:12px;color:var(--muted);white-space:nowrap}
-.stats-search input{width:100%;max-width:140px;height:32px;border:1px solid var(--border-strong);border-radius:7px;background:var(--surface);color:var(--text);padding:5px 9px;font:inherit;outline:none}
+.stats-search input{width:100%;max-width:140px;height:32px;border:1px solid var(--border-strong);border-radius:var(--ui-radius-sm);background:var(--surface);color:var(--text);padding:5px 9px;font:inherit;outline:none}
 .stats-search input::placeholder{color:var(--faint)}
 .stats-search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .stats-search-clear{padding-left:7px;padding-right:7px;color:var(--muted)}
@@ -398,6 +399,7 @@ function refreshConfirmedStatsProjection(){
   if(!owner) return Promise.resolve(false);
   return Promise.all([ServerStore.pending(),ServerCache.read()]).then(function(result){
     var pending=result[0], row=result[1];
+    _statsHasConfirmedSnapshot=!!(row&&row.owner===owner&&row.snapshot&&row.snapshot.mem);
     if(pending.length || !row || row.owner!==owner || !row.snapshot || !row.snapshot.mem ||
        !window.AccountStorage || window.AccountStorage.owner!==owner || !CL.serverPersistenceReady()) return false;
     /* Never project a possibly stale confirmed snapshot over unsent local work. */
@@ -406,6 +408,7 @@ function refreshConfirmedStatsProjection(){
     mem.settings=Object.assign({},local.settings||{},confirmed.settings||{});
     mem.progress=local.progress||{};
     _statsDecks=null;
+    _statsProjectionApplied=true;
     return true;
   }).catch(function(error){
     console.warn('[stats] confirmed projection unavailable; keeping local view:',error&&error.message||error);
@@ -480,7 +483,8 @@ var _statsTab = 'overview';
 var _statsFilter = 'all';
 var _statsReviewFilter = 'all';
 var _statsSearch = '';
-var _wrongBookFilter = 'all';
+var _wrongBookFilter = 'focus';
+var _wrongCourseFilter = 'all';
 var _mistakeExport = { open:false, snapshot:null, sourceRows:null, accountScope:'', batchIndex:0, lastCopiedIndex:-1, prompt:'', manualFallback:false, message:'', generating:false, stale:false };
 var _mistakeExportGeneration = 0;
 var _statsReinforceSaveFailed = false;
@@ -576,13 +580,18 @@ function monthCalendarMarkup(activity, now){
 var _statsInitialSync = true;
 var _statsSyncState = 'waiting';
 var _statsSyncTimer = null;
+var _statsHasConfirmedSnapshot = false;
+var _statsProjectionApplied = false;
+var _statsCloudAvailable = true;
 var STATS_SYNC_TIMEOUT = 3000;
 function setStatsSyncState(state){
   _statsSyncState = state;
   var status = $('statsSyncStatus');
   if(!status) return;
-  status.hidden = state !== 'local';
-  status.textContent = state === 'local' ? '本地记录 · 正在同步，完成后自动更新' : '';
+  status.hidden = state !== 'local' && state !== 'stale';
+  status.textContent = state === 'stale'
+    ? '云端暂不可用；当前保留上次已确认记录，恢复连接后将自动更新'
+    : state === 'local' ? '云端数据未确认；当前显示本机/缓存记录，恢复连接后将自动更新' : '';
 }
 function showLocalStatsFallback(){
   if(_statsSyncState !== 'waiting') return;
@@ -642,7 +651,6 @@ function renderStatsContent(){
   var masteredCnt = CL.masteredSentenceCount(mem,_statsDecks || allDecks());
   var familiarCnt = CL.familiaritySentenceCount(mem);
   var weakCnt = keys.filter(function(k){ return classifyStat(by[k]) === 'weak'; }).length;
-  var wrongCnt = getReinforceBook().length;
   var days = CL.dailyActivity(mem), now = new Date(), today = days[CL.ymd(now)] || {answered:0};
   if(window.StatsGrowth&&window.LearningEngine){
     var growthItems=new Map();
@@ -653,11 +661,12 @@ function renderStatsContent(){
     if(window.StatsInsights) $('statsInsights').hidden=true;
   }
   var audit = CL.answerStatsAudit(mem);
-  var dues = dueSentences(), dueCnt = dues.length;
+  var reviewModel=sentenceReviewModel(now.getTime()),wrongCnt=reviewModel.counts.needsReinforcement;
+  var dues = dueSentences(reviewModel), dueCnt = dues.length;
   var todayStart = new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
   var overdueCnt = dues.filter(function(row){return row.st.dueAt<todayStart;}).length;
   var sentenceHeading=$('statsSentenceHeading');
-  sentenceHeading.textContent=_statsTab==='review'?(_statsReviewFilter==='overdue'?'句子 · '+overdueCnt+' 句已逾期':'句子 · '+dueCnt+' 句待复习'):_statsTab==='wrong'?'句子 · '+wrongCnt+' 条错题':'句子';
+  sentenceHeading.textContent=_statsTab==='review'?(_statsReviewFilter==='overdue'?'句子 · '+overdueCnt+' 句已逾期':'句子 · '+dueCnt+' 句待复习'):_statsTab==='wrong'?'句子 · '+wrongCnt+' 条待巩固':'句子';
   sentenceHeading.hidden=_statsTab==='overview'||_statsTab==='sent'||_statsTab==='wrong';
   var statCell = function(label,value,opt){
     opt = opt || {};
@@ -674,7 +683,7 @@ function renderStatsContent(){
   $('statsTrend').innerHTML='<div class="review-domain-grid"><section class="review-sentence-group" aria-label="句子复习"><h4>句子复习</h4><div class="review-state-list">'+
     '<button type="button" data-review-state="due"><span>待复习</span><strong>'+dueCnt+'</strong>'+reviewArrow+'</button>'+
     '<button type="button" data-review-state="overdue" aria-label="逾期 '+overdueCnt+'，不含今日到期"><span>逾期</span><strong>'+overdueCnt+'</strong>'+reviewArrow+'</button>'+
-    '<button type="button" data-review-state="weak"><span>需巩固</span><strong>'+weakCnt+'</strong>'+reviewArrow+'</button></div></section></div>';
+    '<button type="button" data-review-state="weak"><span>错题待巩固</span><strong>'+wrongCnt+'</strong>'+reviewArrow+'</button></div></section></div>';
   $('statsTrend').hidden=_statsTab!=='overview';
   if(!keys.length && !mem.stats.totalAnswered){
     html += '<div class="empty-tip">还没有学习记录。<a href="./main.html">开始练习</a></div>';
@@ -685,10 +694,11 @@ function renderStatsContent(){
     b.classList.toggle('on',b.dataset.tab===_statsTab);
     b.setAttribute('aria-pressed',String(b.dataset.tab===_statsTab));
   });
+  var countsUnconfirmed=statsProtocol3Active()&&_statsSyncState==='local'&&!_statsHasConfirmedSnapshot;
   var reviewTabCount = $('reviewTabCount');
-  if(reviewTabCount) reviewTabCount.textContent = '('+dueCnt+')';
+  if(reviewTabCount) reviewTabCount.textContent = countsUnconfirmed?'':'('+dueCnt+')';
   var wrongTabCount = $('wrongTabCount');
-  if(wrongTabCount) wrongTabCount.textContent = '('+wrongCnt+')';
+  if(wrongTabCount) wrongTabCount.textContent = countsUnconfirmed?'':'('+wrongCnt+')';
   var recordToolbar = $('statsRecordToolbar');
   if(recordToolbar) recordToolbar.hidden = _statsTab !== 'sent';
   var searchInput = $('statsSentenceSearch');
@@ -854,29 +864,42 @@ function renderSentenceList(body){
 }
 
 function renderWrongBook(body){
+  if(statsProtocol3Active()&&_statsSyncState==='local'&&!_statsHasConfirmedSnapshot){
+    body.innerHTML='<h3 class="wrong-book-heading">句子错题记录</h3><div class="empty-tip">服务器学习记录尚未确认，暂不能判断错题数量。请恢复网络后刷新重试。</div>';
+    return;
+  }
   var membershipFor = statsMemberships();
   var book = getReinforceBook();
+  var model=sentenceReviewModel(),entries=model.wrong.filter(function(entry){return _wrongCourseFilter==='all'||entry.row.deckId===_wrongCourseFilter;});
   var title = '<h3 class="wrong-book-heading">句子错题记录</h3>';
-  if(!book.length){
+  if(!entries.length){
     body.innerHTML = title+'<div class="empty-tip">错题本是空的。练习时答错的句子会自动加入这里，跨会话保留。</div>';
     return;
   }
-  var focusBook = book.filter(function(b){ return reinforceNeedsReview(b); });
-  var shownBook = _wrongBookFilter === 'focus' ? focusBook : book;
+  var focusBook = entries.filter(function(entry){ return entry.state.status==='needs-reinforcement'; });
+  var masteredBook=entries.filter(function(entry){return entry.state.status==='mastered';});
+  var shownBook = _wrongBookFilter === 'focus' ? focusBook : _wrongBookFilter==='mastered'?masteredBook:entries;
+  var courseOptions='<option value="all">全部课程</option>';
+  var courseRows=new Map();entries.forEach(function(entry){courseRows.set(entry.row.deckId,entry.deck?displayDeckName(entry.deck.name):'历史课程');});
+  courseRows.forEach(function(label,id){courseOptions+='<option value="'+esc(id)+'"'+(id===_wrongCourseFilter?' selected':'')+'>'+esc(label)+'</option>';});
   var html = title+'<div class="stats-filter wrong-filter">'+
-    '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+book.length+'</button>'+
-    '<button class="f '+(_wrongBookFilter==='focus'?'on':'')+'" data-wrong-filter="focus">需巩固 '+focusBook.length+'</button>'+
+    '<button class="f '+(_wrongBookFilter==='focus'?'on':'')+'" data-wrong-filter="focus">待巩固 '+focusBook.length+'</button>'+
+    '<button class="f '+(_wrongBookFilter==='mastered'?'on':'')+'" data-wrong-filter="mastered">已巩固 '+masteredBook.length+'</button>'+
+    '<button class="f '+(_wrongBookFilter==='all'?'on':'')+'" data-wrong-filter="all">全部 '+entries.length+'</button>'+
+    '<select data-wrong-course aria-label="按课程筛选错题">'+courseOptions+'</select>'+
+    '<button class="btn sm primary" data-practice-wrong>练习本组最多 10 句</button>'+
     '<button class="btn sm ghost" data-mistake-export-open>复制错题分析提示词</button>'+
-    '<button class="btn sm ghost" id="btnClearWrongBook">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button></div>';
+    '<button class="btn sm ghost" id="btnClearWrongBook">'+(window.Icons?Icons.svg('trash'):'')+' 清空</button><span class="muted">句子 · '+focusBook.length+' 条待巩固</span></div>';
   html += _mistakeExport.open ? renderMistakeExportPanel(book) : '';
   if(!shownBook.length){
-    html += '<div class="empty-tip" style="padding:18px">当前没有需巩固的错题。切换到“全部”可查看所有记录。</div>';
+    html += '<div class="empty-tip" style="padding:18px">当前分类没有错题；切换到“全部”可查看保留的历史记录。</div>';
   } else {
     if(shownBook.some(function(item){return !Array.isArray(item.history)||!item.history.length;})){
       html += '<p class="muted wrong-history-notice">部分错题暂无逐次答题记录。</p>';
     }
     html += '<div class="stats-list">';
-  listPage(shownBook.slice().reverse(), 'wrong').forEach(function(b){
+  listPage(shownBook, 'wrong').forEach(function(entry){
+    var b=entry.row;
     var mine = '';
     if(b.mistakes && b.mistakes.length){
       mine = b.mistakes.map(function(m){
@@ -893,18 +916,27 @@ function renderWrongBook(body){
     }).join('')+'</details>' : '';
     var membership = membershipFor(b.deckId);
     var sourceLabel = (membership.course ? membership.course.title : '历史课程') + (membership.joined ? '' : ' · '+membership.status);
+    var stateLabel=entry.state.status==='mastered'?'已巩固':entry.state.successDays?'独立答对 '+entry.state.successDays+' 个日期，待跨日验证':'待巩固';
+    var sentenceAudioUrl=entry.item&&(entry.item._courseAudioUrl||entry.item.sentenceAudio&&entry.item.sentenceAudio.audio&&entry.item.sentenceAudio.audio.url);
     html += '<div class="wrong-row"><div class="sen">'+
       '<div class="cn">'+esc(sourceLabel)+'</div>'+
       '<div class="en">'+esc(b.sentence)+'</div>'+
       '<div class="cn">'+esc(b.translation||'')+'</div>'+
+      '<div class="wrong-detail">'+stateLabel+' · 错误记录 '+entry.state.wrongCount+' 次'+(entry.state.historyIncomplete?' · 历史不完整':'')+'</div>'+
       '<div class="wrong-detail">错点：'+mine+'</div>'+historyNote+
     '</div>'+
-    '<div class="wrong-actions"><button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">'+(window.Icons?Icons.svg('close'):'')+'</button></div></div>';
+    '<div class="wrong-actions">'+(sentenceAudioUrl?'<button class="btn sm" data-wrong-audio="'+esc(sentenceAudioUrl)+'">播放句子</button>':'')+
+      (entry.item&&!entry.unavailable&&!entry.deck._protectedHistory?'<button class="btn sm" data-wrong-practice="'+esc(entry.key)+'">单独练习</button>':entry.item&&entry.item._protectedReviewUrl?'<a class="btn sm" href="'+esc(entry.item._protectedReviewUrl)+'">打开原课复习</a>':'<span class="muted">原课程暂不可用</span>')+
+      '<button class="wrong-del" data-key="'+esc(b._key||'')+'" title="从错题本删除">'+(window.Icons?Icons.svg('close'):'')+'</button></div></div>';
   });
     html += '</div>';
   }
   body.innerHTML = html;
   body.insertAdjacentHTML('beforeend', listPager(shownBook.length,'wrong'));
+  var practiceBatch=body.querySelector('[data-practice-wrong]');if(practiceBatch)practiceBatch.onclick=practiceWrongBook;
+  Array.prototype.forEach.call(body.querySelectorAll('[data-wrong-audio]'),function(button){button.onclick=function(){var audio=new Audio(button.getAttribute('data-wrong-audio'));window.__courseAudio=audio;audio.play().catch(function(){alert('句子音频暂时无法播放。');});};});
+  var courseSelect=body.querySelector('[data-wrong-course]');if(courseSelect)courseSelect.onchange=function(){_wrongCourseFilter=courseSelect.value;_listPages.wrong=0;renderStats();};
+  Array.prototype.forEach.call(body.querySelectorAll('[data-wrong-practice]'),function(button){button.onclick=function(){practiceWrongEntry(button.getAttribute('data-wrong-practice'));};});
   var bc = $('btnClearWrongBook'); if(bc) bc.onclick = function(){
     if(!confirm('清空错题本？')) return;
     var keys=(mem.reinforceBook||[]).map(function(item){return item&&item._key;}).filter(Boolean);
@@ -1043,13 +1075,19 @@ function getReinforceBook(){
 }
 
 /* 错题本是事实记录；“需巩固”只做派生筛选，不再另存一份句子清单。 */
+function sentenceReviewModel(now){
+  var memberships=statsMemberships();
+  return LearningEngine.buildSentenceReviewModel({
+    stats:mem.stats,reinforceBook:getReinforceBook(),decks:allDecks(),now:now==null?Date.now():now,
+    isJoined:function(deck){return deck._protectedHistory?CourseEnrollment.isJoined(deck._protectedCourseId):memberships(deck.id).joined;},
+    isDeleted:function(deckId,item){return CL.isItemDeleted(mem,deckId,item);},
+    contentFingerprint:function(item){return LearningEngine.fingerprintAssessmentItem(item);},
+    cidForItem:function(item){return item.cid||CL.fnv8(item.sentence||'');}
+  });
+}
 function reinforceNeedsReview(b){
-  if(b && b.needsReview) return true;
-  var by = (mem.stats && mem.stats.bySentence) || {};
-  if(!b || !b.deckId) return false;
-  var cid = b.cid || (b.sentence ? CL.fnv8(b.sentence) : '');
-  var stat = cid ? by[b.deckId + '#' + cid] : null;
-  return !!(stat && classifyStat(stat) === 'weak');
+  var entry=sentenceReviewModel().wrong.find(function(item){return item.row===b;});
+  return entry?entry.state.status==='needs-reinforcement':true;
 }
 
 /* ===== SRS 复习 ===== */
@@ -1061,44 +1099,20 @@ function statsMemberships(){
   });
   return CourseEnrollment.deckMemberships(catalog, CL.readProgress());
 }
-function dueSentences(){
-  var membershipFor = statsMemberships();
-  if(!mem.stats || !mem.stats.bySentence) return [];
-  var out = [];
-  var seen = {};
-  var sources = new Map();
-  allDecks().forEach(function(deck){
-    if(deck._protectedHistory ? !CourseEnrollment.isJoined(deck._protectedCourseId) : !membershipFor(deck.id).joined) return;
-    var cids = new Map(), sentences = new Map();
-    (deck.items || []).forEach(function(it){
-      var cid = it.cid || CL.fnv8(it.sentence || '');
-      if(!cids.has(cid)) cids.set(cid,it);
-      if(!sentences.has(it.sentence)) sentences.set(it.sentence,it);
-    });
-    sources.set(deck.id,{deck:deck,cids:cids,sentences:sentences});
+function dueSentences(model){
+  return (model||sentenceReviewModel()).due.map(function(entry){
+    return {it:withStatsSource(entry.item,entry.deck.id),st:entry.stat,deck:entry.deck,key:entry.key};
   });
-  Object.keys(mem.stats.bySentence).forEach(function(k){
-    var st = mem.stats.bySentence[k];
-    if(typeof st.dueAt !== 'number' || !st.dueAt || st.dueAt > Date.now()) return;
-    var source = sources.get(st.deckId);
-    if(!source) return;
-    var deck = source.deck;
-    var sep = k.indexOf('#');
-    var cid = sep > 0 ? k.substring(sep + 1) : '';
-    var it = source.cids.get(cid) || source.sentences.get(st.sentence);
-    if(!it) return;
-    var key = st.deckId + '#' + (it._protectedHistory ? cid : normSent(it.sentence));
-    if(seen[key]) return;
-    seen[key] = true;
-    out.push({ it:withStatsSource(it, st.deckId), st:st, deck:deck });
-  });
-  return out;
 }
 function renderReviewList(body){
+  if(statsProtocol3Active()&&_statsSyncState==='local'&&!_statsHasConfirmedSnapshot){
+    body.innerHTML='<div class="empty-tip">服务器学习记录尚未确认，暂不能判断到期句子数量。请恢复网络后刷新重试。</div>';
+    return;
+  }
   var dues = dueSentences();
   var startOfToday=new Date();startOfToday.setHours(0,0,0,0);
   if(_statsReviewFilter==='overdue')dues=dues.filter(function(row){return row.st.dueAt<startOfToday.getTime();});
-  var html = '';
+  var html = dues.length?'<button class="btn primary" type="button" data-practice-due>开始复习本组（最多 10 句）</button>':'';
   if(dues.length){
     html += '<div class="stats-list">';
     listPage(dues,'due').forEach(function(d){
@@ -1146,6 +1160,7 @@ function renderReviewList(body){
   html += '</div>';
 
   body.innerHTML = html;
+  var practiceButton=body.querySelector('[data-practice-due]');if(practiceButton)practiceButton.onclick=practiceDue;
   Array.prototype.forEach.call(body.querySelectorAll('[data-rev-deck]'), function(btn){
     btn.onclick = function(){
       var deckId = btn.getAttribute('data-rev-deck');
@@ -1156,9 +1171,10 @@ function renderReviewList(body){
 }
 
 function practiceDue(){
-  var dues = dueSentences();
+  var dues = LearningEngine.selectReviewBatch(sentenceReviewModel(),{kind:'due',limit:10});
+  if(_statsReviewFilter==='overdue'){var today=new Date();today.setHours(0,0,0,0);dues=dues.filter(function(entry){return entry.dueAt<today.getTime();}).slice(0,10);}
   if(!dues.length){ alert('没有到期复习的句子'); return; }
-  var items = dues.map(function(d){ return withStatsSource(d.it, d.st.deckId); });
+  var items = dues.map(function(d){ return withStatsSource(d.item, d.deck.id); });
   launchReviewItems({ id:'srs-'+Date.now().toString(36), name:'到期复习', items:items });
 }
 function practiceReviewDeck(deck){
@@ -1169,23 +1185,21 @@ function practiceReviewDeck(deck){
   launchReviewItems({ id:'rev-'+deck.id+'-'+Date.now().toString(36), name:'复习 · '+displayDeckName(deck.name), items:items });
 }
 function practiceWrongBook(){
-  var book = getReinforceBook().filter(function(b){ return _wrongBookFilter === 'focus' ? reinforceNeedsReview(b) : true; });
-  var seen = {};
-  var items = [];
-  book.forEach(function(b){
-    var key = b.deckId + '#' + normSent(b.sentence);
-    if(seen[key]) return;
-    seen[key] = true;
-    var deck = findDeck(b.deckId);
-    if(!deck) return;
-    var it = (deck.items||[]).find(function(x){ return x.sentence === b.sentence; });
-    if(it) items.push(withStatsSource(it, b.deckId));
-  });
-  if(!items.length){ alert('错题本中的句子已全部删除或找不到对应课程'); return; }
+  var status=_wrongBookFilter==='all'?'all':_wrongBookFilter==='mastered'?'mastered':'needs-reinforcement';
+  var entries=LearningEngine.selectReviewBatch(sentenceReviewModel(),{kind:'wrong',status:status,limit:10,courseId:_wrongCourseFilter==='all'?undefined:_wrongCourseFilter});
+  var items=entries.filter(function(entry){return entry.item&&entry.deck&&!entry.unavailable&&!entry.deck._protectedHistory;})
+    .map(function(entry){return withStatsSource(entry.item,entry.deck.id);});
+  if(!items.length){ alert(entries.some(function(entry){return entry.item&&entry.item._protectedReviewUrl;})?'请从错题列表中的“打开原课复习”逐项复习；原始记录仍保留。':'错题本中的句子已全部删除或找不到对应课程'); return; }
   launchReviewItems({ id:'book-'+Date.now().toString(36), name:'错题', items:items });
+}
+function practiceWrongEntry(key){
+  var entry=sentenceReviewModel().wrong.find(function(item){return item.key===key;});
+  if(!entry||!entry.item||!entry.deck||entry.unavailable||entry.deck._protectedHistory){alert('原课程当前不可用，请从课程入口复习；错题记录仍保留。');return;}
+  launchReviewItems({id:'wrong-'+Date.now().toString(36),name:'错题重练',items:[withStatsSource(entry.item,entry.deck.id)]});
 }
 
 function launchReviewItems(deck){
+  deck=Object.assign({},deck,{items:(deck.items||[]).slice(0,10)});
   var protectedItems=deck.items.filter(function(item){return item._protectedHistory;});
   if(protectedItems.length){
     alert('平台课程请使用列表中的“打开课程复习”，逐项检查权限。其余课程可继续批量复习。');
@@ -1208,12 +1222,38 @@ function launchReviewDeck(deck){
   }
   var scope=JSON.stringify([account.owner,api.getBase()]);
   IDBStore.putNavigationHandoff(id,deck,scope).then(function(){
-    window.location.href='./main.html?autostart=1&reviewHandoff='+encodeURIComponent(id);
+    var returnTo=window.CourseReturn&&typeof CourseReturn.safe==='function'?CourseReturn.safe(location.href):'';
+    window.location.href='./main.html?autostart=1&reviewHandoff='+encodeURIComponent(id)
+      +(returnTo?'&returnTo='+encodeURIComponent(returnTo):'');
   }).catch(function(error){
     console.warn('[stats] review handoff was not stored:',error&&error.message||error);
     alert('复习暂时无法启动；当前页面没有更改，请稍后重试。');
   });
 }
+
+/* 今日混合复习只传已确认到期的句子引用；播放器仍使用临时队列，不写普通课程进度。 */
+window.getDailyReviewSentenceCandidates=function(){
+  if(statsProtocol3Active()&&_statsSyncState==='local'&&!_statsHasConfirmedSnapshot)return [];
+  return dueSentences().filter(function(row){return !row.deck._protectedHistory;}).map(function(row){
+    return {type:'sentence',key:row.key,dueAt:Number(row.st.dueAt),reference:{deckId:row.deck.id,cid:String(row.it.cid)}};
+  }).filter(function(row){return Number.isSafeInteger(row.dueAt)&&row.dueAt>0;});
+};
+window.launchDailyReviewSentenceGroup=function(items,sessionId,endIndex,childOffset,childTotal){
+  var deckItems=(items||[]).map(function(row){
+    var deck=findDeck(row.reference.deckId),item=deck&&(deck.items||[]).find(function(candidate){return String(candidate.cid)===row.reference.cid;});
+    return deck&&item?withStatsSource(item,deck.id):null;
+  }).filter(Boolean);
+  if(!deckItems.length||deckItems.length!==(items||[]).length)return Promise.reject(new Error('部分句子课程已不可用；队列未跳过这些记录，请返回检查待复习列表。'));
+  var deck={id:'srs-daily-'+Date.now().toString(36),name:'今日混合复习 · 句子',items:deckItems};
+  var id=window.crypto&&typeof window.crypto.randomUUID==='function'?window.crypto.randomUUID():'daily-review-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+  var account=window.AccountStorage,api=window.ChunkAPI;
+  if(!window.IDBStore||!account||!account.owner||!api||typeof api.getBase!=='function')return Promise.reject(new Error('复习暂时无法启动。'));
+  var scope=JSON.stringify([account.owner,api.getBase()]);
+  return IDBStore.putNavigationHandoff(id,deck,scope).then(function(){
+    var url='./main.html?autostart=1&reviewHandoff='+encodeURIComponent(id)+'&dailyReviewSession='+encodeURIComponent(sessionId)+'&dailyReviewEndIndex='+encodeURIComponent(endIndex)+'&dailyReviewChildOffset='+encodeURIComponent(childOffset||0)+'&dailyReviewChildTotal='+encodeURIComponent(childTotal||deckItems.length);
+    location.href=url;
+  });
+};
 
 /* 移动端记录采用渐进式展示：点击整行展开/收起次数、对错和最近练习时间。
    桌面端详情始终可见，因此不改变原有交互。 */
@@ -1338,6 +1378,13 @@ window.addEventListener('server-cache-applied', function(event){
     ready.then(renderStats);
   });
 });
+window.addEventListener('server-cache-refresh-failed', function(event){
+  var detail=event&&event.detail,account=window.AccountStorage;
+  if(detail&&account&&detail.owner!==account.owner)return;
+  if(!statsSurfaceVisible())return;
+  setStatsSyncState(_statsHasConfirmedSnapshot?'stale':'local');
+  renderStats();
+});
 window.addEventListener('cloud-config-changed', function(){
   if(!statsSurfaceVisible()){_statsProjectionDirty=true;return;}
   if(!CL.serverPersistenceReady || !CL.serverPersistenceReady()) return;
@@ -1386,8 +1433,10 @@ Promise.resolve(CL.preload ? CL.preload() : true).catch(function(error){
   clearTimeout(_localPaintTimer);
   paintLocalStats();
 });
-Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(){
+Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.resolve()]).then(function(results){
+  _statsCloudAvailable=results[0]!==false;
   return refreshConfirmedStatsProjection().then(function(applied){
+    _statsProjectionApplied=applied;
     if(!applied) loadMem();
     if(window.ContentRepo && ContentRepo.ensureIndexAll){
       return loadStatsIndexes().then(function(decks){ _statsDecks = decks; });
@@ -1400,7 +1449,7 @@ Promise.all([CL.ensureCloud(), window.ContentRepo ? ContentRepo.ready : Promise.
   clearTimeout(_statsSyncTimer);
   _statsSyncTimer = null;
   _statsInitialSync = false;
-  setStatsSyncState('ready');
+  setStatsSyncState(!statsProtocol3Active()||(_statsCloudAvailable&&_statsProjectionApplied)?'ready':'local');
   migrateLegacyStatKeys();
   renderStats();
 }).catch(function(error){

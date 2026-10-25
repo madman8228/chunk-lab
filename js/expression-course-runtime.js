@@ -36,10 +36,10 @@ var ExpressionCourseRuntime = (() => {
     return result;
   }
   function evaluateActivity(activity, response) {
-    if (activity.type === "sentence_build") {
+    if (activity.type === "sentence_build" || activity.type === "grapheme_build") {
       const tokens = Array.isArray(response?.tokens) ? response.tokens : [];
       const expected = activity.payload.correctTokens || [];
-      return { correct: tokens.length === expected.length && tokens.every((token, index) => token === expected[index]), kind: "tokens" };
+      return { correct: tokens.length === expected.length && tokens.every((token, index) => token === expected[index]), kind: activity.type === "grapheme_build" ? "graphemes" : "tokens" };
     }
     if (activity.type === "listening_choice") {
       return { correct: response?.optionId === activity.evaluation.correctOptionId, kind: "choice" };
@@ -55,13 +55,14 @@ var ExpressionCourseRuntime = (() => {
 
   // src/expression-course/runtime.mjs
   var copy = (value) => structuredClone(value);
-  var activityAnswer = (activity) => activity?.evaluation?.acceptedAnswers?.[0] || activity?.payload?.correctTokens?.join(" ") || activity?.evaluation?.correctOptionId || "";
-  var safeActivity = (activity) => {
+  var activityAnswer = (activity) => activity?.evaluation?.acceptedAnswers?.[0] || activity?.payload?.correctTokens?.join(activity.type === "grapheme_build" ? "" : " ") || activity?.evaluation?.correctOptionId || "";
+  var safeActivity = (activity, revealed = false, isV11 = false) => {
     if (!activity) return null;
     const { evaluation, ...visible } = copy(activity);
-    const { correctTokens, ...payload } = visible.payload || {};
-    if (visible.type === "sentence_build") payload.expectedTokenCount = Array.isArray(correctTokens) ? correctTokens.length : 0;
-    if (["substitution", "independent_output", "transfer_test"].includes(visible.type)) {
+    const { correctTokens, referenceText, ...payload } = visible.payload || {};
+    if (visible.type === "sentence_build" || visible.type === "grapheme_build") payload.expectedTokenCount = Array.isArray(correctTokens) ? correctTokens.length : 0;
+    if (visible.type === "speaking_practice" && revealed) payload.referenceText = referenceText;
+    if (["substitution", "independent_output", "transfer_test"].includes(visible.type) && !isV11) {
       const answer = evaluation?.acceptedAnswers?.[0]?.trim();
       if (answer) payload.expectedWordCount = answer.split(/\s+/).length;
     }
@@ -70,7 +71,7 @@ var ExpressionCourseRuntime = (() => {
   var expose = (state) => ({
     index: state.index,
     completed: state.index >= state.activities.length,
-    activity: safeActivity(state.activities[state.index]),
+    activity: safeActivity(state.activities[state.index], state.revealed, state.schemaVersion === "1.1"),
     attempts: state.attempts,
     hints: state.hints,
     revealed: state.revealed,
@@ -85,6 +86,7 @@ var ExpressionCourseRuntime = (() => {
     }
     return {
       lessonId: lesson.lessonId,
+      schemaVersion: lesson.schemaVersion || "1.0",
       activities: lesson.activities,
       index: 0,
       attempts: 0,
@@ -93,6 +95,8 @@ var ExpressionCourseRuntime = (() => {
       revealedAnswer: null,
       firstResults: {},
       evidence: {},
+      practiceEvidence: {},
+      activityEvidence: {},
       completed: false
     };
   }
@@ -110,8 +114,23 @@ var ExpressionCourseRuntime = (() => {
     }
     if (action.type === "reveal") {
       next.revealed = true;
-      next.revealedAnswer = activityAnswer(activity);
+      next.revealedAnswer = activity.type === "speaking_practice" ? activity.payload.referenceText : activityAnswer(activity);
       return { state: next, result: { kind: "revealed", answer: next.revealedAnswer } };
+    }
+    if (action.type === "self_practiced" || action.type === "skip_practice") {
+      if (activity.type !== "speaking_practice" || next.schemaVersion !== "1.1") throw new Error("\u5F53\u524D\u7EC3\u4E60\u4E0D\u652F\u6301\u53E3\u5934\u81EA\u7EC3\u64CD\u4F5C");
+      const selfReported = action.type === "self_practiced";
+      next.practiceEvidence[activity.id] = { selfReported, evidenceRecorded: false };
+      next.activityEvidence[activity.id] = {
+        activityId: activity.id,
+        type: activity.type,
+        firstCorrect: null,
+        usedHint: false,
+        revealed: next.revealed,
+        selfReported
+      };
+      advance(next);
+      return { state: next, result: { kind: "practice", correct: null, evidenceRecorded: false, selfReported, completed: next.completed } };
     }
     if (action.type === "audio_played") return { state: next, result: { kind: "audio_played", verified: false } };
     if (action.type === "skip_audio") {
@@ -125,7 +144,7 @@ var ExpressionCourseRuntime = (() => {
       return { state: next, result: { kind: "skipped", correct: false, evidenceRecorded: false } };
     }
     if (action.type === "continue") {
-      if (!["meaning_intro", "micro_explanation"].includes(activity.type)) throw new Error("\u5F53\u524D\u7EC3\u4E60\u9700\u8981\u4F5C\u7B54");
+      if (!["meaning_intro", "micro_explanation", "sound_demo"].includes(activity.type)) throw new Error("\u5F53\u524D\u7EC3\u4E60\u9700\u8981\u4F5C\u7B54");
       advance(next);
       return { state: next, result: { kind: "continued", correct: null } };
     }
@@ -135,11 +154,20 @@ var ExpressionCourseRuntime = (() => {
     const first = next.firstResults[key] === void 0;
     if (first) next.firstResults[key] = { correct: evaluated.correct, exposed: next.hints || next.revealed, stage: activity.stage };
     next.attempts += 1;
+    if (next.schemaVersion === "1.1") next.activityEvidence[key] = {
+      activityId: key,
+      type: activity.type,
+      questionKind: activity.payload.questionKind || null,
+      firstCorrect: first ? evaluated.correct : next.activityEvidence[key]?.firstCorrect ?? null,
+      usedHint: Boolean(next.hints),
+      revealed: Boolean(next.revealed),
+      selfReported: false
+    };
     const independent = first && evaluated.correct && !next.hints && !next.revealed && activity.stage === "independent";
-    if (independent) for (const id of activity.skillIds) (next.evidence[id] ||= { independent: false, transfer: false, listening: false })[activity.type === "transfer_test" ? "transfer" : activity.type === "listening_choice" ? "listening" : "independent"] = true;
+    if (independent && next.schemaVersion !== "1.1") for (const id of activity.skillIds) (next.evidence[id] ||= { independent: false, transfer: false, listening: false })[activity.type === "transfer_test" ? "transfer" : activity.type === "listening_choice" ? "listening" : "independent"] = true;
     const feedback = evaluated.correct ? "\u7B54\u5BF9\u4E86" : next.attempts >= 3 ? "\u53EF\u4EE5\u770B\u63D0\u793A\uFF0C\u518D\u7EE7\u7EED\u7EC3\u4E60" : "\u518D\u8BD5\u4E00\u6B21";
     if (evaluated.correct || next.attempts >= 3) advance(next);
-    const masteredSkills = Object.entries(next.evidence).filter(([, evidence]) => evidence.independent && evidence.transfer && evidence.listening).map(([id]) => id);
+    const masteredSkills = next.schemaVersion === "1.1" ? [] : Object.entries(next.evidence).filter(([, evidence]) => evidence.independent && evidence.transfer && evidence.listening).map(([id]) => id);
     next.completed = next.index >= next.activities.length;
     return { state: next, result: { kind: "answer", correct: evaluated.correct, first, independent, feedback, masteredSkills, now } };
   }

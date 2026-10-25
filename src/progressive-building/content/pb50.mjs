@@ -1,0 +1,38 @@
+const syntax = (id, role, ids, level = 0, extra = {}) => ({ id, role, segments: [ids], level, ...extra });
+
+export const courses = [{
+  schemaVersion: 'progressive-building/3', id: 'pb50-independent-delayed-retrieval-v1', version: 1,
+  knowledgeNode: 'PB50', subgoalIds: ['PB50.a', 'PB50.b', 'PB50.c', 'PB50.d'],
+  prerequisites: ['PB49'], title: '独立表达与延迟提取',
+  tokens: [
+    { id: 'i', text: 'I', kind: 'word', gloss: '我', partOfSpeech: '代词' },
+    { id: 'have', text: 'have', kind: 'word', gloss: '有', partOfSpeech: '实义动词' },
+    { id: 'worked', text: 'worked', kind: 'word', gloss: '工作', partOfSpeech: '动词过去分词' },
+    { id: 'here', text: 'here', kind: 'word', gloss: '这里', partOfSpeech: '副词' },
+    { id: 'for', text: 'for', kind: 'word', gloss: '持续', partOfSpeech: '介词' },
+    { id: 'three', text: 'three', kind: 'word', gloss: '三', partOfSpeech: '数词' },
+    { id: 'years', text: 'years', kind: 'word', gloss: '年', partOfSpeech: '名词复数' },
+    { id: 'i2', text: 'I', kind: 'word', gloss: '我', partOfSpeech: '代词' },
+    { id: 'have2', text: 'have', kind: 'word', gloss: '有', partOfSpeech: '实义动词' },
+    { id: 'lived2', text: 'lived', kind: 'word', gloss: '居住', partOfSpeech: '动词过去分词' },
+    { id: 'there', text: 'there', kind: 'word', gloss: '那里', partOfSpeech: '副词' },
+    { id: 'since', text: 'since', kind: 'word', gloss: '自从', partOfSpeech: '介词' },
+    { id: 'last', text: 'last', kind: 'word', gloss: '上一个', partOfSpeech: '限定词' },
+    { id: 'summer', text: 'summer', kind: 'word', gloss: '夏天', partOfSpeech: '名词' },
+    { id: 'she', text: 'She', kind: 'word', gloss: '她', partOfSpeech: '代词' },
+    { id: 'has', text: 'has', kind: 'word', gloss: '助动词', partOfSpeech: '助动词' },
+    { id: 'lived', text: 'lived', kind: 'word', gloss: '居住', partOfSpeech: '动词过去分词' },
+    { id: 'there2', text: 'there', kind: 'word', gloss: '那里', partOfSpeech: '副词' },
+    { id: 'since2', text: 'since', kind: 'word', gloss: '自从', partOfSpeech: '介词' },
+    { id: 'last2', text: 'last', kind: 'word', gloss: '上一个', partOfSpeech: '限定词' },
+    { id: 'summer2', text: 'summer', kind: 'word', gloss: '夏天', partOfSpeech: '名词' },
+    { id: 'period', text: '.', kind: 'punctuation' },
+  ],
+  steps: [
+    { id: 'pb50a-local', activity: 'compose', phase: 'practice', meaning: '自去年夏天起住在那里', targetTokenIds: ['there2', 'since2', 'last2', 'summer2'], bankTokenIds: ['there2', 'since2', 'last2', 'summer2'], syntax: [syntax('place', '地点状语', ['there2']), syntax('time', 'since 时间短语：起点', ['since2', 'last2', 'summer2'])], coverage: ['PB50.a', 'PB50.b', 'PB50.c', 'PB50.d'] },
+    { id: 'pb50a-build', activity: 'compose', phase: 'practice', meaning: '她自去年夏天起就住在那里', targetTokenIds: ['she', 'has', 'lived2', 'there2', 'since2', 'last2', 'summer2', 'period'], bankTokenIds: ['she', 'has', 'lived2', 'there2', 'since2', 'last2', 'summer2'], dependsOn: ['pb50a-local'], syntax: [syntax('s', '主语', ['she']), syntax('v', '现在完成时谓语：has + 过去分词', ['has', 'lived2']), syntax('adv', '地点状语', ['there2']), syntax('time', 'since 时间状语', ['since2', 'last2', 'summer2'])], coverage: ['PB50.a', 'PB50.b', 'PB50.c', 'PB50.d'] },
+    { id: 'pb50a-teach', activity: 'teach', phase: 'introduction', meaning: '她自去年夏天起就住在那里', targetTokenIds: ['she', 'has', 'lived2', 'there2', 'since2', 'last2', 'summer2', 'period'], focusTokenIds: ['has', 'lived2', 'since2', 'last2', 'summer2'], dependsOn: ['pb50a-build'], syntax: [syntax('v', '现在完成时谓语', ['has', 'lived2']), syntax('time', 'since 短语标起点', ['since2', 'last2', 'summer2'])], explanation: 'has lived 把过去开始、并延续到现在的居住状态连接起来；since last summer 给出开始时间，there 是地点状语。下面换成另一句，先不显示词块或示范答案，看看能否独立组织同类结构。', coverage: ['PB50.a', 'PB50.b', 'PB50.c', 'PB50.d'] },
+    { id: 'pb50a-independent-now', activity: 'independent-output', phase: 'transfer', meaning: '我在这里工作三年了（现在仍在这里工作）', targetTokenIds: ['i', 'have', 'worked', 'here', 'for', 'three', 'years'], acceptedAnswers: ['I have worked here for three years.'], revealTarget: false, hideHistory: true, allowUnknownResponse: true, hintText: '先判断这段经历是否延续到现在；再按“主语 + have/has + 过去分词”组织谓语。', showEvidence: true, scheduleAssistedReview: true, dependsOn: ['pb50a-teach'], coverage: ['PB50.a', 'PB50.b', 'PB50.c', 'PB50.d'] },
+  ],
+  review: { intervalsDays: [1, 3], stepIds: ['pb50a-independent-now'] },
+}];

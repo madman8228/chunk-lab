@@ -4,7 +4,7 @@
 .course-learning-header .course-header-subtitle{margin:3px 0 0;color:var(--workspace-muted,var(--muted,#745333));font-size:13px;line-height:1.5;overflow-wrap:anywhere}
 .course-learning-header .course-header-subtitle:empty{display:none}
 .course-learning-header .course-header-title:empty{display:none}
-.course-learning-header .course-header-exit{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:44px;padding:4px 6px;border:0;border-radius:6px;background:transparent;box-shadow:none;color:var(--workspace-muted,var(--muted,#745333));font:inherit;font-size:12px;text-decoration:none;white-space:nowrap;cursor:pointer}
+.course-learning-header .course-header-exit{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:44px;padding:4px 6px;border:0;border-radius:var(--ui-radius-sm);background:transparent;box-shadow:none;color:var(--workspace-muted,var(--muted,#745333));font:inherit;font-size:12px;text-decoration:none;white-space:nowrap;cursor:pointer}
 .course-learning-header .course-header-exit:focus-visible{outline:2px solid var(--accent,#3768b4);outline-offset:2px}
 .course-learning-header .course-header-position{flex:0 0 auto;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
 @media(max-width:600px){.course-learning-header{flex-wrap:wrap;gap:4px 8px}.course-learning-header .course-header-copy{flex-basis:calc(100% - 90px)}.course-learning-header .course-header-title{font-size:13px}.course-learning-header .course-header-subtitle{font-size:12px}}

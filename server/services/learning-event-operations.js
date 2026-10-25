@@ -95,6 +95,7 @@ function createLearningEventOperations(options) {
         contentFingerprint: typeof p.contentFingerprint === 'string' ? p.contentFingerprint.slice(0, 200) : '',
         policyVersion: Number.isSafeInteger(p.policyVersion) && p.policyVersion > 0 ? p.policyVersion : 1,
         ok: p.ok, assisted: p.assisted === true, firstAttempt: p.firstAttempt === true,
+        ...(typeof p.timeZone === 'string' && p.timeZone ? { timeZone: p.timeZone } : {}),
         earlyPractice: p.earlyPractice === true,
         ...(Number.isSafeInteger(p.chunkRight) && Number.isSafeInteger(p.chunkTotal)
           ? { chunkRight: p.chunkRight, chunkTotal: p.chunkTotal } : {}),

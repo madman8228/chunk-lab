@@ -17,7 +17,7 @@ function createExpressionSessionService({ db, repository, runtime, authorize, no
     if (!original) throw fail('EXPRESSION_LESSON_NOT_FOUND', 404);
     if (row.mode !== 'review') return original;
     const activity = original.activities.find(item => item.id === row.review_activity_id && item.skillIds?.includes(row.review_skill_id));
-    if (!activity || !['independent_output', 'transfer_test', 'listening_choice'].includes(activity.type)) throw fail('EXPRESSION_REVIEW_NOT_FOUND', 404);
+    if (!activity || !['independent_output', 'transfer_test', 'listening_choice', 'grapheme_build'].includes(activity.type)) throw fail('EXPRESSION_REVIEW_NOT_FOUND', 404);
     return { ...original, activities: [activity] };
   }
   function response(row, release, state, result = null) {
@@ -53,7 +53,7 @@ function createExpressionSessionService({ db, repository, runtime, authorize, no
     if (mode === 'review') {
       const ref = release.package.reviewActivities.find(item => item.lessonId === lessonId && item.skillId === reviewSkillId && item.activityId === reviewActivityId);
       const activity = ref && lesson.activities.find(item => item.id === ref.activityId);
-      if (!activity || !['independent_output', 'transfer_test', 'listening_choice'].includes(activity.type)) throw fail('EXPRESSION_REVIEW_NOT_FOUND', 404);
+      if (!activity || !['independent_output', 'transfer_test', 'listening_choice', 'grapheme_build'].includes(activity.type)) throw fail('EXPRESSION_REVIEW_NOT_FOUND', 404);
       selectedLesson = { ...lesson, activities: [activity] };
     }
     const existing = db.prepare("SELECT * FROM expression_sessions WHERE user_id=? AND course_id=? AND release_id=? AND lesson_id=? AND mode=? ORDER BY updated_at DESC LIMIT 1")
@@ -108,7 +108,10 @@ function createExpressionSessionService({ db, repository, runtime, authorize, no
         db.prepare(`INSERT INTO expression_skill_states(user_id,course_id,release_id,skill_id,status,due_at,review_step,evidence_json)
           VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(user_id,course_id,release_id,skill_id) DO UPDATE SET
           status=excluded.status,due_at=excluded.due_at,review_step=excluded.review_step,evidence_json=excluded.evidence_json`)
-          .run(userId, row.course_id, row.release_id, row.review_skill_id, reviewSuccess ? 'mastered' : 'needs_practice', review.dueAt, review.step, JSON.stringify({ lastReviewCorrect: !!outcome.result.correct, activityId: row.review_activity_id }));
+          .run(userId, row.course_id, row.release_id, row.review_skill_id,
+            reviewSuccess ? release.package.formatVersion === '1.1' ? 'practiced' : 'mastered' : 'needs_practice',
+            review.dueAt, review.step, JSON.stringify({ lastReviewCorrect: !!outcome.result.correct, activityId: row.review_activity_id,
+              activityEvidence: outcome.state.activityEvidence?.[row.review_activity_id] || null }));
       }
       const activity = state.activities[state.index];
       const needsPractice = outcome.result.kind === 'skipped' || outcome.result.kind === 'answer' &&

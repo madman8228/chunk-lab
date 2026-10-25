@@ -5,10 +5,10 @@
   if(!badge) return;
   var style = document.createElement('style');
   style.textContent = '#syncBadge{cursor:pointer}' +
-    '#syncResolveMask .modal{max-width:640px;width:100%;height:auto;border-radius:12px}' +
+    '#syncResolveMask .modal{max-width:640px;width:100%;height:auto;border-radius:var(--ui-radius-control)}' +
     '#syncResolveMask .modal-head{padding:10px 14px}#syncResolveClose{margin-left:auto}' +
     '#syncResolveMask .sync-versions{display:grid;grid-template-columns:1fr 1fr;gap:12px}' +
-    '#syncResolveMask section{min-width:0;border:1px solid var(--border);border-radius:10px;padding:12px}' +
+    '#syncResolveMask section{min-width:0;border:1px solid var(--border);border-radius:var(--ui-radius-control);padding:12px}' +
     '#syncResolveMask h4{margin:0 0 8px}#syncResolveMask p{margin:8px 0;line-height:1.6;overflow-wrap:anywhere}' +
     '#syncResolveMask pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto;font-size:12px}' +
     '#syncResolveMask .sync-message{min-height:24px}#syncResolveMask [hidden]{display:none!important}' +

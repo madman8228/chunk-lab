@@ -1,7 +1,7 @@
 'use strict';
 
 const ENROLLMENT_PREFIX = 'enrollment:v1:';
-const MAX_JOINED_COURSES = 3;
+const MAX_JOINED_COURSES = 4;
 
 function isJoinedEnrollment(id, value) {
   return !!(value && value.kind === 'course-enrollment' && value.schemaVersion === 1 &&
@@ -10,7 +10,7 @@ function isJoinedEnrollment(id, value) {
 }
 
 function courseLimitError() {
-  return Object.assign(new Error('最多加入 3 门课程；请先移出一门，再加入新课程。'), {
+  return Object.assign(new Error('最多加入 4 门课程；请先移出一门，再加入新课程。'), {
     code: 'COURSE_LIMIT_REACHED', status: 409
   });
 }

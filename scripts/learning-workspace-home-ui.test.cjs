@@ -11,6 +11,7 @@ async function main(){
     const errors=[];page.on('pageerror',error=>errors.push(error.message));
     await page.setContent('<!doctype html><html lang="zh-CN"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;background:#f7f1e4;font-family:Arial,sans-serif}*{box-sizing:border-box}#noticeBannerRail{display:flex;min-height:36px;align-items:flex-start;justify-content:center;padding:2px 0 4px}</style><div id="pageHome"></div><div id="noticeBannerRail"></div><main id="home"></main></html>');
     await page.addStyleTag({path:path.join(root,'assets/learning-workspace.css')});await page.addStyleTag({path:path.join(root,'assets/content-card.css')});
+    await page.addStyleTag({path:path.join(root,'assets/home-dashboard.css')});
     await page.addScriptTag({path:path.join(root,'js/learning-workspace.js')});
     await page.addScriptTag({path:path.join(root,'js/learning-navigation.js')});
     await page.addScriptTag({path:path.join(root,'js/content-card.js')});await page.addScriptTag({path:path.join(root,'js/notice-banner.js')});await page.addScriptTag({path:path.join(root,'js/course-return.js')});await page.addScriptTag({path:path.join(root,'js/learning-workspace-view.js')});
@@ -51,8 +52,16 @@ async function main(){
       assert.equal(await page.locator('.workspace-tool-links').count(),0);
       await page.screenshot({path:path.join(output,'home-'+width+'.png'),fullPage:true});
     }
-    await page.evaluate(()=>draw({resume:{toolId:'chunks',deck:{id:'lesson-1'},idx:4},courseRows:[{course:{id:'demo',title:'日常英语表达'},lessons:[{contentRef:{type:'sentence-deck',id:'lesson-1'}}],resource:{available:true},progress:''}]}));
-    await page.locator('.hd-main-action').click();await page.waitForFunction(()=>calls.length>0);assert.equal((await page.evaluate(()=>calls.pop()))[1].idx,4);
+    await page.evaluate(()=>draw({resume:{toolId:'chunks',deck:{id:'lesson-1'},idx:4},courseRows:[{course:{id:'demo',title:'日常英语表达'},lessons:[{contentRef:{type:'sentence-deck',id:'lesson-1'}}],resource:{available:true},progress:'已学 3 / 418 句',homeProgressMarkup:'<span class="home-progress-metric"><span class="home-progress-label"><b>1%</b></span><span class="home-progress-track"><span></span></span></span>'}]}));
+    assert.equal(await page.locator('.home-content-kind').first().textContent(),'句子','sentence course uses the concise shared label');
+    assert.equal(await page.locator('.home-course-progress-line .home-deck-progress').textContent(),'已学 3 / 418 句');
+    assert.equal(await page.locator('.home-course-progress-line .home-course-metrics .home-progress-track').count(),1,'learned count and progress track share the dedicated progress row');
+    await page.locator('#pageHome').evaluate(node=>{node.innerHTML='<section class="workspace-active"><div class="hd-row"><button class="hd-main-action"><span class="workspace-course-cover"><span class="hc-course-cover"></span></span><span class="grow"><span class="home-course-title-line"><span class="nm">口语3000句</span></span><span class="home-course-progress-line"><span class="sub home-deck-progress">已学 1 / 65 课节</span><span class="home-course-metrics"><span class="home-progress-metric"><span class="home-progress-label"><b>2%</b></span><span class="home-progress-track"><span></span></span></span></span></span></span></button><button class="hd-select-lessons">选课节</button><a class="hd-action">继续学习</a></div></section>';});
+    assert.equal(await page.locator('#pageHome .hd-row').evaluate(node=>node.getBoundingClientRect().height<=165),true,'course card with lesson selector has no oversized blank height');
+    assert.equal(await page.locator('#pageHome .hd-action').evaluate(node=>getComputedStyle(node).position),'static','resume action stays in normal flow below the course');
+    assert.equal(await page.locator('#pageHome .home-progress-track').evaluate(node=>{const r=node.getBoundingClientRect(),label=node.parentElement.querySelector('.home-progress-label').getBoundingClientRect(),copy=node.closest('.grow').getBoundingClientRect();return r.top>=label.bottom&&r.width>copy.width*.8}),true,'progress bar occupies a separate bottom row across the copy width');
+    assert.equal(await page.locator('#pageHome .grow').evaluate(node=>{const r=node.getBoundingClientRect(),cover=node.closest('.hd-main-action').querySelector('.hc-course-cover').getBoundingClientRect(),title=node.querySelector('.home-course-title-line').getBoundingClientRect(),progress=node.querySelector('.home-course-progress-line').getBoundingClientRect();return Math.abs(r.top-cover.top)<2&&Math.abs(r.bottom-cover.bottom)<2&&Math.abs(title.top-r.top)<2&&Math.abs(progress.bottom-r.bottom)<2}),true,'copy fills cover height with title and progress at opposite ends');
+    await page.locator('#home .hd-main-action').click();await page.waitForFunction(()=>calls.length>0);assert.equal((await page.evaluate(()=>calls.pop()))[1].idx,4);
     await page.evaluate(()=>draw({due:12,activeResources:[{title:'日常英语表达',available:true,resourceId:'course:demo'}]}));
     await page.evaluate(()=>{window.openStatsPage=tab=>calls.push(['stats',tab]);});
     await page.getByRole('link',{name:'去复习（12）',exact:true}).click();assert.deepEqual(await page.evaluate(()=>calls.pop()),['stats','review']);

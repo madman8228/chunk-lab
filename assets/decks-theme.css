@@ -17,4 +17,4 @@ body.decks-page{--bg:#f7f1e4;--surface:var(--v4-card);--surface-2:#f7edd9;--bord
 .decks-page .catalog-lesson-media:not(.is-custom) img{opacity:1;object-fit:cover}
 .decks-page .catalog-lesson-media:not(.is-custom)::after{content:none}
 .decks-page button:focus-visible,.decks-page a:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
-@media(max-width:640px){.decks-page .btn{min-height:44px}.decks-page .wrap{padding-right:16px;padding-left:16px}.decks-page .page-head{display:flex;align-items:center;gap:8px;background:var(--surface);border-radius:8px}.decks-page .page-head h2{flex:1 1 200px;white-space:normal}.decks-page .course-header-actions{margin-left:auto}}
+@media(max-width:640px){.decks-page .btn{min-height:44px}.decks-page .wrap{padding-right:16px;padding-left:16px}.decks-page .page-head{display:flex;align-items:center;gap:8px;background:var(--surface);border-radius:var(--ui-radius-sm)}.decks-page .page-head h2{flex:1 1 200px;white-space:normal}.decks-page .course-header-actions{margin-left:auto}}

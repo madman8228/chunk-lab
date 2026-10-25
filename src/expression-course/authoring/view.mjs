@@ -177,9 +177,12 @@ async function run() {
     setStep('choose', '当前步骤：选择一种开始方式', '已有完整课程 JSON 就直接导入；还没有课程包，就先用外部 AI 制作。');
   };
   $('copyPrompt').onclick = async () => {
-    try { await navigator.clipboard.writeText(makeExpressionCoursePrompt()); $('aiImportNext').hidden = false; setStep('content', '当前步骤：在外部 AI 完成课程', '制作指令已复制。将教材或资料发送给所选 AI，确认生成的 JSON 后再回到这里导入。'); message('制作指令已复制。完成外部 AI 对话后，点击“我已拿到 JSON，继续导入”。'); }
+    try { await navigator.clipboard.writeText(makeExpressionCoursePrompt({ formatVersion: $('promptProtocol').value, track: $('promptTrack').value })); $('aiImportNext').hidden = false; setStep('content', '当前步骤：在外部 AI 完成课程', '制作指令已复制。将教材或资料发送给所选 AI，确认生成的 JSON 后再回到这里导入。'); message('制作指令已复制。完成外部 AI 对话后，点击“我已拿到 JSON，继续导入”。'); }
     catch (error) { message('无法自动复制。请检查浏览器剪贴板权限后重试。', true); }
   };
+  const syncPromptRoute = () => { $('promptTrack').hidden = $('promptProtocol').value !== '1.1'; };
+  $('promptProtocol').addEventListener('change', syncPromptRoute);
+  syncPromptRoute();
   $('continueAIImport').onclick = () => { $('aiPath').hidden = true; $('aiImportPath').hidden = false; setStep('content', '当前步骤：导入 AI 生成的课程', '选择外部 AI 返回的完整课程 JSON 文件。导入后会显示音频和检查步骤。'); };
   const importPackage = async event => {
     const file = event.target.files?.[0]; if (!file) return;

@@ -2,6 +2,7 @@
   'use strict';
   const bookId=new URLSearchParams(location.search).get('book')||'pilot-six-v1',root=document.getElementById('studyRoot'),status=document.getElementById('bookStatus');
   const params=new URLSearchParams(location.search),unitId=params.get('unit')||undefined,structureRevision=params.get('structureRevision')||undefined;
+  if(params.has('reviewSession')){VocabularyTargetedReview.start({bookId,practiceType:params.get('practice'),sessionId:params.get('reviewSession')});return;}
   CourseReturn.bind(document.getElementById('bookBack'),{href:CourseReturn.bookParent(bookId),label:'返回',beforeLeave:async()=>{
     await VocabularyStudyStore.waitForLocalWrites();
     clearTimeout(retryTimer);form?.stop?.();courseAudio?.stop();if(typeof speechSynthesis!=='undefined')speechSynthesis.cancel();

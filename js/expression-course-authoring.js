@@ -668,19 +668,100 @@ var lesson_schema_default = {
   }
 };
 
+// src/expression-course/schema-v1.1.mjs
+function createExpressionV11Schemas() {
+  const packageSchema = structuredClone(expression_package_schema_default);
+  packageSchema.$id = "https://jqka.top/contracts/expression-package-1.1.schema.json";
+  packageSchema.properties.formatVersion = { const: "1.1" };
+  packageSchema.required = [...packageSchema.required, "curriculum"];
+  packageSchema.properties.curriculum = {
+    type: "object",
+    additionalProperties: false,
+    required: ["track", "stage", "knowledgeMapVersion"],
+    properties: {
+      track: { enum: ["scenario", "sentence-building", "pronunciation", "phonics"] },
+      stage: { enum: ["S0", "S1", "S2", "S3", "S4"] },
+      knowledgeMapVersion: { const: "1.0" }
+    }
+  };
+  const lessonSchema = structuredClone(lesson_schema_default);
+  lessonSchema.$id = "https://jqka.top/contracts/expression-lesson-1.1.schema.json";
+  lessonSchema.required = [...lessonSchema.required, "knowledgeIds", "recommendedKnowledgeIds"];
+  lessonSchema.properties.schemaVersion = { const: "1.1" };
+  lessonSchema.properties.knowledgeIds = { type: "array", minItems: 1, uniqueItems: true, items: { type: "string", minLength: 1 } };
+  lessonSchema.properties.recommendedKnowledgeIds = { type: "array", uniqueItems: true, items: { type: "string", minLength: 1 } };
+  lessonSchema.properties.vocabulary.minItems = 0;
+  lessonSchema.properties.activities.minItems = 4;
+  const activity = lessonSchema.$defs.activity;
+  activity.properties.type.enum.push("sound_demo", "grapheme_build", "speaking_practice");
+  const listening = lessonSchema.$defs.listeningPayload;
+  listening.properties.questionKind = { enum: ["meaning", "sound", "decoding"] };
+  lessonSchema.$defs.soundDemoPayload = {
+    type: "object",
+    additionalProperties: false,
+    required: ["instructionZh", "segments"],
+    properties: {
+      instructionZh: { type: "string", minLength: 2 },
+      segments: { type: "array", minItems: 1, maxItems: 12, items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["label", "audioAssetId"],
+        properties: { label: { type: "string", minLength: 1 }, symbol: { type: "string", minLength: 1 }, audioAssetId: { type: "string", minLength: 1 } }
+      } }
+    }
+  };
+  lessonSchema.$defs.graphemeBuildPayload = {
+    type: "object",
+    additionalProperties: false,
+    required: ["targetMeaning", "audioAssetId", "availableTokens", "correctTokens"],
+    properties: {
+      targetMeaning: { type: "string", minLength: 1 },
+      audioAssetId: { type: "string", minLength: 1 },
+      availableTokens: { type: "array", minItems: 1, maxItems: 16, items: { type: "string", minLength: 1, maxLength: 8 } },
+      correctTokens: { type: "array", minItems: 1, maxItems: 12, items: { type: "string", minLength: 1, maxLength: 8 } }
+    }
+  };
+  lessonSchema.$defs.speakingPracticePayload = {
+    type: "object",
+    additionalProperties: false,
+    required: ["scenario", "referenceText", "audioAssetId"],
+    properties: {
+      scenario: { type: "string", minLength: 3 },
+      referenceText: { type: "string", minLength: 1 },
+      audioAssetId: { type: "string", minLength: 1 }
+    }
+  };
+  const addType = (type, payloadRef, stage, countsTowardMastery) => activity.allOf.push({
+    if: { properties: { type: { const: type } } },
+    then: { properties: {
+      stage: stage ? { const: stage } : {},
+      payload: { $ref: `#/$defs/${payloadRef}` },
+      evaluation: { properties: { countsTowardMastery: { const: countsTowardMastery } } }
+    } }
+  });
+  addType("sound_demo", "soundDemoPayload", "guided", false);
+  addType("grapheme_build", "graphemeBuildPayload", null, false);
+  addType("speaking_practice", "speakingPracticePayload", null, false);
+  return { packageSchema, lessonSchema };
+}
+
 // src/expression-course/authoring/prompt.mjs
-function makeExpressionCoursePrompt() {
+function makeExpressionCoursePrompt({ formatVersion = "1.0", track = "sentence-building" } = {}) {
+  const v11 = formatVersion === "1.1";
+  const selectedSchemas = v11 ? createExpressionV11Schemas() : { packageSchema: expression_package_schema_default, lessonSchema: lesson_schema_default };
+  const beginnerRules = v11 ? `\u534F\u8BAE\u56FA\u5B9A\u4E3A1.1\uFF1Bcurriculum.track=${track}\uFF0Cstage\u4F9D\u636E\u77E5\u8BC6\u76EE\u5F55\u771F\u5B9E\u524D\u7F6E\u9009\u62E9S0\u2013S4\u3002\u6BCF\u8BFE\u81F3\u5C114\u9879\u6D3B\u52A8\u3001\u81F3\u5C111\u9879\u8BB2\u89E3/\u793A\u8303\u53CA\u72EC\u7ACB\u68C0\u67E5\uFF1B\u8BCD\u6C47\u53EF\u4E3A\u7A7A\u3002\u901A\u8FC7\u8FDE\u7EED\u7684\u77ED\u6D3B\u52A8\u9010\u6E10\u64A4\u9664\u63D0\u793A\uFF0C\u4E0D\u65B0\u589E\u5D4C\u5957\u6B65\u9AA4\u534F\u8BAE\u3002\u97F3\u6807\u8BFE\u7528sound_demo\u5C55\u793A\u5355\u97F3\u548C\u5BF9\u6BD4\uFF0C\u7981\u6B62\u5047\u88C5\u8BED\u97F3\u8BC6\u522B\uFF1B\u81EA\u7136\u62FC\u8BFB\u7528grapheme_build\u9009\u62E9\u5B57\u6BCD\u5757\uFF0C\u4E0D\u80FD\u5F53\u4F5C\u6717\u8BFB\u8BC1\u636E\uFF1B\u53E3\u5934speaking_practice\u5FC5\u987B\u5148\u9690\u85CF\u8303\u6587\uFF0C\u70B9\u51FB\u663E\u793A\u540E\u624D\u663E\u793A/\u64AD\u653E\uFF0C\u53EA\u8BB0\u81EA\u7EC3\u3001\u4E0D\u8BC4\u5206\u3002\u8BFE\u7A0B\u77E5\u8BC6\u76EE\u6807\u5FC5\u987B\u5F15\u7528\u76EE\u5F55ID\uFF0Clesson\u5185\u76EE\u6807\u9636\u6BB5\u4E0E\u8BFE\u7A0B\u9636\u6BB5\u4E00\u81F4\u3002reviewActivities\u4EC5\u5217\u53EF\u8BC4\u4F30\u6D3B\u52A8\uFF0C\u4E0D\u5217\u53E3\u5934\u81EA\u7EC3\u3002\u9996\u671F\u4E0D\u4EA7\u751F\u7EFC\u5408\u638C\u63E1\u7ED3\u8BBA\u3002` : "";
   return `\u4F60\u662F\u82F1\u8BED\u53E3\u8BED\u6559\u5B66\u8BFE\u7A0B\u7F16\u5199\u52A9\u624B\u3002\u8BF7\u6839\u636E\u6211\u63D0\u4F9B\u7684\u6559\u6750/\u8D44\u6599\u5236\u4F5C\u9002\u5408\u4E2D\u6587\u6BCD\u8BED\u6210\u4EBA\u96F6\u57FA\u7840\u5B66\u4E60\u8005\u7684\u8BFE\u7A0B\u5019\u9009\u5185\u5BB9\u3002\u8D44\u6599\u4EC5\u7528\u4E8E\u672C\u6B21\u751F\u6210\uFF0C\u4E0D\u5F97\u4F2A\u9020\u6559\u6750\u539F\u6587\u6216\u5F15\u7528\u9875\u7801\u3002
 
-\u8F93\u51FA\u8981\u6C42\uFF1A\u53EA\u8F93\u51FA\u7B26\u5408\u4EE5\u4E0B JSON Schema \u7684\u4E00\u4E2A JSON \u5BF9\u8C61\uFF0C\u4E0D\u8981 Markdown \u4EE3\u7801\u56F4\u680F\u3001\u89E3\u91CA\u6216\u591A\u4F59\u5B57\u6BB5\u3002\u97F3\u9891\u7D20\u6750\u7531\u6211\u53E6\u884C\u63D0\u4F9B\uFF1A\u5728 assets \u4E2D\u586B\u5199 assetId\u3001mimeType\u3001localFile \u6587\u4EF6\u540D\uFF1Bsha256 \u548C size \u4E0D\u8981\u731C\uFF0C\u7559\u7A7A\u4E0D\u7B26\u5408\u89C4\u8303\u65F6\u8BF7\u76F4\u63A5\u7701\u7565\u3002\u7F3A\u5C11\u97F3\u9891\u65F6\u5728\u8BFE\u5185\u97F3\u9891\u6E05\u5355\u6807\u8BB0 needs_generation\uFF1B\u4E0D\u5F97\u4F2A\u9020\u97F3\u9891\u6587\u4EF6\u3002\u5148\u7528 meaning_intro/micro_explanation \u5EFA\u7ACB\u7406\u89E3\uFF0C\u518D\u9010\u6B65\u51CF\u5C11\u63D0\u793A\uFF0C\u52A0\u5165 sentence_build\u3001substitution\u3001listening_choice\u3001independent_output \u548C transfer_test\u3002\u81F3\u5C117\u4E2A\u6D3B\u52A8\uFF1B\u72EC\u7ACB\u8868\u8FBE\u4E0D\u80FD\u51FA\u73B0\u82F1\u6587\u7B54\u6848\u3001\u9996\u5B57\u6BCD\u6216\u53EF\u76F4\u63A5\u6284\u5199\u7684\u8BCD\u5757\u3002\u8FC1\u79FB\u9898\u7528\u65B0\u60C5\u5883\uFF0C\u4E0D\u91CD\u590D\u524D\u9762\u5B8C\u6574\u793A\u8303\u7B54\u6848\u3002reviewActivities \u63D0\u4F9B\u81F3\u5C11\u4E24\u4E2A\u72EC\u7ACB\u7EC3\u4E60\u7EC4\u5408\u3002\u4FDD\u7559\u552F\u4E00 ID\uFF1B\u6240\u6709\u63A5\u53D7\u7B54\u6848\u663E\u5F0F\u5217\u51FA\uFF0C\u4EC5\u5141\u8BB8\u786E\u5B9E\u7B49\u4EF7\u7684\u81EA\u7136\u8868\u8FBE\u3002
+${beginnerRules}
+\u8F93\u51FA\u8981\u6C42\uFF1A\u53EA\u8F93\u51FA\u7B26\u5408\u4EE5\u4E0B JSON Schema \u7684\u4E00\u4E2A JSON \u5BF9\u8C61\uFF0C\u4E0D\u8981 Markdown \u4EE3\u7801\u56F4\u680F\u3001\u89E3\u91CA\u6216\u591A\u4F59\u5B57\u6BB5\u3002\u97F3\u9891\u7D20\u6750\u7531\u6211\u53E6\u884C\u63D0\u4F9B\uFF1A\u5728 assets \u4E2D\u586B\u5199 assetId\u3001mimeType\u3001localFile \u6587\u4EF6\u540D\uFF1Bsha256 \u548C size \u4E0D\u8981\u731C\uFF0C\u7559\u7A7A\u4E0D\u7B26\u5408\u89C4\u8303\u65F6\u8BF7\u76F4\u63A5\u7701\u7565\u3002\u7F3A\u5C11\u97F3\u9891\u65F6\u5728\u8BFE\u5185\u97F3\u9891\u6E05\u5355\u6807\u8BB0 needs_generation\uFF1B\u4E0D\u5F97\u4F2A\u9020\u97F3\u9891\u6587\u4EF6\u3002\u5148\u7528 meaning_intro/micro_explanation \u5EFA\u7ACB\u7406\u89E3\uFF0C\u518D\u9010\u6B65\u51CF\u5C11\u63D0\u793A\uFF0C\u52A0\u5165 sentence_build\u3001substitution\u3001listening_choice\u3001independent_output \u548C transfer_test\u3002${v11 ? "\u6BCF\u8BFE\u81F3\u5C114\u9879\u6D3B\u52A8\u3002" : "\u81F3\u5C117\u4E2A\u6D3B\u52A8\uFF1B"}\u72EC\u7ACB\u8868\u8FBE\u4E0D\u80FD\u51FA\u73B0\u82F1\u6587\u7B54\u6848\u3001\u9996\u5B57\u6BCD\u6216\u53EF\u76F4\u63A5\u6284\u5199\u7684\u8BCD\u5757\u3002\u8FC1\u79FB\u9898\u7528\u65B0\u60C5\u5883\uFF0C\u4E0D\u91CD\u590D\u524D\u9762\u5B8C\u6574\u793A\u8303\u7B54\u6848\u3002reviewActivities \u63D0\u4F9B\u81F3\u5C11\u4E24\u4E2A\u72EC\u7ACB\u7EC3\u4E60\u7EC4\u5408\u3002\u4FDD\u7559\u552F\u4E00 ID\uFF1B\u6240\u6709\u63A5\u53D7\u7B54\u6848\u663E\u5F0F\u5217\u51FA\uFF0C\u4EC5\u5141\u8BB8\u786E\u5B9E\u7B49\u4EF7\u7684\u81EA\u7136\u8868\u8FBE\u3002
 
 \u8BF7\u5148\u5411\u6211\u786E\u8BA4\u8D44\u6599\u4E2D\u4E0D\u660E\u786E\u7684\u76EE\u6807\u3001\u5DF2\u77E5\u8BCD\u6C47\u548C\u96BE\u5EA6\uFF1B\u786E\u8BA4\u540E\u518D\u751F\u6210\u3002\u53D1\u73B0\u7ED3\u6784\u9519\u8BEF\u65F6\u4EC5\u8FD4\u56DE\u4FEE\u590D\u540E\u7684\u5B8C\u6574 JSON\u3002
 
 \u8BFE\u7A0B\u5305 JSON Schema\uFF1A
-${JSON.stringify(expression_package_schema_default, null, 2)}
+${JSON.stringify(selectedSchemas.packageSchema, null, 2)}
 
 \u5355\u8BFE JSON Schema\uFF1A
-${JSON.stringify(lesson_schema_default, null, 2)}`;
+${JSON.stringify(selectedSchemas.lessonSchema, null, 2)}`;
 }
 
 // src/shared/chunk-selection.mjs
@@ -887,10 +968,32 @@ function renderActivity(root, activity, { onAction, playAudio, preview = false }
   if (activity.type === "meaning_intro" || activity.type === "micro_explanation") {
     const example = payload.exampleEnglish || payload.example || payload.explanation || "";
     const zh = payload.exampleZh || payload.meaning || payload.explanationZh || "";
+    if (payload.ruleText) root.append(el("p", { class: "activity-meaning" }, payload.ruleText));
     if (example) root.append(el("p", { class: "activity-example", lang: "en" }, example));
     if (zh) root.append(el("p", { class: "activity-meaning" }, zh));
-  } else if (activity.type === "sentence_build") {
-    root.append(el("p", { class: "activity-meaning" }, payload.targetMeaning || "\u6309\u6B63\u786E\u987A\u5E8F\u6392\u5217\u8BCD\u5757"));
+    for (const contrast of payload.contrasts || []) {
+      const item = el("p", { class: "activity-meaning" }, `${contrast.label || "\u5BF9\u6BD4"}\uFF1A${contrast.en || contrast.left || ""} \xB7 ${contrast.zh || contrast.right || ""}`);
+      root.append(item);
+    }
+  } else if (activity.type === "sound_demo") {
+    if (payload.instructionZh) root.append(el("p", { class: "activity-meaning" }, payload.instructionZh));
+    for (const segment of payload.segments || []) {
+      const row = el("div", { class: "sound-demo-segment" });
+      if (segment.symbol) row.append(el("span", { class: "sound-symbol", lang: "en" }, segment.symbol));
+      if (segment.label) row.append(el("span", { class: "activity-meaning" }, segment.label));
+      const play = el("button", { type: "button", class: "button button-secondary" }, segment.buttonLabel || "\u64AD\u653E\u793A\u8303");
+      play.addEventListener("click", () => playAudio?.(segment.audioAssetId, play));
+      row.append(play);
+      root.append(row);
+    }
+  } else if (activity.type === "sentence_build" || activity.type === "grapheme_build") {
+    const isGrapheme = activity.type === "grapheme_build";
+    root.append(el("p", { class: "activity-meaning" }, payload.targetMeaning || (isGrapheme ? "\u6309\u58F0\u97F3\u987A\u5E8F\u62FC\u5408\u5B57\u6BCD\u5757" : "\u6309\u6B63\u786E\u987A\u5E8F\u6392\u5217\u8BCD\u5757")));
+    if (isGrapheme && payload.audioAssetId) {
+      const play = el("button", { type: "button", class: "button button-secondary" }, "\u518D\u542C\u4E00\u6B21");
+      play.addEventListener("click", () => playAudio?.(payload.audioAssetId, play));
+      root.append(play);
+    }
     const targetCount = payload.expectedTokenCount || payload.availableTokens?.length || 0;
     const selection = createChunkSelection({
       mode: "sequence",
@@ -935,6 +1038,19 @@ function renderActivity(root, activity, { onAction, playAudio, preview = false }
       choices.append(button);
     }
     root.append(choices);
+  } else if (activity.type === "speaking_practice") {
+    if (payload.scenario) root.append(el("p", { class: "activity-meaning" }, payload.scenario));
+    root.append(el("p", { class: "activity-meaning" }, payload.instruction || "\u5148\u542C\u793A\u8303\uFF0C\u518D\u81EA\u5DF1\u5F00\u53E3\u8BF4\u4E00\u904D\u3002"));
+    root.append(el("p", { class: "activity-meaning" }, "\u8FD9\u662F\u81EA\u6211\u7EC3\u4E60\uFF0C\u4E0D\u8BC4\u4F30\u6216\u8BB0\u5F55\u53D1\u97F3\u6B63\u786E\u7387\u3002"));
+    if (payload.referenceText && payload.audioAssetId) {
+      const play = el("button", { type: "button", class: "button button-secondary" }, "\u64AD\u653E\u793A\u8303");
+      play.addEventListener("click", () => playAudio?.(payload.audioAssetId, play));
+      root.append(play);
+    } else if (!preview && onAction) {
+      const reveal = el("button", { type: "button", class: "button button-secondary" }, "\u663E\u793A\u793A\u8303");
+      reveal.addEventListener("click", () => onAction({ type: "reveal" }));
+      root.append(reveal);
+    }
   } else {
     if (payload.scenario) root.append(el("p", { class: "activity-meaning" }, payload.scenario));
     if (payload.targetMeaning) root.append(el("p", { class: "activity-meaning" }, payload.targetMeaning));
@@ -984,7 +1100,7 @@ function renderActivity(root, activity, { onAction, playAudio, preview = false }
     reveal.addEventListener("click", () => {
       if (!submitting) onAction({ type: "reveal" });
     });
-    if (!["meaning_intro", "micro_explanation"].includes(activity.type)) controls.append(hint, reveal);
+    if (!["meaning_intro", "micro_explanation", "sound_demo", "speaking_practice"].includes(activity.type)) controls.append(hint, reveal);
     if (activity.type === "independent_output") {
       const skip = el("button", { type: "button", class: "text-button" }, "\u6682\u65F6\u8DF3\u8FC7");
       skip.addEventListener("click", () => onAction({ type: "skip_output" }));
@@ -994,8 +1110,9 @@ function renderActivity(root, activity, { onAction, playAudio, preview = false }
   }
   return {
     response: () => response,
-    informational: ["meaning_intro", "micro_explanation"].includes(activity.type),
-    autoSubmit: activity.type === "sentence_build" && payload.expectedTokenCount > 0
+    informational: ["meaning_intro", "micro_explanation", "sound_demo"].includes(activity.type),
+    speakingPractice: activity.type === "speaking_practice",
+    autoSubmit: ["sentence_build", "grapheme_build"].includes(activity.type) && payload.expectedTokenCount > 0
   };
 }
 
@@ -1263,7 +1380,7 @@ async function run() {
   };
   $("copyPrompt").onclick = async () => {
     try {
-      await navigator.clipboard.writeText(makeExpressionCoursePrompt());
+      await navigator.clipboard.writeText(makeExpressionCoursePrompt({ formatVersion: $("promptProtocol").value, track: $("promptTrack").value }));
       $("aiImportNext").hidden = false;
       setStep("content", "\u5F53\u524D\u6B65\u9AA4\uFF1A\u5728\u5916\u90E8 AI \u5B8C\u6210\u8BFE\u7A0B", "\u5236\u4F5C\u6307\u4EE4\u5DF2\u590D\u5236\u3002\u5C06\u6559\u6750\u6216\u8D44\u6599\u53D1\u9001\u7ED9\u6240\u9009 AI\uFF0C\u786E\u8BA4\u751F\u6210\u7684 JSON \u540E\u518D\u56DE\u5230\u8FD9\u91CC\u5BFC\u5165\u3002");
       message("\u5236\u4F5C\u6307\u4EE4\u5DF2\u590D\u5236\u3002\u5B8C\u6210\u5916\u90E8 AI \u5BF9\u8BDD\u540E\uFF0C\u70B9\u51FB\u201C\u6211\u5DF2\u62FF\u5230 JSON\uFF0C\u7EE7\u7EED\u5BFC\u5165\u201D\u3002");
@@ -1271,6 +1388,11 @@ async function run() {
       message("\u65E0\u6CD5\u81EA\u52A8\u590D\u5236\u3002\u8BF7\u68C0\u67E5\u6D4F\u89C8\u5668\u526A\u8D34\u677F\u6743\u9650\u540E\u91CD\u8BD5\u3002", true);
     }
   };
+  const syncPromptRoute = () => {
+    $("promptTrack").hidden = $("promptProtocol").value !== "1.1";
+  };
+  $("promptProtocol").addEventListener("change", syncPromptRoute);
+  syncPromptRoute();
   $("continueAIImport").onclick = () => {
     $("aiPath").hidden = true;
     $("aiImportPath").hidden = false;

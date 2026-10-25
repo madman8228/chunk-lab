@@ -19,7 +19,15 @@ const accessMessages = {
   TRIAL_DAILY_LIMIT: '今日学习时长已用完。已完成的步骤会保留，之后可继续。',
   MEMBERSHIP_REQUIRED: '当前课程需要有效学习权限。已完成的步骤会保留，获得权限后可继续。'
 };
-const fail = error => { setStatus(error?.code === 'SESSION_CHANGED' ? '登录账号已切换，请重新打开课程。' : accessMessages[error?.code] || error?.message || '暂时无法连接，请检查网络后重试。'); };
+const failureMessage = error => {
+  if (error?.code === 'SESSION_CHANGED') return '登录账号已切换，请重新打开课程。';
+  if (accessMessages[error?.code]) return accessMessages[error.code];
+  if (/^(Failed to fetch|Load failed)$|NetworkError when attempting to fetch resource/i.test(error?.message || '')) {
+    return '暂时无法连接网络。当前输入会保留，请恢复连接后重试。';
+  }
+  return error?.message || '暂时无法连接，请检查网络后重试。';
+};
+const fail = error => { setStatus(failureMessage(error)); };
 
 async function start() {
   $('retryCourse').hidden = true;
@@ -201,11 +209,17 @@ function render() {
     answer.textContent = '参考答案：' + state.revealedAnswer;
     body.append(answer);
   }
-  if (rendered.informational || !rendered.autoSubmit) {
+  if (!rendered.speakingPractice && (rendered.informational || !rendered.autoSubmit)) {
     const primary = document.createElement('button'); primary.className = 'button button-primary'; primary.type = 'button';
     primary.textContent = rendered.informational ? '继续' : '检查答案';
     primary.onclick = () => act(rendered.informational ? { type: 'continue' } : { type: 'submit', response: rendered.response() });
     footer.append(primary);
+  }
+  if (rendered.speakingPractice) {
+    const tried = document.createElement('button'); tried.className = 'button button-primary'; tried.type = 'button';
+    tried.textContent = '我已开口练习'; tried.onclick = () => act({ type: 'self_practiced' }); footer.append(tried);
+    const skip = document.createElement('button'); skip.className = 'button button-secondary'; skip.type = 'button';
+    skip.textContent = '稍后再练'; skip.onclick = () => act({ type: 'skip_practice' }); footer.append(skip);
   }
   setStatus(current.result?.feedback || '完成当前这一步即可自动保存。');
 }
@@ -233,7 +247,7 @@ async function act(action) {
     } else {
       fail(error);
       const blocked = ['AUTHORIZATION_EXPIRED', 'SESSION_EXPIRED', 'TRIAL_EXPIRED', 'TRIAL_DAILY_LIMIT', 'MEMBERSHIP_REQUIRED', 'SESSION_CHANGED'].includes(error?.code);
-      return { status: blocked ? 'blocked' : 'retryable-error', message: error?.message || '暂时无法连接，请检查网络后重试。' };
+      return { status: blocked ? 'blocked' : 'retryable-error', message: failureMessage(error) };
     }
   } finally { busy = false; footer.querySelectorAll('button').forEach(button => button.removeAttribute('disabled')); }
 }

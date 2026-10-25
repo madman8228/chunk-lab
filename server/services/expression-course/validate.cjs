@@ -8124,14 +8124,202 @@ var lesson_schema_default = {
   }
 };
 
+// src/expression-course/schema-v1.1.mjs
+function createExpressionV11Schemas() {
+  const packageSchema = structuredClone(expression_package_schema_default);
+  packageSchema.$id = "https://jqka.top/contracts/expression-package-1.1.schema.json";
+  packageSchema.properties.formatVersion = { const: "1.1" };
+  packageSchema.required = [...packageSchema.required, "curriculum"];
+  packageSchema.properties.curriculum = {
+    type: "object",
+    additionalProperties: false,
+    required: ["track", "stage", "knowledgeMapVersion"],
+    properties: {
+      track: { enum: ["scenario", "sentence-building", "pronunciation", "phonics"] },
+      stage: { enum: ["S0", "S1", "S2", "S3", "S4"] },
+      knowledgeMapVersion: { const: "1.0" }
+    }
+  };
+  const lessonSchema = structuredClone(lesson_schema_default);
+  lessonSchema.$id = "https://jqka.top/contracts/expression-lesson-1.1.schema.json";
+  lessonSchema.required = [...lessonSchema.required, "knowledgeIds", "recommendedKnowledgeIds"];
+  lessonSchema.properties.schemaVersion = { const: "1.1" };
+  lessonSchema.properties.knowledgeIds = { type: "array", minItems: 1, uniqueItems: true, items: { type: "string", minLength: 1 } };
+  lessonSchema.properties.recommendedKnowledgeIds = { type: "array", uniqueItems: true, items: { type: "string", minLength: 1 } };
+  lessonSchema.properties.vocabulary.minItems = 0;
+  lessonSchema.properties.activities.minItems = 4;
+  const activity = lessonSchema.$defs.activity;
+  activity.properties.type.enum.push("sound_demo", "grapheme_build", "speaking_practice");
+  const listening = lessonSchema.$defs.listeningPayload;
+  listening.properties.questionKind = { enum: ["meaning", "sound", "decoding"] };
+  lessonSchema.$defs.soundDemoPayload = {
+    type: "object",
+    additionalProperties: false,
+    required: ["instructionZh", "segments"],
+    properties: {
+      instructionZh: { type: "string", minLength: 2 },
+      segments: { type: "array", minItems: 1, maxItems: 12, items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["label", "audioAssetId"],
+        properties: { label: { type: "string", minLength: 1 }, symbol: { type: "string", minLength: 1 }, audioAssetId: { type: "string", minLength: 1 } }
+      } }
+    }
+  };
+  lessonSchema.$defs.graphemeBuildPayload = {
+    type: "object",
+    additionalProperties: false,
+    required: ["targetMeaning", "audioAssetId", "availableTokens", "correctTokens"],
+    properties: {
+      targetMeaning: { type: "string", minLength: 1 },
+      audioAssetId: { type: "string", minLength: 1 },
+      availableTokens: { type: "array", minItems: 1, maxItems: 16, items: { type: "string", minLength: 1, maxLength: 8 } },
+      correctTokens: { type: "array", minItems: 1, maxItems: 12, items: { type: "string", minLength: 1, maxLength: 8 } }
+    }
+  };
+  lessonSchema.$defs.speakingPracticePayload = {
+    type: "object",
+    additionalProperties: false,
+    required: ["scenario", "referenceText", "audioAssetId"],
+    properties: {
+      scenario: { type: "string", minLength: 3 },
+      referenceText: { type: "string", minLength: 1 },
+      audioAssetId: { type: "string", minLength: 1 }
+    }
+  };
+  const addType = (type, payloadRef, stage, countsTowardMastery) => activity.allOf.push({
+    if: { properties: { type: { const: type } } },
+    then: { properties: {
+      stage: stage ? { const: stage } : {},
+      payload: { $ref: `#/$defs/${payloadRef}` },
+      evaluation: { properties: { countsTowardMastery: { const: countsTowardMastery } } }
+    } }
+  });
+  addType("sound_demo", "soundDemoPayload", "guided", false);
+  addType("grapheme_build", "graphemeBuildPayload", null, false);
+  addType("speaking_practice", "speakingPracticePayload", null, false);
+  return { packageSchema, lessonSchema };
+}
+
+// src/beginner-curriculum/knowledge-map.json
+var knowledge_map_default = {
+  version: "1.0",
+  audience: "adult_beginner",
+  stages: ["S0", "S1", "S2", "S3", "S4"],
+  tracks: ["scenario", "sentence-building", "pronunciation", "phonics"],
+  items: [
+    { knowledgeId: "s0.learning-instructions", stage: "S0", domain: "function", goalZh: "\u542C\u61C2\u6700\u57FA\u672C\u7684\u5B66\u4E60\u6307\u4EE4\u5E76\u8BF7\u6C42\u91CD\u590D\u6216\u653E\u6162", prerequisiteIds: [], recommendedTracks: ["scenario", "sentence-building"], demonstration: "\u542C\u6307\u4EE4\u5E76\u7528\u52A8\u4F5C\u56DE\u5E94\uFF1B\u6CA1\u542C\u6E05\u65F6\u8BF7\u6C42\u91CD\u590D", independentCheck: "\u65B0\u5F55\u97F3\u4E2D\u65E0\u82F1\u6587\u5B57\u5E55\u5B8C\u6210\u6307\u4EE4\u6216\u4E3B\u52A8\u6C42\u52A9", status: "reviewed" },
+    { knowledgeId: "s0.greetings", stage: "S0", domain: "function", goalZh: "\u5728\u89C1\u9762\u548C\u544A\u522B\u65F6\u9009\u62E9\u5408\u9002\u95EE\u5019", prerequisiteIds: ["s0.learning-instructions"], recommendedTracks: ["scenario", "sentence-building"], demonstration: "\u542C\u4E24\u79CD\u60C5\u5883\u4E2D\u7684\u7B80\u77ED\u95EE\u5019", independentCheck: "\u5728\u65B0\u4EBA\u7269\u60C5\u5883\u4E2D\u72EC\u7ACB\u56DE\u5E94", status: "reviewed" },
+    { knowledgeId: "s0.letter-names", stage: "S0", domain: "sound", goalZh: "\u8FA8\u8BA4\u5E76\u8BF4\u51FA\u59D3\u540D\u62FC\u5199\u4E2D\u7684\u82F1\u6587\u5B57\u6BCD\u540D", prerequisiteIds: ["s0.learning-instructions"], recommendedTracks: ["pronunciation", "phonics"], demonstration: "\u542C\u5B57\u6BCD\u540D\u3001\u9009\u62E9\u5BF9\u5E94\u5B57\u6BCD", independentCheck: "\u542C\u5230\u719F\u6089\u5B57\u6BCD\u540D\u540E\u6307\u51FA\u5B57\u6BCD", status: "reviewed" },
+    { knowledgeId: "s0.sound-vs-letter", stage: "S0", domain: "sound", goalZh: "\u533A\u5206\u5B57\u6BCD\u540D\u79F0\u4E0E\u5B57\u6BCD\u5728\u5355\u8BCD\u4E2D\u7684\u5E38\u89C1\u53D1\u97F3", prerequisiteIds: ["s0.letter-names"], recommendedTracks: ["pronunciation", "phonics"], demonstration: "\u5BF9\u6BD4\u5B57\u6BCD\u540D\u4E0E\u5355\u8BCD\u4E2D\u7684\u58F0\u97F3", independentCheck: "\u5728\u5DF2\u6559\u4F8B\u5B50\u4E2D\u5224\u65AD\u542C\u5230\u7684\u662F\u5B57\u6BCD\u540D\u8FD8\u662F\u5355\u8BCD\u97F3", status: "planned" },
+    { knowledgeId: "s0.phoneme-awareness", stage: "S0", domain: "decoding", goalZh: "\u542C\u51FA\u77ED\u8BCD\u5F00\u5934\u6216\u7ED3\u5C3E\u7684\u5355\u4E2A\u58F0\u97F3", prerequisiteIds: ["s0.sound-vs-letter"], recommendedTracks: ["phonics"], demonstration: "\u542C\u8BCD\u5E76\u6BD4\u8F83\u5F00\u5934\u58F0\u97F3", independentCheck: "\u5728\u65B0\u53E3\u5934\u8BCD\u4F8B\u4E2D\u8FA8\u8BA4\u76EE\u6807\u4F4D\u7F6E\u7684\u58F0\u97F3", status: "planned" },
+    { knowledgeId: "s0.ipa-purpose", stage: "S0", domain: "sound", goalZh: "\u8BA4\u8BC6\u97F3\u6807\u7528\u4E8E\u8BB0\u5F55\u53D1\u97F3\uFF0C\u5E76\u80FD\u8DDF\u968F\u793A\u8303\u542C\u8FA8", prerequisiteIds: ["s0.learning-instructions"], recommendedTracks: ["pronunciation"], demonstration: "\u64AD\u653E\u771F\u5B9E\u97F3\u7D20\u793A\u8303\u5E76\u6807\u51FA\u7B26\u53F7", independentCheck: "\u5C06\u5DF2\u6559\u7B26\u53F7\u4E0E\u58F0\u97F3\u793A\u4F8B\u5339\u914D", status: "planned" },
+    { knowledgeId: "s0.name-chunks", stage: "S0", domain: "function", goalZh: "\u7528\u59D3\u540D\u548C\u95EE\u5019\u5B8C\u6574\u8BCD\u5757\u5B8C\u6210\u521D\u6B21\u4ECB\u7ECD", prerequisiteIds: ["s0.greetings"], recommendedTracks: ["scenario", "sentence-building"], demonstration: "I\u2019m\u2026 / What\u2019s your name? \u6574\u5757\u793A\u8303", independentCheck: "\u6362\u59D3\u540D\u5B8C\u6210\u7B80\u77ED\u4ECB\u7ECD", status: "reviewed" },
+    { knowledgeId: "s0.sound-ipa-long-i", stage: "S0", domain: "sound", goalZh: "\u8FA8\u8BA4\u5E76\u6A21\u4EFF /i\u02D0/ \u7684\u4EE3\u8868\u6027\u53D1\u97F3", prerequisiteIds: ["s0.ipa-purpose"], recommendedTracks: ["pronunciation"], demonstration: "\u771F\u5B9E\u5355\u97F3\u53CA\u8BCD\u4F8B\u793A\u8303\uFF0C\u4E0D\u53EA\u8BFB\u97F3\u6807\u7B26\u53F7", independentCheck: "\u542C\u8FA8\u5DF2\u6559\u58F0\u97F3\uFF1B\u81EA\u6211\u8DDF\u8BFB\u5355\u72EC\u8BB0\u5F55\uFF0C\u4E0D\u8BC4\u5206", status: "planned" },
+    { knowledgeId: "s0.sound-ipa-short-i", stage: "S0", domain: "sound", goalZh: "\u8FA8\u8BA4 /\u026A/ \u5E76\u4E0E /i\u02D0/ \u542C\u8FA8", prerequisiteIds: ["s0.sound-ipa-long-i"], recommendedTracks: ["pronunciation"], demonstration: "\u6700\u5C0F\u5BF9\u6BD4\u8BCD\u97F3\u9891\u548C\u542B\u4E49\u56FE\u7247", independentCheck: "\u672A\u7EC3\u97F3\u9891\u4E2D\u8BC6\u522B\u76EE\u6807\u58F0\u97F3", status: "planned" },
+    { knowledgeId: "s0.sound-copy", stage: "S0", domain: "sound", goalZh: "\u6A21\u4EFF\u5DF2\u6559\u58F0\u97F3\u3001\u5E38\u7528\u95EE\u5019\u548C\u6C42\u52A9\u77ED\u8BED", prerequisiteIds: ["s0.greetings", "s0.ipa-purpose"], recommendedTracks: ["pronunciation", "scenario"], demonstration: "\u542C\u3001\u5206\u6BB5\u6A21\u4EFF\u3001\u6574\u8BCD\u518D\u542C", independentCheck: "\u81EA\u7EC3\u540E\u8FDB\u884C\u65B0\u8BCD\u542C\u8FA8\uFF0C\u4E0D\u5C06\u5F55\u97F3\u81EA\u8BC4\u89C6\u4E3A\u5BA2\u89C2\u8BC4\u5206", status: "planned" },
+    { knowledgeId: "s0.initial-letter-sounds", stage: "S0", domain: "decoding", goalZh: "\u5EFA\u7ACB\u5E38\u89C1\u5355\u5B57\u6BCD\u4E0E\u4EE3\u8868\u58F0\u97F3\u7684\u521D\u6B65\u8054\u7CFB", prerequisiteIds: ["s0.sound-vs-letter"], recommendedTracks: ["phonics"], demonstration: "\u5B57\u6BCD\u3001\u53E3\u5934\u58F0\u97F3\u4E0E\u719F\u6089\u8BCD\u4F8B\u914D\u5BF9", independentCheck: "\u5728\u5DF2\u6559\u5B57\u6BCD\u4E2D\u542C\u97F3\u9009\u5B57\u6BCD", status: "planned" },
+    { knowledgeId: "s1.pronouns-be", stage: "S1", domain: "structure", goalZh: "\u7528I/you/he/she/it\u4E0Eam/is/are\u8868\u8FBE\u8EAB\u4EFD\u548C\u72B6\u6001", prerequisiteIds: ["s0.name-chunks"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u4EBA\u79F0\u53D8\u5316\u4E0Ebe\u52A8\u8BCD\u5BF9\u6BD4\u4F8B\u53E5", independentCheck: "\u6362\u4EBA\u7269\u3001\u8EAB\u4EFD\u548C\u72B6\u6001\u9020\u65B0\u53E5", status: "draft" },
+    { knowledgeId: "s1.this-that", stage: "S1", domain: "structure", goalZh: "\u7528this/that\u6307\u8BA4\u8FD1\u5904\u548C\u8FDC\u5904\u7269\u54C1", prerequisiteIds: ["s1.pronouns-be"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u5B9E\u7269\u8DDD\u79BB\u4E0E\u53E3\u5934\u6307\u8BA4", independentCheck: "\u65B0\u56FE\u7247\u4E2D\u72EC\u7ACB\u6307\u51FA\u76EE\u6807\u7269", status: "planned" },
+    { knowledgeId: "s1.possessives", stage: "S1", domain: "structure", goalZh: "\u7528my/your\u548C\u57FA\u672C\u540D\u8BCD\u8BF4\u660E\u5F52\u5C5E", prerequisiteIds: ["s1.this-that"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u7269\u4E3B\u4E0E\u7269\u54C1\u5BF9\u5E94", independentCheck: "\u4FE1\u606F\u5DEE\u4EFB\u52A1\u4E2D\u627E\u5BF9\u7269\u54C1\u5E76\u786E\u8BA4\u5F52\u5C5E", status: "planned" },
+    { knowledgeId: "s1.articles-plurals", stage: "S1", domain: "structure", goalZh: "\u5728\u5E38\u89C1\u53EF\u6570\u540D\u8BCD\u524D\u4F7F\u7528a/an\u5E76\u8BC6\u522B\u590D\u6570", prerequisiteIds: ["s1.this-that"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u4E00\u4E2A\u4E0E\u591A\u4E2A\u7269\u54C1\u5BF9\u7167", independentCheck: "\u5BF9\u65B0\u7269\u54C1\u8BF4\u51FA\u6570\u91CF\u548C\u540D\u79F0", status: "planned" },
+    { knowledgeId: "s1.cvc-short-vowels", stage: "S1", domain: "decoding", goalZh: "\u8BFB\u5199\u5DF2\u6559\u77ED\u5143\u97F3CVC\u7B80\u5355\u8BCD", prerequisiteIds: ["s0.phoneme-awareness", "s0.initial-letter-sounds"], recommendedTracks: ["phonics"], demonstration: "\u9010\u97F3\u5408\u6210\u518D\u8FDE\u8BFB", independentCheck: "\u89E3\u7801\u672A\u7EC3\u8FC7\u4F46\u89C4\u5219\u5185\u7684\u65B0\u8BCD", status: "planned" },
+    { knowledgeId: "s1.core-consonants", stage: "S1", domain: "sound", goalZh: "\u8FA8\u8BA4\u5E38\u7528\u8F85\u97F3\u5E76\u5173\u6CE8\u8BCD\u5C3E\u8F85\u97F3", prerequisiteIds: ["s0.phoneme-awareness"], recommendedTracks: ["pronunciation", "phonics"], demonstration: "\u58F0\u97F3\u3001\u53E3\u578B\u63D0\u793A\u548C\u5355\u8BCD\u793A\u4F8B", independentCheck: "\u533A\u5206\u6613\u6DF7\u97F3\u5E76\u5728\u8BCD\u4E2D\u5B9A\u4F4D", status: "planned" },
+    { knowledgeId: "s1.core-vowels", stage: "S1", domain: "sound", goalZh: "\u8FA8\u8BA4\u5E38\u7528\u5355\u5143\u97F3\uFF0C\u4E0D\u4F9D\u8D56\u4E2D\u6587\u8C10\u97F3\u8BB0\u5FC6", prerequisiteIds: ["s0.ipa-purpose"], recommendedTracks: ["pronunciation"], demonstration: "\u9010\u4E2A\u771F\u5B9E\u97F3\u9891\u4E0E\u6613\u6DF7\u97F3\u5BF9\u6BD4", independentCheck: "\u672A\u7EC3\u8BCD\u97F3\u4E2D\u8FA8\u8BA4\u76EE\u6807\u97F3", status: "planned" },
+    { knowledgeId: "s1.need-sentences", stage: "S1", domain: "function", goalZh: "\u7528need/want\u53CA\u793C\u8C8C\u8BCD\u5757\u8868\u8FBE\u9700\u8981", prerequisiteIds: ["s1.pronouns-be"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "I need\u2026\u4ECE\u5B8C\u6574\u53E5\u9010\u6B65\u66FF\u6362\u8865\u5145", independentCheck: "\u6362\u7269\u54C1\u548C\u65B0\u573A\u666F\u72EC\u7ACB\u8868\u8FBE", status: "draft" },
+    { knowledgeId: "s2.likes-do-questions", stage: "S2", domain: "structure", goalZh: "\u8868\u8FBE\u559C\u597D\u5E76\u7528Do you\u2026\u63D0\u95EE\u3001\u56DE\u5E94", prerequisiteIds: ["s1.pronouns-be", "s1.need-sentences"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u80AF\u5B9A\u3001\u5426\u5B9A\u4E0E\u95EE\u7B54\u5BF9\u6BD4", independentCheck: "\u83B7\u53D6\u540C\u4F34\u504F\u597D\u5E76\u636E\u6B64\u505A\u9009\u62E9", status: "reviewed" },
+    { knowledgeId: "s2.quantities", stage: "S2", domain: "structure", goalZh: "\u8BE2\u95EE\u548C\u8868\u8FBE\u6570\u91CF\u3001\u4EF7\u683C\u4E0E\u7535\u8BDD\u53F7\u7801", prerequisiteIds: ["s1.articles-plurals"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u6570\u5B57\u3001\u5355\u590D\u6570\u548Chow much/how many", independentCheck: "\u4ECE\u65B0\u4EF7\u683C\u6807\u7B7E\u6838\u5BF9\u6570\u91CF\u548C\u4EF7\u683C", status: "planned" },
+    { knowledgeId: "s2.time-date", stage: "S2", domain: "function", goalZh: "\u7406\u89E3\u5E76\u8BE2\u95EE\u65F6\u95F4\u3001\u65E5\u671F\u548C\u89C1\u9762\u5B89\u6392", prerequisiteIds: ["s2.quantities"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u65F6\u949F\u3001\u65E5\u5386\u548C\u77ED\u95EE\u7B54", independentCheck: "\u4ECE\u65B0\u65E5\u5386\u5B8C\u6210\u7EA6\u65F6\u95F4", status: "planned" },
+    { knowledgeId: "s2.can-requests", stage: "S2", domain: "structure", goalZh: "\u7528can\u8BE2\u95EE\u80FD\u529B\u3001\u8BF7\u6C42\u5E2E\u52A9\u548C\u8BB8\u53EF", prerequisiteIds: ["s1.need-sentences"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "Can you\u2026?\u4E0ECan I\u2026?\u610F\u56FE\u533A\u5206", independentCheck: "\u5728\u65B0\u6C42\u52A9\u60C5\u5883\u4E2D\u53D1\u95EE\u5E76\u56DE\u5E94", status: "planned" },
+    { knowledgeId: "s2-th-sh-ch", stage: "S2", domain: "decoding", goalZh: "\u8FA8\u8BA4\u5E38\u89C1\u8F85\u97F3\u5B57\u6BCD\u7EC4\u5408sh/ch/th\u5E76\u8BFB\u51FA\u53D7\u63A7\u8BCD\u4F8B", prerequisiteIds: ["s1.core-consonants", "s1.cvc-short-vowels"], recommendedTracks: ["phonics", "pronunciation"], demonstration: "\u7EC4\u5408\u5B57\u6BCD\u4F5C\u4E3A\u4E00\u4E2A\u58F0\u97F3\u5355\u4F4D", independentCheck: "\u5728\u89C4\u5219\u5185\u65B0\u8BCD\u4E2D\u5B9A\u4F4D\u5E76\u5408\u6210", status: "planned" },
+    { knowledgeId: "s2-final-e", stage: "S2", domain: "decoding", goalZh: "\u8BC6\u522B\u5E38\u89C1\u8BCD\u5C3Ee\u62FC\u5199\u6A21\u5F0F\u53CA\u6709\u9650\u4F8B\u5916", prerequisiteIds: ["s1.cvc-short-vowels"], recommendedTracks: ["phonics"], demonstration: "\u5BF9\u7167hop/hope\u7B49\u53D7\u63A7\u8BCD", independentCheck: "\u89E3\u7801\u7B26\u5408\u6A21\u5F0F\u7684\u65B0\u8BCD\u5E76\u6307\u51FA\u4F8B\u5916\u8BCD\u9700\u8BB0\u5FC6", status: "planned" },
+    { knowledgeId: "s2.word-stress", stage: "S2", domain: "sound", goalZh: "\u542C\u8FA8\u53CC\u97F3\u8282\u9AD8\u9891\u8BCD\u7684\u91CD\u97F3\u4F4D\u7F6E", prerequisiteIds: ["s1.core-vowels", "s1.core-consonants"], recommendedTracks: ["pronunciation"], demonstration: "\u8282\u594F\u6807\u8BB0\u548C\u8BCD\u4E49\u793A\u4F8B", independentCheck: "\u542C\u65B0\u8BCD\u6807\u51FA\u4E3B\u8981\u91CD\u97F3", status: "planned" },
+    { knowledgeId: "s2.there-location", stage: "S2", domain: "structure", goalZh: "\u7528there is/are\u548C\u65B9\u4F4D\u8BCD\u8BF4\u660E\u4F4D\u7F6E", prerequisiteIds: ["s1.this-that", "s1.articles-plurals"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u56FE\u7247\u5730\u56FE\u3001\u5355\u590D\u6570\u5BF9\u7167", independentCheck: "\u6839\u636E\u65B0\u5E73\u9762\u56FE\u627E\u7269\u5E76\u8BF4\u660E\u4F4D\u7F6E", status: "planned" },
+    { knowledgeId: "s3-routines-third-person", stage: "S3", domain: "structure", goalZh: "\u7528\u4E00\u822C\u73B0\u5728\u65F6\u4E0E\u7B2C\u4E09\u4EBA\u79F0\u8BF4\u4E60\u60EF", prerequisiteIds: ["s2.likes-do-questions", "s2.time-date"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "I/you\u4E0Ehe/she\u5F62\u5F0F\u5BF9\u6BD4", independentCheck: "\u4EA4\u6362\u65E5\u5E38\u5B89\u6392\u5E76\u627E\u5171\u540C\u65F6\u95F4", status: "planned" },
+    { knowledgeId: "s3-now-past-plans", stage: "S3", domain: "structure", goalZh: "\u8BC6\u522B\u5E76\u4F7F\u7528\u5C11\u91CF\u9AD8\u9891\u73B0\u5728\u3001\u8FC7\u53BB\u548C\u8FD1\u671F\u8BA1\u5212\u8868\u8FBE", prerequisiteIds: ["s3-routines-third-person", "s2.time-date"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u65F6\u95F4\u7EBF\u4E0E\u6709\u9650\u9AD8\u9891\u8BCD\u5F62", independentCheck: "\u7528\u65B0\u56FE\u8BF4\u5F53\u524D\u6D3B\u52A8\u3001\u6628\u5929\u4E00\u4E8B\u548C\u8FD1\u671F\u8BA1\u5212", status: "planned" },
+    { knowledgeId: "s3-linkers", stage: "S3", domain: "structure", goalZh: "\u7528and/but/because\u8FDE\u63A5\u77ED\u53E5\u8BF4\u660E\u7B80\u5355\u5173\u7CFB", prerequisiteIds: ["s3-routines-third-person"], recommendedTracks: ["sentence-building", "scenario"], demonstration: "\u4E24\u53E5\u4FE1\u606F\u4E0E\u8FDE\u63A5\u8BCD\u5173\u7CFB", independentCheck: "\u5BF9\u672A\u89C1\u56FE\u7247\u8BF4\u51FA\u6709\u7406\u7531\u7684\u9009\u62E9", status: "planned" },
+    { knowledgeId: "s3-vowel-teams", stage: "S3", domain: "decoding", goalZh: "\u5B66\u4E60\u5E38\u89C1\u5143\u97F3\u7EC4\u5408\u5E76\u533A\u5206\u89C4\u5219\u548C\u9AD8\u9891\u4F8B\u5916", prerequisiteIds: ["s2-final-e", "s2.word-stress"], recommendedTracks: ["phonics"], demonstration: "\u62FC\u5199\u6A21\u5F0F\u3001\u58F0\u97F3\u548C\u6709\u610F\u4E49\u8BCD\u4F8B", independentCheck: "\u89E3\u7801\u53D7\u63A7\u65B0\u8BCD\u5E76\u67E5\u8BC1\u4F8B\u5916", status: "planned" },
+    { knowledgeId: "s3-connected-speech", stage: "S3", domain: "sound", goalZh: "\u5728\u77ED\u53E5\u4E2D\u8BC6\u522B\u53E5\u91CD\u97F3\u3001\u5F31\u8BFB\u548C\u57FA\u7840\u8BED\u8C03", prerequisiteIds: ["s2.word-stress", "s2-th-sh-ch"], recommendedTracks: ["pronunciation"], demonstration: "\u540C\u53E5\u81EA\u7136\u8BED\u901F\u4E0E\u6807\u6CE8\u91CD\u97F3", independentCheck: "\u5728\u65B0\u77ED\u53E5\u4E2D\u542C\u8FA8\u5173\u952E\u8BCD\u548C\u95EE\u53E5\u8BED\u8C03", status: "planned" },
+    { knowledgeId: "s4-life-tasks", stage: "S4", domain: "function", goalZh: "\u6574\u5408\u5DF2\u5B66\u8868\u8FBE\u5B8C\u6210\u70B9\u5355\u3001\u8D2D\u7269\u3001\u95EE\u8DEF\u3001\u9884\u7EA6\u4E0E\u786E\u8BA4", prerequisiteIds: ["s2.can-requests", "s2.there-location", "s3-now-past-plans"], recommendedTracks: ["scenario", "sentence-building"], demonstration: "\u6709\u9009\u62E9\u548C\u4FE1\u606F\u5DEE\u7684\u591A\u8F6E\u77ED\u5BF9\u8BDD", independentCheck: "\u65B0\u89D2\u8272\u4E0E\u65B0\u9053\u5177\u4E0B\u5B8C\u6210\u81F3\u5C11\u4E00\u4E2A\u4FE1\u606F\u4EA4\u6362\u4EFB\u52A1", status: "planned" },
+    { knowledgeId: "s4-short-reading-writing", stage: "S4", domain: "literacy", goalZh: "\u7406\u89E3\u5E76\u586B\u5199\u7B80\u77ED\u6807\u8BC6\u3001\u8868\u683C\u3001\u7559\u8A00\u548C\u65E5\u7A0B", prerequisiteIds: ["s3-vowel-teams", "s3-linkers"], recommendedTracks: ["phonics", "sentence-building", "scenario"], demonstration: "\u56FE\u6587\u6807\u7B7E\u5230\u77ED\u901A\u77E5\u4E0E\u8868\u683C", independentCheck: "\u4ECE\u65B0\u6750\u6599\u63D0\u53D6\u4FE1\u606F\u5E76\u5199\u7B80\u77ED\u56DE\u590D", status: "planned" },
+    { knowledgeId: "s4-independent-repair", stage: "S4", domain: "function", goalZh: "\u9047\u5230\u6CA1\u542C\u61C2\u7684\u4FE1\u606F\u65F6\u8BF7\u6C42\u6F84\u6E05\u5E76\u6838\u5BF9\u7406\u89E3", prerequisiteIds: ["s0.learning-instructions", "s4-life-tasks"], recommendedTracks: ["scenario", "sentence-building"], demonstration: "\u5BF9\u8BDD\u4E2D\u4F7F\u7528\u91CD\u590D\u3001\u653E\u6162\u548C\u786E\u8BA4", independentCheck: "\u964C\u751F\u77ED\u60C5\u5883\u4E2D\u72EC\u7ACB\u6F84\u6E05\u5E76\u5B8C\u6210\u540E\u7EED\u4EFB\u52A1", status: "planned" }
+  ]
+};
+
+// src/beginner-curriculum/validate.mjs
+var stageIndex = new Map(knowledge_map_default.stages.map((stage, index) => [stage, index]));
+var allowedTracks = new Set(knowledge_map_default.tracks);
+function validateKnowledgeMap(value = knowledge_map_default) {
+  const errors = [];
+  if (!value || value.version !== "1.0" || !Array.isArray(value.items) || !Array.isArray(value.stages) || !Array.isArray(value.tracks)) {
+    return { valid: false, errors: ["\u77E5\u8BC6\u76EE\u5F55\u5934\u90E8\u6216\u7248\u672C\u65E0\u6548"] };
+  }
+  const items = /* @__PURE__ */ new Map();
+  for (const [index, item] of value.items.entries()) {
+    const prefix = `/items/${index}`;
+    if (!item || typeof item.knowledgeId !== "string" || !item.knowledgeId.trim()) {
+      errors.push(`${prefix}/knowledgeId \u7F3A\u5931`);
+      continue;
+    }
+    if (items.has(item.knowledgeId)) errors.push(`${prefix}/knowledgeId \u91CD\u590D\uFF1A${item.knowledgeId}`);
+    items.set(item.knowledgeId, item);
+    if (!stageIndex.has(item.stage)) errors.push(`${prefix}/stage \u65E0\u6548`);
+    if (!["sound", "decoding", "vocabulary", "structure", "function", "literacy"].includes(item.domain)) errors.push(`${prefix}/domain \u65E0\u6548`);
+    if (!item.goalZh || !item.demonstration || !item.independentCheck) errors.push(`${prefix} \u7F3A\u5C11\u76EE\u6807\u3001\u793A\u8303\u6216\u72EC\u7ACB\u68C0\u67E5`);
+    if (!["planned", "draft", "reviewed"].includes(item.status)) errors.push(`${prefix}/status \u65E0\u6548`);
+    if (!Array.isArray(item.prerequisiteIds) || !Array.isArray(item.recommendedTracks) || item.recommendedTracks.some((track) => !allowedTracks.has(track))) errors.push(`${prefix} \u524D\u7F6E\u6216\u8DEF\u7EBF\u683C\u5F0F\u65E0\u6548`);
+  }
+  const visiting = /* @__PURE__ */ new Set(), visited = /* @__PURE__ */ new Set();
+  function visit(id) {
+    const item = items.get(id);
+    if (!item) return;
+    if (visiting.has(id)) {
+      errors.push(`\u77E5\u8BC6\u524D\u7F6E\u5B58\u5728\u5FAA\u73AF\uFF1A${id}`);
+      return;
+    }
+    if (visited.has(id)) return;
+    visiting.add(id);
+    for (const prerequisiteId of item.prerequisiteIds) {
+      const prerequisite = items.get(prerequisiteId);
+      if (!prerequisite) errors.push(`${id} \u5F15\u7528\u4E0D\u5B58\u5728\u7684\u524D\u7F6E ${prerequisiteId}`);
+      else {
+        if (stageIndex.has(item.stage) && stageIndex.has(prerequisite.stage) && stageIndex.get(prerequisite.stage) > stageIndex.get(item.stage)) errors.push(`${id} \u7684\u524D\u7F6E ${prerequisiteId} \u4F4D\u4E8E\u66F4\u665A\u9636\u6BB5`);
+        visit(prerequisiteId);
+      }
+    }
+    visiting.delete(id);
+    visited.add(id);
+  }
+  for (const id of items.keys()) visit(id);
+  return { valid: errors.length === 0, errors: [...new Set(errors)] };
+}
+
 // src/expression-course/validate.mjs
 var validatePackageShape = new import__.default({ allErrors: true, strict: false }).compile(expression_package_schema_default);
 var validateLessonShape = new import__.default({ allErrors: true, strict: false }).compile(lesson_schema_default);
-var types = /* @__PURE__ */ new Set(["meaning_intro", "micro_explanation", "sentence_build", "substitution", "listening_choice", "independent_output", "transfer_test"]);
-function validateExpressionPackage(value, { forPublish = false, availableAssets = [] } = {}) {
+var v11 = createExpressionV11Schemas();
+var validatePackageV11Shape = new import__.default({ allErrors: true, strict: false }).compile(v11.packageSchema);
+var validateLessonV11Shape = new import__.default({ allErrors: true, strict: false }).compile(v11.lessonSchema);
+var types = /* @__PURE__ */ new Set(["meaning_intro", "micro_explanation", "sentence_build", "substitution", "listening_choice", "independent_output", "transfer_test", "sound_demo", "grapheme_build", "speaking_practice"]);
+var reviewTypes = /* @__PURE__ */ new Set(["independent_output", "transfer_test", "listening_choice", "grapheme_build"]);
+var trackTypes = Object.freeze({
+  pronunciation: /* @__PURE__ */ new Set(["sound_demo", "listening_choice", "meaning_intro", "micro_explanation", "independent_output", "transfer_test"]),
+  phonics: /* @__PURE__ */ new Set(["sound_demo", "grapheme_build", "listening_choice", "meaning_intro", "micro_explanation", "independent_output", "transfer_test"]),
+  "sentence-building": /* @__PURE__ */ new Set(["meaning_intro", "micro_explanation", "sentence_build", "substitution", "listening_choice", "independent_output", "transfer_test", "speaking_practice"]),
+  scenario: /* @__PURE__ */ new Set(["meaning_intro", "micro_explanation", "sentence_build", "substitution", "listening_choice", "independent_output", "transfer_test", "speaking_practice"])
+});
+function validateExpressionPackage(value, { forPublish = false, availableAssets = [], curriculumMap = knowledge_map_default } = {}) {
   const errors = [];
-  if (!validatePackageShape(value)) errors.push(...(validatePackageShape.errors || []).map((error) => `${error.instancePath || "/"} ${error.message}`));
+  const isV11 = value?.formatVersion === "1.1";
+  const packageValidator = isV11 ? validatePackageV11Shape : validatePackageShape;
+  if (!packageValidator(value)) errors.push(...(packageValidator.errors || []).map((error) => `${error.instancePath || "/"} ${error.message}`));
   if (!value || typeof value !== "object" || !Array.isArray(value.lessons)) return { valid: false, errors };
+  if (!["1.0", "1.1"].includes(value.formatVersion)) errors.push("/formatVersion \u4E0D\u652F\u6301");
+  if (!isV11 && Array.isArray(value.lessons) && value.lessons.some((lesson) => lesson?.schemaVersion === "1.1")) errors.push("/lessons \u8BFE\u7A0B\u5305\u4E0E\u8BFE\u8282\u534F\u8BAE\u7248\u672C\u5FC5\u987B\u4E00\u81F4");
+  if (isV11 && !validateKnowledgeMap(curriculumMap).valid) errors.push("/curriculum \u77E5\u8BC6\u76EE\u5F55\u65E0\u6548");
+  const knowledgeIds = new Set(curriculumMap.items.map((item) => item.knowledgeId));
+  const lessonsInPackage = value.lessons;
+  if (isV11 && lessonsInPackage.some((lesson) => lesson?.schemaVersion !== "1.1")) errors.push("/lessons \u8BFE\u7A0B\u5305\u4E0E\u8BFE\u8282\u534F\u8BAE\u7248\u672C\u5FC5\u987B\u4E00\u81F4");
   const assetIds = new Set((Array.isArray(value.assets) ? value.assets : []).map((asset) => asset?.assetId));
   if (assetIds.size !== (Array.isArray(value.assets) ? value.assets.length : 0)) errors.push("/assets \u5305\u542B\u91CD\u590D assetId");
   const available = new Set(availableAssets);
@@ -8139,9 +8327,30 @@ function validateExpressionPackage(value, { forPublish = false, availableAssets 
   const activityById = /* @__PURE__ */ new Map();
   const prerequisites = /* @__PURE__ */ new Map();
   const taught = new Set(value.lessons.flatMap((lesson) => Array.isArray(lesson?.taughtSkillIds) ? lesson.taughtSkillIds : []));
+  const taughtKnowledge = new Set(value.lessons.flatMap((lesson) => Array.isArray(lesson?.knowledgeIds) ? lesson.knowledgeIds : []));
   for (const [lessonIndex, lesson] of value.lessons.entries()) {
     const prefix = `/lessons/${lessonIndex}`;
-    if (!validateLessonShape(lesson)) errors.push(...(validateLessonShape.errors || []).map((error) => `${prefix}${error.instancePath || "/"} ${error.message}`));
+    const lessonValidator = isV11 ? validateLessonV11Shape : validateLessonShape;
+    if (!lessonValidator(lesson)) errors.push(...(lessonValidator.errors || []).map((error) => `${prefix}${error.instancePath || "/"} ${error.message}`));
+    if (isV11) {
+      const mapResult = validateKnowledgeMap(curriculumMap);
+      if (!mapResult.valid) errors.push(...mapResult.errors.map((message) => `/curriculum ${message}`));
+      const objectives = Array.isArray(lesson?.knowledgeIds) ? lesson.knowledgeIds : [];
+      const recommended = Array.isArray(lesson?.recommendedKnowledgeIds) ? lesson.recommendedKnowledgeIds : [];
+      if (!objectives.length) errors.push(`${prefix}/knowledgeIds \u81F3\u5C11\u5F15\u7528\u4E00\u4E2A\u76EE\u6807`);
+      for (const id of [...objectives, ...recommended]) if (!knowledgeIds.has(id)) errors.push(`${prefix} \u5F15\u7528\u4E86\u77E5\u8BC6\u76EE\u5F55\u4E2D\u4E0D\u5B58\u5728\u7684\u9879\u76EE ${id}`);
+      if (objectives.some((id) => recommended.includes(id))) errors.push(`${prefix} \u76EE\u6807\u77E5\u8BC6\u4E0D\u80FD\u540C\u65F6\u6807\u4F5C\u63A8\u8350\u524D\u7F6E`);
+      const mapItems = new Map(curriculumMap.items.map((item) => [item.knowledgeId, item]));
+      for (const id of objectives) if (mapItems.has(id)) {
+        if (mapItems.get(id).stage !== value.curriculum?.stage) errors.push(`${prefix}/knowledgeIds ${id} \u4E0E\u8BFE\u7A0B\u9636\u6BB5\u4E0D\u4E00\u81F4`);
+        if (!mapItems.get(id).recommendedTracks.includes(value.curriculum?.track)) errors.push(`${prefix}/knowledgeIds ${id} \u672A\u89C4\u5212\u7528\u4E8E${value.curriculum?.track || "\u8BE5\u8DEF\u7EBF"}`);
+      }
+      if (!Array.isArray(lesson?.activities) || lesson.activities.length < 4) errors.push(`${prefix}/activities \u81F3\u5C11\u9700\u89814\u9879`);
+      const activityTypes = new Set((lesson?.activities || []).map((item) => item?.type));
+      if (!activityTypes.has("meaning_intro") && !activityTypes.has("micro_explanation")) errors.push(`${prefix}/activities \u7F3A\u5C11\u610F\u601D\u6216\u89C4\u5219\u793A\u8303`);
+      if (!["independent_output", "transfer_test", "listening_choice", "grapheme_build"].some((type) => activityTypes.has(type))) errors.push(`${prefix}/activities \u7F3A\u5C11\u53EF\u72EC\u7ACB\u68C0\u67E5\u7684\u7EC3\u4E60`);
+      if (lesson?.taughtSkillIds?.length && lesson.taughtSkillIds.some((skill) => (lesson.reviewPlan?.intervalDays || []).length < 2)) errors.push(`${prefix}/reviewPlan \u95F4\u9694\u65E0\u6548`);
+    }
     if (lesson && typeof lesson.lessonId === "string") {
       if (lessonIds.has(lesson.lessonId)) errors.push(`${prefix}/lessonId \u91CD\u590D`);
       lessonIds.add(lesson.lessonId);
@@ -8150,14 +8359,16 @@ function validateExpressionPackage(value, { forPublish = false, availableAssets 
     for (const [activityIndex, activity] of (Array.isArray(lesson?.activities) ? lesson.activities : []).entries()) {
       const activityPath = `${prefix}/activities/${activityIndex}`;
       if (!types.has(activity?.type)) errors.push(`${activityPath}/type \u6D3B\u52A8\u7C7B\u578B\u4E0D\u652F\u6301`);
+      if (isV11 && !trackTypes[value.curriculum?.track]?.has(activity?.type)) errors.push(`${activityPath}/type \u4E0D\u9002\u7528\u4E8E${value.curriculum?.track || "\u672A\u77E5"}\u8DEF\u7EBF`);
       if (localIds.has(activity?.id)) errors.push(`${activityPath}/id \u91CD\u590D`);
       localIds.add(activity?.id);
       activityById.set(`${lesson?.lessonId}:${activity?.id}`, activity);
       const payload = activity?.payload || {};
-      if (activity?.type === "listening_choice") {
-        const audio = (Array.isArray(lesson?.audioAssets) ? lesson.audioAssets : []).find((item) => item.assetId === payload.audioAssetId);
-        if (!audio) errors.push(`${activityPath}/payload/audioAssetId \u672A\u5728\u672C\u8BFE\u97F3\u9891\u6E05\u5355\u4E2D\u58F0\u660E`);
-        if (forPublish && audio?.status !== "ready") errors.push(`${activityPath}/payload/audioAssetId \u97F3\u9891\u5C1A\u672A\u6807\u8BB0\u4E3A\u5DF2\u51C6\u5907`);
+      const referencedAudioIds = activity?.type === "sound_demo" ? (payload.segments || []).map((segment) => segment.audioAssetId) : ["listening_choice", "grapheme_build", "speaking_practice"].includes(activity?.type) ? [payload.audioAssetId] : [];
+      for (const audioAssetId of referencedAudioIds) {
+        const audio = (Array.isArray(lesson?.audioAssets) ? lesson.audioAssets : []).find((item) => item.assetId === audioAssetId);
+        if (!audio) errors.push(`${activityPath} \u97F3\u9891 ${audioAssetId || ""} \u672A\u5728\u672C\u8BFE\u6E05\u5355\u4E2D\u58F0\u660E`);
+        if (forPublish && audio?.status !== "ready") errors.push(`${activityPath} \u97F3\u9891 ${audioAssetId || ""} \u5C1A\u672A\u6807\u8BB0\u4E3A\u5DF2\u51C6\u5907`);
       }
       if (activity?.type === "transfer_test" && Array.isArray(activity.evaluation?.acceptedAnswers)) {
         const accepted = activity.evaluation.acceptedAnswers.map((answer) => String(answer).normalize("NFKC").toLocaleLowerCase("en-US").replace(/[.!?。！？]+$/g, "").trim());
@@ -8166,13 +8377,26 @@ function validateExpressionPackage(value, { forPublish = false, availableAssets 
           errors.push(`${activityPath} \u8FC1\u79FB\u9898\u7B54\u6848\u53EF\u80FD\u5DF2\u5728\u524D\u5E8F\u6D3B\u52A8\u4E2D\u51FA\u73B0`);
         }
       }
-      if (activity?.type === "listening_choice" && (!assetIds.has(payload.audioAssetId) || forPublish && !available.has(payload.audioAssetId))) {
-        errors.push(`${activityPath}/payload/audioAssetId \u97F3\u9891\u8D44\u6E90\u7F3A\u5931`);
+      if (isV11 && activity?.type === "grapheme_build") {
+        const availableTokens = payload.availableTokens || [], correctTokens = payload.correctTokens || [];
+        const remaining = /* @__PURE__ */ new Map();
+        for (const token of availableTokens) remaining.set(token, (remaining.get(token) || 0) + 1);
+        for (const token of correctTokens) {
+          const count = remaining.get(token) || 0;
+          if (!count) errors.push(`${activityPath}/payload/correctTokens \u5305\u542B\u672A\u63D0\u4F9B\u6216\u91CD\u590D\u53D6\u7528\u7684\u5B57\u6BCD\u5757 ${token}`);
+          else remaining.set(token, count - 1);
+        }
+        if (activity.stage === "guided" && activity.evaluation?.countsTowardMastery !== false) errors.push(`${activityPath} \u5F15\u5BFC\u62FC\u8BFB\u4E0D\u80FD\u8BA1\u4E3A\u638C\u63E1`);
+      }
+      if (isV11 && activity?.type === "sound_demo" && (activity.stage !== "guided" || activity.evaluation?.countsTowardMastery !== false)) errors.push(`${activityPath} \u97F3\u7D20\u793A\u8303\u5FC5\u987B\u662F\u5F15\u5BFC\u7EC3\u4E60\uFF0C\u4E0D\u8BA1\u638C\u63E1`);
+      if (isV11 && activity?.type === "speaking_practice" && activity.evaluation?.countsTowardMastery !== false) errors.push(`${activityPath} \u81EA\u4E3B\u8DDF\u8BFB\u4E0D\u80FD\u8BA1\u4E3A\u638C\u63E1`);
+      if (["listening_choice", "grapheme_build", "speaking_practice", "sound_demo"].includes(activity?.type)) {
+        for (const audioAssetId of referencedAudioIds) if (!assetIds.has(audioAssetId) || forPublish && !available.has(audioAssetId)) errors.push(`${activityPath} \u97F3\u9891\u8D44\u6E90 ${audioAssetId || ""} \u7F3A\u5931`);
       }
       if (activity?.type === "listening_choice" && !(Array.isArray(payload.options) ? payload.options : []).some((option) => option.id === activity.evaluation?.correctOptionId)) {
         errors.push(`${activityPath}/evaluation/correctOptionId \u6B63\u786E\u9009\u9879\u4E0D\u5B58\u5728`);
       }
-      if (forPublish && activity?.type === "listening_choice" && !available.has(payload.audioAssetId)) errors.push(`${activityPath} \u7F3A\u5C11\u5DF2\u6838\u9A8C\u7684\u53EF\u64AD\u653E\u97F3\u9891`);
+      if (isV11 && activity?.type === "listening_choice" && activity.evaluation?.countsTowardMastery === true && activity.stage !== "independent" && activity.stage !== "retention") errors.push(`${activityPath} \u5F15\u5BFC\u542C\u8FA8\u4E0D\u80FD\u4EA7\u751F\u72EC\u7ACB\u638C\u63E1\u8BC1\u636E`);
     }
     for (const prerequisite of lesson?.prerequisiteSkillIds || []) {
       if (!taught.has(prerequisite)) errors.push(`${prefix}/prerequisiteSkillIds \u5F15\u7528\u4E86\u672C\u5305\u4E0D\u5B58\u5728\u7684\u80FD\u529B ${prerequisite}`);
@@ -8212,8 +8436,13 @@ function validateExpressionPackage(value, { forPublish = false, availableAssets 
     if (!activityById.has(`${ref.lessonId}:${ref.activityId}`)) errors.push(`/reviewActivities \u5F15\u7528\u4E86\u4E0D\u5B58\u5728\u7684\u6D3B\u52A8 ${ref.activityId}`);
     if (!taught.has(ref.skillId)) errors.push(`/reviewActivities \u5F15\u7528\u4E86\u672C\u5305\u4E0D\u5B58\u5728\u7684\u80FD\u529B ${ref.skillId}`);
     const activity = activityById.get(`${ref.lessonId}:${ref.activityId}`);
-    if (activity && !["independent_output", "transfer_test", "listening_choice"].includes(activity.type)) errors.push(`/reviewActivities \u6D3B\u52A8 ${ref.activityId} \u4E0D\u662F\u72EC\u7ACB\u7EC3\u4E60`);
+    if (activity && !reviewTypes.has(activity.type)) errors.push(`/reviewActivities \u6D3B\u52A8 ${ref.activityId} \u4E0D\u662F\u72EC\u7ACB\u7EC3\u4E60`);
+    if (activity && isV11 && !["independent", "retention"].includes(activity.stage)) errors.push(`/reviewActivities \u6D3B\u52A8 ${ref.activityId} \u4E0D\u662F\u72EC\u7ACB\u68C0\u67E5`);
     if (activity && !(activity.skillIds || []).includes(ref.skillId)) errors.push(`/reviewActivities \u6D3B\u52A8 ${ref.activityId} \u672A\u6D4B\u91CF ${ref.skillId}`);
+  }
+  for (const id of taughtKnowledge) {
+    const item = curriculumMap.items.find((candidate) => candidate.knowledgeId === id);
+    if (!item) errors.push(`/lessons/knowledgeIds \u5F15\u7528\u4E86\u77E5\u8BC6\u76EE\u5F55\u4E2D\u4E0D\u5B58\u5728\u7684\u9879\u76EE ${id}`);
   }
   for (const skill of taught) if ((reviewCounts.get(skill) || 0) < 2) errors.push(`/reviewActivities \u80FD\u529B ${skill} \u81F3\u5C11\u9700\u8981\u4E24\u4E2A\u4E0D\u540C\u590D\u4E60\u7EC4\u5408`);
   return { valid: errors.length === 0, errors: [...new Set(errors)] };

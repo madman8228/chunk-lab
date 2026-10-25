@@ -32,6 +32,9 @@ export function filterResources(resources, selection = {}, omitDimension = '') {
       (resource.kind === 'textbook' || !!resource.facets?.seriesId);
     if (selection.category === 'new-concept' && !newConcept) return false;
     if (selection.category === 'school' && !school) return false;
+    if (selection.category === 'beginner' && !resource.curriculum) return false;
+    if (selection.category === 'beginner' && selection.track && resource.curriculum?.track !== selection.track) return false;
+    if (selection.category === 'beginner' && selection.stage && resource.curriculum?.stage !== selection.stage) return false;
     if (selection.category === 'practical' && (resource.kind !== 'course' || newConcept || school)) return false;
     if (selection.category === 'practical' && Object.hasOwn(PRACTICAL_TOPICS, selection.practicalTopic) && !matchesPracticalTopic(resource, selection.practicalTopic)) return false;
     if (query && ![resource.title, resource.description, ...Object.values(resource.facets || {}).flat()]
@@ -57,7 +60,9 @@ export function facetOptions(resources, selection = {}) {
 export function selectionFromUrl(search) {
   const params = new URLSearchParams(search);
   const selection = { kind: ['course', 'wordbook', 'textbook'].includes(params.get('kind')) ? params.get('kind') : '', query: params.get('q') || '' };
-  selection.category = ['practical', 'new-concept', 'school'].includes(params.get('category')) ? params.get('category') : '';
+  selection.category = ['practical', 'new-concept', 'school', 'beginner'].includes(params.get('category')) ? params.get('category') : '';
+  selection.track = selection.category === 'beginner' && ['scenario', 'sentence-building', 'pronunciation', 'phonics'].includes(params.get('track')) ? params.get('track') : '';
+  selection.stage = selection.category === 'beginner' && /^S[0-4]$/.test(params.get('stage') || '') ? params.get('stage') : '';
   selection.wordbookCategory = selection.kind === 'wordbook' && !selection.category && Object.hasOwn(WORDBOOK_CATEGORIES, params.get('wordbookCategory')) ? params.get('wordbookCategory') : '';
   selection.practicalTopic = selection.category === 'practical' && Object.hasOwn(PRACTICAL_TOPICS, params.get('practicalTopic')) ? params.get('practicalTopic') : '';
   if (!selection.category && selection.kind === 'textbook') { selection.kind = ''; selection.category = 'school'; }

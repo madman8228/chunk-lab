@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>渐进搭句 · 新交互预览</title>
+  <link rel="stylesheet" href="assets/ui-tokens.css">
+  <link rel="stylesheet" href="assets/progressive-building-v3.css?v=20261025-23">
+</head>
+<body>
+  <main>
+    <header><a href="main.html?view=discover&amp;category=beginner">返回发现</a><span>渐进搭句</span><span id="progress"></span></header>
+    <select id="lesson-select" aria-label="切换预览课程"></select>
+    <button id="review-entry" type="button" hidden></button>
+    <section id="teaching-board" aria-label="刚完成内容的讲解黑板" aria-live="polite"></section>
+    <section id="sentence-result" aria-label="一级整句显示区" aria-live="polite" hidden></section>
+    <ol id="trail" aria-label="按语义分组的句子成分"></ol>
+    <section id="activity" aria-label="当前练习"></section>
+    <p id="feedback" role="status" aria-live="polite"></p>
+    <footer><button id="next" type="button"></button></footer>
+    <noscript>请开启 JavaScript 以使用组句预览。</noscript>
+  </main>
+  <script type="module" src="src/progressive-building/view-v3.mjs?v=20261025-24"></script>
+</body>
+</html>

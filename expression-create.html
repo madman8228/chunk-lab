@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#d8edf6"><title>表达课程制作</title><link rel="stylesheet" href="assets/expression-course.css"><link rel="stylesheet" href="assets/chunk-selection.css"></head>
+<html lang="zh-CN"><head>
+<link rel="stylesheet" href="assets/ui-tokens.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#d8edf6"><title>表达课程制作</title><link rel="stylesheet" href="assets/expression-course.css"><link rel="stylesheet" href="assets/chunk-selection.css"></head>
 <body><header class="topbar"><a class="brand" href="/main.html?view=home">jqka.top</a><nav aria-label="主导航"><a href="/main.html?view=home">首页</a><a href="/main.html?view=my-learning">我的内容</a><a href="/main.html?view=discover">发现</a><a href="/stats.html">学习记录</a></nav></header>
 <main class="workspace authoring">
   <a class="back-link" href="/admin.html">← 返回后台</a><h1>制作表达课程</h1>
@@ -29,6 +30,10 @@
     <section id="aiPath" class="workflow-panel" hidden>
       <h2>先到外部 AI 制作</h2>
       <p>复制指令后，把教材或资料发给你选择的 AI；确认生成的课程 JSON 后，再回到这里导入。发送资料前，请确认你愿意将它提供给该 AI 服务。</p>
+      <label for="promptProtocol">课程协议</label>
+      <select id="promptProtocol"><option value="1.0">原有情景表达课程</option><option value="1.1">零基础分路线课程（新协议）</option></select>
+      <label for="promptTrack">零基础路线</label>
+      <select id="promptTrack"><option value="sentence-building">组装句子</option><option value="pronunciation">音标发音</option><option value="phonics">自然拼读</option><option value="scenario">情景表达</option></select>
       <button id="copyPrompt" type="button" class="button button-primary">复制制作指令</button>
       <div id="aiImportNext" class="workflow-next" hidden>
         <p>拿到 AI 返回的完整课程 JSON 后，回到这里继续导入。</p>

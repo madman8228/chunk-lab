@@ -5,15 +5,14 @@
   var root=options.root,course=options.course,lessons=options.lessons,rows=[],filter='all';
   function node(tag,cls,text){var el=document.createElement(tag);el.className=cls;if(text!==undefined)el.textContent=text;return el;}
   var hero=node('section','directory-overview'),copy=node('div','directory-overview-copy'),title=node('h2','',course.title),summary=node('p','','共 '+lessons.length+' 个课节'),label=node('p','','正在核对学习进度…'),progress=node('progress','');progress.max=100;progress.value=0;progress.setAttribute('aria-label','课程学习进度');
-  var passport=node('span','directory-passport','学习护照');
-  copy.append(passport,title,summary,progress,label);var actions=node('div','directory-overview-actions'),resume=node('button','directory-continue','开始学习');resume.type='button';resume.disabled=true;
+  copy.append(title,summary,progress,label);var actions=node('div','directory-overview-actions'),resume=node('button','directory-continue','开始学习');resume.type='button';resume.disabled=true;
   var review=node('a','directory-quick-review','快速复习');review.href='main.html?view=stats&tab=review';review.title='查看账号全部待复习内容';
   actions.append(resume,review);copy.append(actions);
   var metrics=node('aside','directory-passport-metrics');metrics.setAttribute('aria-label','学习统计');
   function metric(value,caption,kind){var box=node('div','directory-passport-metric '+kind),number=node('strong','',value),text=node('span','',caption);box.append(number,text);metrics.append(box);return number;}
-  metric(options.streak===undefined?'—':String(options.streak)+' 天','账号连续学习天数','streak');
-  var completedMetric=metric('—','本课程已完成课节','completed');
-  var practicedMetric=metric('—','本课程已练习内容','practiced');
+  metric(options.streak===undefined?'—':String(options.streak)+' 天','全站连续学习','streak');
+  var completedMetric=metric('—','完成课节','completed');
+  var practicedMetric=metric('—','练习句子','practiced');
   hero.append(copy,metrics);
   var controls=node('div','directory-controls'),search=node('input','');search.type='search';search.placeholder='搜索课节名称';search.setAttribute('aria-label','搜索课节');controls.append(search);
   var buttons=[];['全部','未开始','学习中','已完成'].forEach(function(text,index){var button=node('button','',text);button.type='button';button.setAttribute('aria-pressed',String(index===0));button.onclick=function(){filter=['all','not-started','in-progress','completed'][index];buttons.forEach(function(item){item.setAttribute('aria-pressed',String(item===button));});draw();};buttons.push(button);controls.append(button);});

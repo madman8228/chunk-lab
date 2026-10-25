@@ -1,6 +1,32 @@
 (function(global){
   'use strict';
   var presentations=new WeakMap();
+  function createDiscoverFilterPanel(tabs,filters){
+    var panel=element('section',undefined,'discover-filter-panel');panel.setAttribute('aria-label','课程分类筛选');
+    var toolbar=element('div',undefined,'discover-toolbar');toolbar.append(tabs);panel.append(toolbar);
+    if(filters.childElementCount)panel.append(filters);
+    return panel;
+  }
+  function createDiscoverSearch(value,onSearch){
+    var node=element('form',undefined,'discover-searchbar');node.setAttribute('role','search');node.setAttribute('autocomplete','off');
+    var icon=element('span',undefined,'discover-input-icon');icon.setAttribute('aria-hidden','true');
+    icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>';
+    var terms=['人教版七年级','中考词汇','新概念第一册','高考词汇'];
+    var input=element('input');input.type='search';input.name='course-search';input.autocomplete='off';input.value=value;input.placeholder=terms[0];input.setAttribute('aria-label','搜索教材、词单或课程');input.setAttribute('data-focus-key','discover-search');
+    var composing=false,lastValue=value,index=0,timer=null;
+    function apply(){if(composing||input.value===lastValue)return;lastValue=input.value;onSearch(input.value);}
+    node.addEventListener('submit',function(event){event.preventDefault();apply();});
+    input.addEventListener('compositionstart',function(){composing=true;});
+    input.addEventListener('compositionend',function(){composing=false;apply();});
+    input.addEventListener('input',apply);
+    input.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.isComposing){event.preventDefault();apply();}});
+    var submit=button('搜索',apply);submit.className='discover-search-submit';node.append(icon,input,submit);
+    if(!global.matchMedia('(prefers-reduced-motion: reduce)').matches)timer=setInterval(function(){
+      if(!input.isConnected||input.value||document.activeElement===input||document.hidden)return;
+      index=(index+1)%terms.length;input.placeholder=terms[index];
+    },3200);
+    return {node:node,dispose:function(){if(timer!==null){clearInterval(timer);timer=null;}}};
+  }
   function element(tag, text, className){
     var node=document.createElement(tag);
     if(text!==undefined) node.textContent=text;
@@ -48,6 +74,7 @@
     if(existing&&existing.dataset.route===location.search&&(presentation.composing||container.querySelector('dialog[open]'))){presentation.pending={data:data,actions:actions,route:location.search};return;}
     presentation.pending=null;
     if(data.loading&&existing&&existing.getAttribute('aria-busy')==='true'&&existing.dataset.route===location.search)return;
+    if(presentation.search){presentation.search.dispose();presentation.search=null;}
     var model=global.LearningWorkspace;
     var root=element('div',undefined,'learning-workspace'+(data.view==='home'?' workspace-home':data.view==='my-learning'?' workspace-home workspace-library':' workspace-discover'));
     var focused=container.contains(document.activeElement)&&document.activeElement.getAttribute('data-focus-key');
@@ -58,13 +85,8 @@
     var previousSearch=container.querySelector('.library-search-input,.discover-searchbar input[type=search]');
     var searchDraft=previousRoot&&previousRoot.dataset.route===location.search&&previousSearch?previousSearch.value:null;
     root.dataset.route=location.search;
-    var nav=global.LearningNavigation.create(data.view,actions.navigate);
-    var navHost=document.getElementById('workspaceNavHost');
-    if(navHost){
-      var focusedNav=navHost.contains(document.activeElement)&&document.activeElement.getAttribute('href');
-      navHost.replaceChildren(nav);
-      if(focusedNav){var replacementNav=Array.from(nav.querySelectorAll('a')).find(function(link){return link.getAttribute('href')===focusedNav;});if(replacementNav)replacementNav.focus({preventScroll:true});}
-    }else root.append(nav);
+    var nav=global.LearningNavigation.mount(data.view,actions.navigate);
+    if(!document.getElementById('workspaceNavHost'))root.append(nav);
     var heading=element('header',undefined,'workspace-heading');
     if(data.view!=='home')root.append(heading);
     if(data.loading){
@@ -75,12 +97,6 @@
     // The home surface uses its confirmed/local course view, not discovery transport status.
     var visibleStatus=data.view==='home'?String(data.status||'').replace('内容目录连接失败，保留最近可读内容。','').trim():data.status;
     notice(root,visibleStatus,actions,presentation);
-      var headerReview=document.getElementById('homeHeaderReview');
-      if(headerReview){
-        var reviewIcon=element('span',undefined,'home-inline-icon');reviewIcon.setAttribute('aria-hidden','true');
-        reviewIcon.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></svg>';
-        headerReview.hidden=false;headerReview.replaceChildren(reviewIcon,element('span','开始复习'),element('b',String(Math.max(0,Number(data.due)||0))));headerReview.disabled=!data.due;headerReview.onclick=actions.review;
-      }
     function completionFor(resource){
       var book=(resource.sourceRefs||[]).find(function(ref){return ref.type==='vocabulary-book';});
       if(book)return !data.completionReadFailed&&data.vocabularyCourses&&data.vocabularyCourses[book.id]||{state:'unknown'};
@@ -147,11 +163,10 @@
       var result=global.ContentCard.create({resource:resource,variant:library?'library':'discover',href:href,
         primaryAction:!library?(joinAction||launch):null,saveAction:!library?save:null,saved:!!(saved&&saved.selected),
         additionalMenuItems:additionalMenuItems,
-        onActivate:isDiscoverCourse?function(){actions.open(resource,{join:!joined});}:null,
-        metadata:!library?(function(){var parts=[];if(book){if(Number.isSafeInteger(resource.unitCount))parts.push(resource.unitCount+' 个单元');if(Number.isSafeInteger(resource.itemCount))parts.push(resource.itemCount+' 个单词');return parts.join(' · ');}var course=(data.catalog&&data.catalog.courses||[]).find(function(item){return item.id===resource.courseId;});if(!course)return '';if(course.lessonCount)parts.push(course.lessonCount+' 课节');if(course.itemCount)parts.push(course.itemCount+(kindKey==='word'?' 词':' 条内容'));return parts.join(' · ');})():'',
+        onActivate:isDiscoverCourse?function(){actions.open(resource,{join:expressionCourse?false:!joined});}:null,
+        metadata:!library?(function(){var parts=[];if(resource.curriculum){var trackLabels={scenario:'情景表达', 'sentence-building':'组装句子', pronunciation:'音标发音', phonics:'自然拼读'};parts.push(trackLabels[resource.curriculum.track]+' · '+resource.curriculum.stage);if(resource.curriculum.status==='candidate')parts.push('待核对旧课程映射');}if(book){if(Number.isSafeInteger(resource.unitCount))parts.push(resource.unitCount+' 个单元');if(Number.isSafeInteger(resource.itemCount))parts.push(resource.itemCount+' 个单词');return parts.join(' · ');}var course=(data.catalog&&data.catalog.courses||[]).find(function(item){return item.id===resource.courseId;});if(Number.isSafeInteger(resource.unitCount))parts.push(resource.unitCount+' 课节');if(course&&course.itemCount)parts.push(course.itemCount+(kindKey==='word'?' 词':' 条内容'));return parts.join(' · ');})():'',
         linkLabel:(library?'打开内容：':'查看 ')+resource.title,
         kindLabel:resource.available?(activities.includes('vocabulary')?'单词':activities.includes('expression')?'表达':'句子'):'暂不可用',kindKey:kindKey,items:items});
-      if(expressionCourse){var titleLink=result.querySelector('.content-card-title');if(titleLink)titleLink.addEventListener('click',function(event){event.preventDefault();actions.open(resource);});}
       if(library&&['completed','updated'].includes(completion.state))result.querySelector('.content-card-copy').append(element('span',completion.state==='completed'?'已学完':'曾学完 · 有新内容待补学','library-completion-label'));
       return result;
     }
@@ -159,42 +174,35 @@
       var grid=element('div',undefined,'workspace-grid');resources.forEach(function(resource){grid.append(card(resource));});area.append(grid);root.append(area);return area;}
     if(data.view==='discover'){
       var selection=model.selectionFromUrl(location.search);
-      var intro=element('section',undefined,'discover-intro');
-      intro.append(element('h1','教材同步、词单与口语课，一站找到'),element('p','覆盖中小学同步教材、新概念、主题词单和实用口语。'));
+      var intro=element('section',undefined,'discover-intro workspace-page-intro');
+      intro.append(element('h1','教材同步、词单与口语课，一站找到'));
       var introTitle=intro.querySelector('h1');introTitle.replaceChildren(document.createTextNode('教材同步、词单与口语课，'),element('span','一站找到','discover-title-accent'));
       root.insertBefore(intro,root.firstChild);
-      if(selection.kind==='wordbook'){var createBook=element('a','添加单词本','library-create');createBook.href='wordbook-create.html';heading.append(createBook);}
       var tabs=element('div',undefined,'workspace-tabs');
       tabs.setAttribute('role','group');tabs.setAttribute('aria-label','内容分类');
-      function chooseCategory(kind,category){var patch={kind:kind,category:category,practicalTopic:'',wordbookCategory:''};Object.keys(model.FACET_LABELS).forEach(function(key){patch[key]=[];});actions.filter(patch);}
-      [['','全部',''],['','实用英语','practical'],['wordbook','单词本',''],['','新概念','new-concept'],['','中小学同步','school']].forEach(function(item){var tab=button(item[1],function(){chooseCategory(item[0],item[2]);});tab.setAttribute('aria-pressed',selection.category===item[2]&&selection.kind===item[0]);tab.setAttribute('data-focus-key','discover-category-'+(item[2]||item[0]||'all'));tabs.append(tab);});root.append(tabs);
+      function chooseCategory(kind,category){var patch={kind:kind,category:category,practicalTopic:'',wordbookCategory:'',track:'',stage:''};Object.keys(model.FACET_LABELS).forEach(function(key){patch[key]=[];});actions.filter(patch);}
+      [['','全部',''],['','零基础','beginner'],['','实用英语','practical'],['wordbook','单词本',''],['','新概念','new-concept'],['','中小学同步','school']].forEach(function(item){var tab=button(item[1],function(){chooseCategory(item[0],item[2]);});tab.setAttribute('aria-pressed',selection.category===item[2]&&selection.kind===item[0]);tab.setAttribute('data-focus-key','discover-category-'+(item[2]||item[0]||'all'));tabs.append(tab);});root.append(tabs);
       var filters=element('div',undefined,'workspace-filter discover-filter');
-      var countKinds=[['',''],['','practical'],['wordbook',''],['','new-concept'],['','school']];
-      Array.from(tabs.children).forEach(function(tab,index){var countSelection=Object.assign({},selection,{kind:countKinds[index][0],category:countKinds[index][1],practicalTopic:'',wordbookCategory:'',query:''});Object.keys(model.FACET_LABELS).forEach(function(key){countSelection[key]=[];});var count=model.filterResources(data.publicResources||[],countSelection).length;var badge=element('span',String(count),'discover-tab-count');badge.setAttribute('aria-label',count+' 项资源');tab.append(badge);});
-      var discoverToolbar=element('div',undefined,'discover-toolbar');root.insertBefore(discoverToolbar,tabs);discoverToolbar.append(tabs);
-      var searchToolbar=element('div',undefined,'discover-searchbar');discoverToolbar.append(searchToolbar);
-      intro.append(searchToolbar);
-      var inputIcon=element('span',undefined,'discover-input-icon');inputIcon.setAttribute('aria-hidden','true');inputIcon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>';searchToolbar.append(inputIcon);
-      if(createBook){createBook.style.marginTop='0';searchToolbar.append(createBook);}
+      var countKinds=[['',''],['','beginner'],['','practical'],['wordbook',''],['','new-concept'],['','school']];
+      Array.from(tabs.children).forEach(function(tab,index){var countSelection=Object.assign({},selection,{kind:countKinds[index][0],category:countKinds[index][1],practicalTopic:'',wordbookCategory:'',query:'',track:'',stage:''});Object.keys(model.FACET_LABELS).forEach(function(key){countSelection[key]=[];});var count=model.filterResources(data.publicResources||[],countSelection).length;var badge=element('span',String(count),'discover-tab-count');badge.setAttribute('aria-label',count+' 项资源');tab.append(badge);});
+      presentation.search=createDiscoverSearch(searchDraft===null?selection.query:searchDraft,function(query){actions.filter({q:query},false,'discover',true);});
+      intro.append(presentation.search.node);
       if(!heading.childElementCount)heading.remove();
-      var search=element('input');search.type='search';search.placeholder='搜索';search.value=searchDraft===null?selection.query:searchDraft;search.setAttribute('aria-label','搜索内容');search.setAttribute('data-focus-key','discover-search');searchToolbar.append(search);
-      search.placeholder='搜索教材、词单或课程';
-      var searchSubmit=button('搜索',function(){applySearch();});searchSubmit.className='discover-search-submit';searchToolbar.append(searchSubmit);
-      if(global.Icons){var searchIcon=element('span',undefined,'discover-search-icon');searchIcon.setAttribute('aria-hidden','true');searchIcon.innerHTML=global.Icons.svg('search');searchSubmit.prepend(searchIcon);}
-      var suggestions=element('div',undefined,'discover-search-suggestions');suggestions.append(element('span','热搜'));
-      [['人教版七年级',{category:'school',schoolStages:['初中'],grades:['七年级'],q:''}],['中考词汇',{kind:'wordbook',category:'',q:'中考'}],['新概念第一册',{category:'new-concept',kind:'',q:'第一册'}],['高考词汇',{kind:'wordbook',category:'',q:'高考'}]].forEach(function(item){var shortcut=button(item[0],function(){actions.filter(Object.assign({kind:'',category:'',practicalTopic:'',schoolStages:[],grades:[],q:''},item[1]));});suggestions.append(shortcut);});intro.append(suggestions);
-      var composing=false,lastSearchValue=search.value;
       if(selection.kind==='wordbook'&&!selection.category){
         var wordbookTabs=element('div',undefined,'discover-text-tabs');wordbookTabs.setAttribute('role','group');wordbookTabs.setAttribute('aria-label','单词本分类');
         [['','全部']].concat(Object.entries(model.WORDBOOK_CATEGORIES)).forEach(function(item){var tab=button(item[1],function(){actions.filter({wordbookCategory:item[0]});});tab.setAttribute('aria-pressed',selection.wordbookCategory===item[0]);tab.setAttribute('data-focus-key','discover-wordbook-'+(item[0]||'all'));wordbookTabs.append(tab);});filters.append(wordbookTabs);root.append(filters);
       }
-      function applySearch(){if(search.value===lastSearchValue)return;lastSearchValue=search.value;actions.filter({q:search.value},false,'discover',true);}
-      search.addEventListener('compositionstart',function(){composing=true;});
-      search.addEventListener('compositionend',function(){composing=false;applySearch();});
-      search.addEventListener('input',function(){if(!composing)applySearch();});
       if(selection.category==='practical'){
         var topics=element('div',undefined,'discover-text-tabs');topics.setAttribute('role','group');topics.setAttribute('aria-label','实用英语分类');
         [['','全部']].concat(Object.entries(model.PRACTICAL_TOPICS)).forEach(function(item){var tab=button(item[1],function(){actions.filter({practicalTopic:item[0]});});tab.setAttribute('aria-pressed',selection.practicalTopic===item[0]);tab.setAttribute('data-focus-key','discover-practical-'+(item[0]||'all'));topics.append(tab);});filters.append(topics);root.append(filters);
+      }
+      if(selection.category==='beginner'){
+        var beginnerFilters=element('div',undefined,'discover-text-tabs');beginnerFilters.setAttribute('role','group');beginnerFilters.setAttribute('aria-label','零基础课程路线与阶段筛选');
+        var routeChoices=[['','全部路线'],['scenario','情景表达'],['sentence-building','组装句子'],['pronunciation','音标发音'],['phonics','自然拼读']];
+        routeChoices.forEach(function(item){var tab=button(item[1],function(){actions.filter({track:item[0],stage:''});});tab.setAttribute('aria-pressed',selection.track===item[0]);beginnerFilters.append(tab);});
+        var stageChoices=[['','全部阶段'],['S0','入门'],['S1','基础'],['S2','进阶'],['S3','拓展'],['S4','应用']];
+        stageChoices.forEach(function(item){var tab=button(item[1],function(){actions.filter({stage:item[0]});});tab.setAttribute('aria-pressed',selection.stage===item[0]);beginnerFilters.append(tab);});
+        filters.append(beginnerFilters);root.append(filters);
       }
       if(selection.category==='school'){
         function filterRow(label,key,choices,allLabel){
@@ -212,9 +220,9 @@
         ['','第一册','第二册','第三册','第四册'].forEach(function(value){var tab=button(value||'全部',function(){actions.filter({volume:value?[value]:[]});});tab.setAttribute('aria-pressed',value?selection.volume.includes(value):!selection.volume.length);tab.setAttribute('data-focus-key','discover-volume-'+(value||'all'));volumes.append(tab);});filters.append(volumes);root.append(filters);
       }
       var results=model.filterResources(data.publicResources||[],selection);
-      var filterPanel=element('section',undefined,'discover-filter-panel');filterPanel.setAttribute('aria-label','课程分类筛选');root.insertBefore(filterPanel,discoverToolbar);filterPanel.append(discoverToolbar);
-      Array.from(root.children).filter(function(child){return child.classList.contains('discover-text-tabs')||child.classList.contains('discover-filter');}).forEach(function(child){filterPanel.append(child);});
+      root.append(createDiscoverFilterPanel(tabs,filters));
       var resultBar=element('div',undefined,'discover-result-toolbar'),resultCount=element('p','共 '+results.length+' 项资源','discover-result-count'),resultActions=element('div',undefined,'discover-result-actions');resultBar.append(resultCount,resultActions);root.append(resultBar);
+      if(selection.kind==='wordbook'){var createBook=element('a','添加单词本','discover-create-book');createBook.href='wordbook-create.html';resultActions.append(createBook);}
       var sorting=element('div',undefined,'discover-sort');sorting.setAttribute('role','group');sorting.setAttribute('aria-label','资源排序');
       ['推荐','最热门','最新'].forEach(function(label,index){var option=button(label,function(){});option.setAttribute('aria-pressed',String(index===0));if(index){option.disabled=true;option.title=index===1?'暂无热度统计，暂不可用':'暂无上架时间，暂不可用';}sorting.append(option);});resultActions.append(sorting);
       var layout=element('div',undefined,'discover-layout');layout.setAttribute('role','group');layout.setAttribute('aria-label','资源显示方式');
@@ -236,9 +244,9 @@
       var sentenceResources=owned.filter(function(resource){return (resource.activities||[]).some(function(activity){return activity==='chunks'||activity==='sentence'||activity==='expression';});});
       var activity=data.homeActivity||{},streak=Math.max(0,Number(activity.streak)||0),due=Math.max(0,Number(data.due)||0);
       var dashboard=element('div',undefined,'my-learning-dashboard');
-      var intro=element('section',undefined,'my-learning-intro');
+      var intro=element('section',undefined,'my-learning-intro workspace-page-intro');
       var introCopy=element('div',undefined,'my-learning-intro-copy');
-      introCopy.append(element('h1','早上好，继续前进'),element('p',streak?'已连续学习 '+streak+' 天，今天再学一点':'课程、词单和句子进度都在这里。'));
+      introCopy.append(element('h1','早上好，继续前进'));
       var introStats=element('div',undefined,'my-learning-intro-stats');
       [['fire','连续 '+streak+' 天','my-learning-stat is-streak'],['target','待复习 '+due+' 条','my-learning-stat']].forEach(function(item){
         var badge=element('a',undefined,item[2]);badge.href='main.html?view=stats'+(item[0]==='fire'?'':'&tab=review');
@@ -252,21 +260,34 @@
       var firstActive=courseRows.find(function(entry){return entry.completionState!=='completed'&&!entry.unavailable&&!entry.loadFailed;});
       var hero=element('section',undefined,'my-learning-resume');
       var resumeCopy=element('div',undefined,'my-learning-resume-copy');
+      resumeCopy.append(element('span','继续上次学习','my-learning-resume-kicker'));
       resumeCopy.append(element('h2',resume?(resume.title||resume.deck&&resume.deck.name||'继续上次学习'):'准备好继续学习了吗？'));
-      resumeCopy.append(element('p',resume?'从上次停下的位置接着学。':'选择一门课程或词单，开始今天的学习。'));
+      var resumeSummary=element('p');
+      var currentCourse=resumeRow||firstActive;
+      if(currentCourse){
+        resumeSummary.append(element('strong',currentCourse.course.title||currentCourse.title));
+        var courseMetric=document.createElement('div');courseMetric.innerHTML=currentCourse.homeProgressMarkup||'';
+        var coursePercent=courseMetric.querySelector('.home-progress-label b');
+        resumeSummary.append(document.createTextNode(' · '+(currentCourse.progress||'学习进度待确认')+(coursePercent?' · 已学习 '+coursePercent.textContent:'')));
+      }else resumeSummary.textContent='选择一门课程或词单，开始今天的学习。';
+      resumeCopy.append(resumeSummary);
       var resumeActions=element('div',undefined,'my-learning-resume-actions');
       var resumeButton=button(resume||firstActive?'继续学习':'去发现课程',function(){if(resume)actions.resume(resume);else if(firstActive){var resource=firstActive.resource||(data.resources||[]).find(function(item){return item.courseId===firstActive.course.id;})||model.resourcesFromCatalog({courses:[firstActive.course]})[0];if(resource)actions.open(resource);else actions.navigate('discover');}else actions.navigate('discover');});
       resumeButton.className='my-learning-resume-button';
       resumeButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg><span>'+((resume||firstActive)?'继续学习':'去发现课程')+'</span>';
       resumeActions.append(resumeButton);
-      var reviewShortcut=element('a','复习 '+due+' 条','my-learning-review-link');reviewShortcut.href='main.html?view=stats&tab=review';reviewShortcut.onclick=function(event){if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;if(global.openStatsPage){event.preventDefault();global.openStatsPage('review');}};resumeActions.append(reviewShortcut);
-      hero.append(resumeCopy,resumeActions);
-      [['连续打卡',streak+' 天'],['在学课程',courseRows.filter(function(entry){return entry.completionState!=='completed';}).length+' 门']].forEach(function(item){var stat=element('div',undefined,'my-learning-resume-stat');stat.append(element('strong',item[1]),element('span',item[0]));hero.append(stat);});
+      var reviewShortcut=element('a',undefined,'my-learning-review-link');reviewShortcut.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 7v5h-5M20 12a8 8 0 1 0-2 5"/></svg>';reviewShortcut.append(element('span','一键复习 '+due+' 条'));reviewShortcut.href='main.html?view=stats&tab=review';reviewShortcut.onclick=function(event){if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;if(global.openStatsPage){event.preventDefault();global.openStatsPage('review');}};resumeActions.append(reviewShortcut);
+      resumeCopy.append(resumeActions);
+      var resumeStats=element('div',undefined,'my-learning-resume-stats');
+      [['连续打卡',streak,'天'],['在学课程',courseRows.filter(function(entry){return entry.completionState!=='completed';}).length,'门'],['待复习',due,'条']].forEach(function(item){var stat=element('div',undefined,'my-learning-resume-stat');var value=element('div',undefined,'my-learning-resume-value');value.append(element('strong',String(item[1])),element('small',item[2]));stat.append(value,element('span',item[0]));resumeStats.append(stat);});
+      hero.append(resumeCopy,resumeStats);
       dashboard.append(hero);
 
       var courseArea=element('section',undefined,'my-learning-courses');
       var courseHeading=element('div',undefined,'my-learning-section-heading');
-      courseHeading.append(element('h2','我的课程'),element('span',courseRows.length+' 门'));
+      var courseMark=element('span',undefined,'my-learning-course-mark');courseMark.setAttribute('aria-hidden','true');courseMark.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg>';
+      courseHeading.append(courseMark,element('h2','我的课程'),element('span',courseRows.length+' 门 · '+courseRows.filter(function(entry){return entry.completionState!=='completed';}).length+' 门在学'));
+      var discoverCourses=element('a','去发现加课 ›');discoverCourses.href='main.html?view=discover';courseHeading.append(discoverCourses);
       courseArea.append(courseHeading);
       var courseGrid=element('div',undefined,'my-learning-course-grid');
       courseRows.slice(0,6).forEach(function(entry){
@@ -274,7 +295,9 @@
         var resource=entry.resource||(data.resources||[]).find(function(item){return item.courseId===entry.course.id;})||model.resourcesFromCatalog({courses:[entry.course]})[0];
         var completed=entry.completionState==='completed',unavailable=!!(entry.unavailable||entry.loadFailed||!resource);
         var cover=element('span',undefined,'my-learning-course-cover');cover.setAttribute('aria-hidden','true');if(entry.coverMarkup)cover.innerHTML=entry.coverMarkup;
-        var copy=element('div',undefined,'my-learning-course-copy');copy.append(element('h3',entry.title||entry.course.title),element('p',entry.progress||'学习进度待确认'));
+        var lastTime=Number(entry.lastStudiedAt||entry.lastOpenedAt)||0,lastTimeText='';
+        if(lastTime>0){var lastDate=new Date(lastTime),todayDate=new Date(),lastDay=new Date(lastDate.getFullYear(),lastDate.getMonth(),lastDate.getDate()).getTime(),todayDay=new Date(todayDate.getFullYear(),todayDate.getMonth(),todayDate.getDate()).getTime();var daysAgo=Math.round((todayDay-lastDay)/86400000);var clock=lastDate.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});lastTimeText=(entry.lastStudiedAt?'':'上次打开 ')+(daysAgo===0?'今天 '+clock:daysAgo===1?'昨天 '+clock:lastDate.toLocaleDateString('zh-CN')+' '+clock);}
+        var copy=element('div',undefined,'my-learning-course-copy');var courseTitle=element('h3',entry.course.title||entry.title);courseTitle.title=entry.course.title||entry.title;var courseMeta=element('p',(entry.progress||'学习进度待确认')+(lastTimeText?' · '+lastTimeText:''));courseMeta.title=courseMeta.textContent;copy.append(courseTitle,courseMeta);
         if(entry.homeProgressMarkup||entry.progressMarkup){var progress=element('div',undefined,'my-learning-course-progress');progress.innerHTML=entry.homeProgressMarkup||entry.progressMarkup;copy.append(progress);}
         var open=button(completed?'再次学习':'继续学习',function(){if(!resource)return;if(resumeRow===entry&&resume)actions.resume(resume);else actions.open(resource,{restart:completed});});
         open.className='my-learning-course-action';open.disabled=unavailable;open.setAttribute('aria-label',(completed?'再次学习 ':'继续学习 ')+(entry.title||entry.course.title));
@@ -307,11 +330,13 @@
       dashboard.append(learningColumns);
 
       var favorites=element('section',undefined,'my-learning-favorites');
-      var favoritesHeading=element('div',undefined,'my-learning-section-heading');favoritesHeading.append(element('h2','我的收藏'),element('span',savedResources.length+' 项'));
+      var favoritesHeading=element('div',undefined,'my-learning-section-heading');var favoriteMark=element('span',undefined,'my-learning-course-mark');favoriteMark.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>';favoritesHeading.append(favoriteMark,element('h2','我的收藏'));
       favorites.append(favoritesHeading);
       var favoriteList=element('div',undefined,'my-learning-favorite-list');
-      savedResources.slice(0,6).forEach(function(resource){var favorite=button(resource.title,function(){actions.open(resource,{join:!(data.memberships&&data.memberships[resource.courseId]&&data.memberships[resource.courseId].joined)});});favorite.className='my-learning-favorite';favoriteList.append(favorite);});
-      if(!savedResources.length)favoriteList.append(element('p','收藏的课程、词单和句子会集中显示在这里。','my-learning-empty'));
+      var favoriteTabs=element('div',undefined,'my-learning-favorite-tabs');favoriteTabs.setAttribute('role','group');favoriteTabs.setAttribute('aria-label','收藏类型');
+      function favoriteKind(resource){return resource.kind==='sentence'?'sentence':resource.kind==='word'?'word':'course';}
+      function renderFavorites(kind){favoriteList.replaceChildren();favoriteTabs.querySelectorAll('button').forEach(function(tab){tab.setAttribute('aria-pressed',String(tab.dataset.kind===kind));});var rows=savedResources.filter(function(resource){return kind==='all'||favoriteKind(resource)===kind;});rows.forEach(function(resource){var type=favoriteKind(resource),favorite=button('',function(){actions.open(resource,{join:!(data.memberships&&data.memberships[resource.courseId]&&data.memberships[resource.courseId].joined)});});favorite.className='my-learning-favorite';favorite.title=resource.title;var mark=element('span',type==='sentence'?'句':type==='word'?'词':'课','my-learning-favorite-icon is-'+type);mark.setAttribute('aria-hidden','true');favorite.append(mark,element('span',resource.title,'my-learning-favorite-title'));favorite.setAttribute('aria-label',({sentence:'句子',word:'单词',course:'课程'}[type])+'收藏：'+resource.title);favoriteList.append(favorite);});if(!rows.length)favoriteList.append(element('p',kind==='all'?'还没有收藏。':'暂无'+({sentence:'句子',word:'单词',course:'课程'}[kind])+'收藏。','my-learning-empty'));}
+      [['all','全部'],['sentence','句子'],['word','单词'],['course','课程']].forEach(function(item){var tab=button(item[1],function(){renderFavorites(item[0]);});tab.dataset.kind=item[0];favoriteTabs.append(tab);});favoritesHeading.append(favoriteTabs);renderFavorites('all');
       favorites.append(favoriteList);dashboard.append(favorites);root.append(dashboard);
 
       root.removeChild(heading);
@@ -392,10 +417,12 @@
           if(entry.coverMarkup)cover.innerHTML=entry.coverMarkup;
           cover.querySelectorAll('img').forEach(function(image){image.onerror=function(){image.hidden=true;};});
           open.append(cover);
-          var copy=element('span',undefined,'grow');copy.append(element('span',entry.course.title,'nm'),element('span',entry.progress,'sub home-deck-progress'));
-          if(entry.homeProgressMarkup||entry.progressMarkup){var progress=element('span',undefined,'home-course-metrics');progress.innerHTML=entry.homeProgressMarkup||entry.progressMarkup;copy.append(progress);}
+          var copy=element('span',undefined,'grow');var titleLine=element('span',undefined,'home-course-title-line');titleLine.append(element('span',entry.course.title,'nm'));
+          var progressLine=element('span',undefined,'home-course-progress-line');progressLine.append(element('span',entry.progress,'sub home-deck-progress'));
+          if(entry.homeProgressMarkup||entry.progressMarkup){var progress=element('span',undefined,'home-course-metrics');progress.innerHTML=entry.homeProgressMarkup||entry.progressMarkup;progressLine.append(progress);}
+          copy.append(titleLine,progressLine);
           open.append(copy);row.append(open);
-          var kind=element('span','句子表达库','home-content-kind');copy.insertBefore(kind,copy.firstChild);
+          var kind=element('span','句子','home-content-kind');titleLine.insertBefore(kind,titleLine.firstChild);
           if(entry.lessons.length>1){var select=element('a',undefined,'hd-select-lessons');select.href='decks.html?courseView=joined&course='+encodeURIComponent(entry.course.id);select.setAttribute('aria-label','选择 '+entry.course.title+' 的课节');
             if(global.Icons){var list=element('span');list.innerHTML=Icons.svg('list');select.append(list);}select.append(element('span','选课节'));row.append(select);}
           var next=element('a',undefined,'hd-action');next.href='decks.html?courseView=joined&course='+encodeURIComponent(entry.course.id);next.setAttribute('aria-label','查看 '+entry.course.title+' 的课节');if(global.Icons)next.innerHTML=Icons.svg('chevR');row.append(next);

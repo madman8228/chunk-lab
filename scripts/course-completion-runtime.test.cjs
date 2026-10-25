@@ -35,7 +35,9 @@ async function main(){
     addEventListener:(name,fn)=>{events[name]=fn;}
   };
   context.window=context;
-  vm.runInNewContext(fs.readFileSync('js/learning-workspace-runtime.js','utf8'),context);
+  const runtimeSource=fs.readFileSync('js/learning-workspace-runtime.js','utf8');
+  assert.doesNotMatch(runtimeSource,/课程总进度/,'home progress markup omits the redundant label');
+  vm.runInNewContext(runtimeSource,context);
   const runtime=context.LearningWorkspaceRuntime.create({visible:()=>true,show(){},container:()=>null,
     read:()=>({catalog:{courses:[]},memberships:{},joinedCourseIds:[],due:0})});
   runtime.show();await runtime.refresh();

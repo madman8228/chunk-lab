@@ -31,6 +31,7 @@ var MainHomeSummary = (() => {
     const now = options.now;
     const isDue = typeof options.isDue === "function" ? options.isDue : () => false;
     const isDeleted = typeof options.isDeleted === "function" ? options.isDeleted : () => false;
+    const needsReinforcement = typeof options.needsReinforcement === "function" ? options.needsReinforcement : () => true;
     let due = 0;
     Object.keys(bySentence).forEach((key) => {
       const stat = bySentence[key];
@@ -42,7 +43,7 @@ var MainHomeSummary = (() => {
     });
     return {
       due,
-      book: Array.isArray(options.reinforceBook) ? options.reinforceBook.length : 0
+      book: Array.isArray(options.reinforceBook) ? options.reinforceBook.filter(needsReinforcement).length : 0
     };
   }
   return __toCommonJS(main_home_summary_entry_exports);

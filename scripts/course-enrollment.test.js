@@ -66,17 +66,18 @@ async function run() {
     readProgress: () => JSON.parse(JSON.stringify(limitedProgress)),
     writeProgress: async (next) => { Object.assign(limitedProgress, next); return true; }
   });
-  assert.equal(CourseEnrollment.MAX_JOINED_COURSES, 3);
+  assert.equal(CourseEnrollment.MAX_JOINED_COURSES, 4);
   await limited.join('course:one');
   await limited.join('course:two');
   await limited.join('course:three');
-  assert.equal(limited.joinedCount(), 3);
-  await limited.join('course:one'); // already joined remains idempotent at the cap
-  await assert.rejects(limited.join('course:four'), /最多加入 3 门课程/);
-  assert.equal(limited.isJoined('course:four'), false);
-  await limited.leave('course:two');
   await limited.join('course:four');
-  assert.equal(limited.joinedCount(), 3);
+  assert.equal(limited.joinedCount(), 4);
+  await limited.join('course:one'); // already joined remains idempotent at the cap
+  await assert.rejects(limited.join('course:five'), /最多加入 4 门课程/);
+  assert.equal(limited.isJoined('course:five'), false);
+  await limited.leave('course:two');
+  await limited.join('course:five');
+  assert.equal(limited.joinedCount(), 4);
 
   const staleServerView = {};
   const serverMembership = { kind:'course-enrollment', schemaVersion:1, courseId:'cloud:course', joined:true, joinedAt:500, changedAt:500 };

@@ -43,6 +43,7 @@ var LearningWorkspace = (() => {
   var scalarFacets = ["seriesId", "publisherId", "textbookVersion", "edition", "volume"];
   var kinds = /* @__PURE__ */ new Set(["course", "wordbook", "textbook"]);
   var referenceTypes = /* @__PURE__ */ new Set(["sentence-deck", "story-package", "vocabulary-pilot", "vocabulary-book", "protected-course", "personal-course", "expression-course"]);
+  var curriculumTracks = /* @__PURE__ */ new Set(["scenario", "sentence-building", "pronunciation", "phonics"]);
   var text = (value, max = 200) => typeof value === "string" ? value.trim().slice(0, max) : "";
   function safeCover(value) {
     const url = text(value, 1e3);
@@ -71,6 +72,7 @@ var LearningWorkspace = (() => {
       unavailableReason: available ? "" : text(source.unavailableReason) || "\u5185\u5BB9\u6682\u4E0D\u53EF\u7528",
       metadataRevision: Number.isSafeInteger(source.metadataRevision) ? source.metadataRevision : 0,
       courseId: text(source.courseId),
+      curriculum: source.curriculum && curriculumTracks.has(source.curriculum.track) && /^S[0-4]$/.test(source.curriculum.stage || "") ? { track: source.curriculum.track, stage: source.curriculum.stage, status: text(source.curriculum.status, 40) || "available" } : null,
       unitCount: Number.isSafeInteger(source.unitCount) && source.unitCount >= 0 ? source.unitCount : null,
       itemCount: Number.isSafeInteger(source.itemCount) && source.itemCount >= 0 ? source.itemCount : null,
       accessLevel: source.accessLevel === "member" ? "member" : "free",
@@ -146,6 +148,9 @@ var LearningWorkspace = (() => {
       const school = !newConcept && values(resource, "schoolStages").some((stage) => ["\u5C0F\u5B66", "\u521D\u4E2D", "\u9AD8\u4E2D"].includes(stage)) && (resource.kind === "textbook" || !!resource.facets?.seriesId);
       if (selection.category === "new-concept" && !newConcept) return false;
       if (selection.category === "school" && !school) return false;
+      if (selection.category === "beginner" && !resource.curriculum) return false;
+      if (selection.category === "beginner" && selection.track && resource.curriculum?.track !== selection.track) return false;
+      if (selection.category === "beginner" && selection.stage && resource.curriculum?.stage !== selection.stage) return false;
       if (selection.category === "practical" && (resource.kind !== "course" || newConcept || school)) return false;
       if (selection.category === "practical" && Object.hasOwn(PRACTICAL_TOPICS, selection.practicalTopic) && !matchesPracticalTopic(resource, selection.practicalTopic)) return false;
       if (query && ![resource.title, resource.description, ...Object.values(resource.facets || {}).flat()].filter(Boolean).join(" ").toLocaleLowerCase().includes(query)) return false;
@@ -168,7 +173,9 @@ var LearningWorkspace = (() => {
   function selectionFromUrl(search) {
     const params = new URLSearchParams(search);
     const selection = { kind: ["course", "wordbook", "textbook"].includes(params.get("kind")) ? params.get("kind") : "", query: params.get("q") || "" };
-    selection.category = ["practical", "new-concept", "school"].includes(params.get("category")) ? params.get("category") : "";
+    selection.category = ["practical", "new-concept", "school", "beginner"].includes(params.get("category")) ? params.get("category") : "";
+    selection.track = selection.category === "beginner" && ["scenario", "sentence-building", "pronunciation", "phonics"].includes(params.get("track")) ? params.get("track") : "";
+    selection.stage = selection.category === "beginner" && /^S[0-4]$/.test(params.get("stage") || "") ? params.get("stage") : "";
     selection.wordbookCategory = selection.kind === "wordbook" && !selection.category && Object.hasOwn(WORDBOOK_CATEGORIES, params.get("wordbookCategory")) ? params.get("wordbookCategory") : "";
     selection.practicalTopic = selection.category === "practical" && Object.hasOwn(PRACTICAL_TOPICS, params.get("practicalTopic")) ? params.get("practicalTopic") : "";
     if (!selection.category && selection.kind === "textbook") {

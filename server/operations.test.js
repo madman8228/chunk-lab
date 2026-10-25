@@ -156,13 +156,17 @@ function enrollmentOperation(requestId, courseId, joined) {
 }
 operations.execute(1, enrollmentOperation('operation_enroll_course_02', 'course-two', true));
 operations.execute(1, enrollmentOperation('operation_enroll_course_03', 'course-three', true));
-assert.throws(() => operations.execute(1, enrollmentOperation('operation_enroll_course_04', 'course-four', true)),
+assert.equal(operations.execute(1, enrollmentOperation('operation_enroll_course_04', 'course-four', true)).ok, true);
+assert.throws(() => operations.execute(1, enrollmentOperation('operation_enroll_course_05', 'course-five', true)),
   error => error.code === 'COURSE_LIMIT_REACHED' && error.status === 409);
 assert.equal(operations.execute(1, enrollmentOperation('operation_enroll_remove_02', 'course-two', false)).ok, true);
-assert.equal(operations.execute(1, enrollmentOperation('operation_enroll_course_05', 'course-four', true)).ok, true);
+assert.equal(operations.execute(1, enrollmentOperation('operation_enroll_course_06', 'course-five', true)).ok, true);
 operations.execute(2, enrollmentOperation('operation_enroll_other_01', 'other-one', true));
 operations.execute(2, enrollmentOperation('operation_enroll_other_02', 'other-two', true));
 operations.execute(2, enrollmentOperation('operation_enroll_other_03', 'other-three', true));
+operations.execute(2, enrollmentOperation('operation_enroll_other_04', 'other-four', true));
+assert.throws(() => operations.execute(2, enrollmentOperation('operation_enroll_other_05', 'other-five', true)),
+  error => error.code === 'COURSE_LIMIT_REACHED' && error.status === 409);
 assert.equal(JSON.parse(db.prepare('SELECT data_json FROM user_course_progress WHERE user_id=2 AND course_id=?').get('enrollment:v1:other-three').data_json).joined, true);
 
 const settings = { protocol: 3, requestId: 'operation_request_0003', type: 'settings.patch', payload: { patch: { sound: false, batchSize: 12 } } };

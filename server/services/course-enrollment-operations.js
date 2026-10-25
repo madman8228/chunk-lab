@@ -1,6 +1,6 @@
 'use strict';
 
-const MAX_JOINED_COURSES = 3;
+const MAX_JOINED_COURSES = 4;
 
 function hasOnlyKeys(value, keys) {
   return Object.keys(value).every(key => keys.includes(key));
@@ -37,7 +37,7 @@ function createCourseEnrollmentOperations(options) {
         } catch (_) { /* Ignore unrelated or malformed progress rows. */ }
       });
       if (joined.size >= MAX_JOINED_COURSES) {
-        throw operationError('最多加入 3 门课程；请先移出一门，再加入新课程。', 'COURSE_LIMIT_REACHED', 409);
+        throw operationError('最多加入 4 门课程；请先移出一门，再加入新课程。', 'COURSE_LIMIT_REACHED', 409);
       }
     }
     const timestamp = Date.now();

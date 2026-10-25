@@ -1,14 +1,7 @@
 /* Shared navigation for the workspace and learning archive. */
 .topbar-row>a[data-learning-brand]>img{transform:scale(1.16);transform-origin:center;}
 .topbar-row>a.brand[data-learning-brand]{padding-inline:2.4px;margin-inline:-2.4px}
-html:has(#pageStats:not(.hidden)) #workspaceNavHost{display:block;flex:1;min-width:0;margin-left:24px}
-html:has(#pageStats:not(.hidden)) :is(#btnStats,#btnDecks,#btnHomeTop){display:none}
-html:has(#pageStats:not(.hidden)) .topbar{margin-bottom:4px;padding-bottom:0}
-html:has(#pageStats:not(.hidden)) .wrap{max-width:960px;padding-bottom:110px;position:relative;z-index:1}
-html:has(#pageStats:not(.hidden)) body{height:auto;min-height:100%;background:linear-gradient(180deg,var(--shared-sky1) 0%,var(--shared-sky2) 34%,var(--shared-sky3) 62%,var(--shared-sky4) 100%);background-attachment:fixed}
-html:has(#pageStats:not(.hidden)) .home-sky-deco{display:block}
-html:has(#pageStats:not(.hidden)) .home-garden{display:block;position:fixed;inset:auto 0 0;height:105px;z-index:-1;overflow:visible}
-.stage-head-right > #btnMaster:not(.auto){display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:auto;min-width:64px;height:44px;min-height:44px;flex-shrink:0;gap:4px;padding:7px 12px;border:1px solid #a38360;border-radius:9px;background:#fffbed;color:#55351f;font-size:13px;font-weight:600;line-height:1.2;letter-spacing:normal;white-space:nowrap;box-shadow:none;transform:none}
+.stage-head-right > #btnMaster:not(.auto){display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:auto;min-width:64px;height:44px;min-height:44px;flex-shrink:0;gap:4px;padding:7px 12px;border:1px solid #a38360;border-radius:var(--ui-radius-control);background:#fffbed;color:#55351f;font-size:13px;font-weight:600;line-height:1.2;letter-spacing:normal;white-space:nowrap;box-shadow:none;transform:none}
 .stage-head-right > #btnMaster:not(.auto):hover{border-color:#a38360;background:#fff0ce;color:#55351f;transform:none}
 .stage-head-right > #btnMaster.done:not(.auto){background:#fff0ce}
 .stage-head-right > #btnMaster:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
@@ -23,13 +16,12 @@ html:has(#pageStats:not(.hidden)) .home-garden{display:block;position:fixed;inse
 .learning-global-nav a:hover{color:#9a5f14;background:transparent;text-decoration:none;box-shadow:none}
 .learning-global-nav a:focus-visible{outline:2px solid #3768b4;outline-offset:2px}
 a[data-learning-brand]{display:inline-flex;align-items:center;gap:9px;min-height:32px;font:700 15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;letter-spacing:-.01em;color:#202326;text-decoration:none;white-space:nowrap}
-a[data-learning-brand]>span.logo{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:linear-gradient(140deg,#c9403a,#b93630);color:#fff;font-size:13px;font-weight:800;box-shadow:0 2px 6px -2px rgba(46,43,37,.22)}
+a[data-learning-brand]>span.logo{display:grid;place-items:center;width:26px;height:26px;border-radius:var(--ui-radius-sm);background:linear-gradient(140deg,#c9403a,#b93630);color:#fff;font-size:13px;font-weight:800;box-shadow:0 2px 6px -2px rgba(46,43,37,.22)}
 .archive-global-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0;padding:6px 0 0}
 .wrap:has(>.archive-global-header){padding-top:6px}
 .archive-global-header>.learning-global-nav{flex:1;min-width:0;margin-left:24px}
 @media(max-width:640px){
-  html:has(#pageStats:not(.hidden)) #workspaceNavHost{flex-basis:100%;order:2;margin:0}
-  html:has(:is(#pageHome,#pageMyLearning,#pageDiscover):not(.hidden)) #workspaceNavHost,.archive-global-header>.learning-global-nav{flex-basis:100%;order:2;margin:0}
+  .archive-global-header>.learning-global-nav{flex-basis:100%;order:2;margin:0}
   .learning-global-nav{gap:4px}
 }
 @media(max-width:420px){.learning-global-nav a,#btnSettingsTop.account-entry{padding:8px;font-size:13px}}

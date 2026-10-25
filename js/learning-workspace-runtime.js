@@ -61,7 +61,7 @@
         var progress=expressionProgressScope===scope&&expressionProgress[row.course.id];
         if(!progress)return row;
         return Object.assign({},row,{completionState:progress.total>0&&progress.completed===progress.total?'completed':row.completionState,progress:'已完成 '+progress.completed+' / '+progress.total+' 单元',
-          homeProgressMarkup:'<span class="home-progress-metric"><span class="home-progress-label"><span>课程总进度</span><b>'+progress.percent+'%</b></span><span class="home-progress-track"><span style="width:'+progress.percent+'%"></span></span></span>'});
+          homeProgressMarkup:'<span class="home-progress-metric"><span class="home-progress-label"><b>'+progress.percent+'%</b></span><span class="home-progress-track"><span style="width:'+progress.percent+'%"></span></span></span>'});
       });
       if(global.VocabularyStudy)data.resume=VocabularyStudy.selectHomeResume(data.resume,vocabularyResumes);
       data.activeResources=(data.joinedCourseIds||[]).map(function(id){return data.resources.find(function(resource){return resource.courseId===id;});}).filter(Boolean);

@@ -9,7 +9,7 @@ const { ensureExpressionCourseSchema } = require('./schema');
 const { createExpressionCourseRepository } = require('./repository');
 const runtime = require('./runtime.cjs');
 
-function setup(t) {
+function setup(t, { v11 = false } = {}) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'expression-session-'));
   const db = new Database(path.join(dir, 'isolated.sqlite'));
   ensureExpressionCourseSchema(db);
@@ -21,6 +21,10 @@ function setup(t) {
   const pkg = { format: 'chunklab-expression-course', formatVersion: '1.0', courseId: 'expression-like', title: '表达喜欢', description: '测试', audience: 'adult_beginner', lessons: [lesson],
     assets: [{ ...audio, localFile: 'l001_tea.mp3' }, { ...coffee, localFile: 'l001_coffee.mp3' }],
     reviewActivities: [{ lessonId: 'L001', skillId: 'express_like', activityId: 'L001_A08' }, { lessonId: 'L001', skillId: 'express_like', activityId: 'L001_A09' }] };
+  if (v11) {
+    pkg.formatVersion = '1.1'; pkg.curriculum = { track: 'sentence-building', stage: 'S0', knowledgeMapVersion: '1.0' };
+    lesson.schemaVersion = '1.1'; lesson.knowledgeIds = ['s0.greetings']; lesson.recommendedKnowledgeIds = [];
+  }
   const draft = repository.createDraft(pkg, 9, 'draft-create-request-1');
   const checked = repository.validate(draft.draftId); repository.review(draft.draftId, checked.contentHash);
   const release = repository.publish(draft.draftId, { expectedRevision: 1, contentHash: checked.contentHash, requestId: 'release-request-001' }, 9);
@@ -30,6 +34,18 @@ function setup(t) {
   t.after(() => { db.close(); fs.rmSync(dir, { recursive: true, force: true }); });
   return { db, repository, sessions, release, setNow: value => { clock = value; }, setAccess: value => { access = value; } };
 }
+
+test('v1.1 review success records practiced, never mastered', t => {
+  const f = setup(t, { v11: true });
+  f.db.prepare(`INSERT INTO expression_skill_states(user_id,course_id,release_id,skill_id,status,due_at,review_step,evidence_json)
+    VALUES(7,'expression-like',?,'express_like','needs_practice',?,0,'{}')`).run(f.release.releaseId, Date.UTC(2025, 11, 31));
+  const review = f.sessions.start({ courseId: 'expression-like', lessonId: 'L001', releaseId: f.release.releaseId, mode: 'review',
+    reviewSkillId: 'express_like', reviewActivityId: 'L001_A08', requestId: 'v11-review-start-1' }, 7);
+  const result = f.sessions.act(review.sessionId, 7, { requestId: 'v11-review-answer-1', expectedRevision: 0,
+    action: { type: 'submit', response: { text: 'I like tea.' } } });
+  assert.equal(result.result.correct, true);
+  assert.equal(f.db.prepare('SELECT status FROM expression_skill_states WHERE user_id=7 AND skill_id=?').get('express_like').status, 'practiced');
+});
 
 test('review starts the selected independent activity, records account-scoped result, and schedules next review', t => {
   const f = setup(t);

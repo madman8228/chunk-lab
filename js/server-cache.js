@@ -263,6 +263,9 @@
 
   function refresh() {
     if (inFlight) return inFlight;
+    var requestedIdentity;
+    try { requestedIdentity = identity(); }
+    catch (error) { return Promise.reject(error); }
     inFlight = prepareFormat().then(function (captured) { return readCache(captured).then(function (current) {
       if (!identityMatches(captured)) throw sessionChanged();
       var since = current ? current.appliedSeq : null;
@@ -275,7 +278,18 @@
           });
         });
       });
-    }); }).finally(function () { inFlight = null; });
+    }); }).catch(function (error) {
+      var currentIdentity;
+      try { currentIdentity = identity(); } catch (_) { currentIdentity = null; }
+      if (currentIdentity && currentIdentity.owner === requestedIdentity.owner &&
+          currentIdentity.scope === requestedIdentity.scope && typeof global.dispatchEvent === 'function' &&
+          typeof global.CustomEvent === 'function') {
+        global.dispatchEvent(new global.CustomEvent('server-cache-refresh-failed', {
+          detail: { owner: requestedIdentity.owner, scope: requestedIdentity.scope }
+        }));
+      }
+      throw error;
+    }).finally(function () { inFlight = null; });
     return inFlight;
   }
 
@@ -921,7 +935,8 @@
         contentFingerprint:typeof payload.contentFingerprint==='string'?payload.contentFingerprint:'',
         policyVersion:Number.isSafeInteger(payload.policyVersion)?payload.policyVersion:1,
         ok:isAnswer&&payload.ok, assisted:isAnswer&&payload.assisted===true,
-        firstAttempt:isAnswer&&payload.firstAttempt===true, earlyPractice:isAnswer&&payload.earlyPractice===true };
+        firstAttempt:isAnswer&&payload.firstAttempt===true, earlyPractice:isAnswer&&payload.earlyPractice===true,
+        ...(isAnswer&&typeof payload.timeZone==='string'&&payload.timeZone?{timeZone:payload.timeZone}:{}) };
       if (!byKey[payload.key]) byKey[payload.key] = { events:[], rows:[] };
       byKey[payload.key].events.push(event);
       byKey[payload.key].rows.push(isAnswer
@@ -1142,7 +1157,7 @@
             payload.courseId.length>200||typeof payload.joined!=='boolean'||!Number.isFinite(Number(item.createdAt))||Number(item.createdAt)<=0) return false;
         var membershipKey='enrollment:v1:'+encodeURIComponent(payload.courseId), prior=progress[membershipKey]||{};
         if(payload.joined&&!joinedCourses[payload.courseId]) {
-          if(Object.keys(joinedCourses).length>=3)return false;
+          if(Object.keys(joinedCourses).length>=4)return false;
           joinedCourses[payload.courseId]=true;
         } else if(!payload.joined) delete joinedCourses[payload.courseId];
         progress[membershipKey]={kind:'course-enrollment',schemaVersion:1,courseId:payload.courseId,joined:payload.joined,

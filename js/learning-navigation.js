@@ -38,7 +38,17 @@
     });
     return nav;
   }
-  global.LearningNavigation={create:create,studyTabs:studyTabs};
+  function mount(current,navigate){
+    var route=new URLSearchParams(global.location.search).get('view');
+    if(entries.some(function(entry){return entry[0]===route;}))current=route;
+    var host=document.getElementById('workspaceNavHost');if(!host)return create(current,navigate);
+    host.learningNavigate=navigate;
+    var nav=host.querySelector('.learning-global-nav');
+    if(!nav){nav=create(current,function(view){if(host.learningNavigate)host.learningNavigate(view);});host.replaceChildren(nav);}
+    Array.from(nav.children).forEach(function(link,index){if(entries[index][0]===current)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
+    return nav;
+  }
+  global.LearningNavigation={create:create,mount:mount,studyTabs:studyTabs};
   var archiveNav=document.querySelector('[data-learning-navigation="stats"]');
   if(archiveNav)archiveNav.replaceWith(create('stats'));
 })(window);

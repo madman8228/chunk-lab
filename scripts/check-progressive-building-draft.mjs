@@ -1,0 +1,16 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import crypto from 'node:crypto';
+const dir='drafts/zero-english/progressive-building-v1/';
+const raw=fs.readFileSync(dir+'lesson-design.json','utf8'),draft=JSON.parse(raw);
+assert.equal(draft.status,'draft');assert.equal(draft.stageProposal,'S1');
+assert.equal(draft.chain.length,4);
+const [base,quantity,request,substitute]=draft.chain;
+assert.equal(quantity.text,base.text.replace('water','some water'));
+assert.equal(request.text,quantity.text.replace('.',', please.'));
+assert.equal(substitute.text,request.text.replace('water','food'));
+assert(draft.vocabulary.every(v=>v.introducedHere));
+assert(draft.vocabulary.some(v=>v.en==='tea'));
+assert(!draft.chain.some(s=>s.text.includes('tea')),'Transfer sentence must not be a teaching example');
+assert(draft.transferTasks.every(t=>t.withholdSentence&&!t.showTokens));
+assert(draft.transferTasks[0].candidateAnswers.some(a=>a==='Some tea, please.'));
+assert.equal(draft.approval.content,'pending');assert.equal(draft.approval.audio,'not-produced');assert.equal(draft.approval.publication,'not-authorized');
+console.log(JSON.stringify({valid:true,scope:'content-design-consistency-only',chainSteps:draft.chain.length,guidedTasks:draft.guidedTasks.length,transferTasks:draft.transferTasks.length,sha256:crypto.createHash('sha256').update(raw).digest('hex'),notChecked:['教学效果','语音素材','正式课程合同或播放器','自然语言所有可能回答']},null,2));

@@ -8,13 +8,13 @@
 .wordbook-study .practice-panel{margin:0;padding:0;border:0;border-radius:0;overflow:visible;background:transparent;box-shadow:none}
 .wordbook-study .study-shortcut-hint{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px;margin:0 0 5px;font-size:12px;line-height:1.5;color:#745333}
 .wordbook-study .study-shortcut-hint kbd:not(:first-child){margin-left:10px}
-.wordbook-study .study-shortcut-hint #studySkip{display:inline-flex;gap:5px;min-height:32px;min-width:0;padding:0 5px;border:0;border-radius:4px;background:transparent;font-size:12px;color:#745333}
+.wordbook-study .study-shortcut-hint #studySkip{display:inline-flex;gap:5px;min-height:32px;min-width:0;padding:0 5px;border:0;border-radius:var(--ui-radius-sm);background:transparent;font-size:12px;color:#745333}
 .wordbook-study .study-shortcut-hint #studySkip:hover{background:#f4ead4}
 .wordbook-study #studySkip kbd{margin:0;font:11px/1.3 Consolas,monospace;color:#523019}
-.wordbook-study .study-shortcut-hint kbd{padding:1px 5px;border:1px solid #d8c7a9;border-bottom-width:2px;border-radius:4px;background:#fffbed;color:#523019;font:11px/1.3 Consolas,monospace}
+.wordbook-study .study-shortcut-hint kbd{padding:1px 5px;border:1px solid #d8c7a9;border-bottom-width:2px;border-radius:var(--ui-radius-sm);background:#fffbed;color:#523019;font:11px/1.3 Consolas,monospace}
 .wordbook-study .wordbook-exercise{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:center;background:transparent;border:0;border-radius:0;padding:0}
 .wordbook-study .wordbook-exercise[hidden]{display:none}
-.wordbook-study figure{margin:0 auto;min-width:0;width:min(100%,320px)}.wordbook-study picture{display:block}.wordbook-study img{display:block;width:100%;height:auto;max-height:180px;object-fit:contain;border-radius:10px}
+.wordbook-study figure{margin:0 auto;min-width:0;width:min(100%,320px)}.wordbook-study picture{display:block}.wordbook-study img{display:block;width:100%;height:auto;max-height:180px;object-fit:contain;border-radius:var(--ui-radius-control)}
 .wordbook-study .wordbook-answer{min-width:0;width:100%;max-width:520px;margin:0 auto}
 .wordbook-study .wordbook-target{display:flex;gap:12px;align-items:center;justify-content:center}
 .wordbook-study h2{margin:0;font-size:18px;line-height:1.4;overflow-wrap:anywhere}.wordbook-study .wordbook-translation{margin:4px 0 12px;text-align:center;font-size:17px;font-weight:400;line-height:1.6}
@@ -25,7 +25,7 @@
 .wordbook-study .practice-feedback:empty{display:none}
 .wordbook-study #bookStatus{font-size:12px;line-height:1.5;overflow-wrap:anywhere;min-height:18px;margin:6px 0 12px;color:var(--workspace-muted,#745333)}.wordbook-study input{max-width:100%}
 .wordbook-study #bookStatus.study-status-quiet{position:absolute;width:1px;height:1px;min-height:0;padding:0;margin:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.wordbook-study button,.wordbook-study .wordbook-controls a{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;font:inherit;padding:8px 14px;border:1px solid #d8c7a9;border-radius:9px;background:var(--v4-card);color:var(--workspace-ink,#523019);box-shadow:none;text-decoration:none;cursor:pointer}
+.wordbook-study button,.wordbook-study .wordbook-controls a{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;font:inherit;padding:8px 14px;border:1px solid #d8c7a9;border-radius:var(--ui-radius-control);background:var(--v4-card);color:var(--workspace-ink,#523019);box-shadow:none;text-decoration:none;cursor:pointer}
 .wordbook-study .cloze-actions button,.wordbook-study .wordbook-controls .study-next{background:#ffe08a;border-color:#ccad62;color:#523019}
 .wordbook-study button:hover,.wordbook-study .wordbook-controls a:hover{background:#f4ead4}
 .wordbook-study button:disabled{opacity:.55;cursor:default}
@@ -56,7 +56,7 @@
 .wordbook-study .guided-feedback:empty,.wordbook-study .guided-practice [hidden]{display:none}
 .wordbook-study .guided-practice ::selection{background:#ffe08a;color:#523019}
 .wordbook-study .dictation-practice{padding:12px 0 8px;text-align:center}
-.wordbook-study .dictation-practice .dictation-play{display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:center;width:80px;height:80px;margin:0 auto 24px;padding:8px;border:0;border-radius:50%;background:#ffe08a;color:#523019}
+.wordbook-study .dictation-practice .dictation-play{display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:center;width:80px;height:80px;margin:0 auto 24px;padding:8px;border:0;border-radius:var(--ui-radius-circle);background:#ffe08a;color:#523019}
 .wordbook-study .dictation-play:hover:not(:disabled){background:#ffcf4e}
 .wordbook-study .dictation-play svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .wordbook-study .dictation-play-label{font-size:12px;line-height:1.3;white-space:nowrap}
@@ -71,7 +71,7 @@
 .wordbook-study .dictation-entry:has(input[aria-invalid=true]) .dictation-segment::after{background:#ad3827}
 .wordbook-study .dictation-practice .guided-feedback{margin:12px 0 0}
 .wordbook-study .word-choice-practice{display:block}
-.wordbook-study .wordbook-choice-exercise figure,.wordbook-study .wordbook-sentence-exercise figure{position:relative;width:min(100%,560px);overflow:hidden;border-radius:10px}
+.wordbook-study .wordbook-choice-exercise figure,.wordbook-study .wordbook-sentence-exercise figure{position:relative;width:min(100%,560px);overflow:hidden;border-radius:var(--ui-radius-control)}
 .wordbook-study .wordbook-choice-exercise img,.wordbook-study .wordbook-sentence-exercise img{max-height:none;width:100%;height:auto;object-fit:contain}
 .wordbook-study .wordbook-scene-caption{position:absolute;inset:auto 0 0;margin:0;padding:10px 14px;background:rgb(35 25 16 / 88%);color:#fffbed;text-align:center;font-size:clamp(15px,2vw,19px);line-height:1.5;overflow-wrap:anywhere}
 .wordbook-study .wordbook-choice-exercise .wordbook-target{margin-bottom:10px}
@@ -81,8 +81,8 @@
 .wordbook-study .wordbook-sentence-exercise .study-listen{margin-left:auto;min-height:36px;text-decoration:none;font-size:13px}
 .wordbook-study .wordbook-audio-feedback:empty{display:none}
 .wordbook-study .wordbook-sentence-exercise .guided-toolbar{margin:0 0 12px;gap:8px}
-.wordbook-study .wordbook-sentence-exercise .guided-modes{gap:0;background:#f4ead4;border-radius:7px;padding:2px}
-.wordbook-study .wordbook-sentence-exercise .guided-modes button{min-height:36px;border:0;border-radius:5px;padding:4px 10px;text-decoration:none}
+.wordbook-study .wordbook-sentence-exercise .guided-modes{gap:0;background:#f4ead4;border-radius:var(--ui-radius-sm);padding:2px}
+.wordbook-study .wordbook-sentence-exercise .guided-modes button{min-height:36px;border:0;border-radius:var(--ui-radius-sm);padding:4px 10px;text-decoration:none}
 .wordbook-study .wordbook-sentence-exercise .guided-modes button[aria-pressed=true]{background:#fffbed;color:#523019}
 .wordbook-study .wordbook-sentence-exercise .guided-prompt{display:block;text-align:left;font-size:22px;margin:0 0 10px}
 .wordbook-study .wordbook-sentence-exercise .guided-form{gap:12px}
@@ -93,7 +93,7 @@
 .wordbook-study .word-choice-sentence{font-size:22px;line-height:1.5;margin:0 0 12px;overflow-wrap:anywhere}
 .wordbook-study .word-choice-options{display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0;min-width:0}
 .wordbook-study .word-choice-legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.wordbook-study .word-choice-options label{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;min-height:44px;max-width:100%;padding:8px 14px;box-sizing:border-box;border:1px solid #d8c7a9;border-radius:9px;background:var(--v4-card);font-size:20px;line-height:1.5;cursor:pointer;overflow-wrap:anywhere}
+.wordbook-study .word-choice-options label{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;min-height:44px;max-width:100%;padding:8px 14px;box-sizing:border-box;border:1px solid #d8c7a9;border-radius:var(--ui-radius-control);background:var(--v4-card);font-size:20px;line-height:1.5;cursor:pointer;overflow-wrap:anywhere}
 .wordbook-study .word-choice-options label span{min-width:0}
 .wordbook-study .word-choice-options input{position:absolute;inset:0;width:100%;height:100%;min-height:0;margin:0;padding:0;opacity:0;cursor:inherit}
 .wordbook-study .word-choice-options label:has(input:focus-visible){outline:2px solid #3768b4;outline-offset:3px}
@@ -131,7 +131,7 @@
 .wordbook-study .study-methods>summary,.wordbook-study .study-more>summary{display:flex;align-items:center;gap:8px;cursor:pointer;min-height:44px;padding:0 8px;color:#704626;list-style:none}
 .wordbook-study summary::after{content:'';width:6px;height:6px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);margin-top:-4px}
 .wordbook-study details[open]>summary::after{transform:rotate(225deg);margin-top:4px}
-.wordbook-study .study-menu{position:absolute;z-index:3;top:100%;left:0;box-sizing:border-box;min-width:190px;max-width:min(250px,100%);padding:8px;background:#fffbed;border:1px solid #d8c7a9;border-radius:9px;box-shadow:0 6px 16px #5230191a}
+.wordbook-study .study-menu{position:absolute;z-index:3;top:100%;left:0;box-sizing:border-box;min-width:190px;max-width:min(250px,100%);padding:8px;background:#fffbed;border:1px solid #d8c7a9;border-radius:var(--ui-radius-control);box-shadow:0 6px 16px #5230191a}
 .wordbook-study .study-menu a,.wordbook-study .study-menu button{display:flex;width:100%;justify-content:flex-start;border:0;background:transparent;font-size:14px;text-align:left}
 .wordbook-study .study-menu a{box-sizing:border-box;align-items:center;min-height:44px;padding:8px 14px;color:var(--workspace-ink,#523019);text-decoration:none}
 .wordbook-study .study-menu a:hover{background:#f4ead4}

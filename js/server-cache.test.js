@@ -284,8 +284,9 @@ const overEnrolledProjection=cache.projectMainMem(homeCache,[
   {owner:'owner-1',scope:'scope-1',ordinal:1,status:'pending',createdAt:50,operation:{type:'course.enrollment',payload:{courseId:'second-course',joined:true}}},
   {owner:'owner-1',scope:'scope-1',ordinal:2,status:'pending',createdAt:51,operation:{type:'course.enrollment',payload:{courseId:'third-course',joined:true}}},
   {owner:'owner-1',scope:'scope-1',ordinal:3,status:'pending',createdAt:52,operation:{type:'course.enrollment',payload:{courseId:'fourth-course',joined:true}}},
+  {owner:'owner-1',scope:'scope-1',ordinal:4,status:'pending',createdAt:53,operation:{type:'course.enrollment',payload:{courseId:'fifth-course',joined:true}}},
 ]);
-assert.equal(overEnrolledProjection.ready,false,'unsafe enrollment over the three-course limit must not be projected');
+assert.equal(overEnrolledProjection.ready,false,'unsafe enrollment over the four-course limit must not be projected');
 const staleVisibilityProjection=cache.projectMainMem(homeCache,[
   {owner:'owner-1',scope:'scope-1',ordinal:1,status:'pending',createdAt:60,
     operation:{type:'deck.itemsVisibility',payload:{eventId:'visibility_conflict_01',deckId:'server-deck',keys:['server-deck#one'],hidden:true,expectedHidden:true}}},

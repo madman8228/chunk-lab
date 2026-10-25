@@ -43,6 +43,12 @@ assert.deepEqual(outcome, {
 assert.equal(buildSentenceOutcome({ item, wrongAttempts: [1], status: ['ok'], attemptId: 'attempt-1', existingWrong: [{ it: item, eventId: 'attempt-1' }] }).shouldRecord, false);
 assert.equal(buildSentenceOutcome({ item, wrongAttempts: [1], status: ['ok'], attemptId: 'attempt-2', existingWrong: [{ it: item, eventId: 'attempt-1' }] }).shouldRecord, true);
 assert.equal(buildSentenceOutcome({ item, wrongAttempts: [0], status: ['ok'], hinted: false }).hadIssue, false);
+assert.equal(buildSentenceOutcome({ item, wrongAttempts: [0], status: ['ok'], hinted: true }).shouldRecord, false,
+  'a hint without a real error does not create a new wrong-book row');
+assert.equal(buildSentenceOutcome({ item, wrongAttempts: [0], status: ['ok'], hinted: true, hasExistingMistake: true }).shouldRecord, true,
+  'a hint on an existing wrong sentence remains part of its history');
+assert.equal(buildSentenceOutcome({ item, wrongAttempts: [0], status: ['pending'], hinted: false }).shouldRecord, false,
+  'an unsubmitted selection does not create a wrong-book row');
 assert.deepEqual(buildRevealPlan(['ok', 'pending', 'revealed'], 0), { indices: [1] });
 assert.deepEqual(buildRevealPlan(['ok', 'pending', 'revealed'], 0, true), { indices: [1] });
 assert.deepEqual(buildRevealPlan(['ok'], 0), { indices: [] });

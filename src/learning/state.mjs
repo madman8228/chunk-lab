@@ -111,6 +111,7 @@ export function createLearningEvent(options = {}) {
     type: options.type || 'practice', mode: options.mode || 'unknown', contentFingerprint: String(options.contentFingerprint || ''),
     policyVersion: Number(options.policyVersion) || 1, ok: options.ok === true, assisted: options.assisted === true,
     firstAttempt: options.firstAttempt === true, eligibleAt: Number(options.eligibleAt) || 0,
+    ...(typeof options.timeZone === 'string' && options.timeZone ? { timeZone: options.timeZone } : {}),
     ...(options.stage ? { stage: options.stage } : {}) };
 }
 

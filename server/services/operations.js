@@ -6,6 +6,8 @@ const { createCourseLearningOperations } = require('./course-learning-operations
 const { createSettingsOperations } = require('./settings-operations');
 const { createWorkspaceOperations } = require('./workspace-operations');
 const { createVocabularyStudyOperations } = require('./vocabulary-study-operations');
+const { createVocabularyReviewOperations } = require('./vocabulary-review-operations');
+const { createDailyReviewOperations } = require('./daily-review-operations');
 const { createVocabularyBrowseOperations } = require('./vocabulary-browse-operations');
 const { createLearningMaintenanceOperations } = require('./learning-maintenance-operations');
 const { createCourseEnrollmentOperations } = require('./course-enrollment-operations');
@@ -62,6 +64,9 @@ function createOperations(options) {
   const settingsOperations = createSettingsOperations({ db, upsertKv, operationError });
   const workspaceOperations = createWorkspaceOperations({ db, library: options.library, courseLibrary: options.courseLibrary,vocabularyContent:options.vocabularyContent, upsertEntityRow, operationError });
   const vocabularyStudyOperations = createVocabularyStudyOperations({db,content:options.vocabularyContent,upsertEntityRow,operationError,enableWordDictation:options.enableWordDictation===true,enableWordChoice:options.enableWordChoice===true,enableChunkOrder:options.enableChunkOrder===true,enableReadAloud:options.enableReadAloud===true});
+  const vocabularyReviewOperations = createVocabularyReviewOperations({db,content:options.vocabularyContent,upsertEntityRow,operationError,
+    enableWordDictation:options.enableWordDictation===true,enableWordChoice:options.enableWordChoice===true,enableChunkOrder:options.enableChunkOrder===true});
+  const dailyReviewOperations = createDailyReviewOperations({db, upsertEntityRow, operationError});
   const vocabularyBrowseOperations = createVocabularyBrowseOperations({db,resolvePlan:options.vocabularyTeachingContent?.resolvePlan,upsertEntityRow,operationError,enabled:options.enableVocabularyBrowse===true});
   const learningMaintenanceOperations = createLearningMaintenanceOperations({ db, upsertEntityRow, deleteEntityRow,
     upsertEvent, operationError });
@@ -131,6 +136,10 @@ function createOperations(options) {
     if (workspaceChange) return workspaceChange;
     const vocabularyChange=vocabularyStudyOperations.apply(userId,body,seq);
     if(vocabularyChange)return vocabularyChange;
+    const vocabularyReviewChange=vocabularyReviewOperations.apply(userId,body,seq);
+    if(vocabularyReviewChange)return vocabularyReviewChange;
+    const dailyReviewChange=dailyReviewOperations.apply(userId,body,seq);
+    if(dailyReviewChange)return dailyReviewChange;
     const browseChange=vocabularyBrowseOperations.apply(userId,body,seq);
     if(browseChange)return browseChange;
     const learningMaintenanceChange = learningMaintenanceOperations.apply(userId, body, seq);
@@ -223,6 +232,8 @@ function createOperations(options) {
       return save(userId, body, MAX_CONTENT_IMPORT_BYTES);
     },
     receipt,
+    vocabularyReview: vocabularyReviewOperations,
+    dailyReview: dailyReviewOperations,
     getAssessmentSession
   });
 }

@@ -525,7 +525,7 @@ registerRecoveryRoutes({
 });
 
 registerVocabularyPracticeRoutes({app,auth,db});
-registerLearningArchiveRoutes({app,auth,db,content:vocabularyContent});
+registerLearningArchiveRoutes({app,auth,db,content:vocabularyContent,review:operations.vocabularyReview,dailyReview:operations.dailyReview});
 const vocabularyBrowse=require('./services/vocabulary-browse-operations').createVocabularyBrowseOperations({db,resolvePlan:vocabularyTeachingContent.resolvePlan,upsertEntityRow,enabled:vocabularyBrowseEnabled,operationError:(message,code,status)=>Object.assign(Error(message),{code,status})});
 registerWordbookRoutes({app,auth,content:vocabularyContent,browse:vocabularyBrowse,teaching:vocabularyTeachingContent,study:createVocabularyStudyOperations({db,content:vocabularyContent,upsertEntityRow,enableWordDictation:wordDictationEnabled,enableWordChoice:wordChoiceEnabled,enableChunkOrder:chunkOrderEnabled,enableReadAloud:readAloudEnabled,operationError:(message,code,status)=>Object.assign(new Error(message),{code,status})})});
 registerDataRoutes({

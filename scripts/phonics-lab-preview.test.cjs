@@ -1,0 +1,48 @@
+'use strict';
+const {chromium}=require('playwright-core');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+(async()=>{
+ const browser=await chromium.launch({headless:true});
+ try{
+  const page=await browser.newPage({viewport:{width:1280,height:900}});
+  const writes=[];page.on('request',r=>{if(r.method()!=='GET')writes.push(r.url());});
+  await page.goto('http://127.0.0.1:8787/phonics-lab-preview.html');
+  await page.locator('#steps button').first().waitFor();
+  assert.equal(await page.locator('#steps button').count(),6);
+  assert.equal(await page.locator('#activity button:disabled').count(),4);
+  await page.getByRole('button',{name:'认对应',exact:true}).click();
+  await page.getByRole('button',{name:'m',exact:true}).click();
+  assert.match(await page.locator('#feedback').innerText(),/鼻腔/);
+  await page.getByRole('button',{name:'看拼合',exact:true}).click();
+  await page.getByRole('button',{name:'看下一个字母'}).click();
+  assert.equal(await page.locator('.letter.is-active').innerText(),'m');
+  await page.getByRole('button',{name:'听完整词 mat'}).click();
+  await page.waitForFunction(()=>document.querySelector('#feedback').textContent.includes('正在播放'));
+  await page.getByRole('button',{name:'自己拼',exact:true}).click();
+  for(const l of ['m','a','t'])await page.locator('.letters').getByRole('button',{name:l,exact:true}).click();
+  await page.getByRole('button',{name:'检查顺序'}).click();
+  assert.match(await page.locator('#feedback').innerText(),/顺序正确/);
+  await page.getByRole('button',{name:'拆声音',exact:true}).click();
+  for(const l of ['s','a','t'])await page.locator('.letters').getByRole('button',{name:l,exact:true}).click();
+  await page.getByRole('button',{name:'检查顺序'}).click();
+  assert.match(await page.locator('#feedback').innerText(),/再听/);
+  await page.getByRole('button',{name:'试新词',exact:true}).click();
+  assert.equal(await page.locator('.word').innerText(),'sat');
+  assert.equal(await page.getByRole('button',{name:'听整词核对（试听候选）'}).isDisabled(),true);
+  await page.getByRole('button',{name:'我已试读'}).click();
+  assert.match(await page.locator('#feedback').innerText(),/不能自动验证读音/);
+  await page.getByRole('button',{name:'听整词核对（试听候选）'}).click();
+  await page.waitForFunction(()=>document.querySelector('#feedback').textContent.includes('正在播放'));
+  await page.getByRole('button',{name:'查看本次结果'}).click();
+  assert.match(await page.locator('#feedback').innerText(),/字母顺序练习已完成.*听词排列未完成.*已尝试试读/);
+  assert.equal(writes.length,0,'Preview never calls account or publishing endpoints');
+  const output='output/playwright/phonics-lab-preview';fs.mkdirSync(output,{recursive:true});
+  await page.screenshot({path:path.join(output,'desktop.png'),fullPage:true});
+  await page.setViewportSize({width:360,height:844});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.screenshot({path:path.join(output,'mobile.png'),fullPage:true});
+  console.log('Six stages, letter feedback, visual sequence, approved word audio playback, ordered assembly, wrong-answer feedback, unverified self-practice and mobile overflow checks passed; no writes.');
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -6,10 +6,10 @@ export function normalizeAnswer(value, { caseSensitive = false, punctuationSensi
 }
 
 export function evaluateActivity(activity, response) {
-  if (activity.type === 'sentence_build') {
+  if (activity.type === 'sentence_build' || activity.type === 'grapheme_build') {
     const tokens = Array.isArray(response?.tokens) ? response.tokens : [];
     const expected = activity.payload.correctTokens || [];
-    return { correct: tokens.length === expected.length && tokens.every((token, index) => token === expected[index]), kind: 'tokens' };
+    return { correct: tokens.length === expected.length && tokens.every((token, index) => token === expected[index]), kind: activity.type === 'grapheme_build' ? 'graphemes' : 'tokens' };
   }
   if (activity.type === 'listening_choice') {
     return { correct: response?.optionId === activity.evaluation.correctOptionId, kind: 'choice' };

@@ -12,10 +12,11 @@ colors:
   yellow: "#ffcf4e"
   background: "#f8edce"
 rounded:
-  filter: "9px"
-  timber: "12px"
-  button: "14px"
-  panel: "15px"
+  filter: "4px"
+  timber: "8px"
+  button: "8px"
+  card: "10px"
+  panel: "12px"
 spacing:
   tab-gap: "12px"
   card-padding: "20px"
@@ -76,6 +77,8 @@ Wooden controls combine inset highlights, a short solid lower edge and soft ambi
 ## Shapes
 
 Use warm brown outlines and modest rounded timber shapes: filters are compact, buttons slightly rounder, navigation and paper cards gently curved. Decorative foliage is naturally asymmetric, not mirrored UI geometry.
+
+The owner's 2026-10-24 site-wide geometry refinement uses `assets/ui-tokens.css` as the shared radius source. Small details use 4px, controls/media 8px, cards 10px and large panels 12px. Keep true circles, fully rounded progress tracks and intentionally square edges. Root application pages load the tokens before their own styles; static landing pages inherit them through `landing/site.css`. Shadow-root UI inherits the same custom properties. See `docs/design/ui-tokens.md`; this shared geometry does not change the pages' respective palettes or teaching content.
 
 ## Components
 

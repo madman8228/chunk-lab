@@ -84,8 +84,9 @@ var MainPracticeState = (() => {
       if ((count || 0) > 0 || status[index] === "bad" || status[index] === "revealed") wrongIdx.push(index);
     });
     const existingWrong = Array.isArray(options.existingWrong) ? options.existingWrong : [];
+    const hasExistingMistake = options.hasExistingMistake === true;
     const attemptId = String(options.attemptId || "");
-    const shouldRecord = hadIssue && (!attemptId || !existingWrong.some((entry) => entry && entry.eventId === attemptId));
+    const shouldRecord = (totalWrong > 0 || status.some((value) => value === "bad" || value === "revealed") || hinted && hasExistingMistake) && (!attemptId || !existingWrong.some((entry) => entry && entry.eventId === attemptId));
     const wrongEntry = shouldRecord ? {
       it: options.item,
       eventId: attemptId,

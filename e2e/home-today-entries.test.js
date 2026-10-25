@@ -868,7 +868,7 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
         const progress=CL.readProgress();
         progress[CourseEnrollment.keyFor(courseId)]={kind:'course-enrollment',schemaVersion:1,courseId:courseId,joined:true,joinedAt:1,changedAt:1};
         await CL.writeProgress(progress);
-        const expectedCount = CourseEnrollment.joinedCount(CL.readProgress()) + '/3';
+        const expectedCount = CourseEnrollment.joinedCount(CL.readProgress()) + '/4';
         CourseCatalog.buildCatalog=function(){throw new Error('simulated catalog read failure');};
         renderHome();
         const card=document.querySelector('.home-courses');
@@ -877,7 +877,7 @@ function stripComments(s) { return (s || '').replace(/<!--[\s\S]*?-->/g, ''); }
           leave:card && card.querySelector('[data-home-leave]')};
       });
       check('课程目录加载失败保留加入数量并显示可恢复提示，而非误报课程已删除',
-        catalogFailure.count===catalogFailure.expectedCount && catalogFailure.expectedCount==='2/3' && catalogFailure.text.includes('课程目录加载失败，请稍后重试') &&
+        catalogFailure.count===catalogFailure.expectedCount && catalogFailure.expectedCount==='2/4' && catalogFailure.text.includes('课程目录加载失败，请稍后重试') &&
         !catalogFailure.text.includes('课程内容可能已移除') && !catalogFailure.unavailable && !!catalogFailure.loadError && !catalogFailure.leave,
         JSON.stringify(catalogFailure));
       await sp.ctx.close();

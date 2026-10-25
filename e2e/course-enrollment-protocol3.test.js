@@ -89,7 +89,7 @@ function waitForServer() {
         { sentence: 'A test sentence.', chunks: ['A test', 'sentence.'], hints: ['', ''] },
       ] };
       await ServerStore.submitCommitted('deck.put', { deck }, { requestId: 'e2e-course-limit-deck-001', expectedRev: null });
-      for (let index = 1; index <= 3; index++) {
+      for (let index = 1; index <= 4; index++) {
         await ServerStore.submitCommitted('course.enrollment', { courseId: 'e2e-existing-course-' + index, joined: true },
           { requestId: 'e2e-course-limit-join-00' + index });
       }
@@ -100,18 +100,18 @@ function waitForServer() {
       return { deckId: deck.id, joined: CourseEnrollment.joinedCount(),
         courseIds: Object.values(progress).filter(row => row && row.kind === 'course-enrollment' && row.joined).map(row => row.courseId) };
     });
-    assert.equal(seeded.joined, 3, 'server-confirmed projection contains three joined courses before reopening the UI');
-    assert.equal(seeded.courseIds.length, 3);
+    assert.equal(seeded.joined, 4, 'server-confirmed projection contains four joined courses before reopening the UI');
+    assert.equal(seeded.courseIds.length, 4);
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => CL.serverPersistenceReady() && document.querySelector('#deckList'), null, { timeout: 15000 });
     const candidate = page.locator('#deckList .deck-item').filter({ hasText: '加入上限候选课程' });
     await candidate.waitFor({ state: 'visible', timeout: 10000 });
     await candidate.locator('.course-manage-trigger').click();
-    const blockedJoin = candidate.getByRole('menuitem', { name: '已达 3 门上限' });
+    const blockedJoin = candidate.getByRole('menuitem', { name: '已达 4 门上限' });
     await blockedJoin.waitFor({ state: 'visible' });
-    assert.equal(await blockedJoin.isDisabled(), true, 'the fourth course is visibly disabled after server-confirmed membership reaches three');
-    assert.match(await blockedJoin.getAttribute('title'), /最多加入 3 门课程/);
+    assert.equal(await blockedJoin.isDisabled(), true, 'the fifth course is visibly disabled after server-confirmed membership reaches four');
+    assert.match(await blockedJoin.getAttribute('title'), /最多加入 4 门课程/);
 
     const finalState = await page.evaluate(async () => {
       const data = await ChunkAPI.getData();
@@ -120,11 +120,11 @@ function waitForServer() {
         deckPresent: (data.mem.decks || []).some(deck => deck.id === 'e2e-course-limit-candidate'),
       };
     });
-    assert.equal(finalState.joined, 3, 'the blocked UI action creates no fourth membership');
+    assert.equal(finalState.joined, 4, 'the blocked UI action creates no fifth membership');
     assert.equal(finalState.deckPresent, true, 'the candidate course remains available in the local course library');
-    assert.equal(enrollmentWrites.length, 3, 'opening the blocked action does not send another enrollment write');
+    assert.equal(enrollmentWrites.length, 4, 'opening the blocked action does not send another enrollment write');
     await context.close();
-    console.log('[course-enrollment-protocol3] three joined courses persist across reload and disable a fourth join in the real UI');
+    console.log('[course-enrollment-protocol3] four joined courses persist across reload and disable a fifth join in the real UI');
   } catch (error) {
     console.error('[course-enrollment-protocol3] failed:', error.stack || error.message);
     process.exitCode = 1;

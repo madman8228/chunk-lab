@@ -2,6 +2,7 @@ const dimensions = ['audiences', 'schoolStages', 'grades', 'levels', 'goals', 't
 const scalarFacets = ['seriesId', 'publisherId', 'textbookVersion', 'edition', 'volume'];
 const kinds = new Set(['course', 'wordbook', 'textbook']);
 const referenceTypes = new Set(['sentence-deck', 'story-package', 'vocabulary-pilot', 'vocabulary-book', 'protected-course', 'personal-course', 'expression-course']);
+const curriculumTracks = new Set(['scenario', 'sentence-building', 'pronunciation', 'phonics']);
 const text = (value, max = 200) => typeof value === 'string' ? value.trim().slice(0, max) : '';
 
 export function safeCover(value) {
@@ -27,6 +28,8 @@ export function normalizeResource(source = {}) {
     available, unavailableReason: available ? '' : text(source.unavailableReason) || '内容暂不可用',
     metadataRevision: Number.isSafeInteger(source.metadataRevision) ? source.metadataRevision : 0,
     courseId: text(source.courseId),
+    curriculum: source.curriculum && curriculumTracks.has(source.curriculum.track) && /^S[0-4]$/.test(source.curriculum.stage || '')
+      ? { track: source.curriculum.track, stage: source.curriculum.stage, status: text(source.curriculum.status, 40) || 'available' } : null,
     unitCount: Number.isSafeInteger(source.unitCount) && source.unitCount >= 0 ? source.unitCount : null,
     itemCount: Number.isSafeInteger(source.itemCount) && source.itemCount >= 0 ? source.itemCount : null,
     accessLevel: source.accessLevel === 'member' ? 'member' : 'free',

@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+const root='drafts/zero-english/multi-track-v2/edge-v1/';
+const manifest=JSON.parse(fs.readFileSync(root+'audio-manifest.json','utf8'));
+const row=manifest.audio.find(a=>a.assetId==='l121-v2-check-mat');
+assert.equal(row.listeningReview,'approved');
+const bytes=fs.readFileSync(root+row.localFile);
+assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),row.sha256);
+const satRoot='drafts/zero-english/phonics-interactive-v1/audio-v1/';
+const sat=JSON.parse(fs.readFileSync(satRoot+'manifest.json','utf8'));
+assert.equal(sat.text,'sat');assert.equal(sat.kind,'whole-word');
+const satBytes=fs.readFileSync(satRoot+sat.localFile);
+assert.equal(crypto.createHash('sha256').update(satBytes).digest('hex'),sat.sha256);
+fs.writeFileSync('js/phonics-lab-preview-media.js',`// Whole-word audio only; sat is a listening-review candidate, not approved.\nwindow.PhonicsPreviewMedia=${JSON.stringify({mat:'data:audio/mpeg;base64,'+bytes.toString('base64'),sat:'data:audio/mpeg;base64,'+satBytes.toString('base64'),satReview:sat.audioReview})};\n`);
+console.log('Verified approved mat and pending-review sat audio; preview media built.');

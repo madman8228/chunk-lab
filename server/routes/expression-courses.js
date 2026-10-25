@@ -20,7 +20,7 @@ function registerExpressionCourseRoutes({ app, auth, adminOnly, repository, sess
       const course = repository.catalog().find(item => item.courseId === req.params.courseId);
       if (!course) return res.status(404).json({ code: 'EXPRESSION_COURSE_NOT_FOUND' });
       const release = repository.release(course.courseId, course.releaseId);
-      res.json({ courseId: course.courseId, title: course.title, description: course.description, releaseId: course.releaseId,
+      res.json({ courseId: course.courseId, title: course.title, description: course.description, releaseId: course.releaseId, curriculum: course.curriculum || null,
         contentHash: release.contentHash, progress: sessions.progress(course.courseId, req.userId), lessons: release.package.lessons.map(lesson => ({ lessonId: lesson.lessonId, title: lesson.title, communicationGoal: lesson.communicationGoal, activityCount: lesson.activities.length })) });
     } catch (error) { sendError(res, error); }
   });

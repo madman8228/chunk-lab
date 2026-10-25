@@ -16,10 +16,31 @@ export function renderActivity(root, activity, { onAction, playAudio, preview = 
   if (activity.type === 'meaning_intro' || activity.type === 'micro_explanation') {
     const example = payload.exampleEnglish || payload.example || payload.explanation || '';
     const zh = payload.exampleZh || payload.meaning || payload.explanationZh || '';
+    if (payload.ruleText) root.append(el('p', { class: 'activity-meaning' }, payload.ruleText));
     if (example) root.append(el('p', { class: 'activity-example', lang: 'en' }, example));
     if (zh) root.append(el('p', { class: 'activity-meaning' }, zh));
-  } else if (activity.type === 'sentence_build') {
-    root.append(el('p', { class: 'activity-meaning' }, payload.targetMeaning || '按正确顺序排列词块'));
+    for (const contrast of payload.contrasts || []) {
+      const item = el('p', { class: 'activity-meaning' }, `${contrast.label || '对比'}：${contrast.en || contrast.left || ''} · ${contrast.zh || contrast.right || ''}`);
+      root.append(item);
+    }
+  } else if (activity.type === 'sound_demo') {
+    if (payload.instructionZh) root.append(el('p', { class: 'activity-meaning' }, payload.instructionZh));
+    for (const segment of payload.segments || []) {
+      const row = el('div', { class: 'sound-demo-segment' });
+      if (segment.symbol) row.append(el('span', { class: 'sound-symbol', lang: 'en' }, segment.symbol));
+      if (segment.label) row.append(el('span', { class: 'activity-meaning' }, segment.label));
+      const play = el('button', { type: 'button', class: 'button button-secondary' }, segment.buttonLabel || '播放示范');
+      play.addEventListener('click', () => playAudio?.(segment.audioAssetId, play));
+      row.append(play);
+      root.append(row);
+    }
+  } else if (activity.type === 'sentence_build' || activity.type === 'grapheme_build') {
+    const isGrapheme = activity.type === 'grapheme_build';
+    root.append(el('p', { class: 'activity-meaning' }, payload.targetMeaning || (isGrapheme ? '按声音顺序拼合字母块' : '按正确顺序排列词块')));
+    if (isGrapheme && payload.audioAssetId) {
+      const play = el('button', { type: 'button', class: 'button button-secondary' }, '再听一次');
+      play.addEventListener('click', () => playAudio?.(payload.audioAssetId, play)); root.append(play);
+    }
     const targetCount = payload.expectedTokenCount || payload.availableTokens?.length || 0;
     const selection = createChunkSelection({ mode: 'sequence', className: 'expression-chunk-selection',
       selectedClass: 'token-row token-row-selected', poolClass: 'token-row', buttonClass: 'token-button',
@@ -50,6 +71,18 @@ export function renderActivity(root, activity, { onAction, playAudio, preview = 
       choices.append(button);
     }
     root.append(choices);
+  } else if (activity.type === 'speaking_practice') {
+    if (payload.scenario) root.append(el('p', { class: 'activity-meaning' }, payload.scenario));
+    root.append(el('p', { class: 'activity-meaning' }, payload.instruction || '先听示范，再自己开口说一遍。'));
+    root.append(el('p', { class: 'activity-meaning' }, '这是自我练习，不评估或记录发音正确率。'));
+    if (payload.referenceText && payload.audioAssetId) {
+      const play = el('button', { type: 'button', class: 'button button-secondary' }, '播放示范');
+      play.addEventListener('click', () => playAudio?.(payload.audioAssetId, play));
+      root.append(play);
+    } else if (!preview && onAction) {
+      const reveal = el('button', { type: 'button', class: 'button button-secondary' }, '显示示范');
+      reveal.addEventListener('click', () => onAction({ type: 'reveal' })); root.append(reveal);
+    }
   } else {
     if (payload.scenario) root.append(el('p', { class: 'activity-meaning' }, payload.scenario));
     if (payload.targetMeaning) root.append(el('p', { class: 'activity-meaning' }, payload.targetMeaning));
@@ -80,7 +113,7 @@ export function renderActivity(root, activity, { onAction, playAudio, preview = 
     hint.addEventListener('click', () => { if (!submitting) onAction({ type: 'hint' }); });
     const reveal = el('button', { type: 'button', class: 'text-button' }, '显示答案');
     reveal.addEventListener('click', () => { if (!submitting) onAction({ type: 'reveal' }); });
-    if (!['meaning_intro', 'micro_explanation'].includes(activity.type)) controls.append(hint, reveal);
+    if (!['meaning_intro', 'micro_explanation', 'sound_demo', 'speaking_practice'].includes(activity.type)) controls.append(hint, reveal);
     if (activity.type === 'independent_output') {
       const skip = el('button', { type: 'button', class: 'text-button' }, '暂时跳过');
       skip.addEventListener('click', () => onAction({ type: 'skip_output' }));
@@ -88,6 +121,7 @@ export function renderActivity(root, activity, { onAction, playAudio, preview = 
     }
     root.append(controls);
   }
-  return { response: () => response, informational: ['meaning_intro', 'micro_explanation'].includes(activity.type),
-    autoSubmit: activity.type === 'sentence_build' && payload.expectedTokenCount > 0 };
+  return { response: () => response, informational: ['meaning_intro', 'micro_explanation', 'sound_demo'].includes(activity.type),
+    speakingPractice: activity.type === 'speaking_practice',
+    autoSubmit: ['sentence_build', 'grapheme_build'].includes(activity.type) && payload.expectedTokenCount > 0 };
 }

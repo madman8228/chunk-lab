@@ -1,5 +1,6 @@
 'use strict';
 const crypto = require('node:crypto');
+const beginnerLegacyMap = require('../../../src/beginner-curriculum/legacy-map.json');
 
 function createExpressionCourseRepository({ db, validatePackage, now = () => new Date().toISOString(), id = () => crypto.randomUUID() }) {
   const digest = value => crypto.createHash('sha256').update(value).digest('hex');
@@ -126,7 +127,17 @@ function createExpressionCourseRepository({ db, validatePackage, now = () => new
       return saveReceipt(adminId, requestId, payloadHash, { courseId, unlisted: true });
     }); return tx.immediate();
   }
-  function catalog() { return db.prepare("SELECT course_id AS courseId,title,description,active_release AS releaseId FROM expression_courses WHERE status='active' ORDER BY created_at DESC").all(); }
+  function courseCurriculum(courseId, releaseId) {
+    if (!releaseId) return null;
+    const pkg = release(courseId, releaseId).package;
+    const mapped = beginnerLegacyMap.courses.find(item => item.courseId === courseId);
+    return pkg.curriculum ? { ...pkg.curriculum, status: 'available' } : mapped
+      ? { track: mapped.track, stage: mapped.stage, status: mapped.mappingStatus } : null;
+  }
+  function catalog() {
+    return db.prepare("SELECT course_id AS courseId,title,description,active_release AS releaseId FROM expression_courses WHERE status='active' ORDER BY created_at DESC")
+      .all().map(course => ({ ...course, curriculum: courseCurriculum(course.courseId, course.releaseId) }));
+  }
   function adminCatalog() {
     return db.prepare('SELECT course_id AS courseId,title,description,active_release AS releaseId,status FROM expression_courses ORDER BY created_at DESC').all().map(course => {
       if (!course.releaseId) return { ...course, contentHash: null, package: null };
@@ -150,7 +161,7 @@ function createExpressionCourseRepository({ db, validatePackage, now = () => new
     const courses = includeUnlisted ? db.prepare('SELECT course_id AS courseId,title,description,active_release AS releaseId,status FROM expression_courses ORDER BY created_at DESC').all() : catalog();
     return courses.filter(course => course.releaseId).map(course => {
       const pkg = release(course.courseId, course.releaseId).package;
-      return { courseId: course.courseId, title: course.title, contentType: 'expression', releaseId: course.releaseId, defaultAccess: 'free', sourcePaths: [], legacyDeckIds: [],
+      return { courseId: course.courseId, title: course.title, contentType: 'expression', releaseId: course.releaseId, defaultAccess: 'free', sourcePaths: [], legacyDeckIds: [], curriculum: courseCurriculum(course.courseId, course.releaseId),
         units: pkg.lessons.map(lesson => ({ unitId: 'lesson-' + lesson.lessonId, contentRef: { type: 'expression-lesson', id: lesson.lessonId },
           itemIds: lesson.activities.map(activity => activity.id), assets: pkg.assets.map(asset => ({ assetId: asset.assetId, mimeType: asset.mimeType })) })) };
     });

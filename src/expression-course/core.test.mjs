@@ -55,6 +55,15 @@ test('continues informational activities without scoring them', () => {
   assert.equal(moved.state.index, 1);
 });
 
+test('sound demonstrations continue without creating correctness or mastery evidence', () => {
+  const lesson = { schemaVersion: '1.1', lessonId: 'L101', activities: [{ id: 'sound1', type: 'sound_demo', stage: 'guided',
+    prompt: '听示范', skillIds: ['sound'], payload: { segments: [] }, evaluation: { countsTowardMastery: false } }] };
+  const next = transitionExpression(createExpressionState(lesson), { type: 'continue' });
+  assert.equal(next.result.kind, 'continued');
+  assert.equal(next.result.correct, null);
+  assert.deepEqual(next.state.evidence, {});
+});
+
 test('skipping written output advances without recording independent evidence', () => {
   const state = createExpressionState(sample);
   state.index = sample.activities.findIndex(activity => activity.type === 'independent_output');
@@ -184,4 +193,69 @@ test('review intervals use injected time and reset after failure', () => {
   const now = 1000;
   assert.deepEqual(nextReview({ success: true, step: 0, now }), { step: 1, dueAt: now + 3 * 86400000, intervalDays: 3 });
   assert.deepEqual(nextReview({ success: false, step: 4, now }), { step: 0, dueAt: now + 86400000, intervalDays: 1 });
+});
+
+test('v1.1 self-practice reveals the model only on request and never creates mastery evidence', () => {
+  const lesson = { schemaVersion: '1.1', lessonId: 'L101', activities: [{ id: 'speak1', type: 'speaking_practice',
+    stage: 'guided', prompt: '跟读', skillIds: ['say-hi'], payload: { scenario: '初次见面', referenceText: 'Hello.', audioAssetId: 'hello',
+      questionKind: 'sound' }, evaluation: { countsTowardMastery: false } }] };
+  let state = createExpressionState(lesson);
+  assert.equal(publicExpressionState(state).activity.payload.referenceText, undefined);
+  state = transitionExpression(state, { type: 'reveal' }).state;
+  assert.equal(publicExpressionState(state).activity.payload.referenceText, 'Hello.');
+  const practiced = transitionExpression(state, { type: 'self_practiced' });
+  assert.deepEqual(practiced.result, { kind: 'practice', correct: null, evidenceRecorded: false, selfReported: true, completed: true });
+  assert.deepEqual(practiced.state.evidence, {});
+  assert.equal(practiced.state.activityEvidence.speak1.selfReported, true);
+  assert.deepEqual(practiced.result.masteredSkills, undefined);
+});
+
+test('speaking practice hides and does not play its model until reveal is requested', () => {
+  const previousDocument = globalThis.document;
+  class Element {
+    constructor(tag) { this.tagName = tag; this.children = []; this.listeners = {}; }
+    setAttribute(name, value) { this[name] = value; }
+    addEventListener(name, listener) { this.listeners[name] = listener; }
+    append(...nodes) { this.children.push(...nodes); }
+    replaceChildren(...nodes) { this.children = nodes; }
+    click() { this.listeners.click?.(); }
+  }
+  globalThis.document = { createElement: tag => new Element(tag) };
+  try {
+    const actions = [], playCalls = [], root = new Element('main');
+    const first = renderActivity(root, { type: 'speaking_practice', prompt: '练习', payload: { scenario: '见面', audioAssetId: 'hello' } },
+      { onAction: action => actions.push(action), playAudio: id => playCalls.push(id) });
+    assert.equal(root.children.some(item => item.textContent === '显示示范'), true);
+    assert.equal(root.children.some(item => item.textContent === '播放示范'), false);
+    root.children.find(item => item.textContent === '显示示范').click();
+    assert.deepEqual(actions, [{ type: 'reveal' }]);
+    const revealedRoot = new Element('main');
+    renderActivity(revealedRoot, { type: 'speaking_practice', prompt: '练习', payload: { scenario: '见面', audioAssetId: 'hello', referenceText: 'Hello.' } },
+      { onAction: action => actions.push(action), playAudio: id => playCalls.push(id) });
+    revealedRoot.children.find(item => item.textContent === '播放示范').click();
+    assert.deepEqual(playCalls, ['hello']);
+    assert.equal(first.speakingPractice, true);
+  } finally {
+    if (previousDocument === undefined) delete globalThis.document;
+    else globalThis.document = previousDocument;
+  }
+});
+
+test('micro explanations render the rule and English-Chinese contrasts', () => {
+  const previousDocument = globalThis.document;
+  class Element { constructor(tag) { this.tagName = tag; this.children = []; this.textContent = ''; } setAttribute() {} append(...nodes) { this.children.push(...nodes); } replaceChildren(...nodes) { this.children = nodes; } }
+  globalThis.document = { createElement: tag => new Element(tag) };
+  try {
+    const root = new Element('main');
+    renderActivity(root, { type: 'micro_explanation', prompt: '规则', payload: { ruleText: 'My name is 后面接名字。', contrasts: [
+      { en: 'I am Chen.', zh: '我是小陈。' }, { en: 'My name is Chen.', zh: '我的名字是小陈。' }
+    ] } }, { preview: true });
+    const text = root.children.map(item => item.textContent).join('\n');
+    assert.match(text, /My name is 后面接名字/);
+    assert.match(text, /I am Chen\. · 我是小陈/);
+    assert.match(text, /My name is Chen\. · 我的名字是小陈/);
+  } finally {
+    if (previousDocument === undefined) delete globalThis.document;
+    else globalThis.document = previousDocument;
+  }
 });

@@ -14,10 +14,7 @@ function createVocabularyArchive({ db, content, now = Date.now }) {
     return cache.get(bookId);
   }
   function summary(userId) {
-    const books = db.prepare(`SELECT COUNT(*) AS items,
-      COALESCE(SUM(CASE WHEN json_extract(data_json,'$.dueAt') > 0
-      AND json_extract(data_json,'$.dueAt') <= ? THEN 1 ELSE 0 END),0) AS due
-      FROM vocabulary_item_progress WHERE user_id=?`).get(now(), userId);
+    const books = db.prepare('SELECT COUNT(*) AS items FROM vocabulary_item_progress WHERE user_id=?').get(userId);
     const pilot = db.prepare('SELECT COUNT(DISTINCT word) AS items,COUNT(*) AS events FROM vocabulary_attempts WHERE user_id=?').get(userId);
     const bookEvents = db.prepare('SELECT COUNT(*) AS events FROM vocabulary_study_events WHERE user_id=?').get(userId);
     const attempts=db.prepare("SELECT COUNT(*) AS answers,COALESCE(SUM(CASE WHEN json_extract(data_json,'$.correct')=0 THEN 1 ELSE 0 END),0) AS incorrect FROM vocabulary_attempt_events WHERE user_id=?").get(userId);
@@ -31,7 +28,7 @@ function createVocabularyArchive({ db, content, now = Date.now }) {
       ORDER BY mistakes.wrong_answers DESC,mistakes.last_at DESC,mistakes.item_id LIMIT 5`).all(userId,userId)
       .map(row=>{let title=row.item_id,meaning='';try{const item=content?.item(row.item_id,row.content_revision,userId);if(item){title=item.word;meaning=item.meaning||'';}}catch(_){}return {itemId:row.item_id,resourceId:row.resource_id,title,meaning,wrongAnswers:row.wrong_answers};});
     return { confirmed: true, domains: [
-      { source: 'vocabulary-book', unit: '知识项', learnedItems: books.items, events: bookEvents.events, dueItems: books.due,
+      { source: 'vocabulary-book', unit: '知识项', learnedItems: books.items, events: bookEvents.events, dueItems: null,
         verifiedApplicationMastery: 0, applicationAssessmentAvailable: false, errorsRecorded: true,attemptedAnswers:attempts.answers,incorrectAnswers:attempts.incorrect,errorHistory:'recorded-attempts-only',frequentErrors },
       { source: 'vocabulary-pilot', unit: '历史词条', learnedItems: pilot.items, events: pilot.events,
         dueItems: null, verifiedApplicationMastery: 0, applicationAssessmentAvailable: false, errorsRecorded: false },

@@ -3,7 +3,7 @@
   'use strict';
 
   var PREFIX = 'enrollment:v1:';
-  var MAX_JOINED_COURSES = 3;
+  var MAX_JOINED_COURSES = 4;
   var queue = Promise.resolve();
 
   function serverAuthoritative(){
@@ -106,7 +106,7 @@
         if (!protocol3 && existing && existing.kind === 'course-enrollment' && existing.schemaVersion === 1 &&
             existing.courseId === id && existing.joined === joined) return existing;
         if (!protocol3 && joined && joinedCount(progress, aliases) >= MAX_JOINED_COURSES) {
-          throw new Error('最多加入 3 门课程；请先移出一门，再加入新课程。');
+          throw new Error('最多加入 4 门课程；请先移出一门，再加入新课程。');
         }
         var timestamp = Number(now()) || Date.now();
         progress[key] = {

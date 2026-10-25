@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5efdf">
+  <title>渐进搭句 · 词块组句</title>
+  <link rel="stylesheet" href="assets/ui-tokens.css">
+  <link rel="stylesheet" href="assets/progressive-building-preview-v2.css?v=pb-20261024-v2-3">
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <a href="main.html?view=discover&amp;category=beginner">返回发现</a>
+      <h1>渐进搭句</h1>
+      <span id="progress" aria-live="polite"></span>
+    </header>
+
+    <div class="lesson-heading">
+      <h2>从词块到整句话</h2>
+      <p>每一步重拼一次，句子逐步变长。</p>
+    </div>
+
+    <section id="growth" class="growth" aria-labelledby="growth-title" hidden>
+      <h3 id="growth-title">句子在长大</h3>
+      <ol id="growth-list" aria-live="polite"></ol>
+    </section>
+
+    <section class="builder" aria-labelledby="builder-title">
+      <div class="builder-heading">
+        <div>
+          <p id="step-label"></p>
+          <h3 id="builder-title"></h3>
+        </div>
+        <button id="listen" class="listen-button" type="button" hidden>听整句</button>
+      </div>
+      <p id="meaning" class="meaning"></p>
+      <div id="assembled" class="assembled" aria-label="已拼好的词块"></div>
+      <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+      <div id="chunk-bank" class="chunk-bank" aria-label="可用词块"></div>
+      <div class="builder-footer">
+        <span id="builder-tip">点词块组句 · 点已选词块撤回</span>
+        <button id="continue" class="continue-button" type="button" hidden>继续</button>
+      </div>
+    </section>
+
+    <section id="finish" class="finish" aria-live="polite" hidden>
+      <h3>整句话说出来了</h3>
+      <p>换了一个需要的东西，句子结构还认得出来。</p>
+      <button id="replay-final" type="button">再听最后一句</button>
+      <button id="restart" type="button">从头再拼</button>
+    </section>
+  </main>
+  <script src="js/progressive-building-preview-data.js?v=pb-20261024-4"></script>
+  <script type="module" src="src/progressive-building/view-v2.mjs?v=pb-20261024-v2-3"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/* Shared workspace chrome. Page styles own content, never this header. */
+html[data-workspace-shell]{scrollbar-gutter:stable;--app-width:1280px;--app-gutter:32px;--app-header-height:56px;--app-header-bg:#ffffffd9;--app-header-line:#e2e8f099;--app-nav-color:#475569;--app-nav-active:#b45309;--app-nav-active-bg:#fffbeb;--app-content-top-inset:4px;--app-intro-copy-gap:6px;--app-intro-title-line-height:1.4}
+html[data-workspace-shell] body{position:relative;isolation:isolate;height:auto;min-height:100vh;overflow-x:clip;background:linear-gradient(180deg,var(--shared-sky1) 0%,var(--shared-sky2) 34%,var(--shared-sky3) 62%,var(--shared-sky4) 100%);background-attachment:fixed;background-color:var(--shared-sky4)}
+/* Workspace scenery sits above the background and below every page's content. */
+html[data-workspace-shell] .home-sky-deco{display:block;position:absolute;inset:0 0 auto;height:240px;pointer-events:none;z-index:-1}
+html[data-workspace-shell] .home-garden{display:block;position:absolute;inset:auto 0 0;height:105px;pointer-events:none;z-index:-1;overflow:visible}
+html[data-workspace-shell] body>.wrap{box-sizing:border-box;display:flex;flex-direction:column;width:100%;max-width:var(--app-width);min-height:100dvh;margin:0 auto;padding:0 var(--app-gutter) 110px}
+html[data-workspace-shell] .topbar{position:sticky;top:0;z-index:100;flex:none;isolation:isolate;margin:0 0 12px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+html[data-workspace-shell] .topbar::before{content:'';position:absolute;inset:0 calc((min(100vw,var(--app-width)) - 100vw)/2 - var(--app-gutter));z-index:-1;background:var(--app-header-bg);border-bottom:1px solid var(--app-header-line)}
+html[data-workspace-shell] .topbar-row{display:flex;align-items:center;min-height:var(--app-header-height);gap:24px;flex-wrap:nowrap;padding:0}
+html[data-workspace-shell] .workspace-page-intro{box-sizing:border-box;margin-block-start:0;padding-block-start:var(--app-content-top-inset);padding-inline:0}
+@font-face{font-family:WorkspaceTitle;src:url('fonts/ZCOOLKuaiLe-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+html[data-workspace-shell]{--app-intro-title-size:30px}
+html[data-workspace-shell] .workspace-page-intro h1{margin-block:0;min-width:0;font-family:WorkspaceTitle,"Microsoft YaHei",sans-serif;font-size:var(--app-intro-title-size);font-weight:400;line-height:var(--app-intro-title-line-height);letter-spacing:.015em;text-shadow:.3px 0 currentColor,-.3px 0 currentColor;white-space:normal;color:#352f26}
+@media(max-width:600px){html[data-workspace-shell]{--app-intro-title-size:24px}}
+html[data-workspace-shell] .workspace-page-intro>p{margin-block-start:var(--app-intro-copy-gap)}
+html[data-workspace-shell] #pageHome .home-welcome{margin-block-start:var(--app-content-top-inset)}
+html[data-workspace-shell] #workspaceNavHost{display:block;flex:none;min-width:0;margin:0;order:0}
+html[data-workspace-shell] .learning-global-nav{display:flex;gap:4px;margin:0;padding:0;border:0;background:transparent}
+html[data-workspace-shell] .learning-global-nav a{min-height:40px;padding:8px 14px;border:0;border-radius:var(--ui-radius-control);color:var(--app-nav-color);background:transparent;font-size:14px;font-weight:500;box-shadow:none}
+html[data-workspace-shell] .learning-global-nav a[aria-current=page]{color:var(--app-nav-active);background:var(--app-nav-active-bg);font-weight:700}
+html[data-workspace-shell] #btnSettingsTop{min-height:40px;padding:8px 12px 8px 20px;border:0;border-left:1px solid var(--app-header-line);border-radius:0;background:transparent;color:var(--app-nav-color);font-size:14px;white-space:nowrap}
+html[data-workspace-shell] :is(#btnStats,#btnDecks,#btnHomeTop){display:none}
+html[data-workspace-shell="discover"] body>.wrap{height:100dvh;min-height:0;padding-bottom:0}
+@media(max-width:1100px){html[data-workspace-shell] .topbar-row{gap:12px}}
+@media(max-width:700px){html[data-workspace-shell]{--app-gutter:16px}html[data-workspace-shell] .topbar-row{flex-wrap:wrap;gap:4px 12px;padding:8px 0}html[data-workspace-shell] #workspaceNavHost{order:4;flex-basis:100%}html[data-workspace-shell] .learning-global-nav a{min-height:44px;padding:8px;font-size:13px}html[data-workspace-shell] #btnSettingsTop{padding-left:12px}}

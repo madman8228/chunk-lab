@@ -49,7 +49,7 @@
     mask.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(16,24,40,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif';
 
     var card = el('div');
-    card.style.cssText = 'width:100%;max-width:360px;background:#fffdfa;border:1px solid #dedbd4;border-radius:16px;padding:26px 24px;box-shadow:0 24px 64px -20px rgba(16,24,40,.4)';
+    card.style.cssText = 'width:100%;max-width:360px;background:#fffdfa;border:1px solid #dedbd4;border-radius:var(--ui-radius-card);padding:26px 24px;box-shadow:0 24px 64px -20px rgba(16,24,40,.4)';
 
     var mode = 'login';
     var title = el('h2', null, '登录 Chunk Lab');
@@ -62,24 +62,24 @@
     apiInput.type = 'text';
     apiInput.placeholder = '服务器地址（如 https://lab.example.com）';
     apiInput.value = (global.ChunkAPI && global.ChunkAPI.getBase()) || '';
-    apiInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:12px;border:1px solid #dedbd4;border-radius:9px;font-size:14px;box-sizing:border-box';
+    apiInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:12px;border:1px solid #dedbd4;border-radius:var(--ui-radius-control);font-size:14px;box-sizing:border-box';
     /* 同源部署（前后端同一域名，base 为空）时前端与 API 天然同源，此字段无用且困惑 —— 仅分离部署（存了自定义 base）才显示 */
     if (!apiInput.value) apiInput.style.display = 'none';
 
     var userInput = el('input');
     userInput.type = 'text'; userInput.placeholder = '用户名';
-    userInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:9px;font-size:14px;box-sizing:border-box';
+    userInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:var(--ui-radius-control);font-size:14px;box-sizing:border-box';
 
     var passInput = el('input');
     passInput.type = 'password'; passInput.placeholder = '密码';
-    passInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:6px;border:1px solid #dedbd4;border-radius:9px;font-size:14px;box-sizing:border-box';
+    passInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:6px;border:1px solid #dedbd4;border-radius:var(--ui-radius-control);font-size:14px;box-sizing:border-box';
 
     var err = el('div');
     if(legacyTransition){err.setAttribute('role','status');err.setAttribute('aria-live','polite');}
     err.style.cssText = 'color:#b6483e;font-size:12.5px;min-height:18px;margin-bottom:8px';
 
     var submitBtn = el('button', null, '登录');
-    submitBtn.style.cssText = 'width:100%;padding:10px;border:0;background:#2c62c9;color:#fff;border-radius:10px;font-size:15px;cursor:pointer;margin-top:4px';
+    submitBtn.style.cssText = 'width:100%;padding:10px;border:0;background:#2c62c9;color:#fff;border-radius:var(--ui-radius-control);font-size:15px;cursor:pointer;margin-top:4px';
     submitBtn.onmouseenter = function () { this.style.background = '#2457b5'; };
     submitBtn.onmouseleave = function () { this.style.background = '#2c62c9'; };
 
@@ -206,7 +206,7 @@
     mask.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(16,24,40,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif';
 
     var card = el('div');
-    card.style.cssText = 'width:100%;max-width:360px;background:#fffdfa;border:1px solid #dedbd4;border-radius:16px;padding:26px 24px;box-shadow:0 24px 64px -20px rgba(16,24,40,.4)';
+    card.style.cssText = 'width:100%;max-width:360px;background:#fffdfa;border:1px solid #dedbd4;border-radius:var(--ui-radius-card);padding:26px 24px;box-shadow:0 24px 64px -20px rgba(16,24,40,.4)';
 
     var title = el('h2', null, '设置账号');
     title.style.cssText = 'margin:0 0 4px;font-size:19px;letter-spacing:-.01em;color:#202326';
@@ -219,27 +219,27 @@
     userInput.type = 'text';
     userInput.value = isGuest ? '' : (currentName || '');
     userInput.placeholder = '用户名（自己起一个）';
-    userInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:9px;font-size:14px;box-sizing:border-box';
+    userInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:var(--ui-radius-control);font-size:14px;box-sizing:border-box';
 
     var passInput = el('input');
     passInput.type = 'password'; passInput.placeholder = '密码（至少 6 位）';
-    passInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:9px;font-size:14px;box-sizing:border-box';
+    passInput.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:var(--ui-radius-control);font-size:14px;box-sizing:border-box';
 
     var passConfirm = el('input');
     passConfirm.type = 'password'; passConfirm.placeholder = '再输一次密码';
-    passConfirm.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:9px;font-size:14px;box-sizing:border-box';
+    passConfirm.style.cssText = 'width:100%;padding:9px 11px;margin-bottom:10px;border:1px solid #dedbd4;border-radius:var(--ui-radius-control);font-size:14px;box-sizing:border-box';
 
     var err = el('div');
     err.style.cssText = 'color:#b6483e;font-size:12.5px;min-height:18px;margin-bottom:8px';
 
     var submitBtn = el('button', null, '保存');
-    submitBtn.style.cssText = 'width:100%;padding:10px;border:0;background:#2c62c9;color:#fff;border-radius:10px;font-size:15px;cursor:pointer;margin-top:4px';
+    submitBtn.style.cssText = 'width:100%;padding:10px;border:0;background:#2c62c9;color:#fff;border-radius:var(--ui-radius-control);font-size:15px;cursor:pointer;margin-top:4px';
     submitBtn.onmouseenter = function () { this.style.background = '#2457b5'; };
     submitBtn.onmouseleave = function () { this.style.background = '#2c62c9'; };
 
     var cancel = el('button', null, '取消');
     cancel.type = 'button';
-    cancel.style.cssText = 'width:100%;padding:9px;margin-top:8px;border:0;background:transparent;color:#74716a;border-radius:10px;font-size:13px;cursor:pointer';
+    cancel.style.cssText = 'width:100%;padding:9px;margin-top:8px;border:0;background:transparent;color:#74716a;border-radius:var(--ui-radius-control);font-size:13px;cursor:pointer';
 
     function close() {
       if (mask.parentNode) mask.parentNode.removeChild(mask);
@@ -315,16 +315,16 @@
     card.className = 'jqka-phone-dialog';
     card.noValidate = true; card.tabIndex = -1;
     card.setAttribute('role', 'dialog'); card.setAttribute('aria-modal', 'true'); card.setAttribute('aria-labelledby', id + '-title');
-    card.style.cssText = 'width:100%;max-width:420px;max-height:calc(100dvh - 32px);overflow:auto;background:#fff9e9;border:3px solid #70451e;border-radius:20px;padding:26px 28px;box-sizing:border-box;box-shadow:inset 0 0 0 5px #f0d49a,0 5px 0 #aa722e,0 18px 42px #24180d55;color:#523019';
+    card.style.cssText = 'width:100%;max-width:420px;max-height:calc(100dvh - 32px);overflow:auto;background:#fff9e9;border:3px solid #70451e;border-radius:var(--ui-radius-panel);padding:26px 28px;box-sizing:border-box;box-shadow:inset 0 0 0 5px #f0d49a,0 5px 0 #aa722e,0 18px 42px #24180d55;color:#523019';
     var title = el('h2'); title.id = id + '-title'; title.textContent = binding ? '绑定手机号' : '登录';
-    title.style.cssText = 'position:relative;display:table;margin:0 auto 18px;padding:8px 24px;border:3px solid #70451e;border-radius:10px;background:linear-gradient(#ffe18b,#f4be4d);box-shadow:inset 0 2px 0 #fff2c6,0 3px 0 #aa722e;font-size:24px;color:#523019;font-weight:900';
+    title.style.cssText = 'position:relative;display:table;margin:0 auto 18px;padding:8px 24px;border:3px solid #70451e;border-radius:var(--ui-radius-control);background:linear-gradient(#ffe18b,#f4be4d);box-shadow:inset 0 2px 0 #fff2c6,0 3px 0 #aa722e;font-size:24px;color:#523019;font-weight:900';
     function input(labelText, type, autocomplete) {
       var label = el('label'); label.style.cssText = 'display:block;margin-bottom:16px;color:#523019;font-size:14px';
       var caption = el('span'); caption.textContent = labelText; label.appendChild(caption);
       var field = el('input'); field.type = type; field.autocomplete = autocomplete; field.required = true;
       field.setAttribute('aria-label', labelText);
       field.inputMode = type === 'password' ? 'text' : 'numeric';
-      field.style.cssText = 'display:block;width:100%;min-width:0;box-sizing:border-box;margin-top:7px;padding:12px;border:2px solid #aa8450;border-radius:10px;font:inherit;color:#523019;background:#fffdf4;box-shadow:inset 0 2px 3px #8d683114';
+      field.style.cssText = 'display:block;width:100%;min-width:0;box-sizing:border-box;margin-top:7px;padding:12px;border:2px solid #aa8450;border-radius:var(--ui-radius-control);font:inherit;color:#523019;background:#fffdf4;box-shadow:inset 0 2px 3px #8d683114';
       label.appendChild(field); card.appendChild(label); return field;
     }
     card.appendChild(title);
@@ -340,12 +340,12 @@
     password.setAttribute('aria-describedby',passwordHint.id); password.parentNode.appendChild(passwordHint);
     var send = el('button'); send.type = 'button'; send.textContent = '获取验证码';
     send.className = 'phone-send';
-    send.style.cssText = 'flex:none;box-sizing:border-box;height:50px;min-height:50px;margin:0;padding:10px 12px;background:linear-gradient(#ffe290,#f5bb43);border:2px solid #805329;color:#523019;border-radius:10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:inset 0 1px 0 #fff2c0';
+    send.style.cssText = 'flex:none;box-sizing:border-box;height:50px;min-height:50px;margin:0;padding:10px 12px;background:linear-gradient(#ffe290,#f5bb43);border:2px solid #805329;color:#523019;border-radius:var(--ui-radius-control);font:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:inset 0 1px 0 #fff2c0';
     phoneRow.appendChild(send);
     var status = el('p'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     status.style.cssText = 'min-height:20px;margin:12px 0;font-size:13px;line-height:1.5;color:#745333';
     var submit = el('button'); submit.type = 'submit'; submit.textContent = binding ? '确认绑定' : '登录';
-    submit.style.cssText = 'width:100%;min-height:48px;padding:12px;border:2px solid #70451e;background:linear-gradient(#ffdc77,#f4be4d);color:#523019;border-radius:12px;font:inherit;font-weight:800;cursor:pointer;box-shadow:inset 0 2px 0 #fff2c6,0 3px 0 #aa722e';
+    submit.style.cssText = 'width:100%;min-height:48px;padding:12px;border:2px solid #70451e;background:linear-gradient(#ffdc77,#f4be4d);color:#523019;border-radius:var(--ui-radius-control);font:inherit;font-weight:800;cursor:pointer;box-shadow:inset 0 2px 0 #fff2c6,0 3px 0 #aa722e';
     card.appendChild(status); card.appendChild(submit);
     var challenge = null, sentPhone = '', sentPurpose = '', busy = false, timer = null, retryAt = 0, passwordMode = !binding, mode = binding ? 'bind' : 'password', purpose = binding ? 'bind' : 'login';
     function submitLabel(){return binding?'确认绑定':mode==='register'?'注册并登录':mode==='reset'?'设置密码并登录':'登录';}
@@ -455,7 +455,7 @@
       card.style.position = 'relative';
       var closeButton = el('button'); closeButton.type = 'button';
       closeButton.setAttribute('aria-label', '关闭登录窗口');
-      closeButton.style.cssText = 'position:absolute;top:8px;right:8px;width:44px;height:44px;padding:12px;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:transparent;color:#745333;cursor:pointer';
+      closeButton.style.cssText = 'position:absolute;top:8px;right:8px;width:44px;height:44px;padding:12px;display:flex;align-items:center;justify-content:center;border:0;border-radius:var(--ui-radius-control);background:transparent;color:#745333;cursor:pointer';
       closeButton.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
       closeButton.onclick = cancelForm; card.appendChild(closeButton);
     }

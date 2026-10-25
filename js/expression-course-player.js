@@ -202,10 +202,32 @@ function renderActivity(root, activity, { onAction, playAudio: playAudio2, previ
   if (activity.type === "meaning_intro" || activity.type === "micro_explanation") {
     const example = payload.exampleEnglish || payload.example || payload.explanation || "";
     const zh = payload.exampleZh || payload.meaning || payload.explanationZh || "";
+    if (payload.ruleText) root.append(el("p", { class: "activity-meaning" }, payload.ruleText));
     if (example) root.append(el("p", { class: "activity-example", lang: "en" }, example));
     if (zh) root.append(el("p", { class: "activity-meaning" }, zh));
-  } else if (activity.type === "sentence_build") {
-    root.append(el("p", { class: "activity-meaning" }, payload.targetMeaning || "\u6309\u6B63\u786E\u987A\u5E8F\u6392\u5217\u8BCD\u5757"));
+    for (const contrast of payload.contrasts || []) {
+      const item = el("p", { class: "activity-meaning" }, `${contrast.label || "\u5BF9\u6BD4"}\uFF1A${contrast.en || contrast.left || ""} \xB7 ${contrast.zh || contrast.right || ""}`);
+      root.append(item);
+    }
+  } else if (activity.type === "sound_demo") {
+    if (payload.instructionZh) root.append(el("p", { class: "activity-meaning" }, payload.instructionZh));
+    for (const segment of payload.segments || []) {
+      const row = el("div", { class: "sound-demo-segment" });
+      if (segment.symbol) row.append(el("span", { class: "sound-symbol", lang: "en" }, segment.symbol));
+      if (segment.label) row.append(el("span", { class: "activity-meaning" }, segment.label));
+      const play = el("button", { type: "button", class: "button button-secondary" }, segment.buttonLabel || "\u64AD\u653E\u793A\u8303");
+      play.addEventListener("click", () => playAudio2?.(segment.audioAssetId, play));
+      row.append(play);
+      root.append(row);
+    }
+  } else if (activity.type === "sentence_build" || activity.type === "grapheme_build") {
+    const isGrapheme = activity.type === "grapheme_build";
+    root.append(el("p", { class: "activity-meaning" }, payload.targetMeaning || (isGrapheme ? "\u6309\u58F0\u97F3\u987A\u5E8F\u62FC\u5408\u5B57\u6BCD\u5757" : "\u6309\u6B63\u786E\u987A\u5E8F\u6392\u5217\u8BCD\u5757")));
+    if (isGrapheme && payload.audioAssetId) {
+      const play = el("button", { type: "button", class: "button button-secondary" }, "\u518D\u542C\u4E00\u6B21");
+      play.addEventListener("click", () => playAudio2?.(payload.audioAssetId, play));
+      root.append(play);
+    }
     const targetCount = payload.expectedTokenCount || payload.availableTokens?.length || 0;
     const selection = createChunkSelection({
       mode: "sequence",
@@ -250,6 +272,19 @@ function renderActivity(root, activity, { onAction, playAudio: playAudio2, previ
       choices.append(button);
     }
     root.append(choices);
+  } else if (activity.type === "speaking_practice") {
+    if (payload.scenario) root.append(el("p", { class: "activity-meaning" }, payload.scenario));
+    root.append(el("p", { class: "activity-meaning" }, payload.instruction || "\u5148\u542C\u793A\u8303\uFF0C\u518D\u81EA\u5DF1\u5F00\u53E3\u8BF4\u4E00\u904D\u3002"));
+    root.append(el("p", { class: "activity-meaning" }, "\u8FD9\u662F\u81EA\u6211\u7EC3\u4E60\uFF0C\u4E0D\u8BC4\u4F30\u6216\u8BB0\u5F55\u53D1\u97F3\u6B63\u786E\u7387\u3002"));
+    if (payload.referenceText && payload.audioAssetId) {
+      const play = el("button", { type: "button", class: "button button-secondary" }, "\u64AD\u653E\u793A\u8303");
+      play.addEventListener("click", () => playAudio2?.(payload.audioAssetId, play));
+      root.append(play);
+    } else if (!preview && onAction) {
+      const reveal = el("button", { type: "button", class: "button button-secondary" }, "\u663E\u793A\u793A\u8303");
+      reveal.addEventListener("click", () => onAction({ type: "reveal" }));
+      root.append(reveal);
+    }
   } else {
     if (payload.scenario) root.append(el("p", { class: "activity-meaning" }, payload.scenario));
     if (payload.targetMeaning) root.append(el("p", { class: "activity-meaning" }, payload.targetMeaning));
@@ -299,7 +334,7 @@ function renderActivity(root, activity, { onAction, playAudio: playAudio2, previ
     reveal.addEventListener("click", () => {
       if (!submitting) onAction({ type: "reveal" });
     });
-    if (!["meaning_intro", "micro_explanation"].includes(activity.type)) controls.append(hint, reveal);
+    if (!["meaning_intro", "micro_explanation", "sound_demo", "speaking_practice"].includes(activity.type)) controls.append(hint, reveal);
     if (activity.type === "independent_output") {
       const skip = el("button", { type: "button", class: "text-button" }, "\u6682\u65F6\u8DF3\u8FC7");
       skip.addEventListener("click", () => onAction({ type: "skip_output" }));
@@ -309,8 +344,9 @@ function renderActivity(root, activity, { onAction, playAudio: playAudio2, previ
   }
   return {
     response: () => response,
-    informational: ["meaning_intro", "micro_explanation"].includes(activity.type),
-    autoSubmit: activity.type === "sentence_build" && payload.expectedTokenCount > 0
+    informational: ["meaning_intro", "micro_explanation", "sound_demo"].includes(activity.type),
+    speakingPractice: activity.type === "speaking_practice",
+    autoSubmit: ["sentence_build", "grapheme_build"].includes(activity.type) && payload.expectedTokenCount > 0
   };
 }
 
@@ -344,8 +380,16 @@ var accessMessages = {
   TRIAL_DAILY_LIMIT: "\u4ECA\u65E5\u5B66\u4E60\u65F6\u957F\u5DF2\u7528\u5B8C\u3002\u5DF2\u5B8C\u6210\u7684\u6B65\u9AA4\u4F1A\u4FDD\u7559\uFF0C\u4E4B\u540E\u53EF\u7EE7\u7EED\u3002",
   MEMBERSHIP_REQUIRED: "\u5F53\u524D\u8BFE\u7A0B\u9700\u8981\u6709\u6548\u5B66\u4E60\u6743\u9650\u3002\u5DF2\u5B8C\u6210\u7684\u6B65\u9AA4\u4F1A\u4FDD\u7559\uFF0C\u83B7\u5F97\u6743\u9650\u540E\u53EF\u7EE7\u7EED\u3002"
 };
+var failureMessage = (error) => {
+  if (error?.code === "SESSION_CHANGED") return "\u767B\u5F55\u8D26\u53F7\u5DF2\u5207\u6362\uFF0C\u8BF7\u91CD\u65B0\u6253\u5F00\u8BFE\u7A0B\u3002";
+  if (accessMessages[error?.code]) return accessMessages[error.code];
+  if (/^(Failed to fetch|Load failed)$|NetworkError when attempting to fetch resource/i.test(error?.message || "")) {
+    return "\u6682\u65F6\u65E0\u6CD5\u8FDE\u63A5\u7F51\u7EDC\u3002\u5F53\u524D\u8F93\u5165\u4F1A\u4FDD\u7559\uFF0C\u8BF7\u6062\u590D\u8FDE\u63A5\u540E\u91CD\u8BD5\u3002";
+  }
+  return error?.message || "\u6682\u65F6\u65E0\u6CD5\u8FDE\u63A5\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002";
+};
 var fail = (error) => {
-  setStatus(error?.code === "SESSION_CHANGED" ? "\u767B\u5F55\u8D26\u53F7\u5DF2\u5207\u6362\uFF0C\u8BF7\u91CD\u65B0\u6253\u5F00\u8BFE\u7A0B\u3002" : accessMessages[error?.code] || error?.message || "\u6682\u65F6\u65E0\u6CD5\u8FDE\u63A5\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002");
+  setStatus(failureMessage(error));
 };
 async function start() {
   $("retryCourse").hidden = true;
@@ -606,13 +650,27 @@ function render() {
     answer.textContent = "\u53C2\u8003\u7B54\u6848\uFF1A" + state.revealedAnswer;
     body.append(answer);
   }
-  if (rendered.informational || !rendered.autoSubmit) {
+  if (!rendered.speakingPractice && (rendered.informational || !rendered.autoSubmit)) {
     const primary = document.createElement("button");
     primary.className = "button button-primary";
     primary.type = "button";
     primary.textContent = rendered.informational ? "\u7EE7\u7EED" : "\u68C0\u67E5\u7B54\u6848";
     primary.onclick = () => act(rendered.informational ? { type: "continue" } : { type: "submit", response: rendered.response() });
     footer.append(primary);
+  }
+  if (rendered.speakingPractice) {
+    const tried = document.createElement("button");
+    tried.className = "button button-primary";
+    tried.type = "button";
+    tried.textContent = "\u6211\u5DF2\u5F00\u53E3\u7EC3\u4E60";
+    tried.onclick = () => act({ type: "self_practiced" });
+    footer.append(tried);
+    const skip = document.createElement("button");
+    skip.className = "button button-secondary";
+    skip.type = "button";
+    skip.textContent = "\u7A0D\u540E\u518D\u7EC3";
+    skip.onclick = () => act({ type: "skip_practice" });
+    footer.append(skip);
   }
   setStatus(current.result?.feedback || "\u5B8C\u6210\u5F53\u524D\u8FD9\u4E00\u6B65\u5373\u53EF\u81EA\u52A8\u4FDD\u5B58\u3002");
 }
@@ -645,7 +703,7 @@ async function act(action) {
     } else {
       fail(error);
       const blocked = ["AUTHORIZATION_EXPIRED", "SESSION_EXPIRED", "TRIAL_EXPIRED", "TRIAL_DAILY_LIMIT", "MEMBERSHIP_REQUIRED", "SESSION_CHANGED"].includes(error?.code);
-      return { status: blocked ? "blocked" : "retryable-error", message: error?.message || "\u6682\u65F6\u65E0\u6CD5\u8FDE\u63A5\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002" };
+      return { status: blocked ? "blocked" : "retryable-error", message: failureMessage(error) };
     }
   } finally {
     busy = false;

@@ -1,13 +1,10 @@
 /**
- * srs-surface.test.js · SRS 白盒化的端到端护栏
+ * srs-surface.test.js · 练习页 SRS 提示移除后的端到端护栏
  *
- * 背景：`CL.srs.dueLabel` 早就写好还有单测，但**产品 UI 一次都没调用** ——
- * 用户答完一句后看不到「下次什么时候考、现在在记忆曲线第几格」，
- * 于是 SRS 在体验上是个黑盒（会误判成「怎么又考这句」）。
- * 本用例守住三个事实：
- *   1. 出题态不显示排期行（新句子开始时必须复位）
- *   2. 答完一句后显示「下次复习:X天后」，且天数由真实 SRS 状态推出
- *   3. 该行的可见性是真被测量的 —— 用 !important 隐藏它，断言必须变红（负向自证）
+ * 本用例守住：
+ *   1. 出题态及答完一句后均不显示「下次复习」提示
+ *   2. 练习卡片不再保留排期提示的空行
+ * SRS 排期规则由 srs.test.js 单独验证。
  *
  * 运行：node e2e/srs-surface.test.js
  */
@@ -60,7 +57,7 @@ function check(name, ok, detail) {
 
 /* 句子档案 key = deckId#fnv8(sentence)（loadStore 会做 migrateCidKeys 规范化，
    显式 cid 不参与最终 key）。注入时必须自己算同一个 fnv8。 */
-function makeInit(seed) {
+function makeInit() {
   return function (s) {
     function fnv8(str) { var h = 0x811c9dc5; str = String(str == null ? '' : str); for (var i = 0; i < str.length; i++) { h = Math.imul(h ^ str.charCodeAt(i), 0x01000193) >>> 0; } var hex = (h >>> 0).toString(16); while (hex.length < 8) hex = '0' + hex; return hex; }
     localStorage.clear();
@@ -85,47 +82,37 @@ function makeInit(seed) {
         sound: false, fxStack: false, celebrate: 'off', autoSpeak: false, darkMode: false }
     }));
     sessionStorage.setItem('_startDeck', JSON.stringify(deck));
-    if (s.hideSched) {
-      var css = '.sched-line{display:none !important}';
-      var add = function () { var st = document.createElement('style'); st.setAttribute('data-negtest', '1'); st.textContent = css; (document.head || document.documentElement).appendChild(st); };
-      if (document.head) add(); else document.addEventListener('DOMContentLoaded', add);
-    }
   };
 }
 
 const SENTENCE = 'The committee finally approved the budget.';
 const CHUNKS = ['The committee', 'finally approved', 'the budget.'];
 
-function readSchedLine(page) {
+function readReviewPrompt(page) {
   return page.evaluate(function () {
-    var el = document.getElementById('schedLine');
-    if (!el) return { exists: false, visible: false, text: '' };
+    var text = document.body.innerText || '';
     return {
-      exists: true,
-      visible: el.getClientRects().length > 0 && getComputedStyle(el).display !== 'none',
-      text: (el.textContent || '').trim()
+      exists: !!document.getElementById('schedLine'),
+      visible: /下次复习\s*[:：]/.test(text),
+      stageHasPromptRow: !!document.querySelector('#stage .sched-line')
     };
   });
 }
 
-/* 答对当前句，直到排期行出现（或句子结束） */
-async function answerUntilSched(page) {
+/* 答对当前句，直到答题结束（下一题按钮出现） */
+async function answerSentence(page) {
   for (let guard = 0; guard < 60; guard++) {
-    const line = await readSchedLine(page);
-    if (line.visible) return line;
     const st = await page.evaluate(function () {
-      if (!window.S) return { booting: true };
-      if (S.finished) return { finished: true };
       if (typeof cur !== 'function') return { booting: true };
       var it = cur();
       if (!it) return { booting: true };
       var nb = document.getElementById('btnNext');
       return {
         target: (S.chunkIdx < it.chunks.length) ? it.chunks[S.chunkIdx] : null,
-        nbVisible: !!(nb && !nb.classList.contains('hidden'))
+        finished: !!(nb && !nb.classList.contains('hidden'))
       };
     });
-    if (st.finished) break;
+    if (st.finished) return true;
     if (st.booting || st.target === null) { await page.waitForTimeout(150); continue; }
     const hit = await page.evaluate(function (t) {
       var btns = Array.prototype.slice.call(document.querySelectorAll('#stageChoices .choice'));
@@ -135,7 +122,7 @@ async function answerUntilSched(page) {
     }, st.target);
     await page.waitForTimeout(hit ? 240 : 150);
   }
-  return readSchedLine(page);
+  return false;
 }
 
 async function boot(browser, seed) {
@@ -146,8 +133,18 @@ async function boot(browser, seed) {
   await page.route('**/api/**', function (r) { r.abort('failed'); });
   await page.route('**/content/**', function (r) { r.abort('failed'); });
   await page.addInitScript(makeInit(seed), seed);
-  await page.goto(BASE + '/main.html?direct=1', { waitUntil: 'domcontentloaded' });
-  await page.waitForSelector('#stageChoices .choice', { timeout: 15000 });
+  await page.goto(BASE + '/main.html?answer-hint-test=1', { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(function () { return window._mainBooted && window.mem && typeof window.startDeck === 'function'; });
+  await page.evaluate(async function () {
+    await CourseEnrollment.join('user-deck:' + window.mem.decks[0].id);
+    startDeck(window.mem.decks[0], 0);
+  });
+  try { await page.waitForSelector('#stageChoices .choice', { timeout: 15000 }); }
+  catch (e) {
+    console.error('E2E bootstrap diagnostics:', JSON.stringify({ url: page.url(), errors: errs,
+      text: (await page.locator('body').innerText().catch(function () { return ''; })).slice(0, 500) }));
+    throw e;
+  }
   await page.waitForTimeout(600);
   return { ctx: ctx, page: page, errs: errs };
 }
@@ -157,47 +154,20 @@ async function boot(browser, seed) {
     await startServer();
     browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH || chromium.executablePath() });
 
-    /* ===== A：首次练这句（无历史） ===== */
-    console.log('【场景 A：首次练这句，无历史 SRS 状态】');
+    /* ===== A：作答前后都不显示排期提示 ===== */
+    console.log('【场景 A：练习界面不显示下次复习提示】');
     {
       const s = await boot(browser, { deckId: 'srs-probe', sentence: SENTENCE, translation: '委员会最终批准了预算。', chunks: CHUNKS });
-      const before = await readSchedLine(s.page);
-      check('A1 出题态不显示排期行（新句子已复位）', before.exists && before.visible === false,
-        'exists=' + before.exists + ' visible=' + before.visible);
+      const before = await readReviewPrompt(s.page);
+      check('A1 出题态没有排期提示元素或空行', !before.exists && !before.visible && !before.stageHasPromptRow,
+        JSON.stringify(before));
 
-      const after = await answerUntilSched(s.page);
-      check('A2 答完一句后显示排期行', after.visible === true, 'visible=' + after.visible + ' text="' + after.text + '"');
-      check('A3 文案 = 下次复习:1天后', after.text === '下次复习:1天后', '实际 "' + after.text + '"');
-      check('A4 文案结构恒为「下次复习:X天后」', /^下次复习:(\d+天后|今天|逾期\d+天)$/.test(after.text), '实际 "' + after.text + '"');
-      check('A5 无 JS 运行时错误', s.errs.length === 0, s.errs.join(' | '));
-      await s.ctx.close();
-    }
-
-    /* ===== B：已有 2 次连对（repetition=2 / interval=3）→ 再答对应进入第 3 阶段 7 天 ===== */
-    console.log('【场景 B：已有重复次数 2，答对后应推进到第 3 阶段】');
-    {
-      const s = await boot(browser, {
-        deckId: 'srs-probe', sentence: SENTENCE, translation: '委员会最终批准了预算。', chunks: CHUNKS,
-        prior: { repetition: 2, interval: 3, ease: 2.5, dueAt: Date.now() - 3600000 }
-      });
-      const after = await answerUntilSched(s.page);
-      check('B1 文案 = 下次复习:7天后', after.text === '下次复习:7天后', '实际 "' + after.text + '"');
-      await s.ctx.close();
-    }
-
-    /* ===== C：负向自证 —— 用 !important 隐藏该行，可见性断言必须变红 ===== */
-    console.log('【场景 C：负向自证（注入 .sched-line{display:none!important}）】');
-    {
-      const s = await boot(browser, {
-        deckId: 'srs-probe', sentence: SENTENCE, translation: '委员会最终批准了预算。', chunks: CHUNKS,
-        hideSched: true
-      });
-      const after = await answerUntilSched(s.page);
-      const styleInjected = await s.page.evaluate(function () { return !!document.querySelector('style[data-negtest]'); });
-      check('C1 覆盖样式确实注入了', styleInjected === true);
-      check('C2 被隐藏后可见性断言变红（证明 A2 不是恒真）', after.visible === false,
-        'visible=' + after.visible + '（若为 true 说明探针测不到隐藏，A2 无意义）');
-      check('C3 文本仍在（说明 A2 测的是可见性、不是文本有无）', after.text.length > 0, 'text="' + after.text + '"');
+      const answered = await answerSentence(s.page);
+      const after = await readReviewPrompt(s.page);
+      check('A2 答完一句后练习正常结束', answered === true);
+      check('A3 答完后仍无排期提示元素或空行', !after.exists && !after.visible && !after.stageHasPromptRow,
+        JSON.stringify(after));
+      check('A4 无 JS 运行时错误', s.errs.length === 0, s.errs.join(' | '));
       await s.ctx.close();
     }
 

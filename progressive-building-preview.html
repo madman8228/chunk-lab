@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>渐进搭句 · jqka.top</title>
+  <link rel="stylesheet" href="assets/ui-tokens.css">
+  <link rel="stylesheet" href="assets/progressive-building-preview.css?v=pb-20261024-4">
+</head>
+<body>
+  <main>
+    <header>
+      <a href="main.html?view=discover&category=beginner">返回发现</a>
+      <h1>渐进搭句</h1>
+      <span id="stage"></span>
+    </header>
+    <section aria-labelledby="title">
+      <h2 id="title"></h2>
+      <div id="task"></div>
+      <p id="feedback" role="status" aria-live="polite"></p>
+      <footer id="controls"></footer>
+    </section>
+  </main>
+  <script src="js/progressive-building-preview-data.js?v=pb-20261024-4"></script>
+  <script type="module" src="src/progressive-building/view.mjs?v=pb-20261024-4"></script>
+</body>
+</html>

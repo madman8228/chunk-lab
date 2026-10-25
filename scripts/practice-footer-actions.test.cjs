@@ -34,6 +34,10 @@ const exposure=html.slice(html.indexOf('function recordSentenceExposure(){'),htm
  await page.evaluate(()=>{item._courseAudioUrl='fixture.ogg';speakSentence();lastAudio.onplaying();});assert.equal(await page.locator('#btnSpeak').getAttribute('aria-pressed'),'true');
  await page.evaluate(()=>lastAudio.onpause());assert.equal(await page.locator('#btnSpeak').getAttribute('aria-pressed'),'false');
  await page.evaluate(()=>{lastAudio.onplaying();window.oldAudio=lastAudio;stopSentencePlayback();oldAudio.onplaying();});assert.equal(await page.locator('#btnSpeak').getAttribute('aria-pressed'),'false','stale callbacks cannot restart animation');
+ await page.evaluate(()=>{delete item._courseAudioUrl;item.sentenceAudio={text:item.sentence,audio:{url:'assets/course-sentence.ogg'}};speakSentence();});
+ assert.equal(await page.evaluate(()=>lastAudio.url),'assets/course-sentence.ogg','packaged sentence audio must be used before browser synthesis');
+ await page.evaluate(()=>{lastAudio.onplaying();lastAudio.onended();});assert.equal(await page.locator('#btnSpeak').getAttribute('aria-pressed'),'false','packaged audio completion clears playing state');
+ if(process.argv.includes('--audio-only')){console.log('Audio playback passed: speech fallback, native and packaged files, end/pause state, stale callbacks. Isolated browser; no account data.');return;}
  const before=await page.evaluate(()=>structuredClone(S));
  await page.getByRole('button',{name:'重置选择',exact:true}).click();
  const after=await page.evaluate(()=>structuredClone(S));

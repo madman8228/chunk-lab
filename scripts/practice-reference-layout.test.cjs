@@ -6,7 +6,7 @@ const markup=html.slice(html.indexOf('<div class="wrap">'),html.indexOf('<!-- �
  const page=await browser.newPage();
  await page.route('http://practice-fixture.invalid/**',route=>{const file=new URL(route.request().url()).pathname.slice(1);return file.startsWith('assets/')&&fs.existsSync(file)?route.fulfill({body:fs.readFileSync(file)}):route.abort();});
  await page.setContent('<html><head><base href="http://practice-fixture.invalid/"><style>'+styles+'</style></head><body>'+markup+'</body></html>');
- for(const file of ['assets/learning-navigation.css','assets/learning-background.css','assets/course-learning-header.css','assets/practice-reference-layout.css'])await page.addStyleTag({path:file});
+ for(const file of ['assets/ui-tokens.css','assets/learning-navigation.css','assets/learning-background.css','assets/course-learning-header.css','assets/practice-reference-layout.css'])await page.addStyleTag({path:file});
  await page.addScriptTag({path:'js/main-practice-markup.js'});await page.addScriptTag({path:'js/practice-layout.js'});await page.addScriptTag({path:'js/icons.js'});await page.evaluate(()=>Icons.install());
  await page.evaluate(()=>{
   window.originalContext=document.querySelector('.practice-context');window.exitClicks=0;document.getElementById('btnExitPractice').onclick=()=>exitClicks++;
@@ -14,22 +14,57 @@ const markup=html.slice(html.indexOf('<div class="wrap">'),html.indexOf('<!-- �
   document.getElementById('deckName').textContent='万能表达';document.getElementById('mProgress').textContent='1/4';document.getElementById('progFill').style.width='25%';
   document.getElementById('zh').textContent='给我竖个大拇指（点个赞）吧。';document.getElementById('ringWrap').classList.remove('hidden');document.getElementById('ringNum').textContent='1';
   document.getElementById('btnExplain').classList.remove('hidden');
+  const reviewTag=document.getElementById('revealTagWrap');reviewTag.className='reveal-tag miss';reviewTag.textContent='需巩固';
+  document.getElementById('btnSpeak').classList.remove('hidden');document.getElementById('btnResetSelection').hidden=false;document.getElementById('btnResetSelection').classList.remove('hidden');document.getElementById('btnNext').classList.remove('hidden');
   document.getElementById('track').classList.add('compact-chunks');
   const escapeHtml=value=>String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
-  ['Give me','a thumbs up.'].forEach((chunk,index)=>{const box=document.createElement('div');box.className='chunk wait';box.innerHTML=MainPracticeMarkup.buildChunkMarkup({chunk,index,hint:index?'一个大拇指（赞成）':'给我',grammar:{role:index?'宾语':'谓语 + 宾语',color:index?'#3358e0':'#e74c7a'},mode:'choose',escapeHtml});document.getElementById('track').append(box);});
+  ["You'd better",'get some rest','and drink plenty of water.'].forEach((chunk,index)=>{const box=document.createElement('div');box.className='chunk ok';box.innerHTML=MainPracticeMarkup.buildChunkMarkup({chunk,index,hint:['你最好','休息一下','并喝大量的水'][index],grammar:{role:['情态结构','动词短语','并列谓语'][index],color:['#e74c7a','#3358e0','#3358e0'][index]},mode:'choose',escapeHtml});box.querySelector('.chunk-answer').textContent=chunk;document.getElementById('track').append(box);});
  });
  await page.waitForFunction(()=>document.querySelector('.topbar-row>.practice-context'));
  fs.mkdirSync('output/playwright/practice-reference',{recursive:true});
- for(const width of [1043,390,320]){
+ for(const width of [1043,937,390,320]){
   await page.setViewportSize({width,height:932});
   const head=await page.locator('.topbar').boundingBox(),stage=await page.locator('#stage').boundingBox(),question=await page.locator('#zh').boundingBox(),track=await page.locator('.track-line').boundingBox(),actions=await page.locator('.stage-head-right').boundingBox();
+  const spacing=await page.evaluate(()=>({toolbarGap:parseFloat(getComputedStyle(document.querySelector('.practice-toolbar')).marginBottom),stageTop:parseFloat(getComputedStyle(document.querySelector('#stage')).paddingTop),stageBottom:parseFloat(getComputedStyle(document.querySelector('#stage')).paddingBottom)}));
+  const titleSpacing=await page.locator('#stage .zh-wrap').evaluate(el=>{const style=getComputedStyle(el);return{top:parseFloat(style.marginTop),bottom:parseFloat(style.marginBottom)}});
+  const stageSlack=await page.locator('#stage').evaluate(el=>{const rect=el.getBoundingClientRect(),foot=el.querySelector('.stage-foot').getBoundingClientRect(),style=getComputedStyle(el);return rect.bottom-foot.bottom-parseFloat(style.paddingBottom)-parseFloat(style.borderBottomWidth)});
+  const reviewTagStyle=await page.locator('#revealTagWrap').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(el).borderRadius}));
+  const masterStyle=await page.locator('#btnMaster').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(el).borderRadius}));
+  const explainStyle=await page.locator('#btnExplain').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(el).borderRadius}));
+  const actionGroup=await page.locator('.stage-head-right').evaluate(el=>({height:el.getBoundingClientRect().height,gap:getComputedStyle(el).gap}));
+  const chunkGeometry=await page.locator('#track .chunk').evaluateAll(els=>els.map(el=>{const r=el.getBoundingClientRect();return{left:r.left,right:r.right,width:r.width};}));
+  const trackGeometry=await page.locator('.track-line').boundingBox();
+  const finalChunkLines=await page.locator('#track .chunk-answer').nth(2).evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return range.getClientRects().length;});
   await page.screenshot({path:path.resolve('output/playwright/practice-reference/'+width+'.png'),fullPage:true});
   assert.ok(head.height<(width>760?80:140),'header height at '+width+': '+head.height);assert.ok(stage.y>head.y+head.height);assert.ok(question.y>=actions.y+actions.height);assert.ok(track.y>=question.y+question.height);
+  assert.ok(spacing.toolbarGap<=14,'toolbar-to-stage gap should be reduced at '+width+': '+spacing.toolbarGap+'px');assert.ok(spacing.stageTop<=10,'stage top padding should be reduced at '+width+': '+spacing.stageTop+'px');assert.ok(spacing.stageBottom<=7,'stage bottom padding should be reduced at '+width+': '+spacing.stageBottom+'px');
+  assert.ok(titleSpacing.top<=6&&titleSpacing.bottom<=9,'title vertical margins should be reduced at '+width+': '+JSON.stringify(titleSpacing));
+  assert.ok(stageSlack<=14,'stage should not reserve unused height below the footer at '+width+': '+stageSlack+'px');
+  assert.ok(reviewTagStyle.height<=28&&Math.abs(reviewTagStyle.height-masterStyle.height)<=1&&Math.abs(masterStyle.height-explainStyle.height)<=1&&reviewTagStyle.radius==='8px'&&masterStyle.radius===reviewTagStyle.radius&&explainStyle.radius===reviewTagStyle.radius,'state and action controls should share a compact 28px shape at '+width+': '+JSON.stringify({reviewTagStyle,masterStyle,explainStyle}));
+  assert.ok(actionGroup.height<=28&&actionGroup.gap==='6px','control group should be compact at '+width+': '+JSON.stringify(actionGroup));
+  if(width>=761){
+   assert.ok(chunkGeometry[0].width<chunkGeometry[2].width-20,'short answers should reserve less width than longer known answers at '+width+': '+JSON.stringify(chunkGeometry));
+   assert.equal(finalChunkLines,1,'the final answer chunk should remain on one line when desktop space is available');
+   const chunkGroupCenter=(chunkGeometry[0].left+chunkGeometry[chunkGeometry.length-1].right)/2;
+   assert.ok(Math.abs(chunkGroupCenter-(trackGeometry.x+trackGeometry.width/2))<=2,'content-sized chunks should stay centered at '+width);
+  }
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.equal(await page.evaluate(()=>document.querySelector('.topbar-row>.practice-context')===originalContext),true);
   assert.equal(await page.locator('#btnExitPractice svg').count(),1);assert.equal(await page.locator('#mComboBox svg').count(),1);
-  const progressLabel=await page.locator('.practice-progress-labels').boundingBox(),progressBar=await page.locator('.pc-progress').boundingBox();
-  assert.ok(progressLabel.y+progressLabel.height<=progressBar.y,'labels are above progress bar at '+width);
+  const topbarColumnGap=await page.locator('.topbar-row').evaluate(el=>getComputedStyle(el).columnGap);
+  assert.equal(topbarColumnGap,width>=761?'9.6px':'3.2px','topbar icons use 20% tighter horizontal spacing at '+width);
+  const progressGeometry=await page.evaluate(()=>{
+    const title=document.querySelector('.practice-progress-labels>span').getBoundingClientRect();
+    const value=document.getElementById('mProgress').getBoundingClientRect();
+    const bar=document.querySelector('.pc-progress').getBoundingClientRect();
+    const combo=document.getElementById('mComboBox').getBoundingClientRect();
+    return {title:{top:title.top,bottom:title.bottom},value:{top:value.top,bottom:value.bottom},bar:{top:bar.top,bottom:bar.bottom},comboHeight:combo.height};
+  });
+  const progressTops=[progressGeometry.title.top,progressGeometry.value.top,progressGeometry.bar.top];
+  const progressBottoms=[progressGeometry.title.bottom,progressGeometry.value.bottom,progressGeometry.bar.bottom];
+  assert.ok(Math.max(...progressBottoms)-Math.min(...progressTops)<=18,'progress title, value and bar share one compact row at '+width+': '+JSON.stringify(progressGeometry));
+  assert.ok(progressGeometry.comboHeight<=24,'combo badge stays one compact text row at '+width+': '+progressGeometry.comboHeight+'px');
+  assert.equal(await page.locator('.practice-progress-labels>span').innerText(),'进度');
   assert.equal(await page.locator('.practice-progress-labels #mProgress').innerText(),'1/4');
   await page.screenshot({path:path.resolve('output/playwright/practice-reference/'+width+'.png'),fullPage:true});
  }

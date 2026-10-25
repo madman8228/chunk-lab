@@ -1,0 +1,77 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { nodes, getNode, getNodeLessonIds, loadNodeLesson } from './catalog.mjs';
+import { validateLessonV3 } from './schema.mjs';
+
+test('catalog covers PB01–PB50 with prerequisite and scoped subgoal identities', () => {
+  assert.equal(nodes.length, 50);
+  assert.deepEqual(nodes.map(node => node.id), Array.from({ length: 50 }, (_, index) => `PB${String(index + 1).padStart(2, '0')}`));
+  assert.ok(nodes.every(node => node.subgoalIds.length > 0 && node.subgoalIds.every(id => id.startsWith(`${node.id}.`))));
+  assert.equal(getNode('PB51'), null);
+});
+
+test('fixed loader resolves only authored preview content and rejects unknown ids', async () => {
+  assert.deepEqual(getNodeLessonIds('PB01'), ['pb01-subject-predicate-v1']);
+  assert.deepEqual(getNodeLessonIds('PB02'), ['pb02-subject-verb-object-v1']);
+  assert.deepEqual(getNodeLessonIds('PB03'), ['pb03-noun-predicative-v1', 'pb03-adjective-predicative-v1', 'pb03-pp-predicative-v1', 'pb03-predicative-object-contrast-v1']);
+  assert.deepEqual(getNodeLessonIds('PB04'), ['pb04-adjective-modifier-v1']);
+  assert.deepEqual(getNodeLessonIds('PB05'), ['pb05-article-sound-v1', 'pb05-known-reference-v1', 'pb05-plural-forms-v1', 'pb05-countability-v1', 'pb05-quantity-determiners-v1']);
+  assert.deepEqual(getNodeLessonIds('PB06'), ['pb06-location-phrase-v1', 'pb06-position-meaning-v1']);
+  assert.deepEqual(getNodeLessonIds('PB07'), ['pb07-postpositive-modifier-v1']);
+  assert.deepEqual(getNodeLessonIds('PB08'), ['pb08-time-frequency-v1', 'pb08-place-adverbial-v1', 'pb08-manner-adverbial-v1', 'pb08-company-adverbial-v1', 'pb08-multiple-adverbials-v1']);
+  assert.deepEqual(getNodeLessonIds('PB09'), ['pb09-required-destination-v1', 'pb09-optional-location-v1']);
+  assert.deepEqual(getNodeLessonIds('PB10'), ['pb10-comparative-v1', 'pb10-superlative-v1', 'pb10-degree-modifier-v1']);
+  assert.deepEqual(getNodeLessonIds('PB11'), ['pb11-double-object-v1']);
+  assert.deepEqual(getNodeLessonIds('PB12'), ['pb12-give-to-v1', 'pb12-buy-for-v1', 'pb12-verb-constraints-v1']);
+  assert.deepEqual(getNodeLessonIds('PB13'), ['pb13-adjective-complement-v1', 'pb13-noun-complement-v1', 'pb13-complement-vs-double-object-v1']);
+  assert.deepEqual(getNodeLessonIds('PB14'), ['pb14-want-to-do-v1']);
+  assert.deepEqual(getNodeLessonIds('PB15'), ['pb15-help-bare-infinitive-v1', 'pb15-help-to-infinitive-v1']);
+  assert.deepEqual(getNodeLessonIds('PB16'), ['pb16-be-negative-question-v1']);
+  assert.deepEqual(getNodeLessonIds('PB17'), ['pb17-do-negation-v1', 'pb17-general-question-v1']);
+  assert.deepEqual(getNodeLessonIds('PB18'), ['pb18-ability-permission-v1', 'pb18-request-v1', 'pb18-obligation-advice-v1', 'pb18-deduction-v1']);
+  assert.deepEqual(getNodeLessonIds('PB19'), ['pb19-what-question-v1', 'pb19-where-when-v1', 'pb19-subject-object-who-v1']);
+  assert.deepEqual(getNodeLessonIds('PB20'), ['pb20-imperative-v1', 'pb20-existential-v1']);
+  assert.deepEqual(getNodeLessonIds('PB21'), ['pb21-present-agreement-v1']);
+  assert.deepEqual(getNodeLessonIds('PB22'), ['pb22-present-progressive-v1']);
+  assert.deepEqual(getNodeLessonIds('PB23'), ['pb23-past-be-v1']);
+  assert.deepEqual(getNodeLessonIds('PB24'), ['pb24-past-did-v1']);
+  assert.deepEqual(getNodeLessonIds('PB25'), ['pb25-going-to-v1', 'pb25-will-v1', 'pb25-arrangement-v1']);
+  assert.deepEqual(getNodeLessonIds('PB26'), ['pb26-past-progressive-background-v1']);
+  assert.deepEqual(getNodeLessonIds('PB27'), ['pb27-present-perfect-v1']);
+  assert.deepEqual(getNodeLessonIds('PB28'), ['pb28-past-perfect-order-v1']);
+  assert.deepEqual(getNodeLessonIds('PB29'), ['pb29-perfect-progressive-v1', 'pb29-future-progressive-v1', 'pb29-future-perfect-v1']);
+  assert.deepEqual(getNodeLessonIds('PB30'), ['pb30-basic-passive-v1', 'pb30-modal-perfect-passive-v1', 'pb30-passive-complement-v1']);
+  assert.deepEqual(getNodeLessonIds('PB31'), ['pb31-gerund-subject-v1', 'pb31-gerund-object-v1', 'pb31-gerund-phrase-v1']);
+  assert.deepEqual(getNodeLessonIds('PB32'), ['pb32-purpose-infinitive-v1', 'pb32-infinitive-subject-v1', 'pb32-infinitive-modifier-contrast-v1']);
+  assert.deepEqual(getNodeLessonIds('PB33'), ['pb33-present-participle-modifier-v1', 'pb33-past-participle-modifier-v1', 'pb33-participle-attachment-v1']);
+  assert.deepEqual(getNodeLessonIds('PB34'), ['pb34-to-infinitive-complement-v1', 'pb34-bare-infinitive-complement-v1', 'pb34-ing-ed-complement-v1']);
+  assert.deepEqual(getNodeLessonIds('PB35'), ['pb35-particle-verb-position-v1', 'pb35-preposition-object-position-v1', 'pb35-verb-complement-patterns-v1']);
+  assert.deepEqual(getNodeLessonIds('PB36'), ['pb36-that-object-clause-v1', 'pb36-wh-indirect-question-v1', 'pb36-embedded-statement-order-v1']);
+  assert.deepEqual(getNodeLessonIds('PB37'), ['pb37-relative-subject-v1', 'pb37-relative-object-omission-v1', 'pb37-relative-whole-subject-v1']);
+  assert.deepEqual(getNodeLessonIds('PB38'), ['pb38-subject-clause-v1', 'pb38-formal-subject-it-v1', 'pb38-postposed-clause-predicate-v1']);
+  assert.deepEqual(getNodeLessonIds('PB39'), ['pb39-that-predicative-clause-v1', 'pb39-wh-predicative-clause-v1', 'pb39-object-predicative-contrast-v1']);
+  assert.deepEqual(getNodeLessonIds('PB40'), ['pb40-noun-apposition-v1', 'pb40-content-clause-after-noun-v1', 'pb40-content-vs-relative-clause-v1']);
+  assert.deepEqual(getNodeLessonIds('PB41'), ['pb41-time-clause-v1', 'pb41-cause-clause-v1', 'pb41-real-condition-v1', 'pb41-time-sequence-review-v1']);
+  assert.deepEqual(getNodeLessonIds('PB42'), ['pb42-purpose-clause-v1', 'pb42-result-clause-v1', 'pb42-concession-clause-v1', 'pb42-comparison-manner-clause-v1', 'pb42-enough-too-v1']);
+  assert.deepEqual(getNodeLessonIds('PB43'), ['pb43-coordination-v1', 'pb43-contrast-coordination-v1', 'pb43-licensed-omission-v1', 'pb43-user-long-chain-v1']);
+  assert.deepEqual(getNodeLessonIds('PB44'), ['pb44-real-vs-unreal-condition-v1', 'pb44-present-unreal-condition-v1', 'pb44-past-unreal-condition-v1']);
+  assert.deepEqual(getNodeLessonIds('PB45'), ['pb45-direct-to-reported-v1', 'pb45-person-time-viewpoint-v1', 'pb45-future-in-past-v1', 'pb45-backshift-not-required-v1']);
+  assert.deepEqual(getNodeLessonIds('PB46'), ['pb46-supplement-vs-restrictive-v1', 'pb46-relative-forms-v1', 'pb46-comma-scope-v1']);
+  assert.deepEqual(getNodeLessonIds('PB47'), ['pb47-object-focus-v1', 'pb47-focus-contrast-v1', 'pb47-cleft-vs-ordinary-it-v1']);
+  assert.deepEqual(getNodeLessonIds('PB48'), ['pb48-so-neither-v1', 'pb48-tag-questions-v1', 'pb48-negative-inversion-v1']);
+  assert.deepEqual(getNodeLessonIds('PB49'), ['pb49-double-object-paths-v1', 'pb49-clause-paths-v1', 'pb49-self-correct-v1']);
+  assert.deepEqual(getNodeLessonIds('PB50'), ['pb50-independent-delayed-retrieval-v1']);
+  const lesson = await loadNodeLesson('PB01');
+  assert.equal(validateLessonV3(lesson), lesson);
+  assert.equal(validateLessonV3(await loadNodeLesson('PB02')).knowledgeNode, 'PB02');
+  assert.equal(validateLessonV3(await loadNodeLesson('PB03', 'pb03-adjective-predicative-v1')).subgoalIds[0], 'PB03.b');
+  assert.equal(validateLessonV3(await loadNodeLesson('PB04')).knowledgeNode, 'PB04');
+  assert.equal(validateLessonV3(await loadNodeLesson('PB05', 'pb05-plural-forms-v1')).subgoalIds[0], 'PB05.c');
+  for (const nodeId of ['PB06', 'PB07', 'PB08', 'PB09', 'PB10', 'PB11', 'PB12', 'PB13', 'PB14', 'PB15', 'PB16', 'PB17', 'PB18', 'PB19', 'PB20', 'PB21', 'PB22', 'PB23', 'PB24', 'PB25', 'PB26', 'PB27', 'PB28', 'PB29', 'PB30', 'PB31', 'PB32', 'PB33', 'PB34', 'PB35', 'PB36', 'PB37', 'PB38', 'PB39', 'PB40', 'PB41', 'PB42', 'PB43', 'PB44', 'PB45', 'PB46', 'PB47', 'PB48', 'PB49', 'PB50']) {
+    for (const id of getNodeLessonIds(nodeId)) assert.equal(validateLessonV3(await loadNodeLesson(nodeId, id)).knowledgeNode, nodeId);
+  }
+  await assert.rejects(loadNodeLesson('PB51'), /Unknown knowledge node/);
+  await assert.rejects(loadNodeLesson('PB03'), /多门预览课/);
+  await assert.rejects(loadNodeLesson('PB03', 'unknown-course'), /没有找到对应的预览课程/);
+  await assert.rejects(loadNodeLesson('PB46'), /多门预览课/);
+});

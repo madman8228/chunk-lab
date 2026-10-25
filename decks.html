@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<link rel="stylesheet" href="assets/ui-tokens.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
@@ -30,20 +31,20 @@ html,body{height:100%;overflow:hidden}
 #pageEdit > #editList{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:rgba(95,92,85,.3) transparent}
 #pageEdit > #editList::-webkit-scrollbar{width:7px}
 #pageEdit > #editList::-webkit-scrollbar-track{background:transparent}
-#pageEdit > #editList::-webkit-scrollbar-thumb{background:rgba(95,92,85,.3);border-radius:999px}
+#pageEdit > #editList::-webkit-scrollbar-thumb{background:rgba(95,92,85,.3);border-radius:var(--ui-radius-pill)}
 #pageEdit > #editStat{flex:0 0 auto}
 #courseMembershipNav{flex:0 1 auto;max-width:100%}
 .tabs.course-type-nav{align-self:flex-start;display:flex;align-items:center;gap:18px;width:max-content;max-width:100%;margin:0 0 8px;padding:0 2px 2px;background:transparent;border:0;border-radius:0}
 #pageDecks > #deckList,#pageDecks > #courseTree{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;align-content:start;padding-bottom:1px;scrollbar-width:thin;scrollbar-color:rgba(95,92,85,.3) transparent}
 #pageDecks > #deckList::-webkit-scrollbar,#pageDecks > #courseTree::-webkit-scrollbar{width:7px}
 #pageDecks > #deckList::-webkit-scrollbar-track,#pageDecks > #courseTree::-webkit-scrollbar-track{background:transparent}
-#pageDecks > #deckList::-webkit-scrollbar-thumb,#pageDecks > #courseTree::-webkit-scrollbar-thumb{background:rgba(95,92,85,.3);border-radius:999px}
+#pageDecks > #deckList::-webkit-scrollbar-thumb,#pageDecks > #courseTree::-webkit-scrollbar-thumb{background:rgba(95,92,85,.3);border-radius:var(--ui-radius-pill)}
 #pageDecks > #marketSection{flex:0 0 auto;min-height:0;max-height:32%;overflow:auto;scrollbar-width:thin}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .page-head h2{margin:0;font-size:18px;font-weight:700}
 .course-header-actions{display:flex;align-items:center;gap:6px;flex:0 0 auto}
 .spacer{flex:1}
-.btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:8px;padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
+.btn{border:1px solid var(--border-strong);background:var(--surface);border-radius:var(--ui-radius-sm);padding:5px 12px;font-size:13px;color:var(--text);cursor:pointer;transition:background .15s}
 .page-head a.btn{text-decoration:none}
 .btn:hover{background:var(--surface-2)}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -51,14 +52,14 @@ html,body{height:100%;overflow:hidden}
 .btn.sm{padding:3px 10px;font-size:12.5px}
 .btn.ghost{border-color:transparent;background:transparent}
 .btn.ghost:hover{background:var(--surface-2)}
-.catalog-back-button{min-height:32px;padding:5px 12px;border:1px solid rgba(255,255,255,.65);border-radius:20px;background:rgba(255,253,247,.85);box-shadow:none;color:var(--muted);font:inherit;font-size:12px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.catalog-back-button{min-height:32px;padding:5px 12px;border:1px solid rgba(255,255,255,.65);border-radius:var(--ui-radius-panel);background:rgba(255,253,247,.85);box-shadow:none;color:var(--muted);font:inherit;font-size:12px;text-decoration:none;cursor:pointer;white-space:nowrap}
 .catalog-back-button::before{content:'←';margin-right:5px}
 .catalog-back-button:hover,.catalog-back-button:active{background:#fffdf7;color:var(--accent);text-decoration:none}
 #deckPageTitle:not(.hidden){display:flex;align-items:center;gap:12px;font-size:13px;line-height:1.5;font-weight:600;margin:0}
 #deckPageTitle:not(.hidden)::before{content:'/';color:var(--muted);font-size:15px;font-weight:400}
 .catalog-back-button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .hidden{display:none !important}
-.pill{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:#eef1f6;color:var(--muted)}
+.pill{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:var(--ui-radius-pill);background:#eef1f6;color:var(--muted)}
 .pill.mine{background:#e8efff;color:#2c62c9}
 .pill.warn{background:#fff0ea;color:#c4362b;border:1px solid #f3c4ba}
 
@@ -69,7 +70,7 @@ html,body{height:100%;overflow:hidden}
 .deck-section-title:first-child{margin-top:0}
 .deck-section-title.course-type-heading{margin-top:14px;color:var(--text);font-size:14px}
 .deck-section-title::after{content:"";height:1px;flex:1;background:var(--border)}
-.deck-item{display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:0;border:1px solid var(--border);border-radius:10px;background:var(--surface);overflow:hidden}
+.deck-item{display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:0;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface);overflow:hidden}
 .deck-item.has-open-menu{position:relative;z-index:20;overflow:visible}
 .deck-item.cur{border-color:var(--accent);background:var(--accent-soft)}
 .deck-cover{position:relative;display:flex;align-items:flex-end;aspect-ratio:16 / 9;min-height:112px;padding:12px 13px;overflow:hidden;background:linear-gradient(135deg,#e8efff 0%,#c8dafb 100%);color:#173b7a}
@@ -77,14 +78,14 @@ html,body{height:100%;overflow:hidden}
 .deck-cover.has-image .deck-cover-image{opacity:1;filter:none}
 .deck-cover.has-image .deck-cover-wash{opacity:0}
 .deck-item:hover .deck-cover-image,.deck-item:focus-within .deck-cover-image{opacity:1;filter:none}
-.deck-cover::before{content:"";position:absolute;z-index:0;width:46%;height:130%;right:-8%;bottom:-54%;border-radius:50%;background:rgba(255,255,255,.48);transform:rotate(-18deg)}
-.deck-cover::after{content:"";position:absolute;z-index:0;width:32%;height:75%;right:13%;top:-28%;border:1px solid rgba(44,98,201,.18);border-radius:50%;transform:rotate(24deg)}
+.deck-cover::before{content:"";position:absolute;z-index:0;width:46%;height:130%;right:-8%;bottom:-54%;border-radius:var(--ui-radius-circle);background:rgba(255,255,255,.48);transform:rotate(-18deg)}
+.deck-cover::after{content:"";position:absolute;z-index:0;width:32%;height:75%;right:13%;top:-28%;border:1px solid rgba(44,98,201,.18);border-radius:var(--ui-radius-circle);transform:rotate(24deg)}
 .deck-cover.other{background:linear-gradient(135deg,#f2eee7 0%,#e1d8ca 100%);color:#59482f}
 .deck-cover.mine{background:linear-gradient(135deg,#e8f5ee 0%,#cbe7d7 100%);color:#1c7050}
 .deck-cover-wash{position:absolute;inset:0;z-index:2;background:rgba(66,70,76,.08);transition:opacity .22s ease}
-.deck-cover-caption{position:absolute;top:8px;left:8px;z-index:3;display:flex;align-items:center;gap:4px;max-width:calc(100% - 16px);padding:2px 5px;border-radius:5px;background:rgba(255,255,255,.7);color:inherit;box-shadow:0 1px 3px rgba(24,28,34,.05);backdrop-filter:blur(1px);user-select:none;-webkit-user-select:none;caret-color:transparent;-webkit-user-modify:read-only;user-modify:read-only;pointer-events:none}
+.deck-cover-caption{position:absolute;top:8px;left:8px;z-index:3;display:flex;align-items:center;gap:4px;max-width:calc(100% - 16px);padding:2px 5px;border-radius:var(--ui-radius-sm);background:rgba(255,255,255,.7);color:inherit;box-shadow:0 1px 3px rgba(24,28,34,.05);backdrop-filter:blur(1px);user-select:none;-webkit-user-select:none;caret-color:transparent;-webkit-user-modify:read-only;user-modify:read-only;pointer-events:none}
 .deck-cover-mark,.deck-cover-label{position:relative;z-index:3}
-.deck-cover-mark{display:flex;align-items:center;justify-content:center;flex:0 0 18px;width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,.56);font-size:12px}
+.deck-cover-mark{display:flex;align-items:center;justify-content:center;flex:0 0 18px;width:18px;height:18px;border-radius:var(--ui-radius-sm);background:rgba(255,255,255,.56);font-size:12px}
 .deck-cover-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:.01em;user-select:none;-webkit-user-select:none;caret-color:transparent;-webkit-user-modify:read-only;user-modify:read-only;pointer-events:none}
 .deck-cover-origin{position:absolute;top:10px;right:10px;z-index:3}
 .deck-card-body{display:flex;flex-direction:column;gap:6px;min-height:96px;padding:9px 12px 10px}
@@ -98,24 +99,24 @@ html,body{height:100%;overflow:hidden}
 .course-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .course-card,.catalog-lesson{position:relative}
 .course-manage-wrap{position:absolute;top:7px;right:7px;z-index:5}
-.course-manage-trigger{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;padding:0;border:1px solid rgba(255,255,255,.75);border-radius:8px;background:rgba(255,255,255,.88);color:var(--muted);box-shadow:0 2px 7px rgba(25,35,50,.12);cursor:pointer;opacity:1;transition:background .15s,color .15s}
+.course-manage-trigger{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;padding:0;border:1px solid rgba(255,255,255,.75);border-radius:var(--ui-radius-sm);background:rgba(255,255,255,.88);color:var(--muted);box-shadow:0 2px 7px rgba(25,35,50,.12);cursor:pointer;opacity:1;transition:background .15s,color .15s}
 .course-card:hover .course-manage-trigger,.course-card:focus-within .course-manage-trigger,.catalog-lesson:hover .course-manage-trigger,.catalog-lesson:focus-within .course-manage-trigger,.course-manage-wrap.is-open .course-manage-trigger{opacity:1}
 .course-manage-trigger:hover{background:var(--surface);color:var(--accent)}
 .course-manage-trigger:focus-visible{opacity:1;outline:2px solid var(--accent);outline-offset:2px}
 .course-manage-trigger .icon{width:17px;height:17px}
-.course-manage-menu{display:none;position:absolute;top:34px;right:0;min-width:128px;padding:4px;border:1px solid var(--border);border-radius:9px;background:var(--surface);box-shadow:0 8px 22px rgba(25,35,50,.16)}
+.course-manage-menu{display:none;position:absolute;top:34px;right:0;min-width:128px;padding:4px;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface);box-shadow:0 8px 22px rgba(25,35,50,.16)}
 .course-manage-wrap.is-open .course-manage-menu{display:grid;gap:2px}
 .edit-manage-actions{position:relative;flex:0 0 auto}
 .edit-manage-actions .course-manage-wrap{position:relative;inset:auto}
 .edit-manage-actions .course-manage-trigger{width:auto;min-width:0;height:29px;padding:0 9px;gap:6px;border-color:var(--border-strong);background:var(--surface);box-shadow:none;opacity:1}
 .edit-manage-trigger-label{font-size:12px;white-space:nowrap}
 .edit-manage-actions .course-manage-menu{top:calc(100% + 4px);right:0;z-index:25}
-.course-manage-item{width:100%;padding:7px 9px;border:0;border-radius:6px;background:transparent;color:var(--text);font:inherit;font-size:12px;text-align:left;white-space:nowrap;cursor:pointer}
+.course-manage-item{width:100%;padding:7px 9px;border:0;border-radius:var(--ui-radius-sm);background:transparent;color:var(--text);font:inherit;font-size:12px;text-align:left;white-space:nowrap;cursor:pointer}
 .course-manage-item:hover,.course-manage-item:focus-visible{background:var(--surface-2);color:var(--accent);outline:0}
 .course-manage-item.is-danger{color:var(--bad)}
 .course-manage-item.is-danger:hover,.course-manage-item.is-danger:focus-visible{background:#fff1ef;color:var(--bad)}
 .course-manage-inline{position:static;display:inline-flex;align-items:center;margin:0 0 0 6px;vertical-align:middle}
-.course-manage-inline .course-manage-trigger{width:28px;min-width:28px;height:24px;padding:0;border:0;border-radius:6px;background:transparent;box-shadow:none;color:var(--muted);opacity:1}
+.course-manage-inline .course-manage-trigger{width:28px;min-width:28px;height:24px;padding:0;border:0;border-radius:var(--ui-radius-sm);background:transparent;box-shadow:none;color:var(--muted);opacity:1}
 .course-manage-inline .course-manage-trigger:hover{background:var(--surface-2);color:var(--accent)}
 .course-manage-inline .course-manage-menu{top:auto;right:0;bottom:29px}
 .course-manage-inline.course-manage-down .course-manage-menu{top:calc(100% + 4px);bottom:auto}
@@ -123,7 +124,7 @@ html,body{height:100%;overflow:hidden}
 .course-card .deck-card-body .meta .course-manage-inline{margin-left:auto}
 .course-card .course-progress-track{width:clamp(42px,7vw,72px)}
 .catalog-lesson-footer .course-manage-inline{margin-left:auto}
-.course-card .deck-card-body{position:relative;z-index:4;min-height:0;margin-top:-12px;padding:7px 10px 7px;gap:0;border-top:1px solid rgba(255,255,255,.72);border-radius:10px 10px 0 0;background:rgba(255,253,250,.72);box-shadow:0 -4px 14px rgba(42,48,58,.08);backdrop-filter:blur(12px) saturate(125%);-webkit-backdrop-filter:blur(12px) saturate(125%)}
+.course-card .deck-card-body{position:relative;z-index:4;min-height:0;margin-top:-12px;padding:7px 10px 7px;gap:0;border-top:1px solid rgba(255,255,255,.72);border-radius:var(--ui-radius-control) var(--ui-radius-control) 0 0;background:rgba(255,253,250,.72);box-shadow:0 -4px 14px rgba(42,48,58,.08);backdrop-filter:blur(12px) saturate(125%);-webkit-backdrop-filter:blur(12px) saturate(125%)}
 .deck-item .info{min-width:0;flex:1}
 .deck-item .nm{font-size:13px;font-weight:600;display:flex;align-items:flex-start;gap:7px;line-height:1.4;word-break:break-word}
 .deck-item .deck-title{min-width:0;flex:1;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
@@ -140,7 +141,7 @@ html,body{height:100%;overflow:hidden}
 .catalog-group-title{position:relative}
 .catalog-group-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:5px 2px;border:0;background:transparent;color:var(--text);font:inherit;font-size:13px;font-weight:700;text-align:left;cursor:pointer}
 .catalog-group-toggle:hover{color:var(--accent)}
-.catalog-group-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:5px}
+.catalog-group-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--ui-radius-sm)}
 .catalog-group-caret{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;color:var(--accent);line-height:1;transform:rotate(90deg);transition:transform .15s ease}
 .catalog-group-caret .icon{width:14px;height:14px}
 .catalog-group-toggle:hover .catalog-group-caret{color:var(--text)}
@@ -159,7 +160,7 @@ html,body{height:100%;overflow:hidden}
 .catalog-directory.catalog-flat-view .catalog-flat-lessons{grid-template-columns:repeat(auto-fill,minmax(220px,280px));gap:10px}
 .course-card .meta{line-height:1.5}
 .course-progress{display:inline-flex;align-items:center;vertical-align:middle;gap:6px;margin-left:7px;color:var(--faint);white-space:nowrap}
-.course-progress-track{display:block;width:88px;height:5px;overflow:hidden;border-radius:999px;background:var(--border)}
+.course-progress-track{display:block;width:88px;height:5px;overflow:hidden;border-radius:var(--ui-radius-pill);background:var(--border)}
 .course-progress-fill{display:block;width:0;height:100%;border-radius:inherit;background:var(--accent);transition:width .25s ease}
 .course-progress-count{font-size:11px;line-height:1;color:var(--faint)}
 .course-progress.is-due .course-progress-fill{background:var(--warn)}
@@ -175,23 +176,23 @@ html,body{height:100%;overflow:hidden}
 /* 管理页句子预览：chunk 划分直接标在原句上（每个 chunk 带下划线，空格分隔） */
 .sen-chunk{border-bottom:1.5px solid var(--accent);padding-bottom:1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
-.edit-stat{margin-top:12px;padding:10px 14px;border-radius:10px;background:var(--ok-soft);color:#0b6b3a;font-size:13px;font-weight:600}
+.edit-stat{margin-top:12px;padding:10px 14px;border-radius:var(--ui-radius-control);background:var(--ok-soft);color:#0b6b3a;font-size:13px;font-weight:600}
 
 /* 弹窗 */
 .mask{position:fixed;inset:0;background:rgba(15,20,30,.45);display:flex;align-items:center;justify-content:center;z-index:60;padding:18px}
 .mask[hidden]{display:none}
-.modal{background:var(--surface);border-radius:14px;width:100%;max-width:640px;max-height:88vh;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;contain:paint}
-.modal-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);flex-shrink:0;border-radius:14px 14px 0 0}
+.modal{background:var(--surface);border-radius:var(--ui-radius-card);width:100%;max-width:640px;max-height:88vh;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;contain:paint}
+.modal-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);flex-shrink:0;border-radius:var(--ui-radius-card) var(--ui-radius-card) 0 0}
 .modal-head h3{margin:0;font-size:15px;font-weight:700}
 .modal-body{padding:16px 18px;overflow-y:auto;flex:1 1 auto;min-height:0;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
 .modal-body::-webkit-scrollbar{width:8px}
 .modal-body::-webkit-scrollbar-track{background:transparent}
-.modal-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:4px}
-.modal-foot{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;border-radius:0 0 14px 14px}
+.modal-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:var(--ui-radius-sm)}
+.modal-foot{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;border-radius:0 0 var(--ui-radius-card) var(--ui-radius-card)}
 .course-import-type-modal{max-width:460px}
 .course-import-type-modal > .modal-head,.course-import-type-modal > .modal-foot{border:0}
 .course-type-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.course-type-choice{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:82px;padding:14px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .15s,background .15s}
+.course-type-choice{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:82px;padding:14px;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface);color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .15s,background .15s}
 .course-type-choice:hover{border-color:var(--accent);background:var(--accent-soft)}
 .course-type-choice:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .course-type-choice strong{font-size:14px}
@@ -203,7 +204,7 @@ html,body{height:100%;overflow:hidden}
 .course-confirm-danger{border-color:var(--bad);background:var(--bad);color:#fff}
 .course-confirm-danger:hover{border-color:#9f3d35;background:#9f3d35;color:#fff}
 .set-lbl{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
-.set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:13px;color:var(--text)}
+.set-inp{padding:6px 10px;border:1px solid var(--border);border-radius:var(--ui-radius-sm);background:var(--surface);font-size:13px;color:var(--text)}
 .msg{min-height:20px;font-size:12.5px;margin-top:8px}
 .msg.err{color:var(--bad)}
 .msg.ok{color:var(--ok)}
@@ -216,17 +217,17 @@ html,body{height:100%;overflow:hidden}
 .add-options{display:grid;grid-template-columns:minmax(145px,1.3fr) minmax(115px,1fr) 56px 68px 82px;gap:6px;margin:2px 0 10px}
 .add-field{display:flex;flex-direction:column;gap:3px;min-width:0}
 .add-field label{font-size:12px;color:var(--muted);font-weight:600}
-.add-field select,.add-field input{width:100%;min-width:0;padding:5px 6px;border:1px solid var(--border);border-radius:7px;background:var(--surface);font-size:12.5px}
+.add-field select,.add-field input{width:100%;min-width:0;padding:5px 6px;border:1px solid var(--border);border-radius:var(--ui-radius-sm);background:var(--surface);font-size:12.5px}
 .add-custom{display:block;margin:4px 0 10px}
 .add-custom .lbl{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
-.add-custom textarea{width:100%;min-height:60px;border:1px solid var(--border);border-radius:8px;padding:7px 9px;background:var(--surface);font-size:12.5px;line-height:1.45;resize:vertical}
+.add-custom textarea{width:100%;min-height:60px;border:1px solid var(--border);border-radius:var(--ui-radius-sm);padding:7px 9px;background:var(--surface);font-size:12.5px;line-height:1.45;resize:vertical}
 .add-custom .hint{display:block;margin-top:3px;color:var(--faint);font-size:11.5px}
 .step-title{font-size:13.5px;font-weight:700;margin:12px 0 6px;display:flex;align-items:center;gap:6px}
-.step-title .step{display:inline-flex;width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center}
+.step-title .step{display:inline-flex;width:18px;height:18px;border-radius:var(--ui-radius-circle);background:var(--accent);color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center}
 .step-title .note{font-size:12px;color:var(--faint);font-weight:400}
 textarea,input[type=text],select{font:inherit;color:var(--text)}
 textarea{outline:none;resize:vertical}
-.drop{border:1px dashed var(--border-strong);border-radius:10px;padding:8px;cursor:pointer;background:var(--surface-2)}
+.drop{border:1px dashed var(--border-strong);border-radius:var(--ui-radius-control);padding:8px;cursor:pointer;background:var(--surface-2)}
 .drop textarea{width:100%;min-height:110px;border:0;background:transparent;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px}
 .drop.paste-only{cursor:default}
 .drop.paste-only textarea{cursor:text}
@@ -234,8 +235,8 @@ textarea{outline:none;resize:vertical}
 
 /* 课程导入：用虚线框明确标出文件拖放区 */
 #courseImpMask .modal-body{padding-top:10px;padding-bottom:12px}
-.course-drop-zone{border:1px dashed var(--border-strong);border-radius:8px;padding:8px;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
-.course-drop-zone:hover,.course-drop-zone.drag-over{background:rgba(26,92,255,.035);border-radius:8px}
+.course-drop-zone{border:1px dashed var(--border-strong);border-radius:var(--ui-radius-sm);padding:8px;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.course-drop-zone:hover,.course-drop-zone.drag-over{background:rgba(26,92,255,.035);border-radius:var(--ui-radius-sm)}
 .course-drop-zone.drag-over{box-shadow:inset 0 0 0 1px rgba(44,98,201,.16)}
 .course-drop-hint{pointer-events:none;display:grid;grid-template-columns:26px 1fr;column-gap:10px;align-items:center}
 .course-drop-icon{font-size:24px;display:flex;align-items:center;justify-content:center;line-height:1;grid-row:span 2}
@@ -249,7 +250,7 @@ textarea{outline:none;resize:vertical}
 .level-row+.level-row{margin-top:10px}
 .level-row.two-col{gap:12px}
 .logical-course-draft{margin-top:12px;padding-top:0;border-top:0}
-.logical-course-cover-drop{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:112px;border:1px dashed var(--border-strong);border-radius:8px;background:var(--surface-2);color:var(--faint);cursor:pointer;overflow:hidden;transition:border-color .2s,background .2s}
+.logical-course-cover-drop{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:112px;border:1px dashed var(--border-strong);border-radius:var(--ui-radius-sm);background:var(--surface-2);color:var(--faint);cursor:pointer;overflow:hidden;transition:border-color .2s,background .2s}
 .logical-course-cover-drop:hover,.logical-course-cover-drop.drag-over{border-color:var(--accent);background:rgba(26,92,255,.035)}
 .logical-course-cover-drop-hint{font-size:12px;pointer-events:none}
 .logical-course-cover-preview{position:absolute;inset:0;overflow:hidden;background:var(--surface);background-size:cover;background-position:center}
@@ -260,22 +261,22 @@ textarea{outline:none;resize:vertical}
 .level-hint{font-size:11px;color:var(--faint);margin-top:3px;display:block}
 
 /* 详解页 */
-.exp-row{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.exp-row{border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:4px}
 .exp-row .dim{display:flex;gap:6px;padding:3px 0}
 .exp-row .dim-lbl{flex-shrink:0;font-size:11px;font-weight:700;margin-top:2px}
-.empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:12px}
+.empty-tip{padding:26px;text-align:center;color:var(--faint);font-size:13px;border:1px dashed var(--border);border-radius:var(--ui-radius-control)}
 
 /* 顶部课程范围：分段控件 */
-.tabs{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:3px}
-.tab{border:0;background:transparent;color:var(--muted);padding:5px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+.tabs{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--ui-radius-control);padding:3px}
+.tab{border:0;background:transparent;color:var(--muted);padding:5px 14px;border-radius:var(--ui-radius-sm);font-size:13px;font-weight:600;cursor:pointer}
 .tab.on{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(28,32,36,.06)}
 /* 课程类型：轻量文字导航，选中态只由 aria-current 驱动 */
 .course-type-nav .tab{position:relative;padding:4px 2px 7px;border-radius:0;background:transparent;color:var(--muted);font-weight:500;box-shadow:none;white-space:nowrap}
 .course-type-nav .tab:hover{color:var(--text)}
 .course-type-nav .tab[aria-current="page"]{color:var(--accent);font-weight:700;box-shadow:inset 0 -2px 0 var(--accent)}
-.course-type-nav .tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.course-type-nav .tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--ui-radius-sm)}
 /* 课程树 */
-.series{border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-bottom:10px;overflow:hidden}
+.series{border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface);margin-bottom:10px;overflow:hidden}
 .series-head{display:flex;align-items:center;gap:10px;padding:13px 15px;cursor:pointer}
 .series-head:hover{background:var(--surface-2)}
 .series-name{font-size:15px;font-weight:700}
@@ -286,17 +287,17 @@ textarea{outline:none;resize:vertical}
 .series-body{display:none;padding:0 15px 12px}
 .series.open .series-body{display:block}
 .vol{margin:6px 0 4px;padding-left:8px;border-left:2px solid var(--border)}
-.vol-head{display:flex;align-items:center;gap:8px;padding:7px 10px;cursor:pointer;font-size:14.5px;font-weight:600;color:var(--text);border-radius:8px}
+.vol-head{display:flex;align-items:center;gap:8px;padding:7px 10px;cursor:pointer;font-size:14.5px;font-weight:600;color:var(--text);border-radius:var(--ui-radius-sm)}
 .vol-head:hover{background:var(--surface-2)}
 .vol-caret{color:var(--muted);font-size:16px;line-height:1;transition:transform .2s}
 .vol.open .vol-caret{transform:rotate(90deg)}
 .vol-body{display:none;padding:2px 0 2px 30px}
 .vol.open .vol-body{display:block}
-.lesson{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer}
+.lesson{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--ui-radius-sm);cursor:pointer}
 .lesson:hover{background:var(--surface-2)}
 .lesson .nm{font-size:13.5px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lesson .meta{font-size:12px;color:var(--faint);flex-shrink:0}
-.lesson-del{flex-shrink:0;width:22px;height:22px;border:none;border-radius:50%;background:transparent;color:var(--faint);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s}
+.lesson-del{flex-shrink:0;width:22px;height:22px;border:none;border-radius:var(--ui-radius-circle);background:transparent;color:var(--faint);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s}
 .lesson:hover .lesson-del{opacity:1}
 .lesson-del:hover{background:#fee;color:#c33}
 /* 触摸按压反馈（2026-09-10）：tap-highlight 已全局关闭，按压态由 :active 提供 */
@@ -304,11 +305,11 @@ textarea{outline:none;resize:vertical}
 .cat-btn:active,.series-head:active,.vol-head:active,.lesson:active{background:var(--surface-2)}
 .lesson-del:active{background:#fee;color:#c33}
 .course-empty{padding:12px 16px;text-align:center;color:var(--faint);line-height:1.45}
-.deck-notice{position:fixed;top:18px;left:50%;z-index:100;max-width:min(420px,calc(100vw - 28px));padding:9px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:0 8px 24px rgba(20,30,50,.14);color:var(--text);font-size:13px;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,-8px);transition:opacity .18s,transform .18s}
+.deck-notice{position:fixed;top:18px;left:50%;z-index:100;max-width:min(420px,calc(100vw - 28px));padding:9px 14px;border:1px solid var(--border);border-radius:var(--ui-radius-control);background:var(--surface);box-shadow:0 8px 24px rgba(20,30,50,.14);color:var(--text);font-size:13px;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,-8px);transition:opacity .18s,transform .18s}
 .deck-notice.show{opacity:1;transform:translate(-50%,0)}
 .deck-notice.ok{border-color:#b9e5cc;color:#0b6b3a}
 .deck-notice.err{border-color:#f0c2bd;color:var(--bad)}
-.content-conflict-drafts{margin:0 0 14px;padding:14px 16px;border:1px solid #e8cf8d;border-radius:12px;background:#fff8e7;color:var(--text)}
+.content-conflict-drafts{margin:0 0 14px;padding:14px 16px;border:1px solid #e8cf8d;border-radius:var(--ui-radius-control);background:#fff8e7;color:var(--text)}
 .content-conflict-drafts h3{margin:0 0 5px;font-size:14px}
 .content-conflict-drafts p{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.5}
 .content-conflict-draft-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid #eadfbf}
@@ -337,7 +338,7 @@ textarea{outline:none;resize:vertical}
   #deckList,#marketList{grid-template-columns:minmax(0,1fr);gap:8px}
   .deck-list{gap:6px}
   .deck-section-title{margin:8px 2px 0;font-size:12px}
-  .deck-item{display:grid;grid-template-columns:minmax(0,1fr);gap:0;border-radius:10px}
+  .deck-item{display:grid;grid-template-columns:minmax(0,1fr);gap:0;border-radius:var(--ui-radius-control)}
   .deck-cover{min-height:0}
   .deck-card-body{min-height:0;gap:7px;padding:10px}
   .course-card .deck-card-body{min-height:0;padding:6px 9px}
@@ -560,7 +561,7 @@ textarea{outline:none;resize:vertical}
         <span class="hint">适合只添加 1-2 句；大模型会补齐翻译、意群、中文提示和句子成分。</span>
       </label>
       <div class="step-title"><span class="step">1</span>提示词<span class="note">复制给任意外部大模型</span><button class="btn sm primary" id="btnCopy" style="margin-left:8px"><span data-icon="copy"></span>复制</button><span id="copyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
-      <textarea id="promptBox" readonly placeholder="提示词会根据上方参数自动更新…" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;background:var(--surface-2)"></textarea>
+      <textarea id="promptBox" readonly placeholder="提示词会根据上方参数自动更新…" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:var(--ui-radius-sm);padding:10px;font-size:12px;background:var(--surface-2)"></textarea>
       <div class="step-title" style="margin-top:14px"><span class="step">2</span>粘贴模型返回的 JSON<span class="note">也可拖入 .json 文件</span><button class="btn sm ghost" id="btnClear" style="margin-left:8px">清空</button></div>
       <div class="drop" id="drop">
         <textarea id="jsonBox" placeholder='粘贴 JSON… 或拖入 / 点击选择文件'></textarea>
@@ -664,7 +665,7 @@ Could you tell me how to get to the station?' style="min-height:140px"></textare
 
       <div style="margin-bottom:10px">
         <div class="step-title"><span class="step" id="appendStepNum">2</span><span id="appendStepTitle">Prompt</span><span class="note">粘贴给任意大模型</span><button class="btn sm primary" id="btnAppendCopy" style="margin-left:8px"><span data-icon="copy"></span>复制</button><span id="appendCopyTip" style="margin-left:4px;font-size:12px;color:var(--ok)"></span></div>
-        <textarea id="appendPromptBox" readonly placeholder="Prompt 已自动生成…" style="width:100%;min-height:60px;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12.5px;background:var(--surface-2)"></textarea>
+        <textarea id="appendPromptBox" readonly placeholder="Prompt 已自动生成…" style="width:100%;min-height:60px;border:1px solid var(--border);border-radius:var(--ui-radius-sm);padding:10px;font-size:12.5px;background:var(--surface-2)"></textarea>
       </div>
       <div>
         <div class="step-title"><span class="step" id="appendStepNum2">3</span>粘贴返回的 JSON<span class="note">自动去重</span><button class="btn sm ghost" id="btnAppendClear" style="margin-left:8px">清空</button></div>
@@ -1602,11 +1603,11 @@ function addCourseCard(course, list){
   metaNode.innerHTML = esc(meta)+(lastPlayed ? ' · 最近学习' : '')+(course.contentType === 'sentence' ? ' <span class="course-progress" data-course-progress aria-label="进度计算中" title="进度计算中"><span class="course-progress-track"><span class="course-progress-fill"></span></span><span class="course-progress-count">'+initCount+'</span></span>' : '');
   var membership = _catalogMemberships[course.id];
   var joined = !!(membership && membership.joined);
-  var joinBlocked = !joined && _catalogJoinedCount >= (CourseEnrollment.MAX_JOINED_COURSES || 3);
+  var joinBlocked = !joined && _catalogJoinedCount >= (CourseEnrollment.MAX_JOINED_COURSES || 4);
   var courseActions = [{
-    label:joined ? '移出学习' : (joinBlocked ? '已达 3 门上限' : '加入学习'),
+    label:joined ? '移出学习' : (joinBlocked ? '已达 4 门上限' : '加入学习'),
     disabled:joinBlocked,
-    title:joinBlocked ? '最多加入 3 门课程；请先移出一门，再加入新课程。' : '',
+    title:joinBlocked ? '最多加入 4 门课程；请先移出一门，再加入新课程。' : '',
     action:function(){
       if(!window.CourseEnrollment) return alert('加入功能暂不可用，请刷新页面重试。');
       var operation = joined ? CourseEnrollment.leave(course.id) : CourseEnrollment.join(course.id, _catalogAliases);
@@ -1935,9 +1936,9 @@ function openDecks(options){
     if(!d.builtin && window.CourseEnrollment){
       var enrollmentId = catalogCourseIdForDeck(d);
       var joined = !!(_catalogMemberships[enrollmentId] && _catalogMemberships[enrollmentId].joined);
-      var joinBlocked = !joined && _catalogJoinedCount >= (CourseEnrollment.MAX_JOINED_COURSES || 3);
-      menuItems.push({label:joined ? '移出学习' : (joinBlocked ? '已达 3 门上限' : '加入学习'), disabled:joinBlocked,
-        title:joinBlocked ? '最多加入 3 门课程；请先移出一门，再加入新课程。' : '', action:function(){
+      var joinBlocked = !joined && _catalogJoinedCount >= (CourseEnrollment.MAX_JOINED_COURSES || 4);
+      menuItems.push({label:joined ? '移出学习' : (joinBlocked ? '已达 4 门上限' : '加入学习'), disabled:joinBlocked,
+        title:joinBlocked ? '最多加入 4 门课程；请先移出一门，再加入新课程。' : '', action:function(){
         var operation = joined ? CourseEnrollment.leave(enrollmentId) : CourseEnrollment.join(enrollmentId, _catalogAliases);
         operation.then(function(){ openDecks(); }).catch(function(error){ alert((error && error.message || error)); });
       }});
@@ -2257,7 +2258,7 @@ function editDeck(d){
       sentenceHtml = esc(it.sentence || it.en || '');
     }
     var masterBadge = isMastered(d.id, it) ?
-      '<span style="display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:#12924f;border-radius:5px;padding:1px 5px;margin-left:6px;vertical-align:middle">熟</span>' : '';
+      '<span style="display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:#12924f;border-radius:var(--ui-radius-sm);padding:1px 5px;margin-left:6px;vertical-align:middle">熟</span>' : '';
     var inner =
       '<div class="sen">'+
         '<div class="en"><span style="color:var(--accent);margin-right:5px;font-size:12px;font-weight:700">'+(i+1)+'</span>'+sentenceHtml+masterBadge+'</div>'+
@@ -2382,7 +2383,7 @@ function renderExplain(){
     var has = !!(raw && (typeof raw === 'object' ? true : String(raw).trim()));
     var head =
       '<div style="display:flex;align-items:center;gap:8px">'+
-        '<span style="font-size:11px;font-weight:700;color:#fff;background:'+(has?'#12924f':'#b0b8c8')+';border-radius:5px;padding:1px 6px">'+(i+1)+'</span>'+
+        '<span style="font-size:11px;font-weight:700;color:#fff;background:'+(has?'#12924f':'#b0b8c8')+';border-radius:var(--ui-radius-sm);padding:1px 6px">'+(i+1)+'</span>'+
         '<b style="font-size:14.5px">'+esc(ch)+'</b>'+
         '<span style="margin-left:auto;font-size:11px;color:'+(has?'#12924f':'var(--faint)')+'">'+(has?'已详解':'暂无详解')+'</span>'+
       '</div>';
@@ -2398,7 +2399,7 @@ function renderExplain(){
         }).join('');
         if(Array.isArray(raw.words) && raw.words.length){
           var wHtml = raw.words.map(function(w){
-            return '<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border:1px solid var(--border-strong);border-radius:5px;font-size:11.5px;color:var(--accent)"><b>'+esc(w.w||w.word||'')+'</b>'+(w.p?' <span style="color:var(--faint)">('+esc(w.p)+')</span>':'')+(w.m?' '+esc(w.m):'')+'</span>';
+            return '<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border:1px solid var(--border-strong);border-radius:var(--ui-radius-sm);font-size:11.5px;color:var(--accent)"><b>'+esc(w.w||w.word||'')+'</b>'+(w.p?' <span style="color:var(--faint)">('+esc(w.p)+')</span>':'')+(w.m?' '+esc(w.m):'')+'</span>';
           }).join('');
           body += '<div class="dim"><span class="dim-lbl" style="color:#d4a017">关键词</span><div>'+wHtml+'</div></div>';
         }

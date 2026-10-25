@@ -13,7 +13,8 @@ const summary = computeTodaySummary({
   now: 123,
   isDue: (stat, now) => stat.times === 1 && now === 123,
   isDeleted: (_deckId, cid) => cid === 'unused',
+  needsReinforcement: (row) => row.deckId === 'd1',
 });
-assert.deepEqual(summary, { due: 1, book: 2 });
+assert.deepEqual(summary, { due: 1, book: 1 });
 assert.deepEqual(computeTodaySummary({}), { due: 0, book: 0 });
 console.log('main-home-summary.test.mjs passed');

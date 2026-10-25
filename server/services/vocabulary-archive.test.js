@@ -23,7 +23,7 @@ try {
   const summary = archive.summary(1);
   assert.equal(summary.domains[0].learnedItems,1,'same knowledge in two books is not doubled');
   assert.equal(summary.domains[0].events,3);
-  assert.equal(summary.domains[0].dueItems,1);
+  assert.equal(summary.domains[0].dueItems,null,'global due dates cannot represent book- and practice-specific review status');
   assert.deepEqual(summary.domains[0].frequentErrors.map(row=>[row.itemId,row.wrongAnswers]),[['borrow-sense-1',1]],'word mistakes are ranked per course item');
   assert.equal(summary.domains[0].attemptedAnswers,1);assert.equal(summary.domains[0].incorrectAnswers,1);assert.equal(archive.attempts(1,{incorrect:'true'}).items[0].answers.text,'lend');assert.equal(archive.attempts(3).items.length,0);assert.equal(archive.attempts(1,{incorrect:'false'}).items.length,0);assert.throws(()=>archive.attempts(1,{incorrect:'other'}),/筛选/);
   assert.equal(summary.domains[1].learnedItems,1);
@@ -51,7 +51,7 @@ try {
   for (const query of [{limit:101},{limit:0},{offset:-1},{offset:'bad'}]) assert.throws(()=>archive.events(1,query),/分页/);
   const routes=[]; const authenticate=()=>{};
   registerLearningArchiveRoutes({app:{get:(...args)=>routes.push(args)},auth:{authenticate},db});
-  assert.equal(routes.length,4);
+  assert.equal(routes.length,6);
   assert.equal(routes.every(route=>route[1]===authenticate),true,'all archive reads require authentication');
   assert.equal(db.prepare('SELECT total_changes() AS count').get().count,before,'all projections are read-only');
   console.log('vocabulary archive: owner isolation, pagination, knowledge identity and read-only contract passed');
