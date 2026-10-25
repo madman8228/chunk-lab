@@ -1,0 +1,7 @@
+{
+  "version": "1.0",
+  "courses": [
+    { "courseId": "expression-unit01-tools", "track": "scenario", "stage": "S0", "knowledgeIds": ["s0.learning-instructions", "s0.greetings", "s0.letter-names", "s0.name-chunks"], "mappingStatus": "candidate" },
+    { "courseId": "expression-unit02-meeting-people", "track": "scenario", "stage": "S0", "knowledgeIds": ["s0.name-chunks"], "mappingStatus": "candidate" }
+  ]
+}
