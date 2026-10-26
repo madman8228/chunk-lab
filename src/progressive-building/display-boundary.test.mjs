@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {displayBoundary,isBuildHistory} from './display-boundary.mjs';
+import {adverbials} from './adverbials-v3.mjs';
+assert.equal(displayBoundary(adverbials.sequence,6,false),6);
+assert.deepEqual(adverbials.sequence.slice(0,7).flatMap((s,i)=>i>=displayBoundary(adverbials.sequence,6,false)&&isBuildHistory(s)?[i]:[]),[6]);
+for(const type of ['classify','identify','quantity','replace','teach','transfer','insert-modifier'])assert.equal(isBuildHistory({type}),false);
+assert.ok(isBuildHistory({type:'compose'}));
+const sequence=[{}, {clearSentenceResultOnComplete:true}, {}, {clearSentenceResultOnStart:true}];
+assert.equal(displayBoundary(sequence,1,false),-1);
+assert.equal(displayBoundary(sequence,1,true),1);
+assert.equal(displayBoundary(sequence,2,false),1);
+assert.equal(displayBoundary(sequence,3,false),3);
+console.log('Shared display round boundary and build-only history passed');

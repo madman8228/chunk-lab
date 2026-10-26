@@ -1,9 +1,17 @@
+import { adverbials } from './adverbials-v3.mjs?v=20261027-49';
+import { postmodifier as book } from './postmodifier-v3.mjs?v=20261026-42';
+import { locationLesson } from './location-v3.mjs?v=20261026-39';
+import { quantityExpressions } from './quantity-expressions-v3.mjs?v=20261026-39';
+import { countability } from './countability-v3.mjs?v=20261026-39';
+import { pluralForms } from './plural-forms-v3.mjs?v=20261026-39';
+import { knownReference } from './known-reference-v3.mjs?v=20261026-39';
+import { articleSound } from './article-sound-v3.mjs?v=20261026-39';
 import { lesson as original, wordIdsForGroups } from './lesson-v3.mjs?v=20261024-5';
-import { foundations } from './foundations-v3.mjs?v=20261026-9';
-import { visualScenes } from './visual-scenes.mjs?v=20261026-9';
-import { mixedReview } from './mixed-review-v3.mjs?v=20261026-9';
-import { nounPhrase } from './noun-phrase-v3.mjs?v=20261026-9';
-import { quantity } from './quantity-v3.mjs?v=20261024-1';
+import { foundations } from './foundations-v3.mjs?v=20261026-39';
+import { visualScenes } from './visual-scenes.mjs?v=20261026-39';
+import { mixedReview } from './mixed-review-v3.mjs?v=20261026-39';
+import { nounPhrase } from './noun-phrase-v3.mjs?v=20261026-39';
+import { quantity } from './quantity-v3.mjs?v=20261026-39';
 import { likeTransfer } from './like-transfer-v3.mjs?v=20261026-4';
 
 // Ranges are half-open token positions in this step, not permanent word roles.
@@ -19,29 +27,6 @@ const first = {
         ...(index >= 3 ? [span(5, 7, '伴随状语')] : []),
         ...(index >= 4 ? [span(7, 9, '时间状语')] : [])],
   })),
-};
-
-const bookWords = {
-  subjectThe: { en: 'The', zh: '那', part: '冠词' },
-  book: { en: 'book', zh: '书', part: '名词' },
-  on: { en: 'on', zh: '在……上', part: '介词' },
-  deskThe: { en: 'the', zh: '那', part: '冠词' },
-  desk: { en: 'desk', zh: '桌子', part: '名词' },
-  is: { en: 'is', zh: '是', part: '动词' },
-  mine: { en: 'mine', zh: '我的', part: '代词' },
-};
-const bookSubject = ['subjectThe', 'book', 'on', 'deskThe', 'desk'];
-const bookAnnotations = [span(0, 2, '主语中心'), span(2, 5, '后置定语'), span(0, 5, '主语', 1)];
-const book = {
-  id: 'book-on-desk-preview', label: '课程二 · 主语里的修饰', words: bookWords,
-  sentence: { wordIds: [...bookSubject, 'is', 'mine'], zh: '桌子上的那本书是我的。' },
-  sequence: [
-    { meaning: '那本书', wordIds: ['subjectThe', 'book'], dependsOn: [], annotations: [span(0, 2, '名词短语')] },
-    { meaning: '在桌子上', wordIds: ['on', 'deskThe', 'desk'], dependsOn: [], annotations: [span(0, 3, '介词短语')] },
-    { meaning: '桌子上的那本书', wordIds: bookSubject, dependsOn: [0, 1], annotations: bookAnnotations },
-    { meaning: '是我的', wordIds: ['is', 'mine'], dependsOn: [], annotations: [span(0, 1, '系动词'), span(1, 2, '表语')] },
-    { meaning: '桌子上的那本书是我的', wordIds: [...bookSubject, 'is', 'mine'], dependsOn: [2, 3], annotations: [...bookAnnotations, span(5, 6, '系动词'), span(6, 7, '表语')] },
-  ],
 };
 
 const questionWords = {
@@ -68,7 +53,7 @@ const question = {
   ],
 };
 
-export const lessons = [...foundations, likeTransfer, mixedReview, nounPhrase, quantity, first, book, question];
+export const lessons = [...foundations, likeTransfer, mixedReview, nounPhrase, quantity, articleSound, knownReference, pluralForms, countability, quantityExpressions, locationLesson, book, adverbials, first, question];
 
 export function normalizeAnswer(value) {
   return value.trim().toLowerCase().replace(/[’‘]/g, "'").replace(/[.!?。！？]+$/g, '').trim().replace(/\s+/g, ' ');
@@ -132,6 +117,7 @@ export function validatePreviewLesson(course) {
     }
     if (step.dependsOn.some(value => !Number.isInteger(value) || value < 0 || value >= index)) throw new Error('Invalid step dependency');
     if (step.clearSentenceResultOnComplete !== undefined && typeof step.clearSentenceResultOnComplete !== 'boolean') throw new Error('Sentence clearing requires an explicit boolean');
+    if (step.clearSentenceResultOnStart !== undefined && typeof step.clearSentenceResultOnStart !== 'boolean') throw new Error('Sentence clearing on entry requires an explicit boolean');
     if (step.replacesTrailIndexes && (!Array.isArray(step.replacesTrailIndexes) || new Set(step.replacesTrailIndexes).size !== step.replacesTrailIndexes.length || step.replacesTrailIndexes.some(value => !Number.isInteger(value) || !step.dependsOn.includes(value)))) throw new Error('Trail replacement must name distinct earlier dependencies');
     for (const annotation of step.annotations) {
       if (!Number.isInteger(annotation.start) || !Number.isInteger(annotation.end) || annotation.start < 0 || annotation.end > step.wordIds.length || annotation.start >= annotation.end || !annotation.label || !Number.isInteger(annotation.level) || annotation.level < 0) throw new Error('Invalid syntax range');

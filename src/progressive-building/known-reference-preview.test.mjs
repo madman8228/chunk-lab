@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {knownReference} from './known-reference-v3.mjs';
+import {validatePreviewLesson,matchesTransfer} from './lessons-v3.mjs';
+validatePreviewLesson(knownReference);
+assert.deepEqual(knownReference.sequence.filter(s=>s.type==='classify').map(s=>s.answer),['the','the','a']);
+assert.ok(knownReference.sequence[5].options.find(o=>o.id==='the').feedback.includes('第一次'));
+assert.ok(knownReference.sequence[6].options.find(o=>o.id==='the').feedback.includes('所有包'));
+assert.ok(knownReference.sequence.filter(s=>!s.type).every(s=>s.prompt));
+assert.ok(matchesTransfer(knownReference.sequence.at(-1),'You need the book.'));
+assert.ok(!matchesTransfer(knownReference.sequence.at(-1),'You need a book.'));
+console.log('Known-reference context and transfer checks passed');

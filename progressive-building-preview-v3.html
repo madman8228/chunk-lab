@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>渐进搭句 · 新交互预览</title>
   <link rel="stylesheet" href="assets/ui-tokens.css">
-  <link rel="stylesheet" href="assets/progressive-building-v3.css?v=20261026-9">
+  <link rel="stylesheet" href="assets/progressive-building-v3.css?v=20261027-49">
 </head>
 <body>
   <main>
@@ -13,13 +13,15 @@
     <select id="lesson-select" aria-label="切换预览课程"></select>
     <button id="review-entry" type="button" hidden></button>
     <section id="teaching-board" aria-label="刚完成内容的讲解黑板" aria-live="polite"></section>
-    <section id="sentence-result" aria-label="一级整句显示区" aria-live="polite" hidden></section>
-    <ol id="trail" aria-label="按语义分组的句子成分"></ol>
+    <div id="learning-displays">
+      <section id="sentence-result" aria-label="一级整句显示区" aria-live="polite" hidden></section>
+      <ol id="trail" aria-label="按语义分组的句子成分"></ol>
+    </div>
     <section id="activity" aria-label="当前练习"></section>
     <p id="feedback" role="status" aria-live="polite"></p>
     <footer><button id="next" type="button"></button></footer>
     <noscript>请开启 JavaScript 以使用组句预览。</noscript>
   </main>
-  <script type="module" src="src/progressive-building/view-v3.mjs?v=20261026-9"></script>
+  <script type="module" src="src/progressive-building/view-v3.mjs?v=20261027-49"></script>
 </body>
 </html>

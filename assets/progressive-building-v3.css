@@ -30,10 +30,14 @@
 .semantic-growth-chunk .semantic-heading{justify-content:center}
 .semantic-words.is-pending{visibility:hidden;pointer-events:none;user-select:none}
 #activity>.bank:first-child{margin-top:0}
-#teaching-board{min-height:201.6px;overflow:visible;margin:16px 0 10px;padding:18px 22px;background:#233e34;color:#fffbed;border:2px solid #745333;border-radius:8px}
+#teaching-board{height:201.6px;min-height:201.6px;overflow:auto;scrollbar-gutter:stable;margin:16px 0 10px;padding:18px 22px;background:#233e34;color:#fffbed;border:2px solid #745333;border-radius:8px}
+#learning-displays{display:grid;grid-template-rows:160px 160px;height:320px;min-width:0}
+#learning-displays>#sentence-result{grid-row:1;min-height:0;height:100%;overflow:auto}
+#learning-displays>#trail{grid-row:2;min-height:0;height:100%;margin:0;overflow:auto}
 #sentence-result{min-height:136px;padding:10px 0;display:flex;flex-direction:column;justify-content:center;gap:2px;border-bottom:1px solid var(--line)}
 .sentence-result-en{font-size:24px;line-height:1.4;overflow-wrap:anywhere}
 .sentence-result-zh{font-size:16px;color:var(--muted)}
+.build-target{margin:0;text-align:center;font-size:32px;font-weight:700;line-height:1.4}
 #sentence-result>.semantic-words{margin-top:0;padding-bottom:0;flex-shrink:0}
 .syntax-word-gloss{font-size:18px;font-weight:600;line-height:1.4;text-align:center}
 #trail.has-sentence-level{min-height:104px}
@@ -42,7 +46,7 @@
 @media(max-width:600px){.practice-chunk{font-size:17px}}
 #activity>.bank button:hover:not(:disabled){background:#ffe6ab;transform:translateY(-2px)}
 #activity>.bank button:active:not(:disabled){transform:translateY(2px);box-shadow:inset 0 1px 0 #fffbed,0 1px 3px #563d201c}
-@media(max-width:600px){#teaching-board{min-height:252px;padding:16px}}
+@media(max-width:600px){#teaching-board{height:252px;min-height:252px;padding:16px}#learning-displays{height:280px;grid-template-rows:150px 130px}}
 @media(prefers-reduced-motion:reduce){#activity>.bank button{transition:none}}
 #teaching-board .blackboard-title{margin:0 0 8px;font-size:21px;line-height:1.35}
 #teaching-board p{margin:8px 0 0;line-height:1.6}
@@ -70,6 +74,7 @@
 .grammar-note{display:grid;gap:3px;margin:16px 0;font-size:16px}
 .grammar-note strong{color:var(--new)}
 .grammar-example{display:flex;gap:8px;align-items:baseline;font-size:25px}
+#teaching-board .grammar-example{justify-content:center;flex-wrap:wrap;margin:20px 0}
 .grammar-example mark{background:#ffdf91;color:var(--ink);border-radius:4px;padding:0 5px}
 .grammar-reason{margin:2px 0;font-weight:600}
 .grammar-prompt{font-size:18px;margin:12px 0}
@@ -81,14 +86,16 @@
 .grammar-words small{display:block;font-size:14px;color:var(--muted)}
 .grammar-words .identification-result:disabled{opacity:1;cursor:default}
 .grammar-words .identification-result.is-correct{background:#deebd6;border:2px solid #35613c;color:#24492a}
-.identification-feedback-slot{height:68px;padding-top:12px}
-.identification-success{position:relative;width:56px;height:56px;color:#35613c}
+#activity{position:relative}
+#activity:has(.identification-feedback-slot){padding-right:116px;min-height:120px}
+.identification-feedback-slot{position:absolute;top:12px;right:12px;width:84px;height:84px;pointer-events:none}
+.identification-success{position:relative;width:84px;height:84px;color:#35613c}
 .identification-success svg{display:block;width:100%;height:100%}
 .identification-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .identification-check{stroke-dasharray:1;stroke-dashoffset:0}
-.identification-success.is-animated{animation:identification-pop 320ms cubic-bezier(.16,1,.3,1) both}
+.identification-success.is-animated{animation:identification-pop 900ms cubic-bezier(.16,1,.3,1) both}
 .identification-success.is-animated .identification-check{animation:identification-draw 320ms 80ms ease-out both}
-@keyframes identification-pop{0%{transform:scale(.72)}65%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes identification-pop{0%{transform:translateY(0) scale(.72)}25%{transform:translateY(-10px) scale(1.08)}45%{transform:translateY(0) scale(.98)}65%{transform:translateY(-5px) scale(1.03)}100%{transform:translateY(0) scale(1)}}
 @keyframes identification-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.identification-success.is-animated,.identification-success.is-animated .identification-check{animation:none}}
 .modifier-relation{font-size:22px;font-weight:600;color:var(--new);margin:14px 0 6px}
@@ -112,3 +119,5 @@
 .word-component{width:100%;padding-top:3px;border-top:1px solid var(--line);font-size:.68em;line-height:1.3;color:var(--muted);text-align:center;white-space:nowrap}
 .shortcut-letter{color:var(--new);font-weight:800;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:600px){.semantic-heading{gap:3px 9px}.semantic-meaning{font-size:1.125em}}
+
+.blackboard-pronunciation{clear:both;display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:14px}.blackboard-pronunciation button{font-size:14px;min-height:36px;padding:4px 10px}

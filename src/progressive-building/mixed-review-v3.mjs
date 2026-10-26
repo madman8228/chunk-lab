@@ -1,4 +1,4 @@
-import { foundations } from './foundations-v3.mjs?v=20261026-9';
+import { foundations } from './foundations-v3.mjs?v=20261026-33';
 
 const span = (start, end, label) => ({ start, end, label, level: 0 });
 const svo = [span(0, 1, '主语'), span(1, 2, '谓语'), span(2, 3, '宾语')];

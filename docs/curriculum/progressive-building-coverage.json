@@ -1,0 +1,4013 @@
+{
+  "schemaVersion": 1,
+  "scope": "progressive sentence-building PB01–PB50 text preview",
+  "generatedAt": "2026-10-24T18:46:57.533Z",
+  "status": "reviewable-preview",
+  "totals": {
+    "knowledgeNodes": 50,
+    "previewNodes": 50,
+    "plannedNodes": 0,
+    "subgoals": 164,
+    "coveredSubgoals": 164
+  },
+  "nodes": [
+    {
+      "id": "PB01",
+      "title": "主谓：谁做什么",
+      "prerequisites": [],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB01.a",
+          "description": "主语与陈述对象",
+          "status": "covered",
+          "lessonIds": [
+            "pb01-subject-predicate-v1"
+          ],
+          "stepIds": [
+            "pb01-local-subject",
+            "pb01-merge",
+            "pb01-explain",
+            "pb01-identify-subject",
+            "pb01-change-subject",
+            "pb01-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB01.b",
+          "description": "动作谓语",
+          "status": "covered",
+          "lessonIds": [
+            "pb01-subject-predicate-v1"
+          ],
+          "stepIds": [
+            "pb01-local-predicate",
+            "pb01-merge",
+            "pb01-explain",
+            "pb01-identify-predicate",
+            "pb01-change-predicate",
+            "pb01-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB01.c",
+          "description": "分别替换与独立复用",
+          "status": "covered",
+          "lessonIds": [
+            "pb01-subject-predicate-v1"
+          ],
+          "stepIds": [
+            "pb01-identify-subject",
+            "pb01-identify-predicate",
+            "pb01-change-subject",
+            "pb01-change-predicate",
+            "pb01-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB02",
+      "title": "主谓宾：动作涉及什么",
+      "prerequisites": [
+        "PB01"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB02.a",
+          "description": "动作对象",
+          "status": "covered",
+          "lessonIds": [
+            "pb02-subject-verb-object-v1"
+          ],
+          "stepIds": [
+            "pb02-local-object",
+            "pb02-build-sentence",
+            "pb02-explain-object",
+            "pb02-identify-object",
+            "pb02-change-object",
+            "pb02-independent-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB02.b",
+          "description": "完整宾语",
+          "status": "covered",
+          "lessonIds": [
+            "pb02-subject-verb-object-v1"
+          ],
+          "stepIds": [
+            "pb02-local-object-phrase",
+            "pb02-build-full-object",
+            "pb02-explain-full-object",
+            "pb02-identify-full-object",
+            "pb02-independent-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB02.c",
+          "description": "人物与对象替换迁移",
+          "status": "covered",
+          "lessonIds": [
+            "pb02-subject-verb-object-v1"
+          ],
+          "stepIds": [
+            "pb02-change-object",
+            "pb02-independent-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB03",
+      "title": "主系表：身份与状态",
+      "prerequisites": [
+        "PB01"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB03.a",
+          "description": "名词表语",
+          "status": "covered",
+          "lessonIds": [
+            "pb03-noun-predicative-v1"
+          ],
+          "stepIds": [
+            "pb03a-local",
+            "pb03a-build",
+            "pb03a-teach",
+            "pb03a-identify",
+            "pb03a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB03.b",
+          "description": "形容词状态",
+          "status": "covered",
+          "lessonIds": [
+            "pb03-adjective-predicative-v1"
+          ],
+          "stepIds": [
+            "pb03b-local",
+            "pb03b-build",
+            "pb03b-teach",
+            "pb03b-identify",
+            "pb03b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB03.c",
+          "description": "介词短语表语",
+          "status": "covered",
+          "lessonIds": [
+            "pb03-pp-predicative-v1"
+          ],
+          "stepIds": [
+            "pb03c-local",
+            "pb03c-build",
+            "pb03c-teach",
+            "pb03c-identify",
+            "pb03c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB03.d",
+          "description": "系动词连接与宾语对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb03-predicative-object-contrast-v1"
+          ],
+          "stepIds": [
+            "pb03d-teach",
+            "pb03d-identify",
+            "pb03d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB04",
+      "title": "名词短语内部修饰",
+      "prerequisites": [
+        "PB02"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB04.a",
+          "description": "形容词定语",
+          "status": "covered",
+          "lessonIds": [
+            "pb04-adjective-modifier-v1"
+          ],
+          "stepIds": [
+            "pb04-explain-modifier",
+            "pb04-identify-modifier",
+            "pb04-local-phrase",
+            "pb04-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB04.b",
+          "description": "中心名词与名词短语",
+          "status": "covered",
+          "lessonIds": [
+            "pb04-adjective-modifier-v1"
+          ],
+          "stepIds": [
+            "pb04-explain-modifier",
+            "pb04-build-object",
+            "pb04-identify-object",
+            "pb04-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB04.c",
+          "description": "主语和宾语位置复用",
+          "status": "covered",
+          "lessonIds": [
+            "pb04-adjective-modifier-v1"
+          ],
+          "stepIds": [
+            "pb04-local-subject",
+            "pb04-build-subject",
+            "pb04-explain-subject",
+            "pb04-identify-subject",
+            "pb04-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB05",
+      "title": "可数、数量与指称",
+      "prerequisites": [
+        "PB04"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB05.a",
+          "description": "a/an与发音",
+          "status": "covered",
+          "lessonIds": [
+            "pb05-article-sound-v1"
+          ],
+          "stepIds": [
+            "pb05a-teach",
+            "pb05a-university",
+            "pb05a-hour-teach",
+            "pb05a-hour",
+            "pb05a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB05.b",
+          "description": "the与已知指称",
+          "status": "covered",
+          "lessonIds": [
+            "pb05-known-reference-v1"
+          ],
+          "stepIds": [
+            "pb05b-teach",
+            "pb05b-choose",
+            "pb05b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB05.c",
+          "description": "复数",
+          "status": "covered",
+          "lessonIds": [
+            "pb05-plural-forms-v1"
+          ],
+          "stepIds": [
+            "pb05c-teach",
+            "pb05c-regular",
+            "pb05c-irregular",
+            "pb05c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB05.d",
+          "description": "可数与不可数",
+          "status": "covered",
+          "lessonIds": [
+            "pb05-countability-v1"
+          ],
+          "stepIds": [
+            "pb05d-teach",
+            "pb05d-quantity",
+            "pb05d-local",
+            "pb05d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB05.e",
+          "description": "数量和限定表达",
+          "status": "covered",
+          "lessonIds": [
+            "pb05-quantity-determiners-v1"
+          ],
+          "stepIds": [
+            "pb05e-teach",
+            "pb05e-local",
+            "pb05e-sentence",
+            "pb05e-select",
+            "pb05e-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB06",
+      "title": "介词短语：位置与方向",
+      "prerequisites": [
+        "PB05"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB06.a",
+          "description": "地点介词短语",
+          "status": "covered",
+          "lessonIds": [
+            "pb06-location-phrase-v1"
+          ],
+          "stepIds": [
+            "pb06-location-teach",
+            "pb06-location-local",
+            "pb06-location-range",
+            "pb06-location-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB06.b",
+          "description": "介词与宾语",
+          "status": "covered",
+          "lessonIds": [
+            "pb06-location-phrase-v1"
+          ],
+          "stepIds": [
+            "pb06-location-teach",
+            "pb06-location-local",
+            "pb06-location-range",
+            "pb06-location-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB06.c",
+          "description": "位置语义和替换",
+          "status": "covered",
+          "lessonIds": [
+            "pb06-position-meaning-v1"
+          ],
+          "stepIds": [
+            "pb06-position-teach",
+            "pb06-position-local",
+            "pb06-position-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB07",
+      "title": "后置定语与主语扩展",
+      "prerequisites": [
+        "PB03",
+        "PB06"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB07.a",
+          "description": "介词短语后置定语",
+          "status": "covered",
+          "lessonIds": [
+            "pb07-postpositive-modifier-v1"
+          ],
+          "stepIds": [
+            "pb07-local-place",
+            "pb07-explain-attachment",
+            "pb07-build-subject",
+            "pb07-identify-subject",
+            "pb07-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB07.b",
+          "description": "主语内部扩展",
+          "status": "covered",
+          "lessonIds": [
+            "pb07-postpositive-modifier-v1"
+          ],
+          "stepIds": [
+            "pb07-local-noun",
+            "pb07-explain-attachment",
+            "pb07-build-subject",
+            "pb07-complete-sentence",
+            "pb07-identify-subject",
+            "pb07-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB07.c",
+          "description": "修饰对象",
+          "status": "covered",
+          "lessonIds": [
+            "pb07-postpositive-modifier-v1"
+          ],
+          "stepIds": [
+            "pb07-explain-attachment",
+            "pb07-build-subject",
+            "pb07-identify-subject",
+            "pb07-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB08",
+      "title": "时间、地点、方式与伴随",
+      "prerequisites": [
+        "PB02",
+        "PB06"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB08.a",
+          "description": "时间与频率",
+          "status": "covered",
+          "lessonIds": [
+            "pb08-time-frequency-v1"
+          ],
+          "stepIds": [
+            "pb08a-teach",
+            "pb08a-local",
+            "pb08a-sentence",
+            "pb08a-identify",
+            "pb08a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB08.b",
+          "description": "地点",
+          "status": "covered",
+          "lessonIds": [
+            "pb08-place-adverbial-v1"
+          ],
+          "stepIds": [
+            "pb08b-teach",
+            "pb08b-local",
+            "pb08b-sentence",
+            "pb08b-identify",
+            "pb08b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB08.c",
+          "description": "方式",
+          "status": "covered",
+          "lessonIds": [
+            "pb08-manner-adverbial-v1"
+          ],
+          "stepIds": [
+            "pb08c-teach",
+            "pb08c-local",
+            "pb08c-sentence",
+            "pb08c-identify",
+            "pb08c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB08.d",
+          "description": "伴随",
+          "status": "covered",
+          "lessonIds": [
+            "pb08-company-adverbial-v1"
+          ],
+          "stepIds": [
+            "pb08d-teach",
+            "pb08d-local",
+            "pb08d-sentence",
+            "pb08d-identify",
+            "pb08d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB08.e",
+          "description": "多项信息位置",
+          "status": "covered",
+          "lessonIds": [
+            "pb08-multiple-adverbials-v1"
+          ],
+          "stepIds": [
+            "pb08e-teach",
+            "pb08e-local",
+            "pb08e-sentence",
+            "pb08e-identify",
+            "pb08e-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB09",
+      "title": "必需的地点与方向",
+      "prerequisites": [
+        "PB06",
+        "PB08"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB09.a",
+          "description": "必需地点方向",
+          "status": "covered",
+          "lessonIds": [
+            "pb09-required-destination-v1"
+          ],
+          "stepIds": [
+            "pb09a-teach",
+            "pb09a-local",
+            "pb09a-sentence",
+            "pb09a-destination",
+            "pb09a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB09.b",
+          "description": "可省附加信息对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb09-optional-location-v1"
+          ],
+          "stepIds": [
+            "pb09b-teach",
+            "pb09b-local",
+            "pb09b-sentence",
+            "pb09b-identify",
+            "pb09b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB09.c",
+          "description": "地点变化保留骨架",
+          "status": "covered",
+          "lessonIds": [
+            "pb09-required-destination-v1"
+          ],
+          "stepIds": [
+            "pb09a-teach",
+            "pb09a-local-replace",
+            "pb09a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB10",
+      "title": "比较与程度",
+      "prerequisites": [
+        "PB03",
+        "PB04"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB10.a",
+          "description": "比较级与对象",
+          "status": "covered",
+          "lessonIds": [
+            "pb10-comparative-v1"
+          ],
+          "stepIds": [
+            "pb10a-teach",
+            "pb10a-local",
+            "pb10a-sentence",
+            "pb10a-range",
+            "pb10a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB10.b",
+          "description": "最高级与范围",
+          "status": "covered",
+          "lessonIds": [
+            "pb10-superlative-v1"
+          ],
+          "stepIds": [
+            "pb10b-teach",
+            "pb10b-local",
+            "pb10b-sentence",
+            "pb10b-range",
+            "pb10b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB10.c",
+          "description": "程度修饰",
+          "status": "covered",
+          "lessonIds": [
+            "pb10-degree-modifier-v1"
+          ],
+          "stepIds": [
+            "pb10c-teach",
+            "pb10c-local",
+            "pb10c-sentence",
+            "pb10c-range",
+            "pb10c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB11",
+      "title": "双宾语：给谁什么",
+      "prerequisites": [
+        "PB02",
+        "PB05"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB11.a",
+          "description": "接收者与物品",
+          "status": "covered",
+          "lessonIds": [
+            "pb11-double-object-v1"
+          ],
+          "stepIds": [
+            "pb11-teach",
+            "pb11-local-receiver",
+            "pb11-local-thing",
+            "pb11-build",
+            "pb11-identify-receiver",
+            "pb11-identify-thing",
+            "pb11-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB11.b",
+          "description": "间接与直接宾语",
+          "status": "covered",
+          "lessonIds": [
+            "pb11-double-object-v1"
+          ],
+          "stepIds": [
+            "pb11-teach",
+            "pb11-build",
+            "pb11-identify-receiver",
+            "pb11-identify-thing",
+            "pb11-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB11.c",
+          "description": "双宾迁移",
+          "status": "covered",
+          "lessonIds": [
+            "pb11-double-object-v1"
+          ],
+          "stepIds": [
+            "pb11-teach",
+            "pb11-reuse",
+            "pb11-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB12",
+      "title": "双宾结构的搭配变化",
+      "prerequisites": [
+        "PB06",
+        "PB11"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB12.a",
+          "description": "give与to",
+          "status": "covered",
+          "lessonIds": [
+            "pb12-give-to-v1"
+          ],
+          "stepIds": [
+            "pb12a-teach",
+            "pb12a-local",
+            "pb12a-build",
+            "pb12a-range",
+            "pb12a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB12.b",
+          "description": "buy与for",
+          "status": "covered",
+          "lessonIds": [
+            "pb12-buy-for-v1"
+          ],
+          "stepIds": [
+            "pb12b-teach",
+            "pb12b-local",
+            "pb12b-build",
+            "pb12b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB12.c",
+          "description": "可转换与受限搭配",
+          "status": "covered",
+          "lessonIds": [
+            "pb12-verb-constraints-v1"
+          ],
+          "stepIds": [
+            "pb12c-teach",
+            "pb12c-local",
+            "pb12c-build",
+            "pb12c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB13",
+      "title": "宾语补足语：宾语怎样",
+      "prerequisites": [
+        "PB02",
+        "PB03"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB13.a",
+          "description": "形容词宾补",
+          "status": "covered",
+          "lessonIds": [
+            "pb13-adjective-complement-v1"
+          ],
+          "stepIds": [
+            "pb13a-teach",
+            "pb13a-local",
+            "pb13a-build",
+            "pb13a-identify",
+            "pb13a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB13.b",
+          "description": "名词宾补",
+          "status": "covered",
+          "lessonIds": [
+            "pb13-noun-complement-v1"
+          ],
+          "stepIds": [
+            "pb13b-teach",
+            "pb13b-local",
+            "pb13b-build",
+            "pb13b-identify",
+            "pb13b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB13.c",
+          "description": "宾补与双宾对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb13-complement-vs-double-object-v1"
+          ],
+          "stepIds": [
+            "pb13c-teach",
+            "pb13c-local",
+            "pb13c-build",
+            "pb13c-identify",
+            "pb13c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB14",
+      "title": "want/need to do",
+      "prerequisites": [
+        "PB02",
+        "PB08"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB14.a",
+          "description": "动词搭配不定式",
+          "status": "covered",
+          "lessonIds": [
+            "pb14-want-to-do-v1"
+          ],
+          "stepIds": [
+            "pb14-teach",
+            "pb14-local",
+            "pb14-build",
+            "pb14-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB14.b",
+          "description": "整体不定式作宾语",
+          "status": "covered",
+          "lessonIds": [
+            "pb14-want-to-do-v1"
+          ],
+          "stepIds": [
+            "pb14-teach",
+            "pb14-build",
+            "pb14-whole-range",
+            "pb14-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB14.c",
+          "description": "不定式内部结构",
+          "status": "covered",
+          "lessonIds": [
+            "pb14-want-to-do-v1"
+          ],
+          "stepIds": [
+            "pb14-teach",
+            "pb14-local",
+            "pb14-build",
+            "pb14-inner-range",
+            "pb14-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB15",
+      "title": "help sb do",
+      "prerequisites": [
+        "PB02",
+        "PB13"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB15.a",
+          "description": "help两种形式",
+          "status": "covered",
+          "lessonIds": [
+            "pb15-help-bare-infinitive-v1",
+            "pb15-help-to-infinitive-v1"
+          ],
+          "stepIds": [
+            "pb15a-teach",
+            "pb15a-local-action",
+            "pb15a-build",
+            "pb15a-identify",
+            "pb15a-transfer",
+            "pb15b-teach",
+            "pb15b-local-action",
+            "pb15b-build",
+            "pb15b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB15.b",
+          "description": "宾补动作与对象",
+          "status": "covered",
+          "lessonIds": [
+            "pb15-help-bare-infinitive-v1",
+            "pb15-help-to-infinitive-v1"
+          ],
+          "stepIds": [
+            "pb15a-teach",
+            "pb15a-local-action",
+            "pb15a-build",
+            "pb15a-identify",
+            "pb15a-transfer",
+            "pb15b-teach",
+            "pb15b-local-action",
+            "pb15b-build",
+            "pb15b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB15.c",
+          "description": "扩展复用",
+          "status": "covered",
+          "lessonIds": [
+            "pb15-help-bare-infinitive-v1"
+          ],
+          "stepIds": [
+            "pb15a-teach",
+            "pb15a-reuse",
+            "pb15a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB16",
+      "title": "be句否定与疑问",
+      "prerequisites": [
+        "PB03"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB16.a",
+          "description": "be否定",
+          "status": "covered",
+          "lessonIds": [
+            "pb16-be-negative-question-v1"
+          ],
+          "stepIds": [
+            "pb16-teach",
+            "pb16-build-base",
+            "pb16-negate",
+            "pb16-review"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB16.b",
+          "description": "be一般疑问",
+          "status": "covered",
+          "lessonIds": [
+            "pb16-be-negative-question-v1"
+          ],
+          "stepIds": [
+            "pb16-teach",
+            "pb16-build-base",
+            "pb16-question-order",
+            "pb16-question-mark",
+            "pb16-review"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB16.c",
+          "description": "简短回答",
+          "status": "covered",
+          "lessonIds": [
+            "pb16-be-negative-question-v1"
+          ],
+          "stepIds": [
+            "pb16-teach",
+            "pb16-short-answer",
+            "pb16-review"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB17",
+      "title": "实义动词否定与疑问",
+      "prerequisites": [
+        "PB02"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB17.a",
+          "description": "do/does否定",
+          "status": "covered",
+          "lessonIds": [
+            "pb17-do-negation-v1",
+            "pb17-general-question-v1"
+          ],
+          "stepIds": [
+            "pb17a-teach",
+            "pb17a-base",
+            "pb17a-negative",
+            "pb17a-third-person",
+            "pb17a-review",
+            "pb17b-teach",
+            "pb17b-review"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB17.b",
+          "description": "一般疑问",
+          "status": "covered",
+          "lessonIds": [
+            "pb17-do-negation-v1",
+            "pb17-general-question-v1"
+          ],
+          "stepIds": [
+            "pb17a-teach",
+            "pb17b-teach",
+            "pb17b-lower-subject",
+            "pb17b-add-do",
+            "pb17b-question-mark",
+            "pb17b-does-question",
+            "pb17b-does-mark",
+            "pb17b-review"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB17.c",
+          "description": "动词原形和简短回答",
+          "status": "covered",
+          "lessonIds": [
+            "pb17-do-negation-v1",
+            "pb17-general-question-v1"
+          ],
+          "stepIds": [
+            "pb17a-teach",
+            "pb17a-negative",
+            "pb17a-third-person",
+            "pb17a-review",
+            "pb17b-teach",
+            "pb17b-add-do",
+            "pb17b-does-question",
+            "pb17b-short-answer",
+            "pb17b-review"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB18",
+      "title": "情态动词与请求",
+      "prerequisites": [
+        "PB01",
+        "PB16",
+        "PB17"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB18.a",
+          "description": "能力与许可",
+          "status": "covered",
+          "lessonIds": [
+            "pb18-ability-permission-v1"
+          ],
+          "stepIds": [
+            "pb18-ability-permission-v1-teach",
+            "pb18-ability-permission-v1-local-modal",
+            "pb18-ability-permission-v1-build",
+            "pb18-ability-permission-v1-permission",
+            "pb18-ability-permission-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB18.b",
+          "description": "请求",
+          "status": "covered",
+          "lessonIds": [
+            "pb18-request-v1"
+          ],
+          "stepIds": [
+            "pb18-request-v1-teach",
+            "pb18-request-v1-local-modal",
+            "pb18-request-v1-build",
+            "pb18-request-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB18.c",
+          "description": "义务与建议",
+          "status": "covered",
+          "lessonIds": [
+            "pb18-obligation-advice-v1"
+          ],
+          "stepIds": [
+            "pb18-obligation-advice-v1-teach",
+            "pb18-obligation-advice-v1-local-modal",
+            "pb18-obligation-advice-v1-build",
+            "pb18-obligation-advice-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB18.d",
+          "description": "推测",
+          "status": "covered",
+          "lessonIds": [
+            "pb18-deduction-v1"
+          ],
+          "stepIds": [
+            "pb18-deduction-v1-teach",
+            "pb18-deduction-v1-local-modal",
+            "pb18-deduction-v1-build",
+            "pb18-deduction-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB19",
+      "title": "特殊疑问句",
+      "prerequisites": [
+        "PB16",
+        "PB17"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB19.a",
+          "description": "问对象地点时间",
+          "status": "covered",
+          "lessonIds": [
+            "pb19-what-question-v1",
+            "pb19-where-when-v1"
+          ],
+          "stepIds": [
+            "pb19-what-question-v1-teach",
+            "pb19-what-question-v1-focus",
+            "pb19-what-question-v1-question",
+            "pb19-what-question-v1-transfer",
+            "pb19-where-when-v1-teach",
+            "pb19-where-when-v1-focus",
+            "pb19-where-when-v1-question",
+            "pb19-where-when-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB19.b",
+          "description": "问主语",
+          "status": "covered",
+          "lessonIds": [
+            "pb19-subject-object-who-v1"
+          ],
+          "stepIds": [
+            "pb19-subject-object-who-v1-teach",
+            "pb19-subject-object-who-v1-focus",
+            "pb19-subject-object-who-v1-question",
+            "pb19-subject-object-who-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB19.c",
+          "description": "主语疑问与宾语疑问",
+          "status": "covered",
+          "lessonIds": [
+            "pb19-subject-object-who-v1"
+          ],
+          "stepIds": [
+            "pb19-subject-object-who-v1-teach",
+            "pb19-subject-object-who-v1-focus",
+            "pb19-subject-object-who-v1-question",
+            "pb19-subject-object-who-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB20",
+      "title": "指令与存在句",
+      "prerequisites": [
+        "PB05",
+        "PB06",
+        "PB16"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB20.a",
+          "description": "指令和禁止",
+          "status": "covered",
+          "lessonIds": [
+            "pb20-imperative-v1"
+          ],
+          "stepIds": [
+            "pb20a-teach",
+            "pb20a-build",
+            "pb20a-imperative",
+            "pb20a-prohibit",
+            "pb20a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB20.b",
+          "description": "there is/are",
+          "status": "covered",
+          "lessonIds": [
+            "pb20-existential-v1"
+          ],
+          "stepIds": [
+            "pb20b-teach",
+            "pb20b-local",
+            "pb20b-location",
+            "pb20b-plural",
+            "pb20-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB20.c",
+          "description": "存在与位置",
+          "status": "covered",
+          "lessonIds": [
+            "pb20-existential-v1"
+          ],
+          "stepIds": [
+            "pb20b-teach",
+            "pb20b-location",
+            "pb20b-contrast",
+            "pb20-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB21",
+      "title": "一般现在时与主谓一致",
+      "prerequisites": [
+        "PB01",
+        "PB17"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB21.a",
+          "description": "习惯与事实",
+          "status": "covered",
+          "lessonIds": [
+            "pb21-present-agreement-v1"
+          ],
+          "stepIds": [
+            "pb21-teach",
+            "pb21-time",
+            "pb21-habit",
+            "pb21-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB21.b",
+          "description": "主谓一致",
+          "status": "covered",
+          "lessonIds": [
+            "pb21-present-agreement-v1"
+          ],
+          "stepIds": [
+            "pb21-teach",
+            "pb21-habit",
+            "pb21-change-person",
+            "pb21-question",
+            "pb21-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB21.c",
+          "description": "does与动词原形",
+          "status": "covered",
+          "lessonIds": [
+            "pb21-present-agreement-v1"
+          ],
+          "stepIds": [
+            "pb21-teach",
+            "pb21-question",
+            "pb21-question-mark",
+            "pb21-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB22",
+      "title": "现在进行体",
+      "prerequisites": [
+        "PB03",
+        "PB16",
+        "PB21"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB22.a",
+          "description": "正在发生",
+          "status": "covered",
+          "lessonIds": [
+            "pb22-present-progressive-v1"
+          ],
+          "stepIds": [
+            "pb22-teach",
+            "pb22-current",
+            "pb22-form",
+            "pb22-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB22.b",
+          "description": "be加-ing",
+          "status": "covered",
+          "lessonIds": [
+            "pb22-present-progressive-v1"
+          ],
+          "stepIds": [
+            "pb22-teach",
+            "pb22-verb-chunk",
+            "pb22-current",
+            "pb22-form",
+            "pb22-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB22.c",
+          "description": "习惯与当前对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb22-present-progressive-v1"
+          ],
+          "stepIds": [
+            "pb22-teach",
+            "pb22-habit-contrast",
+            "pb22-form",
+            "pb22-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB23",
+      "title": "过去的状态与位置",
+      "prerequisites": [
+        "PB03",
+        "PB16"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB23.a",
+          "description": "过去身份状态位置",
+          "status": "covered",
+          "lessonIds": [
+            "pb23-past-be-v1"
+          ],
+          "stepIds": [
+            "pb23-teach",
+            "pb23-place",
+            "pb23-state",
+            "pb23-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB23.b",
+          "description": "was/were",
+          "status": "covered",
+          "lessonIds": [
+            "pb23-past-be-v1"
+          ],
+          "stepIds": [
+            "pb23-teach",
+            "pb23-state",
+            "pb23-question-order",
+            "pb23-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB23.c",
+          "description": "否定与疑问",
+          "status": "covered",
+          "lessonIds": [
+            "pb23-past-be-v1"
+          ],
+          "stepIds": [
+            "pb23-teach",
+            "pb23-negate",
+            "pb23-question-order",
+            "pb23-question-mark",
+            "pb23-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB24",
+      "title": "一般过去时与did",
+      "prerequisites": [
+        "PB17",
+        "PB21",
+        "PB23"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB24.a",
+          "description": "过去事件与过去式",
+          "status": "covered",
+          "lessonIds": [
+            "pb24-past-did-v1"
+          ],
+          "stepIds": [
+            "pb24-teach",
+            "pb24-past-action",
+            "pb24-full",
+            "pb24-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB24.b",
+          "description": "did否定",
+          "status": "covered",
+          "lessonIds": [
+            "pb24-past-did-v1"
+          ],
+          "stepIds": [
+            "pb24-teach",
+            "pb24-negate",
+            "pb24-question",
+            "pb24-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB24.c",
+          "description": "did疑问及主语疑问回访",
+          "status": "covered",
+          "lessonIds": [
+            "pb24-past-did-v1"
+          ],
+          "stepIds": [
+            "pb24-teach",
+            "pb24-question",
+            "pb24-question-mark",
+            "pb24-subject-question",
+            "pb24-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB25",
+      "title": "将来意图、安排与预测",
+      "prerequisites": [
+        "PB18",
+        "PB21",
+        "PB22"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB25.a",
+          "description": "going to意图",
+          "status": "covered",
+          "lessonIds": [
+            "pb25-going-to-v1"
+          ],
+          "stepIds": [
+            "pb25-going-to-v1-teach",
+            "pb25-going-to-v1-local",
+            "pb25-going-to-v1-build",
+            "pb25-going-to-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB25.b",
+          "description": "will决定或预测",
+          "status": "covered",
+          "lessonIds": [
+            "pb25-will-v1"
+          ],
+          "stepIds": [
+            "pb25-will-v1-teach",
+            "pb25-will-v1-local",
+            "pb25-will-v1-build",
+            "pb25-will-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB25.c",
+          "description": "进行式安排",
+          "status": "covered",
+          "lessonIds": [
+            "pb25-arrangement-v1"
+          ],
+          "stepIds": [
+            "pb25-arrangement-v1-teach",
+            "pb25-arrangement-v1-local",
+            "pb25-arrangement-v1-build",
+            "pb25-arrangement-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB26",
+      "title": "过去进行体与事件背景",
+      "prerequisites": [
+        "PB22",
+        "PB24"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB26.a",
+          "description": "过去进行形式",
+          "status": "covered",
+          "lessonIds": [
+            "pb26-past-progressive-background-v1"
+          ],
+          "stepIds": [
+            "pb26-background",
+            "pb26-teach",
+            "pb26-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB26.b",
+          "description": "背景与插入事件",
+          "status": "covered",
+          "lessonIds": [
+            "pb26-past-progressive-background-v1"
+          ],
+          "stepIds": [
+            "pb26-interruption",
+            "pb26-connect",
+            "pb26-teach",
+            "pb26-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB26.c",
+          "description": "一般过去对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb26-past-progressive-background-v1"
+          ],
+          "stepIds": [
+            "pb26-connect",
+            "pb26-teach",
+            "pb26-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB27",
+      "title": "现在完成体",
+      "prerequisites": [
+        "PB21",
+        "PB24"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB27.a",
+          "description": "经历",
+          "status": "covered",
+          "lessonIds": [
+            "pb27-present-perfect-v1"
+          ],
+          "stepIds": [
+            "pb27-perfect-verb",
+            "pb27-result",
+            "pb27-teach",
+            "pb27-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB27.b",
+          "description": "结果与现在联系",
+          "status": "covered",
+          "lessonIds": [
+            "pb27-present-perfect-v1"
+          ],
+          "stepIds": [
+            "pb27-perfect-verb",
+            "pb27-result",
+            "pb27-teach",
+            "pb27-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB27.c",
+          "description": "for/since延续",
+          "status": "covered",
+          "lessonIds": [
+            "pb27-present-perfect-v1"
+          ],
+          "stepIds": [
+            "pb27-teach",
+            "pb27-experience",
+            "pb27-duration",
+            "pb27-since",
+            "pb27-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB27.d",
+          "description": "一般过去对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb27-present-perfect-v1"
+          ],
+          "stepIds": [
+            "pb27-teach",
+            "pb27-past-contrast",
+            "pb27-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB28",
+      "title": "过去完成体与先后",
+      "prerequisites": [
+        "PB24",
+        "PB27"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB28.a",
+          "description": "过去参照点",
+          "status": "covered",
+          "lessonIds": [
+            "pb28-past-perfect-order-v1"
+          ],
+          "stepIds": [
+            "pb28-first-event",
+            "pb28-teach",
+            "pb28-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB28.b",
+          "description": "之前发生",
+          "status": "covered",
+          "lessonIds": [
+            "pb28-past-perfect-order-v1"
+          ],
+          "stepIds": [
+            "pb28-first-event",
+            "pb28-order",
+            "pb28-teach",
+            "pb28-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB28.c",
+          "description": "事件先后顺序",
+          "status": "covered",
+          "lessonIds": [
+            "pb28-past-perfect-order-v1"
+          ],
+          "stepIds": [
+            "pb28-reference-event",
+            "pb28-order",
+            "pb28-teach",
+            "pb28-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB29",
+      "title": "完成进行与未来体",
+      "prerequisites": [
+        "PB22",
+        "PB25",
+        "PB27"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB29.a",
+          "description": "完成进行",
+          "status": "covered",
+          "lessonIds": [
+            "pb29-perfect-progressive-v1"
+          ],
+          "stepIds": [
+            "pb29-perfect-progressive-v1-local",
+            "pb29-perfect-progressive-v1-build",
+            "pb29-perfect-progressive-v1-teach",
+            "pb29-perfect-progressive-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB29.b",
+          "description": "未来进行",
+          "status": "covered",
+          "lessonIds": [
+            "pb29-future-progressive-v1"
+          ],
+          "stepIds": [
+            "pb29-future-progressive-v1-local",
+            "pb29-future-progressive-v1-build",
+            "pb29-future-progressive-v1-teach",
+            "pb29-future-progressive-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB29.c",
+          "description": "将来完成",
+          "status": "covered",
+          "lessonIds": [
+            "pb29-future-perfect-v1"
+          ],
+          "stepIds": [
+            "pb29-future-perfect-v1-local",
+            "pb29-future-perfect-v1-build",
+            "pb29-future-perfect-v1-teach",
+            "pb29-future-perfect-v1-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB30",
+      "title": "被动语态",
+      "prerequisites": [
+        "PB02",
+        "PB24",
+        "PB27"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB30.a",
+          "description": "主动被动角色",
+          "status": "covered",
+          "lessonIds": [
+            "pb30-basic-passive-v1"
+          ],
+          "stepIds": [
+            "pb30a-active",
+            "pb30a-passive",
+            "pb30a-teach",
+            "pb30a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB30.b",
+          "description": "常用时态被动",
+          "status": "covered",
+          "lessonIds": [
+            "pb30-basic-passive-v1"
+          ],
+          "stepIds": [
+            "pb30a-passive",
+            "pb30a-teach",
+            "pb30a-present",
+            "pb30a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB30.c",
+          "description": "情态与完成被动",
+          "status": "covered",
+          "lessonIds": [
+            "pb30-modal-perfect-passive-v1"
+          ],
+          "stepIds": [
+            "pb30c-perfect",
+            "pb30c-teach",
+            "pb30c-modal",
+            "pb30c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB30.d",
+          "description": "宾补关系回访",
+          "status": "covered",
+          "lessonIds": [
+            "pb30-passive-complement-v1"
+          ],
+          "stepIds": [
+            "pb30d-active",
+            "pb30d-passive",
+            "pb30d-teach",
+            "pb30d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB31",
+      "title": "动名词作主语与宾语",
+      "prerequisites": [
+        "PB02",
+        "PB03",
+        "PB14"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB31.a",
+          "description": "动名词主语",
+          "status": "covered",
+          "lessonIds": [
+            "pb31-gerund-subject-v1"
+          ],
+          "stepIds": [
+            "pb31a-local",
+            "pb31a-build",
+            "pb31a-teach",
+            "pb31a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB31.b",
+          "description": "动名词宾语",
+          "status": "covered",
+          "lessonIds": [
+            "pb31-gerund-object-v1"
+          ],
+          "stepIds": [
+            "pb31b-local",
+            "pb31b-build",
+            "pb31b-teach",
+            "pb31b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB31.c",
+          "description": "短语整体与内部",
+          "status": "covered",
+          "lessonIds": [
+            "pb31-gerund-phrase-v1"
+          ],
+          "stepIds": [
+            "pb31c-local",
+            "pb31c-build",
+            "pb31c-teach",
+            "pb31c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB32",
+      "title": "不定式的目的与其他作用",
+      "prerequisites": [
+        "PB08",
+        "PB14"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB32.a",
+          "description": "目的不定式",
+          "status": "covered",
+          "lessonIds": [
+            "pb32-purpose-infinitive-v1"
+          ],
+          "stepIds": [
+            "pb32a-local",
+            "pb32a-build",
+            "pb32a-teach",
+            "pb32a-reuse",
+            "pb32a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB32.b",
+          "description": "不定式主语与形式主语",
+          "status": "covered",
+          "lessonIds": [
+            "pb32-infinitive-subject-v1"
+          ],
+          "stepIds": [
+            "pb32b-local",
+            "pb32b-build",
+            "pb32b-teach",
+            "pb32b-formal-it",
+            "pb32b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB32.c",
+          "description": "作定语及宾语比较",
+          "status": "covered",
+          "lessonIds": [
+            "pb32-infinitive-modifier-contrast-v1"
+          ],
+          "stepIds": [
+            "pb32c-local",
+            "pb32c-build",
+            "pb32c-teach",
+            "pb32c-object-contrast",
+            "pb32c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB33",
+      "title": "分词短语修饰名词",
+      "prerequisites": [
+        "PB07",
+        "PB22",
+        "PB30"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB33.a",
+          "description": "现在分词定语",
+          "status": "covered",
+          "lessonIds": [
+            "pb33-present-participle-modifier-v1"
+          ],
+          "stepIds": [
+            "pb33a-local",
+            "pb33a-build",
+            "pb33a-teach",
+            "pb33a-reuse",
+            "pb33a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB33.b",
+          "description": "过去分词定语",
+          "status": "covered",
+          "lessonIds": [
+            "pb33-past-participle-modifier-v1"
+          ],
+          "stepIds": [
+            "pb33b-local",
+            "pb33b-build",
+            "pb33b-teach",
+            "pb33b-reuse",
+            "pb33b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB33.c",
+          "description": "内部对象与修饰关系",
+          "status": "covered",
+          "lessonIds": [
+            "pb33-participle-attachment-v1"
+          ],
+          "stepIds": [
+            "pb33c-local",
+            "pb33c-build",
+            "pb33c-teach",
+            "pb33c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB34",
+      "title": "非谓语作宾补",
+      "prerequisites": [
+        "PB13",
+        "PB15",
+        "PB31"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB34.a",
+          "description": "to do宾补",
+          "status": "covered",
+          "lessonIds": [
+            "pb34-to-infinitive-complement-v1"
+          ],
+          "stepIds": [
+            "pb34a-local",
+            "pb34a-build",
+            "pb34a-teach",
+            "pb34a-reuse",
+            "pb34a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB34.b",
+          "description": "裸不定式宾补",
+          "status": "covered",
+          "lessonIds": [
+            "pb34-bare-infinitive-complement-v1"
+          ],
+          "stepIds": [
+            "pb34b-local",
+            "pb34b-build",
+            "pb34b-teach",
+            "pb34b-reuse",
+            "pb34b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB34.c",
+          "description": "doing/done对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb34-ing-ed-complement-v1"
+          ],
+          "stepIds": [
+            "pb34c-local",
+            "pb34c-build",
+            "pb34c-teach",
+            "pb34c-compare",
+            "pb34c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB35",
+      "title": "多词动词与固定搭配",
+      "prerequisites": [
+        "PB06",
+        "PB14",
+        "PB17"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB35.a",
+          "description": "小品词动词与代词位置",
+          "status": "covered",
+          "lessonIds": [
+            "pb35-particle-verb-position-v1"
+          ],
+          "stepIds": [
+            "pb35a-build",
+            "pb35a-teach",
+            "pb35a-move",
+            "pb35a-pronoun",
+            "pb35a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB35.b",
+          "description": "介词搭配",
+          "status": "covered",
+          "lessonIds": [
+            "pb35-preposition-object-position-v1"
+          ],
+          "stepIds": [
+            "pb35b-local",
+            "pb35b-build",
+            "pb35b-teach",
+            "pb35b-pronoun",
+            "pb35b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB35.c",
+          "description": "to do/doing约束",
+          "status": "covered",
+          "lessonIds": [
+            "pb35-verb-complement-patterns-v1"
+          ],
+          "stepIds": [
+            "pb35c-local",
+            "pb35c-build",
+            "pb35c-teach",
+            "pb35c-contrast",
+            "pb35c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB36",
+      "title": "宾语从句",
+      "prerequisites": [
+        "PB02",
+        "PB19",
+        "PB24"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB36.a",
+          "description": "that内容",
+          "status": "covered",
+          "lessonIds": [
+            "pb36-that-object-clause-v1"
+          ],
+          "stepIds": [
+            "pb36a-clause",
+            "pb36a-build",
+            "pb36a-teach",
+            "pb36a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB36.b",
+          "description": "wh/if/whether",
+          "status": "covered",
+          "lessonIds": [
+            "pb36-wh-indirect-question-v1"
+          ],
+          "stepIds": [
+            "pb36b-build",
+            "pb36b-teach",
+            "pb36b-if",
+            "pb36b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB36.c",
+          "description": "从句陈述语序",
+          "status": "covered",
+          "lessonIds": [
+            "pb36-wh-indirect-question-v1",
+            "pb36-embedded-statement-order-v1"
+          ],
+          "stepIds": [
+            "pb36b-teach",
+            "pb36b-if",
+            "pb36b-transfer",
+            "pb36c-clause",
+            "pb36c-build",
+            "pb36c-teach",
+            "pb36c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB37",
+      "title": "限定性定语从句",
+      "prerequisites": [
+        "PB07",
+        "PB17",
+        "PB24"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB37.a",
+          "description": "关系词作主语",
+          "status": "covered",
+          "lessonIds": [
+            "pb37-relative-subject-v1"
+          ],
+          "stepIds": [
+            "pb37a-clause",
+            "pb37a-build",
+            "pb37a-teach",
+            "pb37a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB37.b",
+          "description": "作宾语与省略",
+          "status": "covered",
+          "lessonIds": [
+            "pb37-relative-object-omission-v1"
+          ],
+          "stepIds": [
+            "pb37b-build",
+            "pb37b-teach",
+            "pb37b-omit",
+            "pb37b-reuse",
+            "pb37b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB37.c",
+          "description": "主语整体扩展",
+          "status": "covered",
+          "lessonIds": [
+            "pb37-relative-whole-subject-v1"
+          ],
+          "stepIds": [
+            "pb37c-local",
+            "pb37c-build",
+            "pb37c-teach",
+            "pb37c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB38",
+      "title": "主语从句与形式主语",
+      "prerequisites": [
+        "PB03",
+        "PB31",
+        "PB36"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB38.a",
+          "description": "主语从句",
+          "status": "covered",
+          "lessonIds": [
+            "pb38-subject-clause-v1"
+          ],
+          "stepIds": [
+            "pb38a-clause",
+            "pb38a-build",
+            "pb38a-teach",
+            "pb38a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB38.b",
+          "description": "it形式主语",
+          "status": "covered",
+          "lessonIds": [
+            "pb38-formal-subject-it-v1"
+          ],
+          "stepIds": [
+            "pb38b-build",
+            "pb38b-teach",
+            "pb38b-formal-it",
+            "pb38b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB38.c",
+          "description": "后置内容及谓语关系",
+          "status": "covered",
+          "lessonIds": [
+            "pb38-postposed-clause-predicate-v1"
+          ],
+          "stepIds": [
+            "pb38c-build",
+            "pb38c-teach",
+            "pb38c-fronted",
+            "pb38c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB39",
+      "title": "表语从句",
+      "prerequisites": [
+        "PB03",
+        "PB36"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB39.a",
+          "description": "that表语从句",
+          "status": "covered",
+          "lessonIds": [
+            "pb39-that-predicative-clause-v1"
+          ],
+          "stepIds": [
+            "pb39a-clause",
+            "pb39a-build",
+            "pb39a-teach",
+            "pb39a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB39.b",
+          "description": "wh表语从句",
+          "status": "covered",
+          "lessonIds": [
+            "pb39-wh-predicative-clause-v1"
+          ],
+          "stepIds": [
+            "pb39b-local",
+            "pb39b-build",
+            "pb39b-teach",
+            "pb39b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB39.c",
+          "description": "与宾语从句对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb39-object-predicative-contrast-v1"
+          ],
+          "stepIds": [
+            "pb39c-object",
+            "pb39c-teach",
+            "pb39c-predicative",
+            "pb39c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB40",
+      "title": "同位语与内容从句",
+      "prerequisites": [
+        "PB05",
+        "PB36",
+        "PB37"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB40.a",
+          "description": "名词同位说明",
+          "status": "covered",
+          "lessonIds": [
+            "pb40-noun-apposition-v1"
+          ],
+          "stepIds": [
+            "pb40a-name",
+            "pb40a-build",
+            "pb40a-teach",
+            "pb40a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB40.b",
+          "description": "内容从句",
+          "status": "covered",
+          "lessonIds": [
+            "pb40-content-clause-after-noun-v1"
+          ],
+          "stepIds": [
+            "pb40b-clause",
+            "pb40b-build",
+            "pb40b-teach",
+            "pb40b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB40.c",
+          "description": "与定语从句对比",
+          "status": "covered",
+          "lessonIds": [
+            "pb40-content-vs-relative-clause-v1"
+          ],
+          "stepIds": [
+            "pb40c-content",
+            "pb40c-teach",
+            "pb40c-relative",
+            "pb40c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB41",
+      "title": "时间、原因与条件从句",
+      "prerequisites": [
+        "PB08",
+        "PB21",
+        "PB24"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB41.a",
+          "description": "时间从句",
+          "status": "covered",
+          "lessonIds": [
+            "pb41-time-clause-v1"
+          ],
+          "stepIds": [
+            "pb41a-main",
+            "pb41a-time",
+            "pb41a-build",
+            "pb41a-teach",
+            "pb41a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB41.b",
+          "description": "原因从句",
+          "status": "covered",
+          "lessonIds": [
+            "pb41-cause-clause-v1"
+          ],
+          "stepIds": [
+            "pb41b-result",
+            "pb41b-reason",
+            "pb41b-build",
+            "pb41b-teach",
+            "pb41b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB41.c",
+          "description": "现实条件",
+          "status": "covered",
+          "lessonIds": [
+            "pb41-real-condition-v1"
+          ],
+          "stepIds": [
+            "pb41c-condition",
+            "pb41c-result",
+            "pb41c-build",
+            "pb41c-teach",
+            "pb41c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB41.d",
+          "description": "PB26/PB28回访",
+          "status": "covered",
+          "lessonIds": [
+            "pb41-time-sequence-review-v1"
+          ],
+          "stepIds": [
+            "pb41d-background",
+            "pb41d-interrupt",
+            "pb41d-build",
+            "pb41d-teach",
+            "pb41d-before-review",
+            "pb41d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB42",
+      "title": "目的、结果、让步与比较",
+      "prerequisites": [
+        "PB10",
+        "PB32",
+        "PB41"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB42.a",
+          "description": "目的",
+          "status": "covered",
+          "lessonIds": [
+            "pb42-purpose-clause-v1"
+          ],
+          "stepIds": [
+            "pb42a-action",
+            "pb42a-purpose",
+            "pb42a-build",
+            "pb42a-teach",
+            "pb42a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB42.b",
+          "description": "结果",
+          "status": "covered",
+          "lessonIds": [
+            "pb42-result-clause-v1"
+          ],
+          "stepIds": [
+            "pb42b-degree",
+            "pb42b-result",
+            "pb42b-build",
+            "pb42b-teach",
+            "pb42b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB42.c",
+          "description": "让步",
+          "status": "covered",
+          "lessonIds": [
+            "pb42-concession-clause-v1"
+          ],
+          "stepIds": [
+            "pb42c-concession",
+            "pb42c-main",
+            "pb42c-build",
+            "pb42c-teach",
+            "pb42c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB42.d",
+          "description": "比较与方式",
+          "status": "covered",
+          "lessonIds": [
+            "pb42-comparison-manner-clause-v1"
+          ],
+          "stepIds": [
+            "pb42d-manner",
+            "pb42d-build",
+            "pb42d-teach",
+            "pb42d-comparison",
+            "pb42d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB42.e",
+          "description": "enough/too句型",
+          "status": "covered",
+          "lessonIds": [
+            "pb42-enough-too-v1"
+          ],
+          "stepIds": [
+            "pb42e-build",
+            "pb42e-teach",
+            "pb42e-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB43",
+      "title": "并列、转折与省略",
+      "prerequisites": [
+        "PB17",
+        "PB41"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB43.a",
+          "description": "并列",
+          "status": "covered",
+          "lessonIds": [
+            "pb43-coordination-v1"
+          ],
+          "stepIds": [
+            "pb43a-first",
+            "pb43a-second",
+            "pb43a-build",
+            "pb43a-teach",
+            "pb43a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB43.b",
+          "description": "转折",
+          "status": "covered",
+          "lessonIds": [
+            "pb43-contrast-coordination-v1"
+          ],
+          "stepIds": [
+            "pb43b-expect",
+            "pb43b-contrast",
+            "pb43b-build",
+            "pb43b-teach",
+            "pb43b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB43.c",
+          "description": "允许的省略",
+          "status": "covered",
+          "lessonIds": [
+            "pb43-licensed-omission-v1"
+          ],
+          "stepIds": [
+            "pb43c-full",
+            "pb43c-teach",
+            "pb43c-omit",
+            "pb43c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB43.d",
+          "description": "长句链",
+          "status": "covered",
+          "lessonIds": [
+            "pb43-user-long-chain-v1"
+          ],
+          "stepIds": [
+            "pb43d-enough",
+            "pb43d-not-enough",
+            "pb43d-full",
+            "pb43d-teach",
+            "pb43d-omit",
+            "pb43d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB44",
+      "title": "条件与非事实假设",
+      "prerequisites": [
+        "PB18",
+        "PB24",
+        "PB25",
+        "PB41"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB44.a",
+          "description": "现实条件与假设",
+          "status": "covered",
+          "lessonIds": [
+            "pb44-real-vs-unreal-condition-v1"
+          ],
+          "stepIds": [
+            "pb44a-condition",
+            "pb44a-result",
+            "pb44a-build",
+            "pb44a-teach",
+            "pb44a-contrast",
+            "pb44a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB44.b",
+          "description": "现在将来非事实",
+          "status": "covered",
+          "lessonIds": [
+            "pb44-present-unreal-condition-v1"
+          ],
+          "stepIds": [
+            "pb44b-condition",
+            "pb44b-result",
+            "pb44b-build",
+            "pb44b-teach",
+            "pb44b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB44.c",
+          "description": "过去非事实",
+          "status": "covered",
+          "lessonIds": [
+            "pb44-past-unreal-condition-v1"
+          ],
+          "stepIds": [
+            "pb44c-condition",
+            "pb44c-result",
+            "pb44c-build",
+            "pb44c-teach",
+            "pb44c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB45",
+      "title": "间接转述与过去视角",
+      "prerequisites": [
+        "PB25",
+        "PB28",
+        "PB36"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB45.a",
+          "description": "直接转间接",
+          "status": "covered",
+          "lessonIds": [
+            "pb45-direct-to-reported-v1"
+          ],
+          "stepIds": [
+            "pb45a-words",
+            "pb45a-report",
+            "pb45a-teach",
+            "pb45a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB45.b",
+          "description": "人称和时间视角",
+          "status": "covered",
+          "lessonIds": [
+            "pb45-person-time-viewpoint-v1"
+          ],
+          "stepIds": [
+            "pb45b-quote",
+            "pb45b-report",
+            "pb45b-teach",
+            "pb45b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB45.c",
+          "description": "过去视角将来",
+          "status": "covered",
+          "lessonIds": [
+            "pb45-future-in-past-v1"
+          ],
+          "stepIds": [
+            "pb45c-future",
+            "pb45c-report",
+            "pb45c-teach",
+            "pb45c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB45.d",
+          "description": "不必后移的语境",
+          "status": "covered",
+          "lessonIds": [
+            "pb45-backshift-not-required-v1"
+          ],
+          "stepIds": [
+            "pb45d-build",
+            "pb45d-teach",
+            "pb45d-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB46",
+      "title": "非限定性定语从句",
+      "prerequisites": [
+        "PB37",
+        "PB43"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB46.a",
+          "description": "补充与限定信息",
+          "status": "covered",
+          "lessonIds": [
+            "pb46-supplement-vs-restrictive-v1"
+          ],
+          "stepIds": [
+            "pb46a-base",
+            "pb46a-build",
+            "pb46a-teach",
+            "pb46a-remove",
+            "pb46a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB46.b",
+          "description": "关系形式",
+          "status": "covered",
+          "lessonIds": [
+            "pb46-relative-forms-v1"
+          ],
+          "stepIds": [
+            "pb46b-people",
+            "pb46b-teach",
+            "pb46b-things",
+            "pb46b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB46.c",
+          "description": "逗号与范围",
+          "status": "covered",
+          "lessonIds": [
+            "pb46-comma-scope-v1"
+          ],
+          "stepIds": [
+            "pb46c-build",
+            "pb46c-teach",
+            "pb46c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB47",
+      "title": "强调与信息焦点",
+      "prerequisites": [
+        "PB03",
+        "PB37"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB47.a",
+          "description": "it强调",
+          "status": "covered",
+          "lessonIds": [
+            "pb47-object-focus-v1"
+          ],
+          "stepIds": [
+            "pb47a-base",
+            "pb47a-cleft",
+            "pb47a-teach",
+            "pb47a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB47.b",
+          "description": "对比焦点",
+          "status": "covered",
+          "lessonIds": [
+            "pb47-focus-contrast-v1"
+          ],
+          "stepIds": [
+            "pb47b-base",
+            "pb47b-cleft",
+            "pb47b-teach",
+            "pb47b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB47.c",
+          "description": "强调构式与普通it",
+          "status": "covered",
+          "lessonIds": [
+            "pb47-cleft-vs-ordinary-it-v1"
+          ],
+          "stepIds": [
+            "pb47c-ordinary",
+            "pb47c-cleft",
+            "pb47c-teach",
+            "pb47c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB48",
+      "title": "倒装、附加疑问与简答",
+      "prerequisites": [
+        "PB16",
+        "PB18",
+        "PB21",
+        "PB43"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB48.a",
+          "description": "so/neither回应",
+          "status": "covered",
+          "lessonIds": [
+            "pb48-so-neither-v1"
+          ],
+          "stepIds": [
+            "pb48a-base",
+            "pb48a-agree",
+            "pb48a-teach",
+            "pb48a-negative",
+            "pb48a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB48.b",
+          "description": "附加疑问",
+          "status": "covered",
+          "lessonIds": [
+            "pb48-tag-questions-v1"
+          ],
+          "stepIds": [
+            "pb48b-statement",
+            "pb48b-tag",
+            "pb48b-teach",
+            "pb48b-negative",
+            "pb48b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB48.c",
+          "description": "常见否定前置倒装",
+          "status": "covered",
+          "lessonIds": [
+            "pb48-negative-inversion-v1"
+          ],
+          "stepIds": [
+            "pb48c-base",
+            "pb48c-fronted",
+            "pb48c-teach",
+            "pb48c-do-support",
+            "pb48c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB49",
+      "title": "综合组句与不同表达路径",
+      "prerequisites": [
+        "PB11",
+        "PB13",
+        "PB30",
+        "PB35",
+        "PB37",
+        "PB41"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB49.a",
+          "description": "同义表达路径",
+          "status": "covered",
+          "lessonIds": [
+            "pb49-double-object-paths-v1"
+          ],
+          "stepIds": [
+            "pb49a-give",
+            "pb49a-to-path",
+            "pb49a-teach",
+            "pb49a-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB49.b",
+          "description": "新情境组合",
+          "status": "covered",
+          "lessonIds": [
+            "pb49-clause-paths-v1"
+          ],
+          "stepIds": [
+            "pb49b-clause1",
+            "pb49b-clause2",
+            "pb49b-combine",
+            "pb49b-teach",
+            "pb49b-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB49.c",
+          "description": "自查纠错",
+          "status": "covered",
+          "lessonIds": [
+            "pb49-self-correct-v1"
+          ],
+          "stepIds": [
+            "pb49c-wrong",
+            "pb49c-check",
+            "pb49c-repair",
+            "pb49c-transfer"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "PB50",
+      "title": "独立表达与延迟迁移",
+      "prerequisites": [
+        "PB49"
+      ],
+      "status": "preview",
+      "subgoals": [
+        {
+          "id": "PB50.a",
+          "description": "减少支架的即时表达",
+          "status": "covered",
+          "lessonIds": [
+            "pb50-independent-delayed-retrieval-v1"
+          ],
+          "stepIds": [
+            "pb50a-local",
+            "pb50a-build",
+            "pb50a-teach",
+            "pb50a-independent-now"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB50.b",
+          "description": "跨次延迟提取",
+          "status": "covered",
+          "lessonIds": [
+            "pb50-independent-delayed-retrieval-v1"
+          ],
+          "stepIds": [
+            "pb50a-local",
+            "pb50a-build",
+            "pb50a-teach",
+            "pb50a-independent-now"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB50.c",
+          "description": "帮助与未知答案",
+          "status": "covered",
+          "lessonIds": [
+            "pb50-independent-delayed-retrieval-v1"
+          ],
+          "stepIds": [
+            "pb50a-local",
+            "pb50a-build",
+            "pb50a-teach",
+            "pb50a-independent-now"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        },
+        {
+          "id": "PB50.d",
+          "description": "分层证据",
+          "status": "covered",
+          "lessonIds": [
+            "pb50-independent-delayed-retrieval-v1"
+          ],
+          "stepIds": [
+            "pb50a-local",
+            "pb50a-build",
+            "pb50a-teach",
+            "pb50a-independent-now"
+          ],
+          "evidence": {
+            "introduction": true,
+            "operation": true,
+            "transfer": true,
+            "delayedReview": true
+          }
+        }
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "src/progressive-building/catalog.mjs": "17a682a1d960814c2a5eab59d3f1c02524482cf7d1259dbc6e0d894125efc077",
+    "src/progressive-building/content/pb01.mjs": "8e660a5ec70f7fb06b630da9e0cb7b74552fee874a65a19db59756801305d607",
+    "src/progressive-building/content/pb02.mjs": "4638ff9b04a8643962c7d956cf2badd990d58c767f3da1d20624403cc52682ec",
+    "src/progressive-building/content/pb03.mjs": "2b2a4e44e23477428806f1c669e55afd819c05bc0a25d77c2f8bc362509c4502",
+    "src/progressive-building/content/pb04.mjs": "f41b2195e5996a8e88199ed8437792152ca60f94d3b192e68006b90078027b51",
+    "src/progressive-building/content/pb05.mjs": "7f7458be6e3ab3721be7a941f43f924f64d085891d81d8dc80efb0071c35806a",
+    "src/progressive-building/content/pb06.mjs": "9917ff5f7380fd2894bb696eb881b51d5759541746c52f3fef165f55905141e2",
+    "src/progressive-building/content/pb07.mjs": "c463a26fe4e317b827b4f18164262ea8ca2e67bde96a6d39604375d0b2b271ea",
+    "src/progressive-building/content/pb08.mjs": "086b2868bb2bfdb5544f19cc250325a5c19506f1be6589d644707ea1830de392",
+    "src/progressive-building/content/pb09.mjs": "4ca4d4fa7d9a599f702b4d06b2f28a27f110da8fd643f7c242ee61f0505cb940",
+    "src/progressive-building/content/pb10.mjs": "5978dcb6613bb05c1d8ac8db504f3a2593c2b7f121d2e8374a16c5a35ca4561f",
+    "src/progressive-building/content/pb11.mjs": "3f57753a4fd22372737b96d94d4b7273e96ccd0b314c05ddc3351f49cabfe7e1",
+    "src/progressive-building/content/pb12.mjs": "8bd3430c39da87e0b64fa253c0ec6ff74df3f41068228bc85a52f59789ffd078",
+    "src/progressive-building/content/pb13.mjs": "998d7f9c2bbebd15574f56e3f74537273d5e47f7f8c4d3b49d948cc55445152a",
+    "src/progressive-building/content/pb14.mjs": "9e4f53228e010af6d90bf6c5bf39152d1f65eaaf738223355f32082e2465b372",
+    "src/progressive-building/content/pb15.mjs": "b280f0d8047bf0a3dbc616df3b74124137ad0f6b0de46f02a96f2c863b2b48bb",
+    "src/progressive-building/content/pb16.mjs": "30bb51f7cee3270bf5ce149171f091ff25f6a1fefba0b5808d2a35d5fab7ca20",
+    "src/progressive-building/content/pb17.mjs": "331f11f51cae7534ef0cfce0142c8a2d133bbe16d2a5338a187e430858bd4c49",
+    "src/progressive-building/content/pb18.mjs": "7ef37a8a693b3941971c6ec6071afd1b274616b6dfba5293264a77570b0cb30e",
+    "src/progressive-building/content/pb19.mjs": "c5da3bbe00d3b5e9f68bbeb081c6913e7f9056d883a24ebdde1f1e8c6f721130",
+    "src/progressive-building/content/pb20.mjs": "460cd362f7f7d44fa6cc43049e16b4019ab5d286b863fe1be24e3de18baa5140",
+    "src/progressive-building/content/pb21.mjs": "60531e22f7f3655de43724acd721efd138688d4af4b3843e8778b0f5dbf267a1",
+    "src/progressive-building/content/pb22.mjs": "dc74a1e418bd3090b0b26b4c1a8fe1e868b89d03c733f2e9d28d0ee4ced84e9c",
+    "src/progressive-building/content/pb23.mjs": "5056547e48ced5d9f1af3ae1a713f357d096779b45a93be7cd56e70b902e0f91",
+    "src/progressive-building/content/pb24.mjs": "fa06f412594607133452261c16d2ee6fd93e47cf33dbf28129a284431bc89268",
+    "src/progressive-building/content/pb25.mjs": "e09af3e7b6085d752a00d3e7b09dbf630497126dae387a30dafe8d9075c5a9b2",
+    "src/progressive-building/content/pb26.mjs": "c786fb9588dd956eac4ff625a1219871d8b7b2e763a52ed68608c525f22f0ea1",
+    "src/progressive-building/content/pb27.mjs": "420919556c59efe2da23b400f463b6fc1876fa30653d035c48fc47408c3697ed",
+    "src/progressive-building/content/pb28.mjs": "17fff35f76ee8f93d4c85d2a298bd29b7047cae7252a8e88300e55babbe30b6c",
+    "src/progressive-building/content/pb29.mjs": "41f65f012dd346dd09d1dea64dd495f531fd298fb9562ab3bc144248e4f74147",
+    "src/progressive-building/content/pb30.mjs": "0318eae5de87123e2d58d2378fb977ef0053ea20eeaa7d6d4ee09b9026bc042e",
+    "src/progressive-building/content/pb31.mjs": "dd7dae5d7619b48fa96713169c1221513a9621f89107a8e81532a5ad141477a3",
+    "src/progressive-building/content/pb32.mjs": "854c6aa5b966b5952cf3eb07ab64227a55a070e921a908d18e710d5c35c61777",
+    "src/progressive-building/content/pb33.mjs": "74c4c5defec7d253d8200b3fda4798a6bf56df2efec9a00aa41fb73532ac4dce",
+    "src/progressive-building/content/pb34.mjs": "24ec1daa827ec9e9df6284541a8f7eff473dc4d57b045186723477fa94c8bc4e",
+    "src/progressive-building/content/pb35.mjs": "bfd76a1322ea013d235ec9971dcbe133c4c30f4b6c742149278fcdb87439985c",
+    "src/progressive-building/content/pb36.mjs": "af98c805afd2655b02691c767e52aef58ae20603d0c78bf8d51207a34f25e124",
+    "src/progressive-building/content/pb37.mjs": "05df790e2592357223c63f9393d205faa20bbdb972007577d679048a8c947351",
+    "src/progressive-building/content/pb38.mjs": "5c7049e4ad4e0913e18e115608e4789cc006b5339d964f9ccd666b141030f368",
+    "src/progressive-building/content/pb39.mjs": "31a8820b45cf1e705c8a19c2c8a786d149053b7b7549e0abe63a8d53d88d6665",
+    "src/progressive-building/content/pb40.mjs": "20e9ea3d022e5ee8432e55ff80abbe0d992db272f9e68ec11c97fe958e4e03c7",
+    "src/progressive-building/content/pb41.mjs": "d124f21a666f6af788854a73e7092721152f68bf0d2b9982a1bdc20d3a2b37d7",
+    "src/progressive-building/content/pb42.mjs": "6ac293f9bb2980f7a5ed2e72cf2f9ae8b3eea7e5a4eaee5ad47abe9427aa4e1d",
+    "src/progressive-building/content/pb43.mjs": "0d8ea97c286e4e945d5eecd78703f59416b343d9b2f8bbf675679453915e1783",
+    "src/progressive-building/content/pb44.mjs": "6e1b7da20c8bdd4c8604bdffe029bd4eb030d54d05adbd7de05ce24f2f1b672a",
+    "src/progressive-building/content/pb45.mjs": "e8d10aea1d19515a38569c55da3f033ad59f308e26c6335b759b93e06bac8d74",
+    "src/progressive-building/content/pb46.mjs": "3eb9dcdc80533fce4e6927754facde7bafc0e2591a6f0f25b2a7bcd063486b2d",
+    "src/progressive-building/content/pb47.mjs": "6bc8e6edc58a32b1ed729fbd980fadd14b7b409535fad2a766dd0acac5195524",
+    "src/progressive-building/content/pb48.mjs": "49f576563686d8aa0089d8878c3b23af7f2a9388ed7bd4b80975febe7752d224",
+    "src/progressive-building/content/pb49.mjs": "a8ded63c1f6d90df5b4eb1f5452ecaa4240adf58d91462f4e9da8165b73743b5",
+    "src/progressive-building/content/pb50.mjs": "fa88564f1e46b5c8b27d41004dcf1f0b2c22b08fd0c60aa1de72cc6afdf942a3"
+  },
+  "issues": []
+}

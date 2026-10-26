@@ -399,14 +399,15 @@ export function createSchemaRunner({ document, window, activity, teachingBoard, 
     transformFocus = null; finished = false; reviewMode = false; reviewComplete = false; hintShown = false;
   }
 
-  function mountCatalog(select) {
+  function mountCatalog(select, { excludedLessonIds = [] } = {}) {
     const groups = new Map();
     for (const node of catalog) {
-      const groupLabel = `课程节点 PB${String(Math.floor((Number(node.id.slice(2)) - 1) / 5) * 5 + 1).padStart(2, '0')}–PB${String(Math.floor((Number(node.id.slice(2)) - 1) / 5) * 5 + 5).padStart(2, '0')}`;
+      const lessonIds = getNodeLessonIds(node.id).filter(id => !excludedLessonIds.includes(id));
+      if (!lessonIds.length && getNodeLessonIds(node.id).length) continue;
+      const groupLabel = `未打磨节点 PB${String(Math.floor((Number(node.id.slice(2)) - 1) / 5) * 5 + 1).padStart(2, '0')}–PB${String(Math.floor((Number(node.id.slice(2)) - 1) / 5) * 5 + 5).padStart(2, '0')}`;
       if (!groups.has(groupLabel)) {
         const group = document.createElement('optgroup'); group.label = groupLabel; groups.set(groupLabel, group); select.append(group);
       }
-      const lessonIds = getNodeLessonIds(node.id);
       if (lessonIds.length) {
         for (const lessonId of lessonIds) {
           const label = getNodeLessonLabel(node.id, lessonId);

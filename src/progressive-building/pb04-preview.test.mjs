@@ -6,6 +6,7 @@ import {visualScenes} from './visual-scenes.mjs';
 import {validatePreviewLesson,matchesTransfer} from './lessons-v3.mjs';
 validatePreviewLesson(nounPhrase);
 assert.equal(nounPhrase.sequence.length,13);
+assert.deepEqual(nounPhrase.sequence[1].replacesTrailIndexes,[0], 'I need reuses the a bag slot');
 assert.ok(!nounPhrase.sequence.some(s=>['replace','insert-modifier','teach'].includes(s.type)));
 assert.deepEqual(nounPhrase.sentenceStepIndexes,[2,5,8,11]);
 assert.equal(nounPhrase.sequence[4].learningNote.term,'定语');

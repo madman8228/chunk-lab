@@ -1,8 +1,9 @@
-import { lessons, validatePreviewLesson, visibleAnnotations, matchesTransfer } from './lessons-v3.mjs?v=20261026-9';
+import { lessons, validatePreviewLesson, visibleAnnotations, matchesTransfer } from './lessons-v3.mjs?v=20261027-49';
+import { displayBoundary, isBuildHistory } from './display-boundary.mjs?v=20261026-47';
 import { nodes, getNodeLessonIds, getNodeLessonLabel, loadNodeLesson } from './catalog.mjs';
-import { createSchemaRunner } from './renderers.mjs?v=20261025-41';
-import { appendSceneVisual } from './scene-view.mjs?v=20261026-9';
-import { visualScenes } from './visual-scenes.mjs?v=20261026-9';
+import { createSchemaRunner } from './renderers.mjs?v=20261026-34';
+import { appendSceneVisual } from './scene-view.mjs?v=20261026-39';
+import { visualScenes } from './visual-scenes.mjs?v=20261026-39';
 const $ = id => document.getElementById(id);
 const schemaRunner = createSchemaRunner({ document, window, activity: $('activity'), teachingBoard: $('teaching-board'), trail: $('trail'), feedback: $('feedback'), progress: $('progress'), next: $('next'), reviewEntry: $('review-entry'), catalog: nodes, getNodeLessonIds, getNodeLessonLabel, loadNodeLesson });
 const freshState = () => ({ index: 0, selected: [], bank: [], solved: false, finished: false, lastSelected: null, answer: '', transferAttempts: 0, transferOutcome: null, editSlot: null, checkIndex: 0, checkConfirmed: false, changeIndex: 0, grammarAttempts: 0, grammarFeedback: '', grammarError: false, syntaxEvidence: {} });
@@ -53,7 +54,7 @@ function annotatedWords(step, selected, editable = false, showLabels = !editable
   const annotations = showLabels ? visibleAnnotations(step, selected) : [];
   selected.forEach((id, index) => {
     const token = editable ? button(lesson.words[id].en, () => {
-      state.selected.splice(index, 1); state.lastSelected = null; feedback(''); compose(step);
+      state.selected.splice(index, 1); state.orderErrors = 0; state.lastSelected = null; feedback(''); compose(step);
     }) : node('span', null, 'practice-chunk');
     if (!editable) appendHighlightedWord(token, id);
     token.classList.add('syntax-token');
@@ -118,12 +119,23 @@ function renderBlackboard() {
     ? (focusedWord.visualSceneId ? { sceneId: focusedWord.visualSceneId } : null)
     : (current.visual ?? (state.solved ? step?.visual : null));
   board.hidden = false;
+  if (current.buildGuide && !state.solved) {
+    board.append(node('h2', current.buildGuide.title, 'blackboard-title'));
+    appendBlackboardExplanation(board, current.buildGuide.explanation);
+    if (lastWord && current.buildGuide.afterSelection?.[lastWord]) appendBlackboardExplanation(board, current.buildGuide.afterSelection[lastWord]);
+    return;
+  }
   const instruction = current.type === 'identify' ? current.checks[state.checkIndex].prompt
     : current.type === 'quantity' ? current.changes[state.changeIndex]?.prompt
     : current.type === 'transfer' ? (!state.solved ? '用英文写出这句话。' : null) : current.prompt;
   if (instruction) {
     if (['identify', 'classify'].includes(current.type)) board.append(node('h2', instruction, 'blackboard-title blackboard-instruction'));
     else board.append(node('h2', current.meaning, 'blackboard-title blackboard-instruction'), node('p', instruction, 'blackboard-question blackboard-instruction'));
+    if (current.type === 'classify') {
+      const sentence = node('div', null, 'grammar-example');
+      current.wordIds.forEach(id => sentence.append(node(id === current.focusWordId ? 'mark' : 'span', lesson.words[id].en)));
+      board.append(sentence);
+    }
     if (current.type === 'quantity' && !state.solved) appendBlackboardExplanation(board, current.changes[state.changeIndex].explanation);
     if (current.type === 'insert-modifier' && state.editSlot !== null && !state.solved) {
       board.append(node('p', `把 ${lesson.words[current.modifierWordId].en} 加到 ${lesson.words[current.headWordId].en} 前面，说明这个${lesson.words[current.headWordId].zh}是什么样的。`));
@@ -177,28 +189,62 @@ function renderSentenceResult() {
   const completedIndex = state.solved ? state.index : state.index - 1;
   const latestIndex = lesson.sentenceStepIndexes?.filter(index => index <= completedIndex).at(-1) ?? -1;
   const current = lesson.sequence[state.index];
+  if (current.buildGuide) {
+    area.hidden = false;
+    area.append(node('p', current.meaning, 'build-target'));
+    return latestIndex;
+  }
   if (area.hidden || ['transfer', 'identify', 'classify'].includes(current.type)) return latestIndex;
   if (lesson.sentenceStepIndexes.includes(state.index) && !current.type && state.selected.length) {
     area.append(annotatedWords(current, state.selected, false, true, true));
     return latestIndex;
   }
-  const clearedIndex = lesson.sequence.findLastIndex((step, index) => index <= completedIndex && step.clearSentenceResultOnComplete);
+  const clearedIndex = displayBoundary(lesson.sequence, state.index, state.solved);
   if (latestIndex < 0 || clearedIndex > latestIndex || (lesson.sentenceStepIndexes.includes(state.index) && !state.solved)) return latestIndex;
   const step = lesson.sequence[latestIndex];
   area.append(annotatedWords(step, step.wordIds, false, true, true));
   return latestIndex;
 }
+function appendPronunciation(board, step) {
+  const cue = step.pronunciation;
+  if (!cue || (!state.solved && step.wordIds.length > 1 && step.type !== 'classify')) return;
+  const line = node('div', null, 'blackboard-pronunciation');
+  const status = node('span');
+  status.setAttribute('role', 'status');
+  const play = button('听发音', () => {
+    const synthesis = window.speechSynthesis;
+    const voices = synthesis?.getVoices().filter(voice => /^en(?:-|_)/i.test(voice.lang)) ?? [];
+    if (!synthesis || !window.SpeechSynthesisUtterance || !voices.length) {
+      status.textContent = '此设备暂无英语朗读声音，请参考音标。';
+      return;
+    }
+    synthesis.cancel();
+    const utterance = new window.SpeechSynthesisUtterance(cue.text);
+    utterance.voice = voices.find(voice => /^en-US$/i.test(voice.lang)) ?? voices[0];
+    utterance.lang = utterance.voice.lang; utterance.rate = 0.8;
+    utterance.onerror = event => { if (!['canceled', 'interrupted'].includes(event.error)) status.textContent = '朗读暂不可用，请参考音标。'; };
+    status.textContent = ''; synthesis.speak(utterance);
+  });
+  play.setAttribute('aria-label', '朗读 ' + cue.text);
+  line.append(play, node('span', cue.text + ' ' + cue.ipa), status);
+  board.append(line);
+}
 function renderTrail() {
+  window.speechSynthesis?.cancel();
   renderBlackboard();
+  appendPronunciation($('teaching-board'), lesson.sequence[state.index]);
   const latestSentence = renderSentenceResult();
   const trail = $('trail');
   trail.classList.toggle('has-sentence-level', Boolean(lesson.sentenceStepIndexes?.length));
   trail.replaceChildren();
   if (['transfer', 'teach', 'replace', 'identify', 'classify', 'insert-modifier', 'quantity'].includes(lesson.sequence[state.index].type)) { trail.hidden = true; return; }
   trail.hidden = false;
+  if (lesson.sentenceStepIndexes?.includes(state.index)) return;
   const growthRows = new Map();
+  const boundary = displayBoundary(lesson.sequence, state.index, state.solved);
   const replaced = new Set(lesson.sequence.slice(0, state.index + 1).flatMap(step => step.replacesTrailIndexes ?? []));
   lesson.sequence.slice(0, state.index + 1).forEach((step, index) => {
+    if (index < boundary || !isBuildHistory(step)) return;
     if (lesson.review && index !== state.index) return;
     if (replaced.has(index)) return;
     if (index <= latestSentence || lesson.sentenceStepIndexes?.includes(index)) return;
@@ -244,10 +290,14 @@ function compose(step) {
       const tile = button('', () => {
         if ((lesson.sentenceStepIndexes?.includes(state.index) || step.type === 'compose' || step.bankWordIds) && id !== target[state.selected.length]) {
           const nextWord = lesson.words[target[state.selected.length]];
-          feedback(step.wordFeedback?.[id] ?? `顺序不对。下一步请选 ${nextWord.en}（${nextWord.zh}）。`, 'error');
+          state.orderErrors = (state.orderErrors ?? 0) + 1;
+          feedback(state.orderErrors >= 3
+            ? (step.wordFeedback?.[id] ?? `顺序不对。下一步请选 ${nextWord.en}（${nextWord.zh}）。`)
+            : '顺序不对，再想一想。', 'error');
           return;
         }
         feedback('');
+        state.orderErrors = 0;
         state.selected.push(id); state.lastSelected = id;
         if (state.selected.length === target.length) {
           if (state.selected.every((wordId, index) => wordId === target[index])) {
@@ -319,9 +369,6 @@ function renderGrammar(step) {
     return;
   }
   if (step.type === 'classify') {
-    const sentence = node('div', null, 'grammar-example');
-    step.wordIds.forEach(id => sentence.append(node(id === step.focusWordId ? 'mark' : 'span', lesson.words[id].en)));
-    area.append(sentence);
     const choices = node('div', null, 'grammar-options');
     step.options.forEach(option => {
       const choice = button('', () => {
@@ -384,9 +431,6 @@ function renderQuantity(step) {
   area.replaceChildren();
   if (state.solved) {
     area.append(annotatedWords(step, step.wordIds));
-    const before = step.sourceWordIds.map(id => lesson.words[id].en).join(' ');
-    const after = step.wordIds.map(id => lesson.words[id].en).join(' ');
-    area.append(node('p', `${before} → ${after}`, 'modifier-relation'), node('p', step.successFeedback, 'grammar-reason'));
     feedback(''); return;
   }
   const change = step.changes[state.changeIndex];
@@ -425,7 +469,7 @@ function renderTransfer(step) {
   area.replaceChildren();
   if (state.solved) {
     area.append(annotatedWords(step, step.wordIds));
-    feedback(state.transferOutcome === 'example' ? '已查看示例' : state.transferOutcome === 'retry' ? '重试后答对' : '本次独立文本作答正确');
+    feedback('');
     return;
   }
   const input = node('input');
@@ -452,11 +496,11 @@ function renderTransfer(step) {
     $('next').hidden = false; $('next').textContent = '完成'; renderTransfer(step);
   }));
   area.append(input, actions);
-  input.focus();
+  input.focus({ preventScroll: true });
 }
 function render(reset = true) {
   const step = lesson.sequence[state.index];
-  if (reset) { state.solved = step.type === 'teach'; state.selected = []; state.lastSelected = null; state.answer = ''; state.transferAttempts = 0; state.transferOutcome = null; state.editSlot = null; state.checkIndex = 0; state.checkConfirmed = false; state.changeIndex = 0; state.grammarAttempts = 0; state.grammarFeedback = ''; state.grammarError = false; }
+  if (reset) { state.solved = step.type === 'teach'; state.selected = []; state.orderErrors = 0; state.lastSelected = null; state.answer = ''; state.transferAttempts = 0; state.transferOutcome = null; state.editSlot = null; state.checkIndex = 0; state.checkConfirmed = false; state.changeIndex = 0; state.grammarAttempts = 0; state.grammarFeedback = ''; state.grammarError = false; }
   feedback('');
   $('progress').textContent = state.finished ? '完成' : `${state.index + 1} / ${lesson.sequence.length}`;
   $('next').hidden = !state.solved;
@@ -467,13 +511,6 @@ function render(reset = true) {
   else if (step.type === 'quantity') renderQuantity(step);
   else if (['teach', 'replace', 'identify', 'classify', 'insert-modifier'].includes(step.type)) renderGrammar(step);
   else compose(step);
-  if (state.finished && lesson.review) feedback(reviewSummary());
-  $('activity').scrollIntoView({ block: 'nearest' });
-}
-function reviewSummary() {
-  const evidence = Object.values(state.syntaxEvidence);
-  const first = evidence.filter(item => item.firstAttempt).length;
-  return `本次 ${first} / ${evidence.length} 项首次完成；${evidence.length - first} 项经反馈后完成。`;
 }
 function advance() {
   if (schemaRunner.active) { schemaRunner.advance(); return; }
@@ -521,7 +558,7 @@ window.addEventListener('keydown', event => {
       document.querySelector(`.bank button[data-word-id="${id}"]`)?.click();
     }
   } else if (event.key === 'Backspace' && state.selected.length) {
-    event.preventDefault(); state.selected.pop(); state.lastSelected = null; feedback(''); compose(step);
+    event.preventDefault(); state.selected.pop(); state.orderErrors = 0; state.lastSelected = null; feedback(''); compose(step);
   }
 });
 
@@ -531,7 +568,13 @@ try {
     const option = node('option', course.label); option.value = course.id;
     $('lesson-select').append(option);
   });
-  schemaRunner.mountCatalog($('lesson-select'));
+  schemaRunner.mountCatalog($('lesson-select'), { excludedLessonIds: [
+    'pb05-article-sound-v1', 'pb05-known-reference-v1', 'pb05-plural-forms-v1',
+    'pb05-countability-v1', 'pb05-quantity-determiners-v1',
+    'pb07-postpositive-modifier-v1',
+    'pb08-time-frequency-v1', 'pb08-place-adverbial-v1', 'pb08-manner-adverbial-v1',
+    'pb08-company-adverbial-v1', 'pb08-multiple-adverbials-v1',
+  ] });
   $('review-entry').onclick = () => schemaRunner.startDueReview();
   $('lesson-select').onchange = event => {
     if (event.target.value.startsWith('node:')) {

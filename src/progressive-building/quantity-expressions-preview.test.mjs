@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {quantityExpressions} from './quantity-expressions-v3.mjs';
+import {validatePreviewLesson,matchesTransfer} from './lessons-v3.mjs';
+validatePreviewLesson(quantityExpressions);
+assert.equal(quantityExpressions.sequence.length,12);
+assert.deepEqual(quantityExpressions.sequence[0].wordIds,['many','books']);
+assert.deepEqual(quantityExpressions.sequence[1].wordIds,['much','water']);
+assert.ok(quantityExpressions.sequence[1].learningNote.explanation.includes('普通肯定句'));
+assert.deepEqual(quantityExpressions.sentenceStepIndexes,[4,5,7,8,10]);
+assert.ok(quantityExpressions.sequence[5].annotations.some(a=>a.label==='宾语'&&a.start===2&&a.end===6));
+for(const good of ['You need a lot of milk.','You need lots of milk.','You need much milk.'])assert.ok(matchesTransfer(quantityExpressions.sequence.at(-1),good));
+for(const bad of ['You need many milk.','You need a lot milk.','You need a lot of milks.'])assert.ok(!matchesTransfer(quantityExpressions.sequence.at(-1),bad));
+assert.ok(!quantityExpressions.sequence.slice(0,-1).some(s=>s.wordIds.join('|')===quantityExpressions.sequence.at(-1).wordIds.join('|')));
+console.log('Quantity collocations, natural usage, merged scope and transfer checks passed');
