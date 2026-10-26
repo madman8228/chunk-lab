@@ -1,0 +1,54 @@
+{
+  "format": "wordbook-us-phrase-ipa-source-batch",
+  "schemaVersion": 1,
+  "bookId": "textbook-wordbook:primary-jingtong-grade3-upper-20261014",
+  "bookTitle": "精通英语 三年级上册（2024）",
+  "sourceSha256": "d52a55373cb7ef7f30bc545fea33d9fb05cef6ece60b54000843c9c37d8a14cb",
+  "conventionId": "cambridge-advanced-learner-us-v1",
+  "status": "source-checked-pending-user-review",
+  "published": false,
+  "accessDate": "2026-10-26",
+  "sourceSection": "Cambridge Advanced Learner's Dictionary, US pronunciation",
+  "items": [
+    {
+      "itemId": "textbook-item:primary-jingtong-grade3-upper-20261014:unit-1:entry:019",
+      "word": "Good morning!",
+      "meaning": "早上好！上午好！",
+      "sourceIPA": "/ˌɡʊd ˈmɔːr.nɪŋ/",
+      "displayIPA": "/ˌɡʊd ˈmɔːrnɪŋ/",
+      "sourceURL": "https://dictionary.cambridge.org/pronunciation/english/good-morning"
+    },
+    {
+      "itemId": "textbook-item:primary-jingtong-grade3-upper-20261014:unit-1:entry:020",
+      "word": "Good afternoon!",
+      "meaning": "下午好！",
+      "sourceIPA": "/ˌɡʊd ˌæf.tɚˈnuːn/",
+      "displayIPA": "/ˌɡʊd ˌæftɚˈnuːn/",
+      "sourceURL": "https://dictionary.cambridge.org/pronunciation/english/good-afternoon"
+    },
+    {
+      "itemId": "textbook-item:primary-jingtong-grade3-upper-20261014:unit-1:entry:021",
+      "word": "Good evening!",
+      "meaning": "晚上好！",
+      "sourceIPA": "/ˌɡʊd ˈiːv.nɪŋ/",
+      "displayIPA": "/ˌɡʊd ˈiːvnɪŋ/",
+      "sourceURL": "https://dictionary.cambridge.org/us/pronunciation/english/good-evening"
+    },
+    {
+      "itemId": "textbook-item:primary-jingtong-grade3-upper-20261014:unit-1:entry:023",
+      "word": "Good night!",
+      "meaning": "晚安！",
+      "sourceIPA": "/ˌɡʊd ˈnaɪt/",
+      "displayIPA": "/ˌɡʊd ˈnaɪt/",
+      "sourceURL": "https://dictionary.cambridge.org/dictionary/english/good-night"
+    },
+    {
+      "itemId": "textbook-item:primary-jingtong-grade3-upper-20261014:unit-2:entry:025",
+      "word": "Thank you!",
+      "meaning": "谢谢你！",
+      "sourceIPA": "/ˈθæŋk ˌjuː/",
+      "displayIPA": "/ˈθæŋk ˌjuː/",
+      "sourceURL": "https://dictionary.cambridge.org/dictionary/english/thank-you"
+    }
+  ]
+}

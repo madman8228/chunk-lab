@@ -1,0 +1,88 @@
+{
+  "book": {
+    "publisher": "人民教育出版社",
+    "title": "义务教育教科书 英语 九年级上册",
+    "editionYear": 2024,
+    "scope": "Vocabulary in Each Unit, printed pages 107–116"
+  },
+  "status": "source-pages-received; transcription-audit-pending",
+  "providedBy": "user attachments",
+  "archive": {
+    "local": "E:/chunk-practice-asset-sources/textbooks/pep-junior-grade9-upper-2024/source-scans/20261021-v1/",
+    "backup": "D:/chunk-practice-backups/pep-grade9-upper-2024-source-pages-20261021/",
+    "git": false
+  },
+  "pages": [
+    {"page": 107, "file": "p107.png", "originalAttachment": "codex-clipboard-abac7df7-b3b0-48f6-8f8a-dca778ba9848.png", "sha256": "D9A7ACCCCAD3C247127717CB1F65B1A3875F5CB80268EA331F492AA99B588212"},
+    {"page": 108, "file": "p108.png", "originalAttachment": "codex-clipboard-6109b22d-78af-4556-a062-e3f7f6ac1dec.png", "sha256": "80729C5DDF015FF8751BB2346A98666546EC76CDF8F6AF78D93847C13334B1C9"},
+    {"page": 109, "file": "p109.png", "originalAttachment": "codex-clipboard-875a8952-2788-4a50-89a3-b189753604cd.png", "sha256": "8EA087A077241AD32140ED1EB8BEAB2E7F60E5122C3088A600FF4CA33639A886"},
+    {"page": 110, "file": "p110.png", "originalAttachment": "codex-clipboard-5ea8a2b3-3462-4c5f-997b-2c9bce7ded1f.png", "sha256": "80C19EF3B60610C8B696D0A2797BCF450139F4630691B8849DB8215F18FDD3F7"},
+    {"page": 111, "file": "p111.png", "originalAttachment": "codex-clipboard-1876e554-3fc4-4b15-bc06-03e7061a8bc8.png", "sha256": "D64D9E630527BD15676FD71F1F8F45824B80F71BE3ADC4F43F3850CCBEA1C549"},
+    {"page": 112, "file": "p112.png", "originalAttachment": "codex-clipboard-23e9f98d-9e65-480b-b9b2-2bf5198d2cbe.png", "sha256": "E4C751E5A75BE701E9515104B2A6BC58E23AC50DA5E93120DA021030D61FD4C3"},
+    {"page": 113, "file": "p113.png", "originalAttachment": "codex-clipboard-a8c6c418-a194-4145-be09-0bc1d1b49aad.png", "sha256": "57F59AAA01E769976C976702DDB4C0993C746EEB6821CBAA0CE507BEDFBBF266"},
+    {"page": 114, "file": "p114.png", "originalAttachment": "codex-clipboard-3ded23b6-b8e6-4a9e-9dea-dbaee0f496d7.png", "sha256": "91FD02BD9C5BCB55D08DD074D2BBFCF3074186317E1BD3FBB8D15C8A80AFE4B4"},
+    {"page": 115, "file": "p115.png", "originalAttachment": "codex-clipboard-c5d285a1-d97f-4f85-86e9-524e3227bc1d.png", "sha256": "C6D1AB46B005B7439B09B10351FFDDF6FE3F6192C02D0DD6D374626394D73696"},
+    {"page": 116, "file": "p116.png", "originalAttachment": "codex-clipboard-202f9bfa-03ab-457d-88db-7b00b6792f3c.png", "sha256": "49949FB98E83CECA03A4F274E34E5AA6BBC606DD278DC88872EFF79D7808FCE5"}
+  ],
+  "verification": {
+    "imageCount": 10,
+    "fileCountLocalAndBackup": 20,
+    "allFilesSha256MatchedAttachments": true,
+    "transcriptionAudit": "pending",
+    "note": "Only vocabulary pages were provided; the cover and two contents images were not part of this recovery set."
+  },
+  "pageAudit": [
+    {"pages": [107, 108], "status": "visually-compared", "transcribedRowsMatched": 102, "discrepancies": []},
+    {"pages": [109], "status": "visually-compared-with-issues", "expectedRows": 51, "transcribedRows": 50, "discrepancies": [
+      {"unit": "Unit 3", "headword": "dictionary", "gloss": "词典；字典", "textbookPage": 23, "issue": "Visible on printed page 109 but absent from the review transcription."}
+    ]},
+    {"pages": [110], "status": "visually-compared-with-issues", "expectedRows": 55, "transcribedRows": 54, "discrepancies": [
+      {"unit": "Unit 4", "headword": "mix up", "gloss": "混淆；弄乱", "textbookPage": 33, "issue": "Transcribed as headword 'mix' with gloss '混合；弄乱'."},
+      {"unit": "Unit 4", "headword": "case", "gloss": "情况；实情", "textbookPage": 34, "issue": "Gloss transcribed as '情况；事实'."},
+      {"unit": "Unit 4", "headword": "in sb's case", "gloss": "就某人的情况而言", "textbookPage": 34, "issue": "Visible on printed page 110 but absent from the review transcription."},
+      {"unit": "Unit 3", "headword": "click", "textbookPage": 28, "issue": "Transcription omits the scope note '(用鼠标或在触摸板上)' before '点击'."},
+      {"unit": "Unit 4", "headword": "pardon", "textbookPage": 35, "issue": "Transcription omits the interjection meanings '请再说一遍；抱歉'."}
+    ]},
+    {"pages": [111], "status": "visually-compared-with-issues", "discrepancies": [
+      {"unit": "Unit 4", "headword": "divide sth into", "gloss": "把某物分为", "textbookPage": 39, "issue": "Visible as a usage entry beneath 'divide' but absent from the review transcription."}
+    ]},
+    {"pages": [112], "status": "visually-compared-with-issues", "discrepancies": [
+      {"unit": "Unit 5", "headword": "officer", "textbookPage": 46, "issue": "Transcription adds '警官'; scan lists only '官员；军官'."},
+      {"unit": "Unit 5", "headword": "ideal", "textbookPage": 46, "issue": "Transcription omits the noun senses '理想；完美的人（或事物）'."},
+      {"unit": "Unit 5", "headword": "certain", "textbookPage": 46, "issue": "Transcription omits the pronoun sense '(不提及人或事物的名称时用)某些'."},
+      {"unit": "Unit 5", "headword": "gradually", "gloss": "逐渐地；逐步地", "textbookPage": 48, "issue": "Transcription duplicates '逐渐地' instead of the scan's second gloss '逐步地'."}
+    ]},
+    {"pages": [113], "status": "visually-compared-with-issues", "discrepancies": [
+      {"unit": "Unit 6", "headword": "crowded", "gloss": "人（太）多的；拥挤的", "textbookPage": 58, "issue": "Transcription uses headword 'crowd'; scan clearly lists 'crowded'."},
+      {"unit": "Unit 6", "headword": "survey", "gloss": "调查；民意调查", "textbookPage": 58, "issue": "Transcription gives '测绘；民意调查'; scan gives '调查；民意调查'."},
+      {"unit": "Unit 6", "headword": "on board", "gloss": "在船（或火车、飞机）上", "textbookPage": 56, "issue": "Listed as a separate usage line beneath 'board'; currently merged into the board gloss instead of separately indexed."}
+    ]},
+    {"pages": [114], "status": "visually-compared-with-issues", "discrepancies": [
+      {"unit": "Unit 7", "headword": "folk", "textbookPage": 62, "issue": "Transcription omits the noun sense '民间音乐' and the plural usage '(pl. folks) 各位'."},
+      {"unit": "Unit 7", "headword": "classical", "textbookPage": 62, "issue": "Transcription omits the noun sense '古典音乐'."},
+      {"unit": "Unit 7", "headword": "pop", "gloss": "流行音乐；涌出", "textbookPage": 62, "issue": "Transcribed verb gloss is '蹦出'; scan says '涌出'."},
+      {"unit": "Unit 7", "headword": "rap", "gloss": "说唱音乐；表演说唱音乐", "textbookPage": 62, "issue": "Transcription uses '说唱乐' for the noun; scan says '说唱音乐'."},
+      {"unit": "Unit 7", "headword": "policewoman", "gloss": "女警察", "textbookPage": 65, "issue": "Scan lists 'policewoman'; transcription instead lists 'policeman' with the generic gloss '警察'."},
+      {"unit": "Unit 7", "headword": "electronic", "textbookPage": 65, "issue": "Present in transcription but not visible on the supplied pp.114–115; page 114 instead has 'policewoman'. Verify whether this is an extra row."},
+      {"unit": "Unit 7", "headword": "outdo", "textbookPage": 66, "issue": "Transcription adds '超过'; scan gloss is '胜过'. Inflected forms (outdid, outdone) also need preservation."},
+      {"unit": "Unit 7", "headword": "soul", "gloss": "真挚感情；灵魂", "textbookPage": 66, "issue": "Transcription says '真挚情感'; scan says '真挚感情'."},
+      {"unit": "Unit 7", "headword": "characteristic", "textbookPage": 66, "issue": "Transcription omits the adjective sense '独特的'."},
+      {"unit": "Unit 7", "headword": "tape", "gloss": "磁带；录音带", "textbookPage": 68, "issue": "Transcription says '录像带'; scan says '录音带'."}
+    ]},
+    {"pages": [115], "status": "visually-compared-with-issues", "discrepancies": [
+      {"unit": "Unit 7", "headword": "tap", "textbookPage": 68, "issue": "Transcription omits noun senses '水龙头；轻拍'."},
+      {"unit": "Unit 7", "headword": "champion", "textbookPage": 68, "issue": "Transcription has '扞卫'; scan reads '捍卫'."},
+      {"unit": "Unit 7", "headword": "flowing", "gloss": "流畅的；松散的", "textbookPage": 68, "issue": "Transcription says '松懈的'; scan says '松散的'."},
+      {"unit": "Unit 8", "headword": "figure skating", "gloss": "花样滑冰", "textbookPage": 74, "issue": "Visible as a separate phrase beneath 'figure'; absent from the transcription."},
+      {"unit": "Unit 8", "headword": "make up ground on sb/sth", "gloss": "逼近正在向前的人或物", "textbookPage": 73, "issue": "Transcription omits '向' in '正在向前的人或物'."},
+      {"unit": "Unit 8", "headword": "smooth", "gloss": "顺利的；光滑的", "textbookPage": 73, "issue": "Transcription duplicates '顺利的' instead of the scan's second gloss '光滑的'."}
+    ]},
+    {"pages": [116], "status": "visually-compared-with-issues", "discrepancies": [
+      {"unit": "Unit 8", "headword": "worldwide", "textbookPage": 77, "issue": "Transcription omits the adverb gloss '世界各地'."},
+      {"unit": "Unit 8", "headword": "Roman", "textbookPage": 78, "issue": "Transcription omits the noun sense '罗马字体'."},
+      {"unit": "Unit 8", "headword": "drown", "gloss": "（使）淹死；（使）溺毙", "textbookPage": 79, "issue": "Visible on printed page 116 but absent from the transcription."},
+      {"unit": "Unit 8", "headword": "cheer", "gloss": "喝彩声；欢呼", "textbookPage": 79, "issue": "Visible on printed page 116 but absent from the transcription."},
+      {"unit": "Unit 8", "headword": "crowd", "gloss": "人群；观众", "textbookPage": 79, "issue": "Visible on printed page 116 but absent from the Unit 8 transcription; the same headword is misused for Unit 6's 'crowded'."}
+    ]}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "status": "owner-reviewed",
+  "approval": "审核通过，继续",
+  "report": "output/wordbook-phonetics-supplement-full-20261025-v5/report.json",
+  "reportSha256": "5f21ab6c5b267f4332772776dcdfb49de94dc2479006c29eef47ceef0fe0cc81",
+  "approvedSupplementEntries": 2567,
+  "scope": "用户确认补充草稿审核通过，并授权继续发布前验证；不等同正式发布授权。",
+  "remainingEvidenceCaveat": "109条专名为英语适应读法候选，仍缺独立发音核验依据；用户审核不被记为词典或官方发音验证。"
+}

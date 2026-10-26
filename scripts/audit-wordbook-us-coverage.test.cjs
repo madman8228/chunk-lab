@@ -1,0 +1,18 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const {audit}=require('./audit-wordbook-us-coverage.cjs');
+const {createPublicWordbookVersions}=require('../server/services/public-wordbook-versions');
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'us-coverage-audit-')),versions=createPublicWordbookVersions({publishedRoot:temp});
+const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
+const body={itemId:'coverage:nice',word:'nice',meaning:'友好的',phonetics:{'en-GB':'/naɪs/'}};
+const item={...body,contentRevision:hash(body)},refs=[{itemId:item.itemId,contentRevision:item.contentRevision}],bookId='textbook-wordbook:coverage-fixture';
+const index={schemaVersion:1,books:[{bookId,title:'隔离缺项盘点夹具',revision:hash(refs),itemCount:1,items:refs}]};
+const dir=versions.directory(bookId);fs.mkdirSync(path.join(dir,'items'),{recursive:true});fs.writeFileSync(path.join(dir,'manifest.json'),JSON.stringify(index));fs.writeFileSync(path.join(dir,'items','coverage_nice.json'),JSON.stringify(item));
+const options={publishedRoot:temp,scope:[bookId],allowlist:[]};
+assert.equal(audit(options).passed,false,'A common word excluded by an older lookup filter must still fail full-course coverage');
+assert.equal(audit({...options,allowlist:[{bookId,itemId:item.itemId,word:'nice'}]}).passed,true);
+assert.equal(audit({...options,allowlist:[{bookId,itemId:item.itemId,word:'different'}]}).passed,false,'A stale exception cannot hide a changed entry');
+const nextBody={...body,phonetics:{...body.phonetics,'en-US':'/naɪs/'}},nextItem={...nextBody,contentRevision:hash(nextBody)},nextIndex=structuredClone(index);nextIndex.books[0].items[0].contentRevision=nextItem.contentRevision;nextIndex.books[0].revision=hash(nextIndex.books[0].items);
+const base=versions.current(bookId),installed=versions.install({format:'wordbook-prepared-package',schemaVersion:1,index:nextIndex,items:[nextItem],published:false},{reviewId:'temporary-fixture'});versions.activate({bookId,expectedBaseReleaseId:base.releaseId,releaseId:installed.releaseId});
+const completed=audit(options);assert.equal(completed.passed,true);assert.equal(completed.missingUs,0);assert.equal(completed.usPhonetics,1);
+console.log('Full-course US audit catches excluded common words and stale exceptions; verified correction passes. Temporary data: '+temp);

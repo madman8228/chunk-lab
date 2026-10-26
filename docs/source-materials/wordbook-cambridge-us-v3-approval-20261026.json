@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "status": "owner-approved-review-draft",
+  "ownerStatement": "第三版审核通过",
+  "date": "2026-10-26",
+  "scope": "第三版审核稿；不包含发布、账户导入或学习记录变更",
+  "artifacts": [
+    {
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\report.json",
+      "sha256": "db7f79196a19d8b970e458263d4ab63bb4feb665b3fb4db42252c228642d27bf"
+    },
+    {
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\changes.json",
+      "sha256": "c90ceeecd146cf51ff36b2735c7a938ac2a5cffdfcd738f4f7a310bfe7368b4e"
+    },
+    {
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\semantic-review.json",
+      "sha256": "c2c9c36e9c9309569ea0e73b837a17aaef7fcdf07ca66ac30141c6b7de51b1ae"
+    },
+    {
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\README.md",
+      "sha256": "8b315717a612da0985bd3efec36d5781c3caef6ad3d766069fb53df05130b1a2"
+    },
+    {
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\verification.json",
+      "sha256": "85f106b3b7384e8761a19b137a426e713eb9fd0c6f6e1dad80d7eb42ded81172"
+    }
+  ],
+  "books": [
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade3-upper-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\5f6cf0d629372ef7c5151cb552a3b064c4246379a1f6e0696279f5661f9ad9f8\\candidate.json",
+      "sha256": "6ffd40c10ccc7a1ab82a1d468758d4d794ab7a1c13efab8c8025b4bee695f330"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-jingtong-grade3-upper-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\4b3f99fdf9e0da95bcd561f6491075958e634f910136da6e921e696c3525899a\\candidate.json",
+      "sha256": "a638b5011e3975226134a5d94e0e5759122cbc1d204ccc9836ad41ea90b3c84f"
+    },
+    {
+      "bookId": "textbook-wordbook:pep-junior-grade7-lower-2024",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\107f399c26c2fa19cb486ab4c06713224998e43036a563a023917a597e990d4c\\candidate.json",
+      "sha256": "a5333ebdcc91b5d0a2de922b8f58b04d88155d1cff7337cfb4573f4b0ff823c1"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-jingtong-grade3-lower-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\4f3b4bc50ba96735ffdb1520db7561a2a0977cb2e3a284d0772eac0ad63cb294\\candidate.json",
+      "sha256": "87fdae402655d5b9450f43499e37d3bded93815448d600a4a83a3dd21a8563ff"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-jingtong-grade6-lower-2013-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\a5255cc9cfa29d0ec471a5e509b567d924d17a1957e26f485f879b8b6d7c8cbe\\candidate.json",
+      "sha256": "2d1f5bc6c187ed0e4bf45f68a401180a9b4733a3ca0045335b51d9fb7b1caee5"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade4-lower-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\ecf46f185cedd0b4aad9d47dbf6f31638ade4dbb33a378b2a26e64aba805844e\\candidate.json",
+      "sha256": "4d2434bd224f916e5e30de0e606d654c5ad57820305241fe7ae9d29c8952604c"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade4-upper-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\bb0616d5bf1383ea0069b238540fc940223e02ce2531f5c333c2403905ec568e\\candidate.json",
+      "sha256": "a1c0b9e5ee9d98092d77212e454bf498d08717e84879d663b0d4fea67a7a4e15"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade6-lower-2013-20261015",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\cf79eb6aa99bb8a1c76bff0913489fe5d8bdb62cb0f29f033c08da5910ba10a1\\candidate.json",
+      "sha256": "d426dd88e58ba55d624369afee4afb463d726c97027799e85779f8be8d6d1c29"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade6-upper-2024-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\f1d54f90247b7ad685ebc7036415fd8d27999120df404b575e95e7d68650812e\\candidate.json",
+      "sha256": "47fc4659beab4f86110472b000b67b0b86ad9feb9c163a451d7edad48870acc5"
+    },
+    {
+      "bookId": "textbook-wordbook:pep-junior-grade9-full-2013",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\5b80c93f20bee5dc409bbda9671318032d28e9051a1524394cde64f63f91bf46\\candidate.json",
+      "sha256": "e22f15d84c61619ac8375a7f7007710be0b31802f5ca254f2a72699ff1c8aaae"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade5-upper-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\61c27c4bdc654b3f300d9e3f71b7fe66238bec4ecd7e0b89cc4986dd2e5f1bf4\\candidate.json",
+      "sha256": "98c0b9f838fef4c974cf4b37671e3da236282f90bb368131fbbf37f4500d24eb"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade3-lower-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\ac979a9a8fdf8529c094218cd9b3dddc00e83793c0634e1557c7f67d20e55f39\\candidate.json",
+      "sha256": "1302bae52c4a4ddd0f794d20853266ba8c73b1fa789aa232bae928fc7498b477"
+    },
+    {
+      "bookId": "textbook-wordbook:pep-junior-grade7-upper-2024",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\d11a1e739bb5fa3cdf0e0cea48ef40f8e92fa59e4dc061e8cbdb30d5473d5f11\\candidate.json",
+      "sha256": "dca411b12c7ccf0e18871f459cbdbcb095c118843139ec79814b4f7625234214"
+    },
+    {
+      "bookId": "textbook-wordbook:pep-junior-grade8-upper-2024",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\663fecc480507b55ba55af4368d9f3d27b1348005bf486a6ae1b8984f7fb4553\\candidate.json",
+      "sha256": "ce0bf1cbef1c59ed918b296f29756b930ba1f877b6064b43bea7b9f52b9f2d13"
+    },
+    {
+      "bookId": "textbook-wordbook:pep-junior-grade8-lower-2024",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\d3a57c7b63258ddaf6fc3c5792551da1a439037bfed1f3243391644754bed10a\\candidate.json",
+      "sha256": "7139bf7e7d757f834184929bcaa2b39a04a2c8b9acd8b1bdc4bf58315bd61e87"
+    },
+    {
+      "bookId": "textbook-wordbook:pep-junior-grade9-full-2013-unit1-pilot",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\1729f51da7272267cb999c54c8544fa9f56c5aec354cc6baf7a93561980e69eb\\candidate.json",
+      "sha256": "ed7d60aa7acddf2b51067d0c4ba43ebc63f4673c5efb8706de1a7041e54791b8"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade5-lower-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\2a7421d5d0eb87336429a8b41ba40014dcdcebdbabc854b2f6e5e22f03faa459\\candidate.json",
+      "sha256": "8e6e9f0bdfce7c1a58425494042a42a0f84c107bf27c403addc3d5353af8e6dd"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-jingtong-grade4-upper-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\4f9ce488ddbabf5ec9239532fffa1d9c685aedb27166527bc412882fdf075068\\candidate.json",
+      "sha256": "be87f25e09d6e330bb6a18afc42080e6b222872696dfa43fa983789f95bb149e"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-jingtong-grade5-lower-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\729098f1d5427f75c4b6586bd5c4c658ff33b75219412f012e9501f4dc219352\\candidate.json",
+      "sha256": "695b8e4757cab23977f8b0bb4f14d0739165591d2210e3073fca444ac4b7933d"
+    },
+    {
+      "bookId": "textbook-wordbook:primary-pep-grade5-lower-2013-20261014",
+      "path": "D:\\06-project\\chunk-practice\\output\\wordbook-us-ipa-cambridge-20261026-v3\\candidate-packages\\e83361a518336069bbd2f96ec9c057548091aaadbfdd928a1f3c0f838123b871\\candidate.json",
+      "sha256": "daa5dfc554708ea09c1da26adc743d60977a534cdc983d8ea5650e122e512643"
+    }
+  ],
+  "remainingItems": 21,
+  "published": false,
+  "sourceNotes": [
+    "goods 使用已在第三版审核表中明确披露的 Cambridge Academic Content Dictionary US 原标；本次批准仅适用于该明确列出的条目，不扩大为全局混用来源许可。"
+  ]
+}
